@@ -35,7 +35,6 @@ const meta: Meta<typeof CardListing> = {
 export default meta;
 
 const defaultArgs = {
-  isHighlighted: false,
   index: 10,
   subcopy: "Ullamcorper auctor volutpat",
   tags: [
@@ -93,7 +92,7 @@ export const Customisable: Story = {
         "title",
         "subcopy",
         "lessonCount",
-        "isHighlighted",
+        "highlightType",
         "tags",
         "disabled",
         "saveProps",
@@ -276,7 +275,6 @@ export const Horizontal: Story = {
   args: defaultArgs,
 };
 const cardProps = {
-  isHighlighted: false,
   lessonCount: 10,
   title:
     "Ullamcorper auctor volutpat turpis dictumst aliquam et et dui mattis ullamcorper.",
@@ -327,7 +325,11 @@ export const Optionality: Story = {
           {...args}
           childCards={[
             { ...cardProps, title: "Optionality 1" },
-            { ...cardProps, title: "Optionality 2", isHighlighted: true },
+            {
+              ...cardProps,
+              title: "Optionality 2",
+              highlightType: "secondary",
+            },
             { ...cardProps, title: "Optionality 3" },
           ]}
         />
