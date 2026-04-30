@@ -45,6 +45,7 @@ const defaultProps: UnitViewProps = {
   yearGroupTitle: "Year 10",
   examBoardSlug: "aqa",
   examBoardTitle: "AQA",
+  phaseTitle: "Secondary",
   subjectPhaseSlug: "biology-secondary",
 };
 

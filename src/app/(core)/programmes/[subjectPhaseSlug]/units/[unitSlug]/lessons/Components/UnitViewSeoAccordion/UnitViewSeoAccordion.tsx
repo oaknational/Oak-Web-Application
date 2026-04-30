@@ -10,20 +10,18 @@ import { resolveOakHref } from "@/common-lib/urls";
 export interface UnitViewSeoAccordionProps {
   examBoardTitle?: string;
   yearGroupTitle: string;
-  keyStageTitle: string;
   unitTitle: string;
   subjectTitle: string;
-  phaseSlug: string;
+  phaseTitle: string;
   subjectPhaseSlug: string;
 }
 
 export const UnitViewSeoAccordion = ({
   examBoardTitle,
   yearGroupTitle,
-  keyStageTitle,
   unitTitle,
   subjectTitle,
-  phaseSlug,
+  phaseTitle,
   subjectPhaseSlug,
 }: UnitViewSeoAccordionProps) => {
   const examBoardText = examBoardTitle ? `${examBoardTitle} ` : "";
@@ -37,8 +35,9 @@ export const UnitViewSeoAccordion = ({
       header={
         <OakP $textAlign={"start"}>
           Explore this {examBoardText}
-          {yearGroupTitle} {subjectTitle} {keyStageTitle} unit to find free
-          lesson teaching resources, including...
+          {yearGroupTitle.toLocaleLowerCase()}{" "}
+          {subjectTitle.toLocaleLowerCase()} unit to find free lesson teaching
+          resources, including...
         </OakP>
       }
     >
@@ -58,7 +57,8 @@ export const UnitViewSeoAccordion = ({
             })}
           >
             {examBoardText}
-            {phaseSlug} {subjectTitle} curriculum
+            {phaseTitle.toLocaleLowerCase()} {subjectTitle.toLocaleLowerCase()}{" "}
+            curriculum
           </OakLink>{" "}
           and discover more of our teaching resources for{" "}
           <OakLink
@@ -68,7 +68,8 @@ export const UnitViewSeoAccordion = ({
               tab: "units",
             })}
           >
-            {examBoardText} {phaseSlug} {subjectTitle} programmes
+            {examBoardText} {phaseTitle.toLocaleLowerCase()}{" "}
+            {subjectTitle.toLocaleLowerCase()} programmes
           </OakLink>
           .
         </OakP>

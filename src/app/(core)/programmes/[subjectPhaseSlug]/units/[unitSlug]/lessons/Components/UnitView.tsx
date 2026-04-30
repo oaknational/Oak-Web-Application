@@ -49,6 +49,7 @@ export type UnitViewProps = Pick<
   | "yearGroupTitle"
   | "examBoardTitle"
   | "examBoardSlug"
+  | "phaseTitle"
 > & {
   subjectPhaseSlug: string;
 };
@@ -69,6 +70,7 @@ export const UnitView = ({
   priorKnowledgeRequirements,
   threads,
   phaseSlug,
+  phaseTitle,
   tierOptionToggles,
   subjectOptionToggles,
   nextUnit,
@@ -80,6 +82,7 @@ export const UnitView = ({
 }: UnitViewProps) => {
   const hasToggles =
     tierOptionToggles.length > 1 || subjectOptionToggles.length > 1;
+
   return (
     <OakBox $ph="spacing-40">
       <OakGrid
@@ -171,10 +174,9 @@ export const UnitView = ({
           <UnitViewSeoAccordion
             examBoardTitle={examBoardTitle ?? undefined}
             yearGroupTitle={yearGroupTitle}
-            keyStageTitle={keyStageTitle}
             unitTitle={unitTitle}
             subjectTitle={subjectTitle}
-            phaseSlug={phaseSlug}
+            phaseTitle={phaseTitle}
             subjectPhaseSlug={subjectPhaseSlug}
           />
           <PreviousNextNav

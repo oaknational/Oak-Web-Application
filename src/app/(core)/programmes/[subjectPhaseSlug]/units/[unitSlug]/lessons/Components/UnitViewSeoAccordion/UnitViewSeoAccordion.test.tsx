@@ -11,10 +11,9 @@ describe("UnitViewSeoAccordion", () => {
   const defaultProps: UnitViewSeoAccordionProps = {
     examBoardTitle: "AQA",
     yearGroupTitle: "Year 7",
-    keyStageTitle: "KS3",
     unitTitle: "Test Unit",
     subjectTitle: "English",
-    phaseSlug: "secondary",
+    phaseTitle: "Secondary",
     subjectPhaseSlug: "english-secondary-ks3",
   };
 
@@ -22,7 +21,7 @@ describe("UnitViewSeoAccordion", () => {
     renderWithTheme(<UnitViewSeoAccordion {...defaultProps} />);
 
     const header = screen.getByText(
-      /Explore this AQA Year 7 English KS3 unit to find free lesson teaching resources/,
+      /Explore this AQA year 7 english unit to find free lesson teaching resources/,
     );
     expect(header).toBeInTheDocument();
   });
@@ -32,7 +31,7 @@ describe("UnitViewSeoAccordion", () => {
     renderWithTheme(<UnitViewSeoAccordion {...props} />);
 
     const header = screen.getByText(
-      /Explore this Year 7 English KS3 unit to find free lesson teaching resources/,
+      /Explore this year 7 english unit to find free lesson teaching resources/,
     );
     expect(header).toBeInTheDocument();
   });

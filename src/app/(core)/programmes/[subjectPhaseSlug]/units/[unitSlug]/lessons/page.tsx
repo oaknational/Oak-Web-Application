@@ -130,6 +130,7 @@ const InnerUnitPage = async (props: AppPageProps<LessonsPageParams>) => {
         priorKnowledgeRequirements={data.priorKnowledgeRequirements}
         threads={data.threads}
         phaseSlug={data.phaseSlug}
+        phaseTitle={data.phaseTitle}
         tierOptionToggles={data.tierOptionToggles}
         subjectOptionToggles={data.subjectOptionToggles}
         nextUnit={data.nextUnit}

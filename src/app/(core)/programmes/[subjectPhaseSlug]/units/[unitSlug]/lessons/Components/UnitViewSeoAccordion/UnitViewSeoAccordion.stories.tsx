@@ -15,10 +15,9 @@ export const Secondary: Story = {
   args: {
     examBoardTitle: "AQA",
     yearGroupTitle: "Year 10",
-    keyStageTitle: "KS4",
     unitTitle: "Coordination and control",
     subjectTitle: "Biology",
-    phaseSlug: "secondary",
+    phaseTitle: "secondary",
     subjectPhaseSlug: "biology-secondary-aqa",
   },
 };
@@ -27,10 +26,9 @@ export const SecondaryEdexcel: Story = {
   args: {
     examBoardTitle: "Edexcel",
     yearGroupTitle: "Year 7",
-    keyStageTitle: "KS3",
     unitTitle: "Cells",
     subjectTitle: "Biology",
-    phaseSlug: "secondary",
+    phaseTitle: "secondary",
     subjectPhaseSlug: "biology-secondary-edexcel",
   },
 };
@@ -39,10 +37,9 @@ export const Primary: Story = {
   args: {
     examBoardTitle: undefined,
     yearGroupTitle: "Year 4",
-    keyStageTitle: "KS2",
     unitTitle: "Animals including humans",
     subjectTitle: "Science",
-    phaseSlug: "primary",
+    phaseTitle: "primary",
     subjectPhaseSlug: "science-primary",
   },
 };
@@ -51,10 +48,9 @@ export const PrimaryKS1: Story = {
   args: {
     examBoardTitle: undefined,
     yearGroupTitle: "Year 2",
-    keyStageTitle: "KS1",
     unitTitle: "Understanding animals",
     subjectTitle: "Science",
-    phaseSlug: "primary",
+    phaseTitle: "primary",
     subjectPhaseSlug: "science-primary",
   },
 };
@@ -63,10 +59,9 @@ export const NoExamBoard: Story = {
   args: {
     examBoardTitle: undefined,
     yearGroupTitle: "Year 11",
-    keyStageTitle: "KS4",
     unitTitle: "Energy",
     subjectTitle: "Physics",
-    phaseSlug: "secondary",
+    phaseTitle: "secondary",
     subjectPhaseSlug: "physics-secondary",
   },
 };
