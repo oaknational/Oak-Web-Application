@@ -229,6 +229,7 @@ describe("LessonList", () => {
       <LessonList
         {...defaultProps}
         showUnitDownloadButton={true}
+        unitDownloadFileId="123"
         isGeorestrictedUnit={true}
       />,
     );
@@ -241,7 +242,13 @@ describe("LessonList", () => {
     ).not.toBeInTheDocument();
   });
   it("passes download button correct props", () => {
-    render(<LessonList {...defaultProps} showUnitDownloadButton={true} />);
+    render(
+      <LessonList
+        {...defaultProps}
+        showUnitDownloadButton={true}
+        unitDownloadFileId="biology-secondary-ks3-cells"
+      />,
+    );
 
     expect(unitDownloadButtonMock).toHaveBeenCalledWith(
       expect.objectContaining({
@@ -277,8 +284,13 @@ describe("LessonList", () => {
     ).not.toBeInTheDocument();
   });
   it("renders logged out unit download button text", () => {
-    setUseUserReturn(mockLoggedOut);
-    render(<LessonList {...defaultProps} showUnitDownloadButton={true} />);
+    render(
+      <LessonList
+        {...defaultProps}
+        showUnitDownloadButton={true}
+        unitDownloadFileId="cells-42"
+      />,
+    );
 
     expect(
       screen.queryByRole("button", { name: "Download complete unit" }),

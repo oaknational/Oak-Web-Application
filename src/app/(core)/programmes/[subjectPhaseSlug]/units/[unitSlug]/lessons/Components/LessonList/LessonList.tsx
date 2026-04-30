@@ -130,7 +130,6 @@ const LessonList = ({
     setShowIncompleteMessage,
   } = useUnitDownloadButtonState();
 
-  const unitFileId = unitDownloadFileId ?? `${programmeSlug}-${unitSlug}`;
   const onDownloadSuccess = () => {
     setShowDownloadMessage(false);
   };
@@ -205,9 +204,9 @@ const LessonList = ({
               <OakSpan $font="body-2-bold">{lessonCount}</OakSpan> lessons in
               unit
             </OakBox>
-            {showUnitDownloadButton ? (
+            {showUnitDownloadButton && unitDownloadFileId ? (
               <UnitDownloadButton
-                unitFileId={unitFileId}
+                unitFileId={unitDownloadFileId}
                 onDownloadSuccess={onDownloadSuccess}
                 setDownloadError={setDownloadError}
                 setDownloadInProgress={setDownloadInProgress}
