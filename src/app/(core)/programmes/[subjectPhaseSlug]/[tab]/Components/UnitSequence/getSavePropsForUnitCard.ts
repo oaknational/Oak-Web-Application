@@ -1,4 +1,4 @@
-import { getKeyStageTitle } from "./UnitList";
+import { getKeyStageTitle } from "@/utils/curriculum/formatting";
 
 export const getSavePropsForUnitCard = ({
   slug,

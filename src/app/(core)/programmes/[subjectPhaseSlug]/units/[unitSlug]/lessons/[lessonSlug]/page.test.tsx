@@ -56,7 +56,7 @@ const lessonOverviewFixture: Partial<TeachersLessonOverviewPageData> = {
   subjectSlug: "maths",
   subjectTitle: "Maths",
   subjectParent: null,
-  yearTitle: "Year 4",
+  yearGroupTitle: "Year 4",
   year: "4",
   keyStageSlug: "ks2",
   keyStageTitle: "Key Stage 2",
@@ -157,16 +157,16 @@ describe("generateMetadata", () => {
     });
 
     expect(result.title).toBe(
-      "Introduction to Geometry KS2 | Y4 Maths Lesson Resources",
+      "Introduction to Geometry KS2 | Y4 Maths | Lesson Resources",
     );
     expect(result.description).toBe(
       "View lesson content and choose resources to download or share",
     );
     expect(result.openGraph?.title).toBe(
-      "Introduction to Geometry KS2 | Y4 Maths Lesson Resources",
+      "Introduction to Geometry KS2 | Y4 Maths | Lesson Resources",
     );
     expect(result.twitter?.title).toBe(
-      "Introduction to Geometry KS2 | Y4 Maths Lesson Resources",
+      "Introduction to Geometry KS2 | Y4 Maths | Lesson Resources",
     );
   });
 
@@ -184,13 +184,13 @@ describe("generateMetadata", () => {
     });
 
     expect(result.title).toBe(
-      "Introduction to Geometry Higher Edexcel KS2 | Y4 Maths Lesson Resources",
+      "Introduction to Geometry KS2 | Y4 Maths Higher Edexcel | Lesson Resources",
     );
     expect(result.openGraph?.title).toBe(
-      "Introduction to Geometry Higher Edexcel KS2 | Y4 Maths Lesson Resources",
+      "Introduction to Geometry KS2 | Y4 Maths Higher Edexcel | Lesson Resources",
     );
     expect(result.twitter?.title).toBe(
-      "Introduction to Geometry Higher Edexcel KS2 | Y4 Maths Lesson Resources",
+      "Introduction to Geometry KS2 | Y4 Maths Higher Edexcel | Lesson Resources",
     );
     expect(result.description).toBe(
       "View lesson content and choose resources to download or share",

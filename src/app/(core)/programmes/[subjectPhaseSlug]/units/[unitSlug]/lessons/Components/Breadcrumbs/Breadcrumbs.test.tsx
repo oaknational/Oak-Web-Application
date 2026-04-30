@@ -7,6 +7,7 @@ import teachersLessonOverviewFixture from "@/node-lib/curriculum-api-2023/fixtur
 import { getTeacherSubjectPhaseSlug } from "@/utils/curriculum/slugs";
 import { resolveOakHref } from "@/common-lib/urls";
 import teachersUnitOverviewFixture from "@/node-lib/curriculum-api-2023/fixtures/teachersUnitOverview.fixture";
+import lessonDownloadsFixture from "@/node-lib/curriculum-api-2023/fixtures/lessonDownloads.fixture";
 
 const render = renderWithTheme;
 
@@ -29,9 +30,10 @@ describe("Breadcrumbs", () => {
       <Breadcrumbs
         data={mockLessonData}
         subjectPhaseSlug={mockSubjectPhaseSlug}
+        mode="lesson"
       />,
     );
-    const firstBreadcrumbText = `${mockLessonData.subjectTitle}, ${mockLessonData.phaseTitle}, ${mockLessonData.keyStageTitle}, ${mockLessonData.yearTitle}, ${mockLessonData.tierTitle}, ${mockLessonData.examBoardTitle}`;
+    const firstBreadcrumbText = `${mockLessonData.subjectTitle}, ${mockLessonData.phaseTitle}, ${mockLessonData.keyStageTitle}, ${mockLessonData.yearGroupTitle}, ${mockLessonData.tierTitle}, ${mockLessonData.examBoardTitle}`;
 
     const firstBreadcrumbLink = screen.getByRole("link", {
       name: firstBreadcrumbText,
@@ -51,6 +53,7 @@ describe("Breadcrumbs", () => {
       <Breadcrumbs
         data={mockLessonData}
         subjectPhaseSlug={mockSubjectPhaseSlug}
+        mode="lesson"
       />,
     );
 
@@ -72,6 +75,7 @@ describe("Breadcrumbs", () => {
       <Breadcrumbs
         data={mockLessonData}
         subjectPhaseSlug={mockSubjectPhaseSlug}
+        mode="lesson"
       />,
     );
 
@@ -83,6 +87,7 @@ describe("Breadcrumbs", () => {
       <Breadcrumbs
         data={mockLessonData}
         subjectPhaseSlug={mockSubjectPhaseSlug}
+        mode="lesson"
       />,
     );
 
@@ -100,6 +105,7 @@ describe("Breadcrumbs", () => {
           examboardSlug: mockUnitData.examBoardSlug,
           subjectParentTitle: mockUnitData.parentSubject,
         })}
+        mode="unit"
       />,
     );
 
@@ -117,10 +123,69 @@ describe("Breadcrumbs", () => {
           examboardSlug: mockUnitData.examBoardSlug,
           subjectParentTitle: mockUnitData.parentSubject,
         })}
+        mode="unit"
       />,
     );
 
     const breadcrumbs = screen.getAllByRole("listitem");
     expect(breadcrumbs).toHaveLength(2);
+  });
+  it("renders downloads breadcrumb trail with lesson link and downloads as current page", () => {
+    const mockDownloadsData = lessonDownloadsFixture({
+      subjectTitle: "Biology",
+      keyStageTitle: "KS4",
+      tierTitle: "Foundation",
+      examBoardTitle: "AQA",
+      yearGroupTitle: "Year 10",
+    });
+    render(
+      <Breadcrumbs
+        data={mockDownloadsData}
+        subjectPhaseSlug="biology-secondary-aqa"
+        mode="downloads"
+      />,
+    );
+
+    const programmeBreadcrumbText =
+      "Biology, Secondary, KS4, Year 10, Foundation, AQA";
+    const programmeLink = screen.getByRole("link", {
+      name: programmeBreadcrumbText,
+    });
+    expect(programmeLink).toHaveAttribute(
+      "href",
+      resolveOakHref({
+        page: "teacher-programme",
+        subjectPhaseSlug: "biology-secondary-aqa",
+        tab: "units",
+      }),
+    );
+
+    const unitLink = screen.getByRole("link", {
+      name: mockDownloadsData.unitTitle,
+    });
+    expect(unitLink).toHaveAttribute(
+      "href",
+      resolveOakHref({
+        page: "integrated-unit-overview",
+        unitSlug: mockDownloadsData.unitSlug,
+        programmeSlug: mockDownloadsData.programmeSlug,
+      }),
+    );
+
+    const lessonLink = screen.getByRole("link", {
+      name: mockDownloadsData.lessonTitle,
+    });
+    expect(lessonLink).toHaveAttribute(
+      "href",
+      resolveOakHref({
+        page: "integrated-lesson-overview",
+        unitSlug: mockDownloadsData.unitSlug,
+        programmeSlug: mockDownloadsData.programmeSlug,
+        lessonSlug: mockDownloadsData.lessonSlug,
+      }),
+    );
+
+    expect(screen.getByText("Downloads")).toBeInTheDocument();
+    expect(screen.queryByRole("link", { name: "Downloads" })).toBeNull();
   });
 });
