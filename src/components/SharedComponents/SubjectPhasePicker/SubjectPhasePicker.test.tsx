@@ -399,7 +399,7 @@ describe("Component - subject phase picker", () => {
         throw new Error("Could not find button");
       }
 
-      const tabCount = curriculumPhaseOptions.subjects.length + 3;
+      const tabCount = curriculumPhaseOptions.subjects.length + 2;
       for (let i = 0; i < tabCount; i++) {
         await userEvent.tab();
       }
