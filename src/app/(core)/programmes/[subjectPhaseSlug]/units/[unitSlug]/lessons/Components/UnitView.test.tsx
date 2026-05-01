@@ -21,7 +21,34 @@ const lessons = [
     lessonSlug: "lesson-2",
     lessonTitle: "Lesson 2",
   },
-];
+] as UnitViewProps["lessons"];
+
+const defaultProps: UnitViewProps = {
+  programmeSlug: "biology-secondary-ks4-foundation-aqa",
+  unitSlug: "cells",
+  unitTitle: "Cells",
+  unitDescription: "Learn about cells",
+  subjectTitle: "Biology",
+  subjectSlug: "biology",
+  keyStageSlug: "ks4",
+  keyStageTitle: "Key Stage 4",
+  lessons,
+  unitIndex: 2,
+  unitCount: 12,
+  tierOptionToggles: [],
+  subjectOptionToggles: [],
+  threads: [],
+  phaseSlug: "secondary",
+  nextUnit: null,
+  prevUnit: null,
+  subjectCategories: null,
+  yearGroupTitle: "Year 10",
+  examBoardSlug: "aqa",
+  examBoardTitle: "AQA",
+  phaseTitle: "Secondary",
+  subjectPhaseSlug: "biology-secondary",
+};
+
 describe("UnitView", () => {
   beforeEach(() => {
     jest.clearAllMocks();
@@ -30,17 +57,7 @@ describe("UnitView", () => {
   it("renders LessonList and passes lesson props with computed lessonCount", () => {
     render(
       <UnitView
-        programmeSlug="biology-secondary-ks4-foundation-aqa"
-        unitSlug="cells"
-        unitTitle="Cells"
-        unitDescription="Learn about cells"
-        subjectTitle="Biology"
-        subjectSlug="biology"
-        keyStageSlug="ks4"
-        keyStageTitle="Key Stage 4"
-        lessons={lessons as UnitViewProps["lessons"]}
-        unitIndex={2}
-        unitCount={12}
+        {...defaultProps}
         tierOptionToggles={[
           {
             title: "Foundation",
@@ -65,11 +82,6 @@ describe("UnitView", () => {
             isSelected: false,
           },
         ]}
-        threads={[]}
-        phaseSlug="secondary"
-        nextUnit={null}
-        prevUnit={null}
-        subjectCategories={null}
       />,
     );
 
@@ -137,27 +149,7 @@ describe("UnitView", () => {
   });
   it("renders why this why now", () => {
     render(
-      <UnitView
-        programmeSlug="biology-secondary-ks3"
-        unitSlug="cells"
-        unitTitle="Cells"
-        unitDescription="Learn about cells"
-        subjectTitle="Biology"
-        subjectSlug="biology"
-        keyStageSlug="ks3"
-        keyStageTitle="Key Stage 3"
-        lessons={lessons as UnitViewProps["lessons"]}
-        unitIndex={2}
-        unitCount={12}
-        threads={[]}
-        phaseSlug="secondary"
-        whyThisWhyNow={"mock why this why now"}
-        tierOptionToggles={[]}
-        subjectOptionToggles={[]}
-        nextUnit={null}
-        prevUnit={null}
-        subjectCategories={null}
-      />,
+      <UnitView {...defaultProps} whyThisWhyNow="mock why this why now" />,
     );
 
     expect(screen.getAllByText("mock why this why now")[0]).toBeInTheDocument();
@@ -165,25 +157,8 @@ describe("UnitView", () => {
   it("renders prior knowledge requirements in a list", () => {
     render(
       <UnitView
-        programmeSlug="biology-secondary-ks3"
-        unitSlug="cells"
-        unitTitle="Cells"
-        unitDescription="Learn about cells"
-        subjectTitle="Biology"
-        subjectSlug="biology"
-        keyStageSlug="ks3"
-        keyStageTitle="Key Stage 3"
-        lessons={lessons as UnitViewProps["lessons"]}
-        unitIndex={2}
-        unitCount={12}
-        threads={[]}
-        phaseSlug="secondary"
+        {...defaultProps}
         priorKnowledgeRequirements={["Requirement 1", "Requirement 2"]}
-        tierOptionToggles={[]}
-        subjectOptionToggles={[]}
-        nextUnit={null}
-        prevUnit={null}
-        subjectCategories={null}
       />,
     );
 
@@ -193,28 +168,7 @@ describe("UnitView", () => {
     expect(listItems[1]).toHaveTextContent("Requirement 2");
   });
   it("renders threads", () => {
-    render(
-      <UnitView
-        programmeSlug="biology-secondary-ks3"
-        unitSlug="cells"
-        unitTitle="Cells"
-        unitDescription="Learn about cells"
-        subjectTitle="Biology"
-        subjectSlug="biology"
-        keyStageSlug="ks3"
-        keyStageTitle="Key Stage 3"
-        lessons={lessons as UnitViewProps["lessons"]}
-        unitIndex={2}
-        unitCount={12}
-        threads={["Thread 1", "Thread 2"]}
-        phaseSlug="secondary"
-        tierOptionToggles={[]}
-        subjectOptionToggles={[]}
-        nextUnit={null}
-        prevUnit={null}
-        subjectCategories={null}
-      />,
-    );
+    render(<UnitView {...defaultProps} threads={["Thread 1", "Thread 2"]} />);
 
     const thread1 = screen.getAllByText("Thread 1");
     expect(thread1[0]).toBeInTheDocument();
@@ -225,24 +179,9 @@ describe("UnitView", () => {
   it("renders previous unit link", () => {
     render(
       <UnitView
+        {...defaultProps}
         programmeSlug="biology-secondary-ks3"
-        unitSlug="cells"
-        unitTitle="Cells"
-        unitDescription="Learn about cells"
-        subjectTitle="Biology"
-        subjectSlug="biology"
-        keyStageSlug="ks3"
-        keyStageTitle="Key Stage 3"
-        lessons={lessons as UnitViewProps["lessons"]}
-        unitIndex={2}
-        unitCount={12}
-        threads={["Thread 1", "Thread 2"]}
-        phaseSlug="secondary"
-        tierOptionToggles={[]}
-        subjectOptionToggles={[]}
-        nextUnit={null}
         prevUnit={{ slug: "unit-1", title: "Unit 1" }}
-        subjectCategories={null}
       />,
     );
 
@@ -258,24 +197,9 @@ describe("UnitView", () => {
   it("renders next unit link", () => {
     render(
       <UnitView
+        {...defaultProps}
         programmeSlug="biology-secondary-ks3"
-        unitSlug="cells"
-        unitTitle="Cells"
-        unitDescription="Learn about cells"
-        subjectTitle="Biology"
-        subjectSlug="biology"
-        keyStageSlug="ks3"
-        keyStageTitle="Key Stage 3"
-        lessons={lessons as UnitViewProps["lessons"]}
-        unitIndex={2}
-        unitCount={12}
-        threads={["Thread 1", "Thread 2"]}
-        phaseSlug="secondary"
-        tierOptionToggles={[]}
-        subjectOptionToggles={[]}
-        prevUnit={null}
         nextUnit={{ slug: "unit-3", title: "Unit 3" }}
-        subjectCategories={null}
       />,
     );
 

@@ -16,6 +16,7 @@ import {
 
 import { LessonList } from "./LessonList";
 import { ProgrammeToggles } from "./ProgrammeToggles";
+import { UnitViewSeoAccordion } from "./UnitViewSeoAccordion";
 
 import type { TeachersUnitOverviewData } from "@/node-lib/curriculum-api-2023/queries/teachersUnitOverview/teachersUnitOverview.schema";
 import SkipLink from "@/components/CurriculumComponents/OakComponentsKitchen/SkipLink";
@@ -45,7 +46,13 @@ export type UnitViewProps = Pick<
   | "prevUnit"
   | "nextUnit"
   | "subjectCategories"
->;
+  | "yearGroupTitle"
+  | "examBoardTitle"
+  | "examBoardSlug"
+  | "phaseTitle"
+> & {
+  subjectPhaseSlug: string;
+};
 
 export const UnitView = ({
   programmeSlug,
@@ -63,14 +70,19 @@ export const UnitView = ({
   priorKnowledgeRequirements,
   threads,
   phaseSlug,
+  phaseTitle,
   tierOptionToggles,
   subjectOptionToggles,
   nextUnit,
   prevUnit,
   subjectCategories,
+  yearGroupTitle,
+  examBoardTitle,
+  subjectPhaseSlug,
 }: UnitViewProps) => {
   const hasToggles =
     tierOptionToggles.length > 1 || subjectOptionToggles.length > 1;
+
   return (
     <OakBox $ph="spacing-40">
       <OakGrid
@@ -78,7 +90,7 @@ export const UnitView = ({
         $rg="spacing-56"
         $mb={["spacing-0", "spacing-48", "spacing-48"]}
         $mh="auto"
-        $mt={["spacing-48", "spacing-56"]}
+        $mt={["spacing-48", "spacing-56", "spacing-80"]}
         $width={"100%"}
         $maxWidth={"spacing-1280"}
         $position="relative"
@@ -153,7 +165,20 @@ export const UnitView = ({
           />
           <HelpLinkCard $display={["block", "none"]} />
         </OakGridArea>
-        <OakGridArea $colSpan={12} $rowStart={[3, 2]} $mb={"spacing-48"}>
+        <OakGridArea
+          $gap={["spacing-48", "spacing-56", "spacing-80"]}
+          $colSpan={12}
+          $rowStart={[3, 2]}
+          $mb={"spacing-48"}
+        >
+          <UnitViewSeoAccordion
+            examBoardTitle={examBoardTitle ?? undefined}
+            yearGroupTitle={yearGroupTitle}
+            unitTitle={unitTitle}
+            subjectTitle={subjectTitle}
+            phaseTitle={phaseTitle}
+            subjectPhaseSlug={subjectPhaseSlug}
+          />
           <PreviousNextNav
             backgroundColorLevel={getBackgroundColorLevel(phaseSlug)}
             currentIndex={unitIndex}
