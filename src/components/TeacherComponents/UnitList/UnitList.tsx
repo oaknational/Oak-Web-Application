@@ -8,7 +8,6 @@ import {
   OakInlineBanner,
 } from "@oaknational/oak-components";
 
-import { getSubjectPhaseSlug } from "../helpers/getSubjectPhaseSlug";
 import { UnitsContainer } from "../UnitsContainer";
 
 import { getPageItems, getProgrammeFactors } from "./helpers";
@@ -23,10 +22,8 @@ import {
   ReshapedUnitData,
   UnitListingData,
 } from "@/node-lib/curriculum-api-2023/queries/unitListing/unitListing.schema";
-import { resolveOakHref } from "@/common-lib/urls";
 import isSlugLegacy from "@/utils/slugModifiers/isSlugLegacy";
 import { PaginationProps } from "@/components/SharedComponents/Pagination/usePagination";
-import { convertSubjectToSlug } from "@/components/TeacherComponents/helpers/convertSubjectToSlug";
 import { useSaveUnits } from "@/node-lib/educator-api/helpers/saveUnits/useSaveUnits";
 import {
   getIsUnitExpiring,
@@ -106,14 +103,10 @@ const UnitList: FC<UnitListProps> = (props) => {
     currentPageItems,
     onClick,
     subjectSlug,
-    subjectParent,
     filteredUnits,
     subjectTitle,
   } = props;
 
-  const linkSubject = subjectParent
-    ? convertSubjectToSlug(subjectParent)
-    : subjectSlug;
   const { currentPage, pageSize, firstItemRef, paginationRoute, onPageChange } =
     paginationProps;
   const router = useRouter();
@@ -139,7 +132,7 @@ const UnitList: FC<UnitListProps> = (props) => {
     isSwimming: true,
   });
 
-  const { phaseSlug, keyStageSlug, examBoardSlug, keyStageTitle } =
+  const { phaseSlug, keyStageSlug, keyStageTitle } =
     getProgrammeFactors(props);
 
   const indexOfFirstLegacyUnit = units
@@ -167,8 +160,6 @@ const UnitList: FC<UnitListProps> = (props) => {
     unit.some((u) => !isSlugLegacy(u.programmeSlug)),
   );
   const hasNewAndLegacyUnitsInProgramme = hasLegacyUnits && hasNewUnits;
-
-  const hideNewCurriculumDownloadButton = subjectSlug === "financial-education";
 
   const [saveButtonElementId, setSaveButtonElementId] = useState<
     string | undefined
@@ -209,13 +200,7 @@ const UnitList: FC<UnitListProps> = (props) => {
                 isLegacy={false}
                 subject={""}
                 phase={phaseSlug}
-                curriculumHref={resolveOakHref({
-                  page: "curriculum-previous-downloads",
-                  query: {
-                    subject: linkSubject,
-                    keystage: keyStageSlug,
-                  },
-                })}
+                curriculumHref={null}
                 showHeader={
                   swimmingPageItems.length ||
                   indexOfFirstLegacyUnit % pageSize === 0
@@ -247,18 +232,7 @@ const UnitList: FC<UnitListProps> = (props) => {
                 isLegacy={false}
                 subject={modifiedCategory ?? subjectTitle}
                 phase={phaseSlug}
-                curriculumHref={
-                  hideNewCurriculumDownloadButton
-                    ? null
-                    : resolveOakHref({
-                        page: "curriculum-units",
-                        subjectPhaseSlug: getSubjectPhaseSlug({
-                          subject: linkSubject,
-                          phaseSlug,
-                          examBoardSlug,
-                        }),
-                      })
-                }
+                curriculumHref={null}
                 showHeader={currentPage === 1}
                 unitCards={getUnitCards({
                   pageItems: newPageItems,
@@ -284,13 +258,7 @@ const UnitList: FC<UnitListProps> = (props) => {
                 }
                 subject={subjectSlug}
                 phase={phaseSlug}
-                curriculumHref={resolveOakHref({
-                  page: "curriculum-previous-downloads",
-                  query: {
-                    subject: linkSubject,
-                    keystage: keyStageSlug,
-                  },
-                })}
+                curriculumHref={null}
                 showHeader={
                   newPageItems.length || indexOfFirstLegacyUnit % pageSize === 0
                     ? true
@@ -320,12 +288,7 @@ const UnitList: FC<UnitListProps> = (props) => {
             }
             subject={subjectSlug}
             phase={"Specialist and therapies"}
-            curriculumHref={`${resolveOakHref({
-              page: "curriculum-previous-downloads",
-              query: {
-                subject: subjectSlug,
-              },
-            })}#Specialist`}
+            curriculumHref={null}
             showHeader={true}
             unitCards={getUnitCards({
               pageItems: currentPageItems,
