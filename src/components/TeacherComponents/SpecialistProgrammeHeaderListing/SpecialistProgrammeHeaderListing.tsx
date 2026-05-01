@@ -25,7 +25,6 @@ export type SpecialistHeaderListingProps = {
   subjectSlug: string;
   subjectIconBackgroundColor?: OakUiRoleToken;
   title: string;
-  hasCurriculumDownload?: boolean;
   description: string;
 };
 
