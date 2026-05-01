@@ -7,6 +7,7 @@ import {
   OakGridArea,
 } from "@oaknational/oak-components";
 import { Fragment } from "react";
+import { useUser } from "@clerk/nextjs";
 
 import { CurrentSectionIdProvider } from "./CurrentSectionIdProvider";
 import LessonOverviewSideNav from "./LessonOverviewSideNav";
@@ -18,7 +19,10 @@ import type { TeachersLessonOverviewPageData } from "@/node-lib/curriculum-api-2
 import PreviousNextNav from "@/components/TeacherComponents/PreviousNextNav/PreviousNextNav";
 import { resolveOakHref } from "@/common-lib/urls";
 import { useComplexCopyright } from "@/hooks/useComplexCopyright";
-import { DownloadResourceButtonNameValueType } from "@/browser-lib/avo/Avo";
+import {
+  DownloadResourceButtonNameValueType,
+  TeachingMaterialTypeValueType,
+} from "@/browser-lib/avo/Avo";
 import useAnalytics from "@/context/Analytics/useAnalytics";
 import { getAnalyticsBrowseData } from "@/components/TeacherComponents/helpers/getAnalyticsBrowseData";
 import SkipLink from "@/components/CurriculumComponents/OakComponentsKitchen/SkipLink";
@@ -58,6 +62,7 @@ export default function LessonView(
     pathwayTitle,
     phaseSlug,
     actions,
+    subjectCategories,
   } = props;
 
   const {
@@ -77,6 +82,7 @@ export default function LessonView(
     showSignedInNotOnboarded;
 
   const { track } = useAnalytics();
+  const { isSignedIn } = useUser();
   const copyrightState = useComplexCopyright({
     loginRequired,
     geoRestricted,
@@ -219,7 +225,42 @@ export default function LessonView(
               />
               <LessonActionsBar
                 showPupilShare={showPupilShare}
-                showCreateWithAi={!contentRestricted}
+                createWithAiProps={
+                  contentRestricted
+                    ? undefined
+                    : {
+                        lessonSlug,
+                        programmeSlug,
+                        keyStageSlug,
+                        subjectCategories,
+                        actions,
+                        subjectSlug,
+                        trackCreateWithAiButtonClicked: () =>
+                          track.createTeachingMaterialsInitiated({
+                            platform: "owa",
+                            product: "teacher lesson resources",
+                            engagementIntent: "use",
+                            componentType: "create_more_with_ai_button",
+                            eventVersion: "2.0.0",
+                            analyticsUseCase: "Teacher",
+                            isLoggedIn: isSignedIn ?? false,
+                          }),
+                        trackTeachingMaterialsSelected: (
+                          teachingMaterialType: TeachingMaterialTypeValueType,
+                        ) => {
+                          track.teachingMaterialsSelected({
+                            platform: "owa",
+                            product: "teacher lesson resources",
+                            engagementIntent: "use",
+                            componentType: "create_more_with_ai_dropdown",
+                            eventVersion: "2.0.0",
+                            analyticsUseCase: "Teacher",
+                            interactionId: "",
+                            teachingMaterialType: teachingMaterialType,
+                          });
+                        },
+                      }
+                }
                 lessonSlug={lessonSlug}
                 unitSlug={unitSlug}
                 programmeSlug={programmeSlug}
