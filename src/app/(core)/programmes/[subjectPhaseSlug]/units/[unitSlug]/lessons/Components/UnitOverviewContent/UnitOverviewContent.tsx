@@ -24,6 +24,8 @@ import SkipLink from "@/components/CurriculumComponents/OakComponentsKitchen/Ski
 import { resolveOakHref } from "@/common-lib/urls";
 import { getCloudinaryImageUrl } from "@/utils/getCloudinaryImageUrl";
 import PreviousNextNav from "@/components/TeacherComponents/PreviousNextNav/PreviousNextNav";
+import { SaveUnitButton } from "@/components/TeacherComponents/SaveUnitButton/SaveUnitButton";
+import { KeyStageTitleValueType } from "@/browser-lib/avo/Avo";
 
 export type UnitOverviewContentProps = Pick<
   TeachersUnitOverviewData,
@@ -163,15 +165,27 @@ export const UnitOverviewContent = ({
             unitSlug={unitSlug}
             unitTitle={unitTitle}
             unitDescription={unitDescription}
-            subjectTitle={subjectTitle}
-            subjectSlug={subjectSlug}
-            keyStageSlug={keyStageSlug}
-            keyStageTitle={keyStageTitle}
             lessons={lessons}
             unitIndex={unitIndex}
             unitCount={unitCount}
             lessonCount={lessons.length}
             subjectCategories={subjectCategories}
+            headerCtaSlot={
+              <SaveUnitButton
+                buttonVariant="default"
+                programmeSlug={programmeSlug}
+                unitSlug={unitSlug}
+                unitTitle={unitTitle}
+                trackingProps={{
+                  savedFrom: "lesson_listing_save_button",
+                  keyStageTitle:
+                    (keyStageTitle as KeyStageTitleValueType) ?? undefined,
+                  keyStageSlug,
+                  subjectTitle,
+                  subjectSlug,
+                }}
+              />
+            }
           />
           <HelpLinkCard $display={["block", "none"]} />
         </OakGridArea>

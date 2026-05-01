@@ -2,16 +2,31 @@ import type { Meta, StoryObj } from "@storybook/nextjs";
 import { OakThemeProvider, oakDefaultTheme } from "@oaknational/oak-components";
 import { ClerkProvider } from "@clerk/nextjs";
 
-import { __setMockAuthState } from "../../../../../../../../../../../.storybook/mocks/clerk";
+import { __setMockAuthState } from "../../../../../../../../../../../../.storybook/mocks/clerk";
 
-import { DownloadConfirmation } from "./DownloadConfirmation";
+import {
+  DownloadSuccessView,
+  type DownloadSuccessViewProps,
+} from "./DownloadSuccessView";
 
-import lessonDownloadsFixture from "@/node-lib/curriculum-api-2023/fixtures/lessonDownloads.fixture";
-import type { LessonDownloadsPageData } from "@/node-lib/curriculum-api-2023/queries/lessonDownloads/lessonDownloads.schema";
 import NotificationsDecorator from "@/storybook-decorators/NotificationsDecorator";
 import SaveCountDecorator from "@/storybook-decorators/SaveCountDecorator";
+import type { LessonListSchema } from "@/node-lib/curriculum-api-2023/shared.schema";
 
-const lessons: NonNullable<LessonDownloadsPageData["lessons"]> = [
+const lessons: LessonListSchema = [
+  {
+    lessonSlug: "transverse-waves",
+    lessonTitle: "Transverse waves",
+    description: "Describe transverse waves using diagrams.",
+    pupilLessonOutcome: "I can represent transverse waves.",
+    expired: false,
+    orderInUnit: 1,
+    lessonCohort: "2023-2024",
+    isUnpublished: false,
+    lessonReleaseDate: "2025-09-29T14:00:00.000Z",
+    geoRestricted: false,
+    loginRequired: false,
+  },
   {
     lessonSlug: "representing-transverse-waves",
     lessonTitle: "Representing transverse waves",
@@ -40,16 +55,27 @@ const lessons: NonNullable<LessonDownloadsPageData["lessons"]> = [
   },
 ];
 
-const lessonWithUnitList = lessonDownloadsFixture({
-  lessons,
+const lessonWithUnitList: DownloadSuccessViewProps["lesson"] = {
+  lessonTitle: "Transverse waves",
+  lessonSlug: "transverse-waves",
+  programmeSlug: "combined-science-secondary-ks4-foundation-edexcel",
+  unitSlug: "measuring-waves",
+  unitTitle: "Measuring waves",
   unitDescription:
     "This unit explores waves: representation, measurement, and applications.",
-});
+  lessonReleaseDate: "2025-09-29T14:00:00.000Z",
+  lessons,
+  unitvariantId: 1,
+  keyStageSlug: "ks4",
+  keyStageTitle: "Key Stage 4",
+  subjectSlug: "combined-science",
+  subjectTitle: "Combined science",
+};
 
-const meta: Meta<typeof DownloadConfirmation> = {
-  component: DownloadConfirmation,
+const meta: Meta<typeof DownloadSuccessView> = {
+  component: DownloadSuccessView,
   tags: ["autodocs"],
-  title: "App/Programmes/Units/Lessons/DownloadConfirmation",
+  title: "App/Programmes/Units/Lessons/DownloadSuccessView",
   decorators: [
     SaveCountDecorator,
     NotificationsDecorator,
@@ -65,7 +91,7 @@ const meta: Meta<typeof DownloadConfirmation> = {
 
 export default meta;
 
-type Story = StoryObj<typeof DownloadConfirmation>;
+type Story = StoryObj<typeof DownloadSuccessView>;
 
 export const Default: Story = {
   decorators: [

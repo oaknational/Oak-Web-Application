@@ -4,8 +4,6 @@ import { cache } from "react";
 
 import { Breadcrumbs } from "../../Components/Breadcrumbs/Breadcrumbs";
 
-import { DownloadConfirmation } from "./Components/DownloadConfirmation";
-
 import { getOpenGraphMetadata, getTwitterMetadata } from "@/app/metadata";
 import { LessonDownloads } from "@/components/TeacherViews/LessonDownloads.view";
 import withPageErrorHandling, {
@@ -13,6 +11,7 @@ import withPageErrorHandling, {
 } from "@/hocs/withPageErrorHandling";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 import { LessonDownloadsPageData } from "@/node-lib/curriculum-api-2023/queries/lessonDownloads/lessonDownloads.schema";
+import { resolveOakHref } from "@/common-lib/urls";
 import { getTeacherSubjectPhaseSlug } from "@/utils/curriculum/slugs";
 import { getFeatureFlagValue } from "@/utils/featureFlags";
 
@@ -32,7 +31,6 @@ const getCachedLessonDownloadsData = cache(
       programmeSlug,
       unitSlug,
       lessonSlug,
-      includeUnitLessonList: true,
     });
   },
 );
@@ -108,7 +106,12 @@ const InnerLessonDownloadsPage = async (
           mode="downloads"
         />
       }
-      downloadConfirmationSlot={<DownloadConfirmation lesson={data} />}
+      successRedirect={resolveOakHref({
+        page: "integrated-lesson-downloads-sucess",
+        programmeSlug,
+        unitSlug,
+        lessonSlug,
+      })}
     />
   );
 };

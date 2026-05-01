@@ -1,5 +1,9 @@
 import { Meta, StoryObj } from "@storybook/nextjs";
-import { OakThemeProvider, oakDefaultTheme } from "@oaknational/oak-components";
+import {
+  OakPrimaryButton,
+  OakThemeProvider,
+  oakDefaultTheme,
+} from "@oaknational/oak-components";
 import { ClerkProvider } from "@clerk/nextjs";
 import { ComponentProps } from "react";
 import { mocked } from "storybook/test";
@@ -130,16 +134,12 @@ const defaultArgs: LessonListProps = {
   unitTitle: fixtureData.unitTitle,
   unitDescription:
     "This unit explores the structure and function of the nervous system, including the CNS, reflex arcs, and the eye. It covers brain structure, common eye defects, and the challenges in treating nervous system damage. It also addresses ethical considerations.",
-  subjectTitle: fixtureData.subjectTitle,
-  subjectSlug: fixtureData.subjectSlug,
-  keyStageSlug: fixtureData.keyStageSlug,
-  keyStageTitle: fixtureData.keyStageTitle,
   unitIndex: 14,
   unitCount: 28,
   lessonCount: 4,
   lessons: fixtureData.lessons,
-  showUnitCount: true,
   selectedLessonIndex: 1,
+  headerCtaSlot: <OakPrimaryButton iconName="save">Save unit</OakPrimaryButton>,
 };
 
 export const Default: Story = {

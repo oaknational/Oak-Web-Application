@@ -116,6 +116,12 @@ describe("LessonDownloadsPage", () => {
       unitSlug: defaultParams.unitSlug,
       lessonSlug: defaultParams.lessonSlug,
     });
+    expect(result).toMatchObject({
+      props: {
+        successRedirect:
+          "/programmes/maths-primary/units/geometry-abc123/lessons/intro-to-geometry-abc123/downloads/success",
+      },
+    });
   });
 });
 

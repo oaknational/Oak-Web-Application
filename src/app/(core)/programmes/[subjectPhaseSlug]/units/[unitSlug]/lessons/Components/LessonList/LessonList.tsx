@@ -1,5 +1,6 @@
 "use client";
 
+import type { ReactNode } from "react";
 import {
   OakBox,
   OakFlex,
@@ -12,24 +13,12 @@ import {
 import type { UnitOverviewContentProps } from "../UnitOverviewContent/UnitOverviewContent";
 
 import CardListing from "@/components/TeacherComponents/CardListing/CardListing";
-import { SaveUnitButton } from "@/components/TeacherComponents/SaveUnitButton/SaveUnitButton";
-import UnitDownloadButton, {
-  useUnitDownloadButtonState,
-} from "@/components/TeacherComponents/UnitDownloadButton/UnitDownloadButton";
 import { resolveOakHref } from "@/common-lib/urls";
-import { KeyStageTitleValueType } from "@/browser-lib/avo/Avo";
 import { useComplexCopyright } from "@/hooks/useComplexCopyright";
 
 type LessonListProps = Pick<
   UnitOverviewContentProps,
-  | "programmeSlug"
-  | "unitSlug"
-  | "unitTitle"
-  | "subjectTitle"
-  | "subjectSlug"
-  | "keyStageSlug"
-  | "keyStageTitle"
-  | "lessons"
+  "programmeSlug" | "unitSlug" | "unitTitle" | "unitDescription" | "lessons"
 > & {
   unitIndex?: number;
   unitCount?: number;
@@ -37,8 +26,7 @@ type LessonListProps = Pick<
   unitDescription?: UnitOverviewContentProps["unitDescription"];
   subjectCategories?: string[] | null;
   selectedLessonIndex?: number;
-  isGeorestrictedUnit?: boolean;
-  unitDownloadFileId?: string;
+  headerCtaSlot?: ReactNode | null;
 };
 
 function LessonSubcopy({
@@ -105,31 +93,14 @@ const LessonList = ({
   unitSlug,
   unitTitle,
   unitDescription,
-  subjectTitle,
-  subjectSlug,
-  keyStageSlug,
-  keyStageTitle,
   lessons,
   unitIndex,
   unitCount,
   lessonCount,
   subjectCategories,
   selectedLessonIndex,
-  isGeorestrictedUnit,
-  unitDownloadFileId,
+  headerCtaSlot = null,
 }: LessonListProps) => {
-  const {
-    setShowDownloadMessage,
-    setDownloadError,
-    setDownloadInProgress,
-    downloadInProgress,
-    setShowIncompleteMessage,
-  } = useUnitDownloadButtonState();
-
-  const onDownloadSuccess = () => {
-    setShowDownloadMessage(false);
-  };
-
   const showUnitPosition = unitIndex !== undefined && unitCount !== undefined;
 
   return (
@@ -205,34 +176,7 @@ const LessonList = ({
               <OakSpan $font="body-2-bold">{lessonCount}</OakSpan> lessons in
               unit
             </OakBox>
-            {unitDownloadFileId ? (
-              <UnitDownloadButton
-                unitFileId={unitDownloadFileId}
-                onDownloadSuccess={onDownloadSuccess}
-                setDownloadError={setDownloadError}
-                setDownloadInProgress={setDownloadInProgress}
-                setShowDownloadMessage={setShowDownloadMessage}
-                setShowIncompleteMessage={setShowIncompleteMessage}
-                downloadInProgress={downloadInProgress}
-                showNewTag={false}
-                geoRestricted={Boolean(isGeorestrictedUnit)}
-              />
-            ) : (
-              <SaveUnitButton
-                buttonVariant="default"
-                programmeSlug={programmeSlug}
-                unitSlug={unitSlug}
-                unitTitle={unitTitle}
-                trackingProps={{
-                  savedFrom: "lesson_listing_save_button",
-                  keyStageTitle:
-                    (keyStageTitle as KeyStageTitleValueType) ?? undefined,
-                  keyStageSlug,
-                  subjectTitle: subjectTitle ?? "",
-                  subjectSlug,
-                }}
-              />
-            )}
+            {headerCtaSlot}
           </OakFlex>
 
           <OakFlex

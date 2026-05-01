@@ -1,10 +1,11 @@
 import userEvent from "@testing-library/user-event";
 
-import { DownloadConfirmation } from "./DownloadConfirmation";
+import {
+  DownloadSuccessView,
+  type DownloadSuccessViewProps,
+} from "./DownloadSuccessView";
 
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
-import lessonDownloadsFixture from "@/node-lib/curriculum-api-2023/fixtures/lessonDownloads.fixture";
-import type { LessonDownloadsPageData } from "@/node-lib/curriculum-api-2023/queries/lessonDownloads/lessonDownloads.schema";
 import { resolveOakHref } from "@/common-lib/urls";
 import {
   setupMockLinkClick,
@@ -12,6 +13,9 @@ import {
   mockLinkClick,
 } from "@/utils/mockLinkClick";
 import { ServicePolicyMap } from "@/browser-lib/cookie-consent/ServicePolicyMap";
+import type { LessonListSchema } from "@/node-lib/curriculum-api-2023/shared.schema";
+
+globalThis.fetch = jest.fn().mockResolvedValue({ ok: true });
 
 const onwardContentSelected = jest.fn();
 
@@ -40,16 +44,27 @@ jest.mock("@oaknational/oak-consent-client", () => {
   };
 });
 
-const baseLesson: LessonDownloadsPageData = lessonDownloadsFixture();
-
-const minimalLessons: NonNullable<LessonDownloadsPageData["lessons"]> = [
+const lessons: LessonListSchema = [
+  {
+    lessonSlug: "transverse-waves",
+    lessonTitle: "Transverse waves",
+    description: "Transverse waves lesson description",
+    pupilLessonOutcome: "Outcome",
+    expired: false,
+    orderInUnit: 1,
+    lessonCohort: "2023-2024",
+    isUnpublished: false,
+    lessonReleaseDate: "2025-09-29T14:00:00.000Z",
+    geoRestricted: false,
+    loginRequired: false,
+  },
   {
     lessonSlug: "lesson-one",
     lessonTitle: "Lesson one",
     description: "Lesson description",
     pupilLessonOutcome: "Outcome",
     expired: false,
-    orderInUnit: 1,
+    orderInUnit: 2,
     lessonCohort: "2023-2024",
     isUnpublished: false,
     lessonReleaseDate: null,
@@ -58,7 +73,23 @@ const minimalLessons: NonNullable<LessonDownloadsPageData["lessons"]> = [
   },
 ];
 
-describe("DownloadConfirmation", () => {
+const baseLesson: DownloadSuccessViewProps["lesson"] = {
+  lessonTitle: "Transverse waves",
+  lessonSlug: "transverse-waves",
+  programmeSlug: "combined-science-secondary-ks4-foundation-edexcel",
+  unitSlug: "measuring-waves",
+  unitTitle: "Measuring waves",
+  unitDescription: null,
+  lessonReleaseDate: "2025-09-29T14:00:00.000Z",
+  lessons,
+  unitvariantId: 1,
+  keyStageSlug: "ks4",
+  keyStageTitle: "Key Stage 4",
+  subjectSlug: "combined-science",
+  subjectTitle: "Combined science",
+};
+
+describe("DownloadSuccessView", () => {
   const renderComponent = renderWithProviders();
 
   beforeEach(() => {
@@ -76,7 +107,7 @@ describe("DownloadConfirmation", () => {
 
   it("renders the confirmation heading and intro copy", () => {
     const { getByRole, getByText } = renderComponent(
-      <DownloadConfirmation lesson={baseLesson} />,
+      <DownloadSuccessView lesson={baseLesson} />,
     );
 
     expect(
@@ -87,9 +118,9 @@ describe("DownloadConfirmation", () => {
     ).toBeInTheDocument();
   });
 
-  it("renders Back to lesson with the integrated lesson overview href", () => {
+  it("back to lesson links to the lesson overview", () => {
     const { getByTestId } = renderComponent(
-      <DownloadConfirmation lesson={baseLesson} />,
+      <DownloadSuccessView lesson={baseLesson} />,
     );
 
     const link = getByTestId("back-to-lesson-link");
@@ -104,19 +135,10 @@ describe("DownloadConfirmation", () => {
     );
   });
 
-  it("does not render Back to lesson when unit context is incomplete", () => {
-    const lesson = lessonDownloadsFixture({ unitSlug: "" });
-    const { queryByTestId } = renderComponent(
-      <DownloadConfirmation lesson={lesson} />,
-    );
-
-    expect(queryByTestId("back-to-lesson-link")).not.toBeInTheDocument();
-  });
-
   it("calls onwardContentSelected when Back to lesson is clicked", async () => {
     const user = userEvent.setup();
     const { getByRole } = renderComponent(
-      <DownloadConfirmation lesson={baseLesson} />,
+      <DownloadSuccessView lesson={baseLesson} />,
     );
 
     await user.click(getByRole("link", { name: "Back to lesson" }));
@@ -141,22 +163,14 @@ describe("DownloadConfirmation", () => {
     });
   });
 
-  it("does not render the unit lesson list when lessons are omitted", () => {
-    const lesson = lessonDownloadsFixture({ lessons: undefined });
-    const { queryByText } = renderComponent(
-      <DownloadConfirmation lesson={lesson} />,
-    );
-
-    expect(queryByText("Ready to keep going?")).not.toBeInTheDocument();
-  });
-
   it("renders the unit lesson list when lessons and slugs are present", () => {
-    const lesson = lessonDownloadsFixture({
-      lessons: minimalLessons,
+    const lesson: DownloadSuccessViewProps["lesson"] = {
+      ...baseLesson,
+      lessons,
       unitDescription: "Unit description text",
-    });
+    };
     const { getByText } = renderComponent(
-      <DownloadConfirmation lesson={lesson} />,
+      <DownloadSuccessView lesson={lesson} />,
     );
 
     expect(getByText("Ready to keep going?")).toBeInTheDocument();
@@ -169,7 +183,7 @@ describe("DownloadConfirmation", () => {
     );
 
     const { getByText } = renderComponent(
-      <DownloadConfirmation lesson={baseLesson} />,
+      <DownloadSuccessView lesson={baseLesson} />,
     );
 
     expect(
@@ -185,7 +199,7 @@ describe("DownloadConfirmation", () => {
     );
 
     const { queryByText } = renderComponent(
-      <DownloadConfirmation lesson={baseLesson} />,
+      <DownloadSuccessView lesson={baseLesson} />,
     );
 
     expect(

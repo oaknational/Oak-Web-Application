@@ -1,6 +1,7 @@
 "use client";
 
 import { ReactNode, useMemo, useState } from "react";
+import { useRouter } from "next/navigation";
 import {
   ActionsCamel,
   examboards,
@@ -87,16 +88,17 @@ type LessonDownloadsProps =
   | {
       lesson: NonCanonicalLesson;
       breadcrumbsSlot?: ReactNode;
-      downloadConfirmationSlot?: ReactNode;
+      successRedirect?: string;
     }
   | {
       lesson: SpecialistLesson;
       breadcrumbsSlot?: ReactNode;
-      downloadConfirmationSlot?: ReactNode;
+      successRedirect?: string;
     };
 
 export function LessonDownloads(props: LessonDownloadsProps) {
   const { lesson } = props;
+  const router = useRouter();
   const {
     lessonTitle,
     lessonSlug,
@@ -208,8 +210,7 @@ export function LessonDownloads(props: LessonDownloadsProps) {
 
   const { onHubspotSubmit } = useHubspotSubmit();
 
-  const [isDownloadSuccessful, setIsDownloadSuccessful] =
-    useState<boolean>(false);
+  const [isDownloadSuccessful, setIsDownloadSuccessful] = useState(false);
 
   let downloadButtonText = "Download .zip";
   if (isAttemptingDownload) {
@@ -231,7 +232,11 @@ export function LessonDownloads(props: LessonDownloadsProps) {
         onSubmit,
       });
 
-      setIsDownloadSuccessful(true);
+      if (props.successRedirect) {
+        router.replace(props.successRedirect, { scroll: false });
+      } else {
+        setIsDownloadSuccessful(true);
+      }
       if (editDetailsClicked && !data.email) {
         setEmailInLocalStorage("");
       }
@@ -299,10 +304,6 @@ export function LessonDownloads(props: LessonDownloadsProps) {
     !hasResources ||
     Boolean(expired) ||
     downloadsFilteredByCopyright.length === 0;
-
-  if (props.downloadConfirmationSlot && isDownloadSuccessful) {
-    return props.downloadConfirmationSlot;
-  }
 
   return (
     <OakBox $ph={["spacing-16", "spacing-0"]} $background={"bg-neutral"}>
