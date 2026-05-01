@@ -30,14 +30,13 @@ type LessonListProps = Pick<
   | "keyStageSlug"
   | "keyStageTitle"
   | "lessons"
-  | "unitIndex"
-  | "unitCount"
 > & {
+  unitIndex?: number;
+  unitCount?: number;
   lessonCount: number;
   unitDescription?: UnitOverviewContentProps["unitDescription"];
   subjectCategories?: string[] | null;
   selectedLessonIndex?: number;
-  showUnitCount?: boolean;
   isGeorestrictedUnit?: boolean;
   unitDownloadFileId?: string;
 };
@@ -116,7 +115,6 @@ const LessonList = ({
   lessonCount,
   subjectCategories,
   selectedLessonIndex,
-  showUnitCount = true,
   isGeorestrictedUnit,
   unitDownloadFileId,
 }: LessonListProps) => {
@@ -132,10 +130,12 @@ const LessonList = ({
     setShowDownloadMessage(false);
   };
 
+  const showUnitPosition = unitIndex !== undefined && unitCount !== undefined;
+
   return (
     <OakFlex $flexDirection="column">
       <OakFlex $justifyContent="space-between" $alignItems="flex-start">
-        {showUnitCount && (
+        {showUnitPosition ? (
           <OakBox
             $background="bg-decorative3-very-subdued"
             $pa="spacing-20"
@@ -143,12 +143,11 @@ const LessonList = ({
             $btrr="border-radius-l"
             $font="body-2"
             aria-hidden={true}
-            data-testid="unit-count"
           >
             <OakSpan $font="body-2-bold">Unit {unitIndex}</OakSpan> of{" "}
             {unitCount}
           </OakBox>
-        )}
+        ) : null}
         {subjectCategories ? (
           <OakFlex $gap={"spacing-8"}>
             {subjectCategories.map((subjectCategory) => (
@@ -172,7 +171,7 @@ const LessonList = ({
         $pt={["spacing-32", "spacing-32", "spacing-56"]}
         $pb="spacing-24"
         $borderRadius="border-radius-xl"
-        $btlr="border-radius-square"
+        $btlr={showUnitPosition ? "border-radius-square" : "border-radius-xl"}
         $dropShadow="drop-shadow-centred-standard"
       >
         <OakFlex
@@ -183,7 +182,11 @@ const LessonList = ({
           <OakBox
             as="h2"
             $font="heading-5"
-            aria-label={`Unit ${unitIndex} of ${unitCount}: ${unitTitle}`}
+            aria-label={
+              showUnitPosition
+                ? `Unit ${unitIndex} of ${unitCount}: ${unitTitle}`
+                : unitTitle
+            }
           >
             {unitTitle}
           </OakBox>

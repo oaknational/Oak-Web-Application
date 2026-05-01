@@ -156,6 +156,25 @@ export const Default: Story = {
   args: defaultArgs,
 };
 
+/** No “Unit X of Y” tab — shown when `unitIndex` / `unitCount` are omitted */
+export const WithoutUnitCount: Story = {
+  decorators: [
+    (Story) => {
+      __setMockAuthState({
+        isSignedIn: true,
+        isOnboarded: true,
+        isRegionAuthorised: true,
+      });
+      return <Story />;
+    },
+  ],
+  args: {
+    ...defaultArgs,
+    unitIndex: undefined,
+    unitCount: undefined,
+  },
+};
+
 export const LongContent: Story = {
   decorators: [
     (Story) => {
