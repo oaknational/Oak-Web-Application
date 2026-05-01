@@ -14,7 +14,6 @@ import {
   OakSpan,
   OakHandDrawnHR,
   OakFocusIndicator,
-  OakSecondaryLink,
   OakTertiaryButton,
 } from "@oaknational/oak-components";
 import { sortBy } from "lodash";
@@ -39,7 +38,6 @@ import FocusWrap from "@/components/CurriculumComponents/OakComponentsKitchen/Fo
 import { CurriculumModalCloseButton } from "@/components/CurriculumComponents/CurriculumModalCloseButton/CurriculumModalCloseButton";
 import useMediaQuery from "@/hooks/useMediaQuery";
 import { PhaseValueType } from "@/browser-lib/avo/Avo";
-import { resolveOakHref } from "@/common-lib/urls";
 
 const TruncatedFlex = styled(OakFlex)`
   max-width: calc(100% - 1rem);
@@ -319,20 +317,6 @@ function SubjectContainer({
         >
           {children}
         </OakFlex>
-      </OakBox>
-      <OakBox
-        $font={"heading-7"}
-        $mb={["spacing-32", "spacing-0"]}
-        $textDecoration={"underline"}
-      >
-        <OakSecondaryLink
-          href={resolveOakHref({ page: "curriculum-previous-downloads" })}
-          data-testid="subject-picker-previous-plans-link"
-          iconName="arrow-right"
-          isTrailingIcon
-        >
-          Previously released plans
-        </OakSecondaryLink>
       </OakBox>
     </SubjectContainerWrapper>
   );

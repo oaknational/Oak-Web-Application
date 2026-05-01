@@ -365,13 +365,6 @@ type CurriculumDownloadsLinkProps = {
   page: "curriculum-downloads";
   subjectPhaseSlug: string;
 };
-type CurriculumPreviousDownloadsLinkProps = {
-  page: "curriculum-previous-downloads";
-  query?: {
-    subject: string;
-    keystage?: string;
-  };
-};
 
 type OnboardingLinkProps = {
   page: "onboarding";
@@ -505,7 +498,6 @@ export type OakLinkProps =
   | CurriculumOverviewLinkProps
   | CurriculumUnitsLinkProps
   | CurriculumDownloadsLinkProps
-  | CurriculumPreviousDownloadsLinkProps
   | OnboardingLinkProps
   | OnboardingSchoolSelectionLinkProps
   | OnboardingRoleSelectionLinkProps
@@ -1107,12 +1099,6 @@ export const OAK_PAGES: {
     analyticsPageName: "Curriculum Downloads",
     configType: "internal",
     pageType: "curriculum-downloads",
-  }),
-  "curriculum-previous-downloads": createOakPageConfig({
-    pathPattern: "/teachers/curriculum/previous-downloads",
-    analyticsPageName: "Curriculum Previous Downloads",
-    configType: "internal",
-    pageType: "curriculum-previous-downloads",
   }),
   onboarding: createOakPageConfig({
     pathPattern: "/onboarding",

@@ -146,7 +146,6 @@ const ProgrammesListingPage: NextPage<
         subjectIconBackgroundColor={"bg-decorative3-main"}
         title={`${subjectTitle} ${pathwayTitle ?? ""}`}
         programmeFactor={keyStageTitle}
-        hasCurriculumDownload={legacy}
         {...props}
         subjectSlug={subjectSlug}
         isNew={!legacy} // we have no way to know if it's new based on cohort information at this level

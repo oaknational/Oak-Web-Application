@@ -10,7 +10,7 @@ import CurriculumDownloads, {
 
 import createAndClickHiddenDownloadLink from "@/components/SharedComponents/helpers/downloadAndShareHelpers/createAndClickHiddenDownloadLink";
 import { renderWithProvidersByName } from "@/__tests__/__helpers__/renderWithProviders";
-import { DownloadCategory } from "@/node-lib/curriculum-api-2023/fixtures/curriculumPreviousDownloads.fixture";
+import { DownloadCategory } from "@/node-lib/curriculum-api-2023/fixtures/downloadCategories.fixture";
 
 jest.mock("next/navigation");
 
