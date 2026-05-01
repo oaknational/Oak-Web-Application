@@ -1,3 +1,21 @@
+# [1.1065.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1064.0...v1.1065.0) (2026-04-30)
+
+
+### Bug Fixes
+
+* **LESQ-1947:** add key to breadcrumbs ([aea0fac](https://github.com/oaknational/Oak-Web-Application/commit/aea0fac2edf1edf2876834145ee1e60f93ded6c7))
+* **LESQ-1947:** add missing examBoardSlug to constructLessonDownloads for correct breadcrumb ([6335664](https://github.com/oaknational/Oak-Web-Application/commit/6335664f6442edfa1d09ba4aafc62814225d0229))
+
+
+### Features
+
+* **LESQ_1947:** enable linking to the integrated journey ([818ad0d](https://github.com/oaknational/Oak-Web-Application/commit/818ad0df11881536df9dbb7400b5b0e46416b700))
+* **LESQ-1947:** add a slot to allow overriding default breadcrumbs in LessonDownloads ([7734654](https://github.com/oaknational/Oak-Web-Application/commit/773465410d8236ac394942b2bfc93ffd9fe88bb4))
+* **LESQ-1947:** add additional pathway data to lesson downloads query ([3a73ed7](https://github.com/oaknational/Oak-Web-Application/commit/3a73ed7fef48072799e82cd524db137ae13e8555))
+* **LESQ-1947:** add the new downloads page ([a75cd13](https://github.com/oaknational/Oak-Web-Application/commit/a75cd13bed0c53e4c48009aecaf7e60ff49e8e71))
+* **LESQ-1947:** replace legacy checkbox components in lesson download ([84c62d0](https://github.com/oaknational/Oak-Web-Application/commit/84c62d060c18f5b55f8a047865abd702f742fe8a))
+* **LESQ-1947:** update links to point to the new downloads page ([b5d7c87](https://github.com/oaknational/Oak-Web-Application/commit/b5d7c87fdbd8207341ed00ade83194b79dcb49dc))
+
 # [1.1064.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1063.1...v1.1064.0) (2026-04-30)
 
 

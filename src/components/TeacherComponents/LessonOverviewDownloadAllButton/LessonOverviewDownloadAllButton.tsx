@@ -15,8 +15,14 @@ export type LessonOverviewDownloadAllButtonProps = Pick<
   | "isSpecialist"
   | "geoRestricted"
   | "loginRequired"
-> &
-  Pick<ComponentProps<typeof LoginRequiredButton>, "sizeVariant" | "width">;
+> & {
+  /**
+   * If true, use the integrated lesson downloads page.
+   *
+   * Can be consolidated once the integrated journey is fully rolled out.
+   */
+  isIntegratedJourney?: boolean;
+} & Pick<ComponentProps<typeof LoginRequiredButton>, "sizeVariant" | "width">;
 
 export const LessonOverviewDownloadAllButton: FC<
   LessonOverviewDownloadAllButtonProps
@@ -31,6 +37,7 @@ export const LessonOverviewDownloadAllButton: FC<
     isSpecialist,
     geoRestricted,
     loginRequired,
+    isIntegratedJourney = false,
     sizeVariant = "small",
     width = "spacing-160",
   } = props;
@@ -50,6 +57,14 @@ export const LessonOverviewDownloadAllButton: FC<
       unitSlug,
       programmeSlug,
       downloads: "downloads",
+      query: { preselected },
+    });
+  } else if (isIntegratedJourney) {
+    href = resolveOakHref({
+      page: "integrated-lesson-downloads",
+      lessonSlug,
+      unitSlug,
+      programmeSlug,
       query: { preselected },
     });
   } else {

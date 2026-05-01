@@ -9,6 +9,7 @@ import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 import lessonOverviewFixture from "@/node-lib/curriculum-api-2023/fixtures/lessonOverview.fixture";
 import { TrackFns } from "@/context/Analytics/AnalyticsProvider";
 import { AnalyticsUseCaseValueType } from "@/browser-lib/avo/Avo";
+import { resolveOakHref } from "@/common-lib/urls";
 import {
   defaultCopyrightRequirements,
   signedInGeoBlocked,
@@ -82,6 +83,26 @@ describe("LessonOverviewDownloadAllButton", () => {
     expect(downloadButton).toHaveAttribute("href");
     downloadButton.click();
     expect(mockDownloadAllButton).toHaveBeenCalled();
+  });
+
+  it("uses integrated downloads route when isIntegratedJourney is true", () => {
+    const { getByTestId } = render(
+      <LessonOverviewDownloadAllButton
+        {...baseProps}
+        isIntegratedJourney={true}
+      />,
+    );
+
+    expect(getByTestId("download-all-button")).toHaveAttribute(
+      "href",
+      resolveOakHref({
+        page: "integrated-lesson-downloads",
+        lessonSlug: "test-lesson",
+        unitSlug: "test-unit",
+        programmeSlug: "test-programme",
+        query: { preselected: "all" },
+      }),
+    );
   });
 
   it("does not render when expired is true", () => {

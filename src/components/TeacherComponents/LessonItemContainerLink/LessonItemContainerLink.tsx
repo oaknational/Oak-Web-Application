@@ -8,6 +8,7 @@ import {
   isPreselectedShareType,
 } from "@/components/TeacherComponents/types/downloadAndShare.types";
 import {
+  IntegratedLessonDownloadsLinkProps,
   LessonDownloadsCanonicalLinkProps,
   LessonDownloadsLinkProps,
   LessonShareCanonicalLinkProps,
@@ -26,6 +27,7 @@ export function LessonItemContainerLink({
   preselected,
   page,
   isSpecialist,
+  isIntegratedJourney = false,
 }: Readonly<{
   page: "share" | "download";
   resourceTitle: string;
@@ -35,6 +37,12 @@ export function LessonItemContainerLink({
   programmeSlug: string | null;
   preselected: PreselectedDownloadType | PreselectedShareType | null;
   isSpecialist: boolean;
+  /**
+   * If true, use the integrated lesson downloads page.
+   *
+   * Can be consolidated once the integrated journey is fully rolled out.
+   */
+  isIntegratedJourney?: boolean;
 }>) {
   const label =
     page === "share" ? "Share with pupils" : `Download ${resourceTitle}`;
@@ -78,6 +86,7 @@ export function LessonItemContainerLink({
 
   const getDownloadLinkProps = ():
     | LessonDownloadsLinkProps
+    | IntegratedLessonDownloadsLinkProps
     | LessonDownloadsCanonicalLinkProps
     | SpecialistLessonDownloadsLinkProps => {
     const query = isPreselectedDownloadType(preselected)
@@ -96,6 +105,16 @@ export function LessonItemContainerLink({
     }
 
     if (programmeSlug && unitSlug) {
+      if (isIntegratedJourney) {
+        return {
+          page: "integrated-lesson-downloads",
+          lessonSlug,
+          unitSlug,
+          programmeSlug,
+          query,
+        };
+      }
+
       return {
         page: "lesson-downloads",
         lessonSlug,
