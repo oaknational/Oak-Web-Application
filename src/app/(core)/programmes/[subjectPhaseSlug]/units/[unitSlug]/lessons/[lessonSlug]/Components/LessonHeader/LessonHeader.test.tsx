@@ -72,11 +72,10 @@ describe("LessonHeader", () => {
     expect(downloadLink).toHaveAttribute(
       "href",
       resolveOakHref({
-        page: "lesson-downloads",
+        page: "integrated-lesson-downloads",
         lessonSlug: defaultProps.currentLessonSlug,
         programmeSlug: defaultProps.programmeSlug,
         unitSlug: defaultProps.unitSlug,
-        downloads: "downloads",
         query: { preselected: "all" },
       }),
     );
