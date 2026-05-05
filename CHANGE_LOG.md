@@ -1,3 +1,12 @@
+# [1.1066.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1065.0...v1.1066.0) (2026-05-05)
+
+
+### Features
+
+* add autodismiss with 10s duration to toast ([3f9a275](https://github.com/oaknational/Oak-Web-Application/commit/3f9a2759f46c504170e9b5d79f507385d2a64b08))
+* add inline banner when unit download starts ([de71f5e](https://github.com/oaknational/Oak-Web-Application/commit/de71f5e8e18e1fc2872021c338d62cff288c6275))
+* show oak toast on unit download success ([09fa9c6](https://github.com/oaknational/Oak-Web-Application/commit/09fa9c66702e4220ecf2605ec3789b24200cfe7f))
+
 # [1.1065.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1064.0...v1.1065.0) (2026-04-30)
 
 
