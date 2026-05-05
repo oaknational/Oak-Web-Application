@@ -4,7 +4,6 @@ import { checkIfResourceHasLegacyCopyright } from "../downloadAndShareHelpers/do
 
 import {
   LessonBase,
-  LessonOverviewAll,
   LessonPathway,
   SpecialistLessonPathway,
 } from "@/components/TeacherComponents/types/lesson.types";
@@ -69,30 +68,6 @@ export const lessonIsSpecialist = (
     typeof u === "object" &&
     (u as { isSpecialist: boolean })?.isSpecialist === true
   );
-};
-export const getPathway = (
-  lesson: LessonOverviewAll,
-): SpecialistLessonPathway | ShallowNullable<LessonPathway> => {
-  if (lessonIsSpecialist(lesson)) {
-    return {
-      lessonSlug: lesson.lessonSlug,
-      lessonTitle: lesson.lessonTitle,
-      unitSlug: lesson.unitSlug,
-      programmeSlug: lesson.programmeSlug,
-      unitTitle: lesson.unitTitle,
-      subjectTitle: lesson.subjectTitle,
-      subjectSlug: lesson.subjectSlug,
-      developmentStageTitle: lesson.developmentStageTitle,
-      disabled: true,
-      keyStageSlug: null,
-      keyStageTitle: null,
-      pathwayTitle: null,
-      yearTitle: null,
-      year: null,
-    } as SpecialistLessonPathway;
-  } else {
-    return getCommonPathway(lesson.isCanonical ? lesson.pathways : [lesson]);
-  }
 };
 
 export const getLessonOverviewBreadCrumb = ({

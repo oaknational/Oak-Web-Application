@@ -23,8 +23,8 @@ const LessonOverviewFilesNeededComponent = (
     geoRestricted: boolean;
     slugs: {
       lessonSlug: string;
-      unitSlug: string | null;
-      programmeSlug: string | null;
+      unitSlug: string;
+      programmeSlug: string;
     };
   },
 ) => {

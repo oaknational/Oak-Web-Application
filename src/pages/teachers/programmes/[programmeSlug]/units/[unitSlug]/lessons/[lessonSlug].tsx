@@ -114,7 +114,6 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
         lesson={{
           ...curriculumData,
           isCanonical: false,
-          isSpecialist: false,
           teacherShareButton: teacherNotesButton,
           teacherShareButtonProps: TeacherNotesButtonProps,
           teacherNoteHtml,

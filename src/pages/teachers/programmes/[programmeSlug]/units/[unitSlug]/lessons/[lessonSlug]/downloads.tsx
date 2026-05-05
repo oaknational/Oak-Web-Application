@@ -48,7 +48,7 @@ const LessonDownloadsPage = ({
         noFollow: true,
       }}
     >
-      <LessonDownloads isCanonical={false} lesson={curriculumData} />
+      <LessonDownloads lesson={curriculumData} />
     </AppLayout>
   );
 };

@@ -8,7 +8,7 @@ import { keystageFromYear } from "./keystage";
 import { sortYears } from "./sorting";
 
 import { Phase } from "@/node-lib/curriculum-api-2023";
-import { DownloadCategory } from "@/node-lib/curriculum-api-2023/fixtures/curriculumPreviousDownloads.fixture";
+import { DownloadCategory } from "@/node-lib/curriculum-api-2023/fixtures/downloadCategories.fixture";
 import { KeyStageTitleValueType } from "@/browser-lib/avo/Avo";
 import { KeystageSlug } from "@/node-lib/curriculum-api-2023/shared.schema";
 

@@ -19,6 +19,16 @@ import {
   mockTeacherUserWithDownloadAccess,
 } from "@/__tests__/__helpers__/mockUser";
 
+const mockSearchParams = jest.fn();
+const mockCompatUseRouter = jest.fn();
+
+jest.mock("next/navigation", () => ({
+  useSearchParams: () => mockSearchParams(),
+}));
+jest.mock("next/compat/router", () => ({
+  useRouter: () => mockCompatUseRouter(),
+}));
+
 const downloadProps: UseResourceFormStateProps = {
   downloadResources: allDownloadResources,
   additionalFilesResources: [],
@@ -36,8 +46,6 @@ const shareProps: UseResourceFormStateProps = {
   type: "share",
 };
 
-const useRouter = jest.spyOn(require("next/router"), "useRouter");
-
 jest.mock("../../helpers/downloadAndShareHelpers/fetchHubspotContactDetails");
 jest.mock("../../OnboardingForm/onboardingActions");
 
@@ -48,6 +56,14 @@ const mockSetTermsInLocalStorageFn = jest.fn();
 const mockSetValue = jest.fn();
 
 const actualUseForm = jest.requireActual("react-hook-form").useForm;
+
+const setPreselectedParam = (preselected?: string) => {
+  const params = new URLSearchParams();
+  if (preselected) {
+    params.set("preselected", preselected);
+  }
+  mockSearchParams.mockReturnValue(params);
+};
 
 jest.mock("./useLocalStorageForDownloads", () => {
   return jest.fn(() => ({
@@ -66,14 +82,11 @@ jest.mock("./useLocalStorageForDownloads", () => {
 describe("useResourceFormState", () => {
   beforeEach(() => {
     jest.clearAllMocks();
+    mockCompatUseRouter.mockReturnValue({ isReady: true });
+    setPreselectedParam();
   });
   describe("download", () => {
     test("useResourceFormState should return all downloads selected array if router.preselected is undefined ", async () => {
-      useRouter.mockReturnValue({
-        pathname: "/",
-        query: { preselected: [] },
-      });
-
       const result = renderHook(() => useResourceFormState(downloadProps));
 
       expect(result.result.current.selectedResources).toEqual([
@@ -88,11 +101,6 @@ describe("useResourceFormState", () => {
     });
 
     test("useResourceFormState should return all downloads selected array including additional files if router.preselected is undefined ", async () => {
-      useRouter.mockReturnValue({
-        pathname: "/",
-        query: { preselected: [] },
-      });
-
       const result = renderHook(() =>
         useResourceFormState(downloadPropsWithAdditionalResources),
       );
@@ -111,18 +119,12 @@ describe("useResourceFormState", () => {
     });
 
     test("useResourceFormState should return presentation selected router.preselected 'slide deck", () => {
-      useRouter.mockReturnValue({
-        pathname: "/",
-        query: { preselected: "slide deck" },
-      });
+      setPreselectedParam("slide deck");
       const { result } = renderHook(() => useResourceFormState(downloadProps));
       expect(result.current.selectedResources).toEqual(["presentation"]);
     });
     test("useResourceFormState should return worksheet array selected router.preselected 'worksheet", () => {
-      useRouter.mockReturnValue({
-        pathname: "/",
-        query: { preselected: "worksheet" },
-      });
+      setPreselectedParam("worksheet");
       const { result } = renderHook(() => useResourceFormState(downloadProps));
       expect(result.current.selectedResources).toEqual([
         "worksheet-pdf",
@@ -130,10 +132,7 @@ describe("useResourceFormState", () => {
       ]);
     });
     test("useResourceFormState should return quiz exit array selected router.preselected 'exit quiz", () => {
-      useRouter.mockReturnValue({
-        pathname: "/",
-        query: { preselected: "exit quiz" },
-      });
+      setPreselectedParam("exit quiz");
       const { result } = renderHook(() => useResourceFormState(downloadProps));
       expect(result.current.selectedResources).toEqual([
         "exit-quiz-questions",
@@ -141,10 +140,7 @@ describe("useResourceFormState", () => {
       ]);
     });
     test("useResourceFormState should return intro quiz array selected router.preselected 'starter quiz", () => {
-      useRouter.mockReturnValue({
-        pathname: "/",
-        query: { preselected: "starter quiz" },
-      });
+      setPreselectedParam("starter quiz");
       const { result } = renderHook(() => useResourceFormState(downloadProps));
       expect(result.current.selectedResources).toEqual([
         "intro-quiz-questions",
@@ -152,10 +148,7 @@ describe("useResourceFormState", () => {
       ]);
     });
     test("useResourceFormState should return quiz array selected router.preselected 'quiz", () => {
-      useRouter.mockReturnValue({
-        pathname: "/",
-        query: { preselected: "exit quiz" },
-      });
+      setPreselectedParam("exit quiz");
       const { result } = renderHook(() => useResourceFormState(downloadProps));
       expect(result.current.selectedResources).toEqual([
         "exit-quiz-questions",
@@ -163,10 +156,7 @@ describe("useResourceFormState", () => {
       ]);
     });
     test("useResourceFormState should return all additional files array selected router.preselected 'additional-files", () => {
-      useRouter.mockReturnValue({
-        pathname: "/",
-        query: { preselected: "additional files" },
-      });
+      setPreselectedParam("additional files");
       const { result } = renderHook(() =>
         useResourceFormState(downloadPropsWithAdditionalResources),
       );
@@ -176,10 +166,6 @@ describe("useResourceFormState", () => {
       ]);
     });
     test("it should update selectAllChecked when a resource is deselected", () => {
-      useRouter.mockReturnValue({
-        pathname: "/",
-        query: { preselected: [] },
-      });
       const { result } = renderHook(() => useResourceFormState(downloadProps));
       expect(result.current.selectAllChecked).toBe(true);
 
@@ -195,10 +181,6 @@ describe("useResourceFormState", () => {
       jest.clearAllMocks();
     });
     test("useResourceFormState should return all shared selected array if router.preselected is undefined ", () => {
-      useRouter.mockReturnValue({
-        pathname: "/",
-        query: { preselected: [] },
-      });
       const { result } = renderHook(() => useResourceFormState(shareProps));
 
       expect(result.current.selectedResources).toEqual([
@@ -209,19 +191,13 @@ describe("useResourceFormState", () => {
       ]);
     });
     test("useResourceFormState should return correct string for video ", () => {
-      useRouter.mockReturnValue({
-        pathname: "/",
-        query: { preselected: "video" },
-      });
+      setPreselectedParam("video");
       const { result } = renderHook(() => useResourceFormState(shareProps));
 
       expect(result.current.selectedResources).toEqual(["video"]);
     });
     test("useResourceFormState should return correct string for quiz ", () => {
-      useRouter.mockReturnValue({
-        pathname: "/",
-        query: { preselected: "starter quiz" },
-      });
+      setPreselectedParam("starter quiz");
       const { result } = renderHook(() => useResourceFormState(shareProps));
 
       expect(result.current.selectedResources).toEqual([
@@ -229,19 +205,13 @@ describe("useResourceFormState", () => {
       ]);
     });
     test("useResourceFormState should return correct string for quiz exit ", () => {
-      useRouter.mockReturnValue({
-        pathname: "/",
-        query: { preselected: "exit quiz" },
-      });
+      setPreselectedParam("exit quiz");
       const { result } = renderHook(() => useResourceFormState(shareProps));
 
       expect(result.current.selectedResources).toEqual(["exit-quiz-questions"]);
     });
     test("useResourceFormState should return correct string for worksheet ", () => {
-      useRouter.mockReturnValue({
-        pathname: "/",
-        query: { preselected: "worksheet" },
-      });
+      setPreselectedParam("worksheet");
       const { result } = renderHook(() => useResourceFormState(shareProps));
 
       expect(result.current.selectedResources).toEqual(["worksheet-pdf"]);

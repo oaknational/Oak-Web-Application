@@ -101,7 +101,6 @@ describe("Lesson Overview Canonical Page", () => {
         <LessonOverviewCanonicalPage
           topNav={topNavFixture}
           lesson={{ ...lesson, pathways: [] }}
-          isSpecialist={false}
         />,
       );
 
@@ -114,7 +113,6 @@ describe("Lesson Overview Canonical Page", () => {
         <LessonOverviewCanonicalPage
           topNav={topNavFixture}
           lesson={{ ...lesson, lessonReleaseDate: null, pathways: [] }}
-          isSpecialist={false}
         />,
       );
 
@@ -136,7 +134,6 @@ describe("Lesson Overview Canonical Page", () => {
         <LessonOverviewCanonicalPage
           topNav={topNavFixture}
           lesson={{ ...lesson, pathways: [] }}
-          isSpecialist={false}
         />,
       );
       expect(getAllByText("Add teacher note and share")).toHaveLength(2);
@@ -162,7 +159,7 @@ describe("Lesson Overview Canonical Page", () => {
         },
         query: {},
       } as GetStaticPropsContext<URLParams, PreviewData>)) as {
-        props: { lesson: LessonOverviewCanonical; isSpecialist: false };
+        props: { lesson: LessonOverviewCanonical };
       };
 
       expect(propsResult.props.lesson.lessonSlug).toEqual(

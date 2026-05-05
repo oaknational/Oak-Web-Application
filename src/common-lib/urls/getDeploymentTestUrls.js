@@ -59,9 +59,7 @@ function getDeploymentTestUrls() {
     // "/teachers/programmes/music-primary-ks2/units/compose-and-create-improvising-within-hindustani-classical-music/lessons/playing-taals-and-speaking-bols/media", // media clips page
     // Canonical lesson pages
     "/teachers/lessons/duncan-as-a-father-figure",
-    "/teachers/lessons/duncan-as-a-father-figure/downloads",
     "/teachers/lessons/transverse-waves",
-    "/teachers/lessons/transverse-waves/downloads",
     // User pages
     {
       url: "/sign-in",
@@ -86,7 +84,6 @@ function getDeploymentTestUrls() {
     "/teachers/curriculum/english-secondary-aqa/downloads",
     "/teachers/curriculum/science-secondary-ocr/units",
     "/teachers/curriculum/science-secondary-ocr/downloads",
-    "/teachers/curriculum/previous-downloads",
     "/teachers/curriculum",
     "/teachers/curriculum/english-primary/units/speaking-and-listening",
     "/teachers/curriculum/english-primary/units/king-tut-or-healthy-lifestyle-non-chronological-report",
