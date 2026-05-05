@@ -223,12 +223,11 @@ describe("LessonList", () => {
 
     expect(screen.queryByText("Current lesson")).toBeInTheDocument();
   });
-  it("renders download button when showUnitDownloadButton is true", () => {
+  it("renders download button when unitDownloadFileId exists", () => {
     setUseUserReturn(mockLoggedIn);
     render(
       <LessonList
         {...defaultProps}
-        showUnitDownloadButton={true}
         unitDownloadFileId="123"
         isGeorestrictedUnit={true}
       />,
@@ -245,7 +244,6 @@ describe("LessonList", () => {
     render(
       <LessonList
         {...defaultProps}
-        showUnitDownloadButton={true}
         unitDownloadFileId="biology-secondary-ks3-cells"
       />,
     );
@@ -258,8 +256,8 @@ describe("LessonList", () => {
       }),
     );
   });
-  it("renders save button when showUnitDownloadButton is false", () => {
-    render(<LessonList {...defaultProps} showUnitDownloadButton={false} />);
+  it("renders save button when unitDownloadFileId is not passed", () => {
+    render(<LessonList {...defaultProps} />);
 
     expect(
       screen.getByRole("button", { name: "Save unit" }),
@@ -269,13 +267,7 @@ describe("LessonList", () => {
     ).not.toBeInTheDocument();
   });
   it("renders logged out unit download button text", () => {
-    render(
-      <LessonList
-        {...defaultProps}
-        showUnitDownloadButton={true}
-        unitDownloadFileId="cells-42"
-      />,
-    );
+    render(<LessonList {...defaultProps} unitDownloadFileId="cells-42" />);
 
     expect(
       screen.queryByRole("button", { name: "Download complete unit" }),

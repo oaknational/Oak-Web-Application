@@ -38,7 +38,6 @@ type LessonListProps = Pick<
   subjectCategories?: string[] | null;
   selectedLessonIndex?: number;
   showUnitCount?: boolean;
-  showUnitDownloadButton?: boolean;
   isGeorestrictedUnit?: boolean;
   unitDownloadFileId?: string;
 };
@@ -118,7 +117,6 @@ const LessonList = ({
   subjectCategories,
   selectedLessonIndex,
   showUnitCount = true,
-  showUnitDownloadButton = false,
   isGeorestrictedUnit,
   unitDownloadFileId,
 }: LessonListProps) => {
@@ -204,7 +202,7 @@ const LessonList = ({
               <OakSpan $font="body-2-bold">{lessonCount}</OakSpan> lessons in
               unit
             </OakBox>
-            {showUnitDownloadButton && unitDownloadFileId ? (
+            {unitDownloadFileId ? (
               <UnitDownloadButton
                 unitFileId={unitDownloadFileId}
                 onDownloadSuccess={onDownloadSuccess}
