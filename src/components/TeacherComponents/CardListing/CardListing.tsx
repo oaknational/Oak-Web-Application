@@ -56,17 +56,11 @@ const CardListing = (props: CardListingProps) => {
   const backgroundColor = hasChildCards
     ? "bg-primary"
     : getCardListingBackgroundColour(highlightColorVariant);
-  const textColor = getCardListingTextColour({
-    highlightColorVariant: highlightColorVariant,
-    disabled: props.disabled,
-    hasChildCards,
-  });
 
   return (
     <CardListingStyledFlex
       $borderRadius={"border-radius-m2"}
       $background={backgroundColor}
-      $color={textColor || "text-primary"}
       $pa={"spacing-20"}
       $gap={"spacing-20"}
       $flexDirection={layoutVariant === "horizontal" ? "row" : "column"}
