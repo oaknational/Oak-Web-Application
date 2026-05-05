@@ -45,6 +45,7 @@ import {
   LessonDownloadsPageData,
   NextLesson,
 } from "@/node-lib/curriculum-api-2023/queries/lessonDownloads/lessonDownloads.schema";
+import type { LessonListSchema } from "@/node-lib/curriculum-api-2023/shared.schema";
 import { useResourceFormState } from "@/components/TeacherComponents/hooks/downloadAndShareHooks/useResourceFormState";
 import { useHubspotSubmit } from "@/components/TeacherComponents/hooks/downloadAndShareHooks/useHubspotSubmit";
 import { LEGACY_COHORT } from "@/config/cohort";
@@ -74,7 +75,11 @@ type BaseLessonDownload = {
 type NonCanonicalLesson = BaseLessonDownload & {
   nextLessons: NextLesson[];
   updatedAt: string;
-} & LessonPathway;
+} & LessonPathway & {
+    lessons?: LessonListSchema;
+    unitDescription?: string | null;
+    subjectCategories?: string[] | null;
+  };
 
 type SpecialistLesson = SpecialistLessonDownloads["lesson"];
 
@@ -82,10 +87,12 @@ type LessonDownloadsProps =
   | {
       lesson: NonCanonicalLesson;
       breadcrumbsSlot?: ReactNode;
+      downloadConfirmationSlot?: ReactNode;
     }
   | {
       lesson: SpecialistLesson;
       breadcrumbsSlot?: ReactNode;
+      downloadConfirmationSlot?: ReactNode;
     };
 
 export function LessonDownloads(props: LessonDownloadsProps) {
@@ -292,6 +299,10 @@ export function LessonDownloads(props: LessonDownloadsProps) {
     !hasResources ||
     Boolean(expired) ||
     downloadsFilteredByCopyright.length === 0;
+
+  if (props.downloadConfirmationSlot && isDownloadSuccessful) {
+    return props.downloadConfirmationSlot;
+  }
 
   return (
     <OakBox $ph={["spacing-16", "spacing-0"]} $background={"bg-neutral"}>

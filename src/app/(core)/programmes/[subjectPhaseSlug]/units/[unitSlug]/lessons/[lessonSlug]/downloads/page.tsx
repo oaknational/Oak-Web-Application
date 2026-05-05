@@ -4,6 +4,8 @@ import { cache } from "react";
 
 import { Breadcrumbs } from "../../Components/Breadcrumbs/Breadcrumbs";
 
+import { DownloadConfirmation } from "./Components/DownloadConfirmation";
+
 import { getOpenGraphMetadata, getTwitterMetadata } from "@/app/metadata";
 import { LessonDownloads } from "@/components/TeacherViews/LessonDownloads.view";
 import withPageErrorHandling, {
@@ -30,6 +32,7 @@ const getCachedLessonDownloadsData = cache(
       programmeSlug,
       unitSlug,
       lessonSlug,
+      includeUnitLessonList: true,
     });
   },
 );
@@ -105,6 +108,7 @@ const InnerLessonDownloadsPage = async (
           mode="downloads"
         />
       }
+      downloadConfirmationSlot={<DownloadConfirmation lesson={data} />}
     />
   );
 };

@@ -14,10 +14,7 @@ import {
 import { useOakConsent } from "@oaknational/oak-consent-client";
 
 import { Header } from "@/components/TeacherComponents/Header/Header";
-import {
-  LessonList,
-  type LessonListProps,
-} from "@/app/(core)/programmes/[subjectPhaseSlug]/units/[unitSlug]/lessons/Components/LessonList";
+import { LessonList } from "@/app/(core)/programmes/[subjectPhaseSlug]/units/[unitSlug]/lessons/Components/LessonList";
 import { resolveOakHref } from "@/common-lib/urls";
 import useAnalytics from "@/context/Analytics/useAnalytics";
 import type { LessonDownloadsPageData } from "@/node-lib/curriculum-api-2023/queries/lessonDownloads/lessonDownloads.schema";
@@ -27,24 +24,6 @@ import { ServicePolicyMap } from "@/browser-lib/cookie-consent/ServicePolicyMap"
 export type DownloadConfirmationProps = {
   lesson: LessonDownloadsPageData;
 };
-
-function lessonDownloadsToLessonListProps(
-  lesson: LessonDownloadsPageData,
-  unitLessons: NonNullable<LessonDownloadsPageData["lessons"]>,
-): LessonListProps {
-  return {
-    programmeSlug: lesson.programmeSlug,
-    unitSlug: lesson.unitSlug,
-    unitTitle: lesson.unitTitle ?? "",
-    unitDescription: lesson.unitDescription ?? null,
-    subjectTitle: lesson.subjectTitle,
-    subjectSlug: lesson.subjectSlug,
-    keyStageSlug: lesson.keyStageSlug,
-    keyStageTitle: lesson.keyStageTitle,
-    lessons: unitLessons,
-    lessonCount: unitLessons.length,
-  };
-}
 
 export function DownloadConfirmation({ lesson }: DownloadConfirmationProps) {
   const {
@@ -167,7 +146,16 @@ export function DownloadConfirmation({ lesson }: DownloadConfirmationProps) {
                 <OakIcon iconName="arrow-down" $colorFilter="text-success" />
               </OakFlex>
               <LessonList
-                {...lessonDownloadsToLessonListProps(lesson, lessons)}
+                programmeSlug={lesson.programmeSlug}
+                unitSlug={lesson.unitSlug}
+                unitTitle={lesson.unitTitle}
+                unitDescription={lesson.unitDescription ?? null}
+                subjectTitle={lesson.subjectTitle}
+                subjectSlug={lesson.subjectSlug}
+                keyStageSlug={lesson.keyStageSlug}
+                keyStageTitle={lesson.keyStageTitle}
+                lessons={lessons}
+                lessonCount={lessons.length}
               />
             </OakGridArea>
           ) : null}
