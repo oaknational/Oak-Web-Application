@@ -15,12 +15,14 @@ import {
   PupilLessonPageType,
 } from "@/pages-helpers/pupil/lessons-pages/pupilLessonPage.types";
 import { invariant } from "@/utils/invariant";
+import { getLessonShareVariant } from "@/pages-helpers/pupil";
 
 export type PupilLessonPageURLParams = {
   lessonSlug: string;
   unitSlug?: string;
   programmeSlug?: string;
   section: string;
+  variant?: string;
 };
 
 export const getProps = ({
@@ -34,7 +36,8 @@ export const getProps = ({
     if (!context.params) {
       throw new Error("context.params is undefined");
     }
-    const { lessonSlug, unitSlug, programmeSlug, section } = context.params;
+    const { lessonSlug, unitSlug, programmeSlug, section, variant } =
+      context.params;
 
     if (page === "browse") {
       invariant(unitSlug, "unitSlug is required for browse page");
@@ -103,7 +106,13 @@ export const getProps = ({
     const { browseData, content } = res;
 
     // 404 if the lesson does not contain the given section
-    if (!isAvailablePupilLessonSection(section, content)) {
+    if (
+      !isAvailablePupilLessonSection(
+        section,
+        content,
+        variant ? getLessonShareVariant(variant) : null,
+      )
+    ) {
       return {
         notFound: true,
       };
@@ -125,6 +134,7 @@ export const getProps = ({
       initialSection: section,
       pageType: page,
       suppressResourceErrors: page === "preview",
+      variant: variant ? getLessonShareVariant(variant) : null,
     });
 
     const results: GetStaticPropsResult<PupilLessonPageProps> = {

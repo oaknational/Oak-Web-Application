@@ -94,7 +94,7 @@ export const getStaticProps: GetStaticProps<
 
       const { browseData, content } = res;
       // 404 if the lesson does not contain the given section
-      if (!isAvailablePupilLessonSection(section, content)) {
+      if (!isAvailablePupilLessonSection(section, content, null)) {
         return {
           notFound: true,
         };
@@ -110,6 +110,7 @@ export const getStaticProps: GetStaticProps<
         backUrl,
         initialSection: section,
         pageType: "canonical",
+        variant: null,
       });
 
       const results: GetStaticPropsResult<PupilLessonPageProps> = { props };
