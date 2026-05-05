@@ -60,14 +60,16 @@ const lessons: LessonListSchema = [
   },
   {
     lessonSlug: "lesson-one",
-    lessonTitle: "Lesson one",
-    description: "Lesson description",
-    pupilLessonOutcome: "Outcome",
+    lessonTitle: "Measuring wave speed",
+    description:
+      "In this lesson, pupils measure wave speed and calculate values using the wave equation.",
+    pupilLessonOutcome:
+      "I can calculate wave speed from frequency and wavelength and explain what the result means.",
     expired: false,
     orderInUnit: 2,
     lessonCohort: "2023-2024",
     isUnpublished: false,
-    lessonReleaseDate: null,
+    lessonReleaseDate: "2025-10-06T14:00:00.000Z",
     geoRestricted: false,
     loginRequired: false,
   },
@@ -174,7 +176,8 @@ describe("DownloadSuccessView", () => {
     );
 
     expect(getByText("Ready to keep going?")).toBeInTheDocument();
-    expect(getByText("Lesson one")).toBeInTheDocument();
+    expect(getByText("Measuring wave speed")).toBeInTheDocument();
+    expect(getByText("Current lesson")).toBeInTheDocument();
   });
 
   it("shows extra help copy when statistics (Gleap) consent is granted", () => {

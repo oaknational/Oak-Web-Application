@@ -19,27 +19,20 @@ const DOWNLOAD_SUCCESS_IMG_URL =
 type DownloadSuccessHeaderProps = {
   href: string;
   onBackClick?: () => void;
+  /** We only show the help message if the user has consented to the Gleap cookie */
   showHelpMessage?: boolean;
-  backLinkTestId?: string;
 };
 
 export function DownloadSuccessHeader({
   href,
   onBackClick,
   showHelpMessage = true,
-  backLinkTestId,
 }: Readonly<DownloadSuccessHeaderProps>) {
   return (
     <Header
       layoutVariant="large"
       useSubduedBackground
-      headerSlot={
-        <BackLink
-          href={href}
-          onBackClick={onBackClick}
-          testId={backLinkTestId}
-        />
-      }
+      headerSlot={<BackLink href={href} onBackClick={onBackClick} />}
       heading="Thanks for downloading!"
       summary={
         <OakFlex $flexDirection="column" $gap={"spacing-24"}>
@@ -58,7 +51,9 @@ export function DownloadSuccessHeader({
 
 function InstallFontsInstructions({
   showHelpMessage,
-}: Readonly<{ showHelpMessage: boolean }>) {
+}: Readonly<{
+  showHelpMessage: boolean;
+}>) {
   return (
     <OakFlex $gap="spacing-8" $alignItems={"center"}>
       <OakIcon iconWidth="spacing-20" iconName="info" />
@@ -71,15 +66,13 @@ function InstallFontsInstructions({
             "install the Google Fonts 'Lexend' and 'Kalam' (opens in a new tab)"
           }
         >
-          install the Google Fonts ‘Lexend’ and ‘Kalam’
+          install the Google Fonts ‘Lexend’ and ‘Kalam’.{" "}
         </OakLink>
-        {showHelpMessage ? (
+        {showHelpMessage && (
           <OakSpan>
-            . Click the question mark in the bottom-right of the page if you
-            need extra help with this.
+            Click the question mark in the bottom-right of the page if you need
+            extra help with this.
           </OakSpan>
-        ) : (
-          <OakSpan>.</OakSpan>
         )}
       </OakP>
     </OakFlex>
@@ -89,8 +82,7 @@ function InstallFontsInstructions({
 function BackLink({
   href,
   onBackClick,
-  testId,
-}: Readonly<{ href: string; onBackClick?: () => void; testId?: string }>) {
+}: Readonly<{ href: string; onBackClick?: () => void }>) {
   return (
     <OakBox>
       <OakTertiaryInvertedButton
@@ -99,7 +91,7 @@ function BackLink({
         aria-label={"Back to lesson"}
         iconName={"arrow-left"}
         isTrailingIcon={false}
-        data-testid={testId}
+        data-testid="back-to-lesson-link"
         onClick={onBackClick}
       >
         Back to lesson

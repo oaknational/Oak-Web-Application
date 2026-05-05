@@ -88,7 +88,6 @@ export function DownloadSuccessView({ lesson }: DownloadSuccessViewProps) {
           programmeSlug,
           unitSlug,
         })}
-        backLinkTestId="back-to-lesson-link"
         showHelpMessage={!cookiesNotAccepted}
         onBackClick={() =>
           onwardContentSelected({
@@ -131,6 +130,9 @@ export function DownloadSuccessView({ lesson }: DownloadSuccessViewProps) {
               unitDescription={lesson.unitDescription}
               lessons={lessons}
               lessonCount={lessons.length}
+              selectedLessonIndex={
+                lessons.findIndex((l) => l.lessonSlug === lessonSlug) + 1
+              }
               headerCtaSlot={
                 unitDownloadFileId ? (
                   <UnitDownloadButton
