@@ -158,6 +158,8 @@ export function DownloadSuccessView({ lesson }: DownloadSuccessViewProps) {
                     }}
                     showNewTag={false}
                     geoRestricted={isGeorestrictedUnit}
+                    size="small"
+                    buttonLabel="Download complete unit"
                   />
                 ) : null
               }
