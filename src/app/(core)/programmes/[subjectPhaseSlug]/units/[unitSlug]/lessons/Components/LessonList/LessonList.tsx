@@ -34,7 +34,7 @@ type LessonListProps = Pick<
   | "unitCount"
 > & {
   lessonCount: number;
-  unitDescription?: UnitViewProps["unitDescription"];
+  unitDescription?: UnitOverviewContentProps["unitDescription"];
   subjectCategories?: string[] | null;
   selectedLessonIndex?: number;
   showUnitCount?: boolean;
