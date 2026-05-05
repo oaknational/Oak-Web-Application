@@ -25,7 +25,6 @@ export type SpecialistHeaderListingProps = {
   subjectSlug: string;
   subjectIconBackgroundColor?: OakUiRoleToken;
   title: string;
-  hasCurriculumDownload?: boolean;
   description: string;
 };
 
@@ -73,16 +72,6 @@ const SpecialistHeaderListing: FC<SpecialistHeaderListingProps> = (props) => {
               </OakP>
             </OakFlex>
           </OakFlex>
-
-          {/* Commented out until - I want to be able to download specialist curriculum maps LESQ-586 */}
-          {/* {hasCurriculumDownload && (
-            <HeaderListingCurriculumDownloadButton
-              keyStageSlug={"slug"}
-              keyStageTitle={"title"}
-              subjectSlug={subjectSlug}
-              subjectTitle={subjectTitle}
-            />
-          )} */}
         </OakGridArea>
       </OakGrid>
     </LessonHeaderWrapper>
