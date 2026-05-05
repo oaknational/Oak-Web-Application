@@ -50,6 +50,7 @@ export type UnitViewProps = Pick<
   | "examBoardTitle"
   | "examBoardSlug"
   | "phaseTitle"
+  | "nonCurriculum"
 > & {
   subjectPhaseSlug: string;
 };
@@ -79,6 +80,7 @@ export const UnitView = ({
   yearGroupTitle,
   examBoardTitle,
   subjectPhaseSlug,
+  nonCurriculum,
 }: UnitViewProps) => {
   const hasToggles =
     tierOptionToggles.length > 1 || subjectOptionToggles.length > 1;
@@ -178,6 +180,7 @@ export const UnitView = ({
             subjectTitle={subjectTitle}
             phaseTitle={phaseTitle}
             subjectPhaseSlug={subjectPhaseSlug}
+            nonCurriculum={nonCurriculum}
           />
           <PreviousNextNav
             backgroundColorLevel={getBackgroundColorLevel(phaseSlug)}

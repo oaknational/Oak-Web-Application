@@ -46,6 +46,10 @@ const teachersUnitOverviewQuery =
     const containsLoginRequiredLessons = modifiedLessons.some(
       (lesson) => lesson.features?.agf__login_required === true,
     );
+    const nonCurriculum = modifiedLessons.every(
+      (lesson) => lesson.features?.non_curriculum === true,
+    );
+
     const parsedModifiedLessons =
       modifiedLessonsResponseSchemaArray.parse(modifiedLessons);
 
@@ -78,6 +82,7 @@ const teachersUnitOverviewQuery =
       unitLessons,
       containsGeorestrictedLessons,
       containsLoginRequiredLessons,
+      nonCurriculum,
       unitSequenceData: parsedUnitSequence,
       unitsInOtherProgrammes: parsedUnitsInOtherProgrammes,
       threads: parsedThreads,

@@ -14,6 +14,7 @@ export interface UnitViewSeoAccordionProps {
   subjectTitle: string;
   phaseTitle: string;
   subjectPhaseSlug: string;
+  nonCurriculum: boolean | undefined;
 }
 
 export const UnitViewSeoAccordion = ({
@@ -23,9 +24,11 @@ export const UnitViewSeoAccordion = ({
   subjectTitle,
   phaseTitle,
   subjectPhaseSlug,
+  nonCurriculum,
 }: UnitViewSeoAccordionProps) => {
   const examBoardText = examBoardTitle ? `${examBoardTitle} ` : "";
-
+  const hideCurriculumLink = nonCurriculum;
+  const curriculumLinkText = `${examBoardText}${phaseTitle.toLocaleLowerCase()} ${subjectTitle.toLocaleLowerCase()} curriculum`;
   return (
     <OakBasicAccordion
       $bt="border-solid-s"
@@ -49,17 +52,19 @@ export const UnitViewSeoAccordion = ({
         </OakP>
         <OakP>
           See every unit listed in our{" "}
-          <OakLink
-            href={resolveOakHref({
-              page: "teacher-programme",
-              subjectPhaseSlug,
-              tab: "overview",
-            })}
-          >
-            {examBoardText}
-            {phaseTitle.toLocaleLowerCase()} {subjectTitle.toLocaleLowerCase()}{" "}
-            curriculum
-          </OakLink>{" "}
+          {hideCurriculumLink ? (
+            curriculumLinkText
+          ) : (
+            <OakLink
+              href={resolveOakHref({
+                page: "teacher-programme",
+                subjectPhaseSlug,
+                tab: "overview",
+              })}
+            >
+              {curriculumLinkText}
+            </OakLink>
+          )}{" "}
           and discover more of our teaching resources for{" "}
           <OakLink
             href={resolveOakHref({

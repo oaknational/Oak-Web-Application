@@ -1,4 +1,5 @@
 import { screen } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
 
 import {
   UnitViewSeoAccordion,
@@ -14,6 +15,7 @@ describe("UnitViewSeoAccordion", () => {
     unitTitle: "Test Unit",
     subjectTitle: "English",
     phaseTitle: "Secondary",
+    nonCurriculum: false,
     subjectPhaseSlug: "english-secondary-ks3",
   };
 
@@ -36,17 +38,41 @@ describe("UnitViewSeoAccordion", () => {
     expect(header).toBeInTheDocument();
   });
 
-  it("renders curriculum overview link", () => {
+  it("renders curriculum overview link", async () => {
     renderWithTheme(<UnitViewSeoAccordion {...defaultProps} />);
 
-    const curriculumLink = screen.getByText(/secondary English curriculum/i);
+    const accordionButton = screen.getByRole("button", {
+      name: /Explore this AQA year 7 english unit/i,
+    });
+    await userEvent.click(accordionButton);
+
+    const curriculumLink = screen.getByRole("link", {
+      name: /secondary English curriculum/i,
+    });
     expect(curriculumLink).toBeInTheDocument();
   });
 
-  it("renders programmes link", () => {
+  it("does not render curriculum overview link when nonCurriculum is true", () => {
+    const props = { ...defaultProps, nonCurriculum: true };
+    renderWithTheme(<UnitViewSeoAccordion {...props} />);
+
+    const curriculumLink = screen.queryByRole("link", {
+      name: /secondary English curriculum/i,
+    });
+    expect(curriculumLink).not.toBeInTheDocument();
+  });
+
+  it("renders programmes link", async () => {
     renderWithTheme(<UnitViewSeoAccordion {...defaultProps} />);
 
-    const programmesLink = screen.getByText(/secondary English programmes/i);
+    const accordionButton = screen.getByRole("button", {
+      name: /Explore this AQA year 7 english unit/i,
+    });
+    await userEvent.click(accordionButton);
+
+    const programmesLink = screen.getByRole("link", {
+      name: /secondary English programmes/i,
+    });
     expect(programmesLink).toBeInTheDocument();
   });
 });

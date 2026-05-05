@@ -140,6 +140,7 @@ const InnerUnitPage = async (props: AppPageProps<LessonsPageParams>) => {
         examBoardTitle={data.examBoardTitle}
         examBoardSlug={data.examBoardSlug}
         subjectPhaseSlug={subjectPhaseSlug}
+        nonCurriculum={data.nonCurriculum}
       />
     </>
   );

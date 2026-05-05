@@ -198,6 +198,7 @@ export const getPackagedUnit = ({
   unitLessons,
   containsGeorestrictedLessons,
   containsLoginRequiredLessons,
+  nonCurriculum,
   unitSequenceData,
   unitsInOtherProgrammes,
   threads,
@@ -206,6 +207,7 @@ export const getPackagedUnit = ({
   unitLessons: LessonListSchema;
   containsGeorestrictedLessons: boolean;
   containsLoginRequiredLessons: boolean;
+  nonCurriculum: boolean;
   unitSequenceData: UnitSequence;
   unitsInOtherProgrammes: UnitsInOtherProgrammes;
   threads: Threads;
@@ -292,6 +294,7 @@ export const getPackagedUnit = ({
     priorKnowledgeRequirements,
     containsGeorestrictedLessons,
     containsLoginRequiredLessons,
+    nonCurriculum,
     nextUnit,
     prevUnit,
     tierOptionToggles,
