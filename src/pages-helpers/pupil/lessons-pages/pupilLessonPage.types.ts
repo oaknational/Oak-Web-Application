@@ -4,6 +4,7 @@ import {
   LessonBrowseData,
   LessonContent,
 } from "@/node-lib/curriculum-api-2023/queries/pupilLesson/pupilLesson.schema";
+import { LessonShareVariant } from "@/pages-helpers/pupil";
 
 export type WorksheetInfo = {
   item: string;
@@ -24,4 +25,5 @@ export type PupilLessonPageProps = {
   hasAdditionalFiles: boolean;
   additionalFiles: AdditionalFile[] | null;
   worksheetInfo: WorksheetInfo | null;
+  variant: LessonShareVariant | null;
 };

@@ -8,6 +8,7 @@ import {
   LessonBrowseData,
   LessonContent,
 } from "@/node-lib/curriculum-api-2023/queries/pupilLesson/pupilLesson.schema";
+import { LessonShareVariant } from "@/pages-helpers/pupil";
 
 export type PupilLayoutProps = {
   children?: React.ReactNode;
@@ -15,6 +16,7 @@ export type PupilLayoutProps = {
   pupilStores?: {
     browseData: LessonBrowseData;
     lessonContent: LessonContent;
+    variant: LessonShareVariant | null;
   };
 };
 

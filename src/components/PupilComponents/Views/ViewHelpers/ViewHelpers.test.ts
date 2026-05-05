@@ -145,11 +145,14 @@ describe("ViewHelpers", () => {
   describe("overview/experience helpers", () => {
     it("picks available lesson sections", () => {
       expect(
-        pickAvailableSectionsForLesson({
-          starterQuiz: [],
-          exitQuiz: [],
-          videoMuxPlaybackId: null,
-        } as never),
+        pickAvailableSectionsForLesson(
+          {
+            starterQuiz: [],
+            exitQuiz: [],
+            videoMuxPlaybackId: null,
+          } as never,
+          null,
+        ),
       ).toEqual(["intro"]);
     });
 
