@@ -1,3 +1,57 @@
+## [1.1066.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.1066.1...v1.1066.2) (2026-05-05)
+
+
+### Bug Fixes
+
+* specific version for terraform github actions ([592b2da](https://github.com/oaknational/Oak-Web-Application/commit/592b2daecb7a8c848c4f8dbc4c6adfeb194204f6))
+* terraform linting ([6ebb853](https://github.com/oaknational/Oak-Web-Application/commit/6ebb85391c552ca864703678819d429cdd62c0d8))
+
+## [1.1066.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.1066.0...v1.1066.1) (2026-05-05)
+
+
+### Bug Fixes
+
+* direct curriciulmHref to null where it was before to previous-downloads ([2255238](https://github.com/oaknational/Oak-Web-Application/commit/2255238b6dae59903175364690a6135848136562))
+* failing subject picker test ([7a04227](https://github.com/oaknational/Oak-Web-Application/commit/7a0422725e13b7a8437f5c2b93b3041a303abb6d))
+* reinstate wrongly removed curriculumHref in UnitList ([09b9323](https://github.com/oaknational/Oak-Web-Application/commit/09b9323c0dbd033440fd0ead44b00e12fc8c76a6))
+* remove hascurriculumDownload prop from components ([26ce572](https://github.com/oaknational/Oak-Web-Application/commit/26ce57242dde23504a17980b30d380ac22905ecb))
+* remove hascurriculumDownload prop from stories, tests, queries and schemas ([c762e19](https://github.com/oaknational/Oak-Web-Application/commit/c762e19051c31e626d92d4e99b3a1540d551099b))
+* remove legacy curriculum download button ([1898a5a](https://github.com/oaknational/Oak-Web-Application/commit/1898a5a94f2321c4ad16b6eae3cd974228afc115))
+* remove old comment re HeaderListingCurriculumDownloadsButton ([ef85c5f](https://github.com/oaknational/Oak-Web-Application/commit/ef85c5fb10440a0c4fab82b4df8995e80c602a16))
+* remove previous downloads fixtures and rename file to exported downloadCategories ([fc55b85](https://github.com/oaknational/Oak-Web-Application/commit/fc55b85934e1da4a9d7365e3d4ee9b2a0eb0dc56))
+* remove previous downloads link from subject picker and associated tests ([525923e](https://github.com/oaknational/Oak-Web-Application/commit/525923e91efe0ec50dfc51e11d1c4ba0f64d20fb))
+* remove previous-downloads from deploymenttesturls ([2e9a047](https://github.com/oaknational/Oak-Web-Application/commit/2e9a04787170d8086448b584196f335e3974b51c))
+* remove previous-downloads href and associates in HeaderListing component ([5b5b1b1](https://github.com/oaknational/Oak-Web-Application/commit/5b5b1b1ee6c66d66efecb697e6eedadf4263e6d9))
+* remove previous-downloads page ([8c4cffb](https://github.com/oaknational/Oak-Web-Application/commit/8c4cffbf9053c99d76c87a05bcb3fc09027af338))
+* remove type previous props ([4831f1e](https://github.com/oaknational/Oak-Web-Application/commit/4831f1e1f6c1d2a14b364eca5b325fea5771ebae))
+
+# [1.1066.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1065.0...v1.1066.0) (2026-05-05)
+
+
+### Features
+
+* add autodismiss with 10s duration to toast ([3f9a275](https://github.com/oaknational/Oak-Web-Application/commit/3f9a2759f46c504170e9b5d79f507385d2a64b08))
+* add inline banner when unit download starts ([de71f5e](https://github.com/oaknational/Oak-Web-Application/commit/de71f5e8e18e1fc2872021c338d62cff288c6275))
+* show oak toast on unit download success ([09fa9c6](https://github.com/oaknational/Oak-Web-Application/commit/09fa9c66702e4220ecf2605ec3789b24200cfe7f))
+
+# [1.1065.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1064.0...v1.1065.0) (2026-04-30)
+
+
+### Bug Fixes
+
+* **LESQ-1947:** add key to breadcrumbs ([aea0fac](https://github.com/oaknational/Oak-Web-Application/commit/aea0fac2edf1edf2876834145ee1e60f93ded6c7))
+* **LESQ-1947:** add missing examBoardSlug to constructLessonDownloads for correct breadcrumb ([6335664](https://github.com/oaknational/Oak-Web-Application/commit/6335664f6442edfa1d09ba4aafc62814225d0229))
+
+
+### Features
+
+* **LESQ_1947:** enable linking to the integrated journey ([818ad0d](https://github.com/oaknational/Oak-Web-Application/commit/818ad0df11881536df9dbb7400b5b0e46416b700))
+* **LESQ-1947:** add a slot to allow overriding default breadcrumbs in LessonDownloads ([7734654](https://github.com/oaknational/Oak-Web-Application/commit/773465410d8236ac394942b2bfc93ffd9fe88bb4))
+* **LESQ-1947:** add additional pathway data to lesson downloads query ([3a73ed7](https://github.com/oaknational/Oak-Web-Application/commit/3a73ed7fef48072799e82cd524db137ae13e8555))
+* **LESQ-1947:** add the new downloads page ([a75cd13](https://github.com/oaknational/Oak-Web-Application/commit/a75cd13bed0c53e4c48009aecaf7e60ff49e8e71))
+* **LESQ-1947:** replace legacy checkbox components in lesson download ([84c62d0](https://github.com/oaknational/Oak-Web-Application/commit/84c62d060c18f5b55f8a047865abd702f742fe8a))
+* **LESQ-1947:** update links to point to the new downloads page ([b5d7c87](https://github.com/oaknational/Oak-Web-Application/commit/b5d7c87fdbd8207341ed00ade83194b79dcb49dc))
+
 # [1.1064.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1063.1...v1.1064.0) (2026-04-30)
 
 

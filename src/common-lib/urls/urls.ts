@@ -132,6 +132,15 @@ export type IntegratedLessonOverviewLinkProps = {
   unitSlug: string;
   lessonSlug: string;
 };
+export type IntegratedLessonDownloadsLinkProps = {
+  page: "integrated-lesson-downloads";
+  programmeSlug: string;
+  unitSlug: string;
+  lessonSlug: string;
+  query?: {
+    preselected: PreselectedDownloadType | null;
+  };
+};
 export type SpecialistLessonListingLinkProps = Omit<
   LessonListingLinkProps,
   "page"
@@ -356,13 +365,6 @@ type CurriculumDownloadsLinkProps = {
   page: "curriculum-downloads";
   subjectPhaseSlug: string;
 };
-type CurriculumPreviousDownloadsLinkProps = {
-  page: "curriculum-previous-downloads";
-  query?: {
-    subject: string;
-    keystage?: string;
-  };
-};
 
 type OnboardingLinkProps = {
   page: "onboarding";
@@ -464,6 +466,7 @@ export type OakLinkProps =
   | LessonListingLinkProps
   | IntegratedUnitOverviewLinkProps
   | IntegratedLessonOverviewLinkProps
+  | IntegratedLessonDownloadsLinkProps
   | SpecialistLessonListingLinkProps
   | UnitListingLinkProps
   | SpecialistUnitListingLinkProps
@@ -495,7 +498,6 @@ export type OakLinkProps =
   | CurriculumOverviewLinkProps
   | CurriculumUnitsLinkProps
   | CurriculumDownloadsLinkProps
-  | CurriculumPreviousDownloadsLinkProps
   | OnboardingLinkProps
   | OnboardingSchoolSelectionLinkProps
   | OnboardingRoleSelectionLinkProps
@@ -866,6 +868,13 @@ export const OAK_PAGES: {
     configType: "internal",
     pageType: "integrated-lesson-overview",
   }),
+  "integrated-lesson-downloads": createOakPageConfig({
+    pathPattern:
+      "/programmes/:programmeSlug/units/:unitSlug/lessons/:lessonSlug/downloads",
+    analyticsPageName: "Lesson Download",
+    configType: "internal",
+    pageType: "integrated-lesson-downloads",
+  }),
   "specialist-lesson-index": createOakPageConfig({
     pathPattern:
       "/teachers/specialist/programmes/:programmeSlug/units/:unitSlug/lessons",
@@ -1090,12 +1099,6 @@ export const OAK_PAGES: {
     analyticsPageName: "Curriculum Downloads",
     configType: "internal",
     pageType: "curriculum-downloads",
-  }),
-  "curriculum-previous-downloads": createOakPageConfig({
-    pathPattern: "/teachers/curriculum/previous-downloads",
-    analyticsPageName: "Curriculum Previous Downloads",
-    configType: "internal",
-    pageType: "curriculum-previous-downloads",
   }),
   onboarding: createOakPageConfig({
     pathPattern: "/onboarding",

@@ -26,10 +26,8 @@ import { Breadcrumb } from "@/components/SharedComponents/Breadcrumbs";
 import { LessonHeaderWrapper } from "@/components/TeacherComponents/LessonHeaderWrapper";
 import SubjectIconBrushBorders from "@/components/TeacherComponents/SubjectIconBrushBorders";
 import RiskAssessmentBanner from "@/components/TeacherComponents/RiskAssessmentBanner";
-import HeaderListingCurriculumDownloadButton from "@/components/TeacherComponents/HeaderListingCurriculumDownloadButton";
 import ComplexCopyrightRestrictionBanner from "@/components/TeacherComponents/ComplexCopyrightRestrictionBanner/ComplexCopyrightRestrictionBanner";
 import LessonMetadata from "@/components/SharedComponents/LessonMetadata";
-import ButtonAsLink from "@/components/SharedComponents/Button/ButtonAsLink";
 import { UnitListingData } from "@/node-lib/curriculum-api-2023/queries/unitListing/unitListing.schema";
 import TeacherSubjectDescription from "@/components/TeacherComponents/TeacherSubjectDescription/TeacherSubjectDescription";
 import { getPhaseSlugFromKeystage } from "@/fixtures/curriculum/unit";
@@ -59,7 +57,6 @@ export type HeaderListingProps = {
   isNew: boolean;
   title: string;
   programmeFactor: string;
-  hasCurriculumDownload?: boolean;
   shareButton?: React.ReactNode;
   unitDownloadFileId?: string;
   onUnitDownloadSuccess?: () => void;
@@ -89,7 +86,6 @@ const HeaderListing: FC<HeaderListingProps> = (props) => {
     subjectIconBackgroundColor,
     breadcrumbs,
     background,
-    hasCurriculumDownload = true,
     examBoardTitle,
     examBoardSlug,
     tierTitle,
@@ -111,7 +107,6 @@ const HeaderListing: FC<HeaderListingProps> = (props) => {
   } = props;
 
   const isKeyStagesAvailable = keyStageSlug && keyStageTitle;
-  const specialistDownloadLink = `/teachers/curriculum/previous-downloads#Specialist`;
 
   const {
     showDownloadMessage,
@@ -317,27 +312,6 @@ const HeaderListing: FC<HeaderListingProps> = (props) => {
               />
             </OakGridArea>
           </OakGrid>
-        )}
-      </OakFlex>
-      <OakFlex $background={background} $display={["inline", "none"]}>
-        {hasCurriculumDownload && isKeyStagesAvailable && (
-          <HeaderListingCurriculumDownloadButton
-            keyStageSlug={keyStageSlug}
-            subjectSlug={subjectSlug}
-          />
-        )}
-        {hasCurriculumDownload && !isKeyStagesAvailable && (
-          <ButtonAsLink
-            icon={"download"}
-            iconBackground="black"
-            label={"Curriculum download"}
-            href={specialistDownloadLink}
-            page={null}
-            size="large"
-            variant="minimal"
-            $iconPosition={"trailing"}
-            data-testid="curriculum-downloads-link"
-          />
         )}
       </OakFlex>
     </LessonHeaderWrapper>
