@@ -13,7 +13,7 @@ import { CurrentSectionIdProvider } from "./CurrentSectionIdProvider";
 import LessonOverviewSideNav from "./LessonOverviewSideNav";
 import { getLessonResources } from "./getLessonResources";
 import { LessonItem } from "./LessonItem";
-import LessonActionsBar from "./LessonShareBar/LessonActionsBar";
+import LessonActionsBar from "./LessonActionsBar/LessonActionsBar";
 
 import type { TeachersLessonOverviewPageData } from "@/node-lib/curriculum-api-2023/queries/teachersLessonOverview/teachersLessonOverview.schema";
 import PreviousNextNav from "@/components/TeacherComponents/PreviousNextNav/PreviousNextNav";
