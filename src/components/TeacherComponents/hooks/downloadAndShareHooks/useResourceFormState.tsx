@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
-import { useRouter } from "next/router";
+import { useSearchParams } from "next/navigation";
+import { useRouter } from "next/compat/router";
 import { useUser } from "@clerk/nextjs";
 import { zodResolver } from "@hookform/resolvers/zod";
 
@@ -303,10 +304,15 @@ export const useResourceFormState = (props: UseResourceFormStateProps) => {
   };
 
   const router = useRouter();
+  const searchParams = useSearchParams();
 
   useEffect(() => {
+    // Backwards compatibility: in pages router, wait for router
+    // hydration so query params are stable before reading them.
+    if (router && !router.isReady) return;
+
     const preselectedQuery = () => {
-      const res = router.query.preselected;
+      const res = searchParams?.get("preselected");
 
       const result =
         props.type === "download"
@@ -366,7 +372,9 @@ export const useResourceFormState = (props: UseResourceFormStateProps) => {
     getInitialResourcesState,
     getInitialAdditionalFilesState,
     props.type,
-    router.query.preselected,
+    router,
+    router?.isReady,
+    searchParams,
     resources,
     additionalResources,
     setValue,

@@ -117,7 +117,7 @@ describe("CurriculumDownloads", () => {
 
   test("generates download error and recovers", async () => {
     const { getByTestId, queryByTestId } = renderComponent();
-    await userEvent.click(getByTestId("checkbox-download"));
+    await userEvent.click(getByTestId("checkbox-download").closest("label")!);
     await userEvent.click(getByTestId("termsCheckbox").querySelector("label")!);
     await userEvent.click(getByTestId("loadingButton"));
     await act(() => {
@@ -136,7 +136,7 @@ describe("CurriculumDownloads", () => {
         downloads={[{ icon: "english", label: "English", url: "" }]}
       />,
     );
-    await userEvent.click(getByTestId("checkbox-download")!);
+    await userEvent.click(getByTestId("checkbox-download").closest("label")!);
     await userEvent.click(getByTestId("termsCheckbox").querySelector("label")!);
     await userEvent.click(getByTestId("resourceCard").querySelector("label")!);
     await userEvent.click(getByTestId("loadingButton"));
@@ -152,7 +152,7 @@ describe("CurriculumDownloads", () => {
       throw new Error("Resource card not found");
     }
     await userEvent.click(resourceCard.querySelector("label")!);
-    await userEvent.click(getByTestId("checkbox-download")!);
+    await userEvent.click(getByTestId("checkbox-download").closest("label")!);
     await userEvent.click(getByTestId("termsCheckbox").querySelector("label")!);
     await userEvent.click(getByTestId("loadingButton"));
     expect(createAndClickHiddenDownloadLink).toHaveBeenCalledWith(
@@ -169,7 +169,7 @@ describe("CurriculumDownloads", () => {
       throw new Error("Resource card not found");
     }
     await userEvent.click(resourceCard.querySelector("label")!);
-    await userEvent.click(getByTestId("checkbox-download")!);
+    await userEvent.click(getByTestId("checkbox-download").closest("label")!);
     await userEvent.click(getByTestId("termsCheckbox").querySelector("label")!);
     await userEvent.click(getByTestId("resourceCard").querySelector("label")!);
     await userEvent.click(getByTestId("loadingButton"));
