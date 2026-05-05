@@ -23,8 +23,7 @@ jest.mock("@/context/Analytics/useAnalytics", () => ({
   __esModule: true,
   default: () => ({
     track: {
-      onwardContentSelected: (...args: unknown[]) =>
-        onwardContentSelected(...args),
+      onwardContentSelected,
     },
   }),
 }));
@@ -121,11 +120,11 @@ describe("DownloadSuccessView", () => {
   });
 
   it("back to lesson links to the lesson overview", () => {
-    const { getByTestId } = renderComponent(
+    const { getByRole } = renderComponent(
       <DownloadSuccessView lesson={baseLesson} />,
     );
 
-    const link = getByTestId("back-to-lesson-link");
+    const link = getByRole("link", { name: "Back to lesson" });
     expect(link).toHaveAttribute(
       "href",
       resolveOakHref({

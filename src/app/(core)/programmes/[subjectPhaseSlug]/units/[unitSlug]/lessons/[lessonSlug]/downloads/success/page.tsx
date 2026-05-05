@@ -24,7 +24,7 @@ const getCachedSuccessData = cache(
     });
 
     const lesson = unitData.lessons.find((l) => l.lessonSlug === lessonSlug);
-    if (!lesson || !lesson.lessonReleaseDate) {
+    if (!lesson?.lessonReleaseDate) {
       return null;
     }
 

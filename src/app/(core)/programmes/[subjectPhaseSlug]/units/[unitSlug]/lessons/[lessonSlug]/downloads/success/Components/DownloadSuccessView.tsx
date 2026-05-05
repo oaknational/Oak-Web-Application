@@ -41,7 +41,9 @@ export type DownloadSuccessViewProps = {
   lesson: DownloadSuccessViewLesson;
 };
 
-export function DownloadSuccessView({ lesson }: DownloadSuccessViewProps) {
+export function DownloadSuccessView({
+  lesson,
+}: Readonly<DownloadSuccessViewProps>) {
   const {
     lessonTitle,
     lessonSlug,
@@ -109,7 +111,7 @@ export function DownloadSuccessView({ lesson }: DownloadSuccessViewProps) {
           $maxWidth="spacing-1280"
           $cg="spacing-12"
         >
-          <OakGridArea $colSpan={[12, 8]} $colStart={[1, 2]} $gap="spacing-48">
+          <OakGridArea $colSpan={[12, 8]} $colStart={[1, 3]} $gap="spacing-48">
             <OakFlex
               $font="heading-light-6"
               $mh="auto"

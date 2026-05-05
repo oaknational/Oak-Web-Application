@@ -166,7 +166,7 @@ describe("urls.ts", () => {
     it("Integrated lesson downloads success", () => {
       expect(
         resolveOakHref({
-          page: "integrated-lesson-downloads-sucess",
+          page: "integrated-lesson-downloads-success",
           programmeSlug: "maths-secondary-year-10-aqa",
           unitSlug: "algebra-123",
           lessonSlug: "solving-equations-456",

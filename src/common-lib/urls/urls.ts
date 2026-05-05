@@ -142,7 +142,7 @@ export type IntegratedLessonDownloadsLinkProps = {
   };
 };
 export type IntegratedLessonDownloadsSuccessLinkProps = {
-  page: "integrated-lesson-downloads-sucess";
+  page: "integrated-lesson-downloads-success";
   programmeSlug: string;
   unitSlug: string;
   lessonSlug: string;
@@ -882,12 +882,12 @@ export const OAK_PAGES: {
     configType: "internal",
     pageType: "integrated-lesson-downloads",
   }),
-  "integrated-lesson-downloads-sucess": createOakPageConfig({
+  "integrated-lesson-downloads-success": createOakPageConfig({
     pathPattern:
       "/programmes/:programmeSlug/units/:unitSlug/lessons/:lessonSlug/downloads/success",
     analyticsPageName: "Lesson Download",
     configType: "internal",
-    pageType: "integrated-lesson-downloads-sucess",
+    pageType: "integrated-lesson-downloads-success",
   }),
   "specialist-lesson-index": createOakPageConfig({
     pathPattern:

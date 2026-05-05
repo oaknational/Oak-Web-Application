@@ -91,7 +91,6 @@ function BackLink({
         aria-label={"Back to lesson"}
         iconName={"arrow-left"}
         isTrailingIcon={false}
-        data-testid="back-to-lesson-link"
         onClick={onBackClick}
       >
         Back to lesson

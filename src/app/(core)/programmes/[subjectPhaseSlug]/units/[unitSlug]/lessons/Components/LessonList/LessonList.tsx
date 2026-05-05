@@ -101,12 +101,12 @@ const LessonList = ({
   selectedLessonIndex,
   headerCtaSlot = null,
 }: LessonListProps) => {
-  const showUnitPosition = unitIndex !== undefined && unitCount !== undefined;
+  const showUnitCount = unitIndex !== undefined && unitCount !== undefined;
 
   return (
     <OakFlex $flexDirection="column">
       <OakFlex $justifyContent="space-between" $alignItems="flex-start">
-        {showUnitPosition ? (
+        {showUnitCount && (
           <OakBox
             $background="bg-decorative3-very-subdued"
             $pa="spacing-20"
@@ -118,7 +118,7 @@ const LessonList = ({
             <OakSpan $font="body-2-bold">Unit {unitIndex}</OakSpan> of{" "}
             {unitCount}
           </OakBox>
-        ) : null}
+        )}
         {subjectCategories ? (
           <OakFlex $gap={"spacing-8"}>
             {subjectCategories.map((subjectCategory) => (
@@ -142,7 +142,7 @@ const LessonList = ({
         $pt={["spacing-32", "spacing-32", "spacing-56"]}
         $pb="spacing-24"
         $borderRadius="border-radius-xl"
-        $btlr={showUnitPosition ? "border-radius-square" : "border-radius-xl"}
+        $btlr={showUnitCount ? "border-radius-square" : "border-radius-xl"}
         $dropShadow="drop-shadow-centred-standard"
       >
         <OakFlex
@@ -154,7 +154,7 @@ const LessonList = ({
             as="h2"
             $font="heading-5"
             aria-label={
-              showUnitPosition
+              showUnitCount
                 ? `Unit ${unitIndex} of ${unitCount}: ${unitTitle}`
                 : unitTitle
             }

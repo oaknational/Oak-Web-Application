@@ -3,6 +3,7 @@
  */
 import LessonDownloadsPage, { generateMetadata } from "./page";
 
+import { resolveOakHref } from "@/common-lib/urls";
 import { LessonDownloadsPageData } from "@/node-lib/curriculum-api-2023/queries/lessonDownloads/lessonDownloads.schema";
 
 jest.mock("next/navigation", () => ({
@@ -118,8 +119,12 @@ describe("LessonDownloadsPage", () => {
     });
     expect(result).toMatchObject({
       props: {
-        successRedirect:
-          "/programmes/maths-primary/units/geometry-abc123/lessons/intro-to-geometry-abc123/downloads/success",
+        successRedirect: resolveOakHref({
+          page: "integrated-lesson-downloads-success",
+          programmeSlug: defaultParams.subjectPhaseSlug,
+          unitSlug: defaultParams.unitSlug,
+          lessonSlug: defaultParams.lessonSlug,
+        }),
       },
     });
   });
