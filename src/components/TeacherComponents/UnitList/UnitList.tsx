@@ -209,13 +209,7 @@ const UnitList: FC<UnitListProps> = (props) => {
                 isLegacy={false}
                 subject={""}
                 phase={phaseSlug}
-                curriculumHref={resolveOakHref({
-                  page: "curriculum-previous-downloads",
-                  query: {
-                    subject: linkSubject,
-                    keystage: keyStageSlug,
-                  },
-                })}
+                curriculumHref={null}
                 showHeader={
                   swimmingPageItems.length ||
                   indexOfFirstLegacyUnit % pageSize === 0
@@ -284,13 +278,7 @@ const UnitList: FC<UnitListProps> = (props) => {
                 }
                 subject={subjectSlug}
                 phase={phaseSlug}
-                curriculumHref={resolveOakHref({
-                  page: "curriculum-previous-downloads",
-                  query: {
-                    subject: linkSubject,
-                    keystage: keyStageSlug,
-                  },
-                })}
+                curriculumHref={null}
                 showHeader={
                   newPageItems.length || indexOfFirstLegacyUnit % pageSize === 0
                     ? true
@@ -320,12 +308,7 @@ const UnitList: FC<UnitListProps> = (props) => {
             }
             subject={subjectSlug}
             phase={"Specialist and therapies"}
-            curriculumHref={`${resolveOakHref({
-              page: "curriculum-previous-downloads",
-              query: {
-                subject: subjectSlug,
-              },
-            })}#Specialist`}
+            curriculumHref={null}
             showHeader={true}
             unitCards={getUnitCards({
               pageItems: currentPageItems,
