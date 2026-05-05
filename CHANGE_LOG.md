@@ -1,3 +1,22 @@
+## [1.1066.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.1066.0...v1.1066.1) (2026-05-05)
+
+
+### Bug Fixes
+
+* direct curriciulmHref to null where it was before to previous-downloads ([2255238](https://github.com/oaknational/Oak-Web-Application/commit/2255238b6dae59903175364690a6135848136562))
+* failing subject picker test ([7a04227](https://github.com/oaknational/Oak-Web-Application/commit/7a0422725e13b7a8437f5c2b93b3041a303abb6d))
+* reinstate wrongly removed curriculumHref in UnitList ([09b9323](https://github.com/oaknational/Oak-Web-Application/commit/09b9323c0dbd033440fd0ead44b00e12fc8c76a6))
+* remove hascurriculumDownload prop from components ([26ce572](https://github.com/oaknational/Oak-Web-Application/commit/26ce57242dde23504a17980b30d380ac22905ecb))
+* remove hascurriculumDownload prop from stories, tests, queries and schemas ([c762e19](https://github.com/oaknational/Oak-Web-Application/commit/c762e19051c31e626d92d4e99b3a1540d551099b))
+* remove legacy curriculum download button ([1898a5a](https://github.com/oaknational/Oak-Web-Application/commit/1898a5a94f2321c4ad16b6eae3cd974228afc115))
+* remove old comment re HeaderListingCurriculumDownloadsButton ([ef85c5f](https://github.com/oaknational/Oak-Web-Application/commit/ef85c5fb10440a0c4fab82b4df8995e80c602a16))
+* remove previous downloads fixtures and rename file to exported downloadCategories ([fc55b85](https://github.com/oaknational/Oak-Web-Application/commit/fc55b85934e1da4a9d7365e3d4ee9b2a0eb0dc56))
+* remove previous downloads link from subject picker and associated tests ([525923e](https://github.com/oaknational/Oak-Web-Application/commit/525923e91efe0ec50dfc51e11d1c4ba0f64d20fb))
+* remove previous-downloads from deploymenttesturls ([2e9a047](https://github.com/oaknational/Oak-Web-Application/commit/2e9a04787170d8086448b584196f335e3974b51c))
+* remove previous-downloads href and associates in HeaderListing component ([5b5b1b1](https://github.com/oaknational/Oak-Web-Application/commit/5b5b1b1ee6c66d66efecb697e6eedadf4263e6d9))
+* remove previous-downloads page ([8c4cffb](https://github.com/oaknational/Oak-Web-Application/commit/8c4cffbf9053c99d76c87a05bcb3fc09027af338))
+* remove type previous props ([4831f1e](https://github.com/oaknational/Oak-Web-Application/commit/4831f1e1f6c1d2a14b364eca5b325fea5771ebae))
+
 # [1.1066.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1065.0...v1.1066.0) (2026-05-05)
 
 

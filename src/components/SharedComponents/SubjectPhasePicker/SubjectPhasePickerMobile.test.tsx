@@ -40,18 +40,6 @@ describe("Component - Mobile subject phase picker", () => {
       expect(button).toHaveLength(1);
     });
 
-    test("links to previous curriculum plans", async () => {
-      const { getByTestId, getByTitle } = render(
-        <SubjectPhasePicker {...curriculumPhaseOptions} />,
-      );
-      await userEvent.click(getByTitle("Subject"));
-      const link = getByTestId("subject-picker-previous-plans-link");
-      expect(link).toHaveAttribute(
-        "href",
-        "/teachers/curriculum/previous-downloads",
-      );
-    });
-
     test("selects subject when clicked", async () => {
       const { findAllByTitle, getByTestId } = render(
         <SubjectPhasePicker {...curriculumPhaseOptions} />,

@@ -25,7 +25,7 @@ import useLocalStorageForDownloads from "@/components/TeacherComponents/hooks/do
 import createAndClickHiddenDownloadLink from "@/components/SharedComponents/helpers/downloadAndShareHelpers/createAndClickHiddenDownloadLink";
 import { useHubspotSubmit } from "@/components/TeacherComponents/hooks/downloadAndShareHooks/useHubspotSubmit";
 import TermsAgreementForm from "@/components/TeacherComponents/TermsAgreementForm";
-import { DownloadCategory } from "@/node-lib/curriculum-api-2023/fixtures/curriculumPreviousDownloads.fixture";
+import { DownloadCategory } from "@/node-lib/curriculum-api-2023/fixtures/downloadCategories.fixture";
 import { KeyStageTitleValueType, PhaseValueType } from "@/browser-lib/avo/Avo";
 import { getPhaseFromCategory } from "@/utils/curriculum/formatting";
 import { ResourceFormValues } from "@/components/TeacherComponents/types/downloadAndShare.types";

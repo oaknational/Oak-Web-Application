@@ -18,7 +18,6 @@ const props = {
   breadcrumbs: [],
   description:
     "Help your pupils with their communication and language development, including sentence composition, writing and word reading skills by exploring topics including holidays and the seasons.",
-  hasCurriculumDownload: true,
   subjectSlug: "maths",
   subjectTitle: "Communication and Language",
 };
