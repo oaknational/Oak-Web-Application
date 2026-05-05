@@ -21,6 +21,10 @@ jest.mock("@/context/Analytics/useAnalytics", () => ({
   }),
 }));
 
+jest.mock(
+  "@/components/TeacherComponents/LessonOverviewMediaClips/LessonOverviewMediaClips.tsx",
+);
+
 const render = renderWithProviders();
 
 const baseProps = teachersLessonOverviewFixture();
@@ -363,7 +367,7 @@ describe("Tracking callbacks", () => {
     );
   });
 
-  it("calls lessonMediaClipsStarted when play all button is clicked", () => {
+  it("calls lessonMediaClipsStarted when play all button is clicked", async () => {
     render(
       <LessonView
         {...baseProps}
@@ -373,9 +377,9 @@ describe("Tracking callbacks", () => {
     );
 
     const playAllButton = screen.getByText("Play all");
-    act(() => {
-      playAllButton.click();
-    });
+    const user = userEvent.setup();
+    playAllButton.addEventListener("click", (e) => e.preventDefault());
+    await user.click(playAllButton);
 
     expect(lessonMediaClipsStarted).toHaveBeenCalledWith(
       expect.objectContaining({
