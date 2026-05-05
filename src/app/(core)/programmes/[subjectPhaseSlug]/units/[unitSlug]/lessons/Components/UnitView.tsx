@@ -64,6 +64,7 @@ export const UnitView = (props: UnitPageProps) => {
         unitDescription={props.unitDescription}
         subjectTitle={props.subjectTitle}
         subjectSlug={props.subjectSlug}
+        subjectPhaseSlug={subjectPhaseSlug}
         keyStageSlug={props.keyStageSlug}
         keyStageTitle={props.keyStageTitle}
         lessons={props.lessons}
@@ -73,6 +74,7 @@ export const UnitView = (props: UnitPageProps) => {
         priorKnowledgeRequirements={props.priorKnowledgeRequirements}
         threads={props.threads}
         phaseSlug={props.phaseSlug}
+        phaseTitle={props.phaseTitle}
         tierOptionToggles={props.tierOptionToggles}
         subjectOptionToggles={props.subjectOptionToggles}
         nextUnit={props.nextUnit}
@@ -80,6 +82,9 @@ export const UnitView = (props: UnitPageProps) => {
         subjectCategories={props.subjectCategories}
         showDownloadMessage={downloadButtonState.showDownloadMessage}
         setShowDownloadMessage={downloadButtonState.setShowDownloadMessage}
+        nonCurriculum={props.nonCurriculum}
+        yearGroupTitle={props.yearGroupTitle}
+        examBoardTitle={props.examBoardTitle}
       />
     </>
   );
