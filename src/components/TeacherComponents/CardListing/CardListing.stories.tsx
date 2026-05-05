@@ -92,7 +92,7 @@ export const Customisable: Story = {
         "title",
         "subcopy",
         "lessonCount",
-        "highlightType",
+        "highlightColorVariant",
         "tags",
         "disabled",
         "saveProps",
@@ -152,7 +152,7 @@ export const Vertical: Story = {
         <CardListing
           {...args}
           layoutVariant="vertical"
-          highlightType="secondary"
+          highlightColorVariant="secondary"
         />
       </OakFlex>
       <OakFlex
@@ -237,7 +237,7 @@ export const Horizontal: Story = {
         <CardListing
           {...args}
           layoutVariant="horizontal"
-          highlightType="secondary"
+          highlightColorVariant="secondary"
         />
       </OakFlex>
       <OakFlex $flexDirection={"column"} $gap={"spacing-16"}>
@@ -328,7 +328,7 @@ export const Optionality: Story = {
             {
               ...cardProps,
               title: "Optionality 2",
-              highlightType: "secondary",
+              highlightColorVariant: "secondary",
             },
             { ...cardProps, title: "Optionality 3" },
           ]}

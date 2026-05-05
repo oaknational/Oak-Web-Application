@@ -10,7 +10,6 @@ const defaultProps = {
   index: 158,
   title: "Card title",
   layoutVariant: "horizontal" as const,
-  highlightType: "primary" as const,
   href: "testUrl",
 };
 
@@ -28,7 +27,6 @@ const saveProps = {
 };
 
 const childCardProps = {
-  highlightType: "primary" as const,
   href: "testUrl",
   lessonCount: 10,
   saveProps,
@@ -112,7 +110,7 @@ describe("CardListing", () => {
     const { rerender } = render(
       <CardListing
         {...defaultProps}
-        highlightType="secondary"
+        highlightColorVariant="secondary"
         saveProps={saveProps}
       />,
     );
@@ -181,7 +179,7 @@ describe("CardListing", () => {
     links.forEach((link) => expect(link).not.toHaveTextContent("Card title"));
   });
   it("renders tertiary highlight type in horizontal layout", () => {
-    render(<CardListing {...defaultProps} highlightType="tertiary" />);
+    render(<CardListing {...defaultProps} highlightColorVariant="tertiary" />);
 
     const card = screen.getByTestId("card-listing-container");
     expect(card).toBeInTheDocument();
@@ -193,7 +191,7 @@ describe("CardListing", () => {
       <CardListing
         {...defaultProps}
         layoutVariant="vertical"
-        highlightType="secondary"
+        highlightColorVariant="secondary"
         saveProps={saveProps}
       />,
     );
@@ -202,15 +200,5 @@ describe("CardListing", () => {
       name: "Save this unit: Unit title",
     });
     expect(saveButton).toBeInTheDocument();
-  });
-
-  it("renders with default highlightType when not specified", () => {
-    const { highlightType, ...propsWithoutHighlight } = defaultProps;
-    render(<CardListing {...propsWithoutHighlight} />);
-
-    const card = screen.getByTestId("card-listing-container");
-    const title = screen.getByText("Card title");
-    expect(card).toBeInTheDocument();
-    expect(title).toBeInTheDocument();
   });
 });

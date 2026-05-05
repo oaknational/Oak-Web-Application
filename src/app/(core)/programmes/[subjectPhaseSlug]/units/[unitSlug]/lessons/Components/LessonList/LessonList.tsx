@@ -252,10 +252,10 @@ const LessonList = ({
               >
                 <CardListing
                   layoutVariant="horizontal"
-                  highlightType={
+                  highlightColorVariant={
                     selectedLessonIndex === lesson.orderInUnit
                       ? "tertiary"
-                      : "primary"
+                      : undefined
                   }
                   title={lesson.lessonTitle}
                   subcopy={

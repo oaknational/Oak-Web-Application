@@ -7,7 +7,7 @@ import {
   getCardListingLinkProps,
   getCardListingTextColour,
   getCardListingBackgroundColour,
-  type HighlightType,
+  type HighlightColorVariant,
 } from "./helpers";
 import {
   CardListingStyledLink,
@@ -23,7 +23,7 @@ import {
 import { TrackingProgrammeData } from "@/node-lib/educator-api/helpers/saveUnits/utils";
 
 export type CardProps = {
-  highlightType?: HighlightType;
+  highlightColorVariant?: HighlightColorVariant;
   title: string;
   lessonCount?: number;
   href: string;
@@ -48,20 +48,16 @@ export type CardListingProps = CardProps & {
 };
 
 const CardListing = (props: CardListingProps) => {
-  const {
-    layoutVariant,
-    highlightType = "primary",
-    childCards,
-    showBorder,
-  } = props;
+  const { layoutVariant, highlightColorVariant, childCards, showBorder } =
+    props;
 
   const hasChildCards = (childCards?.length ?? 0) > 0;
 
   const backgroundColor = hasChildCards
     ? "bg-primary"
-    : getCardListingBackgroundColour(highlightType);
+    : getCardListingBackgroundColour(highlightColorVariant);
   const textColor = getCardListingTextColour({
-    highlightType,
+    highlightColorVariant: highlightColorVariant,
     disabled: props.disabled,
     hasChildCards,
   });
@@ -88,7 +84,7 @@ const CardListing = (props: CardListingProps) => {
 const CardListingRenderLayout = (props: CardListingProps) => {
   const {
     layoutVariant,
-    highlightType = "primary",
+    highlightColorVariant,
     disabled,
     saveProps,
     href,
@@ -102,7 +98,7 @@ const CardListingRenderLayout = (props: CardListingProps) => {
   const showFooter = (lessonCount !== undefined || showSave) && !hasChildCards;
 
   const defaultTextColour = getCardListingTextColour({
-    highlightType,
+    highlightColorVariant,
     disabled,
     hasChildCards,
   });
@@ -166,7 +162,7 @@ const CardListingRenderLayout = (props: CardListingProps) => {
             {showSave && (
               <SaveUnitButton
                 buttonVariant={
-                  highlightType === "secondary" ? "inverted" : "default"
+                  highlightColorVariant === "secondary" ? "inverted" : "default"
                 }
                 disabled={disabled}
                 {...saveProps}
@@ -211,7 +207,7 @@ const CardListingRenderLayout = (props: CardListingProps) => {
             {showSave && (
               <SaveUnitButton
                 buttonVariant={
-                  highlightType === "secondary" ? "inverted" : "default"
+                  highlightColorVariant === "secondary" ? "inverted" : "default"
                 }
                 disabled={disabled}
                 {...saveProps}

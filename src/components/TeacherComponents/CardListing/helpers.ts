@@ -1,19 +1,19 @@
-export type HighlightType = "primary" | "secondary" | "tertiary";
+export type HighlightColorVariant = "secondary" | "tertiary";
 
 export const getCardListingTextColour = ({
   disabled,
-  highlightType = "primary",
+  highlightColorVariant: hightlightColorVariant,
   hasChildCards,
 }: {
   disabled?: boolean;
-  highlightType?: HighlightType;
+  highlightColorVariant?: HighlightColorVariant;
   hasChildCards: boolean;
 }) => {
   if (disabled) {
     return "text-disabled";
   } else if (hasChildCards) {
     return undefined;
-  } else if (highlightType === "secondary") {
+  } else if (hightlightColorVariant === "secondary") {
     return "text-inverted";
   }
 
@@ -21,14 +21,13 @@ export const getCardListingTextColour = ({
 };
 
 export const getCardListingBackgroundColour = (
-  highlightType: HighlightType = "primary",
+  highlightColorVariant?: HighlightColorVariant,
 ) => {
-  switch (highlightType) {
+  switch (highlightColorVariant) {
     case "secondary":
       return "bg-inverted";
     case "tertiary":
       return "bg-decorative1-very-subdued";
-    case "primary":
     default:
       return "bg-primary";
   }
