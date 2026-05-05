@@ -1,3 +1,11 @@
+## [1.1066.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.1066.1...v1.1066.2) (2026-05-05)
+
+
+### Bug Fixes
+
+* specific version for terraform github actions ([592b2da](https://github.com/oaknational/Oak-Web-Application/commit/592b2daecb7a8c848c4f8dbc4c6adfeb194204f6))
+* terraform linting ([6ebb853](https://github.com/oaknational/Oak-Web-Application/commit/6ebb85391c552ca864703678819d429cdd62c0d8))
+
 ## [1.1066.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.1066.0...v1.1066.1) (2026-05-05)
 
 
