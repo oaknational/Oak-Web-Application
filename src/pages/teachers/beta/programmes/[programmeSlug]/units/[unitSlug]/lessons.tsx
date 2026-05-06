@@ -254,7 +254,6 @@ const LessonListPage: NextPage<LessonListingPageProps> = ({
         title={unitTitle}
         programmeFactor={keyStageTitle} // this should be changed to year LESQ-242
         isNew={isNew}
-        hasCurriculumDownload={isSlugLegacy(programmeSlug)}
         {...curriculumData}
         shareButton={teacherShareButton}
         unitDownloadFileId={

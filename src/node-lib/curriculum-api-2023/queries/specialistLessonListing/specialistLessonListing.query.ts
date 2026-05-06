@@ -68,7 +68,6 @@ const specialistLessonListingQuery =
             videoCount: lesson.video_mux_playback_id ? 1 : 0,
             presentationCount: lesson.video_mux_playback_id ? 1 : 0,
             worksheetCount: lesson.worksheet_url ? 1 : 0,
-            hasCurriculumDownload: false, // TODO: curriculum download
             orderInUnit: lesson.order_in_unit,
             developmentStage: developmentStage || null,
             isUnpublished: false as const,

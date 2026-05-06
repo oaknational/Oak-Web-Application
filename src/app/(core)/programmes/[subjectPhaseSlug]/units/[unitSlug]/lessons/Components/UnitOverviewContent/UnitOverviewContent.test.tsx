@@ -1,14 +1,16 @@
 import { screen } from "@testing-library/dom";
+import userEvent from "@testing-library/user-event";
 
-import { UnitView } from "./UnitView";
-import type { UnitViewProps } from "./UnitView";
-import { LessonList } from "./LessonList";
-import { ProgrammeToggles } from "./ProgrammeToggles";
+import { LessonList } from "../LessonList";
+import { ProgrammeToggles } from "../ProgrammeToggles/ProgrammeToggles";
+
+import { UnitOverviewContent } from "./UnitOverviewContent";
+import type { UnitOverviewContentProps } from "./UnitOverviewContent";
 
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 
-jest.mock("./LessonList");
-jest.mock("./ProgrammeToggles");
+jest.mock("../LessonList/LessonList");
+jest.mock("../ProgrammeToggles/ProgrammeToggles");
 
 const render = renderWithProviders();
 
@@ -22,14 +24,14 @@ const lessons = [
     lessonTitle: "Lesson 2",
   },
 ];
-describe("UnitView", () => {
+describe("UnitOverviewContent", () => {
   beforeEach(() => {
     jest.clearAllMocks();
   });
 
   it("renders LessonList and passes lesson props with computed lessonCount", () => {
     render(
-      <UnitView
+      <UnitOverviewContent
         programmeSlug="biology-secondary-ks4-foundation-aqa"
         unitSlug="cells"
         unitTitle="Cells"
@@ -38,7 +40,7 @@ describe("UnitView", () => {
         subjectSlug="biology"
         keyStageSlug="ks4"
         keyStageTitle="Key Stage 4"
-        lessons={lessons as UnitViewProps["lessons"]}
+        lessons={lessons as UnitOverviewContentProps["lessons"]}
         unitIndex={2}
         unitCount={12}
         tierOptionToggles={[
@@ -70,6 +72,8 @@ describe("UnitView", () => {
         nextUnit={null}
         prevUnit={null}
         subjectCategories={null}
+        showDownloadMessage={false}
+        setShowDownloadMessage={jest.fn()}
       />,
     );
 
@@ -137,7 +141,7 @@ describe("UnitView", () => {
   });
   it("renders why this why now", () => {
     render(
-      <UnitView
+      <UnitOverviewContent
         programmeSlug="biology-secondary-ks3"
         unitSlug="cells"
         unitTitle="Cells"
@@ -146,7 +150,7 @@ describe("UnitView", () => {
         subjectSlug="biology"
         keyStageSlug="ks3"
         keyStageTitle="Key Stage 3"
-        lessons={lessons as UnitViewProps["lessons"]}
+        lessons={lessons as UnitOverviewContentProps["lessons"]}
         unitIndex={2}
         unitCount={12}
         threads={[]}
@@ -157,6 +161,8 @@ describe("UnitView", () => {
         nextUnit={null}
         prevUnit={null}
         subjectCategories={null}
+        showDownloadMessage={false}
+        setShowDownloadMessage={jest.fn()}
       />,
     );
 
@@ -164,7 +170,7 @@ describe("UnitView", () => {
   });
   it("renders prior knowledge requirements in a list", () => {
     render(
-      <UnitView
+      <UnitOverviewContent
         programmeSlug="biology-secondary-ks3"
         unitSlug="cells"
         unitTitle="Cells"
@@ -173,7 +179,7 @@ describe("UnitView", () => {
         subjectSlug="biology"
         keyStageSlug="ks3"
         keyStageTitle="Key Stage 3"
-        lessons={lessons as UnitViewProps["lessons"]}
+        lessons={lessons as UnitOverviewContentProps["lessons"]}
         unitIndex={2}
         unitCount={12}
         threads={[]}
@@ -184,6 +190,8 @@ describe("UnitView", () => {
         nextUnit={null}
         prevUnit={null}
         subjectCategories={null}
+        showDownloadMessage={false}
+        setShowDownloadMessage={jest.fn()}
       />,
     );
 
@@ -194,7 +202,7 @@ describe("UnitView", () => {
   });
   it("renders threads", () => {
     render(
-      <UnitView
+      <UnitOverviewContent
         programmeSlug="biology-secondary-ks3"
         unitSlug="cells"
         unitTitle="Cells"
@@ -203,7 +211,7 @@ describe("UnitView", () => {
         subjectSlug="biology"
         keyStageSlug="ks3"
         keyStageTitle="Key Stage 3"
-        lessons={lessons as UnitViewProps["lessons"]}
+        lessons={lessons as UnitOverviewContentProps["lessons"]}
         unitIndex={2}
         unitCount={12}
         threads={["Thread 1", "Thread 2"]}
@@ -213,6 +221,8 @@ describe("UnitView", () => {
         nextUnit={null}
         prevUnit={null}
         subjectCategories={null}
+        showDownloadMessage={false}
+        setShowDownloadMessage={jest.fn()}
       />,
     );
 
@@ -224,7 +234,7 @@ describe("UnitView", () => {
   });
   it("renders previous unit link", () => {
     render(
-      <UnitView
+      <UnitOverviewContent
         programmeSlug="biology-secondary-ks3"
         unitSlug="cells"
         unitTitle="Cells"
@@ -233,7 +243,7 @@ describe("UnitView", () => {
         subjectSlug="biology"
         keyStageSlug="ks3"
         keyStageTitle="Key Stage 3"
-        lessons={lessons as UnitViewProps["lessons"]}
+        lessons={lessons as UnitOverviewContentProps["lessons"]}
         unitIndex={2}
         unitCount={12}
         threads={["Thread 1", "Thread 2"]}
@@ -243,6 +253,8 @@ describe("UnitView", () => {
         nextUnit={null}
         prevUnit={{ slug: "unit-1", title: "Unit 1" }}
         subjectCategories={null}
+        showDownloadMessage={false}
+        setShowDownloadMessage={jest.fn()}
       />,
     );
 
@@ -257,7 +269,7 @@ describe("UnitView", () => {
   });
   it("renders next unit link", () => {
     render(
-      <UnitView
+      <UnitOverviewContent
         programmeSlug="biology-secondary-ks3"
         unitSlug="cells"
         unitTitle="Cells"
@@ -266,7 +278,7 @@ describe("UnitView", () => {
         subjectSlug="biology"
         keyStageSlug="ks3"
         keyStageTitle="Key Stage 3"
-        lessons={lessons as UnitViewProps["lessons"]}
+        lessons={lessons as UnitOverviewContentProps["lessons"]}
         unitIndex={2}
         unitCount={12}
         threads={["Thread 1", "Thread 2"]}
@@ -276,6 +288,8 @@ describe("UnitView", () => {
         prevUnit={null}
         nextUnit={{ slug: "unit-3", title: "Unit 3" }}
         subjectCategories={null}
+        showDownloadMessage={false}
+        setShowDownloadMessage={jest.fn()}
       />,
     );
 
@@ -287,5 +301,43 @@ describe("UnitView", () => {
       "href",
       "http://localhost/programmes/biology-secondary-ks3/units/unit-3/lessons",
     );
+  });
+  it("renders a banner when unit download message is true", async () => {
+    const mockClose = jest.fn();
+    render(
+      <UnitOverviewContent
+        programmeSlug="biology-secondary-ks3"
+        unitSlug="cells"
+        unitTitle="Cells"
+        unitDescription="Learn about cells"
+        subjectTitle="Biology"
+        subjectSlug="biology"
+        keyStageSlug="ks3"
+        keyStageTitle="Key Stage 3"
+        lessons={lessons as UnitOverviewContentProps["lessons"]}
+        unitIndex={2}
+        unitCount={12}
+        threads={["Thread 1", "Thread 2"]}
+        phaseSlug="secondary"
+        tierOptionToggles={[]}
+        subjectOptionToggles={[]}
+        prevUnit={null}
+        nextUnit={{ slug: "unit-3", title: "Unit 3" }}
+        subjectCategories={null}
+        showDownloadMessage={true}
+        setShowDownloadMessage={mockClose}
+      />,
+    );
+
+    const banner = screen.getByText(
+      "Downloads can take a few minutes, especially for larger files or slower connections.",
+    );
+    expect(banner).toBeInTheDocument();
+
+    const bannerCloseBtn = screen.getByTestId("inline-banner-close-button");
+    const user = userEvent.setup();
+    await user.click(bannerCloseBtn);
+
+    expect(mockClose).toHaveBeenCalledWith(false);
   });
 });

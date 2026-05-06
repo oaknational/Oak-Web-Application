@@ -42,7 +42,6 @@ export const SpecialistLessonSchema = z.object({
   videoCount: z.number().nullable(),
   presentationCount: z.number().nullable(),
   worksheetCount: z.number().nullable(),
-  hasCurriculumDownload: z.boolean().nullish(),
   orderInUnit: z.number(),
   hasLegacyCopyrightMaterial: z.boolean().nullish(),
   developmentStageSlug: z.string().nullish(),

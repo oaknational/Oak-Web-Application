@@ -272,7 +272,6 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
         title={`${subjectTitle} ${examBoardTitle ? examBoardTitle + " " : ""}${pathwayTitle ?? ""}`}
         programmeFactor={toSentenceCase(keyStageTitle)}
         isNew={hasNewContent ?? false}
-        hasCurriculumDownload={isSlugLegacy(programmeSlug)}
         subjectDescriptionUnitListingData={curriculumData}
         {...curriculumData}
       />
