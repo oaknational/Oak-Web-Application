@@ -269,24 +269,16 @@ export const useResourceFormState = (props: UseResourceFormStateProps) => {
     string[] | undefined
   >(getInitialAdditionalFilesState());
 
-  useEffect(() => {
-    setActiveResources(getInitialResourcesState());
-  }, [getInitialResourcesState, resources]);
-
-  useEffect(() => {
-    setActiveAdditonalFiles(getInitialAdditionalFilesState());
-  }, [getInitialAdditionalFilesState, additionalResources]);
-
   const hasResources = getInitialResourcesState()?.length > 0;
 
+  // Keep selectAllChecked in sync by comparing selected resources to available resources
   useEffect(() => {
-    const initialResources = getInitialResourcesState();
-    if (selectedResources.length < initialResources.length) {
+    if (selectedResources.length < activeResources.length) {
       setSelectAllChecked(false);
     } else {
       setSelectAllChecked(true);
     }
-  }, [selectedResources, getInitialResourcesState]);
+  }, [selectedResources, activeResources]);
 
   const onSelectAllClick = () =>
     setValue("resources", activeResources.concat(activeAdditonalFiles || []));
