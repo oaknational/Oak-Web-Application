@@ -54,7 +54,6 @@ export const useResourceFormState = (props: UseResourceFormStateProps) => {
     mode: "onBlur",
   });
 
-  const [preselectAll, setPreselectAll] = useState(false);
   const [selectAllChecked, setSelectAllChecked] = useState(false);
   const [isLocalStorageLoading, setIsLocalStorageLoading] = useState(true);
   const [schoolUrn, setSchoolUrn] = useState("");
@@ -332,7 +331,9 @@ export const useResourceFormState = (props: UseResourceFormStateProps) => {
     }
 
     if (preselected) {
-      setPreselectAll(preselected === "all");
+      if (preselected === "all") {
+        setSelectAllChecked(true);
+      }
 
       switch (true) {
         case preselected === "all":
@@ -366,12 +367,6 @@ export const useResourceFormState = (props: UseResourceFormStateProps) => {
     additionalResources,
     setValue,
   ]);
-
-  useEffect(() => {
-    if (preselectAll) {
-      setSelectAllChecked(true);
-    }
-  }, [preselectAll]);
 
   const handleToggleSelectAll = () => {
     if (selectAllChecked) {
