@@ -68,6 +68,7 @@ export type DownloadWrapperProps = {
   isLegacy: boolean;
 } & DownloadPageWithAccordionProps;
 
+// TODO: curriculum text
 const getAccordionText = (
   downloads: LessonDownloadsPageData["downloads"],
   additionalFiles: LessonDownloadsPageData["additionalFiles"],
@@ -147,8 +148,36 @@ const DownloadPageWithAccordion: FC<DownloadWrapperProps> = (
   );
 };
 
-const DownloadPageWithAccordionContent = (
-  props: DownloadPageWithAccordionProps,
+export const DownloadPageWithAccordionContent = (
+  props: Pick<
+    DownloadPageWithAccordionProps,
+    | "errors"
+    | "downloadsRestricted"
+    | "showTermsAgreement"
+    | "downloads"
+    | "additionalFiles"
+    | "handleToggleSelectAll"
+    | "selectAllChecked"
+    | "cardGroup"
+    | "showRiskAssessmentBanner"
+    | "showNoResources"
+    | "control"
+    | "register"
+    | "triggerForm"
+    | "showLoading"
+    | "email"
+    | "schoolId"
+    | "school"
+    | "setSchool"
+    | "showSavedDetails"
+    | "onEditClick"
+    | "showPostAlbCopyright"
+    | "updatedAt"
+    | "loginRequired"
+    | "geoRestricted"
+    | "cta"
+    | "apiError"
+  >,
 ) => {
   const {
     errors,

@@ -10,7 +10,11 @@ import downloadLessonResources from "@/components/SharedComponents/helpers/downl
 
 type UseResourceFormProps = {
   onSubmit?: () => void;
-} & ({ type: "share" } | { type: "download"; isLegacyDownload: boolean });
+} & (
+  | { type: "share" }
+  | { type: "download"; isLegacyDownload: boolean }
+  | { type: "curriculum" }
+);
 
 const useResourceFormSubmit = (props: UseResourceFormProps) => {
   const {

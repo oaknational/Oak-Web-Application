@@ -2,7 +2,8 @@
 
 import { OakBox } from "@oaknational/oak-components";
 
-import CurriculumDownloadTab from "@/components/CurriculumComponents/CurriculumDownloadTab";
+import DownloadTab from "./DownloadTab";
+
 import {
   CurriculumDownloadsTierSubjectProps,
   CurriculumUnitsFormattedData,
@@ -27,7 +28,7 @@ export const ProgrammeDownloads = ({
   // so it doesn't run up against the edge of the screen
   return (
     <OakBox $ph={["spacing-20", "spacing-40"]}>
-      <CurriculumDownloadTab
+      <DownloadTab
         {...props}
         slugs={curriculumSelectionSlugs}
         tiers={curriculumDownloadsTabData.tiers}

@@ -27,9 +27,9 @@ import {
   preselectedShareType,
   resourceFormValuesSchema,
 } from "@/components/TeacherComponents/downloadAndShare.schema";
-import { CurriculumDownload } from "@/components/CurriculumComponents/CurriculumDownloads/CurriculumDownloads";
 import { LessonShareData } from "@/node-lib/curriculum-api-2023/queries/lessonShare/lessonShare.schema";
 import { LessonDownloadsPageData } from "@/node-lib/curriculum-api-2023/queries/lessonDownloads/lessonDownloads.schema";
+import { DownloadType } from "@/components/CurriculumComponents/CurriculumDownloadView/helper";
 
 export type UseResourceFormStateProps =
   | { shareResources: LessonShareData["shareableResources"]; type: "share" }
@@ -38,7 +38,7 @@ export type UseResourceFormStateProps =
       additionalFilesResources: LessonDownloadsPageData["additionalFiles"];
       type: "download";
     }
-  | { curriculumResources: CurriculumDownload[]; type: "curriculum" };
+  | { curriculumResources: DownloadType[]; type: "curriculum" };
 
 export const useResourceFormState = (props: UseResourceFormStateProps) => {
   const {
@@ -202,9 +202,7 @@ export const useResourceFormState = (props: UseResourceFormStateProps) => {
         .filter((resource) => resource.exists && !resource.forbidden)
         .map((resource) => resource.type);
     } else if (props.type === "curriculum") {
-      return (resources as CurriculumDownload[]).map(
-        (resource) => resource.url,
-      );
+      return resources as DownloadType[];
     } else {
       throw new Error("Invalid resource type");
     }
@@ -282,11 +280,11 @@ export const useResourceFormState = (props: UseResourceFormStateProps) => {
     setActiveAdditonalFiles(getInitialAdditionalFilesState());
   }, [getInitialAdditionalFilesState, additionalResources]);
 
-  const hasResources = getInitialResourcesState().length > 0;
+  const hasResources = getInitialResourcesState()?.length > 0;
 
   useEffect(() => {
     const initialResources = getInitialResourcesState();
-    if (selectedResources.length < initialResources.length) {
+    if (selectedResources.length < initialResources?.length) {
       setSelectAllChecked(false);
     } else {
       setSelectAllChecked(true);
@@ -328,7 +326,7 @@ export const useResourceFormState = (props: UseResourceFormStateProps) => {
     const queryResults = preselectedQuery();
     let preselected: "all" | ResourceType[] | undefined;
     const allAvailableResources = getInitialResourcesState().concat(
-      getInitialAdditionalFilesState() || [],
+      (getInitialAdditionalFilesState() || []) as ResourceType[],
     );
 
     if (isPreselectedShareType(queryResults)) {
@@ -336,7 +334,7 @@ export const useResourceFormState = (props: UseResourceFormStateProps) => {
     }
     if (isPreselectedDownloadType(queryResults)) {
       const preselectedResources = additionalResources
-        ? resources.concat(additionalResources)
+        ? resources?.concat(additionalResources)
         : resources;
       preselected = getPreselectedDownloadResourceTypes(
         queryResults,
