@@ -77,7 +77,6 @@ describe("pages/pupils/programmes/[programmeSlug]/units/[unitSlug]/lessons/[less
         destination: redirectUrl,
         permanent: false,
       },
-      revalidate: 300,
     });
     expect(mockOakErrorConstructor).toHaveBeenCalledWith({
       code: "curriculum-api/not-found",
@@ -110,7 +109,6 @@ describe("pages/pupils/programmes/[programmeSlug]/units/[unitSlug]/lessons/[less
         destination: redirectUrl,
         permanent: false,
       },
-      revalidate: 300,
     });
   });
 });
