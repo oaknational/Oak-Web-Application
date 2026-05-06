@@ -15,6 +15,19 @@ import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 
 const render = renderWithProviders();
 
+const mockReplace = jest.fn();
+
+jest.mock("next/navigation", () => ({
+  ...jest.requireActual("next/navigation"),
+  useRouter: jest.fn(() => ({
+    replace: mockReplace,
+  })),
+}));
+
+beforeEach(() => {
+  mockReplace.mockClear();
+});
+
 const lesson = lessonDownloadsFixture({
   lessonTitle: "The meaning of time",
 });
@@ -169,5 +182,19 @@ describe("With downloads page experiment feature flag", () => {
     const downloadsAccordion = queryByText("All resources selected");
 
     expect(downloadsAccordion).toBeInTheDocument();
+  });
+});
+
+describe("Download success redirect", () => {
+  it("renders the standard downloads page before redirecting", () => {
+    const { getByText, queryByText } = render(
+      <LessonDownloads
+        lesson={lesson}
+        successRedirect="/programmes/maths-primary/units/u/lessons/l/downloads/success"
+      />,
+    );
+
+    expect(getByText("All resources selected")).toBeInTheDocument();
+    expect(queryByText(/Thanks for downloading/i)).not.toBeInTheDocument();
   });
 });

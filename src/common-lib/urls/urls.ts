@@ -141,6 +141,12 @@ export type IntegratedLessonDownloadsLinkProps = {
     preselected: PreselectedDownloadType | null;
   };
 };
+export type IntegratedLessonDownloadsSuccessLinkProps = {
+  page: "integrated-lesson-downloads-success";
+  programmeSlug: string;
+  unitSlug: string;
+  lessonSlug: string;
+};
 export type SpecialistLessonListingLinkProps = Omit<
   LessonListingLinkProps,
   "page"
@@ -467,6 +473,7 @@ export type OakLinkProps =
   | IntegratedUnitOverviewLinkProps
   | IntegratedLessonOverviewLinkProps
   | IntegratedLessonDownloadsLinkProps
+  | IntegratedLessonDownloadsSuccessLinkProps
   | SpecialistLessonListingLinkProps
   | UnitListingLinkProps
   | SpecialistUnitListingLinkProps
@@ -874,6 +881,13 @@ export const OAK_PAGES: {
     analyticsPageName: "Lesson Download",
     configType: "internal",
     pageType: "integrated-lesson-downloads",
+  }),
+  "integrated-lesson-downloads-success": createOakPageConfig({
+    pathPattern:
+      "/programmes/:programmeSlug/units/:unitSlug/lessons/:lessonSlug/downloads/success",
+    analyticsPageName: "Lesson Download",
+    configType: "internal",
+    pageType: "integrated-lesson-downloads-success",
   }),
   "specialist-lesson-index": createOakPageConfig({
     pathPattern:
