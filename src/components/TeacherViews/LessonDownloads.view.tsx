@@ -233,7 +233,7 @@ export function LessonDownloads(props: LessonDownloadsProps) {
       });
 
       if (props.successRedirect) {
-        router.replace(props.successRedirect, { scroll: false });
+        router.replace(props.successRedirect);
       } else {
         setIsDownloadSuccessful(true);
       }
