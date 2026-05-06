@@ -31,7 +31,11 @@ import {
   ResourceTypeValueType,
 } from "@/browser-lib/avo/Avo";
 import { useHubspotSubmit } from "@/components/TeacherComponents/hooks/downloadAndShareHooks/useHubspotSubmit";
-import { extractUrnAndSchool } from "@/components/TeacherComponents/helpers/downloadAndShareHelpers/getFormattedDetailsForTracking";
+import {
+  getSchoolName,
+  getSchoolOption,
+  getSchoolUrn,
+} from "@/components/TeacherComponents/helpers/downloadAndShareHelpers/getFormattedDetailsForTracking";
 import {
   ResourceFormProps,
   ResourceFormValues,
@@ -60,17 +64,11 @@ export const trackCurriculumDownload = async (
   analyticsUseCase: AnalyticsUseCaseValueType,
   slugs: CurriculumSelectionSlugs,
 ) => {
-  const { school, schoolName: dataSchoolName, email } = data;
-
   if (!data.terms) return;
-
-  const schoolName =
-    dataSchoolName === "Homeschool" ? "Homeschool" : "Selected school"; // TODO: check homeschool val
-  const schoolOption =
-    (school === "not-listed") === true ? "Not listed" : schoolName; // TODO: check not listed val
+  const schoolOption = getSchoolOption(data.school);
 
   await onHubspotSubmit({
-    school: data.school ?? "notListed",
+    school: data.school,
     schoolName: data.schoolName,
     email: data.email,
     terms: data.terms,
@@ -85,16 +83,13 @@ export const trackCurriculumDownload = async (
     componentType: "download_button",
     eventVersion: "2.0.0",
     analyticsUseCase: analyticsUseCase,
-    emailSupplied: email != null,
+    emailSupplied: data.email != null,
     resourceType: ["curriculum document"] as ResourceTypeValueType[],
-    schoolOption: schoolOption,
-    schoolName: dataSchoolName || "",
+    schoolOption,
+    schoolName: getSchoolName(data.school, schoolOption),
     subjectTitle: subjectTitle,
     phase: slugs.phaseSlug as PhaseValueType,
-    schoolUrn:
-      !school || school === "homeschool"
-        ? ""
-        : (extractUrnAndSchool(school).urn ?? ""), // TODO: check
+    schoolUrn: getSchoolUrn(data.school, schoolOption),
     keyStageSlug: null,
     keyStageTitle: null,
   });
@@ -244,6 +239,8 @@ const DownloadTab: FC<CurriculumDownloadTabProps> = ({
   };
 
   const onSubmit = async (data: ResourceFormValues) => {
+    console.log("diego data", data.school, data.schoolName);
+
     setIsSubmitting(true);
     setSubmitError(undefined);
     const reportError = errorReporter("curriculum-download", {
@@ -270,7 +267,7 @@ const DownloadTab: FC<CurriculumDownloadTabProps> = ({
       schoolName: data.schoolName!,
       email: data.email!,
       termsAndConditions: data.terms!,
-      schoolNotListed: data.schoolName === "not listed", // TODO: check not listed
+      schoolNotListed: data.schoolName === "notListed",
     };
     saveDownloadsDataToLocalStorage(schoolData); // TODO: check local storage
 
