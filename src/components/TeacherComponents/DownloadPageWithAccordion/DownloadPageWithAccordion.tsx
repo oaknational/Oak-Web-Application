@@ -55,7 +55,7 @@ type DownloadPageWithAccordionProps = ResourcePageDetailsCompletedProps &
     cta: React.ReactNode;
     triggerForm: UseFormTrigger<ResourceFormValues>;
     apiError?: string | null;
-    updatedAt: string;
+    copyrightYear: string;
     showTermsAgreement: boolean;
     showRiskAssessmentBanner?: boolean;
     lessonDownloads?: LessonDownloadsPageData["downloads"];
@@ -144,7 +144,7 @@ export const DownloadPageWithAccordionContent = (
     | "showSavedDetails"
     | "onEditClick"
     | "showPostAlbCopyright"
-    | "updatedAt"
+    | "copyrightYear"
     | "loginRequired"
     | "geoRestricted"
     | "cta"
@@ -174,7 +174,7 @@ export const DownloadPageWithAccordionContent = (
     showSavedDetails,
     onEditClick,
     showPostAlbCopyright,
-    updatedAt,
+    copyrightYear,
     loginRequired,
     geoRestricted,
     cta,
@@ -242,7 +242,7 @@ export const DownloadPageWithAccordionContent = (
                 showSavedDetails={showSavedDetails}
                 handleEditDetailsCompletedClick={onEditClick}
                 showPostAlbCopyright={showPostAlbCopyright}
-                oglCopyrightYear={updatedAt}
+                oglCopyrightYear={copyrightYear}
                 useDownloadPageLayout
               />
               {showRiskAssessmentBanner && (
@@ -302,7 +302,7 @@ export const DownloadPageWithAccordionContent = (
             fullWidth
             showPostAlbCopyright={showPostAlbCopyright}
             openLinksExternally={true}
-            copyrightYear={updatedAt}
+            copyrightYear={copyrightYear}
           />
         </>
       )}

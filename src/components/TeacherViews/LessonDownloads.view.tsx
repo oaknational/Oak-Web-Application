@@ -399,7 +399,7 @@ export function LessonDownloads(props: LessonDownloadsProps) {
             showPostAlbCopyright={!isLegacyDownload}
             triggerForm={form.trigger}
             apiError={apiError}
-            updatedAt={updatedAt}
+            copyrightYear={updatedAt}
             withHomeschool={true}
             showTermsAgreement={
               onboardingStatus === "not-onboarded" ||
