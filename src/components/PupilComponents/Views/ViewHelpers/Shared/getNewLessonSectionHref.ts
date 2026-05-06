@@ -1,13 +1,13 @@
-import { LessonSection } from "@/components/PupilComponents/LessonEngineProvider";
+import { LessonSection } from "@/components/PupilComponents/lessonSections";
 
 type GetNewLessonSectionHrefParams = {
-  lessonSlug: string;
+  currentRoute: string;
   section: LessonSection;
   searchParams?: URLSearchParams;
 };
 
 export const getNewLessonSectionHref = ({
-  lessonSlug,
+  currentRoute,
   section,
   searchParams,
 }: GetNewLessonSectionHrefParams) => {
@@ -17,7 +17,10 @@ export const getNewLessonSectionHref = ({
   const queryString = nextSearchParams.toString();
   const suffix = queryString.length > 0 ? `?${queryString}` : "";
 
-  return `/pupils/lessons/${encodeURIComponent(
-    lessonSlug,
-  )}/new/${section}${suffix}`;
+  const currentRouteExclSection = currentRoute
+    .split("/")
+    .slice(0, -1)
+    .join("/");
+
+  return `${currentRouteExclSection}/${section}${suffix}`;
 };
