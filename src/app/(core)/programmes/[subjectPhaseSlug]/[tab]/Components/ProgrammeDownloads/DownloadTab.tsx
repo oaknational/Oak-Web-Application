@@ -52,6 +52,8 @@ import { saveDownloadsDataToLocalStorage } from "@/components/CurriculumComponen
 import { DOWNLOAD_TYPE_LABELS } from "@/components/CurriculumComponents/CurriculumDownloadView/helper";
 import { DownloadPageWithAccordionContent } from "@/components/TeacherComponents/DownloadPageWithAccordion/DownloadPageWithAccordion";
 import { useResourceFormState } from "@/components/TeacherComponents/hooks/downloadAndShareHooks/useResourceFormState";
+import { useOnboardingStatus } from "@/components/TeacherComponents/hooks/useOnboardingStatus";
+import { DelayedLoadingSpinner } from "@/components/TeacherComponents/SharePageLayout/SharePageLayout";
 
 export const trackCurriculumDownload = async (
   data: ResourceFormValues,
@@ -119,6 +121,8 @@ const DownloadTab: FC<CurriculumDownloadTabProps> = ({
 }) => {
   const { track } = useAnalytics();
   const { onHubspotSubmit } = useHubspotSubmit();
+  const onboardingStatus = useOnboardingStatus();
+  const isLoading = onboardingStatus === "loading";
 
   const availableDownloadTypes = useMemo(() => {
     return DOWNLOAD_TYPE_LABELS.map(({ id }) => id).filter((id) => {
@@ -351,93 +355,104 @@ const DownloadTab: FC<CurriculumDownloadTabProps> = ({
             <OakHeading tag="h2" $font={"heading-4"}>
               Download curriculum resources
             </OakHeading>
-            <DownloadPageWithAccordionContent
-              loginRequired={false}
-              geoRestricted={false}
-              downloadsRestricted={false}
-              errors={form.errors}
-              handleToggleSelectAll={handleToggleSelectAll}
-              selectAllChecked={selectAllChecked}
-              showNoResources={false}
-              showLoading={isLocalStorageLoading}
-              email={emailFromLocalStorage}
-              school={schoolNameFromLocalStorage}
-              schoolId={schoolIdFromLocalStorage}
-              setSchool={setSchool}
-              showSavedDetails={shouldDisplayDetailsCompleted}
-              onEditClick={handleEditDetailsCompletedClick}
-              register={form.register}
-              control={form.control}
-              showPostAlbCopyright={true}
-              triggerForm={form.trigger}
-              apiError={submitError}
-              cardGroup={
-                <OakFlex $gap={"spacing-16"}>
-                  {curriculumDownloadsWithLabels.map((download) => (
-                    <Controller
-                      key={download.id}
-                      control={form.control}
-                      name="resources"
-                      defaultValue={[]}
-                      render={({ field: { value: fieldValue, onChange } }) => {
-                        const onChangeHandler = (
-                          e: ChangeEvent<HTMLInputElement>,
-                        ) => {
-                          if (e.target.checked) {
-                            onChange([...fieldValue, download.id]);
-                          } else {
-                            onChange(
-                              fieldValue.filter((val) => val !== download.id),
-                            );
-                          }
-                          // Trigger the form to reevaluate errors
-                          form.trigger();
-                        };
+            {isLoading ? (
+              <OakBox $minHeight="spacing-480">
+                <DelayedLoadingSpinner $delay={300} data-testid="loading" />
+              </OakBox>
+            ) : (
+              <DownloadPageWithAccordionContent
+                loginRequired={false}
+                geoRestricted={false}
+                downloadsRestricted={false}
+                errors={form.errors}
+                handleToggleSelectAll={handleToggleSelectAll}
+                selectAllChecked={selectAllChecked}
+                showNoResources={false}
+                showLoading={isLocalStorageLoading}
+                email={emailFromLocalStorage}
+                school={schoolNameFromLocalStorage}
+                schoolId={schoolIdFromLocalStorage}
+                setSchool={setSchool}
+                showSavedDetails={shouldDisplayDetailsCompleted}
+                onEditClick={handleEditDetailsCompletedClick}
+                register={form.register}
+                control={form.control}
+                showPostAlbCopyright={true}
+                triggerForm={form.trigger}
+                apiError={submitError}
+                cardGroup={
+                  <OakFlex $gap={"spacing-16"}>
+                    {curriculumDownloadsWithLabels.map((download) => (
+                      <Controller
+                        key={download.id}
+                        control={form.control}
+                        name="resources"
+                        defaultValue={[]}
+                        render={({
+                          field: { value: fieldValue, onChange },
+                        }) => {
+                          const onChangeHandler = (
+                            e: ChangeEvent<HTMLInputElement>,
+                          ) => {
+                            if (e.target.checked) {
+                              onChange([...fieldValue, download.id]);
+                            } else {
+                              onChange(
+                                fieldValue.filter((val) => val !== download.id),
+                              );
+                            }
+                            // Trigger the form to reevaluate errors
+                            form.trigger();
+                          };
 
-                        return (
-                          <OakDownloadCard
-                            key={download.id}
-                            id={download.id}
-                            data-testid="resourceCard"
-                            value={download.id}
-                            name="curriculum-download"
-                            titleSlot={download.label}
-                            checked={fieldValue.includes(download.id)}
-                            formatSlot={download.subTitle}
-                            iconName={download.icon}
-                            onChange={onChangeHandler}
-                          />
-                        );
-                      }}
-                    />
-                  ))}
-                </OakFlex>
-              }
-              updatedAt=""
-              showTermsAgreement={true}
-              cta={
-                <OakPrimaryButton
-                  type="button"
-                  onClick={
-                    (event) => void form.handleSubmit(onSubmit)(event) // https://github.com/orgs/react-hook-form/discussions/8622}
-                  }
-                  iconName={"download"}
-                  isLoading={
-                    isSubmitting || !hubspotLoaded // show loading state when waiting for latest school values to be populated from hubspot
-                  }
-                  disabled={
-                    (hasFormErrors ||
-                      noResourcesSelected ||
-                      (!form.formState.isValid && !localStorageDetails)) &&
-                    hubspotLoaded
-                  }
-                >
-                  Download
-                </OakPrimaryButton>
-              }
-              showRiskAssessmentBanner={false}
-              curriculumDownloads={curriculumDownloadsWithLabels}
-            />{" "}
+                          return (
+                            <OakDownloadCard
+                              key={download.id}
+                              id={download.id}
+                              data-testid="resourceCard"
+                              value={download.id}
+                              name="curriculum-download"
+                              titleSlot={download.label}
+                              checked={fieldValue.includes(download.id)}
+                              formatSlot={download.subTitle}
+                              iconName={download.icon}
+                              onChange={onChangeHandler}
+                            />
+                          );
+                        }}
+                      />
+                    ))}
+                  </OakFlex>
+                }
+                copyrightYear={new Date().getFullYear().toString()}
+                showTermsAgreement={
+                  onboardingStatus === "not-onboarded" ||
+                  onboardingStatus === "unknown"
+                }
+                cta={
+                  <OakPrimaryButton
+                    type="button"
+                    onClick={
+                      (event) => void form.handleSubmit(onSubmit)(event) // https://github.com/orgs/react-hook-form/discussions/8622}
+                    }
+                    iconName={"download"}
+                    isLoading={
+                      isSubmitting || !hubspotLoaded // show loading state when waiting for latest school values to be populated from hubspot
+                    }
+                    disabled={
+                      (hasFormErrors ||
+                        noResourcesSelected ||
+                        (!form.formState.isValid && !localStorageDetails)) &&
+                      hubspotLoaded
+                    }
+                  >
+                    Download
+                  </OakPrimaryButton>
+                }
+                showRiskAssessmentBanner={false}
+                curriculumDownloads={curriculumDownloadsWithLabels}
+              />
+            )}
           </OakGridArea>
         </OakGrid>
       )}
