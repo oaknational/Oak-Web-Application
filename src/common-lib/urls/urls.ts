@@ -132,6 +132,21 @@ export type IntegratedLessonOverviewLinkProps = {
   unitSlug: string;
   lessonSlug: string;
 };
+export type IntegratedLessonDownloadsLinkProps = {
+  page: "integrated-lesson-downloads";
+  programmeSlug: string;
+  unitSlug: string;
+  lessonSlug: string;
+  query?: {
+    preselected: PreselectedDownloadType | null;
+  };
+};
+export type IntegratedLessonDownloadsSuccessLinkProps = {
+  page: "integrated-lesson-downloads-success";
+  programmeSlug: string;
+  unitSlug: string;
+  lessonSlug: string;
+};
 export type SpecialistLessonListingLinkProps = Omit<
   LessonListingLinkProps,
   "page"
@@ -315,6 +330,7 @@ type AboutUsOaksCurriculaLinkProps = { page: "about-oaks-curricula" };
 
 type CareersLinkProps = { page: "careers" };
 type ContactUsLinkProps = { page: "contact" };
+type FontHelpLinkProps = { page: "help-font" };
 type HelpLinkProps = { page: "help" };
 type PupilHelpLinkProps = { page: "pupil-help" };
 type GuideToOakLinkProps = { page: "guide-to-oak" };
@@ -354,13 +370,6 @@ type CurriculumUnitsLinkProps = {
 type CurriculumDownloadsLinkProps = {
   page: "curriculum-downloads";
   subjectPhaseSlug: string;
-};
-type CurriculumPreviousDownloadsLinkProps = {
-  page: "curriculum-previous-downloads";
-  query?: {
-    subject: string;
-    keystage?: string;
-  };
 };
 
 type OnboardingLinkProps = {
@@ -463,6 +472,8 @@ export type OakLinkProps =
   | LessonListingLinkProps
   | IntegratedUnitOverviewLinkProps
   | IntegratedLessonOverviewLinkProps
+  | IntegratedLessonDownloadsLinkProps
+  | IntegratedLessonDownloadsSuccessLinkProps
   | SpecialistLessonListingLinkProps
   | UnitListingLinkProps
   | SpecialistUnitListingLinkProps
@@ -494,7 +505,6 @@ export type OakLinkProps =
   | CurriculumOverviewLinkProps
   | CurriculumUnitsLinkProps
   | CurriculumDownloadsLinkProps
-  | CurriculumPreviousDownloadsLinkProps
   | OnboardingLinkProps
   | OnboardingSchoolSelectionLinkProps
   | OnboardingRoleSelectionLinkProps
@@ -511,7 +521,8 @@ export type OakLinkProps =
   | ClassroomAuthSuccessLinkProps
   | ClassroomPupilSignInLinkProps
   | EyfsPageLinkProps
-  | GuideToOakLinkProps;
+  | GuideToOakLinkProps
+  | FontHelpLinkProps;
 
 export type ExternalPageName =
   | "[external] Careers"
@@ -758,6 +769,12 @@ export const OAK_PAGES: {
     configType: "external",
     pageType: "guide-to-oak",
   }),
+  "help-font": createOakPageConfig({
+    url: "https://support.thenational.academy/how-to-install-the-google-fonts-lexend-and-kalan",
+    analyticsPageName: "[external] Help",
+    configType: "external",
+    pageType: "help-font",
+  }),
   home: createOakPageConfig({
     pathPattern: "/",
     analyticsPageName: "Homepage",
@@ -857,6 +874,20 @@ export const OAK_PAGES: {
     analyticsPageName: "Lesson",
     configType: "internal",
     pageType: "integrated-lesson-overview",
+  }),
+  "integrated-lesson-downloads": createOakPageConfig({
+    pathPattern:
+      "/programmes/:programmeSlug/units/:unitSlug/lessons/:lessonSlug/downloads",
+    analyticsPageName: "Lesson Download",
+    configType: "internal",
+    pageType: "integrated-lesson-downloads",
+  }),
+  "integrated-lesson-downloads-success": createOakPageConfig({
+    pathPattern:
+      "/programmes/:programmeSlug/units/:unitSlug/lessons/:lessonSlug/downloads/success",
+    analyticsPageName: "Lesson Download",
+    configType: "internal",
+    pageType: "integrated-lesson-downloads-success",
   }),
   "specialist-lesson-index": createOakPageConfig({
     pathPattern:
@@ -1082,12 +1113,6 @@ export const OAK_PAGES: {
     analyticsPageName: "Curriculum Downloads",
     configType: "internal",
     pageType: "curriculum-downloads",
-  }),
-  "curriculum-previous-downloads": createOakPageConfig({
-    pathPattern: "/teachers/curriculum/previous-downloads",
-    analyticsPageName: "Curriculum Previous Downloads",
-    configType: "internal",
-    pageType: "curriculum-previous-downloads",
   }),
   onboarding: createOakPageConfig({
     pathPattern: "/onboarding",

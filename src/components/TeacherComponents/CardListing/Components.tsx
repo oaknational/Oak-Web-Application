@@ -92,12 +92,14 @@ export const CardListingCardTags = ({
 
 export const CardListingSubCopy = ({
   subcopy,
-  isHighlighted,
+  highlightColorVariant,
 }: CardListingProps) => {
   return subcopy ? (
     <OakTypography
       $font={"body-2"}
-      $color={isHighlighted ? "text-inverted" : "text-subdued"}
+      $color={
+        highlightColorVariant === "secondary" ? "text-inverted" : "text-subdued"
+      }
     >
       {subcopy}
     </OakTypography>
@@ -106,14 +108,16 @@ export const CardListingSubCopy = ({
 
 export const CardListingLessonCount = ({
   lessonCount,
-  isHighlighted,
+  highlightColorVariant,
 }: CardListingProps) => {
   return lessonCount === undefined ? null : (
     <OakTypography
       $font={"heading-light-7"}
       $width={"max-content"}
       $textWrap={"nowrap"}
-      $color={isHighlighted ? "text-inverted" : "text-subdued"}
+      $color={
+        highlightColorVariant === "secondary" ? "text-inverted" : "text-subdued"
+      }
     >
       {lessonCount + " lesson" + (lessonCount === 1 ? "" : "s")}
     </OakTypography>

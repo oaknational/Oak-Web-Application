@@ -5,6 +5,7 @@ import { cache } from "react";
 import { ProgrammeView } from "./Components/ProgrammeView";
 import { isTabSlug } from "./tabSchema";
 import { getProgrammeData } from "./getProgrammeData";
+import { getMetaTitle } from "./getMetaTitle";
 
 import {
   createDownloadsData,
@@ -13,7 +14,6 @@ import {
 } from "@/pages-helpers/curriculum/docx/tab-helpers";
 import { getOpenGraphMetadata, getTwitterMetadata } from "@/app/metadata";
 import getBrowserConfig from "@/browser-lib/getBrowserConfig";
-import { buildCurriculumMetadata } from "@/components/CurriculumComponents/helpers/curriculumMetadata";
 import OakError from "@/errors/OakError";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 import {
@@ -39,13 +39,16 @@ const getCachedProgrammeData = cache(async (subjectPhaseSlug: string) => {
 });
 
 type ProgrammePageParams = { subjectPhaseSlug: string; tab: string };
-
+export type PageSearchParms = { [key: string]: string | string[] | undefined };
 export async function generateMetadata({
   params,
+  searchParams,
 }: {
   params: Promise<ProgrammePageParams>;
+  searchParams: Promise<PageSearchParms>;
 }): Promise<Metadata> {
   const { subjectPhaseSlug } = await params;
+  const pageSearchParams = await searchParams;
 
   try {
     const cachedData = await getCachedProgrammeData(subjectPhaseSlug);
@@ -53,46 +56,13 @@ export async function generateMetadata({
       return {};
     }
 
-    const {
-      programmeUnitsData,
-      curriculumUnitsData,
-      curriculumPhaseOptions,
-      subjectPhaseKeystageSlugs,
-    } = cachedData;
-
-    const curriculumUnitsFormattedData =
-      formatCurriculumUnitsData(curriculumUnitsData);
-
-    const ks4Options =
-      curriculumPhaseOptions.subjects.find(
-        (s) => s.slug === subjectPhaseKeystageSlugs.subjectSlug,
-      )?.ks4_options ?? [];
-    const ks4Option = ks4Options.find(
-      (ks4opt) => ks4opt.slug === subjectPhaseKeystageSlugs.ks4OptionSlug,
-    );
-
-    const title = buildCurriculumMetadata({
-      metadataType: "title",
-      subjectSlug: subjectPhaseKeystageSlugs.subjectSlug,
-      subjectTitle: programmeUnitsData.subjectTitle,
-      ks4OptionSlug: ks4Option?.slug ?? null,
-      ks4OptionTitle: ks4Option?.title ?? null,
-      keyStages: curriculumUnitsFormattedData.keystages,
-      tab: "units",
-    });
-    const description = buildCurriculumMetadata({
-      metadataType: "description",
-      subjectSlug: subjectPhaseKeystageSlugs.subjectSlug,
-      subjectTitle: programmeUnitsData.subjectTitle,
-      ks4OptionSlug: ks4Option?.slug ?? null,
-      ks4OptionTitle: ks4Option?.title ?? null,
-      keyStages: curriculumUnitsFormattedData.keystages,
-      tab: "units",
-    });
     const canonicalURL = new URL(
-      `/programmes/${subjectPhaseSlug}`,
+      `/programmes/${subjectPhaseSlug}/units`,
       getBrowserConfig("seoAppUrl"),
     ).toString();
+
+    const title = getMetaTitle(cachedData, pageSearchParams);
+    const description = `Get fully sequenced teaching resources and lesson plans for ${cachedData.programmeUnitsData.phaseTitle} ${cachedData.programmeUnitsData.subjectTitle}`;
 
     return {
       title,

@@ -22,16 +22,10 @@ import {
   getBreadcrumbsForLessonPathway,
   getLessonOverviewBreadCrumb,
   createAttributionObject,
-  getBreadcrumbsForSpecialistLessonPathway,
   getMediaClipLabel,
-  lessonIsSpecialist,
-  getPathway,
   getPageLinksWithSubheadingsForLesson,
+  getCommonPathway,
 } from "@/components/TeacherComponents/helpers/lessonHelpers/lesson.helpers";
-import {
-  LessonOverviewAll,
-  SpecialistLessonPathway,
-} from "@/components/TeacherComponents/types/lesson.types";
 import { getAnalyticsBrowseData } from "@/components/TeacherComponents/helpers/getAnalyticsBrowseData";
 import LessonOverviewPresentation from "@/components/TeacherComponents/LessonOverviewPresentation";
 import LessonOverviewVideo from "@/components/TeacherComponents/LessonOverviewVideo";
@@ -48,8 +42,11 @@ import HeaderLesson from "@/components/TeacherComponents/LessonOverviewHeader";
 import { useCurrentSection } from "@/hooks/useCurrentSection";
 import { MathJaxProvider } from "@/browser-lib/mathjax/MathJaxProvider";
 import { LEGACY_COHORT, NEW_COHORT } from "@/config/cohort";
-import { keyLearningPoint } from "@/node-lib/curriculum-api-2023/shared.schema";
-import { LessonOverviewDownloads } from "@/node-lib/curriculum-api-2023/queries/lessonOverview/lessonOverview.schema";
+import {
+  keyLearningPoint,
+  LessonPathway,
+} from "@/node-lib/curriculum-api-2023/shared.schema";
+import { LessonOverviewPageData } from "@/node-lib/curriculum-api-2023/queries/lessonOverview/lessonOverview.schema";
 import {
   checkIfResourceHasLegacyCopyright,
   getIsResourceDownloadable,
@@ -72,7 +69,8 @@ import isSlugLegacy from "@/utils/slugModifiers/isSlugLegacy";
 import { getPhaseSlug } from "@/fixtures/curriculum/unit";
 
 export type LessonOverviewProps = {
-  lesson: LessonOverviewAll & { downloads: LessonOverviewDownloads } & {
+  lesson: LessonOverviewPageData & {
+    isCanonical: boolean;
     teacherShareButton?: React.ReactNode;
     teacherShareButtonProps?: TeacherNotesButtonProps;
     teacherNoteHtml?: string;
@@ -100,6 +98,7 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
     lessonKeywords,
     teacherTips,
     videoMuxPlaybackId,
+    isCanonical,
     videoWithSignLanguageMuxPlaybackId,
     lessonEquipmentAndResources,
     presentationUrl,
@@ -114,9 +113,7 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
     lessonCohort,
     downloads,
     legacyCopyrightContent,
-    isSpecialist,
     updatedAt,
-    isCanonical,
     lessonGuideUrl,
     teacherShareButton,
     additionalMaterialUrl,
@@ -154,7 +151,23 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
   const { track } = useAnalytics();
   const { analyticsUseCase } = useAnalyticsPageProps();
 
-  const commonPathway = getPathway(lesson);
+  const commonPathway: LessonPathway = {
+    keyStageSlug: lesson.keyStageSlug,
+    keyStageTitle: lesson.keyStageTitle,
+    programmeSlug: lesson.programmeSlug,
+    subjectTitle: lesson.subjectTitle,
+    unitSlug: lesson.unitSlug,
+    unitTitle: lesson.unitTitle,
+    yearGroupSlug: lesson.year ?? null,
+    yearGroupTitle: lesson.yearTitle ?? null,
+    subjectSlug: lesson.subjectSlug,
+    examBoardSlug: lesson.examBoardSlug ?? null,
+    examBoardTitle: lesson.examBoardTitle ?? null,
+    tierSlug: lesson.tierSlug ?? null,
+    tierTitle: lesson.tierTitle ?? null,
+    lessonCohort: lesson.lessonCohort,
+    pathwayTitle: lesson.pathwayTitle ?? null,
+  };
   const {
     keyStageSlug,
     keyStageTitle,
@@ -163,13 +176,12 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
     unitTitle,
     unitSlug,
     programmeSlug,
-    yearTitle,
+    yearGroupTitle,
     examBoardSlug,
     examBoardTitle,
     tierTitle,
-    subjectParent,
     pathwayTitle,
-    year,
+    yearGroupSlug,
   } = commonPathway;
   const user = useUser();
   const isLegacyLicense = !lessonCohort || lessonCohort === LEGACY_COHORT;
@@ -195,8 +207,8 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
     subjectTitle,
     unitSlug,
     unitTitle,
-    year,
-    yearTitle,
+    year: yearGroupSlug,
+    yearTitle: yearGroupTitle,
     examBoardTitle,
     tierTitle,
     pathwayTitle,
@@ -313,8 +325,7 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
     ).length > 0;
 
   const showDownloadAll = hasDownloadableAssets && !contentRestricted;
-  const showShare =
-    !isSpecialist && !actions?.disablePupilShare && !contentRestricted;
+  const showShare = !actions?.disablePupilShare && !contentRestricted;
 
   const pageLinks = getPageLinksWithSubheadingsForLesson(
     lesson,
@@ -328,26 +339,20 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
     <MathJaxLessonProvider>
       <HeaderLesson
         {...lesson}
-        {...commonPathway}
-        breadcrumbs={
-          !lessonIsSpecialist(lesson)
-            ? [
-                ...getBreadcrumbsForLessonPathway(commonPathway),
-                getLessonOverviewBreadCrumb({
-                  lessonTitle,
-                  lessonSlug,
-                  unitSlug,
-                  programmeSlug,
-                  disabled: true,
-                  isCanonical,
-                }),
-              ]
-            : [
-                ...getBreadcrumbsForSpecialistLessonPathway(
-                  commonPathway as SpecialistLessonPathway,
-                ),
-              ]
-        }
+        isCanonical={isCanonical}
+        breadcrumbs={[
+          ...getBreadcrumbsForLessonPathway(
+            isCanonical ? getCommonPathway(lesson.pathways) : commonPathway,
+          ),
+          getLessonOverviewBreadCrumb({
+            lessonTitle,
+            lessonSlug,
+            unitSlug,
+            programmeSlug,
+            disabled: true,
+            isCanonical,
+          }),
+        ]}
         background={"bg-decorative4-very-subdued"}
         subjectIconBackgroundColor={"bg-decorative4-main"}
         track={track}
@@ -370,6 +375,7 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
         trackTeachingMaterialsSelected={trackTeachingMaterialsSelected}
         trackCreateWithAiButtonClicked={trackCreateWithAiButtonClicked}
         contentRestricted={contentRestricted}
+        isSpecialist={false}
       />
       <OakMaxWidth $ph={"spacing-16"} $pb={"spacing-80"}>
         {expired ? (
@@ -409,6 +415,8 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
                         trackDownloadResourceButtonClicked({
                           downloadResourceButtonName: "all",
                         }),
+                      isSpecialist: false,
+
                       ...lesson,
                       ...commonPathway,
                     }}
@@ -422,11 +430,8 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
                 <OakBox $pb={"spacing-16"}>
                   <TakedownBanner
                     isExpiring={!!actions?.displayExpiringBanner}
-                    isLegacy={isSlugLegacy(programmeSlug ?? "") || isSpecialist}
-                    hasNewUnits={
-                      getDoesSubjectHaveNewUnits(subjectSlug ?? "") &&
-                      !isSpecialist
-                    }
+                    isLegacy={isSlugLegacy(programmeSlug ?? "")}
+                    hasNewUnits={getDoesSubjectHaveNewUnits(subjectSlug ?? "")}
                     subjectSlug={subjectSlug ?? ""}
                     userType="teacher"
                     onwardHref={unitListingHref}
@@ -443,7 +448,7 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
                   lessonGuideUrl &&
                   !contentRestricted && (
                     <LessonItemContainer
-                      isSpecialist={isSpecialist}
+                      isSpecialist={false}
                       ref={lessonGuideSectionRef}
                       title={"Lesson guide"}
                       downloadable={getIsResourceDownloadable(
@@ -476,7 +481,7 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
                     legacyCopyrightContent,
                   ) && (
                     <LessonItemContainer
-                      isSpecialist={isSpecialist}
+                      isSpecialist={false}
                       ref={slideDeckSectionRef}
                       title={presentationTitle}
                       downloadable={getIsResourceDownloadable(
@@ -513,7 +518,7 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
                       title={mediaClipLabel}
                       ref={lessonMediaClipsSectionRef}
                       anchorId="media-clips"
-                      isSpecialist={isSpecialist}
+                      isSpecialist={false}
                       slugs={slugs}
                       pageLinks={pageLinks}
                       displayMediaClipButton={true}
@@ -539,7 +544,7 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
                   )}
 
                 <LessonItemContainer
-                  isSpecialist={isSpecialist}
+                  isSpecialist={false}
                   ref={lessonDetailsSectionRef}
                   title={"Lesson details"}
                   anchorId="lesson-details"
@@ -567,7 +572,7 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
                     displayVocab={!!actions?.displayVocabButton}
                     updatedAt={updatedAt}
                     additionalFiles={additionalFiles}
-                    year={yearTitle}
+                    year={yearGroupTitle}
                     subject={subjectTitle}
                     keystage={keyStageTitle}
                     keystageSlug={keyStageSlug}
@@ -575,18 +580,20 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
                     lesson={lessonTitle}
                     examBoardSlug={examBoardSlug}
                     subjectSlug={subjectSlug}
-                    subjectParent={subjectParent}
+                    subjectParent={lesson.subjectParent}
                     disablePupilLink={actions?.disablePupilShare}
                     hideSeoHelper={showGeoBlocked}
                     useIntegratedJourneyLayout={false}
-                    phaseSlug={year ? getPhaseSlug(year) : undefined}
+                    phaseSlug={
+                      yearGroupSlug ? getPhaseSlug(yearGroupSlug) : undefined
+                    }
                   />
                 </LessonItemContainer>
 
                 {pageLinks.find((p) => p.label === "Lesson video") &&
                   !contentRestricted && (
                     <LessonItemContainer
-                      isSpecialist={isSpecialist}
+                      isSpecialist={false}
                       ref={videoSectionRef}
                       shareable={isLegacyLicense && showShare}
                       slugs={slugs}
@@ -634,7 +641,7 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
                 {pageLinks.find((p) => p.label === "Worksheet") &&
                   !contentRestricted && (
                     <LessonItemContainer
-                      isSpecialist={isSpecialist}
+                      isSpecialist={false}
                       ref={worksheetSectionRef}
                       title={"Worksheet"}
                       anchorId="worksheet"
@@ -692,7 +699,7 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
                   ) &&
                     !contentRestricted && (
                       <LessonItemContainer
-                        isSpecialist={isSpecialist}
+                        isSpecialist={false}
                         ref={
                           pageLinks.find((p) => p.anchorId === "starter-quiz")
                             ? starterQuizSectionRef
@@ -747,7 +754,7 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
                   ) &&
                     !contentRestricted && (
                       <LessonItemContainer
-                        isSpecialist={isSpecialist}
+                        isSpecialist={false}
                         ref={
                           pageLinks.find((p) => p.anchorId === "exit-quiz")
                             ? exitQuizSectionRef
@@ -801,7 +808,7 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
                   additionalMaterialUrl &&
                   !contentRestricted && (
                     <LessonItemContainer
-                      isSpecialist={isSpecialist}
+                      isSpecialist={false}
                       ref={additionalMaterialSectionRef}
                       pageLinks={pageLinks}
                       title={"Additional material"}

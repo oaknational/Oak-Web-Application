@@ -1,11 +1,12 @@
 import { act, screen } from "@testing-library/react";
 
-import { ProgrammeUnitList, getKeyStageTitle } from "./UnitList";
+import { ProgrammeUnitList } from "./UnitList";
 
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 import { createFilter } from "@/fixtures/curriculum/filters";
 import { createUnit } from "@/fixtures/curriculum/unit";
 import { createYearData } from "@/fixtures/curriculum/yearData";
+import { getKeyStageTitle } from "@/utils/curriculum/formatting";
 
 const render = renderWithProviders();
 

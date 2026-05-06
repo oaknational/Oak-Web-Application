@@ -1,10 +1,9 @@
-import { LessonOverviewProps } from "./LessonOverview.view";
-
 import { TeachersLessonOverviewPageData } from "@/node-lib/curriculum-api-2023/queries/teachersLessonOverview/teachersLessonOverview.schema";
 import {
   LessonOverviewQuizQuestion,
   StemObject,
 } from "@/node-lib/curriculum-api-2023/shared.schema";
+import { LessonOverviewPageData } from "@/node-lib/curriculum-api-2023/queries/lessonOverview/lessonOverview.schema";
 
 const ALLOWED_MATHJAX_SUBJECT_SLUGS = new Set([
   "maths",
@@ -72,7 +71,7 @@ const hasQuizMathJax = (
 };
 
 export const hasLessonMathJax = (
-  lessonPage: LessonOverviewProps["lesson"] | TeachersLessonOverviewPageData,
+  lessonPage: LessonOverviewPageData | TeachersLessonOverviewPageData,
   subjectSlug: string | null,
   isLegacyLicense: boolean,
 ): boolean => {

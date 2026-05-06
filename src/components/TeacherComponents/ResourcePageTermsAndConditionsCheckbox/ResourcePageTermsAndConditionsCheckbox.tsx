@@ -1,12 +1,15 @@
-import { FC } from "react";
-import { OakBox } from "@oaknational/oak-components";
+import { ChangeEventHandler, FC, FocusEventHandler } from "react";
+import { OakBox, OakCheckBox } from "@oaknational/oak-components";
 
 import BrushBorders from "@/components/SharedComponents/SpriteSheet/BrushSvgs/BrushBorders";
-import Checkbox from "@/components/SharedComponents/Checkbox";
 import FieldError from "@/components/SharedComponents/FieldError";
-import { CheckboxProps } from "@/components/SharedComponents/Checkbox/Checkbox";
 
-export type ResourcePageTermsAndConditionsCheckboxProps = CheckboxProps & {
+export type ResourcePageTermsAndConditionsCheckboxProps = {
+  id: string;
+  name: string;
+  checked: boolean;
+  onChange: ChangeEventHandler<HTMLInputElement>;
+  onBlur?: FocusEventHandler<HTMLInputElement>;
   errorMessage?: string;
 };
 
@@ -30,15 +33,12 @@ const ResourcePageTermsAndConditionsCheckbox: FC<
       data-testid="termsCheckbox"
     >
       <BrushBorders hideOnMobileH hideOnMobileV color={"bg-neutral-stronger"} />
-      <Checkbox
-        labelText={"I accept terms and conditions (required)"}
+      <OakCheckBox
+        value="terms-and-conditions"
+        displayValue="I accept terms and conditions (required)"
         checked={checked}
         onChange={onChange}
-        $mb={0}
-        required
-        error={errorMessage}
-        hasError={Boolean(errorMessage)}
-        variant="withLabel"
+        uncheckedBorderColor={errorMessage ? "border-error" : undefined}
         {...props}
       />
     </OakBox>

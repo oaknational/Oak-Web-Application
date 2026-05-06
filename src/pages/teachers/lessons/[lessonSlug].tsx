@@ -15,9 +15,7 @@ import AppLayout from "@/components/SharedComponents/AppLayout";
 import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
 import { LessonAppearsIn } from "@/components/TeacherComponents/LessonAppearsIn";
 import { groupLessonPathways } from "@/components/TeacherComponents/helpers/lessonHelpers/lesson.helpers";
-import { LessonOverview } from "@/components/TeacherViews/LessonOverview/LessonOverview.view";
-import OakError from "@/errors/OakError";
-import { LessonOverviewCanonical } from "@/node-lib/curriculum-api-2023/queries/lessonOverview/lessonOverview.schema";
+import { LessonOverviewPageData } from "@/node-lib/curriculum-api-2023/queries/lessonOverview/lessonOverview.schema";
 import { populateLessonWithTranscript } from "@/utils/handleTranscript";
 import getBrowserConfig from "@/browser-lib/getBrowserConfig";
 import { TeacherNotesModal } from "@/components/TeacherComponents/TeacherNotesModal/TeacherNotesModal";
@@ -29,10 +27,10 @@ import {
   isEyfsPathway,
   redirectToEyfsPage,
 } from "@/pages-helpers/shared/lesson-pages/eyfsRedirect";
+import { LessonOverview } from "@/components/TeacherViews/LessonOverview/LessonOverview.view";
 
 type PageProps = {
-  lesson: LessonOverviewCanonical;
-  isSpecialist: boolean;
+  lesson: LessonOverviewPageData;
   topNav: TopNavProps;
 };
 
@@ -42,7 +40,6 @@ export type URLParams = {
 
 export default function LessonOverviewCanonicalPage({
   lesson,
-  isSpecialist,
   topNav,
 }: Readonly<PageProps>): JSX.Element {
   const {
@@ -92,7 +89,6 @@ export default function LessonOverviewCanonicalPage({
         lesson={{
           ...lesson,
           isCanonical: true,
-          isSpecialist,
           teacherShareButton: teacherNotesButton,
           teacherShareButtonProps: TeacherNotesButtonProps,
           teacherNoteHtml: teacherNoteHtml,
@@ -100,13 +96,11 @@ export default function LessonOverviewCanonicalPage({
         }}
         isBeta={false}
       />
-      {!isSpecialist && (
-        <OakFlex $background={"bg-decorative4-subdued"} $width={"100%"}>
-          <OakMaxWidth $pv="spacing-80">
-            <LessonAppearsIn {...pathwayGroups} />
-          </OakMaxWidth>
-        </OakFlex>
-      )}
+      <OakFlex $background={"bg-decorative4-subdued"} $width={"100%"}>
+        <OakMaxWidth $pv="spacing-80">
+          <LessonAppearsIn {...pathwayGroups} />
+        </OakMaxWidth>
+      </OakFlex>
       {teacherNote && isEditable && (
         <TeacherNotesModal
           isOpen={teacherNotesOpen}
@@ -148,33 +142,14 @@ export const getStaticProps: GetStaticProps<PageProps, URLParams> = async (
       }
       const { lessonSlug } = context.params;
 
-      /**
-       * If the lesson is not found in the specialist 2023 curriculum, try the non-specialist 2023 curriculum
-       */
-
       let lesson;
-      let isSpecialist = false;
-
       try {
-        const res = await curriculumApi2023.specialistLessonOverviewCanonical({
+        lesson = await curriculumApi2023.lessonOverview({
           lessonSlug,
         });
-        lesson = { ...res, isWorksheetLandscape: true, pathways: [] };
-        isSpecialist = true;
+        lesson = await populateLessonWithTranscript(lesson);
       } catch (error) {
-        if (
-          error instanceof OakError &&
-          error.code === "curriculum-api/not-found"
-        ) {
-          try {
-            lesson = await curriculumApi2023.lessonOverview({
-              lessonSlug,
-            });
-            lesson = await populateLessonWithTranscript(lesson);
-          } catch (innerError) {
-            allowNotFoundError(innerError);
-          }
-        }
+        allowNotFoundError(error);
       }
 
       if (!lesson) {
@@ -196,7 +171,6 @@ export const getStaticProps: GetStaticProps<PageProps, URLParams> = async (
       const results: GetStaticPropsResult<PageProps> = {
         props: {
           lesson,
-          isSpecialist,
           topNav,
         },
       };

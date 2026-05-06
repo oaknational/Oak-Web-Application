@@ -1,14 +1,11 @@
 import { screen } from "@testing-library/dom";
+import userEvent from "@testing-library/user-event";
 
-import { UnitView } from "./UnitView";
-import type { UnitViewProps } from "./UnitView";
-import { LessonList } from "./LessonList";
-import { ProgrammeToggles } from "./ProgrammeToggles";
+import { UnitOverviewContent } from "./UnitOverviewContent";
+import type { UnitOverviewContentProps } from "./UnitOverviewContent";
 
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
-
-jest.mock("./LessonList");
-jest.mock("./ProgrammeToggles");
+import { resolveOakHref } from "@/common-lib/urls";
 
 const render = renderWithProviders();
 
@@ -22,14 +19,10 @@ const lessons = [
     lessonTitle: "Lesson 2",
   },
 ];
-describe("UnitView", () => {
-  beforeEach(() => {
-    jest.clearAllMocks();
-  });
-
-  it("renders LessonList and passes lesson props with computed lessonCount", () => {
+describe("UnitOverviewContent", () => {
+  it("renders lessons and save unit button", () => {
     render(
-      <UnitView
+      <UnitOverviewContent
         programmeSlug="biology-secondary-ks4-foundation-aqa"
         unitSlug="cells"
         unitTitle="Cells"
@@ -38,7 +31,7 @@ describe("UnitView", () => {
         subjectSlug="biology"
         keyStageSlug="ks4"
         keyStageTitle="Key Stage 4"
-        lessons={lessons as UnitViewProps["lessons"]}
+        lessons={lessons as UnitOverviewContentProps["lessons"]}
         unitIndex={2}
         unitCount={12}
         tierOptionToggles={[
@@ -70,16 +63,36 @@ describe("UnitView", () => {
         nextUnit={null}
         prevUnit={null}
         subjectCategories={null}
+        showDownloadMessage={false}
+        setShowDownloadMessage={jest.fn()}
       />,
     );
 
-    expect(ProgrammeToggles).toHaveBeenNthCalledWith(
-      1,
-      expect.objectContaining({
-        heading: "Learning tier (KS4)",
-        headingId: "tier-toggle-heading",
-        unitSlug: "cells",
-        programmeToggles: [
+    expect(
+      screen.getByRole("heading", { name: "Unit 2 of 12: Cells" }),
+    ).toBeInTheDocument();
+    expect(screen.getByText("Lesson 1")).toBeInTheDocument();
+    expect(screen.getByText("Lesson 2")).toBeInTheDocument();
+    expect(
+      screen.getByRole("button", { name: /save this unit: cells/i }),
+    ).toBeInTheDocument();
+  });
+
+  it("renders programme toggles with selected states and links", () => {
+    render(
+      <UnitOverviewContent
+        programmeSlug="biology-secondary-ks4-foundation-aqa"
+        unitSlug="cells"
+        unitTitle="Cells"
+        unitDescription="Learn about cells"
+        subjectTitle="Biology"
+        subjectSlug="biology"
+        keyStageSlug="ks4"
+        keyStageTitle="Key Stage 4"
+        lessons={lessons as UnitOverviewContentProps["lessons"]}
+        unitIndex={2}
+        unitCount={12}
+        tierOptionToggles={[
           {
             title: "Foundation",
             programmeSlug: "biology-secondary-ks4-foundation-aqa",
@@ -90,36 +103,8 @@ describe("UnitView", () => {
             programmeSlug: "biology-secondary-ks4-higher-aqa",
             isSelected: false,
           },
-        ],
-      }),
-      {},
-    );
-
-    expect(LessonList).toHaveBeenCalledWith(
-      expect.objectContaining({
-        programmeSlug: "biology-secondary-ks4-foundation-aqa",
-        unitSlug: "cells",
-        unitTitle: "Cells",
-        unitDescription: "Learn about cells",
-        subjectTitle: "Biology",
-        subjectSlug: "biology",
-        keyStageSlug: "ks4",
-        keyStageTitle: "Key Stage 4",
-        lessons,
-        unitIndex: 2,
-        unitCount: 12,
-        lessonCount: 2,
-      }),
-      {},
-    );
-
-    expect(ProgrammeToggles).toHaveBeenNthCalledWith(
-      2,
-      expect.objectContaining({
-        heading: "Exam subject (KS4)",
-        headingId: "subject-toggle-heading",
-        unitSlug: "cells",
-        programmeToggles: [
+        ]}
+        subjectOptionToggles={[
           {
             title: "Biology",
             programmeSlug: "biology-secondary-ks4-foundation-aqa",
@@ -130,14 +115,65 @@ describe("UnitView", () => {
             programmeSlug: "combined-science-secondary-ks4-foundation-aqa",
             isSelected: false,
           },
-        ],
+        ]}
+        threads={[]}
+        phaseSlug="secondary"
+        nextUnit={null}
+        prevUnit={null}
+        subjectCategories={null}
+        showDownloadMessage={false}
+        setShowDownloadMessage={jest.fn()}
+      />,
+    );
+
+    expect(
+      screen.getByRole("heading", { name: "Learning tier (KS4)" }),
+    ).toBeInTheDocument();
+    expect(
+      screen.getByRole("heading", { name: "Exam subject (KS4)" }),
+    ).toBeInTheDocument();
+    const foundationLink = screen.getByRole("link", { name: "Foundation" });
+    expect(foundationLink).toHaveAttribute(
+      "href",
+      resolveOakHref({
+        page: "integrated-unit-overview",
+        programmeSlug: "biology-secondary-ks4-foundation-aqa",
+        unitSlug: "cells",
       }),
-      {},
+    );
+    expect(foundationLink).toHaveAttribute("aria-current", "page");
+    expect(screen.getByRole("link", { name: "Higher" })).toHaveAttribute(
+      "href",
+      resolveOakHref({
+        page: "integrated-unit-overview",
+        programmeSlug: "biology-secondary-ks4-higher-aqa",
+        unitSlug: "cells",
+      }),
+    );
+    const biologyLink = screen.getByRole("link", { name: "Biology" });
+    expect(biologyLink).toHaveAttribute(
+      "href",
+      resolveOakHref({
+        page: "integrated-unit-overview",
+        programmeSlug: "biology-secondary-ks4-foundation-aqa",
+        unitSlug: "cells",
+      }),
+    );
+    expect(biologyLink).toHaveAttribute("aria-current", "page");
+    expect(
+      screen.getByRole("link", { name: "Combined science" }),
+    ).toHaveAttribute(
+      "href",
+      resolveOakHref({
+        page: "integrated-unit-overview",
+        programmeSlug: "combined-science-secondary-ks4-foundation-aqa",
+        unitSlug: "cells",
+      }),
     );
   });
   it("renders why this why now", () => {
     render(
-      <UnitView
+      <UnitOverviewContent
         programmeSlug="biology-secondary-ks3"
         unitSlug="cells"
         unitTitle="Cells"
@@ -146,7 +182,7 @@ describe("UnitView", () => {
         subjectSlug="biology"
         keyStageSlug="ks3"
         keyStageTitle="Key Stage 3"
-        lessons={lessons as UnitViewProps["lessons"]}
+        lessons={lessons as UnitOverviewContentProps["lessons"]}
         unitIndex={2}
         unitCount={12}
         threads={[]}
@@ -157,6 +193,8 @@ describe("UnitView", () => {
         nextUnit={null}
         prevUnit={null}
         subjectCategories={null}
+        showDownloadMessage={false}
+        setShowDownloadMessage={jest.fn()}
       />,
     );
 
@@ -164,7 +202,7 @@ describe("UnitView", () => {
   });
   it("renders prior knowledge requirements in a list", () => {
     render(
-      <UnitView
+      <UnitOverviewContent
         programmeSlug="biology-secondary-ks3"
         unitSlug="cells"
         unitTitle="Cells"
@@ -173,7 +211,7 @@ describe("UnitView", () => {
         subjectSlug="biology"
         keyStageSlug="ks3"
         keyStageTitle="Key Stage 3"
-        lessons={lessons as UnitViewProps["lessons"]}
+        lessons={lessons as UnitOverviewContentProps["lessons"]}
         unitIndex={2}
         unitCount={12}
         threads={[]}
@@ -184,17 +222,23 @@ describe("UnitView", () => {
         nextUnit={null}
         prevUnit={null}
         subjectCategories={null}
+        showDownloadMessage={false}
+        setShowDownloadMessage={jest.fn()}
       />,
     );
 
-    const listItems = screen.getAllByRole("listitem");
-    expect(listItems).toHaveLength(2);
-    expect(listItems[0]).toHaveTextContent("Requirement 1");
-    expect(listItems[1]).toHaveTextContent("Requirement 2");
+    const priorKnowledgeHeading = screen.getByRole("heading", {
+      name: "Prior knowledge requirements",
+    });
+    const priorKnowledgeSection = priorKnowledgeHeading.closest("div");
+
+    expect(priorKnowledgeSection).not.toBeNull();
+    expect(priorKnowledgeSection).toHaveTextContent("Requirement 1");
+    expect(priorKnowledgeSection).toHaveTextContent("Requirement 2");
   });
   it("renders threads", () => {
     render(
-      <UnitView
+      <UnitOverviewContent
         programmeSlug="biology-secondary-ks3"
         unitSlug="cells"
         unitTitle="Cells"
@@ -203,7 +247,7 @@ describe("UnitView", () => {
         subjectSlug="biology"
         keyStageSlug="ks3"
         keyStageTitle="Key Stage 3"
-        lessons={lessons as UnitViewProps["lessons"]}
+        lessons={lessons as UnitOverviewContentProps["lessons"]}
         unitIndex={2}
         unitCount={12}
         threads={["Thread 1", "Thread 2"]}
@@ -213,6 +257,8 @@ describe("UnitView", () => {
         nextUnit={null}
         prevUnit={null}
         subjectCategories={null}
+        showDownloadMessage={false}
+        setShowDownloadMessage={jest.fn()}
       />,
     );
 
@@ -224,7 +270,7 @@ describe("UnitView", () => {
   });
   it("renders previous unit link", () => {
     render(
-      <UnitView
+      <UnitOverviewContent
         programmeSlug="biology-secondary-ks3"
         unitSlug="cells"
         unitTitle="Cells"
@@ -233,7 +279,7 @@ describe("UnitView", () => {
         subjectSlug="biology"
         keyStageSlug="ks3"
         keyStageTitle="Key Stage 3"
-        lessons={lessons as UnitViewProps["lessons"]}
+        lessons={lessons as UnitOverviewContentProps["lessons"]}
         unitIndex={2}
         unitCount={12}
         threads={["Thread 1", "Thread 2"]}
@@ -243,6 +289,8 @@ describe("UnitView", () => {
         nextUnit={null}
         prevUnit={{ slug: "unit-1", title: "Unit 1" }}
         subjectCategories={null}
+        showDownloadMessage={false}
+        setShowDownloadMessage={jest.fn()}
       />,
     );
 
@@ -252,12 +300,16 @@ describe("UnitView", () => {
     expect(previousUnitLink).toBeInTheDocument();
     expect(previousUnitLink).toHaveProperty(
       "href",
-      "http://localhost/programmes/biology-secondary-ks3/units/unit-1/lessons",
+      `http://localhost${resolveOakHref({
+        page: "integrated-unit-overview",
+        programmeSlug: "biology-secondary-ks3",
+        unitSlug: "unit-1",
+      })}`,
     );
   });
   it("renders next unit link", () => {
     render(
-      <UnitView
+      <UnitOverviewContent
         programmeSlug="biology-secondary-ks3"
         unitSlug="cells"
         unitTitle="Cells"
@@ -266,7 +318,7 @@ describe("UnitView", () => {
         subjectSlug="biology"
         keyStageSlug="ks3"
         keyStageTitle="Key Stage 3"
-        lessons={lessons as UnitViewProps["lessons"]}
+        lessons={lessons as UnitOverviewContentProps["lessons"]}
         unitIndex={2}
         unitCount={12}
         threads={["Thread 1", "Thread 2"]}
@@ -276,6 +328,8 @@ describe("UnitView", () => {
         prevUnit={null}
         nextUnit={{ slug: "unit-3", title: "Unit 3" }}
         subjectCategories={null}
+        showDownloadMessage={false}
+        setShowDownloadMessage={jest.fn()}
       />,
     );
 
@@ -285,7 +339,49 @@ describe("UnitView", () => {
     expect(nextUnitLink).toBeInTheDocument();
     expect(nextUnitLink).toHaveProperty(
       "href",
-      "http://localhost/programmes/biology-secondary-ks3/units/unit-3/lessons",
+      `http://localhost${resolveOakHref({
+        page: "integrated-unit-overview",
+        programmeSlug: "biology-secondary-ks3",
+        unitSlug: "unit-3",
+      })}`,
     );
+  });
+  it("renders a banner when unit download message is true", async () => {
+    const mockClose = jest.fn();
+    render(
+      <UnitOverviewContent
+        programmeSlug="biology-secondary-ks3"
+        unitSlug="cells"
+        unitTitle="Cells"
+        unitDescription="Learn about cells"
+        subjectTitle="Biology"
+        subjectSlug="biology"
+        keyStageSlug="ks3"
+        keyStageTitle="Key Stage 3"
+        lessons={lessons as UnitOverviewContentProps["lessons"]}
+        unitIndex={2}
+        unitCount={12}
+        threads={["Thread 1", "Thread 2"]}
+        phaseSlug="secondary"
+        tierOptionToggles={[]}
+        subjectOptionToggles={[]}
+        prevUnit={null}
+        nextUnit={{ slug: "unit-3", title: "Unit 3" }}
+        subjectCategories={null}
+        showDownloadMessage={true}
+        setShowDownloadMessage={mockClose}
+      />,
+    );
+
+    const banner = screen.getByText(
+      "Downloads can take a few minutes, especially for larger files or slower connections.",
+    );
+    expect(banner).toBeInTheDocument();
+
+    const bannerCloseBtn = screen.getByTestId("inline-banner-close-button");
+    const user = userEvent.setup();
+    await user.click(bannerCloseBtn);
+
+    expect(mockClose).toHaveBeenCalledWith(false);
   });
 });

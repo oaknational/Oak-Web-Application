@@ -1,5 +1,6 @@
 "use client";
 
+import type { ReactNode } from "react";
 import {
   OakBox,
   OakFlex,
@@ -9,36 +10,31 @@ import {
   OakTagFunctional,
 } from "@oaknational/oak-components";
 
-import type { UnitViewProps } from "../UnitView";
+import type { UnitOverviewContentProps } from "../UnitOverviewContent/UnitOverviewContent";
 
 import CardListing from "@/components/TeacherComponents/CardListing/CardListing";
-import { SaveUnitButton } from "@/components/TeacherComponents/SaveUnitButton/SaveUnitButton";
 import { resolveOakHref } from "@/common-lib/urls";
-import { KeyStageTitleValueType } from "@/browser-lib/avo/Avo";
 import { useComplexCopyright } from "@/hooks/useComplexCopyright";
 
 type LessonListProps = Pick<
-  UnitViewProps,
-  | "programmeSlug"
-  | "unitSlug"
-  | "unitTitle"
-  | "unitDescription"
-  | "subjectTitle"
-  | "subjectSlug"
-  | "keyStageSlug"
-  | "keyStageTitle"
-  | "lessons"
-  | "unitIndex"
-  | "unitCount"
+  UnitOverviewContentProps,
+  "programmeSlug" | "unitSlug" | "unitTitle" | "unitDescription" | "lessons"
 > & {
+  unitIndex?: number;
+  unitCount?: number;
   lessonCount: number;
+  unitDescription?: UnitOverviewContentProps["unitDescription"];
   subjectCategories?: string[] | null;
+  selectedLessonIndex?: number;
+  headerCtaSlot?: ReactNode | null;
 };
 
 function LessonSubcopy({
   lesson,
+  currentLesson,
 }: {
-  readonly lesson: UnitViewProps["lessons"][number];
+  readonly lesson: UnitOverviewContentProps["lessons"][number];
+  readonly currentLesson: boolean;
 }) {
   const loginRequired =
     "loginRequired" in lesson ? lesson.loginRequired : false;
@@ -80,6 +76,15 @@ function LessonSubcopy({
       </OakFlex>
     );
   }
+  if (currentLesson) {
+    return (
+      <OakFlex $flexDirection={["column"]}>
+        <OakBox>{lesson.pupilLessonOutcome}</OakBox>
+        <OakBox $textAlign={"right"}>Current lesson</OakBox>
+      </OakFlex>
+    );
+  }
+
   return lesson.pupilLessonOutcome;
 }
 
@@ -88,29 +93,32 @@ const LessonList = ({
   unitSlug,
   unitTitle,
   unitDescription,
-  subjectTitle,
-  subjectSlug,
-  keyStageSlug,
-  keyStageTitle,
   lessons,
   unitIndex,
   unitCount,
   lessonCount,
   subjectCategories,
+  selectedLessonIndex,
+  headerCtaSlot = null,
 }: LessonListProps) => {
+  const showUnitCount = unitIndex !== undefined && unitCount !== undefined;
+
   return (
     <OakFlex $flexDirection="column">
       <OakFlex $justifyContent="space-between" $alignItems="flex-start">
-        <OakBox
-          $background="bg-decorative3-very-subdued"
-          $pa="spacing-20"
-          $btlr="border-radius-l"
-          $btrr="border-radius-l"
-          $font="body-2"
-          aria-hidden={true}
-        >
-          <OakSpan $font="body-2-bold">Unit {unitIndex}</OakSpan> of {unitCount}
-        </OakBox>
+        {showUnitCount && (
+          <OakBox
+            $background="bg-decorative3-very-subdued"
+            $pa="spacing-20"
+            $btlr="border-radius-l"
+            $btrr="border-radius-l"
+            $font="body-2"
+            aria-hidden={true}
+          >
+            <OakSpan $font="body-2-bold">Unit {unitIndex}</OakSpan> of{" "}
+            {unitCount}
+          </OakBox>
+        )}
         {subjectCategories ? (
           <OakFlex $gap={"spacing-8"}>
             {subjectCategories.map((subjectCategory) => (
@@ -134,7 +142,7 @@ const LessonList = ({
         $pt={["spacing-32", "spacing-32", "spacing-56"]}
         $pb="spacing-24"
         $borderRadius="border-radius-xl"
-        $btlr="border-radius-square"
+        $btlr={showUnitCount ? "border-radius-square" : "border-radius-xl"}
         $dropShadow="drop-shadow-centred-standard"
       >
         <OakFlex
@@ -145,17 +153,22 @@ const LessonList = ({
           <OakBox
             as="h2"
             $font="heading-5"
-            aria-label={`Unit ${unitIndex} of ${unitCount}: ${unitTitle}`}
+            aria-label={
+              showUnitCount
+                ? `Unit ${unitIndex} of ${unitCount}: ${unitTitle}`
+                : unitTitle
+            }
           >
             {unitTitle}
           </OakBox>
-          {unitDescription ? (
-            <OakP $font="body-2">{unitDescription}</OakP>
-          ) : null}
+          {unitDescription && <OakP $font="body-2">{unitDescription}</OakP>}
         </OakFlex>
-
         <OakBox>
-          <OakFlex $justifyContent="space-between" $alignItems="flex-start">
+          <OakFlex
+            $justifyContent="space-between"
+            $alignItems="flex-start"
+            $gap="spacing-12"
+          >
             <OakBox
               as="h3"
               $background="bg-decorative1-subdued"
@@ -167,20 +180,7 @@ const LessonList = ({
               <OakSpan $font="body-2-bold">{lessonCount}</OakSpan> lessons in
               unit
             </OakBox>
-            <SaveUnitButton
-              buttonVariant="default"
-              programmeSlug={programmeSlug}
-              unitSlug={unitSlug}
-              unitTitle={unitTitle}
-              trackingProps={{
-                savedFrom: "lesson_listing_save_button",
-                keyStageTitle:
-                  (keyStageTitle as KeyStageTitleValueType) ?? undefined,
-                keyStageSlug,
-                subjectTitle: subjectTitle ?? "",
-                subjectSlug,
-              }}
-            />
+            {headerCtaSlot}
           </OakFlex>
 
           <OakFlex
@@ -201,9 +201,18 @@ const LessonList = ({
               >
                 <CardListing
                   layoutVariant="horizontal"
-                  isHighlighted={false}
+                  highlightColorVariant={
+                    selectedLessonIndex === lesson.orderInUnit
+                      ? "tertiary"
+                      : undefined
+                  }
                   title={lesson.lessonTitle}
-                  subcopy={<LessonSubcopy lesson={lesson} />}
+                  subcopy={
+                    <LessonSubcopy
+                      lesson={lesson}
+                      currentLesson={selectedLessonIndex === lesson.orderInUnit}
+                    />
+                  }
                   href={resolveOakHref({
                     page: "integrated-lesson-overview",
                     programmeSlug,

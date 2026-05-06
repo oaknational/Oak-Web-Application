@@ -1,3 +1,165 @@
+# [1.1069.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1068.0...v1.1069.0) (2026-05-06)
+
+
+### Bug Fixes
+
+* **LESQ-1949:** scroll to top when opening success page ([b0a0af1](https://github.com/oaknational/Oak-Web-Application/commit/b0a0af12177a3918dfcead3611c0b3a986ef9737))
+* **LESQ-1949:** shorten download button label on mobile ([acc8564](https://github.com/oaknational/Oak-Web-Application/commit/acc8564b64f548f33de623c242a58f9e951724ef))
+
+
+### Features
+
+* **LESQ-1949:** add download confirmation component ([bad0113](https://github.com/oaknational/Oak-Web-Application/commit/bad01131caccc5607c0a4d3825fbca8dfa86cda4))
+* **LESQ-1949:** align download unit button with designs ([58f7b88](https://github.com/oaknational/Oak-Web-Application/commit/58f7b88e8f964d2aada46170bb982ba63004d53e))
+* **LESQ-1949:** make unit count optional on LessonList ([dafdf06](https://github.com/oaknational/Oak-Web-Application/commit/dafdf069d6a5cc12f19b3d82cf65ff01d00fb819))
+* **LESQ-1949:** show current lesson in listing on success page ([e3f55f1](https://github.com/oaknational/Oak-Web-Application/commit/e3f55f169c00d7f83ec73774446c7c5f7b7a4f1a))
+* **LESQ-1949:** wire new download confirmation up ([0397948](https://github.com/oaknational/Oak-Web-Application/commit/039794859928c474799c6e871bcd6f6c7b0f9207))
+
+# [1.1068.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1067.0...v1.1068.0) (2026-05-06)
+
+
+### Bug Fixes
+
+* fix isue from dodgy merge incorrect type ([c21d160](https://github.com/oaknational/Oak-Web-Application/commit/c21d160d32edd7dd2f48985374b284d01c22b267))
+* force unitDownloadFileId presence when displaying download button...? ([74bea43](https://github.com/oaknational/Oak-Web-Application/commit/74bea43db90f76a1f37e674034a35947d216a3b0))
+* re-add needed property ([f745a8d](https://github.com/oaknational/Oak-Web-Application/commit/f745a8d96d61935e8920fdb0baeb0b54e1900187))
+* remove copilot's stuff... ([dc641a2](https://github.com/oaknational/Oak-Web-Application/commit/dc641a2568dddc68ab39e9dfc9204367ac7fc2a2))
+* remove duplicated property ([2060c75](https://github.com/oaknational/Oak-Web-Application/commit/2060c75602a702fde03d288b641a0e04d53351fe))
+* remove unused isHighlighted uses ([545ea02](https://github.com/oaknational/Oak-Web-Application/commit/545ea02efa2509123a0068dc1e8295db29418789))
+
+
+### Features
+
+* add ability to highlight a selected lesson in lesson list component ([349c510](https://github.com/oaknational/Oak-Web-Application/commit/349c510606cf866b06b60997bbd2d20532422feb))
+* add ability to show and hide unit count on Lesson List ([8857602](https://github.com/oaknational/Oak-Web-Application/commit/88576020b41d96c95729f4a6b2c975698c00f355))
+* add current lesson text to lesson list ([7bd1d2f](https://github.com/oaknational/Oak-Web-Application/commit/7bd1d2f9769a004c858ff8dc2cdf2c1bff0f1d64))
+* add optional unit download button to lesson list ([e49332b](https://github.com/oaknational/Oak-Web-Application/commit/e49332b97edb11c6e495201817488c33454e08cd))
+* add third style option to card listing component ([d38973c](https://github.com/oaknational/Oak-Web-Application/commit/d38973cd9b0f33ed352bd6930a9293c76f0e69dc))
+* make unit description optional ([ca187d5](https://github.com/oaknational/Oak-Web-Application/commit/ca187d5205416614fcb4915a319dcae6f77a3d61))
+
+# [1.1067.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1066.2...v1.1067.0) (2026-05-06)
+
+
+### Bug Fixes
+
+* mock media clips component to prevent requests to video api in test ([d0c897e](https://github.com/oaknational/Oak-Web-Application/commit/d0c897e839a6db233af8eb0628d476ea77ef0034))
+
+
+### Features
+
+* update create with ai to button with dropdown options ([5423e9d](https://github.com/oaknational/Oak-Web-Application/commit/5423e9d0e83f2fb4e667ae4b52ed0c1489f43864))
+
+## [1.1066.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.1066.1...v1.1066.2) (2026-05-05)
+
+
+### Bug Fixes
+
+* specific version for terraform github actions ([592b2da](https://github.com/oaknational/Oak-Web-Application/commit/592b2daecb7a8c848c4f8dbc4c6adfeb194204f6))
+* terraform linting ([6ebb853](https://github.com/oaknational/Oak-Web-Application/commit/6ebb85391c552ca864703678819d429cdd62c0d8))
+
+## [1.1066.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.1066.0...v1.1066.1) (2026-05-05)
+
+
+### Bug Fixes
+
+* direct curriciulmHref to null where it was before to previous-downloads ([2255238](https://github.com/oaknational/Oak-Web-Application/commit/2255238b6dae59903175364690a6135848136562))
+* failing subject picker test ([7a04227](https://github.com/oaknational/Oak-Web-Application/commit/7a0422725e13b7a8437f5c2b93b3041a303abb6d))
+* reinstate wrongly removed curriculumHref in UnitList ([09b9323](https://github.com/oaknational/Oak-Web-Application/commit/09b9323c0dbd033440fd0ead44b00e12fc8c76a6))
+* remove hascurriculumDownload prop from components ([26ce572](https://github.com/oaknational/Oak-Web-Application/commit/26ce57242dde23504a17980b30d380ac22905ecb))
+* remove hascurriculumDownload prop from stories, tests, queries and schemas ([c762e19](https://github.com/oaknational/Oak-Web-Application/commit/c762e19051c31e626d92d4e99b3a1540d551099b))
+* remove legacy curriculum download button ([1898a5a](https://github.com/oaknational/Oak-Web-Application/commit/1898a5a94f2321c4ad16b6eae3cd974228afc115))
+* remove old comment re HeaderListingCurriculumDownloadsButton ([ef85c5f](https://github.com/oaknational/Oak-Web-Application/commit/ef85c5fb10440a0c4fab82b4df8995e80c602a16))
+* remove previous downloads fixtures and rename file to exported downloadCategories ([fc55b85](https://github.com/oaknational/Oak-Web-Application/commit/fc55b85934e1da4a9d7365e3d4ee9b2a0eb0dc56))
+* remove previous downloads link from subject picker and associated tests ([525923e](https://github.com/oaknational/Oak-Web-Application/commit/525923e91efe0ec50dfc51e11d1c4ba0f64d20fb))
+* remove previous-downloads from deploymenttesturls ([2e9a047](https://github.com/oaknational/Oak-Web-Application/commit/2e9a04787170d8086448b584196f335e3974b51c))
+* remove previous-downloads href and associates in HeaderListing component ([5b5b1b1](https://github.com/oaknational/Oak-Web-Application/commit/5b5b1b1ee6c66d66efecb697e6eedadf4263e6d9))
+* remove previous-downloads page ([8c4cffb](https://github.com/oaknational/Oak-Web-Application/commit/8c4cffbf9053c99d76c87a05bcb3fc09027af338))
+* remove type previous props ([4831f1e](https://github.com/oaknational/Oak-Web-Application/commit/4831f1e1f6c1d2a14b364eca5b325fea5771ebae))
+
+# [1.1066.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1065.0...v1.1066.0) (2026-05-05)
+
+
+### Features
+
+* add autodismiss with 10s duration to toast ([3f9a275](https://github.com/oaknational/Oak-Web-Application/commit/3f9a2759f46c504170e9b5d79f507385d2a64b08))
+* add inline banner when unit download starts ([de71f5e](https://github.com/oaknational/Oak-Web-Application/commit/de71f5e8e18e1fc2872021c338d62cff288c6275))
+* show oak toast on unit download success ([09fa9c6](https://github.com/oaknational/Oak-Web-Application/commit/09fa9c66702e4220ecf2605ec3789b24200cfe7f))
+
+# [1.1065.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1064.0...v1.1065.0) (2026-04-30)
+
+
+### Bug Fixes
+
+* **LESQ-1947:** add key to breadcrumbs ([aea0fac](https://github.com/oaknational/Oak-Web-Application/commit/aea0fac2edf1edf2876834145ee1e60f93ded6c7))
+* **LESQ-1947:** add missing examBoardSlug to constructLessonDownloads for correct breadcrumb ([6335664](https://github.com/oaknational/Oak-Web-Application/commit/6335664f6442edfa1d09ba4aafc62814225d0229))
+
+
+### Features
+
+* **LESQ_1947:** enable linking to the integrated journey ([818ad0d](https://github.com/oaknational/Oak-Web-Application/commit/818ad0df11881536df9dbb7400b5b0e46416b700))
+* **LESQ-1947:** add a slot to allow overriding default breadcrumbs in LessonDownloads ([7734654](https://github.com/oaknational/Oak-Web-Application/commit/773465410d8236ac394942b2bfc93ffd9fe88bb4))
+* **LESQ-1947:** add additional pathway data to lesson downloads query ([3a73ed7](https://github.com/oaknational/Oak-Web-Application/commit/3a73ed7fef48072799e82cd524db137ae13e8555))
+* **LESQ-1947:** add the new downloads page ([a75cd13](https://github.com/oaknational/Oak-Web-Application/commit/a75cd13bed0c53e4c48009aecaf7e60ff49e8e71))
+* **LESQ-1947:** replace legacy checkbox components in lesson download ([84c62d0](https://github.com/oaknational/Oak-Web-Application/commit/84c62d060c18f5b55f8a047865abd702f742fe8a))
+* **LESQ-1947:** update links to point to the new downloads page ([b5d7c87](https://github.com/oaknational/Oak-Web-Application/commit/b5d7c87fdbd8207341ed00ade83194b79dcb49dc))
+
+# [1.1064.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1063.1...v1.1064.0) (2026-04-30)
+
+
+### Bug Fixes
+
+* dont show back to unit or lesson count for canonical pages ([196c291](https://github.com/oaknational/Oak-Web-Application/commit/196c291096c4e8d9e9f49a07db17afeb488341c9))
+* make slugs required for additional files link on canonical lesson page ([8e667e3](https://github.com/oaknational/Oak-Web-Application/commit/8e667e34d4061569d7d6a23ed6c8e6584d02b83d))
+* remove programme metadata on canonical page ([d053382](https://github.com/oaknational/Oak-Web-Application/commit/d05338216bb5373a642ae317b3f500390b2cf12c))
+* use minimal breadcrumbs for canonical lesson ([02bfa30](https://github.com/oaknational/Oak-Web-Application/commit/02bfa304ec6d4eef1491eacac1d54525e029d47e))
+
+
+### Features
+
+* delete canonical download page and test file ([ec791ee](https://github.com/oaknational/Oak-Web-Application/commit/ec791ee5842e9c8ac2a8de9c8ba2ee2056d178ed))
+* make download all button link to full programme download page ([26e368b](https://github.com/oaknational/Oak-Web-Application/commit/26e368b433016fb1bd9f6d86aed04562691a4ba8))
+* remove canonical beta downloads page ([9c64442](https://github.com/oaknational/Oak-Web-Application/commit/9c644429b596ab4cee07b642cad1302a1e3d8ae7))
+* remove canonical lesson type from lesson downloads view ([aa23231](https://github.com/oaknational/Oak-Web-Application/commit/aa23231acd4d057c8bc91a59846b1a7c65a2c30b))
+* remove specialist lesson handling on download page ([915dae2](https://github.com/oaknational/Oak-Web-Application/commit/915dae26cadb27c78d5f29472b0bc9e65c7a3959))
+* remove specialist lesson pages ([9b3ebc9](https://github.com/oaknational/Oak-Web-Application/commit/9b3ebc97078f886333a856d23a3cd8a53cb472dd))
+
+## [1.1063.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.1063.0...v1.1063.1) (2026-04-30)
+
+
+### Bug Fixes
+
+* test tf-check versions ([30e501d](https://github.com/oaknational/Oak-Web-Application/commit/30e501d92bd15904343580d96622931badce0fcc))
+
+# [1.1063.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1062.0...v1.1063.0) (2026-04-29)
+
+
+### Bug Fixes
+
+* field name in fixture ([1884e72](https://github.com/oaknational/Oak-Web-Application/commit/1884e720784e8c854ee25be23a4b6cdd0b5e5884))
+* remove duplicate app name suffix on titles ([63f30e6](https://github.com/oaknational/Oak-Web-Application/commit/63f30e61ea7e143ad715b6a5e77cc107ca3e8840))
+
+
+### Features
+
+* add ks4 options to unit overview metadata ([2e30752](https://github.com/oaknational/Oak-Web-Application/commit/2e307528bf685a06bfc361976f9bec470c305229))
+* add new meta titles for programme page ([9785aa4](https://github.com/oaknational/Oak-Web-Application/commit/9785aa468eb01f3b97a8c514f236d6f8945160c8))
+* update lesson overview meta title ([f3706c1](https://github.com/oaknational/Oak-Web-Application/commit/f3706c1ba35569b6bb37596b3cc76b34d84d6972))
+* update meta title for unit overview page ([6e60b5f](https://github.com/oaknational/Oak-Web-Application/commit/6e60b5f5f29a0df037665678206bd56e5485479d))
+* update programme page description ([0635e76](https://github.com/oaknational/Oak-Web-Application/commit/0635e76d94cb81e8f95350bf092fe65401f37816))
+
+# [1.1062.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1061.0...v1.1062.0) (2026-04-29)
+
+
+### Bug Fixes
+
+* copy change ([69abebe](https://github.com/oaknational/Oak-Web-Application/commit/69abebe5d89a80e1ebbcb96b7624efcaabab39ff))
+* storybook failing to render locally ([bc97fa2](https://github.com/oaknational/Oak-Web-Application/commit/bc97fa286795f73f22991036444035edf560a06e))
+
+
+### Features
+
+* add download success header component ([0206dc4](https://github.com/oaknational/Oak-Web-Application/commit/0206dc433c1b11c79cd9a118b248ae1582f69136))
+
 # [1.1061.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1060.0...v1.1061.0) (2026-04-29)
 
 

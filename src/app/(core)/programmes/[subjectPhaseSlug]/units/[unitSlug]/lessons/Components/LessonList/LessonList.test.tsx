@@ -11,17 +11,6 @@ import lessonListingFixture, {
 
 const render = renderWithProviders();
 
-const saveUnitButtonMock = jest.fn();
-jest.mock(
-  "@/components/TeacherComponents/SaveUnitButton/SaveUnitButton",
-  () => ({
-    SaveUnitButton: (props: unknown) => {
-      saveUnitButtonMock(props);
-      return <button type="button">Save unit</button>;
-    },
-  }),
-);
-
 type LessonListProps = ComponentProps<typeof LessonList>;
 
 const fixtureData = lessonListingFixture({
@@ -73,10 +62,6 @@ const defaultProps: LessonListProps = {
   unitSlug: fixtureData.unitSlug,
   unitTitle: fixtureData.unitTitle,
   unitDescription: "Learn about cells",
-  subjectTitle: fixtureData.subjectTitle,
-  subjectSlug: fixtureData.subjectSlug,
-  keyStageSlug: fixtureData.keyStageSlug,
-  keyStageTitle: fixtureData.keyStageTitle,
   unitIndex: 2,
   unitCount: 12,
   lessonCount: 3,
@@ -84,10 +69,6 @@ const defaultProps: LessonListProps = {
 };
 
 describe("LessonList", () => {
-  beforeEach(() => {
-    jest.clearAllMocks();
-  });
-
   it("renders unit and lesson summary content", () => {
     render(<LessonList {...defaultProps} />);
 
@@ -146,26 +127,22 @@ describe("LessonList", () => {
     ).not.toBeInTheDocument();
   });
 
-  it("passes save button tracking props", () => {
-    render(<LessonList {...defaultProps} />);
+  it("renders headerCtaSlot when provided", () => {
+    render(
+      <LessonList
+        {...defaultProps}
+        headerCtaSlot={<button type="button">Custom header action</button>}
+      />,
+    );
 
     expect(
-      screen.getByRole("button", { name: "Save unit" }),
+      screen.getByRole("button", { name: "Custom header action" }),
     ).toBeInTheDocument();
-    expect(saveUnitButtonMock).toHaveBeenCalledWith(
-      expect.objectContaining({
-        programmeSlug: "biology-secondary-ks3",
-        unitSlug: "cells",
-        unitTitle: "Cells",
-        buttonVariant: "default",
-        trackingProps: expect.objectContaining({
-          savedFrom: "lesson_listing_save_button",
-          keyStageTitle: "Key Stage 3",
-          keyStageSlug: "ks3",
-          subjectTitle: "Biology",
-          subjectSlug: "biology",
-        }),
-      }),
-    );
+  });
+
+  it("renders 'current lesson' text on current lesson item", () => {
+    render(<LessonList {...defaultProps} selectedLessonIndex={1} />);
+
+    expect(screen.queryByText("Current lesson")).toBeInTheDocument();
   });
 });
