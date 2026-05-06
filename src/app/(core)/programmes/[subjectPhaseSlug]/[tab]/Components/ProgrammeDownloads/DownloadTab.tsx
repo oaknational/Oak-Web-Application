@@ -124,6 +124,7 @@ const DownloadTab: FC<CurriculumDownloadTabProps> = ({
   const { track } = useAnalytics();
   const { onHubspotSubmit } = useHubspotSubmit();
   const { analyticsUseCase } = useAnalyticsPageProps();
+
   const availableDownloadTypes = useMemo(() => {
     return DOWNLOAD_TYPE_LABELS.map(({ id }) => id).filter((id) => {
       if (id === "national-curriculum") {
@@ -132,6 +133,10 @@ const DownloadTab: FC<CurriculumDownloadTabProps> = ({
       return true;
     });
   }, [formattedData]);
+
+  const curriculumDownloadsWithLabels = DOWNLOAD_TYPE_LABELS.filter(({ id }) =>
+    availableDownloadTypes.includes(id),
+  );
 
   // Convert the data into OWA component format (using camelCase instead of snake_case for keys.)
   const [tierSelected, setTierSelected] = useState<string | null>(null);
@@ -362,9 +367,7 @@ const DownloadTab: FC<CurriculumDownloadTabProps> = ({
           apiError={submitError}
           cardGroup={
             <OakFlex $gap={"spacing-16"}>
-              {DOWNLOAD_TYPE_LABELS.filter(({ id }) =>
-                availableDownloadTypes.includes(id),
-              ).map((download) => (
+              {curriculumDownloadsWithLabels.map((download) => (
                 <Controller
                   key={download.id}
                   control={form.control}
@@ -427,7 +430,7 @@ const DownloadTab: FC<CurriculumDownloadTabProps> = ({
             </OakPrimaryButton>
           }
           showRiskAssessmentBanner={false}
-          downloads={[]}
+          curriculumDownloads={curriculumDownloadsWithLabels}
         />
       )}
     </OakBox>

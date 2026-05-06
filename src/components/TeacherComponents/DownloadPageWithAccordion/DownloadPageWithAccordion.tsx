@@ -20,6 +20,8 @@ import {
 
 import ComplexCopyrightRestrictionBanner from "../ComplexCopyrightRestrictionBanner/ComplexCopyrightRestrictionBanner";
 
+import { getAccordionText } from "./getAccordionText";
+
 import { ResourcePageDetailsCompletedProps } from "@/components/TeacherComponents/ResourcePageDetailsCompleted/ResourcePageDetailsCompleted";
 import { ResourcePageSchoolDetailsProps } from "@/components/TeacherComponents/ResourcePageSchoolDetails/ResourcePageSchoolDetails";
 import { ResourceFormValues } from "@/components/TeacherComponents/types/downloadAndShare.types";
@@ -32,6 +34,7 @@ import NoResourcesToDownload from "@/components/TeacherComponents/NoResourcesToD
 import TermsAgreementForm from "@/components/TeacherComponents/TermsAgreementForm";
 import { getFormErrorMessages } from "@/components/TeacherComponents/helpers/downloadAndShareHelpers/getDownloadFormErrorMessage";
 import { LessonDownloadsPageData } from "@/node-lib/curriculum-api-2023/queries/lessonDownloads/lessonDownloads.schema";
+import { DownloadTypeLabel } from "@/components/CurriculumComponents/CurriculumDownloadView/helper";
 
 type DownloadPageWithAccordionProps = ResourcePageDetailsCompletedProps &
   ResourcePageSchoolDetailsProps & {
@@ -55,7 +58,8 @@ type DownloadPageWithAccordionProps = ResourcePageDetailsCompletedProps &
     updatedAt: string;
     showTermsAgreement: boolean;
     showRiskAssessmentBanner?: boolean;
-    downloads?: LessonDownloadsPageData["downloads"];
+    lessonDownloads?: LessonDownloadsPageData["downloads"];
+    curriculumDownloads?: DownloadTypeLabel[];
     additionalFiles?: LessonDownloadsPageData["additionalFiles"];
   };
 
@@ -67,39 +71,6 @@ export type DownloadWrapperProps = {
   lessonReleaseDate: string | null;
   isLegacy: boolean;
 } & DownloadPageWithAccordionProps;
-
-// TODO: curriculum text
-const getAccordionText = (
-  downloads: LessonDownloadsPageData["downloads"],
-  additionalFiles: LessonDownloadsPageData["additionalFiles"],
-) => {
-  const resources = [];
-  const resourceTypes: Record<string, string> = {
-    presentation: "slides",
-    "intro-quiz-questions": "quizzes",
-    "intro-quiz-answers": "quizzes",
-    "exit-quiz-questions": "quizzes",
-    "exit-quiz-answers": "quizzes",
-    "worksheet-pdf": "worksheets",
-    "worksheet-pptx": "worksheets",
-    "supplementary-pdf": "additional materials",
-    "supplementary-docx": "additional materials",
-    "lesson-guide-pdf": "lesson guide",
-    "additional-files": "additional files",
-  };
-
-  for (const download of downloads as Array<{ type?: string }>) {
-    if (download.type && download.type in resourceTypes) {
-      resources.push(resourceTypes[download.type]);
-    }
-  }
-  if (additionalFiles && additionalFiles.length > 0) {
-    resources.push("additional files");
-  }
-  const resourcesText = Array.from(new Set(resources)).join(", ");
-
-  return resourcesText.charAt(0).toUpperCase() + resourcesText.slice(1);
-};
 
 const DownloadPageWithAccordion: FC<DownloadWrapperProps> = (
   props: DownloadWrapperProps,
@@ -154,7 +125,8 @@ export const DownloadPageWithAccordionContent = (
     | "errors"
     | "downloadsRestricted"
     | "showTermsAgreement"
-    | "downloads"
+    | "lessonDownloads"
+    | "curriculumDownloads"
     | "additionalFiles"
     | "handleToggleSelectAll"
     | "selectAllChecked"
@@ -183,7 +155,8 @@ export const DownloadPageWithAccordionContent = (
     errors,
     downloadsRestricted,
     showTermsAgreement,
-    downloads,
+    lessonDownloads,
+    curriculumDownloads,
     additionalFiles,
     handleToggleSelectAll,
     selectAllChecked,
@@ -219,7 +192,11 @@ export const DownloadPageWithAccordionContent = (
         {errors?.resources?.message}
       </FieldError>
       <OakDownloadsAccordion
-        downloadsText={getAccordionText(downloads ?? [], additionalFiles ?? [])}
+        downloadsText={getAccordionText({
+          lessonDownloads,
+          additionalFiles,
+          curriculumDownloads,
+        })}
         handleToggleSelectAll={handleToggleSelectAll}
         selectAllChecked={selectAllChecked}
         id="downloads-accordion"

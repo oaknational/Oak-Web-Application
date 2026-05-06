@@ -439,7 +439,7 @@ export function LessonDownloads(props: LessonDownloadsProps) {
               </OakPrimaryButton>
             }
             showRiskAssessmentBanner={showRiskAssessmentBanner}
-            downloads={downloadsFilteredByCopyright}
+            lessonDownloads={downloadsFilteredByCopyright}
             additionalFiles={additionalFiles}
             showGeoBlocked={showGeoBlocked}
             lessonSlug={lessonSlug}
