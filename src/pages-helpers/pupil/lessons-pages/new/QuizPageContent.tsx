@@ -138,7 +138,7 @@ export const QuizPageContent = ({
 
     void router.push(
       getNewLessonSectionHref({
-        lessonSlug,
+        currentRoute: router.asPath,
         section: getHydratedQuizRedirectSection(section),
         searchParams: currentSearchParams,
       }),
@@ -176,7 +176,7 @@ export const QuizPageContent = ({
   const navigateToSection = (nextSection: "overview" | "review") => {
     void router.push(
       getNewLessonSectionHref({
-        lessonSlug,
+        currentRoute: router.asPath,
         section: nextSection,
         searchParams: currentSearchParams,
       }),
@@ -299,7 +299,7 @@ export const QuizPageContent = ({
             backLinkSlot: (
               <OakBackLink
                 href={getNewLessonSectionHref({
-                  lessonSlug,
+                  currentRoute: router.asPath,
                   section: "overview",
                   searchParams: currentSearchParams,
                 })}
