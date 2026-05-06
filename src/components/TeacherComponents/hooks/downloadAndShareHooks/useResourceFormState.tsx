@@ -259,10 +259,7 @@ export const useResourceFormState = (props: UseResourceFormStateProps) => {
 
   const { errors } = formState;
   const hasFormErrors = Object.keys(errors)?.length > 0;
-  const selectedResources: ResourceType[] = watch(
-    "resources",
-    [],
-  ) as ResourceType[];
+  const selectedResources = watch("resources", []) as ResourceType[];
 
   const [activeResources, setActiveResources] = useState<string[]>(
     getInitialResourcesState(),
@@ -284,7 +281,7 @@ export const useResourceFormState = (props: UseResourceFormStateProps) => {
 
   useEffect(() => {
     const initialResources = getInitialResourcesState();
-    if (selectedResources.length < initialResources?.length) {
+    if (selectedResources.length < initialResources.length) {
       setSelectAllChecked(false);
     } else {
       setSelectAllChecked(true);
@@ -342,7 +339,7 @@ export const useResourceFormState = (props: UseResourceFormStateProps) => {
       );
     }
 
-    if (preselected && props.type !== "curriculum") {
+    if (preselected) {
       setPreselectAll(preselected === "all");
 
       switch (true) {

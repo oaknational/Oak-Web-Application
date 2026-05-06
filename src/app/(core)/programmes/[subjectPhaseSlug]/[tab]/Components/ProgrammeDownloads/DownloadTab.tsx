@@ -171,8 +171,6 @@ const DownloadTab: FC<CurriculumDownloadTabProps> = ({
     curriculumResources: availableDownloadTypes,
   });
 
-  // TODO: default check
-
   const childSubjects = useMemo<Subject[]>(() => {
     return child_subjects && child_subjects.length > 0
       ? child_subjects.map(
