@@ -1,7 +1,5 @@
 import userEvent from "@testing-library/user-event";
 
-import { pickQuizTooltip } from "./helpers/pickQuizTooltip";
-
 import {
   PupilLessonQuizBottomNav,
   PupilLessonQuizCheckButton,
@@ -10,6 +8,7 @@ import {
   PupilLessonQuizView,
 } from ".";
 
+import { pickQuizTooltip } from "@/components/PupilComponents/Views/ViewHelpers";
 import { renderWithProvidersByName } from "@/__tests__/__helpers__/renderWithProviders";
 import "@/__tests__/__helpers__/ResizeObserverMock";
 import { QuizQuestionAnswers } from "@/node-lib/curriculum-api-2023/queries/pupilLesson/pupilLesson.schema";
