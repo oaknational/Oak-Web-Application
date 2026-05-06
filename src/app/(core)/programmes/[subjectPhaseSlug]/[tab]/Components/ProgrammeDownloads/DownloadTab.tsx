@@ -22,10 +22,8 @@ import { Controller } from "react-hook-form";
 
 import ScreenReaderOnly from "@/components/SharedComponents/ScreenReaderOnly/ScreenReaderOnly";
 import useAnalytics from "@/context/Analytics/useAnalytics";
-import useAnalyticsPageProps from "@/hooks/useAnalyticsPageProps";
 import { CurriculumOverviewMVData } from "@/node-lib/curriculum-api-2023";
 import {
-  AnalyticsUseCaseValueType,
   LearningTierValueType,
   PhaseValueType,
   ResourceTypeValueType,
@@ -61,7 +59,6 @@ export const trackCurriculumDownload = async (
   subjectTitle: string,
   onHubspotSubmit: (data: ResourceFormProps) => Promise<string | undefined>,
   track: ReturnType<typeof useAnalytics>["track"],
-  analyticsUseCase: AnalyticsUseCaseValueType,
   slugs: CurriculumSelectionSlugs,
 ) => {
   if (!data.terms) return;
@@ -82,7 +79,7 @@ export const trackCurriculumDownload = async (
     engagementIntent: "explore",
     componentType: "download_button",
     eventVersion: "2.0.0",
-    analyticsUseCase: analyticsUseCase,
+    analyticsUseCase: "Teacher",
     emailSupplied: data.email != null,
     resourceType: ["curriculum document"] as ResourceTypeValueType[],
     schoolOption,
@@ -123,7 +120,6 @@ const DownloadTab: FC<CurriculumDownloadTabProps> = ({
 }) => {
   const { track } = useAnalytics();
   const { onHubspotSubmit } = useHubspotSubmit();
-  const { analyticsUseCase } = useAnalyticsPageProps();
 
   const availableDownloadTypes = useMemo(() => {
     return DOWNLOAD_TYPE_LABELS.map(({ id }) => id).filter((id) => {
@@ -147,7 +143,7 @@ const DownloadTab: FC<CurriculumDownloadTabProps> = ({
     return snake_tiers && snake_tiers.length > 0
       ? snake_tiers.map(
           (tier) =>
-            mapKeys(tier, (value, key) => camelCase(key)) as unknown as Tier,
+            mapKeys(tier, (_, key) => camelCase(key)) as unknown as Tier,
         )
       : [];
   }, [snake_tiers]);
@@ -175,9 +171,7 @@ const DownloadTab: FC<CurriculumDownloadTabProps> = ({
     return child_subjects && child_subjects.length > 0
       ? child_subjects.map(
           (subject) =>
-            mapKeys(subject, (value, key) =>
-              camelCase(key),
-            ) as unknown as Subject,
+            mapKeys(subject, (_, key) => camelCase(key)) as unknown as Subject,
         )
       : [];
   }, [child_subjects]);
@@ -242,8 +236,6 @@ const DownloadTab: FC<CurriculumDownloadTabProps> = ({
   };
 
   const onSubmit = async (data: ResourceFormValues) => {
-    console.log("diego data", data.school, data.schoolName);
-
     setIsSubmitting(true);
     setSubmitError(undefined);
     const reportError = errorReporter("curriculum-download", {
@@ -281,7 +273,6 @@ const DownloadTab: FC<CurriculumDownloadTabProps> = ({
         curriculumInfo.subjectTitle,
         onHubspotSubmit,
         track,
-        analyticsUseCase,
         slugs,
       );
       setIsDone(true);
