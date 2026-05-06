@@ -1,3 +1,20 @@
+# [1.1069.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1068.0...v1.1069.0) (2026-05-06)
+
+
+### Bug Fixes
+
+* **LESQ-1949:** scroll to top when opening success page ([b0a0af1](https://github.com/oaknational/Oak-Web-Application/commit/b0a0af12177a3918dfcead3611c0b3a986ef9737))
+* **LESQ-1949:** shorten download button label on mobile ([acc8564](https://github.com/oaknational/Oak-Web-Application/commit/acc8564b64f548f33de623c242a58f9e951724ef))
+
+
+### Features
+
+* **LESQ-1949:** add download confirmation component ([bad0113](https://github.com/oaknational/Oak-Web-Application/commit/bad01131caccc5607c0a4d3825fbca8dfa86cda4))
+* **LESQ-1949:** align download unit button with designs ([58f7b88](https://github.com/oaknational/Oak-Web-Application/commit/58f7b88e8f964d2aada46170bb982ba63004d53e))
+* **LESQ-1949:** make unit count optional on LessonList ([dafdf06](https://github.com/oaknational/Oak-Web-Application/commit/dafdf069d6a5cc12f19b3d82cf65ff01d00fb819))
+* **LESQ-1949:** show current lesson in listing on success page ([e3f55f1](https://github.com/oaknational/Oak-Web-Application/commit/e3f55f169c00d7f83ec73774446c7c5f7b7a4f1a))
+* **LESQ-1949:** wire new download confirmation up ([0397948](https://github.com/oaknational/Oak-Web-Application/commit/039794859928c474799c6e871bcd6f6c7b0f9207))
+
 # [1.1068.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1067.0...v1.1068.0) (2026-05-06)
 
 
