@@ -97,7 +97,7 @@ export const UnitOverviewContent = ({
         $rg="spacing-56"
         $mb={["spacing-0", "spacing-48", "spacing-48"]}
         $mh="auto"
-        $mt={["spacing-48", "spacing-56"]}
+        $mt={["spacing-48", "spacing-56", "spacing-80"]}
         $width={"100%"}
         $maxWidth={"spacing-1280"}
         $position="relative"
@@ -124,7 +124,10 @@ export const UnitOverviewContent = ({
         >
           <SkipLink href="#lessons">Skip to lessons</SkipLink>
         </OakBox>
-        <OakGridArea $colSpan={[12, 4]} $gap={"spacing-56"}>
+        <OakGridArea
+          $colSpan={[12, 4]}
+          $gap={["spacing-48", "spacing-56", "spacing-80"]}
+        >
           {hasToggles && (
             <OakFlex $flexDirection="column" $gap="spacing-32">
               <ProgrammeToggles
@@ -161,7 +164,7 @@ export const UnitOverviewContent = ({
         <OakGridArea
           $colSpan={[12, 7]}
           $colStart={[1, 6]}
-          $gap="spacing-56"
+          $gap={["spacing-48", "spacing-56", "spacing-80"]}
           id="lessons"
         >
           <UnitInfo
@@ -186,7 +189,11 @@ export const UnitOverviewContent = ({
           />
           <HelpLinkCard $display={["block", "none"]} />
         </OakGridArea>
-        <OakGridArea $colSpan={12} $mb={"spacing-48"}>
+        <OakGridArea
+          $rowGap={["spacing-48", "spacing-56", "spacing-80"]}
+          $colSpan={12}
+          $mb={"spacing-48"}
+        >
           <UnitViewSeoAccordion
             subjectTitle={subjectTitle}
             nonCurriculum={nonCurriculum}
