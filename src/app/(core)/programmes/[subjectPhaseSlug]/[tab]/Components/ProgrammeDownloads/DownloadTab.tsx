@@ -19,6 +19,7 @@ import {
   OakTertiaryInvertedButton,
   OakGrid,
   OakGridArea,
+  OakTagFunctional,
 } from "@oaknational/oak-components";
 import { mapKeys, camelCase, capitalize } from "lodash";
 import { Controller } from "react-hook-form";
@@ -414,7 +415,18 @@ const DownloadTab: FC<CurriculumDownloadTabProps> = ({
                               name="curriculum-download"
                               titleSlot={download.label}
                               checked={fieldValue.includes(download.id)}
-                              formatSlot={download.subTitle}
+                              formatSlot={
+                                <OakFlex
+                                  $alignItems={"center"}
+                                  $gap={"spacing-8"}
+                                >
+                                  ({download.fileExt})
+                                  <OakTagFunctional
+                                    $background={"bg-decorative2-main"}
+                                    label="Editable"
+                                  />
+                                </OakFlex>
+                              }
                               iconName={download.icon}
                               onChange={onChangeHandler}
                             />
