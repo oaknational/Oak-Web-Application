@@ -4,7 +4,6 @@ import {
   useEffect,
   useLayoutEffect,
   useMemo,
-  useRef,
   useState,
 } from "react";
 import {
@@ -52,20 +51,6 @@ import {
 import { DOWNLOAD_TYPE_LABELS } from "@/components/CurriculumComponents/CurriculumDownloadView/helper";
 import { DownloadPageWithAccordionContent } from "@/components/TeacherComponents/DownloadPageWithAccordion/DownloadPageWithAccordion";
 import { useResourceFormState } from "@/components/TeacherComponents/hooks/downloadAndShareHooks/useResourceFormState";
-
-function ScrollIntoViewWhenVisisble({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
-  const ref = useRef<HTMLDivElement>(null);
-  useEffect(() => {
-    if (ref.current) {
-      ref.current.scrollIntoView();
-    }
-  }, [ref]);
-  return <div ref={ref}>{children}</div>;
-}
 
 export const trackCurriculumDownload = async (
   data: ResourceFormValues,
@@ -312,20 +297,18 @@ const DownloadTab: FC<CurriculumDownloadTabProps> = ({
 
   if (isDone) {
     return (
-      <ScrollIntoViewWhenVisisble>
-        <OakBox $pv={["spacing-48"]}>
-          <CurricSuccessMessage
-            title="Thanks for downloading"
-            message="We hope you find the resources useful. Click the question mark in the bottom-right corner to share your feedback."
-            buttonProps={{
-              label: "Back to downloads",
-              onClick: () => {
-                setIsDone(false);
-              },
-            }}
-          />
-        </OakBox>
-      </ScrollIntoViewWhenVisisble>
+      <OakBox $pv={["spacing-48"]}>
+        <CurricSuccessMessage
+          title="Thanks for downloading"
+          message="We hope you find the resources useful. Click the question mark in the bottom-right corner to share your feedback."
+          buttonProps={{
+            label: "Back to downloads",
+            onClick: () => {
+              setIsDone(false);
+            },
+          }}
+        />
+      </OakBox>
     );
   }
 
