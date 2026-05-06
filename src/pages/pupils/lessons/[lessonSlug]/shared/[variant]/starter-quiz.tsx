@@ -9,15 +9,15 @@ import {
   PupilLessonPageURLParams,
 } from "@/pages-helpers/pupil/lessons-pages/getProps";
 import { QuizPageContent } from "@/pages-helpers/pupil/lessons-pages/new/QuizPageContent";
-import { PupilExperienceViewProps } from "@/components/PupilViews/PupilExperience";
 import { PupilLayout } from "@/components/PupilComponents/PupilLayout/PupilLayout";
 import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
+import { PupilLessonPageProps } from "@/pages-helpers/pupil/lessons-pages/pupilLessonPage.types";
 
 type StarterQuizPageURLParams = {
   lessonSlug: string;
 };
 
-const PupilLessonStarterQuizNewPage = (props: PupilExperienceViewProps) => {
+const PupilLessonStarterQuizNewPage = (props: PupilLessonPageProps) => {
   const { browseData, lessonContent, variant } = props;
 
   return (
@@ -46,7 +46,7 @@ export default PupilLessonStarterQuizNewPage;
 export const getStaticPaths = getStaticPathsTemplate<StarterQuizPageURLParams>;
 
 export const getStaticProps: GetStaticProps<
-  PupilExperienceViewProps,
+  PupilLessonPageProps,
   StarterQuizPageURLParams
 > = async (context) => {
   const contextWithSection = {

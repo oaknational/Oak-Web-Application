@@ -12,7 +12,6 @@ import {
   getProps,
   PupilLessonPageURLParams,
 } from "@/pages-helpers/pupil/lessons-pages/getProps";
-import { PupilExperienceViewProps } from "@/components/PupilViews/PupilExperience";
 import { PupilLayout } from "@/components/PupilComponents/PupilLayout/PupilLayout";
 import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
 import {
@@ -35,6 +34,7 @@ import { useOakPupil } from "@/hooks/useOakPupil";
 import { useAssignmentSearchParams } from "@/hooks/useAssignmentSearchParams";
 import { getReviewSections } from "@/components/PupilComponents/Views/ViewHelpers/Review/getReviewSections";
 import { getReviewFinalFeedback } from "@/components/PupilComponents/Views/ViewHelpers/Review/getReviewFinalFeedback";
+import { PupilLessonPageProps } from "@/pages-helpers/pupil/lessons-pages/pupilLessonPage.types";
 
 type ReviewPageURLParams = {
   lessonSlug: string;
@@ -44,10 +44,7 @@ const ReviewPageContent = ({
   browseData,
   lessonContent,
   backUrl,
-}: Pick<
-  PupilExperienceViewProps,
-  "browseData" | "lessonContent" | "backUrl"
->) => {
+}: Pick<PupilLessonPageProps, "browseData" | "lessonContent" | "backUrl">) => {
   const router = useRouter();
   const { sectionResults, lessonReviewSections, isLessonComplete, isReadOnly } =
     usePupilLessonProgress(
@@ -233,7 +230,7 @@ const ReviewPageContent = ({
   );
 };
 
-const PupilLessonReviewNewPage = (props: PupilExperienceViewProps) => {
+const PupilLessonReviewNewPage = (props: PupilLessonPageProps) => {
   const { browseData, lessonContent, backUrl, variant } = props;
 
   return (
@@ -261,7 +258,7 @@ export default PupilLessonReviewNewPage;
 export const getStaticPaths = getStaticPathsTemplate<ReviewPageURLParams>;
 
 export const getStaticProps: GetStaticProps<
-  PupilExperienceViewProps,
+  PupilLessonPageProps,
   ReviewPageURLParams
 > = async (context) => {
   const contextWithSection = {
