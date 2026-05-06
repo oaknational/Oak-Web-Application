@@ -1,16 +1,17 @@
 import React from "react";
 import userEvent from "@testing-library/user-event";
 
-import { LessonOverviewHeaderProps } from "../LessonOverviewHeader";
-
-import { LessonOverviewCreateWithAiDropdown } from "./LessonOverviewCreateWithAiDropdown";
+import {
+  LessonOverviewCreateWithAiDropdown,
+  LessonOverviewCreateWithAiProps,
+} from "./LessonOverviewCreateWithAiDropdown";
 
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 
 describe("LessonOverviewCreateWithAiDropdown", () => {
   let mockTrackCreateWithAiButtonClicked: jest.Mock;
   let mockTrackTeachingMaterialsSelected: jest.Mock;
-  let defaultProps: LessonOverviewHeaderProps;
+  let defaultProps: LessonOverviewCreateWithAiProps;
 
   beforeEach(() => {
     mockTrackCreateWithAiButtonClicked = jest.fn();
@@ -21,46 +22,8 @@ describe("LessonOverviewCreateWithAiDropdown", () => {
       programmeSlug: "test-programme-slug",
       trackCreateWithAiButtonClicked: mockTrackCreateWithAiButtonClicked,
       trackTeachingMaterialsSelected: mockTrackTeachingMaterialsSelected,
-
-      // Required props from LessonOverviewHeaderProps interface
       subjectSlug: "test-subject",
-      unitSlug: "test-unit",
-      unitTitle: "Test Unit",
-      subjectTitle: "Test Subject",
-      lessonTitle: "Test Lesson",
-      isSpecialist: false,
-      isCanonical: true,
-      breadcrumbs: [],
-      background: "bg-decorative1-subdued",
-      isNew: true,
-      isShareable: true,
-      subjectIconBackgroundColor: "bg-decorative1-main",
-      track: {} as LessonOverviewHeaderProps["track"],
-      analyticsUseCase: "Teacher",
-      onClickDownloadAll: jest.fn(),
-      onClickShareAll: jest.fn(),
-      showDownloadAll: true,
-      showShare: true,
-      excludedFromTeachingMaterials: false,
-
-      // Optional props with sensible defaults
-      yearTitle: null,
-      examBoardTitle: null,
-      tierTitle: null,
-      keyStageSlug: "ks2",
-      keyStageTitle: "Key Stage 2",
-      expired: false,
-      lessonDescription: "Test lesson description",
-      phonicsOutcome: null,
-      orderInUnit: 1,
-      unitTotalLessonCount: 10,
-      geoRestricted: false,
-      loginRequired: false,
-      isLegacy: false,
-      lessonReleaseDate: null,
-      pupilLessonOutcome: null,
       subjectCategories: ["category1", "category2"],
-      contentRestricted: false,
     };
   });
 
