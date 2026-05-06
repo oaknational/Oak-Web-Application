@@ -10,7 +10,6 @@ const defaultProps = {
   index: 158,
   title: "Card title",
   layoutVariant: "horizontal" as const,
-  isHighlighted: false,
   href: "testUrl",
 };
 
@@ -28,7 +27,6 @@ const saveProps = {
 };
 
 const childCardProps = {
-  isHighlighted: false,
   href: "testUrl",
   lessonCount: 10,
   saveProps,
@@ -110,7 +108,11 @@ describe("CardListing", () => {
   });
   it("renders correctly in a highlighted state", () => {
     const { rerender } = render(
-      <CardListing {...defaultProps} isHighlighted saveProps={saveProps} />,
+      <CardListing
+        {...defaultProps}
+        highlightColorVariant="secondary"
+        saveProps={saveProps}
+      />,
     );
 
     const card = screen.getByTestId("card-listing-container");
@@ -175,5 +177,28 @@ describe("CardListing", () => {
     );
     const links = screen.getAllByRole("link");
     links.forEach((link) => expect(link).not.toHaveTextContent("Card title"));
+  });
+  it("renders tertiary highlight type in horizontal layout", () => {
+    render(<CardListing {...defaultProps} highlightColorVariant="tertiary" />);
+
+    const card = screen.getByTestId("card-listing-container");
+    expect(card).toBeInTheDocument();
+    const title = screen.getByText("Card title");
+    expect(title).toBeInTheDocument();
+  });
+  it("renders save button with inverted variant in secondary highlight", () => {
+    render(
+      <CardListing
+        {...defaultProps}
+        layoutVariant="vertical"
+        highlightColorVariant="secondary"
+        saveProps={saveProps}
+      />,
+    );
+
+    const saveButton = screen.getByRole("button", {
+      name: "Save this unit: Unit title",
+    });
+    expect(saveButton).toBeInTheDocument();
   });
 });
