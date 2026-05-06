@@ -11,6 +11,7 @@ import { PostSubmissionState } from "@oaknational/google-classroom-addon/types";
 import {
   LessonEngineProvider,
   LessonReviewSection,
+  LessonSection,
   LessonSectionResults,
   useLessonEngineContext,
 } from "@/components/PupilComponents/LessonEngineProvider";
@@ -54,7 +55,7 @@ import { pickAvailableSectionsForLesson } from "@/components/PupilComponents/Vie
 import { PupilLessonPageProps } from "@/pages-helpers/pupil/lessons-pages/pupilLessonPage.types";
 
 export { pickAvailableSectionsForLesson };
-export type PupilExperienceViewProps = PupilLessonPageProps;
+export type PupilExperienceViewProps = Omit<PupilLessonPageProps, "variant">;
 
 export const PupilPageContent = ({
   browseData,
@@ -543,7 +544,7 @@ const PupilExperienceLayout = ({
     !!lessonContent.contentGuidance || hasAgeRestriction,
   );
   const router = useRouter();
-  const availableSections = pickAvailableSectionsForLesson(lessonContent);
+  const availableSections = pickAvailableSectionsForLesson(lessonContent, null);
 
   const isSensitive = lessonContent.deprecatedFields?.isSensitive === true;
 

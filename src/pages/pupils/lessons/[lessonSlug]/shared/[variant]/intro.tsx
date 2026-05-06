@@ -19,7 +19,6 @@ import {
   getProps,
   PupilLessonPageURLParams,
 } from "@/pages-helpers/pupil/lessons-pages/getProps";
-import { PupilExperienceViewProps } from "@/components/PupilViews/PupilExperience";
 import { PupilLayout } from "@/components/PupilComponents/PupilLayout/PupilLayout";
 import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
 import {
@@ -42,6 +41,7 @@ import { usePupilLessonAnalytics } from "@/context/PupilLessonAnalytics/usePupil
 import { usePupilLessonProgress } from "@/context/PupilLessonProgress";
 import { useAdditionalFilesDownload } from "@/components/PupilViews/PupilIntro/useAdditionalFilesDownload";
 import { useWorksheetDownload } from "@/components/PupilViews/PupilIntro/useWorksheetDownload";
+import { PupilLessonPageProps } from "@/pages-helpers/pupil/lessons-pages/pupilLessonPage.types";
 
 type IntroPageURLParams = {
   lessonSlug: string;
@@ -55,7 +55,7 @@ const IntroPageContent = ({
   hasAdditionalFiles,
   additionalFiles,
 }: Pick<
-  PupilExperienceViewProps,
+  PupilLessonPageProps,
   | "browseData"
   | "lessonContent"
   | "hasWorksheet"
@@ -321,7 +321,7 @@ const IntroPageContent = ({
   );
 };
 
-const PupilLessonIntroNewPage = (props: PupilExperienceViewProps) => {
+const PupilLessonIntroNewPage = (props: PupilLessonPageProps) => {
   const {
     browseData,
     lessonContent,
@@ -360,7 +360,7 @@ export default PupilLessonIntroNewPage;
 export const getStaticPaths = getStaticPathsTemplate<IntroPageURLParams>;
 
 export const getStaticProps: GetStaticProps<
-  PupilExperienceViewProps,
+  PupilLessonPageProps,
   IntroPageURLParams
 > = async (context) => {
   const contextWithSection = {
