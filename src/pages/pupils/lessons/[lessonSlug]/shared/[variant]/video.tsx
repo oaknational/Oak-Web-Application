@@ -12,7 +12,6 @@ import {
   getProps,
   PupilLessonPageURLParams,
 } from "@/pages-helpers/pupil/lessons-pages/getProps";
-import { PupilExperienceViewProps } from "@/components/PupilViews/PupilExperience";
 import { PupilLayout } from "@/components/PupilComponents/PupilLayout/PupilLayout";
 import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
 import { getPupilPathwayData } from "@/components/PupilComponents/PupilAnalyticsProvider/PupilAnalyticsProvider";
@@ -36,6 +35,7 @@ import { useAdditionalFilesDownload } from "@/components/PupilViews/PupilIntro/u
 import VideoPlayer, {
   VideoEventCallbackArgs,
 } from "@/components/SharedComponents/VideoPlayer/VideoPlayer";
+import { PupilLessonPageProps } from "@/pages-helpers/pupil/lessons-pages/pupilLessonPage.types";
 
 type VideoPageURLParams = {
   lessonSlug: string;
@@ -47,7 +47,7 @@ const VideoPageContent = ({
   hasAdditionalFiles,
   additionalFiles,
 }: Pick<
-  PupilExperienceViewProps,
+  PupilLessonPageProps,
   "browseData" | "lessonContent" | "hasAdditionalFiles" | "additionalFiles"
 >) => {
   const router = useRouter();
@@ -282,7 +282,7 @@ const VideoPageContent = ({
   );
 };
 
-const PupilLessonVideoNewPage = (props: PupilExperienceViewProps) => {
+const PupilLessonVideoNewPage = (props: PupilLessonPageProps) => {
   const { browseData, lessonContent, variant } = props;
 
   return (
@@ -306,7 +306,7 @@ export default PupilLessonVideoNewPage;
 export const getStaticPaths = getStaticPathsTemplate<VideoPageURLParams>;
 
 export const getStaticProps: GetStaticProps<
-  PupilExperienceViewProps,
+  PupilLessonPageProps,
   VideoPageURLParams
 > = async (context) => {
   const contextWithSection = {

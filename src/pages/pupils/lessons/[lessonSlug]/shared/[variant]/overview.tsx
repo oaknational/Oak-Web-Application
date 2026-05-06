@@ -12,7 +12,6 @@ import {
   getProps,
   PupilLessonPageURLParams,
 } from "@/pages-helpers/pupil/lessons-pages/getProps";
-import { PupilExperienceViewProps } from "@/components/PupilViews/PupilExperience";
 import { PupilLayout } from "@/components/PupilComponents/PupilLayout/PupilLayout";
 import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
 import { useAssignmentSearchParams } from "@/hooks/useAssignmentSearchParams";
@@ -38,6 +37,7 @@ import {
 import { usePupilLessonAnalytics } from "@/context/PupilLessonAnalytics/usePupilLessonAnalytics";
 import { usePupilLessonProgress } from "@/context/PupilLessonProgress";
 import isSlugLegacy from "@/utils/slugModifiers/isSlugLegacy";
+import { PupilLessonPageProps } from "@/pages-helpers/pupil/lessons-pages/pupilLessonPage.types";
 
 type OverviewPageURLParams = {
   lessonSlug: string;
@@ -47,10 +47,7 @@ const OverviewPageContent = ({
   browseData,
   lessonContent,
   backUrl,
-}: Pick<
-  PupilExperienceViewProps,
-  "browseData" | "lessonContent" | "backUrl"
->) => {
+}: Pick<PupilLessonPageProps, "browseData" | "lessonContent" | "backUrl">) => {
   const { isClassroomAssignment, classroomAssignmentChecked } =
     useAssignmentSearchParams();
   const {
@@ -216,7 +213,7 @@ const OverviewPageContent = ({
   );
 };
 
-const PupilLessonOverviewNewPage = (props: PupilExperienceViewProps) => {
+const PupilLessonOverviewNewPage = (props: PupilLessonPageProps) => {
   const { browseData, lessonContent, backUrl, variant } = props;
 
   return (
@@ -244,7 +241,7 @@ export default PupilLessonOverviewNewPage;
 export const getStaticPaths = getStaticPathsTemplate<OverviewPageURLParams>;
 
 export const getStaticProps: GetStaticProps<
-  PupilExperienceViewProps,
+  PupilLessonPageProps,
   OverviewPageURLParams
 > = async (context) => {
   const contextWithSection = {
