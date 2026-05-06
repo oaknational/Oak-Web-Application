@@ -1,3 +1,25 @@
+# [1.1068.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1067.0...v1.1068.0) (2026-05-06)
+
+
+### Bug Fixes
+
+* fix isue from dodgy merge incorrect type ([c21d160](https://github.com/oaknational/Oak-Web-Application/commit/c21d160d32edd7dd2f48985374b284d01c22b267))
+* force unitDownloadFileId presence when displaying download button...? ([74bea43](https://github.com/oaknational/Oak-Web-Application/commit/74bea43db90f76a1f37e674034a35947d216a3b0))
+* re-add needed property ([f745a8d](https://github.com/oaknational/Oak-Web-Application/commit/f745a8d96d61935e8920fdb0baeb0b54e1900187))
+* remove copilot's stuff... ([dc641a2](https://github.com/oaknational/Oak-Web-Application/commit/dc641a2568dddc68ab39e9dfc9204367ac7fc2a2))
+* remove duplicated property ([2060c75](https://github.com/oaknational/Oak-Web-Application/commit/2060c75602a702fde03d288b641a0e04d53351fe))
+* remove unused isHighlighted uses ([545ea02](https://github.com/oaknational/Oak-Web-Application/commit/545ea02efa2509123a0068dc1e8295db29418789))
+
+
+### Features
+
+* add ability to highlight a selected lesson in lesson list component ([349c510](https://github.com/oaknational/Oak-Web-Application/commit/349c510606cf866b06b60997bbd2d20532422feb))
+* add ability to show and hide unit count on Lesson List ([8857602](https://github.com/oaknational/Oak-Web-Application/commit/88576020b41d96c95729f4a6b2c975698c00f355))
+* add current lesson text to lesson list ([7bd1d2f](https://github.com/oaknational/Oak-Web-Application/commit/7bd1d2f9769a004c858ff8dc2cdf2c1bff0f1d64))
+* add optional unit download button to lesson list ([e49332b](https://github.com/oaknational/Oak-Web-Application/commit/e49332b97edb11c6e495201817488c33454e08cd))
+* add third style option to card listing component ([d38973c](https://github.com/oaknational/Oak-Web-Application/commit/d38973cd9b0f33ed352bd6930a9293c76f0e69dc))
+* make unit description optional ([ca187d5](https://github.com/oaknational/Oak-Web-Application/commit/ca187d5205416614fcb4915a319dcae6f77a3d61))
+
 # [1.1067.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1066.2...v1.1067.0) (2026-05-06)
 
 
