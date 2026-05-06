@@ -7,7 +7,6 @@ import { resolveOakHref } from "@/common-lib/urls";
 
 const defaultProps = {
   showPupilShare: true,
-  showCreateWithAi: true,
   lessonSlug: "lesson-1",
   unitSlug: "unit-1",
   programmeSlug: "programme-1",
@@ -48,13 +47,26 @@ describe("LessonShareBar", () => {
 
   it("always renders create more with AI link", () => {
     renderWithTheme(
-      <LessonActionsBar {...defaultProps} showPupilShare={false} />,
+      <LessonActionsBar
+        {...defaultProps}
+        showPupilShare={false}
+        createWithAiProps={{
+          lessonSlug: "lesson-1",
+          programmeSlug: "programme-1",
+          keyStageSlug: "ks1",
+          subjectCategories: [],
+          actions: {},
+          trackCreateWithAiButtonClicked: jest.fn,
+          trackTeachingMaterialsSelected: jest.fn,
+          subjectSlug: "maths",
+        }}
+      />,
     );
 
     expect(
-      screen.getByRole("link", {
-        name: "Create more with AI (this will open in a new tab)",
+      screen.getByRole("button", {
+        name: "Create more with AI",
       }),
-    ).toHaveAttribute("href", "https://labs.thenational.academy/aila");
+    ).toBeInTheDocument();
   });
 });

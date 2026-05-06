@@ -1,13 +1,18 @@
 import { screen, act } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
 
 import LessonView from "./LessonView";
 
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 import teachersLessonOverviewFixture from "@/node-lib/curriculum-api-2023/fixtures/teachersLessonOverview.fixture";
 import lessonMediaClipsFixtures from "@/node-lib/curriculum-api-2023/fixtures/lessonMediaClips.fixture";
+import { setUseUserReturn } from "@/__tests__/__helpers__/mockClerk";
+import { mockLoggedIn } from "@/__tests__/__helpers__/mockUser";
 
 const lessonResourceDownloadStarted = jest.fn();
 const lessonMediaClipsStarted = jest.fn();
+const mockCreateTeachingMaterialsInitiated = jest.fn();
+const mockTeachingMaterialsSelected = jest.fn();
 
 jest.mock("@/context/Analytics/useAnalytics", () => ({
   __esModule: true,
@@ -17,9 +22,17 @@ jest.mock("@/context/Analytics/useAnalytics", () => ({
         lessonMediaClipsStarted(...args),
       lessonResourceDownloadStarted: (...args: unknown[]) =>
         lessonResourceDownloadStarted(...args),
+      createTeachingMaterialsInitiated: (...args: unknown[]) =>
+        mockCreateTeachingMaterialsInitiated(...args),
+      teachingMaterialsSelected: (...args: unknown[]) =>
+        mockTeachingMaterialsSelected(...args),
     },
   }),
 }));
+
+jest.mock(
+  "@/components/TeacherComponents/LessonOverviewMediaClips/LessonOverviewMediaClips.tsx",
+);
 
 const render = renderWithProviders();
 
@@ -237,6 +250,24 @@ describe("Lesson resources", () => {
       screen.getByRole("link", { name: /Download lesson slides \(PPTX\)/i }),
     ).toBeInTheDocument();
   });
+
+  it("does not render create with ai button when the lesson has complex copyright", () => {
+    render(<LessonView {...baseProps} geoRestricted loginRequired />);
+
+    const createWithAiButton = screen.queryByRole("button", {
+      name: "Create more with AI",
+    });
+    expect(createWithAiButton).not.toBeInTheDocument();
+  });
+
+  it("does not create with ai button when the lesson has no complex copyright", () => {
+    render(<LessonView {...baseProps} />);
+
+    const createWithAiButton = screen.getByRole("button", {
+      name: "Create more with AI",
+    });
+    expect(createWithAiButton).toBeInTheDocument();
+  });
 });
 
 describe("Tracking callbacks", () => {
@@ -363,7 +394,7 @@ describe("Tracking callbacks", () => {
     );
   });
 
-  it("calls lessonMediaClipsStarted when play all button is clicked", () => {
+  it("calls lessonMediaClipsStarted when play all button is clicked", async () => {
     render(
       <LessonView
         {...baseProps}
@@ -373,9 +404,9 @@ describe("Tracking callbacks", () => {
     );
 
     const playAllButton = screen.getByText("Play all");
-    act(() => {
-      playAllButton.click();
-    });
+    const user = userEvent.setup();
+    playAllButton.addEventListener("click", (e) => e.preventDefault());
+    await user.click(playAllButton);
 
     expect(lessonMediaClipsStarted).toHaveBeenCalledWith(
       expect.objectContaining({
@@ -388,5 +419,22 @@ describe("Tracking callbacks", () => {
         mediaClipsButtonName: "play all",
       }),
     );
+  });
+
+  it("calls createTeachingMaterialsInitiated and teachingMaterialsSelected when clicked in create with ai dropdown", async () => {
+    setUseUserReturn(mockLoggedIn);
+    render(<LessonView {...baseProps} />);
+
+    const createWithAiButton = screen.getByRole("button", {
+      name: "Create more with AI",
+    });
+
+    const user = userEvent.setup();
+    await user.click(createWithAiButton);
+    expect(mockCreateTeachingMaterialsInitiated).toHaveBeenCalled();
+
+    const glossaryLink = screen.getByRole("menuitem", { name: "Glossary" });
+    await user.click(glossaryLink);
+    expect(mockTeachingMaterialsSelected).toHaveBeenCalled();
   });
 });
