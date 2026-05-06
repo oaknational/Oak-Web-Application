@@ -163,7 +163,15 @@ export function DownloadSuccessView({
                     showNewTag={false}
                     geoRestricted={isGeorestrictedUnit}
                     size="small"
-                    buttonLabel="Download complete unit"
+                    ariaLabel="Download complete unit"
+                    buttonLabel={
+                      <OakSpan>
+                        <OakSpan>Download </OakSpan>
+                        <OakBox $display={["none", "inline"]}>
+                          complete unit
+                        </OakBox>
+                      </OakSpan>
+                    }
                   />
                 ) : null
               }

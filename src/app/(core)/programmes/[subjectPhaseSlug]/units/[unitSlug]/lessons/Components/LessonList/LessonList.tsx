@@ -164,7 +164,11 @@ const LessonList = ({
           {unitDescription && <OakP $font="body-2">{unitDescription}</OakP>}
         </OakFlex>
         <OakBox>
-          <OakFlex $justifyContent="space-between" $alignItems="flex-start">
+          <OakFlex
+            $justifyContent="space-between"
+            $alignItems="flex-start"
+            $gap="spacing-12"
+          >
             <OakBox
               as="h3"
               $background="bg-decorative1-subdued"

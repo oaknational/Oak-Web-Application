@@ -1,5 +1,5 @@
 import { SignInButton, useAuth, useUser } from "@clerk/nextjs";
-import React, { Dispatch, SetStateAction, useState } from "react";
+import React, { Dispatch, ReactNode, SetStateAction, useState } from "react";
 import { usePathname } from "next/navigation";
 import {
   OakFlex,
@@ -7,6 +7,7 @@ import {
   OakPrimaryButton,
   OakPrimaryButtonProps,
   OakSmallPrimaryButton,
+  OakSpan,
   OakTagFunctional,
   useMediaQuery,
 } from "@oaknational/oak-components";
@@ -22,13 +23,21 @@ const UnitDownloadOnboardButton = ({
   href,
   showNewTag,
   size,
+  ariaLabel,
 }: {
   href: string;
   showNewTag: boolean;
   size?: "small";
+  ariaLabel?: string;
 }) => {
   return (
-    <ButtonForSize size={size} width="fit-content" element="a" href={href}>
+    <ButtonForSize
+      size={size}
+      width="fit-content"
+      element="a"
+      href={href}
+      aria-label={ariaLabel}
+    >
       <OakFlex $alignItems="center" $gap="spacing-12">
         {showNewTag && (
           <OakTagFunctional
@@ -51,12 +60,14 @@ const UnitDownloadSignInButton = ({
   isDesktop,
   size,
   buttonLabel,
+  ariaLabel,
 }: {
   redirectUrl: string;
   showNewTag: boolean;
   isDesktop: boolean;
   size?: "small";
-  buttonLabel?: string;
+  buttonLabel?: ReactNode;
+  ariaLabel?: string;
 }) => {
   const signInButtonLabel =
     buttonLabel ?? `Download${isDesktop ? " complete unit" : ""}`;
@@ -66,7 +77,12 @@ const UnitDownloadSignInButton = ({
       forceRedirectUrl={redirectUrl}
       signUpForceRedirectUrl={redirectUrl}
     >
-      <ButtonForSize size={size} iconName={"download"} isTrailingIcon>
+      <ButtonForSize
+        size={size}
+        iconName={"download"}
+        isTrailingIcon
+        aria-label={ariaLabel}
+      >
         <OakFlex $alignItems="center" $gap="spacing-12">
           {showNewTag && (
             <OakTagFunctional
@@ -92,6 +108,7 @@ const DownloadButton = ({
   isDesktop,
   size,
   buttonLabel,
+  ariaLabel,
 }: {
   onUnitDownloadClick: () => void;
   downloadInProgress: boolean;
@@ -99,10 +116,16 @@ const DownloadButton = ({
   disabled: boolean;
   isDesktop: boolean;
   size?: "small";
-  buttonLabel?: string;
+  buttonLabel?: ReactNode;
+  ariaLabel?: string;
 }) => {
   const zipSizeText = isDesktop ? ` (.zip ${fileSize})` : "";
-  const downloadButtonText = (buttonLabel ?? "Download") + zipSizeText;
+  const downloadButtonText: ReactNode = (
+    <OakSpan>
+      {buttonLabel ?? "Download"}
+      {zipSizeText}
+    </OakSpan>
+  );
 
   return (
     <ButtonForSize
@@ -111,6 +134,7 @@ const DownloadButton = ({
       isTrailingIcon
       onClick={onUnitDownloadClick}
       disabled={downloadInProgress || disabled}
+      aria-label={ariaLabel}
     >
       <OakFlex $gap="spacing-12">
         {downloadInProgress && (
@@ -170,7 +194,8 @@ export type UnitDownloadButtonProps = {
   showNewTag: boolean;
   geoRestricted: boolean;
   size?: "small";
-  buttonLabel?: string;
+  buttonLabel?: ReactNode;
+  ariaLabel?: string;
 };
 
 /**
@@ -243,6 +268,7 @@ export default function UnitDownloadButton(props: UnitDownloadButtonProps) {
       })}
       showNewTag={props.showNewTag}
       size={props.size}
+      ariaLabel={props.ariaLabel}
     />
   ) : showSignInButton ? (
     <UnitDownloadSignInButton
@@ -251,6 +277,7 @@ export default function UnitDownloadButton(props: UnitDownloadButtonProps) {
       isDesktop={isDesktop}
       size={props.size}
       buttonLabel={props.buttonLabel}
+      ariaLabel={props.ariaLabel}
     />
   ) : showDownloadButton ? (
     <DownloadButton
@@ -261,6 +288,7 @@ export default function UnitDownloadButton(props: UnitDownloadButtonProps) {
       isDesktop={isDesktop}
       size={props.size}
       buttonLabel={props.buttonLabel}
+      ariaLabel={props.ariaLabel}
     />
   ) : null;
 }
