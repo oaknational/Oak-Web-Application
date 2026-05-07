@@ -8,6 +8,7 @@ import { TeachersUnitOverviewData } from "@/node-lib/curriculum-api-2023/queries
 import { getTeacherSubjectPhaseSlug } from "@/utils/curriculum/slugs";
 import { SubjectIcon } from "@/components/TeacherComponents/Header/Header";
 import { useUnitDownloadButtonState } from "@/components/TeacherComponents/UnitDownloadButton/UnitDownloadButton";
+import { getUnitDownloadFileId } from "@/utils/getUnitDownloadFileId";
 
 export type UnitPageProps = TeachersUnitOverviewData;
 
@@ -34,11 +35,10 @@ export const UnitView = (props: UnitPageProps) => {
         subjectIcon={subjectIconName}
         nextUnit={props.nextUnit}
         prevUnit={props.prevUnit}
-        unitDownloadFileId={
-          props.unitSlug.endsWith(props.unitvariantId.toString())
-            ? props.unitSlug
-            : `${props.unitSlug}-${props.unitvariantId}`
-        }
+        unitDownloadFileId={getUnitDownloadFileId(
+          props.unitTitle,
+          props.unitvariantId,
+        )}
         isGeorestrictedUnit={props.containsGeorestrictedLessons}
         trackingProps={{
           unitName: props.unitTitle,
