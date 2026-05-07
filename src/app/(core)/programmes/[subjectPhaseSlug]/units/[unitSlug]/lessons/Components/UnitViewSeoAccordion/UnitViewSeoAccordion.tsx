@@ -1,9 +1,4 @@
-import {
-  OakBasicAccordion,
-  OakFlex,
-  OakLink,
-  OakP,
-} from "@oaknational/oak-components";
+import { OakBasicAccordion, OakLink, OakP } from "@oaknational/oak-components";
 
 import { resolveOakHref } from "@/common-lib/urls";
 
@@ -36,7 +31,7 @@ export const UnitViewSeoAccordion = ({
       $borderColor="border-neutral-lighter"
       id={"units-seo-accordion"}
       header={
-        <OakP $textAlign={"start"}>
+        <OakP $font={"body-2"} $color={"text-subdued"} $textAlign={"start"}>
           Explore this {examBoardText}
           {yearGroupTitle.toLocaleLowerCase()}{" "}
           {subjectTitle.toLocaleLowerCase()} unit to find free lesson teaching
@@ -44,41 +39,37 @@ export const UnitViewSeoAccordion = ({
         </OakP>
       }
     >
-      <OakFlex $flexDirection="column" $gap="spacing-16">
-        <OakP>
-          slide decks, worksheet PDFs, quizzes and lesson overviews. You can
-          select individual lessons from the {unitTitle} unit and download the
-          resources you need, or download the entire unit now.
-        </OakP>
-        <OakP>
-          See every unit listed in our{" "}
-          {hideCurriculumLink ? (
-            curriculumLinkText
-          ) : (
-            <OakLink
-              href={resolveOakHref({
-                page: "teacher-programme",
-                subjectPhaseSlug,
-                tab: "overview",
-              })}
-            >
-              {curriculumLinkText}
-            </OakLink>
-          )}{" "}
-          and discover more of our teaching resources for{" "}
+      <OakP $font={"body-2"} $color={"text-subdued"} $mb="spacing-8">
+        slide decks, worksheet PDFs, quizzes and lesson overviews. You can
+        select individual lessons from the {unitTitle} unit and download the
+        resources you need, or download the entire unit now. See every unit
+        listed in our{" "}
+        {hideCurriculumLink ? (
+          curriculumLinkText
+        ) : (
           <OakLink
             href={resolveOakHref({
               page: "teacher-programme",
               subjectPhaseSlug,
-              tab: "units",
+              tab: "overview",
             })}
           >
-            {examBoardText} {phaseTitle.toLocaleLowerCase()}{" "}
-            {subjectTitle.toLocaleLowerCase()} programmes
+            {curriculumLinkText}
           </OakLink>
-          .
-        </OakP>
-      </OakFlex>
+        )}{" "}
+        and discover more of our teaching resources for{" "}
+        <OakLink
+          href={resolveOakHref({
+            page: "teacher-programme",
+            subjectPhaseSlug,
+            tab: "units",
+          })}
+        >
+          {examBoardText} {phaseTitle.toLocaleLowerCase()}{" "}
+          {subjectTitle.toLocaleLowerCase()} programmes
+        </OakLink>
+        .
+      </OakP>
     </OakBasicAccordion>
   );
 };
