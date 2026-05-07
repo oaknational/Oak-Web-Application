@@ -67,10 +67,13 @@ export const formatSentences = (
 export const removeWebVttCharacters = (
   sentences: Array<string>,
 ): Array<string> => {
+  if (!sentences[0]) {
+    return [];
+  }
   // The opening sentence of the vtt file is wrapped in <v ->> </v>
   // Some <v> tags have data enclosed,i.e. <v Instructor> this allows removal of the v tag in full
   // I'm not sure why but we want to remove it
-  let sentence1 = sentences[0]!;
+  let sentence1 = sentences[0];
   const startTagEnd = sentence1.indexOf(">") + 1;
   if (startTagEnd > 0) {
     sentence1 = sentence1.substring(startTagEnd);
