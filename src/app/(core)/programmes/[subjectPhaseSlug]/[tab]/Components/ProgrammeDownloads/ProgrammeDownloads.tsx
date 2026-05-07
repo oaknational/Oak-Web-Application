@@ -159,6 +159,8 @@ export const ProgrammeDownloads = ({
     handleToggleSelectAll,
     selectAllChecked,
     hubspotLoaded,
+    editDetailsClicked,
+    setEmailInLocalStorage,
   } = useResourceFormState({
     type: "curriculum",
     curriculumResources: availableDownloadTypes,
@@ -275,6 +277,12 @@ export const ProgrammeDownloads = ({
         track,
         curriculumSelectionSlugs,
       );
+
+      // Clear the email from localstorage if it was not set in the form
+      if (editDetailsClicked && !data.email) {
+        setEmailInLocalStorage("");
+      }
+
       setIsDone(true);
     } catch (err) {
       reportError(err, { severity: "warning" });
