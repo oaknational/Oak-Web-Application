@@ -53,6 +53,7 @@ import { LegacyCopyrightContent } from "@/node-lib/curriculum-api-2023/shared.sc
 import { LessonDownloadRegionBlocked } from "@/components/TeacherComponents/LessonDownloadRegionBlocked/LessonDownloadRegionBlocked";
 import { resolveOakHref } from "@/common-lib/urls";
 import { useComplexCopyright } from "@/hooks/useComplexCopyright";
+import { useOakNotificationsContext } from "@/context/OakNotifications/useOakNotificationsContext";
 
 type BaseLessonDownload = {
   expired: boolean | null;
@@ -90,6 +91,7 @@ type LessonDownloadsProps =
 
 export function LessonDownloads(props: LessonDownloadsProps) {
   const { lesson } = props;
+  const { setCurrentToastProps } = useOakNotificationsContext();
   const {
     lessonTitle,
     lessonSlug,
@@ -255,7 +257,7 @@ export function LessonDownloads(props: LessonDownloadsProps) {
         schoolName,
         schoolOption,
         onwardContent,
-        emailSupplied: data?.email ? true : false,
+        emailSupplied: !!data?.email,
         platform: "owa",
         product: "teacher lesson resources",
         engagementIntent: "use",
@@ -334,7 +336,7 @@ export function LessonDownloads(props: LessonDownloadsProps) {
             $mb={"spacing-24"}
           />
         </OakBox>
-        {showGeoBlocked ? (
+        {showGeoBlocked ?? (
           <LessonDownloadRegionBlocked
             lessonName={lessonTitle}
             lessonSlug={lessonSlug}
@@ -347,7 +349,8 @@ export function LessonDownloads(props: LessonDownloadsProps) {
               unitSlug: unitSlug!,
             })}
           />
-        ) : isDownloadSuccessful ? (
+        )}
+        {!showGeoBlocked && isDownloadSuccessful ? (
           <DownloadConfirmation
             lessonSlug={lessonSlug}
             lessonTitle={lessonTitle}
@@ -420,9 +423,28 @@ export function LessonDownloads(props: LessonDownloadsProps) {
             cta={
               <OakPrimaryButton
                 type="button"
-                onClick={
-                  (event) => void form.handleSubmit(onFormSubmit)(event) // https://github.com/orgs/react-hook-form/discussions/8622}
-                }
+                onClick={(event) => {
+                  form
+                    .handleSubmit(onFormSubmit)(event)
+                    .catch((err) =>
+                      setCurrentToastProps({
+                        message: err,
+                        variant: "error",
+                        autoDismiss: false,
+                        showIcon: true,
+                      }),
+                    )
+                    .finally(() => {
+                      setCurrentToastProps({
+                        message:
+                          "Download started. This may take a few minutes",
+                        variant: "success",
+                        autoDismiss: true,
+                        showClose: true,
+                        showIcon: true,
+                      });
+                    });
+                }}
                 iconName={"download"}
                 isLoading={
                   isAttemptingDownload || !hubspotLoaded // show loading state when waiting for latest school values to be populated from hubspot
