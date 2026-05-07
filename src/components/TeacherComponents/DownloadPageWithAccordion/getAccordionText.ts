@@ -42,7 +42,9 @@ export const getAccordionText = ({
       resources.push(download.label);
     }
   }
-  const resourcesText = resources.join(", ");
+
+  // It's possible for there to be multiple or a resource here, eg quizzes, so dedupe by creating a set first
+  const resourcesText = Array.from(new Set(resources)).join(", ");
 
   return (
     resourcesText.charAt(0).toUpperCase() +
