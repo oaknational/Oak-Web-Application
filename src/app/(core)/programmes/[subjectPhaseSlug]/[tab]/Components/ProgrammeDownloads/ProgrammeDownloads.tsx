@@ -34,10 +34,8 @@ import {
   CurriculumUnitsFormattedData,
 } from "@/pages-helpers/curriculum/docx/tab-helpers";
 import { CurriculumOverviewMVData } from "@/node-lib/curriculum-api-2023";
-import errorReporter from "@/common-lib/error-reporter";
 import CurricSuccessMessage from "@/components/CurriculumComponents/CurricSuccessMessage";
 import { DOWNLOAD_TYPE_LABELS } from "@/components/CurriculumComponents/CurriculumDownloadView/helper";
-import { downloadFileFromUrl } from "@/components/SharedComponents/helpers/downloadFileFromUrl";
 import { DownloadPageWithAccordionContent } from "@/components/TeacherComponents/DownloadPageWithAccordion/DownloadPageWithAccordion";
 import { useHubspotSubmit } from "@/components/TeacherComponents/hooks/downloadAndShareHooks/useHubspotSubmit";
 import { useResourceFormState } from "@/components/TeacherComponents/hooks/downloadAndShareHooks/useResourceFormState";
@@ -46,8 +44,9 @@ import { DelayedLoadingSpinner } from "@/components/TeacherComponents/SharePageL
 import { ResourceFormValues } from "@/components/TeacherComponents/types/downloadAndShare.types";
 import useAnalytics from "@/context/Analytics/useAnalytics";
 import { doUnitsHaveNc, flatUnitsFromYearData } from "@/utils/curriculum/units";
-import { createCurriculumDownloadsUrl } from "@/utils/curriculum/urls";
 import { CurriculumSelectionSlugs } from "@/utils/curriculum/slugs";
+import useResourceFormSubmit from "@/components/TeacherComponents/hooks/downloadAndShareHooks/useResourceFormSubmit";
+import downloadDebouncedSubmit from "@/components/TeacherComponents/helpers/downloadAndShareHelpers/downloadDebounceSubmit";
 export type ProgrammeDownloadsProps = {
   mvRefreshTime: number;
   curriculumInfo: CurriculumOverviewMVData;
@@ -114,6 +113,7 @@ export const ProgrammeDownloads = ({
     hubspotLoaded,
     editDetailsClicked,
     setEmailInLocalStorage,
+    setEditDetailsClicked,
   } = useResourceFormState({
     type: "curriculum",
     curriculumResources: availableDownloadTypes,
@@ -186,30 +186,28 @@ export const ProgrammeDownloads = ({
     });
   };
 
-  const onSubmit = async (data: ResourceFormValues) => {
-    setIsSubmitting(true);
-    setSubmitError(undefined);
-    const reportError = errorReporter("curriculum-download", {
-      subjectSlug: curriculumSelectionSlugs.subjectSlug,
-      phaseSlug: curriculumSelectionSlugs.phaseSlug,
-      ks4OptionSlug: curriculumSelectionSlugs.ks4OptionSlug,
-      tierSelected,
-      childSubjectSelected,
-    });
+  const { onSubmit } = useResourceFormSubmit();
 
-    const downloadPath = createCurriculumDownloadsUrl(
-      data.resources,
-      "published",
-      mvRefreshTime,
-      curriculumSelectionSlugs.subjectSlug,
-      curriculumSelectionSlugs.phaseSlug,
-      curriculumSelectionSlugs.ks4OptionSlug,
-      tierSelected,
-      childSubjectSelected,
-    );
+  const onFormSubmit = async (data: ResourceFormValues): Promise<void> => {
+    setSubmitError(undefined);
 
     try {
-      await downloadFileFromUrl(downloadPath);
+      await downloadDebouncedSubmit({
+        data,
+        setIsAttemptingDownload: setIsSubmitting,
+        setEditDetailsClicked,
+        onSubmit,
+        type: "curriculum",
+        mvRefreshTime,
+        slugs: curriculumSelectionSlugs,
+        tierSlug: tierSelected,
+        childSubjectSlug: childSubjectSelected,
+      });
+
+      if (editDetailsClicked && !data.email) {
+        setEmailInLocalStorage("");
+      }
+
       await trackCurriculumDownload(
         data,
         curriculumInfo.subjectTitle,
@@ -218,14 +216,8 @@ export const ProgrammeDownloads = ({
         curriculumSelectionSlugs,
       );
 
-      // Clear the email from localstorage if it was not set in the form
-      if (editDetailsClicked && !data.email) {
-        setEmailInLocalStorage("");
-      }
-
       setIsDone(true);
-    } catch (err) {
-      reportError(err, { severity: "warning" });
+    } catch {
       setSubmitError(
         "There was an error downloading your files. Please try again.",
       );
@@ -233,6 +225,54 @@ export const ProgrammeDownloads = ({
       setIsSubmitting(false);
     }
   };
+
+  // const onSubmit = async (data: ResourceFormValues) => {
+  //   setIsSubmitting(true);
+  //   setSubmitError(undefined);
+  //   const reportError = errorReporter("curriculum-download", {
+  //     subjectSlug: curriculumSelectionSlugs.subjectSlug,
+  //     phaseSlug: curriculumSelectionSlugs.phaseSlug,
+  //     ks4OptionSlug: curriculumSelectionSlugs.ks4OptionSlug,
+  //     tierSelected,
+  //     childSubjectSelected,
+  //   });
+
+  //   const downloadPath = createCurriculumDownloadsUrl(
+  //     data.resources,
+  //     "published",
+  //     mvRefreshTime,
+  //     curriculumSelectionSlugs.subjectSlug,
+  //     curriculumSelectionSlugs.phaseSlug,
+  //     curriculumSelectionSlugs.ks4OptionSlug,
+  //     tierSelected,
+  //     childSubjectSelected,
+  //   );
+
+  //   try {
+  //     await downloadFileFromUrl(downloadPath);
+  //     await trackCurriculumDownload(
+  //       data,
+  //       curriculumInfo.subjectTitle,
+  //       onHubspotSubmit,
+  //       track,
+  //       curriculumSelectionSlugs,
+  //     );
+
+  //     // Clear the email from localstorage if it was not set in the form
+  //     if (editDetailsClicked && !data.email) {
+  //       setEmailInLocalStorage("");
+  //     }
+
+  //     setIsDone(true);
+  //   } catch (err) {
+  //     reportError(err, { severity: "warning" });
+  //     setSubmitError(
+  //       "There was an error downloading your files. Please try again.",
+  //     );
+  //   } finally {
+  //     setIsSubmitting(false);
+  //   }
+  // };
 
   if (isDone) {
     return (
@@ -395,7 +435,7 @@ export const ProgrammeDownloads = ({
                   <OakPrimaryButton
                     type="button"
                     onClick={
-                      (event) => void form.handleSubmit(onSubmit)(event) // https://github.com/orgs/react-hook-form/discussions/8622}
+                      (event) => void form.handleSubmit(onFormSubmit)(event) // https://github.com/orgs/react-hook-form/discussions/8622}
                     }
                     iconName={"download"}
                     isLoading={

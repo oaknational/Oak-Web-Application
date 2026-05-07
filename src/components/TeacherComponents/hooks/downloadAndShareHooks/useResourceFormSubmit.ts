@@ -7,16 +7,23 @@ import type {
   ResourceFormValues,
 } from "@/components/TeacherComponents/types/downloadAndShare.types";
 import downloadLessonResources from "@/components/SharedComponents/helpers/downloadAndShareHelpers/downloadLessonResources";
+import { CurriculumSelectionSlugs } from "@/utils/curriculum/slugs";
+import { createCurriculumDownloadsUrl } from "@/utils/curriculum/urls";
+import { downloadFileFromUrl } from "@/components/SharedComponents/helpers/downloadFileFromUrl";
 
-type UseResourceFormProps = {
-  onSubmit?: () => void;
-} & (
-  | { type: "share" }
-  | { type: "download"; isLegacyDownload: boolean }
-  | { type: "curriculum" }
+export type OnSubmitProps = { data: ResourceFormValues } & (
+  | { type: "download"; slug: string; isLegacyDownload: boolean }
+  | { type: "share"; slug: string }
+  | {
+      type: "curriculum";
+      mvRefreshTime: number;
+      slugs: CurriculumSelectionSlugs;
+      tierSlug: string | null;
+      childSubjectSlug: string | null;
+    }
 );
 
-const useResourceFormSubmit = (props: UseResourceFormProps) => {
+const useResourceFormSubmit = () => {
   const {
     setSchoolInLocalStorage,
     setEmailInLocalStorage,
@@ -25,10 +32,8 @@ const useResourceFormSubmit = (props: UseResourceFormProps) => {
 
   const auth = useAuth();
 
-  const onSubmit = async (data: ResourceFormValues, slug: string) => {
-    if (props.onSubmit) {
-      props.onSubmit();
-    }
+  const onSubmit = async (onSubmitProps: OnSubmitProps) => {
+    const { data } = onSubmitProps;
 
     const email = data?.email;
     const schoolId = data?.school;
@@ -55,7 +60,7 @@ const useResourceFormSubmit = (props: UseResourceFormProps) => {
     if (terms) {
       setTermsInLocalStorage(terms);
     }
-    if (props.type === "download") {
+    if (onSubmitProps.type === "download") {
       const accessToken = await auth.getToken();
 
       const additionalFilesRegex = /additional-files-*/;
@@ -77,12 +82,26 @@ const useResourceFormSubmit = (props: UseResourceFormProps) => {
         : [];
 
       await downloadLessonResources({
-        lessonSlug: slug,
+        lessonSlug: onSubmitProps.slug,
         selectedResourceTypes: selectedResourceTypes as DownloadResourceType[],
         selectedAdditionalFilesIds,
-        isLegacyDownload: props.isLegacyDownload,
+        isLegacyDownload: onSubmitProps.isLegacyDownload,
         authToken: accessToken,
       });
+    } else if (onSubmitProps.type === "curriculum") {
+      const { mvRefreshTime, slugs, tierSlug, childSubjectSlug } =
+        onSubmitProps;
+      const downloadPath = createCurriculumDownloadsUrl(
+        data.resources,
+        "published",
+        mvRefreshTime,
+        slugs.subjectSlug,
+        slugs.phaseSlug,
+        slugs.ks4OptionSlug,
+        tierSlug,
+        childSubjectSlug,
+      );
+      await downloadFileFromUrl(downloadPath);
     }
   };
 

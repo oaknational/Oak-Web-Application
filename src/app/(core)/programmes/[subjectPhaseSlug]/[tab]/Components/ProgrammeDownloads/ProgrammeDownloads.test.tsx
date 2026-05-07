@@ -63,6 +63,9 @@ jest.mock("@clerk/nextjs", () => ({
     isLoaded: true,
     isSignedIn: false,
   })),
+  useAuth: () => ({
+    getToken: jest.fn().mockResolvedValue(null),
+  }),
 }));
 
 jest.mock("@/components/SharedComponents/helpers/downloadFileFromUrl", () => ({
