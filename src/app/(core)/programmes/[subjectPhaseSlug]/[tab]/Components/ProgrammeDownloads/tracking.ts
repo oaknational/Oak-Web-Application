@@ -33,7 +33,7 @@ export const trackCurriculumDownload = async (
     schoolName: data.schoolName,
     email: data.email,
     terms: data.terms,
-    resources: data.resources,
+    resources: ["docx"],
     onSubmit: async () => {},
   });
 
