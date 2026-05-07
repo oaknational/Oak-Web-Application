@@ -14,7 +14,7 @@ import {
   Subject,
   Tier,
 } from "@oaknational/oak-components";
-import { mapKeys, camelCase, capitalize } from "lodash";
+import { mapKeys, camelCase } from "lodash";
 import {
   useMemo,
   useState,
@@ -25,34 +25,25 @@ import {
 import { Controller } from "react-hook-form";
 
 import {
+  handleSubjectTierSelectionAnalytics,
+  trackCurriculumDownload,
+} from "./tracking";
+
+import {
   CurriculumDownloadsTierSubjectProps,
   CurriculumUnitsFormattedData,
 } from "@/pages-helpers/curriculum/docx/tab-helpers";
 import { CurriculumOverviewMVData } from "@/node-lib/curriculum-api-2023";
-import {
-  ResourceTypeValueType,
-  PhaseValueType,
-  LearningTierValueType,
-} from "@/browser-lib/avo/Avo";
 import errorReporter from "@/common-lib/error-reporter";
 import CurricSuccessMessage from "@/components/CurriculumComponents/CurricSuccessMessage";
 import { DOWNLOAD_TYPE_LABELS } from "@/components/CurriculumComponents/CurriculumDownloadView/helper";
 import { downloadFileFromUrl } from "@/components/SharedComponents/helpers/downloadFileFromUrl";
 import { DownloadPageWithAccordionContent } from "@/components/TeacherComponents/DownloadPageWithAccordion/DownloadPageWithAccordion";
-import {
-  getSchoolOption,
-  getSchoolName,
-  getSchoolUrn,
-} from "@/components/TeacherComponents/helpers/downloadAndShareHelpers/getFormattedDetailsForTracking";
 import { useHubspotSubmit } from "@/components/TeacherComponents/hooks/downloadAndShareHooks/useHubspotSubmit";
 import { useResourceFormState } from "@/components/TeacherComponents/hooks/downloadAndShareHooks/useResourceFormState";
 import { useOnboardingStatus } from "@/components/TeacherComponents/hooks/useOnboardingStatus";
 import { DelayedLoadingSpinner } from "@/components/TeacherComponents/SharePageLayout/SharePageLayout";
-import {
-  ResourceFormValues,
-  ResourceFormProps,
-} from "@/components/TeacherComponents/types/downloadAndShare.types";
-import { convertUnitSlugToTitle } from "@/components/TeacherViews/Search/helpers";
+import { ResourceFormValues } from "@/components/TeacherComponents/types/downloadAndShare.types";
 import useAnalytics from "@/context/Analytics/useAnalytics";
 import { doUnitsHaveNc, flatUnitsFromYearData } from "@/utils/curriculum/units";
 import { createCurriculumDownloadsUrl } from "@/utils/curriculum/urls";
@@ -63,44 +54,6 @@ export type ProgrammeDownloadsProps = {
   curriculumDownloadsTabData: CurriculumDownloadsTierSubjectProps;
   curriculumUnitsFormattedData: CurriculumUnitsFormattedData;
   curriculumSelectionSlugs: CurriculumSelectionSlugs;
-};
-
-export const trackCurriculumDownload = async (
-  data: ResourceFormValues,
-  subjectTitle: string,
-  onHubspotSubmit: (data: ResourceFormProps) => Promise<string | undefined>,
-  track: ReturnType<typeof useAnalytics>["track"],
-  curriculumSelectionSlugs: CurriculumSelectionSlugs,
-) => {
-  if (!data.terms) return;
-  const schoolOption = getSchoolOption(data.school);
-
-  await onHubspotSubmit({
-    school: data.school,
-    schoolName: data.schoolName,
-    email: data.email,
-    terms: data.terms,
-    resources: data.resources,
-    onSubmit: async () => {},
-  });
-
-  track.curriculumResourcesDownloaded({
-    platform: "owa",
-    product: "curriculum resources",
-    engagementIntent: "explore",
-    componentType: "download_button",
-    eventVersion: "2.0.0",
-    analyticsUseCase: "Teacher",
-    emailSupplied: data.email != null,
-    resourceType: ["curriculum document"] as ResourceTypeValueType[],
-    schoolOption,
-    schoolName: getSchoolName(data.school, schoolOption),
-    subjectTitle: subjectTitle,
-    phase: curriculumSelectionSlugs.phaseSlug as PhaseValueType,
-    schoolUrn: getSchoolUrn(data.school, schoolOption),
-    keyStageSlug: null,
-    keyStageTitle: null,
-  });
 };
 
 export const ProgrammeDownloads = ({
@@ -213,25 +166,6 @@ export const ProgrammeDownloads = ({
     setIsDone(false);
   }, [curriculumSelectionSlugs]);
 
-  const handleSubjectTierSelectionAnalytics = (
-    tierSelected: string | null | undefined,
-    childSubjectSlug: string | null | undefined,
-  ) => {
-    track.curriculumResourcesDownloadRefined({
-      subjectTitle: curriculumInfo.subjectTitle,
-      subjectSlug: curriculumSelectionSlugs.subjectSlug,
-      platform: "owa",
-      product: "curriculum resources",
-      engagementIntent: "refine",
-      componentType: "download_tab",
-      eventVersion: "2.0.0",
-      analyticsUseCase: "Teacher",
-      learningTier: capitalize(tierSelected || "") as LearningTierValueType,
-      childSubjectName: convertUnitSlugToTitle(childSubjectSlug || ""),
-      childSubjectSlug: childSubjectSlug || "",
-    });
-  };
-
   const handleTierSubjectSelection = (
     tierSlug: string,
     childSubjectSlug?: string | null,
@@ -243,7 +177,13 @@ export const ProgrammeDownloads = ({
     if (childSubjectSlug && childSubjectSlug.length > 0) {
       setChildSubjectSelected(childSubjectSlug);
     }
-    handleSubjectTierSelectionAnalytics(tierSlug, childSubjectSlug);
+    handleSubjectTierSelectionAnalytics({
+      tierSlug,
+      childSubjectSlug,
+      track,
+      subjectSlug: curriculumSelectionSlugs.subjectSlug,
+      subjectTitle: curriculumInfo.subjectTitle,
+    });
   };
 
   const onSubmit = async (data: ResourceFormValues) => {
