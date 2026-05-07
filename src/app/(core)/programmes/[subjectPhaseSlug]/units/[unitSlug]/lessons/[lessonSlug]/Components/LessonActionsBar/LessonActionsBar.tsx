@@ -9,13 +9,17 @@ import Link from "next/link";
 import styled from "styled-components";
 
 import { resolveOakHref } from "@/common-lib/urls";
+import {
+  LessonOverviewCreateWithAiDropdown,
+  LessonOverviewCreateWithAiProps,
+} from "@/components/TeacherComponents/LessonOverviewCreateWithAiDropdown";
 
 type LessonShareBarProps = {
   showPupilShare: boolean;
-  showCreateWithAi: boolean;
   lessonSlug: string;
   unitSlug: string;
   programmeSlug: string;
+  createWithAiProps?: LessonOverviewCreateWithAiProps;
 };
 
 /**
@@ -27,12 +31,12 @@ const NegativeMarginFlex = styled(OakFlex)`
 
 export default function LessonActionsBar({
   showPupilShare,
-  showCreateWithAi,
+  createWithAiProps,
   lessonSlug,
   unitSlug,
   programmeSlug,
 }: Readonly<LessonShareBarProps>) {
-  if (!showPupilShare && !showCreateWithAi) {
+  if (!showPupilShare && !createWithAiProps) {
     return null;
   }
   const shareHref = resolveOakHref({
@@ -49,6 +53,7 @@ export default function LessonActionsBar({
       $flexDirection={["column", "row"]}
       $justifyContent={["flex-start", "flex-start", "flex-end"]}
       $gap={["spacing-24", "spacing-40"]}
+      $alignItems={"center"}
     >
       {showPupilShare && (
         <OakSmallTertiaryInvertedButton
@@ -61,17 +66,8 @@ export default function LessonActionsBar({
           Share lesson with pupils
         </OakSmallTertiaryInvertedButton>
       )}
-      {showCreateWithAi && (
-        <OakSmallTertiaryInvertedButton
-          iconName="external"
-          isTrailingIcon
-          element="a"
-          href="https://labs.thenational.academy/aila"
-          target="_blank"
-          aria-label="Create more with AI (this will open in a new tab)"
-        >
-          Create more with AI
-        </OakSmallTertiaryInvertedButton>
+      {createWithAiProps && (
+        <LessonOverviewCreateWithAiDropdown {...createWithAiProps} />
       )}
     </NegativeMarginFlex>
   );

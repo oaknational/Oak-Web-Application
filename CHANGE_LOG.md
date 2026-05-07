@@ -1,3 +1,62 @@
+# [1.1069.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1068.0...v1.1069.0) (2026-05-06)
+
+
+### Bug Fixes
+
+* **LESQ-1949:** scroll to top when opening success page ([b0a0af1](https://github.com/oaknational/Oak-Web-Application/commit/b0a0af12177a3918dfcead3611c0b3a986ef9737))
+* **LESQ-1949:** shorten download button label on mobile ([acc8564](https://github.com/oaknational/Oak-Web-Application/commit/acc8564b64f548f33de623c242a58f9e951724ef))
+
+
+### Features
+
+* **LESQ-1949:** add download confirmation component ([bad0113](https://github.com/oaknational/Oak-Web-Application/commit/bad01131caccc5607c0a4d3825fbca8dfa86cda4))
+* **LESQ-1949:** align download unit button with designs ([58f7b88](https://github.com/oaknational/Oak-Web-Application/commit/58f7b88e8f964d2aada46170bb982ba63004d53e))
+* **LESQ-1949:** make unit count optional on LessonList ([dafdf06](https://github.com/oaknational/Oak-Web-Application/commit/dafdf069d6a5cc12f19b3d82cf65ff01d00fb819))
+* **LESQ-1949:** show current lesson in listing on success page ([e3f55f1](https://github.com/oaknational/Oak-Web-Application/commit/e3f55f169c00d7f83ec73774446c7c5f7b7a4f1a))
+* **LESQ-1949:** wire new download confirmation up ([0397948](https://github.com/oaknational/Oak-Web-Application/commit/039794859928c474799c6e871bcd6f6c7b0f9207))
+
+# [1.1068.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1067.0...v1.1068.0) (2026-05-06)
+
+
+### Bug Fixes
+
+* fix isue from dodgy merge incorrect type ([c21d160](https://github.com/oaknational/Oak-Web-Application/commit/c21d160d32edd7dd2f48985374b284d01c22b267))
+* force unitDownloadFileId presence when displaying download button...? ([74bea43](https://github.com/oaknational/Oak-Web-Application/commit/74bea43db90f76a1f37e674034a35947d216a3b0))
+* re-add needed property ([f745a8d](https://github.com/oaknational/Oak-Web-Application/commit/f745a8d96d61935e8920fdb0baeb0b54e1900187))
+* remove copilot's stuff... ([dc641a2](https://github.com/oaknational/Oak-Web-Application/commit/dc641a2568dddc68ab39e9dfc9204367ac7fc2a2))
+* remove duplicated property ([2060c75](https://github.com/oaknational/Oak-Web-Application/commit/2060c75602a702fde03d288b641a0e04d53351fe))
+* remove unused isHighlighted uses ([545ea02](https://github.com/oaknational/Oak-Web-Application/commit/545ea02efa2509123a0068dc1e8295db29418789))
+
+
+### Features
+
+* add ability to highlight a selected lesson in lesson list component ([349c510](https://github.com/oaknational/Oak-Web-Application/commit/349c510606cf866b06b60997bbd2d20532422feb))
+* add ability to show and hide unit count on Lesson List ([8857602](https://github.com/oaknational/Oak-Web-Application/commit/88576020b41d96c95729f4a6b2c975698c00f355))
+* add current lesson text to lesson list ([7bd1d2f](https://github.com/oaknational/Oak-Web-Application/commit/7bd1d2f9769a004c858ff8dc2cdf2c1bff0f1d64))
+* add optional unit download button to lesson list ([e49332b](https://github.com/oaknational/Oak-Web-Application/commit/e49332b97edb11c6e495201817488c33454e08cd))
+* add third style option to card listing component ([d38973c](https://github.com/oaknational/Oak-Web-Application/commit/d38973cd9b0f33ed352bd6930a9293c76f0e69dc))
+* make unit description optional ([ca187d5](https://github.com/oaknational/Oak-Web-Application/commit/ca187d5205416614fcb4915a319dcae6f77a3d61))
+
+# [1.1067.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1066.2...v1.1067.0) (2026-05-06)
+
+
+### Bug Fixes
+
+* mock media clips component to prevent requests to video api in test ([d0c897e](https://github.com/oaknational/Oak-Web-Application/commit/d0c897e839a6db233af8eb0628d476ea77ef0034))
+
+
+### Features
+
+* update create with ai to button with dropdown options ([5423e9d](https://github.com/oaknational/Oak-Web-Application/commit/5423e9d0e83f2fb4e667ae4b52ed0c1489f43864))
+
+## [1.1066.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.1066.1...v1.1066.2) (2026-05-05)
+
+
+### Bug Fixes
+
+* specific version for terraform github actions ([592b2da](https://github.com/oaknational/Oak-Web-Application/commit/592b2daecb7a8c848c4f8dbc4c6adfeb194204f6))
+* terraform linting ([6ebb853](https://github.com/oaknational/Oak-Web-Application/commit/6ebb85391c552ca864703678819d429cdd62c0d8))
+
 ## [1.1066.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.1066.0...v1.1066.1) (2026-05-05)
 
 

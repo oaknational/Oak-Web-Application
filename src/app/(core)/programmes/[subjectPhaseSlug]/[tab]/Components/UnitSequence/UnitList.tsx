@@ -109,7 +109,7 @@ export function ProgrammeUnitList({
         <CardListing
           layoutVariant={getLayoutVariant()}
           title={unit.title}
-          isHighlighted={isHighlighted}
+          highlightColorVariant={isHighlighted ? "secondary" : undefined}
           tags={getTagsForUnitCard(unit)}
           href={resolveOakHref({
             page: "integrated-unit-overview",

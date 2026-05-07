@@ -1,7 +1,12 @@
 import { Meta, StoryObj } from "@storybook/nextjs";
-import { OakThemeProvider, oakDefaultTheme } from "@oaknational/oak-components";
+import {
+  OakPrimaryButton,
+  OakThemeProvider,
+  oakDefaultTheme,
+} from "@oaknational/oak-components";
 import { ClerkProvider } from "@clerk/nextjs";
 import { ComponentProps } from "react";
+import { mocked } from "storybook/test";
 
 import { __setMockAuthState } from "../../../../../../../../../../.storybook/mocks/clerk";
 
@@ -12,11 +17,24 @@ import SaveCountDecorator from "@/storybook-decorators/SaveCountDecorator";
 import lessonListingFixture, {
   lessonsWithUnpublishedContent,
 } from "@/node-lib/curriculum-api-2023/fixtures/lessonListing.fixture";
+import useUnitDownloadExistenceCheck from "@/components/TeacherComponents/hooks/downloadAndShareHooks/useUnitDownloadExistenceCheck";
 
 const meta: Meta<typeof LessonList> = {
   component: LessonList,
   tags: ["autodocs"],
   title: "App/Programmes/Units/LessonList",
+  parameters: {
+    viewport: {
+      defaultViewport: "desktop",
+    },
+  },
+  beforeEach: () => {
+    mocked(useUnitDownloadExistenceCheck).mockReturnValue({
+      exists: true,
+      fileSize: "100MB",
+      hasCheckedFiles: true,
+    });
+  },
   decorators: [
     SaveCountDecorator,
     NotificationsDecorator,
@@ -116,14 +134,12 @@ const defaultArgs: LessonListProps = {
   unitTitle: fixtureData.unitTitle,
   unitDescription:
     "This unit explores the structure and function of the nervous system, including the CNS, reflex arcs, and the eye. It covers brain structure, common eye defects, and the challenges in treating nervous system damage. It also addresses ethical considerations.",
-  subjectTitle: fixtureData.subjectTitle,
-  subjectSlug: fixtureData.subjectSlug,
-  keyStageSlug: fixtureData.keyStageSlug,
-  keyStageTitle: fixtureData.keyStageTitle,
   unitIndex: 14,
   unitCount: 28,
   lessonCount: 4,
   lessons: fixtureData.lessons,
+  selectedLessonIndex: 1,
+  headerCtaSlot: <OakPrimaryButton iconName="save">Save unit</OakPrimaryButton>,
 };
 
 export const Default: Story = {
@@ -138,6 +154,25 @@ export const Default: Story = {
     },
   ],
   args: defaultArgs,
+};
+
+/** No “Unit X of Y” tab — shown when `unitIndex` / `unitCount` are omitted */
+export const WithoutUnitCount: Story = {
+  decorators: [
+    (Story) => {
+      __setMockAuthState({
+        isSignedIn: true,
+        isOnboarded: true,
+        isRegionAuthorised: true,
+      });
+      return <Story />;
+    },
+  ],
+  args: {
+    ...defaultArgs,
+    unitIndex: undefined,
+    unitCount: undefined,
+  },
 };
 
 export const LongContent: Story = {
@@ -219,4 +254,17 @@ export const ComingSoonLesson: Story = {
     ],
     lessonCount: 2,
   },
+};
+
+export const SignedOut: Story = {
+  decorators: [
+    (Story) => {
+      __setMockAuthState({
+        isSignedIn: false,
+        isOnboarded: false,
+      });
+      return <Story />;
+    },
+  ],
+  args: defaultArgs,
 };

@@ -1,6 +1,7 @@
 "use client";
 
 import { ReactNode, useMemo, useState } from "react";
+import { useRouter } from "next/navigation";
 import {
   ActionsCamel,
   examboards,
@@ -45,6 +46,7 @@ import {
   LessonDownloadsPageData,
   NextLesson,
 } from "@/node-lib/curriculum-api-2023/queries/lessonDownloads/lessonDownloads.schema";
+import type { LessonListSchema } from "@/node-lib/curriculum-api-2023/shared.schema";
 import { useResourceFormState } from "@/components/TeacherComponents/hooks/downloadAndShareHooks/useResourceFormState";
 import { useHubspotSubmit } from "@/components/TeacherComponents/hooks/downloadAndShareHooks/useHubspotSubmit";
 import { LEGACY_COHORT } from "@/config/cohort";
@@ -74,7 +76,11 @@ type BaseLessonDownload = {
 type NonCanonicalLesson = BaseLessonDownload & {
   nextLessons: NextLesson[];
   updatedAt: string;
-} & LessonPathway;
+} & LessonPathway & {
+    lessons?: LessonListSchema;
+    unitDescription?: string | null;
+    subjectCategories?: string[] | null;
+  };
 
 type SpecialistLesson = SpecialistLessonDownloads["lesson"];
 
@@ -82,14 +88,17 @@ type LessonDownloadsProps =
   | {
       lesson: NonCanonicalLesson;
       breadcrumbsSlot?: ReactNode;
+      successRedirect?: string;
     }
   | {
       lesson: SpecialistLesson;
       breadcrumbsSlot?: ReactNode;
+      successRedirect?: string;
     };
 
 export function LessonDownloads(props: LessonDownloadsProps) {
   const { lesson } = props;
+  const router = useRouter();
   const {
     lessonTitle,
     lessonSlug,
@@ -201,8 +210,7 @@ export function LessonDownloads(props: LessonDownloadsProps) {
 
   const { onHubspotSubmit } = useHubspotSubmit();
 
-  const [isDownloadSuccessful, setIsDownloadSuccessful] =
-    useState<boolean>(false);
+  const [isDownloadSuccessful, setIsDownloadSuccessful] = useState(false);
 
   let downloadButtonText = "Download .zip";
   if (isAttemptingDownload) {
@@ -224,7 +232,11 @@ export function LessonDownloads(props: LessonDownloadsProps) {
         onSubmit,
       });
 
-      setIsDownloadSuccessful(true);
+      if (props.successRedirect) {
+        router.replace(props.successRedirect);
+      } else {
+        setIsDownloadSuccessful(true);
+      }
       if (editDetailsClicked && !data.email) {
         setEmailInLocalStorage("");
       }

@@ -16,12 +16,23 @@ import { resolveOakHref } from "@/common-lib/urls";
 const DOWNLOAD_SUCCESS_IMG_URL =
   "v1777386544/svg-illustrations/download-confirmation-Illustration_z1sczk.svg";
 
-export function DownloadSuccessHeader({ href }: Readonly<{ href: string }>) {
+type DownloadSuccessHeaderProps = {
+  href: string;
+  onBackClick?: () => void;
+  /** We only show the help message if the user has consented to the Gleap cookie */
+  showHelpMessage?: boolean;
+};
+
+export function DownloadSuccessHeader({
+  href,
+  onBackClick,
+  showHelpMessage = true,
+}: Readonly<DownloadSuccessHeaderProps>) {
   return (
     <Header
       layoutVariant="large"
       useSubduedBackground
-      headerSlot={<BackLink href={href} />}
+      headerSlot={<BackLink href={href} onBackClick={onBackClick} />}
       heading="Thanks for downloading!"
       summary={
         <OakFlex $flexDirection="column" $gap={"spacing-24"}>
@@ -29,7 +40,7 @@ export function DownloadSuccessHeader({ href }: Readonly<{ href: string }>) {
             We hope you find the resources useful. Click the question mark in
             the bottom-right corner to share your feedback.{" "}
           </OakP>
-          <InstallFontsInstructions />
+          <InstallFontsInstructions showHelpMessage={showHelpMessage} />
         </OakFlex>
       }
       backgroundColorLevel={1}
@@ -38,7 +49,11 @@ export function DownloadSuccessHeader({ href }: Readonly<{ href: string }>) {
   );
 }
 
-function InstallFontsInstructions() {
+function InstallFontsInstructions({
+  showHelpMessage,
+}: Readonly<{
+  showHelpMessage: boolean;
+}>) {
   return (
     <OakFlex $gap="spacing-8" $alignItems={"center"}>
       <OakIcon iconWidth="spacing-20" iconName="info" />
@@ -51,18 +66,23 @@ function InstallFontsInstructions() {
             "install the Google Fonts 'Lexend' and 'Kalam' (opens in a new tab)"
           }
         >
-          install the Google Fonts ‘Lexend’ and ‘Kalam’
+          install the Google Fonts ‘Lexend’ and ‘Kalam’.{" "}
         </OakLink>
-        <OakSpan>
-          . Click the question mark in the bottom-right of the page if you need
-          extra help with this.
-        </OakSpan>
+        {showHelpMessage && (
+          <OakSpan>
+            Click the question mark in the bottom-right of the page if you need
+            extra help with this.
+          </OakSpan>
+        )}
       </OakP>
     </OakFlex>
   );
 }
 
-function BackLink({ href }: Readonly<{ href: string }>) {
+function BackLink({
+  href,
+  onBackClick,
+}: Readonly<{ href: string; onBackClick?: () => void }>) {
   return (
     <OakBox>
       <OakTertiaryInvertedButton
@@ -71,6 +91,7 @@ function BackLink({ href }: Readonly<{ href: string }>) {
         aria-label={"Back to lesson"}
         iconName={"arrow-left"}
         isTrailingIcon={false}
+        onClick={onBackClick}
       >
         Back to lesson
       </OakTertiaryInvertedButton>
