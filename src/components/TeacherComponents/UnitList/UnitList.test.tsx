@@ -228,6 +228,27 @@ describe("components/UnitList", () => {
 
     expect(curriculumDownloadLink).not.toBeInTheDocument;
   });
+  test("does not render a curriculum download button for rule of law", () => {
+    render(
+      <OakThemeProvider theme={oakDefaultTheme}>
+        <UnitList
+          {...unitListingFixture({
+            phase: "primary",
+            subjectSlug: "rule-of-law",
+          })}
+          paginationProps={mockPaginationProps}
+          currentPageItems={unitListingFixture().units}
+          onClick={onClick}
+        />
+      </OakThemeProvider>,
+    );
+
+    const curriculumDownloadLink = screen.queryByRole("link", {
+      name: "Full primary curriculum",
+    });
+
+    expect(curriculumDownloadLink).not.toBeInTheDocument();
+  });
 
   test("renders Swimming units", () => {
     render(

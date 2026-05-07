@@ -168,7 +168,10 @@ const UnitList: FC<UnitListProps> = (props) => {
   );
   const hasNewAndLegacyUnitsInProgramme = hasLegacyUnits && hasNewUnits;
 
-  const hideNewCurriculumDownloadButton = subjectSlug === "financial-education";
+  const hideNewCurriculumDownloadButton = [
+    "financial-education",
+    "rule-of-law",
+  ].includes(subjectSlug);
 
   const [saveButtonElementId, setSaveButtonElementId] = useState<
     string | undefined

@@ -169,4 +169,32 @@ describe("components/ Lesson List", () => {
       "/teachers/curriculum/science-secondary-ocr/units",
     );
   });
+  test('it does not render a "curriculum-units" link for rule of law', async () => {
+    render(
+      <LessonList
+        paginationProps={mockPaginationProps}
+        subjectSlug={"rule-of-law"}
+        keyStageSlug={"ks2"}
+        headingTag={"h2"}
+        currentPageItems={lessonsWithUnitData}
+        unitTitle={"Unit title"}
+        lessonCount={4}
+        onClick={onClick}
+        lessonCountHeader={`Lessons (${lessons.length})`}
+        programmeSlug="rule-of-law-primary-ks2"
+        yearTitle="All years"
+        subjectTitle="Rule of law"
+      />,
+    );
+
+    await userEvent.click(
+      screen.getByText(
+        /Explore this all years rule of law unit to find free lesson teaching resources, including/i,
+      ),
+    );
+
+    const curriculumText = screen.getByText(/rule of law curriculum/i);
+    expect(curriculumText).toBeInTheDocument();
+    expect(curriculumText.closest("a")).toBeNull();
+  });
 });
