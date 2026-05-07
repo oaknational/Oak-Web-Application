@@ -369,6 +369,7 @@ export const ProgrammeDownloads = ({
                                   <OakTagFunctional
                                     $background={"bg-decorative2-main"}
                                     label="Editable"
+                                    useSpan
                                   />
                                 </OakFlex>
                               }
