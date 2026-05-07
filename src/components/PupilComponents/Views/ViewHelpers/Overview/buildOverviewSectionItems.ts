@@ -1,7 +1,7 @@
 import { pickSectionProgress } from "../Shared";
 
 import type { LessonOverviewSectionName } from "@/components/PupilComponents/Views/PupilLessonOverview";
-import type { SectionNavItem } from "@/components/PupilComponents/Views/PupilLessonOverview/PupilLessonOverviewSectionsNav";
+import type { SectionNavItem } from "@/components/PupilComponents/Views/PupilLessonOverview/PupilLessonOverviewSectionsNav/PupilLessonOverviewSectionsNav";
 import type {
   LessonReviewSection,
   LessonSectionResults,
