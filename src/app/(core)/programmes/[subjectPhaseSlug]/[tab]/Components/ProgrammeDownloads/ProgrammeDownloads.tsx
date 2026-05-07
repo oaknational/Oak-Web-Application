@@ -338,7 +338,10 @@ export const ProgrammeDownloads = ({
                 triggerForm={form.trigger}
                 apiError={submitError}
                 cardGroup={
-                  <OakFlex $gap={"spacing-16"}>
+                  <OakFlex
+                    $gap={"spacing-16"}
+                    $flexDirection={["column", "row"]}
+                  >
                     {curriculumDownloadsWithLabels.map((download) => (
                       <Controller
                         key={download.id}
