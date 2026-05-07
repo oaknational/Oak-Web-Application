@@ -8,31 +8,38 @@ import {
   OakSpan,
   OakTertiaryInvertedButton,
 } from "@oaknational/oak-components";
+import { useOakConsent } from "@oaknational/oak-consent-client";
 
-import { Header } from "@/components/TeacherComponents/Header/Header";
+import {
+  Header,
+  HeaderProps,
+} from "@/components/TeacherComponents/Header/Header";
 import { getCloudinaryImageUrl } from "@/utils/getCloudinaryImageUrl";
 import { resolveOakHref } from "@/common-lib/urls";
+import { ServicePolicyMap } from "@/browser-lib/cookie-consent/ServicePolicyMap";
 
 const DOWNLOAD_SUCCESS_IMG_URL =
   "v1777386544/svg-illustrations/download-confirmation-Illustration_z1sczk.svg";
 
 type DownloadSuccessHeaderProps = {
-  href: string;
+  href?: string;
   onBackClick?: () => void;
-  /** We only show the help message if the user has consented to the Gleap cookie */
-  showHelpMessage?: boolean;
+  backgroundColorLevel?: HeaderProps["backgroundColorLevel"];
+  returnTo: "lesson" | "downloads";
 };
 
-export function DownloadSuccessHeader({
-  href,
-  onBackClick,
-  showHelpMessage = true,
-}: Readonly<DownloadSuccessHeaderProps>) {
+export function DownloadSuccessHeader(
+  props: Readonly<DownloadSuccessHeaderProps>,
+) {
+  /** We only show the help message if the user has consented to the Gleap cookie */
+  const { getConsent } = useOakConsent();
+  const cookiesNotAccepted = getConsent(ServicePolicyMap.GLEAP) === "denied";
+
   return (
     <Header
       layoutVariant="large"
       useSubduedBackground
-      headerSlot={<BackLink href={href} onBackClick={onBackClick} />}
+      headerSlot={<BackLinkButton {...props} />}
       heading="Thanks for downloading!"
       summary={
         <OakFlex $flexDirection="column" $gap={"spacing-24"}>
@@ -40,10 +47,10 @@ export function DownloadSuccessHeader({
             We hope you find the resources useful. Click the question mark in
             the bottom-right corner to share your feedback.{" "}
           </OakP>
-          <InstallFontsInstructions showHelpMessage={showHelpMessage} />
+          <InstallFontsInstructions showHelpMessage={!cookiesNotAccepted} />
         </OakFlex>
       }
-      backgroundColorLevel={1}
+      backgroundColorLevel={props.backgroundColorLevel}
       heroImage={getCloudinaryImageUrl(DOWNLOAD_SUCCESS_IMG_URL)}
     />
   );
@@ -79,21 +86,18 @@ function InstallFontsInstructions({
   );
 }
 
-function BackLink({
-  href,
-  onBackClick,
-}: Readonly<{ href: string; onBackClick?: () => void }>) {
+function BackLinkButton(props: Readonly<DownloadSuccessHeaderProps>) {
   return (
     <OakBox>
       <OakTertiaryInvertedButton
-        element={Link}
-        href={href}
+        element={props.href ? Link : "button"}
+        href={props.href ?? undefined}
         aria-label={"Back to lesson"}
         iconName={"arrow-left"}
         isTrailingIcon={false}
-        onClick={onBackClick}
+        onClick={props.onBackClick}
       >
-        Back to lesson
+        Back to {props.returnTo}
       </OakTertiaryInvertedButton>
     </OakBox>
   );

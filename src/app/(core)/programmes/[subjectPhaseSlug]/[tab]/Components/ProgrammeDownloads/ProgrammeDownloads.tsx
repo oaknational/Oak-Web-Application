@@ -24,6 +24,8 @@ import {
 } from "react";
 import { Controller, ControllerRenderProps } from "react-hook-form";
 
+import { DownloadSuccessHeader } from "../../../units/[unitSlug]/lessons/[lessonSlug]/Components/DownloadSuccessHeader/DownloadSuccessHeader";
+
 import {
   handleSubjectTierSelectionAnalytics,
   trackCurriculumDownload,
@@ -35,7 +37,6 @@ import {
 } from "@/pages-helpers/curriculum/docx/tab-helpers";
 import { CurriculumOverviewMVData } from "@/node-lib/curriculum-api-2023";
 import errorReporter from "@/common-lib/error-reporter";
-import CurricSuccessMessage from "@/components/CurriculumComponents/CurricSuccessMessage";
 import { DOWNLOAD_TYPE_LABELS } from "@/components/CurriculumComponents/CurriculumDownloadView/helper";
 import { downloadFileFromUrl } from "@/components/SharedComponents/helpers/downloadFileFromUrl";
 import { DownloadPageWithAccordionContent } from "@/components/TeacherComponents/DownloadPageWithAccordion/DownloadPageWithAccordion";
@@ -236,19 +237,11 @@ export const ProgrammeDownloads = ({
 
   if (isDone) {
     return (
-      // TODO: use DownloadSuccessHeader
-      <OakBox $pv={["spacing-48"]}>
-        <CurricSuccessMessage
-          title="Thanks for downloading"
-          message="We hope you find the resources useful. Click the question mark in the bottom-right corner to share your feedback."
-          buttonProps={{
-            label: "Back to downloads",
-            onClick: () => {
-              setIsDone(false);
-            },
-          }}
-        />
-      </OakBox>
+      <DownloadSuccessHeader
+        onBackClick={() => setIsDone(false)}
+        backgroundColorLevel={undefined}
+        returnTo="downloads"
+      />
     );
   }
 
