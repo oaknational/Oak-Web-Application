@@ -36,7 +36,6 @@ import {
 } from "@/browser-lib/avo/Avo";
 import errorReporter from "@/common-lib/error-reporter";
 import CurricSuccessMessage from "@/components/CurriculumComponents/CurricSuccessMessage";
-import { saveDownloadsDataToLocalStorage } from "@/components/CurriculumComponents/CurriculumDownloadTab/helper";
 import { DOWNLOAD_TYPE_LABELS } from "@/components/CurriculumComponents/CurriculumDownloadView/helper";
 import { downloadFileFromUrl } from "@/components/SharedComponents/helpers/downloadFileFromUrl";
 import { DownloadPageWithAccordionContent } from "@/components/TeacherComponents/DownloadPageWithAccordion/DownloadPageWithAccordion";
@@ -266,15 +265,6 @@ export const ProgrammeDownloads = ({
       tierSelected,
       childSubjectSelected,
     );
-
-    const schoolData = {
-      schoolId: data.school!,
-      schoolName: data.schoolName!,
-      email: data.email!,
-      termsAndConditions: data.terms!,
-      schoolNotListed: data.schoolName === "notListed",
-    };
-    saveDownloadsDataToLocalStorage(schoolData); // TODO: check local storage
 
     try {
       await downloadFileFromUrl(downloadPath);
