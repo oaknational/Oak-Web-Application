@@ -16,8 +16,6 @@ import { createYearData } from "@/fixtures/curriculum/yearData";
 import { createUnit } from "@/fixtures/curriculum/unit";
 import { DownloadType } from "@/components/CurriculumComponents/CurriculumDownloadView/helper";
 
-
-
 jest.mock("next/navigation");
 
 (usePathname as jest.Mock).mockReturnValue("/");
