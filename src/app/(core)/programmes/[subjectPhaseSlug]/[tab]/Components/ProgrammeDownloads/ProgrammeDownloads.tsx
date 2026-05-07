@@ -322,7 +322,6 @@ export const ProgrammeDownloads = ({
   return (
     <OakBox
       id="curriculum-downloads"
-      aria-labelledby="curriculum-downloads-heading"
       tabIndex={-1}
       $maxWidth={"spacing-1280"}
       $mh={"auto"}
