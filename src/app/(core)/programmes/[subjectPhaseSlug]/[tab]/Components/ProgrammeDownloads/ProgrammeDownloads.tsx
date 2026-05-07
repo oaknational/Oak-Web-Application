@@ -22,7 +22,7 @@ import {
   useEffect,
   ChangeEvent,
 } from "react";
-import { Controller } from "react-hook-form";
+import { Controller, ControllerRenderProps } from "react-hook-form";
 
 import {
   handleSubjectTierSelectionAnalytics,
@@ -252,6 +252,22 @@ export const ProgrammeDownloads = ({
     );
   }
 
+  const resourceCardOnChangeHandler =
+    (
+      onChange: ControllerRenderProps["onChange"],
+      fieldValue: string[],
+      id: string,
+    ) =>
+    (e: ChangeEvent<HTMLInputElement>) => {
+      if (e.target.checked) {
+        onChange([...fieldValue, id]);
+      } else {
+        onChange(fieldValue.filter((val) => val !== id));
+      }
+      // Trigger the form to reevaluate errors
+      form.trigger();
+    };
+
   const noResourcesSelected =
     form.watch().resources === undefined || form.watch().resources.length === 0;
 
@@ -332,20 +348,6 @@ export const ProgrammeDownloads = ({
                         render={({
                           field: { value: fieldValue, onChange },
                         }) => {
-                          const onChangeHandler = (
-                            e: ChangeEvent<HTMLInputElement>,
-                          ) => {
-                            if (e.target.checked) {
-                              onChange([...fieldValue, download.id]);
-                            } else {
-                              onChange(
-                                fieldValue.filter((val) => val !== download.id),
-                              );
-                            }
-                            // Trigger the form to reevaluate errors
-                            form.trigger();
-                          };
-
                           return (
                             <OakDownloadCard
                               key={download.id}
@@ -368,7 +370,11 @@ export const ProgrammeDownloads = ({
                                 </OakFlex>
                               }
                               iconName={download.icon}
-                              onChange={onChangeHandler}
+                              onChange={resourceCardOnChangeHandler(
+                                onChange,
+                                fieldValue,
+                                download.id,
+                              )}
                             />
                           );
                         }}
