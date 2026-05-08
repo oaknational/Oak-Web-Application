@@ -1,5 +1,6 @@
 import React from "react";
 import "@testing-library/jest-dom";
+import { fireEvent } from "@testing-library/react";
 
 import { ChildSubjectTierSelector } from "./ChildSubjectTierSelector";
 
@@ -49,6 +50,38 @@ describe("ChildSubjectTierSelector", () => {
       expect(biologyRadioButton).toBeChecked();
       expect(biologyRadioButton).toHaveAttribute("id", "biology");
     });
+
+    it("passes default values when Next is clicked", () => {
+      const { getByRole } = renderWithTheme(
+        <ChildSubjectTierSelector
+          tiers={tiers}
+          childSubjects={childSubjects}
+          getTierSubjectValues={getTierSubjectValues}
+        />,
+      );
+
+      fireEvent.click(getByRole("button", { name: "Next" }));
+      expect(getTierSubjectValues).toHaveBeenCalledWith(
+        "foundation",
+        "biology",
+      );
+    });
+
+    it("passes selected tier and subject when Next is clicked", () => {
+      const { getByLabelText, getByRole } = renderWithTheme(
+        <ChildSubjectTierSelector
+          tiers={tiers}
+          childSubjects={childSubjects}
+          getTierSubjectValues={getTierSubjectValues}
+        />,
+      );
+
+      fireEvent.click(getByLabelText("Physics"));
+      fireEvent.click(getByLabelText("Higher"));
+      fireEvent.click(getByRole("button", { name: "Next" }));
+
+      expect(getTierSubjectValues).toHaveBeenCalledWith("higher", "physics");
+    });
   });
 
   describe("KS4 Maths", () => {
@@ -88,6 +121,61 @@ describe("ChildSubjectTierSelector", () => {
       expect(tierRadioButtons).toHaveLength(2);
       expect(tierRadioButtons[0]).toHaveTextContent("Foundation");
       expect(tierRadioButtons[1]).toHaveTextContent("Higher");
+    });
+
+    it("passes null child subject when no child subjects are provided", () => {
+      const { getByRole } = renderWithTheme(
+        <ChildSubjectTierSelector
+          tiers={tiers}
+          getTierSubjectValues={getTierSubjectValues}
+        />,
+      );
+
+      fireEvent.click(getByRole("button", { name: "Next" }));
+      expect(getTierSubjectValues).toHaveBeenCalledWith("foundation", null);
+    });
+  });
+
+  describe("conditional rendering", () => {
+    it("renders only child subject selector when tiers are missing", () => {
+      const { getByTestId, queryByTestId } = renderWithTheme(
+        <ChildSubjectTierSelector
+          childSubjects={childSubjects}
+          getTierSubjectValues={getTierSubjectValues}
+        />,
+      );
+
+      expect(getByTestId("child-subject-selector")).toBeInTheDocument();
+      expect(queryByTestId("tier-selector")).not.toBeInTheDocument();
+    });
+
+    it("shows singular banner copy when one option group is available", () => {
+      const { getByText } = renderWithTheme(
+        <ChildSubjectTierSelector
+          childSubjects={childSubjects}
+          getTierSubjectValues={getTierSubjectValues}
+        />,
+      );
+
+      expect(
+        getByText(
+          "Before downloading, choose an option for KS4. The document will still display both KS3 and KS4.",
+        ),
+      ).toBeInTheDocument();
+    });
+
+    it("shows singular banner copy when no option groups are available", () => {
+      const { getByText } = renderWithTheme(
+        <ChildSubjectTierSelector
+          getTierSubjectValues={getTierSubjectValues}
+        />,
+      );
+
+      expect(
+        getByText(
+          "Before downloading, choose an option for KS4. The document will still display both KS3 and KS4.",
+        ),
+      ).toBeInTheDocument();
     });
   });
 });
