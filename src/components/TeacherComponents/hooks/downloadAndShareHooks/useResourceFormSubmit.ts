@@ -24,43 +24,16 @@ export type OnSubmitProps = { data: ResourceFormValues } & (
 );
 
 const useResourceFormSubmit = () => {
-  const {
-    setSchoolInLocalStorage,
-    setEmailInLocalStorage,
-    setTermsInLocalStorage,
-  } = useLocalStorageForDownloads();
-
+  const localStorage = useLocalStorageForDownloads();
   const auth = useAuth();
 
   const onSubmit = async (onSubmitProps: OnSubmitProps) => {
-    const { data } = onSubmitProps;
+    handleLocalStorageSync(onSubmitProps.data, localStorage);
 
-    const email = data?.email;
-    const schoolId = data?.school;
-    const schoolName = data?.schoolName;
-    const terms = data?.terms;
-    const downloads = data?.resources;
+    const { resources } = onSubmitProps.data;
 
-    if (email) {
-      setEmailInLocalStorage(email);
-    }
-
-    if (schoolId) {
-      if (schoolId === "homeschool" || schoolId === "notListed") {
-        setSchoolInLocalStorage({
-          schoolId,
-          schoolName: schoolId,
-        });
-      } else {
-        if (schoolName && schoolId) {
-          setSchoolInLocalStorage({ schoolId, schoolName });
-        }
-      }
-    }
-    if (terms) {
-      setTermsInLocalStorage(terms);
-    }
     if (onSubmitProps.type === "download") {
+      const downloads = resources;
       const accessToken = await auth.getToken();
 
       const additionalFilesRegex = /additional-files-*/;
@@ -92,7 +65,7 @@ const useResourceFormSubmit = () => {
       const { mvRefreshTime, slugs, tierSlug, childSubjectSlug } =
         onSubmitProps;
       const downloadPath = createCurriculumDownloadsUrl(
-        data.resources,
+        resources,
         "published",
         mvRefreshTime,
         slugs.subjectSlug,
@@ -106,6 +79,41 @@ const useResourceFormSubmit = () => {
   };
 
   return { onSubmit };
+};
+
+const handleLocalStorageSync = (
+  data: ResourceFormValues,
+  localStorage: ReturnType<typeof useLocalStorageForDownloads>,
+) => {
+  const {
+    setEmailInLocalStorage,
+    setSchoolInLocalStorage,
+    setTermsInLocalStorage,
+  } = localStorage;
+  const email = data?.email;
+  const schoolId = data?.school;
+  const schoolName = data?.schoolName;
+  const terms = data?.terms;
+
+  if (email) {
+    setEmailInLocalStorage(email);
+  }
+
+  if (schoolId) {
+    if (schoolId === "homeschool" || schoolId === "notListed") {
+      setSchoolInLocalStorage({
+        schoolId,
+        schoolName: schoolId,
+      });
+    } else {
+      if (schoolName && schoolId) {
+        setSchoolInLocalStorage({ schoolId, schoolName });
+      }
+    }
+  }
+  if (terms) {
+    setTermsInLocalStorage(terms);
+  }
 };
 
 export default useResourceFormSubmit;
