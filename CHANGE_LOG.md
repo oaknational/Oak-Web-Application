@@ -1,3 +1,10 @@
+## [1.1069.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.1069.1...v1.1069.2) (2026-05-07)
+
+
+### Bug Fixes
+
+* **LESQ-2015:** media page blowing up on empty transcript ([a3e9baf](https://github.com/oaknational/Oak-Web-Application/commit/a3e9baf3f068370a7742d97c7ca19c46e4c420a8))
+
 ## [1.1069.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.1069.0...v1.1069.1) (2026-05-07)
 
 
