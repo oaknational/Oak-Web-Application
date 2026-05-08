@@ -278,7 +278,7 @@ export const useResourceFormState = (props: UseResourceFormStateProps) => {
 
   // Keep selectAllChecked in sync by comparing selected resources to available resources
   useEffect(() => {
-    if (selectedResources.length < activeResources.length) {
+    if (selectedResources?.length < activeResources.length) {
       setSelectAllChecked(false);
     } else {
       setSelectAllChecked(true);
