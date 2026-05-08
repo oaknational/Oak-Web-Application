@@ -41,6 +41,8 @@ export type UseResourceFormStateProps =
   | { curriculumResources: DownloadType[]; type: "curriculum" };
 
 export const useResourceFormState = (props: UseResourceFormStateProps) => {
+  const selectAllByDefault = props.type === "curriculum";
+
   const {
     register,
     formState,
@@ -52,9 +54,13 @@ export const useResourceFormState = (props: UseResourceFormStateProps) => {
   } = useForm({
     resolver: zodResolver(resourceFormValuesSchema),
     mode: "onBlur",
+    defaultValues: {
+      resources: selectAllByDefault ? props.curriculumResources : [],
+    },
   });
 
-  const [selectAllChecked, setSelectAllChecked] = useState(false);
+  const [selectAllChecked, setSelectAllChecked] = useState(selectAllByDefault);
+
   const [isLocalStorageLoading, setIsLocalStorageLoading] = useState(true);
   const [schoolUrn, setSchoolUrn] = useState("");
 
@@ -258,7 +264,7 @@ export const useResourceFormState = (props: UseResourceFormStateProps) => {
 
   const { errors } = formState;
   const hasFormErrors = Object.keys(errors)?.length > 0;
-  const selectedResources = watch("resources", []) as ResourceType[];
+  const selectedResources = watch("resources") as ResourceType[];
 
   const [activeResources, setActiveResources] = useState<string[]>(
     getInitialResourcesState(),
@@ -297,6 +303,9 @@ export const useResourceFormState = (props: UseResourceFormStateProps) => {
     // hydration so query params are stable before reading them.
     if (router && !router.isReady) return;
 
+    // curriculum resources are all preselected by default so we don't need to do anything here
+    if (props.type === "curriculum") return;
+
     const preselectedQuery = () => {
       const res = searchParams?.get("preselected");
 
@@ -313,6 +322,7 @@ export const useResourceFormState = (props: UseResourceFormStateProps) => {
     };
     const queryResults = preselectedQuery();
     let preselected: "all" | ResourceType[] | undefined;
+
     const allAvailableResources = getInitialResourcesState().concat(
       (getInitialAdditionalFilesState() || []) as ResourceType[],
     );
@@ -371,10 +381,8 @@ export const useResourceFormState = (props: UseResourceFormStateProps) => {
   const handleToggleSelectAll = () => {
     if (selectAllChecked) {
       onDeselectAllClick();
-      setSelectAllChecked(false);
     } else {
       onSelectAllClick();
-      setSelectAllChecked(true);
     }
     // Trigger the form to reevaluate errors
     trigger();
