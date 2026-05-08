@@ -37,7 +37,7 @@ describe("ChildSubjectTierSelector", () => {
     });
 
     it("renders KS4 Science: biology is pre-selected", () => {
-      const { getAllByRole } = renderWithTheme(
+      const { getByRole } = renderWithTheme(
         <ChildSubjectTierSelector
           tiers={tiers}
           childSubjects={childSubjects}
@@ -46,9 +46,8 @@ describe("ChildSubjectTierSelector", () => {
         />,
       );
 
-      const biologyRadioButton = getAllByRole("radio")[0];
+      const biologyRadioButton = getByRole("radio", { name: "Biology" });
       expect(biologyRadioButton).toBeChecked();
-      expect(biologyRadioButton).toHaveAttribute("id", "biology");
     });
 
     it("passes default values when Next is clicked", () => {
@@ -60,7 +59,7 @@ describe("ChildSubjectTierSelector", () => {
         />,
       );
 
-      fireEvent.click(getByRole("button", { name: "Next" }));
+      fireEvent.click(getByRole("button", { name: "Next step" }));
       expect(getTierSubjectValues).toHaveBeenCalledWith(
         "foundation",
         "biology",
@@ -68,7 +67,7 @@ describe("ChildSubjectTierSelector", () => {
     });
 
     it("passes selected tier and subject when Next is clicked", () => {
-      const { getByLabelText, getByRole } = renderWithTheme(
+      const { getByRole } = renderWithTheme(
         <ChildSubjectTierSelector
           tiers={tiers}
           childSubjects={childSubjects}
@@ -76,9 +75,9 @@ describe("ChildSubjectTierSelector", () => {
         />,
       );
 
-      fireEvent.click(getByLabelText("Physics"));
-      fireEvent.click(getByLabelText("Higher"));
-      fireEvent.click(getByRole("button", { name: "Next" }));
+      fireEvent.click(getByRole("radio", { name: "Physics" }));
+      fireEvent.click(getByRole("radio", { name: "Higher" }));
+      fireEvent.click(getByRole("button", { name: "Next step" }));
 
       expect(getTierSubjectValues).toHaveBeenCalledWith("higher", "physics");
     });
@@ -97,7 +96,7 @@ describe("ChildSubjectTierSelector", () => {
     });
 
     it("renders KS4 Maths: foundation is pre-selected", () => {
-      const { getAllByRole } = renderWithTheme(
+      const { getByRole } = renderWithTheme(
         <ChildSubjectTierSelector
           tiers={tiers}
           getTierSubjectValues={getTierSubjectValues}
@@ -105,22 +104,21 @@ describe("ChildSubjectTierSelector", () => {
         />,
       );
 
-      const foundationRadioBtn = getAllByRole("radio")[0];
+      const foundationRadioBtn = getByRole("radio", { name: "Foundation" });
       expect(foundationRadioBtn).toBeChecked();
-      expect(foundationRadioBtn).toHaveAttribute("id", "foundation");
     });
     it("renders KS4 Maths: correct number of radios", () => {
-      const { getAllByTestId } = renderWithTheme(
+      const { getAllByRole } = renderWithTheme(
         <ChildSubjectTierSelector
           tiers={tiers}
           getTierSubjectValues={getTierSubjectValues}
           data-testid="test"
         />,
       );
-      const tierRadioButtons = getAllByTestId("tier-radio-button");
+      const tierRadioButtons = getAllByRole("radio");
       expect(tierRadioButtons).toHaveLength(2);
-      expect(tierRadioButtons[0]).toHaveTextContent("Foundation");
-      expect(tierRadioButtons[1]).toHaveTextContent("Higher");
+      expect(tierRadioButtons[0]).toHaveAccessibleName("Foundation");
+      expect(tierRadioButtons[1]).toHaveAccessibleName("Higher");
     });
 
     it("passes null child subject when no child subjects are provided", () => {
@@ -131,7 +129,7 @@ describe("ChildSubjectTierSelector", () => {
         />,
       );
 
-      fireEvent.click(getByRole("button", { name: "Next" }));
+      fireEvent.click(getByRole("button", { name: "Next step" }));
       expect(getTierSubjectValues).toHaveBeenCalledWith("foundation", null);
     });
   });
@@ -149,7 +147,7 @@ describe("ChildSubjectTierSelector", () => {
       expect(queryByTestId("tier-selector")).not.toBeInTheDocument();
     });
 
-    it("shows singular banner copy when one option group is available", () => {
+    it("shows updated banner copy when one option group is available", () => {
       const { getByText } = renderWithTheme(
         <ChildSubjectTierSelector
           childSubjects={childSubjects}
@@ -159,12 +157,12 @@ describe("ChildSubjectTierSelector", () => {
 
       expect(
         getByText(
-          "Before downloading, choose an option for KS4. The document will still display both KS3 and KS4.",
+          "Your subject and tier selections will change the file you download. The document will still display both KS3 and KS4.",
         ),
       ).toBeInTheDocument();
     });
 
-    it("shows singular banner copy when no option groups are available", () => {
+    it("shows updated banner copy when no option groups are available", () => {
       const { getByText } = renderWithTheme(
         <ChildSubjectTierSelector
           getTierSubjectValues={getTierSubjectValues}
@@ -173,7 +171,7 @@ describe("ChildSubjectTierSelector", () => {
 
       expect(
         getByText(
-          "Before downloading, choose an option for KS4. The document will still display both KS3 and KS4.",
+          "Your subject and tier selections will change the file you download. The document will still display both KS3 and KS4.",
         ),
       ).toBeInTheDocument();
     });

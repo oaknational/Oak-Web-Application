@@ -1,11 +1,14 @@
 import {
+  OakBox,
   OakFlex,
   OakInlineBanner,
   OakPrimaryButton,
-  OakRadioButton,
+  OakRadioAsButton,
   OakRadioGroup,
 } from "@oaknational/oak-components";
 import React, { useState } from "react";
+
+import { getValidSubjectIconName } from "@/utils/getValidSubjectIconName";
 
 export interface Tier {
   tier: string;
@@ -57,63 +60,78 @@ export const ChildSubjectTierSelector = (
   }
 
   return (
-    <OakFlex $flexDirection={"column"} $gap={"spacing-24"}>
+    <OakFlex $flexDirection={"column"}>
       <OakInlineBanner
         isOpen={true}
-        message={`Before downloading, choose ${
-          childSubjectsAvailable && tiersAvailable ? "options" : "an option"
-        } for KS4. The document will still display both KS3 and KS4.`}
-        $maxWidth={"spacing-640"}
+        icon="bell"
+        type="alert"
+        title="Choose your KS4 downlod options below."
+        message="Your subject and tier selections will change the file you download. The document will still display both KS3 and KS4."
+        $mb="spacing-32"
       />
-      {childSubjectsAvailable && (
-        <OakRadioGroup
-          label="Choose subject for KS4 units"
-          name="childSubjectRadio"
-          onChange={handleChildSubjectSelection}
-          $flexDirection={"column"}
-          $gap={"spacing-16"}
-          defaultValue={childSubjectSelected || "combined-science"}
-          data-testid="child-subject-selector"
-        >
-          {childSubjects.map(({ subject, subjectSlug }) => (
-            <OakRadioButton
-              id={subjectSlug}
-              label={subject}
-              value={subjectSlug}
-              data-testid="child-subject-radio-button"
-              key={subjectSlug}
-            />
-          ))}
-        </OakRadioGroup>
-      )}
-      {tiersAvailable && (
-        <OakRadioGroup
-          data-testid="tier-selector"
-          label="Choose learning tier for KS4 units"
-          name="tierRadio"
-          onChange={handleTierSelection}
-          $flexDirection={"column"}
-          $gap={"spacing-16"}
-          defaultValue={tierSelected}
-        >
-          {tiers.map(({ tier, tierSlug }) => (
-            <OakRadioButton
-              id={tierSlug}
-              label={tier}
-              value={tierSlug}
-              data-testid="tier-radio-button"
-              key={tierSlug}
-            />
-          ))}
-        </OakRadioGroup>
-      )}
-      <OakPrimaryButton
-        iconName="arrow-right"
-        isTrailingIcon={true}
-        onClick={handleNextClick}
+      <OakFlex
+        $flexDirection={"column"}
+        $gap="spacing-32"
+        $maxWidth="spacing-240"
       >
-        Next
-      </OakPrimaryButton>
+        {childSubjectsAvailable && (
+          <OakRadioGroup
+            name="childSubjectRadio"
+            onChange={handleChildSubjectSelection}
+            $flexDirection="row"
+            $flexWrap="wrap"
+            $gap="spacing-12"
+            defaultValue={childSubjectSelected || "combined-science"}
+            data-testid="child-subject-selector"
+          >
+            <OakBox as="legend" $font="heading-7" $mb="spacing-24">
+              Choose subject for KS4 units
+            </OakBox>
+            {childSubjects.map(({ subject, subjectSlug }) => (
+              <OakRadioAsButton
+                variant="with-icon"
+                icon={getValidSubjectIconName(subjectSlug)}
+                displayValue={subject}
+                value={subjectSlug}
+                data-testid="child-subject-radio-button"
+                key={subjectSlug}
+              />
+            ))}
+          </OakRadioGroup>
+        )}
+        {tiersAvailable && (
+          <OakRadioGroup
+            data-testid="tier-selector"
+            name="tierRadio"
+            onChange={handleTierSelection}
+            $flexDirection="row"
+            $gap="spacing-12"
+            defaultValue={tierSelected}
+            $flexWrap="wrap"
+          >
+            <OakBox as="legend" $font="heading-7" $mb="spacing-24">
+              Choose learning tier for KS4 units
+            </OakBox>
+            {tiers.map(({ tier, tierSlug }) => (
+              <OakRadioAsButton
+                displayValue={tier}
+                value={tierSlug}
+                data-testid="tier-radio-button"
+                key={tierSlug}
+              />
+            ))}
+          </OakRadioGroup>
+        )}
+      </OakFlex>
+      <OakBox $mt="spacing-48">
+        <OakPrimaryButton
+          iconName="arrow-right"
+          isTrailingIcon={true}
+          onClick={handleNextClick}
+        >
+          Next step
+        </OakPrimaryButton>
+      </OakBox>
     </OakFlex>
   );
 };

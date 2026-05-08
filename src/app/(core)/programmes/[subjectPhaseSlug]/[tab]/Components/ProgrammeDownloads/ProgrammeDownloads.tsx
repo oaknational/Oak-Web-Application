@@ -3,7 +3,6 @@
 import {
   OakBox,
   OakDownloadCard,
-  OakDownloadsJourneyChildSubjectTierSelector,
   OakFlex,
   OakGrid,
   OakGridArea,
@@ -30,6 +29,7 @@ import {
   handleSubjectTierSelectionAnalytics,
   trackCurriculumDownload,
 } from "./tracking";
+import { ChildSubjectTierSelector } from "./ChildSubjectTierSelector/ChildSubjectTierSelector";
 
 import {
   CurriculumDownloadsTierSubjectProps,
@@ -273,11 +273,20 @@ export const ProgrammeDownloads = ({
       role="region"
     >
       {subjectTierSelectionVisible === true ? (
-        <OakDownloadsJourneyChildSubjectTierSelector
-          tiers={tiers}
-          childSubjects={childSubjects}
-          getTierSubjectValues={handleTierSubjectSelection}
-        />
+        <OakGrid>
+          <OakGridArea
+            $flexDirection={"column"}
+            $gap={"spacing-48"}
+            $colSpan={[12, 8]}
+            $colStart={[1, 3]}
+          >
+            <ChildSubjectTierSelector
+              tiers={tiers}
+              childSubjects={childSubjects}
+              getTierSubjectValues={handleTierSubjectSelection}
+            />
+          </OakGridArea>
+        </OakGrid>
       ) : (
         <OakGrid>
           <OakGridArea
