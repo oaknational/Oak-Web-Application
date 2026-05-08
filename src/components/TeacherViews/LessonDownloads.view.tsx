@@ -234,15 +234,16 @@ export function LessonDownloads(props: LessonDownloadsProps) {
         onSubmit,
       });
 
+      setCurrentToastProps({
+        message: "Download started. This may take a few minutes",
+        variant: "success",
+        autoDismiss: true,
+        showClose: true,
+        showIcon: true,
+      });
+
       if (props.successRedirect) {
         router.replace(props.successRedirect);
-        setCurrentToastProps({
-          message: "Download started. This may take a few minutes",
-          variant: "success",
-          autoDismiss: true,
-          showClose: true,
-          showIcon: true,
-        });
       } else {
         setIsDownloadSuccessful(true);
       }
