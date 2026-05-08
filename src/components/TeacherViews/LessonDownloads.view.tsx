@@ -438,9 +438,10 @@ export function LessonDownloads(props: LessonDownloadsProps) {
                 onClick={(event) => {
                   form
                     .handleSubmit(onFormSubmit)(event)
-                    .catch((err) =>
+                    .catch(() =>
                       setCurrentToastProps({
-                        message: err,
+                        message:
+                          "Something went wrong with the download. Try refreshing the page.",
                         variant: "error",
                         autoDismiss: false,
                         showIcon: true,
