@@ -7,55 +7,33 @@ import type {
   ResourceFormValues,
 } from "@/components/TeacherComponents/types/downloadAndShare.types";
 import downloadLessonResources from "@/components/SharedComponents/helpers/downloadAndShareHelpers/downloadLessonResources";
+import { CurriculumSelectionSlugs } from "@/utils/curriculum/slugs";
+import { createCurriculumDownloadsUrl } from "@/utils/curriculum/urls";
+import { downloadFileFromUrl } from "@/components/SharedComponents/helpers/downloadFileFromUrl";
 
-type UseResourceFormProps = {
-  onSubmit?: () => void;
-} & (
-  | { type: "share" }
-  | { type: "download"; isLegacyDownload: boolean }
-  | { type: "curriculum" }
+export type OnSubmitProps = { data: ResourceFormValues } & (
+  | { type: "download"; slug: string; isLegacyDownload: boolean }
+  | { type: "share"; slug: string }
+  | {
+      type: "curriculum";
+      mvRefreshTime: number;
+      slugs: CurriculumSelectionSlugs;
+      tierSlug: string | null;
+      childSubjectSlug: string | null;
+    }
 );
 
-const useResourceFormSubmit = (props: UseResourceFormProps) => {
-  const {
-    setSchoolInLocalStorage,
-    setEmailInLocalStorage,
-    setTermsInLocalStorage,
-  } = useLocalStorageForDownloads();
-
+const useResourceFormSubmit = () => {
+  const localStorage = useLocalStorageForDownloads();
   const auth = useAuth();
 
-  const onSubmit = async (data: ResourceFormValues, slug: string) => {
-    if (props.onSubmit) {
-      props.onSubmit();
-    }
+  const onSubmit = async (onSubmitProps: OnSubmitProps) => {
+    handleLocalStorageSync(onSubmitProps.data, localStorage);
 
-    const email = data?.email;
-    const schoolId = data?.school;
-    const schoolName = data?.schoolName;
-    const terms = data?.terms;
-    const downloads = data?.resources;
+    const { resources } = onSubmitProps.data;
 
-    if (email) {
-      setEmailInLocalStorage(email);
-    }
-
-    if (schoolId) {
-      if (schoolId === "homeschool" || schoolId === "notListed") {
-        setSchoolInLocalStorage({
-          schoolId,
-          schoolName: schoolId,
-        });
-      } else {
-        if (schoolName && schoolId) {
-          setSchoolInLocalStorage({ schoolId, schoolName });
-        }
-      }
-    }
-    if (terms) {
-      setTermsInLocalStorage(terms);
-    }
-    if (props.type === "download") {
+    if (onSubmitProps.type === "download") {
+      const downloads = resources;
       const accessToken = await auth.getToken();
 
       const additionalFilesRegex = /additional-files-*/;
@@ -77,16 +55,65 @@ const useResourceFormSubmit = (props: UseResourceFormProps) => {
         : [];
 
       await downloadLessonResources({
-        lessonSlug: slug,
+        lessonSlug: onSubmitProps.slug,
         selectedResourceTypes: selectedResourceTypes as DownloadResourceType[],
         selectedAdditionalFilesIds,
-        isLegacyDownload: props.isLegacyDownload,
+        isLegacyDownload: onSubmitProps.isLegacyDownload,
         authToken: accessToken,
       });
+    } else if (onSubmitProps.type === "curriculum") {
+      const { mvRefreshTime, slugs, tierSlug, childSubjectSlug } =
+        onSubmitProps;
+      const downloadPath = createCurriculumDownloadsUrl(
+        resources,
+        "published",
+        mvRefreshTime,
+        slugs.subjectSlug,
+        slugs.phaseSlug,
+        slugs.ks4OptionSlug,
+        tierSlug,
+        childSubjectSlug,
+      );
+      await downloadFileFromUrl(downloadPath);
     }
   };
 
   return { onSubmit };
+};
+
+const handleLocalStorageSync = (
+  data: ResourceFormValues,
+  localStorage: ReturnType<typeof useLocalStorageForDownloads>,
+) => {
+  const {
+    setEmailInLocalStorage,
+    setSchoolInLocalStorage,
+    setTermsInLocalStorage,
+  } = localStorage;
+  const email = data?.email;
+  const schoolId = data?.school;
+  const schoolName = data?.schoolName;
+  const terms = data?.terms;
+
+  if (email) {
+    setEmailInLocalStorage(email);
+  }
+
+  if (schoolId) {
+    if (schoolId === "homeschool" || schoolId === "notListed") {
+      setSchoolInLocalStorage({
+        schoolId,
+        schoolName: schoolId,
+      });
+    } else {
+      if (schoolName && schoolId) {
+        setSchoolInLocalStorage({ schoolId, schoolName });
+      }
+    }
+  }
+  if (terms) {
+    setTermsInLocalStorage(terms);
+  }
 };
 
 export default useResourceFormSubmit;

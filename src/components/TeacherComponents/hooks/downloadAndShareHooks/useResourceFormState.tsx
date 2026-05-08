@@ -268,7 +268,7 @@ export const useResourceFormState = (props: UseResourceFormStateProps) => {
     string[] | undefined
   >(getInitialAdditionalFilesState());
 
-  const hasResources = getInitialResourcesState()?.length > 0;
+  const hasResources = getInitialResourcesState().length > 0;
 
   // Keep selectAllChecked in sync by comparing selected resources to available resources
   useEffect(() => {

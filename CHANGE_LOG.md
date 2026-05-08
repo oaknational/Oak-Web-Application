@@ -1,3 +1,18 @@
+## [1.1069.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.1069.1...v1.1069.2) (2026-05-07)
+
+
+### Bug Fixes
+
+* **LESQ-2015:** media page blowing up on empty transcript ([a3e9baf](https://github.com/oaknational/Oak-Web-Application/commit/a3e9baf3f068370a7742d97c7ca19c46e4c420a8))
+
+## [1.1069.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.1069.0...v1.1069.1) (2026-05-07)
+
+
+### Bug Fixes
+
+* **LESQ-2012:** hide download full curriculum button for rule-of-law ([9debe26](https://github.com/oaknational/Oak-Web-Application/commit/9debe26babc600daef047b14b00f6e363bc496fb))
+* **LESQ-2012:** remove curriculum link from rule-of-law seo block ([27606b8](https://github.com/oaknational/Oak-Web-Application/commit/27606b84e13658e39267791ea8c5673e249b696e))
+
 # [1.1069.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1068.0...v1.1069.0) (2026-05-06)
 
 
