@@ -1,3 +1,15 @@
+# [1.1070.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1069.2...v1.1070.0) (2026-05-08)
+
+
+### Bug Fixes
+
+* removed sitemaps from next config and llms.txt too ([5d66d91](https://github.com/oaknational/Oak-Web-Application/commit/5d66d918dc7260f97659bf6dd0a0670547afb199))
+
+
+### Features
+
+* removed pupil sitemaps and tests ([104ecc5](https://github.com/oaknational/Oak-Web-Application/commit/104ecc5a38049fc7e5b37207eea8e4df6c6ccd1c))
+
 ## [1.1069.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.1069.1...v1.1069.2) (2026-05-07)
 
 
