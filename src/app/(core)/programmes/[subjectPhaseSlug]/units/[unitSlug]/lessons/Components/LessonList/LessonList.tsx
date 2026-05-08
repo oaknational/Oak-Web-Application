@@ -1,5 +1,6 @@
 "use client";
 
+import type { ReactNode } from "react";
 import {
   OakBox,
   OakFlex,
@@ -12,34 +13,20 @@ import {
 import type { UnitOverviewContentProps } from "../UnitOverviewContent/UnitOverviewContent";
 
 import CardListing from "@/components/TeacherComponents/CardListing/CardListing";
-import { SaveUnitButton } from "@/components/TeacherComponents/SaveUnitButton/SaveUnitButton";
-import UnitDownloadButton, {
-  useUnitDownloadButtonState,
-} from "@/components/TeacherComponents/UnitDownloadButton/UnitDownloadButton";
 import { resolveOakHref } from "@/common-lib/urls";
-import { KeyStageTitleValueType } from "@/browser-lib/avo/Avo";
 import { useComplexCopyright } from "@/hooks/useComplexCopyright";
 
 type LessonListProps = Pick<
   UnitOverviewContentProps,
-  | "programmeSlug"
-  | "unitSlug"
-  | "unitTitle"
-  | "subjectTitle"
-  | "subjectSlug"
-  | "keyStageSlug"
-  | "keyStageTitle"
-  | "lessons"
-  | "unitIndex"
-  | "unitCount"
+  "programmeSlug" | "unitSlug" | "unitTitle" | "unitDescription" | "lessons"
 > & {
+  unitIndex?: number;
+  unitCount?: number;
   lessonCount: number;
   unitDescription?: UnitOverviewContentProps["unitDescription"];
   subjectCategories?: string[] | null;
   selectedLessonIndex?: number;
-  showUnitCount?: boolean;
-  isGeorestrictedUnit?: boolean;
-  unitDownloadFileId?: string;
+  headerCtaSlot?: ReactNode | null;
 };
 
 function LessonSubcopy({
@@ -106,31 +93,15 @@ const LessonList = ({
   unitSlug,
   unitTitle,
   unitDescription,
-  subjectTitle,
-  subjectSlug,
-  keyStageSlug,
-  keyStageTitle,
   lessons,
   unitIndex,
   unitCount,
   lessonCount,
   subjectCategories,
   selectedLessonIndex,
-  showUnitCount = true,
-  isGeorestrictedUnit,
-  unitDownloadFileId,
+  headerCtaSlot = null,
 }: LessonListProps) => {
-  const {
-    setShowDownloadMessage,
-    setDownloadError,
-    setDownloadInProgress,
-    downloadInProgress,
-    setShowIncompleteMessage,
-  } = useUnitDownloadButtonState();
-
-  const onDownloadSuccess = () => {
-    setShowDownloadMessage(false);
-  };
+  const showUnitCount = unitIndex !== undefined && unitCount !== undefined;
 
   return (
     <OakFlex $flexDirection="column">
@@ -143,7 +114,6 @@ const LessonList = ({
             $btrr="border-radius-l"
             $font="body-2"
             aria-hidden={true}
-            data-testid="unit-count"
           >
             <OakSpan $font="body-2-bold">Unit {unitIndex}</OakSpan> of{" "}
             {unitCount}
@@ -172,7 +142,7 @@ const LessonList = ({
         $pt={["spacing-32", "spacing-32", "spacing-56"]}
         $pb="spacing-24"
         $borderRadius="border-radius-xl"
-        $btlr="border-radius-square"
+        $btlr={showUnitCount ? "border-radius-square" : "border-radius-xl"}
         $dropShadow="drop-shadow-centred-standard"
       >
         <OakFlex
@@ -183,14 +153,22 @@ const LessonList = ({
           <OakBox
             as="h2"
             $font="heading-5"
-            aria-label={`Unit ${unitIndex} of ${unitCount}: ${unitTitle}`}
+            aria-label={
+              showUnitCount
+                ? `Unit ${unitIndex} of ${unitCount}: ${unitTitle}`
+                : unitTitle
+            }
           >
             {unitTitle}
           </OakBox>
           {unitDescription && <OakP $font="body-2">{unitDescription}</OakP>}
         </OakFlex>
         <OakBox>
-          <OakFlex $justifyContent="space-between" $alignItems="flex-start">
+          <OakFlex
+            $justifyContent="space-between"
+            $alignItems="flex-start"
+            $gap="spacing-12"
+          >
             <OakBox
               as="h3"
               $background="bg-decorative1-subdued"
@@ -202,34 +180,7 @@ const LessonList = ({
               <OakSpan $font="body-2-bold">{lessonCount}</OakSpan> lessons in
               unit
             </OakBox>
-            {unitDownloadFileId ? (
-              <UnitDownloadButton
-                unitFileId={unitDownloadFileId}
-                onDownloadSuccess={onDownloadSuccess}
-                setDownloadError={setDownloadError}
-                setDownloadInProgress={setDownloadInProgress}
-                setShowDownloadMessage={setShowDownloadMessage}
-                setShowIncompleteMessage={setShowIncompleteMessage}
-                downloadInProgress={downloadInProgress}
-                showNewTag={false}
-                geoRestricted={Boolean(isGeorestrictedUnit)}
-              />
-            ) : (
-              <SaveUnitButton
-                buttonVariant="default"
-                programmeSlug={programmeSlug}
-                unitSlug={unitSlug}
-                unitTitle={unitTitle}
-                trackingProps={{
-                  savedFrom: "lesson_listing_save_button",
-                  keyStageTitle:
-                    (keyStageTitle as KeyStageTitleValueType) ?? undefined,
-                  keyStageSlug,
-                  subjectTitle: subjectTitle ?? "",
-                  subjectSlug,
-                }}
-              />
-            )}
+            {headerCtaSlot}
           </OakFlex>
 
           <OakFlex

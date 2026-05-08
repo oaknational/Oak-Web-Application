@@ -3,6 +3,7 @@
  */
 import LessonDownloadsPage, { generateMetadata } from "./page";
 
+import { resolveOakHref } from "@/common-lib/urls";
 import { LessonDownloadsPageData } from "@/node-lib/curriculum-api-2023/queries/lessonDownloads/lessonDownloads.schema";
 
 jest.mock("next/navigation", () => ({
@@ -63,9 +64,7 @@ const lessonDownloadsFixture: Partial<LessonDownloadsPageData> = {
   keyStageTitle: "Key Stage 2",
   examBoardSlug: null,
   examBoardTitle: null,
-  tierSlug: null,
   tierTitle: null,
-  yearGroupSlug: "year-4",
   yearGroupTitle: "Year 4",
   pathwayTitle: null,
   downloads: [],
@@ -117,6 +116,16 @@ describe("LessonDownloadsPage", () => {
       programmeSlug: defaultParams.subjectPhaseSlug,
       unitSlug: defaultParams.unitSlug,
       lessonSlug: defaultParams.lessonSlug,
+    });
+    expect(result).toMatchObject({
+      props: {
+        successRedirect: resolveOakHref({
+          page: "integrated-lesson-downloads-success",
+          programmeSlug: defaultParams.subjectPhaseSlug,
+          unitSlug: defaultParams.unitSlug,
+          lessonSlug: defaultParams.lessonSlug,
+        }),
+      },
     });
   });
 });

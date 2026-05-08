@@ -11,6 +11,7 @@ import withPageErrorHandling, {
 } from "@/hocs/withPageErrorHandling";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 import { LessonDownloadsPageData } from "@/node-lib/curriculum-api-2023/queries/lessonDownloads/lessonDownloads.schema";
+import { resolveOakHref } from "@/common-lib/urls";
 import { getTeacherSubjectPhaseSlug } from "@/utils/curriculum/slugs";
 import { getFeatureFlagValue } from "@/utils/featureFlags";
 
@@ -105,6 +106,12 @@ const InnerLessonDownloadsPage = async (
           mode="downloads"
         />
       }
+      successRedirect={resolveOakHref({
+        page: "integrated-lesson-downloads-success",
+        programmeSlug,
+        unitSlug,
+        lessonSlug,
+      })}
     />
   );
 };

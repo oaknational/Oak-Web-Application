@@ -13,6 +13,12 @@ describe("seoText helpers", () => {
 
       expect(phase).toEqual("secondary");
     });
+
+    it("should return an empty string for an invalid year", () => {
+      const phase = getPhase("All years");
+
+      expect(phase).toEqual("");
+    });
   });
 
   describe("formatSubjectName", () => {
