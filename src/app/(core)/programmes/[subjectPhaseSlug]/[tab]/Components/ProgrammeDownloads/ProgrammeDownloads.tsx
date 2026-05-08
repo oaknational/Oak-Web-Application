@@ -226,54 +226,6 @@ export const ProgrammeDownloads = ({
     }
   };
 
-  // const onSubmit = async (data: ResourceFormValues) => {
-  //   setIsSubmitting(true);
-  //   setSubmitError(undefined);
-  //   const reportError = errorReporter("curriculum-download", {
-  //     subjectSlug: curriculumSelectionSlugs.subjectSlug,
-  //     phaseSlug: curriculumSelectionSlugs.phaseSlug,
-  //     ks4OptionSlug: curriculumSelectionSlugs.ks4OptionSlug,
-  //     tierSelected,
-  //     childSubjectSelected,
-  //   });
-
-  //   const downloadPath = createCurriculumDownloadsUrl(
-  //     data.resources,
-  //     "published",
-  //     mvRefreshTime,
-  //     curriculumSelectionSlugs.subjectSlug,
-  //     curriculumSelectionSlugs.phaseSlug,
-  //     curriculumSelectionSlugs.ks4OptionSlug,
-  //     tierSelected,
-  //     childSubjectSelected,
-  //   );
-
-  //   try {
-  //     await downloadFileFromUrl(downloadPath);
-  //     await trackCurriculumDownload(
-  //       data,
-  //       curriculumInfo.subjectTitle,
-  //       onHubspotSubmit,
-  //       track,
-  //       curriculumSelectionSlugs,
-  //     );
-
-  //     // Clear the email from localstorage if it was not set in the form
-  //     if (editDetailsClicked && !data.email) {
-  //       setEmailInLocalStorage("");
-  //     }
-
-  //     setIsDone(true);
-  //   } catch (err) {
-  //     reportError(err, { severity: "warning" });
-  //     setSubmitError(
-  //       "There was an error downloading your files. Please try again.",
-  //     );
-  //   } finally {
-  //     setIsSubmitting(false);
-  //   }
-  // };
-
   if (isDone) {
     return (
       // TODO: use DownloadSuccessHeader
