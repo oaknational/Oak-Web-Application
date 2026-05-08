@@ -348,7 +348,7 @@ export function LessonDownloads(props: LessonDownloadsProps) {
             $mb={"spacing-24"}
           />
         </OakBox>
-        {showGeoBlocked && (
+        {showGeoBlocked ? (
           <LessonDownloadRegionBlocked
             lessonName={lessonTitle}
             lessonSlug={lessonSlug}
@@ -361,8 +361,7 @@ export function LessonDownloads(props: LessonDownloadsProps) {
               unitSlug: unitSlug!,
             })}
           />
-        )}
-        {!showGeoBlocked && isDownloadSuccessful ? (
+        ) : isDownloadSuccessful ? (
           <DownloadConfirmation
             lessonSlug={lessonSlug}
             lessonTitle={lessonTitle}
@@ -438,15 +437,6 @@ export function LessonDownloads(props: LessonDownloadsProps) {
                 onClick={(event) => {
                   form
                     .handleSubmit(onFormSubmit)(event)
-                    .catch(() =>
-                      setCurrentToastProps({
-                        message:
-                          "Something went wrong with the download. Try refreshing the page.",
-                        variant: "error",
-                        autoDismiss: false,
-                        showIcon: true,
-                      }),
-                    )
                     .finally(() => {
                       setCurrentToastProps({
                         message:
@@ -456,7 +446,16 @@ export function LessonDownloads(props: LessonDownloadsProps) {
                         showClose: true,
                         showIcon: true,
                       });
-                    });
+                    })
+                    .catch(() =>
+                      setCurrentToastProps({
+                        message:
+                          "Something went wrong with the download. Try refreshing the page.",
+                        variant: "error",
+                        autoDismiss: false,
+                        showIcon: true,
+                      }),
+                    );
                 }}
                 iconName={"download"}
                 isLoading={
