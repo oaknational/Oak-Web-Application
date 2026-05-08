@@ -348,7 +348,7 @@ export function LessonDownloads(props: LessonDownloadsProps) {
             $mb={"spacing-24"}
           />
         </OakBox>
-        {showGeoBlocked ? (
+        {showGeoBlocked && (
           <LessonDownloadRegionBlocked
             lessonName={lessonTitle}
             lessonSlug={lessonSlug}
@@ -361,7 +361,8 @@ export function LessonDownloads(props: LessonDownloadsProps) {
               unitSlug: unitSlug!,
             })}
           />
-        ) : isDownloadSuccessful ? (
+        )}
+        {!showGeoBlocked && isDownloadSuccessful && (
           <DownloadConfirmation
             lessonSlug={lessonSlug}
             lessonTitle={lessonTitle}
@@ -392,7 +393,8 @@ export function LessonDownloads(props: LessonDownloadsProps) {
             isLegacy={isLegacyDownload}
             lessonReleaseDate={lessonReleaseDate ?? "unreleased"}
           />
-        ) : (
+        )}
+        {!showGeoBlocked && !isDownloadSuccessful && (
           <DownloadPageWithAccordion
             loginRequired={loginRequired ?? false}
             geoRestricted={geoRestricted ?? false}
@@ -437,7 +439,7 @@ export function LessonDownloads(props: LessonDownloadsProps) {
                 onClick={(event) => {
                   form
                     .handleSubmit(onFormSubmit)(event)
-                    .finally(() => {
+                    .then(() => {
                       setCurrentToastProps({
                         message:
                           "Download started. This may take a few minutes",
