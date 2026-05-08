@@ -236,6 +236,13 @@ export function LessonDownloads(props: LessonDownloadsProps) {
 
       if (props.successRedirect) {
         router.replace(props.successRedirect);
+        setCurrentToastProps({
+          message: "Download started. This may take a few minutes",
+          variant: "success",
+          autoDismiss: true,
+          showClose: true,
+          showIcon: true,
+        });
       } else {
         setIsDownloadSuccessful(true);
       }
@@ -288,9 +295,13 @@ export function LessonDownloads(props: LessonDownloadsProps) {
     } catch {
       setIsAttemptingDownload(false);
       setIsDownloadSuccessful(false);
-      setApiError(
-        "There was an error downloading your files. Please try again.",
-      );
+      setCurrentToastProps({
+        message:
+          "Something went wrong with the download. Try refreshing the page.",
+        variant: "error",
+        autoDismiss: false,
+        showIcon: true,
+      });
     }
   };
 
@@ -436,29 +447,7 @@ export function LessonDownloads(props: LessonDownloadsProps) {
             cta={
               <OakPrimaryButton
                 type="button"
-                onClick={(event) => {
-                  form
-                    .handleSubmit(onFormSubmit)(event)
-                    .then(() => {
-                      setCurrentToastProps({
-                        message:
-                          "Download started. This may take a few minutes",
-                        variant: "success",
-                        autoDismiss: true,
-                        showClose: true,
-                        showIcon: true,
-                      });
-                    })
-                    .catch(() =>
-                      setCurrentToastProps({
-                        message:
-                          "Something went wrong with the download. Try refreshing the page.",
-                        variant: "error",
-                        autoDismiss: false,
-                        showIcon: true,
-                      }),
-                    );
-                }}
+                onClick={(event) => void form.handleSubmit(onFormSubmit)(event)} // https://github.com/orgs/react-hook-form/discussions/8622}
                 iconName={"download"}
                 isLoading={
                   isAttemptingDownload || !hubspotLoaded // show loading state when waiting for latest school values to be populated from hubspot
