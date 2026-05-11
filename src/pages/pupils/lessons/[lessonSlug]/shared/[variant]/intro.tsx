@@ -298,10 +298,12 @@ const IntroPageContent = ({
                   $font="heading-7"
                 >
                   Download worksheet{" "}
-                  <OakSpan>
-                    ({worksheetInfo?.[0]?.ext?.toUpperCase()}{" "}
-                    {worksheetInfo?.[0]?.fileSize})
-                  </OakSpan>
+                  {worksheetInfo?.[0]?.ext && worksheetInfo?.[0]?.fileSize && (
+                    <OakSpan>
+                      ({worksheetInfo[0].ext.toUpperCase()}{" "}
+                      {worksheetInfo[0].fileSize})
+                    </OakSpan>
+                  )}
                 </OakPrimaryInvertedButton>
               </OakFlex>
             </PupilLessonIntroInfoCard>
