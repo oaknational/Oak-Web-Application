@@ -235,7 +235,6 @@ export const QuizPageContent = ({
     const nextStep = getQuizNextStep({
       currentQuestionIndex,
       numQuestions,
-      currentSection: section,
       isReadOnly,
     });
 
