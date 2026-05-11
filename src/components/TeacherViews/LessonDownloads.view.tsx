@@ -203,10 +203,7 @@ export function LessonDownloads(props: LessonDownloadsProps) {
 
   const [apiError, setApiError] = useState<string | null>(null);
 
-  const { onSubmit } = useResourceFormSubmit({
-    type: "download",
-    isLegacyDownload,
-  });
+  const { onSubmit } = useResourceFormSubmit();
 
   const { onHubspotSubmit } = useHubspotSubmit();
 
@@ -226,10 +223,12 @@ export function LessonDownloads(props: LessonDownloadsProps) {
     try {
       await debouncedSubmit({
         data,
-        lessonSlug,
+        slug: lessonSlug,
         setIsAttemptingDownload,
         setEditDetailsClicked,
         onSubmit,
+        type: "download",
+        isLegacyDownload,
       });
 
       if (props.successRedirect) {
@@ -411,7 +410,7 @@ export function LessonDownloads(props: LessonDownloadsProps) {
             showPostAlbCopyright={!isLegacyDownload}
             triggerForm={form.trigger}
             apiError={apiError}
-            updatedAt={updatedAt}
+            copyrightYear={updatedAt}
             withHomeschool={true}
             showTermsAgreement={
               onboardingStatus === "not-onboarded" ||
@@ -451,7 +450,7 @@ export function LessonDownloads(props: LessonDownloadsProps) {
               </OakPrimaryButton>
             }
             showRiskAssessmentBanner={showRiskAssessmentBanner}
-            downloads={downloadsFilteredByCopyright}
+            lessonDownloads={downloadsFilteredByCopyright}
             additionalFiles={additionalFiles}
             showGeoBlocked={showGeoBlocked}
             lessonSlug={lessonSlug}

@@ -25,8 +25,8 @@ import {
   ProgrammeOverviewProps,
 } from "./ProgrammeOverview/ProgrammeOverview";
 import {
-  ProgrammeDownloads,
   ProgrammeDownloadsProps,
+  ProgrammeDownloads,
 } from "./ProgrammeDownloads/ProgrammeDownloads";
 
 import {
