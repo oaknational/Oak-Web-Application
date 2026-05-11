@@ -6,7 +6,6 @@ describe("getQuizNextStep", () => {
       getQuizNextStep({
         currentQuestionIndex: 0,
         numQuestions: 3,
-        currentSection: "starter-quiz",
         isReadOnly: false,
       }),
     ).toEqual({ action: "next-question" });
@@ -17,7 +16,6 @@ describe("getQuizNextStep", () => {
       getQuizNextStep({
         currentQuestionIndex: 2,
         numQuestions: 3,
-        currentSection: "starter-quiz",
         isReadOnly: false,
       }),
     ).toEqual({ action: "complete-quiz" });
@@ -28,7 +26,6 @@ describe("getQuizNextStep", () => {
       getQuizNextStep({
         currentQuestionIndex: 0,
         numQuestions: 3,
-        currentSection: "exit-quiz",
         isReadOnly: true,
       }),
     ).toEqual({ action: "go-review" });

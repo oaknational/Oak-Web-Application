@@ -1,5 +1,3 @@
-import { QuizSection } from "./isQuizSection";
-
 type QuizNextStep =
   | { action: "complete-quiz" }
   | { action: "go-review" }
@@ -12,7 +10,6 @@ export const getQuizNextStep = ({
 }: {
   currentQuestionIndex: number;
   numQuestions: number;
-  currentSection: QuizSection;
   isReadOnly: boolean;
 }): QuizNextStep => {
   const nextQuestionIndex = Math.min(currentQuestionIndex + 1, numQuestions);
