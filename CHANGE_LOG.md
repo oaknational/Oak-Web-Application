@@ -1,3 +1,29 @@
+# [1.1071.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1070.0...v1.1071.0) (2026-05-11)
+
+
+### Bug Fixes
+
+* clear email when removed from form ([970375a](https://github.com/oaknational/Oak-Web-Application/commit/970375a91242810f7fd3c3b4a801125c518fd74f))
+* dedupe list of resources ([101b13b](https://github.com/oaknational/Oak-Web-Application/commit/101b13b70e3f745aa2e69770fecb5e03a5ab0e85))
+* error messaging for no resources selected ([c5145d7](https://github.com/oaknational/Oak-Web-Application/commit/c5145d7bf80063a4f7d5f7fc68c505e98dea3268))
+* maintain consistency with local storage on download completion ([605125b](https://github.com/oaknational/Oak-Web-Application/commit/605125bce8cb3ddab02b74fd6339d68f238f7c5e))
+* make curriculum resources all preselected by default ([67f28b8](https://github.com/oaknational/Oak-Web-Application/commit/67f28b8017a60a7fc7f4f0039942a8be6024c46e))
+* remove extra call to update local storage ([9e14ce4](https://github.com/oaknational/Oak-Web-Application/commit/9e14ce4df662a710af9a0c9a3985ffef81b9766d))
+* remove optional chain no longer required ([ed15e74](https://github.com/oaknational/Oak-Web-Application/commit/ed15e741dff91a827f9b971a11b298e188f43930))
+* remove orphan labelledby prop ([ddd483e](https://github.com/oaknational/Oak-Web-Application/commit/ddd483edb6ac955fe596b1c414cb23de39e6cfb2))
+* use span for tags on resource card ([dc1b424](https://github.com/oaknational/Oak-Web-Application/commit/dc1b424ebae090a53082fe9375d36e03869ef244))
+
+
+### Features
+
+* add download accordion to programme download tab ([2efa01f](https://github.com/oaknational/Oak-Web-Application/commit/2efa01feaf1d909c3669deaeedd02207d26ebb35))
+* add download success header to programme downloads ([ebaa490](https://github.com/oaknational/Oak-Web-Application/commit/ebaa4908c8622594dffb1a324c86394b20288adf))
+* add downloads text to curriculum downloads accordion ([fd4a4aa](https://github.com/oaknational/Oak-Web-Application/commit/fd4a4aa2f9bed7ef8b19ef34ece8d2062662e602))
+* add heading and layout for download tab ([7c243d8](https://github.com/oaknational/Oak-Web-Application/commit/7c243d8dc0e7d7f8e40c11d9b7e2ce52c13cc0bc))
+* add loading state to ensure form is ready ([0e6d4f7](https://github.com/oaknational/Oak-Web-Application/commit/0e6d4f7d7872a451d18047da8f606fddcd05b8a1))
+* ensure resources are all checked by default ([687d700](https://github.com/oaknational/Oak-Web-Application/commit/687d700fc79085f9e349d4ec6b18d45e31416472))
+* update subtitle for curric download cards ([19ae7b6](https://github.com/oaknational/Oak-Web-Application/commit/19ae7b6ebd7f5e3d27adaa5befdb45d97df07ad9))
+
 # [1.1070.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1069.2...v1.1070.0) (2026-05-08)
 
 
