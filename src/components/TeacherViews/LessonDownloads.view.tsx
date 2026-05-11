@@ -287,6 +287,9 @@ export function LessonDownloads(props: LessonDownloadsProps) {
     } catch {
       setIsAttemptingDownload(false);
       setIsDownloadSuccessful(false);
+      setApiError(
+        "There was an error downloading your files. Please try again.",
+      );
       setCurrentToastProps({
         message:
           "Something went wrong with the download. Try refreshing the page.",
