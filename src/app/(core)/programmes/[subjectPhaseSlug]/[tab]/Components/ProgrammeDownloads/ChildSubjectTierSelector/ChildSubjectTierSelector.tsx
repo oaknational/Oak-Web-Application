@@ -66,7 +66,7 @@ export const ChildSubjectTierSelector = (
         icon="bell"
         type="alert"
         title="Choose your KS4 downlod options below."
-        message="Your subject and tier selections will change the file you download. The document will still display both KS3 and KS4."
+        message="Before downloading, choose the KS4 options that will change the file you download. The document will still display both KS3 and KS4."
         $mb="spacing-32"
       />
       <OakFlex

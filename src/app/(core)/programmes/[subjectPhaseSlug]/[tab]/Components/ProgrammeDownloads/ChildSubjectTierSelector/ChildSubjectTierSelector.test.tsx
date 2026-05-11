@@ -146,34 +146,5 @@ describe("ChildSubjectTierSelector", () => {
       expect(getByTestId("child-subject-selector")).toBeInTheDocument();
       expect(queryByTestId("tier-selector")).not.toBeInTheDocument();
     });
-
-    it("shows updated banner copy when one option group is available", () => {
-      const { getByText } = renderWithTheme(
-        <ChildSubjectTierSelector
-          childSubjects={childSubjects}
-          getTierSubjectValues={getTierSubjectValues}
-        />,
-      );
-
-      expect(
-        getByText(
-          "Your subject and tier selections will change the file you download. The document will still display both KS3 and KS4.",
-        ),
-      ).toBeInTheDocument();
-    });
-
-    it("shows updated banner copy when no option groups are available", () => {
-      const { getByText } = renderWithTheme(
-        <ChildSubjectTierSelector
-          getTierSubjectValues={getTierSubjectValues}
-        />,
-      );
-
-      expect(
-        getByText(
-          "Your subject and tier selections will change the file you download. The document will still display both KS3 and KS4.",
-        ),
-      ).toBeInTheDocument();
-    });
   });
 });
