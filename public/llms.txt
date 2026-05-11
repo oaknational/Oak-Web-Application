@@ -68,8 +68,6 @@ Replace `{query}` with URL-encoded search terms. Example: `https://www.thenation
 
 - [Teachers Sitemap](https://www.thenational.academy/teachers/sitemap.xml): XML sitemap of all teacher-facing curriculum pages
 - [Teachers Sitemap (continued)](https://www.thenational.academy/teachers/sitemap-1.xml): Additional teacher curriculum pages
-- [Pupils Sitemap](https://www.thenational.academy/pupils/sitemap.xml): XML sitemap of all pupil-facing lesson pages
-- [Pupils Sitemap (continued)](https://www.thenational.academy/pupils/sitemap-1.xml): Additional pupil lesson pages
 - [Curriculum Sitemap](https://www.thenational.academy/teachers/curriculum/sitemap.xml): Sitemap of curriculum planning pages
 - [Blog Sitemap](https://www.thenational.academy/blog/sitemap.xml): Sitemap of all blog posts
 
