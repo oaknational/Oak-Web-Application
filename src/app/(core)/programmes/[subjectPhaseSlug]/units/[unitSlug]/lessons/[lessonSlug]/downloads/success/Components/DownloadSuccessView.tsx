@@ -8,7 +8,6 @@ import {
   OakIcon,
   OakSpan,
 } from "@oaknational/oak-components";
-import { useOakConsent } from "@oaknational/oak-consent-client";
 
 import { LessonList } from "@/app/(core)/programmes/[subjectPhaseSlug]/units/[unitSlug]/lessons/Components/LessonList";
 import { DownloadSuccessHeader } from "@/app/(core)/programmes/[subjectPhaseSlug]/units/[unitSlug]/lessons/[lessonSlug]/Components/DownloadSuccessHeader/DownloadSuccessHeader";
@@ -18,7 +17,6 @@ import UnitDownloadButton, {
 import { resolveOakHref } from "@/common-lib/urls";
 import useAnalytics from "@/context/Analytics/useAnalytics";
 import type { LessonListSchema } from "@/node-lib/curriculum-api-2023/shared.schema";
-import { ServicePolicyMap } from "@/browser-lib/cookie-consent/ServicePolicyMap";
 import { KeyStageTitleValueType } from "@/browser-lib/avo/Avo";
 
 type DownloadSuccessViewLesson = {
@@ -78,9 +76,6 @@ export function DownloadSuccessView({
     (l) => "geoRestricted" in l && l.geoRestricted,
   );
 
-  const { getConsent } = useOakConsent();
-  const cookiesNotAccepted = getConsent(ServicePolicyMap.GLEAP) === "denied";
-
   return (
     <>
       <DownloadSuccessHeader
@@ -90,7 +85,6 @@ export function DownloadSuccessView({
           programmeSlug,
           unitSlug,
         })}
-        showHelpMessage={!cookiesNotAccepted}
         onBackClick={() =>
           onwardContentSelected({
             lessonName: lessonTitle,
@@ -102,6 +96,8 @@ export function DownloadSuccessView({
             lessonReleaseDate: lessonReleaseDate,
           })
         }
+        backgroundColorLevel={1}
+        returnTo="lesson"
       />
       <OakBox $ph={["spacing-20", "spacing-40"]}>
         <OakGrid
