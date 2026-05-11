@@ -1,3 +1,10 @@
+## [1.1071.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.1071.1...v1.1071.2) (2026-05-11)
+
+
+### Bug Fixes
+
+* match on pathway slug when creating toggle options ([962e1c9](https://github.com/oaknational/Oak-Web-Application/commit/962e1c979a7f06d74c13748d582743237aa40a18))
+
 ## [1.1071.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.1071.0...v1.1071.1) (2026-05-11)
 
 
