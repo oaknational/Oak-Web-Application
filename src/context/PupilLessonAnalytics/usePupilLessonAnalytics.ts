@@ -26,8 +26,38 @@ export const usePupilLessonAnalytics = () => {
   const trackQuizCompleted = usePupilLessonAnalyticsStore(
     (state) => state.trackQuizCompleted,
   );
+  const trackQuizAbandoned = usePupilLessonAnalyticsStore(
+    (state) => state.trackQuizAbandoned,
+  );
+  const trackLessonStarted = usePupilLessonAnalyticsStore(
+    (state) => state.trackLessonStarted,
+  );
+  const trackLessonCompleted = usePupilLessonAnalyticsStore(
+    (state) => state.trackLessonCompleted,
+  );
   const trackLessonAbandoned = usePupilLessonAnalyticsStore(
     (state) => state.trackLessonAbandoned,
+  );
+  const trackIntroCompleted = usePupilLessonAnalyticsStore(
+    (state) => state.trackIntroCompleted,
+  );
+  const trackIntroAbandoned = usePupilLessonAnalyticsStore(
+    (state) => state.trackIntroAbandoned,
+  );
+  const trackWorksheetDownloaded = usePupilLessonAnalyticsStore(
+    (state) => state.trackWorksheetDownloaded,
+  );
+  const trackVideoCompleted = usePupilLessonAnalyticsStore(
+    (state) => state.trackVideoCompleted,
+  );
+  const trackVideoAbandoned = usePupilLessonAnalyticsStore(
+    (state) => state.trackVideoAbandoned,
+  );
+  const trackLessonSummaryReviewed = usePupilLessonAnalyticsStore(
+    (state) => state.trackLessonSummaryReviewed,
+  );
+  const trackActivityResultsShared = usePupilLessonAnalyticsStore(
+    (state) => state.trackActivityResultsShared,
   );
 
   const initialisePupilLessonAnalytics = useCallback(
@@ -42,6 +72,16 @@ export const usePupilLessonAnalytics = () => {
     trackSectionStarted,
     trackQuizQuestionAttempt,
     trackQuizCompleted,
+    trackQuizAbandoned,
+    trackLessonStarted,
+    trackLessonCompleted,
     trackLessonAbandoned,
+    trackIntroCompleted,
+    trackIntroAbandoned,
+    trackWorksheetDownloaded,
+    trackVideoCompleted,
+    trackVideoAbandoned,
+    trackLessonSummaryReviewed,
+    trackActivityResultsShared,
   };
 };

@@ -39,6 +39,15 @@ export type TrackQuizCompletedArgs = {
   sectionStartedAt: number;
 };
 
+export type TrackSectionResultArgs = {
+  sectionResults: LessonSectionResults;
+};
+
+export type TrackQuizAbandonedArgs = {
+  section: "starter-quiz" | "exit-quiz";
+  sectionResults: LessonSectionResults;
+};
+
 export type InitialisePupilLessonAnalyticsArgs = {
   track: TrackFns;
   pupilPathwayData: PupilPathwayData;
@@ -57,7 +66,17 @@ export type PupilLessonAnalyticsState = {
   trackSectionStarted: (args: TrackSectionStartedArgs) => void;
   trackQuizQuestionAttempt: (args: TrackQuizQuestionAttemptArgs) => void;
   trackQuizCompleted: (args: TrackQuizCompletedArgs) => void;
+  trackQuizAbandoned: (args: TrackQuizAbandonedArgs) => void;
+  trackLessonStarted: () => void;
+  trackLessonCompleted: () => void;
   trackLessonAbandoned: () => void;
+  trackIntroCompleted: () => void;
+  trackIntroAbandoned: () => void;
+  trackWorksheetDownloaded: () => void;
+  trackVideoCompleted: (args: TrackSectionResultArgs) => void;
+  trackVideoAbandoned: (args: TrackSectionResultArgs) => void;
+  trackLessonSummaryReviewed: (args: TrackSectionResultArgs) => void;
+  trackActivityResultsShared: (args: TrackSectionResultArgs) => void;
 };
 
 export type PupilLessonAnalyticsGet = () => PupilLessonAnalyticsState;
