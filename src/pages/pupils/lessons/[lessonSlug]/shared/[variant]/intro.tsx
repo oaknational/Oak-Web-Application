@@ -67,6 +67,7 @@ const IntroPageContent = ({
   const {
     sectionResults,
     lessonReviewSections,
+    lessonStarted,
     isReadOnly,
     completeSection,
     updateSectionInProgressResult,
@@ -74,12 +75,20 @@ const IntroPageContent = ({
     useShallow((state) => ({
       sectionResults: state.sectionResults,
       lessonReviewSections: state.lessonReviewSections,
+      lessonStarted: state.lessonStarted,
       isReadOnly: state.isReadOnly,
       completeSection: state.completeSection,
       updateSectionInProgressResult: state.updateSectionInProgressResult,
     })),
   );
-  const { trackSectionStarted } = usePupilLessonAnalytics();
+  const {
+    trackSectionStarted,
+    trackLessonStarted,
+    trackLessonCompleted,
+    trackIntroCompleted,
+    trackIntroAbandoned,
+    trackWorksheetDownloaded,
+  } = usePupilLessonAnalytics();
 
   const additionalFilesAssetIds = useMemo(
     () => getAdditionalFileAssetIds(additionalFiles),
@@ -142,11 +151,18 @@ const IntroPageContent = ({
   const handleProceed = () => {
     if (!sectionResults.intro?.isComplete) {
       setIsCompletingAndRedirecting(true);
+      if (!lessonStarted) {
+        trackLessonStarted();
+      }
+      trackIntroCompleted();
       completeSection("intro");
       const nextSectionResults = getSectionResultsAfterComplete();
       const allComplete = lessonReviewSections.every(
         (section) => nextSectionResults[section]?.isComplete,
       );
+      if (allComplete) {
+        trackLessonCompleted();
+      }
       void router.push(
         getNewLessonSectionHref({
           currentRoute: router.asPath,
@@ -195,6 +211,12 @@ const IntroPageContent = ({
               label="Back"
               onClick={(event) => {
                 event.preventDefault();
+                if (!sectionResults.intro?.isComplete) {
+                  if (!lessonStarted) {
+                    trackLessonStarted();
+                  }
+                  trackIntroAbandoned();
+                }
                 void router.push(overviewHref);
               }}
             />
@@ -290,6 +312,10 @@ const IntroPageContent = ({
                       worksheetDownloaded: true,
                       worksheetAvailable: true,
                     });
+                    if (!lessonStarted) {
+                      trackLessonStarted();
+                    }
+                    trackWorksheetDownloaded();
                     void startDownload();
                   }}
                   isLoading={isDownloading}
