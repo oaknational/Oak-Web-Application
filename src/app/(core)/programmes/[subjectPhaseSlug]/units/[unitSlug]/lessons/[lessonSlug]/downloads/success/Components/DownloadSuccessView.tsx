@@ -9,6 +9,7 @@ import {
   OakSpan,
 } from "@oaknational/oak-components";
 import { useOakConsent } from "@oaknational/oak-consent-client";
+import { useEffect } from "react";
 
 import { LessonList } from "@/app/(core)/programmes/[subjectPhaseSlug]/units/[unitSlug]/lessons/Components/LessonList";
 import { DownloadSuccessHeader } from "@/app/(core)/programmes/[subjectPhaseSlug]/units/[unitSlug]/lessons/[lessonSlug]/Components/DownloadSuccessHeader/DownloadSuccessHeader";
@@ -20,6 +21,7 @@ import useAnalytics from "@/context/Analytics/useAnalytics";
 import type { LessonListSchema } from "@/node-lib/curriculum-api-2023/shared.schema";
 import { ServicePolicyMap } from "@/browser-lib/cookie-consent/ServicePolicyMap";
 import { KeyStageTitleValueType } from "@/browser-lib/avo/Avo";
+import { useOakNotificationsContext } from "@/context/OakNotifications/useOakNotificationsContext";
 
 type DownloadSuccessViewLesson = {
   lessonTitle: string;
@@ -62,6 +64,8 @@ export function DownloadSuccessView({
   const { track } = useAnalytics();
   const { onwardContentSelected, unitDownloadInitiated } = track;
 
+  const { setCurrentToastProps } = useOakNotificationsContext();
+
   const {
     setShowDownloadMessage,
     setDownloadError,
@@ -80,6 +84,17 @@ export function DownloadSuccessView({
 
   const { getConsent } = useOakConsent();
   const cookiesNotAccepted = getConsent(ServicePolicyMap.GLEAP) === "denied";
+
+  useEffect(() => {
+    setCurrentToastProps({
+      message: "Download started. This may take a few minutes",
+      variant: "success",
+      autoDismiss: true,
+      showClose: true,
+      showIcon: true,
+    });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <>
