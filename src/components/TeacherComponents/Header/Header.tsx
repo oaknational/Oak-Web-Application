@@ -16,7 +16,7 @@ import {
   OakTagFunctional,
 } from "@oaknational/oak-components";
 
-type HeaderProps = {
+export type HeaderProps = {
   /**
    * Top level heading
    */

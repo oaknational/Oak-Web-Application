@@ -124,7 +124,7 @@ describe("ProgrammeView", () => {
       "/programmes/science-secondary-aqa/download",
     );
     render(<ProgrammeView {...defaultProps} tabSlug="download" />);
-    const content = screen.getByTestId("download-heading");
+    const content = screen.getByText("Download curriculum resources");
     expect(content).toBeInTheDocument();
   });
   it("navigates on tab click", async () => {

@@ -30,7 +30,7 @@ const props: PropsWithoutForm = {
   setSchool: jest.fn(),
   cardGroup: <div>Cards</div>,
   cta: <button>CTA</button>,
-  updatedAt: "2022-01-01T00:00:00Z",
+  copyrightYear: "2022-01-01T00:00:00Z",
   withHomeschool: true,
   showTermsAgreement: true,
   isLoading: false,

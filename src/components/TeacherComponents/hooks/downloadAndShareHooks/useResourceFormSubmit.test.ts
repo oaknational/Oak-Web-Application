@@ -53,13 +53,13 @@ describe("useResourceFormSubmit", () => {
     window.localStorage.clear();
   });
   it("should set email in local storage if passed in props", async () => {
-    const { result } = renderHook(() =>
-      useResourceFormSubmit({
-        isLegacyDownload: true,
-        type: "download",
-      }),
-    );
-    result.current.onSubmit(data, "lesson");
+    const { result } = renderHook(() => useResourceFormSubmit());
+    result.current.onSubmit({
+      data,
+      slug: "lesson",
+      type: "download",
+      isLegacyDownload: true,
+    });
 
     await waitFor(() => {
       expect(mockSetEmailInLocalStorageFn).toHaveBeenCalledWith(
@@ -69,13 +69,13 @@ describe("useResourceFormSubmit", () => {
   });
 
   it("should set school in local storage if passed in props", async () => {
-    const { result } = renderHook(() =>
-      useResourceFormSubmit({
-        isLegacyDownload: true,
-        type: "download",
-      }),
-    );
-    result.current.onSubmit(data, "lesson");
+    const { result } = renderHook(() => useResourceFormSubmit());
+    result.current.onSubmit({
+      data,
+      slug: "lesson",
+      isLegacyDownload: true,
+      type: "download",
+    });
     await waitFor(() => {
       expect(mockSetSchoolInLocalStorageFn).toHaveBeenCalledWith({
         schoolId: "222-Sample school",
@@ -93,13 +93,13 @@ describe("useResourceFormSubmit", () => {
       resources: ["intro-quiz-questions"],
     };
 
-    const { result } = renderHook(() =>
-      useResourceFormSubmit({
-        isLegacyDownload: true,
-        type: "download",
-      }),
-    );
-    result.current.onSubmit(data, "lesson");
+    const { result } = renderHook(() => useResourceFormSubmit());
+    result.current.onSubmit({
+      data,
+      slug: "lesson",
+      isLegacyDownload: true,
+      type: "download",
+    });
     await waitFor(() => {
       expect(mockSetSchoolInLocalStorageFn).toHaveBeenCalledWith({
         schoolId: "homeschool",
@@ -117,13 +117,13 @@ describe("useResourceFormSubmit", () => {
       resources: ["intro-quiz-questions"],
     };
 
-    const { result } = renderHook(() =>
-      useResourceFormSubmit({
-        isLegacyDownload: true,
-        type: "download",
-      }),
-    );
-    result.current.onSubmit(data, "lesson");
+    const { result } = renderHook(() => useResourceFormSubmit());
+    result.current.onSubmit({
+      data,
+      slug: "lesson",
+      isLegacyDownload: true,
+      type: "download",
+    });
     await waitFor(() => {
       expect(mockSetSchoolInLocalStorageFn).toHaveBeenCalledWith({
         schoolId: "notListed",
@@ -133,26 +133,26 @@ describe("useResourceFormSubmit", () => {
   });
 
   it("should set terms in local storage if passed in props", async () => {
-    const { result } = renderHook(() =>
-      useResourceFormSubmit({
-        isLegacyDownload: true,
-        type: "download",
-      }),
-    );
-    result.current.onSubmit(data, "lesson");
+    const { result } = renderHook(() => useResourceFormSubmit());
+    result.current.onSubmit({
+      data,
+      slug: "lesson",
+      isLegacyDownload: true,
+      type: "download",
+    });
     await waitFor(() => {
       expect(mockSetTermsInLocalStorageFn).toHaveBeenCalledWith(true);
     });
   });
 
   it("should call downloadLessonResources with correct parameters", async () => {
-    const { result } = renderHook(() =>
-      useResourceFormSubmit({
-        isLegacyDownload: true,
-        type: "download",
-      }),
-    );
-    result.current.onSubmit(data, "lesson");
+    const { result } = renderHook(() => useResourceFormSubmit());
+    result.current.onSubmit({
+      data,
+      slug: "lesson",
+      isLegacyDownload: true,
+      type: "download",
+    });
 
     await waitFor(() => {
       expect(downloadLessonResources).toHaveBeenCalledWith({
@@ -179,13 +179,13 @@ describe("useResourceFormSubmit", () => {
       ],
     };
 
-    const { result } = renderHook(() =>
-      useResourceFormSubmit({
-        isLegacyDownload: true,
-        type: "download",
-      }),
-    );
-    result.current.onSubmit(dataWithAdditionalFiles, "lesson");
+    const { result } = renderHook(() => useResourceFormSubmit());
+    result.current.onSubmit({
+      data: dataWithAdditionalFiles,
+      slug: "lesson",
+      isLegacyDownload: true,
+      type: "download",
+    });
 
     await waitFor(() => {
       expect(downloadLessonResources).toHaveBeenCalledWith({
