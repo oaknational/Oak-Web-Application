@@ -274,12 +274,7 @@ export const ProgrammeDownloads = ({
     >
       {subjectTierSelectionVisible === true ? (
         <OakGrid>
-          <OakGridArea
-            $flexDirection={"column"}
-            $gap={"spacing-48"}
-            $colSpan={[12, 8]}
-            $colStart={[1, 3]}
-          >
+          <OakGridArea $colSpan={[12, 8]} $colStart={[1, 3]}>
             <ChildSubjectTierSelector
               tiers={tiers}
               childSubjects={childSubjects}
