@@ -320,7 +320,9 @@ export const getProgrammeToggles = (
           programme.programme_fields.subject_slug ===
             currentProgramme.programme_fields.subject_slug &&
           programme.programme_fields.examboard_slug ===
-            currentProgramme.programme_fields.examboard_slug,
+            currentProgramme.programme_fields.examboard_slug &&
+          programme.programme_fields.pathway_slug ===
+            currentProgramme.programme_fields.pathway_slug,
       )
       .filter(hasTierFields)
       .toSorted((a, b) => sortTiers(a.programme_fields, b.programme_fields))
@@ -337,7 +339,9 @@ export const getProgrammeToggles = (
         programme.programme_fields.examboard_slug ===
           currentProgramme.programme_fields.examboard_slug &&
         programme.programme_fields.tier_slug ===
-          currentProgramme.programme_fields.tier_slug,
+          currentProgramme.programme_fields.tier_slug &&
+        programme.programme_fields.pathway_slug ===
+          currentProgramme.programme_fields.pathway_slug,
     )
     .toSorted((a, b) =>
       sortChildSubjects(a.programme_fields, b.programme_fields),
