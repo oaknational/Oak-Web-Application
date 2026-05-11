@@ -69,7 +69,7 @@ const OverviewPageContent = ({
       markLessonStarted: state.markLessonStarted,
     })),
   );
-  const { trackSectionStarted, trackLessonAbandoned } =
+  const { trackSectionStarted, trackLessonStarted, trackLessonAbandoned } =
     usePupilLessonAnalytics();
   const router = useRouter();
   const [isMounted, setIsMounted] = useState(false);
@@ -105,6 +105,9 @@ const OverviewPageContent = ({
       lessonReviewSections,
       sectionResults,
     });
+    if (!lessonStarted) {
+      trackLessonStarted();
+    }
     markLessonStarted();
     trackSectionStarted({ section: nextSection, sectionResults });
     void router.push(
@@ -131,6 +134,9 @@ const OverviewPageContent = ({
     starterQuizNumQuestions,
     exitQuizNumQuestions,
     onSectionClick: (section) => {
+      if (!lessonStarted) {
+        trackLessonStarted();
+      }
       markLessonStarted();
       trackSectionStarted({ section, sectionResults });
     },

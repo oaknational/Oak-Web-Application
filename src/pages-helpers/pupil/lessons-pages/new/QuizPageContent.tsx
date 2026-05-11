@@ -67,6 +67,7 @@ export const QuizPageContent = ({
   const {
     sectionResults,
     lessonReviewSections,
+    lessonStarted,
     isReadOnly,
     completeSection,
     updateSectionInProgressResult,
@@ -74,6 +75,7 @@ export const QuizPageContent = ({
     useShallow((state) => ({
       sectionResults: state.sectionResults,
       lessonReviewSections: state.lessonReviewSections,
+      lessonStarted: state.lessonStarted,
       isReadOnly: state.isReadOnly,
       completeSection: state.completeSection,
       updateSectionInProgressResult: state.updateSectionInProgressResult,
@@ -104,8 +106,14 @@ export const QuizPageContent = ({
       handleNextQuestion: state.handleNextQuestion,
     })),
   );
-  const { trackSectionStarted, trackQuizQuestionAttempt, trackQuizCompleted } =
-    usePupilLessonAnalytics();
+  const {
+    trackSectionStarted,
+    trackQuizQuestionAttempt,
+    trackQuizCompleted,
+    trackQuizAbandoned,
+    trackLessonStarted,
+    trackLessonCompleted,
+  } = usePupilLessonAnalytics();
   const currentQuestionData = questionsArray[currentQuestionIndex];
   const currentQuestionState = questionState[currentQuestionIndex];
   const currentQuestionDisplayIndex = getCurrentQuestionDisplayIndex({
@@ -254,12 +262,22 @@ export const QuizPageContent = ({
       section,
       sectionResults,
     });
+    if (!lessonStarted) {
+      trackLessonStarted();
+    }
 
     trackQuizCompleted({
       section,
       sectionResults: nextSectionResults,
       sectionStartedAt: sectionStartedAtRef.current,
     });
+    if (
+      lessonReviewSections.every(
+        (reviewSection) => nextSectionResults[reviewSection]?.isComplete,
+      )
+    ) {
+      trackLessonCompleted();
+    }
 
     navigateToSection(
       getQuizCompletionDestination({
@@ -305,6 +323,12 @@ export const QuizPageContent = ({
                 label="Back"
                 onClick={(event) => {
                   event.preventDefault();
+                  if (!sectionResults[section]?.isComplete) {
+                    if (!lessonStarted) {
+                      trackLessonStarted();
+                    }
+                    trackQuizAbandoned({ section, sectionResults });
+                  }
                   navigateToSection("overview");
                 }}
               />
