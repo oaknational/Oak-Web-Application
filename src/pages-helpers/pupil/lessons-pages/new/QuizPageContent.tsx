@@ -239,24 +239,19 @@ export const QuizPageContent = ({
     handleQuestionResult(result);
   };
 
-  const onNext = () => {
+  const isQuizEffectivelyComplete = () => {
     const nextStep = getQuizNextStep({
       currentQuestionIndex,
       numQuestions,
       isReadOnly,
     });
+    return (
+      nextStep.action === "complete-quiz" &&
+      currentQuestionState?.mode === "feedback"
+    );
+  };
 
-    if (nextStep.action === "next-question") {
-      handleNextQuestion();
-      return;
-    }
-
-    if (nextStep.action === "go-review") {
-      trackSectionStarted({ section: "review", sectionResults });
-      navigateToSection("review");
-      return;
-    }
-
+  const completeQuizAndTrack = () => {
     completeSection(section);
     const nextSectionResults = getCompletedQuizSectionResults({
       section,
@@ -279,12 +274,49 @@ export const QuizPageContent = ({
       trackLessonCompleted();
     }
 
+    return nextSectionResults;
+  };
+
+  const onNext = () => {
+    const nextStep = getQuizNextStep({
+      currentQuestionIndex,
+      numQuestions,
+      isReadOnly,
+    });
+
+    if (nextStep.action === "next-question") {
+      handleNextQuestion();
+      return;
+    }
+
+    if (nextStep.action === "go-review") {
+      trackSectionStarted({ section: "review", sectionResults });
+      navigateToSection("review");
+      return;
+    }
+
+    const nextSectionResults = completeQuizAndTrack();
     navigateToSection(
       getQuizCompletionDestination({
         sectionResults: nextSectionResults,
         lessonReviewSections,
       }),
     );
+  };
+
+  const onBack = () => {
+    const alreadyComplete = sectionResults[section]?.isComplete;
+
+    if (!alreadyComplete && isQuizEffectivelyComplete()) {
+      completeQuizAndTrack();
+    } else if (!alreadyComplete) {
+      if (!lessonStarted) {
+        trackLessonStarted();
+      }
+      trackQuizAbandoned({ section, sectionResults });
+    }
+
+    navigateToSection("overview");
   };
 
   const isFeedbackMode = currentQuestionState?.mode === "feedback";
@@ -323,13 +355,7 @@ export const QuizPageContent = ({
                 label="Back"
                 onClick={(event) => {
                   event.preventDefault();
-                  if (!sectionResults[section]?.isComplete) {
-                    if (!lessonStarted) {
-                      trackLessonStarted();
-                    }
-                    trackQuizAbandoned({ section, sectionResults });
-                  }
-                  navigateToSection("overview");
+                  onBack();
                 }}
               />
             ),
