@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { ComponentProps, useEffect } from "react";
 import { SignUpButton } from "@clerk/nextjs";
 import {
   OakLink,
@@ -21,23 +21,30 @@ import {
 } from "@/utils/copyrightLinks";
 import { useComplexCopyright } from "@/hooks/useComplexCopyright";
 
-export type ComplexCopyrightRestrictionBannerProps = {
-  isGeorestricted?: boolean;
-  isLoginRequired?: boolean;
-  componentType?: ComponentTypeValueType;
-  unitName?: string | null;
-  unitSlug?: string | null;
-  lessonName?: string | null;
-  lessonSlug?: string | null;
-  lessonReleaseDate?: string | null;
-  isLessonLegacy?: boolean;
-};
+type InnerCopyrightBannerProps = Omit<
+  ComponentProps<typeof OakInlineBanner>,
+  "message" | "isOpen"
+>;
+
+export type ComplexCopyrightRestrictionBannerProps =
+  InnerCopyrightBannerProps & {
+    isGeorestricted?: boolean;
+    isLoginRequired?: boolean;
+    componentType?: ComponentTypeValueType;
+    unitName?: string | null;
+    unitSlug?: string | null;
+    lessonName?: string | null;
+    lessonSlug?: string | null;
+    lessonReleaseDate?: string | null;
+    isLessonLegacy?: boolean;
+  };
 
 const SignedOutCopyrightBanner = ({
   showOnboardingLink,
   isGeorestricted,
   isUnit,
-}: {
+  ...rest
+}: InnerCopyrightBannerProps & {
   showOnboardingLink: boolean;
   isGeorestricted: boolean;
   isUnit: boolean;
@@ -93,11 +100,17 @@ const SignedOutCopyrightBanner = ({
           )}
         </OakP>
       }
+      {...rest}
     />
   );
 };
 
-const SignedInGeorestrictedBanner = ({ isUnit }: { isUnit: boolean }) => (
+const SignedInGeorestrictedBanner = ({
+  isUnit,
+  ...rest
+}: InnerCopyrightBannerProps & {
+  isUnit: boolean;
+}) => (
   <OakInlineBanner
     type="info"
     $maxWidth={"spacing-960"}
@@ -119,6 +132,7 @@ const SignedInGeorestrictedBanner = ({ isUnit }: { isUnit: boolean }) => (
         <OakLink href={COPYRIGHT_CONTACT_US_LINK}>contact us.</OakLink>
       </OakP>
     }
+    {...rest}
   />
 );
 
@@ -135,6 +149,7 @@ const ComplexCopyrightRestrictionBanner = (
     lessonSlug,
     lessonReleaseDate,
     isLessonLegacy,
+    ...rest
   } = props;
 
   const {
@@ -192,12 +207,13 @@ const ComplexCopyrightRestrictionBanner = (
     showSignedInNotOnboarded;
 
   return showGeoBlocked ? (
-    <SignedInGeorestrictedBanner isUnit={isUnit} />
+    <SignedInGeorestrictedBanner isUnit={isUnit} {...rest} />
   ) : showSignedOutCopyrightBanner ? (
     <SignedOutCopyrightBanner
       showOnboardingLink={showSignedInNotOnboarded}
       isGeorestricted={isGeorestricted ?? false}
       isUnit={isUnit}
+      {...rest}
     />
   ) : null;
 };
