@@ -54,6 +54,7 @@ export type PupilLessonProgressState = {
   isLessonComplete: boolean;
   isReadOnly: boolean;
   isHydratingInitialProgress: boolean;
+  contentGuidanceDismissed: boolean;
   initialiseLessonProgress: (args: LessonProgressInitArgs) => void;
   markLessonStarted: () => void;
   completeSection: (section: LessonReviewSection) => void;
@@ -63,6 +64,7 @@ export type PupilLessonProgressState = {
   ) => void;
   updateWorksheetDownloaded: (result: IntroResult) => void;
   updateAdditionalFilesDownloaded: (result: IntroResult) => void;
+  dismissContentGuidance: () => void;
   setHydratingInitialProgress: (isHydrating: boolean) => void;
   resetLessonProgress: () => void;
 };
@@ -75,6 +77,7 @@ export type PupilLessonProgressDataState = Omit<
   | "updateSectionInProgressResult"
   | "updateWorksheetDownloaded"
   | "updateAdditionalFilesDownloaded"
+  | "dismissContentGuidance"
   | "setHydratingInitialProgress"
   | "resetLessonProgress"
 >;

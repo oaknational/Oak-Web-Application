@@ -1,4 +1,3 @@
-import { useState } from "react";
 import {
   OakPupilContentGuidance,
   OakPupilJourneyContentGuidance,
@@ -16,6 +15,7 @@ export type ContentGuidanceTrackingArgs = {
 
 type PupilLessonOverviewContentGuidanceModalProps = {
   redirectOverlayCleared: boolean;
+  contentGuidanceDismissed: boolean;
   contentGuidance: OakPupilContentGuidance[] | null | undefined;
   supervisionLevel: string | null | undefined;
   ageRestriction: string | null | undefined;
@@ -34,6 +34,7 @@ const defaultContentGuidance: OakPupilContentGuidance[] = [
 
 export const PupilLessonOverviewContentGuidanceModal = ({
   redirectOverlayCleared,
+  contentGuidanceDismissed,
   contentGuidance,
   supervisionLevel,
   ageRestriction,
@@ -42,9 +43,7 @@ export const PupilLessonOverviewContentGuidanceModal = ({
   onDecline,
 }: PupilLessonOverviewContentGuidanceModalProps) => {
   const hasAgeRestriction = Boolean(ageRestriction);
-  const [isOpen, setIsOpen] = useState<boolean>(
-    Boolean(contentGuidance) || hasAgeRestriction,
-  );
+  const hasContentGuidance = Boolean(contentGuidance) || hasAgeRestriction;
   const contentGuidanceWarning = contentGuidance?.find(
     (guidance) => guidance.contentguidanceArea,
   )?.contentguidanceArea as ContentGuidanceWarningValueType;
@@ -53,13 +52,10 @@ export const PupilLessonOverviewContentGuidanceModal = ({
     contentGuidanceWarning,
     ageRestriction: ageRestriction ?? "all",
   };
-  const isModalOpen = isOpen && redirectOverlayCleared;
+  const isModalOpen =
+    hasContentGuidance && !contentGuidanceDismissed && redirectOverlayCleared;
   const declineIcon = isClassroomAssignment ? "cross" : undefined;
   const declineText = isClassroomAssignment ? "Exit lesson" : undefined;
-  const handleAccept = () => {
-    setIsOpen(false);
-    onAccept(trackingArgs);
-  };
   const ageRestrictionProps: Partial<OakPupilJourneyContentGuidanceProps> = {
     contentGuidance: contentGuidance ?? defaultContentGuidance,
     supervisionLevel: contentGuidance ? supervisionLevel : null,
@@ -73,7 +69,7 @@ export const PupilLessonOverviewContentGuidanceModal = ({
   return (
     <OakPupilJourneyContentGuidance
       isOpen={isModalOpen}
-      onAccept={handleAccept}
+      onAccept={() => onAccept(trackingArgs)}
       onDecline={() => onDecline(trackingArgs)}
       declineIcon={declineIcon}
       declineText={declineText}
