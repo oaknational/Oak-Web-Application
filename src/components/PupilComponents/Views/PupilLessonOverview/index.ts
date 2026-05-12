@@ -3,6 +3,7 @@ export * from "./PupilLessonOverviewView/PupilLessonOverview.view";
 export * from "./PupilLessonOverviewHeader/PupilLessonOverviewHeader";
 export * from "./PupilLessonOverviewOutcomes/PupilLessonOverviewOutcomes";
 export * from "./PupilLessonOverviewContentGuidance/PupilLessonOverviewContentGuidance";
+export * from "./PupilLessonOverviewContentGuidanceModal/PupilLessonOverviewContentGuidanceModal";
 export * from "./PupilLessonOverviewSectionsNav/PupilLessonOverviewSectionsNav";
 export * from "./helpers/getProceedLabel";
 export * from "./helpers/getSectionProgress";
