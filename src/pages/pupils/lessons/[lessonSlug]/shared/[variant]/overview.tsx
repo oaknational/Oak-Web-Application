@@ -60,7 +60,9 @@ const OverviewPageContent = ({
     lessonStarted,
     isReadOnly,
     isHydratingInitialProgress,
+    contentGuidanceDismissed,
     markLessonStarted,
+    dismissContentGuidance,
   } = usePupilLessonProgress(
     useShallow((state) => ({
       sectionResults: state.sectionResults,
@@ -69,7 +71,9 @@ const OverviewPageContent = ({
       lessonStarted: state.lessonStarted,
       isReadOnly: state.isReadOnly,
       isHydratingInitialProgress: state.isHydratingInitialProgress,
+      contentGuidanceDismissed: state.contentGuidanceDismissed,
       markLessonStarted: state.markLessonStarted,
+      dismissContentGuidance: state.dismissContentGuidance,
     })),
   );
   const {
@@ -162,6 +166,7 @@ const OverviewPageContent = ({
   ) as string[];
 
   const handleContentGuidanceAccept = (args: ContentGuidanceTrackingArgs) => {
+    dismissContentGuidance();
     trackContentGuidanceAccepted(args);
   };
 
@@ -191,6 +196,7 @@ const OverviewPageContent = ({
     <>
       <PupilLessonOverviewContentGuidanceModal
         redirectOverlayCleared={redirectOverlayCleared}
+        contentGuidanceDismissed={contentGuidanceDismissed}
         contentGuidance={contentGuidance as OakPupilContentGuidance[] | null}
         supervisionLevel={supervisionLevel}
         ageRestriction={browseData.features?.ageRestriction}
