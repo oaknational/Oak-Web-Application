@@ -4,4 +4,4 @@ export * from "./PupilLessonQuizBottomNav/PupilLessonQuizBottomNav";
 export * from "./PupilLessonQuizCheckButton/PupilLessonQuizCheckButton";
 export * from "./PupilLessonQuizNextButton/PupilLessonQuizNextButton";
 export * from "./quizSection";
-export * from "./helpers/pickQuizTooltip";
+export { pickQuizTooltip } from "../ViewHelpers";
