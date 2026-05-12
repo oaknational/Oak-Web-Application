@@ -48,6 +48,11 @@ export type TrackQuizAbandonedArgs = {
   sectionResults: LessonSectionResults;
 };
 
+export type TrackContentGuidanceArgs = Omit<
+  Parameters<TrackFns["contentGuidanceAccepted"]>[0],
+  keyof AdditionalArgs
+>;
+
 export type InitialisePupilLessonAnalyticsArgs = {
   track: TrackFns;
   pupilPathwayData: PupilPathwayData;
@@ -77,6 +82,8 @@ export type PupilLessonAnalyticsState = {
   trackVideoAbandoned: (args: TrackSectionResultArgs) => void;
   trackLessonSummaryReviewed: (args: TrackSectionResultArgs) => void;
   trackActivityResultsShared: (args: TrackSectionResultArgs) => void;
+  trackContentGuidanceAccepted: (args: TrackContentGuidanceArgs) => void;
+  trackContentGuidanceDeclined: (args: TrackContentGuidanceArgs) => void;
 };
 
 export type PupilLessonAnalyticsGet = () => PupilLessonAnalyticsState;

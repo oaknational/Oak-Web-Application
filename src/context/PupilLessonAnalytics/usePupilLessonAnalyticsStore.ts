@@ -13,6 +13,8 @@ import {
 } from "@/context/PupilLessonAnalytics/trackingFunctions/lessonTracking";
 import {
   trackIntroAbandoned,
+  trackContentGuidanceAccepted,
+  trackContentGuidanceDeclined,
   trackIntroCompleted,
   trackIntroStarted,
   trackWorksheetDownloaded,
@@ -99,5 +101,9 @@ export const usePupilLessonAnalyticsStore = create<PupilLessonAnalyticsState>()(
       trackLessonSummaryReviewed(get, sectionResults),
     trackActivityResultsShared: ({ sectionResults }) =>
       trackActivityResultsShared(get, sectionResults),
+    trackContentGuidanceAccepted: (args) =>
+      trackContentGuidanceAccepted(get, args),
+    trackContentGuidanceDeclined: (args) =>
+      trackContentGuidanceDeclined(get, args),
   }),
 );
