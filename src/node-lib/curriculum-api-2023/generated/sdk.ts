@@ -20855,7 +20855,8 @@ export type BetaLessonMediaClipsQuery = { __typename?: 'query_root', browseData:
 
 export type LessonDownloadsQueryVariables = Exact<{
   lessonSlug: Scalars['String']['input'];
-  browseDataWhere?: InputMaybe<Published_Mv_Synthetic_Unitvariant_Lessons_By_Keystage_18_0_0_Bool_Exp>;
+  programmeSlug: Scalars['String']['input'];
+  unitSlug: Scalars['String']['input'];
 }>;
 
 
@@ -21316,7 +21317,7 @@ export const BetaLessonMediaClipsDocument = gql`
 }
     `;
 export const LessonDownloadsDocument = gql`
-    query lessonDownloads($lessonSlug: String!, $browseDataWhere: published_mv_synthetic_unitvariant_lessons_by_keystage_18_0_0_bool_exp) {
+    query lessonDownloads($lessonSlug: String!, $programmeSlug: String!, $unitSlug: String!) {
   download_assets: published_mv_lesson_content_published_9_0_0(
     where: {lesson_slug: {_eq: $lessonSlug}}
   ) {
@@ -21336,7 +21337,7 @@ export const LessonDownloadsDocument = gql`
     lesson_release_date
   }
   browse_data: published_mv_synthetic_unitvariant_lessons_by_keystage_18_0_0(
-    where: $browseDataWhere
+    where: {lesson_slug: {_eq: $lessonSlug}, unit_slug: {_eq: $unitSlug}, programme_slug: {_eq: $programmeSlug}}
   ) {
     lesson_slug
     unit_slug
