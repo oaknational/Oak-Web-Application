@@ -59,6 +59,12 @@ export const usePupilLessonAnalytics = () => {
   const trackActivityResultsShared = usePupilLessonAnalyticsStore(
     (state) => state.trackActivityResultsShared,
   );
+  const trackContentGuidanceAccepted = usePupilLessonAnalyticsStore(
+    (state) => state.trackContentGuidanceAccepted,
+  );
+  const trackContentGuidanceDeclined = usePupilLessonAnalyticsStore(
+    (state) => state.trackContentGuidanceDeclined,
+  );
 
   const initialisePupilLessonAnalytics = useCallback(
     (args: InitialisePupilLessonAnalyticsArgs) => {
@@ -83,5 +89,7 @@ export const usePupilLessonAnalytics = () => {
     trackVideoAbandoned,
     trackLessonSummaryReviewed,
     trackActivityResultsShared,
+    trackContentGuidanceAccepted,
+    trackContentGuidanceDeclined,
   };
 };
