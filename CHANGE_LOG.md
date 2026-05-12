@@ -1,3 +1,10 @@
+# [1.1074.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1073.0...v1.1074.0) (2026-05-12)
+
+
+### Features
+
+* **LESQ-1927:** update explainer path to /curriculum-explainer ([f8c927c](https://github.com/oaknational/Oak-Web-Application/commit/f8c927cc1b5b3b55f1292d9bfc42eede7be48111))
+
 # [1.1073.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1072.0...v1.1073.0) (2026-05-12)
 
 
