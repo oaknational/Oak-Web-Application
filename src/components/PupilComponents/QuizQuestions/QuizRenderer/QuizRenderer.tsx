@@ -131,6 +131,7 @@ export const QuizRenderer = ({
     >
       {currentQuestionData && (
         <OakBox
+          key={`${currentQuestionData.questionUid}-${currentQuestionIndex}`}
           as="form"
           id={formId}
           onSubmit={handleSubmit}
