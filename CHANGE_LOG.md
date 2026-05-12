@@ -1,3 +1,11 @@
+# [1.1073.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1072.0...v1.1073.0) (2026-05-12)
+
+
+### Features
+
+* **LESQ-1974:** remove references to subject and tiers in banner copy ([5e5d908](https://github.com/oaknational/Oak-Web-Application/commit/5e5d9085e8ffd1065b1a74f3a32a0e9899b85bff))
+* **LESQ-1975:** align appearance of child tier selection with new designs ([e400cb7](https://github.com/oaknational/Oak-Web-Application/commit/e400cb7e17e38ee6e863dba7801a80e5048b149d))
+
 # [1.1072.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1071.2...v1.1072.0) (2026-05-12)
 
 
