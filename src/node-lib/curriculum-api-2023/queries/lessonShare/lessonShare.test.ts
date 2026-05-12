@@ -9,10 +9,7 @@ import {
 import sdk from "../../sdk";
 
 import lessonShare from "./lessonShare.query";
-import {
-  canonicalLessonShareSchema,
-  lessonShareSchema,
-} from "./lessonShare.schema";
+import { lessonShareSchema } from "./lessonShare.schema";
 import { constructShareableResources } from "./constructShareableResources";
 
 const mockLessonShareResponse = {
@@ -108,25 +105,6 @@ describe("lessonShare()", () => {
     });
     const parsed = lessonShareSchema.parse(res);
     expect(parsed).toEqual(res);
-    expect(parsed.shareableResources).toHaveLength(4);
-    const starterQuiz = parsed.shareableResources.find(
-      (r) => r.type === "intro-quiz-questions",
-    );
-    expect(starterQuiz?.metadata).toBe("1 question");
-  });
-
-  test("returns the correct response for canonical lesson", async () => {
-    const res = await lessonShare({
-      ...sdk,
-      lessonShare: jest.fn(() => Promise.resolve(mockLessonShareResponse)),
-    })({
-      lessonSlug: "lesson-slug",
-    });
-
-    const parsed = canonicalLessonShareSchema.parse(res);
-
-    expect(parsed).toEqual(res);
-    expect(parsed.pathways).toHaveLength(1);
     expect(parsed.shareableResources).toHaveLength(4);
     const starterQuiz = parsed.shareableResources.find(
       (r) => r.type === "intro-quiz-questions",

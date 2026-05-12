@@ -50,7 +50,7 @@ export const constructPathwayLesson = (lesson: RawSyntheticUVLesson) => {
   });
 };
 
-/** Used by canonical lesson share and download queries */
+/** Used by canonical lesson download queries */
 export const constructLessonBrowseQuery = ({
   unitSlug,
   programmeSlug,
