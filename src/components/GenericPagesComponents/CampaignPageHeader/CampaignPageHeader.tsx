@@ -5,6 +5,7 @@ import {
   OakP,
   OakMaxWidth,
 } from "@oaknational/oak-components";
+import { useFeatureFlagEnabled } from "posthog-js/react";
 
 import { CampaignHeader } from "@/common-lib/cms-types/campaignPage";
 import CMSImage from "@/components/SharedComponents/CMSImage";
@@ -64,6 +65,9 @@ export const CampaignPageHeader = ({
 };
 
 const LinkToProduct = ({ keyStages }: { keyStages: KeyStagesData }) => {
+  const isIntegratedJourneyEnabled = useFeatureFlagEnabled(
+    "teachers-integrated-journey",
+  );
   const { setSearchTerm } = useSearch({});
   return (
     <OakFlex
@@ -71,20 +75,24 @@ const LinkToProduct = ({ keyStages }: { keyStages: KeyStagesData }) => {
       $flexDirection="column"
       $gap="spacing-32"
     >
-      <KeyStageKeypad
-        title="View subjects by key stage"
-        titleTag="h3"
-        keyStages={keyStages.keyStages}
-        trackingOnClick={() => {}}
-      />
-      <OakBox
-        $height={"spacing-0"}
-        $bt={"border-solid-m"}
-        $borderColor={"border-inverted"}
-      />
+      {!isIntegratedJourneyEnabled && (
+        <>
+          <KeyStageKeypad
+            title="View subjects by key stage"
+            titleTag="h3"
+            keyStages={keyStages.keyStages}
+            trackingOnClick={() => {}}
+          />
+          <OakBox
+            $height={"spacing-0"}
+            $bt={"border-solid-m"}
+            $borderColor={"border-inverted"}
+          />
+        </>
+      )}
       <OakFlex $flexDirection="column" $gap="spacing-16">
         <OakHeading tag="h3" $font="heading-7">
-          Or search by keyword
+          {isIntegratedJourneyEnabled ? "Search" : "Or search"} by keyword
         </OakHeading>
         <SearchForm
           searchContext="campaign"
