@@ -19,6 +19,7 @@ import {
   getProps,
   PupilLessonPageURLParams,
 } from "@/pages-helpers/pupil/lessons-pages/getProps";
+import { hasValidSharedVariant } from "@/pages-helpers/pupil/lessons-pages/validateSharedVariant";
 import { PupilLayout } from "@/components/PupilComponents/PupilLayout/PupilLayout";
 import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
 import {
@@ -394,6 +395,10 @@ export const getStaticProps: GetStaticProps<
   PupilLessonPageProps,
   IntroPageURLParams
 > = async (context) => {
+  if (!hasValidSharedVariant(context)) {
+    return { notFound: true };
+  }
+
   const contextWithSection = {
     ...context,
     params: context.params
