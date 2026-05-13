@@ -14,7 +14,7 @@ jest.mock("@/hooks/useSelectedArea", () => ({
   default: () => mockSelectedArea(),
 }));
 
-const mockFeatureFlagEnabled = jest.fn(() => true);
+const mockFeatureFlagEnabled = jest.fn(() => false);
 jest.mock("posthog-js/react", () => ({
   useFeatureFlagEnabled: () => mockFeatureFlagEnabled(),
 }));
@@ -238,6 +238,7 @@ describe("TopNav accessibility", () => {
   beforeEach(() => {
     mockSelectedArea.mockReturnValue("TEACHERS");
   });
+
   it("Tabs through navbar in correct order", async () => {
     const user = userEvent.setup();
     render(<TopNav {...mockProps} />);
