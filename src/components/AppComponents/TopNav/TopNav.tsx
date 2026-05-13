@@ -1,5 +1,6 @@
 "use client";
 import { useCallback, useEffect, useMemo, useState } from "react";
+import { useFeatureFlagEnabled } from "posthog-js/react";
 
 import TabLink from "./TabLink/TabLink";
 import SubNav from "./SubNav/SubNav";
@@ -23,6 +24,7 @@ import SkipLink from "@/components/CurriculumComponents/OakComponentsKitchen/Ski
 import {
   TeachersSubNavData,
   PupilsSubNavData,
+  TeachersBrowse,
 } from "@/node-lib/curriculum-api-2023/queries/topNav/topNav.schema";
 import { useOakNotificationsContext } from "@/context/OakNotifications/useOakNotificationsContext";
 import useAnalytics from "@/context/Analytics/useAnalytics";
@@ -32,8 +34,44 @@ export type TopNavProps = {
   pupils: PupilsSubNavData | null;
 };
 
+function filterAllSubjectsButton(
+  teachers: TeachersSubNavData,
+  showAllSubjectsButton: boolean,
+): TeachersSubNavData {
+  if (showAllSubjectsButton) return teachers;
+
+  return {
+    ...teachers,
+    primary: filterSubjects(teachers.primary),
+    secondary: filterSubjects(teachers.secondary),
+  };
+}
+
+function filterSubjects(phase: TeachersBrowse) {
+  return {
+    ...phase,
+    children: phase.children.map((keyStage) => ({
+      ...keyStage,
+      children: keyStage.children.filter(
+        (subject) => subject.slug !== "all-subjects",
+      ),
+    })),
+  };
+}
+
 const TopNav = (props: TopNavProps) => {
-  const { teachers, pupils } = props;
+  const isIntegratedJourneyFlagEnabled = useFeatureFlagEnabled(
+    "teachers-integrated-journey",
+  );
+  const showAllSubjectsButton = isIntegratedJourneyFlagEnabled === false;
+  const teachers = useMemo(
+    () =>
+      props.teachers
+        ? filterAllSubjectsButton(props.teachers, showAllSubjectsButton)
+        : props.teachers,
+    [props.teachers, showAllSubjectsButton],
+  );
+  const { pupils } = props;
   const { track } = useAnalytics();
 
   const activeArea = useSelectedArea();
