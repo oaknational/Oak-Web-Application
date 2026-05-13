@@ -62,6 +62,7 @@ type ProgrammePageProps = {
   tabSlug: TabSlug;
   ks4Options: Ks4Option[];
   trackingData: CurriculumUnitsTrackingData;
+  initialFilter?: CurriculumFilters;
 };
 
 export const ProgrammeView = ({
@@ -77,6 +78,7 @@ export const ProgrammeView = ({
   subjectPhaseSlug,
   ks4Options,
   trackingData,
+  initialFilter,
 }: ProgrammePageProps) => {
   const searchParams = useSearchParams();
   const [activeTab, setActiveTab] = useState<TabSlug>(tabSlug);
@@ -89,7 +91,7 @@ export const ProgrammeView = ({
     return getDefaultFilter(curriculumUnitsFormattedData);
   }, [curriculumUnitsFormattedData]);
 
-  const [filters, setFilters] = useFilters(defaultFilter);
+  const [filters, setFilters] = useFilters(defaultFilter, initialFilter);
 
   const { track } = useAnalytics();
   const { analyticsUseCase } = useAnalyticsPageProps();
