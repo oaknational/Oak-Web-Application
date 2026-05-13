@@ -16,7 +16,7 @@ export const PupilLessonIntroAdditionalFileItem = ({
   const extension = url.split(".").pop();
 
   return (
-    <OakLI>
+    <OakLI $listStyle="none">
       <OakFlex $flexDirection="column">
         <OakSpan>{displayName}</OakSpan>
         <OakSpan>{`${convertBytesToMegabytes(bytes)} (${extension?.toUpperCase()})`}</OakSpan>
