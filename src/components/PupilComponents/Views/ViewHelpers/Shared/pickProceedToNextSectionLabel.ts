@@ -1,4 +1,4 @@
-import { useLessonEngineContext } from "@/components/PupilComponents/LessonEngineProvider";
+import type { LessonSectionResults } from "@/context/PupilLessonProgress";
 
 export const pickProceedToNextSectionLabel = ({
   lessonStarted,
@@ -7,7 +7,7 @@ export const pickProceedToNextSectionLabel = ({
 }: {
   lessonStarted: boolean;
   isLessonComplete: boolean;
-  sectionResults: ReturnType<typeof useLessonEngineContext>["sectionResults"];
+  sectionResults: LessonSectionResults;
 }) => {
   if (isLessonComplete) return "Lesson review";
   if (lessonStarted) return "Continue lesson";

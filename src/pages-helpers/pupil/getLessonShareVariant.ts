@@ -22,18 +22,6 @@ export const PUPIL_LESSON_SHARE_VARIANTS: Record<string, LessonShareVariant> = {
     sections: ["overview", "intro", "video"],
     reviewSections: ["intro", "video"],
   },
-  "starter-quiz-video": {
-    sections: ["overview", "intro", "starter-quiz", "video"],
-    reviewSections: ["intro", "starter-quiz", "video"],
-  },
-  "quizzes-only": {
-    sections: ["overview", "intro", "starter-quiz", "exit-quiz"],
-    reviewSections: ["intro", "starter-quiz", "exit-quiz"],
-  },
-  "video-exit-quiz": {
-    sections: ["overview", "intro", "video", "exit-quiz"],
-    reviewSections: ["intro", "video", "exit-quiz"],
-  },
 };
 
 export type LessonShareVariantSlug = keyof typeof PUPIL_LESSON_SHARE_VARIANTS;

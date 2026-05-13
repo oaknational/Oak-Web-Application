@@ -1,6 +1,6 @@
 import { ParsedUrlQuery } from "querystring";
 
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { GetStaticProps, GetStaticPropsContext, PreviewData } from "next";
 import { useRouter } from "next/router";
 import {
@@ -19,6 +19,7 @@ import {
   getProps,
   PupilLessonPageURLParams,
 } from "@/pages-helpers/pupil/lessons-pages/getProps";
+import { hasValidSharedVariant } from "@/pages-helpers/pupil/lessons-pages/validateSharedVariant";
 import { PupilLayout } from "@/components/PupilComponents/PupilLayout/PupilLayout";
 import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
 import {
@@ -67,6 +68,7 @@ const IntroPageContent = ({
   const {
     sectionResults,
     lessonReviewSections,
+    lessonStarted,
     isReadOnly,
     completeSection,
     updateSectionInProgressResult,
@@ -74,12 +76,20 @@ const IntroPageContent = ({
     useShallow((state) => ({
       sectionResults: state.sectionResults,
       lessonReviewSections: state.lessonReviewSections,
+      lessonStarted: state.lessonStarted,
       isReadOnly: state.isReadOnly,
       completeSection: state.completeSection,
       updateSectionInProgressResult: state.updateSectionInProgressResult,
     })),
   );
-  const { trackSectionStarted } = usePupilLessonAnalytics();
+  const {
+    trackSectionStarted,
+    trackLessonStarted,
+    trackLessonCompleted,
+    trackIntroCompleted,
+    trackIntroAbandoned,
+    trackWorksheetDownloaded,
+  } = usePupilLessonAnalytics();
 
   const additionalFilesAssetIds = useMemo(
     () => getAdditionalFileAssetIds(additionalFiles),
@@ -92,6 +102,7 @@ const IntroPageContent = ({
     browseData.lessonSlug,
     lessonContent.isLegacy ?? false,
   );
+  const sectionStartedAtRef = useRef(Date.now());
   const [isCompletingAndRedirecting, setIsCompletingAndRedirecting] =
     useState(false);
 
@@ -142,11 +153,18 @@ const IntroPageContent = ({
   const handleProceed = () => {
     if (!sectionResults.intro?.isComplete) {
       setIsCompletingAndRedirecting(true);
+      if (!lessonStarted) {
+        trackLessonStarted();
+      }
+      trackIntroCompleted();
       completeSection("intro");
       const nextSectionResults = getSectionResultsAfterComplete();
       const allComplete = lessonReviewSections.every(
         (section) => nextSectionResults[section]?.isComplete,
       );
+      if (allComplete) {
+        trackLessonCompleted();
+      }
       void router.push(
         getNewLessonSectionHref({
           currentRoute: router.asPath,
@@ -195,6 +213,14 @@ const IntroPageContent = ({
               label="Back"
               onClick={(event) => {
                 event.preventDefault();
+                if (!sectionResults.intro?.isComplete) {
+                  if (!lessonStarted) {
+                    trackLessonStarted();
+                  }
+                  trackIntroAbandoned({
+                    sectionStartedAt: sectionStartedAtRef.current,
+                  });
+                }
                 void router.push(overviewHref);
               }}
             />
@@ -290,6 +316,10 @@ const IntroPageContent = ({
                       worksheetDownloaded: true,
                       worksheetAvailable: true,
                     });
+                    if (!lessonStarted) {
+                      trackLessonStarted();
+                    }
+                    trackWorksheetDownloaded();
                     void startDownload();
                   }}
                   isLoading={isDownloading}
@@ -298,10 +328,12 @@ const IntroPageContent = ({
                   $font="heading-7"
                 >
                   Download worksheet{" "}
-                  <OakSpan>
-                    ({worksheetInfo?.[0]?.ext?.toUpperCase()}{" "}
-                    {worksheetInfo?.[0]?.fileSize})
-                  </OakSpan>
+                  {worksheetInfo?.[0]?.ext && worksheetInfo?.[0]?.fileSize && (
+                    <OakSpan>
+                      ({worksheetInfo[0].ext.toUpperCase()}{" "}
+                      {worksheetInfo[0].fileSize})
+                    </OakSpan>
+                  )}
                 </OakPrimaryInvertedButton>
               </OakFlex>
             </PupilLessonIntroInfoCard>
@@ -363,6 +395,10 @@ export const getStaticProps: GetStaticProps<
   PupilLessonPageProps,
   IntroPageURLParams
 > = async (context) => {
+  if (!hasValidSharedVariant(context)) {
+    return { notFound: true };
+  }
+
   const contextWithSection = {
     ...context,
     params: context.params

@@ -7,7 +7,7 @@ import { LessonShareVariant } from "@/pages-helpers/pupil";
 
 export const pickAvailableSectionsForLesson = (
   lessonContent: LessonContent,
-  variant: LessonShareVariant | null,
+  variant: LessonShareVariant | null = null,
   isReview: boolean = false,
 ) => {
   const filterOutVariantExclusions = (section: LessonReviewSection) => {

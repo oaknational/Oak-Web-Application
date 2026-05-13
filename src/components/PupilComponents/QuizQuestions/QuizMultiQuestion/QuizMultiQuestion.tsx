@@ -100,7 +100,9 @@ export const QuizMultiQuestion = ({
           ) : undefined;
 
           return (
-            <MathJaxWrap key={`multi-answer-${index}`}>
+            <MathJaxWrap
+              key={`${questionData.questionUid}-multi-answer-${index}`}
+            >
               <OakQuizCheckBox
                 id={multipleChoiceAnswerId(questionData.questionUid, index)}
                 displayValue={

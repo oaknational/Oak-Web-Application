@@ -22,6 +22,7 @@ export const getDefaultLessonProgressState =
     isLessonComplete: false,
     isReadOnly: false,
     isHydratingInitialProgress: false,
+    contentGuidanceDismissed: false,
   });
 
 /**

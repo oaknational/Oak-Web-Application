@@ -12,6 +12,7 @@ import {
   getProps,
   PupilLessonPageURLParams,
 } from "@/pages-helpers/pupil/lessons-pages/getProps";
+import { hasValidSharedVariant } from "@/pages-helpers/pupil/lessons-pages/validateSharedVariant";
 import { PupilLayout } from "@/components/PupilComponents/PupilLayout/PupilLayout";
 import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
 import { getPupilPathwayData } from "@/components/PupilComponents/PupilAnalyticsProvider/PupilAnalyticsProvider";
@@ -55,6 +56,7 @@ const VideoPageContent = ({
   const {
     sectionResults,
     lessonReviewSections,
+    lessonStarted,
     isReadOnly,
     completeSection,
     updateSectionInProgressResult,
@@ -63,13 +65,20 @@ const VideoPageContent = ({
     useShallow((state) => ({
       sectionResults: state.sectionResults,
       lessonReviewSections: state.lessonReviewSections,
+      lessonStarted: state.lessonStarted,
       isReadOnly: state.isReadOnly,
       completeSection: state.completeSection,
       updateSectionInProgressResult: state.updateSectionInProgressResult,
       markLessonStarted: state.markLessonStarted,
     })),
   );
-  const { trackSectionStarted } = usePupilLessonAnalytics();
+  const {
+    trackSectionStarted,
+    trackLessonStarted,
+    trackLessonCompleted,
+    trackVideoCompleted,
+    trackVideoAbandoned,
+  } = usePupilLessonAnalytics();
 
   const additionalFilesAssetIds = useMemo(
     () => getAdditionalFileAssetIds(additionalFiles),
@@ -77,6 +86,7 @@ const VideoPageContent = ({
   );
   const { startAdditionalFilesDownload, isAdditionalFilesDownloading } =
     useAdditionalFilesDownload(browseData.lessonSlug, additionalFilesAssetIds);
+  const sectionStartedAtRef = useRef(Date.now());
   const [isCompletingAndRedirecting, setIsCompletingAndRedirecting] =
     useState(false);
 
@@ -133,6 +143,22 @@ const VideoPageContent = ({
   };
 
   const handleBackToOverview = () => {
+    if (!sectionResults.video?.isComplete) {
+      if (!lessonStarted) {
+        trackLessonStarted();
+      }
+      trackVideoAbandoned({
+        sectionResults: {
+          ...sectionResults,
+          video: {
+            ...sectionResults.video,
+            ...videoResultRef.current,
+            isComplete: false,
+          },
+        },
+        sectionStartedAt: sectionStartedAtRef.current,
+      });
+    }
     markLessonStarted();
     void router.push(overviewHref);
   };
@@ -141,6 +167,7 @@ const VideoPageContent = ({
     ...sectionResults,
     video: {
       ...sectionResults.video,
+      ...videoResultRef.current,
       isComplete: true,
     },
   });
@@ -157,7 +184,18 @@ const VideoPageContent = ({
   const handleProceed = () => {
     if (!sectionResults.video?.isComplete) {
       setIsCompletingAndRedirecting(true);
+      if (!lessonStarted) {
+        trackLessonStarted();
+      }
       completeSection("video");
+      const nextSectionResults = getSectionResultsAfterComplete();
+      trackVideoCompleted({ sectionResults: nextSectionResults });
+      const allComplete = lessonReviewSections.every(
+        (section) => nextSectionResults[section]?.isComplete,
+      );
+      if (allComplete) {
+        trackLessonCompleted();
+      }
       void router.push(
         getNewLessonSectionHref({
           currentRoute: router.asPath,
@@ -309,6 +347,10 @@ export const getStaticProps: GetStaticProps<
   PupilLessonPageProps,
   VideoPageURLParams
 > = async (context) => {
+  if (!hasValidSharedVariant(context)) {
+    return { notFound: true };
+  }
+
   const contextWithSection = {
     ...context,
     params: context.params

@@ -12,12 +12,15 @@ import {
   getProps,
   PupilLessonPageURLParams,
 } from "@/pages-helpers/pupil/lessons-pages/getProps";
+import { hasValidSharedVariant } from "@/pages-helpers/pupil/lessons-pages/validateSharedVariant";
 import { PupilLayout } from "@/components/PupilComponents/PupilLayout/PupilLayout";
 import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
 import { useAssignmentSearchParams } from "@/hooks/useAssignmentSearchParams";
 import { ViewAllLessonsButton } from "@/components/PupilComponents/ViewAllLessonsButton/ViewAllLessonsButton";
 import {
+  ContentGuidanceTrackingArgs,
   PupilLessonOverviewContentGuidance,
+  PupilLessonOverviewContentGuidanceModal,
   PupilLessonOverviewOutcomes,
   PupilLessonOverviewView,
 } from "@/components/PupilComponents/Views/PupilLessonOverview";
@@ -38,6 +41,7 @@ import { usePupilLessonAnalytics } from "@/context/PupilLessonAnalytics/usePupil
 import { usePupilLessonProgress } from "@/context/PupilLessonProgress";
 import isSlugLegacy from "@/utils/slugModifiers/isSlugLegacy";
 import { PupilLessonPageProps } from "@/pages-helpers/pupil/lessons-pages/pupilLessonPage.types";
+import { PupilRedirectedOverlay } from "@/components/PupilComponents/PupilRedirectedOverlay/PupilRedirectedOverlay";
 
 type OverviewPageURLParams = {
   lessonSlug: string;
@@ -57,7 +61,9 @@ const OverviewPageContent = ({
     lessonStarted,
     isReadOnly,
     isHydratingInitialProgress,
+    contentGuidanceDismissed,
     markLessonStarted,
+    dismissContentGuidance,
   } = usePupilLessonProgress(
     useShallow((state) => ({
       sectionResults: state.sectionResults,
@@ -66,11 +72,18 @@ const OverviewPageContent = ({
       lessonStarted: state.lessonStarted,
       isReadOnly: state.isReadOnly,
       isHydratingInitialProgress: state.isHydratingInitialProgress,
+      contentGuidanceDismissed: state.contentGuidanceDismissed,
       markLessonStarted: state.markLessonStarted,
+      dismissContentGuidance: state.dismissContentGuidance,
     })),
   );
-  const { trackSectionStarted, trackLessonAbandoned } =
-    usePupilLessonAnalytics();
+  const {
+    trackSectionStarted,
+    trackLessonStarted,
+    trackLessonAbandoned,
+    trackContentGuidanceAccepted,
+    trackContentGuidanceDeclined,
+  } = usePupilLessonAnalytics();
   const router = useRouter();
   const [isMounted, setIsMounted] = useState(false);
 
@@ -93,6 +106,7 @@ const OverviewPageContent = ({
     contentGuidance,
     supervisionLevel,
   } = lessonContent;
+  const [redirectOverlayCleared, setRedirectOverlayCleared] = useState(false);
 
   const unitListingHref = getUnitListingHref({
     subjectSlug: browseData.programmeFields.subjectSlug,
@@ -105,6 +119,9 @@ const OverviewPageContent = ({
       lessonReviewSections,
       sectionResults,
     });
+    if (!lessonStarted) {
+      trackLessonStarted();
+    }
     markLessonStarted();
     trackSectionStarted({ section: nextSection, sectionResults });
     void router.push(
@@ -131,6 +148,9 @@ const OverviewPageContent = ({
     starterQuizNumQuestions,
     exitQuizNumQuestions,
     onSectionClick: (section) => {
+      if (!lessonStarted) {
+        trackLessonStarted();
+      }
       markLessonStarted();
       trackSectionStarted({ section, sectionResults });
     },
@@ -146,70 +166,110 @@ const OverviewPageContent = ({
     Boolean,
   ) as string[];
 
+  const handleContentGuidanceAccept = (args: ContentGuidanceTrackingArgs) => {
+    dismissContentGuidance();
+    trackContentGuidanceAccepted(args);
+  };
+
+  const handleContentGuidanceDecline = (args: ContentGuidanceTrackingArgs) => {
+    trackContentGuidanceDeclined(args);
+
+    if (isClassroomAssignment) {
+      globalThis.window?.parent?.postMessage(
+        {
+          type: "Classroom",
+          action: "closeIframe",
+        },
+        "https://classroom.google.com",
+      );
+    } else if (backUrl) {
+      void router.replace(backUrl);
+    } else {
+      router.back();
+    }
+  };
+
   useEffect(() => {
     setIsMounted(true);
   }, []);
 
   return (
-    <PupilLessonOverviewView
-      phase={phase as "primary" | "secondary"}
-      backButtonSlot={
-        classroomAssignmentChecked && !isClassroomAssignment ? (
-          <ViewAllLessonsButton
-            href={backUrl}
-            onClick={() => {
-              if (isLessonComplete === false) {
-                trackLessonAbandoned();
-              }
-            }}
+    <>
+      <PupilLessonOverviewContentGuidanceModal
+        redirectOverlayCleared={redirectOverlayCleared}
+        contentGuidanceDismissed={contentGuidanceDismissed}
+        contentGuidance={contentGuidance as OakPupilContentGuidance[] | null}
+        supervisionLevel={supervisionLevel}
+        ageRestriction={browseData.features?.ageRestriction}
+        isClassroomAssignment={isClassroomAssignment}
+        onAccept={handleContentGuidanceAccept}
+        onDecline={handleContentGuidanceDecline}
+      />
+      <PupilLessonOverviewView
+        phase={phase as "primary" | "secondary"}
+        backButtonSlot={
+          classroomAssignmentChecked && !isClassroomAssignment ? (
+            <ViewAllLessonsButton
+              href={backUrl}
+              onClick={() => {
+                if (isLessonComplete === false) {
+                  trackLessonAbandoned();
+                }
+              }}
+            />
+          ) : undefined
+        }
+        bannerSlot={
+          <TakedownBanner
+            isExpiring={getIsLessonExpiring({
+              expirationDate,
+              displayExpiringBanner: actions?.displayExpiringBanner,
+            })}
+            isLegacy={isSlugLegacy(programmeSlug)}
+            hasNewUnits={getDoesSubjectHaveNewUnits(subjectSlug)}
+            subjectSlug={subjectSlug}
+            userType="pupil"
+            onwardHref={unitListingHref}
+            isSingle
           />
-        ) : undefined
-      }
-      bannerSlot={
-        <TakedownBanner
-          isExpiring={getIsLessonExpiring({
-            expirationDate,
-            displayExpiringBanner: actions?.displayExpiringBanner,
-          })}
-          isLegacy={isSlugLegacy(programmeSlug)}
-          hasNewUnits={getDoesSubjectHaveNewUnits(subjectSlug)}
-          subjectSlug={subjectSlug}
-          userType="pupil"
-          onwardHref={unitListingHref}
-          isSingle
-        />
-      }
-      header={{
-        lessonTitle: lessonTitle ?? "",
-        yearDescription,
-        subject,
-        subjectSlug,
-        phase: phase as "primary" | "secondary",
-      }}
-      outcomesSlot={
-        lessonOutcomes.length > 0 ? (
-          <PupilLessonOverviewOutcomes outcomes={lessonOutcomes} />
-        ) : undefined
-      }
-      contentGuidanceSlot={
-        contentGuidance && contentGuidance.length > 0 ? (
-          <PupilLessonOverviewContentGuidance
-            contentGuidance={contentGuidance as OakPupilContentGuidance[]}
-            supervisionLevel={supervisionLevel}
-          />
-        ) : undefined
-      }
-      sectionsNav={{ items: sectionItems }}
-      bottomNav={{
-        proceedLabel: pickProceedToNextSectionLabel({
-          lessonStarted,
-          isLessonComplete,
-          sectionResults,
-        }),
-        onProceed: handleProceedToNextSectionClick,
-        disabled: !isMounted,
-      }}
-    />
+        }
+        header={{
+          lessonTitle: lessonTitle ?? "",
+          yearDescription,
+          subject,
+          subjectSlug,
+          phase: phase as "primary" | "secondary",
+        }}
+        outcomesSlot={
+          lessonOutcomes.length > 0 ? (
+            <PupilLessonOverviewOutcomes outcomes={lessonOutcomes} />
+          ) : undefined
+        }
+        contentGuidanceSlot={
+          contentGuidance && contentGuidance.length > 0 ? (
+            <PupilLessonOverviewContentGuidance
+              contentGuidance={contentGuidance as OakPupilContentGuidance[]}
+              supervisionLevel={supervisionLevel}
+            />
+          ) : undefined
+        }
+        sectionsNav={{ items: sectionItems }}
+        bottomNav={{
+          proceedLabel: pickProceedToNextSectionLabel({
+            lessonStarted,
+            isLessonComplete,
+            sectionResults,
+          }),
+          onProceed: handleProceedToNextSectionClick,
+          disabled: !isMounted,
+        }}
+      />
+      <PupilRedirectedOverlay
+        isLessonPage={true}
+        onLoaded={(isShowing) => setRedirectOverlayCleared(!isShowing)}
+        onClose={() => setRedirectOverlayCleared(true)}
+      />
+    </>
   );
 };
 
@@ -244,6 +304,10 @@ export const getStaticProps: GetStaticProps<
   PupilLessonPageProps,
   OverviewPageURLParams
 > = async (context) => {
+  if (!hasValidSharedVariant(context)) {
+    return { notFound: true };
+  }
+
   const contextWithSection = {
     ...context,
     params: context.params

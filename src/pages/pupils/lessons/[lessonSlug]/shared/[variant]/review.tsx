@@ -12,6 +12,7 @@ import {
   getProps,
   PupilLessonPageURLParams,
 } from "@/pages-helpers/pupil/lessons-pages/getProps";
+import { hasValidSharedVariant } from "@/pages-helpers/pupil/lessons-pages/validateSharedVariant";
 import { PupilLayout } from "@/components/PupilComponents/PupilLayout/PupilLayout";
 import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
 import {
@@ -35,6 +36,7 @@ import { useAssignmentSearchParams } from "@/hooks/useAssignmentSearchParams";
 import { getReviewSections } from "@/components/PupilComponents/Views/ViewHelpers/Review/getReviewSections";
 import { getReviewFinalFeedback } from "@/components/PupilComponents/Views/ViewHelpers/Review/getReviewFinalFeedback";
 import { PupilLessonPageProps } from "@/pages-helpers/pupil/lessons-pages/pupilLessonPage.types";
+import { usePupilLessonAnalytics } from "@/context/PupilLessonAnalytics/usePupilLessonAnalytics";
 
 type ReviewPageURLParams = {
   lessonSlug: string;
@@ -57,6 +59,8 @@ const ReviewPageContent = ({
     );
   const { isClassroomAssignment, classroomAssignmentChecked } =
     useAssignmentSearchParams();
+  const { trackLessonSummaryReviewed, trackActivityResultsShared } =
+    usePupilLessonAnalytics();
   const [trackingSent, setTrackingSent] = useState(false);
   const [isAttemptingShare, setIsAttemptingShare] = useState<
     "failed" | "shared" | "initial"
@@ -109,10 +113,15 @@ const ReviewPageContent = ({
   ]);
 
   useEffect(() => {
-    if (trackingSent) return;
-    // Placeholder to keep parity path open for lesson-summary analytics.
+    if (trackingSent || !isLessonComplete) return;
+    trackLessonSummaryReviewed({ sectionResults });
     setTrackingSent(true);
-  }, [trackingSent]);
+  }, [
+    isLessonComplete,
+    sectionResults,
+    trackLessonSummaryReviewed,
+    trackingSent,
+  ]);
 
   useEffect(() => {
     if (!isLessonComplete) {
@@ -198,6 +207,7 @@ const ReviewPageContent = ({
                     attemptId: res,
                   }),
                 );
+                trackActivityResultsShared({ sectionResults });
                 setIsAttemptingShare("shared");
                 return;
               }
@@ -208,6 +218,7 @@ const ReviewPageContent = ({
                   attemptId: res.attemptId,
                 }),
               );
+              trackActivityResultsShared({ sectionResults });
               setIsAttemptingShare("shared");
               res.promise.catch(() => {
                 setIsAttemptingShare("failed");
@@ -261,6 +272,10 @@ export const getStaticProps: GetStaticProps<
   PupilLessonPageProps,
   ReviewPageURLParams
 > = async (context) => {
+  if (!hasValidSharedVariant(context)) {
+    return { notFound: true };
+  }
+
   const contextWithSection = {
     ...context,
     params: context.params

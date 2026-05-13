@@ -1,1 +1,1 @@
-export * from "./PupilLessonBottomNav";
+export * from "./PupilLessonBottomNav/PupilLessonBottomNav";

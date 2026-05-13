@@ -67,6 +67,7 @@ export const QuizPageContent = ({
   const {
     sectionResults,
     lessonReviewSections,
+    lessonStarted,
     isReadOnly,
     completeSection,
     updateSectionInProgressResult,
@@ -74,6 +75,7 @@ export const QuizPageContent = ({
     useShallow((state) => ({
       sectionResults: state.sectionResults,
       lessonReviewSections: state.lessonReviewSections,
+      lessonStarted: state.lessonStarted,
       isReadOnly: state.isReadOnly,
       completeSection: state.completeSection,
       updateSectionInProgressResult: state.updateSectionInProgressResult,
@@ -104,8 +106,14 @@ export const QuizPageContent = ({
       handleNextQuestion: state.handleNextQuestion,
     })),
   );
-  const { trackSectionStarted, trackQuizQuestionAttempt, trackQuizCompleted } =
-    usePupilLessonAnalytics();
+  const {
+    trackSectionStarted,
+    trackQuizQuestionAttempt,
+    trackQuizCompleted,
+    trackQuizAbandoned,
+    trackLessonStarted,
+    trackLessonCompleted,
+  } = usePupilLessonAnalytics();
   const currentQuestionData = questionsArray[currentQuestionIndex];
   const currentQuestionState = questionState[currentQuestionIndex];
   const currentQuestionDisplayIndex = getCurrentQuestionDisplayIndex({
@@ -231,11 +239,48 @@ export const QuizPageContent = ({
     handleQuestionResult(result);
   };
 
+  const isQuizEffectivelyComplete = () => {
+    const nextStep = getQuizNextStep({
+      currentQuestionIndex,
+      numQuestions,
+      isReadOnly,
+    });
+    return (
+      nextStep.action === "complete-quiz" &&
+      currentQuestionState?.mode === "feedback"
+    );
+  };
+
+  const completeQuizAndTrack = () => {
+    completeSection(section);
+    const nextSectionResults = getCompletedQuizSectionResults({
+      section,
+      sectionResults,
+    });
+    if (!lessonStarted) {
+      trackLessonStarted();
+    }
+
+    trackQuizCompleted({
+      section,
+      sectionResults: nextSectionResults,
+      sectionStartedAt: sectionStartedAtRef.current,
+    });
+    if (
+      lessonReviewSections.every(
+        (reviewSection) => nextSectionResults[reviewSection]?.isComplete,
+      )
+    ) {
+      trackLessonCompleted();
+    }
+
+    return nextSectionResults;
+  };
+
   const onNext = () => {
     const nextStep = getQuizNextStep({
       currentQuestionIndex,
       numQuestions,
-      currentSection: section,
       isReadOnly,
     });
 
@@ -250,24 +295,32 @@ export const QuizPageContent = ({
       return;
     }
 
-    completeSection(section);
-    const nextSectionResults = getCompletedQuizSectionResults({
-      section,
-      sectionResults,
-    });
-
-    trackQuizCompleted({
-      section,
-      sectionResults: nextSectionResults,
-      sectionStartedAt: sectionStartedAtRef.current,
-    });
-
+    const nextSectionResults = completeQuizAndTrack();
     navigateToSection(
       getQuizCompletionDestination({
         sectionResults: nextSectionResults,
         lessonReviewSections,
       }),
     );
+  };
+
+  const onBack = () => {
+    const alreadyComplete = sectionResults[section]?.isComplete;
+
+    if (!alreadyComplete && isQuizEffectivelyComplete()) {
+      completeQuizAndTrack();
+    } else if (!alreadyComplete) {
+      if (!lessonStarted) {
+        trackLessonStarted();
+      }
+      trackQuizAbandoned({
+        section,
+        sectionResults,
+        sectionStartedAt: sectionStartedAtRef.current,
+      });
+    }
+
+    navigateToSection("overview");
   };
 
   const isFeedbackMode = currentQuestionState?.mode === "feedback";
@@ -306,7 +359,7 @@ export const QuizPageContent = ({
                 label="Back"
                 onClick={(event) => {
                   event.preventDefault();
-                  navigateToSection("overview");
+                  onBack();
                 }}
               />
             ),

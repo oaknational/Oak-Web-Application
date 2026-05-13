@@ -52,6 +52,7 @@ import {
   useGoogleClassroomContext,
 } from "@/components/GoogleClassroom/useGoogleClassroomContext";
 import { pickAvailableSectionsForLesson } from "@/components/PupilComponents/Views/ViewHelpers/Experience/pickAvailableSectionsForLesson";
+import { getAgeRestrictionString } from "@/components/PupilComponents/Views/ViewHelpers/Shared";
 import { PupilLessonPageProps } from "@/pages-helpers/pupil/lessons-pages/pupilLessonPage.types";
 
 export { pickAvailableSectionsForLesson };
@@ -198,17 +199,6 @@ const CookieConsentStyles = createGlobalStyle`
   }
 }
 `;
-
-const getAgeRestrictionString = (ageRestriction: string | undefined | null) => {
-  switch (ageRestriction) {
-    case "7_and_above":
-      return `To view this lesson, you must be in year 7 and above`;
-    case "10_and_above":
-      return `To view this lesson, you must be in year 10 and above`;
-    default:
-      return `This lesson is age restricted.`;
-  }
-};
 
 const getLessonEngineInitialSection = ({
   initialSection,
