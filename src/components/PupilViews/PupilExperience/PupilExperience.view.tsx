@@ -11,6 +11,7 @@ import { PostSubmissionState } from "@oaknational/google-classroom-addon/types";
 import {
   LessonEngineProvider,
   LessonReviewSection,
+  LessonSection,
   LessonSectionResults,
   useLessonEngineContext,
 } from "@/components/PupilComponents/LessonEngineProvider";
