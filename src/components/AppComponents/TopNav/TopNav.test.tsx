@@ -158,9 +158,7 @@ describe("TopNav", () => {
 
     await user.click(secondaryButton);
 
-    expect(
-      screen.queryByRole("button", { name: /All KS3 subjects/ }),
-    ).not.toBeInTheDocument();
+    expect(screen.queryByText(/All KS3 subjects/)).not.toBeInTheDocument();
   });
 
   it("closes dropdown when dropdown is open and active subnav button is clicked", async () => {
