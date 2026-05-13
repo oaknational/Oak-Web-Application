@@ -282,7 +282,9 @@ export function shouldDisplayFilter(
   ).filter((ks) => !childSubjectsAt.includes(ks));
 
   if (key === "years") {
-    return data.yearOptions.length > 0;
+    // only show year options when there is more than 1, because all content will be in a year
+    // so a single year option is equivalent to the 'all' option
+    return data.yearOptions.length > 1;
   }
   if (key === "subjectCategories") {
     return subjectCategoriesAt.length > 0;
