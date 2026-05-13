@@ -313,7 +313,11 @@ export const QuizPageContent = ({
       if (!lessonStarted) {
         trackLessonStarted();
       }
-      trackQuizAbandoned({ section, sectionResults });
+      trackQuizAbandoned({
+        section,
+        sectionResults,
+        sectionStartedAt: sectionStartedAtRef.current,
+      });
     }
 
     navigateToSection("overview");

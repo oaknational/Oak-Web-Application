@@ -52,6 +52,7 @@ export const trackVideoCompleted = (
 export const trackVideoAbandoned = (
   get: PupilLessonAnalyticsGet,
   sectionResults: LessonSectionResults,
+  sectionStartedAt: number,
 ) => {
   const { track, additionalArgs, videoData } = get();
   if (!track || !additionalArgs || !videoData) return;
@@ -64,7 +65,7 @@ export const trackVideoAbandoned = (
     isMuted: sectionResults.video?.muted || false,
     signedOpened: sectionResults.video?.signedOpened || false,
     transcriptOpened: sectionResults.video?.transcriptOpened || false,
-    activityTimeSpent: 0,
+    activityTimeSpent: Date.now() - sectionStartedAt,
   } as unknown as Parameters<
     TrackFns["lessonActivityAbandonedLessonVideo"]
   >[0]);

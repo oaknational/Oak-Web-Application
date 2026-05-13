@@ -85,6 +85,7 @@ const VideoPageContent = ({
   );
   const { startAdditionalFilesDownload, isAdditionalFilesDownloading } =
     useAdditionalFilesDownload(browseData.lessonSlug, additionalFilesAssetIds);
+  const sectionStartedAtRef = useRef(Date.now());
   const [isCompletingAndRedirecting, setIsCompletingAndRedirecting] =
     useState(false);
 
@@ -154,6 +155,7 @@ const VideoPageContent = ({
             isComplete: false,
           },
         },
+        sectionStartedAt: sectionStartedAtRef.current,
       });
     }
     markLessonStarted();

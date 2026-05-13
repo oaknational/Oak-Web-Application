@@ -29,14 +29,17 @@ export const trackIntroCompleted = (get: PupilLessonAnalyticsGet) => {
   });
 };
 
-export const trackIntroAbandoned = (get: PupilLessonAnalyticsGet) => {
+export const trackIntroAbandoned = (
+  get: PupilLessonAnalyticsGet,
+  sectionStartedAt: number,
+) => {
   const { track, additionalArgs } = get();
   if (!track || !additionalArgs) return;
 
   track.lessonActivityAbandonedIntroduction({
     ...additionalArgs,
     pupilExperienceLessonActivity: "intro",
-    activityTimeSpent: 0,
+    activityTimeSpent: Date.now() - sectionStartedAt,
   });
 };
 
