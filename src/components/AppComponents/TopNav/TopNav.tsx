@@ -63,7 +63,7 @@ const TopNav = (props: TopNavProps) => {
   const isIntegratedJourneyFlagEnabled = useFeatureFlagEnabled(
     "teachers-integrated-journey",
   );
-  const showAllSubjectsButton = isIntegratedJourneyFlagEnabled === false;
+  const showAllSubjectsButton = isIntegratedJourneyFlagEnabled !== true;
   const teachers = useMemo(
     () =>
       props.teachers
