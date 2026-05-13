@@ -1,3 +1,20 @@
+# [1.1075.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1074.0...v1.1075.0) (2026-05-13)
+
+
+### Bug Fixes
+
+* always show success message, not just on redirect ([3ac2ee3](https://github.com/oaknational/Oak-Web-Application/commit/3ac2ee37c5ab3de274c48515939c5c4b548d0307))
+* change finally to then ([151d0b7](https://github.com/oaknational/Oak-Web-Application/commit/151d0b7d8680852145e7e423b07c3e853b8826b3))
+* ensure toast displays after redirect ([2856712](https://github.com/oaknational/Oak-Web-Application/commit/28567127bd732ec1098ec38319a921da69c08cd4))
+* fix syntax i keep forgetting ([13d30db](https://github.com/oaknational/Oak-Web-Application/commit/13d30dbeed68dab537556a80236fccc620f8b71b))
+* revert ternary operation change ([8b1f5e2](https://github.com/oaknational/Oak-Web-Application/commit/8b1f5e2ffeb696df52b0c4f414a95870153676ad))
+
+
+### Features
+
+* show toast message on download start or fail ([be348db](https://github.com/oaknational/Oak-Web-Application/commit/be348db8391ffd8e6b0278d7e92d1cfcf627c70d))
+* update error message with text found on Figma ([781ced4](https://github.com/oaknational/Oak-Web-Application/commit/781ced4695edbe1dd916d020b61d7823eaf6a04e))
+
 # [1.1074.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1073.0...v1.1074.0) (2026-05-12)
 
 
