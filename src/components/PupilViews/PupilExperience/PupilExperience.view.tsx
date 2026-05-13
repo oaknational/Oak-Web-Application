@@ -10,16 +10,12 @@ import { PostSubmissionState } from "@oaknational/google-classroom-addon/types";
 
 import {
   LessonEngineProvider,
-  LessonSection,
   LessonReviewSection,
+  LessonSection,
   LessonSectionResults,
-  allLessonReviewSections,
   useLessonEngineContext,
 } from "@/components/PupilComponents/LessonEngineProvider";
-import {
-  PupilViewsIntro,
-  WorksheetInfo,
-} from "@/components/PupilViews/PupilIntro";
+import { PupilViewsIntro } from "@/components/PupilViews/PupilIntro";
 import { PupilViewsLessonOverview } from "@/components/PupilViews/PupilLessonOverview";
 import { PupilViewsReview } from "@/components/PupilViews/PupilReview";
 import { PupilViewsQuiz } from "@/components/PupilViews/PupilQuiz";
@@ -32,11 +28,6 @@ import {
   PupilAnalyticsProvider,
   getPupilPathwayData,
 } from "@/components/PupilComponents/PupilAnalyticsProvider/PupilAnalyticsProvider";
-import {
-  LessonBrowseData,
-  LessonContent,
-  AdditionalFile,
-} from "@/node-lib/curriculum-api-2023/queries/pupilLesson/pupilLesson.schema";
 import { usePupilAnalytics } from "@/components/PupilComponents/PupilAnalyticsProvider/usePupilAnalytics";
 import {
   AnalyticsUseCase,
@@ -60,32 +51,11 @@ import {
   type GoogleClassroomContext,
   useGoogleClassroomContext,
 } from "@/components/GoogleClassroom/useGoogleClassroomContext";
+import { pickAvailableSectionsForLesson } from "@/components/PupilComponents/Views/ViewHelpers/Experience/pickAvailableSectionsForLesson";
+import { PupilLessonPageProps } from "@/pages-helpers/pupil/lessons-pages/pupilLessonPage.types";
 
-export const pickAvailableSectionsForLesson = (lessonContent: LessonContent) =>
-  allLessonReviewSections.filter((section) => {
-    switch (section) {
-      case "starter-quiz":
-        return !!lessonContent?.starterQuiz?.length;
-      case "exit-quiz":
-        return !!lessonContent?.exitQuiz?.length;
-      case "video":
-        return !!lessonContent?.videoMuxPlaybackId;
-      default:
-        return true;
-    }
-  });
-
-export type PupilExperienceViewProps = {
-  browseData: LessonBrowseData;
-  lessonContent: LessonContent;
-  hasWorksheet: boolean;
-  backUrl?: string | null;
-  initialSection: LessonSection;
-  pageType: "preview" | "canonical" | "browse";
-  hasAdditionalFiles: boolean;
-  additionalFiles: AdditionalFile[] | null;
-  worksheetInfo: WorksheetInfo | null;
-};
+export { pickAvailableSectionsForLesson };
+export type PupilExperienceViewProps = PupilLessonPageProps;
 
 export const PupilPageContent = ({
   browseData,

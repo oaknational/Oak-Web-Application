@@ -1,0 +1,92 @@
+import {
+  PupilLessonPageProps,
+  PupilLessonPageType,
+} from "./pupilLessonPage.types";
+
+import {
+  isLessonReviewSection,
+  LessonSection,
+} from "@/components/PupilComponents/lessonSections";
+import { getWorksheetInfo } from "@/components/PupilComponents/pupilUtils/getWorksheetInfo";
+import { requestLessonResources } from "@/components/PupilComponents/pupilUtils/requestLessonResources";
+import { pickAvailableSectionsForLesson } from "@/components/PupilComponents/Views/ViewHelpers/Experience/pickAvailableSectionsForLesson";
+import {
+  LessonBrowseData,
+  LessonContent,
+} from "@/node-lib/curriculum-api-2023/queries/pupilLesson/pupilLesson.schema";
+
+export const isAvailablePupilLessonSection = (
+  section: LessonSection,
+  lessonContent: LessonContent,
+) => {
+  if (!isLessonReviewSection(section)) {
+    return true;
+  }
+
+  return pickAvailableSectionsForLesson(lessonContent).includes(section);
+};
+
+export const hydrateLessonContentResources = async ({
+  lessonContent,
+  suppressErrors = false,
+}: {
+  lessonContent: LessonContent;
+  suppressErrors?: boolean;
+}) => {
+  try {
+    const transcriptSentences = await requestLessonResources({
+      lessonContent,
+    });
+
+    return {
+      ...lessonContent,
+      transcriptSentences: transcriptSentences ?? [],
+    };
+  } catch (error) {
+    if (!suppressErrors) {
+      throw error;
+    }
+
+    return {
+      ...lessonContent,
+      transcriptSentences: [],
+    };
+  }
+};
+
+export const buildPupilLessonPageProps = async ({
+  browseData,
+  lessonContent,
+  backUrl,
+  initialSection,
+  pageType,
+  suppressResourceErrors = false,
+}: {
+  browseData: LessonBrowseData;
+  lessonContent: LessonContent;
+  backUrl: string;
+  initialSection: LessonSection;
+  pageType: PupilLessonPageType;
+  suppressResourceErrors?: boolean;
+}): Promise<PupilLessonPageProps> => {
+  const hydratedLessonContent = await hydrateLessonContentResources({
+    lessonContent,
+    suppressErrors: suppressResourceErrors,
+  });
+  const hasWorksheet = !!lessonContent.hasWorksheetAssetObject;
+  const worksheetInfo = hasWorksheet
+    ? ((await getWorksheetInfo(browseData.lessonSlug)) ?? null)
+    : null;
+
+  return {
+    lessonContent: hydratedLessonContent,
+    browseData,
+    hasWorksheet,
+    worksheetInfo,
+    hasAdditionalFiles: !!lessonContent.downloadableFiles?.length,
+    additionalFiles: lessonContent.downloadableFiles || null,
+    initialSection,
+    backUrl,
+    pageType,
+  };
+};
