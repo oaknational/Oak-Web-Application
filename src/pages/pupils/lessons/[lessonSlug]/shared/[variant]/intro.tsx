@@ -1,6 +1,6 @@
 import { ParsedUrlQuery } from "querystring";
 
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { GetStaticProps, GetStaticPropsContext, PreviewData } from "next";
 import { useRouter } from "next/router";
 import {
@@ -101,6 +101,7 @@ const IntroPageContent = ({
     browseData.lessonSlug,
     lessonContent.isLegacy ?? false,
   );
+  const sectionStartedAtRef = useRef(Date.now());
   const [isCompletingAndRedirecting, setIsCompletingAndRedirecting] =
     useState(false);
 
@@ -215,7 +216,9 @@ const IntroPageContent = ({
                   if (!lessonStarted) {
                     trackLessonStarted();
                   }
-                  trackIntroAbandoned();
+                  trackIntroAbandoned({
+                    sectionStartedAt: sectionStartedAtRef.current,
+                  });
                 }
                 void router.push(overviewHref);
               }}

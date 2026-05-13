@@ -111,6 +111,7 @@ export const trackQuizAbandoned = (
   get: PupilLessonAnalyticsGet,
   section: "starter-quiz" | "exit-quiz",
   sectionResults: LessonSectionResults,
+  sectionStartedAt: number,
 ) => {
   const { track, additionalArgs } = get();
   if (!track || !additionalArgs) return;
@@ -120,6 +121,7 @@ export const trackQuizAbandoned = (
     pupilExperienceLessonActivity: section,
     pupilQuizGrade: sectionResults[section]?.grade || 0,
     pupilQuizNumQuestions: sectionResults[section]?.numQuestions || 0,
+    activityTimeSpent: Date.now() - sectionStartedAt,
   };
 
   if (section === "starter-quiz") {

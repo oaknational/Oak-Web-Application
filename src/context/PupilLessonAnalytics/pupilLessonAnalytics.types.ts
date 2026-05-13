@@ -46,6 +46,15 @@ export type TrackSectionResultArgs = {
 export type TrackQuizAbandonedArgs = {
   section: "starter-quiz" | "exit-quiz";
   sectionResults: LessonSectionResults;
+  sectionStartedAt: number;
+};
+
+export type TrackSectionAbandonedArgs = {
+  sectionStartedAt: number;
+};
+
+export type TrackSectionResultAbandonedArgs = TrackSectionResultArgs & {
+  sectionStartedAt: number;
 };
 
 export type TrackContentGuidanceArgs = Omit<
@@ -76,10 +85,10 @@ export type PupilLessonAnalyticsState = {
   trackLessonCompleted: () => void;
   trackLessonAbandoned: () => void;
   trackIntroCompleted: () => void;
-  trackIntroAbandoned: () => void;
+  trackIntroAbandoned: (args: TrackSectionAbandonedArgs) => void;
   trackWorksheetDownloaded: () => void;
   trackVideoCompleted: (args: TrackSectionResultArgs) => void;
-  trackVideoAbandoned: (args: TrackSectionResultArgs) => void;
+  trackVideoAbandoned: (args: TrackSectionResultAbandonedArgs) => void;
   trackLessonSummaryReviewed: (args: TrackSectionResultArgs) => void;
   trackActivityResultsShared: (args: TrackSectionResultArgs) => void;
   trackContentGuidanceAccepted: (args: TrackContentGuidanceArgs) => void;
