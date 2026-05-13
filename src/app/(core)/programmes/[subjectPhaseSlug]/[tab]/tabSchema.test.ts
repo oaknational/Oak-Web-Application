@@ -12,7 +12,7 @@ describe("tabSchema", () => {
   });
   it("returns a tab slug from a valid tab name", () => {
     const result = tabNameToSlug["Explainer"];
-    expect(result).toEqual("overview");
+    expect(result).toEqual("curriculum-explainer");
   });
   it.each(TAB_SLUGS)(
     "returns correctly for isTabSlug when it is a tab slug",

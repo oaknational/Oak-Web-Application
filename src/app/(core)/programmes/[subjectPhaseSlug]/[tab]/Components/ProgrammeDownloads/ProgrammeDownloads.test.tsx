@@ -84,6 +84,21 @@ jest.mock(
     },
   }),
 );
+
+jest.mock(
+  "@/components/TeacherComponents/ResourcePageSchoolPicker/useSchoolPicker",
+  () => ({
+    __esModule: true,
+    default: () => ({
+      schools: [],
+      error: null,
+      schoolPickerInputValue: "",
+      setSchoolPickerInputValue: jest.fn(),
+      selectedSchool: undefined,
+      setSelectedSchool: jest.fn(),
+    }),
+  }),
+);
 const defaultProps = {
   curriculumSelectionSlugs: parseSubjectPhaseSlug("english-secondary-aqa")!,
   curriculumUnitsFormattedData: {
@@ -167,10 +182,10 @@ describe("Programme Downloads", () => {
         "child-subject-radio-button",
       );
       expect(childSubjectRadios).toHaveLength(4);
-      expect(childSubjectRadios[0]).toHaveTextContent("Combined science");
-      expect(childSubjectRadios[1]).toHaveTextContent("Biology");
-      expect(childSubjectRadios[2]).toHaveTextContent("Chemistry");
-      expect(childSubjectRadios[3]).toHaveTextContent("Physics");
+      expect(childSubjectRadios[0]).toHaveAccessibleName("Combined science");
+      expect(childSubjectRadios[1]).toHaveAccessibleName("Biology");
+      expect(childSubjectRadios[2]).toHaveAccessibleName("Chemistry");
+      expect(childSubjectRadios[3]).toHaveAccessibleName("Physics");
     });
   });
   describe("analytics: curriculumResourcesDownloadRefined", () => {
@@ -196,7 +211,7 @@ describe("Programme Downloads", () => {
       await user.click(childSubjectSelector);
       await user.click(tierSelector);
 
-      const nextButton = await findByText("Next");
+      const nextButton = await findByText("Next step");
       await user.click(nextButton);
 
       expect(curriculumResourcesDownloadRefined).toHaveBeenCalledTimes(1);
