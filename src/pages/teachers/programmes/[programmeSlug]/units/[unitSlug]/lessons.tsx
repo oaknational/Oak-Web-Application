@@ -57,6 +57,7 @@ import {
   getDoesSubjectHaveNewUnits,
   TakedownBanner,
 } from "@/components/SharedComponents/TakedownBanner/TakedownBanner";
+import { getUnitDownloadFileId } from "@/utils/getUnitDownloadFileId";
 
 export type LessonListingPageProps = {
   curriculumData: LessonListingPageData;
@@ -207,14 +208,6 @@ const LessonListPage: NextPage<LessonListingPageProps> = ({
 
   const newsletterFormProps = useNewsletterForm();
 
-  const getSlugifiedTitle = (title: string) => {
-    return title
-      .replaceAll(/\s+/g, "-")
-      .replaceAll(/[^\dA-Za-z-]/g, "")
-      .replaceAll(/-+/g, "-")
-      .toLowerCase();
-  };
-
   const { onSaveToggle, isUnitSaved, showSignIn, setShowSignIn, isUnitSaving } =
     useSaveUnits(programmeSlug, {
       savedFrom: "lesson_listing_save_button",
@@ -287,7 +280,7 @@ const LessonListPage: NextPage<LessonListingPageProps> = ({
         isNew={isNew}
         {...curriculumData}
         shareButton={teacherShareButton}
-        unitDownloadFileId={`${getSlugifiedTitle(unitTitle)}-${unitvariantId}`}
+        unitDownloadFileId={getUnitDownloadFileId(unitTitle, unitvariantId)}
         onUnitDownloadSuccess={() =>
           track.unitDownloadInitiated({
             platform: "owa",

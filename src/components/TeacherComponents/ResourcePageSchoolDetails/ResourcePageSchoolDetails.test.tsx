@@ -66,11 +66,9 @@ describe("ResourcePageSchoolDetails", () => {
       useSchoolPicker({ withHomeschool: true }),
     );
 
-    await act(async () => {
-      const checkbox = getByRole("checkbox");
-      await user.click(screen.getByText("My school isn't listed"));
-      expect(checkbox).toBeChecked();
-    });
+    const checkbox = getByRole("checkbox");
+    await user.click(screen.getByText("My school isn't listed"));
+    expect(checkbox).toBeChecked();
 
     const input: HTMLInputElement = screen.getByTestId("search-combobox-input");
     await userEvent.type(input, "Dorothy Bricks");
@@ -82,7 +80,6 @@ describe("ResourcePageSchoolDetails", () => {
     });
 
     rerender(<ResourcePageSchoolDetails {...props} />);
-    const checkbox = getByRole("checkbox");
     expect(checkbox).not.toBeChecked();
   });
 

@@ -27,9 +27,9 @@ import {
   preselectedShareType,
   resourceFormValuesSchema,
 } from "@/components/TeacherComponents/downloadAndShare.schema";
-import { CurriculumDownload } from "@/components/CurriculumComponents/CurriculumDownloads/CurriculumDownloads";
 import { LessonShareData } from "@/node-lib/curriculum-api-2023/queries/lessonShare/lessonShare.schema";
 import { LessonDownloadsPageData } from "@/node-lib/curriculum-api-2023/queries/lessonDownloads/lessonDownloads.schema";
+import { DownloadType } from "@/components/CurriculumComponents/CurriculumDownloadView/helper";
 
 export type UseResourceFormStateProps =
   | { shareResources: LessonShareData["shareableResources"]; type: "share" }
@@ -38,9 +38,11 @@ export type UseResourceFormStateProps =
       additionalFilesResources: LessonDownloadsPageData["additionalFiles"];
       type: "download";
     }
-  | { curriculumResources: CurriculumDownload[]; type: "curriculum" };
+  | { curriculumResources: DownloadType[]; type: "curriculum" };
 
 export const useResourceFormState = (props: UseResourceFormStateProps) => {
+  const selectAllByDefault = props.type === "curriculum";
+
   const {
     register,
     formState,
@@ -52,10 +54,13 @@ export const useResourceFormState = (props: UseResourceFormStateProps) => {
   } = useForm({
     resolver: zodResolver(resourceFormValuesSchema),
     mode: "onBlur",
+    defaultValues: {
+      resources: selectAllByDefault ? props.curriculumResources : [],
+    },
   });
 
-  const [preselectAll, setPreselectAll] = useState(false);
-  const [selectAllChecked, setSelectAllChecked] = useState(false);
+  const [selectAllChecked, setSelectAllChecked] = useState(selectAllByDefault);
+
   const [isLocalStorageLoading, setIsLocalStorageLoading] = useState(true);
   const [schoolUrn, setSchoolUrn] = useState("");
 
@@ -202,9 +207,7 @@ export const useResourceFormState = (props: UseResourceFormStateProps) => {
         .filter((resource) => resource.exists && !resource.forbidden)
         .map((resource) => resource.type);
     } else if (props.type === "curriculum") {
-      return (resources as CurriculumDownload[]).map(
-        (resource) => resource.url,
-      );
+      return resources as DownloadType[];
     } else {
       throw new Error("Invalid resource type");
     }
@@ -261,10 +264,7 @@ export const useResourceFormState = (props: UseResourceFormStateProps) => {
 
   const { errors } = formState;
   const hasFormErrors = Object.keys(errors)?.length > 0;
-  const selectedResources: ResourceType[] = watch(
-    "resources",
-    [],
-  ) as ResourceType[];
+  const selectedResources = watch("resources") as ResourceType[];
 
   const [activeResources, setActiveResources] = useState<string[]>(
     getInitialResourcesState(),
@@ -274,24 +274,16 @@ export const useResourceFormState = (props: UseResourceFormStateProps) => {
     string[] | undefined
   >(getInitialAdditionalFilesState());
 
-  useEffect(() => {
-    setActiveResources(getInitialResourcesState());
-  }, [getInitialResourcesState, resources]);
-
-  useEffect(() => {
-    setActiveAdditonalFiles(getInitialAdditionalFilesState());
-  }, [getInitialAdditionalFilesState, additionalResources]);
-
   const hasResources = getInitialResourcesState().length > 0;
 
+  // Keep selectAllChecked in sync by comparing selected resources to available resources
   useEffect(() => {
-    const initialResources = getInitialResourcesState();
-    if (selectedResources.length < initialResources.length) {
+    if (selectedResources?.length < activeResources.length) {
       setSelectAllChecked(false);
     } else {
       setSelectAllChecked(true);
     }
-  }, [selectedResources, getInitialResourcesState]);
+  }, [selectedResources, activeResources]);
 
   const onSelectAllClick = () =>
     setValue("resources", activeResources.concat(activeAdditonalFiles || []));
@@ -311,6 +303,9 @@ export const useResourceFormState = (props: UseResourceFormStateProps) => {
     // hydration so query params are stable before reading them.
     if (router && !router.isReady) return;
 
+    // curriculum resources are all preselected by default so we don't need to do anything here
+    if (props.type === "curriculum") return;
+
     const preselectedQuery = () => {
       const res = searchParams?.get("preselected");
 
@@ -327,8 +322,9 @@ export const useResourceFormState = (props: UseResourceFormStateProps) => {
     };
     const queryResults = preselectedQuery();
     let preselected: "all" | ResourceType[] | undefined;
+
     const allAvailableResources = getInitialResourcesState().concat(
-      getInitialAdditionalFilesState() || [],
+      (getInitialAdditionalFilesState() || []) as ResourceType[],
     );
 
     if (isPreselectedShareType(queryResults)) {
@@ -336,7 +332,7 @@ export const useResourceFormState = (props: UseResourceFormStateProps) => {
     }
     if (isPreselectedDownloadType(queryResults)) {
       const preselectedResources = additionalResources
-        ? resources.concat(additionalResources)
+        ? resources?.concat(additionalResources)
         : resources;
       preselected = getPreselectedDownloadResourceTypes(
         queryResults,
@@ -344,8 +340,10 @@ export const useResourceFormState = (props: UseResourceFormStateProps) => {
       );
     }
 
-    if (preselected && props.type !== "curriculum") {
-      setPreselectAll(preselected === "all");
+    if (preselected) {
+      if (preselected === "all") {
+        setSelectAllChecked(true);
+      }
 
       switch (true) {
         case preselected === "all":
@@ -380,19 +378,11 @@ export const useResourceFormState = (props: UseResourceFormStateProps) => {
     setValue,
   ]);
 
-  useEffect(() => {
-    if (preselectAll) {
-      setSelectAllChecked(true);
-    }
-  }, [preselectAll]);
-
   const handleToggleSelectAll = () => {
     if (selectAllChecked) {
       onDeselectAllClick();
-      setSelectAllChecked(false);
     } else {
       onSelectAllClick();
-      setSelectAllChecked(true);
     }
     // Trigger the form to reevaluate errors
     trigger();

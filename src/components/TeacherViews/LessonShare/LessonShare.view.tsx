@@ -153,16 +153,14 @@ export function LessonShare(props: LessonShareProps) {
   });
   const onboardingStatus = useOnboardingStatus();
 
-  const { onSubmit } = useResourceFormSubmit({
-    type: "share",
-  });
+  const { onSubmit } = useResourceFormSubmit();
   const { onHubspotSubmit } = useHubspotSubmit();
 
   const onFormSubmit = async (
     data: ResourceFormValues,
     shareMedium: ShareMediumValueType,
   ): Promise<void> => {
-    await onSubmit(data, props.lesson.lessonSlug);
+    await onSubmit({ data, slug: props.lesson.lessonSlug, type: "share" });
     await onHubspotSubmit(data);
 
     if (editDetailsClicked && !data.email) {
