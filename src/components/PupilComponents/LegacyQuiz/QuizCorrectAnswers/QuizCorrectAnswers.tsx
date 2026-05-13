@@ -11,10 +11,9 @@ export const QuizCorrectAnswers = () => {
     switch (true) {
       case currentQuestionState &&
         Array.isArray(currentQuestionState.correctAnswer) &&
-        Object.prototype.hasOwnProperty.call(
-          currentQuestionState.correctAnswer[0],
-          "imageObject",
-        ):
+        currentQuestionState.correctAnswer[0] != null &&
+        typeof currentQuestionState.correctAnswer[0] === "object" &&
+        Object.hasOwn(currentQuestionState.correctAnswer[0], "imageObject"):
         return null;
       case currentQuestionState &&
         Array.isArray(currentQuestionState.correctAnswer) &&
@@ -31,12 +30,11 @@ export const QuizCorrectAnswers = () => {
         Array.isArray(currentQuestionState.correctAnswer):
         return (
           "Correct answer: " +
-          currentQuestionState.correctAnswer.filter((answer) =>
-            isString(answer),
-          )[0]
+          currentQuestionState.correctAnswer.find((answer) => isString(answer))
         );
-      case currentQuestionState && Boolean(currentQuestionState.correctAnswer):
-        return "Correct answer: " + currentQuestionState.correctAnswer;
+      case currentQuestionState &&
+        typeof currentQuestionState.correctAnswer === "string":
+        return `Correct answer: ${currentQuestionState.correctAnswer}`;
       default:
         return null;
     }

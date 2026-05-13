@@ -49,7 +49,7 @@ export const gradeMultipleChoiceQuestion = ({
     ? pupilAnswer
     : [pupilAnswer];
   const pupilAnswerIndexes = pupilAnswerArray.map((answer) =>
-    questionAnswers?.findIndex((questionAnswer) => questionAnswer === answer),
+    answer == null ? -1 : questionAnswers?.indexOf(answer),
   );
 
   const feedback = questionAnswers?.map((answer) => {
@@ -60,7 +60,7 @@ export const gradeMultipleChoiceQuestion = ({
     return correctAnswers?.includes(answer) ? "incorrect" : "correct";
   });
 
-  const grade = !feedback?.includes("incorrect") ? 1 : 0;
+  const grade = feedback?.includes("incorrect") ? 0 : 1;
   const isPartiallyCorrect =
     (grade === 0 &&
       questionData.answers?.["multiple-choice"]?.some(
@@ -158,8 +158,7 @@ export const gradeOrderQuestion = ({
     pupilAnswer === i + 1 ? "correct" : "incorrect",
   );
   const isCorrect = feedback.every((item) => item === "correct");
-  const isPartiallyCorrect =
-    !isCorrect && feedback.some((item) => item === "correct");
+  const isPartiallyCorrect = !isCorrect && feedback.includes("correct");
 
   return {
     mode: "feedback",
@@ -193,8 +192,7 @@ export const gradeMatchQuestion = ({
     choices[i] === matchId ? "correct" : "incorrect",
   );
   const isCorrect = feedback.every((item) => item === "correct");
-  const isPartiallyCorrect =
-    !isCorrect && feedback.some((item) => item === "correct");
+  const isPartiallyCorrect = !isCorrect && feedback.includes("correct");
   const answers = questionData.answers;
 
   invariant(

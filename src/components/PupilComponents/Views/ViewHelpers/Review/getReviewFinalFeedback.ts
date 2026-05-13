@@ -9,16 +9,14 @@ export const getReviewFinalFeedback = (
   }
 
   const starterQuizPercentage =
-    sectionResults["starter-quiz"] &&
-    sectionResults["starter-quiz"].grade &&
-    sectionResults["starter-quiz"].numQuestions
+    sectionResults["starter-quiz"]?.grade &&
+    sectionResults["starter-quiz"]?.numQuestions
       ? sectionResults["starter-quiz"].grade /
         sectionResults["starter-quiz"].numQuestions
       : 1;
   const exitQuizPercentage =
-    sectionResults["exit-quiz"] &&
-    sectionResults["exit-quiz"].grade &&
-    sectionResults["exit-quiz"].numQuestions
+    sectionResults["exit-quiz"]?.grade &&
+    sectionResults["exit-quiz"]?.numQuestions
       ? sectionResults["exit-quiz"].grade /
         sectionResults["exit-quiz"].numQuestions
       : 1;

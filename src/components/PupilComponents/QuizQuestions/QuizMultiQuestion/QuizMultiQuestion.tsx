@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useCallback, useMemo, useState } from "react";
 import {
   OakCloudinaryImage,
   OakCodeRenderer,
@@ -46,6 +46,12 @@ export const QuizMultiQuestion = ({
   const isFeedbackMode = questionState.mode === "feedback";
   const isExitQuizReadOnly = isReadOnly && section === "exit-quiz";
 
+  const toggleScaledAt = useCallback((index: number) => {
+    setScaled((prev) =>
+      prev.map((item, idx) => (idx === index ? !item : item)),
+    );
+  }, []);
+
   return (
     <OakFlex $flexDirection="column" $gap="spacing-24">
       <OakFlex $mt={["spacing-16", "spacing-48", "spacing-56"]}>
@@ -66,8 +72,8 @@ export const QuizMultiQuestion = ({
         aria-labelledby={`${questionData.questionUid}-legend`}
       >
         {answers.map((answer, index) => {
-          const textAnswer = answer.answer.filter(isText)[0];
-          const imageAnswer = answer.answer.filter(isImage)[0]?.imageObject;
+          const textAnswer = answer.answer.find(isText);
+          const imageAnswer = answer.answer.find(isImage)?.imageObject;
           const image = imageAnswer?.publicId ? (
             <OakFlex>
               <OakCloudinaryImage
@@ -89,18 +95,18 @@ export const QuizMultiQuestion = ({
                 <OakScaleImageButton
                   onImageScaleCallback={(event) => {
                     event.stopPropagation();
-                    setScaled((prev) =>
-                      prev.map((item, idx) => (idx === index ? !item : item)),
-                    );
+                    toggleScaledAt(index);
                   }}
-                  isExpanded={scaled[index] ? true : false}
+                  isExpanded={Boolean(scaled[index])}
                 />
               </OakFlex>
             </OakFlex>
           ) : undefined;
 
           return (
-            <MathJaxWrap key={`multi-answer-${index}`}>
+            <MathJaxWrap
+              key={multipleChoiceAnswerId(questionData.questionUid, index)}
+            >
               <OakQuizCheckBox
                 id={multipleChoiceAnswerId(questionData.questionUid, index)}
                 displayValue={

@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useCallback, useMemo, useState } from "react";
 import {
   OakFlex,
   OakJauntyAngleLabel,
@@ -43,6 +43,12 @@ export const QuizSingleQuestion = ({
   const isFeedbackMode = questionState.mode === "feedback";
   const isExitQuizReadOnly = isReadOnly && section === "exit-quiz";
 
+  const toggleScaledAt = useCallback((index: number) => {
+    setScaled((prev) =>
+      prev.map((item, idx) => (idx === index ? !item : item)),
+    );
+  }, []);
+
   return (
     <OakFlex $flexDirection="column" $gap="spacing-24">
       <OakFlex $mt={["spacing-16", "spacing-48", "spacing-56"]}>
@@ -69,7 +75,7 @@ export const QuizSingleQuestion = ({
           const image = getStemImage({
             stem: answer.answer.filter(isImage),
             minWidth: "spacing-240",
-            scaled: scaled[index] ? true : false,
+            scaled: Boolean(scaled[index]),
           });
           const resizeableImage = image ? (
             <OakFlex>
@@ -83,11 +89,9 @@ export const QuizSingleQuestion = ({
                 <OakScaleImageButton
                   onImageScaleCallback={(event) => {
                     event.stopPropagation();
-                    setScaled((prev) =>
-                      prev.map((item, idx) => (idx === index ? !item : item)),
-                    );
+                    toggleScaledAt(index);
                   }}
-                  isExpanded={scaled[index] ? true : false}
+                  isExpanded={Boolean(scaled[index])}
                 />
               </OakFlex>
             </OakFlex>

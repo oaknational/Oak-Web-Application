@@ -33,8 +33,8 @@ export const QuizCorrectAnswers = ({ questionState }: Props) => {
           "Correct answer: " +
           questionState.correctAnswer.filter((answer) => isString(answer))[0]
         );
-      case questionState && Boolean(questionState.correctAnswer):
-        return "Correct answer: " + questionState.correctAnswer;
+      case questionState && typeof questionState.correctAnswer === "string":
+        return `Correct answer: ${questionState.correctAnswer}`;
       default:
         return null;
     }

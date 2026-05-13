@@ -64,7 +64,7 @@ export const QuizMatchQuestion = ({
     () =>
       Object.keys(answers).map((key, index) => ({
         id: index.toString(),
-        label: <MathJaxWrap key={`match-${index}`}>{key}</MathJaxWrap>,
+        label: <MathJaxWrap key={`match-${key}`}>{key}</MathJaxWrap>,
         announcement: key,
       })),
     [answers],
@@ -72,9 +72,9 @@ export const QuizMatchQuestion = ({
 
   const choiceItems = useMemo(
     () =>
-      Object.values(answers).map((value, index) => ({
+      Object.entries(answers).map(([matchKey, value], index) => ({
         id: index.toString(),
-        label: <MathJaxWrap key={`choice-${index}`}>{value}</MathJaxWrap>,
+        label: <MathJaxWrap key={`choice-${matchKey}`}>{value}</MathJaxWrap>,
         announcement: value,
       })),
     [answers],
@@ -129,7 +129,7 @@ export const QuizMatchQuestion = ({
 
     return (
       <StyledUL>
-        {matchItems.map(({ id, label }, index) => {
+        {matchItems.map(({ id, label, announcement }, index) => {
           const currentFeedback = questionState.feedback?.at(index);
           const choice = choiceItems.find(
             (item) => item.id === currentMatches[index],
@@ -137,12 +137,12 @@ export const QuizMatchQuestion = ({
           const correctChoice = choiceItems.at(index);
           invariant(
             currentFeedback,
-            `feedback is missing for match '${label}'`,
+            `feedback is missing for match '${announcement}'`,
           );
-          invariant(choice, `choice is missing for match '${label}'`);
+          invariant(choice, `choice is missing for match '${announcement}'`);
           invariant(
             correctChoice,
-            `correctChoice is missing for match '${label}'`,
+            `correctChoice is missing for match '${announcement}'`,
           );
 
           return (

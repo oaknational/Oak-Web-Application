@@ -167,9 +167,9 @@ export const QuizPageContent = ({
       });
     }
 
-    window.addEventListener("keydown", handleKeyDownTabToInput);
+    globalThis.addEventListener("keydown", handleKeyDownTabToInput);
     return () => {
-      window.removeEventListener("keydown", handleKeyDownTabToInput);
+      globalThis.removeEventListener("keydown", handleKeyDownTabToInput);
     };
   }, [currentQuestionData, currentQuestionIndex, firstTabPressed]);
 
