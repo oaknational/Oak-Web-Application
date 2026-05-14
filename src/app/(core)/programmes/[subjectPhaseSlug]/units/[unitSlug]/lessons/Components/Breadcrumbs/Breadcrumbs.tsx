@@ -7,6 +7,7 @@ import {
 
 import { resolveOakHref } from "@/common-lib/urls";
 import { LessonDownloadsPageData } from "@/node-lib/curriculum-api-2023/queries/lessonDownloads/lessonDownloads.schema";
+import { LessonMediaClipsData } from "@/node-lib/curriculum-api-2023/queries/lessonMediaClips/lessonMediaClips.schema";
 import { TeachersLessonOverviewPageData } from "@/node-lib/curriculum-api-2023/queries/teachersLessonOverview/teachersLessonOverview.schema";
 import { TeachersUnitOverviewData } from "@/node-lib/curriculum-api-2023/queries/teachersUnitOverview/teachersUnitOverview.schema";
 
@@ -24,6 +25,11 @@ type BreadcrumbsProps =
   | {
       mode: "downloads";
       data: LessonDownloadsPageData;
+      subjectPhaseSlug: string;
+    }
+  | {
+      mode: "media";
+      data: LessonMediaClipsData;
       subjectPhaseSlug: string;
     };
 
@@ -84,6 +90,30 @@ export const Breadcrumbs = ({
       },
       {
         text: "Downloads",
+      },
+    ];
+  } else if (mode === "media") {
+    breadcrumbs = [
+      firstBreadcrumb,
+      {
+        text: unitTitle,
+        href: resolveOakHref({
+          page: "integrated-unit-overview",
+          unitSlug: unitSlug,
+          programmeSlug,
+        }),
+      },
+      {
+        text: data.lessonTitle,
+        href: resolveOakHref({
+          page: "integrated-lesson-overview",
+          unitSlug: unitSlug,
+          programmeSlug,
+          lessonSlug: data.lessonSlug,
+        }),
+      },
+      {
+        text: "Media",
       },
     ];
   } else if (mode === "lesson") {
