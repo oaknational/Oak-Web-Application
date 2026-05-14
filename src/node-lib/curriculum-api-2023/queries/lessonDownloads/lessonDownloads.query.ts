@@ -11,25 +11,22 @@ import { rawSyntheticUVLessonSchema } from "./rawSyntheticUVLesson.schema";
 import { LessonDownloadsQuery as SdkLessonDownloadsQuery } from "@/node-lib/curriculum-api-2023/generated/sdk";
 import OakError from "@/errors/OakError";
 import { Sdk } from "@/node-lib/curriculum-api-2023/sdk";
-import { constructLessonBrowseQuery } from "@/node-lib/curriculum-api-2023/helpers";
 import { applyGenericOverridesAndExceptions } from "@/node-lib/curriculum-api-2023/helpers/overridesAndExceptions";
 
 const lessonDownloadsQuery =
   (sdk: Sdk) =>
-  async <T>(args: {
+  async (args: {
     programmeSlug: string;
     unitSlug: string;
     lessonSlug: string;
-  }): Promise<T> => {
+  }) => {
     const { lessonSlug, unitSlug, programmeSlug } = args;
 
-    const browseDataWhere = constructLessonBrowseQuery({
+    const res = await sdk.lessonDownloads({
+      lessonSlug,
       programmeSlug,
       unitSlug,
-      lessonSlug,
     });
-
-    const res = await sdk.lessonDownloads({ lessonSlug, browseDataWhere });
 
     const modifiedBrowseData = applyGenericOverridesAndExceptions<
       SdkLessonDownloadsQuery["browse_data"][number]
@@ -130,7 +127,7 @@ const lessonDownloadsQuery =
       geoRestricted: lessonRestrictions.geoRestricted,
       loginRequired: lessonRestrictions.loginRequired,
       lessonReleaseDate: lesson_release_date ?? "unpublished",
-    }) as T;
+    });
   };
 
 export type LessonDownloadsQuery = ReturnType<typeof lessonDownloadsQuery>;

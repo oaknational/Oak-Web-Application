@@ -52,6 +52,19 @@ export type SpecialistLessonPathway = {
   pathwayTitle: null;
 };
 
+export type SpecialistLessonPathwayBreadcrumbs = Pick<
+  SpecialistLessonPathway,
+  | "lessonSlug"
+  | "lessonTitle"
+  | "programmeSlug"
+  | "unitSlug"
+  | "unitTitle"
+  | "subjectTitle"
+  | "subjectSlug"
+  | "developmentStageTitle"
+  | "disabled"
+>;
+
 export type LessonOverviewCanonical = LessonBase & {
   isCanonical: true;
   pathways: LessonPathway[];
