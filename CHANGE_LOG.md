@@ -1,3 +1,57 @@
+# [1.1076.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1075.0...v1.1076.0) (2026-05-14)
+
+
+### Features
+
+* **LESQ-1996:** make programme + unit slug required for lesson share query ([26ba676](https://github.com/oaknational/Oak-Web-Application/commit/26ba676302e07f0570edb5bcfc5d32efb75ed7f4))
+* **LESQ-1996:** remove the canonical lesson share page ([2acdea0](https://github.com/oaknational/Oak-Web-Application/commit/2acdea0730b7f0b63dbcb3ba2839b0fbf373006e))
+
+# [1.1075.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1074.0...v1.1075.0) (2026-05-13)
+
+
+### Bug Fixes
+
+* always show success message, not just on redirect ([3ac2ee3](https://github.com/oaknational/Oak-Web-Application/commit/3ac2ee37c5ab3de274c48515939c5c4b548d0307))
+* change finally to then ([151d0b7](https://github.com/oaknational/Oak-Web-Application/commit/151d0b7d8680852145e7e423b07c3e853b8826b3))
+* ensure toast displays after redirect ([2856712](https://github.com/oaknational/Oak-Web-Application/commit/28567127bd732ec1098ec38319a921da69c08cd4))
+* fix syntax i keep forgetting ([13d30db](https://github.com/oaknational/Oak-Web-Application/commit/13d30dbeed68dab537556a80236fccc620f8b71b))
+* revert ternary operation change ([8b1f5e2](https://github.com/oaknational/Oak-Web-Application/commit/8b1f5e2ffeb696df52b0c4f414a95870153676ad))
+
+
+### Features
+
+* show toast message on download start or fail ([be348db](https://github.com/oaknational/Oak-Web-Application/commit/be348db8391ffd8e6b0278d7e92d1cfcf627c70d))
+* update error message with text found on Figma ([781ced4](https://github.com/oaknational/Oak-Web-Application/commit/781ced4695edbe1dd916d020b61d7823eaf6a04e))
+
+# [1.1074.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1073.0...v1.1074.0) (2026-05-12)
+
+
+### Features
+
+* **LESQ-1927:** update explainer path to /curriculum-explainer ([f8c927c](https://github.com/oaknational/Oak-Web-Application/commit/f8c927cc1b5b3b55f1292d9bfc42eede7be48111))
+
+# [1.1073.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1072.0...v1.1073.0) (2026-05-12)
+
+
+### Features
+
+* **LESQ-1974:** remove references to subject and tiers in banner copy ([5e5d908](https://github.com/oaknational/Oak-Web-Application/commit/5e5d9085e8ffd1065b1a74f3a32a0e9899b85bff))
+* **LESQ-1975:** align appearance of child tier selection with new designs ([e400cb7](https://github.com/oaknational/Oak-Web-Application/commit/e400cb7e17e38ee6e863dba7801a80e5048b149d))
+
+# [1.1072.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1071.2...v1.1072.0) (2026-05-12)
+
+
+### Features
+
+* **LESQ-1952:** add complex copyright banner to unit page ([aad8aef](https://github.com/oaknational/Oak-Web-Application/commit/aad8aefcfb9f59e2dbf79a3dd21dc8cfefa3aa4f))
+
+## [1.1071.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.1071.1...v1.1071.2) (2026-05-11)
+
+
+### Bug Fixes
+
+* match on pathway slug when creating toggle options ([962e1c9](https://github.com/oaknational/Oak-Web-Application/commit/962e1c979a7f06d74c13748d582743237aa40a18))
+
 ## [1.1071.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.1071.0...v1.1071.1) (2026-05-11)
 
 
