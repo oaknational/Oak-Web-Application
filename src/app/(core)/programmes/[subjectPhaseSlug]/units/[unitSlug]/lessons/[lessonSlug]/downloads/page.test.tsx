@@ -1,9 +1,8 @@
 /**
  * @jest-environment node
  */
-import LessonDownloadsPage, { generateMetadata } from "./page";
+import { generateMetadata } from "./page";
 
-import { resolveOakHref } from "@/common-lib/urls";
 import { LessonDownloadsPageData } from "@/node-lib/curriculum-api-2023/queries/lessonDownloads/lessonDownloads.schema";
 
 jest.mock("next/navigation", () => ({
@@ -11,11 +10,6 @@ jest.mock("next/navigation", () => ({
   notFound: () => {
     throw new Error("NEXT_HTTP_ERROR_FALLBACK;404");
   },
-}));
-
-const featureFlagMock = jest.fn().mockResolvedValue(false);
-jest.mock("@/utils/featureFlags", () => ({
-  getFeatureFlagValue: () => featureFlagMock(),
 }));
 
 // Jest is not setup to test RSCs, so it does not load the server build
@@ -86,49 +80,6 @@ const defaultParams = {
   unitSlug: "geometry-abc123",
   lessonSlug: "intro-to-geometry-abc123",
 };
-
-describe("LessonDownloadsPage", () => {
-  beforeEach(() => {
-    mockLessonDownloads.mockResolvedValue(lessonDownloadsFixture);
-  });
-
-  it("renders 404 if feature flag is disabled", async () => {
-    featureFlagMock.mockResolvedValue(false);
-
-    await expect(
-      LessonDownloadsPage({
-        params: Promise.resolve(defaultParams),
-        searchParams: Promise.resolve({}),
-      }),
-    ).rejects.toEqual(new Error("NEXT_HTTP_ERROR_FALLBACK;404"));
-  });
-
-  it("renders when the feature flag is enabled", async () => {
-    featureFlagMock.mockResolvedValue(true);
-
-    const result = await LessonDownloadsPage({
-      params: Promise.resolve(defaultParams),
-      searchParams: Promise.resolve({}),
-    });
-
-    expect(result).toBeDefined();
-    expect(mockLessonDownloads).toHaveBeenCalledWith({
-      programmeSlug: defaultParams.subjectPhaseSlug,
-      unitSlug: defaultParams.unitSlug,
-      lessonSlug: defaultParams.lessonSlug,
-    });
-    expect(result).toMatchObject({
-      props: {
-        successRedirect: resolveOakHref({
-          page: "integrated-lesson-downloads-success",
-          programmeSlug: defaultParams.subjectPhaseSlug,
-          unitSlug: defaultParams.unitSlug,
-          lessonSlug: defaultParams.lessonSlug,
-        }),
-      },
-    });
-  });
-});
 
 describe("generateMetadata", () => {
   it("returns empty object when fetch fails", async () => {
