@@ -98,21 +98,10 @@ const getKeystages = (
 
     const curriculumSubjects = subjects.filter((s) => !s.nonCurriculum);
     const nonCurriculumSubjects = subjects.filter((s) => s.nonCurriculum);
-    const allSubjectsButton = {
-      slug: "all-subjects",
-      title: `All ${ks.title} subjects`,
-      nonCurriculum: false,
-      programmeSlug: null,
-      programmeCount: 0,
-    };
 
     return {
       ...ks,
-      children: [
-        ...curriculumSubjects,
-        ...nonCurriculumSubjects,
-        allSubjectsButton,
-      ],
+      children: [...curriculumSubjects, ...nonCurriculumSubjects],
     };
   });
 
