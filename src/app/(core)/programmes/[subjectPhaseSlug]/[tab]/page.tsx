@@ -26,7 +26,6 @@ import withPageErrorHandling, {
 } from "@/hocs/withPageErrorHandling";
 import CMSClient from "@/node-lib/cms";
 import { getMvRefreshTime } from "@/pages-helpers/curriculum/downloads/getMvRefreshTime";
-import { getFeatureFlagValue } from "@/utils/featureFlags";
 import { resolveOakHref } from "@/common-lib/urls";
 import { getSubjectPhaseSlug } from "@/components/TeacherComponents/helpers/getSubjectPhaseSlug";
 import { resolveFilterFromSearchParams } from "@/utils/curriculum/filtersUrl";
@@ -88,15 +87,6 @@ export async function generateMetadata({
 }
 
 const InnerProgrammePage = async (props: AppPageProps<ProgrammePageParams>) => {
-  const isEnabled = await getFeatureFlagValue(
-    "teachers-integrated-journey",
-    "boolean",
-  );
-
-  if (!isEnabled) {
-    return notFound();
-  }
-
   const { subjectPhaseSlug, tab } = await props.params;
   const searchParams = await props.searchParams;
 

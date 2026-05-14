@@ -8,7 +8,6 @@ import withPageErrorHandling, {
   AppPageProps,
 } from "@/hocs/withPageErrorHandling";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
-import { getFeatureFlagValue } from "@/utils/featureFlags";
 
 type LessonDownloadsSuccessPageParams = {
   subjectPhaseSlug: string;
@@ -77,15 +76,6 @@ export async function generateMetadata(
 const InnerLessonDownloadsSuccessPage = async (
   props: AppPageProps<LessonDownloadsSuccessPageParams>,
 ) => {
-  const isEnabled = await getFeatureFlagValue(
-    "teachers-integrated-journey",
-    "boolean",
-  );
-
-  if (!isEnabled) {
-    return notFound();
-  }
-
   const { subjectPhaseSlug, unitSlug, lessonSlug } = await props.params;
   const data = await getCachedSuccessData(
     subjectPhaseSlug,
