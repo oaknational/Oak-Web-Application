@@ -7,8 +7,8 @@ export const getServerSideProps: GetServerSideProps = async ({
 }) => {
   const queryIndex = resolvedUrl.indexOf("?");
   const hasQuery = queryIndex !== -1;
-  const pathname = !hasQuery ? resolvedUrl : resolvedUrl.slice(0, queryIndex);
-  const queryParams = !hasQuery ? "" : resolvedUrl.slice(queryIndex);
+  const pathname = hasQuery ? resolvedUrl.slice(0, queryIndex) : resolvedUrl;
+  const queryParams = hasQuery ? resolvedUrl.slice(queryIndex) : "";
   const destination = `${pathname}/overview${queryParams}`;
 
   return {

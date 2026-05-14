@@ -70,7 +70,7 @@ export const trackContentGuidanceAccepted = (
   track.contentGuidanceAccepted({
     ...additionalArgs,
     ...args,
-  } as Parameters<TrackFns["contentGuidanceAccepted"]>[0]);
+  });
 };
 
 export const trackContentGuidanceDeclined = (
@@ -86,5 +86,5 @@ export const trackContentGuidanceDeclined = (
   track.contentGuidanceDeclined({
     ...additionalArgs,
     ...args,
-  } as Parameters<TrackFns["contentGuidanceDeclined"]>[0]);
+  });
 };

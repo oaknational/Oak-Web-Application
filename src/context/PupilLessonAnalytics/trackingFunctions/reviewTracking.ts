@@ -1,4 +1,3 @@
-import type { TrackFns } from "@/context/Analytics/AnalyticsProvider";
 import type {
   PupilLessonAnalyticsGet,
   TrackReviewEventArgs,
@@ -66,7 +65,7 @@ export const trackLessonSummaryReviewed = (
     ...additionalArgs,
     ...videoData,
     ...buildLessonSummaryReviewedTrackingData(args),
-  } as unknown as Parameters<TrackFns["lessonSummaryReviewed"]>[0]);
+  });
 };
 
 export const trackActivityResultsShared = (
@@ -79,5 +78,5 @@ export const trackActivityResultsShared = (
   track.activityResultsShared({
     ...additionalArgs,
     ...buildActivityResultsSharedTrackingData(args),
-  } as unknown as Parameters<TrackFns["activityResultsShared"]>[0]);
+  });
 };

@@ -1,9 +1,6 @@
-import { ParsedUrlQuery } from "querystring";
-
 import { useEffect, useState } from "react";
 import { GetStaticProps, GetStaticPropsContext, PreviewData } from "next";
 import { useRouter } from "next/router";
-import { OakPupilContentGuidance } from "@oaknational/oak-components";
 import { useShallow } from "zustand/react/shallow";
 
 import getPageProps from "@/node-lib/getPageProps";
@@ -198,7 +195,7 @@ const OverviewPageContent = ({
       <PupilLessonOverviewContentGuidanceModal
         redirectOverlayCleared={redirectOverlayCleared}
         contentGuidanceDismissed={contentGuidanceDismissed}
-        contentGuidance={contentGuidance as OakPupilContentGuidance[] | null}
+        contentGuidance={contentGuidance}
         supervisionLevel={supervisionLevel}
         ageRestriction={browseData.features?.ageRestriction}
         isClassroomAssignment={isClassroomAssignment}
@@ -248,7 +245,7 @@ const OverviewPageContent = ({
         contentGuidanceSlot={
           contentGuidance && contentGuidance.length > 0 ? (
             <PupilLessonOverviewContentGuidance
-              contentGuidance={contentGuidance as OakPupilContentGuidance[]}
+              contentGuidance={contentGuidance}
               supervisionLevel={supervisionLevel}
             />
           ) : undefined
@@ -320,7 +317,7 @@ export const getStaticProps: GetStaticProps<
 
   return getPageProps({
     page: "pupils-lesson-new-overview::getStaticProps",
-    context: context as GetStaticPropsContext<ParsedUrlQuery, PreviewData>,
+    context,
     getProps: getProps({ context: contextWithSection, page: "canonical" }),
   });
 };

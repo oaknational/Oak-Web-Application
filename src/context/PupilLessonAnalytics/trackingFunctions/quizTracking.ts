@@ -60,15 +60,11 @@ export const trackQuizStarted = (
   };
 
   if (section === "starter-quiz") {
-    track.lessonActivityStartedStarterQuiz(
-      payload as Parameters<TrackFns["lessonActivityStartedStarterQuiz"]>[0],
-    );
+    track.lessonActivityStartedStarterQuiz(payload);
     return;
   }
 
-  track.lessonActivityStartedExitQuiz(
-    payload as Parameters<TrackFns["lessonActivityStartedExitQuiz"]>[0],
-  );
+  track.lessonActivityStartedExitQuiz(payload);
 };
 
 export const trackQuizQuestionAttempt = (

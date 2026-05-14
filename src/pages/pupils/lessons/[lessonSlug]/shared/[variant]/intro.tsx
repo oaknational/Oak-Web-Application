@@ -1,5 +1,3 @@
-import { ParsedUrlQuery } from "querystring";
-
 import { useEffect, useMemo, useRef, useState } from "react";
 import { GetStaticProps, GetStaticPropsContext, PreviewData } from "next";
 import { useRouter } from "next/router";
@@ -411,7 +409,7 @@ export const getStaticProps: GetStaticProps<
 
   return getPageProps({
     page: "pupils-lesson-new-intro::getStaticProps",
-    context: context as GetStaticPropsContext<ParsedUrlQuery, PreviewData>,
+    context,
     getProps: getProps({ context: contextWithSection, page: "canonical" }),
   });
 };

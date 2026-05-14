@@ -21,7 +21,7 @@ export const QuizCorrectAnswers = ({ questionState }: Props) => {
       (answer) =>
         answer != null &&
         !isString(answer) &&
-        Object.prototype.hasOwnProperty.call(answer, "imageObject"),
+        Object.hasOwn(answer, "imageObject"),
     );
 
     if (hasImageAnswer) return null;

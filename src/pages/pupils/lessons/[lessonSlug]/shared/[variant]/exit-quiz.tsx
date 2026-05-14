@@ -1,5 +1,3 @@
-import { ParsedUrlQuery } from "querystring";
-
 import { GetStaticProps, GetStaticPropsContext, PreviewData } from "next";
 
 import getPageProps from "@/node-lib/getPageProps";
@@ -66,7 +64,7 @@ export const getStaticProps: GetStaticProps<
 
   return getPageProps({
     page: "pupils-lesson-new-exit-quiz::getStaticProps",
-    context: context as GetStaticPropsContext<ParsedUrlQuery, PreviewData>,
+    context,
     getProps: getProps({ context: contextWithSection, page: "canonical" }),
   });
 };

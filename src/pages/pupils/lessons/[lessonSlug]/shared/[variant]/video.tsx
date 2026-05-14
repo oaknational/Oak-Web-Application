@@ -1,5 +1,3 @@
-import { ParsedUrlQuery } from "querystring";
-
 import { useMemo, useRef, useState } from "react";
 import { GetStaticProps, GetStaticPropsContext, PreviewData } from "next";
 import { useRouter } from "next/router";
@@ -236,6 +234,12 @@ const VideoPageContent = ({
     );
   };
 
+  const isVideoComplete = sectionResults.video?.isComplete ?? false;
+  const proceedLabel =
+    !isCompletingAndRedirecting && isVideoComplete
+      ? "Continue lesson"
+      : "I've finished the video";
+
   return (
     <PupilLessonVideoView
       phase={browseData.programmeFields.phase as "primary" | "secondary"}
@@ -252,11 +256,7 @@ const VideoPageContent = ({
         ),
       }}
       bottomNav={{
-        proceedLabel: isCompletingAndRedirecting
-          ? "I've finished the video"
-          : sectionResults.video?.isComplete
-            ? "Continue lesson"
-            : "I've finished the video",
+        proceedLabel,
         onProceed: handleProceed,
       }}
       videoSlot={
@@ -366,7 +366,7 @@ export const getStaticProps: GetStaticProps<
 
   return getPageProps({
     page: "pupils-lesson-new-video::getStaticProps",
-    context: context as GetStaticPropsContext<ParsedUrlQuery, PreviewData>,
+    context,
     getProps: getProps({ context: contextWithSection, page: "canonical" }),
   });
 };

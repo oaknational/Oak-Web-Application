@@ -1,5 +1,3 @@
-import { ParsedUrlQuery } from "querystring";
-
 import { useEffect, useMemo, useState } from "react";
 import { GetStaticProps, GetStaticPropsContext, PreviewData } from "next";
 import { useRouter } from "next/router";
@@ -166,7 +164,7 @@ const ReviewPageContent = ({
         ) : undefined
       }
       overviewButtonSlot={
-        !isReadOnly ? (
+        isReadOnly ? undefined : (
           <OakTertiaryButton
             iconName="arrow-left"
             element="a"
@@ -188,7 +186,7 @@ const ReviewPageContent = ({
           >
             Lesson overview
           </OakTertiaryButton>
-        ) : undefined
+        )
       }
       shareOptionsSlot={
         hasQuizSections && showBottomNav ? (
@@ -302,7 +300,7 @@ export const getStaticProps: GetStaticProps<
 
   return getPageProps({
     page: "pupils-lesson-new-review::getStaticProps",
-    context: context as GetStaticPropsContext<ParsedUrlQuery, PreviewData>,
+    context,
     getProps: getProps({ context: contextWithSection, page: "canonical" }),
   });
 };

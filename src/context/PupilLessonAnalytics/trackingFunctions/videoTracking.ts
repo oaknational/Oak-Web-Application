@@ -1,4 +1,3 @@
-import type { TrackFns } from "@/context/Analytics/AnalyticsProvider";
 import type {
   PupilLessonAnalyticsGet,
   TrackSectionCompletedArgs,
@@ -45,9 +44,7 @@ export const trackVideoCompleted = (
     signedOpened: sectionResults.video?.signedOpened || false,
     transcriptOpened: sectionResults.video?.transcriptOpened || false,
     activityTimeSpent: Date.now() - sectionStartedAt,
-  } as unknown as Parameters<
-    TrackFns["lessonActivityCompletedLessonVideo"]
-  >[0]);
+  });
 };
 
 export const trackVideoAbandoned = (
@@ -67,7 +64,5 @@ export const trackVideoAbandoned = (
     signedOpened: sectionResults.video?.signedOpened || false,
     transcriptOpened: sectionResults.video?.transcriptOpened || false,
     activityTimeSpent: Date.now() - sectionStartedAt,
-  } as unknown as Parameters<
-    TrackFns["lessonActivityAbandonedLessonVideo"]
-  >[0]);
+  });
 };
