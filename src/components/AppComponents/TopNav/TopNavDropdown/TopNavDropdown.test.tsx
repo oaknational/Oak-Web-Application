@@ -97,25 +97,6 @@ describe("TopNavDropdown", () => {
         );
       });
 
-      it("renders subject buttons and link to all key stage page", async () => {
-        render(
-          <TopNavDropdown
-            teachers={topNavFixture.teachers!}
-            pupils={topNavFixture.pupils!}
-            activeArea="TEACHERS"
-            selectedMenu="primary"
-            focusManager={focusManager}
-            onClose={onCloseMock}
-          />,
-        );
-
-        const subjectButtons = await screen.findAllByRole("link");
-
-        expect(subjectButtons).toHaveLength(4);
-        expect(subjectButtons[0]).toHaveTextContent("English");
-        expect(subjectButtons[3]).toHaveTextContent("All KS1 subjects");
-      });
-
       it("renders subject buttons with non-curriculum subjects last and with correct styling", async () => {
         render(
           <TopNavDropdown
@@ -156,30 +137,6 @@ describe("TopNavDropdown", () => {
         // Prevent navigation in test
         englishButton.addEventListener("click", (e) => e.preventDefault());
         await user.click(englishButton);
-
-        expect(onCloseMock).toHaveBeenCalledTimes(1);
-      });
-
-      it("calls onClose when clicking 'All [keystage] subjects' button", async () => {
-        const user = userEvent.setup();
-        render(
-          <TopNavDropdown
-            teachers={topNavFixture.teachers!}
-            pupils={topNavFixture.pupils!}
-            activeArea="TEACHERS"
-            selectedMenu="primary"
-            focusManager={focusManager}
-            onClose={onCloseMock}
-          />,
-        );
-
-        const allSubjectsButton = await screen.findByRole("link", {
-          name: /All KS1 subjects/i,
-        });
-
-        // Prevent navigation in test
-        allSubjectsButton.addEventListener("click", (e) => e.preventDefault());
-        await user.click(allSubjectsButton);
 
         expect(onCloseMock).toHaveBeenCalledTimes(1);
       });

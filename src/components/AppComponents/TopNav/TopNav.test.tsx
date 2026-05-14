@@ -314,17 +314,16 @@ describe("TopNav accessibility", () => {
     await user.keyboard("{Enter}");
 
     const dropdownItem2 = screen.getByText("Key stage 4").closest("button");
-    const allSubjectsLink = screen.getByText(/All KS3 subjects/).closest("a");
-
     const subjectButton1 = screen.getByText("History").closest("a");
+    const subjectButton2 = screen.getByText("Geography").closest("a");
 
     expect(subjectButton1).toBeInTheDocument();
-    expect(allSubjectsLink).toBeInTheDocument();
+    expect(subjectButton2).toBeInTheDocument();
 
     // in the test environment the default event handler for tab does not tab to this point so we have to manually call the focus manager handler to move focus to the next item
-    allSubjectsLink?.focus();
+    subjectButton2?.focus();
 
-    expect(allSubjectsLink).toHaveFocus();
+    expect(subjectButton2).toHaveFocus();
     // return to the second dropdown item when tabbing from the last subject button
     await user.tab();
     expect(dropdownItem2).toHaveFocus();
