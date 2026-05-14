@@ -5,7 +5,6 @@ import { CampaignPageHeader } from "./CampaignPageHeader";
 
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 import { mockImageAsset } from "@/__tests__/__helpers__/cms";
-import keyStagesFixture from "@/node-lib/curriculum-api-2023/fixtures/keyStages.fixture";
 
 const render = renderWithProviders();
 
@@ -24,24 +23,14 @@ jest.mock("@/context/Search/useSearch", () => ({
 
 describe("CampaignHeader", () => {
   it("renders a heading", () => {
-    render(
-      <CampaignPageHeader
-        campaignHeader={mockCampaignHeader}
-        keyStages={keyStagesFixture()}
-      />,
-    );
+    render(<CampaignPageHeader campaignHeader={mockCampaignHeader} />);
     const heading = screen.getByRole("heading", {
       name: "Test Campaign Header",
     });
     expect(heading).toBeInTheDocument();
   });
   it("renders keystage buttons", () => {
-    render(
-      <CampaignPageHeader
-        campaignHeader={mockCampaignHeader}
-        keyStages={keyStagesFixture()}
-      />,
-    );
+    render(<CampaignPageHeader campaignHeader={mockCampaignHeader} />);
     const keystageButtons = screen.getAllByRole("link");
     const ks1Button = keystageButtons[0];
     expect(ks1Button).toBeInTheDocument();
@@ -49,12 +38,7 @@ describe("CampaignHeader", () => {
     expect(href).toBe("/teachers/key-stages/eyfs/subjects");
   });
   it("renders search bar", () => {
-    render(
-      <CampaignPageHeader
-        campaignHeader={mockCampaignHeader}
-        keyStages={keyStagesFixture()}
-      />,
-    );
+    render(<CampaignPageHeader campaignHeader={mockCampaignHeader} />);
     const searchInput = screen.getByPlaceholderText(
       "Search by keyword or topic",
     );
@@ -67,19 +51,13 @@ describe("CampaignHeader", () => {
           ...mockCampaignHeader,
           subheading: "This is a subheading",
         }}
-        keyStages={keyStagesFixture()}
       />,
     );
     const subheading = screen.getByText("This is a subheading");
     expect(subheading).toBeInTheDocument();
   });
   it("calls setSearchTerm when a search is performed", async () => {
-    render(
-      <CampaignPageHeader
-        campaignHeader={mockCampaignHeader}
-        keyStages={keyStagesFixture()}
-      />,
-    );
+    render(<CampaignPageHeader campaignHeader={mockCampaignHeader} />);
     const searchInput = screen.getByPlaceholderText(
       "Search by keyword or topic",
     );
@@ -93,7 +71,6 @@ describe("CampaignHeader", () => {
     render(
       <CampaignPageHeader
         campaignHeader={{ ...mockCampaignHeader, hideKsSelector: true }}
-        keyStages={keyStagesFixture()}
       />,
     );
 
