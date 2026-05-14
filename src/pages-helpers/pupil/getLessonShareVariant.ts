@@ -60,12 +60,14 @@ export const getLessonShareVariantSlug = (
 ): LessonShareVariantSlug | null => {
   const filterOutOverviewIntro = (s: LessonSection): boolean =>
     s !== "overview" && s !== "intro";
-  const sectionsExclOverviewIntro = sections.filter(filterOutOverviewIntro);
+  const sectionsExclOverviewIntro = new Set(
+    sections.filter(filterOutOverviewIntro),
+  );
   const match = Object.entries(PUPIL_LESSON_SHARE_VARIANTS).find(
     ([slug, variant]) => {
       const filteredSections = variant.sections.filter(filterOutOverviewIntro);
       const hasAllSections: boolean = filteredSections.every((section) =>
-        sectionsExclOverviewIntro.includes(section),
+        sectionsExclOverviewIntro.has(section),
       );
       if (!hasAllSections) return null;
       const hasHideYearGroup =
