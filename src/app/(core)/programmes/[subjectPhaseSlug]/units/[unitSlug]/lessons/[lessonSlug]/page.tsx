@@ -1,5 +1,4 @@
 import { Metadata } from "next";
-import { notFound } from "next/navigation";
 import { cache } from "react";
 
 import {
@@ -16,7 +15,6 @@ import withPageErrorHandling, {
   AppPageProps,
 } from "@/hocs/withPageErrorHandling";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
-import { getFeatureFlagValue } from "@/utils/featureFlags";
 import { TeachersLessonOverviewPageData } from "@/node-lib/curriculum-api-2023/queries/teachersLessonOverview/teachersLessonOverview.schema";
 import { getTeacherSubjectPhaseSlug } from "@/utils/curriculum/slugs";
 
@@ -79,15 +77,6 @@ export async function generateMetadata(
 }
 
 const InnerLessonPage = async (props: AppPageProps<LessonPageParams>) => {
-  const isEnabled = await getFeatureFlagValue(
-    "teachers-integrated-journey",
-    "boolean",
-  );
-
-  if (!isEnabled) {
-    return notFound();
-  }
-
   const {
     subjectPhaseSlug: programmeSlug,
     unitSlug,

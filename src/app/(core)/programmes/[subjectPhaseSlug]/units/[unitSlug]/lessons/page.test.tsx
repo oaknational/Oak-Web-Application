@@ -12,11 +12,6 @@ jest.mock("next/navigation", () => ({
   },
 }));
 
-const featureFlagMock = jest.fn().mockResolvedValue(false);
-jest.mock("@/utils/featureFlags", () => ({
-  getFeatureFlagValue: () => featureFlagMock(),
-}));
-
 // Jest is not setup to test RSCs, so it does not load the server build
 // so we mock the cache function.
 jest.mock("react", () => {
@@ -111,35 +106,7 @@ describe("UnitPage", () => {
   beforeEach(() => {
     mockTeachersUnitOverview.mockResolvedValue(unitOverviewFixture);
   });
-
-  it("renders 404 if feature flag is disabled", async () => {
-    featureFlagMock.mockResolvedValue(false);
-
-    await expect(
-      UnitPage({
-        params: Promise.resolve(defaultParams),
-        searchParams: Promise.resolve({}),
-      }),
-    ).rejects.toEqual(new Error("NEXT_HTTP_ERROR_FALLBACK;404"));
-  });
-
-  it("renders when the feature flag is enabled", async () => {
-    featureFlagMock.mockResolvedValue(true);
-
-    const result = await UnitPage({
-      params: Promise.resolve(defaultParams),
-      searchParams: Promise.resolve({}),
-    });
-
-    expect(result).toBeDefined();
-    expect(mockTeachersUnitOverview).toHaveBeenCalledWith({
-      programmeSlug: defaultParams.subjectPhaseSlug,
-      unitSlug: defaultParams.unitSlug,
-    });
-  });
-
   it("renders 404 when data is not found", async () => {
-    featureFlagMock.mockResolvedValue(true);
     mockTeachersUnitOverview.mockRejectedValue(
       new Error("NEXT_HTTP_ERROR_FALLBACK;404"),
     );
