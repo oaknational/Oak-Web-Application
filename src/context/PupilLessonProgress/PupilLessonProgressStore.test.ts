@@ -112,4 +112,69 @@ describe("PupilLessonProgressStore", () => {
 
     expect(store.getState().sectionResults.video?.isComplete).toBe(true);
   });
+
+  it("marks the lesson started via markLessonStarted", () => {
+    const store = createPupilLessonProgressStore();
+    expect(store.getState().lessonStarted).toBe(false);
+    store.getState().markLessonStarted();
+    expect(store.getState().lessonStarted).toBe(true);
+  });
+
+  it("records worksheet downloads through updateWorksheetDownloaded", () => {
+    const store = createPupilLessonProgressStore();
+    store.getState().initialiseLessonProgress({
+      lessonSlug: "lesson-one",
+      lessonReviewSections: ["intro"],
+    });
+    store.getState().updateWorksheetDownloaded({
+      worksheetDownloaded: true,
+      worksheetAvailable: true,
+    });
+    expect(store.getState().sectionResults.intro?.worksheetDownloaded).toBe(
+      true,
+    );
+  });
+
+  it("records additional file downloads through updateAdditionalFilesDownloaded", () => {
+    const store = createPupilLessonProgressStore();
+    store.getState().initialiseLessonProgress({
+      lessonSlug: "lesson-one",
+      lessonReviewSections: ["intro"],
+    });
+    store.getState().updateAdditionalFilesDownloaded({
+      filesDownloaded: true,
+      additionalFilesAvailable: true,
+    });
+    expect(store.getState().sectionResults.intro?.filesDownloaded).toBe(true);
+  });
+
+  it("dismisses content guidance", () => {
+    const store = createPupilLessonProgressStore();
+    expect(store.getState().contentGuidanceDismissed).toBe(false);
+    store.getState().dismissContentGuidance();
+    expect(store.getState().contentGuidanceDismissed).toBe(true);
+  });
+
+  it("toggles the initial-progress hydration flag", () => {
+    const store = createPupilLessonProgressStore();
+    store.getState().setHydratingInitialProgress(true);
+    expect(store.getState().isHydratingInitialProgress).toBe(true);
+    store.getState().setHydratingInitialProgress(false);
+    expect(store.getState().isHydratingInitialProgress).toBe(false);
+  });
+
+  it("resets the lesson progress back to the default state", () => {
+    const store = createPupilLessonProgressStore();
+    store.getState().initialiseLessonProgress({
+      lessonSlug: "lesson-one",
+      lessonReviewSections: ["intro"],
+    });
+    store.getState().completeSection("intro");
+    expect(store.getState().lessonSlug).toBe("lesson-one");
+
+    store.getState().resetLessonProgress();
+    expect(store.getState().lessonSlug).toBe(null);
+    expect(store.getState().sectionResults).toEqual({});
+    expect(store.getState().lessonStarted).toBe(false);
+  });
 });
