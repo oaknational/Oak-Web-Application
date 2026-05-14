@@ -3,6 +3,7 @@ import { OakUiRoleToken } from "@oaknational/oak-components";
 import { LessonOverviewHeaderShareAllButton } from "./LessonOverviewHeaderShareAllButton";
 
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
+import { resolveOakHref } from "@/common-lib/urls";
 import lessonOverviewFixture from "@/node-lib/curriculum-api-2023/fixtures/lessonOverview.fixture";
 import { TrackFns } from "@/context/Analytics/AnalyticsProvider";
 import { AnalyticsUseCaseValueType } from "@/browser-lib/avo/Avo";
@@ -18,7 +19,6 @@ const baseProps = {
   isShareable: true,
   onClickShareAll: mockOnClickShareAll,
   isSpecialist: false,
-  isCanonical: false,
   geoRestricted: false,
   loginRequired: false,
   breadcrumbs: [],
@@ -50,7 +50,16 @@ describe("LessonOverviewHeaderShareAllButton", () => {
 
     expect(shareButton).toBeInTheDocument();
     expect(shareButton.tagName).toBe("A");
-    expect(shareButton).toHaveAttribute("href");
+    expect(shareButton).toHaveAttribute(
+      "href",
+      resolveOakHref({
+        page: "lesson-share",
+        lessonSlug: baseProps.lessonSlug,
+        unitSlug: baseProps.unitSlug,
+        programmeSlug: baseProps.programmeSlug,
+        query: { preselected: "all" },
+      }),
+    );
     expect(shareButton).toHaveTextContent("Share activities with pupils");
     shareButton.click();
     expect(mockOnClickShareAll).toHaveBeenCalled();

@@ -1,3 +1,11 @@
+# [1.1076.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1075.0...v1.1076.0) (2026-05-14)
+
+
+### Features
+
+* **LESQ-1996:** make programme + unit slug required for lesson share query ([26ba676](https://github.com/oaknational/Oak-Web-Application/commit/26ba676302e07f0570edb5bcfc5d32efb75ed7f4))
+* **LESQ-1996:** remove the canonical lesson share page ([2acdea0](https://github.com/oaknational/Oak-Web-Application/commit/2acdea0730b7f0b63dbcb3ba2839b0fbf373006e))
+
 # [1.1075.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1074.0...v1.1075.0) (2026-05-13)
 
 
