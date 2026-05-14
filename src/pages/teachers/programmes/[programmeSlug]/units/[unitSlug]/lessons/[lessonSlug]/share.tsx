@@ -49,7 +49,7 @@ const LessonSharePage: NextPage<LessonSharePageProps> = ({
         noFollow: true,
       }}
     >
-      <LessonShare isCanonical={false} lesson={curriculumData} />
+      <LessonShare lesson={curriculumData} />
     </AppLayout>
   );
 };
@@ -87,7 +87,7 @@ export const getStaticProps: GetStaticProps<
 
       let curriculumData;
       try {
-        curriculumData = await curriculumApi2023.lessonShare<LessonShareData>({
+        curriculumData = await curriculumApi2023.lessonShare({
           programmeSlug,
           unitSlug,
           lessonSlug,
