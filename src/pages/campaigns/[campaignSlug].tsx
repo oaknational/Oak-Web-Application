@@ -107,10 +107,7 @@ const CampaignSinglePage: NextPage<CampaignSinglePageProps> = (props) => {
         $pv={"spacing-32"}
         $ph={["spacing-20", "spacing-20", "spacing-56"]}
       >
-        <CampaignPageHeader
-          campaignHeader={props.campaign.header}
-          keyStages={props.keyStages}
-        />
+        <CampaignPageHeader campaignHeader={props.campaign.header} />
         {props.campaign.content.map((section: CampaignContentType) => {
           if (section.type === "CampaignIntro") {
             return (
