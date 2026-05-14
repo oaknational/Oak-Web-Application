@@ -1,5 +1,4 @@
 import { Metadata } from "next";
-import { notFound } from "next/navigation";
 import { cache } from "react";
 
 import { UnitView } from "./Components/UnitView";
@@ -9,7 +8,6 @@ import withPageErrorHandling, {
   AppPageProps,
 } from "@/hocs/withPageErrorHandling";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
-import { getFeatureFlagValue } from "@/utils/featureFlags";
 
 type LessonsPageParams = { subjectPhaseSlug: string; unitSlug: string };
 
@@ -56,15 +54,6 @@ export async function generateMetadata(
 }
 
 const InnerUnitPage = async (props: AppPageProps<LessonsPageParams>) => {
-  const isEnabled = await getFeatureFlagValue(
-    "teachers-integrated-journey",
-    "boolean",
-  );
-
-  if (!isEnabled) {
-    return notFound();
-  }
-
   const { subjectPhaseSlug: programmeSlug, unitSlug } = await props.params;
   const data = await getCachedUnitData(programmeSlug, unitSlug);
 
