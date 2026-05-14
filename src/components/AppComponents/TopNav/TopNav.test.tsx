@@ -14,6 +14,11 @@ jest.mock("@/hooks/useSelectedArea", () => ({
   default: () => mockSelectedArea(),
 }));
 
+const mockFeatureFlagEnabled = jest.fn(() => false);
+jest.mock("posthog-js/react", () => ({
+  useFeatureFlagEnabled: () => mockFeatureFlagEnabled(),
+}));
+
 globalThis.matchMedia = jest.fn().mockReturnValue({
   matches: false,
 });
@@ -60,6 +65,7 @@ const mockProps = topNavFixture;
 describe("TopNav", () => {
   beforeEach(() => {
     mockBrowseAccessed.mockReset();
+    mockFeatureFlagEnabled.mockReturnValue(false);
   });
   it("renders links for pupils and teachers", async () => {
     render(<TopNav {...mockProps} />);
@@ -140,6 +146,21 @@ describe("TopNav", () => {
     const dropdown = await screen.findByTestId("topnav-dropdown-container");
     expect(dropdown).toBeInTheDocument();
   });
+
+  it("hides all subjects links when integrated journey flag is enabled", async () => {
+    mockFeatureFlagEnabled.mockReturnValue(true);
+    const user = userEvent.setup();
+    render(<TopNav {...mockProps} />);
+
+    const secondaryButton = await screen.findByRole("button", {
+      name: "Secondary",
+    });
+
+    await user.click(secondaryButton);
+
+    expect(screen.queryByText(/All KS3 subjects/)).not.toBeInTheDocument();
+  });
+
   it("closes dropdown when dropdown is open and active subnav button is clicked", async () => {
     render(<TopNav {...mockProps} />);
     const primaryButton = await screen.findByText("Primary");
@@ -217,6 +238,7 @@ describe("TopNav accessibility", () => {
   beforeEach(() => {
     mockSelectedArea.mockReturnValue("TEACHERS");
   });
+
   it("Tabs through navbar in correct order", async () => {
     const user = userEvent.setup();
     render(<TopNav {...mockProps} />);
