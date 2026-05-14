@@ -37,6 +37,19 @@ type PupilLessonAnalyticsState = {
     section: "intro" | "starter-quiz" | "video" | "exit-quiz" | "review";
     sectionResults: LessonSectionResults;
   }) => void;
+  trackQuizQuestionAttempt: (args: {
+    section: "starter-quiz" | "exit-quiz";
+    questionType: string;
+    isCorrect: boolean;
+    hintAvailable: boolean;
+    hintAccessed: boolean;
+    questionNumber: number;
+  }) => void;
+  trackQuizCompleted: (args: {
+    section: "starter-quiz" | "exit-quiz";
+    sectionResults: LessonSectionResults;
+    sectionStartedAt: number;
+  }) => void;
   trackLessonAbandoned: () => void;
 };
 
@@ -50,6 +63,24 @@ const getCorePropertyArgs = (
     engagementIntent: "use",
     eventVersion: "2.0.0",
   }) as const;
+
+const buildQuizCompletionTrackingData = ({
+  section,
+  sectionResults,
+  sectionStartedAt,
+}: {
+  section: "starter-quiz" | "exit-quiz";
+  sectionResults: LessonSectionResults;
+  sectionStartedAt: number;
+}) => ({
+  pupilExperienceLessonActivity: section,
+  pupilQuizGrade: sectionResults[section]?.grade || 0,
+  pupilQuizNumQuestions: sectionResults[section]?.numQuestions || 0,
+  hintQuestion: "",
+  hintQuestionResult: "",
+  hintUsed: "",
+  activityTimeSpent: Date.now() - sectionStartedAt,
+});
 
 export const usePupilLessonAnalyticsStore = create<PupilLessonAnalyticsState>()(
   (set, get) => ({
@@ -147,6 +178,50 @@ export const usePupilLessonAnalyticsStore = create<PupilLessonAnalyticsState>()(
         };
         track.lessonActivityStartedLessonVideo(payload);
       }
+    },
+    trackQuizQuestionAttempt: ({
+      section,
+      questionType,
+      isCorrect,
+      hintAvailable,
+      hintAccessed,
+      questionNumber,
+    }) => {
+      const { track, additionalArgs } = get();
+      if (!track || !additionalArgs) return;
+
+      track.questionAttemptSubmitted({
+        ...additionalArgs,
+        pupilExperienceLessonActivity: section,
+        questionType,
+        questionResult: isCorrect ? "correct" : "incorrect",
+        activityTimeSpent: 0,
+        hintOffered: hintAvailable,
+        hintAccessed,
+        questionNumber,
+      });
+    },
+    trackQuizCompleted: ({ section, sectionResults, sectionStartedAt }) => {
+      const { track, additionalArgs } = get();
+      if (!track || !additionalArgs) return;
+      const trackData = buildQuizCompletionTrackingData({
+        section,
+        sectionResults,
+        sectionStartedAt,
+      });
+
+      if (section === "starter-quiz") {
+        track.lessonActivityCompletedStarterQuiz({
+          ...additionalArgs,
+          ...trackData,
+        });
+        return;
+      }
+
+      track.lessonActivityCompletedExitQuiz({
+        ...additionalArgs,
+        ...trackData,
+      });
     },
     trackLessonAbandoned: () => {
       const { track, additionalArgs } = get();

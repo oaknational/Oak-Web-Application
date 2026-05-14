@@ -4,6 +4,8 @@ import { OakThemeProvider, oakDefaultTheme } from "@oaknational/oak-components";
 import { PupilLessonQuizNextButton } from "./PupilLessonQuizNextButton";
 
 const meta = {
+  title:
+    "Components/PupilComponents/Views/PupilLessonQuiz/PupilLessonQuizNextButton",
   component: PupilLessonQuizNextButton,
   decorators: [
     (StoryComponent) => (
