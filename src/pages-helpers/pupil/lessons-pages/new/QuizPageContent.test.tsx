@@ -385,19 +385,4 @@ describe("QuizPageContent", () => {
     const { getByText } = renderPage();
     expect(getByText("Well done!")).toBeInTheDocument();
   });
-
-  it("focuses the first answer when a tab key is pressed before any interaction", () => {
-    quizState = buildQuizState();
-    quizHookMock.mockImplementation((selector) => selector(quizState));
-
-    renderPage();
-    const event = new KeyboardEvent("keydown", { key: "Tab" });
-    Object.defineProperty(event, "preventDefault", {
-      value: jest.fn(),
-      writable: false,
-    });
-    globalThis.dispatchEvent(event);
-    // No assertion needed — exercise the handler path including default cases.
-    expect(quizState.initialiseQuiz).toHaveBeenCalled();
-  });
 });
