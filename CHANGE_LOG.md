@@ -1,3 +1,11 @@
+## [1.1076.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.1076.0...v1.1076.1) (2026-05-14)
+
+
+### Bug Fixes
+
+* change disabled text on lesson list component to be text-subdued for accessibility ([c7f8bd2](https://github.com/oaknational/Oak-Web-Application/commit/c7f8bd22a0e924df7b3db3473ef9bdcfebd5f5fb))
+* fix hubspot value missing from storybook ([3734d69](https://github.com/oaknational/Oak-Web-Application/commit/3734d69cda13e9da0cd07d069e5089c11744a352))
+
 # [1.1076.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1075.0...v1.1076.0) (2026-05-14)
 
 
