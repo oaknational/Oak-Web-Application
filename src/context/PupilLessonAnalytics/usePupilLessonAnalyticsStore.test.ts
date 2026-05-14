@@ -43,6 +43,7 @@ const createTrack = () =>
     lessonActivityStartedLessonVideo: jest.fn(),
     lessonActivityStartedExitQuiz: jest.fn(),
     lessonAbandoned: jest.fn(),
+    lessonAccessedPupilJourney: jest.fn(),
   }) as unknown as jest.Mocked<TrackFns>;
 
 const initialiseStore = ({

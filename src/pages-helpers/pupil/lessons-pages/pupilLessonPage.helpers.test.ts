@@ -31,23 +31,23 @@ describe("pupilLessonPage.helpers", () => {
   describe("isAvailablePupilLessonSection", () => {
     it("returns true for non-review sections regardless of content", () => {
       const lessonContent = lessonContentFixture({});
-      expect(isAvailablePupilLessonSection("overview", lessonContent)).toBe(
-        true,
-      );
+      expect(
+        isAvailablePupilLessonSection("overview", lessonContent, null),
+      ).toBe(true);
     });
 
     it("returns true for a review section available in the lesson content", () => {
       const lessonContent = lessonContentFixture({});
-      expect(isAvailablePupilLessonSection("starter-quiz", lessonContent)).toBe(
-        true,
-      );
+      expect(
+        isAvailablePupilLessonSection("starter-quiz", lessonContent, null),
+      ).toBe(true);
     });
 
     it("returns false for a review section not available in the lesson content", () => {
       const lessonContent = lessonContentFixture({ starterQuiz: [] });
-      expect(isAvailablePupilLessonSection("starter-quiz", lessonContent)).toBe(
-        false,
-      );
+      expect(
+        isAvailablePupilLessonSection("starter-quiz", lessonContent, null),
+      ).toBe(false);
     });
   });
 
@@ -112,6 +112,7 @@ describe("pupilLessonPage.helpers", () => {
         backUrl: "/back",
         initialSection: "overview",
         pageType: "canonical",
+        variant: null,
       });
 
       expect(mockGetWorksheetInfo).toHaveBeenCalledWith(browseData.lessonSlug);

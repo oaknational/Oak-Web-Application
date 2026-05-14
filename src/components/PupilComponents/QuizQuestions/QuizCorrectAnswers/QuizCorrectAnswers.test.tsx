@@ -43,7 +43,7 @@ describe("QuizCorrectAnswers", () => {
   });
 
   it("renders multiple correct answers joined by commas", () => {
-    const { getByText } = renderWithTheme(
+    const { getByText, getAllByTestId } = renderWithTheme(
       <QuizCorrectAnswers
         questionState={{
           ...baseState,
@@ -52,11 +52,14 @@ describe("QuizCorrectAnswers", () => {
       />,
     );
     expect(getByText(/Correct answers:/)).toBeInTheDocument();
-    expect(getByText(/earth, wind, fire/)).toBeInTheDocument();
+    expect(getByText("earth")).toBeInTheDocument();
+    expect(getByText("wind")).toBeInTheDocument();
+    expect(getByText("fire")).toBeInTheDocument();
+    expect(getAllByTestId("mathjax-wrap")).toHaveLength(3);
   });
 
   it("filters out non-string entries when joining multiple answers", () => {
-    const { getByText } = renderWithTheme(
+    const { getByText, queryByText, getAllByTestId } = renderWithTheme(
       <QuizCorrectAnswers
         questionState={{
           ...baseState,
@@ -64,7 +67,10 @@ describe("QuizCorrectAnswers", () => {
         }}
       />,
     );
-    expect(getByText(/earth, fire/)).toBeInTheDocument();
+    expect(getByText("earth")).toBeInTheDocument();
+    expect(getByText("fire")).toBeInTheDocument();
+    expect(queryByText("wind")).not.toBeInTheDocument();
+    expect(getAllByTestId("mathjax-wrap")).toHaveLength(2);
   });
 
   it("renders nothing when the array's first item is an image object", () => {
