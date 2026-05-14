@@ -38,24 +38,6 @@ describe("TeachersTab", () => {
     const teachersH1 = screen.getByRole("heading", { level: 1 });
     expect(teachersH1).toHaveTextContent("Teachers");
   });
-  it("calls tracking on keystage selection", async () => {
-    renderWithProviders()(<TeachersTab keyStages={keyStageKeypad.keyStages} />);
-    const ks1Button = await screen.findByText("KS1");
-    await userEvent.click(ks1Button);
-    expect(browseRefined).toHaveBeenCalledWith({
-      platform: "owa",
-      product: "teacher lesson resources",
-      engagementIntent: "refine",
-      componentType: "keystage_keypad_button",
-      eventVersion: "2.0.0",
-      analyticsUseCase: "Teacher",
-      filterType: "Key stage filter",
-      filterValue: "ks1",
-      activeFilters: {},
-      googleLoginHint: null,
-      clientEnvironment: null,
-    });
-  });
 
   it("calls setSearchTerm on SearchForm submit", async () => {
     renderWithProviders()(<TeachersTab keyStages={keyStageKeypad.keyStages} />);

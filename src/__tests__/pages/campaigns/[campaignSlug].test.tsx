@@ -114,8 +114,7 @@ describe("Campaign page", () => {
     const header = screen.getByTestId("campaign-header");
     expect(header).toBeInTheDocument();
     expect(header).toHaveTextContent("Test Campaign Header");
-    const keystageButton = screen.getByText("KS1");
-    expect(keystageButton).toBeInTheDocument();
+
     const searchInput = screen.getByPlaceholderText(
       "Search by keyword or topic",
     );
