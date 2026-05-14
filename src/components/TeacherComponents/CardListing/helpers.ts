@@ -10,7 +10,7 @@ export const getCardListingTextColour = ({
   hasChildCards: boolean;
 }) => {
   if (disabled) {
-    return "text-disabled";
+    return "text-subdued";
   } else if (hasChildCards) {
     return undefined;
   } else if (hightlightColorVariant === "secondary") {
