@@ -43,6 +43,7 @@ import {
   QuestionsArray,
   usePupilLessonQuiz,
 } from "@/context/PupilLessonQuiz";
+import { isMatchAnswer } from "@/components/PupilComponents/QuizUtils/answerTypeDiscriminators";
 
 type QuizPageContentProps = {
   section: QuizSection;
@@ -329,6 +330,25 @@ export const QuizPageContent = ({
   const isCorrect = currentQuestionState?.grade === 1;
   const isPartiallyCorrect = currentQuestionState?.isPartiallyCorrect;
 
+  const renderAnswerFeedback = () => {
+    if (isCorrect) {
+      return <OakSpan $font="body-2">Well done!</OakSpan>;
+    }
+
+    if (
+      !currentQuestionData?.answers ||
+      isMatchAnswer(currentQuestionData.answers)
+    ) {
+      return null;
+    }
+
+    return (
+      <MathJaxWrap>
+        <QuizCorrectAnswers questionState={currentQuestionState} />
+      </MathJaxWrap>
+    );
+  };
+
   return (
     <OakCloudinaryConfigProvider
       value={{
@@ -384,11 +404,7 @@ export const QuizPageContent = ({
             feedback: isFeedbackMode
               ? pickQuizFeedbackState(isCorrect, isPartiallyCorrect)
               : null,
-            answerFeedback: isCorrect ? (
-              <OakSpan $font="body-2">Well done!</OakSpan>
-            ) : (
-              <QuizCorrectAnswers questionState={currentQuestionState} />
-            ),
+            answerFeedback: renderAnswerFeedback(),
             actionSlot:
               currentQuestionData?.answers &&
               !isFeedbackMode &&

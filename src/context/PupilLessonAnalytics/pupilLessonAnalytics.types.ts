@@ -6,6 +6,7 @@ import type {
   PupilVideoData,
 } from "@/components/PupilComponents/PupilAnalyticsProvider/PupilAnalyticsProvider";
 import type { LessonContent } from "@/node-lib/curriculum-api-2023/queries/pupilLesson/pupilLesson.schema";
+import type { QuestionsArray } from "@/context/PupilLessonQuiz";
 
 export type AdditionalArgs = PupilPathwayData & {
   analyticsUseCase: "Pupil";
@@ -41,6 +42,15 @@ export type TrackQuizCompletedArgs = {
 
 export type TrackSectionResultArgs = {
   sectionResults: LessonSectionResults;
+};
+
+export type TrackSectionCompletedArgs = TrackSectionResultArgs & {
+  sectionStartedAt: number;
+};
+
+export type TrackReviewEventArgs = TrackSectionResultArgs & {
+  starterQuizQuestionsArray: QuestionsArray;
+  exitQuizQuestionsArray: QuestionsArray;
 };
 
 export type TrackQuizAbandonedArgs = {
@@ -84,13 +94,13 @@ export type PupilLessonAnalyticsState = {
   trackLessonStarted: () => void;
   trackLessonCompleted: () => void;
   trackLessonAbandoned: () => void;
-  trackIntroCompleted: () => void;
+  trackIntroCompleted: (args: TrackSectionAbandonedArgs) => void;
   trackIntroAbandoned: (args: TrackSectionAbandonedArgs) => void;
   trackWorksheetDownloaded: () => void;
-  trackVideoCompleted: (args: TrackSectionResultArgs) => void;
+  trackVideoCompleted: (args: TrackSectionCompletedArgs) => void;
   trackVideoAbandoned: (args: TrackSectionResultAbandonedArgs) => void;
-  trackLessonSummaryReviewed: (args: TrackSectionResultArgs) => void;
-  trackActivityResultsShared: (args: TrackSectionResultArgs) => void;
+  trackLessonSummaryReviewed: (args: TrackReviewEventArgs) => void;
+  trackActivityResultsShared: (args: TrackReviewEventArgs) => void;
   trackContentGuidanceAccepted: (args: TrackContentGuidanceArgs) => void;
   trackContentGuidanceDeclined: (args: TrackContentGuidanceArgs) => void;
 };

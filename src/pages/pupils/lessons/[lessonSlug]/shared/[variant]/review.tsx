@@ -114,10 +114,16 @@ const ReviewPageContent = ({
 
   useEffect(() => {
     if (trackingSent || !isLessonComplete) return;
-    trackLessonSummaryReviewed({ sectionResults });
+    trackLessonSummaryReviewed({
+      sectionResults,
+      starterQuizQuestionsArray: lessonContent.starterQuiz,
+      exitQuizQuestionsArray: lessonContent.exitQuiz,
+    });
     setTrackingSent(true);
   }, [
     isLessonComplete,
+    lessonContent.exitQuiz,
+    lessonContent.starterQuiz,
     sectionResults,
     trackLessonSummaryReviewed,
     trackingSent,
@@ -207,7 +213,11 @@ const ReviewPageContent = ({
                     attemptId: res,
                   }),
                 );
-                trackActivityResultsShared({ sectionResults });
+                trackActivityResultsShared({
+                  sectionResults,
+                  starterQuizQuestionsArray: lessonContent.starterQuiz,
+                  exitQuizQuestionsArray: lessonContent.exitQuiz,
+                });
                 setIsAttemptingShare("shared");
                 return;
               }
@@ -218,7 +228,11 @@ const ReviewPageContent = ({
                   attemptId: res.attemptId,
                 }),
               );
-              trackActivityResultsShared({ sectionResults });
+              trackActivityResultsShared({
+                sectionResults,
+                starterQuizQuestionsArray: lessonContent.starterQuiz,
+                exitQuizQuestionsArray: lessonContent.exitQuiz,
+              });
               setIsAttemptingShare("shared");
               res.promise.catch(() => {
                 setIsAttemptingShare("failed");

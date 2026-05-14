@@ -156,7 +156,7 @@ const IntroPageContent = ({
       if (!lessonStarted) {
         trackLessonStarted();
       }
-      trackIntroCompleted();
+      trackIntroCompleted({ sectionStartedAt: sectionStartedAtRef.current });
       completeSection("intro");
       const nextSectionResults = getSectionResultsAfterComplete();
       const allComplete = lessonReviewSections.every(

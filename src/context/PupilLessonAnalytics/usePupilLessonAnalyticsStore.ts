@@ -90,18 +90,15 @@ export const usePupilLessonAnalyticsStore = create<PupilLessonAnalyticsState>()(
     trackLessonStarted: () => trackLessonStarted(get),
     trackLessonCompleted: () => trackLessonCompleted(get),
     trackLessonAbandoned: () => trackLessonAbandoned(get),
-    trackIntroCompleted: () => trackIntroCompleted(get),
+    trackIntroCompleted: (args) => trackIntroCompleted(get, args),
     trackIntroAbandoned: ({ sectionStartedAt }) =>
       trackIntroAbandoned(get, sectionStartedAt),
     trackWorksheetDownloaded: () => trackWorksheetDownloaded(get),
-    trackVideoCompleted: ({ sectionResults }) =>
-      trackVideoCompleted(get, sectionResults),
+    trackVideoCompleted: (args) => trackVideoCompleted(get, args),
     trackVideoAbandoned: ({ sectionResults, sectionStartedAt }) =>
       trackVideoAbandoned(get, sectionResults, sectionStartedAt),
-    trackLessonSummaryReviewed: ({ sectionResults }) =>
-      trackLessonSummaryReviewed(get, sectionResults),
-    trackActivityResultsShared: ({ sectionResults }) =>
-      trackActivityResultsShared(get, sectionResults),
+    trackLessonSummaryReviewed: (args) => trackLessonSummaryReviewed(get, args),
+    trackActivityResultsShared: (args) => trackActivityResultsShared(get, args),
     trackContentGuidanceAccepted: (args) =>
       trackContentGuidanceAccepted(get, args),
     trackContentGuidanceDeclined: (args) =>

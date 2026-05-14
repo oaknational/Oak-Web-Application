@@ -1,6 +1,7 @@
 import type { TrackFns } from "@/context/Analytics/AnalyticsProvider";
 import type {
   PupilLessonAnalyticsGet,
+  TrackSectionCompletedArgs,
   TrackSectionStartedArgs,
 } from "@/context/PupilLessonAnalytics/pupilLessonAnalytics.types";
 import type { LessonSectionResults } from "@/context/PupilLessonProgress";
@@ -30,7 +31,7 @@ export const trackVideoStarted = (
 
 export const trackVideoCompleted = (
   get: PupilLessonAnalyticsGet,
-  sectionResults: LessonSectionResults,
+  { sectionResults, sectionStartedAt }: TrackSectionCompletedArgs,
 ) => {
   const { track, additionalArgs, videoData } = get();
   if (!track || !additionalArgs || !videoData) return;
@@ -43,7 +44,7 @@ export const trackVideoCompleted = (
     isMuted: sectionResults.video?.muted || false,
     signedOpened: sectionResults.video?.signedOpened || false,
     transcriptOpened: sectionResults.video?.transcriptOpened || false,
-    activityTimeSpent: 0,
+    activityTimeSpent: Date.now() - sectionStartedAt,
   } as unknown as Parameters<
     TrackFns["lessonActivityCompletedLessonVideo"]
   >[0]);

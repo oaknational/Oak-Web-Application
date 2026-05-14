@@ -189,7 +189,10 @@ const VideoPageContent = ({
       }
       completeSection("video");
       const nextSectionResults = getSectionResultsAfterComplete();
-      trackVideoCompleted({ sectionResults: nextSectionResults });
+      trackVideoCompleted({
+        sectionResults: nextSectionResults,
+        sectionStartedAt: sectionStartedAtRef.current,
+      });
       const allComplete = lessonReviewSections.every(
         (section) => nextSectionResults[section]?.isComplete,
       );

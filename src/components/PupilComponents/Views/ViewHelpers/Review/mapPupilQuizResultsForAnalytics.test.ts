@@ -1,9 +1,9 @@
-import { mapLessonSummaryQuizResults } from "./mapLessonSummaryQuizResults";
+import { mapPupilQuizResultsForAnalytics } from "./mapPupilQuizResultsForAnalytics";
 
-describe("mapLessonSummaryQuizResults", () => {
+describe("mapPupilQuizResultsForAnalytics", () => {
   it("returns undefined when there are no question results", () => {
     expect(
-      mapLessonSummaryQuizResults({
+      mapPupilQuizResultsForAnalytics({
         section: "starter-quiz",
         questionResults: undefined,
         questionsArray: [],
@@ -13,7 +13,7 @@ describe("mapLessonSummaryQuizResults", () => {
 
   it("maps question results into lesson summary analytics results", () => {
     expect(
-      mapLessonSummaryQuizResults({
+      mapPupilQuizResultsForAnalytics({
         section: "starter-quiz",
         questionResults: [
           { grade: 1, offerHint: false },
@@ -54,7 +54,7 @@ describe("mapLessonSummaryQuizResults", () => {
 
   it("falls back to an empty question type when question metadata is missing", () => {
     expect(
-      mapLessonSummaryQuizResults({
+      mapPupilQuizResultsForAnalytics({
         section: "exit-quiz",
         questionResults: [{ grade: 0, offerHint: false }],
         questionsArray: [],

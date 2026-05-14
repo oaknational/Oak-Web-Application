@@ -1,13 +1,12 @@
-import { LessonSummaryReviewedProperties } from "@/browser-lib/avo/Avo";
-import { QuestionsArray } from "@/context/PupilLessonQuiz";
+import type { ActivityResultsSharedProperties } from "@/browser-lib/avo/Avo";
+import type { QuestionsArray } from "@/context/PupilLessonQuiz";
 
 type SummarySection = "starter-quiz" | "exit-quiz";
 
-export const mapLessonSummaryQuizResults = ({
-  section,
-  questionResults,
-  questionsArray,
-}: {
+type PupilQuizResultsForAnalytics =
+  ActivityResultsSharedProperties["pupilStarterQuiz"];
+
+type MapPupilQuizResultsForAnalyticsArgs = {
   section: SummarySection;
   questionResults:
     | {
@@ -16,7 +15,13 @@ export const mapLessonSummaryQuizResults = ({
       }[]
     | undefined;
   questionsArray: QuestionsArray;
-}): LessonSummaryReviewedProperties["pupilStarterQuiz"] => {
+};
+
+export const mapPupilQuizResultsForAnalytics = ({
+  section,
+  questionResults,
+  questionsArray,
+}: MapPupilQuizResultsForAnalyticsArgs): PupilQuizResultsForAnalytics => {
   if (!questionResults) return undefined;
 
   return questionResults.map((result, index) => {

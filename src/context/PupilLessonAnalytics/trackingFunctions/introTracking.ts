@@ -1,6 +1,7 @@
 import type { TrackFns } from "@/context/Analytics/AnalyticsProvider";
 import type {
   PupilLessonAnalyticsGet,
+  TrackSectionAbandonedArgs,
   TrackSectionStartedArgs,
 } from "@/context/PupilLessonAnalytics/pupilLessonAnalytics.types";
 
@@ -18,14 +19,17 @@ export const trackIntroStarted = (
   });
 };
 
-export const trackIntroCompleted = (get: PupilLessonAnalyticsGet) => {
+export const trackIntroCompleted = (
+  get: PupilLessonAnalyticsGet,
+  { sectionStartedAt }: TrackSectionAbandonedArgs,
+) => {
   const { track, additionalArgs } = get();
   if (!track || !additionalArgs) return;
 
   track.lessonActivityCompletedIntroduction({
     ...additionalArgs,
     pupilExperienceLessonActivity: "intro",
-    activityTimeSpent: 0,
+    activityTimeSpent: Date.now() - sectionStartedAt,
   });
 };
 
