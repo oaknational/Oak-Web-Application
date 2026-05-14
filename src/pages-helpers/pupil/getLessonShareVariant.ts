@@ -68,7 +68,8 @@ export const getLessonShareVariantSlug = (
         sectionsExclOverviewIntro.includes(section),
       );
       if (!hasAllSections) return null;
-      const hasHideYearGroup = variant.hideYearGroup === hideYearGroup;
+      const hasHideYearGroup =
+        Boolean(variant.hideYearGroup) === Boolean(hideYearGroup);
       if (!hasHideYearGroup) return null;
       return [slug, variant];
     },
