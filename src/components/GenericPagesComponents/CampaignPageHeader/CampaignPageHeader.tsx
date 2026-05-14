@@ -1,25 +1,19 @@
 import {
   OakFlex,
   OakHeading,
-  OakBox,
   OakP,
   OakMaxWidth,
 } from "@oaknational/oak-components";
-import { useFeatureFlagEnabled } from "posthog-js/react";
 
 import { CampaignHeader } from "@/common-lib/cms-types/campaignPage";
 import CMSImage from "@/components/SharedComponents/CMSImage";
-import KeyStageKeypad from "@/components/SharedComponents/KeyStageKeypad";
 import SearchForm from "@/components/SharedComponents/SearchForm";
 import useSearch from "@/context/Search/useSearch";
-import { KeyStagesData } from "@/node-lib/curriculum-api-2023";
 
 export const CampaignPageHeader = ({
   campaignHeader,
-  keyStages,
 }: {
   campaignHeader: CampaignHeader;
-  keyStages: KeyStagesData;
 }) => {
   return (
     <OakMaxWidth
@@ -50,9 +44,7 @@ export const CampaignPageHeader = ({
         {campaignHeader.subheading && (
           <OakP $font={"body-1"}>{campaignHeader.subheading}</OakP>
         )}
-        {!campaignHeader.hideKsSelector && (
-          <LinkToProduct keyStages={keyStages} />
-        )}
+        {!campaignHeader.hideKsSelector && <LinkToProduct />}
       </OakFlex>
       <CMSImage
         $display={["none", "none", "block"]}
@@ -64,10 +56,7 @@ export const CampaignPageHeader = ({
   );
 };
 
-const LinkToProduct = ({ keyStages }: { keyStages: KeyStagesData }) => {
-  const isIntegratedJourneyEnabled = useFeatureFlagEnabled(
-    "teachers-integrated-journey",
-  );
+const LinkToProduct = () => {
   const { setSearchTerm } = useSearch({});
   return (
     <OakFlex
@@ -75,24 +64,9 @@ const LinkToProduct = ({ keyStages }: { keyStages: KeyStagesData }) => {
       $flexDirection="column"
       $gap="spacing-32"
     >
-      {!isIntegratedJourneyEnabled && (
-        <>
-          <KeyStageKeypad
-            title="View subjects by key stage"
-            titleTag="h3"
-            keyStages={keyStages.keyStages}
-            trackingOnClick={() => {}}
-          />
-          <OakBox
-            $height={"spacing-0"}
-            $bt={"border-solid-m"}
-            $borderColor={"border-inverted"}
-          />
-        </>
-      )}
       <OakFlex $flexDirection="column" $gap="spacing-16">
         <OakHeading tag="h3" $font="heading-7">
-          {isIntegratedJourneyEnabled ? "Search" : "Or search"} by keyword
+          Search by keyword
         </OakHeading>
         <SearchForm
           searchContext="campaign"

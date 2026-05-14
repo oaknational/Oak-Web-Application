@@ -5,19 +5,15 @@ import {
   OakTypography,
   OakHeading,
   OakFlex,
-  OakBox,
   OakMaxWidth,
 } from "@oaknational/oak-components";
 import styled from "styled-components";
-import { useFeatureFlagEnabled } from "posthog-js/react";
 
 import ImageContainer from "@/components/GenericPagesComponents/ImageContainer";
 import SearchForm from "@/components/SharedComponents/SearchForm";
 import useSearch from "@/context/Search/useSearch";
 import TeachersTabResourceSelectorCard from "@/components/GenericPagesComponents/TeachersTabResourceSelectorCard";
 import { KeyStageKeypadProps } from "@/components/SharedComponents/KeyStageKeypad/KeyStageKeypad";
-import KeyStageKeypad from "@/components/SharedComponents/KeyStageKeypad";
-import useAnalytics from "@/context/Analytics/useAnalytics";
 import { getSizes } from "@/components/SharedComponents/CMSImage/getSizes";
 
 type PositionedProps = {
@@ -36,12 +32,8 @@ const PositionedTeachersTabResourceSelectorCard = styled(
 type TeacherTabProps = {
   keyStages: KeyStageKeypadProps["keyStages"];
 };
-const TeachersTab: FC<TeacherTabProps> = ({ keyStages }) => {
-  const { track } = useAnalytics();
+const TeachersTab: FC<TeacherTabProps> = () => {
   const { setSearchTerm } = useSearch({});
-  const isIntegratedJourneyEnabled = useFeatureFlagEnabled(
-    "teachers-integrated-journey",
-  );
 
   return (
     <OakFlex
@@ -81,42 +73,9 @@ const TeachersTab: FC<TeacherTabProps> = ({ keyStages }) => {
                 $flexDirection="column"
                 $gap={["spacing-24", "spacing-32"]}
               >
-                {!isIntegratedJourneyEnabled && (
-                  <>
-                    <KeyStageKeypad
-                      title="View subjects by key stage"
-                      titleTag="h3"
-                      keyStages={keyStages}
-                      trackingOnClick={(
-                        filterValue: string,
-                        activeFilters: Record<string, string[]>,
-                      ) =>
-                        track.browseRefinedAccessed({
-                          platform: "owa",
-                          product: "teacher lesson resources",
-                          engagementIntent: "refine",
-                          componentType: "keystage_keypad_button",
-                          eventVersion: "2.0.0",
-                          analyticsUseCase: "Teacher",
-                          filterType: "Key stage filter",
-                          filterValue,
-                          activeFilters,
-                          googleLoginHint: null,
-                          clientEnvironment: null,
-                        })
-                      }
-                    />
-                    <OakBox
-                      $height={"spacing-0"}
-                      $bt={"border-solid-m"}
-                      $borderColor={"border-inverted"}
-                    />
-                  </>
-                )}
                 <OakFlex $flexDirection="column" $gap="spacing-16">
                   <OakHeading tag="h3" $font="heading-7">
-                    {isIntegratedJourneyEnabled ? "Search" : "Or search"} by
-                    keyword
+                    Search by keyword
                   </OakHeading>
                   <SearchForm
                     searchContext="campaign"
