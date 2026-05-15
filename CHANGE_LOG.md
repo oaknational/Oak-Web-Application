@@ -1,3 +1,28 @@
+# [1.1077.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1076.1...v1.1077.0) (2026-05-15)
+
+
+### Bug Fixes
+
+* add subjectPhaseSlug to UnitViewSeoAccordion stories ([a21790b](https://github.com/oaknational/Oak-Web-Application/commit/a21790b56df3bbbb3c484a440a2f4474b57eca2c))
+* capitalisation and use title over slug for phase ([fbee5f2](https://github.com/oaknational/Oak-Web-Application/commit/fbee5f22068fbc5cb96c064ae2e8c6149ed60991))
+* merge conflict ([083e40b](https://github.com/oaknational/Oak-Web-Application/commit/083e40bb06020e1c2613ba37e4a1b8c9705f5042))
+* no longer export functions we do not need ([5a0b524](https://github.com/oaknational/Oak-Web-Application/commit/5a0b52490fdafb1ecd74d44f3301314506a3ef2f))
+* rename keyStage prop to keyStageTitle in UnitViewSeoAccordion ([c1e4146](https://github.com/oaknational/Oak-Web-Application/commit/c1e414604121e89bed6e93fa03c5ff5ccd97a382))
+* scrolling and font color ([43b7485](https://github.com/oaknational/Oak-Web-Application/commit/43b7485107923b63dbb71d1509f355777fdcf733))
+* spacing ([a88126c](https://github.com/oaknational/Oak-Web-Application/commit/a88126cd8bbf75d2206b6b021d1c85d38dfa353f))
+* types ([bf103ed](https://github.com/oaknational/Oak-Web-Application/commit/bf103edc6a4bf1620217b963064e4249ea3026e6))
+* types and text alignment ([8e73778](https://github.com/oaknational/Oak-Web-Application/commit/8e73778bade1b3652a5c50342331896d19d6b028))
+* update spacing and improve SEO accordion links in UnitViewSeoAccordion ([4870c86](https://github.com/oaknational/Oak-Web-Application/commit/4870c869ca80834dcaa999f1bfc33e323d2b30dd))
+
+
+### Features
+
+* add programme page links ([5329f8f](https://github.com/oaknational/Oak-Web-Application/commit/5329f8f269b5fa5ed03f53f20413303af60ca639))
+* add seo accordion ([3e4e44a](https://github.com/oaknational/Oak-Web-Application/commit/3e4e44a6d5a22f27e03a5ab6218e718edb330e01))
+* add theme provider to storybook rendering logic ([af69a1d](https://github.com/oaknational/Oak-Web-Application/commit/af69a1d753b8ccdb4a129fc3393df2631384bb07))
+* exclude curriculum link for non-curriculum subjects ([1954d69](https://github.com/oaknational/Oak-Web-Application/commit/1954d6977cefb961fba56829ec5ec7637b944520))
+* rm list of links ([2644f6d](https://github.com/oaknational/Oak-Web-Application/commit/2644f6d0ea4689b9e1fad34539c3b8810e6a1a87))
+
 ## [1.1076.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.1076.0...v1.1076.1) (2026-05-14)
 
 
