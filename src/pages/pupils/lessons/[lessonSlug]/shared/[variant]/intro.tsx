@@ -200,6 +200,20 @@ const IntroPageContent = ({
     );
   };
 
+  const handleWorksheetDownload = async () => {
+    updateSectionInProgressResult("intro", {
+      worksheetDownloaded: true,
+      worksheetAvailable: true,
+    });
+    if (!lessonStarted) {
+      trackLessonStarted();
+    }
+    const succeeded = await startDownload();
+    if (succeeded) {
+      trackWorksheetDownloaded();
+    }
+  };
+
   return (
     <PupilLessonIntroView
       phase={browseData.programmeFields.phase as "primary" | "secondary"}
@@ -310,15 +324,7 @@ const IntroPageContent = ({
               <OakFlex $justifyContent="flex-end">
                 <OakPrimaryInvertedButton
                   onClick={() => {
-                    updateSectionInProgressResult("intro", {
-                      worksheetDownloaded: true,
-                      worksheetAvailable: true,
-                    });
-                    if (!lessonStarted) {
-                      trackLessonStarted();
-                    }
-                    trackWorksheetDownloaded();
-                    void startDownload();
+                    void handleWorksheetDownload();
                   }}
                   isLoading={isDownloading}
                   iconName="download"
