@@ -201,15 +201,15 @@ const IntroPageContent = ({
   };
 
   const handleWorksheetDownload = async () => {
+    updateSectionInProgressResult("intro", {
+      worksheetDownloaded: true,
+      worksheetAvailable: true,
+    });
     if (!lessonStarted) {
       trackLessonStarted();
     }
-    const isSuccess = await startDownload();
-    if (isSuccess) {
-      updateSectionInProgressResult("intro", {
-        worksheetDownloaded: true,
-        worksheetAvailable: true,
-      });
+    const succeeded = await startDownload();
+    if (succeeded) {
       trackWorksheetDownloaded();
     }
   };

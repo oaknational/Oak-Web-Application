@@ -111,15 +111,13 @@ export const PupilViewsIntro = (props: PupilViewsIntroProps) => {
   }, [hasWorksheet, sectionResults.intro, updateSectionResult, currentSection]);
 
   const handleDownloadClicked = async () => {
-    const isSuccess = await startDownload();
-    if (isSuccess) {
-      updateWorksheetDownloaded({
-        worksheetDownloaded: true,
-        worksheetAvailable: true,
-      });
-      if (track.lessonActivityDownloadedWorksheet) {
-        track.lessonActivityDownloadedWorksheet({});
-      }
+    updateWorksheetDownloaded({
+      worksheetDownloaded: true,
+      worksheetAvailable: true,
+    });
+    const succeeded = await startDownload();
+    if (succeeded && track.lessonActivityDownloadedWorksheet) {
+      track.lessonActivityDownloadedWorksheet({});
     }
   };
 
