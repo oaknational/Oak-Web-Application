@@ -12,6 +12,7 @@ import SpriteSheet from "../src/components/SharedComponents/SpriteSheet";
 import InlineSpriteSheet from "../src/components/GenericPagesComponents/InlineSpriteSheet";
 
 import "./jest-mock";
+import { oakDefaultTheme, OakThemeProvider } from "@oaknational/oak-components";
 
 const OriginalNextImage = NextImage.default;
 // @ts-ignore
@@ -75,14 +76,16 @@ export const parameters = {
 const WithThemeProvider = (Story, context) => {
   const { theme } = useOakTheme({ overrideTheme: context.globals.theme });
   return (
-    <ThemeProvider theme={theme}>
-      <GlobalStyle fontFamily={lexend.style.fontFamily} />
-      <div className={lexend.variable}>
-        <Story {...context} />
-      </div>
-      <SpriteSheet />
-      <InlineSpriteSheet />
-    </ThemeProvider>
+    <OakThemeProvider theme={oakDefaultTheme}>
+      <ThemeProvider theme={theme}>
+        <GlobalStyle fontFamily={lexend.style.fontFamily} />
+        <div className={lexend.variable}>
+          <Story {...context} />
+        </div>
+        <SpriteSheet />
+        <InlineSpriteSheet />
+      </ThemeProvider>
+    </OakThemeProvider>
   );
 };
 export const decorators = [WithThemeProvider];
