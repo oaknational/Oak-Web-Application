@@ -1,10 +1,7 @@
 import { z } from "zod";
 import { lessonContentSchema } from "@oaknational/oak-curriculum-schema";
 
-import {
-  lessonPathwaySchema,
-  lessonShareResourceSchema,
-} from "../../shared.schema";
+import { lessonShareResourceSchema } from "../../shared.schema";
 
 export const rawLessonShareSchema = z.object({
   expired: z.boolean().nullable(),
@@ -49,12 +46,6 @@ export const baseLessonBrowseSchema = z.object({
 export const lessonShareSchema = baseLessonShareSchema.extend({
   ...baseLessonBrowseSchema.shape,
 });
-
-export const canonicalLessonShareSchema = baseLessonShareSchema.extend({
-  pathways: z.array(lessonPathwaySchema),
-});
-
-export type LessonShareCanonical = z.infer<typeof canonicalLessonShareSchema>;
 
 export type LessonShareData = z.infer<typeof lessonShareSchema>;
 export type LessonShareResourceData = z.infer<typeof lessonShareResourceSchema>;

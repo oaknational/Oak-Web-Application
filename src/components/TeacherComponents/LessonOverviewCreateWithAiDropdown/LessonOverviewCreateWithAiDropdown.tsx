@@ -50,6 +50,18 @@ const teachingMaterials: Array<{
   },
 ];
 
+export type LessonOverviewCreateWithAiProps = Pick<
+  LessonOverviewHeaderProps,
+  | "lessonSlug"
+  | "programmeSlug"
+  | "keyStageSlug"
+  | "subjectCategories"
+  | "actions"
+  | "trackCreateWithAiButtonClicked"
+  | "trackTeachingMaterialsSelected"
+  | "subjectSlug"
+>;
+
 export const LessonOverviewCreateWithAiDropdown = ({
   lessonSlug,
   programmeSlug,
@@ -59,7 +71,7 @@ export const LessonOverviewCreateWithAiDropdown = ({
   trackCreateWithAiButtonClicked,
   trackTeachingMaterialsSelected,
   subjectSlug,
-}: LessonOverviewHeaderProps) => {
+}: LessonOverviewCreateWithAiProps) => {
   const availableTeachingMaterialsPerSubject = getAvailableTeachingMaterials(
     subjectSlug,
     keyStageSlug,

@@ -113,9 +113,9 @@ describe("ProgrammeView", () => {
   });
   it("renders the correct tab content for overview", () => {
     usePathnameMock.mockReturnValue(
-      "/programmes/science-secondary-aqa/overview",
+      "/programmes/science-secondary-aqa/curriculum-explainer",
     );
-    render(<ProgrammeView {...defaultProps} tabSlug="overview" />);
+    render(<ProgrammeView {...defaultProps} tabSlug="curriculum-explainer" />);
     const heading = screen.getByRole("heading", { name: "Aims and purpose" });
     expect(heading).toBeInTheDocument();
   });
@@ -124,7 +124,7 @@ describe("ProgrammeView", () => {
       "/programmes/science-secondary-aqa/download",
     );
     render(<ProgrammeView {...defaultProps} tabSlug="download" />);
-    const content = screen.getByTestId("download-heading");
+    const content = screen.getByText("Download curriculum resources");
     expect(content).toBeInTheDocument();
   });
   it("navigates on tab click", async () => {
@@ -132,7 +132,7 @@ describe("ProgrammeView", () => {
     const overviewTabButton = screen.getByRole("link", { name: "Explainer" });
     const user = userEvent.setup();
     await user.click(overviewTabButton);
-    expect(pushSpy).toHaveBeenCalledWith(null, "", "overview");
+    expect(pushSpy).toHaveBeenCalledWith(null, "", "curriculum-explainer");
   });
 
   describe("non-curriculum subjects", () => {
@@ -149,7 +149,12 @@ describe("ProgrammeView", () => {
 
     it("calls notFound when the overview tab is active", () => {
       expect(() =>
-        render(<ProgrammeView {...nonCurriculumProps} tabSlug="overview" />),
+        render(
+          <ProgrammeView
+            {...nonCurriculumProps}
+            tabSlug="curriculum-explainer"
+          />,
+        ),
       ).toThrow("NEXT_HTTP_ERROR_FALLBACK;404");
     });
   });

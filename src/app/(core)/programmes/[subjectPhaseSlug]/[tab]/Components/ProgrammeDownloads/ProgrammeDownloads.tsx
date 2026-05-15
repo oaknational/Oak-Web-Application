@@ -1,14 +1,53 @@
 "use client";
 
-import { OakBox } from "@oaknational/oak-components";
+import {
+  OakBox,
+  OakDownloadCard,
+  OakFlex,
+  OakGrid,
+  OakGridArea,
+  OakHeading,
+  OakPrimaryButton,
+  OakTagFunctional,
+  OakTertiaryInvertedButton,
+  Subject,
+  Tier,
+} from "@oaknational/oak-components";
+import { mapKeys, camelCase } from "lodash";
+import {
+  useMemo,
+  useState,
+  useLayoutEffect,
+  useEffect,
+  ChangeEvent,
+} from "react";
+import { Controller, ControllerRenderProps } from "react-hook-form";
 
-import CurriculumDownloadTab from "@/components/CurriculumComponents/CurriculumDownloadTab";
+import { DownloadSuccessHeader } from "../../../units/[unitSlug]/lessons/[lessonSlug]/Components/DownloadSuccessHeader/DownloadSuccessHeader";
+
+import {
+  handleSubjectTierSelectionAnalytics,
+  trackCurriculumDownload,
+} from "./tracking";
+import { ChildSubjectTierSelector } from "./ChildSubjectTierSelector/ChildSubjectTierSelector";
+
 import {
   CurriculumDownloadsTierSubjectProps,
   CurriculumUnitsFormattedData,
 } from "@/pages-helpers/curriculum/docx/tab-helpers";
-import { CurriculumSelectionSlugs } from "@/utils/curriculum/slugs";
 import { CurriculumOverviewMVData } from "@/node-lib/curriculum-api-2023";
+import { DOWNLOAD_TYPE_LABELS } from "@/components/CurriculumComponents/CurriculumDownloadView/helper";
+import { DownloadPageWithAccordionContent } from "@/components/TeacherComponents/DownloadPageWithAccordion/DownloadPageWithAccordion";
+import { useHubspotSubmit } from "@/components/TeacherComponents/hooks/downloadAndShareHooks/useHubspotSubmit";
+import { useResourceFormState } from "@/components/TeacherComponents/hooks/downloadAndShareHooks/useResourceFormState";
+import { useOnboardingStatus } from "@/components/TeacherComponents/hooks/useOnboardingStatus";
+import { DelayedLoadingSpinner } from "@/components/TeacherComponents/SharePageLayout/SharePageLayout";
+import { ResourceFormValues } from "@/components/TeacherComponents/types/downloadAndShare.types";
+import useAnalytics from "@/context/Analytics/useAnalytics";
+import { doUnitsHaveNc, flatUnitsFromYearData } from "@/utils/curriculum/units";
+import { CurriculumSelectionSlugs } from "@/utils/curriculum/slugs";
+import useResourceFormSubmit from "@/components/TeacherComponents/hooks/downloadAndShareHooks/useResourceFormSubmit";
+import downloadDebouncedSubmit from "@/components/TeacherComponents/helpers/downloadAndShareHelpers/downloadDebounceSubmit";
 export type ProgrammeDownloadsProps = {
   mvRefreshTime: number;
   curriculumInfo: CurriculumOverviewMVData;
@@ -21,20 +60,353 @@ export const ProgrammeDownloads = ({
   curriculumDownloadsTabData,
   curriculumUnitsFormattedData,
   curriculumSelectionSlugs,
-  ...props
+  mvRefreshTime,
+  curriculumInfo,
 }: ProgrammeDownloadsProps) => {
+  const { track } = useAnalytics();
+  const { onHubspotSubmit } = useHubspotSubmit();
+  const onboardingStatus = useOnboardingStatus();
+  const isLoading = onboardingStatus === "loading";
+
+  const availableDownloadTypes = useMemo(() => {
+    return DOWNLOAD_TYPE_LABELS.map(({ id }) => id).filter((id) => {
+      if (id === "national-curriculum") {
+        return doUnitsHaveNc(
+          flatUnitsFromYearData(curriculumUnitsFormattedData.yearData),
+        );
+      }
+      return true;
+    });
+  }, [curriculumUnitsFormattedData]);
+
+  const curriculumDownloadsWithLabels = DOWNLOAD_TYPE_LABELS.filter(({ id }) =>
+    availableDownloadTypes.includes(id),
+  );
+
+  // Convert the data into OWA component format (using camelCase instead of snake_case for keys.)
+  const [tierSelected, setTierSelected] = useState<string | null>(null);
+  const [childSubjectSelected, setChildSubjectSelected] = useState<
+    string | null
+  >(null);
+  const tiers = useMemo<Tier[]>(() => {
+    return curriculumDownloadsTabData.tiers &&
+      curriculumDownloadsTabData.tiers.length > 0
+      ? curriculumDownloadsTabData.tiers.map(
+          (tier) =>
+            mapKeys(tier, (_, key) => camelCase(key)) as unknown as Tier,
+        )
+      : [];
+  }, [curriculumDownloadsTabData.tiers]);
+
+  const {
+    form,
+    emailFromLocalStorage,
+    schoolIdFromLocalStorage,
+    schoolNameFromLocalStorage,
+    isLocalStorageLoading,
+    setSchool,
+    shouldDisplayDetailsCompleted,
+    handleEditDetailsCompletedClick,
+    hasFormErrors,
+    localStorageDetails,
+    handleToggleSelectAll,
+    selectAllChecked,
+    hubspotLoaded,
+    editDetailsClicked,
+    setEmailInLocalStorage,
+    setEditDetailsClicked,
+  } = useResourceFormState({
+    type: "curriculum",
+    curriculumResources: availableDownloadTypes,
+  });
+
+  const childSubjects = useMemo<Subject[]>(() => {
+    return curriculumDownloadsTabData.child_subjects &&
+      curriculumDownloadsTabData.child_subjects.length > 0
+      ? curriculumDownloadsTabData.child_subjects.map(
+          (subject) =>
+            mapKeys(subject, (_, key) => camelCase(key)) as unknown as Subject,
+        )
+      : [];
+  }, [curriculumDownloadsTabData.child_subjects]);
+
+  const [isDone, setIsDone] = useState(false);
+  const [subjectTierSelectionVisible, setSubjectTierSelectionVisible] =
+    useState<boolean>(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState<string | undefined>(undefined);
+
+  let onBackToKs4Options: undefined | (() => void);
+  if (tiers.length > 0 || childSubjects.length > 0) {
+    onBackToKs4Options = () => {
+      setSubjectTierSelectionVisible(true);
+    };
+  }
+
+  useLayoutEffect(() => {
+    setChildSubjectSelected(null);
+    setTierSelected(null);
+    // Set the subject tier selector as visible when tiers & curriculumDownloadsTabData.child_subjects are present
+    if (
+      (curriculumDownloadsTabData.tiers &&
+        curriculumDownloadsTabData.tiers.length > 0) ||
+      (curriculumDownloadsTabData.child_subjects &&
+        curriculumDownloadsTabData.child_subjects.length > 0)
+    ) {
+      setSubjectTierSelectionVisible(true);
+    } else {
+      setSubjectTierSelectionVisible(false);
+    }
+  }, [
+    curriculumSelectionSlugs,
+    curriculumDownloadsTabData.tiers,
+    curriculumDownloadsTabData.child_subjects,
+  ]);
+
+  useEffect(() => {
+    setIsDone(false);
+  }, [curriculumSelectionSlugs]);
+
+  const handleTierSubjectSelection = (
+    tierSlug: string,
+    childSubjectSlug?: string | null,
+  ) => {
+    setSubjectTierSelectionVisible(false);
+    if (tierSlug && tierSlug.length > 0) {
+      setTierSelected(tierSlug);
+    }
+    if (childSubjectSlug && childSubjectSlug.length > 0) {
+      setChildSubjectSelected(childSubjectSlug);
+    }
+    handleSubjectTierSelectionAnalytics({
+      tierSlug,
+      childSubjectSlug,
+      track,
+      subjectSlug: curriculumSelectionSlugs.subjectSlug,
+      subjectTitle: curriculumInfo.subjectTitle,
+    });
+  };
+
+  const { onSubmit } = useResourceFormSubmit();
+
+  const onFormSubmit = async (data: ResourceFormValues): Promise<void> => {
+    setSubmitError(undefined);
+
+    try {
+      await downloadDebouncedSubmit({
+        data,
+        setIsAttemptingDownload: setIsSubmitting,
+        setEditDetailsClicked,
+        onSubmit,
+        type: "curriculum",
+        mvRefreshTime,
+        slugs: curriculumSelectionSlugs,
+        tierSlug: tierSelected,
+        childSubjectSlug: childSubjectSelected,
+      });
+
+      if (editDetailsClicked && !data.email) {
+        setEmailInLocalStorage("");
+      }
+
+      await trackCurriculumDownload(
+        data,
+        curriculumInfo.subjectTitle,
+        onHubspotSubmit,
+        track,
+        curriculumSelectionSlugs,
+      );
+
+      setIsDone(true);
+    } catch {
+      setSubmitError(
+        "There was an error downloading your files. Please try again.",
+      );
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
+  if (isDone) {
+    return (
+      <DownloadSuccessHeader
+        onBackClick={() => setIsDone(false)}
+        backgroundColorLevel={undefined}
+        returnTo="downloads"
+      />
+    );
+  }
+
+  const resourceCardOnChangeHandler =
+    (
+      onChange: ControllerRenderProps["onChange"],
+      fieldValue: string[],
+      id: string,
+    ) =>
+    (e: ChangeEvent<HTMLInputElement>) => {
+      if (e.target.checked) {
+        onChange([...fieldValue, id]);
+      } else {
+        onChange(fieldValue.filter((val) => val !== id));
+      }
+      // Trigger the form to reevaluate errors
+      form.trigger();
+    };
+
+  const noResourcesSelected =
+    form.watch().resources === undefined || form.watch().resources.length === 0;
+
   // 40px padding on desktop allows the content to fill the max width, but always have inline padding
   // so it doesn't run up against the edge of the screen
   return (
-    <OakBox $ph={["spacing-20", "spacing-40"]}>
-      <CurriculumDownloadTab
-        {...props}
-        slugs={curriculumSelectionSlugs}
-        tiers={curriculumDownloadsTabData.tiers}
-        child_subjects={curriculumDownloadsTabData.child_subjects}
-        formattedData={curriculumUnitsFormattedData}
-        ph="spacing-0"
-      />
+    <OakBox
+      id="curriculum-downloads"
+      tabIndex={-1}
+      $maxWidth={"spacing-1280"}
+      $mh={"auto"}
+      $ph={["spacing-20", "spacing-40"]}
+      $pt={["spacing-48", "spacing-0"]}
+      $pb={["spacing-48"]}
+      $mt={["spacing-0", "spacing-56", "spacing-56"]}
+      $borderColor="border-error"
+      $width={"100%"}
+      role="region"
+    >
+      {subjectTierSelectionVisible === true ? (
+        <OakGrid>
+          <OakGridArea $colSpan={[12, 8]} $colStart={[1, 3]}>
+            <ChildSubjectTierSelector
+              tiers={tiers}
+              childSubjects={childSubjects}
+              getTierSubjectValues={handleTierSubjectSelection}
+            />
+          </OakGridArea>
+        </OakGrid>
+      ) : (
+        <OakGrid>
+          <OakGridArea
+            $flexDirection={"column"}
+            $gap={"spacing-48"}
+            $colSpan={[12, 8]}
+            $colStart={[1, 3]}
+          >
+            {onBackToKs4Options && (
+              <OakTertiaryInvertedButton
+                onClick={onBackToKs4Options}
+                iconName="arrow-left"
+              >
+                Back to KS4 Options
+              </OakTertiaryInvertedButton>
+            )}
+            <OakHeading tag="h2" $font={"heading-4"}>
+              Download curriculum resources
+            </OakHeading>
+            {isLoading ? (
+              <OakBox $minHeight="spacing-480">
+                <DelayedLoadingSpinner $delay={300} data-testid="loading" />
+              </OakBox>
+            ) : (
+              <DownloadPageWithAccordionContent
+                loginRequired={false}
+                geoRestricted={false}
+                downloadsRestricted={false}
+                errors={form.errors}
+                handleToggleSelectAll={handleToggleSelectAll}
+                selectAllChecked={selectAllChecked}
+                showNoResources={false}
+                showLoading={isLocalStorageLoading}
+                email={emailFromLocalStorage}
+                school={schoolNameFromLocalStorage}
+                schoolId={schoolIdFromLocalStorage}
+                setSchool={setSchool}
+                showSavedDetails={shouldDisplayDetailsCompleted}
+                onEditClick={handleEditDetailsCompletedClick}
+                register={form.register}
+                control={form.control}
+                showPostAlbCopyright={true}
+                triggerForm={form.trigger}
+                apiError={submitError}
+                cardGroup={
+                  <OakFlex
+                    $gap={"spacing-16"}
+                    $flexDirection={["column", "row"]}
+                  >
+                    {curriculumDownloadsWithLabels.map((download) => (
+                      <Controller
+                        key={download.id}
+                        control={form.control}
+                        name="resources"
+                        defaultValue={[]}
+                        render={({
+                          field: { value: fieldValue, onChange },
+                        }) => {
+                          return (
+                            <OakDownloadCard
+                              key={download.id}
+                              id={download.id}
+                              data-testid="resourceCard"
+                              value={download.id}
+                              name="curriculum-download"
+                              titleSlot={download.label}
+                              checked={fieldValue.includes(download.id)}
+                              formatSlot={
+                                <OakFlex
+                                  $alignItems={"center"}
+                                  $gap={"spacing-8"}
+                                >
+                                  ({download.fileExt})
+                                  <OakTagFunctional
+                                    $background={"bg-decorative2-main"}
+                                    label="Editable"
+                                    useSpan
+                                  />
+                                </OakFlex>
+                              }
+                              iconName={download.icon}
+                              onChange={resourceCardOnChangeHandler(
+                                onChange,
+                                fieldValue,
+                                download.id,
+                              )}
+                            />
+                          );
+                        }}
+                      />
+                    ))}
+                  </OakFlex>
+                }
+                copyrightYear={new Date().getFullYear().toString()}
+                showTermsAgreement={
+                  onboardingStatus === "not-onboarded" ||
+                  onboardingStatus === "unknown"
+                }
+                cta={
+                  <OakPrimaryButton
+                    type="button"
+                    onClick={
+                      (event) => void form.handleSubmit(onFormSubmit)(event) // https://github.com/orgs/react-hook-form/discussions/8622}
+                    }
+                    iconName={"download"}
+                    isLoading={
+                      isSubmitting || !hubspotLoaded // show loading state when waiting for latest school values to be populated from hubspot
+                    }
+                    disabled={
+                      (hasFormErrors ||
+                        noResourcesSelected ||
+                        (!form.formState.isValid && !localStorageDetails)) &&
+                      hubspotLoaded
+                    }
+                  >
+                    Download
+                  </OakPrimaryButton>
+                }
+                showRiskAssessmentBanner={false}
+                curriculumDownloads={curriculumDownloadsWithLabels}
+              />
+            )}
+          </OakGridArea>
+        </OakGrid>
+      )}
     </OakBox>
   );
 };

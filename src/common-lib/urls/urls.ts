@@ -141,6 +141,12 @@ export type IntegratedLessonDownloadsLinkProps = {
     preselected: PreselectedDownloadType | null;
   };
 };
+export type IntegratedLessonDownloadsSuccessLinkProps = {
+  page: "integrated-lesson-downloads-success";
+  programmeSlug: string;
+  unitSlug: string;
+  lessonSlug: string;
+};
 export type SpecialistLessonListingLinkProps = Omit<
   LessonListingLinkProps,
   "page"
@@ -285,13 +291,6 @@ export type SpecialistLessonShareLinkProps = Omit<
   };
 };
 
-export type LessonShareCanonicalLinkProps = {
-  page: "lesson-share-canonical";
-  lessonSlug: string;
-  query?: {
-    preselected: PreselectedShareType | null;
-  };
-};
 type SearchLinkProps = {
   page: "search";
   query?: Partial<SearchQuery>;
@@ -450,7 +449,6 @@ export type OakLinkProps =
   | LessonMediaCanonicalLinkProps
   | LessonShareLinkProps
   | SpecialistLessonShareLinkProps
-  | LessonShareCanonicalLinkProps
   | LessonOverviewLinkProps
   | PupilLessonLinkProps
   | PupilLessonResultsLinkProps
@@ -467,6 +465,7 @@ export type OakLinkProps =
   | IntegratedUnitOverviewLinkProps
   | IntegratedLessonOverviewLinkProps
   | IntegratedLessonDownloadsLinkProps
+  | IntegratedLessonDownloadsSuccessLinkProps
   | SpecialistLessonListingLinkProps
   | UnitListingLinkProps
   | SpecialistUnitListingLinkProps
@@ -875,6 +874,13 @@ export const OAK_PAGES: {
     configType: "internal",
     pageType: "integrated-lesson-downloads",
   }),
+  "integrated-lesson-downloads-success": createOakPageConfig({
+    pathPattern:
+      "/programmes/:programmeSlug/units/:unitSlug/lessons/:lessonSlug/downloads/success",
+    analyticsPageName: "Lesson Download",
+    configType: "internal",
+    pageType: "integrated-lesson-downloads-success",
+  }),
   "specialist-lesson-index": createOakPageConfig({
     pathPattern:
       "/teachers/specialist/programmes/:programmeSlug/units/:unitSlug/lessons",
@@ -1013,12 +1019,6 @@ export const OAK_PAGES: {
     analyticsPageName: "Lesson Share",
     configType: "internal",
     pageType: "specialist-lesson-share",
-  }),
-  "lesson-share-canonical": createOakPageConfig({
-    pathPattern: "/teachers/lessons/:lessonSlug/share",
-    analyticsPageName: "Lesson Share",
-    configType: "internal",
-    pageType: "lesson-share-canonical",
   }),
   search: createOakPageConfig({
     pathPattern: "/teachers/search",

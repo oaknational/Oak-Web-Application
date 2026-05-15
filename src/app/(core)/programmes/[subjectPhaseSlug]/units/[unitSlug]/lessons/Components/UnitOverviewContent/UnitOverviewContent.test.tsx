@@ -1,16 +1,11 @@
 import { screen } from "@testing-library/dom";
 import userEvent from "@testing-library/user-event";
 
-import { LessonList } from "../LessonList";
-import { ProgrammeToggles } from "../ProgrammeToggles/ProgrammeToggles";
-
 import { UnitOverviewContent } from "./UnitOverviewContent";
 import type { UnitOverviewContentProps } from "./UnitOverviewContent";
 
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
-
-jest.mock("../LessonList/LessonList");
-jest.mock("../ProgrammeToggles/ProgrammeToggles");
+import { resolveOakHref } from "@/common-lib/urls";
 
 const render = renderWithProviders();
 
@@ -84,66 +79,62 @@ describe("UnitOverviewContent", () => {
   it("renders LessonList and passes lesson props with computed lessonCount", () => {
     render(<UnitOverviewContent {...defaultProps} />);
 
-    expect(ProgrammeToggles).toHaveBeenNthCalledWith(
-      1,
-      expect.objectContaining({
-        heading: "Learning tier (KS4)",
-        headingId: "tier-toggle-heading",
-        unitSlug: "cells",
-        programmeToggles: [
-          {
-            title: "Foundation",
-            programmeSlug: "biology-secondary-ks4-foundation-aqa",
-            isSelected: true,
-          },
-          {
-            title: "Higher",
-            programmeSlug: "biology-secondary-ks4-higher-aqa",
-            isSelected: false,
-          },
-        ],
-      }),
-      {},
-    );
+    expect(
+      screen.getByRole("heading", { name: "Unit 2 of 12: Cells" }),
+    ).toBeInTheDocument();
+    expect(screen.getByText("Lesson 1")).toBeInTheDocument();
+    expect(screen.getByText("Lesson 2")).toBeInTheDocument();
+    expect(
+      screen.getByRole("button", { name: /save this unit: cells/i }),
+    ).toBeInTheDocument();
+  });
 
-    expect(LessonList).toHaveBeenCalledWith(
-      expect.objectContaining({
+  it("renders programme toggles with selected states and links", () => {
+    render(<UnitOverviewContent {...defaultProps} />);
+
+    expect(
+      screen.getByRole("heading", { name: "Learning tier (KS4)" }),
+    ).toBeInTheDocument();
+    expect(
+      screen.getByRole("heading", { name: "Exam subject (KS4)" }),
+    ).toBeInTheDocument();
+    const foundationLink = screen.getByRole("link", { name: "Foundation" });
+    expect(foundationLink).toHaveAttribute(
+      "href",
+      resolveOakHref({
+        page: "integrated-unit-overview",
         programmeSlug: "biology-secondary-ks4-foundation-aqa",
         unitSlug: "cells",
-        unitTitle: "Cells",
-        unitDescription: "Learn about cells",
-        subjectTitle: "Biology",
-        subjectSlug: "biology",
-        keyStageSlug: "ks4",
-        keyStageTitle: "Key Stage 4",
-        lessons,
-        unitIndex: 2,
-        unitCount: 12,
-        lessonCount: 2,
       }),
-      {},
     );
-
-    expect(ProgrammeToggles).toHaveBeenNthCalledWith(
-      2,
-      expect.objectContaining({
-        heading: "Exam subject (KS4)",
-        headingId: "subject-toggle-heading",
+    expect(foundationLink).toHaveAttribute("aria-current", "page");
+    expect(screen.getByRole("link", { name: "Higher" })).toHaveAttribute(
+      "href",
+      resolveOakHref({
+        page: "integrated-unit-overview",
+        programmeSlug: "biology-secondary-ks4-higher-aqa",
         unitSlug: "cells",
-        programmeToggles: [
-          {
-            title: "Biology",
-            programmeSlug: "biology-secondary-ks4-foundation-aqa",
-            isSelected: true,
-          },
-          {
-            title: "Combined science",
-            programmeSlug: "combined-science-secondary-ks4-foundation-aqa",
-            isSelected: false,
-          },
-        ],
       }),
-      {},
+    );
+    const biologyLink = screen.getByRole("link", { name: "Biology" });
+    expect(biologyLink).toHaveAttribute(
+      "href",
+      resolveOakHref({
+        page: "integrated-unit-overview",
+        programmeSlug: "biology-secondary-ks4-foundation-aqa",
+        unitSlug: "cells",
+      }),
+    );
+    expect(biologyLink).toHaveAttribute("aria-current", "page");
+    expect(
+      screen.getByRole("link", { name: "Combined science" }),
+    ).toHaveAttribute(
+      "href",
+      resolveOakHref({
+        page: "integrated-unit-overview",
+        programmeSlug: "combined-science-secondary-ks4-foundation-aqa",
+        unitSlug: "cells",
+      }),
     );
   });
   it("renders why this why now", () => {
@@ -164,10 +155,14 @@ describe("UnitOverviewContent", () => {
       />,
     );
 
-    const listItems = screen.getAllByRole("listitem");
-    expect(listItems).toHaveLength(2);
-    expect(listItems[0]).toHaveTextContent("Requirement 1");
-    expect(listItems[1]).toHaveTextContent("Requirement 2");
+    const priorKnowledgeHeading = screen.getByRole("heading", {
+      name: "Prior knowledge requirements",
+    });
+    const priorKnowledgeSection = priorKnowledgeHeading.closest("div");
+
+    expect(priorKnowledgeSection).not.toBeNull();
+    expect(priorKnowledgeSection).toHaveTextContent("Requirement 1");
+    expect(priorKnowledgeSection).toHaveTextContent("Requirement 2");
   });
   it("renders threads", () => {
     render(
@@ -196,7 +191,11 @@ describe("UnitOverviewContent", () => {
     expect(previousUnitLink).toBeInTheDocument();
     expect(previousUnitLink).toHaveProperty(
       "href",
-      "http://localhost/programmes/biology-secondary-ks4-foundation-aqa/units/unit-1/lessons",
+      `http://localhost${resolveOakHref({
+        page: "integrated-unit-overview",
+        programmeSlug: "biology-secondary-ks4-foundation-aqa",
+        unitSlug: "unit-1",
+      })}`,
     );
   });
   it("renders next unit link", () => {
@@ -213,7 +212,11 @@ describe("UnitOverviewContent", () => {
     expect(nextUnitLink).toBeInTheDocument();
     expect(nextUnitLink).toHaveProperty(
       "href",
-      "http://localhost/programmes/biology-secondary-ks4-foundation-aqa/units/unit-3/lessons",
+      `http://localhost${resolveOakHref({
+        page: "integrated-unit-overview",
+        programmeSlug: "biology-secondary-ks4-foundation-aqa",
+        unitSlug: "unit-3",
+      })}`,
     );
   });
   it("renders a banner when unit download message is true", async () => {

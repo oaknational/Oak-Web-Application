@@ -1392,6 +1392,40 @@ describe("getProgrammeToggles", () => {
     ]);
   });
 
+  it("does not include options from other pathways", () => {
+    const allProgrammes = [
+      {
+        programme_slug: "citizenship-secondary-ks4-core",
+        programme_fields: programmeFieldsFixture({
+          overrides: {
+            subject: "Citizenship",
+            keystage_slug: "ks4",
+            subject_slug: "citizenship",
+            examboard_slug: "aqa",
+            pathway_slug: "core",
+          },
+        }),
+      },
+      {
+        programme_slug: "citizenship-secondary-ks4-gcse",
+        programme_fields: programmeFieldsFixture({
+          overrides: {
+            subject: "Citizenship",
+            keystage_slug: "ks4",
+            subject_slug: "citizenship",
+            examboard_slug: "aqa",
+            pathway_slug: "gcse",
+          },
+        }),
+      },
+    ];
+    const result = getProgrammeToggles(
+      "citizenship-secondary-ks4-gcse",
+      allProgrammes,
+    );
+    expect(result.subjectOptionToggles).toEqual([]);
+  });
+
   it("sorts subject toggles", () => {
     const allProgrammes = [
       {
