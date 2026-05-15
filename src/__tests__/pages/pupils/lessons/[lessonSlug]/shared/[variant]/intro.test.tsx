@@ -27,7 +27,7 @@ jest.mock("@/context/PupilLessonAnalytics/usePupilLessonAnalytics", () => ({
   usePupilLessonAnalytics: () => track,
 }));
 
-const startWorksheet = jest.fn();
+const startWorksheet = jest.fn(() => Promise.resolve(true));
 jest.mock("@/components/PupilViews/PupilIntro/useWorksheetDownload", () => ({
   useWorksheetDownload: () => ({
     startDownload: startWorksheet,
@@ -107,7 +107,7 @@ describe("intro page", () => {
     expect(track.trackIntroAbandoned).toHaveBeenCalledTimes(1);
   });
 
-  it("triggers worksheet and additional file downloads", () => {
+  it("triggers worksheet and additional file downloads", async () => {
     const { getByText } = renderPage({
       hasWorksheet: true,
       worksheetInfo: [{ ext: "pdf", fileSize: "1MB" }] as never,
@@ -123,7 +123,20 @@ describe("intro page", () => {
     fireEvent.click(getByText("Download file"));
     expect(startWorksheet).toHaveBeenCalledTimes(1);
     expect(startFiles).toHaveBeenCalledTimes(1);
+    await Promise.resolve();
     expect(track.trackWorksheetDownloaded).toHaveBeenCalledTimes(1);
+  });
+
+  it("does not track worksheet download when the download fails", async () => {
+    startWorksheet.mockResolvedValueOnce(false);
+    const { getByText } = renderPage({
+      hasWorksheet: true,
+      worksheetInfo: [{ ext: "pdf", fileSize: "1MB" }] as never,
+    });
+    fireEvent.click(getByText(/Download worksheet/));
+    await Promise.resolve();
+    expect(startWorksheet).toHaveBeenCalledTimes(1);
+    expect(track.trackWorksheetDownloaded).not.toHaveBeenCalled();
   });
 
   it("returns notFound from getStaticProps when the variant is invalid", async () => {
