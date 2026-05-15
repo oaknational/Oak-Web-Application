@@ -45,6 +45,8 @@ jest.mock(
   "@/components/SharedComponents/helpers/downloadAndShareHelpers/downloadLessonResources",
 );
 
+window.alert = jest.fn();
+
 const curriculumData = lessonContentFixture({});
 const equipmentAndResources = [{ equipment: "equipment" }];
 const contentGuidance: LessonContent["contentGuidance"] = [
@@ -63,6 +65,11 @@ describe("PupilIntro", () => {
     downloadSpy = jest
       .spyOn(downloadLessonResources, "default")
       .mockResolvedValue();
+    Object.values(usePupilAnalyticsMock.track).forEach((trackFn) => {
+      if (jest.isMockFunction(trackFn)) {
+        trackFn.mockClear();
+      }
+    });
   });
 
   afterEach(() => {
@@ -405,6 +412,33 @@ describe("PupilIntro", () => {
       worksheetDownloaded: true,
       worksheetAvailable: true,
     });
+    expect(
+      usePupilAnalyticsMock.track.lessonActivityDownloadedWorksheet,
+    ).toHaveBeenCalledWith({});
+  });
+
+  it("does not update section results or track worksheet download when the download fails", async () => {
+    downloadSpy.mockRejectedValueOnce(new Error("download failed"));
+    const context = createLessonEngineContext();
+    const { getByRole } = renderWithTheme(
+      <OakThemeProvider theme={oakDefaultTheme}>
+        <LessonEngineContext.Provider value={context}>
+          <PupilViewsIntro
+            hasWorksheet={true}
+            worksheetInfo={null}
+            hasAdditionalFiles={false}
+            additionalFiles={null}
+            {...curriculumData}
+          />
+        </LessonEngineContext.Provider>
+      </OakThemeProvider>,
+    );
+
+    await userEvent.click(getByRole("button", { name: /Download worksheet/i }));
+    expect(context.updateWorksheetDownloaded).not.toHaveBeenCalled();
+    expect(
+      usePupilAnalyticsMock.track.lessonActivityDownloadedWorksheet,
+    ).not.toHaveBeenCalled();
   });
 
   it("updates the section results when the worksheet is available", async () => {

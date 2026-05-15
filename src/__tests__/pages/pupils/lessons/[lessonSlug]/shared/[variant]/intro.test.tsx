@@ -1,5 +1,5 @@
 import "@testing-library/jest-dom";
-import { fireEvent } from "@testing-library/react";
+import { fireEvent, waitFor } from "@testing-library/react";
 
 import PupilLessonIntroNewPage, {
   getStaticProps,
@@ -123,8 +123,13 @@ describe("intro page", () => {
     fireEvent.click(getByText("Download file"));
     expect(startWorksheet).toHaveBeenCalledTimes(1);
     expect(startFiles).toHaveBeenCalledTimes(1);
-    await Promise.resolve();
-    expect(track.trackWorksheetDownloaded).toHaveBeenCalledTimes(1);
+    await waitFor(() => {
+      expect(track.trackWorksheetDownloaded).toHaveBeenCalledTimes(1);
+      expect(
+        usePupilLessonProgress.getState().sectionResults.intro
+          ?.worksheetDownloaded,
+      ).toBe(true);
+    });
   });
 
   it("does not track worksheet download when the download fails", async () => {
@@ -134,9 +139,14 @@ describe("intro page", () => {
       worksheetInfo: [{ ext: "pdf", fileSize: "1MB" }] as never,
     });
     fireEvent.click(getByText(/Download worksheet/));
-    await Promise.resolve();
-    expect(startWorksheet).toHaveBeenCalledTimes(1);
+    await waitFor(() => {
+      expect(startWorksheet).toHaveBeenCalledTimes(1);
+    });
     expect(track.trackWorksheetDownloaded).not.toHaveBeenCalled();
+    expect(
+      usePupilLessonProgress.getState().sectionResults.intro
+        ?.worksheetDownloaded,
+    ).not.toBe(true);
   });
 
   it("returns notFound from getStaticProps when the variant is invalid", async () => {
