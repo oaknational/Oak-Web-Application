@@ -359,12 +359,19 @@ export function buildTextDescribingFilter(
   data: CurriculumUnitsFormattedData,
   filters: CurriculumFilters,
 ) {
+  const keystageSuffix = keystageSuffixForFilter(
+    data,
+    filters,
+    "subjectCategories",
+  );
+  const subjectCategoryTitle = subjectCategoryForFilter(data, filters)?.title;
+  const keystageSuffixWithSpace = keystageSuffix ? ` ${keystageSuffix}` : "";
+  const isAllCategories = filters.subjectCategories[0] === "all";
+  const subjectCategoryText = isAllCategories
+    ? "All categories"
+    : `${subjectCategoryTitle}${keystageSuffixWithSpace}`;
   const subjectCategoryField =
-    filters.subjectCategories.length > 0
-      ? filters.subjectCategories[0] === "all"
-        ? "All categories"
-        : `${subjectCategoryForFilter(data, filters)?.title}${keystageSuffixForFilter(data, filters, "subjectCategories") ? ` ${keystageSuffixForFilter(data, filters, "subjectCategories")}` : ""}`
-      : undefined;
+    filters.subjectCategories.length > 0 ? subjectCategoryText : undefined;
 
   const childSubjectField = childSubjectForFilter(data, filters)?.subject;
   const childSubjectSuffix = keystageSuffixForFilter(
@@ -392,6 +399,36 @@ export function buildTextDescribingFilter(
   return fields;
 }
 
+function getKeystageFromYear(year: number): string {
+  if (year >= 1 && year <= 2) {
+    return "(KS1)";
+  }
+  if (year >= 3 && year <= 6) {
+    return "(KS2)";
+  }
+  if (year >= 7 && year <= 9) {
+    return "(KS3)";
+  }
+  if (year >= 10 && year <= 11) {
+    return "(KS4)";
+  }
+  return "";
+}
+
+function hasFilterMatch(
+  yearData: YearData[number],
+  filterType: "subjectCategories" | "childSubjects" | "tiers",
+  filterId: string,
+): boolean {
+  if (filterType === "subjectCategories") {
+    return yearData.subjectCategories?.some((sc) => sc.slug === filterId);
+  }
+  if (filterType === "childSubjects") {
+    return yearData.childSubjects?.some((cs) => cs.subject_slug === filterId);
+  }
+  return yearData.tiers?.some((t) => t.tier_slug === filterId);
+}
+
 export function keystageSuffixForFilter(
   data: CurriculumUnitsFormattedData,
   filter: CurriculumFilters,
@@ -413,20 +450,8 @@ export function keystageSuffixForFilter(
   const yearsWithoutChildSubjects: string[] = [];
 
   Object.entries(data.yearData).forEach(([year, yearData]) => {
-    let hasFilter = false;
-
-    if (filterType === "subjectCategories") {
-      hasFilter = yearData.subjectCategories.some((sc) => sc.slug === filterId);
-    } else if (filterType === "childSubjects") {
-      hasFilter = yearData.childSubjects.some(
-        (cs) => cs.subject_slug === filterId,
-      );
-    } else if (filterType === "tiers") {
-      hasFilter = yearData.tiers.some((t) => t.tier_slug === filterId);
-    }
-
-    if (hasFilter) {
-      if (yearData.childSubjects && yearData.childSubjects.length > 0) {
+    if (hasFilterMatch(yearData, filterType, filterId)) {
+      if (yearData.childSubjects?.length > 0) {
         yearsWithChildSubjects.push(year);
       } else {
         yearsWithoutChildSubjects.push(year);
@@ -440,44 +465,28 @@ export function keystageSuffixForFilter(
       ? yearsWithoutChildSubjects
       : yearsWithChildSubjects;
 
-  if (relevantYears.length > 0) {
-    const sortedYears = [...relevantYears].sort(
-      (a, b) => Number(a) - Number(b),
-    );
-
-    const hasKS1 = sortedYears.some(
-      (year) => Number(year) >= 1 && Number(year) <= 2,
-    );
-    const hasKS2 = sortedYears.some(
-      (year) => Number(year) >= 3 && Number(year) <= 6,
-    );
-    const hasKS3 = sortedYears.some(
-      (year) => Number(year) >= 7 && Number(year) <= 9,
-    );
-    const hasKS4 = sortedYears.some(
-      (year) => Number(year) >= 10 && Number(year) <= 11,
-    );
-
-    // Handle combined key stages
-    if ((hasKS1 && hasKS2) || (hasKS3 && hasKS4)) {
-      return "";
-    }
-
-    // If not combined, proceed with single key stage logic
-    const firstYear = Number(sortedYears[0]);
-
-    if (firstYear >= 1 && firstYear <= 2) {
-      return "(KS1)";
-    } else if (firstYear >= 3 && firstYear <= 6) {
-      return "(KS2)";
-    } else if (firstYear >= 7 && firstYear <= 9) {
-      return "(KS3)";
-    } else if (firstYear >= 10 && firstYear <= 11) {
-      return "(KS4)";
-    }
+  if (relevantYears.length === 0) {
+    return undefined;
   }
 
-  return undefined;
+  const sortedYears = [...relevantYears].sort((a, b) => Number(a) - Number(b));
+  const firstYear = Number(sortedYears[0]);
+
+  // Check for combined key stages
+  const hasCombinedKS = sortedYears.some(
+    (year) =>
+      (Number(year) <= 2 &&
+        sortedYears.some((y) => Number(y) >= 3 && Number(y) <= 6)) ||
+      (Number(year) >= 7 &&
+        Number(year) <= 9 &&
+        sortedYears.some((y) => Number(y) >= 10 && Number(y) <= 11)),
+  );
+
+  if (hasCombinedKS) {
+    return "";
+  }
+
+  return getKeystageFromYear(firstYear);
 }
 
 export function getNumberOfSelectedUnits(
