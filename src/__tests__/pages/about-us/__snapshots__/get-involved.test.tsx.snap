@@ -6161,68 +6161,54 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                       >
                         <a
                           class="c182 "
-                          href="/teachers/key-stages/ks1/subjects"
-                        >
-                          <span
-                            class="c29"
-                          >
-                            Key stage 1
-                          </span>
-                        </a>
-                      </li>
-                      <li
-                        class="c181"
-                      >
-                        <a
-                          class="c182 "
-                          href="/teachers/key-stages/ks2/subjects"
-                        >
-                          <span
-                            class="c29"
-                          >
-                            Key stage 2
-                          </span>
-                        </a>
-                      </li>
-                      <li
-                        class="c181"
-                      >
-                        <a
-                          class="c182 "
-                          href="/teachers/key-stages/ks3/subjects"
-                        >
-                          <span
-                            class="c29"
-                          >
-                            Key stage 3
-                          </span>
-                        </a>
-                      </li>
-                      <li
-                        class="c181"
-                      >
-                        <a
-                          class="c182 "
-                          href="/teachers/key-stages/ks4/subjects"
-                        >
-                          <span
-                            class="c29"
-                          >
-                            Key stage 4
-                          </span>
-                        </a>
-                      </li>
-                      <li
-                        class="c181"
-                      >
-                        <a
-                          class="c182 "
                           href="/lesson-planning"
                         >
                           <span
                             class="c29"
                           >
                             Plan a lesson
+                          </span>
+                        </a>
+                      </li>
+                      <li
+                        class="c181"
+                      >
+                        <a
+                          class="c182 "
+                          href="https://labs.thenational.academy"
+                          target="_blank"
+                        >
+                          <span
+                            class="c29"
+                          >
+                            Aila, Oak’s AI lesson assistant
+                          </span>
+                          <span
+                            class="c24 "
+                          >
+                            <img
+                              alt=""
+                              class="c25"
+                              data-nimg="fill"
+                              decoding="async"
+                              loading="lazy"
+                              src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1699953892/icons/hlxmejse3mcr4tqo6t8u.svg"
+                              style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                            />
+                          </span>
+                        </a>
+                      </li>
+                      <li
+                        class="c181"
+                      >
+                        <a
+                          class="c182 "
+                          href="/blog"
+                        >
+                          <span
+                            class="c29"
+                          >
+                            Blog
                           </span>
                         </a>
                       </li>
@@ -6386,20 +6372,6 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                               src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1699953892/icons/hlxmejse3mcr4tqo6t8u.svg"
                               style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
                             />
-                          </span>
-                        </a>
-                      </li>
-                      <li
-                        class="c181"
-                      >
-                        <a
-                          class="c182 "
-                          href="/blog"
-                        >
-                          <span
-                            class="c29"
-                          >
-                            Blog
                           </span>
                         </a>
                       </li>
