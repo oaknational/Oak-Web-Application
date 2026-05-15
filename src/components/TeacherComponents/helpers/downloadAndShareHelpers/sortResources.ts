@@ -1,5 +1,3 @@
-import { Resources, ResourceType } from "../../types/downloadAndShare.types";
-
 import { LessonShareData } from "@/node-lib/curriculum-api-2023/queries/lessonShare/lessonShare.schema";
 
 export const sortShareResources = (
@@ -22,19 +20,9 @@ export const sortShareResources = (
     "lesson-guide-pdf": 100,
     "additional-files": 100,
   };
-  return sortResourcesByOrder(
-    resources,
-    sortOrderKey,
-  ) as LessonShareData["shareableResources"];
-};
-
-export const sortResourcesByOrder = (
-  resources: Resources,
-  sortOrder: Record<ResourceType, number>,
-) => {
   return resources.sort((a, b) => {
-    const aSortOrder = sortOrder[a.type];
-    const bSortOrder = sortOrder[b.type];
+    const aSortOrder = sortOrderKey[a.type];
+    const bSortOrder = sortOrderKey[b.type];
     return aSortOrder - bSortOrder;
   });
 };

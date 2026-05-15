@@ -50,6 +50,7 @@ import {
   getDoesSubjectHaveNewUnits,
   TakedownBanner,
 } from "@/components/SharedComponents/TakedownBanner/TakedownBanner";
+import { getUnitDownloadFileId } from "@/utils/getUnitDownloadFileId";
 
 export type LessonListingPageProps = {
   curriculumData: LessonListingPageData;
@@ -256,11 +257,7 @@ const LessonListPage: NextPage<LessonListingPageProps> = ({
         isNew={isNew}
         {...curriculumData}
         shareButton={teacherShareButton}
-        unitDownloadFileId={
-          unitSlug.endsWith(unitvariantId.toString())
-            ? unitSlug
-            : `${unitSlug}-${unitvariantId}`
-        }
+        unitDownloadFileId={getUnitDownloadFileId(unitTitle, unitvariantId)}
         onUnitDownloadSuccess={() =>
           track.unitDownloadInitiated({
             platform: "owa",

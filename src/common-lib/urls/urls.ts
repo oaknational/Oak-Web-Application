@@ -291,13 +291,6 @@ export type SpecialistLessonShareLinkProps = Omit<
   };
 };
 
-export type LessonShareCanonicalLinkProps = {
-  page: "lesson-share-canonical";
-  lessonSlug: string;
-  query?: {
-    preselected: PreselectedShareType | null;
-  };
-};
 type SearchLinkProps = {
   page: "search";
   query?: Partial<SearchQuery>;
@@ -462,7 +455,6 @@ export type OakLinkProps =
   | LessonMediaCanonicalLinkProps
   | LessonShareLinkProps
   | SpecialistLessonShareLinkProps
-  | LessonShareCanonicalLinkProps
   | LessonOverviewLinkProps
   | PupilLessonLinkProps
   | PupilLessonResultsLinkProps
@@ -1040,12 +1032,6 @@ export const OAK_PAGES: {
     analyticsPageName: "Lesson Share",
     configType: "internal",
     pageType: "specialist-lesson-share",
-  }),
-  "lesson-share-canonical": createOakPageConfig({
-    pathPattern: "/teachers/lessons/:lessonSlug/share",
-    analyticsPageName: "Lesson Share",
-    configType: "internal",
-    pageType: "lesson-share-canonical",
   }),
   search: createOakPageConfig({
     pathPattern: "/teachers/search",

@@ -12,13 +12,8 @@ import {
   getLessonShareBreadCrumb,
   getBreadcrumbsForSpecialistLessonPathway,
   getBreadCrumbForSpecialistShare,
-  getCommonPathway,
-  lessonIsSpecialist,
 } from "@/components/TeacherComponents/helpers/lessonHelpers/lesson.helpers";
-import {
-  LessonPathway,
-  SpecialistLessonPathway,
-} from "@/components/TeacherComponents/types/lesson.types";
+import { LessonPathway } from "@/components/TeacherComponents/types/lesson.types";
 import SharePageLayout from "@/components/TeacherComponents/SharePageLayout";
 import LessonShareCardGroup from "@/components/TeacherComponents/LessonShareCardGroup";
 import LessonShareLinks from "@/components/TeacherComponents/LessonShareLinks";
@@ -48,20 +43,6 @@ import { getLessonShareVariantSlug } from "@/pages-helpers/pupil";
 
 export type LessonShareProps =
   | {
-      isCanonical: true;
-      lesson: {
-        isSpecialist: false;
-        expired: boolean | null;
-        isLegacy: boolean;
-        lessonTitle: string;
-        lessonSlug: string;
-        shareableResources: LessonShareData["shareableResources"];
-        pathways: LessonPathway[];
-        lessonReleaseDate: string | null;
-      };
-    }
-  | {
-      isCanonical: false;
       lesson: LessonPathway & {
         isSpecialist: false;
         developmentStageTitle?: string | null;
@@ -74,7 +55,6 @@ export type LessonShareProps =
       };
     }
   | {
-      isCanonical: false;
       lesson: SpecialistLessonShareData;
     };
 
@@ -87,34 +67,18 @@ const classroomActivityMap: Partial<
 };
 
 export function LessonShare(props: LessonShareProps) {
-  const { isCanonical, lesson } = props;
+  const { lesson } = props;
   const {
     lessonTitle,
     lessonSlug,
+    programmeSlug,
+    unitSlug,
     shareableResources,
     isLegacy,
     expired,
     isSpecialist,
     lessonReleaseDate,
   } = lesson;
-
-  const commonPathway =
-    lessonIsSpecialist(lesson) && !props.isCanonical
-      ? {
-          lessonSlug,
-          lessonTitle,
-          unitSlug: props.lesson.unitSlug,
-          programmeSlug: props.lesson.programmeSlug,
-          unitTitle: props.lesson.unitTitle,
-          subjectTitle: props.lesson.subjectTitle,
-          subjectSlug: props.lesson.subjectSlug,
-          developmentStageTitle: props.lesson.developmentStageTitle,
-          disabled: false,
-        }
-      : getCommonPathway(
-          props.isCanonical ? props.lesson.pathways : [props.lesson],
-        );
-  const { programmeSlug, unitSlug } = commonPathway;
 
   const exitQuizNumQuestions = (() => {
     const exitQuizResource = shareableResources.find(
@@ -192,16 +156,14 @@ export function LessonShare(props: LessonShareProps) {
   });
   const onboardingStatus = useOnboardingStatus();
 
-  const { onSubmit } = useResourceFormSubmit({
-    type: "share",
-  });
+  const { onSubmit } = useResourceFormSubmit();
   const { onHubspotSubmit } = useHubspotSubmit();
 
   const onFormSubmit = async (
     data: ResourceFormValues,
     shareMedium: ShareMediumValueType,
   ): Promise<void> => {
-    await onSubmit(data, props.lesson.lessonSlug);
+    await onSubmit({ data, slug: props.lesson.lessonSlug, type: "share" });
     await onHubspotSubmit(data);
 
     if (editDetailsClicked && !data.email) {
@@ -241,13 +203,13 @@ export function LessonShare(props: LessonShareProps) {
             breadcrumbs={
               !isSpecialist
                 ? [
-                    ...getBreadcrumbsForLessonPathway(commonPathway),
+                    ...getBreadcrumbsForLessonPathway(lesson),
                     getLessonOverviewBreadCrumb({
                       lessonTitle,
                       lessonSlug,
                       programmeSlug,
                       unitSlug,
-                      isCanonical,
+                      isCanonical: false,
                     }),
                     getLessonShareBreadCrumb({
                       lessonSlug,
@@ -257,9 +219,7 @@ export function LessonShare(props: LessonShareProps) {
                     }),
                   ]
                 : [
-                    ...getBreadcrumbsForSpecialistLessonPathway(
-                      commonPathway as SpecialistLessonPathway,
-                    ),
+                    ...getBreadcrumbsForSpecialistLessonPathway(lesson),
                     ...getBreadCrumbForSpecialistShare({
                       lessonSlug,
                       programmeSlug,

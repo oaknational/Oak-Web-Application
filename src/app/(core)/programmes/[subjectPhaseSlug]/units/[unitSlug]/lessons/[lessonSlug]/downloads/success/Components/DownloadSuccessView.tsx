@@ -8,7 +8,7 @@ import {
   OakIcon,
   OakSpan,
 } from "@oaknational/oak-components";
-import { useOakConsent } from "@oaknational/oak-consent-client";
+import { useEffect } from "react";
 
 import { LessonList } from "@/app/(core)/programmes/[subjectPhaseSlug]/units/[unitSlug]/lessons/Components/LessonList";
 import { DownloadSuccessHeader } from "@/app/(core)/programmes/[subjectPhaseSlug]/units/[unitSlug]/lessons/[lessonSlug]/Components/DownloadSuccessHeader/DownloadSuccessHeader";
@@ -18,8 +18,9 @@ import UnitDownloadButton, {
 import { resolveOakHref } from "@/common-lib/urls";
 import useAnalytics from "@/context/Analytics/useAnalytics";
 import type { LessonListSchema } from "@/node-lib/curriculum-api-2023/shared.schema";
-import { ServicePolicyMap } from "@/browser-lib/cookie-consent/ServicePolicyMap";
 import { KeyStageTitleValueType } from "@/browser-lib/avo/Avo";
+import { useOakNotificationsContext } from "@/context/OakNotifications/useOakNotificationsContext";
+import { getUnitDownloadFileId } from "@/utils/getUnitDownloadFileId";
 
 type DownloadSuccessViewLesson = {
   lessonTitle: string;
@@ -62,6 +63,8 @@ export function DownloadSuccessView({
   const { track } = useAnalytics();
   const { onwardContentSelected, unitDownloadInitiated } = track;
 
+  const { setCurrentToastProps } = useOakNotificationsContext();
+
   const {
     setShowDownloadMessage,
     setDownloadError,
@@ -70,16 +73,20 @@ export function DownloadSuccessView({
     setShowIncompleteMessage,
   } = useUnitDownloadButtonState();
 
-  const unitDownloadFileId = unitSlug.endsWith(unitvariantId.toString())
-    ? unitSlug
-    : `${unitSlug}-${unitvariantId}`;
-
   const isGeorestrictedUnit = lessons.some(
     (l) => "geoRestricted" in l && l.geoRestricted,
   );
 
-  const { getConsent } = useOakConsent();
-  const cookiesNotAccepted = getConsent(ServicePolicyMap.GLEAP) === "denied";
+  useEffect(() => {
+    setCurrentToastProps({
+      message: "Download started. This may take a few minutes",
+      variant: "success",
+      autoDismiss: true,
+      showClose: true,
+      showIcon: true,
+    });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <>
@@ -90,7 +97,6 @@ export function DownloadSuccessView({
           programmeSlug,
           unitSlug,
         })}
-        showHelpMessage={!cookiesNotAccepted}
         onBackClick={() =>
           onwardContentSelected({
             lessonName: lessonTitle,
@@ -102,6 +108,8 @@ export function DownloadSuccessView({
             lessonReleaseDate: lessonReleaseDate,
           })
         }
+        backgroundColorLevel={1}
+        returnTo="lesson"
       />
       <OakBox $ph={["spacing-20", "spacing-40"]}>
         <OakGrid
@@ -136,44 +144,42 @@ export function DownloadSuccessView({
                 lessons.findIndex((l) => l.lessonSlug === lessonSlug) + 1
               }
               headerCtaSlot={
-                unitDownloadFileId ? (
-                  <UnitDownloadButton
-                    setDownloadError={setDownloadError}
-                    setDownloadInProgress={setDownloadInProgress}
-                    setShowDownloadMessage={setShowDownloadMessage}
-                    setShowIncompleteMessage={setShowIncompleteMessage}
-                    downloadInProgress={downloadInProgress}
-                    unitFileId={unitDownloadFileId}
-                    onDownloadSuccess={() => {
-                      unitDownloadInitiated({
-                        platform: "owa",
-                        product: "teacher lesson resources",
-                        engagementIntent: "use",
-                        componentType: "unit_download_button",
-                        eventVersion: "2.0.0",
-                        analyticsUseCase: "Teacher",
-                        unitName: unitTitle,
-                        unitSlug,
-                        keyStageSlug,
-                        keyStageTitle: keyStageTitle as KeyStageTitleValueType,
-                        subjectSlug,
-                        subjectTitle,
-                      });
-                    }}
-                    showNewTag={false}
-                    geoRestricted={isGeorestrictedUnit}
-                    size="small"
-                    ariaLabel="Download complete unit"
-                    buttonLabel={
-                      <OakSpan>
-                        <OakSpan>Download </OakSpan>
-                        <OakBox $display={["none", "inline"]}>
-                          complete unit
-                        </OakBox>
-                      </OakSpan>
-                    }
-                  />
-                ) : null
+                <UnitDownloadButton
+                  setDownloadError={setDownloadError}
+                  setDownloadInProgress={setDownloadInProgress}
+                  setShowDownloadMessage={setShowDownloadMessage}
+                  setShowIncompleteMessage={setShowIncompleteMessage}
+                  downloadInProgress={downloadInProgress}
+                  unitFileId={getUnitDownloadFileId(unitTitle, unitvariantId)}
+                  onDownloadSuccess={() => {
+                    unitDownloadInitiated({
+                      platform: "owa",
+                      product: "teacher lesson resources",
+                      engagementIntent: "use",
+                      componentType: "unit_download_button",
+                      eventVersion: "2.0.0",
+                      analyticsUseCase: "Teacher",
+                      unitName: unitTitle,
+                      unitSlug,
+                      keyStageSlug,
+                      keyStageTitle: keyStageTitle as KeyStageTitleValueType,
+                      subjectSlug,
+                      subjectTitle,
+                    });
+                  }}
+                  showNewTag={false}
+                  geoRestricted={isGeorestrictedUnit}
+                  size="small"
+                  ariaLabel="Download complete unit"
+                  buttonLabel={
+                    <OakSpan>
+                      <OakSpan>Download </OakSpan>
+                      <OakBox $display={["none", "inline"]}>
+                        complete unit
+                      </OakBox>
+                    </OakSpan>
+                  }
+                />
               }
             />
           </OakGridArea>

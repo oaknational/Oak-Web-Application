@@ -25,8 +25,8 @@ import {
   ProgrammeOverviewProps,
 } from "./ProgrammeOverview/ProgrammeOverview";
 import {
-  ProgrammeDownloads,
   ProgrammeDownloadsProps,
+  ProgrammeDownloads,
 } from "./ProgrammeDownloads/ProgrammeDownloads";
 
 import {
@@ -216,7 +216,7 @@ const TabContent = ({
         ks4Options={ks4Options}
       />
     );
-  } else if (tabSlug === "overview") {
+  } else if (tabSlug === "curriculum-explainer") {
     if (!curriculumCMSInfo) {
       notFound();
     }
