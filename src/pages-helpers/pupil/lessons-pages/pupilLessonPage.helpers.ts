@@ -14,16 +14,20 @@ import {
   LessonBrowseData,
   LessonContent,
 } from "@/node-lib/curriculum-api-2023/queries/pupilLesson/pupilLesson.schema";
+import { LessonShareVariant } from "@/pages-helpers/pupil";
 
 export const isAvailablePupilLessonSection = (
   section: LessonSection,
   lessonContent: LessonContent,
+  variant: LessonShareVariant | null,
 ) => {
   if (!isLessonReviewSection(section)) {
     return true;
   }
 
-  return pickAvailableSectionsForLesson(lessonContent).includes(section);
+  return pickAvailableSectionsForLesson(lessonContent, variant).includes(
+    section,
+  );
 };
 
 export const hydrateLessonContentResources = async ({
@@ -61,6 +65,7 @@ export const buildPupilLessonPageProps = async ({
   initialSection,
   pageType,
   suppressResourceErrors = false,
+  variant,
 }: {
   browseData: LessonBrowseData;
   lessonContent: LessonContent;
@@ -68,6 +73,7 @@ export const buildPupilLessonPageProps = async ({
   initialSection: LessonSection;
   pageType: PupilLessonPageType;
   suppressResourceErrors?: boolean;
+  variant: LessonShareVariant | null;
 }): Promise<PupilLessonPageProps> => {
   const hydratedLessonContent = await hydrateLessonContentResources({
     lessonContent,
@@ -88,5 +94,6 @@ export const buildPupilLessonPageProps = async ({
     initialSection,
     backUrl,
     pageType,
+    variant,
   };
 };

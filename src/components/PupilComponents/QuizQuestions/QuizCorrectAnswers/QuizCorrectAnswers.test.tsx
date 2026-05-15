@@ -1,10 +1,17 @@
 import "@testing-library/jest-dom";
+import type { ReactNode } from "react";
 
 import { QuizCorrectAnswers } from "./QuizCorrectAnswers";
 
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 import { QuestionState } from "@/components/PupilComponents/QuizUtils/questionTypes";
 import { imageObject } from "@/node-lib/curriculum-api-2023/fixtures/quizElements.new.fixture";
+
+jest.mock("@/browser-lib/mathjax/MathJaxWrap", () => ({
+  MathJaxWrap: ({ children }: { children: ReactNode }) => (
+    <span data-testid="mathjax-wrap">{children}</span>
+  ),
+}));
 
 const baseState: QuestionState = {
   mode: "feedback",
@@ -36,7 +43,7 @@ describe("QuizCorrectAnswers", () => {
   });
 
   it("renders multiple correct answers joined by commas", () => {
-    const { getByText } = renderWithTheme(
+    const { getByText, getAllByTestId } = renderWithTheme(
       <QuizCorrectAnswers
         questionState={{
           ...baseState,
@@ -45,11 +52,14 @@ describe("QuizCorrectAnswers", () => {
       />,
     );
     expect(getByText(/Correct answers:/)).toBeInTheDocument();
-    expect(getByText(/earth, wind, fire/)).toBeInTheDocument();
+    expect(getByText("earth")).toBeInTheDocument();
+    expect(getByText("wind")).toBeInTheDocument();
+    expect(getByText("fire")).toBeInTheDocument();
+    expect(getAllByTestId("mathjax-wrap")).toHaveLength(3);
   });
 
   it("filters out non-string entries when joining multiple answers", () => {
-    const { getByText } = renderWithTheme(
+    const { getByText, queryByText, getAllByTestId } = renderWithTheme(
       <QuizCorrectAnswers
         questionState={{
           ...baseState,
@@ -57,7 +67,10 @@ describe("QuizCorrectAnswers", () => {
         }}
       />,
     );
-    expect(getByText(/earth, fire/)).toBeInTheDocument();
+    expect(getByText("earth")).toBeInTheDocument();
+    expect(getByText("fire")).toBeInTheDocument();
+    expect(queryByText("wind")).not.toBeInTheDocument();
+    expect(getAllByTestId("mathjax-wrap")).toHaveLength(2);
   });
 
   it("renders nothing when the array's first item is an image object", () => {
@@ -80,5 +93,23 @@ describe("QuizCorrectAnswers", () => {
     );
     expect(getByText(/Correct answer:/)).toBeInTheDocument();
     expect(getByText(/earth/)).toBeInTheDocument();
+  });
+
+  it("renders string answers through MathJax wrappers", () => {
+    const { getByText, getAllByTestId } = renderWithTheme(
+      <QuizCorrectAnswers
+        questionState={{
+          mode: "feedback",
+          grade: 0,
+          offerHint: false,
+          correctAnswer: ["\\(x + 1\\)", "\\(x + 2\\)"],
+        }}
+      />,
+    );
+
+    expect(getByText("Correct answers:")).toBeInTheDocument();
+    expect(getByText("\\(x + 1\\)")).toBeInTheDocument();
+    expect(getByText("\\(x + 2\\)")).toBeInTheDocument();
+    expect(getAllByTestId("mathjax-wrap")).toHaveLength(2);
   });
 });

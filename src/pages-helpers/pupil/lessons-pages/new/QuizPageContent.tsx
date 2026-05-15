@@ -43,6 +43,7 @@ import {
   QuestionsArray,
   usePupilLessonQuiz,
 } from "@/context/PupilLessonQuiz";
+import { isMatchAnswer } from "@/components/PupilComponents/QuizUtils/answerTypeDiscriminators";
 
 type QuizPageContentProps = {
   section: QuizSection;
@@ -67,6 +68,7 @@ export const QuizPageContent = ({
   const {
     sectionResults,
     lessonReviewSections,
+    lessonStarted,
     isReadOnly,
     completeSection,
     updateSectionInProgressResult,
@@ -74,6 +76,7 @@ export const QuizPageContent = ({
     useShallow((state) => ({
       sectionResults: state.sectionResults,
       lessonReviewSections: state.lessonReviewSections,
+      lessonStarted: state.lessonStarted,
       isReadOnly: state.isReadOnly,
       completeSection: state.completeSection,
       updateSectionInProgressResult: state.updateSectionInProgressResult,
@@ -104,8 +107,14 @@ export const QuizPageContent = ({
       handleNextQuestion: state.handleNextQuestion,
     })),
   );
-  const { trackSectionStarted, trackQuizQuestionAttempt, trackQuizCompleted } =
-    usePupilLessonAnalytics();
+  const {
+    trackSectionStarted,
+    trackQuizQuestionAttempt,
+    trackQuizCompleted,
+    trackQuizAbandoned,
+    trackLessonStarted,
+    trackLessonCompleted,
+  } = usePupilLessonAnalytics();
   const currentQuestionData = questionsArray[currentQuestionIndex];
   const currentQuestionState = questionState[currentQuestionIndex];
   const currentQuestionDisplayIndex = getCurrentQuestionDisplayIndex({
@@ -231,6 +240,44 @@ export const QuizPageContent = ({
     handleQuestionResult(result);
   };
 
+  const isQuizEffectivelyComplete = () => {
+    const nextStep = getQuizNextStep({
+      currentQuestionIndex,
+      numQuestions,
+      isReadOnly,
+    });
+    return (
+      nextStep.action === "complete-quiz" &&
+      currentQuestionState?.mode === "feedback"
+    );
+  };
+
+  const completeQuizAndTrack = () => {
+    completeSection(section);
+    const nextSectionResults = getCompletedQuizSectionResults({
+      section,
+      sectionResults,
+    });
+    if (!lessonStarted) {
+      trackLessonStarted();
+    }
+
+    trackQuizCompleted({
+      section,
+      sectionResults: nextSectionResults,
+      sectionStartedAt: sectionStartedAtRef.current,
+    });
+    if (
+      lessonReviewSections.every(
+        (reviewSection) => nextSectionResults[reviewSection]?.isComplete,
+      )
+    ) {
+      trackLessonCompleted();
+    }
+
+    return nextSectionResults;
+  };
+
   const onNext = () => {
     const nextStep = getQuizNextStep({
       currentQuestionIndex,
@@ -249,18 +296,7 @@ export const QuizPageContent = ({
       return;
     }
 
-    completeSection(section);
-    const nextSectionResults = getCompletedQuizSectionResults({
-      section,
-      sectionResults,
-    });
-
-    trackQuizCompleted({
-      section,
-      sectionResults: nextSectionResults,
-      sectionStartedAt: sectionStartedAtRef.current,
-    });
-
+    const nextSectionResults = completeQuizAndTrack();
     navigateToSection(
       getQuizCompletionDestination({
         sectionResults: nextSectionResults,
@@ -269,11 +305,49 @@ export const QuizPageContent = ({
     );
   };
 
+  const onBack = () => {
+    const alreadyComplete = sectionResults[section]?.isComplete;
+
+    if (!alreadyComplete && isQuizEffectivelyComplete()) {
+      completeQuizAndTrack();
+    } else if (!alreadyComplete) {
+      if (!lessonStarted) {
+        trackLessonStarted();
+      }
+      trackQuizAbandoned({
+        section,
+        sectionResults,
+        sectionStartedAt: sectionStartedAtRef.current,
+      });
+    }
+
+    navigateToSection("overview");
+  };
+
   const isFeedbackMode = currentQuestionState?.mode === "feedback";
   const isExplanatoryText =
     currentQuestionData?.questionType === "explanatory-text";
   const isCorrect = currentQuestionState?.grade === 1;
   const isPartiallyCorrect = currentQuestionState?.isPartiallyCorrect;
+
+  const renderAnswerFeedback = () => {
+    if (isCorrect) {
+      return <OakSpan $font="body-2">Well done!</OakSpan>;
+    }
+
+    if (
+      !currentQuestionData?.answers ||
+      isMatchAnswer(currentQuestionData.answers)
+    ) {
+      return null;
+    }
+
+    return (
+      <MathJaxWrap>
+        <QuizCorrectAnswers questionState={currentQuestionState} />
+      </MathJaxWrap>
+    );
+  };
 
   return (
     <OakCloudinaryConfigProvider
@@ -305,7 +379,7 @@ export const QuizPageContent = ({
                 label="Back"
                 onClick={(event) => {
                   event.preventDefault();
-                  navigateToSection("overview");
+                  onBack();
                 }}
               />
             ),
@@ -330,11 +404,7 @@ export const QuizPageContent = ({
             feedback: isFeedbackMode
               ? pickQuizFeedbackState(isCorrect, isPartiallyCorrect)
               : null,
-            answerFeedback: isCorrect ? (
-              <OakSpan $font="body-2">Well done!</OakSpan>
-            ) : (
-              <QuizCorrectAnswers questionState={currentQuestionState} />
-            ),
+            answerFeedback: renderAnswerFeedback(),
             actionSlot:
               currentQuestionData?.answers &&
               !isFeedbackMode &&

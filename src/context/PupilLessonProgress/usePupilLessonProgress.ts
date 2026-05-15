@@ -41,6 +41,10 @@ export const createPupilLessonProgressState: StateCreator<
     set((state) => updateSectionInProgressResultAction(state, "intro", result)),
   updateAdditionalFilesDownloaded: (result) =>
     set((state) => updateSectionInProgressResultAction(state, "intro", result)),
+  dismissContentGuidance: () =>
+    set(() => ({
+      contentGuidanceDismissed: true,
+    })),
   setHydratingInitialProgress: (isHydratingInitialProgress) =>
     set(() => ({
       isHydratingInitialProgress,

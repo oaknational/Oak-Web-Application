@@ -8,10 +8,12 @@ import {
   LessonBrowseData,
   LessonContent,
 } from "@/node-lib/curriculum-api-2023/queries/pupilLesson/pupilLesson.schema";
+import { LessonShareVariant } from "@/pages-helpers/pupil";
 
 type UsePupilStoresParams = {
   browseData: LessonBrowseData;
   lessonContent: LessonContent;
+  variant: LessonShareVariant | null;
 };
 
 /**
@@ -27,7 +29,10 @@ export const usePupilStores = (params?: UsePupilStoresParams) => {
   const browseData = params?.browseData;
   const lessonContent = params?.lessonContent;
   const availableSections = useMemo(
-    () => (lessonContent ? pickAvailableSectionsForLesson(lessonContent) : []),
+    () =>
+      lessonContent
+        ? pickAvailableSectionsForLesson(lessonContent, params.variant)
+        : [],
     // eslint-disable-next-line react-hooks/exhaustive-deps
     [
       lessonContent?.starterQuiz,

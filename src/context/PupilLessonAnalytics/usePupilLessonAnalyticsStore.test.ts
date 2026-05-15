@@ -38,11 +38,28 @@ const expectedVideoData = getPupilVideoData(lessonContent);
 
 const createTrack = () =>
   ({
-    lessonActivityStartedIntroduction: jest.fn(),
-    lessonActivityStartedStarterQuiz: jest.fn(),
-    lessonActivityStartedLessonVideo: jest.fn(),
-    lessonActivityStartedExitQuiz: jest.fn(),
+    lessonAccessedPupilJourney: jest.fn(),
+    lessonStarted: jest.fn(),
+    lessonCompleted: jest.fn(),
     lessonAbandoned: jest.fn(),
+    lessonActivityStartedIntroduction: jest.fn(),
+    lessonActivityCompletedIntroduction: jest.fn(),
+    lessonActivityAbandonedIntroduction: jest.fn(),
+    lessonActivityDownloadedWorksheet: jest.fn(),
+    lessonActivityStartedStarterQuiz: jest.fn(),
+    lessonActivityCompletedStarterQuiz: jest.fn(),
+    lessonActivityAbandonedStarterQuiz: jest.fn(),
+    lessonActivityStartedExitQuiz: jest.fn(),
+    lessonActivityCompletedExitQuiz: jest.fn(),
+    lessonActivityAbandonedExitQuiz: jest.fn(),
+    lessonActivityStartedLessonVideo: jest.fn(),
+    lessonActivityCompletedLessonVideo: jest.fn(),
+    lessonActivityAbandonedLessonVideo: jest.fn(),
+    questionAttemptSubmitted: jest.fn(),
+    lessonSummaryReviewed: jest.fn(),
+    activityResultsShared: jest.fn(),
+    contentGuidanceAccepted: jest.fn(),
+    contentGuidanceDeclined: jest.fn(),
   }) as unknown as jest.Mocked<TrackFns>;
 
 const initialiseStore = ({
@@ -70,6 +87,7 @@ describe("usePupilLessonAnalyticsStore", () => {
       track: null,
       additionalArgs: null,
       videoData: null,
+      accessedLessonSlug: null,
     });
   });
 
@@ -295,4 +313,329 @@ describe("usePupilLessonAnalyticsStore", () => {
       });
     },
   );
+
+  it("skips tracking lesson access when re-initialised for the same lesson slug", () => {
+    const trackOne = initialiseStore();
+    expect(trackOne.lessonAccessedPupilJourney).toHaveBeenCalledTimes(1);
+
+    const trackTwo = createTrack();
+    usePupilLessonAnalyticsStore.getState().initialisePupilLessonAnalytics({
+      track: trackTwo,
+      pupilPathwayData,
+      classroomAssignmentContext,
+      lessonContent,
+    });
+
+    expect(trackTwo.lessonAccessedPupilJourney).not.toHaveBeenCalled();
+  });
+
+  it("tracks lesson started", () => {
+    const track = initialiseStore();
+    usePupilLessonAnalyticsStore.getState().trackLessonStarted();
+    expect(track.lessonStarted).toHaveBeenCalledWith(expectedAdditionalArgs);
+  });
+
+  it("tracks lesson completed", () => {
+    const track = initialiseStore();
+    usePupilLessonAnalyticsStore.getState().trackLessonCompleted();
+    expect(track.lessonCompleted).toHaveBeenCalledWith(expectedAdditionalArgs);
+  });
+
+  it("tracks intro completed with elapsed time", () => {
+    jest.spyOn(Date, "now").mockReturnValue(2500);
+    const track = initialiseStore();
+
+    usePupilLessonAnalyticsStore
+      .getState()
+      .trackIntroCompleted({ sectionStartedAt: 1000 });
+
+    expect(track.lessonActivityCompletedIntroduction).toHaveBeenCalledWith({
+      ...expectedAdditionalArgs,
+      pupilExperienceLessonActivity: "intro",
+      activityTimeSpent: 1500,
+    });
+  });
+
+  it("tracks intro abandoned with elapsed time", () => {
+    jest.spyOn(Date, "now").mockReturnValue(3000);
+    const track = initialiseStore();
+
+    usePupilLessonAnalyticsStore
+      .getState()
+      .trackIntroAbandoned({ sectionStartedAt: 1000 });
+
+    expect(track.lessonActivityAbandonedIntroduction).toHaveBeenCalledWith({
+      ...expectedAdditionalArgs,
+      pupilExperienceLessonActivity: "intro",
+      activityTimeSpent: 2000,
+    });
+  });
+
+  it("tracks worksheet downloaded", () => {
+    const track = initialiseStore();
+    usePupilLessonAnalyticsStore.getState().trackWorksheetDownloaded();
+    expect(track.lessonActivityDownloadedWorksheet).toHaveBeenCalledWith({
+      ...expectedAdditionalArgs,
+      pupilExperienceLessonActivity: "intro",
+    });
+  });
+
+  it.each([
+    {
+      section: "starter-quiz" as const,
+      eventName: "lessonActivityCompletedStarterQuiz" as const,
+    },
+    {
+      section: "exit-quiz" as const,
+      eventName: "lessonActivityCompletedExitQuiz" as const,
+    },
+  ])("tracks $section quiz completed", ({ section, eventName }) => {
+    jest.spyOn(Date, "now").mockReturnValue(4000);
+    const track = initialiseStore();
+
+    usePupilLessonAnalyticsStore.getState().trackQuizCompleted({
+      section,
+      sectionResults: {
+        [section]: {
+          ...sectionResultsFixture[section],
+          grade: 5,
+          numQuestions: 7,
+        },
+      } as LessonSectionResults,
+      sectionStartedAt: 1000,
+    });
+
+    expect(track[eventName]).toHaveBeenCalledWith({
+      ...expectedAdditionalArgs,
+      pupilExperienceLessonActivity: section,
+      pupilQuizGrade: 5,
+      pupilQuizNumQuestions: 7,
+      hintQuestion: "",
+      hintQuestionResult: "",
+      hintUsed: "",
+      activityTimeSpent: 3000,
+    });
+  });
+
+  it.each([
+    {
+      section: "starter-quiz" as const,
+      eventName: "lessonActivityAbandonedStarterQuiz" as const,
+    },
+    {
+      section: "exit-quiz" as const,
+      eventName: "lessonActivityAbandonedExitQuiz" as const,
+    },
+  ])("tracks $section quiz abandoned", ({ section, eventName }) => {
+    jest.spyOn(Date, "now").mockReturnValue(5000);
+    const track = initialiseStore();
+
+    usePupilLessonAnalyticsStore.getState().trackQuizAbandoned({
+      section,
+      sectionResults: {
+        [section]: {
+          ...sectionResultsFixture[section],
+          grade: 2,
+          numQuestions: 4,
+        },
+      } as LessonSectionResults,
+      sectionStartedAt: 1000,
+    });
+
+    expect(track[eventName]).toHaveBeenCalledWith(
+      expect.objectContaining({
+        ...expectedAdditionalArgs,
+        pupilExperienceLessonActivity: section,
+        pupilQuizGrade: 2,
+        pupilQuizNumQuestions: 4,
+        activityTimeSpent: 4000,
+      }),
+    );
+  });
+
+  it("tracks quiz question attempts", () => {
+    const track = initialiseStore();
+
+    usePupilLessonAnalyticsStore.getState().trackQuizQuestionAttempt({
+      section: "starter-quiz",
+      questionType: "multiple-choice",
+      isCorrect: true,
+      hintAvailable: true,
+      hintAccessed: false,
+      questionNumber: 1,
+    });
+
+    expect(track.questionAttemptSubmitted).toHaveBeenCalledWith(
+      expect.objectContaining({
+        ...expectedAdditionalArgs,
+        pupilExperienceLessonActivity: "starter-quiz",
+        questionType: "multiple-choice",
+        questionResult: "correct",
+        hintOffered: true,
+        hintAccessed: false,
+        questionNumber: 1,
+      }),
+    );
+  });
+
+  it("marks incorrect quiz attempts in the tracking payload", () => {
+    const track = initialiseStore();
+
+    usePupilLessonAnalyticsStore.getState().trackQuizQuestionAttempt({
+      section: "exit-quiz",
+      questionType: "short-answer",
+      isCorrect: false,
+      hintAvailable: false,
+      hintAccessed: false,
+      questionNumber: 2,
+    });
+
+    expect(track.questionAttemptSubmitted).toHaveBeenCalledWith(
+      expect.objectContaining({ questionResult: "incorrect" }),
+    );
+  });
+
+  it("tracks video completed with elapsed time and video state", () => {
+    jest.spyOn(Date, "now").mockReturnValue(6000);
+    const track = initialiseStore();
+
+    usePupilLessonAnalyticsStore.getState().trackVideoCompleted({
+      sectionResults: {
+        video: {
+          ...sectionResultsFixture.video,
+          duration: 200,
+          timeElapsed: 180,
+          muted: true,
+          signedOpened: true,
+          transcriptOpened: true,
+        },
+      } as LessonSectionResults,
+      sectionStartedAt: 1000,
+    });
+
+    expect(track.lessonActivityCompletedLessonVideo).toHaveBeenCalledWith(
+      expect.objectContaining({
+        pupilExperienceLessonActivity: "video",
+        pupilVideoDurationSeconds: 200,
+        pupilVideoTimeElapsedSeconds: 180,
+        isMuted: true,
+        signedOpened: true,
+        transcriptOpened: true,
+        activityTimeSpent: 5000,
+      }),
+    );
+  });
+
+  it("tracks video abandoned with elapsed time and video state", () => {
+    jest.spyOn(Date, "now").mockReturnValue(7000);
+    const track = initialiseStore();
+
+    usePupilLessonAnalyticsStore.getState().trackVideoAbandoned({
+      sectionResults: {
+        video: {
+          ...sectionResultsFixture.video,
+          duration: 90,
+          timeElapsed: 30,
+          muted: false,
+        },
+      } as LessonSectionResults,
+      sectionStartedAt: 2000,
+    });
+
+    expect(track.lessonActivityAbandonedLessonVideo).toHaveBeenCalledWith(
+      expect.objectContaining({
+        pupilExperienceLessonActivity: "video",
+        pupilVideoDurationSeconds: 90,
+        pupilVideoTimeElapsedSeconds: 30,
+        isMuted: false,
+        activityTimeSpent: 5000,
+      }),
+    );
+  });
+
+  it("does not track video completed when no video data has been initialised", () => {
+    const track = initialiseStore({ includeLessonContent: false });
+
+    usePupilLessonAnalyticsStore.getState().trackVideoCompleted({
+      sectionResults: {},
+      sectionStartedAt: 1000,
+    });
+
+    expect(track.lessonActivityCompletedLessonVideo).not.toHaveBeenCalled();
+  });
+
+  it("does not track video abandoned when no video data has been initialised", () => {
+    const track = initialiseStore({ includeLessonContent: false });
+
+    usePupilLessonAnalyticsStore.getState().trackVideoAbandoned({
+      sectionResults: {},
+      sectionStartedAt: 1000,
+    });
+
+    expect(track.lessonActivityAbandonedLessonVideo).not.toHaveBeenCalled();
+  });
+
+  const reviewArgs = {
+    sectionResults: sectionResultsFixture,
+    starterQuizQuestionsArray: [],
+    exitQuizQuestionsArray: [],
+  };
+
+  it("tracks lesson summary reviewed", () => {
+    const track = initialiseStore();
+
+    usePupilLessonAnalyticsStore
+      .getState()
+      .trackLessonSummaryReviewed(reviewArgs);
+
+    expect(track.lessonSummaryReviewed).toHaveBeenCalledWith(
+      expect.objectContaining({
+        ...expectedAdditionalArgs,
+        pupilWorksheetAvailable: true,
+        pupilWorksheetDownloaded: false,
+      }),
+    );
+  });
+
+  it("tracks activity results shared", () => {
+    const track = initialiseStore();
+
+    usePupilLessonAnalyticsStore
+      .getState()
+      .trackActivityResultsShared(reviewArgs);
+
+    expect(track.activityResultsShared).toHaveBeenCalledWith(
+      expect.objectContaining({
+        ...expectedAdditionalArgs,
+      }),
+    );
+  });
+
+  it("tracks content guidance accepted", () => {
+    const track = initialiseStore();
+    const guidanceArgs = { contentGuidanceLabel: "violence" } as never;
+
+    usePupilLessonAnalyticsStore
+      .getState()
+      .trackContentGuidanceAccepted(guidanceArgs);
+
+    expect(track.contentGuidanceAccepted).toHaveBeenCalledWith({
+      ...expectedAdditionalArgs,
+      contentGuidanceLabel: "violence",
+    });
+  });
+
+  it("tracks content guidance declined", () => {
+    const track = initialiseStore();
+    const guidanceArgs = { contentGuidanceLabel: "language" } as never;
+
+    usePupilLessonAnalyticsStore
+      .getState()
+      .trackContentGuidanceDeclined(guidanceArgs);
+
+    expect(track.contentGuidanceDeclined).toHaveBeenCalledWith({
+      ...expectedAdditionalArgs,
+      contentGuidanceLabel: "language",
+    });
+  });
 });
