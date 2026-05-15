@@ -25,6 +25,11 @@ describe("removeWebVttCharacters ", () => {
     expect(result[0]).toBe("Heathcliff");
     expect(result[1]).toBe("It's me.");
   });
+
+  it("returns an empty array when no first sentence is provided", () => {
+    const result = removeWebVttCharacters([]);
+    expect(result).toEqual([]);
+  });
 });
 
 describe("formatSentences", () => {

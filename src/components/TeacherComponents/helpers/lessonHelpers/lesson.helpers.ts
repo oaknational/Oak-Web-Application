@@ -5,7 +5,7 @@ import { checkIfResourceHasLegacyCopyright } from "../downloadAndShareHelpers/do
 import {
   LessonBase,
   LessonPathway,
-  SpecialistLessonPathway,
+  SpecialistLessonPathwayBreadcrumbs,
 } from "@/components/TeacherComponents/types/lesson.types";
 import truthy from "@/utils/truthy";
 import { Breadcrumb } from "@/components/SharedComponents/Breadcrumbs";
@@ -186,31 +186,20 @@ export const getLessonShareBreadCrumb = ({
   disabled,
 }: {
   lessonSlug: string;
-  programmeSlug: string | null;
-  unitSlug: string | null;
+  programmeSlug: string;
+  unitSlug: string;
   disabled?: boolean;
 }): Breadcrumb => {
-  if (programmeSlug && unitSlug) {
-    return {
-      href: resolveOakHref({
-        page: "lesson-share",
-        programmeSlug,
-        unitSlug,
-        lessonSlug,
-      }),
-      label: "Share",
-      disabled,
-    };
-  } else {
-    return {
-      href: resolveOakHref({
-        page: "lesson-share-canonical",
-        lessonSlug,
-      }),
-      label: "Share",
-      disabled,
-    };
-  }
+  return {
+    href: resolveOakHref({
+      page: "lesson-share",
+      programmeSlug,
+      unitSlug,
+      lessonSlug,
+    }),
+    label: "Share",
+    disabled,
+  };
 };
 
 export const getBreadCrumbForSpecialistDownload = ({
@@ -271,7 +260,7 @@ export const getBreadCrumbForSpecialistShare = ({
 };
 
 export const getBreadcrumbsForSpecialistLessonPathway = (
-  lesson: SpecialistLessonPathway | null,
+  lesson: SpecialistLessonPathwayBreadcrumbs | null,
 ): Breadcrumb[] | [] => {
   if (!lesson) return [];
   const {

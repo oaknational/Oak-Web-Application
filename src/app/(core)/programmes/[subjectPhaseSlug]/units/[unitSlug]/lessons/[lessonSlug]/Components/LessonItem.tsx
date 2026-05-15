@@ -21,8 +21,8 @@ export function LessonItem({
   resource: LessonResource;
   slugs: {
     lessonSlug: string;
-    unitSlug: string | null;
-    programmeSlug: string | null;
+    unitSlug: string;
+    programmeSlug: string;
   };
   onDownloadButtonClick: (props: {
     downloadResourceButtonName: DownloadResourceButtonNameValueType;

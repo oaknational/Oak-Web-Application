@@ -8,10 +8,15 @@ import { LessonOverviewHeaderProps } from "@/components/TeacherComponents/Lesson
 import { resolveOakHref } from "@/common-lib/urls";
 import { invariant } from "@/utils/invariant";
 
+export type LessonOverviewHeaderShareAllButtonProps = Omit<
+  LessonOverviewHeaderProps,
+  "isCanonical"
+> & {
+  variant?: "primary" | "dropdown";
+};
+
 export const LessonOverviewHeaderShareAllButton: FC<
-  LessonOverviewHeaderProps & {
-    variant?: "primary" | "dropdown";
-  }
+  LessonOverviewHeaderShareAllButtonProps
 > = (props) => {
   const {
     lessonSlug,
@@ -20,7 +25,6 @@ export const LessonOverviewHeaderShareAllButton: FC<
     isShareable,
     onClickShareAll,
     isSpecialist,
-    isCanonical,
     geoRestricted,
     loginRequired,
     variant = "primary",
@@ -36,14 +40,6 @@ export const LessonOverviewHeaderShareAllButton: FC<
   const preselected = "all";
 
   const href = (() => {
-    if (isCanonical) {
-      return resolveOakHref({
-        page: "lesson-share-canonical",
-        lessonSlug,
-        query: { preselected },
-      });
-    }
-
     invariant(typeof unitSlug === "string", "unitSlug is required");
     invariant(typeof programmeSlug === "string", "programmeSlug is required");
 

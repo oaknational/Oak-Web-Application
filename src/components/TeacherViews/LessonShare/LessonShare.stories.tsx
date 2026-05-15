@@ -13,7 +13,6 @@ type Story = StoryObj<typeof LessonShare>;
 
 export const SharePage: Story = {
   args: {
-    isCanonical: false,
     lesson: lessonShareFixtures(),
   },
 };

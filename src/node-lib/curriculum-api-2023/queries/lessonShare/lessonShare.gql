@@ -1,9 +1,11 @@
 query lessonShare(
   $lessonSlug: String!
-  $browseDataWhere: published_mv_synthetic_unitvariant_lessons_by_keystage_18_0_0_bool_exp
+  $programmeSlug: String!
+  $unitSlug: String!
 ) {
   share: published_mv_lesson_content_published_9_0_0(
     where: { lesson_slug: { _eq: $lessonSlug } }
+    limit: 1
   ) {
     lesson_title
     starter_quiz
@@ -15,7 +17,11 @@ query lessonShare(
     lesson_release_date
   }
   browse: published_mv_synthetic_unitvariant_lessons_by_keystage_18_0_0(
-    where: $browseDataWhere
+    where: {
+      lesson_slug: { _eq: $lessonSlug }
+      unit_slug: { _eq: $unitSlug }
+      programme_slug: { _eq: $programmeSlug }
+    }
   ) {
     unit_title: unit_data(path: "title")
     lesson_slug
