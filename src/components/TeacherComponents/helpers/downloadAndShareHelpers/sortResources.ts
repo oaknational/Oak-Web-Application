@@ -1,33 +1,6 @@
-import {
-  ResourceType,
-  Resources,
-} from "@/components/TeacherComponents/types/downloadAndShare.types";
-import { LessonDownloadsPageData } from "@/node-lib/curriculum-api-2023/queries/lessonDownloads/lessonDownloads.schema";
-import { LessonShareData } from "@/node-lib/curriculum-api-2023/queries/lessonShare/lessonShare.schema";
+import { Resources, ResourceType } from "../../types/downloadAndShare.types";
 
-export const sortDownloadResources = (
-  resources: LessonDownloadsPageData["downloads"],
-) => {
-  const sortOrderKey = {
-    "lesson-guide-pdf": 1,
-    presentation: 2,
-    "worksheet-pdf": 3,
-    "worksheet-pptx": 4,
-    "intro-quiz-questions": 5,
-    "intro-quiz-answers": 6,
-    "exit-quiz-questions": 7,
-    "exit-quiz-answers": 8,
-    "supplementary-pdf": 9,
-    "supplementary-docx": 10,
-    video: 11,
-    "curriculum-pdf": 12,
-    "additional-files": 13,
-  };
-  return sortResourcesByOrder(
-    resources,
-    sortOrderKey,
-  ) as LessonDownloadsPageData["downloads"];
-};
+import { LessonShareData } from "@/node-lib/curriculum-api-2023/queries/lessonShare/lessonShare.schema";
 
 export const sortShareResources = (
   resources: LessonShareData["shareableResources"],
@@ -38,6 +11,8 @@ export const sortShareResources = (
     "worksheet-pdf": 3,
     "intro-quiz-answers": 4,
     "exit-quiz-questions": 5,
+    "starter-quiz": 6,
+    "exit-quiz": 7,
     presentation: 100,
     "worksheet-pptx": 100,
     "exit-quiz-answers": 100,

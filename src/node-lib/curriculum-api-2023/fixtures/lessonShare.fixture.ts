@@ -25,13 +25,13 @@ const lessonShareFixtures = (
     examBoardTitle: null,
     shareableResources: [
       {
-        type: "exit-quiz-questions",
+        type: "exit-quiz",
         exists: true,
         label: "Exit quiz",
         metadata: "6 questions",
       },
       {
-        type: "intro-quiz-questions",
+        type: "starter-quiz",
         exists: true,
         label: "Starter quiz",
         metadata: "6 questions",

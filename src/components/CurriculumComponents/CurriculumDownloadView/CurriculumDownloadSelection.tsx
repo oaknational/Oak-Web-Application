@@ -41,7 +41,7 @@ export function CurriculumDownloadSelection({
               data-testid="resourceCard"
               value={download.id}
               name="curriculum-download"
-              titleSlot={download.label}
+              title={download.label}
               checked={isChecked}
               onChange={(e) => {
                 const downloadType = assertValidDownloadType(e.target.value);
@@ -55,7 +55,7 @@ export function CurriculumDownloadSelection({
                 }
                 onChange(newDownloadTypes);
               }}
-              formatSlot={download.subTitle}
+              format={download.subTitle}
               iconName={download.icon}
             />
           );

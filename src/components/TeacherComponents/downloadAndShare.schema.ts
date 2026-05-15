@@ -3,7 +3,6 @@ import { z } from "zod";
 export const preselectedResourceBaseType = z.union([
   z.literal("exit quiz"),
   z.literal("starter quiz"),
-  z.literal("worksheet"),
   z.literal("all"),
 ]);
 

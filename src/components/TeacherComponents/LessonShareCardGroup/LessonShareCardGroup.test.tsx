@@ -83,23 +83,4 @@ describe("lesson share card group", () => {
     await user.click(checkboxLabel);
     expect(checkbox).not.toBeChecked();
   });
-  it("should render pdf label in uppercase", () => {
-    const shareableResources = [
-      {
-        exists: true,
-        type: "worksheet-pdf" as const,
-        metadata: "pdf",
-        label: "Worksheet",
-      },
-    ];
-    renderWithTheme(
-      <ComponentWrapper
-        shareableResources={shareableResources}
-        shareLink="www.fake.com"
-      />,
-    );
-
-    const resourceCardLabel = screen.getByText("PDF");
-    expect(resourceCardLabel).toBeInTheDocument();
-  });
 });

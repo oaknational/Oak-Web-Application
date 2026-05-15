@@ -6,28 +6,22 @@ import {
 } from "@oaknational/oak-components";
 import styled from "styled-components";
 
-import type { DownloadResourceType } from "@/components/TeacherComponents/types/downloadAndShare.types";
 import { CheckboxProps } from "@/components/SharedComponents/Checkbox/Checkbox";
+import { LessonShareResourceData } from "@/node-lib/curriculum-api-2023/queries/lessonShare/lessonShare.schema";
 import { getValidSubjectIconName } from "@/utils/getValidSubjectIconName";
 
-const CustomSizing = styled("div")<{
+export const CustomSizing = styled("div")<{
   checked?: boolean;
   useDownloadPageLayout?: boolean;
 }>`
-  display: grid;
-  width: ${(props) => (props.useDownloadPageLayout ? "100%" : "320px")};
   input {
     border: ${(props) => (props.checked ? "0" : "default")};
-  }
-
-  @media (min-width: 1280px) {
-    width: ${(props) => (props.useDownloadPageLayout ? "300px" : "320px")};
   }
 `;
 
 export type ResourceCardProps = Omit<CheckboxProps, "checked"> & {
   label: string;
-  resourceType: DownloadResourceType;
+  resourceType: LessonShareResourceData["type"];
   subtitle: string;
   subjectIcon?: string;
   isEditable?: boolean;
@@ -36,19 +30,13 @@ export type ResourceCardProps = Omit<CheckboxProps, "checked"> & {
   checked?: boolean;
 };
 
-const RESOURCE_TYPE_ICON_MAP: Record<DownloadResourceType, OakIconName> = {
-  presentation: "slide-deck",
-  "intro-quiz-questions": "quiz",
-  "intro-quiz-answers": "quiz",
-  "exit-quiz-questions": "quiz",
-  "exit-quiz-answers": "quiz",
-  "worksheet-pdf": "worksheet",
-  "worksheet-pptx": "worksheet",
-  "supplementary-pdf": "additional-material",
-  "supplementary-docx": "additional-material",
-  "curriculum-pdf": "additional-material",
-  "lesson-guide-pdf": "additional-material",
-  "additional-files": "additional-material",
+const RESOURCE_TYPE_ICON_MAP: Record<
+  LessonShareResourceData["type"],
+  OakIconName
+> = {
+  "starter-quiz": "quiz",
+  "exit-quiz": "quiz",
+  video: "video",
 };
 
 const ResourceCard: FC<ResourceCardProps> = (props) => {
@@ -68,11 +56,9 @@ const ResourceCard: FC<ResourceCardProps> = (props) => {
     useDownloadPageLayout = false,
   } = props;
 
-  const isCurriculumIcon = resourceType === "curriculum-pdf";
-  const iconName =
-    isCurriculumIcon && subjectIcon
-      ? getValidSubjectIconName(subjectIcon)
-      : RESOURCE_TYPE_ICON_MAP[resourceType];
+  const iconName = subjectIcon
+    ? getValidSubjectIconName(subjectIcon)
+    : RESOURCE_TYPE_ICON_MAP[resourceType];
 
   return (
     <CustomSizing

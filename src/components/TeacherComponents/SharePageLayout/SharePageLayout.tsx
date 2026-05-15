@@ -14,6 +14,7 @@ import {
   OakBox,
   OakLoadingSpinner,
   OakIcon,
+  OakHandDrawnHR,
 } from "@oaknational/oak-components";
 import styled from "styled-components";
 
@@ -50,13 +51,13 @@ export type SharePageLayoutProps = ResourcePageDetailsCompletedProps &
 const SharePageLayout: FC<SharePageLayoutProps> = (props) => {
   const hasFormErrors = Object.keys(props.errors).length > 0;
   return (
-    <OakBox $width="100%">
+    <OakBox $maxWidth={"spacing-960"} $mb={"spacing-48"}>
       <OakFlex
         $alignItems={"flex-start"}
         $flexDirection={"column"}
         $gap={["spacing-24", "spacing-32"]}
       >
-        <OakHeading tag="h1" $font={["heading-5", "heading-4"]}>
+        <OakHeading tag="h1" $font={["heading-4", "heading-2"]}>
           {props.header}
         </OakHeading>
         {props.isLoading ? (
@@ -67,7 +68,7 @@ const SharePageLayout: FC<SharePageLayoutProps> = (props) => {
           <OakFlex
             $justifyContent="space-between"
             $width="100%"
-            $flexDirection={["column", "column", "row"]}
+            $flexDirection={"column"}
             $gap="spacing-48"
             $alignItems={"flex-start"}
             $position={"relative"}
@@ -88,9 +89,9 @@ const SharePageLayout: FC<SharePageLayoutProps> = (props) => {
             <OakFlex
               $flexDirection="column"
               $gap="spacing-16"
-              $maxWidth="spacing-480"
               $position={"sticky"}
               $top={"spacing-56"}
+              $width={"100%"}
             >
               {props.showNoResources ? (
                 <NoResourcesToShare />
@@ -155,8 +156,22 @@ const SharePageLayout: FC<SharePageLayoutProps> = (props) => {
                       />
                     </OakBox>
                   )}
+                  <OakHandDrawnHR
+                    $height={"spacing-2"}
+                    $width={"100%"}
+                    $mb={"spacing-16"}
+                    $mt={"spacing-16"}
+                    hrColor={"border-neutral-lighter"}
+                  />
 
                   {props.cta}
+
+                  <CopyrightNotice
+                    fullWidth
+                    showPostAlbCopyright={true}
+                    openLinksExternally={true}
+                    copyrightYear={props.updatedAt}
+                  />
 
                   {props.apiError && !hasFormErrors && (
                     <FieldError

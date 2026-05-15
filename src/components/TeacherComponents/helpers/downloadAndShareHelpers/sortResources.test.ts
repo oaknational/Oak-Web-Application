@@ -37,6 +37,6 @@ describe("sortResources", () => {
   });
   it("sorts share resources", () => {
     const sorted = sortShareResources(shareResources.allResources);
-    expect(sorted[0]?.type).toBe("intro-quiz-questions");
+    expect(sorted[0]?.type).toBe("video");
   });
 });

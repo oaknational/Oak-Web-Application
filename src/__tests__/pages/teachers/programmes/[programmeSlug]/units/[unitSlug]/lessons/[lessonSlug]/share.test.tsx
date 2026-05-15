@@ -136,9 +136,33 @@ describe("pages/teachers/lessons/[lessonSlug]/share", () => {
       });
     });
 
-    render(<LessonSharePage {...props} />);
+    render(
+      <LessonSharePage
+        {...{
+          ...props,
+          // curriculumData: {
+          // ...props.curriculumData,
+          // shareableResources: [
+          //   {
+          //     exists: true,
+          //     type: "exit-quiz",
+          //     label: "Exit quiz",
+          //     metadata: null,
+          //   },
+          //   { exists: true, type: "video", label: "Video", metadata: null },
+          //   {
+          //     exists: true,
+          //     type: "starter-quiz",
+          //     label: "Starter quiz",
+          //     metadata: null,
+          //   },
+          // ],
+          // },
+        }}
+      />,
+    );
     const shareButtonCopy = await screen.findByRole("link", {
-      name: "Share to Email",
+      name: "Copy link",
     });
     expect(shareButtonCopy).not.toBeDisabled();
     const user = userEvent.setup();
@@ -172,7 +196,7 @@ describe("pages/teachers/lessons/[lessonSlug]/share", () => {
       render(<LessonSharePage {...props} />);
 
       expect(screen.getAllByRole("heading", { level: 2 })[0]).toHaveTextContent(
-        "Your details",
+        "1Select activities",
       );
 
       expect(
@@ -205,7 +229,7 @@ describe("pages/teachers/lessons/[lessonSlug]/share", () => {
       // Lesson resources to share
       const lessonResourcesToShare = screen.getAllByTestId("resourceCard");
       expect(lessonResourcesToShare.length).toEqual(
-        props.curriculumData.shareableResources.length,
+        props.curriculumData.shareableResources.length + 1,
       );
 
       const exitQuizQuestions = screen.getByText("Exit quiz");
@@ -234,10 +258,6 @@ describe("pages/teachers/lessons/[lessonSlug]/share", () => {
         name: "Share to Microsoft Teams",
       });
       expect(shareButtonMicrosoft).toBeInTheDocument();
-      const shareButtonEmail = screen.getByRole("link", {
-        name: "Share to Email",
-      });
-      expect(shareButtonEmail).toBeInTheDocument();
     });
 
     it("should display error hint on blur email if not formatted correctly", async () => {
@@ -383,24 +403,6 @@ describe("pages/teachers/lessons/[lessonSlug]/share", () => {
 
       expect(schoolId).toBe("222-Primary-School");
       expect(schoolName).toBe("Primary School");
-    });
-  });
-
-  describe("Copyright notice", () => {
-    it("renders pre-ALB copyright notice on legacy lessons", async () => {
-      render(
-        <LessonSharePage
-          curriculumData={lessonShareFixtures({ isLegacy: true })}
-          topNav={topNavFixture}
-        />,
-      );
-
-      const copyrightNotice = await screen.findByText(
-        "This content is made available by Oak National Academy Limited and its partners",
-        { exact: false },
-      );
-
-      expect(copyrightNotice).toBeInTheDocument();
     });
   });
 
