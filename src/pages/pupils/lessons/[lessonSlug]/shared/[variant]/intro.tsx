@@ -208,8 +208,8 @@ const IntroPageContent = ({
     if (!lessonStarted) {
       trackLessonStarted();
     }
-    const succeeded = await startDownload();
-    if (succeeded) {
+    const isSuccess = await startDownload();
+    if (isSuccess) {
       trackWorksheetDownloaded();
     }
   };

@@ -115,8 +115,8 @@ export const PupilViewsIntro = (props: PupilViewsIntroProps) => {
       worksheetDownloaded: true,
       worksheetAvailable: true,
     });
-    const succeeded = await startDownload();
-    if (succeeded && track.lessonActivityDownloadedWorksheet) {
+    const isSuccess = await startDownload();
+    if (isSuccess && track.lessonActivityDownloadedWorksheet) {
       track.lessonActivityDownloadedWorksheet({});
     }
   };
