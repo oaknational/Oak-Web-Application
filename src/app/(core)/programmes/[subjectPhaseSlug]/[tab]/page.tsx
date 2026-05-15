@@ -29,10 +29,7 @@ import { getMvRefreshTime } from "@/pages-helpers/curriculum/downloads/getMvRefr
 import { getFeatureFlagValue } from "@/utils/featureFlags";
 import { resolveOakHref } from "@/common-lib/urls";
 import { getSubjectPhaseSlug } from "@/components/TeacherComponents/helpers/getSubjectPhaseSlug";
-import {
-  getDefaultFilter,
-  mergeInFilterParams,
-} from "@/utils/curriculum/filtersUrl";
+import { resolveFilterFromSearchParams } from "@/utils/curriculum/filtersUrl";
 
 const reportError = errorReporter("programme-page::app");
 
@@ -182,22 +179,10 @@ const InnerProgrammePage = async (props: AppPageProps<ProgrammePageParams>) => {
     formatCurriculumUnitsData(curriculumUnitsData);
 
   // Resolve filter server-side from URL search params
-  const defaultFilter = getDefaultFilter(curriculumUnitsFormattedData);
-  const searchParamsMap = new URLSearchParams();
-  if (searchParams) {
-    Object.entries(searchParams).forEach(([k, v]) => {
-      if (v != null) {
-        if (Array.isArray(v)) {
-          v.forEach((item) => {
-            searchParamsMap.append(k, item);
-          });
-        } else {
-          searchParamsMap.append(k, v);
-        }
-      }
-    });
-  }
-  const resolvedFilter = mergeInFilterParams(defaultFilter, searchParamsMap);
+  const resolvedFilter = resolveFilterFromSearchParams(
+    curriculumUnitsFormattedData,
+    searchParams,
+  );
 
   // All KS4 options for subject phase
   const ks4Options =

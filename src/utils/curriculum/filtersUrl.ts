@@ -206,6 +206,7 @@ export function filteringFromYears(
     years: filters.years,
     threads: filters.threads,
     pathways: filters.pathways,
+    keystages: filters.keystages,
   };
   return output;
 }
@@ -499,4 +500,34 @@ export function getNumberOfSelectedUnits(
   });
 
   return count;
+}
+
+type RawSearchParams = { [key: string]: string | string[] | undefined };
+
+/**
+ * Resolves the filter from raw search params (server-side)
+ * Converts PageSearchParms into a CurriculumFilters with URL params applied
+ * Used in page.tsx to pre-resolve filters before SSR
+ */
+export function resolveFilterFromSearchParams(
+  data: CurriculumUnitsFormattedData,
+  searchParams: RawSearchParams | undefined,
+): CurriculumFilters {
+  const defaultFilter = getDefaultFilter(data);
+  const params = new URLSearchParams();
+
+  if (searchParams) {
+    for (const [k, v] of Object.entries(searchParams)) {
+      if (v == null) continue;
+      if (Array.isArray(v)) {
+        v.forEach((item) => {
+          params.append(k, item);
+        });
+      } else {
+        params.append(k, v);
+      }
+    }
+  }
+
+  return mergeInFilterParams(defaultFilter, params);
 }
