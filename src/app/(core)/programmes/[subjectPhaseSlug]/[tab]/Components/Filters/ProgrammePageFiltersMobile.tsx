@@ -10,17 +10,10 @@ import {
 
 import { ProgrammePageFiltersProps } from "./ProgrammePageFiltersDesktop";
 import ProgrammeFiltersHeaderMobile from "./ProgrammeFiltersHeaderMobile";
-import { ProgrammeFiltersThreads } from "./ProgrammeFiltersThreads";
+import { ProgrammeFilters } from "./ProgrammeFilters";
 
 import { usePrevious } from "@/hooks/usePrevious";
 import { CloseAction } from "@/components/CurriculumComponents/OakComponentsKitchen/OakModalNew/Content";
-import {
-  CurricFiltersSubjectCategories,
-  CurricFiltersChildSubjects,
-  CurricFiltersTiers,
-  CurricFiltersYears,
-} from "@/components/CurriculumComponents/CurricVisualiserFilters";
-import { shouldDisplayFilter } from "@/utils/curriculum/filteringApp";
 
 export default function ProgrammePageFiltersMobile({
   filters,
@@ -132,47 +125,13 @@ const ModalContent = ({
         $gap={"spacing-32"}
         $overflowX={"visible"}
       >
-        <CurricFiltersYears
+        <ProgrammeFilters
           filters={filters}
           onChangeFilters={onChangeFilters}
           data={data}
           slugs={slugs}
           ks4Options={ks4Options}
-          context="integrated-journey"
         />
-        {shouldDisplayFilter(data, filters, "subjectCategories") && (
-          <CurricFiltersSubjectCategories
-            filters={filters}
-            onChangeFilters={onChangeFilters}
-            data={data}
-            slugs={slugs}
-            context="integrated-journey"
-          />
-        )}
-
-        {shouldDisplayFilter(data, filters, "childSubjects") && (
-          <CurricFiltersChildSubjects
-            filters={filters}
-            onChangeFilters={onChangeFilters}
-            data={data}
-            context={"integrated-journey"}
-          />
-        )}
-        {shouldDisplayFilter(data, filters, "tiers") && (
-          <CurricFiltersTiers
-            filters={filters}
-            onChangeFilters={onChangeFilters}
-            data={data}
-            context={"integrated-journey"}
-          />
-        )}
-        {shouldDisplayFilter(data, filters, "threads") && (
-          <ProgrammeFiltersThreads
-            filters={filters}
-            onChangeFilters={onChangeFilters}
-            data={data}
-          />
-        )}
       </OakFlex>
     </OakFlex>
   );
