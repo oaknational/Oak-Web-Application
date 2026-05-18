@@ -218,7 +218,7 @@ const TabContent = ({
         ks4Options={ks4Options}
       />
     );
-  } else if (tabSlug === "overview") {
+  } else if (tabSlug === "curriculum-explainer") {
     if (!curriculumCMSInfo) {
       notFound();
     }

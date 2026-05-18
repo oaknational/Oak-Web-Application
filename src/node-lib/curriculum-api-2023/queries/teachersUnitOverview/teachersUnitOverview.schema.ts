@@ -137,6 +137,7 @@ export const unitOverviewDataSchema = z.object({
   actions: lessonListItemSchema.shape.actions.nullable(),
   containsGeorestrictedLessons: z.boolean().optional(),
   containsLoginRequiredLessons: z.boolean().optional(),
+  nonCurriculum: z.boolean().optional(),
   priorKnowledgeRequirements:
     modifiedLessonsResponseSchema.shape.unit_data.shape
       .prior_knowledge_requirements,

@@ -1,4 +1,6 @@
 "use client";
+import { OakBox } from "@oaknational/oak-components";
+
 import UnitHeader from "./UnitHeader/UnitHeader";
 import { Breadcrumbs } from "./Breadcrumbs/Breadcrumbs";
 import { UnitOverviewContent } from "./UnitOverviewContent/UnitOverviewContent";
@@ -9,6 +11,7 @@ import { getTeacherSubjectPhaseSlug } from "@/utils/curriculum/slugs";
 import { SubjectIcon } from "@/components/TeacherComponents/Header/Header";
 import { useUnitDownloadButtonState } from "@/components/TeacherComponents/UnitDownloadButton/UnitDownloadButton";
 import { getUnitDownloadFileId } from "@/utils/getUnitDownloadFileId";
+import ComplexCopyrightRestrictionBanner from "@/components/TeacherComponents/ComplexCopyrightRestrictionBanner/ComplexCopyrightRestrictionBanner";
 
 export type UnitPageProps = TeachersUnitOverviewData;
 
@@ -57,6 +60,18 @@ export const UnitView = (props: UnitPageProps) => {
         }
         downloadButtonState={downloadButtonState}
       />
+      <OakBox $ph="spacing-40">
+        <OakBox $mh="auto" $width={"100%"} $maxWidth={"spacing-1280"}>
+          <ComplexCopyrightRestrictionBanner
+            isGeorestricted={props.containsGeorestrictedLessons}
+            isLoginRequired={props.containsLoginRequiredLessons}
+            componentType="lesson_listing"
+            unitName={props.unitTitle}
+            unitSlug={props.unitSlug}
+            $mv="spacing-80"
+          />
+        </OakBox>
+      </OakBox>
       <UnitOverviewContent
         programmeSlug={props.programmeSlug}
         unitSlug={props.unitSlug}
@@ -64,6 +79,7 @@ export const UnitView = (props: UnitPageProps) => {
         unitDescription={props.unitDescription}
         subjectTitle={props.subjectTitle}
         subjectSlug={props.subjectSlug}
+        subjectPhaseSlug={subjectPhaseSlug}
         keyStageSlug={props.keyStageSlug}
         keyStageTitle={props.keyStageTitle}
         lessons={props.lessons}
@@ -73,6 +89,7 @@ export const UnitView = (props: UnitPageProps) => {
         priorKnowledgeRequirements={props.priorKnowledgeRequirements}
         threads={props.threads}
         phaseSlug={props.phaseSlug}
+        phaseTitle={props.phaseTitle}
         tierOptionToggles={props.tierOptionToggles}
         subjectOptionToggles={props.subjectOptionToggles}
         nextUnit={props.nextUnit}
@@ -80,6 +97,9 @@ export const UnitView = (props: UnitPageProps) => {
         subjectCategories={props.subjectCategories}
         showDownloadMessage={downloadButtonState.showDownloadMessage}
         setShowDownloadMessage={downloadButtonState.setShowDownloadMessage}
+        nonCurriculum={props.nonCurriculum}
+        yearGroupTitle={props.yearGroupTitle}
+        examBoardTitle={props.examBoardTitle}
       />
     </>
   );

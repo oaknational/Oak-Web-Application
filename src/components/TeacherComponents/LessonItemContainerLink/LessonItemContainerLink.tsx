@@ -9,9 +9,7 @@ import {
 } from "@/components/TeacherComponents/types/downloadAndShare.types";
 import {
   IntegratedLessonDownloadsLinkProps,
-  LessonDownloadsCanonicalLinkProps,
   LessonDownloadsLinkProps,
-  LessonShareCanonicalLinkProps,
   LessonShareLinkProps,
   resolveOakHref,
   SpecialistLessonDownloadsLinkProps,
@@ -33,8 +31,8 @@ export function LessonItemContainerLink({
   resourceTitle: string;
   onClick?: () => void;
   lessonSlug: string;
-  unitSlug: string | null;
-  programmeSlug: string | null;
+  unitSlug: string;
+  programmeSlug: string;
   preselected: PreselectedDownloadType | PreselectedShareType | null;
   isSpecialist: boolean;
   /**
@@ -49,13 +47,12 @@ export function LessonItemContainerLink({
 
   const getShareLinkProps = ():
     | LessonShareLinkProps
-    | LessonShareCanonicalLinkProps
     | SpecialistLessonShareLinkProps => {
     const query = isPreselectedShareType(preselected)
       ? { preselected }
       : undefined;
 
-    if (isSpecialist && programmeSlug && unitSlug) {
+    if (isSpecialist) {
       return {
         page: "specialist-lesson-share",
         lessonSlug,
@@ -65,35 +62,24 @@ export function LessonItemContainerLink({
       };
     }
 
-    if (programmeSlug && unitSlug) {
-      return {
-        page: "lesson-share",
-        lessonSlug,
-        unitSlug,
-        programmeSlug,
-        query,
-      };
-    }
-
     return {
-      page: "lesson-share-canonical",
+      page: "lesson-share",
       lessonSlug,
+      unitSlug,
+      programmeSlug,
       query,
     };
   };
 
-  const shareLinkProps = getShareLinkProps();
-
   const getDownloadLinkProps = ():
     | LessonDownloadsLinkProps
     | IntegratedLessonDownloadsLinkProps
-    | LessonDownloadsCanonicalLinkProps
     | SpecialistLessonDownloadsLinkProps => {
     const query = isPreselectedDownloadType(preselected)
       ? { preselected }
       : undefined;
 
-    if (isSpecialist && programmeSlug && unitSlug) {
+    if (isSpecialist) {
       return {
         page: "specialist-lesson-downloads",
         lessonSlug,
@@ -104,37 +90,28 @@ export function LessonItemContainerLink({
       };
     }
 
-    if (programmeSlug && unitSlug) {
-      if (isIntegratedJourney) {
-        return {
-          page: "integrated-lesson-downloads",
-          lessonSlug,
-          unitSlug,
-          programmeSlug,
-          query,
-        };
-      }
-
+    if (isIntegratedJourney) {
       return {
-        page: "lesson-downloads",
+        page: "integrated-lesson-downloads",
         lessonSlug,
         unitSlug,
         programmeSlug,
-        downloads: "downloads",
         query,
       };
     }
 
     return {
-      page: "lesson-downloads-canonical",
-      downloads: "downloads",
+      page: "lesson-downloads",
       lessonSlug,
+      unitSlug,
+      programmeSlug,
+      downloads: "downloads",
       query,
     };
   };
 
-  const downloadLinkProps = getDownloadLinkProps();
-  const linkProps = page === "share" ? shareLinkProps : downloadLinkProps;
+  const linkProps =
+    page === "share" ? getShareLinkProps() : getDownloadLinkProps();
   const href = resolveOakHref(linkProps);
 
   return (

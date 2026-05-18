@@ -1,3 +1,83 @@
+# [1.1077.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1076.1...v1.1077.0) (2026-05-15)
+
+
+### Bug Fixes
+
+* add subjectPhaseSlug to UnitViewSeoAccordion stories ([a21790b](https://github.com/oaknational/Oak-Web-Application/commit/a21790b56df3bbbb3c484a440a2f4474b57eca2c))
+* capitalisation and use title over slug for phase ([fbee5f2](https://github.com/oaknational/Oak-Web-Application/commit/fbee5f22068fbc5cb96c064ae2e8c6149ed60991))
+* merge conflict ([083e40b](https://github.com/oaknational/Oak-Web-Application/commit/083e40bb06020e1c2613ba37e4a1b8c9705f5042))
+* no longer export functions we do not need ([5a0b524](https://github.com/oaknational/Oak-Web-Application/commit/5a0b52490fdafb1ecd74d44f3301314506a3ef2f))
+* rename keyStage prop to keyStageTitle in UnitViewSeoAccordion ([c1e4146](https://github.com/oaknational/Oak-Web-Application/commit/c1e414604121e89bed6e93fa03c5ff5ccd97a382))
+* scrolling and font color ([43b7485](https://github.com/oaknational/Oak-Web-Application/commit/43b7485107923b63dbb71d1509f355777fdcf733))
+* spacing ([a88126c](https://github.com/oaknational/Oak-Web-Application/commit/a88126cd8bbf75d2206b6b021d1c85d38dfa353f))
+* types ([bf103ed](https://github.com/oaknational/Oak-Web-Application/commit/bf103edc6a4bf1620217b963064e4249ea3026e6))
+* types and text alignment ([8e73778](https://github.com/oaknational/Oak-Web-Application/commit/8e73778bade1b3652a5c50342331896d19d6b028))
+* update spacing and improve SEO accordion links in UnitViewSeoAccordion ([4870c86](https://github.com/oaknational/Oak-Web-Application/commit/4870c869ca80834dcaa999f1bfc33e323d2b30dd))
+
+
+### Features
+
+* add programme page links ([5329f8f](https://github.com/oaknational/Oak-Web-Application/commit/5329f8f269b5fa5ed03f53f20413303af60ca639))
+* add seo accordion ([3e4e44a](https://github.com/oaknational/Oak-Web-Application/commit/3e4e44a6d5a22f27e03a5ab6218e718edb330e01))
+* add theme provider to storybook rendering logic ([af69a1d](https://github.com/oaknational/Oak-Web-Application/commit/af69a1d753b8ccdb4a129fc3393df2631384bb07))
+* exclude curriculum link for non-curriculum subjects ([1954d69](https://github.com/oaknational/Oak-Web-Application/commit/1954d6977cefb961fba56829ec5ec7637b944520))
+* rm list of links ([2644f6d](https://github.com/oaknational/Oak-Web-Application/commit/2644f6d0ea4689b9e1fad34539c3b8810e6a1a87))
+
+## [1.1076.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.1076.0...v1.1076.1) (2026-05-14)
+
+
+### Bug Fixes
+
+* change disabled text on lesson list component to be text-subdued for accessibility ([c7f8bd2](https://github.com/oaknational/Oak-Web-Application/commit/c7f8bd22a0e924df7b3db3473ef9bdcfebd5f5fb))
+* fix hubspot value missing from storybook ([3734d69](https://github.com/oaknational/Oak-Web-Application/commit/3734d69cda13e9da0cd07d069e5089c11744a352))
+
+# [1.1076.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1075.0...v1.1076.0) (2026-05-14)
+
+
+### Features
+
+* **LESQ-1996:** make programme + unit slug required for lesson share query ([26ba676](https://github.com/oaknational/Oak-Web-Application/commit/26ba676302e07f0570edb5bcfc5d32efb75ed7f4))
+* **LESQ-1996:** remove the canonical lesson share page ([2acdea0](https://github.com/oaknational/Oak-Web-Application/commit/2acdea0730b7f0b63dbcb3ba2839b0fbf373006e))
+
+# [1.1075.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1074.0...v1.1075.0) (2026-05-13)
+
+
+### Bug Fixes
+
+* always show success message, not just on redirect ([3ac2ee3](https://github.com/oaknational/Oak-Web-Application/commit/3ac2ee37c5ab3de274c48515939c5c4b548d0307))
+* change finally to then ([151d0b7](https://github.com/oaknational/Oak-Web-Application/commit/151d0b7d8680852145e7e423b07c3e853b8826b3))
+* ensure toast displays after redirect ([2856712](https://github.com/oaknational/Oak-Web-Application/commit/28567127bd732ec1098ec38319a921da69c08cd4))
+* fix syntax i keep forgetting ([13d30db](https://github.com/oaknational/Oak-Web-Application/commit/13d30dbeed68dab537556a80236fccc620f8b71b))
+* revert ternary operation change ([8b1f5e2](https://github.com/oaknational/Oak-Web-Application/commit/8b1f5e2ffeb696df52b0c4f414a95870153676ad))
+
+
+### Features
+
+* show toast message on download start or fail ([be348db](https://github.com/oaknational/Oak-Web-Application/commit/be348db8391ffd8e6b0278d7e92d1cfcf627c70d))
+* update error message with text found on Figma ([781ced4](https://github.com/oaknational/Oak-Web-Application/commit/781ced4695edbe1dd916d020b61d7823eaf6a04e))
+
+# [1.1074.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1073.0...v1.1074.0) (2026-05-12)
+
+
+### Features
+
+* **LESQ-1927:** update explainer path to /curriculum-explainer ([f8c927c](https://github.com/oaknational/Oak-Web-Application/commit/f8c927cc1b5b3b55f1292d9bfc42eede7be48111))
+
+# [1.1073.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1072.0...v1.1073.0) (2026-05-12)
+
+
+### Features
+
+* **LESQ-1974:** remove references to subject and tiers in banner copy ([5e5d908](https://github.com/oaknational/Oak-Web-Application/commit/5e5d9085e8ffd1065b1a74f3a32a0e9899b85bff))
+* **LESQ-1975:** align appearance of child tier selection with new designs ([e400cb7](https://github.com/oaknational/Oak-Web-Application/commit/e400cb7e17e38ee6e863dba7801a80e5048b149d))
+
+# [1.1072.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1071.2...v1.1072.0) (2026-05-12)
+
+
+### Features
+
+* **LESQ-1952:** add complex copyright banner to unit page ([aad8aef](https://github.com/oaknational/Oak-Web-Application/commit/aad8aefcfb9f59e2dbf79a3dd21dc8cfefa3aa4f))
+
 ## [1.1071.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.1071.1...v1.1071.2) (2026-05-11)
 
 

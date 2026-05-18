@@ -108,7 +108,7 @@ beforeEach(() => {
 });
 const render = renderWithProviders();
 
-describe("pages/teachers/lessons/[lessonSlug]/share", () => {
+describe("pages/teachers/programmes/[programmeSlug]/units/[unitSlug]/lessons/[lessonSlug]/share", () => {
   it("Renders 'no shared resources available' message if there are no resources to share", () => {
     render(
       <LessonSharePage
