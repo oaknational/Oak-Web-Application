@@ -97,7 +97,7 @@ describe("getHubspotNewsletterFormPayload()", () => {
       },
     });
   });
-  test("page values are correct when window is undefined", () => {
+  test("page values fall back to the current jsdom location", () => {
     Object.defineProperty(globalThis, "window", {
       value: undefined,
     });

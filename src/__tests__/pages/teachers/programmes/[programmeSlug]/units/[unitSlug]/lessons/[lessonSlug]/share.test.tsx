@@ -161,8 +161,8 @@ describe("pages/teachers/programmes/[programmeSlug]/units/[unitSlug]/lessons/[le
         }}
       />,
     );
-    const shareButtonCopy = await screen.findByRole("link", {
-      name: "Copy link",
+    const shareButtonCopy = await screen.findByRole("button", {
+      name: "Copy link to clipboard",
     });
     expect(shareButtonCopy).not.toBeDisabled();
     const user = userEvent.setup();
@@ -174,7 +174,7 @@ describe("pages/teachers/programmes/[programmeSlug]/units/[unitSlug]/lessons/[le
       schoolUrn: "123456",
       schoolName: "Secondary school",
       schoolOption: "Selected school",
-      shareMedium: "email",
+      shareMedium: "copy-link",
       emailSupplied: true,
       platform: "owa",
       product: "teacher lesson resources",
@@ -182,7 +182,7 @@ describe("pages/teachers/programmes/[programmeSlug]/units/[unitSlug]/lessons/[le
       componentType: "share_button",
       eventVersion: "2.0.0",
       analyticsUseCase: "Teacher",
-      resourceTypes: ["starter-quiz", "video", "exit-quiz"],
+      resourceTypes: ["video", "starter-quiz", "exit-quiz"],
       audience: "Pupil",
       lessonReleaseCohort: "2020-2023",
       lessonReleaseDate: "2025-09-29T14:00:00.000Z",
@@ -251,11 +251,11 @@ describe("pages/teachers/programmes/[programmeSlug]/units/[unitSlug]/lessons/[le
       //   name: "Assign to Google Classroom",
       // });
       const shareButtonGoogle = screen.getByRole("link", {
-        name: "Share to Google Classroom",
+        name: "Share to Share via Google Classroom",
       });
       expect(shareButtonGoogle).toBeInTheDocument();
       const shareButtonMicrosoft = screen.getByRole("link", {
-        name: "Share to Microsoft Teams",
+        name: "Share to Share via Microsoft Teams",
       });
       expect(shareButtonMicrosoft).toBeInTheDocument();
     });

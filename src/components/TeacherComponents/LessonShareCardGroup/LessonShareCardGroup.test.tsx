@@ -33,8 +33,10 @@ describe("lesson share card group", () => {
       <ComponentWrapper shareableResources={[]} shareLink="www.fake.com" />,
     );
 
-    const previewButton = screen.getByText("Preview as a pupil");
-    expect(previewButton).toBeInTheDocument();
+    expect(
+      screen.getByRole("heading", { name: /select activities/i }),
+    ).toBeInTheDocument();
+    expect(screen.getByText("Full online lesson")).toBeInTheDocument();
   });
   it("should render with resources", () => {
     const shareableResources = [
@@ -71,7 +73,7 @@ describe("lesson share card group", () => {
       />,
     );
 
-    const checkbox = screen.getByRole("checkbox");
+    const checkbox = screen.getByRole("checkbox", { name: "Video 5min" });
     expect(checkbox).toBeInTheDocument();
     expect(checkbox).not.toBeChecked();
 

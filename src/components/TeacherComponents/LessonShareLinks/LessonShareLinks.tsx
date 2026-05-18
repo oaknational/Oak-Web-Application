@@ -7,45 +7,23 @@ import { SharePageNumberedHeading } from "../SharePageNumberedHeading/SharePageN
 import { shareLinkConfig } from "./linkConfig";
 import { getHrefForSocialSharing } from "./getHrefForSocialSharing";
 
-import { ResourceType } from "@/components/TeacherComponents/types/downloadAndShare.types";
 import { ShareMediumValueType } from "@/browser-lib/avo/Avo";
 import { useOakNotificationsContext } from "@/context/OakNotifications/useOakNotificationsContext";
 import { getLessonShareVariantSlug } from "@/pages-helpers/pupil";
-
-const copyToClipboard = (textToCopy: string, callback: () => boolean) => {
-  const isValid = callback();
-  if (isValid) {
-    if (navigator.clipboard) {
-      navigator.clipboard.writeText(textToCopy);
-    } else {
-      alert("Please update your browser to support this feature");
-    }
-  } else {
-    return;
-  }
-};
+import { LessonSection } from "@/components/PupilComponents/lessonSections";
 
 const LessonShareLinks: FC<{
   hasError?: boolean;
   shareLink: string;
   disabled: boolean;
   lessonSlug: string;
-  selectedActivities?: Array<ResourceType>;
+  selectedActivities: LessonSection[];
   schoolUrn?: string;
   onSubmit: (shareMedium: ShareMediumValueType) => boolean;
   onGoogleClassroomClick?: () => void;
 }> = (props) => {
   const lessonShareVariantSlug =
-    getLessonShareVariantSlug(
-      props.selectedActivities as (
-        | "video"
-        | "intro"
-        | "overview"
-        | "starter-quiz"
-        | "exit-quiz"
-        | "review"
-      )[],
-    ) || "";
+    getLessonShareVariantSlug(props.selectedActivities) || "";
   const [isShareSuccessful, setIsShareSuccessful] = useState(false);
   const { setCurrentToastProps } = useOakNotificationsContext();
   const useGoogleClassroomAddon = useFeatureFlagEnabled(
@@ -63,6 +41,33 @@ const LessonShareLinks: FC<{
       ? []
       : [shareLinkConfig.googleClassroom]),
   ];
+
+  const OnCopyToClipboardClick = () => {
+    const isValid = props.onSubmit("copy-link");
+    if (isValid) {
+      if (navigator.clipboard) {
+        const textToCopy = getHrefForSocialSharing({
+          lessonSlug: props.lessonSlug,
+          selectedActivities: props.selectedActivities,
+          schoolUrn: props.schoolUrn,
+          linkConfig: shareLinkConfig.copy,
+          shareVariant: lessonShareVariantSlug,
+        });
+        navigator.clipboard.writeText(textToCopy);
+        setIsShareSuccessful(true);
+        setCurrentToastProps({
+          message: "Link copied to clipboard",
+          variant: "green",
+          autoDismiss: true,
+          showIcon: true,
+        });
+      } else {
+        alert("Please update your browser to support this feature");
+      }
+    } else {
+      return;
+    }
+  };
 
   return (
     <OakFlex
@@ -85,30 +90,7 @@ const LessonShareLinks: FC<{
           element="button"
           iconName={shareLinkConfig.copy.icon}
           isTrailingIcon={true}
-          onClick={() => {
-            copyToClipboard(
-              getHrefForSocialSharing({
-                lessonSlug: props.lessonSlug,
-                selectedActivities: props.selectedActivities,
-                schoolUrn: props.schoolUrn,
-                linkConfig: shareLinkConfig.copy,
-                shareVariant: lessonShareVariantSlug,
-              }),
-              () => {
-                const isValid = props.onSubmit("copy-link");
-                if (isValid) {
-                  setIsShareSuccessful(true);
-                  setCurrentToastProps({
-                    message: "Link copied to clipboard",
-                    variant: "green",
-                    autoDismiss: true,
-                    showIcon: true,
-                  });
-                }
-                return isValid;
-              },
-            );
-          }}
+          onClick={OnCopyToClipboardClick}
           aria-label="Copy link to clipboard"
         >
           {isShareSuccessful

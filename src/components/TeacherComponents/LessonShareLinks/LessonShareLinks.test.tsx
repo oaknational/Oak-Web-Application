@@ -14,6 +14,12 @@ jest.mock("posthog-js/react", () => ({
 
 const onSubmitMock = jest.fn(() => true);
 
+Object.assign(navigator, {
+  clipboard: {
+    writeText: jest.fn(),
+  },
+});
+
 describe("LessonShareLinks", () => {
   beforeEach(() => {
     jest.clearAllMocks();
@@ -30,14 +36,14 @@ describe("LessonShareLinks", () => {
     );
     const shareHeader = screen.getByRole("heading");
     expect(shareHeader).toBeInTheDocument();
-    expect(shareHeader).toHaveTextContent("Share options:");
+    expect(shareHeader).toHaveTextContent("Share with pupils");
   });
   it("should update copy link button", async () => {
     renderWithProviders()(
       <LessonShareLinks
         disabled={false}
         lessonSlug="test-slug"
-        selectedActivities={["exit-quiz-questions"]}
+        selectedActivities={["exit-quiz"]}
         onSubmit={onSubmitMock}
         shareLink=""
       />,
@@ -55,7 +61,7 @@ describe("LessonShareLinks", () => {
       <LessonShareLinks
         disabled={false}
         lessonSlug="test-slug"
-        selectedActivities={["exit-quiz-questions"]}
+        selectedActivities={["exit-quiz"]}
         onSubmit={onSubmitMock}
         shareLink=""
       />,
@@ -74,7 +80,7 @@ describe("LessonShareLinks", () => {
       <LessonShareLinks
         disabled={false}
         lessonSlug="test-slug"
-        selectedActivities={["exit-quiz-questions"]}
+        selectedActivities={["exit-quiz"]}
         onSubmit={onSubmit}
         shareLink=""
       />,
@@ -94,14 +100,14 @@ describe("LessonShareLinks", () => {
       <LessonShareLinks
         disabled={false}
         lessonSlug="test-slug"
-        selectedActivities={["exit-quiz-questions"]}
+        selectedActivities={["exit-quiz"]}
         onSubmit={onSubmit}
         shareLink=""
       />,
     );
 
     const googleClassroomLink = getByRole("link", {
-      name: "Share to Google Classroom",
+      name: "Share to Share via Google Classroom",
     });
 
     expect(googleClassroomLink).toBeInTheDocument();
@@ -119,7 +125,7 @@ describe("LessonShareLinks", () => {
       <LessonShareLinks
         disabled={false}
         lessonSlug="test-slug"
-        selectedActivities={["exit-quiz-questions"]}
+        selectedActivities={["exit-quiz"]}
         onSubmit={onSubmit}
         onGoogleClassroomClick={onGoogleClassroomClick}
         shareLink=""

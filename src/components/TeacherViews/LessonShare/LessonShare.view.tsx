@@ -40,6 +40,10 @@ import { SpecialistLessonShareData } from "@/node-lib/curriculum-api-2023/querie
 import { useOnboardingStatus } from "@/components/TeacherComponents/hooks/useOnboardingStatus";
 import { AssignToClassroomModal } from "@/components/TeacherComponents/AssignToClassroomModal/AssignToClassroomModal";
 import { getLessonShareVariantSlug } from "@/pages-helpers/pupil";
+import {
+  isLessonSection,
+  LessonSection,
+} from "@/components/PupilComponents/lessonSections";
 
 export type LessonShareProps =
   | {
@@ -64,6 +68,16 @@ const classroomActivityMap: Partial<
   "starter-quiz": "starter-quiz",
   "exit-quiz": "exit-quiz",
   video: "video",
+};
+
+const getSelectedLessonSections = (resources: string[]): LessonSection[] => {
+  return resources.filter(isLessonSection);
+};
+
+const isClassroomActivityResource = (
+  resource: string,
+): resource is keyof typeof classroomActivityMap => {
+  return Object.prototype.hasOwnProperty.call(classroomActivityMap, resource);
 };
 
 export function LessonShare(props: LessonShareProps) {
@@ -135,21 +149,13 @@ export function LessonShare(props: LessonShareProps) {
     return isValid;
   };
 
+  const selectedLessonSections = getSelectedLessonSections(selectedResources);
   const lessonShareVariantSlug =
-    getLessonShareVariantSlug(
-      selectedResources as (
-        | "video"
-        | "intro"
-        | "overview"
-        | "starter-quiz"
-        | "exit-quiz"
-        | "review"
-      )[],
-    ) || "";
+    getLessonShareVariantSlug(selectedLessonSections) ?? "";
 
   const shareLink = getHrefForSocialSharing({
     lessonSlug: lessonSlug,
-    selectedActivities: selectedResources,
+    selectedActivities: selectedLessonSections,
     schoolUrn: schoolUrn,
     linkConfig: shareLinkConfig.copy,
     shareVariant: lessonShareVariantSlug,
@@ -187,8 +193,11 @@ export function LessonShare(props: LessonShareProps) {
       eventVersion: "2.0.0",
       analyticsUseCase: "Teacher",
       resourceTypes: selectedResources
-        .map((r) => classroomActivityMap[r])
-        .filter((r) => r !== undefined),
+        .filter(isClassroomActivityResource)
+        .flatMap((resource) => {
+          const activity = classroomActivityMap[resource];
+          return activity ? [activity] : [];
+        }),
       audience: "Pupil",
       lessonReleaseCohort: isLegacy ? "2020-2023" : "2023-2026",
       lessonReleaseDate: lessonReleaseDate ?? "unpublished",
@@ -268,7 +277,7 @@ export function LessonShare(props: LessonShareProps) {
               hideCheckboxes={true}
               shareLink={getHrefForSocialSharing({
                 lessonSlug: lessonSlug,
-                selectedActivities: selectedResources,
+                selectedActivities: selectedLessonSections,
                 schoolUrn: schoolUrn,
                 linkConfig: shareLinkConfig.copy,
                 shareVariant: lessonShareVariantSlug,
@@ -284,7 +293,7 @@ export function LessonShare(props: LessonShareProps) {
                   (!form.formState.isValid && !localStorageDetails)
                 }
                 lessonSlug={lessonSlug}
-                selectedActivities={selectedResources}
+                selectedActivities={selectedLessonSections}
                 schoolUrn={schoolUrn}
                 onSubmit={onValidateAndSubmit}
                 onGoogleClassroomClick={() => setIsClassroomModalOpen(true)}

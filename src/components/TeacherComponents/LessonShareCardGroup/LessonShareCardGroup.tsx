@@ -22,11 +22,6 @@ const LessonShareCardGroup: FC<LessonShareCardGroupProps> = (props) => {
     (r) => r.exists && r.metadata !== null,
   );
 
-  // const removeFieldValue = (fieldValue: string[], resourceType: string) =>
-  //   fieldValue.filter(
-  //     (val: LessonShareResourceData["type"] | string) => val !== resourceType,
-  //   );
-
   const checkboxOnChangeHandler = (
     e: ChangeEvent<HTMLInputElement>,
     onChange: (val: string[]) => void,

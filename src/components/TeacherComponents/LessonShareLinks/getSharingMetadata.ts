@@ -1,8 +1,8 @@
 import { ShareLinkConfig } from "./linkConfig";
 
-import { ResourceType } from "@/components/TeacherComponents/types/downloadAndShare.types";
 import { resolveOakHref } from "@/common-lib/urls";
 import getBrowserConfig from "@/browser-lib/getBrowserConfig";
+import { LessonSection } from "@/components/PupilComponents/LessonEngineProvider/LessonEngineProvider";
 
 export type SharingMetadata = {
   link: string;
@@ -28,7 +28,7 @@ const pupilsPath = (lessonSlug: string, shareVariant: string) =>
 
 export type GetSharingMetadataParams = {
   lessonSlug: string;
-  selectedActivities?: Array<ResourceType>;
+  selectedActivities?: LessonSection[];
   schoolUrn?: string;
   linkConfig: ShareLinkConfig;
   shareVariant: string;

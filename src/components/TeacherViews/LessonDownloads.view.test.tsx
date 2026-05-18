@@ -67,7 +67,7 @@ describe("Hiding 'Your details", () => {
     });
     render(<LessonDownloads lesson={lesson} />);
 
-    const schoolSelection = screen.getByLabelText("School (required)");
+    const schoolSelection = screen.getByText("School");
 
     expect(schoolSelection).toBeInTheDocument();
   });
