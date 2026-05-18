@@ -1,3 +1,10 @@
+# [1.1078.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1077.0...v1.1078.0) (2026-05-18)
+
+
+### Features
+
+* apply filters server-side to eliminate layout flashing ([4474b6b](https://github.com/oaknational/Oak-Web-Application/commit/4474b6bc33a394c7d5cd38193cc299574fb069eb))
+
 # [1.1077.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1076.1...v1.1077.0) (2026-05-15)
 
 
