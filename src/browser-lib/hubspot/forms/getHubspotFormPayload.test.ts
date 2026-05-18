@@ -129,7 +129,7 @@ describe("getHubspotNewsletterFormPayload()", () => {
       ],
       context: {
         hutk: "hubspotutk value 123",
-        pageUri: "http://localhost/",
+        pageUri: "",
         pageName: "",
       },
     });
