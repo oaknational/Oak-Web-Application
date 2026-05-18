@@ -110,16 +110,15 @@ export const PupilViewsIntro = (props: PupilViewsIntroProps) => {
     }
   }, [hasWorksheet, sectionResults.intro, updateSectionResult, currentSection]);
 
-  const handleDownloadClicked = () => {
+  const handleDownloadClicked = async () => {
     updateWorksheetDownloaded({
       worksheetDownloaded: true,
       worksheetAvailable: true,
     });
-    startDownload().then(() => {
-      if (track.lessonActivityDownloadedWorksheet) {
-        track.lessonActivityDownloadedWorksheet({});
-      }
-    });
+    const isSuccess = await startDownload();
+    if (isSuccess && track.lessonActivityDownloadedWorksheet) {
+      track.lessonActivityDownloadedWorksheet({});
+    }
   };
 
   const handleAdditionalFilesDownloadClicked = () => {
@@ -328,7 +327,9 @@ export const PupilViewsIntro = (props: PupilViewsIntroProps) => {
                 <OakP $font={"body-1"}>Optional</OakP>
                 <OakFlex $justifyContent={"flex-end"}>
                   <OakPrimaryInvertedButton
-                    onClick={handleDownloadClicked}
+                    onClick={() => {
+                      void handleDownloadClicked();
+                    }}
                     isLoading={isDownloading}
                     iconName="download"
                     isTrailingIcon
