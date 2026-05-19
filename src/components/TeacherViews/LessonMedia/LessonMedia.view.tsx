@@ -2,6 +2,7 @@
 
 import { useState, useRef, useEffect, useMemo, type ReactNode } from "react";
 import { useSearchParams } from "next/navigation";
+import { useFeatureFlagEnabled } from "posthog-js/react";
 import {
   OakTertiaryButton,
   OakTertiaryInvertedButton,
@@ -103,6 +104,9 @@ export const LessonMedia = (
   } = lesson;
 
   const { track } = useAnalytics();
+  const teachersIntegratedJourneyEnabled = useFeatureFlagEnabled(
+    "teachers-integrated-journey",
+  );
   const {
     showSignedOutLoginRequired,
     showSignedOutGeoRestricted,
@@ -485,27 +489,28 @@ export const LessonMedia = (
   return (
     <OakMaxWidth $pb={"spacing-80"} $ph={"spacing-12"}>
       <OakBox $mb={"spacing-32"} $mt={"spacing-24"} data-testid="media-view">
-        {breadcrumbsSlot ?? (
-          <Breadcrumbs
-            breadcrumbs={[
-              ...getBreadcrumbsForLessonPathway(commonPathway),
-              getLessonOverviewBreadCrumb({
-                lessonTitle,
-                lessonSlug,
-                programmeSlug,
-                unitSlug,
-                isCanonical,
-              }),
-              getLessonMediaBreadCrumb({
-                lessonSlug,
-                programmeSlug,
-                unitSlug,
-                subjectSlug,
-                disabled: true,
-              }),
-            ]}
-          />
-        )}
+        {breadcrumbsSlot ??
+          (isCanonical && teachersIntegratedJourneyEnabled ? null : (
+            <Breadcrumbs
+              breadcrumbs={[
+                ...getBreadcrumbsForLessonPathway(commonPathway),
+                getLessonOverviewBreadCrumb({
+                  lessonTitle,
+                  lessonSlug,
+                  programmeSlug,
+                  unitSlug,
+                  isCanonical,
+                }),
+                getLessonMediaBreadCrumb({
+                  lessonSlug,
+                  programmeSlug,
+                  unitSlug,
+                  subjectSlug,
+                  disabled: true,
+                }),
+              ]}
+            />
+          ))}
       </OakBox>
       <OakBox $mb={"spacing-24"}>
         {programmeSlug && unitSlug && !isCanonical && (
