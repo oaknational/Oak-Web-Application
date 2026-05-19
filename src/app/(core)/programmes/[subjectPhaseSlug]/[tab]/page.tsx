@@ -29,6 +29,7 @@ import { getMvRefreshTime } from "@/pages-helpers/curriculum/downloads/getMvRefr
 import { getFeatureFlagValue } from "@/utils/featureFlags";
 import { resolveOakHref } from "@/common-lib/urls";
 import { getSubjectPhaseSlug } from "@/components/TeacherComponents/helpers/getSubjectPhaseSlug";
+import { resolveFilterFromSearchParams } from "@/utils/curriculum/filtersUrl";
 
 const reportError = errorReporter("programme-page::app");
 
@@ -177,6 +178,12 @@ const InnerProgrammePage = async (props: AppPageProps<ProgrammePageParams>) => {
   const curriculumUnitsFormattedData =
     formatCurriculumUnitsData(curriculumUnitsData);
 
+  // Resolve filter server-side from URL search params
+  const resolvedFilter = resolveFilterFromSearchParams(
+    curriculumUnitsFormattedData,
+    searchParams,
+  );
+
   // All KS4 options for subject phase
   const ks4Options =
     curriculumPhaseOptions.subjects.find(
@@ -218,6 +225,7 @@ const InnerProgrammePage = async (props: AppPageProps<ProgrammePageParams>) => {
     curriculumInfo: cachedData.programmeUnitsData,
     curriculumDownloadsTabData,
     mvRefreshTime,
+    initialFilter: resolvedFilter,
   };
 
   return <ProgrammeView {...results} />;
