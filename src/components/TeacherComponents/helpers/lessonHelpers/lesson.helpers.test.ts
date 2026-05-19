@@ -770,12 +770,7 @@ describe("getLessonMediaBreadCrumb", () => {
         disabled: false,
       }),
     ).toEqual({
-      oakLinkProps: {
-        page: "lesson-media",
-        programmeSlug: "programme-2",
-        unitSlug: "unit-3",
-        lessonSlug: "lesson-1",
-      },
+      href: "/teachers/programmes/programme-2/units/unit-3/lessons/lesson-1/media",
       label: "Video & audio clips",
       disabled: false,
     });
@@ -790,10 +785,7 @@ describe("getLessonMediaBreadCrumb", () => {
         unitSlug: null,
       }),
     ).toEqual({
-      oakLinkProps: {
-        page: "lesson-media-canonical",
-        lessonSlug: "lesson-1",
-      },
+      href: "/teachers/lessons/lesson-1/media",
       label: "Video & audio clips",
       disabled: undefined,
     });

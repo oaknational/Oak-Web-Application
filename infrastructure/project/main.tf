@@ -17,7 +17,7 @@ resource "terraform_data" "workspace_validation" {
 }
 
 module "vercel" {
-  source                  = "github.com/oaknational/oak-terraform-modules//modules/vercel_project?ref=v1.6.0"
+  source                  = "github.com/oaknational/oak-terraform-modules//modules/vercel_project?ref=v2.0.4"
   build_command           = try(local.build_config.build_command, null)
   build_machine_type      = try(local.build_config.build_machine_type, "standard")
   build_type              = local.build_config.build_type

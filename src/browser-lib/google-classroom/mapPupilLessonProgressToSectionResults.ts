@@ -1,30 +1,33 @@
-import { PupilLessonProgress } from "@oaknational/google-classroom-addon/types";
+import {
+  CourseWorkPupilProgress,
+  PupilLessonProgress,
+} from "@oaknational/google-classroom-addon/types";
 
 import { LessonSectionResults } from "@/components/PupilComponents/LessonEngineProvider";
 
+const isRecord = (value: unknown): value is Record<string, unknown> =>
+  typeof value === "object" && value !== null;
+
 export const mapPupilLessonProgressToSectionResults = (
-  lessonProgress: PupilLessonProgress,
+  lessonProgress: PupilLessonProgress | CourseWorkPupilProgress,
 ): LessonSectionResults => {
-  if (!lessonProgress || typeof lessonProgress !== "object") {
+  if (!isRecord(lessonProgress)) {
     return {};
   }
-  const progress = lessonProgress as Record<string, unknown>;
-  const results: LessonSectionResults = {};
 
-  if (progress.starterQuiz && typeof progress.starterQuiz === "object") {
-    results["starter-quiz"] =
-      progress.starterQuiz as LessonSectionResults["starter-quiz"];
-  }
-  if (progress.exitQuiz && typeof progress.exitQuiz === "object") {
-    results["exit-quiz"] =
-      progress.exitQuiz as LessonSectionResults["exit-quiz"];
-  }
-  if (progress.video && typeof progress.video === "object") {
-    results.video = progress.video as LessonSectionResults["video"];
-  }
-  if (progress.intro && typeof progress.intro === "object") {
-    results.intro = progress.intro as LessonSectionResults["intro"];
-  }
-
-  return results;
+  return {
+    ...(isRecord(lessonProgress.starterQuiz) && {
+      "starter-quiz":
+        lessonProgress.starterQuiz as LessonSectionResults["starter-quiz"],
+    }),
+    ...(isRecord(lessonProgress.exitQuiz) && {
+      "exit-quiz": lessonProgress.exitQuiz as LessonSectionResults["exit-quiz"],
+    }),
+    ...(isRecord(lessonProgress.video) && {
+      video: lessonProgress.video as LessonSectionResults["video"],
+    }),
+    ...(isRecord(lessonProgress.intro) && {
+      intro: lessonProgress.intro as LessonSectionResults["intro"],
+    }),
+  };
 };

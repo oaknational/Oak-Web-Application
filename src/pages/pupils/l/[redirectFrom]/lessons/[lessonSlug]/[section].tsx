@@ -1,20 +1,17 @@
 import { GetStaticProps, GetStaticPropsResult } from "next";
 
 import { resolveOakHref } from "@/common-lib/urls";
+import { isLessonSection } from "@/components/PupilComponents/lessonSections";
 import getPageProps from "@/node-lib/getPageProps";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
-import { requestLessonResources } from "@/components/PupilComponents/pupilUtils/requestLessonResources";
-import {
-  PupilExperienceViewProps,
-  pickAvailableSectionsForLesson,
-} from "@/components/PupilViews/PupilExperience";
 import errorReporter from "@/common-lib/error-reporter";
 import OakError from "@/errors/OakError";
-import {
-  isLessonReviewSection,
-  isLessonSection,
-} from "@/components/PupilComponents/LessonEngineProvider";
 import { getStaticPaths as getStaticPathsTemplate } from "@/pages-helpers/get-static-paths";
+import {
+  buildPupilLessonPageProps,
+  isAvailablePupilLessonSection,
+} from "@/pages-helpers/pupil/lessons-pages/pupilLessonPage.helpers";
+import { PupilLessonPageProps } from "@/pages-helpers/pupil/lessons-pages/pupilLessonPage.types";
 
 export { PupilExperienceView as default } from "@/components/PupilViews/PupilExperience";
 
@@ -40,7 +37,7 @@ export const getStaticPaths =
   getStaticPathsTemplate<PupilLegacyCanonicalPageURLParams>;
 
 export const getStaticProps: GetStaticProps<
-  PupilExperienceViewProps,
+  PupilLessonPageProps,
   PupilLegacyCanonicalPageURLParams
 > = async (context) => {
   return getPageProps({
@@ -97,10 +94,7 @@ export const getStaticProps: GetStaticProps<
 
       const { browseData, content } = res;
       // 404 if the lesson does not contain the given section
-      if (
-        isLessonReviewSection(section) &&
-        !pickAvailableSectionsForLesson(content).includes(section)
-      ) {
+      if (!isAvailablePupilLessonSection(section, content, null)) {
         return {
           notFound: true,
         };
@@ -110,26 +104,16 @@ export const getStaticProps: GetStaticProps<
         page: "classroom",
       })}/units/${redirectFrom}`;
 
-      const transcriptSentences = await requestLessonResources({
+      const props = await buildPupilLessonPageProps({
+        browseData,
         lessonContent: content,
+        backUrl,
+        initialSection: section,
+        pageType: "canonical",
+        variant: null,
       });
 
-      const results: GetStaticPropsResult<PupilExperienceViewProps> = {
-        props: {
-          lessonContent: {
-            ...content,
-            transcriptSentences: transcriptSentences ?? [],
-          },
-          browseData,
-          hasWorksheet: content.hasWorksheetAssetObject ? true : false,
-          hasAdditionalFiles: !!content.downloadableFiles?.length,
-          additionalFiles: content.downloadableFiles || null,
-          worksheetInfo: null, // populated later
-          backUrl,
-          initialSection: section,
-          pageType: "canonical",
-        },
-      };
+      const results: GetStaticPropsResult<PupilLessonPageProps> = { props };
 
       return results;
     },

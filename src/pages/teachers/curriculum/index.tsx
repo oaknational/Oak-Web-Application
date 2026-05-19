@@ -21,6 +21,7 @@ import { isExamboardSlug } from "@/pages-helpers/pupil/options-pages/options-pag
 import CurricInfoCard from "@/components/CurriculumComponents/CurricInfoCard";
 import { TopNavProps } from "@/components/AppComponents/TopNav/TopNav";
 import { GuidingPrinciples } from "@/components/GenericPagesComponents/GuidingPrinciples";
+import { resolveOakHref } from "@/common-lib/urls";
 
 export type CurriculumHomePageProps = {
   curriculumPhaseOptions: SubjectPhasePickerData;
@@ -48,13 +49,13 @@ const CurriculumHomePage: NextPage<CurriculumHomePageProps> = (props) => {
           <Breadcrumbs
             breadcrumbs={[
               {
-                oakLinkProps: { page: "home" },
+                href: resolveOakHref({ page: "home" }),
                 label: "Home",
               },
               {
-                oakLinkProps: {
+                href: resolveOakHref({
                   page: "curriculum-landing-page",
-                },
+                }),
                 label: "Oak's curricula",
               },
             ]}

@@ -1,8 +1,23 @@
+import { OakThemeProvider, oakDefaultTheme } from "@oaknational/oak-components";
 import { StoryFn, Meta } from "@storybook/nextjs";
+
+import { PaginationProps } from "../Pagination/usePagination";
 
 import { PostListProps } from "./PostList";
 
 import Component from ".";
+
+const mockPaginationProps: PaginationProps = {
+  currentPage: 1,
+  totalPages: 3,
+  prevHref: "#",
+  nextHref: "#",
+  isFirstPage: true,
+  isLastPage: false,
+  paginationRoute: "/blog",
+  firstItemRef: null,
+  onPageChange: () => {},
+};
 
 const currentPageItems: PostListProps["currentPageItems"] = [
   {
@@ -38,10 +53,39 @@ const currentPageItems: PostListProps["currentPageItems"] = [
     date: new Date(2022, 6, 26).toISOString(),
     mainImage: null,
   },
+  {
+    titleTag: "h2",
+    title: "When I'm Sixty-Four",
+    summary:
+      "When I get older losing my hair Many years from now Will you still be sending me a valentine Birthday greetings bottle of wine If I'd been out till quarter to three Would you lock the door Will you still need me, will you still feed me, when I'm sixty-four?",
+    slug: "long-road",
+    contentType: "webinar",
+    category: { title: "Curriculum Planning", slug: "curriculum-planning" },
+    date: new Date(2022, 5, 6).toISOString(),
+    thumbnailUrl: "4",
+  },
+  {
+    titleTag: "h2",
+    title: "Lucy in the Sky with Diamonds",
+    summary:
+      "Picture yourself in a boat on a river With tangerine trees and marmalade skies Somebody calls you, you answer quite slowly a girl with kaleidoscope eyes",
+    slug: "long-road",
+    contentType: "blog-post",
+    category: { title: "Curriculum Planning", slug: "curriculum-planning" },
+    date: new Date(2022, 4, 4).toISOString(),
+    mainImage: null,
+  },
 ];
 
 export default {
   component: Component,
+  decorators: [
+    (Story) => (
+      <OakThemeProvider theme={oakDefaultTheme}>
+        <Story />
+      </OakThemeProvider>
+    ),
+  ],
 } as Meta<typeof Component>;
 
 const Template: StoryFn<typeof Component> = (args) => {
@@ -53,6 +97,7 @@ export const PostList = {
 
   args: {
     currentPageItems,
+    paginationProps: mockPaginationProps,
   },
 };
 
@@ -71,7 +116,20 @@ export const PostListWithUpcomingWebinar = {
       date: new Date(2059, 7, 17).toISOString(),
     },
     currentPageItems,
+    paginationProps: mockPaginationProps,
     withContainingHrs: true,
     withUpcomingItem: true,
+  },
+};
+
+export const PostListWithOnlyOneItem = {
+  render: Template,
+  args: {
+    currentPageItems: [currentPageItems[0]],
+    paginationProps: {
+      ...mockPaginationProps,
+      totalPages: 1,
+      isLastPage: true,
+    },
   },
 };

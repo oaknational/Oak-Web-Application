@@ -82,7 +82,9 @@ export function TeachersTopNavHamburger(props: Readonly<TeachersSubNavData>) {
         iconName="hamburger"
         aria-label="Open navigation menu"
         aria-expanded={hamburgerIsOpen}
-        aria-controls="teachers-top-nav-hamburger"
+        aria-controls={
+          hamburgerIsOpen ? "teachers-top-nav-hamburger" : undefined
+        }
         onClick={handleOpen}
       />
       <OakInformativeModal

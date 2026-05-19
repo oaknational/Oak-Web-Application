@@ -4,6 +4,7 @@ import { useForm } from "react-hook-form";
 import userEvent from "@testing-library/user-event";
 import { computeAccessibleDescription } from "dom-accessibility-api";
 import React from "react";
+import { useFeatureFlagEnabled } from "posthog-js/react";
 
 import waitForNextTick from "@/__tests__/__helpers__/waitForNextTick";
 import renderWithSeo from "@/__tests__/__helpers__/renderWithSeo";
@@ -24,10 +25,25 @@ import curriculumApi2023, {
 } from "@/node-lib/curriculum-api-2023";
 import OakError from "@/errors/OakError";
 import { topNavFixture } from "@/node-lib/curriculum-api-2023/fixtures/topNav.fixture";
+import { LS_KEY_SCHOOL } from "@/config/localStorageKeys";
 
 const props: LessonSharePageProps = {
   curriculumData: lessonShareFixtures(),
   topNav: topNavFixture,
+};
+
+const mockUseFetchResult = { data: [], error: null, isLoading: false };
+
+const getStoredSchoolName = () => {
+  const stored = localStorage.getItem(LS_KEY_SCHOOL);
+  if (!stored) return "";
+
+  try {
+    const parsed = JSON.parse(stored) as { schoolName?: string } | null;
+    return parsed?.schoolName ?? "";
+  } catch {
+    return "";
+  }
 };
 
 jest.mock("next/dist/client/router", () => require("next-router-mock"));
@@ -60,13 +76,39 @@ jest.mock(
   }),
 );
 
+jest.mock("@/hooks/useFetch", () => ({
+  __esModule: true,
+  useFetch: () => mockUseFetchResult,
+}));
+
+jest.mock(
+  "@/components/TeacherComponents/ResourcePageSchoolPicker/useSchoolPicker",
+  () => ({
+    __esModule: true,
+    default: () => ({
+      schools: [],
+      error: null,
+      schoolPickerInputValue: getStoredSchoolName(),
+      setSchoolPickerInputValue: jest.fn(),
+      selectedSchool: undefined,
+      setSelectedSchool: jest.fn(),
+    }),
+  }),
+);
+
+const mockUseFeatureFlagEnabled = useFeatureFlagEnabled as jest.Mock;
+
+jest.mock("posthog-js/react", () => ({
+  useFeatureFlagEnabled: jest.fn(),
+}));
+
 beforeEach(() => {
   renderHook(() => useForm());
   localStorage.clear();
 });
 const render = renderWithProviders();
 
-describe("pages/teachers/lessons/[lessonSlug]/share", () => {
+describe("pages/teachers/programmes/[programmeSlug]/units/[unitSlug]/lessons/[lessonSlug]/share", () => {
   it("Renders 'no shared resources available' message if there are no resources to share", () => {
     render(
       <LessonSharePage
@@ -125,6 +167,8 @@ describe("pages/teachers/lessons/[lessonSlug]/share", () => {
 
   describe("Share form", () => {
     it("Renders share form with correct elements", () => {
+      mockUseFeatureFlagEnabled.mockReturnValue(false);
+
       render(<LessonSharePage {...props} />);
 
       expect(screen.getAllByRole("heading", { level: 2 })[0]).toHaveTextContent(
@@ -178,6 +222,10 @@ describe("pages/teachers/lessons/[lessonSlug]/share", () => {
         name: "Copy link to clipboard",
       });
       expect(shareButtonCopy).toBeInTheDocument();
+      // Will become Assign to Google Classroom when feature flag is removed
+      // const shareButtonGoogle = screen.getByRole("button", {
+      //   name: "Assign to Google Classroom",
+      // });
       const shareButtonGoogle = screen.getByRole("link", {
         name: "Share to Google Classroom",
       });

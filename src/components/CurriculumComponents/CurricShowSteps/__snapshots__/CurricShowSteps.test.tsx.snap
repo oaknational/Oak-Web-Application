@@ -5,24 +5,24 @@ exports[`CurricShowSteps basic usage 1`] = `
   <div>
     <div>
       <div
-        class="sc-aXZVg hBzEQH"
+        class="sc-aXZVg fPoSZh"
         style="width: 100%; position: relative; overflow: hidden;"
       >
         <div
           style="display: flex; align-items: center;"
         >
           <div
-            class="sc-aXZVg sc-gEvEer hkJkIR jMLdOa"
+            class="sc-aXZVg sc-gEvEer dFOKqz jMLdOa"
             style="width: 44px; height: 44px;"
           >
             <div
-              class="sc-aXZVg sc-gEvEer dpcCoC fXHtRp"
+              class="sc-aXZVg sc-gEvEer jHYXdY fXHtRp"
             />
             <div
-              class="sc-aXZVg sc-gEvEer bzXdSn jMLdOa"
+              class="sc-aXZVg sc-gEvEer HNaJR jMLdOa"
             >
               <span
-                class="sc-aXZVg bQyjPj"
+                class="sc-aXZVg iuwrFR"
               >
                 <img
                   alt=""
@@ -36,24 +36,24 @@ exports[`CurricShowSteps basic usage 1`] = `
               </span>
             </div>
             <div
-              class="sc-aXZVg sc-gEvEer bGhIrp fXHtRp"
+              class="sc-aXZVg sc-gEvEer heyxQr fXHtRp"
             />
           </div>
           <div
-            class="sc-aXZVg sc-gEvEer bMmeoX fXHtRp"
+            class="sc-aXZVg sc-gEvEer jtruwR fXHtRp"
           />
           <div
-            class="sc-aXZVg sc-gEvEer hkJkIR jMLdOa"
+            class="sc-aXZVg sc-gEvEer dFOKqz jMLdOa"
             style="width: 44px; height: 44px;"
           >
             <div
-              class="sc-aXZVg sc-gEvEer bGhIrp fXHtRp"
+              class="sc-aXZVg sc-gEvEer heyxQr fXHtRp"
             />
             <div
-              class="sc-aXZVg sc-gEvEer bzXdSn jMLdOa"
+              class="sc-aXZVg sc-gEvEer HNaJR jMLdOa"
             >
               <span
-                class="sc-aXZVg bQyjPj"
+                class="sc-aXZVg iuwrFR"
               >
                 <img
                   alt=""
@@ -67,22 +67,22 @@ exports[`CurricShowSteps basic usage 1`] = `
               </span>
             </div>
             <div
-              class="sc-aXZVg sc-gEvEer bGhIrp fXHtRp"
+              class="sc-aXZVg sc-gEvEer heyxQr fXHtRp"
             />
           </div>
           <div
-            class="sc-aXZVg sc-gEvEer bMmeoX fXHtRp"
+            class="sc-aXZVg sc-gEvEer jtruwR fXHtRp"
           />
           <div
-            class="sc-aXZVg sc-gEvEer kzfVTa jMLdOa"
+            class="sc-aXZVg sc-gEvEer lmBeTA jMLdOa"
             style="width: 44px; height: 44px;"
           >
             <div
-              class="sc-aXZVg sc-gEvEer eJJGrh jMLdOa"
+              class="sc-aXZVg sc-gEvEer jKTouH jMLdOa"
               color="text-inverted"
             />
             <div
-              class="sc-aXZVg ffUlPY"
+              class="sc-aXZVg UmiVq"
               data-testid="step-text"
               style="left: 0px; top: 44px;"
             >
@@ -93,20 +93,20 @@ exports[`CurricShowSteps basic usage 1`] = `
             </div>
           </div>
           <div
-            class="sc-aXZVg sc-gEvEer bMmeoX fXHtRp"
+            class="sc-aXZVg sc-gEvEer jtruwR fXHtRp"
           />
           <div
-            class="sc-aXZVg sc-gEvEer hkJkIR jMLdOa"
+            class="sc-aXZVg sc-gEvEer dFOKqz jMLdOa"
             style="width: 44px; height: 44px;"
           >
             <div
-              class="sc-aXZVg sc-gEvEer bGhIrp fXHtRp"
+              class="sc-aXZVg sc-gEvEer heyxQr fXHtRp"
             />
             <div
-              class="sc-aXZVg sc-gEvEer WSWAL jMLdOa"
+              class="sc-aXZVg sc-gEvEer kyPEgV jMLdOa"
             />
             <div
-              class="sc-aXZVg sc-gEvEer dpcCoC fXHtRp"
+              class="sc-aXZVg sc-gEvEer jHYXdY fXHtRp"
             />
           </div>
         </div>

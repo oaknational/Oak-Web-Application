@@ -1,3 +1,4 @@
+import { useState } from "react";
 import {
   OakBox,
   OakHandDrawnHR,
@@ -11,13 +12,8 @@ import {
   getLessonShareBreadCrumb,
   getBreadcrumbsForSpecialistLessonPathway,
   getBreadCrumbForSpecialistShare,
-  getCommonPathway,
-  lessonIsSpecialist,
 } from "@/components/TeacherComponents/helpers/lessonHelpers/lesson.helpers";
-import {
-  LessonPathway,
-  SpecialistLessonPathway,
-} from "@/components/TeacherComponents/types/lesson.types";
+import { LessonPathway } from "@/components/TeacherComponents/types/lesson.types";
 import SharePageLayout from "@/components/TeacherComponents/SharePageLayout";
 import LessonShareCardGroup from "@/components/TeacherComponents/LessonShareCardGroup";
 import LessonShareLinks from "@/components/TeacherComponents/LessonShareLinks";
@@ -42,23 +38,10 @@ import { useHubspotSubmit } from "@/components/TeacherComponents/hooks/downloadA
 import { LessonShareData } from "@/node-lib/curriculum-api-2023/queries/lessonShare/lessonShare.schema";
 import { SpecialistLessonShareData } from "@/node-lib/curriculum-api-2023/queries/specialistLessonShare/specialistLessonShare.schema";
 import { useOnboardingStatus } from "@/components/TeacherComponents/hooks/useOnboardingStatus";
+import { AssignToClassroomModal } from "@/components/TeacherComponents/AssignToClassroomModal/AssignToClassroomModal";
 
 export type LessonShareProps =
   | {
-      isCanonical: true;
-      lesson: {
-        isSpecialist: false;
-        expired: boolean | null;
-        isLegacy: boolean;
-        lessonTitle: string;
-        lessonSlug: string;
-        shareableResources: LessonShareData["shareableResources"];
-        pathways: LessonPathway[];
-        lessonReleaseDate: string | null;
-      };
-    }
-  | {
-      isCanonical: false;
       lesson: LessonPathway & {
         isSpecialist: false;
         developmentStageTitle?: string | null;
@@ -71,7 +54,6 @@ export type LessonShareProps =
       };
     }
   | {
-      isCanonical: false;
       lesson: SpecialistLessonShareData;
     };
 
@@ -85,10 +67,12 @@ const classroomActivityMap: Partial<
 };
 
 export function LessonShare(props: LessonShareProps) {
-  const { isCanonical, lesson } = props;
+  const { lesson } = props;
   const {
     lessonTitle,
     lessonSlug,
+    programmeSlug,
+    unitSlug,
     shareableResources,
     isLegacy,
     expired,
@@ -96,23 +80,17 @@ export function LessonShare(props: LessonShareProps) {
     lessonReleaseDate,
   } = lesson;
 
-  const commonPathway =
-    lessonIsSpecialist(lesson) && !props.isCanonical
-      ? {
-          lessonSlug,
-          lessonTitle,
-          unitSlug: props.lesson.unitSlug,
-          programmeSlug: props.lesson.programmeSlug,
-          unitTitle: props.lesson.unitTitle,
-          subjectTitle: props.lesson.subjectTitle,
-          subjectSlug: props.lesson.subjectSlug,
-          developmentStageTitle: props.lesson.developmentStageTitle,
-          disabled: false,
-        }
-      : getCommonPathway(
-          props.isCanonical ? props.lesson.pathways : [props.lesson],
-        );
-  const { programmeSlug, unitSlug } = commonPathway;
+  const exitQuizNumQuestions = (() => {
+    const exitQuizResource = shareableResources.find(
+      (r) => r.type === "exit-quiz-questions",
+    );
+    const parsed = exitQuizResource
+      ? Number.parseInt(exitQuizResource.metadata ?? "", 10)
+      : Number.NaN;
+    return Number.isNaN(parsed) ? undefined : parsed;
+  })();
+
+  const [isClassroomModalOpen, setIsClassroomModalOpen] = useState(false);
 
   const { track } = useAnalytics();
   const { lessonShared } = track;
@@ -139,16 +117,14 @@ export function LessonShare(props: LessonShareProps) {
   });
   const onboardingStatus = useOnboardingStatus();
 
-  const { onSubmit } = useResourceFormSubmit({
-    type: "share",
-  });
+  const { onSubmit } = useResourceFormSubmit();
   const { onHubspotSubmit } = useHubspotSubmit();
 
   const onFormSubmit = async (
     data: ResourceFormValues,
     shareMedium: ShareMediumValueType,
   ): Promise<void> => {
-    await onSubmit(data, props.lesson.lessonSlug);
+    await onSubmit({ data, slug: props.lesson.lessonSlug, type: "share" });
     await onHubspotSubmit(data);
 
     if (editDetailsClicked && !data.email) {
@@ -188,13 +164,13 @@ export function LessonShare(props: LessonShareProps) {
             breadcrumbs={
               !isSpecialist
                 ? [
-                    ...getBreadcrumbsForLessonPathway(commonPathway),
+                    ...getBreadcrumbsForLessonPathway(lesson),
                     getLessonOverviewBreadCrumb({
                       lessonTitle,
                       lessonSlug,
                       programmeSlug,
                       unitSlug,
-                      isCanonical,
+                      isCanonical: false,
                     }),
                     getLessonShareBreadCrumb({
                       lessonSlug,
@@ -204,9 +180,7 @@ export function LessonShare(props: LessonShareProps) {
                     }),
                   ]
                 : [
-                    ...getBreadcrumbsForSpecialistLessonPathway(
-                      commonPathway as SpecialistLessonPathway,
-                    ),
+                    ...getBreadcrumbsForSpecialistLessonPathway(lesson),
                     ...getBreadCrumbForSpecialistShare({
                       lessonSlug,
                       programmeSlug,
@@ -262,22 +236,36 @@ export function LessonShare(props: LessonShareProps) {
             />
           }
           cta={
-            <LessonShareLinks
-              disabled={
-                hasFormErrors ||
-                expired ||
-                (!form.formState.isValid && !localStorageDetails)
-              }
-              lessonSlug={lessonSlug}
-              selectedActivities={selectedResources}
-              schoolUrn={schoolUrn}
-              onSubmit={
-                (shareMedium: ShareMediumValueType) =>
-                  void form.handleSubmit((data) => {
-                    onFormSubmit(data, shareMedium);
-                  })() // https://github.com/orgs/react-hook-form/discussions/8622
-              }
-            />
+            <>
+              <LessonShareLinks
+                disabled={
+                  hasFormErrors ||
+                  expired ||
+                  (!form.formState.isValid && !localStorageDetails)
+                }
+                lessonSlug={lessonSlug}
+                selectedActivities={selectedResources}
+                schoolUrn={schoolUrn}
+                onSubmit={
+                  (shareMedium: ShareMediumValueType) =>
+                    void form.handleSubmit((data) => {
+                      onFormSubmit(data, shareMedium);
+                    })() // https://github.com/orgs/react-hook-form/discussions/8622
+                }
+                onGoogleClassroomClick={() => setIsClassroomModalOpen(true)}
+              />
+              {!isSpecialist && programmeSlug && unitSlug && (
+                <AssignToClassroomModal
+                  isOpen={isClassroomModalOpen}
+                  onClose={() => setIsClassroomModalOpen(false)}
+                  lessonTitle={lessonTitle}
+                  lessonSlug={lessonSlug}
+                  programmeSlug={programmeSlug}
+                  unitSlug={unitSlug}
+                  exitQuizNumQuestions={exitQuizNumQuestions}
+                />
+              )}
+            </>
           }
         />
       </OakMaxWidth>

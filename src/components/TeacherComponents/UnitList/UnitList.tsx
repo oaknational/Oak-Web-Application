@@ -1,4 +1,4 @@
-import React, { FC, useState } from "react";
+import React, { FC, MutableRefObject, useState } from "react";
 import { useRouter } from "next/router";
 import {
   OakFlex,
@@ -14,16 +14,15 @@ import { UnitsContainer } from "../UnitsContainer";
 import { getPageItems, getProgrammeFactors } from "./helpers";
 import { areNewAndLegacyUnitsOnPage, getUnitCards } from "./getUnitCards";
 
-import {
-  UnitListItemProps,
-  SpecialistListItemProps,
-} from "@/components/TeacherComponents/UnitListItem/UnitListItem";
 import SavingSignedOutModal from "@/components/TeacherComponents/SavingSignedOutModal/SavingSignedOutModal";
 import {
   SpecialistUnit,
   SpecialistUnitListingData,
 } from "@/node-lib/curriculum-api-2023/queries/specialistUnitListing/specialistUnitListing.schema";
-import { UnitListingData } from "@/node-lib/curriculum-api-2023/queries/unitListing/unitListing.schema";
+import {
+  ReshapedUnitData,
+  UnitListingData,
+} from "@/node-lib/curriculum-api-2023/queries/unitListing/unitListing.schema";
 import { resolveOakHref } from "@/common-lib/urls";
 import isSlugLegacy from "@/utils/slugModifiers/isSlugLegacy";
 import { PaginationProps } from "@/components/SharedComponents/Pagination/usePagination";
@@ -45,6 +44,23 @@ export type CurrentPageItemsProps = Omit<
   UnitListItemProps,
   "index" | "onClick"
 >[];
+
+export type UnitListItemProps = Omit<
+  UnitListingData["units"][number][number],
+  "unitStudyOrder"
+>;
+export type SpecialistListItemProps = SpecialistUnit & {
+  hideTopHeading?: boolean;
+  hitCount?: number;
+  index: number;
+  currentPage?: number;
+  firstItemRef?: MutableRefObject<HTMLAnchorElement | null> | null;
+  isUnitOption?: boolean;
+  unitOptions?: ReshapedUnitData[];
+  isExemplarUnit?: boolean;
+  yearTitle?: string | null;
+  onClick: (props: UnitListItemProps | SpecialistListItemProps) => void;
+};
 
 export type UnitListProps = (UnitListingData | SpecialistUnitListingData) & {
   currentPageItems: CurrentPageItemsProps[] | SpecialistUnit[][];
@@ -152,7 +168,10 @@ const UnitList: FC<UnitListProps> = (props) => {
   );
   const hasNewAndLegacyUnitsInProgramme = hasLegacyUnits && hasNewUnits;
 
-  const hideNewCurriculumDownloadButton = subjectSlug === "financial-education";
+  const hideNewCurriculumDownloadButton = [
+    "financial-education",
+    "rule-of-law",
+  ].includes(subjectSlug);
 
   const [saveButtonElementId, setSaveButtonElementId] = useState<
     string | undefined
@@ -193,13 +212,7 @@ const UnitList: FC<UnitListProps> = (props) => {
                 isLegacy={false}
                 subject={""}
                 phase={phaseSlug}
-                curriculumHref={resolveOakHref({
-                  page: "curriculum-previous-downloads",
-                  query: {
-                    subject: linkSubject,
-                    keystage: keyStageSlug,
-                  },
-                })}
+                curriculumHref={null}
                 showHeader={
                   swimmingPageItems.length ||
                   indexOfFirstLegacyUnit % pageSize === 0
@@ -268,13 +281,7 @@ const UnitList: FC<UnitListProps> = (props) => {
                 }
                 subject={subjectSlug}
                 phase={phaseSlug}
-                curriculumHref={resolveOakHref({
-                  page: "curriculum-previous-downloads",
-                  query: {
-                    subject: linkSubject,
-                    keystage: keyStageSlug,
-                  },
-                })}
+                curriculumHref={null}
                 showHeader={
                   newPageItems.length || indexOfFirstLegacyUnit % pageSize === 0
                     ? true
@@ -304,12 +311,7 @@ const UnitList: FC<UnitListProps> = (props) => {
             }
             subject={subjectSlug}
             phase={"Specialist and therapies"}
-            curriculumHref={`${resolveOakHref({
-              page: "curriculum-previous-downloads",
-              query: {
-                subject: subjectSlug,
-              },
-            })}#Specialist`}
+            curriculumHref={null}
             showHeader={true}
             unitCards={getUnitCards({
               pageItems: currentPageItems,

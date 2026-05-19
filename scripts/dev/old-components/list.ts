@@ -140,10 +140,6 @@ const IMPORT_MAP = [
     files: ["src/components/SharedComponents/AvatarImage"],
   },
   {
-    id: "Card",
-    files: ["src/components/SharedComponents/Card/Card"],
-  },
-  {
     id: "Checkbox",
     files: ["src/components/SharedComponents/Checkbox"],
   },

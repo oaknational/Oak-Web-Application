@@ -19,37 +19,93 @@ export const LessonSeoHelper = ({
   subject,
   subjectSlug,
   parentSubject,
+  phaseSlug,
   unit,
   lesson,
   examBoardSlug,
   keystage,
+  keystageSlug,
   lessonSlug,
   programmeSlug,
   unitSlug,
   disablePupilLink,
   geoRestricted,
   loginRequired,
+  isIntegratedJourney,
 }: {
   year: string;
   subject: string;
   subjectSlug: string;
+  phaseSlug: string;
   parentSubject: string | undefined | null;
   examBoardSlug: string | undefined | null;
   unit: string;
   lesson: string;
   keystage: string;
+  keystageSlug: string;
   lessonSlug: string;
   programmeSlug: string;
   unitSlug: string;
   disablePupilLink?: boolean;
   loginRequired: boolean;
   geoRestricted: boolean;
+  isIntegratedJourney: boolean;
 }) => {
   const linkSubject = parentSubject
     ? convertSubjectToSlug(parentSubject)
     : subjectSlug;
 
-  const hideCurriculumLink = subjectSlug === "financial-education";
+  const hideCurriculumLink =
+    subjectSlug === "financial-education" && !isIntegratedJourney;
+
+  const unitListingPageLink = isIntegratedJourney
+    ? resolveOakHref({
+        page: "teacher-programme",
+        subjectPhaseSlug: getSubjectPhaseSlug({
+          subject: subjectSlug,
+          phaseSlug,
+          examBoardSlug,
+        }),
+        tab: "units",
+        query: {
+          keystages: keystageSlug,
+        },
+      })
+    : resolveOakHref({
+        page: "unit-index",
+        programmeSlug,
+      });
+
+  const unitOverviewPageLink = isIntegratedJourney
+    ? resolveOakHref({
+        page: "integrated-unit-overview",
+        unitSlug,
+        programmeSlug,
+      })
+    : resolveOakHref({
+        page: "lesson-index",
+        programmeSlug,
+        unitSlug,
+      });
+
+  const curriculumOverviewPageLink = isIntegratedJourney
+    ? resolveOakHref({
+        page: "teacher-programme",
+        subjectPhaseSlug: getSubjectPhaseSlug({
+          subject: subjectSlug,
+          phaseSlug,
+          examBoardSlug,
+        }),
+        tab: "units",
+      })
+    : resolveOakHref({
+        page: "curriculum-units",
+        subjectPhaseSlug: getSubjectPhaseSlug({
+          subject: linkSubject,
+          phaseSlug: getPhase(year),
+          examBoardSlug,
+        }),
+      });
 
   return (
     <OakBasicAccordion
@@ -165,38 +221,16 @@ export const LessonSeoHelper = ({
       <br />
       <OakP $font={["body-2", "body-1"]}>
         Explore more{" "}
-        <OakLink
-          href={resolveOakHref({
-            page: "unit-index",
-            programmeSlug,
-          })}
-        >
+        <OakLink href={unitListingPageLink}>
           {keystage.toLowerCase()} {formatSubjectName(subject)}{" "}
         </OakLink>{" "}
         lessons from the{" "}
-        <OakLink
-          href={resolveOakHref({
-            page: "lesson-index",
-            programmeSlug,
-            unitSlug,
-          })}
-        >
-          {unit} unit
-        </OakLink>
-        , dive into the full{" "}
+        <OakLink href={unitOverviewPageLink}>{unit} unit</OakLink>, dive into
+        the full{" "}
         {hideCurriculumLink ? (
           `${getPhase(year)} ${formatSubjectName(subject)} curriculum`
         ) : (
-          <OakLink
-            href={resolveOakHref({
-              page: "curriculum-units",
-              subjectPhaseSlug: getSubjectPhaseSlug({
-                subject: linkSubject,
-                phaseSlug: getPhase(year),
-                examBoardSlug,
-              }),
-            })}
-          >
+          <OakLink href={curriculumOverviewPageLink}>
             {getPhase(year)} {formatSubjectName(subject)} curriculum
           </OakLink>
         )}

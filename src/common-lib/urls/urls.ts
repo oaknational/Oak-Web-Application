@@ -118,8 +118,8 @@ export type LessonListingLinkProps = {
   programmeSlug: string;
   unitSlug: string;
 };
-export type IntegratedLessonListingLinkProps = {
-  page: "integrated-lesson-index";
+export type IntegratedUnitOverviewLinkProps = {
+  page: "integrated-unit-overview";
   programmeSlug: string;
   unitSlug: string;
   query?: {
@@ -128,6 +128,21 @@ export type IntegratedLessonListingLinkProps = {
 };
 export type IntegratedLessonOverviewLinkProps = {
   page: "integrated-lesson-overview";
+  programmeSlug: string;
+  unitSlug: string;
+  lessonSlug: string;
+};
+export type IntegratedLessonDownloadsLinkProps = {
+  page: "integrated-lesson-downloads";
+  programmeSlug: string;
+  unitSlug: string;
+  lessonSlug: string;
+  query?: {
+    preselected: PreselectedDownloadType | null;
+  };
+};
+export type IntegratedLessonDownloadsSuccessLinkProps = {
+  page: "integrated-lesson-downloads-success";
   programmeSlug: string;
   unitSlug: string;
   lessonSlug: string;
@@ -276,13 +291,6 @@ export type SpecialistLessonShareLinkProps = Omit<
   };
 };
 
-export type LessonShareCanonicalLinkProps = {
-  page: "lesson-share-canonical";
-  lessonSlug: string;
-  query?: {
-    preselected: PreselectedShareType | null;
-  };
-};
 type SearchLinkProps = {
   page: "search";
   query?: Partial<SearchQuery>;
@@ -315,6 +323,7 @@ type AboutUsOaksCurriculaLinkProps = { page: "about-oaks-curricula" };
 
 type CareersLinkProps = { page: "careers" };
 type ContactUsLinkProps = { page: "contact" };
+type FontHelpLinkProps = { page: "help-font" };
 type HelpLinkProps = { page: "help" };
 type PupilHelpLinkProps = { page: "pupil-help" };
 type GuideToOakLinkProps = { page: "guide-to-oak" };
@@ -355,13 +364,6 @@ type CurriculumDownloadsLinkProps = {
   page: "curriculum-downloads";
   subjectPhaseSlug: string;
 };
-type CurriculumPreviousDownloadsLinkProps = {
-  page: "curriculum-previous-downloads";
-  query?: {
-    subject: string;
-    keystage?: string;
-  };
-};
 
 type OnboardingLinkProps = {
   page: "onboarding";
@@ -395,6 +397,10 @@ type ProgrammePageProps = {
   page: "teacher-programme";
   subjectPhaseSlug: string;
   tab: string;
+  query?: {
+    keystages?: string;
+    years?: string;
+  };
 };
 
 type ClassroomSignInLinkProps = { page: "classroom-sign-in" };
@@ -443,7 +449,6 @@ export type OakLinkProps =
   | LessonMediaCanonicalLinkProps
   | LessonShareLinkProps
   | SpecialistLessonShareLinkProps
-  | LessonShareCanonicalLinkProps
   | LessonOverviewLinkProps
   | PupilLessonLinkProps
   | PupilLessonResultsLinkProps
@@ -457,8 +462,10 @@ export type OakLinkProps =
   | SpecialistLessonOverviewLinkProps
   | LessonOverviewCanonicalLinkProps
   | LessonListingLinkProps
-  | IntegratedLessonListingLinkProps
+  | IntegratedUnitOverviewLinkProps
   | IntegratedLessonOverviewLinkProps
+  | IntegratedLessonDownloadsLinkProps
+  | IntegratedLessonDownloadsSuccessLinkProps
   | SpecialistLessonListingLinkProps
   | UnitListingLinkProps
   | SpecialistUnitListingLinkProps
@@ -490,7 +497,6 @@ export type OakLinkProps =
   | CurriculumOverviewLinkProps
   | CurriculumUnitsLinkProps
   | CurriculumDownloadsLinkProps
-  | CurriculumPreviousDownloadsLinkProps
   | OnboardingLinkProps
   | OnboardingSchoolSelectionLinkProps
   | OnboardingRoleSelectionLinkProps
@@ -507,7 +513,8 @@ export type OakLinkProps =
   | ClassroomAuthSuccessLinkProps
   | ClassroomPupilSignInLinkProps
   | EyfsPageLinkProps
-  | GuideToOakLinkProps;
+  | GuideToOakLinkProps
+  | FontHelpLinkProps;
 
 export type ExternalPageName =
   | "[external] Careers"
@@ -754,6 +761,12 @@ export const OAK_PAGES: {
     configType: "external",
     pageType: "guide-to-oak",
   }),
+  "help-font": createOakPageConfig({
+    url: "https://support.thenational.academy/how-to-install-the-google-fonts-lexend-and-kalan",
+    analyticsPageName: "[external] Help",
+    configType: "external",
+    pageType: "help-font",
+  }),
   home: createOakPageConfig({
     pathPattern: "/",
     analyticsPageName: "Homepage",
@@ -841,11 +854,11 @@ export const OAK_PAGES: {
     configType: "internal",
     pageType: "lesson-index",
   }),
-  "integrated-lesson-index": createOakPageConfig({
+  "integrated-unit-overview": createOakPageConfig({
     pathPattern: "/programmes/:programmeSlug/units/:unitSlug/lessons",
     analyticsPageName: "Lesson Listing",
     configType: "internal",
-    pageType: "integrated-lesson-index",
+    pageType: "integrated-unit-overview",
   }),
   "integrated-lesson-overview": createOakPageConfig({
     pathPattern:
@@ -853,6 +866,20 @@ export const OAK_PAGES: {
     analyticsPageName: "Lesson",
     configType: "internal",
     pageType: "integrated-lesson-overview",
+  }),
+  "integrated-lesson-downloads": createOakPageConfig({
+    pathPattern:
+      "/programmes/:programmeSlug/units/:unitSlug/lessons/:lessonSlug/downloads",
+    analyticsPageName: "Lesson Download",
+    configType: "internal",
+    pageType: "integrated-lesson-downloads",
+  }),
+  "integrated-lesson-downloads-success": createOakPageConfig({
+    pathPattern:
+      "/programmes/:programmeSlug/units/:unitSlug/lessons/:lessonSlug/downloads/success",
+    analyticsPageName: "Lesson Download",
+    configType: "internal",
+    pageType: "integrated-lesson-downloads-success",
   }),
   "specialist-lesson-index": createOakPageConfig({
     pathPattern:
@@ -993,12 +1020,6 @@ export const OAK_PAGES: {
     configType: "internal",
     pageType: "specialist-lesson-share",
   }),
-  "lesson-share-canonical": createOakPageConfig({
-    pathPattern: "/teachers/lessons/:lessonSlug/share",
-    analyticsPageName: "Lesson Share",
-    configType: "internal",
-    pageType: "lesson-share-canonical",
-  }),
   search: createOakPageConfig({
     pathPattern: "/teachers/search",
     analyticsPageName: "Search",
@@ -1078,12 +1099,6 @@ export const OAK_PAGES: {
     analyticsPageName: "Curriculum Downloads",
     configType: "internal",
     pageType: "curriculum-downloads",
-  }),
-  "curriculum-previous-downloads": createOakPageConfig({
-    pathPattern: "/teachers/curriculum/previous-downloads",
-    analyticsPageName: "Curriculum Previous Downloads",
-    configType: "internal",
-    pageType: "curriculum-previous-downloads",
   }),
   onboarding: createOakPageConfig({
     pathPattern: "/onboarding",

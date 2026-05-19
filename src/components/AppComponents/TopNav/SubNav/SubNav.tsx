@@ -70,7 +70,9 @@ const SubNav = <T extends SubNavData>({
       onClick: () => onClick(slug as keyof T),
       selected: isMenuSelected(slug as keyof T),
       "aria-expanded": isMenuSelected(slug as keyof T),
-      "aria-controls": `topnav-${area}-${slug}`,
+      "aria-controls": isMenuSelected(slug as keyof T)
+        ? `topnav-${area}-${slug}`
+        : undefined,
       "aria-haspopup": true,
     };
   };

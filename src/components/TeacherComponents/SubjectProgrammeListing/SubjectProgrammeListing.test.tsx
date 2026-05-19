@@ -93,7 +93,7 @@ describe("SubjectProgrammeListing", () => {
     render(<SubjectProgrammeListing onClick={onClick} {...curriculumData} />);
 
     const tier = screen.getByText("Higher");
-
+    tier.addEventListener("click", (event) => event.preventDefault());
     const user = userEvent.setup();
     await user.click(tier);
 

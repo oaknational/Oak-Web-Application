@@ -2,9 +2,11 @@ import styled, { css } from "styled-components";
 
 import { OakColorName } from "@/styles/theme";
 import getColorByName from "@/styles/themeHelpers/getColorByName";
-import Svg from "@/components/SharedComponents/Svg";
+import { LegacySvg } from "@/components/SharedComponents/Svg";
 
-export const IconFocusUnderline = styled(Svg).attrs({ name: "underline-1" })<{
+export const IconFocusUnderline = styled(LegacySvg).attrs({
+  name: "underline-1",
+})<{
   $color: OakColorName;
 }>`
   color: ${(props) => getColorByName(props.$color)};

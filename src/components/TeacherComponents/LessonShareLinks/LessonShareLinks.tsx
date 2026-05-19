@@ -1,5 +1,6 @@
 import { FC, useEffect, useState } from "react";
 import { OakHeading, OakFlex } from "@oaknational/oak-components";
+import { useFeatureFlagEnabled } from "posthog-js/react";
 
 import { shareLinkConfig } from "./linkConfig";
 import { getHrefForSocialSharing } from "./getHrefForSocialSharing";
@@ -24,13 +25,25 @@ const LessonShareLinks: FC<{
   selectedActivities?: Array<ResourceType>;
   schoolUrn?: string;
   onSubmit: (shareMedium: ShareMediumValueType) => void;
+  onGoogleClassroomClick?: () => void;
 }> = (props) => {
   const [isShareSuccessful, setIsShareSuccessful] = useState(false);
   const { setCurrentToastProps } = useOakNotificationsContext();
+  const useGoogleClassroomAddon = useFeatureFlagEnabled(
+    "google-classroom-free-tier",
+  );
 
   useEffect(() => {
     setIsShareSuccessful(false);
   }, [props.selectedActivities]);
+
+  const linkShareOptions = [
+    shareLinkConfig.microsoftTeams,
+    shareLinkConfig.email,
+    ...(props.onGoogleClassroomClick && useGoogleClassroomAddon
+      ? []
+      : [shareLinkConfig.googleClassroom]),
+  ];
 
   return (
     <>
@@ -79,11 +92,24 @@ const LessonShareLinks: FC<{
           disabled={props.disabled}
         />
 
-        {[
-          shareLinkConfig.googleClassroom,
-          shareLinkConfig.microsoftTeams,
-          shareLinkConfig.email,
-        ].map((link) => (
+        {props.onGoogleClassroomClick && useGoogleClassroomAddon && (
+          <LoadingButton
+            text={shareLinkConfig.googleClassroom.name}
+            icon={shareLinkConfig.googleClassroom.icon}
+            isLoading={false}
+            disabled={props.disabled}
+            type="button"
+            key={shareLinkConfig.googleClassroom.name}
+            onClick={() => {
+              props.onSubmit(shareLinkConfig.googleClassroom.avoMedium);
+              props.onGoogleClassroomClick!();
+            }}
+            ariaLabel="Assign to Google Classroom"
+            ariaLive={"polite"}
+          />
+        )}
+
+        {linkShareOptions.map((link) => (
           <LoadingButton
             text={link.name}
             icon={link.icon}

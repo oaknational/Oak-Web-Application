@@ -2,9 +2,7 @@ overwrite: true
 schema:
   - ${CURRICULUM_API_2023_URL}:
       headers:
-        x-oak-auth-type: ${CURRICULUM_API_AUTH_TYPE}
-        x-oak-auth-key: ${CURRICULUM_API_2023_AUTH_KEY}
-        # x-hasura-admin-secret: ${CURRICULUM_API_ADMIN_SECRET}
+        Authorization: "Bearer ${CURRICULUM_API_AUTH_KEY_V2}"
 
 documents: "src/node-lib/curriculum-api-2023/**/*.{graphql,gql}"
 generates:

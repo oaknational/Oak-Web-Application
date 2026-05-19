@@ -1,12 +1,11 @@
 import styled from "styled-components";
+import { OakFlex, OakFlexProps } from "@oaknational/oak-components";
 
-import Flex, { FlexProps } from "@/components/SharedComponents/Flex.deprecated";
-
-export type CardProps = FlexProps;
-const Card = styled(Flex)``;
+export type CardProps = OakFlexProps;
+const Card = styled(OakFlex)``;
 
 Card.defaultProps = {
-  $pa: 24,
+  $pa: "spacing-24",
   $flexDirection: "column",
   $flexGrow: 1,
   $position: "relative",

@@ -1,13 +1,18 @@
 import { FC } from "react";
-import { OakSpan, OakFlex, OakBox } from "@oaknational/oak-components";
+import {
+  OakSpan,
+  OakFlex,
+  OakBox,
+  OakSecondaryLink,
+} from "@oaknational/oak-components";
 
-import OwaLink from "@/components/SharedComponents/OwaLink";
 import TagPromotional from "@/components/SharedComponents/TagPromotional";
 import SubjectListingTextTile from "@/components/TeacherComponents/SubjectListingTextTile";
 import { SubjectListingCardProps } from "@/components/TeacherComponents/SubjectListingCard";
 import useAnalytics from "@/context/Analytics/useAnalytics";
 import {
   ProgrammeListingLinkProps,
+  resolveOakHref,
   UnitListingLinkProps,
 } from "@/common-lib/urls";
 import { SubjectPathwayArray } from "@/pages/teachers/key-stages/[keyStageSlug]/subjects";
@@ -70,10 +75,9 @@ const SubjectListingCardCountCardWithPathways: FC<
             $flexShrink={1}
             $flexBasis={0}
           >
-            <OwaLink
-              {...oakLinkProps}
+            <OakSecondaryLink
+              href={resolveOakHref(oakLinkProps)}
               aria-label={ariaLabel}
-              $hideDefaultFocus
               onClick={() => {
                 track.browseRefined({
                   platform: "owa",
@@ -125,7 +129,7 @@ const SubjectListingCardCountCardWithPathways: FC<
                   }`}</OakSpan>
                 </OakFlex>
               </OakBox>
-            </OwaLink>
+            </OakSecondaryLink>
           </SubjectListingTextTile>
         );
       })}

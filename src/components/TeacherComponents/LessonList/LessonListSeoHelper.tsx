@@ -37,7 +37,8 @@ export const LessonListSeoHelper = ({
     ? convertSubjectToSlug(parentSubject)
     : subjectSlug;
 
-  const hideCurriculumLink = subjectSlug === "financial-education";
+  const hideCurriculumLink =
+    subjectSlug === "financial-education" || subjectSlug === "rule-of-law";
 
   return (
     <OakBox $mb="spacing-72">

@@ -4,8 +4,8 @@ import Component, {
   TermsAgreementFormProps,
 } from "@/components/TeacherComponents/TermsAgreementForm";
 import { useResourceFormState } from "@/components/TeacherComponents/hooks/downloadAndShareHooks/useResourceFormState";
-import { CurriculumDownload } from "@/components/CurriculumComponents/CurriculumDownloads/CurriculumDownloads";
 import AnalyticsDecorator from "@/storybook-decorators/AnalyticsDecorator";
+import { DownloadType } from "@/components/CurriculumComponents/CurriculumDownloadView/helper";
 
 type Story = StoryObj<typeof Component>;
 
@@ -30,7 +30,7 @@ export const TermsAgreementForm: Story = {
   },
 };
 
-const resources: CurriculumDownload[] = [];
+const resources: DownloadType[] = [];
 
 const Wrapper = (args: TermsAgreementFormProps) => {
   const formState = useResourceFormState({

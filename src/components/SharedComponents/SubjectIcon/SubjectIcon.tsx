@@ -1,11 +1,10 @@
+import { OakBox, OakBoxProps } from "@oaknational/oak-components";
 import { FC } from "react";
 
 import { getSubjectIconAsset } from "@/image-data";
 import CMSImage, {
   CMSImageProps,
 } from "@/components/SharedComponents/CMSImage";
-import Box from "@/components/SharedComponents/Box";
-
 type SubjectIconProps = Omit<CMSImageProps, "image"> & {
   subjectSlug: string;
 };
@@ -18,9 +17,9 @@ const SubjectIcon: FC<SubjectIconProps> = ({
 
   if (!asset) {
     return (
-      <Box
+      <OakBox
         style={{ width: cmsImageProps.width, height: cmsImageProps.height }}
-        {...cmsImageProps}
+        {...(cmsImageProps as OakBoxProps)}
       />
     );
   }

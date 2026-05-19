@@ -1,0 +1,359 @@
+"use client";
+import {
+  OakBox,
+  OakBoxProps,
+  OakCard,
+  OakFlex,
+  OakFlexProps,
+  OakGrid,
+  OakGridArea,
+  OakHeading,
+  OakInlineBanner,
+  OakLI,
+  OakTagFunctional,
+  OakTypography,
+  OakUL,
+} from "@oaknational/oak-components";
+import { Dispatch, SetStateAction } from "react";
+
+import { LessonList } from "../LessonList";
+import { ProgrammeToggles } from "../ProgrammeToggles/ProgrammeToggles";
+import { UnitViewSeoAccordion } from "../UnitViewSeoAccordion";
+
+import type { TeachersUnitOverviewData } from "@/node-lib/curriculum-api-2023/queries/teachersUnitOverview/teachersUnitOverview.schema";
+import SkipLink from "@/components/CurriculumComponents/OakComponentsKitchen/SkipLink";
+import { resolveOakHref } from "@/common-lib/urls";
+import { getCloudinaryImageUrl } from "@/utils/getCloudinaryImageUrl";
+import PreviousNextNav from "@/components/TeacherComponents/PreviousNextNav/PreviousNextNav";
+import { SaveUnitButton } from "@/components/TeacherComponents/SaveUnitButton/SaveUnitButton";
+import { KeyStageTitleValueType } from "@/browser-lib/avo/Avo";
+
+export type UnitOverviewContentProps = Pick<
+  TeachersUnitOverviewData,
+  | "programmeSlug"
+  | "unitSlug"
+  | "unitTitle"
+  | "unitDescription"
+  | "subjectTitle"
+  | "subjectSlug"
+  | "keyStageSlug"
+  | "keyStageTitle"
+  | "lessons"
+  | "unitIndex"
+  | "unitCount"
+  | "whyThisWhyNow"
+  | "priorKnowledgeRequirements"
+  | "threads"
+  | "phaseSlug"
+  | "tierOptionToggles"
+  | "subjectOptionToggles"
+  | "prevUnit"
+  | "nextUnit"
+  | "subjectCategories"
+  | "nonCurriculum"
+  | "phaseTitle"
+  | "yearGroupTitle"
+  | "examBoardTitle"
+> & {
+  subjectPhaseSlug: string;
+  showDownloadMessage: boolean;
+  setShowDownloadMessage: Dispatch<SetStateAction<boolean>>;
+};
+
+export const UnitOverviewContent = ({
+  programmeSlug,
+  unitSlug,
+  unitTitle,
+  unitDescription,
+  subjectTitle,
+  subjectSlug,
+  keyStageSlug,
+  keyStageTitle,
+  lessons,
+  unitIndex,
+  unitCount,
+  whyThisWhyNow,
+  priorKnowledgeRequirements,
+  threads,
+  phaseSlug,
+  phaseTitle,
+  subjectPhaseSlug,
+  yearGroupTitle,
+  examBoardTitle,
+  tierOptionToggles,
+  subjectOptionToggles,
+  nextUnit,
+  prevUnit,
+  subjectCategories,
+  showDownloadMessage,
+  setShowDownloadMessage,
+  nonCurriculum,
+}: UnitOverviewContentProps) => {
+  const hasToggles =
+    tierOptionToggles.length > 1 || subjectOptionToggles.length > 1;
+
+  return (
+    <OakBox $ph="spacing-40">
+      <OakGrid
+        $cg="spacing-16"
+        $rg="spacing-56"
+        $mb={["spacing-0", "spacing-48", "spacing-48"]}
+        $mh="auto"
+        $mt={["spacing-48", "spacing-56", "spacing-80"]}
+        $width={"100%"}
+        $maxWidth={"spacing-1280"}
+        $position="relative"
+      >
+        <OakGridArea
+          $colSpan={12}
+          $display={showDownloadMessage ? "flex" : "none"}
+        >
+          <OakInlineBanner
+            message="Downloads can take a few minutes, especially for larger files or slower connections."
+            isOpen={showDownloadMessage}
+            canDismiss
+            onDismiss={() => setShowDownloadMessage(false)}
+            type="neutral"
+            icon="info"
+            $width={["100%", "max-content"]}
+          />
+        </OakGridArea>
+        <OakBox
+          $position="absolute"
+          $zIndex="in-front"
+          $top="spacing-0"
+          $left="spacing-0"
+        >
+          <SkipLink href="#lessons">Skip to lessons</SkipLink>
+        </OakBox>
+        <OakGridArea
+          $colSpan={[12, 4]}
+          $gap={["spacing-48", "spacing-56", "spacing-80"]}
+        >
+          {hasToggles && (
+            <OakFlex $flexDirection="column" $gap="spacing-32">
+              <ProgrammeToggles
+                heading="Learning tier (KS4)"
+                headingId="tier-toggle-heading"
+                unitSlug={unitSlug}
+                programmeToggles={tierOptionToggles}
+              />
+              <ProgrammeToggles
+                heading="Exam subject (KS4)"
+                headingId="subject-toggle-heading"
+                unitSlug={unitSlug}
+                programmeToggles={subjectOptionToggles}
+              />
+            </OakFlex>
+          )}
+          <UnitThreads
+            threads={threads}
+            $display={["flex", "flex", "none"]}
+            phaseSlug={phaseSlug}
+          />
+          <UnitInfo
+            whyThisWhyNow={whyThisWhyNow}
+            priorKnowledgeRequirements={priorKnowledgeRequirements}
+            $display={["flex", "none", "flex"]}
+          />
+          <UnitThreads
+            threads={threads}
+            $display={["none", "none", "flex"]}
+            phaseSlug={phaseSlug}
+          />
+          <HelpLinkCard $display={["none", "block"]} />
+        </OakGridArea>
+        <OakGridArea
+          $colSpan={[12, 7]}
+          $colStart={[1, 6]}
+          $gap={["spacing-48", "spacing-56", "spacing-80"]}
+          id="lessons"
+        >
+          <UnitInfo
+            whyThisWhyNow={whyThisWhyNow}
+            priorKnowledgeRequirements={priorKnowledgeRequirements}
+            $display={["none", "flex", "none"]}
+          />
+          <LessonList
+            programmeSlug={programmeSlug}
+            unitSlug={unitSlug}
+            unitTitle={unitTitle}
+            unitDescription={unitDescription}
+            lessons={lessons}
+            unitIndex={unitIndex}
+            unitCount={unitCount}
+            lessonCount={lessons.length}
+            subjectCategories={subjectCategories}
+            headerCtaSlot={
+              <SaveUnitButton
+                buttonVariant="default"
+                programmeSlug={programmeSlug}
+                unitSlug={unitSlug}
+                unitTitle={unitTitle}
+                trackingProps={{
+                  savedFrom: "lesson_listing_save_button",
+                  keyStageTitle:
+                    (keyStageTitle as KeyStageTitleValueType) ?? undefined,
+                  keyStageSlug,
+                  subjectTitle,
+                  subjectSlug,
+                }}
+              />
+            }
+          />
+          <HelpLinkCard $display={["block", "none"]} />
+        </OakGridArea>
+        <OakGridArea
+          $rowGap={["spacing-48", "spacing-56", "spacing-80"]}
+          $colSpan={12}
+          $mb={"spacing-48"}
+        >
+          <UnitViewSeoAccordion
+            subjectTitle={subjectTitle}
+            nonCurriculum={nonCurriculum}
+            unitTitle={unitTitle}
+            phaseTitle={phaseTitle}
+            subjectPhaseSlug={subjectPhaseSlug}
+            yearGroupTitle={yearGroupTitle}
+            examBoardTitle={examBoardTitle ?? undefined}
+          />
+          <PreviousNextNav
+            backgroundColorLevel={getBackgroundColorLevel(phaseSlug)}
+            currentIndex={unitIndex}
+            navItemType="unit"
+            previous={
+              prevUnit
+                ? {
+                    href: resolveOakHref({
+                      page: "integrated-unit-overview",
+                      programmeSlug,
+                      unitSlug: prevUnit.slug,
+                    }),
+                    title: prevUnit.title,
+                  }
+                : undefined
+            }
+            next={
+              nextUnit
+                ? {
+                    href: resolveOakHref({
+                      page: "integrated-unit-overview",
+                      programmeSlug,
+                      unitSlug: nextUnit.slug,
+                    }),
+                    title: nextUnit.title,
+                  }
+                : undefined
+            }
+          />
+        </OakGridArea>
+      </OakGrid>
+    </OakBox>
+  );
+};
+
+const getBackgroundColorLevel = (
+  phaseSlug: UnitOverviewContentProps["phaseSlug"],
+) => {
+  return phaseSlug === "primary" ? 4 : 3;
+};
+
+const UnitInfo = ({
+  whyThisWhyNow,
+  priorKnowledgeRequirements,
+  $display,
+}: {
+  whyThisWhyNow: UnitOverviewContentProps["whyThisWhyNow"];
+  priorKnowledgeRequirements: UnitOverviewContentProps["priorKnowledgeRequirements"];
+  $display: OakFlexProps["$display"];
+}) => {
+  return (
+    <OakFlex $display={$display} $flexDirection={"column"} $gap={"spacing-56"}>
+      <OakFlex
+        $flexDirection={"column"}
+        $gap={"spacing-20"}
+        $display={whyThisWhyNow ? "flex" : "none"}
+      >
+        <OakHeading tag="h2" $font={"heading-7"}>
+          Why this why now
+        </OakHeading>
+        <OakTypography $font={"body-3"}>{whyThisWhyNow}</OakTypography>
+      </OakFlex>
+      <OakFlex
+        $flexDirection={"column"}
+        $gap={"spacing-20"}
+        $display={priorKnowledgeRequirements?.length ? "flex" : "none"}
+      >
+        <OakHeading tag="h2" $font={"heading-7"}>
+          Prior knowledge requirements
+        </OakHeading>
+        <OakUL>
+          {priorKnowledgeRequirements?.map((r) => (
+            <OakLI key={r}>
+              <OakTypography $font={"body-3"}>{r}</OakTypography>
+            </OakLI>
+          ))}
+        </OakUL>
+      </OakFlex>
+    </OakFlex>
+  );
+};
+
+const UnitThreads = ({
+  threads,
+  $display,
+  phaseSlug,
+}: {
+  threads: UnitOverviewContentProps["threads"];
+  $display: OakFlexProps["$display"];
+  phaseSlug: UnitOverviewContentProps["phaseSlug"];
+}) => {
+  if (threads.length) {
+    return (
+      <OakFlex
+        $flexDirection={"column"}
+        $display={$display}
+        $gap={"spacing-20"}
+      >
+        <OakHeading tag={"h2"} $font={"heading-7"}>
+          Threads
+        </OakHeading>
+        <OakFlex $gap={"spacing-8"} $flexWrap={"wrap"}>
+          {threads.map((thread) => (
+            <OakTagFunctional
+              key={thread}
+              label={thread}
+              $background={`bg-decorative${getBackgroundColorLevel(phaseSlug)}-very-subdued`}
+              $borderColor={`border-decorative${getBackgroundColorLevel(phaseSlug)}`}
+              $ba={"border-solid-s"}
+            />
+          ))}
+        </OakFlex>
+      </OakFlex>
+    );
+  }
+  return null;
+};
+
+const HelpLinkCard = ({ $display }: { $display: OakBoxProps["$display"] }) => {
+  return (
+    <OakBox
+      $dropShadow={"drop-shadow-centred-standard"}
+      $borderRadius={"border-radius-m2"}
+      $display={$display}
+    >
+      <OakCard
+        heading="Learn how you can make the best use of Oak resources"
+        headingLevel="h2"
+        href={resolveOakHref({ page: "guide-to-oak" })}
+        subCopy="A step-by-step guide to getting started"
+        linkText="Get more out of Oak"
+        linkIconName="arrow-right"
+        imageSrc={getCloudinaryImageUrl(
+          "v1734018546/OWA/illustrations/hero-aila_wgpmas.jpg",
+        )}
+        aspectRatio="4/3"
+      />
+    </OakBox>
+  );
+};

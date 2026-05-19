@@ -44,14 +44,14 @@ describe("ResourcePageSchoolDetails", () => {
 
     expect(input).toHaveValue("Dorothy");
 
-    const checkbox = getByRole("checkbox");
     const user = userEvent.setup();
-    await user.click(checkbox);
+    await user.click(screen.getByText("My school isn't listed"));
     await user.tab();
 
     // HACK: wait for next tick
     await waitForNextTick();
 
+    const checkbox = getByRole("checkbox", { name: "My school isn't listed" });
     expect(checkbox).toBeChecked();
     expect(input).toHaveValue("");
   });
@@ -60,16 +60,15 @@ describe("ResourcePageSchoolDetails", () => {
     const { getByRole, rerender } = render(
       <ResourcePageSchoolDetails {...props} />,
     );
+    const user = userEvent.setup();
 
     const { result } = renderHook(() =>
       useSchoolPicker({ withHomeschool: true }),
     );
 
-    await act(async () => {
-      const checkbox = getByRole("checkbox");
-      checkbox.click();
-      expect(checkbox).toBeChecked();
-    });
+    const checkbox = getByRole("checkbox");
+    await user.click(screen.getByText("My school isn't listed"));
+    expect(checkbox).toBeChecked();
 
     const input: HTMLInputElement = screen.getByTestId("search-combobox-input");
     await userEvent.type(input, "Dorothy Bricks");
@@ -81,7 +80,6 @@ describe("ResourcePageSchoolDetails", () => {
     });
 
     rerender(<ResourcePageSchoolDetails {...props} />);
-    const checkbox = getByRole("checkbox");
     expect(checkbox).not.toBeChecked();
   });
 

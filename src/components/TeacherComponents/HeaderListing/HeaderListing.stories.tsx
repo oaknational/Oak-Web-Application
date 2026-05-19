@@ -8,28 +8,24 @@ import Component from ".";
 import AnalyticsDecorator from "@/storybook-decorators/AnalyticsDecorator";
 import unitListingFixture from "@/node-lib/curriculum-api-2023/fixtures/unitListing.fixture";
 import type { UnitListingData } from "@/node-lib/curriculum-api-2023/queries/unitListing/unitListing.schema";
+import { resolveOakHref } from "@/common-lib/urls";
 
 export const headerListingProps: HeaderListingProps = {
   breadcrumbs: [
     {
-      oakLinkProps: {
-        page: "home",
-      },
+      href: resolveOakHref({ page: "home" }),
       label: "Home",
     },
     {
-      oakLinkProps: {
-        page: "subject-index",
-        keyStageSlug: "ks4",
-      },
+      href: resolveOakHref({ page: "subject-index", keyStageSlug: "ks4" }),
       label: "Key Stage 4",
     },
     {
-      oakLinkProps: {
+      href: resolveOakHref({
         page: "programme-index",
         subjectSlug: "english",
         keyStageSlug: "ks4",
-      },
+      }),
       label: "English",
     },
   ],
@@ -78,11 +74,11 @@ export const FinancialEducation: Story = {
     breadcrumbs: [
       ...headerListingProps.breadcrumbs.slice(0, 2),
       {
-        oakLinkProps: {
+        href: resolveOakHref({
           page: "programme-index",
           subjectSlug: "financial-education",
           keyStageSlug: "ks4",
-        },
+        }),
         label: "Financial education",
       },
     ],
@@ -115,17 +111,17 @@ export const RuleOfLawKeyStage1: Story = {
   args: {
     ...headerListingProps,
     breadcrumbs: [
-      { oakLinkProps: { page: "home" }, label: "Home" },
+      { href: resolveOakHref({ page: "home" }), label: "Home" },
       {
-        oakLinkProps: { page: "subject-index", keyStageSlug: "ks1" },
+        href: resolveOakHref({ page: "subject-index", keyStageSlug: "ks1" }),
         label: "Key Stage 1",
       },
       {
-        oakLinkProps: {
+        href: resolveOakHref({
           page: "programme-index",
           subjectSlug: "rule-of-law",
           keyStageSlug: "ks1",
-        },
+        }),
         label: "Rule of law",
       },
     ],
@@ -143,17 +139,17 @@ export const RuleOfLawKeyStage2: Story = {
   args: {
     ...headerListingProps,
     breadcrumbs: [
-      { oakLinkProps: { page: "home" }, label: "Home" },
+      { href: resolveOakHref({ page: "home" }), label: "Home" },
       {
-        oakLinkProps: { page: "subject-index", keyStageSlug: "ks2" },
+        href: resolveOakHref({ page: "subject-index", keyStageSlug: "ks2" }),
         label: "Key Stage 2",
       },
       {
-        oakLinkProps: {
+        href: resolveOakHref({
           page: "programme-index",
           subjectSlug: "rule-of-law",
           keyStageSlug: "ks2",
-        },
+        }),
         label: "Rule of law",
       },
     ],

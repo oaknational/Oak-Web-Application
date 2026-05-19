@@ -7,6 +7,7 @@ import {
   pathwaySchema,
 } from "./search.schema";
 
+import { AsyncState } from "@/common-lib/types/asyncState.types";
 import { SearchPageData } from "@/node-lib/curriculum-api-2023";
 import { SnakeToCamel } from "@/utils/util.types";
 import { SearchFilterMatchTypeValueType } from "@/browser-lib/avo/Avo";
@@ -69,7 +70,7 @@ export type PathwaySchemaCamel = SnakeToCamel<PathwaySchema>;
 
 export type SuggestedFilters = {
   searchFilters: SuggestedSearchFilter[] | undefined;
-  status: "idle" | "loading" | "success" | "error";
+  status: AsyncState;
   error?: string;
   data?: SearchIntent;
 };

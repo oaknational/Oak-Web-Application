@@ -63,12 +63,13 @@ describe("Component - subject phase picker", () => {
   });
 
   test("user can see subjects when they click the control", async () => {
-    const { getByTitle, findAllByTitle } = render(
+    const { getByTestId, findAllByTitle, findByTestId } = render(
       <SubjectPhasePicker {...curriculumPhaseOptions} />,
     );
-    const control = getByTitle("Subject");
+    const control = getByTestId("subject-picker-button");
     expect(control).toBeTruthy();
     await userEvent.click(control);
+    await findByTestId("subject-picker-heading");
     const buttons = await findAllByTitle("English");
     expect(buttons).toHaveLength(1);
   });
@@ -263,18 +264,6 @@ describe("Component - subject phase picker", () => {
     });
   });
 
-  test("User can navigate to previous curriculum plans", async () => {
-    const { getByTestId, getByTitle } = render(
-      <SubjectPhasePicker {...curriculumPhaseOptions} />,
-    );
-    await userEvent.click(getByTitle("Subject"));
-    const link = getByTestId("subject-picker-previous-plans-link");
-    expect(link).toHaveAttribute(
-      "href",
-      "/teachers/curriculum/previous-downloads",
-    );
-  });
-
   describe("Pathways are shown correctly", () => {
     test("user clicks English, secondary and two KS4 options are shown", async () => {
       const {
@@ -410,7 +399,7 @@ describe("Component - subject phase picker", () => {
         throw new Error("Could not find button");
       }
 
-      const tabCount = curriculumPhaseOptions.subjects.length + 3;
+      const tabCount = curriculumPhaseOptions.subjects.length + 2;
       for (let i = 0; i < tabCount; i++) {
         await userEvent.tab();
       }

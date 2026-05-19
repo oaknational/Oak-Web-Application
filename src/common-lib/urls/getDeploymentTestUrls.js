@@ -37,7 +37,6 @@ function getDeploymentTestUrls() {
     "/teachers/programmes/computing-secondary-ks4-gcse-l/units",
     "/teachers/programmes/maths-secondary-ks4-foundation/units/algebraic-manipulation/lessons", // unit with tiers
     "/teachers/programmes/history-secondary-ks4-aqa/units/period-studies-5163/lessons?page=2", // unit with pagination
-    "/teachers/programmes/design-technology-secondary-ks3-l/units/packaging-pop-outs-bc35/lessons/designing-for-others-6mtk2t", // all yellow boxes
     "/teachers/programmes/maths-secondary-ks4-foundation/units/algebraic-manipulation/lessons/further-algebraic-terminology/downloads?preselected=slide+deck",
     "/teachers/search?term=equate&keyStages=ks4", // results with tier and examboard drop downs
     // New content pages
@@ -60,9 +59,7 @@ function getDeploymentTestUrls() {
     // "/teachers/programmes/music-primary-ks2/units/compose-and-create-improvising-within-hindustani-classical-music/lessons/playing-taals-and-speaking-bols/media", // media clips page
     // Canonical lesson pages
     "/teachers/lessons/duncan-as-a-father-figure",
-    "/teachers/lessons/duncan-as-a-father-figure/downloads",
     "/teachers/lessons/transverse-waves",
-    "/teachers/lessons/transverse-waves/downloads",
     // User pages
     {
       url: "/sign-in",
@@ -75,7 +72,6 @@ function getDeploymentTestUrls() {
     "/pupils/programmes/maths-primary-year-5/units",
     "/pupils/programmes/maths-primary-year-5/units/multiplication-by-partitioning-leading-to-short-multiplication-3-by-1-digit/lessons",
     "/pupils/programmes/geography-primary-year-5/units/north-and-south-america-how-diverse-are-their-places-and-landscapes/lessons/physical-geography-of-north-and-south-america/overview",
-    "/pupils/programmes/computing-primary-year-5-l/units/vector-drawing-ea06/lessons/create-a-vector-drawing-cgvpac/intro",
     // Below urls have tickets raised for pa11y errors
     // "/pupils/lessons/sexual-consent-and-the-law-6gt3et/overview",
     // "/pupils/programmes/art-primary-year-1-l/units/drawing-c92d/lessons/exploring-shadows-and-tone-6hjk0t/intro",
@@ -88,7 +84,6 @@ function getDeploymentTestUrls() {
     "/teachers/curriculum/english-secondary-aqa/downloads",
     "/teachers/curriculum/science-secondary-ocr/units",
     "/teachers/curriculum/science-secondary-ocr/downloads",
-    "/teachers/curriculum/previous-downloads",
     "/teachers/curriculum",
     "/teachers/curriculum/english-primary/units/speaking-and-listening",
     "/teachers/curriculum/english-primary/units/king-tut-or-healthy-lifestyle-non-chronological-report",

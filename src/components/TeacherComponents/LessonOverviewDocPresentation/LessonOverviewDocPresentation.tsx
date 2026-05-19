@@ -52,6 +52,9 @@ const LessonOverviewDocPresentation: FC<LessonOverviewPresentationProps> = ({
     return null;
   }
 
+  const shouldBeNonInteractive =
+    docType === "lesson guide" || docType === "additional material";
+
   return (
     <OakBox $ba={["border-solid-m"]} $width={"100%"}>
       <AspectRatio ratio={isWorksheetLandscape ? "16:9" : "2:3"}>
@@ -60,14 +63,17 @@ const LessonOverviewDocPresentation: FC<LessonOverviewPresentationProps> = ({
           title={`${title} ${docType}`}
           width="100%"
           height="100%"
-          // We know the google docs aren't accessible.
-          className="pa11y-ignore"
           data-testid="overview-presentation-document"
           style={{
             border: "none",
           }}
           loading="eager"
           shouldZoom={isWorksheetLandscape ?? false}
+          // We know the google docs aren't accessible.
+          className="pa11y-ignore"
+          // avoid focus traps
+          tabIndex={shouldBeNonInteractive ? -1 : undefined}
+          aria-hidden={shouldBeNonInteractive ? "true" : undefined}
         />
       </AspectRatio>
     </OakBox>

@@ -1,0 +1,129 @@
+import { useMemo, useState } from "react";
+import {
+  OakRadioGroup,
+  OakQuizRadioButton,
+  OakFlex,
+  OakJauntyAngleLabel,
+  OakScaleImageButton,
+} from "@oaknational/oak-components";
+
+import { multipleChoiceAnswerId } from "../QuizMCQMultiAnswer";
+
+import { CodeRenderWrapper } from "@/components/PupilComponents//CodeRendererWrapper/CodeRendererWrapper";
+import { useLessonEngineContext } from "@/components/PupilComponents/LessonEngineProvider";
+import { useQuizEngineContext } from "@/components/PupilComponents/LegacyQuiz/QuizEngineProvider";
+import {
+  getStemImage,
+  isImage,
+  isText,
+} from "@/components/PupilComponents/QuizUtils/stemUtils";
+import { MathJaxWrap } from "@/browser-lib/mathjax/MathJaxWrap";
+
+// testing
+//text only
+//http://localhost:3000/pupils/programmes/combined-science-secondary-ks4-foundation-aqa/units/measuring-waves/lessons/transverse-waves
+//with images
+//http://localhost:3000/pupils/programmes/science-primary-ks2/units/earth-sun-and-moon/lessons/why-we-have-day-and-night#starter-quiz
+
+export type QuizMCQSingleAnswerProps = {
+  onChange: () => void;
+};
+
+export const QuizMCQSingleAnswer = (props: QuizMCQSingleAnswerProps) => {
+  const { onChange } = props;
+  const quizEngineContext = useQuizEngineContext();
+  const lessonEngineContext = useLessonEngineContext();
+  const { currentQuestionIndex, currentQuestionData } = quizEngineContext;
+  const { currentSection, isReadOnly } = lessonEngineContext;
+  const answers = useMemo(
+    () => currentQuestionData?.answers?.["multiple-choice"] ?? [],
+    [currentQuestionData],
+  );
+  const [scaled, setScaled] = useState<boolean[]>(answers.map(() => false));
+  const handleSetScale = (index: number, newValue: boolean) => {
+    setScaled((prevStates) =>
+      prevStates.map((state, i) => (i === index ? newValue : state)),
+    );
+  };
+  const questionState = quizEngineContext.questionState[currentQuestionIndex];
+  const questionUid = currentQuestionData?.questionUid;
+
+  if (!questionState) {
+    return null;
+  }
+
+  const isFeedbackMode = questionState.mode === "feedback";
+  const isExitQuizReadOnly = isReadOnly && currentSection === "exit-quiz";
+
+  return (
+    <OakFlex $flexDirection={"column"} $gap={"spacing-24"}>
+      <OakFlex $mt={["spacing-16", "spacing-48", "spacing-56"]}>
+        <OakJauntyAngleLabel
+          $background={
+            currentSection === "starter-quiz"
+              ? "bg-decorative1-main"
+              : "bg-decorative5-main"
+          }
+          $color={"text-primary"}
+          label="Select one answer"
+        />
+      </OakFlex>
+      <OakRadioGroup
+        name={questionUid || "mcq-single-answer"}
+        $flexDirection={"column"}
+        $gap={"spacing-16"}
+        onChange={onChange}
+        disabled={isFeedbackMode || isExitQuizReadOnly}
+        aria-labelledby={`${questionUid}-legend`}
+      >
+        {answers?.map((answer, i) => {
+          const label = answer.answer.find(isText);
+          const image = getStemImage({
+            stem: answer.answer.filter(isImage),
+            minWidth: "spacing-240",
+            scaled: scaled[i] ? true : false,
+          });
+          const ResizeableImage = image ? (
+            <OakFlex>
+              {image}
+              <OakFlex
+                $width={"spacing-32"}
+                $height={"spacing-32"}
+                $pointerEvents={"auto"}
+                $display={["none", "flex"]}
+              >
+                <OakScaleImageButton
+                  onImageScaleCallback={(e) => {
+                    e.stopPropagation();
+                    handleSetScale(i, !scaled[i]);
+                  }}
+                  isExpanded={scaled[i] ? true : false}
+                />
+              </OakFlex>
+            </OakFlex>
+          ) : undefined;
+
+          const feedback = Array.isArray(questionState.feedback)
+            ? questionState.feedback[i]
+            : undefined;
+
+          return (
+            <OakQuizRadioButton
+              id={multipleChoiceAnswerId(questionUid, i)}
+              key={`${questionUid}-answer-${i}`}
+              value={`${questionUid}: ${i}`} // we make this unique to the question to prevent selection on later questions
+              label={
+                <CodeRenderWrapper>
+                  <MathJaxWrap>{label?.text}</MathJaxWrap>
+                </CodeRenderWrapper>
+              }
+              feedback={feedback}
+              image={ResizeableImage}
+              isHighlighted={questionState?.mode === "incomplete"}
+            />
+          );
+        })}
+      </OakRadioGroup>
+    </OakFlex>
+  );
+};

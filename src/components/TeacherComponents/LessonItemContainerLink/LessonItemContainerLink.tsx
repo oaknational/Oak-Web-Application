@@ -1,6 +1,6 @@
-import ButtonAsLink, {
-  ButtonAsLinkProps,
-} from "@/components/SharedComponents/Button/ButtonAsLink";
+import { OakSmallTertiaryInvertedButton } from "@oaknational/oak-components";
+import Link from "next/link";
+
 import {
   PreselectedDownloadType,
   PreselectedShareType,
@@ -8,10 +8,10 @@ import {
   isPreselectedShareType,
 } from "@/components/TeacherComponents/types/downloadAndShare.types";
 import {
-  LessonDownloadsCanonicalLinkProps,
+  IntegratedLessonDownloadsLinkProps,
   LessonDownloadsLinkProps,
-  LessonShareCanonicalLinkProps,
   LessonShareLinkProps,
+  resolveOakHref,
   SpecialistLessonDownloadsLinkProps,
   SpecialistLessonShareLinkProps,
 } from "@/common-lib/urls";
@@ -25,107 +25,106 @@ export function LessonItemContainerLink({
   preselected,
   page,
   isSpecialist,
+  isIntegratedJourney = false,
 }: Readonly<{
   page: "share" | "download";
   resourceTitle: string;
   onClick?: () => void;
   lessonSlug: string;
-  unitSlug: string | null;
-  programmeSlug: string | null;
+  unitSlug: string;
+  programmeSlug: string;
   preselected: PreselectedDownloadType | PreselectedShareType | null;
   isSpecialist: boolean;
+  /**
+   * If true, use the integrated lesson downloads page.
+   *
+   * Can be consolidated once the integrated journey is fully rolled out.
+   */
+  isIntegratedJourney?: boolean;
 }>) {
-  const buttonProps: Pick<
-    ButtonAsLinkProps,
-    | "variant"
-    | "iconBackground"
-    | "icon"
-    | "$iconPosition"
-    | "label"
-    | "onClick"
-  > = {
-    variant: "minimal",
-    iconBackground: "black",
-    icon: "arrow-right",
-    $iconPosition: "trailing",
-    onClick,
-    label: page === "share" ? "Share with pupils" : `Download ${resourceTitle}`,
+  const label =
+    page === "share" ? "Share with pupils" : `Download ${resourceTitle}`;
+
+  const getShareLinkProps = ():
+    | LessonShareLinkProps
+    | SpecialistLessonShareLinkProps => {
+    const query = isPreselectedShareType(preselected)
+      ? { preselected }
+      : undefined;
+
+    if (isSpecialist) {
+      return {
+        page: "specialist-lesson-share",
+        lessonSlug,
+        unitSlug,
+        programmeSlug,
+        query,
+      };
+    }
+
+    return {
+      page: "lesson-share",
+      lessonSlug,
+      unitSlug,
+      programmeSlug,
+      query,
+    };
   };
 
-  const shareLinkProps:
-    | LessonShareLinkProps
-    | LessonShareCanonicalLinkProps
-    | SpecialistLessonShareLinkProps =
-    isSpecialist && programmeSlug && unitSlug
-      ? {
-          page: "specialist-lesson-share",
-          lessonSlug,
-          unitSlug,
-          programmeSlug,
-          query: isPreselectedShareType(preselected)
-            ? { preselected }
-            : undefined,
-        }
-      : programmeSlug && unitSlug
-        ? {
-            page: "lesson-share",
-            lessonSlug,
-            unitSlug,
-            programmeSlug,
-            query: isPreselectedShareType(preselected)
-              ? { preselected }
-              : undefined,
-          }
-        : {
-            page: "lesson-share-canonical",
-            lessonSlug,
-            query: isPreselectedShareType(preselected)
-              ? { preselected }
-              : undefined,
-          };
-
-  const downloadLinkProps:
+  const getDownloadLinkProps = ():
     | LessonDownloadsLinkProps
-    | LessonDownloadsCanonicalLinkProps
-    | SpecialistLessonDownloadsLinkProps =
-    isSpecialist && programmeSlug && unitSlug
-      ? {
-          page: "specialist-lesson-downloads",
-          lessonSlug,
-          unitSlug,
-          programmeSlug,
-          downloads: "downloads",
-          query: isPreselectedDownloadType(preselected)
-            ? { preselected }
-            : undefined,
-        }
-      : programmeSlug && unitSlug
-        ? {
-            page: "lesson-downloads",
-            lessonSlug,
-            unitSlug,
-            programmeSlug,
-            downloads: "downloads",
-            query: isPreselectedDownloadType(preselected)
-              ? { preselected }
-              : undefined,
-          }
-        : {
-            page: "lesson-downloads-canonical",
-            downloads: "downloads",
-            lessonSlug,
-            query: isPreselectedDownloadType(preselected)
-              ? { preselected }
-              : undefined,
-          };
-  const linkProps = page === "share" ? shareLinkProps : downloadLinkProps;
+    | IntegratedLessonDownloadsLinkProps
+    | SpecialistLessonDownloadsLinkProps => {
+    const query = isPreselectedDownloadType(preselected)
+      ? { preselected }
+      : undefined;
+
+    if (isSpecialist) {
+      return {
+        page: "specialist-lesson-downloads",
+        lessonSlug,
+        unitSlug,
+        programmeSlug,
+        downloads: "downloads",
+        query,
+      };
+    }
+
+    if (isIntegratedJourney) {
+      return {
+        page: "integrated-lesson-downloads",
+        lessonSlug,
+        unitSlug,
+        programmeSlug,
+        query,
+      };
+    }
+
+    return {
+      page: "lesson-downloads",
+      lessonSlug,
+      unitSlug,
+      programmeSlug,
+      downloads: "downloads",
+      query,
+    };
+  };
+
+  const linkProps =
+    page === "share" ? getShareLinkProps() : getDownloadLinkProps();
+  const href = resolveOakHref(linkProps);
 
   return (
-    <ButtonAsLink
-      {...buttonProps}
+    <OakSmallTertiaryInvertedButton
+      element={Link}
+      href={href}
+      iconName="download"
+      isTrailingIcon
       data-testid="download-button"
       rel="nofollow"
-      {...linkProps}
-    />
+      onClick={onClick}
+    >
+      {label}
+    </OakSmallTertiaryInvertedButton>
   );
 }

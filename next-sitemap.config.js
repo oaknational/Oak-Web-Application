@@ -23,8 +23,6 @@ const serversideSitemapPaths = [
   "/teachers/key-stages/sitemap.xml",
   "/teachers/sitemap.xml",
   "/teachers/sitemap-1.xml",
-  "/pupils/sitemap.xml",
-  "/pupils/sitemap-1.xml",
 ];
 const serversideSitemapUrls = serversideSitemapPaths.map(
   (sitemapPath) => new URL(path.join(sitemapBaseUrl, sitemapPath)).href,
@@ -59,6 +57,7 @@ module.exports = {
     policies: [
       {
         userAgent: "*",
+        disallow: ["/api", "/_next/image"],
         // Note, there is a Cloudflare rule redirecting all /beta paths to a 404 page.
       },
     ],

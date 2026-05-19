@@ -1,12 +1,8 @@
-import { OakLI } from "@oaknational/oak-components";
+import { OakLI, OakSecondaryLink } from "@oaknational/oak-components";
 
-import OwaLink from "@/components/SharedComponents/OwaLink";
-import { ResolveOakHrefProps } from "@/common-lib/urls";
 import useAnalytics from "@/context/Analytics/useAnalytics";
 import type { LearningThemeSelectedTrackingProps } from "@/components/SharedComponents/CategoryFilterList";
-import { PixelSpacing } from "@/styles/theme";
-import Icon from "@/components/SharedComponents/Icon.deprecated";
-import Flex from "@/components/SharedComponents/Flex.deprecated";
+import { resolveOakHref, ResolveOakHrefProps } from "@/common-lib/urls";
 
 export type CategoryLinkProps = ResolveOakHrefProps;
 export interface Category<T extends CategoryLinkProps> {
@@ -50,14 +46,6 @@ const CategoryFilterListItem = <T extends CategoryLinkProps>(
     }
   };
 
-  const ICON_SIZE: [PixelSpacing, PixelSpacing] = [20, 30];
-  const ICON_MARGIN_RIGHT: [PixelSpacing, PixelSpacing] = [16, 12];
-  // translate to account for absolutely positioned icon
-  const TRANSLATE_X = [
-    ICON_SIZE[0] + ICON_MARGIN_RIGHT[0],
-    ICON_SIZE[1] + ICON_MARGIN_RIGHT[1],
-  ];
-
   return (
     <OakLI
       $display="flex"
@@ -68,44 +56,14 @@ const CategoryFilterListItem = <T extends CategoryLinkProps>(
       $color={!isSelected ? "text-primary" : "text-subdued"}
       $mb="spacing-12"
     >
-      <OwaLink
-        $display="flex"
-        $height="100%"
-        $alignItems="center"
+      <OakSecondaryLink
         aria-current={isSelected ? true : undefined}
-        {...linkProps}
-        htmlAnchorProps={{
-          onClick,
-          // "aria-current": isSelected ? "page" : undefined,
-        }}
+        href={resolveOakHref({ ...linkProps })}
+        onClick={onClick}
+        iconName={arrowHidden ? undefined : "arrow-right"}
       >
-        <Icon
-          name="arrow-right"
-          size={ICON_SIZE}
-          $mr={ICON_MARGIN_RIGHT}
-          $opacity={arrowHidden ? 0 : 1}
-          $position="absolute"
-          $transform={
-            arrowHidden
-              ? TRANSLATE_X.map((x) => `translateX(-${x}px)`)
-              : "translateX(0px)"
-          }
-          $transition="all 0.1s ease"
-          aria-hidden
-        />
-        <Flex
-          $alignItems="center"
-          $transition="all 0.1s ease"
-          $transform={
-            !arrowHidden
-              ? TRANSLATE_X.map((x) => `translateX(${x}px)`)
-              : "translateX(0)"
-          }
-          $width="100%"
-        >
-          {label}
-        </Flex>
-      </OwaLink>
+        {label}
+      </OakSecondaryLink>
     </OakLI>
   );
 };

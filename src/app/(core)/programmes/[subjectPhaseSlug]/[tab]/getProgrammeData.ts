@@ -1,4 +1,5 @@
 import {
+  CurriculumPhaseOptions,
   CurriculumUnit,
   type CurriculumApi,
 } from "@/node-lib/curriculum-api-2023";
@@ -20,6 +21,14 @@ const sortUnits = (units: CurriculumUnit[]): CurriculumUnit[] => {
   return sorted;
 };
 
+const excludeCoreFromSubjects = (subjects: CurriculumPhaseOptions) => {
+  return subjects.map((subject) => ({
+    ...subject,
+    ks4_options:
+      subject.ks4_options?.filter(({ slug }) => slug !== "core") ?? null,
+  }));
+};
+
 export async function getProgrammeData(
   curriculumApi2023: CurriculumApi,
   subjectPhaseSlug: string,
@@ -30,8 +39,12 @@ export async function getProgrammeData(
     return null;
   }
 
-  const [programmeUnitsData, curriculumUnitsData, subjects] = await Promise.all(
-    [
+  // We exclude core units when the ks4 option is not core
+  // TD: after the integrated journey launches we should make this the default in the query
+  const excludeCoreUnits = subjectPhaseKeystageSlugs.ks4OptionSlug !== "core";
+
+  const [programmeUnitsData, curriculumUnitsData, originalSubjects] =
+    await Promise.all([
       curriculumApi2023.curriculumOverview({
         subjectSlug: subjectPhaseKeystageSlugs.subjectSlug,
         phaseSlug: subjectPhaseKeystageSlugs.phaseSlug,
@@ -41,13 +54,19 @@ export async function getProgrammeData(
         ...subjectPhaseKeystageSlugs,
         includeNonCurriculum: true,
         excludeUnitsWithNoPublishedLessons: true,
+        excludeCoreUnits,
       }),
       curriculumApi2023.curriculumPhaseOptions({ includeNonCurriculum: true }),
-    ],
-  );
+    ]);
+
+  let subjects = filterValidCurriculumPhaseOptions(originalSubjects);
+
+  if (excludeCoreUnits) {
+    subjects = excludeCoreFromSubjects(subjects);
+  }
 
   const curriculumPhaseOptions = {
-    subjects: filterValidCurriculumPhaseOptions(subjects),
+    subjects,
     tab: "units" as const,
   };
 

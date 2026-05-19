@@ -1,4 +1,7 @@
-import { useMemo, useState } from "react";
+"use client";
+
+import { ReactNode, useMemo, useState } from "react";
+import { useRouter } from "next/navigation";
 import {
   ActionsCamel,
   examboards,
@@ -8,6 +11,7 @@ import {
   OakBox,
   OakHandDrawnHR,
   OakMaxWidth,
+  OakPrimaryButton,
 } from "@oaknational/oak-components";
 
 import { getResourcesWithoutLegacyCopyright } from "../TeacherComponents/helpers/downloadAndShareHelpers/downloadsLegacyCopyright";
@@ -34,21 +38,15 @@ import {
   getLessonDownloadsBreadCrumb,
   getBreadcrumbsForLessonPathway,
   getCommonPathway,
-  getBreadcrumbsForSpecialistLessonPathway,
-  getBreadCrumbForSpecialistDownload,
-  lessonIsSpecialist,
 } from "@/components/TeacherComponents/helpers/lessonHelpers/lesson.helpers";
-import {
-  LessonPathway,
-  SpecialistLessonPathway,
-} from "@/components/TeacherComponents/types/lesson.types";
-import LoadingButton from "@/components/SharedComponents/Button/LoadingButton";
+import { LessonPathway } from "@/components/TeacherComponents/types/lesson.types";
 import DownloadPageWithAccordion from "@/components/TeacherComponents/DownloadPageWithAccordion";
 import DownloadConfirmation from "@/components/TeacherComponents/DownloadConfirmation";
 import {
   LessonDownloadsPageData,
   NextLesson,
 } from "@/node-lib/curriculum-api-2023/queries/lessonDownloads/lessonDownloads.schema";
+import type { LessonListSchema } from "@/node-lib/curriculum-api-2023/shared.schema";
 import { useResourceFormState } from "@/components/TeacherComponents/hooks/downloadAndShareHooks/useResourceFormState";
 import { useHubspotSubmit } from "@/components/TeacherComponents/hooks/downloadAndShareHooks/useHubspotSubmit";
 import { LEGACY_COHORT } from "@/config/cohort";
@@ -57,6 +55,7 @@ import { LegacyCopyrightContent } from "@/node-lib/curriculum-api-2023/shared.sc
 import { LessonDownloadRegionBlocked } from "@/components/TeacherComponents/LessonDownloadRegionBlocked/LessonDownloadRegionBlocked";
 import { resolveOakHref } from "@/common-lib/urls";
 import { useComplexCopyright } from "@/hooks/useComplexCopyright";
+import { useOakNotificationsContext } from "@/context/OakNotifications/useOakNotificationsContext";
 
 type BaseLessonDownload = {
   expired: boolean | null;
@@ -75,35 +74,33 @@ type BaseLessonDownload = {
   lessonReleaseDate: string | null;
 };
 
-type CanonicalLesson = BaseLessonDownload & {
-  pathways: LessonPathway[];
-  updatedAt: string;
-  nextLessons?: NextLesson[];
-};
-
 type NonCanonicalLesson = BaseLessonDownload & {
   nextLessons: NextLesson[];
   updatedAt: string;
-} & LessonPathway;
+} & LessonPathway & {
+    lessons?: LessonListSchema;
+    unitDescription?: string | null;
+    subjectCategories?: string[] | null;
+  };
 
 type SpecialistLesson = SpecialistLessonDownloads["lesson"];
 
 type LessonDownloadsProps =
   | {
-      isCanonical: true;
-      lesson: CanonicalLesson;
-    }
-  | {
-      isCanonical: false;
       lesson: NonCanonicalLesson;
+      breadcrumbsSlot?: ReactNode;
+      successRedirect?: string;
     }
   | {
-      isCanonical: false;
       lesson: SpecialistLesson;
+      breadcrumbsSlot?: ReactNode;
+      successRedirect?: string;
     };
 
 export function LessonDownloads(props: LessonDownloadsProps) {
-  const { isCanonical, lesson } = props;
+  const { lesson } = props;
+  const { setCurrentToastProps } = useOakNotificationsContext();
+  const router = useRouter();
   const {
     lessonTitle,
     lessonSlug,
@@ -142,26 +139,7 @@ export function LessonDownloads(props: LessonDownloadsProps) {
 
   const showRiskAssessmentBanner = actions?.isPePractical;
 
-  const commonPathway =
-    lessonIsSpecialist(lesson) && !props.isCanonical
-      ? {
-          lessonSlug,
-          lessonTitle,
-          unitSlug: props.lesson.unitSlug,
-          programmeSlug: props.lesson.programmeSlug,
-          unitTitle: props.lesson.unitTitle,
-          subjectTitle: props.lesson.subjectTitle,
-          subjectSlug: props.lesson.subjectSlug,
-          developmentStageTitle: props.lesson.developmentStageTitle,
-          disabled: false,
-          lessonCohort: LEGACY_COHORT,
-          keyStageSlug: null,
-          keyStageTitle: null,
-          pathwayTitle: null,
-        }
-      : getCommonPathway(
-          props.isCanonical ? props.lesson.pathways : [props.lesson],
-        );
+  const commonPathway = getCommonPathway([props.lesson]);
 
   const {
     programmeSlug,
@@ -227,15 +205,18 @@ export function LessonDownloads(props: LessonDownloadsProps) {
 
   const [apiError, setApiError] = useState<string | null>(null);
 
-  const { onSubmit } = useResourceFormSubmit({
-    type: "download",
-    isLegacyDownload,
-  });
+  const { onSubmit } = useResourceFormSubmit();
 
   const { onHubspotSubmit } = useHubspotSubmit();
 
-  const [isDownloadSuccessful, setIsDownloadSuccessful] =
-    useState<boolean>(false);
+  const [isDownloadSuccessful, setIsDownloadSuccessful] = useState(false);
+
+  let downloadButtonText = "Download .zip";
+  if (isAttemptingDownload) {
+    downloadButtonText = "Downloading...";
+  } else if (!hubspotLoaded) {
+    downloadButtonText = "Loading...";
+  }
 
   const onFormSubmit = async (data: ResourceFormValues): Promise<void> => {
     setApiError(null);
@@ -244,13 +225,19 @@ export function LessonDownloads(props: LessonDownloadsProps) {
     try {
       await debouncedSubmit({
         data,
-        lessonSlug,
+        slug: lessonSlug,
         setIsAttemptingDownload,
         setEditDetailsClicked,
         onSubmit,
+        type: "download",
+        isLegacyDownload,
       });
 
-      setIsDownloadSuccessful(true);
+      if (props.successRedirect) {
+        router.replace(props.successRedirect);
+      } else {
+        setIsDownloadSuccessful(true);
+      }
       if (editDetailsClicked && !data.email) {
         setEmailInLocalStorage("");
       }
@@ -265,12 +252,8 @@ export function LessonDownloads(props: LessonDownloadsProps) {
         selectedResources,
       });
 
-      const examboard = examboards.safeParse(
-        (commonPathway as LessonPathway).examBoardTitle,
-      );
-      const tier = tierDescriptions.safeParse(
-        (commonPathway as LessonPathway).tierTitle,
-      );
+      const examboard = examboards.safeParse(commonPathway.examBoardTitle);
+      const tier = tierDescriptions.safeParse(commonPathway.tierTitle);
       track.lessonResourcesDownloaded({
         keyStageTitle: keyStageTitle as KeyStageTitleValueType,
         keyStageSlug,
@@ -285,7 +268,7 @@ export function LessonDownloads(props: LessonDownloadsProps) {
         schoolName,
         schoolOption,
         onwardContent,
-        emailSupplied: data?.email ? true : false,
+        emailSupplied: !!data?.email,
         platform: "owa",
         product: "teacher lesson resources",
         engagementIntent: "use",
@@ -307,6 +290,13 @@ export function LessonDownloads(props: LessonDownloadsProps) {
       setApiError(
         "There was an error downloading your files. Please try again.",
       );
+      setCurrentToastProps({
+        message:
+          "Something went wrong with the download. Try refreshing the page.",
+        variant: "error",
+        autoDismiss: false,
+        showIcon: true,
+      });
     }
   };
 
@@ -334,38 +324,29 @@ export function LessonDownloads(props: LessonDownloadsProps) {
           $mb={isDownloadSuccessful ? "spacing-0" : "spacing-32"}
           $mt={"spacing-24"}
         >
-          <Breadcrumbs
-            breadcrumbs={
-              !isSpecialist
-                ? [
-                    ...getBreadcrumbsForLessonPathway(commonPathway),
-                    getLessonOverviewBreadCrumb({
-                      lessonTitle,
-                      lessonSlug,
-                      programmeSlug,
-                      unitSlug,
-                      isCanonical,
-                    }),
-                    getLessonDownloadsBreadCrumb({
-                      lessonSlug,
-                      programmeSlug,
-                      unitSlug,
-                      disabled: true,
-                    }),
-                  ]
-                : [
-                    ...getBreadcrumbsForSpecialistLessonPathway(
-                      commonPathway as SpecialistLessonPathway,
-                    ),
-                    ...getBreadCrumbForSpecialistDownload({
-                      lessonSlug,
-                      programmeSlug,
-                      unitSlug,
-                      disabled: true,
-                    }),
-                  ]
-            }
-          />
+          {props.breadcrumbsSlot ? (
+            props.breadcrumbsSlot
+          ) : (
+            // TD: remove legacy breadcrumbs once the integrated journey is fully rolled out.
+            <Breadcrumbs
+              breadcrumbs={[
+                ...getBreadcrumbsForLessonPathway(commonPathway),
+                getLessonOverviewBreadCrumb({
+                  lessonTitle,
+                  lessonSlug,
+                  programmeSlug,
+                  unitSlug,
+                  isCanonical: false,
+                }),
+                getLessonDownloadsBreadCrumb({
+                  lessonSlug,
+                  programmeSlug,
+                  unitSlug,
+                  disabled: true,
+                }),
+              ]}
+            />
+          )}
           <OakHandDrawnHR
             hrColor={"text-subdued"}
             $height={"spacing-4"}
@@ -373,7 +354,7 @@ export function LessonDownloads(props: LessonDownloadsProps) {
             $mb={"spacing-24"}
           />
         </OakBox>
-        {showGeoBlocked ? (
+        {showGeoBlocked && (
           <LessonDownloadRegionBlocked
             lessonName={lessonTitle}
             lessonSlug={lessonSlug}
@@ -386,7 +367,8 @@ export function LessonDownloads(props: LessonDownloadsProps) {
               unitSlug: unitSlug!,
             })}
           />
-        ) : isDownloadSuccessful ? (
+        )}
+        {!showGeoBlocked && isDownloadSuccessful && (
           <DownloadConfirmation
             lessonSlug={lessonSlug}
             lessonTitle={lessonTitle}
@@ -394,7 +376,7 @@ export function LessonDownloads(props: LessonDownloadsProps) {
             unitTitle={unitTitle}
             programmeSlug={programmeSlug}
             data-testid="downloads-confirmation"
-            isCanonical={props.isCanonical}
+            isCanonical={false}
             nextLessons={lesson.nextLessons}
             onwardContentSelected={(props) => {
               onwardContentSelected({
@@ -417,7 +399,8 @@ export function LessonDownloads(props: LessonDownloadsProps) {
             isLegacy={isLegacyDownload}
             lessonReleaseDate={lessonReleaseDate ?? "unreleased"}
           />
-        ) : (
+        )}
+        {!showGeoBlocked && !isDownloadSuccessful && (
           <DownloadPageWithAccordion
             loginRequired={loginRequired ?? false}
             geoRestricted={geoRestricted ?? false}
@@ -438,7 +421,7 @@ export function LessonDownloads(props: LessonDownloadsProps) {
             showPostAlbCopyright={!isLegacyDownload}
             triggerForm={form.trigger}
             apiError={apiError}
-            updatedAt={updatedAt}
+            copyrightYear={updatedAt}
             withHomeschool={true}
             showTermsAgreement={
               onboardingStatus === "not-onboarded" ||
@@ -457,13 +440,10 @@ export function LessonDownloads(props: LessonDownloadsProps) {
               )
             }
             cta={
-              <LoadingButton
+              <OakPrimaryButton
                 type="button"
-                onClick={
-                  (event) => void form.handleSubmit(onFormSubmit)(event) // https://github.com/orgs/react-hook-form/discussions/8622}
-                }
-                text={"Download .zip"}
-                icon={"download"}
+                onClick={(event) => void form.handleSubmit(onFormSubmit)(event)} // https://github.com/orgs/react-hook-form/discussions/8622}
+                iconName={"download"}
                 isLoading={
                   isAttemptingDownload || !hubspotLoaded // show loading state when waiting for latest school values to be populated from hubspot
                 }
@@ -474,13 +454,12 @@ export function LessonDownloads(props: LessonDownloadsProps) {
                     (!form.formState.isValid && !localStorageDetails)) &&
                   hubspotLoaded
                 }
-                loadingText={
-                  isAttemptingDownload ? "Downloading..." : "Loading..."
-                }
-              />
+              >
+                {downloadButtonText}
+              </OakPrimaryButton>
             }
             showRiskAssessmentBanner={showRiskAssessmentBanner}
-            downloads={downloadsFilteredByCopyright}
+            lessonDownloads={downloadsFilteredByCopyright}
             additionalFiles={additionalFiles}
             showGeoBlocked={showGeoBlocked}
             lessonSlug={lessonSlug}

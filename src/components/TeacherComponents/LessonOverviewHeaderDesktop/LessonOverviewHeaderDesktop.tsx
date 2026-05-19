@@ -18,7 +18,6 @@ import { LessonOverviewHeaderProps } from "@/components/TeacherComponents/Lesson
 import SubjectIconBrushBorders from "@/components/TeacherComponents/SubjectIconBrushBorders";
 import ComplexCopyrightRestrictionBanner from "@/components/TeacherComponents/ComplexCopyrightRestrictionBanner/ComplexCopyrightRestrictionBanner";
 import LessonMetadata from "@/components/SharedComponents/LessonMetadata";
-import { resolveOakHref } from "@/common-lib/urls";
 
 const CustomDimensionRow = styled(OakFlex)`
   width: 200px;
@@ -63,7 +62,7 @@ export const LessonOverviewHeaderDesktop: FC<
 
   const previousBreadcrumb = breadcrumbs[breadcrumbs.length - 2];
   const shouldShowBackButton =
-    !!previousBreadcrumb && !!unitTitle && !!programmeSlug;
+    !!previousBreadcrumb && !!unitTitle && !!programmeSlug && !isCanonical;
 
   return (
     <OakBox $display={["none", "grid"]}>
@@ -78,11 +77,7 @@ export const LessonOverviewHeaderDesktop: FC<
               <CustomDimensionRow data-testid={"back-button-row"}>
                 <OakTertiaryButton
                   element="a"
-                  href={
-                    "href" in previousBreadcrumb.oakLinkProps
-                      ? previousBreadcrumb.oakLinkProps.href
-                      : resolveOakHref(previousBreadcrumb.oakLinkProps)
-                  }
+                  href={previousBreadcrumb.href}
                   iconName="arrow-left"
                 >
                   View unit
@@ -114,7 +109,7 @@ export const LessonOverviewHeaderDesktop: FC<
                 useSpan={true}
               />
             )}
-            {(examBoardTitle || yearTitle || tierTitle) && (
+            {(examBoardTitle || yearTitle || tierTitle) && !isCanonical && (
               <OakSpan $color={"text-subdued"} $font={"heading-light-7"}>
                 <LessonMetadata
                   examBoardTitle={examBoardTitle}

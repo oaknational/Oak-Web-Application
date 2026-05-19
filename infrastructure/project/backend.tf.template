@@ -1,7 +1,6 @@
 terraform {
-  required_version = ">= 1.9.5"
   cloud {
-    organization = "your-organizaton-name"
+    organization = "your-organization-name"
     workspaces {
       tags = ["repo:Oak-Web-Application", "config:project"]
     }

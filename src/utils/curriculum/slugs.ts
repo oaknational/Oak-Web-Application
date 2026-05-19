@@ -155,9 +155,10 @@ export function getTeacherSubjectPhaseSlug({
     ? slugify(subjectParentTitle).toLocaleLowerCase()
     : subjectSlug;
 
-  const examboardSegment = examboardSlug ? `-${examboardSlug}` : "";
+  const segments = [subjectSegment, phaseSlug];
 
-  const pathwaySegment = pathwaySlug ? `-${pathwaySlug}` : "";
+  if (examboardSlug) segments.push(examboardSlug);
+  if (pathwaySlug && !examboardSlug) segments.push(pathwaySlug);
 
-  return `${subjectSegment}-${phaseSlug}${examboardSegment}${pathwaySegment}`;
+  return segments.join("-");
 }

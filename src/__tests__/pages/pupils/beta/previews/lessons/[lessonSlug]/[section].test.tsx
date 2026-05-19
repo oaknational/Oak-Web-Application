@@ -3,6 +3,7 @@ import curriculumApi2023 from "@/node-lib/curriculum-api-2023/__mocks__/index";
 import OakError from "@/errors/OakError";
 import { PupilExperienceViewProps } from "@/components/PupilViews/PupilExperience";
 import { lessonContentFixture } from "@/node-lib/curriculum-api-2023/fixtures/lessonContent.fixture";
+import { lessonBrowseDataFixture } from "@/node-lib/curriculum-api-2023/fixtures/lessonBrowseData.fixture";
 
 jest.mock(
   "@/components/PupilComponents/pupilUtils/requestLessonResources",
@@ -39,7 +40,10 @@ describe("pages/pupils/beta/previews/lessons/[lessonSlug]/index", () => {
 
       (
         curriculumApi2023.pupilPreviewLessonQuery as jest.Mock
-      ).mockResolvedValueOnce({ content });
+      ).mockResolvedValueOnce({
+        browseData: lessonBrowseDataFixture({}),
+        content,
+      });
 
       const res = (await getStaticProps({
         params: {

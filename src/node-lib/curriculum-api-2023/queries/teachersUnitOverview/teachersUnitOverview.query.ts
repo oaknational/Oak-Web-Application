@@ -4,7 +4,6 @@ import {
   unitSequenceResponseSchema,
   PackagedUnitData,
   unitsInOtherProgrammesResponseSchema,
-  subjectCategoriesSchema,
   threadsResponseSchema,
 } from "./teachersUnitOverview.schema";
 import { getPackagedUnit, getTransformedLessons } from "./helpers";
@@ -17,18 +16,12 @@ import { applyGenericOverridesAndExceptions } from "@/node-lib/curriculum-api-20
 type TeachersUnitOverviewQueryArgs = {
   programmeSlug: string;
   unitSlug: string;
-  subjectCategorySlug?: string;
 };
 
 const teachersUnitOverviewQuery =
   (sdk: Sdk) => async (args: TeachersUnitOverviewQueryArgs) => {
-    const {
-      lessons,
-      unitSequence,
-      unitsInOtherProgrammes,
-      matchingSubjectCategories,
-      threads,
-    } = await sdk.teachersUnitOverview(args);
+    const { lessons, unitSequence, unitsInOtherProgrammes, threads } =
+      await sdk.teachersUnitOverview(args);
 
     const parsedUnitSequence = unitSequenceResponseSchema.parse(unitSequence);
     const parsedUnitsInOtherProgrammes =
@@ -53,15 +46,9 @@ const teachersUnitOverviewQuery =
     const containsLoginRequiredLessons = modifiedLessons.some(
       (lesson) => lesson.features?.agf__login_required === true,
     );
-    const parsedMatchingSubjectCategories = subjectCategoriesSchema.parse(
-      matchingSubjectCategories?.[0]?.subjectCategories,
+    const nonCurriculum = modifiedLessons.every(
+      (lesson) => lesson.features?.non_curriculum === true,
     );
-
-    // We receive the subject category slug, but need to map it to the subject category title
-    // to be able to intersect with the subject categories on the unit sequence 😮‍💨
-    const currentSubjectCategoryTitle = parsedMatchingSubjectCategories?.find(
-      (category) => category.slug === args.subjectCategorySlug,
-    )?.title;
 
     const parsedModifiedLessons =
       modifiedLessonsResponseSchemaArray.parse(modifiedLessons);
@@ -83,6 +70,10 @@ const teachersUnitOverviewQuery =
         whyThisWhyNow: lesson.unit_data.why_this_why_now,
         priorKnowledgeRequirements:
           lesson.unit_data.prior_knowledge_requirements,
+        subjectCategories:
+          lesson.unit_data.subjectcategories?.filter(
+            (sc) => typeof sc === "string",
+          ) ?? null,
       };
     }, {} as PackagedUnitData);
 
@@ -91,10 +82,10 @@ const teachersUnitOverviewQuery =
       unitLessons,
       containsGeorestrictedLessons,
       containsLoginRequiredLessons,
+      nonCurriculum,
       unitSequenceData: parsedUnitSequence,
       unitsInOtherProgrammes: parsedUnitsInOtherProgrammes,
       threads: parsedThreads,
-      currentSubjectCategoryTitle,
     });
 
     return unitOverviewDataSchema.parse(packagedUnit);

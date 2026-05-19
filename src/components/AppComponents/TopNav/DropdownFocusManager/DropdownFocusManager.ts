@@ -6,7 +6,6 @@ import {
   TeachersSubNavData,
   PupilsSubNavData,
   NavButton,
-  isDropdownMenuItem,
 } from "@/node-lib/curriculum-api-2023/queries/topNav/topNav.schema";
 
 type NavAreaType = "teachers" | "pupils";
@@ -39,40 +38,14 @@ export class DropdownFocusManager<
   }
   private getFocusTree(navData: T): Map<string, FocusNode> {
     const arrayOfSubNavButtons = Object.values(navData);
-    const withAllKeystageButtons =
-      this.addAllKeystagesButtonsToNavData(arrayOfSubNavButtons);
     const focusMap = new Map<string, FocusNode>();
-    // build the tree recursively
     this.buildFocusMap({
-      items: withAllKeystageButtons,
+      items: arrayOfSubNavButtons,
       focusMap,
       parent: null,
     });
 
     return focusMap;
-  }
-
-  private addAllKeystagesButtonsToNavData(data: NavButton[]) {
-    if (this.areaType !== "teachers") return data;
-    // get to the subjects level and add an "All keystages" button to each subject list
-    const updatedData = data.map((phase) => {
-      if (!isDropdownMenuItem(phase)) return phase;
-      return {
-        ...phase,
-        children: phase.children?.map((keystage: Record<string, unknown>) => {
-          const allKeystagesButton = {
-            title: "All keystages",
-            slug: "all-keystages-button",
-          };
-          if (!keystage.children) return keystage;
-          return {
-            ...keystage,
-            children: [...(keystage.children as unknown[]), allKeystagesButton],
-          };
-        }),
-      } as NavButton;
-    });
-    return updatedData;
   }
 
   private buildFocusMap({

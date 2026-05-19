@@ -2,6 +2,7 @@ import React from "react";
 import "@testing-library/jest-dom";
 import { OakThemeProvider, oakDefaultTheme } from "@oaknational/oak-components";
 import userEvent from "@testing-library/user-event";
+import { waitFor } from "@testing-library/react";
 
 import { PupilViewsReview } from "./PupilReview.view";
 
@@ -13,6 +14,19 @@ import { createLessonEngineContext } from "@/components/PupilComponents/pupilTes
 import { sectionResultsFixture } from "@/node-lib/curriculum-api-2023/fixtures/lessonSectionResults.fixture";
 import { lessonBrowseDataFixture } from "@/node-lib/curriculum-api-2023/fixtures/lessonBrowseData.fixture";
 import { trackingEvents } from "@/components/PupilComponents/PupilAnalyticsProvider/PupilAnalyticsProvider";
+import googleClassroomApi from "@/browser-lib/google-classroom/googleClassroomApi";
+
+const mockUseSearchParams = jest.fn().mockReturnValue(null);
+
+jest.mock("next/navigation", () => ({
+  useSearchParams: () => mockUseSearchParams(),
+}));
+
+jest.mock("@/browser-lib/google-classroom/googleClassroomApi", () => ({
+  turnInCourseWork: jest.fn().mockResolvedValue(undefined),
+}));
+
+const mockTurnInCourseWork = googleClassroomApi.turnInCourseWork as jest.Mock;
 
 const writeText = jest.fn();
 
@@ -452,6 +466,244 @@ describe("PupilReview", () => {
       expect(getByText("Printable results").closest("a")).toHaveAttribute(
         "href",
         "/pupils/lessons/lesson-slug/results/attempt-id/printable",
+      );
+    });
+  });
+
+  describe("CourseWork hand-in", () => {
+    beforeEach(() => {
+      mockUseSearchParams.mockReturnValue(
+        new URLSearchParams("assignmentToken=test-token"),
+      );
+      mockTurnInCourseWork.mockResolvedValue(undefined);
+    });
+
+    afterEach(() => {
+      mockUseSearchParams.mockReturnValue(null);
+    });
+
+    it("shows the hand-in button when an assignmentToken is present", () => {
+      const { getByText } = renderWithTheme(
+        <OakThemeProvider theme={oakDefaultTheme}>
+          <LessonEngineContext.Provider value={createLessonEngineContext()}>
+            <PupilViewsReview
+              lessonTitle="Lesson title"
+              exitQuizQuestionsArray={[]}
+              starterQuizQuestionsArray={[]}
+              programmeSlug="programme-slug"
+              unitSlug="unit-slug"
+              browseData={mockBroweData}
+              pageType="browse"
+            />
+          </LessonEngineContext.Provider>
+        </OakThemeProvider>,
+      );
+
+      expect(getByText("Hand in")).toBeInTheDocument();
+    });
+
+    it("shows a loading spinner and updated label while handing in", async () => {
+      mockTurnInCourseWork.mockReturnValue(new Promise(() => {})); // never resolves
+
+      const { getByText, getByRole } = renderWithTheme(
+        <OakThemeProvider theme={oakDefaultTheme}>
+          <LessonEngineContext.Provider value={createLessonEngineContext()}>
+            <PupilViewsReview
+              lessonTitle="Lesson title"
+              exitQuizQuestionsArray={[]}
+              starterQuizQuestionsArray={[]}
+              programmeSlug="programme-slug"
+              unitSlug="unit-slug"
+              browseData={mockBroweData}
+              pageType="browse"
+            />
+          </LessonEngineContext.Provider>
+        </OakThemeProvider>,
+      );
+
+      await userEvent.click(getByText("Hand in"));
+
+      expect(getByText("Handing in…")).toBeInTheDocument();
+      expect(getByRole("button", { name: /Handing in/i })).toBeDisabled();
+    });
+
+    it("shows a success message and disables the button after handing in", async () => {
+      const { getByText, getByRole } = renderWithTheme(
+        <OakThemeProvider theme={oakDefaultTheme}>
+          <LessonEngineContext.Provider value={createLessonEngineContext()}>
+            <PupilViewsReview
+              lessonTitle="Lesson title"
+              exitQuizQuestionsArray={[]}
+              starterQuizQuestionsArray={[]}
+              programmeSlug="programme-slug"
+              unitSlug="unit-slug"
+              browseData={mockBroweData}
+              pageType="browse"
+            />
+          </LessonEngineContext.Provider>
+        </OakThemeProvider>,
+      );
+
+      await userEvent.click(getByText("Hand in"));
+
+      expect(
+        getByText("Assignment handed in successfully!"),
+      ).toBeInTheDocument();
+      expect(getByText("Handed in")).toBeInTheDocument();
+      expect(getByRole("button", { name: /Handed in/i })).toBeDisabled();
+    });
+
+    it("shows an error message when hand-in fails", async () => {
+      mockTurnInCourseWork.mockRejectedValueOnce(new Error("Network error"));
+
+      const { getByText } = renderWithTheme(
+        <OakThemeProvider theme={oakDefaultTheme}>
+          <LessonEngineContext.Provider value={createLessonEngineContext()}>
+            <PupilViewsReview
+              lessonTitle="Lesson title"
+              exitQuizQuestionsArray={[]}
+              starterQuizQuestionsArray={[]}
+              programmeSlug="programme-slug"
+              unitSlug="unit-slug"
+              browseData={mockBroweData}
+              pageType="browse"
+            />
+          </LessonEngineContext.Provider>
+        </OakThemeProvider>,
+      );
+
+      await userEvent.click(getByText("Hand in"));
+
+      expect(
+        getByText("Failed to hand in. Please try again."),
+      ).toBeInTheDocument();
+      expect(getByText("Hand in")).toBeInTheDocument();
+    });
+  });
+
+  describe("isReadOnly mode", () => {
+    it("hides the lesson overview link when isReadOnly is true", () => {
+      const { queryByRole } = renderWithTheme(
+        <OakThemeProvider theme={oakDefaultTheme}>
+          <LessonEngineContext.Provider
+            value={createLessonEngineContext({ isReadOnly: true })}
+          >
+            <PupilViewsReview
+              lessonTitle="Lesson title"
+              exitQuizQuestionsArray={[]}
+              starterQuizQuestionsArray={[]}
+              programmeSlug="programme-slug"
+              unitSlug="unit-slug"
+              browseData={mockBroweData}
+              pageType="browse"
+            />
+          </LessonEngineContext.Provider>
+        </OakThemeProvider>,
+      );
+
+      expect(
+        queryByRole("link", { name: /Lesson overview/i }),
+      ).not.toBeInTheDocument();
+    });
+  });
+
+  describe("Bottom nav", () => {
+    it("shows 'View all lessons' when not a classroom or coursework assignment", () => {
+      const { getByRole } = renderWithTheme(
+        <OakThemeProvider theme={oakDefaultTheme}>
+          <LessonEngineContext.Provider value={createLessonEngineContext()}>
+            <PupilViewsReview
+              lessonTitle="Lesson title"
+              exitQuizQuestionsArray={[]}
+              starterQuizQuestionsArray={[]}
+              programmeSlug="programme-slug"
+              unitSlug="unit-slug"
+              backUrl="/lessons"
+              browseData={mockBroweData}
+              pageType="browse"
+            />
+          </LessonEngineContext.Provider>
+        </OakThemeProvider>,
+      );
+
+      expect(
+        getByRole("link", { name: /View all lessons/i }),
+      ).toBeInTheDocument();
+    });
+  });
+
+  describe("Share results feedback", () => {
+    it("shows 'Link copied to clipboard!' after clicking copy link", async () => {
+      const logAttemptSpy = jest.fn(() => "some-attempt-id");
+      (useOakPupil as jest.Mock).mockReturnValue({ logAttempt: logAttemptSpy });
+
+      const { getByText } = renderWithTheme(
+        <OakThemeProvider theme={oakDefaultTheme}>
+          <LessonEngineContext.Provider
+            value={createLessonEngineContext({
+              sectionResults: sectionResultsFixture,
+            })}
+          >
+            <OakPupilClientProvider>
+              <PupilViewsReview
+                lessonTitle="Lesson title"
+                exitQuizQuestionsArray={[]}
+                starterQuizQuestionsArray={[]}
+                programmeSlug="programme-slug"
+                unitSlug="unit-slug"
+                browseData={mockBroweData}
+                pageType="browse"
+              />
+            </OakPupilClientProvider>
+          </LessonEngineContext.Provider>
+        </OakThemeProvider>,
+      );
+
+      await userEvent.click(getByText("Copy link"));
+
+      expect(
+        getByText(
+          "Link copied to clipboard! You can share this with your teacher.",
+        ),
+      ).toBeInTheDocument();
+    });
+
+    it("shows 'Failed to share results' when the share promise rejects", async () => {
+      const logAttemptSpy = jest.fn(() => ({
+        promise: Promise.reject(new Error("Upload failed")),
+        attemptId: "some-attempt-id",
+      }));
+      (useOakPupil as jest.Mock).mockReturnValue({ logAttempt: logAttemptSpy });
+      console.error = jest.fn();
+
+      const { getByText } = renderWithTheme(
+        <OakThemeProvider theme={oakDefaultTheme}>
+          <LessonEngineContext.Provider
+            value={createLessonEngineContext({
+              sectionResults: sectionResultsFixture,
+            })}
+          >
+            <OakPupilClientProvider>
+              <PupilViewsReview
+                lessonTitle="Lesson title"
+                exitQuizQuestionsArray={[]}
+                starterQuizQuestionsArray={[]}
+                programmeSlug="programme-slug"
+                unitSlug="unit-slug"
+                browseData={mockBroweData}
+                pageType="browse"
+              />
+            </OakPupilClientProvider>
+          </LessonEngineContext.Provider>
+        </OakThemeProvider>,
+      );
+
+      await userEvent.click(getByText("Copy link"));
+
+      await waitFor(() =>
+        expect(
+          getByText("Failed to share results. Please try again."),
+        ).toBeInTheDocument(),
       );
     });
   });

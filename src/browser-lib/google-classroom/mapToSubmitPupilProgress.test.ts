@@ -238,23 +238,6 @@ describe("mapToSubmitPupilProgress", () => {
     expect(qr?.correctAnswer).toEqual(["first"]);
   });
 
-  it("should default missing quiz metrics to keep submission valid", () => {
-    const sectionResults = {
-      "starter-quiz": {
-        isComplete: true,
-      },
-    } as unknown as LessonSectionResults;
-
-    const result = mapToSubmitPupilProgress(mockContext, sectionResults);
-
-    expect(result.starterQuiz).toEqual({
-      grade: 0,
-      numQuestions: 0,
-      isComplete: true,
-      questionResults: undefined,
-    });
-  });
-
   it("should include intro progress when present", () => {
     const sectionResults: LessonSectionResults = {
       intro: {

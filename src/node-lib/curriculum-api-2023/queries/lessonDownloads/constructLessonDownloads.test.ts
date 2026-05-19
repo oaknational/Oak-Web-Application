@@ -46,6 +46,10 @@ describe("constructLessonDownloads", () => {
       lessonTitle: "lesson-title",
       subjectSlug: "maths",
       subjectTitle: "Maths",
+      subjectParent: "Maths",
+      phaseSlug: "primary",
+      phaseTitle: "Primary",
+      pathwaySlug: null,
       unitSlug: "unit-slug",
       unitTitle: "unit-title",
       lessonCohort: "2023-2024",
@@ -54,8 +58,10 @@ describe("constructLessonDownloads", () => {
       legacyCopyrightContent: null,
       nextLessons: [],
       tierTitle: null,
+      examBoardSlug: null,
       examBoardTitle: null,
       pathwayTitle: null,
+      yearGroupTitle: "Year 1",
     };
 
     expect(result).toEqual(expectedResult);

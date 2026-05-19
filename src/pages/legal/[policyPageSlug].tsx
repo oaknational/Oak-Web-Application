@@ -12,6 +12,7 @@ import {
   OakMaxWidth,
   OakHeading,
   OakP,
+  OakLink,
 } from "@oaknational/oak-components";
 
 import CMSClient from "@/node-lib/cms";
@@ -24,7 +25,6 @@ import Layout from "@/components/AppComponents/Layout";
 import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
 import getPageProps from "@/node-lib/getPageProps";
 import { PortableTextWithDefaults } from "@/components/SharedComponents/PortableText";
-import OwaLink from "@/components/SharedComponents/OwaLink";
 import { resolveInternalHref } from "@/utils/portableText/resolveInternalHref";
 import { TopNavProps } from "@/components/AppComponents/TopNav/TopNav";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
@@ -83,15 +83,9 @@ const customPolicyComponent: PortableTextComponents = {
         ariaLabel = children[0];
       }
       return (
-        <OwaLink
-          href={value?.href}
-          aria-label={ariaLabel}
-          $textDecoration={"underline"}
-          $isInline
-          page={null}
-        >
+        <OakLink href={value?.href} aria-label={ariaLabel}>
           {children}
-        </OwaLink>
+        </OakLink>
       );
     },
     internalLink: ({ children, value }) => {
@@ -101,15 +95,12 @@ const customPolicyComponent: PortableTextComponents = {
       }
 
       return (
-        <OwaLink
+        <OakLink
           aria-label={ariaLabel}
           href={resolveInternalHref(value.reference)}
-          page={null}
-          $textDecoration={"underline"}
-          $isInline
         >
           {children}
-        </OwaLink>
+        </OakLink>
       );
     },
   },

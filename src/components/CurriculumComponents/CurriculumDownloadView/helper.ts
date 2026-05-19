@@ -60,18 +60,21 @@ export const DOWNLOAD_TYPE_LABELS: {
   disabled?: boolean;
   icon: "curriculum-plan" | "spreadsheet";
   subTitle?: string;
+  fileExt: string;
 }[] = [
   {
     id: "curriculum-plans",
     label: "Curriculum plan",
     subTitle: "Word (accessible)",
     icon: "curriculum-plan",
+    fileExt: "DOCX",
   },
   {
     id: "national-curriculum",
     label: "National curriculum",
     subTitle: "Excel (accessible)",
     icon: "spreadsheet",
+    fileExt: "XLSX",
   },
 ];
 

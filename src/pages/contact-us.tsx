@@ -89,13 +89,13 @@ const ContactUs: NextPage<ContactPageProps> = ({ pageData, topNav }) => {
         <SummaryCard {...pageData} />
         <Card
           $justifyContent={"space-between"}
-          $background={"pink50"}
-          $ph={[16, 24]}
-          $pv={[24]}
-          $mt={[72, 80]}
+          $background={"bg-decorative4-subdued"}
+          $ph={["spacing-16", "spacing-24"]}
+          $pv={["spacing-24"]}
+          $mt={["spacing-72", "spacing-80"]}
           $font={["body-2", "body-1"]}
         >
-          <BrushBorders hideOnMobileH color={"pink50"} />
+          <BrushBorders hideOnMobileH color={"bg-decorative4-subdued"} />
           <OakFlex
             $alignItems={["flex-start", "center"]}
             $flexDirection={["column", "row"]}
@@ -111,15 +111,15 @@ const ContactUs: NextPage<ContactPageProps> = ({ pageData, topNav }) => {
               {...newsletterFormProps}
               containerProps={{
                 $display: ["none", "flex"],
-                $minWidth: 360,
-                $ml: 64,
+                $minWidth: "spacing-360",
+                $ml: "spacing-56",
               }}
             />
           </OakFlex>
         </Card>
         <NewsletterFormWrap
           {...newsletterFormProps}
-          containerProps={{ $display: ["flex", "none"], $mt: 32 }}
+          containerProps={{ $display: ["flex", "none"], $mt: "spacing-32" }}
         />
       </OakMaxWidth>
     </Layout>

@@ -6,7 +6,7 @@ import { SpecialistLessonDownloadsPageData } from "@/node-lib/curriculum-api-202
 const SpecialistLessonDownloads: FC<SpecialistLessonDownloadsPageData> = ({
   curriculumData,
 }) => {
-  return <LessonDownloads isCanonical={false} lesson={curriculumData.lesson} />;
+  return <LessonDownloads lesson={curriculumData.lesson} />;
 };
 
 export default SpecialistLessonDownloads;

@@ -22,54 +22,15 @@ const meta: Meta<typeof ProgrammeHeader> = {
       },
       options: [undefined, 1, 2, 3, 4, 5, 6],
     },
-    subjectTitle: {
+    heading: {
       control: {
         type: "text",
       },
     },
-    phaseTitle: {
+    useSubduedBackground: {
       control: {
-        type: "text",
+        type: "boolean",
       },
-    },
-    schoolYear: {
-      control: {
-        type: "select",
-      },
-      options: [
-        undefined,
-        "1",
-        "2",
-        "3",
-        "4",
-        "5",
-        "6",
-        "7",
-        "8",
-        "9",
-        "10",
-        "11",
-      ],
-    },
-    keyStage: {
-      control: {
-        type: "select",
-      },
-      options: [undefined, "ks1", "ks2", "ks3", "ks4"],
-    },
-    examboardTitle: {
-      control: {
-        type: "select",
-      },
-      options: [
-        undefined,
-        "AQA",
-        "Edexcel",
-        "Edexcel B",
-        "Eduqas",
-        "OCR",
-        "WJEC",
-      ],
     },
     summary: {
       control: {
@@ -86,12 +47,9 @@ const meta: Meta<typeof ProgrammeHeader> = {
     controls: {
       include: [
         "subject",
-        "background",
-        "subjectTitle",
-        "phaseTitle",
-        "schoolYear",
-        "keyStage",
-        "examboardTitle",
+        "backgroundColorLevel",
+        "heading",
+        "useSubduedBackground",
         "summary",
         "bullets",
       ],
@@ -112,9 +70,9 @@ type Story = StoryObj<typeof ProgrammeHeader>;
 
 export const Default: Story = {
   args: {
+    layoutVariant: "large",
     subject: "english",
-    subjectTitle: "English",
-    phaseTitle: "Primary",
+    heading: "English primary",
     summary:
       "This is a programme header component that displays content alongside a large subject illustration. On mobile, the image appears above the content, and on desktop, the image is displayed to the right. Text should wrap with balance for better readability.",
     bullets: ["Item 1", "Item 2", "Item 3"],
@@ -123,10 +81,9 @@ export const Default: Story = {
 
 export const WithSchoolYear: Story = {
   args: {
+    layoutVariant: "large",
     subject: "science",
-    subjectTitle: "Science",
-    phaseTitle: "Secondary",
-    schoolYear: "9",
+    heading: "Science year 9",
     summary:
       "This example demonstrates the component with a school year specified. When a school year is provided, the heading format changes to include 'year X' instead of the phase title.",
     bullets: [
@@ -139,10 +96,9 @@ export const WithSchoolYear: Story = {
 
 export const WithKeyStage: Story = {
   args: {
+    layoutVariant: "large",
     subject: "maths",
-    subjectTitle: "Maths",
-    phaseTitle: "Primary",
-    keyStage: "ks2",
+    heading: "Maths KS2",
     summary:
       "This example demonstrates the component with a key stage specified. When a key stage is provided, the heading format changes to include 'KS1', 'KS2', 'KS3', or 'KS4' instead of the phase title.",
     bullets: [
@@ -155,10 +111,9 @@ export const WithKeyStage: Story = {
 
 export const WithExamboard: Story = {
   args: {
+    layoutVariant: "large",
     subject: "science",
-    subjectTitle: "Science",
-    phaseTitle: "Secondary",
-    examboardTitle: "AQA",
+    heading: "Science secondary AQA",
     summary:
       "This example demonstrates the component with an exam board specified. When an exam board is provided with KS4 or years 10-11, it appears in the heading after the key stage or year.",
     bullets: [
@@ -171,11 +126,9 @@ export const WithExamboard: Story = {
 
 export const WithSchoolYearAndExamboard: Story = {
   args: {
+    layoutVariant: "large",
     subject: "maths",
-    subjectTitle: "Maths",
-    phaseTitle: "Secondary",
-    schoolYear: "10",
-    examboardTitle: "Edexcel",
+    heading: "Maths year 10 Edexcel",
     summary:
       "This example demonstrates the component with both a school year and exam board. For years 10 and 11, the exam board appears after the year in the heading.",
     bullets: [

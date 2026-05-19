@@ -138,7 +138,7 @@ describe("HomePageLowerView", () => {
       />,
     );
 
-    const blogLink = screen.getByText("All blogs");
+    const blogLink = screen.getByRole("link", { name: "All blogs" });
     expect(blogLink).toBeInTheDocument();
     expect(blogLink).toHaveAttribute("href", "/blog");
   });

@@ -50,6 +50,7 @@ import {
   getDoesSubjectHaveNewUnits,
   TakedownBanner,
 } from "@/components/SharedComponents/TakedownBanner/TakedownBanner";
+import { getUnitDownloadFileId } from "@/utils/getUnitDownloadFileId";
 
 export type LessonListingPageProps = {
   curriculumData: LessonListingPageData;
@@ -215,35 +216,35 @@ const LessonListPage: NextPage<LessonListingPageProps> = ({
       <HeaderListing
         breadcrumbs={[
           {
-            oakLinkProps: {
+            href: resolveOakHref({
               page: "home",
-            },
+            }),
             label: "Home",
           },
           {
-            oakLinkProps: {
+            href: resolveOakHref({
               page: "subject-index",
               keyStageSlug,
-            },
+            }),
             label: keyStageTitle,
           },
           {
-            oakLinkProps: {
+            href: resolveOakHref({
               page: "unit-index",
               programmeSlug:
                 subjectSlug === "maths"
                   ? removeLegacySlugSuffix(programmeSlug)
                   : programmeSlug,
-            },
+            }),
             label: subjectTitle,
           },
 
           {
-            oakLinkProps: {
+            href: resolveOakHref({
               page: "lesson-index",
               unitSlug,
               programmeSlug: programmeSlug,
-            },
+            }),
 
             label: unitTitle,
             disabled: true,
@@ -254,14 +255,9 @@ const LessonListPage: NextPage<LessonListingPageProps> = ({
         title={unitTitle}
         programmeFactor={keyStageTitle} // this should be changed to year LESQ-242
         isNew={isNew}
-        hasCurriculumDownload={isSlugLegacy(programmeSlug)}
         {...curriculumData}
         shareButton={teacherShareButton}
-        unitDownloadFileId={
-          unitSlug.endsWith(unitvariantId.toString())
-            ? unitSlug
-            : `${unitSlug}-${unitvariantId}`
-        }
+        unitDownloadFileId={getUnitDownloadFileId(unitTitle, unitvariantId)}
         onUnitDownloadSuccess={() =>
           track.unitDownloadInitiated({
             platform: "owa",

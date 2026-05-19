@@ -140,6 +140,9 @@ async function main() {
     CURRICULUM_API_2023_AUTH_KEY:
       process.env.CURRICULUM_API_2023_AUTH_KEY ||
       secretsFromNetwork.CURRICULUM_API_2023_AUTH_KEY,
+    CURRICULUM_API_AUTH_KEY_V2:
+      process.env.CURRICULUM_API_AUTH_KEY_V2 ||
+      secretsFromNetwork.CURRICULUM_API_AUTH_KEY_V2,
     NEXT_PUBLIC_VERCEL_API_URL:
       process.env.NEXT_PUBLIC_VERCEL_API_URL || oakConfig.oak.vercelApiUrl,
     NEXT_PUBLIC_DOWNLOAD_API_URL:

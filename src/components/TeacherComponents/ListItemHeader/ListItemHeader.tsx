@@ -1,18 +1,20 @@
 import { FC, MutableRefObject } from "react";
-import { OakHeading, OakFlex } from "@oaknational/oak-components";
+import {
+  OakHeading,
+  OakFlex,
+  OakSecondaryLink,
+} from "@oaknational/oak-components";
 
-import OwaLink from "@/components/SharedComponents/OwaLink";
 import { LessonListItemProps } from "@/components/TeacherComponents/LessonListItem";
-import { UnitListItemProps } from "@/components/TeacherComponents/UnitListItem/UnitListItem";
 import ListItemHeaderCategoryHeading from "@/components/TeacherComponents/ListItemHeaderCategoryHeading";
 import ListItemHeaderExpemplarCategoryHeading from "@/components/TeacherComponents/ListItemHeaderExpemplarCategoryHeading";
 import {
   LessonListingLinkProps,
   LessonOverviewLinkProps,
+  resolveOakHref,
   SpecialistLessonListingLinkProps,
   SpecialistLessonOverviewLinkProps,
 } from "@/common-lib/urls";
-import { SpecialistUnit } from "@/node-lib/curriculum-api-2023/queries/specialistUnitListing/specialistUnitListing.schema";
 import { SpecialistLesson } from "@/node-lib/curriculum-api-2023/queries/specialistLessonListing/specialistLessonListing.schema";
 
 type PrimaryTargetProps = {
@@ -23,11 +25,11 @@ type PrimaryTargetProps = {
 interface CommonProps {
   hideTopHeading?: boolean;
   primaryTargetProps: PrimaryTargetProps;
-  page: "Unit" | "Lesson";
+  page: "Lesson";
   onClick: () => void | undefined;
 }
 
-type SpecialistListItemProps = (SpecialistUnit | SpecialistLesson) &
+type SpecialistListItemProps = SpecialistLesson &
   CommonProps & {
     title: string;
     slug: string;
@@ -44,7 +46,7 @@ export const isSpecialistUnit = (
 };
 
 type ListItemHeadingProps = CommonProps &
-  (LessonListItemProps | UnitListItemProps) & {
+  LessonListItemProps & {
     title: string;
     slug: string;
     index?: number;
@@ -143,9 +145,13 @@ const ListItemHeader: FC<ListItemHeadingProps | SpecialistListItemProps> = (
               yearTitle={props.yearTitle}
             />
           )}
-        <OwaLink onClick={onClick} {...primaryTargetProps} {...linkProps}>
+        <OakSecondaryLink
+          onClick={onClick}
+          {...primaryTargetProps}
+          href={resolveOakHref(linkProps)}
+        >
           <ListTitle index={index}>{itemTitle}</ListTitle>
-        </OwaLink>
+        </OakSecondaryLink>
       </OakFlex>
     </OakFlex>
   );

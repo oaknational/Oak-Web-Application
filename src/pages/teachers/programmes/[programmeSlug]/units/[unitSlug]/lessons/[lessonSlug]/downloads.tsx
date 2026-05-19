@@ -48,7 +48,7 @@ const LessonDownloadsPage = ({
         noFollow: true,
       }}
     >
-      <LessonDownloads isCanonical={false} lesson={curriculumData} />
+      <LessonDownloads lesson={curriculumData} />
     </AppLayout>
   );
 };
@@ -86,12 +86,11 @@ export const getStaticProps: GetStaticProps<
 
       let curriculumData;
       try {
-        curriculumData =
-          await curriculumApi2023.lessonDownloads<LessonDownloadsPageData>({
-            programmeSlug,
-            unitSlug,
-            lessonSlug,
-          });
+        curriculumData = await curriculumApi2023.lessonDownloads({
+          programmeSlug,
+          unitSlug,
+          lessonSlug,
+        });
       } catch (innerError) {
         allowNotFoundError(innerError);
       }

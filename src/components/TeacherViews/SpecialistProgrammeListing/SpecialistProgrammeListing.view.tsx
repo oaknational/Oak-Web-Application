@@ -5,6 +5,7 @@ import { SpecialistProgrammeListingPageData } from "@/node-lib/curriculum-api-20
 import SpecialistProgrammeHeaderListing from "@/components/TeacherComponents/SpecialistProgrammeHeaderListing";
 import SpecialistProgrammeListing from "@/components/TeacherComponents/SpecialistProgrammeListing";
 import { TakedownBanner } from "@/components/SharedComponents/TakedownBanner/TakedownBanner";
+import { resolveOakHref } from "@/common-lib/urls";
 
 const specialistProgrammeDescriptions: Record<string, string> = {
   "creative-arts":
@@ -32,13 +33,13 @@ const SpecialistProgrammeListingView: FC<SpecialistProgrammeListingPageData> = (
         description={specialistProgrammeDescriptions[subjectSlug] ?? ""}
         breadcrumbs={[
           {
-            oakLinkProps: { page: "home" },
+            href: resolveOakHref({ page: "home" }),
             label: "Home",
           },
           {
-            oakLinkProps: {
+            href: resolveOakHref({
               page: "specialist-subject-index",
-            },
+            }),
             label: "Specialist subjects",
           },
         ]}

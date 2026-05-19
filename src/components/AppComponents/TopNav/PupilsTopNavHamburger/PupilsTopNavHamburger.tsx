@@ -38,7 +38,7 @@ export function PupilsTopNavHamburger(props: Readonly<PupilsSubNavData>) {
         iconName="hamburger"
         aria-label="Open navigation menu"
         aria-expanded={isOpen}
-        aria-controls="pupils-top-nav-hamburger"
+        aria-controls={isOpen ? "pupils-top-nav-hamburger" : undefined}
         onClick={() => handleOpen()}
       >
         Menu

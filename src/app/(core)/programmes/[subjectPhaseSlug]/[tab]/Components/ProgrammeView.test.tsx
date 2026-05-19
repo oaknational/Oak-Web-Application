@@ -14,18 +14,40 @@ import {
 const usePathnameMock = jest
   .fn()
   .mockReturnValue("/programmes/science-secondary-aqa/units");
+const useRouterMock = jest.fn();
+const mockUseFetchResult = { data: [], error: null, isLoading: false };
 
 jest.mock("next/navigation", () => {
   return {
     __esModule: true,
     usePathname: () => usePathnameMock(),
     useSearchParams: jest.fn(),
-    useRouter: () => jest.fn(),
+    useRouter: () => useRouterMock,
     notFound: () => {
       throw new Error("NEXT_HTTP_ERROR_FALLBACK;404");
     },
   };
 });
+
+jest.mock(
+  "@/components/TeacherComponents/ResourcePageSchoolPicker/useSchoolPicker",
+  () => ({
+    __esModule: true,
+    default: () => ({
+      schools: [],
+      error: null,
+      schoolPickerInputValue: "",
+      setSchoolPickerInputValue: jest.fn(),
+      selectedSchool: undefined,
+      setSelectedSchool: jest.fn(),
+    }),
+  }),
+);
+
+jest.mock("@/hooks/useFetch", () => ({
+  __esModule: true,
+  useFetch: () => mockUseFetchResult,
+}));
 
 // Mock window history
 let pushSpy: jest.SpyInstance;
@@ -91,9 +113,9 @@ describe("ProgrammeView", () => {
   });
   it("renders the correct tab content for overview", () => {
     usePathnameMock.mockReturnValue(
-      "/programmes/science-secondary-aqa/overview",
+      "/programmes/science-secondary-aqa/curriculum-explainer",
     );
-    render(<ProgrammeView {...defaultProps} tabSlug="overview" />);
+    render(<ProgrammeView {...defaultProps} tabSlug="curriculum-explainer" />);
     const heading = screen.getByRole("heading", { name: "Aims and purpose" });
     expect(heading).toBeInTheDocument();
   });
@@ -102,7 +124,7 @@ describe("ProgrammeView", () => {
       "/programmes/science-secondary-aqa/download",
     );
     render(<ProgrammeView {...defaultProps} tabSlug="download" />);
-    const content = screen.getByTestId("download-heading");
+    const content = screen.getByText("Download curriculum resources");
     expect(content).toBeInTheDocument();
   });
   it("navigates on tab click", async () => {
@@ -110,7 +132,7 @@ describe("ProgrammeView", () => {
     const overviewTabButton = screen.getByRole("link", { name: "Explainer" });
     const user = userEvent.setup();
     await user.click(overviewTabButton);
-    expect(pushSpy).toHaveBeenCalledWith(null, "", "overview");
+    expect(pushSpy).toHaveBeenCalledWith(null, "", "curriculum-explainer");
   });
 
   describe("non-curriculum subjects", () => {
@@ -127,8 +149,62 @@ describe("ProgrammeView", () => {
 
     it("calls notFound when the overview tab is active", () => {
       expect(() =>
-        render(<ProgrammeView {...nonCurriculumProps} tabSlug="overview" />),
+        render(
+          <ProgrammeView
+            {...nonCurriculumProps}
+            tabSlug="curriculum-explainer"
+          />,
+        ),
       ).toThrow("NEXT_HTTP_ERROR_FALLBACK;404");
+    });
+  });
+
+  describe("initialFilter prop (SSR filter resolution)", () => {
+    beforeEach(() => {
+      usePathnameMock.mockReturnValue(
+        "/programmes/science-secondary-aqa/units",
+      );
+    });
+
+    it("accepts initialFilter prop without error", () => {
+      const initialFilter = {
+        years: ["7"],
+        tiers: ["foundation"],
+        childSubjects: [],
+        subjectCategories: [],
+        threads: [],
+        pathways: [],
+        keystages: [],
+      };
+
+      render(<ProgrammeView {...defaultProps} initialFilter={initialFilter} />);
+      const heading = screen.getByRole("heading", {
+        name: "Science secondary AQA",
+      });
+      expect(heading).toBeInTheDocument();
+    });
+
+    it("renders correctly with initialFilter for a single year", () => {
+      const initialFilter = {
+        years: ["7"],
+        tiers: ["foundation"],
+        childSubjects: [],
+        subjectCategories: [],
+        threads: [],
+        pathways: [],
+        keystages: [],
+      };
+
+      render(<ProgrammeView {...defaultProps} initialFilter={initialFilter} />);
+      // The heading should reflect the single year selection
+      const heading = screen.getByRole("heading", { name: "Year 7 units" });
+      expect(heading).toBeInTheDocument();
+    });
+
+    it("gracefully falls back when initialFilter is not provided", () => {
+      render(<ProgrammeView {...defaultProps} />);
+      const heading = screen.getByRole("heading", { name: "Year 7 units" });
+      expect(heading).toBeInTheDocument();
     });
   });
 });

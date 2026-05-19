@@ -57,7 +57,7 @@ describe("SpecialistProgrammeListing", () => {
     );
 
     const programmeCard = screen.getByText("Early development 1");
-
+    programmeCard.addEventListener("click", (event) => event.preventDefault());
     const user = userEvent.setup();
     await user.click(programmeCard);
 

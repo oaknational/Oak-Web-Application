@@ -17,6 +17,7 @@ import isSlugLegacy from "@/utils/slugModifiers/isSlugLegacy";
 import removeLegacySlugSuffix from "@/utils/slugModifiers/removeLegacySlugSuffix";
 import useAnalytics from "@/context/Analytics/useAnalytics";
 import { TopNavProps } from "@/components/AppComponents/TopNav/TopNav";
+import { resolveOakHref } from "@/common-lib/urls";
 
 const ProgrammesListingPage: NextPage<
   ProgrammeListingPageData & { topNav: TopNavProps }
@@ -122,22 +123,22 @@ const ProgrammesListingPage: NextPage<
       <HeaderListing
         breadcrumbs={[
           {
-            oakLinkProps: { page: "home" },
+            href: resolveOakHref({ page: "home" }),
             label: "Home",
           },
           {
-            oakLinkProps: {
+            href: resolveOakHref({
               page: "subject-index",
               keyStageSlug,
-            },
+            }),
             label: keyStageTitle ?? "",
           },
           {
-            oakLinkProps: {
+            href: resolveOakHref({
               page: "programme-index",
               subjectSlug: subjectSlug,
               keyStageSlug,
-            },
+            }),
             label: subjectTitle,
           },
         ]}
@@ -145,7 +146,6 @@ const ProgrammesListingPage: NextPage<
         subjectIconBackgroundColor={"bg-decorative3-main"}
         title={`${subjectTitle} ${pathwayTitle ?? ""}`}
         programmeFactor={keyStageTitle}
-        hasCurriculumDownload={legacy}
         {...props}
         subjectSlug={subjectSlug}
         isNew={!legacy} // we have no way to know if it's new based on cohort information at this level

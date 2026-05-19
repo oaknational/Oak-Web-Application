@@ -6,15 +6,16 @@ import {
   OakHeading,
   OakP,
   OakPrimaryButton,
+  OakSecondaryLink,
 } from "@oaknational/oak-components";
 
 import ScreenReaderOnly from "../ScreenReaderOnly";
 
 import LineClamp from "@/components/SharedComponents/LineClamp";
-import OwaLink from "@/components/SharedComponents/OwaLink";
 import formatDate from "@/utils/formatDate";
 import { PostListItemProps } from "@/components/SharedComponents/PostListItem";
 import useClickableCard from "@/hooks/useClickableCard";
+import { resolveOakHref } from "@/common-lib/urls";
 
 type PostListUpcomingWebinarListItemProps = PostListItemProps & {
   signUpHref: string;
@@ -39,14 +40,9 @@ const PostListUpcomingWebinarListItem: FC<
 > = (props) => {
   const { titleTag, title, date, summary, slug, signUpHref, signUpOnClick } =
     props;
-  const {
-    containerProps,
-    primaryTargetProps,
-    isHovered: cardIsHovered,
-  } = useClickableCard<HTMLAnchorElement>();
-  const { hoverProps: buttonHoverProps, isHovered: buttonIsHovered } = useHover(
-    {},
-  );
+  const { containerProps, primaryTargetProps } =
+    useClickableCard<HTMLAnchorElement>();
+  const { hoverProps: buttonHoverProps } = useHover({});
   return (
     <OakFlex
       {...containerProps}
@@ -63,15 +59,12 @@ const PostListUpcomingWebinarListItem: FC<
           $font={["heading-6", "heading-5"]}
           $mt={"spacing-8"}
         >
-          <OwaLink
+          <OakSecondaryLink
             {...primaryTargetProps}
-            page={"webinar-single"}
-            webinarSlug={slug}
-            $focusStyles={["underline"]}
-            $isHovered={cardIsHovered && !buttonIsHovered}
+            href={resolveOakHref({ page: "webinar-single", webinarSlug: slug })}
           >
             {title}
-          </OwaLink>
+          </OakSecondaryLink>
         </OakHeading>
         <OakP $mt="spacing-8">
           <LineClamp lines={2}>{summary}</LineClamp>

@@ -10,7 +10,6 @@ import { PortableTextBlockComponent } from "@portabletext/react";
 
 import CurricQuote from "@/components/CurriculumComponents/CurricQuote";
 import { getSizes } from "@/components/SharedComponents/CMSImage/getSizes";
-import Cover from "@/components/SharedComponents/Cover";
 import Illustration from "@/components/SharedComponents/Illustration";
 import { PortableTextJSON } from "@/common-lib/cms-types";
 import { PortableTextWithDefaults } from "@/components/SharedComponents/PortableText";
@@ -122,17 +121,17 @@ export function GuidingPrinciples({
           )}
         </OakFlex>
 
-        <Cover
-          $width={[300, 450, 450]}
-          $height={[270, 420, 420]}
+        <OakFlex
           $position={"relative"}
+          $width={["100%", "spacing-480", "spacing-480"]}
+          $height={["spacing-360", "spacing-480", "spacing-480"]}
         >
           {imageUrl ? (
             <OakImage
               src={imageUrl}
               alt={imageAlt}
               $objectFit="contain"
-              style={{ objectPosition: "center" }}
+              $objectPosition={"center"}
               $height="100%"
               $width="100%"
             />
@@ -147,7 +146,7 @@ export function GuidingPrinciples({
               format={null}
             />
           )}
-        </Cover>
+        </OakFlex>
       </OakFlex>
 
       <OakFlex

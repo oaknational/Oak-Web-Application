@@ -28,6 +28,7 @@ import { postToPostListItem } from "@/components/GenericPagesViews/HomePageLower
 import { SerializedPost } from "@/pages-helpers/home/getBlogPosts";
 import { TopNavProps } from "@/components/AppComponents/TopNav/TopNav";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
+import { resolveOakHref } from "@/common-lib/urls";
 
 export type PlanALessonProps = {
   pageData: PlanALessonPage;
@@ -79,16 +80,16 @@ const PlanALesson: NextPage<PlanALessonProps> = ({
           <Breadcrumbs
             breadcrumbs={[
               {
-                oakLinkProps: {
+                href: resolveOakHref({
                   page: "home",
-                },
+                }),
                 label: "Home",
               },
 
               {
-                oakLinkProps: {
+                href: resolveOakHref({
                   page: "lesson-planning",
-                },
+                }),
                 label: "Plan a lesson",
                 disabled: true,
               },

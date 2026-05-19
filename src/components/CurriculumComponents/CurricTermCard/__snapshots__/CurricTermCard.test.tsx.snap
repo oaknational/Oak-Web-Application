@@ -4,21 +4,21 @@ exports[`CurricTermCard snapshot 1`] = `
 <body>
   <div>
     <div
-      class="sc-aXZVg sc-gEvEer jSYdzG gWvaOf"
+      class="sc-aXZVg sc-gEvEer eRKLzQ gWvaOf"
     >
       <div
-        class="sc-aXZVg hkJkIR"
+        class="sc-aXZVg dFOKqz"
       >
         <h5
-          class="sc-eldPxv fqxCxQ"
+          class="sc-eldPxv iyzmge"
         >
           Yeat 1
         </h5>
         <div
-          class="sc-aXZVg sc-gEvEer hkJkIR fUsBHa"
+          class="sc-aXZVg sc-gEvEer dFOKqz fUsBHa"
         >
           <span
-            class="sc-eqUAAy DQGGZ"
+            class="sc-eqUAAy iGfTGj"
           >
             25
             /
@@ -26,7 +26,7 @@ exports[`CurricTermCard snapshot 1`] = `
              lessons scheduled
           </span>
           <span
-            class="sc-aXZVg jcHcan"
+            class="sc-aXZVg RPavd"
           >
             <img
               alt=""
@@ -41,7 +41,7 @@ exports[`CurricTermCard snapshot 1`] = `
         </div>
       </div>
       <div
-        class="sc-aXZVg hkJkIR"
+        class="sc-aXZVg dFOKqz"
         data-testid="content"
       >
         TESTING

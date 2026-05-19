@@ -14,6 +14,7 @@ import {
   OakSpan,
   OakOL,
   OakBox,
+  OakLink,
 } from "@oaknational/oak-components";
 
 import { PromoSpan } from "../PromoSpan/PromoSpan";
@@ -23,7 +24,6 @@ import { PTActionTrigger } from "./PTActionTrigger";
 import errorReporter from "@/common-lib/error-reporter";
 import { resolveInternalHref } from "@/utils/portableText/resolveInternalHref";
 import { CTAInternalLinkEntry } from "@/common-lib/cms-types";
-import OwaLink from "@/components/SharedComponents/OwaLink";
 import getProxiedSanityAssetUrl from "@/common-lib/urls/getProxiedSanityAssetUrl";
 import AnchorTarget from "@/components/SharedComponents/AnchorTarget";
 
@@ -92,11 +92,7 @@ export const PTInternalLink: PortableTextMarkComponent<{
 
   href = getProxiedSanityAssetUrl(href);
 
-  return (
-    <OwaLink href={href} page={null} $isInline>
-      {props.children}
-    </OwaLink>
-  );
+  return <OakLink href={href}>{props.children}</OakLink>;
 };
 
 export const PTExternalLink: PortableTextMarkComponent<{
@@ -109,11 +105,7 @@ export const PTExternalLink: PortableTextMarkComponent<{
 
   const { href } = props.value;
 
-  return (
-    <OwaLink href={href} page={null} $isInline>
-      {props.children}
-    </OwaLink>
-  );
+  return <OakLink href={href}>{props.children}</OakLink>;
 };
 
 export const PTAnchorLink: PortableTextMarkComponent<{
@@ -124,11 +116,7 @@ export const PTAnchorLink: PortableTextMarkComponent<{
     return null;
   }
 
-  return (
-    <OwaLink page={null} href={`#${props.value.anchor}`} $isInline>
-      {props.children}
-    </OwaLink>
-  );
+  return <OakLink href={`#${props.value.anchor}`}>{props.children}</OakLink>;
 };
 
 export const PTAnchorTarget: PortableTextMarkComponent<{

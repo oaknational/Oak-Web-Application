@@ -5,7 +5,7 @@ import {
   oakDefaultTheme,
   OakThemeProvider,
 } from "@oaknational/oak-components";
-import { mocked } from "storybook/test";
+import { fn, mocked } from "storybook/test";
 
 import { __setMockAuthState } from "../../../../../../../../../../.storybook/mocks/clerk";
 
@@ -78,6 +78,16 @@ const coreProps: UnitHeaderProps = {
     keyStageTitle: "Key stage 4",
     subjectSlug: "computer-science",
     subjectTitle: "Computer science",
+  },
+  downloadButtonState: {
+    downloadError: false,
+    setDownloadError: fn(),
+    showDownloadMessage: false,
+    setShowDownloadMessage: fn(),
+    downloadInProgress: false,
+    setDownloadInProgress: fn(),
+    showIncompleteMessage: false,
+    setShowIncompleteMessage: fn(),
   },
 };
 

@@ -13,10 +13,8 @@ import {
   isTabSlug,
 } from "../tabSchema";
 
-import {
-  ProgrammeHeader,
-  pickSubjectTitleFromFilters,
-} from "./ProgrammeHeader/ProgrammeHeader";
+import { ProgrammeHeader } from "./ProgrammeHeader/ProgrammeHeader";
+import { buildProgrammeHeading } from "./ProgrammeHeader/buildProgrammeHeading";
 import {
   UnitSequenceView,
   UnitSequenceViewProps,
@@ -27,8 +25,8 @@ import {
   ProgrammeOverviewProps,
 } from "./ProgrammeOverview/ProgrammeOverview";
 import {
-  ProgrammeDownloads,
   ProgrammeDownloadsProps,
+  ProgrammeDownloads,
 } from "./ProgrammeDownloads/ProgrammeDownloads";
 
 import {
@@ -64,6 +62,7 @@ type ProgrammePageProps = {
   tabSlug: TabSlug;
   ks4Options: Ks4Option[];
   trackingData: CurriculumUnitsTrackingData;
+  initialFilter?: CurriculumFilters;
 };
 
 export const ProgrammeView = ({
@@ -79,6 +78,7 @@ export const ProgrammeView = ({
   subjectPhaseSlug,
   ks4Options,
   trackingData,
+  initialFilter,
 }: ProgrammePageProps) => {
   const searchParams = useSearchParams();
   const [activeTab, setActiveTab] = useState<TabSlug>(tabSlug);
@@ -91,7 +91,7 @@ export const ProgrammeView = ({
     return getDefaultFilter(curriculumUnitsFormattedData);
   }, [curriculumUnitsFormattedData]);
 
-  const [filters, setFilters] = useFilters(defaultFilter);
+  const [filters, setFilters] = useFilters(defaultFilter, initialFilter);
 
   const { track } = useAnalytics();
   const { analyticsUseCase } = useAnalyticsPageProps();
@@ -115,6 +115,15 @@ export const ProgrammeView = ({
   const selectedKeystageSlug = filters.keystages.find(
     (ks) => searchParams?.get("keystages") === ks,
   );
+  const heading = buildProgrammeHeading({
+    subjectTitle,
+    data: curriculumUnitsFormattedData,
+    filters,
+    phaseTitle,
+    schoolYear,
+    keyStage: selectedKeystageSlug,
+    examboardTitle,
+  });
 
   // Ensure the active tab matches the one in the latest pathname
   const pathname = usePathname();
@@ -132,22 +141,17 @@ export const ProgrammeView = ({
       <ProgrammeHeader
         layoutVariant="large"
         subject={subjectSlug as SubjectHeroImageName}
-        subjectTitle={
-          pickSubjectTitleFromFilters(curriculumUnitsFormattedData, filters) ??
-          subjectTitle
-        }
-        phaseTitle={phaseTitle}
-        examboardTitle={examboardTitle}
-        keyStage={selectedKeystageSlug}
-        schoolYear={schoolYear}
+        heading={heading}
         summary={subjectPhaseSanityData?.bodyCopy}
         bullets={subjectPhaseSanityData?.bullets}
       />
       {curriculumInfo.nonCurriculum ? null : (
         <OakMaxWidth
-          data-testid="programme-tabs"
+          as="nav"
+          aria-label="Programme page tabs"
           $ph={["spacing-20", "spacing-20", "spacing-0"]}
           $mb={["spacing-0", "spacing-48", "spacing-48"]}
+          data-testid="programme-tabs"
         >
           <OakTabs<TabName>
             sizeVariant={["compact", "default"]}
@@ -214,7 +218,7 @@ const TabContent = ({
         ks4Options={ks4Options}
       />
     );
-  } else if (tabSlug === "overview") {
+  } else if (tabSlug === "curriculum-explainer") {
     if (!curriculumCMSInfo) {
       notFound();
     }

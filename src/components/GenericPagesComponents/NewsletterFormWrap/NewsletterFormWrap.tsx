@@ -1,13 +1,18 @@
 import { FC, useId } from "react";
-import { OakGrid, OakGridArea, OakP } from "@oaknational/oak-components";
+import {
+  OakGrid,
+  OakGridArea,
+  OakLink,
+  OakP,
+} from "@oaknational/oak-components";
 
-import OwaLink from "@/components/SharedComponents/OwaLink";
 import NewsletterForm, {
   NewsletterFormProps,
 } from "@/components/GenericPagesComponents/NewsletterForm";
 import CardTitle from "@/components/SharedComponents/Card/CardComponents/CardTitle";
 import Card, { CardProps } from "@/components/SharedComponents/Card";
 import AnchorTarget from "@/components/SharedComponents/AnchorTarget";
+import { resolveOakHref } from "@/common-lib/urls";
 
 /**
  * Newsletter Form wrapper adds copy around around NewsletterForm.
@@ -29,10 +34,10 @@ const NewsletterFormWrap: FC<NewsletterFormWrapProps> = (props) => {
   const descriptionId = `${id}-newsletter-form-description`;
   return (
     <Card
-      $ph={24}
-      $pv={[24, desktopColSpan === 12 ? 24 : 40]}
-      $borderRadius={2}
-      $background="white"
+      $ph={"spacing-24"}
+      $pv={["spacing-24", desktopColSpan === 12 ? "spacing-24" : "spacing-40"]}
+      $borderRadius={"border-radius-xs"}
+      $background="bg-primary"
       {...containerProps}
     >
       {anchorTargetId && <AnchorTarget id={anchorTargetId} />}
@@ -52,9 +57,14 @@ const NewsletterFormWrap: FC<NewsletterFormWrapProps> = (props) => {
           >
             Join over 100k teachers and get free resources and other helpful
             content by email. Unsubscribe at any time. Read our{" "}
-            <OwaLink page="legal" legalSlug="privacy-policy" $isInline>
+            <OakLink
+              href={resolveOakHref({
+                page: "legal",
+                legalSlug: "privacy-policy",
+              })}
+            >
               privacy policy
-            </OwaLink>
+            </OakLink>
             .
           </OakP>
         </OakGridArea>

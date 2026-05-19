@@ -59,7 +59,7 @@ const unitOverviewFixture: TeachersUnitOverviewData = {
   subjectSlug: "maths",
   subjectTitle: "Maths",
   parentSubject: null,
-  yearTitle: "Year 4",
+  yearGroupTitle: "Year 4",
   yearSlug: "year-4",
   year: "4",
   keyStageSlug: "ks2",
@@ -84,6 +84,22 @@ const unitOverviewFixture: TeachersUnitOverviewData = {
   threads: ["Thread 1", "Thread 2", "Thread 3"],
   whyThisWhyNow: "why this why now",
   priorKnowledgeRequirements: ["Requirement 1"],
+  subjectCategories: null,
+};
+
+const ks4UnitOverviewFixture: TeachersUnitOverviewData = {
+  ...unitOverviewFixture,
+  phaseSlug: "secondary",
+  phaseTitle: "Secondary",
+  keyStageSlug: "ks4",
+  keyStageTitle: "Key Stage 4",
+  year: "11",
+  yearSlug: "year-11",
+  yearGroupTitle: "Year 11",
+  examBoardSlug: "aqa",
+  examBoardTitle: "AQA",
+  tierSlug: "foundation",
+  tierTitle: "Foundation",
 };
 
 const defaultParams = {
@@ -119,24 +135,6 @@ describe("UnitPage", () => {
     expect(mockTeachersUnitOverview).toHaveBeenCalledWith({
       programmeSlug: defaultParams.subjectPhaseSlug,
       unitSlug: defaultParams.unitSlug,
-      subjectCategorySlug: undefined,
-    });
-  });
-
-  it("passes subject category from query params to data fetch", async () => {
-    featureFlagMock.mockResolvedValue(true);
-
-    await UnitPage({
-      params: Promise.resolve(defaultParams),
-      searchParams: Promise.resolve({
-        subject_category: "number-and-place-value",
-      }),
-    });
-
-    expect(mockTeachersUnitOverview).toHaveBeenCalledWith({
-      programmeSlug: defaultParams.subjectPhaseSlug,
-      unitSlug: defaultParams.unitSlug,
-      subjectCategorySlug: "number-and-place-value",
     });
   });
 
@@ -175,30 +173,30 @@ describe("generateMetadata", () => {
       searchParams: Promise.resolve({}),
     });
 
-    expect(result.title).toBe("Geometry KS2 | Y4 Maths Lesson Resources");
+    expect(result.title).toBe("Geometry KS2 | Y4 Maths | Lesson Resources");
     expect(result.description).toBe(
       "Free lessons and teaching resources about geometry",
     );
     expect(result.openGraph?.title).toBe(
-      "Geometry KS2 | Y4 Maths Lesson Resources",
+      "Geometry KS2 | Y4 Maths | Lesson Resources",
     );
     expect(result.twitter?.title).toBe(
-      "Geometry KS2 | Y4 Maths Lesson Resources",
+      "Geometry KS2 | Y4 Maths | Lesson Resources",
     );
   });
+  it("generates metadata with ks4 options", async () => {
+    mockTeachersUnitOverview.mockResolvedValue(ks4UnitOverviewFixture);
 
-  it("passes subject category query param to metadata data fetch", async () => {
-    mockTeachersUnitOverview.mockResolvedValue(unitOverviewFixture);
-
-    await generateMetadata({
-      params: Promise.resolve(defaultParams),
-      searchParams: Promise.resolve({ subject_category: "statistics" }),
+    const result = await generateMetadata({
+      params: Promise.resolve({
+        subjectPhaseSlug: "maths-secondary-ks4-aqa",
+        unitSlug: "geometry-abc123",
+      }),
+      searchParams: Promise.resolve({}),
     });
 
-    expect(mockTeachersUnitOverview).toHaveBeenCalledWith({
-      programmeSlug: defaultParams.subjectPhaseSlug,
-      unitSlug: defaultParams.unitSlug,
-      subjectCategorySlug: "statistics",
-    });
+    expect(result.title).toEqual(
+      "Geometry KS4 | Y11 Maths Foundation AQA | Lesson Resources",
+    );
   });
 });

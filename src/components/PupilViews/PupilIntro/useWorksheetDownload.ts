@@ -4,7 +4,7 @@ import downloadLessonResources from "@/components/SharedComponents/helpers/downl
 import errorReporter from "@/common-lib/error-reporter";
 
 type WorksheetDownload = {
-  startDownload: () => Promise<void>;
+  startDownload: () => Promise<boolean>;
   isDownloading: boolean;
 };
 
@@ -18,9 +18,9 @@ export function useWorksheetDownload(
   isLegacyDownload: boolean,
 ): WorksheetDownload {
   const [isDownloading, setIsDownloading] = useState(false);
-  const startDownload = async () => {
+  const startDownload = async (): Promise<boolean> => {
     if (isDownloading) {
-      return;
+      return false;
     }
     setIsDownloading(true);
 
@@ -30,12 +30,14 @@ export function useWorksheetDownload(
         selectedResourceTypes: ["worksheet-pdf-questions"],
         isLegacyDownload,
       });
+      return true;
     } catch (error) {
       window.alert("Whoops, the download failed. You could try again.");
       reportError(error);
+      return false;
+    } finally {
+      setIsDownloading(false);
     }
-
-    setIsDownloading(false);
   };
 
   return { startDownload, isDownloading };

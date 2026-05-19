@@ -17,6 +17,7 @@ const lessonDetailProps = {
   keyWords: [{ keyword: "keyword", description: "description" }],
   teacherTips: [{ teacherTip: "test teacher tip" }],
   equipmentAndResources: [{ equipment: "equipment" }],
+  learningOutcome: "pupil learning outcome",
   contentGuidance: [
     {
       contentGuidanceLabel: "content guidance",
@@ -35,15 +36,18 @@ const lessonDetailProps = {
     programmeSlug: "programme-slug",
   },
   loginRequired: false,
-  geoRestricted: false,
+  georestricted: false,
   year: "year 7",
   subject: "maths",
   keystage: "ks3",
+  keystageSlug: "ks3",
+  phaseSlug: "secondary",
   unit: "maths",
   lesson: "Lesson title",
   examBoardSlug: null,
   subjectSlug: "maths",
   subjectParent: null,
+  useIntegratedJourneyLayout: false,
 };
 
 describe("LessonOverviewDetails component", () => {
