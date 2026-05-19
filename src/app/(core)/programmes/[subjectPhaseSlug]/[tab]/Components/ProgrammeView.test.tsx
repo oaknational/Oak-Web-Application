@@ -158,4 +158,53 @@ describe("ProgrammeView", () => {
       ).toThrow("NEXT_HTTP_ERROR_FALLBACK;404");
     });
   });
+
+  describe("initialFilter prop (SSR filter resolution)", () => {
+    beforeEach(() => {
+      usePathnameMock.mockReturnValue(
+        "/programmes/science-secondary-aqa/units",
+      );
+    });
+
+    it("accepts initialFilter prop without error", () => {
+      const initialFilter = {
+        years: ["7"],
+        tiers: ["foundation"],
+        childSubjects: [],
+        subjectCategories: [],
+        threads: [],
+        pathways: [],
+        keystages: [],
+      };
+
+      render(<ProgrammeView {...defaultProps} initialFilter={initialFilter} />);
+      const heading = screen.getByRole("heading", {
+        name: "Science secondary AQA",
+      });
+      expect(heading).toBeInTheDocument();
+    });
+
+    it("renders correctly with initialFilter for a single year", () => {
+      const initialFilter = {
+        years: ["7"],
+        tiers: ["foundation"],
+        childSubjects: [],
+        subjectCategories: [],
+        threads: [],
+        pathways: [],
+        keystages: [],
+      };
+
+      render(<ProgrammeView {...defaultProps} initialFilter={initialFilter} />);
+      // The heading should reflect the single year selection
+      const heading = screen.getByRole("heading", { name: "Year 7 units" });
+      expect(heading).toBeInTheDocument();
+    });
+
+    it("gracefully falls back when initialFilter is not provided", () => {
+      render(<ProgrammeView {...defaultProps} />);
+      const heading = screen.getByRole("heading", { name: "Year 7 units" });
+      expect(heading).toBeInTheDocument();
+    });
+  });
 });
