@@ -89,9 +89,21 @@ export const topNavFixture: TopNavProps = {
             {
               title: "Geography",
               slug: "geography",
-              programmeSlug: "geography-secondary-ks4",
+              programmeSlug: null,
               nonCurriculum: false,
-              programmeCount: 0,
+              programmeCount: 2,
+              examBoards: [
+                {
+                  slug: "aqa",
+                  title: "AQA",
+                  programmeSlug: "geography-secondary-ks4-aqa",
+                },
+                {
+                  slug: "edexcel",
+                  title: "Edexcel",
+                  programmeSlug: "geography-secondary-ks4-edexcel",
+                },
+              ],
             },
           ],
         },
