@@ -13,11 +13,6 @@ jest.mock("next/navigation", () => ({
   },
 }));
 
-const featureFlagMock = jest.fn().mockResolvedValue(false);
-jest.mock("@/utils/featureFlags", () => ({
-  getFeatureFlagValue: () => featureFlagMock(),
-}));
-
 jest.mock("react", () => {
   const actualReact = jest.requireActual("react");
 
@@ -83,20 +78,7 @@ describe("LessonMediaPage", () => {
     mockLessonMediaClips.mockResolvedValue(lessonMediaFixture);
   });
 
-  it("renders 404 if feature flag is disabled", async () => {
-    featureFlagMock.mockResolvedValue(false);
-
-    await expect(
-      LessonMediaPage({
-        params: Promise.resolve(defaultParams),
-        searchParams: Promise.resolve({}),
-      }),
-    ).rejects.toEqual(new Error("NEXT_HTTP_ERROR_FALLBACK;404"));
-  });
-
-  it("renders when the feature flag is enabled", async () => {
-    featureFlagMock.mockResolvedValue(true);
-
+  it("renders the lesson media page", async () => {
     const result = await LessonMediaPage({
       params: Promise.resolve(defaultParams),
       searchParams: Promise.resolve({}),
@@ -117,7 +99,6 @@ describe("LessonMediaPage", () => {
   });
 
   it("returns 404 when media clips are missing", async () => {
-    featureFlagMock.mockResolvedValue(true);
     mockLessonMediaClips.mockResolvedValue({
       ...lessonMediaFixture,
       mediaClips: null as unknown as LessonMediaClipsData["mediaClips"],

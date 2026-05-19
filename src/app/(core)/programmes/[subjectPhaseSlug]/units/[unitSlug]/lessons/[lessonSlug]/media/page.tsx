@@ -13,7 +13,6 @@ import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 import { LessonMediaClipsData } from "@/node-lib/curriculum-api-2023/queries/lessonMediaClips/lessonMediaClips.schema";
 import { populateMediaClipsWithTranscripts } from "@/utils/handleTranscript";
 import { getTeacherSubjectPhaseSlug } from "@/utils/curriculum/slugs";
-import { getFeatureFlagValue } from "@/utils/featureFlags";
 
 type LessonMediaPageParams = {
   subjectPhaseSlug: string;
@@ -63,15 +62,6 @@ export async function generateMetadata(
 const InnerLessonMediaPage = async (
   props: AppPageProps<LessonMediaPageParams>,
 ) => {
-  const isEnabled = await getFeatureFlagValue(
-    "teachers-integrated-journey",
-    "boolean",
-  );
-
-  if (!isEnabled) {
-    return notFound();
-  }
-
   const {
     subjectPhaseSlug: programmeSlug,
     unitSlug,
