@@ -18,7 +18,6 @@ import {
   getVideoPlaybackId,
   isQuizSection,
   pickAvailableSectionsForLesson,
-  mapLessonSummaryQuizResults,
   buildReviewAttemptData,
   buildReviewShareUrl,
   pickNextIncompleteSection,
@@ -363,31 +362,6 @@ describe("ViewHelpers", () => {
       expect(
         buildReviewShareUrl({ lessonSlug: "lesson", attemptId: "attempt" }),
       ).toContain("/pupils/lessons/lesson/results/attempt/share");
-    });
-
-    it("maps summary quiz results", () => {
-      expect(
-        mapLessonSummaryQuizResults({
-          section: "starter-quiz",
-          questionResults: [{ grade: 1, offerHint: false }],
-          questionsArray: [
-            {
-              questionType: "multiple-choice",
-              hint: "Hint",
-            } as never,
-          ],
-        }),
-      ).toEqual([
-        {
-          pupilExperienceLessonActivity: "starter-quiz",
-          questionNumber: 1,
-          questionType: "multiple-choice",
-          questionResult: "correct",
-          hintOffered: true,
-          hintAccessed: false,
-          activityTimeSpent: 0,
-        },
-      ]);
     });
 
     it("detects presence of quiz sections", () => {
