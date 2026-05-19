@@ -7,30 +7,15 @@ import {
   OakFlex,
   OakMaxWidth,
 } from "@oaknational/oak-components";
-import styled from "styled-components";
 
 import ImageContainer from "@/components/GenericPagesComponents/ImageContainer";
-import TeachersTabResourceSelectorCard from "@/components/GenericPagesComponents/TeachersTabResourceSelectorCard";
-import { KeyStageKeypadProps } from "@/components/SharedComponents/KeyStageKeypad/KeyStageKeypad";
 import { getSizes } from "@/components/SharedComponents/CMSImage/getSizes";
 import curriculumPhaseOptions from "@/browser-lib/fixtures/curriculumPhaseOptions";
 import SubjectPhasePicker from "@/components/SharedComponents/SubjectPhasePicker";
-
-type PositionedProps = {
-  bottom?: number;
-  left?: number;
-  right?: number;
-};
-const PositionedTeachersTabResourceSelectorCard = styled(
-  TeachersTabResourceSelectorCard,
-)<PositionedProps>`
-  ${({ bottom }) => bottom && `bottom: ${bottom}px;`}
-  ${({ left }) => left && `left: ${left}px;`}
-  ${({ right }) => right && `right: ${right}px;`}
-`;
+import { SubjectPhasePickerData } from "@/components/SharedComponents/SubjectPhasePicker/SubjectPhasePicker";
 
 type TeacherTabProps = {
-  keyStages: KeyStageKeypadProps["keyStages"];
+  curriculumPhaseOptions: SubjectPhasePickerData;
 };
 const TeachersTab: FC<TeacherTabProps> = () => {
   return (
@@ -80,30 +65,7 @@ const TeachersTab: FC<TeacherTabProps> = () => {
               height={313}
               sizes={getSizes([100, 518])}
             >
-              <PositionedTeachersTabResourceSelectorCard
-                icon={"worksheet"}
-                title="Worksheets"
-                angle={-4}
-                bottom={30}
-                left={166}
-                $display={["none", "none", "flex"]}
-              />
-              <PositionedTeachersTabResourceSelectorCard
-                icon={"slide-deck"}
-                title="Slide decks"
-                angle={2}
-                bottom={110}
-                left={-72}
-                $display={["none", "none", "flex"]}
-              />
-              <PositionedTeachersTabResourceSelectorCard
-                icon={"quiz"}
-                title="Quizzes"
-                angle={4}
-                bottom={60}
-                right={-54}
-                $display={["none", "none", "flex"]}
-              />
+              <></>
             </ImageContainer>
           </OakGridArea>
         </OakGrid>
