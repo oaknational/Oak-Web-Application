@@ -31,7 +31,7 @@ import {
 } from "@/node-lib/curriculum-api-2023/queries/pupilLesson/pupilLesson.schema";
 import "@/__tests__/__helpers__/IntersectionObserverMock";
 import "@/__tests__/__helpers__/ResizeObserverMock";
-import * as QuizEngineProvider from "@/components/PupilComponents/QuizEngineProvider";
+import * as QuizEngineProvider from "@/components/PupilComponents/LegacyQuiz/QuizEngineProvider";
 import { trackingEvents } from "@/components/PupilComponents/PupilAnalyticsProvider/PupilAnalyticsProvider";
 
 const usePupilAnalyticsMock = {
@@ -60,8 +60,10 @@ jest.mock("@/hooks/useGetQuizTrackingData", () => {
 });
 
 // Mock the module and retain actual exports
-jest.mock("@/components/PupilComponents/QuizEngineProvider", () => ({
-  ...jest.requireActual("@/components/PupilComponents/QuizEngineProvider"),
+jest.mock("@/components/PupilComponents/LegacyQuiz/QuizEngineProvider", () => ({
+  ...jest.requireActual(
+    "@/components/PupilComponents/LegacyQuiz/QuizEngineProvider",
+  ),
   useQuizEngineContext: jest.fn(),
 }));
 
@@ -80,8 +82,10 @@ jest.mock("@oaknational/oak-components", () => {
 });
 
 // Mock the module and retain actual exports
-jest.mock("@/components/PupilComponents/QuizEngineProvider", () => ({
-  ...jest.requireActual("@/components/PupilComponents/QuizEngineProvider"),
+jest.mock("@/components/PupilComponents/LegacyQuiz/QuizEngineProvider", () => ({
+  ...jest.requireActual(
+    "@/components/PupilComponents/LegacyQuiz/QuizEngineProvider",
+  ),
   useQuizEngineContext: jest.fn(),
 }));
 
@@ -89,8 +93,9 @@ describe("PupilQuizView", () => {
   beforeEach(() => {
     // Restore the original implementation for all tests
     (QuizEngineProvider.useQuizEngineContext as jest.Mock).mockImplementation(
-      jest.requireActual("@/components/PupilComponents/QuizEngineProvider")
-        .useQuizEngineContext,
+      jest.requireActual(
+        "@/components/PupilComponents/LegacyQuiz/QuizEngineProvider",
+      ).useQuizEngineContext,
     );
   }),
     it("renders heading, mode and answer when there is currentQuestionData", () => {

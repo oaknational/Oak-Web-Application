@@ -4,39 +4,40 @@ import { getRedirect } from "../../shared/lesson-pages/getRedirects";
 import { allowNotFoundError } from "../../shared/lesson-pages/allowNotFoundError";
 
 import { resolveOakHref } from "@/common-lib/urls";
-import {
-  isLessonReviewSection,
-  isLessonSection,
-} from "@/components/PupilComponents/LessonEngineProvider";
-import { requestLessonResources } from "@/components/PupilComponents/pupilUtils/requestLessonResources";
-import {
-  pickAvailableSectionsForLesson,
-  PupilExperienceViewProps,
-} from "@/components/PupilViews/PupilExperience";
+import { isLessonSection } from "@/components/PupilComponents/lessonSections";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
+import {
+  buildPupilLessonPageProps,
+  isAvailablePupilLessonSection,
+} from "@/pages-helpers/pupil/lessons-pages/pupilLessonPage.helpers";
+import {
+  PupilLessonPageProps,
+  PupilLessonPageType,
+} from "@/pages-helpers/pupil/lessons-pages/pupilLessonPage.types";
 import { invariant } from "@/utils/invariant";
+import { getLessonShareVariant } from "@/pages-helpers/pupil";
 
 export type PupilLessonPageURLParams = {
   lessonSlug: string;
   unitSlug?: string;
   programmeSlug?: string;
   section: string;
+  variant?: string;
 };
-
-type PageType = "preview" | "canonical" | "browse";
 
 export const getProps = ({
   page,
   context,
 }: {
-  page: PageType;
+  page: PupilLessonPageType;
   context: GetStaticPropsContext<PupilLessonPageURLParams, PreviewData>;
-}): (() => Promise<GetStaticPropsResult<PupilExperienceViewProps>>) => {
+}): (() => Promise<GetStaticPropsResult<PupilLessonPageProps>>) => {
   return async () => {
     if (!context.params) {
       throw new Error("context.params is undefined");
     }
-    const { lessonSlug, unitSlug, programmeSlug, section } = context.params;
+    const { lessonSlug, unitSlug, programmeSlug, section, variant } =
+      context.params;
 
     if (page === "browse") {
       invariant(unitSlug, "unitSlug is required for browse page");
@@ -106,8 +107,11 @@ export const getProps = ({
 
     // 404 if the lesson does not contain the given section
     if (
-      isLessonReviewSection(section) &&
-      !pickAvailableSectionsForLesson(content).includes(section)
+      !isAvailablePupilLessonSection(
+        section,
+        content,
+        variant ? getLessonShareVariant(variant) : null,
+      )
     ) {
       return {
         notFound: true,
@@ -123,31 +127,18 @@ export const getProps = ({
           })
         : resolveOakHref({ page: "pupil-year-index" });
 
-    const transcriptSentences = await requestLessonResources({
+    const props = await buildPupilLessonPageProps({
+      browseData,
       lessonContent: content,
-    }).catch((e) => {
-      if (page === "preview") {
-        return [];
-      } else {
-        throw e;
-      }
+      backUrl,
+      initialSection: section,
+      pageType: page,
+      suppressResourceErrors: page === "preview",
+      variant: variant ? getLessonShareVariant(variant) : null,
     });
 
-    const results: GetStaticPropsResult<PupilExperienceViewProps> = {
-      props: {
-        lessonContent: {
-          ...content,
-          transcriptSentences: transcriptSentences ?? [],
-        },
-        browseData,
-        hasWorksheet: !!content.hasWorksheetAssetObject,
-        worksheetInfo: null, // populated later
-        hasAdditionalFiles: !!content.downloadableFiles?.length,
-        additionalFiles: content.downloadableFiles || null,
-        initialSection: section,
-        backUrl,
-        pageType: page,
-      },
+    const results: GetStaticPropsResult<PupilLessonPageProps> = {
+      props,
     };
 
     return results;

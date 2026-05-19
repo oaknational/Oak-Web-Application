@@ -25,8 +25,7 @@ import { CourseWorkHandInButton } from "./CourseWorkHandInButton";
 
 import { useLessonEngineContext } from "@/components/PupilComponents/LessonEngineProvider";
 import { useGetSectionLinkProps } from "@/components/PupilComponents/pupilUtils/lessonNavigation";
-import { QuestionsArray } from "@/components/PupilComponents/QuizEngineProvider";
-import { QuizResults } from "@/components/PupilComponents/QuizResults";
+import { QuizResults } from "@/components/PupilComponents/QuizQuestions/QuizResults";
 import { resolveOakHref } from "@/common-lib/urls";
 import { CopyrightNotice } from "@/components/PupilComponents/CopyrightNotice";
 import { usePupilAnalytics } from "@/components/PupilComponents/PupilAnalyticsProvider/usePupilAnalytics";
@@ -37,6 +36,7 @@ import {
   AttemptDataCamelCase,
 } from "@/node-lib/pupil-api/types";
 import { useAssignmentSearchParams } from "@/hooks/useAssignmentSearchParams";
+import { QuestionsArray } from "@/context/PupilLessonQuiz";
 
 type PupilViewsReviewProps = {
   lessonTitle: string;
