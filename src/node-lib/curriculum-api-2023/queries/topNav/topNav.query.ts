@@ -36,12 +36,6 @@ const topNavQuery = (sdk: Sdk) => async (): Promise<TopNavProps> => {
   const teachersNavData: TeachersSubNavData = {
     primary: getTeachersNavData(parsed.data, "primary"),
     secondary: getTeachersNavData(parsed.data, "secondary"),
-    curriculum: {
-      title: "Curriculum",
-      slug: "curriculum-landing-page",
-      href: resolveOakHref({ page: "curriculum-landing-page" }),
-    },
-
     guidance: {
       title: "Guidance",
       slug: "guidance",

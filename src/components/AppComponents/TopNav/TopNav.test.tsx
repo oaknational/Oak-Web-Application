@@ -207,9 +207,8 @@ describe("TopNav", () => {
 const subnavLabels = [
   { label: "Primary", element: "button" },
   { label: "Secondary", element: "button" },
-  { label: "Curriculum", element: "link" },
-  { label: "About us", element: "button" },
   { label: "Guidance", element: "button" },
+  { label: "About us", element: "button" },
   { label: "Ai experiments (this will open in a new tab)", element: "link" },
 ];
 
@@ -283,8 +282,8 @@ describe("TopNav accessibility", () => {
     const secondaryButton = await screen.findByRole("button", {
       name: "Secondary",
     });
-    const curriculumButton = await screen.findByRole("link", {
-      name: "Curriculum",
+    const guidanceButton = await screen.findByRole("button", {
+      name: "Guidance",
     });
 
     // tab to secondary button and open the submenu, should not focus primary dropdown items as they are not open
@@ -309,7 +308,7 @@ describe("TopNav accessibility", () => {
 
     // return to the next nav item after tabbing from the last dropdown item
     await user.tab();
-    expect(curriculumButton).toHaveFocus();
+    expect(guidanceButton).toHaveFocus();
   });
 
   it("ArrowRight and ArrowLeft navigate Teachers subnav buttons", async () => {
@@ -324,7 +323,6 @@ describe("TopNav accessibility", () => {
     const [
       primaryButton,
       secondaryButton,
-      curriculumButton,
       guidanceButton,
       aboutUsButton,
       aiExperimentsButton,
@@ -336,8 +334,6 @@ describe("TopNav accessibility", () => {
 
     await user.keyboard("{ArrowRight}");
     expect(secondaryButton).toHaveFocus();
-    await user.keyboard("{ArrowRight}");
-    expect(curriculumButton).toHaveFocus();
     await user.keyboard("{ArrowRight}");
     expect(guidanceButton).toHaveFocus();
     await user.keyboard("{ArrowRight}");
