@@ -20,6 +20,7 @@ if (process.env.TEST_ALLOW_LOGGING !== "1") {
 // TextEncoder and TextDecoder are Web APIs but not available in JSDOM
 global.TextEncoder = TextEncoder;
 global.TextDecoder = TextDecoder;
+// JSDOM does not implement SubmitEvent
 global.SubmitEvent =
   global.SubmitEvent ||
   class MockSubmitEvent extends Event {
