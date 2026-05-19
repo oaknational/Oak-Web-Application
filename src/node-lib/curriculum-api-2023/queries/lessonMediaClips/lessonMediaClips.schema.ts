@@ -84,6 +84,12 @@ const baseLessonMediaClipsPageSchema = z.object({
   lessonReleaseDate: z.string().nullable(),
   geoRestricted: z.boolean(),
   loginRequired: z.boolean(),
+  phaseSlug: z.string(),
+  phaseTitle: z.string(),
+  yearGroupTitle: z.string(),
+  subjectParent: z.string().nullable(),
+  pathwaySlug: z.string().nullable(),
+  pathwayTitle: z.string().nullable().optional(),
 });
 
 export const lessonMediaClipsSchema = baseLessonMediaClipsPageSchema.extend({

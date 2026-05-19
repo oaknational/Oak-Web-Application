@@ -1,5 +1,6 @@
 import LessonPlayAllButton from "./LessonPlayAllButton";
 
+import { resolveOakHref } from "@/common-lib/urls";
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 
 describe("Copy link button", () => {
@@ -16,6 +17,29 @@ describe("Copy link button", () => {
 
     expect(getByText("Play all")).toBeInTheDocument();
   });
+
+  it("uses integrated lesson media route when isIntegratedJourney is true", () => {
+    const { getByText } = renderWithTheme(
+      <LessonPlayAllButton
+        lessonSlug="lesson-slug"
+        unitSlug="unit-slug"
+        programmeSlug="programme-slug"
+        isCanonical={false}
+        isIntegratedJourney={true}
+      />,
+    );
+
+    expect(getByText("Play all").closest("a")).toHaveAttribute(
+      "href",
+      resolveOakHref({
+        page: "integrated-lesson-media",
+        lessonSlug: "lesson-slug",
+        programmeSlug: "programme-slug",
+        unitSlug: "unit-slug",
+      }),
+    );
+  });
+
   describe("tracking", () => {
     it("calls the tracking callback when clicked", () => {
       const onTrackingCallback = jest.fn();
