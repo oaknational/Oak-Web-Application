@@ -13,6 +13,7 @@ import {
 import Link from "next/link";
 
 import { DropdownFocusManager } from "../DropdownFocusManager/DropdownFocusManager";
+import ExamBoardPanel from "../ExamBoardPanel/ExamBoardPanel";
 
 import TopNavSubjectButtons from "./TopNavSubjectButtons";
 
@@ -20,6 +21,7 @@ import { resolveOakHref, ResolveOakHrefProps } from "@/common-lib/urls";
 import {
   TeachersSubNavData,
   PupilsSubNavData,
+  SubjectsNavItem,
 } from "@/node-lib/curriculum-api-2023/queries/topNav/topNav.schema";
 import useAnalytics from "@/context/Analytics/useAnalytics";
 
@@ -54,8 +56,17 @@ const TeachersPhaseSection = ({
       TeachersSubNavData["primary" | "secondary"]["children"][number]["slug"]
     >(defaultKeystage);
 
+  const [selectedSubject, setSelectedSubject] =
+    useState<SubjectsNavItem | null>(null);
+
+  const [examBoardPanelMode, setExamBoardPanelMode] = useState<
+    "closed" | "hover" | "open"
+  >("closed");
+
   useEffect(() => {
     setSelectedKeystage(defaultKeystage);
+    setSelectedSubject(null);
+    setExamBoardPanelMode("closed");
   }, [defaultKeystage]);
 
   const keystagesRef = useRef<HTMLUListElement>(null);
@@ -79,6 +90,41 @@ const TeachersPhaseSection = ({
       clientEnvironment: null,
     });
     setSelectedKeystage(keystageSlug);
+    setSelectedSubject(null);
+    setExamBoardPanelMode("closed");
+  };
+
+  const hasExamBoards = (subject: SubjectsNavItem | null) => {
+    return Boolean(
+      selectedKeystage === "ks4" &&
+        subject?.examBoards &&
+        subject.examBoards.length > 0,
+    );
+  };
+
+  const handleSubjectHover = (subject: SubjectsNavItem) => {
+    setSelectedSubject(subject);
+    setExamBoardPanelMode(hasExamBoards(subject) ? "hover" : "closed");
+  };
+
+  const handleSubjectBlurOrLeave = () => {
+    if (examBoardPanelMode !== "hover") return;
+    setSelectedSubject(null);
+    setExamBoardPanelMode("closed");
+  };
+
+  const handleExamBoardPanelOpen = (subject: SubjectsNavItem) => {
+    if (!hasExamBoards(subject)) {
+      setExamBoardPanelMode("closed");
+      return;
+    }
+    setSelectedSubject(subject);
+    setExamBoardPanelMode("open");
+  };
+
+  const closeExamBoardPanel = () => {
+    setSelectedSubject(null);
+    setExamBoardPanelMode("closed");
   };
 
   // Arrow key navigation for up/down in keystages
@@ -167,13 +213,31 @@ const TeachersPhaseSection = ({
         })}
       </OakUL>
       {allSubjects && (
-        <TopNavSubjectButtons
-          handleClick={onClick}
-          focusManager={focusManager}
-          selectedMenu={selectedMenu}
-          subjects={allSubjects}
-          keyStageSlug={selectedKeystage}
-        />
+        <>
+          <TopNavSubjectButtons
+            handleClick={onClick}
+            focusManager={focusManager}
+            selectedMenu={selectedMenu}
+            subjects={allSubjects}
+            selectedSubject={selectedSubject}
+            keyStageSlug={selectedKeystage}
+            onSubjectHover={handleSubjectHover}
+            onSubjectBlur={handleSubjectBlurOrLeave}
+            onSubjectLeave={handleSubjectBlurOrLeave}
+            onExamBoardPanelOpen={handleExamBoardPanelOpen}
+          />
+          {examBoardPanelMode !== "closed" &&
+            selectedKeystage === "ks4" &&
+            selectedSubject?.examBoards && (
+              <ExamBoardPanel
+                examBoards={selectedSubject.examBoards}
+                selectedSubject={selectedSubject}
+                focusManager={focusManager}
+                onClick={onClick}
+                onClose={closeExamBoardPanel}
+              />
+            )}
+        </>
       )}
     </OakFlex>
   );
@@ -332,6 +396,7 @@ const TopNavDropdown = (props: TopNavDropdownProps) => {
                 googleLoginHint: null,
                 clientEnvironment: null,
               });
+              console.log("Subject click:", subject, keystage, props.onClose);
               props.onClose();
             }}
           />

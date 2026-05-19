@@ -193,6 +193,145 @@ describe("TopNavDropdown", () => {
           }),
         );
       });
+
+      it("shows exam board panel for KS4 subjects with exam boards", async () => {
+        const user = userEvent.setup();
+        render(
+          <TopNavDropdown
+            teachers={topNavFixture.teachers!}
+            pupils={topNavFixture.pupils!}
+            activeArea="TEACHERS"
+            selectedMenu="secondary"
+            focusManager={focusManager}
+            onClose={onCloseMock}
+          />,
+        );
+
+        const ks4Button = await screen.findByRole("tab", {
+          name: "Key stage 4",
+        });
+        await user.click(ks4Button);
+
+        const geographyButton = await screen.findByRole("link", {
+          name: "Geography",
+        });
+        geographyButton.addEventListener("click", (e) => e.preventDefault());
+        await user.click(geographyButton);
+
+        expect(
+          await screen.findByRole("heading", {
+            name: "Choose exam board for KS4 Geography",
+          }),
+        ).toBeInTheDocument();
+      });
+
+      it("keeps exam board panel open after blur when opened by click", async () => {
+        const user = userEvent.setup();
+        render(
+          <TopNavDropdown
+            teachers={topNavFixture.teachers!}
+            pupils={topNavFixture.pupils!}
+            activeArea="TEACHERS"
+            selectedMenu="secondary"
+            focusManager={focusManager}
+            onClose={onCloseMock}
+          />,
+        );
+
+        const ks4Button = await screen.findByRole("tab", {
+          name: "Key stage 4",
+        });
+        await user.click(ks4Button);
+
+        const geographyButton = await screen.findByRole("link", {
+          name: "Geography",
+        });
+        geographyButton.addEventListener("click", (e) => e.preventDefault());
+
+        await user.click(geographyButton);
+        geographyButton.blur();
+
+        expect(
+          await screen.findByRole("heading", {
+            name: "Choose exam board for KS4 Geography",
+          }),
+        ).toBeInTheDocument();
+      });
+
+      it("closes exam board panel when keystage changes", async () => {
+        const user = userEvent.setup();
+        render(
+          <TopNavDropdown
+            teachers={topNavFixture.teachers!}
+            pupils={topNavFixture.pupils!}
+            activeArea="TEACHERS"
+            selectedMenu="secondary"
+            focusManager={focusManager}
+            onClose={onCloseMock}
+          />,
+        );
+
+        const ks4Button = await screen.findByRole("tab", {
+          name: "Key stage 4",
+        });
+        await user.click(ks4Button);
+
+        const geographyButton = await screen.findByRole("link", {
+          name: "Geography",
+        });
+        geographyButton.addEventListener("click", (e) => e.preventDefault());
+        await user.click(geographyButton);
+
+        const ks3Button = screen.getByRole("tab", { name: "Key stage 3" });
+        await user.click(ks3Button);
+
+        expect(
+          screen.queryByRole("heading", {
+            name: "Choose exam board for KS4 Geography",
+          }),
+        ).not.toBeInTheDocument();
+      });
+
+      it("closes exam board panel and tracks exam board filter when selected", async () => {
+        const user = userEvent.setup();
+        render(
+          <TopNavDropdown
+            teachers={topNavFixture.teachers!}
+            pupils={topNavFixture.pupils!}
+            activeArea="TEACHERS"
+            selectedMenu="secondary"
+            focusManager={focusManager}
+            onClose={onCloseMock}
+          />,
+        );
+
+        const ks4Button = await screen.findByRole("tab", {
+          name: "Key stage 4",
+        });
+        await user.click(ks4Button);
+
+        const geographyButton = await screen.findByRole("link", {
+          name: "Geography",
+        });
+        geographyButton.addEventListener("click", (e) => e.preventDefault());
+        await user.click(geographyButton);
+
+        const examBoardButton = screen.getByRole("radio", { name: /AQA/ });
+        examBoardButton.addEventListener("click", (e) => e.preventDefault());
+        await user.click(examBoardButton);
+
+        expect(mockBrowseRefined).toHaveBeenCalledWith(
+          expect.objectContaining({
+            filterType: "Exam board filter",
+            filterValue: "aqa",
+          }),
+        );
+        expect(
+          screen.queryByRole("heading", {
+            name: "Choose exam board for KS4 Geography",
+          }),
+        ).not.toBeInTheDocument();
+      });
     });
     describe("links sections", () => {
       it("renders heading and links", async () => {
