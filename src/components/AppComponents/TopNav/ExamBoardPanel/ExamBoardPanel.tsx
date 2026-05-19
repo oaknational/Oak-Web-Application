@@ -52,7 +52,7 @@ const ExamBoardPanel = ({
         phaseSlug: "secondary",
         examboardSlug: examBoardSlug,
         pathwaySlug: null,
-        subjectParentTitle: selectedSubject?.subjectParentSlug ?? undefined,
+        subjectParentTitle: selectedSubject?.subjectParent ?? undefined,
       }),
     });
     router.push(href);

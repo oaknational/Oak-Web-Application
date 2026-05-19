@@ -179,7 +179,7 @@ const getKeystages = (
           nonCurriculum: Boolean(p.features.non_curriculum),
           programmeSlug: programmeCount > 1 ? null : p.programme_slug,
           programmeCount,
-          subjectParentSlug: p.programme_fields.subject_parent_slug ?? null,
+          subjectParent: p.programme_fields.subject_parent ?? null,
           ...(examBoardsData ? { examBoards: examBoardsData } : {}),
         };
       });
