@@ -2,6 +2,82 @@ import { TopNavResponse, TeachersBrowse } from "./topNav.schema";
 
 import isSlugLegacy from "@/utils/slugModifiers/isSlugLegacy";
 
+/**
+ * Extracts exam board slug and title from a programme slug
+ * Pattern: {subject}-secondary-{keystage}-{examboard}
+ * Example: "biology-secondary-ks4-aqa" => { slug: "aqa", title: "AQA" }
+ */
+export const parseExamBoardFromProgrammeSlug = (
+  programmeSlug: string,
+): { slug: string; title: string } | null => {
+  const parts = programmeSlug.split("-");
+
+  const examBoardSlug = parts.at(-1);
+  if (parts.length >= 4 && examBoardSlug) {
+    // Convert slug to title (e.g., "aqa" => "AQA", "ocr" => "OCR")
+    const title = examBoardSlug.toUpperCase();
+    return { slug: examBoardSlug, title };
+  }
+  return null;
+};
+
+export const getExamBoardsForKS4Subject = ({
+  data,
+  keystageSlug,
+  subjectSlug,
+  pathwaySlug,
+}: {
+  data: TopNavResponse;
+  keystageSlug: string;
+  subjectSlug: string;
+  pathwaySlug: string | null;
+}): Array<{ slug: string; title: string; programmeSlug: string }> => {
+  const matchingProgrammes = data.programmes
+    .filter((p) => {
+      const { subject_slug, keystage_slug, pathway_slug } = p.programme_fields;
+      return (
+        keystage_slug === keystageSlug &&
+        subject_slug === subjectSlug &&
+        pathway_slug === pathwaySlug
+      );
+    })
+    .filter(
+      (p, i, a) =>
+        a.findIndex((k) => k.programme_slug === p.programme_slug) === i,
+    );
+
+  const hasNonLegacyProgramme = matchingProgrammes.some(
+    (programme) =>
+      programme.programme_fields.dataset !== "legacy" &&
+      !isSlugLegacy(programme.programme_slug),
+  );
+
+  const programmesForKs = matchingProgrammes.filter((programme) => {
+    if (!hasNonLegacyProgramme) {
+      return true;
+    }
+    return (
+      programme.programme_fields.dataset !== "legacy" &&
+      !isSlugLegacy(programme.programme_slug)
+    );
+  });
+
+  const examBoards = programmesForKs
+    .map((p) => {
+      const examBoard = parseExamBoardFromProgrammeSlug(p.programme_slug);
+      return examBoard
+        ? { ...examBoard, programmeSlug: p.programme_slug }
+        : null;
+    })
+    .filter((eb, i, a) => eb && a.findIndex((e) => e?.slug === eb.slug) === i)
+    .filter(
+      (eb): eb is { slug: string; title: string; programmeSlug: string } =>
+        eb !== null,
+    );
+
+  return examBoards;
+};
+
 export const getTeachersNavData = (
   teachersData: TopNavResponse,
   phaseSlug: "primary" | "secondary",
@@ -87,12 +163,24 @@ const getKeystages = (
         const title =
           subjectDisplayName + (pathwayTitle ? ` (${pathwayTitle})` : "");
 
+        const examBoardsData =
+          ks.slug === "ks4" && programmeCount > 1
+            ? getExamBoardsForKS4Subject({
+                data,
+                keystageSlug: ks.slug,
+                subjectSlug: p.programme_fields.subject_slug,
+                pathwaySlug: p.programme_fields.pathway_slug,
+              })
+            : null;
+
         return {
           slug: p.programme_fields.subject_slug,
           title,
           nonCurriculum: Boolean(p.features.non_curriculum),
           programmeSlug: programmeCount > 1 ? null : p.programme_slug,
           programmeCount,
+          subjectParentSlug: p.programme_fields.subject_parent_slug ?? null,
+          ...(examBoardsData ? { examBoards: examBoardsData } : {}),
         };
       });
 
