@@ -17,8 +17,6 @@ import { LessonPathway } from "@/components/TeacherComponents/types/lesson.types
 import SharePageLayout from "@/components/TeacherComponents/SharePageLayout";
 import LessonShareCardGroup from "@/components/TeacherComponents/LessonShareCardGroup";
 import LessonShareLinks from "@/components/TeacherComponents/LessonShareLinks";
-import { getHrefForSocialSharing } from "@/components/TeacherComponents/LessonShareLinks/getHrefForSocialSharing";
-import { shareLinkConfig } from "@/components/TeacherComponents/LessonShareLinks/linkConfig";
 import { useResourceFormState } from "@/components/TeacherComponents/hooks/downloadAndShareHooks/useResourceFormState";
 import useResourceFormSubmit from "@/components/TeacherComponents/hooks/downloadAndShareHooks/useResourceFormSubmit";
 import {
@@ -39,7 +37,6 @@ import { LessonShareData } from "@/node-lib/curriculum-api-2023/queries/lessonSh
 import { SpecialistLessonShareData } from "@/node-lib/curriculum-api-2023/queries/specialistLessonShare/specialistLessonShare.schema";
 import { useOnboardingStatus } from "@/components/TeacherComponents/hooks/useOnboardingStatus";
 import { AssignToClassroomModal } from "@/components/TeacherComponents/AssignToClassroomModal/AssignToClassroomModal";
-import { getLessonShareVariantSlug } from "@/pages-helpers/pupil";
 import {
   isLessonSection,
   LessonSection,
@@ -77,7 +74,7 @@ const getSelectedLessonSections = (resources: string[]): LessonSection[] => {
 const isClassroomActivityResource = (
   resource: string,
 ): resource is keyof typeof classroomActivityMap => {
-  return Object.prototype.hasOwnProperty.call(classroomActivityMap, resource);
+  return Object.hasOwn(classroomActivityMap, resource);
 };
 
 export function LessonShare(props: LessonShareProps) {
@@ -150,16 +147,7 @@ export function LessonShare(props: LessonShareProps) {
   };
 
   const selectedLessonSections = getSelectedLessonSections(selectedResources);
-  const lessonShareVariantSlug =
-    getLessonShareVariantSlug(selectedLessonSections) ?? "";
 
-  const shareLink = getHrefForSocialSharing({
-    lessonSlug: lessonSlug,
-    selectedActivities: selectedLessonSections,
-    schoolUrn: schoolUrn,
-    linkConfig: shareLinkConfig.copy,
-    shareVariant: lessonShareVariantSlug,
-  });
   const onboardingStatus = useOnboardingStatus();
 
   const { onSubmit } = useResourceFormSubmit();
@@ -275,13 +263,6 @@ export function LessonShare(props: LessonShareProps) {
               triggerForm={form.trigger}
               shareableResources={expired ? [] : shareableResources}
               hideCheckboxes={true}
-              shareLink={getHrefForSocialSharing({
-                lessonSlug: lessonSlug,
-                selectedActivities: selectedLessonSections,
-                schoolUrn: schoolUrn,
-                linkConfig: shareLinkConfig.copy,
-                shareVariant: lessonShareVariantSlug,
-              })}
             />
           }
           cta={
@@ -297,8 +278,6 @@ export function LessonShare(props: LessonShareProps) {
                 schoolUrn={schoolUrn}
                 onSubmit={onValidateAndSubmit}
                 onGoogleClassroomClick={() => setIsClassroomModalOpen(true)}
-                hasError={form.errors?.resources !== undefined}
-                shareLink={shareLink}
               />
               {!isSpecialist && programmeSlug && unitSlug && (
                 <AssignToClassroomModal

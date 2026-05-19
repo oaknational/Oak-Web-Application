@@ -5,12 +5,12 @@ export const generateUrl = (
   categorySlug?: string | null,
 ): string => {
   const currentUrl = new URL(
-    window.history.state?.url ?? window.location.href,
-    window.location.origin,
+    globalThis.history.state?.url ?? globalThis.location.href,
+    globalThis.location.origin,
   );
   const params = new URLSearchParams(currentUrl.search);
 
-  const newBaseUrl = `${window.location.origin}/teachers/programmes/${programmeSlug}/units`;
+  const newBaseUrl = `${globalThis.location.origin}/teachers/programmes/${programmeSlug}/units`;
   let newUrl = window.history.state.url;
   const buildUrlWithParams = () => {
     const query = params.toString();

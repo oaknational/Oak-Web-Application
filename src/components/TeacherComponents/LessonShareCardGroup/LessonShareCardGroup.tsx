@@ -13,7 +13,6 @@ export type LessonShareCardGroupProps = {
   control: Control<ResourceFormValues>;
   triggerForm: () => void;
   hasError?: boolean;
-  shareLink: string;
   hideCheckboxes: boolean;
 };
 

@@ -13,8 +13,6 @@ import { getLessonShareVariantSlug } from "@/pages-helpers/pupil";
 import { LessonSection } from "@/components/PupilComponents/lessonSections";
 
 const LessonShareLinks: FC<{
-  hasError?: boolean;
-  shareLink: string;
   disabled: boolean;
   lessonSlug: string;
   selectedActivities: LessonSection[];
@@ -130,7 +128,7 @@ const LessonShareLinks: FC<{
               shareVariant: lessonShareVariantSlug,
             })}
             target="_blank"
-            key={index}
+            key={`link-${index}`}
           >
             {link.name}
           </OakSecondaryButton>
