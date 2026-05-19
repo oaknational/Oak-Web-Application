@@ -121,7 +121,6 @@ const CurriculumTab: FC<CurriculumDownloadTabProps> = ({
               <SubjectPhasePicker {...curriculumPhaseOptions} />
             </OakBox>
           </OakFlex>
-          {/* @todo replace with OakFlex - work out $flex prop */}
           <OakFlex
             $flexDirection={"row"}
             $justifyContent={"flex-end"}

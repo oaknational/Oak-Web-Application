@@ -601,7 +601,7 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
   const ks4Options = selectedSubject?.ks4_options ?? [];
 
   return (
-    <OakBox as="nav" aria-labelledby="choose-curriculum-label">
+    <OakBox as="nav" aria-labelledby="choose-curriculum-label" $width={"100%"}>
       <OakJauntyAngleLabel
         id="choose-curriculum-label"
         $background={"bg-decorative5-main"}

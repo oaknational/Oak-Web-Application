@@ -10,11 +10,11 @@ import {
 import styled from "styled-components";
 
 import ImageContainer from "@/components/GenericPagesComponents/ImageContainer";
-import SearchForm from "@/components/SharedComponents/SearchForm";
-import useSearch from "@/context/Search/useSearch";
 import TeachersTabResourceSelectorCard from "@/components/GenericPagesComponents/TeachersTabResourceSelectorCard";
 import { KeyStageKeypadProps } from "@/components/SharedComponents/KeyStageKeypad/KeyStageKeypad";
 import { getSizes } from "@/components/SharedComponents/CMSImage/getSizes";
+import curriculumPhaseOptions from "@/browser-lib/fixtures/curriculumPhaseOptions";
+import SubjectPhasePicker from "@/components/SharedComponents/SubjectPhasePicker";
 
 type PositionedProps = {
   bottom?: number;
@@ -33,8 +33,6 @@ type TeacherTabProps = {
   keyStages: KeyStageKeypadProps["keyStages"];
 };
 const TeachersTab: FC<TeacherTabProps> = () => {
-  const { setSearchTerm } = useSearch({});
-
   return (
     <OakFlex
       $background={"bg-decorative1-main"}
@@ -54,19 +52,12 @@ const TeachersTab: FC<TeacherTabProps> = () => {
               $flexShrink={1}
               $flexBasis={"auto"}
             >
-              <OakHeading
-                $font={"heading-7"}
-                tag={"h1"}
-                $color={"text-primary"}
-              >
-                Teachers
-              </OakHeading>
               <OakHeading $font={"heading-3"} tag={"h2"}>
-                Plan every lesson, every national curriculum subject
+                Helping you deliver a world-class curriculum
               </OakHeading>
               <OakTypography $font={"body-1"}>
-                From curriculum planning to classroom teaching, Oak gives you
-                free, expert-designed resources to adapt and make your own.
+                Free, national curriculum-aligned resources designed by subject
+                experts, openly available to support innovation.
               </OakTypography>
               <OakFlex
                 $width={["100%", "100%", "max-content"]}
@@ -75,19 +66,11 @@ const TeachersTab: FC<TeacherTabProps> = () => {
               >
                 <OakFlex $flexDirection="column" $gap="spacing-16">
                   <OakHeading tag="h3" $font="heading-7">
-                    Search by keyword
+                    Explore curriculum plans and teaching resources
                   </OakHeading>
-                  <SearchForm
-                    searchContext="campaign"
-                    placeholderText="Search by keyword or topic"
-                    searchTerm=""
-                    handleSubmit={(value) => {
-                      setSearchTerm(value);
-                    }}
-                    analyticsSearchSource={"campaign page"}
-                  />
                 </OakFlex>
               </OakFlex>
+              <SubjectPhasePicker {...curriculumPhaseOptions} />
             </OakFlex>
           </OakGridArea>
           <OakGridArea $colSpan={[12, 6]} $alignItems={"flex-end"}>
