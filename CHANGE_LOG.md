@@ -1,3 +1,79 @@
+# [1.1079.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1078.0...v1.1079.0) (2026-05-19)
+
+
+### Bug Fixes
+
+* add missing LessonSection import ([b81cc61](https://github.com/oaknational/Oak-Web-Application/commit/b81cc61c39c37399df92634008b0750bcf16d534))
+* add worksheet info to buildPupilLessonPageProps helper ([292981b](https://github.com/oaknational/Oak-Web-Application/commit/292981b38418e6e6e74082577382a10bbad65d9d))
+* added 100vh to pupil layout to match old pupil exp ([add2092](https://github.com/oaknational/Oak-Web-Application/commit/add20924061d6bb2c5b156bb6efd9b5276dd013a))
+* added browseData fixture to tests and removed bad revalidate: 300 ([e9c4724](https://github.com/oaknational/Oak-Web-Application/commit/e9c4724773e00c27671a34a084fb269251d6fdbc))
+* added content guidance dismiss to store and use as source of truth ([d626557](https://github.com/oaknational/Oak-Web-Application/commit/d62655793430ff27dd3d5f6f8172a46601e5edcb))
+* added keys to quiz q elements that use uids for uniqueness ([15893ea](https://github.com/oaknational/Oak-Web-Application/commit/15893ea3fe8104bba70edb1f5a2057a11f2e3e48))
+* added missing tracking event calls to new shared pages ([bcf034f](https://github.com/oaknational/Oak-Web-Application/commit/bcf034f192fd1cecf040a52ef62471326b9d4e64))
+* delete bad test file ([a6da0d2](https://github.com/oaknational/Oak-Web-Application/commit/a6da0d2f6cfcf63b6f9ff5c234a3af840025dc2c))
+* ensure comparison always compares bools ([b4f541c](https://github.com/oaknational/Oak-Web-Application/commit/b4f541c15f41a9a2e57f6f8b678db91565b47653))
+* fix sonar cloud code issues ([f5759b1](https://github.com/oaknational/Oak-Web-Application/commit/f5759b15dd29615be80b26c795bc2682e92e1052))
+* fix sonarcloud code issues ([16fb067](https://github.com/oaknational/Oak-Web-Application/commit/16fb067773a42916306854747766a056993e9b9e))
+* fixed bug where clicking back after checking answer on last quiz q doesnt complete it ([388c9c2](https://github.com/oaknational/Oak-Web-Application/commit/388c9c2ee28a451d4aba03f02935e96887e0811d))
+* fixed mathjax rendering on correct anwers, missing starter/exit quiz, time spent analytics ([37fbcf0](https://github.com/oaknational/Oak-Web-Application/commit/37fbcf043df8b8d4a098f9ad16c661390f904a5b))
+* fixed merge conflicts ([749ae82](https://github.com/oaknational/Oak-Web-Application/commit/749ae826ec352e3ab64d48d6fb14e43f2b3987f7))
+* fixed tracking events not sending actual time spent data ([de13b26](https://github.com/oaknational/Oak-Web-Application/commit/de13b26ae32affbc8b35b53f9d1ccf04cea7d315))
+* made sure invalid shared variant pages redirect to 404 ([8b7fa17](https://github.com/oaknational/Oak-Web-Application/commit/8b7fa17fd701e0cd431f33cc2dbe36f918172002))
+* made sure re-initialisation of pupil stores only happens when lesson slug changes ([234e7c9](https://github.com/oaknational/Oak-Web-Application/commit/234e7c9d8f7eeea46e828dae963cdb03fb8b7196))
+* only render worksheet info if file type and size is available ([4d7fcb3](https://github.com/oaknational/Oak-Web-Application/commit/4d7fcb3211c4ed9097852f0c1e20323db241ff1e))
+* prevented props being spread when not relevant to quizzes ([e8946a7](https://github.com/oaknational/Oak-Web-Application/commit/e8946a713bdd62068a79cf2eeec81dc46c05fab2))
+* **PUPIL-1694:** fire worksheet download analytics only after a successful download ([32b4bc9](https://github.com/oaknational/Oak-Web-Application/commit/32b4bc9106707a7db2f8249a267ebfa7c07334d0))
+* **PUPIL-1694:** gate worksheet progress on successful download ([374cb7e](https://github.com/oaknational/Oak-Web-Application/commit/374cb7e5635dbbe35bd32ed36eeca63910b7995a))
+* removed bullet point on pupil intro card file items ([b4b9b5d](https://github.com/oaknational/Oak-Web-Application/commit/b4b9b5de361de809daf0c49a15d125193fe7c407))
+* removed currentSection from getQuizNextStep call ([13a5599](https://github.com/oaknational/Oak-Web-Application/commit/13a55990c1873a5077a48cf38aa0fc5feb6b33f5))
+* removed empty file ([c8f7141](https://github.com/oaknational/Oak-Web-Application/commit/c8f7141e6c47f8454b0729fe35621380525c618e))
+* removed empty test file ([62844b3](https://github.com/oaknational/Oak-Web-Application/commit/62844b32565c7687bbaedddb94236489f05465de))
+* removed uneccessary revalidate ([9331bc5](https://github.com/oaknational/Oak-Web-Application/commit/9331bc52f1961854063941877b3a50680bf026ed))
+* update type import to use new PupilLessonProgress and not LessonEngineProvider ([6b54a51](https://github.com/oaknational/Oak-Web-Application/commit/6b54a51fd7d67943de05cb62469d548862b69043))
+* updated getAdditionalFileAssetIds tests to support numbers only like function ([d6cc9c2](https://github.com/oaknational/Oak-Web-Application/commit/d6cc9c21e5d7e6e4a38008ec30a85e1c70e24e96))
+* updated getNewLessonSectionHref tests ([c7515f0](https://github.com/oaknational/Oak-Web-Application/commit/c7515f01ab3e9111400e4c28295e507576527091))
+* updated quiz page content helper to use router ([358322a](https://github.com/oaknational/Oak-Web-Application/commit/358322ae2e446e5cde72debfd965c758d01b0d66))
+* use next link for section navs to retain SPA linking ([948be35](https://github.com/oaknational/Oak-Web-Application/commit/948be35e609283b3d566bc942b029e57e66f40ae))
+
+
+### Features
+
+* added analytics tracking fns for content guidance to zustand analytics ([6d92861](https://github.com/oaknational/Oak-Web-Application/commit/6d92861d54ad5e4321ee1fc2660a330ac9ceb10d))
+* added barrel files and added extra helpers for lesson overview and lesson navigation ([b2e2e66](https://github.com/oaknational/Oak-Web-Application/commit/b2e2e666df9666390cb4b983d4c0a657e8dcfe3a))
+* added const and helpers for accessing lesson share variants ([b70aa2e](https://github.com/oaknational/Oak-Web-Application/commit/b70aa2e88efd7191763fe9d66cce2b30501e0122))
+* added content guidance and redirected modal to new shared exp overview page ([af1f2a6](https://github.com/oaknational/Oak-Web-Application/commit/af1f2a61aa1011286f6ac288a5259ee1e4ae9b27))
+* added extra variants for all combinations of sharing pupil lessons ([d2b0e2f](https://github.com/oaknational/Oak-Web-Application/commit/d2b0e2f96fb0f07e91ab5cb1e470751041436f8e))
+* added helper for getting age restricted string ([383d9e6](https://github.com/oaknational/Oak-Web-Application/commit/383d9e661f4ec46d4e7474493e020cf50d83e4d3))
+* added helper functions to extract logic that existed within og pupil views ([6d6ac58](https://github.com/oaknational/Oak-Web-Application/commit/6d6ac5882e68066a90205a71b61097221bb7849e))
+* added index page that redirects to overview page for shared lesson exp ([8611ec7](https://github.com/oaknational/Oak-Web-Application/commit/8611ec7cef3a3ce51572b6e1cf960115817a982c))
+* added pages for pupil lesson shared variants and updated required functions ([f63f16f](https://github.com/oaknational/Oak-Web-Application/commit/f63f16f8e6a10bf17bdd64b96832e3e3580c1e59))
+* added pupil exp comps and stories for quizzes driven by props ([c397ac6](https://github.com/oaknational/Oak-Web-Application/commit/c397ac6b76aeb65982c67667a19bb83db29779f3))
+* added pupil exp comps and stories for review page all driven by props ([cf57aea](https://github.com/oaknational/Oak-Web-Application/commit/cf57aea67a356cdb875e6aca3f17219142ffdc06))
+* added pupil exp comps and stories for video page comps driven by props ([481e3b3](https://github.com/oaknational/Oak-Web-Application/commit/481e3b3eb3f81e02d48c2e3adabe9d3154203a88))
+* added pupil exp lesson intro comps driven by props and stories ([7143db8](https://github.com/oaknational/Oak-Web-Application/commit/7143db886c9bab6e6568c5bf23a03475de7e5bfa))
+* added review page helpers and updated new lesson hrefs and additional asset ids helpers ([3873bbf](https://github.com/oaknational/Oak-Web-Application/commit/3873bbf0884d798bea956c06242bf09098c80768))
+* added stories for new pupil lesson overview components ([5dff9ab](https://github.com/oaknational/Oak-Web-Application/commit/5dff9ab3b422edb1d13579efe29c1f5585518bf5))
+* added tests and moved files into their own directories ([2f5e186](https://github.com/oaknational/Oak-Web-Application/commit/2f5e18648613c82a8a30352f8326a8921403e13d))
+* added tests and stories for content guidance modal ([f329b82](https://github.com/oaknational/Oak-Web-Application/commit/f329b8203350c62f25719c975aecef47015c121e))
+* added tests for new helper functions ([74bd1c8](https://github.com/oaknational/Oak-Web-Application/commit/74bd1c876f7e313e8910f1b624af89ea177a3246))
+* added usePupilStores hook to init stores and added as optional to main pupil layout ([24420af](https://github.com/oaknational/Oak-Web-Application/commit/24420af2227c86abc29cfb091be2dc17938635b3))
+* broke out PupilLessonOverviewView into prop driven reusable components ([d66ee3f](https://github.com/oaknational/Oak-Web-Application/commit/d66ee3fe5b1e8a97b7db578fca61b6c94fc0e02a))
+* bumped oak components to 2.24.1 ([31f356e](https://github.com/oaknational/Oak-Web-Application/commit/31f356e121574291f4b4d4b4d56ea6e2f8d376da))
+* exported missing pupil analytics event from hook ([80ff4e2](https://github.com/oaknational/Oak-Web-Application/commit/80ff4e2349ec34bf2d9e71ad1e0ba0e5d433b36e))
+* merge merge ([0fa86f3](https://github.com/oaknational/Oak-Web-Application/commit/0fa86f3c921cd5aafce16350563f0f7792f8dec0))
+* moved quiz helper to new ViewHelpers but kept export for backwards compat ([18e3498](https://github.com/oaknational/Oak-Web-Application/commit/18e34980442e34338412f56d471a02027a0167c9))
+* rebuilt lesson engine in zustand with just lesson progress data ([c1bac99](https://github.com/oaknational/Oak-Web-Application/commit/c1bac99b0b4ea33c75fb3cccd369efa543c45454))
+* rebuilt pupil lesson analytics in zustand and removed lesson engine dependency ([dfe85c8](https://github.com/oaknational/Oak-Web-Application/commit/dfe85c8e892dd552034e6f214ac1f3734251b959))
+* refactored pupil analytics store to include missing tracking functions ([2f25e57](https://github.com/oaknational/Oak-Web-Application/commit/2f25e5720931c2901a9ac39000bf2db87ab4ed30))
+* refactored pupil quiz to break out of old lesson engine context and coupled logic ([c1dd010](https://github.com/oaknational/Oak-Web-Application/commit/c1dd010748b6497b720d4dd06ba4cc93b12a7dab))
+* removed imports of functions from UI components in getProps and broke into helpers ([a754f94](https://github.com/oaknational/Oak-Web-Application/commit/a754f942a0fe491c4c4acd627ced0e5e437792a5))
+* setup feature branch ([e536ec0](https://github.com/oaknational/Oak-Web-Application/commit/e536ec07e31bb4ca7ec15c3e37ee7a27a4d78597))
+
+
+### Reverts
+
+* Revert "fix(PUPIL-1694): gate worksheet progress on successful download" ([187b6f6](https://github.com/oaknational/Oak-Web-Application/commit/187b6f6d20b9d3b5275e4c93922618be29b69b26))
+
 # [1.1078.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1077.0...v1.1078.0) (2026-05-18)
 
 
