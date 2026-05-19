@@ -1892,10 +1892,10 @@ exports[`pages/about/meet-the-team/[slug].tsx renders 1`] = `
   margin: 0rem;
   padding: 0rem;
   list-style: none;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
+  display: -webkit-box !important;
+  display: -webkit-flex !important;
+  display: -ms-flexbox !important;
+  display: flex !important;
   gap: 0.5rem;
   -webkit-align-items: center;
   -webkit-box-align: center;
@@ -3447,6 +3447,7 @@ exports[`pages/about/meet-the-team/[slug].tsx renders 1`] = `
             >
               <ul
                 class="c74"
+                style="display: flex;"
               >
                 <li
                   class="c75"

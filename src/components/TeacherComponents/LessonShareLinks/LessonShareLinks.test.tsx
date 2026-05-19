@@ -12,6 +12,8 @@ jest.mock("posthog-js/react", () => ({
   useFeatureFlagEnabled: jest.fn(),
 }));
 
+const onSubmitMock = jest.fn(() => true);
+
 describe("LessonShareLinks", () => {
   beforeEach(() => {
     jest.clearAllMocks();
@@ -21,8 +23,9 @@ describe("LessonShareLinks", () => {
       <LessonShareLinks
         disabled={false}
         lessonSlug="test-slug"
-        selectedActivities={["exit-quiz-questions"]}
-        onSubmit={jest.fn}
+        selectedActivities={["exit-quiz"]}
+        onSubmit={onSubmitMock}
+        shareLink=""
       />,
     );
     const shareHeader = screen.getByRole("heading");
@@ -35,7 +38,8 @@ describe("LessonShareLinks", () => {
         disabled={false}
         lessonSlug="test-slug"
         selectedActivities={["exit-quiz-questions"]}
-        onSubmit={jest.fn}
+        onSubmit={onSubmitMock}
+        shareLink=""
       />,
     );
     const copyLinkButton = screen.getByRole("button", {
@@ -52,7 +56,8 @@ describe("LessonShareLinks", () => {
         disabled={false}
         lessonSlug="test-slug"
         selectedActivities={["exit-quiz-questions"]}
-        onSubmit={jest.fn}
+        onSubmit={onSubmitMock}
+        shareLink=""
       />,
     );
     const copyLinkButton = screen.getByRole("button", {
@@ -71,6 +76,7 @@ describe("LessonShareLinks", () => {
         lessonSlug="test-slug"
         selectedActivities={["exit-quiz-questions"]}
         onSubmit={onSubmit}
+        shareLink=""
       />,
     );
     const copyLinkButton = screen.getByRole("button", {
@@ -90,6 +96,7 @@ describe("LessonShareLinks", () => {
         lessonSlug="test-slug"
         selectedActivities={["exit-quiz-questions"]}
         onSubmit={onSubmit}
+        shareLink=""
       />,
     );
 
@@ -115,6 +122,7 @@ describe("LessonShareLinks", () => {
         selectedActivities={["exit-quiz-questions"]}
         onSubmit={onSubmit}
         onGoogleClassroomClick={onGoogleClassroomClick}
+        shareLink=""
       />,
     );
 

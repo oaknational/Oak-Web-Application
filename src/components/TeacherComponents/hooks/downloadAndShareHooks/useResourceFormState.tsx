@@ -50,6 +50,7 @@ export const useResourceFormState = (props: UseResourceFormStateProps) => {
     setValue,
     trigger,
     watch,
+    getValues,
     handleSubmit,
   } = useForm({
     resolver: zodResolver(resourceFormValuesSchema),
@@ -308,7 +309,6 @@ export const useResourceFormState = (props: UseResourceFormStateProps) => {
 
     const preselectedQuery = () => {
       const res = searchParams?.get("preselected");
-
       const result =
         props.type === "download"
           ? preselectedDownloadType.safeParse(res)
@@ -327,10 +327,10 @@ export const useResourceFormState = (props: UseResourceFormStateProps) => {
       (getInitialAdditionalFilesState() || []) as ResourceType[],
     );
 
-    if (isPreselectedShareType(queryResults)) {
+    if (isPreselectedShareType(queryResults) && props.type === "share") {
       preselected = getPreselectedShareResourceTypes(queryResults);
     }
-    if (isPreselectedDownloadType(queryResults)) {
+    if (isPreselectedDownloadType(queryResults) && props.type === "download") {
       const preselectedResources = additionalResources
         ? resources?.concat(additionalResources)
         : resources;
@@ -417,6 +417,7 @@ export const useResourceFormState = (props: UseResourceFormStateProps) => {
       trigger,
       setValue,
       watch,
+      getValues,
       formState,
       getInitialResourcesState,
       errors,

@@ -4,9 +4,10 @@ import { shareLinkConfig } from "./linkConfig";
 describe("getSharingMetadata", () => {
   it("generates sharing metadata for copy", () => {
     const result = getSharingMetadata({
-      selectedActivities: ["exit-quiz-questions", "video"],
+      selectedActivities: ["exit-quiz", "video"],
       lessonSlug: "lesson-slug",
       linkConfig: shareLinkConfig.copy,
+      shareVariant: "copy",
     });
 
     expect(result.link).toBe(
@@ -17,6 +18,7 @@ describe("getSharingMetadata", () => {
     const result = getSharingMetadata({
       lessonSlug: "lesson-slug",
       linkConfig: shareLinkConfig.microsoftTeams,
+      shareVariant: "microsoftTeams",
     });
 
     expect(result.link).toBe(
@@ -30,6 +32,7 @@ describe("getSharingMetadata", () => {
     const result = getSharingMetadata({
       lessonSlug: "lesson-slug",
       linkConfig: shareLinkConfig.copy,
+      shareVariant: "copy",
     });
     expect(result.link).toBe(
       "https://thenational.academy/pupils/lessons/lesson-slug?share=true",

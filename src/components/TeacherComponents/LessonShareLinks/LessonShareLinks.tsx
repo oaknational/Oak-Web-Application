@@ -1,32 +1,51 @@
 import { FC, useEffect, useState } from "react";
-import { OakHeading, OakFlex } from "@oaknational/oak-components";
+import { OakFlex, OakSecondaryButton } from "@oaknational/oak-components";
 import { useFeatureFlagEnabled } from "posthog-js/react";
+
+import { SharePageNumberedHeading } from "../SharePageNumberedHeading/SharePageNumberedHeading";
 
 import { shareLinkConfig } from "./linkConfig";
 import { getHrefForSocialSharing } from "./getHrefForSocialSharing";
 
 import { ResourceType } from "@/components/TeacherComponents/types/downloadAndShare.types";
-import LoadingButton from "@/components/SharedComponents/Button/LoadingButton";
 import { ShareMediumValueType } from "@/browser-lib/avo/Avo";
 import { useOakNotificationsContext } from "@/context/OakNotifications/useOakNotificationsContext";
+import { getLessonShareVariantSlug } from "@/pages-helpers/pupil";
 
-const copyToClipboard = (textToCopy: string, callback: () => void) => {
-  if (navigator.clipboard) {
-    navigator.clipboard.writeText(textToCopy);
-    callback();
+const copyToClipboard = (textToCopy: string, callback: () => boolean) => {
+  const isValid = callback();
+  if (isValid) {
+    if (navigator.clipboard) {
+      navigator.clipboard.writeText(textToCopy);
+    } else {
+      alert("Please update your browser to support this feature");
+    }
   } else {
-    alert("Please update your browser to support this feature");
+    return;
   }
 };
 
 const LessonShareLinks: FC<{
+  hasError?: boolean;
+  shareLink: string;
   disabled: boolean;
   lessonSlug: string;
   selectedActivities?: Array<ResourceType>;
   schoolUrn?: string;
-  onSubmit: (shareMedium: ShareMediumValueType) => void;
+  onSubmit: (shareMedium: ShareMediumValueType) => boolean;
   onGoogleClassroomClick?: () => void;
 }> = (props) => {
+  const lessonShareVariantSlug =
+    getLessonShareVariantSlug(
+      props.selectedActivities as (
+        | "video"
+        | "intro"
+        | "overview"
+        | "starter-quiz"
+        | "exit-quiz"
+        | "review"
+      )[],
+    ) || "";
   const [isShareSuccessful, setIsShareSuccessful] = useState(false);
   const { setCurrentToastProps } = useOakNotificationsContext();
   const useGoogleClassroomAddon = useFeatureFlagEnabled(
@@ -39,99 +58,103 @@ const LessonShareLinks: FC<{
 
   const linkShareOptions = [
     shareLinkConfig.microsoftTeams,
-    shareLinkConfig.email,
+    // shareLinkConfig.email,
     ...(props.onGoogleClassroomClick && useGoogleClassroomAddon
       ? []
       : [shareLinkConfig.googleClassroom]),
   ];
 
   return (
-    <>
-      <OakHeading
-        $mt="spacing-24"
-        $mb="spacing-4"
-        tag={"h4"}
-        $font={"heading-7"}
-      >
-        Share options:
-      </OakHeading>
+    <OakFlex
+      $background={"bg-decorative5-main"}
+      $width={"100%"}
+      $borderRadius={"border-radius-l"}
+      $pa={"spacing-24"}
+      $flexDirection={"column"}
+      $gap={"spacing-20"}
+    >
+      <SharePageNumberedHeading
+        number={2}
+        title={"Share with pupils"}
+        paragraph={
+          "Use one of the links below to share the selected activities with your pupils."
+        }
+      />
       <OakFlex $flexWrap={"wrap"} $width={"100%"} $gap={"spacing-12"}>
-        <LoadingButton
-          text={
-            isShareSuccessful
-              ? "Link copied to clipboard"
-              : shareLinkConfig.copy.name
-          }
-          success={isShareSuccessful}
-          type="button"
-          ariaLabel="Copy link to clipboard"
-          ariaLive={"polite"}
-          onClick={() =>
+        <OakSecondaryButton
+          element="button"
+          iconName={shareLinkConfig.copy.icon}
+          isTrailingIcon={true}
+          onClick={() => {
             copyToClipboard(
               getHrefForSocialSharing({
                 lessonSlug: props.lessonSlug,
                 selectedActivities: props.selectedActivities,
                 schoolUrn: props.schoolUrn,
                 linkConfig: shareLinkConfig.copy,
+                shareVariant: lessonShareVariantSlug,
               }),
               () => {
-                setIsShareSuccessful(true);
-                setCurrentToastProps({
-                  message: "Link copied to clipboard",
-                  variant: "green",
-                  autoDismiss: true,
-                  showIcon: true,
-                });
-                props.onSubmit("copy-link");
+                const isValid = props.onSubmit("copy-link");
+                if (isValid) {
+                  setIsShareSuccessful(true);
+                  setCurrentToastProps({
+                    message: "Link copied to clipboard",
+                    variant: "green",
+                    autoDismiss: true,
+                    showIcon: true,
+                  });
+                }
+                return isValid;
               },
-            )
-          }
-          isLoading={false}
-          loadingText="Copying..."
-          icon={shareLinkConfig.copy.icon}
-          disabled={props.disabled}
-        />
+            );
+          }}
+          aria-label="Copy link to clipboard"
+        >
+          {isShareSuccessful
+            ? "Link copied to clipboard"
+            : shareLinkConfig.copy.name}
+        </OakSecondaryButton>
 
         {props.onGoogleClassroomClick && useGoogleClassroomAddon && (
-          <LoadingButton
-            text={shareLinkConfig.googleClassroom.name}
-            icon={shareLinkConfig.googleClassroom.icon}
-            isLoading={false}
-            disabled={props.disabled}
-            type="button"
-            key={shareLinkConfig.googleClassroom.name}
+          <OakSecondaryButton
+            iconName={shareLinkConfig.googleClassroom.icon}
+            isTrailingIcon={true}
             onClick={() => {
               props.onSubmit(shareLinkConfig.googleClassroom.avoMedium);
               props.onGoogleClassroomClick!();
             }}
-            ariaLabel="Assign to Google Classroom"
-            ariaLive={"polite"}
-          />
+            disabled={props.disabled}
+            aria-label="Assign to Google Classroom"
+          >
+            {shareLinkConfig.googleClassroom.name}
+          </OakSecondaryButton>
         )}
 
-        {linkShareOptions.map((link) => (
-          <LoadingButton
-            text={link.name}
-            icon={link.icon}
-            isLoading={false}
-            disabled={props.disabled}
-            type="link"
-            external={true}
-            key={link.name}
-            href={getHrefForSocialSharing({
-              lessonSlug: props.lessonSlug,
-              selectedActivities: props.selectedActivities,
-              linkConfig: link,
-            })}
+        {linkShareOptions.map((link, index) => (
+          <OakSecondaryButton
+            element="a"
+            iconName={link.icon}
+            isTrailingIcon={true}
             onClick={() => {
               props.onSubmit(link.avoMedium);
             }}
-            ariaLabel={`Share to ${link.name}`}
-            ariaLive={"polite"}
-          />
+            aria-label={`Share to ${link.name}`}
+            href={getHrefForSocialSharing({
+              lessonSlug: props.lessonSlug,
+              selectedActivities: props.selectedActivities,
+              schoolUrn: props.schoolUrn,
+              linkConfig: link,
+              shareVariant: lessonShareVariantSlug,
+            })}
+            target="_blank"
+            key={index}
+          >
+            {link.name}
+          </OakSecondaryButton>
         ))}
       </OakFlex>
-    </>
+    </OakFlex>
   );
 };
 

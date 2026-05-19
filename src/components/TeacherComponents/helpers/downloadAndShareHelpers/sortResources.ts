@@ -9,6 +9,8 @@ export const sortShareResources = (
     "worksheet-pdf": 3,
     "intro-quiz-answers": 4,
     "exit-quiz-questions": 5,
+    "starter-quiz": 6,
+    "exit-quiz": 7,
     presentation: 100,
     "worksheet-pptx": 100,
     "exit-quiz-answers": 100,

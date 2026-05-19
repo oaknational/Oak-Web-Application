@@ -72,7 +72,7 @@ describe("lessonShare()", () => {
     expect(result).toHaveLength(4);
     expect(result.every((r) => r.exists === false)).toBe(true);
 
-    const starterQuiz = result.find((r) => r.type === "intro-quiz-questions");
+    const starterQuiz = result.find((r) => r.type === "starter-quiz");
     expect(starterQuiz?.metadata).toBe("");
   });
 
@@ -84,10 +84,10 @@ describe("lessonShare()", () => {
 
     expect(result).toHaveLength(4);
 
-    const starterQuiz = result.find((r) => r.type === "intro-quiz-questions");
+    const starterQuiz = result.find((r) => r.type === "starter-quiz");
     expect(starterQuiz?.metadata).toBe("4 questions");
 
-    const exitQuiz = result.find((r) => r.type === "exit-quiz-questions");
+    const exitQuiz = result.find((r) => r.type === "exit-quiz");
     expect(exitQuiz?.metadata).toBe("");
 
     const video = result.find((r) => r.type === "video");
@@ -107,7 +107,26 @@ describe("lessonShare()", () => {
     expect(parsed).toEqual(res);
     expect(parsed.shareableResources).toHaveLength(4);
     const starterQuiz = parsed.shareableResources.find(
-      (r) => r.type === "intro-quiz-questions",
+      (r) => r.type === "starter-quiz",
+    );
+    expect(starterQuiz?.metadata).toBe("1 question");
+  });
+
+  test("returns the correct response for canonical lesson", async () => {
+    const res = await lessonShare({
+      ...sdk,
+      lessonShare: jest.fn(() => Promise.resolve(mockLessonShareResponse)),
+    })({
+      lessonSlug: "lesson-slug",
+    });
+
+    const parsed = canonicalLessonShareSchema.parse(res);
+
+    expect(parsed).toEqual(res);
+    expect(parsed.pathways).toHaveLength(1);
+    expect(parsed.shareableResources).toHaveLength(4);
+    const starterQuiz = parsed.shareableResources.find(
+      (r) => r.type === "starter-quiz",
     );
     expect(starterQuiz?.metadata).toBe("1 question");
   });

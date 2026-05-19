@@ -6,32 +6,26 @@ export const constructShareableResources = (lesson: RawLessonShareSchema) => {
 
   const introQuiz = {
     exists: lesson.starter_quiz !== null,
-    type: "intro-quiz-questions" as const,
-    label: "Starter quiz",
+    type: "starter-quiz" as const,
+    label: "Prior knowledge starter quiz",
     metadata: lesson.starter_quiz
-      ? `${starterQuizLength} question${starterQuizLength === 1 ? "" : "s"}`
+      ? `Check prior knowledge (${starterQuizLength} question${starterQuizLength === 1 ? "" : "s"})`
       : "",
   };
   const exitQuiz = {
     exists: lesson.exit_quiz !== null,
-    type: "exit-quiz-questions" as const,
-    label: "Exit quiz",
+    type: "exit-quiz" as const,
+    label: "Assessment exit quiz",
     metadata: lesson.exit_quiz
-      ? `${exitQuizLength} question${exitQuizLength === 1 ? "" : "s"}`
+      ? `Check understanding (${exitQuizLength} question${exitQuizLength === 1 ? "" : "s"})`
       : "",
   };
   const video = {
     exists: lesson.video_mux_playback_id !== null,
     type: "video" as const,
-    label: "Video",
-    metadata: lesson.video_duration,
-  };
-  const worksheet = {
-    exists: lesson.worksheet_asset_object_url !== null,
-    type: "worksheet-pdf" as const,
-    label: "Worksheet",
-    metadata: "pdf",
+    label: "Lesson video",
+    metadata: `Support independent learning (${lesson.video_duration})`,
   };
 
-  return [video, introQuiz, exitQuiz, worksheet];
+  return [video, introQuiz, exitQuiz];
 };

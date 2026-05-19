@@ -39,6 +39,7 @@ import { LessonShareData } from "@/node-lib/curriculum-api-2023/queries/lessonSh
 import { SpecialistLessonShareData } from "@/node-lib/curriculum-api-2023/queries/specialistLessonShare/specialistLessonShare.schema";
 import { useOnboardingStatus } from "@/components/TeacherComponents/hooks/useOnboardingStatus";
 import { AssignToClassroomModal } from "@/components/TeacherComponents/AssignToClassroomModal/AssignToClassroomModal";
+import { getLessonShareVariantSlug } from "@/pages-helpers/pupil";
 
 export type LessonShareProps =
   | {
@@ -60,9 +61,8 @@ export type LessonShareProps =
 const classroomActivityMap: Partial<
   Record<ResourceType, ResourceTypesValueType>
 > = {
-  "intro-quiz-questions": "starter-quiz",
-  "exit-quiz-questions": "exit-quiz",
-  "worksheet-pdf": "worksheet",
+  "starter-quiz": "starter-quiz",
+  "exit-quiz": "exit-quiz",
   video: "video",
 };
 
@@ -82,7 +82,7 @@ export function LessonShare(props: LessonShareProps) {
 
   const exitQuizNumQuestions = (() => {
     const exitQuizResource = shareableResources.find(
-      (r) => r.type === "exit-quiz-questions",
+      (r) => r.type === "exit-quiz",
     );
     const parsed = exitQuizResource
       ? Number.parseInt(exitQuizResource.metadata ?? "", 10)
@@ -114,6 +114,45 @@ export function LessonShare(props: LessonShareProps) {
   } = useResourceFormState({
     shareResources: shareableResources,
     type: "share",
+  });
+
+  const onValidateAndSubmit = (shareMedium: ShareMediumValueType) => {
+    const isValid =
+      !hasFormErrors &&
+      !expired &&
+      (form.formState.isValid || localStorageDetails);
+    const resources = form.getValues("resources");
+
+    void form.handleSubmit((data) => {
+      onFormSubmit(
+        {
+          ...data,
+          resources,
+        },
+        shareMedium,
+      );
+    })(); // https://github.com/orgs/react-hook-form/discussions/8622
+    return isValid;
+  };
+
+  const lessonShareVariantSlug =
+    getLessonShareVariantSlug(
+      selectedResources as (
+        | "video"
+        | "intro"
+        | "overview"
+        | "starter-quiz"
+        | "exit-quiz"
+        | "review"
+      )[],
+    ) || "";
+
+  const shareLink = getHrefForSocialSharing({
+    lessonSlug: lessonSlug,
+    selectedActivities: selectedResources,
+    schoolUrn: schoolUrn,
+    linkConfig: shareLinkConfig.copy,
+    shareVariant: lessonShareVariantSlug,
   });
   const onboardingStatus = useOnboardingStatus();
 
@@ -232,6 +271,7 @@ export function LessonShare(props: LessonShareProps) {
                 selectedActivities: selectedResources,
                 schoolUrn: schoolUrn,
                 linkConfig: shareLinkConfig.copy,
+                shareVariant: lessonShareVariantSlug,
               })}
             />
           }
@@ -246,13 +286,10 @@ export function LessonShare(props: LessonShareProps) {
                 lessonSlug={lessonSlug}
                 selectedActivities={selectedResources}
                 schoolUrn={schoolUrn}
-                onSubmit={
-                  (shareMedium: ShareMediumValueType) =>
-                    void form.handleSubmit((data) => {
-                      onFormSubmit(data, shareMedium);
-                    })() // https://github.com/orgs/react-hook-form/discussions/8622
-                }
+                onSubmit={onValidateAndSubmit}
                 onGoogleClassroomClick={() => setIsClassroomModalOpen(true)}
+                hasError={form.errors?.resources !== undefined}
+                shareLink={shareLink}
               />
               {!isSpecialist && programmeSlug && unitSlug && (
                 <AssignToClassroomModal

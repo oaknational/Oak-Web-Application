@@ -6,6 +6,7 @@ describe("getHrefForSocialSharing", () => {
     const href = getHrefForSocialSharing({
       lessonSlug: "lesson-slug",
       linkConfig: shareLinkConfig.copy,
+      shareVariant: "copy",
     });
 
     expect(href).toBe(
@@ -16,6 +17,7 @@ describe("getHrefForSocialSharing", () => {
     const href = getHrefForSocialSharing({
       lessonSlug: "lesson-slug",
       linkConfig: shareLinkConfig.googleClassroom,
+      shareVariant: "googleClassroom",
     });
     expect(href).toBe(
       "https://classroom.google.com/u/0/share?url=https%3A%2F%2Fthenational.academy%2Fpupils%2Flessons%2Flesson-slug%3Fshare%3Dtrue",
@@ -25,6 +27,7 @@ describe("getHrefForSocialSharing", () => {
     const href = getHrefForSocialSharing({
       lessonSlug: "lesson-slug",
       linkConfig: shareLinkConfig.microsoftTeams,
+      shareVariant: "microsoftTeams",
     });
     expect(href).toBe(
       "https://teams.microsoft.com/share?href=https%3A%2F%2Fthenational.academy%2Fpupils%2Flessons%2Flesson-slug%3Fshare%3Dtrue&text=",

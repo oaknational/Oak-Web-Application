@@ -389,6 +389,12 @@ type PupilLessonCanonical = {
   lessonSlug: string;
 };
 
+type PupilLessonCanonicalShared = {
+  page: "pupil-lesson-canonical-shared";
+  lessonSlug: string;
+  shareVariant: string;
+};
+
 type MyLibraryProps = {
   page: "my-library";
 };
@@ -502,6 +508,7 @@ export type OakLinkProps =
   | OnboardingRoleSelectionLinkProps
   | OnboardingUseOfOak
   | PupilLessonCanonical
+  | PupilLessonCanonicalShared
   | MyLibraryProps
   | ProgrammePageProps
   | ClassroomSignInLinkProps
@@ -926,6 +933,12 @@ export const OAK_PAGES: {
     analyticsPageName: "Lesson",
     configType: "internal",
     pageType: "pupil-lesson-canonical",
+  }),
+  "pupil-lesson-canonical-shared": createOakPageConfig({
+    pathPattern: "/pupils/lessons/:lessonSlug/shared/:shareVariant/overview",
+    analyticsPageName: "Lesson",
+    configType: "internal",
+    pageType: "pupil-lesson-canonical-shared",
   }),
   "pupil-lesson-index": createOakPageConfig({
     pathPattern: "/pupils/programmes/:programmeSlug/units/:unitSlug/lessons",
