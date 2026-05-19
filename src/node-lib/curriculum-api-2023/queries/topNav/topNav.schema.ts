@@ -1,10 +1,14 @@
 import z from "zod";
 import { programmeFieldsSchema } from "@oaknational/oak-curriculum-schema";
 
+const topNavProgrammeFieldsSchema = programmeFieldsSchema.extend({
+  subject_parent_slug: z.string().nullish(),
+});
+
 export const topNavResponseSchema = z.object({
   programmes: z.array(
     z.object({
-      programme_fields: programmeFieldsSchema,
+      programme_fields: topNavProgrammeFieldsSchema,
       programme_slug: z.string(),
       features: z.object({ non_curriculum: z.boolean().nullish() }),
       actions: z
@@ -46,12 +50,20 @@ export type TeachersSubNavData = {
 
 export type NavButton = NavLink | NavDropDownButton | TeachersBrowse;
 
-type SubjectsNavItem = {
+type ExamBoard = {
+  slug: string;
+  title: string;
+  programmeSlug: string;
+};
+
+export type SubjectsNavItem = {
   title: string;
   slug: string;
   nonCurriculum: boolean; // enables highlighting subjects that are non curriculum
   programmeSlug: string | null; // will be null when multiple programmes exist
   programmeCount: number; // used to determine whether we should go to the programmes page (more than 1 programme) or directly to the unit listing page (only 1 programme)
+  subjectParentSlug?: string | null; // used to determine if subject is a child of another subject (e.g. combined science is a child of science)
+  examBoards?: ExamBoard[]; // available exam boards for KS4 subjects with multiple programmes
 };
 
 export type TeachersBrowse = {
