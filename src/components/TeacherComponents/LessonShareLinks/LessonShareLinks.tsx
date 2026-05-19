@@ -111,7 +111,7 @@ const LessonShareLinks: FC<{
           </OakSecondaryButton>
         )}
 
-        {linkShareOptions.map((link, index) => (
+        {linkShareOptions.map((link) => (
           <OakSecondaryButton
             element="a"
             iconName={link.icon}
@@ -128,7 +128,7 @@ const LessonShareLinks: FC<{
               shareVariant: lessonShareVariantSlug,
             })}
             target="_blank"
-            key={`link-${index}`}
+            key={link.name}
           >
             {link.name}
           </OakSecondaryButton>
