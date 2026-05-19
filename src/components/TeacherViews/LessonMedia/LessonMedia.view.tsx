@@ -546,6 +546,7 @@ export const LessonMedia = (
           lessonSlug={lessonSlug}
           unitSlug={unitSlug}
           isCanonical={isCanonical}
+          useIntegratedJourneyLinks={useIntegratedJourneyLinks}
         />
       ) : (
         <>
