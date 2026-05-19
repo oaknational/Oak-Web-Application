@@ -1,3 +1,10 @@
+## [1.1080.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.1080.0...v1.1080.1) (2026-05-19)
+
+
+### Bug Fixes
+
+* reject requests to the curriculum page with too many segments ([acac547](https://github.com/oaknational/Oak-Web-Application/commit/acac5479b060d838291feacf19a24e2a18c6bb41))
+
 # [1.1080.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1079.0...v1.1080.0) (2026-05-19)
 
 
