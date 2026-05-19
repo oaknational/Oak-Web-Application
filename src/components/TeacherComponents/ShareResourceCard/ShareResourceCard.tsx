@@ -1,9 +1,5 @@
 import { FC } from "react";
-import {
-  OakIconName,
-  OakTagFunctional,
-  OakDownloadCard,
-} from "@oaknational/oak-components";
+import { OakIconName, OakDownloadCard } from "@oaknational/oak-components";
 import styled from "styled-components";
 
 import { CheckboxProps } from "@/components/SharedComponents/Checkbox/Checkbox";
@@ -24,7 +20,6 @@ export type ResourceCardProps = Omit<CheckboxProps, "checked"> & {
   resourceType: LessonShareResourceData["type"];
   subtitle: string;
   subjectIcon?: string;
-  isEditable?: boolean;
   useDownloadPageLayout: boolean;
   asRadio?: boolean;
   checked?: boolean;
@@ -50,7 +45,6 @@ const ResourceCard: FC<ResourceCardProps> = (props) => {
     onBlur,
     resourceType,
     subjectIcon,
-    isEditable,
     disabled,
     asRadio = false,
     useDownloadPageLayout = false,
@@ -76,24 +70,7 @@ const ResourceCard: FC<ResourceCardProps> = (props) => {
         onChange={onChange}
         onBlur={onBlur}
         isRadio={asRadio}
-        format={
-          <>
-            {subtitle}
-            {isEditable && (
-              <OakTagFunctional
-                key="tag"
-                $ml={"spacing-8"}
-                $display="inline"
-                $color={"text-primary"}
-                $font={"heading-light-7"}
-                $ph={"spacing-4"}
-                $pv={"spacing-4"}
-                label="Editable"
-                $background={"bg-decorative2-main"}
-              />
-            )}
-          </>
-        }
+        format={subtitle}
         iconName={iconName}
       />
     </CustomSizing>
