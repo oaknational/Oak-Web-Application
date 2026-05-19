@@ -6,44 +6,10 @@ import "whatwg-fetch";
 import bugsnag from "@bugsnag/js";
 import { installMockIntersectionObserver } from "@oaknational/oak-components";
 
-// const originalFetch = global.fetch.bind(global);
-
-// global.fetch = async (input, init) => {
-//   const url = typeof input === "string" ? input : input.url;
-
-//   if (url.startsWith("https://school-picker.thenational.academy/")) {
-//     return new Response(JSON.stringify([]), {
-//       status: 200,
-//       headers: { "Content-Type": "application/json" },
-//     });
-//   }
-
-//   if (url.startsWith("https://hubspot-forms.thenational.academy/")) {
-//     return new Response(JSON.stringify({ inlineMessage: "ok" }), {
-//       status: 200,
-//       headers: { "Content-Type": "application/json" },
-//     });
-//   }
-
-//   if (url === "/api/hubspot/contacts") {
-//     return new Response(null, { status: 204 });
-//   }
-
-//   return originalFetch(input, init);
-// };
-
 // Override this with `TEST_ALLOW_LOGGING=1` if you want logs locally
 if (process.env.TEST_ALLOW_LOGGING !== "1") {
   ["log", "info", "error", "warn", "debug"].forEach((type) => {
     console[type] = (message) => {
-      // if (
-      //   type === "error" &&
-      //   typeof message === "string" &&
-      //   message.includes("not wrapped in act(...)")
-      // ) {
-      //   return;
-      // }
-
       throw new Error(
         `Failed: We don't allow console.${type} while running tests!\n\n${message}\n\nIf you'd like to enable logging for testing, prefix with TEST_ALLOW_LOGGING=1`,
       );
@@ -54,16 +20,6 @@ if (process.env.TEST_ALLOW_LOGGING !== "1") {
 // TextEncoder and TextDecoder are Web APIs but not available in JSDOM
 global.TextEncoder = TextEncoder;
 global.TextDecoder = TextDecoder;
-// if (!Array.prototype.toSorted) {
-//   Object.defineProperty(Array.prototype, "toSorted", {
-//     value(compareFn) {
-//       return [...this].sort(compareFn);
-//     },
-//     writable: true,
-//     configurable: true,
-//   });
-// }
-// JSDOM does not implement SubmitEvent
 global.SubmitEvent =
   global.SubmitEvent ||
   class MockSubmitEvent extends Event {
