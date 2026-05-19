@@ -9,6 +9,7 @@ export type PartialFilters = {
   years: CurriculumFilters["years"];
   threads: CurriculumFilters["threads"];
   pathways: CurriculumFilters["pathways"];
+  keystages: CurriculumFilters["keystages"];
 };
 
 export function evalPathwayCondition(query: string, slug: string) {
