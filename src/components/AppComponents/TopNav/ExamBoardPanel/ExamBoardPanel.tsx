@@ -17,6 +17,7 @@ import {
 import { convertUnitSlugToTitle } from "@/components/TeacherViews/Search/helpers";
 import { resolveOakHref } from "@/common-lib/urls";
 import { getTeacherSubjectPhaseSlug } from "@/utils/curriculum/slugs";
+import { filtersToQuery } from "@/utils/curriculum/filtering";
 
 export type ExamBoardPanelProps = {
   examBoards: Array<{
@@ -55,7 +56,35 @@ const ExamBoardPanel = ({
         subjectParentTitle: selectedSubject?.subjectParent ?? undefined,
       }),
     });
-    router.push(href);
+    if (selectedSubject.subjectParent) {
+      const queryParams = new URLSearchParams(
+        filtersToQuery(
+          {
+            childSubjects: [selectedSubject.slug],
+            years: ["11"],
+            subjectCategories: [],
+            tiers: [],
+            threads: [],
+            pathways: [],
+            keystages: ["ks4"],
+          },
+          {
+            childSubjects: [selectedSubject.slug],
+            years: ["11"],
+            subjectCategories: [],
+            tiers: [],
+            threads: [],
+            pathways: [],
+            keystages: ["ks4"],
+          },
+        ),
+      ).toString();
+
+      router.push(`${href}?${queryParams}`);
+    } else {
+      router.push(href);
+    }
+
     onClick(selectedSubject.slug, "ks4");
     onClose();
   };
