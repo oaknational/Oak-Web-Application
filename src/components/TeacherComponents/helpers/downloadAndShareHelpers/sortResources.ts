@@ -5,11 +5,11 @@ export const sortShareResources = (
 ) => {
   const sortOrderKey = {
     "intro-quiz-questions": 1,
-    video: 2,
-    "worksheet-pdf": 3,
-    "intro-quiz-answers": 4,
-    "exit-quiz-questions": 5,
-    "starter-quiz": 6,
+    "starter-quiz": 2,
+    video: 3,
+    "worksheet-pdf": 4,
+    "intro-quiz-answers": 5,
+    "exit-quiz-questions": 6,
     "exit-quiz": 7,
     presentation: 100,
     "worksheet-pptx": 100,

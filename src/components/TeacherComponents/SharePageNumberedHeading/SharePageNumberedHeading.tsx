@@ -16,7 +16,7 @@ export const SharePageNumberedHeading = ({
 }) => {
   return (
     <OakFlex $flexDirection={"column"} $gap={"spacing-24"}>
-      <OakHeading tag="h2" $font={["heading-5", "heading-4"]}>
+      <OakHeading tag="h2" $font={"heading-5"}>
         <OakFlex $alignItems={"center"}>
           <OakFlex
             $background={"bg-btn-secondary"}

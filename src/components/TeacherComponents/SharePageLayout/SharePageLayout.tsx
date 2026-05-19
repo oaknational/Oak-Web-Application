@@ -57,7 +57,7 @@ const SharePageLayout: FC<SharePageLayoutProps> = (props) => {
         $flexDirection={"column"}
         $gap={["spacing-24", "spacing-32"]}
       >
-        <OakHeading tag="h1" $font={["heading-4", "heading-2"]}>
+        <OakHeading tag="h1" $font={"heading-4"}>
           {props.header}
         </OakHeading>
         {props.isLoading ? (

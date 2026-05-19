@@ -15,7 +15,6 @@ import {
   OakTextInput,
   OakJauntyAngleLabel,
   OakFieldError,
-  OakRoundIcon,
 } from "@oaknational/oak-components";
 
 import FieldError from "@/components/SharedComponents/FieldError";
@@ -67,12 +66,6 @@ const TermsAgreementForm: FC<TermsAgreementFormProps> = ({
           $mb={["spacing-24", "spacing-32"]}
         >
           <OakFlex $alignItems={"center"} $gap={"spacing-12"}>
-            {!useDownloadPageLayout && (
-              <OakRoundIcon
-                iconName={"tick"}
-                $background={"bg-btn-secondary"}
-              />
-            )}
             Your details
           </OakFlex>
         </OakHeading>

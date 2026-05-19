@@ -4,7 +4,7 @@ import { useFeatureFlagEnabled } from "posthog-js/react";
 
 import { SharePageNumberedHeading } from "../SharePageNumberedHeading/SharePageNumberedHeading";
 
-import { shareLinkConfig } from "./linkConfig";
+import { ShareLinkConfig, shareLinkConfig } from "./linkConfig";
 import { getHrefForSocialSharing } from "./getHrefForSocialSharing";
 
 import { ShareMediumValueType } from "@/browser-lib/avo/Avo";
@@ -34,11 +34,24 @@ const LessonShareLinks: FC<{
 
   const linkShareOptions = [
     shareLinkConfig.microsoftTeams,
-    // shareLinkConfig.email,
     ...(props.onGoogleClassroomClick && useGoogleClassroomAddon
       ? []
       : [shareLinkConfig.googleClassroom]),
   ];
+
+  const onShareClick = (link: ShareLinkConfig) => {
+    const isValid = props.onSubmit(link.avoMedium);
+    const href = getHrefForSocialSharing({
+      lessonSlug: props.lessonSlug,
+      selectedActivities: props.selectedActivities,
+      schoolUrn: props.schoolUrn,
+      linkConfig: link,
+      shareVariant: lessonShareVariantSlug,
+    });
+    if (isValid) {
+      globalThis.open(href, "_blank", "noopener,noreferrer");
+    }
+  };
 
   const OnCopyToClipboardClick = () => {
     const isValid = props.onSubmit("copy-link");
@@ -113,21 +126,11 @@ const LessonShareLinks: FC<{
 
         {linkShareOptions.map((link) => (
           <OakSecondaryButton
-            element="a"
+            element="button"
             iconName={link.icon}
             isTrailingIcon={true}
-            onClick={() => {
-              props.onSubmit(link.avoMedium);
-            }}
+            onClick={() => onShareClick(link)}
             aria-label={`Share to ${link.name}`}
-            href={getHrefForSocialSharing({
-              lessonSlug: props.lessonSlug,
-              selectedActivities: props.selectedActivities,
-              schoolUrn: props.schoolUrn,
-              linkConfig: link,
-              shareVariant: lessonShareVariantSlug,
-            })}
-            target="_blank"
             key={link.name}
           >
             {link.name}

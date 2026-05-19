@@ -140,24 +140,6 @@ describe("pages/teachers/programmes/[programmeSlug]/units/[unitSlug]/lessons/[le
       <LessonSharePage
         {...{
           ...props,
-          // curriculumData: {
-          // ...props.curriculumData,
-          // shareableResources: [
-          //   {
-          //     exists: true,
-          //     type: "exit-quiz",
-          //     label: "Exit quiz",
-          //     metadata: null,
-          //   },
-          //   { exists: true, type: "video", label: "Video", metadata: null },
-          //   {
-          //     exists: true,
-          //     type: "starter-quiz",
-          //     label: "Starter quiz",
-          //     metadata: null,
-          //   },
-          // ],
-          // },
         }}
       />,
     );
@@ -182,7 +164,7 @@ describe("pages/teachers/programmes/[programmeSlug]/units/[unitSlug]/lessons/[le
       componentType: "share_button",
       eventVersion: "2.0.0",
       analyticsUseCase: "Teacher",
-      resourceTypes: ["video", "starter-quiz", "exit-quiz"],
+      resourceTypes: ["starter-quiz", "video", "exit-quiz"],
       audience: "Pupil",
       lessonReleaseCohort: "2020-2023",
       lessonReleaseDate: "2025-09-29T14:00:00.000Z",
@@ -250,11 +232,11 @@ describe("pages/teachers/programmes/[programmeSlug]/units/[unitSlug]/lessons/[le
       // const shareButtonGoogle = screen.getByRole("button", {
       //   name: "Assign to Google Classroom",
       // });
-      const shareButtonGoogle = screen.getByRole("link", {
+      const shareButtonGoogle = screen.getByRole("button", {
         name: "Share to Share via Google Classroom",
       });
       expect(shareButtonGoogle).toBeInTheDocument();
-      const shareButtonMicrosoft = screen.getByRole("link", {
+      const shareButtonMicrosoft = screen.getByRole("button", {
         name: "Share to Share via Microsoft Teams",
       });
       expect(shareButtonMicrosoft).toBeInTheDocument();

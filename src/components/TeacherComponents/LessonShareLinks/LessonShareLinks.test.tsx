@@ -101,7 +101,7 @@ describe("LessonShareLinks", () => {
       />,
     );
 
-    const googleClassroomLink = getByRole("link", {
+    const googleClassroomLink = getByRole("button", {
       name: "Share to Share via Google Classroom",
     });
 
