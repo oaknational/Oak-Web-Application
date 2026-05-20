@@ -26,7 +26,6 @@ export type ExamBoardPanelProps = {
     programmeSlug: string;
   }>;
   selectedSubject: SubjectsNavItem;
-  subjectParentTitle?: string;
   focusManager?: DropdownFocusManager<TeachersSubNavData>;
   onClick: (examBoardSlug: string, programmeSlug: string) => void;
   onClose: () => void;
@@ -35,55 +34,55 @@ export type ExamBoardPanelProps = {
 const ExamBoardPanel = ({
   examBoards,
   selectedSubject,
-  subjectParentTitle,
   focusManager,
   onClick,
   onClose,
 }: ExamBoardPanelProps) => {
   const router = useRouter();
+
+  const getQueryParams = (hasParentSubject: boolean) =>
+    new URLSearchParams(
+      filtersToQuery(
+        {
+          childSubjects: hasParentSubject ? [selectedSubject.slug] : [],
+          years: [],
+          subjectCategories: [],
+          tiers: [],
+          threads: [],
+          pathways: [],
+          keystages: ["ks4"],
+        },
+        {
+          childSubjects: [],
+          years: [],
+          subjectCategories: [],
+          tiers: [],
+          threads: [],
+          pathways: [],
+          keystages: [],
+        },
+      ),
+    ).toString();
+
   if (!examBoards || examBoards.length === 0) {
     return null;
   }
 
   const navigateToSubject = ({ examBoardSlug }: { examBoardSlug: string }) => {
+    if (examBoardSlug === null) return;
     const href = resolveOakHref({
       page: "unit-index",
       programmeSlug: getTeacherSubjectPhaseSlug({
-        subjectSlug: subjectParentTitle || selectedSubject?.slug,
+        subjectSlug: selectedSubject?.slug,
         phaseSlug: "secondary",
         examboardSlug: examBoardSlug,
         pathwaySlug: null,
         subjectParentTitle: selectedSubject?.subjectParent ?? undefined,
       }),
     });
-    if (selectedSubject.subjectParent) {
-      const queryParams = new URLSearchParams(
-        filtersToQuery(
-          {
-            childSubjects: [selectedSubject.slug],
-            years: ["11"],
-            subjectCategories: [],
-            tiers: [],
-            threads: [],
-            pathways: [],
-            keystages: ["ks4"],
-          },
-          {
-            childSubjects: [selectedSubject.slug],
-            years: ["11"],
-            subjectCategories: [],
-            tiers: [],
-            threads: [],
-            pathways: [],
-            keystages: ["ks4"],
-          },
-        ),
-      ).toString();
+    const queryParams = getQueryParams(Boolean(selectedSubject.subjectParent));
 
-      router.push(`${href}?${queryParams}`);
-    } else {
-      router.push(href);
-    }
+    router.push(queryParams ? `${href}?${queryParams}` : href);
 
     onClick(selectedSubject.slug, "ks4");
     onClose();

@@ -89,7 +89,9 @@ describe("ExamBoardPanel", () => {
     const aqaRadio = screen.getByRole("radio", { name: /AQA/ });
     await user.click(aqaRadio);
 
-    expect(mockPush).toHaveBeenCalledWith("/test-path/test-programme-slug");
+    expect(mockPush).toHaveBeenCalledWith(
+      "/test-path/test-programme-slug?keystages=ks4",
+    );
   });
 
   it("calls onClick with subject and keystage when exam board is selected", async () => {
