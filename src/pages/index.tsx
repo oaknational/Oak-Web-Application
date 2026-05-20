@@ -9,7 +9,6 @@ import {
 } from "@/pages-helpers/home/getBlogPosts";
 import AppLayout from "@/components/SharedComponents/AppLayout";
 import TeachersTab from "@/components/GenericPagesComponents/TeachersTab";
-import HomePageTabImageNav from "@/components/GenericPagesComponents/HomePageTabImageNav";
 import Banners from "@/components/SharedComponents/Banners";
 import { HomePageLowerView } from "@/components/GenericPagesViews/HomePageLower/HomePageLower.view";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
@@ -58,7 +57,6 @@ const HomePage: NextPage<HomePageProps> = (props) => {
       topNavProps={topNav}
     >
       <Banners />
-      <HomePageTabImageNav current={"teachers"} />
       <TeachersTab
         curriculumPhaseOptions={curriculumPhaseOptions}
         aria-current="page"
