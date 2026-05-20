@@ -121,9 +121,11 @@ const ExamBoardPanel = ({
               `${selectedSubject.slug}-${examBoard.slug}`,
             );
 
+            const key = buttonId || `${selectedSubject.slug}-${examBoard.slug}`;
+
             return (
               <OakRadioAsButton
-                key={buttonId}
+                key={key}
                 colorScheme="primary"
                 displayValue={examBoard.title}
                 value={examBoard.slug}
