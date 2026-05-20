@@ -117,12 +117,9 @@ export const extractIdFromUrl = (url: string): string => {
 
 export const populateMediaClipsWithTranscripts = async (
   mediaClips: MediaClipListCamelCase,
-): Promise<MediaClipListCamelCase | null> => {
-  const populatedMediaClip = {} as MediaClipListCamelCase;
-  for (const cycle in mediaClips) {
-    const cycleClips = mediaClips[cycle];
-    if (!cycleClips) return null;
-
+): Promise<MediaClipListCamelCase> => {
+  const populatedMediaClip: MediaClipListCamelCase = {};
+  for (const [cycle, cycleClips] of Object.entries(mediaClips)) {
     const populateMediaClip = cycleClips.map(async (mediaClip) => {
       const id = extractIdFromUrl(mediaClip?.mediaObject?.url ?? "");
       const transcriptSentences = await getCaptionsFromFile(`${id}.vtt`);

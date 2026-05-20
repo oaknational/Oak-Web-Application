@@ -235,6 +235,18 @@ export type URLParams = {
   subjectPhaseSlug: string;
 };
 
+/** Rejects catch all paths with too many segments */
+function hasAllowedCurriculumPathShape(
+  tab: string,
+  pathSegmentsAfterTab: string[],
+): boolean {
+  if (tab === "units") {
+    return pathSegmentsAfterTab.length <= 1;
+  }
+
+  return pathSegmentsAfterTab.length === 0;
+}
+
 export const getStaticPaths = async () => {
   if (shouldSkipInitialBuild) {
     return getFallbackBlockingConfig();
@@ -258,9 +270,14 @@ export const getStaticProps: GetStaticProps<
       if (!context.params) {
         throw new Error("Missing params");
       }
-      const [tab] = context.params.slugs;
+      const [tab, ...restSegments] = context.params.slugs;
       const isPreviewMode = context.preview === true;
       if (!tab || !VALID_TABS.includes(tab as CurriculumTab)) {
+        throw new OakError({
+          code: "curriculum-api/not-found",
+        });
+      }
+      if (!hasAllowedCurriculumPathShape(tab, restSegments)) {
         throw new OakError({
           code: "curriculum-api/not-found",
         });

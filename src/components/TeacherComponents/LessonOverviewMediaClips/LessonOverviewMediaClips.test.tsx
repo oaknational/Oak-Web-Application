@@ -8,10 +8,6 @@ import lessonMediaClipsFixtures, {
   additionalCycles,
 } from "@/node-lib/curriculum-api-2023/fixtures/lessonMediaClips.fixture";
 
-jest.mock("@/common-lib/urls", () => ({
-  resolveOakHref: jest.fn(),
-}));
-
 const mockLearningCycleVideos = lessonMediaClipsFixtures().mediaClips;
 const lessonOutline = [
   { lessonOutline: "Lesson outline for cycle 1" },
@@ -87,8 +83,35 @@ describe("LessonOverviewMediaClips", () => {
     expect(getByText("Lesson outline for cycle 2")).toBeInTheDocument();
   });
 
-  it("calls resolveOakHref with correct arguments when programmeSlug and unitSlug are provided", () => {
-    renderWithTheme(
+  it("links clip tiles to integrated lesson media when useIntegratedMediaLinks is true", () => {
+    const { getByRole } = renderWithTheme(
+      <LessonOverviewMediaClips
+        learningCycleVideos={keysToCamelCase(mockLearningCycleVideos)}
+        lessonSlug="lesson-slug"
+        unitSlug="unit-slug"
+        programmeSlug="programme-slug"
+        lessonOutline={null}
+        isPELesson={false}
+        isMFL={false}
+        useIntegratedMediaLinks
+      />,
+    );
+
+    const introClipLink = getByRole("link", { name: /^Intro \d+ clips$/ });
+    expect(introClipLink).toHaveAttribute(
+      "href",
+      resolveOakHref({
+        page: "integrated-lesson-media",
+        lessonSlug: "lesson-slug",
+        programmeSlug: "programme-slug",
+        unitSlug: "unit-slug",
+        query: { video: "191188" },
+      }),
+    );
+  });
+
+  it("links clip tiles to teachers lesson media when programmeSlug and unitSlug are provided", () => {
+    const { getByRole } = renderWithTheme(
       <LessonOverviewMediaClips
         learningCycleVideos={keysToCamelCase(mockLearningCycleVideos)}
         lessonSlug="lesson-slug"
@@ -100,25 +123,21 @@ describe("LessonOverviewMediaClips", () => {
       />,
     );
 
-    expect(resolveOakHref).toHaveBeenCalledWith({
-      page: "lesson-media",
-      lessonSlug: "lesson-slug",
-      programmeSlug: "programme-slug",
-      unitSlug: "unit-slug",
-      query: { video: "191188" },
-    });
-
-    expect(resolveOakHref).toHaveBeenCalledWith({
-      page: "lesson-media",
-      lessonSlug: "lesson-slug",
-      programmeSlug: "programme-slug",
-      unitSlug: "unit-slug",
-      query: { video: "191188" },
-    });
+    const introClipLink = getByRole("link", { name: /^Intro \d+ clips$/ });
+    expect(introClipLink).toHaveAttribute(
+      "href",
+      resolveOakHref({
+        page: "lesson-media",
+        lessonSlug: "lesson-slug",
+        programmeSlug: "programme-slug",
+        unitSlug: "unit-slug",
+        query: { video: "191188" },
+      }),
+    );
   });
 
-  it("calls resolveOakHref with correct arguments when programmeSlug and unitSlug are not provided", () => {
-    renderWithTheme(
+  it("links clip tiles to canonical lesson media when programmeSlug and unitSlug are not provided", () => {
+    const { getByRole } = renderWithTheme(
       <LessonOverviewMediaClips
         learningCycleVideos={keysToCamelCase(mockLearningCycleVideos)}
         lessonSlug="lesson-slug"
@@ -130,17 +149,15 @@ describe("LessonOverviewMediaClips", () => {
       />,
     );
 
-    expect(resolveOakHref).toHaveBeenCalledWith({
-      page: "lesson-media-canonical",
-      lessonSlug: "lesson-slug",
-      query: { video: "191188" },
-    });
-
-    expect(resolveOakHref).toHaveBeenCalledWith({
-      page: "lesson-media-canonical",
-      lessonSlug: "lesson-slug",
-      query: { video: "191188" },
-    });
+    const introClipLink = getByRole("link", { name: /^Intro \d+ clips$/ });
+    expect(introClipLink).toHaveAttribute(
+      "href",
+      resolveOakHref({
+        page: "lesson-media-canonical",
+        lessonSlug: "lesson-slug",
+        query: { video: "191188" },
+      }),
+    );
   });
 
   it("if no learning cycle videos component returns null", () => {
