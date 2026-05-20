@@ -104,13 +104,11 @@ const TeachersPhaseSection = ({
 
   const handleSubjectHover = (subject: SubjectsNavItem) => {
     setSelectedSubject(subject);
-    setExamBoardPanelMode(hasExamBoards(subject) ? "hover" : "closed");
   };
 
   const handleSubjectBlurOrLeave = () => {
     if (examBoardPanelMode !== "hover") return;
     setSelectedSubject(null);
-    setExamBoardPanelMode("closed");
   };
 
   const handleExamBoardPanelOpen = (subject: SubjectsNavItem) => {
@@ -396,7 +394,6 @@ const TopNavDropdown = (props: TopNavDropdownProps) => {
                 googleLoginHint: null,
                 clientEnvironment: null,
               });
-              console.log("Subject click:", subject, keystage, props.onClose);
               props.onClose();
             }}
           />
