@@ -12,10 +12,7 @@ import {
   getFallbackBlockingConfig,
   shouldSkipInitialBuild,
 } from "@/node-lib/isr";
-import {
-  CanonicalLessonMediaClips,
-  MediaClipListCamelCase,
-} from "@/node-lib/curriculum-api-2023/queries/lessonMediaClips/lessonMediaClips.schema";
+import { CanonicalLessonMediaClips } from "@/node-lib/curriculum-api-2023/queries/lessonMediaClips/lessonMediaClips.schema";
 import getPageProps from "@/node-lib/getPageProps";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 import { populateMediaClipsWithTranscripts } from "@/utils/handleTranscript";
@@ -108,19 +105,18 @@ export const getStaticProps: GetStaticProps<
         return { redirect: redirectToEyfsPage(curriculumData.pathways[0]) };
       }
 
-      const mediaClipsWithTranscripts = curriculumData.mediaClips
-        ? await populateMediaClipsWithTranscripts(curriculumData.mediaClips)
-        : [];
+      const mediaClipsWithTranscripts = await populateMediaClipsWithTranscripts(
+        curriculumData.mediaClips,
+      );
 
-      if (mediaClipsWithTranscripts) {
-        curriculumData.mediaClips =
-          mediaClipsWithTranscripts as MediaClipListCamelCase;
-      }
       const topNav = await curriculumApi2023.topNav();
       const results: GetStaticPropsResult<CanonicalLessonMediaClipsPageProps> =
         {
           props: {
-            curriculumData,
+            curriculumData: {
+              ...curriculumData,
+              mediaClips: mediaClipsWithTranscripts,
+            },
             topNav,
           },
         };

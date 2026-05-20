@@ -1,6 +1,5 @@
 import { GetStaticPropsContext, PreviewData } from "next";
 import { OakThemeProvider, oakDefaultTheme } from "@oaknational/oak-components";
-import { useRouter } from "next/router";
 
 import { lessonMediaClipsCanonicalFixture } from "@/node-lib/curriculum-api-2023/fixtures/lessonMediaClips.fixture";
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
@@ -26,8 +25,11 @@ const fixtureData = lessonMediaClipsCanonicalFixture({
   lessonReleaseDate: "2022-02-01T00:00:00Z",
 });
 
-jest.mock("next/router", () => ({
-  useRouter: jest.fn(),
+jest.mock("next/navigation", () => ({
+  useSearchParams: jest.fn(() => ({
+    get: () => null,
+  })),
+  usePathname: jest.fn(() => "/"),
 }));
 
 jest.mock("posthog-js/react", () => ({
@@ -42,16 +44,6 @@ jest.mock("@google-cloud/storage", () => {
 });
 
 describe("LessonMediaClipsCanonicalPage", () => {
-  beforeEach(() => {
-    (useRouter as jest.Mock).mockReturnValue({
-      isPreview: false,
-      replace: jest.fn(),
-      pathname: "/teachers/lessons/running-as-a-team/media",
-      query: {},
-      asPath: "/teachers/lessons/running-as-a-team/media",
-    });
-  });
-
   it("Renders component", async () => {
     const result = render(
       <OakThemeProvider theme={oakDefaultTheme}>
