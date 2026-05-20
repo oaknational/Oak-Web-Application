@@ -108,11 +108,6 @@ exports[`core layout renders correctly 1`] = `
           "slug": "labs",
           "title": "Ai experiments",
         },
-        "curriculum": {
-          "href": "/teachers/curriculum",
-          "slug": "curriculum-landing-page",
-          "title": "Curriculum",
-        },
         "guidance": {
           "children": [
             {

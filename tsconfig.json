@@ -25,6 +25,7 @@
     "noUncheckedIndexedAccess": true,
     "noImplicitAny": true,
     "downlevelIteration": true,
+    "allowSyntheticDefaultImports": true,
     "baseUrl": ".",
     "paths": {
       "@/*": ["src/*"]

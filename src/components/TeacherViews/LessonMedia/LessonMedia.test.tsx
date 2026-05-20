@@ -6,7 +6,9 @@ import { LessonMedia } from "./LessonMedia.view";
 
 import { resolveOakHref } from "@/common-lib/urls";
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
-import lessonMediaClipsFixtures from "@/node-lib/curriculum-api-2023/fixtures/lessonMediaClips.fixture";
+import lessonMediaClipsFixtures, {
+  lessonMediaClipsCanonicalFixture,
+} from "@/node-lib/curriculum-api-2023/fixtures/lessonMediaClips.fixture";
 import { VideoPlayerProps } from "@/components/SharedComponents/VideoPlayer/VideoPlayer";
 import { MediaClipListCamelCase } from "@/node-lib/curriculum-api-2023/queries/lessonMediaClips/lessonMediaClips.schema";
 import { setUseUserReturn } from "@/__tests__/__helpers__/mockClerk";
@@ -100,6 +102,19 @@ describe("LessonMedia view", () => {
       }),
     }),
   );
+
+  it("does not render breadcrumbs on the canonical page", () => {
+    const { queryByRole } = render(
+      <LessonMedia
+        lesson={lessonMediaClipsCanonicalFixture()}
+        isCanonical={true}
+      />,
+    );
+
+    expect(
+      queryByRole("navigation", { name: "Breadcrumb" }),
+    ).not.toBeInTheDocument();
+  });
 
   it("renders 'Back to lesson' button with correct link", () => {
     const { getByTestId } = render(

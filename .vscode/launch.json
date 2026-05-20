@@ -5,7 +5,7 @@
       "name": "OWA: debug full stack",
       "type": "node-terminal",
       "request": "launch",
-      "command": "npm run dev",
+      "command": "pnpm run dev",
       "serverReadyAction": {
         "pattern": "started server on .+, url: (https?://.+)",
         "uriFormat": "%s",
@@ -22,7 +22,7 @@
       "name": "OWA: debug server-side",
       "type": "node-terminal",
       "request": "launch",
-      "command": "npm run dev"
+      "command": "pnpm run dev"
     }
   ]
 }
