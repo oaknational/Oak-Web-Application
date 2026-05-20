@@ -38,7 +38,6 @@ export type NavDropDownButton = {
 export type TeachersSubNavData = {
   primary: TeachersBrowse;
   secondary: TeachersBrowse;
-  curriculum: NavLink;
   guidance: NavDropDownButton;
   aboutUs: NavDropDownButton;
   aiExperiments: NavLink;

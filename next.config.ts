@@ -428,7 +428,20 @@ export default async (phase: NextConfig["phase"]): Promise<NextConfig> => {
         },
       ];
 
-      return [...pupilsRedirects, ...aboutUsRedirects, ...eyfsRedirects];
+      const integratedJourneyRedirects = [
+        {
+          source: "/teachers/curriculum",
+          destination: "/about-us/oaks-curricula",
+          permanent: true,
+        },
+      ];
+
+      return [
+        ...pupilsRedirects,
+        ...aboutUsRedirects,
+        ...eyfsRedirects,
+        ...integratedJourneyRedirects,
+      ];
     },
     async rewrites() {
       // Reverse proxy posthog in development to avoid localhost CORS issues in Chrome https://posthog.com/docs/advanced/proxy/nextjs
