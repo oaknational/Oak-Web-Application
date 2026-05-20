@@ -54,7 +54,8 @@ Now select the correct versions of node/pnpm
 
 ```bash
 nvm use
-corepack use pnpm@10
+corepack enable
+corepack install
 ```
 
 Now install dependencies
