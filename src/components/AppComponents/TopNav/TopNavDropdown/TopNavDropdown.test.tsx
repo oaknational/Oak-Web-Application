@@ -20,6 +20,11 @@ jest.mock("@/context/Analytics/useAnalytics", () => ({
   }),
 }));
 
+jest.mock("next/navigation", () => ({
+  useRouter: jest.fn(),
+  usePathname: jest.fn(() => "/test-path"),
+}));
+
 let focusManager: DropdownFocusManager<TeachersSubNavData>;
 const onCloseMock = jest.fn();
 
