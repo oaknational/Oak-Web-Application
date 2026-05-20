@@ -48,13 +48,6 @@ export function MainMenuContent(
       <SubjectsSection {...navData.primary} hamburgerMenu={hamburgerMenu} />
       <SubjectsSection {...navData.secondary} hamburgerMenu={hamburgerMenu} />
       <OakFlex $flexDirection={"column"} $gap={"spacing-16"}>
-        <MainMenuLink
-          hamburgerMenu={hamburgerMenu}
-          href={resolveOakHref({
-            page: "curriculum-landing-page",
-          })}
-          title="Curriculum"
-        />
         <MainMenuButton title={"About us"} hamburgerMenu={hamburgerMenu} />
         <MainMenuButton title={"Guidance"} hamburgerMenu={hamburgerMenu} />
         <MainMenuLink
