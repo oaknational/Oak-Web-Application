@@ -52,10 +52,10 @@ importers:
         version: 3.10.2(@types/react-dom@18.3.0)(@types/react@18.2.79)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@oaknational/google-classroom-addon':
         specifier: ^1.33.0
-        version: 1.33.0(@google-cloud/firestore@7.11.6)(@googleapis/classroom@4.9.0)(@oaknational/oak-components@2.28.0(next-cloudinary@6.16.0(next@15.5.15(@babel/core@7.28.3)(@opentelemetry/api@1.9.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.75.0))(react@18.3.1))(next@15.5.15(@babel/core@7.28.3)(@opentelemetry/api@1.9.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.75.0))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(styled-components@5.3.11(@babel/core@7.28.3)(react-dom@18.3.1(react@18.3.1))(react-is@18.2.0)(react@18.3.1)))(google-auth-library@9.15.1)(next@15.5.15(@babel/core@7.28.3)(@opentelemetry/api@1.9.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.75.0))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(zod@4.3.6)(zustand@5.0.12(@types/react@18.2.79)(react@18.3.1)(use-sync-external-store@1.4.0(react@18.3.1)))
+        version: 1.33.0(@google-cloud/firestore@7.11.6)(@googleapis/classroom@4.9.0)(@oaknational/oak-components@2.29.0(next-cloudinary@6.16.0(next@15.5.15(@babel/core@7.28.3)(@opentelemetry/api@1.9.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.75.0))(react@18.3.1))(next@15.5.15(@babel/core@7.28.3)(@opentelemetry/api@1.9.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.75.0))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(styled-components@5.3.11(@babel/core@7.28.3)(react-dom@18.3.1(react@18.3.1))(react-is@18.2.0)(react@18.3.1)))(google-auth-library@9.15.1)(next@15.5.15(@babel/core@7.28.3)(@opentelemetry/api@1.9.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.75.0))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(zod@4.3.6)(zustand@5.0.12(@types/react@18.2.79)(react@18.3.1)(use-sync-external-store@1.4.0(react@18.3.1)))
       '@oaknational/oak-components':
-        specifier: ^2.28.0
-        version: 2.28.0(next-cloudinary@6.16.0(next@15.5.15(@babel/core@7.28.3)(@opentelemetry/api@1.9.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.75.0))(react@18.3.1))(next@15.5.15(@babel/core@7.28.3)(@opentelemetry/api@1.9.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.75.0))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(styled-components@5.3.11(@babel/core@7.28.3)(react-dom@18.3.1(react@18.3.1))(react-is@18.2.0)(react@18.3.1))
+        specifier: ^2.29.0
+        version: 2.29.0(next-cloudinary@6.16.0(next@15.5.15(@babel/core@7.28.3)(@opentelemetry/api@1.9.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.75.0))(react@18.3.1))(next@15.5.15(@babel/core@7.28.3)(@opentelemetry/api@1.9.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.75.0))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(styled-components@5.3.11(@babel/core@7.28.3)(react-dom@18.3.1(react@18.3.1))(react-is@18.2.0)(react@18.3.1))
       '@oaknational/oak-consent-client':
         specifier: 2.4.0
         version: 2.4.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(zod@4.3.6)
@@ -3105,8 +3105,8 @@ packages:
       zod: '>=3.25.76'
       zustand: '>=5.0.9'
 
-  '@oaknational/oak-components@2.28.0':
-    resolution: {integrity: sha512-tt5eUogzLDCt1lISsS4ciLB3r2O56uR9Bw5fT5rQlYgK4yBIOvDY5dhBCo/1q7ZrNd7VVIyB0COQYYMZg8DqaA==}
+  '@oaknational/oak-components@2.29.0':
+    resolution: {integrity: sha512-KZYK6AuH4WlAY2Ap86Fg6D6msB9Av1x8MNrLgVU6YaX6VGW0laz7UaFTHE52bYU/pZ71YzS5BGqKDcUvN5ZpzA==}
     peerDependencies:
       next: '>=14.2.12'
       next-cloudinary: '>=6.16.0'
@@ -17008,11 +17008,11 @@ snapshots:
   '@npmcli/redact@4.0.0':
     optional: true
 
-  '@oaknational/google-classroom-addon@1.33.0(@google-cloud/firestore@7.11.6)(@googleapis/classroom@4.9.0)(@oaknational/oak-components@2.28.0(next-cloudinary@6.16.0(next@15.5.15(@babel/core@7.28.3)(@opentelemetry/api@1.9.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.75.0))(react@18.3.1))(next@15.5.15(@babel/core@7.28.3)(@opentelemetry/api@1.9.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.75.0))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(styled-components@5.3.11(@babel/core@7.28.3)(react-dom@18.3.1(react@18.3.1))(react-is@18.2.0)(react@18.3.1)))(google-auth-library@9.15.1)(next@15.5.15(@babel/core@7.28.3)(@opentelemetry/api@1.9.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.75.0))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(zod@4.3.6)(zustand@5.0.12(@types/react@18.2.79)(react@18.3.1)(use-sync-external-store@1.4.0(react@18.3.1)))':
+  '@oaknational/google-classroom-addon@1.33.0(@google-cloud/firestore@7.11.6)(@googleapis/classroom@4.9.0)(@oaknational/oak-components@2.29.0(next-cloudinary@6.16.0(next@15.5.15(@babel/core@7.28.3)(@opentelemetry/api@1.9.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.75.0))(react@18.3.1))(next@15.5.15(@babel/core@7.28.3)(@opentelemetry/api@1.9.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.75.0))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(styled-components@5.3.11(@babel/core@7.28.3)(react-dom@18.3.1(react@18.3.1))(react-is@18.2.0)(react@18.3.1)))(google-auth-library@9.15.1)(next@15.5.15(@babel/core@7.28.3)(@opentelemetry/api@1.9.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.75.0))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(zod@4.3.6)(zustand@5.0.12(@types/react@18.2.79)(react@18.3.1)(use-sync-external-store@1.4.0(react@18.3.1)))':
     dependencies:
       '@google-cloud/firestore': 7.11.6
       '@googleapis/classroom': 4.9.0
-      '@oaknational/oak-components': 2.28.0(next-cloudinary@6.16.0(next@15.5.15(@babel/core@7.28.3)(@opentelemetry/api@1.9.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.75.0))(react@18.3.1))(next@15.5.15(@babel/core@7.28.3)(@opentelemetry/api@1.9.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.75.0))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(styled-components@5.3.11(@babel/core@7.28.3)(react-dom@18.3.1(react@18.3.1))(react-is@18.2.0)(react@18.3.1))
+      '@oaknational/oak-components': 2.29.0(next-cloudinary@6.16.0(next@15.5.15(@babel/core@7.28.3)(@opentelemetry/api@1.9.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.75.0))(react@18.3.1))(next@15.5.15(@babel/core@7.28.3)(@opentelemetry/api@1.9.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.75.0))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(styled-components@5.3.11(@babel/core@7.28.3)(react-dom@18.3.1(react@18.3.1))(react-is@18.2.0)(react@18.3.1))
       google-auth-library: 9.15.1
       iron-session: 8.0.4
       lodash: 4.18.1
@@ -17022,7 +17022,7 @@ snapshots:
       zod: 4.3.6
       zustand: 5.0.12(@types/react@18.2.79)(react@18.3.1)(use-sync-external-store@1.4.0(react@18.3.1))
 
-  '@oaknational/oak-components@2.28.0(next-cloudinary@6.16.0(next@15.5.15(@babel/core@7.28.3)(@opentelemetry/api@1.9.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.75.0))(react@18.3.1))(next@15.5.15(@babel/core@7.28.3)(@opentelemetry/api@1.9.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.75.0))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(styled-components@5.3.11(@babel/core@7.28.3)(react-dom@18.3.1(react@18.3.1))(react-is@18.2.0)(react@18.3.1))':
+  '@oaknational/oak-components@2.29.0(next-cloudinary@6.16.0(next@15.5.15(@babel/core@7.28.3)(@opentelemetry/api@1.9.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.75.0))(react@18.3.1))(next@15.5.15(@babel/core@7.28.3)(@opentelemetry/api@1.9.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.75.0))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(styled-components@5.3.11(@babel/core@7.28.3)(react-dom@18.3.1(react@18.3.1))(react-is@18.2.0)(react@18.3.1))':
     dependencies:
       next: 15.5.15(@babel/core@7.28.3)(@opentelemetry/api@1.9.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.75.0)
       next-cloudinary: 6.16.0(next@15.5.15(@babel/core@7.28.3)(@opentelemetry/api@1.9.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.75.0))(react@18.3.1)
