@@ -50,6 +50,13 @@ cp .env.example .env
 
 Now populate the file with values from the 1Password developers vault, search for "OWA .env for local development".
 
+Now select the correct versions of node/pnpm
+
+```bash
+nvm use
+corepack use pnpm@10
+```
+
 Now install dependencies
 
 ```bash
