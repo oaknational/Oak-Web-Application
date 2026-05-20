@@ -1,3 +1,3 @@
 module.exports = {
-  "*.{js,jsx,ts,tsx}": ["npm run format:precommit", "npm run lint:precommit"],
+  "*.{js,jsx,ts,tsx}": ["pnpm run format:precommit", "pnpm run lint:precommit"],
 };

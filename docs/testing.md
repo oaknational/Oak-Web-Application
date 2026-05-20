@@ -18,14 +18,14 @@ _Diagram 1. The key events driving automated checks and tests in this repository
 
 We use [Jest](https://jestjs.io/), with the [NextJS Jest Config](../jest.config.js).
 
-- `npm run test` will run the tests using `--watch`
-- `npm run test:ci` will run the tests once and create a coverage report.
+- `pnpm run test` will run the tests using `--watch`
+- `pnpm run test:ci` will run the tests once and create a coverage report.
 
 Unit tests only for now. Please write any tests dependent on a network connection, a database, filesystem or any other IO. They all run for each commit and we need to keep that fast.
 
 ### When They Run
 
-- Manually with `npm run test`.
+- Manually with `pnpm run test`.
 - On pre-commit.
 - On push in a Github workflow.
 

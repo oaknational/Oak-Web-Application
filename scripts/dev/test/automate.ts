@@ -31,7 +31,7 @@ yargs(hideBin(process.argv))
     async () => {
       await mkdir(outputDir, { recursive: true });
       const p = spawn(
-        "npx",
+        "pnpx",
         [
           "jest",
           "--runInBand",
