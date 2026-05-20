@@ -23,6 +23,7 @@ type RestrictedContentPromptProps = {
   lessonSlug?: string;
   unitSlug?: string | null;
   isCanonical?: boolean;
+  useIntegratedJourneyLinks?: boolean;
 };
 
 const FlexWithMaxWidth = styled(OakFlex)`
@@ -78,11 +79,13 @@ const GeoblockedPrompt = ({
   lessonSlug,
   unitSlug,
   isCanonical,
+  useIntegratedJourneyLinks = false,
 }: {
   programmeSlug?: string | null;
   lessonSlug?: string;
   unitSlug?: string | null;
   isCanonical?: boolean;
+  useIntegratedJourneyLinks?: boolean;
 }) => (
   <>
     <OakFlex $flexDirection={"column"} $gap={"spacing-32"}>
@@ -102,7 +105,9 @@ const GeoblockedPrompt = ({
       <OakPrimaryButton
         element="a"
         href={resolveOakHref({
-          page: "lesson-overview",
+          page: useIntegratedJourneyLinks
+            ? "integrated-lesson-overview"
+            : "lesson-overview",
           programmeSlug,
           lessonSlug,
           unitSlug,
@@ -133,6 +138,7 @@ export function RestrictedContentPrompt({
   lessonSlug,
   unitSlug,
   isCanonical,
+  useIntegratedJourneyLinks = false,
 }: Readonly<RestrictedContentPromptProps>) {
   return (
     <OakFlex
@@ -159,6 +165,7 @@ export function RestrictedContentPrompt({
             lessonSlug={lessonSlug}
             unitSlug={unitSlug}
             isCanonical={isCanonical}
+            useIntegratedJourneyLinks={useIntegratedJourneyLinks}
           />
         ) : (
           <SignInPrompt />

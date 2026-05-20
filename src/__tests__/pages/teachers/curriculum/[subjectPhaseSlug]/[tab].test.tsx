@@ -745,6 +745,24 @@ describe("pages/teachers/curriculum/[subjectPhaseSlug]/[tab]", () => {
         },
       });
     });
+
+    it.each([
+      ["overview", ["extra"]],
+      ["downloads", ["extra"]],
+      ["units", ["extra", "extra2"]],
+    ] as const)(
+      "returns notFound for %s tab with trailing path segments",
+      async (tab, trailingSegments) => {
+        const result = await getStaticProps({
+          params: {
+            slugs: [tab, ...trailingSegments],
+            subjectPhaseSlug: "english-secondary-aqa",
+          },
+        });
+
+        expect(result).toEqual({ notFound: true });
+      },
+    );
   });
 
   describe("getStaticPaths", () => {

@@ -1,5 +1,4 @@
 import { GetStaticPropsContext, PreviewData } from "next";
-import { useRouter } from "next/router";
 import { OakThemeProvider, oakDefaultTheme } from "@oaknational/oak-components";
 
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
@@ -18,8 +17,11 @@ const render = renderWithProviders();
 
 const lessonFixtureData = lessonMediaClipsFixtures();
 
-jest.mock("next/router", () => ({
-  useRouter: jest.fn(),
+jest.mock("next/navigation", () => ({
+  useSearchParams: jest.fn(() => ({
+    get: () => null,
+  })),
+  usePathname: jest.fn(() => "/"),
 }));
 
 jest.mock("@google-cloud/storage", () => {
@@ -34,16 +36,6 @@ jest.mock("@/utils/handleTranscript.ts", () => ({
 }));
 
 describe("BetaLessonMediaClipsPage", () => {
-  beforeEach(() => {
-    (useRouter as jest.Mock).mockReturnValue({
-      isPreview: false,
-      replace: jest.fn(),
-      pathname: "/teachers/beta/lessons/running-as-a-team/media",
-      query: {},
-      asPath: "/teachers/beta/lessons/running-as-a-team/media",
-    });
-  });
-
   it("Renders component", async () => {
     const result = render(
       <OakThemeProvider theme={oakDefaultTheme}>

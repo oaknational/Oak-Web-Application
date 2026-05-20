@@ -1,3 +1,27 @@
+## [1.1080.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.1080.0...v1.1080.1) (2026-05-19)
+
+
+### Bug Fixes
+
+* reject requests to the curriculum page with too many segments ([acac547](https://github.com/oaknational/Oak-Web-Application/commit/acac5479b060d838291feacf19a24e2a18c6bb41))
+
+# [1.1080.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1079.0...v1.1080.0) (2026-05-19)
+
+
+### Bug Fixes
+
+* unnecessary null in populateMediaClipsWithTranscripts ([1090422](https://github.com/oaknational/Oak-Web-Application/commit/1090422a9defeb1d99465d9afd2454004ef428d9))
+
+
+### Features
+
+* **LESQ-2003:** add media page under the IJ ([52b075d](https://github.com/oaknational/Oak-Web-Application/commit/52b075d385d134eaceea04d1246409103c76c986))
+* **LESQ-2003:** pass additional details from media query for breadcrumbs ([7dc08e8](https://github.com/oaknational/Oak-Web-Application/commit/7dc08e8f9b9cf6fdc759e7f4d35489f0b07e1be2))
+* **LESQ-2003:** point "Play all" at the new media page ([f36a888](https://github.com/oaknational/Oak-Web-Application/commit/f36a888152f3a67ff343b646852bd58a5f4f0fbe))
+* **LESQ-2003:** point geo blocked return to lesson link at IJ ([3ffa801](https://github.com/oaknational/Oak-Web-Application/commit/3ffa801f48667e5373adf173de7a488f02b26319))
+* **LESQ-2003:** prep LessonOverviewMediaClip for the IJ ([8b22b7f](https://github.com/oaknational/Oak-Web-Application/commit/8b22b7fdc83dc7ac42bb07ababb44a5a06ca4b83))
+* **LESQ-2003:** remove breadcrumbs from canonical media page ([20b5120](https://github.com/oaknational/Oak-Web-Application/commit/20b512091521573a0f54f561dc5a8128ec11214f))
+
 # [1.1079.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1078.0...v1.1079.0) (2026-05-19)
 
 

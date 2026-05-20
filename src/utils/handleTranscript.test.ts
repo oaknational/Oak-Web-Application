@@ -224,20 +224,14 @@ describe("populateMediaClipsWithTranscripts", () => {
     ) as MediaClipListCamelCase;
     const result = await populateMediaClipsWithTranscripts(mediaClips);
 
-    if (result && result["intro"] && result["intro"][0]) {
-      expect(result["intro"][0].transcriptSentences).toEqual([
-        "sentence 3 sentence 4",
-      ]);
-    }
-    if (result && result["intro"] && result["intro"][1]) {
-      expect(result["intro"][1].transcriptSentences).toEqual([
-        "sentence 5 sentence 6",
-      ]);
-    }
-    if (result && result["cycle2"] && result["cycle2"][0]) {
-      expect(result["cycle2"][0].transcriptSentences).toEqual([
-        "sentence 7 sentence 8",
-      ]);
-    }
+    expect(result["intro"]![0]!.transcriptSentences).toEqual([
+      "sentence 3 sentence 4",
+    ]);
+    expect(result["intro"]![1]!.transcriptSentences).toEqual([
+      "sentence 5 sentence 6",
+    ]);
+    expect(result["cycle2"]![0]!.transcriptSentences).toEqual([
+      "sentence 7 sentence 8",
+    ]);
   });
 });
