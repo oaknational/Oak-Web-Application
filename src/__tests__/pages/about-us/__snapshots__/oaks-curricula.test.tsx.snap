@@ -5237,7 +5237,7 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
                   </h2>
                   <nav
                     aria-labelledby="choose-curriculum-label"
-                    class="c11"
+                    class="c70"
                   >
                     <div
                       class="c115"
