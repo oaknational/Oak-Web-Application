@@ -7,6 +7,7 @@ import {
 
 import ProgrammePageFiltersDesktop from "../Filters/ProgrammePageFiltersDesktop";
 import ProgrammePageFiltersMobile from "../Filters/ProgrammePageFiltersMobile";
+import { getDisplayedFilters } from "../Filters/ProgrammeFilters";
 
 import ProgrammeSequence from "./Sequence";
 
@@ -46,6 +47,11 @@ export const UnitSequenceView = ({
     filters.threads,
   );
 
+  const shouldDisplayFilters = getDisplayedFilters(
+    curriculumUnitsFormattedData,
+    filters,
+  ).some((filter) => filter.shouldDisplayFilter);
+
   return (
     <OakBox $ph={["spacing-20", "spacing-40"]}>
       <OakBox
@@ -70,26 +76,30 @@ export const UnitSequenceView = ({
           </OakHeading>
         </ScreenReaderOnly>
         <OakBox $display={["block", "block", "none"]}>
-          <ProgrammePageFiltersMobile
-            filters={filters}
-            onChangeFilters={setFilters}
-            data={curriculumUnitsFormattedData}
-            slugs={curriculumSelectionSlugs}
-            ks4Options={ks4Options}
-          />
-        </OakBox>
-        <OakGrid $cg={"spacing-16"}>
-          <OakGridArea
-            $colSpan={[12, 12, 3]}
-            $display={["none", "none", "block"]}
-          >
-            <ProgrammePageFiltersDesktop
+          {shouldDisplayFilters && (
+            <ProgrammePageFiltersMobile
               filters={filters}
               onChangeFilters={setFilters}
               data={curriculumUnitsFormattedData}
               slugs={curriculumSelectionSlugs}
               ks4Options={ks4Options}
             />
+          )}
+        </OakBox>
+        <OakGrid $cg={"spacing-16"}>
+          <OakGridArea
+            $colSpan={[12, 12, 3]}
+            $display={["none", "none", "block"]}
+          >
+            {shouldDisplayFilters && (
+              <ProgrammePageFiltersDesktop
+                filters={filters}
+                onChangeFilters={setFilters}
+                data={curriculumUnitsFormattedData}
+                slugs={curriculumSelectionSlugs}
+                ks4Options={ks4Options}
+              />
+            )}
           </OakGridArea>
           <OakGridArea $colSpan={[12, 12, 9]}>
             <ProgrammeSequence
