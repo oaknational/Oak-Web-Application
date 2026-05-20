@@ -155,7 +155,9 @@ export function SubmenuContent(
       if (selectedExamBoardSubject?.examBoards?.length) {
         return (
           <SubmenuContainer
-            title={`${keystage.title}, ${selectedExamBoardSubject.title}`}
+            title={
+              `${keystage.title}, ${selectedExamBoardSubject.title}` as SubmenuState
+            }
             hamburgerMenu={hamburgerMenu}
             onBack={() => setSelectedExamBoardSubject(null)}
           >
