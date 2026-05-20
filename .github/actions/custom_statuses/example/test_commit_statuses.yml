@@ -11,7 +11,13 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - name: set up Node
+      - name: setup node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: "pnpm"
+
+      - name: setup pnpm
         uses: pnpm/action-setup@08c4be7e2e672a47d11bd04269e27e5f3e8529cb #v6
         with:
           version: 10
