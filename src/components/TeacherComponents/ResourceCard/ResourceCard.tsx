@@ -89,13 +89,13 @@ const ResourceCard: FC<ResourceCardProps> = (props) => {
         data-testid="resourceCard"
         value={id}
         name={name}
-        titleSlot={label}
+        title={label}
         checked={checked}
         disabled={disabled}
         onChange={onChange}
         onBlur={onBlur}
-        asRadio={asRadio}
-        formatSlot={
+        isRadio={asRadio}
+        format={
           <>
             {subtitle}
             {isEditable && (

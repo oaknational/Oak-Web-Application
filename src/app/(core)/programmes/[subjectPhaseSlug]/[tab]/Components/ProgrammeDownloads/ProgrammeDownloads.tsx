@@ -347,9 +347,9 @@ export const ProgrammeDownloads = ({
                               data-testid="resourceCard"
                               value={download.id}
                               name="curriculum-download"
-                              titleSlot={download.label}
+                              title={download.label}
                               checked={fieldValue.includes(download.id)}
-                              formatSlot={
+                              format={
                                 <OakFlex
                                   $alignItems={"center"}
                                   $gap={"spacing-8"}
