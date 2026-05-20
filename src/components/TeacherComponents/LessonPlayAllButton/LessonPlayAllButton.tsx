@@ -8,6 +8,12 @@ type LessonPlayAllButtonProps = {
   programmeSlug: string | null;
   unitSlug: string | null;
   isCanonical?: boolean;
+  /**
+   * If true, use the integrated lesson media page.
+   *
+   * Can be consolidated once the integrated journey is fully rolled out.
+   */
+  isIntegratedJourney?: boolean;
   onTrackingCallback?: () => void;
 };
 
@@ -16,6 +22,7 @@ const LessonPlayAllButton: FC<LessonPlayAllButtonProps> = ({
   lessonSlug,
   programmeSlug,
   isCanonical,
+  isIntegratedJourney = false,
   onTrackingCallback,
 }) => {
   return (
@@ -25,7 +32,9 @@ const LessonPlayAllButton: FC<LessonPlayAllButtonProps> = ({
       href={
         !isCanonical && programmeSlug && unitSlug
           ? resolveOakHref({
-              page: "lesson-media",
+              page: isIntegratedJourney
+                ? "integrated-lesson-media"
+                : "lesson-media",
               lessonSlug: lessonSlug,
               programmeSlug: programmeSlug,
               unitSlug: unitSlug,

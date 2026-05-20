@@ -28,10 +28,12 @@ describe(useWorksheetDownload, () => {
       useWorksheetDownload("lesson-slug", false),
     );
 
+    let isSuccess = false;
     await act(async () => {
-      await result.current.startDownload();
+      isSuccess = await result.current.startDownload();
     });
 
+    expect(isSuccess).toBe(true);
     expect(downloadSpy).toHaveBeenCalledWith({
       lessonSlug: "lesson-slug",
       selectedResourceTypes: ["worksheet-pdf-questions"],
@@ -83,14 +85,12 @@ describe(useWorksheetDownload, () => {
       useWorksheetDownload("lesson-slug", false),
     );
 
-    act(() => {
-      result.current.startDownload();
+    let isSuccess = true;
+    await act(async () => {
+      isSuccess = await result.current.startDownload();
     });
 
-    await waitFor(async () => {
-      expect(result.current.isDownloading).toBe(false);
-    });
-
+    expect(isSuccess).toBe(false);
     expect(alertSpy).toHaveBeenCalledWith(
       "Whoops, the download failed. You could try again.",
     );

@@ -18,6 +18,7 @@ import { Dispatch, SetStateAction } from "react";
 
 import { LessonList } from "../LessonList";
 import { ProgrammeToggles } from "../ProgrammeToggles/ProgrammeToggles";
+import { UnitViewSeoAccordion } from "../UnitViewSeoAccordion";
 
 import type { TeachersUnitOverviewData } from "@/node-lib/curriculum-api-2023/queries/teachersUnitOverview/teachersUnitOverview.schema";
 import SkipLink from "@/components/CurriculumComponents/OakComponentsKitchen/SkipLink";
@@ -49,7 +50,12 @@ export type UnitOverviewContentProps = Pick<
   | "prevUnit"
   | "nextUnit"
   | "subjectCategories"
+  | "nonCurriculum"
+  | "phaseTitle"
+  | "yearGroupTitle"
+  | "examBoardTitle"
 > & {
+  subjectPhaseSlug: string;
   showDownloadMessage: boolean;
   setShowDownloadMessage: Dispatch<SetStateAction<boolean>>;
 };
@@ -70,6 +76,10 @@ export const UnitOverviewContent = ({
   priorKnowledgeRequirements,
   threads,
   phaseSlug,
+  phaseTitle,
+  subjectPhaseSlug,
+  yearGroupTitle,
+  examBoardTitle,
   tierOptionToggles,
   subjectOptionToggles,
   nextUnit,
@@ -77,6 +87,7 @@ export const UnitOverviewContent = ({
   subjectCategories,
   showDownloadMessage,
   setShowDownloadMessage,
+  nonCurriculum,
 }: UnitOverviewContentProps) => {
   const hasToggles =
     tierOptionToggles.length > 1 || subjectOptionToggles.length > 1;
@@ -88,7 +99,7 @@ export const UnitOverviewContent = ({
         $rg="spacing-56"
         $mb={["spacing-0", "spacing-48", "spacing-48"]}
         $mh="auto"
-        $mt={["spacing-48", "spacing-56"]}
+        $mt={["spacing-48", "spacing-56", "spacing-80"]}
         $width={"100%"}
         $maxWidth={"spacing-1280"}
         $position="relative"
@@ -115,7 +126,10 @@ export const UnitOverviewContent = ({
         >
           <SkipLink href="#lessons">Skip to lessons</SkipLink>
         </OakBox>
-        <OakGridArea $colSpan={[12, 4]} $gap={"spacing-56"}>
+        <OakGridArea
+          $colSpan={[12, 4]}
+          $gap={["spacing-48", "spacing-56", "spacing-80"]}
+        >
           {hasToggles && (
             <OakFlex $flexDirection="column" $gap="spacing-32">
               <ProgrammeToggles
@@ -152,7 +166,7 @@ export const UnitOverviewContent = ({
         <OakGridArea
           $colSpan={[12, 7]}
           $colStart={[1, 6]}
-          $gap="spacing-56"
+          $gap={["spacing-48", "spacing-56", "spacing-80"]}
           id="lessons"
         >
           <UnitInfo
@@ -189,7 +203,20 @@ export const UnitOverviewContent = ({
           />
           <HelpLinkCard $display={["block", "none"]} />
         </OakGridArea>
-        <OakGridArea $colSpan={12} $mb={"spacing-48"}>
+        <OakGridArea
+          $rowGap={["spacing-48", "spacing-56", "spacing-80"]}
+          $colSpan={12}
+          $mb={"spacing-48"}
+        >
+          <UnitViewSeoAccordion
+            subjectTitle={subjectTitle}
+            nonCurriculum={nonCurriculum}
+            unitTitle={unitTitle}
+            phaseTitle={phaseTitle}
+            subjectPhaseSlug={subjectPhaseSlug}
+            yearGroupTitle={yearGroupTitle}
+            examBoardTitle={examBoardTitle ?? undefined}
+          />
           <PreviousNextNav
             backgroundColorLevel={getBackgroundColorLevel(phaseSlug)}
             currentIndex={unitIndex}

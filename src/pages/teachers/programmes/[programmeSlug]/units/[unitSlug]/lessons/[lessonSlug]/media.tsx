@@ -15,10 +15,7 @@ import {
 } from "@/node-lib/isr";
 import getPageProps from "@/node-lib/getPageProps";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
-import {
-  LessonMediaClipsData,
-  MediaClipListCamelCase,
-} from "@/node-lib/curriculum-api-2023/queries/lessonMediaClips/lessonMediaClips.schema";
+import { LessonMediaClipsData } from "@/node-lib/curriculum-api-2023/queries/lessonMediaClips/lessonMediaClips.schema";
 import { populateMediaClipsWithTranscripts } from "@/utils/handleTranscript";
 import { allowNotFoundError } from "@/pages-helpers/shared/lesson-pages/allowNotFoundError";
 import { getRedirect } from "@/pages-helpers/shared/lesson-pages/getRedirects";
@@ -114,25 +111,18 @@ export const getStaticProps: GetStaticProps<
         return redirect ? { redirect } : { notFound: true };
       }
 
-      const mediaClipsWithTranscripts = curriculumData.mediaClips
-        ? await populateMediaClipsWithTranscripts(curriculumData.mediaClips)
-        : [];
+      const mediaClipsWithTranscripts = await populateMediaClipsWithTranscripts(
+        curriculumData.mediaClips,
+      );
 
-      if (mediaClipsWithTranscripts) {
-        curriculumData.mediaClips =
-          mediaClipsWithTranscripts as MediaClipListCamelCase;
-      }
-
-      if (!curriculumData) {
-        return {
-          notFound: true,
-        };
-      }
       const topNav = await curriculumApi2023.topNav();
 
       const results: GetStaticPropsResult<LessonMediaClipsPageProps> = {
         props: {
-          curriculumData,
+          curriculumData: {
+            ...curriculumData,
+            mediaClips: mediaClipsWithTranscripts,
+          },
           topNav,
         },
       };

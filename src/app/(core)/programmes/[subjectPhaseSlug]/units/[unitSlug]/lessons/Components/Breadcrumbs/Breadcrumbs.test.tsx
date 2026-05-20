@@ -8,6 +8,7 @@ import { getTeacherSubjectPhaseSlug } from "@/utils/curriculum/slugs";
 import { resolveOakHref } from "@/common-lib/urls";
 import teachersUnitOverviewFixture from "@/node-lib/curriculum-api-2023/fixtures/teachersUnitOverview.fixture";
 import lessonDownloadsFixture from "@/node-lib/curriculum-api-2023/fixtures/lessonDownloads.fixture";
+import lessonMediaClipsFixtures from "@/node-lib/curriculum-api-2023/fixtures/lessonMediaClips.fixture";
 
 const render = renderWithTheme;
 
@@ -187,5 +188,66 @@ describe("Breadcrumbs", () => {
 
     expect(screen.getByText("Downloads")).toBeInTheDocument();
     expect(screen.queryByRole("link", { name: "Downloads" })).toBeNull();
+  });
+  it("renders media breadcrumb trail with lesson link and media as current page", () => {
+    const mockMediaData = lessonMediaClipsFixtures({
+      subjectTitle: "Biology",
+      keyStageTitle: "KS4",
+      tierTitle: "Foundation",
+      examBoardTitle: "AQA",
+      yearGroupTitle: "Year 10",
+      phaseTitle: "Secondary",
+      lessonTitle: "Cells",
+      lessonSlug: "cells-101",
+    });
+    render(
+      <Breadcrumbs
+        data={mockMediaData}
+        subjectPhaseSlug="biology-secondary-aqa"
+        mode="media"
+      />,
+    );
+
+    const programmeBreadcrumbText =
+      "Biology, Secondary, KS4, Year 10, Foundation, AQA";
+    const programmeLink = screen.getByRole("link", {
+      name: programmeBreadcrumbText,
+    });
+    expect(programmeLink).toHaveAttribute(
+      "href",
+      resolveOakHref({
+        page: "teacher-programme",
+        subjectPhaseSlug: "biology-secondary-aqa",
+        tab: "units",
+      }),
+    );
+
+    const unitLink = screen.getByRole("link", {
+      name: mockMediaData.unitTitle,
+    });
+    expect(unitLink).toHaveAttribute(
+      "href",
+      resolveOakHref({
+        page: "integrated-unit-overview",
+        unitSlug: mockMediaData.unitSlug,
+        programmeSlug: mockMediaData.programmeSlug,
+      }),
+    );
+
+    const lessonLink = screen.getByRole("link", {
+      name: mockMediaData.lessonTitle,
+    });
+    expect(lessonLink).toHaveAttribute(
+      "href",
+      resolveOakHref({
+        page: "integrated-lesson-overview",
+        unitSlug: mockMediaData.unitSlug,
+        programmeSlug: mockMediaData.programmeSlug,
+        lessonSlug: mockMediaData.lessonSlug,
+      }),
+    );
+
+    expect(screen.getByText("Media")).toBeInTheDocument();
+    expect(screen.queryByRole("link", { name: "Media" })).toBeNull();
   });
 });

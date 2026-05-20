@@ -13,39 +13,21 @@ import {
   useNavigateToSection,
 } from "../pupilUtils/lessonNavigation";
 import { QuestionState } from "../QuizUtils/questionTypes";
+import {
+  isLessonReviewSection,
+  type LessonReviewSection,
+  type LessonSection,
+} from "../lessonSections";
 
 import { usePupilAnalytics } from "@/components/PupilComponents/PupilAnalyticsProvider/usePupilAnalytics";
-
-export const lessonSections = [
-  "overview",
-  "intro",
-  "starter-quiz",
-  "video",
-  "exit-quiz",
-  "review",
-] as const;
-
-export const allLessonReviewSections = [
-  "intro",
-  "starter-quiz",
-  "video",
-  "exit-quiz",
-] as const;
-
-export type LessonSection = (typeof lessonSections)[number];
-export type LessonReviewSection = (typeof allLessonReviewSections)[number];
-
-export const isLessonSection = (
-  currentSection: string,
-): currentSection is LessonSection => {
-  return lessonSections.includes(currentSection as LessonSection);
-};
-
-export function isLessonReviewSection(
-  section: string,
-): section is LessonReviewSection {
-  return allLessonReviewSections.includes(section as LessonReviewSection);
-}
+export {
+  lessonSections,
+  allLessonReviewSections,
+  isLessonSection,
+  isLessonReviewSection,
+  type LessonReviewSection,
+  type LessonSection,
+} from "../lessonSections";
 
 const getIsCompleteAfterSectionResultUpdate = (
   section: LessonReviewSection,
