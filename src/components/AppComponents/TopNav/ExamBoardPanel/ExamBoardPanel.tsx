@@ -71,14 +71,15 @@ const ExamBoardPanel = ({
   const navigateToSubject = ({ examBoardSlug }: { examBoardSlug: string }) => {
     if (examBoardSlug === null) return;
     const href = resolveOakHref({
-      page: "unit-index",
-      programmeSlug: getTeacherSubjectPhaseSlug({
+      page: "teacher-programme",
+      subjectPhaseSlug: getTeacherSubjectPhaseSlug({
         subjectSlug: selectedSubject?.slug,
         phaseSlug: "secondary",
         examboardSlug: examBoardSlug,
         pathwaySlug: null,
         subjectParentTitle: selectedSubject?.subjectParent ?? undefined,
       }),
+      tab: "units",
     });
     const queryParams = getQueryParams(Boolean(selectedSubject.subjectParent));
 

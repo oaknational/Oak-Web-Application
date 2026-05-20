@@ -15,7 +15,9 @@ jest.mock("next/navigation", () => ({
 }));
 
 jest.mock("@/common-lib/urls", () => ({
-  resolveOakHref: jest.fn((config) => `/test-path/${config.programmeSlug}`),
+  resolveOakHref: jest.fn(
+    (config) => `/test-path/${config.subjectPhaseSlug}/${config.tab}`,
+  ),
 }));
 
 jest.mock("@/utils/curriculum/slugs", () => ({
@@ -90,7 +92,7 @@ describe("ExamBoardPanel", () => {
     await user.click(aqaRadio);
 
     expect(mockPush).toHaveBeenCalledWith(
-      "/test-path/test-programme-slug?keystages=ks4",
+      "/test-path/test-programme-slug/units?keystages=ks4",
     );
   });
 

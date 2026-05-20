@@ -14,30 +14,68 @@ import {
   TeachersSubNavData as TeachersData,
   SubjectsNavItem,
 } from "@/node-lib/curriculum-api-2023/queries/topNav/topNav.schema";
+import { filtersToQuery } from "@/utils/curriculum/filtering";
 
 export const getSubjectLinkHref = ({
   programmeCount,
   subjectSlug,
   programmeSlug,
   keyStageSlug,
+  phaseSlug,
 }: {
   programmeCount: number;
   subjectSlug: string;
   programmeSlug: string | null;
   keyStageSlug?: string;
+  phaseSlug: "primary" | "secondary";
 }): string => {
-  return programmeCount > 1 && keyStageSlug
-    ? // If there are multiple programmes, link to the programme listing page
-      resolveOakHref({
-        page: "programme-index",
-        subjectSlug,
-        keyStageSlug,
-      })
-    : // If there is only one programme, link to the unit listing page for that programme
-      resolveOakHref({
-        page: "unit-index",
-        programmeSlug: programmeSlug!,
-      });
+  if (keyStageSlug === "early-years-foundation-stage") {
+    return resolveOakHref({
+      page: "unit-index",
+      programmeSlug: programmeSlug!,
+    });
+  }
+
+  const queryParams = new URLSearchParams(
+    filtersToQuery(
+      {
+        childSubjects: [],
+        years: [],
+        subjectCategories: [],
+        tiers: [],
+        threads: [],
+        pathways: [],
+        keystages: [keyStageSlug || ""],
+      },
+      {
+        childSubjects: [],
+        years: [],
+        subjectCategories: [],
+        tiers: [],
+        threads: [],
+        pathways: [],
+        keystages: [],
+      },
+    ),
+  ).toString();
+
+  const href =
+    programmeCount > 1 && keyStageSlug
+      ? // If there are multiple programmes, link to the programme listing page
+        resolveOakHref({
+          page: "programme-index",
+          subjectSlug,
+          keyStageSlug,
+        })
+      : resolveOakHref({
+          page: "teacher-programme",
+          subjectPhaseSlug:
+            programmeSlug?.replace(/-ks\d+(?=-|$)/, "") ?? // remove keystage but keep other options
+            `${subjectSlug}-${phaseSlug}`,
+          tab: "units",
+        });
+
+  return href + (queryParams ? `?${queryParams}` : "");
 };
 
 const TopNavSubjectButtons = ({
@@ -111,6 +149,7 @@ const TopNavSubjectButtons = ({
                   subjectSlug: slug,
                   programmeSlug,
                   keyStageSlug,
+                  phaseSlug: selectedMenu as "primary" | "secondary",
                 })}
                 selected={selectedSubject?.title === subject.title}
                 onClick={(e: React.MouseEvent<HTMLAnchorElement>) =>
