@@ -1,5 +1,8 @@
-import { useState, useRef, useEffect, useMemo } from "react";
-import { useRouter } from "next/router";
+"use client";
+
+import { useState, useRef, useEffect, useMemo, type ReactNode } from "react";
+import { useSearchParams } from "next/navigation";
+import { useFeatureFlagEnabled } from "posthog-js/react";
 import {
   OakTertiaryButton,
   OakTertiaryInvertedButton,
@@ -68,6 +71,11 @@ type CanonicalLesson = BaseLessonMedia & {
 
 type NonCanonicalLesson = BaseLessonMedia & LessonPathway;
 
+type LessonMediaCommonProps = {
+  breadcrumbsSlot?: ReactNode;
+  useIntegratedJourneyLinks?: boolean;
+};
+
 type LessonMediaProps =
   | {
       isCanonical: true;
@@ -78,8 +86,11 @@ type LessonMediaProps =
       lesson: NonCanonicalLesson;
     };
 
-export const LessonMedia = (props: LessonMediaProps) => {
-  const { isCanonical, lesson } = props;
+export const LessonMedia = (
+  props: LessonMediaProps & LessonMediaCommonProps,
+) => {
+  const { isCanonical, lesson, breadcrumbsSlot, useIntegratedJourneyLinks } =
+    props;
   const {
     lessonTitle,
     lessonSlug,
@@ -93,6 +104,9 @@ export const LessonMedia = (props: LessonMediaProps) => {
   } = lesson;
 
   const { track } = useAnalytics();
+  const teachersIntegratedJourneyEnabled = useFeatureFlagEnabled(
+    "teachers-integrated-journey",
+  );
   const {
     showSignedOutLoginRequired,
     showSignedOutGeoRestricted,
@@ -148,8 +162,8 @@ export const LessonMedia = (props: LessonMediaProps) => {
     isLegacy,
   });
 
-  const router = useRouter();
-  const { query } = router;
+  const searchParams = useSearchParams();
+  const videoQueryParam = searchParams?.get("video") ?? null;
 
   // construct list of all clips in one array
 
@@ -184,7 +198,7 @@ export const LessonMedia = (props: LessonMediaProps) => {
   }, [mediaClips]);
 
   const [currentClip, setCurrentClip] = useState(
-    getInitialCurrentClip(listOfAllClips, query.video),
+    getInitialCurrentClip(listOfAllClips, videoQueryParam ?? undefined),
   );
   const [currentIndex, setCurrentIndex] = useState(
     currentClip ? listOfAllClips.indexOf(currentClip) : 0,
@@ -196,7 +210,9 @@ export const LessonMedia = (props: LessonMediaProps) => {
   const goToTheNextClip = (mediaId: string) => {
     if (programmeSlug && unitSlug) {
       const newUrl = resolveOakHref({
-        page: "lesson-media",
+        page: useIntegratedJourneyLinks
+          ? "integrated-lesson-media"
+          : "lesson-media",
         programmeSlug,
         unitSlug,
         lessonSlug,
@@ -241,8 +257,10 @@ export const LessonMedia = (props: LessonMediaProps) => {
   ]);
 
   useEffect(() => {
-    setCurrentClip(getInitialCurrentClip(listOfAllClips, query.video));
-  }, [listOfAllClips, query.video]);
+    setCurrentClip(
+      getInitialCurrentClip(listOfAllClips, videoQueryParam ?? undefined),
+    );
+  }, [listOfAllClips, videoQueryParam]);
 
   const handleVideoChange = (clip: MediaClip & { learningCycle: string }) => {
     goToTheNextClip(String(clip.mediaId));
@@ -471,32 +489,37 @@ export const LessonMedia = (props: LessonMediaProps) => {
   return (
     <OakMaxWidth $pb={"spacing-80"} $ph={"spacing-12"}>
       <OakBox $mb={"spacing-32"} $mt={"spacing-24"} data-testid="media-view">
-        <Breadcrumbs
-          breadcrumbs={[
-            ...getBreadcrumbsForLessonPathway(commonPathway),
-            getLessonOverviewBreadCrumb({
-              lessonTitle,
-              lessonSlug,
-              programmeSlug,
-              unitSlug,
-              isCanonical,
-            }),
-            getLessonMediaBreadCrumb({
-              lessonSlug,
-              programmeSlug,
-              unitSlug,
-              subjectSlug,
-              disabled: true,
-            }),
-          ]}
-        />
+        {breadcrumbsSlot ??
+          (isCanonical && teachersIntegratedJourneyEnabled ? null : (
+            <Breadcrumbs
+              breadcrumbs={[
+                ...getBreadcrumbsForLessonPathway(commonPathway),
+                getLessonOverviewBreadCrumb({
+                  lessonTitle,
+                  lessonSlug,
+                  programmeSlug,
+                  unitSlug,
+                  isCanonical,
+                }),
+                getLessonMediaBreadCrumb({
+                  lessonSlug,
+                  programmeSlug,
+                  unitSlug,
+                  subjectSlug,
+                  disabled: true,
+                }),
+              ]}
+            />
+          ))}
       </OakBox>
       <OakBox $mb={"spacing-24"}>
         {programmeSlug && unitSlug && !isCanonical && (
           <OakTertiaryButton
             element="a"
             href={resolveOakHref({
-              page: "lesson-overview",
+              page: useIntegratedJourneyLinks
+                ? "integrated-lesson-overview"
+                : "lesson-overview",
               programmeSlug,
               lessonSlug,
               unitSlug,
@@ -528,6 +551,7 @@ export const LessonMedia = (props: LessonMediaProps) => {
           lessonSlug={lessonSlug}
           unitSlug={unitSlug}
           isCanonical={isCanonical}
+          useIntegratedJourneyLinks={useIntegratedJourneyLinks}
         />
       ) : (
         <>

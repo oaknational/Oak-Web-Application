@@ -2,6 +2,7 @@ import { screen } from "@testing-library/react";
 
 import { RestrictedContentPrompt } from "./RestrictedContentPrompt";
 
+import { resolveOakHref } from "@/common-lib/urls";
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 import lessonMediaClipsFixtures from "@/node-lib/curriculum-api-2023/fixtures/lessonMediaClips.fixture";
 
@@ -60,6 +61,31 @@ describe("RestrictedContentPrompt", () => {
     ).toHaveAttribute(
       "href",
       "/teachers/programmes/physical-education-ks4/units/running-and-jumping/lessons/running-as-a-team",
+    );
+  });
+
+  it("renders the geoblocked prompt with integrated lesson overview link when useIntegratedJourneyLinks is true", () => {
+    const fixtures = lessonMediaClipsFixtures();
+
+    render(
+      <RestrictedContentPrompt
+        showGeoBlocked={true}
+        isCanonical={false}
+        useIntegratedJourneyLinks={true}
+        {...fixtures}
+      />,
+    );
+
+    expect(
+      screen.getByRole("link", { name: "Back to lesson" }),
+    ).toHaveAttribute(
+      "href",
+      resolveOakHref({
+        page: "integrated-lesson-overview",
+        programmeSlug: fixtures.programmeSlug,
+        unitSlug: fixtures.unitSlug,
+        lessonSlug: fixtures.lessonSlug,
+      }),
     );
   });
 

@@ -212,6 +212,7 @@ describe("teachersUnitOverview", () => {
       actions: { isPePractical: false },
       containsGeorestrictedLessons: false,
       containsLoginRequiredLessons: false,
+      nonCurriculum: false,
       lessons: [
         {
           lessonSlug: "lesson-slug",

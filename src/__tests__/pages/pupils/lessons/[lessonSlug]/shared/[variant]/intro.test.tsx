@@ -1,0 +1,161 @@
+import "@testing-library/jest-dom";
+import { fireEvent } from "@testing-library/react";
+
+import PupilLessonIntroNewPage, {
+  getStaticProps,
+} from "@/pages/pupils/lessons/[lessonSlug]/shared/[variant]/intro";
+import { renderWithProvidersByName } from "@/__tests__/__helpers__/renderWithProviders";
+import { lessonBrowseDataFixture } from "@/node-lib/curriculum-api-2023/fixtures/lessonBrowseData.fixture";
+import { lessonContentFixture } from "@/node-lib/curriculum-api-2023/fixtures/lessonContent.fixture";
+import { usePupilLessonProgress } from "@/context/PupilLessonProgress";
+import { getDefaultLessonProgressState } from "@/context/PupilLessonProgress/pupilLessonProgressHelpers";
+
+const routerPush = jest.fn();
+jest.mock("next/router", () => ({
+  useRouter: () => ({ asPath: "/intro", push: routerPush }),
+}));
+
+const track = {
+  trackSectionStarted: jest.fn(),
+  trackLessonStarted: jest.fn(),
+  trackLessonCompleted: jest.fn(),
+  trackIntroCompleted: jest.fn(),
+  trackIntroAbandoned: jest.fn(),
+  trackWorksheetDownloaded: jest.fn(),
+};
+jest.mock("@/context/PupilLessonAnalytics/usePupilLessonAnalytics", () => ({
+  usePupilLessonAnalytics: () => track,
+}));
+
+const startWorksheet = jest.fn(() => Promise.resolve(true));
+jest.mock("@/components/PupilViews/PupilIntro/useWorksheetDownload", () => ({
+  useWorksheetDownload: () => ({
+    startDownload: startWorksheet,
+    isDownloading: false,
+  }),
+}));
+
+const startFiles = jest.fn();
+jest.mock(
+  "@/components/PupilViews/PupilIntro/useAdditionalFilesDownload",
+  () => ({
+    useAdditionalFilesDownload: () => ({
+      startAdditionalFilesDownload: startFiles,
+      isAdditionalFilesDownloading: false,
+    }),
+  }),
+);
+
+const getPropsMock = jest.fn();
+const buildPageProps = jest.fn();
+jest.mock("@/pages-helpers/pupil/lessons-pages/getProps", () => ({
+  getProps: (...args: unknown[]) => getPropsMock(...args),
+}));
+jest.mock("@/node-lib/getPageProps", () => ({
+  __esModule: true,
+  default: (args: unknown) => buildPageProps(args),
+}));
+
+jest.mock("@/components/PupilComponents/PupilLayout/PupilLayout", () => ({
+  PupilLayout: ({ children }: { children: React.ReactNode }) => <>{children}</>,
+}));
+
+const render = renderWithProvidersByName(["oakTheme"]);
+
+const renderPage = (
+  props: Partial<React.ComponentProps<typeof PupilLessonIntroNewPage>> = {},
+) =>
+  render(
+    <PupilLessonIntroNewPage
+      browseData={lessonBrowseDataFixture({})}
+      lessonContent={lessonContentFixture({})}
+      backUrl={null}
+      hasWorksheet={false}
+      worksheetInfo={null}
+      hasAdditionalFiles={false}
+      additionalFiles={null}
+      variant={null}
+      initialSection="intro"
+      pageType="canonical"
+      {...props}
+    />,
+  );
+
+beforeEach(() => {
+  jest.clearAllMocks();
+  usePupilLessonProgress.setState(getDefaultLessonProgressState());
+  usePupilLessonProgress.getState().initialiseLessonProgress({
+    lessonSlug: "lesson-1",
+    lessonReviewSections: ["intro", "starter-quiz", "video", "exit-quiz"],
+  });
+});
+
+describe("intro page", () => {
+  it("completes the section and navigates on proceed", () => {
+    const { getByTestId } = renderPage();
+    fireEvent.click(getByTestId("proceed-to-next-section"));
+    expect(track.trackIntroCompleted).toHaveBeenCalledTimes(1);
+    expect(
+      usePupilLessonProgress.getState().sectionResults.intro?.isComplete,
+    ).toBe(true);
+    expect(routerPush).toHaveBeenCalledTimes(1);
+  });
+
+  it("tracks intro abandoned when the back link is clicked", () => {
+    const { getByLabelText } = renderPage();
+    fireEvent.click(getByLabelText("Back"));
+    expect(track.trackIntroAbandoned).toHaveBeenCalledTimes(1);
+  });
+
+  it("triggers worksheet and additional file downloads", async () => {
+    const { getByText } = renderPage({
+      hasWorksheet: true,
+      worksheetInfo: [{ ext: "pdf", fileSize: "1MB" }] as never,
+      hasAdditionalFiles: true,
+      additionalFiles: [
+        {
+          assetId: "a",
+          mediaObject: { displayName: "f", bytes: 1, url: "/a" },
+        },
+      ] as never,
+    });
+    fireEvent.click(getByText(/Download worksheet/));
+    fireEvent.click(getByText("Download file"));
+    expect(startWorksheet).toHaveBeenCalledTimes(1);
+    expect(startFiles).toHaveBeenCalledTimes(1);
+    await Promise.resolve();
+    expect(track.trackWorksheetDownloaded).toHaveBeenCalledTimes(1);
+  });
+
+  it("does not track worksheet download when the download fails", async () => {
+    startWorksheet.mockResolvedValueOnce(false);
+    const { getByText } = renderPage({
+      hasWorksheet: true,
+      worksheetInfo: [{ ext: "pdf", fileSize: "1MB" }] as never,
+    });
+    fireEvent.click(getByText(/Download worksheet/));
+    await Promise.resolve();
+    expect(startWorksheet).toHaveBeenCalledTimes(1);
+    expect(track.trackWorksheetDownloaded).not.toHaveBeenCalled();
+  });
+
+  it("returns notFound from getStaticProps when the variant is invalid", async () => {
+    expect(
+      await getStaticProps({ params: { variant: "no" } } as never),
+    ).toEqual({ notFound: true });
+  });
+
+  it("calls getPageProps with an intro-bound context", async () => {
+    buildPageProps.mockResolvedValue({ props: {} });
+    await getStaticProps({
+      params: { lessonSlug: "lesson-1", variant: "quizzes-only" },
+    } as never);
+    expect(getPropsMock).toHaveBeenCalledWith(
+      expect.objectContaining({
+        context: expect.objectContaining({
+          params: expect.objectContaining({ section: "intro" }),
+        }),
+      }),
+    );
+  });
+});

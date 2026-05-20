@@ -19,54 +19,65 @@ const lessons = [
     lessonTitle: "Lesson 2",
   },
 ];
+
+const defaultProps: UnitOverviewContentProps = {
+  programmeSlug: "biology-secondary-ks4-foundation-aqa",
+  unitSlug: "cells",
+  unitTitle: "Cells",
+  unitDescription: "Learn about cells",
+  subjectTitle: "Biology",
+  subjectSlug: "biology",
+  keyStageSlug: "ks4",
+  keyStageTitle: "Key Stage 4",
+  lessons: lessons as UnitOverviewContentProps["lessons"],
+  unitIndex: 2,
+  unitCount: 12,
+  tierOptionToggles: [
+    {
+      title: "Foundation",
+      programmeSlug: "biology-secondary-ks4-foundation-aqa",
+      isSelected: true,
+    },
+    {
+      title: "Higher",
+      programmeSlug: "biology-secondary-ks4-higher-aqa",
+      isSelected: false,
+    },
+  ],
+  subjectOptionToggles: [
+    {
+      title: "Biology",
+      programmeSlug: "biology-secondary-ks4-foundation-aqa",
+      isSelected: true,
+    },
+    {
+      title: "Combined science",
+      programmeSlug: "combined-science-secondary-ks4-foundation-aqa",
+      isSelected: false,
+    },
+  ],
+  threads: [],
+  phaseSlug: "secondary",
+  nextUnit: null,
+  prevUnit: null,
+  subjectCategories: null,
+  showDownloadMessage: false,
+  setShowDownloadMessage: jest.fn(),
+  examBoardTitle: "AQA",
+  phaseTitle: "Secondary",
+  subjectPhaseSlug: "biology-secondary-ks4",
+  yearGroupTitle: "Year 10",
+  nonCurriculum: false,
+  priorKnowledgeRequirements: [],
+  whyThisWhyNow: "",
+};
 describe("UnitOverviewContent", () => {
-  it("renders lessons and save unit button", () => {
-    render(
-      <UnitOverviewContent
-        programmeSlug="biology-secondary-ks4-foundation-aqa"
-        unitSlug="cells"
-        unitTitle="Cells"
-        unitDescription="Learn about cells"
-        subjectTitle="Biology"
-        subjectSlug="biology"
-        keyStageSlug="ks4"
-        keyStageTitle="Key Stage 4"
-        lessons={lessons as UnitOverviewContentProps["lessons"]}
-        unitIndex={2}
-        unitCount={12}
-        tierOptionToggles={[
-          {
-            title: "Foundation",
-            programmeSlug: "biology-secondary-ks4-foundation-aqa",
-            isSelected: true,
-          },
-          {
-            title: "Higher",
-            programmeSlug: "biology-secondary-ks4-higher-aqa",
-            isSelected: false,
-          },
-        ]}
-        subjectOptionToggles={[
-          {
-            title: "Biology",
-            programmeSlug: "biology-secondary-ks4-foundation-aqa",
-            isSelected: true,
-          },
-          {
-            title: "Combined science",
-            programmeSlug: "combined-science-secondary-ks4-foundation-aqa",
-            isSelected: false,
-          },
-        ]}
-        threads={[]}
-        phaseSlug="secondary"
-        nextUnit={null}
-        prevUnit={null}
-        subjectCategories={null}
-        showDownloadMessage={false}
-        setShowDownloadMessage={jest.fn()}
-      />,
-    );
+  beforeEach(() => {
+    jest.clearAllMocks();
+  });
+
+  it("renders LessonList and passes lesson props with computed lessonCount", () => {
+    render(<UnitOverviewContent {...defaultProps} />);
 
     expect(
       screen.getByRole("heading", { name: "Unit 2 of 12: Cells" }),
@@ -79,52 +90,7 @@ describe("UnitOverviewContent", () => {
   });
 
   it("renders programme toggles with selected states and links", () => {
-    render(
-      <UnitOverviewContent
-        programmeSlug="biology-secondary-ks4-foundation-aqa"
-        unitSlug="cells"
-        unitTitle="Cells"
-        unitDescription="Learn about cells"
-        subjectTitle="Biology"
-        subjectSlug="biology"
-        keyStageSlug="ks4"
-        keyStageTitle="Key Stage 4"
-        lessons={lessons as UnitOverviewContentProps["lessons"]}
-        unitIndex={2}
-        unitCount={12}
-        tierOptionToggles={[
-          {
-            title: "Foundation",
-            programmeSlug: "biology-secondary-ks4-foundation-aqa",
-            isSelected: true,
-          },
-          {
-            title: "Higher",
-            programmeSlug: "biology-secondary-ks4-higher-aqa",
-            isSelected: false,
-          },
-        ]}
-        subjectOptionToggles={[
-          {
-            title: "Biology",
-            programmeSlug: "biology-secondary-ks4-foundation-aqa",
-            isSelected: true,
-          },
-          {
-            title: "Combined science",
-            programmeSlug: "combined-science-secondary-ks4-foundation-aqa",
-            isSelected: false,
-          },
-        ]}
-        threads={[]}
-        phaseSlug="secondary"
-        nextUnit={null}
-        prevUnit={null}
-        subjectCategories={null}
-        showDownloadMessage={false}
-        setShowDownloadMessage={jest.fn()}
-      />,
-    );
+    render(<UnitOverviewContent {...defaultProps} />);
 
     expect(
       screen.getByRole("heading", { name: "Learning tier (KS4)" }),
@@ -174,27 +140,8 @@ describe("UnitOverviewContent", () => {
   it("renders why this why now", () => {
     render(
       <UnitOverviewContent
-        programmeSlug="biology-secondary-ks3"
-        unitSlug="cells"
-        unitTitle="Cells"
-        unitDescription="Learn about cells"
-        subjectTitle="Biology"
-        subjectSlug="biology"
-        keyStageSlug="ks3"
-        keyStageTitle="Key Stage 3"
-        lessons={lessons as UnitOverviewContentProps["lessons"]}
-        unitIndex={2}
-        unitCount={12}
-        threads={[]}
-        phaseSlug="secondary"
-        whyThisWhyNow={"mock why this why now"}
-        tierOptionToggles={[]}
-        subjectOptionToggles={[]}
-        nextUnit={null}
-        prevUnit={null}
-        subjectCategories={null}
-        showDownloadMessage={false}
-        setShowDownloadMessage={jest.fn()}
+        {...defaultProps}
+        whyThisWhyNow="mock why this why now"
       />,
     );
 
@@ -203,27 +150,8 @@ describe("UnitOverviewContent", () => {
   it("renders prior knowledge requirements in a list", () => {
     render(
       <UnitOverviewContent
-        programmeSlug="biology-secondary-ks3"
-        unitSlug="cells"
-        unitTitle="Cells"
-        unitDescription="Learn about cells"
-        subjectTitle="Biology"
-        subjectSlug="biology"
-        keyStageSlug="ks3"
-        keyStageTitle="Key Stage 3"
-        lessons={lessons as UnitOverviewContentProps["lessons"]}
-        unitIndex={2}
-        unitCount={12}
-        threads={[]}
-        phaseSlug="secondary"
+        {...defaultProps}
         priorKnowledgeRequirements={["Requirement 1", "Requirement 2"]}
-        tierOptionToggles={[]}
-        subjectOptionToggles={[]}
-        nextUnit={null}
-        prevUnit={null}
-        subjectCategories={null}
-        showDownloadMessage={false}
-        setShowDownloadMessage={jest.fn()}
       />,
     );
 
@@ -239,26 +167,8 @@ describe("UnitOverviewContent", () => {
   it("renders threads", () => {
     render(
       <UnitOverviewContent
-        programmeSlug="biology-secondary-ks3"
-        unitSlug="cells"
-        unitTitle="Cells"
-        unitDescription="Learn about cells"
-        subjectTitle="Biology"
-        subjectSlug="biology"
-        keyStageSlug="ks3"
-        keyStageTitle="Key Stage 3"
-        lessons={lessons as UnitOverviewContentProps["lessons"]}
-        unitIndex={2}
-        unitCount={12}
+        {...defaultProps}
         threads={["Thread 1", "Thread 2"]}
-        phaseSlug="secondary"
-        tierOptionToggles={[]}
-        subjectOptionToggles={[]}
-        nextUnit={null}
-        prevUnit={null}
-        subjectCategories={null}
-        showDownloadMessage={false}
-        setShowDownloadMessage={jest.fn()}
       />,
     );
 
@@ -271,29 +181,10 @@ describe("UnitOverviewContent", () => {
   it("renders previous unit link", () => {
     render(
       <UnitOverviewContent
-        programmeSlug="biology-secondary-ks3"
-        unitSlug="cells"
-        unitTitle="Cells"
-        unitDescription="Learn about cells"
-        subjectTitle="Biology"
-        subjectSlug="biology"
-        keyStageSlug="ks3"
-        keyStageTitle="Key Stage 3"
-        lessons={lessons as UnitOverviewContentProps["lessons"]}
-        unitIndex={2}
-        unitCount={12}
-        threads={["Thread 1", "Thread 2"]}
-        phaseSlug="secondary"
-        tierOptionToggles={[]}
-        subjectOptionToggles={[]}
-        nextUnit={null}
+        {...defaultProps}
         prevUnit={{ slug: "unit-1", title: "Unit 1" }}
-        subjectCategories={null}
-        showDownloadMessage={false}
-        setShowDownloadMessage={jest.fn()}
       />,
     );
-
     const previousUnitLink = screen.getByRole("link", {
       name: /previous unit/i,
     });
@@ -302,7 +193,7 @@ describe("UnitOverviewContent", () => {
       "href",
       `http://localhost${resolveOakHref({
         page: "integrated-unit-overview",
-        programmeSlug: "biology-secondary-ks3",
+        programmeSlug: "biology-secondary-ks4-foundation-aqa",
         unitSlug: "unit-1",
       })}`,
     );
@@ -310,26 +201,8 @@ describe("UnitOverviewContent", () => {
   it("renders next unit link", () => {
     render(
       <UnitOverviewContent
-        programmeSlug="biology-secondary-ks3"
-        unitSlug="cells"
-        unitTitle="Cells"
-        unitDescription="Learn about cells"
-        subjectTitle="Biology"
-        subjectSlug="biology"
-        keyStageSlug="ks3"
-        keyStageTitle="Key Stage 3"
-        lessons={lessons as UnitOverviewContentProps["lessons"]}
-        unitIndex={2}
-        unitCount={12}
-        threads={["Thread 1", "Thread 2"]}
-        phaseSlug="secondary"
-        tierOptionToggles={[]}
-        subjectOptionToggles={[]}
-        prevUnit={null}
+        {...defaultProps}
         nextUnit={{ slug: "unit-3", title: "Unit 3" }}
-        subjectCategories={null}
-        showDownloadMessage={false}
-        setShowDownloadMessage={jest.fn()}
       />,
     );
 
@@ -341,7 +214,7 @@ describe("UnitOverviewContent", () => {
       "href",
       `http://localhost${resolveOakHref({
         page: "integrated-unit-overview",
-        programmeSlug: "biology-secondary-ks3",
+        programmeSlug: "biology-secondary-ks4-foundation-aqa",
         unitSlug: "unit-3",
       })}`,
     );
@@ -350,24 +223,7 @@ describe("UnitOverviewContent", () => {
     const mockClose = jest.fn();
     render(
       <UnitOverviewContent
-        programmeSlug="biology-secondary-ks3"
-        unitSlug="cells"
-        unitTitle="Cells"
-        unitDescription="Learn about cells"
-        subjectTitle="Biology"
-        subjectSlug="biology"
-        keyStageSlug="ks3"
-        keyStageTitle="Key Stage 3"
-        lessons={lessons as UnitOverviewContentProps["lessons"]}
-        unitIndex={2}
-        unitCount={12}
-        threads={["Thread 1", "Thread 2"]}
-        phaseSlug="secondary"
-        tierOptionToggles={[]}
-        subjectOptionToggles={[]}
-        prevUnit={null}
-        nextUnit={{ slug: "unit-3", title: "Unit 3" }}
-        subjectCategories={null}
+        {...defaultProps}
         showDownloadMessage={true}
         setShowDownloadMessage={mockClose}
       />,
