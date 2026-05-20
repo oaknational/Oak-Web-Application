@@ -44,7 +44,11 @@ function ResourcesIcon({
         $background={"bg-decorative1-very-subdued"}
         $pa={"spacing-8"}
       >
-        <OakIcon $height={"spacing-32"} iconName={iconName} />
+        <OakIcon
+          aria-hidden={true}
+          $height={"spacing-32"}
+          iconName={iconName}
+        />
       </OakBox>
       <OakP $font="body-2-bold">{text}</OakP>
     </OakFlex>
@@ -72,7 +76,7 @@ function ResourcesIcons() {
 function HomePageCopy() {
   return (
     <OakFlex $flexDirection={"column"} $gap={"spacing-24"}>
-      <OakHeading $font={"heading-3"} tag={"h2"}>
+      <OakHeading $font={"heading-3"} tag={"h1"}>
         Helping you deliver a world-class curriculum
       </OakHeading>
       <OakTypography $font={"body-1"}>
