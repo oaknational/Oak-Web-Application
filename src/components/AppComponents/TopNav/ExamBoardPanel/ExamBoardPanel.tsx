@@ -61,9 +61,6 @@ const ExamBoardPanel = ({
   }, [focusManager, parentId, examBoards]);
 
   useEffect(() => {
-    const parentPrefix =
-      focusManager?.createId("teachers-secondary-ks4", selectedSubject.slug) ??
-      `teachers-secondary-ks4-${selectedSubject.slug}`;
     const panelId = `topnav-teachers-ks4-examboards-${selectedSubject.slug}`;
 
     // Wait for panel children to render before moving focus.
@@ -71,7 +68,7 @@ const ExamBoardPanel = ({
       requestAnimationFrame(() => {
         const panel = document.getElementById(panelId);
         const firstExamBoard = panel?.querySelector<HTMLElement>(
-          `button[id^="${parentPrefix}-"]`,
+          `input[name="exam-boards-${selectedSubject.slug}"]`,
         );
         firstExamBoard?.focus();
       });
@@ -167,30 +164,70 @@ const ExamBoardPanel = ({
   };
 
   const handleListKeyDown = (e: React.KeyboardEvent<HTMLUListElement>) => {
-    const activeElement = document.activeElement as HTMLElement;
-    if (!activeElement.id) return;
+    const activeElement = document.activeElement as HTMLElement | null;
 
-    if (e.key === "Tab" && focusManager) {
-      const parentIdPrefix = focusManager.createId(
-        "teachers-secondary-ks4",
-        selectedSubject.slug,
-      );
-      const allButtons = Array.from(
-        document.querySelectorAll(`[id^="${parentIdPrefix}-"]`),
-      ) as HTMLElement[];
-
-      if (allButtons.length === 0) return;
-
-      const currentIndex = allButtons.findIndex(
-        (btn) => btn.id === activeElement.id,
-      );
-      if (currentIndex === -1) return;
-
-      e.preventDefault();
-      focusNextExamBoard(allButtons, currentIndex, !e.shiftKey);
+    if (e.key === "Enter") {
+      navigateToSubject({
+        examBoardSlug: activeElement?.getAttribute("value") ?? "",
+      });
+      return;
     }
 
-    focusManager?.handleEscapeKey({ event: e, elementId: activeElement.id });
+    if (!activeElement || e.key !== "Tab") {
+      if (e.key === "Escape" && activeElement?.id) {
+        focusManager?.handleEscapeKey({
+          event: e,
+          elementId: activeElement.id,
+        });
+      }
+      return;
+    }
+
+    const radios = Array.from(
+      e.currentTarget.querySelectorAll<HTMLElement>(
+        `input[name="exam-boards-${selectedSubject.slug}"]`,
+      ),
+    );
+
+    if (radios.length === 0) return;
+
+    const currentIndex = radios.indexOf(activeElement);
+    if (currentIndex === -1) return;
+
+    e.preventDefault();
+
+    if (focusManager) {
+      focusNextExamBoard(radios, currentIndex, !e.shiftKey);
+      return;
+    }
+
+    const submenuContainer = e.currentTarget.closest(
+      `[data-testid="submenu-container"]`,
+    ) as HTMLElement | null;
+
+    const closeButton = submenuContainer
+      ?.closest('[role="dialog"]')
+      ?.querySelector<HTMLElement>('button[aria-label="Close"]');
+    const focusables = Array.from(
+      submenuContainer?.querySelectorAll<HTMLElement>(
+        `a[href], button:not([disabled]), input:not([disabled])`,
+      ) ?? [],
+    );
+
+    if (closeButton && !focusables.includes(closeButton)) {
+      focusables.push(closeButton);
+    }
+
+    const activeIndex = focusables.indexOf(activeElement);
+    if (activeIndex === -1) {
+      focusables[0]?.focus();
+      return;
+    }
+
+    const nextIndex = e.shiftKey
+      ? (activeIndex - 1 + focusables.length) % focusables.length
+      : (activeIndex + 1) % focusables.length;
+    focusables[nextIndex]?.focus();
   };
 
   return (
@@ -217,53 +254,21 @@ const ExamBoardPanel = ({
       >
         <OakRadioGroup
           name={`exam-boards-${selectedSubject.slug}`}
-          onChange={(e) => navigateToSubject({ examBoardSlug: e.target.value })}
-          value={selectedSubject.slug}
+          onChange={(e) => {
+            navigateToSubject({ examBoardSlug: e.target.value });
+          }}
           $gap="spacing-12"
         >
           {examBoards.map((examBoard) => {
-            const parentId =
-              focusManager?.createId(
-                "teachers-secondary-ks4",
-                selectedSubject.slug,
-              ) ?? `teachers-secondary-ks4-${selectedSubject.slug}`;
-            const buttonId =
-              focusManager?.createId(parentId, examBoard.slug) ??
-              `${parentId}-${examBoard.slug}`;
-
-            const key = buttonId || `${selectedSubject.slug}-${examBoard.slug}`;
-            const isSelected = selectedSubject.slug === examBoard.slug;
-            const selectedIndex = isSelected ? 0 : -1;
-            const tabIndex = focusManager ? selectedIndex : 0;
-
             return (
-              <button
-                key={key}
-                id={buttonId}
-                type="button"
-                onKeyDown={(e) => {
-                  if (e.key === "Enter" || e.key === " ") {
-                    e.preventDefault();
-                    navigateToSubject({ examBoardSlug: examBoard.slug });
-                  }
-                }}
-                tabIndex={tabIndex}
-                style={{
-                  display: "inline-block",
-                  padding: 0,
-                  margin: 0,
-                  border: "none",
-                  background: "none",
-                }}
-              >
-                <OakRadioAsButton
-                  data-testid={buttonId}
-                  colorScheme="primary"
-                  displayValue={examBoard.title}
-                  value={examBoard.slug}
-                  width={"fit-content"}
-                />
-              </button>
+              <OakRadioAsButton
+                key={examBoard.slug}
+                data-testid={`exam-board-${examBoard.slug}`}
+                colorScheme="primary"
+                displayValue={examBoard.title}
+                value={examBoard.slug}
+                width={"fit-content"}
+              />
             );
           })}
         </OakRadioGroup>
