@@ -56,6 +56,7 @@ describe("lesson share card group", () => {
     const resourceCardLabel = screen.getByText("Video");
     expect(resourceCardLabel).toBeInTheDocument();
   });
+
   it("should toggle the checkbox when clicked", async () => {
     const shareableResources = [
       {
@@ -71,7 +72,6 @@ describe("lesson share card group", () => {
         shareLink="www.fake.com"
       />,
     );
-
     const checkbox = screen.getByRole("checkbox", { name: "Video 5min" });
     expect(checkbox).toBeInTheDocument();
     expect(checkbox).not.toBeChecked();

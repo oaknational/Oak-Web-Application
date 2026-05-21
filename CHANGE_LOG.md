@@ -1,3 +1,48 @@
+# [1.1082.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1081.0...v1.1082.0) (2026-05-20)
+
+
+### Bug Fixes
+
+* only show year option filters when there is more than 1 ([93e9727](https://github.com/oaknational/Oak-Web-Application/commit/93e9727ce573b5348beee8a0da24a88c69eb3b8d))
+* restore hiding years in rule of law, lost in merge conflict resolution ([41c8089](https://github.com/oaknational/Oak-Web-Application/commit/41c8089fa2d213acd8310ecdf2a115bb133d71a5))
+
+
+### Features
+
+* add custom year title for all years without a "group as" clause ([a7a716b](https://github.com/oaknational/Oak-Web-Application/commit/a7a716b67d08b229e652fdcf1da89d4ff3da5ba9))
+* remove filters when none should display ([b564c6a](https://github.com/oaknational/Oak-Web-Application/commit/b564c6a8c8ff7a4748a767bf183b4c7e6fd21759))
+
+# [1.1081.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1080.1...v1.1081.0) (2026-05-20)
+
+
+### Bug Fixes
+
+* added all unlisted deps ([1585dab](https://github.com/oaknational/Oak-Web-Application/commit/1585dab1bed45da15735b7dd5cf0abd1eba3164c))
+* added allowBuilds to pnpm-workspace.yaml ([df41152](https://github.com/oaknational/Oak-Web-Application/commit/df411526067b6e92a546e6ec458b8b59a8874f92))
+* added back in "setup node step" thanks @CatMillerCM ([abdeec5](https://github.com/oaknational/Oak-Web-Application/commit/abdeec5a1598cb56426916e07648f003c906a760))
+* added back in missing minimumReleaseAge config ([a1868a1](https://github.com/oaknational/Oak-Web-Application/commit/a1868a1b5b81debf4e311ca186f13eb389be6bd6))
+* added missing dep ([174c7d7](https://github.com/oaknational/Oak-Web-Application/commit/174c7d735dfdc70a1378e5aa94b69ac964bda720))
+* added missing dependency ([ff0c665](https://github.com/oaknational/Oak-Web-Application/commit/ff0c665b4772087faaa25f5b4c7c761d26a86874))
+* change order of setup node/pnpm ([8cb5d2b](https://github.com/oaknational/Oak-Web-Application/commit/8cb5d2bb2b831eabb85340b0ae43b651e1d197a5))
+* corrected versions of some deps ([f3240ca](https://github.com/oaknational/Oak-Web-Application/commit/f3240cac09ef537610da9921ea24cb1b1517cbda))
+* lockfile ([8895aca](https://github.com/oaknational/Oak-Web-Application/commit/8895aca6c1e92027cbd8b5ee08e4dbcea8423f81))
+* npm/npx to pnpm/pnpx ([5f97311](https://github.com/oaknational/Oak-Web-Application/commit/5f9731179a92243497a595d531f185cb7ad3e56d))
+* one last github action pnpm/node ordering fix ([1dc56a5](https://github.com/oaknational/Oak-Web-Application/commit/1dc56a5931624879cb3920d7c5ae44becc2b84c0))
+* pnpm config issues ([7efaf0c](https://github.com/oaknational/Oak-Web-Application/commit/7efaf0c10ca430389430aef80e6b098de8a7ab83))
+* remove "preserveSymlinks" not allowed with pnpm ([de034e1](https://github.com/oaknational/Oak-Web-Application/commit/de034e14706557fcd6b0347f189f362446e3609f))
+* switch to pnpm/action-setup in actions ([ebc51ea](https://github.com/oaknational/Oak-Web-Application/commit/ebc51ea3f2d7d3f1230a06ec49d3102ca8cd2497))
+* try switching to path over pnpx ([3abba57](https://github.com/oaknational/Oak-Web-Application/commit/3abba574e449e942af1beef267b76672787bcbb0))
+* update actions to pnpm 11 ([3b7d891](https://github.com/oaknational/Oak-Web-Application/commit/3b7d891041333bd05db893c112eb97a75adcab85))
+* updated lock from main merge and updated to pnpm 11 ([9c8caf2](https://github.com/oaknational/Oak-Web-Application/commit/9c8caf2afdd2e8db546617150ff24b6fe55ae190))
+* updated some references to npm and added missing version to pnpm/action-setup ([f8e6966](https://github.com/oaknational/Oak-Web-Application/commit/f8e6966c180b0d157eb3a7879661dd45a55e164c))
+* updates to pnpm usage ([bc2633e](https://github.com/oaknational/Oak-Web-Application/commit/bc2633e0056c0cc9cd2901a6b65e83ca6a9f9bd4))
+* use full commit SHA hash for github action ([e8e5ad6](https://github.com/oaknational/Oak-Web-Application/commit/e8e5ad6895c35e46a666531b885f80d3be8b893b))
+
+
+### Features
+
+* switch from npm to pnpm ([f30e438](https://github.com/oaknational/Oak-Web-Application/commit/f30e4389573fb6e9c7ab691aa8d81f0bb2439343))
+
 ## [1.1080.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.1080.0...v1.1080.1) (2026-05-19)
 
 
