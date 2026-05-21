@@ -167,11 +167,10 @@ const ExamBoardPanel = ({
   };
 
   const handleListKeyDown = (e: React.KeyboardEvent<HTMLUListElement>) => {
-    if (!focusManager) return;
     const activeElement = document.activeElement as HTMLElement;
     if (!activeElement.id) return;
 
-    if (e.key === "Tab") {
+    if (e.key === "Tab" && focusManager) {
       const parentIdPrefix = focusManager.createId(
         "teachers-secondary-ks4",
         selectedSubject.slug,
@@ -191,7 +190,7 @@ const ExamBoardPanel = ({
       focusNextExamBoard(allButtons, currentIndex, !e.shiftKey);
     }
 
-    focusManager.handleEscapeKey({ event: e, elementId: activeElement.id });
+    focusManager?.handleEscapeKey({ event: e, elementId: activeElement.id });
   };
 
   return (
@@ -228,7 +227,9 @@ const ExamBoardPanel = ({
                 "teachers-secondary-ks4",
                 selectedSubject.slug,
               ) ?? `teachers-secondary-ks4-${selectedSubject.slug}`;
-            const buttonId = focusManager?.createId(parentId, examBoard.slug);
+            const buttonId =
+              focusManager?.createId(parentId, examBoard.slug) ??
+              `${parentId}-${examBoard.slug}`;
 
             const key = buttonId || `${selectedSubject.slug}-${examBoard.slug}`;
             const isSelected = selectedSubject.slug === examBoard.slug;
@@ -244,7 +245,7 @@ const ExamBoardPanel = ({
                     navigateToSubject({ examBoardSlug: examBoard.slug });
                   }
                 }}
-                tabIndex={isSelected ? 0 : -1}
+                tabIndex={focusManager ? (isSelected ? 0 : -1) : 0}
                 style={{
                   display: "inline-block",
                   padding: 0,

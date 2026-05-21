@@ -180,6 +180,7 @@ export function SubmenuContent(
                 });
                 handleCloseHamburger();
               }}
+              onLeave={() => setSelectedExamBoardSubject(null)}
               onClose={handleCloseHamburger}
             />
           </SubmenuContainer>
