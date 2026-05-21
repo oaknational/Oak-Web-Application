@@ -140,6 +140,23 @@ const SharePageLayout: FC<SharePageLayoutProps> = (props) => {
                       </OakFlex>
                     </OakFlex>
                   )}
+
+                  {!props.showTermsAgreement && (
+                    <OakBox
+                      $pb={"spacing-16"}
+                      $mt={"spacing-24"}
+                      $maxWidth={"spacing-640"}
+                      data-testid="copyright-container"
+                      $display={"none"}
+                    >
+                      <CopyrightNotice
+                        fullWidth
+                        showPostAlbCopyright={props.showPostAlbCopyright}
+                        openLinksExternally={true}
+                        copyrightYear={props.updatedAt}
+                      />
+                    </OakBox>
+                  )}
                   <OakHandDrawnHR
                     $height={"spacing-2"}
                     $width={"100%"}
