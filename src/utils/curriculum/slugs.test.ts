@@ -2,13 +2,136 @@ import {
   createTeacherProgrammeSlug,
   getKs4RedirectSlug,
   getTeacherSubjectPhaseSlug,
+  isProgrammeSlug,
+  isSubjectPhaseSlug,
   isValidSubjectPhaseSlug,
   KS4_EXAMBOARD_PREFERENCE,
+  parseProgrammeSlug,
   parseSubjectPhaseSlug,
 } from "./slugs";
 
 import { createUnit } from "@/fixtures/curriculum/unit";
 import { CurriculumPhaseOptions } from "@/node-lib/curriculum-api-2023/queries/curriculumPhaseOptions/curriculumPhaseOptions.query";
+
+describe("isProgrammeSlug and isSubjectPhaseSlug", () => {
+  it("distinguishes teacher programme slugs from subject phase slugs", () => {
+    expect(isProgrammeSlug("citizenship-secondary-ks3")).toBe(true);
+    expect(isSubjectPhaseSlug("citizenship-secondary-ks3")).toBe(false);
+
+    expect(isProgrammeSlug("citizenship-secondary")).toBe(false);
+    expect(isSubjectPhaseSlug("citizenship-secondary")).toBe(true);
+
+    expect(isProgrammeSlug("english-secondary-aqa")).toBe(false);
+    expect(isSubjectPhaseSlug("english-secondary-aqa")).toBe(true);
+
+    expect(isProgrammeSlug("biology-secondary-ks4-higher-aqa")).toBe(true);
+    expect(isSubjectPhaseSlug("science-secondary-aqa")).toBe(true);
+    expect(isProgrammeSlug("science-secondary-aqa")).toBe(false);
+  });
+});
+
+describe("parseProgrammeSlug", () => {
+  it("parses ks3 programme slug", () => {
+    expect(parseProgrammeSlug("citizenship-secondary-ks3")).toEqual({
+      subjectSlug: "citizenship",
+      phaseSlug: "secondary",
+      keystageSlug: "ks3",
+      yearSlug: null,
+      tierSlug: null,
+      pathwaySlug: null,
+      examboardSlug: null,
+      childSubjectSlug: null,
+    });
+  });
+
+  it("parses ks4 slug with pathway and examboard", () => {
+    expect(parseProgrammeSlug("computing-secondary-ks4-gcse-aqa")).toEqual({
+      subjectSlug: "computing",
+      phaseSlug: "secondary",
+      keystageSlug: "ks4",
+      yearSlug: null,
+      tierSlug: null,
+      pathwaySlug: "gcse",
+      examboardSlug: "aqa",
+      childSubjectSlug: null,
+    });
+  });
+
+  it("parses ks4 slug with tier only", () => {
+    expect(parseProgrammeSlug("maths-secondary-ks4-foundation")).toEqual({
+      subjectSlug: "maths",
+      phaseSlug: "secondary",
+      keystageSlug: "ks4",
+      yearSlug: null,
+      tierSlug: "foundation",
+      pathwaySlug: null,
+      examboardSlug: null,
+      childSubjectSlug: null,
+    });
+  });
+
+  it("parses primary ks1 slug", () => {
+    expect(parseProgrammeSlug("computing-primary-ks1")).toEqual({
+      subjectSlug: "computing",
+      phaseSlug: "primary",
+      keystageSlug: "ks1",
+      yearSlug: null,
+      tierSlug: null,
+      pathwaySlug: null,
+      examboardSlug: null,
+      childSubjectSlug: null,
+    });
+  });
+
+  it("parses science child subject slug", () => {
+    expect(
+      parseProgrammeSlug("biology-secondary-ks4-higher-aqa"),
+    ).toMatchObject({
+      subjectSlug: "biology",
+      childSubjectSlug: "biology",
+      tierSlug: "higher",
+      examboardSlug: "aqa",
+    });
+  });
+
+  it("parses pathway-only ks4 slug", () => {
+    expect(parseProgrammeSlug("citizenship-secondary-ks4-gcse")).toEqual({
+      subjectSlug: "citizenship",
+      phaseSlug: "secondary",
+      keystageSlug: "ks4",
+      yearSlug: null,
+      tierSlug: null,
+      pathwaySlug: "gcse",
+      examboardSlug: null,
+      childSubjectSlug: null,
+    });
+  });
+
+  it("parses core pathway slug", () => {
+    expect(parseProgrammeSlug("computing-secondary-ks4-core")).toEqual({
+      subjectSlug: "computing",
+      phaseSlug: "secondary",
+      keystageSlug: "ks4",
+      yearSlug: null,
+      tierSlug: null,
+      pathwaySlug: "core",
+      examboardSlug: null,
+      childSubjectSlug: null,
+    });
+  });
+
+  it("strips legacy suffix before parsing", () => {
+    expect(parseProgrammeSlug("chemistry-secondary-ks4-l")).toMatchObject({
+      subjectSlug: "chemistry",
+      childSubjectSlug: "chemistry",
+      keystageSlug: "ks4",
+    });
+  });
+
+  it("returns null for invalid slug", () => {
+    expect(parseProgrammeSlug("not-a-valid-slug")).toBeNull();
+  });
+});
 
 describe("parseSubjectPhaseSlug", () => {
   it("should extract from a valid slug", () => {
