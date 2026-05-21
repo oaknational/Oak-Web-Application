@@ -11,6 +11,7 @@ import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 const render = renderWithProviders();
 
 const mockBrowseRefined = jest.fn();
+const pushMock = jest.fn();
 jest.mock("@/context/Analytics/useAnalytics", () => ({
   __esModule: true,
   default: () => ({
@@ -21,7 +22,9 @@ jest.mock("@/context/Analytics/useAnalytics", () => ({
 }));
 
 jest.mock("next/navigation", () => ({
-  useRouter: jest.fn(),
+  useRouter: jest.fn(() => ({
+    push: pushMock,
+  })),
   usePathname: jest.fn(() => "/test-path"),
 }));
 
@@ -32,6 +35,7 @@ describe("TopNavDropdown", () => {
   beforeEach(() => {
     onCloseMock.mockReset();
     mockBrowseRefined.mockReset();
+    pushMock.mockReset();
     focusManager = new DropdownFocusManager(
       topNavFixture.teachers!,
       "teachers",
@@ -297,7 +301,7 @@ describe("TopNavDropdown", () => {
         ).not.toBeInTheDocument();
       });
 
-      it("closes exam board panel and tracks exam board filter when selected", async () => {
+      it("closes exam board panel and tracks subject filter when exam board is selected", async () => {
         const user = userEvent.setup();
         render(
           <TopNavDropdown
@@ -321,14 +325,18 @@ describe("TopNavDropdown", () => {
         geographyButton.addEventListener("click", (e) => e.preventDefault());
         await user.click(geographyButton);
 
+        mockBrowseRefined.mockClear();
+
         const examBoardButton = screen.getByRole("radio", { name: /AQA/ });
-        examBoardButton.addEventListener("click", (e) => e.preventDefault());
         await user.click(examBoardButton);
 
         expect(mockBrowseRefined).toHaveBeenCalledWith(
           expect.objectContaining({
-            filterType: "Exam board filter",
-            filterValue: "aqa",
+            filterType: "Subject filter",
+            filterValue: "geography",
+            activeFilters: expect.objectContaining({
+              keystage: expect.arrayContaining(["ks4"]),
+            }),
           }),
         );
         expect(
