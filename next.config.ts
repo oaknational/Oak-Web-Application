@@ -434,6 +434,11 @@ export default async (phase: NextConfig["phase"]): Promise<NextConfig> => {
           destination: "/about-us/oaks-curricula",
           permanent: true,
         },
+        {
+          source: "/teachers/curriculum/:programmeSlug/units",
+          destination: "/teachers/programmes/:programmeSlug/units",
+          permanent: true,
+        },
       ];
 
       return [
