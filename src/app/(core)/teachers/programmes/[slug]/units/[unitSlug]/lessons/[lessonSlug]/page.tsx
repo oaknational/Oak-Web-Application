@@ -19,7 +19,7 @@ import { TeachersLessonOverviewPageData } from "@/node-lib/curriculum-api-2023/q
 import { getTeacherSubjectPhaseSlug } from "@/utils/curriculum/slugs";
 
 type LessonPageParams = {
-  subjectPhaseSlug: string;
+  slug: string;
   unitSlug: string;
   lessonSlug: string;
 };
@@ -41,14 +41,10 @@ const getCachedLessonData = cache(
 export async function generateMetadata(
   props: AppPageProps<LessonPageParams>,
 ): Promise<Metadata> {
-  const { subjectPhaseSlug, unitSlug, lessonSlug } = await props.params;
+  const { slug: programmeSlug, unitSlug, lessonSlug } = await props.params;
 
   try {
-    const data = await getCachedLessonData(
-      subjectPhaseSlug,
-      unitSlug,
-      lessonSlug,
-    );
+    const data = await getCachedLessonData(programmeSlug, unitSlug, lessonSlug);
     const {
       lessonTitle,
       keyStageSlug,
@@ -77,11 +73,7 @@ export async function generateMetadata(
 }
 
 const InnerLessonPage = async (props: AppPageProps<LessonPageParams>) => {
-  const {
-    subjectPhaseSlug: programmeSlug,
-    unitSlug,
-    lessonSlug,
-  } = await props.params;
+  const { slug: programmeSlug, unitSlug, lessonSlug } = await props.params;
 
   const data = await getCachedLessonData(programmeSlug, unitSlug, lessonSlug);
 

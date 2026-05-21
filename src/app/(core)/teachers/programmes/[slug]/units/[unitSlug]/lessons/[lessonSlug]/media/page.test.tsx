@@ -68,7 +68,7 @@ const lessonMediaFixture: LessonMediaClipsData = lessonMediaClipsFixtures({
 });
 
 const defaultParams = {
-  subjectPhaseSlug: "maths-primary",
+  slug: "maths-primary",
   unitSlug: "geometry-abc123",
   lessonSlug: "intro-to-geometry-abc123",
 };
@@ -86,7 +86,7 @@ describe("LessonMediaPage", () => {
 
     expect(result).toBeDefined();
     expect(mockLessonMediaClips).toHaveBeenCalledWith({
-      programmeSlug: defaultParams.subjectPhaseSlug,
+      programmeSlug: defaultParams.slug,
       unitSlug: defaultParams.unitSlug,
       lessonSlug: defaultParams.lessonSlug,
     });

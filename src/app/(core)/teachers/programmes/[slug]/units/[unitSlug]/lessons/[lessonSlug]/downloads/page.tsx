@@ -14,7 +14,7 @@ import { resolveOakHref } from "@/common-lib/urls";
 import { getTeacherSubjectPhaseSlug } from "@/utils/curriculum/slugs";
 
 type LessonDownloadsPageParams = {
-  subjectPhaseSlug: string;
+  slug: string;
   unitSlug: string;
   lessonSlug: string;
 };
@@ -36,11 +36,11 @@ const getCachedLessonDownloadsData = cache(
 export async function generateMetadata(
   props: AppPageProps<LessonDownloadsPageParams>,
 ): Promise<Metadata> {
-  const { subjectPhaseSlug, unitSlug, lessonSlug } = await props.params;
+  const { slug: programmeSlug, unitSlug, lessonSlug } = await props.params;
 
   try {
     const data = await getCachedLessonDownloadsData(
-      subjectPhaseSlug,
+      programmeSlug,
       unitSlug,
       lessonSlug,
     );
@@ -66,11 +66,7 @@ export async function generateMetadata(
 const InnerLessonDownloadsPage = async (
   props: AppPageProps<LessonDownloadsPageParams>,
 ) => {
-  const {
-    subjectPhaseSlug: programmeSlug,
-    unitSlug,
-    lessonSlug,
-  } = await props.params;
+  const { slug: programmeSlug, unitSlug, lessonSlug } = await props.params;
   const data = await getCachedLessonDownloadsData(
     programmeSlug,
     unitSlug,

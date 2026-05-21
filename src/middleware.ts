@@ -1,14 +1,7 @@
 import { clerkMiddleware } from "@clerk/nextjs/server";
-import { MiddlewareConfig, NextResponse } from "next/server";
+import { MiddlewareConfig } from "next/server";
 
-import { tryLegacyProgrammeUnitsRedirect } from "@/utils/integratedJourney/legacyProgrammeUnitsRedirect";
-
-export default clerkMiddleware(async (_auth, request) => {
-  const destination = tryLegacyProgrammeUnitsRedirect(request);
-  if (destination) {
-    return NextResponse.redirect(new URL(destination, request.url), 308);
-  }
-});
+export default clerkMiddleware();
 /**
  * Clerk middleware causes page latency, we're only enabling it for API routes or pages where
  * we need to access the user session in the backend
@@ -16,7 +9,8 @@ export default clerkMiddleware(async (_auth, request) => {
 
 export const config: MiddlewareConfig = {
   matcher: [
-    "/teachers/programmes/:programmeSlug/units",
+    // Skip Next.js internals and all static files, unless found in search params
+    // "/((?!_next|[^?]*\\.(?:html?|css|js(?!on)|jpe?g|webp|png|gif|svg|ttf|woff2?|ico|csv|docx?|xlsx?|zip|webmanifest)).*)",
     // API routes except /api/classroom/* which is used for Google Classroom Add-on
     "/(api|trpc)((?!/classroom))(.*)",
   ],

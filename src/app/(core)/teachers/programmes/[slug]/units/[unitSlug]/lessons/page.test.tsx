@@ -98,7 +98,7 @@ const ks4UnitOverviewFixture: TeachersUnitOverviewData = {
 };
 
 const defaultParams = {
-  subjectPhaseSlug: "maths-primary-ks2",
+  slug: "maths-primary-ks2",
   unitSlug: "geometry-abc123",
 };
 
@@ -156,7 +156,7 @@ describe("generateMetadata", () => {
 
     const result = await generateMetadata({
       params: Promise.resolve({
-        subjectPhaseSlug: "maths-secondary-ks4-aqa",
+        slug: "maths-secondary-ks4-aqa",
         unitSlug: "geometry-abc123",
       }),
       searchParams: Promise.resolve({}),

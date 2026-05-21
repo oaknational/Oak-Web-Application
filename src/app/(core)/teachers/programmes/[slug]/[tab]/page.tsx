@@ -29,6 +29,7 @@ import { getMvRefreshTime } from "@/pages-helpers/curriculum/downloads/getMvRefr
 import { resolveOakHref } from "@/common-lib/urls";
 import { getSubjectPhaseSlug } from "@/components/TeacherComponents/helpers/getSubjectPhaseSlug";
 import { resolveFilterFromSearchParams } from "@/utils/curriculum/filtersUrl";
+import { redirectLegacyProgrammeUnitsIfNeeded } from "@/utils/integratedJourney/legacyProgrammeUnitsRedirect";
 
 const reportError = errorReporter("programme-page::app");
 
@@ -38,7 +39,7 @@ const getCachedProgrammeData = cache(async (subjectPhaseSlug: string) => {
   return getProgrammeData(curriculumApi2023, subjectPhaseSlug);
 });
 
-type ProgrammePageParams = { subjectPhaseSlug: string; tab: string };
+type ProgrammePageParams = { slug: string; tab: string };
 export type PageSearchParms = { [key: string]: string | string[] | undefined };
 export async function generateMetadata({
   params,
@@ -47,17 +48,19 @@ export async function generateMetadata({
   params: Promise<ProgrammePageParams>;
   searchParams: Promise<PageSearchParms>;
 }): Promise<Metadata> {
-  const { subjectPhaseSlug } = await params;
+  const { slug, tab } = await params;
   const pageSearchParams = await searchParams;
 
+  redirectLegacyProgrammeUnitsIfNeeded(slug, tab, pageSearchParams);
+
   try {
-    const cachedData = await getCachedProgrammeData(subjectPhaseSlug);
+    const cachedData = await getCachedProgrammeData(slug);
     if (!cachedData) {
       return {};
     }
 
     const canonicalURL = new URL(
-      `/programmes/${subjectPhaseSlug}/units`,
+      `/teachers/programmes/${slug}/units`,
       getBrowserConfig("seoAppUrl"),
     ).toString();
 
@@ -87,8 +90,12 @@ export async function generateMetadata({
 }
 
 const InnerProgrammePage = async (props: AppPageProps<ProgrammePageParams>) => {
-  const { subjectPhaseSlug, tab } = await props.params;
+  const { slug, tab } = await props.params;
   const searchParams = await props.searchParams;
+
+  redirectLegacyProgrammeUnitsIfNeeded(slug, tab, searchParams ?? {});
+
+  const subjectPhaseSlug = slug;
 
   if (!isTabSlug(tab)) {
     return redirect("units");

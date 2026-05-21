@@ -13,7 +13,7 @@ import {
 
 const usePathnameMock = jest
   .fn()
-  .mockReturnValue("/programmes/science-secondary-aqa/units");
+  .mockReturnValue("/teachers/programmes/science-secondary-aqa/units");
 const useRouterMock = jest.fn();
 const mockUseFetchResult = { data: [], error: null, isLoading: false };
 
@@ -113,7 +113,7 @@ describe("ProgrammeView", () => {
   });
   it("renders the correct tab content for overview", () => {
     usePathnameMock.mockReturnValue(
-      "/programmes/science-secondary-aqa/curriculum-explainer",
+      "/teachers/programmes/science-secondary-aqa/curriculum-explainer",
     );
     render(<ProgrammeView {...defaultProps} tabSlug="curriculum-explainer" />);
     const heading = screen.getByRole("heading", { name: "Aims and purpose" });
@@ -121,7 +121,7 @@ describe("ProgrammeView", () => {
   });
   it("renders the correct tab content for download", () => {
     usePathnameMock.mockReturnValue(
-      "/programmes/science-secondary-aqa/download",
+      "/teachers/programmes/science-secondary-aqa/download",
     );
     render(<ProgrammeView {...defaultProps} tabSlug="download" />);
     const content = screen.getByText("Download curriculum resources");
@@ -162,7 +162,7 @@ describe("ProgrammeView", () => {
   describe("initialFilter prop (SSR filter resolution)", () => {
     beforeEach(() => {
       usePathnameMock.mockReturnValue(
-        "/programmes/science-secondary-aqa/units",
+        "/teachers/programmes/science-secondary-aqa/units",
       );
     });
 

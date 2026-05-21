@@ -79,7 +79,7 @@ const lessonOverviewFixture: Partial<TeachersLessonOverviewPageData> = {
 };
 
 const defaultParams = {
-  subjectPhaseSlug: "maths-primary-ks2",
+  slug: "maths-primary-ks2",
   unitSlug: "geometry-abc123",
   lessonSlug: "intro-to-geometry-abc123",
 };

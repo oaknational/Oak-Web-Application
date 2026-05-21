@@ -76,7 +76,7 @@ const lessonDownloadsFixture: Partial<LessonDownloadsPageData> = {
 };
 
 const defaultParams = {
-  subjectPhaseSlug: "maths-primary",
+  slug: "maths-primary",
   unitSlug: "geometry-abc123",
   lessonSlug: "intro-to-geometry-abc123",
 };

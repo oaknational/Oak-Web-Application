@@ -9,7 +9,7 @@ import withPageErrorHandling, {
 } from "@/hocs/withPageErrorHandling";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 
-type LessonsPageParams = { subjectPhaseSlug: string; unitSlug: string };
+type LessonsPageParams = { slug: string; unitSlug: string };
 
 const getCachedUnitData = cache(
   async (subjectPhaseSlug: string, unitSlug: string) => {
@@ -23,10 +23,10 @@ const getCachedUnitData = cache(
 export async function generateMetadata(
   props: AppPageProps<LessonsPageParams>,
 ): Promise<Metadata> {
-  const { subjectPhaseSlug, unitSlug } = await props.params;
+  const { slug: programmeSlug, unitSlug } = await props.params;
 
   try {
-    const data = await getCachedUnitData(subjectPhaseSlug, unitSlug);
+    const data = await getCachedUnitData(programmeSlug, unitSlug);
     const {
       unitTitle,
       keyStageSlug,
@@ -54,7 +54,7 @@ export async function generateMetadata(
 }
 
 const InnerUnitPage = async (props: AppPageProps<LessonsPageParams>) => {
-  const { subjectPhaseSlug: programmeSlug, unitSlug } = await props.params;
+  const { slug: programmeSlug, unitSlug } = await props.params;
   const data = await getCachedUnitData(programmeSlug, unitSlug);
 
   return <UnitView {...data} />;

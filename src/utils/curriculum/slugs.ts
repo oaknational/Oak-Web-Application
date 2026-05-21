@@ -31,9 +31,7 @@ export type ParsedProgrammeSlug = {
 };
 
 function findOptionIndex(parts: string[], options: readonly string[]): number {
-  return parts.findIndex((part) =>
-    (options as readonly string[]).includes(part),
-  );
+  return parts.findIndex((part) => options.includes(part));
 }
 
 function spliceOption(
@@ -105,16 +103,6 @@ export function parseProgrammeSlug(
     examboardSlug,
     childSubjectSlug,
   };
-}
-
-/** Programme slug (includes keystage or year, e.g. `citizenship-secondary-ks3`). */
-export function isProgrammeSlug(slug: string): boolean {
-  return parseProgrammeSlug(slug) !== null;
-}
-
-/** Subject phase slug (e.g. `citizenship-secondary`, `english-secondary-aqa`). */
-export function isSubjectPhaseSlug(slug: string): boolean {
-  return parseSubjectPhaseSlug(slug) !== undefined && !isProgrammeSlug(slug);
 }
 
 export type CurriculumSelectionSlugs = {

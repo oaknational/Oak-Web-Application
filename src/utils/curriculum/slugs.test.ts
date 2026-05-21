@@ -2,8 +2,6 @@ import {
   createTeacherProgrammeSlug,
   getKs4RedirectSlug,
   getTeacherSubjectPhaseSlug,
-  isProgrammeSlug,
-  isSubjectPhaseSlug,
   isValidSubjectPhaseSlug,
   KS4_EXAMBOARD_PREFERENCE,
   parseProgrammeSlug,
@@ -12,23 +10,6 @@ import {
 
 import { createUnit } from "@/fixtures/curriculum/unit";
 import { CurriculumPhaseOptions } from "@/node-lib/curriculum-api-2023/queries/curriculumPhaseOptions/curriculumPhaseOptions.query";
-
-describe("isProgrammeSlug and isSubjectPhaseSlug", () => {
-  it("distinguishes teacher programme slugs from subject phase slugs", () => {
-    expect(isProgrammeSlug("citizenship-secondary-ks3")).toBe(true);
-    expect(isSubjectPhaseSlug("citizenship-secondary-ks3")).toBe(false);
-
-    expect(isProgrammeSlug("citizenship-secondary")).toBe(false);
-    expect(isSubjectPhaseSlug("citizenship-secondary")).toBe(true);
-
-    expect(isProgrammeSlug("english-secondary-aqa")).toBe(false);
-    expect(isSubjectPhaseSlug("english-secondary-aqa")).toBe(true);
-
-    expect(isProgrammeSlug("biology-secondary-ks4-higher-aqa")).toBe(true);
-    expect(isSubjectPhaseSlug("science-secondary-aqa")).toBe(true);
-    expect(isProgrammeSlug("science-secondary-aqa")).toBe(false);
-  });
-});
 
 describe("parseProgrammeSlug", () => {
   it("parses ks3 programme slug", () => {

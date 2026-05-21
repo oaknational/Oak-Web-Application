@@ -1,64 +1,46 @@
+import { permanentRedirect } from "next/navigation";
+
 import { resolveOakHref } from "@/common-lib/urls";
 import type { UrlQueryObject } from "@/common-lib/urls/createQueryStringFromObject";
 import {
   getTeacherSubjectPhaseSlug,
-  isProgrammeSlug,
   parseProgrammeSlug,
+  type ParsedProgrammeSlug,
 } from "@/utils/curriculum/slugs";
 
-function searchParamsToQuery(params: URLSearchParams): UrlQueryObject {
-  const query: UrlQueryObject = {};
-  params.forEach((value, key) => {
-    query[key] = value;
-  });
-  return query;
-}
-
-const LEGACY_UNITS_PATH =
-  /^\/teachers\/programmes\/(?<programmeSlug>[^/]+)\/units\/?$/;
-
-export function getLegacyProgrammeSlugFromPathname(
-  pathname: string,
-): string | null {
-  const slug = LEGACY_UNITS_PATH.exec(pathname)?.groups?.programmeSlug;
-  // The path shape matches both programme slugs (e.g. citizenship-secondary-ks3) and
-  // subject phase slugs (e.g. citizenship-secondary) at this URL.
-  // parseSubjectPhaseSlug would accept either, so we only redirect true programme slugs.
-  if (!slug || !isProgrammeSlug(slug)) {
-    return null;
+function firstSearchParamValue(
+  value: string | string[] | null | undefined,
+): string | undefined {
+  if (value === null || value === undefined) {
+    return undefined;
   }
-  return slug;
+  return Array.isArray(value) ? value[0] : value;
 }
 
 function mapLegacySearchParams(
-  out: URLSearchParams,
-  searchParams: URLSearchParams,
-) {
-  const year = searchParams.get("year");
+  out: UrlQueryObject,
+  searchParams: UrlQueryObject,
+): void {
+  const year = firstSearchParamValue(searchParams.year);
   if (year) {
-    out.set("years", year.replace(/^year-/, ""));
+    out.years = year.replace(/^year-/, "");
   }
 
-  const learningTheme = searchParams.get("learning-theme");
+  const learningTheme = firstSearchParamValue(searchParams["learning-theme"]);
   if (learningTheme && learningTheme !== "all") {
-    out.set("threads", learningTheme);
+    out.threads = learningTheme;
   }
 
-  const category = searchParams.get("category");
+  const category = firstSearchParamValue(searchParams.category);
   if (category) {
-    out.set("subject_categories", category);
+    out.subject_categories = category;
   }
 }
 
 export function buildIntegratedProgrammeUnitsUrl(
-  programmeSlug: string,
-  searchParams: URLSearchParams,
-): string | null {
-  const parsed = parseProgrammeSlug(programmeSlug);
-  if (!parsed) {
-    return null;
-  }
-
+  parsed: ParsedProgrammeSlug,
+  searchParams: UrlQueryObject = {},
+): string {
   const subjectPhaseSlug = getTeacherSubjectPhaseSlug({
     subjectSlug: parsed.childSubjectSlug ? "science" : parsed.subjectSlug,
     phaseSlug: parsed.phaseSlug,
@@ -66,46 +48,60 @@ export function buildIntegratedProgrammeUnitsUrl(
     pathwaySlug: parsed.pathwaySlug,
   });
 
-  const out = new URLSearchParams();
+  const query: UrlQueryObject = {};
 
   if (parsed.keystageSlug) {
-    out.set("keystages", parsed.keystageSlug);
+    query.keystages = parsed.keystageSlug;
   }
 
   if (parsed.yearSlug) {
-    out.set("years", parsed.yearSlug.replace(/^year-/, ""));
+    query.years = parsed.yearSlug.replace(/^year-/, "");
   }
 
   if (parsed.tierSlug) {
-    out.set("tiers", parsed.tierSlug);
+    query.tiers = parsed.tierSlug;
   }
 
   if (parsed.childSubjectSlug) {
-    out.set("child_subjects", parsed.childSubjectSlug);
+    query.child_subjects = parsed.childSubjectSlug;
   }
 
-  mapLegacySearchParams(out, searchParams);
+  mapLegacySearchParams(query, searchParams);
 
   return resolveOakHref({
     page: "teacher-programme",
     subjectPhaseSlug,
     tab: "units",
-    query: searchParamsToQuery(out),
+    query,
   });
 }
 
-export function tryLegacyProgrammeUnitsRedirect(request: {
-  nextUrl: { pathname: string; searchParams: URLSearchParams };
-}): string | null {
-  const programmeSlug = getLegacyProgrammeSlugFromPathname(
-    request.nextUrl.pathname,
-  );
-  if (!programmeSlug) {
+export function getLegacyProgrammeUnitsRedirectDestination(
+  slug: string,
+  tab: string,
+  searchParams: UrlQueryObject,
+): string | null {
+  if (tab !== "units") {
     return null;
   }
+  const parsed = parseProgrammeSlug(slug);
+  if (!parsed) {
+    return null;
+  }
+  return buildIntegratedProgrammeUnitsUrl(parsed, searchParams);
+}
 
-  return buildIntegratedProgrammeUnitsUrl(
-    programmeSlug,
-    request.nextUrl.searchParams,
+export function redirectLegacyProgrammeUnitsIfNeeded(
+  slug: string,
+  tab: string,
+  searchParams: UrlQueryObject,
+): void {
+  const destination = getLegacyProgrammeUnitsRedirectDestination(
+    slug,
+    tab,
+    searchParams,
   );
+  if (destination) {
+    permanentRedirect(destination);
+  }
 }

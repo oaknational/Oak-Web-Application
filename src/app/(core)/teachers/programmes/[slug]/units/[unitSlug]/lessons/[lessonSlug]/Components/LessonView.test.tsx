@@ -60,11 +60,11 @@ describe("Previous and Next Lesson Navigation", () => {
       screen.getByRole("link", { name: /Previous lesson/i }),
     ).toHaveAttribute(
       "href",
-      "/programmes/biology-secondary-ks3/units/cells/lessons/lesson-2",
+      "/teachers/programmes/biology-secondary-ks3/units/cells/lessons/lesson-2",
     );
     expect(screen.getByRole("link", { name: /Next lesson/i })).toHaveAttribute(
       "href",
-      "/programmes/biology-secondary-ks3/units/cells/lessons/lesson-4",
+      "/teachers/programmes/biology-secondary-ks3/units/cells/lessons/lesson-4",
     );
   });
 
@@ -103,11 +103,11 @@ describe("Previous and Next Lesson Navigation", () => {
       screen.getByRole("link", { name: /Previous lesson/i }),
     ).toHaveAttribute(
       "href",
-      "/programmes/biology-secondary-ks3/units/cells/lessons/lesson-2",
+      "/teachers/programmes/biology-secondary-ks3/units/cells/lessons/lesson-2",
     );
     expect(screen.getByRole("link", { name: /Next lesson/i })).toHaveAttribute(
       "href",
-      "/programmes/biology-secondary-ks3/units/cells/lessons/lesson-4",
+      "/teachers/programmes/biology-secondary-ks3/units/cells/lessons/lesson-4",
     );
   });
 });

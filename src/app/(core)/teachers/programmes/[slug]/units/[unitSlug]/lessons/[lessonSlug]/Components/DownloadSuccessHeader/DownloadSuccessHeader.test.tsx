@@ -15,7 +15,7 @@ jest.mock("@oaknational/oak-consent-client", () => ({
 
 describe("DownloadSuccessHeader", () => {
   it("passes href to the back link", () => {
-    const testHref = "/programmes/english/key-stage-3";
+    const testHref = "/teachers/programmes/english/key-stage-3";
     render(<DownloadSuccessHeader href={testHref} returnTo="lesson" />);
 
     const backLink = screen.getByRole("link", { name: "Back to lesson" });

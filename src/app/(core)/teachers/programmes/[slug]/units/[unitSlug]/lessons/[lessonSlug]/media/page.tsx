@@ -15,7 +15,7 @@ import { populateMediaClipsWithTranscripts } from "@/utils/handleTranscript";
 import { getTeacherSubjectPhaseSlug } from "@/utils/curriculum/slugs";
 
 type LessonMediaPageParams = {
-  subjectPhaseSlug: string;
+  slug: string;
   unitSlug: string;
   lessonSlug: string;
 };
@@ -33,11 +33,11 @@ const getCachedLessonMediaClipsData = cache(
 export async function generateMetadata(
   props: AppPageProps<LessonMediaPageParams>,
 ): Promise<Metadata> {
-  const { subjectPhaseSlug, unitSlug, lessonSlug } = await props.params;
+  const { slug: programmeSlug, unitSlug, lessonSlug } = await props.params;
 
   try {
     const data = await getCachedLessonMediaClipsData(
-      subjectPhaseSlug,
+      programmeSlug,
       unitSlug,
       lessonSlug,
     );
@@ -62,11 +62,7 @@ export async function generateMetadata(
 const InnerLessonMediaPage = async (
   props: AppPageProps<LessonMediaPageParams>,
 ) => {
-  const {
-    subjectPhaseSlug: programmeSlug,
-    unitSlug,
-    lessonSlug,
-  } = await props.params;
+  const { slug: programmeSlug, unitSlug, lessonSlug } = await props.params;
 
   const data = await getCachedLessonMediaClipsData(
     programmeSlug,

@@ -24,6 +24,12 @@ jest.mock("next/navigation", () => {
     notFound: () => {
       throw new Error("NEXT_HTTP_ERROR_FALLBACK;404");
     },
+    redirect: (url: string) => {
+      throw new Error(`NEXT_REDIRECT;${url}`);
+    },
+    permanentRedirect: (url: string) => {
+      throw new Error(`NEXT_PERMANENT_REDIRECT;${url}`);
+    },
   };
 });
 
@@ -108,18 +114,79 @@ jest.mock("@/common-lib/error-reporter", () => ({
 describe("Programme page tabs", () => {
   beforeEach(() => {
     jest.mocked(CMSClient.curriculumOverviewPage).mockClear();
+    jest.mocked(getProgrammeData).mockClear();
   });
 
   it("renders 404 page if feature flag is disabled", async () => {
     await expect(
       ProgrammePageTabs({
         params: Promise.resolve({
-          subjectPhaseSlug: "maths-primary",
+          slug: "maths-primary",
           tab: "units",
-          searchParams: Promise.resolve({}),
         }),
+        searchParams: Promise.resolve({}),
       }),
     ).rejects.toEqual(new Error("NEXT_HTTP_ERROR_FALLBACK;404"));
+  });
+
+  it("permanentRedirects legacy programme slug on units tab", async () => {
+    await expect(
+      ProgrammePageTabs({
+        params: Promise.resolve({
+          slug: "citizenship-secondary-ks3",
+          tab: "units",
+        }),
+        searchParams: Promise.resolve({
+          year: "year-7",
+          "learning-theme": "all",
+        }),
+      }),
+    ).rejects.toEqual(
+      new Error(
+        "NEXT_PERMANENT_REDIRECT;/teachers/programmes/citizenship-secondary/units?keystages=ks3&years=7",
+      ),
+    );
+    expect(getProgrammeData).not.toHaveBeenCalled();
+  });
+
+  it("does not redirect subject phase slug on units tab", async () => {
+    featureFlagMock.mockResolvedValue(true);
+    jest.mocked(getProgrammeData).mockResolvedValue({
+      programmeUnitsData: curriculumOverviewMVFixture({
+        subjectTitle: "Maths",
+      }),
+      curriculumUnitsData: {
+        units: [
+          createUnit({
+            slug: "test",
+            year: "5",
+            subject_slug: "maths",
+            phase_slug: "primary",
+          }),
+        ],
+      },
+      curriculumPhaseOptions: {
+        subjects: filterValidCurriculumPhaseOptions(
+          curriculumPhaseOptionsFixture().filter((s) => s.slug === "maths"),
+        ),
+        tab: "units" as const,
+      },
+      subjectPhaseKeystageSlugs: {
+        subjectSlug: "maths",
+        phaseSlug: "primary",
+        ks4OptionSlug: null,
+      },
+    });
+
+    const result = await ProgrammePageTabs({
+      params: Promise.resolve({
+        slug: "maths-primary",
+        tab: "units",
+      }),
+      searchParams: Promise.resolve({}),
+    });
+
+    expect(result).toBeDefined();
   });
 
   it("renders when the feature flag is enabled", async () => {
@@ -155,7 +222,7 @@ describe("Programme page tabs", () => {
 
     const result = await ProgrammePageTabs({
       params: Promise.resolve({
-        subjectPhaseSlug: "maths-primary",
+        slug: "maths-primary",
         tab: "units",
       }),
       searchParams: Promise.resolve({}),
@@ -202,7 +269,7 @@ describe("Programme page tabs", () => {
 
     const result = await ProgrammePageTabs({
       params: Promise.resolve({
-        subjectPhaseSlug: "financial-education-primary",
+        slug: "financial-education-primary",
         tab: "units",
       }),
       searchParams: Promise.resolve({}),
@@ -249,7 +316,7 @@ describe("Programme page tabs", () => {
     await expect(
       ProgrammePageTabs({
         params: Promise.resolve({
-          subjectPhaseSlug: "maths-primary",
+          slug: "maths-primary",
           tab: "units",
         }),
         searchParams: Promise.resolve({}),
@@ -266,7 +333,7 @@ describe("Programme page tabs", () => {
     await expect(
       ProgrammePageTabs({
         params: Promise.resolve({
-          subjectPhaseSlug: "fake-slug",
+          slug: "fake-slug",
           tab: "units",
         }),
         searchParams: Promise.resolve({}),
@@ -276,12 +343,33 @@ describe("Programme page tabs", () => {
 });
 
 describe("generateMetadata", () => {
+  beforeEach(() => {
+    jest.mocked(getProgrammeData).mockClear();
+  });
+
+  it("permanentRedirects legacy programme slug on units tab", async () => {
+    await expect(
+      generateMetadata({
+        params: Promise.resolve({
+          slug: "citizenship-secondary-ks3",
+          tab: "units",
+        }),
+        searchParams: Promise.resolve({ year: "year-7" }),
+      }),
+    ).rejects.toEqual(
+      new Error(
+        "NEXT_PERMANENT_REDIRECT;/teachers/programmes/citizenship-secondary/units?keystages=ks3&years=7",
+      ),
+    );
+    expect(getProgrammeData).not.toHaveBeenCalled();
+  });
+
   it("returns empty object when no programme data is found", async () => {
     jest.mocked(getProgrammeData).mockResolvedValueOnce(null);
 
     const result = await generateMetadata({
       params: Promise.resolve({
-        subjectPhaseSlug: "maths-primary",
+        slug: "maths-primary",
         tab: "units",
       }),
       searchParams: Promise.resolve({}),
@@ -323,7 +411,7 @@ describe("generateMetadata", () => {
 
     const result = await generateMetadata({
       params: Promise.resolve({
-        subjectPhaseSlug: "maths-primary",
+        slug: "maths-primary",
         tab: "units",
       }),
       searchParams: Promise.resolve({}),
@@ -337,7 +425,7 @@ describe("generateMetadata", () => {
     );
 
     expect(result.alternates?.canonical).toBe(
-      "https://www.thenational.academy/programmes/maths-primary/units",
+      "https://www.thenational.academy/teachers/programmes/maths-primary/units",
     );
     expect(result.openGraph?.title).toBe(
       "Free Secondary Maths Lesson & Curriculum Resources",
@@ -358,7 +446,7 @@ describe("generateMetadata", () => {
 
     const result = await generateMetadata({
       params: Promise.resolve({
-        subjectPhaseSlug: "maths-primary",
+        slug: "maths-primary",
         tab: "units",
       }),
       searchParams: Promise.resolve({}),

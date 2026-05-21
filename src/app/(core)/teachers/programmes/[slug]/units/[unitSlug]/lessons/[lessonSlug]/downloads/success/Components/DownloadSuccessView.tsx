@@ -10,8 +10,8 @@ import {
 } from "@oaknational/oak-components";
 import { useEffect } from "react";
 
-import { LessonList } from "@/app/(core)/programmes/[subjectPhaseSlug]/units/[unitSlug]/lessons/Components/LessonList";
-import { DownloadSuccessHeader } from "@/app/(core)/programmes/[subjectPhaseSlug]/units/[unitSlug]/lessons/[lessonSlug]/Components/DownloadSuccessHeader/DownloadSuccessHeader";
+import { LessonList } from "@/app/(core)/teachers/programmes/[slug]/units/[unitSlug]/lessons/Components/LessonList";
+import { DownloadSuccessHeader } from "@/app/(core)/teachers/programmes/[slug]/units/[unitSlug]/lessons/[lessonSlug]/Components/DownloadSuccessHeader/DownloadSuccessHeader";
 import UnitDownloadButton, {
   useUnitDownloadButtonState,
 } from "@/components/TeacherComponents/UnitDownloadButton/UnitDownloadButton";
