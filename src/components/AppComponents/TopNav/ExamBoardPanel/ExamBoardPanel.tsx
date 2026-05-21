@@ -30,6 +30,7 @@ export type ExamBoardPanelProps = {
   focusManager?: DropdownFocusManager<TeachersSubNavData>;
   onClick: (examBoardSlug: string, programmeSlug: string) => void;
   onClose: () => void;
+  onLeave: () => void;
 };
 
 const ExamBoardPanel = ({
@@ -38,6 +39,7 @@ const ExamBoardPanel = ({
   focusManager,
   onClick,
   onClose,
+  onLeave,
 }: ExamBoardPanelProps) => {
   const router = useRouter();
   const parentId = focusManager?.createId(
@@ -155,6 +157,7 @@ const ExamBoardPanel = ({
 
       if (siblingElement) {
         siblingElement.focus();
+        onLeave();
       } else {
         document.getElementById(parentId)?.focus();
       }

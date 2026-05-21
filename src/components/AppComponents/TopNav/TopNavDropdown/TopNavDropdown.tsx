@@ -228,6 +228,7 @@ const TeachersPhaseSection = ({
                 focusManager={focusManager}
                 onClick={onClick}
                 onClose={closeExamBoardPanel}
+                onLeave={closeExamBoardPanel}
               />
             )}
         </>
