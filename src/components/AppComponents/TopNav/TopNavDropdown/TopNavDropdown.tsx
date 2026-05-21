@@ -103,7 +103,7 @@ const TeachersPhaseSection = ({
   };
 
   const handleSubjectBlurOrLeave = () => {
-    if (examBoardPanelMode === "closed") return;
+    if (examBoardPanelMode !== "closed") return;
     setSelectedSubject(null);
   };
 
