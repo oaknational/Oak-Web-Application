@@ -53,6 +53,7 @@ describe("ExamBoardPanel", () => {
         selectedSubject={selectedSubject}
         onClick={mockOnClick}
         onClose={mockOnClose}
+        onLeave={mockOnClose}
       />,
     );
 
@@ -70,6 +71,7 @@ describe("ExamBoardPanel", () => {
         selectedSubject={selectedSubject}
         onClick={mockOnClick}
         onClose={mockOnClose}
+        onLeave={mockOnClose}
       />,
     );
 
@@ -85,6 +87,7 @@ describe("ExamBoardPanel", () => {
         selectedSubject={selectedSubject}
         onClick={mockOnClick}
         onClose={mockOnClose}
+        onLeave={mockOnClose}
       />,
     );
 
@@ -104,6 +107,7 @@ describe("ExamBoardPanel", () => {
         selectedSubject={selectedSubject}
         onClick={mockOnClick}
         onClose={mockOnClose}
+        onLeave={mockOnClose}
       />,
     );
 
