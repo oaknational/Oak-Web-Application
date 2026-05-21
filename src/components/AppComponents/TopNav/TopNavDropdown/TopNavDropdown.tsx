@@ -60,7 +60,7 @@ const TeachersPhaseSection = ({
     useState<SubjectsNavItem | null>(null);
 
   const [examBoardPanelMode, setExamBoardPanelMode] = useState<
-    "closed" | "hover" | "open"
+    "closed" | "open"
   >("closed");
 
   useEffect(() => {
@@ -103,7 +103,7 @@ const TeachersPhaseSection = ({
   };
 
   const handleSubjectBlurOrLeave = () => {
-    if (examBoardPanelMode !== "hover") return;
+    if (examBoardPanelMode === "closed") return;
     setSelectedSubject(null);
   };
 
