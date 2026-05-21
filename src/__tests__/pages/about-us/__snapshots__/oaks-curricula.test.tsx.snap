@@ -5206,10 +5206,12 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
                     See Oak's curricula in practice
                   </h2>
                   <nav
+                    aria-labelledby="choose-curriculum-label"
                     class="c70"
                   >
                     <div
                       class="c115"
+                      id="choose-curriculum-label"
                     >
                       Choose a curriculum
                     </div>
