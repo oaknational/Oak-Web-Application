@@ -8,10 +8,9 @@ import { ClerkProvider } from "@clerk/nextjs";
 import { ComponentProps } from "react";
 import { mocked } from "storybook/test";
 
-import { __setMockAuthState } from "../../../../../../../../../../.storybook/mocks/clerk";
-
 import LessonList from "./LessonList";
 
+import { __setMockAuthState } from "@/storybook-mocks/clerk";
 import NotificationsDecorator from "@/storybook-decorators/NotificationsDecorator";
 import SaveCountDecorator from "@/storybook-decorators/SaveCountDecorator";
 import lessonListingFixture, {

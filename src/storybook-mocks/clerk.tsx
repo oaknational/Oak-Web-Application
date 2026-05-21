@@ -1,4 +1,3 @@
-// .storybook/mocks/clerk.tsx
 import React from "react";
 
 /**
@@ -66,7 +65,7 @@ export const SignedIn = ({ children }: { children: React.ReactNode }) =>
   mockAuthState.isSignedIn ? <>{children}</> : null;
 
 export const SignedOut = ({ children }: { children: React.ReactNode }) =>
-  !mockAuthState.isSignedIn ? <>{children}</> : null;
+  mockAuthState.isSignedIn ? null : <>{children}</>;
 
 export const SignUpButton = ({ children }: { children: React.ReactNode }) => (
   <>{children}</>

@@ -2,13 +2,12 @@ import type { Meta, StoryObj } from "@storybook/nextjs";
 import { OakThemeProvider, oakDefaultTheme } from "@oaknational/oak-components";
 import { ClerkProvider } from "@clerk/nextjs";
 
-import { __setMockAuthState } from "../../../../../../../../../../../../.storybook/mocks/clerk";
-
 import {
   DownloadSuccessView,
   type DownloadSuccessViewProps,
 } from "./DownloadSuccessView";
 
+import { __setMockAuthState } from "@/storybook-mocks/clerk";
 import NotificationsDecorator from "@/storybook-decorators/NotificationsDecorator";
 import SaveCountDecorator from "@/storybook-decorators/SaveCountDecorator";
 import type { LessonListSchema } from "@/node-lib/curriculum-api-2023/shared.schema";

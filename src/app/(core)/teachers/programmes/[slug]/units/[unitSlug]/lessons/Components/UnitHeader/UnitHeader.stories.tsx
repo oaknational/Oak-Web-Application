@@ -7,10 +7,9 @@ import {
 } from "@oaknational/oak-components";
 import { fn, mocked } from "storybook/test";
 
-import { __setMockAuthState } from "../../../../../../../../../../.storybook/mocks/clerk";
-
 import UnitHeader, { UnitHeaderProps } from "./UnitHeader";
 
+import { __setMockAuthState } from "@/storybook-mocks/clerk";
 import useUnitDownloadExistenceCheck from "@/components/TeacherComponents/hooks/downloadAndShareHooks/useUnitDownloadExistenceCheck";
 
 const meta: Meta<typeof UnitHeader> = {
