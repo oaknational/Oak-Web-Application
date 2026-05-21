@@ -85,7 +85,6 @@ const TopNavSubjectButtons = ({
   keyStageSlug,
   handleClick,
   focusManager,
-  onSubjectHover,
   onSubjectLeave,
   onSubjectBlur,
   onExamBoardPanelOpen,
@@ -98,7 +97,6 @@ const TopNavSubjectButtons = ({
   keyStageSlug: string;
   handleClick: (subject: string, keystage: string) => void;
   focusManager?: DropdownFocusManager<TeachersData>;
-  onSubjectHover?: (subject: SubjectsNavItem) => void;
   onSubjectLeave?: (subject: SubjectsNavItem) => void;
   onSubjectBlur?: (subject: SubjectsNavItem) => void;
   onExamBoardPanelOpen?: (subject: SubjectsNavItem) => void;
@@ -155,8 +153,6 @@ const TopNavSubjectButtons = ({
                 onClick={(e: React.MouseEvent<HTMLAnchorElement>) =>
                   handleSubjectClick(e, subject)
                 }
-                onMouseEnter={() => onSubjectHover?.(subject)}
-                onFocus={() => onSubjectHover?.(subject)}
                 onMouseLeave={() => onSubjectLeave?.(subject)}
                 onBlur={() => onSubjectBlur?.(subject)}
                 phase={

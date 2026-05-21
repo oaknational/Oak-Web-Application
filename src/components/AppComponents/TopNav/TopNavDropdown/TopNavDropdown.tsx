@@ -102,10 +102,6 @@ const TeachersPhaseSection = ({
     );
   };
 
-  const handleSubjectHover = (subject: SubjectsNavItem) => {
-    setSelectedSubject(subject);
-  };
-
   const handleSubjectBlurOrLeave = () => {
     if (examBoardPanelMode !== "hover") return;
     setSelectedSubject(null);
@@ -219,7 +215,6 @@ const TeachersPhaseSection = ({
             subjects={allSubjects}
             selectedSubject={selectedSubject}
             keyStageSlug={selectedKeystage}
-            onSubjectHover={handleSubjectHover}
             onSubjectBlur={handleSubjectBlurOrLeave}
             onSubjectLeave={handleSubjectBlurOrLeave}
             onExamBoardPanelOpen={handleExamBoardPanelOpen}
