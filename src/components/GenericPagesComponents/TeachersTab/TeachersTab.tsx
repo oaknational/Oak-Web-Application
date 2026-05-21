@@ -10,6 +10,7 @@ import {
   OakP,
 } from "@oaknational/oak-components";
 
+import { getBreakpoint } from "@/styles/utils/responsive";
 import curriculumPhaseOptions from "@/browser-lib/fixtures/curriculumPhaseOptions";
 import SubjectPhasePicker from "@/components/SharedComponents/SubjectPhasePicker";
 import { SubjectPhasePickerData } from "@/components/SharedComponents/SubjectPhasePicker/SubjectPhasePicker";
@@ -21,32 +22,32 @@ type TeacherTabProps = {
 
 const RESOURCE_ICONS = [
   { iconName: "additional-material", text: "Teaching resources" },
-  { iconName: "curriculum-plan", text: "Curriculum plans" },
-  { iconName: "ai-slide-deck", text: "AI tools" },
-] as const;
+  { iconName: "clipboard", text: "Curriculum plans" },
+  { iconName: "ai-worksheet", text: "AI tools" },
+] as ResourcesIconProps[];
 
-function ResourcesIcon({
-  iconName,
-  text,
-}: {
-  readonly iconName: OakIconProps["iconName"];
-  readonly text: string;
-}) {
+interface ResourcesIconProps {
+  iconName: OakIconProps["iconName"];
+  text: string;
+}
+
+function ResourcesIcon({ iconName, text }: Readonly<ResourcesIconProps>) {
   return (
     <OakFlex
       $flexDirection={"row"}
-      $maxWidth={["auto", "spacing-160"]}
+      $maxWidth={["auto", "auto", "spacing-160"]}
       $alignItems={"center"}
       $gap="spacing-12"
     >
       <OakBox
         $borderRadius={"border-radius-circle"}
         $background={"bg-decorative1-very-subdued"}
-        $pa={"spacing-8"}
+        $pa="spacing-12"
       >
         <OakIcon
+          iconHeight="spacing-24"
+          iconWidth="spacing-24"
           aria-hidden={true}
-          $height={"spacing-32"}
           iconName={iconName}
         />
       </OakBox>
@@ -58,13 +59,12 @@ function ResourcesIcon({
 function ResourcesIcons() {
   return (
     <OakFlex
-      $mt="spacing-40"
+      $mt={["spacing-0", "spacing-24", "spacing-40"]}
       $flexDirection={["column", "column", "row"]}
       $alignItems={["start", "start", "center"]}
-      $flexWrap={"wrap"}
       $justifyContent={"center"}
-      $gap="spacing-32"
-      $width={"100%"}
+      $gap={["spacing-8", "spacing-8", "spacing-32"]}
+      $width={["100%", "auto"]}
     >
       {RESOURCE_ICONS.map(({ iconName, text }) => (
         <ResourcesIcon key={iconName} iconName={iconName} text={text} />
@@ -76,8 +76,9 @@ function ResourcesIcons() {
 function HomePageCopy() {
   return (
     <OakFlex $flexDirection={"column"} $gap={"spacing-24"}>
-      <OakHeading $font={"heading-3"} tag={"h1"}>
-        Helping you deliver a world-class curriculum
+      <OakHeading $font={["heading-4", "heading-4", "heading-3"]} tag={"h1"}>
+        <OakBox $width={"fit-content"}>Helping you deliver </OakBox>
+        <OakBox $width={"fit-content"}>a world-class curriculum</OakBox>
       </OakHeading>
       <OakTypography $font={"body-1"}>
         Free, national curriculum-aligned resources designed by subject experts,
@@ -89,35 +90,52 @@ function HomePageCopy() {
 
 function PhasePickerWithLegend({
   curriculumPhaseOptions,
+  layout,
 }: Readonly<{
   curriculumPhaseOptions: SubjectPhasePickerData;
+  layout: "mobile" | "tablet" | "desktop";
 }>) {
   return (
-    <OakBox>
-      <OakHeading tag="h3" $font="heading-7" $mb={"spacing-32"}>
+    <OakBox $width={"100%"}>
+      <OakHeading
+        tag="h3"
+        $font="heading-7"
+        $mb={["spacing-24", "spacing-24", "spacing-32"]}
+      >
         Explore curriculum plans and teaching resources
       </OakHeading>
-      <SubjectPhasePicker {...curriculumPhaseOptions} />
+      <SubjectPhasePicker
+        {...curriculumPhaseOptions}
+        id={"teachers-subject-picker-" + layout}
+      />
     </OakBox>
   );
 }
 
-const StyledBox = styled(OakBox)`
-  max-width: 524px;
+const IMAGE_WIDTH = 524;
+
+const BoxWithMaxWidth = styled(OakBox)`
+  max-width: auto;
+  @media (min-width: ${getBreakpoint("small")}px) {
+    max-width: ${IMAGE_WIDTH}px;
+  }
 `;
 
 function HeroImage() {
   return (
-    <Illustration
-      slug={"hero-pupils"}
-      $objectFit="contain"
-      priority
-      $ba={3}
-      width={524}
-      height={276}
-      $borderStyle={"solid"}
-      $borderColor={"black"}
-    />
+    <BoxWithMaxWidth $width="100%">
+      <Illustration
+        slug={"hero-pupils"}
+        noCrop
+        $objectFit="contain"
+        priority
+        $ba={3}
+        $borderStyle={"solid"}
+        $borderColor={"black"}
+        width={IMAGE_WIDTH}
+        height={313}
+      />
+    </BoxWithMaxWidth>
   );
 }
 
@@ -125,15 +143,14 @@ const TeachersTab: FC<TeacherTabProps> = () => {
   return (
     <OakFlex
       $background={"bg-decorative1-main"}
-      $pv={["spacing-80", "spacing-56", "spacing-48"]}
+      $pv={["spacing-48", "spacing-48", "spacing-56"]}
       $justifyContent={"center"}
     >
       {/* Mobile Layout */}
-      <OakBox $display={["block", "none", "none"]} $ph={["spacing-16"]}>
+      <OakBox $display={["block", "none", "none"]}>
         <OakFlex
           $flexDirection={"column"}
-          $maxWidth={["spacing-640"]}
-          $pt={"spacing-32"}
+          $ph="spacing-20"
           $alignItems={"flex-start"}
           $gap={"spacing-32"}
           $flexGrow={0}
@@ -149,18 +166,18 @@ const TeachersTab: FC<TeacherTabProps> = () => {
             <HeroImage />
           </OakFlex>
           <PhasePickerWithLegend
+            layout={"mobile"}
             curriculumPhaseOptions={curriculumPhaseOptions}
           />
+          <ResourcesIcons />
         </OakFlex>
-
-        <ResourcesIcons />
       </OakBox>
       {/* Tablet Layout */}
-      <OakBox $display={["none", "block", "none"]} $ph={["spacing-16"]}>
+      <OakBox $display={["none", "block", "none"]} $ph={"spacing-40"}>
         <OakFlex
-          $alignItems={"center"}
+          $alignItems={"start"}
           $justifyContent={"space-between"}
-          $gap="spacing-12"
+          $gap="spacing-16"
           $mb={"spacing-24"}
         >
           <OakBox $width={"50%"}>
@@ -171,6 +188,7 @@ const TeachersTab: FC<TeacherTabProps> = () => {
           </OakBox>
         </OakFlex>
         <PhasePickerWithLegend
+          layout="tablet"
           curriculumPhaseOptions={curriculumPhaseOptions}
         />
         <ResourcesIcons />
@@ -179,7 +197,7 @@ const TeachersTab: FC<TeacherTabProps> = () => {
       <OakBox
         $display={["none", "none", "block"]}
         $maxWidth={"spacing-1280"}
-        $ph={["spacing-16"]}
+        $ph={"spacing-56"}
       >
         <OakFlex
           $alignItems={"center"}
@@ -187,16 +205,17 @@ const TeachersTab: FC<TeacherTabProps> = () => {
           $gap={"spacing-40"}
           $mb={"spacing-24"}
         >
-          <OakBox $width={"50%"}>
+          <OakFlex $flexDirection={"column"} $gap={"spacing-40"} $width={"50%"}>
             <HomePageCopy />
             <PhasePickerWithLegend
+              layout="desktop"
               curriculumPhaseOptions={curriculumPhaseOptions}
             />
-          </OakBox>
-          <StyledBox $width={"50%"}>
+          </OakFlex>
+          <OakFlex $flexDirection={"column"} $alignItems="end" $width={"50%"}>
             <HeroImage />
             <ResourcesIcons />
-          </StyledBox>
+          </OakFlex>
         </OakFlex>
       </OakBox>
     </OakFlex>

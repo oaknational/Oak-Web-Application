@@ -1,4 +1,4 @@
-import { FC, useState, useId, useRef, useTransition } from "react";
+import { useState, useId, useRef, useTransition } from "react";
 import { FocusOn } from "react-focus-on";
 import styled from "styled-components";
 import { useRouter } from "next/router";
@@ -322,11 +322,12 @@ function SubjectContainer({
   );
 }
 
-const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
+const SubjectPhasePicker = ({
   subjects,
   currentSelection,
   tab,
-}) => {
+  id = "choose-curriculum-label",
+}: SubjectPhasePickerData & { id?: string }) => {
   const phasePickerButton = useRef<HTMLButtonElement>(null);
   const subjectPickerButton = useRef<HTMLButtonElement>(null);
   const subjectPickerButtonDesktopContainer = useRef<HTMLDivElement>(null);
@@ -601,9 +602,9 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
   const ks4Options = selectedSubject?.ks4_options ?? [];
 
   return (
-    <OakBox as="nav" aria-labelledby="choose-curriculum-label" $width={"100%"}>
+    <OakBox as="nav" aria-labelledby={id} $width={"100%"}>
       <OakJauntyAngleLabel
-        id="choose-curriculum-label"
+        id={id}
         $background={"bg-decorative5-main"}
         $color={"text-primary"}
         $font={"heading-7"}
@@ -623,7 +624,6 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
             ? "modal-dialog"
             : "modal-close-button"
         }
-        $maxWidth="spacing-960"
         $borderRadius="border-radius-s"
         $borderColor={
           showSubjects || showPhases ? "transparent" : "border-primary"

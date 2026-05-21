@@ -132,7 +132,6 @@ exports[`CurriculumTab renders 1`] = `
 
 .c30 {
   position: relative;
-  max-width: 60rem;
   border: 0.125rem solid;
   border-color: #222222;
   border-radius: 0.25rem;
@@ -1502,12 +1501,12 @@ exports[`CurriculumTab renders 1`] = `
                 class="c27"
               >
                 <nav
-                  aria-labelledby="choose-curriculum-label"
+                  aria-labelledby="choose-curriculum-label-large"
                   class="c28"
                 >
                   <div
                     class="c29"
-                    id="choose-curriculum-label"
+                    id="choose-curriculum-label-large"
                   >
                     Choose a curriculum
                   </div>
@@ -1693,12 +1692,12 @@ exports[`CurriculumTab renders 1`] = `
             class="c64"
           >
             <nav
-              aria-labelledby="choose-curriculum-label"
+              aria-labelledby="choose-curriculum-label-small"
               class="c28"
             >
               <div
                 class="c29"
-                id="choose-curriculum-label"
+                id="choose-curriculum-label-small"
               >
                 Choose a curriculum
               </div>

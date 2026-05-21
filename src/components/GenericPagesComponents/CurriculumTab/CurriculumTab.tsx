@@ -118,7 +118,10 @@ const CurriculumTab: FC<CurriculumDownloadTabProps> = ({
               $display={["none", "none", "block"]}
               $maxWidth={"spacing-640"}
             >
-              <SubjectPhasePicker {...curriculumPhaseOptions} />
+              <SubjectPhasePicker
+                {...curriculumPhaseOptions}
+                id="choose-curriculum-label-large"
+              />
             </OakBox>
           </OakFlex>
           <OakFlex
@@ -149,7 +152,10 @@ const CurriculumTab: FC<CurriculumDownloadTabProps> = ({
           $maxWidth={"spacing-960"}
           $pt={"spacing-24"}
         >
-          <SubjectPhasePicker {...curriculumPhaseOptions} />
+          <SubjectPhasePicker
+            {...curriculumPhaseOptions}
+            id="choose-curriculum-label-small"
+          />
         </OakBox>
       </OakMaxWidth>
     </OakBox>
