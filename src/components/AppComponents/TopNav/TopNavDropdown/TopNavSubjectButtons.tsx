@@ -117,6 +117,15 @@ const TopNavSubjectButtons = ({
     handleClick(subject.slug, keyStageSlug);
   };
 
+  const focusFirstExamBoardControl = (subjectSlug: string) => {
+    const examBoardPanelId = `topnav-teachers-ks4-examboards-${subjectSlug}`;
+    const panel = document.getElementById(examBoardPanelId);
+    const firstFocusable = panel?.querySelector<HTMLElement>(
+      "input:not([disabled]), button:not([disabled]), [role='radio']:not([aria-disabled='true'])",
+    );
+    firstFocusable?.focus();
+  };
+
   return (
     <OakUL
       $display={"flex"}
@@ -155,6 +164,22 @@ const TopNavSubjectButtons = ({
                 }
                 onMouseLeave={() => onSubjectLeave?.(subject)}
                 onBlur={() => onSubjectBlur?.(subject)}
+                onKeyDown={(e) => {
+                  if (
+                    e.key === "Enter" &&
+                    keyStageSlug === "ks4" &&
+                    subject.examBoards?.length
+                  ) {
+                    e.preventDefault();
+                    onExamBoardPanelOpen?.(subject);
+
+                    requestAnimationFrame(() => {
+                      focusFirstExamBoardControl(subject.slug);
+                    });
+                    return;
+                  }
+                  focusManager?.handleKeyDown(e, buttonId!);
+                }}
                 phase={
                   subject.nonCurriculum
                     ? "non-curriculum"

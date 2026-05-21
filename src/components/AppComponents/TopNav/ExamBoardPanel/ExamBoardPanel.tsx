@@ -7,6 +7,7 @@ import {
   OakUL,
 } from "@oaknational/oak-components";
 import { useRouter } from "next/navigation";
+import { useEffect } from "react";
 
 import { DropdownFocusManager } from "../DropdownFocusManager/DropdownFocusManager";
 
@@ -39,6 +40,41 @@ const ExamBoardPanel = ({
   onClose,
 }: ExamBoardPanelProps) => {
   const router = useRouter();
+  const parentId = focusManager?.createId(
+    "teachers-secondary-ks4",
+    selectedSubject.slug,
+  );
+
+  useEffect(() => {
+    if (!focusManager || !parentId) return;
+
+    focusManager.registerChildren(
+      parentId,
+      examBoards.map((board) => board.slug),
+    );
+
+    return () => {
+      focusManager.unregisterChildren(parentId);
+    };
+  }, [focusManager, parentId, examBoards]);
+
+  useEffect(() => {
+    const parentPrefix =
+      focusManager?.createId("teachers-secondary-ks4", selectedSubject.slug) ??
+      `teachers-secondary-ks4-${selectedSubject.slug}`;
+    const panelId = `topnav-teachers-ks4-examboards-${selectedSubject.slug}`;
+
+    // Wait for panel children to render before moving focus.
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        const panel = document.getElementById(panelId);
+        const firstExamBoard = panel?.querySelector<HTMLElement>(
+          `button[id^="${parentPrefix}-"]`,
+        );
+        firstExamBoard?.focus();
+      });
+    });
+  }, [focusManager, selectedSubject.slug, examBoards]);
 
   const getQueryParams = (hasParentSubject: boolean) =>
     new URLSearchParams(
@@ -89,6 +125,72 @@ const ExamBoardPanel = ({
     onClose();
   };
 
+  const focusNextExamBoard = (
+    allButtons: HTMLElement[],
+    currentIndex: number,
+    isForward: boolean,
+  ) => {
+    if (!focusManager) return;
+    const nextIndex = isForward ? currentIndex + 1 : currentIndex - 1;
+    const shouldCycleToParent =
+      (isForward && currentIndex === allButtons.length - 1) ||
+      (!isForward && currentIndex === 0);
+
+    if (shouldCycleToParent) {
+      const parentId = focusManager.createId(
+        "teachers-secondary-ks4",
+        selectedSubject.slug,
+      );
+      const subjectsContainer = document.getElementById(
+        "topnav-teachers-ks4-subjects",
+      );
+      const subjectButtons = Array.from(
+        subjectsContainer?.querySelectorAll<HTMLElement>("a, button, input") ??
+          [],
+      );
+      const parentIndex = subjectButtons.findIndex((el) => el.id === parentId);
+      const siblingIndex = isForward ? parentIndex + 1 : parentIndex - 1;
+      const siblingElement =
+        siblingIndex >= 0 ? subjectButtons[siblingIndex] : undefined;
+
+      if (siblingElement) {
+        siblingElement.focus();
+      } else {
+        document.getElementById(parentId)?.focus();
+      }
+    } else {
+      allButtons[nextIndex]?.focus();
+    }
+  };
+
+  const handleListKeyDown = (e: React.KeyboardEvent<HTMLUListElement>) => {
+    if (!focusManager) return;
+    const activeElement = document.activeElement as HTMLElement;
+    if (!activeElement.id) return;
+
+    if (e.key === "Tab") {
+      const parentIdPrefix = focusManager.createId(
+        "teachers-secondary-ks4",
+        selectedSubject.slug,
+      );
+      const allButtons = Array.from(
+        document.querySelectorAll(`[id^="${parentIdPrefix}-"]`),
+      ) as HTMLElement[];
+
+      if (allButtons.length === 0) return;
+
+      const currentIndex = allButtons.findIndex(
+        (btn) => btn.id === activeElement.id,
+      );
+      if (currentIndex === -1) return;
+
+      e.preventDefault();
+      focusNextExamBoard(allButtons, currentIndex, !e.shiftKey);
+    }
+
+    focusManager.handleEscapeKey({ event: e, elementId: activeElement.id });
+  };
+
   return (
     <OakFlex $flexDirection={"column"}>
       <OakBox $width={"fit-content"} $position={"relative"}>
@@ -108,6 +210,7 @@ const ExamBoardPanel = ({
         $gap={"spacing-8"}
         $reset
         id={`topnav-teachers-ks4-examboards-${selectedSubject.slug}`}
+        onKeyDown={handleListKeyDown}
         role="list"
       >
         <OakRadioGroup
@@ -117,21 +220,44 @@ const ExamBoardPanel = ({
           $gap="spacing-12"
         >
           {examBoards.map((examBoard) => {
-            const buttonId = focusManager?.createId(
-              `teachers-ks4-examboard`,
-              `${selectedSubject.slug}-${examBoard.slug}`,
-            );
+            const parentId =
+              focusManager?.createId(
+                "teachers-secondary-ks4",
+                selectedSubject.slug,
+              ) ?? `teachers-secondary-ks4-${selectedSubject.slug}`;
+            const buttonId = focusManager?.createId(parentId, examBoard.slug);
 
             const key = buttonId || `${selectedSubject.slug}-${examBoard.slug}`;
+            const isSelected = selectedSubject.slug === examBoard.slug;
 
             return (
-              <OakRadioAsButton
+              <button
                 key={key}
-                colorScheme="primary"
-                displayValue={examBoard.title}
-                value={examBoard.slug}
-                width={"fit-content"}
-              />
+                id={buttonId}
+                type="button"
+                onKeyDown={(e) => {
+                  if (e.key === "Enter" || e.key === " ") {
+                    e.preventDefault();
+                    navigateToSubject({ examBoardSlug: examBoard.slug });
+                  }
+                }}
+                tabIndex={isSelected ? 0 : -1}
+                style={{
+                  display: "inline-block",
+                  padding: 0,
+                  margin: 0,
+                  border: "none",
+                  background: "none",
+                }}
+              >
+                <OakRadioAsButton
+                  data-testid={buttonId}
+                  colorScheme="primary"
+                  displayValue={examBoard.title}
+                  value={examBoard.slug}
+                  width={"fit-content"}
+                />
+              </button>
             );
           })}
         </OakRadioGroup>
