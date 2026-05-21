@@ -2,7 +2,6 @@ import { GetStaticProps, NextPage } from "next";
 
 import AppLayout from "@/components/SharedComponents/AppLayout";
 import getPageProps from "@/node-lib/getPageProps";
-import HomePageTabImageNav from "@/components/GenericPagesComponents/HomePageTabImageNav";
 import Banners from "@/components/SharedComponents/Banners";
 import { HomePageLowerView } from "@/components/GenericPagesViews/HomePageLower/HomePageLower.view";
 import CurriculumTab from "@/components/GenericPagesComponents/CurriculumTab";
@@ -41,7 +40,6 @@ const Curriculum: NextPage<
       topNavProps={props.topNav}
     >
       <Banners />
-      <HomePageTabImageNav current={"curriculum"} />
       <CurriculumTab
         aria-current="page"
         curriculumPhaseOptions={props.curriculumPhaseOptions}
