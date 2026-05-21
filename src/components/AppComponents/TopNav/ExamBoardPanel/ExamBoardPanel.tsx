@@ -233,6 +233,8 @@ const ExamBoardPanel = ({
 
             const key = buttonId || `${selectedSubject.slug}-${examBoard.slug}`;
             const isSelected = selectedSubject.slug === examBoard.slug;
+            const selectedIndex = isSelected ? 0 : -1;
+            const tabIndex = focusManager ? selectedIndex : 0;
 
             return (
               <button
@@ -245,7 +247,7 @@ const ExamBoardPanel = ({
                     navigateToSubject({ examBoardSlug: examBoard.slug });
                   }
                 }}
-                tabIndex={focusManager ? (isSelected ? 0 : -1) : 0}
+                tabIndex={tabIndex}
                 style={{
                   display: "inline-block",
                   padding: 0,
