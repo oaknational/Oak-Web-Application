@@ -39,8 +39,27 @@ describe("TopNavSubjectButtons", () => {
       />,
     );
 
-    expect(screen.getByRole("link", { name: "Geography" }));
-    expect(screen.getByRole("link", { name: "History" }));
+    const geographyLink = screen.getByRole("link", { name: "Geography" });
+    const historyLink = screen.getByRole("link", { name: "History" });
+
+    const expectedGeographyHref = getSubjectLinkHref({
+      programmeCount: subjects[0]!.programmeCount,
+      subjectSlug: subjects[0]!.slug,
+      programmeSlug: subjects[0]!.programmeSlug,
+      keyStageSlug: "ks4",
+      phaseSlug: "secondary",
+    });
+
+    const expectedHistoryHref = getSubjectLinkHref({
+      programmeCount: subjects[1]!.programmeCount,
+      subjectSlug: subjects[1]!.slug,
+      programmeSlug: subjects[1]!.programmeSlug,
+      keyStageSlug: "ks4",
+      phaseSlug: "secondary",
+    });
+
+    expect(geographyLink).toHaveAttribute("href", expectedGeographyHref);
+    expect(historyLink).toHaveAttribute("href", expectedHistoryHref);
   });
 
   it("calls handleClick when a subject without exam boards is clicked", async () => {
