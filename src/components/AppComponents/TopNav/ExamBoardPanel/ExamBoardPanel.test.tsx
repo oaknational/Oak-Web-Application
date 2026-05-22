@@ -96,7 +96,7 @@ describe("ExamBoardPanel", () => {
       />,
     );
 
-    const aqaRadio = screen.getByRole("radio", { name: /AQA/ });
+    const aqaRadio = screen.getByTestId("exam-board-aqa");
     await user.click(aqaRadio);
 
     expect(mockPush).toHaveBeenCalledWith(
@@ -116,7 +116,7 @@ describe("ExamBoardPanel", () => {
       />,
     );
 
-    const aqaRadio = screen.getByRole("radio", { name: /AQA/ });
+    const aqaRadio = screen.getByTestId("exam-board-aqa");
     await user.click(aqaRadio);
 
     expect(mockOnClick).toHaveBeenCalledWith("geography", "ks4");

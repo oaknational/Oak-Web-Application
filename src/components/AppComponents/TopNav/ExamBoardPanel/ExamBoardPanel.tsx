@@ -270,19 +270,14 @@ const ExamBoardPanel = ({
                 title =
                   examBoard.title.charAt(0).toUpperCase() +
                   examBoard.title.slice(1).toLowerCase();
+              const key = examBoard.tierSlug
+                ? `exam-board-${examBoard.slug}-${examBoard.tierSlug}`
+                : `exam-board-${examBoard.slug}`;
 
               return (
                 <OakRadioAsButton
-                  key={
-                    examBoard.tierSlug
-                      ? `${examBoard.slug}-${examBoard.tierSlug}`
-                      : examBoard.slug
-                  }
-                  data-testid={
-                    examBoard.tierSlug
-                      ? `exam-board-${examBoard.slug}-${examBoard.tierSlug}`
-                      : `exam-board-${examBoard.slug}`
-                  }
+                  key={key}
+                  data-testid={key}
                   colorScheme="primary"
                   displayValue={title}
                   value={examBoard.slug}
