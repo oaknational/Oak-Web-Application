@@ -20,8 +20,8 @@ type TeacherTabProps = {
 };
 
 const RESOURCE_ICONS = [
-  { iconName: "additional-material", text: "Teaching resources" },
-  { iconName: "clipboard", text: "Curriculum plans" },
+  { iconName: "ai-teaching-resources", text: "Teaching resources" },
+  { iconName: "curriculum-plan", text: "Curriculum plans" },
   { iconName: "ai-worksheet", text: "AI tools" },
 ] as ResourcesIconProps[];
 

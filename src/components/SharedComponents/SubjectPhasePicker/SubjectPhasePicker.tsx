@@ -38,6 +38,7 @@ import FocusWrap from "@/components/CurriculumComponents/OakComponentsKitchen/Fo
 import { CurriculumModalCloseButton } from "@/components/CurriculumComponents/CurriculumModalCloseButton/CurriculumModalCloseButton";
 import useMediaQuery from "@/hooks/useMediaQuery";
 import { PhaseValueType } from "@/browser-lib/avo/Avo";
+import { resolveOakHref } from "@/common-lib/urls";
 
 const TruncatedFlex = styled(OakFlex)`
   max-width: calc(100% - 1rem);
@@ -408,7 +409,7 @@ function SubjectContainer({
             $mr="spacing-12"
             data-testid="subject-picker-heading"
           >
-            Curriculum plans
+            Curriculum plans and lesson resources
           </OakHeading>
           <OakP>Explore our curricula</OakP>
         </OakFlex>
@@ -1154,7 +1155,6 @@ function PhaseButtonContent({
 const SubjectPhasePicker = ({
   subjects,
   currentSelection,
-  tab,
   id = "choose-curriculum-label",
 }: SubjectPhasePickerData & { id?: string }) => {
   const phasePickerButton = useRef<HTMLButtonElement>(null);
@@ -1348,7 +1348,13 @@ const SubjectPhasePicker = ({
     if (selectedKS4Option) {
       subjectPhaseSlug += "-" + selectedKS4Option.slug;
     }
-    const newPathname = `/teachers/curriculum/${subjectPhaseSlug}/${tab}`;
+
+    const newPathname = resolveOakHref({
+      page: "teacher-programme",
+      subjectPhaseSlug,
+      tab: "units",
+    });
+
     trackViewCurriculum();
 
     setIsNavigating(true);
