@@ -410,7 +410,7 @@ function SubjectContainer({
           >
             Curriculum plans
           </OakHeading>
-          <OakP>Explore our curricula for 2024/2025.</OakP>
+          <OakP>Explore our curricula</OakP>
         </OakFlex>
       </OakFlex>
       <OakBox $mv={["spacing-32", "spacing-24"]}>

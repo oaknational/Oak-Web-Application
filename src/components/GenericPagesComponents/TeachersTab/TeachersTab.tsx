@@ -11,7 +11,6 @@ import {
 } from "@oaknational/oak-components";
 
 import { getBreakpoint } from "@/styles/utils/responsive";
-import curriculumPhaseOptions from "@/browser-lib/fixtures/curriculumPhaseOptions";
 import SubjectPhasePicker from "@/components/SharedComponents/SubjectPhasePicker";
 import { SubjectPhasePickerData } from "@/components/SharedComponents/SubjectPhasePicker/SubjectPhasePicker";
 import Illustration from "@/components/SharedComponents/Illustration";
@@ -139,7 +138,7 @@ function HeroImage() {
   );
 }
 
-const TeachersTab: FC<TeacherTabProps> = () => {
+const TeachersTab: FC<TeacherTabProps> = ({ curriculumPhaseOptions }) => {
   return (
     <OakFlex
       $background={"bg-decorative1-main"}
