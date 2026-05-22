@@ -25,6 +25,7 @@ export type ExamBoardPanelProps = {
     slug: string;
     title: string;
     programmeSlug: string;
+    tierSlug: string | null;
   }>;
   selectedSubject: SubjectsNavItem;
   focusManager?: DropdownFocusManager<TeachersSubNavData>;
@@ -232,7 +233,7 @@ const ExamBoardPanel = ({
 
   return (
     <OakFlex $flexDirection={"column"}>
-      <OakBox $width={"fit-content"} $position={"relative"}>
+      <OakBox $width={"max-content"} $position={"relative"}>
         <OakHeading
           $font={"heading-7"}
           tag="h6"
@@ -260,12 +261,28 @@ const ExamBoardPanel = ({
           $gap="spacing-12"
         >
           {examBoards.map((examBoard) => {
+            let title = examBoard.tierSlug
+              ? `${examBoard.title} (${examBoard.tierSlug.charAt(0).toUpperCase() + examBoard.tierSlug.slice(1)})`
+              : examBoard.title;
+            if (selectedSubject.slug === "maths")
+              title =
+                examBoard.title.charAt(0).toUpperCase() +
+                examBoard.title.slice(1).toLowerCase();
+
             return (
               <OakRadioAsButton
-                key={examBoard.slug}
-                data-testid={`exam-board-${examBoard.slug}`}
+                key={
+                  examBoard.tierSlug
+                    ? `${examBoard.slug}-${examBoard.tierSlug}`
+                    : examBoard.slug
+                }
+                data-testid={
+                  examBoard.tierSlug
+                    ? `exam-board-${examBoard.slug}-${examBoard.tierSlug}`
+                    : `exam-board-${examBoard.slug}`
+                }
                 colorScheme="primary"
-                displayValue={examBoard.title}
+                displayValue={title}
                 value={examBoard.slug}
                 width={"fit-content"}
               />

@@ -31,7 +31,12 @@ export const getExamBoardsForKS4Subject = ({
   keystageSlug: string;
   subjectSlug: string;
   pathwaySlug: string | null;
-}): Array<{ slug: string; title: string; programmeSlug: string }> => {
+}): Array<{
+  slug: string;
+  title: string;
+  programmeSlug: string;
+  tierSlug: string | null;
+}> => {
   const matchingProgrammes = data.programmes
     .filter((p) => {
       const { subject_slug, keystage_slug, pathway_slug } = p.programme_fields;
@@ -66,13 +71,22 @@ export const getExamBoardsForKS4Subject = ({
     .map((p) => {
       const examBoard = parseExamBoardFromProgrammeSlug(p.programme_slug);
       return examBoard
-        ? { ...examBoard, programmeSlug: p.programme_slug }
+        ? {
+            ...examBoard,
+            programmeSlug: p.programme_slug,
+            tierSlug: p.programme_fields.tier_slug,
+          }
         : null;
     })
-    .filter((eb, i, a) => eb && a.findIndex((e) => e?.slug === eb.slug) === i)
     .filter(
-      (eb): eb is { slug: string; title: string; programmeSlug: string } =>
-        eb !== null,
+      (
+        eb,
+      ): eb is {
+        slug: string;
+        title: string;
+        programmeSlug: string;
+        tierSlug: "core" | "foundation" | "higher" | null;
+      } => eb !== null,
     );
 
   return examBoards;

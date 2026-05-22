@@ -52,6 +52,7 @@ type ExamBoard = {
   slug: string;
   title: string;
   programmeSlug: string;
+  tierSlug: string | null;
 };
 
 export type SubjectsNavItem = {
