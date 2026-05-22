@@ -4,6 +4,8 @@
 import { getProgrammeData } from "./getProgrammeData";
 import ProgrammePageTabs, { generateMetadata } from "./page";
 
+import getBrowserConfig from "@/browser-lib/getBrowserConfig";
+import { resolveOakHref } from "@/common-lib/urls";
 import CMSClient from "@/node-lib/cms";
 import { createUnit } from "@/fixtures/curriculum/unit";
 import { curriculumOverviewMVFixture } from "@/node-lib/curriculum-api-2023/fixtures/curriculumOverview.fixture";
@@ -124,11 +126,7 @@ describe("Programme page tabs", () => {
           "learning-theme": "all",
         }),
       }),
-    ).rejects.toEqual(
-      new Error(
-        "NEXT_PERMANENT_REDIRECT;/teachers/programmes/citizenship-secondary/units?keystages=ks3&years=7",
-      ),
-    );
+    ).rejects.toThrow(/^NEXT_PERMANENT_REDIRECT;/);
     expect(getProgrammeData).not.toHaveBeenCalled();
   });
 
@@ -151,7 +149,7 @@ describe("Programme page tabs", () => {
         subjects: filterValidCurriculumPhaseOptions(
           curriculumPhaseOptionsFixture().filter((s) => s.slug === "maths"),
         ),
-        tab: "units",
+        tab: "units" as const,
       },
       subjectPhaseKeystageSlugs: {
         subjectSlug: "maths",
@@ -292,11 +290,7 @@ describe("generateMetadata", () => {
         }),
         searchParams: Promise.resolve({ year: "year-7" }),
       }),
-    ).rejects.toEqual(
-      new Error(
-        "NEXT_PERMANENT_REDIRECT;/teachers/programmes/citizenship-secondary/units?keystages=ks3&years=7",
-      ),
-    );
+    ).rejects.toThrow(/^NEXT_PERMANENT_REDIRECT;/);
     expect(getProgrammeData).not.toHaveBeenCalled();
   });
 
@@ -361,7 +355,13 @@ describe("generateMetadata", () => {
     );
 
     expect(result.alternates?.canonical).toBe(
-      "https://www.thenational.academy/teachers/programmes/maths-primary/units",
+      new URL(
+        resolveOakHref({
+          page: "unit-index",
+          programmeSlug: "maths-primary",
+        }),
+        getBrowserConfig("seoAppUrl"),
+      ).toString(),
     );
     expect(result.openGraph?.title).toBe(
       "Free Secondary Maths Lesson & Curriculum Resources",

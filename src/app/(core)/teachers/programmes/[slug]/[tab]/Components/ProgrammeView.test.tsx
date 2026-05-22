@@ -4,6 +4,7 @@ import userEvent from "@testing-library/user-event";
 import { ProgrammeView } from "./ProgrammeView";
 
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
+import { resolveOakHref } from "@/common-lib/urls";
 import curriculumUnitsTabFixture from "@/node-lib/curriculum-api-2023/fixtures/curriculumUnits.fixture";
 import { formatCurriculumUnitsData } from "@/pages-helpers/curriculum/docx/tab-helpers";
 import {
@@ -11,9 +12,15 @@ import {
   curriculumOverviewMVFixture,
 } from "@/node-lib/curriculum-api-2023/fixtures/curriculumOverview.fixture";
 
-const usePathnameMock = jest
-  .fn()
-  .mockReturnValue("/teachers/programmes/science-secondary-aqa/units");
+const subjectPhaseSlug = "science-secondary-aqa";
+
+const usePathnameMock = jest.fn().mockReturnValue(
+  resolveOakHref({
+    page: "teacher-programme",
+    subjectPhaseSlug,
+    tab: "units",
+  }),
+);
 const useRouterMock = jest.fn();
 const mockUseFetchResult = { data: [], error: null, isLoading: false };
 
@@ -66,7 +73,7 @@ const defaultProps = {
     phaseTitle: "Secondary",
     examboardTitle: "AQA",
   },
-  subjectPhaseSlug: "science-secondary-aqa",
+  subjectPhaseSlug,
   ks4Options: [],
   curriculumUnitsFormattedData: formatCurriculumUnitsData(
     curriculumUnitsTabFixture(),
@@ -113,7 +120,11 @@ describe("ProgrammeView", () => {
   });
   it("renders the correct tab content for overview", () => {
     usePathnameMock.mockReturnValue(
-      "/teachers/programmes/science-secondary-aqa/curriculum-explainer",
+      resolveOakHref({
+        page: "teacher-programme",
+        subjectPhaseSlug,
+        tab: "curriculum-explainer",
+      }),
     );
     render(<ProgrammeView {...defaultProps} tabSlug="curriculum-explainer" />);
     const heading = screen.getByRole("heading", { name: "Aims and purpose" });
@@ -121,7 +132,11 @@ describe("ProgrammeView", () => {
   });
   it("renders the correct tab content for download", () => {
     usePathnameMock.mockReturnValue(
-      "/teachers/programmes/science-secondary-aqa/download",
+      resolveOakHref({
+        page: "teacher-programme",
+        subjectPhaseSlug,
+        tab: "download",
+      }),
     );
     render(<ProgrammeView {...defaultProps} tabSlug="download" />);
     const content = screen.getByText("Download curriculum resources");
@@ -162,7 +177,11 @@ describe("ProgrammeView", () => {
   describe("initialFilter prop (SSR filter resolution)", () => {
     beforeEach(() => {
       usePathnameMock.mockReturnValue(
-        "/teachers/programmes/science-secondary-aqa/units",
+        resolveOakHref({
+          page: "teacher-programme",
+          subjectPhaseSlug,
+          tab: "units",
+        }),
       );
     });
 

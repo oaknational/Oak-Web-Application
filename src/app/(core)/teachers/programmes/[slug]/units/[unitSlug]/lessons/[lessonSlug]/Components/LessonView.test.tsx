@@ -4,6 +4,7 @@ import userEvent from "@testing-library/user-event";
 import LessonView from "./LessonView";
 
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
+import { resolveOakHref } from "@/common-lib/urls";
 import teachersLessonOverviewFixture from "@/node-lib/curriculum-api-2023/fixtures/teachersLessonOverview.fixture";
 import lessonMediaClipsFixtures from "@/node-lib/curriculum-api-2023/fixtures/lessonMediaClips.fixture";
 import { setUseUserReturn } from "@/__tests__/__helpers__/mockClerk";
@@ -60,11 +61,21 @@ describe("Previous and Next Lesson Navigation", () => {
       screen.getByRole("link", { name: /Previous lesson/i }),
     ).toHaveAttribute(
       "href",
-      "/teachers/programmes/biology-secondary-ks3/units/cells/lessons/lesson-2",
+      resolveOakHref({
+        page: "integrated-lesson-overview",
+        programmeSlug: baseProps.programmeSlug,
+        unitSlug: baseProps.unitSlug,
+        lessonSlug: "lesson-2",
+      }),
     );
     expect(screen.getByRole("link", { name: /Next lesson/i })).toHaveAttribute(
       "href",
-      "/teachers/programmes/biology-secondary-ks3/units/cells/lessons/lesson-4",
+      resolveOakHref({
+        page: "integrated-lesson-overview",
+        programmeSlug: baseProps.programmeSlug,
+        unitSlug: baseProps.unitSlug,
+        lessonSlug: "lesson-4",
+      }),
     );
   });
 
@@ -103,11 +114,21 @@ describe("Previous and Next Lesson Navigation", () => {
       screen.getByRole("link", { name: /Previous lesson/i }),
     ).toHaveAttribute(
       "href",
-      "/teachers/programmes/biology-secondary-ks3/units/cells/lessons/lesson-2",
+      resolveOakHref({
+        page: "integrated-lesson-overview",
+        programmeSlug: baseProps.programmeSlug,
+        unitSlug: baseProps.unitSlug,
+        lessonSlug: "lesson-2",
+      }),
     );
     expect(screen.getByRole("link", { name: /Next lesson/i })).toHaveAttribute(
       "href",
-      "/teachers/programmes/biology-secondary-ks3/units/cells/lessons/lesson-4",
+      resolveOakHref({
+        page: "integrated-lesson-overview",
+        programmeSlug: baseProps.programmeSlug,
+        unitSlug: baseProps.unitSlug,
+        lessonSlug: "lesson-4",
+      }),
     );
   });
 });
