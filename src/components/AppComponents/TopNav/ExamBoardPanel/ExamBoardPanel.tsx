@@ -260,34 +260,36 @@ const ExamBoardPanel = ({
           }}
           $gap="spacing-12"
         >
-          {examBoards.map((examBoard) => {
-            let title = examBoard.tierSlug
-              ? `${examBoard.title} (${examBoard.tierSlug.charAt(0).toUpperCase() + examBoard.tierSlug.slice(1)})`
-              : examBoard.title;
-            if (selectedSubject.slug === "maths")
-              title =
-                examBoard.title.charAt(0).toUpperCase() +
-                examBoard.title.slice(1).toLowerCase();
+          {examBoards
+            .toSorted((a, b) => a.title.localeCompare(b.title))
+            .map((examBoard) => {
+              let title = examBoard.tierSlug
+                ? `${examBoard.title} (${examBoard.tierSlug.charAt(0).toUpperCase() + examBoard.tierSlug.slice(1)})`
+                : examBoard.title;
+              if (selectedSubject.slug === "maths")
+                title =
+                  examBoard.title.charAt(0).toUpperCase() +
+                  examBoard.title.slice(1).toLowerCase();
 
-            return (
-              <OakRadioAsButton
-                key={
-                  examBoard.tierSlug
-                    ? `${examBoard.slug}-${examBoard.tierSlug}`
-                    : examBoard.slug
-                }
-                data-testid={
-                  examBoard.tierSlug
-                    ? `exam-board-${examBoard.slug}-${examBoard.tierSlug}`
-                    : `exam-board-${examBoard.slug}`
-                }
-                colorScheme="primary"
-                displayValue={title}
-                value={examBoard.slug}
-                width={"fit-content"}
-              />
-            );
-          })}
+              return (
+                <OakRadioAsButton
+                  key={
+                    examBoard.tierSlug
+                      ? `${examBoard.slug}-${examBoard.tierSlug}`
+                      : examBoard.slug
+                  }
+                  data-testid={
+                    examBoard.tierSlug
+                      ? `exam-board-${examBoard.slug}-${examBoard.tierSlug}`
+                      : `exam-board-${examBoard.slug}`
+                  }
+                  colorScheme="primary"
+                  displayValue={title}
+                  value={examBoard.slug}
+                  width={"fit-content"}
+                />
+              );
+            })}
         </OakRadioGroup>
       </OakUL>
     </OakFlex>
