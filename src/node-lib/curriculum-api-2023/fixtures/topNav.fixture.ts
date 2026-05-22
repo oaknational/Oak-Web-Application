@@ -97,11 +97,13 @@ export const topNavFixture: TopNavProps = {
                   slug: "aqa",
                   title: "AQA",
                   programmeSlug: "geography-secondary-ks4-aqa",
+                  tierSlug: "foundation",
                 },
                 {
                   slug: "edexcel",
                   title: "Edexcel",
                   programmeSlug: "geography-secondary-ks4-edexcel",
+                  tierSlug: "higher",
                 },
               ],
             },

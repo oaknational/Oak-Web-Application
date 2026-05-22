@@ -219,11 +219,13 @@ exports[`core layout renders correctly 1`] = `
                     {
                       "programmeSlug": "geography-secondary-ks4-aqa",
                       "slug": "aqa",
+                      "tierSlug": "foundation",
                       "title": "AQA",
                     },
                     {
                       "programmeSlug": "geography-secondary-ks4-edexcel",
                       "slug": "edexcel",
+                      "tierSlug": "higher",
                       "title": "Edexcel",
                     },
                   ],

@@ -30,8 +30,13 @@ describe("ExamBoardPanel", () => {
   const mockOnClick = jest.fn();
   const mockOnClose = jest.fn();
   const examBoards = [
-    { slug: "aqa", title: "AQA", programmeSlug: "aqa-prog" },
-    { slug: "edexcel", title: "Edexcel", programmeSlug: "edexcel-prog" },
+    { slug: "aqa", title: "AQA", programmeSlug: "aqa-prog", tierSlug: null },
+    {
+      slug: "edexcel",
+      title: "Edexcel",
+      programmeSlug: "edexcel-prog",
+      tierSlug: null,
+    },
   ];
   const selectedSubject = {
     slug: "geography",
