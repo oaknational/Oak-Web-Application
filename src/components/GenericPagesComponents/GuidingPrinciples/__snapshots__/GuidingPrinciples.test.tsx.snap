@@ -4,13 +4,13 @@ exports[`GuidingPrinciples renders correctly 1`] = `
 <body>
   <div>
     <div
-      class="sc-aXZVg sc-gEvEer sc-13f0991b-0 iruCjk bsewjB hJzjLp"
+      class="sc-aXZVg sc-gEvEer sc-13f0991b-0 htOSZG bsewjB hJzjLp"
     >
       <div
-        class="sc-aXZVg sc-gEvEer dFOKqz NeWQh"
+        class="sc-aXZVg sc-gEvEer jPvJsJ NeWQh"
       >
         <div
-          class="sc-aXZVg sc-gEvEer dFOKqz bktafW"
+          class="sc-aXZVg sc-gEvEer jPvJsJ bktafW"
         >
           <h2
             class="sc-eldPxv kicTwX"
@@ -24,7 +24,7 @@ exports[`GuidingPrinciples renders correctly 1`] = `
           </p>
         </div>
         <div
-          class="sc-aXZVg sc-gEvEer czWWdD iDBIXi"
+          class="sc-aXZVg sc-gEvEer uspvN iDBIXi"
         >
           <img
             alt=""
@@ -40,21 +40,21 @@ exports[`GuidingPrinciples renders correctly 1`] = `
         </div>
       </div>
       <div
-        class="sc-aXZVg sc-gEvEer diytpE hNVYGl"
+        class="sc-aXZVg sc-gEvEer LlLMW hNVYGl"
       >
         <div
-          class="sc-aXZVg cabeTS"
+          class="sc-aXZVg dSuAiY"
           data-testid="curric-quote"
         >
           <div
-            class="sc-aXZVg sc-gEvEer bbvfnG fYZZye"
+            class="sc-aXZVg sc-gEvEer gqYcxQ fYZZye"
           >
             <div
-              class="sc-aXZVg sc-gEvEer jAMDzE fBjecQ"
+              class="sc-aXZVg sc-gEvEer jvSUxu fBjecQ"
               data-testid="decorative-bar"
             />
             <div
-              class="sc-aXZVg sc-gEvEer dFOKqz bktafW"
+              class="sc-aXZVg sc-gEvEer jPvJsJ bktafW"
             >
               <h3
                 class="sc-eldPxv csMcwD"
@@ -70,18 +70,18 @@ exports[`GuidingPrinciples renders correctly 1`] = `
           </div>
         </div>
         <div
-          class="sc-aXZVg cabeTS"
+          class="sc-aXZVg dSuAiY"
           data-testid="curric-quote"
         >
           <div
-            class="sc-aXZVg sc-gEvEer bbvfnG fYZZye"
+            class="sc-aXZVg sc-gEvEer gqYcxQ fYZZye"
           >
             <div
-              class="sc-aXZVg sc-gEvEer jAMDzE fBjecQ"
+              class="sc-aXZVg sc-gEvEer jvSUxu fBjecQ"
               data-testid="decorative-bar"
             />
             <div
-              class="sc-aXZVg sc-gEvEer dFOKqz bktafW"
+              class="sc-aXZVg sc-gEvEer jPvJsJ bktafW"
             >
               <h3
                 class="sc-eldPxv csMcwD"
@@ -97,18 +97,18 @@ exports[`GuidingPrinciples renders correctly 1`] = `
           </div>
         </div>
         <div
-          class="sc-aXZVg cabeTS"
+          class="sc-aXZVg dSuAiY"
           data-testid="curric-quote"
         >
           <div
-            class="sc-aXZVg sc-gEvEer bbvfnG fYZZye"
+            class="sc-aXZVg sc-gEvEer gqYcxQ fYZZye"
           >
             <div
-              class="sc-aXZVg sc-gEvEer jAMDzE fBjecQ"
+              class="sc-aXZVg sc-gEvEer jvSUxu fBjecQ"
               data-testid="decorative-bar"
             />
             <div
-              class="sc-aXZVg sc-gEvEer dFOKqz bktafW"
+              class="sc-aXZVg sc-gEvEer jPvJsJ bktafW"
             >
               <h3
                 class="sc-eldPxv csMcwD"

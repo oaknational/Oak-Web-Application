@@ -211,7 +211,7 @@ describe("Component - subject phase picker", () => {
     await userEvent.click(viewButton);
 
     expect(pushMock).toHaveBeenCalledWith({
-      pathname: "/teachers/curriculum/english-primary/units",
+      pathname: "/programmes/english-primary/units",
     });
 
     expect(curriculumVisualiserAccessed).toHaveBeenCalledTimes(1);
@@ -252,7 +252,7 @@ describe("Component - subject phase picker", () => {
 
     await userEvent.click(viewButton);
     expect(pushMock).toHaveBeenCalledWith({
-      pathname: "/teachers/curriculum/english-primary/units",
+      pathname: "/programmes/english-primary/units",
     });
 
     rerender(<SubjectPhasePicker {...curriculumPhaseOptions} tab="overview" />);
