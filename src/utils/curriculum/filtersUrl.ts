@@ -9,6 +9,7 @@ import {
 } from "./sorting";
 import {
   CurriculumFilters,
+  KeyStageSlug,
   Subject,
   SubjectCategory,
   Thread,
@@ -17,7 +18,11 @@ import {
   YearData,
 } from "./types";
 import { isVisibleUnit } from "./isVisibleUnit";
-import { byKeyStageSlug, presentAtKeyStageSlugs } from "./keystage";
+import {
+  byKeyStageSlug,
+  keystageYearMappings,
+  presentAtKeyStageSlugs,
+} from "./keystage";
 
 import {
   CurriculumUnitsFormattedData,
@@ -235,22 +240,43 @@ export function highlightedUnitCount(
   return count;
 }
 
+/**
+ * When a keystage filter is active and years is at its default (all years),
+ * returns only the years belonging to the active keystage(s). Mirrors the
+ * applyFiltering logic in by-pathway.ts so filter visibility matches the unit list.
+ */
+export function scopeYearsToKeystageFilter(
+  filters: CurriculumFilters,
+): string[] {
+  const selectingAllYears = filters.years.length > 1;
+  if (!selectingAllYears || filters.keystages.length === 0) {
+    return filters.years;
+  }
+
+  return filters.years.filter((year) =>
+    filters.keystages.some((ks) =>
+      keystageYearMappings[ks as KeyStageSlug]?.includes(year),
+    ),
+  );
+}
+
 export function shouldDisplayFilter(
   data: CurriculumUnitsFormattedData,
   filters: CurriculumFilters,
   key: "years" | "subjectCategories" | "childSubjects" | "tiers" | "threads",
 ) {
+  const effectiveYears = scopeYearsToKeystageFilter(filters);
   const keyStageSlugData = byKeyStageSlug(data.yearData);
   const childSubjectsAt = presentAtKeyStageSlugs(
     keyStageSlugData,
     "childSubjects",
-    filters.years,
+    effectiveYears,
   );
 
   const subjectCategoriesAt = presentAtKeyStageSlugs(
     keyStageSlugData,
     "subjectCategories",
-    filters.years,
+    effectiveYears,
   ).filter((ks) => !childSubjectsAt.includes(ks));
 
   if (key === "years") {
