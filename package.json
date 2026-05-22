@@ -93,7 +93,7 @@
     "@mux/mux-player": "^3.10.2",
     "@mux/mux-player-react": "3.10.2",
     "@oaknational/google-classroom-addon": "^1.33.0",
-    "@oaknational/oak-components": "^2.28.0",
+    "@oaknational/oak-components": "^2.29.0",
     "@oaknational/oak-consent-client": "2.4.0",
     "@oaknational/oak-curriculum-schema": "2.4.0-beta.2",
     "@ooxml-tools/units": "^0.3.0",
@@ -334,5 +334,6 @@
     "Safari >= 16.0",
     "iOS >= 16.0",
     "> 1% in GB and not dead"
-  ]
+  ],
+  "packageManager": "pnpm@10.33.4+sha512.1c67b3b359b2d408119ba1ed289f34b8fc3c6873412bec6fd264fbdc82489e510fcbecb9ce9d22dae7f3b76269d8441046014bdca53b9979cd7a561ad631b800"
 }
