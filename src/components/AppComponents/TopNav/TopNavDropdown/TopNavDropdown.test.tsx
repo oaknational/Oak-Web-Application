@@ -7,8 +7,15 @@ import { DropdownFocusManager } from "@/components/AppComponents/TopNav/Dropdown
 import { topNavFixture } from "@/node-lib/curriculum-api-2023/fixtures/topNav.fixture";
 import { TeachersSubNavData } from "@/node-lib/curriculum-api-2023/queries/topNav/topNav.schema";
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
+import theme from "@/styles/theme/default.theme";
+import { oakDefaultTheme } from "@/styles/oakThemeApp";
+import { OakColorName } from "@/styles/theme/types";
 
 const render = renderWithProviders();
+const getOakBackgroundColor = (token: "bg-decorative1-very-subdued") => {
+  const colorName = oakDefaultTheme.uiColors[token] as OakColorName;
+  return theme.colors[colorName];
+};
 
 const mockBrowseRefined = jest.fn();
 const pushMock = jest.fn();
@@ -122,7 +129,7 @@ describe("TopNavDropdown", () => {
 
         expect(subjectButtons[2]).toHaveTextContent("Financial education");
         expect(subjectButtons[2]).toHaveStyle({
-          background: "rgb(235, 251, 235)",
+          background: getOakBackgroundColor("bg-decorative1-very-subdued"),
         });
       });
 
