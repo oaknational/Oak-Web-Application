@@ -76,14 +76,14 @@ const ExamBoardPanel = ({
     });
   }, [focusManager, selectedSubject.slug, examBoards]);
 
-  const getQueryParams = (hasParentSubject: boolean) =>
+  const getQueryParams = (hasParentSubject: boolean, tierSlug: string | null) =>
     new URLSearchParams(
       filtersToQuery(
         {
           childSubjects: hasParentSubject ? [selectedSubject.slug] : [],
           years: [],
           subjectCategories: [],
-          tiers: [],
+          tiers: tierSlug ? [tierSlug] : [],
           threads: [],
           pathways: [],
           keystages: ["ks4"],
@@ -104,20 +104,32 @@ const ExamBoardPanel = ({
     return null;
   }
 
-  const navigateToSubject = ({ examBoardSlug }: { examBoardSlug: string }) => {
-    if (examBoardSlug === null) return;
+  const navigateToSubject = ({ examBoard }: { examBoard: string }) => {
+    if (examBoard === null) return;
+
+    let board = examBoard.split("(")[0]?.toLowerCase().trim(); // in case value is in format "examBoard-tier"
+    let tier =
+      examBoard.split("(")[1]?.toLowerCase().trim().replace(")", "") ?? null;
+    if (examBoard === "Higher" || examBoard === "Foundation") {
+      tier = examBoard.toLowerCase();
+      board = ""; // maths has tiers but no exam board
+    }
+
     const href = resolveOakHref({
       page: "teacher-programme",
       subjectPhaseSlug: getTeacherSubjectPhaseSlug({
         subjectSlug: selectedSubject?.slug,
         phaseSlug: "secondary",
-        examboardSlug: examBoardSlug,
+        examboardSlug: board,
         pathwaySlug: null,
         subjectParentTitle: selectedSubject?.subjectParent ?? undefined,
       }),
       tab: "units",
     });
-    const queryParams = getQueryParams(Boolean(selectedSubject.subjectParent));
+    const queryParams = getQueryParams(
+      Boolean(selectedSubject.subjectParent),
+      tier,
+    );
 
     router.push(queryParams ? `${href}?${queryParams}` : href);
 
@@ -169,7 +181,7 @@ const ExamBoardPanel = ({
 
     if (e.key === "Enter") {
       navigateToSubject({
-        examBoardSlug: activeElement?.getAttribute("value") ?? "",
+        examBoard: activeElement?.getAttribute("value") ?? "",
       });
       return;
     }
@@ -256,7 +268,9 @@ const ExamBoardPanel = ({
         <OakRadioGroup
           name={`exam-boards-${selectedSubject.slug}`}
           onChange={(e) => {
-            navigateToSubject({ examBoardSlug: e.target.value });
+            navigateToSubject({
+              examBoard: e.target.value,
+            });
           }}
           $gap="spacing-12"
         >
@@ -280,7 +294,7 @@ const ExamBoardPanel = ({
                   data-testid={key}
                   colorScheme="primary"
                   displayValue={title}
-                  value={examBoard.slug}
+                  value={title}
                   width={"fit-content"}
                 />
               );
