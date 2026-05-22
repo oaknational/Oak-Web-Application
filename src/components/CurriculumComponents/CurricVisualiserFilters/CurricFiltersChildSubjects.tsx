@@ -9,6 +9,7 @@ import { useId } from "react";
 import { CurriculumFilters, Unit } from "@/utils/curriculum/types";
 import { getValidSubjectIconName } from "@/utils/getValidSubjectIconName";
 import { getFilterData } from "@/utils/curriculum/filtering";
+import { scopeYearsToKeystageFilter } from "@/utils/curriculum/filtersUrl";
 import {
   byKeyStageSlug,
   presentAtKeyStageSlugs,
@@ -36,13 +37,15 @@ export function CurricFiltersChildSubjects({
   const id = useId();
   const { yearData } = data;
 
-  const { childSubjects } = getFilterData(data.yearData, filters.years);
+  const effectiveYears = scopeYearsToKeystageFilter(filters);
+
+  const { childSubjects } = getFilterData(data.yearData, effectiveYears);
 
   const keyStageSlugData = byKeyStageSlug(yearData);
   const childSubjectsAt = presentAtKeyStageSlugs(
     keyStageSlugData,
     "childSubjects",
-    filters.years,
+    effectiveYears,
   );
 
   function setSingleInFilter(key: keyof CurriculumFilters, newValue: string) {

@@ -291,7 +291,11 @@ export function shouldDisplayFilter(
     return childSubjectsAt.length > 0;
   }
   if (key === "tiers") {
-    const tiersAt = presentAtKeyStageSlugs(keyStageSlugData, "tiers");
+    const tiersAt = presentAtKeyStageSlugs(
+      keyStageSlugData,
+      "tiers",
+      effectiveYears,
+    );
     return tiersAt.length > 0;
   }
   if (key === "threads") {

@@ -761,12 +761,20 @@ describe("shouldDisplayFilter", () => {
             createChildSubject({ subject_slug: "physics" }),
             createChildSubject({ subject_slug: "biology" }),
           ],
+          tiers: [
+            createTier({ tier_slug: "foundation" }),
+            createTier({ tier_slug: "higher" }),
+          ],
         }),
         "11": createYearData({
           units: [createUnit({ slug: "y11" })],
           childSubjects: [
             createChildSubject({ subject_slug: "physics" }),
             createChildSubject({ subject_slug: "biology" }),
+          ],
+          tiers: [
+            createTier({ tier_slug: "foundation" }),
+            createTier({ tier_slug: "higher" }),
           ],
         }),
       },
@@ -775,7 +783,7 @@ describe("shouldDisplayFilter", () => {
       keystages: [],
     };
 
-    it("Science KS3 view: shows subject categories, hides child subjects", () => {
+    it("Science KS3 view: shows subject categories, hides child subjects and tiers", () => {
       const filters = createFilter({
         years: ["7", "8", "9", "10", "11"],
         keystages: ["ks3"],
@@ -786,9 +794,12 @@ describe("shouldDisplayFilter", () => {
       expect(
         shouldDisplayFilter(scienceSecondaryData, filters, "childSubjects"),
       ).toEqual(false);
+      expect(
+        shouldDisplayFilter(scienceSecondaryData, filters, "tiers"),
+      ).toEqual(false);
     });
 
-    it("Science KS4 view: shows child subjects, hides subject categories", () => {
+    it("Science KS4 view: shows child subjects and tiers, hides subject categories", () => {
       const filters = createFilter({
         years: ["7", "8", "9", "10", "11"],
         keystages: ["ks4"],
@@ -798,6 +809,9 @@ describe("shouldDisplayFilter", () => {
       ).toEqual(false);
       expect(
         shouldDisplayFilter(scienceSecondaryData, filters, "childSubjects"),
+      ).toEqual(true);
+      expect(
+        shouldDisplayFilter(scienceSecondaryData, filters, "tiers"),
       ).toEqual(true);
     });
 
