@@ -33,11 +33,6 @@ jest.mock("next/navigation", () => {
   };
 });
 
-const featureFlagMock = jest.fn().mockResolvedValue(false);
-jest.mock("@/utils/featureFlags", () => ({
-  getFeatureFlagValue: () => featureFlagMock(),
-}));
-
 // Jest is not setup to test RSCs, so it does not load the server build
 // so we mock the cache function.
 jest.mock("react", () => {
@@ -117,18 +112,6 @@ describe("Programme page tabs", () => {
     jest.mocked(getProgrammeData).mockClear();
   });
 
-  it("renders 404 page if feature flag is disabled", async () => {
-    await expect(
-      ProgrammePageTabs({
-        params: Promise.resolve({
-          slug: "maths-primary",
-          tab: "units",
-        }),
-        searchParams: Promise.resolve({}),
-      }),
-    ).rejects.toEqual(new Error("NEXT_HTTP_ERROR_FALLBACK;404"));
-  });
-
   it("permanentRedirects legacy programme slug on units tab", async () => {
     await expect(
       ProgrammePageTabs({
@@ -150,7 +133,6 @@ describe("Programme page tabs", () => {
   });
 
   it("does not redirect subject phase slug on units tab", async () => {
-    featureFlagMock.mockResolvedValue(true);
     jest.mocked(getProgrammeData).mockResolvedValue({
       programmeUnitsData: curriculumOverviewMVFixture({
         subjectTitle: "Maths",
@@ -169,49 +151,7 @@ describe("Programme page tabs", () => {
         subjects: filterValidCurriculumPhaseOptions(
           curriculumPhaseOptionsFixture().filter((s) => s.slug === "maths"),
         ),
-        tab: "units" as const,
-      },
-      subjectPhaseKeystageSlugs: {
-        subjectSlug: "maths",
-        phaseSlug: "primary",
-        ks4OptionSlug: null,
-      },
-    });
-
-    const result = await ProgrammePageTabs({
-      params: Promise.resolve({
-        slug: "maths-primary",
         tab: "units",
-      }),
-      searchParams: Promise.resolve({}),
-    });
-
-    expect(result).toBeDefined();
-  });
-
-  it("renders when the feature flag is enabled", async () => {
-    featureFlagMock.mockResolvedValue(true);
-
-    // Mock getProgrammeData to return valid data
-    jest.mocked(getProgrammeData).mockResolvedValue({
-      programmeUnitsData: curriculumOverviewMVFixture({
-        subjectTitle: "Maths",
-      }),
-      curriculumUnitsData: {
-        units: [
-          createUnit({
-            slug: "test",
-            year: "5",
-            subject_slug: "maths",
-            phase_slug: "primary",
-          }),
-        ],
-      },
-      curriculumPhaseOptions: {
-        subjects: filterValidCurriculumPhaseOptions(
-          curriculumPhaseOptionsFixture().filter((s) => s.slug === "maths"),
-        ),
-        tab: "units" as const,
       },
       subjectPhaseKeystageSlugs: {
         subjectSlug: "maths",
@@ -232,8 +172,6 @@ describe("Programme page tabs", () => {
   });
 
   it("skips CMSClient.curriculumOverviewPage and renders when nonCurriculum is true", async () => {
-    featureFlagMock.mockResolvedValue(true);
-
     jest.mocked(getProgrammeData).mockResolvedValue({
       programmeUnitsData: curriculumOverviewMVFixture({
         subjectTitle: "Financial education",
@@ -280,7 +218,6 @@ describe("Programme page tabs", () => {
   });
 
   it("returns 404 when nonCurriculum is false and CMSClient.curriculumOverviewPage returns null", async () => {
-    featureFlagMock.mockResolvedValue(true);
     jest
       .mocked(CMSClient.curriculumOverviewPage)
       .mockResolvedValueOnce(null as never);
@@ -327,7 +264,6 @@ describe("Programme page tabs", () => {
   });
 
   it("returns 404 page if params are invalid", async () => {
-    featureFlagMock.mockResolvedValue(true);
     jest.mocked(getProgrammeData).mockResolvedValue(null);
 
     await expect(
