@@ -2,7 +2,6 @@ import {
   OakBox,
   OakRadioGroup,
   OakRadioAsButton,
-  OakRadioAsButtonProps,
 } from "@oaknational/oak-components";
 import { useId } from "react";
 
@@ -19,14 +18,12 @@ export type ProgrammeFiltersThreadsProps = {
     source?: ComponentTypeValueType,
   ) => void;
   data: CurriculumUnitsFormattedData;
-  radioWidth?: OakRadioAsButtonProps["width"];
 };
 
 export function ProgrammeFiltersThreads({
   filters,
   onChangeFilters,
   data,
-  radioWidth,
 }: Readonly<ProgrammeFiltersThreadsProps>) {
   const id = useId();
   const { yearData, threadOptions } = data;
@@ -51,7 +48,7 @@ export function ProgrammeFiltersThreads({
 
     return threadOption.title;
   }
-
+  const radioWidth = "100%";
   return (
     <OakRadioGroup
       name={`threads-${id}`}

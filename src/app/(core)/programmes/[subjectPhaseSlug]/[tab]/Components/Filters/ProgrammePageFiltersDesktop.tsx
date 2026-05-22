@@ -1,18 +1,11 @@
 import { OakFlex } from "@oaknational/oak-components";
 import React from "react";
 
-import { ProgrammeFiltersThreads } from "./ProgrammeFiltersThreads";
+import { ProgrammeFilters } from "./ProgrammeFilters";
 
 import { CurriculumFilters } from "@/utils/curriculum/types";
 import { CurriculumUnitsFormattedData } from "@/pages-helpers/curriculum/docx/tab-helpers";
-import { shouldDisplayFilter } from "@/utils/curriculum/filteringApp";
 import { CurriculumSelectionSlugs } from "@/utils/curriculum/slugs";
-import {
-  CurricFiltersYears,
-  CurricFiltersSubjectCategories,
-  CurricFiltersChildSubjects,
-  CurricFiltersTiers,
-} from "@/components/CurriculumComponents/CurricVisualiserFilters";
 import SkipLink from "@/components/CurriculumComponents/OakComponentsKitchen/SkipLink";
 import type { Ks4Option } from "@/node-lib/curriculum-api-2023/queries/curriculumPhaseOptions/curriculumPhaseOptions.schema";
 
@@ -42,49 +35,13 @@ export default function ProgrammePageFiltersDesktop({
       $mb={"spacing-32"}
     >
       <SkipLink href="#content">Skip to units</SkipLink>
-      {shouldDisplayFilter(data, filters, "years") && (
-        <CurricFiltersYears
-          filters={filters}
-          onChangeFilters={onChangeFilters}
-          data={data}
-          ks4Options={ks4Options}
-          slugs={slugs}
-          context="integrated-journey"
-        />
-      )}
-      {shouldDisplayFilter(data, filters, "subjectCategories") && (
-        <CurricFiltersSubjectCategories
-          filters={filters}
-          onChangeFilters={onChangeFilters}
-          data={data}
-          slugs={slugs}
-          context="integrated-journey"
-        />
-      )}
-      {shouldDisplayFilter(data, filters, "childSubjects") && (
-        <CurricFiltersChildSubjects
-          filters={filters}
-          onChangeFilters={onChangeFilters}
-          data={data}
-          context={"integrated-journey"}
-        />
-      )}
-      {shouldDisplayFilter(data, filters, "tiers") && (
-        <CurricFiltersTiers
-          filters={filters}
-          onChangeFilters={onChangeFilters}
-          data={data}
-          context={"integrated-journey"}
-        />
-      )}
-      {shouldDisplayFilter(data, filters, "threads") && (
-        <ProgrammeFiltersThreads
-          filters={filters}
-          onChangeFilters={onChangeFilters}
-          data={data}
-          radioWidth="100%"
-        />
-      )}
+      <ProgrammeFilters
+        filters={filters}
+        onChangeFilters={onChangeFilters}
+        data={data}
+        slugs={slugs}
+        ks4Options={ks4Options}
+      />
     </OakFlex>
   );
 }
