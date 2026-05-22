@@ -78,12 +78,8 @@ export function buildIntegratedProgrammeUnitsUrl(
 
 export function getLegacyProgrammeUnitsRedirectDestination(
   slug: string,
-  tab: string,
   searchParams: UrlQueryObject,
 ): string | null {
-  if (tab !== "units") {
-    return null;
-  }
   const parsed = parseProgrammeSlug(slug);
   if (!parsed) {
     return null;
@@ -93,12 +89,10 @@ export function getLegacyProgrammeUnitsRedirectDestination(
 
 export function redirectLegacyProgrammeUnitsIfNeeded(
   slug: string,
-  tab: string,
   searchParams: UrlQueryObject,
 ): void {
   const destination = getLegacyProgrammeUnitsRedirectDestination(
     slug,
-    tab,
     searchParams,
   );
   if (destination) {

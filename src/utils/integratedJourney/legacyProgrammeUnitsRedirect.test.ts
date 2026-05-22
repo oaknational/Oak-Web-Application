@@ -126,21 +126,16 @@ describe("buildIntegratedProgrammeUnitsUrl", () => {
 describe("getLegacyProgrammeUnitsRedirectDestination", () => {
   it("does not redirect subjectPhaseSlug unit listing", () => {
     expect(
-      getLegacyProgrammeUnitsRedirectDestination(
-        "citizenship-secondary",
-        "units",
-        {},
-      ),
+      getLegacyProgrammeUnitsRedirectDestination("citizenship-secondary", {}),
     ).toBeNull();
   });
 
-  it("returns destination for programme slug on units tab", () => {
+  it("returns destination for legacy programme slug", () => {
     expect(
-      getLegacyProgrammeUnitsRedirectDestination(
-        "citizenship-secondary-ks3",
-        "units",
-        { year: "year-7", "learning-theme": "all" },
-      ),
+      getLegacyProgrammeUnitsRedirectDestination("citizenship-secondary-ks3", {
+        year: "year-7",
+        "learning-theme": "all",
+      }),
     ).toBe(
       "/teachers/programmes/citizenship-secondary/units?keystages=ks3&years=7",
     );
@@ -148,33 +143,18 @@ describe("getLegacyProgrammeUnitsRedirectDestination", () => {
 
   it("maps array search param values", () => {
     expect(
-      getLegacyProgrammeUnitsRedirectDestination(
-        "english-secondary-ks3",
-        "units",
-        { "learning-theme": "theme-1", category: "grammar" },
-      ),
+      getLegacyProgrammeUnitsRedirectDestination("english-secondary-ks3", {
+        "learning-theme": "theme-1",
+        category: "grammar",
+      }),
     ).toBe(
       "/teachers/programmes/english-secondary/units?keystages=ks3&threads=theme-1&subject_categories=grammar",
     );
   });
 
-  it("returns null for programme slug on non-units tab", () => {
-    expect(
-      getLegacyProgrammeUnitsRedirectDestination(
-        "citizenship-secondary-ks3",
-        "curriculum-explainer",
-        {},
-      ),
-    ).toBeNull();
-  });
-
   it("returns null for invalid programme slug", () => {
     expect(
-      getLegacyProgrammeUnitsRedirectDestination(
-        "invalid-programme-slug",
-        "units",
-        {},
-      ),
+      getLegacyProgrammeUnitsRedirectDestination("invalid-programme-slug", {}),
     ).toBeNull();
   });
 });

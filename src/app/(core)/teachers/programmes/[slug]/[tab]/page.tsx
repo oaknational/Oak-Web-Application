@@ -48,10 +48,10 @@ export async function generateMetadata({
   params: Promise<ProgrammePageParams>;
   searchParams: Promise<PageSearchParms>;
 }): Promise<Metadata> {
-  const { slug, tab } = await params;
+  const { slug } = await params;
   const pageSearchParams = await searchParams;
 
-  redirectLegacyProgrammeUnitsIfNeeded(slug, tab, pageSearchParams);
+  redirectLegacyProgrammeUnitsIfNeeded(slug, pageSearchParams);
 
   try {
     const cachedData = await getCachedProgrammeData(slug);
@@ -96,7 +96,7 @@ const InnerProgrammePage = async (props: AppPageProps<ProgrammePageParams>) => {
   const { slug, tab } = await props.params;
   const searchParams = await props.searchParams;
 
-  redirectLegacyProgrammeUnitsIfNeeded(slug, tab, searchParams ?? {});
+  redirectLegacyProgrammeUnitsIfNeeded(slug, searchParams ?? {});
 
   const subjectPhaseSlug = slug;
 
