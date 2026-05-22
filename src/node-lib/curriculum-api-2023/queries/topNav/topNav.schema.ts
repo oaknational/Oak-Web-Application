@@ -1,12 +1,10 @@
 import z from "zod";
 import { programmeFieldsSchema } from "@oaknational/oak-curriculum-schema";
 
-const topNavProgrammeFieldsSchema = programmeFieldsSchema;
-
 export const topNavResponseSchema = z.object({
   programmes: z.array(
     z.object({
-      programme_fields: topNavProgrammeFieldsSchema,
+      programme_fields: programmeFieldsSchema,
       programme_slug: z.string(),
       features: z.object({ non_curriculum: z.boolean().nullish() }),
       actions: z
