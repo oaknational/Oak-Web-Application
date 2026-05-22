@@ -1,3 +1,7 @@
+/**
+ * Redirects programme slugs (e.g. `citizenship-secondary-ks3`) to the
+ * integrated teacher programme units page, with filters expressed as query params.
+ */
 import { permanentRedirect } from "next/navigation";
 
 import { resolveOakHref } from "@/common-lib/urls";
@@ -17,6 +21,7 @@ function firstSearchParamValue(
   return Array.isArray(value) ? value[0] : value;
 }
 
+/** Maps legacy URL search params (`year`, `learning-theme`, `category`) to filter keys. */
 function mapLegacySearchParams(
   out: UrlQueryObject,
   searchParams: UrlQueryObject,
@@ -37,6 +42,7 @@ function mapLegacySearchParams(
   }
 }
 
+/** Builds the IJ programme URL for a programme slug. */
 export function buildIntegratedProgrammeUnitsUrl(
   parsed: ParsedProgrammeSlug,
   searchParams: UrlQueryObject = {},
@@ -76,7 +82,11 @@ export function buildIntegratedProgrammeUnitsUrl(
   });
 }
 
-export function getLegacyProgrammeUnitsRedirectDestination(
+/**
+ * Returns the redirect destination for a programme slug, or `null` if the
+ * slug is already a subject phase slug or invalid.
+ */
+export function getProgrammeSlugRedirectDestination(
   slug: string,
   searchParams: UrlQueryObject,
 ): string | null {
@@ -87,14 +97,12 @@ export function getLegacyProgrammeUnitsRedirectDestination(
   return buildIntegratedProgrammeUnitsUrl(parsed, searchParams);
 }
 
-export function redirectLegacyProgrammeUnitsIfNeeded(
+/** Permanently redirects when `slug` is a programme slug. */
+export function redirectProgrammeSlugIfNeeded(
   slug: string,
   searchParams: UrlQueryObject,
 ): void {
-  const destination = getLegacyProgrammeUnitsRedirectDestination(
-    slug,
-    searchParams,
-  );
+  const destination = getProgrammeSlugRedirectDestination(slug, searchParams);
   if (destination) {
     permanentRedirect(destination);
   }

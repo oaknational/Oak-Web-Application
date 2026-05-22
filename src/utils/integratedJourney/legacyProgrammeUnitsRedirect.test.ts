@@ -1,6 +1,6 @@
 import {
   buildIntegratedProgrammeUnitsUrl,
-  getLegacyProgrammeUnitsRedirectDestination,
+  getProgrammeSlugRedirectDestination,
 } from "./legacyProgrammeUnitsRedirect";
 
 import { parseProgrammeSlug } from "@/utils/curriculum/slugs";
@@ -123,16 +123,16 @@ describe("buildIntegratedProgrammeUnitsUrl", () => {
   });
 });
 
-describe("getLegacyProgrammeUnitsRedirectDestination", () => {
+describe("getProgrammeSlugRedirectDestination", () => {
   it("does not redirect subjectPhaseSlug unit listing", () => {
     expect(
-      getLegacyProgrammeUnitsRedirectDestination("citizenship-secondary", {}),
+      getProgrammeSlugRedirectDestination("citizenship-secondary", {}),
     ).toBeNull();
   });
 
   it("returns destination for legacy programme slug", () => {
     expect(
-      getLegacyProgrammeUnitsRedirectDestination("citizenship-secondary-ks3", {
+      getProgrammeSlugRedirectDestination("citizenship-secondary-ks3", {
         year: "year-7",
         "learning-theme": "all",
       }),
@@ -143,7 +143,7 @@ describe("getLegacyProgrammeUnitsRedirectDestination", () => {
 
   it("maps array search param values", () => {
     expect(
-      getLegacyProgrammeUnitsRedirectDestination("english-secondary-ks3", {
+      getProgrammeSlugRedirectDestination("english-secondary-ks3", {
         "learning-theme": "theme-1",
         category: "grammar",
       }),
@@ -154,7 +154,7 @@ describe("getLegacyProgrammeUnitsRedirectDestination", () => {
 
   it("returns null for invalid programme slug", () => {
     expect(
-      getLegacyProgrammeUnitsRedirectDestination("invalid-programme-slug", {}),
+      getProgrammeSlugRedirectDestination("invalid-programme-slug", {}),
     ).toBeNull();
   });
 });

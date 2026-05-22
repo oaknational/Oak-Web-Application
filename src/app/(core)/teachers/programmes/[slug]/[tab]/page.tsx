@@ -29,7 +29,7 @@ import { getMvRefreshTime } from "@/pages-helpers/curriculum/downloads/getMvRefr
 import { resolveOakHref } from "@/common-lib/urls";
 import { getSubjectPhaseSlug } from "@/components/TeacherComponents/helpers/getSubjectPhaseSlug";
 import { resolveFilterFromSearchParams } from "@/utils/curriculum/filtersUrl";
-import { redirectLegacyProgrammeUnitsIfNeeded } from "@/utils/integratedJourney/legacyProgrammeUnitsRedirect";
+import { redirectProgrammeSlugIfNeeded } from "@/utils/integratedJourney/legacyProgrammeUnitsRedirect";
 
 const reportError = errorReporter("programme-page::app");
 
@@ -51,7 +51,7 @@ export async function generateMetadata({
   const { slug } = await params;
   const pageSearchParams = await searchParams;
 
-  redirectLegacyProgrammeUnitsIfNeeded(slug, pageSearchParams);
+  redirectProgrammeSlugIfNeeded(slug, pageSearchParams);
 
   try {
     const cachedData = await getCachedProgrammeData(slug);
@@ -96,7 +96,7 @@ const InnerProgrammePage = async (props: AppPageProps<ProgrammePageParams>) => {
   const { slug, tab } = await props.params;
   const searchParams = await props.searchParams;
 
-  redirectLegacyProgrammeUnitsIfNeeded(slug, searchParams ?? {});
+  redirectProgrammeSlugIfNeeded(slug, searchParams ?? {});
 
   const subjectPhaseSlug = slug;
 
