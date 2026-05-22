@@ -111,10 +111,27 @@ export const topNavFixture: TopNavProps = {
         },
       ],
     },
-    curriculum: {
-      slug: "curriculum-landing-page",
-      title: "Curriculum",
-      href: "/teachers/curriculum",
+    guidance: {
+      slug: "guidance",
+      title: "Guidance",
+      children: [
+        {
+          slug: "lesson-planning",
+          title: "Plan a lesson",
+          href: "/teachers/lesson-planning",
+        },
+        {
+          slug: "blog-index",
+          title: "Blogs",
+          href: "/blog",
+        },
+        {
+          slug: "help",
+          title: "Help",
+          href: "https://support.thenational.academy",
+          external: true,
+        },
+      ],
     },
     aboutUs: {
       slug: "aboutUs",
@@ -144,28 +161,6 @@ export const topNavFixture: TopNavProps = {
           slug: "contact",
           title: "Contact us",
           href: "/contact-us",
-        },
-      ],
-    },
-    guidance: {
-      slug: "guidance",
-      title: "Guidance",
-      children: [
-        {
-          slug: "lesson-planning",
-          title: "Plan a lesson",
-          href: "/teachers/lesson-planning",
-        },
-        {
-          slug: "blog-index",
-          title: "Blogs",
-          href: "/blog",
-        },
-        {
-          slug: "help",
-          title: "Help",
-          href: "https://support.thenational.academy",
-          external: true,
         },
       ],
     },

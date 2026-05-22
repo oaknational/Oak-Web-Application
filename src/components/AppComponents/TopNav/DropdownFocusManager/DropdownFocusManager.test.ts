@@ -17,7 +17,6 @@ describe("DropdownFocusManager", () => {
     // Top-level keys
     expect(focusMap.has("teachers-primary")).toBe(true);
     expect(focusMap.has("teachers-secondary")).toBe(true);
-    expect(focusMap.has("teachers-curriculum-landing-page")).toBe(true);
     expect(focusMap.has("teachers-aboutUs")).toBe(true);
     expect(focusMap.has("teachers-guidance")).toBe(true);
   });
