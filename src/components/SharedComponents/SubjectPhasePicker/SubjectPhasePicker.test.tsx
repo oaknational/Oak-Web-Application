@@ -260,7 +260,7 @@ describe("Component - subject phase picker", () => {
     pushMock.mockReset();
     await userEvent.click(viewButton);
     expect(pushMock).toHaveBeenCalledWith({
-      pathname: "/teachers/curriculum/english-primary/overview",
+      pathname: "/programmes/english-primary/units",
     });
   });
 
