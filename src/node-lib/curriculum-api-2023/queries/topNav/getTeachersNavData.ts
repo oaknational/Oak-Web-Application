@@ -35,7 +35,7 @@ export const getExamBoardsForKS4Subject = ({
   slug: string;
   title: string;
   programmeSlug: string;
-  tierSlug: string | null;
+  tierSlug: "core" | "foundation" | "higher" | null;
 }> => {
   const matchingProgrammes = data.programmes
     .filter((p) => {
