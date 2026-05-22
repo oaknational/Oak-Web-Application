@@ -21,7 +21,6 @@ describe("parseProgrammeSlug", () => {
       tierSlug: null,
       pathwaySlug: null,
       examboardSlug: null,
-      childSubjectSlug: null,
     });
   });
 
@@ -34,7 +33,6 @@ describe("parseProgrammeSlug", () => {
       tierSlug: null,
       pathwaySlug: "gcse",
       examboardSlug: "aqa",
-      childSubjectSlug: null,
     });
   });
 
@@ -47,7 +45,6 @@ describe("parseProgrammeSlug", () => {
       tierSlug: "foundation",
       pathwaySlug: null,
       examboardSlug: null,
-      childSubjectSlug: null,
     });
   });
 
@@ -60,16 +57,14 @@ describe("parseProgrammeSlug", () => {
       tierSlug: null,
       pathwaySlug: null,
       examboardSlug: null,
-      childSubjectSlug: null,
     });
   });
 
-  it("parses science child subject slug", () => {
+  it("parses legacy science programme slug with biology as subject", () => {
     expect(
       parseProgrammeSlug("biology-secondary-ks4-higher-aqa"),
     ).toMatchObject({
       subjectSlug: "biology",
-      childSubjectSlug: "biology",
       tierSlug: "higher",
       examboardSlug: "aqa",
     });
@@ -84,7 +79,6 @@ describe("parseProgrammeSlug", () => {
       tierSlug: null,
       pathwaySlug: "gcse",
       examboardSlug: null,
-      childSubjectSlug: null,
     });
   });
 
@@ -97,14 +91,12 @@ describe("parseProgrammeSlug", () => {
       tierSlug: null,
       pathwaySlug: "core",
       examboardSlug: null,
-      childSubjectSlug: null,
     });
   });
 
   it("strips legacy suffix before parsing", () => {
     expect(parseProgrammeSlug("chemistry-secondary-ks4-l")).toMatchObject({
       subjectSlug: "chemistry",
-      childSubjectSlug: "chemistry",
       keystageSlug: "ks4",
     });
   });

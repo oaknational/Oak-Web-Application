@@ -12,13 +12,6 @@ import slugify from "slugify";
 import { CurriculumUnitsTabData } from "@/node-lib/curriculum-api-2023";
 import { CurriculumPhaseOptions } from "@/node-lib/curriculum-api-2023/queries/curriculumPhaseOptions/curriculumPhaseOptions.query";
 
-export const SCIENCE_CHILD_SUBJECT_SLUGS = new Set([
-  "biology",
-  "chemistry",
-  "physics",
-  "combined-science",
-]);
-
 export type ParsedProgrammeSlug = {
   subjectSlug: string;
   phaseSlug: string;
@@ -27,52 +20,57 @@ export type ParsedProgrammeSlug = {
   tierSlug: string | null;
   pathwaySlug: string | null;
   examboardSlug: string | null;
-  childSubjectSlug: string | null;
 };
 
-function findOptionIndex(parts: string[], options: readonly string[]): number {
-  return parts.findIndex((part) => options.includes(part));
-}
-
-function spliceOption(
+function takeOption(
   parts: string[],
   options: readonly string[],
 ): string | null {
-  const index = findOptionIndex(parts, options);
-  if (index < 0) {
-    return null;
-  }
-  return parts.splice(index, 1)[0] ?? null;
+  const index = parts.findIndex((part) => options.includes(part));
+  return index < 0 ? null : parts.splice(index, 1)[0]!;
 }
 
+/**
+ * Parses a programme slug (e.g. `biology-secondary-ks4-higher-aqa`)
+ * into structured segments. Returns `null` for unrecognised slugs.
+ *
+ * Will fail when a known token appears in the wrong place: the first `primary`/`secondary`
+ * (etc.) always ends the subject (e.g. `english-primary-secondary` → subject `english`,
+ * phase `primary`, invalid tail `secondary`). The same applies if pathway, tier, or
+ * examboard tokens appear inside a multi-part subject slug.
+ *
+ * With current data that doesn't appear to be an issue.
+ */
 export function parseProgrammeSlug(
   programmeSlug: string,
 ): ParsedProgrammeSlug | null {
   const parts = programmeSlug.split("-");
 
+  // Legacy download/listing suffix (e.g. `-l`). Not sure if this is needed anymore but included for completeness.
+  // and to support old bookmarks
   if (parts.at(-1) === "l") {
     parts.pop();
   }
 
-  const phaseIndex = findOptionIndex(parts, phaseSlugs.options);
+  const phaseIndex = parts.findIndex((part) =>
+    phaseSlugs.options.includes(part as (typeof phaseSlugs.options)[number]),
+  );
   if (phaseIndex < 0) {
     return null;
   }
 
+  // Everything before the phase is the subject.
   const subjectSlug = parts.splice(0, phaseIndex).join("-");
   if (!subjectSlugs.safeParse(subjectSlug).success) {
     return null;
   }
 
-  const phaseSlug = parts.shift();
-  if (!phaseSlug || !phaseSlugs.safeParse(phaseSlug).success) {
-    return null;
-  }
+  const phaseSlug = parts.shift()!;
+  const pathwaySlug = takeOption(parts, pathwaySlugs.options);
+  const tierSlug = takeOption(parts, tierSlugs.options);
+  const examboardSlug = takeOption(parts, examboardSlugs.options);
 
-  const pathwaySlug = spliceOption(parts, pathwaySlugs.options);
-  const tierSlug = spliceOption(parts, tierSlugs.options);
-  const examboardSlug = spliceOption(parts, examboardSlugs.options);
-
+  // Remaining tokens are year or keystage (e.g. `ks3`, `year-10`).
   const yearKsSlug = parts.join("-");
   if (!yearKsSlug) {
     return null;
@@ -89,10 +87,6 @@ export function parseProgrammeSlug(
     return null;
   }
 
-  const childSubjectSlug = SCIENCE_CHILD_SUBJECT_SLUGS.has(subjectSlug)
-    ? subjectSlug
-    : null;
-
   return {
     subjectSlug,
     phaseSlug,
@@ -101,7 +95,6 @@ export function parseProgrammeSlug(
     tierSlug,
     pathwaySlug,
     examboardSlug,
-    childSubjectSlug,
   };
 }
 

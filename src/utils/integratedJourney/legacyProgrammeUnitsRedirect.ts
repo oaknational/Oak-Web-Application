@@ -12,6 +12,13 @@ import {
   type ParsedProgrammeSlug,
 } from "@/utils/curriculum/slugs";
 
+const SCIENCE_CHILD_SUBJECT_SLUGS = new Set([
+  "biology",
+  "chemistry",
+  "physics",
+  "combined-science",
+]);
+
 function firstSearchParamValue(
   value: string | string[] | null | undefined,
 ): string | undefined {
@@ -47,8 +54,15 @@ export function buildIntegratedProgrammeUnitsUrl(
   parsed: ParsedProgrammeSlug,
   searchParams: UrlQueryObject = {},
 ): string {
+  // KS4 science slugs use biology/chemistry/etc. as subject; redirect maps to `science`
+  const scienceChildSubjectSlug = SCIENCE_CHILD_SUBJECT_SLUGS.has(
+    parsed.subjectSlug,
+  )
+    ? parsed.subjectSlug
+    : null;
+
   const subjectPhaseSlug = getTeacherSubjectPhaseSlug({
-    subjectSlug: parsed.childSubjectSlug ? "science" : parsed.subjectSlug,
+    subjectSlug: scienceChildSubjectSlug ? "science" : parsed.subjectSlug,
     phaseSlug: parsed.phaseSlug,
     examboardSlug: parsed.examboardSlug,
     pathwaySlug: parsed.pathwaySlug,
@@ -68,8 +82,9 @@ export function buildIntegratedProgrammeUnitsUrl(
     query.tiers = parsed.tierSlug;
   }
 
-  if (parsed.childSubjectSlug) {
-    query.child_subjects = parsed.childSubjectSlug;
+  // Apply child subject filter for KS4 science slugs.
+  if (scienceChildSubjectSlug) {
+    query.child_subjects = scienceChildSubjectSlug;
   }
 
   mapLegacySearchParams(query, searchParams);
