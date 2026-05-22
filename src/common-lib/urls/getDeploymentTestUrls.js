@@ -32,10 +32,10 @@ function getDeploymentTestUrls() {
     // "/lp/oak-calendar",
     "/teachers/search?term=equate&keyStages=ks4", // results with tier and examboard drop downs
     // New content pages
-    "/teachers/programmes/english-secondary-ks3/units", // No programme factors
+    "/teachers/programmes/english-secondary-aqa/units", // No programme factors
     "/teachers/programmes/english-secondary-ks3/units/victorian-childhood-non-fiction-reading-and-writing/lessons",
     "/teachers/programmes/english-secondary-ks3/units/victorian-childhood-non-fiction-reading-and-writing/lessons/victorian-childhood-preparing-an-argument",
-    "/teachers/programmes/combined-science-secondary-ks4-higher-aqa/units",
+    "/teachers/programmes/science-secondary-aqa/units",
     "/teachers/programmes/combined-science-secondary-ks4-higher-aqa/units/measuring-waves/lessons",
     "/teachers/programmes/combined-science-secondary-ks4-higher-aqa/units/measuring-waves/lessons/oscilloscope",
     "/teachers/programmes/spanish-secondary-ks4-aqa/units/travel-and-tourism-nuevas-experiencias/lessons", // unitvariant uses null lessons
