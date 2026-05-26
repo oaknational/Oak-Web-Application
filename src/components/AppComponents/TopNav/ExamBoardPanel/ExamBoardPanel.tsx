@@ -2,9 +2,9 @@ import {
   OakBox,
   OakFlex,
   OakHeading,
-  OakRadioAsButton,
-  OakRadioGroup,
+  OakSecondaryButton,
   OakUL,
+  parseSpacing,
 } from "@oaknational/oak-components";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
@@ -68,7 +68,7 @@ const ExamBoardPanel = ({
       requestAnimationFrame(() => {
         const panel = document.getElementById(panelId);
         const firstExamBoard = panel?.querySelector<HTMLElement>(
-          `input[name="exam-boards-${selectedSubject.slug}"]`,
+          'a[data-testid^="exam-board-"]',
         );
         firstExamBoard?.focus();
       });
@@ -79,30 +79,7 @@ const ExamBoardPanel = ({
     return null;
   }
 
-  const navigateToSubject = ({ examBoard }: { examBoard: string }) => {
-    if (examBoard === null) return;
-
-    let board = examBoard.split("(")[0]?.toLowerCase().trim(); // in case value is in format "examBoard-tier"
-    let tier =
-      examBoard.split("(")[1]?.toLowerCase().trim().replace(")", "") ?? null;
-    if (examBoard === "Higher" || examBoard === "Foundation") {
-      tier = examBoard.toLowerCase();
-      board = ""; // maths has tiers but no exam board
-    }
-
-    const href = resolveOakHref({
-      page: "teacher-programme",
-      subjectPhaseSlug: getTeacherSubjectPhaseSlug({
-        subjectSlug: selectedSubject?.slug,
-        phaseSlug: "secondary",
-        examboardSlug: board,
-        pathwaySlug: null,
-        subjectParentTitle: selectedSubject?.subjectParent ?? undefined,
-      }),
-      tab: "units",
-      query: tier ? { keystages: "ks4", tiers: tier } : { keystages: "ks4" },
-    });
-
+  const navigateToSubject = (href: string) => {
     router.push(href);
 
     onClick(selectedSubject.slug, "ks4");
@@ -150,13 +127,6 @@ const ExamBoardPanel = ({
 
   const handleListKeyDown = (e: React.KeyboardEvent<HTMLUListElement>) => {
     const activeElement = document.activeElement as HTMLElement | null;
-
-    if (e.key === "Enter") {
-      navigateToSubject({
-        examBoard: activeElement?.getAttribute("value") ?? "",
-      });
-      return;
-    }
 
     if (!activeElement || e.key !== "Tab") {
       if (e.key === "Escape" && activeElement?.id) {
@@ -236,40 +206,56 @@ const ExamBoardPanel = ({
         id={`topnav-teachers-ks4-examboards-${selectedSubject.slug}`}
         onKeyDown={handleListKeyDown}
         role="list"
+        style={{
+          display: "flex",
+          flexFlow: "row wrap",
+          gap: parseSpacing("spacing-16"),
+        }}
       >
-        <OakRadioGroup
-          name={`exam-boards-${selectedSubject.slug}`}
-          onChange={(e) => {
-            navigateToSubject({
-              examBoard: e.target.value,
-            });
-          }}
-          $gap="spacing-12"
-        >
-          {examboards
-            .toSorted((a, b) => a.title.localeCompare(b.title))
-            .map((examboard) => {
-              const title =
-                examboard.tierSlug &&
-                examboard.title.toLowerCase() !== examboard.tierSlug
-                  ? `${examboard.title} (${examboard.tierSlug.charAt(0).toUpperCase() + examboard.tierSlug.slice(1)})`
-                  : examboard.title;
-              const key = examboard.tierSlug
-                ? `exam-board-${examboard.slug}-${examboard.tierSlug}`
-                : `exam-board-${examboard.slug}`;
+        {examboards
+          .toSorted((a, b) => a.title.localeCompare(b.title))
+          .map((examboard) => {
+            const title =
+              examboard.tierSlug &&
+              examboard.title.toLowerCase() !== examboard.tierSlug
+                ? `${examboard.title} (${examboard.tierSlug.charAt(0).toUpperCase() + examboard.tierSlug.slice(1)})`
+                : examboard.title;
+            const key = examboard.tierSlug
+              ? `exam-board-${examboard.slug}-${examboard.tierSlug}`
+              : `exam-board-${examboard.slug}`;
 
-              return (
-                <OakRadioAsButton
-                  key={key}
-                  data-testid={key}
-                  colorScheme="primary"
-                  displayValue={title}
-                  value={title}
-                  width={"fit-content"}
-                />
-              );
-            })}
-        </OakRadioGroup>
+            const href = resolveOakHref({
+              page: "teacher-programme",
+              subjectPhaseSlug: getTeacherSubjectPhaseSlug({
+                subjectSlug: selectedSubject?.slug,
+                phaseSlug: "secondary",
+                examboardSlug: examboard.slug,
+                pathwaySlug: null,
+                subjectParentTitle: selectedSubject?.subjectParent ?? undefined,
+              }),
+              tab: "units",
+              query: {
+                keystages: "ks4",
+                tiers: examboard.tierSlug ?? undefined,
+                child_subjects: selectedSubject.subjectParent
+                  ? selectedSubject.slug
+                  : undefined,
+              },
+            });
+
+            return (
+              <OakSecondaryButton
+                element="a"
+                href={href}
+                key={key}
+                data-testid={key}
+                onClick={() => navigateToSubject(href)}
+                width={"fit-content"}
+              >
+                {title}
+              </OakSecondaryButton>
+            );
+          })}
       </OakUL>
     </OakFlex>
   );
