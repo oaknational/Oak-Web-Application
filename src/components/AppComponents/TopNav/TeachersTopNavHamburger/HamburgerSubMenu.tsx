@@ -46,12 +46,17 @@ export function SubmenuContainer({
   const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    // focus the first link in the submenu when it opens
-    if (submenuOpen && containerRef.current) {
-      const focusableElements =
-        containerRef.current.querySelectorAll<HTMLElement>("[href]");
-      focusableElements[0]?.focus();
-    }
+    if (!submenuOpen || !containerRef.current) return;
+
+    const firstSubjectButton = containerRef.current.querySelector<HTMLElement>(
+      '[data-testid^="topnav-subject-button-"]',
+    );
+
+    const fallbackFocusable = containerRef.current.querySelector<HTMLElement>(
+      "a[href], button:not(:disabled), [tabindex]:not([tabindex='-1'])",
+    );
+
+    (firstSubjectButton ?? fallbackFocusable)?.focus();
   }, [submenuOpen]);
   return (
     <OakFlex

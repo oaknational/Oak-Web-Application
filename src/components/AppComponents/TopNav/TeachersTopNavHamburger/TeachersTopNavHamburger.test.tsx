@@ -81,7 +81,7 @@ describe("TeachersTopNavHamburger", () => {
 
     const keyStageItem = getByText("Key stage 1");
     await user.click(keyStageItem);
-    const firstListItem = getByText("English");
+    const firstListItem = getByTestId("topnav-subject-button-english");
     expect(document?.activeElement?.textContent).toBe(
       firstListItem.textContent,
     );
@@ -240,7 +240,7 @@ describe("TeachersTopNavHamburger", () => {
     const keyStage4Item = getByText("Key stage 4");
     await user.click(keyStage4Item);
 
-    const geographySubject = getByRole("link", { name: "Geography" });
+    const geographySubject = getByRole("button", { name: "Geography" });
     await user.click(geographySubject);
 
     expect(
@@ -253,6 +253,6 @@ describe("TeachersTopNavHamburger", () => {
     expect(
       queryByRole("heading", { name: "Choose exam board for KS4 Geography" }),
     ).not.toBeInTheDocument();
-    expect(getByRole("link", { name: "Geography" })).toBeInTheDocument();
+    expect(getByRole("button", { name: "Geography" })).toBeInTheDocument();
   });
 });
