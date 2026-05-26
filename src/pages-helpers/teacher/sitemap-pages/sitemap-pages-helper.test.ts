@@ -27,29 +27,29 @@ describe("teacher sitemaps", () => {
       expect(entries[0]).toHaveProperty("lastModified");
 
       expect(allUrls).toContain(
-        "http://localhost:3000/programmes/english-primary/units",
+        "http://localhost:3000/teachers/programmes/english-primary/units",
       );
       expect(allUrls).toContain(
-        "http://localhost:3000/programmes/english-secondary-aqa/units",
+        "http://localhost:3000/teachers/programmes/english-secondary-aqa/units",
       );
       expect(allUrls).toContain(
-        "http://localhost:3000/programmes/english-secondary-edexcel/units",
+        "http://localhost:3000/teachers/programmes/english-secondary-edexcel/units",
       );
       expect(allUrls).toContain(
-        "http://localhost:3000/programmes/geography-secondary/units",
+        "http://localhost:3000/teachers/programmes/geography-secondary/units",
       );
       expect(allUrls).not.toContain(
-        "http://localhost:3000/programmes/programme-1/units",
+        "http://localhost:3000/teachers/programmes/programme-1/units",
       );
 
       expect(allUrls).toContain(
-        "http://localhost:3000/programmes/programme-1/units/unit-1/lessons",
+        "http://localhost:3000/teachers/programmes/programme-1/units/unit-1/lessons",
       );
       expect(allUrls).toContain(
-        "http://localhost:3000/programmes/programme-1/units/unit-1/lessons/lesson-1",
+        "http://localhost:3000/teachers/programmes/programme-1/units/unit-1/lessons/lesson-1",
       );
       expect(allUrls).toContain(
-        "http://localhost:3000/programmes/programme-2/units/unit-2/lessons/lesson-2",
+        "http://localhost:3000/teachers/programmes/programme-2/units/unit-2/lessons/lesson-2",
       );
     });
 
