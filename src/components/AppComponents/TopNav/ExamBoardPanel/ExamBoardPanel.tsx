@@ -138,21 +138,21 @@ const ExamBoardPanel = ({
       return;
     }
 
-    const radios = Array.from(
+    const links = Array.from(
       e.currentTarget.querySelectorAll<HTMLElement>(
-        `input[name="exam-boards-${selectedSubject.slug}"]`,
+        'a[data-testid^="exam-board-"]',
       ),
     );
 
-    if (radios.length === 0) return;
+    if (links.length === 0) return;
 
-    const currentIndex = radios.indexOf(activeElement);
+    const currentIndex = links.indexOf(activeElement);
     if (currentIndex === -1) return;
 
     e.preventDefault();
 
     if (focusManager) {
-      focusNextExamBoard(radios, currentIndex, !e.shiftKey);
+      focusNextExamBoard(links, currentIndex, !e.shiftKey);
       return;
     }
 

@@ -110,8 +110,8 @@ describe("ExamBoardPanel", () => {
       />,
     );
 
-    const aqaRadio = screen.getByTestId("exam-board-aqa");
-    await user.click(aqaRadio);
+    const aqaLink = screen.getByTestId("exam-board-aqa");
+    await user.click(aqaLink);
 
     expect(mockPush).toHaveBeenCalledWith(
       "/test-path/test-programme-slug/units",
@@ -130,8 +130,8 @@ describe("ExamBoardPanel", () => {
       />,
     );
 
-    const aqaRadio = screen.getByTestId("exam-board-aqa");
-    await user.click(aqaRadio);
+    const aqaLink = screen.getByTestId("exam-board-aqa");
+    await user.click(aqaLink);
 
     expect(mockOnClick).toHaveBeenCalledWith("geography", "ks4");
   });
@@ -174,11 +174,11 @@ describe("ExamBoardPanel", () => {
       }),
     ).toBeInTheDocument();
 
-    expect(screen.getByDisplayValue("Higher")).toBeInTheDocument();
+    expect(screen.getByText("Higher")).toBeInTheDocument();
   });
 
   describe("ExamBoardPanel accessibility", () => {
-    it("focuses the first exam board radio when the panel opens", async () => {
+    it("focuses the first exam board link when the panel opens", async () => {
       render(
         <ExamBoardPanel
           examBoards={examBoards}
@@ -189,10 +189,10 @@ describe("ExamBoardPanel", () => {
         />,
       );
 
-      const firstRadio = screen.getByRole("radio", { name: "AQA" });
+      const firstLink = screen.getByRole("link", { name: "AQA" });
 
       await waitFor(() => {
-        expect(firstRadio).toHaveFocus();
+        expect(firstLink).toHaveFocus();
       });
     });
 
@@ -209,13 +209,13 @@ describe("ExamBoardPanel", () => {
         />,
       );
 
-      const firstRadio = screen.getByRole("radio", { name: "AQA" });
-      const secondRadio = screen.getByRole("radio", { name: "Edexcel" });
+      const firstLink = screen.getByRole("link", { name: "AQA" });
+      const secondLink = screen.getByRole("link", { name: "Edexcel" });
 
-      firstRadio.focus();
-      fireEvent.keyDown(firstRadio, { key: "Tab" });
+      firstLink.focus();
+      fireEvent.keyDown(firstLink, { key: "Tab" });
 
-      expect(secondRadio).toHaveFocus();
+      expect(secondLink).toHaveFocus();
     });
 
     it("moves focus back to subject context on Shift+Tab from first exam board", async () => {
@@ -225,10 +225,12 @@ describe("ExamBoardPanel", () => {
       const subjectsContainer = document.createElement("div");
       subjectsContainer.id = "topnav-teachers-ks4-subjects";
 
-      const previousSibling = document.createElement("button");
+      const previousSibling = document.createElement("a");
+      previousSibling.href = "#";
       previousSibling.id = "teachers-secondary-ks4-history";
 
-      const parentSubject = document.createElement("button");
+      const parentSubject = document.createElement("a");
+      parentSubject.href = "#";
       parentSubject.id = "teachers-secondary-ks4-geography";
 
       subjectsContainer.append(previousSibling, parentSubject);
@@ -245,10 +247,10 @@ describe("ExamBoardPanel", () => {
         />,
       );
 
-      const firstRadio = screen.getByRole("radio", { name: "AQA" });
-      firstRadio.focus();
+      const firstLink = screen.getByRole("link", { name: "AQA" });
+      firstLink.focus();
 
-      fireEvent.keyDown(firstRadio, { key: "Tab", shiftKey: true });
+      fireEvent.keyDown(firstLink, { key: "Tab", shiftKey: true });
 
       expect(previousSibling).toHaveFocus();
       expect(onLeave).toHaveBeenCalledTimes(1);
@@ -270,8 +272,8 @@ describe("ExamBoardPanel", () => {
         />,
       );
 
-      const firstRadio = screen.getByRole("radio", { name: "AQA" });
-      firstRadio.setAttribute("id", "exam-board-aqa-radio");
+      const firstRadio = screen.getByRole("link", { name: "AQA" });
+      firstRadio.setAttribute("id", "exam-board-aqa-link");
       firstRadio.focus();
 
       fireEvent.keyDown(firstRadio, { key: "Escape" });
@@ -279,7 +281,7 @@ describe("ExamBoardPanel", () => {
       expect(focusManager.handleEscapeKey).toHaveBeenCalledTimes(1);
       expect(
         (focusManager.handleEscapeKey as jest.Mock).mock.calls[0][0].elementId,
-      ).toBe("exam-board-aqa-radio");
+      ).toBe("exam-board-aqa-link");
     });
   });
 });

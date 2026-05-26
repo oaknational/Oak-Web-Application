@@ -334,7 +334,7 @@ describe("TopNavDropdown", () => {
 
         mockBrowseRefined.mockClear();
 
-        const examBoardButton = screen.getByRole("radio", { name: /AQA/ });
+        const examBoardButton = screen.getByRole("link", { name: /AQA/ });
         await user.click(examBoardButton);
 
         expect(mockBrowseRefined).toHaveBeenCalledWith(
