@@ -10,15 +10,15 @@ import withPageErrorHandling, {
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 
 type LessonDownloadsSuccessPageParams = {
-  subjectPhaseSlug: string;
+  slug: string;
   unitSlug: string;
   lessonSlug: string;
 };
 
 const getCachedSuccessData = cache(
-  async (subjectPhaseSlug: string, unitSlug: string, lessonSlug: string) => {
+  async (programmeSlug: string, unitSlug: string, lessonSlug: string) => {
     const unitData = await curriculumApi2023.teachersUnitOverview({
-      programmeSlug: subjectPhaseSlug,
+      programmeSlug,
       unitSlug,
     });
 
@@ -48,11 +48,11 @@ const getCachedSuccessData = cache(
 export async function generateMetadata(
   props: AppPageProps<LessonDownloadsSuccessPageParams>,
 ): Promise<Metadata> {
-  const { subjectPhaseSlug, unitSlug, lessonSlug } = await props.params;
+  const { slug: programmeSlug, unitSlug, lessonSlug } = await props.params;
 
   try {
     const data = await getCachedSuccessData(
-      subjectPhaseSlug,
+      programmeSlug,
       unitSlug,
       lessonSlug,
     );
@@ -76,12 +76,8 @@ export async function generateMetadata(
 const InnerLessonDownloadsSuccessPage = async (
   props: AppPageProps<LessonDownloadsSuccessPageParams>,
 ) => {
-  const { subjectPhaseSlug, unitSlug, lessonSlug } = await props.params;
-  const data = await getCachedSuccessData(
-    subjectPhaseSlug,
-    unitSlug,
-    lessonSlug,
-  );
+  const { slug: programmeSlug, unitSlug, lessonSlug } = await props.params;
+  const data = await getCachedSuccessData(programmeSlug, unitSlug, lessonSlug);
   if (!data) {
     return notFound();
   }

@@ -31,13 +31,13 @@ jest.mock("@/node-lib/curriculum-api-2023", () => ({
 }));
 
 const defaultParams = {
-  subjectPhaseSlug: "science-secondary-ks3",
+  slug: "science-secondary-ks3",
   unitSlug: "solid-liquid-gas-states-and-changes-of-state",
   lessonSlug: "solid-and-liquid-states",
 };
 
 const teachersUnitOverviewFixture = {
-  programmeSlug: "science-secondary-ks3",
+  slug: "science-secondary-ks3",
   unitSlug: "solid-liquid-gas-states-and-changes-of-state",
   unitvariantId: 123,
   unitTitle: "Solid, liquid and gas states and changes of state",
@@ -71,7 +71,7 @@ describe("LessonDownloadsSuccessPage", () => {
 
     expect(result).toBeDefined();
     expect(mockTeachersUnitOverview).toHaveBeenCalledWith({
-      programmeSlug: defaultParams.subjectPhaseSlug,
+      programmeSlug: defaultParams.slug,
       unitSlug: defaultParams.unitSlug,
     });
     expect(result).toMatchObject({
