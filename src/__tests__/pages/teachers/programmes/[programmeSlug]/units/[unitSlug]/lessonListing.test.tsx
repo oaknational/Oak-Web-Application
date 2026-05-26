@@ -5,7 +5,7 @@ import { screen } from "@testing-library/dom";
 import LessonListPage, {
   getStaticProps,
   URLParams,
-} from "@/pages/teachers/programmes/[programmeSlug]/units/[unitSlug]/lessons";
+} from "@/pages/teachers/__legacy__programmes/[programmeSlug]/units/[unitSlug]/lessons";
 import { mockSeoResult } from "@/__tests__/__helpers__/cms";
 import renderWithSeo from "@/__tests__/__helpers__/renderWithSeo";
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";

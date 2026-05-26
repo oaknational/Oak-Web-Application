@@ -8,7 +8,7 @@ import {
   getStaticPaths,
   URLParams,
   LessonMediaClipsPage,
-} from "@/pages/teachers/programmes/[programmeSlug]/units/[unitSlug]/lessons/[lessonSlug]/media";
+} from "@/pages/teachers/__legacy__programmes/[programmeSlug]/units/[unitSlug]/lessons/[lessonSlug]/media";
 import curriculumApi from "@/node-lib/curriculum-api-2023/__mocks__";
 import lessonMediaClipsFixtures from "@/node-lib/curriculum-api-2023/fixtures/lessonMediaClips.fixture";
 import curriculumApi2023, {

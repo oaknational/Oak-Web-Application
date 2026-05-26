@@ -7,7 +7,7 @@ import UnitListingPage, {
   getStaticPaths,
   getStaticProps,
   getLegacyProgrammeSlug,
-} from "@/pages/teachers/programmes/[programmeSlug]/units";
+} from "@/pages/teachers/__legacy__programmes/[programmeSlug]/units";
 import unitListingFixture, {
   unitListingWithTiers,
 } from "@/node-lib/curriculum-api-2023/fixtures/unitListing.fixture";

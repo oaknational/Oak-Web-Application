@@ -3,9 +3,9 @@ import { Redirect } from "next";
 import { PupilLessonPageURLParams } from "../../pupil/lessons-pages/getProps";
 
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
-import { URLParams } from "@/pages/teachers/programmes/[programmeSlug]/units/[unitSlug]/lessons/[lessonSlug]";
+import { URLParams } from "@/pages/teachers/__legacy__programmes/[programmeSlug]/units/[unitSlug]/lessons/[lessonSlug]";
 import { URLParams as URLParamsCanonical } from "@/pages/teachers/lessons/[lessonSlug]";
-import { URLParams as UnitURLParams } from "@/pages/teachers/programmes/[programmeSlug]/units/[unitSlug]/lessons";
+import { URLParams as UnitURLParams } from "@/pages/teachers/__legacy__programmes/[programmeSlug]/units/[unitSlug]/lessons";
 import { PupilLessonListingURLParams } from "@/pages/pupils/programmes/[programmeSlug]/units/[unitSlug]/lessons";
 
 export const getRedirect = async (

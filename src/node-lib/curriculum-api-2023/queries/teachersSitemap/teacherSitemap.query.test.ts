@@ -22,13 +22,8 @@ describe("teacher sitemap query", () => {
         ...sdk,
         teachersSitemap: jest.fn(() =>
           Promise.resolve({
-            keyStages: [],
-            programmes: [],
             units: [],
             lessons: [],
-            specialistProgrammes: [],
-            specialistUnits: [],
-            specialistLessons: [],
           }),
         ),
       })();
@@ -43,10 +38,10 @@ describe("teacher sitemap query", () => {
         teachersSitemap: jest.fn(() =>
           Promise.resolve({
             ...teachersSitemapDataFixture,
-            keyStages: [{ lesson: "" }],
+            units: [{ programme_slug: "programme-1" }],
           }),
         ),
       })();
-    }).rejects.toThrow(`slug`);
+    }).rejects.toThrow(`unit_slug`);
   });
 });

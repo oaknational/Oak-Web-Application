@@ -48,7 +48,7 @@ cp .env.example .env
 >
 > There is various support in other editors (for example [zed](https://zed.dev/docs/dev-containers)) and a [CLI](https://github.com/devcontainers/cli)
 
-Now populate the file with values from the 1Password developers vault, search for "OWA .env for local development".
+Now populate the file with values from the 1Password developers vault, search for "OWA .env (22/04/2026)".
 
 Now select the correct versions of node/pnpm
 

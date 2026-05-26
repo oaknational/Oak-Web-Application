@@ -1,3 +1,17 @@
+# [1.1082.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1081.0...v1.1082.0) (2026-05-20)
+
+
+### Bug Fixes
+
+* only show year option filters when there is more than 1 ([93e9727](https://github.com/oaknational/Oak-Web-Application/commit/93e9727ce573b5348beee8a0da24a88c69eb3b8d))
+* restore hiding years in rule of law, lost in merge conflict resolution ([41c8089](https://github.com/oaknational/Oak-Web-Application/commit/41c8089fa2d213acd8310ecdf2a115bb133d71a5))
+
+
+### Features
+
+* add custom year title for all years without a "group as" clause ([a7a716b](https://github.com/oaknational/Oak-Web-Application/commit/a7a716b67d08b229e652fdcf1da89d4ff3da5ba9))
+* remove filters when none should display ([b564c6a](https://github.com/oaknational/Oak-Web-Application/commit/b564c6a8c8ff7a4748a767bf183b4c7e6fd21759))
+
 # [1.1081.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1080.1...v1.1081.0) (2026-05-20)
 
 
