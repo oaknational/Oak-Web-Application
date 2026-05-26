@@ -34,7 +34,7 @@ export type ExamBoardPanelProps = {
 };
 
 const ExamBoardPanel = ({
-  examBoards,
+  examBoards: examboards,
   selectedSubject,
   focusManager,
   onClick,
@@ -52,13 +52,13 @@ const ExamBoardPanel = ({
 
     focusManager.registerChildren(
       parentId,
-      examBoards.map((board) => board.slug),
+      examboards.map((board) => board.slug),
     );
 
     return () => {
       focusManager.unregisterChildren(parentId);
     };
-  }, [focusManager, parentId, examBoards]);
+  }, [focusManager, parentId, examboards]);
 
   useEffect(() => {
     const panelId = `topnav-teachers-ks4-examboards-${selectedSubject.slug}`;
@@ -73,9 +73,9 @@ const ExamBoardPanel = ({
         firstExamBoard?.focus();
       });
     });
-  }, [focusManager, selectedSubject.slug, examBoards]);
+  }, [focusManager, selectedSubject.slug, examboards]);
 
-  if (!examBoards || examBoards.length === 0) {
+  if (!examboards || examboards.length === 0) {
     return null;
   }
 
@@ -246,19 +246,17 @@ const ExamBoardPanel = ({
           }}
           $gap="spacing-12"
         >
-          {examBoards
+          {examboards
             .toSorted((a, b) => a.title.localeCompare(b.title))
-            .map((examBoard) => {
-              let title = examBoard.tierSlug
-                ? `${examBoard.title} (${examBoard.tierSlug.charAt(0).toUpperCase() + examBoard.tierSlug.slice(1)})`
-                : examBoard.title;
-              if (selectedSubject.slug === "maths")
-                title =
-                  examBoard.title.charAt(0).toUpperCase() +
-                  examBoard.title.slice(1).toLowerCase();
-              const key = examBoard.tierSlug
-                ? `exam-board-${examBoard.slug}-${examBoard.tierSlug}`
-                : `exam-board-${examBoard.slug}`;
+            .map((examboard) => {
+              const title =
+                examboard.tierSlug &&
+                examboard.title.toLowerCase() !== examboard.tierSlug
+                  ? `${examboard.title} (${examboard.tierSlug.charAt(0).toUpperCase() + examboard.tierSlug.slice(1)})`
+                  : examboard.title;
+              const key = examboard.tierSlug
+                ? `exam-board-${examboard.slug}-${examboard.tierSlug}`
+                : `exam-board-${examboard.slug}`;
 
               return (
                 <OakRadioAsButton
