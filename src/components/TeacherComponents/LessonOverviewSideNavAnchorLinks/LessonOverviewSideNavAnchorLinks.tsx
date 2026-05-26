@@ -12,8 +12,8 @@ import {
   LessonOverviewDownloadAllButton,
   LessonOverviewDownloadAllButtonProps,
 } from "../LessonOverviewDownloadAllButton/LessonOverviewDownloadAllButton";
-import { LessonResource } from "../../../app/(core)/programmes/[subjectPhaseSlug]/units/[unitSlug]/lessons/[lessonSlug]/Components/getLessonResources";
-import { DISPLAY_TITLES_BY_RESOURCE } from "../../../app/(core)/programmes/[subjectPhaseSlug]/units/[unitSlug]/lessons/[lessonSlug]/Components/lessonResourceConstants";
+import { LessonResource } from "../../../app/(core)/teachers/programmes/[slug]/units/[unitSlug]/lessons/[lessonSlug]/Components/getLessonResources";
+import { DISPLAY_TITLES_BY_RESOURCE } from "../../../app/(core)/teachers/programmes/[slug]/units/[unitSlug]/lessons/[lessonSlug]/Components/lessonResourceConstants";
 
 type LessonOverviewSideNavAnchorLinksProps = {
   contentRestricted: boolean;

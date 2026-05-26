@@ -32,13 +32,6 @@ export const topNavFixture: TopNavProps = {
               nonCurriculum: true,
               programmeCount: 0,
             },
-            {
-              title: "All KS1 subjects",
-              slug: "all-subjects",
-              programmeSlug: null,
-              nonCurriculum: false,
-              programmeCount: 0,
-            },
           ],
         },
         {
@@ -53,28 +46,13 @@ export const topNavFixture: TopNavProps = {
               nonCurriculum: false,
               programmeCount: 0,
             },
-            {
-              title: "All KS2 subjects",
-              slug: "all-subjects",
-              programmeSlug: null,
-              nonCurriculum: false,
-              programmeCount: 0,
-            },
           ],
         },
         {
           slug: "eyfs",
           title: "EYFS",
           description: "Early years foundation stage",
-          children: [
-            {
-              title: "All EYFS subjects",
-              slug: "all-subjects",
-              programmeSlug: null,
-              nonCurriculum: false,
-              programmeCount: 0,
-            },
-          ],
+          children: [],
         },
       ],
     },
@@ -95,9 +73,9 @@ export const topNavFixture: TopNavProps = {
               programmeCount: 0,
             },
             {
-              title: "All KS3 subjects",
-              slug: "all-subjects",
-              programmeSlug: null,
+              title: "Geography",
+              slug: "geography",
+              programmeSlug: "geography-secondary-ks3",
               nonCurriculum: false,
               programmeCount: 0,
             },
@@ -115,21 +93,31 @@ export const topNavFixture: TopNavProps = {
               nonCurriculum: false,
               programmeCount: 0,
             },
-            {
-              title: "All KS4 subjects",
-              slug: "all-subjects",
-              programmeSlug: null,
-              nonCurriculum: false,
-              programmeCount: 0,
-            },
           ],
         },
       ],
     },
-    curriculum: {
-      slug: "curriculum-landing-page",
-      title: "Curriculum",
-      href: "/teachers/curriculum",
+    guidance: {
+      slug: "guidance",
+      title: "Guidance",
+      children: [
+        {
+          slug: "lesson-planning",
+          title: "Plan a lesson",
+          href: "/teachers/lesson-planning",
+        },
+        {
+          slug: "blog-index",
+          title: "Blogs",
+          href: "/blog",
+        },
+        {
+          slug: "help",
+          title: "Help",
+          href: "https://support.thenational.academy",
+          external: true,
+        },
+      ],
     },
     aboutUs: {
       slug: "aboutUs",
@@ -159,28 +147,6 @@ export const topNavFixture: TopNavProps = {
           slug: "contact",
           title: "Contact us",
           href: "/contact-us",
-        },
-      ],
-    },
-    guidance: {
-      slug: "guidance",
-      title: "Guidance",
-      children: [
-        {
-          slug: "lesson-planning",
-          title: "Plan a lesson",
-          href: "/teachers/lesson-planning",
-        },
-        {
-          slug: "blog-index",
-          title: "Blogs",
-          href: "/blog",
-        },
-        {
-          slug: "help",
-          title: "Help",
-          href: "https://support.thenational.academy",
-          external: true,
         },
       ],
     },

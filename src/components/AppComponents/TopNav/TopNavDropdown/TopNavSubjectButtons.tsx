@@ -1,6 +1,5 @@
 import {
   OakLI,
-  OakPrimaryInvertedButton,
   OakSubjectIconButton,
   OakUL,
 } from "@oaknational/oak-components";
@@ -72,26 +71,6 @@ const TopNavSubjectButtons = ({
             `teachers-${selectedMenu}-${keyStageSlug}`,
             slug,
           );
-
-          if (slug === "all-subjects") {
-            return (
-              <OakLI key={slug}>
-                <OakPrimaryInvertedButton
-                  id={buttonId}
-                  element={Link}
-                  iconName="arrow-right"
-                  isTrailingIcon
-                  onClick={() => handleClick("all", keyStageSlug)}
-                  onKeyDown={(e) =>
-                    buttonId && focusManager?.handleKeyDown(e, buttonId)
-                  }
-                  href={resolveOakHref({ page: "subject-index", keyStageSlug })}
-                >
-                  {subject.title}
-                </OakPrimaryInvertedButton>
-              </OakLI>
-            );
-          }
 
           return (
             <OakLI key={subject.title}>

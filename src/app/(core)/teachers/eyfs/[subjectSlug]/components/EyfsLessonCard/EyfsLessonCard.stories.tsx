@@ -6,10 +6,10 @@ import {
 } from "@oaknational/oak-components";
 
 import { EYFSLessonGroupProvider } from "../EyfsLessonGroupProvider";
-import { __setMockAuthState } from "../../../../../../../../.storybook/mocks/clerk";
 
 import { EYFSLessonCard } from "./EyfsLessonCard";
 
+import { __setMockAuthState } from "@/storybook-mocks/clerk";
 import type { EYFSLesson } from "@/node-lib/curriculum-api-2023/queries/eyfs/eyfsSchema";
 
 const TEST_VIDEO_PLAYBACK_ID = "wgjCIRWRr00OSum34AWeU87lmSSCtNjEOViD9X5YSG8k";
