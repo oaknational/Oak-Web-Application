@@ -175,7 +175,9 @@ describe("TopNavSubjectButtons", () => {
             phaseSlug: "primary",
           });
 
-          expect(href).toBe("/programmes/history-primary/units?keystages=ks2");
+          expect(href).toBe(
+            "/teachers/programmes/history-primary/units?keystages=ks2",
+          );
         });
 
         it("should link to unit-index for secondary subject with single programme", () => {
@@ -188,7 +190,7 @@ describe("TopNavSubjectButtons", () => {
           });
 
           expect(href).toBe(
-            "/programmes/geography-secondary/units?keystages=ks3",
+            "/teachers/programmes/geography-secondary/units?keystages=ks3",
           );
         });
 
@@ -201,7 +203,9 @@ describe("TopNavSubjectButtons", () => {
             phaseSlug: "primary",
           });
 
-          expect(href).toBe("/programmes/english-primary/units?keystages=ks1");
+          expect(href).toBe(
+            "/teachers/programmes/english-primary/units?keystages=ks1",
+          );
         });
 
         it("should preserve ks4 option slug segments like core", () => {
@@ -214,7 +218,7 @@ describe("TopNavSubjectButtons", () => {
           });
 
           expect(href).toBe(
-            "/programmes/citizenship-secondary-core/units?keystages=ks4",
+            "/teachers/programmes/citizenship-secondary-core/units?keystages=ks4",
           );
         });
 
@@ -228,7 +232,7 @@ describe("TopNavSubjectButtons", () => {
           });
 
           expect(href).toBe(
-            "/programmes/biology-secondary-higher-aqa/units?keystages=ks4",
+            "/teachers/programmes/biology-secondary-higher-aqa/units?keystages=ks4",
           );
         });
       });
