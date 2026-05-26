@@ -175,7 +175,7 @@ describe("pages/teachers/programmes/[programmeSlug]/units/[unitSlug]/lessons/[le
     it("Renders share form with correct elements", () => {
       mockUseFeatureFlagEnabled.mockReturnValue(false);
 
-      render(<LessonSharePage {...props} />);
+      const { getByTestId } = render(<LessonSharePage {...props} />);
 
       expect(screen.getAllByRole("heading", { level: 2 })[0]).toHaveTextContent(
         "1Select activities",
@@ -197,9 +197,7 @@ describe("pages/teachers/programmes/[programmeSlug]/units/[unitSlug]/lessons/[le
       expect(privacyPolicyLink).toHaveAttribute("target", "_blank");
 
       // Terms and conditions checkbox
-      expect(
-        screen.getByLabelText("I accept terms and conditions (required)"),
-      ).toBeInTheDocument();
+      expect(getByTestId("termsCheckboxInput")).toBeInTheDocument();
 
       // Terms and conditions link
       const tcsLink = screen.getByRole("link", {
@@ -315,9 +313,7 @@ describe("pages/teachers/programmes/[programmeSlug]/units/[unitSlug]/lessons/[le
         result.current.setTermsInLocalStorage(true);
       });
 
-      const { getByText, getByLabelText } = render(
-        <LessonSharePage {...props} />,
-      );
+      const { getByText, getByTestId } = render(<LessonSharePage {...props} />);
 
       // user click Edit button
       const editButton = getByText("Edit");
@@ -325,7 +321,7 @@ describe("pages/teachers/programmes/[programmeSlug]/units/[unitSlug]/lessons/[le
       const user = userEvent.setup();
       await user.click(editButton);
 
-      const terms = getByLabelText("I accept terms and conditions (required)");
+      const terms = getByTestId("termsCheckboxInput");
 
       await waitFor(() => {
         expect(terms).toBeChecked();

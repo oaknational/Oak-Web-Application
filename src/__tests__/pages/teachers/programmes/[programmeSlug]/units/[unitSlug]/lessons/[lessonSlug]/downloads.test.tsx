@@ -327,9 +327,7 @@ describe("pages/teachers/lessons/[lessonSlug]/downloads", () => {
       expect(privacyPolicyLink).toHaveAttribute("target", "_blank");
 
       // Terms and conditions checkbox
-      expect(
-        screen.getByLabelText("I accept terms and conditions (required)"),
-      ).toBeInTheDocument();
+      expect(screen.getByTestId("termsCheckboxInput")).toBeInTheDocument();
 
       // Terms and conditions link
       const tcsLink = screen.getByRole("link", {
@@ -477,7 +475,7 @@ describe("pages/teachers/lessons/[lessonSlug]/downloads", () => {
         result.current.setTermsInLocalStorage(true);
       });
 
-      const { getByText, getByLabelText } = render(
+      const { getByText, getByTestId } = render(
         <LessonDownloadsPage {...props} />,
       );
 
@@ -487,7 +485,7 @@ describe("pages/teachers/lessons/[lessonSlug]/downloads", () => {
       const user = userEvent.setup();
       await user.click(editButton);
 
-      const terms = getByLabelText("I accept terms and conditions (required)");
+      const terms = getByTestId("termsCheckboxInput");
 
       await waitFor(() => {
         expect(terms).toBeChecked();
