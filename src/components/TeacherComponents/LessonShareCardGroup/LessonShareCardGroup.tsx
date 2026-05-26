@@ -78,7 +78,7 @@ const LessonShareCardGroup: FC<LessonShareCardGroupProps> = (props) => {
             }) => {
               return (
                 <OakDownloadCard
-                  format="Best for homework, revision, or when pupils are learning independently"
+                  format="Share the whole lesson (starter quiz, lesson video, worksheet and exit quiz) and view results"
                   id={"download-card-wrapping-long"}
                   data-testid="resourceCard"
                   value={"all"}
