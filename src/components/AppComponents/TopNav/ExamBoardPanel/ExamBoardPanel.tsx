@@ -79,7 +79,11 @@ const ExamBoardPanel = ({
     return null;
   }
 
-  const navigateToSubject = (href: string) => {
+  const navigateToSubject = (
+    e: React.MouseEvent<HTMLAnchorElement>,
+    href: string,
+  ) => {
+    e.preventDefault();
     router.push(href);
 
     onClick(selectedSubject.slug, "ks4");
@@ -249,7 +253,7 @@ const ExamBoardPanel = ({
                 href={href}
                 key={key}
                 data-testid={key}
-                onClick={() => navigateToSubject(href)}
+                onClick={(e) => navigateToSubject(e, href)}
                 width={"fit-content"}
               >
                 {title}
