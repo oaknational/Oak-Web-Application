@@ -21,7 +21,6 @@ import FieldError from "@/components/SharedComponents/FieldError";
 import ResourcePageDetailsCompleted from "@/components/TeacherComponents/ResourcePageDetailsCompleted";
 import ResourcePageSchoolDetails from "@/components/TeacherComponents/ResourcePageSchoolDetails";
 import ResourcePageTermsAndConditionsCheckbox from "@/components/TeacherComponents/ResourcePageTermsAndConditionsCheckbox";
-import CopyrightNotice from "@/components/TeacherComponents/OglCopyrightNotice";
 import { ResourceFormValues } from "@/components/TeacherComponents/types/downloadAndShare.types";
 import { resolveOakHref } from "@/common-lib/urls";
 
@@ -53,8 +52,6 @@ const TermsAgreementForm: FC<TermsAgreementFormProps> = ({
   setSchool = () => {},
   showSavedDetails = false,
   handleEditDetailsCompletedClick = () => {},
-  showPostAlbCopyright = true,
-  oglCopyrightYear,
   useDownloadPageLayout = false,
 }) => {
   const [emailHasFocus, setEmailHasFocus] = useState(false);
@@ -68,7 +65,9 @@ const TermsAgreementForm: FC<TermsAgreementFormProps> = ({
           $font={["heading-6", "heading-5"]}
           $mb={["spacing-24", "spacing-32"]}
         >
-          Your details
+          <OakFlex $alignItems={"center"} $gap={"spacing-12"}>
+            Your details
+          </OakFlex>
         </OakHeading>
       )}
       {form?.errors.school && (
@@ -211,15 +210,6 @@ const TermsAgreementForm: FC<TermsAgreementFormProps> = ({
                     />
                   );
                 }}
-              />
-            </OakBox>
-          )}
-          {!useDownloadPageLayout && (
-            <OakBox $maxWidth="spacing-480">
-              <CopyrightNotice
-                showPostAlbCopyright={showPostAlbCopyright}
-                openLinksExternally={true}
-                copyrightYear={oglCopyrightYear}
               />
             </OakBox>
           )}

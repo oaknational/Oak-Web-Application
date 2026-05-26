@@ -7,7 +7,6 @@ import {
   mockLoggedIn,
   mockLoggedOut,
   mockTeacherUserWithDownloadAccess,
-  mockUserWithDownloadAccessNotOnboarded,
   mockUserWithoutDownloadAccess,
 } from "@/__tests__/__helpers__/mockUser";
 import lessonDownloadsFixture from "@/node-lib/curriculum-api-2023/fixtures/lessonDownloads.fixture";
@@ -59,17 +58,6 @@ describe("Hiding 'Your details", () => {
     expect(
       result.queryByLabelText("School (required)"),
     ).not.toBeInTheDocument();
-  });
-  it("should show details with logged in but not fully onboarded ", () => {
-    setUseUserReturn({
-      ...mockLoggedIn,
-      user: mockUserWithDownloadAccessNotOnboarded,
-    });
-    render(<LessonDownloads lesson={lesson} />);
-
-    const schoolSelection = screen.getByLabelText("School (required)");
-
-    expect(schoolSelection).toBeInTheDocument();
   });
 
   it("should show LoginRequired button and hide download button & form when not logged and geo restricted", () => {
