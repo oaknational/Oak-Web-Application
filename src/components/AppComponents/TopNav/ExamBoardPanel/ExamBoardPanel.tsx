@@ -18,7 +18,6 @@ import {
 import { convertUnitSlugToTitle } from "@/components/TeacherViews/Search/helpers";
 import { resolveOakHref } from "@/common-lib/urls";
 import { getTeacherSubjectPhaseSlug } from "@/utils/curriculum/slugs";
-import { filtersToQuery } from "@/utils/curriculum/filtering";
 
 export type ExamBoardPanelProps = {
   examBoards: Array<{
@@ -76,30 +75,6 @@ const ExamBoardPanel = ({
     });
   }, [focusManager, selectedSubject.slug, examBoards]);
 
-  const getQueryParams = (hasParentSubject: boolean, tierSlug: string | null) =>
-    new URLSearchParams(
-      filtersToQuery(
-        {
-          childSubjects: hasParentSubject ? [selectedSubject.slug] : [],
-          years: [],
-          subjectCategories: [],
-          tiers: tierSlug ? [tierSlug] : [],
-          threads: [],
-          pathways: [],
-          keystages: ["ks4"],
-        },
-        {
-          childSubjects: [],
-          years: [],
-          subjectCategories: [],
-          tiers: [],
-          threads: [],
-          pathways: [],
-          keystages: [],
-        },
-      ),
-    ).toString();
-
   if (!examBoards || examBoards.length === 0) {
     return null;
   }
@@ -125,13 +100,10 @@ const ExamBoardPanel = ({
         subjectParentTitle: selectedSubject?.subjectParent ?? undefined,
       }),
       tab: "units",
+      query: tier ? { keystages: "ks4", tiers: tier } : { keystages: "ks4" },
     });
-    const queryParams = getQueryParams(
-      Boolean(selectedSubject.subjectParent),
-      tier,
-    );
 
-    router.push(queryParams ? `${href}?${queryParams}` : href);
+    router.push(href);
 
     onClick(selectedSubject.slug, "ks4");
     onClose();

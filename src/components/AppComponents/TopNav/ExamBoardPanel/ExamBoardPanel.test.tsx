@@ -114,7 +114,7 @@ describe("ExamBoardPanel", () => {
     await user.click(aqaRadio);
 
     expect(mockPush).toHaveBeenCalledWith(
-      "/test-path/test-programme-slug/units?keystages=ks4",
+      "/test-path/test-programme-slug/units",
     );
   });
 

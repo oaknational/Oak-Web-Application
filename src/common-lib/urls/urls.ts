@@ -408,6 +408,7 @@ type ProgrammePageProps = {
   tab: string;
   query?: {
     keystages?: string;
+    tiers?: string;
     years?: string;
   };
 };
