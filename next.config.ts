@@ -502,6 +502,11 @@ export default async (phase: NextConfig["phase"]): Promise<NextConfig> => {
     // Write new values.
     writeFileSync(envFileName, newEnv);
     console.log(`Wrote "${baseUrlEnv}" to .env file for sitemap generation.`);
+
+    // Also set on the config and process env. Writing .env.local alone is too late
+    // for the current build: Next loads env files before next.config runs. App
+    // Router sitemaps prerender during `next build` and need SITEMAP_BASE_URL then.
+    process.env.SITEMAP_BASE_URL = baseUrl;
   } catch (err) {
     console.error("Could not write SITEMAP_BASE_URL to env file", err);
 
