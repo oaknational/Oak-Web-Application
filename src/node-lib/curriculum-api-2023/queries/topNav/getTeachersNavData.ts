@@ -1,27 +1,6 @@
-import { TopNavResponse, TeachersBrowse } from "./topNav.schema";
+import { TopNavResponse, TeachersBrowse, ExamBoard } from "./topNav.schema";
 
 import isSlugLegacy from "@/utils/slugModifiers/isSlugLegacy";
-
-/**
- * Extracts exam board slug and title from a programme slug
- * Pattern: {subject}-secondary-{keystage}-{examboard}
- * Example: "biology-secondary-ks4-aqa" => { slug: "aqa", title: "AQA" }
- */
-export const parseExamBoardFromProgrammeSlug = (
-  examboardSlug: string,
-): { slug: string; title: string } | null => {
-  // Handles cases where exam board is only in programme slug, e.g. maths higher and foundation levels
-  if (examboardSlug.includes("-")) {
-    const parts = examboardSlug.split("-");
-    const slug = parts.at(-1);
-    if (!slug) return null;
-    const title = slug.toUpperCase();
-    return { slug, title };
-  }
-  // Convert slug to title (e.g., "aqa" => "AQA", "ocr" => "OCR")
-  const title = examboardSlug.toUpperCase();
-  return { slug: examboardSlug, title };
-};
 
 export const getExamBoardsForKS4Subject = ({
   data,
@@ -33,12 +12,7 @@ export const getExamBoardsForKS4Subject = ({
   keystageSlug: string;
   subjectSlug: string;
   pathwaySlug: string | null;
-}): Array<{
-  slug: string;
-  title: string;
-  programmeSlug: string;
-  tierSlug: "core" | "foundation" | "higher" | null;
-}> => {
+}): ExamBoard[] => {
   const matchingProgrammes = data.programmes
     .filter((p) => {
       const { subject_slug, keystage_slug, pathway_slug } = p.programme_fields;
@@ -69,29 +43,34 @@ export const getExamBoardsForKS4Subject = ({
     );
   });
 
-  const examBoards = programmesForKs
-    .map((p) => {
-      const examBoard = parseExamBoardFromProgrammeSlug(
-        p.programme_fields.examboard_slug ?? p.programme_slug,
-      );
-      return examBoard
-        ? {
-            ...examBoard,
-            programmeSlug: p.programme_slug,
-            tierSlug: p.programme_fields.tier_slug,
-          }
-        : null;
-    })
-    .filter(
-      (
-        eb,
-      ): eb is {
-        slug: string;
-        title: string;
-        programmeSlug: string;
-        tierSlug: "core" | "foundation" | "higher" | null;
-      } => eb !== null,
-    );
+  const examBoards: ExamBoard[] = programmesForKs.flatMap<ExamBoard>((p) => {
+    const { examboard, examboard_slug, tier_slug, tier_description } =
+      p.programme_fields;
+
+    if (examboard && examboard_slug) {
+      return [
+        {
+          slug: examboard_slug,
+          title: examboard,
+          programmeSlug: p.programme_slug,
+          tierSlug: tier_slug,
+        },
+      ];
+    }
+
+    if (tier_slug && tier_description) {
+      return [
+        {
+          slug: tier_slug,
+          title: tier_description,
+          programmeSlug: p.programme_slug,
+          tierSlug: tier_slug,
+        },
+      ];
+    }
+
+    return [];
+  });
 
   return examBoards;
 };

@@ -45,7 +45,7 @@ export type TeachersSubNavData = {
 
 export type NavButton = NavLink | NavDropDownButton | TeachersBrowse;
 
-type ExamBoard = {
+export type ExamBoard = {
   slug: string;
   title: string;
   programmeSlug: string;
