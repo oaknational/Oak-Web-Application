@@ -29,7 +29,7 @@ export type ExamBoardPanelProps = {
   }>;
   selectedSubject: SubjectsNavItem;
   focusManager?: DropdownFocusManager<TeachersSubNavData>;
-  onClick: (examBoardSlug: string, programmeSlug: string) => void;
+  onClick: (examBoardSlug: string, keystageSlug: string) => void;
   onClose: () => void;
   onLeave: () => void;
 };
