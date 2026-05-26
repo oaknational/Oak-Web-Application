@@ -847,13 +847,6 @@ export const OAK_PAGES: {
     matchHref: postMatchHref("webinar-index"),
     resolveHref: postResolveHref("webinar-index"),
   }),
-  "unit-index": createOakPageConfig({
-    analyticsPageName: "Unit Listing",
-    configType: "internal-custom-resolve",
-    pageType: "unit-index",
-    matchHref: unitIndexMatchHref,
-    resolveHref: unitIndexResolveHref,
-  }),
   "specialist-unit-index": createOakPageConfig({
     pathPattern: "/teachers/specialist/programmes/:programmeSlug/units",
     analyticsPageName: "Unit Listing",
@@ -867,35 +860,35 @@ export const OAK_PAGES: {
     pageType: "lesson-index",
   }),
   "integrated-unit-overview": createOakPageConfig({
-    pathPattern: "/programmes/:programmeSlug/units/:unitSlug/lessons",
+    pathPattern: "/teachers/programmes/:programmeSlug/units/:unitSlug/lessons",
     analyticsPageName: "Lesson Listing",
     configType: "internal",
     pageType: "integrated-unit-overview",
   }),
   "integrated-lesson-overview": createOakPageConfig({
     pathPattern:
-      "/programmes/:programmeSlug/units/:unitSlug/lessons/:lessonSlug",
+      "/teachers/programmes/:programmeSlug/units/:unitSlug/lessons/:lessonSlug",
     analyticsPageName: "Lesson",
     configType: "internal",
     pageType: "integrated-lesson-overview",
   }),
   "integrated-lesson-downloads": createOakPageConfig({
     pathPattern:
-      "/programmes/:programmeSlug/units/:unitSlug/lessons/:lessonSlug/downloads",
+      "/teachers/programmes/:programmeSlug/units/:unitSlug/lessons/:lessonSlug/downloads",
     analyticsPageName: "Lesson Download",
     configType: "internal",
     pageType: "integrated-lesson-downloads",
   }),
   "integrated-lesson-downloads-success": createOakPageConfig({
     pathPattern:
-      "/programmes/:programmeSlug/units/:unitSlug/lessons/:lessonSlug/downloads/success",
+      "/teachers/programmes/:programmeSlug/units/:unitSlug/lessons/:lessonSlug/downloads/success",
     analyticsPageName: "Lesson Download",
     configType: "internal",
     pageType: "integrated-lesson-downloads-success",
   }),
   "integrated-lesson-media": createOakPageConfig({
     pathPattern:
-      "/programmes/:programmeSlug/units/:unitSlug/lessons/:lessonSlug/media",
+      "/teachers/programmes/:programmeSlug/units/:unitSlug/lessons/:lessonSlug/media",
     analyticsPageName: "Lesson Media",
     configType: "internal",
     pageType: "integrated-lesson-media",
@@ -1156,10 +1149,17 @@ export const OAK_PAGES: {
     pageType: "my-library",
   }),
   "teacher-programme": createOakPageConfig({
-    pathPattern: "/programmes/:subjectPhaseSlug/:tab",
+    pathPattern: "/teachers/programmes/:subjectPhaseSlug/:tab",
     analyticsPageName: "Curriculum Unit Sequence",
     configType: "internal",
     pageType: "teacher-programme",
+  }),
+  "unit-index": createOakPageConfig({
+    analyticsPageName: "Unit Listing",
+    configType: "internal-custom-resolve",
+    pageType: "unit-index",
+    matchHref: unitIndexMatchHref,
+    resolveHref: unitIndexResolveHref,
   }),
   "classroom-sign-in": createOakPageConfig({
     pathPattern: "/classroom/sign-in",

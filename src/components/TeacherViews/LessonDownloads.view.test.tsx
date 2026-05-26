@@ -12,6 +12,7 @@ import {
 } from "@/__tests__/__helpers__/mockUser";
 import lessonDownloadsFixture from "@/node-lib/curriculum-api-2023/fixtures/lessonDownloads.fixture";
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
+import { resolveOakHref } from "@/common-lib/urls";
 
 const render = renderWithProviders();
 
@@ -190,7 +191,12 @@ describe("Download success redirect", () => {
     const { getByText, queryByText } = render(
       <LessonDownloads
         lesson={lesson}
-        successRedirect="/programmes/maths-primary/units/u/lessons/l/downloads/success"
+        successRedirect={resolveOakHref({
+          page: "integrated-lesson-downloads-success",
+          programmeSlug: "maths-primary",
+          unitSlug: "u",
+          lessonSlug: "l",
+        })}
       />,
     );
 

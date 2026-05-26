@@ -17,7 +17,7 @@ import LessonSharePage, {
   URLParams,
   getStaticPaths,
   getStaticProps,
-} from "@/pages/teachers/programmes/[programmeSlug]/units/[unitSlug]/lessons/[lessonSlug]/share";
+} from "@/pages/teachers/__legacy__programmes/[programmeSlug]/units/[unitSlug]/lessons/[lessonSlug]/share";
 import lessonShareFixtures from "@/node-lib/curriculum-api-2023/fixtures/lessonShare.fixture";
 import curriculumApi from "@/node-lib/curriculum-api-2023/__mocks__";
 import curriculumApi2023, {

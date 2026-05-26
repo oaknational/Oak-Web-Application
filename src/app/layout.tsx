@@ -42,7 +42,8 @@ export default function RootLayout({
     <html lang="en" className={lexend.className}>
       {parse(FAVICON_LINKS_HEAD_INNER_HTML)}
       <StyledComponentsRegistry>
-        <body style={{ margin: "0px" }}>
+        {/* Pages Router uses #__next as the app root; add id to body for Pa11y CI and Percy to hook onto. */}
+        <body id="__next" style={{ margin: "0px" }}>
           <PHProvider>
             <OakThemeProvider theme={oakDefaultTheme}>
               <CookieConsentProvider>

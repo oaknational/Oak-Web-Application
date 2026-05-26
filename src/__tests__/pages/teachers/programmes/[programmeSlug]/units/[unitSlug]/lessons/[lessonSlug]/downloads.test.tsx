@@ -17,7 +17,7 @@ import LessonDownloadsPage, {
   URLParams,
   getStaticPaths,
   getStaticProps,
-} from "@/pages/teachers/programmes/[programmeSlug]/units/[unitSlug]/lessons/[lessonSlug]/downloads";
+} from "@/pages/teachers/__legacy__programmes/[programmeSlug]/units/[unitSlug]/lessons/[lessonSlug]/downloads";
 import {
   mockLoggedIn,
   mockUserWithDownloadAccess,

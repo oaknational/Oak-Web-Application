@@ -4,11 +4,107 @@ import {
   getTeacherSubjectPhaseSlug,
   isValidSubjectPhaseSlug,
   KS4_EXAMBOARD_PREFERENCE,
+  parseProgrammeSlug,
   parseSubjectPhaseSlug,
 } from "./slugs";
 
 import { createUnit } from "@/fixtures/curriculum/unit";
 import { CurriculumPhaseOptions } from "@/node-lib/curriculum-api-2023/queries/curriculumPhaseOptions/curriculumPhaseOptions.query";
+
+describe("parseProgrammeSlug", () => {
+  it("parses ks3 programme slug", () => {
+    expect(parseProgrammeSlug("citizenship-secondary-ks3")).toEqual({
+      subjectSlug: "citizenship",
+      phaseSlug: "secondary",
+      keystageSlug: "ks3",
+      yearSlug: null,
+      tierSlug: null,
+      pathwaySlug: null,
+      examboardSlug: null,
+    });
+  });
+
+  it("parses ks4 slug with pathway and examboard", () => {
+    expect(parseProgrammeSlug("computing-secondary-ks4-gcse-aqa")).toEqual({
+      subjectSlug: "computing",
+      phaseSlug: "secondary",
+      keystageSlug: "ks4",
+      yearSlug: null,
+      tierSlug: null,
+      pathwaySlug: "gcse",
+      examboardSlug: "aqa",
+    });
+  });
+
+  it("parses ks4 slug with tier only", () => {
+    expect(parseProgrammeSlug("maths-secondary-ks4-foundation")).toEqual({
+      subjectSlug: "maths",
+      phaseSlug: "secondary",
+      keystageSlug: "ks4",
+      yearSlug: null,
+      tierSlug: "foundation",
+      pathwaySlug: null,
+      examboardSlug: null,
+    });
+  });
+
+  it("parses primary ks1 slug", () => {
+    expect(parseProgrammeSlug("computing-primary-ks1")).toEqual({
+      subjectSlug: "computing",
+      phaseSlug: "primary",
+      keystageSlug: "ks1",
+      yearSlug: null,
+      tierSlug: null,
+      pathwaySlug: null,
+      examboardSlug: null,
+    });
+  });
+
+  it("parses legacy science programme slug with biology as subject", () => {
+    expect(
+      parseProgrammeSlug("biology-secondary-ks4-higher-aqa"),
+    ).toMatchObject({
+      subjectSlug: "biology",
+      tierSlug: "higher",
+      examboardSlug: "aqa",
+    });
+  });
+
+  it("parses pathway-only ks4 slug", () => {
+    expect(parseProgrammeSlug("citizenship-secondary-ks4-gcse")).toEqual({
+      subjectSlug: "citizenship",
+      phaseSlug: "secondary",
+      keystageSlug: "ks4",
+      yearSlug: null,
+      tierSlug: null,
+      pathwaySlug: "gcse",
+      examboardSlug: null,
+    });
+  });
+
+  it("parses core pathway slug", () => {
+    expect(parseProgrammeSlug("computing-secondary-ks4-core")).toEqual({
+      subjectSlug: "computing",
+      phaseSlug: "secondary",
+      keystageSlug: "ks4",
+      yearSlug: null,
+      tierSlug: null,
+      pathwaySlug: "core",
+      examboardSlug: null,
+    });
+  });
+
+  it("strips legacy suffix before parsing", () => {
+    expect(parseProgrammeSlug("chemistry-secondary-ks4-l")).toMatchObject({
+      subjectSlug: "chemistry",
+      keystageSlug: "ks4",
+    });
+  });
+
+  it("returns null for invalid slug", () => {
+    expect(parseProgrammeSlug("not-a-valid-slug")).toBeNull();
+  });
+});
 
 describe("parseSubjectPhaseSlug", () => {
   it("should extract from a valid slug", () => {
