@@ -8,17 +8,19 @@ import isSlugLegacy from "@/utils/slugModifiers/isSlugLegacy";
  * Example: "biology-secondary-ks4-aqa" => { slug: "aqa", title: "AQA" }
  */
 export const parseExamBoardFromProgrammeSlug = (
-  programmeSlug: string,
+  examboardSlug: string,
 ): { slug: string; title: string } | null => {
-  const parts = programmeSlug.split("-");
-
-  const examBoardSlug = parts.at(-1);
-  if (parts.length >= 4 && examBoardSlug) {
-    // Convert slug to title (e.g., "aqa" => "AQA", "ocr" => "OCR")
-    const title = examBoardSlug.toUpperCase();
-    return { slug: examBoardSlug, title };
+  // Handles cases where exam board is only in programme slug, e.g. maths higher and foundation levels
+  if (examboardSlug.includes("-")) {
+    const parts = examboardSlug.split("-");
+    const slug = parts.at(-1);
+    if (!slug) return null;
+    const title = slug.toUpperCase();
+    return { slug, title };
   }
-  return null;
+  // Convert slug to title (e.g., "aqa" => "AQA", "ocr" => "OCR")
+  const title = examboardSlug.toUpperCase();
+  return { slug: examboardSlug, title };
 };
 
 export const getExamBoardsForKS4Subject = ({
@@ -69,7 +71,9 @@ export const getExamBoardsForKS4Subject = ({
 
   const examBoards = programmesForKs
     .map((p) => {
-      const examBoard = parseExamBoardFromProgrammeSlug(p.programme_slug);
+      const examBoard = parseExamBoardFromProgrammeSlug(
+        p.programme_fields.examboard_slug ?? p.programme_slug,
+      );
       return examBoard
         ? {
             ...examBoard,
