@@ -27,41 +27,6 @@ describe("TopNavSubjectButtons", () => {
     },
   ];
 
-  it("renders subject buttons with correct links", () => {
-    render(
-      <TopNavSubjectButtons
-        selectedMenu="secondary"
-        subjects={subjects}
-        selectedSubject={null}
-        keyStageSlug="ks4"
-        handleClick={jest.fn()}
-        onExamBoardPanelOpen={jest.fn()}
-      />,
-    );
-
-    const geographyLink = screen.getByRole("link", { name: "Geography" });
-    const historyLink = screen.getByRole("link", { name: "History" });
-
-    const expectedGeographyHref = getSubjectLinkHref({
-      programmeCount: subjects[0]!.programmeCount,
-      subjectSlug: subjects[0]!.slug,
-      programmeSlug: subjects[0]!.programmeSlug,
-      keyStageSlug: "ks4",
-      phaseSlug: "secondary",
-    });
-
-    const expectedHistoryHref = getSubjectLinkHref({
-      programmeCount: subjects[1]!.programmeCount,
-      subjectSlug: subjects[1]!.slug,
-      programmeSlug: subjects[1]!.programmeSlug,
-      keyStageSlug: "ks4",
-      phaseSlug: "secondary",
-    });
-
-    expect(geographyLink).toHaveAttribute("href", expectedGeographyHref);
-    expect(historyLink).toHaveAttribute("href", expectedHistoryHref);
-  });
-
   it("calls handleClick when a subject without exam boards is clicked", async () => {
     const handleSubjectClick = jest.fn();
     const user = userEvent.setup();
@@ -77,7 +42,7 @@ describe("TopNavSubjectButtons", () => {
       />,
     );
 
-    const historyButton = screen.getByRole("link", { name: "History" });
+    const historyButton = screen.getByRole("button", { name: "History" });
     await user.click(historyButton);
 
     expect(handleSubjectClick).toHaveBeenCalledWith("history", "ks4");
@@ -117,7 +82,7 @@ describe("TopNavSubjectButtons", () => {
       />,
     );
 
-    const biologyButton = screen.getByRole("link", { name: "Biology" });
+    const biologyButton = screen.getByRole("button", { name: "Biology" });
     await user.click(biologyButton);
 
     expect(onExamBoardPanelOpen).toHaveBeenCalledWith(subjectsWithBoards[0]);
@@ -305,10 +270,12 @@ describe("TopNavSubjectButtons", () => {
       );
 
       expect(
-        screen.getByRole("link", { name: "Geography" }),
+        screen.getByRole("button", { name: "Geography" }),
       ).toBeInTheDocument();
-      expect(screen.getByRole("link", { name: "History" })).toBeInTheDocument();
-      expect(screen.getByRole("link", { name: "Maths" })).toBeInTheDocument();
+      expect(
+        screen.getByRole("button", { name: "History" }),
+      ).toBeInTheDocument();
+      expect(screen.getByRole("button", { name: "Maths" })).toBeInTheDocument();
     });
 
     it("calls onExamBoardPanelOpen when Enter is pressed on KS4 subject with exam boards", async () => {
@@ -326,7 +293,7 @@ describe("TopNavSubjectButtons", () => {
         />,
       );
 
-      const geographyButton = screen.getByRole("link", { name: "Geography" });
+      const geographyButton = screen.getByRole("button", { name: "Geography" });
       geographyButton.focus();
 
       await user.keyboard("{Enter}");
@@ -359,7 +326,7 @@ describe("TopNavSubjectButtons", () => {
         />,
       );
 
-      const englishButton = screen.getByRole("link", { name: "English" });
+      const englishButton = screen.getByRole("button", { name: "English" });
       englishButton.focus();
 
       await user.keyboard("{Enter}");
@@ -382,7 +349,7 @@ describe("TopNavSubjectButtons", () => {
         />,
       );
 
-      const geographyButton = screen.getByRole("link", { name: "Geography" });
+      const geographyButton = screen.getByRole("button", { name: "Geography" });
       geographyButton.focus();
       fireEvent.blur(geographyButton);
 

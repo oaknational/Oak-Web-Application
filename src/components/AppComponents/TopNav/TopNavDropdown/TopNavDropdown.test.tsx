@@ -125,7 +125,7 @@ describe("TopNavDropdown", () => {
           />,
         );
 
-        const subjectButtons = await screen.findAllByRole("link");
+        const subjectButtons = await screen.findAllByRole("button");
 
         expect(subjectButtons[2]).toHaveTextContent("Financial education");
         expect(subjectButtons[2]).toHaveStyle({
@@ -146,7 +146,7 @@ describe("TopNavDropdown", () => {
           />,
         );
 
-        const englishButton = await screen.findByRole("link", {
+        const englishButton = await screen.findByRole("button", {
           name: "English",
         });
 
@@ -170,7 +170,7 @@ describe("TopNavDropdown", () => {
           />,
         );
 
-        const financialEdButton = await screen.findByRole("link", {
+        const financialEdButton = await screen.findByRole("button", {
           name: "Financial education",
         });
 
@@ -194,7 +194,7 @@ describe("TopNavDropdown", () => {
           />,
         );
 
-        const englishButton = await screen.findByRole("link", {
+        const englishButton = await screen.findByRole("button", {
           name: "English",
         });
         // Prevent navigation in test
@@ -228,7 +228,7 @@ describe("TopNavDropdown", () => {
         });
         await user.click(ks4Button);
 
-        const geographyButton = await screen.findByRole("link", {
+        const geographyButton = await screen.findByRole("button", {
           name: "Geography",
         });
         geographyButton.addEventListener("click", (e) => e.preventDefault());
@@ -259,7 +259,7 @@ describe("TopNavDropdown", () => {
         });
         await user.click(ks4Button);
 
-        const geographyButton = await screen.findByRole("link", {
+        const geographyButton = await screen.findByRole("button", {
           name: "Geography",
         });
         geographyButton.addEventListener("click", (e) => e.preventDefault());
@@ -292,7 +292,7 @@ describe("TopNavDropdown", () => {
         });
         await user.click(ks4Button);
 
-        const geographyButton = await screen.findByRole("link", {
+        const geographyButton = await screen.findByRole("button", {
           name: "Geography",
         });
         geographyButton.addEventListener("click", (e) => e.preventDefault());
@@ -326,7 +326,7 @@ describe("TopNavDropdown", () => {
         });
         await user.click(ks4Button);
 
-        const geographyButton = await screen.findByRole("link", {
+        const geographyButton = await screen.findByRole("button", {
           name: "Geography",
         });
         geographyButton.addEventListener("click", (e) => e.preventDefault());
@@ -371,7 +371,7 @@ describe("TopNavDropdown", () => {
         });
         expect(heading).toBeInTheDocument();
 
-        const links = await screen.findAllByRole("link");
+        const links = await screen.findAllByRole("button");
         expect(links).toHaveLength(3);
       });
 

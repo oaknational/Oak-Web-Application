@@ -3,7 +3,6 @@ import {
   OakSubjectIconButton,
   OakUL,
 } from "@oaknational/oak-components";
-import Link from "next/link";
 
 import { DropdownFocusManager } from "../DropdownFocusManager/DropdownFocusManager";
 
@@ -102,7 +101,7 @@ const TopNavSubjectButtons = ({
   onExamBoardPanelOpen?: (subject: SubjectsNavItem) => void;
 }) => {
   const handleSubjectClick = (
-    e: React.MouseEvent<HTMLAnchorElement>,
+    e: React.MouseEvent<HTMLButtonElement>,
     subject: SubjectsNavItem,
   ) => {
     if (
@@ -139,7 +138,7 @@ const TopNavSubjectButtons = ({
       {subjects &&
         subjects.length > 0 &&
         subjects.map((subject) => {
-          const { programmeCount, slug, programmeSlug } = subject;
+          const { slug } = subject;
           const buttonId = focusManager?.createId(
             `teachers-${selectedMenu}-${keyStageSlug}`,
             slug,
@@ -149,17 +148,10 @@ const TopNavSubjectButtons = ({
             <OakLI key={subject.title}>
               <OakSubjectIconButton
                 variant={"horizontal"}
-                element={Link}
+                data-testid={`topnav-subject-button-${slug}`}
                 subjectIconName={getValidSubjectIconName(slug)}
-                href={getSubjectLinkHref({
-                  programmeCount,
-                  subjectSlug: slug,
-                  programmeSlug,
-                  keyStageSlug,
-                  phaseSlug: selectedMenu as "primary" | "secondary",
-                })}
                 selected={selectedSubject?.title === subject.title}
-                onClick={(e: React.MouseEvent<HTMLAnchorElement>) =>
+                onClick={(e: React.MouseEvent<HTMLButtonElement>) =>
                   handleSubjectClick(e, subject)
                 }
                 onMouseLeave={() => onSubjectLeave?.(subject)}
