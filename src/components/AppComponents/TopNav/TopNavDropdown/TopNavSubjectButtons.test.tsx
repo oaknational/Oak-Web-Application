@@ -1,5 +1,6 @@
 import userEvent from "@testing-library/user-event";
 import { screen, fireEvent } from "@testing-library/react";
+import { useRouter } from "next/navigation";
 
 import TopNavSubjectButtons, {
   getSubjectLinkHref,
@@ -7,9 +8,21 @@ import TopNavSubjectButtons, {
 
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 
+jest.mock("next/navigation", () => ({
+  useRouter: jest.fn(),
+  usePathname: jest.fn(),
+  useSearchParams: jest.fn(),
+}));
+
 const render = renderWithProviders();
 
 describe("TopNavSubjectButtons", () => {
+  beforeEach(() => {
+    (useRouter as jest.Mock).mockReturnValue({
+      push: jest.fn(),
+    });
+  });
+
   const subjects = [
     {
       title: "Geography",
@@ -28,6 +41,10 @@ describe("TopNavSubjectButtons", () => {
   ];
 
   it("calls handleClick when a subject without exam boards is clicked", async () => {
+    const mockRouterPush = jest.fn();
+    (useRouter as jest.Mock).mockReturnValue({
+      push: mockRouterPush,
+    });
     const handleSubjectClick = jest.fn();
     const user = userEvent.setup();
 
@@ -129,7 +146,7 @@ describe("TopNavSubjectButtons", () => {
           });
 
           expect(href).toBe(
-            "/teachers/key-stages/ks1/subjects/maths/programmes?keystages=ks1",
+            "/teachers/key-stages/ks1/subjects/maths/programmes",
           );
         });
 
@@ -143,7 +160,7 @@ describe("TopNavSubjectButtons", () => {
           });
 
           expect(href).toBe(
-            "/teachers/key-stages/ks4/subjects/science/programmes?keystages=ks4",
+            "/teachers/key-stages/ks4/subjects/science/programmes",
           );
         });
       });

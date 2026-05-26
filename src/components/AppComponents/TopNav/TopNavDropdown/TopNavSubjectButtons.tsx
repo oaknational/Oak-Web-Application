@@ -3,6 +3,7 @@ import {
   OakSubjectIconButton,
   OakUL,
 } from "@oaknational/oak-components";
+import { useRouter } from "next/navigation";
 
 import { DropdownFocusManager } from "../DropdownFocusManager/DropdownFocusManager";
 
@@ -13,7 +14,6 @@ import {
   TeachersSubNavData as TeachersData,
   SubjectsNavItem,
 } from "@/node-lib/curriculum-api-2023/queries/topNav/topNav.schema";
-import { filtersToQuery } from "@/utils/curriculum/filtering";
 
 export const getSubjectLinkHref = ({
   programmeCount,
@@ -35,46 +35,22 @@ export const getSubjectLinkHref = ({
     });
   }
 
-  const queryParams = new URLSearchParams(
-    filtersToQuery(
-      {
-        childSubjects: [],
-        years: [],
-        subjectCategories: [],
-        tiers: [],
-        threads: [],
-        pathways: [],
-        keystages: [keyStageSlug || ""],
-      },
-      {
-        childSubjects: [],
-        years: [],
-        subjectCategories: [],
-        tiers: [],
-        threads: [],
-        pathways: [],
-        keystages: [],
-      },
-    ),
-  ).toString();
+  if (programmeCount > 1 && keyStageSlug) {
+    return resolveOakHref({
+      page: "programme-index",
+      subjectSlug,
+      keyStageSlug,
+    });
+  }
 
-  const href =
-    programmeCount > 1 && keyStageSlug
-      ? // If there are multiple programmes, link to the programme listing page
-        resolveOakHref({
-          page: "programme-index",
-          subjectSlug,
-          keyStageSlug,
-        })
-      : resolveOakHref({
-          page: "teacher-programme",
-          subjectPhaseSlug:
-            programmeSlug?.replace(/-ks\d+(?=-|$)/, "") ?? // remove keystage but keep other options
-            `${subjectSlug}-${phaseSlug}`,
-          tab: "units",
-        });
-
-  return href + (queryParams ? `?${queryParams}` : "");
+  return resolveOakHref({
+    page: "teacher-programme",
+    subjectPhaseSlug:
+      programmeSlug?.replace(/-ks\d+(?=-|$)/, "") ??
+      `${subjectSlug}-${phaseSlug}`,
+    tab: "units",
+    query: keyStageSlug ? { keystages: keyStageSlug } : undefined,
+  });
 };
 
 const TopNavSubjectButtons = ({
@@ -100,6 +76,7 @@ const TopNavSubjectButtons = ({
   onSubjectBlur?: (subject: SubjectsNavItem) => void;
   onExamBoardPanelOpen?: (subject: SubjectsNavItem) => void;
 }) => {
+  const router = useRouter();
   const handleSubjectClick = (
     e: React.MouseEvent<HTMLButtonElement>,
     subject: SubjectsNavItem,
@@ -112,6 +89,17 @@ const TopNavSubjectButtons = ({
       e.preventDefault();
       onExamBoardPanelOpen?.(subject);
       return;
+    }
+    const href = getSubjectLinkHref({
+      programmeCount: subject.programmeCount,
+      subjectSlug: subject.slug,
+      programmeSlug: subject.programmeSlug,
+      keyStageSlug,
+      phaseSlug: selectedMenu as "primary" | "secondary",
+    });
+
+    if (href) {
+      router.push(href);
     }
     handleClick(subject.slug, keyStageSlug);
   };
