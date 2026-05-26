@@ -1,6 +1,8 @@
 import { ShareLinkConfig } from "./linkConfig";
 
-import { ResourceType } from "@/components/TeacherComponents/types/downloadAndShare.types";
+import { resolveOakHref } from "@/common-lib/urls";
+import getBrowserConfig from "@/browser-lib/getBrowserConfig";
+import { LessonSection } from "@/components/PupilComponents/LessonEngineProvider/LessonEngineProvider";
 
 export type SharingMetadata = {
   link: string;
@@ -10,21 +12,33 @@ export type SharingMetadata = {
   shareStr: string;
   urlEncodedShareStr: string;
 };
+const baseUrl = getBrowserConfig("clientAppBaseUrl");
 
-const pupilsPath = (lessonSlug: string) =>
-  `https://thenational.academy/pupils/lessons/${lessonSlug}?share=true`;
+const pupilsPath = (lessonSlug: string, shareVariant: string) =>
+  shareVariant
+    ? `${baseUrl}${resolveOakHref({
+        page: "pupil-lesson-canonical-shared",
+        lessonSlug,
+        shareVariant,
+      })}`
+    : `${baseUrl}${resolveOakHref({
+        page: "pupil-lesson-canonical",
+        lessonSlug,
+      })}?share=true`;
 
 export type GetSharingMetadataParams = {
   lessonSlug: string;
-  selectedActivities?: Array<ResourceType>;
+  selectedActivities?: LessonSection[];
   schoolUrn?: string;
   linkConfig: ShareLinkConfig;
+  shareVariant: string;
 };
 
 export const getSharingMetadata = ({
   lessonSlug,
+  shareVariant,
 }: GetSharingMetadataParams): SharingMetadata => {
-  const link = pupilsPath(lessonSlug);
+  const link = pupilsPath(lessonSlug, shareVariant);
 
   const urlEncodedLink = encodeURIComponent(link);
   const pageTitle =

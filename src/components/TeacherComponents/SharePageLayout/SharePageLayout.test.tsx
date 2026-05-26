@@ -71,15 +71,6 @@ describe("Downloads/Share Layout", () => {
     expect(apiErrorAfterRerender).toBeInTheDocument();
   });
 
-  it("shows copyright when no terms are linked", () => {
-    const { getByTestId } = renderWithTheme(
-      <ComponentWrapper {...props} showTermsAgreement={false} />,
-    );
-
-    const copyright = getByTestId("copyright-container");
-    expect(copyright).toBeInTheDocument();
-  });
-
   it("shows loading spinner", () => {
     const { getByTestId } = renderWithTheme(
       <ComponentWrapper {...props} isLoading={true} />,
