@@ -1,30 +1,37 @@
-export const lessonSections = [
+import z from "zod";
+
+export const lessonSectionsSchema = z.enum([
   "overview",
   "intro",
   "starter-quiz",
   "video",
   "exit-quiz",
   "review",
-] as const;
+]);
 
-export const allLessonReviewSections = [
+export const allLessonReviewSectionsSchema = z.enum([
   "intro",
   "starter-quiz",
   "video",
   "exit-quiz",
-] as const;
+]);
 
-export type LessonSection = (typeof lessonSections)[number];
-export type LessonReviewSection = (typeof allLessonReviewSections)[number];
+export const lessonSections = lessonSectionsSchema.options;
+export const allLessonReviewSections = allLessonReviewSectionsSchema.options;
+
+export type LessonSection = z.infer<typeof lessonSectionsSchema>;
+export type LessonReviewSection = z.infer<typeof allLessonReviewSectionsSchema>;
 
 export const isLessonSection = (
   currentSection: string,
 ): currentSection is LessonSection => {
-  return lessonSections.includes(currentSection as LessonSection);
+  return lessonSectionsSchema.options.includes(currentSection as LessonSection);
 };
 
 export const isLessonReviewSection = (
   section: string,
 ): section is LessonReviewSection => {
-  return allLessonReviewSections.includes(section as LessonReviewSection);
+  return allLessonReviewSectionsSchema.options.includes(
+    section as LessonReviewSection,
+  );
 };

@@ -4,24 +4,28 @@ export const generateUrl = (
   yearGroupSlug?: string,
   categorySlug?: string | null,
 ): string => {
-  const params =
-    typeof window !== "undefined" && window.location.search
-      ? new URLSearchParams(
-          new URL(window.history.state.url, window.location.origin).search,
-        )
-      : new URLSearchParams();
+  const currentUrl = new URL(
+    globalThis.history.state?.url ?? globalThis.location.href,
+    globalThis.location.origin,
+  );
+  const params = new URLSearchParams(currentUrl.search);
 
-  const newBaseUrl = `${window.location.origin}/teachers/programmes/${programmeSlug}/units`;
+  const newBaseUrl = `${globalThis.location.origin}/teachers/programmes/${programmeSlug}/units`;
   let newUrl = window.history.state.url;
+  const buildUrlWithParams = () => {
+    const query = params.toString();
+    return query ? `${newBaseUrl}?${query}` : newBaseUrl;
+  };
 
   if ((yearGroupSlug || categorySlug) && theme.slug !== "all") {
     params.delete("programmeSlug");
     params.delete("learning-theme");
-    newUrl = `${newBaseUrl}?${params.toString()}&learning-theme=${theme.slug}`;
+    params.set("learning-theme", theme.slug);
+    newUrl = buildUrlWithParams();
   } else if ((yearGroupSlug || categorySlug) && theme.slug === "all") {
     params.delete("programmeSlug");
     params.delete("learning-theme");
-    newUrl = `${newBaseUrl}?${params.toString()}`;
+    newUrl = buildUrlWithParams();
   } else if (!yearGroupSlug && !categorySlug && theme.slug !== "all") {
     newUrl = `${newBaseUrl}?learning-theme=${theme.slug}`;
   } else if (!yearGroupSlug && !categorySlug && theme.slug === "all") {

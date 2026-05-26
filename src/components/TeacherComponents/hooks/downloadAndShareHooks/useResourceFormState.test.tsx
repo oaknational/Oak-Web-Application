@@ -185,9 +185,8 @@ describe("useResourceFormState", () => {
 
       expect(result.current.selectedResources).toEqual([
         "video",
-        "worksheet-pdf",
-        "exit-quiz-questions",
-        "intro-quiz-questions",
+        "exit-quiz",
+        "starter-quiz",
       ]);
     });
     test("useResourceFormState should return correct string for video ", () => {
@@ -200,21 +199,23 @@ describe("useResourceFormState", () => {
       setPreselectedParam("starter quiz");
       const { result } = renderHook(() => useResourceFormState(shareProps));
 
-      expect(result.current.selectedResources).toEqual([
-        "intro-quiz-questions",
-      ]);
+      expect(result.current.selectedResources).toEqual(["starter-quiz"]);
     });
     test("useResourceFormState should return correct string for quiz exit ", () => {
       setPreselectedParam("exit quiz");
       const { result } = renderHook(() => useResourceFormState(shareProps));
 
-      expect(result.current.selectedResources).toEqual(["exit-quiz-questions"]);
+      expect(result.current.selectedResources).toEqual(["exit-quiz"]);
     });
-    test("useResourceFormState should return correct string for worksheet ", () => {
+    test("useResourceFormState should default to all share resources for unsupported preselected values ", () => {
       setPreselectedParam("worksheet");
       const { result } = renderHook(() => useResourceFormState(shareProps));
 
-      expect(result.current.selectedResources).toEqual(["worksheet-pdf"]);
+      expect(result.current.selectedResources).toEqual([
+        "video",
+        "exit-quiz",
+        "starter-quiz",
+      ]);
     });
   });
   describe("State local storage and auth", () => {
