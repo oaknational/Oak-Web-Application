@@ -59,14 +59,12 @@ const TeachersPhaseSection = ({
   const [selectedSubject, setSelectedSubject] =
     useState<SubjectsNavItem | null>(null);
 
-  const [examBoardPanelMode, setExamBoardPanelMode] = useState<
-    "closed" | "open"
-  >("closed");
+  const [examboardPanelOpen, setExamboardPanelOpen] = useState(false);
 
   useEffect(() => {
     setSelectedKeystage(defaultKeystage);
     setSelectedSubject(null);
-    setExamBoardPanelMode("closed");
+    setExamboardPanelOpen(false);
   }, [defaultKeystage]);
 
   const keystagesRef = useRef<HTMLUListElement>(null);
@@ -91,7 +89,7 @@ const TeachersPhaseSection = ({
     });
     setSelectedKeystage(keystageSlug);
     setSelectedSubject(null);
-    setExamBoardPanelMode("closed");
+    setExamboardPanelOpen(false);
   };
 
   const hasExamBoards = (subject: SubjectsNavItem | null) => {
@@ -103,22 +101,22 @@ const TeachersPhaseSection = ({
   };
 
   const handleSubjectBlurOrLeave = () => {
-    if (examBoardPanelMode !== "closed") return;
+    if (examboardPanelOpen) return;
     setSelectedSubject(null);
   };
 
   const handleExamBoardPanelOpen = (subject: SubjectsNavItem) => {
     if (!hasExamBoards(subject)) {
-      setExamBoardPanelMode("closed");
+      setExamboardPanelOpen(false);
       return;
     }
     setSelectedSubject(subject);
-    setExamBoardPanelMode("open");
+    setExamboardPanelOpen(true);
   };
 
   const closeExamBoardPanel = () => {
     setSelectedSubject(null);
-    setExamBoardPanelMode("closed");
+    setExamboardPanelOpen(false);
   };
 
   // Arrow key navigation for up/down in keystages
@@ -219,7 +217,7 @@ const TeachersPhaseSection = ({
             onSubjectLeave={handleSubjectBlurOrLeave}
             onExamBoardPanelOpen={handleExamBoardPanelOpen}
           />
-          {examBoardPanelMode !== "closed" &&
+          {examboardPanelOpen &&
             selectedKeystage === "ks4" &&
             selectedSubject?.examBoards && (
               <ExamBoardPanel
