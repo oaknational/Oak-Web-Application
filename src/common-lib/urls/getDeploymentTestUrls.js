@@ -38,7 +38,7 @@ function getDeploymentTestUrls() {
     "/teachers/programmes/art-primary/units?keystages=ks1", // keystage filter
     "/teachers/programmes/art-primary/units?years=2", // year filter
     "/teachers/programmes/maths-secondary/units", // with tiers
-    "/teachers/programmes/science-secondary-aqa/units?child_subjects=chemistry?keystages=ks4", // with child subject
+    "/teachers/programmes/science-secondary-aqa/units?child_subjects=chemistry&keystages=ks4", // with child subject
     "/teachers/programmes/history-primary/curriculum-explainer", // curriculum explainer
     "/teachers/programmes/history-primary/download", // download tab
 
