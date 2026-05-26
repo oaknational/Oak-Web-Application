@@ -424,7 +424,7 @@ describe("generateMetadata", () => {
 
     const result = await generateMetadata({
       params: Promise.resolve({
-        subjectPhaseSlug: "computing-secondary-ocr",
+        slug: "computing-secondary-ocr",
         tab: "download",
       }),
       searchParams: Promise.resolve({}),
@@ -469,7 +469,7 @@ describe("generateMetadata", () => {
 
     const result = await generateMetadata({
       params: Promise.resolve({
-        subjectPhaseSlug: "maths-primary",
+        slug: "maths-primary",
         tab: "units",
       }),
       searchParams: Promise.resolve({}),
