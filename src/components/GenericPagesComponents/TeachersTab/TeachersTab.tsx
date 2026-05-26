@@ -20,9 +20,9 @@ type TeacherTabProps = {
 };
 
 const RESOURCE_ICONS = [
-  { iconName: "ai-teaching-resources", text: "Teaching resources" },
+  { iconName: "additional-material", text: "Teaching resources" },
   { iconName: "curriculum-plan", text: "Curriculum plans" },
-  { iconName: "ai-worksheet", text: "AI tools" },
+  { iconName: "ai-teaching-resources", text: "AI tools" },
 ] as ResourcesIconProps[];
 
 interface ResourcesIconProps {
@@ -97,7 +97,7 @@ function PhasePickerWithLegend({
   return (
     <OakBox $width={"100%"}>
       <OakHeading
-        tag="h3"
+        tag="h2"
         $font="heading-7"
         $mb={["spacing-24", "spacing-24", "spacing-32"]}
       >
