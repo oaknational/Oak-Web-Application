@@ -2,12 +2,14 @@ import {
   OakBox,
   OakFlex,
   OakHeading,
-  OakSecondaryButton,
+  OakPrimaryInvertedButton,
   OakUL,
+  parseColor,
   parseSpacing,
 } from "@oaknational/oak-components";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
+import styled from "styled-components";
 
 import { DropdownFocusManager } from "../DropdownFocusManager/DropdownFocusManager";
 
@@ -46,6 +48,13 @@ const ExamBoardPanel = ({
     "teachers-secondary-ks4",
     selectedSubject.slug,
   );
+
+  const ExamBoardButton = styled(OakPrimaryInvertedButton)`
+    && {
+      border: 1px solid ${parseColor("border-neutral-lighter")};
+      border-radius: ${parseSpacing("spacing-4")};
+    }
+  `;
 
   useEffect(() => {
     if (!focusManager || !parentId) return;
@@ -248,16 +257,18 @@ const ExamBoardPanel = ({
             });
 
             return (
-              <OakSecondaryButton
+              <ExamBoardButton
                 element="a"
                 href={href}
                 key={key}
                 data-testid={key}
-                onClick={(e) => navigateToSubject(e, href)}
+                onClick={(e: React.MouseEvent<HTMLAnchorElement>) =>
+                  navigateToSubject(e, href)
+                }
                 width={"fit-content"}
               >
                 {title}
-              </OakSecondaryButton>
+              </ExamBoardButton>
             );
           })}
       </OakUL>
