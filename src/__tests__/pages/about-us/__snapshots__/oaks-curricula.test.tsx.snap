@@ -410,7 +410,6 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
 
 .c116 {
   position: relative;
-  max-width: 60rem;
   border: 0.125rem solid;
   border-color: #222222;
   border-radius: 0.25rem;
@@ -5208,7 +5207,7 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
                   </h2>
                   <nav
                     aria-labelledby="choose-curriculum-label"
-                    class="c11"
+                    class="c70"
                   >
                     <div
                       class="c115"

@@ -160,7 +160,9 @@ describe("Component - Mobile subject phase picker", () => {
 
       const subjectHeading = getByTestId("subject-picker-heading");
       expect(subjectHeading).toBeInTheDocument();
-      expect(subjectHeading.textContent).toBe("Curriculum plans");
+      expect(subjectHeading.textContent).toBe(
+        "Curriculum plans and lesson resources",
+      );
 
       const closeButton = getByTestId("close-modal-button");
       await userEvent.click(closeButton);
@@ -177,7 +179,9 @@ describe("Component - Mobile subject phase picker", () => {
 
       const subjectPickerHeading = getByTestId("subject-picker-heading");
       expect(subjectPickerHeading).toBeInTheDocument();
-      expect(subjectPickerHeading.textContent).toBe("Curriculum plans");
+      expect(subjectPickerHeading.textContent).toBe(
+        "Curriculum plans and lesson resources",
+      );
 
       await userEvent.keyboard("{Escape}");
 
