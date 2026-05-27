@@ -48,7 +48,7 @@ export async function generateMetadata({
   params: Promise<ProgrammePageParams>;
   searchParams: Promise<PageSearchParms>;
 }): Promise<Metadata> {
-  const { slug } = await params;
+  const { slug, tab } = await params;
   const pageSearchParams = await searchParams;
 
   redirectProgrammeSlugIfNeeded(slug, pageSearchParams);
@@ -76,6 +76,12 @@ export async function generateMetadata({
       alternates: {
         canonical: canonicalURL,
       },
+      ...(tab === "download" && {
+        robots: {
+          index: false,
+          follow: true,
+        },
+      }),
       openGraph: getOpenGraphMetadata({
         title,
         description,

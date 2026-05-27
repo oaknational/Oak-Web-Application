@@ -390,4 +390,91 @@ describe("generateMetadata", () => {
 
     expect(result).toEqual({});
   });
+
+  it("includes noindex robots metadata for the download tab", async () => {
+    const mockProgrammeData = {
+      programmeUnitsData: curriculumOverviewMVFixture({
+        subjectTitle: "Computing",
+      }),
+      curriculumUnitsData: {
+        units: [
+          createUnit({
+            slug: "unit-1",
+            year: "10",
+            keystage_slug: "ks4",
+            subject_slug: "computing",
+            phase_slug: "secondary",
+          }),
+        ],
+      },
+      curriculumPhaseOptions: {
+        subjects: filterValidCurriculumPhaseOptions(
+          curriculumPhaseOptionsFixture(),
+        ),
+        tab: "units" as const,
+      },
+      subjectPhaseKeystageSlugs: {
+        subjectSlug: "computing",
+        phaseSlug: "secondary",
+        ks4OptionSlug: "ocr",
+      },
+    };
+
+    jest.mocked(getProgrammeData).mockResolvedValue(mockProgrammeData);
+
+    const result = await generateMetadata({
+      params: Promise.resolve({
+        slug: "computing-secondary-ocr",
+        tab: "download",
+      }),
+      searchParams: Promise.resolve({}),
+    });
+
+    expect(result.robots).toEqual({
+      index: false,
+      follow: true,
+    });
+  });
+
+  it("does not include noindex robots metadata for non-download tabs", async () => {
+    const mockProgrammeData = {
+      programmeUnitsData: curriculumOverviewMVFixture({
+        subjectTitle: "Maths",
+      }),
+      curriculumUnitsData: {
+        units: [
+          createUnit({
+            slug: "unit-1",
+            year: "5",
+            keystage_slug: "ks2",
+            subject_slug: "maths",
+            phase_slug: "primary",
+          }),
+        ],
+      },
+      curriculumPhaseOptions: {
+        subjects: filterValidCurriculumPhaseOptions(
+          curriculumPhaseOptionsFixture(),
+        ),
+        tab: "units" as const,
+      },
+      subjectPhaseKeystageSlugs: {
+        subjectSlug: "maths",
+        phaseSlug: "primary",
+        ks4OptionSlug: null,
+      },
+    };
+
+    jest.mocked(getProgrammeData).mockResolvedValue(mockProgrammeData);
+
+    const result = await generateMetadata({
+      params: Promise.resolve({
+        slug: "maths-primary",
+        tab: "units",
+      }),
+      searchParams: Promise.resolve({}),
+    });
+
+    expect(result.robots).toBeUndefined();
+  });
 });
