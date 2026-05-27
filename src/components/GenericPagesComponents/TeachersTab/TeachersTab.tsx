@@ -22,15 +22,25 @@ type TeacherTabProps = {
 const RESOURCE_ICONS = [
   { iconName: "additional-material", text: "Teaching resources" },
   { iconName: "curriculum-plan", text: "Curriculum plans" },
-  { iconName: "ai-teaching-resources", text: "AI tools" },
+  {
+    iconName: "ai-teaching-resources",
+    text: "AI tools",
+    spacingOverride: "spacing-32",
+  },
 ] as ResourcesIconProps[];
 
 interface ResourcesIconProps {
   iconName: OakIconProps["iconName"];
   text: string;
+  spacingOverride?: OakIconProps["iconHeight"];
 }
 
-function ResourcesIcon({ iconName, text }: Readonly<ResourcesIconProps>) {
+function ResourcesIcon({
+  iconName,
+  text,
+  spacingOverride,
+}: Readonly<ResourcesIconProps>) {
+  const spacing = spacingOverride || "spacing-24";
   return (
     <OakFlex
       $flexDirection={"row"}
@@ -41,11 +51,11 @@ function ResourcesIcon({ iconName, text }: Readonly<ResourcesIconProps>) {
       <OakBox
         $borderRadius={"border-radius-circle"}
         $background={"bg-decorative1-very-subdued"}
-        $pa="spacing-12"
+        $pa={spacingOverride ? "spacing-8" : "spacing-12"}
       >
         <OakIcon
-          iconHeight="spacing-24"
-          iconWidth="spacing-24"
+          iconHeight={spacing}
+          iconWidth={spacing}
           aria-hidden={true}
           iconName={iconName}
         />
@@ -65,8 +75,13 @@ function ResourcesIcons() {
       $gap={["spacing-8", "spacing-8", "spacing-32"]}
       $width={["100%", "auto"]}
     >
-      {RESOURCE_ICONS.map(({ iconName, text }) => (
-        <ResourcesIcon key={iconName} iconName={iconName} text={text} />
+      {RESOURCE_ICONS.map(({ iconName, text, spacingOverride }) => (
+        <ResourcesIcon
+          key={iconName}
+          iconName={iconName}
+          text={text}
+          spacingOverride={spacingOverride}
+        />
       ))}
     </OakFlex>
   );
