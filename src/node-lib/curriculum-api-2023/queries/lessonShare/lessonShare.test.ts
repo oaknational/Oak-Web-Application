@@ -69,10 +69,10 @@ describe("lessonShare()", () => {
       expired: false,
     });
 
-    expect(result).toHaveLength(4);
+    expect(result).toHaveLength(3);
     expect(result.every((r) => r.exists === false)).toBe(true);
 
-    const starterQuiz = result.find((r) => r.type === "intro-quiz-questions");
+    const starterQuiz = result.find((r) => r.type === "starter-quiz");
     expect(starterQuiz?.metadata).toBe("");
   });
 
@@ -82,16 +82,16 @@ describe("lessonShare()", () => {
       expired: false,
     });
 
-    expect(result).toHaveLength(4);
+    expect(result).toHaveLength(3);
 
-    const starterQuiz = result.find((r) => r.type === "intro-quiz-questions");
-    expect(starterQuiz?.metadata).toBe("4 questions");
+    const starterQuiz = result.find((r) => r.type === "starter-quiz");
+    expect(starterQuiz?.metadata).toBe("Check prior knowledge (4 questions)");
 
-    const exitQuiz = result.find((r) => r.type === "exit-quiz-questions");
+    const exitQuiz = result.find((r) => r.type === "exit-quiz");
     expect(exitQuiz?.metadata).toBe("");
 
     const video = result.find((r) => r.type === "video");
-    expect(video?.metadata).toBe("5 minutes");
+    expect(video?.metadata).toBe("Support independent learning (5 minutes)");
   });
 
   test("returns the correct response", async () => {
@@ -105,10 +105,10 @@ describe("lessonShare()", () => {
     });
     const parsed = lessonShareSchema.parse(res);
     expect(parsed).toEqual(res);
-    expect(parsed.shareableResources).toHaveLength(4);
+    expect(parsed.shareableResources).toHaveLength(3);
     const starterQuiz = parsed.shareableResources.find(
-      (r) => r.type === "intro-quiz-questions",
+      (r) => r.type === "starter-quiz",
     );
-    expect(starterQuiz?.metadata).toBe("1 question");
+    expect(starterQuiz?.metadata).toBe("Check prior knowledge (1 question)");
   });
 });

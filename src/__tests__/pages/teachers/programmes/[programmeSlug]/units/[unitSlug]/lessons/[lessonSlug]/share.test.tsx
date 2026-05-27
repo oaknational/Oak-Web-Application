@@ -17,7 +17,7 @@ import LessonSharePage, {
   URLParams,
   getStaticPaths,
   getStaticProps,
-} from "@/pages/teachers/programmes/[programmeSlug]/units/[unitSlug]/lessons/[lessonSlug]/share";
+} from "@/pages/teachers/__legacy__programmes/[programmeSlug]/units/[unitSlug]/lessons/[lessonSlug]/share";
 import lessonShareFixtures from "@/node-lib/curriculum-api-2023/fixtures/lessonShare.fixture";
 import curriculumApi from "@/node-lib/curriculum-api-2023/__mocks__";
 import curriculumApi2023, {
@@ -136,9 +136,15 @@ describe("pages/teachers/programmes/[programmeSlug]/units/[unitSlug]/lessons/[le
       });
     });
 
-    render(<LessonSharePage {...props} />);
-    const shareButtonCopy = await screen.findByRole("link", {
-      name: "Share to Email",
+    render(
+      <LessonSharePage
+        {...{
+          ...props,
+        }}
+      />,
+    );
+    const shareButtonCopy = await screen.findByRole("button", {
+      name: "Copy link to clipboard",
     });
     expect(shareButtonCopy).not.toBeDisabled();
     const user = userEvent.setup();
@@ -150,7 +156,7 @@ describe("pages/teachers/programmes/[programmeSlug]/units/[unitSlug]/lessons/[le
       schoolUrn: "123456",
       schoolName: "Secondary school",
       schoolOption: "Selected school",
-      shareMedium: "email",
+      shareMedium: "copy-link",
       emailSupplied: true,
       platform: "owa",
       product: "teacher lesson resources",
@@ -169,10 +175,10 @@ describe("pages/teachers/programmes/[programmeSlug]/units/[unitSlug]/lessons/[le
     it("Renders share form with correct elements", () => {
       mockUseFeatureFlagEnabled.mockReturnValue(false);
 
-      render(<LessonSharePage {...props} />);
+      const { getByTestId } = render(<LessonSharePage {...props} />);
 
       expect(screen.getAllByRole("heading", { level: 2 })[0]).toHaveTextContent(
-        "Your details",
+        "1Select activities",
       );
 
       expect(
@@ -191,9 +197,7 @@ describe("pages/teachers/programmes/[programmeSlug]/units/[unitSlug]/lessons/[le
       expect(privacyPolicyLink).toHaveAttribute("target", "_blank");
 
       // Terms and conditions checkbox
-      expect(
-        screen.getByLabelText("I accept terms and conditions (required)"),
-      ).toBeInTheDocument();
+      expect(getByTestId("termsCheckboxInput")).toBeInTheDocument();
 
       // Terms and conditions link
       const tcsLink = screen.getByRole("link", {
@@ -205,7 +209,7 @@ describe("pages/teachers/programmes/[programmeSlug]/units/[unitSlug]/lessons/[le
       // Lesson resources to share
       const lessonResourcesToShare = screen.getAllByTestId("resourceCard");
       expect(lessonResourcesToShare.length).toEqual(
-        props.curriculumData.shareableResources.length,
+        props.curriculumData.shareableResources.length + 1,
       );
 
       const exitQuizQuestions = screen.getByText("Exit quiz");
@@ -226,18 +230,14 @@ describe("pages/teachers/programmes/[programmeSlug]/units/[unitSlug]/lessons/[le
       // const shareButtonGoogle = screen.getByRole("button", {
       //   name: "Assign to Google Classroom",
       // });
-      const shareButtonGoogle = screen.getByRole("link", {
-        name: "Share to Google Classroom",
+      const shareButtonGoogle = screen.getByRole("button", {
+        name: "Share to Share via Google Classroom",
       });
       expect(shareButtonGoogle).toBeInTheDocument();
-      const shareButtonMicrosoft = screen.getByRole("link", {
-        name: "Share to Microsoft Teams",
+      const shareButtonMicrosoft = screen.getByRole("button", {
+        name: "Share to Share via Microsoft Teams",
       });
       expect(shareButtonMicrosoft).toBeInTheDocument();
-      const shareButtonEmail = screen.getByRole("link", {
-        name: "Share to Email",
-      });
-      expect(shareButtonEmail).toBeInTheDocument();
     });
 
     it("should display error hint on blur email if not formatted correctly", async () => {
@@ -313,9 +313,7 @@ describe("pages/teachers/programmes/[programmeSlug]/units/[unitSlug]/lessons/[le
         result.current.setTermsInLocalStorage(true);
       });
 
-      const { getByText, getByLabelText } = render(
-        <LessonSharePage {...props} />,
-      );
+      const { getByText, getByTestId } = render(<LessonSharePage {...props} />);
 
       // user click Edit button
       const editButton = getByText("Edit");
@@ -323,7 +321,7 @@ describe("pages/teachers/programmes/[programmeSlug]/units/[unitSlug]/lessons/[le
       const user = userEvent.setup();
       await user.click(editButton);
 
-      const terms = getByLabelText("I accept terms and conditions (required)");
+      const terms = getByTestId("termsCheckboxInput");
 
       await waitFor(() => {
         expect(terms).toBeChecked();
@@ -383,24 +381,6 @@ describe("pages/teachers/programmes/[programmeSlug]/units/[unitSlug]/lessons/[le
 
       expect(schoolId).toBe("222-Primary-School");
       expect(schoolName).toBe("Primary School");
-    });
-  });
-
-  describe("Copyright notice", () => {
-    it("renders pre-ALB copyright notice on legacy lessons", async () => {
-      render(
-        <LessonSharePage
-          curriculumData={lessonShareFixtures({ isLegacy: true })}
-          topNav={topNavFixture}
-        />,
-      );
-
-      const copyrightNotice = await screen.findByText(
-        "This content is made available by Oak National Academy Limited and its partners",
-        { exact: false },
-      );
-
-      expect(copyrightNotice).toBeInTheDocument();
     });
   });
 

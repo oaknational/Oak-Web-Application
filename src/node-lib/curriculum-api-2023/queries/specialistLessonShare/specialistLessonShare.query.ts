@@ -12,13 +12,13 @@ export const constructShareableResources = (
 ) => {
   const introQuiz = {
     exists: lesson.starter_quiz !== null,
-    type: "intro-quiz-questions" as const,
+    type: "starter-quiz" as const,
     label: "Starter Quiz",
     metadata: "", // TODO: get quiz questions
   };
   const exitQuiz = {
     exists: lesson.exit_quiz !== null,
-    type: "exit-quiz-questions" as const,
+    type: "exit-quiz" as const,
     label: "Exit Quiz",
     metadata: "", // TODO: get quiz questions
   };
@@ -28,14 +28,8 @@ export const constructShareableResources = (
     label: "Video",
     metadata: "mp4", // TODO: get video duration
   };
-  const worksheet = {
-    exists: lesson.worksheet_url !== null,
-    type: "worksheet-pdf" as const,
-    label: "Worksheet",
-    metadata: "pdf",
-  };
 
-  return [video, introQuiz, exitQuiz, worksheet];
+  return [video, introQuiz, exitQuiz];
 };
 
 export const specialistLessonShareQuery =

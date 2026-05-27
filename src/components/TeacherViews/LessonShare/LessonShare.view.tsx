@@ -17,8 +17,6 @@ import { LessonPathway } from "@/components/TeacherComponents/types/lesson.types
 import SharePageLayout from "@/components/TeacherComponents/SharePageLayout";
 import LessonShareCardGroup from "@/components/TeacherComponents/LessonShareCardGroup";
 import LessonShareLinks from "@/components/TeacherComponents/LessonShareLinks";
-import { getHrefForSocialSharing } from "@/components/TeacherComponents/LessonShareLinks/getHrefForSocialSharing";
-import { shareLinkConfig } from "@/components/TeacherComponents/LessonShareLinks/linkConfig";
 import { useResourceFormState } from "@/components/TeacherComponents/hooks/downloadAndShareHooks/useResourceFormState";
 import useResourceFormSubmit from "@/components/TeacherComponents/hooks/downloadAndShareHooks/useResourceFormSubmit";
 import {
@@ -39,6 +37,10 @@ import { LessonShareData } from "@/node-lib/curriculum-api-2023/queries/lessonSh
 import { SpecialistLessonShareData } from "@/node-lib/curriculum-api-2023/queries/specialistLessonShare/specialistLessonShare.schema";
 import { useOnboardingStatus } from "@/components/TeacherComponents/hooks/useOnboardingStatus";
 import { AssignToClassroomModal } from "@/components/TeacherComponents/AssignToClassroomModal/AssignToClassroomModal";
+import {
+  isLessonSection,
+  LessonSection,
+} from "@/components/PupilComponents/lessonSections";
 
 export type LessonShareProps =
   | {
@@ -60,10 +62,19 @@ export type LessonShareProps =
 const classroomActivityMap: Partial<
   Record<ResourceType, ResourceTypesValueType>
 > = {
-  "intro-quiz-questions": "starter-quiz",
-  "exit-quiz-questions": "exit-quiz",
-  "worksheet-pdf": "worksheet",
+  "starter-quiz": "starter-quiz",
+  "exit-quiz": "exit-quiz",
   video: "video",
+};
+
+const getSelectedLessonSections = (resources: string[]): LessonSection[] => {
+  return resources.filter(isLessonSection);
+};
+
+const isClassroomActivityResource = (
+  resource: string,
+): resource is keyof typeof classroomActivityMap => {
+  return Object.hasOwn(classroomActivityMap, resource);
 };
 
 export function LessonShare(props: LessonShareProps) {
@@ -82,7 +93,7 @@ export function LessonShare(props: LessonShareProps) {
 
   const exitQuizNumQuestions = (() => {
     const exitQuizResource = shareableResources.find(
-      (r) => r.type === "exit-quiz-questions",
+      (r) => r.type === "exit-quiz",
     );
     const parsed = exitQuizResource
       ? Number.parseInt(exitQuizResource.metadata ?? "", 10)
@@ -115,6 +126,28 @@ export function LessonShare(props: LessonShareProps) {
     shareResources: shareableResources,
     type: "share",
   });
+
+  const onValidateAndSubmit = (shareMedium: ShareMediumValueType) => {
+    const isValid =
+      !hasFormErrors &&
+      !expired &&
+      (form.formState.isValid || localStorageDetails);
+    const resources = form.getValues("resources");
+
+    void form.handleSubmit((data) => {
+      onFormSubmit(
+        {
+          ...data,
+          resources,
+        },
+        shareMedium,
+      );
+    })(); // https://github.com/orgs/react-hook-form/discussions/8622
+    return isValid;
+  };
+
+  const selectedLessonSections = getSelectedLessonSections(selectedResources);
+
   const onboardingStatus = useOnboardingStatus();
 
   const { onSubmit } = useResourceFormSubmit();
@@ -148,8 +181,11 @@ export function LessonShare(props: LessonShareProps) {
       eventVersion: "2.0.0",
       analyticsUseCase: "Teacher",
       resourceTypes: selectedResources
-        .map((r) => classroomActivityMap[r])
-        .filter((r) => r !== undefined),
+        .filter(isClassroomActivityResource)
+        .flatMap((resource) => {
+          const activity = classroomActivityMap[resource];
+          return activity ? [activity] : [];
+        }),
       audience: "Pupil",
       lessonReleaseCohort: isLegacy ? "2020-2023" : "2023-2026",
       lessonReleaseDate: lessonReleaseDate ?? "unpublished",
@@ -227,12 +263,6 @@ export function LessonShare(props: LessonShareProps) {
               triggerForm={form.trigger}
               shareableResources={expired ? [] : shareableResources}
               hideCheckboxes={true}
-              shareLink={getHrefForSocialSharing({
-                lessonSlug: lessonSlug,
-                selectedActivities: selectedResources,
-                schoolUrn: schoolUrn,
-                linkConfig: shareLinkConfig.copy,
-              })}
             />
           }
           cta={
@@ -244,14 +274,9 @@ export function LessonShare(props: LessonShareProps) {
                   (!form.formState.isValid && !localStorageDetails)
                 }
                 lessonSlug={lessonSlug}
-                selectedActivities={selectedResources}
+                selectedActivities={selectedLessonSections}
                 schoolUrn={schoolUrn}
-                onSubmit={
-                  (shareMedium: ShareMediumValueType) =>
-                    void form.handleSubmit((data) => {
-                      onFormSubmit(data, shareMedium);
-                    })() // https://github.com/orgs/react-hook-form/discussions/8622
-                }
+                onSubmit={onValidateAndSubmit}
                 onGoogleClassroomClick={() => setIsClassroomModalOpen(true)}
               />
               {!isSpecialist && programmeSlug && unitSlug && (
