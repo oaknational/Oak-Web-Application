@@ -8,12 +8,17 @@ import {
 import { getBannerContent, CYCLE_2_SUBJECTS } from "./getBannerContent";
 import { EmailCaptureBanner } from "./EmailCaptureBanner";
 
-import { UnitListProps } from "@/components/TeacherComponents/UnitList/UnitList";
+import { UnitListingData } from "@/node-lib/curriculum-api-2023/queries/unitListing/unitListing.schema";
 import { UnitsSectionData } from "@/pages/pupils/programmes/[programmeSlug]/units";
 import useMediaQuery from "@/hooks/useMediaQuery";
 
+type UnitListCurrentPageItems = Omit<
+  UnitListingData["units"][number][number],
+  "unitStudyOrder"
+>[][];
+
 export const getIsUnitExpiring = (
-  units: UnitListProps["currentPageItems"] | UnitsSectionData["units"],
+  units: UnitListCurrentPageItems | UnitsSectionData["units"],
 ) => {
   return units.some((unit) =>
     unit?.some((unitItem) => unitItem.actions?.displayExpiringBanner),
