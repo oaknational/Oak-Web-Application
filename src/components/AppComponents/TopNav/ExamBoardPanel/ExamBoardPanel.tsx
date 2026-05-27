@@ -7,7 +7,6 @@ import {
   parseColor,
   parseSpacing,
 } from "@oaknational/oak-components";
-import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 import styled from "styled-components";
 
@@ -16,52 +15,50 @@ import { DropdownFocusManager } from "../DropdownFocusManager/DropdownFocusManag
 import {
   SubjectsNavItem,
   TeachersSubNavData,
+  ProgrammeFactorButton,
 } from "@/node-lib/curriculum-api-2023/queries/topNav/topNav.schema";
-import { convertUnitSlugToTitle } from "@/components/TeacherViews/Search/helpers";
 import { resolveOakHref } from "@/common-lib/urls";
 import { getTeacherSubjectPhaseSlug } from "@/utils/curriculum/slugs";
 
 export type ExamBoardPanelProps = {
-  examBoards: Array<{
-    slug: string;
-    title: string;
-    programmeSlug: string;
-    tierSlug: string | null;
-  }>;
+  examBoards: ProgrammeFactorButton[];
   selectedSubject: SubjectsNavItem;
   focusManager?: DropdownFocusManager<TeachersSubNavData>;
   onClick: (examBoardSlug: string, keystageSlug: string) => void;
-  onClose: () => void;
   onLeave: () => void;
 };
+
+const ExamBoardButton = styled(OakPrimaryInvertedButton)`
+  && {
+    border: 1px solid ${parseColor("border-neutral-lighter")};
+    border-radius: ${parseSpacing("spacing-4")};
+  }
+`;
 
 const ExamBoardPanel = ({
   examBoards: examboards,
   selectedSubject,
   focusManager,
   onClick,
-  onClose,
   onLeave,
 }: ExamBoardPanelProps) => {
-  const router = useRouter();
   const parentId = focusManager?.createId(
     "teachers-secondary-ks4",
     selectedSubject.slug,
   );
-
-  const ExamBoardButton = styled(OakPrimaryInvertedButton)`
-    && {
-      border: 1px solid ${parseColor("border-neutral-lighter")};
-      border-radius: ${parseSpacing("spacing-4")};
-    }
-  `;
 
   useEffect(() => {
     if (!focusManager || !parentId) return;
 
     focusManager.registerChildren(
       parentId,
-      examboards.map((board) => board.slug),
+      examboards.map((board) => {
+        return (
+          board.programmeFactors?.examboard?.slug ??
+          board.programmeFactors?.tier?.slug ??
+          ""
+        );
+      }),
     );
 
     return () => {
@@ -87,17 +84,6 @@ const ExamBoardPanel = ({
   if (!examboards || examboards.length === 0) {
     return null;
   }
-
-  const navigateToSubject = (
-    e: React.MouseEvent<HTMLAnchorElement>,
-    href: string,
-  ) => {
-    e.preventDefault();
-    router.push(href);
-
-    onClick(selectedSubject.slug, "ks4");
-    onClose();
-  };
 
   const focusNextExamBoard = (
     allButtons: HTMLElement[],
@@ -207,8 +193,7 @@ const ExamBoardPanel = ({
           $mt={"spacing-0"}
           $mb={"spacing-16"}
         >
-          Choose exam board for KS4{" "}
-          {convertUnitSlugToTitle(selectedSubject.slug, false)}
+          Choose exam board for KS4 {selectedSubject.title}
         </OakHeading>
       </OakBox>
       <OakUL
@@ -226,30 +211,31 @@ const ExamBoardPanel = ({
         }}
       >
         {examboards
-          .toSorted((a, b) => a.title.localeCompare(b.title))
+          .toSorted((a, b) => a.buttonTitle.localeCompare(b.buttonTitle))
           .map((examboard) => {
             const title =
-              examboard.tierSlug &&
-              examboard.title.toLowerCase() !== examboard.tierSlug
-                ? `${examboard.title} (${examboard.tierSlug.charAt(0).toUpperCase() + examboard.tierSlug.slice(1)})`
-                : examboard.title;
-            const key = examboard.tierSlug
-              ? `exam-board-${examboard.slug}-${examboard.tierSlug}`
-              : `exam-board-${examboard.slug}`;
+              examboard.programmeFactors?.tier?.slug &&
+              examboard.buttonTitle.toLowerCase() !==
+                examboard.programmeFactors.tier?.slug
+                ? `${examboard.buttonTitle} (${examboard.programmeFactors.tier?.description})`
+                : examboard.buttonTitle;
+            const key = examboard.programmeFactors?.tier?.slug
+              ? `exam-board-${examboard.programmeFactors.examboard?.slug}-${examboard.programmeFactors.tier?.slug}`
+              : `exam-board-${examboard.programmeFactors?.examboard?.slug}`;
 
             const href = resolveOakHref({
               page: "teacher-programme",
               subjectPhaseSlug: getTeacherSubjectPhaseSlug({
                 subjectSlug: selectedSubject?.slug,
                 phaseSlug: "secondary",
-                examboardSlug: examboard.slug,
+                examboardSlug: examboard.programmeFactors?.examboard?.slug,
                 pathwaySlug: null,
                 subjectParentTitle: selectedSubject?.subjectParent ?? undefined,
               }),
               tab: "units",
               query: {
                 keystages: "ks4",
-                tiers: examboard.tierSlug ?? undefined,
+                tiers: examboard.programmeFactors?.tier?.slug ?? undefined,
                 child_subjects: selectedSubject.subjectParent
                   ? selectedSubject.slug
                   : undefined,
@@ -262,9 +248,7 @@ const ExamBoardPanel = ({
                 href={href}
                 key={key}
                 data-testid={key}
-                onClick={(e: React.MouseEvent<HTMLAnchorElement>) =>
-                  navigateToSubject(e, href)
-                }
+                onClick={() => onClick(selectedSubject.slug, "ks4")}
                 width={"fit-content"}
               >
                 {title}
