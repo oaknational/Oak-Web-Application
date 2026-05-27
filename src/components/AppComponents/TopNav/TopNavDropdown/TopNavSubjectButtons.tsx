@@ -45,8 +45,10 @@ const TopNavSubjectButtons = ({
   keyStageSlug,
   handleClick,
   focusManager,
+  phase,
 }: {
-  selectedMenu: keyof TeachersSubNavData;
+  selectedMenu?: keyof TeachersSubNavData;
+  phase: "primary" | "secondary";
   subjects: TeachersSubNavData[
     | "primary"
     | "secondary"]["children"][number]["children"];
@@ -68,7 +70,7 @@ const TopNavSubjectButtons = ({
         subjects.map((subject) => {
           const { programmeCount, slug, programmeSlug } = subject;
           const buttonId = focusManager?.createId(
-            `teachers-${selectedMenu}-${keyStageSlug}`,
+            `teachers-${phase}-${keyStageSlug}`,
             slug,
           );
 
@@ -94,6 +96,7 @@ const TopNavSubjectButtons = ({
                     : (selectedMenu as "primary" | "secondary")
                 }
                 id={buttonId}
+                aria-disabled={selectedMenu !== phase}
               >
                 {subject.title}
               </OakSubjectIconButton>

@@ -1,5 +1,6 @@
 "use client";
 import { useCallback, useEffect, useMemo, useState } from "react";
+import { VisuallyHidden } from "react-aria";
 
 import TabLink from "./TabLink/TabLink";
 import SubNav from "./SubNav/SubNav";
@@ -30,6 +31,33 @@ import useAnalytics from "@/context/Analytics/useAnalytics";
 export type TopNavProps = {
   teachers: TeachersSubNavData | null;
   pupils: PupilsSubNavData | null;
+};
+
+/**
+ * Wrapper component which visually hides children unless a shouldDisplay condition is met until the client intialises
+ * This allows elements to be added to the dom on the server while still being hidden until needed
+ */
+export const MaybeVisuallyHidden = ({
+  shouldDisplay,
+  children,
+}: {
+  shouldDisplay: boolean;
+  children?: React.ReactNode;
+}) => {
+  // Hack to fully remove the elements from the page when the client initialises to prevent issues with focus and screen readers
+  const [afterInitialRender, setAfterInitialRender] = useState(false);
+
+  useEffect(() => {
+    setAfterInitialRender(true);
+  }, []);
+
+  if (shouldDisplay) {
+    return children;
+  } else {
+    return afterInitialRender ? null : (
+      <VisuallyHidden id="visually-hidden-container">{children}</VisuallyHidden>
+    );
+  }
 };
 
 const TopNav = (props: TopNavProps) => {
@@ -220,28 +248,32 @@ const TopNav = (props: TopNavProps) => {
           </>
         )}
       </OakFlex>
-      {selectedMenu &&
-        ((activeArea === "TEACHERS" && teachers) ||
-          (activeArea === "PUPILS" && pupils)) && (
-          <OakFlex
-            $display={["none", "none", "flex"]}
-            $width={"100%"}
-            $flexDirection={"column"}
-            $background={"bg-primary"}
-            data-testid="topnav-dropdown-container"
-            $bb="border-solid-s"
-            $borderColor="border-neutral-lighter"
-          >
-            <TopNavDropdown
-              focusManager={focusManager!}
-              activeArea={activeArea}
-              selectedMenu={selectedMenu}
-              teachers={teachers!}
-              pupils={pupils!}
-              onClose={handleCloseDropdown}
-            />
-          </OakFlex>
-        )}
+      <MaybeVisuallyHidden
+        shouldDisplay={
+          !!selectedMenu &&
+          ((activeArea === "TEACHERS" && !!teachers) ||
+            (activeArea === "PUPILS" && !!pupils))
+        }
+      >
+        <OakFlex
+          $display={["none", "none", "flex"]}
+          $width={"100%"}
+          $flexDirection={"column"}
+          $background={"bg-primary"}
+          data-testid="topnav-dropdown-container"
+          $bb="border-solid-s"
+          $borderColor="border-neutral-lighter"
+        >
+          <TopNavDropdown
+            focusManager={focusManager!}
+            activeArea={activeArea}
+            selectedMenu={selectedMenu}
+            teachers={teachers!}
+            pupils={pupils!}
+            onClose={handleCloseDropdown}
+          />
+        </OakFlex>
+      </MaybeVisuallyHidden>
     </OakBox>
   );
 };
