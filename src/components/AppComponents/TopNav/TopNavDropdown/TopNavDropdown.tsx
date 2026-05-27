@@ -100,11 +100,6 @@ const TeachersPhaseSection = ({
     );
   };
 
-  const handleSubjectBlurOrLeave = () => {
-    if (examboardPanelOpen) return;
-    setSelectedSubject(null);
-  };
-
   const handleExamBoardPanelOpen = (subject: SubjectsNavItem) => {
     if (!hasExamBoards(subject)) {
       setExamboardPanelOpen(false);
@@ -213,8 +208,6 @@ const TeachersPhaseSection = ({
             subjects={allSubjects}
             selectedSubject={selectedSubject}
             keyStageSlug={selectedKeystage}
-            onSubjectBlur={handleSubjectBlurOrLeave}
-            onSubjectLeave={handleSubjectBlurOrLeave}
             onExamBoardPanelOpen={handleExamBoardPanelOpen}
           />
           {examboardPanelOpen &&
@@ -225,7 +218,6 @@ const TeachersPhaseSection = ({
                 selectedSubject={selectedSubject}
                 focusManager={focusManager}
                 onClick={onClick}
-                onClose={closeExamBoardPanel}
                 onLeave={closeExamBoardPanel}
               />
             )}
