@@ -8,10 +8,10 @@ import { PHProvider } from "./providers";
 import StyledComponentsRegistry from "./styles-registry";
 import AnalyticsWrapper from "./components/AnalyticsWrapper";
 import { getTwitterMetadata, getOpenGraphMetadata } from "./metadata";
-import { AppHooks } from "./components/AppHooks";
 
 import "@/styles/app-global.css";
 import "@/browser-lib/gleap/gleap.css";
+import AppHooks from "@/components/AppComponents/App/AppHooks";
 import { OakThemeProvider, oakDefaultTheme } from "@/styles/oakThemeApp";
 import CookieConsentProvider from "@/browser-lib/cookie-consent/CookieConsentProvider";
 import { FAVICON_LINKS_HEAD_INNER_HTML } from "@/image-data";
