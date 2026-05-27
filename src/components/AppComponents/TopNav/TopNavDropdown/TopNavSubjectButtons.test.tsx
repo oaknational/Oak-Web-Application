@@ -60,6 +60,7 @@ describe("TopNavSubjectButtons", () => {
     );
 
     const historyButton = screen.getByRole("link", { name: "History" });
+    historyButton.addEventListener("click", (e) => e.preventDefault());
     await user.click(historyButton);
 
     expect(handleSubjectClick).toHaveBeenCalledWith("history", "ks4");
@@ -329,6 +330,7 @@ describe("TopNavSubjectButtons", () => {
       );
 
       const englishButton = screen.getByRole("link", { name: "English" });
+      englishButton.addEventListener("click", (e) => e.preventDefault());
       englishButton.focus();
 
       await user.keyboard("{Enter}");

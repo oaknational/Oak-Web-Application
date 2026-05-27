@@ -126,6 +126,7 @@ describe("ExamBoardPanel", () => {
     );
 
     const aqaLink = screen.getByTestId("exam-board-aqa");
+    aqaLink.addEventListener("click", (e) => e.preventDefault());
     await user.click(aqaLink);
 
     expect(mockOnClick).toHaveBeenCalledWith("geography", "ks4");
