@@ -21,7 +21,7 @@ import {
   secondaryMathsYearData,
   primaryEnglishYearData,
   primaryScienceYearData,
-} from "@/components/CurriculumComponents/CurricVisualiser/CurricVisualiser.fixtures";
+} from "@/fixtures/curriculum/programmeSequenceYearData.fixtures";
 
 const render = renderWithProviders();
 jest.mock("next/navigation");
