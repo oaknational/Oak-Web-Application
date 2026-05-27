@@ -7,7 +7,6 @@ import {
   isLessonReviewSection,
   LessonSection,
 } from "@/components/PupilComponents/lessonSections";
-import { getWorksheetInfo } from "@/components/PupilComponents/pupilUtils/getWorksheetInfo";
 import { requestLessonResources } from "@/components/PupilComponents/pupilUtils/requestLessonResources";
 import { pickAvailableSectionsForLesson } from "@/components/PupilComponents/Views/ViewHelpers/Experience/pickAvailableSectionsForLesson";
 import {
@@ -80,15 +79,12 @@ export const buildPupilLessonPageProps = async ({
     suppressErrors: suppressResourceErrors,
   });
   const hasWorksheet = !!lessonContent.hasWorksheetAssetObject;
-  const worksheetInfo = hasWorksheet
-    ? ((await getWorksheetInfo(browseData.lessonSlug)) ?? null)
-    : null;
 
   return {
     lessonContent: hydratedLessonContent,
     browseData,
     hasWorksheet,
-    worksheetInfo,
+    worksheetInfo: null,
     hasAdditionalFiles: !!lessonContent.downloadableFiles?.length,
     additionalFiles: lessonContent.downloadableFiles || null,
     initialSection,
