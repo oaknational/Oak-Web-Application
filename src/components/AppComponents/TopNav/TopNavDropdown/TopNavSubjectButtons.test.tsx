@@ -1,5 +1,5 @@
 import userEvent from "@testing-library/user-event";
-import { screen, fireEvent } from "@testing-library/react";
+import { screen } from "@testing-library/react";
 import { useRouter } from "next/navigation";
 
 import TopNavSubjectButtons, {
@@ -59,7 +59,7 @@ describe("TopNavSubjectButtons", () => {
       />,
     );
 
-    const historyButton = screen.getByRole("button", { name: "History" });
+    const historyButton = screen.getByRole("link", { name: "History" });
     await user.click(historyButton);
 
     expect(handleSubjectClick).toHaveBeenCalledWith("history", "ks4");
@@ -80,9 +80,8 @@ describe("TopNavSubjectButtons", () => {
         examBoards: [
           {
             slug: "aqa",
-            title: "AQA",
+            buttonTitle: "AQA",
             programmeSlug: "biology-secondary-ks4-aqa",
-            tierSlug: null,
           },
         ],
       },
@@ -110,10 +109,15 @@ describe("TopNavSubjectButtons", () => {
     describe("getSubjectLinkHref", () => {
       describe("EYFS subjects", () => {
         it("should generate EYFS route for single word EYFS programmes", () => {
-          const href = getSubjectLinkHref({
-            programmeCount: 1,
-            subjectSlug: "maths",
+          const subject = {
+            title: "Maths",
+            slug: "maths",
+            nonCurriculum: false,
             programmeSlug: "maths-foundation-early-years-foundation-stage-l",
+            programmeCount: 1,
+          };
+          const href = getSubjectLinkHref({
+            subject,
             keyStageSlug: "early-years-foundation-stage",
             phaseSlug: "primary",
           });
@@ -122,11 +126,16 @@ describe("TopNavSubjectButtons", () => {
         });
 
         it("should generate EYFS route for multi-word EYFS programmes", () => {
-          const href = getSubjectLinkHref({
-            programmeCount: 1,
-            subjectSlug: "communication-and-language",
+          const subject = {
+            title: "Communication and Language",
+            slug: "communication-and-language",
+            nonCurriculum: false,
             programmeSlug:
               "communication-and-language-foundation-early-years-foundation-stage-l",
+            programmeCount: 1,
+          };
+          const href = getSubjectLinkHref({
+            subject,
             keyStageSlug: "early-years-foundation-stage",
             phaseSlug: "primary",
           });
@@ -135,42 +144,17 @@ describe("TopNavSubjectButtons", () => {
         });
       });
 
-      describe("non-EYFS subjects with multiple programmes", () => {
-        it("should link to programme-index when programmeCount > 1", () => {
-          const href = getSubjectLinkHref({
-            programmeCount: 2,
-            subjectSlug: "maths",
-            programmeSlug: "maths-primary-ks1",
-            keyStageSlug: "ks1",
-            phaseSlug: "primary",
-          });
-
-          expect(href).toBe(
-            "/teachers/key-stages/ks1/subjects/maths/programmes",
-          );
-        });
-
-        it("should link to programme-index for secondary subject with multiple programmes", () => {
-          const href = getSubjectLinkHref({
-            programmeCount: 3,
-            subjectSlug: "science",
-            programmeSlug: "science-secondary-ks4",
-            keyStageSlug: "ks4",
-            phaseSlug: "secondary",
-          });
-
-          expect(href).toBe(
-            "/teachers/key-stages/ks4/subjects/science/programmes",
-          );
-        });
-      });
-
       describe("non-EYFS subjects with single programme", () => {
         it("should link to unit-index when programmeCount is 1", () => {
-          const href = getSubjectLinkHref({
-            programmeCount: 1,
-            subjectSlug: "history",
+          const subject = {
+            title: "History",
+            slug: "history",
+            nonCurriculum: false,
             programmeSlug: "history-primary-ks2",
+            programmeCount: 1,
+          };
+          const href = getSubjectLinkHref({
+            subject,
             keyStageSlug: "ks2",
             phaseSlug: "primary",
           });
@@ -181,10 +165,15 @@ describe("TopNavSubjectButtons", () => {
         });
 
         it("should link to unit-index for secondary subject with single programme", () => {
-          const href = getSubjectLinkHref({
-            programmeCount: 1,
-            subjectSlug: "geography",
+          const subject = {
+            title: "Geography",
+            slug: "geography",
+            nonCurriculum: false,
             programmeSlug: "geography-secondary-ks3",
+            programmeCount: 1,
+          };
+          const href = getSubjectLinkHref({
+            subject,
             keyStageSlug: "ks3",
             phaseSlug: "secondary",
           });
@@ -195,10 +184,15 @@ describe("TopNavSubjectButtons", () => {
         });
 
         it("should link to unit-index when keyStageSlug is not provided", () => {
-          const href = getSubjectLinkHref({
+          const subject = {
+            title: "English",
+            slug: "english",
+            nonCurriculum: false,
+            programmeSlug: "english-primary",
             programmeCount: 1,
-            subjectSlug: "english",
-            programmeSlug: "english-primary-ks1",
+          };
+          const href = getSubjectLinkHref({
+            subject,
             keyStageSlug: "ks1",
             phaseSlug: "primary",
           });
@@ -209,30 +203,21 @@ describe("TopNavSubjectButtons", () => {
         });
 
         it("should preserve ks4 option slug segments like core", () => {
-          const href = getSubjectLinkHref({
-            programmeCount: 1,
-            subjectSlug: "citizenship",
+          const subject = {
+            title: "Citizenship",
+            slug: "citizenship",
+            nonCurriculum: false,
             programmeSlug: "citizenship-secondary-ks4-core",
+            programmeCount: 1,
+          };
+          const href = getSubjectLinkHref({
+            subject,
             keyStageSlug: "ks4",
             phaseSlug: "secondary",
           });
 
           expect(href).toBe(
             "/teachers/programmes/citizenship-secondary-core/units?keystages=ks4",
-          );
-        });
-
-        it("should preserve option and examboard segments after ks4", () => {
-          const href = getSubjectLinkHref({
-            programmeCount: 1,
-            subjectSlug: "biology",
-            programmeSlug: "biology-secondary-ks4-higher-aqa",
-            keyStageSlug: "ks4",
-            phaseSlug: "secondary",
-          });
-
-          expect(href).toBe(
-            "/teachers/programmes/biology-secondary-higher-aqa/units?keystages=ks4",
           );
         });
       });
@@ -250,15 +235,13 @@ describe("TopNavSubjectButtons", () => {
         examBoards: [
           {
             slug: "aqa",
-            title: "AQA",
+            buttonTitle: "AQA",
             programmeSlug: "geography-secondary-ks4-aqa",
-            tierSlug: null,
           },
           {
             slug: "edexcel",
-            title: "Edexcel",
+            buttonTitle: "Edexcel",
             programmeSlug: "geography-secondary-ks4-edexcel",
-            tierSlug: null,
           },
         ],
       },
@@ -293,10 +276,8 @@ describe("TopNavSubjectButtons", () => {
       expect(
         screen.getByRole("button", { name: "Geography" }),
       ).toBeInTheDocument();
-      expect(
-        screen.getByRole("button", { name: "History" }),
-      ).toBeInTheDocument();
-      expect(screen.getByRole("button", { name: "Maths" })).toBeInTheDocument();
+      expect(screen.getByRole("link", { name: "History" })).toBeInTheDocument();
+      expect(screen.getByRole("link", { name: "Maths" })).toBeInTheDocument();
     });
 
     it("calls onExamBoardPanelOpen when Enter is pressed on KS4 subject with exam boards", async () => {
@@ -347,34 +328,12 @@ describe("TopNavSubjectButtons", () => {
         />,
       );
 
-      const englishButton = screen.getByRole("button", { name: "English" });
+      const englishButton = screen.getByRole("link", { name: "English" });
       englishButton.focus();
 
       await user.keyboard("{Enter}");
 
       expect(onExamBoardPanelOpen).not.toHaveBeenCalled();
-    });
-
-    it("calls onSubjectBlur when subject loses focus", async () => {
-      const onSubjectBlur = jest.fn();
-
-      render(
-        <TopNavSubjectButtons
-          selectedMenu="secondary"
-          subjects={subjects}
-          selectedSubject={null}
-          keyStageSlug="ks4"
-          handleClick={jest.fn()}
-          onExamBoardPanelOpen={jest.fn()}
-          onSubjectBlur={onSubjectBlur}
-        />,
-      );
-
-      const geographyButton = screen.getByRole("button", { name: "Geography" });
-      geographyButton.focus();
-      fireEvent.blur(geographyButton);
-
-      expect(onSubjectBlur).toHaveBeenCalledWith(subjects[0]);
     });
   });
 });

@@ -292,8 +292,8 @@ describe("TopNav accessibility", () => {
     await user.keyboard("{Enter}");
 
     const dropdownItem2 = screen.getByText("Key stage 4").closest("button");
-    const subjectButton1 = screen.getByText("History").closest("button");
-    const subjectButton2 = screen.getByText("Geography").closest("button");
+    const subjectButton1 = screen.getByText("History").closest("a");
+    const subjectButton2 = screen.getByText("Geography").closest("a");
 
     expect(subjectButton1).toBeInTheDocument();
     expect(subjectButton2).toBeInTheDocument();
@@ -395,7 +395,7 @@ describe("TopNav accessibility", () => {
     await user.keyboard("{Enter}");
 
     const dropdownItem1 = screen.getByText("Key stage 3").closest("button");
-    const subjectButton1 = screen.getByText("History").closest("button");
+    const subjectButton1 = screen.getByText("History").closest("a");
 
     expect(dropdownItem1).toBeInTheDocument();
     expect(subjectButton1).toBeInTheDocument();

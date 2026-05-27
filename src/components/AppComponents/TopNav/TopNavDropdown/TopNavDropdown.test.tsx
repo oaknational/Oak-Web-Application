@@ -1,5 +1,6 @@
 import { screen } from "@testing-library/react";
 import { userEvent } from "@testing-library/user-event";
+import { useRouter } from "next/navigation";
 
 import TopNavDropdown from "./TopNavDropdown";
 
@@ -18,7 +19,6 @@ const getOakBackgroundColor = (token: "bg-decorative1-very-subdued") => {
 };
 
 const mockBrowseRefined = jest.fn();
-const pushMock = jest.fn();
 jest.mock("@/context/Analytics/useAnalytics", () => ({
   __esModule: true,
   default: () => ({
@@ -29,10 +29,8 @@ jest.mock("@/context/Analytics/useAnalytics", () => ({
 }));
 
 jest.mock("next/navigation", () => ({
-  useRouter: jest.fn(() => ({
-    push: pushMock,
-  })),
-  usePathname: jest.fn(() => "/test-path"),
+  useRouter: jest.fn(),
+  usePathname: jest.fn(),
 }));
 
 let focusManager: DropdownFocusManager<TeachersSubNavData>;
@@ -40,14 +38,17 @@ const onCloseMock = jest.fn();
 
 describe("TopNavDropdown", () => {
   beforeEach(() => {
+    jest.clearAllMocks();
     onCloseMock.mockReset();
     mockBrowseRefined.mockReset();
-    pushMock.mockReset();
     focusManager = new DropdownFocusManager(
       topNavFixture.teachers!,
       "teachers",
       () => undefined,
     );
+    (useRouter as jest.Mock).mockReturnValue({
+      push: jest.fn(),
+    });
   });
 
   describe("Teachers area", () => {
@@ -125,7 +126,7 @@ describe("TopNavDropdown", () => {
           />,
         );
 
-        const subjectButtons = await screen.findAllByRole("button");
+        const subjectButtons = await screen.findAllByRole("link");
 
         expect(subjectButtons[2]).toHaveTextContent("Financial education");
         expect(subjectButtons[2]).toHaveStyle({
@@ -146,7 +147,7 @@ describe("TopNavDropdown", () => {
           />,
         );
 
-        const englishButton = await screen.findByRole("button", {
+        const englishButton = await screen.findByRole("link", {
           name: "English",
         });
 
@@ -170,7 +171,7 @@ describe("TopNavDropdown", () => {
           />,
         );
 
-        const financialEdButton = await screen.findByRole("button", {
+        const financialEdButton = await screen.findByRole("link", {
           name: "Financial education",
         });
 
@@ -194,7 +195,7 @@ describe("TopNavDropdown", () => {
           />,
         );
 
-        const englishButton = await screen.findByRole("button", {
+        const englishButton = await screen.findByRole("link", {
           name: "English",
         });
         // Prevent navigation in test
@@ -301,51 +302,6 @@ describe("TopNavDropdown", () => {
         const ks3Button = screen.getByRole("tab", { name: "Key stage 3" });
         await user.click(ks3Button);
 
-        expect(
-          screen.queryByRole("heading", {
-            name: "Choose exam board for KS4 Geography",
-          }),
-        ).not.toBeInTheDocument();
-      });
-
-      it("closes exam board panel and tracks subject filter when exam board is selected", async () => {
-        const user = userEvent.setup();
-        render(
-          <TopNavDropdown
-            teachers={topNavFixture.teachers!}
-            pupils={topNavFixture.pupils!}
-            activeArea="TEACHERS"
-            selectedMenu="secondary"
-            focusManager={focusManager}
-            onClose={onCloseMock}
-          />,
-        );
-
-        const ks4Button = await screen.findByRole("tab", {
-          name: "Key stage 4",
-        });
-        await user.click(ks4Button);
-
-        const geographyButton = await screen.findByRole("button", {
-          name: "Geography",
-        });
-        geographyButton.addEventListener("click", (e) => e.preventDefault());
-        await user.click(geographyButton);
-
-        mockBrowseRefined.mockClear();
-
-        const examBoardButton = screen.getByRole("link", { name: /AQA/ });
-        await user.click(examBoardButton);
-
-        expect(mockBrowseRefined).toHaveBeenCalledWith(
-          expect.objectContaining({
-            filterType: "Subject filter",
-            filterValue: "geography",
-            activeFilters: expect.objectContaining({
-              keystage: expect.arrayContaining(["ks4"]),
-            }),
-          }),
-        );
         expect(
           screen.queryByRole("heading", {
             name: "Choose exam board for KS4 Geography",
