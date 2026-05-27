@@ -94,16 +94,18 @@ export const topNavFixture: TopNavProps = {
               programmeCount: 2,
               examBoards: [
                 {
-                  slug: "aqa",
-                  title: "AQA",
+                  buttonTitle: "AQA",
                   programmeSlug: "geography-secondary-ks4-aqa",
-                  tierSlug: "foundation",
+                  programmeFactors: {
+                    tier: { slug: "foundation", description: "Foundation" },
+                  },
                 },
                 {
-                  slug: "edexcel",
-                  title: "Edexcel",
+                  buttonTitle: "Edexcel",
                   programmeSlug: "geography-secondary-ks4-edexcel",
-                  tierSlug: "higher",
+                  programmeFactors: {
+                    tier: { slug: "higher", description: "Higher" },
+                  },
                 },
               ],
             },

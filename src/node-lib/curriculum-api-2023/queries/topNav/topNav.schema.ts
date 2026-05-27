@@ -45,11 +45,16 @@ export type TeachersSubNavData = {
 
 export type NavButton = NavLink | NavDropDownButton | TeachersBrowse;
 
-export type ExamBoard = {
-  slug: string;
-  title: string;
+export type ProgrammeFactorButton = {
+  buttonTitle: string;
   programmeSlug: string;
-  tierSlug: "core" | "foundation" | "higher" | null;
+  programmeFactors?: {
+    tier?: {
+      slug: "core" | "foundation" | "higher" | null;
+      description: "Core" | "Foundation" | "Higher" | null;
+    };
+    examboard?: { slug: string; title: string };
+  };
 };
 
 export type SubjectsNavItem = {
@@ -59,7 +64,7 @@ export type SubjectsNavItem = {
   programmeSlug: string | null; // will be null when multiple programmes exist
   programmeCount: number; // used to determine whether we should go to the programmes page (more than 1 programme) or directly to the unit listing page (only 1 programme)
   subjectParent?: string | null; // used to determine if subject is a child of another subject (e.g. combined science is a child of science)
-  examBoards?: ExamBoard[]; // available exam boards for KS4 subjects with multiple programmes
+  examBoards?: ProgrammeFactorButton[]; // available exam boards for KS4 subjects with multiple programmes
 };
 
 export type TeachersBrowse = {

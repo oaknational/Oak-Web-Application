@@ -1,12 +1,12 @@
 import { fireEvent, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import { useRouter } from "next/navigation";
 
 import ExamBoardPanel from "./ExamBoardPanel";
 
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 import { DropdownFocusManager } from "@/components/AppComponents/TopNav/DropdownFocusManager/DropdownFocusManager";
 import {
+  ProgrammeFactorButton,
   SubjectsNavItem,
   TeachersSubNavData,
 } from "@/node-lib/curriculum-api-2023/queries/topNav/topNav.schema";
@@ -28,18 +28,21 @@ jest.mock("@/utils/curriculum/slugs", () => ({
   getTeacherSubjectPhaseSlug: jest.fn(() => "test-programme-slug"),
 }));
 
-const mockPush = jest.fn();
-
 describe("ExamBoardPanel", () => {
   const mockOnClick = jest.fn();
   const mockOnClose = jest.fn();
-  const examBoards = [
-    { slug: "aqa", title: "AQA", programmeSlug: "aqa-prog", tierSlug: null },
+  const examBoards: ProgrammeFactorButton[] = [
     {
-      slug: "edexcel",
-      title: "Edexcel",
+      buttonTitle: "AQA",
+      programmeSlug: "aqa-prog",
+      programmeFactors: { examboard: { slug: "aqa", title: "AQA" } },
+    },
+    {
+      buttonTitle: "Edexcel",
       programmeSlug: "edexcel-prog",
-      tierSlug: null,
+      programmeFactors: {
+        examboard: { slug: "edexcel", title: "Edexcel" },
+      },
     },
   ];
   const selectedSubject = {
@@ -60,9 +63,6 @@ describe("ExamBoardPanel", () => {
 
   beforeEach(() => {
     jest.clearAllMocks();
-    (useRouter as jest.Mock).mockReturnValue({
-      push: mockPush,
-    });
   });
 
   it("renders exam board heading", () => {
@@ -71,7 +71,6 @@ describe("ExamBoardPanel", () => {
         examBoards={examBoards}
         selectedSubject={selectedSubject}
         onClick={mockOnClick}
-        onClose={mockOnClose}
         onLeave={mockOnClose}
       />,
     );
@@ -89,7 +88,6 @@ describe("ExamBoardPanel", () => {
         examBoards={examBoards}
         selectedSubject={selectedSubject}
         onClick={mockOnClick}
-        onClose={mockOnClose}
         onLeave={mockOnClose}
       />,
     );
@@ -98,22 +96,20 @@ describe("ExamBoardPanel", () => {
     expect(screen.getByText("Edexcel")).toBeInTheDocument();
   });
 
-  it("navigates when exam board is selected", async () => {
-    const user = userEvent.setup();
+  it("renders exam board links with the expected destination", () => {
     render(
       <ExamBoardPanel
         examBoards={examBoards}
         selectedSubject={selectedSubject}
         onClick={mockOnClick}
-        onClose={mockOnClose}
         onLeave={mockOnClose}
       />,
     );
 
     const aqaLink = screen.getByTestId("exam-board-aqa");
-    await user.click(aqaLink);
 
-    expect(mockPush).toHaveBeenCalledWith(
+    expect(aqaLink).toHaveAttribute(
+      "href",
       "/test-path/test-programme-slug/units",
     );
   });
@@ -125,7 +121,6 @@ describe("ExamBoardPanel", () => {
         examBoards={examBoards}
         selectedSubject={selectedSubject}
         onClick={mockOnClick}
-        onClose={mockOnClose}
         onLeave={mockOnClose}
       />,
     );
@@ -145,25 +140,26 @@ describe("ExamBoardPanel", () => {
 
     const mathsExamBoards = [
       {
-        slug: "higher",
-        title: "Higher",
+        buttonTitle: "Higher",
         programmeSlug: "maths-higher",
-        tierSlug: "higher",
+        programmeFactors: {
+          tier: { slug: "higher", description: "Higher" },
+        },
       },
       {
-        slug: "foundation",
-        title: "Foundation",
+        buttonTitle: "Foundation",
         programmeSlug: "maths-foundation",
-        tierSlug: "foundation",
+        programmeFactors: {
+          tier: { slug: "foundation", description: "Foundation" },
+        },
       },
-    ];
+    ] satisfies ProgrammeFactorButton[];
 
     render(
       <ExamBoardPanel
         examBoards={mathsExamBoards}
         selectedSubject={maths}
         onClick={mockOnClick}
-        onClose={mockOnClose}
         onLeave={mockOnClose}
       />,
     );
@@ -184,7 +180,6 @@ describe("ExamBoardPanel", () => {
           examBoards={examBoards}
           selectedSubject={selectedSubject}
           onClick={mockOnClick}
-          onClose={mockOnClose}
           onLeave={mockOnClose}
         />,
       );
@@ -204,7 +199,6 @@ describe("ExamBoardPanel", () => {
           selectedSubject={selectedSubject}
           focusManager={focusManager}
           onClick={mockOnClick}
-          onClose={mockOnClose}
           onLeave={mockOnClose}
         />,
       );
@@ -242,7 +236,6 @@ describe("ExamBoardPanel", () => {
           selectedSubject={selectedSubject}
           focusManager={focusManager}
           onClick={mockOnClick}
-          onClose={mockOnClose}
           onLeave={onLeave}
         />,
       );
@@ -267,7 +260,6 @@ describe("ExamBoardPanel", () => {
           selectedSubject={selectedSubject}
           focusManager={focusManager}
           onClick={mockOnClick}
-          onClose={mockOnClose}
           onLeave={mockOnClose}
         />,
       );

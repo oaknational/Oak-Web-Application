@@ -1,4 +1,8 @@
-import { TopNavResponse, TeachersBrowse, ExamBoard } from "./topNav.schema";
+import {
+  TopNavResponse,
+  TeachersBrowse,
+  ProgrammeFactorButton,
+} from "./topNav.schema";
 
 import isSlugLegacy from "@/utils/slugModifiers/isSlugLegacy";
 
@@ -12,7 +16,7 @@ export const getExamBoardsForKS4Subject = ({
   keystageSlug: string;
   subjectSlug: string;
   pathwaySlug: string | null;
-}): ExamBoard[] => {
+}): ProgrammeFactorButton[] => {
   const matchingProgrammes = data.programmes
     .filter((p) => {
       const { subject_slug, keystage_slug, pathway_slug } = p.programme_fields;
@@ -43,34 +47,38 @@ export const getExamBoardsForKS4Subject = ({
     );
   });
 
-  const examBoards: ExamBoard[] = programmesForKs.flatMap<ExamBoard>((p) => {
-    const { examboard, examboard_slug, tier_slug, tier_description } =
-      p.programme_fields;
+  const examBoards: ProgrammeFactorButton[] =
+    programmesForKs.flatMap<ProgrammeFactorButton>((p) => {
+      const { examboard, examboard_slug, tier_slug, tier_description } =
+        p.programme_fields;
 
-    if (examboard && examboard_slug) {
-      return [
-        {
-          slug: examboard_slug,
-          title: examboard,
-          programmeSlug: p.programme_slug,
-          tierSlug: tier_slug,
-        },
-      ];
-    }
+      if (examboard && examboard_slug) {
+        return [
+          {
+            buttonTitle: examboard,
+            programmeSlug: p.programme_slug,
+            programmeFactors: {
+              tier: { slug: tier_slug, description: tier_description },
+              examboard: { slug: examboard_slug, title: examboard },
+            },
+          },
+        ];
+      }
 
-    if (tier_slug && tier_description) {
-      return [
-        {
-          slug: tier_slug,
-          title: tier_description,
-          programmeSlug: p.programme_slug,
-          tierSlug: tier_slug,
-        },
-      ];
-    }
+      if (tier_slug && tier_description) {
+        return [
+          {
+            buttonTitle: tier_description,
+            programmeSlug: p.programme_slug,
+            programmeFactors: {
+              tier: { slug: tier_slug, description: tier_description },
+            },
+          },
+        ];
+      }
 
-    return [];
-  });
+      return [];
+    });
 
   return examBoards;
 };
