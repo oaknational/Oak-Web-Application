@@ -9,7 +9,3 @@ export const getSubjectPhaseSlug = ({
 }) => {
   return `${subject}-${phaseSlug}${examBoardSlug ? `-${examBoardSlug}` : ""}`;
 };
-
-export const getSubjectPhaseFromProgrammeSlug = (programmeSlug: string) => {
-  return programmeSlug.replace(/-ks\d+(?=-|$)/, "");
-};

@@ -14,7 +14,7 @@ import {
   TeachersSubNavData as TeachersData,
   SubjectsNavItem,
 } from "@/node-lib/curriculum-api-2023/queries/topNav/topNav.schema";
-import { getSubjectPhaseFromProgrammeSlug } from "@/components/TeacherComponents/helpers/getSubjectPhaseSlug";
+import { getSubjectPhaseFromProgrammeSlug } from "@/components/TeacherComponents/helpers/getSubjectPhaseFromProgrammeSlug";
 
 export const getSubjectLinkHref = ({
   subject,
