@@ -321,11 +321,11 @@ const PupilsSection = ({
           $display={"flex"}
           $gap={"spacing-16"}
           $reset
-          id={`topnav-pupils-${selectedMenu}`}
+          id={`topnav-pupils-${menu}`}
         >
           {data.children.map((year) => {
             const buttonId = focusManager?.createId(
-              `pupils-${selectedMenu}`,
+              `pupils-${menu}`,
               year.slug,
             );
             return (
