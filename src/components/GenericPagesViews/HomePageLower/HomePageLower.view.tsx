@@ -78,7 +78,7 @@ export const HomePageLowerView = (props: HomePageLowerViewProps) => {
                   <OakFlex $gap={"spacing-16"} $flexDirection={"column"}>
                     <OakBox>
                       <OakHeading
-                        tag="h1"
+                        tag="h2"
                         $font={["heading-5", "heading-5", "heading-4"]}
                       >
                         {introVideo?.title}
