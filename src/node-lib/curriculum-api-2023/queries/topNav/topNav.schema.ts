@@ -43,7 +43,11 @@ export type TeachersSubNavData = {
   aiExperiments: NavLink;
 };
 
-export type NavButton = NavLink | NavDropDownButton | TeachersBrowse;
+export type NavButton =
+  | NavLink
+  | NavDropDownButton
+  | TeachersBrowse
+  | PupilsBrowse;
 
 type SubjectsNavItem = {
   title: string;

@@ -46,7 +46,7 @@ export const MaybeVisuallyHidden = ({
   children?: React.ReactNode;
   hiddenElementId: string;
 }) => {
-  // Hack to fully remove the elements from the page when the client initialises to prevent issues with focus and screen readers
+  // Fully remove the visually hidden elements from the page when the client initialises to prevent issues with focus and screen readers
   const [afterInitialRender, setAfterInitialRender] = useState(false);
 
   useEffect(() => {
