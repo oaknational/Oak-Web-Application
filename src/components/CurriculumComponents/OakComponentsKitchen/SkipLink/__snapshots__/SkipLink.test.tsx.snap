@@ -4,13 +4,13 @@ exports[`SkipLink functions as expected 1`] = `
 <body>
   <div>
     <div
-      class="sc-aXZVg sc-kpDqfm bhFzn cvxBYX"
+      class="sc-aXZVg sc-kpDqfm beToGt cvxBYX"
     >
       <div
-        class="sc-aXZVg kpXzs grey-shadow"
+        class="sc-aXZVg jLhxzq grey-shadow"
       />
       <div
-        class="sc-aXZVg kpXzs yellow-shadow"
+        class="sc-aXZVg jLhxzq yellow-shadow"
       />
       <a
         class="sc-dcJsrY sc-jXbUNg bALQkH khQbhv internal-button"
@@ -19,7 +19,7 @@ exports[`SkipLink functions as expected 1`] = `
         style=""
       >
         <div
-          class="sc-aXZVg sc-gEvEer jPvJsJ krHAKs"
+          class="sc-aXZVg sc-gEvEer dFOKqz krHAKs"
         >
           <span
             class="sc-eqUAAy edqVpV"
