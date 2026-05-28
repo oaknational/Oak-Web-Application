@@ -237,7 +237,7 @@ describe("TopNavDropdown", () => {
 
         expect(
           await screen.findByRole("heading", {
-            name: "Choose exam board for KS4 Geography",
+            name: "Choose tier for KS4 Geography",
           }),
         ).toBeInTheDocument();
       });
@@ -270,7 +270,7 @@ describe("TopNavDropdown", () => {
 
         expect(
           await screen.findByRole("heading", {
-            name: "Choose exam board for KS4 Geography",
+            name: "Choose tier for KS4 Geography",
           }),
         ).toBeInTheDocument();
       });

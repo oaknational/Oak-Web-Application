@@ -167,7 +167,7 @@ describe("ExamBoardPanel", () => {
 
     expect(
       screen.getByRole("heading", {
-        name: "Choose exam board for KS4 Maths",
+        name: "Choose tier for KS4 Maths",
       }),
     ).toBeInTheDocument();
 
