@@ -2915,6 +2915,14 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
 }
 
 @media (min-width:750px) {
+
+}
+
+@media (min-width:1280px) {
+
+}
+
+@media (min-width:750px) {
   .c72 {
     padding-left: 2.5rem;
   }
@@ -3307,6 +3315,14 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
     -ms-flex-pack: initial;
     justify-content: initial;
   }
+}
+
+@media (min-width:750px) {
+
+}
+
+@media (min-width:1280px) {
+
 }
 
 @media (min-width:750px) {
