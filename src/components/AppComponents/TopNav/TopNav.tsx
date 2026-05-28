@@ -39,10 +39,12 @@ export type TopNavProps = {
  */
 export const MaybeVisuallyHidden = ({
   shouldDisplay,
+  hiddenElementId,
   children,
 }: {
   shouldDisplay: boolean;
   children?: React.ReactNode;
+  hiddenElementId: string;
 }) => {
   // Hack to fully remove the elements from the page when the client initialises to prevent issues with focus and screen readers
   const [afterInitialRender, setAfterInitialRender] = useState(false);
@@ -55,7 +57,9 @@ export const MaybeVisuallyHidden = ({
     return children;
   } else {
     return afterInitialRender ? null : (
-      <VisuallyHidden id="visually-hidden-container">{children}</VisuallyHidden>
+      <VisuallyHidden id={`visually-hidden-${hiddenElementId}`}>
+        {children}
+      </VisuallyHidden>
     );
   }
 };
@@ -214,7 +218,7 @@ const TopNav = (props: TopNavProps) => {
             $pa={"spacing-0"}
           />
         </OakLink>
-        {activeArea === "TEACHERS" && teachers && (
+        {activeArea === "TEACHERS" && teachers && focusManager && (
           <>
             <SubNav
               {...teachers}
@@ -231,7 +235,7 @@ const TopNav = (props: TopNavProps) => {
             <TeachersTopNavHamburger {...teachers} />
           </>
         )}
-        {activeArea === "PUPILS" && pupils && (
+        {activeArea === "PUPILS" && pupils && focusManager && (
           <>
             <SubNav
               {...pupils}
@@ -248,32 +252,31 @@ const TopNav = (props: TopNavProps) => {
           </>
         )}
       </OakFlex>
-      <MaybeVisuallyHidden
-        shouldDisplay={
-          !!selectedMenu &&
-          ((activeArea === "TEACHERS" && !!teachers) ||
-            (activeArea === "PUPILS" && !!pupils))
-        }
-      >
-        <OakFlex
-          $display={["none", "none", "flex"]}
-          $width={"100%"}
-          $flexDirection={"column"}
-          $background={"bg-primary"}
-          data-testid="topnav-dropdown-container"
-          $bb="border-solid-s"
-          $borderColor="border-neutral-lighter"
+      {teachers && pupils && (
+        <MaybeVisuallyHidden
+          hiddenElementId="top-nav-dropdown"
+          shouldDisplay={!!selectedMenu}
         >
-          <TopNavDropdown
-            focusManager={focusManager!}
-            activeArea={activeArea}
-            selectedMenu={selectedMenu}
-            teachers={teachers!}
-            pupils={pupils!}
-            onClose={handleCloseDropdown}
-          />
-        </OakFlex>
-      </MaybeVisuallyHidden>
+          <OakFlex
+            $display={["none", "none", "flex"]}
+            $width={"100%"}
+            $flexDirection={"column"}
+            $background={"bg-primary"}
+            data-testid="topnav-dropdown-container"
+            $bb="border-solid-s"
+            $borderColor="border-neutral-lighter"
+          >
+            <TopNavDropdown
+              focusManager={focusManager}
+              activeArea={activeArea}
+              selectedMenu={selectedMenu}
+              teachers={teachers}
+              pupils={pupils}
+              onClose={handleCloseDropdown}
+            />
+          </OakFlex>
+        </MaybeVisuallyHidden>
+      )}
     </OakBox>
   );
 };
