@@ -99,8 +99,7 @@ const TeachersPhaseSection = ({
 }) => {
   const { track } = useAnalytics();
   const defaultKeystage = selectedMenu
-    ? phaseData.children[0]?.slug ||
-      (selectedMenu === "primary" ? "ks1" : "ks3")
+    ? phaseData.children[0]?.slug
     : undefined;
 
   const [selectedKeystage, setSelectedKeystage] = useState<
