@@ -30,9 +30,7 @@ const Wrapper = (args: LessonShareCardGroupProps) => {
   const { control } = useForm<ResourceFormValues>({
     mode: "onBlur",
   });
-  return (
-    <Component {...args} control={control} shareLink="https://example.com" />
-  );
+  return <Component {...args} control={control} />;
 };
 
 export const AllResources: Story = {
