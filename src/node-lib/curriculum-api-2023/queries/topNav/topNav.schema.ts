@@ -78,7 +78,19 @@ type PupilsBrowse = {
 
 // Type guard to check if a nav item opens a dropdown menu (vs being a direct link)
 export function isDropdownMenuItem(
-  section: NavLink | NavDropDownButton | TeachersBrowse,
+  section: NavButton,
 ): section is NavDropDownButton | TeachersBrowse {
   return "children" in section;
+}
+
+export function isTeachersBrowseItem(
+  section: NavButton,
+): section is TeachersBrowse {
+  return section.slug === "primary" || section.slug === "secondary";
+}
+
+export function isNavDropDownButtonItem(
+  section: NavButton,
+): section is NavDropDownButton {
+  return section.slug === "guidance" || section.slug === "aboutUs";
 }

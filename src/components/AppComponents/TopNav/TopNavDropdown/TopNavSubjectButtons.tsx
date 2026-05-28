@@ -7,11 +7,13 @@ import Link from "next/link";
 
 import { DropdownFocusManager } from "../DropdownFocusManager/DropdownFocusManager";
 
+import { TopNavDropdownProps } from "./TopNavDropdown";
+
 import { resolveOakHref } from "@/common-lib/urls";
 import { getValidSubjectIconName } from "@/utils/getValidSubjectIconName";
 import {
-  TeachersSubNavData,
   TeachersSubNavData as TeachersData,
+  TeachersBrowse,
 } from "@/node-lib/curriculum-api-2023/queries/topNav/topNav.schema";
 
 export const getSubjectLinkHref = ({
@@ -47,11 +49,9 @@ const TopNavSubjectButtons = ({
   focusManager,
   phase,
 }: {
-  selectedMenu?: keyof TeachersSubNavData;
+  selectedMenu?: TopNavDropdownProps["selectedMenu"];
   phase: "primary" | "secondary";
-  subjects: TeachersSubNavData[
-    | "primary"
-    | "secondary"]["children"][number]["children"];
+  subjects: TeachersBrowse["children"][number]["children"];
   keyStageSlug: string;
   handleClick: (subject: string, keystage: string) => void;
   focusManager?: DropdownFocusManager<TeachersData>;
