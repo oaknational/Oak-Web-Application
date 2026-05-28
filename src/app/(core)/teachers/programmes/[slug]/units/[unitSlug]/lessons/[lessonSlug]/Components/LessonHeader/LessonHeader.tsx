@@ -8,9 +8,30 @@ import {
 } from "@/components/TeacherComponents/Header/Header";
 import HeaderNavFooter from "@/components/TeacherComponents/HeaderNavFooter/HeaderNavFooter";
 import { resolveOakHref } from "@/common-lib/urls";
-import { TeachersLessonOverviewAdjacentLesson } from "@/node-lib/curriculum-api-2023/queries/teachersLessonOverview/teachersLessonOverview.schema";
+import {
+  TeachersLessonOverviewAdjacentLesson,
+  TeachersLessonOverviewPageData,
+} from "@/node-lib/curriculum-api-2023/queries/teachersLessonOverview/teachersLessonOverview.schema";
 import { getBreakpoint } from "@/styles/utils/responsive";
 import LoginRequiredButton from "@/components/TeacherComponents/LoginRequiredButton/LoginRequiredButton";
+import useAnalytics from "@/context/Analytics/useAnalytics";
+import { getAnalyticsBrowseData } from "@/components/TeacherComponents/helpers/getAnalyticsBrowseData";
+
+type LessonHeaderBrowseProps = Pick<
+  TeachersLessonOverviewPageData,
+  | "lessonTitle"
+  | "unitTitle"
+  | "keyStageSlug"
+  | "keyStageTitle"
+  | "subjectSlug"
+  | "subjectTitle"
+  | "year"
+  | "yearGroupTitle"
+  | "examBoardTitle"
+  | "tierTitle"
+  | "pathwayTitle"
+  | "lessonReleaseDate"
+>;
 
 export type LessonHeaderProps = Omit<LargeHeaderProps, "layoutVariant"> & {
   currentLessonSlug: string;
@@ -20,7 +41,7 @@ export type LessonHeaderProps = Omit<LargeHeaderProps, "layoutVariant"> & {
   unitSlug: string;
   loginRequired: boolean;
   georestricted: boolean;
-};
+} & LessonHeaderBrowseProps;
 
 const LessonHeader = (props: LessonHeaderProps) => {
   const {
@@ -29,9 +50,39 @@ const LessonHeader = (props: LessonHeaderProps) => {
     unitSlug,
     programmeSlug,
     currentLessonSlug,
+    lessonTitle,
+    unitTitle,
+    keyStageSlug,
+    keyStageTitle,
+    subjectSlug,
+    subjectTitle,
+    year,
+    yearGroupTitle,
+    examBoardTitle,
+    tierTitle,
+    pathwayTitle,
+    lessonReleaseDate,
     loginRequired,
     georestricted,
   } = props;
+  const { track } = useAnalytics();
+  const browsePathwayData = getAnalyticsBrowseData({
+    keyStageSlug,
+    keyStageTitle,
+    subjectSlug,
+    subjectTitle,
+    unitSlug,
+    unitTitle,
+    year,
+    yearTitle: yearGroupTitle,
+    examBoardTitle,
+    tierTitle,
+    pathwayTitle,
+    lessonSlug: currentLessonSlug,
+    lessonName: lessonTitle,
+    lessonReleaseDate,
+    isLegacy: false,
+  });
 
   return (
     <>
@@ -82,6 +133,18 @@ const LessonHeader = (props: LessonHeaderProps) => {
                   Download <DesktopButtonText>all resources</DesktopButtonText>
                 </OakSpan>
               ),
+              onClick: () => {
+                track.lessonResourceDownloadStarted({
+                  platform: "owa",
+                  product: "teacher lesson resources",
+                  engagementIntent: "use",
+                  componentType: "lesson_download_button",
+                  eventVersion: "2.0.0",
+                  analyticsUseCase: "Teacher",
+                  downloadResourceButtonName: "all",
+                  ...browsePathwayData,
+                });
+              },
               isActionGeorestricted: true,
               shouldHidewhenGeoRestricted: true,
               href: resolveOakHref({
