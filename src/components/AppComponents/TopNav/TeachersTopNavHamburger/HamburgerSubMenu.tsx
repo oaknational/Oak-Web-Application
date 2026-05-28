@@ -159,6 +159,7 @@ export function SubmenuContent(
             selectedMenu={phase}
             subjects={subjects}
             keyStageSlug={keystage.slug}
+            phase={phase}
           />
         </SubmenuContainer>
       );
