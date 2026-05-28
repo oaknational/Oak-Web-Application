@@ -14,12 +14,17 @@ const lessonShareFixtures = (
     keyStageTitle: "Key stage 4",
     subjectSlug: "maths",
     subjectTitle: "Maths",
+    subjectParent: null,
+    phaseSlug: "secondary",
+    phaseTitle: "Secondary",
     unitSlug: "geometry",
     unitTitle: "Geometry",
     tierSlug: null,
     tierTitle: null,
     examBoardSlug: null,
     examBoardTitle: null,
+    pathwaySlug: null,
+    yearGroupTitle: "Year 10",
     shareableResources: [
       {
         type: "exit-quiz",
