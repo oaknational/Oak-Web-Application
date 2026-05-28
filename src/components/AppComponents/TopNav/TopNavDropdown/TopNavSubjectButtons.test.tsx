@@ -56,6 +56,8 @@ describe("TopNavSubjectButtons", () => {
         keyStageSlug="ks4"
         handleClick={handleSubjectClick}
         onExamBoardPanelOpen={jest.fn()}
+        closeExamBoardPanel={jest.fn}
+        phase="secondary"
       />,
     );
 
@@ -96,6 +98,8 @@ describe("TopNavSubjectButtons", () => {
         keyStageSlug="ks4"
         handleClick={handleSubjectClick}
         onExamBoardPanelOpen={onExamBoardPanelOpen}
+        closeExamBoardPanel={jest.fn}
+        phase="secondary"
       />,
     );
 
@@ -272,6 +276,8 @@ describe("TopNavSubjectButtons", () => {
           keyStageSlug="ks4"
           handleClick={jest.fn()}
           onExamBoardPanelOpen={jest.fn()}
+          closeExamBoardPanel={jest.fn}
+          phase="secondary"
         />,
       );
 
@@ -294,6 +300,8 @@ describe("TopNavSubjectButtons", () => {
           keyStageSlug="ks4"
           handleClick={jest.fn()}
           onExamBoardPanelOpen={onExamBoardPanelOpen}
+          closeExamBoardPanel={jest.fn}
+          phase="secondary"
         />,
       );
 
@@ -327,6 +335,8 @@ describe("TopNavSubjectButtons", () => {
           keyStageSlug="ks4"
           handleClick={jest.fn()}
           onExamBoardPanelOpen={onExamBoardPanelOpen}
+          closeExamBoardPanel={jest.fn}
+          phase="secondary"
         />,
       );
 

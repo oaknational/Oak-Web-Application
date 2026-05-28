@@ -22,6 +22,7 @@ jest.mock("next/navigation", () => ({
     get: () => null,
   })),
   usePathname: jest.fn(() => "/"),
+  useRouter: jest.fn(),
 }));
 
 jest.mock("@google-cloud/storage", () => {
