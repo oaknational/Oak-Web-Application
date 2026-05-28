@@ -264,7 +264,7 @@ const TeachersLinksSection = ({
       >
         {linkData.children.map((link) => {
           const buttonId = focusManager.createId(
-            `teachers-${link.slug}`,
+            `teachers-${linkData.slug}`,
             link.slug,
           );
           return (
