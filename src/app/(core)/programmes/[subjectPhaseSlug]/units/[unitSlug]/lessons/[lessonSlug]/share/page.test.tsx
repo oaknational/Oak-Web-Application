@@ -12,6 +12,11 @@ jest.mock("next/navigation", () => ({
   },
 }));
 
+const featureFlagMock = jest.fn().mockResolvedValue(true);
+jest.mock("@/utils/featureFlags", () => ({
+  getFeatureFlagValue: () => featureFlagMock(),
+}));
+
 // Jest is not setup to test RSCs, so it does not load the server build
 // so we mock the cache function.
 jest.mock("react", () => {
@@ -76,7 +81,19 @@ const defaultParams = {
 
 describe("LessonSharePage", () => {
   beforeEach(() => {
+    featureFlagMock.mockResolvedValue(true);
     mockLessonShare.mockResolvedValue(lessonShareFixture);
+  });
+
+  it("renders 404 if feature flag is disabled", async () => {
+    featureFlagMock.mockResolvedValue(false);
+
+    await expect(
+      LessonSharePage({
+        params: Promise.resolve(defaultParams),
+        searchParams: Promise.resolve({}),
+      }),
+    ).rejects.toEqual(new Error("NEXT_HTTP_ERROR_FALLBACK;404"));
   });
 
   it("renders share view data", async () => {
