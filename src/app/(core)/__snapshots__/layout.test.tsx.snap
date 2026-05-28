@@ -210,9 +210,31 @@ exports[`core layout renders correctly 1`] = `
             {
               "children": [
                 {
+                  "examBoards": [
+                    {
+                      "buttonTitle": "AQA",
+                      "programmeFactors": {
+                        "tier": {
+                          "description": "Foundation",
+                          "slug": "foundation",
+                        },
+                      },
+                      "programmeSlug": "geography-secondary-ks4-aqa",
+                    },
+                    {
+                      "buttonTitle": "Edexcel",
+                      "programmeFactors": {
+                        "tier": {
+                          "description": "Higher",
+                          "slug": "higher",
+                        },
+                      },
+                      "programmeSlug": "geography-secondary-ks4-edexcel",
+                    },
+                  ],
                   "nonCurriculum": false,
-                  "programmeCount": 0,
-                  "programmeSlug": "geography-secondary-ks4",
+                  "programmeCount": 2,
+                  "programmeSlug": null,
                   "slug": "geography",
                   "title": "Geography",
                 },

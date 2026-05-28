@@ -1,6 +1,87 @@
-import { TopNavResponse, TeachersBrowse } from "./topNav.schema";
+import {
+  TopNavResponse,
+  TeachersBrowse,
+  ProgrammeFactorButton,
+} from "./topNav.schema";
 
 import isSlugLegacy from "@/utils/slugModifiers/isSlugLegacy";
+
+export const getExamBoardsForKS4Subject = ({
+  data,
+  keystageSlug,
+  subjectSlug,
+  pathwaySlug,
+}: {
+  data: TopNavResponse;
+  keystageSlug: string;
+  subjectSlug: string;
+  pathwaySlug: string | null;
+}): ProgrammeFactorButton[] => {
+  const matchingProgrammes = data.programmes
+    .filter((p) => {
+      const { subject_slug, keystage_slug, pathway_slug } = p.programme_fields;
+      return (
+        keystage_slug === keystageSlug &&
+        subject_slug === subjectSlug &&
+        pathway_slug === pathwaySlug
+      );
+    })
+    .filter(
+      (p, i, a) =>
+        a.findIndex((k) => k.programme_slug === p.programme_slug) === i,
+    );
+
+  const hasNonLegacyProgramme = matchingProgrammes.some(
+    (programme) =>
+      programme.programme_fields.dataset !== "legacy" &&
+      !isSlugLegacy(programme.programme_slug),
+  );
+
+  const programmesForKs = matchingProgrammes.filter((programme) => {
+    if (!hasNonLegacyProgramme) {
+      return true;
+    }
+    return (
+      programme.programme_fields.dataset !== "legacy" &&
+      !isSlugLegacy(programme.programme_slug)
+    );
+  });
+
+  const examBoards: ProgrammeFactorButton[] =
+    programmesForKs.flatMap<ProgrammeFactorButton>((p) => {
+      const { examboard, examboard_slug, tier_slug, tier_description } =
+        p.programme_fields;
+
+      if (examboard && examboard_slug) {
+        return [
+          {
+            buttonTitle: examboard,
+            programmeSlug: p.programme_slug,
+            programmeFactors: {
+              tier: { slug: tier_slug, description: tier_description },
+              examboard: { slug: examboard_slug, title: examboard },
+            },
+          },
+        ];
+      }
+
+      if (tier_slug && tier_description) {
+        return [
+          {
+            buttonTitle: tier_description,
+            programmeSlug: p.programme_slug,
+            programmeFactors: {
+              tier: { slug: tier_slug, description: tier_description },
+            },
+          },
+        ];
+      }
+
+      return [];
+    });
+
+  return examBoards;
+};
 
 export const getTeachersNavData = (
   teachersData: TopNavResponse,
@@ -87,12 +168,25 @@ const getKeystages = (
         const title =
           subjectDisplayName + (pathwayTitle ? ` (${pathwayTitle})` : "");
 
+        const examBoardsData =
+          ks.slug === "ks4" && programmeCount > 1
+            ? getExamBoardsForKS4Subject({
+                data,
+                keystageSlug: ks.slug,
+                subjectSlug: p.programme_fields.subject_slug,
+                pathwaySlug: p.programme_fields.pathway_slug,
+              })
+            : null;
+
         return {
           slug: p.programme_fields.subject_slug,
           title,
           nonCurriculum: Boolean(p.features.non_curriculum),
           programmeSlug: programmeCount > 1 ? null : p.programme_slug,
           programmeCount,
+          pathwaySlug: p.programme_fields.pathway_slug ?? null,
+          subjectParent: p.programme_fields.subject_parent ?? null,
+          ...(examBoardsData ? { examBoards: examBoardsData } : {}),
         };
       });
 

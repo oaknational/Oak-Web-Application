@@ -12,10 +12,15 @@ import {
   SearchFilterModifiedProperties,
 } from "@/browser-lib/avo/Avo";
 
-export const convertUnitSlugToTitle = (unitSlug: string) => {
+export const convertUnitSlugToTitle = (
+  unitSlug: string,
+  truncateSlug: boolean = true,
+) => {
   const lastHyphenIndex = unitSlug.lastIndexOf("-");
   const truncatedSlug =
-    lastHyphenIndex !== -1 ? unitSlug.substring(0, lastHyphenIndex) : unitSlug;
+    truncateSlug && lastHyphenIndex !== -1
+      ? unitSlug.substring(0, lastHyphenIndex)
+      : unitSlug;
   const words = truncatedSlug.split("-");
   const capitalisedWords = words.map(
     (word) => word.charAt(0).toUpperCase() + word.slice(1),
