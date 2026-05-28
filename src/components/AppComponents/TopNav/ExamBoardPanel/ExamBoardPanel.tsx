@@ -85,6 +85,20 @@ const ExamBoardPanel = ({
     return null;
   }
 
+  const hasTierOnlyOptions = examboards.some((board) => {
+    const hasTier = Boolean(board.programmeFactors?.tier?.slug);
+    const hasExamBoard = Boolean(board.programmeFactors?.examboard?.slug);
+    return hasTier && !hasExamBoard;
+  });
+
+  const hasExamBoardOptions = examboards.some((board) =>
+    Boolean(board.programmeFactors?.examboard?.slug),
+  );
+
+  const panelTitle = `Choose ${
+    hasTierOnlyOptions && !hasExamBoardOptions ? "tier" : "exam board"
+  } for KS4 ${selectedSubject.title}`;
+
   const focusNextExamBoard = (
     allButtons: HTMLElement[],
     currentIndex: number,
@@ -193,7 +207,7 @@ const ExamBoardPanel = ({
           $mt={"spacing-0"}
           $mb={"spacing-16"}
         >
-          Choose exam board for KS4 {selectedSubject.title}
+          {panelTitle}
         </OakHeading>
       </OakBox>
       <OakUL
