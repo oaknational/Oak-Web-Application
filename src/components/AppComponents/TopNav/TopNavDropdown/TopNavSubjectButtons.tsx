@@ -14,11 +14,12 @@ import {
   TeachersSubNavData as TeachersData,
   SubjectsNavItem,
 } from "@/node-lib/curriculum-api-2023/queries/topNav/topNav.schema";
-import { getSubjectPhaseFromProgrammeSlug } from "@/components/TeacherComponents/helpers/getSubjectPhaseFromProgrammeSlug";
+import { getSubjectPhaseSlug } from "@/components/TeacherComponents/helpers/getSubjectPhaseSlug";
 
 export const getSubjectLinkHref = ({
   subject,
   keyStageSlug,
+  phaseSlug,
 }: {
   subject: SubjectsNavItem;
   keyStageSlug: string;
@@ -33,9 +34,11 @@ export const getSubjectLinkHref = ({
 
   return resolveOakHref({
     page: "teacher-programme",
-    subjectPhaseSlug: getSubjectPhaseFromProgrammeSlug(
-      subject.programmeSlug ? subject.programmeSlug : "",
-    ),
+    subjectPhaseSlug: getSubjectPhaseSlug({
+      subject: subject.slug,
+      phaseSlug: phaseSlug,
+      pathwaySlug: subject.pathwaySlug ? subject.pathwaySlug : null,
+    }),
     tab: "units",
     query: keyStageSlug ? { keystages: keyStageSlug } : undefined,
   });

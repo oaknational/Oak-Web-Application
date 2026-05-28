@@ -208,6 +208,7 @@ describe("TopNavSubjectButtons", () => {
             title: "Citizenship",
             slug: "citizenship",
             nonCurriculum: false,
+            pathwaySlug: "core",
             programmeSlug: "citizenship-secondary-ks4-core",
             programmeCount: 1,
           };
