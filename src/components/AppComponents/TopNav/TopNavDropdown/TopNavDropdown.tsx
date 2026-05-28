@@ -111,7 +111,7 @@ const TeachersPhaseSection = ({
     setSelectedKeystage(defaultKeystage);
   }, [defaultKeystage]);
 
-  const keystagesRef = useRef<HTMLUListElement>(null);
+  const keystagesRef = useRef<HTMLDivElement>(null);
 
   const onKeystageClick = (keystageSlug: string) => {
     track.browseRefined({
@@ -132,7 +132,7 @@ const TeachersPhaseSection = ({
 
   // Arrow key navigation for up/down in keystages
   const handleKeystageArrowKeys = (
-    event: React.KeyboardEvent<HTMLUListElement>,
+    event: React.KeyboardEvent<HTMLDivElement>,
   ) => {
     if (!selectedMenu) return;
     const focusableElements = phaseData.children.map((keystage) =>
@@ -165,12 +165,11 @@ const TeachersPhaseSection = ({
   const isKeystageOpen = (slug: string) => selectedKeystage === slug;
   return (
     <OakFlex $gap={"spacing-40"}>
-      <OakUL
+      <OakFlex
         $display={"flex"}
         $flexDirection={"column"}
         $gap={"spacing-8"}
         $pa={"spacing-0"}
-        $reset
         id={`topnav-teachers-${phase}`}
         role="tablist"
         ref={keystagesRef}
@@ -182,7 +181,7 @@ const TeachersPhaseSection = ({
             keystage.slug,
           );
           return (
-            <OakLI
+            <OakLeftAlignedButton
               key={keystage.slug}
               aria-expanded={isKeystageOpen(keystage.slug)}
               aria-controls={
@@ -192,32 +191,27 @@ const TeachersPhaseSection = ({
               }
               role="tab"
               aria-selected={isKeystageOpen(keystage.slug)}
+              iconName="chevron-right"
+              isTrailingIcon
+              rightAlignIcon
+              width={"spacing-160"}
+              selected={isKeystageOpen(keystage.slug)}
+              onClick={() => onKeystageClick(keystage.slug)}
+              onKeyDown={(e) => focusManager.handleKeyDown(e, buttonId)}
+              aria-current={isKeystageOpen(keystage.slug) ? "true" : undefined}
+              id={buttonId}
+              aria-label={
+                keystage.title === "EYFS"
+                  ? "Early years foundation stage"
+                  : undefined
+              }
+              aria-disabled={selectedMenu !== phase}
             >
-              <OakLeftAlignedButton
-                iconName="chevron-right"
-                isTrailingIcon
-                rightAlignIcon
-                width={"spacing-160"}
-                selected={isKeystageOpen(keystage.slug)}
-                onClick={() => onKeystageClick(keystage.slug)}
-                onKeyDown={(e) => focusManager.handleKeyDown(e, buttonId)}
-                aria-current={
-                  isKeystageOpen(keystage.slug) ? "true" : undefined
-                }
-                id={buttonId}
-                aria-label={
-                  keystage.title === "EYFS"
-                    ? "Early years foundation stage"
-                    : undefined
-                }
-                aria-disabled={selectedMenu !== phase}
-              >
-                {keystage.title.replace("KS", "Key stage ")}
-              </OakLeftAlignedButton>
-            </OakLI>
+              {keystage.title.replace("KS", "Key stage ")}
+            </OakLeftAlignedButton>
           );
         })}
-      </OakUL>
+      </OakFlex>
       {phaseData.children.map((keystage) => (
         <MaybeVisuallyHidden
           key={keystage.slug}
