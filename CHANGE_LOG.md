@@ -1,3 +1,42 @@
+# [1.1083.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1082.0...v1.1083.0) (2026-05-28)
+
+
+### Bug Fixes
+
+* copy change ([fec781d](https://github.com/oaknational/Oak-Web-Application/commit/fec781da6a3695ca6c0e9c89949c43dd4e3a6e3e))
+* fix sonar ([c8d54ee](https://github.com/oaknational/Oak-Web-Application/commit/c8d54ee3fe4d06f8a50aa929f43d53416567572e))
+* fix sonar ([3cb609e](https://github.com/oaknational/Oak-Web-Application/commit/3cb609e30f24d8e0b6821af2136634ef8d00b6b6))
+* fix sonar ([127ceec](https://github.com/oaknational/Oak-Web-Application/commit/127ceecd0ccb412768bccd9035464a2bde5cba7d))
+* fix sonar ([cbc9bf5](https://github.com/oaknational/Oak-Web-Application/commit/cbc9bf5968b22d0bf2803da948c2aced1a8e3de9))
+* issues ([1951296](https://github.com/oaknational/Oak-Web-Application/commit/19512969a8628befa74b925dbc18406ec7e2f7ba))
+* issues ([5b535a3](https://github.com/oaknational/Oak-Web-Application/commit/5b535a3c85e2793b9e1502cc63e6929384aac1c7))
+* issues ([0294110](https://github.com/oaknational/Oak-Web-Application/commit/0294110ffd08172e8b16d94cefa9ae4a959d339f))
+* issues ([79a1ad4](https://github.com/oaknational/Oak-Web-Application/commit/79a1ad4b82f05c48cddb6951aa398cf6e1b87c96))
+* merge main ([4763efd](https://github.com/oaknational/Oak-Web-Application/commit/4763efd6178b4410a4cb33a681957e05e5c81428))
+* merge main ([6cc7b55](https://github.com/oaknational/Oak-Web-Application/commit/6cc7b55776f21903d964981666afc47cfa86f7e1))
+* merge main ([005f40b](https://github.com/oaknational/Oak-Web-Application/commit/005f40b4d70b190a68908279f6e881859da41ed7))
+* merge main ([3e16156](https://github.com/oaknational/Oak-Web-Application/commit/3e161564bb6346a00368b499c7023cea29b43bbf))
+* **pupil:** restore shared intro worksheet metadata ([0c62671](https://github.com/oaknational/Oak-Web-Application/commit/0c62671142ac016cd5996a3abac21bf8fde1ba90))
+* **pupil:** stop server-side worksheet check during ISR ([12acac2](https://github.com/oaknational/Oak-Web-Application/commit/12acac2f710450401461f52b29987a89f4681b27))
+* remove copyright notice ([c6d7a50](https://github.com/oaknational/Oak-Web-Application/commit/c6d7a503271fb5072028a072c278f6becbbe19b1))
+* remove copyright notice ([940561a](https://github.com/oaknational/Oak-Web-Application/commit/940561ae7068705c1125329588cdeb9215f38dee))
+* remove copyright notice ([33e16c9](https://github.com/oaknational/Oak-Web-Application/commit/33e16c9c865a5668d7c35191a8abf3220ed7e733))
+* review changes ([d573adf](https://github.com/oaknational/Oak-Web-Application/commit/d573adfb7c219642594143c41a9c9f3eee9c46f7))
+* review changes ([61df91a](https://github.com/oaknational/Oak-Web-Application/commit/61df91a51796290fd5178983933db7a1a8307b99))
+* selection bug ([ba2dd49](https://github.com/oaknational/Oak-Web-Application/commit/ba2dd490efb53fabcd5beb47de5e248b6e26491a))
+* selection bug ([8406746](https://github.com/oaknational/Oak-Web-Application/commit/84067461dd25c71e73f3a15eba996bb981e903f4))
+* selection bug ([ed5ac7e](https://github.com/oaknational/Oak-Web-Application/commit/ed5ac7eefac8e9686822498a68de28a6aa38b3c1))
+* selection bug ([dbf41c6](https://github.com/oaknational/Oak-Web-Application/commit/dbf41c6443df7c583094b315e47492bd98e9aed8))
+
+
+### Features
+
+* add terms link to checkbox label ([d7c8d54](https://github.com/oaknational/Oak-Web-Application/commit/d7c8d542171c8dedb75a376c350dedcb138c7abf))
+* fix conflicts ([3baeef5](https://github.com/oaknational/Oak-Web-Application/commit/3baeef57e59dc47e3824c7185e2cf6fa8f6cac64))
+* fix conflicts ([c9b0d99](https://github.com/oaknational/Oak-Web-Application/commit/c9b0d99fdd57e74297edfd257b78eec063e10239))
+* skeleton share page ([281ebff](https://github.com/oaknational/Oak-Web-Application/commit/281ebff34f5cdf6fa2a525a4de43543dd19b8d7d))
+* skeleton share page ([5c005c9](https://github.com/oaknational/Oak-Web-Application/commit/5c005c9dcd31bf2a54050ba8a04265258b11220c))
+
 # [1.1082.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1081.0...v1.1082.0) (2026-05-20)
 
 

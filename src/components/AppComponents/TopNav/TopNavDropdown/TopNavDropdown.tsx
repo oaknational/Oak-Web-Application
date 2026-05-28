@@ -14,6 +14,7 @@ import Link from "next/link";
 
 import { DropdownFocusManager } from "../DropdownFocusManager/DropdownFocusManager";
 import { MaybeVisuallyHidden } from "../TopNav";
+import ExamBoardPanel from "../ExamBoardPanel/ExamBoardPanel";
 
 import TopNavSubjectButtons from "./TopNavSubjectButtons";
 
@@ -26,6 +27,7 @@ import {
   isTeachersBrowseItem,
   isNavDropDownButtonItem,
   NavDropDownButton,
+  SubjectsNavItem,
 } from "@/node-lib/curriculum-api-2023/queries/topNav/topNav.schema";
 import useAnalytics from "@/context/Analytics/useAnalytics";
 
@@ -107,8 +109,15 @@ const TeachersPhaseSection = ({
     | undefined
   >(defaultKeystage);
 
+  const [selectedSubject, setSelectedSubject] =
+    useState<SubjectsNavItem | null>(null);
+
+  const [examboardPanelOpen, setExamboardPanelOpen] = useState(false);
+
   useEffect(() => {
     setSelectedKeystage(defaultKeystage);
+    setSelectedSubject(null);
+    setExamboardPanelOpen(false);
   }, [defaultKeystage]);
 
   const keystagesRef = useRef<HTMLDivElement>(null);
@@ -128,6 +137,30 @@ const TeachersPhaseSection = ({
       clientEnvironment: null,
     });
     setSelectedKeystage(keystageSlug);
+    setSelectedSubject(null);
+    setExamboardPanelOpen(false);
+  };
+
+  const hasExamBoards = (subject: SubjectsNavItem | null) => {
+    return Boolean(
+      selectedKeystage === "ks4" &&
+        subject?.examBoards &&
+        subject.examBoards.length > 0,
+    );
+  };
+
+  const handleExamBoardPanelOpen = (subject: SubjectsNavItem) => {
+    if (!hasExamBoards(subject)) {
+      setExamboardPanelOpen(false);
+      return;
+    }
+    setSelectedSubject(subject);
+    setExamboardPanelOpen(true);
+  };
+
+  const closeExamBoardPanel = () => {
+    setSelectedSubject(null);
+    setExamboardPanelOpen(false);
   };
 
   // Arrow key navigation for up/down in keystages
@@ -225,7 +258,20 @@ const TeachersPhaseSection = ({
             selectedMenu={selectedMenu}
             subjects={keystage.children}
             keyStageSlug={keystage.slug}
+            selectedSubject={selectedSubject}
+            onExamBoardPanelOpen={handleExamBoardPanelOpen}
           />
+          {examboardPanelOpen &&
+            selectedKeystage === "ks4" &&
+            selectedSubject?.examBoards && (
+              <ExamBoardPanel
+                examBoards={selectedSubject.examBoards}
+                selectedSubject={selectedSubject}
+                focusManager={focusManager}
+                onClick={onClick}
+                onLeave={closeExamBoardPanel}
+              />
+            )}
         </MaybeVisuallyHidden>
       ))}
     </OakFlex>

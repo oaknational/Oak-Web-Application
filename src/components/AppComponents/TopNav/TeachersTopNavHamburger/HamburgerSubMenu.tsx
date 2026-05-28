@@ -1,4 +1,4 @@
-import { ReactNode, useEffect, useRef } from "react";
+import { ReactNode, useEffect, useRef, useState } from "react";
 import {
   OakBox,
   OakPrimaryInvertedButton,
@@ -10,14 +10,18 @@ import {
 import Link from "next/link";
 
 import TopNavSubjectButtons from "../TopNavDropdown/TopNavSubjectButtons";
+import ExamBoardPanel from "../ExamBoardPanel/ExamBoardPanel";
 
 import {
   getEYFSAriaLabel,
-  SubmenuState,
   HamburgerMenuHook,
+  SubmenuState,
 } from "./TeachersTopNavHamburger";
 
-import { TeachersSubNavData } from "@/node-lib/curriculum-api-2023/queries/topNav/topNav.schema";
+import {
+  SubjectsNavItem,
+  TeachersSubNavData,
+} from "@/node-lib/curriculum-api-2023/queries/topNav/topNav.schema";
 import {
   OakLinkPropsRequiringPageOnly,
   resolveOakHref,
@@ -29,23 +33,30 @@ export function SubmenuContainer({
   description,
   children,
   hamburgerMenu,
+  onBack,
 }: {
   readonly title: SubmenuState;
   readonly description?: string;
   readonly children: ReactNode;
   readonly hamburgerMenu: HamburgerMenuHook;
+  readonly onBack?: () => void;
 }) {
   const { submenuOpen, handleCloseSubmenu } = hamburgerMenu;
 
   const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    // focus the first link in the submenu when it opens
-    if (submenuOpen && containerRef.current) {
-      const focusableElements =
-        containerRef.current.querySelectorAll<HTMLElement>("[href]");
-      focusableElements[0]?.focus();
-    }
+    if (!submenuOpen || !containerRef.current) return;
+
+    const firstSubjectButton = containerRef.current.querySelector<HTMLElement>(
+      '[data-testid^="topnav-subject-button-"]',
+    );
+
+    const fallbackFocusable = containerRef.current.querySelector<HTMLElement>(
+      "a[href], button:not(:disabled), [tabindex]:not([tabindex='-1'])",
+    );
+
+    (firstSubjectButton ?? fallbackFocusable)?.focus();
   }, [submenuOpen]);
   return (
     <OakFlex
@@ -61,7 +72,13 @@ export function SubmenuContainer({
         iconName="chevron-left"
         aria-label={getEYFSAriaLabel(title)}
         selected={true}
-        onClick={() => handleCloseSubmenu()}
+        onClick={() => {
+          if (onBack) {
+            onBack();
+            return;
+          }
+          handleCloseSubmenu();
+        }}
       >
         <OakHeading $font="heading-6" tag="h3">
           {description || title}
@@ -79,6 +96,12 @@ export function SubmenuContent(
   const { hamburgerMenu, ...navData } = props;
   const { track } = useAnalytics();
   const { submenuOpen, handleCloseHamburger } = hamburgerMenu;
+  const [selectedExamBoardSubject, setSelectedExamBoardSubject] =
+    useState<SubjectsNavItem | null>(null);
+
+  useEffect(() => {
+    setSelectedExamBoardSubject(null);
+  }, [submenuOpen]);
 
   if (!submenuOpen) return null;
 
@@ -133,6 +156,41 @@ export function SubmenuContent(
       );
       if (!keystage) return null;
       const subjects = keystage.children;
+
+      if (selectedExamBoardSubject?.examBoards?.length) {
+        return (
+          <SubmenuContainer
+            title={
+              `${keystage.title}, ${selectedExamBoardSubject.title}` as SubmenuState
+            }
+            hamburgerMenu={hamburgerMenu}
+            onBack={() => setSelectedExamBoardSubject(null)}
+          >
+            <ExamBoardPanel
+              examBoards={selectedExamBoardSubject.examBoards}
+              selectedSubject={selectedExamBoardSubject}
+              onClick={(subjectSlug, keystageSlug) => {
+                track.browseRefined({
+                  platform: "owa",
+                  product: "teacher lesson resources",
+                  engagementIntent: "refine",
+                  componentType: "topnav-browse-button",
+                  eventVersion: "2.0.0",
+                  analyticsUseCase: "Teacher",
+                  filterType: "Subject filter",
+                  filterValue: subjectSlug,
+                  activeFilters: { keystages: [keystageSlug] },
+                  googleLoginHint: null,
+                  clientEnvironment: null,
+                });
+                handleCloseHamburger();
+              }}
+              onLeave={() => setSelectedExamBoardSubject(null)}
+            />
+          </SubmenuContainer>
+        );
+      }
+
       return (
         <SubmenuContainer
           description={keystage.description}
@@ -158,8 +216,10 @@ export function SubmenuContent(
             }}
             selectedMenu={phase}
             subjects={subjects}
+            selectedSubject={selectedExamBoardSubject}
             keyStageSlug={keystage.slug}
             phase={phase}
+            onExamBoardPanelOpen={setSelectedExamBoardSubject}
           />
         </SubmenuContainer>
       );

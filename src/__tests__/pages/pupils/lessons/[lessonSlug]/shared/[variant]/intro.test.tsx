@@ -10,6 +10,19 @@ import { lessonContentFixture } from "@/node-lib/curriculum-api-2023/fixtures/le
 import { usePupilLessonProgress } from "@/context/PupilLessonProgress";
 import { getDefaultLessonProgressState } from "@/context/PupilLessonProgress/pupilLessonProgressHelpers";
 
+const useWorksheetInfoState = jest.fn(
+  (_hasWorksheetAssetObject: boolean | null, _lessonSlug: string) => ({
+    worksheetInfo: null,
+  }),
+);
+jest.mock(
+  "@/components/PupilComponents/pupilUtils/useWorksheetInfoState",
+  () => ({
+    useWorksheetInfoState: (...args: [boolean | null, string]) =>
+      useWorksheetInfoState(...args),
+  }),
+);
+
 const routerPush = jest.fn();
 jest.mock("next/router", () => ({
   useRouter: () => ({ asPath: "/intro", push: routerPush }),
@@ -91,6 +104,21 @@ beforeEach(() => {
 });
 
 describe("intro page", () => {
+  it("renders worksheet metadata from client worksheetInfo when props worksheetInfo is null", () => {
+    useWorksheetInfoState.mockReturnValueOnce({
+      worksheetInfo: [{ ext: "pdf", fileSize: "1MB" }] as never,
+    });
+
+    const { getByText } = renderPage({
+      hasWorksheet: true,
+      worksheetInfo: null,
+    });
+
+    expect(getByText(/Download worksheet/i)).toBeInTheDocument();
+    expect(getByText(/\(PDF 1MB\)/)).toBeInTheDocument();
+    expect(useWorksheetInfoState).toHaveBeenCalled();
+  });
+
   it("completes the section and navigates on proceed", () => {
     const { getByTestId } = renderPage();
     fireEvent.click(getByTestId("proceed-to-next-section"));
