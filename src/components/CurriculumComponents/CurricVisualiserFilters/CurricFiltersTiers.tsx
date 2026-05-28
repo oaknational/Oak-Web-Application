@@ -8,6 +8,7 @@ import { useId } from "react";
 
 import { CurriculumFilters } from "@/utils/curriculum/types";
 import { getFilterData } from "@/utils/curriculum/filtering";
+import { scopeYearsToKeystageFilter } from "@/utils/curriculum/filtersUrl";
 import {
   byKeyStageSlug,
   presentAtKeyStageSlugs,
@@ -35,10 +36,16 @@ export function CurricFiltersTiers({
   const id = useId();
   const { yearData } = data;
 
-  const { tiers } = getFilterData(data.yearData, filters.years);
+  const effectiveYears = scopeYearsToKeystageFilter(filters);
+
+  const { tiers } = getFilterData(data.yearData, effectiveYears);
 
   const keyStageSlugData = byKeyStageSlug(yearData);
-  const tiersAt = presentAtKeyStageSlugs(keyStageSlugData, "tiers");
+  const tiersAt = presentAtKeyStageSlugs(
+    keyStageSlugData,
+    "tiers",
+    effectiveYears,
+  );
 
   function setSingleInFilter(key: keyof CurriculumFilters, newValue: string) {
     onChangeFilters({ ...filters, [key]: [newValue] }, "learning_tier_button");
