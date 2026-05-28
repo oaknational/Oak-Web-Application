@@ -40,6 +40,7 @@ import { usePupilLessonAnalytics } from "@/context/PupilLessonAnalytics/usePupil
 import { usePupilLessonProgress } from "@/context/PupilLessonProgress";
 import { useAdditionalFilesDownload } from "@/components/PupilViews/PupilIntro/useAdditionalFilesDownload";
 import { useWorksheetDownload } from "@/components/PupilViews/PupilIntro/useWorksheetDownload";
+import { useWorksheetInfoState } from "@/components/PupilComponents/pupilUtils/useWorksheetInfoState";
 import { PupilLessonPageProps } from "@/pages-helpers/pupil/lessons-pages/pupilLessonPage.types";
 
 type IntroPageURLParams = {
@@ -368,6 +369,12 @@ const PupilLessonIntroNewPage = (props: PupilLessonPageProps) => {
     variant,
   } = props;
 
+  const { worksheetInfo: clientWorksheetInfo } = useWorksheetInfoState(
+    hasWorksheet && worksheetInfo === null,
+    browseData.lessonSlug,
+  );
+  const resolvedWorksheetInfo = worksheetInfo ?? clientWorksheetInfo;
+
   return (
     <PupilLayout
       seoProps={{
@@ -383,7 +390,7 @@ const PupilLessonIntroNewPage = (props: PupilLessonPageProps) => {
         browseData={browseData}
         lessonContent={lessonContent}
         hasWorksheet={hasWorksheet}
-        worksheetInfo={worksheetInfo}
+        worksheetInfo={resolvedWorksheetInfo}
         hasAdditionalFiles={hasAdditionalFiles}
         additionalFiles={additionalFiles}
       />
