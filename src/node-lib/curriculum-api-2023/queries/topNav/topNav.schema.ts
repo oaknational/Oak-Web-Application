@@ -63,6 +63,7 @@ export type SubjectsNavItem = {
   nonCurriculum: boolean; // enables highlighting subjects that are non curriculum
   programmeSlug: string | null; // will be null when multiple programmes exist
   programmeCount: number; // used to determine whether we should go to the programmes page (more than 1 programme) or directly to the unit listing page (only 1 programme)
+  pathwaySlug?: string | null;
   subjectParent?: string | null; // used to determine if subject is a child of another subject (e.g. combined science is a child of science)
   examBoards?: ProgrammeFactorButton[]; // available exam boards for KS4 subjects with multiple programmes
 };

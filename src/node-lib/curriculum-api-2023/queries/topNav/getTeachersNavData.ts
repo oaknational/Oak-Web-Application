@@ -184,6 +184,7 @@ const getKeystages = (
           nonCurriculum: Boolean(p.features.non_curriculum),
           programmeSlug: programmeCount > 1 ? null : p.programme_slug,
           programmeCount,
+          pathwaySlug: p.programme_fields.pathway_slug ?? null,
           subjectParent: p.programme_fields.subject_parent ?? null,
           ...(examBoardsData ? { examBoards: examBoardsData } : {}),
         };
