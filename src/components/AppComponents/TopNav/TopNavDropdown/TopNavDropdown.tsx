@@ -182,7 +182,17 @@ const TeachersPhaseSection = ({
             keystage.slug,
           );
           return (
-            <OakLI key={keystage.slug}>
+            <OakLI
+              key={keystage.slug}
+              aria-expanded={isKeystageOpen(keystage.slug)}
+              aria-controls={
+                isKeystageOpen(keystage.slug)
+                  ? `topnav-teachers-${keystage.slug}-subjects`
+                  : undefined
+              }
+              role="tab"
+              aria-selected={isKeystageOpen(keystage.slug)}
+            >
               <OakLeftAlignedButton
                 iconName="chevron-right"
                 isTrailingIcon
@@ -195,14 +205,6 @@ const TeachersPhaseSection = ({
                   isKeystageOpen(keystage.slug) ? "true" : undefined
                 }
                 id={buttonId}
-                aria-expanded={isKeystageOpen(keystage.slug)}
-                aria-controls={
-                  isKeystageOpen(keystage.slug)
-                    ? `topnav-teachers-${keystage.slug}-subjects`
-                    : undefined
-                }
-                role="tab"
-                aria-selected={isKeystageOpen(keystage.slug)}
                 aria-label={
                   keystage.title === "EYFS"
                     ? "Early years foundation stage"
