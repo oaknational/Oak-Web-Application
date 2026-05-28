@@ -1,9 +1,9 @@
 import Home, { getStaticProps, HomePageProps } from "@/pages/index";
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 import { SerializedPost } from "@/pages-helpers/home/getBlogPosts";
-import keyStageKeypad from "@/browser-lib/fixtures/keyStageKeypad";
 import { BlogPostPreview, WebinarPreview } from "@/common-lib/cms-types";
 import { topNavFixture } from "@/node-lib/curriculum-api-2023/fixtures/topNav.fixture";
+import curriculumPhaseOptions from "@/browser-lib/fixtures/curriculumPhaseOptions";
 
 const render = renderWithProviders();
 
@@ -43,9 +43,7 @@ const props: HomePageProps = {
     testimonials: [],
   },
   posts: mockPosts,
-  curriculumData: {
-    keyStages: keyStageKeypad.keyStages,
-  },
+  curriculumPhaseOptions: curriculumPhaseOptions,
   topNav: topNavFixture,
 };
 
