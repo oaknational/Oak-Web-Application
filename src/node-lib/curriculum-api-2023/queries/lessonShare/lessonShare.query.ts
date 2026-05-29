@@ -68,6 +68,14 @@ const lessonShareQuery =
 
     const lesson = lessonShareSchema.parse({
       ...constructPathwayLesson(parsedModifiedBrowseData),
+      subjectParent:
+        parsedModifiedBrowseData.programme_fields.subject_parent ?? null,
+      phaseSlug: parsedModifiedBrowseData.programme_fields.phase_slug,
+      phaseTitle: parsedModifiedBrowseData.programme_fields.phase_description,
+      pathwaySlug:
+        parsedModifiedBrowseData.programme_fields.pathway_slug ?? null,
+      yearGroupTitle:
+        parsedModifiedBrowseData.programme_fields.year_description,
       isSpecialist: false,
       lessonSlug: lessonSlug,
       lessonTitle: parsedRawLesson.lesson_title,

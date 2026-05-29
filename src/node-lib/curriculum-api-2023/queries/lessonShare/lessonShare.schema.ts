@@ -40,10 +40,16 @@ export const baseLessonBrowseSchema = z.object({
   unitTitle: z.string(),
   subjectSlug: z.string(),
   subjectTitle: z.string(),
+  subjectParent: z.string().nullable(),
+  phaseSlug: z.string(),
+  phaseTitle: z.string().nullish(),
   examBoardSlug: z.string().nullish(),
   examBoardTitle: z.string().nullish(),
   tierSlug: z.string().nullish(),
   tierTitle: z.string().nullish(),
+  pathwaySlug: z.string().nullable(),
+  pathwayTitle: z.string().nullish(),
+  yearGroupTitle: z.string().nullish(),
 });
 
 export const lessonShareSchema = baseLessonShareSchema.extend({
