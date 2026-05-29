@@ -465,23 +465,36 @@ export default async (phase: NextConfig["phase"]): Promise<NextConfig> => {
       ];
     },
     async rewrites() {
+      // Remove once the lesson share page has been ported to app router
+      const lessonShareRewrites = [
+        {
+          source:
+            "/teachers/programmes/:programmeSlug/units/:unitSlug/lessons/:lessonSlug/share",
+          destination:
+            "/teachers/_programmes/:programmeSlug/units/:unitSlug/lessons/:lessonSlug/share",
+        },
+      ];
+
       // Reverse proxy posthog in development to avoid localhost CORS issues in Chrome https://posthog.com/docs/advanced/proxy/nextjs
-      return releaseStage === "development"
-        ? [
-            {
-              source: "/ingest/static/:path*",
-              destination: "https://eu-assets.i.posthog.com/static/:path*",
-            },
-            {
-              source: "/ingest/:path*",
-              destination: "https://eu.i.posthog.com/:path*",
-            },
-            {
-              source: "/ingest/decide",
-              destination: "https://eu.i.posthog.com/decide",
-            },
-          ]
-        : [];
+      const posthogRewrites =
+        releaseStage === "development"
+          ? [
+              {
+                source: "/ingest/static/:path*",
+                destination: "https://eu-assets.i.posthog.com/static/:path*",
+              },
+              {
+                source: "/ingest/:path*",
+                destination: "https://eu.i.posthog.com/:path*",
+              },
+              {
+                source: "/ingest/decide",
+                destination: "https://eu.i.posthog.com/decide",
+              },
+            ]
+          : [];
+
+      return [...lessonShareRewrites, ...posthogRewrites];
     },
     // Required for the posthog reverse proxy, but interferes with static URL redirections so we don't want this applied on production
     skipTrailingSlashRedirect: releaseStage === "development",

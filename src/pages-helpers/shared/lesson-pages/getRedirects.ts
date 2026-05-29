@@ -3,17 +3,26 @@ import { Redirect } from "next";
 import { PupilLessonPageURLParams } from "../../pupil/lessons-pages/getProps";
 
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
-import { URLParams } from "@/pages/teachers/__legacy__programmes/[programmeSlug]/units/[unitSlug]/lessons/[lessonSlug]";
 import { URLParams as URLParamsCanonical } from "@/pages/teachers/lessons/[lessonSlug]";
-import { URLParams as UnitURLParams } from "@/pages/teachers/__legacy__programmes/[programmeSlug]/units/[unitSlug]/lessons";
 import { PupilLessonListingURLParams } from "@/pages/pupils/programmes/[programmeSlug]/units/[unitSlug]/lessons";
+
+type TeacherBrowseLessonURLParams = {
+  programmeSlug: string;
+  unitSlug: string;
+  lessonSlug: string;
+};
+
+type TeacherBrowseUnitURLParams = {
+  programmeSlug: string;
+  unitSlug: string;
+};
 
 export const getRedirect = async (
   args:
     | {
         isTeacher: boolean;
         isLesson: true;
-        context: URLParams | PupilLessonPageURLParams;
+        context: TeacherBrowseLessonURLParams | PupilLessonPageURLParams;
         isCanonical: false; // If true, the redirect will be permanent (308), if false, temporary (307)
       }
     | {
@@ -25,7 +34,7 @@ export const getRedirect = async (
     | {
         isTeacher: boolean;
         isLesson: false;
-        context: UnitURLParams | PupilLessonListingURLParams;
+        context: TeacherBrowseUnitURLParams | PupilLessonListingURLParams;
         isCanonical: false; // If true, the redirect will be permanent (308), if false, temporary (307)
       },
 ): Promise<Redirect | undefined> => {
