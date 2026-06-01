@@ -234,7 +234,19 @@ export function LessonDownloads(props: LessonDownloadsProps) {
       });
 
       if (props.successRedirect) {
-        router.replace(props.successRedirect);
+        // Ensure the download link has been clicked before navigating away to the success page
+        let retryCount = 0;
+        const pollForLink = () => {
+          const linkElement = document.getElementById("resource-download-link");
+          if (linkElement && linkElement.hasAttribute("clicked")) {
+            router.replace(props.successRedirect!);
+          } else if (retryCount < 10) {
+            retryCount++;
+            pollForLink();
+          }
+        };
+
+        setTimeout(pollForLink, 5);
       } else {
         setIsDownloadSuccessful(true);
       }
