@@ -238,11 +238,11 @@ export function LessonDownloads(props: LessonDownloadsProps) {
         let retryCount = 0;
         const pollForLink = () => {
           const linkElement = document.getElementById("resource-download-link");
-          if (linkElement && linkElement.hasAttribute("clicked")) {
+          if (linkElement?.hasAttribute("clicked")) {
             router.replace(props.successRedirect!);
           } else if (retryCount < 10) {
             retryCount++;
-            pollForLink();
+            setTimeout(pollForLink, 5);
           }
         };
 
