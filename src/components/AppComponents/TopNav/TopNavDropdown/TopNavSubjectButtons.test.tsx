@@ -243,11 +243,17 @@ describe("TopNavSubjectButtons", () => {
             slug: "aqa",
             buttonTitle: "AQA",
             programmeSlug: "geography-secondary-ks4-aqa",
+            programmeFactors: {
+              examboard: { slug: "aqa", title: "AQA" },
+            },
           },
           {
             slug: "edexcel",
             buttonTitle: "Edexcel",
             programmeSlug: "geography-secondary-ks4-edexcel",
+            programmeFactors: {
+              examboard: { slug: "edexcel", title: "Edexcel" },
+            },
           },
         ],
       },
