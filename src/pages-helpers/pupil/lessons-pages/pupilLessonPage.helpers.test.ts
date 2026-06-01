@@ -93,12 +93,8 @@ describe("pupilLessonPage.helpers", () => {
   });
 
   describe("buildPupilLessonPageProps", () => {
-    it("fetches worksheet info when hasWorksheetAssetObject is true", async () => {
+    it("does not fetch worksheet info on the server when hasWorksheetAssetObject is true", async () => {
       mockRequestLessonResources.mockResolvedValueOnce([]);
-      const worksheetInfo = [
-        { item: "worksheet-pdf", exists: true, fileSize: "1kb", ext: "pdf" },
-      ];
-      mockGetWorksheetInfo.mockResolvedValueOnce(worksheetInfo);
 
       const browseData = lessonBrowseDataFixture({});
       const lessonContent = lessonContentFixture({
@@ -115,9 +111,9 @@ describe("pupilLessonPage.helpers", () => {
         variant: null,
       });
 
-      expect(mockGetWorksheetInfo).toHaveBeenCalledWith(browseData.lessonSlug);
+      expect(mockGetWorksheetInfo).not.toHaveBeenCalled();
       expect(props.hasWorksheet).toBe(true);
-      expect(props.worksheetInfo).toEqual(worksheetInfo);
+      expect(props.worksheetInfo).toBeNull();
       expect(props.hasAdditionalFiles).toBe(false);
       expect(props.additionalFiles).toBeNull();
     });

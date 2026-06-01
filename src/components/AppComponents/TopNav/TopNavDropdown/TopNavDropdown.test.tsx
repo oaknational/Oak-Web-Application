@@ -1,5 +1,6 @@
 import { screen } from "@testing-library/react";
 import { userEvent } from "@testing-library/user-event";
+import { useRouter } from "next/navigation";
 
 import TopNavDropdown from "./TopNavDropdown";
 
@@ -7,8 +8,15 @@ import { DropdownFocusManager } from "@/components/AppComponents/TopNav/Dropdown
 import { topNavFixture } from "@/node-lib/curriculum-api-2023/fixtures/topNav.fixture";
 import { TeachersSubNavData } from "@/node-lib/curriculum-api-2023/queries/topNav/topNav.schema";
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
+import theme from "@/styles/theme/default.theme";
+import { oakDefaultTheme } from "@/styles/oakThemeApp";
+import { OakColorName } from "@/styles/theme/types";
 
 const render = renderWithProviders();
+const getOakBackgroundColor = (token: "bg-decorative1-very-subdued") => {
+  const colorName = oakDefaultTheme.uiColors[token] as OakColorName;
+  return theme.colors[colorName];
+};
 
 const mockBrowseRefined = jest.fn();
 jest.mock("@/context/Analytics/useAnalytics", () => ({
@@ -20,11 +28,17 @@ jest.mock("@/context/Analytics/useAnalytics", () => ({
   }),
 }));
 
+jest.mock("next/navigation", () => ({
+  useRouter: jest.fn(),
+  usePathname: jest.fn(),
+}));
+
 let focusManager: DropdownFocusManager<TeachersSubNavData>;
 const onCloseMock = jest.fn();
 
 describe("TopNavDropdown", () => {
   beforeEach(() => {
+    jest.clearAllMocks();
     onCloseMock.mockReset();
     mockBrowseRefined.mockReset();
     focusManager = new DropdownFocusManager(
@@ -32,6 +46,9 @@ describe("TopNavDropdown", () => {
       "teachers",
       () => undefined,
     );
+    (useRouter as jest.Mock).mockReturnValue({
+      push: jest.fn(),
+    });
   });
 
   describe("Teachers area", () => {
@@ -113,7 +130,7 @@ describe("TopNavDropdown", () => {
 
         expect(subjectButtons[2]).toHaveTextContent("Financial education");
         expect(subjectButtons[2]).toHaveStyle({
-          background: "rgb(235, 251, 235)",
+          background: getOakBackgroundColor("bg-decorative1-very-subdued"),
         });
       });
 
@@ -193,6 +210,104 @@ describe("TopNavDropdown", () => {
           }),
         );
       });
+
+      it("shows exam board panel for KS4 subjects with exam boards", async () => {
+        const user = userEvent.setup();
+        render(
+          <TopNavDropdown
+            teachers={topNavFixture.teachers!}
+            pupils={topNavFixture.pupils!}
+            activeArea="TEACHERS"
+            selectedMenu="secondary"
+            focusManager={focusManager}
+            onClose={onCloseMock}
+          />,
+        );
+
+        const ks4Button = await screen.findByRole("tab", {
+          name: "Key stage 4",
+        });
+        await user.click(ks4Button);
+
+        const geographyButton = await screen.findByRole("button", {
+          name: "Geography",
+        });
+        geographyButton.addEventListener("click", (e) => e.preventDefault());
+        await user.click(geographyButton);
+
+        expect(
+          await screen.findByRole("heading", {
+            name: "Choose tier for KS4 Geography",
+          }),
+        ).toBeInTheDocument();
+      });
+
+      it("keeps exam board panel open after blur when opened by click", async () => {
+        const user = userEvent.setup();
+        render(
+          <TopNavDropdown
+            teachers={topNavFixture.teachers!}
+            pupils={topNavFixture.pupils!}
+            activeArea="TEACHERS"
+            selectedMenu="secondary"
+            focusManager={focusManager}
+            onClose={onCloseMock}
+          />,
+        );
+
+        const ks4Button = await screen.findByRole("tab", {
+          name: "Key stage 4",
+        });
+        await user.click(ks4Button);
+
+        const geographyButton = await screen.findByRole("button", {
+          name: "Geography",
+        });
+        geographyButton.addEventListener("click", (e) => e.preventDefault());
+
+        await user.click(geographyButton);
+        geographyButton.blur();
+
+        expect(
+          await screen.findByRole("heading", {
+            name: "Choose tier for KS4 Geography",
+          }),
+        ).toBeInTheDocument();
+      });
+
+      it("closes exam board panel when keystage changes", async () => {
+        const user = userEvent.setup();
+        render(
+          <TopNavDropdown
+            teachers={topNavFixture.teachers!}
+            pupils={topNavFixture.pupils!}
+            activeArea="TEACHERS"
+            selectedMenu="secondary"
+            focusManager={focusManager}
+            onClose={onCloseMock}
+          />,
+        );
+
+        const ks4Button = await screen.findByRole("tab", {
+          name: "Key stage 4",
+        });
+        await user.click(ks4Button);
+
+        const geographyButton = await screen.findByRole("button", {
+          name: "Geography",
+        });
+        geographyButton.addEventListener("click", (e) => e.preventDefault());
+        await user.click(geographyButton);
+
+        const ks3Button = screen.getByRole("tab", { name: "Key stage 3" });
+        await user.click(ks3Button);
+
+        expect(
+          screen.queryByRole("heading", {
+            name: "Choose exam board for KS4 Geography",
+          }),
+        ).not.toBeInTheDocument();
+      });
     });
     describe("links sections", () => {
       it("renders heading and links", async () => {
@@ -212,7 +327,7 @@ describe("TopNavDropdown", () => {
         });
         expect(heading).toBeInTheDocument();
 
-        const links = await screen.findAllByRole("link");
+        const links = await screen.findAllByRole("button");
         expect(links).toHaveLength(3);
       });
 

@@ -9,6 +9,7 @@ import { useMemo, useId } from "react";
 import { getValidSubjectCategoryIconById } from "@/utils/getValidSubjectCategoryIconById";
 import { CurriculumFilters } from "@/utils/curriculum/types";
 import { getFilterData } from "@/utils/curriculum/filtering";
+import { scopeYearsToKeystageFilter } from "@/utils/curriculum/filtersUrl";
 import {
   byKeyStageSlug,
   presentAtKeyStageSlugs,
@@ -39,18 +40,20 @@ export function CurricFiltersSubjectCategories({
   const id = useId();
   const { yearData } = data;
 
-  const { subjectCategories } = getFilterData(data.yearData, filters.years);
+  const effectiveYears = scopeYearsToKeystageFilter(filters);
+
+  const { subjectCategories } = getFilterData(data.yearData, effectiveYears);
 
   const keyStageSlugData = byKeyStageSlug(yearData);
   const childSubjectsAt = presentAtKeyStageSlugs(
     keyStageSlugData,
     "childSubjects",
-    filters.years,
+    effectiveYears,
   );
   const subjectCategoriesAt = presentAtKeyStageSlugs(
     keyStageSlugData,
     "subjectCategories",
-    filters.years,
+    effectiveYears,
   ).filter((ks) => !childSubjectsAt.includes(ks));
 
   function setSingleInFilter(key: keyof CurriculumFilters, newValue: string) {
@@ -91,8 +94,7 @@ export function CurricFiltersSubjectCategories({
               $mb={["spacing-24", "spacing-16"]}
             >
               Category
-              {subjectCategoriesAt.length === 1 &&
-              context === "curriculum-visualiser"
+              {subjectCategoriesAt.length === 1
                 ? ` (${subjectCategoriesAt[0]?.toUpperCase()})`
                 : ""}
             </OakP>

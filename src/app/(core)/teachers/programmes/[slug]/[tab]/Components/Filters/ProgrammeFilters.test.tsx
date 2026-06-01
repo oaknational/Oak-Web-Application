@@ -81,7 +81,7 @@ describe("Programme filters...", () => {
 
     const filterLegendNames = [
       "Year group",
-      "Category",
+      "Category (KS3)",
       "Exam subject (KS4)",
       "Learning tier (KS4)",
       "Highlight a thread",
