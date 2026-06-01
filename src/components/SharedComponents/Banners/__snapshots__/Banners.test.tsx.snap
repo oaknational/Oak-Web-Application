@@ -3,17 +3,17 @@
 exports[`Banners shows mythbusting banner 1`] = `
 <div>
   <div
-    class="sc-aXZVg dFOKqz"
+    class="sc-aXZVg jPvJsJ"
     role="banner"
   >
     <div
-      class="sc-aXZVg sc-gEvEer idSkbS jMLdOa"
+      class="sc-aXZVg sc-gEvEer UYTec jMLdOa"
     >
       <div
-        class="sc-aXZVg sc-gEvEer hDSZNb cACqPs"
+        class="sc-aXZVg sc-gEvEer fSjzPB cACqPs"
       >
         <div
-          class="sc-aXZVg sc-gEvEer dmdaXs jVmVJV"
+          class="sc-aXZVg sc-gEvEer uyUcC jVmVJV"
         >
           <p
             class="sc-ikkxIA gJwFEJ"
@@ -35,7 +35,7 @@ exports[`Banners shows mythbusting banner 1`] = `
           </p>
         </div>
         <div
-          class="sc-aXZVg sc-gEvEer sc-jEACwC srKXU iDBIXi eitCDZ"
+          class="sc-aXZVg sc-gEvEer sc-jEACwC hCgIGG iDBIXi eitCDZ"
         >
           <a
             class="sc-dcJsrY sc-cwHptR hLVsma flGUwh"
@@ -43,7 +43,7 @@ exports[`Banners shows mythbusting banner 1`] = `
             title="Learn why"
           >
             <div
-              class="sc-aXZVg sc-gEvEer gICywH kejpBe"
+              class="sc-aXZVg sc-gEvEer jGIKct kejpBe"
             >
               <span
                 class="sc-eqUAAy dECBeo"
@@ -55,13 +55,13 @@ exports[`Banners shows mythbusting banner 1`] = `
                 </span>
               </span>
               <div
-                class="sc-aXZVg sc-gEvEer fLMnRR jMLdOa icon-container"
+                class="sc-aXZVg sc-gEvEer jUIAOv jMLdOa icon-container"
               >
                 <div
-                  class="sc-aXZVg jscFMT"
+                  class="sc-aXZVg jPKaSh"
                 >
                   <span
-                    class="sc-aXZVg jnAMSh shadow"
+                    class="sc-aXZVg kRJEbH shadow"
                   >
                     <img
                       alt=""
@@ -74,7 +74,7 @@ exports[`Banners shows mythbusting banner 1`] = `
                     />
                   </span>
                   <span
-                    class="sc-aXZVg fYYXmx highlight"
+                    class="sc-aXZVg ePZGjH highlight"
                   >
                     <img
                       alt=""
@@ -87,7 +87,7 @@ exports[`Banners shows mythbusting banner 1`] = `
                     />
                   </span>
                   <span
-                    class="sc-aXZVg iuwrFR"
+                    class="sc-aXZVg jJQFnr"
                     data-icon-for="button"
                   >
                     <img
@@ -108,10 +108,10 @@ exports[`Banners shows mythbusting banner 1`] = `
       </div>
     </div>
     <div
-      class="sc-aXZVg gehhFD"
+      class="sc-aXZVg cZwvRV"
     >
       <div
-        class="sc-aXZVg sc-gEvEer sc-bDpDS khzVYm iDBIXi"
+        class="sc-aXZVg sc-gEvEer sc-bDpDS dDGJCM iDBIXi"
         focusable="false"
       >
         <svg
