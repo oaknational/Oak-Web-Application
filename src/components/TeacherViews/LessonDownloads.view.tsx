@@ -17,7 +17,7 @@ import {
 import { getResourcesWithoutLegacyCopyright } from "../TeacherComponents/helpers/downloadAndShareHelpers/downloadsLegacyCopyright";
 import { useOnboardingStatus } from "../TeacherComponents/hooks/useOnboardingStatus";
 import Banners from "../SharedComponents/Banners";
-import { getDownloadLink } from "../SharedComponents/helpers/downloadAndShareHelpers/createAndClickHiddenDownloadLink";
+import { waitForLinkCallback } from "../SharedComponents/helpers/downloadAndShareHelpers/createAndClickHiddenDownloadLink";
 
 import useAnalytics from "@/context/Analytics/useAnalytics";
 import {
@@ -235,19 +235,7 @@ export function LessonDownloads(props: LessonDownloadsProps) {
       });
 
       if (props.successRedirect) {
-        // Ensure the download link has been clicked before navigating away to the success page
-        let retryCount = 0;
-        const pollForLink = () => {
-          const linkElement = getDownloadLink();
-          if (linkElement?.hasAttribute("clicked")) {
-            router.replace(props.successRedirect!);
-          } else if (retryCount < 10) {
-            retryCount++;
-            setTimeout(pollForLink, 5);
-          }
-        };
-
-        setTimeout(pollForLink, 5);
+        waitForLinkCallback(() => router.replace(props.successRedirect!));
       } else {
         setIsDownloadSuccessful(true);
       }

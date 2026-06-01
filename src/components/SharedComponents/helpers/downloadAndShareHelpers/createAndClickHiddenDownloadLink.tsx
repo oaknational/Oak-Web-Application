@@ -37,4 +37,20 @@ const createAndClickHiddenDownloadLink = (url: string) => {
   hideAndClickDownloadLink(url, link);
 };
 
+export const waitForLinkCallback = (callback: () => void) => {
+  // Ensure the download link has been clicked before initiating the callback fn
+  let retryCount = 0;
+  const pollForLink = () => {
+    const linkElement = getDownloadLink();
+    if (linkElement?.hasAttribute("clicked")) {
+      callback();
+    } else if (retryCount < 9) {
+      retryCount++;
+      setTimeout(pollForLink, 5);
+    }
+  };
+
+  setTimeout(pollForLink, 5);
+};
+
 export default createAndClickHiddenDownloadLink;
