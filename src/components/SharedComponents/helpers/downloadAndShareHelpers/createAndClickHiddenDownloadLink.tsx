@@ -47,11 +47,11 @@ export const waitForLinkCallback = (callback: () => void) => {
       callback();
     } else if (retryCount < 9) {
       retryCount++;
-      setTimeout(pollForLink, 10);
+      setTimeout(pollForLink, 100);
     }
   };
 
-  setTimeout(pollForLink, 10);
+  setTimeout(pollForLink, 100);
 };
 
 export default createAndClickHiddenDownloadLink;
