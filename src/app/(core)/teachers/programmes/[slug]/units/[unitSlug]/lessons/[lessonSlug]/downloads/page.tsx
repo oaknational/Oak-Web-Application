@@ -19,6 +19,8 @@ type LessonDownloadsPageParams = {
   lessonSlug: string;
 };
 
+export const dynamic = "force-static";
+
 const getCachedLessonDownloadsData = cache(
   cacheData(
     async (programmeSlug: string, unitSlug: string, lessonSlug: string) => {

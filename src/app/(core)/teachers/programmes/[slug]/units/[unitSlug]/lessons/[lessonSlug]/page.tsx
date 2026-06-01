@@ -24,6 +24,8 @@ type LessonPageParams = {
   lessonSlug: string;
 };
 
+export const dynamic = "force-static";
+
 const getCachedLessonData = cache(
   cacheData(
     async (programmeSlug: string, unitSlug: string, lessonSlug: string) => {

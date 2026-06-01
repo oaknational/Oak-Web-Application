@@ -17,6 +17,8 @@ export const metadata: Metadata = {
   },
 };
 
+export const dynamic = "force-static";
+
 const InnerEyfsPage = async ({
   params,
 }: Readonly<{

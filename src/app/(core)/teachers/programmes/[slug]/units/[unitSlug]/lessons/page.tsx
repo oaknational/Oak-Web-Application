@@ -10,6 +10,8 @@ import withPageErrorHandling, {
 
 type LessonsPageParams = { slug: string; unitSlug: string };
 
+export const dynamic = "force-static";
+
 export async function generateMetadata(
   props: AppPageProps<LessonsPageParams>,
 ): Promise<Metadata> {
