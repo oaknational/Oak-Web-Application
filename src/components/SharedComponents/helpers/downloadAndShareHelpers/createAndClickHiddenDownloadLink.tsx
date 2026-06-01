@@ -42,7 +42,6 @@ export const waitForLinkCallback = (callback: () => void) => {
   let retryCount = 0;
   const pollForLink = () => {
     const linkElement = getDownloadLink();
-    console.log("temp log", { linkElement, retryCount }); // todo: remove
     if (linkElement?.hasAttribute("clicked")) {
       callback();
     } else if (retryCount < 9) {
@@ -51,7 +50,7 @@ export const waitForLinkCallback = (callback: () => void) => {
     }
   };
 
-  setTimeout(pollForLink, 100);
+  setTimeout(pollForLink, 500);
 };
 
 export default createAndClickHiddenDownloadLink;
