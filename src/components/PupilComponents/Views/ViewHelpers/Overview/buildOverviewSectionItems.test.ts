@@ -1,6 +1,6 @@
 import { buildOverviewSectionItems } from "./buildOverviewSectionItems";
 
-import { LessonReviewSection } from "@/components/PupilComponents/LessonEngineProvider";
+import type { LessonReviewSection } from "@/components/PupilComponents/lessonSections";
 
 describe("buildOverviewSectionItems", () => {
   it("builds section items with progress, hrefs and quiz metadata", () => {
@@ -79,7 +79,17 @@ describe("buildOverviewSectionItems", () => {
 
     expect(items).toEqual([
       expect.objectContaining({
+        section: "intro",
+        href: "#",
+        disabled: true,
+      }),
+      expect.objectContaining({
         section: "starter-quiz",
+        href: "#",
+        disabled: true,
+      }),
+      expect.objectContaining({
+        section: "video",
         href: "#",
         disabled: true,
       }),
@@ -103,5 +113,56 @@ describe("buildOverviewSectionItems", () => {
     });
 
     expect(() => items[0]?.onClick()).not.toThrow();
+  });
+
+  it("always includes every lesson nav section and disables sections outside the variant", () => {
+    const onSectionClick = jest.fn();
+    const getSectionHref = jest.fn(
+      (section: LessonReviewSection) => `/lesson/${section}`,
+    );
+
+    const items = buildOverviewSectionItems({
+      lessonReviewSections: ["intro", "video"],
+      sectionResults: {},
+      isReadOnly: false,
+      isHydratingInitialProgress: false,
+      starterQuizNumQuestions: 3,
+      exitQuizNumQuestions: 4,
+      onSectionClick,
+      getSectionHref,
+    });
+
+    expect(items).toEqual([
+      expect.objectContaining({
+        section: "intro",
+        href: "/lesson/intro",
+      }),
+      expect.objectContaining({
+        section: "starter-quiz",
+        href: "#",
+        disabled: true,
+      }),
+      expect.objectContaining({
+        section: "video",
+        href: "/lesson/video",
+      }),
+      expect.objectContaining({
+        section: "exit-quiz",
+        href: "#",
+        disabled: true,
+      }),
+    ]);
+
+    expect(items[0]).not.toHaveProperty("disabled");
+    expect(items[2]).not.toHaveProperty("disabled");
+
+    items[1]?.onClick();
+    items[2]?.onClick();
+
+    expect(onSectionClick).toHaveBeenCalledTimes(1);
+    expect(onSectionClick).toHaveBeenCalledWith("video");
+    expect(getSectionHref).toHaveBeenCalledTimes(2);
+    expect(getSectionHref).toHaveBeenCalledWith("intro");
+    expect(getSectionHref).toHaveBeenCalledWith("video");
   });
 });
