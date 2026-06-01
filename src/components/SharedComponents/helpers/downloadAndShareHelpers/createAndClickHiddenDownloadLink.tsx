@@ -42,8 +42,7 @@ export const waitForLinkCallback = (callback: () => void) => {
   let retryCount = 0;
   const pollForLink = () => {
     const linkElement = getDownloadLink();
-    // eslint-disable-next-line no-debugger
-    debugger; // TODO: remove
+    console.log("temp log", { linkElement, retryCount }); // todo: remove
     if (linkElement?.hasAttribute("clicked")) {
       callback();
     } else if (retryCount < 9) {
