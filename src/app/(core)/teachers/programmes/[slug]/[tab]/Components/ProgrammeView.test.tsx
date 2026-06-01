@@ -21,6 +21,7 @@ const usePathnameMock = jest.fn().mockReturnValue(
     tab: "units",
   }),
 );
+const useSearchParamsMock = jest.fn().mockReturnValue({ get: () => null });
 const useRouterMock = jest.fn();
 const mockUseFetchResult = { data: [], error: null, isLoading: false };
 
@@ -28,7 +29,7 @@ jest.mock("next/navigation", () => {
   return {
     __esModule: true,
     usePathname: () => usePathnameMock(),
-    useSearchParams: jest.fn(),
+    useSearchParams: () => useSearchParamsMock(),
     useRouter: () => useRouterMock,
     notFound: () => {
       throw new Error("NEXT_HTTP_ERROR_FALLBACK;404");
@@ -60,6 +61,7 @@ jest.mock("@/hooks/useFetch", () => ({
 let pushSpy: jest.SpyInstance;
 beforeEach(() => {
   pushSpy = jest.spyOn(globalThis.history, "pushState");
+  useSearchParamsMock.mockReturnValue({ get: () => null });
 });
 
 const defaultProps = {
@@ -148,6 +150,22 @@ describe("ProgrammeView", () => {
     const user = userEvent.setup();
     await user.click(overviewTabButton);
     expect(pushSpy).toHaveBeenCalledWith(null, "", "curriculum-explainer");
+  });
+
+  it("preserves the keystages param when present", async () => {
+    useSearchParamsMock.mockReturnValue({
+      get: (key: string) => (key === "keystages" ? "ks4" : null),
+    });
+    render(<ProgrammeView {...defaultProps} />);
+    const overviewTabButton = screen.getByRole("link", { name: "Explainer" });
+
+    const user = userEvent.setup();
+    await user.click(overviewTabButton);
+    expect(pushSpy).toHaveBeenCalledWith(
+      null,
+      "",
+      "curriculum-explainer?keystages=ks4",
+    );
   });
 
   describe("non-curriculum subjects", () => {
