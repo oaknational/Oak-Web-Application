@@ -43,14 +43,16 @@ export const waitForLinkCallback = (callback: () => void) => {
   const pollForLink = () => {
     const linkElement = getDownloadLink();
     if (linkElement?.hasAttribute("clicked")) {
-      callback();
+      // Safari needs additional time to actually initiate the download
+      // after the click event fires, before the page can navigate
+      setTimeout(callback, 500);
     } else if (retryCount < 9) {
       retryCount++;
       setTimeout(pollForLink, 100);
     }
   };
 
-  setTimeout(pollForLink, 500);
+  setTimeout(pollForLink, 100);
 };
 
 export default createAndClickHiddenDownloadLink;
