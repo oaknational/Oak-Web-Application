@@ -17,9 +17,6 @@ import {
   TeachersSubNavData,
   ProgrammeFactorButton,
 } from "@/node-lib/curriculum-api-2023/queries/topNav/topNav.schema";
-import { resolveOakHref } from "@/common-lib/urls";
-import { getTeacherSubjectPhaseSlug } from "@/utils/curriculum/slugs";
-
 export type ExamBoardPanelProps = {
   examBoards: ProgrammeFactorButton[];
   selectedSubject: SubjectsNavItem;
@@ -237,29 +234,10 @@ const ExamBoardPanel = ({
               ? `exam-board-${examboard.programmeFactors.examboard?.slug}-${examboard.programmeFactors.tier?.slug}`
               : `exam-board-${examboard.programmeFactors?.examboard?.slug}`;
 
-            const href = resolveOakHref({
-              page: "teacher-programme",
-              subjectPhaseSlug: getTeacherSubjectPhaseSlug({
-                subjectSlug: selectedSubject?.slug,
-                phaseSlug: "secondary",
-                examboardSlug: examboard.programmeFactors?.examboard?.slug,
-                pathwaySlug: null,
-                subjectParentTitle: selectedSubject?.subjectParent ?? undefined,
-              }),
-              tab: "units",
-              query: {
-                keystages: "ks4",
-                tiers: examboard.programmeFactors?.tier?.slug ?? undefined,
-                child_subjects: selectedSubject.subjectParent
-                  ? selectedSubject.slug
-                  : undefined,
-              },
-            });
-
             return (
               <ExamBoardButton
                 element="a"
-                href={href}
+                href={examboard.href}
                 key={key}
                 data-testid={key}
                 onClick={() => onClick(selectedSubject.slug, "ks4")}

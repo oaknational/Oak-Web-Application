@@ -10,7 +10,6 @@ import {
   SubjectsNavItem,
   TeachersSubNavData,
 } from "@/node-lib/curriculum-api-2023/queries/topNav/topNav.schema";
-
 const render = renderWithProviders();
 
 jest.mock("next/navigation", () => ({
@@ -24,10 +23,6 @@ jest.mock("@/common-lib/urls", () => ({
   ),
 }));
 
-jest.mock("@/utils/curriculum/slugs", () => ({
-  getTeacherSubjectPhaseSlug: jest.fn(() => "test-programme-slug"),
-}));
-
 describe("ExamBoardPanel", () => {
   const mockOnClick = jest.fn();
   const mockOnClose = jest.fn();
@@ -35,11 +30,13 @@ describe("ExamBoardPanel", () => {
     {
       buttonTitle: "AQA",
       programmeSlug: "aqa-prog",
+      href: "/teachers/programmes/geography-secondary-aqa/units?keystages=ks4",
       programmeFactors: { examboard: { slug: "aqa", title: "AQA" } },
     },
     {
       buttonTitle: "Edexcel",
       programmeSlug: "edexcel-prog",
+      href: "/teachers/programmes/geography-secondary-edexcel/units?keystages=ks4",
       programmeFactors: {
         examboard: { slug: "edexcel", title: "Edexcel" },
       },
@@ -48,6 +45,7 @@ describe("ExamBoardPanel", () => {
   const selectedSubject = {
     slug: "geography",
     title: "Geography",
+    href: "/teachers/programmes/geography-secondary/units?keystages=ks4",
     examBoards,
   } as SubjectsNavItem;
 
@@ -108,10 +106,7 @@ describe("ExamBoardPanel", () => {
 
     const aqaLink = screen.getByTestId("exam-board-aqa");
 
-    expect(aqaLink).toHaveAttribute(
-      "href",
-      "/test-path/test-programme-slug/units",
-    );
+    expect(aqaLink).toHaveAttribute("href", examBoards[0]!.href);
   });
 
   it("calls onClick with subject and keystage when exam board is selected", async () => {
@@ -143,6 +138,7 @@ describe("ExamBoardPanel", () => {
       {
         buttonTitle: "Higher",
         programmeSlug: "maths-higher",
+        href: "/teachers/programmes/maths-secondary/units?keystages=ks4&tiers=higher",
         programmeFactors: {
           tier: { slug: "higher", description: "Higher" },
         },
@@ -150,6 +146,7 @@ describe("ExamBoardPanel", () => {
       {
         buttonTitle: "Foundation",
         programmeSlug: "maths-foundation",
+        href: "/teachers/programmes/maths-secondary/units?keystages=ks4&tiers=foundation",
         programmeFactors: {
           tier: { slug: "foundation", description: "Foundation" },
         },

@@ -2,9 +2,7 @@ import userEvent from "@testing-library/user-event";
 import { screen } from "@testing-library/react";
 import { useRouter } from "next/navigation";
 
-import TopNavSubjectButtons, {
-  getSubjectLinkHref,
-} from "./TopNavSubjectButtons";
+import TopNavSubjectButtons from "./TopNavSubjectButtons";
 
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 
@@ -27,6 +25,7 @@ describe("TopNavSubjectButtons", () => {
     {
       title: "Geography",
       slug: "geography",
+      href: "/teachers/programmes/geography-secondary/units?keystages=ks4",
       nonCurriculum: false,
       programmeSlug: "geography-secondary-ks4",
       programmeCount: 3,
@@ -34,6 +33,7 @@ describe("TopNavSubjectButtons", () => {
     {
       title: "History",
       slug: "history",
+      href: "/teachers/programmes/history-secondary-edexcel/units?keystages=ks4",
       nonCurriculum: false,
       programmeSlug: "history-secondary-ks4",
       programmeCount: 1,
@@ -75,6 +75,7 @@ describe("TopNavSubjectButtons", () => {
       {
         title: "Biology",
         slug: "biology",
+        href: "/teachers/programmes/biology-secondary-aqa/units?keystages=ks4",
         nonCurriculum: false,
         programmeSlug: "biology-secondary-ks4",
         programmeCount: 3,
@@ -83,6 +84,7 @@ describe("TopNavSubjectButtons", () => {
             slug: "aqa",
             buttonTitle: "AQA",
             programmeSlug: "biology-secondary-ks4-aqa",
+            href: "/teachers/programmes/biology-secondary-aqa/units?keystages=ks4",
           },
         ],
       },
@@ -106,124 +108,23 @@ describe("TopNavSubjectButtons", () => {
     expect(handleSubjectClick).not.toHaveBeenCalled();
   });
 
-  describe("TopNavSubjectButtons - Link Generation", () => {
-    describe("getSubjectLinkHref", () => {
-      describe("EYFS subjects", () => {
-        it("should generate EYFS route for single word EYFS programmes", () => {
-          const subject = {
-            title: "Maths",
-            slug: "maths",
-            nonCurriculum: false,
-            programmeSlug: "maths-foundation-early-years-foundation-stage-l",
-            programmeCount: 1,
-          };
-          const href = getSubjectLinkHref({
-            subject,
-            keyStageSlug: "early-years-foundation-stage",
-            phaseSlug: "primary",
-          });
+  it("uses href from nav data on subject links", () => {
+    const [geography] = subjects;
 
-          expect(href).toBe("/teachers/eyfs/maths");
-        });
+    render(
+      <TopNavSubjectButtons
+        selectedMenu="secondary"
+        subjects={[geography!]}
+        selectedSubject={null}
+        keyStageSlug="ks4"
+        handleClick={jest.fn()}
+      />,
+    );
 
-        it("should generate EYFS route for multi-word EYFS programmes", () => {
-          const subject = {
-            title: "Communication and Language",
-            slug: "communication-and-language",
-            nonCurriculum: false,
-            programmeSlug:
-              "communication-and-language-foundation-early-years-foundation-stage-l",
-            programmeCount: 1,
-          };
-          const href = getSubjectLinkHref({
-            subject,
-            keyStageSlug: "early-years-foundation-stage",
-            phaseSlug: "primary",
-          });
-
-          expect(href).toBe("/teachers/eyfs/communication-and-language");
-        });
-      });
-
-      describe("non-EYFS subjects with single programme", () => {
-        it("should link to unit-index when programmeCount is 1", () => {
-          const subject = {
-            title: "History",
-            slug: "history",
-            nonCurriculum: false,
-            programmeSlug: "history-primary-ks2",
-            programmeCount: 1,
-          };
-          const href = getSubjectLinkHref({
-            subject,
-            keyStageSlug: "ks2",
-            phaseSlug: "primary",
-          });
-
-          expect(href).toBe(
-            "/teachers/programmes/history-primary/units?keystages=ks2",
-          );
-        });
-
-        it("should link to unit-index for secondary subject with single programme", () => {
-          const subject = {
-            title: "Geography",
-            slug: "geography",
-            nonCurriculum: false,
-            programmeSlug: "geography-secondary-ks3",
-            programmeCount: 1,
-          };
-          const href = getSubjectLinkHref({
-            subject,
-            keyStageSlug: "ks3",
-            phaseSlug: "secondary",
-          });
-
-          expect(href).toBe(
-            "/teachers/programmes/geography-secondary/units?keystages=ks3",
-          );
-        });
-
-        it("should link to unit-index when keyStageSlug is not provided", () => {
-          const subject = {
-            title: "English",
-            slug: "english",
-            nonCurriculum: false,
-            programmeSlug: "english-primary",
-            programmeCount: 1,
-          };
-          const href = getSubjectLinkHref({
-            subject,
-            keyStageSlug: "ks1",
-            phaseSlug: "primary",
-          });
-
-          expect(href).toBe(
-            "/teachers/programmes/english-primary/units?keystages=ks1",
-          );
-        });
-
-        it("should preserve ks4 option slug segments like core", () => {
-          const subject = {
-            title: "Citizenship",
-            slug: "citizenship",
-            nonCurriculum: false,
-            pathwaySlug: "core",
-            programmeSlug: "citizenship-secondary-ks4-core",
-            programmeCount: 1,
-          };
-          const href = getSubjectLinkHref({
-            subject,
-            keyStageSlug: "ks4",
-            phaseSlug: "secondary",
-          });
-
-          expect(href).toBe(
-            "/teachers/programmes/citizenship-secondary-core/units?keystages=ks4",
-          );
-        });
-      });
-    });
+    expect(screen.getByRole("link", { name: "Geography" })).toHaveAttribute(
+      "href",
+      geography!.href,
+    );
   });
 
   describe("TopNavSubjectButtons accessibility", () => {
@@ -231,25 +132,27 @@ describe("TopNavSubjectButtons", () => {
       {
         title: "Geography",
         slug: "geography",
+        href: "/teachers/programmes/geography-secondary/units?keystages=ks4",
         nonCurriculum: false,
         programmeSlug: "geography-secondary-ks4",
         programmeCount: 3,
         examBoards: [
           {
-            slug: "aqa",
             buttonTitle: "AQA",
             programmeSlug: "geography-secondary-ks4-aqa",
+            href: "/teachers/programmes/geography-secondary-aqa/units?keystages=ks4",
           },
           {
-            slug: "edexcel",
             buttonTitle: "Edexcel",
             programmeSlug: "geography-secondary-ks4-edexcel",
+            href: "/teachers/programmes/geography-secondary-edexcel/units?keystages=ks4",
           },
         ],
       },
       {
         title: "History",
         slug: "history",
+        href: "/teachers/programmes/history-secondary-edexcel/units?keystages=ks4",
         nonCurriculum: false,
         programmeSlug: "history-secondary-ks4",
         programmeCount: 1,
@@ -257,6 +160,7 @@ describe("TopNavSubjectButtons", () => {
       {
         title: "Maths",
         slug: "maths",
+        href: "/teachers/programmes/maths-secondary/units?keystages=ks4",
         nonCurriculum: false,
         programmeSlug: "maths-secondary-ks4",
         programmeCount: 2,
@@ -313,6 +217,7 @@ describe("TopNavSubjectButtons", () => {
         {
           title: "English",
           slug: "english",
+          href: "/teachers/programmes/english-secondary-aqa/units?keystages=ks4",
           nonCurriculum: false,
           programmeSlug: "english-secondary-ks4",
           programmeCount: 1,
