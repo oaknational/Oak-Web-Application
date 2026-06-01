@@ -2,6 +2,7 @@ import {
   OakBox,
   OakFlex,
   OakHeading,
+  OakLI,
   OakPrimaryInvertedButton,
   OakUL,
   parseColor,
@@ -257,16 +258,17 @@ const ExamBoardPanel = ({
             });
 
             return (
-              <ExamBoardButton
-                element="a"
-                href={href}
-                key={key}
-                data-testid={key}
-                onClick={() => onClick(selectedSubject.slug, "ks4")}
-                width={"fit-content"}
-              >
-                {title}
-              </ExamBoardButton>
+              <OakLI key={key}>
+                <ExamBoardButton
+                  element="a"
+                  href={href}
+                  data-testid={key}
+                  onClick={() => onClick(selectedSubject.slug, "ks4")}
+                  width={"fit-content"}
+                >
+                  {title}
+                </ExamBoardButton>
+              </OakLI>
             );
           })}
       </OakUL>
