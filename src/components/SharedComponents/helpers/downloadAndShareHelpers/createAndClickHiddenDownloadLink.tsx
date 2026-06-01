@@ -42,6 +42,7 @@ export const waitForLinkCallback = (callback: () => void) => {
   let retryCount = 0;
   const pollForLink = () => {
     const linkElement = getDownloadLink();
+    debugger; // TODO: remove
     if (linkElement?.hasAttribute("clicked")) {
       callback();
     } else if (retryCount < 9) {
