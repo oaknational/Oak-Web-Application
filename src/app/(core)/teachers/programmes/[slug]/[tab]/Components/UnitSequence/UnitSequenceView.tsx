@@ -3,6 +3,7 @@ import {
   OakGrid,
   OakGridArea,
   OakHeading,
+  OakPrimaryButton,
 } from "@oaknational/oak-components";
 
 import ProgrammePageFiltersDesktop from "../Filters/ProgrammePageFiltersDesktop";
@@ -20,6 +21,7 @@ import {
 import { CurriculumFilters } from "@/utils/curriculum/types";
 import { CurriculumSelectionSlugs } from "@/utils/curriculum/slugs";
 import type { Ks4Option } from "@/node-lib/curriculum-api-2023/queries/curriculumPhaseOptions/curriculumPhaseOptions.schema";
+import errorReporter from "@/common-lib/error-reporter";
 
 export type UnitSequenceViewProps = {
   filters: CurriculumFilters;
@@ -102,6 +104,20 @@ export const UnitSequenceView = ({
             )}
           </OakGridArea>
           <OakGridArea $colSpan={[12, 12, 9]}>
+            <OakPrimaryButton
+              style={{ background: "red" }}
+              onClick={() => {
+                const reportError = errorReporter("YOU PRESSED FPR A BUG");
+                reportError({
+                  message:
+                    "bug has been received by bugnsag from" +
+                    globalThis.location.href,
+                });
+              }}
+            >
+              {" "}
+              PRESS FOR BUG 🐛
+            </OakPrimaryButton>
             <ProgrammeSequence
               filters={filters}
               ks4OptionSlug={ks4OptionSlug}
