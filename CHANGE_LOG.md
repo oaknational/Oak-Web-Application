@@ -1,3 +1,10 @@
+# [1.1085.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1084.0...v1.1085.0) (2026-06-01)
+
+
+### Features
+
+* add API catalog and Link header for agent discovery ([f8c4670](https://github.com/oaknational/Oak-Web-Application/commit/f8c4670190ae017cd3b07034fe207c2301b7e052))
+
 # [1.1084.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1083.0...v1.1084.0) (2026-05-29)
 
 
