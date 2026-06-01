@@ -1,24 +1,14 @@
 import { Metadata } from "next";
-import { cache } from "react";
 
 import { UnitView } from "./Components/UnitView";
+import { getCachedUnitData } from "./getCachedUnitData";
 
 import { getOpenGraphMetadata, getTwitterMetadata } from "@/app/metadata";
 import withPageErrorHandling, {
   AppPageProps,
 } from "@/hocs/withPageErrorHandling";
-import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 
 type LessonsPageParams = { slug: string; unitSlug: string };
-
-const getCachedUnitData = cache(
-  async (subjectPhaseSlug: string, unitSlug: string) => {
-    return curriculumApi2023.teachersUnitOverview({
-      programmeSlug: subjectPhaseSlug,
-      unitSlug,
-    });
-  },
-);
 
 export async function generateMetadata(
   props: AppPageProps<LessonsPageParams>,

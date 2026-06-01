@@ -8,10 +8,10 @@ import { LessonDownloads } from "@/components/TeacherViews/LessonDownloads.view"
 import withPageErrorHandling, {
   AppPageProps,
 } from "@/hocs/withPageErrorHandling";
-import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
-import { LessonDownloadsPageData } from "@/node-lib/curriculum-api-2023/queries/lessonDownloads/lessonDownloads.schema";
 import { resolveOakHref } from "@/common-lib/urls";
 import { getTeacherSubjectPhaseSlug } from "@/utils/curriculum/slugs";
+import { cacheData } from "@/node-lib/cache";
+import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 
 type LessonDownloadsPageParams = {
   slug: string;
@@ -20,17 +20,16 @@ type LessonDownloadsPageParams = {
 };
 
 const getCachedLessonDownloadsData = cache(
-  async (
-    programmeSlug: string,
-    unitSlug: string,
-    lessonSlug: string,
-  ): Promise<LessonDownloadsPageData> => {
-    return curriculumApi2023.lessonDownloads({
-      programmeSlug,
-      unitSlug,
-      lessonSlug,
-    });
-  },
+  cacheData(
+    async (programmeSlug: string, unitSlug: string, lessonSlug: string) => {
+      return curriculumApi2023.lessonDownloads({
+        programmeSlug,
+        unitSlug,
+        lessonSlug,
+      });
+    },
+    ["lesson-downloads"],
+  ),
 );
 
 export async function generateMetadata(

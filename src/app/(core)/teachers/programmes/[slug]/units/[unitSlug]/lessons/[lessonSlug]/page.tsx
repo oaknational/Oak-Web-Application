@@ -14,9 +14,9 @@ import { getOpenGraphMetadata, getTwitterMetadata } from "@/app/metadata";
 import withPageErrorHandling, {
   AppPageProps,
 } from "@/hocs/withPageErrorHandling";
-import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
-import { TeachersLessonOverviewPageData } from "@/node-lib/curriculum-api-2023/queries/teachersLessonOverview/teachersLessonOverview.schema";
 import { getTeacherSubjectPhaseSlug } from "@/utils/curriculum/slugs";
+import { cacheData } from "@/node-lib/cache";
+import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 
 type LessonPageParams = {
   slug: string;
@@ -25,17 +25,16 @@ type LessonPageParams = {
 };
 
 const getCachedLessonData = cache(
-  async (
-    programmeSlug: string,
-    unitSlug: string,
-    lessonSlug: string,
-  ): Promise<TeachersLessonOverviewPageData> => {
-    return curriculumApi2023.teachersLessonOverview({
-      programmeSlug,
-      unitSlug,
-      lessonSlug,
-    });
-  },
+  cacheData(
+    async (programmeSlug: string, unitSlug: string, lessonSlug: string) => {
+      return curriculumApi2023.teachersLessonOverview({
+        programmeSlug,
+        unitSlug,
+        lessonSlug,
+      });
+    },
+    ["teachers-lesson-overview"],
+  ),
 );
 
 export async function generateMetadata(

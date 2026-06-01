@@ -4,8 +4,8 @@ import { cache } from "react";
 
 import { ProgrammeView } from "./Components/ProgrammeView";
 import { isTabSlug } from "./tabSchema";
-import { getProgrammeData } from "./getProgrammeData";
 import { getMetaTitle } from "./getMetaTitle";
+import { getProgrammeData } from "./getProgrammeData";
 
 import {
   createDownloadsData,
@@ -15,7 +15,6 @@ import {
 import { getOpenGraphMetadata, getTwitterMetadata } from "@/app/metadata";
 import getBrowserConfig from "@/browser-lib/getBrowserConfig";
 import OakError from "@/errors/OakError";
-import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 import {
   isValidSubjectPhaseSlug,
   getKs4RedirectSlug,
@@ -24,23 +23,68 @@ import errorReporter from "@/common-lib/error-reporter";
 import withPageErrorHandling, {
   AppPageProps,
 } from "@/hocs/withPageErrorHandling";
-import CMSClient from "@/node-lib/cms";
-import { getMvRefreshTime } from "@/pages-helpers/curriculum/downloads/getMvRefreshTime";
 import { resolveOakHref } from "@/common-lib/urls";
 import { getSubjectPhaseSlug } from "@/components/TeacherComponents/helpers/getSubjectPhaseSlug";
 import { resolveFilterFromSearchParams } from "@/utils/curriculum/filtersUrl";
 import { redirectProgrammeSlugIfNeeded } from "@/utils/integratedJourney/legacyProgrammeUnitsRedirect";
+import { cacheData } from "@/node-lib/cache";
+import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
+import CMSClient from "@/node-lib/cms";
+import { getMvRefreshTime } from "@/pages-helpers/curriculum/downloads/getMvRefreshTime";
 
 const reportError = errorReporter("programme-page::app");
 
-// Single cached function to fetch all common programme data
-// This deduplicates requests between generateMetadata and page component
-const getCachedProgrammeData = cache(async (subjectPhaseSlug: string) => {
-  return getProgrammeData(curriculumApi2023, subjectPhaseSlug);
-});
-
 type ProgrammePageParams = { slug: string; tab: string };
 export type PageSearchParms = { [key: string]: string | string[] | undefined };
+
+const getCachedProgrammeData = cache(
+  cacheData(
+    async (subjectPhaseSlug: string) => {
+      return getProgrammeData(curriculumApi2023, subjectPhaseSlug);
+    },
+    ["programme-data"],
+  ),
+);
+
+export type ProgrammeCmsParams = {
+  subjectPhaseSlug: string;
+  nonCurriculum: boolean;
+  subjectTitle: string;
+  phaseSlug: string;
+  programmePageSlug: string;
+};
+
+const getCachedProgrammeCms = cache(
+  cacheData(
+    async ({
+      nonCurriculum,
+      subjectTitle,
+      phaseSlug,
+      programmePageSlug,
+    }: ProgrammeCmsParams) => {
+      const [curriculumCMSInfo, subjectPhaseSanityData, mvRefreshTime] =
+        await Promise.all([
+          nonCurriculum
+            ? null
+            : CMSClient.curriculumOverviewPage({
+                previewMode: false,
+                subjectTitle,
+                phaseSlug,
+              }),
+          CMSClient.programmePageBySlug(programmePageSlug),
+          getMvRefreshTime(),
+        ]);
+
+      return {
+        curriculumCMSInfo,
+        subjectPhaseSanityData,
+        mvRefreshTime,
+      };
+    },
+    ["programme-cms"],
+  ),
+);
+
 export async function generateMetadata({
   params,
   searchParams,
@@ -153,20 +197,14 @@ const InnerProgrammePage = async (props: AppPageProps<ProgrammePageParams>) => {
     }
   }
 
-  const [curriculumCMSInfo, subjectPhaseSanityData, mvRefreshTime] =
-    await Promise.all([
-      programmeUnitsData.nonCurriculum
-        ? null
-        : CMSClient.curriculumOverviewPage({
-            previewMode: false, // TD: [integrated-journey] preview mode
-            subjectTitle: programmeUnitsData.subjectTitle,
-            phaseSlug: subjectPhaseKeystageSlugs.phaseSlug,
-          }),
-      CMSClient.programmePageBySlug(
-        `${subjectPhaseKeystageSlugs.subjectSlug}-${subjectPhaseKeystageSlugs.phaseSlug}`,
-      ),
-      getMvRefreshTime(),
-    ]);
+  const { curriculumCMSInfo, subjectPhaseSanityData, mvRefreshTime } =
+    await getCachedProgrammeCms({
+      subjectPhaseSlug,
+      nonCurriculum: programmeUnitsData.nonCurriculum,
+      subjectTitle: programmeUnitsData.subjectTitle,
+      phaseSlug: subjectPhaseKeystageSlugs.phaseSlug,
+      programmePageSlug: `${subjectPhaseKeystageSlugs.subjectSlug}-${subjectPhaseKeystageSlugs.phaseSlug}`,
+    });
 
   if (!curriculumCMSInfo && !programmeUnitsData.nonCurriculum) {
     return notFound();
