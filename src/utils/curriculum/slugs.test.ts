@@ -297,7 +297,11 @@ describe("getKs4RedirectSlug", () => {
         phaseSlug: "secondary",
         ks4OptionSlug: null,
       }),
-    ).toBe(`english-secondary-${KS4_EXAMBOARD_PREFERENCE["english"]}`);
+    ).toEqual({
+      subjectSlug: "english",
+      phaseSlug: "secondary",
+      ks4OptionSlug: KS4_EXAMBOARD_PREFERENCE["english"],
+    });
   });
 
   it("redirects citizenship to gcse not the unused aqa preference", () => {
@@ -320,7 +324,11 @@ describe("getKs4RedirectSlug", () => {
         phaseSlug: "secondary",
         ks4OptionSlug: null,
       }),
-    ).toBe("citizenship-secondary-gcse");
+    ).toEqual({
+      subjectSlug: "citizenship",
+      phaseSlug: "secondary",
+      ks4OptionSlug: "gcse",
+    });
   });
 
   it("does not redirect when the subject has no ks4_options", () => {
