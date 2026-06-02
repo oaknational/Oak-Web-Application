@@ -960,7 +960,7 @@ export const OAK_PAGES: {
   }),
   "integrated-lesson-share": createOakPageConfig({
     pathPattern:
-      "/programmes/:programmeSlug/units/:unitSlug/lessons/:lessonSlug/share",
+      "/teachers/programmes/:programmeSlug/units/:unitSlug/lessons/:lessonSlug/share",
     analyticsPageName: "Lesson Share",
     configType: "internal",
     pageType: "integrated-lesson-share",
