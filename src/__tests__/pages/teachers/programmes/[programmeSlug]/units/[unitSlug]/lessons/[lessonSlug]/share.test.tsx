@@ -231,11 +231,11 @@ describe("pages/teachers/programmes/[programmeSlug]/units/[unitSlug]/lessons/[le
       //   name: "Assign to Google Classroom",
       // });
       const shareButtonGoogle = screen.getByRole("button", {
-        name: "Share to Share via Google Classroom",
+        name: "Share via Google Classroom",
       });
       expect(shareButtonGoogle).toBeInTheDocument();
       const shareButtonMicrosoft = screen.getByRole("button", {
-        name: "Share to Share via Microsoft Teams",
+        name: "Share via Microsoft Teams",
       });
       expect(shareButtonMicrosoft).toBeInTheDocument();
     });
