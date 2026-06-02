@@ -97,7 +97,11 @@ const LinksForSEO = ({
         <ul>
           {generateSubjectPhasePickerLinks(subjects).map((link) => (
             <li key={link.href}>
-              <a href={link.href} className={`visually-hidden-link`}>
+              <a
+                href={link.href}
+                className={`visually-hidden-link`}
+                tabIndex={-1}
+              >
                 {link.label}
               </a>
             </li>
@@ -106,6 +110,8 @@ const LinksForSEO = ({
       </SubjectPhasePickerLinks>
     );
   }
+
+  return null;
 };
 
 const OakFocusIndicatorAlt = styled(OakFocusIndicator)<{
