@@ -32,9 +32,19 @@ global.SubmitEvent =
 jest.mock("react", () => ({
   ...jest.requireActual("react"),
   useId: () => "react-use-id-test-result",
+  // Jest does not load the RSC server build; passthrough cache for getCached* helpers.
+  cache: (fn) => fn,
 }));
 
 jest.mock("next/dist/client/router", () => require("next-router-mock"));
+
+jest.mock("next/cache", () => {
+  const actual = jest.requireActual("next/cache");
+  return {
+    ...actual,
+    unstable_cache: (fn) => fn,
+  };
+});
 
 jest.mock("@bugsnag/js", () => ({
   __esModule: true,

@@ -1,9 +1,9 @@
 import { Metadata } from "next";
 
 import { EyfsUnitSection } from "./components/EyfsUnits/EyfsUnits";
+import { getCachedEyfsPageData } from "./getCachedEyfsPageData";
 
 import withPageErrorHandling from "@/hocs/withPageErrorHandling";
-import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 
 export const metadata: Metadata = {
   title: "Early years foundation stage lesson resources",
@@ -17,6 +17,8 @@ export const metadata: Metadata = {
   },
 };
 
+export const dynamic = "force-static";
+
 const InnerEyfsPage = async ({
   params,
 }: Readonly<{
@@ -24,7 +26,7 @@ const InnerEyfsPage = async ({
 }>) => {
   const { subjectSlug } = await params;
 
-  const eyfsPageData = await curriculumApi2023.eyfsPage({ subjectSlug });
+  const eyfsPageData = await getCachedEyfsPageData(subjectSlug);
   const units = Object.values(eyfsPageData.units);
 
   return <EyfsUnitSection units={units} />;
