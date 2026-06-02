@@ -50,6 +50,7 @@ const TopNavSubjectButtons = ({
     }
 
     if (href) {
+      e.preventDefault();
       router.push(href);
     }
     handleClick(subject.slug, keyStageSlug);
