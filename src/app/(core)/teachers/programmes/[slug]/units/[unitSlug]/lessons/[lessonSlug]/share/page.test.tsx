@@ -85,17 +85,6 @@ describe("LessonSharePage", () => {
     mockLessonShare.mockResolvedValue(lessonShareFixture);
   });
 
-  it("renders 404 if feature flag is disabled", async () => {
-    featureFlagMock.mockResolvedValue(false);
-
-    await expect(
-      LessonSharePage({
-        params: Promise.resolve(defaultParams),
-        searchParams: Promise.resolve({}),
-      }),
-    ).rejects.toEqual(new Error("NEXT_HTTP_ERROR_FALLBACK;404"));
-  });
-
   it("renders share view data", async () => {
     const result = await LessonSharePage({
       params: Promise.resolve(defaultParams),
