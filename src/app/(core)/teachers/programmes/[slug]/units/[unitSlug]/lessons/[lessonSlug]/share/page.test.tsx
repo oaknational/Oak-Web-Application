@@ -74,7 +74,7 @@ const lessonShareFixture = lessonShareFixtures({
 });
 
 const defaultParams = {
-  subjectPhaseSlug: "maths-primary",
+  slug: "maths-primary",
   unitSlug: "geometry-abc123",
   lessonSlug: "intro-to-geometry-abc123",
 };
@@ -104,7 +104,7 @@ describe("LessonSharePage", () => {
 
     expect(result).toBeDefined();
     expect(mockLessonShare).toHaveBeenCalledWith({
-      programmeSlug: defaultParams.subjectPhaseSlug,
+      programmeSlug: defaultParams.slug,
       unitSlug: defaultParams.unitSlug,
       lessonSlug: defaultParams.lessonSlug,
     });
