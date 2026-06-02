@@ -1,11 +1,16 @@
 import userEvent from "@testing-library/user-event";
 import { getByTestId, waitFor } from "@testing-library/react";
 import { useRouter } from "next/router";
+import { renderToStaticMarkup } from "react-dom/server";
 
 import SubjectPhasePicker from "./SubjectPhasePicker";
 
 import curriculumPhaseOptions from "@/browser-lib/fixtures/curriculumPhaseOptions";
-import { renderWithProvidersByName } from "@/__tests__/__helpers__/renderWithProviders";
+import {
+  allProviders,
+  getMockedProviders,
+  renderWithProvidersByName,
+} from "@/__tests__/__helpers__/renderWithProviders";
 
 jest.mock("@/hooks/useMediaQuery.tsx", () => ({
   __esModule: true,
@@ -33,6 +38,35 @@ describe("Component - subject phase picker", () => {
   beforeEach(() => {
     jest.clearAllMocks();
   });
+
+  test("renders subject phase picker SEO links in HTML before hydration", () => {
+    const Providers = getMockedProviders({
+      oakTheme: allProviders.oakTheme,
+      theme: allProviders.theme,
+    });
+
+    const html = renderToStaticMarkup(
+      <Providers>
+        <SubjectPhasePicker {...curriculumPhaseOptions} />
+      </Providers>,
+    );
+
+    expect(html).toContain('id="visually-hidden-subject-phase-picker"');
+    expect(html).toContain("/teachers/programmes/");
+  });
+
+  test("removes subject phase picker SEO links after hydration", async () => {
+    const { queryByTestId } = render(
+      <SubjectPhasePicker {...curriculumPhaseOptions} />,
+    );
+
+    await waitFor(() => {
+      expect(
+        queryByTestId("visually-hidden-subject-phase-picker"),
+      ).not.toBeInTheDocument();
+    });
+  });
+
   test("populates selection if supplied", () => {
     const currentSelection = {
       subject: {

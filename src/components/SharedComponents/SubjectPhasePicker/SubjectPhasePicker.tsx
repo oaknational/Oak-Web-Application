@@ -1,4 +1,4 @@
-import { useState, useId, useRef, useTransition } from "react";
+import { useState, useId, useRef, useTransition, useEffect } from "react";
 import { FocusOn } from "react-focus-on";
 import styled from "styled-components";
 import { useRouter } from "next/router";
@@ -38,7 +38,10 @@ import FocusWrap from "@/components/CurriculumComponents/OakComponentsKitchen/Fo
 import { CurriculumModalCloseButton } from "@/components/CurriculumComponents/CurriculumModalCloseButton/CurriculumModalCloseButton";
 import useMediaQuery from "@/hooks/useMediaQuery";
 import { PhaseValueType } from "@/browser-lib/avo/Avo";
-import { resolveOakHref } from "@/common-lib/urls";
+import {
+  resolveOakHref,
+  generateSubjectPhasePickerLinks,
+} from "@/common-lib/urls";
 
 const TruncatedFlex = styled(OakFlex)`
   max-width: calc(100% - 1rem);
@@ -47,6 +50,63 @@ const TruncatedFlex = styled(OakFlex)`
     max-width: calc(100% - 8rem);
   }
 `;
+
+const SubjectPhasePickerLinks = styled.div`
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+
+  &.visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+  }
+`;
+
+const LinksForSEO = ({
+  shouldHide,
+  subjects,
+}: {
+  shouldHide: boolean;
+  subjects: CurriculumPhaseOptions;
+}) => {
+  const [afterInitialRender, setAfterInitialRender] = useState(false);
+
+  useEffect(() => {
+    setAfterInitialRender(true);
+  }, []);
+
+  if (!afterInitialRender && !shouldHide) {
+    return (
+      <SubjectPhasePickerLinks
+        id="visually-hidden-subject-phase-picker"
+        aria-hidden="true"
+      >
+        <ul>
+          {generateSubjectPhasePickerLinks(subjects).map((link) => (
+            <li key={link.href}>
+              <a href={link.href} className={`visually-hidden-link`}>
+                {link.label}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </SubjectPhasePickerLinks>
+    );
+  }
+};
 
 const OakFocusIndicatorAlt = styled(OakFocusIndicator)<{
   assertFocus: boolean;
@@ -1424,6 +1484,10 @@ const SubjectPhasePicker = ({
         $width="fit-content"
         $left="spacing-8"
         $borderRadius="border-radius-square"
+      />
+      <LinksForSEO
+        subjects={subjects}
+        shouldHide={showSubjects || showPhases}
       />
       <OakBox
         $position="relative"
