@@ -3,7 +3,12 @@ import {
   TeachersBrowse,
   ProgrammeFactorButton,
 } from "./topNav.schema";
+import {
+  getTeachersExamBoardNavHref,
+  getTeachersSubjectNavHref,
+} from "./getTeachersNavHrefs";
 
+import { CurriculumPhaseOptions } from "@/node-lib/curriculum-api-2023/queries/curriculumPhaseOptions/curriculumPhaseOptions.query";
 import isSlugLegacy from "@/utils/slugModifiers/isSlugLegacy";
 
 export const getExamBoardsForKS4Subject = ({
@@ -11,11 +16,13 @@ export const getExamBoardsForKS4Subject = ({
   keystageSlug,
   subjectSlug,
   pathwaySlug,
+  subjectParent,
 }: {
   data: TopNavResponse;
   keystageSlug: string;
   subjectSlug: string;
   pathwaySlug: string | null;
+  subjectParent?: string | null;
 }): ProgrammeFactorButton[] => {
   const matchingProgrammes = data.programmes
     .filter((p) => {
@@ -57,6 +64,13 @@ export const getExamBoardsForKS4Subject = ({
           {
             buttonTitle: examboard,
             programmeSlug: p.programme_slug,
+            href: getTeachersExamBoardNavHref({
+              subjectSlug,
+              phaseSlug: p.programme_fields.phase_slug,
+              subjectParent,
+              examboardSlug: examboard_slug,
+              tierSlug: tier_slug,
+            }),
             programmeFactors: {
               tier: { slug: tier_slug, description: tier_description },
               examboard: { slug: examboard_slug, title: examboard },
@@ -70,6 +84,12 @@ export const getExamBoardsForKS4Subject = ({
           {
             buttonTitle: tier_description,
             programmeSlug: p.programme_slug,
+            href: getTeachersExamBoardNavHref({
+              subjectSlug,
+              phaseSlug: p.programme_fields.phase_slug,
+              subjectParent,
+              tierSlug: tier_slug,
+            }),
             programmeFactors: {
               tier: { slug: tier_slug, description: tier_description },
             },
@@ -86,8 +106,13 @@ export const getExamBoardsForKS4Subject = ({
 export const getTeachersNavData = (
   teachersData: TopNavResponse,
   phaseSlug: "primary" | "secondary",
+  curriculumPhaseOptionsSubjects: CurriculumPhaseOptions,
 ): TeachersBrowse => {
-  const keystagesForPhase = getKeystages(teachersData, phaseSlug);
+  const keystagesForPhase = getKeystages(
+    teachersData,
+    phaseSlug,
+    curriculumPhaseOptionsSubjects,
+  );
 
   return {
     slug: phaseSlug,
@@ -96,7 +121,13 @@ export const getTeachersNavData = (
       | "Secondary",
     children:
       phaseSlug === "primary"
-        ? keystagesForPhase.concat(getKeystages(teachersData, "foundation"))
+        ? keystagesForPhase.concat(
+            getKeystages(
+              teachersData,
+              "foundation",
+              curriculumPhaseOptionsSubjects,
+            ),
+          )
         : keystagesForPhase,
   };
 };
@@ -104,6 +135,7 @@ export const getTeachersNavData = (
 const getKeystages = (
   data: TopNavResponse,
   phaseSlug: "primary" | "secondary" | "foundation",
+  curriculumPhaseOptionsSubjects: CurriculumPhaseOptions,
 ) => {
   // Get all programmes for the given phase
   const byPhase = data.programmes.filter(
@@ -168,24 +200,42 @@ const getKeystages = (
         const title =
           subjectDisplayName + (pathwayTitle ? ` (${pathwayTitle})` : "");
 
+        const subjectSlug = p.programme_fields.subject_slug;
+        const pathwaySlug = p.programme_fields.pathway_slug ?? null;
+        const programmeSlug = programmeCount > 1 ? null : p.programme_slug;
+        const subjectParent = p.programme_fields.subject_parent ?? null;
+
+        const subjectNavItem = {
+          slug: subjectSlug,
+          title,
+          nonCurriculum: Boolean(p.features.non_curriculum),
+          programmeSlug,
+          programmeCount,
+          pathwaySlug,
+          subjectParent,
+        };
+
+        const href = getTeachersSubjectNavHref({
+          subject: subjectNavItem,
+          keyStageSlug: ks.slug,
+          phaseSlug: phaseSlug === "foundation" ? "primary" : phaseSlug,
+          curriculumPhaseOptionsSubjects,
+        });
+
         const examBoardsData =
           ks.slug === "ks4" && programmeCount > 1
             ? getExamBoardsForKS4Subject({
                 data,
                 keystageSlug: ks.slug,
-                subjectSlug: p.programme_fields.subject_slug,
-                pathwaySlug: p.programme_fields.pathway_slug,
+                subjectSlug,
+                pathwaySlug,
+                subjectParent,
               })
             : null;
 
         return {
-          slug: p.programme_fields.subject_slug,
-          title,
-          nonCurriculum: Boolean(p.features.non_curriculum),
-          programmeSlug: programmeCount > 1 ? null : p.programme_slug,
-          programmeCount,
-          pathwaySlug: p.programme_fields.pathway_slug ?? null,
-          subjectParent: p.programme_fields.subject_parent ?? null,
+          ...subjectNavItem,
+          href,
           ...(examBoardsData ? { examBoards: examBoardsData } : {}),
         };
       });

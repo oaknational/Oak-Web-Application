@@ -135,6 +135,7 @@ exports[`core layout renders correctly 1`] = `
             {
               "children": [
                 {
+                  "href": "/teachers/programmes/english-primary/units?keystages=ks1",
                   "nonCurriculum": false,
                   "programmeCount": 0,
                   "programmeSlug": "english-primary-ks1",
@@ -142,6 +143,7 @@ exports[`core layout renders correctly 1`] = `
                   "title": "English",
                 },
                 {
+                  "href": "/teachers/programmes/maths-primary/units?keystages=ks1",
                   "nonCurriculum": false,
                   "programmeCount": 0,
                   "programmeSlug": "maths-primary-ks1",
@@ -149,6 +151,7 @@ exports[`core layout renders correctly 1`] = `
                   "title": "Maths",
                 },
                 {
+                  "href": "/teachers/programmes/financial-education-primary/units?keystages=ks1",
                   "nonCurriculum": true,
                   "programmeCount": 0,
                   "programmeSlug": "financial-education-primary-ks1",
@@ -163,6 +166,7 @@ exports[`core layout renders correctly 1`] = `
             {
               "children": [
                 {
+                  "href": "/teachers/programmes/science-primary/units?keystages=ks2",
                   "nonCurriculum": false,
                   "programmeCount": 0,
                   "programmeSlug": "science-primary-ks2",
@@ -189,6 +193,7 @@ exports[`core layout renders correctly 1`] = `
             {
               "children": [
                 {
+                  "href": "/teachers/programmes/history-secondary-edexcel/units?keystages=ks3",
                   "nonCurriculum": false,
                   "programmeCount": 0,
                   "programmeSlug": "history-secondary-ks3",
@@ -196,6 +201,7 @@ exports[`core layout renders correctly 1`] = `
                   "title": "History",
                 },
                 {
+                  "href": "/teachers/programmes/geography-secondary/units?keystages=ks3",
                   "nonCurriculum": false,
                   "programmeCount": 0,
                   "programmeSlug": "geography-secondary-ks3",
@@ -213,6 +219,7 @@ exports[`core layout renders correctly 1`] = `
                   "examBoards": [
                     {
                       "buttonTitle": "AQA",
+                      "href": "/teachers/programmes/geography-secondary-aqa/units?keystages=ks4&tiers=foundation",
                       "programmeFactors": {
                         "tier": {
                           "description": "Foundation",
@@ -223,6 +230,7 @@ exports[`core layout renders correctly 1`] = `
                     },
                     {
                       "buttonTitle": "Edexcel",
+                      "href": "/teachers/programmes/geography-secondary-edexcel/units?keystages=ks4&tiers=higher",
                       "programmeFactors": {
                         "tier": {
                           "description": "Higher",
@@ -232,6 +240,7 @@ exports[`core layout renders correctly 1`] = `
                       "programmeSlug": "geography-secondary-ks4-edexcel",
                     },
                   ],
+                  "href": "/teachers/programmes/geography-secondary/units?keystages=ks4",
                   "nonCurriculum": false,
                   "programmeCount": 2,
                   "programmeSlug": null,

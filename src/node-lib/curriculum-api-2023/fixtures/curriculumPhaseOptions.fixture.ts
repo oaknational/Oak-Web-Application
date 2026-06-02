@@ -82,5 +82,12 @@ const curriculumPhaseOptionsFixture = (): CurriculumPhaseOptions => [
       { title: "KS3", slug: "ks3" },
     ],
   },
+  {
+    title: "Citizenship",
+    slug: "citizenship",
+    phases: [{ title: "Secondary", slug: "secondary" }],
+    ks4_options: [{ title: "GCSE", slug: "gcse" }],
+    keystages: [{ title: "KS4", slug: "ks4" }],
+  },
 ];
 export default curriculumPhaseOptionsFixture;

@@ -1,6 +1,8 @@
 import z from "zod";
 import { programmeFieldsSchema } from "@oaknational/oak-curriculum-schema";
 
+import curriculumPhaseOptionsSchema from "../curriculumPhaseOptions/curriculumPhaseOptions.schema";
+
 export const topNavResponseSchema = z.object({
   programmes: z.array(
     z.object({
@@ -18,6 +20,7 @@ export const topNavResponseSchema = z.object({
         .nullish(),
     }),
   ),
+  phaseOptions: curriculumPhaseOptionsSchema,
 });
 export type TopNavResponse = z.infer<typeof topNavResponseSchema>;
 
@@ -52,6 +55,7 @@ export type NavButton =
 export type ProgrammeFactorButton = {
   buttonTitle: string;
   programmeSlug: string;
+  href: string;
   programmeFactors?: {
     tier?: {
       slug: "core" | "foundation" | "higher" | null;
@@ -64,6 +68,7 @@ export type ProgrammeFactorButton = {
 export type SubjectsNavItem = {
   title: string;
   slug: string;
+  href: string;
   nonCurriculum: boolean; // enables highlighting subjects that are non curriculum
   programmeSlug: string | null; // will be null when multiple programmes exist
   programmeCount: number; // used to determine whether we should go to the programmes page (more than 1 programme) or directly to the unit listing page (only 1 programme)
