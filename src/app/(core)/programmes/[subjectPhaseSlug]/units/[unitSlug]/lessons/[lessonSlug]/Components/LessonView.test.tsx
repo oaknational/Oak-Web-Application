@@ -11,6 +11,7 @@ import { mockLoggedIn } from "@/__tests__/__helpers__/mockUser";
 
 const lessonResourceDownloadStarted = jest.fn();
 const lessonMediaClipsStarted = jest.fn();
+const lessonShareStarted = jest.fn();
 const mockCreateTeachingMaterialsInitiated = jest.fn();
 const mockTeachingMaterialsSelected = jest.fn();
 
@@ -22,6 +23,7 @@ jest.mock("@/context/Analytics/useAnalytics", () => ({
         lessonMediaClipsStarted(...args),
       lessonResourceDownloadStarted: (...args: unknown[]) =>
         lessonResourceDownloadStarted(...args),
+      lessonShareStarted: (...args: unknown[]) => lessonShareStarted(...args),
       createTeachingMaterialsInitiated: (...args: unknown[]) =>
         mockCreateTeachingMaterialsInitiated(...args),
       teachingMaterialsSelected: (...args: unknown[]) =>
@@ -417,6 +419,30 @@ describe("Tracking callbacks", () => {
         eventVersion: "2.0.0",
         analyticsUseCase: "Teacher",
         mediaClipsButtonName: "play all",
+      }),
+    );
+  });
+
+  it("calls lessonShareStarted when share lesson with pupils is clicked", () => {
+    render(<LessonView {...baseProps} />);
+
+    const shareButton = screen.getByRole("link", {
+      name: "Share lesson with pupils",
+    });
+    act(() => {
+      shareButton.click();
+    });
+
+    expect(lessonShareStarted).toHaveBeenCalledWith(
+      expect.objectContaining({
+        keyStageSlug: baseProps.keyStageSlug,
+        keyStageTitle: baseProps.keyStageTitle,
+        subjectSlug: baseProps.subjectSlug,
+        subjectTitle: baseProps.subjectTitle,
+        unitSlug: baseProps.unitSlug,
+        unitName: baseProps.unitTitle,
+        lessonSlug: baseProps.lessonSlug,
+        lessonName: baseProps.lessonTitle,
       }),
     );
   });

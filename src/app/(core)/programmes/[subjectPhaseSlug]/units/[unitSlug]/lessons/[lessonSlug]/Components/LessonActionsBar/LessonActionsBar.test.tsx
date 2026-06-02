@@ -1,4 +1,4 @@
-import { screen } from "@testing-library/react";
+import { fireEvent, screen } from "@testing-library/react";
 
 import LessonActionsBar from "./LessonActionsBar";
 
@@ -10,9 +10,14 @@ const defaultProps = {
   lessonSlug: "lesson-1",
   unitSlug: "unit-1",
   programmeSlug: "programme-1",
+  onClickShare: jest.fn(),
 };
 
-describe("LessonShareBar", () => {
+describe("LessonActionsBar", () => {
+  beforeEach(() => {
+    jest.clearAllMocks();
+  });
+
   it("renders pupil share link when showPupilShare is true", () => {
     renderWithTheme(<LessonActionsBar {...defaultProps} />);
     const pupilShareLink = screen.getByRole("link", {
@@ -33,6 +38,19 @@ describe("LessonShareBar", () => {
       "rel",
       expect.stringContaining("nofollow"),
     );
+  });
+
+  it("calls onClickShare when pupil share link is clicked", () => {
+    const onClickShare = jest.fn();
+    renderWithTheme(
+      <LessonActionsBar {...defaultProps} onClickShare={onClickShare} />,
+    );
+
+    fireEvent.click(
+      screen.getByRole("link", { name: "Share lesson with pupils" }),
+    );
+
+    expect(onClickShare).toHaveBeenCalledTimes(1);
   });
 
   it("does not render pupil share link when showPupilShare is false", () => {

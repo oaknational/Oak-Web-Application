@@ -142,6 +142,10 @@ export default function LessonView(
     });
   };
 
+  const trackShare = () => {
+    track.lessonShareStarted(browsePathwayData);
+  };
+
   const lessonResources = getLessonResources({
     browsePathwayData,
     data: props,
@@ -264,6 +268,7 @@ export default function LessonView(
                 lessonSlug={lessonSlug}
                 unitSlug={unitSlug}
                 programmeSlug={programmeSlug}
+                onClickShare={trackShare}
               />
             </OakGridArea>
             <OakGridArea
