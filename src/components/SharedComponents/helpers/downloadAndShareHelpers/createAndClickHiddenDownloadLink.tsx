@@ -45,7 +45,7 @@ export const waitForLinkCallback = (callback: () => void) => {
     if (linkElement?.hasAttribute("clicked")) {
       // Safari needs additional time to actually initiate the download
       // after the click event fires, before the page can navigate
-      setTimeout(callback, 500);
+      setTimeout(callback, 1000);
     } else if (retryCount < 9) {
       retryCount++;
       setTimeout(pollForLink, 100);
