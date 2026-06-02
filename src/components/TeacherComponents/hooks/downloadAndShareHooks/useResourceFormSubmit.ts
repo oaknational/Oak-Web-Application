@@ -60,6 +60,7 @@ const useResourceFormSubmit = () => {
         selectedAdditionalFilesIds,
         isLegacyDownload: onSubmitProps.isLegacyDownload,
         authToken: accessToken,
+        openInANewTab: true,
       });
     } else if (onSubmitProps.type === "curriculum") {
       const { mvRefreshTime, slugs, tierSlug, childSubjectSlug } =
