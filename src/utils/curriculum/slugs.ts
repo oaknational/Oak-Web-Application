@@ -9,6 +9,7 @@ import {
 } from "@oaknational/oak-curriculum-schema";
 import slugify from "slugify";
 
+import { getSubjectPhaseSlug } from "@/components/TeacherComponents/helpers/getSubjectPhaseSlug";
 import { CurriculumUnitsTabData } from "@/node-lib/curriculum-api-2023";
 import { CurriculumPhaseOptions } from "@/node-lib/curriculum-api-2023/queries/curriculumPhaseOptions/curriculumPhaseOptions.query";
 
@@ -102,6 +103,7 @@ export type CurriculumSelectionSlugs = {
   phaseSlug: string;
   subjectSlug: string;
   ks4OptionSlug: string | null;
+  pathwaySlug?: string | null;
 };
 
 export type CurriculumSelectionTitles = {
@@ -169,6 +171,27 @@ export const KS4_EXAMBOARD_PREFERENCE: Record<string, string> = {
   "design-technology": "aqa",
 };
 
+/**
+ * Picks the default KS4 option slug for a subject (exam board, GCSE, core, etc.), using
+ * {@link KS4_EXAMBOARD_PREFERENCE} only when that slug exists in `ks4OptionSlugs`, otherwise
+ * falls back to the first entry.
+ */
+export function getPreferredKs4OptionSlug(
+  subjectSlug: string,
+  ks4OptionSlugs: readonly string[],
+): string | null {
+  if (!ks4OptionSlugs[0]) {
+    return null;
+  }
+
+  const preferred = KS4_EXAMBOARD_PREFERENCE[subjectSlug];
+  if (preferred && ks4OptionSlugs.includes(preferred)) {
+    return preferred;
+  }
+
+  return ks4OptionSlugs[0];
+}
+
 export function getKs4RedirectSlug(
   allSubjectPhases: CurriculumPhaseOptions,
   slugs: CurriculumSelectionSlugs,
@@ -186,16 +209,80 @@ export function getKs4RedirectSlug(
     return;
   }
 
-  const preferedOption =
-    match.ks4_options.find(
-      (opt) => opt.slug === KS4_EXAMBOARD_PREFERENCE[match.slug],
-    ) ?? match.ks4_options[0]!;
+  const ks4OptionSlug = getPreferredKs4OptionSlug(
+    match.slug,
+    match.ks4_options.map((opt) => opt.slug),
+  );
+
+  if (!ks4OptionSlug) {
+    return;
+  }
 
   return {
     subjectSlug: match.slug,
     phaseSlug: slugs.phaseSlug,
-    ks4OptionSlug: preferedOption.slug,
+    ks4OptionSlug,
   };
+}
+
+/**
+ * Resolves a subject-phase slug from available options
+ */
+export function resolveTeacherProgrammeSubjectPhaseSlug(
+  subjects: CurriculumPhaseOptions,
+  {
+    subjectSlug,
+    phaseSlug,
+    pathwaySlug = null,
+    ks4OptionSlug = null,
+  }: {
+    subjectSlug: string;
+    phaseSlug: string;
+    pathwaySlug?: string | null;
+    ks4OptionSlug?: string | null;
+  },
+): string {
+  // Pathway is already known from programme data (e.g. core, gcse) — use it
+  // directly rather than inferring a KS4 option from phase options.
+  if (pathwaySlug) {
+    return getSubjectPhaseSlug({
+      subject: subjectSlug,
+      phaseSlug,
+      pathwaySlug,
+    });
+  }
+
+  const slugs: CurriculumSelectionSlugs = {
+    subjectSlug,
+    phaseSlug,
+    ks4OptionSlug,
+  };
+
+  // Caller supplied a complete, valid slug (including an explicit ks4 option).
+  if (isValidSubjectPhaseSlug(subjects, slugs)) {
+    return getSubjectPhaseSlug({
+      subject: subjectSlug,
+      phaseSlug,
+      examBoardSlug: ks4OptionSlug,
+    });
+  }
+
+  // No ks4 option yet - pick the default from phase options (e.g. history →
+  // edexcel, citizenship → gcse) so incomplete slugs still resolve to a page.
+  const redirectParams = getKs4RedirectSlug(subjects, slugs);
+  if (redirectParams) {
+    return getSubjectPhaseSlug({
+      subject: redirectParams.subjectSlug,
+      phaseSlug: redirectParams.phaseSlug,
+      examBoardSlug: redirectParams.ks4OptionSlug,
+    });
+  }
+
+  // Subject has no ks4 options in phase options — plain subject-phase slug only.
+  return getSubjectPhaseSlug({
+    subject: subjectSlug,
+    phaseSlug,
+  });
 }
 
 export function createTeacherProgrammeSlug(

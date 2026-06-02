@@ -7,42 +7,12 @@ import { useRouter } from "next/navigation";
 
 import { DropdownFocusManager } from "../DropdownFocusManager/DropdownFocusManager";
 
-import { resolveOakHref } from "@/common-lib/urls";
 import { getValidSubjectIconName } from "@/utils/getValidSubjectIconName";
 import {
   TeachersSubNavData,
   TeachersSubNavData as TeachersData,
   SubjectsNavItem,
 } from "@/node-lib/curriculum-api-2023/queries/topNav/topNav.schema";
-import { getSubjectPhaseSlug } from "@/components/TeacherComponents/helpers/getSubjectPhaseSlug";
-
-export const getSubjectLinkHref = ({
-  subject,
-  keyStageSlug,
-  phaseSlug,
-}: {
-  subject: SubjectsNavItem;
-  keyStageSlug: string;
-  phaseSlug: "primary" | "secondary";
-}): string => {
-  if (keyStageSlug === "early-years-foundation-stage") {
-    return resolveOakHref({
-      page: "unit-index",
-      programmeSlug: subject.programmeSlug!,
-    });
-  }
-
-  return resolveOakHref({
-    page: "teacher-programme",
-    subjectPhaseSlug: getSubjectPhaseSlug({
-      subject: subject.slug,
-      phaseSlug: phaseSlug,
-      pathwaySlug: subject.pathwaySlug ? subject.pathwaySlug : null,
-    }),
-    tab: "units",
-    query: keyStageSlug ? { keystages: keyStageSlug } : undefined,
-  });
-};
 
 const TopNavSubjectButtons = ({
   selectedMenu,
@@ -107,17 +77,11 @@ const TopNavSubjectButtons = ({
       {subjects &&
         subjects.length > 0 &&
         subjects.map((subject) => {
-          const { slug } = subject;
+          const { slug, href } = subject;
           const buttonId = focusManager?.createId(
             `teachers-${selectedMenu}-${keyStageSlug}`,
             slug,
           );
-
-          const href = getSubjectLinkHref({
-            subject: subject,
-            keyStageSlug,
-            phaseSlug: selectedMenu as "primary" | "secondary",
-          });
 
           return (
             <OakLI key={subject.title}>

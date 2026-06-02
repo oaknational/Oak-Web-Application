@@ -164,6 +164,15 @@ export type IntegratedLessonDownloadsSuccessLinkProps = {
   unitSlug: string;
   lessonSlug: string;
 };
+export type IntegratedLessonShareLinkProps = {
+  page: "integrated-lesson-share";
+  programmeSlug: string;
+  unitSlug: string;
+  lessonSlug: string;
+  query?: {
+    preselected: PreselectedShareType | null;
+  };
+};
 export type IntegratedLessonMediaLinkProps = {
   page: "integrated-lesson-media";
   programmeSlug: string;
@@ -539,6 +548,7 @@ export type OakLinkProps =
   | IntegratedLessonOverviewLinkProps
   | IntegratedLessonDownloadsLinkProps
   | IntegratedLessonDownloadsSuccessLinkProps
+  | IntegratedLessonShareLinkProps
   | IntegratedLessonMediaLinkProps
   | SpecialistLessonListingLinkProps
   | UnitListingLinkProps
@@ -948,6 +958,13 @@ export const OAK_PAGES: {
     analyticsPageName: "Lesson Download",
     configType: "internal",
     pageType: "integrated-lesson-downloads-success",
+  }),
+  "integrated-lesson-share": createOakPageConfig({
+    pathPattern:
+      "/programmes/:programmeSlug/units/:unitSlug/lessons/:lessonSlug/share",
+    analyticsPageName: "Lesson Share",
+    configType: "internal",
+    pageType: "integrated-lesson-share",
   }),
   "integrated-lesson-media": createOakPageConfig({
     pathPattern:

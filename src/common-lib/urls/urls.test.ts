@@ -175,6 +175,18 @@ describe("urls.ts", () => {
         "/teachers/programmes/maths-secondary-year-10-aqa/units/algebra-123/lessons/solving-equations-456/downloads/success",
       );
     });
+    it("Integrated lesson share", () => {
+      expect(
+        resolveOakHref({
+          page: "integrated-lesson-share",
+          programmeSlug: "maths-secondary-year-10-aqa",
+          unitSlug: "algebra-123",
+          lessonSlug: "solving-equations-456",
+        }),
+      ).toBe(
+        "/programmes/maths-secondary-year-10-aqa/units/algebra-123/lessons/solving-equations-456/share",
+      );
+    });
     it("Integrated lesson media", () => {
       expect(
         resolveOakHref({

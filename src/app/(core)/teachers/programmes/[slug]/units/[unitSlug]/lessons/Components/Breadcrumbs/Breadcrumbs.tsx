@@ -6,10 +6,11 @@ import {
 } from "@oaknational/oak-components";
 
 import { resolveOakHref } from "@/common-lib/urls";
-import { LessonDownloadsPageData } from "@/node-lib/curriculum-api-2023/queries/lessonDownloads/lessonDownloads.schema";
-import { LessonMediaClipsData } from "@/node-lib/curriculum-api-2023/queries/lessonMediaClips/lessonMediaClips.schema";
-import { TeachersLessonOverviewPageData } from "@/node-lib/curriculum-api-2023/queries/teachersLessonOverview/teachersLessonOverview.schema";
-import { TeachersUnitOverviewData } from "@/node-lib/curriculum-api-2023/queries/teachersUnitOverview/teachersUnitOverview.schema";
+import type { LessonDownloadsPageData } from "@/node-lib/curriculum-api-2023/queries/lessonDownloads/lessonDownloads.schema";
+import type { LessonMediaClipsData } from "@/node-lib/curriculum-api-2023/queries/lessonMediaClips/lessonMediaClips.schema";
+import type { LessonShareData } from "@/node-lib/curriculum-api-2023/queries/lessonShare/lessonShare.schema";
+import type { TeachersLessonOverviewPageData } from "@/node-lib/curriculum-api-2023/queries/teachersLessonOverview/teachersLessonOverview.schema";
+import type { TeachersUnitOverviewData } from "@/node-lib/curriculum-api-2023/queries/teachersUnitOverview/teachersUnitOverview.schema";
 
 type BreadcrumbsProps =
   | {
@@ -25,6 +26,11 @@ type BreadcrumbsProps =
   | {
       mode: "downloads";
       data: LessonDownloadsPageData;
+      subjectPhaseSlug: string;
+    }
+  | {
+      mode: "share";
+      data: LessonShareData;
       subjectPhaseSlug: string;
     }
   | {
@@ -68,7 +74,7 @@ export const Breadcrumbs = ({
   };
 
   let breadcrumbs: OakBreadcrumbsProps["breadcrumbs"];
-  if (mode === "downloads") {
+  if (mode === "downloads" || mode === "share") {
     breadcrumbs = [
       firstBreadcrumb,
       {
@@ -89,7 +95,7 @@ export const Breadcrumbs = ({
         }),
       },
       {
-        text: "Downloads",
+        text: mode === "downloads" ? "Downloads" : "Share",
       },
     ];
   } else if (mode === "media") {

@@ -82,11 +82,23 @@ const InnerLessonPage = async (props: AppPageProps<LessonPageParams>) => {
       <LessonHeader
         heroImage={getSubjectHeroImageUrl(data.subjectSlug as SubjectName)}
         heading={data.lessonTitle}
+        lessonTitle={data.lessonTitle}
         currentLessonSlug={data.lessonSlug}
         nextLesson={data.nextLesson}
         prevLesson={data.previousLesson}
         programmeSlug={data.programmeSlug}
         unitSlug={data.unitSlug}
+        unitTitle={data.unitTitle}
+        keyStageSlug={data.keyStageSlug}
+        keyStageTitle={data.keyStageTitle}
+        subjectSlug={data.subjectSlug}
+        subjectTitle={data.subjectTitle}
+        year={data.year}
+        yearGroupTitle={data.yearGroupTitle}
+        examBoardTitle={data.examBoardTitle}
+        tierTitle={data.tierTitle}
+        pathwayTitle={data.pathwayTitle}
+        lessonReleaseDate={data.lessonReleaseDate}
         headerSlot={
           <Breadcrumbs
             data={data}
