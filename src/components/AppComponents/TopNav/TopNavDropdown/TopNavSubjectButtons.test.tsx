@@ -122,6 +122,8 @@ describe("TopNavSubjectButtons", () => {
         selectedSubject={null}
         keyStageSlug="ks4"
         handleClick={jest.fn()}
+        phase="secondary"
+        closeExamBoardPanel={jest.fn}
       />,
     );
 
@@ -145,11 +147,17 @@ describe("TopNavSubjectButtons", () => {
             buttonTitle: "AQA",
             programmeSlug: "geography-secondary-ks4-aqa",
             href: "/teachers/programmes/geography-secondary-aqa/units?keystages=ks4",
+            programmeFactors: {
+              examboard: { slug: "aqa", title: "AQA" },
+            },
           },
           {
             buttonTitle: "Edexcel",
             programmeSlug: "geography-secondary-ks4-edexcel",
             href: "/teachers/programmes/geography-secondary-edexcel/units?keystages=ks4",
+            programmeFactors: {
+              examboard: { slug: "edexcel", title: "Edexcel" },
+            },
           },
         ],
       },

@@ -239,7 +239,7 @@ const ExamBoardPanel = ({
               <OakLI key={key}>
                 <ExamBoardButton
                   element="a"
-                  href={href}
+                  href={examboard.href}
                   data-testid={key}
                   onClick={() => onClick(selectedSubject.slug, "ks4")}
                   width={"fit-content"}
