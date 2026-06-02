@@ -22,7 +22,7 @@ describe("LessonShareBar", () => {
     expect(pupilShareLink).toHaveAttribute(
       "href",
       resolveOakHref({
-        page: "lesson-share",
+        page: "integrated-lesson-share",
         lessonSlug: defaultProps.lessonSlug,
         unitSlug: defaultProps.unitSlug,
         programmeSlug: defaultProps.programmeSlug,

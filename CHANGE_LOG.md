@@ -1,3 +1,18 @@
+# [1.1085.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1084.0...v1.1085.0) (2026-06-01)
+
+
+### Features
+
+* add API catalog and Link header for agent discovery ([f8c4670](https://github.com/oaknational/Oak-Web-Application/commit/f8c4670190ae017cd3b07034fe207c2301b7e052))
+
+# [1.1084.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1083.0...v1.1084.0) (2026-05-29)
+
+
+### Features
+
+* add app router pages for share ([ad79c7d](https://github.com/oaknational/Oak-Web-Application/commit/ad79c7d490d60f086d01ea1b9bbb7447e03bead0))
+* mock feat flag in test ([19bfe73](https://github.com/oaknational/Oak-Web-Application/commit/19bfe7332d3289103a823d045062b6a0582ac2c5))
+
 # [1.1083.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1082.0...v1.1083.0) (2026-05-28)
 
 

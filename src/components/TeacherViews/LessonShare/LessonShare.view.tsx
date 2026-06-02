@@ -1,4 +1,6 @@
-import { useState } from "react";
+"use client";
+
+import { type ReactNode, useState } from "react";
 import {
   OakBox,
   OakHandDrawnHR,
@@ -33,8 +35,8 @@ import {
   getSchoolOption,
 } from "@/components/TeacherComponents/helpers/downloadAndShareHelpers/getFormattedDetailsForTracking";
 import { useHubspotSubmit } from "@/components/TeacherComponents/hooks/downloadAndShareHooks/useHubspotSubmit";
-import { LessonShareData } from "@/node-lib/curriculum-api-2023/queries/lessonShare/lessonShare.schema";
-import { SpecialistLessonShareData } from "@/node-lib/curriculum-api-2023/queries/specialistLessonShare/specialistLessonShare.schema";
+import type { LessonShareData } from "@/node-lib/curriculum-api-2023/queries/lessonShare/lessonShare.schema";
+import type { SpecialistLessonShareData } from "@/node-lib/curriculum-api-2023/queries/specialistLessonShare/specialistLessonShare.schema";
 import { useOnboardingStatus } from "@/components/TeacherComponents/hooks/useOnboardingStatus";
 import { AssignToClassroomModal } from "@/components/TeacherComponents/AssignToClassroomModal/AssignToClassroomModal";
 import {
@@ -42,7 +44,9 @@ import {
   LessonSection,
 } from "@/components/PupilComponents/lessonSections";
 
-export type LessonShareProps =
+export type LessonShareProps = {
+  breadcrumbsSlot?: ReactNode;
+} & (
   | {
       lesson: LessonPathway & {
         isSpecialist: false;
@@ -57,7 +61,8 @@ export type LessonShareProps =
     }
   | {
       lesson: SpecialistLessonShareData;
-    };
+    }
+);
 
 const classroomActivityMap: Partial<
   Record<ResourceType, ResourceTypesValueType>
@@ -196,36 +201,40 @@ export function LessonShare(props: LessonShareProps) {
     <OakBox $ph={["spacing-16", null]} $background={"bg-neutral"}>
       <OakMaxWidth $maxWidth={["spacing-480", "spacing-960", "spacing-1280"]}>
         <OakBox $mb={"spacing-32"} $mt={"spacing-24"}>
-          <Breadcrumbs
-            breadcrumbs={
-              !isSpecialist
-                ? [
-                    ...getBreadcrumbsForLessonPathway(lesson),
-                    getLessonOverviewBreadCrumb({
-                      lessonTitle,
-                      lessonSlug,
-                      programmeSlug,
-                      unitSlug,
-                      isCanonical: false,
-                    }),
-                    getLessonShareBreadCrumb({
-                      lessonSlug,
-                      programmeSlug,
-                      unitSlug,
-                      disabled: true,
-                    }),
-                  ]
-                : [
-                    ...getBreadcrumbsForSpecialistLessonPathway(lesson),
-                    ...getBreadCrumbForSpecialistShare({
-                      lessonSlug,
-                      programmeSlug,
-                      unitSlug,
-                      disabled: true,
-                    }),
-                  ]
-            }
-          />
+          {props.breadcrumbsSlot ? (
+            props.breadcrumbsSlot
+          ) : (
+            <Breadcrumbs
+              breadcrumbs={
+                !isSpecialist
+                  ? [
+                      ...getBreadcrumbsForLessonPathway(lesson),
+                      getLessonOverviewBreadCrumb({
+                        lessonTitle,
+                        lessonSlug,
+                        programmeSlug,
+                        unitSlug,
+                        isCanonical: false,
+                      }),
+                      getLessonShareBreadCrumb({
+                        lessonSlug,
+                        programmeSlug,
+                        unitSlug,
+                        disabled: true,
+                      }),
+                    ]
+                  : [
+                      ...getBreadcrumbsForSpecialistLessonPathway(lesson),
+                      ...getBreadCrumbForSpecialistShare({
+                        lessonSlug,
+                        programmeSlug,
+                        unitSlug,
+                        disabled: true,
+                      }),
+                    ]
+              }
+            />
+          )}
           <OakHandDrawnHR
             hrColor={"text-subdued"}
             $height={"spacing-4"}
