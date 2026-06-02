@@ -12,10 +12,9 @@ import withPageErrorHandling, {
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 import type { LessonShareData } from "@/node-lib/curriculum-api-2023/queries/lessonShare/lessonShare.schema";
 import { getTeacherSubjectPhaseSlug } from "@/utils/curriculum/slugs";
-import { getFeatureFlagValue } from "@/utils/featureFlags";
 
 type LessonSharePageParams = {
-  subjectPhaseSlug: string;
+  slug: string;
   unitSlug: string;
   lessonSlug: string;
 };
@@ -37,14 +36,10 @@ const getCachedLessonShareData = cache(
 export async function generateMetadata(
   props: AppPageProps<LessonSharePageParams>,
 ): Promise<Metadata> {
-  const { subjectPhaseSlug, unitSlug, lessonSlug } = await props.params;
+  const { slug, unitSlug, lessonSlug } = await props.params;
 
   try {
-    const data = await getCachedLessonShareData(
-      subjectPhaseSlug,
-      unitSlug,
-      lessonSlug,
-    );
+    const data = await getCachedLessonShareData(slug, unitSlug, lessonSlug);
     const title = `Lesson Share: ${data.lessonTitle} | ${data.keyStageSlug.toUpperCase()} ${data.subjectTitle}`;
     const description =
       "Share online lesson activities with your students, such as videos, worksheets and quizzes.";
@@ -67,20 +62,7 @@ export async function generateMetadata(
 const InnerLessonSharePage = async (
   props: AppPageProps<LessonSharePageParams>,
 ) => {
-  const isEnabled = await getFeatureFlagValue(
-    "teachers-integrated-journey",
-    "boolean",
-  );
-
-  if (!isEnabled) {
-    return notFound();
-  }
-
-  const {
-    subjectPhaseSlug: programmeSlug,
-    unitSlug,
-    lessonSlug,
-  } = await props.params;
+  const { slug: programmeSlug, unitSlug, lessonSlug } = await props.params;
 
   const data = await getCachedLessonShareData(
     programmeSlug,

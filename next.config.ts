@@ -477,16 +477,6 @@ export default async (phase: NextConfig["phase"]): Promise<NextConfig> => {
       ];
     },
     async rewrites() {
-      // Remove once the lesson share page has been ported to app router
-      const lessonShareRewrites = [
-        {
-          source:
-            "/teachers/programmes/:programmeSlug/units/:unitSlug/lessons/:lessonSlug/share",
-          destination:
-            "/teachers/_programmes/:programmeSlug/units/:unitSlug/lessons/:lessonSlug/share",
-        },
-      ];
-
       // Serve the RFC 9727 API catalog from /.well-known/ — the App Router does
       // not route folders that start with a dot, so the handler lives under /api.
       const wellKnownRewrites = [
@@ -513,11 +503,7 @@ export default async (phase: NextConfig["phase"]): Promise<NextConfig> => {
               },
             ]
           : [];
-      return [
-        ...wellKnownRewrites,
-        ...developmentRewrites,
-        ...lessonShareRewrites,
-      ];
+      return [...wellKnownRewrites, ...developmentRewrites];
     },
     // Required for the posthog reverse proxy, but interferes with static URL redirections so we don't want this applied on production
     skipTrailingSlashRedirect: releaseStage === "development",
