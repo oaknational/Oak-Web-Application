@@ -4,13 +4,13 @@ exports[`AboutSharedHeader renders correctly 1`] = `
 <body>
   <div>
     <div
-      class="sc-aXZVg bZTQLO"
+      class="sc-aXZVg hKEalY"
     >
       <div
-        class="sc-aXZVg sc-gEvEer fjNszh hPyKbx"
+        class="sc-aXZVg sc-gEvEer jgafXv hPyKbx"
       >
         <div
-          class="sc-aXZVg sc-gEvEer jPvJsJ daEtut"
+          class="sc-aXZVg sc-gEvEer dFOKqz daEtut"
         >
           <h1
             class="sc-eldPxv kSQYKV"
@@ -28,10 +28,10 @@ exports[`AboutSharedHeader renders correctly 1`] = `
           </p>
         </div>
         <div
-          class="sc-aXZVg sc-9ed44546-0 jPvJsJ eKCzCZ"
+          class="sc-aXZVg sc-9ed44546-0 dFOKqz eKCzCZ"
         >
           <span
-            class="sc-aXZVg kvjdhA"
+            class="sc-aXZVg fPzviK"
           >
             <img
               alt="Oak logo"
@@ -54,13 +54,13 @@ exports[`AboutSharedHeader renders correctly with loop illustration 1`] = `
 <body>
   <div>
     <div
-      class="sc-aXZVg bZTQLO"
+      class="sc-aXZVg hKEalY"
     >
       <div
-        class="sc-aXZVg sc-gEvEer fjNszh hPyKbx"
+        class="sc-aXZVg sc-gEvEer jgafXv hPyKbx"
       >
         <div
-          class="sc-aXZVg sc-gEvEer jPvJsJ daEtut"
+          class="sc-aXZVg sc-gEvEer dFOKqz daEtut"
         >
           <h1
             class="sc-eldPxv kSQYKV"
@@ -78,10 +78,10 @@ exports[`AboutSharedHeader renders correctly with loop illustration 1`] = `
           </p>
         </div>
         <div
-          class="sc-aXZVg sc-9ed44546-0 jPvJsJ eKCzCZ"
+          class="sc-aXZVg sc-9ed44546-0 dFOKqz eKCzCZ"
         >
           <span
-            class="sc-aXZVg fjkwRj sc-9ed44546-1 bPEnOT"
+            class="sc-aXZVg RPavd sc-9ed44546-1 bPEnOT"
             data-testid="about-shared-loop"
           >
             <img
