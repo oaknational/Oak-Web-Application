@@ -1368,38 +1368,33 @@ export function resolveOakHref(props: ResolveOakHrefProps): string {
 export function generateSubjectPhasePickerLinks(
   subjects: CurriculumPhaseOptions,
 ): Array<{ label: string; href: string }> {
-  const links: Array<{ label: string; href: string }> = [];
+  const resolveTeacherProgrammeHref = (subjectPhaseSlug: string) =>
+    resolveOakHref({
+      page: "teacher-programme",
+      subjectPhaseSlug,
+      tab: "units",
+    });
 
-  subjects.forEach((subject) => {
-    subject.phases.forEach((phase) => {
+  return subjects.flatMap((subject) =>
+    subject.phases.flatMap((phase) => {
       const subjectPhaseSlug = `${subject.slug}-${phase.slug}`;
-      const href = resolveOakHref({
-        page: "teacher-programme",
-        subjectPhaseSlug,
-        tab: "units",
-      });
-      links.push({
+      const phaseLink = {
         label: `${subject.title} - ${phase.title}`,
-        href,
-      });
+        href: resolveTeacherProgrammeHref(subjectPhaseSlug),
+      };
 
       // Add KS4 exam board variants for secondary phase
-      if (phase.slug === "secondary" && subject.ks4_options?.length) {
-        subject.ks4_options.forEach((ks4Option) => {
-          const ks4SubjectPhaseSlug = `${subject.slug}-${phase.slug}-${ks4Option.slug}`;
-          const ks4Href = resolveOakHref({
-            page: "teacher-programme",
-            subjectPhaseSlug: ks4SubjectPhaseSlug,
-            tab: "units",
-          });
-          links.push({
-            label: `${subject.title} - ${phase.title} - ${ks4Option.title}`,
-            href: ks4Href,
-          });
-        });
-      }
-    });
-  });
+      const ks4Links =
+        phase.slug === "secondary"
+          ? (subject.ks4_options ?? []).map((ks4Option) => ({
+              label: `${subject.title} - ${phase.title} - ${ks4Option.title}`,
+              href: resolveTeacherProgrammeHref(
+                `${subjectPhaseSlug}-${ks4Option.slug}`,
+              ),
+            }))
+          : [];
 
-  return links;
+      return [phaseLink, ...ks4Links];
+    }),
+  );
 }
