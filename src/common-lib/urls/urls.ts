@@ -18,7 +18,7 @@ import {
 import isSlugEYFS, {
   EYFS_PROGRAMME_SLUG_REGEX,
 } from "@/utils/slugModifiers/isSlugEYFS";
-import { CurriculumPhaseOptions } from "@/node-lib/curriculum-api-2023";
+import type { CurriculumPhaseOptions } from "@/node-lib/curriculum-api-2023";
 
 const reportError = errorReporter("urls.ts");
 

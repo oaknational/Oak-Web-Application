@@ -61,18 +61,6 @@ const SubjectPhasePickerLinks = styled.div`
   clip: rect(0, 0, 0, 0);
   white-space: nowrap;
   border-width: 0;
-
-  &.visually-hidden {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    padding: 0;
-    margin: -1px;
-    overflow: hidden;
-    clip: rect(0, 0, 0, 0);
-    white-space: nowrap;
-    border-width: 0;
-  }
 `;
 
 const LinksForSEO = ({
@@ -91,7 +79,7 @@ const LinksForSEO = ({
   if (!afterInitialRender && !shouldHide) {
     return (
       <SubjectPhasePickerLinks
-        id="visually-hidden-subject-phase-picker"
+        data-testid="visually-hidden-subject-phase-picker"
         aria-hidden="true"
       >
         <ul>

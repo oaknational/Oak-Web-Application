@@ -51,7 +51,9 @@ describe("Component - subject phase picker", () => {
       </Providers>,
     );
 
-    expect(html).toContain('id="visually-hidden-subject-phase-picker"');
+    expect(html).toContain(
+      'data-testid="visually-hidden-subject-phase-picker"',
+    );
     expect(html).toContain("/teachers/programmes/");
   });
 
