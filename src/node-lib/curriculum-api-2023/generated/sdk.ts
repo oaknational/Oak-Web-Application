@@ -21342,7 +21342,7 @@ export type TeachersUnitOverviewQuery = { __typename?: 'query_root', lessons: Ar
 export type TopNavQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type TopNavQuery = { __typename?: 'query_root', programmes: Array<{ __typename?: 'published_mv_synthetic_unitvariants_with_lesson_ids_by_keystage_18_0_0', programme_fields?: any | null, programme_slug?: string | null, features?: any | null, actions?: any | null }> };
+export type TopNavQuery = { __typename?: 'query_root', programmes: Array<{ __typename?: 'published_mv_synthetic_unitvariants_with_lesson_ids_by_keystage_18_0_0', programme_fields?: any | null, programme_slug?: string | null, features?: any | null, actions?: any | null }>, phaseOptions: Array<{ __typename?: 'published_mv_curriculum_phase_options_0_4', title?: string | null, slug?: string | null, phases?: any | null, keystages?: any | null, ks4_options?: any | null }> };
 
 export type UnitListingQueryVariables = Exact<{
   programmeSlug: Scalars['String']['input'];
@@ -22547,6 +22547,15 @@ export const TopNavDocument = gql`
     programme_slug
     features
     actions
+  }
+  phaseOptions: published_mv_curriculum_phase_options_0_4(
+    where: {non_curriculum: {_eq: false}}
+  ) {
+    title
+    slug
+    phases
+    keystages
+    ks4_options
   }
 }
     `;

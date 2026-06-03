@@ -14,9 +14,9 @@ import { getOpenGraphMetadata, getTwitterMetadata } from "@/app/metadata";
 import withPageErrorHandling, {
   AppPageProps,
 } from "@/hocs/withPageErrorHandling";
-import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
-import { TeachersLessonOverviewPageData } from "@/node-lib/curriculum-api-2023/queries/teachersLessonOverview/teachersLessonOverview.schema";
 import { getTeacherSubjectPhaseSlug } from "@/utils/curriculum/slugs";
+import { cacheData } from "@/node-lib/cache";
+import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 
 type LessonPageParams = {
   slug: string;
@@ -24,18 +24,19 @@ type LessonPageParams = {
   lessonSlug: string;
 };
 
+export const dynamic = "force-static";
+
 const getCachedLessonData = cache(
-  async (
-    programmeSlug: string,
-    unitSlug: string,
-    lessonSlug: string,
-  ): Promise<TeachersLessonOverviewPageData> => {
-    return curriculumApi2023.teachersLessonOverview({
-      programmeSlug,
-      unitSlug,
-      lessonSlug,
-    });
-  },
+  cacheData(
+    async (programmeSlug: string, unitSlug: string, lessonSlug: string) => {
+      return curriculumApi2023.teachersLessonOverview({
+        programmeSlug,
+        unitSlug,
+        lessonSlug,
+      });
+    },
+    ["teachers-lesson-overview"],
+  ),
 );
 
 export async function generateMetadata(
@@ -82,11 +83,23 @@ const InnerLessonPage = async (props: AppPageProps<LessonPageParams>) => {
       <LessonHeader
         heroImage={getSubjectHeroImageUrl(data.subjectSlug as SubjectName)}
         heading={data.lessonTitle}
+        lessonTitle={data.lessonTitle}
         currentLessonSlug={data.lessonSlug}
         nextLesson={data.nextLesson}
         prevLesson={data.previousLesson}
         programmeSlug={data.programmeSlug}
         unitSlug={data.unitSlug}
+        unitTitle={data.unitTitle}
+        keyStageSlug={data.keyStageSlug}
+        keyStageTitle={data.keyStageTitle}
+        subjectSlug={data.subjectSlug}
+        subjectTitle={data.subjectTitle}
+        year={data.year}
+        yearGroupTitle={data.yearGroupTitle}
+        examBoardTitle={data.examBoardTitle}
+        tierTitle={data.tierTitle}
+        pathwayTitle={data.pathwayTitle}
+        lessonReleaseDate={data.lessonReleaseDate}
         headerSlot={
           <Breadcrumbs
             data={data}

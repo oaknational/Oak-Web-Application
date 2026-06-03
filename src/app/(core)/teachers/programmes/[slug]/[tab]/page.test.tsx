@@ -35,17 +35,6 @@ jest.mock("next/navigation", () => {
   };
 });
 
-// Jest is not setup to test RSCs, so it does not load the server build
-// so we mock the cache function.
-jest.mock("react", () => {
-  const actualReact = jest.requireActual("react");
-
-  return {
-    ...actualReact,
-    cache: <T extends (...args: unknown[]) => unknown>(fn: T) => fn,
-  };
-});
-
 jest.mock("@/node-lib/cms", () => ({
   __esModule: true,
   default: {

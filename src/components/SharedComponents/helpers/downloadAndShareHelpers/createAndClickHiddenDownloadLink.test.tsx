@@ -1,6 +1,8 @@
 import createAndClickHiddenDownloadLink, {
   hideAndClickDownloadLink,
   createLink,
+  waitForLinkCallback,
+  getDownloadLink,
 } from "./createAndClickHiddenDownloadLink";
 
 describe("hideAndClickDownloadLink()", () => {
@@ -74,5 +76,30 @@ describe("createAndClickHiddenDownloadLink()", () => {
     expect(windowOpenSpy).not.toHaveBeenCalled();
     expect(appendSpy).toHaveBeenCalled();
     appendSpy.mockRestore();
+  });
+});
+
+const mockCallback = jest.fn();
+jest.useFakeTimers();
+const setTimeoutMock = jest.spyOn(globalThis, "setTimeout");
+
+describe("waitForLinkCallback", () => {
+  beforeEach(() => {
+    const previousLink = getDownloadLink();
+    if (previousLink) {
+      previousLink.remove();
+    }
+  });
+  test("runs a maximum number of times", () => {
+    waitForLinkCallback(mockCallback);
+    jest.runAllTimers();
+    expect(setTimeoutMock).toHaveBeenCalledTimes(10);
+    expect(mockCallback).not.toHaveBeenCalled();
+  });
+  test("it calls the callback", () => {
+    createAndClickHiddenDownloadLink("testUrl");
+    waitForLinkCallback(mockCallback);
+    jest.runAllTimers();
+    expect(mockCallback).toHaveBeenCalled();
   });
 });

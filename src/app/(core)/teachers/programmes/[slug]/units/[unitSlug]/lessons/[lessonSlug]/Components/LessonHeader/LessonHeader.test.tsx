@@ -1,4 +1,5 @@
 import { screen } from "@testing-library/dom";
+import { act } from "@testing-library/react";
 
 import LessonHeader, { LessonHeaderProps } from "./LessonHeader";
 
@@ -10,14 +11,37 @@ import {
   mockLoggedIn,
 } from "@/__tests__/__helpers__/mockUser";
 
+const lessonResourceDownloadStarted = jest.fn();
+jest.mock("@/context/Analytics/useAnalytics", () => ({
+  __esModule: true,
+  default: () => ({
+    track: {
+      lessonResourceDownloadStarted: (...args: unknown[]) =>
+        lessonResourceDownloadStarted(...args),
+    },
+  }),
+}));
+
 const render = renderWithTheme;
 
 const defaultProps: LessonHeaderProps = {
   heading: "Lesson title",
+  lessonTitle: "Lesson title",
   heroImage: "imageSrc",
   currentLessonSlug: "lesson-2",
   programmeSlug: "programme-1",
   unitSlug: "unit-1",
+  unitTitle: "Unit 1",
+  keyStageSlug: "ks4",
+  keyStageTitle: "KS4",
+  subjectSlug: "english",
+  subjectTitle: "English",
+  year: "10",
+  yearGroupTitle: "Year 10",
+  examBoardTitle: null,
+  tierTitle: null,
+  pathwayTitle: null,
+  lessonReleaseDate: "2024-01-01",
   prevLesson: {
     lessonIndex: 1,
     lessonSlug: "lesson-1",
@@ -33,6 +57,10 @@ const defaultProps: LessonHeaderProps = {
 };
 
 describe("LessonHeader", () => {
+  beforeEach(() => {
+    jest.clearAllMocks();
+  });
+
   it("renders prev and next lesson buttons", () => {
     render(<LessonHeader {...defaultProps} />);
 
@@ -77,6 +105,21 @@ describe("LessonHeader", () => {
         programmeSlug: defaultProps.programmeSlug,
         unitSlug: defaultProps.unitSlug,
         query: { preselected: "all" },
+      }),
+    );
+  });
+  it("fires lesson resource download started when download link is clicked", () => {
+    render(<LessonHeader {...defaultProps} />);
+
+    const downloadLink = screen.getByTestId("download-all-button");
+
+    act(() => {
+      downloadLink.click();
+    });
+
+    expect(lessonResourceDownloadStarted).toHaveBeenCalledWith(
+      expect.objectContaining({
+        downloadResourceButtonName: "all",
       }),
     );
   });

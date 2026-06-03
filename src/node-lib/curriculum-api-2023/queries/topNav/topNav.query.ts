@@ -33,9 +33,25 @@ const topNavQuery = (sdk: Sdk) => async (): Promise<TopNavProps> => {
     };
   }
 
+  const curriculumPhaseOptionsWithoutCore = parsed.data.phaseOptions.map(
+    (subject) => ({
+      ...subject,
+      ks4_options:
+        subject.ks4_options?.filter(({ slug }) => slug !== "core") ?? null,
+    }),
+  );
+
   const teachersNavData: TeachersSubNavData = {
-    primary: getTeachersNavData(parsed.data, "primary"),
-    secondary: getTeachersNavData(parsed.data, "secondary"),
+    primary: getTeachersNavData(
+      parsed.data,
+      "primary",
+      curriculumPhaseOptionsWithoutCore,
+    ),
+    secondary: getTeachersNavData(
+      parsed.data,
+      "secondary",
+      curriculumPhaseOptionsWithoutCore,
+    ),
     guidance: {
       title: "Guidance",
       slug: "guidance",
