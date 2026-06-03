@@ -32,6 +32,9 @@ export const metadata: Metadata = {
     index: true,
     follow: true,
   },
+  other: {
+    "pingdom-uptime-check": getBrowserConfig("pingdomUptimeId"),
+  },
 };
 const lexend = Lexend({ subsets: ["latin"] });
 

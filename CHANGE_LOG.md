@@ -1,3 +1,22 @@
+# [1.1089.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1088.1...v1.1089.0) (2026-06-03)
+
+
+### Bug Fixes
+
+* preserve keystage params between tabs on programme page ([293a9b1](https://github.com/oaknational/Oak-Web-Application/commit/293a9b1fe7527b66667ac95556436650296d0905))
+
+
+### Features
+
+* add query using resolveOakHref ([6fd83eb](https://github.com/oaknational/Oak-Web-Application/commit/6fd83ebf7e8cde547b57d8ede9a6bca60a74eebb))
+
+## [1.1088.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.1088.0...v1.1088.1) (2026-06-03)
+
+
+### Bug Fixes
+
+* add metatag for health pingdom health checks ([9acbe3f](https://github.com/oaknational/Oak-Web-Application/commit/9acbe3f513d29950c5664a4f2e8351b16fa93e9e))
+
 # [1.1088.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1087.0...v1.1088.0) (2026-06-03)
 
 

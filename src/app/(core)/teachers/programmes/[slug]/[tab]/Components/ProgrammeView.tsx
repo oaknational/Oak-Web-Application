@@ -81,6 +81,7 @@ export const ProgrammeView = ({
   initialFilter,
 }: ProgrammePageProps) => {
   const searchParams = useSearchParams();
+  const keystagesParam = searchParams?.get("keystages");
   const [activeTab, setActiveTab] = useState<TabSlug>(tabSlug);
 
   const { subjectSlug } = curriculumSelectionSlugs;
@@ -113,7 +114,7 @@ export const ProgrammeView = ({
   );
 
   const selectedKeystageSlug = filters.keystages.find(
-    (ks) => searchParams?.get("keystages") === ks,
+    (ks) => keystagesParam === ks,
   );
   const heading = buildProgrammeHeading({
     subjectTitle,
@@ -135,6 +136,10 @@ export const ProgrammeView = ({
       }
     }
   }, [pathname]);
+
+  const preserveKeystagesParamInUrl = (url: string) => {
+    return keystagesParam ? `${url}?keystages=${keystagesParam}` : url;
+  };
 
   return (
     <>
@@ -161,7 +166,8 @@ export const ProgrammeView = ({
               const tabSlug = tabNameToSlug[tabName];
               // Prevents a full page reload using client side nav
               event.preventDefault();
-              globalThis.history.pushState(null, "", tabSlug);
+              const url = preserveKeystagesParamInUrl(tabSlug);
+              globalThis.history.pushState(null, "", url);
             }}
             tabs={TAB_NAMES.map((tab) => ({
               label: tab,
@@ -170,6 +176,9 @@ export const ProgrammeView = ({
                 page: "teacher-programme",
                 subjectPhaseSlug,
                 tab: tabNameToSlug[tab],
+                query: {
+                  keystages: keystagesParam ?? undefined,
+                },
               }),
             }))}
           />
