@@ -466,4 +466,74 @@ describe("generateMetadata", () => {
 
     expect(result.robots).toBeUndefined();
   });
+
+  describe("search param validation", () => {
+    const mockProgrammeData = {
+      programmeUnitsData: curriculumOverviewMVFixture({
+        subjectTitle: "Maths",
+      }),
+      curriculumUnitsData: {
+        units: [
+          createUnit({
+            slug: "unit-1",
+            year: "5",
+            keystage_slug: "ks2",
+            subject_slug: "maths",
+            phase_slug: "primary",
+          }),
+        ],
+      },
+      curriculumPhaseOptions: {
+        subjects: filterValidCurriculumPhaseOptions(
+          curriculumPhaseOptionsFixture(),
+        ),
+        tab: "units" as const,
+      },
+      subjectPhaseKeystageSlugs: {
+        subjectSlug: "maths",
+        phaseSlug: "primary",
+        ks4OptionSlug: null,
+      },
+    };
+
+    beforeEach(() => {
+      jest.mocked(getProgrammeData).mockResolvedValue(mockProgrammeData);
+    });
+
+    it("sanitizes invalid years param in meta title", async () => {
+      const result = await generateMetadata({
+        params: Promise.resolve({ slug: "maths-primary", tab: "units" }),
+        searchParams: Promise.resolve({ years: "invalid" }),
+      });
+
+      expect(result.title).toBe(
+        "Free Secondary Maths Lesson & Curriculum Resources",
+      );
+    });
+
+    it("sanitizes invalid keystages param in meta title", async () => {
+      const result = await generateMetadata({
+        params: Promise.resolve({ slug: "maths-primary", tab: "units" }),
+        searchParams: Promise.resolve({ keystages: "bad-value" }),
+      });
+
+      expect(result.title).toBe(
+        "Free Secondary Maths Lesson & Curriculum Resources",
+      );
+    });
+
+    it("preserves other search params while validating years and keystages", async () => {
+      const result = await generateMetadata({
+        params: Promise.resolve({ slug: "maths-primary", tab: "units" }),
+        searchParams: Promise.resolve({
+          years: "7",
+          tiers: "foundation",
+        }),
+      });
+
+      expect(result.title).toBe(
+        "Free Y7 Maths Foundation Lesson & Curriculum Resources",
+      );
+    });
+  });
 });
