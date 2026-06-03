@@ -1,0 +1,229 @@
+import { screen } from "@testing-library/dom";
+import userEvent from "@testing-library/user-event";
+
+import { ProgrammeView } from "./ProgrammeView";
+
+import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
+import { resolveOakHref } from "@/common-lib/urls";
+import curriculumUnitsTabFixture from "@/node-lib/curriculum-api-2023/fixtures/curriculumUnits.fixture";
+import { formatCurriculumUnitsData } from "@/pages-helpers/curriculum/docx/tab-helpers";
+import {
+  curriculumOverviewCMSFixture,
+  curriculumOverviewMVFixture,
+} from "@/node-lib/curriculum-api-2023/fixtures/curriculumOverview.fixture";
+
+const subjectPhaseSlug = "science-secondary-aqa";
+
+const usePathnameMock = jest.fn().mockReturnValue(
+  resolveOakHref({
+    page: "teacher-programme",
+    subjectPhaseSlug,
+    tab: "units",
+  }),
+);
+const useRouterMock = jest.fn();
+const mockUseFetchResult = { data: [], error: null, isLoading: false };
+
+jest.mock("next/navigation", () => {
+  return {
+    __esModule: true,
+    usePathname: () => usePathnameMock(),
+    useSearchParams: jest.fn(),
+    useRouter: () => useRouterMock,
+    notFound: () => {
+      throw new Error("NEXT_HTTP_ERROR_FALLBACK;404");
+    },
+  };
+});
+
+jest.mock(
+  "@/components/TeacherComponents/ResourcePageSchoolPicker/useSchoolPicker",
+  () => ({
+    __esModule: true,
+    default: () => ({
+      schools: [],
+      error: null,
+      schoolPickerInputValue: "",
+      setSchoolPickerInputValue: jest.fn(),
+      selectedSchool: undefined,
+      setSelectedSchool: jest.fn(),
+    }),
+  }),
+);
+
+jest.mock("@/hooks/useFetch", () => ({
+  __esModule: true,
+  useFetch: () => mockUseFetchResult,
+}));
+
+// Mock window history
+let pushSpy: jest.SpyInstance;
+beforeEach(() => {
+  pushSpy = jest.spyOn(globalThis.history, "pushState");
+});
+
+const defaultProps = {
+  curriculumSelectionSlugs: {
+    phaseSlug: "secondary",
+    subjectSlug: "science",
+    ks4OptionSlug: "aqa",
+  },
+  curriculumSelectionTitles: {
+    subjectTitle: "Science",
+    phaseTitle: "Secondary",
+    examboardTitle: "AQA",
+  },
+  subjectPhaseSlug,
+  ks4Options: [],
+  curriculumUnitsFormattedData: formatCurriculumUnitsData(
+    curriculumUnitsTabFixture(),
+  ),
+  curriculumDownloadsTabData: {
+    tiers: [],
+    child_subjects: [],
+  },
+  mvRefreshTime: 0,
+  curriculumInfo: curriculumOverviewMVFixture(),
+  curriculumCMSInfo: curriculumOverviewCMSFixture(),
+  subjectPhaseSanityData: null,
+  tabSlug: "units" as const,
+  trackingData: {
+    phaseSlug: "secondary",
+    subjectSlug: "maths",
+    ks4OptionSlug: "aqa",
+    subjectTitle: "Science",
+    ks4OptionTitle: "AQA",
+  },
+};
+
+const render = renderWithProviders();
+describe("ProgrammeView", () => {
+  it("renders the programme header", () => {
+    render(<ProgrammeView {...defaultProps} />);
+    const heading = screen.getByRole("heading", {
+      name: "Science secondary AQA",
+    });
+    expect(heading).toBeInTheDocument();
+  });
+  it("highlights the correct tab", () => {
+    render(<ProgrammeView {...defaultProps} />);
+    const unitsTab = screen.getByRole("link", { name: "Unit sequence" });
+    expect(unitsTab).toHaveStyle("background: #bef2bd");
+
+    const overviewTab = screen.getByRole("link", { name: "Explainer" });
+    expect(overviewTab).toHaveStyle("background: #222222");
+  });
+  it("renders the correct tab content for units", () => {
+    render(<ProgrammeView {...defaultProps} />);
+    const heading = screen.getByRole("heading", { name: "Year 7 units" });
+    expect(heading).toBeInTheDocument();
+  });
+  it("renders the correct tab content for overview", () => {
+    usePathnameMock.mockReturnValue(
+      resolveOakHref({
+        page: "teacher-programme",
+        subjectPhaseSlug,
+        tab: "curriculum-explainer",
+      }),
+    );
+    render(<ProgrammeView {...defaultProps} tabSlug="curriculum-explainer" />);
+    const heading = screen.getByRole("heading", { name: "Aims and purpose" });
+    expect(heading).toBeInTheDocument();
+  });
+  it("renders the correct tab content for download", () => {
+    usePathnameMock.mockReturnValue(
+      resolveOakHref({
+        page: "teacher-programme",
+        subjectPhaseSlug,
+        tab: "download",
+      }),
+    );
+    render(<ProgrammeView {...defaultProps} tabSlug="download" />);
+    const content = screen.getByText("Download curriculum resources");
+    expect(content).toBeInTheDocument();
+  });
+  it("navigates on tab click", async () => {
+    render(<ProgrammeView {...defaultProps} />);
+    const overviewTabButton = screen.getByRole("link", { name: "Explainer" });
+    const user = userEvent.setup();
+    await user.click(overviewTabButton);
+    expect(pushSpy).toHaveBeenCalledWith(null, "", "curriculum-explainer");
+  });
+
+  describe("non-curriculum subjects", () => {
+    const nonCurriculumProps = {
+      ...defaultProps,
+      curriculumInfo: curriculumOverviewMVFixture({ nonCurriculum: true }),
+      curriculumCMSInfo: null,
+    };
+
+    it("does not render tabs", () => {
+      render(<ProgrammeView {...nonCurriculumProps} />);
+      expect(screen.queryByTestId("programme-tabs")).not.toBeInTheDocument();
+    });
+
+    it("calls notFound when the overview tab is active", () => {
+      expect(() =>
+        render(
+          <ProgrammeView
+            {...nonCurriculumProps}
+            tabSlug="curriculum-explainer"
+          />,
+        ),
+      ).toThrow("NEXT_HTTP_ERROR_FALLBACK;404");
+    });
+  });
+
+  describe("initialFilter prop (SSR filter resolution)", () => {
+    beforeEach(() => {
+      usePathnameMock.mockReturnValue(
+        resolveOakHref({
+          page: "teacher-programme",
+          subjectPhaseSlug,
+          tab: "units",
+        }),
+      );
+    });
+
+    it("accepts initialFilter prop without error", () => {
+      const initialFilter = {
+        years: ["7"],
+        tiers: ["foundation"],
+        childSubjects: [],
+        subjectCategories: [],
+        threads: [],
+        pathways: [],
+        keystages: [],
+      };
+
+      render(<ProgrammeView {...defaultProps} initialFilter={initialFilter} />);
+      const heading = screen.getByRole("heading", {
+        name: "Science secondary AQA",
+      });
+      expect(heading).toBeInTheDocument();
+    });
+
+    it("renders correctly with initialFilter for a single year", () => {
+      const initialFilter = {
+        years: ["7"],
+        tiers: ["foundation"],
+        childSubjects: [],
+        subjectCategories: [],
+        threads: [],
+        pathways: [],
+        keystages: [],
+      };
+
+      render(<ProgrammeView {...defaultProps} initialFilter={initialFilter} />);
+      // The heading should reflect the single year selection
+      const heading = screen.getByRole("heading", { name: "Year 7 units" });
+      expect(heading).toBeInTheDocument();
+    });
+
+    it("gracefully falls back when initialFilter is not provided", () => {
+      render(<ProgrammeView {...defaultProps} />);
+      const heading = screen.getByRole("heading", { name: "Year 7 units" });
+      expect(heading).toBeInTheDocument();
+    });
+  });
+});

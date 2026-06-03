@@ -17,7 +17,6 @@ describe("DropdownFocusManager", () => {
     // Top-level keys
     expect(focusMap.has("teachers-primary")).toBe(true);
     expect(focusMap.has("teachers-secondary")).toBe(true);
-    expect(focusMap.has("teachers-curriculum-landing-page")).toBe(true);
     expect(focusMap.has("teachers-aboutUs")).toBe(true);
     expect(focusMap.has("teachers-guidance")).toBe(true);
   });
@@ -38,7 +37,6 @@ describe("DropdownFocusManager", () => {
       "teachers-primary-ks1-english",
       "teachers-primary-ks1-maths",
       "teachers-primary-ks1-financial-education",
-      "teachers-primary-ks1-all-subjects",
     ]);
     // Check a subject node
     const englishNode = focusMap.get("teachers-primary-ks1-english");
@@ -63,10 +61,7 @@ describe("DropdownFocusManager", () => {
     const financialNode = focusMap.get(
       "teachers-primary-ks1-financial-education",
     );
-    expect(financialNode?.isLastChild).toBe(false); // Only all-subjects is marked as last
-    // All subjects button
-    const allSubjectsNode = focusMap.get("teachers-primary-ks1-all-subjects");
-    expect(allSubjectsNode?.isLastChild).toBe(true);
+    expect(financialNode?.isLastChild).toBe(true);
   });
 
   it("should build focusMap for aboutUs and guidance sections", () => {
@@ -151,7 +146,7 @@ describe("DropdownFocusManager", () => {
 
       const node = manager
         .getFocusMap()
-        .get("teachers-primary-ks1-all-subjects")!;
+        .get("teachers-primary-ks1-financial-education");
       // @ts-expect-error: access private for test
       manager.handleTab(node, event);
       expect(event.preventDefault).toHaveBeenCalled();

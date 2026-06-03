@@ -10673,6 +10673,150 @@ export type Published_Mv_Threads_1_Variance_Fields = {
   units_count?: Maybe<Scalars['Float']['output']>;
 };
 
+/** columns and relationships of "published.mv_threads_2" */
+export type Published_Mv_Threads_2 = {
+  __typename?: 'published_mv_threads_2';
+  slug?: Maybe<Scalars['String']['output']>;
+  title?: Maybe<Scalars['String']['output']>;
+  unit_count?: Maybe<Scalars['bigint']['output']>;
+};
+
+/** aggregated selection of "published.mv_threads_2" */
+export type Published_Mv_Threads_2_Aggregate = {
+  __typename?: 'published_mv_threads_2_aggregate';
+  aggregate?: Maybe<Published_Mv_Threads_2_Aggregate_Fields>;
+  nodes: Array<Published_Mv_Threads_2>;
+};
+
+/** aggregate fields of "published.mv_threads_2" */
+export type Published_Mv_Threads_2_Aggregate_Fields = {
+  __typename?: 'published_mv_threads_2_aggregate_fields';
+  avg?: Maybe<Published_Mv_Threads_2_Avg_Fields>;
+  count: Scalars['Int']['output'];
+  max?: Maybe<Published_Mv_Threads_2_Max_Fields>;
+  min?: Maybe<Published_Mv_Threads_2_Min_Fields>;
+  stddev?: Maybe<Published_Mv_Threads_2_Stddev_Fields>;
+  stddev_pop?: Maybe<Published_Mv_Threads_2_Stddev_Pop_Fields>;
+  stddev_samp?: Maybe<Published_Mv_Threads_2_Stddev_Samp_Fields>;
+  sum?: Maybe<Published_Mv_Threads_2_Sum_Fields>;
+  var_pop?: Maybe<Published_Mv_Threads_2_Var_Pop_Fields>;
+  var_samp?: Maybe<Published_Mv_Threads_2_Var_Samp_Fields>;
+  variance?: Maybe<Published_Mv_Threads_2_Variance_Fields>;
+};
+
+
+/** aggregate fields of "published.mv_threads_2" */
+export type Published_Mv_Threads_2_Aggregate_FieldsCountArgs = {
+  columns?: InputMaybe<Array<Published_Mv_Threads_2_Select_Column>>;
+  distinct?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+/** aggregate avg on columns */
+export type Published_Mv_Threads_2_Avg_Fields = {
+  __typename?: 'published_mv_threads_2_avg_fields';
+  unit_count?: Maybe<Scalars['Float']['output']>;
+};
+
+/** Boolean expression to filter rows from the table "published.mv_threads_2". All fields are combined with a logical 'AND'. */
+export type Published_Mv_Threads_2_Bool_Exp = {
+  _and?: InputMaybe<Array<Published_Mv_Threads_2_Bool_Exp>>;
+  _not?: InputMaybe<Published_Mv_Threads_2_Bool_Exp>;
+  _or?: InputMaybe<Array<Published_Mv_Threads_2_Bool_Exp>>;
+  slug?: InputMaybe<String_Comparison_Exp>;
+  title?: InputMaybe<String_Comparison_Exp>;
+  unit_count?: InputMaybe<Bigint_Comparison_Exp>;
+};
+
+/** aggregate max on columns */
+export type Published_Mv_Threads_2_Max_Fields = {
+  __typename?: 'published_mv_threads_2_max_fields';
+  slug?: Maybe<Scalars['String']['output']>;
+  title?: Maybe<Scalars['String']['output']>;
+  unit_count?: Maybe<Scalars['bigint']['output']>;
+};
+
+/** aggregate min on columns */
+export type Published_Mv_Threads_2_Min_Fields = {
+  __typename?: 'published_mv_threads_2_min_fields';
+  slug?: Maybe<Scalars['String']['output']>;
+  title?: Maybe<Scalars['String']['output']>;
+  unit_count?: Maybe<Scalars['bigint']['output']>;
+};
+
+/** Ordering options when selecting data from "published.mv_threads_2". */
+export type Published_Mv_Threads_2_Order_By = {
+  slug?: InputMaybe<Order_By>;
+  title?: InputMaybe<Order_By>;
+  unit_count?: InputMaybe<Order_By>;
+};
+
+/** select columns of table "published.mv_threads_2" */
+export enum Published_Mv_Threads_2_Select_Column {
+  /** column name */
+  Slug = 'slug',
+  /** column name */
+  Title = 'title',
+  /** column name */
+  UnitCount = 'unit_count'
+}
+
+/** aggregate stddev on columns */
+export type Published_Mv_Threads_2_Stddev_Fields = {
+  __typename?: 'published_mv_threads_2_stddev_fields';
+  unit_count?: Maybe<Scalars['Float']['output']>;
+};
+
+/** aggregate stddev_pop on columns */
+export type Published_Mv_Threads_2_Stddev_Pop_Fields = {
+  __typename?: 'published_mv_threads_2_stddev_pop_fields';
+  unit_count?: Maybe<Scalars['Float']['output']>;
+};
+
+/** aggregate stddev_samp on columns */
+export type Published_Mv_Threads_2_Stddev_Samp_Fields = {
+  __typename?: 'published_mv_threads_2_stddev_samp_fields';
+  unit_count?: Maybe<Scalars['Float']['output']>;
+};
+
+/** Streaming cursor of the table "published_mv_threads_2" */
+export type Published_Mv_Threads_2_Stream_Cursor_Input = {
+  /** Stream column input with initial value */
+  initial_value: Published_Mv_Threads_2_Stream_Cursor_Value_Input;
+  /** cursor ordering */
+  ordering?: InputMaybe<Cursor_Ordering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type Published_Mv_Threads_2_Stream_Cursor_Value_Input = {
+  slug?: InputMaybe<Scalars['String']['input']>;
+  title?: InputMaybe<Scalars['String']['input']>;
+  unit_count?: InputMaybe<Scalars['bigint']['input']>;
+};
+
+/** aggregate sum on columns */
+export type Published_Mv_Threads_2_Sum_Fields = {
+  __typename?: 'published_mv_threads_2_sum_fields';
+  unit_count?: Maybe<Scalars['bigint']['output']>;
+};
+
+/** aggregate var_pop on columns */
+export type Published_Mv_Threads_2_Var_Pop_Fields = {
+  __typename?: 'published_mv_threads_2_var_pop_fields';
+  unit_count?: Maybe<Scalars['Float']['output']>;
+};
+
+/** aggregate var_samp on columns */
+export type Published_Mv_Threads_2_Var_Samp_Fields = {
+  __typename?: 'published_mv_threads_2_var_samp_fields';
+  unit_count?: Maybe<Scalars['Float']['output']>;
+};
+
+/** aggregate variance on columns */
+export type Published_Mv_Threads_2_Variance_Fields = {
+  __typename?: 'published_mv_threads_2_variance_fields';
+  unit_count?: Maybe<Scalars['Float']['output']>;
+};
+
 /** columns and relationships of "published.overrides_and_exceptions" */
 export type Published_Overrides_And_Exceptions = {
   __typename?: 'published_overrides_and_exceptions';
@@ -17354,6 +17498,10 @@ export type Query_Root = {
   published_mv_threads_1: Array<Published_Mv_Threads_1>;
   /** fetch aggregated fields from the table: "published.mv_threads_1" */
   published_mv_threads_1_aggregate: Published_Mv_Threads_1_Aggregate;
+  /** fetch data from the table: "published.mv_threads_2" */
+  published_mv_threads_2: Array<Published_Mv_Threads_2>;
+  /** fetch aggregated fields from the table: "published.mv_threads_2" */
+  published_mv_threads_2_aggregate: Published_Mv_Threads_2_Aggregate;
   /** fetch data from the table: "published.overrides_and_exceptions" */
   published_overrides_and_exceptions: Array<Published_Overrides_And_Exceptions>;
   /** fetch aggregated fields from the table: "published.overrides_and_exceptions" */
@@ -18203,6 +18351,24 @@ export type Query_RootPublished_Mv_Threads_1_AggregateArgs = {
 };
 
 
+export type Query_RootPublished_Mv_Threads_2Args = {
+  distinct_on?: InputMaybe<Array<Published_Mv_Threads_2_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Published_Mv_Threads_2_Order_By>>;
+  where?: InputMaybe<Published_Mv_Threads_2_Bool_Exp>;
+};
+
+
+export type Query_RootPublished_Mv_Threads_2_AggregateArgs = {
+  distinct_on?: InputMaybe<Array<Published_Mv_Threads_2_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Published_Mv_Threads_2_Order_By>>;
+  where?: InputMaybe<Published_Mv_Threads_2_Bool_Exp>;
+};
+
+
 export type Query_RootPublished_Overrides_And_ExceptionsArgs = {
   distinct_on?: InputMaybe<Array<Published_Overrides_And_Exceptions_Select_Column>>;
   limit?: InputMaybe<Scalars['Int']['input']>;
@@ -18940,6 +19106,12 @@ export type Subscription_Root = {
   published_mv_threads_1_aggregate: Published_Mv_Threads_1_Aggregate;
   /** fetch data from the table in a streaming manner: "published.mv_threads_1" */
   published_mv_threads_1_stream: Array<Published_Mv_Threads_1>;
+  /** fetch data from the table: "published.mv_threads_2" */
+  published_mv_threads_2: Array<Published_Mv_Threads_2>;
+  /** fetch aggregated fields from the table: "published.mv_threads_2" */
+  published_mv_threads_2_aggregate: Published_Mv_Threads_2_Aggregate;
+  /** fetch data from the table in a streaming manner: "published.mv_threads_2" */
+  published_mv_threads_2_stream: Array<Published_Mv_Threads_2>;
   /** fetch data from the table: "published.overrides_and_exceptions" */
   published_overrides_and_exceptions: Array<Published_Overrides_And_Exceptions>;
   /** fetch aggregated fields from the table: "published.overrides_and_exceptions" */
@@ -20119,6 +20291,31 @@ export type Subscription_RootPublished_Mv_Threads_1_StreamArgs = {
 };
 
 
+export type Subscription_RootPublished_Mv_Threads_2Args = {
+  distinct_on?: InputMaybe<Array<Published_Mv_Threads_2_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Published_Mv_Threads_2_Order_By>>;
+  where?: InputMaybe<Published_Mv_Threads_2_Bool_Exp>;
+};
+
+
+export type Subscription_RootPublished_Mv_Threads_2_AggregateArgs = {
+  distinct_on?: InputMaybe<Array<Published_Mv_Threads_2_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Published_Mv_Threads_2_Order_By>>;
+  where?: InputMaybe<Published_Mv_Threads_2_Bool_Exp>;
+};
+
+
+export type Subscription_RootPublished_Mv_Threads_2_StreamArgs = {
+  batch_size: Scalars['Int']['input'];
+  cursor: Array<InputMaybe<Published_Mv_Threads_2_Stream_Cursor_Input>>;
+  where?: InputMaybe<Published_Mv_Threads_2_Bool_Exp>;
+};
+
+
 export type Subscription_RootPublished_Overrides_And_ExceptionsArgs = {
   distinct_on?: InputMaybe<Array<Published_Overrides_And_Exceptions_Select_Column>>;
   limit?: InputMaybe<Scalars['Int']['input']>;
@@ -21132,7 +21329,7 @@ export type TeachersLessonOverviewQuery = { __typename?: 'query_root', browseDat
 export type TeachersSitemapQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type TeachersSitemapQuery = { __typename?: 'query_root', keyStages: Array<{ __typename?: 'published_mv_key_stages_2_0_0', slug?: string | null }>, programmes: Array<{ __typename?: 'published_mv_synthetic_unitvariant_lessons_by_keystage_13_1_0', programme_slug?: string | null }>, units: Array<{ __typename?: 'published_mv_synthetic_unitvariant_lessons_by_keystage_13_1_0', unit_slug?: string | null, programme_slug?: string | null }>, lessons: Array<{ __typename?: 'published_mv_synthetic_unitvariant_lessons_by_keystage_13_1_0', lesson_slug?: string | null, unit_slug?: string | null, programme_slug?: string | null }>, specialistProgrammes: Array<{ __typename?: 'published_mv_specialist_1_0_3', programme_slug?: string | null }>, specialistUnits: Array<{ __typename?: 'published_mv_specialist_1_0_3', unit_slug?: string | null, programme_slug?: string | null }>, specialistLessons: Array<{ __typename?: 'published_mv_specialist_1_0_3', unit_slug?: string | null, lesson_slug?: string | null, programme_slug?: string | null }> };
+export type TeachersSitemapQuery = { __typename?: 'query_root', units: Array<{ __typename?: 'published_mv_synthetic_unitvariant_lessons_by_keystage_18_0_0', unit_slug?: string | null, programme_slug?: string | null }>, lessons: Array<{ __typename?: 'published_mv_synthetic_unitvariant_lessons_by_keystage_18_0_0', lesson_slug?: string | null, unit_slug?: string | null, programme_slug?: string | null }> };
 
 export type TeachersUnitOverviewQueryVariables = Exact<{
   programmeSlug: Scalars['String']['input'];
@@ -21145,7 +21342,7 @@ export type TeachersUnitOverviewQuery = { __typename?: 'query_root', lessons: Ar
 export type TopNavQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type TopNavQuery = { __typename?: 'query_root', programmes: Array<{ __typename?: 'published_mv_synthetic_unitvariants_with_lesson_ids_by_keystage_18_0_0', programme_fields?: any | null, programme_slug?: string | null, features?: any | null, actions?: any | null }> };
+export type TopNavQuery = { __typename?: 'query_root', programmes: Array<{ __typename?: 'published_mv_synthetic_unitvariants_with_lesson_ids_by_keystage_18_0_0', programme_fields?: any | null, programme_slug?: string | null, features?: any | null, actions?: any | null }>, phaseOptions: Array<{ __typename?: 'published_mv_curriculum_phase_options_0_4', title?: string | null, slug?: string | null, phases?: any | null, keystages?: any | null, ks4_options?: any | null }> };
 
 export type UnitListingQueryVariables = Exact<{
   programmeSlug: Scalars['String']['input'];
@@ -22277,44 +22474,20 @@ export const TeachersLessonOverviewDocument = gql`
     `;
 export const TeachersSitemapDocument = gql`
     query teachersSitemap {
-  keyStages: published_mv_key_stages_2_0_0 {
-    slug
-  }
-  programmes: published_mv_synthetic_unitvariant_lessons_by_keystage_13_1_0(
-    distinct_on: programme_slug
-  ) {
-    programme_slug
-  }
-  units: published_mv_synthetic_unitvariant_lessons_by_keystage_13_1_0(
+  units: published_mv_synthetic_unitvariant_lessons_by_keystage_18_0_0(
     distinct_on: [programme_slug, unit_slug]
+    where: {is_legacy: {_eq: false}}
   ) {
     unit_slug
     programme_slug
   }
-  lessons: published_mv_synthetic_unitvariant_lessons_by_keystage_13_1_0(
+  lessons: published_mv_synthetic_unitvariant_lessons_by_keystage_18_0_0(
     distinct_on: [programme_slug, unit_slug, lesson_slug]
+    where: {is_legacy: {_eq: false}}
   ) {
     lesson_slug
     unit_slug
     programme_slug
-  }
-  specialistProgrammes: published_mv_specialist_1_0_3(
-    distinct_on: [synthetic_programme_slug]
-  ) {
-    programme_slug: synthetic_programme_slug
-  }
-  specialistUnits: published_mv_specialist_1_0_3(
-    distinct_on: [synthetic_programme_slug, unit_slug]
-  ) {
-    programme_slug: synthetic_programme_slug
-    unit_slug
-  }
-  specialistLessons: published_mv_specialist_1_0_3(
-    distinct_on: [synthetic_programme_slug, unit_slug, lesson_slug]
-  ) {
-    programme_slug: synthetic_programme_slug
-    unit_slug
-    lesson_slug
   }
 }
     `;
@@ -22374,6 +22547,15 @@ export const TopNavDocument = gql`
     programme_slug
     features
     actions
+  }
+  phaseOptions: published_mv_curriculum_phase_options_0_4(
+    where: {non_curriculum: {_eq: false}}
+  ) {
+    title
+    slug
+    phases
+    keystages
+    ks4_options
   }
 }
     `;

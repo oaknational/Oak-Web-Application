@@ -1,10 +1,9 @@
-import { fireEvent, screen } from "@testing-library/react";
-import userEvent from "@testing-library/user-event";
+import { screen } from "@testing-library/react";
 
 import TeachersTab from "./TeachersTab";
 
-import keyStageKeypad from "@/browser-lib/fixtures/keyStageKeypad";
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
+import curriculumPhaseOptions from "@/browser-lib/fixtures/curriculumPhaseOptions";
 
 const setSearchTerm = jest.fn();
 jest.mock("@/context/Search/useSearch", () => () => ({ setSearchTerm }));
@@ -34,37 +33,20 @@ jest.mock("@oaknational/oak-components", () => ({
 
 describe("TeachersTab", () => {
   it("renders without crashing", () => {
-    renderWithProviders()(<TeachersTab keyStages={keyStageKeypad.keyStages} />);
+    renderWithProviders()(
+      <TeachersTab curriculumPhaseOptions={curriculumPhaseOptions} />,
+    );
     const teachersH1 = screen.getByRole("heading", { level: 1 });
-    expect(teachersH1).toHaveTextContent("Teachers");
-  });
-  it("calls tracking on keystage selection", async () => {
-    renderWithProviders()(<TeachersTab keyStages={keyStageKeypad.keyStages} />);
-    const ks1Button = await screen.findByText("KS1");
-    await userEvent.click(ks1Button);
-    expect(browseRefined).toHaveBeenCalledWith({
-      platform: "owa",
-      product: "teacher lesson resources",
-      engagementIntent: "refine",
-      componentType: "keystage_keypad_button",
-      eventVersion: "2.0.0",
-      analyticsUseCase: "Teacher",
-      filterType: "Key stage filter",
-      filterValue: "ks1",
-      activeFilters: {},
-      googleLoginHint: null,
-      clientEnvironment: null,
-    });
+    expect(teachersH1).toHaveTextContent(
+      "Helping you deliver a world-class curriculum",
+    );
   });
 
-  it("calls setSearchTerm on SearchForm submit", async () => {
-    renderWithProviders()(<TeachersTab keyStages={keyStageKeypad.keyStages} />);
-    const input = screen.getByPlaceholderText("Search by keyword or topic");
-    await userEvent.type(input, "maths");
-    const form = input.closest("form");
-    if (!form) throw new Error("Search form not found");
-
-    fireEvent.submit(form);
-    expect(setSearchTerm).toHaveBeenCalledWith({ searchTerm: "maths" });
+  it("renders the subject phase picker", async () => {
+    renderWithProviders()(
+      <TeachersTab curriculumPhaseOptions={curriculumPhaseOptions} />,
+    );
+    const subjectPhasePicker = screen.getByRole("navigation");
+    expect(subjectPhasePicker).toBeVisible();
   });
 });

@@ -56,10 +56,9 @@ function withPageErrorHandling<T extends PageParams>(
         /**
          * Report error to error reporting service
          */
-        const { params, searchParams } = props;
+        const { params } = props;
         await errorReporter(page)(error, {
           ...(await params),
-          ...(await searchParams),
         });
       }
 

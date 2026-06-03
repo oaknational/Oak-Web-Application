@@ -20,15 +20,6 @@ import {
 
 const render = renderWithProviders();
 
-const mockTeachersIntegratedJourneyEnabled = jest.fn(() => false);
-
-jest.mock("posthog-js/react", () => ({
-  useFeatureFlagEnabled: (flag: string) =>
-    flag === "teachers-integrated-journey"
-      ? mockTeachersIntegratedJourneyEnabled()
-      : false,
-}));
-
 const lesson = {
   ...lessonMediaClipsFixtures(),
   lessonOutline: [{ lessonOutline: "Sample outline" }],
@@ -100,7 +91,6 @@ describe("LessonMedia view", () => {
   beforeEach(() => {
     jest.clearAllMocks();
     jest.resetAllMocks();
-    mockTeachersIntegratedJourneyEnabled.mockReturnValue(false);
   });
 
   jest.mock(
@@ -113,9 +103,7 @@ describe("LessonMedia view", () => {
     }),
   );
 
-  it("does not render breadcrumbs on the canonical page when teachers-integrated-journey is enabled", () => {
-    mockTeachersIntegratedJourneyEnabled.mockReturnValue(true);
-
+  it("does not render breadcrumbs on the canonical page", () => {
     const { queryByRole } = render(
       <LessonMedia
         lesson={lessonMediaClipsCanonicalFixture()}

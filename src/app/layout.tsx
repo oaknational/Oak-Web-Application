@@ -10,6 +10,8 @@ import AnalyticsWrapper from "./components/AnalyticsWrapper";
 import { getTwitterMetadata, getOpenGraphMetadata } from "./metadata";
 
 import "@/styles/app-global.css";
+import "@/browser-lib/gleap/gleap.css";
+import AppHooks from "@/components/AppComponents/App/AppHooks";
 import { OakThemeProvider, oakDefaultTheme } from "@/styles/oakThemeApp";
 import CookieConsentProvider from "@/browser-lib/cookie-consent/CookieConsentProvider";
 import { FAVICON_LINKS_HEAD_INNER_HTML } from "@/image-data";
@@ -42,10 +44,11 @@ export default function RootLayout({
     <html lang="en" className={lexend.className}>
       {parse(FAVICON_LINKS_HEAD_INNER_HTML)}
       <StyledComponentsRegistry>
-        <body style={{ margin: "0px" }}>
-          <PHProvider>
-            <OakThemeProvider theme={oakDefaultTheme}>
-              <CookieConsentProvider>
+        {/* Pages Router uses #__next as the app root; add id to body for Pa11y CI and Percy to hook onto. */}
+        <body id="__next" style={{ margin: "0px" }}>
+          <OakThemeProvider theme={oakDefaultTheme}>
+            <CookieConsentProvider>
+              <PHProvider>
                 <OakNotificationsProvider>
                   <ClerkProvider
                     signInUrl={"/sign-in"}
@@ -85,13 +88,14 @@ export default function RootLayout({
                     }}
                   >
                     <AnalyticsWrapper>
+                      <AppHooks />
                       <SaveCountProvider>{children}</SaveCountProvider>
                     </AnalyticsWrapper>
                   </ClerkProvider>
                 </OakNotificationsProvider>
-              </CookieConsentProvider>
-            </OakThemeProvider>
-          </PHProvider>
+              </PHProvider>
+            </CookieConsentProvider>
+          </OakThemeProvider>
         </body>
       </StyledComponentsRegistry>
     </html>

@@ -31,7 +31,7 @@ import { MathJaxWrap } from "@/browser-lib/mathjax/MathJaxWrap";
 import LessonOverviewVocabButton from "@/components/TeacherComponents/LessonOverviewVocabButton";
 import LessonOverviewFilesNeeded from "@/components/TeacherComponents/LessonOverviewFilesNeeded";
 import { Slugs } from "@/components/TeacherComponents/LessonItemContainer/LessonItemContainer";
-import LessonInformationBox from "@/app/(core)/programmes/[subjectPhaseSlug]/units/[unitSlug]/lessons/[lessonSlug]/Components/LessonInformationBox/LessonInformationBox";
+import LessonInformationBox from "@/app/(core)/teachers/programmes/[slug]/units/[unitSlug]/lessons/[lessonSlug]/Components/LessonInformationBox/LessonInformationBox";
 import { resolveOakHref } from "@/common-lib/urls";
 
 type LessonOverviewDetailsProps = {

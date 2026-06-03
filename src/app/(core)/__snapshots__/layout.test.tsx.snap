@@ -108,11 +108,6 @@ exports[`core layout renders correctly 1`] = `
           "slug": "labs",
           "title": "Ai experiments",
         },
-        "curriculum": {
-          "href": "/teachers/curriculum",
-          "slug": "curriculum-landing-page",
-          "title": "Curriculum",
-        },
         "guidance": {
           "children": [
             {
@@ -140,6 +135,7 @@ exports[`core layout renders correctly 1`] = `
             {
               "children": [
                 {
+                  "href": "/teachers/programmes/english-primary/units?keystages=ks1",
                   "nonCurriculum": false,
                   "programmeCount": 0,
                   "programmeSlug": "english-primary-ks1",
@@ -147,6 +143,7 @@ exports[`core layout renders correctly 1`] = `
                   "title": "English",
                 },
                 {
+                  "href": "/teachers/programmes/maths-primary/units?keystages=ks1",
                   "nonCurriculum": false,
                   "programmeCount": 0,
                   "programmeSlug": "maths-primary-ks1",
@@ -154,18 +151,12 @@ exports[`core layout renders correctly 1`] = `
                   "title": "Maths",
                 },
                 {
+                  "href": "/teachers/programmes/financial-education-primary/units?keystages=ks1",
                   "nonCurriculum": true,
                   "programmeCount": 0,
                   "programmeSlug": "financial-education-primary-ks1",
                   "slug": "financial-education",
                   "title": "Financial education",
-                },
-                {
-                  "nonCurriculum": false,
-                  "programmeCount": 0,
-                  "programmeSlug": null,
-                  "slug": "all-subjects",
-                  "title": "All KS1 subjects",
                 },
               ],
               "description": "Key stage 1",
@@ -175,18 +166,12 @@ exports[`core layout renders correctly 1`] = `
             {
               "children": [
                 {
+                  "href": "/teachers/programmes/science-primary/units?keystages=ks2",
                   "nonCurriculum": false,
                   "programmeCount": 0,
                   "programmeSlug": "science-primary-ks2",
                   "slug": "science",
                   "title": "Science",
-                },
-                {
-                  "nonCurriculum": false,
-                  "programmeCount": 0,
-                  "programmeSlug": null,
-                  "slug": "all-subjects",
-                  "title": "All KS2 subjects",
                 },
               ],
               "description": "Key stage 2",
@@ -194,15 +179,7 @@ exports[`core layout renders correctly 1`] = `
               "title": "KS2",
             },
             {
-              "children": [
-                {
-                  "nonCurriculum": false,
-                  "programmeCount": 0,
-                  "programmeSlug": null,
-                  "slug": "all-subjects",
-                  "title": "All EYFS subjects",
-                },
-              ],
+              "children": [],
               "description": "Early years foundation stage",
               "slug": "eyfs",
               "title": "EYFS",
@@ -216,6 +193,7 @@ exports[`core layout renders correctly 1`] = `
             {
               "children": [
                 {
+                  "href": "/teachers/programmes/history-secondary-edexcel/units?keystages=ks3",
                   "nonCurriculum": false,
                   "programmeCount": 0,
                   "programmeSlug": "history-secondary-ks3",
@@ -223,11 +201,12 @@ exports[`core layout renders correctly 1`] = `
                   "title": "History",
                 },
                 {
+                  "href": "/teachers/programmes/geography-secondary/units?keystages=ks3",
                   "nonCurriculum": false,
                   "programmeCount": 0,
-                  "programmeSlug": null,
-                  "slug": "all-subjects",
-                  "title": "All KS3 subjects",
+                  "programmeSlug": "geography-secondary-ks3",
+                  "slug": "geography",
+                  "title": "Geography",
                 },
               ],
               "description": "Key stage 3",
@@ -237,18 +216,36 @@ exports[`core layout renders correctly 1`] = `
             {
               "children": [
                 {
+                  "examBoards": [
+                    {
+                      "buttonTitle": "AQA",
+                      "href": "/teachers/programmes/geography-secondary-aqa/units?keystages=ks4&tiers=foundation",
+                      "programmeFactors": {
+                        "tier": {
+                          "description": "Foundation",
+                          "slug": "foundation",
+                        },
+                      },
+                      "programmeSlug": "geography-secondary-ks4-aqa",
+                    },
+                    {
+                      "buttonTitle": "Edexcel",
+                      "href": "/teachers/programmes/geography-secondary-edexcel/units?keystages=ks4&tiers=higher",
+                      "programmeFactors": {
+                        "tier": {
+                          "description": "Higher",
+                          "slug": "higher",
+                        },
+                      },
+                      "programmeSlug": "geography-secondary-ks4-edexcel",
+                    },
+                  ],
+                  "href": "/teachers/programmes/geography-secondary/units?keystages=ks4",
                   "nonCurriculum": false,
-                  "programmeCount": 0,
-                  "programmeSlug": "geography-secondary-ks4",
+                  "programmeCount": 2,
+                  "programmeSlug": null,
                   "slug": "geography",
                   "title": "Geography",
-                },
-                {
-                  "nonCurriculum": false,
-                  "programmeCount": 0,
-                  "programmeSlug": null,
-                  "slug": "all-subjects",
-                  "title": "All KS4 subjects",
                 },
               ],
               "description": "Key stage 4",

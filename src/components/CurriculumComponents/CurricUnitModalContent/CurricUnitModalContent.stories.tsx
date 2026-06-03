@@ -6,8 +6,7 @@ import {
   mockOptionalityUnit,
   mockUnitWhyThisWhyNow,
 } from "./CurricUnitModalContent.fixtures";
-
-import Component from ".";
+import Component from "./CurricUnitModalContent";
 
 import { createYearData } from "@/fixtures/curriculum/yearData";
 

@@ -2,7 +2,6 @@ import { GetStaticProps, NextPage } from "next";
 
 import AppLayout from "@/components/SharedComponents/AppLayout";
 import getPageProps from "@/node-lib/getPageProps";
-import HomePageTabImageNav from "@/components/GenericPagesComponents/HomePageTabImageNav";
 import { HomePage } from "@/common-lib/cms-types";
 import Banners from "@/components/SharedComponents/Banners";
 import { HomePageLowerView } from "@/components/GenericPagesViews/HomePageLower/HomePageLower.view";
@@ -34,7 +33,6 @@ const Ai: NextPage<AiHomePageProps> = (props) => {
       topNavProps={props.topNav}
     >
       <Banners />
-      <HomePageTabImageNav current={"ai"} />
       <AiTab aria-current="page" />
       <HomePageLowerView
         posts={props.posts}

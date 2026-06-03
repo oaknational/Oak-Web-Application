@@ -17,6 +17,7 @@ import {
 import { getResourcesWithoutLegacyCopyright } from "../TeacherComponents/helpers/downloadAndShareHelpers/downloadsLegacyCopyright";
 import { useOnboardingStatus } from "../TeacherComponents/hooks/useOnboardingStatus";
 import Banners from "../SharedComponents/Banners";
+import { waitForLinkCallback } from "../SharedComponents/helpers/downloadAndShareHelpers/createAndClickHiddenDownloadLink";
 
 import useAnalytics from "@/context/Analytics/useAnalytics";
 import {
@@ -234,7 +235,7 @@ export function LessonDownloads(props: LessonDownloadsProps) {
       });
 
       if (props.successRedirect) {
-        router.replace(props.successRedirect);
+        waitForLinkCallback(() => router.replace(props.successRedirect!));
       } else {
         setIsDownloadSuccessful(true);
       }

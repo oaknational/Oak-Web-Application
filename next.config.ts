@@ -440,7 +440,41 @@ export default async (phase: NextConfig["phase"]): Promise<NextConfig> => {
         },
       ];
 
-      return [...pupilsRedirects, ...aboutUsRedirects, ...eyfsRedirects];
+      const integratedJourneyRedirects = [
+        {
+          source: "/teachers/curriculum",
+          destination: "/about-us/oaks-curricula",
+          permanent: true,
+        },
+        {
+          source: "/teachers/curriculum/:subjectPhaseSlug/units",
+          destination: "/teachers/programmes/:subjectPhaseSlug/units",
+          permanent: true,
+        },
+        {
+          source: "/teachers/curriculum/:subjectPhaseSlug/overview",
+          destination:
+            "/teachers/programmes/:subjectPhaseSlug/curriculum-explainer",
+          permanent: true,
+        },
+        {
+          source: "/teachers/curriculum/:subjectPhaseSlug/downloads",
+          destination: "/teachers/programmes/:subjectPhaseSlug/download",
+          permanent: true,
+        },
+        {
+          source: "/teachers/key-stages/:keyStageSlug/subjects/:path*",
+          destination: "/",
+          permanent: true,
+        },
+      ];
+
+      return [
+        ...pupilsRedirects,
+        ...aboutUsRedirects,
+        ...eyfsRedirects,
+        ...integratedJourneyRedirects,
+      ];
     },
     async rewrites() {
       // Serve the RFC 9727 API catalog from /.well-known/ — the App Router does
@@ -511,6 +545,11 @@ export default async (phase: NextConfig["phase"]): Promise<NextConfig> => {
     // Write new values.
     writeFileSync(envFileName, newEnv);
     console.log(`Wrote "${baseUrlEnv}" to .env file for sitemap generation.`);
+
+    // Also set on the config and process env. Writing .env.local alone is too late
+    // for the current build: Next loads env files before next.config runs. App
+    // Router sitemaps prerender during `next build` and need SITEMAP_BASE_URL then.
+    process.env.SITEMAP_BASE_URL = baseUrl;
   } catch (err) {
     console.error("Could not write SITEMAP_BASE_URL to env file", err);
 

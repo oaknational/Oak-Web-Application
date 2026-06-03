@@ -1,0 +1,487 @@
+import { screen, act } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
+
+import LessonView from "./LessonView";
+
+import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
+import { resolveOakHref } from "@/common-lib/urls";
+import teachersLessonOverviewFixture from "@/node-lib/curriculum-api-2023/fixtures/teachersLessonOverview.fixture";
+import lessonMediaClipsFixtures from "@/node-lib/curriculum-api-2023/fixtures/lessonMediaClips.fixture";
+import { setUseUserReturn } from "@/__tests__/__helpers__/mockClerk";
+import { mockLoggedIn } from "@/__tests__/__helpers__/mockUser";
+
+const lessonResourceDownloadStarted = jest.fn();
+const lessonMediaClipsStarted = jest.fn();
+const lessonShareStarted = jest.fn();
+const mockCreateTeachingMaterialsInitiated = jest.fn();
+const mockTeachingMaterialsSelected = jest.fn();
+
+jest.mock("@/context/Analytics/useAnalytics", () => ({
+  __esModule: true,
+  default: () => ({
+    track: {
+      lessonMediaClipsStarted: (...args: unknown[]) =>
+        lessonMediaClipsStarted(...args),
+      lessonResourceDownloadStarted: (...args: unknown[]) =>
+        lessonResourceDownloadStarted(...args),
+      lessonShareStarted: (...args: unknown[]) => lessonShareStarted(...args),
+      createTeachingMaterialsInitiated: (...args: unknown[]) =>
+        mockCreateTeachingMaterialsInitiated(...args),
+      teachingMaterialsSelected: (...args: unknown[]) =>
+        mockTeachingMaterialsSelected(...args),
+    },
+  }),
+}));
+
+jest.mock(
+  "@/components/TeacherComponents/LessonOverviewMediaClips/LessonOverviewMediaClips.tsx",
+);
+
+const render = renderWithProviders();
+
+const baseProps = teachersLessonOverviewFixture();
+
+describe("Previous and Next Lesson Navigation", () => {
+  it("renders previous and next lesson links when adjacent lessons exist", () => {
+    render(
+      <LessonView
+        {...baseProps}
+        previousLesson={{
+          lessonSlug: "lesson-2",
+          lessonTitle: "Previous lesson",
+          lessonIndex: 2,
+        }}
+        nextLesson={{
+          lessonSlug: "lesson-4",
+          lessonTitle: "Next lesson",
+          lessonIndex: 4,
+        }}
+      />,
+    );
+
+    expect(
+      screen.getByRole("link", { name: /Previous lesson/i }),
+    ).toHaveAttribute(
+      "href",
+      resolveOakHref({
+        page: "integrated-lesson-overview",
+        programmeSlug: baseProps.programmeSlug,
+        unitSlug: baseProps.unitSlug,
+        lessonSlug: "lesson-2",
+      }),
+    );
+    expect(screen.getByRole("link", { name: /Next lesson/i })).toHaveAttribute(
+      "href",
+      resolveOakHref({
+        page: "integrated-lesson-overview",
+        programmeSlug: baseProps.programmeSlug,
+        unitSlug: baseProps.unitSlug,
+        lessonSlug: "lesson-4",
+      }),
+    );
+  });
+
+  it("does not render lesson nav links when adjacent lessons are missing", () => {
+    render(
+      <LessonView {...baseProps} previousLesson={null} nextLesson={null} />,
+    );
+
+    expect(
+      screen.queryByRole("link", { name: /Previous lesson/i }),
+    ).not.toBeInTheDocument();
+    expect(
+      screen.queryByRole("link", { name: /Next lesson/i }),
+    ).not.toBeInTheDocument();
+  });
+
+  it("renders previous and next lesson links when orderInUnit is null", () => {
+    render(
+      <LessonView
+        {...baseProps}
+        orderInUnit={null}
+        previousLesson={{
+          lessonSlug: "lesson-2",
+          lessonTitle: "Previous lesson",
+          lessonIndex: 2,
+        }}
+        nextLesson={{
+          lessonSlug: "lesson-4",
+          lessonTitle: "Next lesson",
+          lessonIndex: 4,
+        }}
+      />,
+    );
+
+    expect(
+      screen.getByRole("link", { name: /Previous lesson/i }),
+    ).toHaveAttribute(
+      "href",
+      resolveOakHref({
+        page: "integrated-lesson-overview",
+        programmeSlug: baseProps.programmeSlug,
+        unitSlug: baseProps.unitSlug,
+        lessonSlug: "lesson-2",
+      }),
+    );
+    expect(screen.getByRole("link", { name: /Next lesson/i })).toHaveAttribute(
+      "href",
+      resolveOakHref({
+        page: "integrated-lesson-overview",
+        programmeSlug: baseProps.programmeSlug,
+        unitSlug: baseProps.unitSlug,
+        lessonSlug: "lesson-4",
+      }),
+    );
+  });
+});
+
+describe("Lesson resources", () => {
+  beforeEach(() => {
+    jest.clearAllMocks();
+  });
+
+  it("renders lesson details section", () => {
+    render(<LessonView {...baseProps} />);
+
+    expect(
+      screen.getByRole("heading", { name: /Lesson details/i }),
+    ).toBeInTheDocument();
+  });
+
+  it("renders starter quiz when data is provided", () => {
+    render(<LessonView {...baseProps} />);
+
+    expect(
+      screen.getByRole("heading", { name: /Prior knowledge starter quiz/i }),
+    ).toBeInTheDocument();
+  });
+
+  it("renders exit quiz when data is provided", () => {
+    render(<LessonView {...baseProps} />);
+
+    expect(
+      screen.getByRole("heading", { name: /Assessment exit quiz/i }),
+    ).toBeInTheDocument();
+  });
+
+  it("renders worksheet section when worksheetUrl is provided", () => {
+    render(
+      <LessonView
+        {...baseProps}
+        worksheetUrl="https://example.com/worksheet.pdf"
+      />,
+    );
+
+    expect(
+      screen.getByRole("heading", { name: /Worksheet/i }),
+    ).toBeInTheDocument();
+  });
+
+  it("does not render worksheet section when worksheetUrl is null", () => {
+    render(<LessonView {...baseProps} worksheetUrl={null} />);
+
+    expect(
+      screen.queryByRole("heading", { name: /^Worksheet$/i }),
+    ).not.toBeInTheDocument();
+  });
+
+  it("renders lesson slides when presentationUrl is provided", () => {
+    render(
+      <LessonView
+        {...baseProps}
+        presentationUrl="https://example.com/slides.pdf"
+      />,
+    );
+
+    expect(
+      screen.getByRole("heading", { name: /Lesson slides/i }),
+    ).toBeInTheDocument();
+  });
+
+  it("renders lesson guide when lessonGuideUrl is provided", () => {
+    render(
+      <LessonView
+        {...baseProps}
+        lessonGuideUrl="https://example.com/guide.pdf"
+      />,
+    );
+
+    expect(
+      screen.getByRole("heading", { name: /Lesson guide/i }),
+    ).toBeInTheDocument();
+  });
+
+  it("renders media clips when hasMediaClips is true and lessonMediaClips provided", () => {
+    render(
+      <LessonView
+        {...baseProps}
+        hasMediaClips={true}
+        lessonMediaClips={lessonMediaClipsFixtures().mediaClips}
+      />,
+    );
+
+    expect(
+      screen.getByRole("heading", { name: /Video & audio clips/i }),
+    ).toBeInTheDocument();
+  });
+
+  it("does not render media clips section when lessonMediaClips is null", () => {
+    render(
+      <LessonView
+        {...baseProps}
+        hasMediaClips={false}
+        lessonMediaClips={null}
+      />,
+    );
+
+    expect(
+      screen.queryByRole("heading", { name: /Video & audio clips/i }),
+    ).not.toBeInTheDocument();
+  });
+
+  it("renders additional material when additionalMaterialUrl is provided", () => {
+    render(
+      <LessonView
+        {...baseProps}
+        additionalMaterialUrl="https://example.com/additional.pdf"
+      />,
+    );
+
+    expect(
+      screen.getByRole("heading", { name: /Additional material/i }),
+    ).toBeInTheDocument();
+  });
+
+  it("does not render additional material when additionalMaterialUrl is null", () => {
+    render(<LessonView {...baseProps} additionalMaterialUrl={null} />);
+
+    expect(
+      screen.queryByRole("heading", { name: /Additional material/i }),
+    ).not.toBeInTheDocument();
+  });
+
+  it("renders download button for downloadable resources", () => {
+    render(
+      <LessonView
+        {...baseProps}
+        presentationUrl="https://example.com/slides.pdf"
+        downloads={[{ exists: true, type: "presentation" }]}
+      />,
+    );
+
+    expect(
+      screen.getByRole("link", { name: /Download lesson slides \(PPTX\)/i }),
+    ).toBeInTheDocument();
+  });
+
+  it("does not render create with ai button when the lesson has complex copyright", () => {
+    render(<LessonView {...baseProps} geoRestricted loginRequired />);
+
+    const createWithAiButton = screen.queryByRole("button", {
+      name: "Create more with AI",
+    });
+    expect(createWithAiButton).not.toBeInTheDocument();
+  });
+
+  it("does not create with ai button when the lesson has no complex copyright", () => {
+    render(<LessonView {...baseProps} />);
+
+    const createWithAiButton = screen.getByRole("button", {
+      name: "Create more with AI",
+    });
+    expect(createWithAiButton).toBeInTheDocument();
+  });
+});
+
+describe("Tracking callbacks", () => {
+  beforeEach(() => {
+    jest.clearAllMocks();
+  });
+
+  it("calls lessonResourceDownloadStarted when download button is clicked for slides", () => {
+    render(
+      <LessonView
+        {...baseProps}
+        presentationUrl="https://example.com/slides.pdf"
+        downloads={[{ exists: true, type: "presentation" }]}
+      />,
+    );
+
+    const downloadButton = screen.getByRole("link", {
+      name: /Download lesson slides \(PPTX\)/i,
+    });
+    act(() => {
+      downloadButton.click();
+    });
+
+    expect(lessonResourceDownloadStarted).toHaveBeenCalledWith(
+      expect.objectContaining({
+        platform: "owa",
+        product: "teacher lesson resources",
+        engagementIntent: "use",
+        componentType: "lesson_download_button",
+        eventVersion: "2.0.0",
+        analyticsUseCase: "Teacher",
+        downloadResourceButtonName: "slide deck",
+      }),
+    );
+  });
+
+  it("calls lessonResourceDownloadStarted when download button is clicked for worksheet", () => {
+    render(
+      <LessonView
+        {...baseProps}
+        worksheetUrl="https://example.com/worksheet.pdf"
+        downloads={[
+          { exists: true, type: "worksheet-pdf" },
+          { exists: true, type: "worksheet-pptx" },
+        ]}
+      />,
+    );
+
+    const downloadButton = screen.getByRole("link", {
+      name: /Download worksheet \(PPTX\/PDF\)/i,
+    });
+    act(() => {
+      downloadButton.click();
+    });
+
+    expect(lessonResourceDownloadStarted).toHaveBeenCalledWith(
+      expect.objectContaining({
+        downloadResourceButtonName: "worksheet",
+      }),
+    );
+  });
+
+  it("calls lessonResourceDownloadStarted when starter quiz download is clicked", () => {
+    render(<LessonView {...baseProps} />);
+
+    const downloadButton = screen.getByRole("link", {
+      name: /Download starter quiz questions \(PDF\)/i,
+    });
+    act(() => {
+      downloadButton.click();
+    });
+
+    expect(lessonResourceDownloadStarted).toHaveBeenCalledWith(
+      expect.objectContaining({
+        downloadResourceButtonName: "starter quiz",
+      }),
+    );
+  });
+
+  it("calls lessonResourceDownloadStarted when exit quiz download is clicked", () => {
+    render(<LessonView {...baseProps} />);
+
+    const downloadButton = screen.getByRole("link", {
+      name: /Download exit quiz questions \(PDF\)/i,
+    });
+    act(() => {
+      downloadButton.click();
+    });
+
+    expect(lessonResourceDownloadStarted).toHaveBeenCalledWith(
+      expect.objectContaining({
+        downloadResourceButtonName: "exit quiz",
+      }),
+    );
+  });
+
+  it("includes browse pathway data in tracking calls", () => {
+    render(
+      <LessonView
+        {...baseProps}
+        presentationUrl="https://example.com/slides.pdf"
+        downloads={[{ exists: true, type: "presentation" }]}
+      />,
+    );
+
+    const downloadButton = screen.getByRole("link", {
+      name: /Download lesson slides \(PPTX\)/i,
+    });
+    act(() => {
+      downloadButton.click();
+    });
+
+    expect(lessonResourceDownloadStarted).toHaveBeenCalledWith(
+      expect.objectContaining({
+        keyStageSlug: baseProps.keyStageSlug,
+        keyStageTitle: baseProps.keyStageTitle,
+        subjectSlug: baseProps.subjectSlug,
+        subjectTitle: baseProps.subjectTitle,
+        unitSlug: baseProps.unitSlug,
+        unitName: baseProps.unitTitle,
+        lessonSlug: baseProps.lessonSlug,
+        lessonName: baseProps.lessonTitle,
+      }),
+    );
+  });
+
+  it("calls lessonMediaClipsStarted when play all button is clicked", async () => {
+    render(
+      <LessonView
+        {...baseProps}
+        hasMediaClips={true}
+        lessonMediaClips={lessonMediaClipsFixtures().mediaClips}
+      />,
+    );
+
+    const playAllButton = screen.getByText("Play all");
+    const user = userEvent.setup();
+    playAllButton.addEventListener("click", (e) => e.preventDefault());
+    await user.click(playAllButton);
+
+    expect(lessonMediaClipsStarted).toHaveBeenCalledWith(
+      expect.objectContaining({
+        platform: "owa",
+        product: "media clips",
+        engagementIntent: "use",
+        componentType: "go_to_media_clips_page_button",
+        eventVersion: "2.0.0",
+        analyticsUseCase: "Teacher",
+        mediaClipsButtonName: "play all",
+      }),
+    );
+  });
+
+  it("calls lessonShareStarted when share lesson with pupils is clicked", () => {
+    render(<LessonView {...baseProps} />);
+
+    const shareButton = screen.getByRole("link", {
+      name: "Share lesson with pupils",
+    });
+    act(() => {
+      shareButton.click();
+    });
+
+    expect(lessonShareStarted).toHaveBeenCalledWith(
+      expect.objectContaining({
+        keyStageSlug: baseProps.keyStageSlug,
+        keyStageTitle: baseProps.keyStageTitle,
+        subjectSlug: baseProps.subjectSlug,
+        subjectTitle: baseProps.subjectTitle,
+        unitSlug: baseProps.unitSlug,
+        unitName: baseProps.unitTitle,
+        lessonSlug: baseProps.lessonSlug,
+        lessonName: baseProps.lessonTitle,
+      }),
+    );
+  });
+
+  it("calls createTeachingMaterialsInitiated and teachingMaterialsSelected when clicked in create with ai dropdown", async () => {
+    setUseUserReturn(mockLoggedIn);
+    render(<LessonView {...baseProps} />);
+
+    const createWithAiButton = screen.getByRole("button", {
+      name: "Create more with AI",
+    });
+
+    const user = userEvent.setup();
+    await user.click(createWithAiButton);
+    expect(mockCreateTeachingMaterialsInitiated).toHaveBeenCalled();
+
+    const glossaryLink = screen.getByRole("menuitem", { name: "Glossary" });
+    await user.click(glossaryLink);
+    expect(mockTeachingMaterialsSelected).toHaveBeenCalled();
+  });
+});
