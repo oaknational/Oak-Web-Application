@@ -218,7 +218,9 @@ export function SubmenuContent(
             subjects={subjects}
             selectedSubject={selectedExamBoardSubject}
             keyStageSlug={keystage.slug}
+            phase={phase}
             onExamBoardPanelOpen={setSelectedExamBoardSubject}
+            closeExamBoardPanel={() => setSelectedExamBoardSubject(null)}
           />
         </SubmenuContainer>
       );
