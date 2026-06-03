@@ -1,3 +1,10 @@
+# [1.1086.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1085.0...v1.1086.0) (2026-06-02)
+
+
+### Features
+
+* add track to integrated share button ([a765416](https://github.com/oaknational/Oak-Web-Application/commit/a76541606214bcb927af5a6793111f8fb92a4085))
+
 # [1.1085.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1084.0...v1.1085.0) (2026-06-01)
 
 
