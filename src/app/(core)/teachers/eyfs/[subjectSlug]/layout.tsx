@@ -2,9 +2,9 @@ import { notFound } from "next/navigation";
 
 import { EYFSHeader } from "./components/EyfsHeader/EyfsHeader";
 import { EYFSNavigation } from "./components/EyfsNavigation";
+import { getCachedEyfsPageData } from "./getCachedEyfsPageData";
 
 import OakError from "@/errors/OakError";
-import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 import { OakFlex } from "@/styles/oakThemeApp";
 
 export default async function EYFSLayout({
@@ -17,7 +17,7 @@ export default async function EYFSLayout({
   const { subjectSlug } = await params;
 
   try {
-    const eyfsPageData = await curriculumApi2023.eyfsPage({ subjectSlug });
+    const eyfsPageData = await getCachedEyfsPageData(subjectSlug);
 
     return (
       <OakFlex

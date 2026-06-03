@@ -3,7 +3,7 @@ import {
   OakSubjectIconButton,
   OakUL,
 } from "@oaknational/oak-components";
-import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 import { DropdownFocusManager } from "../DropdownFocusManager/DropdownFocusManager";
 import ExamBoardPanel from "../ExamBoardPanel/ExamBoardPanel";
@@ -39,12 +39,9 @@ const TopNavSubjectButtons = ({
   onExamBoardPanelOpen?: (subject: SubjectsNavItem) => void;
   closeExamBoardPanel: () => void;
 }) => {
-  const router = useRouter();
-
   const handleSubjectClick = (
     e: React.MouseEvent<HTMLButtonElement>,
     subject: SubjectsNavItem,
-    href?: string,
   ) => {
     if (
       keyStageSlug === "ks4" &&
@@ -56,9 +53,6 @@ const TopNavSubjectButtons = ({
       return;
     }
 
-    if (href) {
-      router.push(href);
-    }
     handleClick(subject.slug, keyStageSlug);
   };
 
@@ -95,12 +89,12 @@ const TopNavSubjectButtons = ({
               <OakLI key={subject.title}>
                 <OakSubjectIconButton
                   variant={"horizontal"}
-                  element={subject.examBoards?.length ? "button" : "a"}
+                  element={subject.examBoards?.length ? "button" : Link}
                   data-testid={`topnav-subject-button-${slug}`}
                   subjectIconName={getValidSubjectIconName(slug)}
                   selected={selectedSubject?.title === subject.title}
                   onClick={(e: React.MouseEvent<HTMLButtonElement>) =>
-                    handleSubjectClick(e, subject, href)
+                    handleSubjectClick(e, subject)
                   }
                   href={href}
                   onKeyDown={(e: React.KeyboardEvent<HTMLButtonElement>) => {
