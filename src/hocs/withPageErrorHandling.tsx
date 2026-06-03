@@ -5,6 +5,7 @@ import errorReporter, {
   initialiseSentry,
 } from "../common-lib/error-reporter";
 import OakError from "../errors/OakError";
+import { PageSearchParms } from "../app/(core)/teachers/programmes/[slug]/[tab]/page";
 
 import getBrowserConfig from "@/browser-lib/getBrowserConfig";
 
@@ -17,7 +18,7 @@ if (getBrowserConfig("sentryEnabled") === "true") {
 type PageParams = Record<string, string>;
 export type AppPageProps<T extends PageParams> = {
   params: Promise<T>;
-  searchParams?: Promise<{ [key: string]: string | string[] | undefined }>;
+  searchParams?: Promise<PageSearchParms>;
 };
 
 /**
