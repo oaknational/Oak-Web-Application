@@ -172,13 +172,14 @@ export const ProgrammeView = ({
             tabs={TAB_NAMES.map((tab) => ({
               label: tab,
               type: "link",
-              href: preserveKeystagesParamInUrl(
-                resolveOakHref({
-                  page: "teacher-programme",
-                  subjectPhaseSlug,
-                  tab: tabNameToSlug[tab],
-                }),
-              ),
+              href: resolveOakHref({
+                page: "teacher-programme",
+                subjectPhaseSlug,
+                tab: tabNameToSlug[tab],
+                query: {
+                  keystages: keystagesParam ?? undefined,
+                },
+              }),
             }))}
           />
         </OakMaxWidth>
