@@ -2,10 +2,11 @@ import { pickSectionProgress } from "../Shared";
 
 import type { LessonOverviewSectionName } from "@/components/PupilComponents/Views/PupilLessonOverview";
 import type { SectionNavItem } from "@/components/PupilComponents/Views/PupilLessonOverview/PupilLessonOverviewSectionsNav/PupilLessonOverviewSectionsNav";
-import type {
-  LessonReviewSection,
-  LessonSectionResults,
-} from "@/components/PupilComponents/LessonEngineProvider";
+import type { LessonSectionResults } from "@/components/PupilComponents/LessonEngineProvider";
+import {
+  allLessonReviewSections,
+  type LessonReviewSection,
+} from "@/components/PupilComponents/lessonSections";
 
 type BuildOverviewSectionItemsParams = {
   lessonReviewSections: Readonly<LessonReviewSection[]>;
@@ -28,49 +29,54 @@ export const buildOverviewSectionItems = ({
   onSectionClick = () => {},
   getSectionHref,
 }: BuildOverviewSectionItemsParams): SectionNavItem[] => {
-  const sectionItems: SectionNavItem[] = [];
-
-  lessonReviewSections.forEach((section) => {
+  return allLessonReviewSections.map((section) => {
     const overviewSection = section as LessonOverviewSectionName;
-    const onClick = () => onSectionClick(section);
-    const href = getSectionHref(section) ?? "#";
+    const isSectionAvailable = lessonReviewSections.includes(section);
+    const onClick = isSectionAvailable
+      ? () => onSectionClick(section)
+      : () => {};
+    const href = isSectionAvailable ? (getSectionHref(section) ?? "#") : "#";
+    const disabled = !isSectionAvailable;
 
     if (section === "starter-quiz") {
-      sectionItems.push({
+      return {
         section: overviewSection,
         href,
         progress: pickSectionProgress({ section, sectionResults }),
         numQuestions: starterQuizNumQuestions,
         grade: sectionResults[section]?.grade ?? 0,
-        disabled: sectionResults[section]?.isComplete || isReadOnly,
+        disabled:
+          disabled ||
+          Boolean(sectionResults[section]?.isComplete) ||
+          isReadOnly,
         isLoading: isHydratingInitialProgress,
         onClick,
-      });
-      return;
+      };
     }
 
     if (section === "exit-quiz") {
-      sectionItems.push({
+      return {
         section: overviewSection,
         href,
         progress: pickSectionProgress({ section, sectionResults }),
         numQuestions: exitQuizNumQuestions,
         grade: sectionResults[section]?.grade ?? 0,
-        disabled: sectionResults[section]?.isComplete || isReadOnly,
+        disabled:
+          disabled ||
+          Boolean(sectionResults[section]?.isComplete) ||
+          isReadOnly,
         isLoading: isHydratingInitialProgress,
         onClick,
-      });
-      return;
+      };
     }
 
-    sectionItems.push({
+    return {
       section: overviewSection,
       href,
       progress: pickSectionProgress({ section, sectionResults }),
+      ...(disabled ? { disabled } : {}),
       isLoading: isHydratingInitialProgress,
       onClick,
-    });
+    };
   });
-
-  return sectionItems;
 };
