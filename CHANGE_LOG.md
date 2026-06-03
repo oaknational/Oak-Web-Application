@@ -1,3 +1,27 @@
+# [1.1090.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1089.0...v1.1090.0) (2026-06-03)
+
+
+### Bug Fixes
+
+* add phase to subject buttons in hamburger ([542e534](https://github.com/oaknational/Oak-Web-Application/commit/542e534cac9204b1ab59bbe9b20e90d4b1397a69))
+* include pupilbrowse in type guard return ([4ed7f88](https://github.com/oaknational/Oak-Web-Application/commit/4ed7f884a9076878ae588f108d8d9d64ad6e7009))
+* incorrect slug used in button id ([46bab32](https://github.com/oaknational/Oak-Web-Application/commit/46bab32681a94bb5ef63a1be4071f3b63a713c2a))
+* incorrect slug used in pupils button id ([27cda0b](https://github.com/oaknational/Oak-Web-Application/commit/27cda0be5212d441bc0b36ee26e04223f3787cb9))
+* merge mishaps ([2f594ba](https://github.com/oaknational/Oak-Web-Application/commit/2f594baac69a1c3c0d4f970c65b816cdf7015002))
+* mock test data ([0e29416](https://github.com/oaknational/Oak-Web-Application/commit/0e29416f602d06e548d3fcd303011998fb1fb93c))
+* move role tab to direct child of tablist ([c528723](https://github.com/oaknational/Oak-Web-Application/commit/c52872392dbc98a439d1c5091593067a29152054))
+* nested interactive element in tab list ([188b25b](https://github.com/oaknational/Oak-Web-Application/commit/188b25be61fc234581145d9bc77dc3e94aecb65c))
+* remove nested ternary ([20779fe](https://github.com/oaknational/Oak-Web-Application/commit/20779fe499430831309407782eb85f43adb10eb0))
+* use li for examboard buttons ([424159f](https://github.com/oaknational/Oak-Web-Application/commit/424159fd5f15ed5a74610e5bbf4e3fbe3f3591c9))
+
+
+### Features
+
+* add teacher phase menus in dropdown to initial dom ([5a9e611](https://github.com/oaknational/Oak-Web-Application/commit/5a9e61196b78ed5758f6b3cd0f028257b2f3e778))
+* make examboard links available on first load ([a9d26b5](https://github.com/oaknational/Oak-Web-Application/commit/a9d26b559212ed150b68594023d784f9d4b1fb1f))
+* render all pupils links on page init ([a667233](https://github.com/oaknational/Oak-Web-Application/commit/a667233c78721f98fadd230030d7b9fbeb65d486))
+* visually hide teacher links in dropdown ([47662ea](https://github.com/oaknational/Oak-Web-Application/commit/47662eacf0973f3314632cb02028799b8c9c46dd))
+
 # [1.1089.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1088.1...v1.1089.0) (2026-06-03)
 
 
