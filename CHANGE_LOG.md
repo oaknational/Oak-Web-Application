@@ -1,3 +1,19 @@
+# [1.1087.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1086.0...v1.1087.0) (2026-06-03)
+
+
+### Features
+
+* add banner explaining disabled ([86a5f53](https://github.com/oaknational/Oak-Web-Application/commit/86a5f533be164be3c303d16c2da88bfb139149a4))
+* add banner explaining disabled ([448ff37](https://github.com/oaknational/Oak-Web-Application/commit/448ff37c6415e31cbb51e3a8c74ec71ffcf5cc1e))
+* make unshared sessions visible but disabled ([2a239ce](https://github.com/oaknational/Oak-Web-Application/commit/2a239cef156fdd1d7b26d05e63f1a21f9cfb2090))
+
+# [1.1086.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1085.0...v1.1086.0) (2026-06-02)
+
+
+### Features
+
+* add track to integrated share button ([a765416](https://github.com/oaknational/Oak-Web-Application/commit/a76541606214bcb927af5a6793111f8fb92a4085))
+
 # [1.1085.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1084.0...v1.1085.0) (2026-06-01)
 
 

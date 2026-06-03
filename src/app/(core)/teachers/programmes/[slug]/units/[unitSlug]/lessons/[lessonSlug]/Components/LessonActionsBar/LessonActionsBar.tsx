@@ -19,6 +19,7 @@ type LessonShareBarProps = {
   lessonSlug: string;
   unitSlug: string;
   programmeSlug: string;
+  onClickShare: () => void;
   createWithAiProps?: LessonOverviewCreateWithAiProps;
 };
 
@@ -35,6 +36,7 @@ export default function LessonActionsBar({
   lessonSlug,
   unitSlug,
   programmeSlug,
+  onClickShare,
 }: Readonly<LessonShareBarProps>) {
   if (!showPupilShare && !createWithAiProps) {
     return null;
@@ -62,6 +64,7 @@ export default function LessonActionsBar({
           iconName="share"
           isTrailingIcon
           rel="nofollow"
+          onClick={onClickShare}
         >
           Share lesson with pupils
         </OakSmallTertiaryInvertedButton>
