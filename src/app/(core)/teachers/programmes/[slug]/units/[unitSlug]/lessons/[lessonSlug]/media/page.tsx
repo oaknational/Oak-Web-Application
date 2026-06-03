@@ -9,10 +9,11 @@ import { LessonMedia } from "@/components/TeacherViews/LessonMedia/LessonMedia.v
 import withPageErrorHandling, {
   AppPageProps,
 } from "@/hocs/withPageErrorHandling";
-import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
-import { LessonMediaClipsData } from "@/node-lib/curriculum-api-2023/queries/lessonMediaClips/lessonMediaClips.schema";
 import { populateMediaClipsWithTranscripts } from "@/utils/handleTranscript";
 import { getTeacherSubjectPhaseSlug } from "@/utils/curriculum/slugs";
+import { LessonMediaClipsData } from "@/node-lib/curriculum-api-2023/queries/lessonMediaClips/lessonMediaClips.schema";
+import { cacheData } from "@/node-lib/cache";
+import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 
 type LessonMediaPageParams = {
   slug: string;
@@ -20,14 +21,19 @@ type LessonMediaPageParams = {
   lessonSlug: string;
 };
 
+export const dynamic = "force-static";
+
 const getCachedLessonMediaClipsData = cache(
-  async (programmeSlug: string, unitSlug: string, lessonSlug: string) => {
-    return curriculumApi2023.lessonMediaClips<LessonMediaClipsData>({
-      programmeSlug,
-      unitSlug,
-      lessonSlug,
-    });
-  },
+  cacheData(
+    async (programmeSlug: string, unitSlug: string, lessonSlug: string) => {
+      return curriculumApi2023.lessonMediaClips<LessonMediaClipsData>({
+        programmeSlug,
+        unitSlug,
+        lessonSlug,
+      });
+    },
+    ["lesson-media-clips"],
+  ),
 );
 
 export async function generateMetadata(

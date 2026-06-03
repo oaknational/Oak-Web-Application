@@ -184,7 +184,7 @@ describe("urls.ts", () => {
           lessonSlug: "solving-equations-456",
         }),
       ).toBe(
-        "/programmes/maths-secondary-year-10-aqa/units/algebra-123/lessons/solving-equations-456/share",
+        "/teachers/programmes/maths-secondary-year-10-aqa/units/algebra-123/lessons/solving-equations-456/share",
       );
     });
     it("Integrated lesson media", () => {
