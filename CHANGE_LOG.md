@@ -1,3 +1,10 @@
+## [1.1088.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.1088.0...v1.1088.1) (2026-06-03)
+
+
+### Bug Fixes
+
+* add metatag for health pingdom health checks ([9acbe3f](https://github.com/oaknational/Oak-Web-Application/commit/9acbe3f513d29950c5664a4f2e8351b16fa93e9e))
+
 # [1.1088.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1087.0...v1.1088.0) (2026-06-03)
 
 
