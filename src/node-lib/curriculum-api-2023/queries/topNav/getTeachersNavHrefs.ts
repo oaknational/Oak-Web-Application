@@ -20,7 +20,7 @@ export function getTeachersSubjectNavHref({
   curriculumPhaseOptionsSubjects,
 }: {
   subject: Pick<SubjectsNavItem, "slug" | "pathwaySlug" | "programmeSlug">;
-  keyStageSlug: string;
+  keyStageSlug?: string;
   phaseSlug: "primary" | "secondary";
   curriculumPhaseOptionsSubjects: CurriculumPhaseOptions;
 }): string {
