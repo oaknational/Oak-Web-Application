@@ -372,7 +372,7 @@ describe("generateMetadata", () => {
         curriculumPhaseOptionsFixture(),
       ),
       subjectPhaseKeystageSlugs: {
-        subjectSlug: "compputing",
+        subjectSlug: "computing",
         phaseSlug: "secondary",
         examboardSlug: "aqa",
         ks4OptionSlug: null,
