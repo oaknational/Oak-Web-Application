@@ -103,6 +103,7 @@ describe("buildProgrammeHeading", () => {
     keyStage,
     examboardTitle,
     phaseTitle = "Secondary",
+    tabSlug = "units",
   }: {
     subjectTitle: string;
     data: CurriculumUnitsFormattedData;
@@ -111,6 +112,7 @@ describe("buildProgrammeHeading", () => {
     keyStage?: string;
     examboardTitle?: string;
     phaseTitle?: string;
+    tabSlug?: "units" | "curriculum-explainer" | "download";
   }) =>
     buildProgrammeHeading({
       subjectTitle,
@@ -120,6 +122,7 @@ describe("buildProgrammeHeading", () => {
       schoolYear,
       keyStage,
       examboardTitle,
+      tabSlug,
     });
 
   it("uses phase title when school year and key stage are absent", () => {
@@ -170,6 +173,7 @@ describe("buildProgrammeHeading", () => {
       filters,
       phaseTitle: "Secondary",
       schoolYear: "9",
+      tabSlug: "units",
     });
 
     expect(result).toBe("Science year 9");
@@ -194,6 +198,7 @@ describe("buildProgrammeHeading", () => {
       filters,
       phaseTitle: "Secondary",
       schoolYear: "all-years",
+      tabSlug: "units",
     });
 
     expect(result).toBe("Science (all years)");
@@ -222,6 +227,7 @@ describe("buildProgrammeHeading", () => {
       data,
       filters,
       phaseTitle: "Primary",
+      tabSlug: "units",
     });
 
     expect(result).toBe("Swimming and water safety primary");
@@ -346,6 +352,7 @@ describe("buildProgrammeHeading", () => {
       phaseTitle: "Secondary",
       schoolYear: "10",
       examboardTitle: "AQA",
+      tabSlug: "units",
     });
 
     expect(result).toBe("English language year 10 AQA");
@@ -383,6 +390,7 @@ describe("buildProgrammeHeading", () => {
       phaseTitle: "Secondary",
       schoolYear: "11",
       examboardTitle: "AQA",
+      tabSlug: "units",
     });
 
     expect(result).toBe("English language year 11 AQA");
