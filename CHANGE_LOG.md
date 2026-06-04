@@ -1,3 +1,10 @@
+## [1.1090.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.1090.0...v1.1090.1) (2026-06-04)
+
+
+### Bug Fixes
+
+* check for showing create with ai ([b3c12ba](https://github.com/oaknational/Oak-Web-Application/commit/b3c12baf10c5f809564d7f593003f0cf2f2247c0))
+
 # [1.1090.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1089.0...v1.1090.0) (2026-06-03)
 
 
