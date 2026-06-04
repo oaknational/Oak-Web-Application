@@ -78,7 +78,6 @@ export async function getProgrammeData(
       excludeUnitsWithNoPublishedLessons: true,
       excludeCoreUnits,
     }),
-    curriculumApi2023.curriculumPhaseOptions({ includeNonCurriculum: true }),
   ]);
 
   // Sort units to have examboard versions first, then by unit order
