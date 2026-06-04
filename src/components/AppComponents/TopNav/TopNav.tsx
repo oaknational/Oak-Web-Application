@@ -1,5 +1,6 @@
 "use client";
 import { useCallback, useEffect, useMemo, useState } from "react";
+import { VisuallyHidden } from "react-aria";
 
 import TabLink from "./TabLink/TabLink";
 import SubNav from "./SubNav/SubNav";
@@ -30,6 +31,37 @@ import useAnalytics from "@/context/Analytics/useAnalytics";
 export type TopNavProps = {
   teachers: TeachersSubNavData | null;
   pupils: PupilsSubNavData | null;
+};
+
+/**
+ * Wrapper component which visually hides children unless a shouldDisplay condition is met until the client intialises
+ * This allows elements to be added to the dom on the server while still being hidden until needed
+ */
+export const MaybeVisuallyHidden = ({
+  shouldDisplay,
+  hiddenElementId,
+  children,
+}: {
+  shouldDisplay: boolean;
+  children?: React.ReactNode;
+  hiddenElementId: string;
+}) => {
+  // Fully remove the visually hidden elements from the page when the client initialises to prevent issues with focus and screen readers
+  const [afterInitialRender, setAfterInitialRender] = useState(false);
+
+  useEffect(() => {
+    setAfterInitialRender(true);
+  }, []);
+
+  if (shouldDisplay) {
+    return children;
+  } else {
+    return afterInitialRender ? null : (
+      <VisuallyHidden id={`visually-hidden-${hiddenElementId}`}>
+        {children}
+      </VisuallyHidden>
+    );
+  }
 };
 
 const TopNav = (props: TopNavProps) => {
@@ -186,7 +218,7 @@ const TopNav = (props: TopNavProps) => {
             $pa={"spacing-0"}
           />
         </OakLink>
-        {activeArea === "TEACHERS" && teachers && (
+        {activeArea === "TEACHERS" && teachers && focusManager && (
           <>
             <SubNav
               {...teachers}
@@ -203,7 +235,7 @@ const TopNav = (props: TopNavProps) => {
             <TeachersTopNavHamburger {...teachers} />
           </>
         )}
-        {activeArea === "PUPILS" && pupils && (
+        {activeArea === "PUPILS" && pupils && focusManager && (
           <>
             <SubNav
               {...pupils}
@@ -220,9 +252,11 @@ const TopNav = (props: TopNavProps) => {
           </>
         )}
       </OakFlex>
-      {selectedMenu &&
-        ((activeArea === "TEACHERS" && teachers) ||
-          (activeArea === "PUPILS" && pupils)) && (
+      {teachers && pupils && (
+        <MaybeVisuallyHidden
+          hiddenElementId="top-nav-dropdown"
+          shouldDisplay={!!selectedMenu}
+        >
           <OakFlex
             $display={["none", "none", "flex"]}
             $width={"100%"}
@@ -233,15 +267,16 @@ const TopNav = (props: TopNavProps) => {
             $borderColor="border-neutral-lighter"
           >
             <TopNavDropdown
-              focusManager={focusManager!}
+              focusManager={focusManager}
               activeArea={activeArea}
               selectedMenu={selectedMenu}
-              teachers={teachers!}
-              pupils={pupils!}
+              teachers={teachers}
+              pupils={pupils}
               onClose={handleCloseDropdown}
             />
           </OakFlex>
-        )}
+        </MaybeVisuallyHidden>
+      )}
     </OakBox>
   );
 };
