@@ -77,15 +77,18 @@ export type SubjectsNavItem = {
   examBoards?: ProgrammeFactorButton[]; // available exam boards for KS4 subjects with multiple programmes
 };
 
+export type TeachersBrowseChildItem = {
+  type: "keystage" | "phase";
+  title: string;
+  slug: string;
+  description: string;
+  children: Array<SubjectsNavItem>;
+};
+
 export type TeachersBrowse = {
   title: "Primary" | "Secondary";
   slug: "primary" | "secondary";
-  children: Array<{
-    title: string;
-    slug: string;
-    description: string;
-    children: Array<SubjectsNavItem>;
-  }>;
+  children: Array<TeachersBrowseChildItem>;
 };
 
 export type PupilsSubNavData = {
