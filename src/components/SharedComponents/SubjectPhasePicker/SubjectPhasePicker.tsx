@@ -38,10 +38,7 @@ import FocusWrap from "@/components/CurriculumComponents/OakComponentsKitchen/Fo
 import { CurriculumModalCloseButton } from "@/components/CurriculumComponents/CurriculumModalCloseButton/CurriculumModalCloseButton";
 import useMediaQuery from "@/hooks/useMediaQuery";
 import { PhaseValueType } from "@/browser-lib/avo/Avo";
-import {
-  generateSubjectPhasePickerLinks,
-  resolveOakHref,
-} from "@/common-lib/urls";
+import { resolveOakHref } from "@/common-lib/urls";
 import { MaybeVisuallyHidden } from "@/components/AppComponents/TopNav/TopNav";
 
 const TruncatedFlex = styled(OakFlex)`
@@ -144,6 +141,40 @@ const isPhaseSelectionComplete = (
   }
   return false;
 };
+
+export function generateSubjectPhasePickerLinks(
+  subjects: CurriculumPhaseOptions,
+): Array<{ label: string; href: string }> {
+  const resolveTeacherProgrammeHref = (subjectPhaseSlug: string) =>
+    resolveOakHref({
+      page: "teacher-programme",
+      subjectPhaseSlug,
+      tab: "units",
+    });
+
+  return subjects.flatMap((subject) =>
+    subject.phases.flatMap((phase) => {
+      const subjectPhaseSlug = `${subject.slug}-${phase.slug}`;
+      const phaseLink = {
+        label: `${subject.title} - ${phase.title}`,
+        href: resolveTeacherProgrammeHref(subjectPhaseSlug),
+      };
+
+      // Add KS4 exam board variants for secondary phase
+      const ks4Links =
+        phase.slug === "secondary"
+          ? (subject.ks4_options ?? []).map((ks4Option) => ({
+              label: `${subject.title} - ${phase.title} - ${ks4Option.title}`,
+              href: resolveTeacherProgrammeHref(
+                `${subjectPhaseSlug}-${ks4Option.slug}`,
+              ),
+            }))
+          : [];
+
+      return [phaseLink, ...ks4Links];
+    }),
+  );
+}
 
 const ButtonContainer = styled.div`
   display: inline-block;

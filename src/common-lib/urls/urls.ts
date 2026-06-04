@@ -18,7 +18,6 @@ import {
 import isSlugEYFS, {
   EYFS_PROGRAMME_SLUG_REGEX,
 } from "@/utils/slugModifiers/isSlugEYFS";
-import type { CurriculumPhaseOptions } from "@/node-lib/curriculum-api-2023";
 
 const reportError = errorReporter("urls.ts");
 
@@ -1363,38 +1362,4 @@ export function resolveOakHref(props: ResolveOakHrefProps): string {
 
     return "/";
   }
-}
-
-export function generateSubjectPhasePickerLinks(
-  subjects: CurriculumPhaseOptions,
-): Array<{ label: string; href: string }> {
-  const resolveTeacherProgrammeHref = (subjectPhaseSlug: string) =>
-    resolveOakHref({
-      page: "teacher-programme",
-      subjectPhaseSlug,
-      tab: "units",
-    });
-
-  return subjects.flatMap((subject) =>
-    subject.phases.flatMap((phase) => {
-      const subjectPhaseSlug = `${subject.slug}-${phase.slug}`;
-      const phaseLink = {
-        label: `${subject.title} - ${phase.title}`,
-        href: resolveTeacherProgrammeHref(subjectPhaseSlug),
-      };
-
-      // Add KS4 exam board variants for secondary phase
-      const ks4Links =
-        phase.slug === "secondary"
-          ? (subject.ks4_options ?? []).map((ks4Option) => ({
-              label: `${subject.title} - ${phase.title} - ${ks4Option.title}`,
-              href: resolveTeacherProgrammeHref(
-                `${subjectPhaseSlug}-${ks4Option.slug}`,
-              ),
-            }))
-          : [];
-
-      return [phaseLink, ...ks4Links];
-    }),
-  );
 }
