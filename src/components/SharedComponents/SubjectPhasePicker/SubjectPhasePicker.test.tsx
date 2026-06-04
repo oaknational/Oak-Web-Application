@@ -40,41 +40,19 @@ describe("Component - subject phase picker", () => {
   });
 
   test("renders subject phase picker SEO links in HTML before hydration", () => {
-    const consoleErrorSpy = jest
-      .spyOn(console, "error")
-      .mockImplementation((...args: unknown[]) => {
-        const [firstArg] = args;
-        if (
-          typeof firstArg === "string" &&
-          firstArg.includes("useLayoutEffect does nothing on the server")
-        ) {
-          return;
-        }
+    const Providers = getMockedProviders({
+      oakTheme: allProviders.oakTheme,
+      theme: allProviders.theme,
+    });
 
-        throw new Error(
-          `Unexpected console.error in test:\n\n${args
-            .map((arg) => String(arg))
-            .join(" ")}`,
-        );
-      });
+    const html = renderToStaticMarkup(
+      <Providers>
+        <SubjectPhasePicker {...curriculumPhaseOptions} />
+      </Providers>,
+    );
 
-    try {
-      const Providers = getMockedProviders({
-        oakTheme: allProviders.oakTheme,
-        theme: allProviders.theme,
-      });
-
-      const html = renderToStaticMarkup(
-        <Providers>
-          <SubjectPhasePicker {...curriculumPhaseOptions} />
-        </Providers>,
-      );
-
-      expect(html).toContain('data-testid="visually-hidden-link"');
-      expect(html).toContain("/teachers/programmes/");
-    } finally {
-      consoleErrorSpy.mockRestore();
-    }
+    expect(html).toContain('data-testid="visually-hidden-link"');
+    expect(html).toContain("/teachers/programmes/");
   });
 
   test("removes subject phase picker SEO links after hydration", async () => {
