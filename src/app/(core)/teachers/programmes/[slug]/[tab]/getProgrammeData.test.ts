@@ -89,7 +89,6 @@ describe("getProgrammeData", () => {
         excludeUnitsWithNoPublishedLessons: true,
         excludeCoreUnits: true,
       });
-      expect(mockApi.curriculumPhaseOptions).toHaveBeenCalled();
     });
 
     it("should sort units with examboard versions first, then by order", async () => {
@@ -357,20 +356,6 @@ describe("getProgrammeData", () => {
     it("should propagate errors from curriculumSequence", async () => {
       const mockApi = createMockCurriculumApi({
         curriculumSequence: jest
-          .fn()
-          .mockRejectedValue(
-            new OakError({ code: "curriculum-api/not-found" }),
-          ),
-      });
-
-      await expect(getProgrammeData(mockApi, "maths-primary")).rejects.toThrow(
-        "Resource not found",
-      );
-    });
-
-    it("should propagate errors from curriculumPhaseOptions", async () => {
-      const mockApi = createMockCurriculumApi({
-        curriculumPhaseOptions: jest
           .fn()
           .mockRejectedValue(
             new OakError({ code: "curriculum-api/not-found" }),

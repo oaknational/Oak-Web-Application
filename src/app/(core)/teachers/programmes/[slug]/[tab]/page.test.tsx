@@ -284,8 +284,8 @@ describe("generateMetadata", () => {
     expect(getProgrammeData).not.toHaveBeenCalled();
   });
 
-  it("returns empty object when no programme data is found", async () => {
-    jest.mocked(getProgrammeData).mockResolvedValueOnce(null);
+  it("returns empty object when no subject data is found", async () => {
+    jest.mocked(getSubjectPhaseOptions).mockResolvedValueOnce(null);
 
     const result = await generateMetadata({
       params: Promise.resolve({
@@ -299,27 +299,10 @@ describe("generateMetadata", () => {
   });
 
   it("generates metadata with title, description, and canonical URL", async () => {
-    const mockProgrammeData = {
-      programmeUnitsData: curriculumOverviewMVFixture({
-        subjectTitle: "Maths",
-      }),
-      curriculumUnitsData: {
-        units: [
-          createUnit({
-            slug: "unit-1",
-            year: "5",
-            keystage_slug: "ks2",
-            subject_slug: "maths",
-            phase_slug: "primary",
-          }),
-        ],
-      },
-      curriculumPhaseOptions: {
-        subjects: filterValidCurriculumPhaseOptions(
-          curriculumPhaseOptionsFixture(),
-        ),
-        tab: "units" as const,
-      },
+    const mockSubjectData = {
+      subjects: filterValidCurriculumPhaseOptions(
+        curriculumPhaseOptionsFixture(),
+      ),
       subjectPhaseKeystageSlugs: {
         subjectSlug: "maths",
         phaseSlug: "primary",
@@ -327,7 +310,7 @@ describe("generateMetadata", () => {
       },
     };
 
-    jest.mocked(getProgrammeData).mockResolvedValue(mockProgrammeData);
+    jest.mocked(getSubjectPhaseOptions).mockResolvedValue(mockSubjectData);
 
     const result = await generateMetadata({
       params: Promise.resolve({
@@ -338,10 +321,10 @@ describe("generateMetadata", () => {
     });
 
     expect(result.title).toBe(
-      "Free Secondary Maths Lesson & Curriculum Resources",
+      "Free Primary Maths Lesson & Curriculum Resources",
     );
     expect(result.description).toContain(
-      "Get fully sequenced teaching resources and lesson plans for Secondary Maths",
+      "Get fully sequenced teaching resources and lesson plans for Primary Maths",
     );
 
     expect(result.alternates?.canonical).toBe(
@@ -354,21 +337,23 @@ describe("generateMetadata", () => {
       ).toString(),
     );
     expect(result.openGraph?.title).toBe(
-      "Free Secondary Maths Lesson & Curriculum Resources",
+      "Free Primary Maths Lesson & Curriculum Resources",
     );
     expect(result.openGraph?.description).toContain(
-      "Get fully sequenced teaching resources and lesson plans for Secondary Maths",
+      "Get fully sequenced teaching resources and lesson plans for Primary Maths",
     );
     expect(result.twitter?.title).toBe(
-      "Free Secondary Maths Lesson & Curriculum Resources",
+      "Free Primary Maths Lesson & Curriculum Resources",
     );
     expect(result.twitter?.description).toContain(
-      "Get fully sequenced teaching resources and lesson plans for Secondary Maths",
+      "Get fully sequenced teaching resources and lesson plans for Primary Maths",
     );
   });
 
   it("handles errors gracefully and returns empty object", async () => {
-    jest.mocked(getProgrammeData).mockRejectedValue(new Error("Test error"));
+    jest
+      .mocked(getSubjectPhaseOptions)
+      .mockRejectedValue(new Error("Test error"));
 
     const result = await generateMetadata({
       params: Promise.resolve({
@@ -382,35 +367,18 @@ describe("generateMetadata", () => {
   });
 
   it("includes noindex robots metadata for the download tab", async () => {
-    const mockProgrammeData = {
-      programmeUnitsData: curriculumOverviewMVFixture({
-        subjectTitle: "Computing",
-      }),
-      curriculumUnitsData: {
-        units: [
-          createUnit({
-            slug: "unit-1",
-            year: "10",
-            keystage_slug: "ks4",
-            subject_slug: "computing",
-            phase_slug: "secondary",
-          }),
-        ],
-      },
-      curriculumPhaseOptions: {
-        subjects: filterValidCurriculumPhaseOptions(
-          curriculumPhaseOptionsFixture(),
-        ),
-        tab: "units" as const,
-      },
+    const mockSubjectData = {
+      subjects: filterValidCurriculumPhaseOptions(
+        curriculumPhaseOptionsFixture(),
+      ),
       subjectPhaseKeystageSlugs: {
-        subjectSlug: "computing",
+        subjectSlug: "compputing",
         phaseSlug: "secondary",
-        ks4OptionSlug: "ocr",
+        examboardSlug: "aqa",
+        ks4OptionSlug: null,
       },
     };
-
-    jest.mocked(getProgrammeData).mockResolvedValue(mockProgrammeData);
+    jest.mocked(getSubjectPhaseOptions).mockResolvedValue(mockSubjectData);
 
     const result = await generateMetadata({
       params: Promise.resolve({
