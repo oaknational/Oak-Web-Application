@@ -1,5 +1,7 @@
 import { upperFirst } from "lodash";
 
+import { TabSlug } from "../../tabSchema";
+
 import { CurriculumFilters } from "@/utils/curriculum/types";
 import {
   childSubjectForFilter,
@@ -96,6 +98,7 @@ function buildSubjectTitleContext(
   subjectTitle: string,
   data: CurriculumUnitsFormattedData,
   filters: CurriculumFilters,
+  tabSlug: TabSlug,
 ): SubjectTitleContext {
   const formattedSubjectTitle = upperFirst(subjectTitle);
   const selectedYears =
@@ -118,8 +121,10 @@ function buildSubjectTitleContext(
   const childSubjectsDisplayed = Boolean(
     shouldDisplayFilter(data, filters, "childSubjects"),
   );
+
   const subjectCategoriesDisplayed = Boolean(
-    shouldDisplayFilter(data, filters, "subjectCategories"),
+    shouldDisplayFilter(data, filters, "subjectCategories") &&
+      tabSlug === "units",
   );
 
   const appliedChildSubjects = childSubjectsDisplayed
@@ -329,8 +334,14 @@ function getSubjectTitleSelection(
   subjectTitle: string,
   data: CurriculumUnitsFormattedData,
   filters: CurriculumFilters,
+  tabSlug: TabSlug,
 ): SubjectTitleSelection {
-  const context = buildSubjectTitleContext(subjectTitle, data, filters);
+  const context = buildSubjectTitleContext(
+    subjectTitle,
+    data,
+    filters,
+    tabSlug,
+  );
   return resolveSubjectTitleSelection(context);
 }
 
@@ -339,6 +350,7 @@ type BuildProgrammeHeadingArgs = {
   data: CurriculumUnitsFormattedData;
   filters: CurriculumFilters;
   phaseTitle: string;
+  tabSlug: TabSlug;
   schoolYear?: string | null;
   keyStage?: string;
   examboardTitle?: string;
@@ -397,11 +409,13 @@ export function buildProgrammeHeading({
   schoolYear,
   keyStage,
   examboardTitle,
+  tabSlug,
 }: BuildProgrammeHeadingArgs): string {
   const { title: selectedSubjectTitle } = getSubjectTitleSelection(
     subjectTitle,
     data,
     filters,
+    tabSlug,
   );
   const isKs4SchoolYear = schoolYear === "10" || schoolYear === "11";
 
