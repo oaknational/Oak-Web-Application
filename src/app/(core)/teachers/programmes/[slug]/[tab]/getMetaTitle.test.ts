@@ -14,26 +14,23 @@ const mockKs4Options = [
   { slug: "ocr", title: "OCR" },
 ];
 
-const getMockCurriculumPhaseOptions = (withKsOptions: boolean) => ({
-  tab: "units" as const,
-  subjects: [
-    {
-      slug: "maths",
-      title: "Maths",
-      phases: [
-        { slug: "primary", title: "Primary" },
-        { slug: "secondary", title: "Secondary" },
-      ],
-      keystages: [
-        { slug: "ks1", title: "Key Stage 1" },
-        { slug: "ks2", title: "Key Stage 2" },
-        { slug: "ks3", title: "Key Stage 3" },
-        { slug: "ks4", title: "Key Stage 4" },
-      ],
-      ks4_options: withKsOptions ? mockKs4Options : null,
-    },
-  ],
-});
+const getMockCurriculumPhaseOptions = (withKsOptions: boolean) => [
+  {
+    slug: "maths",
+    title: "Maths",
+    phases: [
+      { slug: "primary", title: "Primary" },
+      { slug: "secondary", title: "Secondary" },
+    ],
+    keystages: [
+      { slug: "ks1", title: "Key Stage 1" },
+      { slug: "ks2", title: "Key Stage 2" },
+      { slug: "ks3", title: "Key Stage 3" },
+      { slug: "ks4", title: "Key Stage 4" },
+    ],
+    ks4_options: withKsOptions ? mockKs4Options : null,
+  },
+];
 
 const mockCurriculumUnitsData = {
   units: [
@@ -63,8 +60,10 @@ describe("getMetaTitle", () => {
       const result = getMetaTitle(
         {
           programmeUnitsData: mockProgrammeUnitsData,
-          curriculumPhaseOptions: getMockCurriculumPhaseOptions(false),
           curriculumUnitsData: mockCurriculumUnitsData,
+        },
+        {
+          subjects: getMockCurriculumPhaseOptions(false),
           subjectPhaseKeystageSlugs: getMockSubjectPhaseKeystageSlugs(false),
         },
         {},
@@ -77,8 +76,10 @@ describe("getMetaTitle", () => {
       const result = getMetaTitle(
         {
           programmeUnitsData: mockProgrammeUnitsData,
-          curriculumPhaseOptions: getMockCurriculumPhaseOptions(false),
           curriculumUnitsData: mockCurriculumUnitsData,
+        },
+        {
+          subjects: getMockCurriculumPhaseOptions(false),
           subjectPhaseKeystageSlugs: getMockSubjectPhaseKeystageSlugs(false),
         },
         { threads: "thread-1" },
@@ -91,8 +92,10 @@ describe("getMetaTitle", () => {
       const result = getMetaTitle(
         {
           programmeUnitsData: mockProgrammeUnitsData,
-          curriculumPhaseOptions: getMockCurriculumPhaseOptions(false),
           curriculumUnitsData: mockCurriculumUnitsData,
+        },
+        {
+          subjects: getMockCurriculumPhaseOptions(false),
           subjectPhaseKeystageSlugs: getMockSubjectPhaseKeystageSlugs(false),
         },
         { tiers: "foundation" },
@@ -105,8 +108,10 @@ describe("getMetaTitle", () => {
       const result = getMetaTitle(
         {
           programmeUnitsData: mockProgrammeUnitsData,
-          curriculumPhaseOptions: getMockCurriculumPhaseOptions(true),
           curriculumUnitsData: mockCurriculumUnitsData,
+        },
+        {
+          subjects: getMockCurriculumPhaseOptions(true),
           subjectPhaseKeystageSlugs: getMockSubjectPhaseKeystageSlugs(true),
         },
         {},
@@ -119,8 +124,10 @@ describe("getMetaTitle", () => {
       const result = getMetaTitle(
         {
           programmeUnitsData: mockProgrammeUnitsData,
-          curriculumPhaseOptions: getMockCurriculumPhaseOptions(true),
           curriculumUnitsData: mockCurriculumUnitsData,
+        },
+        {
+          subjects: getMockCurriculumPhaseOptions(true),
           subjectPhaseKeystageSlugs: getMockSubjectPhaseKeystageSlugs(true),
         },
         { tiers: "foundation" },
@@ -136,8 +143,10 @@ describe("getMetaTitle", () => {
       const result = getMetaTitle(
         {
           programmeUnitsData: mockProgrammeUnitsData,
-          curriculumPhaseOptions: getMockCurriculumPhaseOptions(false),
           curriculumUnitsData: mockCurriculumUnitsData,
+        },
+        {
+          subjects: getMockCurriculumPhaseOptions(false),
           subjectPhaseKeystageSlugs: getMockSubjectPhaseKeystageSlugs(false),
         },
         { keystages: "ks3" },
@@ -148,8 +157,10 @@ describe("getMetaTitle", () => {
       const result = getMetaTitle(
         {
           programmeUnitsData: mockProgrammeUnitsData,
-          curriculumPhaseOptions: getMockCurriculumPhaseOptions(true),
           curriculumUnitsData: mockCurriculumUnitsData,
+        },
+        {
+          subjects: getMockCurriculumPhaseOptions(true),
           subjectPhaseKeystageSlugs: getMockSubjectPhaseKeystageSlugs(true),
         },
         { keystages: "ks4" },
@@ -162,8 +173,10 @@ describe("getMetaTitle", () => {
       const result = getMetaTitle(
         {
           programmeUnitsData: mockProgrammeUnitsData,
-          curriculumPhaseOptions: getMockCurriculumPhaseOptions(false),
           curriculumUnitsData: mockCurriculumUnitsData,
+        },
+        {
+          subjects: getMockCurriculumPhaseOptions(false),
           subjectPhaseKeystageSlugs: getMockSubjectPhaseKeystageSlugs(false),
         },
         { tiers: "foundation", keystages: "ks4" },
@@ -176,8 +189,10 @@ describe("getMetaTitle", () => {
       const result = getMetaTitle(
         {
           programmeUnitsData: mockProgrammeUnitsData,
-          curriculumPhaseOptions: getMockCurriculumPhaseOptions(true),
           curriculumUnitsData: mockCurriculumUnitsData,
+        },
+        {
+          subjects: getMockCurriculumPhaseOptions(true),
           subjectPhaseKeystageSlugs: getMockSubjectPhaseKeystageSlugs(true),
         },
         { tiers: "foundation", keystages: "ks4" },
@@ -193,8 +208,10 @@ describe("getMetaTitle", () => {
       const result = getMetaTitle(
         {
           programmeUnitsData: mockProgrammeUnitsData,
-          curriculumPhaseOptions: getMockCurriculumPhaseOptions(false),
           curriculumUnitsData: mockCurriculumUnitsData,
+        },
+        {
+          subjects: getMockCurriculumPhaseOptions(false),
           subjectPhaseKeystageSlugs: getMockSubjectPhaseKeystageSlugs(false),
         },
         { years: "7" },
@@ -205,8 +222,10 @@ describe("getMetaTitle", () => {
       const result = getMetaTitle(
         {
           programmeUnitsData: mockProgrammeUnitsData,
-          curriculumPhaseOptions: getMockCurriculumPhaseOptions(true),
           curriculumUnitsData: mockCurriculumUnitsData,
+        },
+        {
+          subjects: getMockCurriculumPhaseOptions(true),
           subjectPhaseKeystageSlugs: getMockSubjectPhaseKeystageSlugs(true),
         },
         { years: "11" },
@@ -219,8 +238,10 @@ describe("getMetaTitle", () => {
       const result = getMetaTitle(
         {
           programmeUnitsData: mockProgrammeUnitsData,
-          curriculumPhaseOptions: getMockCurriculumPhaseOptions(false),
           curriculumUnitsData: mockCurriculumUnitsData,
+        },
+        {
+          subjects: getMockCurriculumPhaseOptions(false),
           subjectPhaseKeystageSlugs: getMockSubjectPhaseKeystageSlugs(false),
         },
         { years: "7", tiers: "higher" },
@@ -233,8 +254,10 @@ describe("getMetaTitle", () => {
       const result = getMetaTitle(
         {
           programmeUnitsData: mockProgrammeUnitsData,
-          curriculumPhaseOptions: getMockCurriculumPhaseOptions(true),
           curriculumUnitsData: mockCurriculumUnitsData,
+        },
+        {
+          subjects: getMockCurriculumPhaseOptions(true),
           subjectPhaseKeystageSlugs: getMockSubjectPhaseKeystageSlugs(true),
         },
         { years: "7", tiers: "foundation" },
@@ -247,8 +270,10 @@ describe("getMetaTitle", () => {
       const result = getMetaTitle(
         {
           programmeUnitsData: mockProgrammeUnitsData,
-          curriculumPhaseOptions: getMockCurriculumPhaseOptions(true),
           curriculumUnitsData: mockCurriculumUnitsData,
+        },
+        {
+          subjects: getMockCurriculumPhaseOptions(true),
           subjectPhaseKeystageSlugs: getMockSubjectPhaseKeystageSlugs(true),
         },
         { years: "7", tiers: "foundation", threads: "thread-1" },

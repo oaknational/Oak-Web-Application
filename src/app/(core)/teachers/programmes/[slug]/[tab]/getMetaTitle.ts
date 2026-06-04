@@ -1,26 +1,24 @@
-import { getProgrammeData } from "./getProgrammeData";
+import { getProgrammeData, getSubjectPhaseOptions } from "./getProgrammeData";
 import { PageSearchParms } from "./page";
 
 import { formatCurriculumUnitsData } from "@/pages-helpers/curriculum/docx/tab-helpers";
 
 export const getMetaTitle = (
   programmePageData: NonNullable<Awaited<ReturnType<typeof getProgrammeData>>>,
+  subjectPhaseData: NonNullable<
+    Awaited<ReturnType<typeof getSubjectPhaseOptions>>
+  >,
   searchParams: PageSearchParms,
 ) => {
-  const {
-    programmeUnitsData,
-    curriculumUnitsData,
-    curriculumPhaseOptions,
-    subjectPhaseKeystageSlugs,
-  } = programmePageData;
+  const { programmeUnitsData, curriculumUnitsData } = programmePageData;
+  const { subjects, subjectPhaseKeystageSlugs } = subjectPhaseData;
 
   const curriculumUnitsFormattedData =
     formatCurriculumUnitsData(curriculumUnitsData);
 
   const ks4Options =
-    curriculumPhaseOptions.subjects.find(
-      (s) => s.slug === subjectPhaseKeystageSlugs.subjectSlug,
-    )?.ks4_options ?? [];
+    subjects.find((s) => s.slug === subjectPhaseKeystageSlugs.subjectSlug)
+      ?.ks4_options ?? [];
   const ks4Option = ks4Options.find(
     (ks4opt) => ks4opt.slug === subjectPhaseKeystageSlugs.ks4OptionSlug,
   );

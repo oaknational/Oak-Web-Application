@@ -106,8 +106,9 @@ export async function generateMetadata({
   redirectProgrammeSlugIfNeeded(slug, pageSearchParams);
 
   try {
-    const cachedData = await getCachedProgrammeData(slug);
-    if (!cachedData) {
+    const cachedProgrammeData = await getCachedProgrammeData(slug);
+    const cachedSubjectData = await getCachedSubjectOptionData(slug);
+    if (!cachedProgrammeData || !cachedSubjectData) {
       return {};
     }
 
@@ -119,8 +120,12 @@ export async function generateMetadata({
       getBrowserConfig("seoAppUrl"),
     ).toString();
 
-    const title = getMetaTitle(cachedData, pageSearchParams);
-    const description = `Get fully sequenced teaching resources and lesson plans for ${cachedData.programmeUnitsData.phaseTitle} ${cachedData.programmeUnitsData.subjectTitle}`;
+    const title = getMetaTitle(
+      cachedProgrammeData,
+      cachedSubjectData,
+      pageSearchParams,
+    );
+    const description = `Get fully sequenced teaching resources and lesson plans for ${cachedProgrammeData.programmeUnitsData.phaseTitle} ${cachedProgrammeData.programmeUnitsData.subjectTitle}`;
 
     return {
       title,
