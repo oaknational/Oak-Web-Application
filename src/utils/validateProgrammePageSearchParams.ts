@@ -1,6 +1,6 @@
 import { keystageSlugs, years } from "@oaknational/oak-curriculum-schema";
-import { ReadonlyURLSearchParams } from "next/navigation";
-import { ZodEnum } from "zod";
+import type { ReadonlyURLSearchParams } from "next/navigation";
+import type { ZodEnum } from "zod";
 
 // We want to validate these values because they are used to create the heading and metatitle on the page
 const paramsToValidate = [
