@@ -40,6 +40,7 @@ import { pupilBrowseLessonRedirectQuery } from "./queries/pupilBrowseLessonRedir
 import topNavQuery from "./queries/topNav/topNav.query";
 import eyfsPageQuery from "./queries/eyfs/eyfsPage.query";
 import teachersUnitOverviewQuery from "./queries/teachersUnitOverview/teachersUnitOverview.query";
+import teachersUnitProgrammeQuery from "./queries/teachersUnitOverview/teachersUnitProgramme.query";
 
 export const keyStageSchema = z.object({
   slug: z.string(),
@@ -154,6 +155,7 @@ const curriculumApi2023 = {
   topNav: topNavQuery(sdk),
   eyfsPage: eyfsPageQuery(sdk),
   teachersUnitOverview: teachersUnitOverviewQuery(sdk),
+  teachersUnitProgramme: teachersUnitProgrammeQuery(sdk),
 };
 
 export type CurriculumApi = typeof curriculumApi2023;

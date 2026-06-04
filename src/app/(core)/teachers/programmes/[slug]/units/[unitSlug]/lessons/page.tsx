@@ -1,7 +1,7 @@
 import { Metadata } from "next";
 
 import { UnitView } from "./Components/UnitView";
-import { getCachedUnitData } from "./getCachedUnitData";
+import { getCachedUnitData, getValidProgrammeSlug } from "./getCachedUnitData";
 
 import { getOpenGraphMetadata, getTwitterMetadata } from "@/app/metadata";
 import withPageErrorHandling, {
@@ -47,7 +47,13 @@ export async function generateMetadata(
 
 const InnerUnitPage = async (props: AppPageProps<LessonsPageParams>) => {
   const { slug: programmeSlug, unitSlug } = await props.params;
-  const data = await getCachedUnitData(programmeSlug, unitSlug);
+
+  const validProgrammeSlug = await getValidProgrammeSlug({
+    programmeSlug,
+    unitSlug,
+  });
+
+  const data = await getCachedUnitData(validProgrammeSlug, unitSlug);
 
   return <UnitView {...data} />;
 };
