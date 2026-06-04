@@ -12,7 +12,7 @@ describe("teacher sitemaps", () => {
   });
 
   describe("buildTeachersSitemapEntries", () => {
-    it("returns integrated programme, unit, and lesson URLs", async () => {
+    it("returns integrated programme (units and curriculum explainer), unit, and lesson URLs", async () => {
       const { buildTeachersSitemapEntries } = await import(
         "./sitemap-pages-helper"
       );
@@ -30,16 +30,31 @@ describe("teacher sitemaps", () => {
         "http://localhost:3000/teachers/programmes/english-primary/units",
       );
       expect(allUrls).toContain(
+        "http://localhost:3000/teachers/programmes/english-primary/curriculum-explainer",
+      );
+      expect(allUrls).toContain(
         "http://localhost:3000/teachers/programmes/english-secondary-aqa/units",
+      );
+      expect(allUrls).toContain(
+        "http://localhost:3000/teachers/programmes/english-secondary-aqa/curriculum-explainer",
       );
       expect(allUrls).toContain(
         "http://localhost:3000/teachers/programmes/english-secondary-edexcel/units",
       );
       expect(allUrls).toContain(
+        "http://localhost:3000/teachers/programmes/english-secondary-edexcel/curriculum-explainer",
+      );
+      expect(allUrls).toContain(
         "http://localhost:3000/teachers/programmes/geography-secondary/units",
+      );
+      expect(allUrls).toContain(
+        "http://localhost:3000/teachers/programmes/geography-secondary/curriculum-explainer",
       );
       expect(allUrls).not.toContain(
         "http://localhost:3000/teachers/programmes/programme-1/units",
+      );
+      expect(allUrls).not.toContain(
+        "http://localhost:3000/teachers/programmes/programme-1/curriculum-explainer",
       );
 
       expect(allUrls).toContain(
