@@ -29,6 +29,29 @@ const excludeCoreFromSubjects = (subjects: CurriculumPhaseOptions) => {
   }));
 };
 
+export async function getSubjectPhaseOptions(
+  curriculumApi2023: CurriculumApi,
+  subjectPhaseSlug: string,
+) {
+  const subjectPhaseKeystageSlugs = parseSubjectPhaseSlug(subjectPhaseSlug);
+
+  if (!subjectPhaseKeystageSlugs) {
+    return null;
+  }
+  const originalSubjects = await curriculumApi2023.curriculumPhaseOptions({
+    includeNonCurriculum: true,
+  });
+  let subjects = filterValidCurriculumPhaseOptions(originalSubjects);
+  // We exclude core units when the ks4 option is not core
+  // TD: after the integrated journey launches we should make this the default in the query
+  const excludeCoreUnits = subjectPhaseKeystageSlugs.ks4OptionSlug !== "core";
+  if (excludeCoreUnits) {
+    subjects = excludeCoreFromSubjects(subjects);
+  }
+
+  return { subjects, subjectPhaseKeystageSlugs };
+}
+
 export async function getProgrammeData(
   curriculumApi2023: CurriculumApi,
   subjectPhaseSlug: string,
@@ -43,32 +66,20 @@ export async function getProgrammeData(
   // TD: after the integrated journey launches we should make this the default in the query
   const excludeCoreUnits = subjectPhaseKeystageSlugs.ks4OptionSlug !== "core";
 
-  const [programmeUnitsData, curriculumUnitsData, originalSubjects] =
-    await Promise.all([
-      curriculumApi2023.curriculumOverview({
-        subjectSlug: subjectPhaseKeystageSlugs.subjectSlug,
-        phaseSlug: subjectPhaseKeystageSlugs.phaseSlug,
-        includeNonCurriculum: true,
-      }),
-      curriculumApi2023.curriculumSequence({
-        ...subjectPhaseKeystageSlugs,
-        includeNonCurriculum: true,
-        excludeUnitsWithNoPublishedLessons: true,
-        excludeCoreUnits,
-      }),
-      curriculumApi2023.curriculumPhaseOptions({ includeNonCurriculum: true }),
-    ]);
-
-  let subjects = filterValidCurriculumPhaseOptions(originalSubjects);
-
-  if (excludeCoreUnits) {
-    subjects = excludeCoreFromSubjects(subjects);
-  }
-
-  const curriculumPhaseOptions = {
-    subjects,
-    tab: "units" as const,
-  };
+  const [programmeUnitsData, curriculumUnitsData] = await Promise.all([
+    curriculumApi2023.curriculumOverview({
+      subjectSlug: subjectPhaseKeystageSlugs.subjectSlug,
+      phaseSlug: subjectPhaseKeystageSlugs.phaseSlug,
+      includeNonCurriculum: true,
+    }),
+    curriculumApi2023.curriculumSequence({
+      ...subjectPhaseKeystageSlugs,
+      includeNonCurriculum: true,
+      excludeUnitsWithNoPublishedLessons: true,
+      excludeCoreUnits,
+    }),
+    curriculumApi2023.curriculumPhaseOptions({ includeNonCurriculum: true }),
+  ]);
 
   // Sort units to have examboard versions first, then by unit order
   curriculumUnitsData.units = sortUnits(curriculumUnitsData.units);
@@ -76,7 +87,5 @@ export async function getProgrammeData(
   return {
     programmeUnitsData,
     curriculumUnitsData,
-    curriculumPhaseOptions,
-    subjectPhaseKeystageSlugs,
   };
 }

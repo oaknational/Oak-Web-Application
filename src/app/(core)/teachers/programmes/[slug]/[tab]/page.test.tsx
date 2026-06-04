@@ -1,7 +1,7 @@
 /**
  * @jest-environment node
  */
-import { getProgrammeData } from "./getProgrammeData";
+import { getProgrammeData, getSubjectPhaseOptions } from "./getProgrammeData";
 import ProgrammePageTabs, { generateMetadata } from "./page";
 
 import getBrowserConfig from "@/browser-lib/getBrowserConfig";
@@ -84,6 +84,7 @@ jest.mock("@/browser-lib/getBrowserConfig", () => ({
 
 jest.mock("./getProgrammeData", () => ({
   getProgrammeData: jest.fn(),
+  getSubjectPhaseOptions: jest.fn(),
 }));
 
 const mockErrorReporter = jest.fn();
@@ -134,12 +135,12 @@ describe("Programme page tabs", () => {
           }),
         ],
       },
-      curriculumPhaseOptions: {
-        subjects: filterValidCurriculumPhaseOptions(
-          curriculumPhaseOptionsFixture().filter((s) => s.slug === "maths"),
-        ),
-        tab: "units" as const,
-      },
+    });
+
+    jest.mocked(getSubjectPhaseOptions).mockResolvedValue({
+      subjects: filterValidCurriculumPhaseOptions(
+        curriculumPhaseOptionsFixture().filter((s) => s.slug === "maths"),
+      ),
       subjectPhaseKeystageSlugs: {
         subjectSlug: "maths",
         phaseSlug: "primary",
@@ -174,17 +175,17 @@ describe("Programme page tabs", () => {
           }),
         ],
       },
-      curriculumPhaseOptions: {
-        subjects: filterValidCurriculumPhaseOptions([
-          {
-            slug: "financial-education",
-            title: "Financial education",
-            phases: [{ slug: "primary", title: "Primary" }],
-            ks4_options: [],
-          },
-        ]),
-        tab: "units",
-      },
+    });
+
+    jest.mocked(getSubjectPhaseOptions).mockResolvedValue({
+      subjects: filterValidCurriculumPhaseOptions([
+        {
+          slug: "financial-education",
+          title: "Financial education",
+          phases: [{ slug: "primary", title: "Primary" }],
+          ks4_options: [],
+        },
+      ]),
       subjectPhaseKeystageSlugs: {
         subjectSlug: "financial-education",
         phaseSlug: "primary",
@@ -224,12 +225,12 @@ describe("Programme page tabs", () => {
           }),
         ],
       },
-      curriculumPhaseOptions: {
-        subjects: filterValidCurriculumPhaseOptions(
-          curriculumPhaseOptionsFixture().filter((s) => s.slug === "maths"),
-        ),
-        tab: "units" as const,
-      },
+    });
+
+    jest.mocked(getSubjectPhaseOptions).mockResolvedValue({
+      subjects: filterValidCurriculumPhaseOptions(
+        curriculumPhaseOptionsFixture().filter((s) => s.slug === "maths"),
+      ),
       subjectPhaseKeystageSlugs: {
         subjectSlug: "maths",
         phaseSlug: "primary",
