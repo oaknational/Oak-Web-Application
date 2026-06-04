@@ -1,4 +1,4 @@
-import { useState, useId, useRef, useTransition, useEffect } from "react";
+import { useState, useId, useRef, useTransition } from "react";
 import { FocusOn } from "react-focus-on";
 import styled from "styled-components";
 import { useRouter } from "next/router";
@@ -39,9 +39,10 @@ import { CurriculumModalCloseButton } from "@/components/CurriculumComponents/Cu
 import useMediaQuery from "@/hooks/useMediaQuery";
 import { PhaseValueType } from "@/browser-lib/avo/Avo";
 import {
-  resolveOakHref,
   generateSubjectPhasePickerLinks,
+  resolveOakHref,
 } from "@/common-lib/urls";
+import { MaybeVisuallyHidden } from "@/components/AppComponents/TopNav/TopNav";
 
 const TruncatedFlex = styled(OakFlex)`
   max-width: calc(100% - 1rem);
@@ -50,57 +51,6 @@ const TruncatedFlex = styled(OakFlex)`
     max-width: calc(100% - 8rem);
   }
 `;
-
-const SubjectPhasePickerLinks = styled.div`
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  white-space: nowrap;
-  border-width: 0;
-`;
-
-const LinksForSEO = ({
-  shouldHide,
-  subjects,
-}: {
-  shouldHide: boolean;
-  subjects: CurriculumPhaseOptions;
-}) => {
-  const [afterInitialRender, setAfterInitialRender] = useState(false);
-
-  useEffect(() => {
-    setAfterInitialRender(true);
-  }, []);
-
-  if (!afterInitialRender && !shouldHide) {
-    return (
-      <SubjectPhasePickerLinks
-        data-testid="visually-hidden-subject-phase-picker"
-        aria-hidden="true"
-      >
-        <ul>
-          {generateSubjectPhasePickerLinks(subjects).map((link) => (
-            <li key={link.href}>
-              <a
-                href={link.href}
-                className={`visually-hidden-link`}
-                tabIndex={-1}
-              >
-                {link.label}
-              </a>
-            </li>
-          ))}
-        </ul>
-      </SubjectPhasePickerLinks>
-    );
-  }
-
-  return null;
-};
 
 const OakFocusIndicatorAlt = styled(OakFocusIndicator)<{
   assertFocus: boolean;
@@ -1479,10 +1429,24 @@ const SubjectPhasePicker = ({
         $left="spacing-8"
         $borderRadius="border-radius-square"
       />
-      <LinksForSEO
-        subjects={subjects}
-        shouldHide={showSubjects || showPhases}
-      />
+      <MaybeVisuallyHidden
+        hiddenElementId="visually-hidden-subject-phase-picker"
+        shouldDisplay={showSubjects && showPhases}
+      >
+        <ul>
+          {generateSubjectPhasePickerLinks(subjects).map((link) => (
+            <li key={link.href}>
+              <a
+                href={link.href}
+                data-testid="visually-hidden-link"
+                tabIndex={-1}
+              >
+                {link.label}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </MaybeVisuallyHidden>
       <OakBox
         $position="relative"
         data-testid="lot-picker"
