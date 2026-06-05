@@ -56,12 +56,12 @@ describe("getTeachersNavData", () => {
   it("gets primary data", () => {
     const result = getNav("primary");
     expect(result.title).toBe("Primary");
-    expect(result.children).toHaveLength(3);
+    expect(result.children).toHaveLength(4);
   });
   it("gets secondary data", () => {
     const result = getNav("secondary");
     expect(result.title).toBe("Secondary");
-    expect(result.children).toHaveLength(2);
+    expect(result.children).toHaveLength(3);
   });
   it("correctly identifies non curriculum subjects", () => {
     const result = getNav("primary");

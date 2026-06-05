@@ -1,7 +1,9 @@
 import {
   TopNavResponse,
   TeachersBrowse,
+  TeachersBrowseChildItem,
   ProgrammeFactorButton,
+  SubjectsNavItem,
 } from "./topNav.schema";
 import {
   getTeachersExamBoardNavHref,
@@ -10,6 +12,22 @@ import {
 
 import { CurriculumPhaseOptions } from "@/node-lib/curriculum-api-2023/queries/curriculumPhaseOptions/curriculumPhaseOptions.query";
 import isSlugLegacy from "@/utils/slugModifiers/isSlugLegacy";
+
+type TopNavProgramme = TopNavResponse["programmes"][number];
+
+const isNonLegacyProgramme = (programme: TopNavProgramme) =>
+  programme.programme_fields.dataset !== "legacy" &&
+  !isSlugLegacy(programme.programme_slug);
+
+const filterLegacyWhenNonLegacyExists = (programmes: TopNavProgramme[]) => {
+  const hasNonLegacyProgramme = programmes.some(isNonLegacyProgramme);
+
+  if (!hasNonLegacyProgramme) {
+    return programmes;
+  }
+
+  return programmes.filter(isNonLegacyProgramme);
+};
 
 export const getExamBoardsForKS4Subject = ({
   data,
@@ -38,21 +56,7 @@ export const getExamBoardsForKS4Subject = ({
         a.findIndex((k) => k.programme_slug === p.programme_slug) === i,
     );
 
-  const hasNonLegacyProgramme = matchingProgrammes.some(
-    (programme) =>
-      programme.programme_fields.dataset !== "legacy" &&
-      !isSlugLegacy(programme.programme_slug),
-  );
-
-  const programmesForKs = matchingProgrammes.filter((programme) => {
-    if (!hasNonLegacyProgramme) {
-      return true;
-    }
-    return (
-      programme.programme_fields.dataset !== "legacy" &&
-      !isSlugLegacy(programme.programme_slug)
-    );
-  });
+  const programmesForKs = filterLegacyWhenNonLegacyExists(matchingProgrammes);
 
   const examBoards: ProgrammeFactorButton[] =
     programmesForKs.flatMap<ProgrammeFactorButton>((p) => {
@@ -113,23 +117,110 @@ export const getTeachersNavData = (
     phaseSlug,
     curriculumPhaseOptionsSubjects,
   );
+  const subjectsForPhase = getSubjectsByPhase(
+    teachersData,
+    phaseSlug,
+    curriculumPhaseOptionsSubjects,
+  );
+
+  const keystageItems: TeachersBrowseChildItem[] = (
+    phaseSlug === "primary"
+      ? keystagesForPhase.concat(
+          getKeystages(
+            teachersData,
+            "foundation",
+            curriculumPhaseOptionsSubjects,
+          ),
+        )
+      : keystagesForPhase
+  ).map((item) => ({ ...item, type: "keystage" as const }));
+
+  const phaseItems: TeachersBrowseChildItem[] = subjectsForPhase.map(
+    (item) => ({ ...item, type: "phase" as const }),
+  );
 
   return {
     slug: phaseSlug,
     title: `${phaseSlug[0]?.toUpperCase()}${phaseSlug.slice(1)}` as
       | "Primary"
       | "Secondary",
-    children:
-      phaseSlug === "primary"
-        ? keystagesForPhase.concat(
-            getKeystages(
-              teachersData,
-              "foundation",
-              curriculumPhaseOptionsSubjects,
-            ),
-          )
-        : keystagesForPhase,
+    children: [...keystageItems, ...phaseItems],
   };
+};
+
+const getSubjectsByPhase = (
+  teachersData: TopNavResponse,
+  phaseSlug: "primary" | "secondary",
+  curriculumPhaseOptionsWithoutCore: CurriculumPhaseOptions,
+): {
+  slug: string;
+  title: string;
+  description: string;
+  children: SubjectsNavItem[];
+}[] => {
+  const relevantPhaseSlugs =
+    phaseSlug === "primary" ? ["primary", "foundation"] : ["secondary"];
+
+  const phaseProgrammes = teachersData.programmes.filter((programme) =>
+    relevantPhaseSlugs.includes(programme.programme_fields.phase_slug),
+  );
+
+  const filteredPhaseProgrammes =
+    filterLegacyWhenNonLegacyExists(phaseProgrammes);
+
+  const phaseChildren = new Map<string, SubjectsNavItem>();
+
+  filteredPhaseProgrammes.forEach((programme) => {
+    const { subject_slug, subject_parent, keystage_slug } =
+      programme.programme_fields;
+
+    phaseChildren.set(subject_slug, {
+      title: programme.programme_fields.subject,
+      slug: subject_slug,
+      href: getTeachersSubjectNavHref({
+        subject: {
+          slug: subject_parent ?? subject_slug,
+          pathwaySlug: programme.programme_fields.pathway_slug ?? null,
+          programmeSlug: programme.programme_slug,
+        },
+        phaseSlug:
+          programme.programme_fields.phase_slug === "foundation"
+            ? "primary"
+            : programme.programme_fields.phase_slug,
+        curriculumPhaseOptionsSubjects: curriculumPhaseOptionsWithoutCore,
+      }),
+      examBoards:
+        keystage_slug === "ks4"
+          ? getExamBoardsForKS4Subject({
+              data: teachersData,
+              keystageSlug: keystage_slug,
+              subjectSlug: subject_slug,
+              pathwaySlug: programme.programme_fields.pathway_slug ?? null,
+              subjectParent: subject_parent ?? null,
+            })
+          : undefined,
+      nonCurriculum: Boolean(programme.features.non_curriculum),
+      programmeSlug: programme.programme_slug,
+      programmeCount: 1,
+    });
+  });
+
+  const orderedPhaseChildren = Array.from(phaseChildren.values());
+  const curriculumChildren = orderedPhaseChildren.filter(
+    (s) => !s.nonCurriculum,
+  );
+  const nonCurriculumChildren = orderedPhaseChildren.filter(
+    (s) => s.nonCurriculum,
+  );
+
+  return [
+    {
+      slug: phaseSlug,
+      title: `${phaseSlug[0]?.toUpperCase()}${phaseSlug.slice(1)}`,
+      description: "",
+      children: [...curriculumChildren, ...nonCurriculumChildren],
+    },
+  ] as Omit<TeachersBrowseChildItem, "type">[];
 };
 
 const getKeystages = (
@@ -166,23 +257,7 @@ const getKeystages = (
           ) === i,
       )
       // remove legacy programmes where a non-legacy counterpart exists
-      .filter((p, _, a) => {
-        if (isSlugLegacy(p.programme_slug)) {
-          const legacySubject = p.programme_fields.subject_slug;
-          const legacyKeystage = p.programme_fields.keystage_slug;
-          const nonLegacyProgramme = a.find(
-            (p) =>
-              p.programme_fields.subject_slug === legacySubject &&
-              p.programme_fields.keystage_slug === legacyKeystage &&
-              !isSlugLegacy(p.programme_slug),
-          );
-
-          if (nonLegacyProgramme) {
-            return false;
-          }
-        }
-        return true;
-      })
+      .filter((p, _, a) => !removeLegacyWhenCounterpartExists(p, a))
       .map((p) => {
         const programmeCount = getProgrammeCount({
           data,
@@ -277,18 +352,45 @@ export const getProgrammeCount = ({
     .filter(
       (p, i, a) =>
         a.findIndex((k) => k.programme_slug === p.programme_slug) === i,
-    )
-    // filter out legacy programmes when there are only 2 programmes and one is legacy
-    .filter((p, _, a) => {
-      const onlyTwoProgrammes = a.length === 2;
-      if (
-        onlyTwoProgrammes &&
-        a.some((prog) => prog.programme_fields.dataset === "legacy")
-      ) {
-        return p.programme_fields.dataset !== "legacy";
-      }
-      return true;
-    });
+    );
+  const filteredProgrammesForKs = filterLegacyProgrammes(programmesForKs);
 
-  return programmesForKs.length;
+  return filteredProgrammesForKs.length;
+};
+
+const removeLegacyWhenCounterpartExists = (
+  programme: TopNavProgramme,
+  programmes: TopNavProgramme[],
+) => {
+  if (!isSlugLegacy(programme.programme_slug)) {
+    return false;
+  }
+
+  const legacySubject = programme.programme_fields.subject_slug;
+  const legacyKeystage = programme.programme_fields.keystage_slug;
+
+  return programmes.some(
+    (candidate) =>
+      candidate.programme_fields.subject_slug === legacySubject &&
+      candidate.programme_fields.keystage_slug === legacyKeystage &&
+      !isSlugLegacy(candidate.programme_slug),
+  );
+};
+
+// filter out legacy programmes when there are only 2 programmes and one is legacy
+const filterLegacyProgrammes = (programmes: TopNavProgramme[]) => {
+  const onlyTwoProgrammes = programmes.length === 2;
+
+  if (
+    onlyTwoProgrammes &&
+    programmes.some(
+      (programme) => programme.programme_fields.dataset === "legacy",
+    )
+  ) {
+    return programmes.filter(
+      (programme) => programme.programme_fields.dataset !== "legacy",
+    );
+  }
+
+  return programmes;
 };
