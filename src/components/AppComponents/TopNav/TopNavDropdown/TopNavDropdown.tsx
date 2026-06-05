@@ -99,24 +99,43 @@ const TeachersPhaseSection = ({
   onClick: (subject: string, keystage: string) => void;
 }) => {
   const { track } = useAnalytics();
-  const defaultKeystage = selectedMenu
-    ? phaseData.children[0]?.slug
-    : undefined;
+  const keystageChildren = phaseData.children.filter(
+    (item) => item.type === "keystage",
+  );
+  const phaseSubjectChildren = phaseData.children.filter(
+    (item) => item.type === "phase",
+  );
 
-  const [selectedKeystage, setSelectedKeystage] = useState<
-    | TeachersSubNavData["primary" | "secondary"]["children"][number]["slug"]
-    | undefined
-  >(defaultKeystage);
+  const defaultTopLevel = selectedMenu ? "keystages" : undefined;
+  const defaultKeystage = selectedMenu ? keystageChildren[0]?.slug : undefined;
+
+  const [selectedTopLevel, setSelectedTopLevel] = useState<string | undefined>(
+    defaultTopLevel,
+  );
+  const [selectedKeystage, setSelectedKeystage] = useState<string | undefined>(
+    defaultKeystage,
+  );
 
   const [selectedSubject, setSelectedSubject] =
     useState<SubjectsNavItem | null>(null);
 
   useEffect(() => {
+    setSelectedTopLevel(defaultTopLevel);
     setSelectedKeystage(defaultKeystage);
     setSelectedSubject(null);
-  }, [defaultKeystage]);
+  }, [defaultTopLevel, defaultKeystage]);
 
   const keystagesRef = useRef<HTMLDivElement>(null);
+
+  const onTopLevelClick = (slug: string) => {
+    setSelectedTopLevel(slug);
+    if (slug === phaseData.slug) {
+      setSelectedKeystage(phaseData.slug);
+    } else if (slug === "keystages") {
+      setSelectedKeystage(keystageChildren[0]?.slug);
+    }
+    setSelectedSubject(null);
+  };
 
   const onKeystageClick = (keystageSlug: string) => {
     track.browseRefined({
@@ -137,11 +156,7 @@ const TeachersPhaseSection = ({
   };
 
   const hasExamBoards = (subject: SubjectsNavItem | null) => {
-    return Boolean(
-      selectedKeystage === "ks4" &&
-        subject?.examBoards &&
-        subject.examBoards.length > 0,
-    );
+    return Boolean(subject?.examBoards && subject.examBoards.length > 0);
   };
 
   const handleExamBoardPanelOpen = (subject: SubjectsNavItem) => {
@@ -160,7 +175,7 @@ const TeachersPhaseSection = ({
     event: React.KeyboardEvent<HTMLDivElement>,
   ) => {
     if (!selectedMenu) return;
-    const focusableElements = phaseData.children.map((keystage) =>
+    const focusableElements = keystageChildren.map((keystage) =>
       focusManager.createId(`teachers-${phaseData.slug}`, keystage.slug),
     );
     const activeElementId = document.activeElement?.id;
@@ -187,6 +202,65 @@ const TeachersPhaseSection = ({
     }
   };
 
+  const renderNavButtons = (
+    slug: string,
+    title: string,
+    isOpen: (s: string) => boolean,
+    onClickFn: (s: string) => void,
+  ) => {
+    const buttonId = focusManager.createId(`teachers-${phase}`, slug);
+
+    return (
+      <OakLeftAlignedButton
+        key={slug}
+        aria-expanded={isOpen(slug)}
+        aria-controls={
+          isOpen(slug) ? `topnav-teachers-${slug}-subjects` : undefined
+        }
+        role="tab"
+        aria-selected={isOpen(slug)}
+        iconName="chevron-right"
+        isTrailingIcon
+        rightAlignIcon
+        width={"spacing-160"}
+        selected={isOpen(slug)}
+        onClick={() => onClickFn(slug)}
+        onKeyDown={(e) => focusManager.handleKeyDown(e, buttonId)}
+        aria-current={isOpen(slug) ? "true" : undefined}
+        id={buttonId}
+        aria-label={
+          title === "EYFS" ? "Early years foundation stage" : undefined
+        }
+        aria-disabled={selectedMenu !== phase}
+      >
+        {title.replace("KS", "Key stage ")}
+      </OakLeftAlignedButton>
+    );
+  };
+
+  const renderSubjectButtons = (slug: string, children: SubjectsNavItem[]) => {
+    return (
+      <MaybeVisuallyHidden
+        key={slug}
+        hiddenElementId={`teachers-subjects-section-${slug}`}
+        shouldDisplay={slug === selectedKeystage}
+      >
+        <TopNavSubjectButtons
+          handleClick={onClick}
+          focusManager={focusManager}
+          phase={phase}
+          selectedMenu={selectedMenu}
+          subjects={children}
+          keyStageSlug={slug}
+          selectedSubject={selectedSubject}
+          onExamBoardPanelOpen={handleExamBoardPanelOpen}
+          closeExamBoardPanel={closeExamBoardPanel}
+        />
+      </MaybeVisuallyHidden>
+    );
+  };
+
+  const isTopLevelOpen = (slug: string) => selectedTopLevel === slug;
   const isKeystageOpen = (slug: string) => selectedKeystage === slug;
   return (
     <OakFlex $gap={"spacing-40"}>
@@ -197,65 +271,52 @@ const TeachersPhaseSection = ({
         $pa={"spacing-0"}
         id={`topnav-teachers-${phase}`}
         role="tablist"
-        ref={keystagesRef}
         onKeyDown={handleKeystageArrowKeys}
       >
-        {phaseData.children.map((keystage) => {
-          const buttonId = focusManager.createId(
-            `teachers-${phase}`,
-            keystage.slug,
-          );
-          return (
-            <OakLeftAlignedButton
-              key={keystage.slug}
-              aria-expanded={isKeystageOpen(keystage.slug)}
-              aria-controls={
-                isKeystageOpen(keystage.slug)
-                  ? `topnav-teachers-${keystage.slug}-subjects`
-                  : undefined
-              }
-              role="tab"
-              aria-selected={isKeystageOpen(keystage.slug)}
-              iconName="chevron-right"
-              isTrailingIcon
-              rightAlignIcon
-              width={"spacing-160"}
-              selected={isKeystageOpen(keystage.slug)}
-              onClick={() => onKeystageClick(keystage.slug)}
-              onKeyDown={(e) => focusManager.handleKeyDown(e, buttonId)}
-              aria-current={isKeystageOpen(keystage.slug) ? "true" : undefined}
-              id={buttonId}
-              aria-label={
-                keystage.title === "EYFS"
-                  ? "Early years foundation stage"
-                  : undefined
-              }
-              aria-disabled={selectedMenu !== phase}
-            >
-              {keystage.title.replace("KS", "Key stage ")}
-            </OakLeftAlignedButton>
-          );
-        })}
+        {renderNavButtons(
+          phaseData.slug,
+          phaseData.title,
+          isTopLevelOpen,
+          onTopLevelClick,
+        )}
+        {renderNavButtons(
+          "keystages",
+          "Key stages",
+          isTopLevelOpen,
+          onTopLevelClick,
+        )}
       </OakFlex>
-      {phaseData.children.map((keystage) => (
-        <MaybeVisuallyHidden
-          key={keystage.slug}
-          hiddenElementId={`teachers-subjects-section-${keystage.slug}`}
-          shouldDisplay={keystage.slug === selectedKeystage}
-        >
-          <TopNavSubjectButtons
-            handleClick={onClick}
-            focusManager={focusManager}
-            phase={phase}
-            selectedMenu={selectedMenu}
-            subjects={keystage.children}
-            keyStageSlug={keystage.slug}
-            selectedSubject={selectedSubject}
-            onExamBoardPanelOpen={handleExamBoardPanelOpen}
-            closeExamBoardPanel={closeExamBoardPanel}
-          />
-        </MaybeVisuallyHidden>
-      ))}
+      {selectedTopLevel === "keystages" && (
+        <>
+          <OakFlex
+            $display={"flex"}
+            $flexDirection={"column"}
+            $gap={"spacing-8"}
+            role="tablist"
+            ref={keystagesRef}
+            onKeyDown={handleKeystageArrowKeys}
+          >
+            {keystageChildren.map((keystage) =>
+              renderNavButtons(
+                keystage.slug,
+                keystage.title,
+                isKeystageOpen,
+                onKeystageClick,
+              ),
+            )}
+          </OakFlex>
+          {keystageChildren.map((keystage) =>
+            renderSubjectButtons(keystage.slug, keystage.children),
+          )}
+        </>
+      )}
+      {selectedTopLevel === phaseData.slug && (
+        <>
+          {phaseSubjectChildren.map((group) =>
+            renderSubjectButtons(group.slug, group.children),
+          )}
+        </>
+      )}
     </OakFlex>
   );
 };
