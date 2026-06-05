@@ -20,6 +20,7 @@ import {
 } from "@/node-lib/curriculum-api-2023/queries/topNav/topNav.schema";
 export type ExamBoardPanelProps = {
   examBoards: ProgrammeFactorButton[];
+  keystageSlug: string;
   selectedSubject: SubjectsNavItem;
   focusManager?: DropdownFocusManager<TeachersSubNavData>;
   onClick: (examBoardSlug: string, keystageSlug: string) => void;
@@ -35,13 +36,14 @@ const ExamBoardButton = styled(OakPrimaryInvertedButton)`
 
 const ExamBoardPanel = ({
   examBoards: examboards,
+  keystageSlug,
   selectedSubject,
   focusManager,
   onClick,
   onLeave,
 }: ExamBoardPanelProps) => {
   const parentId = focusManager?.createId(
-    "teachers-secondary-ks4",
+    `teachers-secondary-${keystageSlug}`,
     selectedSubject.slug,
   );
 
@@ -65,7 +67,7 @@ const ExamBoardPanel = ({
   }, [focusManager, parentId, examboards]);
 
   useEffect(() => {
-    const panelId = `topnav-teachers-ks4-examboards-${selectedSubject.slug}`;
+    const panelId = `topnav-teachers-${keystageSlug}-examboards-${selectedSubject.slug}`;
 
     // Wait for panel children to render before moving focus.
     requestAnimationFrame(() => {
@@ -77,7 +79,7 @@ const ExamBoardPanel = ({
         firstExamBoard?.focus();
       });
     });
-  }, [focusManager, selectedSubject.slug, examboards]);
+  }, [focusManager, keystageSlug, selectedSubject.slug, examboards]);
 
   if (!examboards || examboards.length === 0) {
     return null;
@@ -95,7 +97,7 @@ const ExamBoardPanel = ({
 
   const panelTitle = `Choose ${
     hasTierOnlyOptions && !hasExamBoardOptions ? "tier" : "exam board"
-  } for KS4 ${selectedSubject.title}`;
+  } for ${keystageSlug} ${selectedSubject.title}`;
 
   const focusNextExamBoard = (
     allButtons: HTMLElement[],
@@ -110,11 +112,11 @@ const ExamBoardPanel = ({
 
     if (shouldCycleToParent) {
       const parentId = focusManager.createId(
-        "teachers-secondary-ks4",
+        `teachers-secondary-${keystageSlug}`,
         selectedSubject.slug,
       );
       const subjectsContainer = document.getElementById(
-        "topnav-teachers-ks4-subjects",
+        `topnav-teachers-${keystageSlug}-subjects`,
       );
       const subjectButtons = Array.from(
         subjectsContainer?.querySelectorAll<HTMLElement>("a, button, input") ??
@@ -198,7 +200,7 @@ const ExamBoardPanel = ({
 
   return (
     <OakFlex $flexDirection={"column"}>
-      <OakBox $width={"max-content"} $position={"relative"}>
+      <OakBox $position={"relative"}>
         <OakHeading
           $font={"heading-7"}
           tag="h6"
@@ -213,7 +215,7 @@ const ExamBoardPanel = ({
         $flexDirection={"column"}
         $gap={"spacing-8"}
         $reset
-        id={`topnav-teachers-ks4-examboards-${selectedSubject.slug}`}
+        id={`topnav-teachers-${keystageSlug}-examboards-${selectedSubject.slug}`}
         onKeyDown={handleListKeyDown}
         role="list"
         style={{
@@ -241,8 +243,7 @@ const ExamBoardPanel = ({
                   element="a"
                   href={examboard.href}
                   data-testid={key}
-                  onClick={() => onClick(selectedSubject.slug, "ks4")}
-                  width={"fit-content"}
+                  onClick={() => onClick(selectedSubject.slug, keystageSlug)}
                 >
                   {title}
                 </ExamBoardButton>

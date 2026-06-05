@@ -168,6 +168,7 @@ export function SubmenuContent(
           >
             <ExamBoardPanel
               examBoards={selectedExamBoardSubject.examBoards}
+              keystageSlug={keystage.slug}
               selectedSubject={selectedExamBoardSubject}
               onClick={(subjectSlug, keystageSlug) => {
                 track.browseRefined({
