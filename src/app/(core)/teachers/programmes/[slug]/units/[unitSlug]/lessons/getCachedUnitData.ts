@@ -1,7 +1,9 @@
 import { cache } from "react";
+import { permanentRedirect } from "next/navigation";
 
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 import { cacheData } from "@/node-lib/cache";
+import { resolveOakHref } from "@/common-lib/urls";
 
 export const getCachedUnitData = cache(
   cacheData(
@@ -41,5 +43,28 @@ export const getValidProgrammeSlug = async ({
     return programmeSlug;
   } else {
     return programmes[0]!.programme_slug;
+  }
+};
+
+export const redirectUnitPageIfNeeded = async ({
+  unitSlug,
+  programmeSlug,
+}: {
+  unitSlug: string;
+  programmeSlug: string;
+}) => {
+  const validProgrammeSlug = await getValidProgrammeSlug({
+    programmeSlug,
+    unitSlug,
+  });
+
+  if (validProgrammeSlug !== programmeSlug) {
+    permanentRedirect(
+      resolveOakHref({
+        page: "integrated-unit-overview",
+        unitSlug,
+        programmeSlug: validProgrammeSlug,
+      }),
+    );
   }
 };
