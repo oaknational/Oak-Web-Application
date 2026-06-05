@@ -173,11 +173,21 @@ const getSubjectsByPhase = (
   filteredPhaseProgrammes.forEach((programme) => {
     const { subject_slug, subject_parent, keystage_slug } =
       programme.programme_fields;
+    const pathwaySlug = programme.programme_fields.pathway_slug ?? null;
+    const pathwayTitle = programme.programme_fields.pathway ?? "";
+
+    const subjectDisplayName =
+      programme.actions?.programme_field_overrides?.subject ??
+      programme.programme_fields.subject;
+
+    const title =
+      subjectDisplayName + (pathwayTitle ? ` (${pathwayTitle})` : "");
+    const mapKey = `${subject_slug}-${pathwaySlug ?? ""}`;
 
     const href = getTeachersSubjectNavHref({
       subject: {
         slug: subject_parent ?? subject_slug,
-        pathwaySlug: programme.programme_fields.pathway_slug ?? null,
+        pathwaySlug,
         programmeSlug: programme.programme_slug,
       },
       phaseSlug:
@@ -193,18 +203,20 @@ const getSubjectsByPhase = (
             data: teachersData,
             keystageSlug: keystage_slug,
             subjectSlug: subject_slug,
-            pathwaySlug: programme.programme_fields.pathway_slug ?? null,
+            pathwaySlug,
             subjectParent: subject_parent ?? null,
           })
         : undefined;
 
-    phaseChildren.set(subject_slug, {
-      title: programme.programme_fields.subject,
+    phaseChildren.set(mapKey, {
+      title,
       slug: subject_slug,
       href,
       nonCurriculum: Boolean(programme.features.non_curriculum),
       programmeSlug: programme.programme_slug,
       programmeCount: 1,
+      pathwaySlug,
+      subjectParent: subject_parent ?? null,
       ...(examBoards ? { examBoards } : {}),
     });
   });
