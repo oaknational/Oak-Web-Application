@@ -174,34 +174,38 @@ const getSubjectsByPhase = (
     const { subject_slug, subject_parent, keystage_slug } =
       programme.programme_fields;
 
+    const href = getTeachersSubjectNavHref({
+      subject: {
+        slug: subject_parent ?? subject_slug,
+        pathwaySlug: programme.programme_fields.pathway_slug ?? null,
+        programmeSlug: programme.programme_slug,
+      },
+      phaseSlug:
+        programme.programme_fields.phase_slug === "foundation"
+          ? "primary"
+          : programme.programme_fields.phase_slug,
+      curriculumPhaseOptionsSubjects: curriculumPhaseOptionsWithoutCore,
+    });
+
+    const examBoards =
+      keystage_slug === "ks4"
+        ? getExamBoardsForKS4Subject({
+            data: teachersData,
+            keystageSlug: keystage_slug,
+            subjectSlug: subject_slug,
+            pathwaySlug: programme.programme_fields.pathway_slug ?? null,
+            subjectParent: subject_parent ?? null,
+          })
+        : undefined;
+
     phaseChildren.set(subject_slug, {
       title: programme.programme_fields.subject,
       slug: subject_slug,
-      href: getTeachersSubjectNavHref({
-        subject: {
-          slug: subject_parent ?? subject_slug,
-          pathwaySlug: programme.programme_fields.pathway_slug ?? null,
-          programmeSlug: programme.programme_slug,
-        },
-        phaseSlug:
-          programme.programme_fields.phase_slug === "foundation"
-            ? "primary"
-            : programme.programme_fields.phase_slug,
-        curriculumPhaseOptionsSubjects: curriculumPhaseOptionsWithoutCore,
-      }),
-      examBoards:
-        keystage_slug === "ks4"
-          ? getExamBoardsForKS4Subject({
-              data: teachersData,
-              keystageSlug: keystage_slug,
-              subjectSlug: subject_slug,
-              pathwaySlug: programme.programme_fields.pathway_slug ?? null,
-              subjectParent: subject_parent ?? null,
-            })
-          : undefined,
+      href,
       nonCurriculum: Boolean(programme.features.non_curriculum),
       programmeSlug: programme.programme_slug,
       programmeCount: 1,
+      ...(examBoards ? { examBoards } : {}),
     });
   });
 
