@@ -1104,6 +1104,36 @@ describe("highlightedUnitCount", () => {
     ]);
     expect(result).toEqual(2);
   });
+
+  it("excludes units outside the active keystage", () => {
+    // ks3 = years 7,8,9 — ks4 = years 10,11
+    const ks3Thread = createThread({ slug: "ks3-thread" });
+    const mixedYearData = {
+      // year 7 is in ks3
+      "7": createYearData({
+        units: [
+          createUnit({ threads: [ks3Thread] }),
+          createUnit({ threads: [ks3Thread] }),
+        ],
+      }),
+      // year 10 is in ks4
+      "10": createYearData({
+        units: [createUnit({ threads: [ks3Thread] })],
+      }),
+    };
+    // filters.years covers all years; keystages restricts to ks4 only
+    const ks4Filters = createFilter({
+      years: ["7", "10"],
+      keystages: ["ks4"],
+      threads: [ks3Thread.slug],
+    });
+
+    const result = highlightedUnitCount(mixedYearData, ks4Filters, [
+      ks3Thread.slug,
+    ]);
+    // Only the 1 unit in year 10 (ks4) should be counted, not the 2 in year 7
+    expect(result).toEqual(1);
+  });
 });
 
 describe("filteringFromYears", () => {

@@ -21507,7 +21507,7 @@ export type CurriculumPhaseOptionsQueryVariables = Exact<{
 }>;
 
 
-export type CurriculumPhaseOptionsQuery = { __typename?: 'query_root', options: Array<{ __typename?: 'published_mv_curriculum_phase_options_0_4', title?: string | null, slug?: string | null, phases?: any | null, keystages?: any | null, ks4_options?: any | null }> };
+export type CurriculumPhaseOptionsQuery = { __typename?: 'query_root', options: Array<{ __typename?: 'published_mv_curriculum_phase_options_0_4', title?: string | null, slug?: string | null, phases?: any | null, keystages?: any | null, ks4_options?: any | null, non_curriculum?: boolean | null }> };
 
 export type CurriculumSequenceQueryVariables = Exact<{
   where?: InputMaybe<Published_Mv_Curriculum_Sequence_B_13_0_21_Bool_Exp>;
@@ -21811,6 +21811,7 @@ export const CurriculumPhaseOptionsDocument = gql`
     phases
     keystages
     ks4_options
+    non_curriculum
   }
 }
     `;
