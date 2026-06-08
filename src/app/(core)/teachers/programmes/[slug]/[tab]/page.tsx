@@ -261,8 +261,12 @@ const InnerProgrammePage = async (props: AppPageProps<ProgrammePageParams>) => {
     curriculumUnitsData.units,
   );
 
+  const subjectOverrideTitle = curriculumUnitsData.units.find(
+    (unit) => unit.actions?.programme_field_overrides?.subject,
+  )?.actions.programme_field_overrides.subject;
+
   const curriculumSelectionTitles = {
-    subjectTitle: programmeUnitsData.subjectTitle,
+    subjectTitle: subjectOverrideTitle ?? programmeUnitsData.subjectTitle,
     phaseTitle: programmeUnitsData.phaseTitle,
     examboardTitle: ks4Option?.title,
   };
