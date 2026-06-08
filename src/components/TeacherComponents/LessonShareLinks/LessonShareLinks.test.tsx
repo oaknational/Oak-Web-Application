@@ -37,7 +37,7 @@ describe("LessonShareLinks", () => {
     expect(shareHeader).toBeInTheDocument();
     expect(shareHeader).toHaveTextContent("Share with pupils");
     expect(
-      screen.getByRole("group", { name: /share with pupils/i }),
+      screen.getByRole("group", { name: "Share with pupils" }),
     ).toBeInTheDocument();
   });
   it("should update copy link button", async () => {

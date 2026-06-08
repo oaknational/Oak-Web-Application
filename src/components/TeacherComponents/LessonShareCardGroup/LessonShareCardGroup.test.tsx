@@ -36,7 +36,7 @@ describe("lesson share card group", () => {
       screen.getByRole("heading", { name: /select activities/i }),
     ).toBeInTheDocument();
     expect(
-      screen.getByRole("group", { name: /select activities/i }),
+      screen.getByRole("group", { name: "Select activities" }),
     ).toBeInTheDocument();
     expect(screen.getByText("Full online lesson")).toBeInTheDocument();
   });
