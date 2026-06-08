@@ -1,6 +1,6 @@
 import { upperFirst } from "lodash";
 
-import { TabSlug } from "../../tabSchema";
+import type { TabSlug } from "../../tabSchema";
 
 import { CurriculumFilters } from "@/utils/curriculum/types";
 import {

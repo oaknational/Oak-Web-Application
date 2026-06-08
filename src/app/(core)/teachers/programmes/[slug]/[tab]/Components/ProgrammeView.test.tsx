@@ -87,6 +87,9 @@ beforeEach(() => {
   useSearchParamsMock.mockReturnValue({ get: () => null });
   setMockedPathname(defaultProgrammePathname);
 });
+afterEach(() => {
+  pushSpy.mockRestore();
+});
 
 const defaultProps = {
   curriculumSelectionSlugs: {

@@ -1,5 +1,7 @@
 import "@testing-library/jest-dom";
 
+import type { TabSlug } from "../../tabSchema";
+
 import { buildProgrammeHeading } from "./buildProgrammeHeading";
 
 import { createFilter } from "@/fixtures/curriculum/filters";
@@ -112,7 +114,7 @@ describe("buildProgrammeHeading", () => {
     keyStage?: string;
     examboardTitle?: string;
     phaseTitle?: string;
-    tabSlug?: "units" | "curriculum-explainer" | "download";
+    tabSlug?: TabSlug;
   }) =>
     buildProgrammeHeading({
       subjectTitle,
