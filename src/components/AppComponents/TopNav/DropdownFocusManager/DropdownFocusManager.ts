@@ -1,11 +1,10 @@
 import React from "react";
 
-import { FocusNode } from "./types";
+import { FocusNode, FocusTreeNode } from "./types";
 
 import {
-  TeachersSubNavData,
   PupilsSubNavData,
-  NavButton,
+  TeachersSubNavData,
 } from "@/node-lib/curriculum-api-2023/queries/topNav/topNav.schema";
 
 type NavAreaType = "teachers" | "pupils";
@@ -17,19 +16,20 @@ type NavAreaType = "teachers" | "pupils";
 export class DropdownFocusManager<
   T extends TeachersSubNavData | PupilsSubNavData,
 > {
+  private readonly _typeMarker?: T;
   private readonly focusMap: Map<string, FocusNode>;
   private readonly closeMenu: () => void;
-  private readonly lastSubnavButton: NavButton | undefined;
+  private readonly lastSubnavButtonId: string | undefined;
   private readonly areaType: NavAreaType;
 
   constructor(
-    navData: T,
+    focusTree: FocusTreeNode[],
     areaType: NavAreaType,
     setSelectedMenu: (a: undefined) => void,
   ) {
     this.areaType = areaType;
-    this.lastSubnavButton = Object.values(navData).at(-1);
-    this.focusMap = this.getFocusTree(navData);
+    this.lastSubnavButtonId = focusTree.at(-1)?.id;
+    this.focusMap = this.getFocusTree(focusTree);
     this.closeMenu = () => setSelectedMenu(undefined);
   }
 
@@ -37,39 +37,10 @@ export class DropdownFocusManager<
     return this.focusMap;
   }
 
-  public registerChildren(parentId: string, childrenIds: string[]) {
-    const parentNode = this.focusMap.get(parentId);
-    if (!parentNode) return;
-    parentNode.children = childrenIds.map((id) => this.createId(parentId, id));
-
-    parentNode.children.forEach((childId, index) => {
-      this.focusMap.set(childId, {
-        id: childId,
-        isFirstChild: index === 0,
-        isLastChild: index === parentNode.children.length - 1,
-        parent: {
-          parentId,
-          parentSiblings: [],
-        },
-        children: [],
-      });
-    });
-  }
-
-  public unregisterChildren(parentId: string) {
-    const parentNode = this.focusMap.get(parentId);
-    if (!parentNode) return;
-    parentNode.children.forEach((childId) => {
-      this.focusMap.delete(childId);
-    });
-    parentNode.children = [];
-  }
-
-  private getFocusTree(navData: T): Map<string, FocusNode> {
-    const arrayOfSubNavButtons = Object.values(navData);
+  private getFocusTree(focusTree: FocusTreeNode[]): Map<string, FocusNode> {
     const focusMap = new Map<string, FocusNode>();
     this.buildFocusMap({
-      items: arrayOfSubNavButtons,
+      items: focusTree,
       focusMap,
       parent: null,
     });
@@ -82,51 +53,35 @@ export class DropdownFocusManager<
     focusMap,
     parent,
   }: {
-    items: Record<string, unknown>[];
+    items: FocusTreeNode[];
     focusMap: Map<string, FocusNode>;
     parent: FocusNode["parent"];
   }) {
+    const siblingIds = items.map((item) => item.id);
+
     items.forEach((item, index, array) => {
       const isLastChild = index === array.length - 1;
       const isFirstChild = index === 0;
-      const id = this.createId(parent?.parentId || "", item.slug as string);
+      const id = item.id;
       focusMap.set(id, {
         id,
         isLastChild,
         isFirstChild,
         parent,
-        children: this.getChildrenIds(item, id),
+        children: item.children?.map((child) => child.id) ?? [],
       });
 
-      if (this.hasChildren(item)) {
+      if (item.children && item.children.length > 0) {
         this.buildFocusMap({
-          items: item.children as Record<string, unknown>[],
+          items: item.children,
           focusMap,
           parent: {
             parentId: id,
-            parentSiblings: items.map((sibling) =>
-              this.createId(parent?.parentId || "", sibling.slug as string),
-            ),
+            parentSiblings: siblingIds,
           },
         });
       }
     });
-  }
-
-  private hasChildren(item: Record<string, unknown>): boolean {
-    return Boolean(
-      item.children && Array.isArray(item.children) && item.children.length > 0,
-    );
-  }
-
-  private getChildrenIds(
-    item: Record<string, unknown>,
-    parentId: string,
-  ): string[] {
-    if (!this.hasChildren(item)) return [];
-    return (item.children as Record<string, unknown>[]).map((child) =>
-      this.createId(parentId, child.slug as string),
-    );
   }
 
   private focusElementById(
@@ -143,12 +98,30 @@ export class DropdownFocusManager<
     return false;
   }
 
-  // ID creation method
-  public createId(parentId: string, slug: string): string {
-    if (parentId === "") {
-      return `${this.areaType}-${slug}`;
+  public handleEscapeKey({
+    event,
+    elementId,
+  }: {
+    event: React.KeyboardEvent;
+    elementId: string;
+  }) {
+    if (event.key !== "Escape") return;
+    this.closeMenu();
+    const currentNode = this.focusMap.get(elementId);
+    if (!currentNode) return;
+    const ancestorNode = this.getAncestorNode(currentNode);
+    this.focusElementById(ancestorNode.id);
+  }
+
+  public handleKeyDown(event: React.KeyboardEvent, elementId: string) {
+    if (event.key !== "Tab") return;
+    const currentNode = this.focusMap.get(elementId);
+    if (!currentNode) return;
+    if (event.shiftKey) {
+      this.handleShiftTab(event, currentNode);
+    } else if (!event.shiftKey) {
+      this.handleTab(currentNode, event);
     }
-    return `${parentId}-${slug}`;
   }
 
   private getNode(elementId: string): FocusNode {
@@ -225,8 +198,7 @@ export class DropdownFocusManager<
   private getIsFinalElement(currentNode: FocusNode): boolean {
     const ancestorNode = this.getAncestorNode(currentNode);
     const isFinalElement =
-      this.lastSubnavButton &&
-      ancestorNode.id === this.createId("", this.lastSubnavButton.slug);
+      this.lastSubnavButtonId && ancestorNode.id === this.lastSubnavButtonId;
     return Boolean(isFinalElement);
   }
 
@@ -242,8 +214,7 @@ export class DropdownFocusManager<
 
   private isLastSubnavButton(currentNode: FocusNode): boolean {
     return (
-      !!this.lastSubnavButton &&
-      currentNode.id === this.createId("", this.lastSubnavButton.slug)
+      !!this.lastSubnavButtonId && currentNode.id === this.lastSubnavButtonId
     );
   }
 
@@ -281,31 +252,6 @@ export class DropdownFocusManager<
       const parentId = currentNode.parent?.parentId;
       if (!parentId) return;
       this.focusElementById(parentId, event);
-    }
-  }
-
-  handleEscapeKey({
-    event,
-    elementId,
-  }: {
-    event: React.KeyboardEvent;
-    elementId: string;
-  }) {
-    if (event.key !== "Escape") return;
-    this.closeMenu();
-    const currentNode = this.focusMap.get(elementId);
-    if (!currentNode) return;
-    const ancestorNode = this.getAncestorNode(currentNode);
-    this.focusElementById(ancestorNode.id);
-  }
-
-  handleKeyDown(event: React.KeyboardEvent, elementId: string) {
-    if (event.key !== "Tab") return;
-    const currentNode = this.getNode(elementId);
-    if (event.shiftKey) {
-      this.handleShiftTab(event, currentNode);
-    } else if (!event.shiftKey) {
-      this.handleTab(currentNode, event);
     }
   }
 }
