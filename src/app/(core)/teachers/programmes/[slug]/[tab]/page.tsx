@@ -25,7 +25,10 @@ import withPageErrorHandling, {
 } from "@/hocs/withPageErrorHandling";
 import { resolveOakHref } from "@/common-lib/urls";
 import { getSubjectPhaseSlug } from "@/components/TeacherComponents/helpers/getSubjectPhaseSlug";
-import { resolveFilterFromSearchParams } from "@/utils/curriculum/filtersUrl";
+import {
+  resolveFilterFromSearchParams,
+  scopeYearsToKeystageFilter,
+} from "@/utils/curriculum/filtersUrl";
 import { redirectProgrammeSlugIfNeeded } from "@/utils/integratedJourney/legacyProgrammeUnitsRedirect";
 import { cacheData } from "@/node-lib/cache";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
@@ -261,12 +264,26 @@ const InnerProgrammePage = async (props: AppPageProps<ProgrammePageParams>) => {
     curriculumUnitsData.units,
   );
 
-  const subjectOverrideTitle = curriculumUnitsData.units.find(
-    (unit) => unit.actions?.programme_field_overrides?.subject,
-  )?.actions.programme_field_overrides.subject;
+  const getSubjectOverride = () => {
+    const overrides: string[] = [];
+    curriculumUnitsData.units.forEach((unit) => {
+      const override = unit.actions?.programme_field_overrides?.subject;
+
+      if (override && !overrides.includes(override)) {
+        const scopedYearFilters = scopeYearsToKeystageFilter(resolvedFilter);
+        if (scopedYearFilters.includes(unit.year)) {
+          overrides.push(override);
+        }
+      }
+    });
+
+    if (overrides.length === 1) {
+      return overrides[0];
+    }
+  };
 
   const curriculumSelectionTitles = {
-    subjectTitle: subjectOverrideTitle ?? programmeUnitsData.subjectTitle,
+    subjectTitle: getSubjectOverride() ?? programmeUnitsData.subjectTitle,
     phaseTitle: programmeUnitsData.phaseTitle,
     examboardTitle: ks4Option?.title,
   };
