@@ -12,6 +12,8 @@ import { useOakNotificationsContext } from "@/context/OakNotifications/useOakNot
 import { getLessonShareVariantSlug } from "@/pages-helpers/pupil";
 import { LessonSection } from "@/components/PupilComponents/lessonSections";
 
+export const SHARE_WITH_PUPILS_HEADING_ID = "share-with-pupils-heading";
+
 const LessonShareLinks: FC<{
   disabled: boolean;
   lessonSlug: string;
@@ -92,11 +94,18 @@ const LessonShareLinks: FC<{
       <SharePageNumberedHeading
         number={2}
         title={"Share with pupils"}
+        titleId={SHARE_WITH_PUPILS_HEADING_ID}
         paragraph={
           "Use one of the links below to share the selected activities with your pupils."
         }
       />
-      <OakFlex $flexWrap={"wrap"} $width={"100%"} $gap={"spacing-12"}>
+      <OakFlex
+        role="group"
+        aria-labelledby={SHARE_WITH_PUPILS_HEADING_ID}
+        $flexWrap={"wrap"}
+        $width={"100%"}
+        $gap={"spacing-12"}
+      >
         <OakSecondaryButton
           element="button"
           iconName={shareLinkConfig.copy.icon}
