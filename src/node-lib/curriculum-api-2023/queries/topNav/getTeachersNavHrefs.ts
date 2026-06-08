@@ -57,12 +57,14 @@ export function getTeachersExamBoardNavHref({
   subjectParent,
   examboardSlug,
   tierSlug,
+  keystageSlug,
 }: {
   subjectSlug: string;
   phaseSlug: string;
   subjectParent?: string | null;
   examboardSlug?: string | null;
   tierSlug?: string | null;
+  keystageSlug?: string | null;
 }): string {
   const subjectPhaseSlug = subjectParent
     ? getTeacherSubjectPhaseSlug({
@@ -83,7 +85,7 @@ export function getTeachersExamBoardNavHref({
     subjectPhaseSlug,
     tab: "units",
     query: {
-      keystages: "ks4",
+      keystages: keystageSlug ?? undefined,
       tiers: tierSlug ?? undefined,
       child_subjects: subjectParent ? subjectSlug : undefined,
     },

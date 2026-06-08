@@ -31,24 +31,28 @@ const filterLegacyWhenNonLegacyExists = (programmes: TopNavProgramme[]) => {
 
 export const getExamBoardsForKS4Subject = ({
   data,
-  keystageSlug,
   subjectSlug,
   pathwaySlug,
+  phaseSlug,
+  keystageSlug,
   subjectParent,
 }: {
   data: TopNavResponse;
-  keystageSlug: string;
   subjectSlug: string;
   pathwaySlug: string | null;
+  phaseSlug: string;
+  keystageSlug?: string | null;
   subjectParent?: string | null;
 }): ProgrammeFactorButton[] => {
   const matchingProgrammes = data.programmes
     .filter((p) => {
-      const { subject_slug, keystage_slug, pathway_slug } = p.programme_fields;
+      const { subject_slug, phase_slug, pathway_slug, keystage_slug } =
+        p.programme_fields;
       return (
-        keystage_slug === keystageSlug &&
+        phase_slug === phaseSlug &&
         subject_slug === subjectSlug &&
-        pathway_slug === pathwaySlug
+        pathway_slug === pathwaySlug &&
+        (keystageSlug ? keystage_slug === keystageSlug : true)
       );
     })
     .filter(
@@ -70,6 +74,7 @@ export const getExamBoardsForKS4Subject = ({
             programmeSlug: p.programme_slug,
             href: getTeachersExamBoardNavHref({
               subjectSlug,
+              keystageSlug: keystageSlug ?? null,
               phaseSlug: p.programme_fields.phase_slug,
               subjectParent,
               examboardSlug: examboard_slug,
@@ -91,6 +96,7 @@ export const getExamBoardsForKS4Subject = ({
             href: getTeachersExamBoardNavHref({
               subjectSlug,
               phaseSlug: p.programme_fields.phase_slug,
+              keystageSlug: keystageSlug ?? null,
               subjectParent,
               tierSlug: tier_slug,
             }),
@@ -201,7 +207,7 @@ const getSubjectsByPhase = (
       keystage_slug === "ks4"
         ? getExamBoardsForKS4Subject({
             data: teachersData,
-            keystageSlug: keystage_slug,
+            phaseSlug,
             subjectSlug: subject_slug,
             pathwaySlug,
             subjectParent: subject_parent ?? null,
@@ -318,6 +324,7 @@ const getKeystages = (
             ? getExamBoardsForKS4Subject({
                 data,
                 keystageSlug: ks.slug,
+                phaseSlug,
                 subjectSlug,
                 pathwaySlug,
                 subjectParent,
