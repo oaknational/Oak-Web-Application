@@ -437,36 +437,19 @@ describe("generateMetadata", () => {
   });
 
   describe("search param validation", () => {
-    const mockProgrammeData = {
-      programmeUnitsData: curriculumOverviewMVFixture({
-        subjectTitle: "Maths",
-      }),
-      curriculumUnitsData: {
-        units: [
-          createUnit({
-            slug: "unit-1",
-            year: "5",
-            keystage_slug: "ks2",
-            subject_slug: "maths",
-            phase_slug: "primary",
-          }),
-        ],
-      },
-      curriculumPhaseOptions: {
-        subjects: filterValidCurriculumPhaseOptions(
-          curriculumPhaseOptionsFixture(),
-        ),
-        tab: "units" as const,
-      },
+    const mockSubjectData = {
+      subjects: filterValidCurriculumPhaseOptions(
+        curriculumPhaseOptionsFixture(),
+      ),
       subjectPhaseKeystageSlugs: {
         subjectSlug: "maths",
-        phaseSlug: "primary",
+        phaseSlug: "secondary",
         ks4OptionSlug: null,
       },
     };
 
     beforeEach(() => {
-      jest.mocked(getProgrammeData).mockResolvedValue(mockProgrammeData);
+      jest.mocked(getSubjectPhaseOptions).mockResolvedValue(mockSubjectData);
     });
 
     it("sanitizes invalid years param in meta title", async () => {
