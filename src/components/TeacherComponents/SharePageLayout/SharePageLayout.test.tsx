@@ -102,6 +102,26 @@ describe("Downloads/Share Layout", () => {
     );
   });
 
+  it("does not render validation summary when errors have no summary messages", () => {
+    renderWithTheme(
+      <ComponentWrapper
+        {...props}
+        errors={
+          {
+            schoolName: {
+              type: "custom",
+              message: "enter a school name",
+            },
+          } satisfies FieldErrors<ResourceFormValues>
+        }
+      />,
+    );
+
+    expect(
+      screen.queryByTestId("share-validation-summary"),
+    ).not.toBeInTheDocument();
+  });
+
   it("shows loading spinner", () => {
     const { getByTestId } = renderWithTheme(
       <ComponentWrapper {...props} isLoading={true} />,
