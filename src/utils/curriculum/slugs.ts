@@ -148,7 +148,7 @@ function isValidKs4Option(
   if (!ks4Options || ks4Options.length === 0) {
     return !ks4OptionSlug;
   }
-  return !!ks4Options.some((o) => o.slug === ks4OptionSlug);
+  return ks4Options.some((o) => o.slug === ks4OptionSlug);
 }
 
 export function isValidSubjectPhaseSlug(

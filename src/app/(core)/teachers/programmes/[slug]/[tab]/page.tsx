@@ -35,14 +35,6 @@ import { validateServerSearchParams } from "@/utils/validateProgrammePageSearchP
 
 const reportError = errorReporter("programme-page::app");
 
-const validateSearchParams = async (searchParams: Promise<PageSearchParms>) => {
-  const params = await searchParams;
-  return {
-    ...params,
-    ...validateServerSearchParams(params),
-  };
-};
-
 type ProgrammePageParams = { slug: string; tab: string };
 export type PageSearchParms = { [key: string]: string | string[] | undefined };
 
@@ -102,9 +94,10 @@ export async function generateMetadata({
   searchParams: Promise<PageSearchParms>;
 }): Promise<Metadata> {
   const { slug, tab } = await params;
-  const pageSearchParams = await validateSearchParams(searchParams);
+  const originalSearchParams = await searchParams;
+  const pageSearchParams = validateServerSearchParams(originalSearchParams);
 
-  redirectProgrammeSlugIfNeeded(slug, await searchParams);
+  redirectProgrammeSlugIfNeeded(slug, originalSearchParams);
 
   try {
     const cachedData = await getCachedProgrammeData(slug);
@@ -153,8 +146,8 @@ export async function generateMetadata({
 
 const InnerProgrammePage = async (props: AppPageProps<ProgrammePageParams>) => {
   const { slug, tab } = await props.params;
-  const searchParams =
-    props.searchParams && (await validateSearchParams(props.searchParams));
+  const originalSearchParams = await props.searchParams!;
+  const searchParams = validateServerSearchParams(originalSearchParams);
 
   redirectProgrammeSlugIfNeeded(slug, searchParams ?? {});
 
