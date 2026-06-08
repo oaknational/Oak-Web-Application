@@ -2,7 +2,9 @@ import { screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { useFeatureFlagEnabled } from "posthog-js/react";
 
-import LessonShareLinks from "./LessonShareLinks";
+import LessonShareLinks, {
+  SHARE_WITH_PUPILS_HEADING_ID,
+} from "./LessonShareLinks";
 
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 
@@ -36,9 +38,15 @@ describe("LessonShareLinks", () => {
     const shareHeader = screen.getByRole("heading");
     expect(shareHeader).toBeInTheDocument();
     expect(shareHeader).toHaveTextContent("Share with pupils");
+    const shareGroup = screen.getByRole("group", { name: "Share with pupils" });
+    expect(shareGroup).toBeInTheDocument();
+    expect(shareGroup).toHaveAttribute(
+      "aria-labelledby",
+      SHARE_WITH_PUPILS_HEADING_ID,
+    );
     expect(
-      screen.getByRole("group", { name: "Share with pupils" }),
-    ).toBeInTheDocument();
+      document.getElementById(SHARE_WITH_PUPILS_HEADING_ID),
+    ).toHaveTextContent("Share with pupils");
   });
   it("should update copy link button", async () => {
     renderWithProviders()(
