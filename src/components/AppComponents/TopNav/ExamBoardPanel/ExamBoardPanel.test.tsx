@@ -5,11 +5,13 @@ import ExamBoardPanel from "./ExamBoardPanel";
 
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 import { DropdownFocusManager } from "@/components/AppComponents/TopNav/DropdownFocusManager/DropdownFocusManager";
+import { buildFocusTree } from "@/components/AppComponents/TopNav/DropdownFocusManager/focusTree";
 import {
   ProgrammeFactorButton,
   SubjectsNavItem,
   TeachersSubNavData,
 } from "@/node-lib/curriculum-api-2023/queries/topNav/topNav.schema";
+import { topNavFixture } from "@/node-lib/curriculum-api-2023/fixtures/topNav.fixture";
 const render = renderWithProviders();
 
 jest.mock("next/navigation", () => ({
@@ -54,8 +56,7 @@ describe("ExamBoardPanel", () => {
       createId: jest.fn((parent: string, child: string) =>
         child ? `${parent}-${child}` : parent,
       ),
-      registerChildren: jest.fn(),
-      unregisterChildren: jest.fn(),
+      handleKeyDown: jest.fn(),
       handleEscapeKey: jest.fn(),
     }) as unknown as DropdownFocusManager<TeachersSubNavData>;
 
@@ -67,6 +68,8 @@ describe("ExamBoardPanel", () => {
     render(
       <ExamBoardPanel
         examBoards={examBoards}
+        phaseSlug="secondary"
+        keystageSlug="ks4"
         selectedSubject={selectedSubject}
         onClick={mockOnClick}
         onLeave={mockOnClose}
@@ -84,6 +87,8 @@ describe("ExamBoardPanel", () => {
     render(
       <ExamBoardPanel
         examBoards={examBoards}
+        phaseSlug="secondary"
+        keystageSlug="ks4"
         selectedSubject={selectedSubject}
         onClick={mockOnClick}
         onLeave={mockOnClose}
@@ -98,6 +103,8 @@ describe("ExamBoardPanel", () => {
     render(
       <ExamBoardPanel
         examBoards={examBoards}
+        phaseSlug="secondary"
+        keystageSlug="ks4"
         selectedSubject={selectedSubject}
         onClick={mockOnClick}
         onLeave={mockOnClose}
@@ -114,6 +121,8 @@ describe("ExamBoardPanel", () => {
     render(
       <ExamBoardPanel
         examBoards={examBoards}
+        phaseSlug="secondary"
+        keystageSlug="ks4"
         selectedSubject={selectedSubject}
         onClick={mockOnClick}
         onLeave={mockOnClose}
@@ -156,6 +165,8 @@ describe("ExamBoardPanel", () => {
     render(
       <ExamBoardPanel
         examBoards={mathsExamBoards}
+        phaseSlug="secondary"
+        keystageSlug="ks4"
         selectedSubject={maths}
         onClick={mockOnClick}
         onLeave={mockOnClose}
@@ -176,6 +187,8 @@ describe("ExamBoardPanel", () => {
       render(
         <ExamBoardPanel
           examBoards={examBoards}
+          phaseSlug="secondary"
+          keystageSlug="ks4"
           selectedSubject={selectedSubject}
           onClick={mockOnClick}
           onLeave={mockOnClose}
@@ -189,48 +202,79 @@ describe("ExamBoardPanel", () => {
       });
     });
 
-    it("moves focus to the next exam board on Tab when using focusManager", async () => {
-      const focusManager = createFocusManagerMock();
+    it("keeps exam board panel open on non-boundary Tab", async () => {
+      const focusManager = new DropdownFocusManager<TeachersSubNavData>(
+        buildFocusTree(topNavFixture.teachers!, "teachers"),
+        "teachers",
+        () => undefined,
+      );
+      const onLeave = jest.fn();
       render(
         <ExamBoardPanel
           examBoards={examBoards}
+          phaseSlug="secondary"
+          keystageSlug="ks4"
           selectedSubject={selectedSubject}
           focusManager={focusManager}
           onClick={mockOnClick}
-          onLeave={mockOnClose}
+          onLeave={onLeave}
         />,
       );
 
       const firstLink = screen.getByRole("link", { name: "AQA" });
-      const secondLink = screen.getByRole("link", { name: "Edexcel" });
 
       firstLink.focus();
       fireEvent.keyDown(firstLink, { key: "Tab" });
 
-      expect(secondLink).toHaveFocus();
+      expect(onLeave).not.toHaveBeenCalled();
     });
 
     it("moves focus back to subject context on Shift+Tab from first exam board", async () => {
-      const focusManager = createFocusManagerMock();
+      const focusManager = new DropdownFocusManager<TeachersSubNavData>(
+        [
+          {
+            id: "teachers-secondary",
+            children: [
+              {
+                id: "teachers-secondary-keystages",
+                children: [
+                  {
+                    id: "teachers-secondary-ks4",
+                    children: [
+                      {
+                        id: "teachers-secondary-ks4-geography",
+                        children: [
+                          { id: "teachers-secondary-ks4-geography-aqa" },
+                          { id: "teachers-secondary-ks4-geography-edexcel" },
+                        ],
+                      },
+                    ],
+                  },
+                ],
+              },
+            ],
+          },
+        ],
+        "teachers",
+        () => undefined,
+      );
       const onLeave = jest.fn();
 
       const subjectsContainer = document.createElement("div");
       subjectsContainer.id = "topnav-teachers-ks4-subjects";
 
-      const previousSibling = document.createElement("a");
-      previousSibling.href = "#";
-      previousSibling.id = "teachers-secondary-ks4-history";
-
       const parentSubject = document.createElement("a");
       parentSubject.href = "#";
       parentSubject.id = "teachers-secondary-ks4-geography";
 
-      subjectsContainer.append(previousSibling, parentSubject);
+      subjectsContainer.append(parentSubject);
       document.body.appendChild(subjectsContainer);
 
       render(
         <ExamBoardPanel
           examBoards={examBoards}
+          phaseSlug="secondary"
+          keystageSlug="ks4"
           selectedSubject={selectedSubject}
           focusManager={focusManager}
           onClick={mockOnClick}
@@ -243,7 +287,7 @@ describe("ExamBoardPanel", () => {
 
       fireEvent.keyDown(firstLink, { key: "Tab", shiftKey: true });
 
-      expect(previousSibling).toHaveFocus();
+      expect(parentSubject).toHaveFocus();
       expect(onLeave).toHaveBeenCalledTimes(1);
 
       subjectsContainer.remove();
@@ -255,6 +299,8 @@ describe("ExamBoardPanel", () => {
       render(
         <ExamBoardPanel
           examBoards={examBoards}
+          phaseSlug="secondary"
+          keystageSlug="ks4"
           selectedSubject={selectedSubject}
           focusManager={focusManager}
           onClick={mockOnClick}
@@ -271,7 +317,7 @@ describe("ExamBoardPanel", () => {
       expect(focusManager.handleEscapeKey).toHaveBeenCalledTimes(1);
       expect(
         (focusManager.handleEscapeKey as jest.Mock).mock.calls[0][0].elementId,
-      ).toBe("exam-board-aqa-link");
+      ).toBe("teachers-secondary-ks4-geography-aqa");
     });
   });
 });

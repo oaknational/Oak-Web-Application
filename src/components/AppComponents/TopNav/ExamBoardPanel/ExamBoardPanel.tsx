@@ -12,6 +12,10 @@ import { useEffect } from "react";
 import styled from "styled-components";
 
 import { DropdownFocusManager } from "../DropdownFocusManager/DropdownFocusManager";
+import {
+  createFocusId,
+  getExamBoardFocusSlug,
+} from "../DropdownFocusManager/focusTree";
 
 import {
   SubjectsNavItem,
@@ -20,6 +24,7 @@ import {
 } from "@/node-lib/curriculum-api-2023/queries/topNav/topNav.schema";
 export type ExamBoardPanelProps = {
   examBoards: ProgrammeFactorButton[];
+  phaseSlug: "primary" | "secondary";
   keystageSlug: string;
   selectedSubject: SubjectsNavItem;
   focusManager?: DropdownFocusManager<TeachersSubNavData>;
@@ -36,35 +41,19 @@ const ExamBoardButton = styled(OakPrimaryInvertedButton)`
 
 const ExamBoardPanel = ({
   examBoards: examboards,
+  phaseSlug,
   keystageSlug,
   selectedSubject,
   focusManager,
   onClick,
   onLeave,
 }: ExamBoardPanelProps) => {
-  const parentId = focusManager?.createId(
-    `teachers-secondary-${keystageSlug}`,
-    selectedSubject.slug,
-  );
-
-  useEffect(() => {
-    if (!focusManager || !parentId) return;
-
-    focusManager.registerChildren(
-      parentId,
-      examboards.map((board) => {
-        return (
-          board.programmeFactors?.examboard?.slug ??
-          board.programmeFactors?.tier?.slug ??
-          ""
-        );
-      }),
-    );
-
-    return () => {
-      focusManager.unregisterChildren(parentId);
-    };
-  }, [focusManager, parentId, examboards]);
+  const subjectId =
+    createFocusId(
+      "teachers",
+      `teachers-${phaseSlug}-${keystageSlug}`,
+      selectedSubject.slug,
+    ) ?? `teachers-${phaseSlug}-${keystageSlug}-${selectedSubject.slug}`;
 
   useEffect(() => {
     const panelId = `topnav-teachers-${keystageSlug}-examboards-${selectedSubject.slug}`;
@@ -97,105 +86,33 @@ const ExamBoardPanel = ({
 
   const panelTitle = `Choose ${
     hasTierOnlyOptions && !hasExamBoardOptions ? "tier" : "exam board"
-  } for ${keystageSlug} ${selectedSubject.title}`;
+  } for ${keystageSlug.includes("ks") ? keystageSlug.toUpperCase() : keystageSlug} ${selectedSubject.title}`;
 
-  const focusNextExamBoard = (
-    allButtons: HTMLElement[],
-    currentIndex: number,
-    isForward: boolean,
+  const sortedExamBoards = examboards.toSorted((a, b) =>
+    a.buttonTitle.localeCompare(b.buttonTitle),
+  );
+
+  const handleExamBoardKeyDown = (
+    e: React.KeyboardEvent,
+    buttonId: string,
+    index: number,
   ) => {
-    if (!focusManager) return;
-    const nextIndex = isForward ? currentIndex + 1 : currentIndex - 1;
-    const shouldCycleToParent =
-      (isForward && currentIndex === allButtons.length - 1) ||
-      (!isForward && currentIndex === 0);
-
-    if (shouldCycleToParent) {
-      const parentId = focusManager.createId(
-        `teachers-secondary-${keystageSlug}`,
-        selectedSubject.slug,
-      );
-      const subjectsContainer = document.getElementById(
-        `topnav-teachers-${keystageSlug}-subjects`,
-      );
-      const subjectButtons = Array.from(
-        subjectsContainer?.querySelectorAll<HTMLElement>("a, button, input") ??
-          [],
-      );
-      const parentIndex = subjectButtons.findIndex((el) => el.id === parentId);
-      const siblingIndex = isForward ? parentIndex + 1 : parentIndex - 1;
-      const siblingElement =
-        siblingIndex >= 0 ? subjectButtons[siblingIndex] : undefined;
-
-      if (siblingElement) {
-        siblingElement.focus();
-        onLeave();
-      } else {
-        document.getElementById(parentId)?.focus();
-      }
-    } else {
-      allButtons[nextIndex]?.focus();
-    }
-  };
-
-  const handleListKeyDown = (e: React.KeyboardEvent<HTMLUListElement>) => {
-    const activeElement = document.activeElement as HTMLElement | null;
-
-    if (!activeElement || e.key !== "Tab") {
-      if (e.key === "Escape" && activeElement?.id) {
-        focusManager?.handleEscapeKey({
-          event: e,
-          elementId: activeElement.id,
-        });
-      }
+    if (e.key === "Escape") {
+      focusManager?.handleEscapeKey({ event: e, elementId: buttonId });
       return;
     }
 
-    const links = Array.from(
-      e.currentTarget.querySelectorAll<HTMLElement>(
-        'a[data-testid^="exam-board-"]',
-      ),
-    );
+    if (e.key !== "Tab") return;
 
-    if (links.length === 0) return;
+    const leavingPanel =
+      (!e.shiftKey && index === sortedExamBoards.length - 1) ||
+      (e.shiftKey && index === 0);
 
-    const currentIndex = links.indexOf(activeElement);
-    if (currentIndex === -1) return;
-
-    e.preventDefault();
-
-    if (focusManager) {
-      focusNextExamBoard(links, currentIndex, !e.shiftKey);
-      return;
+    if (leavingPanel) {
+      onLeave();
     }
 
-    const submenuContainer = e.currentTarget.closest(
-      `[data-testid="submenu-container"]`,
-    ) as HTMLElement | null;
-
-    const closeButton = submenuContainer
-      ?.closest('[role="dialog"]')
-      ?.querySelector<HTMLElement>('button[aria-label="Close"]');
-    const focusables = Array.from(
-      submenuContainer?.querySelectorAll<HTMLElement>(
-        `a[href], button:not([disabled]), input:not([disabled])`,
-      ) ?? [],
-    );
-
-    if (closeButton && !focusables.includes(closeButton)) {
-      focusables.push(closeButton);
-    }
-
-    const activeIndex = focusables.indexOf(activeElement);
-    if (activeIndex === -1) {
-      focusables[0]?.focus();
-      return;
-    }
-
-    const nextIndex = e.shiftKey
-      ? (activeIndex - 1 + focusables.length) % focusables.length
-      : (activeIndex + 1) % focusables.length;
-    focusables[nextIndex]?.focus();
+    focusManager?.handleKeyDown(e, buttonId);
   };
 
   return (
@@ -216,7 +133,6 @@ const ExamBoardPanel = ({
         $gap={"spacing-8"}
         $reset
         id={`topnav-teachers-${keystageSlug}-examboards-${selectedSubject.slug}`}
-        onKeyDown={handleListKeyDown}
         role="list"
         style={{
           display: "flex",
@@ -224,32 +140,40 @@ const ExamBoardPanel = ({
           gap: parseSpacing("spacing-16"),
         }}
       >
-        {examboards
-          .toSorted((a, b) => a.buttonTitle.localeCompare(b.buttonTitle))
-          .map((examboard) => {
-            const title =
-              examboard.programmeFactors?.tier?.slug &&
-              examboard.buttonTitle.toLowerCase() !==
-                examboard.programmeFactors.tier?.slug
-                ? `${examboard.buttonTitle} (${examboard.programmeFactors.tier?.description})`
-                : examboard.buttonTitle;
-            const key = examboard.programmeFactors?.tier?.slug
-              ? `exam-board-${examboard.programmeFactors.examboard?.slug}-${examboard.programmeFactors.tier?.slug}`
-              : `exam-board-${examboard.programmeFactors?.examboard?.slug}`;
+        {sortedExamBoards.map((examboard, index) => {
+          const title =
+            examboard.programmeFactors?.tier?.slug &&
+            examboard.buttonTitle.toLowerCase() !==
+              examboard.programmeFactors.tier?.slug
+              ? `${examboard.buttonTitle} (${examboard.programmeFactors.tier?.description})`
+              : examboard.buttonTitle;
+          const buttonId =
+            createFocusId(
+              "teachers",
+              subjectId,
+              getExamBoardFocusSlug(examboard),
+            ) ?? `${subjectId}-${getExamBoardFocusSlug(examboard)}`;
+          const key = examboard.programmeFactors?.tier?.slug
+            ? `exam-board-${examboard.programmeFactors.examboard?.slug}-${examboard.programmeFactors.tier?.slug}`
+            : `exam-board-${examboard.programmeFactors?.examboard?.slug}`;
 
-            return (
-              <OakLI key={key}>
-                <ExamBoardButton
-                  element="a"
-                  href={examboard.href}
-                  data-testid={key}
-                  onClick={() => onClick(selectedSubject.slug, keystageSlug)}
-                >
-                  {title}
-                </ExamBoardButton>
-              </OakLI>
-            );
-          })}
+          return (
+            <OakLI key={key}>
+              <ExamBoardButton
+                element="a"
+                href={examboard.href}
+                id={buttonId}
+                data-testid={key}
+                onKeyDown={(e: React.KeyboardEvent<HTMLAnchorElement>) =>
+                  handleExamBoardKeyDown(e, buttonId, index)
+                }
+                onClick={() => onClick(selectedSubject.slug, keystageSlug)}
+              >
+                {title}
+              </ExamBoardButton>
+            </OakLI>
+          );
+        })}
       </OakUL>
     </OakFlex>
   );
