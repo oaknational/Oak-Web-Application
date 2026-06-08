@@ -1,3 +1,10 @@
+## [1.1091.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.1091.0...v1.1091.1) (2026-06-08)
+
+
+### Bug Fixes
+
+* **LESQ-2043:** incorrect unit count in threads ([c996f3d](https://github.com/oaknational/Oak-Web-Application/commit/c996f3d1180684e435b0e98545d7e61c859cdb98))
+
 # [1.1091.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1090.1...v1.1091.0) (2026-06-05)
 
 
