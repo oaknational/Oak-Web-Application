@@ -222,9 +222,10 @@ export function highlightedUnitCount(
   selectedThreads: Thread["slug"][] | null,
 ): number {
   let count = 0;
+  const effectiveYears = scopeYearsToKeystageFilter(filters);
   Object.entries(yearData).forEach(([year, yearDataItem]) => {
     const units = yearDataItem.units;
-    if (units && filters.years.includes(year)) {
+    if (units && effectiveYears.includes(year)) {
       units.forEach((unit) => {
         const yearBasedFilters = filteringFromYears(yearDataItem, filters);
 
