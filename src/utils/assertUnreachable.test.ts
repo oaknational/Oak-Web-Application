@@ -12,15 +12,19 @@ describe("assertUnreachable", () => {
      * as the switch is now exhaustive, and it's no longer a type error
      */
     const switchable = "foo" as "foo" | "bar";
+    let matched = false;
 
     switch (switchable) {
       case "foo":
         // case "bar":
+        matched = true;
         break;
       default:
         // @ts-expect-error - this should be a type error when the switch is exhaustive
         assertUnreachable(switchable);
     }
+
+    expect(matched).toBe(true);
   });
 
   it("throws an error when called", () => {

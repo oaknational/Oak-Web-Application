@@ -52,7 +52,8 @@ describe("QuizQuestionsMCAnswers", () => {
       throw new Error("correctAnswer.answer[0] is not text");
     }
 
-    getByText(`Correct answer: ${correctAnswer.answer[0].text}`);
+    const correctAnswerElement = getByText(`Correct answer: ${correctAnswer.answer[0].text}`);
+    expect(correctAnswerElement).toBeInTheDocument();
   });
 
   it("renders the image answers", () => {
