@@ -63,6 +63,7 @@ export default function LessonView(
     phaseSlug,
     actions,
     subjectCategories,
+    excludedFromTeachingMaterials,
   } = props;
 
   const {
@@ -230,7 +231,7 @@ export default function LessonView(
               <LessonActionsBar
                 showPupilShare={showPupilShare}
                 createWithAiProps={
-                  contentRestricted
+                  contentRestricted || excludedFromTeachingMaterials
                     ? undefined
                     : {
                         lessonSlug,

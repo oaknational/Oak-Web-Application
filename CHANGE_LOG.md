@@ -1,3 +1,22 @@
+# [1.1091.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1090.1...v1.1091.0) (2026-06-05)
+
+
+### Bug Fixes
+
+* remove extra api call ([4864df4](https://github.com/oaknational/Oak-Web-Application/commit/4864df4eac3b66f6a9a9447619bdef3faca85a61))
+
+
+### Features
+
+* update get meta title ([04b32ed](https://github.com/oaknational/Oak-Web-Application/commit/04b32ed1a382b4b9debab5dbf172be5f0bb394f0))
+
+## [1.1090.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.1090.0...v1.1090.1) (2026-06-04)
+
+
+### Bug Fixes
+
+* check for showing create with ai ([b3c12ba](https://github.com/oaknational/Oak-Web-Application/commit/b3c12baf10c5f809564d7f593003f0cf2f2247c0))
+
 # [1.1090.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1089.0...v1.1090.0) (2026-06-03)
 
 

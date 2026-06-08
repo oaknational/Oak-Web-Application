@@ -1,33 +1,36 @@
-import { getProgrammeData } from "./getProgrammeData";
+import { getSubjectPhaseOptions } from "./getProgrammeData";
 import { PageSearchParms } from "./page";
 
-import { formatCurriculumUnitsData } from "@/pages-helpers/curriculum/docx/tab-helpers";
-
 export const getMetaTitle = (
-  programmePageData: NonNullable<Awaited<ReturnType<typeof getProgrammeData>>>,
+  subjectPhaseData: NonNullable<
+    Awaited<ReturnType<typeof getSubjectPhaseOptions>>
+  >,
   searchParams: PageSearchParms,
 ) => {
-  const {
-    programmeUnitsData,
-    curriculumUnitsData,
-    curriculumPhaseOptions,
-    subjectPhaseKeystageSlugs,
-  } = programmePageData;
+  const { subjects, subjectPhaseKeystageSlugs } = subjectPhaseData;
 
-  const curriculumUnitsFormattedData =
-    formatCurriculumUnitsData(curriculumUnitsData);
+  const currentSubject = subjects.find(
+    (s) => s.slug === subjectPhaseKeystageSlugs.subjectSlug,
+  );
 
-  const ks4Options =
-    curriculumPhaseOptions.subjects.find(
-      (s) => s.slug === subjectPhaseKeystageSlugs.subjectSlug,
-    )?.ks4_options ?? [];
+  if (!currentSubject) {
+    return {
+      title: "Free lesson and curriculum resources",
+      description: "Get fully sequenced teaching resources and lesson plans",
+    };
+  }
+
+  const ks4Options = currentSubject?.ks4_options ?? [];
   const ks4Option = ks4Options.find(
     (ks4opt) => ks4opt.slug === subjectPhaseKeystageSlugs.ks4OptionSlug,
   );
 
   const { threads, years, keystages, tiers } = searchParams;
 
-  const phaseSubjectSegment = `${programmeUnitsData.phaseTitle} ${programmeUnitsData.subjectTitle}`;
+  const phaseTitle = currentSubject.phases.find(
+    (p) => p.slug === subjectPhaseKeystageSlugs.phaseSlug,
+  )?.title;
+  const phaseSubjectSegment = `${phaseTitle} ${currentSubject.title}`;
 
   const keystageSegment =
     typeof keystages === "string" ? keystages.toUpperCase() : null;
@@ -36,24 +39,28 @@ export const getMetaTitle = (
     year === "all-years" ? "All Years" : `Y${year}`;
   const yearSegment = typeof years === "string" ? getYearTitle(years) : "";
 
-  const threadTitle = curriculumUnitsFormattedData.threadOptions.find(
-    (t) => t.slug === threads,
-  )?.title;
-  const threadSegment =
-    typeof threads === "string" && threadTitle ? ` - ${threadTitle}` : "";
+  const threadTitle =
+    typeof threads === "string" && threads
+      ? threads.replaceAll("-", " ")
+      : undefined;
+  const threadSegment = threadTitle ? ` - ${threadTitle}` : "";
   const tierSegment =
     typeof tiers === "string"
       ? ` ${tiers[0]?.toLocaleUpperCase() + tiers.slice(1)}`
       : "";
   const examboardSegment = ks4Option ? ` ${ks4Option.title}` : "";
 
+  let title = `Free ${phaseSubjectSegment}${tierSegment}${examboardSegment}${threadSegment} Lesson & Curriculum Resources`;
+
   if (yearSegment) {
-    return `Free ${yearSegment} ${programmeUnitsData.subjectTitle}${tierSegment}${examboardSegment}${threadSegment} Lesson & Curriculum Resources`;
+    title = `Free ${yearSegment} ${currentSubject.title}${tierSegment}${examboardSegment}${threadSegment} Lesson & Curriculum Resources`;
   }
 
   if (keystageSegment) {
-    return `Free ${keystageSegment} ${programmeUnitsData.subjectTitle}${tierSegment}${examboardSegment} Lesson & Curriculum Resources`;
+    title = `Free ${keystageSegment} ${currentSubject.title}${tierSegment}${examboardSegment} Lesson & Curriculum Resources`;
   }
 
-  return `Free ${phaseSubjectSegment}${tierSegment}${examboardSegment}${threadSegment} Lesson & Curriculum Resources`;
+  const description = `Get fully sequenced teaching resources and lesson plans for ${phaseTitle} ${currentSubject.title}`;
+
+  return { title, description };
 };
