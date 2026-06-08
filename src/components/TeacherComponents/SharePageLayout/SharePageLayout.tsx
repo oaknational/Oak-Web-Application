@@ -27,6 +27,7 @@ import { getFormErrorMessages } from "@/components/TeacherComponents/helpers/dow
 import TermsAgreementForm from "@/components/TeacherComponents/TermsAgreementForm";
 import NoResourcesToShare from "@/components/TeacherComponents/NoResourcesToShare";
 import FieldError from "@/components/SharedComponents/FieldError";
+import ScreenReaderOnly from "@/components/SharedComponents/ScreenReaderOnly";
 
 export type SharePageLayoutProps = ResourcePageDetailsCompletedProps &
   ResourcePageSchoolDetailsProps & {
@@ -51,6 +52,10 @@ export type SharePageLayoutProps = ResourcePageDetailsCompletedProps &
 
 const SharePageLayout: FC<SharePageLayoutProps> = (props) => {
   const hasFormErrors = Object.keys(props.errors).length > 0;
+  const validationErrorMessages = getFormErrorMessages(props.errors);
+  const validationSummaryAnnouncement = validationErrorMessages.length
+    ? `To complete correct the following: ${validationErrorMessages.join(". ")}`
+    : "";
   return (
     <OakBox $maxWidth={"spacing-960"} $mb={"spacing-48"}>
       <OakFlex
@@ -123,28 +128,31 @@ const SharePageLayout: FC<SharePageLayoutProps> = (props) => {
                       aria-atomic="true"
                       data-testid="share-validation-summary"
                       key={props.validationSummaryKey}
-                      $flexDirection={"row"}
+                      $flexDirection={"column"}
                     >
-                      <OakIcon
-                        iconName="content-guidance"
-                        $colorFilter={"icon-error"}
-                        $width={"spacing-24"}
-                        $height={"spacing-24"}
-                      />
-                      <OakFlex $flexDirection={"column"}>
-                        <OakP $ml="spacing-4" $color={"text-error"}>
-                          To complete correct the following:
-                        </OakP>
-                        <OakUL $mr="spacing-24">
-                          {getFormErrorMessages(props.errors).map((err) => {
-                            return (
+                      <OakFlex aria-hidden={true} $flexDirection={"row"}>
+                        <OakIcon
+                          iconName="content-guidance"
+                          $colorFilter={"icon-error"}
+                          $width={"spacing-24"}
+                          $height={"spacing-24"}
+                        />
+                        <OakFlex $flexDirection={"column"}>
+                          <OakP $ml="spacing-4" $color={"text-error"}>
+                            To complete correct the following:
+                          </OakP>
+                          <OakUL $mr="spacing-24">
+                            {validationErrorMessages.map((err) => (
                               <OakLI $color={"text-error"} key={err}>
                                 {err}
                               </OakLI>
-                            );
-                          })}
-                        </OakUL>
+                            ))}
+                          </OakUL>
+                        </OakFlex>
                       </OakFlex>
+                      <ScreenReaderOnly data-testid="share-validation-summary-sr">
+                        {validationSummaryAnnouncement}
+                      </ScreenReaderOnly>
                     </OakFlex>
                   )}
 

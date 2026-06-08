@@ -1,5 +1,5 @@
 import { screen } from "@testing-library/react";
-import { useForm , FieldErrors } from "react-hook-form";
+import { useForm, FieldErrors } from "react-hook-form";
 
 import ResourcePageLayoutB, { SharePageLayoutProps } from "./SharePageLayout";
 
@@ -92,13 +92,13 @@ describe("Downloads/Share Layout", () => {
     );
 
     const validationSummary = screen.getByTestId("share-validation-summary");
+    const validationSummarySr = screen.getByTestId(
+      "share-validation-summary-sr",
+    );
     expect(validationSummary).toHaveAttribute("role", "alert");
     expect(validationSummary).toHaveAttribute("aria-atomic", "true");
-    expect(validationSummary).toHaveTextContent(
-      "select at least one resource to continue",
-    );
-    expect(validationSummary).toHaveTextContent(
-      "accept terms and conditions to continue",
+    expect(validationSummarySr).toHaveTextContent(
+      "To complete correct the following: select at least one resource to continue. accept terms and conditions to continue",
     );
   });
 
