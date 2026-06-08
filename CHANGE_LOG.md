@@ -1,3 +1,15 @@
+# [1.1093.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1092.2...v1.1093.0) (2026-06-08)
+
+
+### Bug Fixes
+
+* 404 on primary subjects with exam boards ([5329069](https://github.com/oaknational/Oak-Web-Application/commit/5329069d5202ec168b17e02733c1c7e5d4f5b512))
+
+
+### Features
+
+* validate keystage and years params ([709c8d9](https://github.com/oaknational/Oak-Web-Application/commit/709c8d925702048624a0fddb2bc05f9dd076227f))
+
 ## [1.1092.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.1092.1...v1.1092.2) (2026-06-08)
 
 
