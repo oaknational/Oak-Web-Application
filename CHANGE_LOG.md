@@ -1,3 +1,10 @@
+## [1.1092.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.1092.1...v1.1092.2) (2026-06-08)
+
+
+### Bug Fixes
+
+* **PUPIL-1748:** correct share button accessible names for Label in Name ([d497514](https://github.com/oaknational/Oak-Web-Application/commit/d497514ef168807791738bf8706a56c1017a882b))
+
 ## [1.1092.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.1092.0...v1.1092.1) (2026-06-08)
 
 # [1.1092.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1091.1...v1.1092.0) (2026-06-08)
