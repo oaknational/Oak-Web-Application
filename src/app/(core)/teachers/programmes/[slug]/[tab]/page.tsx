@@ -5,7 +5,7 @@ import { cache } from "react";
 import { ProgrammeView } from "./Components/ProgrammeView";
 import { isTabSlug } from "./tabSchema";
 import { getMetaTitle } from "./getMetaTitle";
-import { getProgrammeData } from "./getProgrammeData";
+import { getSubjectPhaseOptions, getProgrammeData } from "./getProgrammeData";
 
 import {
   createDownloadsData,
@@ -43,6 +43,14 @@ const getCachedProgrammeData = cache(
       return getProgrammeData(curriculumApi2023, subjectPhaseSlug);
     },
     ["programme-data"],
+  ),
+);
+
+const getCachedSubjectOptionData = cache(
+  cacheData(
+    async (subjectPhaseSlug: string) =>
+      getSubjectPhaseOptions(curriculumApi2023, subjectPhaseSlug),
+    ["subject-phase-data"],
   ),
 );
 
@@ -98,8 +106,8 @@ export async function generateMetadata({
   redirectProgrammeSlugIfNeeded(slug, pageSearchParams);
 
   try {
-    const cachedData = await getCachedProgrammeData(slug);
-    if (!cachedData) {
+    const cachedSubjectData = await getCachedSubjectOptionData(slug);
+    if (!cachedSubjectData) {
       return {};
     }
 
@@ -111,8 +119,10 @@ export async function generateMetadata({
       getBrowserConfig("seoAppUrl"),
     ).toString();
 
-    const title = getMetaTitle(cachedData, pageSearchParams);
-    const description = `Get fully sequenced teaching resources and lesson plans for ${cachedData.programmeUnitsData.phaseTitle} ${cachedData.programmeUnitsData.subjectTitle}`;
+    const { title, description } = getMetaTitle(
+      cachedSubjectData,
+      pageSearchParams,
+    );
 
     return {
       title,
@@ -143,36 +153,31 @@ export async function generateMetadata({
 }
 
 const InnerProgrammePage = async (props: AppPageProps<ProgrammePageParams>) => {
-  const { slug, tab } = await props.params;
+  const { slug: subjectPhaseSlug, tab } = await props.params;
   const searchParams = await props.searchParams;
 
-  redirectProgrammeSlugIfNeeded(slug, searchParams ?? {});
-
-  const subjectPhaseSlug = slug;
+  redirectProgrammeSlugIfNeeded(subjectPhaseSlug, searchParams ?? {});
 
   if (!isTabSlug(tab)) {
     return redirect("units");
   }
-  const cachedData = await getCachedProgrammeData(subjectPhaseSlug);
 
-  if (!cachedData) {
+  const cachedSubjectData = await getCachedSubjectOptionData(subjectPhaseSlug);
+
+  if (!cachedSubjectData) {
     return notFound();
   }
 
-  const {
-    programmeUnitsData,
-    curriculumUnitsData,
-    curriculumPhaseOptions,
-    subjectPhaseKeystageSlugs,
-  } = cachedData;
+  const { subjects, subjectPhaseKeystageSlugs } = cachedSubjectData;
 
-  const isValid = isValidSubjectPhaseSlug(
-    curriculumPhaseOptions.subjects,
+  const isSlugValid = isValidSubjectPhaseSlug(
+    subjects,
     subjectPhaseKeystageSlugs,
   );
-  if (!isValid) {
+
+  if (!isSlugValid) {
     const redirectParams = getKs4RedirectSlug(
-      curriculumPhaseOptions.subjects,
+      subjects,
       subjectPhaseKeystageSlugs,
     );
     if (redirectParams) {
@@ -196,6 +201,19 @@ const InnerProgrammePage = async (props: AppPageProps<ProgrammePageParams>) => {
       });
     }
   }
+
+  const cachedProgrammeData = await getCachedProgrammeData(subjectPhaseSlug);
+
+  if (!cachedProgrammeData) {
+    return notFound();
+  }
+
+  const { programmeUnitsData, curriculumUnitsData } = cachedProgrammeData;
+
+  const curriculumPhaseOptions = {
+    subjects,
+    tab: "units" as const,
+  };
 
   const { curriculumCMSInfo, subjectPhaseSanityData, mvRefreshTime } =
     await getCachedProgrammeCms({
@@ -266,7 +284,7 @@ const InnerProgrammePage = async (props: AppPageProps<ProgrammePageParams>) => {
     curriculumCMSInfo,
     ks4Options,
     trackingData: curriculumUnitsTrackingData,
-    curriculumInfo: cachedData.programmeUnitsData,
+    curriculumInfo: cachedProgrammeData.programmeUnitsData,
     curriculumDownloadsTabData,
     mvRefreshTime,
     initialFilter: resolvedFilter,
