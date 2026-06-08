@@ -1,3 +1,24 @@
+## [1.1092.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.1092.1...v1.1092.2) (2026-06-08)
+
+
+### Bug Fixes
+
+* **PUPIL-1748:** correct share button accessible names for Label in Name ([d497514](https://github.com/oaknational/Oak-Web-Application/commit/d497514ef168807791738bf8706a56c1017a882b))
+
+## [1.1092.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.1092.0...v1.1092.1) (2026-06-08)
+
+# [1.1092.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1091.1...v1.1092.0) (2026-06-08)
+
+
+### Bug Fixes
+
+* **LESQ-2069:** omit explainer from sitemap for non curriculum subjects ([b1d1037](https://github.com/oaknational/Oak-Web-Application/commit/b1d103752d3444427d0609d792f516e0cb4b7d27))
+
+
+### Features
+
+* **LESQ-2069:** add curriculum explainer to sitemap ([7357c7e](https://github.com/oaknational/Oak-Web-Application/commit/7357c7ec8abc8c63bea77d87862dfd24fec26edb))
+
 ## [1.1091.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.1091.0...v1.1091.1) (2026-06-08)
 
 

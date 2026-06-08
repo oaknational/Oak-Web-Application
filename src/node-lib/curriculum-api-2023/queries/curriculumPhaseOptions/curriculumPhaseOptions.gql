@@ -1,9 +1,12 @@
-query curriculumPhaseOptions($where: published_mv_curriculum_phase_options_0_4_bool_exp) {
+query curriculumPhaseOptions(
+  $where: published_mv_curriculum_phase_options_0_4_bool_exp
+) {
   options: published_mv_curriculum_phase_options_0_4(where: $where) {
     title
     slug
     phases
     keystages
     ks4_options
+    non_curriculum
   }
 }

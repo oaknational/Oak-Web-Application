@@ -68,13 +68,28 @@ function buildProgrammeUrls(subjects: CurriculumPhaseOptions): string[] {
     subject.phases.flatMap((phase) => {
       const subjectPhaseSlugs = mapExamboardSlugs(subject, phase);
 
-      return subjectPhaseSlugs.map((subjectPhaseSlug) => {
+      return subjectPhaseSlugs.flatMap((subjectPhaseSlug) => {
         url.pathname = resolveOakHref({
           page: "teacher-programme",
           subjectPhaseSlug,
           tab: "units",
         });
-        return url.toString();
+        const unitUrl = url.toString();
+
+        // If the subject is non-curriculum there is no curriculum explainer
+        if (subject.non_curriculum) {
+          return [unitUrl];
+        }
+
+        url.pathname = resolveOakHref({
+          page: "teacher-programme",
+          subjectPhaseSlug,
+          tab: "curriculum-explainer",
+        });
+
+        const curriculumExplainerUrl = url.toString();
+
+        return [unitUrl, curriculumExplainerUrl];
       });
     }),
   );
