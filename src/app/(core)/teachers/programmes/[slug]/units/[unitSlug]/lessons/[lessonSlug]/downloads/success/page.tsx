@@ -8,6 +8,7 @@ import { DownloadSuccessView } from "./Components/DownloadSuccessView";
 import withPageErrorHandling, {
   AppPageProps,
 } from "@/hocs/withPageErrorHandling";
+import { getFeatureFlagValue } from "@/utils/featureFlags";
 
 type LessonDownloadsSuccessPageParams = {
   slug: string;
@@ -15,7 +16,7 @@ type LessonDownloadsSuccessPageParams = {
   lessonSlug: string;
 };
 
-export const dynamic = "force-static";
+export const dynamic = "force-dynamic";
 
 const getSuccessData = async (
   programmeSlug: string,
@@ -79,7 +80,13 @@ const InnerLessonDownloadsSuccessPage = async (
     return notFound();
   }
 
-  return <DownloadSuccessView lesson={data} />;
+  const variantKey = await getFeatureFlagValue(
+    "download-success-cta-experiment",
+    "string",
+  );
+  const ctaVariant = variantKey === "test" ? "test" : "control";
+
+  return <DownloadSuccessView lesson={data} ctaVariant={ctaVariant} />;
 };
 
 const LessonDownloadsSuccessPage = withPageErrorHandling(

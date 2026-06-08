@@ -9,6 +9,7 @@ import {
   OakSpan,
 } from "@oaknational/oak-components";
 import { useEffect } from "react";
+import styled from "styled-components";
 
 import { LessonList } from "@/app/(core)/teachers/programmes/[slug]/units/[unitSlug]/lessons/Components/LessonList";
 import { DownloadSuccessHeader } from "@/app/(core)/teachers/programmes/[slug]/units/[unitSlug]/lessons/[lessonSlug]/Components/DownloadSuccessHeader/DownloadSuccessHeader";
@@ -40,10 +41,19 @@ type DownloadSuccessViewLesson = {
 
 export type DownloadSuccessViewProps = {
   lesson: DownloadSuccessViewLesson;
+  ctaVariant: "control" | "test";
 };
+
+// Oak-components is a little out of sync with Figma
+// with letter-spacing on headings. Applying a temporary
+// fix here until we update the tokens to match.
+const TightenedOakSpan = styled(OakSpan)`
+  letter-spacing: -0.64px;
+`;
 
 export function DownloadSuccessView({
   lesson,
+  ctaVariant,
 }: Readonly<DownloadSuccessViewProps>) {
   const {
     lessonTitle,
@@ -120,19 +130,39 @@ export function DownloadSuccessView({
           $cg="spacing-12"
         >
           <OakGridArea $colSpan={[12, 8]} $colStart={[1, 3]} $gap="spacing-48">
-            <OakFlex
-              $font="heading-light-6"
-              $mh="auto"
-              $alignItems="center"
-              $gap="spacing-12"
-            >
-              <OakIcon iconName="arrow-down" $colorFilter="text-success" />
-              <span>
-                <OakSpan $font="heading-6">Ready to keep going?</OakSpan>{" "}
-                Explore the lessons in this unit sequence.
-              </span>
-              <OakIcon iconName="arrow-down" $colorFilter="text-success" />
-            </OakFlex>
+            {ctaVariant === "test" ? (
+              <OakFlex $mh="auto" $alignItems="center" $gap="spacing-12">
+                <OakIcon
+                  iconName="arrow-down"
+                  $colorFilter="text-success"
+                  $width="spacing-48"
+                  $height="spacing-48"
+                />
+                <TightenedOakSpan $font="heading-4">
+                  Everything you need to plan a unit in one click
+                </TightenedOakSpan>
+                <OakIcon
+                  iconName="arrow-down"
+                  $colorFilter="text-success"
+                  $width="spacing-48"
+                  $height="spacing-48"
+                />
+              </OakFlex>
+            ) : (
+              <OakFlex
+                $font="heading-light-6"
+                $mh="auto"
+                $alignItems="center"
+                $gap="spacing-12"
+              >
+                <OakIcon iconName="arrow-down" $colorFilter="text-success" />
+                <span>
+                  <OakSpan $font="heading-6">Ready to keep going?</OakSpan>{" "}
+                  Explore the lessons in this unit sequence.
+                </span>
+                <OakIcon iconName="arrow-down" $colorFilter="text-success" />
+              </OakFlex>
+            )}
             <LessonList
               programmeSlug={lesson.programmeSlug}
               unitSlug={lesson.unitSlug}

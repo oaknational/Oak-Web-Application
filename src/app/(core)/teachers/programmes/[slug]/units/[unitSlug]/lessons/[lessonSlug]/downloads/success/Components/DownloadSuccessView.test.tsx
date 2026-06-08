@@ -108,7 +108,7 @@ describe("DownloadSuccessView", () => {
 
   it("renders the confirmation heading and intro copy", () => {
     const { getByRole, getByText } = renderComponent(
-      <DownloadSuccessView lesson={baseLesson} />,
+      <DownloadSuccessView lesson={baseLesson} ctaVariant="control" />,
     );
 
     expect(
@@ -121,7 +121,7 @@ describe("DownloadSuccessView", () => {
 
   it("back to lesson links to the lesson overview", () => {
     const { getByRole } = renderComponent(
-      <DownloadSuccessView lesson={baseLesson} />,
+      <DownloadSuccessView lesson={baseLesson} ctaVariant="control" />,
     );
 
     const link = getByRole("link", { name: "Back to lesson" });
@@ -139,7 +139,7 @@ describe("DownloadSuccessView", () => {
   it("calls onwardContentSelected when Back to lesson is clicked", async () => {
     const user = userEvent.setup();
     const { getByRole } = renderComponent(
-      <DownloadSuccessView lesson={baseLesson} />,
+      <DownloadSuccessView lesson={baseLesson} ctaVariant="control" />,
     );
 
     await user.click(getByRole("link", { name: "Back to lesson" }));
@@ -171,7 +171,7 @@ describe("DownloadSuccessView", () => {
       unitDescription: "Unit description text",
     };
     const { getByText } = renderComponent(
-      <DownloadSuccessView lesson={lesson} />,
+      <DownloadSuccessView lesson={lesson} ctaVariant="control" />,
     );
 
     expect(getByText("Ready to keep going?")).toBeInTheDocument();
@@ -185,7 +185,7 @@ describe("DownloadSuccessView", () => {
     );
 
     const { getByText } = renderComponent(
-      <DownloadSuccessView lesson={baseLesson} />,
+      <DownloadSuccessView lesson={baseLesson} ctaVariant="control" />,
     );
 
     expect(
@@ -201,7 +201,7 @@ describe("DownloadSuccessView", () => {
     );
 
     const { queryByText } = renderComponent(
-      <DownloadSuccessView lesson={baseLesson} />,
+      <DownloadSuccessView lesson={baseLesson} ctaVariant="control" />,
     );
 
     expect(
@@ -209,5 +209,16 @@ describe("DownloadSuccessView", () => {
         /Click the question mark in the bottom-right of the page if you need extra help with this/i,
       ),
     ).not.toBeInTheDocument();
+  });
+
+  it("renders test variant CTA copy when ctaVariant is test", () => {
+    const { getByText, queryByText } = renderComponent(
+      <DownloadSuccessView lesson={baseLesson} ctaVariant="test" />,
+    );
+
+    expect(
+      getByText("Everything you need to plan a unit in one click"),
+    ).toBeInTheDocument();
+    expect(queryByText("Ready to keep going?")).not.toBeInTheDocument();
   });
 });
