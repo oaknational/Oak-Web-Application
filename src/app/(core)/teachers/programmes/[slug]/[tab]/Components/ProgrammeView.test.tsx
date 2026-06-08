@@ -123,6 +123,16 @@ const defaultProps = {
 };
 
 const render = renderWithProviders();
+
+const lightweightUnitsProps = {
+  ...defaultProps,
+  curriculumUnitsFormattedData: formatCurriculumUnitsData(
+    curriculumUnitsTabFixture({
+      units: curriculumUnitsTabFixture().units.slice(0, 1),
+    }),
+  ),
+};
+
 describe("ProgrammeView", () => {
   it("renders the programme header", () => {
     render(<ProgrammeView {...defaultProps} />);
@@ -132,7 +142,7 @@ describe("ProgrammeView", () => {
     expect(heading).toBeInTheDocument();
   });
   it("highlights the correct tab", () => {
-    render(<ProgrammeView {...defaultProps} />);
+    render(<ProgrammeView {...lightweightUnitsProps} />);
     const unitsTab = screen.getByRole("link", { name: "Unit sequence" });
     expect(unitsTab).toHaveStyle("background: #bef2bd");
 
@@ -169,9 +179,9 @@ describe("ProgrammeView", () => {
     expect(content).toBeInTheDocument();
   });
   it("navigates on tab click", async () => {
-    render(<ProgrammeView {...defaultProps} />);
+    render(<ProgrammeView {...lightweightUnitsProps} />);
     const overviewTabButton = screen.getByRole("link", { name: "Explainer" });
-    const user = userEvent.setup();
+    const user = userEvent.setup({ delay: null });
     await user.click(overviewTabButton);
     expect(pushSpy).toHaveBeenCalledWith(null, "", "curriculum-explainer");
   });
@@ -180,10 +190,10 @@ describe("ProgrammeView", () => {
     useSearchParamsMock.mockReturnValue({
       get: (key: string) => (key === "keystages" ? "ks4" : null),
     });
-    render(<ProgrammeView {...defaultProps} />);
+    render(<ProgrammeView {...lightweightUnitsProps} />);
     const overviewTabButton = screen.getByRole("link", { name: "Explainer" });
 
-    const user = userEvent.setup();
+    const user = userEvent.setup({ delay: null });
     await user.click(overviewTabButton);
     expect(pushSpy).toHaveBeenCalledWith(
       null,
@@ -250,7 +260,7 @@ describe("ProgrammeView", () => {
     expect(heading).toBeInTheDocument();
     const overviewTabButton = screen.getByRole("link", { name: "Explainer" });
 
-    const user = userEvent.setup();
+    const user = userEvent.setup({ delay: null });
     await user.click(overviewTabButton);
 
     setMockedPathname(
