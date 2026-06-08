@@ -8,6 +8,7 @@ import Link from "next/link";
 import { DropdownFocusManager } from "../DropdownFocusManager/DropdownFocusManager";
 import ExamBoardPanel from "../ExamBoardPanel/ExamBoardPanel";
 import { MaybeVisuallyHidden } from "../TopNav";
+import { createFocusId } from "../DropdownFocusManager/focusTree";
 
 import { TopNavDropdownProps } from "./TopNavDropdown";
 
@@ -75,7 +76,8 @@ const TopNavSubjectButtons = ({
           subjects.length > 0 &&
           subjects.map((subject) => {
             const { slug, href } = subject;
-            const buttonId = focusManager?.createId(
+            const buttonId = createFocusId(
+              "teachers",
               `teachers-${phase}-${keyStageSlug}`,
               slug,
             );
@@ -102,7 +104,7 @@ const TopNavSubjectButtons = ({
                       });
                       return;
                     }
-                    focusManager?.handleKeyDown(e, buttonId!);
+                    focusManager?.handleKeyDown(e, buttonId);
                   }}
                   phase={
                     subject.nonCurriculum
@@ -129,6 +131,7 @@ const TopNavSubjectButtons = ({
             >
               <ExamBoardPanel
                 examBoards={subject.examBoards}
+                phaseSlug={phase}
                 keystageSlug={keyStageSlug}
                 selectedSubject={subject}
                 focusManager={focusManager}

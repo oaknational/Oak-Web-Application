@@ -14,6 +14,7 @@ import Link from "next/link";
 
 import { DropdownFocusManager } from "../DropdownFocusManager/DropdownFocusManager";
 import { MaybeVisuallyHidden } from "../TopNav";
+import { createFocusId } from "../DropdownFocusManager/focusTree";
 
 import TopNavSubjectButtons from "./TopNavSubjectButtons";
 
@@ -106,8 +107,11 @@ const TeachersPhaseSection = ({
     (item) => item.type === "phase",
   );
 
-  const defaultTopLevel = selectedMenu ? "keystages" : undefined;
-  const defaultKeystage = selectedMenu ? keystageChildren[0]?.slug : undefined;
+  const isActivePhase = selectedMenu === phaseData.slug;
+  const defaultTopLevel = isActivePhase ? phaseData.slug : "keystages";
+  const defaultKeystage = isActivePhase
+    ? phaseData.slug
+    : keystageChildren[0]?.slug;
 
   const [selectedTopLevel, setSelectedTopLevel] = useState<string | undefined>(
     defaultTopLevel,
@@ -176,7 +180,7 @@ const TeachersPhaseSection = ({
   ) => {
     if (!selectedMenu) return;
     const focusableElements = keystageChildren.map((keystage) =>
-      focusManager.createId(`teachers-${phaseData.slug}`, keystage.slug),
+      createFocusId("teachers", `teachers-${phaseData.slug}`, keystage.slug),
     );
     const activeElementId = document.activeElement?.id;
     if (!activeElementId) return;
@@ -208,7 +212,7 @@ const TeachersPhaseSection = ({
     isOpen: (s: string) => boolean,
     onClickFn: (s: string) => void,
   ) => {
-    const buttonId = focusManager.createId(`teachers-${phase}`, slug);
+    const buttonId = createFocusId("teachers", `teachers-${phase}`, slug);
 
     return (
       <OakLeftAlignedButton
@@ -352,7 +356,8 @@ const TeachersLinksSection = ({
         id={`topnav-teachers-${linkData.slug}`}
       >
         {linkData.children.map((link) => {
-          const buttonId = focusManager.createId(
+          const buttonId = createFocusId(
+            "teachers",
             `teachers-${linkData.slug}`,
             link.slug,
           );
@@ -413,7 +418,8 @@ const PupilsSection = ({
           id={`topnav-pupils-${menu}`}
         >
           {data.children.map((year) => {
-            const buttonId = focusManager?.createId(
+            const buttonId = createFocusId(
+              "pupils",
               `pupils-${menu}`,
               year.slug,
             );

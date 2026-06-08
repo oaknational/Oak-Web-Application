@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import TopNavDropdown from "./TopNavDropdown";
 
 import { DropdownFocusManager } from "@/components/AppComponents/TopNav/DropdownFocusManager/DropdownFocusManager";
+import { buildFocusTree } from "@/components/AppComponents/TopNav/DropdownFocusManager/focusTree";
 import { topNavFixture } from "@/node-lib/curriculum-api-2023/fixtures/topNav.fixture";
 import { TeachersSubNavData } from "@/node-lib/curriculum-api-2023/queries/topNav/topNav.schema";
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
@@ -42,7 +43,7 @@ describe("TopNavDropdown", () => {
     onCloseMock.mockReset();
     mockBrowseRefined.mockReset();
     focusManager = new DropdownFocusManager(
-      topNavFixture.teachers!,
+      buildFocusTree(topNavFixture.teachers!, "teachers"),
       "teachers",
       () => undefined,
     );
@@ -52,7 +53,7 @@ describe("TopNavDropdown", () => {
   });
 
   describe("Teachers area", () => {
-    describe("phases sections", () => {
+    describe("keystages sections", () => {
       it("renders keystage menu", async () => {
         render(
           <TopNavDropdown
@@ -65,11 +66,11 @@ describe("TopNavDropdown", () => {
           />,
         );
 
-        const keystageButtons = await screen.findAllByRole("tab");
+        const primaryButton = await screen.findByRole("tab", {
+          name: "Primary",
+        });
 
-        expect(keystageButtons).toHaveLength(3);
-        expect(keystageButtons[0]).toHaveTextContent("Key stage 1");
-        expect(keystageButtons[0]).toHaveAttribute("aria-current", "true");
+        expect(primaryButton).toHaveAttribute("aria-current", "true");
       });
 
       it("renders keystage menu", async () => {
@@ -84,11 +85,11 @@ describe("TopNavDropdown", () => {
           />,
         );
 
-        const keystageButtons = await screen.findAllByRole("tab");
+        const secondaryButton = await screen.findByRole("tab", {
+          name: "Secondary",
+        });
 
-        expect(keystageButtons).toHaveLength(2);
-        expect(keystageButtons[0]).toHaveTextContent("Key stage 3");
-        expect(keystageButtons[0]).toHaveAttribute("aria-current", "true");
+        expect(secondaryButton).toHaveAttribute("aria-current", "true");
       });
 
       it("calls track browse refined when a keystage button is clicked", async () => {
@@ -103,8 +104,16 @@ describe("TopNavDropdown", () => {
           />,
         );
 
-        const keystageButton = screen.getByRole("tab", { name: "Key stage 4" });
         const user = userEvent.setup();
+        const keystagesButton = await screen.findByRole("tab", {
+          name: "Key stages",
+        });
+        await user.click(keystagesButton);
+        const ks4Button = await screen.findByRole("tab", {
+          name: "Key stage 4",
+        });
+        await user.click(ks4Button);
+        const keystageButton = screen.getByRole("tab", { name: "Key stage 4" });
         await user.click(keystageButton);
         expect(mockBrowseRefined).toHaveBeenCalledWith(
           expect.objectContaining({
@@ -126,6 +135,11 @@ describe("TopNavDropdown", () => {
           />,
         );
 
+        const user = userEvent.setup();
+        const keystagesButton = await screen.findByRole("tab", {
+          name: "Key stages",
+        });
+        await user.click(keystagesButton);
         const subjectButtons = await screen.findAllByRole("link");
 
         expect(subjectButtons[2]).toHaveTextContent("Financial education");
@@ -147,6 +161,10 @@ describe("TopNavDropdown", () => {
           />,
         );
 
+        const keystagesButton = await screen.findByRole("tab", {
+          name: "Key stages",
+        });
+        await user.click(keystagesButton);
         const englishButton = await screen.findByRole("link", {
           name: "English",
         });
@@ -171,6 +189,10 @@ describe("TopNavDropdown", () => {
           />,
         );
 
+        const keystagesButton = await screen.findByRole("tab", {
+          name: "Key stages",
+        });
+        await user.click(keystagesButton);
         const financialEdButton = await screen.findByRole("link", {
           name: "Financial education",
         });
@@ -195,6 +217,10 @@ describe("TopNavDropdown", () => {
           />,
         );
 
+        const keystagesButton = await screen.findByRole("tab", {
+          name: "Key stages",
+        });
+        await user.click(keystagesButton);
         const englishButton = await screen.findByRole("link", {
           name: "English",
         });
@@ -223,6 +249,11 @@ describe("TopNavDropdown", () => {
             onClose={onCloseMock}
           />,
         );
+
+        const keystagesButton = await screen.findByRole("tab", {
+          name: "Key stages",
+        });
+        await user.click(keystagesButton);
 
         const ks4Button = await screen.findByRole("tab", {
           name: "Key stage 4",
@@ -254,6 +285,11 @@ describe("TopNavDropdown", () => {
             onClose={onCloseMock}
           />,
         );
+
+        const keystagesButton = await screen.findByRole("tab", {
+          name: "Key stages",
+        });
+        await user.click(keystagesButton);
 
         const ks4Button = await screen.findByRole("tab", {
           name: "Key stage 4",
@@ -288,6 +324,11 @@ describe("TopNavDropdown", () => {
           />,
         );
 
+        const keystagesButton = await screen.findByRole("tab", {
+          name: "Key stages",
+        });
+        await user.click(keystagesButton);
+
         const ks4Button = await screen.findByRole("tab", {
           name: "Key stage 4",
         });
@@ -307,6 +348,30 @@ describe("TopNavDropdown", () => {
             name: "Choose exam board for KS4 Geography",
           }),
         ).not.toBeInTheDocument();
+      });
+    });
+    describe("phases section", () => {
+      it("renders phase tabs with subjects", async () => {
+        render(
+          <TopNavDropdown
+            teachers={topNavFixture.teachers!}
+            pupils={topNavFixture.pupils!}
+            activeArea="TEACHERS"
+            selectedMenu="secondary"
+            focusManager={focusManager}
+            onClose={onCloseMock}
+          />,
+        );
+
+        const secondaryButton = screen.getByText("Secondary").closest("button");
+        await userEvent.click(secondaryButton!);
+
+        expect(
+          screen.getByRole("link", { name: "History" }),
+        ).toBeInTheDocument();
+        expect(
+          screen.getByRole("link", { name: "Geography" }),
+        ).toBeInTheDocument();
       });
     });
     describe("links sections", () => {
