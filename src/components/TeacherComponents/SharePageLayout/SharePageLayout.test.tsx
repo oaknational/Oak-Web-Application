@@ -1,5 +1,5 @@
 import { screen } from "@testing-library/react";
-import { useForm } from "react-hook-form";
+import { useForm , FieldErrors } from "react-hook-form";
 
 import ResourcePageLayoutB, { SharePageLayoutProps } from "./SharePageLayout";
 
@@ -75,10 +75,18 @@ describe("Downloads/Share Layout", () => {
     renderWithTheme(
       <ComponentWrapper
         {...props}
-        errors={{
-          resources: { message: "select at least one resource to continue" },
-          terms: { message: "accept terms and conditions to continue" },
-        }}
+        errors={
+          {
+            resources: {
+              type: "custom",
+              message: "select at least one resource to continue",
+            },
+            terms: {
+              type: "custom",
+              message: "accept terms and conditions to continue",
+            },
+          } satisfies FieldErrors<ResourceFormValues>
+        }
         validationSummaryKey={1}
       />,
     );
