@@ -1,3 +1,5 @@
+import { buildTeachersSitemapEntries } from "./sitemap-pages-helper";
+
 import curriculumPhaseOptionsFixture from "@/node-lib/curriculum-api-2023/fixtures/curriculumPhaseOptions.fixture";
 import { teachersSitemapDataFixtureCamelCase } from "@/node-lib/curriculum-api-2023/fixtures/teachersSiteMap.fixture";
 
@@ -13,9 +15,6 @@ describe("teacher sitemaps", () => {
 
   describe("buildTeachersSitemapEntries", () => {
     it("returns integrated programme (units and curriculum explainer), unit, and lesson URLs", async () => {
-      const { buildTeachersSitemapEntries } = await import(
-        "./sitemap-pages-helper"
-      );
       const entries = buildTeachersSitemapEntries(
         teachersSitemapDataFixtureCamelCase,
         curriculumPhaseOptionsFixture(),
@@ -65,6 +64,27 @@ describe("teacher sitemaps", () => {
       );
       expect(allUrls).toContain(
         "http://localhost:3000/teachers/programmes/programme-2/units/unit-2/lessons/lesson-2",
+      );
+    });
+
+    it("omits curriculum explainer URLs for non-curriculum subjects", async () => {
+      const entries = buildTeachersSitemapEntries({ units: [], lessons: [] }, [
+        {
+          title: "Financial education",
+          slug: "financial-education",
+          phases: [{ title: "Secondary", slug: "secondary" }],
+          ks4_options: [],
+          keystages: [{ title: "KS3", slug: "ks3" }],
+          non_curriculum: true,
+        },
+      ]);
+      const allUrls = entries.map((entry) => entry.url);
+
+      expect(allUrls).toContain(
+        "http://localhost:3000/teachers/programmes/financial-education-secondary/units",
+      );
+      expect(allUrls).not.toContain(
+        "http://localhost:3000/teachers/programmes/financial-education-secondary/curriculum-explainer",
       );
     });
 

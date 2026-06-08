@@ -76,6 +76,11 @@ function buildProgrammeUrls(subjects: CurriculumPhaseOptions): string[] {
         });
         const unitUrl = url.toString();
 
+        // If the subject is non-curriculum there is no curriculum explainer
+        if (subject.non_curriculum) {
+          return [unitUrl];
+        }
+
         url.pathname = resolveOakHref({
           page: "teacher-programme",
           subjectPhaseSlug,
