@@ -244,4 +244,38 @@ describe("ProgrammeView", () => {
       expect(heading).toBeInTheDocument();
     });
   });
+
+  describe("search param validation", () => {
+    beforeEach(() => {
+      usePathnameMock.mockReturnValue(
+        resolveOakHref({
+          page: "teacher-programme",
+          subjectPhaseSlug,
+          tab: "units",
+        }),
+      );
+    });
+
+    it("ignores invalid years param in heading", () => {
+      useSearchParamsMock.mockReturnValue({
+        get: (key: string) => (key === "years" ? "invalid" : null),
+      });
+      render(<ProgrammeView {...defaultProps} />);
+      const heading = screen.getByRole("heading", {
+        name: "Science secondary AQA",
+      });
+      expect(heading).toBeInTheDocument();
+    });
+
+    it("ignores invalid keystages param in heading", () => {
+      useSearchParamsMock.mockReturnValue({
+        get: (key: string) => (key === "keystages" ? "invalid" : null),
+      });
+      render(<ProgrammeView {...defaultProps} />);
+      const heading = screen.getByRole("heading", {
+        name: "Science secondary AQA",
+      });
+      expect(heading).toBeInTheDocument();
+    });
+  });
 });
