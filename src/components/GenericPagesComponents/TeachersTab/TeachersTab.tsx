@@ -1,162 +1,237 @@
 import { FC } from "react";
+import styled from "styled-components";
 import {
-  OakGrid,
-  OakGridArea,
   OakTypography,
   OakHeading,
   OakFlex,
+  OakIcon,
   OakBox,
-  OakMaxWidth,
+  OakIconProps,
+  OakP,
 } from "@oaknational/oak-components";
-import styled from "styled-components";
 
-import ImageContainer from "@/components/GenericPagesComponents/ImageContainer";
-import SearchForm from "@/components/SharedComponents/SearchForm";
-import useSearch from "@/context/Search/useSearch";
-import TeachersTabResourceSelectorCard from "@/components/GenericPagesComponents/TeachersTabResourceSelectorCard";
-import { KeyStageKeypadProps } from "@/components/SharedComponents/KeyStageKeypad/KeyStageKeypad";
-import KeyStageKeypad from "@/components/SharedComponents/KeyStageKeypad";
-import useAnalytics from "@/context/Analytics/useAnalytics";
-import { getSizes } from "@/components/SharedComponents/CMSImage/getSizes";
-
-type PositionedProps = {
-  bottom?: number;
-  left?: number;
-  right?: number;
-};
-const PositionedTeachersTabResourceSelectorCard = styled(
-  TeachersTabResourceSelectorCard,
-)<PositionedProps>`
-  ${({ bottom }) => bottom && `bottom: ${bottom}px;`}
-  ${({ left }) => left && `left: ${left}px;`}
-  ${({ right }) => right && `right: ${right}px;`}
-`;
+import { getBreakpoint } from "@/styles/utils/responsive";
+import SubjectPhasePicker from "@/components/SharedComponents/SubjectPhasePicker";
+import { SubjectPhasePickerData } from "@/components/SharedComponents/SubjectPhasePicker/SubjectPhasePicker";
+import Illustration from "@/components/SharedComponents/Illustration";
 
 type TeacherTabProps = {
-  keyStages: KeyStageKeypadProps["keyStages"];
+  readonly curriculumPhaseOptions: SubjectPhasePickerData;
 };
-const TeachersTab: FC<TeacherTabProps> = ({ keyStages }) => {
-  const { track } = useAnalytics();
-  const { setSearchTerm } = useSearch({});
 
+const RESOURCE_ICONS = [
+  { iconName: "additional-material", text: "Teaching resources" },
+  { iconName: "curriculum-plan", text: "Curriculum plans" },
+  {
+    iconName: "ai-teaching-resources",
+    text: "AI tools",
+    spacingOverride: "spacing-32",
+  },
+] as ResourcesIconProps[];
+
+interface ResourcesIconProps {
+  iconName: OakIconProps["iconName"];
+  text: string;
+  spacingOverride?: OakIconProps["iconHeight"];
+}
+
+function ResourcesIcon({
+  iconName,
+  text,
+  spacingOverride,
+}: Readonly<ResourcesIconProps>) {
+  const spacing = spacingOverride || "spacing-24";
+  return (
+    <OakFlex
+      $flexDirection={"row"}
+      $maxWidth={["auto", "auto", "spacing-160"]}
+      $alignItems={"center"}
+      $gap="spacing-12"
+    >
+      <OakBox
+        $borderRadius={"border-radius-circle"}
+        $background={"bg-decorative1-very-subdued"}
+        $pa={spacingOverride ? "spacing-8" : "spacing-12"}
+      >
+        <OakIcon
+          iconHeight={spacing}
+          iconWidth={spacing}
+          aria-hidden={true}
+          iconName={iconName}
+        />
+      </OakBox>
+      <OakP $font="body-2-bold">{text}</OakP>
+    </OakFlex>
+  );
+}
+
+function ResourcesIcons() {
+  return (
+    <OakFlex
+      $mt={["spacing-0", "spacing-24", "spacing-40"]}
+      $flexDirection={["column", "column", "row"]}
+      $alignItems={["start", "start", "center"]}
+      $justifyContent={"center"}
+      $gap={["spacing-8", "spacing-8", "spacing-32"]}
+      $width={["100%", "auto"]}
+    >
+      {RESOURCE_ICONS.map(({ iconName, text, spacingOverride }) => (
+        <ResourcesIcon
+          key={iconName}
+          iconName={iconName}
+          text={text}
+          spacingOverride={spacingOverride}
+        />
+      ))}
+    </OakFlex>
+  );
+}
+
+function HomePageCopy() {
+  return (
+    <OakFlex $flexDirection={"column"} $gap={"spacing-24"}>
+      <OakHeading $font={["heading-4", "heading-4", "heading-3"]} tag={"h1"}>
+        <OakBox $width={"fit-content"}>Helping you deliver </OakBox>
+        <OakBox $width={"fit-content"}>a world-class curriculum</OakBox>
+      </OakHeading>
+      <OakTypography $font={"body-1"}>
+        Free, national curriculum-aligned resources designed by subject experts,
+        openly available to support innovation.
+      </OakTypography>
+    </OakFlex>
+  );
+}
+
+function PhasePickerWithLegend({
+  curriculumPhaseOptions,
+  layout,
+}: Readonly<{
+  curriculumPhaseOptions: SubjectPhasePickerData;
+  layout: "mobile" | "tablet" | "desktop";
+}>) {
+  return (
+    <OakBox $width={"100%"}>
+      <OakHeading
+        tag="h2"
+        $font="heading-7"
+        $mb={["spacing-24", "spacing-24", "spacing-32"]}
+      >
+        Explore curriculum plans and teaching resources
+      </OakHeading>
+      <SubjectPhasePicker
+        {...curriculumPhaseOptions}
+        id={"teachers-subject-picker-" + layout}
+      />
+    </OakBox>
+  );
+}
+
+const IMAGE_WIDTH = 524;
+
+const BoxWithMaxWidth = styled(OakBox)`
+  max-width: auto;
+  @media (min-width: ${getBreakpoint("small")}px) {
+    max-width: ${IMAGE_WIDTH}px;
+  }
+`;
+
+function HeroImage() {
+  return (
+    <BoxWithMaxWidth $width="100%">
+      <Illustration
+        slug={"hero-pupils"}
+        noCrop
+        $objectFit="contain"
+        priority
+        $ba={3}
+        $borderStyle={"solid"}
+        $borderColor={"black"}
+        width={IMAGE_WIDTH}
+        height={313}
+      />
+    </BoxWithMaxWidth>
+  );
+}
+
+const TeachersTab: FC<TeacherTabProps> = ({ curriculumPhaseOptions }) => {
   return (
     <OakFlex
       $background={"bg-decorative1-main"}
-      $pv="spacing-24"
-      $overflow={"hidden"}
+      $pv={["spacing-48", "spacing-48", "spacing-56"]}
+      $justifyContent={"center"}
     >
-      <OakMaxWidth $ph={["spacing-16"]}>
-        <OakGrid $cg={"spacing-16"}>
-          <OakGridArea $color={"text-primary"} $colSpan={[12, 6]}>
-            <OakFlex
-              $flexDirection={"column"}
-              $maxWidth={["spacing-640"]}
-              $pt={"spacing-32"}
-              $alignItems={"flex-start"}
-              $gap={"spacing-24"}
-              $flexGrow={0}
-              $flexShrink={1}
-              $flexBasis={"auto"}
-            >
-              <OakHeading
-                $font={"heading-7"}
-                tag={"h1"}
-                $color={"text-primary"}
-              >
-                Teachers
-              </OakHeading>
-              <OakHeading $font={"heading-3"} tag={"h2"}>
-                Plan every lesson, every national curriculum subject
-              </OakHeading>
-              <OakTypography $font={"body-1"}>
-                From curriculum planning to classroom teaching, Oak gives you
-                free, expert-designed resources to adapt and make your own.
-              </OakTypography>
-              <OakFlex
-                $width={["100%", "100%", "max-content"]}
-                $flexDirection="column"
-                $gap={["spacing-24", "spacing-32"]}
-              >
-                <KeyStageKeypad
-                  title="View subjects by key stage"
-                  titleTag="h3"
-                  keyStages={keyStages}
-                  trackingOnClick={(
-                    filterValue: string,
-                    activeFilters: Record<string, string[]>,
-                  ) =>
-                    track.browseRefinedAccessed({
-                      platform: "owa",
-                      product: "teacher lesson resources",
-                      engagementIntent: "refine",
-                      componentType: "keystage_keypad_button",
-                      eventVersion: "2.0.0",
-                      analyticsUseCase: "Teacher",
-                      filterType: "Key stage filter",
-                      filterValue,
-                      activeFilters,
-                      googleLoginHint: null,
-                      clientEnvironment: null,
-                    })
-                  }
-                />
-                <OakBox
-                  $height={"spacing-0"}
-                  $bt={"border-solid-m"}
-                  $borderColor={"border-inverted"}
-                />
-                <OakFlex $flexDirection="column" $gap="spacing-16">
-                  <OakHeading tag="h3" $font="heading-7">
-                    Or search by keyword
-                  </OakHeading>
-                  <SearchForm
-                    searchContext="campaign"
-                    placeholderText="Search by keyword or topic"
-                    searchTerm=""
-                    handleSubmit={(value) => {
-                      setSearchTerm(value);
-                    }}
-                    analyticsSearchSource={"campaign page"}
-                  />
-                </OakFlex>
-              </OakFlex>
-            </OakFlex>
-          </OakGridArea>
-          <OakGridArea $colSpan={[12, 6]} $alignItems={"flex-end"}>
-            <ImageContainer
-              imageSlug={"hero-pupils"}
-              width={518}
-              height={313}
-              sizes={getSizes([100, 518])}
-            >
-              <PositionedTeachersTabResourceSelectorCard
-                icon={"worksheet"}
-                title="Worksheets"
-                angle={-4}
-                bottom={30}
-                left={166}
-                $display={["none", "none", "flex"]}
-              />
-              <PositionedTeachersTabResourceSelectorCard
-                icon={"slide-deck"}
-                title="Slide decks"
-                angle={2}
-                bottom={110}
-                left={-72}
-                $display={["none", "none", "flex"]}
-              />
-              <PositionedTeachersTabResourceSelectorCard
-                icon={"quiz"}
-                title="Quizzes"
-                angle={4}
-                bottom={60}
-                right={-54}
-                $display={["none", "none", "flex"]}
-              />
-            </ImageContainer>
-          </OakGridArea>
-        </OakGrid>
-      </OakMaxWidth>
+      {/* Mobile Layout */}
+      <OakBox $display={["block", "none", "none"]}>
+        <OakFlex
+          $flexDirection={"column"}
+          $ph="spacing-20"
+          $alignItems={"flex-start"}
+          $gap={"spacing-32"}
+          $flexGrow={0}
+          $flexShrink={1}
+          $flexBasis={"auto"}
+        >
+          <HomePageCopy />
+          <OakFlex
+            $width={["100%"]}
+            $flexDirection="column"
+            $gap={["spacing-24"]}
+          >
+            <HeroImage />
+          </OakFlex>
+          <PhasePickerWithLegend
+            layout={"mobile"}
+            curriculumPhaseOptions={curriculumPhaseOptions}
+          />
+          <ResourcesIcons />
+        </OakFlex>
+      </OakBox>
+      {/* Tablet Layout */}
+      <OakBox $display={["none", "block", "none"]} $ph={"spacing-40"}>
+        <OakFlex
+          $alignItems={"start"}
+          $justifyContent={"space-between"}
+          $gap="spacing-16"
+          $mb={"spacing-24"}
+        >
+          <OakBox $width={"50%"}>
+            <HomePageCopy />
+          </OakBox>
+          <OakBox $width={"50%"}>
+            <HeroImage />
+          </OakBox>
+        </OakFlex>
+        <PhasePickerWithLegend
+          layout="tablet"
+          curriculumPhaseOptions={curriculumPhaseOptions}
+        />
+        <ResourcesIcons />
+      </OakBox>
+      {/* Desktop Layout */}
+      <OakBox
+        $display={["none", "none", "block"]}
+        $maxWidth={"spacing-1280"}
+        $ph={"spacing-56"}
+      >
+        <OakFlex
+          $alignItems={"center"}
+          $justifyContent={"space-between"}
+          $gap={"spacing-40"}
+          $mb={"spacing-24"}
+        >
+          <OakFlex $flexDirection={"column"} $gap={"spacing-40"} $width={"50%"}>
+            <HomePageCopy />
+            <PhasePickerWithLegend
+              layout="desktop"
+              curriculumPhaseOptions={curriculumPhaseOptions}
+            />
+          </OakFlex>
+          <OakFlex $flexDirection={"column"} $alignItems="end" $width={"50%"}>
+            <HeroImage />
+            <ResourcesIcons />
+          </OakFlex>
+        </OakFlex>
+      </OakBox>
     </OakFlex>
   );
 };

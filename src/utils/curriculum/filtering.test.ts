@@ -23,6 +23,7 @@ import {
   tierForFilter,
   useFilters,
 } from "./filtering";
+import { scopeYearsToKeystageFilter } from "./filtersUrl";
 import { CurriculumFilters, YearData, Unit } from "./types";
 
 import { createUnit } from "@/fixtures/curriculum/unit";
@@ -463,6 +464,38 @@ describe("diffFilters", () => {
   });
 });
 
+describe("scopeYearsToKeystageFilter", () => {
+  it("returns all years when no keystage filter is active", () => {
+    const filters = createFilter({
+      years: ["7", "8", "9", "10", "11"],
+      keystages: [],
+    });
+    expect(scopeYearsToKeystageFilter(filters)).toEqual([
+      "7",
+      "8",
+      "9",
+      "10",
+      "11",
+    ]);
+  });
+
+  it("narrows to KS4 years when keystage filter is ks4 and all years selected", () => {
+    const filters = createFilter({
+      years: ["7", "8", "9", "10", "11"],
+      keystages: ["ks4"],
+    });
+    expect(scopeYearsToKeystageFilter(filters)).toEqual(["10", "11"]);
+  });
+
+  it("returns selected year only when a single year is selected", () => {
+    const filters = createFilter({
+      years: ["10"],
+      keystages: ["ks4"],
+    });
+    expect(scopeYearsToKeystageFilter(filters)).toEqual(["10"]);
+  });
+});
+
 describe("shouldDisplayFilter", () => {
   describe("years", () => {
     it("with data", () => {
@@ -698,6 +731,119 @@ describe("shouldDisplayFilter", () => {
         "threads",
       );
       expect(result).toEqual(false);
+    });
+  });
+
+  // Science secondary: KS3 has subject categories, KS4 has child subjects (exam
+  // subjects). When a keystage filter is active the sidebar should only show
+  // filters relevant to that keystage.
+  describe("keystage scoping", () => {
+    const scienceSecondaryData: CurriculumUnitsFormattedData = {
+      yearData: {
+        // KS3 years: subject categories, no child subjects
+        "7": createYearData({
+          units: [createUnit({ slug: "y7" })],
+          subjectCategories: [createSubjectCategory({ id: 1 })],
+        }),
+        "8": createYearData({
+          units: [createUnit({ slug: "y8" })],
+          subjectCategories: [createSubjectCategory({ id: 1 })],
+        }),
+        "9": createYearData({
+          units: [createUnit({ slug: "y9" })],
+          subjectCategories: [createSubjectCategory({ id: 1 })],
+        }),
+        // KS4 years: child subjects (>1 required for byKeyStageSlug to expose
+        // them), no meaningful categories (stripped by byKeyStageSlug)
+        "10": createYearData({
+          units: [createUnit({ slug: "y10" })],
+          childSubjects: [
+            createChildSubject({ subject_slug: "physics" }),
+            createChildSubject({ subject_slug: "biology" }),
+          ],
+          tiers: [
+            createTier({ tier_slug: "foundation" }),
+            createTier({ tier_slug: "higher" }),
+          ],
+        }),
+        "11": createYearData({
+          units: [createUnit({ slug: "y11" })],
+          childSubjects: [
+            createChildSubject({ subject_slug: "physics" }),
+            createChildSubject({ subject_slug: "biology" }),
+          ],
+          tiers: [
+            createTier({ tier_slug: "foundation" }),
+            createTier({ tier_slug: "higher" }),
+          ],
+        }),
+      },
+      threadOptions: [],
+      yearOptions: ["7", "8", "9", "10", "11"],
+      keystages: [],
+    };
+
+    it("Science KS3 view: shows subject categories, hides child subjects and tiers", () => {
+      const filters = createFilter({
+        years: ["7", "8", "9", "10", "11"],
+        keystages: ["ks3"],
+      });
+      expect(
+        shouldDisplayFilter(scienceSecondaryData, filters, "subjectCategories"),
+      ).toEqual(true);
+      expect(
+        shouldDisplayFilter(scienceSecondaryData, filters, "childSubjects"),
+      ).toEqual(false);
+      expect(
+        shouldDisplayFilter(scienceSecondaryData, filters, "tiers"),
+      ).toEqual(false);
+    });
+
+    it("Science KS4 view: shows child subjects and tiers, hides subject categories", () => {
+      const filters = createFilter({
+        years: ["7", "8", "9", "10", "11"],
+        keystages: ["ks4"],
+      });
+      expect(
+        shouldDisplayFilter(scienceSecondaryData, filters, "subjectCategories"),
+      ).toEqual(false);
+      expect(
+        shouldDisplayFilter(scienceSecondaryData, filters, "childSubjects"),
+      ).toEqual(true);
+      expect(
+        shouldDisplayFilter(scienceSecondaryData, filters, "tiers"),
+      ).toEqual(true);
+    });
+
+    // English secondary: KS3 units have no categories; KS4 has categories.
+    // Without keystage scoping, the KS4 categories would bleed into a KS3 view.
+    it("English KS3 view: hides subject categories when KS3 has none (no bleed from KS4)", () => {
+      const englishSecondaryData: CurriculumUnitsFormattedData = {
+        yearData: {
+          "7": createYearData({ units: [createUnit({ slug: "y7" })] }),
+          "8": createYearData({ units: [createUnit({ slug: "y8" })] }),
+          "9": createYearData({ units: [createUnit({ slug: "y9" })] }),
+          "10": createYearData({
+            units: [createUnit({ slug: "y10" })],
+            subjectCategories: [createSubjectCategory({ id: 2 })],
+          }),
+          "11": createYearData({
+            units: [createUnit({ slug: "y11" })],
+            subjectCategories: [createSubjectCategory({ id: 2 })],
+          }),
+        },
+        threadOptions: [],
+        yearOptions: ["7", "8", "9", "10", "11"],
+        keystages: [],
+      };
+
+      const filters = createFilter({
+        years: ["7", "8", "9", "10", "11"],
+        keystages: ["ks3"],
+      });
+      expect(
+        shouldDisplayFilter(englishSecondaryData, filters, "subjectCategories"),
+      ).toEqual(false);
     });
   });
 });
@@ -957,6 +1103,36 @@ describe("highlightedUnitCount", () => {
       thread3.slug,
     ]);
     expect(result).toEqual(2);
+  });
+
+  it("excludes units outside the active keystage", () => {
+    // ks3 = years 7,8,9 — ks4 = years 10,11
+    const ks3Thread = createThread({ slug: "ks3-thread" });
+    const mixedYearData = {
+      // year 7 is in ks3
+      "7": createYearData({
+        units: [
+          createUnit({ threads: [ks3Thread] }),
+          createUnit({ threads: [ks3Thread] }),
+        ],
+      }),
+      // year 10 is in ks4
+      "10": createYearData({
+        units: [createUnit({ threads: [ks3Thread] })],
+      }),
+    };
+    // filters.years covers all years; keystages restricts to ks4 only
+    const ks4Filters = createFilter({
+      years: ["7", "10"],
+      keystages: ["ks4"],
+      threads: [ks3Thread.slug],
+    });
+
+    const result = highlightedUnitCount(mixedYearData, ks4Filters, [
+      ks3Thread.slug,
+    ]);
+    // Only the 1 unit in year 10 (ks4) should be counted, not the 2 in year 7
+    expect(result).toEqual(1);
   });
 });
 

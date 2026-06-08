@@ -903,6 +903,27 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
   gap: 0.25rem;
 }
 
+.c94 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.c98 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+}
+
 .c74 {
   display: -webkit-box;
   display: -webkit-flex;
@@ -964,27 +985,6 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
   -ms-flex-direction: column;
   flex-direction: column;
   gap: 2.5rem;
-}
-
-.c94 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
-  flex-direction: column;
-  gap: 0.5rem;
-}
-
-.c98 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
-  flex-direction: column;
 }
 
 .c99 {
@@ -2915,6 +2915,14 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
 }
 
 @media (min-width:750px) {
+
+}
+
+@media (min-width:1280px) {
+
+}
+
+@media (min-width:750px) {
   .c72 {
     padding-left: 2.5rem;
   }
@@ -3307,6 +3315,14 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
     -ms-flex-pack: initial;
     justify-content: initial;
   }
+}
+
+@media (min-width:750px) {
+
+}
+
+@media (min-width:1280px) {
+
 }
 
 @media (min-width:750px) {
@@ -4450,10 +4466,12 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                     <div
                       class="c8 yellow-shadow"
                     />
-                    <a
+                    <button
+                      aria-expanded="false"
+                      aria-haspopup="true"
                       class="c35 c36 internal-button"
-                      href="/teachers/curriculum"
-                      id="teachers-curriculum-landing-page"
+                      data-testid="teachers-guidance"
+                      id="teachers-guidance"
                     >
                       <div
                         class="c11 c37"
@@ -4461,10 +4479,10 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                         <span
                           class="c38"
                         >
-                          Curriculum
+                          Guidance
                         </span>
                       </div>
-                    </a>
+                    </button>
                   </div>
                 </li>
                 <li
@@ -4493,37 +4511,6 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                           class="c38"
                         >
                           About us
-                        </span>
-                      </div>
-                    </button>
-                  </div>
-                </li>
-                <li
-                  class="c34"
-                >
-                  <div
-                    class="c6 c19"
-                  >
-                    <div
-                      class="c8 grey-shadow"
-                    />
-                    <div
-                      class="c8 yellow-shadow"
-                    />
-                    <button
-                      aria-expanded="false"
-                      aria-haspopup="true"
-                      class="c35 c36 internal-button"
-                      data-testid="teachers-guidance"
-                      id="teachers-guidance"
-                    >
-                      <div
-                        class="c11 c37"
-                      >
-                        <span
-                          class="c38"
-                        >
-                          Guidance
                         </span>
                       </div>
                     </button>
@@ -5988,68 +5975,54 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                       >
                         <a
                           class="c189 "
-                          href="/teachers/key-stages/ks1/subjects"
-                        >
-                          <span
-                            class="c29"
-                          >
-                            Key stage 1
-                          </span>
-                        </a>
-                      </li>
-                      <li
-                        class="c188"
-                      >
-                        <a
-                          class="c189 "
-                          href="/teachers/key-stages/ks2/subjects"
-                        >
-                          <span
-                            class="c29"
-                          >
-                            Key stage 2
-                          </span>
-                        </a>
-                      </li>
-                      <li
-                        class="c188"
-                      >
-                        <a
-                          class="c189 "
-                          href="/teachers/key-stages/ks3/subjects"
-                        >
-                          <span
-                            class="c29"
-                          >
-                            Key stage 3
-                          </span>
-                        </a>
-                      </li>
-                      <li
-                        class="c188"
-                      >
-                        <a
-                          class="c189 "
-                          href="/teachers/key-stages/ks4/subjects"
-                        >
-                          <span
-                            class="c29"
-                          >
-                            Key stage 4
-                          </span>
-                        </a>
-                      </li>
-                      <li
-                        class="c188"
-                      >
-                        <a
-                          class="c189 "
                           href="/lesson-planning"
                         >
                           <span
                             class="c29"
                           >
                             Plan a lesson
+                          </span>
+                        </a>
+                      </li>
+                      <li
+                        class="c188"
+                      >
+                        <a
+                          class="c189 "
+                          href="https://labs.thenational.academy"
+                          target="_blank"
+                        >
+                          <span
+                            class="c29"
+                          >
+                            Aila, Oak’s AI lesson assistant
+                          </span>
+                          <span
+                            class="c24 "
+                          >
+                            <img
+                              alt=""
+                              class="c25"
+                              data-nimg="fill"
+                              decoding="async"
+                              loading="lazy"
+                              src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1699953892/icons/hlxmejse3mcr4tqo6t8u.svg"
+                              style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                            />
+                          </span>
+                        </a>
+                      </li>
+                      <li
+                        class="c188"
+                      >
+                        <a
+                          class="c189 "
+                          href="/blog"
+                        >
+                          <span
+                            class="c29"
+                          >
+                            Blog
                           </span>
                         </a>
                       </li>
@@ -6213,20 +6186,6 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                               src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1699953892/icons/hlxmejse3mcr4tqo6t8u.svg"
                               style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
                             />
-                          </span>
-                        </a>
-                      </li>
-                      <li
-                        class="c188"
-                      >
-                        <a
-                          class="c189 "
-                          href="/blog"
-                        >
-                          <span
-                            class="c29"
-                          >
-                            Blog
                           </span>
                         </a>
                       </li>

@@ -207,9 +207,8 @@ describe("TopNav", () => {
 const subnavLabels = [
   { label: "Primary", element: "button" },
   { label: "Secondary", element: "button" },
-  { label: "Curriculum", element: "link" },
-  { label: "About us", element: "button" },
   { label: "Guidance", element: "button" },
+  { label: "About us", element: "button" },
   { label: "Ai experiments (this will open in a new tab)", element: "link" },
 ];
 
@@ -217,6 +216,7 @@ describe("TopNav accessibility", () => {
   beforeEach(() => {
     mockSelectedArea.mockReturnValue("TEACHERS");
   });
+
   it("Tabs through navbar in correct order", async () => {
     const user = userEvent.setup();
     render(<TopNav {...mockProps} />);
@@ -282,8 +282,8 @@ describe("TopNav accessibility", () => {
     const secondaryButton = await screen.findByRole("button", {
       name: "Secondary",
     });
-    const curriculumButton = await screen.findByRole("link", {
-      name: "Curriculum",
+    const guidanceButton = await screen.findByRole("button", {
+      name: "Guidance",
     });
 
     // tab to secondary button and open the submenu, should not focus primary dropdown items as they are not open
@@ -292,24 +292,23 @@ describe("TopNav accessibility", () => {
     await user.keyboard("{Enter}");
 
     const dropdownItem2 = screen.getByText("Key stage 4").closest("button");
-    const allSubjectsLink = screen.getByText(/All KS3 subjects/).closest("a");
-
     const subjectButton1 = screen.getByText("History").closest("a");
+    const subjectButton2 = screen.getByText("Geography").closest("a");
 
     expect(subjectButton1).toBeInTheDocument();
-    expect(allSubjectsLink).toBeInTheDocument();
+    expect(subjectButton2).toBeInTheDocument();
 
     // in the test environment the default event handler for tab does not tab to this point so we have to manually call the focus manager handler to move focus to the next item
-    allSubjectsLink?.focus();
+    subjectButton2?.focus();
 
-    expect(allSubjectsLink).toHaveFocus();
+    expect(subjectButton2).toHaveFocus();
     // return to the second dropdown item when tabbing from the last subject button
     await user.tab();
     expect(dropdownItem2).toHaveFocus();
 
     // return to the next nav item after tabbing from the last dropdown item
     await user.tab();
-    expect(curriculumButton).toHaveFocus();
+    expect(guidanceButton).toHaveFocus();
   });
 
   it("ArrowRight and ArrowLeft navigate Teachers subnav buttons", async () => {
@@ -324,7 +323,6 @@ describe("TopNav accessibility", () => {
     const [
       primaryButton,
       secondaryButton,
-      curriculumButton,
       guidanceButton,
       aboutUsButton,
       aiExperimentsButton,
@@ -336,8 +334,6 @@ describe("TopNav accessibility", () => {
 
     await user.keyboard("{ArrowRight}");
     expect(secondaryButton).toHaveFocus();
-    await user.keyboard("{ArrowRight}");
-    expect(curriculumButton).toHaveFocus();
     await user.keyboard("{ArrowRight}");
     expect(guidanceButton).toHaveFocus();
     await user.keyboard("{ArrowRight}");

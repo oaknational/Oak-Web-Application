@@ -14,38 +14,22 @@ export type TeachersSitemap = {
 }[];
 
 const teachersSitemap = (sdk: Sdk) => async () => {
-  const res = await sdk.teachersSitemap();
+  const sitemapData = await sdk.teachersSitemap();
 
-  const sitemapData = res;
-
-  if (
-    !sitemapData ||
-    sitemapData.keyStages.length === 0 ||
-    sitemapData.programmes.length === 0 ||
-    sitemapData.units.length === 0 ||
-    sitemapData.lessons.length === 0 ||
-    sitemapData.specialistProgrammes.length === 0 ||
-    sitemapData.specialistUnits.length === 0 ||
-    sitemapData.specialistLessons.length === 0
-  ) {
+  if (!sitemapData.lessons.length) {
     errorReporter("curriculum-api-2023::teachersSitemap")(
       new Error("Resource not found"),
       {
         severity: "warning",
-        res,
+        sitemapData,
       },
     );
     throw new OakError({ code: "curriculum-api/not-found" });
   }
 
-  const teacherBrowseData = teachersSitemapDataSchema.parse({
-    ...sitemapData,
-  });
+  const teacherBrowseData = teachersSitemapDataSchema.parse(sitemapData);
 
-  const browseData = keysToCamelCase({
-    ...teacherBrowseData,
-  }) as TeachersSitemapBrowseData;
-  return browseData;
+  return keysToCamelCase(teacherBrowseData) as TeachersSitemapBrowseData;
 };
 
 export default teachersSitemap;

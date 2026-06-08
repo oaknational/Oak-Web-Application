@@ -36,6 +36,35 @@ export class DropdownFocusManager<
   public getFocusMap() {
     return this.focusMap;
   }
+
+  public registerChildren(parentId: string, childrenIds: string[]) {
+    const parentNode = this.focusMap.get(parentId);
+    if (!parentNode) return;
+    parentNode.children = childrenIds.map((id) => this.createId(parentId, id));
+
+    parentNode.children.forEach((childId, index) => {
+      this.focusMap.set(childId, {
+        id: childId,
+        isFirstChild: index === 0,
+        isLastChild: index === parentNode.children.length - 1,
+        parent: {
+          parentId,
+          parentSiblings: [],
+        },
+        children: [],
+      });
+    });
+  }
+
+  public unregisterChildren(parentId: string) {
+    const parentNode = this.focusMap.get(parentId);
+    if (!parentNode) return;
+    parentNode.children.forEach((childId) => {
+      this.focusMap.delete(childId);
+    });
+    parentNode.children = [];
+  }
+
   private getFocusTree(navData: T): Map<string, FocusNode> {
     const arrayOfSubNavButtons = Object.values(navData);
     const focusMap = new Map<string, FocusNode>();

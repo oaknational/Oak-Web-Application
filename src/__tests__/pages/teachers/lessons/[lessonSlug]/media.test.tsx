@@ -30,6 +30,7 @@ jest.mock("next/navigation", () => ({
     get: () => null,
   })),
   usePathname: jest.fn(() => "/"),
+  useRouter: jest.fn(),
 }));
 
 jest.mock("posthog-js/react", () => ({

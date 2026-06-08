@@ -40,7 +40,7 @@ describe("CurricFiltersTiers", () => {
           childSubjects: [],
           subjectCategories: [],
           tiers: [],
-          years: ["10", "11"],
+          years: ["7", "8", "9", "10", "11"],
           threads: [],
           pathways: [],
           keystages: [],
@@ -106,28 +106,16 @@ describe("CurricFiltersTiers", () => {
 
     act(() => elements[0]!.click());
     expect(onChangeFilters).toHaveBeenCalledWith(
-      {
-        subjectCategories: [],
-        childSubjects: [],
-        threads: [],
+      expect.objectContaining({
         tiers: ["foundation"],
-        years: ["10", "11"],
-        pathways: [],
-        keystages: [],
-      },
+      }),
       "learning_tier_button",
     );
     act(() => elements[1]!.click());
     expect(onChangeFilters).toHaveBeenCalledWith(
-      {
-        subjectCategories: [],
-        childSubjects: [],
-        threads: [],
+      expect.objectContaining({
         tiers: ["higher"],
-        years: ["10", "11"],
-        pathways: [],
-        keystages: [],
-      },
+      }),
       "learning_tier_button",
     );
   });

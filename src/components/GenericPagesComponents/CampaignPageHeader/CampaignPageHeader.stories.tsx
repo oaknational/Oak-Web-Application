@@ -5,7 +5,6 @@ import { oakDefaultTheme, OakThemeProvider } from "@oaknational/oak-components";
 import { CampaignPageHeader } from "./CampaignPageHeader";
 
 import { mockImageAsset } from "@/__tests__/__helpers__/cms";
-import keyStagesFixture from "@/node-lib/curriculum-api-2023/fixtures/keyStages.fixture";
 
 const meta: Meta<typeof CampaignPageHeader> = {
   component: CampaignPageHeader,
@@ -23,7 +22,6 @@ export const Default: Story = {
           heading: "Campaign Header",
           image: mockImageAsset(),
         }}
-        keyStages={keyStagesFixture()}
       />
     </OakThemeProvider>
   ),
@@ -38,7 +36,6 @@ export const WithSubheading: Story = {
           subheading: "This is a subheading",
           image: mockImageAsset(),
         }}
-        keyStages={keyStagesFixture()}
       />
     </OakThemeProvider>
   ),

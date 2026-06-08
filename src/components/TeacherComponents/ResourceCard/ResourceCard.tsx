@@ -93,6 +93,7 @@ const ResourceCard: FC<ResourceCardProps> = (props) => {
         format={
           <>
             {subtitle}
+
             {isEditable && (
               <OakTagFunctional
                 key="tag"
