@@ -1,5 +1,5 @@
 import { keystageSlugs, years } from "@oaknational/oak-curriculum-schema";
-import { ReadonlyURLSearchParams } from "next/navigation";
+import type { ReadonlyURLSearchParams } from "next/navigation";
 
 import {
   validateSearchParams,
@@ -30,7 +30,7 @@ describe("validateSearchParams", () => {
     ).toEqual(expected);
   });
 
-  it("returns undefined when searchParams is null", () => {
+  it("returns undefined values when searchParams is null", () => {
     expect(validateSearchParams(null)).toEqual({
       years: undefined,
       keystages: undefined,

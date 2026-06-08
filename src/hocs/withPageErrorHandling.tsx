@@ -5,7 +5,7 @@ import errorReporter, {
   initialiseSentry,
 } from "../common-lib/error-reporter";
 import OakError from "../errors/OakError";
-import { PageSearchParms } from "../app/(core)/teachers/programmes/[slug]/[tab]/page";
+import type { PageSearchParms } from "../app/(core)/teachers/programmes/[slug]/[tab]/page";
 
 import getBrowserConfig from "@/browser-lib/getBrowserConfig";
 
