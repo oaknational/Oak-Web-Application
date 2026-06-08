@@ -71,6 +71,29 @@ describe("Downloads/Share Layout", () => {
     expect(apiErrorAfterRerender).toBeInTheDocument();
   });
 
+  it("exposes validation summary as an alert for assistive technology", () => {
+    renderWithTheme(
+      <ComponentWrapper
+        {...props}
+        errors={{
+          resources: { message: "select at least one resource to continue" },
+          terms: { message: "accept terms and conditions to continue" },
+        }}
+        validationSummaryKey={1}
+      />,
+    );
+
+    const validationSummary = screen.getByTestId("share-validation-summary");
+    expect(validationSummary).toHaveAttribute("role", "alert");
+    expect(validationSummary).toHaveAttribute("aria-atomic", "true");
+    expect(validationSummary).toHaveTextContent(
+      "select at least one resource to continue",
+    );
+    expect(validationSummary).toHaveTextContent(
+      "accept terms and conditions to continue",
+    );
+  });
+
   it("shows loading spinner", () => {
     const { getByTestId } = renderWithTheme(
       <ComponentWrapper {...props} isLoading={true} />,

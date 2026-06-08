@@ -46,6 +46,7 @@ export type SharePageLayoutProps = ResourcePageDetailsCompletedProps &
     updatedAt: string;
     showTermsAgreement: boolean;
     isLoading: boolean;
+    validationSummaryKey?: number;
   };
 
 const SharePageLayout: FC<SharePageLayoutProps> = (props) => {
@@ -117,7 +118,13 @@ const SharePageLayout: FC<SharePageLayoutProps> = (props) => {
                     />
                   )}
                   {hasFormErrors && (
-                    <OakFlex $flexDirection={"row"}>
+                    <OakFlex
+                      role="alert"
+                      aria-atomic="true"
+                      data-testid="share-validation-summary"
+                      key={props.validationSummaryKey}
+                      $flexDirection={"row"}
+                    >
                       <OakIcon
                         iconName="content-guidance"
                         $colorFilter={"icon-error"}
