@@ -1,3 +1,12 @@
+# [1.1094.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1093.0...v1.1094.0) (2026-06-09)
+
+
+### Features
+
+* generate subject phase picker links with urls helper ([d0a23d9](https://github.com/oaknational/Oak-Web-Application/commit/d0a23d9a6b432d5e9beb7d490bb864093aff96ca))
+* show seo links for subject phase picker before hydration ([771a74b](https://github.com/oaknational/Oak-Web-Application/commit/771a74bf9ddab1e8ea967234192d86c843c2a32c))
+* try make links non focusable elements ([279e9c5](https://github.com/oaknational/Oak-Web-Application/commit/279e9c5dca776f6f38959a9ee0f7554593b33de4))
+
 # [1.1093.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1092.2...v1.1093.0) (2026-06-08)
 
 
