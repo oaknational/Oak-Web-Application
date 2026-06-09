@@ -1,3 +1,5 @@
+import { programmeFieldsFixture } from "@oaknational/oak-curriculum-schema";
+
 import { getProgrammeCount, getTeachersNavData } from "./getTeachersNavData";
 import { mockResponseData } from "./fixtures";
 
@@ -46,6 +48,77 @@ const curriculumPhaseOptionsSubjects: CurriculumPhaseOptions = [
       { title: "Edexcel B", slug: "edexcelb" },
       { title: "Eduqas", slug: "eduqas" },
     ],
+  },
+];
+
+const scienceChildProgrammes = [
+  {
+    programme_fields: programmeFieldsFixture({
+      overrides: {
+        keystage: "KS4",
+        keystage_slug: "ks4",
+        phase_slug: "secondary",
+        subject: "Biology",
+        subject_slug: "biology",
+        subject_parent: "Science",
+        examboard_slug: "aqa",
+        examboard: "AQA",
+      },
+    }),
+    features: {},
+    actions: {},
+    programme_slug: "biology-secondary-ks4-aqa",
+  },
+  {
+    programme_fields: programmeFieldsFixture({
+      overrides: {
+        keystage: "KS4",
+        keystage_slug: "ks4",
+        phase_slug: "secondary",
+        subject: "Physics",
+        subject_slug: "physics",
+        subject_parent: "Science",
+        examboard_slug: "edexcel",
+        examboard: "Edexcel",
+      },
+    }),
+    features: {},
+    actions: {},
+    programme_slug: "physics-secondary-ks4-edexcel",
+  },
+  {
+    programme_fields: programmeFieldsFixture({
+      overrides: {
+        keystage: "KS4",
+        keystage_slug: "ks4",
+        phase_slug: "secondary",
+        subject: "Chemistry",
+        subject_slug: "chemistry",
+        subject_parent: "Science",
+        examboard_slug: "ocr",
+        examboard: "OCR",
+      },
+    }),
+    features: {},
+    actions: {},
+    programme_slug: "chemistry-secondary-ks4-ocr",
+  },
+  {
+    programme_fields: programmeFieldsFixture({
+      overrides: {
+        keystage: "KS4",
+        keystage_slug: "ks4",
+        phase_slug: "secondary",
+        subject: "Combined science",
+        subject_slug: "combined-science",
+        subject_parent: "Science",
+        examboard_slug: "ocr",
+        examboard: "OCR",
+      },
+    }),
+    features: {},
+    actions: {},
+    programme_slug: "combined-science-secondary-ks4-ocr",
   },
 ];
 
@@ -159,6 +232,36 @@ describe("getTeachersNavData", () => {
         }),
       ]),
     );
+  });
+
+  it("groups parent subject with multiple KS4 children in phase view", () => {
+    const result = getTeachersNavData(
+      {
+        ...mockResponseData,
+        programmes: [...mockResponseData.programmes, ...scienceChildProgrammes],
+      },
+      "secondary",
+      curriculumPhaseOptionsSubjects,
+    );
+
+    const phaseSecondary = result.children.find(
+      (item) => item.type === "phase" && item.slug === "secondary",
+    );
+    const science = phaseSecondary?.children.find(
+      (subject) => subject.slug === "science",
+    );
+
+    expect(science).toBeDefined();
+    expect(science?.title).toBe("Science");
+    expect(science?.programmeSlug).toBeNull();
+    expect(science?.examBoards).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({ buttonTitle: "AQA" }),
+        expect.objectContaining({ buttonTitle: "Edexcel" }),
+        expect.objectContaining({ buttonTitle: "OCR" }),
+      ]),
+    );
+    expect(science?.examBoards).toHaveLength(3);
   });
 });
 
