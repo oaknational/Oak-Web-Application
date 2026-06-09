@@ -102,7 +102,7 @@ describe("LessonShareLinks", () => {
     );
 
     const googleClassroomLink = getByRole("button", {
-      name: "Share to Share via Google Classroom",
+      name: "Share via Google Classroom",
     });
 
     expect(googleClassroomLink).toBeInTheDocument();

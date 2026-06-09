@@ -35,6 +35,7 @@ import { cacheData } from "@/node-lib/cache";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 import CMSClient from "@/node-lib/cms";
 import { getMvRefreshTime } from "@/pages-helpers/curriculum/downloads/getMvRefreshTime";
+import { validateServerSearchParams } from "@/utils/validateProgrammePageSearchParams";
 
 const reportError = errorReporter("programme-page::app");
 
@@ -105,9 +106,10 @@ export async function generateMetadata({
   searchParams: Promise<PageSearchParms>;
 }): Promise<Metadata> {
   const { slug, tab } = await params;
-  const pageSearchParams = await searchParams;
+  const originalSearchParams = await searchParams;
+  const pageSearchParams = validateServerSearchParams(originalSearchParams);
 
-  redirectProgrammeSlugIfNeeded(slug, pageSearchParams);
+  redirectProgrammeSlugIfNeeded(slug, originalSearchParams);
 
   try {
     const cachedSubjectData = await getCachedSubjectOptionData(slug);
@@ -157,8 +159,9 @@ export async function generateMetadata({
 }
 
 const InnerProgrammePage = async (props: AppPageProps<ProgrammePageParams>) => {
+  const originalSearchParams = await props.searchParams!;
+  const searchParams = validateServerSearchParams(originalSearchParams);
   const { slug: subjectPhaseSlug, tab } = await props.params;
-  const searchParams = await props.searchParams;
 
   redirectProgrammeSlugIfNeeded(subjectPhaseSlug, searchParams ?? {});
 

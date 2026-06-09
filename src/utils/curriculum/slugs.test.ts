@@ -181,6 +181,16 @@ describe("isValidSubjectPhaseSlug", () => {
       }),
     ).toEqual(false);
   });
+
+  it("rejects primary phase with a ks4 option slug", () => {
+    expect(
+      isValidSubjectPhaseSlug(testCurriculumPhaseOptions, {
+        phaseSlug: "primary",
+        subjectSlug: "english",
+        ks4OptionSlug: "aqa",
+      }),
+    ).toEqual(false);
+  });
 });
 
 describe("getPreferredKs4OptionSlug", () => {
