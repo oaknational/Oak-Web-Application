@@ -102,6 +102,39 @@ describe("Downloads/Share Layout", () => {
     );
   });
 
+  it("remounts validation summary when validationSummaryKey changes", () => {
+    const validationErrors = {
+      resources: {
+        type: "custom",
+        message: "select at least one resource to continue",
+      },
+    } satisfies FieldErrors<ResourceFormValues>;
+
+    const { rerender } = renderWithTheme(
+      <ComponentWrapper
+        {...props}
+        errors={validationErrors}
+        validationSummaryKey={1}
+      />,
+    );
+
+    const firstValidationSummary = screen.getByTestId(
+      "share-validation-summary",
+    );
+
+    rerender(
+      <ComponentWrapper
+        {...props}
+        errors={validationErrors}
+        validationSummaryKey={2}
+      />,
+    );
+
+    expect(screen.getByTestId("share-validation-summary")).not.toBe(
+      firstValidationSummary,
+    );
+  });
+
   it("does not render validation summary when errors have no summary messages", () => {
     renderWithTheme(
       <ComponentWrapper
