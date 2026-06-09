@@ -1,3 +1,10 @@
+## [1.1095.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.1095.2...v1.1095.3) (2026-06-09)
+
+
+### Bug Fixes
+
+* **PUPIL-1748:** hide decorative separator from screen readers (defect 5) ([95d85c7](https://github.com/oaknational/Oak-Web-Application/commit/95d85c7379a90982fd499d667f48ef5488a099ed))
+
 ## [1.1095.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.1095.1...v1.1095.2) (2026-06-09)
 
 
