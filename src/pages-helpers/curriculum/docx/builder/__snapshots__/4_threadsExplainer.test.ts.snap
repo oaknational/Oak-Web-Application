@@ -255,9 +255,9 @@ exports[`4_threadsExplainer simple 1`] = `
     Target="numbering.xml"
   ></Relationship>
   <Relationship
-    Id="rIdf16c1c9a9340f578e7bd5750120d1972d39d7a7ecc84840313759b5bceb11fe9"
+    Id="rId38e6f7c83a2580ffa69feae32c36fbe5dccac1c9c142e9e8c78c0c39dc9cd348"
     Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/hyperlink"
-    Target="https://www.thenational.academy/teachers/curriculum/science-secondary/units"
+    Target="https://www.thenational.academy/teachers/programmes/science-secondary/units"
     TargetMode="External"
   ></Relationship>
   <Relationship
@@ -1676,7 +1676,7 @@ exports[`4_threadsExplainer simple 1`] = `
         ></w:ind>
       </w:pPr>
       <w:hyperlink
-        r:id="rIdf16c1c9a9340f578e7bd5750120d1972d39d7a7ecc84840313759b5bceb11fe9"
+        r:id="rId38e6f7c83a2580ffa69feae32c36fbe5dccac1c9c142e9e8c78c0c39dc9cd348"
       >
         <w:r>
           <w:rPr>

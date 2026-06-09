@@ -21735,6 +21735,13 @@ export type TeachersUnitOverviewQueryVariables = Exact<{
 
 export type TeachersUnitOverviewQuery = { __typename?: 'query_root', lessons: Array<{ __typename?: 'published_mv_synthetic_unitvariant_lessons_by_keystage_18_0_0', lesson_data?: any | null, lesson_slug?: string | null, programme_fields?: any | null, programme_slug_by_year?: any | null, null_unitvariant_id?: number | null, unit_slug?: string | null, unitvariant_id?: number | null, unit_data?: any | null, programme_slug?: string | null, actions?: any | null, features?: any | null, order_in_unit?: number | null, static_lesson_list?: any | null }>, unitsInOtherProgrammes: Array<{ __typename?: 'published_mv_synthetic_unitvariants_with_lesson_ids_by_keystage_18_0_0', programme_slug?: string | null, programme_fields?: any | null }>, unitSequence: Array<{ __typename?: 'published_mv_synthetic_unitvariants_with_lesson_ids_by_keystage_18_0_0', actions?: any | null, unitSlug?: string | null, unitTitle?: any | null, unitDescription?: any | null, unitOrder?: any | null, yearOrder?: any | null, year?: any | null, subjectCategories?: any | null, optionalityTitle?: any | null, isSwimming?: any | null, nullUnitvariantId?: number | null }>, threads: Array<{ __typename?: 'published_mv_synthetic_unitvariants_with_lesson_ids_by_keystage_18_0_0', threads?: any | null }> };
 
+export type TeachersUnitProgrammesQueryVariables = Exact<{
+  unitSlug: Scalars['String']['input'];
+}>;
+
+
+export type TeachersUnitProgrammesQuery = { __typename?: 'query_root', unitInProgrammes: Array<{ __typename?: 'published_mv_synthetic_unitvariants_with_lesson_ids_by_keystage_18_0_0', programme_slug?: string | null, programme_fields?: any | null }> };
+
 export type TopNavQueryVariables = Exact<{ [key: string]: never; }>;
 
 
@@ -22652,6 +22659,16 @@ export const TeachersUnitOverviewDocument = gql`
   }
 }
     `;
+export const TeachersUnitProgrammesDocument = gql`
+    query teachersUnitProgrammes($unitSlug: String!) {
+  unitInProgrammes: published_mv_synthetic_unitvariants_with_lesson_ids_by_keystage_18_0_0(
+    where: {unit_slug: {_eq: $unitSlug}}
+  ) {
+    programme_slug
+    programme_fields
+  }
+}
+    `;
 export const TopNavDocument = gql`
     query topNav @cached(ttl: 600) {
   programmes: published_mv_synthetic_unitvariants_with_lesson_ids_by_keystage_18_0_0(
@@ -22809,6 +22826,9 @@ export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = 
     },
     teachersUnitOverview(variables: TeachersUnitOverviewQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<TeachersUnitOverviewQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<TeachersUnitOverviewQuery>({ document: TeachersUnitOverviewDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'teachersUnitOverview', 'query', variables);
+    },
+    teachersUnitProgrammes(variables: TeachersUnitProgrammesQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<TeachersUnitProgrammesQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<TeachersUnitProgrammesQuery>({ document: TeachersUnitProgrammesDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'teachersUnitProgrammes', 'query', variables);
     },
     topNav(variables?: TopNavQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<TopNavQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<TopNavQuery>({ document: TopNavDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'topNav', 'query', variables);
