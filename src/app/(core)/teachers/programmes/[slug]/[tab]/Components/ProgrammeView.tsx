@@ -48,6 +48,7 @@ import { CurriculumOverviewSanityData } from "@/common-lib/cms-types";
 import type { Ks4Option } from "@/node-lib/curriculum-api-2023/queries/curriculumPhaseOptions/curriculumPhaseOptions.schema";
 import { resolveOakHref } from "@/common-lib/urls";
 import { CurriculumOverviewMVData } from "@/node-lib/curriculum-api-2023";
+import { validateSearchParams } from "@/utils/validateProgrammePageSearchParams";
 
 type ProgrammePageProps = {
   subjectPhaseSlug: string;
@@ -81,7 +82,10 @@ export const ProgrammeView = ({
   initialFilter,
 }: ProgrammePageProps) => {
   const searchParams = useSearchParams();
-  const keystagesParam = searchParams?.get("keystages");
+
+  const { keystages: keystagesParam, years: yearsParam } =
+    validateSearchParams(searchParams);
+
   const [activeTab, setActiveTab] = useState<TabSlug>(tabSlug);
 
   const { subjectSlug } = curriculumSelectionSlugs;
@@ -109,9 +113,7 @@ export const ProgrammeView = ({
     track.unitSequenceRefined(analyticsData);
   };
 
-  const schoolYear = filters.years.find(
-    (year) => searchParams?.get("years") === year,
-  );
+  const schoolYear = filters.years.find((year) => yearsParam === year);
 
   const selectedKeystageSlug = filters.keystages.find(
     (ks) => keystagesParam === ks,

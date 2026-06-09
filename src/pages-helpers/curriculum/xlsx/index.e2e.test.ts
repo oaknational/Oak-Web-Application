@@ -402,6 +402,6 @@ describe("xlsxNationalCurriculum links and filtering e2e", () => {
     expect(rels).toContain("/units/m-1");
     expect(rels).toContain("/units/m-1-alt-a");
     expect(rels).toContain("/units/m-1-alt-b");
-    expect(rels).toContain("/curriculum/maths-primary/units/m-1");
+    expect(rels).toContain("/programmes/maths-primary-ks1/units/m-1/lessons");
   });
 });

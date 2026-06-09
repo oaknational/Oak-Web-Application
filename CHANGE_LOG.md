@@ -1,3 +1,95 @@
+## [1.1095.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.1095.0...v1.1095.1) (2026-06-09)
+
+
+### Bug Fixes
+
+* ensure subject override only applies to applicable ks ([2174b9e](https://github.com/oaknational/Oak-Web-Application/commit/2174b9e556643e1febb91742e01b63cea15500fd))
+* use subject title override for programme page ([a59d8c6](https://github.com/oaknational/Oak-Web-Application/commit/a59d8c64933b7542cf88f728761b89d37be37d93))
+
+# [1.1095.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1094.0...v1.1095.0) (2026-06-09)
+
+
+### Bug Fixes
+
+* add query to get valid programme slug for unit overview ([c44d74c](https://github.com/oaknational/Oak-Web-Application/commit/c44d74c308b8d1c428f660f93263a61b1d4b21e2))
+* add redirect from curriculum units tab ([31f53ef](https://github.com/oaknational/Oak-Web-Application/commit/31f53ef2c3dc6701809aa10aad2977faf6bdbb3c))
+* update curriculum link to programme page ([e16c21e](https://github.com/oaknational/Oak-Web-Application/commit/e16c21eadff8deee503563048e8c2373924ce3cc))
+* update link to curriculum resources ([b563a6f](https://github.com/oaknational/Oak-Web-Application/commit/b563a6ffc1d1bd449f0453a703227675c21ff589))
+* update url for unit links in nc doc ([8177f29](https://github.com/oaknational/Oak-Web-Application/commit/8177f29b16e104faeeac34c886057057825b3749))
+
+
+### Features
+
+* redirect unit page when needed ([d437823](https://github.com/oaknational/Oak-Web-Application/commit/d437823c190c186c5d120551d855124fbbcbc715))
+
+# [1.1094.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1093.0...v1.1094.0) (2026-06-09)
+
+
+### Features
+
+* generate subject phase picker links with urls helper ([d0a23d9](https://github.com/oaknational/Oak-Web-Application/commit/d0a23d9a6b432d5e9beb7d490bb864093aff96ca))
+* show seo links for subject phase picker before hydration ([771a74b](https://github.com/oaknational/Oak-Web-Application/commit/771a74bf9ddab1e8ea967234192d86c843c2a32c))
+* try make links non focusable elements ([279e9c5](https://github.com/oaknational/Oak-Web-Application/commit/279e9c5dca776f6f38959a9ee0f7554593b33de4))
+
+# [1.1093.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1092.2...v1.1093.0) (2026-06-08)
+
+
+### Bug Fixes
+
+* 404 on primary subjects with exam boards ([5329069](https://github.com/oaknational/Oak-Web-Application/commit/5329069d5202ec168b17e02733c1c7e5d4f5b512))
+
+
+### Features
+
+* validate keystage and years params ([709c8d9](https://github.com/oaknational/Oak-Web-Application/commit/709c8d925702048624a0fddb2bc05f9dd076227f))
+
+## [1.1092.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.1092.1...v1.1092.2) (2026-06-08)
+
+
+### Bug Fixes
+
+* **PUPIL-1748:** correct share button accessible names for Label in Name ([d497514](https://github.com/oaknational/Oak-Web-Application/commit/d497514ef168807791738bf8706a56c1017a882b))
+
+## [1.1092.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.1092.0...v1.1092.1) (2026-06-08)
+
+# [1.1092.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1091.1...v1.1092.0) (2026-06-08)
+
+
+### Bug Fixes
+
+* **LESQ-2069:** omit explainer from sitemap for non curriculum subjects ([b1d1037](https://github.com/oaknational/Oak-Web-Application/commit/b1d103752d3444427d0609d792f516e0cb4b7d27))
+
+
+### Features
+
+* **LESQ-2069:** add curriculum explainer to sitemap ([7357c7e](https://github.com/oaknational/Oak-Web-Application/commit/7357c7ec8abc8c63bea77d87862dfd24fec26edb))
+
+## [1.1091.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.1091.0...v1.1091.1) (2026-06-08)
+
+
+### Bug Fixes
+
+* **LESQ-2043:** incorrect unit count in threads ([c996f3d](https://github.com/oaknational/Oak-Web-Application/commit/c996f3d1180684e435b0e98545d7e61c859cdb98))
+
+# [1.1091.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1090.1...v1.1091.0) (2026-06-05)
+
+
+### Bug Fixes
+
+* remove extra api call ([4864df4](https://github.com/oaknational/Oak-Web-Application/commit/4864df4eac3b66f6a9a9447619bdef3faca85a61))
+
+
+### Features
+
+* update get meta title ([04b32ed](https://github.com/oaknational/Oak-Web-Application/commit/04b32ed1a382b4b9debab5dbf172be5f0bb394f0))
+
+## [1.1090.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.1090.0...v1.1090.1) (2026-06-04)
+
+
+### Bug Fixes
+
+* check for showing create with ai ([b3c12ba](https://github.com/oaknational/Oak-Web-Application/commit/b3c12baf10c5f809564d7f593003f0cf2f2247c0))
+
 # [1.1090.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1089.0...v1.1090.0) (2026-06-03)
 
 

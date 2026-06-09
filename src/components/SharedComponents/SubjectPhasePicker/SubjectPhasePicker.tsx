@@ -39,6 +39,8 @@ import { CurriculumModalCloseButton } from "@/components/CurriculumComponents/Cu
 import useMediaQuery from "@/hooks/useMediaQuery";
 import { PhaseValueType } from "@/browser-lib/avo/Avo";
 import { resolveOakHref } from "@/common-lib/urls";
+import { MaybeVisuallyHidden } from "@/components/AppComponents/TopNav/TopNav";
+import { getSubjectPhaseSlug } from "@/components/TeacherComponents/helpers/getSubjectPhaseSlug";
 
 const TruncatedFlex = styled(OakFlex)`
   max-width: calc(100% - 1rem);
@@ -140,6 +142,47 @@ const isPhaseSelectionComplete = (
   }
   return false;
 };
+
+export function generateSubjectPhasePickerLinks(
+  subjects: CurriculumPhaseOptions,
+): Array<{ label: string; href: string }> {
+  const resolveTeacherProgrammeHref = (subjectPhaseSlug: string) =>
+    resolveOakHref({
+      page: "teacher-programme",
+      subjectPhaseSlug,
+      tab: "units",
+    });
+
+  return subjects.flatMap((subject) =>
+    subject.phases.flatMap((phase) => {
+      const subjectPhaseSlug = getSubjectPhaseSlug({
+        subject: subject.slug,
+        phaseSlug: phase.slug,
+      });
+      const phaseLink = {
+        label: `${subject.title} - ${phase.title}`,
+        href: resolveTeacherProgrammeHref(subjectPhaseSlug),
+      };
+
+      // Add KS4 exam board variants for secondary phase
+      const ks4Links =
+        phase.slug === "secondary"
+          ? (subject.ks4_options ?? []).map((ks4Option) => ({
+              label: `${subject.title} - ${phase.title} - ${ks4Option.title}`,
+              href: resolveTeacherProgrammeHref(
+                getSubjectPhaseSlug({
+                  subject: subject.slug,
+                  phaseSlug: phase.slug,
+                  examBoardSlug: ks4Option.slug,
+                }),
+              ),
+            }))
+          : [];
+
+      return [phaseLink, ...ks4Links];
+    }),
+  );
+}
 
 const ButtonContainer = styled.div`
   display: inline-block;
@@ -1425,6 +1468,24 @@ const SubjectPhasePicker = ({
         $left="spacing-8"
         $borderRadius="border-radius-square"
       />
+      <MaybeVisuallyHidden
+        hiddenElementId="visually-hidden-subject-phase-picker"
+        shouldDisplay={showSubjects && showPhases}
+      >
+        <ul>
+          {generateSubjectPhasePickerLinks(subjects).map((link) => (
+            <li key={link.href}>
+              <a
+                href={link.href}
+                data-testid="visually-hidden-link"
+                tabIndex={-1}
+              >
+                {link.label}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </MaybeVisuallyHidden>
       <OakBox
         $position="relative"
         data-testid="lot-picker"

@@ -1,6 +1,5 @@
 "use client";
 import { useCallback, useEffect, useMemo, useState } from "react";
-import { VisuallyHidden } from "react-aria";
 
 import TabLink from "./TabLink/TabLink";
 import SubNav from "./SubNav/SubNav";
@@ -34,6 +33,18 @@ export type TopNavProps = {
   pupils: PupilsSubNavData | null;
 };
 
+const visuallyHiddenStyle = {
+  border: 0,
+  clip: "rect(0 0 0 0)",
+  height: "1px",
+  margin: "-1px",
+  overflow: "hidden",
+  padding: 0,
+  position: "absolute" as const,
+  width: "1px",
+  whiteSpace: "nowrap" as const,
+};
+
 /**
  * Wrapper component which visually hides children unless a shouldDisplay condition is met until the client intialises
  * This allows elements to be added to the dom on the server while still being hidden until needed
@@ -58,9 +69,12 @@ export const MaybeVisuallyHidden = ({
     return children;
   } else {
     return afterInitialRender ? null : (
-      <VisuallyHidden id={`visually-hidden-${hiddenElementId}`}>
+      <span
+        id={`visually-hidden-${hiddenElementId}`}
+        style={visuallyHiddenStyle}
+      >
         {children}
-      </VisuallyHidden>
+      </span>
     );
   }
 };
