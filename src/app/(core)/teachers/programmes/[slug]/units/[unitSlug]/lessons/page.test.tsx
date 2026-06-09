@@ -13,11 +13,14 @@ jest.mock("next/navigation", () => ({
 }));
 
 const mockTeachersUnitOverview = jest.fn();
+const mockUnitProgramme = jest.fn();
+
 jest.mock("@/node-lib/curriculum-api-2023", () => ({
   __esModule: true,
   default: {
     teachersUnitOverview: (...args: unknown[]) =>
       mockTeachersUnitOverview(...args),
+    teachersUnitProgramme: (...args: unknown[]) => mockUnitProgramme(...args),
   },
 }));
 
@@ -94,6 +97,9 @@ const defaultParams = {
 describe("UnitPage", () => {
   beforeEach(() => {
     mockTeachersUnitOverview.mockResolvedValue(unitOverviewFixture);
+    mockUnitProgramme.mockResolvedValue([
+      { programme_slug: "maths-primary-ks2", programmeFields: {} },
+    ]);
   });
   it("renders 404 when data is not found", async () => {
     mockTeachersUnitOverview.mockRejectedValue(

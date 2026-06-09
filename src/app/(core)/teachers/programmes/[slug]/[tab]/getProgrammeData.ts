@@ -1,10 +1,13 @@
 import {
   CurriculumPhaseOptions,
   CurriculumUnit,
+  CurriculumUnitsTabData,
   type CurriculumApi,
 } from "@/node-lib/curriculum-api-2023";
 import { parseSubjectPhaseSlug } from "@/utils/curriculum/slugs";
 import { filterValidCurriculumPhaseOptions } from "@/pages-helpers/curriculum/docx/tab-helpers";
+import { CurriculumFilters } from "@/utils/curriculum/types";
+import { scopeYearsToKeystageFilter } from "@/utils/curriculum/filtersUrl";
 
 // Helper function to sort units consistently
 const sortUnits = (units: CurriculumUnit[]): CurriculumUnit[] => {
@@ -88,3 +91,23 @@ export async function getProgrammeData(
     curriculumUnitsData,
   };
 }
+
+export const getSubjectOverride = (
+  units: CurriculumUnitsTabData["units"],
+  resolvedFilter: CurriculumFilters,
+) => {
+  const overrides: string[] = [];
+  units.forEach((unit) => {
+    const override = unit.actions?.programme_field_overrides?.subject;
+    if (override && !overrides.includes(override)) {
+      const scopedYearFilters = scopeYearsToKeystageFilter(resolvedFilter);
+      if (scopedYearFilters.includes(unit.year)) {
+        overrides.push(override);
+      }
+    }
+  });
+
+  if (overrides.length === 1) {
+    return overrides[0];
+  }
+};

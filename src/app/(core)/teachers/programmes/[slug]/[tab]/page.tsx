@@ -5,7 +5,11 @@ import { cache } from "react";
 import { ProgrammeView } from "./Components/ProgrammeView";
 import { isTabSlug } from "./tabSchema";
 import { getMetaTitle } from "./getMetaTitle";
-import { getSubjectPhaseOptions, getProgrammeData } from "./getProgrammeData";
+import {
+  getSubjectPhaseOptions,
+  getProgrammeData,
+  getSubjectOverride,
+} from "./getProgrammeData";
 
 import {
   createDownloadsData,
@@ -265,7 +269,9 @@ const InnerProgrammePage = async (props: AppPageProps<ProgrammePageParams>) => {
   );
 
   const curriculumSelectionTitles = {
-    subjectTitle: programmeUnitsData.subjectTitle,
+    subjectTitle:
+      getSubjectOverride(curriculumUnitsData.units, resolvedFilter) ??
+      programmeUnitsData.subjectTitle,
     phaseTitle: programmeUnitsData.phaseTitle,
     examboardTitle: ks4Option?.title,
   };

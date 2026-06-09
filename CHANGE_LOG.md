@@ -1,3 +1,27 @@
+## [1.1095.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.1095.0...v1.1095.1) (2026-06-09)
+
+
+### Bug Fixes
+
+* ensure subject override only applies to applicable ks ([2174b9e](https://github.com/oaknational/Oak-Web-Application/commit/2174b9e556643e1febb91742e01b63cea15500fd))
+* use subject title override for programme page ([a59d8c6](https://github.com/oaknational/Oak-Web-Application/commit/a59d8c64933b7542cf88f728761b89d37be37d93))
+
+# [1.1095.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1094.0...v1.1095.0) (2026-06-09)
+
+
+### Bug Fixes
+
+* add query to get valid programme slug for unit overview ([c44d74c](https://github.com/oaknational/Oak-Web-Application/commit/c44d74c308b8d1c428f660f93263a61b1d4b21e2))
+* add redirect from curriculum units tab ([31f53ef](https://github.com/oaknational/Oak-Web-Application/commit/31f53ef2c3dc6701809aa10aad2977faf6bdbb3c))
+* update curriculum link to programme page ([e16c21e](https://github.com/oaknational/Oak-Web-Application/commit/e16c21eadff8deee503563048e8c2373924ce3cc))
+* update link to curriculum resources ([b563a6f](https://github.com/oaknational/Oak-Web-Application/commit/b563a6ffc1d1bd449f0453a703227675c21ff589))
+* update url for unit links in nc doc ([8177f29](https://github.com/oaknational/Oak-Web-Application/commit/8177f29b16e104faeeac34c886057057825b3749))
+
+
+### Features
+
+* redirect unit page when needed ([d437823](https://github.com/oaknational/Oak-Web-Application/commit/d437823c190c186c5d120551d855124fbbcbc715))
+
 # [1.1094.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1093.0...v1.1094.0) (2026-06-09)
 
 
