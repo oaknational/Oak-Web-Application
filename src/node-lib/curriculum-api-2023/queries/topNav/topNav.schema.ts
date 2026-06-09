@@ -65,6 +65,8 @@ export type ProgrammeFactorButton = {
   };
 };
 
+export type Phase = "primary" | "secondary";
+
 export type SubjectsNavItem = {
   title: string;
   slug: string;
@@ -87,7 +89,7 @@ export type TeachersBrowseChildItem = {
 
 export type TeachersBrowse = {
   title: "Primary" | "Secondary";
-  slug: "primary" | "secondary";
+  slug: Phase;
   children: Array<TeachersBrowseChildItem>;
 };
 
@@ -99,7 +101,7 @@ export type PupilsSubNavData = {
 
 type PupilsBrowse = {
   title: "Primary" | "Secondary";
-  slug: "primary" | "secondary";
+  slug: Phase;
   children: Array<{ title: string; slug: string }>;
 };
 
