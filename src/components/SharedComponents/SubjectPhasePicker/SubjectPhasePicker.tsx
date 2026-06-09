@@ -40,6 +40,7 @@ import useMediaQuery from "@/hooks/useMediaQuery";
 import { PhaseValueType } from "@/browser-lib/avo/Avo";
 import { resolveOakHref } from "@/common-lib/urls";
 import { MaybeVisuallyHidden } from "@/components/AppComponents/TopNav/TopNav";
+import { getSubjectPhaseSlug } from "@/components/TeacherComponents/helpers/getSubjectPhaseSlug";
 
 const TruncatedFlex = styled(OakFlex)`
   max-width: calc(100% - 1rem);
@@ -154,7 +155,10 @@ export function generateSubjectPhasePickerLinks(
 
   return subjects.flatMap((subject) =>
     subject.phases.flatMap((phase) => {
-      const subjectPhaseSlug = `${subject.slug}-${phase.slug}`;
+      const subjectPhaseSlug = getSubjectPhaseSlug({
+        subject: subject.slug,
+        phaseSlug: phase.slug,
+      });
       const phaseLink = {
         label: `${subject.title} - ${phase.title}`,
         href: resolveTeacherProgrammeHref(subjectPhaseSlug),
@@ -166,7 +170,11 @@ export function generateSubjectPhasePickerLinks(
           ? (subject.ks4_options ?? []).map((ks4Option) => ({
               label: `${subject.title} - ${phase.title} - ${ks4Option.title}`,
               href: resolveTeacherProgrammeHref(
-                `${subjectPhaseSlug}-${ks4Option.slug}`,
+                getSubjectPhaseSlug({
+                  subject: subject.slug,
+                  phaseSlug: phase.slug,
+                  examBoardSlug: ks4Option.slug,
+                }),
               ),
             }))
           : [];
