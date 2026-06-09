@@ -105,7 +105,7 @@ const UnitHeader = (props: UnitHeaderProps) => {
         }
         actionButton={
           unitDownloadFileId ? (
-            <NegativeBorderBox>
+            <NegativeBorderBox $width={["100%", "auto"]}>
               <UnitDownloadButton
                 setDownloadError={setDownloadError}
                 setDownloadInProgress={setDownloadInProgress}

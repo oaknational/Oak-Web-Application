@@ -162,7 +162,13 @@ const ButtonForSize = ({
         }
       : {};
 
-  return <ButtonComponent {...defaultPaddingProps} {...props} />;
+  return (
+    <ButtonComponent
+      {...defaultPaddingProps}
+      {...props}
+      width={["100%", "auto"]}
+    />
+  );
 };
 
 export const useUnitDownloadButtonState = () => {

@@ -189,7 +189,7 @@ export function DownloadSuccessView({
                   buttonLabel={
                     <OakSpan>
                       <OakSpan>Download </OakSpan>
-                      <OakBox $display={["none", "inline"]}>
+                      <OakBox $display={["inline", "none", "inline"]}>
                         complete unit
                       </OakBox>
                     </OakSpan>

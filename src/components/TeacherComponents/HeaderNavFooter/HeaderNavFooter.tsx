@@ -5,7 +5,6 @@ import {
   OakSmallPrimaryInvertedButton,
   OakIcon,
   OakBox,
-  OakTertiaryInvertedButton,
 } from "@oaknational/oak-components";
 import { useRef, useState, useEffect } from "react";
 
@@ -63,23 +62,21 @@ const HeaderNavFooter = (props: HeaderNavFooterProps) => {
         $gap={"spacing-16"}
         $maxWidth="spacing-1280"
       >
-        <OakFlex as="nav" $gap={"spacing-32"} $alignItems={"center"}>
-          <OakTertiaryInvertedButton
-            iconName="list"
-            element="a"
-            href={props.viewHref}
-          >
-            {`View ${props.type === "unit" ? "all units" : "unit"}`}
-          </OakTertiaryInvertedButton>
+        {props.actionButton}
+        <OakFlex
+          as="nav"
+          $display={["none", "flex"]}
+          $gap={"spacing-32"}
+          $alignItems={"center"}
+        >
+          <PrevNextButtons $display={"flex"} {...props} />
           <OakBox
             $bl={"border-solid-m"}
-            $display={["none", "flex"]}
+            $display={"flex"}
             $height={"spacing-24"}
             $borderColor={`border-decorative${props.backgroundColorLevel}`}
           />
-          <PrevNextButtons $display={["none", "flex"]} {...props} />
         </OakFlex>
-        {props.actionButton}
       </OakFlex>
       <OakBox
         $display={["block", "none"]}
@@ -88,6 +85,16 @@ const HeaderNavFooter = (props: HeaderNavFooterProps) => {
         $width={"100%"}
       />
       <PrevNextButtons $display={["flex", "none"]} {...props} />
+      <OakSmallPrimaryInvertedButton
+        width={["100%", "auto"]}
+        iconName="list"
+        isTrailingIcon
+        $textWrap={"nowrap"}
+        element="a"
+        href={props.viewHref}
+      >
+        {`View ${props.type === "unit" ? "all units" : "unit"}`}
+      </OakSmallPrimaryInvertedButton>
     </OakFlex>
   );
 };
@@ -113,6 +120,7 @@ const PrevNextButtons = ({
     <OakFlex $display={$display} $gap={"spacing-16"}>
       {prevHref && (
         <OakSmallPrimaryInvertedButton
+          width={["100%", "auto"]}
           element="a"
           href={prevHref}
           iconOverride={
@@ -129,6 +137,7 @@ const PrevNextButtons = ({
       )}
       {nextHref && (
         <OakSmallPrimaryInvertedButton
+          width={["100%", "auto"]}
           element="a"
           href={nextHref}
           isTrailingIcon
