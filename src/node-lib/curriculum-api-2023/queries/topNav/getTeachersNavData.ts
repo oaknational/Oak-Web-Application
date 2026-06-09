@@ -1,3 +1,5 @@
+import slugify from "slugify";
+
 import {
   TopNavResponse,
   TeachersBrowse,
@@ -36,6 +38,7 @@ export const getExamBoardsForKS4Subject = ({
   phaseSlug,
   keystageSlug,
   subjectParent,
+  includeChildSubjects = true,
 }: {
   data: TopNavResponse;
   subjectSlug: string;
@@ -43,6 +46,7 @@ export const getExamBoardsForKS4Subject = ({
   phaseSlug: string;
   keystageSlug?: string | null;
   subjectParent?: string | null;
+  includeChildSubjects?: boolean;
 }): ProgrammeFactorButton[] => {
   const matchingProgrammes = data.programmes
     .filter((p) => {
@@ -79,6 +83,7 @@ export const getExamBoardsForKS4Subject = ({
               subjectParent,
               examboardSlug: examboard_slug,
               tierSlug: tier_slug,
+              includeChildSubjects,
             }),
             programmeFactors: {
               tier: { slug: tier_slug, description: tier_description },
@@ -99,6 +104,7 @@ export const getExamBoardsForKS4Subject = ({
               keystageSlug: keystageSlug ?? null,
               subjectParent,
               tierSlug: tier_slug,
+              includeChildSubjects,
             }),
             programmeFactors: {
               tier: { slug: tier_slug, description: tier_description },
@@ -174,6 +180,20 @@ const getSubjectsByPhase = (
   const filteredPhaseProgrammes =
     filterLegacyWhenNonLegacyExists(phaseProgrammes);
 
+  const subjectsWithKs4Children = new Set(
+    filteredPhaseProgrammes
+      .filter(
+        (p) =>
+          p.programme_fields.keystage_slug === "ks4" &&
+          Boolean(p.programme_fields.subject_parent),
+      )
+      .map((p) =>
+        slugify(
+          p.programme_fields.subject_parent as string,
+        ).toLocaleLowerCase(),
+      ),
+  );
+
   const subjectKey = (p: TopNavProgramme) =>
     `${p.programme_fields.subject_parent ?? ""}::${p.programme_fields.subject_slug}`;
 
@@ -182,10 +202,133 @@ const getSubjectsByPhase = (
       .filter(
         (p) =>
           p.programme_fields.keystage_slug === "ks4" &&
-          p.programme_fields.pathway_slug !== null,
+          p.programme_fields.pathway_slug !== null &&
+          !subjectsWithKs4Children.has(p.programme_fields.subject_slug),
       )
       .map(subjectKey),
   );
+
+  const deduplicateExamBoards = (examBoards: ProgrammeFactorButton[]) => {
+    return examBoards.filter(
+      (item, index, arr) =>
+        arr.findIndex(
+          (candidate) =>
+            candidate.programmeFactors?.examboard?.slug ===
+              item.programmeFactors?.examboard?.slug &&
+            candidate.programmeFactors?.tier?.slug ===
+              item.programmeFactors?.tier?.slug,
+        ) === index,
+    );
+  };
+
+  const getPhaseSlugForHref = (programme: TopNavProgramme) =>
+    programme.programme_fields.phase_slug === "foundation"
+      ? "primary"
+      : programme.programme_fields.phase_slug;
+
+  const upsertPhaseChild = ({
+    key,
+    title,
+    slug,
+    href,
+    nonCurriculum,
+    programmeSlug,
+    pathwaySlug,
+    subjectParent,
+    examBoards,
+  }: {
+    key: string;
+    title: string;
+    slug: string;
+    href: string;
+    nonCurriculum: boolean;
+    programmeSlug: string;
+    pathwaySlug: string | null;
+    subjectParent: string | null;
+    examBoards?: ProgrammeFactorButton[];
+  }) => {
+    const existing = phaseChildren.get(key);
+
+    if (!existing) {
+      phaseChildren.set(key, {
+        title,
+        slug,
+        href,
+        nonCurriculum,
+        programmeSlug,
+        programmeCount: 1,
+        pathwaySlug,
+        subjectParent,
+        ...(examBoards ? { examBoards } : {}),
+      });
+      return;
+    }
+
+    const mergedExamBoards = deduplicateExamBoards([
+      ...(existing.examBoards ?? []),
+      ...(examBoards ?? []),
+    ]);
+
+    const updatedChild: SubjectsNavItem = {
+      ...existing,
+      programmeSlug: null,
+      programmeCount: existing.programmeCount + 1,
+    };
+
+    if (mergedExamBoards.length > 0) {
+      updatedChild.examBoards = mergedExamBoards;
+    }
+
+    phaseChildren.set(key, updatedChild);
+  };
+
+  const upsertParentExamBoardsOnPhaseChild = ({
+    parentSlug,
+    parentTitle,
+    href,
+    nonCurriculum,
+    examBoards,
+  }: {
+    parentSlug: string;
+    parentTitle: string;
+    href: string;
+    nonCurriculum: boolean;
+    examBoards: ProgrammeFactorButton[];
+  }) => {
+    const key = `${parentSlug}-`;
+    const existing = phaseChildren.get(key);
+
+    if (!existing) {
+      phaseChildren.set(key, {
+        title: parentTitle,
+        slug: parentSlug,
+        href,
+        nonCurriculum,
+        programmeSlug: null,
+        programmeCount: 1,
+        pathwaySlug: null,
+        subjectParent: null,
+        ...(examBoards.length ? { examBoards } : {}),
+      });
+      return;
+    }
+
+    const mergedExamBoards = deduplicateExamBoards([
+      ...(existing.examBoards ?? []),
+      ...examBoards,
+    ]);
+
+    const updatedParent: SubjectsNavItem = {
+      ...existing,
+      programmeSlug: null,
+    };
+
+    if (mergedExamBoards.length > 0) {
+      updatedParent.examBoards = mergedExamBoards;
+    }
+
+    phaseChildren.set(key, updatedParent);
+  };
 
   const phaseChildren = new Map<string, SubjectsNavItem>();
 
@@ -210,51 +353,104 @@ const getSubjectsByPhase = (
 
     const title =
       subjectDisplayName + (pathwayTitle ? ` (${pathwayTitle})` : "");
-    const mapKey = `${subject_slug}-${pathwaySlug ?? ""}`;
+    const parentSubjectSlug = subject_parent
+      ? slugify(subject_parent).toLocaleLowerCase()
+      : subject_slug;
+    const phaseSlugForHref = getPhaseSlugForHref(programme);
+    const isKs4ChildSubject =
+      keystage_slug === "ks4" && Boolean(subject_parent);
+    const isKs4ParentOptionForChildSubject =
+      keystage_slug === "ks4" &&
+      !subject_parent &&
+      subjectsWithKs4Children.has(subject_slug);
 
-    const href = getTeachersSubjectNavHref({
+    if (isKs4ChildSubject) {
+      const parentHref = getTeachersSubjectNavHref({
+        subject: {
+          slug: parentSubjectSlug,
+          pathwaySlug: null,
+          programmeSlug: programme.programme_slug,
+        },
+        phaseSlug: phaseSlugForHref,
+        curriculumPhaseOptionsSubjects: curriculumPhaseOptionsWithoutCore,
+      });
+
+      const parentExamBoards = getExamBoardsForKS4Subject({
+        data: teachersData,
+        phaseSlug,
+        subjectSlug: subject_slug,
+        pathwaySlug,
+        subjectParent: subject_parent,
+        includeChildSubjects: false,
+      });
+
+      upsertParentExamBoardsOnPhaseChild({
+        parentSlug: parentSubjectSlug,
+        parentTitle: subject_parent ?? subject_slug,
+        href: parentHref,
+        nonCurriculum: Boolean(programme.features.non_curriculum),
+        examBoards: parentExamBoards,
+      });
+
+      return;
+    }
+
+    if (isKs4ParentOptionForChildSubject) {
+      return;
+    }
+
+    const hasKs4Children = subjectsWithKs4Children.has(subject_slug);
+    const childKey = hasKs4Children
+      ? `${subject_slug}-`
+      : `${subject_slug}-${pathwaySlug ?? ""}`;
+
+    const childHref = getTeachersSubjectNavHref({
       subject: {
-        slug: subject_parent ?? subject_slug,
+        slug: subject_slug,
         pathwaySlug,
         programmeSlug: programme.programme_slug,
       },
-      phaseSlug:
-        programme.programme_fields.phase_slug === "foundation"
-          ? "primary"
-          : programme.programme_fields.phase_slug,
+      phaseSlug: phaseSlugForHref,
       curriculumPhaseOptionsSubjects: curriculumPhaseOptionsWithoutCore,
     });
 
     const examBoards =
-      keystage_slug === "ks4"
+      keystage_slug === "ks4" && !subject_parent
         ? getExamBoardsForKS4Subject({
             data: teachersData,
             phaseSlug,
             subjectSlug: subject_slug,
             pathwaySlug,
-            subjectParent: subject_parent ?? null,
+            includeChildSubjects: false,
           })
         : undefined;
 
-    phaseChildren.set(mapKey, {
+    upsertPhaseChild({
+      key: childKey,
       title,
       slug: subject_slug,
-      href,
+      href: childHref,
       nonCurriculum: Boolean(programme.features.non_curriculum),
       programmeSlug: programme.programme_slug,
-      programmeCount: 1,
       pathwaySlug,
       subjectParent: subject_parent ?? null,
-      ...(examBoards ? { examBoards } : {}),
+      examBoards,
     });
   });
 
   const orderedPhaseChildren = Array.from(phaseChildren.values());
+  const sortByTitle = (a: SubjectsNavItem, b: SubjectsNavItem) =>
+    a.title.localeCompare(b.title, undefined, { sensitivity: "base" });
+
   const curriculumChildren = orderedPhaseChildren.filter(
     (s) => !s.nonCurriculum,
   );
   const nonCurriculumChildren = orderedPhaseChildren.filter(
     (s) => s.nonCurriculum,
+  );
+  const sortedCurriculumChildren = [...curriculumChildren].sort(sortByTitle);
+  const sortedNonCurriculumChildren = [...nonCurriculumChildren].sort(
+    sortByTitle,
   );
 
   return [
@@ -262,7 +458,7 @@ const getSubjectsByPhase = (
       slug: phaseSlug,
       title: `${phaseSlug[0]?.toUpperCase()}${phaseSlug.slice(1)}`,
       description: "",
-      children: [...curriculumChildren, ...nonCurriculumChildren],
+      children: [...sortedCurriculumChildren, ...sortedNonCurriculumChildren],
     },
   ] as Omit<TeachersBrowseChildItem, "type">[];
 };

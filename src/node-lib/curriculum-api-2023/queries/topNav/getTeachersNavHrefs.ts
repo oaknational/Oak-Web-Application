@@ -49,7 +49,7 @@ export function getTeachersSubjectNavHref({
 }
 
 /**
- * Builds the units tab href for a KS4 exam board or tier panel button.
+ * Builds the units tab href for an exam board or tier panel button.
  */
 export function getTeachersExamBoardNavHref({
   subjectSlug,
@@ -58,6 +58,7 @@ export function getTeachersExamBoardNavHref({
   examboardSlug,
   tierSlug,
   keystageSlug,
+  includeChildSubjects = true,
 }: {
   subjectSlug: string;
   phaseSlug: string;
@@ -65,6 +66,7 @@ export function getTeachersExamBoardNavHref({
   examboardSlug?: string | null;
   tierSlug?: string | null;
   keystageSlug?: string | null;
+  includeChildSubjects?: boolean;
 }): string {
   const subjectPhaseSlug = subjectParent
     ? getTeacherSubjectPhaseSlug({
@@ -87,7 +89,8 @@ export function getTeachersExamBoardNavHref({
     query: {
       keystages: keystageSlug ?? undefined,
       tiers: tierSlug ?? undefined,
-      child_subjects: subjectParent ? subjectSlug : undefined,
+      child_subjects:
+        includeChildSubjects && subjectParent ? subjectSlug : undefined,
     },
   });
 }
