@@ -447,10 +447,17 @@ export default async (phase: NextConfig["phase"]): Promise<NextConfig> => {
           permanent: true,
         },
         {
+          source: "/teachers/curriculum/:subjectPhaseSlug/units/:unitSlug",
+          destination:
+            "/teachers/programmes/:subjectPhaseSlug/units/:unitSlug/lessons",
+          permanent: true,
+        },
+        {
           source: "/teachers/curriculum/:subjectPhaseSlug/units",
           destination: "/teachers/programmes/:subjectPhaseSlug/units",
           permanent: true,
         },
+
         {
           source: "/teachers/curriculum/:subjectPhaseSlug/overview",
           destination:

@@ -2,7 +2,9 @@ import { ChangeEvent, FC } from "react";
 import { Control, Controller } from "react-hook-form";
 import { OakDownloadCard, OakFlex, OakGrid } from "@oaknational/oak-components";
 
-import ResourceCard from "@/components/TeacherComponents/ShareResourceCard/ShareResourceCard";
+import ResourceCard, {
+  getActivityDownloadCardAriaLabel,
+} from "@/components/TeacherComponents/ShareResourceCard/ShareResourceCard";
 import { sortShareResources } from "@/components/TeacherComponents/helpers/downloadAndShareHelpers/sortResources";
 import { ResourceFormValues } from "@/components/TeacherComponents/types/downloadAndShare.types";
 import { SharePageNumberedHeading } from "@/components/TeacherComponents/SharePageNumberedHeading/SharePageNumberedHeading";
@@ -11,6 +13,10 @@ import { LessonShareData } from "@/node-lib/curriculum-api-2023/queries/lessonSh
 
 export const SHARE_SELECT_ACTIVITIES_HEADING_ID =
   "share-select-activities-heading";
+
+const FULL_ONLINE_LESSON_TITLE = "Full online lesson";
+const FULL_ONLINE_LESSON_FORMAT =
+  "Share the whole lesson (starter quiz, lesson video, worksheet and exit quiz) and view results";
 
 export type LessonShareCardGroupProps = {
   shareableResources: LessonShareData["shareableResources"];
@@ -84,12 +90,16 @@ const LessonShareCardGroup: FC<LessonShareCardGroupProps> = (props) => {
               }) => {
                 return (
                   <OakDownloadCard
-                    format="Share the whole lesson (starter quiz, lesson video, worksheet and exit quiz) and view results"
+                    format={FULL_ONLINE_LESSON_FORMAT}
                     id={"download-card-wrapping-long"}
                     data-testid="resourceCard"
                     value={"all"}
                     name={name}
-                    title="Full online lesson"
+                    title={FULL_ONLINE_LESSON_TITLE}
+                    aria-label={getActivityDownloadCardAriaLabel(
+                      FULL_ONLINE_LESSON_TITLE,
+                      FULL_ONLINE_LESSON_FORMAT,
+                    )}
                     checked={["exit-quiz", "starter-quiz", "video"].every(
                       (section) => fieldValue.includes(section),
                     )}

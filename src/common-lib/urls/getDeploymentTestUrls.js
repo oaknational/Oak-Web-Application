@@ -56,6 +56,7 @@ function getDeploymentTestUrls() {
     "/teachers/programmes/physical-education-primary-ks2/units/invasion-games-principles-of-attack-and-defence-through-ball-games/lessons/passing-and-receiving-skills", // practical PE lesson
     "/teachers/programmes/computing-primary-ks1/units/building-sequences-in-programs/lessons/building-blocks-to-create-a-sequence", // lesson with media clips and additional materials
     "/teachers/programmes/computing-primary-ks1/units/digital-writing/lessons/comparing-digital-writing-to-using-a-pencil", // lesson with lesson files,
+    "/teachers/programmes/computing-primary-ks1/units/digital-writing/lessons/comparing-digital-writing-to-using-a-pencil/share", // lesson share page (PUPIL-1748)
 
     // Canonical lesson pages
     "/teachers/lessons/duncan-as-a-father-figure",

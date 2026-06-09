@@ -8,6 +8,7 @@ import LessonShareCardGroup, {
   SHARE_SELECT_ACTIVITIES_HEADING_ID,
 } from "./LessonShareCardGroup";
 
+import { getActivityDownloadCardAriaLabel } from "@/components/TeacherComponents/ShareResourceCard/ShareResourceCard";
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 import { LessonShareData } from "@/node-lib/curriculum-api-2023/queries/lessonShare/lessonShare.schema";
 
@@ -49,6 +50,18 @@ describe("lesson share card group", () => {
       SHARE_SELECT_ACTIVITIES_HEADING_ID,
     );
     expect(screen.getByText("Full online lesson")).toBeInTheDocument();
+
+    const fullLessonCheckbox = screen.getByRole("checkbox", {
+      name: /full online lesson/i,
+    });
+    expect(fullLessonCheckbox).toHaveAttribute(
+      "aria-label",
+      getActivityDownloadCardAriaLabel(
+        "Full online lesson",
+        "Share the whole lesson (starter quiz, lesson video, worksheet and exit quiz) and view results",
+      ),
+    );
+    expect(fullLessonCheckbox).not.toHaveAttribute("title");
   });
 
   it("should toggle the full online lesson checkbox", async () => {
@@ -104,6 +117,8 @@ describe("lesson share card group", () => {
     );
     const checkbox = screen.getByRole("checkbox", { name: "Video 5min" });
     expect(checkbox).toBeInTheDocument();
+    expect(checkbox).toHaveAttribute("aria-label", "Video 5min");
+    expect(checkbox).not.toHaveAttribute("title");
     expect(checkbox).not.toBeChecked();
 
     const user = userEvent.setup();

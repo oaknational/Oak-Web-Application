@@ -1,3 +1,50 @@
+## [1.1095.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.1095.2...v1.1095.3) (2026-06-09)
+
+
+### Bug Fixes
+
+* **PUPIL-1748:** hide decorative separator from screen readers (defect 5) ([95d85c7](https://github.com/oaknational/Oak-Web-Application/commit/95d85c7379a90982fd499d667f48ef5488a099ed))
+
+## [1.1095.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.1095.1...v1.1095.2) (2026-06-09)
+
+
+### Bug Fixes
+
+* **PUPIL-1748:** add programmatic labels to share activity checkboxes ([2aabb33](https://github.com/oaknational/Oak-Web-Application/commit/2aabb3346ff74703c8316ca93ade73e5f2e9f472))
+
+## [1.1095.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.1095.0...v1.1095.1) (2026-06-09)
+
+
+### Bug Fixes
+
+* ensure subject override only applies to applicable ks ([2174b9e](https://github.com/oaknational/Oak-Web-Application/commit/2174b9e556643e1febb91742e01b63cea15500fd))
+* use subject title override for programme page ([a59d8c6](https://github.com/oaknational/Oak-Web-Application/commit/a59d8c64933b7542cf88f728761b89d37be37d93))
+
+# [1.1095.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1094.0...v1.1095.0) (2026-06-09)
+
+
+### Bug Fixes
+
+* add query to get valid programme slug for unit overview ([c44d74c](https://github.com/oaknational/Oak-Web-Application/commit/c44d74c308b8d1c428f660f93263a61b1d4b21e2))
+* add redirect from curriculum units tab ([31f53ef](https://github.com/oaknational/Oak-Web-Application/commit/31f53ef2c3dc6701809aa10aad2977faf6bdbb3c))
+* update curriculum link to programme page ([e16c21e](https://github.com/oaknational/Oak-Web-Application/commit/e16c21eadff8deee503563048e8c2373924ce3cc))
+* update link to curriculum resources ([b563a6f](https://github.com/oaknational/Oak-Web-Application/commit/b563a6ffc1d1bd449f0453a703227675c21ff589))
+* update url for unit links in nc doc ([8177f29](https://github.com/oaknational/Oak-Web-Application/commit/8177f29b16e104faeeac34c886057057825b3749))
+
+
+### Features
+
+* redirect unit page when needed ([d437823](https://github.com/oaknational/Oak-Web-Application/commit/d437823c190c186c5d120551d855124fbbcbc715))
+
+# [1.1094.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1093.0...v1.1094.0) (2026-06-09)
+
+
+### Features
+
+* generate subject phase picker links with urls helper ([d0a23d9](https://github.com/oaknational/Oak-Web-Application/commit/d0a23d9a6b432d5e9beb7d490bb864093aff96ca))
+* show seo links for subject phase picker before hydration ([771a74b](https://github.com/oaknational/Oak-Web-Application/commit/771a74bf9ddab1e8ea967234192d86c843c2a32c))
+* try make links non focusable elements ([279e9c5](https://github.com/oaknational/Oak-Web-Application/commit/279e9c5dca776f6f38959a9ee0f7554593b33de4))
+
 # [1.1093.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1092.2...v1.1093.0) (2026-06-08)
 
 

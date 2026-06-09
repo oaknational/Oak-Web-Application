@@ -2,7 +2,11 @@
  * @jest-environment node
  */
 
-import { getProgrammeData, getSubjectPhaseOptions } from "./getProgrammeData";
+import {
+  getProgrammeData,
+  getSubjectOverride,
+  getSubjectPhaseOptions,
+} from "./getProgrammeData";
 
 import { CurriculumApi } from "@/node-lib/curriculum-api-2023";
 import { createUnit } from "@/fixtures/curriculum/unit";
@@ -366,5 +370,104 @@ describe("getProgrammeData", () => {
         "Resource not found",
       );
     });
+  });
+});
+
+describe("getSubjectOverride", () => {
+  const subjectOverrideAction = {
+    programme_field_overrides: {
+      subject: "Mathematics",
+    },
+  };
+  const units = [
+    createUnit({
+      slug: "unit-1",
+      title: "Unit 1",
+      order: 1,
+      examboard: null,
+      examboard_slug: null,
+      year: "10",
+      subject_slug: "maths",
+      phase_slug: "secondary",
+    }),
+  ];
+  const unitsWithOverride = units.map((u) => ({
+    ...u,
+    actions: subjectOverrideAction,
+  }));
+  const mockFilters = {
+    years: ["7", "8", "9", "10", "11"],
+    tiers: [],
+    childSubjects: [],
+    pathways: [],
+    subjectCategories: [],
+    threads: [],
+    keystages: [],
+  };
+  it("returns no override", () => {
+    const res = getSubjectOverride(units, mockFilters);
+    expect(res).toBeUndefined();
+  });
+  it("returns an override for a valid year", () => {
+    const res = getSubjectOverride(unitsWithOverride, mockFilters);
+    expect(res).toEqual("Mathematics");
+  });
+  it("returns an override scoped to the keystage", () => {
+    const res = getSubjectOverride(
+      [
+        ...unitsWithOverride,
+        createUnit({
+          slug: "unit-1",
+          title: "Unit 1",
+          order: 1,
+          examboard: null,
+          examboard_slug: null,
+          year: "7",
+          subject_slug: "maths",
+          phase_slug: "secondary",
+          actions: {
+            programme_field_overrides: {
+              subject: "KS3 override",
+            },
+          },
+        }),
+      ],
+      {
+        ...mockFilters,
+        keystages: ["ks4"],
+      },
+    );
+    expect(res).toEqual("Mathematics");
+  });
+  it("does not return an override when not valid for the keystage year", () => {
+    const res = getSubjectOverride(unitsWithOverride, {
+      ...mockFilters,
+      keystages: ["ks3"],
+    });
+    expect(res).toBeUndefined();
+  });
+  it("does not return an override when there are multiple overrides in the data", () => {
+    const res = getSubjectOverride(
+      [
+        ...unitsWithOverride,
+        createUnit({
+          slug: "unit-1",
+          title: "Unit 1",
+          order: 1,
+          examboard: null,
+          examboard_slug: null,
+          year: "10",
+          subject_slug: "maths",
+          phase_slug: "secondary",
+          actions: {
+            programme_field_overrides: {
+              subject: "Duplicate Override",
+            },
+          },
+        }),
+      ],
+      mockFilters,
+    );
+    expect(res).toBeUndefined();
   });
 });

@@ -71,6 +71,15 @@ describe("Downloads/Share Layout", () => {
     expect(apiErrorAfterRerender).toBeInTheDocument();
   });
 
+  it("hides the decorative separator from assistive technology", () => {
+    renderWithTheme(<ComponentWrapper {...props} />);
+
+    expect(screen.getByTestId("share-decorative-separator")).toHaveAttribute(
+      "aria-hidden",
+      "true",
+    );
+  });
+
   it("shows loading spinner", () => {
     const { getByTestId } = renderWithTheme(
       <ComponentWrapper {...props} isLoading={true} />,
