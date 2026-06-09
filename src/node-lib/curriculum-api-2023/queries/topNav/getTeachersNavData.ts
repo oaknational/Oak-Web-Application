@@ -174,9 +174,31 @@ const getSubjectsByPhase = (
   const filteredPhaseProgrammes =
     filterLegacyWhenNonLegacyExists(phaseProgrammes);
 
+  const subjectKey = (p: TopNavProgramme) =>
+    `${p.programme_fields.subject_parent ?? ""}::${p.programme_fields.subject_slug}`;
+
+  const subjectsWithKs4Pathways = new Set(
+    filteredPhaseProgrammes
+      .filter(
+        (p) =>
+          p.programme_fields.keystage_slug === "ks4" &&
+          p.programme_fields.pathway_slug !== null,
+      )
+      .map(subjectKey),
+  );
+
   const phaseChildren = new Map<string, SubjectsNavItem>();
 
   filteredPhaseProgrammes.forEach((programme) => {
+    // Filter out duplicate programmes where a KS3 subject is navigable by the exam board panel
+    const isKs3Base =
+      programme.programme_fields.keystage_slug === "ks3" &&
+      programme.programme_fields.pathway_slug === null;
+
+    if (isKs3Base && subjectsWithKs4Pathways.has(subjectKey(programme))) {
+      return;
+    }
+
     const { subject_slug, subject_parent, keystage_slug } =
       programme.programme_fields;
     const pathwaySlug = programme.programme_fields.pathway_slug ?? null;
