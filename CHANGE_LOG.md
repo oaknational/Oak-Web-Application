@@ -1,3 +1,10 @@
+# [1.1096.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1095.6...v1.1096.0) (2026-06-09)
+
+
+### Features
+
+* **LESQ-2042:** add an experiment for the download success CTA ([67b2e8b](https://github.com/oaknational/Oak-Web-Application/commit/67b2e8b23c6884e9126bb3355e70d1dfe5d96b87))
+
 ## [1.1095.6](https://github.com/oaknational/Oak-Web-Application/compare/v1.1095.5...v1.1095.6) (2026-06-09)
 
 
