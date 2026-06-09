@@ -26,7 +26,6 @@ import {
   isTeachersBrowseItem,
   isNavDropDownButtonItem,
   NavDropDownButton,
-  SubjectsNavItem,
 } from "@/node-lib/curriculum-api-2023/queries/topNav/topNav.schema";
 import useAnalytics from "@/context/Analytics/useAnalytics";
 
@@ -93,23 +92,23 @@ const TeachersPhaseSection = ({
   onClick,
 }: {
   phaseData: TeachersBrowse;
-  phase: "primary" | "secondary";
+  phase: string;
   selectedMenu?: TopNavDropdownProps["selectedMenu"];
   focusManager: DropdownFocusManager<TeachersSubNavData>;
   onClick: (subject: string, keystage: string) => void;
 }) => {
   const { track } = useAnalytics();
   const defaultKeystage = selectedMenu
-    ? phaseData.children[0]?.slug
+    ? phaseData.children?.[0]?.slug
     : undefined;
 
-  const [selectedKeystage, setSelectedKeystage] = useState<
-    | TeachersSubNavData["primary" | "secondary"]["children"][number]["slug"]
-    | undefined
-  >(defaultKeystage);
+  const [selectedKeystage, setSelectedKeystage] = useState<string | undefined>(
+    defaultKeystage,
+  );
 
-  const [selectedSubject, setSelectedSubject] =
-    useState<SubjectsNavItem | null>(null);
+  const [selectedSubject, setSelectedSubject] = useState<TeachersBrowse | null>(
+    null,
+  );
 
   useEffect(() => {
     setSelectedKeystage(defaultKeystage);
@@ -136,56 +135,13 @@ const TeachersPhaseSection = ({
     setSelectedSubject(null);
   };
 
-  const hasExamBoards = (subject: SubjectsNavItem | null) => {
-    return Boolean(
-      selectedKeystage === "ks4" &&
-        subject?.examBoards &&
-        subject.examBoards.length > 0,
-    );
-  };
-
-  const handleExamBoardPanelOpen = (subject: SubjectsNavItem) => {
-    if (!hasExamBoards(subject)) {
-      return;
-    }
+  const handleExamBoardPanelOpen = (subject: TeachersBrowse) => {
     setSelectedSubject(subject);
   };
 
-  const closeExamBoardPanel = () => {
-    setSelectedSubject(null);
-  };
-
-  // Arrow key navigation for up/down in keystages
-  const handleKeystageArrowKeys = (
-    event: React.KeyboardEvent<HTMLDivElement>,
-  ) => {
-    if (!selectedMenu) return;
-    const focusableElements = phaseData.children.map((keystage) =>
-      focusManager.createId(`teachers-${phaseData.slug}`, keystage.slug),
-    );
-    const activeElementId = document.activeElement?.id;
-    if (!activeElementId) return;
-    const currentIndex = focusableElements.indexOf(activeElementId);
-    if (focusableElements.length === 0 || currentIndex === -1) return;
-    switch (event.key) {
-      case "ArrowDown": {
-        event.preventDefault();
-        const nextIndex =
-          currentIndex >= focusableElements.length - 1 ? 0 : currentIndex + 1;
-        focusableElements[nextIndex] &&
-          document.getElementById(focusableElements[nextIndex])?.focus();
-        break;
-      }
-      case "ArrowUp": {
-        event.preventDefault();
-        const prevIndex =
-          currentIndex <= 0 ? focusableElements.length - 1 : currentIndex - 1;
-        focusableElements[prevIndex] &&
-          document.getElementById(focusableElements[prevIndex])?.focus();
-        break;
-      }
-    }
-  };
+  // const closeExamBoardPanel = () => {
+  //   setSelectedSubject(null);
+  // };
 
   const isKeystageOpen = (slug: string) => selectedKeystage === slug;
   return (
@@ -198,9 +154,8 @@ const TeachersPhaseSection = ({
         id={`topnav-teachers-${phase}`}
         role="tablist"
         ref={keystagesRef}
-        onKeyDown={handleKeystageArrowKeys}
       >
-        {phaseData.children.map((keystage) => {
+        {phaseData.children?.map((keystage) => {
           const buttonId = focusManager.createId(
             `teachers-${phase}`,
             keystage.slug,
@@ -237,7 +192,7 @@ const TeachersPhaseSection = ({
           );
         })}
       </OakFlex>
-      {phaseData.children.map((keystage) => (
+      {phaseData.children?.map((keystage) => (
         <MaybeVisuallyHidden
           key={keystage.slug}
           hiddenElementId={`teachers-subjects-section-${keystage.slug}`}
@@ -252,7 +207,6 @@ const TeachersPhaseSection = ({
             keyStageSlug={keystage.slug}
             selectedSubject={selectedSubject}
             onExamBoardPanelOpen={handleExamBoardPanelOpen}
-            closeExamBoardPanel={closeExamBoardPanel}
           />
         </MaybeVisuallyHidden>
       ))}

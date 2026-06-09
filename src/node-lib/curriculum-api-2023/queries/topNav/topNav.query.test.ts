@@ -1,6 +1,6 @@
 import topNavQuery from "./topNav.query";
 import { mockResponseData } from "./fixtures";
-import { topNavResponseSchema } from "./topNav.schema";
+import { SubjectsNavItemProps, topNavResponseSchema } from "./topNav.schema";
 
 import sdk from "@/node-lib/curriculum-api-2023/sdk";
 import OakError from "@/errors/OakError";
@@ -33,7 +33,12 @@ describe("TopNavQuery", () => {
     expect(res.teachers?.secondary.children).toHaveLength(2);
     expect(res.pupils?.primary.children).toHaveLength(3);
     expect(res.pupils?.secondary.children).toHaveLength(1);
-    expect(res.teachers?.primary.children[0]?.children[0]?.href).toBeDefined();
+    expect(
+      (
+        res.teachers?.primary.children?.[0]?.children?.[0]
+          ?.navItemProps as SubjectsNavItemProps
+      ).href,
+    ).toBeDefined();
   });
   it("reports an error when data is missing", async () => {
     await topNavQuery({

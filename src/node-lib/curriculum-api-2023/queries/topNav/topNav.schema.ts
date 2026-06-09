@@ -3,6 +3,8 @@ import { programmeFieldsSchema } from "@oaknational/oak-curriculum-schema";
 
 import curriculumPhaseOptionsSchema from "../curriculumPhaseOptions/curriculumPhaseOptions.schema";
 
+import { Tier } from "@/utils/curriculum/types";
+
 export const topNavResponseSchema = z.object({
   programmes: z.array(
     z.object({
@@ -77,15 +79,38 @@ export type SubjectsNavItem = {
   examBoards?: ProgrammeFactorButton[]; // available exam boards for KS4 subjects with multiple programmes
 };
 
+type PhaseNavItemProps = { type: "phaseNavItem" };
+type KeystageNavItemProps = { type: "keystageNavItem"; description: string };
+export type SubjectsNavItemProps = {
+  type: "subjectNavItem";
+  href: string;
+  programmeSlug: string | null;
+  programmeCount: number;
+  nonCurriculum: boolean;
+};
+export type ExamboardNavItemProps = {
+  type: "examboardNavItem";
+  href: string;
+  programmeFactors?: {
+    tier: {
+      slug: Tier["tier_slug"];
+      description: Tier["tier"];
+    } | null;
+    examboard: { slug: string; title: string } | null;
+  };
+};
+
+type NavItemProps =
+  | PhaseNavItemProps
+  | KeystageNavItemProps
+  | SubjectsNavItemProps
+  | ExamboardNavItemProps;
+
 export type TeachersBrowse = {
-  title: "Primary" | "Secondary";
-  slug: "primary" | "secondary";
-  children: Array<{
-    title: string;
-    slug: string;
-    description: string;
-    children: Array<SubjectsNavItem>;
-  }>;
+  title: string;
+  slug: string;
+  navItemProps: NavItemProps;
+  children: Array<TeachersBrowse> | null;
 };
 
 export type PupilsSubNavData = {

@@ -129,7 +129,7 @@ const TopNav = (props: TopNavProps) => {
     },
     [selectedMenu],
   );
-
+  console.log("diego", { selectedMenu });
   const handleCloseDropdown = useCallback(() => {
     setSelectedMenu(undefined);
   }, []);

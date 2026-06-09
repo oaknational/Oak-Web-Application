@@ -1,8 +1,4 @@
-import {
-  TopNavResponse,
-  TeachersBrowse,
-  ProgrammeFactorButton,
-} from "./topNav.schema";
+import { TopNavResponse, TeachersBrowse } from "./topNav.schema";
 import {
   getTeachersExamBoardNavHref,
   getTeachersSubjectNavHref,
@@ -23,7 +19,7 @@ export const getExamBoardsForKS4Subject = ({
   subjectSlug: string;
   pathwaySlug: string | null;
   subjectParent?: string | null;
-}): ProgrammeFactorButton[] => {
+}): TeachersBrowse[] => {
   const matchingProgrammes = data.programmes
     .filter((p) => {
       const { subject_slug, keystage_slug, pathway_slug } = p.programme_fields;
@@ -54,53 +50,41 @@ export const getExamBoardsForKS4Subject = ({
     );
   });
 
-  const examBoards: ProgrammeFactorButton[] =
-    programmesForKs.flatMap<ProgrammeFactorButton>((p) => {
+  const examboards: TeachersBrowse[] = programmesForKs.flatMap<TeachersBrowse>(
+    (p) => {
       const { examboard, examboard_slug, tier_slug, tier_description } =
         p.programme_fields;
 
-      if (examboard && examboard_slug) {
-        return [
-          {
-            buttonTitle: examboard,
-            programmeSlug: p.programme_slug,
-            href: getTeachersExamBoardNavHref({
-              subjectSlug,
-              phaseSlug: p.programme_fields.phase_slug,
-              subjectParent,
-              examboardSlug: examboard_slug,
-              tierSlug: tier_slug,
-            }),
-            programmeFactors: {
-              tier: { slug: tier_slug, description: tier_description },
-              examboard: { slug: examboard_slug, title: examboard },
-            },
+      const title = examboard && examboard_slug ? examboard : tier_description;
+      return {
+        title: title ?? "",
+        slug: p.programme_slug,
+        children: null,
+        navItemProps: {
+          type: "examboardNavItem",
+          href: getTeachersExamBoardNavHref({
+            subjectSlug,
+            phaseSlug: p.programme_fields.phase_slug,
+            subjectParent,
+            tierSlug: tier_slug,
+            examboardSlug: examboard_slug,
+          }),
+          programmeFactors: {
+            tier:
+              tier_slug && tier_description
+                ? { slug: tier_slug, description: tier_description }
+                : null,
+            examboard:
+              examboard && examboard_slug
+                ? { slug: examboard_slug, title: examboard }
+                : null,
           },
-        ];
-      }
+        },
+      };
+    },
+  );
 
-      if (tier_slug && tier_description) {
-        return [
-          {
-            buttonTitle: tier_description,
-            programmeSlug: p.programme_slug,
-            href: getTeachersExamBoardNavHref({
-              subjectSlug,
-              phaseSlug: p.programme_fields.phase_slug,
-              subjectParent,
-              tierSlug: tier_slug,
-            }),
-            programmeFactors: {
-              tier: { slug: tier_slug, description: tier_description },
-            },
-          },
-        ];
-      }
-
-      return [];
-    });
-
-  return examBoards;
+  return examboards;
 };
 
 export const getTeachersNavData = (
@@ -119,6 +103,7 @@ export const getTeachersNavData = (
     title: `${phaseSlug[0]?.toUpperCase()}${phaseSlug.slice(1)}` as
       | "Primary"
       | "Secondary",
+    navItemProps: { type: "phaseNavItem" },
     children:
       phaseSlug === "primary"
         ? keystagesForPhase.concat(
@@ -136,7 +121,7 @@ const getKeystages = (
   data: TopNavResponse,
   phaseSlug: "primary" | "secondary" | "foundation",
   curriculumPhaseOptionsSubjects: CurriculumPhaseOptions,
-) => {
+): TeachersBrowse[] => {
   // Get all programmes for the given phase
   const byPhase = data.programmes.filter(
     (p) => p.programme_fields.phase_slug === phaseSlug,
@@ -234,17 +219,33 @@ const getKeystages = (
             : null;
 
         return {
-          ...subjectNavItem,
-          href,
-          ...(examBoardsData ? { examBoards: examBoardsData } : {}),
+          title,
+          slug: subjectNavItem.slug,
+          navItemProps: {
+            href,
+            type: "subjectNavItem" as const,
+            nonCurriculum: subjectNavItem.nonCurriculum,
+            programmeSlug: subjectNavItem.programmeSlug,
+            programmeCount: subjectNavItem.programmeCount,
+          },
+          children: examBoardsData ?? null,
         };
       });
 
-    const curriculumSubjects = subjects.filter((s) => !s.nonCurriculum);
-    const nonCurriculumSubjects = subjects.filter((s) => s.nonCurriculum);
+    const curriculumSubjects = subjects.filter(
+      (s) => !s.navItemProps.nonCurriculum,
+    );
+    const nonCurriculumSubjects = subjects.filter(
+      (s) => s.navItemProps.nonCurriculum,
+    );
 
     return {
-      ...ks,
+      title: ks.title,
+      slug: ks.slug,
+      navItemProps: {
+        type: "keystageNavItem" as const,
+        description: ks.description,
+      },
       children: [...curriculumSubjects, ...nonCurriculumSubjects],
     };
   });

@@ -299,7 +299,36 @@ export class DropdownFocusManager<
     this.focusElementById(ancestorNode.id);
   }
 
+  handleArrowKeys({
+    event,
+    elementId,
+  }: {
+    event: React.KeyboardEvent;
+    elementId: string;
+  }) {
+    event.preventDefault();
+    const currentNode = this.getNode(elementId);
+    const parentNode = currentNode.parent
+      ? this.getNode(currentNode.parent?.parentId)
+      : undefined;
+    const siblings = parentNode?.children;
+    const currentElementIndex = siblings?.indexOf(elementId);
+    if (siblings && currentElementIndex !== undefined) {
+      const newIndex =
+        event.key === "ArrowDown"
+          ? currentElementIndex + 1
+          : currentElementIndex - 1;
+      const nextElement = siblings[newIndex];
+      if (nextElement) {
+        this.focusElementById(nextElement);
+      }
+    }
+  }
+
   handleKeyDown(event: React.KeyboardEvent, elementId: string) {
+    if (event.key === "ArrowDown" || event.key === "ArrowUp") {
+      this.handleArrowKeys({ event, elementId });
+    }
     if (event.key !== "Tab") return;
     const currentNode = this.getNode(elementId);
     if (event.shiftKey) {
