@@ -1,3 +1,5 @@
+import slugify from "slugify";
+
 import { FocusTreeNode } from "./types";
 
 import {
@@ -18,13 +20,6 @@ export const createFocusId = (
   if (!slug) return `${area}-${parentId}`;
   return `${slug}-${parentId}`;
 };
-
-const slugify = (value: string) =>
-  value
-    .toLowerCase()
-    .trim()
-    .replace(/[^a-z0-9]+/g, "-")
-    .replace(/^-+|-+$/g, "");
 
 export const getExamBoardFocusSlug = (examBoard: ProgrammeFactorButton) => {
   const examboardSlug = examBoard.programmeFactors?.examboard?.slug;
