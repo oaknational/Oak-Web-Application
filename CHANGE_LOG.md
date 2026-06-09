@@ -1,3 +1,13 @@
+## [1.1095.5](https://github.com/oaknational/Oak-Web-Application/compare/v1.1095.4...v1.1095.5) (2026-06-09)
+
+
+### Bug Fixes
+
+* **PUPIL-1748:** announce share validation errors to screen readers (defect 1) ([05fe761](https://github.com/oaknational/Oak-Web-Application/commit/05fe761960261699364cf8e58928af09663bbece))
+* **PUPIL-1748:** hide validation summary when no messages to show ([790f0ee](https://github.com/oaknational/Oak-Web-Application/commit/790f0ee21095b22f335143b69b4d4ea57b6df70f))
+* **PUPIL-1748:** satisfy FieldError type in validation summary test ([db12d7c](https://github.com/oaknational/Oak-Web-Application/commit/db12d7c837cbe6841954aba0e069abe1f36ce9c7))
+* **PUPIL-1748:** use prose SR announcement for share validation summary ([5b7dc01](https://github.com/oaknational/Oak-Web-Application/commit/5b7dc01b81295d6701bfa8e2af498ed3e4ed58f6))
+
 ## [1.1095.4](https://github.com/oaknational/Oak-Web-Application/compare/v1.1095.3...v1.1095.4) (2026-06-09)
 
 
