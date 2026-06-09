@@ -7,6 +7,7 @@ import {
   OakBox,
   OakTertiaryInvertedButton,
 } from "@oaknational/oak-components";
+import { useRef, useState, useEffect } from "react";
 
 export type HeaderNavFooterProps = {
   backgroundColorLevel: 1 | 3 | 4;
@@ -17,9 +18,37 @@ export type HeaderNavFooterProps = {
   viewHref: string;
 };
 
+function useDetectStuck() {
+  const ref = useRef<HTMLDivElement>(null);
+
+  const [isStuck, setIsStuck] = useState<boolean>(false);
+
+  useEffect(() => {
+    if (!ref.current) {
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      ([event]) => setIsStuck(event ? event.intersectionRatio < 1 : false),
+      { threshold: [1], rootMargin: "-1px 0px 0px 0px" },
+    );
+    observer.observe(ref.current);
+
+    return () => observer.disconnect();
+  }, []);
+
+  return { ref, isStuck };
+}
+
 const HeaderNavFooter = (props: HeaderNavFooterProps) => {
+  const { ref, isStuck } = useDetectStuck();
+  console.log(isStuck);
   return (
     <OakFlex
+      $zIndex={"in-front"}
+      ref={ref}
+      $position={"sticky"}
+      $top={"spacing-0"}
       $background={`bg-decorative${props.backgroundColorLevel}-subdued`}
       $width={"100%"}
       $pv={"spacing-24"}
