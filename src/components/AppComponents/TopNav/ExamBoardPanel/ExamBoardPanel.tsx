@@ -86,7 +86,7 @@ const ExamBoardPanel = ({
 
   const panelTitle = `Choose ${
     hasTierOnlyOptions && !hasExamBoardOptions ? "tier" : "exam board"
-  } for ${keystageSlug.includes("ks") ? keystageSlug.toUpperCase() : keystageSlug} ${selectedSubject.title}`;
+  } for KS4 ${selectedSubject.title}`;
 
   const sortedExamBoards = examboards.toSorted((a, b) =>
     a.buttonTitle.localeCompare(b.buttonTitle),
