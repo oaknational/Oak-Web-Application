@@ -1,3 +1,11 @@
+## [1.1095.4](https://github.com/oaknational/Oak-Web-Application/compare/v1.1095.3...v1.1095.4) (2026-06-09)
+
+
+### Bug Fixes
+
+* **PUPIL-1748:** group activity checkboxes in fieldset (defect 3) ([b15c988](https://github.com/oaknational/Oak-Web-Application/commit/b15c988022207f108554e9b97f370aff6140d3af))
+* **PUPIL-1748:** group share actions for assistive technology (defect 4) ([3db5c01](https://github.com/oaknational/Oak-Web-Application/commit/3db5c01b5db356f912a0331cb42c7f4d15d26d91))
+
 ## [1.1095.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.1095.2...v1.1095.3) (2026-06-09)
 
 
