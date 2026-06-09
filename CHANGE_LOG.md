@@ -1,3 +1,10 @@
+## [1.1095.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.1095.1...v1.1095.2) (2026-06-09)
+
+
+### Bug Fixes
+
+* **PUPIL-1748:** add programmatic labels to share activity checkboxes ([2aabb33](https://github.com/oaknational/Oak-Web-Application/commit/2aabb3346ff74703c8316ca93ade73e5f2e9f472))
+
 ## [1.1095.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.1095.0...v1.1095.1) (2026-06-09)
 
 

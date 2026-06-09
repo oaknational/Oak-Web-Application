@@ -25,6 +25,11 @@ export type ResourceCardProps = Omit<CheckboxProps, "checked"> & {
   checked?: boolean;
 };
 
+export const getActivityDownloadCardAriaLabel = (
+  title: string,
+  format: string,
+) => `${title} ${format}`;
+
 const RESOURCE_TYPE_ICON_MAP: Record<
   LessonShareResourceData["type"],
   OakIconName
@@ -65,6 +70,7 @@ const ResourceCard: FC<ResourceCardProps> = (props) => {
         value={id}
         name={name}
         title={label}
+        aria-label={getActivityDownloadCardAriaLabel(label, subtitle)}
         checked={checked}
         disabled={disabled}
         onChange={onChange}
