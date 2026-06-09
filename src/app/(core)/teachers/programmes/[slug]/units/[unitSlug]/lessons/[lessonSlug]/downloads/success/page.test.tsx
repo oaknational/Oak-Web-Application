@@ -10,6 +10,11 @@ jest.mock("next/navigation", () => ({
   },
 }));
 
+const featureFlagMock = jest.fn().mockResolvedValue(undefined);
+jest.mock("@/utils/featureFlags", () => ({
+  getFeatureFlagValue: () => featureFlagMock(),
+}));
+
 const mockTeachersUnitOverview = jest.fn();
 jest.mock("@/node-lib/curriculum-api-2023", () => ({
   __esModule: true,
@@ -50,6 +55,7 @@ const teachersUnitOverviewFixture = {
 describe("LessonDownloadsSuccessPage", () => {
   beforeEach(() => {
     mockTeachersUnitOverview.mockResolvedValue(teachersUnitOverviewFixture);
+    featureFlagMock.mockResolvedValue(undefined);
   });
 
   it("fetches unit data and renders success confirmation", async () => {
@@ -69,9 +75,32 @@ describe("LessonDownloadsSuccessPage", () => {
           lessonSlug: "solid-and-liquid-states",
           unitvariantId: 123,
         }),
+        ctaVariant: "control",
       },
     });
   });
+
+  it.each([
+    { flagValue: undefined, expectedVariant: "control" },
+    { flagValue: "control", expectedVariant: "control" },
+    { flagValue: "test", expectedVariant: "test" },
+  ])(
+    "passes ctaVariant $expectedVariant when feature flag is $flagValue",
+    async ({ flagValue, expectedVariant }) => {
+      featureFlagMock.mockResolvedValue(flagValue);
+
+      const result = await LessonDownloadsSuccessPage({
+        params: Promise.resolve(defaultParams),
+        searchParams: Promise.resolve({}),
+      });
+
+      expect(result).toMatchObject({
+        props: {
+          ctaVariant: expectedVariant,
+        },
+      });
+    },
+  );
 
   it("renders 404 when lesson release date is missing", async () => {
     mockTeachersUnitOverview.mockResolvedValue({
