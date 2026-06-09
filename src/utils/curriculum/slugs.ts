@@ -137,19 +137,30 @@ export const parseSubjectPhaseSlug = (
   };
 };
 
+function isValidKs4Option(
+  phaseSlug: string,
+  ks4OptionSlug: string | null,
+  ks4Options: { slug: string }[] | undefined | null,
+): boolean {
+  if (phaseSlug === "primary") {
+    return !ks4OptionSlug;
+  }
+  if (!ks4Options || ks4Options.length === 0) {
+    return !ks4OptionSlug;
+  }
+  return ks4Options.some((o) => o.slug === ks4OptionSlug);
+}
+
 export function isValidSubjectPhaseSlug(
   allSubjectPhases: CurriculumPhaseOptions,
   slugs: CurriculumSelectionSlugs,
 ) {
   const isValid = allSubjectPhases.find((sp) => {
-    const isValidSubjectSlug = sp.slug === slugs.subjectSlug;
-    const hasMatchingPhase = sp.phases.find((p) => p.slug === slugs.phaseSlug);
-    const isValidKs4Option =
-      slugs.phaseSlug === "primary" ||
-      (!sp.ks4_options && !slugs.ks4OptionSlug) ||
-      sp.ks4_options?.length === 0 ||
-      sp.ks4_options?.find((o) => o.slug === slugs.ks4OptionSlug);
-    return isValidSubjectSlug && hasMatchingPhase && isValidKs4Option;
+    return (
+      sp.slug === slugs.subjectSlug &&
+      sp.phases.some((p) => p.slug === slugs.phaseSlug) &&
+      isValidKs4Option(slugs.phaseSlug, slugs.ks4OptionSlug, sp.ks4_options)
+    );
   });
   return !!isValid;
 }
@@ -205,7 +216,7 @@ export function getKs4RedirectSlug(
     const hasMatchingPhase = sp.phases.find((p) => p.slug === slugs.phaseSlug);
     return isValidSubjectSlug && hasMatchingPhase;
   });
-  if (!match || !match.ks4_options) {
+  if (!match?.ks4_options) {
     return;
   }
 

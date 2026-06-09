@@ -2,7 +2,11 @@
  * @jest-environment node
  */
 
-import { getProgrammeData } from "./getProgrammeData";
+import {
+  getProgrammeData,
+  getSubjectOverride,
+  getSubjectPhaseOptions,
+} from "./getProgrammeData";
 
 import { CurriculumApi } from "@/node-lib/curriculum-api-2023";
 import { createUnit } from "@/fixtures/curriculum/unit";
@@ -55,14 +59,21 @@ describe("getProgrammeData", () => {
   describe("with valid subject phase slug", () => {
     it("should return programme data with sorted units", async () => {
       const mockApi = createMockCurriculumApi();
-      const result = await getProgrammeData(mockApi, "maths-primary");
+      const programmeResults = await getProgrammeData(mockApi, "maths-primary");
+      const subjectResults = await getSubjectPhaseOptions(
+        mockApi,
+        "maths-primary",
+      );
 
-      expect(result).not.toBeNull();
-      expect(result?.programmeUnitsData.subjectTitle).toBe("Maths");
-      expect(result?.curriculumUnitsData.units).toHaveLength(2);
-      expect(result?.curriculumPhaseOptions.tab).toBe("units");
-      expect(result?.subjectPhaseKeystageSlugs.subjectSlug).toBe("maths");
-      expect(result?.subjectPhaseKeystageSlugs.phaseSlug).toBe("primary");
+      expect(programmeResults).not.toBeNull();
+      expect(programmeResults?.programmeUnitsData.subjectTitle).toBe("Maths");
+      expect(programmeResults?.curriculumUnitsData.units).toHaveLength(2);
+      expect(subjectResults?.subjectPhaseKeystageSlugs.subjectSlug).toBe(
+        "maths",
+      );
+      expect(subjectResults?.subjectPhaseKeystageSlugs.phaseSlug).toBe(
+        "primary",
+      );
     });
 
     it("should call curriculumApi methods with correct parameters", async () => {
@@ -82,7 +93,6 @@ describe("getProgrammeData", () => {
         excludeUnitsWithNoPublishedLessons: true,
         excludeCoreUnits: true,
       });
-      expect(mockApi.curriculumPhaseOptions).toHaveBeenCalled();
     });
 
     it("should sort units with examboard versions first, then by order", async () => {
@@ -135,21 +145,21 @@ describe("getProgrammeData", () => {
 
       const result = await getProgrammeData(mockApi, "maths-primary");
 
-      expect(result!.curriculumUnitsData.units).toHaveLength(4);
+      expect(result?.curriculumUnitsData.units).toHaveLength(4);
       // Note: The sorting logic sorts by examboard first, then by order globally
       // So units are sorted: examboard-1 (order 1), regular-1 (order 1), examboard-2 (order 2), regular-2 (order 2)
-      expect(result!.curriculumUnitsData.units[0]!.slug).toBe(
+      expect(result?.curriculumUnitsData.units[0]!.slug).toBe(
         "unit-examboard-1",
       );
-      expect(result!.curriculumUnitsData.units[0]!.examboard).toBeTruthy();
-      expect(result!.curriculumUnitsData.units[1]!.slug).toBe("unit-regular-1");
-      expect(result!.curriculumUnitsData.units[1]!.examboard).toBeFalsy();
-      expect(result!.curriculumUnitsData.units[2]!.slug).toBe(
+      expect(result?.curriculumUnitsData.units[0]!.examboard).toBeTruthy();
+      expect(result?.curriculumUnitsData.units[1]!.slug).toBe("unit-regular-1");
+      expect(result?.curriculumUnitsData.units[1]!.examboard).toBeFalsy();
+      expect(result?.curriculumUnitsData.units[2]!.slug).toBe(
         "unit-examboard-2",
       );
-      expect(result!.curriculumUnitsData.units[2]!.examboard).toBeTruthy();
-      expect(result!.curriculumUnitsData.units[3]!.slug).toBe("unit-regular-2");
-      expect(result!.curriculumUnitsData.units[3]!.examboard).toBeFalsy();
+      expect(result?.curriculumUnitsData.units[2]!.examboard).toBeTruthy();
+      expect(result?.curriculumUnitsData.units[3]!.slug).toBe("unit-regular-2");
+      expect(result?.curriculumUnitsData.units[3]!.examboard).toBeFalsy();
     });
 
     it("should filter curriculum phase options", async () => {
@@ -169,10 +179,13 @@ describe("getProgrammeData", () => {
         ]),
       });
 
-      const result = await getProgrammeData(mockApi, "maths-primary");
+      const subjectResults = await getSubjectPhaseOptions(
+        mockApi,
+        "maths-primary",
+      );
 
-      expect(result?.curriculumPhaseOptions.subjects).toHaveLength(1);
-      const englishSubject = result?.curriculumPhaseOptions.subjects[0];
+      expect(subjectResults?.subjects).toHaveLength(1);
+      const englishSubject = subjectResults?.subjects[0];
       expect(englishSubject?.ks4_options).toHaveLength(2);
       // GCSE should be removed if it's not first and there are examboard options
       const gcseOption = englishSubject?.ks4_options?.find(
@@ -204,20 +217,34 @@ describe("getProgrammeData", () => {
       });
 
       const result = await getProgrammeData(mockApi, "science-secondary");
+      const subjectResults = await getSubjectPhaseOptions(
+        mockApi,
+        "science-secondary",
+      );
 
       expect(result).not.toBeNull();
-      expect(result!.programmeUnitsData.subjectTitle).toBe("Science");
-      expect(result!.programmeUnitsData.phaseTitle).toBe("Secondary");
-      expect(result!.subjectPhaseKeystageSlugs.subjectSlug).toBe("science");
-      expect(result!.subjectPhaseKeystageSlugs.phaseSlug).toBe("secondary");
+      expect(result?.programmeUnitsData.subjectTitle).toBe("Science");
+      expect(result?.programmeUnitsData.phaseTitle).toBe("Secondary");
+      expect(subjectResults?.subjectPhaseKeystageSlugs.subjectSlug).toBe(
+        "science",
+      );
+      expect(subjectResults?.subjectPhaseKeystageSlugs.phaseSlug).toBe(
+        "secondary",
+      );
     });
 
     it("should handle ks4 option slug", async () => {
       const mockApi = createMockCurriculumApi();
       const result = await getProgrammeData(mockApi, "maths-secondary-aqa");
+      const subjectResults = await getSubjectPhaseOptions(
+        mockApi,
+        "maths-secondary-aqa",
+      );
 
       expect(result).not.toBeNull();
-      expect(result!.subjectPhaseKeystageSlugs.ks4OptionSlug).toBe("aqa");
+      expect(subjectResults?.subjectPhaseKeystageSlugs.ks4OptionSlug).toBe(
+        "aqa",
+      );
       expect(mockApi.curriculumSequence).toHaveBeenCalledWith({
         subjectSlug: "maths",
         phaseSlug: "secondary",
@@ -244,9 +271,11 @@ describe("getProgrammeData", () => {
         ]),
       });
 
-      const result = await getProgrammeData(mockApi, "maths-secondary-aqa");
-
-      expect(result?.curriculumPhaseOptions.subjects[0]?.ks4_options).toEqual([
+      const subjectResults = await getSubjectPhaseOptions(
+        mockApi,
+        "maths-secondary-aqa",
+      );
+      expect(subjectResults?.subjects[0]?.ks4_options).toEqual([
         { title: "AQA", slug: "aqa" },
       ]);
     });
@@ -259,7 +288,7 @@ describe("getProgrammeData", () => {
             slug: "maths",
             phases: [{ title: "Secondary", slug: "secondary" }],
             ks4_options: [
-              { title: "AQA", slug: "aqa" },
+              { title: "GCSE", slug: "gcse" },
               { title: "Core", slug: "core" },
             ],
             keystages: [],
@@ -267,8 +296,11 @@ describe("getProgrammeData", () => {
         ]),
       });
 
-      const result = await getProgrammeData(mockApi, "maths-secondary-core");
-
+      const subjectResults = await getSubjectPhaseOptions(
+        mockApi,
+        "maths-secondary-core",
+      );
+      await getProgrammeData(mockApi, "maths-secondary-core");
       expect(mockApi.curriculumSequence).toHaveBeenCalledWith({
         subjectSlug: "maths",
         phaseSlug: "secondary",
@@ -277,8 +309,8 @@ describe("getProgrammeData", () => {
         excludeUnitsWithNoPublishedLessons: true,
         excludeCoreUnits: false,
       });
-      expect(result?.curriculumPhaseOptions.subjects[0]?.ks4_options).toEqual([
-        { title: "AQA", slug: "aqa" },
+      expect(subjectResults?.subjects[0]?.ks4_options).toEqual([
+        { title: "GCSE", slug: "gcse" },
         { title: "Core", slug: "core" },
       ]);
     });
@@ -338,19 +370,104 @@ describe("getProgrammeData", () => {
         "Resource not found",
       );
     });
+  });
+});
 
-    it("should propagate errors from curriculumPhaseOptions", async () => {
-      const mockApi = createMockCurriculumApi({
-        curriculumPhaseOptions: jest
-          .fn()
-          .mockRejectedValue(
-            new OakError({ code: "curriculum-api/not-found" }),
-          ),
-      });
-
-      await expect(getProgrammeData(mockApi, "maths-primary")).rejects.toThrow(
-        "Resource not found",
-      );
+describe("getSubjectOverride", () => {
+  const subjectOverrideAction = {
+    programme_field_overrides: {
+      subject: "Mathematics",
+    },
+  };
+  const units = [
+    createUnit({
+      slug: "unit-1",
+      title: "Unit 1",
+      order: 1,
+      examboard: null,
+      examboard_slug: null,
+      year: "10",
+      subject_slug: "maths",
+      phase_slug: "secondary",
+    }),
+  ];
+  const unitsWithOverride = units.map((u) => ({
+    ...u,
+    actions: subjectOverrideAction,
+  }));
+  const mockFilters = {
+    years: ["7", "8", "9", "10", "11"],
+    tiers: [],
+    childSubjects: [],
+    pathways: [],
+    subjectCategories: [],
+    threads: [],
+    keystages: [],
+  };
+  it("returns no override", () => {
+    const res = getSubjectOverride(units, mockFilters);
+    expect(res).toBeUndefined();
+  });
+  it("returns an override for a valid year", () => {
+    const res = getSubjectOverride(unitsWithOverride, mockFilters);
+    expect(res).toEqual("Mathematics");
+  });
+  it("returns an override scoped to the keystage", () => {
+    const res = getSubjectOverride(
+      [
+        ...unitsWithOverride,
+        createUnit({
+          slug: "unit-1",
+          title: "Unit 1",
+          order: 1,
+          examboard: null,
+          examboard_slug: null,
+          year: "7",
+          subject_slug: "maths",
+          phase_slug: "secondary",
+          actions: {
+            programme_field_overrides: {
+              subject: "KS3 override",
+            },
+          },
+        }),
+      ],
+      {
+        ...mockFilters,
+        keystages: ["ks4"],
+      },
+    );
+    expect(res).toEqual("Mathematics");
+  });
+  it("does not return an override when not valid for the keystage year", () => {
+    const res = getSubjectOverride(unitsWithOverride, {
+      ...mockFilters,
+      keystages: ["ks3"],
     });
+    expect(res).toBeUndefined();
+  });
+  it("does not return an override when there are multiple overrides in the data", () => {
+    const res = getSubjectOverride(
+      [
+        ...unitsWithOverride,
+        createUnit({
+          slug: "unit-1",
+          title: "Unit 1",
+          order: 1,
+          examboard: null,
+          examboard_slug: null,
+          year: "10",
+          subject_slug: "maths",
+          phase_slug: "secondary",
+          actions: {
+            programme_field_overrides: {
+              subject: "Duplicate Override",
+            },
+          },
+        }),
+      ],
+      mockFilters,
+    );
+    expect(res).toBeUndefined();
   });
 });

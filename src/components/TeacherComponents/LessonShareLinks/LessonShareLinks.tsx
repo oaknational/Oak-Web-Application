@@ -130,7 +130,6 @@ const LessonShareLinks: FC<{
             iconName={link.icon}
             isTrailingIcon={true}
             onClick={() => onShareClick(link)}
-            aria-label={`Share to ${link.name}`}
             key={link.name}
           >
             {link.name}
