@@ -1,3 +1,11 @@
+## [1.1095.6](https://github.com/oaknational/Oak-Web-Application/compare/v1.1095.5...v1.1095.6) (2026-06-09)
+
+
+### Bug Fixes
+
+* rm subject category from heading on downloads and explainer tabs ([225b090](https://github.com/oaknational/Oak-Web-Application/commit/225b0907dd36bc69c707ec1a6e61d3c85487b89b))
+* typo on download tab ([f021cbc](https://github.com/oaknational/Oak-Web-Application/commit/f021cbcbef2fc2977899380356ee5cc58f1f27e9))
+
 ## [1.1095.5](https://github.com/oaknational/Oak-Web-Application/compare/v1.1095.4...v1.1095.5) (2026-06-09)
 
 
