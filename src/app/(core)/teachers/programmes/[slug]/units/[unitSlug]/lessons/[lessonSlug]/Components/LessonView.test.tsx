@@ -283,6 +283,14 @@ describe("Lesson resources", () => {
     expect(createWithAiButton).not.toBeInTheDocument();
   });
 
+  it("does not render create with ai button when excludedFromTeachingMaterials is true", () => {
+    render(<LessonView {...baseProps} excludedFromTeachingMaterials={true} />);
+
+    expect(
+      screen.queryByRole("button", { name: "Create more with AI" }),
+    ).not.toBeInTheDocument();
+  });
+
   it("does not create with ai button when the lesson has no complex copyright", () => {
     render(<LessonView {...baseProps} />);
 
