@@ -172,6 +172,8 @@ const SharePageLayout: FC<SharePageLayoutProps> = (props) => {
                     </OakBox>
                   )}
                   <OakHandDrawnHR
+                    aria-hidden
+                    data-testid="share-decorative-separator"
                     $height={"spacing-2"}
                     $width={"100%"}
                     $mb={"spacing-16"}

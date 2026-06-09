@@ -1,3 +1,25 @@
+## [1.1095.4](https://github.com/oaknational/Oak-Web-Application/compare/v1.1095.3...v1.1095.4) (2026-06-09)
+
+
+### Bug Fixes
+
+* **PUPIL-1748:** group activity checkboxes in fieldset (defect 3) ([b15c988](https://github.com/oaknational/Oak-Web-Application/commit/b15c988022207f108554e9b97f370aff6140d3af))
+* **PUPIL-1748:** group share actions for assistive technology (defect 4) ([3db5c01](https://github.com/oaknational/Oak-Web-Application/commit/3db5c01b5db356f912a0331cb42c7f4d15d26d91))
+
+## [1.1095.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.1095.2...v1.1095.3) (2026-06-09)
+
+
+### Bug Fixes
+
+* **PUPIL-1748:** hide decorative separator from screen readers (defect 5) ([95d85c7](https://github.com/oaknational/Oak-Web-Application/commit/95d85c7379a90982fd499d667f48ef5488a099ed))
+
+## [1.1095.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.1095.1...v1.1095.2) (2026-06-09)
+
+
+### Bug Fixes
+
+* **PUPIL-1748:** add programmatic labels to share activity checkboxes ([2aabb33](https://github.com/oaknational/Oak-Web-Application/commit/2aabb3346ff74703c8316ca93ade73e5f2e9f472))
+
 ## [1.1095.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.1095.0...v1.1095.1) (2026-06-09)
 
 
