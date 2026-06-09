@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import {
   OakBox,
   OakFlex,
@@ -122,12 +122,6 @@ const TeachersPhaseSection = ({
 
   const [selectedSubject, setSelectedSubject] =
     useState<SubjectsNavItem | null>(null);
-
-  useEffect(() => {
-    setSelectedTopLevel(defaultTopLevel);
-    setSelectedKeystage(defaultKeystage);
-    setSelectedSubject(null);
-  }, [defaultTopLevel, defaultKeystage]);
 
   const keystagesRef = useRef<HTMLDivElement>(null);
 
