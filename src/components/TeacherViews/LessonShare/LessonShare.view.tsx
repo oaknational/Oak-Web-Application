@@ -244,6 +244,7 @@ export function LessonShare(props: LessonShareProps) {
         </OakBox>
         <SharePageLayout
           errors={form.errors}
+          validationSummaryKey={form.submitCount}
           header="Share your lesson"
           showNoResources={!hasResources || Boolean(expired)}
           showLoading={isLocalStorageLoading}

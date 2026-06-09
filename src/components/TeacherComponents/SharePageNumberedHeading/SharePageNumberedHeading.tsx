@@ -9,10 +9,12 @@ export const SharePageNumberedHeading = ({
   number,
   title,
   paragraph,
+  titleId,
 }: {
   number: number;
   title: string;
   paragraph: string;
+  titleId?: string;
 }) => {
   return (
     <OakFlex $flexDirection={"column"} $gap={"spacing-24"}>
@@ -31,7 +33,9 @@ export const SharePageNumberedHeading = ({
           >
             <OakSpan $font={"body-1-bold"}>{number}</OakSpan>
           </OakFlex>
-          <OakSpan $ml={"spacing-16"}>{title}</OakSpan>
+          <OakSpan $ml={"spacing-16"} id={titleId}>
+            {title}
+          </OakSpan>
         </OakFlex>
       </OakHeading>
       <OakP $font={"body-1"}>{paragraph}</OakP>
