@@ -1,3 +1,11 @@
+## [1.1095.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.1095.0...v1.1095.1) (2026-06-09)
+
+
+### Bug Fixes
+
+* ensure subject override only applies to applicable ks ([2174b9e](https://github.com/oaknational/Oak-Web-Application/commit/2174b9e556643e1febb91742e01b63cea15500fd))
+* use subject title override for programme page ([a59d8c6](https://github.com/oaknational/Oak-Web-Application/commit/a59d8c64933b7542cf88f728761b89d37be37d93))
+
 # [1.1095.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1094.0...v1.1095.0) (2026-06-09)
 
 
