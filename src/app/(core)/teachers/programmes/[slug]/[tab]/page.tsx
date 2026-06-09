@@ -5,7 +5,11 @@ import { cache } from "react";
 import { ProgrammeView } from "./Components/ProgrammeView";
 import { isTabSlug } from "./tabSchema";
 import { getMetaTitle } from "./getMetaTitle";
-import { getSubjectPhaseOptions, getProgrammeData } from "./getProgrammeData";
+import {
+  getSubjectPhaseOptions,
+  getProgrammeData,
+  getSubjectOverride,
+} from "./getProgrammeData";
 
 import {
   createDownloadsData,
@@ -25,10 +29,7 @@ import withPageErrorHandling, {
 } from "@/hocs/withPageErrorHandling";
 import { resolveOakHref } from "@/common-lib/urls";
 import { getSubjectPhaseSlug } from "@/components/TeacherComponents/helpers/getSubjectPhaseSlug";
-import {
-  resolveFilterFromSearchParams,
-  scopeYearsToKeystageFilter,
-} from "@/utils/curriculum/filtersUrl";
+import { resolveFilterFromSearchParams } from "@/utils/curriculum/filtersUrl";
 import { redirectProgrammeSlugIfNeeded } from "@/utils/integratedJourney/legacyProgrammeUnitsRedirect";
 import { cacheData } from "@/node-lib/cache";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
@@ -264,26 +265,10 @@ const InnerProgrammePage = async (props: AppPageProps<ProgrammePageParams>) => {
     curriculumUnitsData.units,
   );
 
-  const getSubjectOverride = () => {
-    const overrides: string[] = [];
-    curriculumUnitsData.units.forEach((unit) => {
-      const override = unit.actions?.programme_field_overrides?.subject;
-
-      if (override && !overrides.includes(override)) {
-        const scopedYearFilters = scopeYearsToKeystageFilter(resolvedFilter);
-        if (scopedYearFilters.includes(unit.year)) {
-          overrides.push(override);
-        }
-      }
-    });
-
-    if (overrides.length === 1) {
-      return overrides[0];
-    }
-  };
-
   const curriculumSelectionTitles = {
-    subjectTitle: getSubjectOverride() ?? programmeUnitsData.subjectTitle,
+    subjectTitle:
+      getSubjectOverride(curriculumUnitsData.units, resolvedFilter) ??
+      programmeUnitsData.subjectTitle,
     phaseTitle: programmeUnitsData.phaseTitle,
     examboardTitle: ks4Option?.title,
   };

@@ -85,6 +85,7 @@ jest.mock("@/browser-lib/getBrowserConfig", () => ({
 jest.mock("./getProgrammeData", () => ({
   getProgrammeData: jest.fn(),
   getSubjectPhaseOptions: jest.fn(),
+  getSubjectOverride: jest.fn(),
 }));
 
 const mockErrorReporter = jest.fn();
