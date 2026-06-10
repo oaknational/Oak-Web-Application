@@ -136,9 +136,11 @@ describe("ResourcePageSchoolDetails", () => {
       "aria-invalid",
       "true",
     );
-    expect(screen.getByTestId("checkbox-download")).toHaveAttribute(
+    const notListedCheckbox = screen.getByTestId("checkbox-download");
+    expect(notListedCheckbox).toHaveAttribute(
       "aria-describedby",
       SHARE_FORM_ERROR_IDS.school,
     );
+    expect(notListedCheckbox).not.toHaveAttribute("aria-invalid");
   });
 });

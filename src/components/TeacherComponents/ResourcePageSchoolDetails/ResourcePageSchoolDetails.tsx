@@ -110,7 +110,6 @@ const ResourcePageSchoolDetails: FC<ResourcePageSchoolDetailsProps> = ({
           name={"checkbox-not-listed"}
           displayValue={"My school isn't listed"}
           data-testid={"checkbox-download"}
-          aria-invalid={errors?.school ? true : undefined}
           aria-describedby={
             errors?.school ? SHARE_FORM_ERROR_IDS.school : undefined
           }

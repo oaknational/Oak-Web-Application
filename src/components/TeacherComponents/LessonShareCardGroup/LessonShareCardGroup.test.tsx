@@ -156,7 +156,7 @@ describe("lesson share card group", () => {
         "aria-describedby",
         SHARE_FORM_ERROR_IDS.resources,
       );
-      expect(checkbox).toHaveAttribute("aria-invalid", "true");
+      expect(checkbox).not.toHaveAttribute("aria-invalid");
     }
   });
 });

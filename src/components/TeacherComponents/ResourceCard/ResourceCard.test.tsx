@@ -109,6 +109,6 @@ describe("ResourceCard", () => {
       "aria-describedby",
       SHARE_FORM_ERROR_IDS.resources,
     );
-    expect(input).toHaveAttribute("aria-invalid", "true");
+    expect(input).not.toHaveAttribute("aria-invalid");
   });
 });

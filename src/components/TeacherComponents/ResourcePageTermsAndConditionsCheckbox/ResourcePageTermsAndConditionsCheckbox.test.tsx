@@ -34,13 +34,25 @@ describe("ResourcePageTermsAndConditionsCheckbox", () => {
     const termsError = screen.getByText("Please select the checkbox");
     expect(termsError).toBeInTheDocument();
     expect(termsError).toHaveAttribute("id", SHARE_FORM_ERROR_IDS.terms);
-    expect(screen.getByTestId("termsCheckboxInput")).toHaveAttribute(
+    const termsInput = screen.getByTestId("termsCheckboxInput");
+    expect(termsInput).toHaveAttribute(
       "aria-describedby",
       SHARE_FORM_ERROR_IDS.terms,
     );
-    expect(screen.getByTestId("termsCheckboxInput")).toHaveAttribute(
-      "aria-invalid",
-      "true",
+    expect(termsInput).toBeRequired();
+    expect(termsInput).not.toHaveAttribute("aria-invalid");
+  });
+
+  it("marks the terms checkbox as required", () => {
+    renderWithTheme(
+      <ResourcePageTermsAndConditionsCheckbox
+        checked={false}
+        onChange={jest.fn()}
+        id={"123"}
+        name={"terms"}
+      />,
     );
+
+    expect(screen.getByTestId("termsCheckboxInput")).toBeRequired();
   });
 });
