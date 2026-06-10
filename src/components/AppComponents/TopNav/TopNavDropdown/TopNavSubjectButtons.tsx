@@ -22,7 +22,7 @@ const TopNavSubjectButtons = ({
   selectedMenu,
   subjects,
   selectedSubject,
-  keyStageSlug,
+  viewTypeSlug,
   handleClick,
   focusManager,
   phase,
@@ -33,8 +33,8 @@ const TopNavSubjectButtons = ({
   phase: "primary" | "secondary";
   subjects: SubjectsNavItem[];
   selectedSubject: SubjectsNavItem | null;
-  keyStageSlug: string;
-  handleClick: (subject: string, keystage: string) => void;
+  viewTypeSlug: string;
+  handleClick: (subject: string, phase: string) => void;
   focusManager?: DropdownFocusManager<TeachersData>;
   onExamBoardPanelOpen?: (subject: SubjectsNavItem) => void;
   closeExamBoardPanel: () => void;
@@ -49,11 +49,11 @@ const TopNavSubjectButtons = ({
       return;
     }
 
-    handleClick(subject.slug, keyStageSlug);
+    handleClick(subject.slug, viewTypeSlug);
   };
 
   const focusFirstExamBoardControl = (subjectSlug: string) => {
-    const examBoardPanelId = `topnav-teachers-${keyStageSlug}-examboards-${subjectSlug}`;
+    const examBoardPanelId = `topnav-teachers-${viewTypeSlug}-examboards-${subjectSlug}`;
     const panel = document.getElementById(examBoardPanelId);
     const firstFocusable = panel?.querySelector<HTMLElement>(
       "input:not([disabled]), button:not([disabled]), [role='radio']:not([aria-disabled='true'])",
@@ -70,7 +70,7 @@ const TopNavSubjectButtons = ({
         $alignContent={"baseline"}
         $gap={"spacing-16"}
         $reset
-        id={`topnav-teachers-${keyStageSlug}-subjects`}
+        id={`topnav-teachers-${viewTypeSlug}-subjects`}
       >
         {subjects &&
           subjects.length > 0 &&
@@ -78,7 +78,7 @@ const TopNavSubjectButtons = ({
             const { slug, href } = subject;
             const buttonId = createFocusId(
               "teachers",
-              `teachers-${phase}-${keyStageSlug}`,
+              `teachers-${phase}-${viewTypeSlug}`,
               slug,
             );
 
@@ -132,7 +132,7 @@ const TopNavSubjectButtons = ({
               <ExamBoardPanel
                 examBoards={subject.examBoards}
                 phaseSlug={phase}
-                viewType={keyStageSlug}
+                viewType={viewTypeSlug}
                 selectedSubject={subject}
                 focusManager={focusManager}
                 onClick={handleClick}

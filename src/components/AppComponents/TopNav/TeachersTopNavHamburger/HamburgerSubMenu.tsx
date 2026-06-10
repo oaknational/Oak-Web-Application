@@ -219,7 +219,7 @@ export function SubmenuContent(
             selectedMenu={phase}
             subjects={subjects}
             selectedSubject={selectedExamBoardSubject}
-            keyStageSlug={keystage.slug}
+            viewTypeSlug={keystage.slug}
             phase={phase}
             onExamBoardPanelOpen={setSelectedExamBoardSubject}
             closeExamBoardPanel={() => setSelectedExamBoardSubject(null)}
