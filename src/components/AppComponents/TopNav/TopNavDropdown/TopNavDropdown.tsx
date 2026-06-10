@@ -118,7 +118,7 @@ const TeachersPhaseSection = ({
   const [selectedTopLevel, setSelectedTopLevel] = useState<string | undefined>(
     defaultTopLevel,
   );
-  const [selectedKeystage, setSelectedKeystage] = useState<string | undefined>(
+  const [selectedViewType, setSelectedViewType] = useState<string | undefined>(
     defaultKeystage,
   );
 
@@ -128,18 +128,16 @@ const TeachersPhaseSection = ({
   const keystagesRef = useRef<HTMLDivElement>(null);
 
   const onTopLevelClick = (slug: string) => {
-    const nextTopLevel =
-      slug === "keystages" && !hasKeystageChildren ? phaseData.slug : slug;
-    setSelectedTopLevel(nextTopLevel);
+    setSelectedTopLevel(slug);
     if (slug === phaseData.slug) {
-      setSelectedKeystage(phaseData.slug);
-    } else if (slug === "keystages" && hasKeystageChildren) {
-      setSelectedKeystage(keystageChildren[0]?.slug);
+      setSelectedViewType(phaseData.slug);
+    } else if (slug === "keystages") {
+      setSelectedViewType(keystageChildren[0]?.slug);
     }
     setSelectedSubject(null);
   };
 
-  const onKeystageClick = (keystageSlug: string) => {
+  const onKeystageClick = (viewType: string) => {
     track.browseRefined({
       platform: "owa",
       product: "teacher lesson resources",
@@ -147,13 +145,13 @@ const TeachersPhaseSection = ({
       componentType: "topnav-browse-button",
       eventVersion: "2.0.0",
       analyticsUseCase: "Teacher",
-      filterType: "Key stage filter",
-      filterValue: keystageSlug,
+      filterType: viewType.includes("ks") ? "Key stage filter" : "Phase filter",
+      filterValue: viewType,
       activeFilters: {},
       googleLoginHint: null,
       clientEnvironment: null,
     });
-    setSelectedKeystage(keystageSlug);
+    setSelectedViewType(viewType);
     setSelectedSubject(null);
   };
 
@@ -245,7 +243,7 @@ const TeachersPhaseSection = ({
       <MaybeVisuallyHidden
         key={slug}
         hiddenElementId={`teachers-subjects-section-${slug}`}
-        shouldDisplay={slug === selectedKeystage}
+        shouldDisplay={slug === selectedViewType}
       >
         <TopNavSubjectButtons
           handleClick={onClick}
@@ -263,7 +261,7 @@ const TeachersPhaseSection = ({
   };
 
   const isTopLevelOpen = (slug: string) => selectedTopLevel === slug;
-  const isKeystageOpen = (slug: string) => selectedKeystage === slug;
+  const isKeystageOpen = (slug: string) => selectedViewType === slug;
   return (
     <OakFlex $gap={"spacing-40"}>
       <OakFlex
