@@ -55,9 +55,6 @@ const ResourcePageTermsAndConditionsCheckbox: FC<
         data-testid="termsCheckboxInput"
         aria-describedby={errorMessage ? SHARE_FORM_ERROR_IDS.terms : undefined}
         {...props}
-        // OakCheckBox forwards required to the native input but omits it from types.
-        // @ts-expect-error required is valid on checkbox inputs
-        required
       />
       <OakLabel htmlFor={props.id} data-testid="termsCheckboxLabel">
         I accept the{" "}

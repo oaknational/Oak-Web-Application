@@ -39,20 +39,7 @@ describe("ResourcePageTermsAndConditionsCheckbox", () => {
       "aria-describedby",
       SHARE_FORM_ERROR_IDS.terms,
     );
-    expect(termsInput).toBeRequired();
     expect(termsInput).not.toHaveAttribute("aria-invalid");
-  });
-
-  it("marks the terms checkbox as required", () => {
-    renderWithTheme(
-      <ResourcePageTermsAndConditionsCheckbox
-        checked={false}
-        onChange={jest.fn()}
-        id={"123"}
-        name={"terms"}
-      />,
-    );
-
-    expect(screen.getByTestId("termsCheckboxInput")).toBeRequired();
+    expect(termsInput).not.toBeRequired();
   });
 });
