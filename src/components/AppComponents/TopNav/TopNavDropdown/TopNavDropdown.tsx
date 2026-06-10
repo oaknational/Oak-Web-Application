@@ -106,12 +106,14 @@ const TeachersPhaseSection = ({
   const phaseSubjectChildren = phaseData.children.filter(
     (item) => item.type === "phase",
   );
+  const hasKeystageChildren = keystageChildren.length > 0;
 
   const isActivePhase = selectedMenu === phaseData.slug;
-  const defaultTopLevel = isActivePhase ? phaseData.slug : "keystages";
+  const defaultTopLevel =
+    isActivePhase || !hasKeystageChildren ? phaseData.slug : "keystages";
   const defaultKeystage = isActivePhase
     ? phaseData.slug
-    : keystageChildren[0]?.slug;
+    : (keystageChildren[0]?.slug ?? phaseData.slug);
 
   const [selectedTopLevel, setSelectedTopLevel] = useState<string | undefined>(
     defaultTopLevel,
@@ -126,10 +128,12 @@ const TeachersPhaseSection = ({
   const keystagesRef = useRef<HTMLDivElement>(null);
 
   const onTopLevelClick = (slug: string) => {
-    setSelectedTopLevel(slug);
+    const nextTopLevel =
+      slug === "keystages" && !hasKeystageChildren ? phaseData.slug : slug;
+    setSelectedTopLevel(nextTopLevel);
     if (slug === phaseData.slug) {
       setSelectedKeystage(phaseData.slug);
-    } else if (slug === "keystages") {
+    } else if (slug === "keystages" && hasKeystageChildren) {
       setSelectedKeystage(keystageChildren[0]?.slug);
     }
     setSelectedSubject(null);
@@ -277,12 +281,13 @@ const TeachersPhaseSection = ({
           isTopLevelOpen,
           onTopLevelClick,
         )}
-        {renderNavButtons(
-          "keystages",
-          "Key stages",
-          isTopLevelOpen,
-          onTopLevelClick,
-        )}
+        {hasKeystageChildren &&
+          renderNavButtons(
+            "keystages",
+            "Key stages",
+            isTopLevelOpen,
+            onTopLevelClick,
+          )}
       </OakFlex>
       {selectedTopLevel === "keystages" && (
         <>
