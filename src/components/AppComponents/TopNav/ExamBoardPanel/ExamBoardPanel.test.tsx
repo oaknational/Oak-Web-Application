@@ -69,7 +69,7 @@ describe("ExamBoardPanel", () => {
       <ExamBoardPanel
         examBoards={examBoards}
         phaseSlug="secondary"
-        keystageSlug="ks4"
+        viewType="ks4"
         selectedSubject={selectedSubject}
         onClick={mockOnClick}
         onLeave={mockOnClose}
@@ -88,7 +88,7 @@ describe("ExamBoardPanel", () => {
       <ExamBoardPanel
         examBoards={examBoards}
         phaseSlug="secondary"
-        keystageSlug="ks4"
+        viewType="ks4"
         selectedSubject={selectedSubject}
         onClick={mockOnClick}
         onLeave={mockOnClose}
@@ -104,7 +104,7 @@ describe("ExamBoardPanel", () => {
       <ExamBoardPanel
         examBoards={examBoards}
         phaseSlug="secondary"
-        keystageSlug="ks4"
+        viewType="ks4"
         selectedSubject={selectedSubject}
         onClick={mockOnClick}
         onLeave={mockOnClose}
@@ -122,7 +122,7 @@ describe("ExamBoardPanel", () => {
       <ExamBoardPanel
         examBoards={examBoards}
         phaseSlug="secondary"
-        keystageSlug="ks4"
+        viewType="ks4"
         selectedSubject={selectedSubject}
         onClick={mockOnClick}
         onLeave={mockOnClose}
@@ -166,7 +166,7 @@ describe("ExamBoardPanel", () => {
       <ExamBoardPanel
         examBoards={mathsExamBoards}
         phaseSlug="secondary"
-        keystageSlug="ks4"
+        viewType="ks4"
         selectedSubject={maths}
         onClick={mockOnClick}
         onLeave={mockOnClose}
@@ -188,7 +188,7 @@ describe("ExamBoardPanel", () => {
         <ExamBoardPanel
           examBoards={examBoards}
           phaseSlug="secondary"
-          keystageSlug="ks4"
+          viewType="ks4"
           selectedSubject={selectedSubject}
           onClick={mockOnClick}
           onLeave={mockOnClose}
@@ -213,7 +213,7 @@ describe("ExamBoardPanel", () => {
         <ExamBoardPanel
           examBoards={examBoards}
           phaseSlug="secondary"
-          keystageSlug="ks4"
+          viewType="ks4"
           selectedSubject={selectedSubject}
           focusManager={focusManager}
           onClick={mockOnClick}
@@ -274,7 +274,7 @@ describe("ExamBoardPanel", () => {
         <ExamBoardPanel
           examBoards={examBoards}
           phaseSlug="secondary"
-          keystageSlug="ks4"
+          viewType="ks4"
           selectedSubject={selectedSubject}
           focusManager={focusManager}
           onClick={mockOnClick}
@@ -300,7 +300,7 @@ describe("ExamBoardPanel", () => {
         <ExamBoardPanel
           examBoards={examBoards}
           phaseSlug="secondary"
-          keystageSlug="ks4"
+          viewType="ks4"
           selectedSubject={selectedSubject}
           focusManager={focusManager}
           onClick={mockOnClick}

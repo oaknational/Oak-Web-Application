@@ -132,7 +132,7 @@ const TopNavSubjectButtons = ({
               <ExamBoardPanel
                 examBoards={subject.examBoards}
                 phaseSlug={phase}
-                keystageSlug={keyStageSlug}
+                viewType={keyStageSlug}
                 selectedSubject={subject}
                 focusManager={focusManager}
                 onClick={handleClick}

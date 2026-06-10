@@ -25,10 +25,10 @@ import {
 export type ExamBoardPanelProps = {
   examBoards: ProgrammeFactorButton[];
   phaseSlug: "primary" | "secondary";
-  keystageSlug: string;
+  viewType: string;
   selectedSubject: SubjectsNavItem;
   focusManager?: DropdownFocusManager<TeachersSubNavData>;
-  onClick: (examBoardSlug: string, keystageSlug: string) => void;
+  onClick: (examBoardSlug: string, viewType: string) => void;
   onLeave: () => void;
 };
 
@@ -42,7 +42,7 @@ const ExamBoardButton = styled(OakPrimaryInvertedButton)`
 const ExamBoardPanel = ({
   examBoards: examboards,
   phaseSlug,
-  keystageSlug,
+  viewType,
   selectedSubject,
   focusManager,
   onClick,
@@ -51,12 +51,12 @@ const ExamBoardPanel = ({
   const subjectId =
     createFocusId(
       "teachers",
-      `teachers-${phaseSlug}-${keystageSlug}`,
+      `teachers-${phaseSlug}-${viewType}`,
       selectedSubject.slug,
-    ) ?? `teachers-${phaseSlug}-${keystageSlug}-${selectedSubject.slug}`;
+    ) ?? `teachers-${phaseSlug}-${viewType}-${selectedSubject.slug}`;
 
   useEffect(() => {
-    const panelId = `topnav-teachers-${keystageSlug}-examboards-${selectedSubject.slug}`;
+    const panelId = `topnav-teachers-${viewType}-examboards-${selectedSubject.slug}`;
 
     // Wait for panel children to render before moving focus.
     requestAnimationFrame(() => {
@@ -68,7 +68,7 @@ const ExamBoardPanel = ({
         firstExamBoard?.focus();
       });
     });
-  }, [focusManager, keystageSlug, selectedSubject.slug, examboards]);
+  }, [focusManager, viewType, selectedSubject.slug, examboards]);
 
   if (!examboards || examboards.length === 0) {
     return null;
@@ -132,7 +132,7 @@ const ExamBoardPanel = ({
         $flexDirection={"column"}
         $gap={"spacing-8"}
         $reset
-        id={`topnav-teachers-${keystageSlug}-examboards-${selectedSubject.slug}`}
+        id={`topnav-teachers-${viewType}-examboards-${selectedSubject.slug}`}
         role="list"
         style={{
           display: "flex",
@@ -167,7 +167,7 @@ const ExamBoardPanel = ({
                 onKeyDown={(e: React.KeyboardEvent<HTMLAnchorElement>) =>
                   handleExamBoardKeyDown(e, buttonId, index)
                 }
-                onClick={() => onClick(selectedSubject.slug, keystageSlug)}
+                onClick={() => onClick(selectedSubject.slug, viewType)}
               >
                 {title}
               </ExamBoardButton>
