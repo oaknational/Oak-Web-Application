@@ -1,6 +1,7 @@
 "use client";
 import { OakBox, parseSpacing } from "@oaknational/oak-components";
 import styled from "styled-components";
+import { useRef, useState, useEffect } from "react";
 
 import UnitDownloadButton, {
   useUnitDownloadButtonState,
@@ -45,6 +46,28 @@ const NegativeBorderBox = styled(OakBox)`
   margin-block: -${parseSpacing("spacing-8")};
 `;
 
+function useDetectStuck() {
+  const ref = useRef<HTMLDivElement>(null);
+
+  const [isStuck, setIsStuck] = useState<boolean>(false);
+
+  useEffect(() => {
+    if (!ref.current) {
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      ([entry]) => setIsStuck(entry ? !entry.isIntersecting : false),
+      { threshold: [0], rootMargin: "0px" },
+    );
+    observer.observe(ref.current);
+
+    return () => observer.disconnect();
+  }, []);
+
+  return { ref, isStuck };
+}
+
 const UnitHeader = (props: UnitHeaderProps) => {
   const {
     subjectPhaseSlug,
@@ -59,6 +82,7 @@ const UnitHeader = (props: UnitHeaderProps) => {
   } = props;
   const { track } = useAnalytics();
   const { setCurrentToastProps } = useOakNotificationsContext();
+  const { ref, isStuck } = useDetectStuck();
 
   const backgroundColorLevel = phase === "primary" ? 4 : 3;
 
@@ -78,6 +102,8 @@ const UnitHeader = (props: UnitHeaderProps) => {
         backgroundColorLevel={backgroundColorLevel}
       />
       <HeaderNavFooter
+        ref={ref}
+        isStuck={isStuck}
         type="unit"
         title={props.heading}
         backgroundColorLevel={backgroundColorLevel}
@@ -108,6 +134,9 @@ const UnitHeader = (props: UnitHeaderProps) => {
           unitDownloadFileId ? (
             <NegativeBorderBox $width={["100%", "auto"]}>
               <UnitDownloadButton
+                isStuck={isStuck}
+                longTextOnMobile={true}
+                fullWidthOnMobile
                 setDownloadError={setDownloadError}
                 setDownloadInProgress={setDownloadInProgress}
                 setShowDownloadMessage={setShowDownloadMessage}

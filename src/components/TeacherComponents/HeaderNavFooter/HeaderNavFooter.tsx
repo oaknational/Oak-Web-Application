@@ -7,43 +7,22 @@ import {
   OakBox,
   OakP,
 } from "@oaknational/oak-components";
-import { useRef, useState, useEffect } from "react";
+import { Ref } from "react";
 
 export type HeaderNavFooterProps = {
   backgroundColorLevel: 1 | 3 | 4;
   type: "unit" | "lesson";
+  viewHref: string;
+  title: string;
+  ref: Ref<HTMLDivElement>;
+  isStuck: boolean;
   prevHref?: string;
   nextHref?: string;
   actionButton?: React.ReactElement;
-  viewHref: string;
-  title: string;
 };
 
-function useDetectStuck() {
-  const ref = useRef<HTMLDivElement>(null);
-
-  const [isStuck, setIsStuck] = useState<boolean>(false);
-
-  useEffect(() => {
-    if (!ref.current) {
-      return;
-    }
-
-    const observer = new IntersectionObserver(
-      ([entry]) => setIsStuck(entry ? !entry.isIntersecting : false),
-      { threshold: [0], rootMargin: "0px" },
-    );
-    observer.observe(ref.current);
-
-    return () => observer.disconnect();
-  }, []);
-
-  return { ref, isStuck };
-}
-
 const HeaderNavFooter = (props: HeaderNavFooterProps) => {
-  const { ref, isStuck } = useDetectStuck();
-
+  const { ref, isStuck } = props;
   return (
     <>
       <OakBox ref={ref} $height="spacing-0" />
