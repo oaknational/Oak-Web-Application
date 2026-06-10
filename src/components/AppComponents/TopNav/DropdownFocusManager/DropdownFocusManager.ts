@@ -213,9 +213,7 @@ export class DropdownFocusManager<
   }
 
   private isLastSubnavButton(currentNode: FocusNode): boolean {
-    return (
-      !!this.lastSubnavButtonId && currentNode.id === this.lastSubnavButtonId
-    );
+    return currentNode.id === this.lastSubnavButtonId;
   }
 
   private handleLastChildTab(
