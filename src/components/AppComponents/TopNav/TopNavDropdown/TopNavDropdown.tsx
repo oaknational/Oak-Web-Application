@@ -139,9 +139,9 @@ const TeachersPhaseSection = ({
     setSelectedSubject(subject);
   };
 
-  // const closeExamBoardPanel = () => {
-  //   setSelectedSubject(null);
-  // };
+  const closeExamBoardPanel = () => {
+    setSelectedSubject(null);
+  };
 
   const isKeystageOpen = (slug: string) => selectedKeystage === slug;
   return (
@@ -210,6 +210,7 @@ const TeachersPhaseSection = ({
             keyStageSlug={keystage.slug}
             selectedSubject={selectedSubject}
             onExamBoardPanelOpen={handleExamBoardPanelOpen}
+            onExamboardPanelClose={closeExamBoardPanel}
           />
         </MaybeVisuallyHidden>
       ))}

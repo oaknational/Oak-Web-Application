@@ -27,6 +27,7 @@ const TopNavSubjectButtons = ({
   focusManager,
   phase,
   onExamBoardPanelOpen,
+  onExamboardPanelClose,
 }: {
   selectedMenu?: TopNavDropdownProps["selectedMenu"];
   phase: string;
@@ -36,6 +37,7 @@ const TopNavSubjectButtons = ({
   handleClick: (subject: string, keystage: string) => void;
   focusManager?: DropdownFocusManager<TeachersData>;
   onExamBoardPanelOpen?: (subject: TeachersBrowse) => void;
+  onExamboardPanelClose?: () => void;
 }) => {
   const handleSubjectClick = (
     e: React.MouseEvent<HTMLButtonElement>,
@@ -70,7 +72,7 @@ const TopNavSubjectButtons = ({
           subjects.map((subject) => {
             const { slug, navItemProps, title, children } = subject;
             if (navItemProps.type !== "subjectNavItem") return null;
-            const { nonCurriculum, href } = navItemProps;
+            const { nonCurriculum, href, subjectSlug } = navItemProps;
             const buttonId = focusManager?.createId(
               `teachers-${phase}-${keyStageSlug}`,
               slug,
@@ -82,13 +84,12 @@ const TopNavSubjectButtons = ({
                   variant={"horizontal"}
                   element={children?.length ? "button" : Link}
                   data-testid={`topnav-subject-button-${slug}`}
-                  subjectIconName={getValidSubjectIconName(slug)}
+                  subjectIconName={getValidSubjectIconName(subjectSlug)}
                   selected={selectedSubject?.title === title}
                   onClick={(e: React.MouseEvent<HTMLButtonElement>) =>
                     handleSubjectClick(e, subject)
                   }
                   href={href}
-                  // onFocus={closeExamBoardPanel}
                   onKeyDown={(e: React.KeyboardEvent<HTMLButtonElement>) => {
                     if (
                       e.key === "Enter" &&
@@ -129,9 +130,7 @@ const TopNavSubjectButtons = ({
                 selectedSubject={selectedSubject}
                 parentId={`teachers-${phase}-${keyStageSlug}-${subject.slug}`}
                 focusManager={focusManager}
-                subjectSlug={subject.slug}
-                keystageSlug={keyStageSlug}
-                phaseSlug={phase}
+                onExamboardPanelClose={onExamboardPanelClose}
               />
             </MaybeVisuallyHidden>
           ),

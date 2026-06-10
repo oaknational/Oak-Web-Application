@@ -189,19 +189,15 @@ const getKeystages = (
         const pathwaySlug = p.programme_fields.pathway_slug ?? null;
         const programmeSlug = programmeCount > 1 ? null : p.programme_slug;
         const subjectParent = p.programme_fields.subject_parent ?? null;
-
-        const subjectNavItem = {
-          slug: subjectSlug,
-          title,
-          nonCurriculum: Boolean(p.features.non_curriculum),
-          programmeSlug,
-          programmeCount,
-          pathwaySlug,
-          subjectParent,
-        };
+        const slug = `${subjectSlug}${pathwaySlug ? "-" : ""}${pathwaySlug ?? ""}`;
+        const nonCurriculum = Boolean(p.features.non_curriculum);
 
         const href = getTeachersSubjectNavHref({
-          subject: subjectNavItem,
+          subject: {
+            slug: subjectSlug,
+            programmeSlug,
+            pathwaySlug,
+          },
           keyStageSlug: ks.slug,
           phaseSlug: phaseSlug === "foundation" ? "primary" : phaseSlug,
           curriculumPhaseOptionsSubjects,
@@ -220,13 +216,14 @@ const getKeystages = (
 
         return {
           title,
-          slug: subjectNavItem.slug,
+          slug,
           navItemProps: {
             href,
             type: "subjectNavItem" as const,
-            nonCurriculum: subjectNavItem.nonCurriculum,
-            programmeSlug: subjectNavItem.programmeSlug,
-            programmeCount: subjectNavItem.programmeCount,
+            subjectSlug,
+            nonCurriculum: nonCurriculum,
+            programmeSlug: programmeSlug,
+            programmeCount: programmeCount,
           },
           children: examBoardsData ?? null,
         };

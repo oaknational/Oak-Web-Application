@@ -31,17 +31,13 @@ export const TopNavKS4Buttons = ({
   selectedSubject,
   parentId,
   focusManager,
-  subjectSlug,
-  keystageSlug,
-  phaseSlug,
+  onExamboardPanelClose,
 }: {
   ks4Options: TeachersBrowse[];
   selectedSubject: TeachersBrowse | null;
   parentId: string;
   focusManager?: DropdownFocusManager<TeachersSubNavData>;
-  subjectSlug: string;
-  keystageSlug: string;
-  phaseSlug: string;
+  onExamboardPanelClose?: () => void;
 }) => {
   const hasTierOnlyOptions = ks4Options.some((board) => {
     const hasTier = Boolean(
@@ -98,25 +94,22 @@ export const TopNavKS4Buttons = ({
                 ? `${child.title} (${child.navItemProps.programmeFactors.tier?.description})`
                 : child.title;
 
-            const tierSlug = child.navItemProps.programmeFactors?.tier?.slug;
-            const examboardSlug =
-              child.navItemProps.programmeFactors?.examboard?.slug;
-            const key = `${tierSlug ?? ""}${tierSlug ? "-" : ""}${examboardSlug}`;
+            const buttonId = focusManager?.createId(parentId, child.slug);
 
-            const buttonId = focusManager?.createId(
-              parentId,
-              `${subjectSlug}-${phaseSlug}-${keystageSlug}-${key}`,
-            );
             return (
-              <OakLI key={key}>
+              <OakLI key={child.slug}>
                 <ExamBoardButton
                   element={Link}
                   href={child.navItemProps.href}
-                  data-testid={key}
+                  data-testid={child.slug}
                   width={"fit-content"}
                   id={buttonId}
                   onKeyDown={(e: React.KeyboardEvent) =>
-                    focusManager?.handleTabKeyDown(e, buttonId!)
+                    focusManager?.handleTabKeyDown(
+                      e,
+                      buttonId!,
+                      onExamboardPanelClose,
+                    )
                   }
                 >
                   {title}

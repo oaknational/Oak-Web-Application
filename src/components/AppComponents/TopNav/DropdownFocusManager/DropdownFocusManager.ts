@@ -134,7 +134,6 @@ export class DropdownFocusManager<
     event?: React.KeyboardEvent,
   ): boolean {
     const element = document.getElementById(elementId);
-
     if (element) {
       event?.preventDefault();
       element.focus();
@@ -250,15 +249,21 @@ export class DropdownFocusManager<
   private handleLastChildTab(
     currentNode: FocusNode,
     event: React.KeyboardEvent,
+    onFinalSubmenuItemCallback?: () => void,
   ): void {
     if (this.getIsFinalElement(currentNode)) {
       this.handleFinalElementTab({ currentNode, event });
     } else {
       this.focusParentSibling(currentNode, event);
+      onFinalSubmenuItemCallback?.();
     }
   }
 
-  private handleTab(currentNode: FocusNode, event: React.KeyboardEvent) {
+  private handleTab(
+    currentNode: FocusNode,
+    event: React.KeyboardEvent,
+    onFinalSubmenuItemCallback?: () => void,
+  ) {
     // Try navigating to first child if it exists
     if (this.tryFocusFirstChild(currentNode, event)) {
       return;
@@ -271,16 +276,21 @@ export class DropdownFocusManager<
 
     // Handle navigation when we're on the last child
     if (currentNode.isLastChild) {
-      this.handleLastChildTab(currentNode, event);
+      this.handleLastChildTab(currentNode, event, onFinalSubmenuItemCallback);
     }
   }
 
-  private handleShiftTab(event: React.KeyboardEvent, currentNode: FocusNode) {
+  private handleShiftTab(
+    event: React.KeyboardEvent,
+    currentNode: FocusNode,
+    onFinalSubmenuItemCallback?: () => void,
+  ) {
     const isFirstChild = currentNode.isFirstChild;
     if (isFirstChild) {
       const parentId = currentNode.parent?.parentId;
       if (!parentId) return;
       this.focusElementById(parentId, event);
+      onFinalSubmenuItemCallback?.();
     }
   }
 
@@ -321,13 +331,19 @@ export class DropdownFocusManager<
     }
   }
 
-  handleTabKeyDown(event: React.KeyboardEvent, elementId: string) {
+  handleTabKeyDown(
+    event: React.KeyboardEvent,
+    elementId: string,
+    // optional callback fn to be called when returning to a parent menu from within a submenu
+    onFinalSubmenuItemCallback?: () => void,
+  ) {
     if (event.key !== "Tab") return;
     const currentNode = this.getNode(elementId);
+
     if (event.shiftKey) {
-      this.handleShiftTab(event, currentNode);
+      this.handleShiftTab(event, currentNode, onFinalSubmenuItemCallback);
     } else if (!event.shiftKey) {
-      this.handleTab(currentNode, event);
+      this.handleTab(currentNode, event, onFinalSubmenuItemCallback);
     }
   }
 }

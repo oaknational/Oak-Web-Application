@@ -84,6 +84,7 @@ type KeystageNavItemProps = { type: "keystageNavItem"; description: string };
 export type SubjectsNavItemProps = {
   type: "subjectNavItem";
   href: string;
+  subjectSlug: string;
   programmeSlug: string | null;
   programmeCount: number;
   nonCurriculum: boolean;
