@@ -177,7 +177,10 @@ const TeachersPhaseSection = ({
               width={"spacing-160"}
               selected={isKeystageOpen(keystage.slug)}
               onClick={() => onKeystageClick(keystage.slug)}
-              onKeyDown={(e) => focusManager.handleKeyDown(e, buttonId)}
+              onKeyDown={(e) => {
+                focusManager.handleTabKeyDown(e, buttonId);
+                focusManager.handleArrowKeyDown(e, buttonId);
+              }}
               aria-current={isKeystageOpen(keystage.slug) ? "true" : undefined}
               id={buttonId}
               aria-label={
@@ -268,7 +271,7 @@ const TeachersLinksSection = ({
                 width={"spacing-160"}
                 id={buttonId}
                 onClick={onClose}
-                onKeyDown={(e) => focusManager.handleKeyDown(e, buttonId)}
+                onKeyDown={(e) => focusManager.handleTabKeyDown(e, buttonId)}
               >
                 {link.title}
               </OakLeftAlignedButton>
@@ -324,7 +327,7 @@ const PupilsSection = ({
                   onClick={onClose}
                   onKeyDown={
                     focusManager && buttonId
-                      ? (e) => focusManager.handleKeyDown(e, buttonId)
+                      ? (e) => focusManager.handleTabKeyDown(e, buttonId)
                       : undefined
                   }
                 >

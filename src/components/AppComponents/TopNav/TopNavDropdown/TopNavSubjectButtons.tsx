@@ -100,7 +100,7 @@ const TopNavSubjectButtons = ({
 
                       return;
                     }
-                    focusManager?.handleKeyDown(e, buttonId!);
+                    focusManager?.handleTabKeyDown(e, buttonId!);
                   }}
                   phase={
                     nonCurriculum

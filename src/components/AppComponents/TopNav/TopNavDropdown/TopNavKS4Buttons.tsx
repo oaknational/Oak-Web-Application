@@ -116,7 +116,7 @@ export const TopNavKS4Buttons = ({
                   width={"fit-content"}
                   id={buttonId}
                   onKeyDown={(e: React.KeyboardEvent) =>
-                    focusManager?.handleKeyDown(e, buttonId!)
+                    focusManager?.handleTabKeyDown(e, buttonId!)
                   }
                 >
                   {title}

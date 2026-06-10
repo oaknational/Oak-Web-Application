@@ -53,7 +53,7 @@ const SubNav = <T extends SubNavData>({
       id: buttonId,
       element: Link,
       onKeyDown: (event: React.KeyboardEvent) =>
-        focusManager.handleKeyDown(event, buttonId),
+        focusManager.handleTabKeyDown(event, buttonId),
       href,
       "aria-label": external
         ? `${title} (this will open in a new tab)`
@@ -65,7 +65,7 @@ const SubNav = <T extends SubNavData>({
     const buttonId = focusManager.createId(area, slug);
     return {
       onKeyDown: (event: React.KeyboardEvent) =>
-        focusManager.handleKeyDown(event, buttonId),
+        focusManager.handleTabKeyDown(event, buttonId),
       id: buttonId,
       onClick: () => onClick(slug as keyof T),
       selected: isMenuSelected(slug as keyof T),
