@@ -54,43 +54,27 @@ export type NavButton =
   | TeachersBrowse
   | PupilsBrowse;
 
-export type ProgrammeFactorButton = {
-  buttonTitle: string;
-  programmeSlug: string;
-  href: string;
-  programmeFactors?: {
-    tier?: {
-      slug: "core" | "foundation" | "higher" | null;
-      description: "Core" | "Foundation" | "Higher" | null;
-    };
-    examboard?: { slug: string; title: string };
-  };
-};
-
-export type SubjectsNavItem = {
+export type KeystageMenu = {
   title: string;
   slug: string;
-  href: string;
-  nonCurriculum: boolean; // enables highlighting subjects that are non curriculum
-  programmeSlug: string | null; // will be null when multiple programmes exist
-  programmeCount: number; // used to determine whether we should go to the programmes page (more than 1 programme) or directly to the unit listing page (only 1 programme)
-  pathwaySlug?: string | null;
-  subjectParent?: string | null; // used to determine if subject is a child of another subject (e.g. combined science is a child of science)
-  examBoards?: ProgrammeFactorButton[]; // available exam boards for KS4 subjects with multiple programmes
+  description: string;
+  children: Array<SubjectsMenu>;
 };
 
-type PhaseNavItemProps = { type: "phaseNavItem" };
-type KeystageNavItemProps = { type: "keystageNavItem"; description: string };
-export type SubjectsNavItemProps = {
-  type: "subjectNavItem";
+export type SubjectsMenu = {
+  title: string;
+  slug: string;
   href: string;
   subjectSlug: string;
   programmeSlug: string | null;
   programmeCount: number;
   nonCurriculum: boolean;
+  children: Array<Ks4OptionsMenu> | null;
 };
-export type ExamboardNavItemProps = {
-  type: "examboardNavItem";
+
+export type Ks4OptionsMenu = {
+  title: string;
+  slug: string;
   href: string;
   programmeFactors?: {
     tier: {
@@ -101,17 +85,10 @@ export type ExamboardNavItemProps = {
   };
 };
 
-type NavItemProps =
-  | PhaseNavItemProps
-  | KeystageNavItemProps
-  | SubjectsNavItemProps
-  | ExamboardNavItemProps;
-
 export type TeachersBrowse = {
-  title: string;
-  slug: string;
-  navItemProps: NavItemProps;
-  children: Array<TeachersBrowse> | null;
+  title: "Primary" | "Secondary";
+  slug: "primary" | "secondary";
+  children: Array<KeystageMenu>;
 };
 
 export type PupilsSubNavData = {

@@ -26,6 +26,7 @@ import {
   isTeachersBrowseItem,
   isNavDropDownButtonItem,
   NavDropDownButton,
+  SubjectsMenu,
 } from "@/node-lib/curriculum-api-2023/queries/topNav/topNav.schema";
 import useAnalytics from "@/context/Analytics/useAnalytics";
 
@@ -51,7 +52,7 @@ const TeachersDropdownMenuSections = ({
   teachersData: TeachersSubNavData;
   selectedMenu?: TopNavDropdownProps["selectedMenu"];
   focusManager: DropdownFocusManager<TeachersSubNavData>;
-  onClick: (subject: string, keystage: string) => void;
+  onClick: (subject: SubjectsMenu, keystage: string) => void;
   onClose: () => void;
 }) => {
   return Object.entries(teachersData).map(([menu, data]) => {
@@ -70,6 +71,7 @@ const TeachersDropdownMenuSections = ({
             focusManager={focusManager}
             onClick={onClick}
             selectedMenu={selectedMenu}
+            handleCloseDropdown={onClose}
           />
         )}
         {isNavDropDownButtonItem(data) && (
@@ -90,14 +92,17 @@ const TeachersPhaseSection = ({
   selectedMenu,
   focusManager,
   onClick,
+  handleCloseDropdown,
 }: {
   phaseData: TeachersBrowse;
   phase: string;
   selectedMenu?: TopNavDropdownProps["selectedMenu"];
   focusManager: DropdownFocusManager<TeachersSubNavData>;
-  onClick: (subject: string, keystage: string) => void;
+  onClick: (subject: SubjectsMenu, keystage: string) => void;
+  handleCloseDropdown: () => void;
 }) => {
   const { track } = useAnalytics();
+
   const defaultKeystage = selectedMenu
     ? phaseData.children?.[0]?.slug
     : undefined;
@@ -106,7 +111,7 @@ const TeachersPhaseSection = ({
     defaultKeystage,
   );
 
-  const [selectedSubject, setSelectedSubject] = useState<TeachersBrowse | null>(
+  const [selectedSubject, setSelectedSubject] = useState<SubjectsMenu | null>(
     null,
   );
 
@@ -135,12 +140,13 @@ const TeachersPhaseSection = ({
     setSelectedSubject(null);
   };
 
-  const handleExamBoardPanelOpen = (subject: TeachersBrowse) => {
+  const handleExamBoardPanelOpen = (subject: SubjectsMenu) => {
     setSelectedSubject(subject);
   };
 
   const closeExamBoardPanel = () => {
     setSelectedSubject(null);
+    handleCloseDropdown();
   };
 
   const isKeystageOpen = (slug: string) => selectedKeystage === slug;
@@ -370,7 +376,7 @@ const TopNavDropdown = (props: TopNavDropdownProps) => {
               eventVersion: "2.0.0",
               analyticsUseCase: "Teacher",
               filterType: "Subject filter",
-              filterValue: subject,
+              filterValue: subject.subjectSlug,
               activeFilters: { keystage: [keystage] },
               googleLoginHint: null,
               clientEnvironment: null,

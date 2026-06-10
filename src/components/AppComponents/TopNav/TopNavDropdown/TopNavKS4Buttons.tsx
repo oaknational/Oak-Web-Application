@@ -14,8 +14,8 @@ import styled from "styled-components";
 import { DropdownFocusManager } from "../DropdownFocusManager/DropdownFocusManager";
 
 import {
-  ExamboardNavItemProps,
-  TeachersBrowse,
+  Ks4OptionsMenu,
+  SubjectsMenu,
   TeachersSubNavData,
 } from "@/node-lib/curriculum-api-2023/queries/topNav/topNav.schema";
 
@@ -33,29 +33,20 @@ export const TopNavKS4Buttons = ({
   focusManager,
   onExamboardPanelClose,
 }: {
-  ks4Options: TeachersBrowse[];
-  selectedSubject: TeachersBrowse | null;
+  ks4Options: Ks4OptionsMenu[];
+  selectedSubject: SubjectsMenu | null;
   parentId: string;
   focusManager?: DropdownFocusManager<TeachersSubNavData>;
   onExamboardPanelClose?: () => void;
 }) => {
   const hasTierOnlyOptions = ks4Options.some((board) => {
-    const hasTier = Boolean(
-      (board.navItemProps as ExamboardNavItemProps).programmeFactors?.tier
-        ?.slug,
-    );
-    const hasExamBoard = Boolean(
-      (board.navItemProps as ExamboardNavItemProps).programmeFactors?.examboard
-        ?.slug,
-    );
+    const hasTier = Boolean(board.programmeFactors?.tier?.slug);
+    const hasExamBoard = Boolean(board.programmeFactors?.examboard?.slug);
     return hasTier && !hasExamBoard;
   });
 
   const hasExamBoardOptions = ks4Options.some((board) =>
-    Boolean(
-      (board.navItemProps as ExamboardNavItemProps).programmeFactors?.examboard
-        ?.slug,
-    ),
+    Boolean(board.programmeFactors?.examboard?.slug),
   );
   const panelTitle = `Choose ${
     hasTierOnlyOptions && !hasExamBoardOptions ? "tier" : "exam board"
@@ -84,14 +75,10 @@ export const TopNavKS4Buttons = ({
         {ks4Options
           .toSorted((a, b) => a.title.localeCompare(b.title))
           .map((child) => {
-            if (child.navItemProps.type !== "examboardNavItem") {
-              return null;
-            }
             const title =
-              child.navItemProps.programmeFactors?.tier?.slug &&
-              child.title.toLowerCase() !==
-                child.navItemProps.programmeFactors.tier?.slug
-                ? `${child.title} (${child.navItemProps.programmeFactors.tier?.description})`
+              child.programmeFactors?.tier?.slug &&
+              child.title.toLowerCase() !== child.programmeFactors.tier?.slug
+                ? `${child.title} (${child.programmeFactors.tier?.description})`
                 : child.title;
 
             const buttonId = focusManager?.createId(parentId, child.slug);
@@ -100,7 +87,7 @@ export const TopNavKS4Buttons = ({
               <OakLI key={child.slug}>
                 <ExamBoardButton
                   element={Link}
-                  href={child.navItemProps.href}
+                  href={child.href}
                   data-testid={child.slug}
                   width={"fit-content"}
                   id={buttonId}
@@ -111,6 +98,7 @@ export const TopNavKS4Buttons = ({
                       onExamboardPanelClose,
                     )
                   }
+                  onClick={onExamboardPanelClose}
                 >
                   {title}
                 </ExamBoardButton>

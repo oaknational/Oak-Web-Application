@@ -1,4 +1,9 @@
-import { TopNavResponse, TeachersBrowse } from "./topNav.schema";
+import {
+  TopNavResponse,
+  TeachersBrowse,
+  Ks4OptionsMenu,
+  KeystageMenu,
+} from "./topNav.schema";
 import {
   getTeachersExamBoardNavHref,
   getTeachersSubjectNavHref,
@@ -19,7 +24,7 @@ export const getExamBoardsForKS4Subject = ({
   subjectSlug: string;
   pathwaySlug: string | null;
   subjectParent?: string | null;
-}): TeachersBrowse[] => {
+}): Ks4OptionsMenu[] => {
   const matchingProgrammes = data.programmes
     .filter((p) => {
       const { subject_slug, keystage_slug, pathway_slug } = p.programme_fields;
@@ -50,7 +55,7 @@ export const getExamBoardsForKS4Subject = ({
     );
   });
 
-  const examboards: TeachersBrowse[] = programmesForKs.flatMap<TeachersBrowse>(
+  const examboards: Ks4OptionsMenu[] = programmesForKs.flatMap<Ks4OptionsMenu>(
     (p) => {
       const { examboard, examboard_slug, tier_slug, tier_description } =
         p.programme_fields;
@@ -59,26 +64,22 @@ export const getExamBoardsForKS4Subject = ({
       return {
         title: title ?? "",
         slug: p.programme_slug,
-        children: null,
-        navItemProps: {
-          type: "examboardNavItem",
-          href: getTeachersExamBoardNavHref({
-            subjectSlug,
-            phaseSlug: p.programme_fields.phase_slug,
-            subjectParent,
-            tierSlug: tier_slug,
-            examboardSlug: examboard_slug,
-          }),
-          programmeFactors: {
-            tier:
-              tier_slug && tier_description
-                ? { slug: tier_slug, description: tier_description }
-                : null,
-            examboard:
-              examboard && examboard_slug
-                ? { slug: examboard_slug, title: examboard }
-                : null,
-          },
+        href: getTeachersExamBoardNavHref({
+          subjectSlug,
+          phaseSlug: p.programme_fields.phase_slug,
+          subjectParent,
+          tierSlug: tier_slug,
+          examboardSlug: examboard_slug,
+        }),
+        programmeFactors: {
+          tier:
+            tier_slug && tier_description
+              ? { slug: tier_slug, description: tier_description }
+              : null,
+          examboard:
+            examboard && examboard_slug
+              ? { slug: examboard_slug, title: examboard }
+              : null,
         },
       };
     },
@@ -103,7 +104,6 @@ export const getTeachersNavData = (
     title: `${phaseSlug[0]?.toUpperCase()}${phaseSlug.slice(1)}` as
       | "Primary"
       | "Secondary",
-    navItemProps: { type: "phaseNavItem" },
     children:
       phaseSlug === "primary"
         ? keystagesForPhase.concat(
@@ -121,7 +121,7 @@ const getKeystages = (
   data: TopNavResponse,
   phaseSlug: "primary" | "secondary" | "foundation",
   curriculumPhaseOptionsSubjects: CurriculumPhaseOptions,
-): TeachersBrowse[] => {
+): KeystageMenu[] => {
   // Get all programmes for the given phase
   const byPhase = data.programmes.filter(
     (p) => p.programme_fields.phase_slug === phaseSlug,
@@ -217,32 +217,22 @@ const getKeystages = (
         return {
           title,
           slug,
-          navItemProps: {
-            href,
-            type: "subjectNavItem" as const,
-            subjectSlug,
-            nonCurriculum: nonCurriculum,
-            programmeSlug: programmeSlug,
-            programmeCount: programmeCount,
-          },
+          href,
+          subjectSlug,
+          nonCurriculum: nonCurriculum,
+          programmeSlug: programmeSlug,
+          programmeCount: programmeCount,
           children: examBoardsData ?? null,
         };
       });
 
-    const curriculumSubjects = subjects.filter(
-      (s) => !s.navItemProps.nonCurriculum,
-    );
-    const nonCurriculumSubjects = subjects.filter(
-      (s) => s.navItemProps.nonCurriculum,
-    );
+    const curriculumSubjects = subjects.filter((s) => !s.nonCurriculum);
+    const nonCurriculumSubjects = subjects.filter((s) => s.nonCurriculum);
 
     return {
       title: ks.title,
       slug: ks.slug,
-      navItemProps: {
-        type: "keystageNavItem" as const,
-        description: ks.description,
-      },
+      description: ks.description,
       children: [...curriculumSubjects, ...nonCurriculumSubjects],
     };
   });

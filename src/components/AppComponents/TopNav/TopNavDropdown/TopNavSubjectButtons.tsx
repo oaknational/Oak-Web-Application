@@ -15,7 +15,7 @@ import { TopNavKS4Buttons } from "./TopNavKS4Buttons";
 import { getValidSubjectIconName } from "@/utils/getValidSubjectIconName";
 import {
   TeachersSubNavData as TeachersData,
-  TeachersBrowse,
+  SubjectsMenu,
 } from "@/node-lib/curriculum-api-2023/queries/topNav/topNav.schema";
 
 const TopNavSubjectButtons = ({
@@ -31,17 +31,17 @@ const TopNavSubjectButtons = ({
 }: {
   selectedMenu?: TopNavDropdownProps["selectedMenu"];
   phase: string;
-  subjects: TeachersBrowse[] | null;
-  selectedSubject: TeachersBrowse | null;
+  subjects: SubjectsMenu[] | null;
+  selectedSubject: SubjectsMenu | null;
   keyStageSlug: string;
-  handleClick: (subject: string, keystage: string) => void;
+  handleClick: (subject: SubjectsMenu, keystage: string) => void;
   focusManager?: DropdownFocusManager<TeachersData>;
-  onExamBoardPanelOpen?: (subject: TeachersBrowse) => void;
+  onExamBoardPanelOpen?: (subject: SubjectsMenu) => void;
   onExamboardPanelClose?: () => void;
 }) => {
   const handleSubjectClick = (
     e: React.MouseEvent<HTMLButtonElement>,
-    subject: TeachersBrowse,
+    subject: SubjectsMenu,
   ) => {
     if (
       keyStageSlug === "ks4" &&
@@ -53,9 +53,8 @@ const TopNavSubjectButtons = ({
       return;
     }
 
-    handleClick(subject.slug, keyStageSlug);
+    handleClick(subject, keyStageSlug);
   };
-
   return (
     <>
       <OakUL
@@ -70,12 +69,18 @@ const TopNavSubjectButtons = ({
         {subjects &&
           subjects.length > 0 &&
           subjects.map((subject) => {
-            const { slug, navItemProps, title, children } = subject;
-            if (navItemProps.type !== "subjectNavItem") return null;
-            const { nonCurriculum, href, subjectSlug } = navItemProps;
+            const {
+              slug: key,
+              title,
+              children,
+              nonCurriculum,
+              href,
+              subjectSlug,
+            } = subject;
+
             const buttonId = focusManager?.createId(
               `teachers-${phase}-${keyStageSlug}`,
-              slug,
+              key,
             );
 
             return (
@@ -83,7 +88,7 @@ const TopNavSubjectButtons = ({
                 <OakSubjectIconButton
                   variant={"horizontal"}
                   element={children?.length ? "button" : Link}
-                  data-testid={`topnav-subject-button-${slug}`}
+                  data-testid={`topnav-subject-button-${key}`}
                   subjectIconName={getValidSubjectIconName(subjectSlug)}
                   selected={selectedSubject?.title === title}
                   onClick={(e: React.MouseEvent<HTMLButtonElement>) =>
@@ -98,7 +103,6 @@ const TopNavSubjectButtons = ({
                     ) {
                       e.preventDefault();
                       onExamBoardPanelOpen?.(subject);
-
                       return;
                     }
                     focusManager?.handleTabKeyDown(e, buttonId!);

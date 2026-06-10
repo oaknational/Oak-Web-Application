@@ -94,7 +94,7 @@ function SubjectsSection(
         {browseData.children.map((keystage) => (
           <MainMenuButton
             key={keystage.slug + browseData.slug}
-            title={keystage.title as SubmenuState}
+            title={keystage.title}
             description={keystage.description}
             hamburgerMenu={hamburgerMenu}
             track={() => {
@@ -125,12 +125,12 @@ function MainMenuButton({
   hamburgerMenu,
   track,
 }: Readonly<{
-  title: SubmenuState;
+  title: string;
   hamburgerMenu: HamburgerMenuHook;
   description?: string;
   track?: () => void;
 }>) {
-  const { setSubmenuOpen } = hamburgerMenu;
+  const { handleNav } = hamburgerMenu;
   const isEYFS = title === "EYFS";
   const shouldShowDescription = !isEYFS && description;
 
@@ -146,7 +146,7 @@ function MainMenuButton({
           id={title + "button"}
           onClick={() => {
             track?.();
-            setSubmenuOpen(title);
+            handleNav({ menu: title as SubmenuState });
           }}
         >
           {shouldShowDescription ? description : title}
