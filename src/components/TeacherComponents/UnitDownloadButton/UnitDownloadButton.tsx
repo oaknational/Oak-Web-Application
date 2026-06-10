@@ -176,10 +176,7 @@ const DownloadButton = ({
     longerText: `(.zip ${fileSize})`,
   });
   const downloadButtonText: ReactNode = (
-    <OakSpan>
-      {buttonLabel ?? "Download"}
-      {zipSizeText}
-    </OakSpan>
+    <OakSpan>{buttonLabel ?? zipSizeText}</OakSpan>
   );
 
   return (
