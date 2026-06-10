@@ -20,7 +20,10 @@ import FieldError from "@/components/SharedComponents/FieldError";
 import ResourcePageDetailsCompleted from "@/components/TeacherComponents/ResourcePageDetailsCompleted";
 import ResourcePageSchoolDetails from "@/components/TeacherComponents/ResourcePageSchoolDetails";
 import ResourcePageTermsAndConditionsCheckbox from "@/components/TeacherComponents/ResourcePageTermsAndConditionsCheckbox";
-import { SHARE_FORM_ERROR_IDS } from "@/components/TeacherComponents/helpers/downloadAndShareHelpers/shareDownloadFormErrorIds";
+import {
+  getEmailFieldErrorAriaProps,
+  SHARE_FORM_ERROR_IDS,
+} from "@/components/TeacherComponents/helpers/downloadAndShareHelpers/shareDownloadFormErrorIds";
 import { ResourceFormValues } from "@/components/TeacherComponents/types/downloadAndShare.types";
 import { resolveOakHref } from "@/common-lib/urls";
 
@@ -56,6 +59,7 @@ const TermsAgreementForm: FC<TermsAgreementFormProps> = ({
 }) => {
   const [emailHasFocus, setEmailHasFocus] = useState(false);
   const { ref, ...emailProps } = form.register("email");
+  const hasEmailError = Boolean(form.errors?.email);
 
   return (
     <>
@@ -115,19 +119,19 @@ const TermsAgreementForm: FC<TermsAgreementFormProps> = ({
                 ref={ref}
                 $mb="spacing-16"
               >
-                {form.errors?.email && (
+                {hasEmailError && (
                   <FieldError
                     id={SHARE_FORM_ERROR_IDS.email}
                     withoutMarginBottom
                   >
-                    {form.errors.email.message}
+                    {form.errors.email?.message}
                   </FieldError>
                 )}
                 <OakJauntyAngleLabel
                   label={"Email (optional)"}
                   as="label"
                   $color={
-                    form.errors?.email || emailHasFocus
+                    hasEmailError || emailHasFocus
                       ? "text-inverted"
                       : "text-primary"
                   }
@@ -135,7 +139,7 @@ const TermsAgreementForm: FC<TermsAgreementFormProps> = ({
                   id={"email-label"}
                   $font={"heading-7"}
                   $background={
-                    form.errors?.email
+                    hasEmailError
                       ? "bg-error"
                       : emailHasFocus
                         ? "bg-inverted"
@@ -159,10 +163,7 @@ const TermsAgreementForm: FC<TermsAgreementFormProps> = ({
                     emailProps.onBlur(e);
                     setEmailHasFocus(false);
                   }}
-                  aria-describedby={
-                    form.errors?.email ? SHARE_FORM_ERROR_IDS.email : undefined
-                  }
-                  aria-invalid={form.errors?.email ? true : undefined}
+                  {...getEmailFieldErrorAriaProps(hasEmailError)}
                   $pv="spacing-0"
                   wrapperWidth="100%"
                   $height="spacing-56"
