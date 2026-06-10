@@ -79,6 +79,7 @@ const UnitHeader = (props: UnitHeaderProps) => {
       />
       <HeaderNavFooter
         type="unit"
+        title={props.heading}
         backgroundColorLevel={backgroundColorLevel}
         viewHref={resolveOakHref({
           page: "teacher-programme",
