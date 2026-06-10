@@ -215,7 +215,9 @@ const TeachersPhaseSection = ({
         key={slug}
         aria-expanded={isOpen(slug)}
         aria-controls={
-          isOpen(slug) ? `topnav-teachers-${slug}-subjects` : undefined
+          isOpen(slug) && slug !== "keystages"
+            ? `topnav-teachers-${slug}-subjects`
+            : undefined
         }
         role="tab"
         aria-selected={isOpen(slug)}
