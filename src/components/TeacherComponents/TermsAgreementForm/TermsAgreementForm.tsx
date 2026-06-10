@@ -14,13 +14,13 @@ import {
   OakLink,
   OakTextInput,
   OakJauntyAngleLabel,
-  OakFieldError,
 } from "@oaknational/oak-components";
 
 import FieldError from "@/components/SharedComponents/FieldError";
 import ResourcePageDetailsCompleted from "@/components/TeacherComponents/ResourcePageDetailsCompleted";
 import ResourcePageSchoolDetails from "@/components/TeacherComponents/ResourcePageSchoolDetails";
 import ResourcePageTermsAndConditionsCheckbox from "@/components/TeacherComponents/ResourcePageTermsAndConditionsCheckbox";
+import { SHARE_FORM_ERROR_IDS } from "@/components/TeacherComponents/helpers/downloadAndShareHelpers/shareDownloadFormErrorIds";
 import { ResourceFormValues } from "@/components/TeacherComponents/types/downloadAndShare.types";
 import { resolveOakHref } from "@/common-lib/urls";
 
@@ -71,7 +71,7 @@ const TermsAgreementForm: FC<TermsAgreementFormProps> = ({
         </OakHeading>
       )}
       {form?.errors.school && (
-        <FieldError ariaLive="polite" id="school-error">
+        <FieldError ariaLive="polite" id={SHARE_FORM_ERROR_IDS.school}>
           {form.errors.school?.message}
         </FieldError>
       )}
@@ -116,13 +116,12 @@ const TermsAgreementForm: FC<TermsAgreementFormProps> = ({
                 $mb="spacing-16"
               >
                 {form.errors?.email && (
-                  <OakBox
-                    id={form.errors?.email.message}
-                    role="alert"
-                    $mv="spacing-16"
+                  <FieldError
+                    id={SHARE_FORM_ERROR_IDS.email}
+                    withoutMarginBottom
                   >
-                    <OakFieldError>{form.errors?.email.message}</OakFieldError>
-                  </OakBox>
+                    {form.errors.email.message}
+                  </FieldError>
                 )}
                 <OakJauntyAngleLabel
                   label={"Email (optional)"}
@@ -160,6 +159,10 @@ const TermsAgreementForm: FC<TermsAgreementFormProps> = ({
                     emailProps.onBlur(e);
                     setEmailHasFocus(false);
                   }}
+                  aria-describedby={
+                    form.errors?.email ? SHARE_FORM_ERROR_IDS.email : undefined
+                  }
+                  aria-invalid={form.errors?.email ? true : undefined}
                   $pv="spacing-0"
                   wrapperWidth="100%"
                   $height="spacing-56"

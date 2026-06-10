@@ -9,12 +9,14 @@ import LessonShareCardGroup, {
 } from "./LessonShareCardGroup";
 
 import { getActivityDownloadCardAriaLabel } from "@/components/TeacherComponents/ShareResourceCard/ShareResourceCard";
+import { SHARE_FORM_ERROR_IDS } from "@/components/TeacherComponents/helpers/downloadAndShareHelpers/shareDownloadFormErrorIds";
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 import { LessonShareData } from "@/node-lib/curriculum-api-2023/queries/lessonShare/lessonShare.schema";
 
 const ComponentWrapper = (props: {
   shareableResources: LessonShareData["shareableResources"];
   shareLink: string;
+  hasError?: boolean;
 }) => {
   const { control, trigger } = useForm<ResourceFormValues>();
 
@@ -25,6 +27,7 @@ const ComponentWrapper = (props: {
       triggerForm={trigger}
       shareableResources={props.shareableResources}
       hideCheckboxes={false}
+      hasError={props.hasError}
     />
   );
 };
@@ -128,5 +131,32 @@ describe("lesson share card group", () => {
 
     await user.click(checkboxLabel);
     expect(checkbox).not.toBeChecked();
+  });
+
+  it("links resource selection errors to activity checkboxes", () => {
+    const shareableResources = [
+      {
+        exists: true,
+        type: "video" as const,
+        metadata: "5min",
+        label: "Video",
+      },
+    ];
+    renderWithTheme(
+      <ComponentWrapper
+        shareableResources={shareableResources}
+        shareLink="www.fake.com"
+        hasError
+      />,
+    );
+
+    const checkboxes = screen.getAllByRole("checkbox");
+    for (const checkbox of checkboxes) {
+      expect(checkbox).toHaveAttribute(
+        "aria-describedby",
+        SHARE_FORM_ERROR_IDS.resources,
+      );
+      expect(checkbox).toHaveAttribute("aria-invalid", "true");
+    }
   });
 });

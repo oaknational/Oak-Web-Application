@@ -2,6 +2,7 @@ import userEvent from "@testing-library/user-event";
 
 import ResourceCard from "./ResourceCard";
 
+import { SHARE_FORM_ERROR_IDS } from "@/components/TeacherComponents/helpers/downloadAndShareHelpers/shareDownloadFormErrorIds";
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 
 describe("ResourceCard", () => {
@@ -86,5 +87,28 @@ describe("ResourceCard", () => {
     );
 
     expect(getByText("Editable")).toBeInTheDocument();
+  });
+
+  it("links resource selection errors to the download checkbox", () => {
+    const { getByRole } = renderWithTheme(
+      <ResourceCard
+        id="unique-123"
+        name="downloadResources"
+        label="Worksheet"
+        subtitle="PDF"
+        checked={false}
+        onChange={jest.fn()}
+        resourceType="worksheet-pdf"
+        useDownloadPageLayout
+        hasError
+      />,
+    );
+
+    const input = getByRole("checkbox");
+    expect(input).toHaveAttribute(
+      "aria-describedby",
+      SHARE_FORM_ERROR_IDS.resources,
+    );
+    expect(input).toHaveAttribute("aria-invalid", "true");
   });
 });

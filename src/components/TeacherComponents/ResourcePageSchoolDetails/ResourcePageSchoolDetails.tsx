@@ -7,6 +7,7 @@ import {
   OakFieldset,
 } from "@oaknational/oak-components";
 
+import { SHARE_FORM_ERROR_IDS } from "@/components/TeacherComponents/helpers/downloadAndShareHelpers/shareDownloadFormErrorIds";
 import ResourcePageSchoolPicker from "@/components/TeacherComponents/ResourcePageSchoolPicker";
 import useSchoolPicker from "@/components/TeacherComponents/ResourcePageSchoolPicker/useSchoolPicker";
 
@@ -91,14 +92,13 @@ const ResourcePageSchoolDetails: FC<ResourcePageSchoolDetailsProps> = ({
       </OakBox>
       <ResourcePageSchoolPicker
         hasError={errors?.school !== undefined}
+        errorId={errors?.school ? SHARE_FORM_ERROR_IDS.school : undefined}
         schoolPickerInputValue={schoolPickerInputValue}
         setSchoolPickerInputValue={onSchoolPickerInputChange}
         schools={schools}
         label={"School"}
         setSelectedSchool={setSelectedSchool}
         required={true}
-        aria-invalid={errors?.school?.message ? true : false}
-        aria-describedby={"school-error"}
         withHomeschool={withHomeschool}
       />
       <OakFlex $mt="spacing-12" $mb="spacing-48">
@@ -110,9 +110,9 @@ const ResourcePageSchoolDetails: FC<ResourcePageSchoolDetailsProps> = ({
           name={"checkbox-not-listed"}
           displayValue={"My school isn't listed"}
           data-testid={"checkbox-download"}
-          aria-invalid={errors?.school?.message ? true : false}
+          aria-invalid={errors?.school ? true : undefined}
           aria-describedby={
-            errors?.school?.message ? "school-error" : undefined
+            errors?.school ? SHARE_FORM_ERROR_IDS.school : undefined
           }
         />
       </OakFlex>

@@ -4,6 +4,7 @@ import React from "react";
 
 import ResourcePageSchoolDetails from "./ResourcePageSchoolDetails";
 
+import { SHARE_FORM_ERROR_IDS } from "@/components/TeacherComponents/helpers/downloadAndShareHelpers/shareDownloadFormErrorIds";
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 import waitForNextTick from "@/__tests__/__helpers__/waitForNextTick";
 import useSchoolPicker from "@/components/TeacherComponents/ResourcePageSchoolPicker/useSchoolPicker";
@@ -111,5 +112,33 @@ describe("ResourcePageSchoolDetails", () => {
     await waitForNextTick();
     rerender(<ResourcePageSchoolDetails {...props} />);
     expect(setSchool).toBeCalled();
+  });
+
+  it("links school field errors to the combobox and not-listed checkbox", () => {
+    render(
+      <ResourcePageSchoolDetails
+        {...props}
+        errors={{
+          school: {
+            message:
+              "Select school, type 'homeschool' or tick 'My school isn't listed'",
+            type: "too_small",
+          },
+        }}
+      />,
+    );
+
+    expect(screen.getByTestId("search-combobox-input")).toHaveAttribute(
+      "aria-describedby",
+      SHARE_FORM_ERROR_IDS.school,
+    );
+    expect(screen.getByTestId("search-combobox-input")).toHaveAttribute(
+      "aria-invalid",
+      "true",
+    );
+    expect(screen.getByTestId("checkbox-download")).toHaveAttribute(
+      "aria-describedby",
+      SHARE_FORM_ERROR_IDS.school,
+    );
   });
 });
