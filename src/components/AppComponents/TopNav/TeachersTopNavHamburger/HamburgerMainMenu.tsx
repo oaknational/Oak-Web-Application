@@ -11,18 +11,13 @@ import {
 } from "@oaknational/oak-components";
 import Link from "next/link";
 
-import {
-  getEYFSAriaLabel,
-  SubmenuState,
-  HamburgerMenuHook,
-} from "./TeachersTopNavHamburger";
+import { SubmenuState, HamburgerMenuHook } from "./TeachersTopNavHamburger";
 
 import {
   TeachersBrowse,
   TeachersSubNavData,
 } from "@/node-lib/curriculum-api-2023/queries/topNav/topNav.schema";
 import { resolveOakHref } from "@/common-lib/urls";
-import useAnalytics from "@/context/Analytics/useAnalytics";
 
 export function MainMenuContent(
   props: Readonly<TeachersSubNavData & { hamburgerMenu: HamburgerMenuHook }>,
@@ -46,7 +41,9 @@ export function MainMenuContent(
       $gap={"spacing-40"}
     >
       <SubjectsSection {...navData.primary} hamburgerMenu={hamburgerMenu} />
+      <MenuDivider />
       <SubjectsSection {...navData.secondary} hamburgerMenu={hamburgerMenu} />
+      <MenuDivider />
       <OakFlex $flexDirection={"column"} $gap={"spacing-16"}>
         <MainMenuButton title={"About us"} hamburgerMenu={hamburgerMenu} />
         <MainMenuButton title={"Guidance"} hamburgerMenu={hamburgerMenu} />
@@ -65,11 +62,34 @@ export function MainMenuContent(
   );
 }
 
+function MenuDivider() {
+  return (
+    <OakBox
+      $width={"100%"}
+      $bt={"border-solid-s"}
+      $borderColor={"border-neutral-lighter"}
+      as="hr"
+    />
+  );
+}
+
 function SubjectsSection(
   props: Readonly<TeachersBrowse & { hamburgerMenu: HamburgerMenuHook }>,
 ) {
   const { hamburgerMenu, ...browseData } = props;
-  const { track } = useAnalytics();
+  const phaseSubjects = browseData.children.filter(
+    (child) => child.type === "phase",
+  );
+  const keystages = browseData.children.filter(
+    (child) => child.type === "keystage",
+  );
+  const subjectsTitle =
+    browseData.slug === "primary" ? "Primary subjects" : "Secondary subjects";
+  const keyStagesTitle =
+    browseData.slug === "primary"
+      ? "Primary key stages"
+      : "Secondary key stages";
+
   return (
     <OakBox>
       <OakFlex
@@ -91,29 +111,15 @@ function SubjectsSection(
         </OakBox>
       </OakFlex>
       <OakFlex $flexDirection={"column"} $gap={"spacing-16"}>
-        {browseData.children.map((keystage) => (
+        {phaseSubjects.length > 0 && (
+          <MainMenuButton title={subjectsTitle} hamburgerMenu={hamburgerMenu} />
+        )}
+        {keystages.length > 0 && (
           <MainMenuButton
-            key={keystage.slug + browseData.slug}
-            title={keystage.title as SubmenuState}
-            description={keystage.description}
+            title={keyStagesTitle}
             hamburgerMenu={hamburgerMenu}
-            track={() => {
-              track.browseRefined({
-                platform: "owa",
-                product: "teacher lesson resources",
-                engagementIntent: "refine",
-                componentType: "topnav-browse-button",
-                eventVersion: "2.0.0",
-                analyticsUseCase: "Teacher",
-                filterType: "Key stage filter",
-                filterValue: keystage.slug,
-                activeFilters: {},
-                googleLoginHint: null,
-                clientEnvironment: null,
-              });
-            }}
           />
-        ))}
+        )}
       </OakFlex>
     </OakBox>
   );
@@ -121,25 +127,20 @@ function SubjectsSection(
 
 function MainMenuButton({
   title,
-  description,
   hamburgerMenu,
   track,
 }: Readonly<{
   title: SubmenuState;
   hamburgerMenu: HamburgerMenuHook;
-  description?: string;
   track?: () => void;
 }>) {
   const { setSubmenuOpen } = hamburgerMenu;
-  const isEYFS = title === "EYFS";
-  const shouldShowDescription = !isEYFS && description;
 
   return (
     <OakBox $width={"100%"}>
       <OakLI $listStyle={"none"}>
         <OakLeftAlignedButton
           aria-haspopup={true}
-          aria-label={getEYFSAriaLabel(title)}
           rightAlignIcon
           iconName="chevron-right"
           width={"100%"}
@@ -149,7 +150,7 @@ function MainMenuButton({
             setSubmenuOpen(title);
           }}
         >
-          {shouldShowDescription ? description : title}
+          {title}
         </OakLeftAlignedButton>
       </OakLI>
     </OakBox>

@@ -183,7 +183,7 @@ exports[`core layout renders correctly 1`] = `
             {
               "children": [],
               "description": "Early years foundation stage",
-              "slug": "eyfs",
+              "slug": "early-years-foundation-stage",
               "title": "EYFS",
               "type": "keystage",
             },
