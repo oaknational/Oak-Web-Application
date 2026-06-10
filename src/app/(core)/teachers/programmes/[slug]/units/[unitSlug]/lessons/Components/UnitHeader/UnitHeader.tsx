@@ -14,7 +14,10 @@ import { TeachersUnitOverviewAdjacentUnit } from "@/node-lib/curriculum-api-2023
 import { resolveOakHref } from "@/common-lib/urls";
 import useAnalytics from "@/context/Analytics/useAnalytics";
 import { KeyStageTitleValueType } from "@/browser-lib/avo/Avo";
-import HeaderNavFooter from "@/components/TeacherComponents/HeaderNavFooter/HeaderNavFooter";
+import {
+  HeaderNavFooter,
+  StickyHeaderNavFooter,
+} from "@/components/TeacherComponents/HeaderNavFooter/HeaderNavFooter";
 import { useOakNotificationsContext } from "@/context/OakNotifications/useOakNotificationsContext";
 
 export type UnitHeaderProps = Omit<
@@ -94,6 +97,12 @@ const UnitHeader = (props: UnitHeaderProps) => {
     setShowIncompleteMessage,
   } = downloadButtonState;
 
+  const isStickyHeaderExperiement = true;
+
+  const HeaderFooterComponent = isStickyHeaderExperiement
+    ? StickyHeaderNavFooter
+    : HeaderNavFooter;
+
   return (
     <>
       <Header
@@ -101,7 +110,7 @@ const UnitHeader = (props: UnitHeaderProps) => {
         layoutVariant="compact"
         backgroundColorLevel={backgroundColorLevel}
       />
-      <HeaderNavFooter
+      <HeaderFooterComponent
         ref={ref}
         isStuck={isStuck}
         type="unit"
