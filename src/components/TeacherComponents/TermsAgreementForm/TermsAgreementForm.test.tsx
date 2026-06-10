@@ -42,7 +42,11 @@ describe("TermsAgreementForm (School, email and terms form within the teacher an
     };
     const { container } = render(<Wrapper errors={errors} />);
 
-    const error = queryByAttribute("id", container, "school-error");
+    const error = queryByAttribute(
+      "id",
+      container,
+      SHARE_FORM_ERROR_IDS.school,
+    );
     expect(error).toBeInTheDocument();
     expect(error).toHaveTextContent(errorMessage);
     expect(screen.getByTestId("search-combobox-input")).toHaveAttribute(
