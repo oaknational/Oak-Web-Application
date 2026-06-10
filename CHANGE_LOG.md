@@ -1,3 +1,43 @@
+# [1.1096.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1095.6...v1.1096.0) (2026-06-09)
+
+
+### Features
+
+* **LESQ-2042:** add an experiment for the download success CTA ([67b2e8b](https://github.com/oaknational/Oak-Web-Application/commit/67b2e8b23c6884e9126bb3355e70d1dfe5d96b87))
+
+## [1.1095.6](https://github.com/oaknational/Oak-Web-Application/compare/v1.1095.5...v1.1095.6) (2026-06-09)
+
+
+### Bug Fixes
+
+* rm subject category from heading on downloads and explainer tabs ([225b090](https://github.com/oaknational/Oak-Web-Application/commit/225b0907dd36bc69c707ec1a6e61d3c85487b89b))
+* typo on download tab ([f021cbc](https://github.com/oaknational/Oak-Web-Application/commit/f021cbcbef2fc2977899380356ee5cc58f1f27e9))
+
+## [1.1095.5](https://github.com/oaknational/Oak-Web-Application/compare/v1.1095.4...v1.1095.5) (2026-06-09)
+
+
+### Bug Fixes
+
+* **PUPIL-1748:** announce share validation errors to screen readers (defect 1) ([05fe761](https://github.com/oaknational/Oak-Web-Application/commit/05fe761960261699364cf8e58928af09663bbece))
+* **PUPIL-1748:** hide validation summary when no messages to show ([790f0ee](https://github.com/oaknational/Oak-Web-Application/commit/790f0ee21095b22f335143b69b4d4ea57b6df70f))
+* **PUPIL-1748:** satisfy FieldError type in validation summary test ([db12d7c](https://github.com/oaknational/Oak-Web-Application/commit/db12d7c837cbe6841954aba0e069abe1f36ce9c7))
+* **PUPIL-1748:** use prose SR announcement for share validation summary ([5b7dc01](https://github.com/oaknational/Oak-Web-Application/commit/5b7dc01b81295d6701bfa8e2af498ed3e4ed58f6))
+
+## [1.1095.4](https://github.com/oaknational/Oak-Web-Application/compare/v1.1095.3...v1.1095.4) (2026-06-09)
+
+
+### Bug Fixes
+
+* **PUPIL-1748:** group activity checkboxes in fieldset (defect 3) ([b15c988](https://github.com/oaknational/Oak-Web-Application/commit/b15c988022207f108554e9b97f370aff6140d3af))
+* **PUPIL-1748:** group share actions for assistive technology (defect 4) ([3db5c01](https://github.com/oaknational/Oak-Web-Application/commit/3db5c01b5db356f912a0331cb42c7f4d15d26d91))
+
+## [1.1095.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.1095.2...v1.1095.3) (2026-06-09)
+
+
+### Bug Fixes
+
+* **PUPIL-1748:** hide decorative separator from screen readers (defect 5) ([95d85c7](https://github.com/oaknational/Oak-Web-Application/commit/95d85c7379a90982fd499d667f48ef5488a099ed))
+
 ## [1.1095.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.1095.1...v1.1095.2) (2026-06-09)
 
 

@@ -4,7 +4,9 @@ import userEvent from "@testing-library/user-event";
 
 import { ResourceFormValues } from "../types/downloadAndShare.types";
 
-import LessonShareCardGroup from "./LessonShareCardGroup";
+import LessonShareCardGroup, {
+  SHARE_SELECT_ACTIVITIES_HEADING_ID,
+} from "./LessonShareCardGroup";
 
 import { getActivityDownloadCardAriaLabel } from "@/components/TeacherComponents/ShareResourceCard/ShareResourceCard";
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
@@ -36,6 +38,17 @@ describe("lesson share card group", () => {
     expect(
       screen.getByRole("heading", { name: /select activities/i }),
     ).toBeInTheDocument();
+    expect(
+      screen.getByRole("group", { name: "Select activities" }),
+    ).toBeInTheDocument();
+    expect(
+      document.getElementById(SHARE_SELECT_ACTIVITIES_HEADING_ID),
+    ).toHaveTextContent("Select activities");
+    const fieldset = screen.getByRole("group", { name: "Select activities" });
+    expect(fieldset).toHaveAttribute(
+      "aria-labelledby",
+      SHARE_SELECT_ACTIVITIES_HEADING_ID,
+    );
     expect(screen.getByText("Full online lesson")).toBeInTheDocument();
 
     const fullLessonCheckbox = screen.getByRole("checkbox", {
@@ -49,6 +62,23 @@ describe("lesson share card group", () => {
       ),
     );
     expect(fullLessonCheckbox).not.toHaveAttribute("title");
+  });
+
+  it("should toggle the full online lesson checkbox", async () => {
+    renderWithTheme(
+      <ComponentWrapper shareableResources={[]} shareLink="www.fake.com" />,
+    );
+
+    const checkbox = screen.getByRole("checkbox", {
+      name: /full online lesson/i,
+    });
+    const user = userEvent.setup();
+
+    await user.click(checkbox);
+    expect(checkbox).toBeChecked();
+
+    await user.click(checkbox);
+    expect(checkbox).not.toBeChecked();
   });
   it("should render with resources", () => {
     const shareableResources = [

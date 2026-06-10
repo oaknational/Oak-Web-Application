@@ -105,5 +105,23 @@ export const Default: Story = {
   ],
   args: {
     lesson: lessonWithUnitList,
+    ctaVariant: "control",
+  },
+};
+
+export const TestVariant: Story = {
+  decorators: [
+    (Story) => {
+      __setMockAuthState({
+        isSignedIn: true,
+        isOnboarded: true,
+        isRegionAuthorised: true,
+      });
+      return <Story />;
+    },
+  ],
+  args: {
+    lesson: lessonWithUnitList,
+    ctaVariant: "test",
   },
 };
