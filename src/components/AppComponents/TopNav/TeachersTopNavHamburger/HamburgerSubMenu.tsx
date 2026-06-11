@@ -6,6 +6,7 @@ import {
   OakFlex,
   OakHeading,
   OakLI,
+  OakBox,
 } from "@oaknational/oak-components";
 import Link from "next/link";
 
@@ -79,6 +80,7 @@ export function SubmenuContainer({
         iconName="chevron-left"
         aria-label={ariaLabel}
         selected={true}
+        $pl="spacing-0"
         onClick={() => {
           if (onBack) {
             onBack();
@@ -221,7 +223,7 @@ export function SubmenuContent(
           <OakUL
             $display={"flex"}
             $flexDirection={"column"}
-            $pl="spacing-40"
+            $pa="spacing-0"
             $gap={"spacing-16"}
           >
             {links.children.map((link) => (
@@ -306,6 +308,7 @@ export function SubmenuContent(
             $display={"flex"}
             $flexDirection={"column"}
             $gap={"spacing-16"}
+            $pa="spacing-0"
           >
             {keystages.map((keystage) => (
               <OakLI key={keystage.slug} $listStyle={"none"} $width={"100%"}>

@@ -8,6 +8,7 @@ import {
   OakSvg,
   OakUL,
   OakLeftAlignedButton,
+  OakLIProps,
 } from "@oaknational/oak-components";
 import Link from "next/link";
 
@@ -34,42 +35,30 @@ export function MainMenuContent(
   }, [submenuOpen, prevSubmenu]);
 
   return (
-    <OakUL
-      $display={"flex"}
-      $flexDirection={"column"}
-      $pa={"spacing-40"}
-      $gap={"spacing-40"}
-    >
+    <OakUL $display={"flex"} $flexDirection={"column"} $ph={"spacing-40"}>
       <SubjectsSection {...navData.primary} hamburgerMenu={hamburgerMenu} />
-      <MenuDivider />
       <SubjectsSection {...navData.secondary} hamburgerMenu={hamburgerMenu} />
-      <MenuDivider />
-      <OakFlex $flexDirection={"column"} $gap={"spacing-16"}>
-        <MainMenuButton title={"About us"} hamburgerMenu={hamburgerMenu} />
-        <MainMenuButton title={"Guidance"} hamburgerMenu={hamburgerMenu} />
-        <MainMenuLink
-          hamburgerMenu={hamburgerMenu}
-          href={resolveOakHref({
-            page: "labs",
-          })}
-          external={true}
-          title="AI Experiments"
-          iconName="external"
-          aria-label="AI Experiments (this will open in a new tab)"
-        />
-      </OakFlex>
+      <MainMenuButton
+        title={"About us"}
+        hamburgerMenu={hamburgerMenu}
+        $pb="spacing-16"
+      />
+      <MainMenuButton
+        title={"Guidance"}
+        hamburgerMenu={hamburgerMenu}
+        $pb="spacing-16"
+      />
+      <MainMenuLink
+        hamburgerMenu={hamburgerMenu}
+        href={resolveOakHref({
+          page: "labs",
+        })}
+        external={true}
+        title="AI Experiments"
+        iconName="external"
+        aria-label="AI Experiments (this will open in a new tab)"
+      />
     </OakUL>
-  );
-}
-
-function MenuDivider() {
-  return (
-    <OakBox
-      $width={"100%"}
-      $bt={"border-solid-s"}
-      $borderColor={"border-neutral-lighter"}
-      as="hr"
-    />
   );
 }
 
@@ -91,11 +80,12 @@ function SubjectsSection(
       : "Secondary key stages";
 
   return (
-    <OakBox>
+    <OakLI $listStyle={"none"} $pb="spacing-40">
       <OakFlex
         $flexDirection={"column"}
         $width={"fit-content"}
         $mb={"spacing-12"}
+        $pl="spacing-8"
       >
         <OakBox $position={"relative"}>
           <OakHeading tag="h2" $font={"heading-6"}>
@@ -110,7 +100,13 @@ function SubjectsSection(
           />
         </OakBox>
       </OakFlex>
-      <OakFlex $flexDirection={"column"} $gap={"spacing-16"}>
+      <OakFlex
+        as="ul"
+        $flexDirection={"column"}
+        $gap={"spacing-16"}
+        $ph="spacing-0"
+        $pt="spacing-12"
+      >
         {phaseSubjects.length > 0 && (
           <MainMenuButton title={subjectsTitle} hamburgerMenu={hamburgerMenu} />
         )}
@@ -121,7 +117,14 @@ function SubjectsSection(
           />
         )}
       </OakFlex>
-    </OakBox>
+      <OakBox
+        $mt="spacing-40"
+        $mh="spacing-8"
+        $bb={"border-solid-s"}
+        $borderColor={"border-neutral-lighter"}
+        aria-hidden={true}
+      />
+    </OakLI>
   );
 }
 
@@ -129,31 +132,31 @@ function MainMenuButton({
   title,
   hamburgerMenu,
   track,
+  $pb,
 }: Readonly<{
   title: SubmenuState;
   hamburgerMenu: HamburgerMenuHook;
   track?: () => void;
+  $pb?: OakLIProps["$pb"];
 }>) {
   const { setSubmenuOpen } = hamburgerMenu;
 
   return (
-    <OakBox $width={"100%"}>
-      <OakLI $listStyle={"none"}>
-        <OakLeftAlignedButton
-          aria-haspopup={true}
-          rightAlignIcon
-          iconName="chevron-right"
-          width={"100%"}
-          id={title + "button"}
-          onClick={() => {
-            track?.();
-            setSubmenuOpen(title);
-          }}
-        >
-          {title}
-        </OakLeftAlignedButton>
-      </OakLI>
-    </OakBox>
+    <OakLI $listStyle={"none"} $width={"100%"} $pb={$pb}>
+      <OakLeftAlignedButton
+        aria-haspopup={true}
+        rightAlignIcon
+        iconName="chevron-right"
+        width={"100%"}
+        id={title + "button"}
+        onClick={() => {
+          track?.();
+          setSubmenuOpen(title);
+        }}
+      >
+        {title}
+      </OakLeftAlignedButton>
+    </OakLI>
   );
 }
 
