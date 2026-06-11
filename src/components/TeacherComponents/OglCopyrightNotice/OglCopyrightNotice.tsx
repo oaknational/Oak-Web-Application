@@ -29,8 +29,6 @@ const PreAlbCopyright = (
         aria-label="Terms and conditions (opens in a new tab)"
         iconName="external"
         isTrailingIcon
-        iconHeight="spacing-20"
-        iconWidth="spacing-20"
         data-testid="external-link-icon"
       >
         terms &amp; conditions
