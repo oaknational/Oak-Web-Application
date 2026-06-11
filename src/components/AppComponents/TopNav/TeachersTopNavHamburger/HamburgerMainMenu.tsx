@@ -19,6 +19,7 @@ import {
   TeachersSubNavData,
 } from "@/node-lib/curriculum-api-2023/queries/topNav/topNav.schema";
 import { resolveOakHref } from "@/common-lib/urls";
+import useAnalytics from "@/context/Analytics/useAnalytics";
 
 export function MainMenuContent(
   props: Readonly<TeachersSubNavData & { hamburgerMenu: HamburgerMenuHook }>,
@@ -66,6 +67,7 @@ function SubjectsSection(
   props: Readonly<TeachersBrowse & { hamburgerMenu: HamburgerMenuHook }>,
 ) {
   const { hamburgerMenu, ...browseData } = props;
+  const { track } = useAnalytics();
   const phaseSubjects = browseData.children.filter(
     (child) => child.type === "phase",
   );
@@ -108,7 +110,25 @@ function SubjectsSection(
         $pt="spacing-12"
       >
         {phaseSubjects.length > 0 && (
-          <MainMenuButton title={subjectsTitle} hamburgerMenu={hamburgerMenu} />
+          <MainMenuButton
+            title={subjectsTitle}
+            hamburgerMenu={hamburgerMenu}
+            track={() => {
+              track.browseRefined({
+                platform: "owa",
+                product: "teacher lesson resources",
+                engagementIntent: "refine",
+                componentType: "topnav-browse-button",
+                eventVersion: "2.0.0",
+                analyticsUseCase: "Teacher",
+                filterType: "Phase filter",
+                filterValue: browseData.slug,
+                activeFilters: {},
+                googleLoginHint: null,
+                clientEnvironment: null,
+              });
+            }}
+          />
         )}
         {keystages.length > 0 && (
           <MainMenuButton

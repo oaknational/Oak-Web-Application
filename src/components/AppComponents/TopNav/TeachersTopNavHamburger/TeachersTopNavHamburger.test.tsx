@@ -208,7 +208,7 @@ describe("TeachersTopNavHamburger", () => {
       expect.objectContaining({
         filterType: "Subject filter",
         filterValue: "english",
-        activeFilters: { keyStage: ["ks1"] },
+        activeFilters: { keystage: ["ks1"] },
       }),
     );
   });
@@ -257,6 +257,27 @@ describe("TeachersTopNavHamburger", () => {
       expect.objectContaining({
         filterType: "Key stage filter",
         filterValue: "ks1",
+      }),
+    );
+  });
+
+  it("should track browse refined when phase subjects submenu is opened", async () => {
+    const { getByTestId, getByRole } = render(
+      <TeachersTopNavHamburger {...mockTopNavProps} />,
+    );
+    const user = userEvent.setup();
+    const button = getByTestId("top-nav-hamburger-button");
+    await user.click(button);
+
+    const secondarySubjectsButton = getByRole("button", {
+      name: "Secondary subjects",
+    });
+    await user.click(secondarySubjectsButton);
+
+    expect(mockBrowseRefined).toHaveBeenCalledWith(
+      expect.objectContaining({
+        filterType: "Phase filter",
+        filterValue: "secondary",
       }),
     );
   });

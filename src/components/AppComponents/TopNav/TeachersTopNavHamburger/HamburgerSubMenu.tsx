@@ -141,7 +141,7 @@ function SubjectsSubmenu(props: SubjectsSubmenuProps) {
       filterType: "Subject filter",
       filterValue: subjectSlug,
       activeFilters:
-        props.viewType === "keystage" ? { keyStage: [props.keystageSlug] } : {},
+        props.viewType === "keystage" ? { keystage: [props.keystageSlug] } : {},
       googleLoginHint: null,
       clientEnvironment: null,
     });
