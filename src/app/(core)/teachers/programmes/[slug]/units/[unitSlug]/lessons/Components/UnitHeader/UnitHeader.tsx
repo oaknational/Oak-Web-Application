@@ -97,7 +97,7 @@ const UnitHeader = (props: UnitHeaderProps) => {
     setShowIncompleteMessage,
   } = downloadButtonState;
 
-  const isStickyHeaderExperiement = false;
+  const isStickyHeaderExperiement = true;
 
   const HeaderFooterComponent = isStickyHeaderExperiement
     ? StickyHeaderNavFooter
