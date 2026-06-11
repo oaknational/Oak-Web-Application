@@ -230,7 +230,7 @@ const TeachersPhaseSection = ({
           title === "EYFS" ? "Early years foundation stage" : undefined
         }
       >
-        {title.replace("KS", "Key stage ")}
+        {title}
       </OakLeftAlignedButton>
     );
   };
@@ -306,7 +306,7 @@ const TeachersPhaseSection = ({
             {keystageChildren.map((keystage) =>
               renderNavButtons(
                 keystage.slug,
-                keystage.title,
+                keystage.title.replace("KS", "Key stage "),
                 isKeystageOpen,
                 onKeystageClick,
               ),

@@ -17,7 +17,7 @@ export const createFocusId = (
   parentId?: string,
 ): string => {
   if (parentId === undefined) return `${area}-${slug}`;
-  if (!slug) return `${area}-${parentId}`;
+  if (slug === "") return `${area}-${parentId}`;
   return `${slug}-${parentId}`;
 };
 

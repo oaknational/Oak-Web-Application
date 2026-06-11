@@ -48,16 +48,14 @@ const ExamBoardPanel = ({
   onClick,
   onLeave,
 }: ExamBoardPanelProps) => {
-  const subjectId =
-    createFocusId(
-      "teachers",
-      `teachers-${phaseSlug}-${viewType}`,
-      selectedSubject.slug,
-    ) ?? `teachers-${phaseSlug}-${viewType}-${selectedSubject.slug}`;
+  const subjectId = createFocusId(
+    "teachers",
+    `teachers-${phaseSlug}-${viewType}`,
+    selectedSubject.slug,
+  );
+  const panelId = `topnav-teachers-${viewType}-examboards-${selectedSubject.slug}`;
 
   useEffect(() => {
-    const panelId = `topnav-teachers-${viewType}-examboards-${selectedSubject.slug}`;
-
     // Wait for panel children to render before moving focus.
     requestAnimationFrame(() => {
       requestAnimationFrame(() => {
@@ -68,7 +66,7 @@ const ExamBoardPanel = ({
         firstExamBoard?.focus();
       });
     });
-  }, [focusManager, viewType, selectedSubject.slug, examboards]);
+  }, [focusManager, viewType, selectedSubject.slug, panelId, examboards]);
 
   if (!examboards || examboards.length === 0) {
     return null;
@@ -132,7 +130,7 @@ const ExamBoardPanel = ({
         $flexDirection={"column"}
         $gap={"spacing-8"}
         $reset
-        id={`topnav-teachers-${viewType}-examboards-${selectedSubject.slug}`}
+        id={panelId}
         role="list"
         style={{
           display: "flex",
@@ -147,12 +145,11 @@ const ExamBoardPanel = ({
               examboard.programmeFactors.tier?.slug
               ? `${examboard.buttonTitle} (${examboard.programmeFactors.tier?.description})`
               : examboard.buttonTitle;
-          const buttonId =
-            createFocusId(
-              "teachers",
-              subjectId,
-              getExamBoardFocusSlug(examboard),
-            ) ?? `${subjectId}-${getExamBoardFocusSlug(examboard)}`;
+          const buttonId = createFocusId(
+            "teachers",
+            subjectId,
+            getExamBoardFocusSlug(examboard),
+          );
           const key = examboard.programmeFactors?.tier?.slug
             ? `exam-board-${examboard.programmeFactors.examboard?.slug}-${examboard.programmeFactors.tier?.slug}`
             : `exam-board-${examboard.programmeFactors?.examboard?.slug}`;
