@@ -171,17 +171,16 @@ const TeachersPhaseSection = ({
   };
 
   // Arrow key navigation for up/down in keystages
-  const handleKeystageArrowKeys = (
+  const handleArrowKeys = (
     event: React.KeyboardEvent<HTMLDivElement>,
+    focusableElements: string[],
   ) => {
-    if (!selectedMenu) return;
-    const focusableElements = keystageChildren.map((keystage) =>
-      createFocusId("teachers", `teachers-${phaseData.slug}`, keystage.slug),
-    );
     const activeElementId = document.activeElement?.id;
     if (!activeElementId) return;
+
     const currentIndex = focusableElements.indexOf(activeElementId);
     if (focusableElements.length === 0 || currentIndex === -1) return;
+
     switch (event.key) {
       case "ArrowDown": {
         event.preventDefault();
@@ -260,6 +259,17 @@ const TeachersPhaseSection = ({
 
   const isTopLevelOpen = (slug: string) => selectedTopLevel === slug;
   const isKeystageOpen = (slug: string) => selectedViewType === slug;
+  const topLevelButtonIds = [
+    createFocusId("teachers", `teachers-${phaseData.slug}`, phaseData.slug),
+    ...(hasKeystageChildren
+      ? [createFocusId("teachers", `teachers-${phaseData.slug}`, "keystages")]
+      : []),
+  ];
+
+  const keystageButtonIds = keystageChildren.map((keystage) =>
+    createFocusId("teachers", `teachers-${phaseData.slug}`, keystage.slug),
+  );
+
   return (
     <OakFlex $gap={"spacing-40"}>
       <OakFlex
@@ -268,7 +278,7 @@ const TeachersPhaseSection = ({
         $gap={"spacing-8"}
         $pa={"spacing-0"}
         id={`topnav-teachers-${phase}`}
-        onKeyDown={handleKeystageArrowKeys}
+        onKeyDown={(e) => handleArrowKeys(e, topLevelButtonIds)}
       >
         {renderNavButtons(
           phaseData.slug,
@@ -290,9 +300,8 @@ const TeachersPhaseSection = ({
             $display={"flex"}
             $flexDirection={"column"}
             $gap={"spacing-8"}
-            role="tablist"
             ref={keystagesRef}
-            onKeyDown={handleKeystageArrowKeys}
+            onKeyDown={(e) => handleArrowKeys(e, keystageButtonIds)}
           >
             {keystageChildren.map((keystage) =>
               renderNavButtons(
