@@ -4637,6 +4637,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                   class="c48 c49 c50"
                 >
                   <a
+                    aria-label="Search"
                     class="c51 c52"
                     href="/teachers/search"
                   >
