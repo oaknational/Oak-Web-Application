@@ -1,72 +1,21 @@
 import {
-  OakFlexProps,
-  OakUiRoleToken,
   OakFlex,
-  OakSmallPrimaryInvertedButton,
-  OakIcon,
   OakBox,
   OakP,
-  OakTertiaryInvertedButton,
+  OakSmallPrimaryInvertedButton,
 } from "@oaknational/oak-components";
 import { Ref } from "react";
 import styled, { css, keyframes } from "styled-components";
 
-export type HeaderNavFooterProps = {
-  backgroundColorLevel: 1 | 3 | 4;
-  type: "unit" | "lesson";
-  viewHref: string;
+import {
+  BaseHeaderNavFooterProps,
+  PrevNextButtons,
+} from "@/components/TeacherComponents/HeaderNavFooter/HeaderNavFooterShared";
+
+export type UnitHeaderNavFooterProps = BaseHeaderNavFooterProps & {
   title?: string;
   sentinelRef?: Ref<HTMLDivElement>;
   isStuck?: boolean;
-  prevHref?: string;
-  nextHref?: string;
-  actionButton?: React.ReactElement;
-};
-
-export const HeaderNavFooter = (props: HeaderNavFooterProps) => {
-  return (
-    <OakFlex
-      $background={`bg-decorative${props.backgroundColorLevel}-subdued`}
-      $width={"100%"}
-      $pv={"spacing-24"}
-      $ph={["spacing-20", "spacing-40"]}
-      $flexDirection={["column", "row"]}
-      $gap={"spacing-24"}
-      $justifyContent="center"
-    >
-      <OakFlex
-        $justifyContent={"space-between"}
-        $width={"100%"}
-        $gap={"spacing-16"}
-        $maxWidth="spacing-1280"
-      >
-        <OakFlex as="nav" $gap={"spacing-32"} $alignItems={"center"}>
-          <OakTertiaryInvertedButton
-            iconName="list"
-            element="a"
-            href={props.viewHref}
-          >
-            {`View ${props.type === "unit" ? "all units" : "unit"}`}
-          </OakTertiaryInvertedButton>
-          <OakBox
-            $bl={"border-solid-m"}
-            $display={["none", "flex"]}
-            $height={"spacing-24"}
-            $borderColor={`border-decorative${props.backgroundColorLevel}`}
-          />
-          <PrevNextButtons $display={["none", "flex"]} {...props} />
-        </OakFlex>
-        {props.actionButton}
-      </OakFlex>
-      <OakBox
-        $display={["block", "none"]}
-        $bt={"border-solid-m"}
-        $borderColor={`border-decorative${props.backgroundColorLevel}`}
-        $width={"100%"}
-      />
-      <PrevNextButtons $display={["flex", "none"]} {...props} />
-    </OakFlex>
-  );
 };
 
 const fadeIn = keyframes`
@@ -94,7 +43,7 @@ const FadeInFlex = styled(OakFlex)<{ $animateIn?: boolean }>`
     `}
 `;
 
-export const StickyHeaderNavFooter = (props: HeaderNavFooterProps) => {
+export const UnitHeaderNavFooter = (props: UnitHeaderNavFooterProps) => {
   const { sentinelRef, isStuck } = props;
   return (
     <>
@@ -145,7 +94,7 @@ export const StickyHeaderNavFooter = (props: HeaderNavFooterProps) => {
             $gap={"spacing-16"}
             $maxWidth="spacing-1280"
           >
-            {props.actionButton}
+            {props.downloadButton}
             <OakBox
               $bl={"border-solid-m"}
               $display={isStuck ? ["none", "none", "block"] : "none"}
@@ -161,7 +110,7 @@ export const StickyHeaderNavFooter = (props: HeaderNavFooterProps) => {
               $gap={"spacing-32"}
               $alignItems={"center"}
             >
-              <PrevNextButtons $display={"flex"} {...props} />
+              <PrevNextButtons type="unit" $display={"flex"} {...props} />
               <OakBox
                 $bl={"border-solid-m"}
                 $display={"flex"}
@@ -172,6 +121,7 @@ export const StickyHeaderNavFooter = (props: HeaderNavFooterProps) => {
           </OakFlex>
 
           <PrevNextButtons
+            type="unit"
             $display={isStuck ? "none" : ["flex", "none"]}
             {...props}
           />
@@ -184,68 +134,10 @@ export const StickyHeaderNavFooter = (props: HeaderNavFooterProps) => {
             element="a"
             href={props.viewHref}
           >
-            {`View ${props.type === "unit" ? "all units" : "unit"}`}
+            View all units
           </OakSmallPrimaryInvertedButton>
         </FadeInFlex>
       </OakFlex>
     </>
-  );
-};
-
-type PrevNextButtonsProps = Pick<
-  HeaderNavFooterProps,
-  "backgroundColorLevel" | "type" | "nextHref" | "prevHref"
-> & {
-  $display: OakFlexProps["$display"];
-};
-
-const PrevNextButtons = ({
-  $display,
-  backgroundColorLevel,
-  nextHref,
-  prevHref,
-  type,
-}: PrevNextButtonsProps) => {
-  const iconColor =
-    `icon-decorative${backgroundColorLevel}` satisfies OakUiRoleToken;
-
-  return (
-    <OakFlex $display={$display} $gap={"spacing-16"}>
-      {prevHref && (
-        <OakSmallPrimaryInvertedButton
-          width={["100%", "auto"]}
-          element="a"
-          href={prevHref}
-          iconOverride={
-            <OakIcon
-              iconName="arrow-left"
-              $color={iconColor}
-              $width={"spacing-24"}
-              $height="spacing-24"
-            />
-          }
-        >
-          {"Previous " + type}
-        </OakSmallPrimaryInvertedButton>
-      )}
-      {nextHref && (
-        <OakSmallPrimaryInvertedButton
-          width={["100%", "auto"]}
-          element="a"
-          href={nextHref}
-          isTrailingIcon
-          iconOverride={
-            <OakIcon
-              iconName="arrow-right"
-              $color={iconColor}
-              $width={"spacing-24"}
-              $height="spacing-24"
-            />
-          }
-        >
-          {"Next " + type}
-        </OakSmallPrimaryInvertedButton>
-      )}
-    </OakFlex>
   );
 };

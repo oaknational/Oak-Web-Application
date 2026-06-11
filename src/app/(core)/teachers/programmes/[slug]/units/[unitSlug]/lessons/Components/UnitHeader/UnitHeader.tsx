@@ -2,7 +2,6 @@
 import { OakBox, parseSpacing } from "@oaknational/oak-components";
 import styled from "styled-components";
 import { useRef, useState, useEffect } from "react";
-import { useFeatureFlagVariantKey } from "posthog-js/react";
 
 import UnitDownloadButton, {
   useUnitDownloadButtonState,
@@ -15,10 +14,7 @@ import { TeachersUnitOverviewAdjacentUnit } from "@/node-lib/curriculum-api-2023
 import { resolveOakHref } from "@/common-lib/urls";
 import useAnalytics from "@/context/Analytics/useAnalytics";
 import { KeyStageTitleValueType } from "@/browser-lib/avo/Avo";
-import {
-  HeaderNavFooter,
-  StickyHeaderNavFooter,
-} from "@/components/TeacherComponents/HeaderNavFooter/HeaderNavFooter";
+import { UnitHeaderNavFooter } from "@/components/TeacherComponents/HeaderNavFooter/UnitHeaderNavFooter/UnitHeaderNavFooter";
 import { useOakNotificationsContext } from "@/context/OakNotifications/useOakNotificationsContext";
 
 export type UnitHeaderProps = Omit<
@@ -97,12 +93,6 @@ const UnitHeader = (props: UnitHeaderProps) => {
     downloadInProgress,
     setShowIncompleteMessage,
   } = downloadButtonState;
-  const variant = useFeatureFlagVariantKey("sticky-unit-download-button");
-  const isStickyHeaderExperiement = variant === "test";
-
-  const HeaderFooterComponent = isStickyHeaderExperiement
-    ? StickyHeaderNavFooter
-    : HeaderNavFooter;
 
   return (
     <>
@@ -111,10 +101,9 @@ const UnitHeader = (props: UnitHeaderProps) => {
         layoutVariant="compact"
         backgroundColorLevel={backgroundColorLevel}
       />
-      <HeaderFooterComponent
+      <UnitHeaderNavFooter
         sentinelRef={ref}
         isStuck={isStuck}
-        type="unit"
         title={props.heading}
         backgroundColorLevel={backgroundColorLevel}
         viewHref={resolveOakHref({
@@ -140,7 +129,7 @@ const UnitHeader = (props: UnitHeaderProps) => {
               })
             : undefined
         }
-        actionButton={
+        downloadButton={
           unitDownloadFileId ? (
             <NegativeBorderBox $width={["100%", "auto"]}>
               <UnitDownloadButton

@@ -1,33 +1,29 @@
 import { screen } from "@testing-library/dom";
 
-import { HeaderNavFooter, HeaderNavFooterProps } from "./HeaderNavFooter";
+import {
+  UnitHeaderNavFooter,
+  UnitHeaderNavFooterProps,
+} from "./UnitHeaderNavFooter";
 
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 
-const defaultProps: HeaderNavFooterProps = {
-  backgroundColorLevel: 1,
-  type: "unit",
+const defaultProps: UnitHeaderNavFooterProps = {
+  backgroundColorLevel: 3,
   viewHref: "testUrl",
 };
 
 const render = renderWithTheme;
 
-describe("HeaderNavFooter", () => {
-  it("Renders the correct text for view href when type is unit", () => {
-    render(<HeaderNavFooter {...defaultProps} />);
+describe("UnitHeaderNavFooter", () => {
+  it("Renders the correct text for the view href", () => {
+    render(<UnitHeaderNavFooter {...defaultProps} />);
 
     const viewLink = screen.getByRole("link", { name: "View all units" });
     expect(viewLink).toBeInTheDocument();
   });
-  it("Renders the correct text for view href when type is lesson", () => {
-    render(<HeaderNavFooter {...defaultProps} type="lesson" />);
-
-    const viewLink = screen.getByRole("link", { name: "View unit" });
-    expect(viewLink).toBeInTheDocument();
-  });
-  it("Renders previous and next links with correct text for unit", () => {
+  it("Renders previous and next links with correct text", () => {
     render(
-      <HeaderNavFooter
+      <UnitHeaderNavFooter
         {...defaultProps}
         prevHref="prevUrl"
         nextHref="nextUrl"
@@ -42,9 +38,9 @@ describe("HeaderNavFooter", () => {
   });
   it("renders an action button", () => {
     render(
-      <HeaderNavFooter
+      <UnitHeaderNavFooter
         {...defaultProps}
-        actionButton={<button>action button</button>}
+        downloadButton={<button>action button</button>}
       />,
     );
 

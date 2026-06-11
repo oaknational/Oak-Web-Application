@@ -6,10 +6,10 @@ import {
   OakThemeProvider,
 } from "@oaknational/oak-components";
 
-import { HeaderNavFooter } from "./HeaderNavFooter";
+import { LessonHeaderNavFooter } from "./LessonHeaderNavFooter";
 
-const meta: Meta<typeof HeaderNavFooter> = {
-  component: HeaderNavFooter,
+const meta: Meta<typeof LessonHeaderNavFooter> = {
+  component: LessonHeaderNavFooter,
   tags: ["autodocs"],
   decorators: [
     (Story) => (
@@ -22,7 +22,7 @@ const meta: Meta<typeof HeaderNavFooter> = {
 
 export default meta;
 
-type Story = StoryObj<typeof HeaderNavFooter>;
+type Story = StoryObj<typeof LessonHeaderNavFooter>;
 
 export const Default: Story = {
   args: {
@@ -30,7 +30,6 @@ export const Default: Story = {
     prevHref: "www.google.com",
     nextHref: "www.google.com",
     viewHref: "www.google.com",
-    type: "lesson",
-    actionButton: <OakPrimaryButton>Action</OakPrimaryButton>,
+    downloadButton: <OakPrimaryButton>Action</OakPrimaryButton>,
   },
 };
