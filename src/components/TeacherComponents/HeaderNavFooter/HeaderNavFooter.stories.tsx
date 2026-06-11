@@ -6,7 +6,7 @@ import {
   OakThemeProvider,
 } from "@oaknational/oak-components";
 
-import HeaderNavFooter from "./HeaderNavFooter";
+import { HeaderNavFooter } from "./HeaderNavFooter";
 
 const meta: Meta<typeof HeaderNavFooter> = {
   component: HeaderNavFooter,

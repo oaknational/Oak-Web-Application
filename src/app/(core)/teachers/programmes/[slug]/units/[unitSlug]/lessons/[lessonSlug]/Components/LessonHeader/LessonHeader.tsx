@@ -6,7 +6,7 @@ import {
   Header,
   LargeHeaderProps,
 } from "@/components/TeacherComponents/Header/Header";
-import HeaderNavFooter from "@/components/TeacherComponents/HeaderNavFooter/HeaderNavFooter";
+import { HeaderNavFooter } from "@/components/TeacherComponents/HeaderNavFooter/HeaderNavFooter";
 import { resolveOakHref } from "@/common-lib/urls";
 import {
   TeachersLessonOverviewAdjacentLesson,

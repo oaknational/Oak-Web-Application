@@ -1,6 +1,6 @@
 import { screen } from "@testing-library/dom";
 
-import HeaderNavFooter, { HeaderNavFooterProps } from "./HeaderNavFooter";
+import { HeaderNavFooter, HeaderNavFooterProps } from "./HeaderNavFooter";
 
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 

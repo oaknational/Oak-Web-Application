@@ -97,7 +97,7 @@ const UnitHeader = (props: UnitHeaderProps) => {
     setShowIncompleteMessage,
   } = downloadButtonState;
 
-  const isStickyHeaderExperiement = true;
+  const isStickyHeaderExperiement = false;
 
   const HeaderFooterComponent = isStickyHeaderExperiement
     ? StickyHeaderNavFooter
@@ -111,7 +111,7 @@ const UnitHeader = (props: UnitHeaderProps) => {
         backgroundColorLevel={backgroundColorLevel}
       />
       <HeaderFooterComponent
-        ref={ref}
+        sentinelRef={ref}
         isStuck={isStuck}
         type="unit"
         title={props.heading}

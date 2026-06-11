@@ -15,9 +15,9 @@ export type HeaderNavFooterProps = {
   backgroundColorLevel: 1 | 3 | 4;
   type: "unit" | "lesson";
   viewHref: string;
-  title: string;
-  ref: Ref<HTMLDivElement>;
-  isStuck: boolean;
+  title?: string;
+  sentinelRef?: Ref<HTMLDivElement>;
+  isStuck?: boolean;
   prevHref?: string;
   nextHref?: string;
   actionButton?: React.ReactElement;
@@ -95,11 +95,11 @@ const FadeInFlex = styled(OakFlex)<{ $animateIn?: boolean }>`
 `;
 
 export const StickyHeaderNavFooter = (props: HeaderNavFooterProps) => {
-  const { ref, isStuck } = props;
+  const { sentinelRef, isStuck } = props;
   return (
     <>
       {/* Sentinel element, for checking when the user has scrolled past this point */}
-      <OakBox ref={ref} $height="spacing-0" />
+      <OakBox ref={sentinelRef} $height="spacing-0" />
       {/**
        * Most of the complexity here comes from having to pin to the bottom
        * of the screen on mobile viewports. position: sticky assumes you're
