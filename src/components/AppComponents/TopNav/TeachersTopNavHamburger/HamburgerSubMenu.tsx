@@ -6,7 +6,6 @@ import {
   OakFlex,
   OakHeading,
   OakLI,
-  OakBox,
 } from "@oaknational/oak-components";
 import Link from "next/link";
 
@@ -125,6 +124,26 @@ function SubjectsSubmenu({
   const { track } = useAnalytics();
   const { handleCloseHamburger } = hamburgerMenu;
 
+  const handleSubjectBrowseClick = (
+    subjectSlug: string,
+    keystageSlug: string,
+  ) => {
+    track.browseRefined({
+      platform: "owa",
+      product: "teacher lesson resources",
+      engagementIntent: "refine",
+      componentType: "topnav-browse-button",
+      eventVersion: "2.0.0",
+      analyticsUseCase: "Teacher",
+      filterType: "Subject filter",
+      filterValue: subjectSlug,
+      activeFilters: { keystages: [keystageSlug] },
+      googleLoginHint: null,
+      clientEnvironment: null,
+    });
+    handleCloseHamburger();
+  };
+
   if (selectedExamBoardSubject?.examBoards?.length) {
     return (
       <SubmenuContainer
@@ -137,22 +156,7 @@ function SubjectsSubmenu({
           phaseSlug={phase}
           viewType={keyStageSlug}
           selectedSubject={selectedExamBoardSubject}
-          onClick={(subjectSlug, keystageSlug) => {
-            track.browseRefined({
-              platform: "owa",
-              product: "teacher lesson resources",
-              engagementIntent: "refine",
-              componentType: "topnav-browse-button",
-              eventVersion: "2.0.0",
-              analyticsUseCase: "Teacher",
-              filterType: "Subject filter",
-              filterValue: subjectSlug,
-              activeFilters: { keystages: [keystageSlug] },
-              googleLoginHint: null,
-              clientEnvironment: null,
-            });
-            handleCloseHamburger();
-          }}
+          onClick={handleSubjectBrowseClick}
           onLeave={() => setSelectedExamBoardSubject(null)}
         />
       </SubmenuContainer>
@@ -167,22 +171,7 @@ function SubjectsSubmenu({
       onBack={onBack}
     >
       <TopNavSubjectButtons
-        handleClick={(subjectSlug, keystageSlug) => {
-          track.browseRefined({
-            platform: "owa",
-            product: "teacher lesson resources",
-            engagementIntent: "refine",
-            componentType: "topnav-browse-button",
-            eventVersion: "2.0.0",
-            analyticsUseCase: "Teacher",
-            filterType: "Subject filter",
-            filterValue: subjectSlug,
-            activeFilters: { keystages: [keystageSlug] },
-            googleLoginHint: null,
-            clientEnvironment: null,
-          });
-          handleCloseHamburger();
-        }}
+        handleClick={handleSubjectBrowseClick}
         selectedMenu={phase}
         subjects={subjects}
         selectedSubject={selectedExamBoardSubject}
