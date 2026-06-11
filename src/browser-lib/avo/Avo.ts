@@ -1529,7 +1529,6 @@ export const FilterType = {
   'LESSON_COHORT_FILTER': 'Lesson Cohort filter',
   'PATHWAY_FILTER': 'Pathway filter',
   'UNIT_FILTER': 'Unit filter',
-  'PHASE_FILTER': 'Phase filter',
 } as const;
 export type FilterTypeType = typeof FilterType;
 export type FilterTypeValueType = FilterTypeType[keyof FilterTypeType];
