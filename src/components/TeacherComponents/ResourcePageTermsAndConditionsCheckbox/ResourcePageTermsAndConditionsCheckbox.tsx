@@ -9,6 +9,7 @@ import {
 
 import BrushBorders from "@/components/SharedComponents/SpriteSheet/BrushSvgs/BrushBorders";
 import FieldError from "@/components/SharedComponents/FieldError";
+import { SHARE_FORM_ERROR_IDS } from "@/components/TeacherComponents/helpers/downloadAndShareHelpers/shareDownloadFormErrorIds";
 import { resolveOakHref } from "@/common-lib/urls/urls";
 
 export type ResourcePageTermsAndConditionsCheckboxProps = {
@@ -26,7 +27,11 @@ const ResourcePageTermsAndConditionsCheckbox: FC<
   <>
     {errorMessage && (
       <OakBox $mb="spacing-16">
-        <FieldError ariaLive="polite" id={"terms-error"} withoutMarginBottom>
+        <FieldError
+          ariaLive="polite"
+          id={SHARE_FORM_ERROR_IDS.terms}
+          withoutMarginBottom
+        >
           {errorMessage}
         </FieldError>
       </OakBox>
@@ -48,6 +53,7 @@ const ResourcePageTermsAndConditionsCheckbox: FC<
         onChange={onChange}
         uncheckedBorderColor={errorMessage ? "border-error" : undefined}
         data-testid="termsCheckboxInput"
+        aria-describedby={errorMessage ? SHARE_FORM_ERROR_IDS.terms : undefined}
         {...props}
       />
       <OakLabel htmlFor={props.id} data-testid="termsCheckboxLabel">

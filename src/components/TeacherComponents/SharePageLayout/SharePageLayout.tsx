@@ -24,6 +24,7 @@ import { ResourceFormValues } from "@/components/TeacherComponents/types/downloa
 import { ResourcePageDetailsCompletedProps } from "@/components/TeacherComponents/ResourcePageDetailsCompleted/ResourcePageDetailsCompleted";
 import { ResourcePageSchoolDetailsProps } from "@/components/TeacherComponents/ResourcePageSchoolDetails/ResourcePageSchoolDetails";
 import { getFormErrorMessages } from "@/components/TeacherComponents/helpers/downloadAndShareHelpers/getDownloadFormErrorMessage";
+import { SHARE_FORM_ERROR_IDS } from "@/components/TeacherComponents/helpers/downloadAndShareHelpers/shareDownloadFormErrorIds";
 import TermsAgreementForm from "@/components/TeacherComponents/TermsAgreementForm";
 import NoResourcesToShare from "@/components/TeacherComponents/NoResourcesToShare";
 import FieldError from "@/components/SharedComponents/FieldError";
@@ -85,7 +86,10 @@ const SharePageLayout: FC<SharePageLayoutProps> = (props) => {
               $gap={"spacing-16"}
               $width={"100%"}
             >
-              <FieldError id={"downloads-error"} withoutMarginBottom>
+              <FieldError
+                id={SHARE_FORM_ERROR_IDS.resources}
+                withoutMarginBottom
+              >
                 {props.errors?.resources?.message}
               </FieldError>
               {props.cardGroup}
