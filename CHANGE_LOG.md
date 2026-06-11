@@ -1,3 +1,15 @@
+## [1.1096.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.1096.1...v1.1096.2) (2026-06-11)
+
+
+### Bug Fixes
+
+* **PUPIL-1748:** address PR review on aria error helpers ([fa99209](https://github.com/oaknational/Oak-Web-Application/commit/fa992099f128596a23541263110ea4879f118516))
+* **PUPIL-1748:** drop native required on terms checkbox ([1b25d48](https://github.com/oaknational/Oak-Web-Application/commit/1b25d48b7a3add4c69fe68e5e276cd396d079d90))
+* **PUPIL-1748:** link form field errors via aria-describedby (defect 2) ([4f8369b](https://github.com/oaknational/Oak-Web-Application/commit/4f8369bb7f2c68c623cd6ff9d5d9e8d80a78c8a8))
+* **PUPIL-1748:** reduce checkbox error noise for screen readers ([7081c7b](https://github.com/oaknational/Oak-Web-Application/commit/7081c7b19c4eeee51fde83843630138dd38f6638))
+
+## [1.1096.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.1096.0...v1.1096.1) (2026-06-11)
+
 # [1.1096.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1095.6...v1.1096.0) (2026-06-09)
 
 
