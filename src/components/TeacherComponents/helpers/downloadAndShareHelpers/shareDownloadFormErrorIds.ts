@@ -7,12 +7,12 @@ export const SHARE_FORM_ERROR_IDS = {
   terms: "terms-error",
 } as const;
 
-export type CheckboxFieldErrorAriaProps = Pick<
+type CheckboxFieldErrorAriaProps = Pick<
   InputHTMLAttributes<HTMLInputElement>,
   "aria-describedby"
 >;
 
-export type TextFieldErrorAriaProps = Pick<
+type TextFieldErrorAriaProps = Pick<
   InputHTMLAttributes<HTMLInputElement>,
   "aria-describedby" | "aria-invalid"
 >;

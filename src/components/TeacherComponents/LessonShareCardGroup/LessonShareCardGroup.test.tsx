@@ -151,6 +151,8 @@ describe("lesson share card group", () => {
     );
 
     const checkboxes = screen.getAllByRole("checkbox");
+    expect(checkboxes.length).toBeGreaterThan(0);
+
     for (const checkbox of checkboxes) {
       expect(checkbox).toHaveAttribute(
         "aria-describedby",
