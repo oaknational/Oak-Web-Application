@@ -2,6 +2,7 @@
 import { OakBox, parseSpacing } from "@oaknational/oak-components";
 import styled from "styled-components";
 import { useRef, useState, useEffect } from "react";
+import { useFeatureFlagVariantKey } from "posthog-js/react";
 
 import UnitDownloadButton, {
   useUnitDownloadButtonState,
@@ -96,8 +97,8 @@ const UnitHeader = (props: UnitHeaderProps) => {
     downloadInProgress,
     setShowIncompleteMessage,
   } = downloadButtonState;
-
-  const isStickyHeaderExperiement = true;
+  const variant = useFeatureFlagVariantKey("sticky-unit-download-button");
+  const isStickyHeaderExperiement = variant === "test";
 
   const HeaderFooterComponent = isStickyHeaderExperiement
     ? StickyHeaderNavFooter
