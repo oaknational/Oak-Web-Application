@@ -1,5 +1,6 @@
 import { waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
+import { useRouter } from "next/navigation";
 
 import {
   getEYFSAriaLabel,
@@ -14,6 +15,13 @@ const mockTopNavProps = topNavFixture.teachers!;
 const render = renderWithProviders();
 
 const mockBrowseRefined = jest.fn();
+const mockPush = jest.fn();
+
+jest.mock("next/navigation", () => ({
+  useRouter: jest.fn(),
+  usePathname: jest.fn(() => "/test-path"),
+}));
+
 jest.mock("@/context/Analytics/useAnalytics", () => ({
   __esModule: true,
   default: () => ({
@@ -26,6 +34,9 @@ jest.mock("@/context/Analytics/useAnalytics", () => ({
 describe("TeachersTopNavHamburger", () => {
   beforeEach(() => {
     jest.clearAllMocks();
+    (useRouter as jest.Mock).mockReturnValue({
+      push: mockPush,
+    });
   });
 
   it("should render the component", () => {
@@ -70,7 +81,7 @@ describe("TeachersTopNavHamburger", () => {
 
     const keyStageItem = getByText("Key stage 1");
     await user.click(keyStageItem);
-    const firstListItem = getByText("English");
+    const firstListItem = getByTestId("topnav-subject-button-english");
     expect(document?.activeElement?.textContent).toBe(
       firstListItem.textContent,
     );
@@ -215,5 +226,33 @@ describe("TeachersTopNavHamburger", () => {
     });
     expect(link).toHaveTextContent(externalLink.title);
     expect(link).toHaveProperty("target", "_blank");
+  });
+
+  it("opens exam board view for KS4 subject and returns to subjects on back", async () => {
+    const { getByTestId, getByText, getByRole, queryByRole } = render(
+      <TeachersTopNavHamburger {...mockTopNavProps} />,
+    );
+    const user = userEvent.setup();
+
+    const button = getByTestId("top-nav-hamburger-button");
+    await user.click(button);
+
+    const keyStage4Item = getByText("Key stage 4");
+    await user.click(keyStage4Item);
+
+    const geographySubject = getByRole("button", { name: "Geography" });
+    await user.click(geographySubject);
+
+    expect(
+      getByRole("heading", { name: "Choose tier for KS4 Geography" }),
+    ).toBeInTheDocument();
+
+    const backButton = getByRole("button", { name: "KS4, Geography" });
+    await user.click(backButton);
+
+    expect(
+      queryByRole("heading", { name: "Choose tier for KS4 Geography" }),
+    ).not.toBeInTheDocument();
+    expect(getByRole("button", { name: "Geography" })).toBeInTheDocument();
   });
 });

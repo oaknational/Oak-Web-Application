@@ -14,6 +14,7 @@ import {
   OakBox,
   OakLoadingSpinner,
   OakIcon,
+  OakHandDrawnHR,
 } from "@oaknational/oak-components";
 import styled from "styled-components";
 
@@ -23,9 +24,11 @@ import { ResourceFormValues } from "@/components/TeacherComponents/types/downloa
 import { ResourcePageDetailsCompletedProps } from "@/components/TeacherComponents/ResourcePageDetailsCompleted/ResourcePageDetailsCompleted";
 import { ResourcePageSchoolDetailsProps } from "@/components/TeacherComponents/ResourcePageSchoolDetails/ResourcePageSchoolDetails";
 import { getFormErrorMessages } from "@/components/TeacherComponents/helpers/downloadAndShareHelpers/getDownloadFormErrorMessage";
+import { SHARE_FORM_ERROR_IDS } from "@/components/TeacherComponents/helpers/downloadAndShareHelpers/shareDownloadFormErrorIds";
 import TermsAgreementForm from "@/components/TeacherComponents/TermsAgreementForm";
 import NoResourcesToShare from "@/components/TeacherComponents/NoResourcesToShare";
 import FieldError from "@/components/SharedComponents/FieldError";
+import ScreenReaderOnly from "@/components/SharedComponents/ScreenReaderOnly";
 
 export type SharePageLayoutProps = ResourcePageDetailsCompletedProps &
   ResourcePageSchoolDetailsProps & {
@@ -45,18 +48,22 @@ export type SharePageLayoutProps = ResourcePageDetailsCompletedProps &
     updatedAt: string;
     showTermsAgreement: boolean;
     isLoading: boolean;
+    validationSummaryKey?: number;
   };
 
 const SharePageLayout: FC<SharePageLayoutProps> = (props) => {
   const hasFormErrors = Object.keys(props.errors).length > 0;
+  const validationErrorMessages = getFormErrorMessages(props.errors);
+  const hasValidationSummary = validationErrorMessages.length > 0;
+  const validationSummaryAnnouncement = `To complete correct the following: ${validationErrorMessages.join(". ")}`;
   return (
-    <OakBox $width="100%">
+    <OakBox $maxWidth={"spacing-960"} $mb={"spacing-48"}>
       <OakFlex
         $alignItems={"flex-start"}
         $flexDirection={"column"}
         $gap={["spacing-24", "spacing-32"]}
       >
-        <OakHeading tag="h1" $font={["heading-5", "heading-4"]}>
+        <OakHeading tag="h1" $font={"heading-4"}>
           {props.header}
         </OakHeading>
         {props.isLoading ? (
@@ -67,7 +74,7 @@ const SharePageLayout: FC<SharePageLayoutProps> = (props) => {
           <OakFlex
             $justifyContent="space-between"
             $width="100%"
-            $flexDirection={["column", "column", "row"]}
+            $flexDirection={"column"}
             $gap="spacing-48"
             $alignItems={"flex-start"}
             $position={"relative"}
@@ -79,7 +86,10 @@ const SharePageLayout: FC<SharePageLayoutProps> = (props) => {
               $gap={"spacing-16"}
               $width={"100%"}
             >
-              <FieldError id={"downloads-error"} withoutMarginBottom>
+              <FieldError
+                id={SHARE_FORM_ERROR_IDS.resources}
+                withoutMarginBottom
+              >
                 {props.errors?.resources?.message}
               </FieldError>
               {props.cardGroup}
@@ -88,9 +98,9 @@ const SharePageLayout: FC<SharePageLayoutProps> = (props) => {
             <OakFlex
               $flexDirection="column"
               $gap="spacing-16"
-              $maxWidth="spacing-480"
               $position={"sticky"}
               $top={"spacing-56"}
+              $width={"100%"}
             >
               {props.showNoResources ? (
                 <NoResourcesToShare />
@@ -115,28 +125,37 @@ const SharePageLayout: FC<SharePageLayoutProps> = (props) => {
                       oglCopyrightYear={props.updatedAt}
                     />
                   )}
-                  {hasFormErrors && (
-                    <OakFlex $flexDirection={"row"}>
-                      <OakIcon
-                        iconName="content-guidance"
-                        $colorFilter={"icon-error"}
-                        $width={"spacing-24"}
-                        $height={"spacing-24"}
-                      />
-                      <OakFlex $flexDirection={"column"}>
-                        <OakP $ml="spacing-4" $color={"text-error"}>
-                          To complete correct the following:
-                        </OakP>
-                        <OakUL $mr="spacing-24">
-                          {getFormErrorMessages(props.errors).map((err) => {
-                            return (
+                  {hasValidationSummary && (
+                    <OakFlex
+                      role="alert"
+                      aria-atomic="true"
+                      data-testid="share-validation-summary"
+                      key={props.validationSummaryKey}
+                      $flexDirection={"column"}
+                    >
+                      <OakFlex aria-hidden={true} $flexDirection={"row"}>
+                        <OakIcon
+                          iconName="content-guidance"
+                          $colorFilter={"icon-error"}
+                          $width={"spacing-24"}
+                          $height={"spacing-24"}
+                        />
+                        <OakFlex $flexDirection={"column"}>
+                          <OakP $ml="spacing-4" $color={"text-error"}>
+                            To complete correct the following:
+                          </OakP>
+                          <OakUL $mr="spacing-24">
+                            {validationErrorMessages.map((err) => (
                               <OakLI $color={"text-error"} key={err}>
                                 {err}
                               </OakLI>
-                            );
-                          })}
-                        </OakUL>
+                            ))}
+                          </OakUL>
+                        </OakFlex>
                       </OakFlex>
+                      <ScreenReaderOnly data-testid="share-validation-summary-sr">
+                        {validationSummaryAnnouncement}
+                      </ScreenReaderOnly>
                     </OakFlex>
                   )}
 
@@ -146,6 +165,7 @@ const SharePageLayout: FC<SharePageLayoutProps> = (props) => {
                       $mt={"spacing-24"}
                       $maxWidth={"spacing-640"}
                       data-testid="copyright-container"
+                      $display={"none"}
                     >
                       <CopyrightNotice
                         fullWidth
@@ -155,8 +175,24 @@ const SharePageLayout: FC<SharePageLayoutProps> = (props) => {
                       />
                     </OakBox>
                   )}
+                  <OakHandDrawnHR
+                    aria-hidden
+                    data-testid="share-decorative-separator"
+                    $height={"spacing-2"}
+                    $width={"100%"}
+                    $mb={"spacing-16"}
+                    $mt={"spacing-16"}
+                    hrColor={"border-neutral-lighter"}
+                  />
 
                   {props.cta}
+
+                  <CopyrightNotice
+                    fullWidth
+                    showPostAlbCopyright={true}
+                    openLinksExternally={true}
+                    copyrightYear={props.updatedAt}
+                  />
 
                   {props.apiError && !hasFormErrors && (
                     <FieldError

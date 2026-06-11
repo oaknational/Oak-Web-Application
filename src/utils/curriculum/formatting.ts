@@ -20,8 +20,12 @@ export function getYearGroupTitle(
   const suffixStr = suffix ? ` ${suffix}` : "";
   if (year in yearData) {
     const { groupAs } = yearData[year]!;
-    if (groupAs && year === "all-years") {
-      return `${groupAs}${suffixStr} (all years)`;
+    if (year === "all-years") {
+      if (groupAs) {
+        return `${groupAs}${suffixStr} (all years)`;
+      } else {
+        return "All years";
+      }
     }
   }
   return `Year ${year}${suffixStr}`;

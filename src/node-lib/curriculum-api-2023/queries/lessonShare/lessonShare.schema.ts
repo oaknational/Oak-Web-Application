@@ -1,7 +1,10 @@
 import { z } from "zod";
 import { lessonContentSchema } from "@oaknational/oak-curriculum-schema";
 
-import { lessonShareResourceSchema } from "../../shared.schema";
+import {
+  lessonShareResourceSchema,
+  lessonShareResourceTypeSchema,
+} from "../../shared.schema";
 
 export const rawLessonShareSchema = z.object({
   expired: z.boolean().nullable(),
@@ -37,10 +40,16 @@ export const baseLessonBrowseSchema = z.object({
   unitTitle: z.string(),
   subjectSlug: z.string(),
   subjectTitle: z.string(),
+  subjectParent: z.string().nullable(),
+  phaseSlug: z.string(),
+  phaseTitle: z.string().nullish(),
   examBoardSlug: z.string().nullish(),
   examBoardTitle: z.string().nullish(),
   tierSlug: z.string().nullish(),
   tierTitle: z.string().nullish(),
+  pathwaySlug: z.string().nullable(),
+  pathwayTitle: z.string().nullish(),
+  yearGroupTitle: z.string().nullish(),
 });
 
 export const lessonShareSchema = baseLessonShareSchema.extend({
@@ -48,4 +57,7 @@ export const lessonShareSchema = baseLessonShareSchema.extend({
 });
 
 export type LessonShareData = z.infer<typeof lessonShareSchema>;
+export type LessonShareResourceDataType = z.infer<
+  typeof lessonShareResourceTypeSchema
+>;
 export type LessonShareResourceData = z.infer<typeof lessonShareResourceSchema>;

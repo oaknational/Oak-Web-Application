@@ -56,29 +56,20 @@ const footerSections: FooterSections = {
         }),
       },
       {
-        text: "Key stage 1",
-        type: "link",
-        href: resolveOakHref({ page: "subject-index", keyStageSlug: "ks1" }),
-      },
-      {
-        text: "Key stage 2",
-        type: "link",
-        href: resolveOakHref({ page: "subject-index", keyStageSlug: "ks2" }),
-      },
-      {
-        text: "Key stage 3",
-        type: "link",
-        href: resolveOakHref({ page: "subject-index", keyStageSlug: "ks3" }),
-      },
-      {
-        text: "Key stage 4",
-        type: "link",
-        href: resolveOakHref({ page: "subject-index", keyStageSlug: "ks4" }),
-      },
-      {
         text: "Plan a lesson",
         type: "link",
         href: resolveOakHref({ page: "lesson-planning" }),
+      },
+      {
+        text: "Aila, Oak’s AI lesson assistant",
+        type: "link",
+        icon: "external",
+        href: resolveOakHref({ page: "labs" }),
+      },
+      {
+        text: "Blog",
+        type: "link",
+        href: resolveOakHref({ page: "blog-index" }),
       },
     ],
   },
@@ -128,11 +119,6 @@ const footerSections: FooterSections = {
         href: resolveOakHref({ page: "help" }),
         icon: "external",
         ariaLabel: "Help (opens in a new tab)",
-      },
-      {
-        text: "Blog",
-        type: "link",
-        href: resolveOakHref({ page: "blog-index" }),
       },
       {
         text: "Webinars",

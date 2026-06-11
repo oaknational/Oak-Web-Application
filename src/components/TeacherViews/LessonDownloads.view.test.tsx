@@ -7,11 +7,11 @@ import {
   mockLoggedIn,
   mockLoggedOut,
   mockTeacherUserWithDownloadAccess,
-  mockUserWithDownloadAccessNotOnboarded,
   mockUserWithoutDownloadAccess,
 } from "@/__tests__/__helpers__/mockUser";
 import lessonDownloadsFixture from "@/node-lib/curriculum-api-2023/fixtures/lessonDownloads.fixture";
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
+import { resolveOakHref } from "@/common-lib/urls";
 
 const render = renderWithProviders();
 
@@ -59,17 +59,6 @@ describe("Hiding 'Your details", () => {
     expect(
       result.queryByLabelText("School (required)"),
     ).not.toBeInTheDocument();
-  });
-  it("should show details with logged in but not fully onboarded ", () => {
-    setUseUserReturn({
-      ...mockLoggedIn,
-      user: mockUserWithDownloadAccessNotOnboarded,
-    });
-    render(<LessonDownloads lesson={lesson} />);
-
-    const schoolSelection = screen.getByLabelText("School (required)");
-
-    expect(schoolSelection).toBeInTheDocument();
   });
 
   it("should show LoginRequired button and hide download button & form when not logged and geo restricted", () => {
@@ -190,7 +179,12 @@ describe("Download success redirect", () => {
     const { getByText, queryByText } = render(
       <LessonDownloads
         lesson={lesson}
-        successRedirect="/programmes/maths-primary/units/u/lessons/l/downloads/success"
+        successRedirect={resolveOakHref({
+          page: "integrated-lesson-downloads-success",
+          programmeSlug: "maths-primary",
+          unitSlug: "u",
+          lessonSlug: "l",
+        })}
       />,
     );
 

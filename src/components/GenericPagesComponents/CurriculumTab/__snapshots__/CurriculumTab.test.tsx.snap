@@ -98,6 +98,11 @@ exports[`CurriculumTab renders 1`] = `
 }
 
 .c28 {
+  width: 100%;
+  font-family: --var(google-font),Lexend,sans-serif;
+}
+
+.c29 {
   position: relative;
   top: 0.5rem;
   left: 0.5rem;
@@ -125,9 +130,8 @@ exports[`CurriculumTab renders 1`] = `
   z-index: 298;
 }
 
-.c29 {
+.c30 {
   position: relative;
-  max-width: 60rem;
   border: 0.125rem solid;
   border-color: #222222;
   border-radius: 0.25rem;
@@ -135,16 +139,11 @@ exports[`CurriculumTab renders 1`] = `
   z-index: 150;
 }
 
-.c30 {
+.c31 {
   position: relative;
   width: 100%;
   background: #ffffff;
   border-radius: 0.25rem;
-  font-family: --var(google-font),Lexend,sans-serif;
-}
-
-.c32 {
-  width: 100%;
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
@@ -376,7 +375,7 @@ exports[`CurriculumTab renders 1`] = `
   gap: 1.5rem;
 }
 
-.c31 {
+.c32 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -932,6 +931,10 @@ exports[`CurriculumTab renders 1`] = `
   transition: all 0.3s ease;
 }
 
+.c2 {
+  top: 82px;
+}
+
 .c38 {
   box-shadow: none;
 }
@@ -948,10 +951,6 @@ exports[`CurriculumTab renders 1`] = `
   -ms-user-select: none;
   user-select: none;
   cursor: pointer;
-}
-
-.c2 {
-  top: 82px;
 }
 
 @media (min-width:750px) {
@@ -1173,7 +1172,7 @@ exports[`CurriculumTab renders 1`] = `
 }
 
 @media (min-width:750px) {
-  .c31 {
+  .c32 {
     -webkit-flex-direction: row;
     -ms-flex-direction: row;
     flex-direction: row;
@@ -1502,24 +1501,24 @@ exports[`CurriculumTab renders 1`] = `
                 class="c27"
               >
                 <nav
-                  aria-labelledby="choose-curriculum-label"
-                  class="c8"
+                  aria-labelledby="choose-curriculum-label-large"
+                  class="c28"
                 >
                   <div
-                    class="c28"
-                    id="choose-curriculum-label"
+                    class="c29"
+                    id="choose-curriculum-label-large"
                   >
                     Choose a curriculum
                   </div>
                   <div
-                    class="c29"
+                    class="c30"
                     data-testid="lot-picker"
                   >
                     <div
-                      class="c30 c31"
+                      class="c31 c32"
                     >
                       <div
-                        class="c32 c33"
+                        class="c28 c33"
                       >
                         <div
                           class="c34 c35"
@@ -1693,24 +1692,24 @@ exports[`CurriculumTab renders 1`] = `
             class="c64"
           >
             <nav
-              aria-labelledby="choose-curriculum-label"
-              class="c8"
+              aria-labelledby="choose-curriculum-label-small"
+              class="c28"
             >
               <div
-                class="c28"
-                id="choose-curriculum-label"
+                class="c29"
+                id="choose-curriculum-label-small"
               >
                 Choose a curriculum
               </div>
               <div
-                class="c29"
+                class="c30"
                 data-testid="lot-picker"
               >
                 <div
-                  class="c30 c31"
+                  class="c31 c32"
                 >
                   <div
-                    class="c32 c33"
+                    class="c28 c33"
                   >
                     <div
                       class="c34 c35"

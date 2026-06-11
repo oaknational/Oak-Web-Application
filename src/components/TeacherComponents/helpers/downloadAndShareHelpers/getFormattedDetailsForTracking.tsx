@@ -2,7 +2,6 @@ import type {
   SchoolOptionValueType,
   ResourceTypeValueType,
 } from "@/browser-lib/avo/Avo";
-import type { ResourceType } from "@/components/TeacherComponents/types/downloadAndShare.types";
 
 export const getSchoolOption = (school: string) => {
   if (school === "notListed") {
@@ -58,7 +57,7 @@ const getFormattedDetailsForTracking = ({
   selectedResources,
 }: {
   school: string;
-  selectedResources: ResourceType[];
+  selectedResources: string[];
 }) => {
   const schoolOption: SchoolOptionValueType = getSchoolOption(school);
 

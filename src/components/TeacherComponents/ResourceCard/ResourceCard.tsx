@@ -7,8 +7,8 @@ import {
 import styled from "styled-components";
 
 import type { DownloadResourceType } from "@/components/TeacherComponents/types/downloadAndShare.types";
+import { getDownloadCardFieldErrorAriaProps } from "@/components/TeacherComponents/helpers/downloadAndShareHelpers/shareDownloadFormErrorIds";
 import { CheckboxProps } from "@/components/SharedComponents/Checkbox/Checkbox";
-import { LessonShareResourceData } from "@/node-lib/curriculum-api-2023/queries/lessonShare/lessonShare.schema";
 import { getValidSubjectIconName } from "@/utils/getValidSubjectIconName";
 
 const CustomSizing = styled("div")<{
@@ -28,7 +28,7 @@ const CustomSizing = styled("div")<{
 
 export type ResourceCardProps = Omit<CheckboxProps, "checked"> & {
   label: string;
-  resourceType: DownloadResourceType | LessonShareResourceData["type"];
+  resourceType: DownloadResourceType;
   subtitle: string;
   subjectIcon?: string;
   isEditable?: boolean;
@@ -37,10 +37,7 @@ export type ResourceCardProps = Omit<CheckboxProps, "checked"> & {
   checked?: boolean;
 };
 
-const RESOURCE_TYPE_ICON_MAP: Record<
-  DownloadResourceType | LessonShareResourceData["type"],
-  OakIconName
-> = {
+const RESOURCE_TYPE_ICON_MAP: Record<DownloadResourceType, OakIconName> = {
   presentation: "slide-deck",
   "intro-quiz-questions": "quiz",
   "intro-quiz-answers": "quiz",
@@ -50,7 +47,6 @@ const RESOURCE_TYPE_ICON_MAP: Record<
   "worksheet-pptx": "worksheet",
   "supplementary-pdf": "additional-material",
   "supplementary-docx": "additional-material",
-  video: "video",
   "curriculum-pdf": "additional-material",
   "lesson-guide-pdf": "additional-material",
   "additional-files": "additional-material",
@@ -71,6 +67,7 @@ const ResourceCard: FC<ResourceCardProps> = (props) => {
     disabled,
     asRadio = false,
     useDownloadPageLayout = false,
+    hasError = false,
   } = props;
 
   const isCurriculumIcon = resourceType === "curriculum-pdf";
@@ -89,15 +86,17 @@ const ResourceCard: FC<ResourceCardProps> = (props) => {
         data-testid="resourceCard"
         value={id}
         name={name}
-        titleSlot={label}
+        title={label}
+        {...getDownloadCardFieldErrorAriaProps(hasError)}
         checked={checked}
         disabled={disabled}
         onChange={onChange}
         onBlur={onBlur}
-        asRadio={asRadio}
-        formatSlot={
+        isRadio={asRadio}
+        format={
           <>
             {subtitle}
+
             {isEditable && (
               <OakTagFunctional
                 key="tag"

@@ -1,111 +1,145 @@
-import getBrowserConfig from "@/browser-lib/getBrowserConfig";
+import type { MetadataRoute } from "next";
+
+import { getSubjectPhaseSlug } from "@/components/TeacherComponents/helpers/getSubjectPhaseSlug";
 import { resolveOakHref } from "@/common-lib/urls";
+import { type CurriculumPhaseOptions } from "@/node-lib/curriculum-api-2023";
 import { TeachersSitemapBrowseData } from "@/node-lib/curriculum-api-2023/queries/teachersSitemap/teacherSitemap.schema";
-import {
-  generateURLFields,
-  splitURLsInHalf,
-} from "@/utils/generateSitemapUrlFields";
+import { filterValidCurriculumPhaseOptions } from "@/pages-helpers/curriculum/docx/tab-helpers";
+import { isExamboardSlug } from "@/pages-helpers/pupil/options-pages/options-pages-helpers";
 
-export async function buildAllUrlFields({
-  firstHalf = true,
-  teachersSitemapData,
-}: {
-  firstHalf: boolean;
-  teachersSitemapData: TeachersSitemapBrowseData;
-}) {
-  const {
-    programmes,
-    units,
-    lessons,
-    keyStages,
-    specialistProgrammes,
-    specialistUnits,
-    specialistLessons,
-  } = teachersSitemapData;
+// SITEMAP_BASE_URL is written to the .env file during next.config.ts execution.
+function getSitemapBaseUrl(): string {
+  const sitemapBaseUrl = process.env.SITEMAP_BASE_URL;
 
-  const baseUrl = getBrowserConfig("clientAppBaseUrl");
+  if (!sitemapBaseUrl || sitemapBaseUrl === "undefined") {
+    throw new TypeError(
+      "process.env.SITEMAP_BASE_URL not defined. See code in next.config.ts",
+    );
+  }
 
-  const specialistSubjectsURLs = `${baseUrl}${resolveOakHref({
-    page: "specialist-subject-index",
-  })}`;
+  return sitemapBaseUrl;
+}
 
-  const specialistProgrammesURLs = specialistProgrammes.map(
-    (programme) =>
-      `${baseUrl}${resolveOakHref({
-        page: "specialist-unit-index",
-        programmeSlug: programme.programmeSlug,
-      })}`,
+function mapExamboardSlugs(
+  subject: CurriculumPhaseOptions[number],
+  phase: CurriculumPhaseOptions[number]["phases"][number],
+): string[] {
+  // Primary phase has no exam board slugs
+  if (phase.slug === "primary") {
+    return [
+      getSubjectPhaseSlug({
+        subject: subject.slug,
+        phaseSlug: phase.slug,
+      }),
+    ];
+  }
+
+  // Filter out exam board slugs that are not valid
+  const examBoardSlugs =
+    subject.ks4_options?.filter((option) => isExamboardSlug(option.slug)) ?? [];
+
+  // If no valid exam board slugs, return the subject phase slug
+  if (examBoardSlugs.length === 0) {
+    return [
+      getSubjectPhaseSlug({
+        subject: subject.slug,
+        phaseSlug: phase.slug,
+      }),
+    ];
+  }
+
+  // Return the subject phase slug with the valid exam board slug
+  return examBoardSlugs.map((ks4Option) =>
+    getSubjectPhaseSlug({
+      subject: subject.slug,
+      phaseSlug: phase.slug,
+      examBoardSlug: ks4Option.slug,
+    }),
   );
+}
 
-  const specialistUnitsURLs = specialistUnits.map(
-    (unit) =>
-      `${baseUrl}${resolveOakHref({
-        page: "specialist-lesson-index",
-        programmeSlug: unit.programmeSlug,
-        unitSlug: unit.unitSlug,
-      })}
-            `,
-  );
+/**
+ * Builds the URLs for the programme pages
+ */
+function buildProgrammeUrls(subjects: CurriculumPhaseOptions): string[] {
+  const url = new URL(getSitemapBaseUrl());
 
-  const specialistLessonsURLs = specialistLessons.map(
-    (lesson) =>
-      `${baseUrl}${resolveOakHref({
-        page: "specialist-lesson-overview",
-        programmeSlug: lesson.programmeSlug,
-        unitSlug: lesson.unitSlug,
-        lessonSlug: lesson.lessonSlug,
-      })}`,
-  );
+  return subjects.flatMap((subject) =>
+    subject.phases.flatMap((phase) => {
+      const subjectPhaseSlugs = mapExamboardSlugs(subject, phase);
 
-  const keyStageSubjectsURLs = keyStages.map(
-    (keyStage) =>
-      `${baseUrl}${resolveOakHref({
-        page: "subject-index",
-        keyStageSlug: keyStage.slug,
-      })}`,
-  );
+      return subjectPhaseSlugs.flatMap((subjectPhaseSlug) => {
+        url.pathname = resolveOakHref({
+          page: "teacher-programme",
+          subjectPhaseSlug,
+          tab: "units",
+        });
+        const unitUrl = url.toString();
 
-  const programmesURLs = programmes.map(
-    (programme) =>
-      `${baseUrl}${resolveOakHref({
-        page: "unit-index",
-        programmeSlug: programme.programmeSlug,
-      })}`,
-  );
-  const unitsURLs = units.map(
-    (unit) =>
-      `${baseUrl}${resolveOakHref({
-        page: "lesson-index",
-        programmeSlug: unit.programmeSlug,
-        unitSlug: unit.unitSlug,
-      })}
-            `,
-  );
-  const lessonsURLs = lessons.map(
-    (lesson) =>
-      `${baseUrl}${resolveOakHref({
-        page: "lesson-overview",
-        programmeSlug: lesson.programmeSlug,
-        unitSlug: lesson.unitSlug,
-        lessonSlug: lesson.lessonSlug,
-      })}`,
-  );
+        // If the subject is non-curriculum there is no curriculum explainer
+        if (subject.non_curriculum) {
+          return [unitUrl];
+        }
 
-  const sitemapData = splitURLsInHalf(
-    [
-      ...keyStageSubjectsURLs,
-      ...programmesURLs,
-      ...unitsURLs,
-      ...lessonsURLs,
-      specialistSubjectsURLs,
-      ...specialistProgrammesURLs,
-      ...specialistUnitsURLs,
-      ...specialistLessonsURLs,
-    ].map((url) => ({
-      urls: url.trim(),
-    })),
-    firstHalf,
-  );
+        url.pathname = resolveOakHref({
+          page: "teacher-programme",
+          subjectPhaseSlug,
+          tab: "curriculum-explainer",
+        });
 
-  return generateURLFields(sitemapData);
+        const curriculumExplainerUrl = url.toString();
+
+        return [unitUrl, curriculumExplainerUrl];
+      });
+    }),
+  );
+}
+
+function buildAllUrls(
+  data: TeachersSitemapBrowseData,
+  subjects: CurriculumPhaseOptions,
+): string[] {
+  const { units, lessons } = data;
+  const programmeUrls = buildProgrammeUrls(
+    filterValidCurriculumPhaseOptions(subjects),
+  );
+  const url = new URL(getSitemapBaseUrl());
+
+  // Build the URLs for the unit pages
+  const unitUrls = units.map((unit) => {
+    url.pathname = resolveOakHref({
+      page: "integrated-unit-overview",
+      programmeSlug: unit.programmeSlug,
+      unitSlug: unit.unitSlug,
+    });
+
+    return url.toString();
+  });
+
+  // Build the URLs for the lesson pages
+  const lessonUrls = lessons.map((lesson) => {
+    url.pathname = resolveOakHref({
+      page: "integrated-lesson-overview",
+      programmeSlug: lesson.programmeSlug,
+      unitSlug: lesson.unitSlug,
+      lessonSlug: lesson.lessonSlug,
+    });
+
+    return url.toString();
+  });
+
+  return [...programmeUrls, ...unitUrls, ...lessonUrls];
+}
+
+export function buildTeachersSitemapEntries(
+  data: TeachersSitemapBrowseData,
+  subjects: CurriculumPhaseOptions,
+): MetadataRoute.Sitemap {
+  const allUrls = buildAllUrls(data, subjects);
+  const lastModified = new Date();
+
+  return allUrls.map((url) => ({
+    url,
+    lastModified,
+  }));
 }

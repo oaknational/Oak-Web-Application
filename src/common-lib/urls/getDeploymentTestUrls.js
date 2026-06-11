@@ -30,41 +30,44 @@ function getDeploymentTestUrls() {
     // "/lp/how-to-use-Oak-in-3-easy-steps",
     "/lp/help-shape-oak",
     // "/lp/oak-calendar",
-    // Legacy content pages
-    "/teachers/key-stages/ks1/subjects",
-    "/teachers/key-stages/ks4/subjects/maths/programmes",
-    "/teachers/programmes/maths-secondary-ks4-foundation/units",
-    "/teachers/programmes/computing-secondary-ks4-gcse-l/units",
-    "/teachers/programmes/maths-secondary-ks4-foundation/units/algebraic-manipulation/lessons", // unit with tiers
-    "/teachers/programmes/history-secondary-ks4-aqa/units/period-studies-5163/lessons?page=2", // unit with pagination
-    "/teachers/programmes/maths-secondary-ks4-foundation/units/algebraic-manipulation/lessons/further-algebraic-terminology/downloads?preselected=slide+deck",
     "/teachers/search?term=equate&keyStages=ks4", // results with tier and examboard drop downs
-    // New content pages
-    "/teachers/programmes/english-secondary-ks3/units", // No programme factors
-    "/teachers/programmes/english-secondary-ks3/units/victorian-childhood-non-fiction-reading-and-writing/lessons",
-    "/teachers/programmes/english-secondary-ks3/units/victorian-childhood-non-fiction-reading-and-writing/lessons/victorian-childhood-preparing-an-argument",
-    "/teachers/key-stages/ks4/subjects/combined-science/programmes",
-    "/teachers/programmes/combined-science-secondary-ks4-higher-aqa/units",
-    "/teachers/programmes/combined-science-secondary-ks4-higher-aqa/units/measuring-waves/lessons",
-    "/teachers/programmes/combined-science-secondary-ks4-higher-aqa/units/measuring-waves/lessons/oscilloscope",
+
+    // Programme pages
+    "/teachers/programmes/history-primary/units", // primary
+    "/teachers/programmes/physical-education-primary/units", // with all years
+    "/teachers/programmes/art-primary/units?keystages=ks1", // keystage filter
+    "/teachers/programmes/art-primary/units?years=2", // year filter
+    "/teachers/programmes/maths-secondary/units", // with tiers
+    "/teachers/programmes/science-secondary-aqa/units?child_subjects=chemistry&keystages=ks4", // with child subject
+    "/teachers/programmes/history-primary/curriculum-explainer", // curriculum explainer
+    "/teachers/programmes/history-primary/download", // download tab
+
+    // Unit pages
+    "/teachers/programmes/art-primary-ks1/units/reclaimed-materials-drawing-and-sculpture/lessons", // primary
+    "/teachers/programmes/combined-science-secondary-ks4-foundation-aqa/units/eukaryotic-and-prokaryotic-cells/lessons", // with tier and subject toggles
     "/teachers/programmes/spanish-secondary-ks4-aqa/units/travel-and-tourism-nuevas-experiencias/lessons", // unitvariant uses null lessons
-    "/teachers/programmes/spanish-secondary-ks4-edexcel/units/travel-and-tourism-nuevas-experiencias/lessons",
-    "/teachers/programmes/biology-secondary-ks4-higher-aqa/units/health-and-disease/lessons",
     "/teachers/programmes/history-primary-ks1/units/traditional-stories-what-do-they-tell-us-about-the-distant-past-1757/lessons", // optionality variant using null lessons
+    "/teachers/programmes/music-secondary-ks4-edexcel/units/intro-to-pop-music/lessons", // copyright content
+
+    // Lesson pages
+    "/teachers/programmes/art-primary-ks1/units/reclaimed-materials-drawing-and-sculpture/lessons", //primary
+    "/teachers/programmes/english-secondary-ks3/units/victorian-childhood-non-fiction-reading-and-writing/lessons/victorian-childhood-preparing-an-argument",
+    "/teachers/programmes/combined-science-secondary-ks4-higher-aqa/units/measuring-waves/lessons/oscilloscope",
     "/teachers/programmes/physical-education-primary-ks2/units/invasion-games-principles-of-attack-and-defence-through-ball-games/lessons/passing-and-receiving-skills", // practical PE lesson
     "/teachers/programmes/computing-primary-ks1/units/building-sequences-in-programs/lessons/building-blocks-to-create-a-sequence", // lesson with media clips and additional materials
     "/teachers/programmes/computing-primary-ks1/units/digital-writing/lessons/comparing-digital-writing-to-using-a-pencil", // lesson with lesson files,
-    "/teachers/programmes/geography-secondary-ks4-edexcelb/units/global-inequalities/lessons", // incomplete unit
-    "/teachers/programmes/combined-science-secondary-ks4-foundation-aqa/units?page=2", // unit with pagination
-    // "/teachers/programmes/music-primary-ks2/units/compose-and-create-improvising-within-hindustani-classical-music/lessons/playing-taals-and-speaking-bols/media", // media clips page
+    "/teachers/programmes/computing-primary-ks1/units/digital-writing/lessons/comparing-digital-writing-to-using-a-pencil/share", // lesson share page (PUPIL-1748)
+
     // Canonical lesson pages
     "/teachers/lessons/duncan-as-a-father-figure",
     "/teachers/lessons/transverse-waves",
+
     // User pages
     {
       url: "/sign-in",
       timeout: 120000,
     },
+
     // Pupil pages
     "/pupils/years",
     "/pupils/years/year-10/subjects",
@@ -78,16 +81,6 @@ function getDeploymentTestUrls() {
     "/pupils/programmes/maths-secondary-year-7/units/expressions-and-equations/lessons/highest-common-factor-with-algebraic-terms/starter-quiz",
     // "/pupils/programmes/biology-secondary-year-11-foundation-edexcel/units/classification-in-modern-biology/lessons/electron-microscopy-and-the-size-and-scale-of-cells/video",
     "/pupils/programmes/maths-secondary-year-7/units/expressions-and-equations/lessons/simplifying-before-multiplying-with-multiple-expressions/exit-quiz",
-    // Curriculum pages
-    "/teachers/curriculum/english-secondary-aqa/units",
-    "/teachers/curriculum/english-secondary-aqa/overview",
-    "/teachers/curriculum/english-secondary-aqa/downloads",
-    "/teachers/curriculum/science-secondary-ocr/units",
-    "/teachers/curriculum/science-secondary-ocr/downloads",
-    "/teachers/curriculum",
-    "/teachers/curriculum/english-primary/units/speaking-and-listening",
-    "/teachers/curriculum/english-primary/units/king-tut-or-healthy-lifestyle-non-chronological-report",
-    "/teachers/curriculum/english-primary/units/king-tut-or-healthy-lifestyle-non-chronological-report-629",
   ];
 }
 

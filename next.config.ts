@@ -122,6 +122,18 @@ export default async (phase: NextConfig["phase"]): Promise<NextConfig> => {
   const nextConfig: NextConfig = {
     headers: async () => [
       {
+        // Advertise the RFC 9727 API catalog from the homepage so discovery
+        // agents can find it without guessing (RFC 8288 Link header,
+        // RFC 9727 section 3).
+        source: "/",
+        headers: [
+          {
+            key: "Link",
+            value: '</.well-known/api-catalog>; rel="api-catalog"',
+          },
+        ],
+      },
+      {
         source: "/api/pupil/:path*",
         headers: [
           {
@@ -428,26 +440,77 @@ export default async (phase: NextConfig["phase"]): Promise<NextConfig> => {
         },
       ];
 
-      return [...pupilsRedirects, ...aboutUsRedirects, ...eyfsRedirects];
+      const integratedJourneyRedirects = [
+        {
+          source: "/teachers/curriculum",
+          destination: "/about-us/oaks-curricula",
+          permanent: true,
+        },
+        {
+          source: "/teachers/curriculum/:subjectPhaseSlug/units/:unitSlug",
+          destination:
+            "/teachers/programmes/:subjectPhaseSlug/units/:unitSlug/lessons",
+          permanent: true,
+        },
+        {
+          source: "/teachers/curriculum/:subjectPhaseSlug/units",
+          destination: "/teachers/programmes/:subjectPhaseSlug/units",
+          permanent: true,
+        },
+
+        {
+          source: "/teachers/curriculum/:subjectPhaseSlug/overview",
+          destination:
+            "/teachers/programmes/:subjectPhaseSlug/curriculum-explainer",
+          permanent: true,
+        },
+        {
+          source: "/teachers/curriculum/:subjectPhaseSlug/downloads",
+          destination: "/teachers/programmes/:subjectPhaseSlug/download",
+          permanent: true,
+        },
+        {
+          source: "/teachers/key-stages/:keyStageSlug/subjects/:path*",
+          destination: "/",
+          permanent: true,
+        },
+      ];
+
+      return [
+        ...pupilsRedirects,
+        ...aboutUsRedirects,
+        ...eyfsRedirects,
+        ...integratedJourneyRedirects,
+      ];
     },
     async rewrites() {
+      // Serve the RFC 9727 API catalog from /.well-known/ — the App Router does
+      // not route folders that start with a dot, so the handler lives under /api.
+      const wellKnownRewrites = [
+        {
+          source: "/.well-known/api-catalog",
+          destination: "/api/well-known/api-catalog",
+        },
+      ];
       // Reverse proxy posthog in development to avoid localhost CORS issues in Chrome https://posthog.com/docs/advanced/proxy/nextjs
-      return releaseStage === "development"
-        ? [
-            {
-              source: "/ingest/static/:path*",
-              destination: "https://eu-assets.i.posthog.com/static/:path*",
-            },
-            {
-              source: "/ingest/:path*",
-              destination: "https://eu.i.posthog.com/:path*",
-            },
-            {
-              source: "/ingest/decide",
-              destination: "https://eu.i.posthog.com/decide",
-            },
-          ]
-        : [];
+      const developmentRewrites =
+        releaseStage === "development"
+          ? [
+              {
+                source: "/ingest/static/:path*",
+                destination: "https://eu-assets.i.posthog.com/static/:path*",
+              },
+              {
+                source: "/ingest/:path*",
+                destination: "https://eu.i.posthog.com/:path*",
+              },
+              {
+                source: "/ingest/decide",
+                destination: "https://eu.i.posthog.com/decide",
+              },
+            ]
+          : [];
+      return [...wellKnownRewrites, ...developmentRewrites];
     },
     // Required for the posthog reverse proxy, but interferes with static URL redirections so we don't want this applied on production
     skipTrailingSlashRedirect: releaseStage === "development",
@@ -489,6 +552,11 @@ export default async (phase: NextConfig["phase"]): Promise<NextConfig> => {
     // Write new values.
     writeFileSync(envFileName, newEnv);
     console.log(`Wrote "${baseUrlEnv}" to .env file for sitemap generation.`);
+
+    // Also set on the config and process env. Writing .env.local alone is too late
+    // for the current build: Next loads env files before next.config runs. App
+    // Router sitemaps prerender during `next build` and need SITEMAP_BASE_URL then.
+    process.env.SITEMAP_BASE_URL = baseUrl;
   } catch (err) {
     console.error("Could not write SITEMAP_BASE_URL to env file", err);
 

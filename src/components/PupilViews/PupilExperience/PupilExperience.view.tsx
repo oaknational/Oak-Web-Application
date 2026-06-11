@@ -729,10 +729,11 @@ export const PupilExperienceView = (props: PupilExperienceViewProps) => {
     setAssignmentToken(searchParams.get("assignmentToken"));
   }, []);
 
-  const { worksheetInfo } = useWorksheetInfoState(
-    lessonContent.hasWorksheetAssetObject,
+  const { worksheetInfo: clientWorksheetInfo } = useWorksheetInfoState(
+    props.hasWorksheet ? lessonContent.hasWorksheetAssetObject : false,
     lessonContent.lessonSlug,
   );
+  const worksheetInfo = props.worksheetInfo ?? clientWorksheetInfo;
 
   return (
     <PupilAnalyticsProvider

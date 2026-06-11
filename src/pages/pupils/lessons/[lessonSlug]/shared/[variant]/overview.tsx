@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { GetStaticProps, GetStaticPropsContext, PreviewData } from "next";
 import { useRouter } from "next/router";
 import { useShallow } from "zustand/react/shallow";
+import { OakInlineBanner } from "@oaknational/oak-components";
 
 import getPageProps from "@/node-lib/getPageProps";
 import { getStaticPaths as getStaticPathsTemplate } from "@/pages-helpers/get-static-paths";
@@ -217,18 +218,24 @@ const OverviewPageContent = ({
           ) : undefined
         }
         bannerSlot={
-          <TakedownBanner
-            isExpiring={getIsLessonExpiring({
-              expirationDate,
-              displayExpiringBanner: actions?.displayExpiringBanner,
-            })}
-            isLegacy={isSlugLegacy(programmeSlug)}
-            hasNewUnits={getDoesSubjectHaveNewUnits(subjectSlug)}
-            subjectSlug={subjectSlug}
-            userType="pupil"
-            onwardHref={unitListingHref}
-            isSingle
-          />
+          <>
+            <TakedownBanner
+              isExpiring={getIsLessonExpiring({
+                expirationDate,
+                displayExpiringBanner: actions?.displayExpiringBanner,
+              })}
+              isLegacy={isSlugLegacy(programmeSlug)}
+              hasNewUnits={getDoesSubjectHaveNewUnits(subjectSlug)}
+              subjectSlug={subjectSlug}
+              userType="pupil"
+              onwardHref={unitListingHref}
+              isSingle
+            />
+            <OakInlineBanner
+              message="You can only click on the activities your teacher has shared with you today."
+              isOpen={true}
+            />
+          </>
         }
         header={{
           lessonTitle: lessonTitle ?? "",

@@ -67,7 +67,10 @@ export default {
   webpackFinal: async (config) => {
     config.resolve.alias = {
       ...config.resolve.alias,
-      "@clerk/nextjs": path.resolve(__dirname, "./mocks/clerk.tsx"),
+      "@clerk/nextjs": path.resolve(
+        __dirname,
+        "../src/storybook-mocks/clerk.tsx",
+      ),
     };
 
     config.module.rules = [

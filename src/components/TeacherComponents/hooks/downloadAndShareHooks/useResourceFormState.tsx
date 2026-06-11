@@ -50,6 +50,7 @@ export const useResourceFormState = (props: UseResourceFormStateProps) => {
     setValue,
     trigger,
     watch,
+    getValues,
     handleSubmit,
   } = useForm({
     resolver: zodResolver(resourceFormValuesSchema),
@@ -262,7 +263,7 @@ export const useResourceFormState = (props: UseResourceFormStateProps) => {
     [setValue, schoolNameFromLocalStorage],
   );
 
-  const { errors } = formState;
+  const { errors, submitCount } = formState;
   const hasFormErrors = Object.keys(errors)?.length > 0;
   const selectedResources = watch("resources") as ResourceType[];
 
@@ -299,73 +300,71 @@ export const useResourceFormState = (props: UseResourceFormStateProps) => {
   const searchParams = useSearchParams();
 
   useEffect(() => {
-    // Backwards compatibility: in pages router, wait for router
-    // hydration so query params are stable before reading them.
     if (router && !router.isReady) return;
-
-    // curriculum resources are all preselected by default so we don't need to do anything here
     if (props.type === "curriculum") return;
 
-    const preselectedQuery = () => {
-      const res = searchParams?.get("preselected");
+    const getPreselectedQuery = () => {
+      const value = searchParams?.get("preselected");
 
       const result =
         props.type === "download"
-          ? preselectedDownloadType.safeParse(res)
-          : preselectedShareType.safeParse(res);
+          ? preselectedDownloadType.safeParse(value)
+          : preselectedShareType.safeParse(value);
 
-      if (!result.success) {
-        return "all";
-      } else {
-        return result.data;
-      }
+      return result.success ? result.data : "all";
     };
-    const queryResults = preselectedQuery();
-    let preselected: "all" | ResourceType[] | undefined;
 
-    const allAvailableResources = getInitialResourcesState().concat(
-      (getInitialAdditionalFilesState() || []) as ResourceType[],
-    );
-
-    if (isPreselectedShareType(queryResults)) {
-      preselected = getPreselectedShareResourceTypes(queryResults);
-    }
-    if (isPreselectedDownloadType(queryResults)) {
-      const preselectedResources = additionalResources
-        ? resources?.concat(additionalResources)
-        : resources;
-      preselected = getPreselectedDownloadResourceTypes(
-        queryResults,
-        preselectedResources as LessonDownloadsPageData["downloads"],
+    const getAllAvailableResources = () =>
+      getInitialResourcesState().concat(
+        (getInitialAdditionalFilesState() || []) as ResourceType[],
       );
-    }
 
-    if (preselected) {
-      if (preselected === "all") {
-        setSelectAllChecked(true);
+    const getPreselectedResources = () => {
+      const queryResult = getPreselectedQuery();
+
+      if (props.type === "share" && isPreselectedShareType(queryResult)) {
+        return getPreselectedShareResourceTypes(queryResult);
       }
 
-      switch (true) {
-        case preselected === "all":
-          setValue("resources", allAvailableResources);
-          break;
-        case preselected.includes("additional-files"):
-          if (additionalResources) {
-            const preselectedAdditionalResourcesList = additionalResources.map(
-              (resource) =>
-                `additional-files-${resource.assetId}` as ResourceType,
-            );
-            const precelectedResourcesList = preselected
-              .concat(preselectedAdditionalResourcesList)
-              .filter((p) => p !== "additional-files");
-            setValue("resources", precelectedResourcesList);
-          }
-          break;
-        default:
-          setValue("resources", preselected);
-          break;
+      if (props.type === "download" && isPreselectedDownloadType(queryResult)) {
+        const downloads = additionalResources
+          ? resources?.concat(additionalResources)
+          : resources;
+
+        return getPreselectedDownloadResourceTypes(
+          queryResult,
+          downloads as LessonDownloadsPageData["downloads"],
+        );
       }
+
+      return undefined;
+    };
+
+    const expandAdditionalFiles = (preselected: ResourceType[]) => {
+      if (!preselected.includes("additional-files") || !additionalResources) {
+        return preselected;
+      }
+
+      const additionalFiles = additionalResources.map(
+        (resource) => `additional-files-${resource.assetId}` as ResourceType,
+      );
+
+      return preselected
+        .concat(additionalFiles)
+        .filter((resource) => resource !== "additional-files");
+    };
+
+    const preselected = getPreselectedResources();
+
+    if (!preselected) return;
+
+    if (preselected === "all") {
+      setSelectAllChecked(true);
+      setValue("resources", getAllAvailableResources());
+      return;
     }
+
+    setValue("resources", expandAdditionalFiles(preselected));
   }, [
     getInitialResourcesState,
     getInitialAdditionalFilesState,
@@ -417,9 +416,11 @@ export const useResourceFormState = (props: UseResourceFormStateProps) => {
       trigger,
       setValue,
       watch,
+      getValues,
       formState,
       getInitialResourcesState,
       errors,
+      submitCount,
       control,
       register,
       handleSubmit,

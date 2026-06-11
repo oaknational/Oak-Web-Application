@@ -80,12 +80,19 @@ export type WebinarListingLinkProps = {
     page?: string;
   };
 };
+
+/**
+ * @deprecated Programme listing removed. Use `teacher-programme` with `subjectPhaseSlug` and `tab`.
+ */
 export type ProgrammeListingLinkProps = {
   page: "programme-index";
   keyStageSlug: string;
   subjectSlug: string;
 };
 
+/**
+ * @deprecated Specialist Pages Router journey removed
+ */
 export type SpecialistProgrammeListingLinkProps = Omit<
   ProgrammeListingLinkProps,
   "page" | "keyStageSlug"
@@ -102,17 +109,26 @@ export type UnitListingLinkProps = {
   };
 };
 
+/**
+ * @deprecated Specialist Pages Router journey removed
+ */
 export type SpecialistUnitListingLinkProps = Omit<
   UnitListingLinkProps,
   "page"
 > & {
   page: "specialist-unit-index";
 };
+/**
+ * @deprecated Key-stage subject programmes removed.
+ */
 export type KeyStageSubjectProgrammesLinkProps = {
   page: "key-stage-subject-programmes";
   keyStageSlug: string;
   subjectSlug: string;
 };
+/**
+ * @deprecated Use `integrated-unit-overview` instead.
+ */
 export type LessonListingLinkProps = {
   page: "lesson-index";
   programmeSlug: string;
@@ -147,6 +163,15 @@ export type IntegratedLessonDownloadsSuccessLinkProps = {
   unitSlug: string;
   lessonSlug: string;
 };
+export type IntegratedLessonShareLinkProps = {
+  page: "integrated-lesson-share";
+  programmeSlug: string;
+  unitSlug: string;
+  lessonSlug: string;
+  query?: {
+    preselected: PreselectedShareType | null;
+  };
+};
 export type IntegratedLessonMediaLinkProps = {
   page: "integrated-lesson-media";
   programmeSlug: string;
@@ -156,6 +181,9 @@ export type IntegratedLessonMediaLinkProps = {
     video: string;
   };
 };
+/**
+ * @deprecated Specialist Pages Router journey removed; migrate later.
+ */
 export type SpecialistLessonListingLinkProps = Omit<
   LessonListingLinkProps,
   "page"
@@ -163,6 +191,9 @@ export type SpecialistLessonListingLinkProps = Omit<
   page: "specialist-lesson-index";
 };
 
+/**
+ * @deprecated Use `integrated-lesson-overview` instead.
+ */
 export type LessonOverviewLinkProps = {
   page: "lesson-overview";
   programmeSlug: string;
@@ -225,6 +256,9 @@ export type PupilYearListingLinkProps = {
   page: "pupil-year-index";
 };
 
+/**
+ * @deprecated Specialist Pages Router journey removed
+ */
 export type SpecialistLessonOverviewLinkProps = Omit<
   LessonOverviewLinkProps,
   "page"
@@ -235,6 +269,9 @@ type LessonOverviewCanonicalLinkProps = {
   page: "lesson-overview-canonical";
   lessonSlug: string;
 };
+/**
+ * @deprecated Use `integrated-lesson-downloads`.
+ */
 export type LessonDownloadsLinkProps = {
   page: "lesson-downloads";
   programmeSlug: string;
@@ -246,6 +283,9 @@ export type LessonDownloadsLinkProps = {
   };
 };
 
+/**
+ * @deprecated Specialist Pages Router journey removed.
+ */
 export type SpecialistLessonDownloadsLinkProps = Omit<
   LessonDownloadsLinkProps,
   "page"
@@ -262,6 +302,9 @@ export type LessonDownloadsCanonicalLinkProps = {
   };
 };
 
+/**
+ * @deprecated Use `integrated-lesson-media`.
+ */
 export type LessonMediaLinkProps = {
   page: "lesson-media";
   programmeSlug: string;
@@ -290,6 +333,9 @@ export type LessonShareLinkProps = {
   };
 };
 
+/**
+ * @deprecated Specialist Pages Router journey removed
+ */
 export type SpecialistLessonShareLinkProps = Omit<
   LessonDownloadsLinkProps,
   "page" | "query" | "downloads"
@@ -305,11 +351,17 @@ type SearchLinkProps = {
   query?: Partial<SearchQuery>;
 };
 type LandingPageLinkProps = { page: "landing-page"; lpSlug: string };
+/**
+ * @deprecated Key-stage subject listing removed (redirects to `/`). Prefer integrated entry points.
+ */
 type SubjectListingLinkProps = {
   page: "subject-index";
   keyStageSlug: string;
 };
 
+/**
+ * @deprecated Specialist Pages Router journey removed
+ */
 type SpecialistSubjectListingLinkProps = {
   page: "specialist-subject-index";
 };
@@ -356,19 +408,31 @@ type LabsTeachingMaterialsLinkProps = {
   query?: UrlQueryObject;
 };
 type TeacherHubLinkProps = { page: "teacher-hub" };
+/**
+ * @deprecated Curriculum landing page removed. Use `about-oaks-curricula` or home.
+ */
 type CurriculumLandingPageLinkProps = {
   page: "curriculum-landing-page";
 };
 
+/**
+ * @deprecated Curriculum overview removed. Use `teacher-programme` with `tab: "curriculum-explainer"`.
+ */
 type CurriculumOverviewLinkProps = {
   page: "curriculum-overview";
   subjectPhaseSlug: string;
 };
+/**
+ * @deprecated Curriculum units page removed. Use `teacher-programme` with `tab: "units"`.
+ */
 type CurriculumUnitsLinkProps = {
   page: "curriculum-units";
   subjectPhaseSlug: string;
   query?: { subject_categories: string };
 };
+/**
+ * @deprecated Curriculum downloads page removed. Use `teacher-programme` with `tab: "download"`.
+ */
 type CurriculumDownloadsLinkProps = {
   page: "curriculum-downloads";
   subjectPhaseSlug: string;
@@ -398,6 +462,12 @@ type PupilLessonCanonical = {
   lessonSlug: string;
 };
 
+type PupilLessonCanonicalShared = {
+  page: "pupil-lesson-canonical-shared";
+  lessonSlug: string;
+  shareVariant: string;
+};
+
 type MyLibraryProps = {
   page: "my-library";
 };
@@ -408,6 +478,8 @@ type ProgrammePageProps = {
   tab: string;
   query?: {
     keystages?: string;
+    child_subjects?: string;
+    tiers?: string;
     years?: string;
   };
 };
@@ -475,6 +547,7 @@ export type OakLinkProps =
   | IntegratedLessonOverviewLinkProps
   | IntegratedLessonDownloadsLinkProps
   | IntegratedLessonDownloadsSuccessLinkProps
+  | IntegratedLessonShareLinkProps
   | IntegratedLessonMediaLinkProps
   | SpecialistLessonListingLinkProps
   | UnitListingLinkProps
@@ -512,6 +585,7 @@ export type OakLinkProps =
   | OnboardingRoleSelectionLinkProps
   | OnboardingUseOfOak
   | PupilLessonCanonical
+  | PupilLessonCanonicalShared
   | MyLibraryProps
   | ProgrammePageProps
   | ClassroomSignInLinkProps
@@ -845,13 +919,6 @@ export const OAK_PAGES: {
     matchHref: postMatchHref("webinar-index"),
     resolveHref: postResolveHref("webinar-index"),
   }),
-  "unit-index": createOakPageConfig({
-    analyticsPageName: "Unit Listing",
-    configType: "internal-custom-resolve",
-    pageType: "unit-index",
-    matchHref: unitIndexMatchHref,
-    resolveHref: unitIndexResolveHref,
-  }),
   "specialist-unit-index": createOakPageConfig({
     pathPattern: "/teachers/specialist/programmes/:programmeSlug/units",
     analyticsPageName: "Unit Listing",
@@ -865,35 +932,42 @@ export const OAK_PAGES: {
     pageType: "lesson-index",
   }),
   "integrated-unit-overview": createOakPageConfig({
-    pathPattern: "/programmes/:programmeSlug/units/:unitSlug/lessons",
+    pathPattern: "/teachers/programmes/:programmeSlug/units/:unitSlug/lessons",
     analyticsPageName: "Lesson Listing",
     configType: "internal",
     pageType: "integrated-unit-overview",
   }),
   "integrated-lesson-overview": createOakPageConfig({
     pathPattern:
-      "/programmes/:programmeSlug/units/:unitSlug/lessons/:lessonSlug",
+      "/teachers/programmes/:programmeSlug/units/:unitSlug/lessons/:lessonSlug",
     analyticsPageName: "Lesson",
     configType: "internal",
     pageType: "integrated-lesson-overview",
   }),
   "integrated-lesson-downloads": createOakPageConfig({
     pathPattern:
-      "/programmes/:programmeSlug/units/:unitSlug/lessons/:lessonSlug/downloads",
+      "/teachers/programmes/:programmeSlug/units/:unitSlug/lessons/:lessonSlug/downloads",
     analyticsPageName: "Lesson Download",
     configType: "internal",
     pageType: "integrated-lesson-downloads",
   }),
   "integrated-lesson-downloads-success": createOakPageConfig({
     pathPattern:
-      "/programmes/:programmeSlug/units/:unitSlug/lessons/:lessonSlug/downloads/success",
+      "/teachers/programmes/:programmeSlug/units/:unitSlug/lessons/:lessonSlug/downloads/success",
     analyticsPageName: "Lesson Download",
     configType: "internal",
     pageType: "integrated-lesson-downloads-success",
   }),
+  "integrated-lesson-share": createOakPageConfig({
+    pathPattern:
+      "/teachers/programmes/:programmeSlug/units/:unitSlug/lessons/:lessonSlug/share",
+    analyticsPageName: "Lesson Share",
+    configType: "internal",
+    pageType: "integrated-lesson-share",
+  }),
   "integrated-lesson-media": createOakPageConfig({
     pathPattern:
-      "/programmes/:programmeSlug/units/:unitSlug/lessons/:lessonSlug/media",
+      "/teachers/programmes/:programmeSlug/units/:unitSlug/lessons/:lessonSlug/media",
     analyticsPageName: "Lesson Media",
     configType: "internal",
     pageType: "integrated-lesson-media",
@@ -943,6 +1017,12 @@ export const OAK_PAGES: {
     analyticsPageName: "Lesson",
     configType: "internal",
     pageType: "pupil-lesson-canonical",
+  }),
+  "pupil-lesson-canonical-shared": createOakPageConfig({
+    pathPattern: "/pupils/lessons/:lessonSlug/shared/:shareVariant/overview",
+    analyticsPageName: "Lesson",
+    configType: "internal",
+    pageType: "pupil-lesson-canonical-shared",
   }),
   "pupil-lesson-index": createOakPageConfig({
     pathPattern: "/pupils/programmes/:programmeSlug/units/:unitSlug/lessons",
@@ -1154,10 +1234,17 @@ export const OAK_PAGES: {
     pageType: "my-library",
   }),
   "teacher-programme": createOakPageConfig({
-    pathPattern: "/programmes/:subjectPhaseSlug/:tab",
+    pathPattern: "/teachers/programmes/:subjectPhaseSlug/:tab",
     analyticsPageName: "Curriculum Unit Sequence",
     configType: "internal",
     pageType: "teacher-programme",
+  }),
+  "unit-index": createOakPageConfig({
+    analyticsPageName: "Unit Listing",
+    configType: "internal-custom-resolve",
+    pageType: "unit-index",
+    matchHref: unitIndexMatchHref,
+    resolveHref: unitIndexResolveHref,
   }),
   "classroom-sign-in": createOakPageConfig({
     pathPattern: "/classroom/sign-in",
@@ -1221,6 +1308,37 @@ export type ResolveOakHrefProps = Exclude<
   void
 >;
 
+/** Union of removed-journey page keys only */
+export type DeprecatedResolveOakHrefProps = Extract<
+  ResolveOakHrefProps,
+  {
+    page:
+      | "subject-index"
+      | "programme-index"
+      | "key-stage-subject-programmes"
+      | "curriculum-landing-page"
+      | "curriculum-overview"
+      | "curriculum-units"
+      | "curriculum-downloads"
+      | "specialist-subject-index"
+      | "specialist-programme-index"
+      | "specialist-unit-index"
+      | "specialist-lesson-index"
+      | "specialist-lesson-overview"
+      | "specialist-lesson-downloads"
+      | "specialist-lesson-share"
+      | "lesson-downloads"
+      | "lesson-media"
+      | "lesson-overview"
+      | "lesson-index";
+  }
+>;
+
+/**
+ * @deprecated Removed teacher journeys (key-stage / curriculum / legacy programme routes). Use `teacher-programme` or `integrated-*` page keys.
+ */
+export function resolveOakHref(props: DeprecatedResolveOakHrefProps): string;
+export function resolveOakHref(props: ResolveOakHrefProps): string;
 /**
  * Pass readable props which are unlikely to need to change, and return an href.
  * @example
@@ -1228,7 +1346,7 @@ export type ResolveOakHrefProps = Exclude<
  * resolveOakHref({ page: "pupils-lesson", lessonSlug: "spreadsheet-warm-up-75j64r" })
  * resolveOakHref({ page: "blog", blogSlug: "how-oak-helps-everyone" })
  */
-export const resolveOakHref = (props: ResolveOakHrefProps): string => {
+export function resolveOakHref(props: ResolveOakHrefProps): string {
   try {
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
@@ -1244,4 +1362,4 @@ export const resolveOakHref = (props: ResolveOakHrefProps): string => {
 
     return "/";
   }
-};
+}

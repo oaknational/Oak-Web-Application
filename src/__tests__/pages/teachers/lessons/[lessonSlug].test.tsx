@@ -146,12 +146,6 @@ describe("Lesson Overview Canonical Page", () => {
     });
 
     it("Should fetch the correct data", async () => {
-      (
-        curriculumApi2023.specialistLessonOverviewCanonical as jest.Mock
-      ).mockRejectedValueOnce(
-        new OakError({ code: "curriculum-api/not-found" }),
-      );
-
       const propsResult = (await getStaticProps({
         params: {
           lessonSlug:
@@ -184,12 +178,6 @@ describe("Lesson Overview Canonical Page", () => {
         (curriculumApi2023 as CurriculumApi).canonicalLessonRedirectQuery =
           jest.fn();
       }
-
-      (
-        curriculumApi2023.specialistLessonOverviewCanonical as jest.Mock
-      ).mockRejectedValueOnce(
-        new OakError({ code: "curriculum-api/not-found" }),
-      );
 
       (curriculumApi2023.lessonOverview as jest.Mock).mockRejectedValueOnce(
         new OakError({ code: "curriculum-api/not-found" }),
@@ -242,11 +230,6 @@ describe("Lesson Overview Canonical Page", () => {
         (curriculumApi2023 as CurriculumApi).canonicalLessonRedirectQuery =
           jest.fn();
       }
-      (
-        curriculumApi2023.specialistLessonOverviewCanonical as jest.Mock
-      ).mockRejectedValueOnce(
-        new OakError({ code: "curriculum-api/not-found" }),
-      );
       (curriculumApi2023.lessonOverview as jest.Mock).mockRejectedValueOnce(
         new OakError({ code: "curriculum-api/not-found" }),
       );
@@ -267,11 +250,6 @@ describe("Lesson Overview Canonical Page", () => {
     });
 
     it("should redirect to the EYFS page when lesson pathway is EYFS", async () => {
-      jest
-        .mocked(curriculumApi2023.specialistLessonOverviewCanonical)
-        .mockRejectedValueOnce(
-          new OakError({ code: "curriculum-api/not-found" }),
-        );
       jest.mocked(curriculumApi2023.lessonOverview).mockResolvedValueOnce(
         lessonOverviewFixture({
           pathways: [

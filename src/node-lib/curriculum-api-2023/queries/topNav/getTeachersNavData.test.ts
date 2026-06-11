@@ -1,70 +1,111 @@
 import { getProgrammeCount, getTeachersNavData } from "./getTeachersNavData";
 import { mockResponseData } from "./fixtures";
 
+import type { CurriculumPhaseOptions } from "@/node-lib/curriculum-api-2023/queries/curriculumPhaseOptions/curriculumPhaseOptions.query";
+
+const curriculumPhaseOptionsSubjects: CurriculumPhaseOptions = [
+  {
+    title: "Art and design",
+    slug: "art",
+    phases: [
+      { title: "Primary", slug: "primary" },
+      { title: "Secondary", slug: "secondary" },
+    ],
+    ks4_options: [],
+  },
+  {
+    title: "Financial education",
+    slug: "financial-education",
+    phases: [{ title: "Primary", slug: "primary" }],
+    ks4_options: [],
+  },
+  {
+    title: "Computing",
+    slug: "computing",
+    phases: [{ title: "Secondary", slug: "secondary" }],
+    ks4_options: [
+      { title: "AQA", slug: "aqa" },
+      { title: "Edexcel", slug: "edexcel" },
+    ],
+  },
+  {
+    title: "Maths",
+    slug: "maths",
+    phases: [
+      { title: "Primary", slug: "primary" },
+      { title: "Secondary", slug: "secondary" },
+    ],
+    ks4_options: [],
+  },
+  {
+    title: "Religious education",
+    slug: "religious-education",
+    phases: [{ title: "Secondary", slug: "secondary" }],
+    ks4_options: [
+      { title: "AQA", slug: "aqa" },
+      { title: "Edexcel B", slug: "edexcelb" },
+      { title: "Eduqas", slug: "eduqas" },
+    ],
+  },
+];
+
+const getNav = (phase: "primary" | "secondary") =>
+  getTeachersNavData(mockResponseData, phase, curriculumPhaseOptionsSubjects);
+
 describe("getTeachersNavData", () => {
   it("gets primary data", () => {
-    const result = getTeachersNavData(mockResponseData, "primary");
+    const result = getNav("primary");
     expect(result.title).toBe("Primary");
     expect(result.children).toHaveLength(3);
   });
   it("gets secondary data", () => {
-    const result = getTeachersNavData(mockResponseData, "secondary");
+    const result = getNav("secondary");
     expect(result.title).toBe("Secondary");
     expect(result.children).toHaveLength(2);
   });
   it("correctly identifies non curriculum subjects", () => {
-    const result = getTeachersNavData(mockResponseData, "primary");
+    const result = getNav("primary");
     const financialEducation = result.children[0]?.children.find(
       (s) => s.slug === "financial-education",
     );
     expect(financialEducation?.nonCurriculum).toBeTruthy();
   });
   it("includes EYFS in primary", () => {
-    const result = getTeachersNavData(mockResponseData, "primary");
+    const result = getNav("primary");
     const eyfs = result.children.find(
       (ks) => ks.slug === "early-years-foundation-stage",
     );
     expect(eyfs).toBeDefined();
   });
   it("removes duplicate subjects from keystages", () => {
-    const result = getTeachersNavData(mockResponseData, "primary");
+    const result = getNav("primary");
     const subjects = result.children[0]?.children;
 
-    expect(subjects).toHaveLength(3);
-  });
-  it("includes all-subjects button at the end of each keystage", () => {
-    const result = getTeachersNavData(mockResponseData, "primary");
-    const keystage = result.children[0];
-    const allSubjectsButton = keystage?.children[keystage.children.length - 1];
-
-    expect(allSubjectsButton?.slug).toBe("all-subjects");
-    expect(allSubjectsButton?.title).toBe("All KS1 subjects");
-    expect(allSubjectsButton?.nonCurriculum).toBe(false);
-    expect(allSubjectsButton?.programmeCount).toBe(0);
+    expect(subjects).toHaveLength(2);
   });
   it("includes pathways for ks4 subjects", () => {
-    const result = getTeachersNavData(mockResponseData, "secondary");
+    const result = getNav("secondary");
     const computing = result.children[1]?.children?.filter(
       (s) => s.slug === "computing",
     );
     expect(computing).toHaveLength(2);
   });
   it("returns a valid programme slug for subjects with one programme per keystage", () => {
-    const result = getTeachersNavData(mockResponseData, "secondary");
+    const result = getNav("secondary");
     const multipleProgrammeSubject = result.children[1]?.children?.find(
       (s) => s.programmeCount === 1,
     );
     expect(multipleProgrammeSubject?.programmeSlug).not.toBeNull();
   });
   it("returns programme slug as null for subjects with multiple programmes at keystage", () => {
-    const result = getTeachersNavData(mockResponseData, "secondary");
+    const result = getNav("secondary");
     const multipleProgrammeSubject = result.children[1]?.children?.find(
       (s) => s.programmeCount > 1,
     );
     expect(multipleProgrammeSubject?.programmeSlug).toBeNull();
   });
   it("uses subect name overrides", () => {
-    const result = getTeachersNavData(mockResponseData, "secondary");
+    const result = getNav("secondary");
     const gcseComputing = result.children[1]?.children.find(
       (s) => s.slug === "computing" && s.programmeCount > 1,
     );
@@ -72,7 +113,7 @@ describe("getTeachersNavData", () => {
     expect(gcseComputing?.title).toEqual("Computer science (GCSE)");
   });
   it("handles subjects with only one pathway and examboards (RE)", () => {
-    const result = getTeachersNavData(mockResponseData, "secondary");
+    const result = getNav("secondary");
     const gcseRe = result.children[1]?.children.filter(
       (s) => s.slug === "religious-education",
     );
@@ -80,6 +121,44 @@ describe("getTeachersNavData", () => {
     expect(gcseRe).toHaveLength(1); // No core option
     expect(gcseRe?.[0]?.title).toBe("Religious education (GCSE)"); // gcse in title
     expect(gcseRe?.[0]?.programmeCount).toBe(3); // one programme per examboard
+  });
+
+  it("builds exam board hrefs from programme slugs", () => {
+    const result = getNav("secondary");
+    const gcseComputing = result.children[1]?.children.find(
+      (s) => s.slug === "computing" && s.pathwaySlug === "gcse",
+    );
+
+    expect(gcseComputing?.examBoards).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({
+          buttonTitle: "Edexcel",
+          href: "/teachers/programmes/computing-secondary-edexcel/units?keystages=ks4",
+        }),
+        expect.objectContaining({
+          buttonTitle: "AQA",
+          href: "/teachers/programmes/computing-secondary-aqa/units?keystages=ks4",
+        }),
+      ]),
+    );
+  });
+
+  it("builds tier hrefs from programme slugs", () => {
+    const result = getNav("secondary");
+    const maths = result.children[1]?.children.find((s) => s.slug === "maths");
+
+    expect(maths?.examBoards).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({
+          buttonTitle: "Higher",
+          href: "/teachers/programmes/maths-secondary/units?keystages=ks4&tiers=higher",
+        }),
+        expect.objectContaining({
+          buttonTitle: "Foundation",
+          href: "/teachers/programmes/maths-secondary/units?keystages=ks4&tiers=foundation",
+        }),
+      ]),
+    );
   });
 });
 
