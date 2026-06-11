@@ -98,21 +98,10 @@ export function SubmenuContainer({
   );
 }
 
-function SubjectsSubmenu({
-  title,
-  backButtonAriaLabel,
-  subjects,
-  keyStageSlug,
-  phase,
-  hamburgerMenu,
-  selectedExamBoardSubject,
-  setSelectedExamBoardSubject,
-  onBack,
-}: {
+type SubjectsSubmenuProps = {
   readonly title: string;
   readonly backButtonAriaLabel?: string;
   readonly subjects: SubjectsNavItem[];
-  readonly keyStageSlug: string;
   readonly phase: Phase;
   readonly hamburgerMenu: HamburgerMenuHook;
   readonly selectedExamBoardSubject: SubjectsNavItem | null;
@@ -120,14 +109,28 @@ function SubjectsSubmenu({
     subject: SubjectsNavItem | null,
   ) => void;
   readonly onBack?: () => void;
-}) {
+} & (
+  | { readonly viewType: "phase" }
+  | { readonly viewType: "keystage"; readonly keystageSlug: string }
+);
+
+function SubjectsSubmenu(props: SubjectsSubmenuProps) {
+  const {
+    title,
+    backButtonAriaLabel,
+    subjects,
+    phase,
+    hamburgerMenu,
+    selectedExamBoardSubject,
+    setSelectedExamBoardSubject,
+    onBack,
+  } = props;
   const { track } = useAnalytics();
   const { handleCloseHamburger } = hamburgerMenu;
+  const viewTypeSlug =
+    props.viewType === "keystage" ? props.keystageSlug : phase;
 
-  const handleSubjectBrowseClick = (
-    subjectSlug: string,
-    keystageSlug: string,
-  ) => {
+  const handleSubjectBrowseClick = (subjectSlug: string) => {
     track.browseRefined({
       platform: "owa",
       product: "teacher lesson resources",
@@ -137,7 +140,8 @@ function SubjectsSubmenu({
       analyticsUseCase: "Teacher",
       filterType: "Subject filter",
       filterValue: subjectSlug,
-      activeFilters: { keystages: [keystageSlug] },
+      activeFilters:
+        props.viewType === "keystage" ? { keyStage: [props.keystageSlug] } : {},
       googleLoginHint: null,
       clientEnvironment: null,
     });
@@ -145,16 +149,21 @@ function SubjectsSubmenu({
   };
 
   if (selectedExamBoardSubject?.examBoards?.length) {
+    const examBoardMenuTitle =
+      props.viewType === "keystage"
+        ? `KS4, ${selectedExamBoardSubject.title}`
+        : `Secondary, ${selectedExamBoardSubject.title}`;
+
     return (
       <SubmenuContainer
-        title={`${title}, ${selectedExamBoardSubject.title}`}
+        title={examBoardMenuTitle}
         hamburgerMenu={hamburgerMenu}
         onBack={() => setSelectedExamBoardSubject(null)}
       >
         <ExamBoardPanel
           examBoards={selectedExamBoardSubject.examBoards}
           phaseSlug={phase}
-          viewType={keyStageSlug}
+          viewType={viewTypeSlug}
           selectedSubject={selectedExamBoardSubject}
           onClick={handleSubjectBrowseClick}
           onLeave={() => setSelectedExamBoardSubject(null)}
@@ -175,7 +184,7 @@ function SubjectsSubmenu({
         selectedMenu={phase}
         subjects={subjects}
         selectedSubject={selectedExamBoardSubject}
-        viewTypeSlug={keyStageSlug}
+        viewTypeSlug={viewTypeSlug}
         phase={phase}
         onExamBoardPanelOpen={setSelectedExamBoardSubject}
         closeExamBoardPanel={() => setSelectedExamBoardSubject(null)}
@@ -257,7 +266,7 @@ export function SubmenuContent(
         <SubjectsSubmenu
           title={submenuOpen}
           subjects={phaseItem.children}
-          keyStageSlug={phase}
+          viewType="phase"
           phase={phase}
           hamburgerMenu={hamburgerMenu}
           selectedExamBoardSubject={selectedExamBoardSubject}
@@ -281,7 +290,8 @@ export function SubmenuContent(
             title={getKeystageListLabel(selectedKeystage)}
             backButtonAriaLabel={getKeystageListAriaLabel(selectedKeystage)}
             subjects={selectedKeystage.children}
-            keyStageSlug={selectedKeystage.slug}
+            viewType="keystage"
+            keystageSlug={selectedKeystage.slug}
             phase={phase}
             hamburgerMenu={hamburgerMenu}
             selectedExamBoardSubject={selectedExamBoardSubject}

@@ -188,6 +188,58 @@ describe("TeachersTopNavHamburger", () => {
     expect(getByText("Primary")).toBeInTheDocument();
   });
 
+  it("should track subject click with keyStage activeFilter when browsing by keystage", async () => {
+    const { getByTestId, getByText, getByRole } = render(
+      <TeachersTopNavHamburger {...mockTopNavProps} />,
+    );
+    const user = userEvent.setup();
+    const button = getByTestId("top-nav-hamburger-button");
+    await user.click(button);
+
+    await openKeystageSubjects(user, getByRole, getByText, {
+      phaseKeyStagesLabel: "Primary key stages",
+      keystageLabel: "Key stage 1",
+    });
+
+    const englishButton = getByRole("link", { name: /English/i });
+    await user.click(englishButton);
+
+    expect(mockBrowseRefined).toHaveBeenCalledWith(
+      expect.objectContaining({
+        filterType: "Subject filter",
+        filterValue: "english",
+        activeFilters: { keyStage: ["ks1"] },
+      }),
+    );
+  });
+
+  it("should track subject click without keyStage activeFilter when browsing by phase", async () => {
+    const { getByTestId, getByRole } = render(
+      <TeachersTopNavHamburger {...mockTopNavProps} />,
+    );
+    const user = userEvent.setup();
+    const button = getByTestId("top-nav-hamburger-button");
+    await user.click(button);
+
+    const secondarySubjectsButton = getByRole("button", {
+      name: "Secondary subjects",
+    });
+    await user.click(secondarySubjectsButton);
+
+    const computerScienceButton = getByRole("link", {
+      name: /Computer science/i,
+    });
+    await user.click(computerScienceButton);
+
+    expect(mockBrowseRefined).toHaveBeenCalledWith(
+      expect.objectContaining({
+        filterType: "Subject filter",
+        filterValue: "computer-science",
+        activeFilters: {},
+      }),
+    );
+  });
+
   it("should track browse refined when a keystage is selected", async () => {
     const { getByTestId, getByText, getByRole } = render(
       <TeachersTopNavHamburger {...mockTopNavProps} />,
@@ -336,7 +388,7 @@ describe("TeachersTopNavHamburger", () => {
       getByRole("heading", { name: "Choose tier for KS4 Geography" }),
     ).toBeInTheDocument();
 
-    const backButton = getByRole("button", { name: "Key stage 4, Geography" });
+    const backButton = getByRole("button", { name: "KS4, Geography" });
     await user.click(backButton);
 
     expect(
