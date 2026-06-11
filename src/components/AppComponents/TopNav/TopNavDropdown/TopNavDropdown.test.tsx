@@ -66,11 +66,11 @@ describe("TopNavDropdown", () => {
           />,
         );
 
-        const primaryButton = await screen.findByRole("tab", {
+        const primaryButton = await screen.findByRole("button", {
           name: "Primary",
         });
 
-        expect(primaryButton).toHaveAttribute("aria-current", "true");
+        expect(primaryButton).toBeInTheDocument();
       });
 
       it("renders keystage menu", async () => {
@@ -85,11 +85,11 @@ describe("TopNavDropdown", () => {
           />,
         );
 
-        const secondaryButton = await screen.findByRole("tab", {
+        const secondaryButton = await screen.findByRole("button", {
           name: "Secondary",
         });
 
-        expect(secondaryButton).toHaveAttribute("aria-current", "true");
+        expect(secondaryButton).toBeInTheDocument();
       });
 
       it("calls track browse refined when a keystage button is clicked", async () => {
@@ -105,15 +105,17 @@ describe("TopNavDropdown", () => {
         );
 
         const user = userEvent.setup();
-        const keystagesButton = await screen.findByRole("tab", {
+        const keystagesButton = await screen.findByRole("button", {
           name: "Key stages",
         });
         await user.click(keystagesButton);
-        const ks4Button = await screen.findByRole("tab", {
+        const ks4Button = await screen.findByRole("button", {
           name: "Key stage 4",
         });
         await user.click(ks4Button);
-        const keystageButton = screen.getByRole("tab", { name: "Key stage 4" });
+        const keystageButton = screen.getByRole("button", {
+          name: "Key stage 4",
+        });
         await user.click(keystageButton);
         expect(mockBrowseRefined).toHaveBeenCalledWith(
           expect.objectContaining({
@@ -136,7 +138,7 @@ describe("TopNavDropdown", () => {
         );
 
         const user = userEvent.setup();
-        const keystagesButton = await screen.findByRole("tab", {
+        const keystagesButton = await screen.findByRole("button", {
           name: "Key stages",
         });
         await user.click(keystagesButton);
@@ -161,7 +163,7 @@ describe("TopNavDropdown", () => {
           />,
         );
 
-        const keystagesButton = await screen.findByRole("tab", {
+        const keystagesButton = await screen.findByRole("button", {
           name: "Key stages",
         });
         await user.click(keystagesButton);
@@ -189,7 +191,7 @@ describe("TopNavDropdown", () => {
           />,
         );
 
-        const keystagesButton = await screen.findByRole("tab", {
+        const keystagesButton = await screen.findByRole("button", {
           name: "Key stages",
         });
         await user.click(keystagesButton);
@@ -217,7 +219,7 @@ describe("TopNavDropdown", () => {
           />,
         );
 
-        const keystagesButton = await screen.findByRole("tab", {
+        const keystagesButton = await screen.findByRole("button", {
           name: "Key stages",
         });
         await user.click(keystagesButton);
@@ -250,12 +252,12 @@ describe("TopNavDropdown", () => {
           />,
         );
 
-        const keystagesButton = await screen.findByRole("tab", {
+        const keystagesButton = await screen.findByRole("button", {
           name: "Key stages",
         });
         await user.click(keystagesButton);
 
-        const ks4Button = await screen.findByRole("tab", {
+        const ks4Button = await screen.findByRole("button", {
           name: "Key stage 4",
         });
         await user.click(ks4Button);
@@ -286,12 +288,12 @@ describe("TopNavDropdown", () => {
           />,
         );
 
-        const keystagesButton = await screen.findByRole("tab", {
+        const keystagesButton = await screen.findByRole("button", {
           name: "Key stages",
         });
         await user.click(keystagesButton);
 
-        const ks4Button = await screen.findByRole("tab", {
+        const ks4Button = await screen.findByRole("button", {
           name: "Key stage 4",
         });
         await user.click(ks4Button);
@@ -324,12 +326,12 @@ describe("TopNavDropdown", () => {
           />,
         );
 
-        const keystagesButton = await screen.findByRole("tab", {
+        const keystagesButton = await screen.findByRole("button", {
           name: "Key stages",
         });
         await user.click(keystagesButton);
 
-        const ks4Button = await screen.findByRole("tab", {
+        const ks4Button = await screen.findByRole("button", {
           name: "Key stage 4",
         });
         await user.click(ks4Button);
@@ -340,7 +342,7 @@ describe("TopNavDropdown", () => {
         geographyButton.addEventListener("click", (e) => e.preventDefault());
         await user.click(geographyButton);
 
-        const ks3Button = screen.getByRole("tab", { name: "Key stage 3" });
+        const ks3Button = screen.getByRole("button", { name: "Key stage 3" });
         await user.click(ks3Button);
 
         expect(

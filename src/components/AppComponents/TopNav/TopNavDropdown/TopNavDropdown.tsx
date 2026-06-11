@@ -219,8 +219,6 @@ const TeachersPhaseSection = ({
             ? `topnav-teachers-${slug}-subjects`
             : undefined
         }
-        role="tab"
-        aria-selected={isOpen(slug)}
         iconName="chevron-right"
         isTrailingIcon
         rightAlignIcon
@@ -228,12 +226,10 @@ const TeachersPhaseSection = ({
         selected={isOpen(slug)}
         onClick={() => onClickFn(slug)}
         onKeyDown={(e) => focusManager.handleKeyDown(e, buttonId)}
-        aria-current={isOpen(slug) ? "true" : undefined}
         id={buttonId}
         aria-label={
           title === "EYFS" ? "Early years foundation stage" : undefined
         }
-        aria-disabled={selectedMenu !== phase}
       >
         {title.replace("KS", "Key stage ")}
       </OakLeftAlignedButton>
@@ -272,7 +268,6 @@ const TeachersPhaseSection = ({
         $gap={"spacing-8"}
         $pa={"spacing-0"}
         id={`topnav-teachers-${phase}`}
-        role="tablist"
         onKeyDown={handleKeystageArrowKeys}
       >
         {renderNavButtons(
