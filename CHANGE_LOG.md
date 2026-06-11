@@ -1,3 +1,15 @@
+# [1.1097.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1096.2...v1.1097.0) (2026-06-11)
+
+
+### Bug Fixes
+
+* use packageManager in package.json rather than pnpm version in gh-actions ([f0adbf7](https://github.com/oaknational/Oak-Web-Application/commit/f0adbf7356b749e5ea61c11b03a151faddb7e74f)), closes [#actions](https://github.com/oaknational/Oak-Web-Application/issues/actions)
+
+
+### Features
+
+* bump to pnpm 11 with better corepack usage in README.md ([e2bf398](https://github.com/oaknational/Oak-Web-Application/commit/e2bf398d2a14b6eab2cdead5b96766faf23f0116))
+
 ## [1.1096.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.1096.1...v1.1096.2) (2026-06-11)
 
 
