@@ -11,11 +11,7 @@ import {
 } from "@oaknational/oak-components";
 import Link from "next/link";
 
-import {
-  getEYFSAriaLabel,
-  SubmenuState,
-  HamburgerMenuHook,
-} from "./TeachersTopNavHamburger";
+import { getEYFSAriaLabel, HamburgerMenuHook } from "./TeachersTopNavHamburger";
 
 import {
   TeachersBrowse,
@@ -48,10 +44,16 @@ export function MainMenuContent(
       <SubjectsSection {...navData.primary} hamburgerMenu={hamburgerMenu} />
       <SubjectsSection {...navData.secondary} hamburgerMenu={hamburgerMenu} />
       <OakFlex $flexDirection={"column"} $gap={"spacing-16"}>
-        <MainMenuButton title={"About us"} hamburgerMenu={hamburgerMenu} />
-        <MainMenuButton title={"Guidance"} hamburgerMenu={hamburgerMenu} />
+        <MainMenuButton
+          title={"About us"}
+          onClick={() => hamburgerMenu.handleNav({ menu: "About us" })}
+        />
+        <MainMenuButton
+          title={"Guidance"}
+          onClick={() => hamburgerMenu.handleNav({ menu: "Guidance" })}
+        />
         <MainMenuLink
-          hamburgerMenu={hamburgerMenu}
+          onClick={hamburgerMenu.handleCloseHamburger}
           href={resolveOakHref({
             page: "labs",
           })}
@@ -96,7 +98,12 @@ function SubjectsSection(
             key={keystage.slug + browseData.slug}
             title={keystage.title}
             description={keystage.description}
-            hamburgerMenu={hamburgerMenu}
+            onClick={() =>
+              hamburgerMenu.handleNav({
+                menu: "Keystages",
+                value: keystage.title,
+              })
+            }
             track={() => {
               track.browseRefined({
                 platform: "owa",
@@ -122,15 +129,14 @@ function SubjectsSection(
 function MainMenuButton({
   title,
   description,
-  hamburgerMenu,
   track,
+  onClick,
 }: Readonly<{
   title: string;
-  hamburgerMenu: HamburgerMenuHook;
   description?: string;
   track?: () => void;
+  onClick: () => void;
 }>) {
-  const { handleNav } = hamburgerMenu;
   const isEYFS = title === "EYFS";
   const shouldShowDescription = !isEYFS && description;
 
@@ -146,7 +152,7 @@ function MainMenuButton({
           id={title + "button"}
           onClick={() => {
             track?.();
-            handleNav({ menu: title as SubmenuState });
+            onClick?.();
           }}
         >
           {shouldShowDescription ? description : title}
@@ -161,15 +167,14 @@ function MainMenuLink({
   title,
   iconName,
   external,
-  hamburgerMenu,
+  onClick,
 }: {
   readonly href: string;
   readonly title: string;
-  readonly hamburgerMenu: HamburgerMenuHook;
   readonly external?: boolean;
   readonly iconName?: OakIconName;
+  readonly onClick: () => void;
 }) {
-  const { handleCloseHamburger } = hamburgerMenu;
   return (
     <OakLeftAlignedButton
       width={"100%"}
@@ -181,7 +186,7 @@ function MainMenuLink({
       aria-label={
         external ? `${title} (this will open in a new tab)` : undefined
       }
-      onClick={handleCloseHamburger}
+      onClick={onClick}
     >
       {title}
     </OakLeftAlignedButton>

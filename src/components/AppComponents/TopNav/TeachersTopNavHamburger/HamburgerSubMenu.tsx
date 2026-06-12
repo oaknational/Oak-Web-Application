@@ -164,17 +164,14 @@ export function SubmenuContent(
         </SubmenuContainer>
       );
     }
-    case "KS1":
-    case "KS2":
-    case "KS3":
-    case "KS4":
-    case "EYFS": {
-      const phase = ["KS1", "KS2", "EYFS"].includes(submenuOpen.menu ?? "")
+    case "Keystages": {
+      if (!submenuOpen.value) return null;
+      const phase = ["KS1", "KS2", "EYFS"].includes(submenuOpen.value ?? "")
         ? "primary"
         : "secondary";
       const phaseData = navData[phase];
       const keystage = phaseData.children?.find(
-        (ks) => ks.title === submenuOpen.menu,
+        (ks) => ks.title === submenuOpen.value,
       );
 
       if (!keystage) {
@@ -185,7 +182,7 @@ export function SubmenuContent(
       return (
         <SubmenuContainer
           description={keystage.description}
-          title={submenuOpen.menu}
+          title={submenuOpen.value}
           hamburgerMenu={hamburgerMenu}
         >
           <TopNavSubjectButtons

@@ -12,14 +12,10 @@ import { SubmenuContent } from "./HamburgerSubMenu";
 import { TeachersSubNavData } from "@/node-lib/curriculum-api-2023/queries/topNav/topNav.schema";
 
 export type SubmenuState =
-  | "KS1"
-  | "KS2"
-  | "EYFS"
-  | "KS3"
-  | "KS4"
+  | "Keystages" // value = keystage
   | "About us"
   | "Guidance"
-  | "KS4Options"
+  | "KS4Options" // value = subject
   | "MainMenu"
   | null;
 
