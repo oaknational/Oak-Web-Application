@@ -60,6 +60,9 @@ export const getExamBoardsForKS4Subject = ({
       const { examboard, examboard_slug, tier_slug, tier_description } =
         p.programme_fields;
 
+      if (!examboard_slug && !tier_slug) {
+        return [];
+      }
       const title = examboard && examboard_slug ? examboard : tier_description;
       return {
         title: title ?? "",
