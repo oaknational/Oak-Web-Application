@@ -99,10 +99,9 @@ export function HamburgerMenuContent(
   if (!submenuOpen) return null;
 
   switch (submenuOpen.menu) {
-    case "About us":
-    case "Guidance": {
+    case "OakMenu": {
       const links =
-        submenuOpen.menu === "About us" ? navData.aboutUs : navData.guidance;
+        submenuOpen.value === "About us" ? navData.aboutUs : navData.guidance;
       return (
         <SubmenuContainer
           title={submenuOpen.menu}
@@ -142,7 +141,7 @@ export function HamburgerMenuContent(
       );
     }
 
-    case "KS4Options": {
+    case "Ks4Options": {
       const phaseData = navData["secondary"];
       const keystage = phaseData.children?.find((ks) => ks.title === "KS4");
       const subject = keystage?.children?.find(
@@ -224,7 +223,7 @@ export function HamburgerMenuContent(
                 googleLoginHint: null,
                 clientEnvironment: null,
               });
-              handleNav({ menu: "KS4Options", value: subject.slug });
+              handleNav({ menu: "Ks4Options", value: subject.slug });
             }}
           />
         </SubmenuContainer>

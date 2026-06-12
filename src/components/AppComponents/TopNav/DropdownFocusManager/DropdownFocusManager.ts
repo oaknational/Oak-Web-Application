@@ -318,14 +318,20 @@ export class DropdownFocusManager<
         : undefined;
       const siblings = parentNode?.children;
       const currentElementIndex = siblings?.indexOf(elementId);
+
       if (siblings && currentElementIndex !== undefined) {
-        const newIndex =
+        const nextElement =
           event.key === "ArrowDown"
-            ? currentElementIndex + 1
-            : currentElementIndex - 1;
-        const nextElement = siblings[newIndex];
+            ? siblings.at(currentElementIndex + 1)
+            : siblings.at(currentElementIndex - 1);
+        const wrapAroundElement =
+          event.key === "ArrowDown" ? siblings.at(0) : siblings.at(-1);
+
         if (nextElement) {
           this.focusElementById(nextElement);
+        } else {
+          // wrap around to first or last element depending on arrow direction
+          wrapAroundElement && this.focusElementById(wrapAroundElement);
         }
       }
     }

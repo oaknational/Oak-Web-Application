@@ -25,18 +25,22 @@ describe("TopNavSubjectButtons", () => {
     {
       title: "Geography",
       slug: "geography",
+      subjectSlug: "geography",
       href: "/teachers/programmes/geography-secondary/units?keystages=ks4",
       nonCurriculum: false,
       programmeSlug: "geography-secondary-ks4",
       programmeCount: 3,
+      children: [],
     },
     {
       title: "History",
       slug: "history",
+      subjectSlug: "history",
       href: "/teachers/programmes/history-secondary-edexcel/units?keystages=ks4",
       nonCurriculum: false,
       programmeSlug: "history-secondary-ks4",
       programmeCount: 1,
+      children: [],
     },
   ];
 
@@ -56,7 +60,7 @@ describe("TopNavSubjectButtons", () => {
         keyStageSlug="ks4"
         handleClick={handleSubjectClick}
         onExamBoardPanelOpen={jest.fn()}
-        closeExamBoardPanel={jest.fn}
+        onExamboardPanelClose={jest.fn}
         phase="secondary"
       />,
     );
@@ -65,7 +69,10 @@ describe("TopNavSubjectButtons", () => {
     historyButton.addEventListener("click", (e) => e.preventDefault());
     await user.click(historyButton);
 
-    expect(handleSubjectClick).toHaveBeenCalledWith("history", "ks4");
+    expect(handleSubjectClick).toHaveBeenCalledWith(
+      subjects.find((s) => s.subjectSlug === "history"),
+      "ks4",
+    );
   });
 
   it("prevents default and calls onExamBoardPanelOpen when clicking KS4 subject with exam boards", async () => {
@@ -77,16 +84,20 @@ describe("TopNavSubjectButtons", () => {
       {
         title: "Biology",
         slug: "biology",
+        subjectSlug: "biology",
         href: "/teachers/programmes/biology-secondary-aqa/units?keystages=ks4",
         nonCurriculum: false,
         programmeSlug: "biology-secondary-ks4",
         programmeCount: 3,
-        examBoards: [
+        children: [
           {
+            title: "AQA",
             slug: "aqa",
-            buttonTitle: "AQA",
-            programmeSlug: "biology-secondary-ks4-aqa",
             href: "/teachers/programmes/biology-secondary-aqa/units?keystages=ks4",
+            programmeFactors: {
+              tier: null,
+              examboard: { slug: "aqa", title: "AQA" },
+            },
           },
         ],
       },
@@ -100,7 +111,7 @@ describe("TopNavSubjectButtons", () => {
         keyStageSlug="ks4"
         handleClick={handleSubjectClick}
         onExamBoardPanelOpen={onExamBoardPanelOpen}
-        closeExamBoardPanel={jest.fn}
+        onExamboardPanelClose={jest.fn}
         phase="secondary"
       />,
     );
@@ -122,8 +133,9 @@ describe("TopNavSubjectButtons", () => {
         selectedSubject={null}
         keyStageSlug="ks4"
         handleClick={jest.fn()}
+        onExamBoardPanelOpen={jest.fn()}
         phase="secondary"
-        closeExamBoardPanel={jest.fn}
+        onExamboardPanelClose={jest.fn}
       />,
     );
 
@@ -138,24 +150,27 @@ describe("TopNavSubjectButtons", () => {
       {
         title: "Geography",
         slug: "geography",
+        subjectSlug: "geography",
         href: "/teachers/programmes/geography-secondary/units?keystages=ks4",
         nonCurriculum: false,
         programmeSlug: "geography-secondary-ks4",
         programmeCount: 3,
-        examBoards: [
+        children: [
           {
-            buttonTitle: "AQA",
-            programmeSlug: "geography-secondary-ks4-aqa",
+            title: "AQA",
+            slug: "geography-secondary-ks4-aqa",
             href: "/teachers/programmes/geography-secondary-aqa/units?keystages=ks4",
             programmeFactors: {
+              tier: null,
               examboard: { slug: "aqa", title: "AQA" },
             },
           },
           {
-            buttonTitle: "Edexcel",
-            programmeSlug: "geography-secondary-ks4-edexcel",
+            title: "Edexcel",
+            slug: "geography-secondary-ks4-edexcel",
             href: "/teachers/programmes/geography-secondary-edexcel/units?keystages=ks4",
             programmeFactors: {
+              tier: null,
               examboard: { slug: "edexcel", title: "Edexcel" },
             },
           },
@@ -164,18 +179,22 @@ describe("TopNavSubjectButtons", () => {
       {
         title: "History",
         slug: "history",
+        subjectSlug: "history",
         href: "/teachers/programmes/history-secondary-edexcel/units?keystages=ks4",
         nonCurriculum: false,
         programmeSlug: "history-secondary-ks4",
         programmeCount: 1,
+        children: null,
       },
       {
         title: "Maths",
         slug: "maths",
+        subjectSlug: "maths",
         href: "/teachers/programmes/maths-secondary/units?keystages=ks4",
         nonCurriculum: false,
         programmeSlug: "maths-secondary-ks4",
         programmeCount: 2,
+        children: null,
       },
     ];
 
@@ -188,7 +207,7 @@ describe("TopNavSubjectButtons", () => {
           keyStageSlug="ks4"
           handleClick={jest.fn()}
           onExamBoardPanelOpen={jest.fn()}
-          closeExamBoardPanel={jest.fn}
+          onExamboardPanelClose={jest.fn}
           phase="secondary"
         />,
       );
@@ -212,7 +231,7 @@ describe("TopNavSubjectButtons", () => {
           keyStageSlug="ks4"
           handleClick={jest.fn()}
           onExamBoardPanelOpen={onExamBoardPanelOpen}
-          closeExamBoardPanel={jest.fn}
+          onExamboardPanelClose={jest.fn}
           phase="secondary"
         />,
       );
@@ -233,10 +252,12 @@ describe("TopNavSubjectButtons", () => {
         {
           title: "English",
           slug: "english",
+          subjectSlug: "english",
           href: "/teachers/programmes/english-secondary-aqa/units?keystages=ks4",
           nonCurriculum: false,
           programmeSlug: "english-secondary-ks4",
           programmeCount: 1,
+          children: [],
         },
       ];
 
@@ -248,7 +269,7 @@ describe("TopNavSubjectButtons", () => {
           keyStageSlug="ks4"
           handleClick={jest.fn()}
           onExamBoardPanelOpen={onExamBoardPanelOpen}
-          closeExamBoardPanel={jest.fn}
+          onExamboardPanelClose={jest.fn}
           phase="secondary"
         />,
       );

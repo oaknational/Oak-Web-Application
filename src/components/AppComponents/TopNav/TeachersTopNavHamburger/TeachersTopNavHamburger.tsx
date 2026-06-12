@@ -10,19 +10,24 @@ import { HamburgerMenuContent } from "./HamburgerSubMenu";
 
 import { TeachersSubNavData } from "@/node-lib/curriculum-api-2023/queries/topNav/topNav.schema";
 
-export type SubmenuState =
-  | "Keystages" // value = keystage
-  | "About us"
-  | "Guidance"
-  | "KS4Options" // value = subject
-  | "MainMenu"
+export type KeystageState = {
+  menu: "Keystages";
+  value: "EYFS" | "KS1" | "KS2" | "KS3" | "KS4";
+};
+type OakState = { menu: "OakMenu"; value: "About us" | "Guidance" };
+type KS4OptionsState = { menu: "Ks4Options"; value: string };
+type MainMenuState = { menu: "MainMenu"; value: null };
+
+type HamburgerState =
+  | MainMenuState
+  | OakState
+  | KeystageState
+  | KS4OptionsState
   | null;
 
-type HamburgerState = { menu: SubmenuState; value?: string } | null;
-
 export type HamburgerMenuHook = {
-  submenuOpen: HamburgerState | undefined;
-  prevSubmenu: HamburgerState | undefined;
+  submenuOpen: HamburgerState;
+  prevSubmenu: HamburgerState;
   handleOpenHamburger: () => void;
   handleCloseHamburger: () => void;
   handleCloseSubmenu: () => void;
@@ -38,10 +43,10 @@ export const useHamburgerMenuState = (): HamburgerMenuHook => {
   const [menuState, setMenuState] = useState<Array<HamburgerState>>([]);
   const [prevSubmenu, setPrevSubmenu] = useState<HamburgerState | null>(null);
 
-  const submenuOpen = useMemo(() => menuState.at(-1), [menuState]);
+  const submenuOpen = useMemo(() => menuState.at(-1) ?? null, [menuState]);
 
   const handleOpenHamburger = useCallback(() => {
-    setMenuState([{ menu: "MainMenu" }]);
+    setMenuState([{ menu: "MainMenu", value: null }]);
   }, []);
 
   const handleCloseSubmenu = () => {

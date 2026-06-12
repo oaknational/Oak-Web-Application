@@ -4,6 +4,7 @@ import { programmeFieldsSchema } from "@oaknational/oak-curriculum-schema";
 import curriculumPhaseOptionsSchema from "../curriculumPhaseOptions/curriculumPhaseOptions.schema";
 
 import { Tier } from "@/utils/curriculum/types";
+import { KeystageState } from "@/components/AppComponents/TopNav/TeachersTopNavHamburger/TeachersTopNavHamburger";
 
 export const topNavResponseSchema = z.object({
   programmes: z.array(
@@ -55,7 +56,7 @@ export type NavButton =
   | PupilsBrowse;
 
 export type KeystageMenu = {
-  title: string;
+  title: KeystageState["value"];
   slug: string;
   description: string;
   children: Array<SubjectsMenu>;

@@ -28,8 +28,8 @@ export function MainMenuContent(
 
   useEffect(() => {
     // We're navigating back from a submenu, focus the triggering element
-    if (prevSubmenu?.menu) {
-      const element = document.getElementById(prevSubmenu.menu + "button");
+    if (prevSubmenu) {
+      const element = document.getElementById(prevSubmenu.value + "button");
       element?.focus();
     }
   }, [submenuOpen, prevSubmenu]);
@@ -46,11 +46,15 @@ export function MainMenuContent(
       <OakFlex $flexDirection={"column"} $gap={"spacing-16"}>
         <MainMenuButton
           title={"About us"}
-          onClick={() => hamburgerMenu.handleNav({ menu: "About us" })}
+          onClick={() =>
+            hamburgerMenu.handleNav({ menu: "OakMenu", value: "About us" })
+          }
         />
         <MainMenuButton
           title={"Guidance"}
-          onClick={() => hamburgerMenu.handleNav({ menu: "Guidance" })}
+          onClick={() =>
+            hamburgerMenu.handleNav({ menu: "OakMenu", value: "Guidance" })
+          }
         />
         <MainMenuLink
           onClick={hamburgerMenu.handleCloseHamburger}
