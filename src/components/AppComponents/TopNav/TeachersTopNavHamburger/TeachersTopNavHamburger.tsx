@@ -8,22 +8,10 @@ import {
 
 import { HamburgerMenuContent } from "./HamburgerSubMenu";
 
-import { TeachersSubNavData } from "@/node-lib/curriculum-api-2023/queries/topNav/topNav.schema";
-
-export type KeystageState = {
-  menu: "Keystages";
-  value: "EYFS" | "KS1" | "KS2" | "KS3" | "KS4" | "All key stages";
-};
-type OakState = { menu: "OakMenu"; value: "About us" | "Guidance" };
-type KS4OptionsState = { menu: "Ks4Options"; value: string };
-type MainMenuState = { menu: "MainMenu"; value: null };
-
-type HamburgerState =
-  | MainMenuState
-  | OakState
-  | KeystageState
-  | KS4OptionsState
-  | null;
+import {
+  HamburgerState,
+  TeachersSubNavData,
+} from "@/node-lib/curriculum-api-2023/queries/topNav/topNav.schema";
 
 export type HamburgerMenuHook = {
   submenuOpen: HamburgerState;

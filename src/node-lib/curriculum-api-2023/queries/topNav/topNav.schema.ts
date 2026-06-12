@@ -4,7 +4,6 @@ import { programmeFieldsSchema } from "@oaknational/oak-curriculum-schema";
 import curriculumPhaseOptionsSchema from "../curriculumPhaseOptions/curriculumPhaseOptions.schema";
 
 import { Tier } from "@/utils/curriculum/types";
-import { KeystageState } from "@/components/AppComponents/TopNav/TeachersTopNavHamburger/TeachersTopNavHamburger";
 
 export const topNavResponseSchema = z.object({
   programmes: z.array(
@@ -54,6 +53,21 @@ export type NavButton =
   | NavDropDownButton
   | TeachersBrowse
   | PupilsBrowse;
+
+type KeystageState = {
+  menu: "Keystages";
+  value: "EYFS" | "KS1" | "KS2" | "KS3" | "KS4" | "All key stages";
+};
+type OakState = { menu: "OakMenu"; value: "About us" | "Guidance" };
+type KS4OptionsState = { menu: "Ks4Options"; value: string };
+type MainMenuState = { menu: "MainMenu"; value: null };
+
+export type HamburgerState =
+  | MainMenuState
+  | OakState
+  | KeystageState
+  | KS4OptionsState
+  | null;
 
 export type KeystageMenu = {
   title: KeystageState["value"];
