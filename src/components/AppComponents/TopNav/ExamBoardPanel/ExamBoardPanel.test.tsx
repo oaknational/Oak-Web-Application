@@ -229,6 +229,49 @@ describe("ExamBoardPanel", () => {
       expect(onLeave).not.toHaveBeenCalled();
     });
 
+    it("does not call onLeave when tabbing past the last exam board without focusManager", () => {
+      const onLeave = jest.fn();
+      render(
+        <ExamBoardPanel
+          examBoards={examBoards}
+          phaseSlug="secondary"
+          viewType="ks4"
+          selectedSubject={selectedSubject}
+          onClick={mockOnClick}
+          onLeave={onLeave}
+        />,
+      );
+
+      const lastLink = screen.getByRole("link", { name: "Edexcel" });
+      lastLink.focus();
+      fireEvent.keyDown(lastLink, { key: "Tab" });
+
+      expect(onLeave).not.toHaveBeenCalled();
+    });
+
+    it("calls onLeave when tabbing past the last exam board with focusManager", () => {
+      const focusManager = createFocusManagerMock();
+      const onLeave = jest.fn();
+      render(
+        <ExamBoardPanel
+          examBoards={examBoards}
+          phaseSlug="secondary"
+          viewType="ks4"
+          selectedSubject={selectedSubject}
+          focusManager={focusManager}
+          onClick={mockOnClick}
+          onLeave={onLeave}
+        />,
+      );
+
+      const lastLink = screen.getByRole("link", { name: "Edexcel" });
+      lastLink.focus();
+      fireEvent.keyDown(lastLink, { key: "Tab" });
+
+      expect(onLeave).toHaveBeenCalledTimes(1);
+      expect(focusManager.handleKeyDown).toHaveBeenCalledTimes(1);
+    });
+
     it("moves focus back to subject context on Shift+Tab from first exam board", async () => {
       const focusManager = new DropdownFocusManager<TeachersSubNavData>(
         [
