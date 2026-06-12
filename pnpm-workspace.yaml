@@ -4,6 +4,7 @@ minimumReleaseAgeExclude:
   - "@oaknational/oak-components"
   - "@oaknational/oak-consent-client"
   - "@oaknational/oak-curriculum-schema%"
+  - '@oaknational/oak-curriculum-schema@2.14.0'
 allowBuilds:
   '@clerk/shared': true
   '@percy/core': true
