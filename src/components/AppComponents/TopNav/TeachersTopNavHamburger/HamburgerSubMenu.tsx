@@ -157,7 +157,7 @@ export function HamburgerMenuContent(
         >
           <TopNavKS4Buttons
             ks4Options={subject.children}
-            selectedSubject={subject}
+            subject={subject}
             parentId={`teachers-secondary-${keystage.slug}-${subject.slug}`}
             onClick={handleCloseHamburger}
             onExamboardPanelClose={handleCloseHamburger}

@@ -28,14 +28,14 @@ const ExamBoardButton = styled(OakPrimaryInvertedButton)`
 
 export const TopNavKS4Buttons = ({
   ks4Options,
-  selectedSubject,
+  subject,
   parentId,
   focusManager,
   onClick,
   onExamboardPanelClose,
 }: {
   ks4Options: Ks4OptionsMenu[];
-  selectedSubject: SubjectsMenu;
+  subject: SubjectsMenu;
   parentId: string;
   focusManager?: DropdownFocusManager<TeachersSubNavData>;
   onClick: (subject: SubjectsMenu, keystage: string) => void;
@@ -52,7 +52,7 @@ export const TopNavKS4Buttons = ({
   );
   const panelTitle = `Choose ${
     hasTierOnlyOptions && !hasExamBoardOptions ? "tier" : "exam board"
-  } for KS4 ${selectedSubject?.title}`;
+  } for KS4 ${subject?.title}`;
 
   return (
     <OakFlex $flexDirection={"column"}>
@@ -71,7 +71,7 @@ export const TopNavKS4Buttons = ({
         $display={"flex"}
         $flexDirection={"column"}
         $gap={"spacing-8"}
-        id={`topnav-teachers-ks4-examboards-${selectedSubject?.slug}`}
+        id={`topnav-teachers-ks4-examboards-${subject?.slug}`}
         role="list"
       >
         {ks4Options
@@ -101,7 +101,7 @@ export const TopNavKS4Buttons = ({
                     )
                   }
                   onClick={() => {
-                    onClick(selectedSubject, "ks4");
+                    onClick(subject, "ks4");
                     onExamboardPanelClose();
                   }}
                 >

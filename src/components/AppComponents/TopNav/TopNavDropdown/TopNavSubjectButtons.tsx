@@ -131,7 +131,7 @@ const TopNavSubjectButtons = ({
             >
               <TopNavKS4Buttons
                 ks4Options={subject.children}
-                selectedSubject={selectedSubject!}
+                subject={subject}
                 parentId={`teachers-${phase}-${keyStageSlug}-${subject.slug}`}
                 focusManager={focusManager}
                 onClick={handleClick}
