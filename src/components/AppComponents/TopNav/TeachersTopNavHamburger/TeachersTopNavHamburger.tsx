@@ -28,7 +28,7 @@ type HamburgerState = { menu: SubmenuState; value?: string } | null;
 export type HamburgerMenuHook = {
   submenuOpen: HamburgerState | undefined;
   prevSubmenu: HamburgerState | undefined;
-  handleOpen: () => void;
+  handleOpenHamburger: () => void;
   handleCloseHamburger: () => void;
   handleCloseSubmenu: () => void;
   handleNav: (newMenu: HamburgerState) => void;
@@ -41,15 +41,16 @@ export const getEYFSAriaLabel = (title: string) => {
 
 export const useHamburgerMenuState = (): HamburgerMenuHook => {
   const [menuState, setMenuState] = useState<Array<HamburgerState>>([]);
+  const [prevSubmenu, setPrevSubmenu] = useState<HamburgerState | null>(null);
 
   const submenuOpen = useMemo(() => menuState.at(-1), [menuState]);
-  const prevSubmenu = useMemo(() => menuState.at(-2), [menuState]);
 
-  const handleOpen = useCallback(() => {
+  const handleOpenHamburger = useCallback(() => {
     setMenuState([{ menu: "MainMenu" }]);
   }, []);
 
   const handleCloseSubmenu = () => {
+    setPrevSubmenu(menuState?.at(-1) ?? null);
     setMenuState((prevMenu) => {
       const newMenu = prevMenu.slice(0, -1);
       return newMenu;
@@ -57,17 +58,19 @@ export const useHamburgerMenuState = (): HamburgerMenuHook => {
   };
 
   const handleNav = (newMenu: HamburgerState) => {
+    setPrevSubmenu(menuState?.at(-1) ?? null);
     setMenuState((prevMenu) => [...prevMenu, newMenu]);
   };
 
   const handleCloseHamburger = () => {
     setMenuState([]);
+    setPrevSubmenu(null);
   };
 
   return {
     submenuOpen,
     prevSubmenu,
-    handleOpen,
+    handleOpenHamburger,
     handleCloseHamburger,
     handleNav,
     handleCloseSubmenu,
@@ -76,7 +79,8 @@ export const useHamburgerMenuState = (): HamburgerMenuHook => {
 
 export function TeachersTopNavHamburger(props: Readonly<TeachersSubNavData>) {
   const hamburgerMenu = useHamburgerMenuState();
-  const { handleOpen, submenuOpen, handleCloseHamburger } = hamburgerMenu;
+  const { handleOpenHamburger, submenuOpen, handleCloseHamburger } =
+    hamburgerMenu;
 
   return (
     <OakBox $display={["block", "block", "none"]}>
@@ -88,7 +92,7 @@ export function TeachersTopNavHamburger(props: Readonly<TeachersSubNavData>) {
         aria-label="Open navigation menu"
         aria-expanded={!!submenuOpen}
         aria-controls={submenuOpen ? "teachers-top-nav-hamburger" : undefined}
-        onClick={handleOpen}
+        onClick={handleOpenHamburger}
       />
       <OakInformativeModal
         isOpen={!!submenuOpen}

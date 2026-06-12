@@ -134,7 +134,7 @@ const TopNavSubjectButtons = ({
                 selectedSubject={selectedSubject}
                 parentId={`teachers-${phase}-${keyStageSlug}-${subject.slug}`}
                 focusManager={focusManager}
-                onExamboardPanelClose={onExamboardPanelClose}
+                onClick={onExamboardPanelClose}
               />
             </MaybeVisuallyHidden>
           ),

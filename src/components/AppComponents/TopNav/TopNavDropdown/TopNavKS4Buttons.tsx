@@ -31,13 +31,13 @@ export const TopNavKS4Buttons = ({
   selectedSubject,
   parentId,
   focusManager,
-  onExamboardPanelClose,
+  onClick,
 }: {
   ks4Options: Ks4OptionsMenu[];
   selectedSubject: SubjectsMenu | null;
   parentId: string;
   focusManager?: DropdownFocusManager<TeachersSubNavData>;
-  onExamboardPanelClose?: () => void;
+  onClick?: () => void;
 }) => {
   const hasTierOnlyOptions = ks4Options.some((board) => {
     const hasTier = Boolean(board.programmeFactors?.tier?.slug);
@@ -92,13 +92,9 @@ export const TopNavKS4Buttons = ({
                   width={"fit-content"}
                   id={buttonId}
                   onKeyDown={(e: React.KeyboardEvent) =>
-                    focusManager?.handleTabKeyDown(
-                      e,
-                      buttonId!,
-                      onExamboardPanelClose,
-                    )
+                    focusManager?.handleTabKeyDown(e, buttonId!, onClick)
                   }
-                  onClick={onExamboardPanelClose}
+                  onClick={onClick}
                 >
                   {title}
                 </ExamBoardButton>

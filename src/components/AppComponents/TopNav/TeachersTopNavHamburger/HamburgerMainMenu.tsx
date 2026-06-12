@@ -32,8 +32,8 @@ export function MainMenuContent(
 
   useEffect(() => {
     // We're navigating back from a submenu, focus the triggering element
-    if (prevSubmenu) {
-      const element = document.getElementById(prevSubmenu + "button");
+    if (prevSubmenu?.menu) {
+      const element = document.getElementById(prevSubmenu.menu + "button");
       element?.focus();
     }
   }, [submenuOpen, prevSubmenu]);

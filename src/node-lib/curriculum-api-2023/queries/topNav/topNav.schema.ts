@@ -66,6 +66,8 @@ export type SubjectsMenu = {
   slug: string;
   href: string;
   subjectSlug: string;
+  pathwaySlug?: string | null;
+  subjectParent?: string | null;
   programmeSlug: string | null;
   programmeCount: number;
   nonCurriculum: boolean;

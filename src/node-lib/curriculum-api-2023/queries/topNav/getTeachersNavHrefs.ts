@@ -1,4 +1,4 @@
-import { SubjectsNavItem } from "./topNav.schema";
+import { SubjectsMenu } from "./topNav.schema";
 
 import { resolveOakHref } from "@/common-lib/urls";
 import { getSubjectPhaseSlug } from "@/components/TeacherComponents/helpers/getSubjectPhaseSlug";
@@ -19,7 +19,7 @@ export function getTeachersSubjectNavHref({
   phaseSlug,
   curriculumPhaseOptionsSubjects,
 }: {
-  subject: Pick<SubjectsNavItem, "slug" | "pathwaySlug" | "programmeSlug">;
+  subject: Pick<SubjectsMenu, "slug" | "pathwaySlug" | "programmeSlug">;
   keyStageSlug: string;
   phaseSlug: "primary" | "secondary";
   curriculumPhaseOptionsSubjects: CurriculumPhaseOptions;
