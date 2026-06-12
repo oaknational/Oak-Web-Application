@@ -48,4 +48,52 @@ describe("UnitHeaderNavFooter", () => {
     expect(actionButton).toBeInTheDocument();
     expect(actionButton).toHaveTextContent("action button");
   });
+  it("renders the title when stuck", () => {
+    render(
+      <UnitHeaderNavFooter
+        {...defaultProps}
+        isStuck={true}
+        title="Unit title"
+      />,
+    );
+
+    expect(screen.getByText("Unit title")).toBeInTheDocument();
+  });
+  it("renders the view all units link when not stuck", () => {
+    render(
+      <UnitHeaderNavFooter
+        {...defaultProps}
+        isStuck={false}
+        title="Unit title"
+        prevHref="prevUrl"
+        nextHref="nextUrl"
+      />,
+    );
+
+    expect(
+      screen.getByRole("link", { name: "View all units" }),
+    ).toBeInTheDocument();
+  });
+  it("renders in the stuck state with previous and next links", () => {
+    render(
+      <UnitHeaderNavFooter
+        {...defaultProps}
+        isStuck={true}
+        title="Unit title"
+        prevHref="prevUrl"
+        nextHref="nextUrl"
+        backgroundColorLevel={4}
+        downloadButton={<button>action button</button>}
+      />,
+    );
+
+    expect(screen.getByText("Unit title")).toBeInTheDocument();
+    expect(screen.getByText("action button")).toBeInTheDocument();
+  });
+  it("forwards the sentinel ref", () => {
+    const sentinelRef = jest.fn();
+    render(<UnitHeaderNavFooter {...defaultProps} sentinelRef={sentinelRef} />);
+
+    expect(sentinelRef).toHaveBeenCalled();
+  });
 });
