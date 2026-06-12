@@ -7,15 +7,15 @@ import bugsnag from "@bugsnag/js";
 import { installMockIntersectionObserver } from "@oaknational/oak-components";
 
 // Override this with `TEST_ALLOW_LOGGING=1` if you want logs locally
-// if (process.env.TEST_ALLOW_LOGGING !== "1") {
-//   ["log", "info", "error", "warn", "debug"].forEach((type) => {
-//     console[type] = (message) => {
-//       throw new Error(
-//         `Failed: We don't allow console.${type} while running tests!\n\n${message}\n\nIf you'd like to enable logging for testing, prefix with TEST_ALLOW_LOGGING=1`,
-//       );
-//     };
-//   });
-// }
+if (process.env.TEST_ALLOW_LOGGING !== "1") {
+  ["log", "info", "error", "warn", "debug"].forEach((type) => {
+    console[type] = (message) => {
+      throw new Error(
+        `Failed: We don't allow console.${type} while running tests!\n\n${message}\n\nIf you'd like to enable logging for testing, prefix with TEST_ALLOW_LOGGING=1`,
+      );
+    };
+  });
+}
 
 // TextEncoder and TextDecoder are Web APIs but not available in JSDOM
 global.TextEncoder = TextEncoder;
