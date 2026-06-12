@@ -1,4 +1,4 @@
-import { waitFor } from "@testing-library/react";
+import { screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { useRouter } from "next/navigation";
 
@@ -106,7 +106,7 @@ describe("TeachersTopNavHamburger", () => {
   });
 
   it("should focus the triggering element when returning to main menu from submenu", async () => {
-    const { getByTestId, getByText } = render(
+    const { getByTestId } = render(
       <TeachersTopNavHamburger {...mockTopNavProps} />,
     );
     const user = userEvent.setup();
@@ -114,10 +114,10 @@ describe("TeachersTopNavHamburger", () => {
     const button = getByTestId("top-nav-hamburger-button");
     await user.click(button);
 
-    const keyStageItem = getByText("Key stage 3");
+    const keyStageItem = screen.getByRole("button", { name: "Key stage 3" });
     await user.click(keyStageItem);
 
-    const backButton = getByText("Key stage 3");
+    const backButton = screen.getByRole("button", { name: "Key stage 3" });
     await user.click(backButton);
 
     expect(document?.activeElement?.textContent).toBe(keyStageItem.textContent);
