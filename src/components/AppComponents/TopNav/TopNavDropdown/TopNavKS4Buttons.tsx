@@ -101,7 +101,7 @@ export const TopNavKS4Buttons = ({
                     )
                   }
                   onClick={() => {
-                    onClick(selectedSubject, child.slug);
+                    onClick(selectedSubject, "ks4");
                     onExamboardPanelClose();
                   }}
                 >
