@@ -6,8 +6,7 @@ import {
   OakBox,
 } from "@oaknational/oak-components";
 
-import { MainMenuContent } from "./HamburgerMainMenu";
-import { SubmenuContent } from "./HamburgerSubMenu";
+import { HamburgerMenuContent } from "./HamburgerSubMenu";
 
 import { TeachersSubNavData } from "@/node-lib/curriculum-api-2023/queries/topNav/topNav.schema";
 
@@ -96,24 +95,14 @@ export function TeachersTopNavHamburger(props: Readonly<TeachersSubNavData>) {
         closeOnBackgroundClick
         largeScreenMaxWidth={480}
       >
-        <Content {...props} hamburgerMenu={hamburgerMenu} />
+        <OakBox
+          $width={"100%"}
+          $height={"100%"}
+          id="teachers-top-nav-hamburger"
+        >
+          <HamburgerMenuContent {...props} hamburgerMenu={hamburgerMenu} />
+        </OakBox>
       </OakInformativeModal>
-    </OakBox>
-  );
-}
-
-function Content(
-  props: Readonly<TeachersSubNavData & { hamburgerMenu: HamburgerMenuHook }>,
-) {
-  const { hamburgerMenu, ...navData } = props;
-  const { submenuOpen } = hamburgerMenu;
-  return (
-    <OakBox $width={"100%"} $height={"100%"} id="teachers-top-nav-hamburger">
-      {submenuOpen?.menu !== "MainMenu" ? (
-        <SubmenuContent {...navData} hamburgerMenu={hamburgerMenu} />
-      ) : (
-        <MainMenuContent {...navData} hamburgerMenu={hamburgerMenu} />
-      )}
     </OakBox>
   );
 }

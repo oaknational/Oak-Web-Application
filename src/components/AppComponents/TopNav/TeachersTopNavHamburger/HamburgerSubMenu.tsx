@@ -13,6 +13,7 @@ import TopNavSubjectButtons from "../TopNavDropdown/TopNavSubjectButtons";
 import { TopNavKS4Buttons } from "../TopNavDropdown/TopNavKS4Buttons";
 
 import { getEYFSAriaLabel, HamburgerMenuHook } from "./TeachersTopNavHamburger";
+import { MainMenuContent } from "./HamburgerMainMenu";
 
 import {
   SubjectsMenu,
@@ -87,7 +88,7 @@ export function SubmenuContainer({
   );
 }
 
-export function SubmenuContent(
+export function HamburgerMenuContent(
   props: Readonly<TeachersSubNavData & { hamburgerMenu: HamburgerMenuHook }>,
 ) {
   const { hamburgerMenu, ...navData } = props;
@@ -226,6 +227,10 @@ export function SubmenuContent(
           />
         </SubmenuContainer>
       );
+    }
+    case "MainMenu":
+    default: {
+      return <MainMenuContent {...navData} hamburgerMenu={hamburgerMenu} />;
     }
   }
 }
