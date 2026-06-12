@@ -12,7 +12,7 @@ import { TeachersSubNavData } from "@/node-lib/curriculum-api-2023/queries/topNa
 
 export type KeystageState = {
   menu: "Keystages";
-  value: "EYFS" | "KS1" | "KS2" | "KS3" | "KS4";
+  value: "EYFS" | "KS1" | "KS2" | "KS3" | "KS4" | "All key stages";
 };
 type OakState = { menu: "OakMenu"; value: "About us" | "Guidance" };
 type KS4OptionsState = { menu: "Ks4Options"; value: string };
