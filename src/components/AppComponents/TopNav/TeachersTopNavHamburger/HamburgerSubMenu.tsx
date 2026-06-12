@@ -161,6 +161,7 @@ export function HamburgerMenuContent(
             selectedSubject={subject}
             parentId={`teachers-secondary-${keystage.slug}-${subject.slug}`}
             onClick={handleCloseHamburger}
+            onExamboardPanelClose={handleCloseHamburger}
           />
         </SubmenuContainer>
       );
@@ -203,6 +204,7 @@ export function HamburgerMenuContent(
               });
               handleCloseHamburger();
             }}
+            onExamboardPanelClose={handleCloseHamburger}
             selectedMenu={phase}
             subjects={subjects}
             selectedSubject={null}

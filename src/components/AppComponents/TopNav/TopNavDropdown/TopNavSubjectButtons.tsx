@@ -36,8 +36,8 @@ const TopNavSubjectButtons = ({
   keyStageSlug: string;
   handleClick: (subject: SubjectsMenu, keystage: string) => void;
   focusManager?: DropdownFocusManager<TeachersData>;
-  onExamBoardPanelOpen?: (subject: SubjectsMenu) => void;
-  onExamboardPanelClose?: () => void;
+  onExamBoardPanelOpen: (subject: SubjectsMenu) => void;
+  onExamboardPanelClose: () => void;
 }) => {
   const handleSubjectClick = (
     e: React.MouseEvent<HTMLButtonElement>,
@@ -131,10 +131,11 @@ const TopNavSubjectButtons = ({
             >
               <TopNavKS4Buttons
                 ks4Options={subject.children}
-                selectedSubject={selectedSubject}
+                selectedSubject={selectedSubject!}
                 parentId={`teachers-${phase}-${keyStageSlug}-${subject.slug}`}
                 focusManager={focusManager}
-                onClick={onExamboardPanelClose}
+                onClick={handleClick}
+                onExamboardPanelClose={onExamboardPanelClose}
               />
             </MaybeVisuallyHidden>
           ),

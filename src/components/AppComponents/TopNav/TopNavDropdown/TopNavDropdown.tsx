@@ -71,7 +71,6 @@ const TeachersDropdownMenuSections = ({
             focusManager={focusManager}
             onClick={onClick}
             selectedMenu={selectedMenu}
-            handleCloseDropdown={onClose}
           />
         )}
         {isNavDropDownButtonItem(data) && (
@@ -92,14 +91,12 @@ const TeachersPhaseSection = ({
   selectedMenu,
   focusManager,
   onClick,
-  handleCloseDropdown,
 }: {
   phaseData: TeachersBrowse;
   phase: string;
   selectedMenu?: TopNavDropdownProps["selectedMenu"];
   focusManager: DropdownFocusManager<TeachersSubNavData>;
   onClick: (subject: SubjectsMenu, keystage: string) => void;
-  handleCloseDropdown: () => void;
 }) => {
   const { track } = useAnalytics();
 
@@ -146,7 +143,6 @@ const TeachersPhaseSection = ({
 
   const closeExamBoardPanel = () => {
     setSelectedSubject(null);
-    handleCloseDropdown();
   };
 
   const isKeystageOpen = (slug: string) => selectedKeystage === slug;
