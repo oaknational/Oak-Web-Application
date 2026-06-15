@@ -1,8 +1,8 @@
-import { getStaticProps } from "@/pages/pupils/lessons/[lessonSlug]/[section]";
+import { getStaticProps } from "@/pages/pupils/lessons/[lessonSlug]/overview";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023/__mocks__/index";
 import OakError from "@/errors/OakError";
 import { resolveOakHref } from "@/common-lib/urls";
-import { PupilExperienceViewProps } from "@/components/PupilViews/PupilExperience";
+import { PupilLessonPageProps } from "@/pages-helpers/pupil/lessons-pages/pupilLessonPage.types";
 import { lessonContentFixture } from "@/node-lib/curriculum-api-2023/fixtures/lessonContent.fixture";
 import { lessonBrowseDataFixture } from "@/node-lib/curriculum-api-2023/fixtures/lessonBrowseData.fixture";
 
@@ -21,13 +21,12 @@ jest.mock("@/components/PupilComponents/pupilUtils/getWorksheetInfo", () => ({
     .mockResolvedValue({ transcriptSentences: [], hasWorksheet: false }),
 }));
 
-describe("pages/pupils/programmes/[programmeSlug]/units/[unitSlug]/lessons/[lessonSlug]/index", () => {
+describe("pages/pupils/lessons/[lessonSlug]/overview", () => {
   describe("getStaticProps", () => {
     it("Should call API:pupilLessonQuery", async () => {
       await getStaticProps({
         params: {
           lessonSlug: "lessonSlug",
-          section: "overview",
         },
       });
 
@@ -52,10 +51,9 @@ describe("pages/pupils/programmes/[programmeSlug]/units/[unitSlug]/lessons/[less
       const res = (await getStaticProps({
         params: {
           lessonSlug: "lessonSlug",
-          section: "overview",
         },
       })) as {
-        props: PupilExperienceViewProps;
+        props: PupilLessonPageProps;
       };
 
       const backUrl = resolveOakHref({ page: "pupil-year-index" });
@@ -69,7 +67,6 @@ describe("pages/pupils/programmes/[programmeSlug]/units/[unitSlug]/lessons/[less
       const res = await getStaticProps({
         params: {
           lessonSlug: "lessonSlug",
-          section: "overview",
         },
       });
 
@@ -89,7 +86,6 @@ describe("pages/pupils/programmes/[programmeSlug]/units/[unitSlug]/lessons/[less
       const res = await getStaticProps({
         params: {
           lessonSlug: "lessonSlug",
-          section: "overview",
         },
       });
       expect(res).toEqual({
@@ -112,7 +108,6 @@ describe("pages/pupils/programmes/[programmeSlug]/units/[unitSlug]/lessons/[less
       const res = await getStaticProps({
         params: {
           lessonSlug: "lessonSlug",
-          section: "overview",
         },
       });
 
@@ -132,7 +127,6 @@ describe("pages/pupils/programmes/[programmeSlug]/units/[unitSlug]/lessons/[less
       const res = await getStaticProps({
         params: {
           lessonSlug: "lessonSlug",
-          section: "overview",
         },
       });
 
