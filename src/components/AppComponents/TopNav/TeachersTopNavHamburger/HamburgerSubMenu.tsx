@@ -147,7 +147,7 @@ export function HamburgerMenuContent(
       const subject = keystage?.children?.find(
         (s) => s.slug === submenuOpen.value,
       );
-      if (!keystage || !subject || !subject.children) {
+      if (!keystage || !subject?.children) {
         return null;
       }
       return (
