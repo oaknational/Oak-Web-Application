@@ -9,7 +9,10 @@ import {
   PrevNextButtons,
 } from "@/components/TeacherComponents/HeaderNavFooter/HeaderNavFooterShared";
 
-export type LessonHeaderNavFooterProps = BaseHeaderNavFooterProps & {
+export type LessonHeaderNavFooterProps = Omit<
+  BaseHeaderNavFooterProps,
+  "downloadButton"
+> & {
   downloadButton: React.ReactElement;
 };
 

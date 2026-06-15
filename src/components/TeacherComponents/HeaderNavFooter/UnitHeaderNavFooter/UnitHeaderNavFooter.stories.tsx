@@ -31,7 +31,7 @@ export const Default: Story = {
     nextHref: "www.google.com",
     viewHref: "www.google.com",
     title: "Unit title",
-    downloadButton: <OakPrimaryButton>Action</OakPrimaryButton>,
+    downloadButton: () => <OakPrimaryButton>Action</OakPrimaryButton>,
   },
 };
 

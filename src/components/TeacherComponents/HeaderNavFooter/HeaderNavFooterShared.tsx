@@ -11,7 +11,7 @@ export type BaseHeaderNavFooterProps = {
   viewHref: string;
   prevHref?: string;
   nextHref?: string;
-  downloadButton?: React.ReactElement;
+  downloadButton?: (isStuck: boolean) => React.ReactElement;
 };
 
 type PrevNextButtonsProps = {

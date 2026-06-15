@@ -130,41 +130,45 @@ const UnitHeader = (props: UnitHeaderProps) => {
             : undefined
         }
         downloadButton={
-          unitDownloadFileId ? (
-            <NegativeBorderBox $width={["100%", "auto"]}>
-              <UnitDownloadButton
-                isStuck={isStuck}
-                longTextOnMobile={true}
-                fullWidthOnMobile
-                setDownloadError={setDownloadError}
-                setDownloadInProgress={setDownloadInProgress}
-                setShowDownloadMessage={setShowDownloadMessage}
-                setShowIncompleteMessage={setShowIncompleteMessage}
-                downloadInProgress={downloadInProgress}
-                unitFileId={unitDownloadFileId}
-                onDownloadSuccess={() => {
-                  track.unitDownloadInitiated({
-                    platform: "owa",
-                    product: "teacher lesson resources",
-                    engagementIntent: "use",
-                    componentType: "unit_download_button",
-                    eventVersion: "2.0.0",
-                    analyticsUseCase: "Teacher",
-                    ...trackingProps,
-                  });
-                  setCurrentToastProps({
-                    message: "Download started. This may take a few minutes.",
-                    variant: "success",
-                    autoDismiss: true,
-                    autoDismissDuration: 10000,
-                    showIcon: true,
-                  });
-                }}
-                showNewTag={false}
-                geoRestricted={Boolean(isGeorestrictedUnit)}
-              />
-            </NegativeBorderBox>
-          ) : undefined
+          unitDownloadFileId
+            ? (isStuck: boolean) => (
+                <NegativeBorderBox $width={["100%", "auto"]}>
+                  <UnitDownloadButton
+                    isStuck={isStuck}
+                    longTextOnMobile={true}
+                    fullWidthOnMobile
+                    setDownloadError={setDownloadError}
+                    setDownloadInProgress={setDownloadInProgress}
+                    setShowDownloadMessage={setShowDownloadMessage}
+                    setShowIncompleteMessage={setShowIncompleteMessage}
+                    downloadInProgress={downloadInProgress}
+                    unitFileId={unitDownloadFileId}
+                    onDownloadSuccess={() => {
+                      track.unitDownloadInitiated({
+                        platform: "owa",
+                        product: "teacher lesson resources",
+                        engagementIntent: "use",
+                        componentType: "unit_download_button",
+                        eventVersion: "2.0.0",
+                        analyticsUseCase: "Teacher",
+                        ...trackingProps,
+                      });
+                      setCurrentToastProps({
+                        message:
+                          "Download started. This may take a few minutes.",
+                        variant: "success",
+                        autoDismiss: true,
+                        autoDismissDuration: 10000,
+                        showIcon: true,
+                      });
+                    }}
+                    showNewTag={false}
+                    geoRestricted={Boolean(isGeorestrictedUnit)}
+                    size={isStuck ? "small" : undefined}
+                  />
+                </NegativeBorderBox>
+              )
+            : undefined
         }
       />
     </>

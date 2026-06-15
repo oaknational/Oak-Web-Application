@@ -14,6 +14,9 @@ const defaultProps: UnitHeaderNavFooterProps = {
 
 const render = renderWithTheme;
 
+const createDownloadButton = () =>
+  jest.fn(() => <button>action button</button>);
+
 describe("UnitHeaderNavFooter", () => {
   it("Renders the correct text for the view href", () => {
     render(<UnitHeaderNavFooter {...defaultProps} />);
@@ -36,17 +39,17 @@ describe("UnitHeaderNavFooter", () => {
     const nextLink = screen.getByRole("link", { name: "Next unit" });
     expect(nextLink).toBeInTheDocument();
   });
-  it("renders an action button", () => {
+  it("renders an action button and passes isStuck=false when not stuck", () => {
+    const downloadButton = createDownloadButton();
+
     render(
-      <UnitHeaderNavFooter
-        {...defaultProps}
-        downloadButton={<button>action button</button>}
-      />,
+      <UnitHeaderNavFooter {...defaultProps} downloadButton={downloadButton} />,
     );
 
     const actionButton = screen.getByRole("button");
     expect(actionButton).toBeInTheDocument();
     expect(actionButton).toHaveTextContent("action button");
+    expect(downloadButton).toHaveBeenCalledWith(false);
   });
   it("renders the title when stuck", () => {
     render(
@@ -74,7 +77,9 @@ describe("UnitHeaderNavFooter", () => {
       screen.getByRole("link", { name: "View all units" }),
     ).toBeInTheDocument();
   });
-  it("renders in the stuck state with previous and next links", () => {
+  it("renders in the stuck state with previous and next links and passes isStuck=true to downloadButton", () => {
+    const downloadButton = createDownloadButton();
+
     render(
       <UnitHeaderNavFooter
         {...defaultProps}
@@ -83,12 +88,12 @@ describe("UnitHeaderNavFooter", () => {
         prevHref="prevUrl"
         nextHref="nextUrl"
         backgroundColorLevel={4}
-        downloadButton={<button>action button</button>}
+        downloadButton={downloadButton}
       />,
     );
 
+    expect(downloadButton).toHaveBeenCalledWith(true);
     expect(screen.getByText("Unit title")).toBeInTheDocument();
-    expect(screen.getByText("action button")).toBeInTheDocument();
   });
   it("forwards the sentinel ref", () => {
     const sentinelRef = jest.fn();

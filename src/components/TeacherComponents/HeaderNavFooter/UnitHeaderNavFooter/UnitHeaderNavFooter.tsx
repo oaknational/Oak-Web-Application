@@ -78,7 +78,7 @@ export const UnitHeaderNavFooter = (props: UnitHeaderNavFooterProps) => {
               : `bg-decorative${props.backgroundColorLevel}-subdued`
           }
           $pv={"spacing-24"}
-          $ph={["spacing-20", "spacing-40"]}
+          $ph={isStuck ? "spacing-16" : ["spacing-20", "spacing-40"]}
           $flexDirection={["column", "row"]}
           $maxWidth={isStuck ? ["spacing-1280"] : "auto"}
           $mh={isStuck ? "spacing-40" : "auto"}
@@ -95,10 +95,11 @@ export const UnitHeaderNavFooter = (props: UnitHeaderNavFooterProps) => {
           >
             <OakFlex
               $justifyContent={isStuck ? "start" : "space-between"}
+              $alignItems={"center"}
               $width={"100%"}
               $gap={"spacing-16"}
             >
-              {props.downloadButton}
+              {props.downloadButton?.(Boolean(isStuck))}
               <OakBox
                 $bl={"border-solid-m"}
                 $display={isStuck ? ["none", "none", "block"] : "none"}
@@ -106,7 +107,7 @@ export const UnitHeaderNavFooter = (props: UnitHeaderNavFooterProps) => {
                 $borderColor={`border-decorative${props.backgroundColorLevel}`}
               />
               <OakBox $display={isStuck ? ["none", "none", "block"] : "none"}>
-                <OakP>{props.title}</OakP>
+                <OakP $font="heading-7">{props.title}</OakP>
               </OakBox>
               <OakFlex
                 as="nav"
