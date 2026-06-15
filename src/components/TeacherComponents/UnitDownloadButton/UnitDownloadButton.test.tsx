@@ -41,19 +41,12 @@ jest.mock("@oaknational/oak-components", () => ({
   useMediaQuery: jest.fn(),
 }));
 
-jest.mock("@/hooks/useMediaQuery.tsx", () => ({
-  __esModule: true,
-  default: () => ({
-    isMobile: false,
-  }),
-}));
-
 const mockedUseMediaQuery = jest.mocked(useMediaQuery);
 
 // Default: behave like a desktop viewport (matches the previous matchMedia mock)
 const setBreakpoint = ({
   isDesktop = true,
-  isMobile = true,
+  isMobile = false,
 }: {
   isDesktop?: boolean;
   isMobile?: boolean;
