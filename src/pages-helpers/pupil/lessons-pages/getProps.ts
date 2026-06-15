@@ -23,28 +23,21 @@ export type PupilLessonPageURLParams = {
   programmeSlug?: string;
   section: string;
   variant?: string;
-  redirectFrom?: string;
 };
 
 export const getProps = ({
   page,
   context,
 }: {
-  page: PupilLessonPageType | "legacy-canonical";
+  page: PupilLessonPageType;
   context: GetStaticPropsContext<PupilLessonPageURLParams, PreviewData>;
 }): (() => Promise<GetStaticPropsResult<PupilLessonPageProps>>) => {
   return async () => {
     if (!context.params) {
       throw new Error("context.params is undefined");
     }
-    const {
-      lessonSlug,
-      unitSlug,
-      programmeSlug,
-      section,
-      variant,
-      redirectFrom,
-    } = context.params;
+    const { lessonSlug, unitSlug, programmeSlug, section, variant } =
+      context.params;
 
     if (page === "browse") {
       invariant(unitSlug, "unitSlug is required for browse page");
@@ -66,7 +59,6 @@ export const getProps = ({
               lessonSlug,
             });
           case "canonical":
-          case "legacy-canonical":
             return curriculumApi2023.pupilLessonQuery({
               lessonSlug,
             });
@@ -104,13 +96,6 @@ export const getProps = ({
           }
           case "preview":
             return undefined; // No redirects for preview page
-          case "legacy-canonical":
-            return {
-              destination: `${resolveOakHref({
-                page: "classroom",
-              })}/lessons/${lessonSlug}`,
-              permanent: false,
-            };
           default:
             throw new Error(`Invalid page type: ${page}`);
         }
@@ -133,8 +118,7 @@ export const getProps = ({
       };
     }
 
-    const legacyCanonicalBackUrl = `${resolveOakHref({ page: "classroom" })}/units/${redirectFrom}`;
-    const nonLegacyBackUrl =
+    const backUrl =
       page === "browse" && unitSlug && programmeSlug
         ? resolveOakHref({
             page: "pupil-lesson-index",
@@ -142,15 +126,13 @@ export const getProps = ({
             unitSlug,
           })
         : resolveOakHref({ page: "pupil-year-index" });
-    const backUrl =
-      page === "legacy-canonical" ? legacyCanonicalBackUrl : nonLegacyBackUrl;
 
     const props = await buildPupilLessonPageProps({
       browseData,
       lessonContent: content,
       backUrl,
       initialSection: section,
-      pageType: page === "legacy-canonical" ? "canonical" : page,
+      pageType: page,
       suppressResourceErrors: page === "preview",
       variant: variant ? getLessonShareVariant(variant) : null,
     });

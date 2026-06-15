@@ -396,11 +396,6 @@ export default async (phase: NextConfig["phase"]): Promise<NextConfig> => {
             "/pupils/programmes/:programmeSlug/units/:unitSlug/lessons/:lessonSlug/overview",
           permanent: true,
         },
-        {
-          source: "/pupils/l/:redirectFrom/lessons/:lessonSlug",
-          destination: "/pupils/l/:redirectFrom/lessons/:lessonSlug/overview",
-          permanent: true,
-        },
       ];
 
       const aboutUsRedirects = [
