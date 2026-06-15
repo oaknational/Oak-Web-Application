@@ -186,8 +186,6 @@ const TermsAgreementForm: FC<TermsAgreementFormProps> = ({
                   target="_blank"
                   iconName="external"
                   isTrailingIcon
-                  iconHeight="spacing-20"
-                  iconWidth="spacing-20"
                 >
                   privacy policy
                 </OakLink>

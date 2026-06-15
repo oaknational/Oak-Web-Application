@@ -64,6 +64,7 @@ export const subjectHeroImages: Record<SubjectName, string | null> = {
   "cooking-nutrition": subjectHeroAssets["independent-living"],
   "creative-arts": subjectHeroAssets["art-and-design"],
   "design-technology": subjectHeroAssets["design-and-technology"],
+  "digital-literacy": subjectHeroAssets["computing"],
   drama: subjectHeroAssets["drama"],
   english: subjectHeroAssets["english"],
   "english-language": subjectHeroAssets["english"],

@@ -226,8 +226,6 @@ const DownloadConfirmation: FC<DownloadConfirmationProps> = ({
               }
               iconName={"external"}
               isTrailingIcon={true}
-              iconHeight={"spacing-24"}
-              iconWidth={"spacing-24"}
             >
               install the Google Fonts ‘Lexend’ and ‘Kalam’
             </OakLink>

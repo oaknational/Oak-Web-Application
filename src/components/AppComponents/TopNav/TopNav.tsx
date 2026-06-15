@@ -158,7 +158,7 @@ const TopNav = (props: TopNavProps) => {
       as="header"
       $position="relative"
       data-testid="app-topnav"
-      onKeyDown={(event) =>
+      onKeyDown={(event: React.KeyboardEvent<HTMLDivElement>) =>
         focusManager?.handleEscapeKey({
           event,
           elementId: document.activeElement?.id || "",

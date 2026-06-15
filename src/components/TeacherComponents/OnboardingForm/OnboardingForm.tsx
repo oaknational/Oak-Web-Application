@@ -218,7 +218,7 @@ const OnboardingForm = ({
         as="form"
         noValidate
         onSubmit={
-          (event) => {
+          (event: React.FormEvent<HTMLFormElement>) => {
             if (props.canSubmit) {
               props.handleSubmit(onFormSubmit)(event);
             } else {
