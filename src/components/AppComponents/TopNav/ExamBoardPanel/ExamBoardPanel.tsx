@@ -114,7 +114,7 @@ const ExamBoardPanel = ({
   };
 
   return (
-    <OakFlex $flexDirection={"column"}>
+    <OakFlex $flexDirection={"column"} $minWidth="spacing-240">
       <OakBox $position={"relative"}>
         <OakHeading
           $font={"heading-7"}
