@@ -6,6 +6,14 @@ import {
   OakSecondaryButton,
 } from "@oaknational/oak-components";
 
+import ScreenReaderOnly from "@/components/SharedComponents/ScreenReaderOnly";
+
+export const SHARE_COPY_SUCCESS_MESSAGE =
+  "Link copied to clipboard! You can share this with your teacher.";
+
+export const SHARE_COPY_FAILED_MESSAGE =
+  "Failed to share results. Please try again.";
+
 export type PupilLessonReviewShareOptionsProps = {
   showPrintable?: boolean;
   printableHref?: string;
@@ -57,11 +65,27 @@ export const PupilLessonReviewShareOptions = ({
         </OakSecondaryButton>
       </OakFlex>
 
+      <ScreenReaderOnly
+        aria-live="polite"
+        aria-atomic="true"
+        data-testid="share-copy-announcement"
+      >
+        {shareState === "shared" ? SHARE_COPY_SUCCESS_MESSAGE : ""}
+      </ScreenReaderOnly>
+
+      <ScreenReaderOnly
+        aria-live="assertive"
+        aria-atomic="true"
+        data-testid="share-copy-error-announcement"
+      >
+        {shareState === "failed" ? SHARE_COPY_FAILED_MESSAGE : ""}
+      </ScreenReaderOnly>
+
       {shareState === "shared" && (
         <OakFlex $gap="spacing-4" $alignItems="center">
           <OakIcon iconName="tick" $colorFilter="text-success" />
           <OakHeading tag="h2" $font="heading-light-7" $color="text-success">
-            Link copied to clipboard! You can share this with your teacher.
+            {SHARE_COPY_SUCCESS_MESSAGE}
           </OakHeading>
         </OakFlex>
       )}
@@ -70,7 +94,7 @@ export const PupilLessonReviewShareOptions = ({
         <OakFlex $gap="spacing-4" $alignItems="center">
           <OakIcon iconName="cross" $colorFilter="text-error" />
           <OakHeading tag="h2" $font="heading-light-7" $color="text-error">
-            Failed to share results. Please try again.
+            {SHARE_COPY_FAILED_MESSAGE}
           </OakHeading>
         </OakFlex>
       )}

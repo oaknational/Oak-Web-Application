@@ -23,6 +23,11 @@ import { PupilExperienceViewProps } from "../PupilExperience";
 import { useLessonReviewFeedback } from "./useLessonReviewFeedback";
 import { CourseWorkHandInButton } from "./CourseWorkHandInButton";
 
+import {
+  SHARE_COPY_FAILED_MESSAGE,
+  SHARE_COPY_SUCCESS_MESSAGE,
+} from "@/components/PupilComponents/Views/PupilLessonReview/PupilLessonReviewShareOptions/PupilLessonReviewShareOptions";
+import ScreenReaderOnly from "@/components/SharedComponents/ScreenReaderOnly";
 import { useLessonEngineContext } from "@/components/PupilComponents/LessonEngineProvider";
 import { useGetSectionLinkProps } from "@/components/PupilComponents/pupilUtils/lessonNavigation";
 import { QuizResults } from "@/components/PupilComponents/QuizQuestions/QuizResults";
@@ -335,6 +340,24 @@ export const PupilViewsReview = (props: PupilViewsReviewProps) => {
                           Copy link
                         </OakSecondaryButton>
                       </OakFlex>
+                      <ScreenReaderOnly
+                        aria-live="polite"
+                        aria-atomic="true"
+                        data-testid="share-copy-announcement"
+                      >
+                        {isAttemptingShare === "shared"
+                          ? SHARE_COPY_SUCCESS_MESSAGE
+                          : ""}
+                      </ScreenReaderOnly>
+                      <ScreenReaderOnly
+                        aria-live="assertive"
+                        aria-atomic="true"
+                        data-testid="share-copy-error-announcement"
+                      >
+                        {isAttemptingShare === "failed"
+                          ? SHARE_COPY_FAILED_MESSAGE
+                          : ""}
+                      </ScreenReaderOnly>
                       {isAttemptingShare === "shared" && (
                         <OakFlex $gap={"spacing-4"} $alignItems={"center"}>
                           <OakIcon
@@ -346,8 +369,7 @@ export const PupilViewsReview = (props: PupilViewsReviewProps) => {
                             $font={"heading-light-7"}
                             $color={"text-success"}
                           >
-                            Link copied to clipboard! You can share this with
-                            your teacher.
+                            {SHARE_COPY_SUCCESS_MESSAGE}
                           </OakHeading>
                         </OakFlex>
                       )}
@@ -362,7 +384,7 @@ export const PupilViewsReview = (props: PupilViewsReviewProps) => {
                             $font={"heading-light-7"}
                             $color={"text-error"}
                           >
-                            Failed to share results. Please try again.
+                            {SHARE_COPY_FAILED_MESSAGE}
                           </OakHeading>
                         </OakFlex>
                       )}
