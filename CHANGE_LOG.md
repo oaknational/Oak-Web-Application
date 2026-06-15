@@ -1,3 +1,10 @@
+## [1.1097.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.1097.1...v1.1097.2) (2026-06-15)
+
+
+### Bug Fixes
+
+* **LESQ-2073:** show download started toast when the download link is clicked ([350c05f](https://github.com/oaknational/Oak-Web-Application/commit/350c05f790d08e7c77a392c88580206036ea22b8))
+
 ## [1.1097.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.1097.0...v1.1097.1) (2026-06-15)
 
 
