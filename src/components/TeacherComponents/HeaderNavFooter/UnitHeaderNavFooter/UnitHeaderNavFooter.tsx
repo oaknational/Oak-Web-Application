@@ -45,6 +45,7 @@ const FadeInFlex = styled(OakFlex)<{ $animateIn?: boolean }>`
 
 export const UnitHeaderNavFooter = (props: UnitHeaderNavFooterProps) => {
   const { sentinelRef, isStuck } = props;
+
   return (
     <>
       {/* Sentinel element, for checking when the user has scrolled past this point */}
@@ -129,17 +130,18 @@ export const UnitHeaderNavFooter = (props: UnitHeaderNavFooterProps) => {
               $display={isStuck ? "none" : ["flex", "none"]}
               {...props}
             />
-            <OakSmallPrimaryInvertedButton
-              $display={isStuck ? "none" : "block"}
-              width={["100%", "auto"]}
-              iconName="list"
-              isTrailingIcon
-              $textWrap={"nowrap"}
-              element="a"
-              href={props.viewHref}
-            >
-              View all units
-            </OakSmallPrimaryInvertedButton>
+            <OakBox $display={isStuck ? "none" : "block"}>
+              <OakSmallPrimaryInvertedButton
+                width={["100%", "auto"]}
+                iconName="list"
+                isTrailingIcon
+                $textWrap={"nowrap"}
+                element="a"
+                href={props.viewHref}
+              >
+                View all units
+              </OakSmallPrimaryInvertedButton>
+            </OakBox>
           </OakFlex>
         </FadeInFlex>
       </OakFlex>
