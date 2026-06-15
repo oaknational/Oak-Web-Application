@@ -65,7 +65,7 @@ export const ChildSubjectTierSelector = (
         isOpen={true}
         icon="bell"
         type="alert"
-        title="Choose your KS4 downlod options below."
+        title="Choose your KS4 download options below."
         message="Before downloading, choose the KS4 options that will change the file you download. The document will still display both KS3 and KS4."
         $mb="spacing-32"
       />

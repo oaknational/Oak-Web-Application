@@ -3,6 +3,7 @@
   "version": "0.0.0-development",
   "private": true,
   "license": "MIT",
+  "packageManager": "pnpm@11.2.0",
   "scripts": {
     "generate-sprites": "NODE_ENV=production tsx scripts/build/write_env_file/index.ts && NODE_ENV=production pnpm run image-data:all",
     "generate-supported-browsers": "tsx scripts/build/generate_supported_browsers/index.ts",
@@ -94,7 +95,7 @@
     "@mux/mux-player": "^3.10.2",
     "@mux/mux-player-react": "3.10.2",
     "@oaknational/google-classroom-addon": "^1.33.0",
-    "@oaknational/oak-components": "^2.31.0",
+    "@oaknational/oak-components": "^2.40.0",
     "@oaknational/oak-consent-client": "2.4.0",
     "@oaknational/oak-curriculum-schema": "2.4.0-beta.2",
     "@ooxml-tools/units": "^0.3.0",
@@ -310,7 +311,7 @@
   },
   "engines": {
     "node": "22",
-    "pnpm": ">=10"
+    "pnpm": ">=11"
   },
   "publishConfig": {
     "access": "restricted"

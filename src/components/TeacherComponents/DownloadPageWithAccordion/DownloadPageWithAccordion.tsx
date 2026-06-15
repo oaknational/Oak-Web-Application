@@ -33,6 +33,7 @@ import LoginRequiredButton from "@/components/TeacherComponents/LoginRequiredBut
 import NoResourcesToDownload from "@/components/TeacherComponents/NoResourcesToDownload";
 import TermsAgreementForm from "@/components/TeacherComponents/TermsAgreementForm";
 import { getFormErrorMessages } from "@/components/TeacherComponents/helpers/downloadAndShareHelpers/getDownloadFormErrorMessage";
+import { SHARE_FORM_ERROR_IDS } from "@/components/TeacherComponents/helpers/downloadAndShareHelpers/shareDownloadFormErrorIds";
 import { LessonDownloadsPageData } from "@/node-lib/curriculum-api-2023/queries/lessonDownloads/lessonDownloads.schema";
 import { DownloadTypeLabel } from "@/components/CurriculumComponents/CurriculumDownloadView/helper";
 
@@ -188,7 +189,7 @@ export const DownloadPageWithAccordionContent = (
 
   return (
     <OakFlex $flexDirection={"column"} $gap={"spacing-48"}>
-      <FieldError id={"downloads-error"} withoutMarginBottom>
+      <FieldError id={SHARE_FORM_ERROR_IDS.resources} withoutMarginBottom>
         {errors?.resources?.message}
       </FieldError>
       <OakDownloadsAccordion

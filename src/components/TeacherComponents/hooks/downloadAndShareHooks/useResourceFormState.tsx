@@ -263,7 +263,7 @@ export const useResourceFormState = (props: UseResourceFormStateProps) => {
     [setValue, schoolNameFromLocalStorage],
   );
 
-  const { errors } = formState;
+  const { errors, submitCount } = formState;
   const hasFormErrors = Object.keys(errors)?.length > 0;
   const selectedResources = watch("resources") as ResourceType[];
 
@@ -420,6 +420,7 @@ export const useResourceFormState = (props: UseResourceFormStateProps) => {
       formState,
       getInitialResourcesState,
       errors,
+      submitCount,
       control,
       register,
       handleSubmit,

@@ -42,6 +42,7 @@ const SearchBar = () => {
       <OakBox $display={["block", "none"]}>
         <OakTertiaryButton
           element={Link}
+          aria-label="Search"
           href={resolveOakHref({ page: "search" })}
           iconName="search"
         />

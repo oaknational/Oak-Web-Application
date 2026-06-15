@@ -118,6 +118,7 @@ export const ProgrammeView = ({
   const selectedKeystageSlug = filters.keystages.find(
     (ks) => keystagesParam === ks,
   );
+
   const heading = buildProgrammeHeading({
     subjectTitle,
     data: curriculumUnitsFormattedData,
@@ -126,6 +127,7 @@ export const ProgrammeView = ({
     schoolYear,
     keyStage: selectedKeystageSlug,
     examboardTitle,
+    tabSlug: activeTab,
   });
 
   // Ensure the active tab matches the one in the latest pathname
