@@ -385,6 +385,11 @@ export default async (phase: NextConfig["phase"]): Promise<NextConfig> => {
           permanent: true,
         },
         {
+          source: "/pupils/lessons/:lessonSlug/shared/:variant",
+          destination: "/pupils/lessons/:lessonSlug/shared/:variant/overview",
+          permanent: true,
+        },
+        {
           source: "/pupils/beta/previews/lessons/:lessonSlug",
           destination: "/pupils/beta/previews/lessons/:lessonSlug/overview",
           permanent: true,
