@@ -310,29 +310,31 @@ export class DropdownFocusManager<
   }
 
   handleArrowKeyDown(event: React.KeyboardEvent, elementId: string) {
-    if (event.key === "ArrowDown" || event.key === "ArrowUp") {
-      event.preventDefault();
-      const currentNode = this.getNode(elementId);
-      const parentNode = currentNode.parent
-        ? this.getNode(currentNode.parent?.parentId)
-        : undefined;
-      const siblings = parentNode?.children;
-      const currentElementIndex = siblings?.indexOf(elementId);
+    if (event.key !== "ArrowDown" && event.key !== "ArrowUp") {
+      return;
+    }
 
-      if (siblings && currentElementIndex !== undefined) {
-        const nextElement =
-          event.key === "ArrowDown"
-            ? siblings.at(currentElementIndex + 1)
-            : siblings.at(currentElementIndex - 1);
-        const wrapAroundElement =
-          event.key === "ArrowDown" ? siblings.at(0) : siblings.at(-1);
+    event.preventDefault();
+    const currentNode = this.getNode(elementId);
+    const parentNode = currentNode.parent
+      ? this.getNode(currentNode.parent?.parentId)
+      : undefined;
+    const siblings = parentNode?.children;
+    const currentElementIndex = siblings?.indexOf(elementId);
 
-        if (nextElement) {
-          this.focusElementById(nextElement);
-        } else {
-          // wrap around to first or last element depending on arrow direction
-          wrapAroundElement && this.focusElementById(wrapAroundElement);
-        }
+    if (siblings && currentElementIndex !== undefined) {
+      const nextElement =
+        event.key === "ArrowDown"
+          ? siblings.at(currentElementIndex + 1)
+          : siblings.at(currentElementIndex - 1);
+      const wrapAroundElement =
+        event.key === "ArrowDown" ? siblings.at(0) : siblings.at(-1);
+
+      if (nextElement) {
+        this.focusElementById(nextElement);
+      } else {
+        // wrap around to first or last element depending on arrow direction
+        wrapAroundElement && this.focusElementById(wrapAroundElement);
       }
     }
   }
