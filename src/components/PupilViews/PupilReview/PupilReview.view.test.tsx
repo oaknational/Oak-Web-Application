@@ -2,7 +2,7 @@ import React from "react";
 import "@testing-library/jest-dom";
 import { OakThemeProvider, oakDefaultTheme } from "@oaknational/oak-components";
 import userEvent from "@testing-library/user-event";
-import { waitFor } from "@testing-library/react";
+import { screen, waitFor } from "@testing-library/react";
 
 import { PupilViewsReview } from "./PupilReview.view";
 
@@ -661,11 +661,11 @@ describe("PupilReview", () => {
 
       await userEvent.click(getByText("Copy link"));
 
-      expect(
-        getByText(
-          "Link copied to clipboard! You can share this with your teacher.",
-        ),
-      ).toBeInTheDocument();
+      const announcement = screen.getByTestId("share-copy-announcement");
+      expect(announcement).toHaveAttribute("aria-live", "polite");
+      expect(announcement).toHaveTextContent(
+        "Link copied to clipboard! You can share this with your teacher.",
+      );
     });
 
     it("shows 'Failed to share results' when the share promise rejects", async () => {
@@ -700,11 +700,14 @@ describe("PupilReview", () => {
 
       await userEvent.click(getByText("Copy link"));
 
-      await waitFor(() =>
+      await waitFor(() => {
         expect(
-          getByText("Failed to share results. Please try again."),
-        ).toBeInTheDocument(),
-      );
+          screen.getByTestId("share-copy-error-announcement"),
+        ).toHaveTextContent("Failed to share results. Please try again.");
+      });
+
+      const announcement = screen.getByTestId("share-copy-error-announcement");
+      expect(announcement).toHaveAttribute("aria-live", "assertive");
     });
   });
 });
