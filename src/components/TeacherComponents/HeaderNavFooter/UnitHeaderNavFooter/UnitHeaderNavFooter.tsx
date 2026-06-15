@@ -87,7 +87,10 @@ export const UnitHeaderNavFooter = (props: UnitHeaderNavFooterProps) => {
           $gap={"spacing-24"}
           $justifyContent="center"
           $dropShadow={isStuck ? "drop-shadow-standard" : "drop-shadow-none"}
-          $bbr={isStuck ? "border-radius-l" : "border-radius-square"}
+          $bbr={isStuck ? [null, "border-radius-l"] : undefined}
+          $btr={
+            isStuck ? ["border-radius-l", "border-radius-square"] : undefined
+          }
         >
           <OakFlex
             $width={"100%"}
