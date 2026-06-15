@@ -78,7 +78,7 @@ export const UnitHeaderNavFooter = (props: UnitHeaderNavFooterProps) => {
               ? `bg-decorative${props.backgroundColorLevel}-very-subdued`
               : `bg-decorative${props.backgroundColorLevel}-subdued`
           }
-          $pv={"spacing-24"}
+          $pv={isStuck ? ["spacing-16", "spacing-24"] : "spacing-24"}
           $ph={isStuck ? "spacing-16" : ["spacing-20", "spacing-40"]}
           $flexDirection={["column", "row"]}
           $maxWidth={isStuck ? ["spacing-1280"] : "auto"}
@@ -95,7 +95,12 @@ export const UnitHeaderNavFooter = (props: UnitHeaderNavFooterProps) => {
           <OakFlex
             $width={"100%"}
             $maxWidth={"spacing-1280"}
-            $gap={"spacing-16"}
+            $gap={
+              isStuck
+                ? ["spacing-16", "spacing-24"]
+                : ["spacing-24", "spacing-16"]
+            }
+            $flexDirection={["column", "row"]}
           >
             <OakFlex
               $justifyContent={isStuck ? "start" : "space-between"}
@@ -103,13 +108,26 @@ export const UnitHeaderNavFooter = (props: UnitHeaderNavFooterProps) => {
               $width={"100%"}
               $gap={"spacing-16"}
             >
-              {props.downloadButton?.(Boolean(isStuck))}
-              <OakBox
-                $bl={"border-solid-m"}
-                $display={isStuck ? ["none", "none", "block"] : "none"}
-                $height={"spacing-24"}
-                $borderColor={`border-decorative${props.backgroundColorLevel}`}
-              />
+              <OakFlex
+                $gap={"spacing-24"}
+                $flexDirection="column"
+                $width={"100%"}
+                $display={isStuck ? "contents" : ["flex", "contents"]}
+              >
+                {props.downloadButton?.(Boolean(isStuck))}
+                <OakBox
+                  $bl={"border-solid-m"}
+                  $display={isStuck ? ["none", "none", "block"] : "none"}
+                  $height={"spacing-24"}
+                  $borderColor={`border-decorative${props.backgroundColorLevel}`}
+                />
+                <OakBox
+                  $bt={"border-solid-m"}
+                  $display={isStuck ? "none" : ["block", "none"]}
+                  $width={"100%"}
+                  $borderColor={`border-decorative${props.backgroundColorLevel}`}
+                />
+              </OakFlex>
               <OakBox $display={isStuck ? ["none", "none", "block"] : "none"}>
                 <OakP $font="heading-7">{props.title}</OakP>
               </OakBox>

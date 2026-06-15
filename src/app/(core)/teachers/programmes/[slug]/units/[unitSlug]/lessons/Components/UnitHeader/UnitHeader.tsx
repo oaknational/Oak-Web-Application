@@ -1,5 +1,9 @@
 "use client";
-import { OakBox, parseSpacing } from "@oaknational/oak-components";
+import {
+  OakBox,
+  parseSpacing,
+  getMediaQuery,
+} from "@oaknational/oak-components";
 import styled from "styled-components";
 import { useRef, useState, useEffect } from "react";
 
@@ -44,6 +48,10 @@ export type UnitHeaderProps = Omit<
  */
 const NegativeBorderBox = styled(OakBox)`
   margin-block: -${parseSpacing("spacing-8")};
+
+  @media (${getMediaQuery("mobile")}) {
+    margin-block: 0;
+  }
 `;
 
 function useDetectStuck() {
