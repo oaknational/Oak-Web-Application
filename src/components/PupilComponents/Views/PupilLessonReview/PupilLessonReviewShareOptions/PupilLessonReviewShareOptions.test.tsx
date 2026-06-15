@@ -68,6 +68,9 @@ describe("PupilLessonReviewShareOptions", () => {
     expect(announcement).toHaveAttribute("aria-live", "polite");
     expect(announcement).toHaveAttribute("aria-atomic", "true");
     expect(announcement).toHaveTextContent(SHARE_COPY_SUCCESS_MESSAGE);
+    expect(
+      screen.getByRole("heading", { name: SHARE_COPY_SUCCESS_MESSAGE }),
+    ).toBeInTheDocument();
   });
 
   it("announces copy failure to screen readers via a live region", () => {
@@ -83,5 +86,8 @@ describe("PupilLessonReviewShareOptions", () => {
     expect(announcement).toHaveAttribute("aria-live", "assertive");
     expect(announcement).toHaveAttribute("aria-atomic", "true");
     expect(announcement).toHaveTextContent(SHARE_COPY_FAILED_MESSAGE);
+    expect(
+      screen.getByRole("heading", { name: SHARE_COPY_FAILED_MESSAGE }),
+    ).toBeInTheDocument();
   });
 });
