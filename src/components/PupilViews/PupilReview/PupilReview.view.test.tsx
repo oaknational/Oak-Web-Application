@@ -6,6 +6,10 @@ import { screen, waitFor } from "@testing-library/react";
 
 import { PupilViewsReview } from "./PupilReview.view";
 
+import {
+  SHARE_COPY_FAILED_MESSAGE,
+  SHARE_COPY_SUCCESS_MESSAGE,
+} from "@/components/PupilComponents/Views/PupilLessonReview/PupilLessonReviewShareOptions/PupilLessonReviewShareOptions";
 import { useOakPupil } from "@/hooks/useOakPupil";
 import { OakPupilClientProvider } from "@/context/Pupil/OakPupilClientProvider";
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
@@ -663,9 +667,10 @@ describe("PupilReview", () => {
 
       const announcement = screen.getByTestId("share-copy-announcement");
       expect(announcement).toHaveAttribute("aria-live", "polite");
-      expect(announcement).toHaveTextContent(
-        "Link copied to clipboard! You can share this with your teacher.",
-      );
+      expect(announcement).toHaveTextContent(SHARE_COPY_SUCCESS_MESSAGE);
+      expect(
+        screen.getByRole("heading", { name: SHARE_COPY_SUCCESS_MESSAGE }),
+      ).toBeInTheDocument();
     });
 
     it("shows 'Failed to share results' when the share promise rejects", async () => {
@@ -703,11 +708,14 @@ describe("PupilReview", () => {
       await waitFor(() => {
         expect(
           screen.getByTestId("share-copy-error-announcement"),
-        ).toHaveTextContent("Failed to share results. Please try again.");
+        ).toHaveTextContent(SHARE_COPY_FAILED_MESSAGE);
       });
 
       const announcement = screen.getByTestId("share-copy-error-announcement");
       expect(announcement).toHaveAttribute("aria-live", "assertive");
+      expect(
+        screen.getByRole("heading", { name: SHARE_COPY_FAILED_MESSAGE }),
+      ).toBeInTheDocument();
     });
   });
 });
