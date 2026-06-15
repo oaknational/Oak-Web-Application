@@ -17,8 +17,6 @@ const CopyrightLicence = (
           target={"_blank"}
           iconName="external"
           isTrailingIcon
-          iconHeight="spacing-20"
-          iconWidth="spacing-20"
           data-testid="external-link-icon"
           aria-label="Open Government Licence version 3.0 (opens in a new tab)"
         >
@@ -44,8 +42,6 @@ const CopyrightLicence = (
           aria-label="Oak's terms & conditions (opens in a new tab)"
           iconName="external"
           isTrailingIcon
-          iconHeight="spacing-20"
-          iconWidth="spacing-20"
           data-testid="external-link-icon"
         >
           Oak's terms & conditions

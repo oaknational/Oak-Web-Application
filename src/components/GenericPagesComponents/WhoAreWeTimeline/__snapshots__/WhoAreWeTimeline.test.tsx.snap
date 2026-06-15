@@ -170,7 +170,7 @@ exports[`WhoAreWeTimeline renders correctly 1`] = `
                       >
                         ITEM_TEXT_3
                         <a
-                          class="sc-hzhJZQ jgULhJ"
+                          class="sc-fHjqPf bwIJQB"
                           href="#newsletter-signup"
                         >
                           <span
@@ -180,7 +180,7 @@ exports[`WhoAreWeTimeline renders correctly 1`] = `
                           </span>
                         </a>
                         <a
-                          class="sc-hzhJZQ jgULhJ"
+                          class="sc-fHjqPf bwIJQB"
                           href="#"
                         >
                           <span
