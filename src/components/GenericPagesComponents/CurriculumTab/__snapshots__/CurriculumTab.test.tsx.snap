@@ -82,27 +82,33 @@ exports[`CurriculumTab renders 1`] = `
 }
 
 .c25 {
+  padding-left: 0.25rem;
+  display: inline-block;
+  font-family: --var(google-font),Lexend,sans-serif;
+}
+
+.c26 {
   position: relative;
-  width: 1.5rem;
-  min-width: 1.5rem;
-  height: 1.5rem;
-  min-height: 1.5rem;
+  width: 2rem;
+  min-width: 2rem;
+  height: 2rem;
+  min-height: 2rem;
   display: block;
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c27 {
+.c30 {
   max-width: 40rem;
   display: none;
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c28 {
+.c31 {
   width: 100%;
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c29 {
+.c32 {
   position: relative;
   top: 0.5rem;
   left: 0.5rem;
@@ -130,7 +136,7 @@ exports[`CurriculumTab renders 1`] = `
   z-index: 298;
 }
 
-.c30 {
+.c33 {
   position: relative;
   border: 0.125rem solid;
   border-color: #222222;
@@ -139,7 +145,7 @@ exports[`CurriculumTab renders 1`] = `
   z-index: 150;
 }
 
-.c31 {
+.c34 {
   position: relative;
   width: 100%;
   background: #ffffff;
@@ -147,12 +153,12 @@ exports[`CurriculumTab renders 1`] = `
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c34 {
+.c37 {
   position: relative;
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c36 {
+.c39 {
   width: 100%;
   border-top-left-radius: 0.25rem;
   border-top-right-radius: 0rem;
@@ -161,7 +167,7 @@ exports[`CurriculumTab renders 1`] = `
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c40 {
+.c43 {
   padding-left: 1rem;
   padding-right: 1rem;
   padding-top: 0.75rem;
@@ -169,7 +175,7 @@ exports[`CurriculumTab renders 1`] = `
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c43 {
+.c46 {
   position: relative;
   width: 0.125rem;
   height: 3rem;
@@ -177,12 +183,12 @@ exports[`CurriculumTab renders 1`] = `
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c45 {
+.c48 {
   position: relative;
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c47 {
+.c50 {
   width: 100%;
   border-top-left-radius: 0rem;
   border-top-right-radius: 0.25rem;
@@ -191,14 +197,14 @@ exports[`CurriculumTab renders 1`] = `
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c48 {
+.c51 {
   padding-left: 1rem;
   padding-top: 0.75rem;
   padding-bottom: 0.75rem;
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c49 {
+.c52 {
   color: #222222;
   font-family: --var(google-font),Lexend,sans-serif;
   font-weight: 300;
@@ -210,7 +216,7 @@ exports[`CurriculumTab renders 1`] = `
   letter-spacing: -0.005rem;
 }
 
-.c50 {
+.c53 {
   position: absolute;
   right: 0rem;
   width: -webkit-fit-content;
@@ -224,7 +230,7 @@ exports[`CurriculumTab renders 1`] = `
   z-index: 3;
 }
 
-.c52 {
+.c55 {
   position: relative;
   width: -webkit-max-content;
   width: -moz-max-content;
@@ -233,7 +239,7 @@ exports[`CurriculumTab renders 1`] = `
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c54 {
+.c57 {
   position: absolute;
   top: 0rem;
   width: 100%;
@@ -242,19 +248,29 @@ exports[`CurriculumTab renders 1`] = `
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c60 {
-  display: none;
+.c62 {
+  position: relative;
+  width: 1.5rem;
+  min-width: 1.5rem;
+  height: 1.5rem;
+  min-height: 1.5rem;
+  display: block;
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
 .c64 {
+  display: none;
+  font-family: --var(google-font),Lexend,sans-serif;
+}
+
+.c68 {
   max-width: 60rem;
   padding-top: 1.5rem;
   display: block;
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c65 {
+.c69 {
   position: -webkit-sticky;
   position: sticky;
   bottom: 0rem;
@@ -262,7 +278,7 @@ exports[`CurriculumTab renders 1`] = `
   z-index: 299;
 }
 
-.c66 {
+.c70 {
   color: #222222;
   background: #f2f2f2;
   border-top: 0.063rem solid;
@@ -270,13 +286,13 @@ exports[`CurriculumTab renders 1`] = `
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c67 {
+.c71 {
   margin-left: auto;
   margin-right: auto;
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c68 {
+.c72 {
   padding-top: 1.5rem;
   padding-bottom: 1.5rem;
   margin-left: 1rem;
@@ -284,7 +300,7 @@ exports[`CurriculumTab renders 1`] = `
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c70 {
+.c74 {
   font-family: --var(google-font),Lexend,sans-serif;
   font-weight: 300;
   font-size: 0.875rem;
@@ -295,15 +311,8 @@ exports[`CurriculumTab renders 1`] = `
   letter-spacing: -0.005rem;
 }
 
-.c73 {
+.c77 {
   font-family: --var(google-font),Lexend,sans-serif;
-  font-weight: 600;
-  font-size: 1rem;
-  line-height: 1.25rem;
-  -webkit-letter-spacing: 0.0115rem;
-  -moz-letter-spacing: 0.0115rem;
-  -ms-letter-spacing: 0.0115rem;
-  letter-spacing: 0.0115rem;
   white-space: nowrap;
 }
 
@@ -375,7 +384,7 @@ exports[`CurriculumTab renders 1`] = `
   gap: 1.5rem;
 }
 
-.c32 {
+.c35 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -394,7 +403,7 @@ exports[`CurriculumTab renders 1`] = `
   gap: 0rem;
 }
 
-.c33 {
+.c36 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -412,7 +421,7 @@ exports[`CurriculumTab renders 1`] = `
   justify-content: flex-start;
 }
 
-.c35 {
+.c38 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -422,7 +431,7 @@ exports[`CurriculumTab renders 1`] = `
   align-self: stretch;
 }
 
-.c46 {
+.c49 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -433,14 +442,14 @@ exports[`CurriculumTab renders 1`] = `
   gap: 1rem;
 }
 
-.c51 {
+.c54 {
   display: none;
   -webkit-align-content: center;
   -ms-flex-line-pack: center;
   align-content: center;
 }
 
-.c57 {
+.c60 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -459,7 +468,7 @@ exports[`CurriculumTab renders 1`] = `
   gap: 0.5rem;
 }
 
-.c61 {
+.c65 {
   display: none;
   -webkit-flex-direction: row;
   -ms-flex-direction: row;
@@ -478,7 +487,7 @@ exports[`CurriculumTab renders 1`] = `
   flex-grow: 1;
 }
 
-.c62 {
+.c66 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -489,7 +498,7 @@ exports[`CurriculumTab renders 1`] = `
   gap: 0.5rem;
 }
 
-.c69 {
+.c73 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -504,7 +513,7 @@ exports[`CurriculumTab renders 1`] = `
   gap: 1.5rem;
 }
 
-.c72 {
+.c76 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -526,7 +535,7 @@ exports[`CurriculumTab renders 1`] = `
   gap: 0.75rem;
 }
 
-.c74 {
+.c78 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -541,7 +550,7 @@ exports[`CurriculumTab renders 1`] = `
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c41 {
+.c44 {
   color: #222222;
   margin-bottom: 0.25rem;
   font-family: --var(google-font),Lexend,sans-serif;
@@ -554,7 +563,7 @@ exports[`CurriculumTab renders 1`] = `
   letter-spacing: 0.0115rem;
 }
 
-.c58 {
+.c61 {
   font-family: --var(google-font),Lexend,sans-serif;
   font-weight: 600;
   font-size: 1rem;
@@ -566,7 +575,7 @@ exports[`CurriculumTab renders 1`] = `
   text-align: left;
 }
 
-.c71 {
+.c75 {
   font-family: --var(google-font),Lexend,sans-serif;
   font-weight: 700;
   font-size: 0.875rem;
@@ -577,7 +586,7 @@ exports[`CurriculumTab renders 1`] = `
   letter-spacing: -0.005rem;
 }
 
-.c55 {
+.c58 {
   background: none;
   color: inherit;
   border: none;
@@ -600,12 +609,12 @@ exports[`CurriculumTab renders 1`] = `
   border-radius: 0.25rem;
 }
 
-.c55:disabled {
+.c58:disabled {
   pointer-events: none;
   cursor: default;
 }
 
-.c75 {
+.c80 {
   background: none;
   color: inherit;
   border: none;
@@ -628,7 +637,7 @@ exports[`CurriculumTab renders 1`] = `
   border-radius: 0.25rem;
 }
 
-.c75:disabled {
+.c80:disabled {
   pointer-events: none;
   cursor: default;
 }
@@ -639,23 +648,23 @@ exports[`CurriculumTab renders 1`] = `
   object-fit: contain;
 }
 
-.c26 {
+.c29 {
   object-fit: contain;
 }
 
-.c59 {
+.c63 {
   -webkit-filter: invert(98%) sepia(98%) saturate(0%) hue-rotate(328deg) brightness(102%) contrast(102%);
   filter: invert(98%) sepia(98%) saturate(0%) hue-rotate(328deg) brightness(102%) contrast(102%);
   object-fit: contain;
 }
 
-.c56 {
+.c59 {
   position: relative;
   width: 100%;
   height: 100%;
 }
 
-.c56:hover {
+.c59:hover {
   -webkit-text-decoration: underline;
   text-decoration: underline;
   color: #ffffff;
@@ -663,37 +672,37 @@ exports[`CurriculumTab renders 1`] = `
   border-color: #575757;
 }
 
-.c56:hover [data-state="selected"] {
+.c59:hover [data-state="selected"] {
   display: none;
 }
 
-.c56:active {
+.c59:active {
   background: #222222;
   border-color: #222222;
   color: #ffffff;
 }
 
-.c56:active [data-state="selected"] {
+.c59:active [data-state="selected"] {
   display: none;
 }
 
-.c56:disabled {
+.c59:disabled {
   background: #808080;
   border-color: #808080;
   color: #ffffff;
 }
 
-.c56:disabled [data-state="selected"] {
+.c59:disabled [data-state="selected"] {
   display: none;
 }
 
-.c76 {
+.c81 {
   position: relative;
   width: 100%;
   height: 100%;
 }
 
-.c76:hover {
+.c81:hover {
   -webkit-text-decoration: underline;
   text-decoration: underline;
   color: #222222;
@@ -701,52 +710,52 @@ exports[`CurriculumTab renders 1`] = `
   border-color: #222222;
 }
 
-.c76:hover [data-state="selected"] {
+.c81:hover [data-state="selected"] {
   display: none;
 }
 
-.c76:active {
+.c81:active {
   background: #ffffff;
   border-color: #222222;
   color: #222222;
 }
 
-.c76:active [data-state="selected"] {
+.c81:active [data-state="selected"] {
   display: none;
 }
 
-.c76:disabled {
+.c81:disabled {
   background: #e4e4e4;
   border-color: #808080;
   color: #808080;
 }
 
-.c76:disabled [data-state="selected"] {
+.c81:disabled [data-state="selected"] {
   display: none;
 }
 
-.c53 .grey-shadow:has(+ * + .internal-button:focus-visible) {
+.c56 .grey-shadow:has(+ * + .internal-button:focus-visible) {
   box-shadow: 0 0 0 0.3rem rgba(87,87,87,100%);
 }
 
-.c53 .yellow-shadow:has(+ .internal-button:focus-visible) {
+.c56 .yellow-shadow:has(+ .internal-button:focus-visible) {
   box-shadow: 0 0 0 0.125rem rgba(255,229,85,100%);
 }
 
-.c53 .yellow-shadow:has(+ .internal-button:hover),
-.c53 .yellow-shadow:has(+ .internal-button:hover:not(:focus-visible,:active)) {
+.c56 .yellow-shadow:has(+ .internal-button:hover),
+.c56 .yellow-shadow:has(+ .internal-button:hover:not(:focus-visible,:active)) {
   box-shadow: 0.125rem 0.125rem 0 rgba(255,229,85,100%);
 }
 
-.c53 .grey-shadow:has(+ * + .internal-button:hover) {
+.c56 .grey-shadow:has(+ * + .internal-button:hover) {
   box-shadow: none;
 }
 
-.c53 .grey-shadow:has(+ * + .internal-button:active) {
+.c56 .grey-shadow:has(+ * + .internal-button:active) {
   box-shadow: 0.25rem 0.25rem 0 rgba(87,87,87,100%);
 }
 
-.c53 .yellow-shadow:has(+ .internal-button:active) {
+.c56 .yellow-shadow:has(+ .internal-button:active) {
   box-shadow: 0.125rem 0.125rem 0 rgba(255,229,85,100%);
 }
 
@@ -782,7 +791,7 @@ exports[`CurriculumTab renders 1`] = `
   display: revert;
 }
 
-.c42 {
+.c45 {
   font-family: --var(google-font),Lexend,sans-serif;
   font-weight: 300;
   font-size: 1rem;
@@ -829,6 +838,13 @@ exports[`CurriculumTab renders 1`] = `
   letter-spacing: -0.005rem;
 }
 
+.c28 {
+  width: 1.25em;
+  min-width: 1.25em;
+  height: 1.25em;
+  min-height: 1.25em;
+}
+
 .c21 {
   display: inline;
   -webkit-align-items: center;
@@ -853,6 +869,13 @@ exports[`CurriculumTab renders 1`] = `
   overflow-wrap: break-word;
 }
 
+.c21 .c27 {
+  -webkit-filter: invert(10%) sepia(1%) saturate(236%) hue-rotate(314deg) brightness(95%) contrast(91%);
+  filter: invert(10%) sepia(1%) saturate(236%) hue-rotate(314deg) brightness(95%) contrast(91%);
+  display: inline-block;
+  vertical-align: text-top;
+}
+
 .c21:focus-visible {
   box-shadow: 0 0 0 0.125rem rgba(255,229,85,100%), 0 0 0 0.3rem rgba(87,87,87,100%);
 }
@@ -861,8 +884,19 @@ exports[`CurriculumTab renders 1`] = `
   color: #222222;
 }
 
+.c21:visited .c27 {
+  -webkit-filter: invert(10%) sepia(1%) saturate(236%) hue-rotate(314deg) brightness(95%) contrast(91%);
+  filter: invert(10%) sepia(1%) saturate(236%) hue-rotate(314deg) brightness(95%) contrast(91%);
+}
+
 .c21:active {
   color: #222222;
+  outline: 1px solid #222222;
+}
+
+.c21:active .c27 {
+  -webkit-filter: invert(10%) sepia(1%) saturate(236%) hue-rotate(314deg) brightness(95%) contrast(91%);
+  filter: invert(10%) sepia(1%) saturate(236%) hue-rotate(314deg) brightness(95%) contrast(91%);
 }
 
 .c21[disabled] {
@@ -870,28 +904,106 @@ exports[`CurriculumTab renders 1`] = `
   color: #808080;
 }
 
-.c37 {
+.c21[disabled] .c27 {
+  -webkit-filter: invert(54%) sepia(0%) saturate(38%) hue-rotate(176deg) brightness(92%) contrast(91%);
+  filter: invert(54%) sepia(0%) saturate(38%) hue-rotate(176deg) brightness(92%) contrast(91%);
+}
+
+.c79 {
+  display: inline;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  gap: 0.25rem;
+  outline: none;
+  border-radius: 0.375rem;
+  padding: 0.25rem;
+  margin: -0.25rem;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  font-family: --var(google-font),Lexend,sans-serif;
+  font-weight: 600;
+  font-size: 1rem;
+  line-height: 1.25rem;
+  -webkit-letter-spacing: 0.0115rem;
+  -moz-letter-spacing: 0.0115rem;
+  -ms-letter-spacing: 0.0115rem;
+  letter-spacing: 0.0115rem;
+  -webkit-text-decoration: none;
+  text-decoration: none;
+  background: none;
+  border: none;
+  -webkit-text-decoration: none;
+  text-decoration: none;
+  cursor: pointer;
+  color: #222222;
+  overflow-wrap: break-word;
+}
+
+.c79 .c27 {
+  -webkit-filter: invert(10%) sepia(1%) saturate(236%) hue-rotate(314deg) brightness(95%) contrast(91%);
+  filter: invert(10%) sepia(1%) saturate(236%) hue-rotate(314deg) brightness(95%) contrast(91%);
+  display: inline-block;
+  vertical-align: text-top;
+}
+
+.c79:focus-visible {
+  box-shadow: 0 0 0 0.125rem rgba(255,229,85,100%), 0 0 0 0.3rem rgba(87,87,87,100%);
+}
+
+.c79:visited {
+  color: #222222;
+}
+
+.c79:visited .c27 {
+  -webkit-filter: invert(10%) sepia(1%) saturate(236%) hue-rotate(314deg) brightness(95%) contrast(91%);
+  filter: invert(10%) sepia(1%) saturate(236%) hue-rotate(314deg) brightness(95%) contrast(91%);
+}
+
+.c79:active {
+  color: #222222;
+  outline: 1px solid #222222;
+}
+
+.c79:active .c27 {
+  -webkit-filter: invert(10%) sepia(1%) saturate(236%) hue-rotate(314deg) brightness(95%) contrast(91%);
+  filter: invert(10%) sepia(1%) saturate(236%) hue-rotate(314deg) brightness(95%) contrast(91%);
+}
+
+.c79[disabled] {
+  cursor: not-allowed;
+  color: #808080;
+}
+
+.c79[disabled] .c27 {
+  -webkit-filter: invert(54%) sepia(0%) saturate(38%) hue-rotate(176deg) brightness(92%) contrast(91%);
+  filter: invert(54%) sepia(0%) saturate(38%) hue-rotate(176deg) brightness(92%) contrast(91%);
+}
+
+.c40 {
   box-shadow: 0 0 0 0.3rem rgba(87,87,87,100%);
 }
 
-.c37:has(a:hover,button:hover) {
+.c40:has(a:hover,button:hover) {
   box-shadow: none;
 }
 
-.c37:has( a, button) {
+.c40:has( a, button) {
   box-shadow: 0 0 0 0.125rem rgba(255,229,85,100%),0 0 0 0.3rem rgba(87,87,87,100%);
 }
 
-.c37:has( a, button)  a,
-.c37:has( a, button) button {
+.c40:has( a, button)  a,
+.c40:has( a, button) button {
   outline: none;
 }
 
-.c37:has(a:active,button:active) {
+.c40:has(a:active,button:active) {
   box-shadow: none;
 }
 
-.c63 {
+.c67 {
   object-fit: contain;
   width: 100%;
   height: auto;
@@ -902,23 +1014,23 @@ exports[`CurriculumTab renders 1`] = `
   transform: none;
 }
 
-.c63::-webkit-scrollbar-track {
+.c67::-webkit-scrollbar-track {
   border-radius: 15px;
   background-color: #ffffff;
 }
 
-.c63::-webkit-scrollbar {
+.c67::-webkit-scrollbar {
   width: 10px;
   border-radius: 15px;
   background-color: #ffffff;
 }
 
-.c63::-webkit-scrollbar-thumb {
+.c67::-webkit-scrollbar-thumb {
   border-radius: 15px;
   background-color: #999999;
 }
 
-.c44 {
+.c47 {
   position: absolute;
   top: 0rem;
   right: 0rem;
@@ -935,11 +1047,11 @@ exports[`CurriculumTab renders 1`] = `
   top: 82px;
 }
 
-.c38 {
+.c41 {
   box-shadow: none;
 }
 
-.c39 {
+.c42 {
   background: none;
   width: 100%;
   border: none;
@@ -1010,79 +1122,79 @@ exports[`CurriculumTab renders 1`] = `
 }
 
 @media (min-width:750px) {
-  .c27 {
+  .c30 {
     display: none;
   }
 }
 
 @media (min-width:1280px) {
-  .c27 {
+  .c30 {
     display: block;
   }
 }
 
 @media (min-width:750px) {
-  .c36 {
+  .c39 {
     border-top-left-radius: 0.25rem;
   }
 }
 
 @media (min-width:750px) {
-  .c36 {
+  .c39 {
     border-top-right-radius: 0.25rem;
   }
 }
 
 @media (min-width:750px) {
-  .c36 {
+  .c39 {
     border-bottom-left-radius: 0.25rem;
   }
 }
 
 @media (min-width:750px) {
-  .c36 {
-    border-bottom-right-radius: 0.25rem;
-  }
-}
-
-@media (min-width:750px) {
-  .c47 {
-    border-top-left-radius: 0.25rem;
-  }
-}
-
-@media (min-width:750px) {
-  .c47 {
-    border-top-right-radius: 0.25rem;
-  }
-}
-
-@media (min-width:750px) {
-  .c47 {
-    border-bottom-left-radius: 0.25rem;
-  }
-}
-
-@media (min-width:750px) {
-  .c47 {
+  .c39 {
     border-bottom-right-radius: 0.25rem;
   }
 }
 
 @media (min-width:750px) {
   .c50 {
+    border-top-left-radius: 0.25rem;
+  }
+}
+
+@media (min-width:750px) {
+  .c50 {
+    border-top-right-radius: 0.25rem;
+  }
+}
+
+@media (min-width:750px) {
+  .c50 {
+    border-bottom-left-radius: 0.25rem;
+  }
+}
+
+@media (min-width:750px) {
+  .c50 {
+    border-bottom-right-radius: 0.25rem;
+  }
+}
+
+@media (min-width:750px) {
+  .c53 {
     max-width: 10rem;
   }
 }
 
 @media (min-width:750px) {
-  .c50 {
+  .c53 {
     display: block;
   }
 }
 
 @media (min-width:750px) {
-  .c60 {
+  .c64 {
     display: -webkit-box;
     display: -webkit-flex;
     display: -ms-flexbox;
@@ -1091,7 +1203,7 @@ exports[`CurriculumTab renders 1`] = `
 }
 
 @media (min-width:1280px) {
-  .c60 {
+  .c64 {
     display: -webkit-box;
     display: -webkit-flex;
     display: -ms-flexbox;
@@ -1100,61 +1212,61 @@ exports[`CurriculumTab renders 1`] = `
 }
 
 @media (min-width:750px) {
-  .c64 {
+  .c68 {
     display: block;
   }
 }
 
 @media (min-width:1280px) {
-  .c64 {
+  .c68 {
     display: none;
   }
 }
 
 @media (min-width:750px) {
-  .c68 {
+  .c72 {
     margin-left: 1.5rem;
   }
 }
 
 @media (min-width:1280px) {
-  .c68 {
+  .c72 {
     margin-left: 3.5rem;
   }
 }
 
 @media (min-width:750px) {
-  .c68 {
+  .c72 {
     margin-right: 1.5rem;
   }
 }
 
 @media (min-width:1280px) {
-  .c68 {
+  .c72 {
     margin-right: 3.5rem;
   }
 }
 
 @media (min-width:750px) {
-  .c70 {
+  .c74 {
     font-weight: 300;
   }
 }
 
 @media (min-width:750px) {
-  .c70 {
+  .c74 {
     font-size: 1rem;
   }
 }
 
 @media (min-width:750px) {
-  .c70 {
+  .c74 {
     line-height: 1.5rem;
   }
 }
 
 @media (min-width:750px) {
-  .c70 {
+  .c74 {
     -webkit-letter-spacing: -0.005rem;
     -moz-letter-spacing: -0.005rem;
     -ms-letter-spacing: -0.005rem;
@@ -1172,7 +1284,7 @@ exports[`CurriculumTab renders 1`] = `
 }
 
 @media (min-width:750px) {
-  .c32 {
+  .c35 {
     -webkit-flex-direction: row;
     -ms-flex-direction: row;
     flex-direction: row;
@@ -1180,13 +1292,13 @@ exports[`CurriculumTab renders 1`] = `
 }
 
 @media (min-width:750px) {
-  .c51 {
+  .c54 {
     display: block;
   }
 }
 
 @media (min-width:750px) {
-  .c61 {
+  .c65 {
     display: -webkit-box;
     display: -webkit-flex;
     display: -ms-flexbox;
@@ -1195,7 +1307,7 @@ exports[`CurriculumTab renders 1`] = `
 }
 
 @media (min-width:1280px) {
-  .c61 {
+  .c65 {
     display: -webkit-box;
     display: -webkit-flex;
     display: -ms-flexbox;
@@ -1204,7 +1316,7 @@ exports[`CurriculumTab renders 1`] = `
 }
 
 @media (min-width:750px) {
-  .c69 {
+  .c73 {
     -webkit-flex-direction: column;
     -ms-flex-direction: column;
     flex-direction: column;
@@ -1212,7 +1324,7 @@ exports[`CurriculumTab renders 1`] = `
 }
 
 @media (min-width:1280px) {
-  .c69 {
+  .c73 {
     -webkit-flex-direction: row;
     -ms-flex-direction: row;
     flex-direction: row;
@@ -1220,7 +1332,7 @@ exports[`CurriculumTab renders 1`] = `
 }
 
 @media (min-width:750px) {
-  .c69 {
+  .c73 {
     -webkit-align-items: flex-start;
     -webkit-box-align: flex-start;
     -ms-flex-align: flex-start;
@@ -1229,7 +1341,7 @@ exports[`CurriculumTab renders 1`] = `
 }
 
 @media (min-width:1280px) {
-  .c69 {
+  .c73 {
     -webkit-align-items: center;
     -webkit-box-align: center;
     -ms-flex-align: center;
@@ -1238,19 +1350,19 @@ exports[`CurriculumTab renders 1`] = `
 }
 
 @media (min-width:750px) {
-  .c69 {
+  .c73 {
     gap: 1.5rem;
   }
 }
 
 @media (min-width:1280px) {
-  .c69 {
+  .c73 {
     gap: 2rem;
   }
 }
 
 @media (min-width:750px) {
-  .c72 {
+  .c76 {
     -webkit-flex-direction: row;
     -ms-flex-direction: row;
     flex-direction: row;
@@ -1258,7 +1370,7 @@ exports[`CurriculumTab renders 1`] = `
 }
 
 @media (min-width:750px) {
-  .c72 {
+  .c76 {
     -webkit-flex-wrap: wrap;
     -ms-flex-wrap: wrap;
     flex-wrap: wrap;
@@ -1266,7 +1378,7 @@ exports[`CurriculumTab renders 1`] = `
 }
 
 @media (min-width:1280px) {
-  .c72 {
+  .c76 {
     -webkit-flex-wrap: nowrap;
     -ms-flex-wrap: nowrap;
     flex-wrap: nowrap;
@@ -1274,31 +1386,31 @@ exports[`CurriculumTab renders 1`] = `
 }
 
 @media (min-width:750px) {
-  .c72 {
+  .c76 {
     gap: 2rem;
   }
 }
 
 @media (min-width:750px) {
-  .c71 {
+  .c75 {
     font-weight: 700;
   }
 }
 
 @media (min-width:750px) {
-  .c71 {
+  .c75 {
     font-size: 1rem;
   }
 }
 
 @media (min-width:750px) {
-  .c71 {
+  .c75 {
     line-height: 1.5rem;
   }
 }
 
 @media (min-width:750px) {
-  .c71 {
+  .c75 {
     -webkit-letter-spacing: -0.005rem;
     -moz-letter-spacing: -0.005rem;
     -ms-letter-spacing: -0.005rem;
@@ -1366,11 +1478,36 @@ exports[`CurriculumTab renders 1`] = `
     color: #222222;
     -webkit-text-decoration: underline;
     text-decoration: underline;
+    -webkit-text-decoration-thickness: 18%;
+    text-decoration-thickness: 18%;
+  }
+
+  .c21:hover .c27,
+  .c21:visited:hover .c27 {
+    -webkit-filter: invert(10%) sepia(1%) saturate(236%) hue-rotate(314deg) brightness(95%) contrast(91%);
+    filter: invert(10%) sepia(1%) saturate(236%) hue-rotate(314deg) brightness(95%) contrast(91%);
+  }
+}
+
+@media (hover:hover) {
+  .c79:hover,
+  .c79:visited:hover {
+    color: #222222;
+    -webkit-text-decoration: underline;
+    text-decoration: underline;
+    -webkit-text-decoration-thickness: 18%;
+    text-decoration-thickness: 18%;
+  }
+
+  .c79:hover .c27,
+  .c79:visited:hover .c27 {
+    -webkit-filter: invert(10%) sepia(1%) saturate(236%) hue-rotate(314deg) brightness(95%) contrast(91%);
+    filter: invert(10%) sepia(1%) saturate(236%) hue-rotate(314deg) brightness(95%) contrast(91%);
   }
 }
 
 @media (min-width:750px) {
-  .c63 {
+  .c67 {
     -webkit-transform: none;
     -ms-transform: none;
     transform: none;
@@ -1378,7 +1515,7 @@ exports[`CurriculumTab renders 1`] = `
 }
 
 @media (min-width:1280px) {
-  .c63 {
+  .c67 {
     -webkit-transform: rotate(-2deg);
     -ms-transform: rotate(-2deg);
     transform: rotate(-2deg);
@@ -1482,68 +1619,72 @@ exports[`CurriculumTab renders 1`] = `
                       Our curriculum planning approach
                     </span>
                   </span>
-                  <span
-                    class="c25 "
+                  <div
+                    class="c25"
                   >
-                    <img
-                      alt=""
-                      class="c26"
-                      data-nimg="fill"
-                      decoding="async"
-                      loading="lazy"
-                      src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1707752509/icons/vk9xxxhnsltsickom6q9.svg"
-                      style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
-                    />
-                  </span>
+                    <span
+                      class="c26 c27 c28"
+                    >
+                      <img
+                        alt=""
+                        class="c29"
+                        data-nimg="fill"
+                        decoding="async"
+                        loading="lazy"
+                        src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1707752509/icons/vk9xxxhnsltsickom6q9.svg"
+                        style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                      />
+                    </span>
+                  </div>
                 </a>
               </div>
               <div
-                class="c27"
+                class="c30"
               >
                 <nav
                   aria-labelledby="choose-curriculum-label-large"
-                  class="c28"
+                  class="c31"
                 >
                   <div
-                    class="c29"
+                    class="c32"
                     id="choose-curriculum-label-large"
                   >
                     Choose a curriculum
                   </div>
                   <div
-                    class="c30"
+                    class="c33"
                     data-testid="lot-picker"
                   >
                     <div
-                      class="c31 c32"
+                      class="c34 c35"
                     >
                       <div
-                        class="c28 c33"
+                        class="c31 c36"
                       >
                         <div
-                          class="c34 c35"
+                          class="c37 c38"
                           style="width: 50%;"
                         >
                           <div
-                            class="c36 c37 c38"
+                            class="c39 c40 c41"
                           >
                             <button
                               aria-expanded="false"
-                              class="c39"
+                              class="c42"
                               data-testid="subject-picker-button"
                               title="Subject"
                             >
                               <div
-                                class="c40"
+                                class="c43"
                               >
                                 <span
-                                  class="c41"
+                                  class="c44"
                                   data-testid="subject-picker-button-heading"
                                 >
                                   Subject
                                 </span>
                                 <p
-                                  class="c42"
+                                  class="c45"
                                 >
                                   Select
                                 </p>
@@ -1552,7 +1693,7 @@ exports[`CurriculumTab renders 1`] = `
                           </div>
                         </div>
                         <div
-                          class="c43"
+                          class="c46"
                         >
                           <div
                             aria-hidden="true"
@@ -1561,7 +1702,7 @@ exports[`CurriculumTab renders 1`] = `
                           >
                             <svg
                               aria-hidden="true"
-                              class="c44"
+                              class="c47"
                               height="100%"
                               name="box-border-left"
                               style="width: 3px;"
@@ -1587,32 +1728,32 @@ exports[`CurriculumTab renders 1`] = `
                           </div>
                         </div>
                         <div
-                          class="c45"
+                          class="c48"
                           style="width: 50%;"
                         >
                           <div
-                            class="c34 c46"
+                            class="c37 c49"
                           >
                             <div
-                              class="c47 c37 c38"
+                              class="c50 c40 c41"
                             >
                               <button
                                 aria-expanded="false"
-                                class="c39"
+                                class="c42"
                                 data-testid="phase-picker-button"
                                 title="Phase"
                               >
                                 <div
-                                  class="c48"
+                                  class="c51"
                                 >
                                   <span
-                                    class="c41"
+                                    class="c44"
                                     data-testid="phase-picker-button-heading"
                                   >
                                     School phase
                                   </span>
                                   <div
-                                    class="c49"
+                                    class="c52"
                                   >
                                     Select
                                   </div>
@@ -1620,35 +1761,35 @@ exports[`CurriculumTab renders 1`] = `
                               </button>
                             </div>
                             <div
-                              class="c50 c51"
+                              class="c53 c54"
                             >
                               <div
-                                class="c52 c53"
+                                class="c55 c56"
                               >
                                 <div
-                                  class="c54 grey-shadow"
+                                  class="c57 grey-shadow"
                                 />
                                 <div
-                                  class="c54 yellow-shadow"
+                                  class="c57 yellow-shadow"
                                 />
                                 <button
-                                  class="c55 c56 internal-button"
+                                  class="c58 c59 internal-button"
                                   data-testid="lot-picker-view-curriculum-button"
                                 >
                                   <div
-                                    class="c8 c57"
+                                    class="c8 c60"
                                   >
                                     <span
-                                      class="c58"
+                                      class="c61"
                                     >
                                       View
                                     </span>
                                     <span
-                                      class="c25"
+                                      class="c62"
                                     >
                                       <img
                                         alt=""
-                                        class="c59"
+                                        class="c63"
                                         data-nimg="fill"
                                         decoding="async"
                                         loading="lazy"
@@ -1669,14 +1810,14 @@ exports[`CurriculumTab renders 1`] = `
               </div>
             </div>
             <div
-              class="c60 c61"
+              class="c64 c65"
             >
               <div
-                class="c8 c62"
+                class="c8 c66"
               >
                 <img
                   alt=""
-                  class="c63"
+                  class="c67"
                   data-nimg="1"
                   decoding="async"
                   height="628"
@@ -1689,52 +1830,52 @@ exports[`CurriculumTab renders 1`] = `
             </div>
           </div>
           <div
-            class="c64"
+            class="c68"
           >
             <nav
               aria-labelledby="choose-curriculum-label-small"
-              class="c28"
+              class="c31"
             >
               <div
-                class="c29"
+                class="c32"
                 id="choose-curriculum-label-small"
               >
                 Choose a curriculum
               </div>
               <div
-                class="c30"
+                class="c33"
                 data-testid="lot-picker"
               >
                 <div
-                  class="c31 c32"
+                  class="c34 c35"
                 >
                   <div
-                    class="c28 c33"
+                    class="c31 c36"
                   >
                     <div
-                      class="c34 c35"
+                      class="c37 c38"
                       style="width: 50%;"
                     >
                       <div
-                        class="c36 c37 c38"
+                        class="c39 c40 c41"
                       >
                         <button
                           aria-expanded="false"
-                          class="c39"
+                          class="c42"
                           data-testid="subject-picker-button"
                           title="Subject"
                         >
                           <div
-                            class="c40"
+                            class="c43"
                           >
                             <span
-                              class="c41"
+                              class="c44"
                               data-testid="subject-picker-button-heading"
                             >
                               Subject
                             </span>
                             <p
-                              class="c42"
+                              class="c45"
                             >
                               Select
                             </p>
@@ -1743,7 +1884,7 @@ exports[`CurriculumTab renders 1`] = `
                       </div>
                     </div>
                     <div
-                      class="c43"
+                      class="c46"
                     >
                       <div
                         aria-hidden="true"
@@ -1752,7 +1893,7 @@ exports[`CurriculumTab renders 1`] = `
                       >
                         <svg
                           aria-hidden="true"
-                          class="c44"
+                          class="c47"
                           height="100%"
                           name="box-border-left"
                           style="width: 3px;"
@@ -1778,32 +1919,32 @@ exports[`CurriculumTab renders 1`] = `
                       </div>
                     </div>
                     <div
-                      class="c45"
+                      class="c48"
                       style="width: 50%;"
                     >
                       <div
-                        class="c34 c46"
+                        class="c37 c49"
                       >
                         <div
-                          class="c47 c37 c38"
+                          class="c50 c40 c41"
                         >
                           <button
                             aria-expanded="false"
-                            class="c39"
+                            class="c42"
                             data-testid="phase-picker-button"
                             title="Phase"
                           >
                             <div
-                              class="c48"
+                              class="c51"
                             >
                               <span
-                                class="c41"
+                                class="c44"
                                 data-testid="phase-picker-button-heading"
                               >
                                 School phase
                               </span>
                               <div
-                                class="c49"
+                                class="c52"
                               >
                                 Select
                               </div>
@@ -1811,35 +1952,35 @@ exports[`CurriculumTab renders 1`] = `
                           </button>
                         </div>
                         <div
-                          class="c50 c51"
+                          class="c53 c54"
                         >
                           <div
-                            class="c52 c53"
+                            class="c55 c56"
                           >
                             <div
-                              class="c54 grey-shadow"
+                              class="c57 grey-shadow"
                             />
                             <div
-                              class="c54 yellow-shadow"
+                              class="c57 yellow-shadow"
                             />
                             <button
-                              class="c55 c56 internal-button"
+                              class="c58 c59 internal-button"
                               data-testid="lot-picker-view-curriculum-button"
                             >
                               <div
-                                class="c8 c57"
+                                class="c8 c60"
                               >
                                 <span
-                                  class="c58"
+                                  class="c61"
                                 >
                                   View
                                 </span>
                                 <span
-                                  class="c25"
+                                  class="c62"
                                 >
                                   <img
                                     alt=""
-                                    class="c59"
+                                    class="c63"
                                     data-nimg="fill"
                                     decoding="async"
                                     loading="lazy"
@@ -1862,23 +2003,23 @@ exports[`CurriculumTab renders 1`] = `
       </div>
     </div>
     <div
-      class="c65"
+      class="c69"
     >
       <div
-        class="c66"
+        class="c70"
         data-testid="cookie-banner"
       >
         <div
-          class="c67"
+          class="c71"
         >
           <div
-            class="c68 c69"
+            class="c72 c73"
           >
             <div
-              class="c70"
+              class="c74"
             >
               <strong
-                class="c71"
+                class="c75"
               >
                 This site uses cookies to store information on your computer.
               </strong>
@@ -1886,13 +2027,13 @@ exports[`CurriculumTab renders 1`] = `
               Some of these cookies are essential, while others help us to improve your experience by providing insights into how the site is being used.
             </div>
             <div
-              class="c8 c72"
+              class="c8 c76"
             >
               <div
-                class="c73 c74"
+                class="c77 c78"
               >
                 <button
-                  class="c21 "
+                  class="c79"
                   data-testid="cookie-banner-reject"
                   type="button"
                 >
@@ -1904,22 +2045,22 @@ exports[`CurriculumTab renders 1`] = `
                 </button>
               </div>
               <div
-                class="c52 c53"
+                class="c55 c56"
               >
                 <div
-                  class="c54 grey-shadow"
+                  class="c57 grey-shadow"
                 />
                 <div
-                  class="c54 yellow-shadow"
+                  class="c57 yellow-shadow"
                 />
                 <button
-                  class="c75 c76 internal-button"
+                  class="c80 c81 internal-button"
                 >
                   <div
-                    class="c8 c57"
+                    class="c8 c60"
                   >
                     <span
-                      class="c58"
+                      class="c61"
                     >
                       Cookie settings
                     </span>
@@ -1927,23 +2068,23 @@ exports[`CurriculumTab renders 1`] = `
                 </button>
               </div>
               <div
-                class="c52 c53"
+                class="c55 c56"
               >
                 <div
-                  class="c54 grey-shadow"
+                  class="c57 grey-shadow"
                 />
                 <div
-                  class="c54 yellow-shadow"
+                  class="c57 yellow-shadow"
                 />
                 <button
-                  class="c55 c56 internal-button"
+                  class="c58 c59 internal-button"
                   data-testid="cookie-banner-accept"
                 >
                   <div
-                    class="c8 c57"
+                    class="c8 c60"
                   >
                     <span
-                      class="c58"
+                      class="c61"
                     >
                       Accept all cookies
                     </span>

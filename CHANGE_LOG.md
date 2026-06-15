@@ -1,3 +1,14 @@
+## [1.1097.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.1097.0...v1.1097.1) (2026-06-15)
+
+
+### Bug Fixes
+
+* added missing types ([86aa157](https://github.com/oaknational/Oak-Web-Application/commit/86aa157b72708e702cab024def63f06d0435151c))
+* added stub image for "digital-literacy" for now ([c176b9e](https://github.com/oaknational/Oak-Web-Application/commit/c176b9eb6718f048ad8349f12d3f03f1b1a6676b))
+* bump oak-components ([b193d03](https://github.com/oaknational/Oak-Web-Application/commit/b193d035c2d7f32cd565b9724c808436b450d484))
+* remove `iconHeight`/`iconWidth` from OakLink as no longer a property ([6d249f8](https://github.com/oaknational/Oak-Web-Application/commit/6d249f835b331af27d26c196711d14177646afe6))
+* type issue with color token ([efee209](https://github.com/oaknational/Oak-Web-Application/commit/efee2093bc69007cd2625c5cf540df2e66342627))
+
 # [1.1097.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1096.2...v1.1097.0) (2026-06-11)
 
 
