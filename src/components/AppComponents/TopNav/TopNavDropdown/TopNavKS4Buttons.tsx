@@ -90,7 +90,6 @@ export const TopNavKS4Buttons = ({
                 <ExamBoardButton
                   element={Link}
                   href={child.href}
-                  data-testid={child.slug}
                   width={"fit-content"}
                   id={buttonId}
                   onKeyDown={(e: React.KeyboardEvent) =>
