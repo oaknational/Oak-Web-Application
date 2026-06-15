@@ -37,7 +37,7 @@ const FadeInFlex = styled(OakFlex)<{ $animateIn?: boolean }>`
     props.$animateIn &&
     css`
       animation: ${fadeIn} 300ms ease-in;
-      @media (prefers-reduced-motion) {
+      @media (prefers-reduced-motion: reduce) {
         animation: none;
       }
     `}
