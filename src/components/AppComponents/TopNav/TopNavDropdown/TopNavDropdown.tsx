@@ -278,7 +278,9 @@ const TeachersPhaseSection = ({
         $gap={"spacing-8"}
         $pa={"spacing-0"}
         id={`topnav-teachers-${phase}`}
-        onKeyDown={(e) => handleArrowKeys(e, topLevelButtonIds)}
+        onKeyDown={(e: React.KeyboardEvent<HTMLDivElement>) =>
+          handleArrowKeys(e, topLevelButtonIds)
+        }
       >
         {renderNavButtons(
           phaseData.slug,
@@ -301,7 +303,9 @@ const TeachersPhaseSection = ({
             $flexDirection={"column"}
             $gap={"spacing-8"}
             ref={keystagesRef}
-            onKeyDown={(e) => handleArrowKeys(e, keystageButtonIds)}
+            onKeyDown={(e: React.KeyboardEvent<HTMLDivElement>) =>
+              handleArrowKeys(e, keystageButtonIds)
+            }
           >
             {keystageChildren.map((keystage) =>
               renderNavButtons(
@@ -440,7 +444,8 @@ const PupilsSection = ({
                   onClick={onClose}
                   onKeyDown={
                     focusManager && buttonId
-                      ? (e) => focusManager.handleKeyDown(e, buttonId)
+                      ? (e: React.KeyboardEvent<HTMLAnchorElement>) =>
+                          focusManager.handleKeyDown(e, buttonId)
                       : undefined
                   }
                 >
