@@ -89,53 +89,57 @@ export const UnitHeaderNavFooter = (props: UnitHeaderNavFooterProps) => {
           $bbr={isStuck ? "border-radius-l" : "border-radius-square"}
         >
           <OakFlex
-            $justifyContent={isStuck ? "start" : "space-between"}
             $width={"100%"}
+            $maxWidth={"spacing-1280"}
             $gap={"spacing-16"}
-            $maxWidth="spacing-1280"
           >
-            {props.downloadButton}
-            <OakBox
-              $bl={"border-solid-m"}
-              $display={isStuck ? ["none", "none", "block"] : "none"}
-              $height={"spacing-24"}
-              $borderColor={`border-decorative${props.backgroundColorLevel}`}
-            />
-            <OakBox $display={isStuck ? ["none", "none", "block"] : "none"}>
-              <OakP>{props.title}</OakP>
-            </OakBox>
             <OakFlex
-              as="nav"
-              $display={isStuck ? "none" : ["none", "flex"]}
-              $gap={"spacing-32"}
-              $alignItems={"center"}
+              $justifyContent={isStuck ? "start" : "space-between"}
+              $width={"100%"}
+              $gap={"spacing-16"}
             >
-              <PrevNextButtons type="unit" $display={"flex"} {...props} />
+              {props.downloadButton}
               <OakBox
                 $bl={"border-solid-m"}
-                $display={"flex"}
+                $display={isStuck ? ["none", "none", "block"] : "none"}
                 $height={"spacing-24"}
                 $borderColor={`border-decorative${props.backgroundColorLevel}`}
               />
+              <OakBox $display={isStuck ? ["none", "none", "block"] : "none"}>
+                <OakP>{props.title}</OakP>
+              </OakBox>
+              <OakFlex
+                as="nav"
+                $display={isStuck ? "none" : ["none", "flex"]}
+                $gap={"spacing-16"}
+                $alignItems={"center"}
+              >
+                <PrevNextButtons type="unit" $display={"flex"} {...props} />
+                <OakBox
+                  $bl={"border-solid-m"}
+                  $height={"spacing-24"}
+                  $borderColor={`border-decorative${props.backgroundColorLevel}`}
+                />
+              </OakFlex>
             </OakFlex>
-          </OakFlex>
 
-          <PrevNextButtons
-            type="unit"
-            $display={isStuck ? "none" : ["flex", "none"]}
-            {...props}
-          />
-          <OakSmallPrimaryInvertedButton
-            $display={isStuck ? "none" : "block"}
-            width={["100%", "auto"]}
-            iconName="list"
-            isTrailingIcon
-            $textWrap={"nowrap"}
-            element="a"
-            href={props.viewHref}
-          >
-            View all units
-          </OakSmallPrimaryInvertedButton>
+            <PrevNextButtons
+              type="unit"
+              $display={isStuck ? "none" : ["flex", "none"]}
+              {...props}
+            />
+            <OakSmallPrimaryInvertedButton
+              $display={isStuck ? "none" : "block"}
+              width={["100%", "auto"]}
+              iconName="list"
+              isTrailingIcon
+              $textWrap={"nowrap"}
+              element="a"
+              href={props.viewHref}
+            >
+              View all units
+            </OakSmallPrimaryInvertedButton>
+          </OakFlex>
         </FadeInFlex>
       </OakFlex>
     </>
