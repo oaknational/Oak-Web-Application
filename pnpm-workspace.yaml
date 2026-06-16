@@ -7,6 +7,7 @@ minimumReleaseAgeExclude:
   - '@oaknational/oak-curriculum-schema@2.14.0'
 allowBuilds:
   '@clerk/shared': true
+  '@parcel/watcher': set this to true or false
   '@percy/core': true
   '@sentry/cli': true
   '@swc/core': true
