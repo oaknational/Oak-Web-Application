@@ -24,12 +24,27 @@ const LessonReviewQuizWithAriaLabel = (
   const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const button = containerRef.current?.querySelector<HTMLButtonElement>(
-      "button[aria-expanded]",
-    );
-    if (button) {
+    const root = containerRef.current;
+    if (!root) return;
+
+    const applyLabel = () => {
+      const button = root.querySelector<HTMLButtonElement>(
+        "button[aria-expanded]",
+      );
+      if (!button) return false;
       button.setAttribute("aria-label", resultsButtonAriaLabel);
-    }
+      return true;
+    };
+
+    if (applyLabel()) return;
+
+    const observer = new MutationObserver(() => {
+      if (applyLabel()) observer.disconnect();
+    });
+
+    observer.observe(root, { childList: true, subtree: true });
+
+    return () => observer.disconnect();
   }, [resultsButtonAriaLabel]);
 
   return (
