@@ -8,7 +8,6 @@ import {
   OakIcon,
   OakSpan,
 } from "@oaknational/oak-components";
-import { useEffect } from "react";
 import styled from "styled-components";
 
 import { LessonList } from "@/app/(core)/teachers/programmes/[slug]/units/[unitSlug]/lessons/Components/LessonList";
@@ -20,7 +19,6 @@ import { resolveOakHref } from "@/common-lib/urls";
 import useAnalytics from "@/context/Analytics/useAnalytics";
 import type { LessonListSchema } from "@/node-lib/curriculum-api-2023/shared.schema";
 import { KeyStageTitleValueType } from "@/browser-lib/avo/Avo";
-import { useOakNotificationsContext } from "@/context/OakNotifications/useOakNotificationsContext";
 import { getUnitDownloadFileId } from "@/utils/getUnitDownloadFileId";
 
 type DownloadSuccessViewLesson = {
@@ -73,8 +71,6 @@ export function DownloadSuccessView({
   const { track } = useAnalytics();
   const { onwardContentSelected, unitDownloadInitiated } = track;
 
-  const { setCurrentToastProps } = useOakNotificationsContext();
-
   const {
     setShowDownloadMessage,
     setDownloadError,
@@ -86,17 +82,6 @@ export function DownloadSuccessView({
   const isGeorestrictedUnit = lessons.some(
     (l) => "geoRestricted" in l && l.geoRestricted,
   );
-
-  useEffect(() => {
-    setCurrentToastProps({
-      message: "Download started. This may take a few minutes",
-      variant: "success",
-      autoDismiss: true,
-      showClose: true,
-      showIcon: true,
-    });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
 
   return (
     <>
