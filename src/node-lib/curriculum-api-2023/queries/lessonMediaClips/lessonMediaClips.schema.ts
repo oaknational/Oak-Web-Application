@@ -6,7 +6,8 @@ import {
   mediaClipCycleSchemaCamel,
   SyntheticUnitvariantLessonsCamel,
 } from "@oaknational/oak-curriculum-schema";
-import zodToCamelCase from "zod-to-camel-case";
+
+import { zodToCamelCaseSchema } from "../../helpers/zodToCamelCaseSchema";
 
 export const lessonBrowseDataSchema = syntheticUnitvariantLessonsSchema.omit({
   null_unitvariant_id: true,
@@ -71,7 +72,7 @@ const lessonPathwaySchema = z.object({
   tierTitle: z.string().nullish(),
 });
 
-const actionsSchemaCamel = zodToCamelCase(actionsSchema, {
+const actionsSchemaCamel = zodToCamelCaseSchema(actionsSchema, {
   bidirectional: true,
 });
 const baseLessonMediaClipsPageSchema = z.object({

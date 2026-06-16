@@ -17,7 +17,8 @@ import {
   pathwaySlugs,
   actionsSchema,
 } from "@oaknational/oak-curriculum-schema";
-import zodToCamelCase from "zod-to-camel-case";
+
+import { zodToCamelCaseSchema } from "../../helpers/zodToCamelCaseSchema";
 
 export const learningThemesSchema = z.object({
   themeTitle: z.string(),
@@ -38,7 +39,7 @@ const yearGroupsSchema = z.array(
 );
 export type YearGroups = z.infer<typeof yearGroupsSchema>;
 
-const actionsSchemaCamel = zodToCamelCase(actionsSchema, {
+const actionsSchemaCamel = zodToCamelCaseSchema(actionsSchema, {
   bidirectional: true,
 });
 const reshapedUnitData = z.object({
@@ -78,7 +79,7 @@ const rawQueryUnitSchema = syntheticUnitvariantsWithLessonIdsByKsSchema.omit({
 });
 
 export const rawQuerySchema = rawQueryUnitSchema.array();
-export const rawQuerySchemaCamel = zodToCamelCase(rawQuerySchema, {
+export const rawQuerySchemaCamel = zodToCamelCaseSchema(rawQuerySchema, {
   bidirectional: true,
 });
 
