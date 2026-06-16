@@ -235,7 +235,16 @@ export function LessonDownloads(props: LessonDownloadsProps) {
       });
 
       if (props.successRedirect) {
-        waitForLinkCallback(() => router.replace(props.successRedirect!));
+        waitForLinkCallback(() => {
+          setCurrentToastProps({
+            message: "Download started. This may take a few minutes",
+            variant: "success",
+            autoDismiss: true,
+            showClose: true,
+            showIcon: true,
+          });
+          router.replace(props.successRedirect!);
+        });
       } else {
         setIsDownloadSuccessful(true);
       }
