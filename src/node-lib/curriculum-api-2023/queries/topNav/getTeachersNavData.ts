@@ -37,7 +37,7 @@ const getSubjectDisplayTitle = (programme: TopNavProgramme) => {
     programme.programme_fields.subject;
   const pathwayTitle = programme.programme_fields.pathway ?? "";
 
-  return subjectDisplayName + (pathwayTitle ? ` (${pathwayTitle})` : "");
+  return `${subjectDisplayName}${pathwayTitle && ` (${pathwayTitle})`}`;
 };
 
 const normalizePhaseSlugForHref = (
