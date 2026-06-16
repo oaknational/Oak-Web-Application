@@ -261,10 +261,13 @@ const TeachersPhaseSection = ({
   const isKeystageOpen = (slug: string) => selectedViewType === slug;
   const topLevelButtonIds = [
     createFocusId("teachers", `teachers-${phaseData.slug}`, phaseData.slug),
-    ...(hasKeystageChildren
-      ? [createFocusId("teachers", `teachers-${phaseData.slug}`, "keystages")]
-      : []),
   ];
+
+  if (hasKeystageChildren) {
+    topLevelButtonIds.push(
+      createFocusId("teachers", `teachers-${phaseData.slug}`, "keystages"),
+    );
+  }
 
   const keystageButtonIds = keystageChildren.map((keystage) =>
     createFocusId("teachers", `teachers-${phaseData.slug}`, keystage.slug),
