@@ -431,9 +431,12 @@ describe("QuizPageContent", () => {
         />,
       );
 
-    expect(renderStaleExitQuiz).not.toThrow();
+    let rendered: ReturnType<typeof renderStaleExitQuiz> | undefined;
+    expect(() => {
+      rendered = renderStaleExitQuiz();
+    }).not.toThrow();
     expect(
-      renderStaleExitQuiz().container.querySelector("#quiz-form"),
+      rendered?.container.querySelector("#quiz-form"),
     ).not.toBeInTheDocument();
   });
 });

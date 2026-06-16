@@ -173,6 +173,8 @@ export const QuizPageContent = ({
   ]);
 
   useEffect(() => {
+    if (!isStoreReadyForSection) return;
+
     const handleKeyDownTabToInput = (event: KeyboardEvent): void => {
       if (event.key !== "Tab" || firstTabPressed.pressed) return;
 
@@ -198,7 +200,12 @@ export const QuizPageContent = ({
     return () => {
       globalThis.removeEventListener("keydown", handleKeyDownTabToInput);
     };
-  }, [currentQuestionData, currentQuestionIndex, firstTabPressed]);
+  }, [
+    currentQuestionData,
+    currentQuestionIndex,
+    firstTabPressed,
+    isStoreReadyForSection,
+  ]);
 
   const navigateToSection = (nextSection: "overview" | "review") => {
     void router.push(
