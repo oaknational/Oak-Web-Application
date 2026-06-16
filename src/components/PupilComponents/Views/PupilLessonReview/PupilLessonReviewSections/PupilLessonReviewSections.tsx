@@ -1,46 +1,13 @@
-import React, { useEffect, useRef } from "react";
+import React from "react";
 import {
   OakFlex,
   OakLessonReviewIntroVideo,
-  OakLessonReviewQuiz,
 } from "@oaknational/oak-components";
+
+import LessonReviewQuizWithAriaLabel from "@/components/PupilComponents/Views/PupilLessonReview/LessonReviewQuizWithAriaLabel";
 
 const getResultsButtonAriaLabel = (section: "starter-quiz" | "exit-quiz") =>
   section === "starter-quiz" ? "Starter quiz results" : "Exit quiz results";
-
-type LessonReviewQuizWithAriaLabelProps = React.ComponentProps<
-  typeof OakLessonReviewQuiz
-> & {
-  resultsButtonAriaLabel: string;
-};
-
-/**
- * `OakLessonReviewQuiz` renders a generic "Results" button.
- * For screen readers, we need that button's accessible name to include the section.
- * We do this here (without changing the UI label) by setting `aria-label` on the
- * expand/collapse button once the component has rendered.
- */
-const LessonReviewQuizWithAriaLabel = (
-  props: LessonReviewQuizWithAriaLabelProps,
-) => {
-  const { resultsButtonAriaLabel, ...quizProps } = props;
-  const containerRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const button = containerRef.current?.querySelector<HTMLButtonElement>(
-      "button[aria-expanded]",
-    );
-    if (button) {
-      button.setAttribute("aria-label", resultsButtonAriaLabel);
-    }
-  }, [resultsButtonAriaLabel]);
-
-  return (
-    <div ref={containerRef}>
-      <OakLessonReviewQuiz {...quizProps} />
-    </div>
-  );
-};
 
 export type PupilLessonReviewSectionItem =
   | {

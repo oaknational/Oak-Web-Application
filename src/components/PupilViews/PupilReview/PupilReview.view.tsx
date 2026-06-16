@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useState } from "react";
 import { useSearchParams } from "next/navigation";
 import {
   OakFlex,
@@ -11,7 +11,6 @@ import {
   OakLessonBottomNav,
   OakLessonLayout,
   OakLessonReviewIntroVideo,
-  OakLessonReviewQuiz,
   OakPrimaryButton,
   OakTertiaryButton,
   OakSecondaryButton,
@@ -23,6 +22,7 @@ import { PupilExperienceViewProps } from "../PupilExperience";
 import { useLessonReviewFeedback } from "./useLessonReviewFeedback";
 import { CourseWorkHandInButton } from "./CourseWorkHandInButton";
 
+import LessonReviewQuizWithAriaLabel from "@/components/PupilComponents/Views/PupilLessonReview/LessonReviewQuizWithAriaLabel";
 import { useLessonEngineContext } from "@/components/PupilComponents/LessonEngineProvider";
 import { useGetSectionLinkProps } from "@/components/PupilComponents/pupilUtils/lessonNavigation";
 import { QuizResults } from "@/components/PupilComponents/QuizQuestions/QuizResults";
@@ -49,34 +49,6 @@ type PupilViewsReviewProps = {
   pageType: PupilExperienceViewProps["pageType"];
   isHandedIn?: boolean;
   onHandInSuccess?: () => void;
-};
-
-type LessonReviewQuizWithAriaLabelProps = React.ComponentProps<
-  typeof OakLessonReviewQuiz
-> & {
-  resultsButtonAriaLabel: string;
-};
-
-const LessonReviewQuizWithAriaLabel = (
-  props: LessonReviewQuizWithAriaLabelProps,
-) => {
-  const { resultsButtonAriaLabel, ...quizProps } = props;
-  const containerRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const button = containerRef.current?.querySelector<HTMLButtonElement>(
-      "button[aria-expanded]",
-    );
-    if (button) {
-      button.setAttribute("aria-label", resultsButtonAriaLabel);
-    }
-  }, [resultsButtonAriaLabel]);
-
-  return (
-    <div ref={containerRef}>
-      <OakLessonReviewQuiz {...quizProps} />
-    </div>
-  );
 };
 
 export const PupilViewsReview = (props: PupilViewsReviewProps) => {
