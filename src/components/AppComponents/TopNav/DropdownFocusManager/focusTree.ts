@@ -29,8 +29,12 @@ export const getExamBoardFocusSlug = (examBoard: ProgrammeFactorButton) => {
     return `${examboardSlug}-${tierSlug}`;
   }
 
-  if (examboardSlug || tierSlug) {
-    return examboardSlug ?? tierSlug ?? "";
+  if (examboardSlug) {
+    return examboardSlug;
+  }
+  
+  if (tierSlug) {
+    return tierSlug;
   }
 
   return slugify(examBoard.buttonTitle || examBoard.programmeSlug);
