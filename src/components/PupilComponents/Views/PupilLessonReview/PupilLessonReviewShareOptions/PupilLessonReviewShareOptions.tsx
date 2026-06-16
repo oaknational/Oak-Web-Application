@@ -6,13 +6,13 @@ import {
   OakSecondaryButton,
 } from "@oaknational/oak-components";
 
+import {
+  SHARE_COPY_FAILED_MESSAGE,
+  SHARE_COPY_SUCCESS_MESSAGE,
+} from "./PupilLessonReviewShareMessaging";
+
 import ScreenReaderOnly from "@/components/SharedComponents/ScreenReaderOnly";
 
-export const SHARE_COPY_SUCCESS_MESSAGE =
-  "Link copied to clipboard! You can share this with your teacher.";
-
-export const SHARE_COPY_FAILED_MESSAGE =
-  "Failed to share results. Please try again.";
 
 export type PupilLessonReviewShareOptionsProps = {
   showPrintable?: boolean;

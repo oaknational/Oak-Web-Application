@@ -9,7 +9,7 @@ import { PupilViewsReview } from "./PupilReview.view";
 import {
   SHARE_COPY_FAILED_MESSAGE,
   SHARE_COPY_SUCCESS_MESSAGE,
-} from "@/components/PupilComponents/Views/PupilLessonReview/PupilLessonReviewShareOptions/PupilLessonReviewShareOptions";
+} from "@/components/PupilComponents/Views/PupilLessonReview/PupilLessonReviewShareOptions/PupilLessonReviewShareMessaging";
 import { useOakPupil } from "@/hooks/useOakPupil";
 import { OakPupilClientProvider } from "@/context/Pupil/OakPupilClientProvider";
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";

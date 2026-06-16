@@ -26,7 +26,7 @@ import { CourseWorkHandInButton } from "./CourseWorkHandInButton";
 import {
   SHARE_COPY_FAILED_MESSAGE,
   SHARE_COPY_SUCCESS_MESSAGE,
-} from "@/components/PupilComponents/Views/PupilLessonReview/PupilLessonReviewShareOptions/PupilLessonReviewShareOptions";
+} from "@/components/PupilComponents/Views/PupilLessonReview/PupilLessonReviewShareOptions/PupilLessonReviewShareMessaging";
 import ScreenReaderOnly from "@/components/SharedComponents/ScreenReaderOnly";
 import { useLessonEngineContext } from "@/components/PupilComponents/LessonEngineProvider";
 import { useGetSectionLinkProps } from "@/components/PupilComponents/pupilUtils/lessonNavigation";

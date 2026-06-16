@@ -1,11 +1,11 @@
 import userEvent from "@testing-library/user-event";
 import { screen } from "@testing-library/react";
 
+import { PupilLessonReviewShareOptions } from "./PupilLessonReviewShareOptions";
 import {
-  PupilLessonReviewShareOptions,
   SHARE_COPY_FAILED_MESSAGE,
   SHARE_COPY_SUCCESS_MESSAGE,
-} from "./PupilLessonReviewShareOptions";
+} from "./PupilLessonReviewShareMessaging";
 
 import { renderWithProvidersByName } from "@/__tests__/__helpers__/renderWithProviders";
 
