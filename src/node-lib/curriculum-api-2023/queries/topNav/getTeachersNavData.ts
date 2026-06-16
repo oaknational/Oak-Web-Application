@@ -408,7 +408,7 @@ const getSubjectsByPhase = (
       description: "",
       children: orderedChildren,
     },
-  ] as Omit<TeachersBrowseChildItem, "type">[];
+  ] satisfies Omit<TeachersBrowseChildItem, "type">[];
 };
 
 const deriveKs4SubjectSets = (programmes: TopNavProgramme[]) => {
