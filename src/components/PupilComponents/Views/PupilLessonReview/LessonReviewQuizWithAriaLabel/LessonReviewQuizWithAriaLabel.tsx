@@ -1,7 +1,8 @@
+import type { ComponentProps } from "react";
 import { useEffect, useRef } from "react";
 import { OakLessonReviewQuiz } from "@oaknational/oak-components";
 
-export type LessonReviewQuizWithAriaLabelProps = React.ComponentProps<
+export type LessonReviewQuizWithAriaLabelProps = ComponentProps<
   typeof OakLessonReviewQuiz
 > & {
   resultsButtonAriaLabel: string;

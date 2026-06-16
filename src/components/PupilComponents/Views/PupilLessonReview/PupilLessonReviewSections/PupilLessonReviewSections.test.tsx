@@ -28,8 +28,8 @@ describe("PupilLessonReviewSections", () => {
     expect(document.body).toHaveTextContent("Starter quiz results");
   });
 
-  it("gives the results button an accessible name including the section", () => {
-    const { getByRole } = render(
+  it("gives the results button an accessible name including the section", async () => {
+    const { findByRole } = render(
       <PupilLessonReviewSections
         items={[
           {
@@ -45,7 +45,7 @@ describe("PupilLessonReviewSections", () => {
 
     // The visible label is "Results" but screen readers should hear which section.
     expect(
-      getByRole("button", { name: "Starter quiz results" }),
+      await findByRole("button", { name: "Starter quiz results" }),
     ).toBeInTheDocument();
   });
 });

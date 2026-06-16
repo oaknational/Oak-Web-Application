@@ -206,8 +206,8 @@ describe("PupilReview", () => {
     expect(getByText("Great effort!")).toBeInTheDocument();
   });
 
-  it("gives quiz results buttons accessible names including the section", () => {
-    const { getByRole } = renderWithTheme(
+  it("gives quiz results buttons accessible names including the section", async () => {
+    const { findByRole } = renderWithTheme(
       <OakThemeProvider theme={oakDefaultTheme}>
         <LessonEngineContext.Provider
           value={createLessonEngineContext({
@@ -230,10 +230,10 @@ describe("PupilReview", () => {
     );
 
     expect(
-      getByRole("button", { name: "Starter quiz results" }),
+      await findByRole("button", { name: "Starter quiz results" }),
     ).toBeInTheDocument();
     expect(
-      getByRole("button", { name: "Exit quiz results" }),
+      await findByRole("button", { name: "Exit quiz results" }),
     ).toBeInTheDocument();
   });
 
