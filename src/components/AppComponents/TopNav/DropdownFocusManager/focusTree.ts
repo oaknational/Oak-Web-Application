@@ -32,7 +32,7 @@ export const getExamBoardFocusSlug = (examBoard: ProgrammeFactorButton) => {
   if (examboardSlug) {
     return examboardSlug;
   }
-  
+
   if (tierSlug) {
     return tierSlug;
   }
