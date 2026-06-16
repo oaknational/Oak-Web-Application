@@ -43,7 +43,12 @@ const LessonReviewQuizWithAriaLabel = (
       if (applyLabel()) observer.disconnect();
     });
 
-    observer.observe(root, { childList: true, subtree: true });
+    observer.observe(root, {
+      childList: true,
+      subtree: true,
+      attributes: true,
+      attributeFilter: ["aria-expanded"],
+    });
 
     return () => observer.disconnect();
   }, [resultsButtonAriaLabel]);

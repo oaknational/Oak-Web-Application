@@ -237,6 +237,37 @@ describe("PupilReview", () => {
     ).toBeInTheDocument();
   });
 
+  it("keeps aria-expanded toggling on the results buttons", async () => {
+    const { findByRole } = renderWithTheme(
+      <OakThemeProvider theme={oakDefaultTheme}>
+        <LessonEngineContext.Provider
+          value={createLessonEngineContext({
+            sectionResults: sectionResultsFixture,
+          })}
+        >
+          <OakPupilClientProvider>
+            <PupilViewsReview
+              lessonTitle="Lesson title"
+              exitQuizQuestionsArray={[]}
+              starterQuizQuestionsArray={[]}
+              programmeSlug="programme-slug"
+              unitSlug="unit-slug"
+              browseData={mockBroweData}
+              pageType="browse"
+            />
+          </OakPupilClientProvider>
+        </LessonEngineContext.Provider>
+      </OakThemeProvider>,
+    );
+
+    const button = await findByRole("button", { name: "Starter quiz results" });
+    expect(button).toHaveAttribute("aria-expanded", "false");
+    await userEvent.click(button);
+    expect(button).toHaveAttribute("aria-expanded", "true");
+    await userEvent.click(button);
+    expect(button).toHaveAttribute("aria-expanded", "false");
+  });
+
   describe("Copy link button", () => {
     it("should display the print button", () => {
       const { queryByText } = renderWithTheme(
