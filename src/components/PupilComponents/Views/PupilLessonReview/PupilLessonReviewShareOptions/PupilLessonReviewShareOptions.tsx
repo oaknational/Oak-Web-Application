@@ -13,7 +13,6 @@ import {
 
 import ScreenReaderOnly from "@/components/SharedComponents/ScreenReaderOnly";
 
-
 export type PupilLessonReviewShareOptionsProps = {
   showPrintable?: boolean;
   printableHref?: string;
