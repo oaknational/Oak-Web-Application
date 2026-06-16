@@ -27,4 +27,25 @@ describe("PupilLessonReviewSections", () => {
     expect(document.body).toHaveTextContent("Starter quiz");
     expect(document.body).toHaveTextContent("Starter quiz results");
   });
+
+  it("gives the results button an accessible name including the section", () => {
+    const { getByRole } = render(
+      <PupilLessonReviewSections
+        items={[
+          {
+            section: "starter-quiz",
+            completed: true,
+            grade: 3,
+            numQuestions: 4,
+            resultsSlot: <div>Starter quiz results</div>,
+          },
+        ]}
+      />,
+    );
+
+    // The visible label is "Results" but screen readers should hear which section.
+    expect(
+      getByRole("button", { name: "Starter quiz results" }),
+    ).toBeInTheDocument();
+  });
 });

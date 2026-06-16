@@ -206,6 +206,37 @@ describe("PupilReview", () => {
     expect(getByText("Great effort!")).toBeInTheDocument();
   });
 
+  it("gives quiz results buttons accessible names including the section", () => {
+    const { getByRole } = renderWithTheme(
+      <OakThemeProvider theme={oakDefaultTheme}>
+        <LessonEngineContext.Provider
+          value={createLessonEngineContext({
+            sectionResults: sectionResultsFixture,
+          })}
+        >
+          <OakPupilClientProvider>
+            <PupilViewsReview
+              lessonTitle="Lesson title"
+              exitQuizQuestionsArray={[]}
+              starterQuizQuestionsArray={[]}
+              programmeSlug="programme-slug"
+              unitSlug="unit-slug"
+              browseData={mockBroweData}
+              pageType="browse"
+            />
+          </OakPupilClientProvider>
+        </LessonEngineContext.Provider>
+      </OakThemeProvider>,
+    );
+
+    expect(
+      getByRole("button", { name: "Starter quiz results" }),
+    ).toBeInTheDocument();
+    expect(
+      getByRole("button", { name: "Exit quiz results" }),
+    ).toBeInTheDocument();
+  });
+
   describe("Copy link button", () => {
     it("should display the print button", () => {
       const { queryByText } = renderWithTheme(

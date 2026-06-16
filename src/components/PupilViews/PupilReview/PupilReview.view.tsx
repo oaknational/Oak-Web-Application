@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import {
   OakFlex,
@@ -49,6 +49,34 @@ type PupilViewsReviewProps = {
   pageType: PupilExperienceViewProps["pageType"];
   isHandedIn?: boolean;
   onHandInSuccess?: () => void;
+};
+
+type LessonReviewQuizWithAriaLabelProps = React.ComponentProps<
+  typeof OakLessonReviewQuiz
+> & {
+  resultsButtonAriaLabel: string;
+};
+
+const LessonReviewQuizWithAriaLabel = (
+  props: LessonReviewQuizWithAriaLabelProps,
+) => {
+  const { resultsButtonAriaLabel, ...quizProps } = props;
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const button = containerRef.current?.querySelector<HTMLButtonElement>(
+      "button[aria-expanded]",
+    );
+    if (button) {
+      button.setAttribute("aria-label", resultsButtonAriaLabel);
+    }
+  }, [resultsButtonAriaLabel]);
+
+  return (
+    <div ref={containerRef}>
+      <OakLessonReviewQuiz {...quizProps} />
+    </div>
+  );
 };
 
 export const PupilViewsReview = (props: PupilViewsReviewProps) => {
@@ -407,13 +435,18 @@ export const PupilViewsReview = (props: PupilViewsReviewProps) => {
                     ? exitQuizQuestionsArray
                     : starterQuizQuestionsArray;
                 return (
-                  <OakLessonReviewQuiz
+                  <LessonReviewQuizWithAriaLabel
                     key={lessonSection}
                     lessonSectionName={lessonSection}
                     completed={!!sectionResults[lessonSection]?.isComplete}
                     grade={sectionResults[lessonSection]?.grade ?? 0}
                     numQuestions={
                       sectionResults[lessonSection]?.numQuestions ?? 0
+                    }
+                    resultsButtonAriaLabel={
+                      lessonSection === "starter-quiz"
+                        ? "Starter quiz results"
+                        : "Exit quiz results"
                     }
                     resultsSlot={
                       <QuizResults
