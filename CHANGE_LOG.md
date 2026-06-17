@@ -1,3 +1,21 @@
+## [1.1097.4](https://github.com/oaknational/Oak-Web-Application/compare/v1.1097.3...v1.1097.4) (2026-06-17)
+
+
+### Bug Fixes
+
+* **PUPIL-1769:** address Copilot review on keydown gating and test ([8ce36a9](https://github.com/oaknational/Oak-Web-Application/commit/8ce36a9e498da7c517bc27e66ac5b80462bcc924))
+* **PUPIL-1769:** prevent shared quiz crash from stale store state ([aaf5e1e](https://github.com/oaknational/Oak-Web-Application/commit/aaf5e1ecfc2d2d4d777cc3b0d0d66abb1085da1e))
+
+## [1.1097.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.1097.2...v1.1097.3) (2026-06-16)
+
+
+### Bug Fixes
+
+* **PUPIL-1754:** address Copilot review on live regions and tests ([f34e94b](https://github.com/oaknational/Oak-Web-Application/commit/f34e94bfc0f2a7dd7fbaf31ff205a48b52f51b21))
+* **PUPIL-1754:** address Copilot review on live regions and tests ([3cb376d](https://github.com/oaknational/Oak-Web-Application/commit/3cb376d742209d912bb8d61463638f76fe245c13))
+* **PUPIL-1754:** announce copy-link confirmation to screen readers ([385e457](https://github.com/oaknational/Oak-Web-Application/commit/385e4574abdaff37a8e62573e123a6b515e7adfa))
+* **PUPIL-1754:** announce copy-link confirmation to screen readers ([ef54a6b](https://github.com/oaknational/Oak-Web-Application/commit/ef54a6b85cbbb3fa31b2d9337137a7ec5ea9e62e))
+
 ## [1.1097.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.1097.1...v1.1097.2) (2026-06-15)
 
 

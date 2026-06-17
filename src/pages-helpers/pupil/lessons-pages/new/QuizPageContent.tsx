@@ -83,6 +83,8 @@ export const QuizPageContent = ({
     })),
   );
   const {
+    storeLessonSlug,
+    storeSection,
     currentQuestionIndex,
     questionState,
     numQuestions,
@@ -95,6 +97,8 @@ export const QuizPageContent = ({
     handleNextQuestion,
   } = usePupilLessonQuiz(
     useShallow((state) => ({
+      storeLessonSlug: state.lessonSlug,
+      storeSection: state.section,
       currentQuestionIndex: state.currentQuestionIndex,
       questionState: state.questionState,
       numQuestions: state.numQuestions,
@@ -107,6 +111,8 @@ export const QuizPageContent = ({
       handleNextQuestion: state.handleNextQuestion,
     })),
   );
+  const isStoreReadyForSection =
+    storeLessonSlug === lessonSlug && storeSection === section;
   const {
     trackSectionStarted,
     trackQuizQuestionAttempt,
@@ -143,7 +149,7 @@ export const QuizPageContent = ({
   }, [initialiseQuiz, lessonSlug, questionsArray, section, sectionResults]);
 
   useEffect(() => {
-    if (!isHydratedComplete) return;
+    if (!isStoreReadyForSection || !isHydratedComplete) return;
 
     void router.push(
       getNewLessonSectionHref({
@@ -152,9 +158,18 @@ export const QuizPageContent = ({
         searchParams: currentSearchParams,
       }),
     );
-  }, [currentSearchParams, isHydratedComplete, lessonSlug, router, section]);
+  }, [
+    currentSearchParams,
+    isStoreReadyForSection,
+    isHydratedComplete,
+    lessonSlug,
+    router,
+    section,
+  ]);
 
   useEffect(() => {
+    if (!isStoreReadyForSection) return;
+
     const handleKeyDownTabToInput = (event: KeyboardEvent): void => {
       if (event.key !== "Tab" || firstTabPressed.pressed) return;
 
@@ -180,7 +195,12 @@ export const QuizPageContent = ({
     return () => {
       globalThis.removeEventListener("keydown", handleKeyDownTabToInput);
     };
-  }, [currentQuestionData, currentQuestionIndex, firstTabPressed]);
+  }, [
+    currentQuestionData,
+    currentQuestionIndex,
+    firstTabPressed,
+    isStoreReadyForSection,
+  ]);
 
   const navigateToSection = (nextSection: "overview" | "review") => {
     void router.push(
@@ -348,6 +368,10 @@ export const QuizPageContent = ({
       </MathJaxWrap>
     );
   };
+
+  if (!isStoreReadyForSection) {
+    return null;
+  }
 
   return (
     <OakCloudinaryConfigProvider
