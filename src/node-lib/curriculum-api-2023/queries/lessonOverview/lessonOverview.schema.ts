@@ -100,9 +100,10 @@ export type LessonOverviewCanonical = z.infer<
 export const lessonBrowseDataByKsSchema =
   syntheticUnitvariantLessonsByKsSchema.omit({
     null_unitvariant_id: true,
+    unitvariant_id: true,
   });
 
 export type LessonBrowseDataByKs = Omit<
   SyntheticUnitvariantLessonsByKsCamel,
-  "nullUnitvariantId"
+  "nullUnitvariantId" | "unitvariantId"
 >;
