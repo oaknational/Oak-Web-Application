@@ -7,8 +7,8 @@ import {
   SearchHit,
   PathwaySchema,
   SuggestedSearchFilter,
-} from "./search.types";
-import { RawHighlightSchema } from "./search.schema";
+} from "../../../../context/Search/search.types";
+import { RawHighlightSchema } from "../../../../context/Search/search.schema";
 
 import errorReporter from "@/common-lib/error-reporter";
 import OakError from "@/errors/OakError";

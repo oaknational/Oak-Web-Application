@@ -1,6 +1,11 @@
 import { ParsedUrlQuery } from "querystring";
 
-import searchPageFixture from "../../node-lib/curriculum-api-2023/fixtures/searchPage.fixture";
+import searchPageFixture from "../../../../node-lib/curriculum-api-2023/fixtures/searchPage.fixture";
+import {
+  lessonSearchHitSchema,
+  unitSearchHitSchema,
+} from "../../../../context/Search/search.schema";
+import { hitsFixture } from "../../../../context/Search/search-api/2023/searchResults.fixture";
 
 import {
   convertSearchIntentToFilters,
@@ -13,8 +18,6 @@ import {
   getUnitObject,
   isFilterItem,
 } from "./search.helpers";
-import { lessonSearchHitSchema, unitSearchHitSchema } from "./search.schema";
-import { hitsFixture } from "./search-api/2023/searchResults.fixture";
 
 import { LEGACY_COHORT } from "@/config/cohort";
 import { SearchIntent } from "@/common-lib/schemas/search-intent";
