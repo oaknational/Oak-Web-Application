@@ -1,3 +1,10 @@
+## [1.1097.5](https://github.com/oaknational/Oak-Web-Application/compare/v1.1097.4...v1.1097.5) (2026-06-17)
+
+
+### Bug Fixes
+
+* **PUPIL-1770:** persist video result on completion for shared lessons ([a4a32a8](https://github.com/oaknational/Oak-Web-Application/commit/a4a32a8e1daecd49caa8f8e165bb33de78d3df09))
+
 ## [1.1097.4](https://github.com/oaknational/Oak-Web-Application/compare/v1.1097.3...v1.1097.4) (2026-06-17)
 
 
