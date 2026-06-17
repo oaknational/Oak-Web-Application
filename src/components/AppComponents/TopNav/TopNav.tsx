@@ -7,6 +7,7 @@ import TopNavDropdown from "./TopNavDropdown/TopNavDropdown";
 import { TeachersTopNavHamburger } from "./TeachersTopNavHamburger/TeachersTopNavHamburger";
 import { PupilsTopNavHamburger } from "./PupilsTopNavHamburger/PupilsTopNavHamburger";
 import { DropdownFocusManager } from "./DropdownFocusManager/DropdownFocusManager";
+import { buildFocusTree } from "./DropdownFocusManager/focusTree";
 
 import {
   OakBox,
@@ -109,13 +110,13 @@ const TopNav = (props: TopNavProps) => {
   const focusManager = useMemo(() => {
     if (activeArea === "TEACHERS" && teachers) {
       return new DropdownFocusManager<TeachersSubNavData>(
-        teachers,
+        buildFocusTree(teachers, "teachers"),
         "teachers",
         setSelectedMenu,
       );
     } else if (activeArea === "PUPILS" && pupils) {
       return new DropdownFocusManager<PupilsSubNavData>(
-        pupils,
+        buildFocusTree(pupils, "pupils"),
         "pupils",
         setSelectedMenu,
       );
