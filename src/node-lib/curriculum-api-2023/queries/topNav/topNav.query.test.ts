@@ -29,8 +29,8 @@ describe("TopNavQuery", () => {
       topNav: jest.fn(() => Promise.resolve(mockResponseData)),
     })();
 
-    expect(res.teachers?.primary.children).toHaveLength(4);
-    expect(res.teachers?.secondary.children).toHaveLength(3);
+    expect(res.teachers?.primary.children).toHaveLength(3);
+    expect(res.teachers?.secondary.children).toHaveLength(2);
     expect(res.pupils?.primary.children).toHaveLength(3);
     expect(res.pupils?.secondary.children).toHaveLength(1);
     expect(res.teachers?.primary.children[0]?.children[0]?.href).toBeDefined();

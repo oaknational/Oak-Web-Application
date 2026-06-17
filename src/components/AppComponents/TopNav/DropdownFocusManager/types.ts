@@ -5,8 +5,3 @@ export type FocusNode = {
   isFirstChild?: boolean;
   isLastChild?: boolean;
 };
-
-export type FocusTreeNode = {
-  id: string;
-  children?: FocusTreeNode[];
-};
