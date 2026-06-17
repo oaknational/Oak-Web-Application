@@ -28,7 +28,9 @@ export type KeyStageKeypadProps = {
   keyStages: KeypadItem[];
 } & KeyStageOnClick;
 
-const KeypadLink: FC<KeypadItem & KeyStageOnClick> = (props) => {
+const KeypadLink: FC<KeypadItem & KeyStageOnClick> = (
+  props: KeypadItem & KeyStageOnClick,
+) => {
   const { shortCode, slug, title, trackingOnClick } = props;
   const isCurrent = useIsCurrent({ keyStageSlug: slug });
 
@@ -80,7 +82,12 @@ const KeyStageKeypad: FC<KeyStageKeypadProps> = ({
       >
         {sortedKeyStages.map((ks) => (
           <OakLI $listStyle={"none"} key={`key-stage-li-${ks.slug}`}>
-            <KeypadLink {...ks} trackingOnClick={trackingOnClick} />
+            <KeypadLink
+              shortCode={ks.shortCode}
+              slug={ks.slug}
+              title={ks.title}
+              trackingOnClick={trackingOnClick}
+            />
           </OakLI>
         ))}
       </OakUL>
