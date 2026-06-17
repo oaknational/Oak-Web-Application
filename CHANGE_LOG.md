@@ -1,3 +1,35 @@
+# [1.1098.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1097.6...v1.1098.0) (2026-06-17)
+
+
+### Bug Fixes
+
+* add additional logic to check whether controls should show ([428d559](https://github.com/oaknational/Oak-Web-Application/commit/428d55988d3ddcacc02f3958224420077367fdbe))
+* fix case when aria controls is pointing to non existent element ([b0ba32f](https://github.com/oaknational/Oak-Web-Application/commit/b0ba32f8d8ca401cede9d40479e270da220337fa))
+* **LESQ-2030:** keep hamburger exam board panel open when tabbing past last item ([129a1be](https://github.com/oaknational/Oak-Web-Application/commit/129a1be02fe3d012712dccf72410f54e04776c21))
+* remove manual avo change ([1fd49d5](https://github.com/oaknational/Oak-Web-Application/commit/1fd49d578584fba14bc730d92380724753c957b8))
+* remove unused use effect ([bab49ec](https://github.com/oaknational/Oak-Web-Application/commit/bab49ecfa31f444d7658d6f56f827b80e92d0bd8))
+* revert exam board title to include keystage ([76c9825](https://github.com/oaknational/Oak-Web-Application/commit/76c9825898bf92a02de20ccfc1239304858b7cc7))
+
+
+### Features
+
+* allow arrow key navigation between focused dropdown elements ([adb69ae](https://github.com/oaknational/Oak-Web-Application/commit/adb69aefe70caf20adbc750bacc8e2aabe4465cf))
+* condense science subjects into one programme ([ce047c3](https://github.com/oaknational/Oak-Web-Application/commit/ce047c38cc57845e13341b8152f22d585c0cb4b9))
+* ensure core and gcse options are shown in phase top nav view ([153e394](https://github.com/oaknational/Oak-Web-Application/commit/153e39463ce212866623586e11957473d12a062a))
+* filter out ks3 only subjects from secondary top nav to prevent duplicates ([099b4d6](https://github.com/oaknational/Oak-Web-Application/commit/099b4d627b85ef39a20f28ac0bab0c0674ad72ae))
+* implement dropdown focus changes with top nav dropdown and set phase as default focused tab ([d77802d](https://github.com/oaknational/Oak-Web-Application/commit/d77802d11af9f72f1837619ef2f93cb019208b00))
+* implement refactored dropdown in topnav and subnav ([21ba083](https://github.com/oaknational/Oak-Web-Application/commit/21ba0830fd1b9ad1b51e6f1bf6142c3633d268c6))
+* **LESQ-2030:** add phase and keystage sub menus to hamburger menu ([85f11e2](https://github.com/oaknational/Oak-Web-Application/commit/85f11e209668356daeb8efbd4e707f3a6b8979d8))
+* **LESQ-2030:** add tracking to phase submenu ([831c350](https://github.com/oaknational/Oak-Web-Application/commit/831c350c69e2650ae081c7c06f767c72e5777c8b))
+* **LESQ-2030:** align hamburger menu with latest designs ([733302a](https://github.com/oaknational/Oak-Web-Application/commit/733302aa9269b98baaee81f6d57c7e4bb2426c8e))
+* merge getting phase and keystage top nav data ([5038dda](https://github.com/oaknational/Oak-Web-Application/commit/5038dda6f9722f69788d36ec2cf34de36e57534f))
+* reference key stage slug in exam board panel and allow for other keystage exam boards ([32da480](https://github.com/oaknational/Oak-Web-Application/commit/32da480c472602248268b936891f1fe36452f9bb))
+* separate phase and keystage views ([219e680](https://github.com/oaknational/Oak-Web-Application/commit/219e6809338f91fa5c2771d1a3db03113bc70fe9))
+* update avo with phase filter pr ([a7a5847](https://github.com/oaknational/Oak-Web-Application/commit/a7a5847360974c09bb21fdc1b033da1c418e0fb7))
+* update top nav fixture with new keystage and phase structure ([eb6ac35](https://github.com/oaknational/Oak-Web-Application/commit/eb6ac3540366254ed99f8c98cd4ce1a3b20f1f8a))
+
+## [1.1097.6](https://github.com/oaknational/Oak-Web-Application/compare/v1.1097.5...v1.1097.6) (2026-06-17)
+
 ## [1.1097.5](https://github.com/oaknational/Oak-Web-Application/compare/v1.1097.4...v1.1097.5) (2026-06-17)
 
 

@@ -2,10 +2,7 @@ import { waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { useRouter } from "next/navigation";
 
-import {
-  getEYFSAriaLabel,
-  TeachersTopNavHamburger,
-} from "./TeachersTopNavHamburger";
+import { TeachersTopNavHamburger } from "./TeachersTopNavHamburger";
 
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 import { topNavFixture } from "@/node-lib/curriculum-api-2023/fixtures/topNav.fixture";
@@ -31,6 +28,27 @@ jest.mock("@/context/Analytics/useAnalytics", () => ({
   }),
 }));
 
+async function openKeystageSubjects(
+  user: ReturnType<typeof userEvent.setup>,
+  getByRole: ReturnType<typeof render>["getByRole"],
+  getByText: ReturnType<typeof render>["getByText"],
+  {
+    phaseKeyStagesLabel,
+    keystageLabel,
+  }: {
+    phaseKeyStagesLabel: string;
+    keystageLabel: string;
+  },
+) {
+  const phaseKeyStagesButton = getByRole("button", {
+    name: phaseKeyStagesLabel,
+  });
+  await user.click(phaseKeyStagesButton);
+
+  const keystageButton = getByText(keystageLabel);
+  await user.click(keystageButton);
+}
+
 describe("TeachersTopNavHamburger", () => {
   beforeEach(() => {
     jest.clearAllMocks();
@@ -47,47 +65,6 @@ describe("TeachersTopNavHamburger", () => {
   });
 
   it("should display main menu content when no submenu is open", async () => {
-    const { getByTestId, getByText } = render(
-      <TeachersTopNavHamburger {...mockTopNavProps} />,
-    );
-    const user = userEvent.setup();
-    const button = getByTestId("top-nav-hamburger-button");
-    await user.click(button);
-
-    expect(getByText("Primary")).toBeInTheDocument();
-  });
-
-  it("should display submenu content when a submenu is opened", async () => {
-    const { getByTestId, getByText } = render(
-      <TeachersTopNavHamburger {...mockTopNavProps} />,
-    );
-
-    const user = userEvent.setup();
-    const button = getByTestId("top-nav-hamburger-button");
-    await user.click(button);
-
-    const keyStageItem = getByText("Key stage 1");
-    await user.click(keyStageItem);
-    expect(getByText("English")).toBeInTheDocument();
-  });
-
-  it("should focus the first list item when submenu is opened", async () => {
-    const { getByTestId, getByText } = render(
-      <TeachersTopNavHamburger {...mockTopNavProps} />,
-    );
-    const user = userEvent.setup();
-    const button = getByTestId("top-nav-hamburger-button");
-    await user.click(button);
-
-    const keyStageItem = getByText("Key stage 1");
-    await user.click(keyStageItem);
-    const firstListItem = getByTestId("topnav-subject-button-english");
-    expect(document?.activeElement?.textContent).toBe(
-      firstListItem.textContent,
-    );
-  });
-
-  it("should close submenu and return to main menu when back button is triggered", async () => {
     const { getByTestId, getByText, queryByText } = render(
       <TeachersTopNavHamburger {...mockTopNavProps} />,
     );
@@ -95,18 +72,71 @@ describe("TeachersTopNavHamburger", () => {
     const button = getByTestId("top-nav-hamburger-button");
     await user.click(button);
 
-    const keyStageItem = getByText("Key stage 1");
-    await user.click(keyStageItem);
+    expect(getByText("Primary")).toBeInTheDocument();
+    expect(getByText("Primary key stages")).toBeInTheDocument();
+    expect(getByText("Secondary subjects")).toBeInTheDocument();
+    expect(getByText("Secondary key stages")).toBeInTheDocument();
+    expect(queryByText("Primary subjects")).not.toBeInTheDocument();
+    expect(queryByText("Primary years")).not.toBeInTheDocument();
+    expect(queryByText("Secondary years")).not.toBeInTheDocument();
+  });
 
-    const backButton = getByText("Key stage 1");
+  it("should display submenu content when a submenu is opened", async () => {
+    const { getByTestId, getByText, getByRole } = render(
+      <TeachersTopNavHamburger {...mockTopNavProps} />,
+    );
+
+    const user = userEvent.setup();
+    const button = getByTestId("top-nav-hamburger-button");
+    await user.click(button);
+
+    await openKeystageSubjects(user, getByRole, getByText, {
+      phaseKeyStagesLabel: "Primary key stages",
+      keystageLabel: "Key stage 1",
+    });
+    expect(getByText("English")).toBeInTheDocument();
+  });
+
+  it("should focus the first list item when submenu is opened", async () => {
+    const { getByTestId, getByText, getByRole } = render(
+      <TeachersTopNavHamburger {...mockTopNavProps} />,
+    );
+    const user = userEvent.setup();
+    const button = getByTestId("top-nav-hamburger-button");
+    await user.click(button);
+
+    await openKeystageSubjects(user, getByRole, getByText, {
+      phaseKeyStagesLabel: "Primary key stages",
+      keystageLabel: "Key stage 1",
+    });
+    const firstListItem = getByTestId("topnav-subject-button-english");
+    expect(document?.activeElement?.textContent).toBe(
+      firstListItem.textContent,
+    );
+  });
+
+  it("should close submenu and return to key stages list when back button is triggered", async () => {
+    const { getByTestId, getByText, queryByText, getByRole } = render(
+      <TeachersTopNavHamburger {...mockTopNavProps} />,
+    );
+    const user = userEvent.setup();
+    const button = getByTestId("top-nav-hamburger-button");
+    await user.click(button);
+
+    await openKeystageSubjects(user, getByRole, getByText, {
+      phaseKeyStagesLabel: "Primary key stages",
+      keystageLabel: "Key stage 1",
+    });
+
+    const backButton = getByRole("button", { name: "Key stage 1" });
     await user.click(backButton);
 
     expect(queryByText("English")).not.toBeInTheDocument();
-    expect(getByText("Primary")).toBeInTheDocument();
+    expect(getByText("Key stage 2")).toBeInTheDocument();
   });
 
   it("should focus the triggering element when returning to main menu from submenu", async () => {
-    const { getByTestId, getByText } = render(
+    const { getByTestId, getByText, getByRole } = render(
       <TeachersTopNavHamburger {...mockTopNavProps} />,
     );
     const user = userEvent.setup();
@@ -114,25 +144,38 @@ describe("TeachersTopNavHamburger", () => {
     const button = getByTestId("top-nav-hamburger-button");
     await user.click(button);
 
-    const keyStageItem = getByText("Key stage 3");
-    await user.click(keyStageItem);
+    const phaseKeyStagesButton = getByRole("button", {
+      name: "Secondary key stages",
+    });
+    await user.click(phaseKeyStagesButton);
 
-    const backButton = getByText("Key stage 3");
-    await user.click(backButton);
+    const keystageItem = getByText("Key stage 3");
+    await user.click(keystageItem);
 
-    expect(document?.activeElement?.textContent).toBe(keyStageItem.textContent);
+    const backToKeyStages = getByRole("button", { name: "Key stage 3" });
+    await user.click(backToKeyStages);
+
+    const backToMainMenu = getByRole("button", {
+      name: "Secondary key stages",
+    });
+    await user.click(backToMainMenu);
+
+    expect(document?.activeElement?.textContent).toBe(
+      phaseKeyStagesButton.textContent,
+    );
   });
 
   it("should reset all states when modal closes", async () => {
-    const { getByTestId, getByText, queryByText, getByLabelText } = render(
-      <TeachersTopNavHamburger {...mockTopNavProps} />,
-    );
+    const { getByTestId, getByText, queryByText, getByLabelText, getByRole } =
+      render(<TeachersTopNavHamburger {...mockTopNavProps} />);
     const user = userEvent.setup();
     const button = getByTestId("top-nav-hamburger-button");
     await user.click(button);
 
-    const keyStageItem = getByText("Key stage 2");
-    await user.click(keyStageItem);
+    await openKeystageSubjects(user, getByRole, getByText, {
+      phaseKeyStagesLabel: "Primary key stages",
+      keystageLabel: "Key stage 2",
+    });
 
     const closeButton = getByLabelText("Close");
     await user.click(closeButton);
@@ -145,23 +188,70 @@ describe("TeachersTopNavHamburger", () => {
     expect(getByText("Primary")).toBeInTheDocument();
   });
 
-  it('should only return "Early years foundation stage" for EYFS title', () => {
-    const EYFS = getEYFSAriaLabel("EYFS");
-    const Ks1 = getEYFSAriaLabel("KS1");
-    expect(EYFS).toBe("Early years foundation stage");
-    expect(Ks1).toBeUndefined();
-  });
-
-  it("should track browse refined when a keystage is selected", async () => {
-    const { getByTestId, getByText } = render(
+  it("should track subject click with keyStage activeFilter when browsing by keystage", async () => {
+    const { getByTestId, getByText, getByRole } = render(
       <TeachersTopNavHamburger {...mockTopNavProps} />,
     );
     const user = userEvent.setup();
     const button = getByTestId("top-nav-hamburger-button");
     await user.click(button);
 
-    const keyStageItem = getByText("Key stage 1");
-    await user.click(keyStageItem);
+    await openKeystageSubjects(user, getByRole, getByText, {
+      phaseKeyStagesLabel: "Primary key stages",
+      keystageLabel: "Key stage 1",
+    });
+
+    const englishButton = getByRole("link", { name: /English/i });
+    await user.click(englishButton);
+
+    expect(mockBrowseRefined).toHaveBeenCalledWith(
+      expect.objectContaining({
+        filterType: "Subject filter",
+        filterValue: "english",
+        activeFilters: { keystage: ["ks1"] },
+      }),
+    );
+  });
+
+  it("should track subject click without keyStage activeFilter when browsing by phase", async () => {
+    const { getByTestId, getByRole } = render(
+      <TeachersTopNavHamburger {...mockTopNavProps} />,
+    );
+    const user = userEvent.setup();
+    const button = getByTestId("top-nav-hamburger-button");
+    await user.click(button);
+
+    const secondarySubjectsButton = getByRole("button", {
+      name: "Secondary subjects",
+    });
+    await user.click(secondarySubjectsButton);
+
+    const computerScienceButton = getByRole("link", {
+      name: /Computer science/i,
+    });
+    await user.click(computerScienceButton);
+
+    expect(mockBrowseRefined).toHaveBeenCalledWith(
+      expect.objectContaining({
+        filterType: "Subject filter",
+        filterValue: "computer-science",
+        activeFilters: {},
+      }),
+    );
+  });
+
+  it("should track browse refined when a keystage is selected", async () => {
+    const { getByTestId, getByText, getByRole } = render(
+      <TeachersTopNavHamburger {...mockTopNavProps} />,
+    );
+    const user = userEvent.setup();
+    const button = getByTestId("top-nav-hamburger-button");
+    await user.click(button);
+
+    await openKeystageSubjects(user, getByRole, getByText, {
+      phaseKeyStagesLabel: "Primary key stages",
+      keystageLabel: "Key stage 1",
+    });
 
     expect(mockBrowseRefined).toHaveBeenCalledWith(
       expect.objectContaining({
@@ -170,6 +260,74 @@ describe("TeachersTopNavHamburger", () => {
       }),
     );
   });
+
+  it("should track browse refined when phase subjects submenu is opened", async () => {
+    const { getByTestId, getByRole } = render(
+      <TeachersTopNavHamburger {...mockTopNavProps} />,
+    );
+    const user = userEvent.setup();
+    const button = getByTestId("top-nav-hamburger-button");
+    await user.click(button);
+
+    const secondarySubjectsButton = getByRole("button", {
+      name: "Secondary subjects",
+    });
+    await user.click(secondarySubjectsButton);
+
+    expect(mockBrowseRefined).toHaveBeenCalledWith(
+      expect.objectContaining({
+        filterType: "Phase filter",
+        filterValue: "secondary",
+      }),
+    );
+  });
+
+  it("should show EYFS with full accessible label in primary key stages list and back button", async () => {
+    const { getByTestId, getByRole, getByText, queryByText } = render(
+      <TeachersTopNavHamburger {...mockTopNavProps} />,
+    );
+    const user = userEvent.setup();
+    const button = getByTestId("top-nav-hamburger-button");
+    await user.click(button);
+
+    const primaryKeyStagesButton = getByRole("button", {
+      name: "Primary key stages",
+    });
+    await user.click(primaryKeyStagesButton);
+
+    expect(getByText("EYFS")).toBeInTheDocument();
+    expect(queryByText("Early years foundation stage")).not.toBeInTheDocument();
+    expect(
+      getByRole("button", { name: "Early years foundation stage" }),
+    ).toBeInTheDocument();
+
+    const eyfsButton = getByRole("button", {
+      name: "Early years foundation stage",
+    });
+    await user.click(eyfsButton);
+
+    expect(getByRole("heading", { name: "EYFS" })).toBeInTheDocument();
+    expect(
+      getByRole("button", { name: "Early years foundation stage" }),
+    ).toBeInTheDocument();
+  });
+
+  it("should display phase subjects when a phase subjects submenu is opened", async () => {
+    const { getByTestId, getByText, getByRole } = render(
+      <TeachersTopNavHamburger {...mockTopNavProps} />,
+    );
+    const user = userEvent.setup();
+    const button = getByTestId("top-nav-hamburger-button");
+    await user.click(button);
+
+    const secondarySubjectsButton = getByRole("button", {
+      name: "Secondary subjects",
+    });
+    await user.click(secondarySubjectsButton);
+
+    expect(getByText("Computer science")).toBeInTheDocument();
+  });
+
   it("should render an aria label for external links in the main nav", async () => {
     const { getByTestId, getByRole } = render(
       <TeachersTopNavHamburger {...mockTopNavProps} />,
@@ -183,6 +341,7 @@ describe("TeachersTopNavHamburger", () => {
     });
     expect(aiExperimentsLink).toHaveTextContent("AI Experiments");
   });
+
   it("renders the submenu correctly", async () => {
     const { getByTestId, getByRole, queryByTestId } = render(
       <TeachersTopNavHamburger {...mockTopNavProps} />,
@@ -193,16 +352,17 @@ describe("TeachersTopNavHamburger", () => {
 
     expect(queryByTestId("submenu-container")).not.toBeInTheDocument();
 
-    const menuButton = getByRole("button", { name: "Key stage 1" });
+    const menuButton = getByRole("button", { name: "Primary key stages" });
     await user.click(menuButton);
 
     expect(getByTestId("submenu-container")).toBeInTheDocument();
 
-    const backButton = getByRole("button", { name: "Key stage 1" });
+    const backButton = getByRole("button", { name: "Primary key stages" });
     await user.click(backButton);
 
     expect(queryByTestId("submenu-container")).not.toBeInTheDocument();
   });
+
   it("should render an aria label for external links in the sub menu", async () => {
     const { getByTestId, getByRole, getByText } = render(
       <TeachersTopNavHamburger {...mockTopNavProps} />,
@@ -237,8 +397,10 @@ describe("TeachersTopNavHamburger", () => {
     const button = getByTestId("top-nav-hamburger-button");
     await user.click(button);
 
-    const keyStage4Item = getByText("Key stage 4");
-    await user.click(keyStage4Item);
+    await openKeystageSubjects(user, getByRole, getByText, {
+      phaseKeyStagesLabel: "Secondary key stages",
+      keystageLabel: "Key stage 4",
+    });
 
     const geographySubject = getByRole("button", { name: "Geography" });
     await user.click(geographySubject);
