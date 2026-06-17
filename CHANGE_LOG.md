@@ -1,3 +1,10 @@
+## [1.1098.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.1098.0...v1.1098.1) (2026-06-17)
+
+
+### Reverts
+
+* Revert "Merge pull request [#4288](https://github.com/oaknational/Oak-Web-Application/issues/4288) from oaknational/feat/LESQ-2025/topnav-phase-menu" ([6360dd8](https://github.com/oaknational/Oak-Web-Application/commit/6360dd801603a582fac2ce0cfd0a1817f7837d9e))
+
 # [1.1098.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1097.6...v1.1098.0) (2026-06-17)
 
 
