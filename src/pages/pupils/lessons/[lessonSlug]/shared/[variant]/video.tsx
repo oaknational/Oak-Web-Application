@@ -185,6 +185,7 @@ const VideoPageContent = ({
       if (!lessonStarted) {
         trackLessonStarted();
       }
+      updateSectionInProgressResult("video", videoResultRef.current);
       completeSection("video");
       const nextSectionResults = getSectionResultsAfterComplete();
       trackVideoCompleted({
