@@ -14,11 +14,7 @@ import {
 } from "@oaknational/oak-components";
 import Link from "next/link";
 
-import {
-  Phase,
-  PhaseTitle,
-  PupilsSubNavData,
-} from "@/node-lib/curriculum-api-2023/queries/topNav/topNav.schema";
+import { PupilsSubNavData } from "@/node-lib/curriculum-api-2023/queries/topNav/topNav.schema";
 import { resolveOakHref } from "@/common-lib/urls";
 
 export function PupilsTopNavHamburger(props: Readonly<PupilsSubNavData>) {
@@ -94,8 +90,8 @@ function MainMenuContent(
 
 function YearSection(
   props: Readonly<{
-    title: PhaseTitle;
-    slug: Phase;
+    title: "Primary" | "Secondary";
+    slug: "primary" | "secondary";
     children: Array<{ title: string; slug: string }>;
     onClick: () => void;
   }>,

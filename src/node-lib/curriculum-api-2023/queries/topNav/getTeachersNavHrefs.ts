@@ -1,4 +1,4 @@
-import { Phase, SubjectsNavItem } from "./topNav.schema";
+import { SubjectsNavItem } from "./topNav.schema";
 
 import { resolveOakHref } from "@/common-lib/urls";
 import { getSubjectPhaseSlug } from "@/components/TeacherComponents/helpers/getSubjectPhaseSlug";
@@ -20,8 +20,8 @@ export function getTeachersSubjectNavHref({
   curriculumPhaseOptionsSubjects,
 }: {
   subject: Pick<SubjectsNavItem, "slug" | "pathwaySlug" | "programmeSlug">;
-  keyStageSlug?: string;
-  phaseSlug: Phase;
+  keyStageSlug: string;
+  phaseSlug: "primary" | "secondary";
   curriculumPhaseOptionsSubjects: CurriculumPhaseOptions;
 }): string {
   if (keyStageSlug === "early-years-foundation-stage") {
@@ -49,7 +49,7 @@ export function getTeachersSubjectNavHref({
 }
 
 /**
- * Builds the units tab href for an exam board or tier panel button.
+ * Builds the units tab href for a KS4 exam board or tier panel button.
  */
 export function getTeachersExamBoardNavHref({
   subjectSlug,
@@ -57,16 +57,12 @@ export function getTeachersExamBoardNavHref({
   subjectParent,
   examboardSlug,
   tierSlug,
-  keystageSlug,
-  includeChildSubjects = true,
 }: {
   subjectSlug: string;
   phaseSlug: string;
   subjectParent?: string | null;
   examboardSlug?: string | null;
   tierSlug?: string | null;
-  keystageSlug?: string | null;
-  includeChildSubjects?: boolean;
 }): string {
   const subjectPhaseSlug = subjectParent
     ? getTeacherSubjectPhaseSlug({
@@ -87,10 +83,9 @@ export function getTeachersExamBoardNavHref({
     subjectPhaseSlug,
     tab: "units",
     query: {
-      keystages: keystageSlug ?? undefined,
+      keystages: "ks4",
       tiers: tierSlug ?? undefined,
-      child_subjects:
-        includeChildSubjects && subjectParent ? subjectSlug : undefined,
+      child_subjects: subjectParent ? subjectSlug : undefined,
     },
   });
 }

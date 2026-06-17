@@ -2,7 +2,6 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 
 import { DropdownFocusManager } from "../DropdownFocusManager/DropdownFocusManager";
-import { createFocusId } from "../DropdownFocusManager/focusTree";
 
 import { resolveOakHref } from "@/common-lib/urls";
 import {
@@ -46,7 +45,7 @@ const SubNav = <T extends SubNavData>({
     title: string,
     external?: boolean,
   ) => {
-    const buttonId = createFocusId(area, slug);
+    const buttonId = focusManager.createId(area, slug);
     return {
       target: external ? "_blank" : undefined,
       iconName: external ? ("external" as const) : undefined,
@@ -63,7 +62,7 @@ const SubNav = <T extends SubNavData>({
   };
 
   const getButtonProps = (slug: string) => {
-    const buttonId = createFocusId(area, slug);
+    const buttonId = focusManager.createId(area, slug);
     return {
       onKeyDown: (event: React.KeyboardEvent) =>
         focusManager.handleKeyDown(event, buttonId),
@@ -83,7 +82,7 @@ const SubNav = <T extends SubNavData>({
 
     if (!activeElementId) return;
     const focusableElements = subNavButtons.map((btn) =>
-      createFocusId(area, btn.slug),
+      focusManager.createId(area, btn.slug),
     );
 
     const currentIndex = focusableElements.indexOf(activeElementId);
@@ -136,7 +135,7 @@ const SubNav = <T extends SubNavData>({
                 {isDropdownMenuItem(btn) ? (
                   <OakSmallPrimaryInvertedButton
                     {...getButtonProps(btn.slug)}
-                    data-testid={createFocusId(area, btn.slug)}
+                    data-testid={focusManager.createId(area, btn.slug)}
                   >
                     {btn.title}
                   </OakSmallPrimaryInvertedButton>
