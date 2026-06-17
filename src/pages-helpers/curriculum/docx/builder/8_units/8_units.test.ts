@@ -10,7 +10,9 @@
 // } from "@/utils/curriculum/fixtures";
 
 describe("8_units", () => {
-  it("placeholder", () => {});
+  it("placeholder", () => {
+    expect(true).toBe(true);
+  });
 
   // it("simple", async () => {
   //   const zip = await generateEmptyDocx();
