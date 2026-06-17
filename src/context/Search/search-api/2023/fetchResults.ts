@@ -6,7 +6,7 @@ import {
   searchResultsSchema,
 } from "../../search.schema";
 import { SearchQuery } from "../../search.types";
-import { getHighlightFromAllFields } from "../../search.helpers";
+import { getHighlightFromAllFields } from "../../../../app/(core)/teachers/search/helpers";
 
 import getBrowserConfig from "@/browser-lib/getBrowserConfig";
 import handleFetchError from "@/utils/handleFetchError";

@@ -3,7 +3,7 @@ import useSWR from "swr";
 
 import { SuggestedFilters } from "../../../../context/Search/search.types";
 
-import { convertSearchIntentToFilters, normalizeTerm } from "./search.helpers";
+import { convertSearchIntentToFilters, normalizeTerm } from "./helpers";
 
 import { searchIntentSchema } from "@/common-lib/schemas/search-intent";
 import errorReporter from "@/common-lib/error-reporter";

@@ -16,12 +16,15 @@ import styled from "styled-components";
 import { useFeatureFlagVariantKey } from "posthog-js/react";
 
 import { SearchProps } from "../../../../components/TeacherViews/Search/search.view.types";
+import { ContentFilterToggle } from "../../../../components/TeacherViews/Search/ContentFilterToggle";
+
 import {
+  getActiveFilters,
+  getSortedSearchFiltersSelected,
   isKeyStageTitleValueType,
   removeHTMLTags,
   trackSearchModified,
-} from "../../../../components/TeacherViews/Search/helpers";
-import { ContentFilterToggle } from "../../../../components/TeacherViews/Search/ContentFilterToggle";
+} from "./helpers";
 
 import { SearchResultsItemProps } from "@/components/TeacherComponents/SearchResultsItem";
 import useAnalytics from "@/context/Analytics/useAnalytics";
@@ -32,10 +35,6 @@ import SearchActiveFilters from "@/components/TeacherComponents/SearchActiveFilt
 import SearchForm from "@/components/SharedComponents/SearchForm";
 import SearchResults from "@/components/TeacherComponents/SearchResults";
 import NoSearchResults from "@/components/TeacherComponents/NoSearchResults";
-import {
-  getActiveFilters,
-  getSortedSearchFiltersSelected,
-} from "@/app/(core)/teachers/search/search.helpers";
 import SignPostToAila from "@/components/TeacherComponents/NoSearchResults/SignPostToAila";
 import MiniDropDown from "@/components/TeacherComponents/MiniDropdown";
 import SearchSuggestedFilters from "@/components/TeacherComponents/SearchSuggestedFilters/SearchSuggestedFilters";

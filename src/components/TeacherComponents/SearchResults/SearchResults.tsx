@@ -17,7 +17,7 @@ import {
 import SearchResultsItem, {
   SearchResultsItemProps,
 } from "@/components/TeacherComponents/SearchResultsItem";
-import { getSearchHitObject } from "@/context/Search/search.helpers";
+import { getSearchHitObject } from "@/app/(core)/teachers/search/helpers/index";
 
 interface SearchResultsProps {
   hits: Array<SearchHit>;
