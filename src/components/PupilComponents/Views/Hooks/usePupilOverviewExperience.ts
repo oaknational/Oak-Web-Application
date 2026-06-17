@@ -20,15 +20,19 @@ export type UsePupilOverviewExperienceParams = Pick<
   PupilLessonPageProps,
   "browseData" | "lessonContent" | "backUrl"
 >;
-
 export const usePupilOverviewExperience = ({
   browseData,
   lessonContent,
   backUrl,
 }: UsePupilOverviewExperienceParams) => {
+  /*********
+   * State *
+   *********/
   const { router, getSectionHref, goToSection } = usePupilExperienceBase();
+
   const { isClassroomAssignment, classroomAssignmentChecked } =
     useAssignmentSearchParams();
+
   const {
     sectionResults,
     lessonReviewSections,
@@ -52,6 +56,7 @@ export const usePupilOverviewExperience = ({
       dismissContentGuidance: state.dismissContentGuidance,
     })),
   );
+
   const {
     trackSectionStarted,
     trackLessonStarted,
@@ -59,31 +64,23 @@ export const usePupilOverviewExperience = ({
     trackContentGuidanceAccepted,
     trackContentGuidanceDeclined,
   } = usePupilLessonAnalytics();
+
   const [isMounted, setIsMounted] = useState(false);
   const [redirectOverlayCleared, setRedirectOverlayCleared] = useState(false);
 
+  /**********************
+   * Content to display *
+   **********************/
   const unitListingHref = getUnitListingHref({
     subjectSlug: browseData.programmeFields.subjectSlug,
     phaseSlug: browseData.programmeFields.phaseSlug,
     yearSlug: browseData.programmeFields.yearSlug,
   });
 
-  const handleProceedToNextSectionClick = () => {
-    const nextSection = pickNextIncompleteSection({
-      lessonReviewSections,
-      sectionResults,
-    });
-    if (!lessonStarted) {
-      trackLessonStarted();
-    }
-    markLessonStarted();
-    trackSectionStarted({ section: nextSection, sectionResults });
-    goToSection(nextSection);
-  };
-
   const starterQuizNumQuestions = getInteractiveQuestions(
     lessonContent.starterQuiz,
   ).length;
+
   const exitQuizNumQuestions = getInteractiveQuestions(
     lessonContent.exitQuiz,
   ).length;
@@ -116,6 +113,22 @@ export const usePupilOverviewExperience = ({
     sectionResults,
   });
 
+  /*****************************
+   * Page interaction handlers *
+   *****************************/
+  const handleProceedToNextSectionClick = () => {
+    const nextSection = pickNextIncompleteSection({
+      lessonReviewSections,
+      sectionResults,
+    });
+    if (!lessonStarted) {
+      trackLessonStarted();
+    }
+    markLessonStarted();
+    trackSectionStarted({ section: nextSection, sectionResults });
+    goToSection(nextSection);
+  };
+
   const handleContentGuidanceAccept = (args: ContentGuidanceTrackingArgs) => {
     dismissContentGuidance();
     trackContentGuidanceAccepted(args);
@@ -123,7 +136,6 @@ export const usePupilOverviewExperience = ({
 
   const handleContentGuidanceDecline = (args: ContentGuidanceTrackingArgs) => {
     trackContentGuidanceDeclined(args);
-
     if (isClassroomAssignment) {
       globalThis.window?.parent?.postMessage(
         {
@@ -145,6 +157,9 @@ export const usePupilOverviewExperience = ({
     }
   };
 
+  /*********
+   * Hooks *
+   *********/
   useEffect(() => {
     setIsMounted(true);
   }, []);

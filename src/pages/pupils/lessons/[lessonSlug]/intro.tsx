@@ -1,6 +1,4 @@
-import { useEffect, useMemo, useRef, useState } from "react";
 import { GetStaticProps, GetStaticPropsContext, PreviewData } from "next";
-import { useRouter } from "next/router";
 import {
   OakBackLink,
   OakFlex,
@@ -9,7 +7,6 @@ import {
   OakSpan,
   OakLessonTopNav,
 } from "@oaknational/oak-components";
-import { useShallow } from "zustand/react/shallow";
 
 import getPageProps from "@/node-lib/getPageProps";
 import { getStaticPaths as getStaticPathsTemplate } from "@/pages-helpers/get-static-paths";
@@ -26,19 +23,7 @@ import {
   PupilLessonIntroReadyCard,
   PupilLessonIntroView,
 } from "@/components/PupilComponents/Views/PupilLessonIntro";
-import {
-  getAdditionalFileAssetIds,
-  getDedupedContentGuidanceLabels,
-  getIntroBottomNavLabel,
-  getIntroWorksheetInitResult,
-  getNewLessonSectionHref,
-  pickNextIncompleteSection,
-  shouldInitIntroWorksheetResult,
-} from "@/components/PupilComponents/Views/ViewHelpers";
-import { usePupilLessonAnalytics } from "@/context/PupilLessonAnalytics/usePupilLessonAnalytics";
-import { usePupilLessonProgress } from "@/context/PupilLessonProgress";
-import { useAdditionalFilesDownload } from "@/components/PupilViews/PupilIntro/useAdditionalFilesDownload";
-import { useWorksheetDownload } from "@/components/PupilViews/PupilIntro/useWorksheetDownload";
+import { usePupilIntroExperience } from "@/components/PupilComponents/Views/Hooks";
 import { useWorksheetInfoState } from "@/components/PupilComponents/pupilUtils/useWorksheetInfoState";
 import { PupilLessonPageProps } from "@/pages-helpers/pupil/lessons-pages/pupilLessonPage.types";
 
@@ -62,157 +47,22 @@ const IntroPageContent = ({
   | "hasAdditionalFiles"
   | "additionalFiles"
 >) => {
-  const router = useRouter();
   const {
-    sectionResults,
-    lessonReviewSections,
-    lessonStarted,
-    isReadOnly,
-    completeSection,
-    updateSectionInProgressResult,
-  } = usePupilLessonProgress(
-    useShallow((state) => ({
-      sectionResults: state.sectionResults,
-      lessonReviewSections: state.lessonReviewSections,
-      lessonStarted: state.lessonStarted,
-      isReadOnly: state.isReadOnly,
-      completeSection: state.completeSection,
-      updateSectionInProgressResult: state.updateSectionInProgressResult,
-    })),
-  );
-  const {
-    trackSectionStarted,
-    trackLessonStarted,
-    trackLessonCompleted,
-    trackIntroCompleted,
-    trackIntroAbandoned,
-    trackWorksheetDownloaded,
-  } = usePupilLessonAnalytics();
-
-  const additionalFilesAssetIds = useMemo(
-    () => getAdditionalFileAssetIds(additionalFiles),
-    [additionalFiles],
-  );
-
-  const { startAdditionalFilesDownload, isAdditionalFilesDownloading } =
-    useAdditionalFilesDownload(browseData.lessonSlug, additionalFilesAssetIds);
-  const { startDownload, isDownloading } = useWorksheetDownload(
-    browseData.lessonSlug,
-    lessonContent.isLegacy ?? false,
-  );
-  const sectionStartedAtRef = useRef(Date.now());
-  const [isCompletingAndRedirecting, setIsCompletingAndRedirecting] =
-    useState(false);
-
-  const currentSearchParams = useMemo(
-    () => new URLSearchParams(router.asPath.split("?")[1]),
-    [router.asPath],
-  );
-  const overviewHref = getNewLessonSectionHref({
-    currentRoute: router.asPath,
-    section: "overview",
-    searchParams: currentSearchParams,
-  });
-
-  const getSectionResultsAfterComplete = () => ({
-    ...sectionResults,
-    intro: {
-      ...sectionResults.intro,
-      isComplete: true,
-    },
-  });
-
-  useEffect(() => {
-    if (
-      shouldInitIntroWorksheetResult({
-        worksheetAvailable: sectionResults.intro?.worksheetAvailable,
-        currentSection: "intro",
-      })
-    ) {
-      updateSectionInProgressResult(
-        "intro",
-        getIntroWorksheetInitResult({
-          worksheetDownloaded: sectionResults.intro?.worksheetDownloaded,
-          hasWorksheet,
-        }),
-      );
-    }
-  }, [
+    overviewHref,
+    removedGuidanceDuplicates,
+    proceedLabel,
+    isAdditionalFilesDownloading,
+    isDownloading,
+    handleProceed,
+    handleBackToOverview,
+    handleAdditionalFilesDownload,
+    handleWorksheetDownload,
+  } = usePupilIntroExperience({
+    browseData,
+    lessonContent,
     hasWorksheet,
-    sectionResults.intro?.worksheetAvailable,
-    sectionResults.intro?.worksheetDownloaded,
-    updateSectionInProgressResult,
-  ]);
-
-  const removedGuidanceDuplicates = getDedupedContentGuidanceLabels(
-    lessonContent.contentGuidance,
-  );
-
-  const handleProceed = () => {
-    if (!sectionResults.intro?.isComplete) {
-      setIsCompletingAndRedirecting(true);
-      if (!lessonStarted) {
-        trackLessonStarted();
-      }
-      trackIntroCompleted({ sectionStartedAt: sectionStartedAtRef.current });
-      completeSection("intro");
-      const nextSectionResults = getSectionResultsAfterComplete();
-      const allComplete = lessonReviewSections.every(
-        (section) => nextSectionResults[section]?.isComplete,
-      );
-      if (allComplete) {
-        trackLessonCompleted();
-      }
-      void router.push(
-        getNewLessonSectionHref({
-          currentRoute: router.asPath,
-          section: allComplete ? "review" : "overview",
-          searchParams: currentSearchParams,
-        }),
-      );
-      return;
-    }
-
-    const nextSection = pickNextIncompleteSection({
-      lessonReviewSections,
-      sectionResults,
-    });
-
-    if (isReadOnly) {
-      trackSectionStarted({ section: "review", sectionResults });
-      void router.push(
-        getNewLessonSectionHref({
-          currentRoute: router.asPath,
-          section: "review",
-          searchParams: currentSearchParams,
-        }),
-      );
-      return;
-    }
-
-    trackSectionStarted({ section: nextSection, sectionResults });
-    void router.push(
-      getNewLessonSectionHref({
-        currentRoute: router.asPath,
-        section: nextSection,
-        searchParams: currentSearchParams,
-      }),
-    );
-  };
-
-  const handleWorksheetDownload = async () => {
-    updateSectionInProgressResult("intro", {
-      worksheetDownloaded: true,
-      worksheetAvailable: true,
-    });
-    if (!lessonStarted) {
-      trackLessonStarted();
-    }
-    const isSuccess = await startDownload();
-    if (isSuccess) {
-      trackWorksheetDownloaded();
-    }
-  };
+    additionalFiles,
+  });
 
   return (
     <PupilLessonIntroView
@@ -225,15 +75,7 @@ const IntroPageContent = ({
               label="Back"
               onClick={(event) => {
                 event.preventDefault();
-                if (!sectionResults.intro?.isComplete) {
-                  if (!lessonStarted) {
-                    trackLessonStarted();
-                  }
-                  trackIntroAbandoned({
-                    sectionStartedAt: sectionStartedAtRef.current,
-                  });
-                }
-                void router.push(overviewHref);
+                handleBackToOverview();
               }}
             />
           }
@@ -261,13 +103,7 @@ const IntroPageContent = ({
                 ))}
                 <OakFlex $justifyContent="flex-end">
                   <OakPrimaryInvertedButton
-                    onClick={() => {
-                      updateSectionInProgressResult("intro", {
-                        filesDownloaded: true,
-                        additionalFilesAvailable: true,
-                      });
-                      void startAdditionalFilesDownload();
-                    }}
+                    onClick={handleAdditionalFilesDownload}
                     isLoading={isAdditionalFilesDownloading}
                     iconName="download"
                     isTrailingIcon
@@ -348,9 +184,7 @@ const IntroPageContent = ({
         <PupilLessonIntroLicence isLegacyLicense={!!lessonContent.isLegacy} />
       }
       bottomNav={{
-        proceedLabel: isCompletingAndRedirecting
-          ? "I'm ready"
-          : getIntroBottomNavLabel(sectionResults.intro?.isComplete),
+        proceedLabel,
         onProceed: handleProceed,
       }}
     />
