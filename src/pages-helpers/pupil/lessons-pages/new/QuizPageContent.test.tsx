@@ -27,6 +27,8 @@ type ProgressState = {
 };
 
 type QuizState = {
+  lessonSlug: string | null;
+  section: "starter-quiz" | "exit-quiz" | null;
   currentQuestionIndex: number;
   questionState: QuestionState[];
   numQuestions: number;
@@ -87,6 +89,9 @@ const baseQuestionState: QuestionState = {
 const mcqQuestion = quizQuestions[0];
 if (!mcqQuestion) throw new Error("mcq fixture missing");
 
+const orderQuestion = quizQuestions.find((q) => q.questionType === "order");
+if (!orderQuestion) throw new Error("order fixture missing");
+
 const buildProgressState = (
   overrides: Partial<ProgressState> = {},
 ): ProgressState => ({
@@ -100,6 +105,8 @@ const buildProgressState = (
 });
 
 const buildQuizState = (overrides: Partial<QuizState> = {}): QuizState => ({
+  lessonSlug: "test-lesson",
+  section: "starter-quiz",
   currentQuestionIndex: 0,
   questionState: [baseQuestionState],
   numQuestions: 1,
@@ -186,7 +193,10 @@ describe("QuizPageContent", () => {
   });
 
   it("redirects to review when the exit quiz is already hydrated complete", () => {
-    quizState = buildQuizState({ isHydratedComplete: true });
+    quizState = buildQuizState({
+      section: "exit-quiz",
+      isHydratedComplete: true,
+    });
     quizHookMock.mockImplementation((selector) => selector(quizState));
 
     renderWithTheme(
@@ -291,6 +301,7 @@ describe("QuizPageContent", () => {
     });
     progressHookMock.mockImplementation((selector) => selector(progressState));
     quizState = buildQuizState({
+      section: "exit-quiz",
       questionState: [{ ...baseQuestionState, mode: "feedback", grade: 1 }],
       currentQuestionIndex: 0,
       numQuestions: 1,
@@ -384,5 +395,42 @@ describe("QuizPageContent", () => {
 
     const { getByText } = renderPage();
     expect(getByText("Well done!")).toBeInTheDocument();
+  });
+
+  it("does not crash when entering the exit quiz before its state initialises", () => {
+    quizState = buildQuizState({
+      section: "starter-quiz",
+      questionState: [
+        {
+          ...baseQuestionState,
+          mode: "feedback",
+          grade: 0,
+          feedback: "incorrect",
+        },
+      ],
+      currentQuestionIndex: 0,
+      numQuestions: 1,
+      numInteractiveQuestions: 1,
+    });
+    quizHookMock.mockImplementation((selector) => selector(quizState));
+    quizGetStateMock.mockReturnValue(quizState);
+
+    const renderStaleExitQuiz = () =>
+      renderWithTheme(
+        <QuizPageContent
+          section="exit-quiz"
+          questionsArray={[orderQuestion]}
+          lessonSlug="test-lesson"
+          phase="primary"
+        />,
+      );
+
+    let rendered: ReturnType<typeof renderStaleExitQuiz> | undefined;
+    expect(() => {
+      rendered = renderStaleExitQuiz();
+    }).not.toThrow();
+    expect(
+      rendered?.container.querySelector("#quiz-form"),
+    ).not.toBeInTheDocument();
   });
 });
