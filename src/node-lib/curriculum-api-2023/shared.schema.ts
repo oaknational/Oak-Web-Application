@@ -5,8 +5,8 @@ import {
   SyntheticUnitvariantsWithLessonIdsByKsCamel,
   syntheticUnitvariantsWithLessonIdsByKsSchema,
 } from "@oaknational/oak-curriculum-schema";
+import zodToCamelCase from "zod-to-camel-case";
 
-import { zodToCamelCaseSchema } from "./helpers/zodToCamelCaseSchema";
 import { mediaClipsRecordCamelSchema } from "./queries/lessonMediaClips/lessonMediaClips.schema";
 
 export const contentGuidanceSchemaCamelCase = z.object({
@@ -180,7 +180,7 @@ export const lessonOverviewQuizData = z
 
 export type LessonOverviewQuizData = z.infer<typeof lessonOverviewQuizData>;
 
-const actionsSchemaCamel = zodToCamelCaseSchema(actionsSchema, {
+const actionsSchemaCamel = zodToCamelCase(actionsSchema.nullish(), {
   bidirectional: true,
 });
 export const baseLessonOverviewSchema = z.object({
@@ -224,7 +224,7 @@ export const baseLessonOverviewSchema = z.object({
   updatedAt: z.string(),
   lessonGuideUrl: z.string().nullable(),
   phonicsOutcome: z.string().nullish(),
-  actions: actionsSchemaCamel.nullish(),
+  actions: actionsSchemaCamel,
   hasMediaClips: z.boolean(),
   additionalFiles: z.array(z.string()).nullable(),
   lessonMediaClips: mediaClipsRecordCamelSchema.nullish(),
@@ -308,7 +308,7 @@ export const baseLessonDownloadsSchema = z.object({
   updatedAt: z.string(),
   geoRestricted: z.boolean().nullable(),
   loginRequired: z.boolean().nullable(),
-  actions: actionsSchemaCamel.nullish(),
+  actions: actionsSchemaCamel,
   lessonReleaseDate: z.string().nullable(),
 });
 
@@ -325,7 +325,7 @@ export const lessonListItemSchema = z.object({
   hasLegacyCopyrightMaterial: z.boolean().nullish(),
   orderInUnit: z.number().nullish(),
   lessonCohort: z.string().nullish(),
-  actions: actionsSchemaCamel.nullish(),
+  actions: actionsSchemaCamel,
   isUnpublished: z.literal(false),
   lessonReleaseDate: z.string().nullable(),
   geoRestricted: z.boolean(),
