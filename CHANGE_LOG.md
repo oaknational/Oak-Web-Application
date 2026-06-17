@@ -1,3 +1,11 @@
+## [1.1097.4](https://github.com/oaknational/Oak-Web-Application/compare/v1.1097.3...v1.1097.4) (2026-06-17)
+
+
+### Bug Fixes
+
+* **PUPIL-1769:** address Copilot review on keydown gating and test ([8ce36a9](https://github.com/oaknational/Oak-Web-Application/commit/8ce36a9e498da7c517bc27e66ac5b80462bcc924))
+* **PUPIL-1769:** prevent shared quiz crash from stale store state ([aaf5e1e](https://github.com/oaknational/Oak-Web-Application/commit/aaf5e1ecfc2d2d4d777cc3b0d0d66abb1085da1e))
+
 ## [1.1097.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.1097.2...v1.1097.3) (2026-06-16)
 
 
