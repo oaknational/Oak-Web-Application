@@ -1,7 +1,11 @@
-import { useRouter } from "next/router";
+import { useRouter, useSearchParams } from "next/navigation";
 import { useCallback, useEffect, useMemo, useState } from "react";
 
-import { getFilterForQuery, isFilterItem } from "./search.helpers";
+import {
+  getFilterForQuery,
+  isFilterItem,
+} from "../../app/(core)/teachers/search/helpers";
+
 import {
   ContentType,
   KeyStage,
@@ -35,24 +39,22 @@ const useSearchQuery = ({
   allExamBoards?: SearchPageData["examBoards"];
   legacy?: { slug: string; title: string }[];
 }): UseSearchQueryReturnType => {
-  const {
-    query: {
-      term = "",
-      keyStages = "",
-      yearGroups = "",
-      subjects = "",
-      contentTypes = "",
-      examBoards = "",
-      curriculum = "",
-    },
-    push,
-  } = useRouter();
+  const router = useRouter();
+  const searchParams = useSearchParams();
 
   const isFilterItemCallback = useCallback(isFilterItem, []);
 
   const getFilterForQueryCallback = useCallback(getFilterForQuery, [
     isFilterItemCallback,
   ]);
+
+  const term = searchParams?.get("term") ?? "";
+  const keyStages = searchParams?.get("keyStages") ?? "";
+  const yearGroups = searchParams?.get("yearGroups") ?? "";
+  const subjects = searchParams?.get("subjects") ?? "";
+  const contentTypes = searchParams?.get("contentTypes") ?? "";
+  const examBoards = searchParams?.get("examBoards") ?? "";
+  const curriculum = searchParams?.get("curriculum") ?? "";
 
   const termString = term?.toString() || "";
   const query = useMemo(() => {
@@ -102,7 +104,7 @@ const useSearchQuery = ({
       page: "search",
       query: newQuery,
     });
-    push(url, undefined, { shallow: true });
+    router.push(url, undefined);
   });
 
   return { query, setQuery };
