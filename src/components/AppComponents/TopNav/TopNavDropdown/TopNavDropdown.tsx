@@ -207,6 +207,11 @@ const TeachersPhaseSection = ({
     isOpen: (s: string) => boolean,
     onClickFn: (s: string) => void,
   ) => {
+    const shouldShowControls =
+      slug !== "keystages" &&
+      (phaseSubjectChildren.some((item) => item.slug === slug) ||
+        keystageChildren.some((item) => item.slug === slug));
+
     const buttonId = createFocusId("teachers", `teachers-${phase}`, slug);
 
     return (
@@ -214,7 +219,7 @@ const TeachersPhaseSection = ({
         key={slug}
         aria-expanded={isOpen(slug)}
         aria-controls={
-          isOpen(slug) && slug !== "keystages"
+          isOpen(slug) && shouldShowControls
             ? `topnav-teachers-${slug}-subjects`
             : undefined
         }

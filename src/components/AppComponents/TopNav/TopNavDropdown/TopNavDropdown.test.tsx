@@ -73,6 +73,25 @@ describe("TopNavDropdown", () => {
         expect(primaryButton).toBeInTheDocument();
       });
 
+      it("does not set aria-controls when no matching subject panel exists", async () => {
+        render(
+          <TopNavDropdown
+            teachers={topNavFixture.teachers!}
+            pupils={topNavFixture.pupils!}
+            activeArea="TEACHERS"
+            selectedMenu="primary"
+            focusManager={focusManager}
+            onClose={onCloseMock}
+          />,
+        );
+
+        const primaryButton = await screen.findByRole("button", {
+          name: "Primary",
+        });
+
+        expect(primaryButton).not.toHaveAttribute("aria-controls");
+      });
+
       it("renders keystage menu", async () => {
         render(
           <TopNavDropdown
