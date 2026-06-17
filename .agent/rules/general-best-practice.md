@@ -1,0 +1,37 @@
+# General Best Practice
+
+## Planning
+
+When planning, do not add dates or durations to tasks.
+
+## Use TDD
+
+Prefer pure functions tested with unit tests. See [testing-strategy](testing-strategy/index.md).
+
+## Use DRY and KISS
+
+- Don't Repeat Yourself
+- Keep It Simple
+
+## Use most SOLID Principles
+
+- Single Responsibility - do one thing and do it well
+- Open/Closed - state must be immutable, side effects must be minimal and preferred non-existant.
+- Interface Segregation - also do one thing and do it well
+- Dependency Inversion - pass dependencies as arguments to make testing easier.
+
+## Never Disable Checks
+
+The constraint is what makes space for awareness.
+
+Never disable linting, type checking, or other checks. Never mark tests as skipped, never ignore Git hooks.
+
+Always fix the fundamental issue, not the symptoms.
+
+## Use TypeScript
+
+See [typescript-rules.md](typescript-rules.md).
+
+## Use Conventional Commits
+
+So we can version to app automatically.
