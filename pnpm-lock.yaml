@@ -303,8 +303,8 @@ importers:
         specifier: ^4.4.3
         version: 4.4.3
       zod-to-camel-case:
-        specifier: ^0.7.0
-        version: 0.7.0(zod@4.4.3)
+        specifier: ^0.5.0
+        version: 0.5.0(zod@4.4.3)
       zustand:
         specifier: ^5.0.9
         version: 5.0.12(@types/react@18.2.79)(react@18.3.1)(use-sync-external-store@1.4.0(react@18.3.1))
@@ -14144,12 +14144,6 @@ packages:
 
   zod-to-camel-case@0.5.0:
     resolution: {integrity: sha512-IaVeFsfly59+8mgu5uh+J/0AeKXboZau3IKfojF5lYE/IpevpJOSX3q/XX2P7jXHmP1Fg/VrSg+7Wv3UbjOgmg==}
-    engines: {node: '>=20.x'}
-    peerDependencies:
-      zod: ^4.3.6
-
-  zod-to-camel-case@0.7.0:
-    resolution: {integrity: sha512-TANUecJhMUZ3DqnbMSfWRKCNci/WQYJSIoq6YgcgyY0zU3NK6QvB5LwmS1/tFfALOERzNR9RT3QT04Be1VpGhQ==}
     engines: {node: '>=20.x'}
     peerDependencies:
       zod: ^4.3.6
@@ -30803,10 +30797,6 @@ snapshots:
       readable-stream: 4.7.0
 
   zod-to-camel-case@0.5.0(zod@4.4.3):
-    dependencies:
-      zod: 4.4.3
-
-  zod-to-camel-case@0.7.0(zod@4.4.3):
     dependencies:
       zod: 4.4.3
 
