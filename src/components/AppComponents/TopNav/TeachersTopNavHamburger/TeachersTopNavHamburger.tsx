@@ -12,11 +12,10 @@ import { SubmenuContent } from "./HamburgerSubMenu";
 import { TeachersSubNavData } from "@/node-lib/curriculum-api-2023/queries/topNav/topNav.schema";
 
 export type SubmenuState =
-  | "KS1"
-  | "KS2"
-  | "EYFS"
-  | "KS3"
-  | "KS4"
+  | "Primary subjects"
+  | "Secondary subjects"
+  | "Primary key stages"
+  | "Secondary key stages"
   | "About us"
   | "Guidance"
   | null;
@@ -29,11 +28,6 @@ export type HamburgerMenuHook = {
   handleOpen: () => void;
   handleCloseHamburger: () => void;
   handleCloseSubmenu: () => void;
-};
-
-export const getEYFSAriaLabel = (title: SubmenuState) => {
-  const isEYFS = title === "EYFS";
-  return isEYFS ? "Early years foundation stage" : undefined;
 };
 
 export const useHamburgerMenuState = (): HamburgerMenuHook => {
