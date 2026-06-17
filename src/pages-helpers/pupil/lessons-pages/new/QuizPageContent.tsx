@@ -111,11 +111,6 @@ export const QuizPageContent = ({
       handleNextQuestion: state.handleNextQuestion,
     })),
   );
-  // The quiz store is a module-level singleton that survives client-side
-  // navigation between the starter and exit quizzes. Until `initialiseQuiz`
-  // re-runs for this page, the store can still describe the previous section,
-  // pairing this section's questions with the wrong question state. Treat the
-  // store as ready only once it matches the section we are rendering.
   const isStoreReadyForSection =
     storeLessonSlug === lessonSlug && storeSection === section;
   const {
@@ -374,10 +369,6 @@ export const QuizPageContent = ({
     );
   };
 
-  // Avoid rendering the quiz with mismatched question/question-state data while
-  // the store is still re-initialising for this section after a client-side
-  // navigation. `initialiseQuiz` runs in an effect on mount, so this guard only
-  // skips the first render before the store is realigned.
   if (!isStoreReadyForSection) {
     return null;
   }

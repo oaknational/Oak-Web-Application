@@ -397,12 +397,6 @@ describe("QuizPageContent", () => {
     expect(getByText("Well done!")).toBeInTheDocument();
   });
 
-  // Regression: the quiz store is a singleton shared across the starter-quiz
-  // and exit-quiz pages. On a client-side navigation into the exit quiz, the
-  // store can still hold the previous section's state for one render before
-  // initialiseQuiz runs. Pairing the new section's questions with the old
-  // question state (e.g. a short-answer's single-string feedback landing on an
-  // order question) used to throw and crash the lesson with the error page.
   it("does not crash when entering the exit quiz before its state initialises", () => {
     quizState = buildQuizState({
       section: "starter-quiz",
