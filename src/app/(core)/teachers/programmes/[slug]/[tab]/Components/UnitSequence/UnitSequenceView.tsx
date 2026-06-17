@@ -50,6 +50,8 @@ export const UnitSequenceView = ({
   const shouldDisplayFilters = getDisplayedFilters(
     curriculumUnitsFormattedData,
     filters,
+    curriculumSelectionSlugs,
+    ks4Options,
   ).some((filter) => filter.shouldDisplayFilter);
 
   return (

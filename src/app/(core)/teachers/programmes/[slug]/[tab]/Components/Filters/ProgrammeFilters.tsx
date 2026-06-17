@@ -1,3 +1,7 @@
+import {
+  ProgrammeFiltersExamBoard,
+  shouldDisplayExamBoardFilter,
+} from "./ProgrammeFiltersExamBoard";
 import { ProgrammeFiltersThreads } from "./ProgrammeFiltersThreads";
 import { ProgrammePageFiltersProps } from "./ProgrammePageFiltersDesktop";
 
@@ -10,16 +14,29 @@ import {
 } from "@/components/CurriculumComponents/CurricVisualiserFilters";
 import { shouldDisplayFilter } from "@/utils/curriculum/filteringApp";
 import { CurriculumFilters } from "@/utils/curriculum/types";
+import type { Ks4Option } from "@/node-lib/curriculum-api-2023/queries/curriculumPhaseOptions/curriculumPhaseOptions.schema";
+import { CurriculumSelectionSlugs } from "@/utils/curriculum/slugs";
 
 export const getDisplayedFilters = (
   data: CurriculumUnitsFormattedData,
   filters: CurriculumFilters,
+  slugs: CurriculumSelectionSlugs,
+  ks4Options: Ks4Option[],
 ) => {
   return [
     {
       key: "years",
       component: CurricFiltersYears,
       shouldDisplayFilter: shouldDisplayFilter(data, filters, "years"),
+    },
+    {
+      key: "examBoard",
+      component: ProgrammeFiltersExamBoard,
+      shouldDisplayFilter: shouldDisplayExamBoardFilter(
+        slugs,
+        filters,
+        ks4Options,
+      ),
     },
     {
       key: "subjectCategories",
@@ -57,7 +74,7 @@ export function ProgrammeFilters({
 }: Readonly<ProgrammePageFiltersProps>) {
   return (
     <>
-      {getDisplayedFilters(data, filters).map(
+      {getDisplayedFilters(data, filters, slugs, ks4Options).map(
         ({ key, component: FilterComponent, shouldDisplayFilter }) => {
           if (!shouldDisplayFilter) {
             return null;
