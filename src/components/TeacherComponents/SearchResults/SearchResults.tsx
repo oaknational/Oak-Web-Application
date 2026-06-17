@@ -8,7 +8,7 @@ import {
 
 import SignPostToAila from "../NoSearchResults/SignPostToAila";
 
-import usePagination from "@/components/SharedComponents/Pagination/usePagination";
+import usePagination from "@/app/(core)/teachers/search/pagination/usePagination";
 import {
   KeyStage,
   SearchHit,

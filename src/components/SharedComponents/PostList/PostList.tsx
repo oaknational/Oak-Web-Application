@@ -16,7 +16,7 @@ import getBrowserConfig from "@/browser-lib/getBrowserConfig";
 import PostListItem, {
   PostListItemProps,
 } from "@/components/SharedComponents/PostListItem";
-import { PaginationProps } from "@/components/SharedComponents/Pagination/usePagination";
+import { PaginationProps } from "@/app/(core)/teachers/search/pagination/usePagination";
 
 const StyledOakFlex = styled(OakFlex)`
   @media (min-width: ${getBreakpoint("small")}px) {

@@ -1,7 +1,7 @@
 import {
   PaginationProps,
   UsePaginationProps,
-} from "@/components/SharedComponents/Pagination/usePagination";
+} from "@/app/(core)/teachers/search/pagination/usePagination";
 
 export const mockPaginationProps: PaginationProps & UsePaginationProps = {
   totalPages: 25,

@@ -1,15 +1,15 @@
 "use client";
 
-import Search from "@/components/TeacherViews/Search/Search.view";
+import Search from "@/app/(core)/teachers/search/Search.view";
 import useSearch from "@/context/Search/useSearch";
 import useSearchFilters from "@/context/Search/useSearchFilters";
 import { SearchPageData } from "@/node-lib/curriculum-api-2023";
 
-type SearchViewProps = {
+export const SearchView = ({
+  curriculumData,
+}: {
   curriculumData: SearchPageData;
-};
-
-export const SearchView = ({ curriculumData }: SearchViewProps) => {
+}) => {
   const {
     subjects: allSubjects,
     keyStages: allKeyStages,

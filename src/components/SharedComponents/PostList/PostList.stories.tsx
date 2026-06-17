@@ -1,7 +1,7 @@
 import { OakThemeProvider, oakDefaultTheme } from "@oaknational/oak-components";
 import { StoryFn, Meta } from "@storybook/nextjs";
 
-import { PaginationProps } from "../Pagination/usePagination";
+import { PaginationProps } from "../../../app/(core)/teachers/search/pagination/usePagination";
 
 import { PostListProps } from "./PostList";
 
