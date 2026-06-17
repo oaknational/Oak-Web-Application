@@ -2,12 +2,14 @@ import {
   CurriculumPhaseOptions,
   CurriculumUnit,
   CurriculumUnitsTabData,
+  type ExamboardFilterDimension,
   type CurriculumApi,
 } from "@/node-lib/curriculum-api-2023";
 import { parseSubjectPhaseSlug } from "@/utils/curriculum/slugs";
 import { filterValidCurriculumPhaseOptions } from "@/pages-helpers/curriculum/docx/tab-helpers";
 import { CurriculumFilters } from "@/utils/curriculum/types";
 import { scopeYearsToKeystageFilter } from "@/utils/curriculum/filtersUrl";
+import { isExamboardSlug } from "@/pages-helpers/pupil/options-pages/options-pages-helpers";
 
 // Helper function to sort units consistently
 const sortUnits = (units: CurriculumUnit[]): CurriculumUnit[] => {
@@ -69,19 +71,54 @@ export async function getProgrammeData(
   // TD: after the integrated journey launches we should make this the default in the query
   const excludeCoreUnits = subjectPhaseKeystageSlugs.ks4OptionSlug !== "core";
 
-  const [programmeUnitsData, curriculumUnitsData] = await Promise.all([
-    curriculumApi2023.curriculumOverview({
+  const fetchExamboardFilterDimensions = async (): Promise<
+    Record<string, ExamboardFilterDimension>
+  > => {
+    if (subjectPhaseKeystageSlugs.phaseSlug !== "secondary") {
+      return {};
+    }
+
+    const originalSubjects = await curriculumApi2023.curriculumPhaseOptions({
+      includeNonCurriculum: true,
+    });
+    let subjects = filterValidCurriculumPhaseOptions(originalSubjects);
+    if (excludeCoreUnits) {
+      subjects = excludeCoreFromSubjects(subjects);
+    }
+
+    const ks4Options =
+      subjects.find(
+        (subject) => subject.slug === subjectPhaseKeystageSlugs.subjectSlug,
+      )?.ks4_options ?? [];
+    const examBoardSlugs = getExamBoardSlugsFromKs4Options(ks4Options);
+
+    if (examBoardSlugs.length === 0) {
+      return {};
+    }
+
+    return curriculumApi2023.curriculumSequenceFilterDimensions({
       subjectSlug: subjectPhaseKeystageSlugs.subjectSlug,
       phaseSlug: subjectPhaseKeystageSlugs.phaseSlug,
+      examBoardSlugs,
       includeNonCurriculum: true,
-    }),
-    curriculumApi2023.curriculumSequence({
-      ...subjectPhaseKeystageSlugs,
-      includeNonCurriculum: true,
-      excludeUnitsWithNoPublishedLessons: true,
-      excludeCoreUnits,
-    }),
-  ]);
+    });
+  };
+
+  const [programmeUnitsData, curriculumUnitsData, examboardFilterDimensions] =
+    await Promise.all([
+      curriculumApi2023.curriculumOverview({
+        subjectSlug: subjectPhaseKeystageSlugs.subjectSlug,
+        phaseSlug: subjectPhaseKeystageSlugs.phaseSlug,
+        includeNonCurriculum: true,
+      }),
+      curriculumApi2023.curriculumSequence({
+        ...subjectPhaseKeystageSlugs,
+        includeNonCurriculum: true,
+        excludeUnitsWithNoPublishedLessons: true,
+        excludeCoreUnits,
+      }),
+      fetchExamboardFilterDimensions(),
+    ]);
 
   // Sort units to have examboard versions first, then by unit order
   curriculumUnitsData.units = sortUnits(curriculumUnitsData.units);
@@ -89,7 +126,16 @@ export async function getProgrammeData(
   return {
     programmeUnitsData,
     curriculumUnitsData,
+    examboardFilterDimensions,
   };
+}
+
+export function getExamBoardSlugsFromKs4Options(
+  ks4Options: { slug: string }[],
+): string[] {
+  return ks4Options
+    .map((option) => option.slug)
+    .filter((slug) => isExamboardSlug(slug));
 }
 
 export const getSubjectOverride = (

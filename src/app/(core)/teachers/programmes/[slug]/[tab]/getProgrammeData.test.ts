@@ -52,6 +52,7 @@ describe("getProgrammeData", () => {
       curriculumPhaseOptions: jest
         .fn()
         .mockResolvedValue(curriculumPhaseOptionsFixture()),
+      curriculumSequenceFilterDimensions: jest.fn().mockResolvedValue({}),
       ...overrides,
     } as CurriculumApi;
   };
@@ -231,6 +232,54 @@ describe("getProgrammeData", () => {
       expect(subjectResults?.subjectPhaseKeystageSlugs.phaseSlug).toBe(
         "secondary",
       );
+    });
+
+    it("should not fetch examboard filter dimensions for primary phase", async () => {
+      const mockApi = createMockCurriculumApi();
+      const result = await getProgrammeData(mockApi, "maths-primary");
+
+      expect(result?.examboardFilterDimensions).toEqual({});
+      expect(mockApi.curriculumSequenceFilterDimensions).not.toHaveBeenCalled();
+      expect(mockApi.curriculumPhaseOptions).not.toHaveBeenCalled();
+    });
+
+    it("should fetch examboard filter dimensions in parallel for secondary phase", async () => {
+      const examboardFilterDimensions = {
+        aqa: {
+          tierSlugs: ["foundation"],
+          pathwaySlugs: [],
+          childSubjectSlugs: [],
+        },
+      };
+      const mockApi = createMockCurriculumApi({
+        curriculumPhaseOptions: jest.fn().mockResolvedValue([
+          {
+            title: "English",
+            slug: "english",
+            phases: [{ title: "Secondary", slug: "secondary" }],
+            ks4_options: [
+              { title: "AQA", slug: "aqa" },
+              { title: "Edexcel", slug: "edexcel" },
+            ],
+            keystages: [],
+          },
+        ]),
+        curriculumSequenceFilterDimensions: jest
+          .fn()
+          .mockResolvedValue(examboardFilterDimensions),
+      });
+
+      const result = await getProgrammeData(mockApi, "english-secondary-aqa");
+
+      expect(result?.examboardFilterDimensions).toEqual(
+        examboardFilterDimensions,
+      );
+      expect(mockApi.curriculumSequenceFilterDimensions).toHaveBeenCalledWith({
+        subjectSlug: "english",
+        phaseSlug: "secondary",
+        examBoardSlugs: ["aqa", "edexcel"],
+        includeNonCurriculum: true,
+      });
     });
 
     it("should handle ks4 option slug", async () => {

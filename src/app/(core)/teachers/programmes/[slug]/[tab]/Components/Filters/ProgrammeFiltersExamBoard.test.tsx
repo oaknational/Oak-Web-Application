@@ -2,6 +2,7 @@ import { act } from "@testing-library/react";
 
 import {
   ProgrammeFiltersExamBoard,
+  getPreservedQuery,
   shouldDisplayExamBoardFilter,
 } from "./ProgrammeFiltersExamBoard";
 
@@ -38,6 +39,24 @@ const defaultFilters = createFilter({
   keystages: ["ks4"],
   years: ["10"],
 });
+
+const examboardFilterDimensions = {
+  aqa: {
+    tierSlugs: ["foundation"],
+    pathwaySlugs: [],
+    childSubjectSlugs: ["biology"],
+  },
+  edexcel: {
+    tierSlugs: ["foundation", "higher"],
+    pathwaySlugs: ["gcse"],
+    childSubjectSlugs: ["biology", "chemistry"],
+  },
+  ocr: {
+    tierSlugs: ["foundation"],
+    pathwaySlugs: [],
+    childSubjectSlugs: [],
+  },
+};
 
 describe("shouldDisplayExamBoardFilter", () => {
   it("returns true for secondary KS4 context with exam board options", () => {
@@ -156,6 +175,71 @@ describe("shouldDisplayExamBoardFilter", () => {
   });
 });
 
+describe("getPreservedQuery", () => {
+  it("preserves compatible tiers, pathways, and child subjects for the destination board", () => {
+    expect(
+      getPreservedQuery(
+        createFilter({
+          keystages: ["ks4"],
+          years: ["10"],
+          tiers: ["foundation"],
+          pathways: ["gcse"],
+          childSubjects: ["biology", "chemistry"],
+        }),
+        "edexcel",
+        examboardFilterDimensions,
+      ),
+    ).toEqual({
+      keystages: "ks4",
+      years: "10",
+      tiers: "foundation",
+      pathways: "gcse",
+      child_subjects: "biology,chemistry",
+    });
+  });
+
+  it("drops filter values that are incompatible with the destination board", () => {
+    expect(
+      getPreservedQuery(
+        createFilter({
+          keystages: ["ks4"],
+          years: ["10"],
+          tiers: ["higher"],
+          childSubjects: ["chemistry"],
+        }),
+        "aqa",
+        examboardFilterDimensions,
+      ),
+    ).toEqual({
+      keystages: "ks4",
+      years: "10",
+      tiers: undefined,
+      pathways: undefined,
+      child_subjects: undefined,
+    });
+  });
+
+  it("drops dimensional filters when examboard filter dimensions are unavailable", () => {
+    expect(
+      getPreservedQuery(
+        createFilter({
+          keystages: ["ks4"],
+          years: ["10"],
+          tiers: ["higher"],
+          childSubjects: ["chemistry"],
+        }),
+        "edexcel",
+      ),
+    ).toEqual({
+      keystages: "ks4",
+      years: "10",
+      tiers: undefined,
+      pathways: undefined,
+      child_subjects: undefined,
+    });
+  });
+});
+
 describe("ProgrammeFiltersExamBoard", () => {
   beforeEach(() => {
     pushMock.mockClear();
@@ -167,6 +251,7 @@ describe("ProgrammeFiltersExamBoard", () => {
         filters={defaultFilters}
         slugs={defaultSlugs}
         ks4Options={examBoardOptions}
+        examboardFilterDimensions={examboardFilterDimensions}
       />,
     );
 
@@ -182,6 +267,7 @@ describe("ProgrammeFiltersExamBoard", () => {
         filters={defaultFilters}
         slugs={defaultSlugs}
         ks4Options={examBoardOptions}
+        examboardFilterDimensions={examboardFilterDimensions}
       />,
     );
 
@@ -208,6 +294,7 @@ describe("ProgrammeFiltersExamBoard", () => {
         filters={createFilter({ keystages: ["ks4"], years: ["7", "10"] })}
         slugs={defaultSlugs}
         ks4Options={examBoardOptions}
+        examboardFilterDimensions={examboardFilterDimensions}
       />,
     );
 
@@ -233,6 +320,7 @@ describe("ProgrammeFiltersExamBoard", () => {
         filters={createFilter({ keystages: ["ks3"] })}
         slugs={{ ...defaultSlugs, ks4OptionSlug: null }}
         ks4Options={examBoardOptions}
+        examboardFilterDimensions={examboardFilterDimensions}
       />,
     );
 
@@ -245,6 +333,7 @@ describe("ProgrammeFiltersExamBoard", () => {
         filters={createFilter({ keystages: ["ks3"] })}
         slugs={defaultSlugs}
         ks4Options={examBoardOptions}
+        examboardFilterDimensions={examboardFilterDimensions}
       />,
     );
 
@@ -257,6 +346,7 @@ describe("ProgrammeFiltersExamBoard", () => {
         filters={createFilter({ years: ["7"] })}
         slugs={defaultSlugs}
         ks4Options={examBoardOptions}
+        examboardFilterDimensions={examboardFilterDimensions}
       />,
     );
 

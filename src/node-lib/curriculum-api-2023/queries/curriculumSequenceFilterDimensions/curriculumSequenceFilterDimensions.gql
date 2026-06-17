@@ -1,0 +1,11 @@
+query curriculumSequenceFilterDimensions(
+  $where: published_mv_curriculum_sequence_b_13_0_21_bool_exp
+) {
+  units: published_mv_curriculum_sequence_b_13_0_21(where: $where) {
+    examboard_slug
+    tier_slug
+    pathway_slug
+    subject_slug
+    subject_parent_slug
+  }
+}

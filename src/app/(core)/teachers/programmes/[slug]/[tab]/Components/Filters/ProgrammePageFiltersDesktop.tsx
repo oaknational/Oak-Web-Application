@@ -8,6 +8,7 @@ import { CurriculumUnitsFormattedData } from "@/pages-helpers/curriculum/docx/ta
 import { CurriculumSelectionSlugs } from "@/utils/curriculum/slugs";
 import SkipLink from "@/components/CurriculumComponents/OakComponentsKitchen/SkipLink";
 import type { Ks4Option } from "@/node-lib/curriculum-api-2023/queries/curriculumPhaseOptions/curriculumPhaseOptions.schema";
+import type { ExamboardFilterDimension } from "@/node-lib/curriculum-api-2023";
 
 // TD: [integrated journey] this component duplicated CurricVisualiserFiltersDesktop
 // once the integrated journey is launched we can remove that component
@@ -18,6 +19,7 @@ export type ProgrammePageFiltersProps = {
   data: CurriculumUnitsFormattedData;
   slugs: CurriculumSelectionSlugs;
   ks4Options: Ks4Option[];
+  examboardFilterDimensions: Record<string, ExamboardFilterDimension>;
 };
 
 export default function ProgrammePageFiltersDesktop({
@@ -26,6 +28,7 @@ export default function ProgrammePageFiltersDesktop({
   data,
   slugs,
   ks4Options,
+  examboardFilterDimensions,
 }: Readonly<ProgrammePageFiltersProps>) {
   return (
     <OakFlex
@@ -41,6 +44,7 @@ export default function ProgrammePageFiltersDesktop({
         data={data}
         slugs={slugs}
         ks4Options={ks4Options}
+        examboardFilterDimensions={examboardFilterDimensions}
       />
     </OakFlex>
   );

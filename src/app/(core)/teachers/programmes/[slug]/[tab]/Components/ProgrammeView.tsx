@@ -46,6 +46,7 @@ import useAnalyticsPageProps from "@/hooks/useAnalyticsPageProps";
 import { ProgrammePageHeaderCMS } from "@/common-lib/cms-types/programmePage";
 import { CurriculumOverviewSanityData } from "@/common-lib/cms-types";
 import type { Ks4Option } from "@/node-lib/curriculum-api-2023/queries/curriculumPhaseOptions/curriculumPhaseOptions.schema";
+import type { ExamboardFilterDimension } from "@/node-lib/curriculum-api-2023";
 import { resolveOakHref } from "@/common-lib/urls";
 import { CurriculumOverviewMVData } from "@/node-lib/curriculum-api-2023";
 import { validateSearchParams } from "@/utils/validateProgrammePageSearchParams";
@@ -62,6 +63,7 @@ type ProgrammePageProps = {
   mvRefreshTime: number;
   tabSlug: TabSlug;
   ks4Options: Ks4Option[];
+  examboardFilterDimensions: Record<string, ExamboardFilterDimension>;
   trackingData: CurriculumUnitsTrackingData;
   initialFilter?: CurriculumFilters;
 };
@@ -78,6 +80,7 @@ export const ProgrammeView = ({
   tabSlug,
   subjectPhaseSlug,
   ks4Options,
+  examboardFilterDimensions,
   trackingData,
   initialFilter,
 }: ProgrammePageProps) => {
@@ -200,6 +203,7 @@ export const ProgrammeView = ({
         filters={filters}
         setFilters={onChangeFilters}
         ks4Options={ks4Options}
+        examboardFilterDimensions={examboardFilterDimensions}
       />
     </>
   );
@@ -217,6 +221,7 @@ const TabContent = ({
   filters,
   setFilters,
   ks4Options,
+  examboardFilterDimensions,
 }: { tabSlug: TabSlug } & UnitSequenceViewProps &
   Omit<ProgrammeOverviewProps, "curriculumCMSInfo"> & {
     curriculumCMSInfo: CurriculumOverviewSanityData | null;
@@ -229,6 +234,7 @@ const TabContent = ({
         filters={filters}
         setFilters={setFilters}
         ks4Options={ks4Options}
+        examboardFilterDimensions={examboardFilterDimensions}
       />
     );
   } else if (tabSlug === "curriculum-explainer") {

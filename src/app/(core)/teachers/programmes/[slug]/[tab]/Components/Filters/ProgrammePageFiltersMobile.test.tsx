@@ -83,6 +83,7 @@ const defaultProps: ProgrammePageFiltersProps = {
     ks4OptionSlug: null,
   },
   ks4Options: [],
+  examboardFilterDimensions: {},
   onChangeFilters: jest.fn(),
 };
 

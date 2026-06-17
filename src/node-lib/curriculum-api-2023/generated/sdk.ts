@@ -21516,6 +21516,13 @@ export type CurriculumSequenceQueryVariables = Exact<{
 
 export type CurriculumSequenceQuery = { __typename?: 'query_root', units: Array<{ __typename?: 'published_mv_curriculum_sequence_b_13_0_21', connection_prior_unit_description?: string | null, connection_future_unit_description?: string | null, connection_future_unit_title?: string | null, connection_prior_unit_title?: string | null, examboard?: string | null, examboard_slug?: string | null, keystage_slug?: string | null, lessons?: any | null, order?: number | null, planned_number_of_lessons?: number | null, phase?: string | null, phase_slug?: string | null, slug?: string | null, subject?: string | null, subject_slug?: string | null, subject_parent?: string | null, subject_parent_slug?: string | null, subjectcategories?: any | null, tier?: string | null, tier_slug?: string | null, title?: string | null, why_this_why_now?: string | null, description?: string | null, cycle?: string | null, features?: any | null, parent_programme_features?: any | null, national_curriculum_content?: any | null, prior_knowledge_requirements?: any | null, actions?: any | null, unit_options?: any | null, threads?: any | null, year?: string | null, pathway?: string | null, pathway_slug?: string | null, state?: string | null }> };
 
+export type CurriculumSequenceFilterDimensionsQueryVariables = Exact<{
+  where?: InputMaybe<Published_Mv_Curriculum_Sequence_B_13_0_21_Bool_Exp>;
+}>;
+
+
+export type CurriculumSequenceFilterDimensionsQuery = { __typename?: 'query_root', units: Array<{ __typename?: 'published_mv_curriculum_sequence_b_13_0_21', examboard_slug?: string | null, tier_slug?: string | null, pathway_slug?: string | null, subject_slug?: string | null, subject_parent_slug?: string | null }> };
+
 export type EyfsPageQueryVariables = Exact<{
   subjectSlug: Scalars['String']['input'];
 }>;
@@ -21853,6 +21860,17 @@ export const CurriculumSequenceDocument = gql`
     pathway
     pathway_slug
     state
+  }
+}
+    `;
+export const CurriculumSequenceFilterDimensionsDocument = gql`
+    query curriculumSequenceFilterDimensions($where: published_mv_curriculum_sequence_b_13_0_21_bool_exp) {
+  units: published_mv_curriculum_sequence_b_13_0_21(where: $where) {
+    examboard_slug
+    tier_slug
+    pathway_slug
+    subject_slug
+    subject_parent_slug
   }
 }
     `;
@@ -22736,6 +22754,9 @@ export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = 
     },
     curriculumSequence(variables?: CurriculumSequenceQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<CurriculumSequenceQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<CurriculumSequenceQuery>({ document: CurriculumSequenceDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'curriculumSequence', 'query', variables);
+    },
+    curriculumSequenceFilterDimensions(variables?: CurriculumSequenceFilterDimensionsQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<CurriculumSequenceFilterDimensionsQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<CurriculumSequenceFilterDimensionsQuery>({ document: CurriculumSequenceFilterDimensionsDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'curriculumSequenceFilterDimensions', 'query', variables);
     },
     eyfsPage(variables: EyfsPageQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<EyfsPageQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<EyfsPageQuery>({ document: EyfsPageDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'eyfsPage', 'query', variables);

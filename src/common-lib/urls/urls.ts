@@ -481,6 +481,7 @@ type ProgrammePageProps = {
     child_subjects?: string;
     tiers?: string;
     years?: string;
+    pathways?: string;
   };
 };
 

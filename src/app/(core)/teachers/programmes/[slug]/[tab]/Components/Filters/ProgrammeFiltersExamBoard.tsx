@@ -11,6 +11,7 @@ import { useId } from "react";
 
 import { getSubjectPhaseSlug } from "@/components/TeacherComponents/helpers/getSubjectPhaseSlug";
 import { resolveOakHref } from "@/common-lib/urls";
+import type { ExamboardFilterDimension } from "@/node-lib/curriculum-api-2023";
 import type { Ks4Option } from "@/node-lib/curriculum-api-2023/queries/curriculumPhaseOptions/curriculumPhaseOptions.schema";
 import { isExamboardSlug } from "@/pages-helpers/pupil/options-pages/options-pages-helpers";
 import { scopeYearsToKeystageFilter } from "@/utils/curriculum/filtersUrl";
@@ -22,6 +23,7 @@ export type ProgrammeFiltersExamBoardProps = {
   filters: CurriculumFilters;
   slugs: CurriculumSelectionSlugs;
   ks4Options: Ks4Option[];
+  examboardFilterDimensions: Record<string, ExamboardFilterDimension>;
   // accepted but unused - required to slot into the shared filter render loop
   onChangeFilters?: unknown;
   data?: unknown;
@@ -54,7 +56,31 @@ function getExamBoardOptions(ks4Options: Ks4Option[]) {
   return ks4Options.filter((option) => isExamboardSlug(option.slug));
 }
 
-function getPreservedQuery(filters: CurriculumFilters) {
+function filterCompatibleFilterValues(
+  values: string[],
+  compatibleSlugs: string[] | undefined,
+): string[] {
+  if (values.length === 0) {
+    return [];
+  }
+
+  // When compatible slugs are unknown, drop rather than guess.
+  if (!compatibleSlugs) {
+    return [];
+  }
+
+  return values.filter((value) => compatibleSlugs.includes(value));
+}
+
+function toQueryParam(values: string[]): string | undefined {
+  return values.length > 0 ? values.join(",") : undefined;
+}
+
+export function getPreservedQuery(
+  filters: CurriculumFilters,
+  destinationSlug: string,
+  examboardFilterDimensions?: Record<string, ExamboardFilterDimension>,
+) {
   const keystages = filters.keystages[0];
   const years =
     filters.years.length === 1 &&
@@ -62,9 +88,29 @@ function getPreservedQuery(filters: CurriculumFilters) {
       ? filters.years[0]
       : undefined;
 
+  const destinationDims = examboardFilterDimensions?.[destinationSlug];
+  const tiers = toQueryParam(
+    filterCompatibleFilterValues(filters.tiers, destinationDims?.tierSlugs),
+  );
+  const pathways = toQueryParam(
+    filterCompatibleFilterValues(
+      filters.pathways,
+      destinationDims?.pathwaySlugs,
+    ),
+  );
+  const childSubjects = toQueryParam(
+    filterCompatibleFilterValues(
+      filters.childSubjects,
+      destinationDims?.childSubjectSlugs,
+    ),
+  );
+
   return {
     keystages: keystages ?? undefined,
     years,
+    tiers,
+    pathways,
+    child_subjects: childSubjects,
   };
 }
 
@@ -72,6 +118,7 @@ export function ProgrammeFiltersExamBoard({
   filters,
   slugs,
   ks4Options,
+  examboardFilterDimensions,
 }: Readonly<ProgrammeFiltersExamBoardProps>) {
   const id = useId();
   const router = useRouter();
@@ -93,7 +140,11 @@ export function ProgrammeFiltersExamBoard({
         page: "teacher-programme",
         subjectPhaseSlug,
         tab: "units",
-        query: getPreservedQuery(filters),
+        query: getPreservedQuery(
+          filters,
+          selectedSlug,
+          examboardFilterDimensions,
+        ),
       }),
     );
   }

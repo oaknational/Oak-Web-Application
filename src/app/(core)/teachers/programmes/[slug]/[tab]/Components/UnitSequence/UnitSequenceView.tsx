@@ -20,6 +20,7 @@ import {
 import { CurriculumFilters } from "@/utils/curriculum/types";
 import { CurriculumSelectionSlugs } from "@/utils/curriculum/slugs";
 import type { Ks4Option } from "@/node-lib/curriculum-api-2023/queries/curriculumPhaseOptions/curriculumPhaseOptions.schema";
+import type { ExamboardFilterDimension } from "@/node-lib/curriculum-api-2023";
 
 export type UnitSequenceViewProps = {
   filters: CurriculumFilters;
@@ -27,6 +28,7 @@ export type UnitSequenceViewProps = {
   curriculumSelectionSlugs: CurriculumSelectionSlugs;
   curriculumUnitsFormattedData: CurriculumUnitsFormattedData;
   ks4Options: Ks4Option[];
+  examboardFilterDimensions: Record<string, ExamboardFilterDimension>;
 };
 
 export const UnitSequenceView = ({
@@ -35,6 +37,7 @@ export const UnitSequenceView = ({
   curriculumSelectionSlugs,
   curriculumUnitsFormattedData,
   ks4Options,
+  examboardFilterDimensions,
 }: UnitSequenceViewProps) => {
   const { yearData, threadOptions } = curriculumUnitsFormattedData;
   const { ks4OptionSlug } = curriculumSelectionSlugs;
@@ -85,6 +88,7 @@ export const UnitSequenceView = ({
               data={curriculumUnitsFormattedData}
               slugs={curriculumSelectionSlugs}
               ks4Options={ks4Options}
+              examboardFilterDimensions={examboardFilterDimensions}
             />
           )}
         </OakBox>
@@ -100,6 +104,7 @@ export const UnitSequenceView = ({
                 data={curriculumUnitsFormattedData}
                 slugs={curriculumSelectionSlugs}
                 ks4Options={ks4Options}
+                examboardFilterDimensions={examboardFilterDimensions}
               />
             )}
           </OakGridArea>

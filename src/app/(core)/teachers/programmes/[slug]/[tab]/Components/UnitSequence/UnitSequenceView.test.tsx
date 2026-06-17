@@ -26,6 +26,7 @@ const defaultProps: UnitSequenceViewProps = {
   },
   curriculumUnitsFormattedData: mockProgrammeFiltersData,
   ks4Options: [],
+  examboardFilterDimensions: {},
 };
 
 const noFiltersData: UnitSequenceViewProps["curriculumUnitsFormattedData"] = {

@@ -71,6 +71,7 @@ export function ProgrammeFilters({
   data,
   slugs,
   ks4Options,
+  examboardFilterDimensions,
 }: Readonly<ProgrammePageFiltersProps>) {
   return (
     <>
@@ -87,6 +88,7 @@ export function ProgrammeFilters({
               data={data}
               slugs={slugs}
               ks4Options={ks4Options}
+              examboardFilterDimensions={examboardFilterDimensions}
               context="integrated-journey"
             />
           );
