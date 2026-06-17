@@ -1,6 +1,5 @@
 import { z } from "zod";
 import { actionsSchema } from "@oaknational/oak-curriculum-schema";
-import zodToCamelCase from "zod-to-camel-case";
 
 import {
   legacyCopyrightContentSchema,
@@ -8,6 +7,7 @@ import {
   lessonAdditionalFilesListSchema,
   lessonDownloadsListSchema,
 } from "../../shared.schema";
+import { zodToCamelCaseSchema } from "../../helpers/zodToCamelCaseSchema";
 
 import { TopNavProps } from "@/components/AppComponents/TopNav/TopNav";
 
@@ -44,7 +44,7 @@ export const specialistLessonDownloadQueryResponseSchema = z.array(
   specialistLessonDownloadRawSchema,
 );
 
-const actionsSchemaCamel = zodToCamelCase(actionsSchema.nullish(), {
+const actionsSchemaCamel = zodToCamelCaseSchema(actionsSchema, {
   bidirectional: true,
 });
 export const SpecialistLessonDownloadSchema = z.object({
