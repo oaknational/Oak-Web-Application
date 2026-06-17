@@ -134,7 +134,6 @@ describe("video page", () => {
     const { getByTestId } = renderPage();
     fireEvent.click(getByTestId("proceed-to-next-section"));
     const video = usePupilLessonProgress.getState().sectionResults.video;
-    // Required by the attempt schema; missing fields break copy-link (PUPIL-1770).
     expect(video?.isComplete).toBe(true);
     expect(video?.played).toBe(false);
     expect(video?.duration).toBe(0);

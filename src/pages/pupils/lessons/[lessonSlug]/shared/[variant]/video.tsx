@@ -185,8 +185,6 @@ const VideoPageContent = ({
       if (!lessonStarted) {
         trackLessonStarted();
       }
-      // Persist the video result before completing so it satisfies the
-      // attempt schema even when no player event fired (PUPIL-1770).
       updateSectionInProgressResult("video", videoResultRef.current);
       completeSection("video");
       const nextSectionResults = getSectionResultsAfterComplete();
