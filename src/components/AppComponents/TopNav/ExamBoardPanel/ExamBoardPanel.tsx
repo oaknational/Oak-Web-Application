@@ -106,7 +106,7 @@ const ExamBoardPanel = ({
       (!e.shiftKey && index === sortedExamBoards.length - 1) ||
       (e.shiftKey && index === 0);
 
-    if (leavingPanel) {
+    if (leavingPanel && focusManager) {
       onLeave();
     }
 

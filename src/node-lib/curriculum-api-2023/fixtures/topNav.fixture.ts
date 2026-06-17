@@ -56,7 +56,7 @@ export const topNavFixture: TopNavProps = {
         },
         {
           type: "keystage",
-          slug: "eyfs",
+          slug: "early-years-foundation-stage",
           title: "EYFS",
           description: "Early years foundation stage",
           children: [],
