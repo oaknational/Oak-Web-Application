@@ -9,7 +9,6 @@ describe("DropdownFocusManager", () => {
     const manager = new DropdownFocusManager(
       mockData,
       "teachers",
-
       () => undefined,
     );
 
@@ -25,11 +24,16 @@ describe("DropdownFocusManager", () => {
     const manager = new DropdownFocusManager(
       mockData,
       "teachers",
-
       () => undefined,
     );
 
     const focusMap = manager.getFocusMap();
+    const primaryNode = focusMap.get("teachers-primary");
+    expect(primaryNode?.children).toEqual([
+      "teachers-primary-primary",
+      "teachers-primary-keystages",
+    ]);
+
     // Check a keystage node
     const ks1Node = focusMap.get("teachers-primary-ks1");
     expect(ks1Node).toBeDefined();
@@ -49,7 +53,6 @@ describe("DropdownFocusManager", () => {
     const manager = new DropdownFocusManager(
       mockData,
       "teachers",
-
       () => undefined,
     );
 
@@ -78,6 +81,20 @@ describe("DropdownFocusManager", () => {
     // Guidance links
     expect(focusMap.has("teachers-guidance-lesson-planning")).toBe(true);
     expect(focusMap.has("teachers-guidance-blog-index")).toBe(true);
+  });
+
+  it("should include static exam board leaves in the focus map", () => {
+    const manager = new DropdownFocusManager(
+      mockData,
+      "teachers",
+      () => undefined,
+    );
+
+    const focusMap = manager.getFocusMap();
+    const geographyNode = focusMap.get("teachers-secondary-ks4-geography");
+
+    expect(geographyNode).toBeDefined();
+    expect(geographyNode?.children.length).toBeGreaterThan(0);
   });
 
   describe("focusFirstChild behavior", () => {

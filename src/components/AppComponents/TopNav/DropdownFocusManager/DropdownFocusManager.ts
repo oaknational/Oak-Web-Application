@@ -3,9 +3,9 @@ import React from "react";
 import { FocusNode } from "./types";
 
 import {
-  TeachersSubNavData,
-  PupilsSubNavData,
   NavButton,
+  PupilsSubNavData,
+  TeachersSubNavData,
 } from "@/node-lib/curriculum-api-2023/queries/topNav/topNav.schema";
 
 type NavAreaType = "teachers" | "pupils";
@@ -17,10 +17,11 @@ type NavAreaType = "teachers" | "pupils";
 export class DropdownFocusManager<
   T extends TeachersSubNavData | PupilsSubNavData,
 > {
+  private readonly _typeMarker?: T;
   private readonly focusMap: Map<string, FocusNode>;
   private readonly closeMenu: () => void;
-  private readonly lastSubnavButton: NavButton | undefined;
   private readonly areaType: NavAreaType;
+  private readonly lastSubnavButton: NavButton | undefined;
 
   constructor(
     navData: T,
@@ -28,13 +29,21 @@ export class DropdownFocusManager<
     setSelectedMenu: (a: undefined) => void,
   ) {
     this.areaType = areaType;
+    this.closeMenu = () => setSelectedMenu(undefined);
+    this.areaType = areaType;
     this.lastSubnavButton = Object.values(navData).at(-1);
     this.focusMap = this.getFocusTree(navData);
-    this.closeMenu = () => setSelectedMenu(undefined);
   }
 
   public getFocusMap() {
     return this.focusMap;
+  }
+
+  // ID creation method
+  public createId(parentId: string, slug: string): string {
+    if (parentId === undefined) return `${this.areaType}-${slug}`;
+    if (slug === "") return `${this.areaType}-${parentId}`;
+    return `${slug}-${parentId}`;
   }
 
   private getFocusTree(navData: T): Map<string, FocusNode> {
@@ -114,12 +123,30 @@ export class DropdownFocusManager<
     return false;
   }
 
-  // ID creation method
-  public createId(parentId: string, slug: string): string {
-    if (parentId === "") {
-      return `${this.areaType}-${slug}`;
+  // public handleEscapeKey({
+  //   event,
+  //   elementId,
+  // }: {
+  //   event: React.KeyboardEvent;
+  //   elementId: string;
+  // }) {
+  //   if (event.key !== "Escape") return;
+  //   this.closeMenu();
+  //   const currentNode = this.focusMap.get(elementId);
+  //   if (!currentNode) return;
+  //   const ancestorNode = this.getAncestorNode(currentNode);
+  //   this.focusElementById(ancestorNode.id);
+  // }
+
+  public handleKeyDown(event: React.KeyboardEvent, elementId: string) {
+    if (event.key !== "Tab") return;
+    const currentNode = this.focusMap.get(elementId);
+    if (!currentNode) return;
+    if (event.shiftKey) {
+      this.handleShiftTab(event, currentNode);
+    } else if (!event.shiftKey) {
+      this.handleTab(currentNode, event);
     }
-    return `${parentId}-${slug}`;
   }
 
   private getNode(elementId: string): FocusNode {

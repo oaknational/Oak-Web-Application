@@ -168,6 +168,7 @@ exports[`core layout renders correctly 1`] = `
               "description": "Key stage 1",
               "slug": "ks1",
               "title": "KS1",
+              "type": "keystage",
             },
             {
               "children": [
@@ -185,12 +186,14 @@ exports[`core layout renders correctly 1`] = `
               "description": "Key stage 2",
               "slug": "ks2",
               "title": "KS2",
+              "type": "keystage",
             },
             {
               "children": [],
               "description": "Early years foundation stage",
-              "slug": "eyfs",
+              "slug": "early-years-foundation-stage",
               "title": "EYFS",
+              "type": "keystage",
             },
           ],
           "slug": "primary",
@@ -201,7 +204,74 @@ exports[`core layout renders correctly 1`] = `
             {
               "children": [
                 {
+<<<<<<< HEAD
                   "children": null,
+=======
+                  "href": "/teachers/programmes/computer-science-secondary/units?keystages=ks3,ks4",
+                  "nonCurriculum": false,
+                  "programmeCount": 0,
+                  "programmeSlug": "computer-science-secondary",
+                  "slug": "computer-science",
+                  "title": "Computer science",
+                },
+                {
+                  "examBoards": [
+                    {
+                      "buttonTitle": "Higher",
+                      "href": "/teachers/programmes/maths-secondary/units?keystages=ks4&tiers=higher",
+                      "programmeFactors": {
+                        "tier": {
+                          "description": "Higher",
+                          "slug": "higher",
+                        },
+                      },
+                      "programmeSlug": "maths-secondary-ks4-higher",
+                    },
+                    {
+                      "buttonTitle": "Foundation",
+                      "href": "/teachers/programmes/maths-secondary/units?keystages=ks4&tiers=foundation",
+                      "programmeFactors": {
+                        "tier": {
+                          "description": "Foundation",
+                          "slug": "foundation",
+                        },
+                      },
+                      "programmeSlug": "maths-secondary-ks4-foundation",
+                    },
+                  ],
+                  "href": "/teachers/programmes/maths-secondary/units?keystages=ks3,ks4",
+                  "nonCurriculum": false,
+                  "programmeCount": 0,
+                  "programmeSlug": null,
+                  "slug": "maths",
+                  "title": "Maths",
+                },
+                {
+                  "href": "/teachers/programmes/history-secondary/units?keystages=ks3,ks4",
+                  "nonCurriculum": false,
+                  "programmeCount": 0,
+                  "programmeSlug": "history-secondary",
+                  "slug": "history",
+                  "title": "History",
+                },
+                {
+                  "href": "/teachers/programmes/geography-secondary/units?keystages=ks3,ks4",
+                  "nonCurriculum": false,
+                  "programmeCount": 0,
+                  "programmeSlug": "geography-secondary",
+                  "slug": "geography",
+                  "title": "Geography",
+                },
+              ],
+              "description": "All secondary resources",
+              "slug": "secondary",
+              "title": "All secondary",
+              "type": "phase",
+            },
+            {
+              "children": [
+                {
+>>>>>>> 428d55988d3ddcacc02f3958224420077367fdbe
                   "href": "/teachers/programmes/history-secondary-edexcel/units?keystages=ks3",
                   "nonCurriculum": false,
                   "programmeCount": 0,
@@ -224,6 +294,7 @@ exports[`core layout renders correctly 1`] = `
               "description": "Key stage 3",
               "slug": "ks3",
               "title": "KS3",
+              "type": "keystage",
             },
             {
               "children": [
@@ -266,6 +337,7 @@ exports[`core layout renders correctly 1`] = `
               "description": "Key stage 4",
               "slug": "ks4",
               "title": "KS4",
+              "type": "keystage",
             },
           ],
           "slug": "secondary",

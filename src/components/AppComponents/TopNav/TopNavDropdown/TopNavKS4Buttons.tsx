@@ -4,7 +4,6 @@ import {
   OakPrimaryInvertedButton,
   parseColor,
   parseSpacing,
-  OakBox,
   OakFlex,
   OakHeading,
 } from "@oaknational/oak-components";
@@ -55,17 +54,15 @@ export const TopNavKS4Buttons = ({
   } for KS4 ${subject?.title}`;
 
   return (
-    <OakFlex $flexDirection={"column"}>
-      <OakBox $width={"max-content"} $position={"relative"}>
-        <OakHeading
-          $font={"heading-7"}
-          tag="h6"
-          $mt={"spacing-0"}
-          $mb={"spacing-16"}
-        >
-          {panelTitle}
-        </OakHeading>
-      </OakBox>
+    <OakFlex $flexDirection={"column"} $minWidth="spacing-240">
+      <OakHeading
+        $font={"heading-7"}
+        tag="h6"
+        $mt={"spacing-0"}
+        $mb={"spacing-16"}
+      >
+        {panelTitle}
+      </OakHeading>
       <OakUL
         $reset
         $display={"flex"}

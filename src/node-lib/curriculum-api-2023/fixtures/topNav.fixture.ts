@@ -61,7 +61,7 @@ export const topNavFixture: TopNavProps = {
           ],
         },
         {
-          slug: "eyfs",
+          slug: "early-years-foundation-stage",
           title: "EYFS",
           description: "Early years foundation stage",
           children: [],
@@ -72,6 +72,71 @@ export const topNavFixture: TopNavProps = {
       slug: "secondary",
       title: "Secondary",
       children: [
+        {
+          slug: "secondary",
+          title: "Secondary",
+          children: [
+            {
+              title: "Computer science",
+              slug: "computer-science",
+              subjectSlug: "computer-science",
+              programmeSlug: "computer-science-secondary",
+              href: "/teachers/programmes/computer-science-secondary/units?keystages=ks3,ks4",
+              nonCurriculum: false,
+              programmeCount: 0,
+              children: [],
+            },
+            {
+              title: "Maths",
+              slug: "maths",
+              subjectSlug: "maths",
+              programmeSlug: null,
+              href: "/teachers/programmes/maths-secondary/units?keystages=ks3,ks4",
+              nonCurriculum: false,
+              programmeCount: 0,
+              children: [
+                {
+                  title: "Higher",
+                  slug: "maths-secondary-ks4-higher",
+                  href: "/teachers/programmes/maths-secondary/units?keystages=ks4&tiers=higher",
+                  programmeFactors: {
+                    examboard: null,
+                    tier: { slug: "higher", description: "Higher" },
+                  },
+                },
+                {
+                  title: "Foundation",
+                  slug: "maths-secondary-ks4-foundation",
+                  href: "/teachers/programmes/maths-secondary/units?keystages=ks4&tiers=foundation",
+                  programmeFactors: {
+                    examboard: null,
+                    tier: { slug: "foundation", description: "Foundation" },
+                  },
+                },
+              ],
+            },
+            {
+              title: "History",
+              slug: "history",
+              programmeSlug: "history-secondary",
+              href: "/teachers/programmes/history-secondary/units?keystages=ks3,ks4",
+              nonCurriculum: false,
+              programmeCount: 0,
+              subjectSlug: "history",
+              children: [],
+            },
+            {
+              title: "Geography",
+              slug: "geography",
+              programmeSlug: "geography-secondary",
+              href: "/teachers/programmes/geography-secondary/units?keystages=ks3,ks4",
+              nonCurriculum: false,
+              programmeCount: 0,
+              subjectSlug: "geography",
+              children: [],
+            },
+          ],
+        },
         {
           slug: "ks3",
           title: "KS3",

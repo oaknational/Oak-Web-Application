@@ -52,7 +52,7 @@ describe("TopNavDropdown", () => {
   });
 
   describe("Teachers area", () => {
-    describe("phases sections", () => {
+    describe("keystages sections", () => {
       it("renders keystage menu", async () => {
         render(
           <TopNavDropdown
@@ -65,11 +65,30 @@ describe("TopNavDropdown", () => {
           />,
         );
 
-        const keystageButtons = await screen.findAllByRole("tab");
+        const primaryButton = await screen.findByRole("button", {
+          name: "Primary",
+        });
 
-        expect(keystageButtons).toHaveLength(3);
-        expect(keystageButtons[0]).toHaveTextContent("Key stage 1");
-        expect(keystageButtons[0]).toHaveAttribute("aria-current", "true");
+        expect(primaryButton).toBeInTheDocument();
+      });
+
+      it("does not set aria-controls when no matching subject panel exists", async () => {
+        render(
+          <TopNavDropdown
+            teachers={topNavFixture.teachers!}
+            pupils={topNavFixture.pupils!}
+            activeArea="TEACHERS"
+            selectedMenu="primary"
+            focusManager={focusManager}
+            onClose={onCloseMock}
+          />,
+        );
+
+        const primaryButton = await screen.findByRole("button", {
+          name: "Primary",
+        });
+
+        expect(primaryButton).not.toHaveAttribute("aria-controls");
       });
 
       it("renders keystage menu", async () => {
@@ -84,11 +103,11 @@ describe("TopNavDropdown", () => {
           />,
         );
 
-        const keystageButtons = await screen.findAllByRole("tab");
+        const secondaryButton = await screen.findByRole("button", {
+          name: "Secondary",
+        });
 
-        expect(keystageButtons).toHaveLength(2);
-        expect(keystageButtons[0]).toHaveTextContent("Key stage 3");
-        expect(keystageButtons[0]).toHaveAttribute("aria-current", "true");
+        expect(secondaryButton).toBeInTheDocument();
       });
 
       it("calls track browse refined when a keystage button is clicked", async () => {
@@ -103,8 +122,18 @@ describe("TopNavDropdown", () => {
           />,
         );
 
-        const keystageButton = screen.getByRole("tab", { name: "Key stage 4" });
         const user = userEvent.setup();
+        const keystagesButton = await screen.findByRole("button", {
+          name: "Key stages",
+        });
+        await user.click(keystagesButton);
+        const ks4Button = await screen.findByRole("button", {
+          name: "Key stage 4",
+        });
+        await user.click(ks4Button);
+        const keystageButton = screen.getByRole("button", {
+          name: "Key stage 4",
+        });
         await user.click(keystageButton);
         expect(mockBrowseRefined).toHaveBeenCalledWith(
           expect.objectContaining({
@@ -126,6 +155,11 @@ describe("TopNavDropdown", () => {
           />,
         );
 
+        const user = userEvent.setup();
+        const keystagesButton = await screen.findByRole("button", {
+          name: "Key stages",
+        });
+        await user.click(keystagesButton);
         const subjectButtons = await screen.findAllByRole("link");
 
         expect(subjectButtons[2]).toHaveTextContent("Financial education");
@@ -147,6 +181,10 @@ describe("TopNavDropdown", () => {
           />,
         );
 
+        const keystagesButton = await screen.findByRole("button", {
+          name: "Key stages",
+        });
+        await user.click(keystagesButton);
         const englishButton = await screen.findByRole("link", {
           name: "English",
         });
@@ -171,6 +209,10 @@ describe("TopNavDropdown", () => {
           />,
         );
 
+        const keystagesButton = await screen.findByRole("button", {
+          name: "Key stages",
+        });
+        await user.click(keystagesButton);
         const financialEdButton = await screen.findByRole("link", {
           name: "Financial education",
         });
@@ -195,6 +237,10 @@ describe("TopNavDropdown", () => {
           />,
         );
 
+        const keystagesButton = await screen.findByRole("button", {
+          name: "Key stages",
+        });
+        await user.click(keystagesButton);
         const englishButton = await screen.findByRole("link", {
           name: "English",
         });
@@ -224,7 +270,12 @@ describe("TopNavDropdown", () => {
           />,
         );
 
-        const ks4Button = await screen.findByRole("tab", {
+        const keystagesButton = await screen.findByRole("button", {
+          name: "Key stages",
+        });
+        await user.click(keystagesButton);
+
+        const ks4Button = await screen.findByRole("button", {
           name: "Key stage 4",
         });
         await user.click(ks4Button);
@@ -255,7 +306,12 @@ describe("TopNavDropdown", () => {
           />,
         );
 
-        const ks4Button = await screen.findByRole("tab", {
+        const keystagesButton = await screen.findByRole("button", {
+          name: "Key stages",
+        });
+        await user.click(keystagesButton);
+
+        const ks4Button = await screen.findByRole("button", {
           name: "Key stage 4",
         });
         await user.click(ks4Button);
@@ -288,7 +344,12 @@ describe("TopNavDropdown", () => {
           />,
         );
 
-        const ks4Button = await screen.findByRole("tab", {
+        const keystagesButton = await screen.findByRole("button", {
+          name: "Key stages",
+        });
+        await user.click(keystagesButton);
+
+        const ks4Button = await screen.findByRole("button", {
           name: "Key stage 4",
         });
         await user.click(ks4Button);
@@ -299,7 +360,7 @@ describe("TopNavDropdown", () => {
         geographyButton.addEventListener("click", (e) => e.preventDefault());
         await user.click(geographyButton);
 
-        const ks3Button = screen.getByRole("tab", { name: "Key stage 3" });
+        const ks3Button = screen.getByRole("button", { name: "Key stage 3" });
         await user.click(ks3Button);
 
         expect(
@@ -307,6 +368,30 @@ describe("TopNavDropdown", () => {
             name: "Choose exam board for KS4 Geography",
           }),
         ).not.toBeInTheDocument();
+      });
+    });
+    describe("phases section", () => {
+      it("renders phase tabs with subjects", async () => {
+        render(
+          <TopNavDropdown
+            teachers={topNavFixture.teachers!}
+            pupils={topNavFixture.pupils!}
+            activeArea="TEACHERS"
+            selectedMenu="secondary"
+            focusManager={focusManager}
+            onClose={onCloseMock}
+          />,
+        );
+
+        const secondaryButton = screen.getByText("Secondary").closest("button");
+        await userEvent.click(secondaryButton!);
+
+        expect(
+          screen.getByRole("link", { name: "History" }),
+        ).toBeInTheDocument();
+        expect(
+          screen.getByRole("link", { name: "Geography" }),
+        ).toBeInTheDocument();
       });
     });
     describe("links sections", () => {

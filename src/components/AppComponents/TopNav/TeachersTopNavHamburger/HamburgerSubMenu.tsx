@@ -1,21 +1,24 @@
 import { ReactNode, useEffect, useRef } from "react";
 import {
-  OakBox,
   OakPrimaryInvertedButton,
   OakUL,
   OakLeftAlignedButton,
   OakFlex,
   OakHeading,
+  OakBox,
 } from "@oaknational/oak-components";
 import Link from "next/link";
 
 import TopNavSubjectButtons from "../TopNavDropdown/TopNavSubjectButtons";
 import { TopNavKS4Buttons } from "../TopNavDropdown/TopNavKS4Buttons";
 
-import { getEYFSAriaLabel, HamburgerMenuHook } from "./TeachersTopNavHamburger";
-import { MainMenuContent } from "./HamburgerMainMenu";
+import { HamburgerMenuHook } from "./TeachersTopNavHamburger";
+import { MainMenuButton, MainMenuContent } from "./HamburgerMainMenu";
 
 import {
+  getPhaseSlug,
+  isPhaseMenu,
+  KeystageMenu,
   SubjectsMenu,
   TeachersSubNavData,
 } from "@/node-lib/curriculum-api-2023/queries/topNav/topNav.schema";
@@ -25,15 +28,24 @@ import {
 } from "@/common-lib/urls";
 import useAnalytics from "@/context/Analytics/useAnalytics";
 
+const isEyfsKeystage = (keystage: KeystageMenu) =>
+  keystage.slug === "early-years-foundation-stage";
+
+const getKeystageListLabel = (keystage: KeystageMenu) =>
+  isEyfsKeystage(keystage) ? keystage.title : keystage.description;
+
+const getKeystageListAriaLabel = (keystage: KeystageMenu) =>
+  isEyfsKeystage(keystage) ? keystage.description : undefined;
+
 export function SubmenuContainer({
   title,
-  description,
+  ariaLabel,
   children,
   hamburgerMenu,
   onBack,
 }: {
   readonly title: string;
-  readonly description?: string;
+  readonly ariaLabel?: string;
   readonly children: ReactNode;
   readonly hamburgerMenu: HamburgerMenuHook;
   readonly onBack?: () => void;
@@ -67,8 +79,9 @@ export function SubmenuContainer({
     >
       <OakPrimaryInvertedButton
         iconName="chevron-left"
-        aria-label={getEYFSAriaLabel(title)}
+        aria-label={ariaLabel}
         selected={true}
+        $pl="spacing-0"
         onClick={() => {
           if (onBack) {
             onBack();
@@ -79,7 +92,7 @@ export function SubmenuContainer({
         id="hamburger-back-button"
       >
         <OakHeading $font="heading-6" tag="h3">
-          {description || title}
+          {title}
         </OakHeading>
       </OakPrimaryInvertedButton>
 
@@ -147,7 +160,7 @@ export function HamburgerMenuContent(
       const subject = keystage?.children?.find(
         (s) => s.slug === submenuOpen.value,
       );
-      if (!keystage || !subject?.children) {
+      if (!keystage || !subject || !subject.children) {
         return null;
       }
       return (
@@ -166,7 +179,6 @@ export function HamburgerMenuContent(
       );
     }
     case "Keystages": {
-      if (!submenuOpen.value) return null;
       const phase = ["KS1", "KS2", "EYFS"].includes(submenuOpen.value ?? "")
         ? "primary"
         : "secondary";
@@ -175,16 +187,15 @@ export function HamburgerMenuContent(
         (ks) => ks.title === submenuOpen.value,
       );
 
-      if (!keystage) {
+      if (!keystage || isPhaseMenu(keystage)) {
         return null;
       }
-      const subjects = keystage.children;
 
       return (
         <SubmenuContainer
-          description={keystage.description}
-          title={submenuOpen.value}
+          title={getKeystageListLabel(keystage)}
           hamburgerMenu={hamburgerMenu}
+          ariaLabel={getKeystageListAriaLabel(keystage)}
         >
           <TopNavSubjectButtons
             handleClick={(subject: SubjectsMenu, keystageSlug: string) => {
@@ -205,10 +216,114 @@ export function HamburgerMenuContent(
             }}
             onExamboardPanelClose={handleCloseHamburger}
             selectedMenu={phase}
-            subjects={subjects}
+            subjects={keystage.children}
             selectedSubject={null}
-            keyStageSlug={keystage.slug}
+            identifyingSlug={keystage.slug}
             phase={phase}
+            onExamBoardPanelOpen={(subject: SubjectsMenu) => {
+              track.browseRefined({
+                platform: "owa",
+                product: "teacher lesson resources",
+                engagementIntent: "refine",
+                componentType: "topnav-browse-button",
+                eventVersion: "2.0.0",
+                analyticsUseCase: "Teacher",
+                filterType: "Subject filter",
+                filterValue: subject.subjectSlug,
+                activeFilters: { keystages: ["ks4"] },
+                googleLoginHint: null,
+                clientEnvironment: null,
+              });
+              handleNav({ menu: "Ks4Options", value: subject.slug });
+            }}
+          />
+        </SubmenuContainer>
+      );
+    }
+    case "KeystageOptions": {
+      const phase = getPhaseSlug(submenuOpen.value);
+      const phaseData = navData[phase];
+      const keystageOptionItem = phaseData.children.filter(
+        (child) => !isPhaseMenu(child),
+      );
+      if (!keystageOptionItem) return null;
+      return (
+        <SubmenuContainer
+          title={submenuOpen.value}
+          hamburgerMenu={hamburgerMenu}
+          // onBack={onBack}
+        >
+          <OakFlex
+            as="ul"
+            $flexDirection={"column"}
+            $gap={"spacing-16"}
+            $ph="spacing-0"
+          >
+            {keystageOptionItem.map((child) => (
+              <MainMenuButton
+                key={child.slug}
+                title={child.description}
+                onClick={() =>
+                  hamburgerMenu.handleNav({
+                    menu: "Keystages",
+                    value: child.title,
+                  })
+                }
+                track={() => {
+                  track.browseRefined({
+                    platform: "owa",
+                    product: "teacher lesson resources",
+                    engagementIntent: "refine",
+                    componentType: "topnav-browse-button",
+                    eventVersion: "2.0.0",
+                    analyticsUseCase: "Teacher",
+                    filterType: "Key stage filter",
+                    filterValue: child.slug,
+                    activeFilters: {},
+                    googleLoginHint: null,
+                    clientEnvironment: null,
+                  });
+                }}
+              />
+            ))}
+          </OakFlex>
+        </SubmenuContainer>
+      );
+    }
+    case "Phases": {
+      const phase = getPhaseSlug(submenuOpen.value);
+      const phaseData = navData[phase];
+      const phaseItem = phaseData.children.find((child) => isPhaseMenu(child));
+      if (!phaseItem) return null;
+      return (
+        <SubmenuContainer
+          title={submenuOpen.value + " subjects"}
+          hamburgerMenu={hamburgerMenu}
+          // onBack={onBack}
+        >
+          <TopNavSubjectButtons
+            identifyingSlug={phase}
+            handleClick={(subject: SubjectsMenu) => {
+              track.browseRefined({
+                platform: "owa",
+                product: "teacher lesson resources",
+                engagementIntent: "refine",
+                componentType: "topnav-browse-button",
+                eventVersion: "2.0.0",
+                analyticsUseCase: "Teacher",
+                filterType: "Subject filter",
+                filterValue: subject.subjectSlug,
+                activeFilters: {},
+                googleLoginHint: null,
+                clientEnvironment: null,
+              });
+              handleCloseHamburger();
+            }}
+            selectedMenu={phase}
+            subjects={phaseItem.children}
+            selectedSubject={null}
+            phase={phase}
+            onExamboardPanelClose={handleCloseHamburger}
             onExamBoardPanelOpen={(subject: SubjectsMenu) => {
               track.browseRefined({
                 platform: "owa",
