@@ -1,6 +1,11 @@
 import { renderHook } from "@testing-library/react";
 import { createRef } from "react";
-import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import {
+  ReadonlyURLSearchParams,
+  usePathname,
+  useRouter,
+  useSearchParams,
+} from "next/navigation";
 
 import usePagination from "./usePagination";
 
@@ -44,7 +49,9 @@ describe("usePagination()", () => {
     Object.entries(query).forEach(([key, value]) => {
       params.set(key, String(value));
     });
-    mockUseSearchParams.mockReturnValue(params);
+    mockUseSearchParams.mockReturnValue(
+      params as unknown as ReadonlyURLSearchParams, //NOSONAR typescript:S4325
+    );
   };
 
   beforeEach(() => {
