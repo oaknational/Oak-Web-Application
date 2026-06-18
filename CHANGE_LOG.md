@@ -1,3 +1,35 @@
+# [1.1099.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1098.1...v1.1099.0) (2026-06-18)
+
+
+### Bug Fixes
+
+* add terst for helper ([2af7455](https://github.com/oaknational/Oak-Web-Application/commit/2af745543a7f031bc6ac8b72821e3f0e6497052f))
+* fix types ([f2a0d67](https://github.com/oaknational/Oak-Web-Application/commit/f2a0d67d3210941f08a9ef4d2c94d3a9de4ab676))
+* merge main ([806671d](https://github.com/oaknational/Oak-Web-Application/commit/806671da9f57776e8ed0f6f94672402c3e031af5))
+* remove helper ([eb03c35](https://github.com/oaknational/Oak-Web-Application/commit/eb03c355b119246b5e7660cde833c82e497869ff))
+* remove helper ([9b295ef](https://github.com/oaknational/Oak-Web-Application/commit/9b295ef0875d92e9d22a3a6909ecf1b8d5cc76f1))
+* remove helper update versions ([0faeccf](https://github.com/oaknational/Oak-Web-Application/commit/0faeccf3fc32d5d8a1936ccf5205e0475bc1624a))
+* remove unitvarianr ([82b983b](https://github.com/oaknational/Oak-Web-Application/commit/82b983b1be26af98c0753e046b3ac0a822237dfb))
+* remove unitvarianr ([18f5641](https://github.com/oaknational/Oak-Web-Application/commit/18f56410e0d7ec2db52c98dae133249b4249d57b))
+* remove unitvarianr ([e3f36f4](https://github.com/oaknational/Oak-Web-Application/commit/e3f36f4a69c14b5b8493a7b480a1004fd99ab130))
+* remove unitvariant from schema ([f9b7836](https://github.com/oaknational/Oak-Web-Application/commit/f9b78364a43615bad8d4fee63200623b9f2ff482))
+* shema bug ([6e6624f](https://github.com/oaknational/Oak-Web-Application/commit/6e6624ffe9cb25a04fe2e18136f0e75efb3f0d5d))
+* shema bug ([f9a31c8](https://github.com/oaknational/Oak-Web-Application/commit/f9a31c8c4dd546d623152176a73fa65525b22089))
+* update package merge main ([22509bc](https://github.com/oaknational/Oak-Web-Application/commit/22509bc5e63ded94a4331d5f21bd51b945d98e55))
+* use zod to camel with schema ([73d61ba](https://github.com/oaknational/Oak-Web-Application/commit/73d61bac454d1ccfd5683692b309c8f2033de093))
+
+
+### Features
+
+* merge commit ([13d4290](https://github.com/oaknational/Oak-Web-Application/commit/13d4290208bf81055650571be755a97fa8a7358e))
+* merge commit ([03b4210](https://github.com/oaknational/Oak-Web-Application/commit/03b4210f9b3adbdc94ad6297a079a1b9bade3789))
+* merge commit ([50b6920](https://github.com/oaknational/Oak-Web-Application/commit/50b6920713bb72ce1a4ac925da5b1ea21177880f))
+* merge commit ([6ea7893](https://github.com/oaknational/Oak-Web-Application/commit/6ea7893e2381a8b21d8db27ef7f460a6f43955ae))
+* packages for digital literacy readiness ([65e4d8b](https://github.com/oaknational/Oak-Web-Application/commit/65e4d8bc1bd201611ea26468950c407c03af238f))
+* packages for digital literacy readiness ([80e4f9a](https://github.com/oaknational/Oak-Web-Application/commit/80e4f9a91fac82034c38314996ea392aa2f038a8))
+* packages for digital literacy readiness ([3d1f2d7](https://github.com/oaknational/Oak-Web-Application/commit/3d1f2d77b5d4d172405e5ce566aa5882919bd124))
+* test fix ([4afc8d4](https://github.com/oaknational/Oak-Web-Application/commit/4afc8d434700038017c070740f6c7855d6319a33))
+
 ## [1.1098.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.1098.0...v1.1098.1) (2026-06-17)
 
 
