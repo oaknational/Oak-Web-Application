@@ -1,23 +1,25 @@
 import { ReactNode, useEffect, useRef, useState } from "react";
 import {
+  OakBox,
   OakPrimaryInvertedButton,
   OakUL,
   OakLeftAlignedButton,
   OakFlex,
   OakHeading,
-  OakLI,
 } from "@oaknational/oak-components";
 import Link from "next/link";
 
 import TopNavSubjectButtons from "../TopNavDropdown/TopNavSubjectButtons";
 import ExamBoardPanel from "../ExamBoardPanel/ExamBoardPanel";
 
-import { HamburgerMenuHook } from "./TeachersTopNavHamburger";
+import {
+  getEYFSAriaLabel,
+  HamburgerMenuHook,
+  SubmenuState,
+} from "./TeachersTopNavHamburger";
 
 import {
-  Phase,
   SubjectsNavItem,
-  TeachersBrowseChildItem,
   TeachersSubNavData,
 } from "@/node-lib/curriculum-api-2023/queries/topNav/topNav.schema";
 import {
@@ -26,24 +28,15 @@ import {
 } from "@/common-lib/urls";
 import useAnalytics from "@/context/Analytics/useAnalytics";
 
-const isEyfsKeystage = (keystage: TeachersBrowseChildItem) =>
-  keystage.slug === "early-years-foundation-stage";
-
-const getKeystageListLabel = (keystage: TeachersBrowseChildItem) =>
-  isEyfsKeystage(keystage) ? keystage.title : keystage.description;
-
-const getKeystageListAriaLabel = (keystage: TeachersBrowseChildItem) =>
-  isEyfsKeystage(keystage) ? keystage.description : undefined;
-
 export function SubmenuContainer({
   title,
-  ariaLabel,
+  description,
   children,
   hamburgerMenu,
   onBack,
 }: {
-  readonly title: string;
-  readonly ariaLabel?: string;
+  readonly title: SubmenuState;
+  readonly description?: string;
   readonly children: ReactNode;
   readonly hamburgerMenu: HamburgerMenuHook;
   readonly onBack?: () => void;
@@ -77,9 +70,8 @@ export function SubmenuContainer({
     >
       <OakPrimaryInvertedButton
         iconName="chevron-left"
-        aria-label={ariaLabel}
+        aria-label={getEYFSAriaLabel(title)}
         selected={true}
-        $pl="spacing-0"
         onClick={() => {
           if (onBack) {
             onBack();
@@ -89,107 +81,12 @@ export function SubmenuContainer({
         }}
       >
         <OakHeading $font="heading-6" tag="h3">
-          {title}
+          {description || title}
         </OakHeading>
       </OakPrimaryInvertedButton>
 
       {children}
     </OakFlex>
-  );
-}
-
-type SubjectsSubmenuProps = {
-  readonly title: string;
-  readonly backButtonAriaLabel?: string;
-  readonly subjects: SubjectsNavItem[];
-  readonly phase: Phase;
-  readonly hamburgerMenu: HamburgerMenuHook;
-  readonly selectedExamBoardSubject: SubjectsNavItem | null;
-  readonly setSelectedExamBoardSubject: (
-    subject: SubjectsNavItem | null,
-  ) => void;
-  readonly onBack?: () => void;
-} & (
-  | { readonly viewType: "phase" }
-  | { readonly viewType: "keystage"; readonly keystageSlug: string }
-);
-
-function SubjectsSubmenu(props: SubjectsSubmenuProps) {
-  const {
-    title,
-    backButtonAriaLabel,
-    subjects,
-    phase,
-    hamburgerMenu,
-    selectedExamBoardSubject,
-    setSelectedExamBoardSubject,
-    onBack,
-  } = props;
-  const { track } = useAnalytics();
-  const { handleCloseHamburger } = hamburgerMenu;
-  const viewTypeSlug =
-    props.viewType === "keystage" ? props.keystageSlug : phase;
-
-  const handleSubjectBrowseClick = (subjectSlug: string) => {
-    track.browseRefined({
-      platform: "owa",
-      product: "teacher lesson resources",
-      engagementIntent: "refine",
-      componentType: "topnav-browse-button",
-      eventVersion: "2.0.0",
-      analyticsUseCase: "Teacher",
-      filterType: "Subject filter",
-      filterValue: subjectSlug,
-      activeFilters:
-        props.viewType === "keystage" ? { keystage: [props.keystageSlug] } : {},
-      googleLoginHint: null,
-      clientEnvironment: null,
-    });
-    handleCloseHamburger();
-  };
-
-  if (selectedExamBoardSubject?.examBoards?.length) {
-    const examBoardMenuTitle =
-      props.viewType === "keystage"
-        ? `KS4, ${selectedExamBoardSubject.title}`
-        : `Secondary, ${selectedExamBoardSubject.title}`;
-
-    return (
-      <SubmenuContainer
-        title={examBoardMenuTitle}
-        hamburgerMenu={hamburgerMenu}
-        onBack={() => setSelectedExamBoardSubject(null)}
-      >
-        <ExamBoardPanel
-          examBoards={selectedExamBoardSubject.examBoards}
-          phaseSlug={phase}
-          viewType={viewTypeSlug}
-          selectedSubject={selectedExamBoardSubject}
-          onClick={handleSubjectBrowseClick}
-          onLeave={() => setSelectedExamBoardSubject(null)}
-        />
-      </SubmenuContainer>
-    );
-  }
-
-  return (
-    <SubmenuContainer
-      ariaLabel={backButtonAriaLabel}
-      title={title}
-      hamburgerMenu={hamburgerMenu}
-      onBack={onBack}
-    >
-      <TopNavSubjectButtons
-        handleClick={handleSubjectBrowseClick}
-        selectedMenu={phase}
-        subjects={subjects}
-        selectedSubject={selectedExamBoardSubject}
-        viewTypeSlug={viewTypeSlug}
-        phase={phase}
-        onExamBoardPanelOpen={setSelectedExamBoardSubject}
-        closeExamBoardPanel={() => setSelectedExamBoardSubject(null)}
-      />
-    </SubmenuContainer>
   );
 }
 
@@ -201,12 +98,9 @@ export function SubmenuContent(
   const { submenuOpen, handleCloseHamburger } = hamburgerMenu;
   const [selectedExamBoardSubject, setSelectedExamBoardSubject] =
     useState<SubjectsNavItem | null>(null);
-  const [selectedKeystage, setSelectedKeystage] =
-    useState<TeachersBrowseChildItem | null>(null);
 
   useEffect(() => {
     setSelectedExamBoardSubject(null);
-    setSelectedKeystage(null);
   }, [submenuOpen]);
 
   if (!submenuOpen) return null;
@@ -221,11 +115,11 @@ export function SubmenuContent(
           <OakUL
             $display={"flex"}
             $flexDirection={"column"}
-            $pa="spacing-0"
+            $pl="spacing-40"
             $gap={"spacing-16"}
           >
             {links.children.map((link) => (
-              <OakLI key={link.slug} $listStyle={"none"}>
+              <OakBox key={link.slug}>
                 <OakLeftAlignedButton
                   onClick={() => {
                     handleCloseHamburger();
@@ -245,105 +139,91 @@ export function SubmenuContent(
                 >
                   {link.title}
                 </OakLeftAlignedButton>
-              </OakLI>
+              </OakBox>
             ))}
           </OakUL>
         </SubmenuContainer>
       );
     }
 
-    case "Primary subjects":
-    case "Secondary subjects": {
-      const phase: Phase =
-        submenuOpen === "Primary subjects" ? "primary" : "secondary";
+    default: {
+      const phase = ["KS1", "KS2", "EYFS"].includes(submenuOpen)
+        ? "primary"
+        : "secondary";
       const phaseData = navData[phase];
-      const phaseItem = phaseData.children.find(
-        (child) => child.type === "phase",
+      const keystage = phaseData.children.find(
+        (ks) => ks.title === submenuOpen,
       );
-      if (!phaseItem) return null;
+      if (!keystage) return null;
+      const subjects = keystage.children;
 
-      return (
-        <SubjectsSubmenu
-          title={submenuOpen}
-          subjects={phaseItem.children}
-          viewType="phase"
-          phase={phase}
-          hamburgerMenu={hamburgerMenu}
-          selectedExamBoardSubject={selectedExamBoardSubject}
-          setSelectedExamBoardSubject={setSelectedExamBoardSubject}
-        />
-      );
-    }
-
-    case "Primary key stages":
-    case "Secondary key stages": {
-      const phase: Phase =
-        submenuOpen === "Primary key stages" ? "primary" : "secondary";
-      const phaseData = navData[phase];
-      const keystages = phaseData.children.filter(
-        (child) => child.type === "keystage",
-      );
-
-      if (selectedKeystage) {
+      if (selectedExamBoardSubject?.examBoards?.length) {
         return (
-          <SubjectsSubmenu
-            title={getKeystageListLabel(selectedKeystage)}
-            backButtonAriaLabel={getKeystageListAriaLabel(selectedKeystage)}
-            subjects={selectedKeystage.children}
-            viewType="keystage"
-            keystageSlug={selectedKeystage.slug}
-            phase={phase}
+          <SubmenuContainer
+            title={
+              `${keystage.title}, ${selectedExamBoardSubject.title}` as SubmenuState
+            }
             hamburgerMenu={hamburgerMenu}
-            selectedExamBoardSubject={selectedExamBoardSubject}
-            setSelectedExamBoardSubject={setSelectedExamBoardSubject}
-            onBack={() => setSelectedKeystage(null)}
-          />
+            onBack={() => setSelectedExamBoardSubject(null)}
+          >
+            <ExamBoardPanel
+              examBoards={selectedExamBoardSubject.examBoards}
+              selectedSubject={selectedExamBoardSubject}
+              onClick={(subjectSlug, keystageSlug) => {
+                track.browseRefined({
+                  platform: "owa",
+                  product: "teacher lesson resources",
+                  engagementIntent: "refine",
+                  componentType: "topnav-browse-button",
+                  eventVersion: "2.0.0",
+                  analyticsUseCase: "Teacher",
+                  filterType: "Subject filter",
+                  filterValue: subjectSlug,
+                  activeFilters: { keystages: [keystageSlug] },
+                  googleLoginHint: null,
+                  clientEnvironment: null,
+                });
+                handleCloseHamburger();
+              }}
+              onLeave={() => setSelectedExamBoardSubject(null)}
+            />
+          </SubmenuContainer>
         );
       }
 
       return (
-        <SubmenuContainer title={submenuOpen} hamburgerMenu={hamburgerMenu}>
-          <OakUL
-            $display={"flex"}
-            $flexDirection={"column"}
-            $gap={"spacing-16"}
-            $pa="spacing-0"
-          >
-            {keystages.map((keystage) => (
-              <OakLI key={keystage.slug} $listStyle={"none"} $width={"100%"}>
-                <OakLeftAlignedButton
-                  aria-haspopup={true}
-                  aria-label={getKeystageListAriaLabel(keystage)}
-                  rightAlignIcon
-                  iconName="chevron-right"
-                  width={"100%"}
-                  onClick={() => {
-                    track.browseRefined({
-                      platform: "owa",
-                      product: "teacher lesson resources",
-                      engagementIntent: "refine",
-                      componentType: "topnav-browse-button",
-                      eventVersion: "2.0.0",
-                      analyticsUseCase: "Teacher",
-                      filterType: "Key stage filter",
-                      filterValue: keystage.slug,
-                      activeFilters: {},
-                      googleLoginHint: null,
-                      clientEnvironment: null,
-                    });
-                    setSelectedKeystage(keystage);
-                  }}
-                >
-                  {getKeystageListLabel(keystage)}
-                </OakLeftAlignedButton>
-              </OakLI>
-            ))}
-          </OakUL>
+        <SubmenuContainer
+          description={keystage.description}
+          title={submenuOpen}
+          hamburgerMenu={hamburgerMenu}
+        >
+          <TopNavSubjectButtons
+            handleClick={(subjectSlug, keystageSlug) => {
+              track.browseRefined({
+                platform: "owa",
+                product: "teacher lesson resources",
+                engagementIntent: "refine",
+                componentType: "topnav-browse-button",
+                eventVersion: "2.0.0",
+                analyticsUseCase: "Teacher",
+                filterType: "Subject filter",
+                filterValue: subjectSlug,
+                activeFilters: { keystages: [keystageSlug] },
+                googleLoginHint: null,
+                clientEnvironment: null,
+              });
+              handleCloseHamburger();
+            }}
+            selectedMenu={phase}
+            subjects={subjects}
+            selectedSubject={selectedExamBoardSubject}
+            keyStageSlug={keystage.slug}
+            phase={phase}
+            onExamBoardPanelOpen={setSelectedExamBoardSubject}
+            closeExamBoardPanel={() => setSelectedExamBoardSubject(null)}
+          />
         </SubmenuContainer>
       );
     }
-
-    default:
-      return null;
   }
 }
