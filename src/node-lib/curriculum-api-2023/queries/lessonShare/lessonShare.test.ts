@@ -23,6 +23,7 @@ const mockLessonShareResponse = {
       worksheet_asset_object_url: "url",
       expired: false,
       lessonReleaseDate: "2025-09-29T14:00:00.000Z",
+      unitvariant_id: 1,
     },
   ],
   browse: [
@@ -38,6 +39,7 @@ const mockLessonShareResponse = {
       supplementary_data: { unit_order: 1, order_in_unit: 1 },
       lessonReleaseDate: null,
       features: {},
+      unitvariant_id: 1,
     },
   ],
 };

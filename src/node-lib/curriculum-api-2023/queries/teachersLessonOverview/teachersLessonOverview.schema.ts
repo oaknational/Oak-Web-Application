@@ -114,6 +114,7 @@ export default teachersLessonOverviewSchema;
 export const teachersLessonBrowseDataByKsSchema =
   syntheticUnitvariantLessonsByKsSchema.omit({
     null_unitvariant_id: true,
+    unitvariant_id: true,
     is_legacy: true,
   });
 
