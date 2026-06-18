@@ -1,8 +1,8 @@
-import curriculumSequenceFilterDimensionsQuery from "./curriculumSequenceFilterDimensions.query";
+import curriculumSequenceSlugsQuery from "./curriculumSequenceSlugs.query";
 
-describe("curriculumSequenceFilterDimensionsQuery", () => {
-  it("fetches all boards in one query and groups filter dimensions by exam board", async () => {
-    const curriculumSequenceFilterDimensionsMock = jest.fn(() =>
+describe("curriculumSequenceSlugsQuery", () => {
+  it("fetches slug fields for all units in a subject and phase", async () => {
+    const curriculumSequenceSlugsMock = jest.fn(() =>
       Promise.resolve({
         units: [
           {
@@ -23,17 +23,15 @@ describe("curriculumSequenceFilterDimensionsQuery", () => {
       }),
     );
 
-    const result = await curriculumSequenceFilterDimensionsQuery({
-      curriculumSequenceFilterDimensions:
-        curriculumSequenceFilterDimensionsMock,
+    const result = await curriculumSequenceSlugsQuery({
+      curriculumSequenceSlugs: curriculumSequenceSlugsMock,
     } as never)({
       subjectSlug: "science",
       phaseSlug: "secondary",
-      examBoardSlugs: ["aqa", "edexcel"],
       includeNonCurriculum: true,
     });
 
-    expect(curriculumSequenceFilterDimensionsMock).toHaveBeenCalledWith({
+    expect(curriculumSequenceSlugsMock).toHaveBeenCalledWith({
       where: {
         _and: [
           {
@@ -47,17 +45,21 @@ describe("curriculumSequenceFilterDimensionsQuery", () => {
         ],
       },
     });
-    expect(result).toEqual({
-      aqa: {
-        tierSlugs: ["foundation"],
-        pathwaySlugs: [],
-        childSubjectSlugs: ["biology"],
+    expect(result).toEqual([
+      {
+        examboard_slug: "aqa",
+        tier_slug: "foundation",
+        pathway_slug: null,
+        subject_slug: "biology",
+        subject_parent_slug: "science",
       },
-      edexcel: {
-        tierSlugs: ["higher"],
-        pathwaySlugs: ["gcse"],
-        childSubjectSlugs: [],
+      {
+        examboard_slug: "edexcel",
+        tier_slug: "higher",
+        pathway_slug: "gcse",
+        subject_slug: "biology",
+        subject_parent_slug: null,
       },
-    });
+    ]);
   });
 });

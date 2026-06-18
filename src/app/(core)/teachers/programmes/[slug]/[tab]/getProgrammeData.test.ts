@@ -13,6 +13,7 @@ import curriculumPhaseOptionsFixture from "@/node-lib/curriculum-api-2023/fixtur
 import { curriculumOverviewMVFixture } from "@/node-lib/curriculum-api-2023/fixtures/curriculumOverview.fixture";
 import OakError from "@/errors/OakError";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
+import { filterValidCurriculumPhaseOptions } from "@/pages-helpers/curriculum/docx/tab-helpers";
 
 jest.mock("@/node-lib/curriculum-api-2023", () => ({
   __esModule: true,
@@ -20,7 +21,7 @@ jest.mock("@/node-lib/curriculum-api-2023", () => ({
     curriculumPhaseOptions: jest.fn(),
     curriculumOverview: jest.fn(),
     curriculumSequence: jest.fn(),
-    curriculumSequenceFilterDimensions: jest.fn(),
+    curriculumSequenceSlugs: jest.fn(),
   },
 }));
 
@@ -34,6 +35,9 @@ jest.mock("@/node-lib/cache", () => ({
 }));
 
 const mockCurriculumApi = jest.mocked(curriculumApi2023);
+
+const defaultSubjects = () =>
+  filterValidCurriculumPhaseOptions(curriculumPhaseOptionsFixture());
 
 describe("getProgrammeData", () => {
   const setupDefaultMocks = () => {
@@ -70,7 +74,7 @@ describe("getProgrammeData", () => {
     mockCurriculumApi.curriculumPhaseOptions.mockResolvedValue(
       curriculumPhaseOptionsFixture(),
     );
-    mockCurriculumApi.curriculumSequenceFilterDimensions.mockResolvedValue({});
+    mockCurriculumApi.curriculumSequenceSlugs.mockResolvedValue([]);
   };
 
   beforeEach(() => {
@@ -80,7 +84,10 @@ describe("getProgrammeData", () => {
 
   describe("with valid subject phase slug", () => {
     it("should return programme data with sorted units", async () => {
-      const programmeResults = await getProgrammeData("maths-primary");
+      const programmeResults = await getProgrammeData(
+        "maths-primary",
+        defaultSubjects(),
+      );
       const subjectResults = await getSubjectPhaseOptions("maths-primary");
 
       expect(programmeResults).not.toBeNull();
@@ -95,7 +102,7 @@ describe("getProgrammeData", () => {
     });
 
     it("should call curriculumApi methods with correct parameters", async () => {
-      await getProgrammeData("maths-primary");
+      await getProgrammeData("maths-primary", defaultSubjects());
 
       expect(mockCurriculumApi.curriculumOverview).toHaveBeenCalledWith({
         subjectSlug: "maths",
@@ -158,7 +165,7 @@ describe("getProgrammeData", () => {
         ],
       });
 
-      const result = await getProgrammeData("maths-primary");
+      const result = await getProgrammeData("maths-primary", defaultSubjects());
 
       expect(result?.curriculumUnitsData.units).toHaveLength(4);
       // Note: The sorting logic sorts by examboard first, then by order globally
@@ -224,7 +231,10 @@ describe("getProgrammeData", () => {
         ],
       });
 
-      const result = await getProgrammeData("science-secondary");
+      const result = await getProgrammeData(
+        "science-secondary",
+        defaultSubjects(),
+      );
       const subjectResults = await getSubjectPhaseOptions("science-secondary");
 
       expect(result).not.toBeNull();
@@ -239,24 +249,24 @@ describe("getProgrammeData", () => {
     });
 
     it("should not fetch examboard filter dimensions for primary phase", async () => {
-      const result = await getProgrammeData("maths-primary");
+      const result = await getProgrammeData("maths-primary", defaultSubjects());
 
       expect(result?.examboardFilterDimensions).toEqual({});
-      expect(
-        mockCurriculumApi.curriculumSequenceFilterDimensions,
-      ).not.toHaveBeenCalled();
+      expect(mockCurriculumApi.curriculumSequenceSlugs).not.toHaveBeenCalled();
       expect(mockCurriculumApi.curriculumPhaseOptions).not.toHaveBeenCalled();
     });
 
     it("should fetch examboard filter dimensions in parallel for secondary phase", async () => {
-      const examboardFilterDimensions = {
-        aqa: {
-          tierSlugs: ["foundation"],
-          pathwaySlugs: [],
-          childSubjectSlugs: [],
+      const slugUnits = [
+        {
+          examboard_slug: "aqa",
+          tier_slug: "foundation",
+          pathway_slug: null,
+          subject_slug: "english",
+          subject_parent_slug: null,
         },
-      };
-      mockCurriculumApi.curriculumPhaseOptions.mockResolvedValue([
+      ];
+      const subjects = [
         {
           title: "English",
           slug: "english",
@@ -267,28 +277,35 @@ describe("getProgrammeData", () => {
           ],
           keystages: [],
         },
-      ]);
-      mockCurriculumApi.curriculumSequenceFilterDimensions.mockResolvedValue(
-        examboardFilterDimensions,
-      );
+      ];
+      mockCurriculumApi.curriculumSequenceSlugs.mockResolvedValue(slugUnits);
 
-      const result = await getProgrammeData("english-secondary-aqa");
+      const result = await getProgrammeData("english-secondary-aqa", subjects);
 
-      expect(result?.examboardFilterDimensions).toEqual(
-        examboardFilterDimensions,
-      );
-      expect(
-        mockCurriculumApi.curriculumSequenceFilterDimensions,
-      ).toHaveBeenCalledWith({
+      expect(result?.examboardFilterDimensions).toEqual({
+        aqa: {
+          tierSlugs: ["foundation"],
+          pathwaySlugs: [],
+          childSubjectSlugs: [],
+        },
+        edexcel: {
+          tierSlugs: [],
+          pathwaySlugs: [],
+          childSubjectSlugs: [],
+        },
+      });
+      expect(mockCurriculumApi.curriculumSequenceSlugs).toHaveBeenCalledWith({
         subjectSlug: "english",
         phaseSlug: "secondary",
-        examBoardSlugs: ["aqa", "edexcel"],
         includeNonCurriculum: true,
       });
     });
 
     it("should handle ks4 option slug", async () => {
-      const result = await getProgrammeData("maths-secondary-aqa");
+      const result = await getProgrammeData(
+        "maths-secondary-aqa",
+        defaultSubjects(),
+      );
       const subjectResults = await getSubjectPhaseOptions(
         "maths-secondary-aqa",
       );
@@ -346,7 +363,7 @@ describe("getProgrammeData", () => {
       const subjectResults = await getSubjectPhaseOptions(
         "maths-secondary-core",
       );
-      await getProgrammeData("maths-secondary-core");
+      await getProgrammeData("maths-secondary-core", subjectResults!.subjects);
       expect(mockCurriculumApi.curriculumSequence).toHaveBeenCalledWith({
         subjectSlug: "maths",
         phaseSlug: "secondary",
@@ -364,7 +381,7 @@ describe("getProgrammeData", () => {
 
   describe("with invalid subject phase slug", () => {
     it("should return null for invalid slug", async () => {
-      const result = await getProgrammeData("invalid-slug");
+      const result = await getProgrammeData("invalid-slug", []);
 
       expect(result).toBeNull();
       expect(mockCurriculumApi.curriculumOverview).not.toHaveBeenCalled();
@@ -372,14 +389,14 @@ describe("getProgrammeData", () => {
     });
 
     it("should return null for empty slug", async () => {
-      const result = await getProgrammeData("");
+      const result = await getProgrammeData("", []);
 
       expect(result).toBeNull();
     });
 
     it("should return null for malformed slug", async () => {
       // Use a slug that doesn't have enough parts to parse (needs at least subject-phase)
-      const result = await getProgrammeData("maths");
+      const result = await getProgrammeData("maths", []);
 
       expect(result).toBeNull();
     });
@@ -391,9 +408,9 @@ describe("getProgrammeData", () => {
         new OakError({ code: "curriculum-api/not-found" }),
       );
 
-      await expect(getProgrammeData("maths-primary")).rejects.toThrow(
-        "Resource not found",
-      );
+      await expect(
+        getProgrammeData("maths-primary", defaultSubjects()),
+      ).rejects.toThrow("Resource not found");
     });
 
     it("should propagate errors from curriculumSequence", async () => {
@@ -401,9 +418,9 @@ describe("getProgrammeData", () => {
         new OakError({ code: "curriculum-api/not-found" }),
       );
 
-      await expect(getProgrammeData("maths-primary")).rejects.toThrow(
-        "Resource not found",
-      );
+      await expect(
+        getProgrammeData("maths-primary", defaultSubjects()),
+      ).rejects.toThrow("Resource not found");
     });
   });
 });

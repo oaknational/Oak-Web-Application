@@ -12,6 +12,7 @@ import {
   tabSlugToName,
   isTabSlug,
 } from "../tabSchema";
+import type { ExamboardFilterDimension } from "../buildExamboardFilterDimensions";
 
 import { ProgrammeHeader } from "./ProgrammeHeader/ProgrammeHeader";
 import { buildProgrammeHeading } from "./ProgrammeHeader/buildProgrammeHeading";
@@ -46,7 +47,6 @@ import useAnalyticsPageProps from "@/hooks/useAnalyticsPageProps";
 import { ProgrammePageHeaderCMS } from "@/common-lib/cms-types/programmePage";
 import { CurriculumOverviewSanityData } from "@/common-lib/cms-types";
 import type { Ks4Option } from "@/node-lib/curriculum-api-2023/queries/curriculumPhaseOptions/curriculumPhaseOptions.schema";
-import type { ExamboardFilterDimension } from "@/node-lib/curriculum-api-2023";
 import { resolveOakHref } from "@/common-lib/urls";
 import { CurriculumOverviewMVData } from "@/node-lib/curriculum-api-2023";
 import { validateSearchParams } from "@/utils/validateProgrammePageSearchParams";

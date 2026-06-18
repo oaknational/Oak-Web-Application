@@ -9,9 +9,10 @@ import {
 import { useRouter } from "next/navigation";
 import { useId } from "react";
 
+import type { ExamboardFilterDimension } from "../../buildExamboardFilterDimensions";
+
 import { getSubjectPhaseSlug } from "@/components/TeacherComponents/helpers/getSubjectPhaseSlug";
 import { resolveOakHref } from "@/common-lib/urls";
-import type { ExamboardFilterDimension } from "@/node-lib/curriculum-api-2023";
 import type { Ks4Option } from "@/node-lib/curriculum-api-2023/queries/curriculumPhaseOptions/curriculumPhaseOptions.schema";
 import { isExamboardSlug } from "@/pages-helpers/pupil/options-pages/options-pages-helpers";
 import { scopeYearsToKeystageFilter } from "@/utils/curriculum/filtersUrl";

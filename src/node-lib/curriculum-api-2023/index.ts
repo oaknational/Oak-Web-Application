@@ -26,7 +26,7 @@ import teacherPreviewLessonQuery from "./queries/teacherPreviewLesson/teacherPre
 import teachersPreviewUnitListingQuery from "./queries/teacherPreviewUnitListing/teacherPreviewUnitListing.query";
 import teachersPreviewLessonListingQuery from "./queries/teacherPreviewLessonListing/teacherPreviewLessonListing.query";
 import curriculumSequenceQuery from "./queries/curriculumSequence/curriculumSequence.query";
-import curriculumSequenceFilterDimensionsQuery from "./queries/curriculumSequenceFilterDimensions/curriculumSequenceFilterDimensions.query";
+import curriculumSequenceSlugsQuery from "./queries/curriculumSequenceSlugs/curriculumSequenceSlugs.query";
 import { lessonMediaClipsQuery } from "./queries/lessonMediaClips/lessonMediaClips.query";
 import { betaLessonMediaClipsQuery } from "./queries/lessonBetaMediaClips/lessonBetaMediaClips.query";
 import curriculumPhaseOptionsQuery from "./queries/curriculumPhaseOptions/curriculumPhaseOptions.query";
@@ -95,7 +95,6 @@ export type CurriculumHeaderData = {
   examboardSlug?: string;
 };
 
-export type { ExamboardFilterDimension } from "./queries/curriculumSequenceFilterDimensions/curriculumSequenceFilterDimensions.query";
 export type CurriculumUnitsTabData = z.infer<typeof curriculumSequenceSchema>;
 export type CurriculumUnit = z.infer<
   typeof curriculumSequenceSchema
@@ -115,8 +114,7 @@ export const getFirstResultOrNull =
 const curriculumApi2023 = {
   curriculumOverview: curriculumOverviewQuery(sdk),
   curriculumSequence: curriculumSequenceQuery(sdk),
-  curriculumSequenceFilterDimensions:
-    curriculumSequenceFilterDimensionsQuery(sdk),
+  curriculumSequenceSlugs: curriculumSequenceSlugsQuery(sdk),
   curriculumDownloads: curriculumDownloadsQuery(),
   lessonListing: lessonListingQuery(sdk),
   lessonDownloads: lessonDownloadsQuery(sdk),

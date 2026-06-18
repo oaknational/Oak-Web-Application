@@ -1,4 +1,4 @@
-import { buildExamboardFilterDimensions } from "./curriculumSequenceFilterDimensions.schema";
+import { buildExamboardFilterDimensions } from "./buildExamboardFilterDimensions";
 
 describe("buildExamboardFilterDimensions", () => {
   it("groups filter dimensions per exam board including generic units", () => {
@@ -38,6 +38,23 @@ describe("buildExamboardFilterDimensions", () => {
       tierSlugs: ["foundation", "higher"],
       pathwaySlugs: ["gcse"],
       childSubjectSlugs: ["biology"],
+    });
+  });
+
+  it("returns empty dimension entries for each exam board when there are no units", () => {
+    const result = buildExamboardFilterDimensions([], ["aqa", "edexcel"]);
+
+    expect(result).toEqual({
+      aqa: {
+        tierSlugs: [],
+        pathwaySlugs: [],
+        childSubjectSlugs: [],
+      },
+      edexcel: {
+        tierSlugs: [],
+        pathwaySlugs: [],
+        childSubjectSlugs: [],
+      },
     });
   });
 });

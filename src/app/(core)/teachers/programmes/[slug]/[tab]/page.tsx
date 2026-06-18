@@ -41,10 +41,6 @@ const reportError = errorReporter("programme-page::app");
 type ProgrammePageParams = { slug: string; tab: string };
 export type PageSearchParms = { [key: string]: string | string[] | undefined };
 
-const getCachedProgrammeData = cache(async (subjectPhaseSlug: string) =>
-  getProgrammeData(subjectPhaseSlug),
-);
-
 const getCachedSubjectOptionData = cache(async (subjectPhaseSlug: string) =>
   getSubjectPhaseOptions(subjectPhaseSlug),
 );
@@ -199,7 +195,10 @@ const InnerProgrammePage = async (props: AppPageProps<ProgrammePageParams>) => {
     }
   }
 
-  const cachedProgrammeData = await getCachedProgrammeData(subjectPhaseSlug);
+  const cachedProgrammeData = await getProgrammeData(
+    subjectPhaseSlug,
+    subjects,
+  );
 
   if (!cachedProgrammeData) {
     return notFound();

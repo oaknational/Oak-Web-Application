@@ -8,6 +8,7 @@ import {
 import ProgrammePageFiltersDesktop from "../Filters/ProgrammePageFiltersDesktop";
 import ProgrammePageFiltersMobile from "../Filters/ProgrammePageFiltersMobile";
 import { getDisplayedFilters } from "../Filters/ProgrammeFilters";
+import type { ExamboardFilterDimension } from "../../buildExamboardFilterDimensions";
 
 import ProgrammeSequence from "./Sequence";
 
@@ -20,7 +21,6 @@ import {
 import { CurriculumFilters } from "@/utils/curriculum/types";
 import { CurriculumSelectionSlugs } from "@/utils/curriculum/slugs";
 import type { Ks4Option } from "@/node-lib/curriculum-api-2023/queries/curriculumPhaseOptions/curriculumPhaseOptions.schema";
-import type { ExamboardFilterDimension } from "@/node-lib/curriculum-api-2023";
 
 export type UnitSequenceViewProps = {
   filters: CurriculumFilters;

@@ -1,6 +1,8 @@
 import { OakFlex } from "@oaknational/oak-components";
 import React from "react";
 
+import type { ExamboardFilterDimension } from "../../buildExamboardFilterDimensions";
+
 import { ProgrammeFilters } from "./ProgrammeFilters";
 
 import { CurriculumFilters } from "@/utils/curriculum/types";
@@ -8,7 +10,6 @@ import { CurriculumUnitsFormattedData } from "@/pages-helpers/curriculum/docx/ta
 import { CurriculumSelectionSlugs } from "@/utils/curriculum/slugs";
 import SkipLink from "@/components/CurriculumComponents/OakComponentsKitchen/SkipLink";
 import type { Ks4Option } from "@/node-lib/curriculum-api-2023/queries/curriculumPhaseOptions/curriculumPhaseOptions.schema";
-import type { ExamboardFilterDimension } from "@/node-lib/curriculum-api-2023";
 
 // TD: [integrated journey] this component duplicated CurricVisualiserFiltersDesktop
 // once the integrated journey is launched we can remove that component

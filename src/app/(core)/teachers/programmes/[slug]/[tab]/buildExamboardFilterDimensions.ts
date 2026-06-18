@@ -1,18 +1,4 @@
-import { z } from "zod";
-
-const filterDimensionUnitSchema = z.object({
-  examboard_slug: z.string().nullable(),
-  tier_slug: z.string().nullable(),
-  pathway_slug: z.string().nullable().optional(),
-  subject_slug: z.string(),
-  subject_parent_slug: z.string().nullable(),
-});
-
-const curriculumSequenceFilterDimensionsSchema = z.object({
-  units: z.array(filterDimensionUnitSchema),
-});
-
-export type FilterDimensionUnit = z.infer<typeof filterDimensionUnitSchema>;
+import type { CurriculumSequenceSlugUnit } from "@/node-lib/curriculum-api-2023/queries/curriculumSequenceSlugs/curriculumSequenceSlugs.schema";
 
 export type ExamboardFilterDimension = {
   tierSlugs: string[];
@@ -26,10 +12,11 @@ type MutableExamboardFilterDimension = {
   childSubjectSlugs: Set<string>;
 };
 
-const toSortedArray = (values: Set<string>) => [...values].toSorted();
+const toSortedArray = (values: Set<string>) =>
+  [...values].toSorted((a, b) => a.localeCompare(b));
 
 const applyUnitToBoard = (
-  unit: FilterDimensionUnit,
+  unit: CurriculumSequenceSlugUnit,
   boardDimensions: MutableExamboardFilterDimension,
 ) => {
   if (unit.tier_slug) {
@@ -43,8 +30,13 @@ const applyUnitToBoard = (
   }
 };
 
+/**
+ * Derives which tier, pathway, and child-subject filters are valid for each KS4
+ * exam board option. Used when switching boards so incompatible query params are
+ * dropped rather than carried over.
+ */
 export function buildExamboardFilterDimensions(
-  units: FilterDimensionUnit[],
+  units: CurriculumSequenceSlugUnit[],
   examBoardSlugs: string[],
 ): Record<string, ExamboardFilterDimension> {
   const dimensions = new Map<string, MutableExamboardFilterDimension>(
@@ -86,5 +78,3 @@ export function buildExamboardFilterDimensions(
 
   return result;
 }
-
-export default curriculumSequenceFilterDimensionsSchema;
