@@ -1,10 +1,26 @@
 import { act, waitFor } from "@testing-library/react";
+import {
+  ReadonlyURLSearchParams,
+  usePathname,
+  useRouter,
+  useSearchParams,
+} from "next/navigation";
 
 import searchPageFixture from "../../node-lib/curriculum-api-2023/fixtures/searchPage.fixture";
 import { renderHookWithProviders } from "../../__tests__/__helpers__/renderWithProviders";
 
 import useSearch from "./useSearch";
 import elasticResponseFixture from "./search-api/2023/elasticResponse.2023.fixture.json";
+
+jest.mock("next/navigation", () => ({
+  usePathname: jest.fn(),
+  useRouter: jest.fn(),
+  useSearchParams: jest.fn(),
+}));
+
+const mockUsePathname = jest.mocked(usePathname);
+const mockUseRouter = jest.mocked(useRouter);
+const mockUseSearchParams = jest.mocked(useSearchParams);
 
 const goodFetchResolvedValueWithResults = {
   ok: true,
@@ -50,9 +66,6 @@ jest.mock("@/common-lib/error-reporter/errorReporter", () => ({
       reportError(...args),
 }));
 const fetch = jest.spyOn(global, "fetch") as jest.Mock;
-jest.mock("next/dist/client/router", () => require("next-router-mock"));
-
-fetch.mockResolvedValue(goodFetchResolvedValueNoResults);
 
 jest.mock("posthog-js/react", () => ({
   useFeatureFlagEnabled: () => false,
@@ -60,59 +73,68 @@ jest.mock("posthog-js/react", () => ({
 
 const allKeyStages = searchPageFixture().keyStages;
 
-const providers = { router: { url: "?term=test-term" } };
+const setNavigation = (url = "?term=test-term") => {
+  const queryString = url.startsWith("?") ? url.slice(1) : url;
+
+  mockUseRouter.mockReturnValue({
+    push: jest.fn(),
+    replace: jest.fn(),
+    prefetch: jest.fn(),
+    refresh: jest.fn(),
+    back: jest.fn(),
+    forward: jest.fn(),
+  });
+  mockUsePathname.mockReturnValue("/teachers/search");
+  mockUseSearchParams.mockReturnValue(
+    new URLSearchParams(queryString) as unknown as ReadonlyURLSearchParams,
+  );
+};
+
+const renderUseSearch = (url = "?term=test-term") => {
+  setNavigation(url);
+  return renderHookWithProviders()(() => useSearch({ allKeyStages }));
+};
 
 describe("useSearch()", () => {
   beforeEach(() => {
     jest.clearAllMocks();
+    fetch.mockResolvedValue(goodFetchResolvedValueNoResults);
   });
   test("query should come from url querystring", async () => {
-    const { result } = renderHookWithProviders(providers)(() =>
-      useSearch({ allKeyStages }),
-    );
+    const { result } = renderUseSearch("?term=test-term");
 
     await waitFor(() => {
       expect(result.current.query.term).not.toBe("test-tem");
     });
   });
   test("status should default to 'not-asked' if no search term in url", () => {
-    const { result } = renderHookWithProviders({ router: { url: "" } })(() =>
-      useSearch({ allKeyStages }),
-    );
+    const { result } = renderUseSearch("");
     const { status } = result.current;
 
     expect(status).toBe("not-asked");
   });
   test("status should default to 'loading' if search term in url", async () => {
-    const { result } = renderHookWithProviders(providers)(() =>
-      useSearch({ allKeyStages }),
-    );
+    const { result } = renderUseSearch("?term=test-term");
 
-    await act(async () => {
-      const { status } = result.current;
-
-      expect(status).toBe("loading");
+    await waitFor(() => {
+      expect(result.current.status).toBe("loading");
     });
   });
   test("fetch should not be called if no search term in query", () => {
-    renderHookWithProviders({ router: { url: "" } })(() =>
-      useSearch({ allKeyStages }),
-    );
+    renderUseSearch("");
     expect(fetch).not.toHaveBeenCalled();
   });
   test("fetch should be called once if search term in query", async () => {
-    await act(async () =>
-      renderHookWithProviders(providers)(() => useSearch({ allKeyStages })),
-    );
+    await act(async () => renderUseSearch("?term=test-term"));
 
-    expect(fetch).toHaveBeenCalledTimes(1);
+    await waitFor(() => {
+      expect(fetch).toHaveBeenCalledTimes(1);
+    });
   });
   test("results should be returned in the correct form", async () => {
     fetch.mockImplementation(goodFetchMockImplementation);
 
-    const { result } = renderHookWithProviders(providers)(() =>
-      useSearch({ allKeyStages }),
-    );
+    const { result } = renderUseSearch("?term=test-term");
 
     await waitFor(() =>
       expect(result.current.results[0]).toEqual({
@@ -146,18 +168,14 @@ describe("useSearch()", () => {
   });
   test("results should be returned in the correct form", async () => {
     fetch.mockImplementation(goodFetchMockImplementation);
-    const { result } = renderHookWithProviders(providers)(() =>
-      useSearch({ allKeyStages }),
-    );
+    const { result } = renderUseSearch("?term=test-term");
     await waitFor(() => {
       expect(result.current.results.length).toBe(4);
     });
   });
   test("status should be 'fail' if fetch fails", async () => {
     fetch.mockResolvedValue(badFetchResolvedValue);
-    const { result } = renderHookWithProviders(providers)(() =>
-      useSearch({ allKeyStages }),
-    );
+    const { result } = renderUseSearch("?term=test-term");
 
     await waitFor(() => expect(result.current.status).toBe("fail"));
   });
@@ -166,7 +184,7 @@ describe("useSearch()", () => {
     const error = new Error("bad thing");
     fetch.mockRejectedValue(error);
 
-    renderHookWithProviders(providers)(() => useSearch({ allKeyStages }));
+    renderUseSearch("?term=test-term");
 
     await waitFor(() => expect(reportError).toHaveBeenCalled());
   });
