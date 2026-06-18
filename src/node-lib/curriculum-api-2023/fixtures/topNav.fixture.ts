@@ -7,6 +7,7 @@ export const topNavFixture: TopNavProps = {
       title: "Primary",
       children: [
         {
+          type: "keystage",
           slug: "ks1",
           title: "KS1",
           description: "Key stage 1",
@@ -38,6 +39,7 @@ export const topNavFixture: TopNavProps = {
           ],
         },
         {
+          type: "keystage",
           slug: "ks2",
           title: "KS2",
           description: "Key stage 2",
@@ -53,7 +55,8 @@ export const topNavFixture: TopNavProps = {
           ],
         },
         {
-          slug: "eyfs",
+          type: "keystage",
+          slug: "early-years-foundation-stage",
           title: "EYFS",
           description: "Early years foundation stage",
           children: [],
@@ -65,6 +68,65 @@ export const topNavFixture: TopNavProps = {
       title: "Secondary",
       children: [
         {
+          type: "phase",
+          slug: "secondary",
+          title: "All secondary",
+          description: "All secondary resources",
+          children: [
+            {
+              title: "Computer science",
+              slug: "computer-science",
+              programmeSlug: "computer-science-secondary",
+              href: "/teachers/programmes/computer-science-secondary/units?keystages=ks3,ks4",
+              nonCurriculum: false,
+              programmeCount: 0,
+            },
+            {
+              title: "Maths",
+              slug: "maths",
+              programmeSlug: null,
+              href: "/teachers/programmes/maths-secondary/units?keystages=ks3,ks4",
+              nonCurriculum: false,
+              programmeCount: 0,
+              examBoards: [
+                {
+                  buttonTitle: "Higher",
+                  programmeSlug: "maths-secondary-ks4-higher",
+                  href: "/teachers/programmes/maths-secondary/units?keystages=ks4&tiers=higher",
+                  programmeFactors: {
+                    tier: { slug: "higher", description: "Higher" },
+                  },
+                },
+                {
+                  buttonTitle: "Foundation",
+                  programmeSlug: "maths-secondary-ks4-foundation",
+                  href: "/teachers/programmes/maths-secondary/units?keystages=ks4&tiers=foundation",
+                  programmeFactors: {
+                    tier: { slug: "foundation", description: "Foundation" },
+                  },
+                },
+              ],
+            },
+            {
+              title: "History",
+              slug: "history",
+              programmeSlug: "history-secondary",
+              href: "/teachers/programmes/history-secondary/units?keystages=ks3,ks4",
+              nonCurriculum: false,
+              programmeCount: 0,
+            },
+            {
+              title: "Geography",
+              slug: "geography",
+              programmeSlug: "geography-secondary",
+              href: "/teachers/programmes/geography-secondary/units?keystages=ks3,ks4",
+              nonCurriculum: false,
+              programmeCount: 0,
+            },
+          ],
+        },
+        {
+          type: "keystage",
           slug: "ks3",
           title: "KS3",
           description: "Key stage 3",
@@ -88,6 +150,7 @@ export const topNavFixture: TopNavProps = {
           ],
         },
         {
+          type: "keystage",
           slug: "ks4",
           title: "KS4",
           description: "Key stage 4",
