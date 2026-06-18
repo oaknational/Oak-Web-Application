@@ -1,4 +1,4 @@
-import { usePathname } from "next/navigation";
+import { usePathname, useSearchParams } from "next/navigation";
 
 import { SearchView } from "./SearchView";
 
@@ -19,6 +19,7 @@ const yearGroups = fixture.yearGroups;
 jest.mock("next/navigation");
 
 (usePathname as jest.Mock).mockReturnValue("/");
+(useSearchParams as jest.Mock).mockReturnValue(new URLSearchParams());
 jest.mock("posthog-js/react", () => ({
   ...jest.requireActual("posthog-js/react"),
   useFeatureFlagEnabled: () => false,
