@@ -1,5 +1,5 @@
 import { useSearchParams } from "next/navigation";
-import { FC, useEffect } from "react";
+import { FC, useEffect, useMemo } from "react";
 import {
   OakGrid,
   OakGridArea,
@@ -89,6 +89,19 @@ const Search: FC<SearchProps> = (props) => {
   const searchParams = useSearchParams();
   const hitCount = results.length;
 
+  const searchQueryParams = useMemo(() => {
+    const getParam = (param: string) => searchParams?.get(param) ?? "";
+    return {
+      keyStages: getParam("keyStages") || undefined,
+      examBoards: getParam("examBoards") || undefined,
+      contentTypes: getParam("contentTypes") || undefined,
+      subjects: getParam("subjects") || undefined,
+      yearGroups: getParam("yearGroups") || undefined,
+      curriculum: getParam("curriculum") || undefined,
+      page: getParam("page") || undefined,
+    };
+  }, [searchParams]);
+
   const shouldShowError = status === "fail";
   const shouldShowLoading = status === "loading";
   const shouldShowNoResultsMessage = status === "success" && !hitCount;
@@ -108,17 +121,16 @@ const Search: FC<SearchProps> = (props) => {
   }, [query.term, setSearchStartTime, status]);
 
   useEffect(() => {
-    const getParam = (param: string) => searchParams?.get(param) ?? "";
     const searchHasFilters =
-      getParam("keyStages") ||
-      getParam("examBoards") ||
-      getParam("contentTypes") ||
-      getParam("subjects") ||
-      getParam("yearGroups") ||
-      getParam("curriculum");
+      searchQueryParams.keyStages ||
+      searchQueryParams.examBoards ||
+      searchQueryParams.contentTypes ||
+      searchQueryParams.subjects ||
+      searchQueryParams.yearGroups ||
+      searchQueryParams.curriculum;
 
     if (
-      !getParam("page") &&
+      !searchQueryParams.page &&
       searchStartTime &&
       (status === "success" || status === "fail")
     ) {
@@ -145,7 +157,7 @@ const Search: FC<SearchProps> = (props) => {
           eventVersion: "2.0.0",
           analyticsUseCase: "Teacher",
           searchResultCount: hitCount,
-          activeFilters: getActiveFilters(searchParams),
+          activeFilters: getActiveFilters(searchQueryParams),
           searchTerm: query.term,
         });
       }
@@ -154,7 +166,7 @@ const Search: FC<SearchProps> = (props) => {
     analyticsUseCase,
     hitCount,
     query.term,
-    searchParams,
+    searchQueryParams,
     searchStartTime,
     setSearchStartTime,
     status,
@@ -162,7 +174,7 @@ const Search: FC<SearchProps> = (props) => {
   ]);
 
   const searchFilterOptionSelected =
-    getSortedSearchFiltersSelected(searchParams);
+    getSortedSearchFiltersSelected(searchQueryParams);
 
   const searchResultExpanded = ({
     searchHit,
@@ -231,7 +243,7 @@ const Search: FC<SearchProps> = (props) => {
         analyticsUseCase: analyticsUseCase,
         searchRank: searchRank,
         searchFilterOptionSelected:
-          getSortedSearchFiltersSelected(searchParams),
+          getSortedSearchFiltersSelected(searchQueryParams),
         searchResultCount: hitCount,
         searchResultType: searchHit.type,
         lessonName: removeHTMLTags(searchHit.title),
