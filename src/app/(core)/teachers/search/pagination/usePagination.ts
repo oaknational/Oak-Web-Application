@@ -28,14 +28,20 @@ const toHref = (pathname: string, params: URLSearchParams) => {
   return queryString ? `${pathname}?${queryString}` : pathname;
 };
 
+const toUrlObject = (pathname: string, params: URLSearchParams) => {
+  const query = Object.fromEntries(params);
+  return Object.keys(query).length > 0 ? { pathname, query } : { pathname };
+};
+
 const usePagination = <T>(
   props: UsePaginationProps & Items<T>,
 ): { currentPageItems: T[] } & UsePaginationProps & PaginationProps => {
   const { pageSize, totalResults, items } = props;
-  const totalPages = Math.max(1, Math.ceil(totalResults / pageSize));
+  const totalPages = Math.ceil(totalResults / pageSize);
 
   const router = useRouter();
-  const pathname = usePathname() ?? "";
+  const pathname = usePathname();
+  const route = pathname || "/";
   const searchParams = useSearchParams();
 
   const pageRaw = searchParams?.get("page") ?? "";
@@ -70,19 +76,19 @@ const usePagination = <T>(
   nextParams.set("page", String(currentPage + 1));
 
   const prevHref = isFirstPage
-    ? toHref(pathname, baseParams)
-    : toHref(pathname, prevParams);
+    ? toHref(route, baseParams)
+    : toHref(route, prevParams);
   const nextHref = isLastPage
-    ? toHref(pathname, baseParams)
-    : toHref(pathname, nextParams);
+    ? toHref(route, baseParams)
+    : toHref(route, nextParams);
 
   const prevPageUrlObject = isFirstPage
-    ? { pathname, query: Object.fromEntries(baseParams) }
-    : { pathname, query: Object.fromEntries(prevParams) };
+    ? toUrlObject(route, prevParams)
+    : toUrlObject(route, prevParams);
 
   const nextPageUrlObject = isLastPage
-    ? { pathname, query: Object.fromEntries(baseParams) }
-    : { pathname, query: Object.fromEntries(nextParams) };
+    ? toUrlObject(route, baseParams)
+    : toUrlObject(route, nextParams);
 
   const onPageChange = (page: number) => {
     const bounded = Math.max(1, Math.min(page, totalPages));
@@ -94,7 +100,7 @@ const usePagination = <T>(
       params.set("page", String(bounded));
     }
 
-    router.push(toHref(pathname, params));
+    router.push(toHref(route, params));
 
     // Keep your current UX
     window.scrollTo({ top: 0, behavior: "smooth" });
@@ -115,7 +121,7 @@ const usePagination = <T>(
     nextHref,
     isFirstPage,
     isLastPage,
-    paginationRoute: pathname,
+    paginationRoute: route,
     onPageChange,
   };
 };

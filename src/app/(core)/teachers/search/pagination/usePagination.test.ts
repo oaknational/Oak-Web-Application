@@ -1,9 +1,18 @@
 import { renderHook } from "@testing-library/react";
 import { createRef } from "react";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 
 import usePagination from "./usePagination";
 
-const useRouter = jest.spyOn(require("next/router"), "useRouter");
+jest.mock("next/navigation", () => ({
+  usePathname: jest.fn(),
+  useRouter: jest.fn(),
+  useSearchParams: jest.fn(),
+}));
+
+const mockUsePathname = jest.mocked(usePathname);
+const mockUseRouter = jest.mocked(useRouter);
+const mockUseSearchParams = jest.mocked(useSearchParams);
 
 // Default test values
 const pathname = "/blogs";
@@ -12,15 +21,38 @@ const pageSize = 10;
 const items = Array(30);
 
 describe("usePagination()", () => {
-  jest.mock("next/dist/client/router", () => require("next-router-mock"));
+  const push = jest.fn();
+
+  const mockNavigation = ({
+    path = pathname,
+    query = {},
+  }: {
+    path?: string | null;
+    query?: Record<string, string | number>;
+  } = {}) => {
+    mockUsePathname.mockReturnValue(path);
+    mockUseRouter.mockReturnValue({
+      push,
+      replace: jest.fn(),
+      prefetch: jest.fn(),
+      refresh: jest.fn(),
+      back: jest.fn(),
+      forward: jest.fn(),
+    });
+
+    const params = new URLSearchParams();
+    Object.entries(query).forEach(([key, value]) => {
+      params.set(key, String(value));
+    });
+    mockUseSearchParams.mockReturnValue(params);
+  };
 
   beforeEach(() => {
     jest.clearAllMocks();
   });
 
   test("calculates correct totalPages", () => {
-    useRouter.mockReturnValueOnce({ pathname, query: {} });
-
+    mockNavigation();
     const { result } = renderHook(() =>
       usePagination({ totalResults, pageSize, items }),
     );
@@ -28,8 +60,7 @@ describe("usePagination()", () => {
     expect(result.current.totalPages).toBe(5);
   });
   test("defaults to page 1", () => {
-    useRouter.mockReturnValueOnce({ pathname, query: {} });
-
+    mockNavigation();
     const { result } = renderHook(() =>
       usePagination({ totalResults, pageSize, items }),
     );
@@ -37,18 +68,18 @@ describe("usePagination()", () => {
     expect(result.current.currentPage).toBe(1);
   });
   test("correct hrefs on first page", () => {
-    useRouter.mockReturnValue({ pathname, query: { page: 1 } });
+    mockNavigation({ query: { page: 1 } });
     const { result } = renderHook(() =>
       usePagination({ totalResults, pageSize, items }),
     );
 
     expect(result.current).toMatchObject({
-      prevPageUrlObject: { pathname: undefined },
+      prevPageUrlObject: { pathname },
       nextPageUrlObject: { pathname, query: { page: "2" } },
     });
   });
   test("correct hrefs on last page", () => {
-    useRouter.mockReturnValueOnce({ pathname, query: { page: 5 } });
+    mockNavigation({ query: { page: 5 } });
 
     const { result } = renderHook(() =>
       usePagination({ totalResults, pageSize, items }),
@@ -56,11 +87,11 @@ describe("usePagination()", () => {
 
     expect(result.current).toMatchObject({
       prevPageUrlObject: { pathname, query: { page: "4" } },
-      nextPageUrlObject: { pathname: undefined },
+      nextPageUrlObject: { pathname },
     });
   });
   test("if page < 1, default to page=1 ", () => {
-    useRouter.mockReturnValueOnce({ pathname, query: { page: -5 } });
+    mockNavigation({ query: { page: -5 } });
 
     const { result } = renderHook(() =>
       usePagination({ totalResults, pageSize, items }),
@@ -68,12 +99,12 @@ describe("usePagination()", () => {
 
     expect(result.current).toMatchObject({
       currentPage: 1,
-      prevPageUrlObject: { pathname: undefined },
+      prevPageUrlObject: { pathname },
       nextPageUrlObject: { pathname, query: { page: "2" } },
     });
   });
   test("if page > totalPages, default to page=1 ", () => {
-    useRouter.mockReturnValueOnce({ pathname, query: { page: 500 } });
+    mockNavigation({ query: { page: 500 } });
 
     const { result } = renderHook(() =>
       usePagination({ totalResults, pageSize, items }),
@@ -82,14 +113,15 @@ describe("usePagination()", () => {
     expect(result.current).toMatchObject({
       currentPage: 5,
       prevPageUrlObject: { pathname, query: { page: "4" } },
-      nextPageUrlObject: { pathname: undefined },
+      nextPageUrlObject: { pathname },
     });
   });
   test("works if current route has dynamic slug in pathname", () => {
-    useRouter.mockReturnValueOnce({
-      pathname: "/blog/[categorySlug]",
+    mockNavigation({
+      path: "/blog/[categorySlug]",
       query: { categorySlug: "updates", page: 1 },
     });
+
     const { result } = renderHook(() =>
       usePagination({ totalResults, pageSize, items }),
     );
@@ -103,11 +135,14 @@ describe("usePagination()", () => {
         pathname: "/blog/[categorySlug]",
         query: { categorySlug: "updates", page: "2" },
       },
-      prevPageUrlObject: { pathname: undefined },
+      prevPageUrlObject: {
+        pathname: "/blog/[categorySlug]",
+        query: { categorySlug: "updates" },
+      },
     });
   });
   test("it returns the correct number of currentPageItems", () => {
-    useRouter.mockReturnValueOnce({ pathname, query: { page: 1 } });
+    mockNavigation({ query: { page: 1 } });
 
     const { result } = renderHook(() =>
       usePagination({ totalResults, pageSize, items }),
@@ -119,7 +154,7 @@ describe("usePagination()", () => {
   });
 
   test("returns firstItemRef with a valid ref", () => {
-    useRouter.mockReturnValueOnce({ pathname, query: {} });
+    mockNavigation();
     const { result } = renderHook(() =>
       usePagination({ totalResults, pageSize, items }),
     );
@@ -129,5 +164,29 @@ describe("usePagination()", () => {
 
     const ref = createRef();
     expect(result.current.firstItemRef).toMatchObject(ref);
+  });
+
+  test("falls back to '/' when pathname is null", () => {
+    mockNavigation({ path: null, query: { page: 2 } });
+
+    const { result } = renderHook(() =>
+      usePagination({ totalResults, pageSize, items }),
+    );
+
+    expect(result.current.paginationRoute).toBe("/");
+    expect(result.current.prevHref).toBe("/");
+    expect(result.current.nextHref).toBe("/?page=3");
+  });
+
+  test("falls back to '/' when pathname is empty", () => {
+    mockNavigation({ path: "", query: { page: 2 } });
+
+    const { result } = renderHook(() =>
+      usePagination({ totalResults, pageSize, items }),
+    );
+
+    expect(result.current.paginationRoute).toBe("/");
+    expect(result.current.prevHref).toBe("/");
+    expect(result.current.nextHref).toBe("/?page=3");
   });
 });
