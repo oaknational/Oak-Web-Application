@@ -2,10 +2,14 @@ import React from "react";
 import "@testing-library/jest-dom";
 import { OakThemeProvider, oakDefaultTheme } from "@oaknational/oak-components";
 import userEvent from "@testing-library/user-event";
-import { waitFor } from "@testing-library/react";
+import { screen, waitFor } from "@testing-library/react";
 
 import { PupilViewsReview } from "./PupilReview.view";
 
+import {
+  SHARE_COPY_FAILED_MESSAGE,
+  SHARE_COPY_SUCCESS_MESSAGE,
+} from "@/components/PupilComponents/Views/PupilLessonReview/PupilLessonReviewShareOptions/PupilLessonReviewShareMessaging";
 import { useOakPupil } from "@/hooks/useOakPupil";
 import { OakPupilClientProvider } from "@/context/Pupil/OakPupilClientProvider";
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
@@ -661,10 +665,11 @@ describe("PupilReview", () => {
 
       await userEvent.click(getByText("Copy link"));
 
+      const announcement = screen.getByTestId("share-copy-announcement");
+      expect(announcement).toHaveAttribute("aria-live", "polite");
+      expect(announcement).toHaveTextContent(SHARE_COPY_SUCCESS_MESSAGE);
       expect(
-        getByText(
-          "Link copied to clipboard! You can share this with your teacher.",
-        ),
+        screen.getByRole("heading", { name: SHARE_COPY_SUCCESS_MESSAGE }),
       ).toBeInTheDocument();
     });
 
@@ -700,11 +705,17 @@ describe("PupilReview", () => {
 
       await userEvent.click(getByText("Copy link"));
 
-      await waitFor(() =>
+      await waitFor(() => {
         expect(
-          getByText("Failed to share results. Please try again."),
-        ).toBeInTheDocument(),
-      );
+          screen.getByTestId("share-copy-error-announcement"),
+        ).toHaveTextContent(SHARE_COPY_FAILED_MESSAGE);
+      });
+
+      const announcement = screen.getByTestId("share-copy-error-announcement");
+      expect(announcement).toHaveAttribute("aria-live", "assertive");
+      expect(
+        screen.getByRole("heading", { name: SHARE_COPY_FAILED_MESSAGE }),
+      ).toBeInTheDocument();
     });
   });
 });
