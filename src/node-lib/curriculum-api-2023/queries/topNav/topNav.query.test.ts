@@ -3,9 +3,16 @@ import { mockResponseData } from "./fixtures";
 import { topNavResponseSchema } from "./topNav.schema";
 
 import sdk from "@/node-lib/curriculum-api-2023/sdk";
+import { cacheData } from "@/node-lib/cache";
 import OakError from "@/errors/OakError";
 
 jest.mock("@/node-lib/curriculum-api-2023/sdk", () => {});
+
+jest.mock("@/node-lib/cache", () => ({
+  cacheData: jest.fn((fn) => fn),
+}));
+
+const mockCacheData = jest.mocked(cacheData);
 
 const mockErrorReporter = jest.fn();
 jest.mock("@/common-lib/error-reporter", () => ({
@@ -17,6 +24,10 @@ jest.mock("@/common-lib/error-reporter", () => ({
 }));
 
 describe("TopNavQuery", () => {
+  beforeEach(() => {
+    mockCacheData.mockImplementation((fn) => fn);
+  });
+
   it("parses mock response data including phase options", () => {
     expect(mockResponseData.phaseOptions).toBeDefined();
     const parsed = topNavResponseSchema.safeParse(mockResponseData);
@@ -35,6 +46,25 @@ describe("TopNavQuery", () => {
     expect(res.pupils?.secondary.children).toHaveLength(1);
     expect(res.teachers?.primary.children[0]?.children[0]?.href).toBeDefined();
   });
+
+  it("uses the cached topNav function when withCache is true", async () => {
+    const mockTopNav = jest.fn(() => Promise.resolve(mockResponseData));
+    const mockCachedTopNav = jest.fn(() => Promise.resolve(mockResponseData));
+    mockCacheData.mockReturnValue(mockCachedTopNav);
+
+    const res = await topNavQuery({ ...sdk, topNav: mockTopNav })({
+      withCache: true,
+    });
+
+    expect(mockCacheData).toHaveBeenCalledWith(mockTopNav, [
+      "curriculum-api",
+      "top-nav-query",
+    ]);
+    expect(mockCachedTopNav).toHaveBeenCalled();
+    expect(mockTopNav).not.toHaveBeenCalled();
+    expect(res.teachers?.primary.children).toHaveLength(4);
+  });
+
   it("reports an error when data is missing", async () => {
     await topNavQuery({
       ...sdk,
