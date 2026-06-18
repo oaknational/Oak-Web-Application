@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Suspense } from "react";
 import { Metadata } from "next";
 
 import { SearchView } from "./SearchView";
@@ -17,7 +17,11 @@ export const metadata: Metadata = {
 async function SearchPage() {
   const curriculumData = await curriculumApi2023.searchPage();
 
-  return <SearchView curriculumData={curriculumData} />;
+  return (
+    <Suspense fallback={null}>
+      <SearchView curriculumData={curriculumData} />
+    </Suspense>
+  );
 }
 
 export default SearchPage;
