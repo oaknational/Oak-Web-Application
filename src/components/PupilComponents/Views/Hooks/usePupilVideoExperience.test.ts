@@ -131,4 +131,28 @@ describe("usePupilVideoExperience", () => {
     expect(videoResult?.muted).toBe(true);
     expect(videoResult?.timeElapsed).toBe(12);
   });
+
+  it("flushes the accumulated video result to the store on completion (PUPIL-1770)", () => {
+    const { result } = renderVideo();
+    // a 'playing' event below the 10s threshold updates the ref but is NOT persisted
+    act(() =>
+      result.current.handleVideoEvent({
+        event: "playing",
+        timeElapsed: 5,
+        duration: 200,
+        muted: false,
+      }),
+    );
+    expect(
+      usePupilLessonProgress.getState().sectionResults.video?.duration,
+    ).not.toBe(200);
+
+    // completing the section flushes the in-progress result to the store
+    act(() => result.current.handleProceed());
+
+    const video = usePupilLessonProgress.getState().sectionResults.video;
+    expect(video?.isComplete).toBe(true);
+    expect(video?.played).toBe(true);
+    expect(video?.duration).toBe(200);
+  });
 });
