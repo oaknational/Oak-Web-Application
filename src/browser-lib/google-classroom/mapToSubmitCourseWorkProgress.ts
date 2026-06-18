@@ -3,7 +3,7 @@ import {
   type UpsertCourseWorkPupilProgressArgs,
 } from "@oaknational/google-classroom-addon/types";
 
-import type { LessonSectionResults } from "@/components/PupilComponents/LessonEngineProvider";
+import type { LessonSectionResults } from "@/context/PupilLessonProgress";
 import type { QuestionState } from "@/components/PupilComponents/QuizUtils/questionTypes";
 
 export type CourseWorkProgressContext = {

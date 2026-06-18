@@ -5,7 +5,7 @@ import {
 
 import type { ClassroomProgressContext } from "./classroomAssignmentContext";
 
-import type { LessonSectionResults } from "@/components/PupilComponents/LessonEngineProvider";
+import type { LessonSectionResults } from "@/context/PupilLessonProgress";
 import type { QuestionState } from "@/components/PupilComponents/QuizUtils/questionTypes";
 
 type QuizSectionResult = NonNullable<

@@ -4,8 +4,8 @@ import {
 } from "@oaknational/oak-components";
 
 import { QuizResultCamelCase } from "@/node-lib/pupil-api/types";
-import { QuestionsArray } from "@/components/PupilComponents/LegacyQuiz/QuizEngineProvider";
-import { QuizSectionRender } from "@/components/PupilComponents/LegacyQuiz/QuizSectionRender";
+import { QuestionsArray } from "@/context/PupilLessonQuiz/pupilLessonQuizTypes";
+import { QuizSectionRender } from "@/components/PupilComponents/QuizQuestions/QuizSectionRender";
 
 type QuizQuestionResultsSectionProps = {
   quiz: QuizResultCamelCase;

@@ -7,7 +7,7 @@ import {
 } from "@/browser-lib/google-classroom/mapToSubmitCourseWorkProgress";
 import { mapPupilLessonProgressToSectionResults } from "@/browser-lib/google-classroom/mapPupilLessonProgressToSectionResults";
 import googleClassroomApi from "@/browser-lib/google-classroom/googleClassroomApi";
-import type { LessonSectionResults } from "@/components/PupilComponents/LessonEngineProvider";
+import type { LessonSectionResults } from "@/context/PupilLessonProgress";
 
 export type CourseWorkProgressStatus =
   | "inactive"

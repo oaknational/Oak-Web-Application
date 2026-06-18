@@ -3,7 +3,7 @@ import {
   type CourseWorkProgressContext,
 } from "./mapToSubmitCourseWorkProgress";
 
-import type { LessonSectionResults } from "@/components/PupilComponents/LessonEngineProvider";
+import type { LessonSectionResults } from "@/context/PupilLessonProgress";
 
 const baseContext: CourseWorkProgressContext = {
   submissionId: "submission-123",

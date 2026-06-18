@@ -12,7 +12,7 @@ import {
 } from "@/components/PupilComponents/Views/ViewHelpers";
 import { usePupilLessonAnalytics } from "@/context/PupilLessonAnalytics/usePupilLessonAnalytics";
 import { usePupilLessonProgress } from "@/context/PupilLessonProgress";
-import { useAdditionalFilesDownload } from "@/components/PupilViews/PupilIntro/useAdditionalFilesDownload";
+import { useAdditionalFilesDownload } from "@/components/PupilComponents/Views/ViewHelpers/Intro/useAdditionalFilesDownload";
 import { VideoEventCallbackArgs } from "@/components/SharedComponents/VideoPlayer/VideoPlayer";
 import { PupilLessonPageProps } from "@/pages-helpers/pupil/lessons-pages/pupilLessonPage.types";
 

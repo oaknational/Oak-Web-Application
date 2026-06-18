@@ -3,7 +3,7 @@ import {
   PupilLessonProgress,
 } from "@oaknational/google-classroom-addon/types";
 
-import { LessonSectionResults } from "@/components/PupilComponents/LessonEngineProvider";
+import { LessonSectionResults } from "@/context/PupilLessonProgress";
 
 const isRecord = (value: unknown): value is Record<string, unknown> =>
   typeof value === "object" && value !== null;

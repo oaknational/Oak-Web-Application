@@ -1,7 +1,7 @@
-import { getStaticProps } from "@/pages/pupils/beta/previews/lessons/[lessonSlug]/[section]";
+import { getStaticProps } from "@/pages/pupils/beta/previews/lessons/[lessonSlug]/overview";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023/__mocks__/index";
 import OakError from "@/errors/OakError";
-import { PupilExperienceViewProps } from "@/components/PupilViews/PupilExperience";
+import { PupilLessonPageProps } from "@/pages-helpers/pupil/lessons-pages/pupilLessonPage.types";
 import { lessonContentFixture } from "@/node-lib/curriculum-api-2023/fixtures/lessonContent.fixture";
 import { lessonBrowseDataFixture } from "@/node-lib/curriculum-api-2023/fixtures/lessonBrowseData.fixture";
 
@@ -20,13 +20,12 @@ jest.mock("@/components/PupilComponents/pupilUtils/getWorksheetInfo", () => ({
     .mockResolvedValue({ transcriptSentences: [], hasWorksheet: false }),
 }));
 
-describe("pages/pupils/beta/previews/lessons/[lessonSlug]/index", () => {
+describe("pages/pupils/beta/previews/lessons/[lessonSlug]/overview", () => {
   describe("getStaticProps", () => {
     it("Should call API:pupilPreviewLessonQuery", async () => {
       await getStaticProps({
         params: {
           lessonSlug: "lessonSlug",
-          section: "overview",
         },
       });
 
@@ -48,10 +47,9 @@ describe("pages/pupils/beta/previews/lessons/[lessonSlug]/index", () => {
       const res = (await getStaticProps({
         params: {
           lessonSlug: "lessonSlug",
-          section: "overview",
         },
       })) as {
-        props: PupilExperienceViewProps;
+        props: PupilLessonPageProps;
       };
 
       expect(res.props.lessonContent.lessonId).toEqual(content.lessonId);
@@ -66,7 +64,6 @@ describe("pages/pupils/beta/previews/lessons/[lessonSlug]/index", () => {
       const res = await getStaticProps({
         params: {
           lessonSlug: "lessonSlug",
-          section: "overview",
         },
       });
 
@@ -82,7 +79,6 @@ describe("pages/pupils/beta/previews/lessons/[lessonSlug]/index", () => {
       const res = await getStaticProps({
         params: {
           lessonSlug: "lessonSlug",
-          section: "overview",
         },
       });
 

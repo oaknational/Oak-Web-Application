@@ -4,7 +4,7 @@ import {
   OakJauntyAngleLabel,
 } from "@oaknational/oak-components";
 
-import { QuestionsArray } from "@/components/PupilComponents/LegacyQuiz/QuizEngineProvider";
+import { QuestionsArray } from "@/context/PupilLessonQuiz/pupilLessonQuizTypes";
 import { QuizResultInner } from "@/components/PupilComponents/QuizQuestions/QuizResultInner";
 import { QuestionState } from "@/components/PupilComponents/QuizUtils/questionTypes";
 

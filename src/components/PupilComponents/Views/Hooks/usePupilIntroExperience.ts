@@ -13,8 +13,8 @@ import {
 } from "@/components/PupilComponents/Views/ViewHelpers";
 import { usePupilLessonAnalytics } from "@/context/PupilLessonAnalytics/usePupilLessonAnalytics";
 import { usePupilLessonProgress } from "@/context/PupilLessonProgress";
-import { useAdditionalFilesDownload } from "@/components/PupilViews/PupilIntro/useAdditionalFilesDownload";
-import { useWorksheetDownload } from "@/components/PupilViews/PupilIntro/useWorksheetDownload";
+import { useAdditionalFilesDownload } from "@/components/PupilComponents/Views/ViewHelpers/Intro/useAdditionalFilesDownload";
+import { useWorksheetDownload } from "@/components/PupilComponents/Views/ViewHelpers/Intro/useWorksheetDownload";
 import { PupilLessonPageProps } from "@/pages-helpers/pupil/lessons-pages/pupilLessonPage.types";
 
 export type UsePupilIntroExperienceParams = Pick<

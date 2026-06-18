@@ -5,7 +5,7 @@ import {
   gradeShortAnswerQuestion,
 } from "./gradeQuizQuestion";
 
-import { createQuestionData } from "@/components/PupilComponents/pupilTestHelpers/createQuizEngineContext";
+import { createQuestionData } from "@/components/PupilComponents/pupilTestHelpers/createQuestionData";
 import {
   matchAnswers,
   orderAnswers,
