@@ -47,10 +47,15 @@ const config = {
     headers: {
       "x-vercel-protection-bypass": vercelAutomationBypass,
     },
-    concurrency: 10,
+    concurrency: 5,
     // If running pa11y locally fails, comment out the following section
     chromeLaunchConfig: {
       executablePath: "/usr/bin/google-chrome",
+      args: [
+        // Aims to prevent flakiness with "Failed to run" errors (GH Issue: https://github.com/pa11y/pa11y-ci/issues/198)
+        // Pa11y CI recommends this flag for Docker containers: https://github.com/pa11y/pa11y-ci/blob/main/README.md#docker
+        "--no-sandbox",
+      ],
     },
   },
   urls: [],
