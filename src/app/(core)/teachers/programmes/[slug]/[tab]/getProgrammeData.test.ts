@@ -8,63 +8,80 @@ import {
   getSubjectPhaseOptions,
 } from "./getProgrammeData";
 
-import { CurriculumApi } from "@/node-lib/curriculum-api-2023";
 import { createUnit } from "@/fixtures/curriculum/unit";
 import curriculumPhaseOptionsFixture from "@/node-lib/curriculum-api-2023/fixtures/curriculumPhaseOptions.fixture";
 import { curriculumOverviewMVFixture } from "@/node-lib/curriculum-api-2023/fixtures/curriculumOverview.fixture";
 import OakError from "@/errors/OakError";
+import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
+
+jest.mock("@/node-lib/curriculum-api-2023", () => ({
+  __esModule: true,
+  default: {
+    curriculumPhaseOptions: jest.fn(),
+    curriculumOverview: jest.fn(),
+    curriculumSequence: jest.fn(),
+    curriculumSequenceFilterDimensions: jest.fn(),
+  },
+}));
+
+jest.mock("@/node-lib/cache", () => ({
+  cacheData: <Args extends unknown[], Result>(
+    fn: (...args: Args) => Promise<Result>,
+  ) => fn,
+  cacheCurriculumApiData: <Args extends unknown[], Result>(
+    fn: (...args: Args) => Promise<Result>,
+  ) => fn,
+}));
+
+const mockCurriculumApi = jest.mocked(curriculumApi2023);
 
 describe("getProgrammeData", () => {
-  const createMockCurriculumApi = (
-    overrides?: Partial<CurriculumApi>,
-  ): CurriculumApi => {
-    return {
-      curriculumOverview: jest.fn().mockResolvedValue(
-        curriculumOverviewMVFixture({
-          subjectTitle: "Maths",
-          phaseTitle: "Primary",
-        }),
-      ),
-      curriculumSequence: jest.fn().mockResolvedValue({
-        units: [
-          createUnit({
-            slug: "unit-1",
-            title: "Unit 1",
-            order: 1,
-            examboard: null,
-            examboard_slug: null,
-            year: "5",
-            subject_slug: "maths",
-            phase_slug: "primary",
-          }),
-          createUnit({
-            slug: "unit-2",
-            title: "Unit 2",
-            order: 2,
-            examboard: null,
-            examboard_slug: null,
-            year: "5",
-            subject_slug: "maths",
-            phase_slug: "primary",
-          }),
-        ],
+  const setupDefaultMocks = () => {
+    mockCurriculumApi.curriculumOverview.mockResolvedValue(
+      curriculumOverviewMVFixture({
+        subjectTitle: "Maths",
+        phaseTitle: "Primary",
       }),
-      curriculumPhaseOptions: jest
-        .fn()
-        .mockResolvedValue(curriculumPhaseOptionsFixture()),
-      curriculumSequenceFilterDimensions: jest.fn().mockResolvedValue({}),
-      ...overrides,
-    } as CurriculumApi;
+    );
+    mockCurriculumApi.curriculumSequence.mockResolvedValue({
+      units: [
+        createUnit({
+          slug: "unit-1",
+          title: "Unit 1",
+          order: 1,
+          examboard: null,
+          examboard_slug: null,
+          year: "5",
+          subject_slug: "maths",
+          phase_slug: "primary",
+        }),
+        createUnit({
+          slug: "unit-2",
+          title: "Unit 2",
+          order: 2,
+          examboard: null,
+          examboard_slug: null,
+          year: "5",
+          subject_slug: "maths",
+          phase_slug: "primary",
+        }),
+      ],
+    });
+    mockCurriculumApi.curriculumPhaseOptions.mockResolvedValue(
+      curriculumPhaseOptionsFixture(),
+    );
+    mockCurriculumApi.curriculumSequenceFilterDimensions.mockResolvedValue({});
   };
+
+  beforeEach(() => {
+    jest.clearAllMocks();
+    setupDefaultMocks();
+  });
 
   describe("with valid subject phase slug", () => {
     it("should return programme data with sorted units", async () => {
-      const mockApi = createMockCurriculumApi();
-      const programmeResults = await getProgrammeData(mockApi, "maths-primary");
-      const subjectResults = await getSubjectPhaseOptions(
-        mockApi,
-        "maths-primary",
-      );
+      const programmeResults = await getProgrammeData("maths-primary");
+      const subjectResults = await getSubjectPhaseOptions("maths-primary");
 
       expect(programmeResults).not.toBeNull();
       expect(programmeResults?.programmeUnitsData.subjectTitle).toBe("Maths");
@@ -78,15 +95,14 @@ describe("getProgrammeData", () => {
     });
 
     it("should call curriculumApi methods with correct parameters", async () => {
-      const mockApi = createMockCurriculumApi();
-      await getProgrammeData(mockApi, "maths-primary");
+      await getProgrammeData("maths-primary");
 
-      expect(mockApi.curriculumOverview).toHaveBeenCalledWith({
+      expect(mockCurriculumApi.curriculumOverview).toHaveBeenCalledWith({
         subjectSlug: "maths",
         phaseSlug: "primary",
         includeNonCurriculum: true,
       });
-      expect(mockApi.curriculumSequence).toHaveBeenCalledWith({
+      expect(mockCurriculumApi.curriculumSequence).toHaveBeenCalledWith({
         subjectSlug: "maths",
         phaseSlug: "primary",
         ks4OptionSlug: null,
@@ -97,54 +113,52 @@ describe("getProgrammeData", () => {
     });
 
     it("should sort units with examboard versions first, then by order", async () => {
-      const mockApi = createMockCurriculumApi({
-        curriculumSequence: jest.fn().mockResolvedValue({
-          units: [
-            createUnit({
-              slug: "unit-regular-2",
-              title: "Regular Unit 2",
-              order: 2,
-              examboard: null,
-              examboard_slug: null,
-              year: "5",
-              subject_slug: "maths",
-              phase_slug: "primary",
-            }),
-            createUnit({
-              slug: "unit-examboard-1",
-              title: "Examboard Unit 1",
-              order: 1,
-              examboard: "AQA",
-              examboard_slug: "aqa",
-              year: "5",
-              subject_slug: "maths",
-              phase_slug: "primary",
-            }),
-            createUnit({
-              slug: "unit-regular-1",
-              title: "Regular Unit 1",
-              order: 1,
-              examboard: null,
-              examboard_slug: null,
-              year: "5",
-              subject_slug: "maths",
-              phase_slug: "primary",
-            }),
-            createUnit({
-              slug: "unit-examboard-2",
-              title: "Examboard Unit 2",
-              order: 2,
-              examboard: "Edexcel",
-              examboard_slug: "edexcel",
-              year: "5",
-              subject_slug: "maths",
-              phase_slug: "primary",
-            }),
-          ],
-        }),
+      mockCurriculumApi.curriculumSequence.mockResolvedValue({
+        units: [
+          createUnit({
+            slug: "unit-regular-2",
+            title: "Regular Unit 2",
+            order: 2,
+            examboard: null,
+            examboard_slug: null,
+            year: "5",
+            subject_slug: "maths",
+            phase_slug: "primary",
+          }),
+          createUnit({
+            slug: "unit-examboard-1",
+            title: "Examboard Unit 1",
+            order: 1,
+            examboard: "AQA",
+            examboard_slug: "aqa",
+            year: "5",
+            subject_slug: "maths",
+            phase_slug: "primary",
+          }),
+          createUnit({
+            slug: "unit-regular-1",
+            title: "Regular Unit 1",
+            order: 1,
+            examboard: null,
+            examboard_slug: null,
+            year: "5",
+            subject_slug: "maths",
+            phase_slug: "primary",
+          }),
+          createUnit({
+            slug: "unit-examboard-2",
+            title: "Examboard Unit 2",
+            order: 2,
+            examboard: "Edexcel",
+            examboard_slug: "edexcel",
+            year: "5",
+            subject_slug: "maths",
+            phase_slug: "primary",
+          }),
+        ],
       });
 
-      const result = await getProgrammeData(mockApi, "maths-primary");
+      const result = await getProgrammeData("maths-primary");
 
       expect(result?.curriculumUnitsData.units).toHaveLength(4);
       // Note: The sorting logic sorts by examboard first, then by order globally
@@ -164,26 +178,21 @@ describe("getProgrammeData", () => {
     });
 
     it("should filter curriculum phase options", async () => {
-      const mockApi = createMockCurriculumApi({
-        curriculumPhaseOptions: jest.fn().mockResolvedValue([
-          {
-            title: "English",
-            slug: "english",
-            phases: [{ title: "Primary", slug: "primary" }],
-            ks4_options: [
-              { title: "AQA", slug: "aqa" },
-              { title: "GCSE", slug: "gcse" },
-              { title: "Edexcel", slug: "edexcel" },
-            ],
-            keystages: [],
-          },
-        ]),
-      });
+      mockCurriculumApi.curriculumPhaseOptions.mockResolvedValue([
+        {
+          title: "English",
+          slug: "english",
+          phases: [{ title: "Primary", slug: "primary" }],
+          ks4_options: [
+            { title: "AQA", slug: "aqa" },
+            { title: "GCSE", slug: "gcse" },
+            { title: "Edexcel", slug: "edexcel" },
+          ],
+          keystages: [],
+        },
+      ]);
 
-      const subjectResults = await getSubjectPhaseOptions(
-        mockApi,
-        "maths-primary",
-      );
+      const subjectResults = await getSubjectPhaseOptions("maths-primary");
 
       expect(subjectResults?.subjects).toHaveLength(1);
       const englishSubject = subjectResults?.subjects[0];
@@ -196,32 +205,27 @@ describe("getProgrammeData", () => {
     });
 
     it("should handle secondary phase slug", async () => {
-      const mockApi = createMockCurriculumApi({
-        curriculumOverview: jest.fn().mockResolvedValue(
-          curriculumOverviewMVFixture({
-            subjectTitle: "Science",
-            phaseTitle: "Secondary",
-          }),
-        ),
-        curriculumSequence: jest.fn().mockResolvedValue({
-          units: [
-            createUnit({
-              slug: "science-unit-1",
-              title: "Science Unit 1",
-              order: 1,
-              year: "7",
-              subject_slug: "science",
-              phase_slug: "secondary",
-            }),
-          ],
+      mockCurriculumApi.curriculumOverview.mockResolvedValue(
+        curriculumOverviewMVFixture({
+          subjectTitle: "Science",
+          phaseTitle: "Secondary",
         }),
+      );
+      mockCurriculumApi.curriculumSequence.mockResolvedValue({
+        units: [
+          createUnit({
+            slug: "science-unit-1",
+            title: "Science Unit 1",
+            order: 1,
+            year: "7",
+            subject_slug: "science",
+            phase_slug: "secondary",
+          }),
+        ],
       });
 
-      const result = await getProgrammeData(mockApi, "science-secondary");
-      const subjectResults = await getSubjectPhaseOptions(
-        mockApi,
-        "science-secondary",
-      );
+      const result = await getProgrammeData("science-secondary");
+      const subjectResults = await getSubjectPhaseOptions("science-secondary");
 
       expect(result).not.toBeNull();
       expect(result?.programmeUnitsData.subjectTitle).toBe("Science");
@@ -235,12 +239,13 @@ describe("getProgrammeData", () => {
     });
 
     it("should not fetch examboard filter dimensions for primary phase", async () => {
-      const mockApi = createMockCurriculumApi();
-      const result = await getProgrammeData(mockApi, "maths-primary");
+      const result = await getProgrammeData("maths-primary");
 
       expect(result?.examboardFilterDimensions).toEqual({});
-      expect(mockApi.curriculumSequenceFilterDimensions).not.toHaveBeenCalled();
-      expect(mockApi.curriculumPhaseOptions).not.toHaveBeenCalled();
+      expect(
+        mockCurriculumApi.curriculumSequenceFilterDimensions,
+      ).not.toHaveBeenCalled();
+      expect(mockCurriculumApi.curriculumPhaseOptions).not.toHaveBeenCalled();
     });
 
     it("should fetch examboard filter dimensions in parallel for secondary phase", async () => {
@@ -251,30 +256,30 @@ describe("getProgrammeData", () => {
           childSubjectSlugs: [],
         },
       };
-      const mockApi = createMockCurriculumApi({
-        curriculumPhaseOptions: jest.fn().mockResolvedValue([
-          {
-            title: "English",
-            slug: "english",
-            phases: [{ title: "Secondary", slug: "secondary" }],
-            ks4_options: [
-              { title: "AQA", slug: "aqa" },
-              { title: "Edexcel", slug: "edexcel" },
-            ],
-            keystages: [],
-          },
-        ]),
-        curriculumSequenceFilterDimensions: jest
-          .fn()
-          .mockResolvedValue(examboardFilterDimensions),
-      });
+      mockCurriculumApi.curriculumPhaseOptions.mockResolvedValue([
+        {
+          title: "English",
+          slug: "english",
+          phases: [{ title: "Secondary", slug: "secondary" }],
+          ks4_options: [
+            { title: "AQA", slug: "aqa" },
+            { title: "Edexcel", slug: "edexcel" },
+          ],
+          keystages: [],
+        },
+      ]);
+      mockCurriculumApi.curriculumSequenceFilterDimensions.mockResolvedValue(
+        examboardFilterDimensions,
+      );
 
-      const result = await getProgrammeData(mockApi, "english-secondary-aqa");
+      const result = await getProgrammeData("english-secondary-aqa");
 
       expect(result?.examboardFilterDimensions).toEqual(
         examboardFilterDimensions,
       );
-      expect(mockApi.curriculumSequenceFilterDimensions).toHaveBeenCalledWith({
+      expect(
+        mockCurriculumApi.curriculumSequenceFilterDimensions,
+      ).toHaveBeenCalledWith({
         subjectSlug: "english",
         phaseSlug: "secondary",
         examBoardSlugs: ["aqa", "edexcel"],
@@ -283,10 +288,8 @@ describe("getProgrammeData", () => {
     });
 
     it("should handle ks4 option slug", async () => {
-      const mockApi = createMockCurriculumApi();
-      const result = await getProgrammeData(mockApi, "maths-secondary-aqa");
+      const result = await getProgrammeData("maths-secondary-aqa");
       const subjectResults = await getSubjectPhaseOptions(
-        mockApi,
         "maths-secondary-aqa",
       );
 
@@ -294,7 +297,7 @@ describe("getProgrammeData", () => {
       expect(subjectResults?.subjectPhaseKeystageSlugs.ks4OptionSlug).toBe(
         "aqa",
       );
-      expect(mockApi.curriculumSequence).toHaveBeenCalledWith({
+      expect(mockCurriculumApi.curriculumSequence).toHaveBeenCalledWith({
         subjectSlug: "maths",
         phaseSlug: "secondary",
         ks4OptionSlug: "aqa",
@@ -305,23 +308,20 @@ describe("getProgrammeData", () => {
     });
 
     it("should remove core ks4 option when excludeCoreUnits is true", async () => {
-      const mockApi = createMockCurriculumApi({
-        curriculumPhaseOptions: jest.fn().mockResolvedValue([
-          {
-            title: "Maths",
-            slug: "maths",
-            phases: [{ title: "Secondary", slug: "secondary" }],
-            ks4_options: [
-              { title: "AQA", slug: "aqa" },
-              { title: "Core", slug: "core" },
-            ],
-            keystages: [],
-          },
-        ]),
-      });
+      mockCurriculumApi.curriculumPhaseOptions.mockResolvedValue([
+        {
+          title: "Maths",
+          slug: "maths",
+          phases: [{ title: "Secondary", slug: "secondary" }],
+          ks4_options: [
+            { title: "AQA", slug: "aqa" },
+            { title: "Core", slug: "core" },
+          ],
+          keystages: [],
+        },
+      ]);
 
       const subjectResults = await getSubjectPhaseOptions(
-        mockApi,
         "maths-secondary-aqa",
       );
       expect(subjectResults?.subjects[0]?.ks4_options).toEqual([
@@ -330,27 +330,24 @@ describe("getProgrammeData", () => {
     });
 
     it("should not exclude core units when ks4 option slug is core", async () => {
-      const mockApi = createMockCurriculumApi({
-        curriculumPhaseOptions: jest.fn().mockResolvedValue([
-          {
-            title: "Maths",
-            slug: "maths",
-            phases: [{ title: "Secondary", slug: "secondary" }],
-            ks4_options: [
-              { title: "GCSE", slug: "gcse" },
-              { title: "Core", slug: "core" },
-            ],
-            keystages: [],
-          },
-        ]),
-      });
+      mockCurriculumApi.curriculumPhaseOptions.mockResolvedValue([
+        {
+          title: "Maths",
+          slug: "maths",
+          phases: [{ title: "Secondary", slug: "secondary" }],
+          ks4_options: [
+            { title: "GCSE", slug: "gcse" },
+            { title: "Core", slug: "core" },
+          ],
+          keystages: [],
+        },
+      ]);
 
       const subjectResults = await getSubjectPhaseOptions(
-        mockApi,
         "maths-secondary-core",
       );
-      await getProgrammeData(mockApi, "maths-secondary-core");
-      expect(mockApi.curriculumSequence).toHaveBeenCalledWith({
+      await getProgrammeData("maths-secondary-core");
+      expect(mockCurriculumApi.curriculumSequence).toHaveBeenCalledWith({
         subjectSlug: "maths",
         phaseSlug: "secondary",
         ks4OptionSlug: "core",
@@ -367,55 +364,44 @@ describe("getProgrammeData", () => {
 
   describe("with invalid subject phase slug", () => {
     it("should return null for invalid slug", async () => {
-      const mockApi = createMockCurriculumApi();
-      const result = await getProgrammeData(mockApi, "invalid-slug");
+      const result = await getProgrammeData("invalid-slug");
 
       expect(result).toBeNull();
-      expect(mockApi.curriculumOverview).not.toHaveBeenCalled();
-      expect(mockApi.curriculumSequence).not.toHaveBeenCalled();
+      expect(mockCurriculumApi.curriculumOverview).not.toHaveBeenCalled();
+      expect(mockCurriculumApi.curriculumSequence).not.toHaveBeenCalled();
     });
 
     it("should return null for empty slug", async () => {
-      const mockApi = createMockCurriculumApi();
-      const result = await getProgrammeData(mockApi, "");
+      const result = await getProgrammeData("");
 
       expect(result).toBeNull();
     });
 
     it("should return null for malformed slug", async () => {
-      const mockApi = createMockCurriculumApi();
       // Use a slug that doesn't have enough parts to parse (needs at least subject-phase)
-      const result = await getProgrammeData(mockApi, "maths");
+      const result = await getProgrammeData("maths");
 
       expect(result).toBeNull();
     });
   });
 
   describe("error handling", () => {
-    it("should propagate errors from curriculumApi", async () => {
-      const mockApi = createMockCurriculumApi({
-        curriculumOverview: jest
-          .fn()
-          .mockRejectedValue(
-            new OakError({ code: "curriculum-api/not-found" }),
-          ),
-      });
+    it("should propagate errors from curriculumOverview", async () => {
+      mockCurriculumApi.curriculumOverview.mockRejectedValue(
+        new OakError({ code: "curriculum-api/not-found" }),
+      );
 
-      await expect(getProgrammeData(mockApi, "maths-primary")).rejects.toThrow(
+      await expect(getProgrammeData("maths-primary")).rejects.toThrow(
         "Resource not found",
       );
     });
 
     it("should propagate errors from curriculumSequence", async () => {
-      const mockApi = createMockCurriculumApi({
-        curriculumSequence: jest
-          .fn()
-          .mockRejectedValue(
-            new OakError({ code: "curriculum-api/not-found" }),
-          ),
-      });
+      mockCurriculumApi.curriculumSequence.mockRejectedValue(
+        new OakError({ code: "curriculum-api/not-found" }),
+      );
 
-      await expect(getProgrammeData(mockApi, "maths-primary")).rejects.toThrow(
+      await expect(getProgrammeData("maths-primary")).rejects.toThrow(
         "Resource not found",
       );
     });
