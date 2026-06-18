@@ -67,8 +67,6 @@ const ResourcePageTermsAndConditionsCheckbox: FC<
           aria-label="Oak's terms & conditions (opens in a new tab)"
           iconName="external"
           isTrailingIcon
-          iconHeight="spacing-20"
-          iconWidth="spacing-20"
           data-testid="external-link-icon"
         >
           Oak's terms & conditions

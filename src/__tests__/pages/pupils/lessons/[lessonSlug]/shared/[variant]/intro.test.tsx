@@ -41,16 +41,19 @@ jest.mock("@/context/PupilLessonAnalytics/usePupilLessonAnalytics", () => ({
 }));
 
 const startWorksheet = jest.fn(() => Promise.resolve(true));
-jest.mock("@/components/PupilViews/PupilIntro/useWorksheetDownload", () => ({
-  useWorksheetDownload: () => ({
-    startDownload: startWorksheet,
-    isDownloading: false,
+jest.mock(
+  "@/components/PupilComponents/Views/ViewHelpers/Intro/useWorksheetDownload",
+  () => ({
+    useWorksheetDownload: () => ({
+      startDownload: startWorksheet,
+      isDownloading: false,
+    }),
   }),
-}));
+);
 
 const startFiles = jest.fn();
 jest.mock(
-  "@/components/PupilViews/PupilIntro/useAdditionalFilesDownload",
+  "@/components/PupilComponents/Views/ViewHelpers/Intro/useAdditionalFilesDownload",
   () => ({
     useAdditionalFilesDownload: () => ({
       startAdditionalFilesDownload: startFiles,

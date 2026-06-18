@@ -28,7 +28,7 @@ jest.mock("@/context/PupilLessonAnalytics/usePupilLessonAnalytics", () => ({
 }));
 
 jest.mock(
-  "@/components/PupilViews/PupilIntro/useAdditionalFilesDownload",
+  "@/components/PupilComponents/Views/ViewHelpers/Intro/useAdditionalFilesDownload",
   () => ({
     useAdditionalFilesDownload: () => ({
       startAdditionalFilesDownload: jest.fn(),
@@ -128,6 +128,16 @@ describe("video page", () => {
     const video = usePupilLessonProgress.getState().sectionResults.video;
     expect(video?.played).toBe(true);
     expect(video?.duration).toBe(60);
+  });
+
+  it("persists a complete video result when proceeding without playing the video", () => {
+    const { getByTestId } = renderPage();
+    fireEvent.click(getByTestId("proceed-to-next-section"));
+    const video = usePupilLessonProgress.getState().sectionResults.video;
+    expect(video?.isComplete).toBe(true);
+    expect(video?.played).toBe(false);
+    expect(video?.duration).toBe(0);
+    expect(video?.timeElapsed).toBe(0);
   });
 
   it("returns notFound from getStaticProps when the variant is invalid", async () => {
