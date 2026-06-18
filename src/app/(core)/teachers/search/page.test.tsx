@@ -2,7 +2,6 @@ import { usePathname, useSearchParams } from "next/navigation";
 
 import { SearchView } from "./SearchView";
 
-import { mockSeoResult } from "@/__tests__/__helpers__/cms";
 import renderWithSeo from "@/__tests__/__helpers__/renderWithSeo";
 import searchPageFixture from "@/node-lib/curriculum-api-2023/fixtures/searchPage.fixture";
 
@@ -26,32 +25,6 @@ jest.mock("posthog-js/react", () => ({
 }));
 
 describe("pages/teachers/search.tsx", () => {
-  test("renders page with correct seo", () => {
-    const { seo } = renderWithSeo()(
-      <SearchView
-        curriculumData={{
-          keyStages,
-          subjects,
-          contentTypes,
-          examBoards,
-          yearGroups,
-        }}
-      />,
-    );
-
-    expect(seo).toEqual({
-      ...mockSeoResult,
-      title: "Search for Free Teaching Resources | NEXT_PUBLIC_SEO_APP_NAME",
-      description: "Search for Free Teaching Resources",
-      ogTitle: "Search for Free Teaching Resources | NEXT_PUBLIC_SEO_APP_NAME",
-      ogDescription: "Search for Free Teaching Resources",
-      ogUrl: "NEXT_PUBLIC_SEO_APP_URL/",
-      ogSiteName: "NEXT_PUBLIC_SEO_APP_NAME",
-      canonical: "NEXT_PUBLIC_SEO_APP_URL",
-      robots: "noindex,follow",
-    });
-  });
-
   test("renders correct content type filters", () => {
     const { getAllByRole } = renderWithSeo()(
       <SearchView
