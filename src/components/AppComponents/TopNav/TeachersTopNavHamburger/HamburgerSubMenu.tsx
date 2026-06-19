@@ -36,7 +36,7 @@ const getKeystageListLabel = (keystage: KeystageSubjectsMenu) =>
 const getKeystageListAriaLabel = (keystage: KeystageSubjectsMenu) =>
   isEyfsKeystage(keystage) ? keystage.description : undefined;
 
-export function SubmenuContainer({
+function SubmenuContainer({
   title,
   ariaLabel,
   children,
@@ -122,7 +122,7 @@ export function HamburgerMenuContent(
           <OakUL
             $display={"flex"}
             $flexDirection={"column"}
-            $pl="spacing-40"
+            $ph="spacing-0"
             $gap={"spacing-16"}
           >
             {links.children.map((link) => (

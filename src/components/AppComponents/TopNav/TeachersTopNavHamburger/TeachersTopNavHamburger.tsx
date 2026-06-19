@@ -22,12 +22,7 @@ export type HamburgerMenuHook = {
   handleNav: (newMenu: HamburgerState) => void;
 };
 
-export const getEYFSAriaLabel = (title: string) => {
-  const isEYFS = title === "EYFS";
-  return isEYFS ? "Early years foundation stage" : undefined;
-};
-
-export const useHamburgerMenuState = (): HamburgerMenuHook => {
+const useHamburgerMenuState = (): HamburgerMenuHook => {
   const [menuState, setMenuState] = useState<Array<HamburgerState>>([]);
   const [prevSubmenu, setPrevSubmenu] = useState<HamburgerState | null>(null);
 
