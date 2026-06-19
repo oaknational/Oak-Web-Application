@@ -12,7 +12,7 @@ import { WebinarsListingPage } from "@/common-lib/cms-types/webinarsListingPage"
 import PostListing from "@/components/GenericPagesViews/PostListing.view";
 import { getVideoThumbnail } from "@/components/SharedComponents/VideoPlayer/getVideoThumbnail";
 import { PAGE_SIZE } from "@/components/SharedComponents/PostList/usePostList";
-import usePagination from "@/app/(core)/teachers/search/pagination/usePagination";
+import usePagination from "@/components/SharedComponents/Pagination/usePagination";
 import PaginationHead from "@/app/(core)/teachers/search/pagination/PaginationHead";
 
 export type WebinarListingPageProps = {

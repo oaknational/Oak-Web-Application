@@ -1,4 +1,4 @@
-import { useSearchParams } from "next/navigation";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { FC, useEffect, useMemo } from "react";
 import {
   OakGrid,
@@ -86,6 +86,8 @@ const Search: FC<SearchProps> = (props) => {
   } = props;
   const { track } = useAnalytics();
   const { analyticsUseCase } = useAnalyticsPageProps();
+  const router = useRouter();
+  const pathname = usePathname();
   const searchParams = useSearchParams();
   const hitCount = results.length;
 
@@ -558,6 +560,13 @@ const Search: FC<SearchProps> = (props) => {
                     hits={results}
                     allKeyStages={allKeyStages}
                     query={query}
+                    paginationNavigation={{
+                      route: pathname || "/",
+                      searchParams: searchParams
+                        ? new URLSearchParams(searchParams.toString())
+                        : null,
+                      push: (url: string) => router?.push(url),
+                    }}
                     searchResultExpanded={(searchHit, searchRank) =>
                       searchResultExpanded({
                         searchHit,

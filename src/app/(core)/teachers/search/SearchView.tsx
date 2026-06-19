@@ -1,5 +1,7 @@
 "use client";
 
+import { useRouter, useSearchParams } from "next/navigation";
+
 import Search from "@/app/(core)/teachers/search/Search.view";
 import useSearch from "@/context/Search/useSearch";
 import useSearchFilters from "@/context/Search/useSearchFilters";
@@ -10,6 +12,9 @@ export const SearchView = ({
 }: {
   curriculumData: SearchPageData;
 }) => {
+  const router = useRouter();
+  const searchParams = useSearchParams();
+
   const {
     subjects: allSubjects,
     keyStages: allKeyStages,
@@ -25,6 +30,12 @@ export const SearchView = ({
     allContentTypes,
     allExamBoards,
     legacy: [{ slug: "new", title: "Show new only" }],
+    navigation: {
+      searchParams: searchParams
+        ? new URLSearchParams(searchParams.toString())
+        : null,
+      push: (url: string) => router.push(url),
+    },
   });
 
   const searchFilters = useSearchFilters({

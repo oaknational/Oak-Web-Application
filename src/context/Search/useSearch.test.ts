@@ -1,10 +1,5 @@
 import { act, waitFor } from "@testing-library/react";
-import {
-  ReadonlyURLSearchParams,
-  usePathname,
-  useRouter,
-  useSearchParams,
-} from "next/navigation";
+import { useRouter } from "next/compat/router";
 
 import searchPageFixture from "../../node-lib/curriculum-api-2023/fixtures/searchPage.fixture";
 import { renderHookWithProviders } from "../../__tests__/__helpers__/renderWithProviders";
@@ -12,15 +7,11 @@ import { renderHookWithProviders } from "../../__tests__/__helpers__/renderWithP
 import useSearch from "./useSearch";
 import elasticResponseFixture from "./search-api/2023/elasticResponse.2023.fixture.json";
 
-jest.mock("next/navigation", () => ({
-  usePathname: jest.fn(),
+jest.mock("next/compat/router", () => ({
   useRouter: jest.fn(),
-  useSearchParams: jest.fn(),
 }));
 
-const mockUsePathname = jest.mocked(usePathname);
 const mockUseRouter = jest.mocked(useRouter);
-const mockUseSearchParams = jest.mocked(useSearchParams);
 
 const goodFetchResolvedValueWithResults = {
   ok: true,
@@ -65,7 +56,7 @@ jest.mock("@/common-lib/error-reporter/errorReporter", () => ({
     (...args: []) =>
       reportError(...args),
 }));
-const fetch = jest.spyOn(global, "fetch") as jest.Mock;
+const fetch = jest.spyOn(globalThis, "fetch") as jest.Mock;
 
 jest.mock("posthog-js/react", () => ({
   useFeatureFlagEnabled: () => false,
@@ -74,20 +65,31 @@ jest.mock("posthog-js/react", () => ({
 const allKeyStages = searchPageFixture().keyStages;
 
 const setNavigation = (url = "?term=test-term") => {
-  const queryString = url.startsWith("?") ? url.slice(1) : url;
+  const queryString = url.startsWith("?") ? url : `?${url}`;
 
   mockUseRouter.mockReturnValue({
+    asPath: `/teachers/search${queryString}`,
     push: jest.fn(),
     replace: jest.fn(),
     prefetch: jest.fn(),
-    refresh: jest.fn(),
     back: jest.fn(),
+    isReady: true,
+    pathname: "/teachers/search",
+    query: {},
+    route: "/teachers/search",
+    basePath: "",
+    isFallback: false,
+    isLocaleDomain: false,
+    isPreview: false,
+    events: {
+      on: jest.fn(),
+      off: jest.fn(),
+      emit: jest.fn(),
+    },
+    beforePopState: jest.fn(),
+    reload: jest.fn(),
     forward: jest.fn(),
   });
-  mockUsePathname.mockReturnValue("/teachers/search");
-  mockUseSearchParams.mockReturnValue(
-    new URLSearchParams(queryString) as unknown as ReadonlyURLSearchParams,
-  );
 };
 
 const renderUseSearch = (url = "?term=test-term") => {
@@ -180,7 +182,6 @@ describe("useSearch()", () => {
     await waitFor(() => expect(result.current.status).toBe("fail"));
   });
   test("error should be reported", async () => {
-    // @todo skipping this test, not sure why it's failing
     const error = new Error("bad thing");
     fetch.mockRejectedValue(error);
 

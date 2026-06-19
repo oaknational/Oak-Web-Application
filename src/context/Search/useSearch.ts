@@ -1,4 +1,4 @@
-import { useRouter, useSearchParams } from "next/navigation";
+import { useRouter as useCompatRouter } from "next/compat/router";
 import { useCallback, useEffect, useMemo, useState } from "react";
 
 import {
@@ -24,6 +24,11 @@ type UseSearchQueryReturnType = {
   setQuery: SetSearchQuery;
 };
 
+type SearchNavigationAdapter = {
+  searchParams: URLSearchParams | null;
+  push: (url: string) => void;
+};
+
 const useSearchQuery = ({
   allKeyStages,
   allYearGroups,
@@ -31,6 +36,7 @@ const useSearchQuery = ({
   allContentTypes,
   allExamBoards,
   legacy,
+  navigation,
 }: {
   allKeyStages?: KeyStage[];
   allYearGroups?: SearchPageData["yearGroups"];
@@ -38,9 +44,16 @@ const useSearchQuery = ({
   allContentTypes?: ContentType[];
   allExamBoards?: SearchPageData["examBoards"];
   legacy?: { slug: string; title: string }[];
+  navigation?: SearchNavigationAdapter;
 }): UseSearchQueryReturnType => {
-  const router = useRouter();
-  const searchParams = useSearchParams();
+  const router = useCompatRouter();
+  const searchParams = useMemo(() => {
+    if (navigation?.searchParams) {
+      return navigation.searchParams;
+    }
+
+    return new URLSearchParams(router?.asPath?.split("?")[1] ?? "");
+  }, [navigation?.searchParams, router?.asPath]);
 
   const isFilterItemCallback = useCallback(isFilterItem, []);
 
@@ -104,7 +117,15 @@ const useSearchQuery = ({
       page: "search",
       query: newQuery,
     });
-    router.push(url, undefined);
+
+    if (navigation?.push) {
+      navigation.push(url);
+      return;
+    }
+
+    if (router) {
+      void router.push(url);
+    }
   });
 
   return { query, setQuery };
@@ -127,6 +148,7 @@ type UseSearchProps = {
   allContentTypes?: ContentType[];
   allExamBoards?: SearchPageData["examBoards"];
   legacy?: { slug: string; title: string }[];
+  navigation?: SearchNavigationAdapter;
 };
 const useSearch = (props: UseSearchProps): UseSearchReturnType => {
   const {
@@ -136,6 +158,7 @@ const useSearch = (props: UseSearchProps): UseSearchReturnType => {
     allContentTypes,
     allExamBoards,
     legacy,
+    navigation,
   } = props;
   const { query, setQuery } = useSearchQuery({
     allKeyStages,
@@ -144,6 +167,7 @@ const useSearch = (props: UseSearchProps): UseSearchReturnType => {
     allContentTypes,
     allExamBoards,
     legacy,
+    navigation,
   });
   const [searchStartTime, setSearchStartTime] = useState<null | number>(null);
 

@@ -8,7 +8,9 @@ import {
 
 import SignPostToAila from "../NoSearchResults/SignPostToAila";
 
-import usePagination from "@/app/(core)/teachers/search/pagination/usePagination";
+import usePagination, {
+  PaginationNavigationAdapter,
+} from "@/components/SharedComponents/Pagination/usePagination";
 import {
   KeyStage,
   SearchHit,
@@ -31,6 +33,7 @@ interface SearchResultsProps {
     searchRank: number,
   ) => void;
   query?: SearchQuery;
+  paginationNavigation?: PaginationNavigationAdapter;
 }
 
 export const RESULTS_PER_PAGE = 20;
@@ -42,12 +45,14 @@ const SearchResults = (props: SearchResultsProps) => {
     allKeyStages,
     searchResultOpened,
     searchResultExpanded,
+    paginationNavigation,
   } = props;
   const hitCount = hits.length;
   const paginationProps = usePagination({
     totalResults: hitCount,
     pageSize: RESULTS_PER_PAGE,
     items: hits,
+    navigation: paginationNavigation,
   });
 
   const { currentPageItems, currentPage, firstItemRef, paginationRoute } =
