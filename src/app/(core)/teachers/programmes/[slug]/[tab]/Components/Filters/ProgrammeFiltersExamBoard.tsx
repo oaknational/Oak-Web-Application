@@ -6,8 +6,8 @@ import {
   OakRadioAsButton,
   OakRadioGroup,
 } from "@oaknational/oak-components";
-import { useRouter } from "next/navigation";
-import { useId } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
+import { useEffect, useId, useRef } from "react";
 
 import type { ExamboardFilterDimension } from "../../buildExamboardFilterDimensions";
 
@@ -19,6 +19,8 @@ import { scopeYearsToKeystageFilter } from "@/utils/curriculum/filtersUrl";
 import { keystageYearMappings } from "@/utils/curriculum/keystage";
 import { CurriculumSelectionSlugs } from "@/utils/curriculum/slugs";
 import { CurriculumFilters } from "@/utils/curriculum/types";
+
+export const FOCUS_KS4_OPTION_QUERY_PARAM = "focus_ks4option";
 
 export type ProgrammeFiltersExamBoardProps = {
   filters: CurriculumFilters;
@@ -77,6 +79,15 @@ function toQueryParam(values: string[]): string | undefined {
   return values.length > 0 ? values.join(",") : undefined;
 }
 
+function stripFocusKs4OptionParam(searchParams: URLSearchParams): string {
+  const params = new URLSearchParams(searchParams.toString());
+  params.delete(FOCUS_KS4_OPTION_QUERY_PARAM);
+  const qs = params.toString();
+  return qs
+    ? `${globalThis.location.pathname}?${qs}`
+    : globalThis.location.pathname;
+}
+
 export function getPreservedQuery(
   filters: CurriculumFilters,
   destinationSlug: string,
@@ -123,9 +134,51 @@ export function ProgrammeFiltersExamBoard({
 }: Readonly<ProgrammeFiltersExamBoardProps>) {
   const id = useId();
   const router = useRouter();
+  const searchParams = useSearchParams();
+  const groupRef = useRef<HTMLDivElement>(null);
+  const hasHandledFocusParam = useRef(false);
   const examBoardOptions = getExamBoardOptions(ks4Options);
+  const isVisible = shouldDisplayExamBoardFilter(slugs, filters, ks4Options);
 
-  if (!shouldDisplayExamBoardFilter(slugs, filters, ks4Options)) {
+  // Exam board selection navigates to a new programme slug, which remounts this
+  // filter and drops focus. onExamBoardChange appends a one-shot focus_ks4option
+  // query param so we can restore focus here after the new page paints. The param
+  // is stripped via replaceState (which does not update useSearchParams), so we
+  // guard with hasHandledFocusParam to run this only once per mount.
+  useEffect(() => {
+    if (!isVisible || hasHandledFocusParam.current || !searchParams) {
+      return;
+    }
+
+    const focusSlug = searchParams.get(FOCUS_KS4_OPTION_QUERY_PARAM);
+    if (!focusSlug) {
+      return;
+    }
+
+    hasHandledFocusParam.current = true;
+
+    const matchingOption = examBoardOptions.find(
+      (option) => option.slug === focusSlug,
+    );
+
+    requestAnimationFrame(() => {
+      if (matchingOption) {
+        const radio = groupRef.current?.querySelector<HTMLInputElement>(
+          `input[type="radio"][value="${matchingOption.slug}"]`,
+        );
+        // Restore focus position without showing the focus ring after navigation.
+        radio?.focus({ focusVisible: false } as FocusOptions);
+      }
+
+      globalThis.history.replaceState(
+        null,
+        "",
+        stripFocusKs4OptionParam(searchParams),
+      );
+    });
+  }, [searchParams, isVisible, examBoardOptions]);
+
+  if (!isVisible) {
     return null;
   }
 
@@ -141,17 +194,20 @@ export function ProgrammeFiltersExamBoard({
         page: "teacher-programme",
         subjectPhaseSlug,
         tab: "units",
-        query: getPreservedQuery(
-          filters,
-          selectedSlug,
-          examboardFilterDimensions,
-        ),
+        query: {
+          ...getPreservedQuery(
+            filters,
+            selectedSlug,
+            examboardFilterDimensions,
+          ),
+          focus_ks4option: selectedSlug,
+        },
       }),
     );
   }
 
   return (
-    <OakBox>
+    <OakBox ref={groupRef}>
       <OakRadioGroup
         name={`exam-board-${id}`}
         onChange={(e) => onExamBoardChange(e.target.value)}

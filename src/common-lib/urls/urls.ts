@@ -482,6 +482,7 @@ type ProgrammePageProps = {
     tiers?: string;
     years?: string;
     pathways?: string;
+    focus_ks4option?: string;
   };
 };
 
