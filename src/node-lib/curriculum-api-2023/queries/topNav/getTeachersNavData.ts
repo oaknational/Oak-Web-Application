@@ -7,8 +7,6 @@ import {
   KeystageMenu,
   PhaseSlug,
   SubjectsMenu,
-  PhaseMenu,
-  PhaseTitle,
   getPhaseTitle,
 } from "./topNav.schema";
 import {
@@ -274,7 +272,7 @@ const getSubjectsByPhase = (
   teachersData: TopNavResponse,
   phaseSlug: PhaseSlug,
   curriculumPhaseOptionsWithoutCore: CurriculumPhaseOptions,
-): PhaseMenu[] => {
+): SubjectsMenu[] => {
   // Filter "base" subjects not needed at phase level, e.g. Citizenship for KS3 where core and gcse exist
   const relevantPhaseSlugs =
     phaseSlug === "primary" ? ["primary", "foundation"] : ["secondary"];
@@ -381,14 +379,7 @@ const getSubjectsByPhase = (
     phaseChildrenAccumulator.values(),
   );
 
-  return [
-    {
-      slug: phaseSlug,
-      title:
-        `${phaseSlug[0]?.toUpperCase()}${phaseSlug.slice(1)}` as PhaseTitle, // TODO
-      children: orderedChildren,
-    },
-  ] satisfies PhaseMenu[];
+  return orderedChildren;
 };
 
 const deriveKs4SubjectSets = (programmes: TopNavProgramme[]) => {
@@ -641,8 +632,15 @@ export const getTeachersNavData = (
   ).map((item) => ({ ...item, type: "keystage" as const }));
 
   return {
-    slug: phaseSlug,
-    title: getPhaseTitle(phaseSlug),
-    children: [...keystageItems, ...subjectsForPhase],
+    phases: {
+      slug: phaseSlug,
+      title: getPhaseTitle(phaseSlug),
+      children: subjectsForPhase,
+    },
+    keystages: {
+      slug: "keystages",
+      title: "Keystages",
+      children: keystageItems,
+    },
   };
 };

@@ -6,7 +6,6 @@ import curriculumPhaseOptionsSchema from "../curriculumPhaseOptions/curriculumPh
 
 import { Tier } from "@/utils/curriculum/types";
 
-
 export const topNavResponseSchema = z.object({
   programmes: z.array(
     z.object({
@@ -53,7 +52,8 @@ export type TeachersSubNavData = {
 export type NavButton =
   | NavLink
   | NavDropDownButton
-  | TeachersBrowse
+  | PhaseMenu
+  | KeystageTypeMenu
   | PupilsBrowse;
 
 type KeystageState = {
@@ -133,9 +133,14 @@ export type Ks4OptionsMenu = {
 };
 
 export type TeachersBrowse = {
-  children: Array<KeystageMenu | PhaseMenu>;
-  title: PhaseTitle;
-  slug: PhaseSlug;
+  keystages: KeystageTypeMenu;
+  phases: PhaseMenu;
+};
+
+export type KeystageTypeMenu = {
+  title: "Keystages";
+  slug: "keystages";
+  children: Array<KeystageMenu>;
 };
 
 export type PupilsSubNavData = {
@@ -153,18 +158,26 @@ type PupilsBrowse = {
 // Type guard to check if a nav item opens a dropdown menu (vs being a direct link)
 export function isDropdownMenuItem(
   section: NavButton,
-): section is NavDropDownButton | TeachersBrowse | PupilsBrowse {
+): section is NavDropDownButton | PhaseMenu | KeystageTypeMenu | PupilsBrowse {
   return "children" in section;
 }
 
 export function isTeachersBrowseItem(
-  section: NavButton,
+  section: unknown,
 ): section is TeachersBrowse {
-  return section.slug === "primary" || section.slug === "secondary";
+  return (
+    typeof section === "object" &&
+    section !== null &&
+    "phases" in section &&
+    "keystages" in section
+  );
 }
 
 export function isNavDropDownButtonItem(
   section: NavButton,
 ): section is NavDropDownButton {
-  return section.slug === "guidance" || section.slug === "aboutUs";
+  return (
+    "slug" in section &&
+    (section.slug === "guidance" || section.slug === "aboutUs")
+  );
 }

@@ -41,6 +41,11 @@ const TopNavSubjectButtons = ({
   onExamBoardPanelOpen: (subject: SubjectsMenu) => void;
   onExamboardPanelClose: () => void;
 }) => {
+  const getSubjectParentId = () =>
+    identifyingSlug === phase
+      ? `teachers-${phase}-${identifyingSlug}`
+      : `teachers-${phase}-keystages-${identifyingSlug}`;
+
   const handleSubjectClick = (
     e: React.MouseEvent<HTMLButtonElement>,
     subject: SubjectsMenu,
@@ -76,10 +81,7 @@ const TopNavSubjectButtons = ({
               subjectSlug,
             } = subject;
 
-            const buttonId = focusManager?.createId(
-              `teachers-${phase}-${identifyingSlug}`,
-              key,
-            );
+            const buttonId = focusManager?.createId(key, getSubjectParentId());
 
             return (
               <OakLI key={title}>
@@ -127,7 +129,7 @@ const TopNavSubjectButtons = ({
               <TopNavKS4Buttons
                 ks4Options={subject.children}
                 subject={subject}
-                parentId={`teachers-${phase}-${identifyingSlug}-${subject.slug}`}
+                parentId={`${getSubjectParentId()}-${subject.slug}`}
                 focusManager={focusManager}
                 onClick={handleClick}
                 onExamboardPanelClose={onExamboardPanelClose}

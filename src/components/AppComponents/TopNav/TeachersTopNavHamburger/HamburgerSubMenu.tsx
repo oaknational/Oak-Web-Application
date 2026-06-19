@@ -17,7 +17,6 @@ import { MainMenuButton, MainMenuContent } from "./HamburgerMainMenu";
 
 import {
   getPhaseSlug,
-  isPhaseMenu,
   KeystageMenu,
   SubjectsMenu,
   TeachersSubNavData,
@@ -156,8 +155,10 @@ export function HamburgerMenuContent(
 
     case "Ks4Options": {
       const phaseData = navData["secondary"];
-      const keystage = phaseData.children?.find((ks) => ks.title === "KS4");
-      const subject = keystage?.children?.find(
+      const keystage = phaseData.keystages.children.find(
+        (ks) => ks.title === "KS4",
+      );
+      const subject = keystage?.children.find(
         (s) => s.slug === submenuOpen.value,
       );
       if (!keystage || !subject || !subject.children) {
@@ -183,11 +184,11 @@ export function HamburgerMenuContent(
         ? "primary"
         : "secondary";
       const phaseData = navData[phase];
-      const keystage = phaseData.children?.find(
+      const keystage = phaseData.keystages.children.find(
         (ks) => ks.title === submenuOpen.value,
       );
 
-      if (!keystage || isPhaseMenu(keystage)) {
+      if (!keystage) {
         return null;
       }
 
@@ -243,9 +244,7 @@ export function HamburgerMenuContent(
     case "KeystageOptions": {
       const phase = getPhaseSlug(submenuOpen.value);
       const phaseData = navData[phase];
-      const keystageOptionItem = phaseData.children.filter(
-        (child) => !isPhaseMenu(child),
-      );
+      const keystageOptionItem = phaseData.keystages.children;
       if (!keystageOptionItem) return null;
       return (
         <SubmenuContainer
@@ -293,7 +292,7 @@ export function HamburgerMenuContent(
     case "Phases": {
       const phase = getPhaseSlug(submenuOpen.value);
       const phaseData = navData[phase];
-      const phaseItem = phaseData.children.find((child) => isPhaseMenu(child));
+      const phaseItem = phaseData.phases.children;
       if (!phaseItem) return null;
       return (
         <SubmenuContainer
@@ -320,7 +319,7 @@ export function HamburgerMenuContent(
               handleCloseHamburger();
             }}
             selectedMenu={phase}
-            subjects={phaseItem.children}
+            subjects={phaseItem}
             selectedSubject={null}
             phase={phase}
             onExamboardPanelClose={handleCloseHamburger}

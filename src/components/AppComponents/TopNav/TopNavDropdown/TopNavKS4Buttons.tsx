@@ -80,7 +80,7 @@ export const TopNavKS4Buttons = ({
                 ? `${child.title} (${child.programmeFactors.tier?.description})`
                 : child.title;
 
-            const buttonId = focusManager?.createId(parentId, child.slug);
+            const buttonId = focusManager?.createId(child.slug, parentId);
 
             return (
               <OakLI key={child.slug}>

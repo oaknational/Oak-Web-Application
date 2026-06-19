@@ -8,6 +8,7 @@ import {
   TeachersSubNavData,
   PupilsSubNavData,
   isDropdownMenuItem,
+  isTeachersBrowseItem,
 } from "@/node-lib/curriculum-api-2023/queries/topNav/topNav.schema";
 import {
   OakBox,
@@ -37,7 +38,12 @@ const SubNav = <T extends SubNavData>({
   ...data
 }: SubNavProps<T>) => {
   const pathname = usePathname();
-  const subNavButtons = Object.values(data);
+  const subNavButtons = Object.values(data).map((item) => {
+    if (isTeachersBrowseItem(item)) {
+      return item.phases;
+    }
+    return item;
+  });
 
   const getLinkProps = (
     slug: string,
@@ -45,7 +51,7 @@ const SubNav = <T extends SubNavData>({
     title: string,
     external?: boolean,
   ) => {
-    const buttonId = focusManager.createId(area, slug);
+    const buttonId = focusManager.createId(slug);
     return {
       target: external ? "_blank" : undefined,
       iconName: external ? ("external" as const) : undefined,
@@ -62,7 +68,7 @@ const SubNav = <T extends SubNavData>({
   };
 
   const getButtonProps = (slug: string) => {
-    const buttonId = focusManager.createId(area, slug);
+    const buttonId = focusManager.createId(slug);
     return {
       onKeyDown: (event: React.KeyboardEvent) =>
         focusManager.handleTabKeyDown(event, buttonId),
@@ -82,7 +88,7 @@ const SubNav = <T extends SubNavData>({
 
     if (!activeElementId) return;
     const focusableElements = subNavButtons.map((btn) =>
-      focusManager.createId(area, btn.slug),
+      focusManager.createId(btn.slug),
     );
 
     const currentIndex = focusableElements.indexOf(activeElementId);
@@ -130,12 +136,13 @@ const SubNav = <T extends SubNavData>({
         >
           {subNavButtons.map((btn) => {
             const external = "external" in btn ? btn.external : undefined;
+
             return (
               <OakLI key={btn.slug}>
                 {isDropdownMenuItem(btn) ? (
                   <OakSmallPrimaryInvertedButton
                     {...getButtonProps(btn.slug)}
-                    data-testid={focusManager.createId(area, btn.slug)}
+                    data-testid={focusManager.createId(btn.slug)}
                   >
                     {btn.title}
                   </OakSmallPrimaryInvertedButton>

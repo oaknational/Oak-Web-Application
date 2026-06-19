@@ -15,9 +15,6 @@ import Link from "next/link";
 import { HamburgerMenuHook } from "./TeachersTopNavHamburger";
 
 import {
-  isPhaseMenu,
-  KeystageMenu,
-  PhaseMenu,
   TeachersBrowse,
   TeachersSubNavData,
 } from "@/node-lib/curriculum-api-2023/queries/topNav/topNav.schema";
@@ -76,24 +73,17 @@ function SubjectsSection(
   const { hamburgerMenu, ...browseData } = props;
   const { track } = useAnalytics();
 
-  const getTitle = (item: PhaseMenu | KeystageMenu) => {
-    if (isPhaseMenu(item)) {
-      return browseData.slug === "primary"
-        ? "Primary subjects"
-        : "Secondary subjects";
-    } else {
-      return browseData.slug === "primary"
-        ? "Primary key stages"
-        : "Secondary key stages";
-    }
-  };
+  const getSubjectsTitle = () =>
+    browseData.phases.slug === "primary"
+      ? "Primary subjects"
+      : "Secondary subjects";
 
-  const keystageChildren = browseData.children.filter(
-    (child) => !isPhaseMenu(child),
-  );
-  const phaseChildren = browseData.children.filter((child) =>
-    isPhaseMenu(child),
-  );
+  const getKeystagesTitle = () =>
+    browseData.phases.slug === "primary"
+      ? "Primary key stages"
+      : "Secondary key stages";
+
+  const keystageChildren = browseData.keystages.children;
 
   return (
     <OakLI $listStyle={"none"} $pb="spacing-40">
@@ -105,7 +95,7 @@ function SubjectsSection(
       >
         <OakBox $position={"relative"}>
           <OakHeading tag="h2" $font={"heading-6"}>
-            {browseData.title}
+            {browseData.phases.title}
           </OakHeading>
           <OakSvg
             $position={"absolute"}
@@ -123,37 +113,39 @@ function SubjectsSection(
         $ph="spacing-0"
         $pt="spacing-12"
       >
-        {phaseChildren.map((child) => (
-          <MainMenuButton
-            key={child.slug}
-            title={getTitle(child)}
-            onClick={() =>
-              hamburgerMenu.handleNav({ menu: "Phases", value: child.title })
-            }
-            track={() => {
-              track.browseRefined({
-                platform: "owa",
-                product: "teacher lesson resources",
-                engagementIntent: "refine",
-                componentType: "topnav-browse-button",
-                eventVersion: "2.0.0",
-                analyticsUseCase: "Teacher",
-                filterType: "Phase filter",
-                filterValue: browseData.slug,
-                activeFilters: {},
-                googleLoginHint: null,
-                clientEnvironment: null,
-              });
-            }}
-          />
-        ))}
+        <MainMenuButton
+          key={browseData.phases.slug}
+          title={getSubjectsTitle()}
+          onClick={() =>
+            hamburgerMenu.handleNav({
+              menu: "Phases",
+              value: browseData.phases.title,
+            })
+          }
+          track={() => {
+            track.browseRefined({
+              platform: "owa",
+              product: "teacher lesson resources",
+              engagementIntent: "refine",
+              componentType: "topnav-browse-button",
+              eventVersion: "2.0.0",
+              analyticsUseCase: "Teacher",
+              filterType: "Phase filter",
+              filterValue: browseData.phases.slug,
+              activeFilters: {},
+              googleLoginHint: null,
+              clientEnvironment: null,
+            });
+          }}
+        />
+
         {!!keystageChildren.length && (
           <MainMenuButton
-            title={getTitle(keystageChildren[0]!)}
+            title={getKeystagesTitle()}
             onClick={() =>
               hamburgerMenu.handleNav({
                 menu: "KeystageOptions",
-                value: browseData.title,
+                value: browseData.phases.title,
               })
             }
             track={() => {
@@ -165,7 +157,7 @@ function SubjectsSection(
                 eventVersion: "2.0.0",
                 analyticsUseCase: "Teacher",
                 filterType: "Phase filter",
-                filterValue: browseData.slug,
+                filterValue: browseData.phases.slug,
                 activeFilters: {},
                 googleLoginHint: null,
                 clientEnvironment: null,
