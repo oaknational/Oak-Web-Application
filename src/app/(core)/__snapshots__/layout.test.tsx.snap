@@ -281,7 +281,10 @@ exports[`core layout renders correctly 1`] = `
                       {
                         "href": "/teachers/programmes/geography-secondary-aqa/units?keystages=ks4&tiers=foundation",
                         "programmeFactors": {
-                          "examboard": null,
+                          "examboard": {
+                            "slug": "aqa",
+                            "title": "AQA",
+                          },
                           "tier": {
                             "description": "Foundation",
                             "slug": "foundation",
@@ -293,7 +296,10 @@ exports[`core layout renders correctly 1`] = `
                       {
                         "href": "/teachers/programmes/geography-secondary-edexcel/units?keystages=ks4&tiers=higher",
                         "programmeFactors": {
-                          "examboard": null,
+                          "examboard": {
+                            "slug": "edexcel",
+                            "title": "Edexcel",
+                          },
                           "tier": {
                             "description": "Higher",
                             "slug": "higher",

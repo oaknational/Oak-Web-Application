@@ -233,7 +233,7 @@ export const topNavFixture: TopNavProps = {
                     href: "/teachers/programmes/geography-secondary-aqa/units?keystages=ks4&tiers=foundation",
                     programmeFactors: {
                       tier: { slug: "foundation", description: "Foundation" },
-                      examboard: null,
+                      examboard: { slug: "aqa", title: "AQA" },
                     },
                   },
                   {
@@ -242,7 +242,7 @@ export const topNavFixture: TopNavProps = {
                     href: "/teachers/programmes/geography-secondary-edexcel/units?keystages=ks4&tiers=higher",
                     programmeFactors: {
                       tier: { slug: "higher", description: "Higher" },
-                      examboard: null,
+                      examboard: { slug: "edexcel", title: "Edexcel" },
                     },
                   },
                 ],

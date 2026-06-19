@@ -6,7 +6,10 @@ import TopNavDropdown from "./TopNavDropdown";
 
 import { DropdownFocusManager } from "@/components/AppComponents/TopNav/DropdownFocusManager/DropdownFocusManager";
 import { topNavFixture } from "@/node-lib/curriculum-api-2023/fixtures/topNav.fixture";
-import { TeachersSubNavData } from "@/node-lib/curriculum-api-2023/queries/topNav/topNav.schema";
+import {
+  PupilsSubNavData,
+  TeachersSubNavData,
+} from "@/node-lib/curriculum-api-2023/queries/topNav/topNav.schema";
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 import theme from "@/styles/theme/default.theme";
 import { oakDefaultTheme } from "@/styles/oakThemeApp";
@@ -33,25 +36,25 @@ jest.mock("next/navigation", () => ({
   usePathname: jest.fn(),
 }));
 
-let focusManager: DropdownFocusManager<TeachersSubNavData>;
+let teachersFocusManager: DropdownFocusManager<TeachersSubNavData>;
+let pupilsFocusManager: DropdownFocusManager<PupilsSubNavData>;
 const onCloseMock = jest.fn();
 
 describe("TopNavDropdown", () => {
-  beforeEach(() => {
-    jest.clearAllMocks();
-    onCloseMock.mockReset();
-    mockBrowseRefined.mockReset();
-    focusManager = new DropdownFocusManager(
-      topNavFixture.teachers!,
-      "teachers",
-      () => undefined,
-    );
-    (useRouter as jest.Mock).mockReturnValue({
-      push: jest.fn(),
-    });
-  });
-
   describe("Teachers area", () => {
+    beforeEach(() => {
+      jest.clearAllMocks();
+      onCloseMock.mockReset();
+      mockBrowseRefined.mockReset();
+      teachersFocusManager = new DropdownFocusManager(
+        topNavFixture.teachers!,
+        "teachers",
+        jest.fn(),
+      );
+      (useRouter as jest.Mock).mockReturnValue({
+        push: jest.fn(),
+      });
+    });
     describe("keystages sections", () => {
       it("renders keystage menu", async () => {
         render(
@@ -60,7 +63,7 @@ describe("TopNavDropdown", () => {
             pupils={topNavFixture.pupils!}
             activeArea="TEACHERS"
             selectedMenu="primary"
-            focusManager={focusManager}
+            focusManager={teachersFocusManager}
             onClose={onCloseMock}
           />,
         );
@@ -79,7 +82,7 @@ describe("TopNavDropdown", () => {
             pupils={topNavFixture.pupils!}
             activeArea="TEACHERS"
             selectedMenu="primary"
-            focusManager={focusManager}
+            focusManager={teachersFocusManager}
             onClose={onCloseMock}
           />,
         );
@@ -98,7 +101,7 @@ describe("TopNavDropdown", () => {
             pupils={topNavFixture.pupils!}
             activeArea="TEACHERS"
             selectedMenu="secondary"
-            focusManager={focusManager}
+            focusManager={teachersFocusManager}
             onClose={onCloseMock}
           />,
         );
@@ -117,7 +120,7 @@ describe("TopNavDropdown", () => {
             pupils={topNavFixture.pupils!}
             activeArea="TEACHERS"
             selectedMenu="secondary"
-            focusManager={focusManager}
+            focusManager={teachersFocusManager}
             onClose={onCloseMock}
           />,
         );
@@ -150,7 +153,7 @@ describe("TopNavDropdown", () => {
             pupils={topNavFixture.pupils!}
             activeArea="TEACHERS"
             selectedMenu="primary"
-            focusManager={focusManager}
+            focusManager={teachersFocusManager}
             onClose={onCloseMock}
           />,
         );
@@ -176,7 +179,7 @@ describe("TopNavDropdown", () => {
             pupils={topNavFixture.pupils!}
             activeArea="TEACHERS"
             selectedMenu="primary"
-            focusManager={focusManager}
+            focusManager={teachersFocusManager}
             onClose={onCloseMock}
           />,
         );
@@ -204,7 +207,7 @@ describe("TopNavDropdown", () => {
             pupils={topNavFixture.pupils!}
             activeArea="TEACHERS"
             selectedMenu="primary"
-            focusManager={focusManager}
+            focusManager={teachersFocusManager}
             onClose={onCloseMock}
           />,
         );
@@ -232,7 +235,7 @@ describe("TopNavDropdown", () => {
             pupils={topNavFixture.pupils!}
             activeArea="TEACHERS"
             selectedMenu="primary"
-            focusManager={focusManager}
+            focusManager={teachersFocusManager}
             onClose={onCloseMock}
           />,
         );
@@ -265,7 +268,7 @@ describe("TopNavDropdown", () => {
             pupils={topNavFixture.pupils!}
             activeArea="TEACHERS"
             selectedMenu="secondary"
-            focusManager={focusManager}
+            focusManager={teachersFocusManager}
             onClose={onCloseMock}
           />,
         );
@@ -288,7 +291,7 @@ describe("TopNavDropdown", () => {
 
         expect(
           await screen.findByRole("heading", {
-            name: "Choose tier for KS4 Geography",
+            name: "Choose exam board for KS4 Geography",
           }),
         ).toBeInTheDocument();
       });
@@ -301,7 +304,7 @@ describe("TopNavDropdown", () => {
             pupils={topNavFixture.pupils!}
             activeArea="TEACHERS"
             selectedMenu="secondary"
-            focusManager={focusManager}
+            focusManager={teachersFocusManager}
             onClose={onCloseMock}
           />,
         );
@@ -326,7 +329,7 @@ describe("TopNavDropdown", () => {
 
         expect(
           await screen.findByRole("heading", {
-            name: "Choose tier for KS4 Geography",
+            name: "Choose exam board for KS4 Geography",
           }),
         ).toBeInTheDocument();
       });
@@ -339,7 +342,7 @@ describe("TopNavDropdown", () => {
             pupils={topNavFixture.pupils!}
             activeArea="TEACHERS"
             selectedMenu="secondary"
-            focusManager={focusManager}
+            focusManager={teachersFocusManager}
             onClose={onCloseMock}
           />,
         );
@@ -378,7 +381,7 @@ describe("TopNavDropdown", () => {
             pupils={topNavFixture.pupils!}
             activeArea="TEACHERS"
             selectedMenu="secondary"
-            focusManager={focusManager}
+            focusManager={teachersFocusManager}
             onClose={onCloseMock}
           />,
         );
@@ -402,7 +405,7 @@ describe("TopNavDropdown", () => {
             pupils={topNavFixture.pupils!}
             activeArea="TEACHERS"
             selectedMenu="guidance"
-            focusManager={focusManager}
+            focusManager={teachersFocusManager}
             onClose={onCloseMock}
           />,
         );
@@ -423,7 +426,7 @@ describe("TopNavDropdown", () => {
             pupils={topNavFixture.pupils!}
             activeArea="TEACHERS"
             selectedMenu="guidance"
-            focusManager={focusManager}
+            focusManager={teachersFocusManager}
             onClose={onCloseMock}
           />,
         );
@@ -441,7 +444,7 @@ describe("TopNavDropdown", () => {
             pupils={topNavFixture.pupils!}
             activeArea="TEACHERS"
             selectedMenu="guidance"
-            focusManager={focusManager}
+            focusManager={teachersFocusManager}
             onClose={onCloseMock}
           />,
         );
@@ -465,7 +468,7 @@ describe("TopNavDropdown", () => {
             pupils={topNavFixture.pupils!}
             activeArea="TEACHERS"
             selectedMenu="aboutUs"
-            focusManager={focusManager}
+            focusManager={teachersFocusManager}
             onClose={onCloseMock}
           />,
         );
@@ -486,7 +489,7 @@ describe("TopNavDropdown", () => {
             pupils={topNavFixture.pupils!}
             activeArea="TEACHERS"
             selectedMenu="guidance"
-            focusManager={focusManager}
+            focusManager={teachersFocusManager}
             onClose={onCloseMock}
           />,
         );
@@ -499,6 +502,19 @@ describe("TopNavDropdown", () => {
   });
 
   describe("Pupils area", () => {
+    beforeEach(() => {
+      jest.clearAllMocks();
+      onCloseMock.mockReset();
+      mockBrowseRefined.mockReset();
+      pupilsFocusManager = new DropdownFocusManager(
+        topNavFixture.pupils!,
+        "pupils",
+        jest.fn(),
+      );
+      (useRouter as jest.Mock).mockReturnValue({
+        push: jest.fn(),
+      });
+    });
     describe("links sections", () => {
       it("renders primary year buttons", async () => {
         render(
@@ -507,7 +523,7 @@ describe("TopNavDropdown", () => {
             pupils={topNavFixture.pupils!}
             activeArea="PUPILS"
             selectedMenu="primary"
-            focusManager={focusManager}
+            focusManager={pupilsFocusManager}
             onClose={onCloseMock}
           />,
         );
@@ -524,7 +540,7 @@ describe("TopNavDropdown", () => {
             pupils={topNavFixture.pupils!}
             activeArea="PUPILS"
             selectedMenu="secondary"
-            focusManager={focusManager}
+            focusManager={pupilsFocusManager}
             onClose={onCloseMock}
           />,
         );
@@ -542,7 +558,7 @@ describe("TopNavDropdown", () => {
             pupils={topNavFixture.pupils!}
             activeArea="PUPILS"
             selectedMenu="primary"
-            focusManager={focusManager}
+            focusManager={pupilsFocusManager}
             onClose={onCloseMock}
           />,
         );
@@ -566,7 +582,7 @@ describe("TopNavDropdown", () => {
             pupils={topNavFixture.pupils!}
             activeArea="PUPILS"
             selectedMenu="secondary"
-            focusManager={focusManager}
+            focusManager={pupilsFocusManager}
             onClose={onCloseMock}
           />,
         );

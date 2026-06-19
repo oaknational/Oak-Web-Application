@@ -399,10 +399,10 @@ describe("TeachersTopNavHamburger", () => {
     await user.click(geographySubject);
 
     expect(
-      getByRole("heading", { name: "Choose tier for KS4 Geography" }),
+      getByRole("heading", { name: "Choose exam board for KS4 Geography" }),
     ).toBeInTheDocument();
 
-    const backButton = getByRole("button", { name: "KS4, Geography" });
+    const backButton = getByRole("button", { name: "Secondary, Geography" });
     await user.click(backButton);
 
     expect(

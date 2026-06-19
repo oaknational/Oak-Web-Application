@@ -24,6 +24,7 @@ jest.mock("@/common-lib/urls", () => ({
 
 const mockOnClick = jest.fn();
 const mockOnClose = jest.fn();
+const getButtonId = (key: string) => `test-id-${key}`;
 const ks4Options: Ks4OptionsMenu[] = [
   {
     title: "AQA",
@@ -66,7 +67,7 @@ describe("TopNavKS4Buttons", () => {
         ks4Options={ks4Options}
         subject={selectedSubject}
         onClick={mockOnClick}
-        parentId="mockId"
+        getButtonId={getButtonId}
         onExamboardPanelClose={mockOnClose}
       />,
     );
@@ -85,7 +86,7 @@ describe("TopNavKS4Buttons", () => {
         subject={selectedSubject}
         onClick={mockOnClick}
         onExamboardPanelClose={mockOnClose}
-        parentId="mockId"
+        getButtonId={getButtonId}
       />,
     );
 
@@ -100,7 +101,7 @@ describe("TopNavKS4Buttons", () => {
         subject={selectedSubject}
         onClick={mockOnClick}
         onExamboardPanelClose={mockOnClose}
-        parentId="mockId"
+        getButtonId={getButtonId}
       />,
     );
 
@@ -117,7 +118,7 @@ describe("TopNavKS4Buttons", () => {
         subject={selectedSubject}
         onClick={mockOnClick}
         onExamboardPanelClose={mockOnClose}
-        parentId="mockId"
+        getButtonId={getButtonId}
       />,
     );
 
@@ -163,7 +164,7 @@ describe("TopNavKS4Buttons", () => {
         subject={maths}
         onClick={mockOnClick}
         onExamboardPanelClose={mockOnClose}
-        parentId="mockId"
+        getButtonId={getButtonId}
       />,
     );
 

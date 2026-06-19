@@ -15,6 +15,8 @@ jest.mock("next/navigation", () => ({
 const render = renderWithProviders();
 
 describe("TopNavSubjectButtons", () => {
+  const getButtonId = (key: string) => `test-id-${key}`;
+
   beforeEach(() => {
     (useRouter as jest.Mock).mockReturnValue({
       push: jest.fn(),
@@ -61,6 +63,7 @@ describe("TopNavSubjectButtons", () => {
         handleClick={handleSubjectClick}
         onExamBoardPanelOpen={jest.fn()}
         onExamboardPanelClose={jest.fn}
+        getButtonId={getButtonId}
         phase="secondary"
       />,
     );
@@ -112,6 +115,7 @@ describe("TopNavSubjectButtons", () => {
         handleClick={handleSubjectClick}
         onExamBoardPanelOpen={onExamBoardPanelOpen}
         onExamboardPanelClose={jest.fn}
+        getButtonId={getButtonId}
         phase="secondary"
       />,
     );
@@ -136,6 +140,7 @@ describe("TopNavSubjectButtons", () => {
         onExamBoardPanelOpen={jest.fn()}
         phase="secondary"
         onExamboardPanelClose={jest.fn}
+        getButtonId={getButtonId}
       />,
     );
 
@@ -208,6 +213,7 @@ describe("TopNavSubjectButtons", () => {
           handleClick={jest.fn()}
           onExamBoardPanelOpen={jest.fn()}
           onExamboardPanelClose={jest.fn}
+          getButtonId={getButtonId}
           phase="secondary"
         />,
       );
@@ -232,6 +238,7 @@ describe("TopNavSubjectButtons", () => {
           handleClick={jest.fn()}
           onExamBoardPanelOpen={onExamBoardPanelOpen}
           onExamboardPanelClose={jest.fn}
+          getButtonId={getButtonId}
           phase="secondary"
         />,
       );
@@ -270,6 +277,7 @@ describe("TopNavSubjectButtons", () => {
           handleClick={jest.fn()}
           onExamBoardPanelOpen={onExamBoardPanelOpen}
           onExamboardPanelClose={jest.fn}
+          getButtonId={getButtonId}
           phase="secondary"
         />,
       );

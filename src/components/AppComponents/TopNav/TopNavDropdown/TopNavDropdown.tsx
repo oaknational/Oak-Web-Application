@@ -415,6 +415,7 @@ const PupilsSection = ({
               slug: year.slug,
               topLevelSlug: menu,
             });
+
             if (!buttonId) return null;
             return (
               <OakLI key={year.slug}>
