@@ -200,7 +200,7 @@ describe("SearchResultsItem", () => {
         onClick: searchResultClicked,
         pathways: [],
         buttonLinkProps: {
-          page: "lesson-overview",
+          page: "integrated-lesson-overview",
           lessonSlug: "the-relationship-between-macbeth-and-lady-macbeth",
           programmeSlug: "english-secondary-ks4-eduqas",
           unitSlug: "macbeth-lady-macbeth-as-a-machiavellian-villain",

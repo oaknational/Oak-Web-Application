@@ -15,8 +15,8 @@ import LessonMetadata from "@/components/SharedComponents/LessonMetadata";
 import TagPromotional from "@/components/SharedComponents/TagPromotional";
 import SearchDropdown from "@/components/TeacherComponents/SearchDropdown";
 import {
-  LessonListingLinkProps,
-  LessonOverviewLinkProps,
+  IntegratedLessonOverviewLinkProps,
+  IntegratedUnitOverviewLinkProps,
   resolveOakHref,
 } from "@/common-lib/urls";
 import { PathwaySchemaCamel } from "@/context/Search/search.types";
@@ -46,11 +46,11 @@ export type SearchResultsItemProps = {
   | {
       type: "unit";
       nullTitle?: string;
-      buttonLinkProps: LessonListingLinkProps;
+      buttonLinkProps: IntegratedUnitOverviewLinkProps;
     }
   | {
       type: "lesson";
-      buttonLinkProps: LessonOverviewLinkProps;
+      buttonLinkProps: IntegratedLessonOverviewLinkProps;
       unitTitle: string;
     }
 );
