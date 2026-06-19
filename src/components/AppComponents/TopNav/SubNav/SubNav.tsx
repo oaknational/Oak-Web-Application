@@ -2,6 +2,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 
 import { DropdownFocusManager } from "../DropdownFocusManager/DropdownFocusManager";
+import { getTopLevelNavButtonId } from "../DropdownFocusManager/helpers";
 
 import { resolveOakHref } from "@/common-lib/urls";
 import {
@@ -51,7 +52,9 @@ const SubNav = <T extends SubNavData>({
     title: string,
     external?: boolean,
   ) => {
-    const buttonId = focusManager.createId(slug);
+    const buttonId =
+      getTopLevelNavButtonId({ focusManager, slug }) ?? undefined;
+
     return {
       target: external ? "_blank" : undefined,
       iconName: external ? ("external" as const) : undefined,
@@ -59,7 +62,7 @@ const SubNav = <T extends SubNavData>({
       id: buttonId,
       element: Link,
       onKeyDown: (event: React.KeyboardEvent) =>
-        focusManager.handleTabKeyDown(event, buttonId),
+        focusManager.handleTabKeyDown(event, buttonId!),
       href,
       "aria-label": external
         ? `${title} (this will open in a new tab)`
@@ -68,10 +71,12 @@ const SubNav = <T extends SubNavData>({
   };
 
   const getButtonProps = (slug: string) => {
-    const buttonId = focusManager.createId(slug);
+    const buttonId =
+      getTopLevelNavButtonId({ focusManager, slug }) ?? undefined;
+
     return {
       onKeyDown: (event: React.KeyboardEvent) =>
-        focusManager.handleTabKeyDown(event, buttonId),
+        focusManager.handleTabKeyDown(event, buttonId!),
       id: buttonId,
       onClick: () => onClick(slug as keyof T),
       selected: isMenuSelected(slug as keyof T),
@@ -88,7 +93,7 @@ const SubNav = <T extends SubNavData>({
 
     if (!activeElementId) return;
     const focusableElements = subNavButtons.map((btn) =>
-      focusManager.createId(btn.slug),
+      getTopLevelNavButtonId({ focusManager, slug: btn.slug }),
     );
 
     const currentIndex = focusableElements.indexOf(activeElementId);

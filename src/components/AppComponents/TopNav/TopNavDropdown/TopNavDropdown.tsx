@@ -14,6 +14,11 @@ import Link from "next/link";
 
 import { DropdownFocusManager } from "../DropdownFocusManager/DropdownFocusManager";
 import { MaybeVisuallyHidden } from "../TopNav";
+import {
+  getKeystageButtonNodeId,
+  getSecondLevelNavButton,
+  getSubjectButtonId,
+} from "../DropdownFocusManager/helpers";
 
 import TopNavSubjectButtons from "./TopNavSubjectButtons";
 
@@ -189,8 +194,12 @@ const TeachersPhaseSection = ({
 
     const buttonId =
       slug === phaseData.slug || slug === keystageData.slug
-        ? focusManager.createId(slug, `teachers-${phase}`)
-        : focusManager.createId(slug, `teachers-${phase}-keystages`);
+        ? getSecondLevelNavButton({ focusManager, topLevelSlug: phase, slug })
+        : getKeystageButtonNodeId({ focusManager, phase, slug });
+
+    if (!buttonId) {
+      return null;
+    }
 
     return (
       <OakLeftAlignedButton
@@ -241,6 +250,14 @@ const TeachersPhaseSection = ({
           onExamBoardPanelOpen={handleExamBoardPanelOpen}
           onExamboardPanelClose={closeExamBoardPanel}
           identifyingSlug={slug}
+          getButtonId={(key) =>
+            getSubjectButtonId({
+              focusManager,
+              slug: key,
+              phase,
+              identifyingSlug: slug,
+            })
+          }
         />
       </MaybeVisuallyHidden>
     );
@@ -330,10 +347,12 @@ const TeachersLinksSection = ({
         id={`topnav-teachers-${linkData.slug}`}
       >
         {linkData.children.map((link) => {
-          const buttonId = focusManager.createId(
-            link.slug,
-            `teachers-${linkData.slug}`,
-          );
+          const buttonId = getSecondLevelNavButton({
+            focusManager,
+            slug: link.slug,
+            topLevelSlug: linkData.slug,
+          });
+          if (!buttonId) return null;
           return (
             <OakLI key={link.slug}>
               <OakLeftAlignedButton
@@ -391,7 +410,12 @@ const PupilsSection = ({
           id={`topnav-pupils-${menu}`}
         >
           {data.children.map((year) => {
-            const buttonId = focusManager.createId(year.slug, `pupils-${menu}`);
+            const buttonId = getSecondLevelNavButton({
+              focusManager,
+              slug: year.slug,
+              topLevelSlug: menu,
+            });
+            if (!buttonId) return null;
             return (
               <OakLI key={year.slug}>
                 <OakPupilJourneyYearButton

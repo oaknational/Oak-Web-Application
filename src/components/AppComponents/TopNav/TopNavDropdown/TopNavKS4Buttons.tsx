@@ -28,17 +28,17 @@ const ExamBoardButton = styled(OakPrimaryInvertedButton)`
 export const TopNavKS4Buttons = ({
   ks4Options,
   subject,
-  parentId,
   focusManager,
   onClick,
   onExamboardPanelClose,
+  getButtonId,
 }: {
   ks4Options: Ks4OptionsMenu[];
   subject: SubjectsMenu;
-  parentId: string;
   focusManager?: DropdownFocusManager<TeachersSubNavData>;
   onClick: (subject: SubjectsMenu, keystage: string) => void;
   onExamboardPanelClose: () => void;
+  getButtonId: (key: string) => string | null | undefined;
 }) => {
   const hasTierOnlyOptions = ks4Options.some((board) => {
     const hasTier = Boolean(board.programmeFactors?.tier?.slug);
@@ -80,7 +80,9 @@ export const TopNavKS4Buttons = ({
                 ? `${child.title} (${child.programmeFactors.tier?.description})`
                 : child.title;
 
-            const buttonId = focusManager?.createId(child.slug, parentId);
+            const buttonId = getButtonId(child.slug);
+
+            if (!buttonId) return null;
 
             return (
               <OakLI key={child.slug}>
@@ -92,7 +94,7 @@ export const TopNavKS4Buttons = ({
                   onKeyDown={(e: React.KeyboardEvent) =>
                     focusManager?.handleTabKeyDown(
                       e,
-                      buttonId!,
+                      buttonId,
                       onExamboardPanelClose,
                     )
                   }

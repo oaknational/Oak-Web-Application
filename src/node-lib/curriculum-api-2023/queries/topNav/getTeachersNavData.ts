@@ -71,6 +71,7 @@ const handleParentSubjectChildren = () => {
     key,
     title,
     slug,
+    subjectSlug,
     href,
     nonCurriculum,
     programmeSlug,
@@ -81,6 +82,7 @@ const handleParentSubjectChildren = () => {
     key: string;
     title: string;
     slug: string;
+    subjectSlug: string;
     href: string;
     nonCurriculum: boolean;
     programmeSlug: string;
@@ -94,7 +96,7 @@ const handleParentSubjectChildren = () => {
       phaseChildren.set(key, {
         title,
         slug,
-        subjectSlug: slug,
+        subjectSlug,
         href,
         nonCurriculum,
         programmeSlug,
@@ -362,10 +364,13 @@ const getSubjectsByPhase = (
           })
         : undefined;
 
+    const slug = `${subject_slug}${pathwaySlug ? "-" : ""}${pathwaySlug ?? ""}`;
+
     phaseChildrenAccumulator.updatePhaseChild({
       key: childKey,
       title: getSubjectDisplayTitle(programme),
-      slug: subject_slug,
+      slug,
+      subjectSlug: subject_slug,
       href: childHref,
       nonCurriculum: Boolean(programme.features.non_curriculum),
       programmeSlug: programme.programme_slug,
@@ -500,6 +505,7 @@ const getKeystages = (
         const programmeSlug = programmeCount > 1 ? null : p.programme_slug;
         const subjectParent = p.programme_fields.subject_parent ?? null;
         const slug = `${subjectSlug}${pathwaySlug ? "-" : ""}${pathwaySlug ?? ""}`;
+
         const nonCurriculum = Boolean(p.features.non_curriculum);
 
         const href = getTeachersSubjectNavHref({

@@ -40,6 +40,26 @@ export class DropdownFocusManager<
     return this.focusMap;
   }
 
+  public getIdFromPath(path: string[]): string | null {
+    if (!path[0]) return null;
+
+    let currentId = this.createId(path[0]);
+    if (!this.focusMap.has(currentId)) return null;
+
+    for (const nextSlug of path.slice(1)) {
+      const currentNode = this.focusMap.get(currentId);
+      if (!currentNode) return null;
+
+      const nextId = currentNode.children.find(
+        (childId) => this.getSlugFromId(childId, currentId) === nextSlug,
+      );
+
+      if (!nextId) return null;
+      currentId = nextId;
+    }
+    return currentId;
+  }
+
   // ID creation method
   public createId(slug: string, parentId?: string) {
     if (parentId === undefined) {
@@ -47,6 +67,14 @@ export class DropdownFocusManager<
     }
 
     return `${parentId}-${slug}`;
+  }
+
+  private getSlugFromId(id: string, parentId?: string) {
+    if (!parentId) {
+      return id.replace(`${this.areaType}-`, "");
+    }
+    const prefix = `${parentId}-`;
+    return id.startsWith(prefix) ? id.slice(prefix.length) : id;
   }
 
   private getFocusTree(navData: T): Map<string, FocusNode> {

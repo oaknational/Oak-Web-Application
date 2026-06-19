@@ -8,6 +8,7 @@ import React from "react";
 
 import { DropdownFocusManager } from "../DropdownFocusManager/DropdownFocusManager";
 import { MaybeVisuallyHidden } from "../TopNav";
+import { getKs4OptionButtonId } from "../DropdownFocusManager/helpers";
 
 import { TopNavDropdownProps } from "./TopNavDropdown";
 import { TopNavKS4Buttons } from "./TopNavKS4Buttons";
@@ -30,6 +31,7 @@ const TopNavSubjectButtons = ({
   identifyingSlug,
   onExamBoardPanelOpen,
   onExamboardPanelClose,
+  getButtonId,
 }: {
   selectedMenu?: TopNavDropdownProps["selectedMenu"];
   phase: PhaseSlug;
@@ -40,12 +42,8 @@ const TopNavSubjectButtons = ({
   focusManager?: DropdownFocusManager<TeachersData>;
   onExamBoardPanelOpen: (subject: SubjectsMenu) => void;
   onExamboardPanelClose: () => void;
+  getButtonId: (key: string) => string | null | undefined;
 }) => {
-  const getSubjectParentId = () =>
-    identifyingSlug === phase
-      ? `teachers-${phase}-${identifyingSlug}`
-      : `teachers-${phase}-keystages-${identifyingSlug}`;
-
   const handleSubjectClick = (
     e: React.MouseEvent<HTMLButtonElement>,
     subject: SubjectsMenu,
@@ -81,7 +79,9 @@ const TopNavSubjectButtons = ({
               subjectSlug,
             } = subject;
 
-            const buttonId = focusManager?.createId(key, getSubjectParentId());
+            const buttonId = getButtonId(key);
+
+            if (!buttonId) return null;
 
             return (
               <OakLI key={title}>
@@ -101,7 +101,9 @@ const TopNavSubjectButtons = ({
                       onExamBoardPanelOpen?.(subject);
                       return;
                     }
-                    focusManager?.handleTabKeyDown(e, buttonId!);
+                    if (buttonId) {
+                      focusManager?.handleTabKeyDown(e, buttonId);
+                    }
                   }}
                   phase={
                     nonCurriculum
@@ -117,26 +119,34 @@ const TopNavSubjectButtons = ({
             );
           })}
       </OakUL>
-      {subjects?.map(
-        (subject) =>
-          subject.children &&
-          subject.children.length > 0 && (
-            <MaybeVisuallyHidden
-              shouldDisplay={selectedSubject === subject}
-              hiddenElementId={`teachers-examboards-${subject.slug}`}
-              key={subject.slug}
-            >
-              <TopNavKS4Buttons
-                ks4Options={subject.children}
-                subject={subject}
-                parentId={`${getSubjectParentId()}-${subject.slug}`}
-                focusManager={focusManager}
-                onClick={handleClick}
-                onExamboardPanelClose={onExamboardPanelClose}
-              />
-            </MaybeVisuallyHidden>
-          ),
-      )}
+      {subjects?.map((subject) => {
+        if (!subject.children || subject.children.length === 0) return null;
+
+        return (
+          <MaybeVisuallyHidden
+            shouldDisplay={selectedSubject === subject}
+            hiddenElementId={`teachers-examboards-${subject.slug}`}
+            key={subject.slug}
+          >
+            <TopNavKS4Buttons
+              ks4Options={subject.children}
+              subject={subject}
+              focusManager={focusManager}
+              onClick={handleClick}
+              onExamboardPanelClose={onExamboardPanelClose}
+              getButtonId={(slug) =>
+                getKs4OptionButtonId({
+                  focusManager,
+                  slug,
+                  subjectSlug: subject.slug,
+                  identifyingSlug,
+                  phase: "secondary",
+                })
+              }
+            />
+          </MaybeVisuallyHidden>
+        );
+      })}
     </>
   );
 };

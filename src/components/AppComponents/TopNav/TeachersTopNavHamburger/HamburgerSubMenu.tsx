@@ -155,26 +155,24 @@ export function HamburgerMenuContent(
 
     case "Ks4Options": {
       const phaseData = navData["secondary"];
-      const keystage = phaseData.keystages.children.find(
-        (ks) => ks.title === "KS4",
-      );
-      const subject = keystage?.children.find(
+      const subject = phaseData.phases.children.find(
         (s) => s.slug === submenuOpen.value,
       );
-      if (!keystage || !subject || !subject.children) {
+
+      if (!subject || !subject.children) {
         return null;
       }
       return (
         <SubmenuContainer
-          title={`${keystage.title}, ${subject.title}`}
+          title={`${phaseData.phases.title}, ${subject.title}`}
           hamburgerMenu={hamburgerMenu}
         >
           <TopNavKS4Buttons
             ks4Options={subject.children}
             subject={subject}
-            parentId={`teachers-secondary-${keystage.slug}-${subject.slug}`}
             onClick={handleCloseHamburger}
             onExamboardPanelClose={handleCloseHamburger}
+            getButtonId={(key) => `teachers-secondary-${subject.slug}-${key}`}
           />
         </SubmenuContainer>
       );
@@ -221,6 +219,7 @@ export function HamburgerMenuContent(
             selectedSubject={null}
             identifyingSlug={keystage.slug}
             phase={phase}
+            getButtonId={(key) => `teachers-${phase}-${keystage.slug}-${key}`}
             onExamBoardPanelOpen={(subject: SubjectsMenu) => {
               track.browseRefined({
                 platform: "owa",
@@ -250,7 +249,6 @@ export function HamburgerMenuContent(
         <SubmenuContainer
           title={submenuOpen.value + " key stages"}
           hamburgerMenu={hamburgerMenu}
-          // onBack={onBack}
         >
           <OakFlex
             as="ul"
@@ -298,7 +296,6 @@ export function HamburgerMenuContent(
         <SubmenuContainer
           title={submenuOpen.value + " subjects"}
           hamburgerMenu={hamburgerMenu}
-          // onBack={onBack}
         >
           <TopNavSubjectButtons
             identifyingSlug={phase}
@@ -322,6 +319,7 @@ export function HamburgerMenuContent(
             subjects={phaseItem}
             selectedSubject={null}
             phase={phase}
+            getButtonId={(key) => `teachers-${phase}-${key}`}
             onExamboardPanelClose={handleCloseHamburger}
             onExamBoardPanelOpen={(subject: SubjectsMenu) => {
               track.browseRefined({
