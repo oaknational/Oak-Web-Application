@@ -21,13 +21,13 @@ import { resolveOakHref, ResolveOakHrefProps } from "@/common-lib/urls";
 import {
   TeachersSubNavData,
   PupilsSubNavData,
-  TeachersBrowse,
   isDropdownMenuItem,
   NavDropDownButton,
   SubjectsMenu,
   PhaseSubjectsMenu,
   PhaseSlug,
   KeystageMenu,
+  isTeachersBrowseItem,
 } from "@/node-lib/curriculum-api-2023/queries/topNav/topNav.schema";
 import useAnalytics from "@/context/Analytics/useAnalytics";
 import { KeystageSlug } from "@/node-lib/curriculum-api-2023/shared.schema";
@@ -58,9 +58,7 @@ const TeachersDropdownMenuSections = ({
   onClose: () => void;
 }) => {
   return Object.entries(teachersData).map(([menu, data]) => {
-    if (menu === "primary" || menu === "secondary") {
-      const teachersBrowse = data as TeachersBrowse;
-
+    if (isTeachersBrowseItem(data)) {
       return (
         <MaybeVisuallyHidden
           key={menu}
@@ -68,20 +66,16 @@ const TeachersDropdownMenuSections = ({
           shouldDisplay={selectedMenu === menu}
         >
           <TeachersPhaseSection
-            phase={teachersBrowse.phases.slug}
-            phaseData={teachersBrowse.phases}
-            keystageData={teachersBrowse.keystages}
+            phase={data.phases.slug}
+            phaseData={data.phases}
+            keystageData={data.keystages}
             focusManager={focusManager}
             onClick={onClick}
             selectedMenu={selectedMenu}
           />
         </MaybeVisuallyHidden>
       );
-    }
-
-    if (menu === "guidance" || menu === "aboutUs") {
-      const linkData = data as NavDropDownButton;
-
+    } else if (isDropdownMenuItem(data)) {
       return (
         <MaybeVisuallyHidden
           key={menu}
@@ -90,7 +84,7 @@ const TeachersDropdownMenuSections = ({
         >
           <TeachersLinksSection
             focusManager={focusManager}
-            linkData={linkData}
+            linkData={data}
             onClose={onClose}
           />
         </MaybeVisuallyHidden>
