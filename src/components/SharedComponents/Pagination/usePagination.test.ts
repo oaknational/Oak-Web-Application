@@ -1,61 +1,52 @@
 import { renderHook } from "@testing-library/react";
 import { createRef } from "react";
-import {
-  ReadonlyURLSearchParams,
-  usePathname,
-  useRouter,
-  useSearchParams,
-} from "next/navigation";
+import { useRouter } from "next/compat/router";
 
 import usePagination from "./usePagination";
 
-jest.mock("next/navigation", () => ({
-  usePathname: jest.fn(),
+jest.mock("next/compat/router", () => ({
   useRouter: jest.fn(),
-  useSearchParams: jest.fn(),
 }));
 
-const mockUsePathname = jest.mocked(usePathname);
 const mockUseRouter = jest.mocked(useRouter);
-const mockUseSearchParams = jest.mocked(useSearchParams);
 
-// Default test values
 const pathname = "/blogs";
 const totalResults = 41;
 const pageSize = 10;
-const items = Array(30);
+const items = new Array(30);
 
 describe("usePagination()", () => {
   const push = jest.fn();
 
   const mockNavigation = ({
-    path = pathname,
-    query = {},
+    asPath = pathname,
   }: {
-    path?: string | null;
-    query?: Record<string, string | number>;
+    asPath?: string | null;
   } = {}) => {
-    mockUsePathname.mockReturnValue(path);
     mockUseRouter.mockReturnValue({
+      asPath: asPath ?? "/",
       push,
       replace: jest.fn(),
       prefetch: jest.fn(),
-      refresh: jest.fn(),
       back: jest.fn(),
+      reload: jest.fn(),
+      beforePopState: jest.fn(),
+      pathname: asPath?.split("?")[0] ?? "/",
+      query: {},
+      route: asPath?.split("?")[0] ?? "/",
+      basePath: "",
+      isReady: true,
+      isFallback: false,
+      isLocaleDomain: false,
+      isPreview: false,
+      events: { on: jest.fn(), off: jest.fn(), emit: jest.fn() },
       forward: jest.fn(),
     });
-
-    const params = new URLSearchParams();
-    Object.entries(query).forEach(([key, value]) => {
-      params.set(key, String(value));
-    });
-    mockUseSearchParams.mockReturnValue(
-      params as unknown as ReadonlyURLSearchParams, //NOSONAR typescript:S4325
-    );
   };
 
   beforeEach(() => {
     jest.clearAllMocks();
+    jest.spyOn(window, "scrollTo").mockImplementation(() => {});
   });
 
   test("calculates correct totalPages", () => {
@@ -66,6 +57,7 @@ describe("usePagination()", () => {
 
     expect(result.current.totalPages).toBe(5);
   });
+
   test("defaults to page 1", () => {
     mockNavigation();
     const { result } = renderHook(() =>
@@ -74,8 +66,9 @@ describe("usePagination()", () => {
 
     expect(result.current.currentPage).toBe(1);
   });
-  test("correct hrefs on first page", () => {
-    mockNavigation({ query: { page: 1 } });
+
+  test("correct urlObjects on first page", () => {
+    mockNavigation({ asPath: `${pathname}?page=1` });
     const { result } = renderHook(() =>
       usePagination({ totalResults, pageSize, items }),
     );
@@ -85,9 +78,9 @@ describe("usePagination()", () => {
       nextPageUrlObject: { pathname, query: { page: "2" } },
     });
   });
-  test("correct hrefs on last page", () => {
-    mockNavigation({ query: { page: 5 } });
 
+  test("correct urlObjects on last page", () => {
+    mockNavigation({ asPath: `${pathname}?page=5` });
     const { result } = renderHook(() =>
       usePagination({ totalResults, pageSize, items }),
     );
@@ -97,9 +90,9 @@ describe("usePagination()", () => {
       nextPageUrlObject: { pathname },
     });
   });
-  test("if page < 1, default to page=1 ", () => {
-    mockNavigation({ query: { page: -5 } });
 
+  test("if page < 1, default to page=1", () => {
+    mockNavigation({ asPath: `${pathname}?page=-5` });
     const { result } = renderHook(() =>
       usePagination({ totalResults, pageSize, items }),
     );
@@ -110,9 +103,9 @@ describe("usePagination()", () => {
       nextPageUrlObject: { pathname, query: { page: "2" } },
     });
   });
-  test("if page > totalPages, default to page=1 ", () => {
-    mockNavigation({ query: { page: 500 } });
 
+  test("if page > totalPages, clamp to totalPages", () => {
+    mockNavigation({ asPath: `${pathname}?page=500` });
     const { result } = renderHook(() =>
       usePagination({ totalResults, pageSize, items }),
     );
@@ -123,12 +116,9 @@ describe("usePagination()", () => {
       nextPageUrlObject: { pathname },
     });
   });
-  test("works if current route has dynamic slug in pathname", () => {
-    mockNavigation({
-      path: "/blog/[categorySlug]",
-      query: { categorySlug: "updates", page: 1 },
-    });
 
+  test("works with additional query params", () => {
+    mockNavigation({ asPath: "/blog/updates?page=1" });
     const { result } = renderHook(() =>
       usePagination({ totalResults, pageSize, items }),
     );
@@ -138,19 +128,13 @@ describe("usePagination()", () => {
       currentPage: 1,
       totalPages: 5,
       totalResults: 41,
-      nextPageUrlObject: {
-        pathname: "/blog/[categorySlug]",
-        query: { categorySlug: "updates", page: "2" },
-      },
-      prevPageUrlObject: {
-        pathname: "/blog/[categorySlug]",
-        query: { categorySlug: "updates" },
-      },
+      nextPageUrlObject: { pathname: "/blog/updates", query: { page: "2" } },
+      prevPageUrlObject: { pathname: "/blog/updates" },
     });
   });
-  test("it returns the correct number of currentPageItems", () => {
-    mockNavigation({ query: { page: 1 } });
 
+  test("it returns the correct number of currentPageItems", () => {
+    mockNavigation({ asPath: `${pathname}?page=1` });
     const { result } = renderHook(() =>
       usePagination({ totalResults, pageSize, items }),
     );
@@ -173,9 +157,17 @@ describe("usePagination()", () => {
     expect(result.current.firstItemRef).toMatchObject(ref);
   });
 
-  test("falls back to '/' when pathname is null", () => {
-    mockNavigation({ path: null, query: { page: 2 } });
+  test("falls back to '/' when router returns null asPath", () => {
+    mockUseRouter.mockReturnValue(null);
+    const { result } = renderHook(() =>
+      usePagination({ totalResults, pageSize, items }),
+    );
 
+    expect(result.current.paginationRoute).toBe("/");
+  });
+
+  test("falls back to '/' when asPath has no pathname segment", () => {
+    mockNavigation({ asPath: "?page=2" });
     const { result } = renderHook(() =>
       usePagination({ totalResults, pageSize, items }),
     );
@@ -185,15 +177,27 @@ describe("usePagination()", () => {
     expect(result.current.nextHref).toBe("/?page=3");
   });
 
-  test("falls back to '/' when pathname is empty", () => {
-    mockNavigation({ path: "", query: { page: 2 } });
+  test("uses injected navigation adapter when provided", () => {
+    mockUseRouter.mockReturnValue(null);
+    const adapterPush = jest.fn();
 
     const { result } = renderHook(() =>
-      usePagination({ totalResults, pageSize, items }),
+      usePagination({
+        totalResults,
+        pageSize,
+        items,
+        navigation: {
+          route: "/teachers/search",
+          searchParams: new URLSearchParams("term=test"),
+          push: adapterPush,
+        },
+      }),
     );
 
-    expect(result.current.paginationRoute).toBe("/");
-    expect(result.current.prevHref).toBe("/");
-    expect(result.current.nextHref).toBe("/?page=3");
+    result.current.onPageChange(2);
+
+    expect(adapterPush).toHaveBeenCalledWith(
+      "/teachers/search?term=test&page=2",
+    );
   });
 });
