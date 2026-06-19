@@ -30,7 +30,17 @@ export function MainMenuContent(
   useEffect(() => {
     // We're navigating back from a submenu, focus the triggering element
     if (prevSubmenu) {
-      const element = document.getElementById(prevSubmenu.value + "button");
+      const getButtonId = () => {
+        if (prevSubmenu.menu === "Phases") {
+          return prevSubmenu.value + " subjects";
+        } else if (prevSubmenu.menu === "KeystageOptions") {
+          return prevSubmenu.value + " key stages";
+        }
+        return prevSubmenu.value;
+      };
+      const returnFocusId = getButtonId() + "button";
+      if (!returnFocusId) return;
+      const element = document.getElementById(returnFocusId);
       element?.focus();
     }
   }, [submenuOpen, prevSubmenu]);

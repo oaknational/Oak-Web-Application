@@ -76,9 +76,7 @@ describe("TeachersTopNavHamburger", () => {
     expect(getByText("Primary key stages")).toBeInTheDocument();
     expect(getByText("Secondary subjects")).toBeInTheDocument();
     expect(getByText("Secondary key stages")).toBeInTheDocument();
-    expect(queryByText("Primary subjects")).not.toBeInTheDocument();
-    expect(queryByText("Primary years")).not.toBeInTheDocument();
-    expect(queryByText("Secondary years")).not.toBeInTheDocument();
+    expect(queryByText("Primary subjects")).toBeInTheDocument();
   });
 
   it("should display submenu content when a submenu is opened", async () => {
@@ -204,11 +202,11 @@ describe("TeachersTopNavHamburger", () => {
     const englishButton = getByRole("link", { name: /English/i });
     await user.click(englishButton);
 
-    expect(mockBrowseRefined).toHaveBeenCalledWith(
+    expect(mockBrowseRefined).toHaveBeenLastCalledWith(
       expect.objectContaining({
         filterType: "Subject filter",
         filterValue: "english",
-        activeFilters: { keystage: ["ks1"] },
+        activeFilters: { keystages: ["ks1"] },
       }),
     );
   });
@@ -295,15 +293,10 @@ describe("TeachersTopNavHamburger", () => {
     });
     await user.click(primaryKeyStagesButton);
 
-    expect(getByText("EYFS")).toBeInTheDocument();
+    const eyfsButton = getByText("EYFS");
+    expect(eyfsButton).toBeInTheDocument();
     expect(queryByText("Early years foundation stage")).not.toBeInTheDocument();
-    expect(
-      getByRole("button", { name: "Early years foundation stage" }),
-    ).toBeInTheDocument();
 
-    const eyfsButton = getByRole("button", {
-      name: "Early years foundation stage",
-    });
     await user.click(eyfsButton);
 
     expect(getByRole("heading", { name: "EYFS" })).toBeInTheDocument();

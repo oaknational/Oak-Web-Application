@@ -248,7 +248,7 @@ export function HamburgerMenuContent(
       if (!keystageOptionItem) return null;
       return (
         <SubmenuContainer
-          title={submenuOpen.value}
+          title={submenuOpen.value + " key stages"}
           hamburgerMenu={hamburgerMenu}
           // onBack={onBack}
         >
@@ -261,7 +261,7 @@ export function HamburgerMenuContent(
             {keystageOptionItem.map((child) => (
               <MainMenuButton
                 key={child.slug}
-                title={child.description}
+                title={getKeystageListLabel(child)}
                 onClick={() =>
                   hamburgerMenu.handleNav({
                     menu: "Keystages",

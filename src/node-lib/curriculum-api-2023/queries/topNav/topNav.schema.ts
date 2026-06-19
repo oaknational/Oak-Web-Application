@@ -68,9 +68,10 @@ export type NavDropDownButton = {
 /**
  * Hamburger Menu State
  */
+
 type KeystageState = {
   menu: "Keystages";
-  value: "EYFS" | "KS1" | "KS2" | "KS3" | "KS4" | "All key stages";
+  value: KeystageTitle;
 };
 type PhaseState = {
   menu: "Phases";
@@ -117,7 +118,7 @@ export type PhaseSubjectsMenu = {
 };
 
 export type KeystageSubjectsMenu = {
-  title: KeystageState["value"];
+  title: KeystageTitle;
   slug: KeystageSlug;
   description: string;
   children: Array<SubjectsMenu>;
@@ -158,6 +159,14 @@ export const isPhaseMenu = (
 ): u is PhaseSubjectsMenu => {
   return topnavPhaseSchema.safeParse(u.slug).success;
 };
+
+export type KeystageTitle =
+  | "EYFS"
+  | "KS1"
+  | "KS2"
+  | "KS3"
+  | "KS4"
+  | "All key stages";
 
 export const topnavPhaseSchema = z.union([
   z.literal("primary"),
