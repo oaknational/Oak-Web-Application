@@ -13,7 +13,7 @@ import PostListing from "@/components/GenericPagesViews/PostListing.view";
 import { getVideoThumbnail } from "@/components/SharedComponents/VideoPlayer/getVideoThumbnail";
 import { PAGE_SIZE } from "@/components/SharedComponents/PostList/usePostList";
 import usePagination from "@/components/SharedComponents/Pagination/usePagination";
-import PaginationHead from "@/app/(core)/teachers/search/pagination/PaginationHead";
+import PaginationHead from "@/app/(core)/teachers/search/PaginationHead";
 
 export type WebinarListingPageProps = {
   webinars: SerializedWebinarPreview[];

@@ -9,7 +9,7 @@ import { PostListItemProps } from "@/components/SharedComponents/PostListItem";
 import PostListing from "@/components/GenericPagesViews/PostListing.view";
 import { PAGE_SIZE } from "@/components/SharedComponents/PostList/usePostList";
 import usePagination from "@/components/SharedComponents/Pagination/usePagination";
-import PaginationHead from "@/app/(core)/teachers/search/pagination/PaginationHead";
+import PaginationHead from "@/app/(core)/teachers/search/PaginationHead";
 import { TopNavProps } from "@/components/AppComponents/TopNav/TopNav";
 
 export type PostListingPageProps = {
