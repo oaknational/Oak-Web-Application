@@ -17,7 +17,7 @@ import { MainMenuButton, MainMenuContent } from "./HamburgerMainMenu";
 
 import {
   getPhaseSlug,
-  KeystageMenu,
+  KeystageSubjectsMenu,
   SubjectsMenu,
   TeachersSubNavData,
 } from "@/node-lib/curriculum-api-2023/queries/topNav/topNav.schema";
@@ -27,13 +27,13 @@ import {
 } from "@/common-lib/urls";
 import useAnalytics from "@/context/Analytics/useAnalytics";
 
-const isEyfsKeystage = (keystage: KeystageMenu) =>
+const isEyfsKeystage = (keystage: KeystageSubjectsMenu) =>
   keystage.slug === "early-years-foundation-stage";
 
-const getKeystageListLabel = (keystage: KeystageMenu) =>
+const getKeystageListLabel = (keystage: KeystageSubjectsMenu) =>
   isEyfsKeystage(keystage) ? keystage.title : keystage.description;
 
-const getKeystageListAriaLabel = (keystage: KeystageMenu) =>
+const getKeystageListAriaLabel = (keystage: KeystageSubjectsMenu) =>
   isEyfsKeystage(keystage) ? keystage.description : undefined;
 
 export function SubmenuContainer({

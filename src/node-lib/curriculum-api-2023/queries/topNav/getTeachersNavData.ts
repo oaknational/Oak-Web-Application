@@ -4,7 +4,7 @@ import {
   TopNavResponse,
   TeachersBrowse,
   Ks4OptionsMenu,
-  KeystageMenu,
+  KeystageSubjectsMenu,
   PhaseSlug,
   SubjectsMenu,
   getPhaseTitle,
@@ -454,7 +454,7 @@ const getKeystages = (
   data: TopNavResponse,
   phaseSlug: PhaseSlug | "foundation",
   curriculumPhaseOptionsSubjects: CurriculumPhaseOptions,
-): KeystageMenu[] => {
+): KeystageSubjectsMenu[] => {
   // Get all programmes for the given phase
   const programmesInPhase = data.programmes.filter(
     (p) => p.programme_fields.phase_slug === phaseSlug,
@@ -619,7 +619,7 @@ export const getTeachersNavData = (
     curriculumPhaseOptionsSubjects,
   );
 
-  const keystageItems: KeystageMenu[] = (
+  const keystageItems: KeystageSubjectsMenu[] = (
     phaseSlug === "primary"
       ? keystagesForPhase.concat(
           getKeystages(

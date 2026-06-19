@@ -27,20 +27,6 @@ export const topNavResponseSchema = z.object({
 });
 export type TopNavResponse = z.infer<typeof topNavResponseSchema>;
 
-export type NavLink = {
-  title: string;
-  slug: string;
-  href: string;
-  external?: boolean;
-};
-
-export type NavDropDownButton = {
-  title: string;
-  slug: string;
-  external?: boolean;
-  children: NavLink[];
-};
-
 export type TeachersSubNavData = {
   primary: TeachersBrowse;
   secondary: TeachersBrowse;
@@ -49,13 +35,39 @@ export type TeachersSubNavData = {
   aiExperiments: NavLink;
 };
 
+export type PupilsSubNavData = {
+  primary: PupilsBrowse;
+  secondary: PupilsBrowse;
+  help: NavLink;
+};
+
+/**
+ * Nav menu items: button or link
+ */
+export type NavLink = {
+  title: string;
+  slug: string;
+  href: string;
+  external?: boolean;
+};
+
 export type NavButton =
   | NavLink
   | NavDropDownButton
-  | PhaseMenu
-  | KeystageTypeMenu
+  | PhaseSubjectsMenu
+  | KeystageMenu
   | PupilsBrowse;
 
+export type NavDropDownButton = {
+  title: string;
+  slug: string;
+  external?: boolean;
+  children: NavLink[];
+};
+
+/**
+ * Hamburger Menu State
+ */
 type KeystageState = {
   menu: "Keystages";
   value: "EYFS" | "KS1" | "KS2" | "KS3" | "KS4" | "All key stages";
@@ -78,33 +90,38 @@ export type HamburgerState =
   | KeystageOptionsState
   | null;
 
-export type PhaseMenu = {
+/**
+ * Navigation menus for dropdown and hamburger
+ */
+export type TeachersBrowse = {
+  keystages: KeystageMenu;
+  phases: PhaseSubjectsMenu;
+};
+
+type PupilsBrowse = {
+  title: PhaseTitle;
+  slug: PhaseSlug;
+  children: Array<{ title: string; slug: string }>;
+};
+
+export type KeystageMenu = {
+  title: "Keystages";
+  slug: "keystages";
+  children: Array<KeystageSubjectsMenu>;
+};
+
+export type PhaseSubjectsMenu = {
   title: PhaseTitle;
   slug: PhaseSlug;
   children: Array<SubjectsMenu>;
 };
 
-export type KeystageMenu = {
+export type KeystageSubjectsMenu = {
   title: KeystageState["value"];
   slug: KeystageSlug;
   description: string;
   children: Array<SubjectsMenu>;
 };
-
-export const isPhaseMenu = (u: PhaseMenu | KeystageMenu): u is PhaseMenu => {
-  return phaseSchema.safeParse(u.slug).success;
-};
-
-export const phaseSchema = z.union([
-  z.literal("primary"),
-  z.literal("secondary"),
-]);
-export type PhaseSlug = z.infer<typeof phaseSchema>;
-export type PhaseTitle = Capitalize<PhaseSlug>;
-export const getPhaseTitle = (phaseSlug: PhaseSlug) =>
-  `${phaseSlug[0]?.toUpperCase()}${phaseSlug.slice(1)}` as PhaseTitle;
-export const getPhaseSlug = (phaseTitle: PhaseTitle) =>
-  phaseTitle.toLowerCase() as PhaseSlug;
 
 export type SubjectsMenu = {
   title: string;
@@ -132,33 +149,37 @@ export type Ks4OptionsMenu = {
   };
 };
 
-export type TeachersBrowse = {
-  keystages: KeystageTypeMenu;
-  phases: PhaseMenu;
+/**
+ * Schemas and helper functions
+ */
+
+export const isPhaseMenu = (
+  u: PhaseSubjectsMenu | KeystageSubjectsMenu,
+): u is PhaseSubjectsMenu => {
+  return topnavPhaseSchema.safeParse(u.slug).success;
 };
 
-export type KeystageTypeMenu = {
-  title: "Keystages";
-  slug: "keystages";
-  children: Array<KeystageMenu>;
-};
+export const topnavPhaseSchema = z.union([
+  z.literal("primary"),
+  z.literal("secondary"),
+]);
+export type PhaseSlug = z.infer<typeof topnavPhaseSchema>;
+export type PhaseTitle = Capitalize<PhaseSlug>;
 
-export type PupilsSubNavData = {
-  primary: PupilsBrowse;
-  secondary: PupilsBrowse;
-  help: NavLink;
-};
+export const getPhaseTitle = (phaseSlug: PhaseSlug) =>
+  `${phaseSlug[0]?.toUpperCase()}${phaseSlug.slice(1)}` as PhaseTitle;
 
-type PupilsBrowse = {
-  title: PhaseTitle;
-  slug: PhaseSlug;
-  children: Array<{ title: string; slug: string }>;
-};
+export const getPhaseSlug = (phaseTitle: PhaseTitle) =>
+  phaseTitle.toLowerCase() as PhaseSlug;
 
 // Type guard to check if a nav item opens a dropdown menu (vs being a direct link)
 export function isDropdownMenuItem(
   section: NavButton,
-): section is NavDropDownButton | PhaseMenu | KeystageTypeMenu | PupilsBrowse {
+): section is
+  | NavDropDownButton
+  | PhaseSubjectsMenu
+  | KeystageMenu
+  | PupilsBrowse {
   return "children" in section;
 }
 

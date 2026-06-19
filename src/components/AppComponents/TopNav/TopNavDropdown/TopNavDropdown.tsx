@@ -25,9 +25,9 @@ import {
   isDropdownMenuItem,
   NavDropDownButton,
   SubjectsMenu,
-  PhaseMenu,
+  PhaseSubjectsMenu,
   PhaseSlug,
-  KeystageTypeMenu,
+  KeystageMenu,
 } from "@/node-lib/curriculum-api-2023/queries/topNav/topNav.schema";
 import useAnalytics from "@/context/Analytics/useAnalytics";
 import { KeystageSlug } from "@/node-lib/curriculum-api-2023/shared.schema";
@@ -109,8 +109,8 @@ const TeachersPhaseSection = ({
   focusManager,
   onClick,
 }: {
-  phaseData: PhaseMenu;
-  keystageData: KeystageTypeMenu;
+  phaseData: PhaseSubjectsMenu;
+  keystageData: KeystageMenu;
   phase: PhaseSlug;
   selectedMenu?: TopNavDropdownProps["selectedMenu"];
   focusManager: DropdownFocusManager<TeachersSubNavData>;
