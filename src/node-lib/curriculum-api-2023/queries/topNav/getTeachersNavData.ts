@@ -625,7 +625,7 @@ export const getTeachersNavData = (
     curriculumPhaseOptionsSubjects,
   );
 
-  const keystageItems: KeystageSubjectsMenu[] = (
+  const keystageItems: KeystageSubjectsMenu[] =
     phaseSlug === "primary"
       ? keystagesForPhase.concat(
           getKeystages(
@@ -634,8 +634,7 @@ export const getTeachersNavData = (
             curriculumPhaseOptionsSubjects,
           ),
         )
-      : keystagesForPhase
-  ).map((item) => ({ ...item, type: "keystage" as const }));
+      : keystagesForPhase;
 
   return {
     phases: {
