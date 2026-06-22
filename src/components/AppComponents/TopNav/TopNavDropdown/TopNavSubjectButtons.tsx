@@ -8,13 +8,13 @@ import Link from "next/link";
 import { DropdownFocusManager } from "../DropdownFocusManager/DropdownFocusManager";
 import ExamBoardPanel from "../ExamBoardPanel/ExamBoardPanel";
 import { MaybeVisuallyHidden } from "../TopNav";
+import { createFocusId } from "../DropdownFocusManager/focusTree";
 
 import { TopNavDropdownProps } from "./TopNavDropdown";
 
 import { getValidSubjectIconName } from "@/utils/getValidSubjectIconName";
 import {
   TeachersSubNavData as TeachersData,
-  TeachersBrowse,
   SubjectsNavItem,
 } from "@/node-lib/curriculum-api-2023/queries/topNav/topNav.schema";
 
@@ -22,7 +22,7 @@ const TopNavSubjectButtons = ({
   selectedMenu,
   subjects,
   selectedSubject,
-  keyStageSlug,
+  viewTypeSlug,
   handleClick,
   focusManager,
   phase,
@@ -31,10 +31,10 @@ const TopNavSubjectButtons = ({
 }: {
   selectedMenu?: TopNavDropdownProps["selectedMenu"];
   phase: "primary" | "secondary";
-  subjects: TeachersBrowse["children"][number]["children"];
+  subjects: SubjectsNavItem[];
   selectedSubject: SubjectsNavItem | null;
-  keyStageSlug: string;
-  handleClick: (subject: string, keystage: string) => void;
+  viewTypeSlug: string;
+  handleClick: (subject: string, phase: string) => void;
   focusManager?: DropdownFocusManager<TeachersData>;
   onExamBoardPanelOpen?: (subject: SubjectsNavItem) => void;
   closeExamBoardPanel: () => void;
@@ -43,21 +43,17 @@ const TopNavSubjectButtons = ({
     e: React.MouseEvent<HTMLButtonElement>,
     subject: SubjectsNavItem,
   ) => {
-    if (
-      keyStageSlug === "ks4" &&
-      subject.examBoards &&
-      subject.examBoards.length > 0
-    ) {
+    if (subject.examBoards && subject.examBoards.length > 0) {
       e.preventDefault();
       onExamBoardPanelOpen?.(subject);
       return;
     }
 
-    handleClick(subject.slug, keyStageSlug);
+    handleClick(subject.slug, viewTypeSlug);
   };
 
   const focusFirstExamBoardControl = (subjectSlug: string) => {
-    const examBoardPanelId = `topnav-teachers-ks4-examboards-${subjectSlug}`;
+    const examBoardPanelId = `topnav-teachers-${viewTypeSlug}-examboards-${subjectSlug}`;
     const panel = document.getElementById(examBoardPanelId);
     const firstFocusable = panel?.querySelector<HTMLElement>(
       "input:not([disabled]), button:not([disabled]), [role='radio']:not([aria-disabled='true'])",
@@ -74,14 +70,15 @@ const TopNavSubjectButtons = ({
         $alignContent={"baseline"}
         $gap={"spacing-16"}
         $reset
-        id={`topnav-teachers-${keyStageSlug}-subjects`}
+        id={`topnav-teachers-${viewTypeSlug}-subjects`}
       >
         {subjects &&
           subjects.length > 0 &&
           subjects.map((subject) => {
             const { slug, href } = subject;
-            const buttonId = focusManager?.createId(
-              `teachers-${phase}-${keyStageSlug}`,
+            const buttonId = createFocusId(
+              "teachers",
+              `teachers-${phase}-${viewTypeSlug}`,
               slug,
             );
 
@@ -98,11 +95,7 @@ const TopNavSubjectButtons = ({
                   }
                   href={href}
                   onKeyDown={(e: React.KeyboardEvent<HTMLButtonElement>) => {
-                    if (
-                      e.key === "Enter" &&
-                      keyStageSlug === "ks4" &&
-                      subject.examBoards?.length
-                    ) {
+                    if (e.key === "Enter" && subject.examBoards?.length) {
                       e.preventDefault();
                       onExamBoardPanelOpen?.(subject);
 
@@ -111,7 +104,7 @@ const TopNavSubjectButtons = ({
                       });
                       return;
                     }
-                    focusManager?.handleKeyDown(e, buttonId!);
+                    focusManager?.handleKeyDown(e, buttonId);
                   }}
                   phase={
                     subject.nonCurriculum
@@ -129,7 +122,8 @@ const TopNavSubjectButtons = ({
       </OakUL>
       {subjects.map(
         (subject) =>
-          subject.examBoards?.length && (
+          subject.examBoards &&
+          subject.examBoards?.length > 0 && (
             <MaybeVisuallyHidden
               shouldDisplay={selectedSubject === subject}
               hiddenElementId={`teachers-examboards-${subject.slug}`}
@@ -137,6 +131,8 @@ const TopNavSubjectButtons = ({
             >
               <ExamBoardPanel
                 examBoards={subject.examBoards}
+                phaseSlug={phase}
+                viewType={viewTypeSlug}
                 selectedSubject={subject}
                 focusManager={focusManager}
                 onClick={handleClick}

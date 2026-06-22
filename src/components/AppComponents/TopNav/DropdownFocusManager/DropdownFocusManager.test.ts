@@ -1,15 +1,16 @@
 import { DropdownFocusManager } from "./DropdownFocusManager";
+import { buildFocusTree } from "./focusTree";
 
 import { topNavFixture } from "@/node-lib/curriculum-api-2023/fixtures/topNav.fixture";
 
 const mockData = topNavFixture.teachers!;
+const mockTree = buildFocusTree(mockData, "teachers");
 
 describe("DropdownFocusManager", () => {
   it("should build focusMap with correct top-level sections", () => {
     const manager = new DropdownFocusManager(
-      mockData,
+      mockTree,
       "teachers",
-
       () => undefined,
     );
 
@@ -23,13 +24,18 @@ describe("DropdownFocusManager", () => {
 
   it("should build children for keystages and subjects", () => {
     const manager = new DropdownFocusManager(
-      mockData,
+      mockTree,
       "teachers",
-
       () => undefined,
     );
 
     const focusMap = manager.getFocusMap();
+    const primaryNode = focusMap.get("teachers-primary");
+    expect(primaryNode?.children).toEqual([
+      "teachers-primary-primary",
+      "teachers-primary-keystages",
+    ]);
+
     // Check a keystage node
     const ks1Node = focusMap.get("teachers-primary-ks1");
     expect(ks1Node).toBeDefined();
@@ -47,9 +53,8 @@ describe("DropdownFocusManager", () => {
 
   it("should mark first and last children correctly", () => {
     const manager = new DropdownFocusManager(
-      mockData,
+      mockTree,
       "teachers",
-
       () => undefined,
     );
 
@@ -66,7 +71,7 @@ describe("DropdownFocusManager", () => {
 
   it("should build focusMap for aboutUs and guidance sections", () => {
     const manager = new DropdownFocusManager(
-      mockData,
+      mockTree,
       "teachers",
       () => undefined,
     );
@@ -80,11 +85,25 @@ describe("DropdownFocusManager", () => {
     expect(focusMap.has("teachers-guidance-blog-index")).toBe(true);
   });
 
+  it("should include static exam board leaves in the focus map", () => {
+    const manager = new DropdownFocusManager(
+      mockTree,
+      "teachers",
+      () => undefined,
+    );
+
+    const focusMap = manager.getFocusMap();
+    const geographyNode = focusMap.get("teachers-secondary-ks4-geography");
+
+    expect(geographyNode).toBeDefined();
+    expect(geographyNode?.children.length).toBeGreaterThan(0);
+  });
+
   describe("focusFirstChild behavior", () => {
     let manager: DropdownFocusManager<typeof mockData>;
     let event: React.KeyboardEvent<HTMLDivElement>;
     beforeEach(() => {
-      manager = new DropdownFocusManager(mockData, "teachers", () => undefined);
+      manager = new DropdownFocusManager(mockTree, "teachers", () => undefined);
       event = {
         preventDefault: jest.fn(),
       } as unknown as React.KeyboardEvent<HTMLDivElement>;
@@ -124,7 +143,7 @@ describe("DropdownFocusManager", () => {
     let manager: DropdownFocusManager<typeof mockData>;
     let event: React.KeyboardEvent<HTMLDivElement>;
     beforeEach(() => {
-      manager = new DropdownFocusManager(mockData, "teachers", () => undefined);
+      manager = new DropdownFocusManager(mockTree, "teachers", () => undefined);
       event = {
         preventDefault: jest.fn(),
       } as unknown as React.KeyboardEvent<HTMLDivElement>;
