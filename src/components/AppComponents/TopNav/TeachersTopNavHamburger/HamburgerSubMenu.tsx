@@ -5,7 +5,7 @@ import {
   OakLeftAlignedButton,
   OakFlex,
   OakHeading,
-  OakBox,
+  OakLI,
 } from "@oaknational/oak-components";
 import Link from "next/link";
 
@@ -125,7 +125,7 @@ export function HamburgerMenuContent(
             $gap={"spacing-16"}
           >
             {links.children.map((link) => (
-              <OakBox key={link.slug}>
+              <OakLI key={link.slug} $listStyle={"none"}>
                 <OakLeftAlignedButton
                   onClick={() => {
                     handleCloseHamburger();
@@ -145,7 +145,7 @@ export function HamburgerMenuContent(
                 >
                   {link.title}
                 </OakLeftAlignedButton>
-              </OakBox>
+              </OakLI>
             ))}
           </OakUL>
         </SubmenuContainer>
@@ -172,7 +172,7 @@ export function HamburgerMenuContent(
         title = `KS4, ${subject?.title}`;
       }
 
-      if (!subject || !subject.children) {
+      if (!subject?.children) {
         return null;
       }
 
@@ -189,7 +189,7 @@ export function HamburgerMenuContent(
       );
     }
     case "Keystages": {
-      const phase = ["KS1", "KS2", "EYFS"].includes(submenuOpen.value ?? "")
+      const phase = ["KS1", "KS2", "EYFS"].includes(submenuOpen.value)
         ? "primary"
         : "secondary";
       const phaseData = navData[phase];
