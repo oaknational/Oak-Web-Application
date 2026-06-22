@@ -64,7 +64,8 @@ describe("TopNavQuery", () => {
     ]);
     expect(mockCachedTopNav).toHaveBeenCalled();
     expect(mockTopNav).not.toHaveBeenCalled();
-    expect(res.teachers?.primary.children).toHaveLength(4);
+    expect(res.teachers?.primary.keystages.children).toHaveLength(3);
+    expect(res.teachers?.primary.keystages.children).toHaveLength(3);
   });
 
   it("reports an error when data is missing", async () => {
