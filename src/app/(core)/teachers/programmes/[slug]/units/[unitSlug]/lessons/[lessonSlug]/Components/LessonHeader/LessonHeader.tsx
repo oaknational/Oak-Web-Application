@@ -6,7 +6,7 @@ import {
   Header,
   LargeHeaderProps,
 } from "@/components/TeacherComponents/Header/Header";
-import HeaderNavFooter from "@/components/TeacherComponents/HeaderNavFooter/HeaderNavFooter";
+import { LessonHeaderNavFooter } from "@/components/TeacherComponents/HeaderNavFooter/LessonHeaderNavFooter/LessonHeaderNavFooter";
 import { resolveOakHref } from "@/common-lib/urls";
 import {
   TeachersLessonOverviewAdjacentLesson,
@@ -92,8 +92,7 @@ const LessonHeader = (props: LessonHeaderProps) => {
         backgroundColorLevel={1}
         useSubduedBackground
       />
-      <HeaderNavFooter
-        type="lesson"
+      <LessonHeaderNavFooter
         backgroundColorLevel={1}
         viewHref={resolveOakHref({
           page: "integrated-unit-overview",
@@ -120,7 +119,7 @@ const LessonHeader = (props: LessonHeaderProps) => {
               })
             : undefined
         }
-        actionButton={
+        downloadButton={
           <LoginRequiredButton
             rel="nofollow"
             loginRequired={loginRequired}
