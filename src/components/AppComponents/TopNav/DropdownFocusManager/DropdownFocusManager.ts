@@ -40,10 +40,19 @@ export class DropdownFocusManager<
     return this.focusMap;
   }
 
+  // ID creation method
+  public createId(slug: string, parentId?: string) {
+    if (parentId === undefined) {
+      return `${this.areaType}-${slug}`;
+    }
+
+    return `${parentId}-${slug}`;
+  }
+
   public getIdFromPath(path: string[]): string | null {
     if (!path[0]) return null;
-
     let currentId = this.createId(path[0]);
+
     if (!this.focusMap.has(currentId)) return null;
 
     for (const nextSlug of path.slice(1)) {
@@ -58,15 +67,6 @@ export class DropdownFocusManager<
       currentId = nextId;
     }
     return currentId;
-  }
-
-  // ID creation method
-  public createId(slug: string, parentId?: string) {
-    if (parentId === undefined) {
-      return `${this.areaType}-${slug}`;
-    }
-
-    return `${parentId}-${slug}`;
   }
 
   private getSlugFromId(id: string, parentId?: string) {

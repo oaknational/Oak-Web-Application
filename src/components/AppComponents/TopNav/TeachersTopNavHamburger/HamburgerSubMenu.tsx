@@ -154,18 +154,30 @@ export function HamburgerMenuContent(
 
     case "Ks4Options": {
       const phaseData = navData["secondary"];
-      const subject = phaseData.phases.children.find(
+
+      // Look for subject in phase data and fall back to ks data if not found
+      // to handle science edge case where subject slug will not match for phase
+      let subject = phaseData.phases.children.find(
         (s) => s.slug === submenuOpen.value,
       );
+      let title = `${phaseData.phases.title}, ${subject?.title}`;
+
+      if (!subject) {
+        const keystageData = phaseData.keystages.children.find(
+          (child) => child.slug === "ks4",
+        );
+        subject = keystageData?.children.find(
+          (s) => s.slug === submenuOpen.value,
+        );
+        title = `KS4, ${subject?.title}`;
+      }
 
       if (!subject || !subject.children) {
         return null;
       }
+
       return (
-        <SubmenuContainer
-          title={`${phaseData.phases.title}, ${subject.title}`}
-          hamburgerMenu={hamburgerMenu}
-        >
+        <SubmenuContainer title={title} hamburgerMenu={hamburgerMenu}>
           <TopNavKS4Buttons
             ks4Options={subject.children}
             subject={subject}
@@ -184,7 +196,6 @@ export function HamburgerMenuContent(
       const keystage = phaseData.keystages.children.find(
         (ks) => ks.title === submenuOpen.value,
       );
-
       if (!keystage) {
         return null;
       }
