@@ -232,3 +232,39 @@ export function isNavDropDownButtonItem(
     (section.slug === "guidance" || section.slug === "aboutUs")
   );
 }
+
+export const getKeystageSubjectsData = (
+  navData: TeachersSubNavData,
+  keystage: KeystageTitle,
+) => {
+  const phase: PhaseSlug = ["KS1", "KS2", "EYFS"].includes(keystage)
+    ? "primary"
+    : "secondary";
+  const phaseData = navData[phase];
+  const keystageData = phaseData.keystages.children.find(
+    (ks) => ks.title === keystage,
+  );
+  return { keystageData, phase };
+};
+
+export const getKs4OptionSubjectData = (
+  navData: TeachersSubNavData,
+  subjectSlug: string,
+) => {
+  const phaseData = navData["secondary"];
+
+  // Look for subject in phase data and fall back to ks data if not found
+  // to handle science edge case where subject slug will not match for phase
+  let subject = phaseData.phases.children.find((s) => s.slug === subjectSlug);
+  let title = `${phaseData.phases.title}, ${subject?.title}`;
+
+  if (!subject) {
+    const keystageData = phaseData.keystages.children.find(
+      (child) => child.slug === "ks4",
+    );
+    subject = keystageData?.children.find((s) => s.slug === subjectSlug);
+    title = `KS4, ${subject?.title}`;
+  }
+
+  return { subject, title };
+};

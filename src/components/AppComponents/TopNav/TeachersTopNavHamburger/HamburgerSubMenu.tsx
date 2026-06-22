@@ -16,6 +16,8 @@ import { HamburgerMenuHook } from "./TeachersTopNavHamburger";
 import { MainMenuButton, MainMenuContent } from "./HamburgerMainMenu";
 
 import {
+  getKeystageSubjectsData,
+  getKs4OptionSubjectData,
   getPhaseSlug,
   KeystageSubjectsMenu,
   SubjectsMenu,
@@ -153,24 +155,10 @@ export function HamburgerMenuContent(
     }
 
     case "Ks4Options": {
-      const phaseData = navData["secondary"];
-
-      // Look for subject in phase data and fall back to ks data if not found
-      // to handle science edge case where subject slug will not match for phase
-      let subject = phaseData.phases.children.find(
-        (s) => s.slug === submenuOpen.value,
+      const { subject, title } = getKs4OptionSubjectData(
+        navData,
+        submenuOpen.value,
       );
-      let title = `${phaseData.phases.title}, ${subject?.title}`;
-
-      if (!subject) {
-        const keystageData = phaseData.keystages.children.find(
-          (child) => child.slug === "ks4",
-        );
-        subject = keystageData?.children.find(
-          (s) => s.slug === submenuOpen.value,
-        );
-        title = `KS4, ${subject?.title}`;
-      }
 
       if (!subject?.children) {
         return null;
@@ -189,22 +177,18 @@ export function HamburgerMenuContent(
       );
     }
     case "Keystages": {
-      const phase = ["KS1", "KS2", "EYFS"].includes(submenuOpen.value)
-        ? "primary"
-        : "secondary";
-      const phaseData = navData[phase];
-      const keystage = phaseData.keystages.children.find(
-        (ks) => ks.title === submenuOpen.value,
+      const { keystageData, phase } = getKeystageSubjectsData(
+        navData,
+        submenuOpen.value,
       );
-      if (!keystage) {
+      if (!keystageData) {
         return null;
       }
-
       return (
         <SubmenuContainer
-          title={getKeystageListLabel(keystage)}
+          title={getKeystageListLabel(keystageData)}
           hamburgerMenu={hamburgerMenu}
-          ariaLabel={getKeystageListAriaLabel(keystage)}
+          ariaLabel={getKeystageListAriaLabel(keystageData)}
         >
           <TopNavSubjectButtons
             handleClick={(subject: SubjectsMenu, keystageSlug: string) => {
@@ -225,11 +209,13 @@ export function HamburgerMenuContent(
             }}
             onExamboardPanelClose={handleCloseHamburger}
             selectedMenu={phase}
-            subjects={keystage.children}
+            subjects={keystageData.children}
             selectedSubject={null}
-            identifyingSlug={keystage.slug}
+            identifyingSlug={keystageData.slug}
             phase={phase}
-            getButtonId={(key) => `teachers-${phase}-${keystage.slug}-${key}`}
+            getButtonId={(key) =>
+              `teachers-${phase}-${keystageData.slug}-${key}`
+            }
             onExamBoardPanelOpen={(subject: SubjectsMenu) => {
               track.browseRefined({
                 platform: "owa",
