@@ -33,7 +33,6 @@ export const LessonSeoHelper = ({
   subject: string;
   subjectSlug: string;
   phaseSlug: string;
-  parentSubject: string | undefined | null;
   examBoardSlug: string | undefined | null;
   unit: string;
   lesson: string;

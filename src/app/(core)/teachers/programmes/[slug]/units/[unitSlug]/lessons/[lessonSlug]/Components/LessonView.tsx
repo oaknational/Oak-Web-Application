@@ -52,7 +52,6 @@ export default function LessonView(
     keyStageTitle,
     keyStageSlug,
     subjectTitle,
-    subjectParent,
     unitTitle,
     year,
     yearGroupTitle,
@@ -310,7 +309,6 @@ export default function LessonView(
                     keystage={keyStageTitle}
                     examBoardSlug={examBoardSlug}
                     subjectSlug={subjectSlug}
-                    parentSubject={subjectParent}
                     disablePupilLink={
                       geoRestricted ||
                       loginRequired ||
