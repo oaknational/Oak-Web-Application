@@ -253,7 +253,7 @@ describe("TopNavDropdown", () => {
 
         expect(mockBrowseRefined).toHaveBeenCalledWith(
           expect.objectContaining({
-            activeFilters: { keystage: ["ks1"] },
+            activeFilters: { keystages: ["ks1"] },
             filterType: "Subject filter",
             filterValue: "english",
           }),
