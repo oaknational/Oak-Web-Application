@@ -105,8 +105,7 @@ export function HamburgerMenuContent(
 ) {
   const { hamburgerMenu, ...navData } = props;
   const { track } = useAnalytics();
-  const { submenuOpen, handleCloseSubmenu, handleNav, handleCloseHamburger } =
-    hamburgerMenu;
+  const { submenuOpen, handleNav, handleCloseHamburger } = hamburgerMenu;
 
   if (!submenuOpen) return null;
 
@@ -129,7 +128,7 @@ export function HamburgerMenuContent(
               <OakBox key={link.slug}>
                 <OakLeftAlignedButton
                   onClick={() => {
-                    handleCloseSubmenu();
+                    handleCloseHamburger();
                   }}
                   element={Link}
                   target={link.external ? "_blank" : "_self"}
