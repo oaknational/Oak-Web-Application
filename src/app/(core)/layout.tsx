@@ -4,13 +4,10 @@ import LayoutSiteFooter from "@/components/AppComponents/LayoutSiteFooter";
 import TopNav from "@/components/AppComponents/TopNav/TopNav";
 import OakError from "@/errors/OakError";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
-import { cacheData } from "@/node-lib/cache";
 
 // TD: [integrated journey] get revalidate from env somehow
 // revalidate in layout controls revalidation of child pages in route
 export const revalidate = 7200;
-
-const getTopNav = cacheData(() => curriculumApi2023.topNav(), ["top-nav"]);
 
 export default async function CoreLayout({
   children,
@@ -18,7 +15,7 @@ export default async function CoreLayout({
   children: React.ReactNode;
 }>) {
   try {
-    const topNavProps = await getTopNav();
+    const topNavProps = await curriculumApi2023.topNav({ withCache: true });
 
     return (
       <>

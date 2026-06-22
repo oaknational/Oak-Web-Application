@@ -18,7 +18,7 @@ jobs:
     timeout-minutes: 60
     steps:
       # Check out full history so Sonar can identify PR changes.
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
         with:
           fetch-depth: 0
 
@@ -28,9 +28,9 @@ jobs:
           cache: true
 
       - name: setup node
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v6
         with:
-          node-version: 22
+          node-version: 24
           cache: "pnpm"
 
       # Install.
@@ -52,7 +52,7 @@ jobs:
     timeout-minutes: 60
     steps:
       # Check out full history so Sonar can identify PR changes.
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
         with:
           fetch-depth: 0
 
@@ -62,9 +62,9 @@ jobs:
           cache: true
 
       - name: setup node
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v6
         with:
-          node-version: 22
+          node-version: 24
           cache: "pnpm"
 
       # Install.
