@@ -1,3 +1,30 @@
+# [1.1100.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1099.0...v1.1100.0) (2026-06-22)
+
+
+### Bug Fixes
+
+* **LESQ-2041:** align unstuck footer to grid ([1a0bef9](https://github.com/oaknational/Oak-Web-Application/commit/1a0bef992933afa8a4bc877cc425bd712ba87d05))
+* **LESQ-2041:** correct malformed media query ([21884a1](https://github.com/oaknational/Oak-Web-Application/commit/21884a1aa0a476b4c55d9abcdd1163a9f560c291))
+* **LESQ-2041:** toasts not appearing on top of other in-front elements ([46c9ca1](https://github.com/oaknational/Oak-Web-Application/commit/46c9ca1b126dd07c49d47ef4cb2bb825d5bf9d37))
+* **LESQ-2041:** workaround $display not being spread to OakSmallPrimaryInvertedButton properly ([5eac44e](https://github.com/oaknational/Oak-Web-Application/commit/5eac44e5b2def0329e2e933b7da5f46070790d96))
+* text rendering bug ([51d4834](https://github.com/oaknational/Oak-Web-Application/commit/51d4834c75db8f660da1a266fda5b8c62ef6ce9d))
+* typing and linting issues ([d42a223](https://github.com/oaknational/Oak-Web-Application/commit/d42a22331bc45ac929989a039eec258338f1baf6))
+
+
+### Features
+
+* add feature flag check ([8189919](https://github.com/oaknational/Oak-Web-Application/commit/81899190dfb007ffc7822dc903858cc41b5d1e07))
+* add useDetectStuck hook ([0c84ba6](https://github.com/oaknational/Oak-Web-Application/commit/0c84ba6b1dede6ec32ae3882f075760718df2b8b))
+* desktop and tablet stuck layouts ([94d088f](https://github.com/oaknational/Oak-Web-Application/commit/94d088fdaa4383e72bc0af1aab571b7a8c817233))
+* **LESQ-2041:** align sticky download button with designs ([e02c835](https://github.com/oaknational/Oak-Web-Application/commit/e02c8353925a401410c25b06e876e950b125b9cf))
+* **LESQ-2041:** apply border radius to top on mobile ([8da926c](https://github.com/oaknational/Oak-Web-Application/commit/8da926ca73ee442a6f986bcf8ac3847ab27fdd0d))
+* **LESQ-2041:** apply non-sticky mobile layout ([f32e71e](https://github.com/oaknational/Oak-Web-Application/commit/f32e71e21d0fd788a0ca62257500a1b831448c43))
+* mobile stuck behaviour ([4236c85](https://github.com/oaknational/Oak-Web-Application/commit/4236c850d08c70c792a4cff9e23ef7a641badecf))
+* new layout ([8b997d3](https://github.com/oaknational/Oak-Web-Application/commit/8b997d3935e096fb1b680721d90e445f6d45165d))
+* scaffold experiment, add fade-in animation ([ac0a88d](https://github.com/oaknational/Oak-Web-Application/commit/ac0a88da5673e16e81b199e85ce849851e1f90be))
+* switch on experiment for QA" ([f5cf8a3](https://github.com/oaknational/Oak-Web-Application/commit/f5cf8a33f4349b6d0e88ab0a8b4b2f86c7727159))
+* update text rendering ([bb03d22](https://github.com/oaknational/Oak-Web-Application/commit/bb03d22995effd1a112894f6016f7e9e5e2a0134))
+
 # [1.1099.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1098.1...v1.1099.0) (2026-06-18)
 
 
