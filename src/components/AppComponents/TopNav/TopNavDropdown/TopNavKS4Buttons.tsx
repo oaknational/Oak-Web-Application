@@ -69,7 +69,6 @@ export const TopNavKS4Buttons = ({
         $flexDirection={"column"}
         $gap={"spacing-8"}
         id={`topnav-teachers-ks4-examboards-${subject?.slug}`}
-        role="list"
       >
         {ks4Options
           .toSorted((a, b) => a.title.localeCompare(b.title))
