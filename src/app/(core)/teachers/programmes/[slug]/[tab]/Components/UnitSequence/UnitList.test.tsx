@@ -3,8 +3,11 @@ import { act, screen } from "@testing-library/react";
 import { ProgrammeUnitList } from "./UnitList";
 
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
+import { getOakUiColor } from "@/__tests__/__helpers__/getOakUiColor";
 import { createFilter } from "@/fixtures/curriculum/filters";
+import { createThread } from "@/fixtures/curriculum/thread";
 import { createUnit } from "@/fixtures/curriculum/unit";
+import { createUnitOption } from "@/fixtures/curriculum/unitOption";
 import { createYearData } from "@/fixtures/curriculum/yearData";
 import { getKeyStageTitle } from "@/utils/curriculum/formatting";
 
@@ -95,6 +98,107 @@ describe("ProgrammeUnitList", () => {
         componentType: "unit_info_button",
       }),
     );
+  });
+
+  describe("thread highlighting", () => {
+    const thread = createThread({
+      slug: "invasion-migration-and-settlement",
+      title: "Invasion, migration and settlement",
+    });
+
+    const optionalityUnit = createUnit({
+      slug: "optionality-unit",
+      title: "Historical options",
+      threads: [thread],
+      unit_options: [
+        createUnitOption({
+          slug: "medicine-in-britain",
+          title: "Medicine in Britain, c1250–present",
+        }),
+        createUnitOption({
+          slug: "another-option",
+          title: "Another historical option",
+        }),
+      ],
+    });
+
+    it("highlights optionality child cards when the unit matches the selected thread", () => {
+      render(
+        <ProgrammeUnitList
+          {...defaultProps}
+          units={[optionalityUnit]}
+          filters={createFilter({ threads: [thread.slug] })}
+        />,
+      );
+
+      const cards = screen.getAllByTestId("card-listing-container");
+      expect(cards).toHaveLength(3);
+      expect(cards[0]).toHaveStyle({ background: getOakUiColor("bg-primary") });
+      expect(cards[1]).toHaveStyle({
+        background: getOakUiColor("bg-inverted"),
+      });
+      expect(cards[2]).toHaveStyle({
+        background: getOakUiColor("bg-inverted"),
+      });
+    });
+
+    it("does not highlight optionality child cards when the unit does not match the selected thread", () => {
+      render(
+        <ProgrammeUnitList
+          {...defaultProps}
+          units={[optionalityUnit]}
+          filters={createFilter({ threads: ["other-thread"] })}
+        />,
+      );
+
+      const cards = screen.getAllByTestId("card-listing-container");
+      cards.forEach((card) => {
+        expect(card).toHaveStyle({ background: getOakUiColor("bg-primary") });
+      });
+    });
+
+    it("highlights a normal unit card when it matches the selected thread", () => {
+      const normalUnit = createUnit({
+        slug: "normal-unit",
+        title: "Normal Unit",
+        threads: [thread],
+      });
+
+      render(
+        <ProgrammeUnitList
+          {...defaultProps}
+          units={[normalUnit]}
+          filters={createFilter({ threads: [thread.slug] })}
+        />,
+      );
+
+      const cards = screen.getAllByTestId("card-listing-container");
+      expect(cards).toHaveLength(1);
+      expect(cards[0]).toHaveStyle({
+        background: getOakUiColor("bg-inverted"),
+      });
+    });
+
+    it("does not highlight any cards when no thread filter is active", () => {
+      const normalUnit = createUnit({
+        slug: "normal-unit",
+        title: "Normal Unit",
+        threads: [thread],
+      });
+
+      render(
+        <ProgrammeUnitList
+          {...defaultProps}
+          units={[normalUnit, optionalityUnit]}
+          filters={createFilter({ threads: [] })}
+        />,
+      );
+
+      const cards = screen.getAllByTestId("card-listing-container");
+      cards.forEach((card) => {
+        expect(card).toHaveStyle({ background: getOakUiColor("bg-primary") });
+      });
+    });
   });
 });
 
