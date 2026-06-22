@@ -134,7 +134,6 @@ describe("usePupilVideoExperience", () => {
 
   it("flushes the accumulated video result to the store on completion (PUPIL-1770)", () => {
     const { result } = renderVideo();
-    // a 'playing' event below the 10s threshold updates the ref but is NOT persisted
     act(() =>
       result.current.handleVideoEvent({
         event: "playing",
@@ -147,7 +146,6 @@ describe("usePupilVideoExperience", () => {
       usePupilLessonProgress.getState().sectionResults.video?.duration,
     ).not.toBe(200);
 
-    // completing the section flushes the in-progress result to the store
     act(() => result.current.handleProceed());
 
     const video = usePupilLessonProgress.getState().sectionResults.video;
