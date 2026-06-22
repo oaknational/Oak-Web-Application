@@ -31,7 +31,6 @@ export class DropdownFocusManager<
   ) {
     this.areaType = areaType;
     this.closeMenu = () => setSelectedMenu(undefined);
-    this.areaType = areaType;
     this.lastSubnavButton = Object.values(navData).at(-1);
     this.focusMap = this.getFocusTree(navData);
   }
