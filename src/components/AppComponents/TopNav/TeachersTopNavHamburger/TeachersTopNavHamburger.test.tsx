@@ -406,7 +406,7 @@ describe("TeachersTopNavHamburger", () => {
     await user.click(backButton);
 
     expect(
-      queryByRole("heading", { name: "Choose tier for KS4 Geography" }),
+      queryByRole("heading", { name: "Choose exam board for KS4 Geography" }),
     ).not.toBeInTheDocument();
     expect(getByRole("button", { name: "Geography" })).toBeInTheDocument();
   });

@@ -3,7 +3,8 @@ import React from "react";
 import { FocusNode } from "./types";
 
 import {
-  isTeachersBrowseItem,
+  getChildrenItems,
+  getItemSlug,
   NavButton,
   PupilsSubNavData,
   TeachersSubNavData,
@@ -18,7 +19,6 @@ type NavAreaType = "teachers" | "pupils";
 export class DropdownFocusManager<
   T extends TeachersSubNavData | PupilsSubNavData,
 > {
-  private readonly _typeMarker?: T;
   private readonly focusMap: Map<string, FocusNode>;
   private readonly closeMenu: () => void;
   private readonly areaType: NavAreaType;
@@ -92,13 +92,6 @@ export class DropdownFocusManager<
     return focusMap;
   }
 
-  private getItemSlug(item: Record<string, unknown>): string {
-    if (isTeachersBrowseItem(item)) {
-      return item.phases.slug;
-    }
-    return item.slug as string;
-  }
-
   private buildFocusMap({
     items,
     focusMap,
@@ -111,7 +104,7 @@ export class DropdownFocusManager<
     items.forEach((item, index, array) => {
       const isLastChild = index === array.length - 1;
       const isFirstChild = index === 0;
-      const id = this.createId(this.getItemSlug(item), parent?.parentId);
+      const id = this.createId(getItemSlug(item), parent?.parentId);
       const childrenIds = this.getChildrenIds(item, id);
 
       focusMap.set(id, {
@@ -124,12 +117,12 @@ export class DropdownFocusManager<
 
       if (childrenIds.length > 0) {
         this.buildFocusMap({
-          items: this.getChildrenItems(item),
+          items: getChildrenItems(item),
           focusMap,
           parent: {
             parentId: id,
             parentSiblings: items.map((sibling) =>
-              this.createId(this.getItemSlug(sibling), parent?.parentId),
+              this.createId(getItemSlug(sibling), parent?.parentId),
             ),
           },
         });
@@ -137,28 +130,12 @@ export class DropdownFocusManager<
     });
   }
 
-  private isRecord(value: unknown): value is Record<string, unknown> {
-    return typeof value === "object" && value !== null;
-  }
-
-  private getChildrenItems(
-    item: Record<string, unknown>,
-  ): Record<string, unknown>[] {
-    if (isTeachersBrowseItem(item)) {
-      return [item.phases, item.keystages];
-    }
-
-    const children = item.children;
-    if (!Array.isArray(children)) return [];
-    return children.filter(this.isRecord);
-  }
-
   private getChildrenIds(
     item: Record<string, unknown>,
     parentId: string,
   ): string[] {
-    return this.getChildrenItems(item).map((child) =>
-      this.createId(this.getItemSlug(child), parentId),
+    return getChildrenItems(item).map((child) =>
+      this.createId(getItemSlug(child), parentId),
     );
   }
 

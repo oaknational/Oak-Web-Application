@@ -203,6 +203,27 @@ export function isTeachersBrowseItem(
   );
 }
 
+export function getItemSlug(item: Record<string, unknown>): string {
+  if (isTeachersBrowseItem(item)) {
+    return item.phases.slug;
+  }
+  return item.slug as string;
+}
+
+export function getChildrenItems(item: unknown) {
+  if (isTeachersBrowseItem(item)) {
+    return [item.phases, item.keystages];
+  }
+
+  if (typeof item !== "object" || item === null || !("children" in item)) {
+    return [];
+  }
+
+  const children = item.children;
+  if (!Array.isArray(children)) return [];
+  return children;
+}
+
 export function isNavDropDownButtonItem(
   section: NavButton,
 ): section is NavDropDownButton {
