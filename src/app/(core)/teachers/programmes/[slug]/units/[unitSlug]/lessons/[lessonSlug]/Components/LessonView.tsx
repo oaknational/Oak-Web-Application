@@ -32,7 +32,7 @@ import { hasLessonMathJax } from "@/components/TeacherViews/LessonOverview/hasLe
 import { getSideNavLinksFromResources } from "@/components/TeacherComponents/LessonOverviewSideNavAnchorLinks/LessonOverviewSideNavAnchorLinks";
 import ComplexCopyrightRestrictionBanner from "@/components/TeacherComponents/ComplexCopyrightRestrictionBanner/ComplexCopyrightRestrictionBanner";
 import { RestrictedContentPrompt } from "@/components/TeacherComponents/RestrictedContentPrompt/RestrictedContentPrompt";
-import { LessonSeoHelper } from "@/components/TeacherComponents/LessonOverviewDetails/LessonSeoHelper";
+import { LessonSeoHelper } from "@/app/(core)/teachers/programmes/[slug]/units/[unitSlug]/lessons/[lessonSlug]/Components/LessonSeoHelper/LessonSeoHelper";
 
 export default function LessonView(
   props: Readonly<TeachersLessonOverviewPageData>,
@@ -318,7 +318,6 @@ export default function LessonView(
                     }
                     lesson={lessonTitle}
                     keystageSlug={keyStageSlug}
-                    isIntegratedJourney
                   />
                 )}
               </OakFlex>
