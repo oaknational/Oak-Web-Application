@@ -474,7 +474,7 @@ const TopNavDropdown = (props: TopNavDropdownProps) => {
               analyticsUseCase: "Teacher",
               filterType: "Subject filter",
               filterValue: subject.subjectSlug,
-              activeFilters: { keystage: [keystage] },
+              activeFilters: { keystages: [keystage] },
               googleLoginHint: null,
               clientEnvironment: null,
             });
