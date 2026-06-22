@@ -31,7 +31,7 @@ export const getDisplayedFilters = (
     },
     {
       key: "examBoard",
-      component: ProgrammeFiltersExamBoard,
+      component: null,
       shouldDisplayFilter: shouldDisplayExamBoardFilter(
         slugs,
         filters,
@@ -65,6 +65,8 @@ export const getDisplayedFilters = (
   ] as const;
 };
 
+export type ProgrammeFiltersProps = ProgrammePageFiltersProps;
+
 export function ProgrammeFilters({
   filters,
   onChangeFilters,
@@ -72,7 +74,7 @@ export function ProgrammeFilters({
   slugs,
   ks4Options,
   examboardFilterDimensions,
-}: Readonly<ProgrammePageFiltersProps>) {
+}: Readonly<ProgrammeFiltersProps>) {
   return (
     <>
       {getDisplayedFilters(data, filters, slugs, ks4Options).map(
@@ -80,6 +82,21 @@ export function ProgrammeFilters({
           if (!shouldDisplayFilter) {
             return null;
           }
+
+          if (key === "examBoard") {
+            return (
+              <ProgrammeFiltersExamBoard
+                key={key}
+                filters={filters}
+                onChangeFilters={onChangeFilters}
+                data={data}
+                slugs={slugs}
+                ks4Options={ks4Options}
+                examboardFilterDimensions={examboardFilterDimensions}
+              />
+            );
+          }
+
           return (
             <FilterComponent
               key={key}
@@ -88,7 +105,6 @@ export function ProgrammeFilters({
               data={data}
               slugs={slugs}
               ks4Options={ks4Options}
-              examboardFilterDimensions={examboardFilterDimensions}
               context="integrated-journey"
             />
           );

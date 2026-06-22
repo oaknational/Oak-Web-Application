@@ -483,6 +483,7 @@ type ProgrammePageProps = {
     years?: string;
     pathways?: string;
     focus_ks4option?: string;
+    open_filters_modal?: string;
   };
 };
 

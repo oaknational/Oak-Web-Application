@@ -3,6 +3,7 @@ import React from "react";
 
 import type { ExamboardFilterDimension } from "../../buildExamboardFilterDimensions";
 
+import { ExamBoardFocusScope } from "./ExamBoardFocus";
 import { ProgrammeFilters } from "./ProgrammeFilters";
 
 import { CurriculumFilters } from "@/utils/curriculum/types";
@@ -39,14 +40,16 @@ export default function ProgrammePageFiltersDesktop({
       $mb={"spacing-32"}
     >
       <SkipLink href="#content">Skip to units</SkipLink>
-      <ProgrammeFilters
-        filters={filters}
-        onChangeFilters={onChangeFilters}
-        data={data}
-        slugs={slugs}
-        ks4Options={ks4Options}
-        examboardFilterDimensions={examboardFilterDimensions}
-      />
+      <ExamBoardFocusScope variant="page">
+        <ProgrammeFilters
+          filters={filters}
+          onChangeFilters={onChangeFilters}
+          data={data}
+          slugs={slugs}
+          ks4Options={ks4Options}
+          examboardFilterDimensions={examboardFilterDimensions}
+        />
+      </ExamBoardFocusScope>
     </OakFlex>
   );
 }

@@ -5,6 +5,8 @@ import {
   OakHeading,
 } from "@oaknational/oak-components";
 
+import { ExamBoardFocusProvider } from "../Filters/ExamBoardFocus";
+import { ProgrammePageFiltersModalProvider } from "../Filters/ProgrammePageFiltersModalProvider";
 import ProgrammePageFiltersDesktop from "../Filters/ProgrammePageFiltersDesktop";
 import ProgrammePageFiltersMobile from "../Filters/ProgrammePageFiltersMobile";
 import { getDisplayedFilters } from "../Filters/ProgrammeFilters";
@@ -80,44 +82,48 @@ export const UnitSequenceView = ({
             Unit sequence
           </OakHeading>
         </ScreenReaderOnly>
-        <OakBox $display={["block", "block", "none"]}>
-          {shouldDisplayFilters && (
-            <ProgrammePageFiltersMobile
-              filters={filters}
-              onChangeFilters={setFilters}
-              data={curriculumUnitsFormattedData}
-              slugs={curriculumSelectionSlugs}
-              ks4Options={ks4Options}
-              examboardFilterDimensions={examboardFilterDimensions}
-            />
-          )}
-        </OakBox>
-        <OakGrid $cg={"spacing-16"}>
-          <OakGridArea
-            $colSpan={[12, 12, 3]}
-            $display={["none", "none", "block"]}
-          >
-            {shouldDisplayFilters && (
-              <ProgrammePageFiltersDesktop
-                filters={filters}
-                onChangeFilters={setFilters}
-                data={curriculumUnitsFormattedData}
-                slugs={curriculumSelectionSlugs}
-                ks4Options={ks4Options}
-                examboardFilterDimensions={examboardFilterDimensions}
-              />
-            )}
-          </OakGridArea>
-          <OakGridArea $colSpan={[12, 12, 9]}>
-            <ProgrammeSequence
-              filters={filters}
-              ks4OptionSlug={ks4OptionSlug}
-              ks4Options={ks4Options}
-              yearData={yearData}
-              threadOptions={threadOptions}
-            />
-          </OakGridArea>
-        </OakGrid>
+        <ProgrammePageFiltersModalProvider>
+          <ExamBoardFocusProvider>
+            <OakBox $display={["block", "block", "none"]}>
+              {shouldDisplayFilters && (
+                <ProgrammePageFiltersMobile
+                  filters={filters}
+                  onChangeFilters={setFilters}
+                  data={curriculumUnitsFormattedData}
+                  slugs={curriculumSelectionSlugs}
+                  ks4Options={ks4Options}
+                  examboardFilterDimensions={examboardFilterDimensions}
+                />
+              )}
+            </OakBox>
+            <OakGrid $cg={"spacing-16"}>
+              <OakGridArea
+                $colSpan={[12, 12, 3]}
+                $display={["none", "none", "block"]}
+              >
+                {shouldDisplayFilters && (
+                  <ProgrammePageFiltersDesktop
+                    filters={filters}
+                    onChangeFilters={setFilters}
+                    data={curriculumUnitsFormattedData}
+                    slugs={curriculumSelectionSlugs}
+                    ks4Options={ks4Options}
+                    examboardFilterDimensions={examboardFilterDimensions}
+                  />
+                )}
+              </OakGridArea>
+              <OakGridArea $colSpan={[12, 12, 9]}>
+                <ProgrammeSequence
+                  filters={filters}
+                  ks4OptionSlug={ks4OptionSlug}
+                  ks4Options={ks4Options}
+                  yearData={yearData}
+                  threadOptions={threadOptions}
+                />
+              </OakGridArea>
+            </OakGrid>
+          </ExamBoardFocusProvider>
+        </ProgrammePageFiltersModalProvider>
         <ScreenReaderOnly aria-live="polite" aria-atomic="true">
           <p>
             {unitCount} {unitCount === 1 ? "unit" : "units"} shown,

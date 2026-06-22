@@ -1,11 +1,12 @@
-import { act, waitFor } from "@testing-library/react";
+import { act } from "@testing-library/react";
 
 import {
-  FOCUS_KS4_OPTION_QUERY_PARAM,
   ProgrammeFiltersExamBoard,
   getPreservedQuery,
   shouldDisplayExamBoardFilter,
 } from "./ProgrammeFiltersExamBoard";
+import { ExamBoardFocusProvider, ExamBoardFocusScope } from "./ExamBoardFocus";
+import { ProgrammePageFiltersModalProvider } from "./ProgrammePageFiltersModalProvider";
 
 import { renderWithProvidersByName } from "@/__tests__/__helpers__/renderWithProviders";
 import { resolveOakHref } from "@/common-lib/urls";
@@ -14,30 +15,14 @@ import type { Ks4Option } from "@/node-lib/curriculum-api-2023/queries/curriculu
 import { CurriculumSelectionSlugs } from "@/utils/curriculum/slugs";
 
 const pushMock = jest.fn();
-const useSearchParamsMock = jest.fn();
-const replaceStateMock = jest.fn();
 
 jest.mock("next/navigation", () => ({
   __esModule: true,
   useRouter: () => ({
     push: pushMock,
   }),
-  useSearchParams: () => useSearchParamsMock(),
+  useSearchParams: () => new URLSearchParams(""),
 }));
-
-Object.defineProperty(globalThis, "history", {
-  value: {
-    replaceState: replaceStateMock,
-  },
-  writable: true,
-});
-
-Object.defineProperty(globalThis, "location", {
-  value: {
-    pathname: "/teachers/programmes/english-secondary-ocr/units",
-  },
-  writable: true,
-});
 
 const render = renderWithProvidersByName(["oakTheme", "theme"]);
 
@@ -261,8 +246,6 @@ describe("getPreservedQuery", () => {
 describe("ProgrammeFiltersExamBoard", () => {
   beforeEach(() => {
     pushMock.mockClear();
-    replaceStateMock.mockClear();
-    useSearchParamsMock.mockReturnValue(new URLSearchParams(""));
   });
 
   it("renders exam board options with the current board selected", () => {
@@ -336,86 +319,39 @@ describe("ProgrammeFiltersExamBoard", () => {
     );
   });
 
-  it("focuses the matching exam board radio when focus_ks4option is present", async () => {
-    useSearchParamsMock.mockReturnValue(
-      new URLSearchParams(`${FOCUS_KS4_OPTION_QUERY_PARAM}=ocr`),
-    );
-
-    const focusSpy = jest.spyOn(HTMLInputElement.prototype, "focus");
-
+  it("navigates with open_filters_modal when inside modal scope", () => {
     const { getAllByRole } = render(
-      <ProgrammeFiltersExamBoard
-        filters={defaultFilters}
-        slugs={{ ...defaultSlugs, ks4OptionSlug: "ocr" }}
-        ks4Options={examBoardOptions}
-        examboardFilterDimensions={examboardFilterDimensions}
-      />,
+      <ProgrammePageFiltersModalProvider>
+        <ExamBoardFocusProvider>
+          <ExamBoardFocusScope variant="modal">
+            <ProgrammeFiltersExamBoard
+              filters={defaultFilters}
+              slugs={defaultSlugs}
+              ks4Options={examBoardOptions}
+              examboardFilterDimensions={examboardFilterDimensions}
+            />
+          </ExamBoardFocusScope>
+        </ExamBoardFocusProvider>
+      </ProgrammePageFiltersModalProvider>,
     );
 
     const radios = getAllByRole("radio") as HTMLInputElement[];
-    const ocrRadio = radios.find((radio) => radio.value === "ocr");
 
-    await waitFor(() => {
-      expect(focusSpy).toHaveBeenCalled();
-      expect(ocrRadio).toBeDefined();
-      expect(focusSpy.mock.instances[0]).toBe(ocrRadio);
-    });
+    act(() => radios[1]!.click());
 
-    focusSpy.mockRestore();
-  });
-
-  it("strips focus_ks4option from the URL after focusing", async () => {
-    useSearchParamsMock.mockReturnValue(
-      new URLSearchParams(
-        `keystages=ks4&years=10&${FOCUS_KS4_OPTION_QUERY_PARAM}=ocr`,
-      ),
+    expect(pushMock).toHaveBeenCalledWith(
+      resolveOakHref({
+        page: "teacher-programme",
+        subjectPhaseSlug: "english-secondary-edexcel",
+        tab: "units",
+        query: {
+          keystages: "ks4",
+          years: "10",
+          focus_ks4option: "edexcel",
+          open_filters_modal: "1",
+        },
+      }),
     );
-
-    render(
-      <ProgrammeFiltersExamBoard
-        filters={defaultFilters}
-        slugs={{ ...defaultSlugs, ks4OptionSlug: "ocr" }}
-        ks4Options={examBoardOptions}
-        examboardFilterDimensions={examboardFilterDimensions}
-      />,
-    );
-
-    await waitFor(() => {
-      expect(replaceStateMock).toHaveBeenCalledWith(
-        null,
-        "",
-        "/teachers/programmes/english-secondary-ocr/units?keystages=ks4&years=10",
-      );
-    });
-  });
-
-  it("strips focus_ks4option without focusing when the slug is invalid", async () => {
-    useSearchParamsMock.mockReturnValue(
-      new URLSearchParams(`${FOCUS_KS4_OPTION_QUERY_PARAM}=invalid-board`),
-    );
-
-    const focusSpy = jest.spyOn(HTMLInputElement.prototype, "focus");
-
-    render(
-      <ProgrammeFiltersExamBoard
-        filters={defaultFilters}
-        slugs={defaultSlugs}
-        ks4Options={examBoardOptions}
-        examboardFilterDimensions={examboardFilterDimensions}
-      />,
-    );
-
-    await waitFor(() => {
-      expect(replaceStateMock).toHaveBeenCalledWith(
-        null,
-        "",
-        "/teachers/programmes/english-secondary-ocr/units",
-      );
-    });
-
-    expect(focusSpy).not.toHaveBeenCalled();
-
-    focusSpy.mockRestore();
   });
 
   it("renders nothing when the visibility condition is not met", () => {
