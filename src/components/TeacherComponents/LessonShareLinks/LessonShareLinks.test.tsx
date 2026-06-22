@@ -22,7 +22,6 @@ describe("LessonShareLinks", () => {
   it("should render", () => {
     renderWithProviders()(
       <LessonShareLinks
-        disabled={false}
         lessonSlug="test-slug"
         selectedActivities={["exit-quiz"]}
         onSubmit={onSubmitMock}
@@ -44,7 +43,6 @@ describe("LessonShareLinks", () => {
   it("should update copy link button", async () => {
     renderWithProviders()(
       <LessonShareLinks
-        disabled={false}
         lessonSlug="test-slug"
         selectedActivities={["exit-quiz"]}
         onSubmit={onSubmitMock}
@@ -61,7 +59,6 @@ describe("LessonShareLinks", () => {
   it("should render oak toast", async () => {
     renderWithProviders()(
       <LessonShareLinks
-        disabled={false}
         lessonSlug="test-slug"
         selectedActivities={["exit-quiz"]}
         onSubmit={onSubmitMock}
@@ -79,7 +76,6 @@ describe("LessonShareLinks", () => {
     const onSubmit = jest.fn();
     renderWithProviders()(
       <LessonShareLinks
-        disabled={false}
         lessonSlug="test-slug"
         selectedActivities={["exit-quiz"]}
         onSubmit={onSubmit}
@@ -98,7 +94,6 @@ describe("LessonShareLinks", () => {
     const onSubmit = jest.fn();
     const { getByRole } = renderWithProviders()(
       <LessonShareLinks
-        disabled={false}
         lessonSlug="test-slug"
         selectedActivities={["exit-quiz"]}
         onSubmit={onSubmit}

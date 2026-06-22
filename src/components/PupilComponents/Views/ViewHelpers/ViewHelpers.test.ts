@@ -3,7 +3,8 @@ import {
   OakQuizOrderitemId,
 } from "@oaknational/oak-components";
 
-import { pickQuizTabId ,
+import {
+  pickQuizTabId,
   multipleChoiceAnswerId,
   shortAnswerInputId,
 } from "../../QuizQuestions/helpers";

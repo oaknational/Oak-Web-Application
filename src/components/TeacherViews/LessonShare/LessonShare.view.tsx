@@ -263,19 +263,12 @@ export function LessonShare(props: LessonShareProps) {
             />
           }
           cta={
-            <>
-              <LessonShareLinks
-                disabled={
-                  hasFormErrors ||
-                  expired ||
-                  (!form.formState.isValid && !localStorageDetails)
-                }
-                lessonSlug={lessonSlug}
-                selectedActivities={selectedLessonSections}
-                schoolUrn={schoolUrn}
-                onSubmit={onValidateAndSubmit}
-              />
-            </>
+            <LessonShareLinks
+              lessonSlug={lessonSlug}
+              selectedActivities={selectedLessonSections}
+              schoolUrn={schoolUrn}
+              onSubmit={onValidateAndSubmit}
+            />
           }
         />
       </OakMaxWidth>

@@ -14,7 +14,6 @@ import { LessonSection } from "@/components/PupilComponents/lessonSections";
 export const SHARE_WITH_PUPILS_HEADING_ID = "share-with-pupils-heading";
 
 const LessonShareLinks: FC<{
-  disabled: boolean;
   lessonSlug: string;
   selectedActivities: LessonSection[];
   schoolUrn?: string;
