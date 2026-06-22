@@ -115,7 +115,7 @@ export function HamburgerMenuContent(
         submenuOpen.value === "About us" ? navData.aboutUs : navData.guidance;
       return (
         <SubmenuContainer
-          title={submenuOpen.menu}
+          title={submenuOpen.value}
           hamburgerMenu={hamburgerMenu}
         >
           <OakUL
