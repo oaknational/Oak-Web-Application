@@ -1,3 +1,10 @@
+## [1.1100.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.1100.0...v1.1100.1) (2026-06-22)
+
+
+### Reverts
+
+* Revert "Merge pull request [#4306](https://github.com/oaknational/Oak-Web-Application/issues/4306) from oaknational/fix/phase-menu" ([e4ac01a](https://github.com/oaknational/Oak-Web-Application/commit/e4ac01a60cc8c790678a1bfbf32f054a64ecb463))
+
 # [1.1100.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1099.0...v1.1100.0) (2026-06-22)
 
 
