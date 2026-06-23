@@ -5,12 +5,9 @@ import styled, { css } from "styled-components";
  *
  * ## Usage
  *
- * Drop AnchorTarget inside a relative or absolulely positioned element, passing
+ * Drop AnchorTarget inside a relative or absolutely positioned element, passing
  * it a unique 'id'. Then link it elsewhere using `<a href='#${id}' />`.
  *
- * @todo Currently theme.header.height only specifies a minHeight, which means
- * that this component is not reliable. We should set actual 'height' on the
- * site header.
  */
 type AnchorTargetProps = {
   $paddingTop?: number;
