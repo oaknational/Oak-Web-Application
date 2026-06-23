@@ -24,7 +24,7 @@ const footers: Record<FooterVariant, FC> = {
   "client-error": LayoutClientErrorFooter,
 };
 
-export type LayoutProps = {
+export type AppLayoutProps = {
   children?: React.ReactNode;
   seoProps: SeoProps;
   footerVariant?: FooterVariant;
@@ -35,7 +35,7 @@ export type LayoutProps = {
   topNavProps: TopNavProps;
 };
 
-const Layout: FC<LayoutProps> = (props) => {
+const AppLayout: FC<AppLayoutProps> = (props) => {
   const {
     children,
     seoProps,
@@ -73,4 +73,4 @@ const Layout: FC<LayoutProps> = (props) => {
   );
 };
 
-export default Layout;
+export default AppLayout;

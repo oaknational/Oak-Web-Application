@@ -10,8 +10,8 @@ import {
 import { TopNavProps } from "../TopNav/TopNav";
 
 import { DEFAULT_SEO_PROPS } from "@/browser-lib/seo/Seo";
-import { FooterVariant } from "@/components/AppComponents/Layout/Layout";
-import Layout from "@/components/AppComponents/Layout";
+import { FooterVariant } from "@/components/AppComponents/AppLayout/AppLayout";
+import Layout from "@/components/AppComponents/AppLayout";
 import ButtonAsLink from "@/components/SharedComponents/Button/ButtonAsLink";
 import ButtonGroup from "@/components/SharedComponents/ButtonGroup";
 import Button from "@/components/SharedComponents/Button";

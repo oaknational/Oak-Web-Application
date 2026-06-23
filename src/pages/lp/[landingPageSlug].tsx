@@ -11,7 +11,7 @@ import { LandingPageTextBlock } from "@/components/GenericPagesComponents/Landin
 import LandingPageHero from "@/components/GenericPagesComponents/LandingPageHero";
 import getPageProps from "@/node-lib/getPageProps";
 import { getABTestedLandingPage } from "@/node-lib/cms/ab-testing";
-import Layout from "@/components/AppComponents/Layout";
+import Layout from "@/components/AppComponents/AppLayout";
 import { TopNavProps } from "@/components/AppComponents/TopNav/TopNav";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 
