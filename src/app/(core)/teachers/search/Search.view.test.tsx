@@ -4,10 +4,9 @@ import userEvent from "@testing-library/user-event";
 import mockRouter from "next-router-mock";
 import { usePathname, useSearchParams } from "next/navigation";
 
-import { SearchProps } from "../../../../components/TeacherViews/Search/search.view.types";
-
 import Search from "./Search.view";
 
+import { SearchProps } from "@/components/TeacherViews/Search/search.view.types";
 import * as useSuggestedFiltersModule from "@/app/(core)/teachers/search/useSuggestedFilters";
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 import { SearchHit, SearchQuery } from "@/context/Search/search.types";

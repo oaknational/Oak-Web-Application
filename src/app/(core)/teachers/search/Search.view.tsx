@@ -15,9 +15,6 @@ import {
 import styled from "styled-components";
 import { useFeatureFlagVariantKey } from "posthog-js/react";
 
-import { SearchProps } from "../../../../components/TeacherViews/Search/search.view.types";
-import { ContentFilterToggle } from "../../../../components/TeacherViews/Search/ContentFilterToggle";
-
 import {
   getActiveFilters,
   getSortedSearchFiltersSelected,
@@ -26,6 +23,8 @@ import {
   trackSearchModified,
 } from "./helpers";
 
+import { SearchProps } from "@/components/TeacherViews/Search/search.view.types";
+import { ContentFilterToggle } from "@/components/TeacherViews/Search/ContentFilterToggle";
 import { SearchResultsItemProps } from "@/components/TeacherComponents/SearchResultsItem";
 import useAnalytics from "@/context/Analytics/useAnalytics";
 import useAnalyticsPageProps from "@/hooks/useAnalyticsPageProps";

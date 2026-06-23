@@ -1,10 +1,9 @@
 import { useMemo } from "react";
 import useSWR from "swr";
 
-import { SuggestedFilters } from "../../../../context/Search/search.types";
-
 import { convertSearchIntentToFilters, normalizeTerm } from "./helpers";
 
+import { SuggestedFilters } from "@/context/Search/search.types";
 import { searchIntentSchema } from "@/common-lib/schemas/search-intent";
 import errorReporter from "@/common-lib/error-reporter";
 
