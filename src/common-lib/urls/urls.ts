@@ -481,6 +481,9 @@ type ProgrammePageProps = {
     child_subjects?: string;
     tiers?: string;
     years?: string;
+    pathways?: string;
+    focus_ks4option?: string;
+    open_filters_modal?: string;
   };
 };
 

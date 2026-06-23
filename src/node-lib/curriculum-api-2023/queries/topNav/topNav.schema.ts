@@ -65,6 +65,9 @@ export type ProgrammeFactorButton = {
   };
 };
 
+export type Phase = "primary" | "secondary";
+export type PhaseTitle = Phase | Capitalize<Phase>;
+
 export type SubjectsNavItem = {
   title: string;
   slug: string;
@@ -77,15 +80,18 @@ export type SubjectsNavItem = {
   examBoards?: ProgrammeFactorButton[]; // available exam boards for KS4 subjects with multiple programmes
 };
 
+export type TeachersBrowseChildItem = {
+  type: "keystage" | "phase";
+  title: string;
+  slug: string;
+  description: string;
+  children: Array<SubjectsNavItem>;
+};
+
 export type TeachersBrowse = {
-  title: "Primary" | "Secondary";
-  slug: "primary" | "secondary";
-  children: Array<{
-    title: string;
-    slug: string;
-    description: string;
-    children: Array<SubjectsNavItem>;
-  }>;
+  title: PhaseTitle;
+  slug: Phase;
+  children: Array<TeachersBrowseChildItem>;
 };
 
 export type PupilsSubNavData = {
@@ -95,8 +101,8 @@ export type PupilsSubNavData = {
 };
 
 type PupilsBrowse = {
-  title: "Primary" | "Secondary";
-  slug: "primary" | "secondary";
+  title: PhaseTitle;
+  slug: Phase;
   children: Array<{ title: string; slug: string }>;
 };
 
