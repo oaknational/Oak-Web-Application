@@ -1,3 +1,10 @@
+## [1.1100.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.1100.2...v1.1100.3) (2026-06-23)
+
+
+### Bug Fixes
+
+* filter out empty strings from teacher tip data before rendering ([fb169e0](https://github.com/oaknational/Oak-Web-Application/commit/fb169e013657da12a8a4b5105c3e18cdda66e721))
+
 ## [1.1100.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.1100.1...v1.1100.2) (2026-06-22)
 
 ## [1.1100.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.1100.0...v1.1100.1) (2026-06-22)
