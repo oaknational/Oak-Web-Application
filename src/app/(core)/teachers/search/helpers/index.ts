@@ -76,7 +76,7 @@ export type TrackSearchModifiedProps = {
   searchFilterMatchType: SearchFilterMatchTypeValueType;
 };
 
-export const getFilterType = (slug: string) => {
+export const getFilterType = (slug: string): FilterTypeValueType | null => {
   const isKeystageFilter = keystageSlugs.safeParse(slug).success;
   const isYearFilter = yearSlugs.safeParse(slug).success;
   const isSubjectFilter = subjectSlugs.safeParse(slug).success;
@@ -84,19 +84,25 @@ export const getFilterType = (slug: string) => {
   const isExamBoardFilter = examboardSlugs.safeParse(slug).success;
 
   if (isKeystageFilter) {
-    return "Key stage filter" as FilterTypeValueType;
+    return "Key stage filter";
   } else if (isYearFilter) {
-    return "Year filter" as FilterTypeValueType;
+    return "Year filter";
   } else if (isSubjectFilter) {
-    return "Subject filter" as FilterTypeValueType;
+    return "Subject filter";
   } else if (isContentTypeFilter) {
-    return "Content type filter" as FilterTypeValueType;
+    return "Content type filter";
   } else if (isExamBoardFilter) {
-    return "Exam board filter" as FilterTypeValueType;
+    return "Exam board filter";
   } else if (slug === "new") {
-    return "Lesson Cohort filter" as FilterTypeValueType;
+    return "Lesson Cohort filter";
   } else {
-    return "Unknown filter" as FilterTypeValueType;
+    reportError(new OakError({
+      code: "search/unknown-filter-type",
+      meta: {
+        slug,
+      },
+    }));
+    return null;
   }
 };
 
