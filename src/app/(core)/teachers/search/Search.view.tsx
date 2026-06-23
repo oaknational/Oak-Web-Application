@@ -91,7 +91,8 @@ const Search: FC<SearchProps> = (props) => {
   const hitCount = results.length;
 
   const searchQueryParams = useMemo(() => {
-    const getParam = (param: string) => searchParams?.get(param)?.trim() || undefined;
+    const getParam = (param: string) =>
+      searchParams?.get(param)?.trim() || undefined;
     return {
       keyStages: getParam("keyStages"),
       examBoards: getParam("examBoards"),
