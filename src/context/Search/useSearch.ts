@@ -46,14 +46,8 @@ const useSearchQuery = ({
   legacy?: { slug: string; title: string }[];
   navigation?: SearchNavigationAdapter;
 }): UseSearchQueryReturnType => {
-  const router = useCompatRouter();
-  const searchParams = useMemo(() => {
-    if (navigation?.searchParams) {
-      return navigation.searchParams;
-    }
-
-    return new URLSearchParams(router?.asPath?.split("?")[1] ?? "");
-  }, [navigation?.searchParams, router?.asPath]);
+  const appSearchParams = useSearchParams();
+  const searchParams = navigation?.searchParams ?? appSearchParams;
 
   const isFilterItemCallback = useCallback(isFilterItem, []);
 

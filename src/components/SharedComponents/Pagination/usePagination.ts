@@ -46,11 +46,10 @@ const usePagination = <T>(
   const { pageSize, totalResults, items, navigation } = props;
   const totalPages = Math.ceil(totalResults / pageSize);
 
-  const router = useRouter();
-  const route = navigation?.route || router?.asPath?.split("?")[0] || "/";
-  const searchParams =
-    navigation?.searchParams ||
-    new URLSearchParams(router?.asPath?.split("?")[1] ?? "");
+  const pathname = usePathname();
+  const appSearchParams = useSearchParams();
+  const route = navigation?.route ?? pathname ?? "/";
+  const searchParams = navigation?.searchParams ?? appSearchParams ?? new URLSearchParams();
 
   const pageRaw = searchParams.get("page") ?? "";
   const parsedPage = Number.parseInt(pageRaw, 10);

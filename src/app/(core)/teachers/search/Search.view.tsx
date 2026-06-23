@@ -91,15 +91,15 @@ const Search: FC<SearchProps> = (props) => {
   const hitCount = results.length;
 
   const searchQueryParams = useMemo(() => {
-    const getParam = (param: string) => searchParams?.get(param) ?? "";
+    const getParam = (param: string) => searchParams?.get(param)?.trim() || undefined;
     return {
-      keyStages: getParam("keyStages") || undefined,
-      examBoards: getParam("examBoards") || undefined,
-      contentTypes: getParam("contentTypes") || undefined,
-      subjects: getParam("subjects") || undefined,
-      yearGroups: getParam("yearGroups") || undefined,
-      curriculum: getParam("curriculum") || undefined,
-      page: getParam("page") || undefined,
+      keyStages: getParam("keyStages"),
+      examBoards: getParam("examBoards"),
+      contentTypes: getParam("contentTypes"),
+      subjects: getParam("subjects"),
+      yearGroups: getParam("yearGroups"),
+      curriculum: getParam("curriculum"),
+      page: getParam("page"),
     };
   }, [searchParams]);
 
@@ -561,9 +561,7 @@ const Search: FC<SearchProps> = (props) => {
                     query={query}
                     paginationNavigation={{
                       route: pathname || "/",
-                      searchParams: searchParams
-                        ? new URLSearchParams(searchParams.toString())
-                        : null,
+                      searchParams,
                       push: (url: string) => router?.push(url),
                     }}
                     searchResultExpanded={(searchHit, searchRank) =>
