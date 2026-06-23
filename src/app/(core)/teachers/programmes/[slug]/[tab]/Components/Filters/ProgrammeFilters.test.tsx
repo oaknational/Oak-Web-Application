@@ -74,7 +74,13 @@ const defaultProps: ProgrammePageFiltersProps = {
     ks4OptionSlug: null,
   },
   ks4Options: [],
+  examboardFilterDimensions: {},
 };
+
+const examBoardKs4Options: ProgrammePageFiltersProps["ks4Options"] = [
+  { slug: "aqa", title: "AQA" },
+  { slug: "edexcel", title: "Edexcel" },
+];
 describe("Programme filters...", () => {
   test("it displays the filters in the correct order", () => {
     render(<ProgrammeFilters {...defaultProps} />);
@@ -90,5 +96,24 @@ describe("Programme filters...", () => {
     filterLegends.forEach((legend, i) => {
       expect(legend).toHaveAccessibleName(filterLegendNames[i]);
     });
+  });
+
+  test("it displays the exam board filter after year group when in KS4 context", () => {
+    render(
+      <ProgrammeFilters
+        {...defaultProps}
+        filters={createFilter({ years: ["10"], keystages: ["ks4"] })}
+        slugs={{
+          subjectSlug: "english",
+          phaseSlug: "secondary",
+          ks4OptionSlug: "aqa",
+        }}
+        ks4Options={examBoardKs4Options}
+      />,
+    );
+
+    const filterLegends = screen.getAllByRole("group");
+    expect(filterLegends[0]).toHaveAccessibleName("Year group");
+    expect(filterLegends[1]).toHaveAccessibleName("Exam board (KS4)");
   });
 });

@@ -11,6 +11,8 @@ import {
 import { ProgrammePageFiltersProps } from "./ProgrammePageFiltersDesktop";
 import ProgrammeFiltersHeaderMobile from "./ProgrammeFiltersHeaderMobile";
 import { ProgrammeFilters } from "./ProgrammeFilters";
+import { ExamBoardFocusScope } from "./ExamBoardFocus";
+import { useProgrammePageFiltersModal } from "./ProgrammePageFiltersModalProvider";
 
 import { usePrevious } from "@/hooks/usePrevious";
 import { CloseAction } from "@/components/CurriculumComponents/OakComponentsKitchen/OakModalNew/Content";
@@ -21,38 +23,38 @@ export default function ProgrammePageFiltersMobile({
   data,
   slugs,
   ks4Options,
+  examboardFilterDimensions,
 }: Readonly<ProgrammePageFiltersProps>) {
-  const [mobileThreadModalOpen, setMobileThreadModalOpen] =
-    useState<boolean>(false);
+  const { isOpen, setIsOpen } = useProgrammePageFiltersModal();
 
   const [initialFilterState, setInitialFilterState] = useState(() => {
     return filters;
   });
 
   // Only change `initialFilterState` when opening the modal
-  const prevMobileThreadModalOpen = usePrevious(mobileThreadModalOpen);
+  const prevModalOpen = usePrevious(isOpen);
   useEffect(() => {
-    if (mobileThreadModalOpen && !prevMobileThreadModalOpen) {
+    if (isOpen && !prevModalOpen) {
       setInitialFilterState(filters);
     }
-  }, [filters, mobileThreadModalOpen, prevMobileThreadModalOpen]);
+  }, [filters, isOpen, prevModalOpen]);
 
   function handleMobileThreadModal(): void {
-    setMobileThreadModalOpen(!mobileThreadModalOpen);
+    setIsOpen(!isOpen);
   }
 
   function onClose(action: CloseAction) {
     if (action === "close_button") {
       onChangeFilters(initialFilterState);
     }
-    setMobileThreadModalOpen(false);
+    setIsOpen(false);
   }
 
   return (
     <>
       <OakInformativeModal
         onClose={onClose}
-        isOpen={mobileThreadModalOpen}
+        isOpen={isOpen}
         largeScreenMaxWidth={600}
         domContainer={getDomContainer()}
         footerSlot={
@@ -63,7 +65,7 @@ export default function ProgrammePageFiltersMobile({
           >
             <OakPrimaryButton
               data-testid="mobile-done-thread-modal-button"
-              onClick={() => setMobileThreadModalOpen(false)}
+              onClick={() => setIsOpen(false)}
             >
               Show results
             </OakPrimaryButton>
@@ -76,6 +78,7 @@ export default function ProgrammePageFiltersMobile({
           onChangeFilters={onChangeFilters}
           slugs={slugs}
           ks4Options={ks4Options}
+          examboardFilterDimensions={examboardFilterDimensions}
         />
       </OakInformativeModal>
 
@@ -86,6 +89,7 @@ export default function ProgrammePageFiltersMobile({
         data={data}
         slugs={slugs}
         ks4Options={ks4Options}
+        examboardFilterDimensions={examboardFilterDimensions}
       />
     </>
   );
@@ -105,10 +109,8 @@ const ModalContent = ({
   data,
   slugs,
   ks4Options,
-}: Pick<
-  ProgrammePageFiltersProps,
-  "data" | "filters" | "onChangeFilters" | "slugs" | "ks4Options"
->) => {
+  examboardFilterDimensions,
+}: ProgrammePageFiltersProps) => {
   return (
     <OakFlex
       $flexDirection={"column"}
@@ -125,13 +127,16 @@ const ModalContent = ({
         $gap={"spacing-32"}
         $overflowX={"visible"}
       >
-        <ProgrammeFilters
-          filters={filters}
-          onChangeFilters={onChangeFilters}
-          data={data}
-          slugs={slugs}
-          ks4Options={ks4Options}
-        />
+        <ExamBoardFocusScope variant="modal">
+          <ProgrammeFilters
+            filters={filters}
+            onChangeFilters={onChangeFilters}
+            data={data}
+            slugs={slugs}
+            ks4Options={ks4Options}
+            examboardFilterDimensions={examboardFilterDimensions}
+          />
+        </ExamBoardFocusScope>
       </OakFlex>
     </OakFlex>
   );
