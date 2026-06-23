@@ -31,9 +31,7 @@ export const SearchView = ({
     allExamBoards,
     legacy: [{ slug: "new", title: "Show new only" }],
     navigation: {
-      searchParams: searchParams
-        ? new URLSearchParams(searchParams.toString())
-        : null,
+      searchParams: searchParams,
       push: (url: string) => router.push(url),
     },
   });
