@@ -13,6 +13,14 @@ jest.mock("./banners/FinancialEducationBanner", () => {
   ));
 });
 
+jest.mock("./banners/DigitalLiteracyBanner", () => {
+  return jest.fn(() => (
+    <div data-testid="digital-literacy-banner">
+      Digital Literacy Description
+    </div>
+  ));
+});
+
 describe("RelatedSubjectsBanner", () => {
   const programmeFields = unitBrowseDataFixture({}).programmeFields;
 
@@ -28,7 +36,17 @@ describe("RelatedSubjectsBanner", () => {
     ).toBeInTheDocument();
   });
 
-  it("renders nothing when subjectSlug is not 'financial-education'", () => {
+  it('renders DigitalLiteracyBanner when subjectSlug is "digital-literacy"', () => {
+    render(
+      <RelatedSubjectsBanner
+        subjectSlug="digital-literacy"
+        programmeFields={programmeFields}
+      />,
+    );
+    expect(screen.getByTestId("digital-literacy-banner")).toBeInTheDocument();
+  });
+
+  it("renders nothing when subjectSlug is not supported", () => {
     const { container } = render(
       <RelatedSubjectsBanner
         subjectSlug="testing-not-for-publication"

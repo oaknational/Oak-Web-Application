@@ -1,3 +1,4 @@
+import DigitalLiteracyBanner from "./banners/DigitalLiteracyBanner";
 import FinancialEducationBanner from "./banners/FinancialEducationBanner";
 
 import { UnitListingBrowseData } from "@/node-lib/curriculum-api-2023/queries/pupilUnitListing/pupilUnitListing.schema";
@@ -16,6 +17,9 @@ export interface BannerProps {
 const OptionalSubjectDescriptions: OptionalSubjectDescriptionsType = {
   "financial-education": ({ programmeFields }) => (
     <FinancialEducationBanner programmeFields={programmeFields} />
+  ),
+  "digital-literacy": ({ programmeFields }) => (
+    <DigitalLiteracyBanner programmeFields={programmeFields} />
   ),
 };
 
