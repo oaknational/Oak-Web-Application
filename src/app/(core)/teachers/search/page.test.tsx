@@ -17,8 +17,8 @@ const yearGroups = fixture.yearGroups;
 
 jest.mock("next/navigation");
 
-(usePathname as jest.Mock).mockReturnValue("/");
-(useSearchParams as jest.Mock).mockReturnValue(new URLSearchParams());
+jest.mocked(usePathname).mockReturnValue("/");
+jest.mocked(useSearchParams).mockReturnValue(new URLSearchParams());
 jest.mock("posthog-js/react", () => ({
   ...jest.requireActual("posthog-js/react"),
   useFeatureFlagEnabled: () => false,
