@@ -1,3 +1,12 @@
+# [1.1102.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1101.0...v1.1102.0) (2026-06-23)
+
+
+### Features
+
+* disallow create with ai on digital literacy ([c0e4c11](https://github.com/oaknational/Oak-Web-Application/commit/c0e4c115a6a2976cbfaf94c81937ddffd6e3947c))
+* exclude curriculum link in lesson seo helper ([ab43b5b](https://github.com/oaknational/Oak-Web-Application/commit/ab43b5bcf28dca4885079c8f0a109d0312e20c10))
+* remove hide curriculum logic ([5f8258f](https://github.com/oaknational/Oak-Web-Application/commit/5f8258ff5a8023ea1d02db438078a05d13e2e0b3))
+
 # [1.1101.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1100.3...v1.1101.0) (2026-06-23)
 
 
