@@ -96,13 +96,15 @@ export const getFilterType = (slug: string): FilterTypeValueType | null => {
   } else if (slug === "new") {
     return "Lesson Cohort filter";
   } else {
-    reportError(new OakError({
-      code: "search/unknown-filter-type",
-      meta: {
-        slug,
-      },
-    }));
-    return null;
+    reportError(
+      new OakError({
+        code: "search/unknown-filter-type",
+        meta: {
+          slug,
+        },
+      }),
+    );
+    return "Unknown filter" as FilterTypeValueType;
   }
 };
 
