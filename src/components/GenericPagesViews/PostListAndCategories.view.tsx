@@ -1,5 +1,4 @@
 import React, { FC } from "react";
-import { useTheme } from "styled-components";
 import {
   OakGrid,
   OakGridArea,
@@ -23,8 +22,6 @@ export type PostListAndCategoriesProps = Omit<PostListingPageProps, "blogs"> & {
 const PostListAndCategories: FC<PostListAndCategoriesProps> = (props) => {
   const { blogs, categories, categorySlug, page } = props;
   const blogCategoriesListProps = usePostCategoryList();
-  const theme = useTheme();
-  const HEADER_HEIGHT = theme.header.height;
   const blogListProps = usePostList({
     items: blogs,
     withImage: page === "blog-index" ? false : true,
@@ -39,7 +36,6 @@ const PostListAndCategories: FC<PostListAndCategoriesProps> = (props) => {
         <OakBox
           $display={["none", "block"]}
           $position={[null, "sticky"]}
-          $top={[null, HEADER_HEIGHT]}
           $mt={["spacing-0", "spacing-24"]}
           $pt={["spacing-48"]}
         >

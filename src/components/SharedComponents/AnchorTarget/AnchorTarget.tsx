@@ -1,7 +1,5 @@
 import styled, { css } from "styled-components";
 
-import theme from "@/styles/theme";
-
 /**
  * AnchorTarget is a component to enable in-page linking to a particular section
  *
@@ -22,8 +20,8 @@ type AnchorTargetProps = {
 const anchorTarget = css<AnchorTargetProps>`
   ${(props) => css`
     scroll-margin-top: ${props.$paddingTop !== undefined
-      ? theme.header.height + props.$paddingTop
-      : theme.header.height}px;
+      ? props.$paddingTop
+      : 0}px;
     position: absolute;
     top: 0;
   `}
