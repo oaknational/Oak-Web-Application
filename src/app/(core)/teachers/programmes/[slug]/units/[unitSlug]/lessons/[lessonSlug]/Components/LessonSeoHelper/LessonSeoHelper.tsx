@@ -45,12 +45,6 @@ export const LessonSeoHelper = ({
   loginRequired: boolean;
   geoRestricted: boolean;
 }) => {
-  const nonCurriculumSubjects = new Set([
-    "financial-education",
-    "digital-literacy",
-  ]);
-  const hideCurriculumLink = nonCurriculumSubjects.has(subjectSlug);
-
   const unitListingPageLink = resolveOakHref({
     page: "teacher-programme",
     subjectPhaseSlug: getSubjectPhaseSlug({
@@ -132,8 +126,7 @@ export const LessonSeoHelper = ({
           actionProps={{
             name: "download",
             href: resolveOakHref({
-              page: "lesson-downloads",
-              downloads: "downloads",
+              page: "integrated-lesson-downloads",
               lessonSlug,
               unitSlug,
               programmeSlug,
@@ -199,13 +192,9 @@ export const LessonSeoHelper = ({
         lessons from the{" "}
         <OakLink href={unitOverviewPageLink}>{unit} unit</OakLink>, dive into
         the full{" "}
-        {hideCurriculumLink ? (
-          `${getPhase(year)} ${formatSubjectName(subject)} curriculum`
-        ) : (
-          <OakLink href={curriculumOverviewPageLink}>
-            {getPhase(year)} {formatSubjectName(subject)} curriculum
-          </OakLink>
-        )}
+        <OakLink href={curriculumOverviewPageLink}>
+          {getPhase(year)} {formatSubjectName(subject)} curriculum
+        </OakLink>
         , or learn more about{" "}
         <OakLink href={resolveOakHref({ page: "lesson-planning" })}>
           lesson planning

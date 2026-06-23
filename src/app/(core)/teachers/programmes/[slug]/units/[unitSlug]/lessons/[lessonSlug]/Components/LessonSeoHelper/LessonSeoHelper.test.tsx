@@ -54,55 +54,6 @@ describe("LessonSeoHelper", () => {
     ).toBeGreaterThan(0);
   });
 
-  it("renders the curriculum link for curriculum subjects", async () => {
-    render(<LessonSeoHelper {...baseProps} />);
-    await openAccordion();
-
-    expect(
-      screen.getByRole("link", { name: /primary science curriculum/ }),
-    ).toBeInTheDocument();
-  });
-
-  it("hides the curriculum link for non-curriculum subjects", async () => {
-    render(
-      <LessonSeoHelper
-        {...baseProps}
-        subject="Financial education"
-        subjectSlug="financial-education"
-      />,
-    );
-    await openAccordion();
-
-    expect(
-      screen.queryByRole("link", {
-        name: /primary financial education curriculum/,
-      }),
-    ).not.toBeInTheDocument();
-    expect(
-      screen.getByText(/primary financial education curriculum/),
-    ).toBeInTheDocument();
-  });
-
-  it("hides the curriculum link for digital-literacy", async () => {
-    render(
-      <LessonSeoHelper
-        {...baseProps}
-        subject="Digital literacy"
-        subjectSlug="digital-literacy"
-      />,
-    );
-    await openAccordion();
-
-    expect(
-      screen.queryByRole("link", {
-        name: /primary digital literacy curriculum/,
-      }),
-    ).not.toBeInTheDocument();
-    expect(
-      screen.getByText(/primary digital literacy curriculum/),
-    ).toBeInTheDocument();
-  });
-
   it("renders the unit link", async () => {
     render(<LessonSeoHelper {...baseProps} />);
     await openAccordion();
