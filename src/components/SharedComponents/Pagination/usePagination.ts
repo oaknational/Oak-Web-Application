@@ -1,4 +1,9 @@
-import { useRouter } from "next/compat/router";
+import {
+  useRouter as useAppRouter,
+  usePathname,
+  useSearchParams,
+} from "next/navigation";
+import { useRouter as useCompatRouter } from "next/compat/router";
 import { RefObject, useMemo, useRef } from "react";
 
 export type PaginationProps = {
@@ -46,10 +51,13 @@ const usePagination = <T>(
   const { pageSize, totalResults, items, navigation } = props;
   const totalPages = Math.ceil(totalResults / pageSize);
 
+  const appRouter = useAppRouter();
+  const compatRouter = useCompatRouter();
   const pathname = usePathname();
   const appSearchParams = useSearchParams();
   const route = navigation?.route ?? pathname ?? "/";
-  const searchParams = navigation?.searchParams ?? appSearchParams ?? new URLSearchParams();
+  const searchParams =
+    navigation?.searchParams ?? appSearchParams ?? new URLSearchParams();
 
   const pageRaw = searchParams.get("page") ?? "";
   const parsedPage = Number.parseInt(pageRaw, 10);
@@ -109,8 +117,10 @@ const usePagination = <T>(
 
     if (navigation?.push) {
       navigation.push(toHref(route, params));
+    } else if (compatRouter) {
+      compatRouter.push(toHref(route, params));
     } else {
-      void router?.push(toHref(route, params));
+      appRouter.push(toHref(route, params));
     }
 
     window.scrollTo({ top: 0, behavior: "smooth" });

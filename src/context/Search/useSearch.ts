@@ -1,5 +1,6 @@
 import { useRouter as useCompatRouter } from "next/compat/router";
 import { useCallback, useEffect, useMemo, useState } from "react";
+import { useSearchParams } from "next/navigation";
 
 import {
   getFilterForQuery,
@@ -46,6 +47,7 @@ const useSearchQuery = ({
   legacy?: { slug: string; title: string }[];
   navigation?: SearchNavigationAdapter;
 }): UseSearchQueryReturnType => {
+  const router = useCompatRouter();
   const appSearchParams = useSearchParams();
   const searchParams = navigation?.searchParams ?? appSearchParams;
 

@@ -1,6 +1,12 @@
 import { renderHook } from "@testing-library/react";
 import { createRef } from "react";
-import { useRouter } from "next/compat/router";
+import {
+  usePathname,
+  useRouter as useAppRouter,
+  useSearchParams,
+  ReadonlyURLSearchParams,
+} from "next/navigation";
+import { useRouter as useCompatRouter } from "next/compat/router";
 
 import usePagination from "./usePagination";
 
@@ -8,7 +14,10 @@ jest.mock("next/compat/router", () => ({
   useRouter: jest.fn(),
 }));
 
-const mockUseRouter = jest.mocked(useRouter);
+const mockUseCompatRouter = jest.mocked(useCompatRouter);
+const mockUseAppRouter = jest.mocked(useAppRouter);
+const mockUsePathname = jest.mocked(usePathname);
+const mockUseSearchParams = jest.mocked(useSearchParams);
 
 const pathname = "/blogs";
 const totalResults = 41;
@@ -23,7 +32,23 @@ describe("usePagination()", () => {
   }: {
     asPath?: string | null;
   } = {}) => {
-    mockUseRouter.mockReturnValue({
+    const [pathSegment, queryString = ""] = (asPath ?? "/").split("?");
+    const parsedPathname = pathSegment || "/";
+
+    mockUsePathname.mockReturnValue(parsedPathname);
+    mockUseSearchParams.mockReturnValue(
+      new URLSearchParams(queryString) as unknown as ReadonlyURLSearchParams,
+    );
+    mockUseAppRouter.mockReturnValue({
+      push,
+      replace: jest.fn(),
+      prefetch: jest.fn(),
+      back: jest.fn(),
+      forward: jest.fn(),
+      refresh: jest.fn(),
+    });
+
+    mockUseCompatRouter.mockReturnValue({
       asPath: asPath ?? "/",
       push,
       replace: jest.fn(),
@@ -31,9 +56,9 @@ describe("usePagination()", () => {
       back: jest.fn(),
       reload: jest.fn(),
       beforePopState: jest.fn(),
-      pathname: asPath?.split("?")[0] ?? "/",
+      pathname: parsedPathname,
       query: {},
-      route: asPath?.split("?")[0] ?? "/",
+      route: parsedPathname,
       basePath: "",
       isReady: true,
       isFallback: false,
@@ -158,7 +183,11 @@ describe("usePagination()", () => {
   });
 
   test("falls back to '/' when router returns null asPath", () => {
-    mockUseRouter.mockReturnValue(null);
+    mockUseCompatRouter.mockReturnValue(null);
+    mockUsePathname.mockReturnValue(null);
+    mockUseSearchParams.mockReturnValue(
+      new URLSearchParams() as unknown as ReadonlyURLSearchParams,
+    );
     const { result } = renderHook(() =>
       usePagination({ totalResults, pageSize, items }),
     );
@@ -178,7 +207,11 @@ describe("usePagination()", () => {
   });
 
   test("uses injected navigation adapter when provided", () => {
-    mockUseRouter.mockReturnValue(null);
+    mockUseCompatRouter.mockReturnValue(null);
+    mockUsePathname.mockReturnValue(null);
+    mockUseSearchParams.mockReturnValue(
+      new URLSearchParams() as unknown as ReadonlyURLSearchParams,
+    );
     const adapterPush = jest.fn();
 
     const { result } = renderHook(() =>

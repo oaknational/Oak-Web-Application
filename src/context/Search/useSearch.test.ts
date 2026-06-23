@@ -1,5 +1,6 @@
 import { act, waitFor } from "@testing-library/react";
 import { useRouter } from "next/compat/router";
+import { ReadonlyURLSearchParams, useSearchParams } from "next/navigation";
 
 import searchPageFixture from "../../node-lib/curriculum-api-2023/fixtures/searchPage.fixture";
 import { renderHookWithProviders } from "../../__tests__/__helpers__/renderWithProviders";
@@ -12,6 +13,7 @@ jest.mock("next/compat/router", () => ({
 }));
 
 const mockUseRouter = jest.mocked(useRouter);
+const mockUseSearchParams = jest.mocked(useSearchParams);
 
 const goodFetchResolvedValueWithResults = {
   ok: true,
@@ -66,6 +68,7 @@ const allKeyStages = searchPageFixture().keyStages;
 
 const setNavigation = (url = "?term=test-term") => {
   const queryString = url.startsWith("?") ? url : `?${url}`;
+  const queryWithoutPrefix = queryString.replace(/^\?/, "");
 
   mockUseRouter.mockReturnValue({
     asPath: `/teachers/search${queryString}`,
@@ -90,6 +93,12 @@ const setNavigation = (url = "?term=test-term") => {
     reload: jest.fn(),
     forward: jest.fn(),
   });
+
+  mockUseSearchParams.mockReturnValue(
+    new URLSearchParams(
+      queryWithoutPrefix,
+    ) as unknown as ReadonlyURLSearchParams,
+  );
 };
 
 const renderUseSearch = (url = "?term=test-term") => {
