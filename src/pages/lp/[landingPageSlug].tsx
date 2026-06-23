@@ -23,7 +23,6 @@ export type LandingPageProps = {
 const Landing: NextPage<LandingPageProps> = ({ pageData, topNav }) => {
   return (
     <Layout
-      headerVariant="landing-pages"
       headerCta={pageData.headerCta}
       seoProps={getSeoProps(pageData.seo)}
       topNavProps={topNav}
