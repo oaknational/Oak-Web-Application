@@ -19,9 +19,7 @@ type AnchorTargetProps = {
 
 const anchorTarget = css<AnchorTargetProps>`
   ${(props) => css`
-    scroll-margin-top: ${props.$paddingTop !== undefined
-      ? props.$paddingTop
-      : 0}px;
+    scroll-margin-top: ${props.$paddingTop ?? 0}px;
     position: absolute;
     top: 0;
   `}
