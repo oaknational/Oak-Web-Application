@@ -291,7 +291,7 @@ describe("pages/pupils/programmes/[programmeSlug]/units/[unitSlug]/lessons/[less
         },
       });
     });
-    it("should return 404 if lesson not found and redirect not found", async () => {
+    it("should return 404 when the lesson query throws and the redirect is not found", async () => {
       (
         curriculumApi2023.default.pupilLessonQuery as jest.Mock
       ).mockRejectedValueOnce(
@@ -315,7 +315,7 @@ describe("pages/pupils/programmes/[programmeSlug]/units/[unitSlug]/lessons/[less
         notFound: true,
       });
     });
-    it("should return 404 if lesson not found and redirect not found", async () => {
+    it("should return 404 when the lesson query returns null and the redirect is not found", async () => {
       (
         curriculumApi2023.default.pupilLessonQuery as jest.Mock
       ).mockResolvedValueOnce(null);

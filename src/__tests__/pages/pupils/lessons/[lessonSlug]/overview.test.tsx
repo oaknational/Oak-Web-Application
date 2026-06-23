@@ -272,7 +272,7 @@ describe("pages/pupils/lessons/[lessonSlug]/overview", () => {
 
       expect(res.props.backUrl).toEqual(backUrl);
     });
-    it("should return redirect if lesson not found", async () => {
+    it("should return redirect when the lesson query throws not-found", async () => {
       (curriculumApi2023.pupilLessonQuery as jest.Mock).mockRejectedValueOnce(
         new OakError({ code: "curriculum-api/not-found" }),
       );
@@ -290,7 +290,7 @@ describe("pages/pupils/lessons/[lessonSlug]/overview", () => {
         },
       });
     });
-    it("should return redirect if lesson not found", async () => {
+    it("should return redirect when the lesson query returns null", async () => {
       (curriculumApi2023.pupilLessonQuery as jest.Mock).mockResolvedValueOnce(
         null,
       );
@@ -308,7 +308,7 @@ describe("pages/pupils/lessons/[lessonSlug]/overview", () => {
         },
       });
     });
-    it("should return 404 if lesson not found and redirect not found", async () => {
+    it("should return 404 when the lesson query throws and the redirect is not found", async () => {
       (curriculumApi2023.pupilLessonQuery as jest.Mock).mockRejectedValueOnce(
         new OakError({ code: "curriculum-api/not-found" }),
       );
@@ -327,7 +327,7 @@ describe("pages/pupils/lessons/[lessonSlug]/overview", () => {
         notFound: true,
       });
     });
-    it("should return 404 if lesson not found and redirect not found", async () => {
+    it("should return 404 when the lesson query returns null and the redirect is not found", async () => {
       (curriculumApi2023.pupilLessonQuery as jest.Mock).mockResolvedValueOnce(
         null,
       );

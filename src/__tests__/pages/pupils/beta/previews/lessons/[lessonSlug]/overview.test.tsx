@@ -267,7 +267,7 @@ describe("pages/pupils/beta/previews/lessons/[lessonSlug]/overview", () => {
       expect(res.props.lessonContent.lessonId).toEqual(content.lessonId);
     });
 
-    it("should return 404 if lesson not found", async () => {
+    it("should return 404 when the lesson query throws not-found", async () => {
       (
         curriculumApi2023.pupilPreviewLessonQuery as jest.Mock
       ).mockRejectedValueOnce(
@@ -284,7 +284,7 @@ describe("pages/pupils/beta/previews/lessons/[lessonSlug]/overview", () => {
       });
     });
 
-    it("should return 404 if lesson not found", async () => {
+    it("should return 404 when the lesson query returns null", async () => {
       (
         curriculumApi2023.pupilPreviewLessonQuery as jest.Mock
       ).mockResolvedValueOnce(null);
