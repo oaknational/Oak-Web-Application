@@ -8,14 +8,11 @@ import {
   OakSvg,
   OakUL,
   OakLeftAlignedButton,
+  OakLIProps,
 } from "@oaknational/oak-components";
 import Link from "next/link";
 
-import {
-  getEYFSAriaLabel,
-  SubmenuState,
-  HamburgerMenuHook,
-} from "./TeachersTopNavHamburger";
+import { SubmenuState, HamburgerMenuHook } from "./TeachersTopNavHamburger";
 
 import {
   TeachersBrowse,
@@ -39,28 +36,29 @@ export function MainMenuContent(
   }, [submenuOpen, prevSubmenu]);
 
   return (
-    <OakUL
-      $display={"flex"}
-      $flexDirection={"column"}
-      $pa={"spacing-40"}
-      $gap={"spacing-40"}
-    >
+    <OakUL $display={"flex"} $flexDirection={"column"} $ph={"spacing-40"}>
       <SubjectsSection {...navData.primary} hamburgerMenu={hamburgerMenu} />
       <SubjectsSection {...navData.secondary} hamburgerMenu={hamburgerMenu} />
-      <OakFlex $flexDirection={"column"} $gap={"spacing-16"}>
-        <MainMenuButton title={"About us"} hamburgerMenu={hamburgerMenu} />
-        <MainMenuButton title={"Guidance"} hamburgerMenu={hamburgerMenu} />
-        <MainMenuLink
-          hamburgerMenu={hamburgerMenu}
-          href={resolveOakHref({
-            page: "labs",
-          })}
-          external={true}
-          title="AI Experiments"
-          iconName="external"
-          aria-label="AI Experiments (this will open in a new tab)"
-        />
-      </OakFlex>
+      <MainMenuButton
+        title={"About us"}
+        hamburgerMenu={hamburgerMenu}
+        $pb="spacing-16"
+      />
+      <MainMenuButton
+        title={"Guidance"}
+        hamburgerMenu={hamburgerMenu}
+        $pb="spacing-16"
+      />
+      <MainMenuLink
+        hamburgerMenu={hamburgerMenu}
+        href={resolveOakHref({
+          page: "labs",
+        })}
+        external={true}
+        title="AI Experiments"
+        iconName="external"
+        aria-label="AI Experiments (this will open in a new tab)"
+      />
     </OakUL>
   );
 }
@@ -70,12 +68,26 @@ function SubjectsSection(
 ) {
   const { hamburgerMenu, ...browseData } = props;
   const { track } = useAnalytics();
+  const phaseSubjects = browseData.children.filter(
+    (child) => child.type === "phase",
+  );
+  const keystages = browseData.children.filter(
+    (child) => child.type === "keystage",
+  );
+  const subjectsTitle =
+    browseData.slug === "primary" ? "Primary subjects" : "Secondary subjects";
+  const keyStagesTitle =
+    browseData.slug === "primary"
+      ? "Primary key stages"
+      : "Secondary key stages";
+
   return (
-    <OakBox>
+    <OakLI $listStyle={"none"} $pb="spacing-40">
       <OakFlex
         $flexDirection={"column"}
         $width={"fit-content"}
         $mb={"spacing-12"}
+        $pl="spacing-8"
       >
         <OakBox $position={"relative"}>
           <OakHeading tag="h2" $font={"heading-6"}>
@@ -90,12 +102,16 @@ function SubjectsSection(
           />
         </OakBox>
       </OakFlex>
-      <OakFlex $flexDirection={"column"} $gap={"spacing-16"}>
-        {browseData.children.map((keystage) => (
+      <OakFlex
+        as="ul"
+        $flexDirection={"column"}
+        $gap={"spacing-16"}
+        $ph="spacing-0"
+        $pt="spacing-12"
+      >
+        {phaseSubjects.length > 0 && (
           <MainMenuButton
-            key={keystage.slug + browseData.slug}
-            title={keystage.title as SubmenuState}
-            description={keystage.description}
+            title={subjectsTitle}
             hamburgerMenu={hamburgerMenu}
             track={() => {
               track.browseRefined({
@@ -105,54 +121,62 @@ function SubjectsSection(
                 componentType: "topnav-browse-button",
                 eventVersion: "2.0.0",
                 analyticsUseCase: "Teacher",
-                filterType: "Key stage filter",
-                filterValue: keystage.slug,
+                filterType: "Phase filter",
+                filterValue: browseData.slug,
                 activeFilters: {},
                 googleLoginHint: null,
                 clientEnvironment: null,
               });
             }}
           />
-        ))}
+        )}
+        {keystages.length > 0 && (
+          <MainMenuButton
+            title={keyStagesTitle}
+            hamburgerMenu={hamburgerMenu}
+          />
+        )}
       </OakFlex>
-    </OakBox>
+      <OakBox
+        $mt="spacing-40"
+        $mh="spacing-8"
+        $bb={"border-solid-s"}
+        $borderColor={"border-neutral-lighter"}
+        aria-hidden={true}
+      />
+    </OakLI>
   );
 }
 
 function MainMenuButton({
   title,
-  description,
   hamburgerMenu,
   track,
+  $pb,
 }: Readonly<{
   title: SubmenuState;
   hamburgerMenu: HamburgerMenuHook;
-  description?: string;
   track?: () => void;
+  $pb?: OakLIProps["$pb"];
 }>) {
   const { setSubmenuOpen } = hamburgerMenu;
-  const isEYFS = title === "EYFS";
-  const shouldShowDescription = !isEYFS && description;
 
   return (
-    <OakBox $width={"100%"}>
-      <OakLI $listStyle={"none"}>
-        <OakLeftAlignedButton
-          aria-haspopup={true}
-          aria-label={getEYFSAriaLabel(title)}
-          rightAlignIcon
-          iconName="chevron-right"
-          width={"100%"}
-          id={title + "button"}
-          onClick={() => {
-            track?.();
-            setSubmenuOpen(title);
-          }}
-        >
-          {shouldShowDescription ? description : title}
-        </OakLeftAlignedButton>
-      </OakLI>
-    </OakBox>
+    <OakLI $listStyle={"none"} $width={"100%"} $pb={$pb}>
+      <OakLeftAlignedButton
+        aria-haspopup={true}
+        rightAlignIcon
+        iconName="chevron-right"
+        width={"100%"}
+        id={title + "button"}
+        onClick={() => {
+          track?.();
+          setSubmenuOpen(title);
+        }}
+      >
+        {title}
+      </OakLeftAlignedButton>
+    </OakLI>
   );
 }
 

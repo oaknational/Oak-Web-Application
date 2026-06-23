@@ -80,13 +80,14 @@ const LessonOverviewDetails: FC<LessonOverviewDetailsProps> = ({
   const getTeacherTips = () => {
     if (teacherTips) {
       const tips = teacherTips
-        .filter((tip) => tip !== null)
+        .filter((tip) => !!tip && !!tip.teacherTip)
         .map((tip) => tip.teacherTip) as string[];
       return tips.length ? tips : undefined;
     }
     return undefined;
   };
   const teacherTipList = getTeacherTips();
+
   const equipment = equipmentAndResources
     ? equipmentAndResources.map((e) => e.equipment)
     : undefined;

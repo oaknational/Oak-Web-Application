@@ -1,13 +1,82 @@
 import {
+  buildExamboardFilterDimensions,
+  type ExamboardFilterDimension,
+} from "./buildExamboardFilterDimensions";
+
+import curriculumApi2023, {
   CurriculumPhaseOptions,
   CurriculumUnit,
   CurriculumUnitsTabData,
-  type CurriculumApi,
 } from "@/node-lib/curriculum-api-2023";
-import { parseSubjectPhaseSlug } from "@/utils/curriculum/slugs";
+import { cacheData, CURRICULUM_API_CACHE_TAG } from "@/node-lib/cache";
+import {
+  parseSubjectPhaseSlug,
+  type CurriculumSelectionSlugs,
+} from "@/utils/curriculum/slugs";
 import { filterValidCurriculumPhaseOptions } from "@/pages-helpers/curriculum/docx/tab-helpers";
 import { CurriculumFilters } from "@/utils/curriculum/types";
 import { scopeYearsToKeystageFilter } from "@/utils/curriculum/filtersUrl";
+import { isExamboardSlug } from "@/pages-helpers/pupil/options-pages/options-pages-helpers";
+
+const PAGE_KEY = "programme-page-data";
+
+const getCachedCurriculumPhaseOptions = cacheData(
+  async () =>
+    curriculumApi2023.curriculumPhaseOptions({
+      includeNonCurriculum: true,
+    }),
+  [PAGE_KEY, "curriculum-phase-options"],
+  {
+    tags: [PAGE_KEY, CURRICULUM_API_CACHE_TAG],
+  },
+);
+
+const getCachedCurriculumOverview = cacheData(
+  async (subjectSlug: string, phaseSlug: string) =>
+    curriculumApi2023.curriculumOverview({
+      subjectSlug,
+      phaseSlug,
+      includeNonCurriculum: true,
+    }),
+  [PAGE_KEY, "curriculum-overview"],
+  {
+    tags: [PAGE_KEY, CURRICULUM_API_CACHE_TAG],
+  },
+);
+
+const getCachedCurriculumSequence = cacheData(
+  async (
+    subjectSlug: string,
+    phaseSlug: string,
+    ks4OptionSlug: string | null,
+    excludeCoreUnits: boolean,
+  ) =>
+    curriculumApi2023.curriculumSequence({
+      subjectSlug,
+      phaseSlug,
+      ks4OptionSlug,
+      includeNonCurriculum: true,
+      excludeUnitsWithNoPublishedLessons: true,
+      excludeCoreUnits,
+    }),
+  [PAGE_KEY, "curriculum-sequence"],
+  {
+    tags: [PAGE_KEY, CURRICULUM_API_CACHE_TAG],
+  },
+);
+
+const getCachedCurriculumSequenceSlugs = cacheData(
+  async (subjectSlug: string, phaseSlug: string) =>
+    curriculumApi2023.curriculumSequenceSlugs({
+      subjectSlug,
+      phaseSlug,
+      includeNonCurriculum: true,
+    }),
+  [PAGE_KEY, "curriculum-sequence-slugs"],
+  {
+    tags: [PAGE_KEY, CURRICULUM_API_CACHE_TAG],
+  },
+);
 
 // Helper function to sort units consistently
 const sortUnits = (units: CurriculumUnit[]): CurriculumUnit[] => {
@@ -32,18 +101,13 @@ const excludeCoreFromSubjects = (subjects: CurriculumPhaseOptions) => {
   }));
 };
 
-export async function getSubjectPhaseOptions(
-  curriculumApi2023: CurriculumApi,
-  subjectPhaseSlug: string,
-) {
+export async function getSubjectPhaseOptions(subjectPhaseSlug: string) {
   const subjectPhaseKeystageSlugs = parseSubjectPhaseSlug(subjectPhaseSlug);
 
   if (!subjectPhaseKeystageSlugs) {
     return null;
   }
-  const originalSubjects = await curriculumApi2023.curriculumPhaseOptions({
-    includeNonCurriculum: true,
-  });
+  const originalSubjects = await getCachedCurriculumPhaseOptions();
   let subjects = filterValidCurriculumPhaseOptions(originalSubjects);
   // We exclude core units when the ks4 option is not core
   // TD: after the integrated journey launches we should make this the default in the query
@@ -55,9 +119,37 @@ export async function getSubjectPhaseOptions(
   return { subjects, subjectPhaseKeystageSlugs };
 }
 
+async function getExamboardFilterDimensions(
+  subjectPhaseKeystageSlugs: CurriculumSelectionSlugs,
+  subjects: CurriculumPhaseOptions,
+): Promise<Record<string, ExamboardFilterDimension>> {
+  if (subjectPhaseKeystageSlugs.phaseSlug !== "secondary") {
+    return {};
+  }
+
+  const ks4Options =
+    subjects.find(
+      (subject) => subject.slug === subjectPhaseKeystageSlugs.subjectSlug,
+    )?.ks4_options ?? [];
+  const examBoardSlugs = ks4Options
+    .map((option) => option.slug)
+    .filter((slug) => isExamboardSlug(slug));
+
+  if (examBoardSlugs.length === 0) {
+    return {};
+  }
+
+  const slugUnits = await getCachedCurriculumSequenceSlugs(
+    subjectPhaseKeystageSlugs.subjectSlug,
+    subjectPhaseKeystageSlugs.phaseSlug,
+  );
+
+  return buildExamboardFilterDimensions(slugUnits, examBoardSlugs);
+}
+
 export async function getProgrammeData(
-  curriculumApi2023: CurriculumApi,
   subjectPhaseSlug: string,
+  subjects: CurriculumPhaseOptions,
 ) {
   const subjectPhaseKeystageSlugs = parseSubjectPhaseSlug(subjectPhaseSlug);
 
@@ -69,19 +161,20 @@ export async function getProgrammeData(
   // TD: after the integrated journey launches we should make this the default in the query
   const excludeCoreUnits = subjectPhaseKeystageSlugs.ks4OptionSlug !== "core";
 
-  const [programmeUnitsData, curriculumUnitsData] = await Promise.all([
-    curriculumApi2023.curriculumOverview({
-      subjectSlug: subjectPhaseKeystageSlugs.subjectSlug,
-      phaseSlug: subjectPhaseKeystageSlugs.phaseSlug,
-      includeNonCurriculum: true,
-    }),
-    curriculumApi2023.curriculumSequence({
-      ...subjectPhaseKeystageSlugs,
-      includeNonCurriculum: true,
-      excludeUnitsWithNoPublishedLessons: true,
-      excludeCoreUnits,
-    }),
-  ]);
+  const [programmeUnitsData, curriculumUnitsData, examboardFilterDimensions] =
+    await Promise.all([
+      getCachedCurriculumOverview(
+        subjectPhaseKeystageSlugs.subjectSlug,
+        subjectPhaseKeystageSlugs.phaseSlug,
+      ),
+      getCachedCurriculumSequence(
+        subjectPhaseKeystageSlugs.subjectSlug,
+        subjectPhaseKeystageSlugs.phaseSlug,
+        subjectPhaseKeystageSlugs.ks4OptionSlug,
+        excludeCoreUnits,
+      ),
+      getExamboardFilterDimensions(subjectPhaseKeystageSlugs, subjects),
+    ]);
 
   // Sort units to have examboard versions first, then by unit order
   curriculumUnitsData.units = sortUnits(curriculumUnitsData.units);
@@ -89,6 +182,7 @@ export async function getProgrammeData(
   return {
     programmeUnitsData,
     curriculumUnitsData,
+    examboardFilterDimensions,
   };
 }
 
