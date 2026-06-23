@@ -14,12 +14,12 @@ import { createFilter } from "@/fixtures/curriculum/filters";
 import type { Ks4Option } from "@/node-lib/curriculum-api-2023/queries/curriculumPhaseOptions/curriculumPhaseOptions.schema";
 import { CurriculumSelectionSlugs } from "@/utils/curriculum/slugs";
 
-const pushMock = jest.fn();
+const replaceMock = jest.fn();
 
 jest.mock("next/navigation", () => ({
   __esModule: true,
   useRouter: () => ({
-    push: pushMock,
+    replace: replaceMock,
   }),
   useSearchParams: () => new URLSearchParams(""),
 }));
@@ -245,7 +245,7 @@ describe("getPreservedQuery", () => {
 
 describe("ProgrammeFiltersExamBoard", () => {
   beforeEach(() => {
-    pushMock.mockClear();
+    replaceMock.mockClear();
   });
 
   it("renders exam board options with the current board selected", () => {
@@ -278,7 +278,7 @@ describe("ProgrammeFiltersExamBoard", () => {
 
     act(() => radios[1]!.click());
 
-    expect(pushMock).toHaveBeenCalledWith(
+    expect(replaceMock).toHaveBeenCalledWith(
       resolveOakHref({
         page: "teacher-programme",
         subjectPhaseSlug: "english-secondary-edexcel",
@@ -306,7 +306,7 @@ describe("ProgrammeFiltersExamBoard", () => {
 
     act(() => radios[1]!.click());
 
-    expect(pushMock).toHaveBeenCalledWith(
+    expect(replaceMock).toHaveBeenCalledWith(
       resolveOakHref({
         page: "teacher-programme",
         subjectPhaseSlug: "english-secondary-edexcel",
@@ -339,7 +339,7 @@ describe("ProgrammeFiltersExamBoard", () => {
 
     act(() => radios[1]!.click());
 
-    expect(pushMock).toHaveBeenCalledWith(
+    expect(replaceMock).toHaveBeenCalledWith(
       resolveOakHref({
         page: "teacher-programme",
         subjectPhaseSlug: "english-secondary-edexcel",

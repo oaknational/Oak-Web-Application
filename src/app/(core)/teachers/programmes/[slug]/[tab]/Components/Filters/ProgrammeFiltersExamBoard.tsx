@@ -140,7 +140,7 @@ export function ProgrammeFiltersExamBoard({
       examBoardSlug: selectedSlug,
     });
 
-    router.push(
+    router.replace(
       resolveOakHref({
         page: "teacher-programme",
         subjectPhaseSlug,
