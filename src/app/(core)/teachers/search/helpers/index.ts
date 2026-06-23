@@ -76,7 +76,7 @@ export type TrackSearchModifiedProps = {
   searchFilterMatchType: SearchFilterMatchTypeValueType;
 };
 
-export const getFilterType = (slug: string): FilterTypeValueType | null => {
+export const getFilterType = (slug: string): FilterTypeValueType => {
   const isKeystageFilter = keystageSlugs.safeParse(slug).success;
   const isYearFilter = yearSlugs.safeParse(slug).success;
   const isSubjectFilter = subjectSlugs.safeParse(slug).success;
