@@ -14,6 +14,7 @@ import LessonOverviewSideNav from "./LessonOverviewSideNav";
 import { getLessonResources } from "./getLessonResources";
 import { LessonItem } from "./LessonItem";
 import LessonActionsBar from "./LessonActionsBar/LessonActionsBar";
+import { LessonSeoHelper } from "./LessonSeoHelper/LessonSeoHelper";
 
 import type { TeachersLessonOverviewPageData } from "@/node-lib/curriculum-api-2023/queries/teachersLessonOverview/teachersLessonOverview.schema";
 import PreviousNextNav from "@/components/TeacherComponents/PreviousNextNav/PreviousNextNav";
@@ -32,7 +33,6 @@ import { hasLessonMathJax } from "@/components/TeacherViews/LessonOverview/hasLe
 import { getSideNavLinksFromResources } from "@/components/TeacherComponents/LessonOverviewSideNavAnchorLinks/LessonOverviewSideNavAnchorLinks";
 import ComplexCopyrightRestrictionBanner from "@/components/TeacherComponents/ComplexCopyrightRestrictionBanner/ComplexCopyrightRestrictionBanner";
 import { RestrictedContentPrompt } from "@/components/TeacherComponents/RestrictedContentPrompt/RestrictedContentPrompt";
-import { LessonSeoHelper } from "@/components/TeacherComponents/LessonOverviewDetails/LessonSeoHelper";
 
 export default function LessonView(
   props: Readonly<TeachersLessonOverviewPageData>,
@@ -52,7 +52,6 @@ export default function LessonView(
     keyStageTitle,
     keyStageSlug,
     subjectTitle,
-    subjectParent,
     unitTitle,
     year,
     yearGroupTitle,
@@ -310,7 +309,6 @@ export default function LessonView(
                     keystage={keyStageTitle}
                     examBoardSlug={examBoardSlug}
                     subjectSlug={subjectSlug}
-                    parentSubject={subjectParent}
                     disablePupilLink={
                       geoRestricted ||
                       loginRequired ||
@@ -318,7 +316,6 @@ export default function LessonView(
                     }
                     lesson={lessonTitle}
                     keystageSlug={keyStageSlug}
-                    isIntegratedJourney
                   />
                 )}
               </OakFlex>
