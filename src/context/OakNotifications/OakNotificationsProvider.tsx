@@ -24,6 +24,7 @@ export const oakNotificationsContext =
 const StyledOakNotificationsContainer = styled(OakFlex)<{ offsetTop: number }>`
   top: ${(props) => props.offsetTop}px;
 `;
+const visibleOffset = 152;
 
 export const OakNotificationsProvider: FC<{
   children?: React.ReactNode;
@@ -33,7 +34,7 @@ export const OakNotificationsProvider: FC<{
   const [currentBannerProps, setCurrentBannerProps] =
     useState<OakInlineBannerProps | null>(null);
 
-  const [offsetTop, setOffsetTop] = useState<number>(82);
+  const [offsetTop, setOffsetTop] = useState<number>(visibleOffset);
   const [id, setId] = useState(0);
   const path = usePathname();
 
@@ -46,7 +47,7 @@ export const OakNotificationsProvider: FC<{
       observer = new IntersectionObserver(
         (entries) => {
           const headerIsVisible = entries[0]?.isIntersecting;
-          const visibleOffset = 152;
+
           setOffsetTop(headerIsVisible ? visibleOffset : 32);
         },
         // Header will only be considered to be intersecting when at least 50% of it is visible
