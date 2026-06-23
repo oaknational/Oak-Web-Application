@@ -69,6 +69,7 @@ const PostSingleLayout: FC<PostSingleLayoutProps> = (props) => {
           $colSpan={[12, 3]}
           $mt={["spacing-48", "spacing-12"]}
           $display={["none", "block"]}
+          $top={[null, "spacing-72"]}
           $position={[null, "sticky"]}
         >
           <OakHeading

@@ -36,6 +36,7 @@ const PostListAndCategories: FC<PostListAndCategoriesProps> = (props) => {
         <OakBox
           $display={["none", "block"]}
           $position={[null, "sticky"]}
+          $top={[null, "spacing-72"]}
           $mt={["spacing-0", "spacing-24"]}
           $pt={["spacing-48"]}
         >
