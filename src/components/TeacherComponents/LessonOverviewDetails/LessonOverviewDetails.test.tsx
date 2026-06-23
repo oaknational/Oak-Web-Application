@@ -189,6 +189,20 @@ describe("LessonOverviewDetails component", () => {
     expect(componentTitle).not.toBeInTheDocument();
   });
 
+  it("shout not render TeacherTips when passed empty strings", () => {
+    const { queryByText } = renderWithTheme(
+      <LessonOverviewDetails
+        {...lessonDetailProps}
+        teacherTips={[{ teacherTip: "" }]}
+        isMathJaxLesson={false}
+        updatedAt="2024-01-01T00:00:00Z"
+        hasVocabAndTranscripts={false}
+      />,
+    );
+    const componentTitle = queryByText("Teacher tips");
+    expect(componentTitle).not.toBeInTheDocument();
+  });
+
   it("if equipmentAndResources, contentGuidance and supervisionLevel are null/undefined shouldn't render any of their titles", () => {
     const { queryByText } = renderWithTheme(
       <LessonOverviewDetails

@@ -66,7 +66,6 @@ import {
   TakedownBanner,
 } from "@/components/SharedComponents/TakedownBanner/TakedownBanner";
 import isSlugLegacy from "@/utils/slugModifiers/isSlugLegacy";
-import { getPhaseSlug } from "@/fixtures/curriculum/unit";
 
 export type LessonOverviewProps = {
   lesson: LessonOverviewPageData & {
@@ -177,7 +176,6 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
     unitSlug,
     programmeSlug,
     yearGroupTitle,
-    examBoardSlug,
     examBoardTitle,
     tierTitle,
     pathwayTitle,
@@ -572,21 +570,7 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
                     displayVocab={!!actions?.displayVocabButton}
                     updatedAt={updatedAt}
                     additionalFiles={additionalFiles}
-                    year={yearGroupTitle}
-                    subject={subjectTitle}
-                    keystage={keyStageTitle}
-                    keystageSlug={keyStageSlug}
-                    unit={unitTitle}
-                    lesson={lessonTitle}
-                    examBoardSlug={examBoardSlug}
-                    subjectSlug={subjectSlug}
-                    subjectParent={lesson.subjectParent}
-                    disablePupilLink={actions?.disablePupilShare}
-                    hideSeoHelper={showGeoBlocked}
                     useIntegratedJourneyLayout={false}
-                    phaseSlug={
-                      yearGroupSlug ? getPhaseSlug(yearGroupSlug) : undefined
-                    }
                   />
                 </LessonItemContainer>
 
