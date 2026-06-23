@@ -1,3 +1,14 @@
+# [1.1101.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1100.3...v1.1101.0) (2026-06-23)
+
+
+### Features
+
+* **LESQ-2108:** add examboard filter to programme page ([b2454a3](https://github.com/oaknational/Oak-Web-Application/commit/b2454a38edc5b260de35a68d17e0e259bbeba58b))
+* **LESQ-2108:** forward compatible tier, pathway and child subject when switching examboard ([1425a6e](https://github.com/oaknational/Oak-Web-Application/commit/1425a6ec2862dc1cea62b8e7b96135a844881ac2))
+* **LESQ-2108:** restore focus to examboard filter after navigation ([c806996](https://github.com/oaknational/Oak-Web-Application/commit/c80699681068966d369e5fa5f08c5f89fd9e189a))
+* **LESQ-2108:** return focus to examboard selector after navigation ([b9bb39e](https://github.com/oaknational/Oak-Web-Application/commit/b9bb39eef077786ad2c0bf29c06493ee63050a18))
+* **LESQ-2108:** use replace instead of push ([f88c37e](https://github.com/oaknational/Oak-Web-Application/commit/f88c37e4dcd8a5a2dbd5b71494912d06b18cd192))
+
 ## [1.1100.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.1100.2...v1.1100.3) (2026-06-23)
 
 
