@@ -1,3 +1,4 @@
+"use client";
 import { NextPage } from "next";
 import { useUser } from "@clerk/nextjs";
 import { useRouter, useSearchParams } from "next/navigation";

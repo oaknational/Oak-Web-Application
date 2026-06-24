@@ -1,8 +1,9 @@
 import { screen } from "@testing-library/dom";
 
-import OnboardingPage from "@/pages/onboarding";
+import SchoolSelection from "./page";
+
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
-import { mockNotOnboardedUser } from "@/__tests__/__helpers__/mockUser";
+import { mockLoggedIn } from "@/__tests__/__helpers__/mockUser";
 import { setUseUserReturn } from "@/__tests__/__helpers__/mockClerk";
 
 jest.mock("posthog-js/react", () => ({
@@ -11,18 +12,19 @@ jest.mock("posthog-js/react", () => ({
 }));
 
 jest.mock("next/navigation", () => ({
+  ...jest.requireActual("next/navigation"),
   usePathname: jest.fn(() => "/onboarding"),
-  useRouter: jest.fn().mockReturnValue({ replace: jest.fn() }),
-  useSearchParams: jest.fn(),
 }));
 
-describe("onboarding page", () => {
+describe("Onboarding school selection page", () => {
+  beforeEach(() => {
+    setUseUserReturn(mockLoggedIn);
+  });
+
   test("it renders the onboarding page", () => {
-    setUseUserReturn(mockNotOnboardedUser);
+    renderWithProviders()(<SchoolSelection />);
 
-    renderWithProviders()(<OnboardingPage />);
-
-    const heading = screen.getByText("Do you work in a school?");
+    const heading = screen.getByText("Select your school");
     expect(heading).toBeInTheDocument();
   });
 });
