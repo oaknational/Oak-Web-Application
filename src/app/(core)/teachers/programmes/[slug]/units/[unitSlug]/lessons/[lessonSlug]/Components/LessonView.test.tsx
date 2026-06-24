@@ -1,5 +1,6 @@
 import { screen, act } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
+import { useFeatureFlagEnabled } from "posthog-js/react";
 
 import LessonView from "./LessonView";
 
@@ -37,10 +38,13 @@ jest.mock(
   "@/components/TeacherComponents/LessonOverviewMediaClips/LessonOverviewMediaClips.tsx",
 );
 
-const mockUseIsHeatwaveBannerEnabled = jest.fn().mockReturnValue(true);
-jest.mock("@/hooks/useIsHeatwaveBannerEnabled", () => ({
-  useIsHeatwaveBannerEnabled: () => mockUseIsHeatwaveBannerEnabled(),
+jest.mock("posthog-js/react", () => ({
+  useFeatureFlagEnabled: jest.fn(),
 }));
+
+const mockUseFeatureFlagEnabled = useFeatureFlagEnabled as jest.MockedFunction<
+  typeof useFeatureFlagEnabled
+>;
 
 const render = renderWithProviders();
 
@@ -143,7 +147,7 @@ describe("Previous and Next Lesson Navigation", () => {
 describe("Heatwave banner", () => {
   beforeEach(() => {
     jest.clearAllMocks();
-    mockUseIsHeatwaveBannerEnabled.mockReturnValue(true);
+    mockUseFeatureFlagEnabled.mockReturnValue(true);
   });
 
   it("shows the heatwave banner when the feature flag is enabled and share is available", () => {
@@ -157,7 +161,7 @@ describe("Heatwave banner", () => {
   });
 
   it("does not show the heatwave banner when the feature flag is disabled", () => {
-    mockUseIsHeatwaveBannerEnabled.mockReturnValue(false);
+    mockUseFeatureFlagEnabled.mockReturnValue(false);
     render(<LessonView {...baseProps} />);
 
     expect(

@@ -235,24 +235,26 @@ export default function LessonView(
                 isLessonLegacy={false}
                 componentType="lesson_overview"
               />
-              <OakInlineBanner
-                type="info"
-                icon="info"
-                title="Disruption this week due to hot weather? Set this lesson as remote work"
-                message={
-                  <>
-                    Click the {"\u2018"}
-                    <strong>Share lesson with pupils</strong>
-                    {"\u2019"} button below to share directly, or via Microsoft
-                    Teams or Google Classroom
-                  </>
-                }
-                canDismiss
-                onDismiss={() => setHeatwaveBannerDismissed(true)}
-                isOpen={showHeatwaveBanner}
-                $maxWidth="fit-content"
-                $mb="spacing-16"
-              />
+              {showHeatwaveBanner && (
+                <OakInlineBanner
+                  type="info"
+                  icon="info"
+                  title="Disruption this week due to hot weather? Set this lesson as remote work"
+                  message={
+                    <>
+                      Click the {"\u2018"}
+                      <strong>Share lesson with pupils</strong>
+                      {"\u2019"} button below to share directly, or via
+                      Microsoft Teams or Google Classroom
+                    </>
+                  }
+                  canDismiss
+                  onDismiss={() => setHeatwaveBannerDismissed(true)}
+                  isOpen={true}
+                  $maxWidth="fit-content"
+                  $mb="spacing-16"
+                />
+              )}
               <LessonActionsBar
                 showPupilShare={showPupilShare}
                 createWithAiProps={
