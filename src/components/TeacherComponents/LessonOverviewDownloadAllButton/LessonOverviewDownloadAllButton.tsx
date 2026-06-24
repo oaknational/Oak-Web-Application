@@ -12,7 +12,6 @@ export type LessonOverviewDownloadAllButtonProps = Pick<
   | "lessonSlug"
   | "unitSlug"
   | "onClickDownloadAll"
-  | "isSpecialist"
   | "geoRestricted"
   | "loginRequired"
 > & {
@@ -34,7 +33,6 @@ export const LessonOverviewDownloadAllButton: FC<
     lessonSlug,
     unitSlug,
     onClickDownloadAll,
-    isSpecialist,
     geoRestricted,
     loginRequired,
     isIntegratedJourney = false,
@@ -50,16 +48,7 @@ export const LessonOverviewDownloadAllButton: FC<
 
   let href: string;
 
-  if (programmeSlug && unitSlug && isSpecialist) {
-    href = resolveOakHref({
-      page: "specialist-lesson-downloads",
-      lessonSlug,
-      unitSlug,
-      programmeSlug,
-      downloads: "downloads",
-      query: { preselected },
-    });
-  } else if (isIntegratedJourney) {
+  if (programmeSlug && unitSlug && isIntegratedJourney) {
     href = resolveOakHref({
       page: "integrated-lesson-downloads",
       lessonSlug,

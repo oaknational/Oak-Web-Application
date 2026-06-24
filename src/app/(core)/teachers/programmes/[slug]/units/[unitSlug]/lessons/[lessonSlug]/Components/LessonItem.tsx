@@ -86,7 +86,6 @@ export function LessonItem({
                   });
                 }}
                 preselected={preselectedDownload}
-                isSpecialist={false}
                 isIntegratedJourney
                 {...slugs}
               />

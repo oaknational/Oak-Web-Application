@@ -5,7 +5,6 @@ import { checkIfResourceHasLegacyCopyright } from "../downloadAndShareHelpers/do
 import {
   LessonBase,
   LessonPathway,
-  SpecialistLessonPathwayBreadcrumbs,
 } from "@/components/TeacherComponents/types/lesson.types";
 import truthy from "@/utils/truthy";
 import { Breadcrumb } from "@/components/SharedComponents/Breadcrumbs";
@@ -18,7 +17,6 @@ import {
 import type { MediaClip } from "@/node-lib/curriculum-api-2023/queries/lessonMediaClips/lessonMediaClips.schema";
 import removeLegacySlugSuffix from "@/utils/slugModifiers/removeLegacySlugSuffix";
 import { LessonItemTitle } from "@/components/TeacherComponents/LessonItemContainer";
-import { SpecialistLessonOverviewData } from "@/node-lib/curriculum-api-2023/queries/specialistLessonOverview/specialistLessonOverview.schema";
 import { resolveOakHref } from "@/common-lib/urls";
 
 /**
@@ -59,14 +57,6 @@ export const getCommonPathway = (
       return acc;
     },
     { ...nullPathway },
-  );
-};
-export const lessonIsSpecialist = (
-  u: unknown,
-): u is SpecialistLessonOverviewData => {
-  return (
-    typeof u === "object" &&
-    (u as { isSpecialist: boolean })?.isSpecialist === true
   );
 };
 
@@ -200,129 +190,6 @@ export const getLessonShareBreadCrumb = ({
     label: "Share",
     disabled,
   };
-};
-
-export const getBreadCrumbForSpecialistDownload = ({
-  lessonSlug,
-  programmeSlug,
-  unitSlug,
-  disabled,
-}: {
-  lessonSlug: string;
-  programmeSlug: string | null;
-  unitSlug: string | null;
-  disabled?: boolean;
-}): Breadcrumb[] => {
-  const nullableBreadcrumbs: (Breadcrumb | null)[] = [
-    programmeSlug && unitSlug
-      ? {
-          href: resolveOakHref({
-            page: "specialist-lesson-downloads",
-            programmeSlug,
-            unitSlug,
-            lessonSlug,
-            downloads: "downloads",
-          }),
-          label: "Downloads",
-          disabled,
-        }
-      : null,
-  ];
-  return nullableBreadcrumbs.filter(truthy);
-};
-
-export const getBreadCrumbForSpecialistShare = ({
-  lessonSlug,
-  programmeSlug,
-  unitSlug,
-  disabled,
-}: {
-  lessonSlug: string;
-  programmeSlug: string | null;
-  unitSlug: string | null;
-  disabled?: boolean;
-}): Breadcrumb[] => {
-  const nullableBreadcrumbs: (Breadcrumb | null)[] = [
-    programmeSlug && unitSlug
-      ? {
-          href: resolveOakHref({
-            page: "specialist-lesson-share",
-            programmeSlug,
-            unitSlug,
-            lessonSlug,
-          }),
-          label: "Share",
-          disabled,
-        }
-      : null,
-  ];
-  return nullableBreadcrumbs.filter(truthy);
-};
-
-export const getBreadcrumbsForSpecialistLessonPathway = (
-  lesson: SpecialistLessonPathwayBreadcrumbs | null,
-): Breadcrumb[] | [] => {
-  if (!lesson) return [];
-  const {
-    programmeSlug,
-    subjectTitle,
-    subjectSlug,
-    developmentStageTitle,
-    unitSlug,
-    unitTitle,
-    disabled,
-    lessonSlug,
-    lessonTitle,
-  } = lesson;
-  const nullableBreadcrumbs: (Breadcrumb | null)[] = [
-    {
-      href: resolveOakHref({
-        page: "home",
-      }),
-      label: "Home",
-    },
-    {
-      href: resolveOakHref({
-        page: "specialist-subject-index",
-      }),
-      label: "Specialist and therapies",
-    },
-    subjectSlug && subjectTitle && programmeSlug
-      ? {
-          href: resolveOakHref({
-            page: "specialist-unit-index",
-            programmeSlug: programmeSlug,
-          }),
-          label:
-            developmentStageTitle !== ""
-              ? `${subjectTitle} - ${developmentStageTitle}`
-              : `${subjectTitle}`,
-        }
-      : null,
-    programmeSlug && unitSlug && unitTitle
-      ? {
-          href: resolveOakHref({
-            page: "specialist-lesson-index",
-            programmeSlug,
-            unitSlug,
-          }),
-          label: unitTitle,
-        }
-      : null,
-    programmeSlug && unitSlug && lessonSlug
-      ? {
-          href: resolveOakHref({
-            page: "specialist-lesson-overview",
-            programmeSlug,
-            unitSlug,
-            lessonSlug,
-          }),
-          label: lessonTitle,
-          disabled,
-        }
-      : null,
-  ];
-  return nullableBreadcrumbs.filter(truthy);
 };
 
 export const getBreadcrumbsForLessonPathway = (

@@ -12,8 +12,6 @@ import {
   getLessonOverviewBreadCrumb,
   getBreadcrumbsForLessonPathway,
   getLessonShareBreadCrumb,
-  getBreadcrumbsForSpecialistLessonPathway,
-  getBreadCrumbForSpecialistShare,
 } from "@/components/TeacherComponents/helpers/lessonHelpers/lesson.helpers";
 import { LessonPathway } from "@/components/TeacherComponents/types/lesson.types";
 import SharePageLayout from "@/components/TeacherComponents/SharePageLayout";
@@ -36,7 +34,6 @@ import {
 } from "@/components/TeacherComponents/helpers/downloadAndShareHelpers/getFormattedDetailsForTracking";
 import { useHubspotSubmit } from "@/components/TeacherComponents/hooks/downloadAndShareHooks/useHubspotSubmit";
 import type { LessonShareData } from "@/node-lib/curriculum-api-2023/queries/lessonShare/lessonShare.schema";
-import type { SpecialistLessonShareData } from "@/node-lib/curriculum-api-2023/queries/specialistLessonShare/specialistLessonShare.schema";
 import { useOnboardingStatus } from "@/components/TeacherComponents/hooks/useOnboardingStatus";
 import { AssignToClassroomModal } from "@/components/TeacherComponents/AssignToClassroomModal/AssignToClassroomModal";
 import {
@@ -46,23 +43,16 @@ import {
 
 export type LessonShareProps = {
   breadcrumbsSlot?: ReactNode;
-} & (
-  | {
-      lesson: LessonPathway & {
-        isSpecialist: false;
-        developmentStageTitle?: string | null;
-        expired: boolean | null;
-        isLegacy: boolean;
-        lessonTitle: string;
-        lessonSlug: string;
-        shareableResources: LessonShareData["shareableResources"];
-        lessonReleaseDate: string | null;
-      };
-    }
-  | {
-      lesson: SpecialistLessonShareData;
-    }
-);
+  lesson: LessonPathway & {
+    developmentStageTitle?: string | null;
+    expired: boolean | null;
+    isLegacy: boolean;
+    lessonTitle: string;
+    lessonSlug: string;
+    shareableResources: LessonShareData["shareableResources"];
+    lessonReleaseDate: string | null;
+  };
+};
 
 const classroomActivityMap: Partial<
   Record<ResourceType, ResourceTypesValueType>
@@ -92,7 +82,6 @@ export function LessonShare(props: LessonShareProps) {
     shareableResources,
     isLegacy,
     expired,
-    isSpecialist,
     lessonReleaseDate,
   } = lesson;
 
@@ -205,34 +194,22 @@ export function LessonShare(props: LessonShareProps) {
             props.breadcrumbsSlot
           ) : (
             <Breadcrumbs
-              breadcrumbs={
-                !isSpecialist
-                  ? [
-                      ...getBreadcrumbsForLessonPathway(lesson),
-                      getLessonOverviewBreadCrumb({
-                        lessonTitle,
-                        lessonSlug,
-                        programmeSlug,
-                        unitSlug,
-                        isCanonical: false,
-                      }),
-                      getLessonShareBreadCrumb({
-                        lessonSlug,
-                        programmeSlug,
-                        unitSlug,
-                        disabled: true,
-                      }),
-                    ]
-                  : [
-                      ...getBreadcrumbsForSpecialistLessonPathway(lesson),
-                      ...getBreadCrumbForSpecialistShare({
-                        lessonSlug,
-                        programmeSlug,
-                        unitSlug,
-                        disabled: true,
-                      }),
-                    ]
-              }
+              breadcrumbs={[
+                ...getBreadcrumbsForLessonPathway(lesson),
+                getLessonOverviewBreadCrumb({
+                  lessonTitle,
+                  lessonSlug,
+                  programmeSlug,
+                  unitSlug,
+                  isCanonical: false,
+                }),
+                getLessonShareBreadCrumb({
+                  lessonSlug,
+                  programmeSlug,
+                  unitSlug,
+                  disabled: true,
+                }),
+              ]}
             />
           )}
           <OakHandDrawnHR
@@ -289,7 +266,7 @@ export function LessonShare(props: LessonShareProps) {
                 onSubmit={onValidateAndSubmit}
                 onGoogleClassroomClick={() => setIsClassroomModalOpen(true)}
               />
-              {!isSpecialist && programmeSlug && unitSlug && (
+              {programmeSlug && unitSlug && (
                 <AssignToClassroomModal
                   isOpen={isClassroomModalOpen}
                   onClose={() => setIsClassroomModalOpen(false)}

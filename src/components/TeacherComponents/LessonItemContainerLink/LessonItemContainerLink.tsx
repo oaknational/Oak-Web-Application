@@ -12,8 +12,6 @@ import {
   LessonDownloadsLinkProps,
   LessonShareLinkProps,
   resolveOakHref,
-  SpecialistLessonDownloadsLinkProps,
-  SpecialistLessonShareLinkProps,
 } from "@/common-lib/urls";
 
 export function LessonItemContainerLink({
@@ -24,7 +22,6 @@ export function LessonItemContainerLink({
   programmeSlug,
   preselected,
   page,
-  isSpecialist,
   isIntegratedJourney = false,
 }: Readonly<{
   page: "share" | "download";
@@ -34,7 +31,6 @@ export function LessonItemContainerLink({
   unitSlug: string;
   programmeSlug: string;
   preselected: PreselectedDownloadType | PreselectedShareType | null;
-  isSpecialist: boolean;
   /**
    * If true, use the integrated lesson downloads page.
    *
@@ -45,22 +41,10 @@ export function LessonItemContainerLink({
   const label =
     page === "share" ? "Share with pupils" : `Download ${resourceTitle}`;
 
-  const getShareLinkProps = ():
-    | LessonShareLinkProps
-    | SpecialistLessonShareLinkProps => {
+  const getShareLinkProps = (): LessonShareLinkProps => {
     const query = isPreselectedShareType(preselected)
       ? { preselected }
       : undefined;
-
-    if (isSpecialist) {
-      return {
-        page: "specialist-lesson-share",
-        lessonSlug,
-        unitSlug,
-        programmeSlug,
-        query,
-      };
-    }
 
     return {
       page: "lesson-share",
@@ -73,22 +57,10 @@ export function LessonItemContainerLink({
 
   const getDownloadLinkProps = ():
     | LessonDownloadsLinkProps
-    | IntegratedLessonDownloadsLinkProps
-    | SpecialistLessonDownloadsLinkProps => {
+    | IntegratedLessonDownloadsLinkProps => {
     const query = isPreselectedDownloadType(preselected)
       ? { preselected }
       : undefined;
-
-    if (isSpecialist) {
-      return {
-        page: "specialist-lesson-downloads",
-        lessonSlug,
-        unitSlug,
-        programmeSlug,
-        downloads: "downloads",
-        query,
-      };
-    }
 
     if (isIntegratedJourney) {
       return {

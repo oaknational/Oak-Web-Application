@@ -24,7 +24,6 @@ export const LessonOverviewHeaderShareAllButton: FC<
     programmeSlug,
     isShareable,
     onClickShareAll,
-    isSpecialist,
     geoRestricted,
     loginRequired,
     variant = "primary",
@@ -42,16 +41,6 @@ export const LessonOverviewHeaderShareAllButton: FC<
   const href = (() => {
     invariant(typeof unitSlug === "string", "unitSlug is required");
     invariant(typeof programmeSlug === "string", "programmeSlug is required");
-
-    if (isSpecialist) {
-      return resolveOakHref({
-        page: "specialist-lesson-share",
-        lessonSlug,
-        unitSlug,
-        programmeSlug,
-        query: { preselected },
-      });
-    }
 
     return resolveOakHref({
       page: "lesson-share",

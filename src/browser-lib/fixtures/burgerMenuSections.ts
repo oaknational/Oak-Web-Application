@@ -56,12 +56,6 @@ export const burgerMenuSections: Array<AppHeaderBurgerMenuSection> = [
         external: false,
       },
       {
-        linkTo: { page: "specialist-subject-index" },
-        text: "Specialist",
-        new: false,
-        external: false,
-      },
-      {
         linkTo: { page: "curriculum-landing-page" },
         text: "Curriculum plans",
         new: false,

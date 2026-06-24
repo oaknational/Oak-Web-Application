@@ -214,7 +214,6 @@ export default function LessonView(
                     geoRestricted,
                     loginRequired,
                     expired,
-                    isSpecialist: false,
                     isIntegratedJourney: true,
                   }}
                 />

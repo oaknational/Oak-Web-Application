@@ -373,7 +373,6 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
         trackTeachingMaterialsSelected={trackTeachingMaterialsSelected}
         trackCreateWithAiButtonClicked={trackCreateWithAiButtonClicked}
         contentRestricted={contentRestricted}
-        isSpecialist={false}
       />
       <OakMaxWidth $ph={"spacing-16"} $pb={"spacing-80"}>
         {expired ? (
@@ -413,7 +412,6 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
                         trackDownloadResourceButtonClicked({
                           downloadResourceButtonName: "all",
                         }),
-                      isSpecialist: false,
 
                       ...lesson,
                       ...commonPathway,
@@ -446,7 +444,6 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
                   lessonGuideUrl &&
                   !contentRestricted && (
                     <LessonItemContainer
-                      isSpecialist={false}
                       ref={lessonGuideSectionRef}
                       title={"Lesson guide"}
                       downloadable={getIsResourceDownloadable(
@@ -479,7 +476,6 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
                     legacyCopyrightContent,
                   ) && (
                     <LessonItemContainer
-                      isSpecialist={false}
                       ref={slideDeckSectionRef}
                       title={presentationTitle}
                       downloadable={getIsResourceDownloadable(
@@ -516,7 +512,6 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
                       title={mediaClipLabel}
                       ref={lessonMediaClipsSectionRef}
                       anchorId="media-clips"
-                      isSpecialist={false}
                       slugs={slugs}
                       pageLinks={pageLinks}
                       displayMediaClipButton={true}
@@ -542,7 +537,6 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
                   )}
 
                 <LessonItemContainer
-                  isSpecialist={false}
                   ref={lessonDetailsSectionRef}
                   title={"Lesson details"}
                   anchorId="lesson-details"
@@ -577,7 +571,6 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
                 {pageLinks.find((p) => p.label === "Lesson video") &&
                   !contentRestricted && (
                     <LessonItemContainer
-                      isSpecialist={false}
                       ref={videoSectionRef}
                       shareable={isLegacyLicense && showShare}
                       slugs={slugs}
@@ -625,7 +618,6 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
                 {pageLinks.find((p) => p.label === "Worksheet") &&
                   !contentRestricted && (
                     <LessonItemContainer
-                      isSpecialist={false}
                       ref={worksheetSectionRef}
                       title={"Worksheet"}
                       anchorId="worksheet"
@@ -683,7 +675,6 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
                   ) &&
                     !contentRestricted && (
                       <LessonItemContainer
-                        isSpecialist={false}
                         ref={
                           pageLinks.find((p) => p.anchorId === "starter-quiz")
                             ? starterQuizSectionRef
@@ -738,7 +729,6 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
                   ) &&
                     !contentRestricted && (
                       <LessonItemContainer
-                        isSpecialist={false}
                         ref={
                           pageLinks.find((p) => p.anchorId === "exit-quiz")
                             ? exitQuizSectionRef
@@ -792,7 +782,6 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
                   additionalMaterialUrl &&
                   !contentRestricted && (
                     <LessonItemContainer
-                      isSpecialist={false}
                       ref={additionalMaterialSectionRef}
                       pageLinks={pageLinks}
                       title={"Additional material"}

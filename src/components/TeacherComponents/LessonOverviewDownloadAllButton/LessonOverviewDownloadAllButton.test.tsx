@@ -35,7 +35,6 @@ const baseProps = {
   expired: false,
   showDownloadAll: true,
   onClickDownloadAll: mockDownloadAllButton,
-  isSpecialist: false,
   isCanonical: false,
   geoRestricted: false,
   loginRequired: false,

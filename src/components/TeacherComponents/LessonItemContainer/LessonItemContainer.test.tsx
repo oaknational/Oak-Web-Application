@@ -45,7 +45,6 @@ describe("LessonItemContainer", () => {
       <LessonItemContainer
         title={"Slide deck"}
         anchorId={"slide-deck"}
-        isSpecialist={false}
         pageLinks={[]}
       >
         <Card
@@ -65,7 +64,6 @@ describe("LessonItemContainer", () => {
       <LessonItemContainer
         title={"Slide deck"}
         anchorId="slide-deck"
-        isSpecialist={false}
         pageLinks={[]}
       >
         <Card
@@ -86,7 +84,6 @@ describe("LessonItemContainer", () => {
         title={"Slide deck"}
         downloadable={true}
         anchorId={"slide-deck"}
-        isSpecialist={false}
         slugs={lessonOverview}
         pageLinks={[]}
       >
@@ -106,7 +103,6 @@ describe("LessonItemContainer", () => {
       <LessonItemContainer
         title={"Slide deck"}
         downloadable={true}
-        isSpecialist={false}
         displayMediaClipButton={false}
         anchorId="slide-deck"
         pageLinks={[]}
@@ -128,7 +124,6 @@ describe("LessonItemContainer", () => {
       <LessonItemContainer
         title={"Slide deck"}
         downloadable={true}
-        isSpecialist={false}
         anchorId="slide-deck"
         isFinalElement={true}
         pageLinks={[]}
@@ -150,7 +145,6 @@ describe("LessonItemContainer", () => {
       <LessonItemContainer
         title={"Slide deck"}
         downloadable={true}
-        isSpecialist={false}
         anchorId="slide-deck"
         isFinalElement={false}
         pageLinks={[]}
@@ -176,7 +170,6 @@ describe("LessonItemContainer", () => {
         downloadable={true}
         slugs={lessonOverview}
         title={"Lesson video"}
-        isSpecialist={false}
         anchorId={"video"}
         onDownloadButtonClick={onDownloadButtonClick}
         pageLinks={[]}
@@ -205,7 +198,6 @@ describe("LessonItemContainer", () => {
       <LessonItemContainer
         title={"Worksheet"}
         downloadable={true}
-        isSpecialist={false}
         anchorId="worksheet"
         slugs={lessonOverview}
         pageLinks={[]}
@@ -233,7 +225,6 @@ describe("LessonItemContainer", () => {
         <LessonItemContainer
           title={"Slide deck"}
           downloadable={true}
-          isSpecialist={false}
           anchorId="slide-deck"
           slugs={lessonOverview}
           pageLinks={[
@@ -252,7 +243,6 @@ describe("LessonItemContainer", () => {
         <LessonItemContainer
           title={"Lesson video"}
           downloadable={true}
-          isSpecialist={false}
           anchorId="video"
           slugs={lessonOverview}
           pageLinks={[
@@ -297,7 +287,6 @@ describe("LessonItemContainer", () => {
         downloadable={false}
         anchorId={"media-clips"}
         displayMediaClipButton={true}
-        isSpecialist={false}
         slugs={lessonOverview}
         pageLinks={[]}
       >
