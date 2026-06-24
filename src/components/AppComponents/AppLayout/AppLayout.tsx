@@ -4,6 +4,7 @@ import { useRouter } from "next/router";
 import { OakFlex, OakUiRoleToken } from "@oaknational/oak-components";
 
 import TopNav, { TopNavProps } from "../TopNav/TopNav";
+import TopNavMinimal from "../TopNav/TopNavMinimal";
 
 import Seo, { SeoProps } from "@/browser-lib/seo/Seo";
 import LayoutSiteFooter from "@/components/AppComponents/LayoutSiteFooter";
@@ -18,8 +19,8 @@ export type HeaderProps = {
   breadcrumbs?: Breadcrumb[];
 };
 
-export type FooterVariant = "default" | "client-error";
-const footers: Record<FooterVariant, FC> = {
+export type AppVariant = "default" | "client-error";
+const footers: Record<AppVariant, FC> = {
   default: LayoutSiteFooter,
   "client-error": LayoutClientErrorFooter,
 };
@@ -27,12 +28,12 @@ const footers: Record<FooterVariant, FC> = {
 export type AppLayoutProps = {
   children?: React.ReactNode;
   seoProps: SeoProps;
-  footerVariant?: FooterVariant;
   breadcrumbs?: Breadcrumb[];
   $background?: OakUiRoleToken;
   headerCta?: CTA | null;
   banner?: React.ReactNode;
   topNavProps: TopNavProps;
+  appVariant?: AppVariant;
 };
 
 const AppLayout: FC<AppLayoutProps> = (props) => {
@@ -40,11 +41,11 @@ const AppLayout: FC<AppLayoutProps> = (props) => {
     children,
     seoProps,
     $background,
-    footerVariant = "default",
     banner,
     topNavProps,
+    appVariant = "default",
   } = props;
-  const Footer = footers[footerVariant];
+  const Footer = footers[appVariant];
   const { isPreview } = useRouter();
 
   return (
@@ -56,7 +57,11 @@ const AppLayout: FC<AppLayoutProps> = (props) => {
       <OrganizationJsonLd />
       <OakFlex $flexDirection="column" $flexGrow={1} $background={$background}>
         {banner}
-        <TopNav {...topNavProps} />
+        {appVariant === "client-error" ? (
+          <TopNavMinimal />
+        ) : (
+          <TopNav {...topNavProps} />
+        )}
         <OakFlex
           $flexDirection="column"
           $flexGrow={1}

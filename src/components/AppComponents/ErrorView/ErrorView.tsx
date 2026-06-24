@@ -10,7 +10,6 @@ import {
 import { TopNavProps } from "../TopNav/TopNav";
 
 import { DEFAULT_SEO_PROPS } from "@/browser-lib/seo/Seo";
-import { FooterVariant } from "@/components/AppComponents/AppLayout/AppLayout";
 import AppLayout from "@/components/AppComponents/AppLayout";
 import ButtonAsLink from "@/components/SharedComponents/Button/ButtonAsLink";
 import ButtonGroup from "@/components/SharedComponents/ButtonGroup";
@@ -29,15 +28,14 @@ const ErrorHeading = styled(OakHeading)`
 type ErrorViewProps = {
   onBackClick?: () => void;
   statusCode?: number;
-  footerVariant?: FooterVariant;
   topNav: TopNavProps;
 };
 const ErrorView: FC<ErrorViewProps> = (props) => {
-  const { onBackClick, statusCode, footerVariant, topNav } = props;
+  const { onBackClick, statusCode, topNav } = props;
   return (
     <AppLayout
       seoProps={DEFAULT_SEO_PROPS}
-      footerVariant={footerVariant}
+      appVariant={"client-error"}
       topNavProps={topNav}
     >
       <OakMaxWidth $alignItems={"flex-end"}>

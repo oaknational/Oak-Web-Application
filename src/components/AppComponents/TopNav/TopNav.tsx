@@ -1,26 +1,16 @@
 "use client";
 import { useCallback, useEffect, useMemo, useState } from "react";
 
-import TabLink from "./TabLink/TabLink";
 import SubNav from "./SubNav/SubNav";
 import TopNavDropdown from "./TopNavDropdown/TopNavDropdown";
 import { TeachersTopNavHamburger } from "./TeachersTopNavHamburger/TeachersTopNavHamburger";
 import { PupilsTopNavHamburger } from "./PupilsTopNavHamburger/PupilsTopNavHamburger";
 import { DropdownFocusManager } from "./DropdownFocusManager/DropdownFocusManager";
 import { buildFocusTree } from "./DropdownFocusManager/focusTree";
+import TopNavMinimal from "./TopNavMinimal";
 
-import {
-  OakBox,
-  OakFlex,
-  OakIcon,
-  OakImage,
-  OakLink,
-} from "@/styles/oakThemeApp";
-import { getCloudinaryImageUrl } from "@/utils/getCloudinaryImageUrl";
-import { resolveOakHref } from "@/common-lib/urls";
-import useMediaQuery from "@/hooks/useMediaQuery";
+import { OakFlex } from "@/styles/oakThemeApp";
 import useSelectedArea from "@/hooks/useSelectedArea";
-import SkipLink from "@/components/CurriculumComponents/OakComponentsKitchen/SkipLink";
 import {
   TeachersSubNavData,
   PupilsSubNavData,
@@ -84,7 +74,6 @@ const TopNav = (props: TopNavProps) => {
   const { track } = useAnalytics();
 
   const activeArea = useSelectedArea();
-  const isMobile = useMediaQuery("mobile");
 
   // TD: [integrated journey] potentially extract into a menu store
   const [selectedMenu, setSelectedMenu] = useState<
@@ -154,145 +143,74 @@ const TopNav = (props: TopNavProps) => {
   }, [teachers, pupils, activeArea, setCurrentBannerProps]);
 
   return (
-    <OakBox
-      as="header"
-      $position="relative"
-      data-testid="app-topnav"
-      onKeyDown={(event: React.KeyboardEvent<HTMLDivElement>) =>
-        focusManager?.handleEscapeKey({
-          event,
-          elementId: document.activeElement?.id || "",
-        })
+    <TopNavMinimal
+      focusManager={focusManager}
+      subnavSlot={
+        <>
+          {activeArea === "TEACHERS" && teachers && focusManager && (
+            <>
+              <SubNav
+                {...teachers}
+                area="teachers"
+                focusManager={
+                  focusManager as DropdownFocusManager<TeachersSubNavData>
+                }
+                isMenuSelected={isMenuSelected}
+                onClick={(menu) => {
+                  trackBrowseAccessed(menu);
+                  setSelectedMenu(selectedMenu === menu ? undefined : menu);
+                }}
+              />
+              <TeachersTopNavHamburger {...teachers} />
+            </>
+          )}
+          {activeArea === "PUPILS" && pupils && focusManager && (
+            <>
+              <SubNav
+                {...pupils}
+                area="pupils"
+                focusManager={
+                  focusManager as DropdownFocusManager<PupilsSubNavData>
+                }
+                isMenuSelected={isMenuSelected}
+                onClick={(menu) => {
+                  setSelectedMenu(selectedMenu === menu ? undefined : menu);
+                }}
+              />
+              <PupilsTopNavHamburger {...pupils} />
+            </>
+          )}
+        </>
       }
-    >
-      <OakBox
-        $position={"absolute"}
-        $zIndex={"in-front"}
-        $top={"spacing-160"} // TD: [integrated journey] adjust position when dropdown is open
-        $left={"spacing-24"}
-      >
-        <SkipLink href={"#main"}>Skip to content</SkipLink>
-      </OakBox>
-      <OakFlex
-        $background={"bg-btn-primary"}
-        $ph={["spacing-20", "spacing-40"]}
-        $pb={"spacing-0"}
-        $pt={"spacing-16"}
-        $justifyContent={["center", "left"]}
-        $gap={"spacing-16"}
-      >
-        <TabLink
-          isSelected={activeArea === "TEACHERS"}
-          href={resolveOakHref({ page: "teachers-home-page" })}
-          aria-current={activeArea === "TEACHERS"}
-        >
-          Teachers
-        </TabLink>
-        <TabLink
-          isSelected={activeArea === "PUPILS"}
-          href={resolveOakHref({ page: "pupil-year-index" })}
-          iconOverride={
-            <OakIcon
-              iconName="pencil"
-              $width={"spacing-24"}
-              $height={"spacing-24"}
-            />
-          }
-          isTrailingIcon
-          aria-current={activeArea === "PUPILS"}
-        >
-          Pupils
-        </TabLink>
-      </OakFlex>
-      <OakFlex
-        $background={"bg-primary"}
-        $pv={["spacing-16", "spacing-20"]}
-        $ph={["spacing-20", "spacing-40"]}
-        $bb={"border-solid-s"}
-        $borderColor={"border-neutral-lighter"}
-        $alignItems={"center"}
-        $gap={"spacing-24"}
-        $maxHeight={"spacing-80"}
-        as={"nav"}
-      >
-        <OakLink
-          href={resolveOakHref({
-            page: activeArea === "PUPILS" ? "pupil-year-index" : "home",
-          })}
-          aria-label="Home"
-        >
-          <OakImage
-            src={getCloudinaryImageUrl(
-              isMobile
-                ? "v1711468346/logo-mark.svg"
-                : "v1765468420/OakLogoWithText.svg",
-            )}
-            alt=""
-            $height={["spacing-40", "spacing-48"]}
-            $width={["spacing-32", "spacing-100"]}
-            $pa={"spacing-0"}
-          />
-        </OakLink>
-        {activeArea === "TEACHERS" && teachers && focusManager && (
-          <>
-            <SubNav
-              {...teachers}
-              area="teachers"
-              focusManager={
-                focusManager as DropdownFocusManager<TeachersSubNavData>
-              }
-              isMenuSelected={isMenuSelected}
-              onClick={(menu) => {
-                trackBrowseAccessed(menu);
-                setSelectedMenu(selectedMenu === menu ? undefined : menu);
-              }}
-            />
-            <TeachersTopNavHamburger {...teachers} />
-          </>
-        )}
-        {activeArea === "PUPILS" && pupils && focusManager && (
-          <>
-            <SubNav
-              {...pupils}
-              area="pupils"
-              focusManager={
-                focusManager as DropdownFocusManager<PupilsSubNavData>
-              }
-              isMenuSelected={isMenuSelected}
-              onClick={(menu) => {
-                setSelectedMenu(selectedMenu === menu ? undefined : menu);
-              }}
-            />
-            <PupilsTopNavHamburger {...pupils} />
-          </>
-        )}
-      </OakFlex>
-      {teachers && pupils && (
-        <MaybeVisuallyHidden
-          hiddenElementId="top-nav-dropdown"
-          shouldDisplay={!!selectedMenu}
-        >
-          <OakFlex
-            $display={["none", "none", "flex"]}
-            $width={"100%"}
-            $flexDirection={"column"}
-            $background={"bg-primary"}
-            data-testid="topnav-dropdown-container"
-            $bb="border-solid-s"
-            $borderColor="border-neutral-lighter"
+      menuSlot={
+        teachers &&
+        pupils && (
+          <MaybeVisuallyHidden
+            hiddenElementId="top-nav-dropdown"
+            shouldDisplay={!!selectedMenu}
           >
-            <TopNavDropdown
-              focusManager={focusManager}
-              activeArea={activeArea}
-              selectedMenu={selectedMenu}
-              teachers={teachers}
-              pupils={pupils}
-              onClose={handleCloseDropdown}
-            />
-          </OakFlex>
-        </MaybeVisuallyHidden>
-      )}
-    </OakBox>
+            <OakFlex
+              $display={["none", "none", "flex"]}
+              $width={"100%"}
+              $flexDirection={"column"}
+              $background={"bg-primary"}
+              data-testid="topnav-dropdown-container"
+              $bb="border-solid-s"
+              $borderColor="border-neutral-lighter"
+            >
+              <TopNavDropdown
+                focusManager={focusManager}
+                activeArea={activeArea}
+                selectedMenu={selectedMenu}
+                teachers={teachers}
+                pupils={pupils}
+                onClose={handleCloseDropdown}
+              />
+            </OakFlex>
+          </MaybeVisuallyHidden>
+        )
+      }
+     />
   );
 };
 
