@@ -8,9 +8,20 @@ import { renderHookWithProviders } from "../../__tests__/__helpers__/renderWithP
 import useSearch from "./useSearch";
 import elasticResponseFixture from "./search-api/2023/elasticResponse.2023.fixture.json";
 
+jest.mock("next/dist/client/router", () => require("next-router-mock"));
+
 jest.mock("next/compat/router", () => ({
   useRouter: jest.fn(),
 }));
+
+jest.mock("next/navigation", () => ({
+  ...jest.requireActual("next/navigation"),
+  useSearchParams: jest.fn(),
+}));
+
+const nextRouterMock = jest.requireActual("next-router-mock");
+const mockRouter = (nextRouterMock.default ??
+  nextRouterMock) as typeof import("next-router-mock").default;
 
 const mockUseRouter = jest.mocked(useRouter);
 const mockUseSearchParams = jest.mocked(useSearchParams);
@@ -60,49 +71,33 @@ jest.mock("@/common-lib/error-reporter/errorReporter", () => ({
 }));
 const fetch = jest.spyOn(globalThis, "fetch") as jest.Mock;
 
+fetch.mockResolvedValue(goodFetchResolvedValueNoResults);
+
 jest.mock("posthog-js/react", () => ({
   useFeatureFlagEnabled: () => false,
 }));
 
 const allKeyStages = searchPageFixture().keyStages;
 
-const setNavigation = (url = "?term=test-term") => {
-  const queryString = url.startsWith("?") ? url : `?${url}`;
-  const queryWithoutPrefix = queryString.replace(/^\?/, "");
-
-  mockUseRouter.mockReturnValue({
-    asPath: `/teachers/search${queryString}`,
-    push: jest.fn(),
-    replace: jest.fn(),
-    prefetch: jest.fn(),
-    back: jest.fn(),
-    isReady: true,
-    pathname: "/teachers/search",
-    query: {},
-    route: "/teachers/search",
-    basePath: "",
-    isFallback: false,
-    isLocaleDomain: false,
-    isPreview: false,
-    events: {
-      on: jest.fn(),
-      off: jest.fn(),
-      emit: jest.fn(),
-    },
-    beforePopState: jest.fn(),
-    reload: jest.fn(),
-    forward: jest.fn(),
-  });
-
-  mockUseSearchParams.mockReturnValue(
-    new URLSearchParams(
-      queryWithoutPrefix,
-    ) as unknown as ReadonlyURLSearchParams,
-  );
-};
-
 const renderUseSearch = (url = "?term=test-term") => {
-  setNavigation(url);
+  let normalizedUrl = "/search";
+
+  if (url) {
+    if (url.startsWith("?")) {
+      normalizedUrl = `/search${url}`;
+    } else if (url.startsWith("/")) {
+      normalizedUrl = url;
+    } else {
+      normalizedUrl = `/search?${url}`;
+    }
+  }
+
+  mockRouter.setCurrentUrl(normalizedUrl);
+  mockUseRouter.mockReturnValue(mockRouter);
+  mockUseSearchParams.mockImplementation(
+    () => new ReadonlyURLSearchParams(mockRouter.asPath.split("?")[1] ?? ""),
+  );
+
   return renderHookWithProviders()(() => useSearch({ allKeyStages }));
 };
 
