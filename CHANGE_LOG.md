@@ -1,3 +1,12 @@
+# [1.1103.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1102.1...v1.1103.0) (2026-06-24)
+
+
+### Features
+
+* add heatwave banner feature flag ([93041ac](https://github.com/oaknational/Oak-Web-Application/commit/93041ac519e67c22172d1afb89c8328b10e4143b))
+* add heatwave banner to lesson view ([4ddfd6a](https://github.com/oaknational/Oak-Web-Application/commit/4ddfd6a164e5664a72ae43310bc722fd2dbf534d))
+* fit banner to content ([aa6436a](https://github.com/oaknational/Oak-Web-Application/commit/aa6436a2992760094452016491f10d46cefc2d19))
+
 ## [1.1102.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.1102.0...v1.1102.1) (2026-06-24)
 
 
