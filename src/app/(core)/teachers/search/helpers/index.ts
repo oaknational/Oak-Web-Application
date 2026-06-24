@@ -7,6 +7,7 @@ import {
   yearSlugs,
 } from "@oaknational/oak-curriculum-schema";
 
+import { RawHighlightSchema } from "@/context/Search/search.schema";
 import {
   KeyStage,
   LessonSearchHit,
@@ -14,9 +15,7 @@ import {
   SearchHit,
   PathwaySchema,
   SuggestedSearchFilter,
-} from "../../../../../context/Search/search.types";
-import { RawHighlightSchema } from "../../../../../context/Search/search.schema";
-
+} from "@/context/Search/search.types";
 import {
   FilterTypeValueType,
   KeyStageTitleValueType,
