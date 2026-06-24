@@ -4,7 +4,7 @@ import fetchMock from "jest-fetch-mock";
 import userEvent, {
   PointerEventsCheckLevel,
 } from "@testing-library/user-event";
-import { useSearchParams } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 
 import HowCanOakSupport, { oakSupportMap } from "./HowCanOakSupport.view";
 
@@ -12,13 +12,30 @@ import renderWithProviders, {
   allProviders,
 } from "@/__tests__/__helpers__/renderWithProviders";
 import { encodeOnboardingDataQueryParam } from "@/components/TeacherComponents/OnboardingForm/onboardingDataQueryParam";
+import * as onboardingActions from "@/components/TeacherComponents/OnboardingForm/onboardingActions";
 
 jest.mock("next/router", () => require("next-router-mock"));
+jest.mock(
+  "@/components/TeacherComponents/OnboardingForm/onboardingActions",
+  () => {
+    const actual = jest.requireActual(
+      "@/components/TeacherComponents/OnboardingForm/onboardingActions",
+    );
+    return {
+      ...actual,
+      onboardUser: jest.fn(),
+      setOnboardingLocalStorage: jest.fn(),
+      submitOnboardingHubspotData: jest.fn(),
+    };
+  },
+);
 
 fetchMock.enableMocks();
 
 describe("HowCanOakSupport", () => {
   beforeEach(() => {
+    jest.clearAllMocks();
+    (useRouter as jest.Mock).mockReturnValue({ push: jest.fn() });
     (useSearchParams as jest.Mock).mockReturnValue(
       new URLSearchParams({
         state: encodeOnboardingDataQueryParam(null, {
@@ -28,6 +45,15 @@ describe("HowCanOakSupport", () => {
         }),
       }),
     );
+    (onboardingActions.onboardUser as jest.Mock).mockResolvedValue({
+      owa: { isTeacher: true, isOnboarded: true },
+    });
+    (
+      onboardingActions.setOnboardingLocalStorage as jest.Mock
+    ).mockResolvedValue(undefined);
+    (
+      onboardingActions.submitOnboardingHubspotData as jest.Mock
+    ).mockResolvedValue(undefined);
   });
 
   it("renders the onboarding layout with the correct prompt", () => {
@@ -60,6 +86,22 @@ describe("HowCanOakSupport", () => {
       expect(
         screen.getByText(/An error occurred. Please/i),
       ).toBeInTheDocument(),
+    );
+  });
+
+  it("carries the school selected in a previous step through to onboarding", async () => {
+    renderWithProviders()(<HowCanOakSupport />);
+
+    await userEvent.click(screen.getByRole("button", { name: "Skip" }), {
+      pointerEventsCheck: PointerEventsCheckLevel.Never,
+    });
+
+    // The school decoded from the `state` param must reach the onboarding call,
+    // otherwise the user is incorrectly onboarded as a non-teacher.
+    await waitFor(() =>
+      expect(onboardingActions.onboardUser).toHaveBeenCalledWith({
+        isTeacher: true,
+      }),
     );
   });
 
