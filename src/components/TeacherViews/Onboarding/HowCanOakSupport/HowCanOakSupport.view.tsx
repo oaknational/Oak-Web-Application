@@ -36,8 +36,9 @@ export const oakSupportMap: Record<OakSupportKey, string> = {
 
 const HowCanOakSupport = () => {
   const searchParams = useSearchParams();
-  const query = searchParams?.toString();
-  const onboardingState = decodeOnboardingDataQueryParam(query);
+  const onboardingState = decodeOnboardingDataQueryParam(
+    searchParams?.get("state"),
+  );
   const { formState, setValue, handleSubmit, control, clearErrors, trigger } =
     useForm({
       resolver: zodResolver(extendedUseOfOakSchema),

@@ -4,6 +4,7 @@ import fetchMock from "jest-fetch-mock";
 import userEvent, {
   PointerEventsCheckLevel,
 } from "@testing-library/user-event";
+import { useSearchParams } from "next/navigation";
 
 import HowCanOakSupport, { oakSupportMap } from "./HowCanOakSupport.view";
 
@@ -18,16 +19,15 @@ fetchMock.enableMocks();
 
 describe("HowCanOakSupport", () => {
   beforeEach(() => {
-    mockRouter.setCurrentUrl({
-      pathname: "/onboarding/how-can-oak-support",
-      query: {
+    (useSearchParams as jest.Mock).mockReturnValue(
+      new URLSearchParams({
         state: encodeOnboardingDataQueryParam(null, {
           newsletterSignUp: true,
           schoolName: "Jefferson House, Cheshire West and Chester, CW7 1JT",
           school: "142332-Jefferson House",
         }),
-      },
-    });
+      }),
+    );
   });
 
   it("renders the onboarding layout with the correct prompt", () => {
@@ -54,10 +54,7 @@ describe("HowCanOakSupport", () => {
     await waitFor(() => expect(continueButton).toBeEnabled());
   });
   it("renders an error message if there is missing data", async () => {
-    mockRouter.setCurrentUrl({
-      pathname: "/onboarding/how-can-oak-support",
-      query: {},
-    });
+    (useSearchParams as jest.Mock).mockReturnValue(new URLSearchParams());
     renderWithProviders()(<HowCanOakSupport />);
     await waitFor(() =>
       expect(
