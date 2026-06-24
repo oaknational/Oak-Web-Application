@@ -247,9 +247,9 @@ export default function LessonView(
                       Microsoft Teams or Google Classroom
                     </>
                   }
-                  canDismiss={true}
+                  canDismiss
                   onDismiss={() => setHeatwaveBannerDismissed(true)}
-                  isOpen={!heatwaveBannerDismissed}
+                  isOpen
                   $maxWidth="fit-content"
                   $mb="spacing-16"
                 />
