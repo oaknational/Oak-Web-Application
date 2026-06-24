@@ -250,6 +250,7 @@ export default function LessonView(
                   canDismiss={true}
                   onDismiss={() => setHeatwaveBannerDismissed(true)}
                   isOpen={!heatwaveBannerDismissed}
+                  $maxWidth="fit-content"
                   $mb="spacing-16"
                 />
               )}
