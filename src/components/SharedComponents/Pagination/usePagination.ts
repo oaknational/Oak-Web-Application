@@ -80,7 +80,7 @@ const usePagination = <T>(
 
   const baseParams = new URLSearchParams(searchParams.toString());
 
-  const prevParams = baseParams;
+  const prevParams = new URLSearchParams(baseParams.toString());
   if (currentPage - 1 <= 1) {
     prevParams.delete("page");
   } else {
@@ -107,7 +107,7 @@ const usePagination = <T>(
 
   const onPageChange = (page: number) => {
     const bounded = Math.max(1, Math.min(page, totalPages));
-    const params = baseParams;
+    const params = new URLSearchParams(baseParams.toString());
 
     if (bounded <= 1) {
       params.delete("page");
