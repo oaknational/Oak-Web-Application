@@ -9,6 +9,7 @@ import {
 } from "@oaknational/oak-components";
 import { Fragment, useState } from "react";
 import { useUser } from "@clerk/nextjs";
+import { useFeatureFlagEnabled } from "posthog-js/react";
 
 import { CurrentSectionIdProvider } from "./CurrentSectionIdProvider";
 import LessonOverviewSideNav from "./LessonOverviewSideNav";
@@ -34,7 +35,6 @@ import { hasLessonMathJax } from "@/components/TeacherViews/LessonOverview/hasLe
 import { getSideNavLinksFromResources } from "@/components/TeacherComponents/LessonOverviewSideNavAnchorLinks/LessonOverviewSideNavAnchorLinks";
 import ComplexCopyrightRestrictionBanner from "@/components/TeacherComponents/ComplexCopyrightRestrictionBanner/ComplexCopyrightRestrictionBanner";
 import { RestrictedContentPrompt } from "@/components/TeacherComponents/RestrictedContentPrompt/RestrictedContentPrompt";
-import { useIsHeatwaveBannerEnabled } from "@/hooks/useIsHeatwaveBannerEnabled";
 
 export default function LessonView(
   props: Readonly<TeachersLessonOverviewPageData>,
@@ -160,7 +160,8 @@ export default function LessonView(
   const showPupilShare =
     !contentRestricted && !expired && !actions?.disablePupilShare;
 
-  const isHeatwaveBannerEnabled = useIsHeatwaveBannerEnabled();
+  const isHeatwaveBannerEnabled =
+    useFeatureFlagEnabled("heatwave-banner") ?? false;
   const [heatwaveBannerDismissed, setHeatwaveBannerDismissed] = useState(false);
   const showHeatwaveBanner =
     isHeatwaveBannerEnabled && showPupilShare && !heatwaveBannerDismissed;
@@ -234,26 +235,24 @@ export default function LessonView(
                 isLessonLegacy={false}
                 componentType="lesson_overview"
               />
-              {showHeatwaveBanner && (
-                <OakInlineBanner
-                  type="info"
-                  icon="info"
-                  title="Disruption this week due to hot weather? Set this lesson as remote work"
-                  message={
-                    <>
-                      Click the {"\u2018"}
-                      <strong>Share lesson with pupils</strong>
-                      {"\u2019"} button below to share directly, or via
-                      Microsoft Teams or Google Classroom
-                    </>
-                  }
-                  canDismiss
-                  onDismiss={() => setHeatwaveBannerDismissed(true)}
-                  isOpen
-                  $maxWidth="fit-content"
-                  $mb="spacing-16"
-                />
-              )}
+              <OakInlineBanner
+                type="info"
+                icon="info"
+                title="Disruption this week due to hot weather? Set this lesson as remote work"
+                message={
+                  <>
+                    Click the {"\u2018"}
+                    <strong>Share lesson with pupils</strong>
+                    {"\u2019"} button below to share directly, or via Microsoft
+                    Teams or Google Classroom
+                  </>
+                }
+                canDismiss
+                onDismiss={() => setHeatwaveBannerDismissed(true)}
+                isOpen={showHeatwaveBanner}
+                $maxWidth="fit-content"
+                $mb="spacing-16"
+              />
               <LessonActionsBar
                 showPupilShare={showPupilShare}
                 createWithAiProps={
