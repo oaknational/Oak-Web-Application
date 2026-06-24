@@ -2464,7 +2464,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
 }
 
 .c212 {
-  top: 82px;
+  top: 152px;
 }
 
 .c164 {

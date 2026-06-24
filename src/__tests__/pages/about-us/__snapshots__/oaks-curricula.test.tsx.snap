@@ -2755,7 +2755,7 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
 }
 
 .c236 {
-  top: 82px;
+  top: 152px;
 }
 
 .c219 .icon-container > *:first-child {

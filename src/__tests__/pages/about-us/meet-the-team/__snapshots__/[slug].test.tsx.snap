@@ -2057,7 +2057,7 @@ exports[`pages/about/meet-the-team/[slug].tsx renders 1`] = `
 }
 
 .c136 {
-  top: 82px;
+  top: 152px;
 }
 
 .c119 .icon-container > *:first-child {

@@ -210,7 +210,7 @@ const TopNav = (props: TopNavProps) => {
           </MaybeVisuallyHidden>
         )
       }
-     />
+    />
   );
 };
 
