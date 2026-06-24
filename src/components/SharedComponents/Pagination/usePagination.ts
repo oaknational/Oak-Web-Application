@@ -78,16 +78,16 @@ const usePagination = <T>(
   const paginationTitle =
     totalPages > 1 ? ` | Page ${currentPage} of ${totalPages}` : "";
 
-  const baseParams = new URLSearchParams(searchParams.toString());
+  const baseParams = new URLSearchParams(searchParams);
 
-  const prevParams = new URLSearchParams(baseParams.toString());
+  const prevParams = new URLSearchParams(searchParams);
   if (currentPage - 1 <= 1) {
     prevParams.delete("page");
   } else {
     prevParams.set("page", String(currentPage - 1));
   }
 
-  const nextParams = new URLSearchParams(baseParams);
+  const nextParams = new URLSearchParams(searchParams);
   nextParams.set("page", String(currentPage + 1));
 
   const prevHref = isFirstPage
@@ -107,7 +107,7 @@ const usePagination = <T>(
 
   const onPageChange = (page: number) => {
     const bounded = Math.max(1, Math.min(page, totalPages));
-    const params = new URLSearchParams(baseParams.toString());
+    const params = new URLSearchParams(searchParams);
 
     if (bounded <= 1) {
       params.delete("page");
