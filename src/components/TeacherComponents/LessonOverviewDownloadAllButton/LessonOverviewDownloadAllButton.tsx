@@ -14,14 +14,8 @@ export type LessonOverviewDownloadAllButtonProps = Pick<
   | "onClickDownloadAll"
   | "geoRestricted"
   | "loginRequired"
-> & {
-  /**
-   * If true, use the integrated lesson downloads page.
-   *
-   * Can be consolidated once the integrated journey is fully rolled out.
-   */
-  isIntegratedJourney?: boolean;
-} & Pick<ComponentProps<typeof LoginRequiredButton>, "sizeVariant" | "width">;
+> &
+  Pick<ComponentProps<typeof LoginRequiredButton>, "sizeVariant" | "width">;
 
 export const LessonOverviewDownloadAllButton: FC<
   LessonOverviewDownloadAllButtonProps
@@ -35,37 +29,23 @@ export const LessonOverviewDownloadAllButton: FC<
     onClickDownloadAll,
     geoRestricted,
     loginRequired,
-    isIntegratedJourney = false,
     sizeVariant = "small",
     width = "spacing-160",
   } = props;
 
   const preselected = "all";
 
-  if (expired || !showDownloadAll) {
+  if (expired || !showDownloadAll || !programmeSlug || !unitSlug) {
     return null;
   }
 
-  let href: string;
-
-  if (programmeSlug && unitSlug && isIntegratedJourney) {
-    href = resolveOakHref({
-      page: "integrated-lesson-downloads",
-      lessonSlug,
-      unitSlug,
-      programmeSlug,
-      query: { preselected },
-    });
-  } else {
-    href = resolveOakHref({
-      page: "lesson-downloads",
-      lessonSlug,
-      unitSlug,
-      programmeSlug,
-      downloads: "downloads",
-      query: { preselected },
-    });
-  }
+  const href = resolveOakHref({
+    page: "lesson-downloads",
+    lessonSlug,
+    unitSlug,
+    programmeSlug,
+    query: { preselected },
+  });
 
   return (
     <LoginRequiredButton

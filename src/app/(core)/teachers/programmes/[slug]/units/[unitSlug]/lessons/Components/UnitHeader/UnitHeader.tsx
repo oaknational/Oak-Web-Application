@@ -161,7 +161,7 @@ const UnitHeader = (props: UnitHeaderProps) => {
         prevHref={
           prevUnit
             ? resolveOakHref({
-                page: "integrated-unit-overview",
+                page: "unit-overview",
                 unitSlug: prevUnit.slug,
                 programmeSlug,
               })
@@ -170,7 +170,7 @@ const UnitHeader = (props: UnitHeaderProps) => {
         nextHref={
           nextUnit
             ? resolveOakHref({
-                page: "integrated-unit-overview",
+                page: "unit-overview",
                 unitSlug: nextUnit.slug,
                 programmeSlug,
               })

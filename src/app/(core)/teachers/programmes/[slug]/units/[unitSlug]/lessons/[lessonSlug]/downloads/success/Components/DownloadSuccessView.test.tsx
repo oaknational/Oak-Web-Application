@@ -128,7 +128,7 @@ describe("DownloadSuccessView", () => {
     expect(link).toHaveAttribute(
       "href",
       resolveOakHref({
-        page: "integrated-lesson-overview",
+        page: "lesson-overview",
         lessonSlug: baseLesson.lessonSlug,
         programmeSlug: baseLesson.programmeSlug,
         unitSlug: baseLesson.unitSlug,
@@ -146,7 +146,7 @@ describe("DownloadSuccessView", () => {
 
     expect(mockLinkClick).toHaveBeenCalledWith(
       `http://localhost${resolveOakHref({
-        page: "integrated-lesson-overview",
+        page: "lesson-overview",
         lessonSlug: baseLesson.lessonSlug,
         programmeSlug: baseLesson.programmeSlug,
         unitSlug: baseLesson.unitSlug,

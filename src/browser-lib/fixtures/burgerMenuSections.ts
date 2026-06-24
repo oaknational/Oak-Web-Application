@@ -11,37 +11,25 @@ export const burgerMenuSections: Array<AppHeaderBurgerMenuSection> = [
         external: false,
       },
       {
-        linkTo: {
-          page: "subject-index",
-          keyStageSlug: "ks1",
-        },
+        linkTo: { page: "home" },
         text: "Key stage 1",
         new: false,
         external: false,
       },
       {
-        linkTo: {
-          page: "subject-index",
-          keyStageSlug: "ks2",
-        },
+        linkTo: { page: "home" },
         text: "Key stage 2",
         new: false,
         external: false,
       },
       {
-        linkTo: {
-          page: "subject-index",
-          keyStageSlug: "ks3",
-        },
+        linkTo: { page: "home" },
         text: "Key stage 3",
         new: false,
         external: false,
       },
       {
-        linkTo: {
-          page: "subject-index",
-          keyStageSlug: "ks4",
-        },
+        linkTo: { page: "home" },
         text: "Key stage 4",
         new: false,
         external: false,
@@ -56,7 +44,7 @@ export const burgerMenuSections: Array<AppHeaderBurgerMenuSection> = [
         external: false,
       },
       {
-        linkTo: { page: "curriculum-landing-page" },
+        linkTo: { page: "about-oaks-curricula" },
         text: "Curriculum plans",
         new: false,
         external: false,

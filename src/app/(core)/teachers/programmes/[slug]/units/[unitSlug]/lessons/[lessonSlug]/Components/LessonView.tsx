@@ -214,7 +214,6 @@ export default function LessonView(
                     geoRestricted,
                     loginRequired,
                     expired,
-                    isIntegratedJourney: true,
                   }}
                 />
               </OakGridArea>
@@ -362,7 +361,7 @@ export default function LessonView(
                     previousLesson
                       ? {
                           href: resolveOakHref({
-                            page: "integrated-lesson-overview",
+                            page: "lesson-overview",
                             programmeSlug,
                             unitSlug,
                             lessonSlug: previousLesson.lessonSlug,
@@ -376,7 +375,7 @@ export default function LessonView(
                     nextLesson
                       ? {
                           href: resolveOakHref({
-                            page: "integrated-lesson-overview",
+                            page: "lesson-overview",
                             programmeSlug,
                             unitSlug,
                             lessonSlug: nextLesson.lessonSlug,

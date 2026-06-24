@@ -16,7 +16,7 @@ import truthy from "@/utils/truthy";
 import addLegacySlugSuffix from "@/utils/slugModifiers/addLegacySlugSuffix";
 import { SearchResultsItemProps } from "@/components/TeacherComponents/SearchResultsItem";
 import {
-  LessonListingLinkProps,
+  UnitOverviewLinkProps,
   LessonOverviewLinkProps,
 } from "@/common-lib/urls";
 import { LEGACY_COHORT } from "@/config/cohort";
@@ -276,8 +276,8 @@ export function getUnitObject(props: {
     allKeyStages,
   });
 
-  const buttonLinkProps: LessonListingLinkProps = {
-    page: "lesson-index",
+  const buttonLinkProps: UnitOverviewLinkProps = {
+    page: "unit-overview",
     programmeSlug:
       _source.cohort === LEGACY_COHORT
         ? addLegacySlugSuffix(getProgrammeSlug(hit, allKeyStages)) ||

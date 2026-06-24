@@ -62,7 +62,7 @@ export function LessonAppearsInPathwayCard(
               variant="minimal"
               size="small"
               label={label}
-              page="lesson-index"
+              page="unit-overview"
               programmeSlug={programmeSlug}
               unitSlug={unitSlug}
               icon="chevron-right"

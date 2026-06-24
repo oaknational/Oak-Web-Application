@@ -83,7 +83,6 @@ describe("LessonMediaPage", () => {
     });
     expect(result).toMatchObject({
       props: {
-        useIntegratedJourneyLinks: true,
         breadcrumbsSlot: expect.anything(),
       },
     });

@@ -61,8 +61,8 @@ export interface LessonItemContainerProps {
   onDownloadButtonClick?: () => void;
   onPlayALLMediaClipButtonClick?: () => void;
   isFinalElement?: boolean;
-  pageLinks: ReturnType<typeof getPageLinksForLesson>;
   isCanonical?: boolean;
+  pageLinks: ReturnType<typeof getPageLinksForLesson>;
   subheader?: React.ReactNode;
 }
 

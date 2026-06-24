@@ -64,14 +64,13 @@ describe("RestrictedContentPrompt", () => {
     );
   });
 
-  it("renders the geoblocked prompt with integrated lesson overview link when useIntegratedJourneyLinks is true", () => {
+  it("renders the geoblocked prompt with lesson overview link", () => {
     const fixtures = lessonMediaClipsFixtures();
 
     render(
       <RestrictedContentPrompt
         showGeoBlocked={true}
         isCanonical={false}
-        useIntegratedJourneyLinks={true}
         {...fixtures}
       />,
     );
@@ -81,7 +80,7 @@ describe("RestrictedContentPrompt", () => {
     ).toHaveAttribute(
       "href",
       resolveOakHref({
-        page: "integrated-lesson-overview",
+        page: "lesson-overview",
         programmeSlug: fixtures.programmeSlug,
         unitSlug: fixtures.unitSlug,
         lessonSlug: fixtures.lessonSlug,

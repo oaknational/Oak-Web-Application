@@ -61,9 +61,7 @@ export const SearchSuggestionBanner = (props: {
               : "citizenship-secondary-ks4-gcse",
         })
       : resolveOakHref({
-          page: "programme-index",
-          subjectSlug,
-          keyStageSlug: link.keystageSlug,
+          page: "home",
         });
   };
 

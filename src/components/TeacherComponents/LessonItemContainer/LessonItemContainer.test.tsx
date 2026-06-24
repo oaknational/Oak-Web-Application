@@ -188,7 +188,7 @@ describe("LessonItemContainer", () => {
 
     await user.click(downloadLinkButton);
     expect(mockLinkClick).toHaveBeenCalledWith(
-      "http://localhost/teachers/programmes/english-primary-ks2/units/grammar-1-simple-compound-and-adverbial-complex-sentences/lessons/lesson-4-in-grammar-1-simple-compound-and-adverbial-complex-sentences/downloads?",
+      "http://localhost/teachers/programmes/english-primary-ks2/units/grammar-1-simple-compound-and-adverbial-complex-sentences/lessons/lesson-4-in-grammar-1-simple-compound-and-adverbial-complex-sentences/downloads",
     );
     expect(onDownloadButtonClick).toHaveBeenCalledTimes(1);
   });

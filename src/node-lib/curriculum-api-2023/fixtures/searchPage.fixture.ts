@@ -152,7 +152,7 @@ export const searchResultsItem = (
       console.log("click");
     },
     buttonLinkProps: {
-      page: "lesson-index",
+      page: "unit-overview",
       programmeSlug: "computing-secondary-ks3-l",
       unitSlug: "computing-systems-1558",
     },
@@ -222,7 +222,7 @@ export const searchResultsItem = (
       console.log("click");
     },
     buttonLinkProps: {
-      page: "lesson-index",
+      page: "unit-overview",
       programmeSlug: "computing-secondary-ks3-l",
       unitSlug: "computing-systems-1558",
     },

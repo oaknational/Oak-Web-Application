@@ -99,10 +99,7 @@ describe("SearchSuggestionBanner", () => {
     );
     const link = screen.getByText("Key stage 2", { selector: "a" });
     expect(link).toBeInTheDocument();
-    expect(link).toHaveAttribute(
-      "href",
-      "/teachers/key-stages/ks2/subjects/maths/programmes",
-    );
+    expect(link).toHaveAttribute("href", "/");
   });
   it("renders multiple links when there are suggested ks filters", () => {
     render(
@@ -132,17 +129,11 @@ describe("SearchSuggestionBanner", () => {
     );
     const ks2Link = screen.getByText("Key stage 2", { selector: "a" });
     expect(ks2Link).toBeInTheDocument();
-    expect(ks2Link).toHaveAttribute(
-      "href",
-      "/teachers/key-stages/ks2/subjects/maths/programmes",
-    );
+    expect(ks2Link).toHaveAttribute("href", "/");
 
     const ks4Link = screen.getByText("Key stage 4", { selector: "a" });
     expect(ks4Link).toBeInTheDocument();
-    expect(ks4Link).toHaveAttribute(
-      "href",
-      "/teachers/key-stages/ks4/subjects/maths/programmes",
-    );
+    expect(ks4Link).toHaveAttribute("href", "/");
   });
   it("calls searchResultOpened on keystage link click", async () => {
     render(

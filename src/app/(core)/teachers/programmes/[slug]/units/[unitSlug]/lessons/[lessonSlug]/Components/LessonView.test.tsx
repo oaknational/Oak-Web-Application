@@ -73,7 +73,7 @@ describe("Previous and Next Lesson Navigation", () => {
     ).toHaveAttribute(
       "href",
       resolveOakHref({
-        page: "integrated-lesson-overview",
+        page: "lesson-overview",
         programmeSlug: baseProps.programmeSlug,
         unitSlug: baseProps.unitSlug,
         lessonSlug: "lesson-2",
@@ -82,7 +82,7 @@ describe("Previous and Next Lesson Navigation", () => {
     expect(screen.getByRole("link", { name: /Next lesson/i })).toHaveAttribute(
       "href",
       resolveOakHref({
-        page: "integrated-lesson-overview",
+        page: "lesson-overview",
         programmeSlug: baseProps.programmeSlug,
         unitSlug: baseProps.unitSlug,
         lessonSlug: "lesson-4",
@@ -126,7 +126,7 @@ describe("Previous and Next Lesson Navigation", () => {
     ).toHaveAttribute(
       "href",
       resolveOakHref({
-        page: "integrated-lesson-overview",
+        page: "lesson-overview",
         programmeSlug: baseProps.programmeSlug,
         unitSlug: baseProps.unitSlug,
         lessonSlug: "lesson-2",
@@ -135,7 +135,7 @@ describe("Previous and Next Lesson Navigation", () => {
     expect(screen.getByRole("link", { name: /Next lesson/i })).toHaveAttribute(
       "href",
       resolveOakHref({
-        page: "integrated-lesson-overview",
+        page: "lesson-overview",
         programmeSlug: baseProps.programmeSlug,
         unitSlug: baseProps.unitSlug,
         lessonSlug: "lesson-4",

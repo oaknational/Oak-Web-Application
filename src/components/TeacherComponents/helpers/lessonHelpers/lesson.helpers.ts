@@ -116,7 +116,6 @@ export const getLessonDownloadsBreadCrumb = ({
         programmeSlug,
         unitSlug,
         lessonSlug,
-        downloads: "downloads",
       }),
       label: "Downloads",
       disabled,
@@ -220,8 +219,7 @@ export const getBreadcrumbsForLessonPathway = (
     keyStageSlug && keyStageTitle
       ? {
           href: resolveOakHref({
-            page: "subject-index",
-            keyStageSlug,
+            page: "home",
           }),
           label: keyStageTitle,
         }
@@ -238,7 +236,7 @@ export const getBreadcrumbsForLessonPathway = (
     unitTitle && programmeSlug && unitSlug
       ? {
           href: resolveOakHref({
-            page: "lesson-index",
+            page: "unit-overview",
             programmeSlug,
             unitSlug,
           }),

@@ -61,7 +61,7 @@ export const redirectUnitPageIfNeeded = async ({
   if (validProgrammeSlug !== programmeSlug) {
     permanentRedirect(
       resolveOakHref({
-        page: "integrated-unit-overview",
+        page: "unit-overview",
         unitSlug,
         programmeSlug: validProgrammeSlug,
       }),
