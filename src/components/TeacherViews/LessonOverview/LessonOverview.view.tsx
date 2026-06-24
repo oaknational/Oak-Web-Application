@@ -66,6 +66,7 @@ import {
   TakedownBanner,
 } from "@/components/SharedComponents/TakedownBanner/TakedownBanner";
 import isSlugLegacy from "@/utils/slugModifiers/isSlugLegacy";
+import { resolveOakHref } from "@/common-lib/urls";
 
 export type LessonOverviewProps = {
   lesson: LessonOverviewPageData & {
@@ -195,8 +196,6 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
     : "Video & audio clips";
 
   const MathJaxLessonProvider = isMathJaxLesson ? MathJaxProvider : Fragment;
-
-  const unitListingHref = `/teachers/key-stages/${keyStageSlug}/subjects/${subjectSlug}/programmes`;
 
   const browsePathwayData = getAnalyticsBrowseData({
     keyStageSlug,
@@ -430,7 +429,7 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
                     hasNewUnits={getDoesSubjectHaveNewUnits(subjectSlug ?? "")}
                     subjectSlug={subjectSlug ?? ""}
                     userType="teacher"
-                    onwardHref={unitListingHref}
+                    onwardHref={resolveOakHref({ page: "home" })}
                     isSingle
                   />
                 </OakBox>
