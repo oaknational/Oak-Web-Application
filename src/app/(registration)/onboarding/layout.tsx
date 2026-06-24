@@ -38,7 +38,7 @@ const OnboardingLayout = ({ children }: { children: ReactNode }) => {
   const pathname = usePathname();
 
   if (!isLoaded) return <Wall />;
-  if (!isSignedIn) return <RedirectToSignIn />;
+  if (!isSignedIn) return <RedirectToSignUp />;
 
   const prompt = onboardingPrompts[pathname ?? ""] ?? defaultPrompt;
 
