@@ -18,7 +18,6 @@ import {
   OakSupportKey,
   OnboardingFormValues,
 } from "@/components/TeacherComponents/OnboardingForm/OnboardingForm.schema";
-import { OnboardingLayout } from "@/components/TeacherComponents/OnboardingLayout/OnboardingLayout";
 import FieldError from "@/components/SharedComponents/FieldError";
 import { resolveOakHref } from "@/common-lib/urls";
 import { decodeOnboardingDataQueryParam } from "@/components/TeacherComponents/OnboardingForm/onboardingDataQueryParam";
@@ -63,86 +62,78 @@ const HowCanOakSupport = () => {
     .some(([, error]) => error.message !== undefined);
 
   return (
-    <OnboardingLayout
-      promptBody="Tell us a little bit about you so we can tailor Oak to suit your needs."
-      promptHeading="Last step..."
+    <OnboardingForm
+      heading="How can Oak support you?"
+      formState={formState}
+      canSubmit={formState.isValid}
+      handleSubmit={handleSubmit}
+      control={control as Control<OnboardingFormValues>}
+      trigger={trigger as UseFormTrigger<OnboardingFormValues>}
+      forceHideNewsletterSignUp={true}
+      subheading="Select all that apply"
+      onSubmit={() => {
+        setValue("submitMode", "continue");
+        trigger();
+      }}
+      secondaryButton={(isSubmitting) => (
+        <OakSecondaryButton
+          width="100%"
+          disabled={isSubmitting}
+          name="skip"
+          onClick={() => {
+            setValue("submitMode", "skip");
+            trigger();
+          }}
+        >
+          Skip
+        </OakSecondaryButton>
+      )}
+      continueButtonDescription={formState.errors.root?.message}
     >
-      <OnboardingForm
-        heading="How can Oak support you?"
-        formState={formState}
-        canSubmit={formState.isValid}
-        handleSubmit={handleSubmit}
-        control={control as Control<OnboardingFormValues>}
-        trigger={trigger as UseFormTrigger<OnboardingFormValues>}
-        forceHideNewsletterSignUp={true}
-        subheading="Select all that apply"
-        onSubmit={() => {
-          setValue("submitMode", "continue");
-          trigger();
-        }}
-        secondaryButton={(isSubmitting) => (
-          <OakSecondaryButton
-            width="100%"
-            disabled={isSubmitting}
-            name="skip"
-            onClick={() => {
-              setValue("submitMode", "skip");
-              trigger();
+      <OakFlex $flexDirection="column" $gap="spacing-16">
+        <div aria-live="assertive" aria-label={formState.errors.root?.message}>
+          <FieldError id="root-error" ariaHidden withoutMarginBottom>
+            {formState.errors.root?.message}
+          </FieldError>
+        </div>
+        {Object.entries(oakSupportMap).map(([key, value]) => (
+          <Controller
+            control={control}
+            name={key as OakSupportKey}
+            key={key}
+            render={({ field }) => {
+              const { ref, ...fieldProps } = field;
+              return (
+                <OakCheckBox
+                  id={key}
+                  key={key}
+                  {...fieldProps}
+                  value={value}
+                  onChange={(event) => {
+                    clearErrors();
+                    field.onChange(event);
+                  }}
+                />
+              );
             }}
-          >
-            Skip
-          </OakSecondaryButton>
+          />
+        ))}
+        {hasMissingFormData && (
+          <FieldError id="missing-values" withoutMarginBottom>
+            An error occurred. Please{" "}
+            <OakLink
+              element={Link}
+              href={resolveOakHref({ page: "onboarding-school-selection" })}
+            >
+              <OakSpan $color="text-error" $textDecoration="underline">
+                go back
+              </OakSpan>
+            </OakLink>{" "}
+            to the previous step and try again.
+          </FieldError>
         )}
-        continueButtonDescription={formState.errors.root?.message}
-      >
-        <OakFlex $flexDirection="column" $gap="spacing-16">
-          <div
-            aria-live="assertive"
-            aria-label={formState.errors.root?.message}
-          >
-            <FieldError id="root-error" ariaHidden withoutMarginBottom>
-              {formState.errors.root?.message}
-            </FieldError>
-          </div>
-          {Object.entries(oakSupportMap).map(([key, value]) => (
-            <Controller
-              control={control}
-              name={key as OakSupportKey}
-              key={key}
-              render={({ field }) => {
-                const { ref, ...fieldProps } = field;
-                return (
-                  <OakCheckBox
-                    id={key}
-                    key={key}
-                    {...fieldProps}
-                    value={value}
-                    onChange={(event) => {
-                      clearErrors();
-                      field.onChange(event);
-                    }}
-                  />
-                );
-              }}
-            />
-          ))}
-          {hasMissingFormData && (
-            <FieldError id="missing-values" withoutMarginBottom>
-              An error occurred. Please{" "}
-              <OakLink
-                element={Link}
-                href={resolveOakHref({ page: "onboarding-school-selection" })}
-              >
-                <OakSpan $color="text-error" $textDecoration="underline">
-                  go back
-                </OakSpan>
-              </OakLink>{" "}
-              to the previous step and try again.
-            </FieldError>
-          )}
-        </OakFlex>
-      </OnboardingForm>
-    </OnboardingLayout>
+      </OakFlex>
+    </OnboardingForm>
   );
 };
 

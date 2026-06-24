@@ -56,16 +56,6 @@ describe("HowCanOakSupport", () => {
     ).mockResolvedValue(undefined);
   });
 
-  it("renders the onboarding layout with the correct prompt", () => {
-    const { unmount } = renderWithProviders()(<HowCanOakSupport />);
-    const promptHeading = screen.getByText(/Last step.../i);
-    expect(promptHeading).toBeInTheDocument();
-    const promptBody = screen.getByText(
-      /Tell us a little bit about you so we can tailor Oak to suit your needs./i,
-    );
-    expect(promptBody).toBeInTheDocument();
-    unmount();
-  });
   it('renders checkboxes for each key in "oakSupportMap"', () => {
     const { unmount } = renderWithProviders()(<HowCanOakSupport />);
     const checkboxes = screen.getAllByRole("checkbox");

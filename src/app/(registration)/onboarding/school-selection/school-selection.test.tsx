@@ -14,6 +14,8 @@ jest.mock("posthog-js/react", () => ({
 jest.mock("next/navigation", () => ({
   ...jest.requireActual("next/navigation"),
   usePathname: jest.fn(() => "/onboarding"),
+  useRouter: jest.fn(() => ({ push: jest.fn() })),
+  useSearchParams: jest.fn(() => new URLSearchParams()),
 }));
 
 describe("Onboarding school selection page", () => {
