@@ -37,6 +37,11 @@ jest.mock(
   "@/components/TeacherComponents/LessonOverviewMediaClips/LessonOverviewMediaClips.tsx",
 );
 
+const mockUseIsHeatwaveBannerEnabled = jest.fn().mockReturnValue(true);
+jest.mock("@/hooks/useIsHeatwaveBannerEnabled", () => ({
+  useIsHeatwaveBannerEnabled: () => mockUseIsHeatwaveBannerEnabled(),
+}));
+
 const render = renderWithProviders();
 
 const baseProps = teachersLessonOverviewFixture();
@@ -132,6 +137,63 @@ describe("Previous and Next Lesson Navigation", () => {
         lessonSlug: "lesson-4",
       }),
     );
+  });
+});
+
+describe("Heatwave banner", () => {
+  beforeEach(() => {
+    jest.clearAllMocks();
+    mockUseIsHeatwaveBannerEnabled.mockReturnValue(true);
+  });
+
+  it("shows the heatwave banner when the feature flag is enabled and share is available", () => {
+    render(<LessonView {...baseProps} />);
+
+    expect(
+      screen.getByText(
+        /Disruption this week due to hot weather\? Set this lesson as remote work/i,
+      ),
+    ).toBeInTheDocument();
+  });
+
+  it("does not show the heatwave banner when the feature flag is disabled", () => {
+    mockUseIsHeatwaveBannerEnabled.mockReturnValue(false);
+    render(<LessonView {...baseProps} />);
+
+    expect(
+      screen.queryByText(
+        /Disruption this week due to hot weather\? Set this lesson as remote work/i,
+      ),
+    ).not.toBeInTheDocument();
+  });
+
+  it("does not show the heatwave banner when the share button is disabled (e.g. Practical PE)", () => {
+    render(<LessonView {...baseProps} actions={{ disablePupilShare: true }} />);
+
+    expect(
+      screen.queryByText(
+        /Disruption this week due to hot weather\? Set this lesson as remote work/i,
+      ),
+    ).not.toBeInTheDocument();
+  });
+
+  it("hides the heatwave banner when the dismiss button is clicked", async () => {
+    const user = userEvent.setup();
+    render(<LessonView {...baseProps} />);
+
+    expect(
+      screen.getByText(
+        /Disruption this week due to hot weather\? Set this lesson as remote work/i,
+      ),
+    ).toBeInTheDocument();
+
+    await user.click(screen.getByRole("button", { name: /dismiss/i }));
+
+    expect(
+      screen.queryByText(
+        /Disruption this week due to hot weather\? Set this lesson as remote work/i,
+      ),
+    ).not.toBeInTheDocument();
   });
 });
 
