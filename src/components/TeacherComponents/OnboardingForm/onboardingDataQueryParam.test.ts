@@ -18,11 +18,9 @@ const worksInSchoolData: OnboardingFormProps = {
 
 describe(encodeOnboardingDataQueryParam, () => {
   it("encodes the onboarding form props as a query param", () => {
-    const query = { returnTo: "/home" };
-    const newQuery = encodeOnboardingDataQueryParam(query, schoolData);
+    const newState = encodeOnboardingDataQueryParam(null, schoolData);
 
-    expect(newQuery.returnTo).toEqual("/home");
-    expect(decodeOnboardingDataQueryParam(newQuery)).toEqual({
+    expect(decodeOnboardingDataQueryParam(newState)).toEqual({
       newsletterSignUp: false,
       school: "Grange Hill",
       schoolName: "Grange Hill",
@@ -32,7 +30,7 @@ describe(encodeOnboardingDataQueryParam, () => {
   it("merges with existing state", () => {
     const newState = decodeOnboardingDataQueryParam(
       encodeOnboardingDataQueryParam(
-        encodeOnboardingDataQueryParam({}, worksInSchoolData),
+        encodeOnboardingDataQueryParam(null, worksInSchoolData),
         schoolData,
       ),
     );
@@ -47,13 +45,10 @@ describe(encodeOnboardingDataQueryParam, () => {
 
   it("is unicode safe", () => {
     const newState = decodeOnboardingDataQueryParam(
-      encodeOnboardingDataQueryParam(
-        {},
-        {
-          ...schoolData,
-          schoolName: "📚",
-        },
-      ),
+      encodeOnboardingDataQueryParam(null, {
+        ...schoolData,
+        schoolName: "📚",
+      }),
     );
 
     expect(newState).toEqual(

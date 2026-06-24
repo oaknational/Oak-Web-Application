@@ -1,3 +1,4 @@
+"use client";
 import { ComponentType, PropsWithChildren } from "react";
 import { RedirectToSignUp, useUser } from "@clerk/nextjs";
 

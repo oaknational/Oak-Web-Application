@@ -1,3 +1,4 @@
+"use client";
 import {
   OakCheckBox,
   OakFlex,
@@ -6,7 +7,7 @@ import {
   OakSpan,
 } from "@oaknational/oak-components";
 import { Control, Controller, UseFormTrigger, useForm } from "react-hook-form";
-import { useRouter } from "next/router";
+import { useSearchParams } from "next/navigation";
 import { useEffect } from "react";
 import Link from "next/link";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -34,8 +35,9 @@ export const oakSupportMap: Record<OakSupportKey, string> = {
 };
 
 const HowCanOakSupport = () => {
-  const router = useRouter();
-  const onboardingState = decodeOnboardingDataQueryParam(router.query);
+  const searchParams = useSearchParams();
+  const query = searchParams?.toString();
+  const onboardingState = decodeOnboardingDataQueryParam(query);
   const { formState, setValue, handleSubmit, control, clearErrors, trigger } =
     useForm({
       resolver: zodResolver(extendedUseOfOakSchema),

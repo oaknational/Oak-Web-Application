@@ -11,7 +11,6 @@ import renderWithProviders, {
   allProviders,
 } from "@/__tests__/__helpers__/renderWithProviders";
 import { encodeOnboardingDataQueryParam } from "@/components/TeacherComponents/OnboardingForm/onboardingDataQueryParam";
-import { OnboardingFormProps } from "@/components/TeacherComponents/OnboardingForm/OnboardingForm.schema";
 
 jest.mock("next/router", () => require("next-router-mock"));
 
@@ -21,11 +20,13 @@ describe("HowCanOakSupport", () => {
   beforeEach(() => {
     mockRouter.setCurrentUrl({
       pathname: "/onboarding/how-can-oak-support",
-      query: encodeOnboardingDataQueryParam({}, {
-        newsletterSignUp: true,
-        schoolName: "Jefferson House, Cheshire West and Chester, CW7 1JT",
-        school: "142332-Jefferson House",
-      } as OnboardingFormProps),
+      query: {
+        state: encodeOnboardingDataQueryParam(null, {
+          newsletterSignUp: true,
+          schoolName: "Jefferson House, Cheshire West and Chester, CW7 1JT",
+          school: "142332-Jefferson House",
+        }),
+      },
     });
   });
 
