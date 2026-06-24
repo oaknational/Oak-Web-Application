@@ -1,5 +1,3 @@
-import slugify from "slugify";
-
 import {
   TopNavResponse,
   TeachersBrowse,
@@ -16,6 +14,7 @@ import {
 
 import { CurriculumPhaseOptions } from "@/node-lib/curriculum-api-2023/queries/curriculumPhaseOptions/curriculumPhaseOptions.query";
 import isSlugLegacy from "@/utils/slugModifiers/isSlugLegacy";
+import { convertSubjectToSlug } from "@/components/TeacherComponents/helpers/convertSubjectToSlug";
 
 type TopNavProgramme = TopNavResponse["programmes"][number];
 
@@ -195,6 +194,7 @@ export const getExamBoardsForKS4Subject = ({
   phaseSlug,
   keystageSlug,
   subjectParent,
+  includeChildSubjects = true,
 }: {
   data: TopNavResponse;
   subjectSlug: string;
@@ -202,6 +202,7 @@ export const getExamBoardsForKS4Subject = ({
   phaseSlug: string;
   keystageSlug?: string | null;
   subjectParent?: string | null;
+  includeChildSubjects?: boolean;
 }): Ks4OptionsMenu[] => {
   const matchingProgrammes = data.programmes
     .filter((p) => {
@@ -241,6 +242,7 @@ export const getExamBoardsForKS4Subject = ({
           tierSlug: tier_slug,
           examboardSlug: examboard_slug,
           keystageSlug,
+          includeChildSubjects,
         }),
         programmeFactors: {
           tier:
@@ -302,7 +304,7 @@ const getSubjectsByPhase = (
       programme.programme_fields;
     const pathwaySlug = programme.programme_fields.pathway_slug ?? null;
     const parentSubjectSlug = subject_parent
-      ? slugify(subject_parent).toLocaleLowerCase()
+      ? convertSubjectToSlug(subject_parent).toLocaleLowerCase()
       : subject_slug;
     const phaseSlugForHref = normalizePhaseSlugForHref(
       programme.programme_fields.phase_slug,
@@ -326,6 +328,7 @@ const getSubjectsByPhase = (
         subjectSlug: subject_slug,
         pathwaySlug,
         subjectParent: subject_parent,
+        includeChildSubjects: false,
       });
 
       phaseChildrenAccumulator.updateParentExamBoardsOnPhaseChild({
@@ -361,6 +364,7 @@ const getSubjectsByPhase = (
             phaseSlug,
             subjectSlug: subject_slug,
             pathwaySlug,
+            includeChildSubjects: false,
           })
         : undefined;
 
@@ -396,9 +400,9 @@ const deriveKs4SubjectSets = (programmes: TopNavProgramme[]) => {
           Boolean(programme.programme_fields.subject_parent),
       )
       .map((programme) =>
-        slugify(
+        convertSubjectToSlug(
           programme.programme_fields.subject_parent as string,
-        ).toLocaleLowerCase(),
+        ),
       ),
   );
 

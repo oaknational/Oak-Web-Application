@@ -1,3 +1,106 @@
+## [1.1102.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.1102.0...v1.1102.1) (2026-06-24)
+
+
+### Bug Fixes
+
+* revert carat version ([5a05aea](https://github.com/oaknational/Oak-Web-Application/commit/5a05aea486319d6210fad0f675bbb39290494636))
+* update curriculum schema ([afc8b6b](https://github.com/oaknational/Oak-Web-Application/commit/afc8b6b17d3978c3378b4c2b7ddd907a71a1a76e))
+
+# [1.1102.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1101.0...v1.1102.0) (2026-06-23)
+
+
+### Features
+
+* disallow create with ai on digital literacy ([c0e4c11](https://github.com/oaknational/Oak-Web-Application/commit/c0e4c115a6a2976cbfaf94c81937ddffd6e3947c))
+* exclude curriculum link in lesson seo helper ([ab43b5b](https://github.com/oaknational/Oak-Web-Application/commit/ab43b5bcf28dca4885079c8f0a109d0312e20c10))
+* remove hide curriculum logic ([5f8258f](https://github.com/oaknational/Oak-Web-Application/commit/5f8258ff5a8023ea1d02db438078a05d13e2e0b3))
+
+# [1.1101.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1100.3...v1.1101.0) (2026-06-23)
+
+
+### Features
+
+* **LESQ-2108:** add examboard filter to programme page ([b2454a3](https://github.com/oaknational/Oak-Web-Application/commit/b2454a38edc5b260de35a68d17e0e259bbeba58b))
+* **LESQ-2108:** forward compatible tier, pathway and child subject when switching examboard ([1425a6e](https://github.com/oaknational/Oak-Web-Application/commit/1425a6ec2862dc1cea62b8e7b96135a844881ac2))
+* **LESQ-2108:** restore focus to examboard filter after navigation ([c806996](https://github.com/oaknational/Oak-Web-Application/commit/c80699681068966d369e5fa5f08c5f89fd9e189a))
+* **LESQ-2108:** return focus to examboard selector after navigation ([b9bb39e](https://github.com/oaknational/Oak-Web-Application/commit/b9bb39eef077786ad2c0bf29c06493ee63050a18))
+* **LESQ-2108:** use replace instead of push ([f88c37e](https://github.com/oaknational/Oak-Web-Application/commit/f88c37e4dcd8a5a2dbd5b71494912d06b18cd192))
+
+## [1.1100.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.1100.2...v1.1100.3) (2026-06-23)
+
+
+### Bug Fixes
+
+* filter out empty strings from teacher tip data before rendering ([fb169e0](https://github.com/oaknational/Oak-Web-Application/commit/fb169e013657da12a8a4b5105c3e18cdda66e721))
+
+## [1.1100.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.1100.1...v1.1100.2) (2026-06-22)
+
+## [1.1100.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.1100.0...v1.1100.1) (2026-06-22)
+
+
+### Reverts
+
+* Revert "Merge pull request [#4306](https://github.com/oaknational/Oak-Web-Application/issues/4306) from oaknational/fix/phase-menu" ([e4ac01a](https://github.com/oaknational/Oak-Web-Application/commit/e4ac01a60cc8c790678a1bfbf32f054a64ecb463))
+
+# [1.1100.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1099.0...v1.1100.0) (2026-06-22)
+
+
+### Bug Fixes
+
+* **LESQ-2041:** align unstuck footer to grid ([1a0bef9](https://github.com/oaknational/Oak-Web-Application/commit/1a0bef992933afa8a4bc877cc425bd712ba87d05))
+* **LESQ-2041:** correct malformed media query ([21884a1](https://github.com/oaknational/Oak-Web-Application/commit/21884a1aa0a476b4c55d9abcdd1163a9f560c291))
+* **LESQ-2041:** toasts not appearing on top of other in-front elements ([46c9ca1](https://github.com/oaknational/Oak-Web-Application/commit/46c9ca1b126dd07c49d47ef4cb2bb825d5bf9d37))
+* **LESQ-2041:** workaround $display not being spread to OakSmallPrimaryInvertedButton properly ([5eac44e](https://github.com/oaknational/Oak-Web-Application/commit/5eac44e5b2def0329e2e933b7da5f46070790d96))
+* text rendering bug ([51d4834](https://github.com/oaknational/Oak-Web-Application/commit/51d4834c75db8f660da1a266fda5b8c62ef6ce9d))
+* typing and linting issues ([d42a223](https://github.com/oaknational/Oak-Web-Application/commit/d42a22331bc45ac929989a039eec258338f1baf6))
+
+
+### Features
+
+* add feature flag check ([8189919](https://github.com/oaknational/Oak-Web-Application/commit/81899190dfb007ffc7822dc903858cc41b5d1e07))
+* add useDetectStuck hook ([0c84ba6](https://github.com/oaknational/Oak-Web-Application/commit/0c84ba6b1dede6ec32ae3882f075760718df2b8b))
+* desktop and tablet stuck layouts ([94d088f](https://github.com/oaknational/Oak-Web-Application/commit/94d088fdaa4383e72bc0af1aab571b7a8c817233))
+* **LESQ-2041:** align sticky download button with designs ([e02c835](https://github.com/oaknational/Oak-Web-Application/commit/e02c8353925a401410c25b06e876e950b125b9cf))
+* **LESQ-2041:** apply border radius to top on mobile ([8da926c](https://github.com/oaknational/Oak-Web-Application/commit/8da926ca73ee442a6f986bcf8ac3847ab27fdd0d))
+* **LESQ-2041:** apply non-sticky mobile layout ([f32e71e](https://github.com/oaknational/Oak-Web-Application/commit/f32e71e21d0fd788a0ca62257500a1b831448c43))
+* mobile stuck behaviour ([4236c85](https://github.com/oaknational/Oak-Web-Application/commit/4236c850d08c70c792a4cff9e23ef7a641badecf))
+* new layout ([8b997d3](https://github.com/oaknational/Oak-Web-Application/commit/8b997d3935e096fb1b680721d90e445f6d45165d))
+* scaffold experiment, add fade-in animation ([ac0a88d](https://github.com/oaknational/Oak-Web-Application/commit/ac0a88da5673e16e81b199e85ce849851e1f90be))
+* switch on experiment for QA" ([f5cf8a3](https://github.com/oaknational/Oak-Web-Application/commit/f5cf8a33f4349b6d0e88ab0a8b4b2f86c7727159))
+* update text rendering ([bb03d22](https://github.com/oaknational/Oak-Web-Application/commit/bb03d22995effd1a112894f6016f7e9e5e2a0134))
+
+# [1.1099.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1098.1...v1.1099.0) (2026-06-18)
+
+
+### Bug Fixes
+
+* add terst for helper ([2af7455](https://github.com/oaknational/Oak-Web-Application/commit/2af745543a7f031bc6ac8b72821e3f0e6497052f))
+* fix types ([f2a0d67](https://github.com/oaknational/Oak-Web-Application/commit/f2a0d67d3210941f08a9ef4d2c94d3a9de4ab676))
+* merge main ([806671d](https://github.com/oaknational/Oak-Web-Application/commit/806671da9f57776e8ed0f6f94672402c3e031af5))
+* remove helper ([eb03c35](https://github.com/oaknational/Oak-Web-Application/commit/eb03c355b119246b5e7660cde833c82e497869ff))
+* remove helper ([9b295ef](https://github.com/oaknational/Oak-Web-Application/commit/9b295ef0875d92e9d22a3a6909ecf1b8d5cc76f1))
+* remove helper update versions ([0faeccf](https://github.com/oaknational/Oak-Web-Application/commit/0faeccf3fc32d5d8a1936ccf5205e0475bc1624a))
+* remove unitvarianr ([82b983b](https://github.com/oaknational/Oak-Web-Application/commit/82b983b1be26af98c0753e046b3ac0a822237dfb))
+* remove unitvarianr ([18f5641](https://github.com/oaknational/Oak-Web-Application/commit/18f56410e0d7ec2db52c98dae133249b4249d57b))
+* remove unitvarianr ([e3f36f4](https://github.com/oaknational/Oak-Web-Application/commit/e3f36f4a69c14b5b8493a7b480a1004fd99ab130))
+* remove unitvariant from schema ([f9b7836](https://github.com/oaknational/Oak-Web-Application/commit/f9b78364a43615bad8d4fee63200623b9f2ff482))
+* shema bug ([6e6624f](https://github.com/oaknational/Oak-Web-Application/commit/6e6624ffe9cb25a04fe2e18136f0e75efb3f0d5d))
+* shema bug ([f9a31c8](https://github.com/oaknational/Oak-Web-Application/commit/f9a31c8c4dd546d623152176a73fa65525b22089))
+* update package merge main ([22509bc](https://github.com/oaknational/Oak-Web-Application/commit/22509bc5e63ded94a4331d5f21bd51b945d98e55))
+* use zod to camel with schema ([73d61ba](https://github.com/oaknational/Oak-Web-Application/commit/73d61bac454d1ccfd5683692b309c8f2033de093))
+
+
+### Features
+
+* merge commit ([13d4290](https://github.com/oaknational/Oak-Web-Application/commit/13d4290208bf81055650571be755a97fa8a7358e))
+* merge commit ([03b4210](https://github.com/oaknational/Oak-Web-Application/commit/03b4210f9b3adbdc94ad6297a079a1b9bade3789))
+* merge commit ([50b6920](https://github.com/oaknational/Oak-Web-Application/commit/50b6920713bb72ce1a4ac925da5b1ea21177880f))
+* merge commit ([6ea7893](https://github.com/oaknational/Oak-Web-Application/commit/6ea7893e2381a8b21d8db27ef7f460a6f43955ae))
+* packages for digital literacy readiness ([65e4d8b](https://github.com/oaknational/Oak-Web-Application/commit/65e4d8bc1bd201611ea26468950c407c03af238f))
+* packages for digital literacy readiness ([80e4f9a](https://github.com/oaknational/Oak-Web-Application/commit/80e4f9a91fac82034c38314996ea392aa2f038a8))
+* packages for digital literacy readiness ([3d1f2d7](https://github.com/oaknational/Oak-Web-Application/commit/3d1f2d77b5d4d172405e5ce566aa5882919bd124))
+* test fix ([4afc8d4](https://github.com/oaknational/Oak-Web-Application/commit/4afc8d434700038017c070740f6c7855d6319a33))
+
 ## [1.1098.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.1098.0...v1.1098.1) (2026-06-17)
 
 

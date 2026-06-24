@@ -71,6 +71,7 @@ export type AdditionalFiles = z.infer<typeof additionalFilesSchemaCamel>;
 
 export const lessonBrowseDataSchema = syntheticUnitvariantLessonsSchema.omit({
   null_unitvariant_id: true,
+  unitvariant_id: true,
 });
 
 export type LessonBrowseData = Omit<

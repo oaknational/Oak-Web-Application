@@ -92,6 +92,7 @@ export const OakNotificationsProvider: FC<{
 
   return (
     <oakNotificationsContext.Provider value={contextValue}>
+      {children}
       <StyledOakNotificationsContainer
         $position="fixed"
         $zIndex="in-front"
@@ -120,7 +121,6 @@ export const OakNotificationsProvider: FC<{
           />
         )}
       </StyledOakNotificationsContainer>
-      {children}
     </oakNotificationsContext.Provider>
   );
 };

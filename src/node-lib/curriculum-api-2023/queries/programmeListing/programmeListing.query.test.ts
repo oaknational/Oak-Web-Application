@@ -13,6 +13,7 @@ import { programmeListingSchema } from "./programmeListing.schema";
 const programmeListingResponse = [
   {
     lesson_data: lessonDataFixture(),
+    unitvariant_id: 2,
     programme_fields: {
       ...programmeFieldsFixture(),
       examboard_display_order: 2,
@@ -22,6 +23,7 @@ const programmeListingResponse = [
   },
   {
     lesson_data: lessonDataFixture(),
+    unitvariant_id: 1,
     programme_fields: {
       ...programmeFieldsFixture(),
       examboard_display_order: 1,

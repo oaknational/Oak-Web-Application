@@ -1,5 +1,9 @@
 import { screen } from "@testing-library/dom";
-import { usePathname } from "next/navigation";
+import {
+  ReadonlyURLSearchParams,
+  usePathname,
+  useSearchParams,
+} from "next/navigation";
 
 import { mockProgrammeFiltersData } from "../Filters/ProgrammeFilters.test";
 
@@ -14,7 +18,10 @@ const render = renderWithProviders();
 
 jest.mock("next/navigation");
 
-(usePathname as jest.Mock).mockReturnValue("/");
+jest.mocked(usePathname).mockReturnValue("/");
+jest
+  .mocked(useSearchParams)
+  .mockReturnValue(new URLSearchParams("") as ReadonlyURLSearchParams);
 
 const defaultProps: UnitSequenceViewProps = {
   filters: createFilter({ years: ["7", "10"] }),
@@ -26,6 +33,7 @@ const defaultProps: UnitSequenceViewProps = {
   },
   curriculumUnitsFormattedData: mockProgrammeFiltersData,
   ks4Options: [],
+  examboardFilterDimensions: {},
 };
 
 const noFiltersData: UnitSequenceViewProps["curriculumUnitsFormattedData"] = {

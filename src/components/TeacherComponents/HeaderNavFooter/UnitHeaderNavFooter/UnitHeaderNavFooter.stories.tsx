@@ -6,10 +6,10 @@ import {
   OakThemeProvider,
 } from "@oaknational/oak-components";
 
-import HeaderNavFooter from "./HeaderNavFooter";
+import { UnitHeaderNavFooter } from "./UnitHeaderNavFooter";
 
-const meta: Meta<typeof HeaderNavFooter> = {
-  component: HeaderNavFooter,
+const meta: Meta<typeof UnitHeaderNavFooter> = {
+  component: UnitHeaderNavFooter,
   tags: ["autodocs"],
   decorators: [
     (Story) => (
@@ -22,15 +22,22 @@ const meta: Meta<typeof HeaderNavFooter> = {
 
 export default meta;
 
-type Story = StoryObj<typeof HeaderNavFooter>;
+type Story = StoryObj<typeof UnitHeaderNavFooter>;
 
 export const Default: Story = {
   args: {
-    backgroundColorLevel: 1,
+    backgroundColorLevel: 3,
     prevHref: "www.google.com",
     nextHref: "www.google.com",
     viewHref: "www.google.com",
-    type: "lesson",
-    actionButton: <OakPrimaryButton>Action</OakPrimaryButton>,
+    title: "Unit title",
+    downloadButton: () => <OakPrimaryButton>Action</OakPrimaryButton>,
+  },
+};
+
+export const Stuck: Story = {
+  args: {
+    ...Default.args,
+    isStuck: true,
   },
 };
