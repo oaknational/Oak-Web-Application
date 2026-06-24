@@ -88,7 +88,7 @@ type LessonDownloadsProps = {
   successRedirect?: string;
 };
 
-export function LessonDownloads(props: LessonDownloadsProps) {
+export function LessonDownloads(props: Readonly<LessonDownloadsProps>) {
   const { lesson } = props;
   const { setCurrentToastProps } = useOakNotificationsContext();
   const router = useRouter();

@@ -72,7 +72,7 @@ const isClassroomActivityResource = (
   return Object.hasOwn(classroomActivityMap, resource);
 };
 
-export function LessonShare(props: LessonShareProps) {
+export function LessonShare(props: Readonly<LessonShareProps>) {
   const { lesson } = props;
   const {
     lessonTitle,
