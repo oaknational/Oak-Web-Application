@@ -1,3 +1,11 @@
+## [1.1102.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.1102.0...v1.1102.1) (2026-06-24)
+
+
+### Bug Fixes
+
+* revert carat version ([5a05aea](https://github.com/oaknational/Oak-Web-Application/commit/5a05aea486319d6210fad0f675bbb39290494636))
+* update curriculum schema ([afc8b6b](https://github.com/oaknational/Oak-Web-Application/commit/afc8b6b17d3978c3378b4c2b7ddd907a71a1a76e))
+
 # [1.1102.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1101.0...v1.1102.0) (2026-06-23)
 
 

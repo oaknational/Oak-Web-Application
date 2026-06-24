@@ -3,8 +3,7 @@ minimumReleaseAgeExclude:
   - "@oaknational/google-classroom-addon"
   - "@oaknational/oak-components"
   - "@oaknational/oak-consent-client"
-  - "@oaknational/oak-curriculum-schema%"
-  - "@oaknational/oak-curriculum-schema@2.14.0"
+  - "@oaknational/oak-curriculum-schema"
 allowBuilds:
   "@clerk/shared": true
   "@percy/core": true
