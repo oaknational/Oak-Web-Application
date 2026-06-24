@@ -6,7 +6,6 @@ const lessonShareFixtures = (
   return {
     expired: false,
     isLegacy: true,
-    isSpecialist: false,
     lessonSlug: "macbeth-lesson-1",
     lessonTitle: "Islamic Geometry",
     programmeSlug: "maths-higher-ks4-l",
