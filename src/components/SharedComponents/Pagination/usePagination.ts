@@ -78,7 +78,7 @@ const usePagination = <T>(
   const paginationTitle =
     totalPages > 1 ? ` | Page ${currentPage} of ${totalPages}` : "";
 
-  const baseParams = searchParams;
+  const baseParams = new URLSearchParams(searchParams.toString());
 
   const prevParams = baseParams;
   if (currentPage - 1 <= 1) {
