@@ -5,8 +5,6 @@ import { useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 
 import OnboardingView from "@/components/TeacherViews/Onboarding/Onboarding.view";
-import { withPageAuthRequired } from "@/hocs/withPageAuthRequired";
-import { Wall } from "@/components/AppComponents/Wall";
 import toSafeRedirect from "@/common-lib/urls/toSafeRedirect";
 
 const OnboardingComponent: NextPage = () => {
@@ -34,4 +32,4 @@ const OnboardingComponent: NextPage = () => {
   return onboardingStatusChecked ? <OnboardingView /> : null;
 };
 
-export default withPageAuthRequired(OnboardingComponent, Wall);
+export default OnboardingComponent;
