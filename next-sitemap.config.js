@@ -31,6 +31,7 @@ const additionalAboutUsPaths = [
   "/about-us/oaks-curricula",
   "/about-us/meet-the-team",
   "/about-us/get-involved",
+  "/about-us/oaks-impact",
 ];
 
 // https://github.com/iamvishnusankar/next-sitemap#readme
