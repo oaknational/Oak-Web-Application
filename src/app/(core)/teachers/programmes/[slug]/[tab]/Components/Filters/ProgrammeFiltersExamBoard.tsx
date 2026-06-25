@@ -20,6 +20,7 @@ import {
   isExamboardSlug,
   isPathwaySlug,
 } from "@/pages-helpers/pupil/options-pages/options-pages-helpers";
+import { sortKs4OptionsForDisplay } from "@/utils/curriculum/sorting";
 import { scopeYearsToKeystageFilter } from "@/utils/curriculum/filtersUrl";
 import { keystageYearMappings } from "@/utils/curriculum/keystage";
 import { CurriculumSelectionSlugs } from "@/utils/curriculum/slugs";
@@ -165,6 +166,8 @@ export function ProgrammeFiltersExamBoard({
     );
   }
 
+  const sortedKs4Options = sortKs4OptionsForDisplay(ks4Options);
+
   return (
     <OakBox>
       <OakRadioGroup
@@ -178,7 +181,7 @@ export function ProgrammeFiltersExamBoard({
         <OakP as="legend" $font="heading-7" $mt="spacing-0" $mb="spacing-16">
           Exam board (KS4)
         </OakP>
-        {ks4Options.map((option) => (
+        {sortedKs4Options.map((option) => (
           <OakRadioAsButton
             key={option.slug}
             value={option.slug}

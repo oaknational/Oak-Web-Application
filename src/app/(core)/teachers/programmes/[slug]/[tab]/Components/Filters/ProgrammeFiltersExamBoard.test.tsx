@@ -309,8 +309,27 @@ describe("ProgrammeFiltersExamBoard", () => {
 
     const radios = getAllByRole("radio") as HTMLInputElement[];
     expect(radios).toHaveLength(2);
-    expect(radios.map((radio) => radio.value).sort()).toEqual(["core", "gcse"]);
-    expect(radios.find((radio) => radio.value === "core")).toBeChecked();
+    expect(radios[0]!.value).toBe("gcse");
+    expect(radios[1]!.value).toBe("core");
+    expect(radios[1]).toBeChecked();
+  });
+
+  it("orders GCSE and Core before exam boards", () => {
+    const { getAllByRole } = render(
+      <ProgrammeFiltersExamBoard
+        filters={defaultFilters}
+        slugs={{
+          subjectSlug: "computing",
+          phaseSlug: "secondary",
+          ks4OptionSlug: "core",
+        }}
+        ks4Options={computingOptions}
+        ks4OptionFilterDimensions={ks4OptionFilterDimensions}
+      />,
+    );
+
+    const radios = getAllByRole("radio") as HTMLInputElement[];
+    expect(radios.map((radio) => radio.value)).toEqual(["core", "aqa", "ocr"]);
   });
 
   it("navigates to the selected exam board slug and preserves KS4 query params", () => {
@@ -356,9 +375,8 @@ describe("ProgrammeFiltersExamBoard", () => {
     );
 
     const radios = getAllByRole("radio") as HTMLInputElement[];
-    const gcseRadio = radios.find((radio) => radio.value === "gcse");
 
-    act(() => gcseRadio!.click());
+    act(() => radios[0]!.click());
 
     expect(replaceMock).toHaveBeenCalledWith(
       resolveOakHref({
