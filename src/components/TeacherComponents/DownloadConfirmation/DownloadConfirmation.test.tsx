@@ -119,28 +119,6 @@ describe("DownloadConfirmation component", () => {
       "/teachers/programmes/test-programme/units/test-unit/lessons/test-lesson",
     );
   });
-  it("Back to lesson link specialist", () => {
-    const { getByTestId } = renderWithProviders()(
-      <DownloadConfirmation
-        lessonTitle="Test lesson"
-        programmeSlug="test-programme"
-        unitTitle="Test unit"
-        isCanonical={false}
-        isLegacy={false}
-        onwardContentSelected={onwardContentSelected}
-        isSpecialist={true}
-        {...curriculumTrackingProps}
-      />,
-    );
-
-    expectScrollTopOnRender();
-    const link = getByTestId("back-to-lesson-link");
-
-    expect(link).toHaveAttribute(
-      "href",
-      "/teachers/specialist/programmes/test-programme/units/test-unit/lessons/test-lesson",
-    );
-  });
 
   it("when unitSlug or programmeSlug is null renders link to cannonical lesson", () => {
     const { getByTestId } = renderWithProviders()(

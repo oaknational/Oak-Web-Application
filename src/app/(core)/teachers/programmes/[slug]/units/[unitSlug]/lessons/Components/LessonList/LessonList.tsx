@@ -214,7 +214,7 @@ const LessonList = ({
                     />
                   }
                   href={resolveOakHref({
-                    page: "integrated-lesson-overview",
+                    page: "lesson-overview",
                     programmeSlug,
                     unitSlug,
                     lessonSlug: lesson.lessonSlug,

@@ -53,7 +53,6 @@ const lessonDownloadsFixture: Partial<LessonDownloadsPageData> = {
   downloads: [],
   additionalFiles: [],
   expired: false,
-  isSpecialist: false,
   isLegacy: false,
   legacyCopyrightContent: null,
   updatedAt: "2024-01-01",

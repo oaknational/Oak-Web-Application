@@ -34,8 +34,7 @@ const NoSavedContent = () => {
           isTrailingIcon
           element="a"
           href={resolveOakHref({
-            page: "subject-index",
-            keyStageSlug: "ks1",
+            page: "home",
           })}
         >
           Start saving

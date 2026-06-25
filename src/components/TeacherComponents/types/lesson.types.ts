@@ -7,7 +7,6 @@ import {
   LessonReleaseCohortValueType,
 } from "@/browser-lib/avo/Avo";
 import { MediaClipListCamelCase } from "@/node-lib/curriculum-api-2023/queries/lessonMediaClips/lessonMediaClips.schema";
-import { SpecialistLessonOverviewData } from "@/node-lib/curriculum-api-2023/queries/specialistLessonOverview/specialistLessonOverview.schema";
 import { LessonBase } from "@/node-lib/curriculum-api-2023/shared.schema";
 export type { LessonBase } from "@/node-lib/curriculum-api-2023/shared.schema";
 
@@ -29,41 +28,6 @@ export type LessonPathway = {
   lessonCohort?: string | null;
   pathwayTitle?: string | null;
 };
-
-export type SpecialistLessonPathway = {
-  lessonSlug: string;
-  lessonTitle: string;
-  programmeSlug: string;
-  unitSlug: string;
-  unitTitle: string;
-  disabled?: boolean;
-  subjectTitle: string;
-  subjectSlug: string;
-  developmentStageTitle?: string | null;
-  disable?: boolean;
-  keyStageSlug: null;
-  keyStageTitle: null;
-  yearTitle: null;
-  year: null;
-  examBoardSlug: null;
-  examBoardTitle: null;
-  tierTitle: null;
-  subjectParent: null;
-  pathwayTitle: null;
-};
-
-export type SpecialistLessonPathwayBreadcrumbs = Pick<
-  SpecialistLessonPathway,
-  | "lessonSlug"
-  | "lessonTitle"
-  | "programmeSlug"
-  | "unitSlug"
-  | "unitTitle"
-  | "subjectTitle"
-  | "subjectSlug"
-  | "developmentStageTitle"
-  | "disabled"
->;
 
 export type LessonOverviewCanonical = LessonBase & {
   isCanonical: true;
@@ -87,11 +51,9 @@ export type LessonOverviewInPathway = LessonBase & {
   examBoardTitle?: string | null;
 };
 
-export type LessonOverviewAll = { isSpecialist: boolean } & (
+export type LessonOverviewAll =
   | LessonOverviewCanonical
-  | LessonOverviewInPathway
-  | SpecialistLessonOverviewData
-);
+  | LessonOverviewInPathway;
 
 export type AnalyticsBrowseData = {
   unitName: string;

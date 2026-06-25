@@ -80,7 +80,7 @@ export const Breadcrumbs = ({
       {
         text: unitTitle,
         href: resolveOakHref({
-          page: "integrated-unit-overview",
+          page: "unit-overview",
           unitSlug: unitSlug,
           programmeSlug,
         }),
@@ -88,7 +88,7 @@ export const Breadcrumbs = ({
       {
         text: data.lessonTitle,
         href: resolveOakHref({
-          page: "integrated-lesson-overview",
+          page: "lesson-overview",
           unitSlug: unitSlug,
           programmeSlug,
           lessonSlug: data.lessonSlug,
@@ -104,7 +104,7 @@ export const Breadcrumbs = ({
       {
         text: unitTitle,
         href: resolveOakHref({
-          page: "integrated-unit-overview",
+          page: "unit-overview",
           unitSlug: unitSlug,
           programmeSlug,
         }),
@@ -112,7 +112,7 @@ export const Breadcrumbs = ({
       {
         text: data.lessonTitle,
         href: resolveOakHref({
-          page: "integrated-lesson-overview",
+          page: "lesson-overview",
           unitSlug: unitSlug,
           programmeSlug,
           lessonSlug: data.lessonSlug,
@@ -128,7 +128,7 @@ export const Breadcrumbs = ({
       {
         text: unitTitle,
         href: resolveOakHref({
-          page: "integrated-unit-overview",
+          page: "unit-overview",
           unitSlug: unitSlug,
           programmeSlug,
         }),

@@ -83,7 +83,7 @@ describe("LessonOverviewMediaClips", () => {
     expect(getByText("Lesson outline for cycle 2")).toBeInTheDocument();
   });
 
-  it("links clip tiles to integrated lesson media when useIntegratedMediaLinks is true", () => {
+  it("links clip tiles to lesson media", () => {
     const { getByRole } = renderWithTheme(
       <LessonOverviewMediaClips
         learningCycleVideos={keysToCamelCase(mockLearningCycleVideos)}
@@ -93,7 +93,6 @@ describe("LessonOverviewMediaClips", () => {
         lessonOutline={null}
         isPELesson={false}
         isMFL={false}
-        useIntegratedMediaLinks
       />,
     );
 
@@ -101,7 +100,7 @@ describe("LessonOverviewMediaClips", () => {
     expect(introClipLink).toHaveAttribute(
       "href",
       resolveOakHref({
-        page: "integrated-lesson-media",
+        page: "lesson-media",
         lessonSlug: "lesson-slug",
         programmeSlug: "programme-slug",
         unitSlug: "unit-slug",

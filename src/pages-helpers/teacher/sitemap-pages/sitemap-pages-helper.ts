@@ -108,7 +108,7 @@ function buildAllUrls(
   // Build the URLs for the unit pages
   const unitUrls = units.map((unit) => {
     url.pathname = resolveOakHref({
-      page: "integrated-unit-overview",
+      page: "unit-overview",
       programmeSlug: unit.programmeSlug,
       unitSlug: unit.unitSlug,
     });
@@ -119,7 +119,7 @@ function buildAllUrls(
   // Build the URLs for the lesson pages
   const lessonUrls = lessons.map((lesson) => {
     url.pathname = resolveOakHref({
-      page: "integrated-lesson-overview",
+      page: "lesson-overview",
       programmeSlug: lesson.programmeSlug,
       unitSlug: lesson.unitSlug,
       lessonSlug: lesson.lessonSlug,
