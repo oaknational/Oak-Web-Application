@@ -9,14 +9,17 @@ import {
 import { useRouter } from "next/navigation";
 import { useId } from "react";
 
-import type { ExamboardFilterDimension } from "../../buildExamboardFilterDimensions";
+import type { Ks4OptionFilterDimension } from "../../buildKs4OptionFilterDimensions";
 
 import { useGetExamBoardFocusNavigationQuery } from "./ExamBoardFocus/ExamBoardFocusScope";
 
 import { getSubjectPhaseSlug } from "@/components/TeacherComponents/helpers/getSubjectPhaseSlug";
 import { resolveOakHref } from "@/common-lib/urls";
 import type { Ks4Option } from "@/node-lib/curriculum-api-2023/queries/curriculumPhaseOptions/curriculumPhaseOptions.schema";
-import { isExamboardSlug } from "@/pages-helpers/pupil/options-pages/options-pages-helpers";
+import {
+  isExamboardSlug,
+  isPathwaySlug,
+} from "@/pages-helpers/pupil/options-pages/options-pages-helpers";
 import { scopeYearsToKeystageFilter } from "@/utils/curriculum/filtersUrl";
 import { keystageYearMappings } from "@/utils/curriculum/keystage";
 import { CurriculumSelectionSlugs } from "@/utils/curriculum/slugs";
@@ -26,7 +29,7 @@ export type ProgrammeFiltersExamBoardProps = {
   filters: CurriculumFilters;
   slugs: CurriculumSelectionSlugs;
   ks4Options: Ks4Option[];
-  examboardFilterDimensions: Record<string, ExamboardFilterDimension>;
+  ks4OptionFilterDimensions: Record<string, Ks4OptionFilterDimension>;
   // accepted but unused - required to slot into the shared filter render loop
   onChangeFilters?: unknown;
   data?: unknown;
@@ -37,25 +40,20 @@ export function shouldDisplayExamBoardFilter(
   filters: CurriculumFilters,
   ks4Options: Ks4Option[],
 ): boolean {
-  const hasExamBoardOptions = ks4Options.some((option) =>
-    isExamboardSlug(option.slug),
-  );
+  const hasMultipleKs4Options = ks4Options.length > 1;
   const effectiveYears = scopeYearsToKeystageFilter(filters);
   const hasKs4YearFilter = effectiveYears.some((year) =>
     keystageYearMappings.ks4.includes(year),
   );
-  const isInKs4Context =
+  const isValidKs4Option =
     slugs.ks4OptionSlug !== null &&
-    isExamboardSlug(slugs.ks4OptionSlug) &&
-    hasKs4YearFilter;
+    (isExamboardSlug(slugs.ks4OptionSlug) ||
+      isPathwaySlug(slugs.ks4OptionSlug));
+  const isInKs4Context = isValidKs4Option && hasKs4YearFilter;
 
   return (
-    slugs.phaseSlug === "secondary" && isInKs4Context && hasExamBoardOptions
+    slugs.phaseSlug === "secondary" && isInKs4Context && hasMultipleKs4Options
   );
-}
-
-function getExamBoardOptions(ks4Options: Ks4Option[]) {
-  return ks4Options.filter((option) => isExamboardSlug(option.slug));
 }
 
 function filterCompatibleFilterValues(
@@ -81,7 +79,7 @@ function toQueryParam(values: string[]): string | undefined {
 export function getPreservedQuery(
   filters: CurriculumFilters,
   destinationSlug: string,
-  examboardFilterDimensions?: Record<string, ExamboardFilterDimension>,
+  ks4OptionFilterDimensions?: Record<string, Ks4OptionFilterDimension>,
 ) {
   const keystages = filters.keystages[0];
   const years =
@@ -90,15 +88,9 @@ export function getPreservedQuery(
       ? filters.years[0]
       : undefined;
 
-  const destinationDims = examboardFilterDimensions?.[destinationSlug];
+  const destinationDims = ks4OptionFilterDimensions?.[destinationSlug];
   const tiers = toQueryParam(
     filterCompatibleFilterValues(filters.tiers, destinationDims?.tierSlugs),
-  );
-  const pathways = toQueryParam(
-    filterCompatibleFilterValues(
-      filters.pathways,
-      destinationDims?.pathwaySlugs,
-    ),
   );
   const childSubjects = toQueryParam(
     filterCompatibleFilterValues(
@@ -111,34 +103,50 @@ export function getPreservedQuery(
     keystages: keystages ?? undefined,
     years,
     tiers,
-    pathways,
     child_subjects: childSubjects,
   };
+}
+
+export function getSubjectPhaseSlugForKs4Option(
+  slugs: Pick<CurriculumSelectionSlugs, "subjectSlug" | "phaseSlug">,
+  selectedKs4OptionSlug: string,
+) {
+  if (isPathwaySlug(selectedKs4OptionSlug)) {
+    return getSubjectPhaseSlug({
+      subject: slugs.subjectSlug,
+      phaseSlug: slugs.phaseSlug,
+      pathwaySlug: selectedKs4OptionSlug,
+    });
+  }
+
+  return getSubjectPhaseSlug({
+    subject: slugs.subjectSlug,
+    phaseSlug: slugs.phaseSlug,
+    examBoardSlug: selectedKs4OptionSlug,
+  });
 }
 
 export function ProgrammeFiltersExamBoard({
   filters,
   slugs,
   ks4Options,
-  examboardFilterDimensions,
+  ks4OptionFilterDimensions,
 }: Readonly<ProgrammeFiltersExamBoardProps>) {
   const id = useId();
   const router = useRouter();
   const getExamBoardFocusNavigationQuery =
     useGetExamBoardFocusNavigationQuery();
-  const examBoardOptions = getExamBoardOptions(ks4Options);
   const isVisible = shouldDisplayExamBoardFilter(slugs, filters, ks4Options);
 
   if (!isVisible) {
     return null;
   }
 
-  function onExamBoardChange(selectedSlug: string) {
-    const subjectPhaseSlug = getSubjectPhaseSlug({
-      subject: slugs.subjectSlug,
-      phaseSlug: slugs.phaseSlug,
-      examBoardSlug: selectedSlug,
-    });
+  function onKs4OptionChange(selectedSlug: string) {
+    const subjectPhaseSlug = getSubjectPhaseSlugForKs4Option(
+      slugs,
+      selectedSlug,
+    );
 
     router.replace(
       resolveOakHref({
@@ -149,7 +157,7 @@ export function ProgrammeFiltersExamBoard({
           ...getPreservedQuery(
             filters,
             selectedSlug,
-            examboardFilterDimensions,
+            ks4OptionFilterDimensions,
           ),
           ...getExamBoardFocusNavigationQuery(selectedSlug),
         },
@@ -161,7 +169,7 @@ export function ProgrammeFiltersExamBoard({
     <OakBox>
       <OakRadioGroup
         name={`exam-board-${id}`}
-        onChange={(e) => onExamBoardChange(e.target.value)}
+        onChange={(e) => onKs4OptionChange(e.target.value)}
         value={slugs.ks4OptionSlug ?? ""}
         $flexDirection="row"
         $flexWrap="wrap"
@@ -170,7 +178,7 @@ export function ProgrammeFiltersExamBoard({
         <OakP as="legend" $font="heading-7" $mt="spacing-0" $mb="spacing-16">
           Exam board (KS4)
         </OakP>
-        {examBoardOptions.map((option) => (
+        {ks4Options.map((option) => (
           <OakRadioAsButton
             key={option.slug}
             value={option.slug}
