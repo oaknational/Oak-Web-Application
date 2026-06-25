@@ -52,7 +52,7 @@ export function SupportYou(props: SupportYouProps) {
             </OakFlex>
           </OakFlex>
         </OakGridArea>
-        <OakGridArea $colStart={[0, 7, 7]} $colSpan={[12, 5, 5]}>
+        <OakGridArea $colStart={[0, 7, 7]} $colSpan={[12, 6, 5]}>
           <OakFlex
             $flexGrow={1}
             $background={"bg-decorative1-subdued"}
