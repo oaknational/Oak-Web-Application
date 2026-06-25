@@ -35,7 +35,6 @@ const baseProps = {
   expired: false,
   showDownloadAll: true,
   onClickDownloadAll: mockDownloadAllButton,
-  isSpecialist: false,
   isCanonical: false,
   geoRestricted: false,
   loginRequired: false,
@@ -85,18 +84,15 @@ describe("LessonOverviewDownloadAllButton", () => {
     expect(mockDownloadAllButton).toHaveBeenCalled();
   });
 
-  it("uses integrated downloads route when isIntegratedJourney is true", () => {
+  it("uses lesson downloads route", () => {
     const { getByTestId } = render(
-      <LessonOverviewDownloadAllButton
-        {...baseProps}
-        isIntegratedJourney={true}
-      />,
+      <LessonOverviewDownloadAllButton {...baseProps} />,
     );
 
     expect(getByTestId("download-all-button")).toHaveAttribute(
       "href",
       resolveOakHref({
-        page: "integrated-lesson-downloads",
+        page: "lesson-downloads",
         lessonSlug: "test-lesson",
         unitSlug: "test-unit",
         programmeSlug: "test-programme",

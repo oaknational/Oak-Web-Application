@@ -1604,7 +1604,7 @@ exports[`CurriculumTab renders 1`] = `
               >
                 <a
                   class="c18 "
-                  href="/teachers/curriculum"
+                  href="/about-us/oaks-curricula"
                 >
                   <span
                     class="c19"

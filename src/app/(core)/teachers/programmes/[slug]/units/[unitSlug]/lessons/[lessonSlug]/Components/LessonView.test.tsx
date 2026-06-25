@@ -1,5 +1,6 @@
 import { screen, act } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
+import { useFeatureFlagEnabled } from "posthog-js/react";
 
 import LessonView from "./LessonView";
 
@@ -37,6 +38,14 @@ jest.mock(
   "@/components/TeacherComponents/LessonOverviewMediaClips/LessonOverviewMediaClips.tsx",
 );
 
+jest.mock("posthog-js/react", () => ({
+  useFeatureFlagEnabled: jest.fn(),
+}));
+
+const mockUseFeatureFlagEnabled = useFeatureFlagEnabled as jest.MockedFunction<
+  typeof useFeatureFlagEnabled
+>;
+
 const render = renderWithProviders();
 
 const baseProps = teachersLessonOverviewFixture();
@@ -64,7 +73,7 @@ describe("Previous and Next Lesson Navigation", () => {
     ).toHaveAttribute(
       "href",
       resolveOakHref({
-        page: "integrated-lesson-overview",
+        page: "lesson-overview",
         programmeSlug: baseProps.programmeSlug,
         unitSlug: baseProps.unitSlug,
         lessonSlug: "lesson-2",
@@ -73,7 +82,7 @@ describe("Previous and Next Lesson Navigation", () => {
     expect(screen.getByRole("link", { name: /Next lesson/i })).toHaveAttribute(
       "href",
       resolveOakHref({
-        page: "integrated-lesson-overview",
+        page: "lesson-overview",
         programmeSlug: baseProps.programmeSlug,
         unitSlug: baseProps.unitSlug,
         lessonSlug: "lesson-4",
@@ -117,7 +126,7 @@ describe("Previous and Next Lesson Navigation", () => {
     ).toHaveAttribute(
       "href",
       resolveOakHref({
-        page: "integrated-lesson-overview",
+        page: "lesson-overview",
         programmeSlug: baseProps.programmeSlug,
         unitSlug: baseProps.unitSlug,
         lessonSlug: "lesson-2",
@@ -126,12 +135,69 @@ describe("Previous and Next Lesson Navigation", () => {
     expect(screen.getByRole("link", { name: /Next lesson/i })).toHaveAttribute(
       "href",
       resolveOakHref({
-        page: "integrated-lesson-overview",
+        page: "lesson-overview",
         programmeSlug: baseProps.programmeSlug,
         unitSlug: baseProps.unitSlug,
         lessonSlug: "lesson-4",
       }),
     );
+  });
+});
+
+describe("Heatwave banner", () => {
+  beforeEach(() => {
+    jest.clearAllMocks();
+    mockUseFeatureFlagEnabled.mockReturnValue(true);
+  });
+
+  it("shows the heatwave banner when the feature flag is enabled and share is available", () => {
+    render(<LessonView {...baseProps} />);
+
+    expect(
+      screen.getByText(
+        /Disruption this week due to hot weather\? Set this lesson as remote work/i,
+      ),
+    ).toBeInTheDocument();
+  });
+
+  it("does not show the heatwave banner when the feature flag is disabled", () => {
+    mockUseFeatureFlagEnabled.mockReturnValue(false);
+    render(<LessonView {...baseProps} />);
+
+    expect(
+      screen.queryByText(
+        /Disruption this week due to hot weather\? Set this lesson as remote work/i,
+      ),
+    ).not.toBeInTheDocument();
+  });
+
+  it("does not show the heatwave banner when the share button is disabled (e.g. Practical PE)", () => {
+    render(<LessonView {...baseProps} actions={{ disablePupilShare: true }} />);
+
+    expect(
+      screen.queryByText(
+        /Disruption this week due to hot weather\? Set this lesson as remote work/i,
+      ),
+    ).not.toBeInTheDocument();
+  });
+
+  it("hides the heatwave banner when the dismiss button is clicked", async () => {
+    const user = userEvent.setup();
+    render(<LessonView {...baseProps} />);
+
+    expect(
+      screen.getByText(
+        /Disruption this week due to hot weather\? Set this lesson as remote work/i,
+      ),
+    ).toBeInTheDocument();
+
+    await user.click(screen.getByRole("button", { name: /dismiss/i }));
+
+    expect(
+      screen.queryByText(
+        /Disruption this week due to hot weather\? Set this lesson as remote work/i,
+      ),
+    ).not.toBeInTheDocument();
   });
 });
 

@@ -18,9 +18,6 @@ describe("NoSavedContent", () => {
     const buttonAsLink = screen.getByRole("link", {
       name: /Start saving/i,
     });
-    expect(buttonAsLink).toHaveAttribute(
-      "href",
-      "/teachers/key-stages/ks1/subjects",
-    );
+    expect(buttonAsLink).toHaveAttribute("href", "/");
   });
 });

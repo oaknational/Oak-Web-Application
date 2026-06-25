@@ -7,10 +7,21 @@ import {
 } from "@oaknational/oak-components";
 import styled from "styled-components";
 
-import { StyledVideoFlex } from "../NewContentBanner/NewContentBanner";
-
 import VideoPlayer from "@/components/SharedComponents/VideoPlayer";
 import { isExternalHref } from "@/common-lib/urls";
+
+const StyledVideoFlex = styled(OakFlex)`
+  transition: width 0.4s ease-in;
+  flex: 0 0 auto;
+
+  @media (min-width: 750px) {
+    flex: 0 0 30%;
+  }
+
+  @media (min-width: 1024px) {
+    flex: 0 0 45%;
+  }
+`;
 
 type PromoBannerWithVideoProps = {
   title: string;

@@ -23,6 +23,7 @@ import {
 import { TrackingProgrammeData } from "@/node-lib/educator-api/helpers/saveUnits/utils";
 
 export type CardProps = {
+  /** Ignored on parent CardListing when `childCards` is present; use on child cards instead. */
   highlightColorVariant?: HighlightColorVariant;
   title: string;
   lessonCount?: number;

@@ -123,7 +123,6 @@ const lessonDownloadsQuery =
     return lessonDownloadsSchema.parse({
       ...lessonDownloads,
       isLegacy: false,
-      isSpecialist: false,
       geoRestricted: lessonRestrictions.geoRestricted,
       loginRequired: lessonRestrictions.loginRequired,
       lessonReleaseDate: lesson_release_date ?? "unpublished",

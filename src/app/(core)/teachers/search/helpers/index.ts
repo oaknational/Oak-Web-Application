@@ -28,8 +28,8 @@ import truthy from "@/utils/truthy";
 import addLegacySlugSuffix from "@/utils/slugModifiers/addLegacySlugSuffix";
 import { SearchResultsItemProps } from "@/components/TeacherComponents/SearchResultsItem";
 import {
-  IntegratedLessonOverviewLinkProps,
-  IntegratedUnitOverviewLinkProps,
+  UnitOverviewLinkProps,
+  LessonOverviewLinkProps,
 } from "@/common-lib/urls";
 import { LEGACY_COHORT } from "@/config/cohort";
 import { SearchIntent } from "@/common-lib/schemas/search-intent";
@@ -323,8 +323,8 @@ export function getLessonObject(props: {
     allKeyStages,
   });
 
-  const buttonLinkProps: IntegratedLessonOverviewLinkProps = {
-    page: "integrated-lesson-overview",
+  const buttonLinkProps: LessonOverviewLinkProps = {
+    page: "lesson-overview",
     lessonSlug: highlightedHit.slug?.toString(),
     programmeSlug:
       _source.cohort === LEGACY_COHORT
@@ -385,8 +385,8 @@ export function getUnitObject(props: {
     allKeyStages,
   });
 
-  const buttonLinkProps: IntegratedUnitOverviewLinkProps = {
-    page: "integrated-unit-overview",
+  const buttonLinkProps: UnitOverviewLinkProps = {
+    page: "unit-overview",
     programmeSlug:
       _source.cohort === LEGACY_COHORT
         ? addLegacySlugSuffix(getProgrammeSlug(hit, allKeyStages)) ||

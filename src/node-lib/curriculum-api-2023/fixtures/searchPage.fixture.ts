@@ -83,7 +83,7 @@ export const searchResultsItem = (
     },
 
     buttonLinkProps: {
-      page: "integrated-lesson-overview",
+      page: "lesson-overview",
       lessonSlug: "the-fde-cycle-68w3ct",
       programmeSlug: "computing-secondary-ks4-l",
       unitSlug: "computer-systems-e17a",
@@ -152,7 +152,7 @@ export const searchResultsItem = (
       console.log("click");
     },
     buttonLinkProps: {
-      page: "integrated-unit-overview",
+      page: "unit-overview",
       programmeSlug: "computing-secondary-ks3-l",
       unitSlug: "computing-systems-1558",
     },
@@ -222,7 +222,7 @@ export const searchResultsItem = (
       console.log("click");
     },
     buttonLinkProps: {
-      page: "integrated-unit-overview",
+      page: "unit-overview",
       programmeSlug: "computing-secondary-ks3-l",
       unitSlug: "computing-systems-1558",
     },
@@ -297,7 +297,7 @@ export const searchResultsItem = (
     },
 
     buttonLinkProps: {
-      page: "integrated-lesson-overview",
+      page: "lesson-overview",
       lessonSlug: "the-fde-cycle-68w3ct",
       programmeSlug: "computing-secondary-ks4-l",
       unitSlug: "computer-systems-e17a",

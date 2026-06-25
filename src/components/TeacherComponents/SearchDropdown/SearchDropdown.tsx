@@ -12,10 +12,7 @@ import styled from "styled-components";
 
 import { SearchResultsItemProps } from "@/components/TeacherComponents/SearchResultsItem";
 import { PathwaySchemaCamel } from "@/context/Search/search.types";
-import {
-  IntegratedLessonOverviewLinkProps,
-  resolveOakHref,
-} from "@/common-lib/urls";
+import { LessonOverviewLinkProps, resolveOakHref } from "@/common-lib/urls";
 
 const StyledOakLink = styled(OakLink)`
   text-decoration: none;
@@ -102,7 +99,7 @@ const SearchDropdown: FC<
                       programmeSlug: item.programmeSlug,
                       unitSlug: item.unitSlug,
                       lessonSlug: (
-                        props.buttonLinkProps as IntegratedLessonOverviewLinkProps
+                        props.buttonLinkProps as LessonOverviewLinkProps
                       )?.lessonSlug,
                       page: props.buttonLinkProps.page,
                     })}

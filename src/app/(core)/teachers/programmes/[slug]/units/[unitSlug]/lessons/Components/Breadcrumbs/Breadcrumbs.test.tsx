@@ -65,7 +65,7 @@ describe("Breadcrumbs", () => {
     expect(unitOverviewLink).toHaveAttribute(
       "href",
       resolveOakHref({
-        page: "integrated-unit-overview",
+        page: "unit-overview",
         unitSlug: mockLessonData.unitSlug,
         programmeSlug: mockLessonData.programmeSlug,
       }),
@@ -167,7 +167,7 @@ describe("Breadcrumbs", () => {
     expect(unitLink).toHaveAttribute(
       "href",
       resolveOakHref({
-        page: "integrated-unit-overview",
+        page: "unit-overview",
         unitSlug: mockDownloadsData.unitSlug,
         programmeSlug: mockDownloadsData.programmeSlug,
       }),
@@ -179,7 +179,7 @@ describe("Breadcrumbs", () => {
     expect(lessonLink).toHaveAttribute(
       "href",
       resolveOakHref({
-        page: "integrated-lesson-overview",
+        page: "lesson-overview",
         unitSlug: mockDownloadsData.unitSlug,
         programmeSlug: mockDownloadsData.programmeSlug,
         lessonSlug: mockDownloadsData.lessonSlug,
@@ -228,7 +228,7 @@ describe("Breadcrumbs", () => {
     expect(unitLink).toHaveAttribute(
       "href",
       resolveOakHref({
-        page: "integrated-unit-overview",
+        page: "unit-overview",
         unitSlug: mockMediaData.unitSlug,
         programmeSlug: mockMediaData.programmeSlug,
       }),
@@ -240,7 +240,7 @@ describe("Breadcrumbs", () => {
     expect(lessonLink).toHaveAttribute(
       "href",
       resolveOakHref({
-        page: "integrated-lesson-overview",
+        page: "lesson-overview",
         unitSlug: mockMediaData.unitSlug,
         programmeSlug: mockMediaData.programmeSlug,
         lessonSlug: mockMediaData.lessonSlug,
