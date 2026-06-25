@@ -43,13 +43,11 @@ function SubmenuContainer({
   ariaLabel,
   children,
   hamburgerMenu,
-  onBack,
 }: {
   readonly title: string;
   readonly ariaLabel?: string;
   readonly children: ReactNode;
   readonly hamburgerMenu: HamburgerMenuHook;
-  readonly onBack?: () => void;
 }) {
   const { submenuOpen, handleCloseSubmenu } = hamburgerMenu;
   const containerRef = useRef<HTMLDivElement>(null);
@@ -83,13 +81,7 @@ function SubmenuContainer({
         aria-label={ariaLabel}
         selected={true}
         $pl="spacing-0"
-        onClick={() => {
-          if (onBack) {
-            onBack();
-            return;
-          }
-          handleCloseSubmenu();
-        }}
+        onClick={() => handleCloseSubmenu()}
         id="hamburger-back-button"
       >
         <OakHeading $font="heading-6" tag="h3">
