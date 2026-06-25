@@ -12,7 +12,7 @@ import {
 } from "@oaknational/oak-components";
 import Link from "next/link";
 
-import { SubmenuState, HamburgerMenuHook } from "./TeachersTopNavHamburger";
+import { HamburgerMenuHook } from "./TeachersTopNavHamburger";
 
 import {
   TeachersBrowse,
@@ -30,7 +30,17 @@ export function MainMenuContent(
   useEffect(() => {
     // We're navigating back from a submenu, focus the triggering element
     if (prevSubmenu) {
-      const element = document.getElementById(prevSubmenu + "button");
+      const getButtonId = () => {
+        if (prevSubmenu.menu === "Phases") {
+          return prevSubmenu.value + " subjects";
+        } else if (prevSubmenu.menu === "KeystageOptions") {
+          return prevSubmenu.value + " key stages";
+        }
+        return prevSubmenu.value;
+      };
+      const returnFocusId = getButtonId() + "button";
+      if (!returnFocusId) return;
+      const element = document.getElementById(returnFocusId);
       element?.focus();
     }
   }, [submenuOpen, prevSubmenu]);
@@ -41,16 +51,20 @@ export function MainMenuContent(
       <SubjectsSection {...navData.secondary} hamburgerMenu={hamburgerMenu} />
       <MainMenuButton
         title={"About us"}
-        hamburgerMenu={hamburgerMenu}
+        onClick={() =>
+          hamburgerMenu.handleNav({ menu: "OakMenu", value: "About us" })
+        }
         $pb="spacing-16"
       />
       <MainMenuButton
         title={"Guidance"}
-        hamburgerMenu={hamburgerMenu}
+        onClick={() =>
+          hamburgerMenu.handleNav({ menu: "OakMenu", value: "Guidance" })
+        }
         $pb="spacing-16"
       />
       <MainMenuLink
-        hamburgerMenu={hamburgerMenu}
+        onClick={hamburgerMenu.handleCloseHamburger}
         href={resolveOakHref({
           page: "labs",
         })}
@@ -68,18 +82,18 @@ function SubjectsSection(
 ) {
   const { hamburgerMenu, ...browseData } = props;
   const { track } = useAnalytics();
-  const phaseSubjects = browseData.children.filter(
-    (child) => child.type === "phase",
-  );
-  const keystages = browseData.children.filter(
-    (child) => child.type === "keystage",
-  );
-  const subjectsTitle =
-    browseData.slug === "primary" ? "Primary subjects" : "Secondary subjects";
-  const keyStagesTitle =
-    browseData.slug === "primary"
+
+  const getSubjectsTitle = () =>
+    browseData.phases.slug === "primary"
+      ? "Primary subjects"
+      : "Secondary subjects";
+
+  const getKeystagesTitle = () =>
+    browseData.phases.slug === "primary"
       ? "Primary key stages"
       : "Secondary key stages";
+
+  const keystageChildren = browseData.keystages.children;
 
   return (
     <OakLI $listStyle={"none"} $pb="spacing-40">
@@ -91,7 +105,7 @@ function SubjectsSection(
       >
         <OakBox $position={"relative"}>
           <OakHeading tag="h2" $font={"heading-6"}>
-            {browseData.title}
+            {browseData.phases.title}
           </OakHeading>
           <OakSvg
             $position={"absolute"}
@@ -109,10 +123,41 @@ function SubjectsSection(
         $ph="spacing-0"
         $pt="spacing-12"
       >
-        {phaseSubjects.length > 0 && (
+        <MainMenuButton
+          key={browseData.phases.slug}
+          title={getSubjectsTitle()}
+          onClick={() =>
+            hamburgerMenu.handleNav({
+              menu: "Phases",
+              value: browseData.phases.title,
+            })
+          }
+          track={() => {
+            track.browseRefined({
+              platform: "owa",
+              product: "teacher lesson resources",
+              engagementIntent: "refine",
+              componentType: "topnav-browse-button",
+              eventVersion: "2.0.0",
+              analyticsUseCase: "Teacher",
+              filterType: "Phase filter",
+              filterValue: browseData.phases.slug,
+              activeFilters: {},
+              googleLoginHint: null,
+              clientEnvironment: null,
+            });
+          }}
+        />
+
+        {!!keystageChildren.length && (
           <MainMenuButton
-            title={subjectsTitle}
-            hamburgerMenu={hamburgerMenu}
+            title={getKeystagesTitle()}
+            onClick={() =>
+              hamburgerMenu.handleNav({
+                menu: "KeystageOptions",
+                value: browseData.phases.title,
+              })
+            }
             track={() => {
               track.browseRefined({
                 platform: "owa",
@@ -122,18 +167,12 @@ function SubjectsSection(
                 eventVersion: "2.0.0",
                 analyticsUseCase: "Teacher",
                 filterType: "Phase filter",
-                filterValue: browseData.slug,
+                filterValue: browseData.phases.slug,
                 activeFilters: {},
                 googleLoginHint: null,
                 clientEnvironment: null,
               });
             }}
-          />
-        )}
-        {keystages.length > 0 && (
-          <MainMenuButton
-            title={keyStagesTitle}
-            hamburgerMenu={hamburgerMenu}
           />
         )}
       </OakFlex>
@@ -148,19 +187,17 @@ function SubjectsSection(
   );
 }
 
-function MainMenuButton({
+export function MainMenuButton({
   title,
-  hamburgerMenu,
+  onClick,
   track,
   $pb,
 }: Readonly<{
-  title: SubmenuState;
-  hamburgerMenu: HamburgerMenuHook;
+  title: string;
+  onClick?: () => void;
   track?: () => void;
   $pb?: OakLIProps["$pb"];
 }>) {
-  const { setSubmenuOpen } = hamburgerMenu;
-
   return (
     <OakLI $listStyle={"none"} $width={"100%"} $pb={$pb}>
       <OakLeftAlignedButton
@@ -171,7 +208,7 @@ function MainMenuButton({
         id={title + "button"}
         onClick={() => {
           track?.();
-          setSubmenuOpen(title);
+          onClick?.();
         }}
       >
         {title}
@@ -185,15 +222,14 @@ function MainMenuLink({
   title,
   iconName,
   external,
-  hamburgerMenu,
+  onClick,
 }: {
   readonly href: string;
   readonly title: string;
-  readonly hamburgerMenu: HamburgerMenuHook;
   readonly external?: boolean;
   readonly iconName?: OakIconName;
+  readonly onClick: () => void;
 }) {
-  const { handleCloseHamburger } = hamburgerMenu;
   return (
     <OakLeftAlignedButton
       width={"100%"}
@@ -205,7 +241,7 @@ function MainMenuLink({
       aria-label={
         external ? `${title} (this will open in a new tab)` : undefined
       }
-      onClick={handleCloseHamburger}
+      onClick={onClick}
     >
       {title}
     </OakLeftAlignedButton>
