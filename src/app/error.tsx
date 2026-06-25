@@ -14,7 +14,6 @@ import errorReporter from "@/common-lib/error-reporter";
 import LayoutSiteFooter from "@/components/AppComponents/LayoutSiteFooter";
 import TopNavMinimal from "@/components/AppComponents/TopNav/TopNavMinimal";
 
-
 export default function CoreError({
   error,
 }: {
