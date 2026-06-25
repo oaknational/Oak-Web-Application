@@ -1,0 +1,86 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`WhoAreWeBreakout renders correctly 1`] = `
+<body>
+  <div>
+    <div
+      class="sc-aXZVg guaSoh"
+    >
+      <div
+        class="sc-aXZVg sc-tagGq jPvJsJ ktvIBS"
+      >
+        <div
+          class="sc-aXZVg sc-gEvEer sc-esYiGF jPvJsJ iDBIXi guxPwy"
+        >
+          <div
+            class="sc-aXZVg sc-gEvEer jPvJsJ fQjiFG"
+          >
+            <div
+              class="sc-aXZVg sc-gEvEer jPvJsJ daEtut"
+            >
+              <h1
+                class="sc-eldPxv kLaSLy"
+              >
+                TESTING_HEADING
+              </h1>
+              <p
+                class="sc-ikkxIA raLvq"
+              >
+                TESTING_CONTENT
+              </p>
+            </div>
+            <div
+              class="sc-aXZVg sc-gEvEer jPvJsJ bktafW"
+            >
+              <div
+                class="sc-aXZVg sc-kpDqfm bhFzn cvxBYX"
+              >
+                <div
+                  class="sc-aXZVg kpXzs grey-shadow"
+                />
+                <div
+                  class="sc-aXZVg kpXzs yellow-shadow"
+                />
+                <a
+                  class="sc-dcJsrY sc-jXbUNg cLXsQH dglRoS internal-button"
+                  href="#"
+                >
+                  <div
+                    class="sc-aXZVg sc-gEvEer jPvJsJ krHAKs"
+                  >
+                    <span
+                      class="sc-eqUAAy edqVpV"
+                    >
+                      TESTING_LINK
+                    </span>
+                    <span
+                      class="sc-aXZVg jJQFnr"
+                    >
+                      <img
+                        alt=""
+                        class="sc-iGgWBj bOyFfb"
+                        data-nimg="fill"
+                        decoding="async"
+                        loading="lazy"
+                        src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1699953892/icons/hlxmejse3mcr4tqo6t8u.svg"
+                        style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                      />
+                    </span>
+                  </div>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          class="sc-aXZVg sc-gEvEer sc-esYiGF jPvJsJ iDBIXi jifpPH"
+        >
+          <div
+            class="sc-aXZVg sc-gEvEer doMEuo fXHtRp"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+`;
