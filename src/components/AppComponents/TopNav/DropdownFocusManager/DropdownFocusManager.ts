@@ -365,8 +365,6 @@ export class DropdownFocusManager<
 
     if (event.shiftKey) {
       this.handleShiftTab(event, currentNode, onFinalSubmenuItemCallback);
-    } else if (!event.shiftKey) {
-      this.handleTab(currentNode, event, onFinalSubmenuItemCallback);
     }
   }
 }
