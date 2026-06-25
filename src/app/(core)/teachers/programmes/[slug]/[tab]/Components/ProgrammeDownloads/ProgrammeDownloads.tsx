@@ -8,7 +8,6 @@ import {
   OakGridArea,
   OakHeading,
   OakPrimaryButton,
-  OakTagFunctional,
   OakTertiaryInvertedButton,
   Subject,
   Tier,
@@ -349,19 +348,8 @@ export const ProgrammeDownloads = ({
                               name="curriculum-download"
                               title={download.label}
                               checked={fieldValue.includes(download.id)}
-                              format={
-                                <OakFlex
-                                  $alignItems={"center"}
-                                  $gap={"spacing-8"}
-                                >
-                                  ({download.fileExt})
-                                  <OakTagFunctional
-                                    $background={"bg-decorative2-main"}
-                                    label="Editable"
-                                    useSpan
-                                  />
-                                </OakFlex>
-                              }
+                              format={download.fileExt}
+                              isEditable={true}
                               iconName={download.icon}
                               onChange={resourceCardOnChangeHandler(
                                 onChange,
