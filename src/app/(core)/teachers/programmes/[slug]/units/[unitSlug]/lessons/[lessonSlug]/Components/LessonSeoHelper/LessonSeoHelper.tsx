@@ -59,7 +59,7 @@ export const LessonSeoHelper = ({
   });
 
   const unitOverviewPageLink = resolveOakHref({
-    page: "integrated-unit-overview",
+    page: "unit-overview",
     unitSlug,
     programmeSlug,
   });
@@ -95,7 +95,7 @@ export const LessonSeoHelper = ({
                 actionProps={{
                   name: "download",
                   href: resolveOakHref({
-                    page: "integrated-lesson-downloads",
+                    page: "lesson-downloads",
                     programmeSlug,
                     unitSlug,
                     lessonSlug,
@@ -126,7 +126,7 @@ export const LessonSeoHelper = ({
           actionProps={{
             name: "download",
             href: resolveOakHref({
-              page: "integrated-lesson-downloads",
+              page: "lesson-downloads",
               lessonSlug,
               unitSlug,
               programmeSlug,

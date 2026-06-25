@@ -18,21 +18,20 @@ describe("Copy link button", () => {
     expect(getByText("Play all")).toBeInTheDocument();
   });
 
-  it("uses integrated lesson media route when isIntegratedJourney is true", () => {
+  it("links to lesson media route", () => {
     const { getByText } = renderWithTheme(
       <LessonPlayAllButton
         lessonSlug="lesson-slug"
         unitSlug="unit-slug"
         programmeSlug="programme-slug"
         isCanonical={false}
-        isIntegratedJourney={true}
       />,
     );
 
     expect(getByText("Play all").closest("a")).toHaveAttribute(
       "href",
       resolveOakHref({
-        page: "integrated-lesson-media",
+        page: "lesson-media",
         lessonSlug: "lesson-slug",
         programmeSlug: "programme-slug",
         unitSlug: "unit-slug",

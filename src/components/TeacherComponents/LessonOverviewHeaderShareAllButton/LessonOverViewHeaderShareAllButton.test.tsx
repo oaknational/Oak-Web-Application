@@ -18,7 +18,6 @@ const baseProps = {
   programmeSlug: "test-programme",
   isShareable: true,
   onClickShareAll: mockOnClickShareAll,
-  isSpecialist: false,
   geoRestricted: false,
   loginRequired: false,
   breadcrumbs: [],

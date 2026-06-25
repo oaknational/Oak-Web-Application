@@ -37,7 +37,7 @@ const KeypadLink: FC<KeypadItem & KeyStageOnClick> = (props) => {
   return (
     <ButtonVariant
       element={Link}
-      href={resolveOakHref({ page: "subject-index", keyStageSlug: slug })}
+      href={resolveOakHref({ page: "home" })}
       aria-current={isCurrent ? "page" : undefined}
       aria-label={title}
       onClick={() => trackingOnClick(slug, {})}
