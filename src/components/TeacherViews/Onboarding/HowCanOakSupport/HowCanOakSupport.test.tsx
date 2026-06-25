@@ -37,13 +37,13 @@ describe("HowCanOakSupport", () => {
     jest.clearAllMocks();
     (useRouter as jest.Mock).mockReturnValue({ push: jest.fn() });
     (useSearchParams as jest.Mock).mockReturnValue(
-      new URLSearchParams({
-        state: encodeOnboardingDataQueryParam(null, {
+      new URLSearchParams(
+        encodeOnboardingDataQueryParam(null, {
           newsletterSignUp: true,
           schoolName: "Jefferson House, Cheshire West and Chester, CW7 1JT",
           school: "142332-Jefferson House",
         }),
-      }),
+      ),
     );
     (onboardingActions.onboardUser as jest.Mock).mockResolvedValue({
       owa: { isTeacher: true, isOnboarded: true },

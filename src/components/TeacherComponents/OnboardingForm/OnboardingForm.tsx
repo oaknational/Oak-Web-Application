@@ -75,9 +75,7 @@ const OnboardingForm = ({
   >(undefined);
   const { track } = useAnalytics();
   // Accumulate onboarding data from all steps
-  const collectedOnboardingData = decodeOnboardingDataQueryParam(
-    searchParams?.get("state"),
-  );
+  const collectedOnboardingData = decodeOnboardingDataQueryParam(searchParams);
 
   useEffect(() => {
     if (forceHideNewsletterSignUp) {
@@ -105,10 +103,9 @@ const OnboardingForm = ({
       ...collectedOnboardingData,
       ...data,
     };
-    const query = new URLSearchParams(searchParams?.toString() ?? "");
-    query.set(
-      "state",
-      encodeOnboardingDataQueryParam(query.get("state"), latestOnboardingData),
+    const query = encodeOnboardingDataQueryParam(
+      searchParams,
+      latestOnboardingData,
     );
 
     if ("worksInSchool" in data) {
@@ -127,7 +124,7 @@ const OnboardingForm = ({
           page: data.worksInSchool
             ? "onboarding-school-selection"
             : "onboarding-role-selection",
-        })}?${query.toString()}`,
+        })}?${query}`,
       );
     } else if (isSchoolSelectData(data) && showNewsletterSignUp) {
       user &&
@@ -143,7 +140,7 @@ const OnboardingForm = ({
       router.push(
         `${resolveOakHref({
           page: "onboarding-use-of-oak",
-        })}?${query.toString()}`,
+        })}?${query}`,
       );
     } else {
       setIsSubmitting(true);
