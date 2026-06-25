@@ -105,7 +105,6 @@ const LessonOverviewDetails: FC<LessonOverviewDetailsProps> = ({
             lessonSlug,
             programmeSlug,
             unitSlug,
-            downloads: "downloads",
             query: {
               preselected: "additional files",
             },

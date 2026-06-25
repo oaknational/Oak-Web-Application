@@ -5,9 +5,11 @@ import {
   OakFlex,
   OakGrid,
   OakGridArea,
+  OakInlineBanner,
 } from "@oaknational/oak-components";
-import { Fragment } from "react";
+import { Fragment, useState } from "react";
 import { useUser } from "@clerk/nextjs";
+import { useFeatureFlagEnabled } from "posthog-js/react";
 
 import { CurrentSectionIdProvider } from "./CurrentSectionIdProvider";
 import LessonOverviewSideNav from "./LessonOverviewSideNav";
@@ -158,6 +160,12 @@ export default function LessonView(
   const showPupilShare =
     !contentRestricted && !expired && !actions?.disablePupilShare;
 
+  const isHeatwaveBannerEnabled =
+    useFeatureFlagEnabled("heatwave-banner") ?? false;
+  const [heatwaveBannerDismissed, setHeatwaveBannerDismissed] = useState(false);
+  const showHeatwaveBanner =
+    isHeatwaveBannerEnabled && showPupilShare && !heatwaveBannerDismissed;
+
   return (
     <MathJaxLessonProvider>
       <CurrentSectionIdProvider>
@@ -206,8 +214,6 @@ export default function LessonView(
                     geoRestricted,
                     loginRequired,
                     expired,
-                    isSpecialist: false,
-                    isIntegratedJourney: true,
                   }}
                 />
               </OakGridArea>
@@ -227,6 +233,26 @@ export default function LessonView(
                 isLessonLegacy={false}
                 componentType="lesson_overview"
               />
+              {showHeatwaveBanner && (
+                <OakInlineBanner
+                  type="info"
+                  icon="info"
+                  title="Disruption this week due to hot weather? Set this lesson as remote work"
+                  message={
+                    <>
+                      Click the {"\u2018"}
+                      <strong>Share lesson with pupils</strong>
+                      {"\u2019"} button below to share directly, or via
+                      Microsoft Teams or Google Classroom
+                    </>
+                  }
+                  canDismiss
+                  onDismiss={() => setHeatwaveBannerDismissed(true)}
+                  isOpen={true}
+                  $maxWidth="fit-content"
+                  $mb="spacing-16"
+                />
+              )}
               <LessonActionsBar
                 showPupilShare={showPupilShare}
                 createWithAiProps={
@@ -335,7 +361,7 @@ export default function LessonView(
                     previousLesson
                       ? {
                           href: resolveOakHref({
-                            page: "integrated-lesson-overview",
+                            page: "lesson-overview",
                             programmeSlug,
                             unitSlug,
                             lessonSlug: previousLesson.lessonSlug,
@@ -349,7 +375,7 @@ export default function LessonView(
                     nextLesson
                       ? {
                           href: resolveOakHref({
-                            page: "integrated-lesson-overview",
+                            page: "lesson-overview",
                             programmeSlug,
                             unitSlug,
                             lessonSlug: nextLesson.lessonSlug,

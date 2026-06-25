@@ -19,8 +19,6 @@ type LessonOverviewMediaClipsProps = {
   programmeSlug: string | null;
   lessonSlug: string;
   isCanonical?: boolean;
-  /** When true, media clip tiles link to the integrated journey media URL. */
-  useIntegratedMediaLinks?: boolean;
   lessonOutline: { lessonOutline: string }[] | null;
   isPELesson: boolean;
   isMFL: boolean;
@@ -32,7 +30,6 @@ const LessonOverviewMediaClips: FC<LessonOverviewMediaClipsProps> = ({
   programmeSlug,
   lessonSlug,
   isCanonical,
-  useIntegratedMediaLinks,
   lessonOutline,
   isPELesson,
   isMFL,
@@ -95,9 +92,7 @@ const LessonOverviewMediaClips: FC<LessonOverviewMediaClipsProps> = ({
                 href={
                   !isCanonical && programmeSlug && unitSlug
                     ? resolveOakHref({
-                        page: useIntegratedMediaLinks
-                          ? "integrated-lesson-media"
-                          : "lesson-media",
+                        page: "lesson-media",
                         lessonSlug: lessonSlug,
                         programmeSlug,
                         unitSlug,

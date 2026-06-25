@@ -43,7 +43,6 @@ const LessonOverviewMediaClipsComponent = (
           title={"Demonstration videos"}
           ref={useRef(null)}
           anchorId="media-clips"
-          isSpecialist={false}
           slugs={{
             lessonSlug: "lesson-slug",
             unitSlug: "unit-slug",
