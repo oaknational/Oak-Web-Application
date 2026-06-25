@@ -1,5 +1,5 @@
 "use client";
-import { RedirectToSignIn, useUser } from "@clerk/nextjs";
+import { RedirectToSignUp, useUser } from "@clerk/nextjs";
 import { usePathname } from "next/navigation";
 import { ReactNode } from "react";
 
