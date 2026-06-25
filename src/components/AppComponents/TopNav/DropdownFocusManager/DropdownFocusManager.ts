@@ -152,17 +152,6 @@ export class DropdownFocusManager<
     return false;
   }
 
-  public handleKeyDown(event: React.KeyboardEvent, elementId: string) {
-    if (event.key !== "Tab") return;
-    const currentNode = this.focusMap.get(elementId);
-    if (!currentNode) return;
-    if (event.shiftKey) {
-      this.handleShiftTab(event, currentNode);
-    } else if (!event.shiftKey) {
-      this.handleTab(currentNode, event);
-    }
-  }
-
   private getNode(elementId: string): FocusNode {
     const currentNode = this.focusMap.get(elementId);
     if (!currentNode) {
@@ -366,5 +355,7 @@ export class DropdownFocusManager<
     if (event.shiftKey) {
       this.handleShiftTab(event, currentNode, onFinalSubmenuItemCallback);
     }
+
+    this.handleTab(currentNode, event, onFinalSubmenuItemCallback);
   }
 }

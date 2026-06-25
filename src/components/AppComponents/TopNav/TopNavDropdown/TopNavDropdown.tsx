@@ -217,7 +217,7 @@ const TeachersPhaseSection = ({
         selected={isOpen(slug)}
         onClick={() => onClickFn(slug)}
         onKeyDown={(e) => {
-          focusManager.handleKeyDown(e, buttonId);
+          focusManager.handleTabKeyDown(e, buttonId);
           focusManager.handleArrowKeyDown(e, buttonId);
         }}
         id={buttonId}
