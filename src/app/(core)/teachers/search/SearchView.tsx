@@ -32,7 +32,7 @@ export const SearchView = ({
     legacy: [{ slug: "new", title: "Show new only" }],
     navigation: {
       searchParams: searchParams,
-      push: (url: string) => router.push(url),
+      push: (url: string) => router.push(url, { scroll: false }),
     },
   });
 
