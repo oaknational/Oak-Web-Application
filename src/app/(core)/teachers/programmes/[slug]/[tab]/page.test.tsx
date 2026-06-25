@@ -334,8 +334,10 @@ describe("generateMetadata", () => {
     expect(result.alternates?.canonical).toBe(
       new URL(
         resolveOakHref({
-          page: "unit-index",
-          programmeSlug: "maths-primary",
+          page: "teacher-programme",
+          subjectPhaseSlug: "maths-primary",
+          tab: "units",
+          query: {},
         }),
         getBrowserConfig("seoAppUrl"),
       ).toString(),
