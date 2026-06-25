@@ -73,7 +73,7 @@ export function ProgrammeFilters({
   data,
   slugs,
   ks4Options,
-  examboardFilterDimensions,
+  ks4OptionFilterDimensions,
 }: Readonly<ProgrammeFiltersProps>) {
   return (
     <>
@@ -92,7 +92,7 @@ export function ProgrammeFilters({
                 data={data}
                 slugs={slugs}
                 ks4Options={ks4Options}
-                examboardFilterDimensions={examboardFilterDimensions}
+                ks4OptionFilterDimensions={ks4OptionFilterDimensions}
               />
             );
           }

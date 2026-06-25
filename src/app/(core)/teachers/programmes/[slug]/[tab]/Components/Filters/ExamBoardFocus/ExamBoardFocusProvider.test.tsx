@@ -64,7 +64,7 @@ const defaultFilters = createFilter({
   years: ["10"],
 });
 
-const examboardFilterDimensions = {
+const ks4OptionFilterDimensions = {
   ocr: {
     tierSlugs: ["foundation"],
     pathwaySlugs: [],
@@ -92,7 +92,7 @@ function renderWithFocusScope(
         filters={defaultFilters}
         slugs={defaultSlugs}
         ks4Options={examBoardOptions}
-        examboardFilterDimensions={examboardFilterDimensions}
+        ks4OptionFilterDimensions={ks4OptionFilterDimensions}
       />
     </ExamBoardFocusScope>,
   );
@@ -194,7 +194,7 @@ describe("ExamBoardFocusProvider", () => {
                 filters={defaultFilters}
                 slugs={defaultSlugs}
                 ks4Options={examBoardOptions}
-                examboardFilterDimensions={examboardFilterDimensions}
+                ks4OptionFilterDimensions={ks4OptionFilterDimensions}
               />
             </ExamBoardFocusScope>
           )}

@@ -33,7 +33,7 @@ const defaultProps: UnitSequenceViewProps = {
   },
   curriculumUnitsFormattedData: mockProgrammeFiltersData,
   ks4Options: [],
-  examboardFilterDimensions: {},
+  ks4OptionFilterDimensions: {},
 };
 
 const noFiltersData: UnitSequenceViewProps["curriculumUnitsFormattedData"] = {

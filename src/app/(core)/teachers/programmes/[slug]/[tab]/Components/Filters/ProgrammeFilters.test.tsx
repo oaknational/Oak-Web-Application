@@ -74,7 +74,7 @@ const defaultProps: ProgrammePageFiltersProps = {
     ks4OptionSlug: null,
   },
   ks4Options: [],
-  examboardFilterDimensions: {},
+  ks4OptionFilterDimensions: {},
 };
 
 const examBoardKs4Options: ProgrammePageFiltersProps["ks4Options"] = [

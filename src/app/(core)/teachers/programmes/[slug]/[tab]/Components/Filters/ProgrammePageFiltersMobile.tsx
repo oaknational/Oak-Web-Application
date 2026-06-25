@@ -23,7 +23,7 @@ export default function ProgrammePageFiltersMobile({
   data,
   slugs,
   ks4Options,
-  examboardFilterDimensions,
+  ks4OptionFilterDimensions,
 }: Readonly<ProgrammePageFiltersProps>) {
   const { isOpen, setIsOpen } = useProgrammePageFiltersModal();
 
@@ -78,7 +78,7 @@ export default function ProgrammePageFiltersMobile({
           onChangeFilters={onChangeFilters}
           slugs={slugs}
           ks4Options={ks4Options}
-          examboardFilterDimensions={examboardFilterDimensions}
+          ks4OptionFilterDimensions={ks4OptionFilterDimensions}
         />
       </OakInformativeModal>
 
@@ -89,7 +89,7 @@ export default function ProgrammePageFiltersMobile({
         data={data}
         slugs={slugs}
         ks4Options={ks4Options}
-        examboardFilterDimensions={examboardFilterDimensions}
+        ks4OptionFilterDimensions={ks4OptionFilterDimensions}
       />
     </>
   );
@@ -109,7 +109,7 @@ const ModalContent = ({
   data,
   slugs,
   ks4Options,
-  examboardFilterDimensions,
+  ks4OptionFilterDimensions,
 }: ProgrammePageFiltersProps) => {
   return (
     <OakFlex
@@ -134,7 +134,7 @@ const ModalContent = ({
             data={data}
             slugs={slugs}
             ks4Options={ks4Options}
-            examboardFilterDimensions={examboardFilterDimensions}
+            ks4OptionFilterDimensions={ks4OptionFilterDimensions}
           />
         </ExamBoardFocusScope>
       </OakFlex>

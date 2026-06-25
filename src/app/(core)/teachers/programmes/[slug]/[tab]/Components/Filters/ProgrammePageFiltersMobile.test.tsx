@@ -130,7 +130,7 @@ const defaultProps: ProgrammePageFiltersProps = {
     ks4OptionSlug: null,
   },
   ks4Options: [],
-  examboardFilterDimensions: {},
+  ks4OptionFilterDimensions: {},
   onChangeFilters: jest.fn(),
 };
 
@@ -152,7 +152,7 @@ const ks4ExamBoardProps: ProgrammePageFiltersProps = {
     { slug: "edexcel", title: "Edexcel" },
     { slug: "ocr", title: "OCR" },
   ],
-  examboardFilterDimensions: {
+  ks4OptionFilterDimensions: {
     ocr: {
       tierSlugs: ["foundation"],
       pathwaySlugs: [],

@@ -1,7 +1,7 @@
 import { OakFlex } from "@oaknational/oak-components";
 import React from "react";
 
-import type { ExamboardFilterDimension } from "../../buildExamboardFilterDimensions";
+import type { Ks4OptionFilterDimension } from "../../buildKs4OptionFilterDimensions";
 
 import { ExamBoardFocusScope } from "./ExamBoardFocus";
 import { ProgrammeFilters } from "./ProgrammeFilters";
@@ -21,7 +21,7 @@ export type ProgrammePageFiltersProps = {
   data: CurriculumUnitsFormattedData;
   slugs: CurriculumSelectionSlugs;
   ks4Options: Ks4Option[];
-  examboardFilterDimensions: Record<string, ExamboardFilterDimension>;
+  ks4OptionFilterDimensions: Record<string, Ks4OptionFilterDimension>;
 };
 
 export default function ProgrammePageFiltersDesktop({
@@ -30,7 +30,7 @@ export default function ProgrammePageFiltersDesktop({
   data,
   slugs,
   ks4Options,
-  examboardFilterDimensions,
+  ks4OptionFilterDimensions,
 }: Readonly<ProgrammePageFiltersProps>) {
   return (
     <OakFlex
@@ -47,7 +47,7 @@ export default function ProgrammePageFiltersDesktop({
           data={data}
           slugs={slugs}
           ks4Options={ks4Options}
-          examboardFilterDimensions={examboardFilterDimensions}
+          ks4OptionFilterDimensions={ks4OptionFilterDimensions}
         />
       </ExamBoardFocusScope>
     </OakFlex>
