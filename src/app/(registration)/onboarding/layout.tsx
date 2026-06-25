@@ -1,5 +1,5 @@
 "use client";
-import { RedirectToSignIn, useUser } from "@clerk/nextjs";
+import { RedirectToSignUp, useUser } from "@clerk/nextjs";
 import { usePathname } from "next/navigation";
 import { ReactNode } from "react";
 
@@ -38,7 +38,7 @@ const OnboardingLayout = ({ children }: { children: ReactNode }) => {
   const pathname = usePathname();
 
   if (!isLoaded) return <Wall />;
-  if (!isSignedIn) return <RedirectToSignIn />;
+  if (!isSignedIn) return <RedirectToSignUp />;
 
   const prompt = onboardingPrompts[pathname ?? ""] ?? defaultPrompt;
 
