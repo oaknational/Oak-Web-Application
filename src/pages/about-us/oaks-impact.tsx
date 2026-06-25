@@ -6,21 +6,21 @@ import {
 import { useFeatureFlagEnabled } from "posthog-js/react";
 import { OakHeading } from "@oaknational/oak-components";
 
+import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
 import Layout from "@/components/AppComponents/Layout";
+import ErrorView from "@/components/AppComponents/ErrorView";
+import { TopNavProps } from "@/components/AppComponents/TopNav/TopNav";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 import getPageProps from "@/node-lib/getPageProps";
-import { TopNavProps } from "@/components/AppComponents/TopNav/TopNav";
-import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
-import ErrorView from "@/components/AppComponents/ErrorView";
 
 export type OaksImpactPageProps = {
   topNav: TopNavProps;
 };
 
 const OaksImpact: NextPage<OaksImpactPageProps> = ({ topNav }) => {
-  const isImpactFeatureEnabled = useFeatureFlagEnabled("oaks-impact");
+  const isImpactPageEnabled = useFeatureFlagEnabled("oaks-impact");
 
-  if (!isImpactFeatureEnabled) {
+  if (!isImpactPageEnabled) {
     return <ErrorView statusCode={404} topNav={topNav} />;
   }
 
