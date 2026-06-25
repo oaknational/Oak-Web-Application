@@ -75,28 +75,31 @@ export function ProgrammeUnitList({
       }
     };
 
-    const childCards: CardProps[] | undefined = isOptionalityUnitCard
-      ? unit.unit_options.map((option) => ({
-          isHighlighted,
-          title: option.title,
-          saveProps: getSavePropsForUnitCard({
-            slug: option.slug ?? unit.slug,
-            title: option.title,
-            programmeSlug,
-            subject: unit.subject,
-            subjectSlug: unit.subject_slug,
-            keystageSlug: unit.keystage_slug,
-            isOptionalityUnit: false,
-          }),
-          href: resolveOakHref({
-            page: "integrated-unit-overview",
-            unitSlug: option.slug ?? unit.slug,
-            programmeSlug,
-          }),
-          showBorder: true,
-          onClickLink: () => onClick(unit, isHighlighted),
-          lessonCount: option.lessons.length,
-        }))
+    const childCards = isOptionalityUnitCard
+      ? unit.unit_options.map(
+          (option) =>
+            ({
+              highlightColorVariant: isHighlighted ? "secondary" : undefined,
+              title: option.title,
+              saveProps: getSavePropsForUnitCard({
+                slug: option.slug ?? unit.slug,
+                title: option.title,
+                programmeSlug,
+                subject: unit.subject,
+                subjectSlug: unit.subject_slug,
+                keystageSlug: unit.keystage_slug,
+                isOptionalityUnit: false,
+              }),
+              href: resolveOakHref({
+                page: "integrated-unit-overview",
+                unitSlug: option.slug ?? unit.slug,
+                programmeSlug,
+              }),
+              showBorder: true,
+              onClickLink: () => onClick(unit, isHighlighted),
+              lessonCount: option.lessons.length,
+            }) satisfies CardProps,
+        )
       : undefined;
 
     return (
