@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useState } from "react";
 import {
   OakBox,
   OakFlex,
@@ -14,7 +14,11 @@ import Link from "next/link";
 
 import { DropdownFocusManager } from "../DropdownFocusManager/DropdownFocusManager";
 import { MaybeVisuallyHidden } from "../TopNav";
-import { createFocusId } from "../DropdownFocusManager/focusTree";
+import {
+  getKeystageButtonNodeId,
+  getSecondLevelNavButton,
+  getSubjectButtonId,
+} from "../DropdownFocusManager/helpers";
 
 import TopNavSubjectButtons from "./TopNavSubjectButtons";
 
@@ -22,14 +26,16 @@ import { resolveOakHref, ResolveOakHrefProps } from "@/common-lib/urls";
 import {
   TeachersSubNavData,
   PupilsSubNavData,
-  TeachersBrowse,
   isDropdownMenuItem,
-  isTeachersBrowseItem,
-  isNavDropDownButtonItem,
   NavDropDownButton,
-  SubjectsNavItem,
+  SubjectsMenu,
+  PhaseSubjectsMenu,
+  PhaseSlug,
+  KeystageMenu,
+  isTeachersBrowseItem,
 } from "@/node-lib/curriculum-api-2023/queries/topNav/topNav.schema";
 import useAnalytics from "@/context/Analytics/useAnalytics";
+import { KeystageSlug } from "@/node-lib/curriculum-api-2023/shared.schema";
 
 export type TopNavDropdownProps = {
   focusManager:
@@ -53,64 +59,70 @@ const TeachersDropdownMenuSections = ({
   teachersData: TeachersSubNavData;
   selectedMenu?: TopNavDropdownProps["selectedMenu"];
   focusManager: DropdownFocusManager<TeachersSubNavData>;
-  onClick: (subject: string, keystage: string) => void;
+  onClick: (subject: SubjectsMenu, keystage: string) => void;
   onClose: () => void;
 }) => {
   return Object.entries(teachersData).map(([menu, data]) => {
-    if (!isDropdownMenuItem(data)) return null;
-
-    return (
-      <MaybeVisuallyHidden
-        key={menu}
-        hiddenElementId={`teachers-dropdown-section-${menu}`}
-        shouldDisplay={selectedMenu === menu}
-      >
-        {isTeachersBrowseItem(data) && (
+    if (isTeachersBrowseItem(data)) {
+      return (
+        <MaybeVisuallyHidden
+          key={menu}
+          hiddenElementId={`teachers-dropdown-section-${menu}`}
+          shouldDisplay={selectedMenu === menu}
+        >
           <TeachersPhaseSection
-            phase={data.slug}
-            phaseData={data}
+            phase={data.phases.slug}
+            phaseData={data.phases}
+            keystageData={data.keystages}
             focusManager={focusManager}
             onClick={onClick}
             selectedMenu={selectedMenu}
           />
-        )}
-        {isNavDropDownButtonItem(data) && (
+        </MaybeVisuallyHidden>
+      );
+    } else if (isDropdownMenuItem(data)) {
+      return (
+        <MaybeVisuallyHidden
+          key={menu}
+          hiddenElementId={`teachers-dropdown-section-${menu}`}
+          shouldDisplay={selectedMenu === menu}
+        >
           <TeachersLinksSection
             focusManager={focusManager}
             linkData={data}
             onClose={onClose}
           />
-        )}
-      </MaybeVisuallyHidden>
-    );
+        </MaybeVisuallyHidden>
+      );
+    }
+
+    return null;
   });
 };
 
 const TeachersPhaseSection = ({
   phaseData,
+  keystageData,
   phase,
   selectedMenu,
   focusManager,
   onClick,
 }: {
-  phaseData: TeachersBrowse;
-  phase: "primary" | "secondary";
+  phaseData: PhaseSubjectsMenu;
+  keystageData: KeystageMenu;
+  phase: PhaseSlug;
   selectedMenu?: TopNavDropdownProps["selectedMenu"];
   focusManager: DropdownFocusManager<TeachersSubNavData>;
-  onClick: (subject: string, keystage: string) => void;
+  onClick: (subject: SubjectsMenu, keystage: string) => void;
 }) => {
   const { track } = useAnalytics();
-  const keystageChildren = phaseData.children.filter(
-    (item) => item.type === "keystage",
-  );
-  const phaseSubjectChildren = phaseData.children.filter(
-    (item) => item.type === "phase",
-  );
+  const keystageChildren = keystageData.children;
+  const phaseSubjectChildren = phaseData.children;
   const hasKeystageChildren = keystageChildren.length > 0;
 
   const isActivePhase = selectedMenu === phaseData.slug;
   const defaultTopLevel =
-    isActivePhase || !hasKeystageChildren ? phaseData.slug : "keystages";
+    isActivePhase || !hasKeystageChildren ? phaseData.slug : keystageData.slug;
   const defaultKeystage = isActivePhase
     ? phaseData.slug
     : (keystageChildren[0]?.slug ?? phaseData.slug);
@@ -122,16 +134,15 @@ const TeachersPhaseSection = ({
     defaultKeystage,
   );
 
-  const [selectedSubject, setSelectedSubject] =
-    useState<SubjectsNavItem | null>(null);
-
-  const keystagesRef = useRef<HTMLDivElement>(null);
+  const [selectedSubject, setSelectedSubject] = useState<SubjectsMenu | null>(
+    null,
+  );
 
   const onTopLevelClick = (slug: string) => {
     setSelectedTopLevel(slug);
     if (slug === phaseData.slug) {
       setSelectedViewType(phaseData.slug);
-    } else if (slug === "keystages") {
+    } else if (slug === keystageData.slug) {
       setSelectedViewType(keystageChildren[0]?.slug);
     }
     setSelectedSubject(null);
@@ -155,11 +166,11 @@ const TeachersPhaseSection = ({
     setSelectedSubject(null);
   };
 
-  const hasExamBoards = (subject: SubjectsNavItem | null) => {
-    return Boolean(subject?.examBoards && subject.examBoards.length > 0);
+  const hasExamBoards = (subject: SubjectsMenu | null) => {
+    return Boolean(subject?.children && subject.children.length > 0);
   };
 
-  const handleExamBoardPanelOpen = (subject: SubjectsNavItem) => {
+  const handleExamBoardPanelOpen = (subject: SubjectsMenu) => {
     if (!hasExamBoards(subject)) {
       return;
     }
@@ -170,37 +181,6 @@ const TeachersPhaseSection = ({
     setSelectedSubject(null);
   };
 
-  // Arrow key navigation for up/down in keystages
-  const handleArrowKeys = (
-    event: React.KeyboardEvent<HTMLDivElement>,
-    focusableElements: string[],
-  ) => {
-    const activeElementId = document.activeElement?.id;
-    if (!activeElementId) return;
-
-    const currentIndex = focusableElements.indexOf(activeElementId);
-    if (focusableElements.length === 0 || currentIndex === -1) return;
-
-    switch (event.key) {
-      case "ArrowDown": {
-        event.preventDefault();
-        const nextIndex =
-          currentIndex >= focusableElements.length - 1 ? 0 : currentIndex + 1;
-        focusableElements[nextIndex] &&
-          document.getElementById(focusableElements[nextIndex])?.focus();
-        break;
-      }
-      case "ArrowUp": {
-        event.preventDefault();
-        const prevIndex =
-          currentIndex <= 0 ? focusableElements.length - 1 : currentIndex - 1;
-        focusableElements[prevIndex] &&
-          document.getElementById(focusableElements[prevIndex])?.focus();
-        break;
-      }
-    }
-  };
-
   const renderNavButtons = (
     slug: string,
     title: string,
@@ -208,11 +188,18 @@ const TeachersPhaseSection = ({
     onClickFn: (s: string) => void,
   ) => {
     const shouldShowControls =
-      slug !== "keystages" &&
+      slug !== keystageData.slug &&
       (phaseSubjectChildren.some((item) => item.slug === slug) ||
         keystageChildren.some((item) => item.slug === slug));
 
-    const buttonId = createFocusId("teachers", `teachers-${phase}`, slug);
+    const buttonId =
+      slug === phaseData.slug || slug === keystageData.slug
+        ? getSecondLevelNavButton({ focusManager, topLevelSlug: phase, slug })
+        : getKeystageButtonNodeId({ focusManager, phase, slug });
+
+    if (!buttonId) {
+      return null;
+    }
 
     return (
       <OakLeftAlignedButton
@@ -229,7 +216,10 @@ const TeachersPhaseSection = ({
         width={"spacing-160"}
         selected={isOpen(slug)}
         onClick={() => onClickFn(slug)}
-        onKeyDown={(e) => focusManager.handleKeyDown(e, buttonId)}
+        onKeyDown={(e) => {
+          focusManager.handleTabKeyDown(e, buttonId);
+          focusManager.handleArrowKeyDown(e, buttonId);
+        }}
         id={buttonId}
         aria-label={
           title === "EYFS" ? "Early years foundation stage" : undefined
@@ -240,7 +230,10 @@ const TeachersPhaseSection = ({
     );
   };
 
-  const renderSubjectButtons = (slug: string, children: SubjectsNavItem[]) => {
+  const renderSubjectButtons = (
+    slug: KeystageSlug | PhaseSlug,
+    children: SubjectsMenu[],
+  ) => {
     return (
       <MaybeVisuallyHidden
         key={slug}
@@ -253,10 +246,18 @@ const TeachersPhaseSection = ({
           phase={phase}
           selectedMenu={selectedMenu}
           subjects={children}
-          viewTypeSlug={slug}
           selectedSubject={selectedSubject}
           onExamBoardPanelOpen={handleExamBoardPanelOpen}
-          closeExamBoardPanel={closeExamBoardPanel}
+          onExamboardPanelClose={closeExamBoardPanel}
+          identifyingSlug={slug}
+          getButtonId={(key) =>
+            getSubjectButtonId({
+              focusManager,
+              slug: key,
+              phase,
+              identifyingSlug: slug,
+            })
+          }
         />
       </MaybeVisuallyHidden>
     );
@@ -264,19 +265,6 @@ const TeachersPhaseSection = ({
 
   const isTopLevelOpen = (slug: string) => selectedTopLevel === slug;
   const isKeystageOpen = (slug: string) => selectedViewType === slug;
-  const topLevelButtonIds = [
-    createFocusId("teachers", `teachers-${phaseData.slug}`, phaseData.slug),
-  ];
-
-  if (hasKeystageChildren) {
-    topLevelButtonIds.push(
-      createFocusId("teachers", `teachers-${phaseData.slug}`, "keystages"),
-    );
-  }
-
-  const keystageButtonIds = keystageChildren.map((keystage) =>
-    createFocusId("teachers", `teachers-${phaseData.slug}`, keystage.slug),
-  );
 
   return (
     <OakFlex $gap={"spacing-40"}>
@@ -286,9 +274,6 @@ const TeachersPhaseSection = ({
         $gap={"spacing-8"}
         $pa={"spacing-0"}
         id={`topnav-teachers-${phase}`}
-        onKeyDown={(e: React.KeyboardEvent<HTMLDivElement>) =>
-          handleArrowKeys(e, topLevelButtonIds)
-        }
       >
         {renderNavButtons(
           phaseData.slug,
@@ -298,22 +283,18 @@ const TeachersPhaseSection = ({
         )}
         {hasKeystageChildren &&
           renderNavButtons(
-            "keystages",
+            keystageData.slug,
             "Key stages",
             isTopLevelOpen,
             onTopLevelClick,
           )}
       </OakFlex>
-      {selectedTopLevel === "keystages" && (
+      {selectedTopLevel === keystageData.slug && (
         <>
           <OakFlex
             $display={"flex"}
             $flexDirection={"column"}
             $gap={"spacing-8"}
-            ref={keystagesRef}
-            onKeyDown={(e: React.KeyboardEvent<HTMLDivElement>) =>
-              handleArrowKeys(e, keystageButtonIds)
-            }
           >
             {keystageChildren.map((keystage) =>
               renderNavButtons(
@@ -329,13 +310,8 @@ const TeachersPhaseSection = ({
           )}
         </>
       )}
-      {selectedTopLevel === phaseData.slug && (
-        <>
-          {phaseSubjectChildren.map((group) =>
-            renderSubjectButtons(group.slug, group.children),
-          )}
-        </>
-      )}
+      {selectedTopLevel === phaseData.slug &&
+        renderSubjectButtons(phaseData.slug, phaseSubjectChildren)}
     </OakFlex>
   );
 };
@@ -371,11 +347,12 @@ const TeachersLinksSection = ({
         id={`topnav-teachers-${linkData.slug}`}
       >
         {linkData.children.map((link) => {
-          const buttonId = createFocusId(
-            "teachers",
-            `teachers-${linkData.slug}`,
-            link.slug,
-          );
+          const buttonId = getSecondLevelNavButton({
+            focusManager,
+            slug: link.slug,
+            topLevelSlug: linkData.slug,
+          });
+          if (!buttonId) return null;
           return (
             <OakLI key={link.slug}>
               <OakLeftAlignedButton
@@ -395,7 +372,7 @@ const TeachersLinksSection = ({
                 width={"spacing-160"}
                 id={buttonId}
                 onClick={onClose}
-                onKeyDown={(e) => focusManager.handleKeyDown(e, buttonId)}
+                onKeyDown={(e) => focusManager.handleTabKeyDown(e, buttonId)}
               >
                 {link.title}
               </OakLeftAlignedButton>
@@ -433,11 +410,13 @@ const PupilsSection = ({
           id={`topnav-pupils-${menu}`}
         >
           {data.children.map((year) => {
-            const buttonId = createFocusId(
-              "pupils",
-              `pupils-${menu}`,
-              year.slug,
-            );
+            const buttonId = getSecondLevelNavButton({
+              focusManager,
+              slug: year.slug,
+              topLevelSlug: menu,
+            });
+
+            if (!buttonId) return null;
             return (
               <OakLI key={year.slug}>
                 <OakPupilJourneyYearButton
@@ -452,8 +431,7 @@ const PupilsSection = ({
                   onClick={onClose}
                   onKeyDown={
                     focusManager && buttonId
-                      ? (e: React.KeyboardEvent<HTMLAnchorElement>) =>
-                          focusManager.handleKeyDown(e, buttonId)
+                      ? (e) => focusManager.handleTabKeyDown(e, buttonId)
                       : undefined
                   }
                 >
@@ -495,8 +473,8 @@ const TopNavDropdown = (props: TopNavDropdownProps) => {
               eventVersion: "2.0.0",
               analyticsUseCase: "Teacher",
               filterType: "Subject filter",
-              filterValue: subject,
-              activeFilters: { keystage: [keystage] },
+              filterValue: subject.subjectSlug,
+              activeFilters: { keystages: [keystage] },
               googleLoginHint: null,
               clientEnvironment: null,
             });

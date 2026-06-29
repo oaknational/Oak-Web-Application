@@ -1,7 +1,6 @@
 import { screen } from "@testing-library/react";
 
 import { DropdownFocusManager } from "../DropdownFocusManager/DropdownFocusManager";
-import { buildFocusTree } from "../DropdownFocusManager/focusTree";
 
 import SubNav, { SubNavProps } from "./SubNav";
 
@@ -16,7 +15,7 @@ const render = renderWithProviders();
 
 describe("SubNav (Teachers)", () => {
   const mockFocusManager = new DropdownFocusManager<TeachersSubNavData>(
-    buildFocusTree(topNavFixture.teachers!, "teachers"),
+    topNavFixture.teachers!,
     "teachers",
     () => undefined,
   );
@@ -89,7 +88,7 @@ describe("SubNav (Teachers)", () => {
 
 describe("SubNav (Pupils)", () => {
   const mockFocusManager = new DropdownFocusManager<PupilsSubNavData>(
-    buildFocusTree(topNavFixture.pupils!, "pupils"),
+    topNavFixture.pupils!,
     "pupils",
     () => undefined,
   );
