@@ -2,12 +2,12 @@ import { forwardRef } from "react";
 import { act, fireEvent, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import mockRouter from "next-router-mock";
-import { usePathname } from "next/navigation";
+import { usePathname, useSearchParams } from "next/navigation";
 
 import Search from "./Search.view";
-import { SearchProps } from "./search.view.types";
 
-import * as useSuggestedFiltersModule from "@/context/Search/useSuggestedFilters";
+import { SearchProps } from "@/components/TeacherViews/Search/search.view.types";
+import * as useSuggestedFiltersModule from "@/app/(core)/teachers/search/useSuggestedFilters";
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 import { SearchHit, SearchQuery } from "@/context/Search/search.types";
 import { LEGACY_COHORT } from "@/config/cohort";
@@ -19,6 +19,7 @@ import {
 jest.mock("next/navigation");
 
 (usePathname as jest.Mock).mockReturnValue("/teachers/search");
+(useSearchParams as jest.Mock).mockReturnValue(new URLSearchParams());
 
 jest.mock("@mux/mux-player-react/lazy", () => {
   return forwardRef(() => {
@@ -230,7 +231,7 @@ jest.mock("posthog-js/react", () => ({
   useFeatureFlagEnabled: () => false,
 }));
 
-jest.mock("@/context/Search/useSuggestedFilters.tsx");
+jest.mock("@/app/(core)/teachers/search/useSuggestedFilters");
 
 const render = renderWithProviders();
 
@@ -519,7 +520,9 @@ describe("Search.page.tsx", () => {
     });
   });
   test("searchRefined function invoked when checked", () => {
-    mockRouter.query = { subjects: ["english"] };
+    (useSearchParams as jest.Mock).mockReturnValue(
+      new URLSearchParams("subjects=english"),
+    );
     const { getByRole } = render(<Search {...props} {...resultsProps} />);
     const unitsFilter = getByRole("checkbox", {
       name: "Units filter",
