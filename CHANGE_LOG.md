@@ -1,3 +1,18 @@
+# [1.1106.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1105.3...v1.1106.0) (2026-06-29)
+
+
+### Bug Fixes
+
+* exclude oaks impact path from sitemap ([25838ce](https://github.com/oaknational/Oak-Web-Application/commit/25838ce4c07f3d1dcc9d7c7e6a614fb0d412dde6))
+* remove avo page name and url config ([8036dd5](https://github.com/oaknational/Oak-Web-Application/commit/8036dd5e97e8669f55f1ab1890322e90ceeb4efc))
+* use app layout ([98d8a0f](https://github.com/oaknational/Oak-Web-Application/commit/98d8a0f867c66f7d7761cf208126c6bb56cc5193))
+
+
+### Features
+
+* check feat flag server side ([c368501](https://github.com/oaknational/Oak-Web-Application/commit/c3685012b6d8a530e61c113064e9580222694f83))
+* feat flagged oaks impact page skeleton ([f449833](https://github.com/oaknational/Oak-Web-Application/commit/f449833b9a6941d0d927a7d0e57aecfccfad8dba))
+
 ## [1.1105.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.1105.2...v1.1105.3) (2026-06-29)
 
 
