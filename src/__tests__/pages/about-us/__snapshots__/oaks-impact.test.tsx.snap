@@ -70,36 +70,6 @@ exports[`pages/about-us/oaks-impact.tsx renders title when feature flag is enabl
     <div
       class="sc-aXZVg sc-gEvEer cnUakV fUxOFh"
     >
-      <div
-        class="sc-aXZVg drEmXZ"
-      >
-        <div
-          class="sc-aXZVg sc-kpDqfm bhFzn cvxBYX"
-        >
-          <div
-            class="sc-aXZVg kpXzs grey-shadow"
-          />
-          <div
-            class="sc-aXZVg kpXzs yellow-shadow"
-          />
-          <a
-            class="sc-dcJsrY sc-jXbUNg bALQkH khQbhv internal-button"
-            data-testid="skip-link"
-            href="#main"
-            style="position: absolute; left: -10000px;"
-          >
-            <div
-              class="sc-aXZVg sc-gEvEer jPvJsJ krHAKs"
-            >
-              <span
-                class="sc-eqUAAy edqVpV"
-              >
-                Skip to content
-              </span>
-            </div>
-          </a>
-        </div>
-      </div>
       <header
         class="sc-aXZVg jPKaSh"
         data-testid="app-topnav"
@@ -1514,7 +1484,7 @@ exports[`pages/about-us/oaks-impact.tsx renders title when feature flag is enabl
     </div>
     <div
       aria-live="polite"
-      class="sc-aXZVg sc-gEvEer sc-8b1ca0f6-0 bRmOVg hpzNYH eNlAsP"
+      class="sc-aXZVg sc-gEvEer sc-84e7982d-0 bRmOVg hpzNYH fkcvun"
     />
   </div>
   <div
