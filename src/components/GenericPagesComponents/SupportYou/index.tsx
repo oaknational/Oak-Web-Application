@@ -6,6 +6,7 @@ import {
   OakGridArea,
   OakHeading,
   OakP,
+  OakHeadingProps,
 } from "@oaknational/oak-components";
 
 import { Image } from "@/common-lib/cms-types";
@@ -13,6 +14,7 @@ import CMSImage from "@/components/SharedComponents/CMSImage/CMSImage";
 
 export type SupportYouProps = {
   title: string;
+  headingTag?: OakHeadingProps["tag"];
   body: string;
   link: {
     href: string;
@@ -20,7 +22,13 @@ export type SupportYouProps = {
   };
   image: Image;
 };
-export function SupportYou(props: SupportYouProps) {
+export function SupportYou({
+  title,
+  headingTag = "h2",
+  body,
+  link,
+  image,
+}: SupportYouProps) {
   return (
     <OakBox $pv={["spacing-56", "spacing-80", "spacing-80"]}>
       <OakGrid $rg="spacing-24" $cg="spacing-16">
@@ -34,20 +42,22 @@ export function SupportYou(props: SupportYouProps) {
             <OakFlex $flexDirection="column" $gap="spacing-24">
               <OakHeading
                 $font={["heading-5", "heading-3", "heading-3"]}
-                tag="h1"
+                tag={headingTag}
               >
-                {props.title}
+                {title}
               </OakHeading>
-              <OakP $font="body-1">{props.body}</OakP>
+              <OakP $font="body-1">{body}</OakP>
             </OakFlex>
             <OakFlex $flexDirection="column">
               <OakPrimaryButton
                 iconName="external"
                 isTrailingIcon={true}
                 element="a"
-                href={props.link.href}
+                href={link.href}
+                target="_blank"
+                aria-label={`${link.text} (opens in new tab)`}
               >
-                {props.link.text}
+                {link.text}
               </OakPrimaryButton>
             </OakFlex>
           </OakFlex>
@@ -58,7 +68,7 @@ export function SupportYou(props: SupportYouProps) {
             $background={"bg-decorative1-subdued"}
             $aspectRatio={"4/3"}
           >
-            <CMSImage $objectFit={"cover"} image={props.image} />
+            <CMSImage $objectFit={"cover"} image={image} />
           </OakFlex>
         </OakGridArea>
       </OakGrid>
