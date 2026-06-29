@@ -1,12 +1,16 @@
 import { act } from "@testing-library/react";
 
+import { KS4OptionFocusProvider, KS4OptionFocusScope } from "../KS4OptionFocus";
+import { ProgrammePageFiltersModalProvider } from "../ProgrammePageFiltersModalProvider";
+
 import {
-  ProgrammeFiltersExamBoard,
   getPreservedQuery,
+  partitionKs4Options,
   shouldDisplayExamBoardFilter,
-} from "./ProgrammeFiltersExamBoard";
-import { KS4OptionFocusProvider, KS4OptionFocusScope } from "./KS4OptionFocus";
-import { ProgrammePageFiltersModalProvider } from "./ProgrammePageFiltersModalProvider";
+  shouldDisplayPathwayFilter,
+} from "./programmeFiltersKs4Options.helpers";
+
+import { ProgrammeFiltersKs4Options } from ".";
 
 import { renderWithProvidersByName } from "@/__tests__/__helpers__/renderWithProviders";
 import { resolveOakHref } from "@/common-lib/urls";
@@ -26,6 +30,11 @@ jest.mock("next/navigation", () => ({
 
 const render = renderWithProvidersByName(["oakTheme", "theme"]);
 
+const citizenshipOptions: Ks4Option[] = [
+  { slug: "core", title: "Core" },
+  { slug: "gcse", title: "GCSE" },
+];
+
 const examBoardOptions: Ks4Option[] = [
   { slug: "aqa", title: "AQA" },
   { slug: "edexcel", title: "Edexcel" },
@@ -40,6 +49,12 @@ const pathwayOptions: Ks4Option[] = [
 const computingOptions: Ks4Option[] = [
   { slug: "core", title: "Core" },
   { slug: "aqa", title: "AQA" },
+  { slug: "ocr", title: "OCR" },
+];
+
+const englishOptions: Ks4Option[] = [
+  { slug: "aqa", title: "AQA" },
+  { slug: "edexcel", title: "Edexcel" },
   { slug: "ocr", title: "OCR" },
 ];
 
@@ -81,6 +96,76 @@ const ks4OptionFilterDimensions = {
     childSubjectSlugs: [],
   },
 };
+
+describe("partitionKs4Options", () => {
+  it("splits citizenship into pathway and exam board options separately", () => {
+    const result = partitionKs4Options(citizenshipOptions);
+
+    expect(result.pathwayOptions).toEqual(citizenshipOptions);
+    expect(result.examBoardOptions).toEqual([]);
+  });
+
+  it("keeps sole pathway separate from exam boards for computing", () => {
+    const result = partitionKs4Options(computingOptions);
+
+    expect(result.pathwayOptions).toEqual([{ slug: "core", title: "Core" }]);
+    expect(result.examBoardOptions).toEqual([
+      { slug: "aqa", title: "AQA" },
+      { slug: "ocr", title: "OCR" },
+    ]);
+  });
+
+  it("keeps exam-board-only subjects in the exam board options", () => {
+    const result = partitionKs4Options(englishOptions);
+
+    expect(result.pathwayOptions).toEqual([]);
+    expect(result.examBoardOptions).toEqual(englishOptions);
+  });
+});
+
+describe("shouldDisplayPathwayFilter", () => {
+  it("returns true when there is at least one pathway option in KS4 context", () => {
+    expect(
+      shouldDisplayPathwayFilter(
+        {
+          subjectSlug: "citizenship",
+          phaseSlug: "secondary",
+          ks4OptionSlug: "core",
+        },
+        defaultFilters,
+        pathwayOptions,
+      ),
+    ).toBe(true);
+  });
+
+  it("returns true when there is a single pathway option", () => {
+    expect(
+      shouldDisplayPathwayFilter(
+        {
+          subjectSlug: "computing",
+          phaseSlug: "secondary",
+          ks4OptionSlug: "core",
+        },
+        defaultFilters,
+        computingOptions,
+      ),
+    ).toBe(true);
+  });
+
+  it("returns false when not in KS4 context", () => {
+    expect(
+      shouldDisplayPathwayFilter(
+        {
+          subjectSlug: "citizenship",
+          phaseSlug: "secondary",
+          ks4OptionSlug: "core",
+        },
+        createFilter({ keystages: ["ks3"] }),
+        pathwayOptions,
+      ),
+    ).toBe(false);
+  });
+});
 
 describe("shouldDisplayExamBoardFilter", () => {
   it("returns true for secondary KS4 context with exam board options", () => {
@@ -179,27 +264,31 @@ describe("shouldDisplayExamBoardFilter", () => {
     ).toBe(false);
   });
 
-  it("returns true when ks4 options only contain pathways", () => {
+  it("returns false when exam board panel has fewer than two options", () => {
     expect(
       shouldDisplayExamBoardFilter(
         { ...defaultSlugs, subjectSlug: "citizenship", ks4OptionSlug: "core" },
         defaultFilters,
         pathwayOptions,
       ),
-    ).toBe(true);
+    ).toBe(false);
   });
 
-  it("returns true when ks4OptionSlug is a pathway slug", () => {
+  it("returns true when there are two or more exam board options", () => {
     expect(
       shouldDisplayExamBoardFilter(
-        { ...defaultSlugs, subjectSlug: "citizenship", ks4OptionSlug: "core" },
+        {
+          ...defaultSlugs,
+          subjectSlug: "computing",
+          ks4OptionSlug: "core",
+        },
         defaultFilters,
-        pathwayOptions,
+        computingOptions,
       ),
     ).toBe(true);
   });
 
-  it("returns false when there is only one ks4 option", () => {
+  it("returns false when there is only one exam board option and no pathway", () => {
     expect(
       shouldDisplayExamBoardFilter(defaultSlugs, defaultFilters, [
         { slug: "aqa", title: "AQA" },
@@ -270,30 +359,14 @@ describe("getPreservedQuery", () => {
   });
 });
 
-describe("ProgrammeFiltersExamBoard", () => {
+describe("ProgrammeFiltersKs4Options", () => {
   beforeEach(() => {
     replaceMock.mockClear();
   });
 
-  it("renders exam board options with the current board selected", () => {
+  it("renders pathway options with GCSE before Core for citizenship", () => {
     const { getAllByRole } = render(
-      <ProgrammeFiltersExamBoard
-        filters={defaultFilters}
-        slugs={defaultSlugs}
-        ks4Options={examBoardOptions}
-        ks4OptionFilterDimensions={ks4OptionFilterDimensions}
-      />,
-    );
-
-    const radios = getAllByRole("radio") as HTMLInputElement[];
-    expect(radios).toHaveLength(3);
-    expect(radios[0]).toBeChecked();
-    expect(radios[0]!.value).toBe("aqa");
-  });
-
-  it("renders all ks4 options including pathways", () => {
-    const { getAllByRole } = render(
-      <ProgrammeFiltersExamBoard
+      <ProgrammeFiltersKs4Options
         filters={defaultFilters}
         slugs={{
           subjectSlug: "citizenship",
@@ -312,9 +385,25 @@ describe("ProgrammeFiltersExamBoard", () => {
     expect(radios[1]).toBeChecked();
   });
 
-  it("orders GCSE and Core before exam boards", () => {
+  it("renders exam board options with the current board selected", () => {
     const { getAllByRole } = render(
-      <ProgrammeFiltersExamBoard
+      <ProgrammeFiltersKs4Options
+        filters={defaultFilters}
+        slugs={defaultSlugs}
+        ks4Options={examBoardOptions}
+        ks4OptionFilterDimensions={ks4OptionFilterDimensions}
+      />,
+    );
+
+    const radios = getAllByRole("radio") as HTMLInputElement[];
+    expect(radios).toHaveLength(3);
+    expect(radios[0]).toBeChecked();
+    expect(radios[0]!.value).toBe("aqa");
+  });
+
+  it("renders pathway and exam board panels separately for computing", () => {
+    const { getAllByRole } = render(
+      <ProgrammeFiltersKs4Options
         filters={defaultFilters}
         slugs={{
           subjectSlug: "computing",
@@ -326,41 +415,18 @@ describe("ProgrammeFiltersExamBoard", () => {
       />,
     );
 
+    const groups = getAllByRole("group");
+    expect(groups).toHaveLength(2);
+    expect(groups[0]).toHaveAccessibleName("Pathway (KS4)");
+    expect(groups[1]).toHaveAccessibleName("Exam board (KS4)");
+
     const radios = getAllByRole("radio") as HTMLInputElement[];
     expect(radios.map((radio) => radio.value)).toEqual(["core", "aqa", "ocr"]);
   });
 
-  it("navigates to the selected exam board slug and preserves KS4 query params", () => {
-    const { getAllByRole } = render(
-      <ProgrammeFiltersExamBoard
-        filters={defaultFilters}
-        slugs={defaultSlugs}
-        ks4Options={examBoardOptions}
-        ks4OptionFilterDimensions={ks4OptionFilterDimensions}
-      />,
-    );
-
-    const radios = getAllByRole("radio") as HTMLInputElement[];
-
-    act(() => radios[1]!.click());
-
-    expect(replaceMock).toHaveBeenCalledWith(
-      resolveOakHref({
-        page: "teacher-programme",
-        subjectPhaseSlug: "english-secondary-edexcel",
-        tab: "units",
-        query: {
-          keystages: "ks4",
-          years: "10",
-          focus_ks4option: "edexcel",
-        },
-      }),
-    );
-  });
-
   it("navigates from core to gcse using pathway slug", () => {
     const { getAllByRole } = render(
-      <ProgrammeFiltersExamBoard
+      <ProgrammeFiltersKs4Options
         filters={defaultFilters}
         slugs={{
           subjectSlug: "citizenship",
@@ -390,9 +456,37 @@ describe("ProgrammeFiltersExamBoard", () => {
     );
   });
 
+  it("navigates to the selected exam board slug and preserves KS4 query params", () => {
+    const { getAllByRole } = render(
+      <ProgrammeFiltersKs4Options
+        filters={defaultFilters}
+        slugs={defaultSlugs}
+        ks4Options={examBoardOptions}
+        ks4OptionFilterDimensions={ks4OptionFilterDimensions}
+      />,
+    );
+
+    const radios = getAllByRole("radio") as HTMLInputElement[];
+
+    act(() => radios[1]!.click());
+
+    expect(replaceMock).toHaveBeenCalledWith(
+      resolveOakHref({
+        page: "teacher-programme",
+        subjectPhaseSlug: "english-secondary-edexcel",
+        tab: "units",
+        query: {
+          keystages: "ks4",
+          years: "10",
+          focus_ks4option: "edexcel",
+        },
+      }),
+    );
+  });
+
   it("navigates from core to exam board for computing", () => {
     const { getAllByRole } = render(
-      <ProgrammeFiltersExamBoard
+      <ProgrammeFiltersKs4Options
         filters={defaultFilters}
         slugs={{
           subjectSlug: "computing",
@@ -424,7 +518,7 @@ describe("ProgrammeFiltersExamBoard", () => {
 
   it("drops non-KS4 years from the preserved query params", () => {
     const { getAllByRole } = render(
-      <ProgrammeFiltersExamBoard
+      <ProgrammeFiltersKs4Options
         filters={createFilter({ keystages: ["ks4"], years: ["7", "10"] })}
         slugs={defaultSlugs}
         ks4Options={examBoardOptions}
@@ -454,7 +548,7 @@ describe("ProgrammeFiltersExamBoard", () => {
       <ProgrammePageFiltersModalProvider>
         <KS4OptionFocusProvider>
           <KS4OptionFocusScope variant="modal">
-            <ProgrammeFiltersExamBoard
+            <ProgrammeFiltersKs4Options
               filters={defaultFilters}
               slugs={defaultSlugs}
               ks4Options={examBoardOptions}
@@ -486,7 +580,7 @@ describe("ProgrammeFiltersExamBoard", () => {
 
   it("renders nothing when the visibility condition is not met", () => {
     const { queryByRole } = render(
-      <ProgrammeFiltersExamBoard
+      <ProgrammeFiltersKs4Options
         filters={createFilter({ keystages: ["ks3"] })}
         slugs={{ ...defaultSlugs, ks4OptionSlug: null }}
         ks4Options={examBoardOptions}
@@ -499,7 +593,7 @@ describe("ProgrammeFiltersExamBoard", () => {
 
   it("renders nothing when filtered to ks3 on an exam board slug", () => {
     const { queryByRole } = render(
-      <ProgrammeFiltersExamBoard
+      <ProgrammeFiltersKs4Options
         filters={createFilter({ keystages: ["ks3"] })}
         slugs={defaultSlugs}
         ks4Options={examBoardOptions}
@@ -512,7 +606,7 @@ describe("ProgrammeFiltersExamBoard", () => {
 
   it("renders nothing when filtered to a non-KS4 year on an exam board slug", () => {
     const { queryByRole } = render(
-      <ProgrammeFiltersExamBoard
+      <ProgrammeFiltersKs4Options
         filters={createFilter({ years: ["7"] })}
         slugs={defaultSlugs}
         ks4Options={examBoardOptions}
