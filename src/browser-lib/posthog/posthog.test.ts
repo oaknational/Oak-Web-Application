@@ -102,7 +102,9 @@ describe("posthog.ts", () => {
     });
   });
 
-  test("when the client is already loaded epeated calls to `init` resolve to the distinct id", () => {});
+  test.todo(
+    "when the client is already loaded epeated calls to `init` resolve to the distinct id",
+  );
 
   test("identify", () => {
     posthog.identify("123", { email: "abc" });
