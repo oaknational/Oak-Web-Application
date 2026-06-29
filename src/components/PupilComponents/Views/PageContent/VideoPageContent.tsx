@@ -2,7 +2,7 @@ import { OakBackLink, OakP } from "@oaknational/oak-components";
 
 import { PupilLayout } from "@/components/PupilComponents/PupilLayout/PupilLayout";
 import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
-import { getPupilPathwayData } from "@/components/PupilComponents/PupilAnalyticsProvider/PupilAnalyticsProvider";
+import { getPupilPathwayData } from "@/context/PupilLessonAnalytics/pupilAnalyticsHelpers";
 import { PupilLessonIntroAdditionalFileItem } from "@/components/PupilComponents/Views/PupilLessonIntro";
 import {
   PupilLessonVideoAdditionalFilesCard,
