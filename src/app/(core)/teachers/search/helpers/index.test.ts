@@ -1,4 +1,4 @@
-import type { ParsedUrlQuery } from "querystring";
+import { ParsedUrlQuery } from "node:querystring";
 
 import {
   convertSearchIntentToFilters,
