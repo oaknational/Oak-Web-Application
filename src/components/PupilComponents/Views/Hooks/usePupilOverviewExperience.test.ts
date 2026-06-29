@@ -4,6 +4,7 @@ import { usePupilOverviewExperience } from "./usePupilOverviewExperience";
 
 import { lessonBrowseDataFixture } from "@/node-lib/curriculum-api-2023/fixtures/lessonBrowseData.fixture";
 import { lessonContentFixture } from "@/node-lib/curriculum-api-2023/fixtures/lessonContent.fixture";
+import { pickAvailableSectionsForLesson } from "@/components/PupilComponents/Views/ViewHelpers";
 import { usePupilLessonProgress } from "@/context/PupilLessonProgress";
 import { getDefaultLessonProgressState } from "@/context/PupilLessonProgress/pupilLessonProgressHelpers";
 
@@ -65,9 +66,18 @@ beforeEach(() => {
 });
 
 describe("usePupilOverviewExperience", () => {
-  it("builds a section item per review section", () => {
-    const { result } = renderOverview();
-    expect(result.current.sectionItems).toHaveLength(reviewSections.length);
+  it("builds a section item only for sections the lesson has content for", () => {
+    const lessonContent = lessonContentFixture({});
+    const { result } = renderOverview({ lessonContent });
+
+    // The fixture has no exit quiz, so it is hidden entirely rather than shown
+    // disabled with "0 questions".
+    expect(result.current.sectionItems.map((item) => item.section)).toEqual(
+      pickAvailableSectionsForLesson(lessonContent),
+    );
+    expect(
+      result.current.sectionItems.some((item) => item.section === "exit-quiz"),
+    ).toBe(false);
   });
 
   it("on proceed: tracks lesson + section started and navigates to the next incomplete section", () => {

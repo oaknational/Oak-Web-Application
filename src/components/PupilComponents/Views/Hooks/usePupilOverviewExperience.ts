@@ -9,6 +9,7 @@ import {
   buildOverviewSectionItems,
   getInteractiveQuestions,
   getUnitListingHref,
+  pickAvailableSectionsForLesson,
   pickNextIncompleteSection,
   pickProceedToNextSectionLabel,
 } from "@/components/PupilComponents/Views/ViewHelpers";
@@ -85,8 +86,14 @@ export const usePupilOverviewExperience = ({
     lessonContent.exitQuiz,
   ).length;
 
+  // Sections the lesson has content for, ignoring variant restrictions. Used to
+  // hide sections with no data (e.g. no exit quiz) while still showing
+  // variant-excluded sections as disabled.
+  const sectionsWithData = pickAvailableSectionsForLesson(lessonContent);
+
   const sectionItems = buildOverviewSectionItems({
     lessonReviewSections,
+    sectionsWithData,
     sectionResults,
     isReadOnly,
     isHydratingInitialProgress,

@@ -10,6 +10,7 @@ import {
 
 type BuildOverviewSectionItemsParams = {
   lessonReviewSections: Readonly<LessonReviewSection[]>;
+  sectionsWithData: Readonly<LessonReviewSection[]>;
   sectionResults: LessonSectionResults;
   isReadOnly: boolean;
   isHydratingInitialProgress: boolean;
@@ -21,6 +22,7 @@ type BuildOverviewSectionItemsParams = {
 
 export const buildOverviewSectionItems = ({
   lessonReviewSections,
+  sectionsWithData,
   sectionResults,
   isReadOnly,
   isHydratingInitialProgress,
@@ -29,54 +31,56 @@ export const buildOverviewSectionItems = ({
   onSectionClick = () => {},
   getSectionHref,
 }: BuildOverviewSectionItemsParams): SectionNavItem[] => {
-  return allLessonReviewSections.map((section) => {
-    const overviewSection = section as LessonOverviewSectionName;
-    const isSectionAvailable = lessonReviewSections.includes(section);
-    const onClick = isSectionAvailable
-      ? () => onSectionClick(section)
-      : () => {};
-    const href = isSectionAvailable ? (getSectionHref(section) ?? "#") : "#";
-    const disabled = !isSectionAvailable;
+  return allLessonReviewSections
+    .filter((section) => sectionsWithData.includes(section))
+    .map((section) => {
+      const overviewSection = section as LessonOverviewSectionName;
+      const isSectionAvailable = lessonReviewSections.includes(section);
+      const onClick = isSectionAvailable
+        ? () => onSectionClick(section)
+        : () => {};
+      const href = isSectionAvailable ? (getSectionHref(section) ?? "#") : "#";
+      const disabled = !isSectionAvailable;
 
-    if (section === "starter-quiz") {
+      if (section === "starter-quiz") {
+        return {
+          section: overviewSection,
+          href,
+          progress: pickSectionProgress({ section, sectionResults }),
+          numQuestions: starterQuizNumQuestions,
+          grade: sectionResults[section]?.grade ?? 0,
+          disabled:
+            disabled ||
+            Boolean(sectionResults[section]?.isComplete) ||
+            isReadOnly,
+          isLoading: isHydratingInitialProgress,
+          onClick,
+        };
+      }
+
+      if (section === "exit-quiz") {
+        return {
+          section: overviewSection,
+          href,
+          progress: pickSectionProgress({ section, sectionResults }),
+          numQuestions: exitQuizNumQuestions,
+          grade: sectionResults[section]?.grade ?? 0,
+          disabled:
+            disabled ||
+            Boolean(sectionResults[section]?.isComplete) ||
+            isReadOnly,
+          isLoading: isHydratingInitialProgress,
+          onClick,
+        };
+      }
+
       return {
         section: overviewSection,
         href,
         progress: pickSectionProgress({ section, sectionResults }),
-        numQuestions: starterQuizNumQuestions,
-        grade: sectionResults[section]?.grade ?? 0,
-        disabled:
-          disabled ||
-          Boolean(sectionResults[section]?.isComplete) ||
-          isReadOnly,
+        ...(disabled ? { disabled } : {}),
         isLoading: isHydratingInitialProgress,
         onClick,
       };
-    }
-
-    if (section === "exit-quiz") {
-      return {
-        section: overviewSection,
-        href,
-        progress: pickSectionProgress({ section, sectionResults }),
-        numQuestions: exitQuizNumQuestions,
-        grade: sectionResults[section]?.grade ?? 0,
-        disabled:
-          disabled ||
-          Boolean(sectionResults[section]?.isComplete) ||
-          isReadOnly,
-        isLoading: isHydratingInitialProgress,
-        onClick,
-      };
-    }
-
-    return {
-      section: overviewSection,
-      href,
-      progress: pickSectionProgress({ section, sectionResults }),
-      ...(disabled ? { disabled } : {}),
-      isLoading: isHydratingInitialProgress,
-      onClick,
-    };
-  });
+    });
 };
