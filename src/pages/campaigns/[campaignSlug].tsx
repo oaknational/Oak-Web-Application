@@ -27,7 +27,7 @@ import {
   getFallbackBlockingConfig,
 } from "@/node-lib/isr";
 import { TopNavProps } from "@/components/AppComponents/TopNav/TopNav";
-import AppLayout from "@/components/SharedComponents/AppLayout";
+import AppLayout from "@/components/AppComponents/AppLayout";
 
 export type CampaignSinglePageProps = {
   campaign: CampaignPage;

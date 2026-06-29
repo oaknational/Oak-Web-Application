@@ -13,7 +13,6 @@ import usePostCategoryList from "@/components/SharedComponents/PostCategoryList/
 import BlogHeader from "@/components/SharedComponents/PostHeader/PostHeader";
 import { WebinarSinglePageProps } from "@/pages/webinars/[webinarSlug]";
 import { BlogSinglePageProps } from "@/pages/blog/[blogSlug]";
-import theme from "@/styles/theme";
 import MobileFilters from "@/components/SharedComponents/MobileFilters";
 import Breadcrumbs, {
   Breadcrumb,
@@ -32,8 +31,6 @@ const PostSingleLayout: FC<PostSingleLayoutProps> = (props) => {
   const post = "blog" in content ? content.blog : content.webinar;
   const page: PostCategoryPage =
     "blog" in content ? "blog-index" : "webinar-index";
-
-  const HEADER_HEIGHT = theme.header.height;
 
   const postCategoriesListProps = usePostCategoryList();
 
@@ -72,8 +69,8 @@ const PostSingleLayout: FC<PostSingleLayoutProps> = (props) => {
           $colSpan={[12, 3]}
           $mt={["spacing-48", "spacing-12"]}
           $display={["none", "block"]}
+          $top={[null, "spacing-72"]}
           $position={[null, "sticky"]}
-          $top={[null, HEADER_HEIGHT]}
         >
           <OakHeading
             tag="h3"
