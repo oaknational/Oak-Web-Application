@@ -1,3 +1,43 @@
+## [1.1105.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.1105.0...v1.1105.1) (2026-06-29)
+
+# [1.1105.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1104.2...v1.1105.0) (2026-06-29)
+
+
+### Bug Fixes
+
+* add top value for sticky box ([98b490c](https://github.com/oaknational/Oak-Web-Application/commit/98b490cf7bdd3d71b3e34fac72ffd9aa3d3a5d78))
+* typo in docs ([4381439](https://github.com/oaknational/Oak-Web-Application/commit/4381439f699d484e8eefac3d142a1076c146285a))
+* use same value for initial offset in notifications provider ([8c6f562](https://github.com/oaknational/Oak-Web-Application/commit/8c6f56247cfe19f8b594b22a39655bbaae338704))
+
+
+### Features
+
+* add root level error boundary for app route pages ([996eb0e](https://github.com/oaknational/Oak-Web-Application/commit/996eb0e686ab1b056075fd2fd55ee65f22fec58e))
+
+## [1.1104.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.1104.1...v1.1104.2) (2026-06-25)
+
+
+### Bug Fixes
+
+* add all keystages as valid value ([2b8bca2](https://github.com/oaknational/Oak-Web-Application/commit/2b8bca2c44bb366977000d5ba8810f76d433615e))
+* align keyboard nav with the new data structures ([47efbdf](https://github.com/oaknational/Oak-Web-Application/commit/47efbdf721f5f0562519eb4d9ec613e734e510ac))
+* align keystage filter value param name to plural keystages ([181e1dc](https://github.com/oaknational/Oak-Web-Application/commit/181e1dcb50f06d86def9f4ce1ff2c53335d41576))
+* close examboard panel when tabbing past options ([c21c331](https://github.com/oaknational/Oak-Web-Application/commit/c21c331bfb4ec7774f3c458d4fc30abf64aa4d3d))
+* close hamburger when clicking a nav link ([c089a44](https://github.com/oaknational/Oak-Web-Application/commit/c089a44dc94bce31e12f39ebba163da5a68952de))
+* hamburger focus ([c04fa22](https://github.com/oaknational/Oak-Web-Application/commit/c04fa22c42c1db597658f53e6f81d33657af9a72))
+* hamburger sub menu name ([cc8ddf1](https://github.com/oaknational/Oak-Web-Application/commit/cc8ddf1072ff75a9999796850dea498368b8dfb8))
+* handle multiple entry paths for ks4 options submenu view ([54fe91d](https://github.com/oaknational/Oak-Web-Application/commit/54fe91d05d01685ad9b88eb17e40b2d40b1e1e9d))
+* only handle arrow keys on keystage tab buttons ([e5401ee](https://github.com/oaknational/Oak-Web-Application/commit/e5401ee0812f3f6924ec099aa503972cc8a3370b))
+* pass correct value for ks in topnavks4menu ([6f3ccc0](https://github.com/oaknational/Oak-Web-Application/commit/6f3ccc0a44bde7e0cf885653b4d97efd3baf9f91))
+* pass subject rather than selected subject to ks4 buttons ([17bf805](https://github.com/oaknational/Oak-Web-Application/commit/17bf8057b5bab4ea793af0a7898b01c1c2903786))
+* remove list role from ul in ks4 options menu ([d07d522](https://github.com/oaknational/Oak-Web-Application/commit/d07d522f629b279cb7f1a2c84ea910f26a144634))
+* return empty examboards for subjects without tier or examboard ([61f01d9](https://github.com/oaknational/Oak-Web-Application/commit/61f01d9c3c012262ec1eed7554d5bbf12857697e))
+
+
+### Reverts
+
+* Revert "Merge pull request [#4306](https://github.com/oaknational/Oak-Web-Application/issues/4306) from oaknational/fix/phase-menu" ([3be762c](https://github.com/oaknational/Oak-Web-Application/commit/3be762c2ed71acaea415952c7c37a57ffcee55bf))
+
 ## [1.1104.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.1104.0...v1.1104.1) (2026-06-25)
 
 # [1.1104.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1103.0...v1.1104.0) (2026-06-25)
