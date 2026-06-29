@@ -3,7 +3,7 @@ import React from "react";
 
 import type { Ks4OptionFilterDimension } from "../../buildKs4OptionFilterDimensions";
 
-import { ExamBoardFocusScope } from "./ExamBoardFocus";
+import { KS4OptionFocusScope } from "./KS4OptionFocus";
 import { ProgrammeFilters } from "./ProgrammeFilters";
 
 import { CurriculumFilters } from "@/utils/curriculum/types";
@@ -40,7 +40,7 @@ export default function ProgrammePageFiltersDesktop({
       $mb={"spacing-32"}
     >
       <SkipLink href="#content">Skip to units</SkipLink>
-      <ExamBoardFocusScope variant="page">
+      <KS4OptionFocusScope variant="page">
         <ProgrammeFilters
           filters={filters}
           onChangeFilters={onChangeFilters}
@@ -49,7 +49,7 @@ export default function ProgrammePageFiltersDesktop({
           ks4Options={ks4Options}
           ks4OptionFilterDimensions={ks4OptionFilterDimensions}
         />
-      </ExamBoardFocusScope>
+      </KS4OptionFocusScope>
     </OakFlex>
   );
 }

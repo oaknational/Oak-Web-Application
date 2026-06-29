@@ -5,7 +5,7 @@ import {
   getPreservedQuery,
   shouldDisplayExamBoardFilter,
 } from "./ProgrammeFiltersExamBoard";
-import { ExamBoardFocusProvider, ExamBoardFocusScope } from "./ExamBoardFocus";
+import { KS4OptionFocusProvider, KS4OptionFocusScope } from "./KS4OptionFocus";
 import { ProgrammePageFiltersModalProvider } from "./ProgrammePageFiltersModalProvider";
 
 import { renderWithProvidersByName } from "@/__tests__/__helpers__/renderWithProviders";
@@ -201,11 +201,9 @@ describe("shouldDisplayExamBoardFilter", () => {
 
   it("returns false when there is only one ks4 option", () => {
     expect(
-      shouldDisplayExamBoardFilter(
-        defaultSlugs,
-        defaultFilters,
-        [{ slug: "aqa", title: "AQA" }],
-      ),
+      shouldDisplayExamBoardFilter(defaultSlugs, defaultFilters, [
+        { slug: "aqa", title: "AQA" },
+      ]),
     ).toBe(false);
   });
 });
@@ -454,16 +452,16 @@ describe("ProgrammeFiltersExamBoard", () => {
   it("navigates with open_filters_modal when inside modal scope", () => {
     const { getAllByRole } = render(
       <ProgrammePageFiltersModalProvider>
-        <ExamBoardFocusProvider>
-          <ExamBoardFocusScope variant="modal">
+        <KS4OptionFocusProvider>
+          <KS4OptionFocusScope variant="modal">
             <ProgrammeFiltersExamBoard
               filters={defaultFilters}
               slugs={defaultSlugs}
               ks4Options={examBoardOptions}
               ks4OptionFilterDimensions={ks4OptionFilterDimensions}
             />
-          </ExamBoardFocusScope>
-        </ExamBoardFocusProvider>
+          </KS4OptionFocusScope>
+        </KS4OptionFocusProvider>
       </ProgrammePageFiltersModalProvider>,
     );
 

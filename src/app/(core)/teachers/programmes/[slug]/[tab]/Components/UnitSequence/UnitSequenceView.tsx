@@ -5,7 +5,7 @@ import {
   OakHeading,
 } from "@oaknational/oak-components";
 
-import { ExamBoardFocusProvider } from "../Filters/ExamBoardFocus";
+import { KS4OptionFocusProvider } from "../Filters/KS4OptionFocus";
 import { ProgrammePageFiltersModalProvider } from "../Filters/ProgrammePageFiltersModalProvider";
 import ProgrammePageFiltersDesktop from "../Filters/ProgrammePageFiltersDesktop";
 import ProgrammePageFiltersMobile from "../Filters/ProgrammePageFiltersMobile";
@@ -83,7 +83,7 @@ export const UnitSequenceView = ({
           </OakHeading>
         </ScreenReaderOnly>
         <ProgrammePageFiltersModalProvider>
-          <ExamBoardFocusProvider>
+          <KS4OptionFocusProvider>
             <OakBox $display={["block", "block", "none"]}>
               {shouldDisplayFilters && (
                 <ProgrammePageFiltersMobile
@@ -122,7 +122,7 @@ export const UnitSequenceView = ({
                 />
               </OakGridArea>
             </OakGrid>
-          </ExamBoardFocusProvider>
+          </KS4OptionFocusProvider>
         </ProgrammePageFiltersModalProvider>
         <ScreenReaderOnly aria-live="polite" aria-atomic="true">
           <p>

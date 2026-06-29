@@ -11,7 +11,7 @@ import { useId } from "react";
 
 import type { Ks4OptionFilterDimension } from "../../buildKs4OptionFilterDimensions";
 
-import { useGetExamBoardFocusNavigationQuery } from "./ExamBoardFocus/ExamBoardFocusScope";
+import { useGetKs4OptionFocusNavigationQuery } from "./KS4OptionFocus/KS4OptionFocusScope";
 
 import { getSubjectPhaseSlug } from "@/components/TeacherComponents/helpers/getSubjectPhaseSlug";
 import { resolveOakHref } from "@/common-lib/urls";
@@ -135,8 +135,8 @@ export function ProgrammeFiltersExamBoard({
 }: Readonly<ProgrammeFiltersExamBoardProps>) {
   const id = useId();
   const router = useRouter();
-  const getExamBoardFocusNavigationQuery =
-    useGetExamBoardFocusNavigationQuery();
+  const getKs4OptionFocusNavigationQuery =
+    useGetKs4OptionFocusNavigationQuery();
   const isVisible = shouldDisplayExamBoardFilter(slugs, filters, ks4Options);
 
   if (!isVisible) {
@@ -160,7 +160,7 @@ export function ProgrammeFiltersExamBoard({
             selectedSlug,
             ks4OptionFilterDimensions,
           ),
-          ...getExamBoardFocusNavigationQuery(selectedSlug),
+          ...getKs4OptionFocusNavigationQuery(selectedSlug),
         },
       }),
     );

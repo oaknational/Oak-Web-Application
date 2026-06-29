@@ -2,7 +2,7 @@ import { act, waitFor } from "@testing-library/react";
 import type { ReactElement } from "react";
 import React from "react";
 
-import { ProgrammeFiltersExamBoard } from "../ProgrammeFiltersExamBoard";
+import { ProgrammeFiltersKs4Options } from "../ProgrammeFiltersKs4Options";
 import {
   ProgrammePageFiltersModalProvider,
   useProgrammePageFiltersModal,
@@ -11,9 +11,9 @@ import {
 import {
   FOCUS_KS4_OPTION_QUERY_PARAM,
   OPEN_FILTERS_MODAL_QUERY_PARAM,
-} from "./examBoardFocusParams";
+} from "./ks4OptionFocusParams";
 
-import { ExamBoardFocusProvider, ExamBoardFocusScope } from "./index";
+import { KS4OptionFocusProvider, KS4OptionFocusScope } from "./index";
 
 import { renderWithProvidersByName } from "@/__tests__/__helpers__/renderWithProviders";
 import { createFilter } from "@/fixtures/curriculum/filters";
@@ -75,7 +75,7 @@ const ks4OptionFilterDimensions = {
 function renderWithProviders(ui: ReactElement) {
   return render(
     <ProgrammePageFiltersModalProvider>
-      <ExamBoardFocusProvider>{ui}</ExamBoardFocusProvider>
+      <KS4OptionFocusProvider>{ui}</KS4OptionFocusProvider>
     </ProgrammePageFiltersModalProvider>,
   );
 }
@@ -87,24 +87,24 @@ function renderWithFocusScope(
   useSearchParamsMock.mockReturnValue(searchParams);
 
   return renderWithProviders(
-    <ExamBoardFocusScope variant={variant}>
-      <ProgrammeFiltersExamBoard
+    <KS4OptionFocusScope variant={variant}>
+      <ProgrammeFiltersKs4Options
         filters={defaultFilters}
         slugs={defaultSlugs}
         ks4Options={examBoardOptions}
         ks4OptionFilterDimensions={ks4OptionFilterDimensions}
       />
-    </ExamBoardFocusScope>,
+    </KS4OptionFocusScope>,
   );
 }
 
-describe("ExamBoardFocusProvider", () => {
+describe("KS4OptionFocusProvider", () => {
   beforeEach(() => {
     replaceStateMock.mockClear();
     useSearchParamsMock.mockReturnValue(new URLSearchParams(""));
   });
 
-  it("focuses the matching exam board radio on page and strips focus_ks4option", async () => {
+  it("focuses the matching KS4 option radio on page and strips focus_ks4option", async () => {
     const focusSpy = jest.spyOn(HTMLInputElement.prototype, "focus");
 
     const { getAllByRole } = renderWithFocusScope(
@@ -189,14 +189,14 @@ describe("ExamBoardFocusProvider", () => {
         <>
           <span data-testid="modal-open">{String(isOpen)}</span>
           {isOpen && (
-            <ExamBoardFocusScope variant="modal">
-              <ProgrammeFiltersExamBoard
+            <KS4OptionFocusScope variant="modal">
+              <ProgrammeFiltersKs4Options
                 filters={defaultFilters}
                 slugs={defaultSlugs}
                 ks4Options={examBoardOptions}
                 ks4OptionFilterDimensions={ks4OptionFilterDimensions}
               />
-            </ExamBoardFocusScope>
+            </KS4OptionFocusScope>
           )}
         </>
       );

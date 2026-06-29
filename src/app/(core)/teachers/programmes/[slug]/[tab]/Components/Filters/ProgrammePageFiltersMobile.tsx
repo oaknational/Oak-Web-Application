@@ -11,7 +11,7 @@ import {
 import { ProgrammePageFiltersProps } from "./ProgrammePageFiltersDesktop";
 import ProgrammeFiltersHeaderMobile from "./ProgrammeFiltersHeaderMobile";
 import { ProgrammeFilters } from "./ProgrammeFilters";
-import { ExamBoardFocusScope } from "./ExamBoardFocus";
+import { KS4OptionFocusScope } from "./KS4OptionFocus";
 import { useProgrammePageFiltersModal } from "./ProgrammePageFiltersModalProvider";
 
 import { usePrevious } from "@/hooks/usePrevious";
@@ -127,7 +127,7 @@ const ModalContent = ({
         $gap={"spacing-32"}
         $overflowX={"visible"}
       >
-        <ExamBoardFocusScope variant="modal">
+        <KS4OptionFocusScope variant="modal">
           <ProgrammeFilters
             filters={filters}
             onChangeFilters={onChangeFilters}
@@ -136,7 +136,7 @@ const ModalContent = ({
             ks4Options={ks4Options}
             ks4OptionFilterDimensions={ks4OptionFilterDimensions}
           />
-        </ExamBoardFocusScope>
+        </KS4OptionFocusScope>
       </OakFlex>
     </OakFlex>
   );
