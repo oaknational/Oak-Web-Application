@@ -1,3 +1,10 @@
+## [1.1105.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.1105.2...v1.1105.3) (2026-06-29)
+
+
+### Bug Fixes
+
+* blocker maintainability issues in sonar cloud ([20e4898](https://github.com/oaknational/Oak-Web-Application/commit/20e4898ae6fc1ec34310b011c3485af36af9cb74))
+
 ## [1.1105.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.1105.1...v1.1105.2) (2026-06-29)
 
 
