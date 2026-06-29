@@ -23,7 +23,7 @@ describe("validateSearchParams", () => {
       { years: "10", keystages: "invalid" },
       { years: "10", keystages: undefined },
     ],
-    [{}, { years: undefined, keystages: undefined }],
+    [{}, undefined],
   ])("validates params %o", (input, expected) => {
     expect(
       validateSearchParams(toReadonly(new URLSearchParams(input))),
@@ -31,23 +31,20 @@ describe("validateSearchParams", () => {
   });
 
   it("returns undefined values when searchParams is null", () => {
-    expect(validateSearchParams(null)).toEqual({
-      years: undefined,
-      keystages: undefined,
-    });
+    expect(validateSearchParams(null)).toEqual(undefined);
   });
 
   it.each(keystageSlugs.options)("accepts keystage slug %s", (slug) => {
     expect(
       validateSearchParams(toReadonly(new URLSearchParams({ keystages: slug })))
-        .keystages,
+        ?.keystages,
     ).toBe(slug);
   });
 
   it.each(years.options)("accepts year value %s", (year) => {
     expect(
       validateSearchParams(toReadonly(new URLSearchParams({ years: year })))
-        .years,
+        ?.years,
     ).toBe(year);
   });
 });
@@ -58,19 +55,10 @@ describe("validateServerSearchParams", () => {
       { years: "7", keystages: "ks3" },
       { years: "7", keystages: "ks3" },
     ],
-    [
-      { years: "invalid", keystages: "invalid" },
-      { years: undefined, keystages: undefined },
-    ],
-    [{}, { years: undefined, keystages: undefined }],
-    [
-      { years: ["7", "8"], keystages: ["ks1", "ks2"] },
-      { years: undefined, keystages: undefined },
-    ],
-    [
-      { years: undefined, keystages: undefined },
-      { years: undefined, keystages: undefined },
-    ],
+    [{ years: "invalid", keystages: "invalid" }, undefined],
+    [{}, undefined],
+    [{ years: ["7", "8"], keystages: ["ks1", "ks2"] }, undefined],
+    [{ years: undefined, keystages: undefined }, undefined],
   ])("validates params %o", (input, expected) => {
     expect(validateServerSearchParams(input)).toEqual(expected);
   });
