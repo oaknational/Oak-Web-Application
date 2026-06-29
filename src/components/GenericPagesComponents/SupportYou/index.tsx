@@ -28,7 +28,7 @@ export function SupportYou({
   body,
   link,
   image,
-}: SupportYouProps) {
+}: Readonly<SupportYouProps>) {
   return (
     <OakBox $pv={["spacing-56", "spacing-80", "spacing-80"]}>
       <OakGrid $rg="spacing-24" $cg="spacing-16">
