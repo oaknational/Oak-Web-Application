@@ -48,7 +48,7 @@ const LessonOverviewPresentation: FC<LessonOverviewPresentationProps> = ({
   const srcUrl =
     isAdditionalMaterial && asset
       ? `https://docs.google.com/document/d/${slidesId}/pub?embedded=true`
-      : `https://docs.google.com/presentation/d/${slidesId}/embed?start=false&amp;loop=false&amp`;
+      : `https://docs.google.com/presentation/d/${slidesId}/embed?start=false&loop=false`;
   return (
     <OakFlex $flexDirection="column" $gap="spacing-12">
       <OakBox $ba={["border-solid-m"]} $width={"100%"}>
@@ -57,7 +57,7 @@ const LessonOverviewPresentation: FC<LessonOverviewPresentationProps> = ({
             tabIndex={0}
             role="group"
             data-testid="overview-presentation-focus-target"
-            aria-label={`Slide deck preview for ${title}`}
+            aria-label={`${isAdditionalMaterial ? "Document" : "Slide deck"} preview for ${title}`}
           >
             <StyledSlideIframe
               src={srcUrl}
@@ -69,7 +69,7 @@ const LessonOverviewPresentation: FC<LessonOverviewPresentationProps> = ({
               data-testid="overview-presentation"
               allowFullScreen
               // Keep the embedded player out of the tab order to avoid keyboard traps.
-              tabIndex={-1}
+              tabIndex={-1} aria-hidden="true"
               loading="eager"
             />
           </SlideEmbedFocusContainer>
