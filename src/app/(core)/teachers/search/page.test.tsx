@@ -1,10 +1,13 @@
-import { usePathname } from "next/navigation";
+import {
+  ReadonlyURLSearchParams,
+  usePathname,
+  useSearchParams,
+} from "next/navigation";
 
-import SearchPage from "@/pages/teachers/search";
-import { mockSeoResult } from "@/__tests__/__helpers__/cms";
+import { SearchView } from "./SearchView";
+
 import renderWithSeo from "@/__tests__/__helpers__/renderWithSeo";
 import searchPageFixture from "@/node-lib/curriculum-api-2023/fixtures/searchPage.fixture";
-import { topNavFixture } from "@/node-lib/curriculum-api-2023/fixtures/topNav.fixture";
 
 const fixture = searchPageFixture();
 if (!fixture) {
@@ -18,44 +21,19 @@ const yearGroups = fixture.yearGroups;
 
 jest.mock("next/navigation");
 
-(usePathname as jest.Mock).mockReturnValue("/");
+jest.mocked(usePathname).mockReturnValue("/");
+jest
+  .mocked(useSearchParams)
+  .mockReturnValue(new URLSearchParams() as unknown as ReadonlyURLSearchParams);
 jest.mock("posthog-js/react", () => ({
   ...jest.requireActual("posthog-js/react"),
   useFeatureFlagEnabled: () => false,
 }));
 
 describe("pages/teachers/search.tsx", () => {
-  test("renders page with correct seo", () => {
-    const { seo } = renderWithSeo()(
-      <SearchPage
-        topNav={topNavFixture}
-        curriculumData={{
-          keyStages,
-          subjects,
-          contentTypes,
-          examBoards,
-          yearGroups,
-        }}
-      />,
-    );
-
-    expect(seo).toEqual({
-      ...mockSeoResult,
-      title: "Search for Free Teaching Resources | NEXT_PUBLIC_SEO_APP_NAME",
-      description: "Search for Free Teaching Resources",
-      ogTitle: "Search for Free Teaching Resources | NEXT_PUBLIC_SEO_APP_NAME",
-      ogDescription: "Search for Free Teaching Resources",
-      ogUrl: "NEXT_PUBLIC_SEO_APP_URL/",
-      ogSiteName: "NEXT_PUBLIC_SEO_APP_NAME",
-      canonical: "NEXT_PUBLIC_SEO_APP_URL",
-      robots: "noindex,follow",
-    });
-  });
-
   test("renders correct content type filters", () => {
     const { getAllByRole } = renderWithSeo()(
-      <SearchPage
-        topNav={topNavFixture}
+      <SearchView
         curriculumData={{
           keyStages,
           subjects,
@@ -78,8 +56,7 @@ describe("pages/teachers/search.tsx", () => {
 
   test("renders correct new curriculum filter", async () => {
     const { getAllByRole } = renderWithSeo()(
-      <SearchPage
-        topNav={topNavFixture}
+      <SearchView
         curriculumData={{
           keyStages,
           subjects,
@@ -97,8 +74,7 @@ describe("pages/teachers/search.tsx", () => {
 
   test("renders correct key stage filters", async () => {
     const { getAllByRole } = renderWithSeo()(
-      <SearchPage
-        topNav={topNavFixture}
+      <SearchView
         curriculumData={{
           keyStages,
           subjects,
@@ -117,8 +93,7 @@ describe("pages/teachers/search.tsx", () => {
 
   test("renders correct year group filters", () => {
     const { getAllByRole } = renderWithSeo()(
-      <SearchPage
-        topNav={topNavFixture}
+      <SearchView
         curriculumData={{
           keyStages,
           subjects,
@@ -136,8 +111,7 @@ describe("pages/teachers/search.tsx", () => {
 
   test("renders correct examBoard filters", async () => {
     const { getAllByRole } = renderWithSeo()(
-      <SearchPage
-        topNav={topNavFixture}
+      <SearchView
         curriculumData={{
           keyStages,
           subjects,
@@ -156,8 +130,7 @@ describe("pages/teachers/search.tsx", () => {
 
   test("renders correct subject filters", () => {
     const { getAllByRole } = renderWithSeo()(
-      <SearchPage
-        topNav={topNavFixture}
+      <SearchView
         curriculumData={{
           keyStages,
           subjects,

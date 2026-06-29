@@ -5,7 +5,7 @@ import SearchActiveFilters from "./SearchActiveFilters";
 
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 import { searchFilters } from "@/components/TeacherComponents/SearchFilters/test-helpers";
-import { trackSearchModified } from "@/components/TeacherViews/Search/helpers";
+import { trackSearchModified } from "@/app/(core)/teachers/search/helpers/index";
 
 jest.mock("next/dist/client/router", () => require("next-router-mock"));
 
