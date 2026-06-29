@@ -42,7 +42,7 @@ export default function LessonActionsBar({
     return null;
   }
   const shareHref = resolveOakHref({
-    page: "integrated-lesson-share",
+    page: "lesson-share",
     lessonSlug,
     unitSlug,
     programmeSlug,

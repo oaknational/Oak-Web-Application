@@ -72,7 +72,6 @@ type NonCanonicalLesson = BaseLessonMedia & LessonPathway;
 
 type LessonMediaCommonProps = {
   breadcrumbsSlot?: ReactNode;
-  useIntegratedJourneyLinks?: boolean;
 };
 
 type LessonMediaProps =
@@ -88,8 +87,7 @@ type LessonMediaProps =
 export const LessonMedia = (
   props: LessonMediaProps & LessonMediaCommonProps,
 ) => {
-  const { isCanonical, lesson, breadcrumbsSlot, useIntegratedJourneyLinks } =
-    props;
+  const { isCanonical, lesson, breadcrumbsSlot } = props;
   const {
     lessonTitle,
     lessonSlug,
@@ -206,9 +204,7 @@ export const LessonMedia = (
   const goToTheNextClip = (mediaId: string) => {
     if (programmeSlug && unitSlug) {
       const newUrl = resolveOakHref({
-        page: useIntegratedJourneyLinks
-          ? "integrated-lesson-media"
-          : "lesson-media",
+        page: "lesson-media",
         programmeSlug,
         unitSlug,
         lessonSlug,
@@ -513,9 +509,7 @@ export const LessonMedia = (
           <OakTertiaryButton
             element="a"
             href={resolveOakHref({
-              page: useIntegratedJourneyLinks
-                ? "integrated-lesson-overview"
-                : "lesson-overview",
+              page: "lesson-overview",
               programmeSlug,
               lessonSlug,
               unitSlug,
@@ -547,7 +541,6 @@ export const LessonMedia = (
           lessonSlug={lessonSlug}
           unitSlug={unitSlug}
           isCanonical={isCanonical}
-          useIntegratedJourneyLinks={useIntegratedJourneyLinks}
         />
       ) : (
         <>

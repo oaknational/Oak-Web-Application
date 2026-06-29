@@ -71,7 +71,7 @@ describe("LessonHeader", () => {
     expect(prevLessonLink).toHaveAttribute(
       "href",
       resolveOakHref({
-        page: "integrated-lesson-overview",
+        page: "lesson-overview",
         lessonSlug: "lesson-1",
         unitSlug: defaultProps.unitSlug,
         programmeSlug: defaultProps.programmeSlug,
@@ -83,7 +83,7 @@ describe("LessonHeader", () => {
     expect(nextLessonLink).toHaveAttribute(
       "href",
       resolveOakHref({
-        page: "integrated-lesson-overview",
+        page: "lesson-overview",
         lessonSlug: "lesson-3",
         unitSlug: defaultProps.unitSlug,
         programmeSlug: defaultProps.programmeSlug,
@@ -100,7 +100,7 @@ describe("LessonHeader", () => {
     expect(downloadLink).toHaveAttribute(
       "href",
       resolveOakHref({
-        page: "integrated-lesson-downloads",
+        page: "lesson-downloads",
         lessonSlug: defaultProps.currentLessonSlug,
         programmeSlug: defaultProps.programmeSlug,
         unitSlug: defaultProps.unitSlug,

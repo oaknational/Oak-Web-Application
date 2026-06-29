@@ -103,7 +103,6 @@ const getSkipLinkUrl = ({
 export function getLessonResources({
   browsePathwayData,
   data,
-  copyrightState,
   isMathJaxLesson,
   trackMediaClipsButtonClicked,
   contentRestricted,
@@ -135,7 +134,6 @@ export function getLessonResources({
       lessonSlug={data.lessonSlug}
       learningCycleVideos={data.lessonMediaClips}
       isCanonical={false}
-      useIntegratedMediaLinks
       unitSlug={data.unitSlug}
       programmeSlug={data.programmeSlug}
       lessonOutline={data.lessonOutline}
@@ -167,18 +165,6 @@ export function getLessonResources({
       displayVocab={!!data.actions?.displayVocabButton}
       updatedAt={data.updatedAt}
       additionalFiles={data.additionalFiles}
-      year={data.yearGroupTitle}
-      subject={data.subjectTitle}
-      keystage={data.keyStageTitle}
-      keystageSlug={data.keyStageSlug}
-      unit={data.unitTitle}
-      lesson={data.lessonTitle}
-      examBoardSlug={data.examBoardSlug}
-      subjectSlug={data.subjectSlug}
-      subjectParent={data.subjectParent}
-      phaseSlug={data.phaseSlug}
-      disablePupilLink={data.actions?.disablePupilShare}
-      hideSeoHelper={copyrightState.showGeoBlocked}
       useIntegratedJourneyLayout
     />
   );

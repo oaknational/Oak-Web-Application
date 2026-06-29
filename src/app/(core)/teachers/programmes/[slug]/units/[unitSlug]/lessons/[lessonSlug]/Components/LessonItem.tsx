@@ -67,7 +67,6 @@ export function LessonItem({
             {resource.resourceType === "media-clips" && slugs && (
               <LessonPlayAllButton
                 {...slugs}
-                isIntegratedJourney
                 onTrackingCallback={() => {
                   onMediaClipsButtonClick({
                     mediaClipsButtonName: "play all",
@@ -86,8 +85,6 @@ export function LessonItem({
                   });
                 }}
                 preselected={preselectedDownload}
-                isSpecialist={false}
-                isIntegratedJourney
                 {...slugs}
               />
             )}

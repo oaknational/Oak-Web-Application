@@ -1,4 +1,4 @@
-import { ReactNode, useEffect, useRef, useState } from "react";
+import { ReactNode, useEffect, useRef } from "react";
 import {
   OakPrimaryInvertedButton,
   OakUL,
@@ -10,14 +10,17 @@ import {
 import Link from "next/link";
 
 import TopNavSubjectButtons from "../TopNavDropdown/TopNavSubjectButtons";
-import ExamBoardPanel from "../ExamBoardPanel/ExamBoardPanel";
+import { TopNavKS4Buttons } from "../TopNavDropdown/TopNavKS4Buttons";
 
 import { HamburgerMenuHook } from "./TeachersTopNavHamburger";
+import { MainMenuButton, MainMenuContent } from "./HamburgerMainMenu";
 
 import {
-  Phase,
-  SubjectsNavItem,
-  TeachersBrowseChildItem,
+  getKeystageSubjectsData,
+  getKs4OptionSubjectData,
+  getPhaseSlug,
+  KeystageSubjectsMenu,
+  SubjectsMenu,
   TeachersSubNavData,
 } from "@/node-lib/curriculum-api-2023/queries/topNav/topNav.schema";
 import {
@@ -26,45 +29,43 @@ import {
 } from "@/common-lib/urls";
 import useAnalytics from "@/context/Analytics/useAnalytics";
 
-const isEyfsKeystage = (keystage: TeachersBrowseChildItem) =>
+const isEyfsKeystage = (keystage: KeystageSubjectsMenu) =>
   keystage.slug === "early-years-foundation-stage";
 
-const getKeystageListLabel = (keystage: TeachersBrowseChildItem) =>
+const getKeystageListLabel = (keystage: KeystageSubjectsMenu) =>
   isEyfsKeystage(keystage) ? keystage.title : keystage.description;
 
-const getKeystageListAriaLabel = (keystage: TeachersBrowseChildItem) =>
+const getKeystageListAriaLabel = (keystage: KeystageSubjectsMenu) =>
   isEyfsKeystage(keystage) ? keystage.description : undefined;
 
-export function SubmenuContainer({
+function SubmenuContainer({
   title,
   ariaLabel,
   children,
   hamburgerMenu,
-  onBack,
 }: {
   readonly title: string;
   readonly ariaLabel?: string;
   readonly children: ReactNode;
   readonly hamburgerMenu: HamburgerMenuHook;
-  readonly onBack?: () => void;
 }) {
   const { submenuOpen, handleCloseSubmenu } = hamburgerMenu;
-
   const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     if (!submenuOpen || !containerRef.current) return;
 
-    const firstSubjectButton = containerRef.current.querySelector<HTMLElement>(
-      '[data-testid^="topnav-subject-button-"]',
+    const firstMenuButton = containerRef.current.querySelector<HTMLElement>(
+      "button:not(#hamburger-back-button), a[href]",
     );
 
     const fallbackFocusable = containerRef.current.querySelector<HTMLElement>(
       "a[href], button:not(:disabled), [tabindex]:not([tabindex='-1'])",
     );
 
-    (firstSubjectButton ?? fallbackFocusable)?.focus();
+    (firstMenuButton ?? fallbackFocusable)?.focus();
   }, [submenuOpen]);
+
   return (
     <OakFlex
       $ph={"spacing-40"}
@@ -80,13 +81,8 @@ export function SubmenuContainer({
         aria-label={ariaLabel}
         selected={true}
         $pl="spacing-0"
-        onClick={() => {
-          if (onBack) {
-            onBack();
-            return;
-          }
-          handleCloseSubmenu();
-        }}
+        onClick={() => handleCloseSubmenu()}
+        id="hamburger-back-button"
       >
         <OakHeading $font="heading-6" tag="h3">
           {title}
@@ -98,130 +94,28 @@ export function SubmenuContainer({
   );
 }
 
-type SubjectsSubmenuProps = {
-  readonly title: string;
-  readonly backButtonAriaLabel?: string;
-  readonly subjects: SubjectsNavItem[];
-  readonly phase: Phase;
-  readonly hamburgerMenu: HamburgerMenuHook;
-  readonly selectedExamBoardSubject: SubjectsNavItem | null;
-  readonly setSelectedExamBoardSubject: (
-    subject: SubjectsNavItem | null,
-  ) => void;
-  readonly onBack?: () => void;
-} & (
-  | { readonly viewType: "phase" }
-  | { readonly viewType: "keystage"; readonly keystageSlug: string }
-);
-
-function SubjectsSubmenu(props: SubjectsSubmenuProps) {
-  const {
-    title,
-    backButtonAriaLabel,
-    subjects,
-    phase,
-    hamburgerMenu,
-    selectedExamBoardSubject,
-    setSelectedExamBoardSubject,
-    onBack,
-  } = props;
-  const { track } = useAnalytics();
-  const { handleCloseHamburger } = hamburgerMenu;
-  const viewTypeSlug =
-    props.viewType === "keystage" ? props.keystageSlug : phase;
-
-  const handleSubjectBrowseClick = (subjectSlug: string) => {
-    track.browseRefined({
-      platform: "owa",
-      product: "teacher lesson resources",
-      engagementIntent: "refine",
-      componentType: "topnav-browse-button",
-      eventVersion: "2.0.0",
-      analyticsUseCase: "Teacher",
-      filterType: "Subject filter",
-      filterValue: subjectSlug,
-      activeFilters:
-        props.viewType === "keystage" ? { keystage: [props.keystageSlug] } : {},
-      googleLoginHint: null,
-      clientEnvironment: null,
-    });
-    handleCloseHamburger();
-  };
-
-  if (selectedExamBoardSubject?.examBoards?.length) {
-    const examBoardMenuTitle =
-      props.viewType === "keystage"
-        ? `KS4, ${selectedExamBoardSubject.title}`
-        : `Secondary, ${selectedExamBoardSubject.title}`;
-
-    return (
-      <SubmenuContainer
-        title={examBoardMenuTitle}
-        hamburgerMenu={hamburgerMenu}
-        onBack={() => setSelectedExamBoardSubject(null)}
-      >
-        <ExamBoardPanel
-          examBoards={selectedExamBoardSubject.examBoards}
-          phaseSlug={phase}
-          viewType={viewTypeSlug}
-          selectedSubject={selectedExamBoardSubject}
-          onClick={handleSubjectBrowseClick}
-          onLeave={() => setSelectedExamBoardSubject(null)}
-        />
-      </SubmenuContainer>
-    );
-  }
-
-  return (
-    <SubmenuContainer
-      ariaLabel={backButtonAriaLabel}
-      title={title}
-      hamburgerMenu={hamburgerMenu}
-      onBack={onBack}
-    >
-      <TopNavSubjectButtons
-        handleClick={handleSubjectBrowseClick}
-        selectedMenu={phase}
-        subjects={subjects}
-        selectedSubject={selectedExamBoardSubject}
-        viewTypeSlug={viewTypeSlug}
-        phase={phase}
-        onExamBoardPanelOpen={setSelectedExamBoardSubject}
-        closeExamBoardPanel={() => setSelectedExamBoardSubject(null)}
-      />
-    </SubmenuContainer>
-  );
-}
-
-export function SubmenuContent(
+export function HamburgerMenuContent(
   props: Readonly<TeachersSubNavData & { hamburgerMenu: HamburgerMenuHook }>,
 ) {
   const { hamburgerMenu, ...navData } = props;
   const { track } = useAnalytics();
-  const { submenuOpen, handleCloseHamburger } = hamburgerMenu;
-  const [selectedExamBoardSubject, setSelectedExamBoardSubject] =
-    useState<SubjectsNavItem | null>(null);
-  const [selectedKeystage, setSelectedKeystage] =
-    useState<TeachersBrowseChildItem | null>(null);
-
-  useEffect(() => {
-    setSelectedExamBoardSubject(null);
-    setSelectedKeystage(null);
-  }, [submenuOpen]);
+  const { submenuOpen, handleNav, handleCloseHamburger } = hamburgerMenu;
 
   if (!submenuOpen) return null;
 
-  switch (submenuOpen) {
-    case "About us":
-    case "Guidance": {
+  switch (submenuOpen.menu) {
+    case "OakMenu": {
       const links =
-        submenuOpen === "About us" ? navData.aboutUs : navData.guidance;
+        submenuOpen.value === "About us" ? navData.aboutUs : navData.guidance;
       return (
-        <SubmenuContainer title={submenuOpen} hamburgerMenu={hamburgerMenu}>
+        <SubmenuContainer
+          title={submenuOpen.value}
+          hamburgerMenu={hamburgerMenu}
+        >
           <OakUL
             $display={"flex"}
             $flexDirection={"column"}
-            $pa="spacing-0"
+            $ph="spacing-0"
             $gap={"spacing-16"}
           >
             {links.children.map((link) => (
@@ -252,98 +146,192 @@ export function SubmenuContent(
       );
     }
 
-    case "Primary subjects":
-    case "Secondary subjects": {
-      const phase: Phase =
-        submenuOpen === "Primary subjects" ? "primary" : "secondary";
-      const phaseData = navData[phase];
-      const phaseItem = phaseData.children.find(
-        (child) => child.type === "phase",
-      );
-      if (!phaseItem) return null;
-
-      return (
-        <SubjectsSubmenu
-          title={submenuOpen}
-          subjects={phaseItem.children}
-          viewType="phase"
-          phase={phase}
-          hamburgerMenu={hamburgerMenu}
-          selectedExamBoardSubject={selectedExamBoardSubject}
-          setSelectedExamBoardSubject={setSelectedExamBoardSubject}
-        />
-      );
-    }
-
-    case "Primary key stages":
-    case "Secondary key stages": {
-      const phase: Phase =
-        submenuOpen === "Primary key stages" ? "primary" : "secondary";
-      const phaseData = navData[phase];
-      const keystages = phaseData.children.filter(
-        (child) => child.type === "keystage",
+    case "Ks4Options": {
+      const { subject, title } = getKs4OptionSubjectData(
+        navData,
+        submenuOpen.value,
       );
 
-      if (selectedKeystage) {
-        return (
-          <SubjectsSubmenu
-            title={getKeystageListLabel(selectedKeystage)}
-            backButtonAriaLabel={getKeystageListAriaLabel(selectedKeystage)}
-            subjects={selectedKeystage.children}
-            viewType="keystage"
-            keystageSlug={selectedKeystage.slug}
-            phase={phase}
-            hamburgerMenu={hamburgerMenu}
-            selectedExamBoardSubject={selectedExamBoardSubject}
-            setSelectedExamBoardSubject={setSelectedExamBoardSubject}
-            onBack={() => setSelectedKeystage(null)}
-          />
-        );
+      if (!subject?.children) {
+        return null;
       }
 
       return (
-        <SubmenuContainer title={submenuOpen} hamburgerMenu={hamburgerMenu}>
-          <OakUL
-            $display={"flex"}
-            $flexDirection={"column"}
-            $gap={"spacing-16"}
-            $pa="spacing-0"
-          >
-            {keystages.map((keystage) => (
-              <OakLI key={keystage.slug} $listStyle={"none"} $width={"100%"}>
-                <OakLeftAlignedButton
-                  aria-haspopup={true}
-                  aria-label={getKeystageListAriaLabel(keystage)}
-                  rightAlignIcon
-                  iconName="chevron-right"
-                  width={"100%"}
-                  onClick={() => {
-                    track.browseRefined({
-                      platform: "owa",
-                      product: "teacher lesson resources",
-                      engagementIntent: "refine",
-                      componentType: "topnav-browse-button",
-                      eventVersion: "2.0.0",
-                      analyticsUseCase: "Teacher",
-                      filterType: "Key stage filter",
-                      filterValue: keystage.slug,
-                      activeFilters: {},
-                      googleLoginHint: null,
-                      clientEnvironment: null,
-                    });
-                    setSelectedKeystage(keystage);
-                  }}
-                >
-                  {getKeystageListLabel(keystage)}
-                </OakLeftAlignedButton>
-              </OakLI>
-            ))}
-          </OakUL>
+        <SubmenuContainer title={title} hamburgerMenu={hamburgerMenu}>
+          <TopNavKS4Buttons
+            ks4Options={subject.children}
+            subject={subject}
+            onClick={handleCloseHamburger}
+            onExamboardPanelClose={handleCloseHamburger}
+            getButtonId={(key) => `teachers-secondary-${subject.slug}-${key}`}
+          />
         </SubmenuContainer>
       );
     }
-
-    default:
-      return null;
+    case "Keystages": {
+      const { keystageData, phase } = getKeystageSubjectsData(
+        navData,
+        submenuOpen.value,
+      );
+      if (!keystageData) {
+        return null;
+      }
+      return (
+        <SubmenuContainer
+          title={getKeystageListLabel(keystageData)}
+          hamburgerMenu={hamburgerMenu}
+          ariaLabel={getKeystageListAriaLabel(keystageData)}
+        >
+          <TopNavSubjectButtons
+            handleClick={(subject: SubjectsMenu, keystageSlug: string) => {
+              track.browseRefined({
+                platform: "owa",
+                product: "teacher lesson resources",
+                engagementIntent: "refine",
+                componentType: "topnav-browse-button",
+                eventVersion: "2.0.0",
+                analyticsUseCase: "Teacher",
+                filterType: "Subject filter",
+                filterValue: subject.subjectSlug,
+                activeFilters: { keystages: [keystageSlug] },
+                googleLoginHint: null,
+                clientEnvironment: null,
+              });
+              handleCloseHamburger();
+            }}
+            onExamboardPanelClose={handleCloseHamburger}
+            selectedMenu={phase}
+            subjects={keystageData.children}
+            selectedSubject={null}
+            identifyingSlug={keystageData.slug}
+            phase={phase}
+            getButtonId={(key) =>
+              `teachers-${phase}-${keystageData.slug}-${key}`
+            }
+            onExamBoardPanelOpen={(subject: SubjectsMenu) => {
+              track.browseRefined({
+                platform: "owa",
+                product: "teacher lesson resources",
+                engagementIntent: "refine",
+                componentType: "topnav-browse-button",
+                eventVersion: "2.0.0",
+                analyticsUseCase: "Teacher",
+                filterType: "Subject filter",
+                filterValue: subject.subjectSlug,
+                activeFilters: { keystages: ["ks4"] },
+                googleLoginHint: null,
+                clientEnvironment: null,
+              });
+              handleNav({ menu: "Ks4Options", value: subject.slug });
+            }}
+          />
+        </SubmenuContainer>
+      );
+    }
+    case "KeystageOptions": {
+      const phase = getPhaseSlug(submenuOpen.value);
+      const phaseData = navData[phase];
+      const keystageOptionItem = phaseData.keystages.children;
+      if (!keystageOptionItem) return null;
+      return (
+        <SubmenuContainer
+          title={submenuOpen.value + " key stages"}
+          hamburgerMenu={hamburgerMenu}
+        >
+          <OakFlex
+            as="ul"
+            $flexDirection={"column"}
+            $gap={"spacing-16"}
+            $ph="spacing-0"
+          >
+            {keystageOptionItem.map((child) => (
+              <MainMenuButton
+                key={child.slug}
+                title={getKeystageListLabel(child)}
+                onClick={() =>
+                  hamburgerMenu.handleNav({
+                    menu: "Keystages",
+                    value: child.title,
+                  })
+                }
+                track={() => {
+                  track.browseRefined({
+                    platform: "owa",
+                    product: "teacher lesson resources",
+                    engagementIntent: "refine",
+                    componentType: "topnav-browse-button",
+                    eventVersion: "2.0.0",
+                    analyticsUseCase: "Teacher",
+                    filterType: "Key stage filter",
+                    filterValue: child.slug,
+                    activeFilters: {},
+                    googleLoginHint: null,
+                    clientEnvironment: null,
+                  });
+                }}
+              />
+            ))}
+          </OakFlex>
+        </SubmenuContainer>
+      );
+    }
+    case "Phases": {
+      const phase = getPhaseSlug(submenuOpen.value);
+      const phaseData = navData[phase];
+      const phaseItem = phaseData.phases.children;
+      if (!phaseItem) return null;
+      return (
+        <SubmenuContainer
+          title={submenuOpen.value + " subjects"}
+          hamburgerMenu={hamburgerMenu}
+        >
+          <TopNavSubjectButtons
+            identifyingSlug={phase}
+            handleClick={(subject: SubjectsMenu) => {
+              track.browseRefined({
+                platform: "owa",
+                product: "teacher lesson resources",
+                engagementIntent: "refine",
+                componentType: "topnav-browse-button",
+                eventVersion: "2.0.0",
+                analyticsUseCase: "Teacher",
+                filterType: "Subject filter",
+                filterValue: subject.subjectSlug,
+                activeFilters: {},
+                googleLoginHint: null,
+                clientEnvironment: null,
+              });
+              handleCloseHamburger();
+            }}
+            selectedMenu={phase}
+            subjects={phaseItem}
+            selectedSubject={null}
+            phase={phase}
+            getButtonId={(key) => `teachers-${phase}-${key}`}
+            onExamboardPanelClose={handleCloseHamburger}
+            onExamBoardPanelOpen={(subject: SubjectsMenu) => {
+              track.browseRefined({
+                platform: "owa",
+                product: "teacher lesson resources",
+                engagementIntent: "refine",
+                componentType: "topnav-browse-button",
+                eventVersion: "2.0.0",
+                analyticsUseCase: "Teacher",
+                filterType: "Subject filter",
+                filterValue: subject.subjectSlug,
+                activeFilters: { keystages: ["ks4"] },
+                googleLoginHint: null,
+                clientEnvironment: null,
+              });
+              handleNav({ menu: "Ks4Options", value: subject.slug });
+            }}
+          />
+        </SubmenuContainer>
+      );
+    }
+    case "MainMenu":
+    default: {
+      return <MainMenuContent {...navData} hamburgerMenu={hamburgerMenu} />;
+    }
   }
 }

@@ -15,7 +15,7 @@ import {
 import Link from "next/link";
 
 import {
-  Phase,
+  PhaseSlug,
   PhaseTitle,
   PupilsSubNavData,
 } from "@/node-lib/curriculum-api-2023/queries/topNav/topNav.schema";
@@ -95,7 +95,7 @@ function MainMenuContent(
 function YearSection(
   props: Readonly<{
     title: PhaseTitle;
-    slug: Phase;
+    slug: PhaseSlug;
     children: Array<{ title: string; slug: string }>;
     onClick: () => void;
   }>,

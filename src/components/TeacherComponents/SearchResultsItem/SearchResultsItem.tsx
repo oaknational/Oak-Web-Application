@@ -15,7 +15,7 @@ import LessonMetadata from "@/components/SharedComponents/LessonMetadata";
 import TagPromotional from "@/components/SharedComponents/TagPromotional";
 import SearchDropdown from "@/components/TeacherComponents/SearchDropdown";
 import {
-  LessonListingLinkProps,
+  UnitOverviewLinkProps,
   LessonOverviewLinkProps,
   resolveOakHref,
 } from "@/common-lib/urls";
@@ -46,7 +46,7 @@ export type SearchResultsItemProps = {
   | {
       type: "unit";
       nullTitle?: string;
-      buttonLinkProps: LessonListingLinkProps;
+      buttonLinkProps: UnitOverviewLinkProps;
     }
   | {
       type: "lesson";

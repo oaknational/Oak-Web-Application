@@ -1,3 +1,73 @@
+## [1.1104.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.1104.1...v1.1104.2) (2026-06-25)
+
+
+### Bug Fixes
+
+* add all keystages as valid value ([2b8bca2](https://github.com/oaknational/Oak-Web-Application/commit/2b8bca2c44bb366977000d5ba8810f76d433615e))
+* align keyboard nav with the new data structures ([47efbdf](https://github.com/oaknational/Oak-Web-Application/commit/47efbdf721f5f0562519eb4d9ec613e734e510ac))
+* align keystage filter value param name to plural keystages ([181e1dc](https://github.com/oaknational/Oak-Web-Application/commit/181e1dcb50f06d86def9f4ce1ff2c53335d41576))
+* close examboard panel when tabbing past options ([c21c331](https://github.com/oaknational/Oak-Web-Application/commit/c21c331bfb4ec7774f3c458d4fc30abf64aa4d3d))
+* close hamburger when clicking a nav link ([c089a44](https://github.com/oaknational/Oak-Web-Application/commit/c089a44dc94bce31e12f39ebba163da5a68952de))
+* hamburger focus ([c04fa22](https://github.com/oaknational/Oak-Web-Application/commit/c04fa22c42c1db597658f53e6f81d33657af9a72))
+* hamburger sub menu name ([cc8ddf1](https://github.com/oaknational/Oak-Web-Application/commit/cc8ddf1072ff75a9999796850dea498368b8dfb8))
+* handle multiple entry paths for ks4 options submenu view ([54fe91d](https://github.com/oaknational/Oak-Web-Application/commit/54fe91d05d01685ad9b88eb17e40b2d40b1e1e9d))
+* only handle arrow keys on keystage tab buttons ([e5401ee](https://github.com/oaknational/Oak-Web-Application/commit/e5401ee0812f3f6924ec099aa503972cc8a3370b))
+* pass correct value for ks in topnavks4menu ([6f3ccc0](https://github.com/oaknational/Oak-Web-Application/commit/6f3ccc0a44bde7e0cf885653b4d97efd3baf9f91))
+* pass subject rather than selected subject to ks4 buttons ([17bf805](https://github.com/oaknational/Oak-Web-Application/commit/17bf8057b5bab4ea793af0a7898b01c1c2903786))
+* remove list role from ul in ks4 options menu ([d07d522](https://github.com/oaknational/Oak-Web-Application/commit/d07d522f629b279cb7f1a2c84ea910f26a144634))
+* return empty examboards for subjects without tier or examboard ([61f01d9](https://github.com/oaknational/Oak-Web-Application/commit/61f01d9c3c012262ec1eed7554d5bbf12857697e))
+
+
+### Reverts
+
+* Revert "Merge pull request [#4306](https://github.com/oaknational/Oak-Web-Application/issues/4306) from oaknational/fix/phase-menu" ([3be762c](https://github.com/oaknational/Oak-Web-Application/commit/3be762c2ed71acaea415952c7c37a57ffcee55bf))
+
+## [1.1104.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.1104.0...v1.1104.1) (2026-06-25)
+
+# [1.1104.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1103.0...v1.1104.0) (2026-06-25)
+
+
+### Features
+
+* **LESQ-2078:** highlight optionality units in threads ([bbbe5bb](https://github.com/oaknational/Oak-Web-Application/commit/bbbe5bb8d13e2682ec0c9ae92dace0bc5ce4dc08))
+
+# [1.1103.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1102.1...v1.1103.0) (2026-06-24)
+
+
+### Features
+
+* add heatwave banner feature flag ([93041ac](https://github.com/oaknational/Oak-Web-Application/commit/93041ac519e67c22172d1afb89c8328b10e4143b))
+* add heatwave banner to lesson view ([4ddfd6a](https://github.com/oaknational/Oak-Web-Application/commit/4ddfd6a164e5664a72ae43310bc722fd2dbf534d))
+* fit banner to content ([aa6436a](https://github.com/oaknational/Oak-Web-Application/commit/aa6436a2992760094452016491f10d46cefc2d19))
+
+## [1.1102.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.1102.0...v1.1102.1) (2026-06-24)
+
+
+### Bug Fixes
+
+* revert carat version ([5a05aea](https://github.com/oaknational/Oak-Web-Application/commit/5a05aea486319d6210fad0f675bbb39290494636))
+* update curriculum schema ([afc8b6b](https://github.com/oaknational/Oak-Web-Application/commit/afc8b6b17d3978c3378b4c2b7ddd907a71a1a76e))
+
+# [1.1102.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1101.0...v1.1102.0) (2026-06-23)
+
+
+### Features
+
+* disallow create with ai on digital literacy ([c0e4c11](https://github.com/oaknational/Oak-Web-Application/commit/c0e4c115a6a2976cbfaf94c81937ddffd6e3947c))
+* exclude curriculum link in lesson seo helper ([ab43b5b](https://github.com/oaknational/Oak-Web-Application/commit/ab43b5bcf28dca4885079c8f0a109d0312e20c10))
+* remove hide curriculum logic ([5f8258f](https://github.com/oaknational/Oak-Web-Application/commit/5f8258ff5a8023ea1d02db438078a05d13e2e0b3))
+
+# [1.1101.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1100.3...v1.1101.0) (2026-06-23)
+
+
+### Features
+
+* **LESQ-2108:** add examboard filter to programme page ([b2454a3](https://github.com/oaknational/Oak-Web-Application/commit/b2454a38edc5b260de35a68d17e0e259bbeba58b))
+* **LESQ-2108:** forward compatible tier, pathway and child subject when switching examboard ([1425a6e](https://github.com/oaknational/Oak-Web-Application/commit/1425a6ec2862dc1cea62b8e7b96135a844881ac2))
+* **LESQ-2108:** restore focus to examboard filter after navigation ([c806996](https://github.com/oaknational/Oak-Web-Application/commit/c80699681068966d369e5fa5f08c5f89fd9e189a))
+* **LESQ-2108:** return focus to examboard selector after navigation ([b9bb39e](https://github.com/oaknational/Oak-Web-Application/commit/b9bb39eef077786ad2c0bf29c06493ee63050a18))
+* **LESQ-2108:** use replace instead of push ([f88c37e](https://github.com/oaknational/Oak-Web-Application/commit/f88c37e4dcd8a5a2dbd5b71494912d06b18cd192))
+
 ## [1.1100.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.1100.2...v1.1100.3) (2026-06-23)
 
 

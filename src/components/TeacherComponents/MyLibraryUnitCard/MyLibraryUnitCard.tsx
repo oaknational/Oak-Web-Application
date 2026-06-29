@@ -65,7 +65,7 @@ const UnitCardHeader = ({ ...props }: MyLibraryUnitCardProps) => {
         )}
         <OakSecondaryLink
           href={resolveOakHref({
-            page: "lesson-index",
+            page: "unit-overview",
             programmeSlug: props.programmeSlug,
             unitSlug: props.unitSlug,
           })}

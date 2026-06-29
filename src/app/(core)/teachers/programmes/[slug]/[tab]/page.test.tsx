@@ -136,6 +136,7 @@ describe("Programme page tabs", () => {
           }),
         ],
       },
+      examboardFilterDimensions: {},
     });
 
     jest.mocked(getSubjectPhaseOptions).mockResolvedValue({
@@ -176,6 +177,7 @@ describe("Programme page tabs", () => {
           }),
         ],
       },
+      examboardFilterDimensions: {},
     });
 
     jest.mocked(getSubjectPhaseOptions).mockResolvedValue({
@@ -226,6 +228,7 @@ describe("Programme page tabs", () => {
           }),
         ],
       },
+      examboardFilterDimensions: {},
     });
 
     jest.mocked(getSubjectPhaseOptions).mockResolvedValue({
@@ -411,6 +414,7 @@ describe("generateMetadata", () => {
           }),
         ],
       },
+      examboardFilterDimensions: {},
       curriculumPhaseOptions: {
         subjects: filterValidCurriculumPhaseOptions(
           curriculumPhaseOptionsFixture(),

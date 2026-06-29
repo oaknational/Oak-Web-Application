@@ -43,7 +43,6 @@ export type LessonOverviewHeaderProps = {
   lessonSlug: string;
   lessonDescription?: string;
   phonicsOutcome?: string | null;
-  isSpecialist: boolean;
   isCanonical: boolean;
   orderInUnit?: number | null;
   unitTotalLessonCount?: number | null;
