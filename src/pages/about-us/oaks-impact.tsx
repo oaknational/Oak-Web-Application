@@ -1,29 +1,24 @@
 import {
-  GetStaticProps,
-  GetStaticPropsResult,
+  GetServerSideProps,
+  GetServerSidePropsResult,
   NextPage,
 } from "next/dist/types";
-import { useFeatureFlagEnabled } from "posthog-js/react";
 import { OakHeading } from "@oaknational/oak-components";
 
+import getBrowserConfig from "@/browser-lib/getBrowserConfig";
 import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
 import Layout from "@/components/AppComponents/Layout";
-import ErrorView from "@/components/AppComponents/ErrorView";
 import { TopNavProps } from "@/components/AppComponents/TopNav/TopNav";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 import getPageProps from "@/node-lib/getPageProps";
+import { getFeatureFlag } from "@/node-lib/posthog/getFeatureFlag";
+import { getPosthogIdFromCookie } from "@/node-lib/posthog/getPosthogId";
 
 export type OaksImpactPageProps = {
   topNav: TopNavProps;
 };
 
 const OaksImpact: NextPage<OaksImpactPageProps> = ({ topNav }) => {
-  const isImpactPageEnabled = useFeatureFlagEnabled("oaks-impact");
-
-  if (!isImpactPageEnabled) {
-    return <ErrorView statusCode={404} topNav={topNav} />;
-  }
-
   return (
     <Layout
       seoProps={getSeoProps({ title: "Oak's Impact" })}
@@ -37,14 +32,35 @@ const OaksImpact: NextPage<OaksImpactPageProps> = ({ topNav }) => {
   );
 };
 
-export const getStaticProps: GetStaticProps = async (context) => {
+export const getServerSideProps: GetServerSideProps = async (context) => {
+  const posthogUserId = getPosthogIdFromCookie(
+    context.req.cookies,
+    getBrowserConfig("posthogApiKey"),
+  );
+
+  let isImpactPageEnabled: boolean = false;
+  if (posthogUserId) {
+    isImpactPageEnabled =
+      (await getFeatureFlag({
+        featureFlagKey: "oaks-impact",
+        posthogUserId,
+      })) === true;
+  }
+
+  if (!isImpactPageEnabled) {
+    return {
+      notFound: true,
+    };
+  }
+
   return getPageProps({
-    page: "about-oaks-impact::getStaticProps",
+    page: "about-oaks-impact::getServerSideProps",
     context,
+    withIsr: false,
     getProps: async () => {
       const topNav = await curriculumApi2023.topNav();
 
-      const results: GetStaticPropsResult<OaksImpactPageProps> = {
+      const results: GetServerSidePropsResult<OaksImpactPageProps> = {
         props: {
           topNav,
         },
