@@ -1,7 +1,7 @@
 "use client";
 import { RedirectToSignUp, useUser } from "@clerk/nextjs";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
-import { ReactNode, useEffect } from "react";
+import { ReactNode, Suspense, useEffect } from "react";
 
 import { Wall } from "@/components/AppComponents/Wall";
 import { OnboardingLayout as OnboardingLayoutFrame } from "@/components/TeacherComponents/OnboardingLayout/OnboardingLayout";
@@ -60,12 +60,14 @@ const OnboardingLayout = ({ children }: { children: ReactNode }) => {
   const prompt = onboardingPrompts[pathname ?? ""] ?? defaultPrompt;
 
   return (
-    <OnboardingLayoutFrame
-      promptHeading={prompt.promptHeading}
-      promptBody={prompt.promptBody}
-    >
-      {children}
-    </OnboardingLayoutFrame>
+    <Suspense fallback={null}>
+      <OnboardingLayoutFrame
+        promptHeading={prompt.promptHeading}
+        promptBody={prompt.promptBody}
+      >
+        {children}
+      </OnboardingLayoutFrame>
+    </Suspense>
   );
 };
 
