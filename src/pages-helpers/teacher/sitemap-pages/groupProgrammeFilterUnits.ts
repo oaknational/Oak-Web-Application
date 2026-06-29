@@ -153,7 +153,7 @@ export function createKeystageOptionsFromUnits(
     .filter((ks, index, all) => all.indexOf(ks) === index)
     .filter((ksSlug) => keystageSlugs.safeParse(ksSlug).success)
     .filter((ksSlug) => ksSlug !== EYFS_KEYSTAGE_SLUG)
-    .toSorted() as KeyStageSlug[];
+    .toSorted((a, b) => a.localeCompare(b)) as KeyStageSlug[];
 }
 
 /**
