@@ -13,6 +13,13 @@ const reportError = errorReporter("getAvoBridge");
 type AnalyticsServices = {
   posthog: Pick<AnalyticsService<PosthogConfig>, "track" | "identify">;
 };
+
+/**
+ * Events that trigger a full page reload must be sent instantly,
+ * otherwise the batched request can be cancelled before it leaves
+ * the browser and the event is lost.
+ */
+const SEND_INSTANTLY_EVENTS = new Set<string>(["userOnboardingCompleted"]);
 /**
  * getAvoBridge returns the bridge between Avo and our analytics services.
  * Namely, when we call Avo.myEvent(), logEvent() gets fired below.
@@ -47,7 +54,9 @@ const getAvoBridge = ({ posthog }: AnalyticsServices) => {
     }
     // Uncomment the below line to send track events to hubspot
     // hubspot.track(eventName, eventProperties);
-    posthog.track(eventName, eventProperties);
+    posthog.track(eventName, eventProperties, {
+      sendInstantly: SEND_INSTANTLY_EVENTS.has(eventName),
+    });
   };
 
   const identify: CustomDestination["identify"] = (userId) => {

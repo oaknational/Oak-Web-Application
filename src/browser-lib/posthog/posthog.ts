@@ -54,7 +54,7 @@ export const posthogToAnalyticsServiceWithoutQueue = (
   page: () => {
     client.capture("$pageview");
   },
-  track: (name, properties) => {
+  track: (name, properties, options) => {
     const m = window.location.search.match(/update_tracking_profile=true/);
 
     if ((name === "$pageview" || name === "$autocapture") && m) {
@@ -64,7 +64,11 @@ export const posthogToAnalyticsServiceWithoutQueue = (
         },
       });
     }
-    client.capture(name, properties);
+    client.capture(
+      name,
+      properties,
+      options?.sendInstantly ? { send_instantly: true } : undefined,
+    );
   },
   optIn: () => {
     if (client.has_opted_out_capturing()) {
