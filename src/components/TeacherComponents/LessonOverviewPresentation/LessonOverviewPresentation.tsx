@@ -55,6 +55,7 @@ const LessonOverviewPresentation: FC<LessonOverviewPresentationProps> = ({
         <AspectRatio ratio={isWorksheetPortrait ? "2:3" : "16:9"}>
           <SlideEmbedFocusContainer
             tabIndex={0}
+            role="group"
             data-testid="overview-presentation-focus-target"
             aria-label={`Slide deck preview for ${title}`}
           >
