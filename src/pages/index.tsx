@@ -7,7 +7,7 @@ import {
   getBlogPosts,
   SerializedPost,
 } from "@/pages-helpers/home/getBlogPosts";
-import AppLayout from "@/components/SharedComponents/AppLayout";
+import AppLayout from "@/components/AppComponents/AppLayout";
 import TeachersTab from "@/components/GenericPagesComponents/TeachersTab";
 import Banners from "@/components/SharedComponents/Banners";
 import { HomePageLowerView } from "@/components/GenericPagesViews/HomePageLower/HomePageLower.view";

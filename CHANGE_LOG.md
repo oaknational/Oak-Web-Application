@@ -1,3 +1,17 @@
+# [1.1105.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1104.2...v1.1105.0) (2026-06-29)
+
+
+### Bug Fixes
+
+* add top value for sticky box ([98b490c](https://github.com/oaknational/Oak-Web-Application/commit/98b490cf7bdd3d71b3e34fac72ffd9aa3d3a5d78))
+* typo in docs ([4381439](https://github.com/oaknational/Oak-Web-Application/commit/4381439f699d484e8eefac3d142a1076c146285a))
+* use same value for initial offset in notifications provider ([8c6f562](https://github.com/oaknational/Oak-Web-Application/commit/8c6f56247cfe19f8b594b22a39655bbaae338704))
+
+
+### Features
+
+* add root level error boundary for app route pages ([996eb0e](https://github.com/oaknational/Oak-Web-Application/commit/996eb0e686ab1b056075fd2fd55ee65f22fec58e))
+
 ## [1.1104.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.1104.1...v1.1104.2) (2026-06-25)
 
 
