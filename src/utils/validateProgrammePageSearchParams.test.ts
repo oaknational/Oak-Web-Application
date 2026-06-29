@@ -31,7 +31,7 @@ describe("validateSearchParams", () => {
   });
 
   it("returns undefined values when searchParams is null", () => {
-    expect(validateSearchParams(null)).toEqual(undefined);
+    expect(validateSearchParams(null)).toBeUndefined();
   });
 
   it.each(keystageSlugs.options)("accepts keystage slug %s", (slug) => {
