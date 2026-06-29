@@ -69,7 +69,8 @@ const LessonOverviewPresentation: FC<LessonOverviewPresentationProps> = ({
               data-testid="overview-presentation"
               allowFullScreen
               // Keep the embedded player out of the tab order to avoid keyboard traps.
-              tabIndex={-1} aria-hidden="true"
+              tabIndex={-1}
+              aria-hidden="true"
               loading="eager"
             />
           </SlideEmbedFocusContainer>
