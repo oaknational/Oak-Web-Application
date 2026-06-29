@@ -4,7 +4,7 @@ import { URLParams } from "./lessons/[lessonSlug]";
 
 import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
 import { Wall } from "@/components/AppComponents/Wall";
-import AppLayout from "@/components/SharedComponents/AppLayout";
+import AppLayout from "@/components/AppComponents/AppLayout";
 import { withOnboardingRequired } from "@/hocs/withOnboardingRequired";
 import { withPageAuthRequired } from "@/hocs/withPageAuthRequired";
 import MyLibrary from "@/components/TeacherViews/MyLibrary/MyLibrary";
