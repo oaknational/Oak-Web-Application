@@ -1,10 +1,11 @@
 "use client";
 import { RedirectToSignUp, useUser } from "@clerk/nextjs";
-import { usePathname } from "next/navigation";
-import { ReactNode } from "react";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { ReactNode, useEffect } from "react";
 
 import { Wall } from "@/components/AppComponents/Wall";
 import { OnboardingLayout as OnboardingLayoutFrame } from "@/components/TeacherComponents/OnboardingLayout/OnboardingLayout";
+import toSafeRedirect from "@/common-lib/urls/toSafeRedirect";
 
 type OnboardingPrompt = {
   promptHeading: ReactNode;
@@ -34,11 +35,27 @@ const onboardingPrompts: Record<string, OnboardingPrompt> = {
 };
 
 const OnboardingLayout = ({ children }: { children: ReactNode }) => {
-  const { isSignedIn, isLoaded } = useUser();
+  const { user, isSignedIn, isLoaded } = useUser();
   const pathname = usePathname();
+  const router = useRouter();
+  const searchParams = useSearchParams();
+
+  const isOnboarded = Boolean(user?.publicMetadata?.owa?.isOnboarded);
+
+  useEffect(() => {
+    if (isLoaded && isSignedIn && isOnboarded) {
+      // Return already-onboarded users to where they came from (or home)
+      const returnTo = searchParams?.get("returnTo") ?? "/";
+      router.replace(
+        toSafeRedirect(returnTo, new URL(globalThis.location.origin)) ?? "/",
+      );
+    }
+  }, [isLoaded, isSignedIn, isOnboarded, searchParams, router]);
 
   if (!isLoaded) return <Wall />;
   if (!isSignedIn) return <RedirectToSignUp />;
+  // Avoid flashing the onboarding UI while redirecting onboarded users away
+  if (isOnboarded) return <Wall />;
 
   const prompt = onboardingPrompts[pathname ?? ""] ?? defaultPrompt;
 

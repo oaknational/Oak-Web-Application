@@ -1,10 +1,13 @@
 import { screen } from "@testing-library/dom";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 
 import OnboardingLayout from "./layout";
 
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
-import { mockLoggedIn } from "@/__tests__/__helpers__/mockUser";
+import {
+  mockLoggedIn,
+  mockNotOnboardedUser,
+} from "@/__tests__/__helpers__/mockUser";
 import { setUseUserReturn } from "@/__tests__/__helpers__/mockClerk";
 
 jest.mock("posthog-js/react", () => ({
@@ -12,9 +15,13 @@ jest.mock("posthog-js/react", () => ({
   useFeatureFlagEnabled: () => false,
 }));
 
+const mockReplace = jest.fn();
+
 jest.mock("next/navigation", () => ({
   ...jest.requireActual("next/navigation"),
   usePathname: jest.fn(() => "/onboarding"),
+  useRouter: jest.fn(() => ({ replace: jest.fn() })),
+  useSearchParams: jest.fn(() => new URLSearchParams()),
 }));
 
 const setPathname = (pathname: string) => {
@@ -23,7 +30,9 @@ const setPathname = (pathname: string) => {
 
 describe("Onboarding layout", () => {
   beforeEach(() => {
-    setUseUserReturn(mockLoggedIn);
+    mockReplace.mockClear();
+    (useRouter as jest.Mock).mockReturnValue({ replace: mockReplace });
+    setUseUserReturn(mockNotOnboardedUser);
   });
 
   it("renders the child content when signed in", () => {
@@ -73,5 +82,17 @@ describe("Onboarding layout", () => {
 
     expect(screen.getByText(new RegExp(heading, "i"))).toBeInTheDocument();
     expect(screen.getByText(new RegExp(body, "i"))).toBeInTheDocument();
+  });
+
+  it("redirects already-onboarded users away from onboarding", () => {
+    setUseUserReturn(mockLoggedIn);
+    setPathname("/onboarding");
+    renderWithProviders()(
+      <OnboardingLayout>
+        <div>child content</div>
+      </OnboardingLayout>,
+    );
+
+    expect(mockReplace).toHaveBeenCalled();
   });
 });
