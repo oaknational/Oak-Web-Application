@@ -1457,7 +1457,6 @@ export const PageName = {
   'ABOUT_US_MEET_THE_TEAM': 'About Us: Meet the team',
   'ABOUT_US_MEET_THE_TEAM_BIO': 'About Us: Meet the team Bio',
   'ABOUT_US_OAKS_CURRICULA': 'About Us: Oak\'s curricula',
-  'ABOUT_US_OAKS_IMPACT': 'About Us: Oak\'s Impact',
   'CLASSROOM_AUTH_SUCCESS': 'Classroom: Auth Success',
   'CLASSROOM_BROWSE_YEARS': 'Classroom: Browse Years',
   'CLASSROOM_LESSONS': 'Classroom: Lessons',
