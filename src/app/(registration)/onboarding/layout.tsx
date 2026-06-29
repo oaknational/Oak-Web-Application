@@ -34,7 +34,7 @@ const onboardingPrompts: Record<string, OnboardingPrompt> = {
   },
 };
 
-const OnboardingLayout = ({ children }: { children: ReactNode }) => {
+const OnboardingLayoutInner = ({ children }: { children: ReactNode }) => {
   const { user, isSignedIn, isLoaded } = useUser();
   const pathname = usePathname();
   const router = useRouter();
@@ -60,15 +60,19 @@ const OnboardingLayout = ({ children }: { children: ReactNode }) => {
   const prompt = onboardingPrompts[pathname ?? ""] ?? defaultPrompt;
 
   return (
-    <Suspense fallback={null}>
-      <OnboardingLayoutFrame
-        promptHeading={prompt.promptHeading}
-        promptBody={prompt.promptBody}
-      >
-        {children}
-      </OnboardingLayoutFrame>
-    </Suspense>
+    <OnboardingLayoutFrame
+      promptHeading={prompt.promptHeading}
+      promptBody={prompt.promptBody}
+    >
+      {children}
+    </OnboardingLayoutFrame>
   );
 };
+
+const OnboardingLayout = ({ children }: { children: ReactNode }) => (
+  <Suspense fallback={null}>
+    <OnboardingLayoutInner>{children}</OnboardingLayoutInner>
+  </Suspense>
+);
 
 export default OnboardingLayout;
