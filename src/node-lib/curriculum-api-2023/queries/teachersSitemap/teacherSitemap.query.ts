@@ -28,8 +28,19 @@ const teachersSitemap = (sdk: Sdk) => async () => {
   }
 
   const teacherBrowseData = teachersSitemapDataSchema.parse(sitemapData);
+  const { programmeFilterUnits, ...browseData } = teacherBrowseData;
 
-  return keysToCamelCase(teacherBrowseData) as TeachersSitemapBrowseData;
+  return {
+    ...keysToCamelCase(browseData),
+    programmeFilterUnits: programmeFilterUnits.map((unit) => {
+      const { actions, ...rest } = unit;
+
+      return {
+        ...keysToCamelCase(rest),
+        actions,
+      };
+    }),
+  } as TeachersSitemapBrowseData;
 };
 
 export default teachersSitemap;
