@@ -1,3 +1,18 @@
+# [1.1107.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1106.0...v1.1107.0) (2026-06-29)
+
+
+### Bug Fixes
+
+* added Readonly<...> to SupportYouProps ([8fafccf](https://github.com/oaknational/Oak-Web-Application/commit/8fafccfac45b6691cb6648540e2fd0086167ec37))
+* another colspan fix ([c49374a](https://github.com/oaknational/Oak-Web-Application/commit/c49374aed30134d04ebad83f0f0a248388af952a))
+* colspan on right image ([08e4e2a](https://github.com/oaknational/Oak-Web-Application/commit/08e4e2a7254ec63ba8e6f1852bf204c11d458dac))
+* link alt text and heading tag ([7a589a8](https://github.com/oaknational/Oak-Web-Application/commit/7a589a8e6afc4bcc63b0faca7a5be5cf5140e0cc))
+
+
+### Features
+
+* added <SupportYou/> component for oaks new impact page ([4301dfb](https://github.com/oaknational/Oak-Web-Application/commit/4301dfba2bdca436c7626a65890f8dd8761ac98d))
+
 # [1.1106.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1105.3...v1.1106.0) (2026-06-29)
 
 
