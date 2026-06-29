@@ -1,14 +1,20 @@
 import { screen } from "@testing-library/dom";
-import { GetStaticPropsContext } from "next";
+import { GetServerSidePropsContext } from "next";
 
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 import { topNavFixture } from "@/node-lib/curriculum-api-2023/fixtures/topNav.fixture";
-import OaksImpact, { getStaticProps } from "@/pages/about-us/oaks-impact";
+import OaksImpact, { getServerSideProps } from "@/pages/about-us/oaks-impact";
 
-const mockFeatureFlagEnabled = jest.fn();
+const mockGetFeatureFlag = jest.fn();
 
-jest.mock("posthog-js/react", () => ({
-  useFeatureFlagEnabled: () => mockFeatureFlagEnabled(),
+jest.mock("@/node-lib/posthog/getFeatureFlag", () => ({
+  __esModule: true,
+  getFeatureFlag: () => mockGetFeatureFlag(),
+}));
+
+jest.mock("@/node-lib/posthog/getPosthogId", () => ({
+  __esModule: true,
+  getPosthogIdFromCookie: jest.fn().mockReturnValue("test-id"),
 }));
 
 jest.mock("@/node-lib/curriculum-api-2023", () => ({
@@ -25,7 +31,7 @@ afterAll(() => {
 
 describe("pages/about-us/oaks-impact.tsx", () => {
   it("renders title when feature flag is enabled", async () => {
-    mockFeatureFlagEnabled.mockReturnValue(true);
+    mockGetFeatureFlag.mockResolvedValue(true);
 
     const { container } = renderWithProviders()(
       <OaksImpact topNav={topNavFixture} />,
@@ -37,27 +43,29 @@ describe("pages/about-us/oaks-impact.tsx", () => {
     expect(container).toMatchSnapshot();
   });
 
-  it("renders 404 when feature flag is disabled", async () => {
-    mockFeatureFlagEnabled.mockReturnValue(false);
+  describe("getServerSideProps", () => {
+    it("should return props data when feature flag is enabled", async () => {
+      mockGetFeatureFlag.mockResolvedValue(true);
 
-    const { container } = renderWithProviders()(
-      <OaksImpact topNav={topNavFixture} />,
-    );
-
-    expect(screen.getByText("404")).toBeInTheDocument();
-    expect(container).toMatchSnapshot();
-  });
-
-  describe("getStaticProps", () => {
-    it("should return props data", async () => {
-      const propsResult = await getStaticProps({
-        params: {},
-      } as unknown as GetStaticPropsContext);
+      const propsResult = await getServerSideProps({
+        req: { cookies: {} },
+      } as GetServerSidePropsContext);
 
       expect(propsResult).toMatchObject({
         props: {
           topNav: topNavFixture,
         },
+      });
+    });
+    it("should return not found when feature flag is disabled", async () => {
+      mockGetFeatureFlag.mockResolvedValue(false);
+
+      const propsResult = await getServerSideProps({
+        req: { cookies: {} },
+      } as GetServerSidePropsContext);
+
+      expect(propsResult).toMatchObject({
+        notFound: true,
       });
     });
   });
