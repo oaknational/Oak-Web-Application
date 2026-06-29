@@ -1,5 +1,5 @@
-import { useRouter } from "next/router";
-import { FC, useEffect } from "react";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { FC, useEffect, useMemo } from "react";
 import {
   OakGrid,
   OakGridArea,
@@ -15,14 +15,16 @@ import {
 import styled from "styled-components";
 import { useFeatureFlagVariantKey } from "posthog-js/react";
 
-import { SearchProps } from "./search.view.types";
 import {
+  getActiveFilters,
+  getSortedSearchFiltersSelected,
   isKeyStageTitleValueType,
   removeHTMLTags,
   trackSearchModified,
 } from "./helpers";
-import { ContentFilterToggle } from "./ContentFilterToggle";
 
+import { SearchProps } from "@/components/TeacherViews/Search/search.view.types";
+import { ContentFilterToggle } from "@/components/TeacherViews/Search/ContentFilterToggle";
 import { SearchResultsItemProps } from "@/components/TeacherComponents/SearchResultsItem";
 import useAnalytics from "@/context/Analytics/useAnalytics";
 import useAnalyticsPageProps from "@/hooks/useAnalyticsPageProps";
@@ -32,14 +34,10 @@ import SearchActiveFilters from "@/components/TeacherComponents/SearchActiveFilt
 import SearchForm from "@/components/SharedComponents/SearchForm";
 import SearchResults from "@/components/TeacherComponents/SearchResults";
 import NoSearchResults from "@/components/TeacherComponents/NoSearchResults";
-import {
-  getActiveFilters,
-  getSortedSearchFiltersSelected,
-} from "@/context/Search/search.helpers";
 import SignPostToAila from "@/components/TeacherComponents/NoSearchResults/SignPostToAila";
 import MiniDropDown from "@/components/TeacherComponents/MiniDropdown";
 import SearchSuggestedFilters from "@/components/TeacherComponents/SearchSuggestedFilters/SearchSuggestedFilters";
-import { useSuggestedFilters } from "@/context/Search/useSuggestedFilters";
+import { useSuggestedFilters } from "@/app/(core)/teachers/search/useSuggestedFilters";
 import { SearchSuggestionBanner } from "@/components/TeacherComponents/SearchSuggestionBanner/SearchSuggestionBanner";
 import DelayedLoadingContainer from "@/components/SharedComponents/DelayedLoadingContainer";
 import { srOnlyCss } from "@/components/SharedComponents/ScreenReaderOnly";
@@ -88,7 +86,23 @@ const Search: FC<SearchProps> = (props) => {
   const { track } = useAnalytics();
   const { analyticsUseCase } = useAnalyticsPageProps();
   const router = useRouter();
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
   const hitCount = results.length;
+
+  const searchQueryParams = useMemo(() => {
+    const getParam = (param: string) =>
+      searchParams?.get(param)?.trim() || undefined;
+    return {
+      keyStages: getParam("keyStages"),
+      examBoards: getParam("examBoards"),
+      contentTypes: getParam("contentTypes"),
+      subjects: getParam("subjects"),
+      yearGroups: getParam("yearGroups"),
+      curriculum: getParam("curriculum"),
+      page: getParam("page"),
+    };
+  }, [searchParams]);
 
   const shouldShowError = status === "fail";
   const shouldShowLoading = status === "loading";
@@ -110,15 +124,15 @@ const Search: FC<SearchProps> = (props) => {
 
   useEffect(() => {
     const searchHasFilters =
-      router.query.keyStages ||
-      router.query.examBoards ||
-      router.query.contentTypes ||
-      router.query.subjects ||
-      router.query.yearGroups ||
-      router.query.curriculum;
+      searchQueryParams.keyStages ||
+      searchQueryParams.examBoards ||
+      searchQueryParams.contentTypes ||
+      searchQueryParams.subjects ||
+      searchQueryParams.yearGroups ||
+      searchQueryParams.curriculum;
 
     if (
-      !router.query.page &&
+      !searchQueryParams.page &&
       searchStartTime &&
       (status === "success" || status === "fail")
     ) {
@@ -145,7 +159,7 @@ const Search: FC<SearchProps> = (props) => {
           eventVersion: "2.0.0",
           analyticsUseCase: "Teacher",
           searchResultCount: hitCount,
-          activeFilters: getActiveFilters(router.query),
+          activeFilters: getActiveFilters(searchQueryParams),
           searchTerm: query.term,
         });
       }
@@ -154,16 +168,15 @@ const Search: FC<SearchProps> = (props) => {
     analyticsUseCase,
     hitCount,
     query.term,
-    router,
+    searchQueryParams,
     searchStartTime,
     setSearchStartTime,
     status,
     track,
   ]);
 
-  const searchFilterOptionSelected = getSortedSearchFiltersSelected(
-    router.query,
-  );
+  const searchFilterOptionSelected =
+    getSortedSearchFiltersSelected(searchQueryParams);
 
   const searchResultExpanded = ({
     searchHit,
@@ -231,9 +244,8 @@ const Search: FC<SearchProps> = (props) => {
         unitSlug: searchHit.buttonLinkProps.unitSlug,
         analyticsUseCase: analyticsUseCase,
         searchRank: searchRank,
-        searchFilterOptionSelected: getSortedSearchFiltersSelected(
-          router.query,
-        ),
+        searchFilterOptionSelected:
+          getSortedSearchFiltersSelected(searchQueryParams),
         searchResultCount: hitCount,
         searchResultType: searchHit.type,
         lessonName: removeHTMLTags(searchHit.title),
@@ -548,6 +560,11 @@ const Search: FC<SearchProps> = (props) => {
                     hits={results}
                     allKeyStages={allKeyStages}
                     query={query}
+                    paginationNavigation={{
+                      route: pathname || "/",
+                      searchParams,
+                      push: (url: string) => router?.push(url),
+                    }}
                     searchResultExpanded={(searchHit, searchRank) =>
                       searchResultExpanded({
                         searchHit,

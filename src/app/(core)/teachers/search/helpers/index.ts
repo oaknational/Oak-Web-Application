@@ -1,5 +1,13 @@
-import { ParsedUrlQuery } from "querystring";
+import { ParsedUrlQuery } from "node:querystring";
 
+import {
+  examboardSlugs,
+  keystageSlugs,
+  subjectSlugs,
+  yearSlugs,
+} from "@oaknational/oak-curriculum-schema";
+
+import { RawHighlightSchema } from "@/context/Search/search.schema";
 import {
   KeyStage,
   LessonSearchHit,
@@ -7,9 +15,13 @@ import {
   SearchHit,
   PathwaySchema,
   SuggestedSearchFilter,
-} from "./search.types";
-import { RawHighlightSchema } from "./search.schema";
-
+} from "@/context/Search/search.types";
+import {
+  FilterTypeValueType,
+  KeyStageTitleValueType,
+  SearchFilterMatchTypeValueType,
+  SearchFilterModifiedProperties,
+} from "@/browser-lib/avo/Avo";
 import errorReporter from "@/common-lib/error-reporter";
 import OakError from "@/errors/OakError";
 import truthy from "@/utils/truthy";
@@ -20,11 +32,107 @@ import {
   LessonOverviewLinkProps,
 } from "@/common-lib/urls";
 import { LEGACY_COHORT } from "@/config/cohort";
-import { removeHTMLTags } from "@/components/TeacherViews/Search/helpers";
 import { SearchIntent } from "@/common-lib/schemas/search-intent";
-import { SearchFilterMatchTypeValueType } from "@/browser-lib/avo/Avo";
 
 const reportError = errorReporter("search/helpers");
+
+export const convertUnitSlugToTitle = (
+  unitSlug: string,
+  truncateSlug: boolean = true,
+) => {
+  const lastHyphenIndex = unitSlug.lastIndexOf("-");
+  const truncatedSlug =
+    truncateSlug && lastHyphenIndex !== -1
+      ? unitSlug.substring(0, lastHyphenIndex)
+      : unitSlug;
+  const words = truncatedSlug.split("-");
+  const capitalisedWords = words.map(
+    (word) => word.charAt(0).toUpperCase() + word.slice(1),
+  );
+  const title = capitalisedWords.join(" ").trim();
+  return title;
+};
+
+export const removeHTMLTags = (str: string) => {
+  return str.replace(/(<([^>]+)>)/gi, "");
+};
+
+export const isKeyStageTitleValueType = (
+  value: string,
+): value is KeyStageTitleValueType => {
+  return (
+    value === "Key stage 1" ||
+    value === "Key stage 2" ||
+    value === "Key stage 3" ||
+    value === "Key stage 4"
+  );
+};
+
+export type TrackSearchModifiedProps = {
+  checked: boolean;
+  filterType: FilterTypeValueType;
+  filterValue: string;
+  searchFilterMatchType: SearchFilterMatchTypeValueType;
+};
+
+export const getFilterType = (slug: string): FilterTypeValueType => {
+  const isKeystageFilter = keystageSlugs.safeParse(slug).success;
+  const isYearFilter = yearSlugs.safeParse(slug).success;
+  const isSubjectFilter = subjectSlugs.safeParse(slug).success;
+  const isContentTypeFilter = slug === "lesson" || slug === "unit";
+  const isExamBoardFilter = examboardSlugs.safeParse(slug).success;
+
+  if (isKeystageFilter) {
+    return "Key stage filter";
+  } else if (isYearFilter) {
+    return "Year filter";
+  } else if (isSubjectFilter) {
+    return "Subject filter";
+  } else if (isContentTypeFilter) {
+    return "Content type filter";
+  } else if (isExamBoardFilter) {
+    return "Exam board filter";
+  } else if (slug === "new") {
+    return "Lesson Cohort filter";
+  } else {
+    reportError(
+      new OakError({
+        code: "search/unknown-filter-type",
+        meta: {
+          slug,
+        },
+      }),
+    );
+    return "Unknown filter" as FilterTypeValueType;
+  }
+};
+
+export const trackSearchModified =
+  (
+    query: string,
+    searchFilterModified: (props: SearchFilterModifiedProperties) => void,
+  ) =>
+  ({
+    checked,
+    filterType,
+    filterValue,
+    searchFilterMatchType,
+  }: TrackSearchModifiedProps) => {
+    const filterModificationType = checked ? "remove" : "add";
+    searchFilterModified({
+      platform: "owa",
+      product: "teacher lesson resources",
+      engagementIntent: "refine",
+      componentType: "filter_link",
+      eventVersion: "2.0.0",
+      analyticsUseCase: "Teacher",
+      filterModificationType,
+      filterType,
+      filterValue,
+      searchTerm: query,
+      searchFilterMatchType,
+    });
+  };
 
 export const isFilterItem = <T extends { slug: string }>(
   slug: string,
@@ -121,6 +229,10 @@ export const keyStageToSentenceCase = (
   return words.join(" ");
 };
 
+function lastChar(str: string) {
+  return str.at(-1);
+}
+
 export function elasticKeyStageSlugToKeyStage({
   elasticKeyStageSlug,
   allKeyStages,
@@ -128,9 +240,6 @@ export function elasticKeyStageSlugToKeyStage({
   elasticKeyStageSlug: string;
   allKeyStages: KeyStage[];
 }) {
-  function lastChar(str: string) {
-    return str.charAt(str.length - 1);
-  }
   const keyStage = allKeyStages.find(
     (keyStage) => lastChar(keyStage.slug) === lastChar(elasticKeyStageSlug),
   );
