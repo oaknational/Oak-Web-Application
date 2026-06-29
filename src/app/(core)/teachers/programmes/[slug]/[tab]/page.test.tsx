@@ -337,7 +337,7 @@ describe("generateMetadata", () => {
           page: "teacher-programme",
           subjectPhaseSlug: "maths-primary",
           tab: "units",
-          query: {},
+          query: undefined,
         }),
         getBrowserConfig("seoAppUrl"),
       ).toString(),
@@ -353,6 +353,46 @@ describe("generateMetadata", () => {
     );
     expect(result.twitter?.description).toContain(
       "Get fully sequenced teaching resources and lesson plans for Primary Maths",
+    );
+  });
+
+  it("includes query parameters in canonical url", async () => {
+    const mockSubjectData = {
+      subjects: filterValidCurriculumPhaseOptions(
+        curriculumPhaseOptionsFixture(),
+      ),
+      subjectPhaseKeystageSlugs: {
+        subjectSlug: "maths",
+        phaseSlug: "primary",
+        ks4OptionSlug: null,
+      },
+    };
+
+    jest.mocked(getSubjectPhaseOptions).mockResolvedValue(mockSubjectData);
+
+    const queryParams = {
+      years: "4",
+      keystages: "ks2",
+    };
+
+    const result = await generateMetadata({
+      params: Promise.resolve({
+        slug: "maths-primary",
+        tab: "units",
+      }),
+      searchParams: Promise.resolve(queryParams),
+    });
+
+    expect(result.alternates?.canonical).toBe(
+      new URL(
+        resolveOakHref({
+          page: "teacher-programme",
+          subjectPhaseSlug: "maths-primary",
+          tab: "units",
+          query: queryParams,
+        }),
+        getBrowserConfig("seoAppUrl"),
+      ).toString(),
     );
   });
 
