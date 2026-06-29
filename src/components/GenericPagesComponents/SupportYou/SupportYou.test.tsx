@@ -30,7 +30,7 @@ describe("SupportYou", () => {
     const imageEl = getByRole("img");
     expect(imageEl).toHaveAttribute(
       "src",
-      "https://NEXT_PUBLIC_SANITY_ASSET_CDN_HOST/images/NEXT_PUBLIC_SANITY_PROJECT_ID/NEXT_PUBLIC_SANITY_DATASET/1-300x300.png",
+      "https://NEXT_PUBLIC_SANITY_ASSET_CDN_HOST/images/NEXT_PUBLIC_SANITY_PROJECT_ID/NEXT_PUBLIC_SANITY_DATASET/1-300x300.png?w=16&fm=webp&q=80&fit=clip&auto=format",
     );
     expect(imageEl).toHaveAttribute("alt", "TEST_ALT");
   });
