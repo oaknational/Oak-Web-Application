@@ -1,4 +1,4 @@
-import { Phase, SubjectsNavItem } from "./topNav.schema";
+import { PhaseSlug, SubjectsMenu } from "./topNav.schema";
 
 import { resolveOakHref } from "@/common-lib/urls";
 import { getSubjectPhaseSlug } from "@/components/TeacherComponents/helpers/getSubjectPhaseSlug";
@@ -19,9 +19,9 @@ export function getTeachersSubjectNavHref({
   phaseSlug,
   curriculumPhaseOptionsSubjects,
 }: {
-  subject: Pick<SubjectsNavItem, "slug" | "pathwaySlug" | "programmeSlug">;
+  subject: Pick<SubjectsMenu, "slug" | "pathwaySlug" | "programmeSlug">;
   keyStageSlug?: string;
-  phaseSlug: Phase;
+  phaseSlug: PhaseSlug;
   curriculumPhaseOptionsSubjects: CurriculumPhaseOptions;
 }): string {
   if (keyStageSlug === "early-years-foundation-stage") {
@@ -73,7 +73,6 @@ export function getTeachersExamBoardNavHref({
         subjectSlug,
         phaseSlug,
         examboardSlug,
-        pathwaySlug: null,
         subjectParentTitle: subjectParent,
       })
     : getSubjectPhaseSlug({

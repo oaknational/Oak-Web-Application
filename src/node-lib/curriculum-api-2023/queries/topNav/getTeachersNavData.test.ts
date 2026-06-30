@@ -128,67 +128,68 @@ const getNav = (phase: "primary" | "secondary") =>
 describe("getTeachersNavData", () => {
   it("gets primary data", () => {
     const result = getNav("primary");
-    expect(result.title).toBe("Primary");
-    expect(result.children).toHaveLength(4);
+    expect(result.phases.title).toBe("Primary");
+    expect(result.keystages.children).toHaveLength(3);
   });
   it("gets secondary data", () => {
     const result = getNav("secondary");
-    expect(result.title).toBe("Secondary");
-    expect(result.children).toHaveLength(3);
+    expect(result.phases.title).toBe("Secondary");
+    expect(result.keystages.children).toHaveLength(2);
   });
   it("correctly identifies non curriculum subjects", () => {
     const result = getNav("primary");
-    const financialEducation = result.children[0]?.children.find(
-      (s) => s.slug === "financial-education",
+    const financialEducation = result.keystages.children[0]?.children?.find(
+      (s) => s.subjectSlug === "financial-education",
     );
+
     expect(financialEducation?.nonCurriculum).toBeTruthy();
   });
   it("includes EYFS in primary", () => {
     const result = getNav("primary");
-    const eyfs = result.children.find(
+    const eyfs = result.keystages.children.find(
       (ks) => ks.slug === "early-years-foundation-stage",
     );
     expect(eyfs).toBeDefined();
   });
   it("removes duplicate subjects from keystages", () => {
     const result = getNav("primary");
-    const subjects = result.children[0]?.children;
+    const subjects = result.keystages.children[0]?.children;
 
     expect(subjects).toHaveLength(2);
   });
   it("includes pathways for ks4 subjects", () => {
     const result = getNav("secondary");
-    const computing = result.children[1]?.children?.filter(
-      (s) => s.slug === "computing",
+    const computing = result.keystages.children[1]?.children?.filter(
+      (s) => s.subjectSlug === "computing",
     );
     expect(computing).toHaveLength(2);
   });
   it("returns a valid programme slug for subjects with one programme per keystage", () => {
     const result = getNav("secondary");
-    const multipleProgrammeSubject = result.children[1]?.children?.find(
-      (s) => s.programmeCount === 1,
-    );
+    const multipleProgrammeSubject =
+      result.keystages.children[1]?.children?.find(
+        (s) => s.programmeCount === 1,
+      );
     expect(multipleProgrammeSubject?.programmeSlug).not.toBeNull();
   });
   it("returns programme slug as null for subjects with multiple programmes at keystage", () => {
     const result = getNav("secondary");
-    const multipleProgrammeSubject = result.children[1]?.children?.find(
-      (s) => s.programmeCount > 1,
-    );
+    const multipleProgrammeSubject =
+      result.keystages.children[1]?.children?.find((s) => s.programmeCount > 1);
     expect(multipleProgrammeSubject?.programmeSlug).toBeNull();
   });
   it("uses subect name overrides", () => {
     const result = getNav("secondary");
-    const gcseComputing = result.children[1]?.children.find(
-      (s) => s.slug === "computing" && s.programmeCount > 1,
+    const gcseComputing = result.keystages.children[1]?.children?.find(
+      (s) => s.subjectSlug === "computing" && s.programmeCount > 1,
     );
 
     expect(gcseComputing?.title).toEqual("Computer science (GCSE)");
   });
   it("handles subjects with only one pathway and examboards (RE)", () => {
     const result = getNav("secondary");
-    const gcseRe = result.children[1]?.children.filter(
-      (s) => s.slug === "religious-education",
+    const gcseRe = result.keystages.children[1]?.children?.filter(
+      (s) => s.subjectSlug === "religious-education",
     );
 
     expect(gcseRe).toHaveLength(1); // No core option
@@ -198,18 +199,19 @@ describe("getTeachersNavData", () => {
 
   it("builds exam board hrefs from programme slugs", () => {
     const result = getNav("secondary");
-    const gcseComputing = result.children[1]?.children.find(
-      (s) => s.slug === "computing" && s.pathwaySlug === "gcse",
+    const gcseComputing = result.keystages.children[1]?.children?.find(
+      (s) =>
+        s.subjectSlug === "computing" && s.title === "Computer science (GCSE)",
     );
 
-    expect(gcseComputing?.examBoards).toEqual(
+    expect(gcseComputing?.children).toEqual(
       expect.arrayContaining([
         expect.objectContaining({
-          buttonTitle: "Edexcel",
+          title: "Edexcel",
           href: "/teachers/programmes/computing-secondary-edexcel/units?keystages=ks4",
         }),
         expect.objectContaining({
-          buttonTitle: "AQA",
+          title: "AQA",
           href: "/teachers/programmes/computing-secondary-aqa/units?keystages=ks4",
         }),
       ]),
@@ -218,16 +220,18 @@ describe("getTeachersNavData", () => {
 
   it("builds tier hrefs from programme slugs", () => {
     const result = getNav("secondary");
-    const maths = result.children[1]?.children.find((s) => s.slug === "maths");
+    const maths = result.keystages.children[1]?.children?.find(
+      (s) => s.subjectSlug === "maths",
+    );
 
-    expect(maths?.examBoards).toEqual(
+    expect(maths?.children).toEqual(
       expect.arrayContaining([
         expect.objectContaining({
-          buttonTitle: "Higher",
+          title: "Higher",
           href: "/teachers/programmes/maths-secondary/units?keystages=ks4&tiers=higher",
         }),
         expect.objectContaining({
-          buttonTitle: "Foundation",
+          title: "Foundation",
           href: "/teachers/programmes/maths-secondary/units?keystages=ks4&tiers=foundation",
         }),
       ]),
@@ -244,24 +248,21 @@ describe("getTeachersNavData", () => {
       curriculumPhaseOptionsSubjects,
     );
 
-    const phaseSecondary = result.children.find(
-      (item) => item.type === "phase" && item.slug === "secondary",
-    );
-    const science = phaseSecondary?.children.find(
+    const science = result.phases.children.find(
       (subject) => subject.slug === "science",
     );
 
     expect(science).toBeDefined();
     expect(science?.title).toBe("Science");
     expect(science?.programmeSlug).toBeNull();
-    expect(science?.examBoards).toEqual(
+    expect(science?.children).toEqual(
       expect.arrayContaining([
-        expect.objectContaining({ buttonTitle: "AQA" }),
-        expect.objectContaining({ buttonTitle: "Edexcel" }),
-        expect.objectContaining({ buttonTitle: "OCR" }),
+        expect.objectContaining({ title: "AQA" }),
+        expect.objectContaining({ title: "Edexcel" }),
+        expect.objectContaining({ title: "OCR" }),
       ]),
     );
-    expect(science?.examBoards).toHaveLength(3);
+    expect(science?.children).toHaveLength(3);
   });
 });
 

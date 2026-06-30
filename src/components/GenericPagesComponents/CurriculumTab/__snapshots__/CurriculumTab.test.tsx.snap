@@ -1044,7 +1044,7 @@ exports[`CurriculumTab renders 1`] = `
 }
 
 .c68 {
-  top: 82px;
+  top: 152px;
 }
 
 .c38 {
@@ -1604,7 +1604,7 @@ exports[`CurriculumTab renders 1`] = `
               >
                 <a
                   class="c18 "
-                  href="/teachers/curriculum"
+                  href="/about-us/oaks-curricula"
                 >
                   <span
                     class="c19"

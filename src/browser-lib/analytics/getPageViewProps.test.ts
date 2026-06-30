@@ -107,12 +107,6 @@ describe("getPageViewProps()", () => {
       analyticsUseCase: null,
     });
   });
-  it("Subject listing", () => {
-    expect(getPageViewProps("/teachers/key-stages/ks2/subjects")).toEqual({
-      pageName: "Subject Listing",
-      analyticsUseCase: "Teacher",
-    });
-  });
   it("About us: Who we are", () => {
     expect(getPageViewProps("/about-us/who-we-are")).toEqual({
       pageName: "About Us: Who We Are",

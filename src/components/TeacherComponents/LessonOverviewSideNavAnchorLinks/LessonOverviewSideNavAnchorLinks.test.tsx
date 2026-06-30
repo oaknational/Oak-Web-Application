@@ -16,7 +16,6 @@ const downloadAllBtnProps = {
   expired: false,
   showDownloadAll: false,
   onClickDownloadAll: jest.fn(),
-  isSpecialist: false,
   isCanonical: false,
   geoRestricted: false,
   loginRequired: false,

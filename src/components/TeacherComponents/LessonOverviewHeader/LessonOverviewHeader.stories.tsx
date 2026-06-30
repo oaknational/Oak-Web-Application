@@ -16,8 +16,7 @@ const props = {
     },
     {
       oakLinkProps: {
-        page: "subject-index",
-        keyStageSlug: "ks1",
+        page: "home",
       },
       label: "Key Stage 1",
     },
@@ -30,7 +29,7 @@ const props = {
     },
     {
       oakLinkProps: {
-        page: "lesson-index",
+        page: "unit-overview",
         programmeSlug: "history-primary-ks1",
         unitSlug:
           "unit-title-toys-and-games-what-can-toys-tell-us-about-the-past",

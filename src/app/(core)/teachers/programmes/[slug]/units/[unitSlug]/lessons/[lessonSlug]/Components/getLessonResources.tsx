@@ -134,7 +134,6 @@ export function getLessonResources({
       lessonSlug={data.lessonSlug}
       learningCycleVideos={data.lessonMediaClips}
       isCanonical={false}
-      useIntegratedMediaLinks
       unitSlug={data.unitSlug}
       programmeSlug={data.programmeSlug}
       lessonOutline={data.lessonOutline}
