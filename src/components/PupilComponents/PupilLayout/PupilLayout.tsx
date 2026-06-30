@@ -6,6 +6,7 @@ import Seo, { SeoProps } from "@/browser-lib/seo/Seo";
 import { usePupilStores } from "@/components/PupilComponents/Views/ViewHelpers";
 import { GoogleClassroomAnalyticsProvider } from "@/components/GoogleClassroom/useGoogleClassroomAnalytics";
 import { PupilClassroomAddOnAnalytics } from "@/components/GoogleClassroom/PupilClassroomAddOnAnalytics";
+import { PupilReadOnlyBanner } from "@/components/PupilComponents/PupilReadOnlyBanner/PupilReadOnlyBanner";
 import {
   LessonBrowseData,
   LessonContent,
@@ -37,6 +38,7 @@ export const PupilLayout: FC<PupilLayoutProps> = (props) => {
       </Head>
       <Seo {...seoProps} />
       <PupilClassroomAddOnAnalytics />
+      <PupilReadOnlyBanner />
       <OakBox $height={"100vh"}>{children}</OakBox>
     </GoogleClassroomAnalyticsProvider>
   );
