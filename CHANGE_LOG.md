@@ -1,3 +1,10 @@
+## [1.1107.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.1107.0...v1.1107.1) (2026-06-30)
+
+
+### Bug Fixes
+
+* fixes all high reliability sonarcloud issues ([a6736fc](https://github.com/oaknational/Oak-Web-Application/commit/a6736fc552b529e661d23dde527e554c22f22dda))
+
 # [1.1107.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1106.0...v1.1107.0) (2026-06-29)
 
 
