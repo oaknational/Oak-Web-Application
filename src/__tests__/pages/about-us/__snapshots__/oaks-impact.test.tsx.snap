@@ -7,7 +7,7 @@ exports[`pages/about-us/oaks-impact.tsx renders title when feature flag is enabl
   >
     <fake-head>
       <title>
-        Oak's Impact | NEXT_PUBLIC_SEO_APP_NAME
+        Oak's impact | NEXT_PUBLIC_SEO_APP_NAME
       </title>
       <meta
         content="index,follow"
@@ -30,7 +30,7 @@ exports[`pages/about-us/oaks-impact.tsx renders title when feature flag is enabl
         name="twitter:creator"
       />
       <meta
-        content="Oak's Impact | NEXT_PUBLIC_SEO_APP_NAME"
+        content="Oak's impact | NEXT_PUBLIC_SEO_APP_NAME"
         property="og:title"
       />
       <meta
@@ -608,7 +608,7 @@ exports[`pages/about-us/oaks-impact.tsx renders title when feature flag is enabl
                   <span
                     class="sc-eqUAAy ffxKII"
                   >
-                    Oak's Impact
+                    Oak's impact
                   </span>
                 </h1>
                 <p
@@ -618,13 +618,13 @@ exports[`pages/about-us/oaks-impact.tsx renders title when feature flag is enabl
                 </p>
               </div>
               <div
-                class="sc-aXZVg sc-9ed44546-0 jPvJsJ eKCzCZ"
+                class="sc-aXZVg sc-2c4f354b-0 jPvJsJ bnaXAx"
               >
                 <span
                   class="sc-aXZVg iLOJBD"
                 >
                   <img
-                    alt="Oak's Impact"
+                    alt=""
                     class="sc-iGgWBj dZvqhO"
                     data-nimg="fill"
                     decoding="async"
@@ -734,16 +734,16 @@ exports[`pages/about-us/oaks-impact.tsx renders title when feature flag is enabl
                     class="sc-aXZVg sc-gEvEer doMEuo fXHtRp"
                   >
                     <img
-                      alt="Oak's Impact"
+                      alt=""
                       class="sc-ba397cd3-0 knxbUF"
                       data-nimg="1"
                       decoding="async"
-                      height="0"
+                      height="2001"
                       loading="lazy"
-                      src="https://NEXT_PUBLIC_SANITY_ASSET_CDN_HOST/images/NEXT_PUBLIC_SANITY_PROJECT_ID/NEXT_PUBLIC_SANITY_DATASET/ef2a05d634b1ade34d33664c44fa36cb62e1aaba-3000x2001.jpg?w=16&fm=webp&q=80&fit=clip&auto=format"
-                      srcset="https://NEXT_PUBLIC_SANITY_ASSET_CDN_HOST/images/NEXT_PUBLIC_SANITY_PROJECT_ID/NEXT_PUBLIC_SANITY_DATASET/ef2a05d634b1ade34d33664c44fa36cb62e1aaba-3000x2001.jpg?w=16&fm=webp&q=80&fit=clip&auto=format 1x"
+                      src="https://NEXT_PUBLIC_SANITY_ASSET_CDN_HOST/images/NEXT_PUBLIC_SANITY_PROJECT_ID/NEXT_PUBLIC_SANITY_DATASET/ef2a05d634b1ade34d33664c44fa36cb62e1aaba-3000x2001.jpg?w=3840&h=2561&fm=webp&q=80&fit=clip&auto=format"
+                      srcset="https://NEXT_PUBLIC_SANITY_ASSET_CDN_HOST/images/NEXT_PUBLIC_SANITY_PROJECT_ID/NEXT_PUBLIC_SANITY_DATASET/ef2a05d634b1ade34d33664c44fa36cb62e1aaba-3000x2001.jpg?w=3840&h=2561&fm=webp&q=80&fit=clip&auto=format 1x"
                       style="color: transparent;"
-                      width="0"
+                      width="3000"
                     />
                   </div>
                 </div>

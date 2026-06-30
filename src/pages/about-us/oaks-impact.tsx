@@ -25,27 +25,24 @@ export type OaksImpactPageProps = {
 };
 
 const placeholderImage = {
-  _id: "ef2a05d634b1ade34d33664c44fa36cb62e1aaba-3000x2001-jpg",
+  _id: "image-ef2a05d634b1ade34d33664c44fa36cb62e1aaba-3000x2001-jpg",
   url: "https://sanity-asset-cdn.thenational.academy/images/cuvjke51/production/ef2a05d634b1ade34d33664c44fa36cb62e1aaba-3000x2001.jpg",
 };
 
 const OaksImpact: NextPage<OaksImpactPageProps> = ({ topNav }) => {
   return (
     <Layout
-      seoProps={getSeoProps({ title: "Oak's Impact" })}
+      seoProps={getSeoProps({ title: "Oak's impact" })}
       $background={"bg-primary"}
       topNavProps={topNav}
     >
       <AboutUsLayout>
         <AboutSharedHeader
-          title="Oak's Impact"
+          title="Oak's impact"
           titleHighlight="bg-decorative2-main"
           content="How our world-class curriculum is making a difference in schools and trusts across the country"
         >
-          <AboutSharedHeaderImage
-            imageAlt="Oak's Impact"
-            imageUrl={placeholderImage.url}
-          />
+          <AboutSharedHeaderImage imageUrl={placeholderImage.url} />
         </AboutSharedHeader>
         <OakBox
           $ma={"spacing-48"}
@@ -81,7 +78,6 @@ const OaksImpact: NextPage<OaksImpactPageProps> = ({ topNav }) => {
           }}
           image={{
             asset: placeholderImage,
-            altText: "Oak's Impact",
           }}
         />
       </AboutUsLayout>
