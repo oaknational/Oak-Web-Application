@@ -1,3 +1,12 @@
+# [1.1108.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1107.1...v1.1108.0) (2026-06-30)
+
+
+### Features
+
+* **LESQ-2111:** add programme filter units to teachers sitemap query ([3d829da](https://github.com/oaknational/Oak-Web-Application/commit/3d829dae1c507aa2f00387c73a4f029b6449f9f8))
+* **LESQ-2111:** derive programme filter variants for teacher sitemap ([94e9e95](https://github.com/oaknational/Oak-Web-Application/commit/94e9e9530c8695d06167d03c470cba4e9b1386b7))
+* **LESQ-2111:** emit year and keystage programme URLs in teacher sitemap ([721ab39](https://github.com/oaknational/Oak-Web-Application/commit/721ab39f52bc95efd37ec6e3534ac4958511a0b8))
+
 ## [1.1107.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.1107.0...v1.1107.1) (2026-06-30)
 
 
