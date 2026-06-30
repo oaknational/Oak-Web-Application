@@ -1,3 +1,16 @@
+# [1.1109.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1108.0...v1.1109.0) (2026-06-30)
+
+
+### Bug Fixes
+
+* alt text and casing ([b83f56d](https://github.com/oaknational/Oak-Web-Application/commit/b83f56d8388f2b704cf8c6fa8714219a60a3da84))
+
+
+### Features
+
+* oaks impact intial build ([431802a](https://github.com/oaknational/Oak-Web-Application/commit/431802a69f8d9d463cd8de06ae12c96a002a034e))
+* support you component uses max width ([a295c63](https://github.com/oaknational/Oak-Web-Application/commit/a295c63514140d6543dea4e6e65e52df97513e43))
+
 # [1.1108.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1107.1...v1.1108.0) (2026-06-30)
 
 
