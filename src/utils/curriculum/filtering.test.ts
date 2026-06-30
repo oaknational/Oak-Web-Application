@@ -305,8 +305,6 @@ describe("filtering", () => {
         keystages: [],
       });
     });
-
-    it("without data", () => {});
   });
 });
 
