@@ -233,7 +233,9 @@ export const usePupilVideoExperience = ({
     transcriptSentences,
     signLanguageOn,
     isAdditionalFilesDownloading,
-    videoInitialTimeElapsed: sectionResults.video?.timeElapsed ?? 0,
+    videoInitialTimeElapsed: isVideoComplete
+      ? 0
+      : (sectionResults.video?.timeElapsed ?? 0),
     handleVideoEvent,
     handleBackToOverview,
     handleProceed,

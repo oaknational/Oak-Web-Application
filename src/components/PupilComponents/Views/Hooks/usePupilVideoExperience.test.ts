@@ -153,4 +153,35 @@ describe("usePupilVideoExperience", () => {
     expect(video?.played).toBe(true);
     expect(video?.duration).toBe(200);
   });
+
+  it("resumes a partially-watched video from its persisted time elapsed", () => {
+    usePupilLessonProgress.getState().updateSectionInProgressResult("video", {
+      played: true,
+      duration: 100,
+      timeElapsed: 42,
+      muted: false,
+      signedOpened: false,
+      transcriptOpened: false,
+    });
+
+    const { result } = renderVideo();
+
+    expect(result.current.videoInitialTimeElapsed).toBe(42);
+  });
+
+  it("starts a completed video from the beginning so re-opening does not re-fire video finished", () => {
+    usePupilLessonProgress.getState().updateSectionInProgressResult("video", {
+      played: true,
+      duration: 100,
+      timeElapsed: 98,
+      muted: false,
+      signedOpened: false,
+      transcriptOpened: false,
+    });
+    usePupilLessonProgress.getState().completeSection("video");
+
+    const { result } = renderVideo();
+
+    expect(result.current.videoInitialTimeElapsed).toBe(0);
+  });
 });
