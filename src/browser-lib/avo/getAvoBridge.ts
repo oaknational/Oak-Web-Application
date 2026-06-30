@@ -19,7 +19,9 @@ type AnalyticsServices = {
  * otherwise the batched request can be cancelled before it leaves
  * the browser and the event is lost.
  */
-const SEND_INSTANTLY_EVENTS = new Set<string>(["userOnboardingCompleted"]);
+const SEND_INSTANTLY_EVENTS: ReadonlySet<string> = new Set<string>([
+  "User Onboarding Completed",
+]);
 /**
  * getAvoBridge returns the bridge between Avo and our analytics services.
  * Namely, when we call Avo.myEvent(), logEvent() gets fired below.
