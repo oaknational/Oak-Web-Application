@@ -1,3 +1,33 @@
+# [1.1107.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1106.0...v1.1107.0) (2026-06-29)
+
+
+### Bug Fixes
+
+* added Readonly<...> to SupportYouProps ([8fafccf](https://github.com/oaknational/Oak-Web-Application/commit/8fafccfac45b6691cb6648540e2fd0086167ec37))
+* another colspan fix ([c49374a](https://github.com/oaknational/Oak-Web-Application/commit/c49374aed30134d04ebad83f0f0a248388af952a))
+* colspan on right image ([08e4e2a](https://github.com/oaknational/Oak-Web-Application/commit/08e4e2a7254ec63ba8e6f1852bf204c11d458dac))
+* link alt text and heading tag ([7a589a8](https://github.com/oaknational/Oak-Web-Application/commit/7a589a8e6afc4bcc63b0faca7a5be5cf5140e0cc))
+
+
+### Features
+
+* added <SupportYou/> component for oaks new impact page ([4301dfb](https://github.com/oaknational/Oak-Web-Application/commit/4301dfba2bdca436c7626a65890f8dd8761ac98d))
+
+# [1.1106.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1105.3...v1.1106.0) (2026-06-29)
+
+
+### Bug Fixes
+
+* exclude oaks impact path from sitemap ([25838ce](https://github.com/oaknational/Oak-Web-Application/commit/25838ce4c07f3d1dcc9d7c7e6a614fb0d412dde6))
+* remove avo page name and url config ([8036dd5](https://github.com/oaknational/Oak-Web-Application/commit/8036dd5e97e8669f55f1ab1890322e90ceeb4efc))
+* use app layout ([98d8a0f](https://github.com/oaknational/Oak-Web-Application/commit/98d8a0f867c66f7d7761cf208126c6bb56cc5193))
+
+
+### Features
+
+* check feat flag server side ([c368501](https://github.com/oaknational/Oak-Web-Application/commit/c3685012b6d8a530e61c113064e9580222694f83))
+* feat flagged oaks impact page skeleton ([f449833](https://github.com/oaknational/Oak-Web-Application/commit/f449833b9a6941d0d927a7d0e57aecfccfad8dba))
+
 ## [1.1105.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.1105.2...v1.1105.3) (2026-06-29)
 
 
