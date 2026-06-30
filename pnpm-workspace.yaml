@@ -18,3 +18,4 @@ allowBuilds:
   re2: true
   sharp: true
   unrs-resolver: true
+  '@oaknational/oak-components': true
