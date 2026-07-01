@@ -6,7 +6,7 @@ import {
 } from "next";
 
 import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
-import AppLayout from "@/components/SharedComponents/AppLayout";
+import AppLayout from "@/components/AppComponents/AppLayout";
 import { LessonMedia } from "@/components/TeacherViews/LessonMedia/LessonMedia.view";
 import {
   getFallbackBlockingConfig,

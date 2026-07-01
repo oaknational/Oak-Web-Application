@@ -32,7 +32,7 @@ describe("core layout", () => {
     mockTopNav.mockRejectedValueOnce(
       new OakError({ code: "curriculum-api/not-found" }),
     );
-    expect(async () =>
+    await expect(async () =>
       render(
         await CoreLayout({
           children: <OakBox>children</OakBox>,

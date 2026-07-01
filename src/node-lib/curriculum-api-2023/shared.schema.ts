@@ -303,7 +303,6 @@ export const baseLessonDownloadsSchema = z.object({
   downloads: lessonDownloadsListSchema,
   additionalFiles: lessonAdditionalFilesListSchema,
   expired: z.boolean().nullable(),
-  isSpecialist: z.literal(false),
   legacyCopyrightContent: legacyCopyrightContentSchema,
   updatedAt: z.string(),
   geoRestricted: z.boolean().nullable(),

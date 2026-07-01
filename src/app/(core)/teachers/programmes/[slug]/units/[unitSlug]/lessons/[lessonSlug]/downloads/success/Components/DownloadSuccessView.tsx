@@ -87,7 +87,7 @@ export function DownloadSuccessView({
     <>
       <DownloadSuccessHeader
         href={resolveOakHref({
-          page: "integrated-lesson-overview",
+          page: "lesson-overview",
           lessonSlug,
           programmeSlug,
           unitSlug,

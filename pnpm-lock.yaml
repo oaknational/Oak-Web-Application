@@ -60,8 +60,8 @@ importers:
         specifier: 2.4.0
         version: 2.4.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(zod@4.3.6)
       '@oaknational/oak-curriculum-schema':
-        specifier: 2.14.1-beta.1
-        version: 2.14.1-beta.1(zod@4.3.6)
+        specifier: 2.14.1
+        version: 2.14.1(zod@4.3.6)
       '@ooxml-tools/units':
         specifier: ^0.3.0
         version: 0.3.0
@@ -3125,8 +3125,8 @@ packages:
       react-dom: ^18 || ^19
       zod: 4.x
 
-  '@oaknational/oak-curriculum-schema@2.14.1-beta.1':
-    resolution: {integrity: sha512-T1R7MyK+Z9A6rtECGwboacq23BOvWzUv4wzU4QuCpjMmemQeB7tjLaPWUtiJAks/iEo0RBpibPmoM/lJoY5Gkg==}
+  '@oaknational/oak-curriculum-schema@2.14.1':
+    resolution: {integrity: sha512-gxeYHwDLNSvGZpHXE7BgExqDl1x2qXsDtqI3G2iMaGGb2RMk1yVBsQKJHDYKVdRuV0ZoGoGfnuNDxG6p7pt8qQ==}
     peerDependencies:
       zod: ^4.0.0
 
@@ -17073,7 +17073,7 @@ snapshots:
       react-dom: 18.3.1(react@18.3.1)
       zod: 4.3.6
 
-  '@oaknational/oak-curriculum-schema@2.14.1-beta.1(zod@4.3.6)':
+  '@oaknational/oak-curriculum-schema@2.14.1(zod@4.3.6)':
     dependencies:
       zod: 4.3.6
       zod-to-camel-case: 0.5.0(zod@4.3.6)

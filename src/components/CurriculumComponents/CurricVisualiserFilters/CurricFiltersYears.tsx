@@ -97,7 +97,9 @@ export function CurricFiltersYears(props: Readonly<CurricFiltersYearsProps>) {
   const { yearData } = data;
 
   const shouldDisplayCorePathway =
-    slugs.ks4OptionSlug !== "core" && getShouldDisplayCorePathway(ks4Options);
+    context !== "integrated-journey" &&
+    slugs.ks4OptionSlug !== "core" &&
+    getShouldDisplayCorePathway(ks4Options);
 
   const ksFilter = filters.keystages[0];
   const yearOptions = data.yearOptions

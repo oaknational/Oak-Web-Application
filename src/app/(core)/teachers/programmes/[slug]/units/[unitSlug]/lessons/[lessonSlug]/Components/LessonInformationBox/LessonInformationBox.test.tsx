@@ -1,19 +1,11 @@
 import { screen } from "@testing-library/dom";
-import { oakDefaultTheme } from "@oaknational/oak-components";
 
 import LessonInformationBox from "./LessonInformationBox";
 
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
-import theme from "@/styles/theme";
-import type { OakColorName } from "@/styles/theme/types";
+import { getOakUiColor } from "@/__tests__/__helpers__/getOakUiColor";
 
 const render = renderWithTheme;
-const getOakBackgroundColor = (
-  token: "bg-decorative2-subdued" | "bg-neutral",
-): string => {
-  const colorName = oakDefaultTheme.uiColors[token] as OakColorName;
-  return theme.colors[colorName];
-};
 
 describe("LessonInformationBox", () => {
   it("renders teacher tip", () => {
@@ -37,7 +29,7 @@ describe("LessonInformationBox", () => {
     expect(teacherTipHeading).toBeInTheDocument();
     expect(teacherTipText).toBeInTheDocument();
     expect(lessonInformationContainer).toHaveStyle({
-      background: getOakBackgroundColor("bg-decorative2-subdued"),
+      background: getOakUiColor("bg-decorative2-subdued"),
     });
   });
 
@@ -57,7 +49,7 @@ describe("LessonInformationBox", () => {
     expect(equipmentHeading).toBeInTheDocument();
     expect(equipmentText).toBeInTheDocument();
     expect(lessonInformationContainer).toHaveStyle({
-      background: getOakBackgroundColor("bg-neutral"),
+      background: getOakUiColor("bg-neutral"),
     });
   });
 
@@ -77,7 +69,7 @@ describe("LessonInformationBox", () => {
     expect(contentGuidanceHeading).toBeInTheDocument();
     expect(contentGuidanceText).toBeInTheDocument();
     expect(lessonInformationContainer).toHaveStyle({
-      background: getOakBackgroundColor("bg-neutral"),
+      background: getOakUiColor("bg-neutral"),
     });
   });
 
@@ -93,7 +85,7 @@ describe("LessonInformationBox", () => {
     expect(supervisionHeading).toBeInTheDocument();
     expect(supervisionText).toBeInTheDocument();
     expect(lessonInformationContainer).toHaveStyle({
-      background: getOakBackgroundColor("bg-neutral"),
+      background: getOakUiColor("bg-neutral"),
     });
   });
 
@@ -128,7 +120,7 @@ describe("LessonInformationBox", () => {
     expect(downloadInstructionText).toBeInTheDocument();
     expect(buttonText).toBeInTheDocument();
     expect(lessonInformationContainer).toHaveStyle({
-      background: getOakBackgroundColor("bg-neutral"),
+      background: getOakUiColor("bg-neutral"),
     });
   });
 

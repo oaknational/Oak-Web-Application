@@ -23,9 +23,9 @@ describe(fetchHubspotContactDetails, () => {
     expect(await fetchHubspotContactDetails()).toEqual(null);
   });
 
-  it("throws when there is an error", () => {
+  it("throws when there is an error", async () => {
     fetchMock.mockResponseOnce("", { status: 500 });
 
-    expect(fetchHubspotContactDetails()).rejects.toBeInstanceOf(OakError);
+    await expect(fetchHubspotContactDetails()).rejects.toBeInstanceOf(OakError);
   });
 });

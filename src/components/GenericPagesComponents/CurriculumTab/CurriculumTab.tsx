@@ -91,7 +91,7 @@ const CurriculumTab: FC<CurriculumDownloadTabProps> = ({
 
             <OakFlex $gap="spacing-24" $flexWrap={"wrap"} $pb="spacing-24">
               <OakSecondaryLink
-                href={resolveOakHref({ page: "curriculum-landing-page" })}
+                href={resolveOakHref({ page: "about-oaks-curricula" })}
                 onClick={() => {
                   track.curriculumLandingPageAccessed({
                     platform: "owa",

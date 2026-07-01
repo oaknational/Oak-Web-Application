@@ -100,9 +100,28 @@ describe("posthog.ts", () => {
 
       expect(distinctId).toEqual(textDistinctId);
     });
-  });
 
-  test("when the client is already loaded epeated calls to `init` resolve to the distinct id", () => {});
+    test("repeated calls to `init` resolve to the distinct id", async () => {
+      const distinctId1 = await posthog.init({
+        apiKey: "12",
+        apiHost: "https://test.thenational.academy",
+      });
+
+      const distinctId2 = await posthog.init({
+        apiKey: "12",
+        apiHost: "https://test.thenational.academy",
+      });
+
+      const distinctId3 = await posthog.init({
+        apiKey: "12",
+        apiHost: "https://test.thenational.academy",
+      });
+
+      expect(distinctId1).toEqual(textDistinctId);
+      expect(distinctId2).toEqual(textDistinctId);
+      expect(distinctId3).toEqual(textDistinctId);
+    });
+  });
 
   test("identify", () => {
     posthog.identify("123", { email: "abc" });
