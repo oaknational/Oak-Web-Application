@@ -195,15 +195,22 @@ export const DownloadPageWithAccordionContent = (
   useEffect(() => {
     if (showFormErrors && hasValidationSummary) {
       setScreenReaderMessage(validationSummaryAnnouncement);
+      return;
     }
 
-    if (!showFormErrors) {
-      setScreenReaderMessage("");
-    }
+    setScreenReaderMessage("");
   }, [showFormErrors, hasValidationSummary, validationSummaryAnnouncement]);
 
   return (
     <OakFlex $flexDirection={"column"} $gap={"spacing-48"}>
+      <ScreenReaderOnly
+        role="status"
+        aria-live="polite"
+        aria-atomic="true"
+        data-testid="download-validation-summary-sr"
+      >
+        {screenReaderMessage}
+      </ScreenReaderOnly>
       <FieldError
         id={SHARE_FORM_ERROR_IDS.resources}
         withoutMarginBottom
@@ -299,14 +306,6 @@ export const DownloadPageWithAccordionContent = (
                   </OakUL>
                 </OakFlex>
               </OakFlex>
-              <ScreenReaderOnly
-                role="status"
-                aria-live="polite"
-                aria-atomic="true"
-                data-testid="download-validation-summary-sr"
-              >
-                {screenReaderMessage}
-              </ScreenReaderOnly>
             </OakFlex>
           )}
           {hideCallToAction ? (
