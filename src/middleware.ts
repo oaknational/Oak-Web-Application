@@ -11,9 +11,9 @@ export default clerkMiddleware(async (_, req) => {
     req.nextUrl.pathname.match(/\/teachers\/programmes\/.*\/units\/.*\/lessons/)
   ) {
     const existing = req.cookies.get(EXPERIMENT_COOKIE)?.value;
-
+    const rewriteUrl = new URL(req.nextUrl.pathname + "/variant", req.url);
     if (existing === "test") {
-      return NextResponse.rewrite(new URL("/variant", req.url));
+      return NextResponse.rewrite(rewriteUrl);
     }
 
     if (existing === "control") {
@@ -45,9 +45,7 @@ export default clerkMiddleware(async (_, req) => {
 
       const isTest = variant === "test";
       const res = isTest
-        ? NextResponse.rewrite(
-            new URL(req.nextUrl.pathname + "/variant", req.url),
-          )
+        ? NextResponse.rewrite(rewriteUrl)
         : NextResponse.next();
 
       res.cookies.set(EXPERIMENT_COOKIE, isTest ? "test" : "control", {
