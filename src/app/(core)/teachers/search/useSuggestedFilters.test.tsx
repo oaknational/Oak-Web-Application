@@ -1,7 +1,8 @@
 import { renderHook } from "@testing-library/react";
 
 import { useSuggestedFilters } from "./useSuggestedFilters";
-import { SuggestedFilters } from "./search.types";
+
+import { SuggestedFilters } from "@/context/Search/search.types";
 
 const mockUseSWR = jest.fn<
   { data: unknown; error: unknown; isLoading: boolean },
