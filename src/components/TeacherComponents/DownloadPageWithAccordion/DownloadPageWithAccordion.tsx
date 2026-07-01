@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC, useEffect, useState } from "react";
 import {
   OakBox,
   OakFlex,
@@ -190,6 +190,17 @@ export const DownloadPageWithAccordionContent = (
   const showFormErrors = hasFormErrors && !downloadsRestricted;
   const showForm = showTermsAgreement && !downloadsRestricted;
   const hideCallToAction = downloadsRestricted;
+  const [screenReaderMessage, setScreenReaderMessage] = useState("");
+
+  useEffect(() => {
+    if (showFormErrors && hasValidationSummary) {
+      setScreenReaderMessage(validationSummaryAnnouncement);
+    }
+
+    if (!showFormErrors) {
+      setScreenReaderMessage("");
+    }
+  }, [showFormErrors, hasValidationSummary, validationSummaryAnnouncement]);
 
   return (
     <OakFlex $flexDirection={"column"} $gap={"spacing-48"}>
@@ -294,7 +305,7 @@ export const DownloadPageWithAccordionContent = (
                 aria-atomic="true"
                 data-testid="download-validation-summary-sr"
               >
-                {validationSummaryAnnouncement}
+                {screenReaderMessage}
               </ScreenReaderOnly>
             </OakFlex>
           )}
