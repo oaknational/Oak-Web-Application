@@ -12,7 +12,7 @@ import {
   tabSlugToName,
   isTabSlug,
 } from "../tabSchema";
-import type { ExamboardFilterDimension } from "../buildExamboardFilterDimensions";
+import type { Ks4OptionFilterDimension } from "../buildKs4OptionFilterDimensions";
 
 import { ProgrammeHeader } from "./ProgrammeHeader/ProgrammeHeader";
 import { buildProgrammeHeading } from "./ProgrammeHeader/buildProgrammeHeading";
@@ -63,7 +63,7 @@ type ProgrammePageProps = {
   mvRefreshTime: number;
   tabSlug: TabSlug;
   ks4Options: Ks4Option[];
-  examboardFilterDimensions: Record<string, ExamboardFilterDimension>;
+  ks4OptionFilterDimensions: Record<string, Ks4OptionFilterDimension>;
   trackingData: CurriculumUnitsTrackingData;
   initialFilter?: CurriculumFilters;
 };
@@ -80,7 +80,7 @@ export const ProgrammeView = ({
   tabSlug,
   subjectPhaseSlug,
   ks4Options,
-  examboardFilterDimensions,
+  ks4OptionFilterDimensions,
   trackingData,
   initialFilter,
 }: ProgrammePageProps) => {
@@ -203,7 +203,7 @@ export const ProgrammeView = ({
         filters={filters}
         setFilters={onChangeFilters}
         ks4Options={ks4Options}
-        examboardFilterDimensions={examboardFilterDimensions}
+        ks4OptionFilterDimensions={ks4OptionFilterDimensions}
       />
     </>
   );
@@ -221,7 +221,7 @@ const TabContent = ({
   filters,
   setFilters,
   ks4Options,
-  examboardFilterDimensions,
+  ks4OptionFilterDimensions,
 }: { tabSlug: TabSlug } & UnitSequenceViewProps &
   Omit<ProgrammeOverviewProps, "curriculumCMSInfo"> & {
     curriculumCMSInfo: CurriculumOverviewSanityData | null;
@@ -234,7 +234,7 @@ const TabContent = ({
         filters={filters}
         setFilters={setFilters}
         ks4Options={ks4Options}
-        examboardFilterDimensions={examboardFilterDimensions}
+        ks4OptionFilterDimensions={ks4OptionFilterDimensions}
       />
     );
   } else if (tabSlug === "curriculum-explainer") {

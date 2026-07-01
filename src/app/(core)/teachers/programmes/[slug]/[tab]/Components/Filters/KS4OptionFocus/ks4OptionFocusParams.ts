@@ -25,11 +25,11 @@ export function focusExamBoardRadio(
   radio?.focus();
 }
 
-export type ExamBoardFocusScopeVariant = "page" | "modal";
+export type KS4OptionFocusScopeVariant = "page" | "modal";
 
-export function getExamBoardFocusNavigationQuery(
+export function getKs4OptionFocusNavigationQuery(
   slug: string,
-  variant: ExamBoardFocusScopeVariant,
+  variant: KS4OptionFocusScopeVariant,
 ) {
   return {
     [FOCUS_KS4_OPTION_QUERY_PARAM]: slug,
@@ -39,14 +39,14 @@ export function getExamBoardFocusNavigationQuery(
   };
 }
 
-export type ExamBoardFocusScopeRefs = Record<
-  ExamBoardFocusScopeVariant,
+export type KS4OptionFocusScopeRefs = Record<
+  KS4OptionFocusScopeVariant,
   HTMLElement | null
 >;
 
 export function getScopeRef(
-  scopeRefs: RefObject<ExamBoardFocusScopeRefs>,
-  variant: ExamBoardFocusScopeVariant,
+  scopeRefs: RefObject<KS4OptionFocusScopeRefs>,
+  variant: KS4OptionFocusScopeVariant,
 ): HTMLElement | null {
   return scopeRefs?.current?.[variant] ?? null;
 }
