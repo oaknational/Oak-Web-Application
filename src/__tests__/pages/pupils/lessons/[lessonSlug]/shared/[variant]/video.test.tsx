@@ -28,7 +28,7 @@ jest.mock("@/context/PupilLessonAnalytics/usePupilLessonAnalytics", () => ({
 }));
 
 jest.mock(
-  "@/components/PupilViews/PupilIntro/useAdditionalFilesDownload",
+  "@/components/PupilComponents/Views/ViewHelpers/Intro/useAdditionalFilesDownload",
   () => ({
     useAdditionalFilesDownload: () => ({
       startAdditionalFilesDownload: jest.fn(),

@@ -4,6 +4,8 @@ import { OakBox } from "@oaknational/oak-components";
 
 import Seo, { SeoProps } from "@/browser-lib/seo/Seo";
 import { usePupilStores } from "@/components/PupilComponents/Views/ViewHelpers";
+import { GoogleClassroomAnalyticsProvider } from "@/components/GoogleClassroom/useGoogleClassroomAnalytics";
+import { PupilClassroomAddOnAnalytics } from "@/components/GoogleClassroom/PupilClassroomAddOnAnalytics";
 import {
   LessonBrowseData,
   LessonContent,
@@ -29,12 +31,13 @@ export const PupilLayout: FC<PupilLayoutProps> = (props) => {
   usePupilStores(pupilStores);
 
   return (
-    <>
+    <GoogleClassroomAnalyticsProvider>
       <Head>
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Seo {...seoProps} />
+      <PupilClassroomAddOnAnalytics />
       <OakBox $height={"100vh"}>{children}</OakBox>
-    </>
+    </GoogleClassroomAnalyticsProvider>
   );
 };

@@ -3,7 +3,11 @@ import {
   OakQuizOrderitemId,
 } from "@oaknational/oak-components";
 
-import { pickQuizTabId } from "../../QuizQuestions/helpers";
+import {
+  pickQuizTabId,
+  multipleChoiceAnswerId,
+  shortAnswerInputId,
+} from "../../QuizQuestions/helpers";
 
 import {
   getAdditionalFileAssetIds,
@@ -33,8 +37,6 @@ import {
   shouldInitIntroWorksheetResult,
 } from ".";
 
-import { multipleChoiceAnswerId } from "@/components/PupilComponents/LegacyQuiz/QuizMCQMultiAnswer";
-import { shortAnswerInputId } from "@/components/PupilComponents/LegacyQuiz/QuizShortAnswer";
 import {
   matchAnswers,
   mcqTextAnswers,

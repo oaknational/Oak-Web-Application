@@ -20,7 +20,7 @@ import theme, { OakColorName } from "@/styles/theme";
 import errorReporter from "@/common-lib/error-reporter";
 import { VideoLocationValueType } from "@/browser-lib/avo/Avo";
 import OakError from "@/errors/OakError";
-import { PupilPathwayData } from "@/components/PupilComponents/PupilAnalyticsProvider/PupilAnalyticsProvider";
+import { PupilPathwayData } from "@/context/PupilLessonAnalytics/pupilAnalyticsHelpers";
 import { AnalyticsBrowseData } from "@/components/TeacherComponents/types/lesson.types";
 
 const INITIAL_DEBUG = false;

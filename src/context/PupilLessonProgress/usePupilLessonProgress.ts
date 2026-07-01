@@ -1,4 +1,5 @@
 import { create, StateCreator } from "zustand";
+import { subscribeWithSelector } from "zustand/middleware";
 import { createStore } from "zustand/vanilla";
 
 import { getDefaultLessonProgressState } from "./pupilLessonProgressHelpers";
@@ -53,7 +54,7 @@ export const createPupilLessonProgressState: StateCreator<
 });
 
 export const usePupilLessonProgress = create<PupilLessonProgressState>()(
-  createPupilLessonProgressState,
+  subscribeWithSelector(createPupilLessonProgressState),
 );
 
 export const createPupilLessonProgressStore = () =>

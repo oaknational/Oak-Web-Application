@@ -3,7 +3,7 @@ import { OakFlex } from "@oaknational/oak-components";
 import { QuizResultInner } from "../QuizResultInner";
 
 import { MathJaxProvider } from "@/browser-lib/mathjax/MathJaxProvider";
-import { LessonSectionResults } from "@/components/PupilComponents/LessonEngineProvider";
+import { LessonSectionResults } from "@/context/PupilLessonProgress";
 import { QuizAttribution } from "@/components/PupilComponents/QuizQuestions/QuizAttribution";
 import { QuestionsArray } from "@/context/PupilLessonQuiz";
 
