@@ -7,7 +7,7 @@ import posthog from "posthog-js";
 import { PostHogProvider } from "posthog-js/react";
 import { ClerkProvider } from "@clerk/nextjs";
 import {
-  oakDefaultTheme,
+  oakDarkTheme,
   OakGlobalStyle,
   OakThemeProvider,
 } from "@oaknational/oak-components";
@@ -54,7 +54,7 @@ const OakWebApplication: FC<OakWebApplicationProps> = ({
       >
         <CookieConsentProvider>
           <ThemeProvider theme={theme}>
-            <OakThemeProvider theme={oakDefaultTheme}>
+            <OakThemeProvider theme={oakDarkTheme}>
               <OakGlobalStyle />
               <ErrorBoundary>
                 <PostHogProvider client={posthog}>
