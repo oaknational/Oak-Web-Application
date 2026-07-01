@@ -3,7 +3,7 @@ import { MiddlewareConfig, NextResponse } from "next/server";
 
 import getServerConfig from "./node-lib/getServerConfig";
 
-export const EXPERIMENT_COOKIE = "__experiments=cta-experiment:test";
+export const EXPERIMENT_COOKIE = "__experiments:test-flag";
 const posthogApiKey = getServerConfig("posthogApiKey");
 
 export default clerkMiddleware(async (_, req) => {

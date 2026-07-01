@@ -1,3 +1,5 @@
+import { cookies } from "next/headers";
+
 import { UnitView } from "../Components/UnitView";
 import {
   getCachedUnitData,
@@ -8,6 +10,7 @@ import withPageErrorHandling, {
   AppPageProps,
 } from "@/hocs/withPageErrorHandling";
 import { getFeatureFlagValue } from "@/utils/featureFlags";
+import { EXPERIMENT_COOKIE } from "@/middleware";
 
 type LessonsPageParams = { slug: string; unitSlug: string };
 
@@ -20,11 +23,21 @@ const InnerUnitPage = async (props: AppPageProps<LessonsPageParams>) => {
 
   await redirectUnitPageIfNeeded({ programmeSlug, unitSlug });
 
-  const isEnabled = await getFeatureFlagValue("test-flag", "string");
+  const cookieStore = await cookies();
+  const experimentCookie = cookieStore.get(EXPERIMENT_COOKIE);
+  let isEnabled = experimentCookie?.value === "test";
+
+  if (!experimentCookie) {
+    const featureFlag = await getFeatureFlagValue("test-flag", "string");
+    if (featureFlag) {
+      cookieStore.set(EXPERIMENT_COOKIE, featureFlag);
+      isEnabled = featureFlag === "test";
+    }
+  }
 
   const data = await getCachedUnitData(programmeSlug, unitSlug);
 
-  return <UnitView {...data} isEnabled={isEnabled === "test"} />;
+  return <UnitView {...data} isEnabled={isEnabled} />;
 };
 
 const UnitPage = withPageErrorHandling(InnerUnitPage, "unit-page::app");
