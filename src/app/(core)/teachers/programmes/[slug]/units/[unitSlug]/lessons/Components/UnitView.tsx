@@ -12,10 +12,13 @@ import { SubjectIcon } from "@/components/TeacherComponents/Header/Header";
 import { useUnitDownloadButtonState } from "@/components/TeacherComponents/UnitDownloadButton/UnitDownloadButton";
 import { getUnitDownloadFileId } from "@/utils/getUnitDownloadFileId";
 import ComplexCopyrightRestrictionBanner from "@/components/TeacherComponents/ComplexCopyrightRestrictionBanner/ComplexCopyrightRestrictionBanner";
+import { useCaptureFeatureFlag } from "@/utils/posthogExperiments/useCaptureFeatureFlag";
 
 export type UnitPageProps = TeachersUnitOverviewData & { isEnabled: boolean };
 
 export const UnitView = (props: UnitPageProps) => {
+  useCaptureFeatureFlag("test-flag");
+
   const subjectIconName = `subject-${props.subjectSlug}` as SubjectIcon;
 
   const subjectPhaseSlug = getTeacherSubjectPhaseSlug({
