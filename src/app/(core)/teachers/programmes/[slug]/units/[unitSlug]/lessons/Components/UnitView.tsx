@@ -1,5 +1,5 @@
 "use client";
-import { OakBox } from "@oaknational/oak-components";
+import { OakBox, OakPrimaryButton } from "@oaknational/oak-components";
 
 import UnitHeader from "./UnitHeader/UnitHeader";
 import { Breadcrumbs } from "./Breadcrumbs/Breadcrumbs";
@@ -13,7 +13,7 @@ import { useUnitDownloadButtonState } from "@/components/TeacherComponents/UnitD
 import { getUnitDownloadFileId } from "@/utils/getUnitDownloadFileId";
 import ComplexCopyrightRestrictionBanner from "@/components/TeacherComponents/ComplexCopyrightRestrictionBanner/ComplexCopyrightRestrictionBanner";
 
-export type UnitPageProps = TeachersUnitOverviewData;
+export type UnitPageProps = TeachersUnitOverviewData & { isEnabled: boolean };
 
 export const UnitView = (props: UnitPageProps) => {
   const subjectIconName = `subject-${props.subjectSlug}` as SubjectIcon;
@@ -60,6 +60,7 @@ export const UnitView = (props: UnitPageProps) => {
         }
         downloadButtonState={downloadButtonState}
       />
+      {props.isEnabled && <OakPrimaryButton>TEST BUTTON</OakPrimaryButton>}
       <OakBox $ph="spacing-40">
         <OakBox $mh="auto" $width={"100%"} $maxWidth={"spacing-1280"}>
           <ComplexCopyrightRestrictionBanner
