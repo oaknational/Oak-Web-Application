@@ -5,10 +5,7 @@ import { useEffect } from "react";
 import googleClassroomApi from "@/browser-lib/google-classroom/googleClassroomApi";
 import { mapToSubmitPupilProgress } from "@/browser-lib/google-classroom/mapToSubmitPupilProgress";
 import type { ClassroomProgressContext } from "@/browser-lib/google-classroom/classroomAssignmentContext";
-import {
-  usePupilLessonProgress,
-  type LessonSectionResults,
-} from "@/context/PupilLessonProgress";
+import { usePupilLessonProgress } from "@/context/PupilLessonProgress";
 
 type ClassroomProgressSyncArgs = {
   courseId: string | null;
@@ -21,14 +18,11 @@ type ClassroomProgressSyncArgs = {
 };
 
 /**
- * Used as the subscribe dependency to trigger updates on section completion.
- */
-const completedSectionCount = (results: LessonSectionResults) =>
-  Object.values(results).filter((value) => value?.isComplete).length;
-
-/**
- * Writes pupil progress back to the Google Classroom assignment whenever a new
- * section is completed.
+ * Writes pupil progress back to the Google Classroom assignment on every
+ * section result change — i.e. after each quiz question, not only when a
+ * section completes — so a pupil who closes the lesson part-way resumes where
+ * they left off. No-op for non-Classroom pupils, before resolution, or when the
+ * assignment is read-only.
  */
 export const useClassroomProgressSync = ({
   courseId,
@@ -60,12 +54,12 @@ export const useClassroomProgressSync = ({
     };
 
     return usePupilLessonProgress.subscribe(
-      (state) => completedSectionCount(state.sectionResults),
-      () => {
+      (state) => state.sectionResults,
+      (sectionResults) => {
         try {
           const payload = mapToSubmitPupilProgress(
             progressContext,
-            usePupilLessonProgress.getState().sectionResults,
+            sectionResults,
           );
           void googleClassroomApi.submitPupilProgress(payload).catch(() => {
             // Submission failed — progress sync failed, lesson continues for next sync.

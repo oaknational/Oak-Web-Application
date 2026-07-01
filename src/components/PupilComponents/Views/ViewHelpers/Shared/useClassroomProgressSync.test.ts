@@ -37,7 +37,30 @@ describe("useClassroomProgressSync", () => {
     });
   });
 
-  it("submits progress when a new section completes", () => {
+  it("submits progress on each in-progress result update (e.g. per quiz question)", () => {
+    renderHook(() => useClassroomProgressSync(classroomArgs));
+
+    act(() => {
+      usePupilLessonProgress
+        .getState()
+        .updateSectionInProgressResult("starter-quiz", {
+          grade: 1,
+          numQuestions: 6,
+        });
+    });
+    act(() => {
+      usePupilLessonProgress
+        .getState()
+        .updateSectionInProgressResult("starter-quiz", {
+          grade: 2,
+          numQuestions: 6,
+        });
+    });
+
+    expect(mockedApi.submitPupilProgress).toHaveBeenCalledTimes(2);
+  });
+
+  it("submits progress when a section completes", () => {
     renderHook(() => useClassroomProgressSync(classroomArgs));
 
     act(() => {
