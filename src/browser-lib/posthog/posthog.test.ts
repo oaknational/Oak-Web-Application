@@ -146,7 +146,7 @@ describe("posthog.ts", () => {
     expect(capture).toHaveBeenCalledWith(
       "foo",
       { bar: "baz" },
-      { send_instantly: true },
+      { send_instantly: true, transport: "sendBeacon" },
     );
   });
   test("page", () => {

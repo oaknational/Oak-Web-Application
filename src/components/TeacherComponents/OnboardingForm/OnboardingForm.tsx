@@ -148,6 +148,17 @@ const OnboardingForm = ({
 
       try {
         await onboardUser({ isTeacher });
+        user &&
+          posthogDistinctId &&
+          track.userOnboardingCompleted(
+            collectOnboardingTrackingProps(
+              posthogDistinctId,
+              user,
+              latestOnboardingData,
+              event?.nativeEvent,
+            ),
+          );
+
         await user?.reload();
       } catch (_error) {
         setSubmitError("Something went wrong. Please try again.");
@@ -176,17 +187,6 @@ const OnboardingForm = ({
         posthogDistinctId,
         userEmail,
       });
-
-      user &&
-        posthogDistinctId &&
-        track.userOnboardingCompleted(
-          collectOnboardingTrackingProps(
-            posthogDistinctId,
-            user,
-            latestOnboardingData,
-            event?.nativeEvent,
-          ),
-        );
 
       // Return the user to the page they originally arrived from
       // or to the home page as a fallback

@@ -67,7 +67,9 @@ export const posthogToAnalyticsServiceWithoutQueue = (
     client.capture(
       name,
       properties,
-      options?.sendInstantly ? { send_instantly: true } : undefined,
+      options?.sendInstantly
+        ? { send_instantly: true, transport: "sendBeacon" }
+        : undefined,
     );
   },
   optIn: () => {
