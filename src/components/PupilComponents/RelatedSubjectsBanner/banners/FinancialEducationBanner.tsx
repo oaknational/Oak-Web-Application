@@ -1,9 +1,8 @@
 import {
+  generateOakIconURL,
+  OakBox,
+  OakCard,
   OakFlex,
-  OakHeading,
-  OakLinkCard,
-  OakP,
-  OakTertiaryButton,
 } from "@oaknational/oak-components";
 
 import { BannerProps } from "../RelatedSubjectsBanner";
@@ -18,34 +17,34 @@ function FinancialEducationBanner({ programmeFields }: Readonly<BannerProps>) {
     programmeSlug,
   });
 
-  const mainSection = (
-    <OakFlex $flexDirection="column" $gap="spacing-12">
-      <OakHeading tag="h1" $font="heading-5">
-        Check out our new finance lessons!
-      </OakHeading>
-      <OakP>
-        Learn fun and easy ways to understand money and how to use it in real
-        life.
-      </OakP>
-      <OakTertiaryButton iconName="chevron-right" width="100%" isTrailingIcon>
-        Go to new finance lessons
-      </OakTertiaryButton>
-    </OakFlex>
-  );
-
   return (
     <OakFlex
       $width={["100%", "spacing-640", "spacing-960"]}
       $mt="spacing-24"
       data-testid="financial-education-banner"
     >
-      <OakLinkCard
-        mainSection={mainSection}
-        iconName={"subject-financial-education"}
-        iconAlt="Illustration of persons head with finance ideas"
-        href={href}
-        showNew
-      />
+      <OakBox
+        $width="100%"
+        $dropShadow="drop-shadow-centred-standard"
+        $borderRadius="border-radius-m2"
+      >
+        <OakCard
+          heading="Check out our new finance lessons!"
+          headingLevel="h1"
+          href={href}
+          cardWidth="100%"
+          imageSrc={generateOakIconURL("subject-financial-education")}
+          imageAlt="Illustration of persons head with finance ideas"
+          subCopy="Learn fun and easy ways to understand money and how to use it in real life."
+          subCopyColor="text-primary"
+          tagName="New"
+          tagBackground="bg-decorative1-main"
+          linkText="Go to new finance lessons"
+          linkIconName="chevron-right"
+          cardOrientation={["column", "row"]}
+          imageBackgroundColor="bg-decorative1-main"
+        />
+      </OakBox>
     </OakFlex>
   );
 }

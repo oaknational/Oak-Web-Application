@@ -1,9 +1,8 @@
 import {
+  generateOakIconURL,
+  OakBox,
+  OakCard,
   OakFlex,
-  OakHeading,
-  OakLinkCard,
-  OakP,
-  OakTertiaryButton,
 } from "@oaknational/oak-components";
 
 import { BannerProps } from "../RelatedSubjectsBanner";
@@ -18,34 +17,33 @@ function DigitalLiteracyBanner({ programmeFields }: Readonly<BannerProps>) {
     programmeSlug,
   });
 
-  const mainSection = (
-    <OakFlex $flexDirection="column" $gap="spacing-12">
-      <OakHeading tag="h1" $font="heading-5">
-        Check out our new digital literacy lessons!
-      </OakHeading>
-      <OakP>
-        Learn fun and easy ways to use technology confidently and safely in real
-        life.
-      </OakP>
-      <OakTertiaryButton iconName="chevron-right" width="100%" isTrailingIcon>
-        Go to new digital literacy lessons
-      </OakTertiaryButton>
-    </OakFlex>
-  );
-
   return (
     <OakFlex
       $width={["100%", "spacing-640", "spacing-960"]}
       $mt="spacing-24"
       data-testid="digital-literacy-banner"
     >
-      <OakLinkCard
-        mainSection={mainSection}
-        iconName={"subject-digital-literacy"}
-        iconAlt="Illustration representing digital literacy"
-        href={href}
-        showNew
-      />
+      <OakBox
+        $width="100%"
+        $dropShadow="drop-shadow-centred-standard"
+        $borderRadius="border-radius-m2"
+      >
+        <OakCard
+          heading="Check out our new digital literacy lessons!"
+          headingLevel="h1"
+          href={href}
+          cardWidth="100%"
+          imageSrc={generateOakIconURL("subject-digital-literacy")}
+          imageAlt="Illustration representing digital literacy"
+          subCopy="Learn fun and easy ways to use technology confidently and safely in real life."
+          subCopyColor="text-primary"
+          tagBackground="bg-decorative1-main"
+          linkText="Go to new digital literacy lessons"
+          linkIconName="chevron-right"
+          cardOrientation={["column", "row"]}
+          imageBackgroundColor="bg-decorative1-main"
+        />
+      </OakBox>
     </OakFlex>
   );
 }

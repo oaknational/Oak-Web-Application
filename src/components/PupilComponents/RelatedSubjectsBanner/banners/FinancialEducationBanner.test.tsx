@@ -13,18 +13,42 @@ jest.mock("@/common-lib/urls", () => ({
   ),
 }));
 
-// Only mock OakLinkCard while keeping other Oak components as they are.
+// Only mock OakCard while keeping other Oak components as they are.
 jest.mock("@oaknational/oak-components", () => {
   const actualComponents = jest.requireActual("@oaknational/oak-components");
   return {
     ...actualComponents,
-    OakLinkCard: jest.fn(
-      ({ mainSection, iconName, iconAlt, href, showNew }) => (
-        <div data-testid="oak-link-card" data-href={href}>
-          {mainSection}
-          <span data-testid="icon-name">{iconName}</span>
-          <span data-testid="icon-alt">{iconAlt}</span>
-          <span data-testid="show-new">{showNew ? "true" : "false"}</span>
+    generateOakIconURL: jest.fn((iconName) => `/icons/${iconName}.svg`),
+    OakCard: jest.fn(
+      ({
+        heading,
+        headingLevel,
+        href,
+        cardWidth,
+        imageSrc,
+        imageAlt,
+        subCopy,
+        subCopyColor,
+        tagName,
+        tagBackground,
+        linkText,
+        linkIconName,
+      }) => (
+        <div
+          data-testid="oak-card"
+          data-href={href}
+          data-heading-level={headingLevel}
+          data-card-width={cardWidth}
+          data-image-src={imageSrc}
+          data-sub-copy-color={subCopyColor}
+          data-tag-background={tagBackground}
+          data-link-icon-name={linkIconName}
+        >
+          <span data-testid="heading">{heading}</span>
+          <span data-testid="image-alt">{imageAlt}</span>
+          <span data-testid="sub-copy">{subCopy}</span>
+          <span data-testid="tag-name">{tagName}</span>
+          <span data-testid="link-text">{linkText}</span>
         </div>
       ),
     ),
@@ -38,7 +62,7 @@ describe("FinancialEducationBanner", () => {
     jest.clearAllMocks();
   });
 
-  it("renders the banner with the correct OakLinkCard props", () => {
+  it("renders the banner with the correct OakCard props", () => {
     renderWithTheme(
       <OakThemeProvider theme={oakDefaultTheme}>
         <FinancialEducationBanner programmeFields={programmeFields} />
@@ -50,20 +74,35 @@ describe("FinancialEducationBanner", () => {
       screen.getByTestId("financial-education-banner"),
     ).toBeInTheDocument();
 
-    // Verify the mocked OakLinkCard received the correct href
-    const card = screen.getByTestId("oak-link-card");
+    // Verify the mocked OakCard received the correct href and display props
+    const card = screen.getByTestId("oak-card");
     expect(card).toBeInTheDocument();
     expect(card).toHaveAttribute(
       "data-href",
       "/pupil-unit-index/pupil-unit-index/financial-education-primary-year-1",
     );
-
-    expect(screen.getByTestId("icon-name")).toHaveTextContent(
-      "subject-financial-education",
+    expect(card).toHaveAttribute("data-heading-level", "h1");
+    expect(card).toHaveAttribute("data-card-width", "100%");
+    expect(card).toHaveAttribute(
+      "data-image-src",
+      "/icons/subject-financial-education.svg",
     );
-    expect(screen.getByTestId("icon-alt")).toHaveTextContent(
+    expect(card).toHaveAttribute("data-sub-copy-color", "text-primary");
+    expect(card).toHaveAttribute("data-tag-background", "bg-decorative1-main");
+    expect(card).toHaveAttribute("data-link-icon-name", "chevron-right");
+
+    expect(screen.getByTestId("heading")).toHaveTextContent(
+      "Check out our new finance lessons!",
+    );
+    expect(screen.getByTestId("image-alt")).toHaveTextContent(
       "Illustration of persons head with finance ideas",
     );
-    expect(screen.getByTestId("show-new")).toHaveTextContent("true");
+    expect(screen.getByTestId("sub-copy")).toHaveTextContent(
+      "Learn fun and easy ways to understand money and how to use it in real life.",
+    );
+    expect(screen.getByTestId("tag-name")).toHaveTextContent("New");
+    expect(screen.getByTestId("link-text")).toHaveTextContent(
+      "Go to new finance lessons",
+    );
   });
 });
