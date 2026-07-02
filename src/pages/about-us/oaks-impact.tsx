@@ -3,7 +3,7 @@ import {
   GetServerSidePropsResult,
   NextPage,
 } from "next/dist/types";
-import { OakBox } from "@oaknational/oak-components";
+import { OakBox, OakMaxWidth } from "@oaknational/oak-components";
 
 import getBrowserConfig from "@/browser-lib/getBrowserConfig";
 import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
@@ -19,6 +19,8 @@ import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 import getPageProps from "@/node-lib/getPageProps";
 import { getFeatureFlag } from "@/node-lib/posthog/getFeatureFlag";
 import { getPosthogIdFromCookie } from "@/node-lib/posthog/getPosthogId";
+import { OaksImpactStats } from "@/components/GenericPagesComponents/OaksImpactStats";
+import { fixtureData } from "@/components/GenericPagesComponents/OaksImpactStats/OaksImpactStats.fixtures";
 
 export type OaksImpactPageProps = {
   topNav: TopNavProps;
@@ -44,30 +46,27 @@ const OaksImpact: NextPage<OaksImpactPageProps> = ({ topNav }) => {
         >
           <AboutSharedHeaderImage imageUrl={placeholderImage.url} />
         </AboutSharedHeader>
-        <OakBox
-          $ma={"spacing-48"}
-          $pa={"spacing-48"}
-          $borderColor="red"
-          $ba="border-solid-xxl"
-        >
-          TODO: Stats
-        </OakBox>
-        <OakBox
-          $ma={"spacing-48"}
-          $pa={"spacing-48"}
-          $borderColor="red"
-          $ba="border-solid-xxl"
-        >
-          TODO: Case Studies
-        </OakBox>
-        <OakBox
-          $ma={"spacing-48"}
-          $pa={"spacing-48"}
-          $borderColor="red"
-          $ba="border-solid-xxl"
-        >
-          TODO: Quotes
-        </OakBox>
+        <OaksImpactStats {...fixtureData} />
+        <OakMaxWidth>
+          <OakBox
+            $mv={"spacing-48"}
+            $pa={"spacing-48"}
+            $borderColor="red"
+            $ba="border-solid-xxl"
+          >
+            TODO: Case Studies
+          </OakBox>
+        </OakMaxWidth>
+        <OakMaxWidth>
+          <OakBox
+            $mv={"spacing-48"}
+            $pa={"spacing-48"}
+            $borderColor="red"
+            $ba="border-solid-xxl"
+          >
+            TODO: Quotes
+          </OakBox>
+        </OakMaxWidth>
         <SupportYou
           title="Discover how Oak can support you"
           headingTag="h2"
