@@ -105,8 +105,10 @@ export async function generateMetadata({
 
     const canonicalURL = new URL(
       resolveOakHref({
-        page: "unit-index",
-        programmeSlug: slug,
+        page: "teacher-programme",
+        subjectPhaseSlug: slug,
+        tab: "units",
+        query: pageSearchParams,
       }),
       getBrowserConfig("seoAppUrl"),
     ).toString();
