@@ -1,4 +1,4 @@
-import { screen } from "@testing-library/react";
+import { screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { useForm } from "react-hook-form";
 
@@ -115,6 +115,62 @@ describe("Download Page With Accordion", () => {
 
     const errorMessage = screen.getByText("downloads error");
     expect(errorMessage).toBeInTheDocument();
+  });
+
+  it("announces validation summary in a polite live region", async () => {
+    renderWithProviders()(
+      <ComponentWrapper
+        {...props}
+        errors={{
+          resources: { message: "downloads error" },
+          terms: { message: "terms error", type: "required" },
+        }}
+      />,
+    );
+
+    const validationSummary = screen.getByTestId("download-validation-summary");
+    const srValidationSummary = screen.getByTestId(
+      "download-validation-summary-sr",
+    );
+
+    expect(validationSummary).toBeInTheDocument();
+    expect(srValidationSummary).toHaveAttribute("aria-live", "polite");
+    await waitFor(() => {
+      expect(srValidationSummary).toHaveTextContent(
+        "To complete, correct the following: select at least one resource to continue. accept terms and conditions to continue",
+      );
+    });
+  });
+
+  it("remounts screen-reader validation summary when validationSummaryKey changes", () => {
+    const validationErrors = {
+      resources: { message: "downloads error" },
+      terms: { message: "terms error", type: "required" },
+    };
+
+    const { rerender } = renderWithProviders()(
+      <ComponentWrapper
+        {...props}
+        errors={validationErrors}
+        validationSummaryKey={1}
+      />,
+    );
+
+    const firstSrValidationSummary = screen.getByTestId(
+      "download-validation-summary-sr",
+    );
+
+    rerender(
+      <ComponentWrapper
+        {...props}
+        errors={validationErrors}
+        validationSummaryKey={2}
+      />,
+    );
+
+    expect(screen.getByTestId("download-validation-summary-sr")).not.toBe(
+      firstSrValidationSummary,
+    );
   });
 
   it("handles api error", () => {
