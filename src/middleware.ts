@@ -55,9 +55,12 @@ export default clerkMiddleware(async (_, req) => {
       });
       return res;
     }
+
+    return NextResponse.next();
   }
 
   // For all other routes, just fall through to Clerk's default behavior
+  console.log("Running clerk middleware on route: ", req.url);
 });
 
 /**
