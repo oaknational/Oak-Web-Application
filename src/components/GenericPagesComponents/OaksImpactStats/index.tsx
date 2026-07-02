@@ -61,46 +61,52 @@ export function OaksImpactStats(props: OaksImpactStatsProps) {
         </OakPrimaryButton>
       </OakFlex>
       <OakFlex $alignItems={"flex-start"} $gap={"spacing-8"}>
-        {props.items.map((item, index) => {
-          return (
-            <Fragment key={index}>
-              <OakFlex
-                $alignItems={"flex-start"}
-                $flexDirection={["column", "row", "row"]}
-                $borderRadius={"border-radius-m2"}
-                $gap={["spacing-20", "spacing-20", "spacing-32"]}
-              >
-                <OakFlex $alignItems={"flex-start"}>
-                  <OakImage
-                    alt={item.image.alt}
-                    $width={"spacing-120"}
-                    $height={"spacing-120"}
-                    src={item.image.src}
-                  />
-                </OakFlex>
+        <OakFlex
+          $alignItems={"flex-start"}
+          $flexDirection={"column"}
+          $gap={"spacing-40"}
+        >
+          {props.items.map((item, index) => {
+            return (
+              <Fragment key={index}>
                 <OakFlex
                   $alignItems={"flex-start"}
-                  $flexDirection={"column"}
+                  $flexDirection={["column", "row", "row"]}
                   $borderRadius={"border-radius-m2"}
-                  $gap={"spacing-4"}
+                  $gap={["spacing-20", "spacing-20", "spacing-32"]}
                 >
-                  <OakBox $color={"text-primary"} $font={"heading-light-1"}>
-                    {item.headingText}
-                  </OakBox>
-                  <OakP $color={"text-primary"} $font={"body-1"}>
-                    {item.body}
-                  </OakP>
+                  <OakFlex $alignItems={"flex-start"}>
+                    <OakImage
+                      alt={item.image.alt}
+                      $width={"spacing-120"}
+                      $height={"spacing-120"}
+                      src={item.image.src}
+                    />
+                  </OakFlex>
+                  <OakFlex
+                    $alignItems={"flex-start"}
+                    $flexDirection={"column"}
+                    $borderRadius={"border-radius-m2"}
+                    $gap={"spacing-4"}
+                  >
+                    <OakBox $color={"text-primary"} $font={"heading-light-1"}>
+                      {item.headingText}
+                    </OakBox>
+                    <OakP $color={"text-primary"} $font={"body-1"}>
+                      {item.body}
+                    </OakP>
+                  </OakFlex>
                 </OakFlex>
-              </OakFlex>
-              <OakBox
-                $width="100%"
-                $background="bg-decorative2-very-subdued"
-                $height="spacing-2"
-                $borderRadius="border-radius-s"
-              />
-            </Fragment>
-          );
-        })}
+                <OakBox
+                  $width="100%"
+                  $background="bg-decorative2-very-subdued"
+                  $height="spacing-2"
+                  $borderRadius="border-radius-s"
+                />
+              </Fragment>
+            );
+          })}
+        </OakFlex>
       </OakFlex>
     </OakFlex>
   );
