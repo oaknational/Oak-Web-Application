@@ -18,36 +18,36 @@ import {
   getScopeRef,
   OPEN_FILTERS_MODAL_QUERY_PARAM,
   stripEphemeralFocusParams,
-  type ExamBoardFocusScopeRefs,
-  type ExamBoardFocusScopeVariant,
-} from "./examBoardFocusParams";
+  type KS4OptionFocusScopeRefs,
+  type KS4OptionFocusScopeVariant,
+} from "./ks4OptionFocusParams";
 
-type ExamBoardFocusContextValue = {
+type KS4OptionFocusContextValue = {
   registerScope: (
-    variant: ExamBoardFocusScopeVariant,
+    variant: KS4OptionFocusScopeVariant,
     node: HTMLDivElement | null,
   ) => void;
 };
 
-const ExamBoardFocusContext = createContext<ExamBoardFocusContextValue | null>(
+const KS4OptionFocusContext = createContext<KS4OptionFocusContextValue | null>(
   null,
 );
 
 /**
- * Exam board selection navigates to a new programme slug, remounting the filter
+ * KS4 option selection navigates to a new programme slug, remounting the filter
  * and dropping focus. Descendants append ephemeral query params
  * {@link FOCUS_KS4_OPTION_QUERY_PARAM} (and {@link OPEN_FILTERS_MODAL_QUERY_PARAM}
  * from the modal tree) on push; this provider reads those params on load,
  * re-opens the mobile filters modal when needed, focuses the matching radio in
  * the correct scope, then strips the params from the URL.
  */
-export function ExamBoardFocusProvider({
+export function KS4OptionFocusProvider({
   children,
 }: Readonly<{ children: ReactNode }>) {
   const searchParams = useSearchParams();
   const { isOpen: modalOpen, setIsOpen: setModalOpen } =
     useProgrammePageFiltersModal();
-  const scopeRefs = useRef<ExamBoardFocusScopeRefs>({
+  const scopeRefs = useRef<KS4OptionFocusScopeRefs>({
     page: null,
     modal: null,
   });
@@ -57,14 +57,14 @@ export function ExamBoardFocusProvider({
 
   const [pendingFocusSlug, setPendingFocusSlug] = useState<string | null>(null);
   const [registeredScopes, setRegisteredScopes] = useState<
-    Record<ExamBoardFocusScopeVariant, boolean>
+    Record<KS4OptionFocusScopeVariant, boolean>
   >({
     page: false,
     modal: false,
   });
 
   const registerScope = useCallback(
-    (variant: ExamBoardFocusScopeVariant, node: HTMLDivElement | null) => {
+    (variant: KS4OptionFocusScopeVariant, node: HTMLDivElement | null) => {
       scopeRefs.current[variant] = node;
       setRegisteredScopes((current) => {
         if (current[variant] === (node !== null)) {
@@ -99,7 +99,7 @@ export function ExamBoardFocusProvider({
     setPendingFocusSlug(focusSlug);
   }, [searchParams, setModalOpen]);
 
-  const activeVariant: ExamBoardFocusScopeVariant = isMobileRestore.current
+  const activeVariant: KS4OptionFocusScopeVariant = isMobileRestore.current
     ? "modal"
     : "page";
   const focusEnabled =
@@ -138,17 +138,17 @@ export function ExamBoardFocusProvider({
   const value = useMemo(() => ({ registerScope }), [registerScope]);
 
   return (
-    <ExamBoardFocusContext.Provider value={value}>
+    <KS4OptionFocusContext.Provider value={value}>
       {children}
-    </ExamBoardFocusContext.Provider>
+    </KS4OptionFocusContext.Provider>
   );
 }
 
-export function useExamBoardFocus() {
-  const context = useContext(ExamBoardFocusContext);
+export function useKS4OptionFocus() {
+  const context = useContext(KS4OptionFocusContext);
   if (!context) {
     throw new Error(
-      "useExamBoardFocus must be used within ExamBoardFocusProvider",
+      "useKS4OptionFocus must be used within KS4OptionFocusProvider",
     );
   }
   return context;

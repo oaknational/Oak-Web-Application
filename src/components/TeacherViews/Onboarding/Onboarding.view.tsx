@@ -7,8 +7,6 @@ import {
 } from "@oaknational/oak-components";
 import { zodResolver } from "@hookform/resolvers/zod";
 
-import { OnboardingLayout } from "../../TeacherComponents/OnboardingLayout/OnboardingLayout";
-
 import FieldError from "@/components/SharedComponents/FieldError";
 import {
   OnboardingFormValues,
@@ -32,36 +30,31 @@ export const OnboardingView = () => {
   );
 
   return (
-    <OnboardingLayout
-      promptHeading={<>Nearly done&hellip;</>}
-      promptBody="We need a few more details to complete your account setup."
+    <OnboardingForm
+      control={control as Control<OnboardingFormValues>}
+      trigger={trigger as UseFormTrigger<OnboardingFormValues>}
+      formState={formState}
+      heading="Do you work in a school?"
+      handleSubmit={handleSubmit}
+      canSubmit={!formState.errors.worksInSchool}
+      forceHideNewsletterSignUp={true}
     >
-      <OnboardingForm
-        control={control as Control<OnboardingFormValues>}
-        trigger={trigger as UseFormTrigger<OnboardingFormValues>}
-        formState={formState}
-        heading="Do you work in a school?"
-        handleSubmit={handleSubmit}
-        canSubmit={!formState.errors.worksInSchool}
-        forceHideNewsletterSignUp={true}
-      >
-        <OakBox>
-          <FieldError id={"onboarding-error"}>
-            {formState.errors.worksInSchool?.message}
-          </FieldError>
+      <OakBox>
+        <FieldError id={"onboarding-error"}>
+          {formState.errors.worksInSchool?.message}
+        </FieldError>
 
-          <OakRadioGroup
-            onChange={(value) => setWorksInSchool(value.target.value === "yes")}
-            $flexDirection={"column"}
-            name={"Do you work in a school?"}
-            aria-labelledby={"form-legend"}
-          >
-            <OakRadioButton id="option-1" label="Yes" value="yes" />
-            <OakRadioButton id="option-2" label="No" value="no" />
-          </OakRadioGroup>
-        </OakBox>
-      </OnboardingForm>
-    </OnboardingLayout>
+        <OakRadioGroup
+          onChange={(value) => setWorksInSchool(value.target.value === "yes")}
+          $flexDirection={"column"}
+          name={"Do you work in a school?"}
+          aria-labelledby={"form-legend"}
+        >
+          <OakRadioButton id="option-1" label="Yes" value="yes" />
+          <OakRadioButton id="option-2" label="No" value="no" />
+        </OakRadioGroup>
+      </OakBox>
+    </OnboardingForm>
   );
 };
 
