@@ -46,7 +46,6 @@ type DownloadConfirmationProps = {
       "lessonReleaseDate" | "lessonReleaseCohort"
     >,
   ) => void;
-  isSpecialist?: boolean;
   keyStageSlug: CurriculumTrackingProps["keyStageSlug"];
   keyStageTitle: CurriculumTrackingProps["keyStageTitle"];
   subjectSlug: CurriculumTrackingProps["subjectSlug"];
@@ -64,7 +63,6 @@ const DownloadConfirmation: FC<DownloadConfirmationProps> = ({
   unitTitle,
   nextLessons,
   onwardContentSelected,
-  isSpecialist = false,
   keyStageSlug,
   keyStageTitle,
   subjectSlug,
@@ -167,9 +165,7 @@ const DownloadConfirmation: FC<DownloadConfirmationProps> = ({
               tabIndex={0}
               element="a"
               href={resolveOakHref({
-                page: isSpecialist
-                  ? "specialist-lesson-overview"
-                  : "lesson-overview",
+                page: "lesson-overview",
                 lessonSlug: lessonSlug,
                 programmeSlug: programmeSlug,
                 unitSlug: unitSlug,
@@ -226,8 +222,6 @@ const DownloadConfirmation: FC<DownloadConfirmationProps> = ({
               }
               iconName={"external"}
               isTrailingIcon={true}
-              iconHeight={"spacing-24"}
-              iconWidth={"spacing-24"}
             >
               install the Google Fonts ‘Lexend’ and ‘Kalam’
             </OakLink>

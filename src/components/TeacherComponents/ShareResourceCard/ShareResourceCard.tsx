@@ -3,6 +3,7 @@ import { OakIconName, OakDownloadCard } from "@oaknational/oak-components";
 import styled from "styled-components";
 
 import { CheckboxProps } from "@/components/SharedComponents/Checkbox/Checkbox";
+import { getDownloadCardFieldErrorAriaProps } from "@/components/TeacherComponents/helpers/downloadAndShareHelpers/shareDownloadFormErrorIds";
 import { LessonShareResourceData } from "@/node-lib/curriculum-api-2023/queries/lessonShare/lessonShare.schema";
 import { getValidSubjectIconName } from "@/utils/getValidSubjectIconName";
 
@@ -53,6 +54,7 @@ const ResourceCard: FC<ResourceCardProps> = (props) => {
     disabled,
     asRadio = false,
     useDownloadPageLayout = false,
+    hasError = false,
   } = props;
 
   const iconName = subjectIcon
@@ -71,6 +73,7 @@ const ResourceCard: FC<ResourceCardProps> = (props) => {
         name={name}
         title={label}
         aria-label={getActivityDownloadCardAriaLabel(label, subtitle)}
+        {...getDownloadCardFieldErrorAriaProps(hasError)}
         checked={checked}
         disabled={disabled}
         onChange={onChange}

@@ -36,7 +36,6 @@ const LessonOverviewFilesNeeded: FC<LessonOverviewFilesNeededProps> = ({
           lessonSlug: lessonSlug,
           programmeSlug: programmeSlug,
           unitSlug: unitSlug,
-          downloads: "downloads",
           query: {
             preselected: "additional files",
           },

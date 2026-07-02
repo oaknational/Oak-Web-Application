@@ -52,7 +52,10 @@ describe("QuizQuestionsMCAnswers", () => {
       throw new Error("correctAnswer.answer[0] is not text");
     }
 
-    getByText(`Correct answer: ${correctAnswer.answer[0].text}`);
+    const answerText = getByText(
+      `Correct answer: ${correctAnswer.answer[0].text}`,
+    );
+    expect(answerText).toBeInTheDocument();
   });
 
   it("renders the image answers", () => {

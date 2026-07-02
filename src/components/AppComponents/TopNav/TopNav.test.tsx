@@ -60,6 +60,7 @@ const mockProps = topNavFixture;
 describe("TopNav", () => {
   beforeEach(() => {
     mockBrowseAccessed.mockReset();
+    mockSelectedArea.mockReturnValue("TEACHERS");
   });
   it("renders links for pupils and teachers", async () => {
     render(<TopNav {...mockProps} />);
@@ -87,7 +88,7 @@ describe("TopNav", () => {
     expect(teachersSubnav).toBeInTheDocument();
   });
   it("renders the correct subnav for pupils", async () => {
-    mockSelectedArea.mockReturnValueOnce("PUPILS");
+    mockSelectedArea.mockReturnValue("PUPILS");
     render(<TopNav {...mockProps} />);
 
     const teachersLink = await screen.findByRole("link", {
@@ -189,7 +190,7 @@ describe("TopNav", () => {
     expect(mockBrowseAccessed).toHaveBeenCalledTimes(1);
   });
   it("does not track when a subnav button is clicked in the pupils area", async () => {
-    mockSelectedArea.mockReturnValueOnce("PUPILS");
+    mockSelectedArea.mockReturnValue("PUPILS");
     render(<TopNav {...mockProps} />);
     const primaryButton = await screen.findByText("Primary");
     const user = userEvent.setup();
@@ -268,6 +269,8 @@ describe("TopNav accessibility", () => {
     expect(secondaryButton).toHaveFocus();
     await user.keyboard("{Enter}");
 
+    const keystagesButton = screen.getByText("Key stages").closest("div");
+    await user.click(keystagesButton!);
     const dropdownItem1 = screen.getByText("Key stage 3").closest("button");
 
     expect(dropdownItem1).toBeInTheDocument();
@@ -291,6 +294,8 @@ describe("TopNav accessibility", () => {
     expect(secondaryButton).toHaveFocus();
     await user.keyboard("{Enter}");
 
+    const keystagesButton = screen.getByText("Key stages").closest("div");
+    await user.click(keystagesButton!);
     const dropdownItem2 = screen.getByText("Key stage 4").closest("button");
     const subjectButton1 = screen.getByText("History").closest("a");
     const subjectButton2 = screen.getByText("Geography").closest("a");
@@ -362,6 +367,8 @@ describe("TopNav accessibility", () => {
     await user.tab();
     expect(secondaryButton).toHaveFocus();
     await user.keyboard("{Enter}");
+    const keystagesButton = screen.getByText("Key stages").closest("div");
+    await user.click(keystagesButton!);
     const dropdownItem1 = screen.getByText("Key stage 3").closest("button");
     const dropdownItem2 = screen.getByText("Key stage 4").closest("button");
 
@@ -394,6 +401,8 @@ describe("TopNav accessibility", () => {
     expect(secondaryButton).toHaveFocus();
     await user.keyboard("{Enter}");
 
+    const keystagesButton = screen.getByText("Key stages").closest("div");
+    await user.click(keystagesButton!);
     const dropdownItem1 = screen.getByText("Key stage 3").closest("button");
     const subjectButton1 = screen.getByText("History").closest("a");
 

@@ -7,6 +7,7 @@ import {
 import styled from "styled-components";
 
 import type { DownloadResourceType } from "@/components/TeacherComponents/types/downloadAndShare.types";
+import { getDownloadCardFieldErrorAriaProps } from "@/components/TeacherComponents/helpers/downloadAndShareHelpers/shareDownloadFormErrorIds";
 import { CheckboxProps } from "@/components/SharedComponents/Checkbox/Checkbox";
 import { getValidSubjectIconName } from "@/utils/getValidSubjectIconName";
 
@@ -66,6 +67,7 @@ const ResourceCard: FC<ResourceCardProps> = (props) => {
     disabled,
     asRadio = false,
     useDownloadPageLayout = false,
+    hasError = false,
   } = props;
 
   const isCurriculumIcon = resourceType === "curriculum-pdf";
@@ -85,6 +87,7 @@ const ResourceCard: FC<ResourceCardProps> = (props) => {
         value={id}
         name={name}
         title={label}
+        {...getDownloadCardFieldErrorAriaProps(hasError)}
         checked={checked}
         disabled={disabled}
         onChange={onChange}

@@ -6,17 +6,14 @@ import TopNavDropdown from "./TopNavDropdown";
 
 import { DropdownFocusManager } from "@/components/AppComponents/TopNav/DropdownFocusManager/DropdownFocusManager";
 import { topNavFixture } from "@/node-lib/curriculum-api-2023/fixtures/topNav.fixture";
-import { TeachersSubNavData } from "@/node-lib/curriculum-api-2023/queries/topNav/topNav.schema";
+import {
+  PupilsSubNavData,
+  TeachersSubNavData,
+} from "@/node-lib/curriculum-api-2023/queries/topNav/topNav.schema";
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
-import theme from "@/styles/theme/default.theme";
-import { oakDefaultTheme } from "@/styles/oakThemeApp";
-import { OakColorName } from "@/styles/theme/types";
+import { getOakUiColor } from "@/__tests__/__helpers__/getOakUiColor";
 
 const render = renderWithProviders();
-const getOakBackgroundColor = (token: "bg-decorative1-very-subdued") => {
-  const colorName = oakDefaultTheme.uiColors[token] as OakColorName;
-  return theme.colors[colorName];
-};
 
 const mockBrowseRefined = jest.fn();
 jest.mock("@/context/Analytics/useAnalytics", () => ({
@@ -33,26 +30,26 @@ jest.mock("next/navigation", () => ({
   usePathname: jest.fn(),
 }));
 
-let focusManager: DropdownFocusManager<TeachersSubNavData>;
+let teachersFocusManager: DropdownFocusManager<TeachersSubNavData>;
+let pupilsFocusManager: DropdownFocusManager<PupilsSubNavData>;
 const onCloseMock = jest.fn();
 
 describe("TopNavDropdown", () => {
-  beforeEach(() => {
-    jest.clearAllMocks();
-    onCloseMock.mockReset();
-    mockBrowseRefined.mockReset();
-    focusManager = new DropdownFocusManager(
-      topNavFixture.teachers!,
-      "teachers",
-      () => undefined,
-    );
-    (useRouter as jest.Mock).mockReturnValue({
-      push: jest.fn(),
-    });
-  });
-
   describe("Teachers area", () => {
-    describe("phases sections", () => {
+    beforeEach(() => {
+      jest.clearAllMocks();
+      onCloseMock.mockReset();
+      mockBrowseRefined.mockReset();
+      teachersFocusManager = new DropdownFocusManager(
+        topNavFixture.teachers!,
+        "teachers",
+        jest.fn(),
+      );
+      (useRouter as jest.Mock).mockReturnValue({
+        push: jest.fn(),
+      });
+    });
+    describe("keystages sections", () => {
       it("renders keystage menu", async () => {
         render(
           <TopNavDropdown
@@ -60,16 +57,35 @@ describe("TopNavDropdown", () => {
             pupils={topNavFixture.pupils!}
             activeArea="TEACHERS"
             selectedMenu="primary"
-            focusManager={focusManager}
+            focusManager={teachersFocusManager}
             onClose={onCloseMock}
           />,
         );
 
-        const keystageButtons = await screen.findAllByRole("tab");
+        const primaryButton = await screen.findByRole("button", {
+          name: "Primary",
+        });
 
-        expect(keystageButtons).toHaveLength(3);
-        expect(keystageButtons[0]).toHaveTextContent("Key stage 1");
-        expect(keystageButtons[0]).toHaveAttribute("aria-current", "true");
+        expect(primaryButton).toBeInTheDocument();
+      });
+
+      it("does not set aria-controls when no matching subject panel exists", async () => {
+        render(
+          <TopNavDropdown
+            teachers={topNavFixture.teachers!}
+            pupils={topNavFixture.pupils!}
+            activeArea="TEACHERS"
+            selectedMenu="primary"
+            focusManager={teachersFocusManager}
+            onClose={onCloseMock}
+          />,
+        );
+
+        const primaryButton = await screen.findByRole("button", {
+          name: "Primary",
+        });
+
+        expect(primaryButton).not.toHaveAttribute("aria-controls");
       });
 
       it("renders keystage menu", async () => {
@@ -79,16 +95,16 @@ describe("TopNavDropdown", () => {
             pupils={topNavFixture.pupils!}
             activeArea="TEACHERS"
             selectedMenu="secondary"
-            focusManager={focusManager}
+            focusManager={teachersFocusManager}
             onClose={onCloseMock}
           />,
         );
 
-        const keystageButtons = await screen.findAllByRole("tab");
+        const secondaryButton = await screen.findByRole("button", {
+          name: "Secondary",
+        });
 
-        expect(keystageButtons).toHaveLength(2);
-        expect(keystageButtons[0]).toHaveTextContent("Key stage 3");
-        expect(keystageButtons[0]).toHaveAttribute("aria-current", "true");
+        expect(secondaryButton).toBeInTheDocument();
       });
 
       it("calls track browse refined when a keystage button is clicked", async () => {
@@ -98,13 +114,23 @@ describe("TopNavDropdown", () => {
             pupils={topNavFixture.pupils!}
             activeArea="TEACHERS"
             selectedMenu="secondary"
-            focusManager={focusManager}
+            focusManager={teachersFocusManager}
             onClose={onCloseMock}
           />,
         );
 
-        const keystageButton = screen.getByRole("tab", { name: "Key stage 4" });
         const user = userEvent.setup();
+        const keystagesButton = await screen.findByRole("button", {
+          name: "Key stages",
+        });
+        await user.click(keystagesButton);
+        const ks4Button = await screen.findByRole("button", {
+          name: "Key stage 4",
+        });
+        await user.click(ks4Button);
+        const keystageButton = screen.getByRole("button", {
+          name: "Key stage 4",
+        });
         await user.click(keystageButton);
         expect(mockBrowseRefined).toHaveBeenCalledWith(
           expect.objectContaining({
@@ -121,16 +147,21 @@ describe("TopNavDropdown", () => {
             pupils={topNavFixture.pupils!}
             activeArea="TEACHERS"
             selectedMenu="primary"
-            focusManager={focusManager}
+            focusManager={teachersFocusManager}
             onClose={onCloseMock}
           />,
         );
 
+        const user = userEvent.setup();
+        const keystagesButton = await screen.findByRole("button", {
+          name: "Key stages",
+        });
+        await user.click(keystagesButton);
         const subjectButtons = await screen.findAllByRole("link");
 
         expect(subjectButtons[2]).toHaveTextContent("Financial education");
         expect(subjectButtons[2]).toHaveStyle({
-          background: getOakBackgroundColor("bg-decorative1-very-subdued"),
+          background: getOakUiColor("bg-decorative1-very-subdued"),
         });
       });
 
@@ -142,11 +173,15 @@ describe("TopNavDropdown", () => {
             pupils={topNavFixture.pupils!}
             activeArea="TEACHERS"
             selectedMenu="primary"
-            focusManager={focusManager}
+            focusManager={teachersFocusManager}
             onClose={onCloseMock}
           />,
         );
 
+        const keystagesButton = await screen.findByRole("button", {
+          name: "Key stages",
+        });
+        await user.click(keystagesButton);
         const englishButton = await screen.findByRole("link", {
           name: "English",
         });
@@ -166,11 +201,15 @@ describe("TopNavDropdown", () => {
             pupils={topNavFixture.pupils!}
             activeArea="TEACHERS"
             selectedMenu="primary"
-            focusManager={focusManager}
+            focusManager={teachersFocusManager}
             onClose={onCloseMock}
           />,
         );
 
+        const keystagesButton = await screen.findByRole("button", {
+          name: "Key stages",
+        });
+        await user.click(keystagesButton);
         const financialEdButton = await screen.findByRole("link", {
           name: "Financial education",
         });
@@ -190,11 +229,15 @@ describe("TopNavDropdown", () => {
             pupils={topNavFixture.pupils!}
             activeArea="TEACHERS"
             selectedMenu="primary"
-            focusManager={focusManager}
+            focusManager={teachersFocusManager}
             onClose={onCloseMock}
           />,
         );
 
+        const keystagesButton = await screen.findByRole("button", {
+          name: "Key stages",
+        });
+        await user.click(keystagesButton);
         const englishButton = await screen.findByRole("link", {
           name: "English",
         });
@@ -204,7 +247,7 @@ describe("TopNavDropdown", () => {
 
         expect(mockBrowseRefined).toHaveBeenCalledWith(
           expect.objectContaining({
-            activeFilters: { keystage: ["ks1"] },
+            activeFilters: { keystages: ["ks1"] },
             filterType: "Subject filter",
             filterValue: "english",
           }),
@@ -219,12 +262,17 @@ describe("TopNavDropdown", () => {
             pupils={topNavFixture.pupils!}
             activeArea="TEACHERS"
             selectedMenu="secondary"
-            focusManager={focusManager}
+            focusManager={teachersFocusManager}
             onClose={onCloseMock}
           />,
         );
 
-        const ks4Button = await screen.findByRole("tab", {
+        const keystagesButton = await screen.findByRole("button", {
+          name: "Key stages",
+        });
+        await user.click(keystagesButton);
+
+        const ks4Button = await screen.findByRole("button", {
           name: "Key stage 4",
         });
         await user.click(ks4Button);
@@ -237,7 +285,7 @@ describe("TopNavDropdown", () => {
 
         expect(
           await screen.findByRole("heading", {
-            name: "Choose tier for KS4 Geography",
+            name: "Choose exam board for KS4 Geography",
           }),
         ).toBeInTheDocument();
       });
@@ -250,12 +298,17 @@ describe("TopNavDropdown", () => {
             pupils={topNavFixture.pupils!}
             activeArea="TEACHERS"
             selectedMenu="secondary"
-            focusManager={focusManager}
+            focusManager={teachersFocusManager}
             onClose={onCloseMock}
           />,
         );
 
-        const ks4Button = await screen.findByRole("tab", {
+        const keystagesButton = await screen.findByRole("button", {
+          name: "Key stages",
+        });
+        await user.click(keystagesButton);
+
+        const ks4Button = await screen.findByRole("button", {
           name: "Key stage 4",
         });
         await user.click(ks4Button);
@@ -270,7 +323,7 @@ describe("TopNavDropdown", () => {
 
         expect(
           await screen.findByRole("heading", {
-            name: "Choose tier for KS4 Geography",
+            name: "Choose exam board for KS4 Geography",
           }),
         ).toBeInTheDocument();
       });
@@ -283,12 +336,17 @@ describe("TopNavDropdown", () => {
             pupils={topNavFixture.pupils!}
             activeArea="TEACHERS"
             selectedMenu="secondary"
-            focusManager={focusManager}
+            focusManager={teachersFocusManager}
             onClose={onCloseMock}
           />,
         );
 
-        const ks4Button = await screen.findByRole("tab", {
+        const keystagesButton = await screen.findByRole("button", {
+          name: "Key stages",
+        });
+        await user.click(keystagesButton);
+
+        const ks4Button = await screen.findByRole("button", {
           name: "Key stage 4",
         });
         await user.click(ks4Button);
@@ -299,7 +357,7 @@ describe("TopNavDropdown", () => {
         geographyButton.addEventListener("click", (e) => e.preventDefault());
         await user.click(geographyButton);
 
-        const ks3Button = screen.getByRole("tab", { name: "Key stage 3" });
+        const ks3Button = screen.getByRole("button", { name: "Key stage 3" });
         await user.click(ks3Button);
 
         expect(
@@ -307,6 +365,30 @@ describe("TopNavDropdown", () => {
             name: "Choose exam board for KS4 Geography",
           }),
         ).not.toBeInTheDocument();
+      });
+    });
+    describe("phases section", () => {
+      it("renders phase tabs with subjects", async () => {
+        render(
+          <TopNavDropdown
+            teachers={topNavFixture.teachers!}
+            pupils={topNavFixture.pupils!}
+            activeArea="TEACHERS"
+            selectedMenu="secondary"
+            focusManager={teachersFocusManager}
+            onClose={onCloseMock}
+          />,
+        );
+
+        const secondaryButton = screen.getByText("Secondary").closest("button");
+        await userEvent.click(secondaryButton!);
+
+        expect(
+          screen.getByRole("link", { name: "History" }),
+        ).toBeInTheDocument();
+        expect(
+          screen.getByRole("link", { name: "Geography" }),
+        ).toBeInTheDocument();
       });
     });
     describe("links sections", () => {
@@ -317,7 +399,7 @@ describe("TopNavDropdown", () => {
             pupils={topNavFixture.pupils!}
             activeArea="TEACHERS"
             selectedMenu="guidance"
-            focusManager={focusManager}
+            focusManager={teachersFocusManager}
             onClose={onCloseMock}
           />,
         );
@@ -338,7 +420,7 @@ describe("TopNavDropdown", () => {
             pupils={topNavFixture.pupils!}
             activeArea="TEACHERS"
             selectedMenu="guidance"
-            focusManager={focusManager}
+            focusManager={teachersFocusManager}
             onClose={onCloseMock}
           />,
         );
@@ -356,7 +438,7 @@ describe("TopNavDropdown", () => {
             pupils={topNavFixture.pupils!}
             activeArea="TEACHERS"
             selectedMenu="guidance"
-            focusManager={focusManager}
+            focusManager={teachersFocusManager}
             onClose={onCloseMock}
           />,
         );
@@ -380,7 +462,7 @@ describe("TopNavDropdown", () => {
             pupils={topNavFixture.pupils!}
             activeArea="TEACHERS"
             selectedMenu="aboutUs"
-            focusManager={focusManager}
+            focusManager={teachersFocusManager}
             onClose={onCloseMock}
           />,
         );
@@ -401,7 +483,7 @@ describe("TopNavDropdown", () => {
             pupils={topNavFixture.pupils!}
             activeArea="TEACHERS"
             selectedMenu="guidance"
-            focusManager={focusManager}
+            focusManager={teachersFocusManager}
             onClose={onCloseMock}
           />,
         );
@@ -414,6 +496,19 @@ describe("TopNavDropdown", () => {
   });
 
   describe("Pupils area", () => {
+    beforeEach(() => {
+      jest.clearAllMocks();
+      onCloseMock.mockReset();
+      mockBrowseRefined.mockReset();
+      pupilsFocusManager = new DropdownFocusManager(
+        topNavFixture.pupils!,
+        "pupils",
+        jest.fn(),
+      );
+      (useRouter as jest.Mock).mockReturnValue({
+        push: jest.fn(),
+      });
+    });
     describe("links sections", () => {
       it("renders primary year buttons", async () => {
         render(
@@ -422,7 +517,7 @@ describe("TopNavDropdown", () => {
             pupils={topNavFixture.pupils!}
             activeArea="PUPILS"
             selectedMenu="primary"
-            focusManager={focusManager}
+            focusManager={pupilsFocusManager}
             onClose={onCloseMock}
           />,
         );
@@ -439,7 +534,7 @@ describe("TopNavDropdown", () => {
             pupils={topNavFixture.pupils!}
             activeArea="PUPILS"
             selectedMenu="secondary"
-            focusManager={focusManager}
+            focusManager={pupilsFocusManager}
             onClose={onCloseMock}
           />,
         );
@@ -457,7 +552,7 @@ describe("TopNavDropdown", () => {
             pupils={topNavFixture.pupils!}
             activeArea="PUPILS"
             selectedMenu="primary"
-            focusManager={focusManager}
+            focusManager={pupilsFocusManager}
             onClose={onCloseMock}
           />,
         );
@@ -481,7 +576,7 @@ describe("TopNavDropdown", () => {
             pupils={topNavFixture.pupils!}
             activeArea="PUPILS"
             selectedMenu="secondary"
-            focusManager={focusManager}
+            focusManager={pupilsFocusManager}
             onClose={onCloseMock}
           />,
         );

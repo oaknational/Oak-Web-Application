@@ -1,6 +1,9 @@
 import { OakFlex } from "@oaknational/oak-components";
 import React from "react";
 
+import type { Ks4OptionFilterDimension } from "../../buildKs4OptionFilterDimensions";
+
+import { KS4OptionFocusScope } from "./KS4OptionFocus";
 import { ProgrammeFilters } from "./ProgrammeFilters";
 
 import { CurriculumFilters } from "@/utils/curriculum/types";
@@ -18,6 +21,7 @@ export type ProgrammePageFiltersProps = {
   data: CurriculumUnitsFormattedData;
   slugs: CurriculumSelectionSlugs;
   ks4Options: Ks4Option[];
+  ks4OptionFilterDimensions: Record<string, Ks4OptionFilterDimension>;
 };
 
 export default function ProgrammePageFiltersDesktop({
@@ -26,6 +30,7 @@ export default function ProgrammePageFiltersDesktop({
   data,
   slugs,
   ks4Options,
+  ks4OptionFilterDimensions,
 }: Readonly<ProgrammePageFiltersProps>) {
   return (
     <OakFlex
@@ -35,13 +40,16 @@ export default function ProgrammePageFiltersDesktop({
       $mb={"spacing-32"}
     >
       <SkipLink href="#content">Skip to units</SkipLink>
-      <ProgrammeFilters
-        filters={filters}
-        onChangeFilters={onChangeFilters}
-        data={data}
-        slugs={slugs}
-        ks4Options={ks4Options}
-      />
+      <KS4OptionFocusScope variant="page">
+        <ProgrammeFilters
+          filters={filters}
+          onChangeFilters={onChangeFilters}
+          data={data}
+          slugs={slugs}
+          ks4Options={ks4Options}
+          ks4OptionFilterDimensions={ks4OptionFilterDimensions}
+        />
+      </KS4OptionFocusScope>
     </OakFlex>
   );
 }

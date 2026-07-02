@@ -14,7 +14,7 @@ import {
 const render = renderWithProviders();
 
 describe("SubNav (Teachers)", () => {
-  const mockFocusManager = new DropdownFocusManager(
+  const mockFocusManager = new DropdownFocusManager<TeachersSubNavData>(
     topNavFixture.teachers!,
     "teachers",
     () => undefined,
@@ -87,7 +87,7 @@ describe("SubNav (Teachers)", () => {
 });
 
 describe("SubNav (Pupils)", () => {
-  const mockFocusManager = new DropdownFocusManager(
+  const mockFocusManager = new DropdownFocusManager<PupilsSubNavData>(
     topNavFixture.pupils!,
     "pupils",
     () => undefined,

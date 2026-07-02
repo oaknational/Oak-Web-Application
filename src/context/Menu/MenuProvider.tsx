@@ -1,3 +1,4 @@
+"use client";
 import { createContext, FC, useCallback, useState } from "react";
 
 type MenuContext = {

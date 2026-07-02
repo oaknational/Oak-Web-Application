@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { queryByAttribute, act } from "@testing-library/react";
+import { queryByAttribute, act, screen } from "@testing-library/react";
 import { FieldErrors, useForm } from "react-hook-form";
 
 import TermsAgreementForm, {
@@ -7,6 +7,7 @@ import TermsAgreementForm, {
 } from "./TermsAgreementForm";
 
 import { ResourceFormValues } from "@/components/TeacherComponents/types/downloadAndShare.types";
+import { SHARE_FORM_ERROR_IDS } from "@/components/TeacherComponents/helpers/downloadAndShareHelpers/shareDownloadFormErrorIds";
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 
 type TermsAgreementFormPropsOptionalForm = Omit<
@@ -41,9 +42,40 @@ describe("TermsAgreementForm (School, email and terms form within the teacher an
     };
     const { container } = render(<Wrapper errors={errors} />);
 
-    const error = queryByAttribute("id", container, "school-error");
+    const error = queryByAttribute(
+      "id",
+      container,
+      SHARE_FORM_ERROR_IDS.school,
+    );
     expect(error).toBeInTheDocument();
     expect(error).toHaveTextContent(errorMessage);
+    expect(screen.getByTestId("search-combobox-input")).toHaveAttribute(
+      "aria-describedby",
+      SHARE_FORM_ERROR_IDS.school,
+    );
+  });
+
+  it("links email field errors to the email input", () => {
+    const errorMessage = "Please enter a valid email address";
+    const errors: FieldErrors<ResourceFormValues> = {
+      email: {
+        message: errorMessage,
+        type: "invalid_string",
+      },
+    };
+    const { container } = render(<Wrapper errors={errors} />);
+
+    const error = queryByAttribute("id", container, SHARE_FORM_ERROR_IDS.email);
+    expect(error).toBeInTheDocument();
+    expect(error).toHaveTextContent(errorMessage);
+    expect(screen.getByTestId("inputEmail")).toHaveAttribute(
+      "aria-describedby",
+      SHARE_FORM_ERROR_IDS.email,
+    );
+    expect(screen.getByTestId("inputEmail")).toHaveAttribute(
+      "aria-invalid",
+      "true",
+    );
   });
 
   it("Shows loading", async () => {

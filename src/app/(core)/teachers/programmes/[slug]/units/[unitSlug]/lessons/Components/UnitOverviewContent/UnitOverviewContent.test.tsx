@@ -102,7 +102,7 @@ describe("UnitOverviewContent", () => {
     expect(foundationLink).toHaveAttribute(
       "href",
       resolveOakHref({
-        page: "integrated-unit-overview",
+        page: "unit-overview",
         programmeSlug: "biology-secondary-ks4-foundation-aqa",
         unitSlug: "cells",
       }),
@@ -111,7 +111,7 @@ describe("UnitOverviewContent", () => {
     expect(screen.getByRole("link", { name: "Higher" })).toHaveAttribute(
       "href",
       resolveOakHref({
-        page: "integrated-unit-overview",
+        page: "unit-overview",
         programmeSlug: "biology-secondary-ks4-higher-aqa",
         unitSlug: "cells",
       }),
@@ -120,7 +120,7 @@ describe("UnitOverviewContent", () => {
     expect(biologyLink).toHaveAttribute(
       "href",
       resolveOakHref({
-        page: "integrated-unit-overview",
+        page: "unit-overview",
         programmeSlug: "biology-secondary-ks4-foundation-aqa",
         unitSlug: "cells",
       }),
@@ -131,7 +131,7 @@ describe("UnitOverviewContent", () => {
     ).toHaveAttribute(
       "href",
       resolveOakHref({
-        page: "integrated-unit-overview",
+        page: "unit-overview",
         programmeSlug: "combined-science-secondary-ks4-foundation-aqa",
         unitSlug: "cells",
       }),
@@ -192,7 +192,7 @@ describe("UnitOverviewContent", () => {
     expect(previousUnitLink).toHaveProperty(
       "href",
       `http://localhost${resolveOakHref({
-        page: "integrated-unit-overview",
+        page: "unit-overview",
         programmeSlug: "biology-secondary-ks4-foundation-aqa",
         unitSlug: "unit-1",
       })}`,
@@ -213,7 +213,7 @@ describe("UnitOverviewContent", () => {
     expect(nextUnitLink).toHaveProperty(
       "href",
       `http://localhost${resolveOakHref({
-        page: "integrated-unit-overview",
+        page: "unit-overview",
         programmeSlug: "biology-secondary-ks4-foundation-aqa",
         unitSlug: "unit-3",
       })}`,

@@ -1,3 +1,369 @@
+# [1.1111.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1110.0...v1.1111.0) (2026-07-02)
+
+
+### Bug Fixes
+
+* update programme page canonical url to use query params ([2cf3500](https://github.com/oaknational/Oak-Web-Application/commit/2cf3500e0732e65cf0ab22ff6b4d076def388a9d))
+
+
+### Features
+
+* update search params parse method to return undefined ([78cffac](https://github.com/oaknational/Oak-Web-Application/commit/78cffacb5ad1d8b915ca1a98b726cc74f910dfb2))
+
+# [1.1110.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1109.0...v1.1110.0) (2026-07-01)
+
+
+### Features
+
+* **LESQ-2125:** add pathway options to KS4 filter panel ([85096a2](https://github.com/oaknational/Oak-Web-Application/commit/85096a22397e83ce82e1eb79614db518691784a3))
+* **LESQ-2125:** generalize KS4 option filter dimensions builder ([3a93b39](https://github.com/oaknational/Oak-Web-Application/commit/3a93b3956a9aeb57dc24846c48887bb8d4b542a6))
+* **LESQ-2125:** preload ks4 option filter dimensions for all KS4 options ([0c90ecf](https://github.com/oaknational/Oak-Web-Application/commit/0c90ecf55bcc02847ca0c81134ec38de20ec86db))
+* **LESQ-2125:** remove Core/GCSE duplication from year filter on integrated journey ([4b374fa](https://github.com/oaknational/Oak-Web-Application/commit/4b374fa3b960919693553fab0f1775c33ed287b4))
+* **LESQ-2125:** sort KS4 panel options GCSE, Core, then exam boards ([102b412](https://github.com/oaknational/Oak-Web-Application/commit/102b4128291a44593d6420ba630f7537a763a885))
+* **LESQ-2125:** split KS4 filters into pathway and exam board panels ([635f3cf](https://github.com/oaknational/Oak-Web-Application/commit/635f3cf370d0ebce1cdb77789aab6899db1f93f3))
+
+# [1.1109.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1108.0...v1.1109.0) (2026-06-30)
+
+
+### Bug Fixes
+
+* alt text and casing ([b83f56d](https://github.com/oaknational/Oak-Web-Application/commit/b83f56d8388f2b704cf8c6fa8714219a60a3da84))
+
+
+### Features
+
+* oaks impact intial build ([431802a](https://github.com/oaknational/Oak-Web-Application/commit/431802a69f8d9d463cd8de06ae12c96a002a034e))
+* support you component uses max width ([a295c63](https://github.com/oaknational/Oak-Web-Application/commit/a295c63514140d6543dea4e6e65e52df97513e43))
+
+# [1.1108.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1107.1...v1.1108.0) (2026-06-30)
+
+
+### Features
+
+* **LESQ-2111:** add programme filter units to teachers sitemap query ([3d829da](https://github.com/oaknational/Oak-Web-Application/commit/3d829dae1c507aa2f00387c73a4f029b6449f9f8))
+* **LESQ-2111:** derive programme filter variants for teacher sitemap ([94e9e95](https://github.com/oaknational/Oak-Web-Application/commit/94e9e9530c8695d06167d03c470cba4e9b1386b7))
+* **LESQ-2111:** emit year and keystage programme URLs in teacher sitemap ([721ab39](https://github.com/oaknational/Oak-Web-Application/commit/721ab39f52bc95efd37ec6e3534ac4958511a0b8))
+
+## [1.1107.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.1107.0...v1.1107.1) (2026-06-30)
+
+
+### Bug Fixes
+
+* fixes all high reliability sonarcloud issues ([a6736fc](https://github.com/oaknational/Oak-Web-Application/commit/a6736fc552b529e661d23dde527e554c22f22dda))
+
+# [1.1107.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1106.0...v1.1107.0) (2026-06-29)
+
+
+### Bug Fixes
+
+* added Readonly<...> to SupportYouProps ([8fafccf](https://github.com/oaknational/Oak-Web-Application/commit/8fafccfac45b6691cb6648540e2fd0086167ec37))
+* another colspan fix ([c49374a](https://github.com/oaknational/Oak-Web-Application/commit/c49374aed30134d04ebad83f0f0a248388af952a))
+* colspan on right image ([08e4e2a](https://github.com/oaknational/Oak-Web-Application/commit/08e4e2a7254ec63ba8e6f1852bf204c11d458dac))
+* link alt text and heading tag ([7a589a8](https://github.com/oaknational/Oak-Web-Application/commit/7a589a8e6afc4bcc63b0faca7a5be5cf5140e0cc))
+
+
+### Features
+
+* added <SupportYou/> component for oaks new impact page ([4301dfb](https://github.com/oaknational/Oak-Web-Application/commit/4301dfba2bdca436c7626a65890f8dd8761ac98d))
+
+# [1.1106.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1105.3...v1.1106.0) (2026-06-29)
+
+
+### Bug Fixes
+
+* exclude oaks impact path from sitemap ([25838ce](https://github.com/oaknational/Oak-Web-Application/commit/25838ce4c07f3d1dcc9d7c7e6a614fb0d412dde6))
+* remove avo page name and url config ([8036dd5](https://github.com/oaknational/Oak-Web-Application/commit/8036dd5e97e8669f55f1ab1890322e90ceeb4efc))
+* use app layout ([98d8a0f](https://github.com/oaknational/Oak-Web-Application/commit/98d8a0f867c66f7d7761cf208126c6bb56cc5193))
+
+
+### Features
+
+* check feat flag server side ([c368501](https://github.com/oaknational/Oak-Web-Application/commit/c3685012b6d8a530e61c113064e9580222694f83))
+* feat flagged oaks impact page skeleton ([f449833](https://github.com/oaknational/Oak-Web-Application/commit/f449833b9a6941d0d927a7d0e57aecfccfad8dba))
+
+## [1.1105.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.1105.2...v1.1105.3) (2026-06-29)
+
+
+### Bug Fixes
+
+* blocker maintainability issues in sonar cloud ([20e4898](https://github.com/oaknational/Oak-Web-Application/commit/20e4898ae6fc1ec34310b011c3485af36af9cb74))
+
+## [1.1105.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.1105.1...v1.1105.2) (2026-06-29)
+
+
+### Bug Fixes
+
+* fix regression to prevent scroll on filter seleciton ([46df7f8](https://github.com/oaknational/Oak-Web-Application/commit/46df7f8dc23e2ddc6bd00d6b8e65e7cce0b31896))
+* try adding fallback div ([622638e](https://github.com/oaknational/Oak-Web-Application/commit/622638e8f77d3b40fb56423e4f8e06be600c7eed))
+* try adding suspense wrapper ([2bc7219](https://github.com/oaknational/Oak-Web-Application/commit/2bc7219feddd1fb4df1cd2160401421b3252aa76))
+
+## [1.1105.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.1105.0...v1.1105.1) (2026-06-29)
+
+# [1.1105.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1104.2...v1.1105.0) (2026-06-29)
+
+
+### Bug Fixes
+
+* add top value for sticky box ([98b490c](https://github.com/oaknational/Oak-Web-Application/commit/98b490cf7bdd3d71b3e34fac72ffd9aa3d3a5d78))
+* typo in docs ([4381439](https://github.com/oaknational/Oak-Web-Application/commit/4381439f699d484e8eefac3d142a1076c146285a))
+* use same value for initial offset in notifications provider ([8c6f562](https://github.com/oaknational/Oak-Web-Application/commit/8c6f56247cfe19f8b594b22a39655bbaae338704))
+
+
+### Features
+
+* add root level error boundary for app route pages ([996eb0e](https://github.com/oaknational/Oak-Web-Application/commit/996eb0e686ab1b056075fd2fd55ee65f22fec58e))
+
+## [1.1104.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.1104.1...v1.1104.2) (2026-06-25)
+
+
+### Bug Fixes
+
+* add all keystages as valid value ([2b8bca2](https://github.com/oaknational/Oak-Web-Application/commit/2b8bca2c44bb366977000d5ba8810f76d433615e))
+* align keyboard nav with the new data structures ([47efbdf](https://github.com/oaknational/Oak-Web-Application/commit/47efbdf721f5f0562519eb4d9ec613e734e510ac))
+* align keystage filter value param name to plural keystages ([181e1dc](https://github.com/oaknational/Oak-Web-Application/commit/181e1dcb50f06d86def9f4ce1ff2c53335d41576))
+* close examboard panel when tabbing past options ([c21c331](https://github.com/oaknational/Oak-Web-Application/commit/c21c331bfb4ec7774f3c458d4fc30abf64aa4d3d))
+* close hamburger when clicking a nav link ([c089a44](https://github.com/oaknational/Oak-Web-Application/commit/c089a44dc94bce31e12f39ebba163da5a68952de))
+* hamburger focus ([c04fa22](https://github.com/oaknational/Oak-Web-Application/commit/c04fa22c42c1db597658f53e6f81d33657af9a72))
+* hamburger sub menu name ([cc8ddf1](https://github.com/oaknational/Oak-Web-Application/commit/cc8ddf1072ff75a9999796850dea498368b8dfb8))
+* handle multiple entry paths for ks4 options submenu view ([54fe91d](https://github.com/oaknational/Oak-Web-Application/commit/54fe91d05d01685ad9b88eb17e40b2d40b1e1e9d))
+* only handle arrow keys on keystage tab buttons ([e5401ee](https://github.com/oaknational/Oak-Web-Application/commit/e5401ee0812f3f6924ec099aa503972cc8a3370b))
+* pass correct value for ks in topnavks4menu ([6f3ccc0](https://github.com/oaknational/Oak-Web-Application/commit/6f3ccc0a44bde7e0cf885653b4d97efd3baf9f91))
+* pass subject rather than selected subject to ks4 buttons ([17bf805](https://github.com/oaknational/Oak-Web-Application/commit/17bf8057b5bab4ea793af0a7898b01c1c2903786))
+* remove list role from ul in ks4 options menu ([d07d522](https://github.com/oaknational/Oak-Web-Application/commit/d07d522f629b279cb7f1a2c84ea910f26a144634))
+* return empty examboards for subjects without tier or examboard ([61f01d9](https://github.com/oaknational/Oak-Web-Application/commit/61f01d9c3c012262ec1eed7554d5bbf12857697e))
+
+
+### Reverts
+
+* Revert "Merge pull request [#4306](https://github.com/oaknational/Oak-Web-Application/issues/4306) from oaknational/fix/phase-menu" ([3be762c](https://github.com/oaknational/Oak-Web-Application/commit/3be762c2ed71acaea415952c7c37a57ffcee55bf))
+
+## [1.1104.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.1104.0...v1.1104.1) (2026-06-25)
+
+# [1.1104.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1103.0...v1.1104.0) (2026-06-25)
+
+
+### Features
+
+* **LESQ-2078:** highlight optionality units in threads ([bbbe5bb](https://github.com/oaknational/Oak-Web-Application/commit/bbbe5bb8d13e2682ec0c9ae92dace0bc5ce4dc08))
+
+# [1.1103.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1102.1...v1.1103.0) (2026-06-24)
+
+
+### Features
+
+* add heatwave banner feature flag ([93041ac](https://github.com/oaknational/Oak-Web-Application/commit/93041ac519e67c22172d1afb89c8328b10e4143b))
+* add heatwave banner to lesson view ([4ddfd6a](https://github.com/oaknational/Oak-Web-Application/commit/4ddfd6a164e5664a72ae43310bc722fd2dbf534d))
+* fit banner to content ([aa6436a](https://github.com/oaknational/Oak-Web-Application/commit/aa6436a2992760094452016491f10d46cefc2d19))
+
+## [1.1102.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.1102.0...v1.1102.1) (2026-06-24)
+
+
+### Bug Fixes
+
+* revert carat version ([5a05aea](https://github.com/oaknational/Oak-Web-Application/commit/5a05aea486319d6210fad0f675bbb39290494636))
+* update curriculum schema ([afc8b6b](https://github.com/oaknational/Oak-Web-Application/commit/afc8b6b17d3978c3378b4c2b7ddd907a71a1a76e))
+
+# [1.1102.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1101.0...v1.1102.0) (2026-06-23)
+
+
+### Features
+
+* disallow create with ai on digital literacy ([c0e4c11](https://github.com/oaknational/Oak-Web-Application/commit/c0e4c115a6a2976cbfaf94c81937ddffd6e3947c))
+* exclude curriculum link in lesson seo helper ([ab43b5b](https://github.com/oaknational/Oak-Web-Application/commit/ab43b5bcf28dca4885079c8f0a109d0312e20c10))
+* remove hide curriculum logic ([5f8258f](https://github.com/oaknational/Oak-Web-Application/commit/5f8258ff5a8023ea1d02db438078a05d13e2e0b3))
+
+# [1.1101.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1100.3...v1.1101.0) (2026-06-23)
+
+
+### Features
+
+* **LESQ-2108:** add examboard filter to programme page ([b2454a3](https://github.com/oaknational/Oak-Web-Application/commit/b2454a38edc5b260de35a68d17e0e259bbeba58b))
+* **LESQ-2108:** forward compatible tier, pathway and child subject when switching examboard ([1425a6e](https://github.com/oaknational/Oak-Web-Application/commit/1425a6ec2862dc1cea62b8e7b96135a844881ac2))
+* **LESQ-2108:** restore focus to examboard filter after navigation ([c806996](https://github.com/oaknational/Oak-Web-Application/commit/c80699681068966d369e5fa5f08c5f89fd9e189a))
+* **LESQ-2108:** return focus to examboard selector after navigation ([b9bb39e](https://github.com/oaknational/Oak-Web-Application/commit/b9bb39eef077786ad2c0bf29c06493ee63050a18))
+* **LESQ-2108:** use replace instead of push ([f88c37e](https://github.com/oaknational/Oak-Web-Application/commit/f88c37e4dcd8a5a2dbd5b71494912d06b18cd192))
+
+## [1.1100.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.1100.2...v1.1100.3) (2026-06-23)
+
+
+### Bug Fixes
+
+* filter out empty strings from teacher tip data before rendering ([fb169e0](https://github.com/oaknational/Oak-Web-Application/commit/fb169e013657da12a8a4b5105c3e18cdda66e721))
+
+## [1.1100.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.1100.1...v1.1100.2) (2026-06-22)
+
+## [1.1100.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.1100.0...v1.1100.1) (2026-06-22)
+
+
+### Reverts
+
+* Revert "Merge pull request [#4306](https://github.com/oaknational/Oak-Web-Application/issues/4306) from oaknational/fix/phase-menu" ([e4ac01a](https://github.com/oaknational/Oak-Web-Application/commit/e4ac01a60cc8c790678a1bfbf32f054a64ecb463))
+
+# [1.1100.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1099.0...v1.1100.0) (2026-06-22)
+
+
+### Bug Fixes
+
+* **LESQ-2041:** align unstuck footer to grid ([1a0bef9](https://github.com/oaknational/Oak-Web-Application/commit/1a0bef992933afa8a4bc877cc425bd712ba87d05))
+* **LESQ-2041:** correct malformed media query ([21884a1](https://github.com/oaknational/Oak-Web-Application/commit/21884a1aa0a476b4c55d9abcdd1163a9f560c291))
+* **LESQ-2041:** toasts not appearing on top of other in-front elements ([46c9ca1](https://github.com/oaknational/Oak-Web-Application/commit/46c9ca1b126dd07c49d47ef4cb2bb825d5bf9d37))
+* **LESQ-2041:** workaround $display not being spread to OakSmallPrimaryInvertedButton properly ([5eac44e](https://github.com/oaknational/Oak-Web-Application/commit/5eac44e5b2def0329e2e933b7da5f46070790d96))
+* text rendering bug ([51d4834](https://github.com/oaknational/Oak-Web-Application/commit/51d4834c75db8f660da1a266fda5b8c62ef6ce9d))
+* typing and linting issues ([d42a223](https://github.com/oaknational/Oak-Web-Application/commit/d42a22331bc45ac929989a039eec258338f1baf6))
+
+
+### Features
+
+* add feature flag check ([8189919](https://github.com/oaknational/Oak-Web-Application/commit/81899190dfb007ffc7822dc903858cc41b5d1e07))
+* add useDetectStuck hook ([0c84ba6](https://github.com/oaknational/Oak-Web-Application/commit/0c84ba6b1dede6ec32ae3882f075760718df2b8b))
+* desktop and tablet stuck layouts ([94d088f](https://github.com/oaknational/Oak-Web-Application/commit/94d088fdaa4383e72bc0af1aab571b7a8c817233))
+* **LESQ-2041:** align sticky download button with designs ([e02c835](https://github.com/oaknational/Oak-Web-Application/commit/e02c8353925a401410c25b06e876e950b125b9cf))
+* **LESQ-2041:** apply border radius to top on mobile ([8da926c](https://github.com/oaknational/Oak-Web-Application/commit/8da926ca73ee442a6f986bcf8ac3847ab27fdd0d))
+* **LESQ-2041:** apply non-sticky mobile layout ([f32e71e](https://github.com/oaknational/Oak-Web-Application/commit/f32e71e21d0fd788a0ca62257500a1b831448c43))
+* mobile stuck behaviour ([4236c85](https://github.com/oaknational/Oak-Web-Application/commit/4236c850d08c70c792a4cff9e23ef7a641badecf))
+* new layout ([8b997d3](https://github.com/oaknational/Oak-Web-Application/commit/8b997d3935e096fb1b680721d90e445f6d45165d))
+* scaffold experiment, add fade-in animation ([ac0a88d](https://github.com/oaknational/Oak-Web-Application/commit/ac0a88da5673e16e81b199e85ce849851e1f90be))
+* switch on experiment for QA" ([f5cf8a3](https://github.com/oaknational/Oak-Web-Application/commit/f5cf8a33f4349b6d0e88ab0a8b4b2f86c7727159))
+* update text rendering ([bb03d22](https://github.com/oaknational/Oak-Web-Application/commit/bb03d22995effd1a112894f6016f7e9e5e2a0134))
+
+# [1.1099.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1098.1...v1.1099.0) (2026-06-18)
+
+
+### Bug Fixes
+
+* add terst for helper ([2af7455](https://github.com/oaknational/Oak-Web-Application/commit/2af745543a7f031bc6ac8b72821e3f0e6497052f))
+* fix types ([f2a0d67](https://github.com/oaknational/Oak-Web-Application/commit/f2a0d67d3210941f08a9ef4d2c94d3a9de4ab676))
+* merge main ([806671d](https://github.com/oaknational/Oak-Web-Application/commit/806671da9f57776e8ed0f6f94672402c3e031af5))
+* remove helper ([eb03c35](https://github.com/oaknational/Oak-Web-Application/commit/eb03c355b119246b5e7660cde833c82e497869ff))
+* remove helper ([9b295ef](https://github.com/oaknational/Oak-Web-Application/commit/9b295ef0875d92e9d22a3a6909ecf1b8d5cc76f1))
+* remove helper update versions ([0faeccf](https://github.com/oaknational/Oak-Web-Application/commit/0faeccf3fc32d5d8a1936ccf5205e0475bc1624a))
+* remove unitvarianr ([82b983b](https://github.com/oaknational/Oak-Web-Application/commit/82b983b1be26af98c0753e046b3ac0a822237dfb))
+* remove unitvarianr ([18f5641](https://github.com/oaknational/Oak-Web-Application/commit/18f56410e0d7ec2db52c98dae133249b4249d57b))
+* remove unitvarianr ([e3f36f4](https://github.com/oaknational/Oak-Web-Application/commit/e3f36f4a69c14b5b8493a7b480a1004fd99ab130))
+* remove unitvariant from schema ([f9b7836](https://github.com/oaknational/Oak-Web-Application/commit/f9b78364a43615bad8d4fee63200623b9f2ff482))
+* shema bug ([6e6624f](https://github.com/oaknational/Oak-Web-Application/commit/6e6624ffe9cb25a04fe2e18136f0e75efb3f0d5d))
+* shema bug ([f9a31c8](https://github.com/oaknational/Oak-Web-Application/commit/f9a31c8c4dd546d623152176a73fa65525b22089))
+* update package merge main ([22509bc](https://github.com/oaknational/Oak-Web-Application/commit/22509bc5e63ded94a4331d5f21bd51b945d98e55))
+* use zod to camel with schema ([73d61ba](https://github.com/oaknational/Oak-Web-Application/commit/73d61bac454d1ccfd5683692b309c8f2033de093))
+
+
+### Features
+
+* merge commit ([13d4290](https://github.com/oaknational/Oak-Web-Application/commit/13d4290208bf81055650571be755a97fa8a7358e))
+* merge commit ([03b4210](https://github.com/oaknational/Oak-Web-Application/commit/03b4210f9b3adbdc94ad6297a079a1b9bade3789))
+* merge commit ([50b6920](https://github.com/oaknational/Oak-Web-Application/commit/50b6920713bb72ce1a4ac925da5b1ea21177880f))
+* merge commit ([6ea7893](https://github.com/oaknational/Oak-Web-Application/commit/6ea7893e2381a8b21d8db27ef7f460a6f43955ae))
+* packages for digital literacy readiness ([65e4d8b](https://github.com/oaknational/Oak-Web-Application/commit/65e4d8bc1bd201611ea26468950c407c03af238f))
+* packages for digital literacy readiness ([80e4f9a](https://github.com/oaknational/Oak-Web-Application/commit/80e4f9a91fac82034c38314996ea392aa2f038a8))
+* packages for digital literacy readiness ([3d1f2d7](https://github.com/oaknational/Oak-Web-Application/commit/3d1f2d77b5d4d172405e5ce566aa5882919bd124))
+* test fix ([4afc8d4](https://github.com/oaknational/Oak-Web-Application/commit/4afc8d434700038017c070740f6c7855d6319a33))
+
+## [1.1098.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.1098.0...v1.1098.1) (2026-06-17)
+
+
+### Reverts
+
+* Revert "Merge pull request [#4288](https://github.com/oaknational/Oak-Web-Application/issues/4288) from oaknational/feat/LESQ-2025/topnav-phase-menu" ([6360dd8](https://github.com/oaknational/Oak-Web-Application/commit/6360dd801603a582fac2ce0cfd0a1817f7837d9e))
+
+# [1.1098.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1097.6...v1.1098.0) (2026-06-17)
+
+
+### Bug Fixes
+
+* add additional logic to check whether controls should show ([428d559](https://github.com/oaknational/Oak-Web-Application/commit/428d55988d3ddcacc02f3958224420077367fdbe))
+* fix case when aria controls is pointing to non existent element ([b0ba32f](https://github.com/oaknational/Oak-Web-Application/commit/b0ba32f8d8ca401cede9d40479e270da220337fa))
+* **LESQ-2030:** keep hamburger exam board panel open when tabbing past last item ([129a1be](https://github.com/oaknational/Oak-Web-Application/commit/129a1be02fe3d012712dccf72410f54e04776c21))
+* remove manual avo change ([1fd49d5](https://github.com/oaknational/Oak-Web-Application/commit/1fd49d578584fba14bc730d92380724753c957b8))
+* remove unused use effect ([bab49ec](https://github.com/oaknational/Oak-Web-Application/commit/bab49ecfa31f444d7658d6f56f827b80e92d0bd8))
+* revert exam board title to include keystage ([76c9825](https://github.com/oaknational/Oak-Web-Application/commit/76c9825898bf92a02de20ccfc1239304858b7cc7))
+
+
+### Features
+
+* allow arrow key navigation between focused dropdown elements ([adb69ae](https://github.com/oaknational/Oak-Web-Application/commit/adb69aefe70caf20adbc750bacc8e2aabe4465cf))
+* condense science subjects into one programme ([ce047c3](https://github.com/oaknational/Oak-Web-Application/commit/ce047c38cc57845e13341b8152f22d585c0cb4b9))
+* ensure core and gcse options are shown in phase top nav view ([153e394](https://github.com/oaknational/Oak-Web-Application/commit/153e39463ce212866623586e11957473d12a062a))
+* filter out ks3 only subjects from secondary top nav to prevent duplicates ([099b4d6](https://github.com/oaknational/Oak-Web-Application/commit/099b4d627b85ef39a20f28ac0bab0c0674ad72ae))
+* implement dropdown focus changes with top nav dropdown and set phase as default focused tab ([d77802d](https://github.com/oaknational/Oak-Web-Application/commit/d77802d11af9f72f1837619ef2f93cb019208b00))
+* implement refactored dropdown in topnav and subnav ([21ba083](https://github.com/oaknational/Oak-Web-Application/commit/21ba0830fd1b9ad1b51e6f1bf6142c3633d268c6))
+* **LESQ-2030:** add phase and keystage sub menus to hamburger menu ([85f11e2](https://github.com/oaknational/Oak-Web-Application/commit/85f11e209668356daeb8efbd4e707f3a6b8979d8))
+* **LESQ-2030:** add tracking to phase submenu ([831c350](https://github.com/oaknational/Oak-Web-Application/commit/831c350c69e2650ae081c7c06f767c72e5777c8b))
+* **LESQ-2030:** align hamburger menu with latest designs ([733302a](https://github.com/oaknational/Oak-Web-Application/commit/733302aa9269b98baaee81f6d57c7e4bb2426c8e))
+* merge getting phase and keystage top nav data ([5038dda](https://github.com/oaknational/Oak-Web-Application/commit/5038dda6f9722f69788d36ec2cf34de36e57534f))
+* reference key stage slug in exam board panel and allow for other keystage exam boards ([32da480](https://github.com/oaknational/Oak-Web-Application/commit/32da480c472602248268b936891f1fe36452f9bb))
+* separate phase and keystage views ([219e680](https://github.com/oaknational/Oak-Web-Application/commit/219e6809338f91fa5c2771d1a3db03113bc70fe9))
+* update avo with phase filter pr ([a7a5847](https://github.com/oaknational/Oak-Web-Application/commit/a7a5847360974c09bb21fdc1b033da1c418e0fb7))
+* update top nav fixture with new keystage and phase structure ([eb6ac35](https://github.com/oaknational/Oak-Web-Application/commit/eb6ac3540366254ed99f8c98cd4ce1a3b20f1f8a))
+
+## [1.1097.6](https://github.com/oaknational/Oak-Web-Application/compare/v1.1097.5...v1.1097.6) (2026-06-17)
+
+## [1.1097.5](https://github.com/oaknational/Oak-Web-Application/compare/v1.1097.4...v1.1097.5) (2026-06-17)
+
+
+### Bug Fixes
+
+* **PUPIL-1770:** persist video result on completion for shared lessons ([a4a32a8](https://github.com/oaknational/Oak-Web-Application/commit/a4a32a8e1daecd49caa8f8e165bb33de78d3df09))
+
+## [1.1097.4](https://github.com/oaknational/Oak-Web-Application/compare/v1.1097.3...v1.1097.4) (2026-06-17)
+
+
+### Bug Fixes
+
+* **PUPIL-1769:** address Copilot review on keydown gating and test ([8ce36a9](https://github.com/oaknational/Oak-Web-Application/commit/8ce36a9e498da7c517bc27e66ac5b80462bcc924))
+* **PUPIL-1769:** prevent shared quiz crash from stale store state ([aaf5e1e](https://github.com/oaknational/Oak-Web-Application/commit/aaf5e1ecfc2d2d4d777cc3b0d0d66abb1085da1e))
+
+## [1.1097.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.1097.2...v1.1097.3) (2026-06-16)
+
+
+### Bug Fixes
+
+* **PUPIL-1754:** address Copilot review on live regions and tests ([f34e94b](https://github.com/oaknational/Oak-Web-Application/commit/f34e94bfc0f2a7dd7fbaf31ff205a48b52f51b21))
+* **PUPIL-1754:** address Copilot review on live regions and tests ([3cb376d](https://github.com/oaknational/Oak-Web-Application/commit/3cb376d742209d912bb8d61463638f76fe245c13))
+* **PUPIL-1754:** announce copy-link confirmation to screen readers ([385e457](https://github.com/oaknational/Oak-Web-Application/commit/385e4574abdaff37a8e62573e123a6b515e7adfa))
+* **PUPIL-1754:** announce copy-link confirmation to screen readers ([ef54a6b](https://github.com/oaknational/Oak-Web-Application/commit/ef54a6b85cbbb3fa31b2d9337137a7ec5ea9e62e))
+
+## [1.1097.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.1097.1...v1.1097.2) (2026-06-15)
+
+
+### Bug Fixes
+
+* **LESQ-2073:** show download started toast when the download link is clicked ([350c05f](https://github.com/oaknational/Oak-Web-Application/commit/350c05f790d08e7c77a392c88580206036ea22b8))
+
+## [1.1097.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.1097.0...v1.1097.1) (2026-06-15)
+
+
+### Bug Fixes
+
+* added missing types ([86aa157](https://github.com/oaknational/Oak-Web-Application/commit/86aa157b72708e702cab024def63f06d0435151c))
+* added stub image for "digital-literacy" for now ([c176b9e](https://github.com/oaknational/Oak-Web-Application/commit/c176b9eb6718f048ad8349f12d3f03f1b1a6676b))
+* bump oak-components ([b193d03](https://github.com/oaknational/Oak-Web-Application/commit/b193d035c2d7f32cd565b9724c808436b450d484))
+* remove `iconHeight`/`iconWidth` from OakLink as no longer a property ([6d249f8](https://github.com/oaknational/Oak-Web-Application/commit/6d249f835b331af27d26c196711d14177646afe6))
+* type issue with color token ([efee209](https://github.com/oaknational/Oak-Web-Application/commit/efee2093bc69007cd2625c5cf540df2e66342627))
+
+# [1.1097.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1096.2...v1.1097.0) (2026-06-11)
+
+
+### Bug Fixes
+
+* use packageManager in package.json rather than pnpm version in gh-actions ([f0adbf7](https://github.com/oaknational/Oak-Web-Application/commit/f0adbf7356b749e5ea61c11b03a151faddb7e74f)), closes [#actions](https://github.com/oaknational/Oak-Web-Application/issues/actions)
+
+
+### Features
+
+* bump to pnpm 11 with better corepack usage in README.md ([e2bf398](https://github.com/oaknational/Oak-Web-Application/commit/e2bf398d2a14b6eab2cdead5b96766faf23f0116))
+
+## [1.1096.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.1096.1...v1.1096.2) (2026-06-11)
+
+
+### Bug Fixes
+
+* **PUPIL-1748:** address PR review on aria error helpers ([fa99209](https://github.com/oaknational/Oak-Web-Application/commit/fa992099f128596a23541263110ea4879f118516))
+* **PUPIL-1748:** drop native required on terms checkbox ([1b25d48](https://github.com/oaknational/Oak-Web-Application/commit/1b25d48b7a3add4c69fe68e5e276cd396d079d90))
+* **PUPIL-1748:** link form field errors via aria-describedby (defect 2) ([4f8369b](https://github.com/oaknational/Oak-Web-Application/commit/4f8369bb7f2c68c623cd6ff9d5d9e8d80a78c8a8))
+* **PUPIL-1748:** reduce checkbox error noise for screen readers ([7081c7b](https://github.com/oaknational/Oak-Web-Application/commit/7081c7b19c4eeee51fde83843630138dd38f6638))
+
+## [1.1096.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.1096.0...v1.1096.1) (2026-06-11)
+
 # [1.1096.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1095.6...v1.1096.0) (2026-06-09)
 
 

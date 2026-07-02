@@ -104,6 +104,7 @@ const defaultProps = {
   },
   subjectPhaseSlug,
   ks4Options: [],
+  ks4OptionFilterDimensions: {},
   curriculumUnitsFormattedData: formatCurriculumUnitsData(
     curriculumUnitsTabFixture(),
   ),

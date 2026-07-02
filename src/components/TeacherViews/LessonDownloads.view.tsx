@@ -51,7 +51,6 @@ import type { LessonListSchema } from "@/node-lib/curriculum-api-2023/shared.sch
 import { useResourceFormState } from "@/components/TeacherComponents/hooks/downloadAndShareHooks/useResourceFormState";
 import { useHubspotSubmit } from "@/components/TeacherComponents/hooks/downloadAndShareHooks/useHubspotSubmit";
 import { LEGACY_COHORT } from "@/config/cohort";
-import { SpecialistLessonDownloads } from "@/node-lib/curriculum-api-2023/queries/specialistLessonDownload/specialistLessonDownload.schema";
 import { LegacyCopyrightContent } from "@/node-lib/curriculum-api-2023/shared.schema";
 import { LessonDownloadRegionBlocked } from "@/components/TeacherComponents/LessonDownloadRegionBlocked/LessonDownloadRegionBlocked";
 import { resolveOakHref } from "@/common-lib/urls";
@@ -67,7 +66,6 @@ type BaseLessonDownload = {
   downloads: LessonDownloadsPageData["downloads"];
   additionalFiles: LessonDownloadsPageData["additionalFiles"];
   legacyCopyrightContent?: LegacyCopyrightContent;
-  isSpecialist: false;
   developmentStageTitle?: string | null;
   geoRestricted: boolean | null;
   loginRequired: boolean | null;
@@ -84,21 +82,13 @@ type NonCanonicalLesson = BaseLessonDownload & {
     subjectCategories?: string[] | null;
   };
 
-type SpecialistLesson = SpecialistLessonDownloads["lesson"];
+type LessonDownloadsProps = {
+  lesson: NonCanonicalLesson;
+  breadcrumbsSlot?: ReactNode;
+  successRedirect?: string;
+};
 
-type LessonDownloadsProps =
-  | {
-      lesson: NonCanonicalLesson;
-      breadcrumbsSlot?: ReactNode;
-      successRedirect?: string;
-    }
-  | {
-      lesson: SpecialistLesson;
-      breadcrumbsSlot?: ReactNode;
-      successRedirect?: string;
-    };
-
-export function LessonDownloads(props: LessonDownloadsProps) {
+export function LessonDownloads(props: Readonly<LessonDownloadsProps>) {
   const { lesson } = props;
   const { setCurrentToastProps } = useOakNotificationsContext();
   const router = useRouter();
@@ -108,7 +98,6 @@ export function LessonDownloads(props: LessonDownloadsProps) {
     downloads,
     additionalFiles,
     expired,
-    isSpecialist,
     isLegacy,
     legacyCopyrightContent,
     updatedAt,
@@ -235,7 +224,16 @@ export function LessonDownloads(props: LessonDownloadsProps) {
       });
 
       if (props.successRedirect) {
-        waitForLinkCallback(() => router.replace(props.successRedirect!));
+        waitForLinkCallback(() => {
+          setCurrentToastProps({
+            message: "Download started. This may take a few minutes",
+            variant: "success",
+            autoDismiss: true,
+            showClose: true,
+            showIcon: true,
+          });
+          router.replace(props.successRedirect!);
+        });
       } else {
         setIsDownloadSuccessful(true);
       }
@@ -388,7 +386,6 @@ export function LessonDownloads(props: LessonDownloadsProps) {
                 lessonReleaseDate: lessonReleaseDate ?? "unreleased",
               });
             }}
-            isSpecialist={isSpecialist}
             subjectSlug={subjectSlug}
             subjectTitle={subjectTitle}
             keyStageSlug={keyStageSlug === undefined ? null : keyStageSlug}

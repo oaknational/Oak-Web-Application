@@ -32,7 +32,6 @@ import { getSubjectPhaseSlug } from "@/components/TeacherComponents/helpers/getS
 import { resolveFilterFromSearchParams } from "@/utils/curriculum/filtersUrl";
 import { redirectProgrammeSlugIfNeeded } from "@/utils/integratedJourney/legacyProgrammeUnitsRedirect";
 import { cacheData } from "@/node-lib/cache";
-import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 import CMSClient from "@/node-lib/cms";
 import { getMvRefreshTime } from "@/pages-helpers/curriculum/downloads/getMvRefreshTime";
 import { validateServerSearchParams } from "@/utils/validateProgrammePageSearchParams";
@@ -42,21 +41,8 @@ const reportError = errorReporter("programme-page::app");
 type ProgrammePageParams = { slug: string; tab: string };
 export type PageSearchParms = { [key: string]: string | string[] | undefined };
 
-const getCachedProgrammeData = cache(
-  cacheData(
-    async (subjectPhaseSlug: string) => {
-      return getProgrammeData(curriculumApi2023, subjectPhaseSlug);
-    },
-    ["programme-data"],
-  ),
-);
-
-const getCachedSubjectOptionData = cache(
-  cacheData(
-    async (subjectPhaseSlug: string) =>
-      getSubjectPhaseOptions(curriculumApi2023, subjectPhaseSlug),
-    ["subject-phase-data"],
-  ),
+const getCachedSubjectOptionData = cache(async (subjectPhaseSlug: string) =>
+  getSubjectPhaseOptions(subjectPhaseSlug),
 );
 
 export type ProgrammeCmsParams = {
@@ -119,8 +105,10 @@ export async function generateMetadata({
 
     const canonicalURL = new URL(
       resolveOakHref({
-        page: "unit-index",
-        programmeSlug: slug,
+        page: "teacher-programme",
+        subjectPhaseSlug: slug,
+        tab: "units",
+        query: pageSearchParams,
       }),
       getBrowserConfig("seoAppUrl"),
     ).toString();
@@ -209,13 +197,17 @@ const InnerProgrammePage = async (props: AppPageProps<ProgrammePageParams>) => {
     }
   }
 
-  const cachedProgrammeData = await getCachedProgrammeData(subjectPhaseSlug);
+  const cachedProgrammeData = await getProgrammeData(
+    subjectPhaseSlug,
+    subjects,
+  );
 
   if (!cachedProgrammeData) {
     return notFound();
   }
 
-  const { programmeUnitsData, curriculumUnitsData } = cachedProgrammeData;
+  const { programmeUnitsData, curriculumUnitsData, ks4OptionFilterDimensions } =
+    cachedProgrammeData;
 
   const curriculumPhaseOptions = {
     subjects,
@@ -292,6 +284,7 @@ const InnerProgrammePage = async (props: AppPageProps<ProgrammePageParams>) => {
     tabSlug: tab,
     curriculumCMSInfo,
     ks4Options,
+    ks4OptionFilterDimensions,
     trackingData: curriculumUnitsTrackingData,
     curriculumInfo: cachedProgrammeData.programmeUnitsData,
     curriculumDownloadsTabData,

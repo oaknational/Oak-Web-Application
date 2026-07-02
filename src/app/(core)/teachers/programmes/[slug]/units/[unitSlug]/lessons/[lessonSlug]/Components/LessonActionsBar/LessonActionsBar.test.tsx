@@ -27,7 +27,7 @@ describe("LessonActionsBar", () => {
     expect(pupilShareLink).toHaveAttribute(
       "href",
       resolveOakHref({
-        page: "integrated-lesson-share",
+        page: "lesson-share",
         lessonSlug: defaultProps.lessonSlug,
         unitSlug: defaultProps.unitSlug,
         programmeSlug: defaultProps.programmeSlug,

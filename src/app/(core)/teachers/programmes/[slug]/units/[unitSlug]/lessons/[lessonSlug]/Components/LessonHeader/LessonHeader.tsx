@@ -6,7 +6,7 @@ import {
   Header,
   LargeHeaderProps,
 } from "@/components/TeacherComponents/Header/Header";
-import HeaderNavFooter from "@/components/TeacherComponents/HeaderNavFooter/HeaderNavFooter";
+import { LessonHeaderNavFooter } from "@/components/TeacherComponents/HeaderNavFooter/LessonHeaderNavFooter/LessonHeaderNavFooter";
 import { resolveOakHref } from "@/common-lib/urls";
 import {
   TeachersLessonOverviewAdjacentLesson,
@@ -92,18 +92,17 @@ const LessonHeader = (props: LessonHeaderProps) => {
         backgroundColorLevel={1}
         useSubduedBackground
       />
-      <HeaderNavFooter
-        type="lesson"
+      <LessonHeaderNavFooter
         backgroundColorLevel={1}
         viewHref={resolveOakHref({
-          page: "integrated-unit-overview",
+          page: "unit-overview",
           unitSlug,
           programmeSlug,
         })}
         prevHref={
           prevLesson
             ? resolveOakHref({
-                page: "integrated-lesson-overview",
+                page: "lesson-overview",
                 lessonSlug: prevLesson.lessonSlug,
                 programmeSlug,
                 unitSlug,
@@ -113,14 +112,14 @@ const LessonHeader = (props: LessonHeaderProps) => {
         nextHref={
           nextLesson
             ? resolveOakHref({
-                page: "integrated-lesson-overview",
+                page: "lesson-overview",
                 lessonSlug: nextLesson.lessonSlug,
                 unitSlug,
                 programmeSlug,
               })
             : undefined
         }
-        actionButton={
+        downloadButton={
           <LoginRequiredButton
             rel="nofollow"
             loginRequired={loginRequired}
@@ -148,7 +147,7 @@ const LessonHeader = (props: LessonHeaderProps) => {
               isActionGeorestricted: true,
               shouldHidewhenGeoRestricted: true,
               href: resolveOakHref({
-                page: "integrated-lesson-downloads",
+                page: "lesson-downloads",
                 lessonSlug: currentLessonSlug,
                 programmeSlug,
                 unitSlug,

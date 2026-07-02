@@ -21516,6 +21516,13 @@ export type CurriculumSequenceQueryVariables = Exact<{
 
 export type CurriculumSequenceQuery = { __typename?: 'query_root', units: Array<{ __typename?: 'published_mv_curriculum_sequence_b_13_0_21', connection_prior_unit_description?: string | null, connection_future_unit_description?: string | null, connection_future_unit_title?: string | null, connection_prior_unit_title?: string | null, examboard?: string | null, examboard_slug?: string | null, keystage_slug?: string | null, lessons?: any | null, order?: number | null, planned_number_of_lessons?: number | null, phase?: string | null, phase_slug?: string | null, slug?: string | null, subject?: string | null, subject_slug?: string | null, subject_parent?: string | null, subject_parent_slug?: string | null, subjectcategories?: any | null, tier?: string | null, tier_slug?: string | null, title?: string | null, why_this_why_now?: string | null, description?: string | null, cycle?: string | null, features?: any | null, parent_programme_features?: any | null, national_curriculum_content?: any | null, prior_knowledge_requirements?: any | null, actions?: any | null, unit_options?: any | null, threads?: any | null, year?: string | null, pathway?: string | null, pathway_slug?: string | null, state?: string | null }> };
 
+export type CurriculumSequenceSlugsQueryVariables = Exact<{
+  where?: InputMaybe<Published_Mv_Curriculum_Sequence_B_13_0_21_Bool_Exp>;
+}>;
+
+
+export type CurriculumSequenceSlugsQuery = { __typename?: 'query_root', units: Array<{ __typename?: 'published_mv_curriculum_sequence_b_13_0_21', examboard_slug?: string | null, tier_slug?: string | null, pathway_slug?: string | null, subject_slug?: string | null, subject_parent_slug?: string | null }> };
+
 export type EyfsPageQueryVariables = Exact<{
   subjectSlug: Scalars['String']['input'];
 }>;
@@ -21725,7 +21732,7 @@ export type TeachersLessonOverviewQuery = { __typename?: 'query_root', browseDat
 export type TeachersSitemapQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type TeachersSitemapQuery = { __typename?: 'query_root', units: Array<{ __typename?: 'published_mv_synthetic_unitvariant_lessons_by_keystage_18_0_0', unit_slug?: string | null, programme_slug?: string | null }>, lessons: Array<{ __typename?: 'published_mv_synthetic_unitvariant_lessons_by_keystage_18_0_0', lesson_slug?: string | null, unit_slug?: string | null, programme_slug?: string | null }> };
+export type TeachersSitemapQuery = { __typename?: 'query_root', units: Array<{ __typename?: 'published_mv_synthetic_unitvariant_lessons_by_keystage_18_0_0', unit_slug?: string | null, programme_slug?: string | null }>, lessons: Array<{ __typename?: 'published_mv_synthetic_unitvariant_lessons_by_keystage_18_0_0', lesson_slug?: string | null, unit_slug?: string | null, programme_slug?: string | null }>, programmeFilterUnits: Array<{ __typename?: 'published_mv_curriculum_sequence_b_13_0_21', subject_slug?: string | null, phase_slug?: string | null, examboard_slug?: string | null, pathway_slug?: string | null, year?: string | null, keystage_slug?: string | null, subject_parent_slug?: string | null, non_curriculum?: boolean | null, actions?: any | null, state?: string | null }> };
 
 export type TeachersUnitOverviewQueryVariables = Exact<{
   programmeSlug: Scalars['String']['input'];
@@ -21853,6 +21860,17 @@ export const CurriculumSequenceDocument = gql`
     pathway
     pathway_slug
     state
+  }
+}
+    `;
+export const CurriculumSequenceSlugsDocument = gql`
+    query curriculumSequenceSlugs($where: published_mv_curriculum_sequence_b_13_0_21_bool_exp) {
+  units: published_mv_curriculum_sequence_b_13_0_21(where: $where) {
+    examboard_slug
+    tier_slug
+    pathway_slug
+    subject_slug
+    subject_parent_slug
   }
 }
     `;
@@ -22610,6 +22628,20 @@ export const TeachersSitemapDocument = gql`
     unit_slug
     programme_slug
   }
+  programmeFilterUnits: published_mv_curriculum_sequence_b_13_0_21(
+    where: {state: {_eq: "published"}, lessons: {_contains: [{_state: "published"}]}}
+  ) {
+    subject_slug
+    phase_slug
+    examboard_slug
+    pathway_slug
+    year
+    keystage_slug
+    subject_parent_slug
+    non_curriculum
+    actions
+    state
+  }
 }
     `;
 export const TeachersUnitOverviewDocument = gql`
@@ -22736,6 +22768,9 @@ export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = 
     },
     curriculumSequence(variables?: CurriculumSequenceQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<CurriculumSequenceQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<CurriculumSequenceQuery>({ document: CurriculumSequenceDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'curriculumSequence', 'query', variables);
+    },
+    curriculumSequenceSlugs(variables?: CurriculumSequenceSlugsQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<CurriculumSequenceSlugsQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<CurriculumSequenceSlugsQuery>({ document: CurriculumSequenceSlugsDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'curriculumSequenceSlugs', 'query', variables);
     },
     eyfsPage(variables: EyfsPageQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<EyfsPageQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<EyfsPageQuery>({ document: EyfsPageDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'eyfsPage', 'query', variables);

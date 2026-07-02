@@ -8,14 +8,11 @@ import {
   OakSvg,
   OakUL,
   OakLeftAlignedButton,
+  OakLIProps,
 } from "@oaknational/oak-components";
 import Link from "next/link";
 
-import {
-  getEYFSAriaLabel,
-  SubmenuState,
-  HamburgerMenuHook,
-} from "./TeachersTopNavHamburger";
+import { HamburgerMenuHook } from "./TeachersTopNavHamburger";
 
 import {
   TeachersBrowse,
@@ -33,34 +30,49 @@ export function MainMenuContent(
   useEffect(() => {
     // We're navigating back from a submenu, focus the triggering element
     if (prevSubmenu) {
-      const element = document.getElementById(prevSubmenu + "button");
+      const getButtonId = () => {
+        if (prevSubmenu.menu === "Phases") {
+          return prevSubmenu.value + " subjects";
+        } else if (prevSubmenu.menu === "KeystageOptions") {
+          return prevSubmenu.value + " key stages";
+        }
+        return prevSubmenu.value;
+      };
+      const returnFocusId = getButtonId() + "button";
+      if (!returnFocusId) return;
+      const element = document.getElementById(returnFocusId);
       element?.focus();
     }
   }, [submenuOpen, prevSubmenu]);
 
   return (
-    <OakUL
-      $display={"flex"}
-      $flexDirection={"column"}
-      $pa={"spacing-40"}
-      $gap={"spacing-40"}
-    >
+    <OakUL $display={"flex"} $flexDirection={"column"} $ph={"spacing-40"}>
       <SubjectsSection {...navData.primary} hamburgerMenu={hamburgerMenu} />
       <SubjectsSection {...navData.secondary} hamburgerMenu={hamburgerMenu} />
-      <OakFlex $flexDirection={"column"} $gap={"spacing-16"}>
-        <MainMenuButton title={"About us"} hamburgerMenu={hamburgerMenu} />
-        <MainMenuButton title={"Guidance"} hamburgerMenu={hamburgerMenu} />
-        <MainMenuLink
-          hamburgerMenu={hamburgerMenu}
-          href={resolveOakHref({
-            page: "labs",
-          })}
-          external={true}
-          title="AI Experiments"
-          iconName="external"
-          aria-label="AI Experiments (this will open in a new tab)"
-        />
-      </OakFlex>
+      <MainMenuButton
+        title={"About us"}
+        onClick={() =>
+          hamburgerMenu.handleNav({ menu: "OakMenu", value: "About us" })
+        }
+        $pb="spacing-16"
+      />
+      <MainMenuButton
+        title={"Guidance"}
+        onClick={() =>
+          hamburgerMenu.handleNav({ menu: "OakMenu", value: "Guidance" })
+        }
+        $pb="spacing-16"
+      />
+      <MainMenuLink
+        onClick={hamburgerMenu.handleCloseHamburger}
+        href={resolveOakHref({
+          page: "labs",
+        })}
+        external={true}
+        title="AI Experiments"
+        iconName="external"
+        aria-label="AI Experiments (this will open in a new tab)"
+      />
     </OakUL>
   );
 }
@@ -70,16 +82,30 @@ function SubjectsSection(
 ) {
   const { hamburgerMenu, ...browseData } = props;
   const { track } = useAnalytics();
+
+  const getSubjectsTitle = () =>
+    browseData.phases.slug === "primary"
+      ? "Primary subjects"
+      : "Secondary subjects";
+
+  const getKeystagesTitle = () =>
+    browseData.phases.slug === "primary"
+      ? "Primary key stages"
+      : "Secondary key stages";
+
+  const keystageChildren = browseData.keystages.children;
+
   return (
-    <OakBox>
+    <OakLI $listStyle={"none"} $pb="spacing-40">
       <OakFlex
         $flexDirection={"column"}
         $width={"fit-content"}
         $mb={"spacing-12"}
+        $pl="spacing-8"
       >
         <OakBox $position={"relative"}>
           <OakHeading tag="h2" $font={"heading-6"}>
-            {browseData.title}
+            {browseData.phases.title}
           </OakHeading>
           <OakSvg
             $position={"absolute"}
@@ -90,13 +116,48 @@ function SubjectsSection(
           />
         </OakBox>
       </OakFlex>
-      <OakFlex $flexDirection={"column"} $gap={"spacing-16"}>
-        {browseData.children.map((keystage) => (
+      <OakFlex
+        as="ul"
+        $flexDirection={"column"}
+        $gap={"spacing-16"}
+        $ph="spacing-0"
+        $pt="spacing-12"
+      >
+        <MainMenuButton
+          key={browseData.phases.slug}
+          title={getSubjectsTitle()}
+          onClick={() =>
+            hamburgerMenu.handleNav({
+              menu: "Phases",
+              value: browseData.phases.title,
+            })
+          }
+          track={() => {
+            track.browseRefined({
+              platform: "owa",
+              product: "teacher lesson resources",
+              engagementIntent: "refine",
+              componentType: "topnav-browse-button",
+              eventVersion: "2.0.0",
+              analyticsUseCase: "Teacher",
+              filterType: "Phase filter",
+              filterValue: browseData.phases.slug,
+              activeFilters: {},
+              googleLoginHint: null,
+              clientEnvironment: null,
+            });
+          }}
+        />
+
+        {!!keystageChildren.length && (
           <MainMenuButton
-            key={keystage.slug + browseData.slug}
-            title={keystage.title as SubmenuState}
-            description={keystage.description}
-            hamburgerMenu={hamburgerMenu}
+            title={getKeystagesTitle()}
+            onClick={() =>
+              hamburgerMenu.handleNav({
+                menu: "KeystageOptions",
+                value: browseData.phases.title,
+              })
+            }
             track={() => {
               track.browseRefined({
                 platform: "owa",
@@ -105,54 +166,54 @@ function SubjectsSection(
                 componentType: "topnav-browse-button",
                 eventVersion: "2.0.0",
                 analyticsUseCase: "Teacher",
-                filterType: "Key stage filter",
-                filterValue: keystage.slug,
+                filterType: "Phase filter",
+                filterValue: browseData.phases.slug,
                 activeFilters: {},
                 googleLoginHint: null,
                 clientEnvironment: null,
               });
             }}
           />
-        ))}
+        )}
       </OakFlex>
-    </OakBox>
+      <OakBox
+        $mt="spacing-40"
+        $mh="spacing-8"
+        $bb={"border-solid-s"}
+        $borderColor={"border-neutral-lighter"}
+        aria-hidden={true}
+      />
+    </OakLI>
   );
 }
 
-function MainMenuButton({
+export function MainMenuButton({
   title,
-  description,
-  hamburgerMenu,
+  onClick,
   track,
+  $pb,
 }: Readonly<{
-  title: SubmenuState;
-  hamburgerMenu: HamburgerMenuHook;
-  description?: string;
+  title: string;
+  onClick?: () => void;
   track?: () => void;
+  $pb?: OakLIProps["$pb"];
 }>) {
-  const { setSubmenuOpen } = hamburgerMenu;
-  const isEYFS = title === "EYFS";
-  const shouldShowDescription = !isEYFS && description;
-
   return (
-    <OakBox $width={"100%"}>
-      <OakLI $listStyle={"none"}>
-        <OakLeftAlignedButton
-          aria-haspopup={true}
-          aria-label={getEYFSAriaLabel(title)}
-          rightAlignIcon
-          iconName="chevron-right"
-          width={"100%"}
-          id={title + "button"}
-          onClick={() => {
-            track?.();
-            setSubmenuOpen(title);
-          }}
-        >
-          {shouldShowDescription ? description : title}
-        </OakLeftAlignedButton>
-      </OakLI>
-    </OakBox>
+    <OakLI $listStyle={"none"} $width={"100%"} $pb={$pb}>
+      <OakLeftAlignedButton
+        aria-haspopup={true}
+        rightAlignIcon
+        iconName="chevron-right"
+        width={"100%"}
+        id={title + "button"}
+        onClick={() => {
+          track?.();
+          onClick?.();
+        }}
+      >
+        {title}
+      </OakLeftAlignedButton>
+    </OakLI>
   );
 }
 
@@ -161,15 +222,14 @@ function MainMenuLink({
   title,
   iconName,
   external,
-  hamburgerMenu,
+  onClick,
 }: {
   readonly href: string;
   readonly title: string;
-  readonly hamburgerMenu: HamburgerMenuHook;
   readonly external?: boolean;
   readonly iconName?: OakIconName;
+  readonly onClick: () => void;
 }) {
-  const { handleCloseHamburger } = hamburgerMenu;
   return (
     <OakLeftAlignedButton
       width={"100%"}
@@ -181,7 +241,7 @@ function MainMenuLink({
       aria-label={
         external ? `${title} (this will open in a new tab)` : undefined
       }
-      onClick={handleCloseHamburger}
+      onClick={onClick}
     >
       {title}
     </OakLeftAlignedButton>

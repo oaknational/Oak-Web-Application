@@ -8,7 +8,7 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
       - name: Run Terraform Action from oak-terraform-actions
         uses: oaknational/oak-terraform-actions/actions/terraform-checks@a1fe3aea1efa31ee5d29e387d584c006a2d33bcc # v1.13.1
         env:

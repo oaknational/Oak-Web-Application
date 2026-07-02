@@ -8,8 +8,6 @@ import {
   OakP,
 } from "@oaknational/oak-components";
 
-import { LessonSeoHelper } from "./LessonSeoHelper";
-
 import LessonOverviewKeyLearningPoints, {
   LessonOverviewKeyLearningPointProps,
 } from "@/components/TeacherComponents/LessonOverviewKeyLearningPoints";
@@ -51,21 +49,9 @@ type LessonOverviewDetailsProps = {
   updatedAt: string;
   additionalFiles: string[] | null | undefined;
   slugs: Slugs;
-  year: string | null | undefined;
-  subject: string | null | undefined;
-  unit: string | null | undefined;
-  lesson: string;
-  keystage: string | null | undefined;
-  keystageSlug: string | null | undefined;
-  examBoardSlug: string | null | undefined;
-  subjectSlug: string | null | undefined;
-  subjectParent: string | null | undefined;
-  disablePupilLink?: boolean;
   loginRequired: boolean;
   georestricted: boolean;
-  hideSeoHelper?: boolean;
   useIntegratedJourneyLayout: boolean;
-  phaseSlug?: string;
 };
 
 const LessonOverviewDetails: FC<LessonOverviewDetailsProps> = ({
@@ -84,47 +70,24 @@ const LessonOverviewDetails: FC<LessonOverviewDetailsProps> = ({
   displayVocab,
   additionalFiles,
   slugs,
-  subject,
-  unit,
-  lesson,
-  year,
-  keystage,
-  keystageSlug,
-  examBoardSlug,
-  subjectParent,
-  subjectSlug,
-  disablePupilLink,
-  hideSeoHelper,
   loginRequired,
   georestricted,
   useIntegratedJourneyLayout,
-  phaseSlug,
 }) => {
   const { lessonSlug, unitSlug, programmeSlug } = slugs;
-  const showLessonHelperAccordion =
-    !isLegacyLicense &&
-    !hideSeoHelper &&
-    subject &&
-    unit &&
-    year &&
-    keystage &&
-    keystageSlug &&
-    unitSlug &&
-    programmeSlug &&
-    phaseSlug &&
-    subjectSlug;
   const MathJaxWrapper = isMathJaxLesson ? MathJaxWrap : Fragment;
 
   const getTeacherTips = () => {
     if (teacherTips) {
       const tips = teacherTips
-        .filter((tip) => tip !== null)
+        .filter((tip) => !!tip && !!tip.teacherTip)
         .map((tip) => tip.teacherTip) as string[];
       return tips.length ? tips : undefined;
     }
     return undefined;
   };
   const teacherTipList = getTeacherTips();
+
   const equipment = equipmentAndResources
     ? equipmentAndResources.map((e) => e.equipment)
     : undefined;
@@ -142,7 +105,6 @@ const LessonOverviewDetails: FC<LessonOverviewDetailsProps> = ({
             lessonSlug,
             programmeSlug,
             unitSlug,
-            downloads: "downloads",
             query: {
               preselected: "additional files",
             },
@@ -209,29 +171,6 @@ const LessonOverviewDetails: FC<LessonOverviewDetailsProps> = ({
                   contentGuidance={guidance?.filter(Boolean)}
                 />
               </OakFlex>
-            )}
-            {showLessonHelperAccordion && !useIntegratedJourneyLayout && (
-              <LessonSeoHelper
-                loginRequired={loginRequired}
-                geoRestricted={georestricted}
-                lessonSlug={lessonSlug}
-                year={year}
-                programmeSlug={programmeSlug}
-                unitSlug={unitSlug}
-                subject={subject}
-                phaseSlug={phaseSlug}
-                unit={unit}
-                keystage={keystage}
-                keystageSlug={keystageSlug}
-                examBoardSlug={examBoardSlug}
-                subjectSlug={subjectSlug}
-                parentSubject={subjectParent}
-                disablePupilLink={
-                  disablePupilLink || georestricted || loginRequired
-                }
-                lesson={lesson}
-                isIntegratedJourney={false}
-              />
             )}
           </OakFlex>
         </OakGridArea>

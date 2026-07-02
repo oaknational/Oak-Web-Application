@@ -5,6 +5,7 @@ import { OakDownloadCard, OakFlex, OakGrid } from "@oaknational/oak-components";
 import ResourceCard, {
   getActivityDownloadCardAriaLabel,
 } from "@/components/TeacherComponents/ShareResourceCard/ShareResourceCard";
+import { getDownloadCardFieldErrorAriaProps } from "@/components/TeacherComponents/helpers/downloadAndShareHelpers/shareDownloadFormErrorIds";
 import { sortShareResources } from "@/components/TeacherComponents/helpers/downloadAndShareHelpers/sortResources";
 import { ResourceFormValues } from "@/components/TeacherComponents/types/downloadAndShare.types";
 import { SharePageNumberedHeading } from "@/components/TeacherComponents/SharePageNumberedHeading/SharePageNumberedHeading";
@@ -100,6 +101,7 @@ const LessonShareCardGroup: FC<LessonShareCardGroupProps> = (props) => {
                       FULL_ONLINE_LESSON_TITLE,
                       FULL_ONLINE_LESSON_FORMAT,
                     )}
+                    {...getDownloadCardFieldErrorAriaProps(props.hasError)}
                     checked={["exit-quiz", "starter-quiz", "video"].every(
                       (section) => fieldValue.includes(section),
                     )}

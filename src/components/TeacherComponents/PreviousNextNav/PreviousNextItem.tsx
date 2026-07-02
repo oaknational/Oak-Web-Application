@@ -7,6 +7,7 @@ import {
   OakIconName,
   OakTypography,
   parseColor,
+  type OakColorToken,
 } from "@oaknational/oak-components";
 import styled from "styled-components";
 import Link from "next/link";
@@ -42,9 +43,13 @@ const StyledFlexContainer = styled(OakFlex)<
 >`
   &:hover {
     background: ${(props) =>
-      parseColor(`bg-decorative${props.$backgroundColorLevel}-very-subdued`)};
+      parseColor(
+        `bg-decorative${props.$backgroundColorLevel}-very-subdued` as OakColorToken,
+      )};
     border-color: ${(props) =>
-      parseColor(`border-decorative${props.$backgroundColorLevel}-stronger`)};
+      parseColor(
+        `border-decorative${props.$backgroundColorLevel}-stronger` as OakColorToken,
+      )};
     .previous-next-item-link {
       color: ${parseColor("text-subdued")};
       text-decoration: underline;

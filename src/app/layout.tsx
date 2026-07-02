@@ -16,6 +16,7 @@ import { OakThemeProvider, oakDarkTheme } from "@/styles/oakThemeApp";
 import CookieConsentProvider from "@/browser-lib/cookie-consent/CookieConsentProvider";
 import { FAVICON_LINKS_HEAD_INNER_HTML } from "@/image-data";
 import getBrowserConfig from "@/browser-lib/getBrowserConfig";
+import { MenuProvider } from "@/context/Menu";
 import { OakNotificationsProvider } from "@/context/OakNotifications/OakNotificationsProvider";
 import { SaveCountProvider } from "@/context/SaveCount/SaveCountProvider";
 
@@ -92,7 +93,9 @@ export default function RootLayout({
                   >
                     <AnalyticsWrapper>
                       <AppHooks />
-                      <SaveCountProvider>{children}</SaveCountProvider>
+                      <MenuProvider>
+                        <SaveCountProvider>{children}</SaveCountProvider>
+                      </MenuProvider>
                     </AnalyticsWrapper>
                   </ClerkProvider>
                 </OakNotificationsProvider>
