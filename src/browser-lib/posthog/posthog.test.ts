@@ -133,9 +133,21 @@ describe("posthog.ts", () => {
   });
   test("track", () => {
     posthog.track("foo", { bar: "baz" });
-    expect(capture).toHaveBeenCalledWith("foo", {
-      bar: "baz",
-    });
+    expect(capture).toHaveBeenCalledWith(
+      "foo",
+      {
+        bar: "baz",
+      },
+      undefined,
+    );
+  });
+  test("track send_instantly", () => {
+    posthog.track("foo", { bar: "baz" }, { sendInstantly: true });
+    expect(capture).toHaveBeenCalledWith(
+      "foo",
+      { bar: "baz" },
+      { send_instantly: true, transport: "sendBeacon" },
+    );
   });
   test("page", () => {
     posthog.page({ path: "/foo/ban" });

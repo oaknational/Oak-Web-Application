@@ -36,6 +36,7 @@ export type EventProperties = Record<string, unknown>;
 export type EventFn = (
   eventName: EventName,
   properties: EventProperties,
+  options?: { sendInstantly?: boolean },
 ) => void;
 export type PageProperties = {
   path: string;
