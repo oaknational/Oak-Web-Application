@@ -87,7 +87,7 @@ describe("SubjectBanner", () => {
       "data-href",
       "/pupil-unit-index/pupil-unit-index/financial-education-primary-year-1",
     );
-    expect(card).toHaveAttribute("data-card-orientation", "row");
+    expect(card).toHaveAttribute("data-card-orientation", "column,row");
     expect(card).toHaveAttribute("data-card-width", "100%");
     expect(card).toHaveAttribute("data-heading-level", "h1");
     expect(card).toHaveAttribute(
