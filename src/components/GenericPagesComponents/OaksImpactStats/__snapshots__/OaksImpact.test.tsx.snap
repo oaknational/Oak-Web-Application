@@ -1,0 +1,185 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SupportYou renders correctly 1`] = `
+<body>
+  <div>
+    <div
+      class="sc-aXZVg sc-gEvEer gMsqAK kLult"
+    >
+      <div
+        class="sc-aXZVg sc-gEvEer iiXlSv KhpZQ"
+      >
+        <div
+          class="sc-aXZVg sc-gEvEer jPvJsJ jXqGts"
+        >
+          <h2
+            class="sc-eldPxv epUAyb"
+          >
+            MAIN_HEADER
+          </h2>
+          <p
+            class="sc-ikkxIA bevdi"
+          >
+            MAIN_HEADER_COPY
+          </p>
+        </div>
+        <div
+          class="sc-aXZVg sc-kpDqfm bhFzn cvxBYX"
+        >
+          <div
+            class="sc-aXZVg kpXzs grey-shadow"
+          />
+          <div
+            class="sc-aXZVg kpXzs yellow-shadow"
+          />
+          <a
+            class="sc-dcJsrY sc-jXbUNg cLXsQH dglRoS internal-button"
+            href="#"
+          >
+            <div
+              class="sc-aXZVg sc-gEvEer jPvJsJ krHAKs"
+            >
+              <span
+                class="sc-aXZVg jJQFnr"
+              >
+                <img
+                  alt=""
+                  class="sc-iGgWBj bOyFfb"
+                  data-nimg="fill"
+                  decoding="async"
+                  loading="lazy"
+                  src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1699953892/icons/hlxmejse3mcr4tqo6t8u.svg"
+                  style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                />
+              </span>
+              <span
+                class="sc-eqUAAy edqVpV"
+              >
+                LINK
+              </span>
+            </div>
+          </a>
+        </div>
+      </div>
+      <div
+        class="sc-aXZVg sc-gEvEer jPvJsJ gUPrwF"
+      >
+        <div
+          class="sc-aXZVg sc-gEvEer kBnJtM jcwQhk"
+        >
+          <div
+            class="sc-aXZVg sc-gEvEer jPvJsJ jIBBQP"
+          >
+            <span
+              class="sc-aXZVg iFYCBG"
+            >
+              <img
+                alt=""
+                class="sc-iGgWBj dZvqhO"
+                data-nimg="fill"
+                decoding="async"
+                loading="lazy"
+                src="https://res.cloudinary.com/oak-web-application/image/upload/v1749031463/icons/clipboard_yll2yj.svg"
+                style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+              />
+            </span>
+          </div>
+          <div
+            class="sc-aXZVg sc-gEvEer kBnJtM cxBaNX"
+          >
+            <div
+              class="sc-aXZVg gFNIew"
+            >
+              ITEM_HEADING_0
+            </div>
+            <p
+              class="sc-ikkxIA jUPyul"
+            >
+              ITEM_HEADING_BODY_0
+            </p>
+          </div>
+        </div>
+        <div
+          class="sc-aXZVg eDWeGI"
+        />
+        <div
+          class="sc-aXZVg sc-gEvEer kBnJtM jcwQhk"
+        >
+          <div
+            class="sc-aXZVg sc-gEvEer jPvJsJ jIBBQP"
+          >
+            <span
+              class="sc-aXZVg iFYCBG"
+            >
+              <img
+                alt=""
+                class="sc-iGgWBj dZvqhO"
+                data-nimg="fill"
+                decoding="async"
+                loading="lazy"
+                src="https://res.cloudinary.com/oak-web-application/image/upload/v1749031463/icons/clipboard_yll2yj.svg"
+                style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+              />
+            </span>
+          </div>
+          <div
+            class="sc-aXZVg sc-gEvEer kBnJtM cxBaNX"
+          >
+            <div
+              class="sc-aXZVg gFNIew"
+            >
+              ITEM_HEADING_1
+            </div>
+            <p
+              class="sc-ikkxIA jUPyul"
+            >
+              ITEM_HEADING_BODY_1
+            </p>
+          </div>
+        </div>
+        <div
+          class="sc-aXZVg eDWeGI"
+        />
+        <div
+          class="sc-aXZVg sc-gEvEer kBnJtM jcwQhk"
+        >
+          <div
+            class="sc-aXZVg sc-gEvEer jPvJsJ jIBBQP"
+          >
+            <span
+              class="sc-aXZVg iFYCBG"
+            >
+              <img
+                alt=""
+                class="sc-iGgWBj dZvqhO"
+                data-nimg="fill"
+                decoding="async"
+                loading="lazy"
+                src="https://res.cloudinary.com/oak-web-application/image/upload/v1749031463/icons/clipboard_yll2yj.svg"
+                style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+              />
+            </span>
+          </div>
+          <div
+            class="sc-aXZVg sc-gEvEer kBnJtM cxBaNX"
+          >
+            <div
+              class="sc-aXZVg gFNIew"
+            >
+              ITEM_HEADING_2
+            </div>
+            <p
+              class="sc-ikkxIA jUPyul"
+            >
+              ITEM_HEADING_BODY_2
+            </p>
+          </div>
+        </div>
+        <div
+          class="sc-aXZVg eDWeGI"
+        />
+      </div>
+    </div>
+  </div>
+</body>
+`;

@@ -1,6 +1,8 @@
 import { Meta, StoryObj } from "@storybook/nextjs";
 import { oakDefaultTheme, OakThemeProvider } from "@oaknational/oak-components";
 
+import { fixtureData } from "./OaksImpactStats.fixtures";
+
 import { OaksImpactStats as Component } from ".";
 
 const meta: Meta<typeof Component> = {
@@ -21,6 +23,6 @@ export default meta;
 type Story = StoryObj<typeof Component>;
 
 export const Default: Story = {
-  args: {},
+  args: fixtureData,
   render: (args) => <Component {...args} />,
 };
