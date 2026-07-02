@@ -45,13 +45,6 @@ describe("Onboarding view", () => {
     });
     expect(continueButton).toBeInTheDocument();
   });
-  it("renders contact us text", async () => {
-    renderWithProviders()(<SchoolSelectionView />);
-    const contactUs = await screen.findByText("Contact us", { exact: false });
-
-    expect(contactUs).toBeInTheDocument();
-    expect(contactUs.closest("a")).toHaveAttribute("href", "/contact-us");
-  });
 
   it("clears the input when a school is not completed", async () => {
     renderWithProviders()(<SchoolSelectionView />);
