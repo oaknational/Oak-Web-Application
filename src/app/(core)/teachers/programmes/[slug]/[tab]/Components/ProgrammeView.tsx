@@ -86,8 +86,7 @@ export const ProgrammeView = ({
 }: ProgrammePageProps) => {
   const searchParams = useSearchParams();
 
-  const { keystages: keystagesParam, years: yearsParam } =
-    validateSearchParams(searchParams);
+  const validatedParams = validateSearchParams(searchParams);
 
   const [activeTab, setActiveTab] = useState<TabSlug>(tabSlug);
 
@@ -116,10 +115,12 @@ export const ProgrammeView = ({
     track.unitSequenceRefined(analyticsData);
   };
 
-  const schoolYear = filters.years.find((year) => yearsParam === year);
+  const schoolYear = filters.years.find(
+    (year) => validatedParams?.years === year,
+  );
 
   const selectedKeystageSlug = filters.keystages.find(
-    (ks) => keystagesParam === ks,
+    (ks) => validatedParams?.keystages === ks,
   );
 
   const heading = buildProgrammeHeading({
@@ -145,7 +146,9 @@ export const ProgrammeView = ({
   }, [pathname]);
 
   const preserveKeystagesParamInUrl = (url: string) => {
-    return keystagesParam ? `${url}?keystages=${keystagesParam}` : url;
+    return validatedParams?.keystages
+      ? `${url}?keystages=${validatedParams?.keystages}`
+      : url;
   };
 
   return (
@@ -184,7 +187,7 @@ export const ProgrammeView = ({
                 subjectPhaseSlug,
                 tab: tabNameToSlug[tab],
                 query: {
-                  keystages: keystagesParam ?? undefined,
+                  keystages: validatedParams?.keystages,
                 },
               }),
             }))}
