@@ -40,7 +40,7 @@ export default function CurricUnitModalFooter({
   const lessonPageHref =
     lessonsAvailable && programmeSlug && resolvedUnitSlug
       ? resolveOakHref({
-          page: "lesson-index",
+          page: "unit-overview",
           unitSlug: resolvedUnitSlug,
           programmeSlug,
         })

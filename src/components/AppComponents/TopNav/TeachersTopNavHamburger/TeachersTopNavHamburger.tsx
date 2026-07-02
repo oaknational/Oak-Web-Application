@@ -1,77 +1,69 @@
 "use client";
-import { Dispatch, SetStateAction, useState, useCallback } from "react";
+import { useState, useCallback, useMemo } from "react";
 import {
   OakSecondaryButton,
   OakInformativeModal,
   OakBox,
 } from "@oaknational/oak-components";
 
-import { MainMenuContent } from "./HamburgerMainMenu";
-import { SubmenuContent } from "./HamburgerSubMenu";
+import { HamburgerMenuContent } from "./HamburgerSubMenu";
 
-import { TeachersSubNavData } from "@/node-lib/curriculum-api-2023/queries/topNav/topNav.schema";
-
-export type SubmenuState =
-  | "KS1"
-  | "KS2"
-  | "EYFS"
-  | "KS3"
-  | "KS4"
-  | "About us"
-  | "Guidance"
-  | null;
+import {
+  HamburgerState,
+  TeachersSubNavData,
+} from "@/node-lib/curriculum-api-2023/queries/topNav/topNav.schema";
 
 export type HamburgerMenuHook = {
-  hamburgerIsOpen: boolean;
-  submenuOpen: SubmenuState;
-  setSubmenuOpen: Dispatch<SetStateAction<SubmenuState>>;
-  prevSubmenu: SubmenuState;
-  handleOpen: () => void;
+  submenuOpen: HamburgerState;
+  prevSubmenu: HamburgerState;
+  handleOpenHamburger: () => void;
   handleCloseHamburger: () => void;
   handleCloseSubmenu: () => void;
+  handleNav: (newMenu: HamburgerState) => void;
 };
 
-export const getEYFSAriaLabel = (title: SubmenuState) => {
-  const isEYFS = title === "EYFS";
-  return isEYFS ? "Early years foundation stage" : undefined;
-};
+const useHamburgerMenuState = (): HamburgerMenuHook => {
+  const [menuState, setMenuState] = useState<Array<HamburgerState>>([]);
+  const [prevSubmenu, setPrevSubmenu] = useState<HamburgerState | null>(null);
 
-export const useHamburgerMenuState = (): HamburgerMenuHook => {
-  const [hamburgerIsOpen, setHamburgerIsOpen] = useState(false);
-  const [submenuOpen, setSubmenuOpen] = useState<SubmenuState>(null);
-  const [prevSubmenu, setPrevSubmenu] = useState<SubmenuState>(null);
+  const submenuOpen = useMemo(() => menuState.at(-1) ?? null, [menuState]);
 
-  const handleOpen = useCallback(() => {
-    setHamburgerIsOpen(true);
-    setPrevSubmenu(null);
-    setSubmenuOpen(null);
+  const handleOpenHamburger = useCallback(() => {
+    setMenuState([{ menu: "MainMenu", value: null }]);
   }, []);
 
-  const handleCloseSubmenu = useCallback(() => {
-    setPrevSubmenu(submenuOpen);
-    setSubmenuOpen(null);
-  }, [submenuOpen]);
+  const handleCloseSubmenu = () => {
+    setPrevSubmenu(menuState?.at(-1) ?? null);
+    setMenuState((prevMenu) => {
+      const newMenu = prevMenu.slice(0, -1);
+      return newMenu;
+    });
+  };
 
-  const handleCloseHamburger = useCallback(() => {
-    handleCloseSubmenu();
+  const handleNav = (newMenu: HamburgerState) => {
+    setPrevSubmenu(menuState?.at(-1) ?? null);
+    setMenuState((prevMenu) => [...prevMenu, newMenu]);
+  };
+
+  const handleCloseHamburger = () => {
+    setMenuState([]);
     setPrevSubmenu(null);
-    setHamburgerIsOpen(false);
-  }, [handleCloseSubmenu]);
+  };
 
   return {
-    hamburgerIsOpen,
     submenuOpen,
-    setSubmenuOpen,
     prevSubmenu,
-    handleOpen,
+    handleOpenHamburger,
     handleCloseHamburger,
+    handleNav,
     handleCloseSubmenu,
   };
 };
 
 export function TeachersTopNavHamburger(props: Readonly<TeachersSubNavData>) {
   const hamburgerMenu = useHamburgerMenuState();
-  const { hamburgerIsOpen, handleOpen, handleCloseHamburger } = hamburgerMenu;
+  const { handleOpenHamburger, submenuOpen, handleCloseHamburger } =
+    hamburgerMenu;
 
   return (
     <OakBox $display={["block", "block", "none"]}>
@@ -81,36 +73,24 @@ export function TeachersTopNavHamburger(props: Readonly<TeachersSubNavData>) {
         $borderStyle={"none"}
         iconName="hamburger"
         aria-label="Open navigation menu"
-        aria-expanded={hamburgerIsOpen}
-        aria-controls={
-          hamburgerIsOpen ? "teachers-top-nav-hamburger" : undefined
-        }
-        onClick={handleOpen}
+        aria-expanded={!!submenuOpen}
+        aria-controls={submenuOpen ? "teachers-top-nav-hamburger" : undefined}
+        onClick={handleOpenHamburger}
       />
       <OakInformativeModal
-        isOpen={hamburgerIsOpen}
+        isOpen={!!submenuOpen}
         onClose={handleCloseHamburger}
         closeOnBackgroundClick
         largeScreenMaxWidth={480}
       >
-        <Content {...props} hamburgerMenu={hamburgerMenu} />
+        <OakBox
+          $width={"100%"}
+          $height={"100%"}
+          id="teachers-top-nav-hamburger"
+        >
+          <HamburgerMenuContent {...props} hamburgerMenu={hamburgerMenu} />
+        </OakBox>
       </OakInformativeModal>
-    </OakBox>
-  );
-}
-
-function Content(
-  props: Readonly<TeachersSubNavData & { hamburgerMenu: HamburgerMenuHook }>,
-) {
-  const { hamburgerMenu, ...navData } = props;
-  const { submenuOpen } = hamburgerMenu;
-  return (
-    <OakBox $width={"100%"} $height={"100%"} id="teachers-top-nav-hamburger">
-      {submenuOpen ? (
-        <SubmenuContent {...navData} hamburgerMenu={hamburgerMenu} />
-      ) : (
-        <MainMenuContent {...navData} hamburgerMenu={hamburgerMenu} />
-      )}
     </OakBox>
   );
 }

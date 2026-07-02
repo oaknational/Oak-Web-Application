@@ -1,13 +1,81 @@
 import {
+  buildKs4OptionFilterDimensions,
+  type Ks4OptionFilterDimension,
+} from "./buildKs4OptionFilterDimensions";
+
+import curriculumApi2023, {
   CurriculumPhaseOptions,
   CurriculumUnit,
   CurriculumUnitsTabData,
-  type CurriculumApi,
 } from "@/node-lib/curriculum-api-2023";
-import { parseSubjectPhaseSlug } from "@/utils/curriculum/slugs";
+import { cacheData, CURRICULUM_API_CACHE_TAG } from "@/node-lib/cache";
+import {
+  parseSubjectPhaseSlug,
+  type CurriculumSelectionSlugs,
+} from "@/utils/curriculum/slugs";
 import { filterValidCurriculumPhaseOptions } from "@/pages-helpers/curriculum/docx/tab-helpers";
 import { CurriculumFilters } from "@/utils/curriculum/types";
 import { scopeYearsToKeystageFilter } from "@/utils/curriculum/filtersUrl";
+
+const PAGE_KEY = "programme-page-data";
+
+const getCachedCurriculumPhaseOptions = cacheData(
+  async () =>
+    curriculumApi2023.curriculumPhaseOptions({
+      includeNonCurriculum: true,
+    }),
+  [PAGE_KEY, "curriculum-phase-options"],
+  {
+    tags: [PAGE_KEY, CURRICULUM_API_CACHE_TAG],
+  },
+);
+
+const getCachedCurriculumOverview = cacheData(
+  async (subjectSlug: string, phaseSlug: string) =>
+    curriculumApi2023.curriculumOverview({
+      subjectSlug,
+      phaseSlug,
+      includeNonCurriculum: true,
+    }),
+  [PAGE_KEY, "curriculum-overview"],
+  {
+    tags: [PAGE_KEY, CURRICULUM_API_CACHE_TAG],
+  },
+);
+
+const getCachedCurriculumSequence = cacheData(
+  async (
+    subjectSlug: string,
+    phaseSlug: string,
+    ks4OptionSlug: string | null,
+    excludeCoreUnits: boolean,
+  ) =>
+    curriculumApi2023.curriculumSequence({
+      subjectSlug,
+      phaseSlug,
+      ks4OptionSlug,
+      includeNonCurriculum: true,
+      excludeUnitsWithNoPublishedLessons: true,
+      excludeCoreUnits,
+    }),
+  [PAGE_KEY, "curriculum-sequence"],
+  {
+    tags: [PAGE_KEY, CURRICULUM_API_CACHE_TAG],
+  },
+);
+
+const getCachedCurriculumSequenceSlugs = cacheData(
+  async (subjectSlug: string, phaseSlug: string) =>
+    curriculumApi2023.curriculumSequenceSlugs({
+      subjectSlug,
+      phaseSlug,
+      includeNonCurriculum: true,
+    }),
+  [PAGE_KEY, "curriculum-sequence-slugs"],
+  {
+    tags: [PAGE_KEY, CURRICULUM_API_CACHE_TAG],
+  },
+);
 
 // Helper function to sort units consistently
 const sortUnits = (units: CurriculumUnit[]): CurriculumUnit[] => {
@@ -24,40 +92,47 @@ const sortUnits = (units: CurriculumUnit[]): CurriculumUnit[] => {
   return sorted;
 };
 
-const excludeCoreFromSubjects = (subjects: CurriculumPhaseOptions) => {
-  return subjects.map((subject) => ({
-    ...subject,
-    ks4_options:
-      subject.ks4_options?.filter(({ slug }) => slug !== "core") ?? null,
-  }));
-};
-
-export async function getSubjectPhaseOptions(
-  curriculumApi2023: CurriculumApi,
-  subjectPhaseSlug: string,
-) {
+export async function getSubjectPhaseOptions(subjectPhaseSlug: string) {
   const subjectPhaseKeystageSlugs = parseSubjectPhaseSlug(subjectPhaseSlug);
 
   if (!subjectPhaseKeystageSlugs) {
     return null;
   }
-  const originalSubjects = await curriculumApi2023.curriculumPhaseOptions({
-    includeNonCurriculum: true,
-  });
-  let subjects = filterValidCurriculumPhaseOptions(originalSubjects);
-  // We exclude core units when the ks4 option is not core
-  // TD: after the integrated journey launches we should make this the default in the query
-  const excludeCoreUnits = subjectPhaseKeystageSlugs.ks4OptionSlug !== "core";
-  if (excludeCoreUnits) {
-    subjects = excludeCoreFromSubjects(subjects);
-  }
+  const originalSubjects = await getCachedCurriculumPhaseOptions();
+  const subjects = filterValidCurriculumPhaseOptions(originalSubjects);
 
   return { subjects, subjectPhaseKeystageSlugs };
 }
 
+async function getKs4OptionFilterDimensions(
+  subjectPhaseKeystageSlugs: CurriculumSelectionSlugs,
+  subjects: CurriculumPhaseOptions,
+): Promise<Record<string, Ks4OptionFilterDimension>> {
+  if (subjectPhaseKeystageSlugs.phaseSlug !== "secondary") {
+    return {};
+  }
+
+  const ks4Options =
+    subjects.find(
+      (subject) => subject.slug === subjectPhaseKeystageSlugs.subjectSlug,
+    )?.ks4_options ?? [];
+  const ks4OptionSlugs = ks4Options.map((option) => option.slug);
+
+  if (ks4OptionSlugs.length === 0) {
+    return {};
+  }
+
+  const slugUnits = await getCachedCurriculumSequenceSlugs(
+    subjectPhaseKeystageSlugs.subjectSlug,
+    subjectPhaseKeystageSlugs.phaseSlug,
+  );
+
+  return buildKs4OptionFilterDimensions(slugUnits, ks4OptionSlugs);
+}
+
 export async function getProgrammeData(
-  curriculumApi2023: CurriculumApi,
   subjectPhaseSlug: string,
+  subjects: CurriculumPhaseOptions,
 ) {
   const subjectPhaseKeystageSlugs = parseSubjectPhaseSlug(subjectPhaseSlug);
 
@@ -69,19 +144,20 @@ export async function getProgrammeData(
   // TD: after the integrated journey launches we should make this the default in the query
   const excludeCoreUnits = subjectPhaseKeystageSlugs.ks4OptionSlug !== "core";
 
-  const [programmeUnitsData, curriculumUnitsData] = await Promise.all([
-    curriculumApi2023.curriculumOverview({
-      subjectSlug: subjectPhaseKeystageSlugs.subjectSlug,
-      phaseSlug: subjectPhaseKeystageSlugs.phaseSlug,
-      includeNonCurriculum: true,
-    }),
-    curriculumApi2023.curriculumSequence({
-      ...subjectPhaseKeystageSlugs,
-      includeNonCurriculum: true,
-      excludeUnitsWithNoPublishedLessons: true,
-      excludeCoreUnits,
-    }),
-  ]);
+  const [programmeUnitsData, curriculumUnitsData, ks4OptionFilterDimensions] =
+    await Promise.all([
+      getCachedCurriculumOverview(
+        subjectPhaseKeystageSlugs.subjectSlug,
+        subjectPhaseKeystageSlugs.phaseSlug,
+      ),
+      getCachedCurriculumSequence(
+        subjectPhaseKeystageSlugs.subjectSlug,
+        subjectPhaseKeystageSlugs.phaseSlug,
+        subjectPhaseKeystageSlugs.ks4OptionSlug,
+        excludeCoreUnits,
+      ),
+      getKs4OptionFilterDimensions(subjectPhaseKeystageSlugs, subjects),
+    ]);
 
   // Sort units to have examboard versions first, then by unit order
   curriculumUnitsData.units = sortUnits(curriculumUnitsData.units);
@@ -89,6 +165,7 @@ export async function getProgrammeData(
   return {
     programmeUnitsData,
     curriculumUnitsData,
+    ks4OptionFilterDimensions,
   };
 }
 

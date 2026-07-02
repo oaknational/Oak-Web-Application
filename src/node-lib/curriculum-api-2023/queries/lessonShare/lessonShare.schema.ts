@@ -21,7 +21,6 @@ export const rawLessonShareSchema = z.object({
 export type RawLessonShareSchema = z.infer<typeof rawLessonShareSchema>;
 
 const baseLessonShareSchema = z.object({
-  isSpecialist: z.literal(false),
   lessonSlug: z.string(),
   lessonTitle: z.string(),
   shareableResources: z.array(lessonShareResourceSchema),

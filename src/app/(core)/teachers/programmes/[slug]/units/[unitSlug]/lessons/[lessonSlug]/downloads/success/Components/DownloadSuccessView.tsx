@@ -87,7 +87,7 @@ export function DownloadSuccessView({
     <>
       <DownloadSuccessHeader
         href={resolveOakHref({
-          page: "integrated-lesson-overview",
+          page: "lesson-overview",
           lessonSlug,
           programmeSlug,
           unitSlug,
@@ -189,7 +189,7 @@ export function DownloadSuccessView({
                   buttonLabel={
                     <OakSpan>
                       <OakSpan>Download </OakSpan>
-                      <OakBox $display={["none", "inline"]}>
+                      <OakBox $display={["none", "none", "inline"]}>
                         complete unit
                       </OakBox>
                     </OakSpan>

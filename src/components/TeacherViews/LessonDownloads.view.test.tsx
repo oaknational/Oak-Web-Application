@@ -180,7 +180,7 @@ describe("Download success redirect", () => {
       <LessonDownloads
         lesson={lesson}
         successRedirect={resolveOakHref({
-          page: "integrated-lesson-downloads-success",
+          page: "lesson-downloads-success",
           programmeSlug: "maths-primary",
           unitSlug: "u",
           lessonSlug: "l",

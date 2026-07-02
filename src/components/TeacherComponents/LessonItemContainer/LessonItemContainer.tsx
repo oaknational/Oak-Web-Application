@@ -61,9 +61,8 @@ export interface LessonItemContainerProps {
   onDownloadButtonClick?: () => void;
   onPlayALLMediaClipButtonClick?: () => void;
   isFinalElement?: boolean;
-  isSpecialist: boolean;
-  pageLinks: ReturnType<typeof getPageLinksForLesson>;
   isCanonical?: boolean;
+  pageLinks: ReturnType<typeof getPageLinksForLesson>;
   subheader?: React.ReactNode;
 }
 
@@ -155,7 +154,6 @@ export const LessonItemContainer = forwardRef<
               resourceTitle={lowerCaseTitle}
               onClick={onDownloadButtonClick}
               preselected={preselectedDownload}
-              isSpecialist={props.isSpecialist}
               {...slugs}
             />
           )}
@@ -165,7 +163,6 @@ export const LessonItemContainer = forwardRef<
               resourceTitle={lowerCaseTitle}
               onClick={onDownloadButtonClick}
               preselected={preselectedShare}
-              isSpecialist={props.isSpecialist}
               {...slugs}
             />
           )}

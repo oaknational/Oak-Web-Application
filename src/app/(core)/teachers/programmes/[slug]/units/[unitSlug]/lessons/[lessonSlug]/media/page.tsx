@@ -109,7 +109,6 @@ const InnerLessonMediaPage = async (
           mode="media"
         />
       }
-      useIntegratedJourneyLinks
     />
   );
 };

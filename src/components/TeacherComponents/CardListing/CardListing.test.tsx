@@ -3,6 +3,7 @@ import { screen } from "@testing-library/dom";
 import CardListing from "./CardListing";
 
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
+import { getOakUiColor } from "@/__tests__/__helpers__/getOakUiColor";
 
 const render = renderWithProviders();
 
@@ -116,17 +117,21 @@ describe("CardListing", () => {
     );
 
     const card = screen.getByTestId("card-listing-container");
-    expect(card).toHaveStyle({ background: "#222222" });
+    expect(card).toHaveStyle({ background: getOakUiColor("bg-inverted") });
 
     const saveButton = screen.getByRole("button", {
       name: "Save this unit: Unit title",
     });
-    expect(saveButton).toHaveStyle({ background: "#222222" });
+    expect(saveButton).toHaveStyle({
+      background: getOakUiColor("bg-inverted"),
+    });
 
     rerender(<CardListing {...defaultProps} saveProps={saveProps} />);
 
     const rerenderedCard = screen.getByTestId("card-listing-container");
-    expect(rerenderedCard).toHaveStyle({ background: "#ffffff" });
+    expect(rerenderedCard).toHaveStyle({
+      background: getOakUiColor("bg-primary"),
+    });
 
     const rerenderedSaveButton = screen.getByRole("button", {
       name: "Save this unit: Unit title",
@@ -200,5 +205,47 @@ describe("CardListing", () => {
       name: "Save this unit: Unit title",
     });
     expect(saveButton).toBeInTheDocument();
+  });
+  it("renders highlighted child cards when highlightColorVariant is set on children", () => {
+    render(
+      <CardListing
+        {...defaultProps}
+        childCards={[
+          {
+            ...childCardProps,
+            title: "Optionality 1",
+            highlightColorVariant: "secondary",
+          },
+          {
+            ...childCardProps,
+            title: "Optionality 2",
+            highlightColorVariant: "secondary",
+          },
+        ]}
+      />,
+    );
+
+    const cards = screen.getAllByTestId("card-listing-container");
+    expect(cards).toHaveLength(3);
+    expect(cards[0]).toHaveStyle({ background: getOakUiColor("bg-primary") });
+    expect(cards[1]).toHaveStyle({ background: getOakUiColor("bg-inverted") });
+    expect(cards[2]).toHaveStyle({ background: getOakUiColor("bg-inverted") });
+  });
+  it("renders unhighlighted child cards when highlightColorVariant is not set on children", () => {
+    render(
+      <CardListing
+        {...defaultProps}
+        childCards={[
+          { ...childCardProps, title: "Optionality 1" },
+          { ...childCardProps, title: "Optionality 2" },
+        ]}
+      />,
+    );
+
+    const cards = screen.getAllByTestId("card-listing-container");
+    expect(cards).toHaveLength(3);
+    expect(cards[0]).toHaveStyle({ background: getOakUiColor("bg-primary") });
+    expect(cards[1]).toHaveStyle({ background: getOakUiColor("bg-primary") });
+    expect(cards[2]).toHaveStyle({ background: getOakUiColor("bg-primary") });
   });
 });

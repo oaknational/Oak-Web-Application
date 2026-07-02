@@ -173,7 +173,7 @@ describe("SearchDropdown component", () => {
     );
   });
 
-  test("unit type links, link to lesson-index pages", async () => {
+  test("unit type links, link to unit-overview pages", async () => {
     const { getAllByRole } = renderWithTheme(
       <SearchDropdown
         {...searchResultUnit}

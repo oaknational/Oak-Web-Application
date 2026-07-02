@@ -94,6 +94,7 @@ const defaultProps: ComponentProps<typeof ProgrammeFiltersHeaderMobile> = {
     ks4OptionSlug: null,
   },
   ks4Options: [],
+  ks4OptionFilterDimensions: {},
 };
 
 describe("Mobile filters header", () => {

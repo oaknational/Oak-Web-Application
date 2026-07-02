@@ -93,7 +93,7 @@ const InnerLessonDownloadsPage = async (
         />
       }
       successRedirect={resolveOakHref({
-        page: "integrated-lesson-downloads-success",
+        page: "lesson-downloads-success",
         programmeSlug,
         unitSlug,
         lessonSlug,

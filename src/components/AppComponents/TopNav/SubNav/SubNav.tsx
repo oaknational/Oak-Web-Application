@@ -2,12 +2,14 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 
 import { DropdownFocusManager } from "../DropdownFocusManager/DropdownFocusManager";
+import { getTopLevelNavButtonId } from "../DropdownFocusManager/helpers";
 
 import { resolveOakHref } from "@/common-lib/urls";
 import {
   TeachersSubNavData,
   PupilsSubNavData,
   isDropdownMenuItem,
+  isTeachersBrowseItem,
 } from "@/node-lib/curriculum-api-2023/queries/topNav/topNav.schema";
 import {
   OakBox,
@@ -37,7 +39,12 @@ const SubNav = <T extends SubNavData>({
   ...data
 }: SubNavProps<T>) => {
   const pathname = usePathname();
-  const subNavButtons = Object.values(data);
+  const subNavButtons = Object.values(data).map((item) => {
+    if (isTeachersBrowseItem(item)) {
+      return item.phases;
+    }
+    return item;
+  });
 
   const getLinkProps = (
     slug: string,
@@ -45,7 +52,9 @@ const SubNav = <T extends SubNavData>({
     title: string,
     external?: boolean,
   ) => {
-    const buttonId = focusManager.createId(area, slug);
+    const buttonId =
+      getTopLevelNavButtonId({ focusManager, slug }) ?? undefined;
+
     return {
       target: external ? "_blank" : undefined,
       iconName: external ? ("external" as const) : undefined,
@@ -53,7 +62,7 @@ const SubNav = <T extends SubNavData>({
       id: buttonId,
       element: Link,
       onKeyDown: (event: React.KeyboardEvent) =>
-        focusManager.handleKeyDown(event, buttonId),
+        focusManager.handleTabKeyDown(event, buttonId!),
       href,
       "aria-label": external
         ? `${title} (this will open in a new tab)`
@@ -62,10 +71,12 @@ const SubNav = <T extends SubNavData>({
   };
 
   const getButtonProps = (slug: string) => {
-    const buttonId = focusManager.createId(area, slug);
+    const buttonId =
+      getTopLevelNavButtonId({ focusManager, slug }) ?? undefined;
+
     return {
       onKeyDown: (event: React.KeyboardEvent) =>
-        focusManager.handleKeyDown(event, buttonId),
+        focusManager.handleTabKeyDown(event, buttonId!),
       id: buttonId,
       onClick: () => onClick(slug as keyof T),
       selected: isMenuSelected(slug as keyof T),
@@ -82,7 +93,7 @@ const SubNav = <T extends SubNavData>({
 
     if (!activeElementId) return;
     const focusableElements = subNavButtons.map((btn) =>
-      focusManager.createId(area, btn.slug),
+      getTopLevelNavButtonId({ focusManager, slug: btn.slug }),
     );
 
     const currentIndex = focusableElements.indexOf(activeElementId);
@@ -130,12 +141,13 @@ const SubNav = <T extends SubNavData>({
         >
           {subNavButtons.map((btn) => {
             const external = "external" in btn ? btn.external : undefined;
+
             return (
               <OakLI key={btn.slug}>
                 {isDropdownMenuItem(btn) ? (
                   <OakSmallPrimaryInvertedButton
                     {...getButtonProps(btn.slug)}
-                    data-testid={focusManager.createId(area, btn.slug)}
+                    data-testid={focusManager.createId(btn.slug)}
                   >
                     {btn.title}
                   </OakSmallPrimaryInvertedButton>

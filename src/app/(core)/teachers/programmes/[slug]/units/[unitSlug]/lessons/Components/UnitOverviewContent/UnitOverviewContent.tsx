@@ -225,7 +225,7 @@ export const UnitOverviewContent = ({
               prevUnit
                 ? {
                     href: resolveOakHref({
-                      page: "integrated-unit-overview",
+                      page: "unit-overview",
                       programmeSlug,
                       unitSlug: prevUnit.slug,
                     }),
@@ -237,7 +237,7 @@ export const UnitOverviewContent = ({
               nextUnit
                 ? {
                     href: resolveOakHref({
-                      page: "integrated-unit-overview",
+                      page: "unit-overview",
                       programmeSlug,
                       unitSlug: nextUnit.slug,
                     }),
