@@ -1,6 +1,6 @@
 import { test, expect } from "@playwright/test";
 
-// single lesson intially. This will be expanded in the future to include a lesson from the database
+// single lesson initially. This will be expanded in the future to include a lesson from the database
 const lessonPath =
   "/teachers/programmes/science-secondary-ks3/units/cells/lessons/the-common-processes-of-all-living-organisms";
 

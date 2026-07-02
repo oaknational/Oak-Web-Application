@@ -14,7 +14,7 @@ export default defineConfig({
   forbidOnly: !!process.env.CI,
 
   /* Retry once in CI to reduce noise from transient failures */
-  retries: process.env.CI ? 1 : 1,
+  retries: process.env.CI ? 1 : 0,
   timeout: 30_000,
 
   /* Single worker in CI to avoid overwhelming a preview deployment */

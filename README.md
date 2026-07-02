@@ -100,7 +100,7 @@ pnpm run report:open
 
 ### End-to-End Browser Tests
 
-We use playwright.
+We use Playwright.
 
 See the [testing docs for further details](./docs/testing.md#playwright-e2e).
 

@@ -62,8 +62,7 @@ We use [Playwright](https://playwright.dev/) for browser-based end-to-end tests.
 
 ### CI Behavior
 
-- CI installs Playwright browser binaries (Chromium) before running tests.
-- Playwright report output is written to `playwright-report/` and can be uploaded as a workflow artifact.
+- CI workflow wiring for Playwright is follow-up work. When added, CI should install Playwright browser binaries (Chromium) before running tests and upload `playwright-report/` as an artifact.
 - Retries are configured as `1` in CI and `0` locally.
 
 ### Jest Separation
