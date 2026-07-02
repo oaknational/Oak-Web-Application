@@ -1,3 +1,15 @@
+# [1.1111.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1110.0...v1.1111.0) (2026-07-02)
+
+
+### Bug Fixes
+
+* update programme page canonical url to use query params ([2cf3500](https://github.com/oaknational/Oak-Web-Application/commit/2cf3500e0732e65cf0ab22ff6b4d076def388a9d))
+
+
+### Features
+
+* update search params parse method to return undefined ([78cffac](https://github.com/oaknational/Oak-Web-Application/commit/78cffacb5ad1d8b915ca1a98b726cc74f910dfb2))
+
 # [1.1110.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1109.0...v1.1110.0) (2026-07-01)
 
 
