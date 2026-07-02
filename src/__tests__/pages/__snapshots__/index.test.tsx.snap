@@ -492,7 +492,7 @@ exports[`Teachers Page Page component renders 1`] = `
                 </div>
                 <a
                   aria-label="My library"
-                  class="sc-dcJsrY sc-bJBgwP fIyhTG gGlhYE"
+                  class="sc-dcJsrY sc-dGCmGc fIyhTG kNXJqf"
                   href="/teachers/my-library"
                 >
                   <div
@@ -700,7 +700,7 @@ exports[`Teachers Page Page component renders 1`] = `
               class="sc-aXZVg cZwvRV"
             >
               <div
-                class="sc-aXZVg sc-gEvEer sc-bVHCgj dDGJCM iDBIXi"
+                class="sc-aXZVg sc-gEvEer sc-hHOBiw dDGJCM iDBIXi"
                 focusable="false"
               >
                 <svg
@@ -1900,7 +1900,7 @@ exports[`Teachers Page Page component renders 1`] = `
                     class="sc-fPXMVe ishrdH"
                   >
                     <div
-                      class="sc-aXZVg sc-gEvEer sc-bVHCgj cZnPVv iDBIXi"
+                      class="sc-aXZVg sc-gEvEer sc-hHOBiw cZnPVv iDBIXi"
                       focusable="false"
                     >
                       <svg

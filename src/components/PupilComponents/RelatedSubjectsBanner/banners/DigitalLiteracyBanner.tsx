@@ -9,8 +9,8 @@ import { BannerProps } from "../RelatedSubjectsBanner";
 
 import { resolveOakHref } from "@/common-lib/urls";
 
-function FinancialEducationBanner({ programmeFields }: Readonly<BannerProps>) {
-  const programmeSlug = `financial-education-${programmeFields.phase}-${programmeFields.yearSlug}`;
+function DigitalLiteracyBanner({ programmeFields }: Readonly<BannerProps>) {
+  const programmeSlug = `digital-literacy-${programmeFields.phase}-${programmeFields.yearSlug}`;
 
   const href = resolveOakHref({
     page: "pupil-unit-index",
@@ -21,7 +21,7 @@ function FinancialEducationBanner({ programmeFields }: Readonly<BannerProps>) {
     <OakFlex
       $width={["100%", "spacing-640", "spacing-960"]}
       $mt="spacing-24"
-      data-testid="financial-education-banner"
+      data-testid="digital-literacy-banner"
     >
       <OakBox
         $width="100%"
@@ -29,24 +29,24 @@ function FinancialEducationBanner({ programmeFields }: Readonly<BannerProps>) {
         $borderRadius="border-radius-m2"
       >
         <OakCard
-          heading="Check out our new finance lessons!"
+          heading="Check out our new digital literacy lessons!"
           headingLevel="h1"
           href={href}
           cardWidth="100%"
-          imageSrc={generateOakIconURL("subject-financial-education")}
-          imageAlt="Illustration of persons head with finance ideas"
-          subCopy="Learn fun and easy ways to understand money and how to use it in real life."
+          imageSrc={generateOakIconURL("subject-digital-literacy")}
+          imageAlt="Illustration representing digital literacy"
+          subCopy="Learn fun and easy ways to use technology confidently and safely in real life."
           subCopyColor="text-primary"
-          tagName="New"
           tagBackground="bg-decorative1-main"
-          linkText="Go to new finance lessons"
+          linkText="Go to new digital literacy lessons"
           linkIconName="chevron-right"
           cardOrientation={["column", "row"]}
           imageBackgroundColor="bg-decorative1-main"
+          tagName="New"
         />
       </OakBox>
     </OakFlex>
   );
 }
 
-export default FinancialEducationBanner;
+export default DigitalLiteracyBanner;

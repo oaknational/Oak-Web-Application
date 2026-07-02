@@ -1,19 +1,17 @@
 import { screen } from "@testing-library/react";
 import { oakDefaultTheme, OakThemeProvider } from "@oaknational/oak-components";
 
-import FinancialEducationBanner from "./FinancialEducationBanner";
+import DigitalLiteracyBanner from "./DigitalLiteracyBanner";
 
 import { unitBrowseDataFixture } from "@/node-lib/curriculum-api-2023/fixtures/unitBrowseData.fixture";
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 
-// Mock resolveOakHref to generate a predictable URL
 jest.mock("@/common-lib/urls", () => ({
   resolveOakHref: jest.fn(
     ({ page, programmeSlug }) => `/${page}/pupil-unit-index/${programmeSlug}`,
   ),
 }));
 
-// Only mock OakCard while keeping other Oak components as they are.
 jest.mock("@oaknational/oak-components", () => {
   const actualComponents = jest.requireActual("@oaknational/oak-components");
   return {
@@ -55,7 +53,7 @@ jest.mock("@oaknational/oak-components", () => {
   };
 });
 
-describe("FinancialEducationBanner", () => {
+describe("DigitalLiteracyBanner", () => {
   const programmeFields = unitBrowseDataFixture({}).programmeFields;
 
   beforeEach(() => {
@@ -65,44 +63,40 @@ describe("FinancialEducationBanner", () => {
   it("renders the banner with the correct OakCard props", () => {
     renderWithTheme(
       <OakThemeProvider theme={oakDefaultTheme}>
-        <FinancialEducationBanner programmeFields={programmeFields} />
+        <DigitalLiteracyBanner programmeFields={programmeFields} />
       </OakThemeProvider>,
     );
 
-    // Verify that the outer banner element is rendered
-    expect(
-      screen.getByTestId("financial-education-banner"),
-    ).toBeInTheDocument();
+    expect(screen.getByTestId("digital-literacy-banner")).toBeInTheDocument();
 
-    // Verify the mocked OakCard received the correct href and display props
     const card = screen.getByTestId("oak-card");
     expect(card).toBeInTheDocument();
     expect(card).toHaveAttribute(
       "data-href",
-      "/pupil-unit-index/pupil-unit-index/financial-education-primary-year-1",
+      "/pupil-unit-index/pupil-unit-index/digital-literacy-primary-year-1",
     );
     expect(card).toHaveAttribute("data-heading-level", "h1");
     expect(card).toHaveAttribute("data-card-width", "100%");
     expect(card).toHaveAttribute(
       "data-image-src",
-      "/icons/subject-financial-education.svg",
+      "/icons/subject-digital-literacy.svg",
     );
     expect(card).toHaveAttribute("data-sub-copy-color", "text-primary");
     expect(card).toHaveAttribute("data-tag-background", "bg-decorative1-main");
     expect(card).toHaveAttribute("data-link-icon-name", "chevron-right");
 
     expect(screen.getByTestId("heading")).toHaveTextContent(
-      "Check out our new finance lessons!",
+      "Check out our new digital literacy lessons!",
     );
     expect(screen.getByTestId("image-alt")).toHaveTextContent(
-      "Illustration of persons head with finance ideas",
+      "Illustration representing digital literacy",
     );
     expect(screen.getByTestId("sub-copy")).toHaveTextContent(
-      "Learn fun and easy ways to understand money and how to use it in real life.",
+      "Learn fun and easy ways to use technology confidently and safely in real life.",
     );
     expect(screen.getByTestId("tag-name")).toHaveTextContent("New");
     expect(screen.getByTestId("link-text")).toHaveTextContent(
-      "Go to new finance lessons",
+      "Go to new digital literacy lessons",
     );
   });
 });
