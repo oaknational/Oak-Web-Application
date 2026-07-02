@@ -69,7 +69,6 @@ const MobileFilters: FC<MobileFiltersProps> = (props) => {
       {...flexProps}
     >
       <OakFlex
-        $alignSelf={props.$alignSelf}
         $align-items={"center"}
         $justifyContent={"space-between"}
         $width={withBackButton ? "100%" : "auto"}
