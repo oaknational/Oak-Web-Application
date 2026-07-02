@@ -1,12 +1,20 @@
 import { clerkMiddleware } from "@clerk/nextjs/server";
-import { MiddlewareConfig, NextResponse } from "next/server";
+import {
+  MiddlewareConfig,
+  NextFetchEvent,
+  NextRequest,
+  NextResponse,
+} from "next/server";
 
 import getServerConfig from "./node-lib/getServerConfig";
 
 export const EXPERIMENT_COOKIE = "__experiments:test-flag";
 const posthogApiKey = getServerConfig("posthogApiKey");
 
-export default clerkMiddleware(async (_, req) => {
+export default async function middleware(
+  req: NextRequest,
+  event: NextFetchEvent,
+) {
   if (
     req.nextUrl.pathname.match(/\/teachers\/programmes\/.*\/units\/.*\/lessons/)
   ) {
@@ -57,11 +65,11 @@ export default clerkMiddleware(async (_, req) => {
     }
 
     return NextResponse.next();
+  } else {
+    // Fall through to default clerk middleware on all other routes (/api)
+    return clerkMiddleware()(req, event);
   }
-
-  // For all other routes, just fall through to Clerk's default behavior
-  console.log("Running clerk middleware on route: ", req.url);
-});
+}
 
 /**
  * Clerk middleware causes page latency, we're only enabling it for API routes or pages where
