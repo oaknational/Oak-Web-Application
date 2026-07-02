@@ -94,6 +94,7 @@ describe("DigitalLiteracyBanner", () => {
     expect(screen.getByTestId("sub-copy")).toHaveTextContent(
       "Learn fun and easy ways to use technology confidently and safely in real life.",
     );
+    expect(screen.getByTestId("tag-name")).toHaveTextContent("New");
     expect(screen.getByTestId("link-text")).toHaveTextContent(
       "Go to new digital literacy lessons",
     );

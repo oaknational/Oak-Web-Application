@@ -42,6 +42,7 @@ function DigitalLiteracyBanner({ programmeFields }: Readonly<BannerProps>) {
           linkIconName="chevron-right"
           cardOrientation={["column", "row"]}
           imageBackgroundColor="bg-decorative1-main"
+          tagName="New"
         />
       </OakBox>
     </OakFlex>
