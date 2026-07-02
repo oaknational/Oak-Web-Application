@@ -382,6 +382,7 @@ const Search: FC<SearchProps> = (props) => {
                     $pointerEvents={"none"}
                   >
                     <MobileFilters
+                      $mt={"spacing-0"}
                       label="Filters"
                       labelOpened="Close"
                       iconOpened="cross"

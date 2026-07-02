@@ -2,6 +2,7 @@ import { FC, useState, useEffect, useId, useCallback, ReactNode } from "react";
 import {
   OakBox,
   OakFlex,
+  OakFlexProps,
   OakIconName,
   OakInformativeModal,
   OakTertiaryButton,
@@ -21,7 +22,7 @@ export type MobileFiltersProps = {
   labelOpened?: string;
   providedId?: string;
   applyForTablet?: boolean;
-};
+} & OakFlexProps;
 const MobileFilters: FC<MobileFiltersProps> = (props) => {
   const [isOpen, setIsOpen] = useState(false);
 
@@ -37,6 +38,7 @@ const MobileFilters: FC<MobileFiltersProps> = (props) => {
     labelOpened = label,
     providedId,
     applyForTablet,
+    ...flexProps
   } = props;
 
   const menuId = useId();
@@ -59,12 +61,15 @@ const MobileFilters: FC<MobileFiltersProps> = (props) => {
 
   return (
     <OakFlex
+      $mt={props.$mt ?? "spacing-24"}
       $display={["flex", applyForTablet ? "flex" : "none", "none"]}
       $flexDirection={"column"}
       $width={"100%"}
       $alignItems={"flex-end"}
+      {...flexProps}
     >
       <OakFlex
+        $alignSelf={props.$alignSelf}
         $align-items={"center"}
         $justifyContent={"space-between"}
         $width={withBackButton ? "100%" : "auto"}
