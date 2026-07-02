@@ -142,6 +142,37 @@ describe("Download Page With Accordion", () => {
     });
   });
 
+  it("remounts screen-reader validation summary when validationSummaryKey changes", () => {
+    const validationErrors = {
+      resources: { message: "downloads error" },
+      terms: { message: "terms error", type: "required" },
+    };
+
+    const { rerender } = renderWithProviders()(
+      <ComponentWrapper
+        {...props}
+        errors={validationErrors}
+        validationSummaryKey={1}
+      />,
+    );
+
+    const firstSrValidationSummary = screen.getByTestId(
+      "download-validation-summary-sr",
+    );
+
+    rerender(
+      <ComponentWrapper
+        {...props}
+        errors={validationErrors}
+        validationSummaryKey={2}
+      />,
+    );
+
+    expect(screen.getByTestId("download-validation-summary-sr")).not.toBe(
+      firstSrValidationSummary,
+    );
+  });
+
   it("handles api error", () => {
     const { rerender } = renderWithProviders()(<ComponentWrapper {...props} />);
 
