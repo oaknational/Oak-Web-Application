@@ -142,7 +142,7 @@ const SharePageLayout: FC<SharePageLayoutProps> = (props) => {
                         />
                         <OakFlex $flexDirection={"column"}>
                           <OakP $ml="spacing-4" $color={"text-error"}>
-                            To complete correct the following:
+                            To complete, correct the following:
                           </OakP>
                           <OakUL $mr="spacing-24">
                             {validationErrorMessages.map((err) => (
