@@ -5,12 +5,12 @@ import {
   OakHeading,
 } from "@oaknational/oak-components";
 
-import { ExamBoardFocusProvider } from "../Filters/ExamBoardFocus";
+import { KS4OptionFocusProvider } from "../Filters/KS4OptionFocus";
 import { ProgrammePageFiltersModalProvider } from "../Filters/ProgrammePageFiltersModalProvider";
 import ProgrammePageFiltersDesktop from "../Filters/ProgrammePageFiltersDesktop";
 import ProgrammePageFiltersMobile from "../Filters/ProgrammePageFiltersMobile";
 import { getDisplayedFilters } from "../Filters/ProgrammeFilters";
-import type { ExamboardFilterDimension } from "../../buildExamboardFilterDimensions";
+import type { Ks4OptionFilterDimension } from "../../buildKs4OptionFilterDimensions";
 
 import ProgrammeSequence from "./Sequence";
 
@@ -30,7 +30,7 @@ export type UnitSequenceViewProps = {
   curriculumSelectionSlugs: CurriculumSelectionSlugs;
   curriculumUnitsFormattedData: CurriculumUnitsFormattedData;
   ks4Options: Ks4Option[];
-  examboardFilterDimensions: Record<string, ExamboardFilterDimension>;
+  ks4OptionFilterDimensions: Record<string, Ks4OptionFilterDimension>;
 };
 
 export const UnitSequenceView = ({
@@ -39,7 +39,7 @@ export const UnitSequenceView = ({
   curriculumSelectionSlugs,
   curriculumUnitsFormattedData,
   ks4Options,
-  examboardFilterDimensions,
+  ks4OptionFilterDimensions,
 }: UnitSequenceViewProps) => {
   const { yearData, threadOptions } = curriculumUnitsFormattedData;
   const { ks4OptionSlug } = curriculumSelectionSlugs;
@@ -83,7 +83,7 @@ export const UnitSequenceView = ({
           </OakHeading>
         </ScreenReaderOnly>
         <ProgrammePageFiltersModalProvider>
-          <ExamBoardFocusProvider>
+          <KS4OptionFocusProvider>
             <OakBox $display={["block", "block", "none"]}>
               {shouldDisplayFilters && (
                 <ProgrammePageFiltersMobile
@@ -92,7 +92,7 @@ export const UnitSequenceView = ({
                   data={curriculumUnitsFormattedData}
                   slugs={curriculumSelectionSlugs}
                   ks4Options={ks4Options}
-                  examboardFilterDimensions={examboardFilterDimensions}
+                  ks4OptionFilterDimensions={ks4OptionFilterDimensions}
                 />
               )}
             </OakBox>
@@ -108,7 +108,7 @@ export const UnitSequenceView = ({
                     data={curriculumUnitsFormattedData}
                     slugs={curriculumSelectionSlugs}
                     ks4Options={ks4Options}
-                    examboardFilterDimensions={examboardFilterDimensions}
+                    ks4OptionFilterDimensions={ks4OptionFilterDimensions}
                   />
                 )}
               </OakGridArea>
@@ -122,7 +122,7 @@ export const UnitSequenceView = ({
                 />
               </OakGridArea>
             </OakGrid>
-          </ExamBoardFocusProvider>
+          </KS4OptionFocusProvider>
         </ProgrammePageFiltersModalProvider>
         <ScreenReaderOnly aria-live="polite" aria-atomic="true">
           <p>

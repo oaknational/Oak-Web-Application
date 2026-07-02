@@ -63,7 +63,8 @@ jest.mock("@/node-lib/cms", () => ({
 describe("Teachers Page", () => {
   describe("Page component", () => {
     it("renders", () => {
-      render(<Home {...props} />);
+      const { baseElement } = render(<Home {...props} />);
+      expect(baseElement).toMatchSnapshot();
     });
   });
 

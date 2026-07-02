@@ -14,7 +14,7 @@ import {
   ResourceFormValues,
   ResourceFormProps,
 } from "@/components/TeacherComponents/types/downloadAndShare.types";
-import { convertUnitSlugToTitle } from "@/components/TeacherViews/Search/helpers";
+import { convertUnitSlugToTitle } from "@/app/(core)/teachers/search/helpers/index";
 import useAnalytics from "@/context/Analytics/useAnalytics";
 import { CurriculumSelectionSlugs } from "@/utils/curriculum/slugs";
 
