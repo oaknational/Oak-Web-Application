@@ -39,6 +39,38 @@ Logic tests and snapshot tests should be in different files because their "failu
 
 The current tests live [here](../e2e_tests/browser/engineering/). The naming is intended to leave room for creating some product-facing tests using feature files, this is subject to change.
 
+## Playwright E2E
+
+We use [Playwright](https://playwright.dev/) for browser-based end-to-end tests.
+
+### Location
+
+- E2E test files live under [src/tests/e2e](../src/tests/e2e/).
+- Current teacher flow tests live in [src/tests/e2e/teacher/lesson-page.spec.ts](../src/tests/e2e/teacher/lesson-page.spec.ts).
+- Playwright config lives in [playwright.config.ts](../playwright.config.ts).
+
+### Commands
+
+- `pnpm run test:e2e` runs all Playwright tests.
+- `pnpm run test:e2e -- src/tests/e2e/teacher/lesson-page.spec.ts` runs a single spec.
+- `pnpm run test:e2e:ci` runs Playwright with the HTML report enabled.
+
+### Local Execution
+
+- If `BASE_URL` is not set, Playwright uses `http://localhost:3000`, so the app must be running locally.
+- To run against a deployment URL, set `BASE_URL` to that deployment URL before running tests.
+
+### CI Behavior
+
+- CI installs Playwright browser binaries (Chromium) before running tests.
+- Playwright report output is written to `playwright-report/` and can be uploaded as a workflow artifact.
+- Retries are configured as `1` in CI and `0` locally.
+
+### Jest Separation
+
+- Unit tests run with Jest and E2E tests run with Playwright.
+- Jest ignores `src/tests/e2e/` so Playwright specs are not run during `pnpm run test:ci`.
+
 ## Storybook
 
 - Design and engineering inspection of components in isolation, including a11y checks.

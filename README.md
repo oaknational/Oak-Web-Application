@@ -100,9 +100,9 @@ pnpm run report:open
 
 ### End-to-End Browser Tests
 
-We use WebdriverIO.
+We use playwright.
 
-See the [testing docs for further details](./docs/testing.md#e2e-browser-tests).
+See the [testing docs for further details](./docs/testing.md#playwright-e2e).
 
 ### Pre-commit and Commit Message Hooks
 
