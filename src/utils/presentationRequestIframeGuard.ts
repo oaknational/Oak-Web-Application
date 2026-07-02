@@ -19,12 +19,13 @@ let installed = false;
  * https://www.notion.so/oaknationalacademy/Add-static-pupil-section-pages-legacy-experience-33b26cc4e1b1808884f7dc2a7987a674
  */
 export const installPresentationRequestIframeGuard = (): void => {
-  if (installed || typeof window === "undefined") return;
+  if (installed || typeof globalThis.window === "undefined") return;
   installed = true;
 
-  const globalWithPresentation = window as typeof window & {
-    PresentationRequest?: new (...args: unknown[]) => unknown;
-  };
+  const globalWithPresentation =
+    globalThis.window as typeof globalThis.window & {
+      PresentationRequest?: new (...args: unknown[]) => unknown;
+    };
   const NativePresentationRequest = globalWithPresentation.PresentationRequest;
   if (!NativePresentationRequest) return;
 
@@ -36,25 +37,23 @@ export const installPresentationRequestIframeGuard = (): void => {
     // Sandboxed without allow-presentation: fall through and install the stub.
   }
 
+  const rejectNotAllowedError = () =>
+    Promise.reject(
+      new DOMException(
+        "Presentation is not available in this context.",
+        "NotAllowedError",
+      ),
+    );
+
   class InertPresentationRequest extends EventTarget {
     constructor(_urls?: string | string[]) {
       super();
     }
     start() {
-      return Promise.reject(
-        new DOMException(
-          "Presentation is not available in this context.",
-          "NotAllowedError",
-        ),
-      );
+      return rejectNotAllowedError();
     }
     reconnect() {
-      return Promise.reject(
-        new DOMException(
-          "Presentation is not available in this context.",
-          "NotAllowedError",
-        ),
-      );
+      return rejectNotAllowedError();
     }
     getAvailability() {
       return Promise.resolve({
