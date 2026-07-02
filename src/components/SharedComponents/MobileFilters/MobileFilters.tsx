@@ -1,43 +1,16 @@
-import {
-  FC,
-  useState,
-  useRef,
-  useEffect,
-  useId,
-  useCallback,
-  ReactNode,
-} from "react";
-import styled from "styled-components";
+import { FC, useState, useEffect, useId, useCallback, ReactNode } from "react";
 import {
   OakBox,
-  OakBoxProps,
   OakFlex,
   OakFlexProps,
   OakIconName,
+  OakInformativeModal,
   OakTertiaryButton,
 } from "@oaknational/oak-components";
 
-import useEventListener from "@/hooks/useEventListener";
-import Cover from "@/components/SharedComponents/Cover";
 import { useMenuContext } from "@/context/Menu";
 import { PostCategoryPage } from "@/components/SharedComponents/PostCategoryList/PostCategoryList";
 import { resolveOakHref } from "@/common-lib/urls";
-
-const StyledCategoryList = styled(OakBox)<
-  OakBoxProps & { $isOpen: boolean; $categoryListHeight: number }
->`
-  clip-path: inset(0px 0px -15px 0px);
-  height: ${(props) =>
-    props.$isOpen ? `${props.$categoryListHeight}px` : "0px"};
-  transition: all 0.5s ease;
-`;
-
-const StyledCategoryListInner = styled(OakBox)<
-  OakBoxProps & { $isOpen: boolean }
->`
-  transform: translateY(${(props) => (props.$isOpen ? 0 : "-20%")});
-  top: 100%;
-`;
 
 export type MobileFiltersProps = {
   withBackButton?: boolean;
@@ -52,23 +25,8 @@ export type MobileFiltersProps = {
 } & OakFlexProps;
 const MobileFilters: FC<MobileFiltersProps> = (props) => {
   const [isOpen, setIsOpen] = useState(false);
-  const [categoryListHeight, setCategoryListHeight] = useState<number>(0);
 
   const { open: menuOpen } = useMenuContext();
-
-  const categoryListRef = useRef<HTMLDivElement>(null);
-  const checkAndSetHeight = () => {
-    if (categoryListRef.current) {
-      const boundingRect = categoryListRef.current.getBoundingClientRect();
-      setCategoryListHeight(boundingRect.height + 100);
-    }
-  };
-  useEventListener("resize", () => {
-    checkAndSetHeight();
-  });
-  useEffect(() => {
-    checkAndSetHeight();
-  }, [categoryListRef]);
 
   const {
     withBackButton,
@@ -87,11 +45,8 @@ const MobileFilters: FC<MobileFiltersProps> = (props) => {
 
   // Allow the ID to passed in from that parent component
   // for labelling of nested child components.
-  let triggerId = providedId;
   const definiteId = useId();
-  if (triggerId === undefined) {
-    triggerId = definiteId;
-  }
+  const triggerId = providedId ?? definiteId;
 
   const close = useCallback(() => {
     setIsOpen(false);
@@ -113,7 +68,6 @@ const MobileFilters: FC<MobileFiltersProps> = (props) => {
       $alignItems={"flex-end"}
       {...flexProps}
     >
-      <Cover $pointerEvents={isOpen ? null : "none"} onClick={close} />
       <OakFlex
         $alignSelf={props.$alignSelf}
         $align-items={"center"}
@@ -150,33 +104,22 @@ const MobileFilters: FC<MobileFiltersProps> = (props) => {
           {isOpen ? labelOpened : label}
         </OakTertiaryButton>
       </OakFlex>
-      <OakBox $width={"100%"} $position={"relative"}>
-        <StyledCategoryList
-          $isOpen={isOpen}
-          $categoryListHeight={categoryListHeight}
-          $display={["block", applyForTablet ? "block" : "none", "none"]}
-          $position="absolute"
-          $transition="standard-ease"
-          $width="100%"
-          $zIndex="mobile-filters"
-          $background={isOpen ? "bg-primary" : "transparent"}
-          $dropShadow={"drop-shadow-standard"}
-          $pointerEvents={"all"}
+      <OakInformativeModal
+        isOpen={isOpen}
+        onClose={close}
+        closeOnBackgroundClick
+        aria-labelledby={triggerId}
+      >
+        <OakFlex
+          id={menuId}
+          $flexDirection={"column"}
+          $width={"100%"}
+          $height={"100%"}
+          $ph={"spacing-16"}
         >
-          <StyledCategoryListInner
-            id={menuId}
-            ref={categoryListRef}
-            $isOpen={isOpen}
-            $transition="standard-ease"
-            $width="100%"
-            $opacity={isOpen ? "opaque" : "transparent"}
-            aria-labelledby={triggerId}
-            $visibility={isOpen ? "visible" : "hidden"}
-          >
-            {children}
-          </StyledCategoryListInner>
-        </StyledCategoryList>
-      </OakBox>
+          {children}
+        </OakFlex>
+      </OakInformativeModal>
     </OakFlex>
   );
 };
