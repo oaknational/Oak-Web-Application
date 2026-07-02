@@ -1,3 +1,24 @@
+# [1.1112.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1111.0...v1.1112.0) (2026-07-02)
+
+
+### Bug Fixes
+
+* fix school picker regression ([337bc13](https://github.com/oaknational/Oak-Web-Application/commit/337bc13899df060dd845d8a51314161c9da94d7b))
+* Unused import ([cefdf91](https://github.com/oaknational/Oak-Web-Application/commit/cefdf912783f03f93431eb6d632122b4c02ec893))
+
+
+### Features
+
+* add optional send_instantly property to track function ([5adde42](https://github.com/oaknational/Oak-Web-Application/commit/5adde42644a8acf1b4e2218618ad7a11fa3ae727))
+* add suspense boundary now that useSearchParams is in the layout ([6fe0abd](https://github.com/oaknational/Oak-Web-Application/commit/6fe0abd5bdef0f13feaedb1a3c649636571c63ed))
+* add suspense boundary now that useSearchParams is in the layout ([fc28da4](https://github.com/oaknational/Oak-Web-Application/commit/fc28da403a21ccf57f426aca1e4d882bc3043cbf))
+* avoid layout flashing by moving onboarded check to layout ([161c7fe](https://github.com/oaknational/Oak-Web-Application/commit/161c7fef4eaad999fa5e32d831a934706687d9c2))
+* dodge layout redirecting before onboarding event is sent ([e5a926c](https://github.com/oaknational/Oak-Web-Application/commit/e5a926c0389d47fd013c5150bcf2469d8e048ff3))
+* move/rename pages and tests ([8b03114](https://github.com/oaknational/Oak-Web-Application/commit/8b031148efc77ca185f562772511be3893dbf736))
+* redirect to sign up not sign in ([953dc13](https://github.com/oaknational/Oak-Web-Application/commit/953dc1391fa69781e7881eabefece048b6fd1ed2))
+* use correct event name ([d001a37](https://github.com/oaknational/Oak-Web-Application/commit/d001a378c8bdfacf697a077637d7f2d0590dd92a))
+* use send_instantly to flush queue ([e31102b](https://github.com/oaknational/Oak-Web-Application/commit/e31102be550c8a2ea99e13f8dfd1cd19c5810fce))
+
 # [1.1111.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1110.0...v1.1111.0) (2026-07-02)
 
 
