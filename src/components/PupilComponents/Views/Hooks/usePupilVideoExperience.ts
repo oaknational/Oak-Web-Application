@@ -20,6 +20,18 @@ export type UsePupilVideoExperienceParams = Pick<
   PupilLessonPageProps,
   "browseData" | "lessonContent" | "additionalFiles"
 >;
+
+const getHasVideoFinished = ({
+  duration,
+  timeElapsed,
+}: {
+  duration?: number;
+  timeElapsed?: number;
+}) => {
+  if (!duration || !timeElapsed) return false;
+  return (timeElapsed / duration) * 100 >= 90;
+};
+
 export const usePupilVideoExperience = ({
   browseData,
   lessonContent,
@@ -233,9 +245,14 @@ export const usePupilVideoExperience = ({
     transcriptSentences,
     signLanguageOn,
     isAdditionalFilesDownloading,
-    videoInitialTimeElapsed: isVideoComplete
-      ? 0
-      : (sectionResults.video?.timeElapsed ?? 0),
+    videoInitialTimeElapsed:
+      isVideoComplete ||
+      getHasVideoFinished({
+        duration: sectionResults.video?.duration,
+        timeElapsed: sectionResults.video?.timeElapsed,
+      })
+        ? 0
+        : (sectionResults.video?.timeElapsed ?? 0),
     handleVideoEvent,
     handleBackToOverview,
     handleProceed,
