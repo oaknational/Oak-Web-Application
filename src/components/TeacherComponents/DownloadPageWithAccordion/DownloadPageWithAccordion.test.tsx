@@ -137,7 +137,7 @@ describe("Download Page With Accordion", () => {
     expect(srValidationSummary).toHaveAttribute("aria-live", "polite");
     await waitFor(() => {
       expect(srValidationSummary).toHaveTextContent(
-        "To complete correct the following: select at least one resource to continue. accept terms and conditions to continue",
+        "To complete, correct the following: select at least one resource to continue. accept terms and conditions to continue",
       );
     });
   });
