@@ -1,3 +1,37 @@
+# [1.1110.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1109.0...v1.1110.0) (2026-07-01)
+
+
+### Features
+
+* **LESQ-2125:** add pathway options to KS4 filter panel ([85096a2](https://github.com/oaknational/Oak-Web-Application/commit/85096a22397e83ce82e1eb79614db518691784a3))
+* **LESQ-2125:** generalize KS4 option filter dimensions builder ([3a93b39](https://github.com/oaknational/Oak-Web-Application/commit/3a93b3956a9aeb57dc24846c48887bb8d4b542a6))
+* **LESQ-2125:** preload ks4 option filter dimensions for all KS4 options ([0c90ecf](https://github.com/oaknational/Oak-Web-Application/commit/0c90ecf55bcc02847ca0c81134ec38de20ec86db))
+* **LESQ-2125:** remove Core/GCSE duplication from year filter on integrated journey ([4b374fa](https://github.com/oaknational/Oak-Web-Application/commit/4b374fa3b960919693553fab0f1775c33ed287b4))
+* **LESQ-2125:** sort KS4 panel options GCSE, Core, then exam boards ([102b412](https://github.com/oaknational/Oak-Web-Application/commit/102b4128291a44593d6420ba630f7537a763a885))
+* **LESQ-2125:** split KS4 filters into pathway and exam board panels ([635f3cf](https://github.com/oaknational/Oak-Web-Application/commit/635f3cf370d0ebce1cdb77789aab6899db1f93f3))
+
+# [1.1109.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1108.0...v1.1109.0) (2026-06-30)
+
+
+### Bug Fixes
+
+* alt text and casing ([b83f56d](https://github.com/oaknational/Oak-Web-Application/commit/b83f56d8388f2b704cf8c6fa8714219a60a3da84))
+
+
+### Features
+
+* oaks impact intial build ([431802a](https://github.com/oaknational/Oak-Web-Application/commit/431802a69f8d9d463cd8de06ae12c96a002a034e))
+* support you component uses max width ([a295c63](https://github.com/oaknational/Oak-Web-Application/commit/a295c63514140d6543dea4e6e65e52df97513e43))
+
+# [1.1108.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1107.1...v1.1108.0) (2026-06-30)
+
+
+### Features
+
+* **LESQ-2111:** add programme filter units to teachers sitemap query ([3d829da](https://github.com/oaknational/Oak-Web-Application/commit/3d829dae1c507aa2f00387c73a4f029b6449f9f8))
+* **LESQ-2111:** derive programme filter variants for teacher sitemap ([94e9e95](https://github.com/oaknational/Oak-Web-Application/commit/94e9e9530c8695d06167d03c470cba4e9b1386b7))
+* **LESQ-2111:** emit year and keystage programme URLs in teacher sitemap ([721ab39](https://github.com/oaknational/Oak-Web-Application/commit/721ab39f52bc95efd37ec6e3534ac4958511a0b8))
+
 ## [1.1107.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.1107.0...v1.1107.1) (2026-06-30)
 
 

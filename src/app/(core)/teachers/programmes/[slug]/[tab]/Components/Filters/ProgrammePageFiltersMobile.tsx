@@ -11,7 +11,7 @@ import {
 import { ProgrammePageFiltersProps } from "./ProgrammePageFiltersDesktop";
 import ProgrammeFiltersHeaderMobile from "./ProgrammeFiltersHeaderMobile";
 import { ProgrammeFilters } from "./ProgrammeFilters";
-import { ExamBoardFocusScope } from "./ExamBoardFocus";
+import { KS4OptionFocusScope } from "./KS4OptionFocus";
 import { useProgrammePageFiltersModal } from "./ProgrammePageFiltersModalProvider";
 
 import { usePrevious } from "@/hooks/usePrevious";
@@ -23,7 +23,7 @@ export default function ProgrammePageFiltersMobile({
   data,
   slugs,
   ks4Options,
-  examboardFilterDimensions,
+  ks4OptionFilterDimensions,
 }: Readonly<ProgrammePageFiltersProps>) {
   const { isOpen, setIsOpen } = useProgrammePageFiltersModal();
 
@@ -78,7 +78,7 @@ export default function ProgrammePageFiltersMobile({
           onChangeFilters={onChangeFilters}
           slugs={slugs}
           ks4Options={ks4Options}
-          examboardFilterDimensions={examboardFilterDimensions}
+          ks4OptionFilterDimensions={ks4OptionFilterDimensions}
         />
       </OakInformativeModal>
 
@@ -89,7 +89,7 @@ export default function ProgrammePageFiltersMobile({
         data={data}
         slugs={slugs}
         ks4Options={ks4Options}
-        examboardFilterDimensions={examboardFilterDimensions}
+        ks4OptionFilterDimensions={ks4OptionFilterDimensions}
       />
     </>
   );
@@ -109,7 +109,7 @@ const ModalContent = ({
   data,
   slugs,
   ks4Options,
-  examboardFilterDimensions,
+  ks4OptionFilterDimensions,
 }: ProgrammePageFiltersProps) => {
   return (
     <OakFlex
@@ -127,16 +127,16 @@ const ModalContent = ({
         $gap={"spacing-32"}
         $overflowX={"visible"}
       >
-        <ExamBoardFocusScope variant="modal">
+        <KS4OptionFocusScope variant="modal">
           <ProgrammeFilters
             filters={filters}
             onChangeFilters={onChangeFilters}
             data={data}
             slugs={slugs}
             ks4Options={ks4Options}
-            examboardFilterDimensions={examboardFilterDimensions}
+            ks4OptionFilterDimensions={ks4OptionFilterDimensions}
           />
-        </ExamBoardFocusScope>
+        </KS4OptionFocusScope>
       </OakFlex>
     </OakFlex>
   );

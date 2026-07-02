@@ -204,7 +204,7 @@ const InnerProgrammePage = async (props: AppPageProps<ProgrammePageParams>) => {
     return notFound();
   }
 
-  const { programmeUnitsData, curriculumUnitsData, examboardFilterDimensions } =
+  const { programmeUnitsData, curriculumUnitsData, ks4OptionFilterDimensions } =
     cachedProgrammeData;
 
   const curriculumPhaseOptions = {
@@ -282,7 +282,7 @@ const InnerProgrammePage = async (props: AppPageProps<ProgrammePageParams>) => {
     tabSlug: tab,
     curriculumCMSInfo,
     ks4Options,
-    examboardFilterDimensions,
+    ks4OptionFilterDimensions,
     trackingData: curriculumUnitsTrackingData,
     curriculumInfo: cachedProgrammeData.programmeUnitsData,
     curriculumDownloadsTabData,
