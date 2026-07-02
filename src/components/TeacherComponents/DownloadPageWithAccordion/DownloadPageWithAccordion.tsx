@@ -63,6 +63,7 @@ type DownloadPageWithAccordionProps = ResourcePageDetailsCompletedProps &
     lessonDownloads?: LessonDownloadsPageData["downloads"];
     curriculumDownloads?: DownloadTypeLabel[];
     additionalFiles?: LessonDownloadsPageData["additionalFiles"];
+    validationSummaryKey?: number;
   };
 
 export type DownloadWrapperProps = {
@@ -151,6 +152,7 @@ export const DownloadPageWithAccordionContent = (
     | "geoRestricted"
     | "cta"
     | "apiError"
+    | "validationSummaryKey"
   >,
 ) => {
   const {
@@ -181,6 +183,7 @@ export const DownloadPageWithAccordionContent = (
     geoRestricted,
     cta,
     apiError,
+    validationSummaryKey,
   } = props;
 
   const hasFormErrors = Object.keys(errors).length > 0;
@@ -204,6 +207,7 @@ export const DownloadPageWithAccordionContent = (
   return (
     <OakFlex $flexDirection={"column"} $gap={"spacing-48"}>
       <ScreenReaderOnly
+        key={validationSummaryKey}
         role="status"
         aria-live="polite"
         aria-atomic="true"
@@ -293,7 +297,7 @@ export const DownloadPageWithAccordionContent = (
                 />
                 <OakFlex $flexDirection={"column"}>
                   <OakP $ml="spacing-4" $color={"text-error"}>
-                    To complete correct the following:
+                    To complete, correct the following:
                   </OakP>
                   <OakUL $mr="spacing-24">
                     {validationErrorMessages.map((err) => {
