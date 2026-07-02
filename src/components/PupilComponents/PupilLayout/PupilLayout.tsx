@@ -12,6 +12,8 @@ import {
   LessonContent,
 } from "@/node-lib/curriculum-api-2023/queries/pupilLesson/pupilLesson.schema";
 import { LessonShareVariant } from "@/pages-helpers/pupil";
+import { installPresentationRequestIframeGuard } from "@/utils/presentationRequestIframeGuard";
+import { isInIframe } from "@/utils/iframe";
 
 export type PupilLayoutProps = {
   children?: React.ReactNode;
@@ -29,6 +31,11 @@ export type PupilLayoutProps = {
 
 export const PupilLayout: FC<PupilLayoutProps> = (props) => {
   const { seoProps, children, pupilStores } = props;
+  // Neutralise the Presentation API in embedded pupil contexts (e.g. the
+  // Google Classroom add-on frame) before the video player initialises Cast.
+  if (isInIframe()) {
+    installPresentationRequestIframeGuard();
+  }
   usePupilStores(pupilStores);
 
   return (
