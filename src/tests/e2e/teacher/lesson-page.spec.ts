@@ -9,11 +9,12 @@ test("teacher can click download all resources on lesson page", async ({
 }) => {
   await page.goto(lessonPath);
 
-  const downloadAllButton = page.getByRole("link", {
-    name: "Download all resources",
-  });
+  const downloadAllButton = page
+    .locator('[data-testid="download-all-button"]:visible')
+    .first();
   await expect(downloadAllButton).toBeVisible();
   await downloadAllButton.click();
+
   await expect(page).toHaveURL(/\/downloads/);
 });
 
@@ -22,7 +23,11 @@ test("teacher can complete download flow and download lesson assets", async ({
 }) => {
   await page.goto(lessonPath);
 
-  await page.getByRole("link", { name: "Download all resources" }).click();
+  const downloadAllButton = page
+    .locator('[data-testid="download-all-button"]:visible')
+    .first();
+  await expect(downloadAllButton).toBeVisible();
+  await downloadAllButton.click();
 
   // Confirm we are on the downloads page/step.
   await expect(page).toHaveURL(/\/downloads/);

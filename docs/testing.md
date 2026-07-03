@@ -35,10 +35,6 @@ Tests live next to the code they are testing wherever possible. Next does not al
 
 Logic tests and snapshot tests should be in different files because their "failure" state has a different meaning. Snapshot tests should live next to the component they are testing, and have a name following the pattern `<component_name>.snapshot.test.tsx`.
 
-### Location
-
-The current tests live [here](../e2e_tests/browser/engineering/). The naming is intended to leave room for creating some product-facing tests using feature files, this is subject to change.
-
 ## Playwright E2E
 
 We use [Playwright](https://playwright.dev/) for browser-based end-to-end tests.
