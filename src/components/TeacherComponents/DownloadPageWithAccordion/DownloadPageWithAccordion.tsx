@@ -34,6 +34,10 @@ import NoResourcesToDownload from "@/components/TeacherComponents/NoResourcesToD
 import TermsAgreementForm from "@/components/TeacherComponents/TermsAgreementForm";
 import { getFormErrorMessages } from "@/components/TeacherComponents/helpers/downloadAndShareHelpers/getDownloadFormErrorMessage";
 import { SHARE_FORM_ERROR_IDS } from "@/components/TeacherComponents/helpers/downloadAndShareHelpers/shareDownloadFormErrorIds";
+import {
+  getValidationSummaryAnnouncement,
+  VALIDATION_SUMMARY_PREFIX,
+} from "@/components/TeacherComponents/helpers/downloadAndShareHelpers/validationSummaryText";
 import { LessonDownloadsPageData } from "@/node-lib/curriculum-api-2023/queries/lessonDownloads/lessonDownloads.schema";
 import { DownloadTypeLabel } from "@/components/CurriculumComponents/CurriculumDownloadView/helper";
 import ScreenReaderOnly from "@/components/SharedComponents/ScreenReaderOnly";
@@ -189,7 +193,9 @@ export const DownloadPageWithAccordionContent = (
   const hasFormErrors = Object.keys(errors).length > 0;
   const validationErrorMessages = getFormErrorMessages(errors);
   const hasValidationSummary = validationErrorMessages.length > 0;
-  const validationSummaryAnnouncement = `To complete, correct the following: ${validationErrorMessages.join(". ")}`;
+  const validationSummaryAnnouncement = getValidationSummaryAnnouncement(
+    validationErrorMessages,
+  );
   const showFormErrors = hasFormErrors && !downloadsRestricted;
   const showForm = showTermsAgreement && !downloadsRestricted;
   const hideCallToAction = downloadsRestricted;
@@ -297,7 +303,7 @@ export const DownloadPageWithAccordionContent = (
                 />
                 <OakFlex $flexDirection={"column"}>
                   <OakP $ml="spacing-4" $color={"text-error"}>
-                    To complete, correct the following:
+                    {VALIDATION_SUMMARY_PREFIX}
                   </OakP>
                   <OakUL $mr="spacing-24">
                     {validationErrorMessages.map((err) => {
