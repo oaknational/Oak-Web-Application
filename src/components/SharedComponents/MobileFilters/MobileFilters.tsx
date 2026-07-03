@@ -96,7 +96,7 @@ const MobileFilters: FC<MobileFiltersProps> = (props) => {
         isOpen={isOpen}
         onClose={close}
         closeOnBackgroundClick
-        aria-label={labelOpened}
+        aria-label={label}
       >
         <OakFlex
           $flexDirection={"column"}
