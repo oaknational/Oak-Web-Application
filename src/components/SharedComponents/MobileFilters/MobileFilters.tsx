@@ -1,4 +1,4 @@
-import { FC, useState, useEffect, useId, useCallback, ReactNode } from "react";
+import { FC, useState, useEffect, useCallback, ReactNode } from "react";
 import {
   OakBox,
   OakFlex,
@@ -20,7 +20,6 @@ export type MobileFiltersProps = {
   iconClosed?: OakIconName;
   label: string;
   labelOpened?: string;
-  providedId?: string;
   applyForTablet?: boolean;
 } & OakFlexProps;
 const MobileFilters: FC<MobileFiltersProps> = (props) => {
@@ -36,17 +35,9 @@ const MobileFilters: FC<MobileFiltersProps> = (props) => {
     iconClosed = "chevron-down",
     label,
     labelOpened = label,
-    providedId,
     applyForTablet,
     ...flexProps
   } = props;
-
-  const menuId = useId();
-
-  // Allow the ID to passed in from that parent component
-  // for labelling of nested child components.
-  const definiteId = useId();
-  const triggerId = providedId ?? definiteId;
 
   const close = useCallback(() => {
     setIsOpen(false);
@@ -91,13 +82,11 @@ const MobileFilters: FC<MobileFiltersProps> = (props) => {
             </OakBox>
           )}
         <OakTertiaryButton
-          id={triggerId}
           $ml="auto"
           iconName={isOpen ? iconOpened : iconClosed}
           isTrailingIcon
           onClick={() => setIsOpen((isOpen) => !isOpen)}
           aria-expanded={isOpen}
-          aria-controls={menuId}
           $pointerEvents={"all"}
         >
           {isOpen ? labelOpened : label}
@@ -107,10 +96,9 @@ const MobileFilters: FC<MobileFiltersProps> = (props) => {
         isOpen={isOpen}
         onClose={close}
         closeOnBackgroundClick
-        aria-labelledby={triggerId}
+        aria-label={labelOpened}
       >
         <OakFlex
-          id={menuId}
           $flexDirection={"column"}
           $width={"100%"}
           $height={"100%"}

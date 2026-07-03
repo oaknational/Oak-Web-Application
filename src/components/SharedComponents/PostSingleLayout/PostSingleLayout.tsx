@@ -1,4 +1,4 @@
-import { FC, ReactNode, useId } from "react";
+import { FC, ReactNode } from "react";
 import {
   OakGrid,
   OakGridArea,
@@ -8,8 +8,10 @@ import {
 } from "@oaknational/oak-components";
 
 import PostCategoryList from "@/components/SharedComponents/PostCategoryList";
-import { PostCategoryPage } from "@/components/SharedComponents/PostCategoryList/PostCategoryList";
-import usePostCategoryList from "@/components/SharedComponents/PostCategoryList/usePostCategoryList";
+import {
+  CATEGORY_NAV_LABEL,
+  PostCategoryPage,
+} from "@/components/SharedComponents/PostCategoryList/PostCategoryList";
 import BlogHeader from "@/components/SharedComponents/PostHeader/PostHeader";
 import { WebinarSinglePageProps } from "@/pages/webinars/[webinarSlug]";
 import { BlogSinglePageProps } from "@/pages/blog/[blogSlug]";
@@ -27,20 +29,16 @@ type PostSingleLayoutProps = {
 const PostSingleLayout: FC<PostSingleLayoutProps> = (props) => {
   const { content, children, breadcrumbs } = props;
   const { categories } = content;
-  const triggerId = useId();
   const post = "blog" in content ? content.blog : content.webinar;
   const page: PostCategoryPage =
     "blog" in content ? "blog-index" : "webinar-index";
-
-  const postCategoriesListProps = usePostCategoryList();
 
   return (
     <OakMaxWidth>
       <OakGrid $ph={["spacing-12", "spacing-0"]}>
         <OakGridArea $colSpan={[12, 0]} $mt={"spacing-24"}>
-          <MobileFilters page={page} withBackButton label={"Categories"}>
+          <MobileFilters page={page} withBackButton label={CATEGORY_NAV_LABEL}>
             <PostCategoryList
-              labelledBy={triggerId}
               $pv={"spacing-24"}
               $ph={"spacing-16"}
               categories={categories}
@@ -72,15 +70,10 @@ const PostSingleLayout: FC<PostSingleLayoutProps> = (props) => {
           $top={[null, "spacing-72"]}
           $position={[null, "sticky"]}
         >
-          <OakHeading
-            tag="h3"
-            $font="body-3"
-            id={postCategoriesListProps.labelId}
-          >
-            Categories
+          <OakHeading tag="h3" $font="body-3">
+            {CATEGORY_NAV_LABEL}
           </OakHeading>
           <PostCategoryList
-            labelledBy={postCategoriesListProps.labelId}
             $mt={"spacing-16"}
             categories={categories}
             page={page}
