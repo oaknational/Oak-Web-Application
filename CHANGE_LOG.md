@@ -1,3 +1,17 @@
+# [1.1113.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1112.1...v1.1113.0) (2026-07-03)
+
+
+### Bug Fixes
+
+* add role to focus target ([9d5a19a](https://github.com/oaknational/Oak-Web-Application/commit/9d5a19a0e690aaf974c64445addc1ef4e9f12bb7))
+* hacky css fix to get focus to show ([9d1322d](https://github.com/oaknational/Oak-Web-Application/commit/9d1322dcfc61d09d389cc6ab31fe771d12b874e6))
+
+
+### Features
+
+* add focus indicator and open in google slides button to lesson slides ([73054cb](https://github.com/oaknational/Oak-Web-Application/commit/73054cb77fa5bd35338a1e33b89534b1200ca2d9))
+* try add group role ([ae5f8c5](https://github.com/oaknational/Oak-Web-Application/commit/ae5f8c5d2a712f732c4577462d91eb8793410793))
+
 ## [1.1112.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.1112.0...v1.1112.1) (2026-07-02)
 
 
