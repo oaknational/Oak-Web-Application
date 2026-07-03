@@ -27,7 +27,7 @@ describe("app error", () => {
       name: "An error occurred",
     });
     expect(errorMessage).toBeInTheDocument();
-    expect(errorReporter).toHaveBeenCalledWith("app::error-boundary");
+    expect(errorReporter).toHaveBeenCalledWith("app::root-layout");
     expect(reportErrorMock).toHaveBeenCalledWith(error);
   });
 });
