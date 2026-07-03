@@ -1,3 +1,10 @@
+## [1.1112.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.1112.0...v1.1112.1) (2026-07-02)
+
+
+### Bug Fixes
+
+* add !important to focus styles for logo link ([6588de4](https://github.com/oaknational/Oak-Web-Application/commit/6588de4fb57849e952dc8b002c7cb2bfa4d27842))
+
 # [1.1112.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1111.0...v1.1112.0) (2026-07-02)
 
 
