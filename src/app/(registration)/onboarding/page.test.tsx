@@ -1,6 +1,6 @@
 import { screen } from "@testing-library/dom";
 
-import OnboardingPage from "@/pages/onboarding";
+import OnboardingPage from "@/app/(registration)/onboarding/page";
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 import { mockNotOnboardedUser } from "@/__tests__/__helpers__/mockUser";
 import { setUseUserReturn } from "@/__tests__/__helpers__/mockClerk";
