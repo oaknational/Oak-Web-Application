@@ -27,7 +27,7 @@ describe("LayoutPreviewControls", () => {
     expect(link).toHaveAccessibleName("Exit preview");
     expect(link).toHaveAttribute(
       "href",
-      "/api/exit-preview/blog/some-blog-post",
+      "/api/preview/blog/some-blog-post?disable=true",
     );
   });
 });

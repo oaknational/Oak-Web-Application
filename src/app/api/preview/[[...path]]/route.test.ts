@@ -8,10 +8,12 @@ jest.mock("@/common-lib/error-reporter", () => ({
 }));
 
 const mockEnableDraftMode = jest.fn();
+const mockDisableDraftMode = jest.fn();
 jest.mock("next/headers", () => ({
-  draftMode: jest
-    .fn()
-    .mockResolvedValue({ enable: () => mockEnableDraftMode() }),
+  draftMode: jest.fn().mockResolvedValue({
+    enable: () => mockEnableDraftMode(),
+    disable: () => mockDisableDraftMode(),
+  }),
 }));
 
 const mockRedirect = jest.fn();
@@ -65,5 +67,19 @@ describe("/api/preview/[[...path]]", () => {
 
     expect(res.status).toBe(500);
     expect(mockRedirect).not.toHaveBeenCalled();
+  });
+
+  it("should disable draft mode when the disable query param is passed", async () => {
+    mockRequest = {
+      ...mockRequest,
+      nextUrl: {
+        ...mockRequest.nextUrl,
+        searchParams: new URLSearchParams({ disable: "true" }),
+      },
+    } as unknown as NextRequest;
+
+    await GET(mockRequest);
+    expect(mockDisableDraftMode).toHaveBeenCalled();
+    expect(mockRedirect).toHaveBeenCalledWith(["/blog/slug"]);
   });
 });

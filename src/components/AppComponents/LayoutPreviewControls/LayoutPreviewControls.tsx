@@ -30,7 +30,6 @@ const LayoutPreviewControls: FC = () => {
     currentUrl.pathname = `/api/preview${currentUrl.pathname}`;
     previewURL = currentUrl.toString();
   }
-
   return (
     <OakFlex
       $position="fixed"
@@ -45,7 +44,7 @@ const LayoutPreviewControls: FC = () => {
       <ButtonAsLink
         page={null}
         label="Exit preview"
-        href={`/api/exit-preview${router.asPath}`}
+        href={`/api/preview${router.asPath}?disable=true`}
         variant="minimal"
         $mr={24}
       />

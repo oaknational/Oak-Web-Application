@@ -11,10 +11,11 @@ const reportError = errorReporter("/api/preview/[[...preview]]");
 export async function GET(req: NextRequest) {
   const searchParams = req.nextUrl.searchParams;
   const secret = searchParams.get("secret");
+  const disableDraftMode = searchParams.get("disable");
   const userAgent = req.headers.get("user-agent");
   const isDetectify = userAgent?.toLocaleLowerCase().includes("detectify");
 
-  if (secret !== getServerConfig("sanityPreviewSecret")) {
+  if (secret !== getServerConfig("sanityPreviewSecret") && !disableDraftMode) {
     const error = new OakError({
       code: "preview/invalid-token",
       meta: {
@@ -33,6 +34,12 @@ export async function GET(req: NextRequest) {
   // Strip `/api/preview/` from the pathname
   const redirectLocation = "/" + pathname.split("/").slice(3).join("/");
   const draft = await draftMode();
-  draft.enable();
+
+  if (disableDraftMode) {
+    draft.disable();
+  } else {
+    draft.enable();
+  }
+
   redirect(redirectLocation);
 }
