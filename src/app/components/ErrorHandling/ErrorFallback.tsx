@@ -3,6 +3,7 @@
 import {
   OakFlex,
   OakHeading,
+  OakMaxWidth,
   OakP,
   OakTertiaryButton,
 } from "@oaknational/oak-components";
@@ -27,46 +28,51 @@ export default function ErrorFallback({
   }, [error, reportError]);
 
   return (
-    <OakFlex
-      $mv={"spacing-80"}
-      $flexDirection={"column"}
-      $width={["100%", "50%"]}
-      $ph={"spacing-16"}
-    >
+    <OakMaxWidth $alignItems={"flex-end"}>
       <OakFlex
-        data-testid="errorStatus"
-        $justifyContent={["flex-end", "flex-start"]}
+        $mv={"spacing-80"}
+        $flexDirection={"column"}
+        $width={["100%", "50%"]}
+        $ph={"spacing-16"}
       >
-        <OakHeading $font={"heading-5"} $mb="spacing-12" tag="h1">
-          An error occurred
-        </OakHeading>
-      </OakFlex>
-
-      <OakHeading
-        $mb="spacing-48"
-        $font={["heading-5", "heading-4"]}
-        tag={"h2"}
-      >
-        Whoops! It looks like you have fallen too far from the tree.
-      </OakHeading>
-
-      <OakP $mb="spacing-24">Let's get you back to browsing</OakP>
-      <OakFlex $flexDirection="column" $gap="spacing-24">
-        <OakTertiaryButton
-          onClick={() =>
-            startTransition(() => {
-              reset();
-              router.refresh();
-            })
-          }
-          iconName="retake"
+        <OakFlex
+          data-testid="errorStatus"
+          $justifyContent={["flex-end", "flex-start"]}
         >
-          Retry
-        </OakTertiaryButton>
-        <OakTertiaryButton onClick={() => router.back()} iconName="arrow-left">
-          Go back
-        </OakTertiaryButton>
+          <OakHeading $font={"heading-5"} $mb="spacing-12" tag="h1">
+            An error occurred
+          </OakHeading>
+        </OakFlex>
+
+        <OakHeading
+          $mb="spacing-48"
+          $font={["heading-5", "heading-4"]}
+          tag={"h2"}
+        >
+          Whoops! It looks like you have fallen too far from the tree.
+        </OakHeading>
+
+        <OakP $mb="spacing-24">Let's get you back to browsing</OakP>
+        <OakFlex $flexDirection="column" $gap="spacing-24">
+          <OakTertiaryButton
+            onClick={() =>
+              startTransition(() => {
+                reset();
+                router.refresh();
+              })
+            }
+            iconName="retake"
+          >
+            Retry
+          </OakTertiaryButton>
+          <OakTertiaryButton
+            onClick={() => router.back()}
+            iconName="arrow-left"
+          >
+            Go back
+          </OakTertiaryButton>
+        </OakFlex>
       </OakFlex>
-    </OakFlex>
+    </OakMaxWidth>
   );
 }

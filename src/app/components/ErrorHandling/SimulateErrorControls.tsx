@@ -1,15 +1,39 @@
 "use client";
 
-import { OakBox, OakSecondaryButton } from "@oaknational/oak-components";
+import {
+  OakAllSpacingToken,
+  OakBox,
+  OakSecondaryButton,
+} from "@oaknational/oak-components";
 import { useState } from "react";
+
+export type ErrorBoundaryLevel = "root" | "core";
+const getBottomSpacing = (level: ErrorBoundaryLevel): OakAllSpacingToken => {
+  if (level === "core") {
+    return "spacing-80";
+  }
+
+  return "spacing-24";
+};
 
 /**
  * A component to aid with debugging error pages
  * Adds a button to the bottom left of the page which toggles the page into an error state
  */
 
-export const SimulateErrorControls = () => {
+export const SimulateErrorControls = ({
+  errorBoundaryLevel,
+}: {
+  errorBoundaryLevel: ErrorBoundaryLevel;
+}) => {
   const [isError, setIsError] = useState(false);
+
+  const simulateErrorControlsEnabled =
+    process.env.NEXT_PUBLIC_SIMULATE_ERROR === "true";
+
+  if (!simulateErrorControlsEnabled) {
+    return null;
+  }
 
   if (isError) {
     return <MockError />;
@@ -18,18 +42,17 @@ export const SimulateErrorControls = () => {
   return (
     <OakBox
       $position="fixed"
-      $bottom="spacing-24"
       $left="spacing-48"
       $zIndex="in-front"
+      $bottom={getBottomSpacing(errorBoundaryLevel)}
     >
       <OakSecondaryButton
         onClick={() => {
-          console.log("diego setting error");
           setIsError(true);
         }}
         iconName="warning"
       >
-        Simulate error
+        Simulate {errorBoundaryLevel} error
       </OakSecondaryButton>
     </OakBox>
   );

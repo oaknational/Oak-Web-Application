@@ -17,13 +17,11 @@ export default async function CoreLayout({
 }>) {
   try {
     const topNavProps = await curriculumApi2023.topNav({ withCache: true });
-    const simulateErrorControlsEnabled =
-      process.env.ENABLE_SIMULATE_ERROR === "true";
 
     return (
       <>
         <TopNav {...topNavProps} />
-        {simulateErrorControlsEnabled && <SimulateErrorControls />}
+        <SimulateErrorControls errorBoundaryLevel="root" />
         <main id="main">{children}</main>
         <LayoutSiteFooter />
       </>
@@ -34,7 +32,6 @@ export default async function CoreLayout({
         return notFound();
       }
     }
-    // TD: [integrated journey] error reporting
     throw error;
   }
 }
