@@ -1,17 +1,20 @@
+"use client";
+
 import { FC } from "react";
-import { useRouter } from "next/router";
 import {
   OakSpan,
   OakFlex,
   OakTertiaryButton,
 } from "@oaknational/oak-components";
+import { usePathname } from "next/navigation";
 
 /**
  * A small toast-like banner in the bottom left corner to inform
  * users they're viewing the site in preview mode
  */
 const LayoutPreviewControls: FC = () => {
-  const router = useRouter();
+  const pathname = usePathname();
+  const exitUrl = `/api/preview${pathname}?disable=true`;
 
   return (
     <OakFlex
@@ -24,10 +27,7 @@ const LayoutPreviewControls: FC = () => {
       $background="bg-primary"
     >
       <OakSpan $mr="spacing-24">Preview mode enabled</OakSpan>
-      <OakTertiaryButton
-        element="a"
-        href={`/api/preview${router.asPath}?disable=true`}
-      >
+      <OakTertiaryButton element="a" href={exitUrl}>
         Exit preview
       </OakTertiaryButton>
     </OakFlex>
