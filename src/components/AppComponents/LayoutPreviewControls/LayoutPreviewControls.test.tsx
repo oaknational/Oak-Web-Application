@@ -1,22 +1,14 @@
+import { usePathname } from "next/navigation";
+
 import LayoutPreviewControls from "./LayoutPreviewControls";
 
 import { ToastProvider } from "@/context/Toast";
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 
-const useRouter = jest.spyOn(require("next/router"), "useRouter");
+(usePathname as jest.Mock).mockReturnValue("/blog/some-blog-post");
 
 describe("LayoutPreviewControls", () => {
-  beforeEach(() => {
-    jest.resetAllMocks();
-    jest.clearAllMocks();
-  });
-
   it("renders a link to exit preview mode including the current URL", () => {
-    useRouter.mockReturnValue({
-      asPath: "/blog/some-blog-post",
-      query: {},
-    });
-
     const { getByRole } = renderWithTheme(
       <ToastProvider>
         <LayoutPreviewControls />
