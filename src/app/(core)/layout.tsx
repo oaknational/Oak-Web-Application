@@ -4,6 +4,7 @@ import LayoutSiteFooter from "@/components/AppComponents/LayoutSiteFooter";
 import TopNav from "@/components/AppComponents/TopNav/TopNav";
 import OakError from "@/errors/OakError";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
+import { SimulateErrorControls } from "@/app/components/ErrorHandling/SimulateErrorControls";
 
 // TD: [integrated journey] get revalidate from env somehow
 // revalidate in layout controls revalidation of child pages in route
@@ -16,10 +17,13 @@ export default async function CoreLayout({
 }>) {
   try {
     const topNavProps = await curriculumApi2023.topNav({ withCache: true });
+    const simulateErrorControlsEnabled =
+      process.env.ENABLE_SIMULATE_ERROR === "true";
 
     return (
       <>
         <TopNav {...topNavProps} />
+        {simulateErrorControlsEnabled && <SimulateErrorControls />}
         <main id="main">{children}</main>
         <LayoutSiteFooter />
       </>
