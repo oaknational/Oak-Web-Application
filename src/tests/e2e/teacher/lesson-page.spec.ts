@@ -1,13 +1,23 @@
-import { test, expect } from "@playwright/test";
+import { test, expect, type Page } from "@playwright/test";
 
 // single lesson initially. This will be expanded in the future to include a lesson from the database
 const lessonPath =
   "/teachers/programmes/science-secondary-ks3/units/cells/lessons/the-common-processes-of-all-living-organisms";
 
+const openLessonPage = async (page: Page) => {
+  await page.goto(lessonPath, {
+    waitUntil: "domcontentloaded",
+    timeout: 60_000,
+  });
+
+  // Wait for app-level loading skeletons to clear before looking up interactive UI.
+  await page.locator("#__next:not(:has([data-testid='loading']))").waitFor();
+};
+
 test("teacher can click download all resources on lesson page", async ({
   page,
 }) => {
-  await page.goto(lessonPath);
+  await openLessonPage(page);
 
   const downloadAllButton = page
     .locator('[data-testid="download-all-button"]:visible')
@@ -21,7 +31,7 @@ test("teacher can click download all resources on lesson page", async ({
 test("teacher can complete download flow and download lesson assets", async ({
   page,
 }) => {
-  await page.goto(lessonPath);
+  await openLessonPage(page);
 
   const downloadAllButton = page
     .locator('[data-testid="download-all-button"]:visible')
