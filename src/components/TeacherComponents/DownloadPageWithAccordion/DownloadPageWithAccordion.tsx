@@ -1,4 +1,4 @@
-import { FC, useEffect, useState } from "react";
+import { FC } from "react";
 import {
   OakBox,
   OakFlex,
@@ -34,13 +34,9 @@ import NoResourcesToDownload from "@/components/TeacherComponents/NoResourcesToD
 import TermsAgreementForm from "@/components/TeacherComponents/TermsAgreementForm";
 import { getFormErrorMessages } from "@/components/TeacherComponents/helpers/downloadAndShareHelpers/getDownloadFormErrorMessage";
 import { SHARE_FORM_ERROR_IDS } from "@/components/TeacherComponents/helpers/downloadAndShareHelpers/shareDownloadFormErrorIds";
-import {
-  getValidationSummaryAnnouncement,
-  VALIDATION_SUMMARY_PREFIX,
-} from "@/components/TeacherComponents/helpers/downloadAndShareHelpers/validationSummaryText";
+import { VALIDATION_SUMMARY_PREFIX } from "@/components/TeacherComponents/helpers/downloadAndShareHelpers/validationSummaryText";
 import { LessonDownloadsPageData } from "@/node-lib/curriculum-api-2023/queries/lessonDownloads/lessonDownloads.schema";
 import { DownloadTypeLabel } from "@/components/CurriculumComponents/CurriculumDownloadView/helper";
-import ScreenReaderOnly from "@/components/SharedComponents/ScreenReaderOnly";
 
 type DownloadPageWithAccordionProps = ResourcePageDetailsCompletedProps &
   ResourcePageSchoolDetailsProps & {
@@ -193,34 +189,12 @@ export const DownloadPageWithAccordionContent = (
   const hasFormErrors = Object.keys(errors).length > 0;
   const validationErrorMessages = getFormErrorMessages(errors);
   const hasValidationSummary = validationErrorMessages.length > 0;
-  const validationSummaryAnnouncement = getValidationSummaryAnnouncement(
-    validationErrorMessages,
-  );
   const showFormErrors = hasFormErrors && !downloadsRestricted;
   const showForm = showTermsAgreement && !downloadsRestricted;
   const hideCallToAction = downloadsRestricted;
-  const [screenReaderMessage, setScreenReaderMessage] = useState("");
-
-  useEffect(() => {
-    if (showFormErrors && hasValidationSummary) {
-      setScreenReaderMessage(validationSummaryAnnouncement);
-      return;
-    }
-
-    setScreenReaderMessage("");
-  }, [showFormErrors, hasValidationSummary, validationSummaryAnnouncement]);
 
   return (
     <OakFlex $flexDirection={"column"} $gap={"spacing-48"}>
-      <ScreenReaderOnly
-        key={validationSummaryKey}
-        role="status"
-        aria-live="polite"
-        aria-atomic="true"
-        data-testid="download-validation-summary-sr"
-      >
-        {screenReaderMessage}
-      </ScreenReaderOnly>
       <FieldError
         id={SHARE_FORM_ERROR_IDS.resources}
         withoutMarginBottom
@@ -289,12 +263,16 @@ export const DownloadPageWithAccordionContent = (
               )}
             </>
           )}
-          {showFormErrors && hasValidationSummary && (
-            <OakFlex
-              data-testid="download-validation-summary"
-              $flexDirection={"column"}
-            >
-              <OakFlex aria-hidden={true} $flexDirection={"row"}>
+          <OakFlex
+            key={validationSummaryKey}
+            role="status"
+            aria-live="polite"
+            aria-atomic="true"
+            data-testid="download-validation-summary"
+            $flexDirection={"column"}
+          >
+            {showFormErrors && hasValidationSummary && (
+              <OakFlex $flexDirection={"row"}>
                 <OakIcon
                   iconName="content-guidance"
                   $colorFilter={"icon-error"}
@@ -316,8 +294,8 @@ export const DownloadPageWithAccordionContent = (
                   </OakUL>
                 </OakFlex>
               </OakFlex>
-            </OakFlex>
-          )}
+            )}
+          </OakFlex>
           {hideCallToAction ? (
             <LoginRequiredButton
               loginRequired={loginRequired ?? false}

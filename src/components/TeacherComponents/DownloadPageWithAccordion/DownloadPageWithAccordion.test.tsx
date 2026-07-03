@@ -1,4 +1,4 @@
-import { screen, waitFor } from "@testing-library/react";
+import { screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { useForm } from "react-hook-form";
 
@@ -129,17 +129,20 @@ describe("Download Page With Accordion", () => {
     );
 
     const validationSummary = screen.getByTestId("download-validation-summary");
-    const srValidationSummary = screen.getByTestId(
-      "download-validation-summary-sr",
-    );
 
     expect(validationSummary).toBeInTheDocument();
-    expect(srValidationSummary).toHaveAttribute("aria-live", "polite");
-    await waitFor(() => {
-      expect(srValidationSummary).toHaveTextContent(
-        "To complete, correct the following: select at least one resource to continue. accept terms and conditions to continue",
-      );
-    });
+    expect(validationSummary).toHaveAttribute("role", "status");
+    expect(validationSummary).toHaveAttribute("aria-live", "polite");
+    expect(validationSummary).toHaveAttribute("aria-atomic", "true");
+    expect(validationSummary).toHaveTextContent(
+      "To complete, correct the following:",
+    );
+    expect(validationSummary).toHaveTextContent(
+      "select at least one resource to continue",
+    );
+    expect(validationSummary).toHaveTextContent(
+      "accept terms and conditions to continue",
+    );
   });
 
   it("remounts screen-reader validation summary when validationSummaryKey changes", () => {
@@ -156,8 +159,8 @@ describe("Download Page With Accordion", () => {
       />,
     );
 
-    const firstSrValidationSummary = screen.getByTestId(
-      "download-validation-summary-sr",
+    const firstValidationSummary = screen.getByTestId(
+      "download-validation-summary",
     );
 
     rerender(
@@ -168,8 +171,8 @@ describe("Download Page With Accordion", () => {
       />,
     );
 
-    expect(screen.getByTestId("download-validation-summary-sr")).not.toBe(
-      firstSrValidationSummary,
+    expect(screen.getByTestId("download-validation-summary")).not.toBe(
+      firstValidationSummary,
     );
   });
 
