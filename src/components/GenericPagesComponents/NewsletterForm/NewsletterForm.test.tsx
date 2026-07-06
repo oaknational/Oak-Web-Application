@@ -86,7 +86,9 @@ describe("NewsletterForm", () => {
     await waitForNextTick();
 
     const description = computeAccessibleDescription(input);
-    expect(description).toBe("Error Name must contain fewer than 60 charaters");
+    expect(description).toBe(
+      "Error Name must contain fewer than 60 characters",
+    );
   });
   test("should display error hint on submit if no email is entered", async () => {
     const { getByPlaceholderText, getByRole } = render(

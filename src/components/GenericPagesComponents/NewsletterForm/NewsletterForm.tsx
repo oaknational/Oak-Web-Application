@@ -36,7 +36,7 @@ const schema = z.object({
     .min(1, {
       error: "Enter a name",
     })
-    .max(60, "Name must contain fewer than 60 charaters"),
+    .max(60, "Name must contain fewer than 60 characters"),
   email: emailSchema,
   userRole: z.union([z.enum(USER_ROLES), z.literal("")]),
 });
