@@ -1,4 +1,4 @@
-import { fireEvent } from "@testing-library/react";
+import { act, fireEvent } from "@testing-library/react";
 import "@testing-library/jest-dom";
 
 import "@/__tests__/__helpers__/ResizeObserverMock";
@@ -106,9 +106,11 @@ beforeEach(() => {
 });
 
 describe("pages/pupils/programmes/[programmeSlug]/units/[unitSlug]/lessons/[lessonSlug]/video", () => {
-  it("completes the video and navigates on proceed", () => {
+  it("completes the video and navigates on proceed", async () => {
     const { getByTestId } = renderPage();
-    fireEvent.click(getByTestId("proceed-to-next-section"));
+    await act(async () => {
+      fireEvent.click(getByTestId("proceed-to-next-section"));
+    });
     expect(track.trackVideoCompleted).toHaveBeenCalledTimes(1);
     expect(
       usePupilLessonProgress.getState().sectionResults.video?.isComplete,
@@ -130,9 +132,11 @@ describe("pages/pupils/programmes/[programmeSlug]/units/[unitSlug]/lessons/[less
     expect(video?.duration).toBe(60);
   });
 
-  it("persists a complete video result when proceeding without playing the video", () => {
+  it("persists a complete video result when proceeding without playing the video", async () => {
     const { getByTestId } = renderPage();
-    fireEvent.click(getByTestId("proceed-to-next-section"));
+    await act(async () => {
+      fireEvent.click(getByTestId("proceed-to-next-section"));
+    });
     const video = usePupilLessonProgress.getState().sectionResults.video;
     expect(video?.isComplete).toBe(true);
     expect(video?.played).toBe(false);

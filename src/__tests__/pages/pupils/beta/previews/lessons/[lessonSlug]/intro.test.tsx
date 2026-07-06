@@ -1,5 +1,5 @@
 import "@testing-library/jest-dom";
-import { fireEvent } from "@testing-library/react";
+import { act, fireEvent } from "@testing-library/react";
 
 import PupilLessonIntroPage, {
   getStaticProps,
@@ -122,9 +122,11 @@ describe("pages/pupils/beta/previews/lessons/[lessonSlug]/intro", () => {
     expect(useWorksheetInfoState).toHaveBeenCalled();
   });
 
-  it("completes the section and navigates on proceed", () => {
+  it("completes the section and navigates on proceed", async () => {
     const { getByTestId } = renderPage();
-    fireEvent.click(getByTestId("proceed-to-next-section"));
+    await act(async () => {
+      fireEvent.click(getByTestId("proceed-to-next-section"));
+    });
     expect(track.trackIntroCompleted).toHaveBeenCalledTimes(1);
     expect(
       usePupilLessonProgress.getState().sectionResults.intro?.isComplete,
