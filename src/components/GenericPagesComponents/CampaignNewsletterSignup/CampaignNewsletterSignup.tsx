@@ -188,6 +188,7 @@ const CampaignNewsletterSignup: FC<CampaignNewsletterSignupProps> = ({
           schools: [],
           name: "",
           schoolOrg: "",
+          eduRole: "",
         });
       } catch (error) {
         if (error instanceof OakError) {
