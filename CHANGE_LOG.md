@@ -1,3 +1,18 @@
+# [1.1114.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1113.0...v1.1114.0) (2026-07-06)
+
+
+### Bug Fixes
+
+* fix grammar ([0873dc3](https://github.com/oaknational/Oak-Web-Application/commit/0873dc388c30b9925701f612b04e6312f8f3aba2))
+* fix grammar ([f841194](https://github.com/oaknational/Oak-Web-Application/commit/f841194af32ae7882e8abfae3dfe6825d8b817b7))
+
+
+### Features
+
+* add aria live polite to oak copy link button ([1b73336](https://github.com/oaknational/Oak-Web-Application/commit/1b73336f51435d4b6df5e8e77ea7aa3914821a69))
+* add use effect for screen reader message to apply to resource selection accordion ([0060383](https://github.com/oaknational/Oak-Web-Application/commit/00603831d9879a42b2082a70ba65087547a3065b))
+* show screen reader specific message using aria live polite on download form error ([d8ea878](https://github.com/oaknational/Oak-Web-Application/commit/d8ea87894bbb41bbe251984e3cea52a77f07e080))
+
 # [1.1113.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1112.1...v1.1113.0) (2026-07-03)
 
 

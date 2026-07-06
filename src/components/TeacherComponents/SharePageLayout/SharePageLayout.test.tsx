@@ -98,7 +98,7 @@ describe("Downloads/Share Layout", () => {
     expect(validationSummary).toHaveAttribute("role", "alert");
     expect(validationSummary).toHaveAttribute("aria-atomic", "true");
     expect(validationSummarySr).toHaveTextContent(
-      "To complete correct the following: select at least one resource to continue. accept terms and conditions to continue",
+      "To complete, correct the following: select at least one resource to continue. accept terms and conditions to continue",
     );
   });
 
