@@ -56,6 +56,14 @@ const OakFocusIndicatorAlt = styled(OakFocusIndicator)<{
   box-shadow: ${(props) =>
     props.assertFocus ? `rgb(87, 87, 87) 0px 0px 0px 0.125rem` : "none"};
   z-index: ${(props) => (props.assertFocus ? "2" : "")};
+
+  /*
+   * Don't show a ring around the view button, because the user can't interact with it
+   */
+  &:has(> * > * button:focus-visible) {
+    box-shadow: ${(props) =>
+      props.assertFocus ? `rgb(87, 87, 87) 0px 0px 0px 0.125rem` : "none"};
+  }
 `;
 
 const isExamboardSlug = (
@@ -271,6 +279,7 @@ const ButtonContainer = styled.div`
 const PickerButton = styled.button`
   background: none;
   width: 100%;
+  min-width: 0;
   border: none;
   padding: 0px;
   outline: none;
@@ -1160,12 +1169,12 @@ function PhaseButtonContent({
     if (selectedPhase && !showKS4OptionError) {
       return (
         <OakBox
-          $textOverflow="ellipsis"
           $whiteSpace="nowrap"
-          $overflowX="hidden"
+          $overflow="hidden"
+          $textOverflow="ellipsis"
         >
-          <OakSpan>{selectedPhase.title}</OakSpan>
-          {selectedKS4Option && <OakSpan>, {selectedKS4Option.title}</OakSpan>}
+          {selectedPhase.title}
+          {selectedKS4Option ? `, ${selectedKS4Option.title}` : ""}
         </OakBox>
       );
     }
@@ -1605,23 +1614,45 @@ const SubjectPhasePicker = ({
                   $btlr={["border-radius-square", "border-radius-s"]}
                   $btrr={["border-radius-s", "border-radius-s"]}
                 >
-                  <PickerButton
-                    ref={phasePickerButton}
-                    data-testid="phase-picker-button"
-                    onClick={toggleShowPhases}
-                    title="Phase"
-                    aria-expanded={showPhases}
-                  >
-                    <PhaseButtonContent
-                      showSubjectError={showSubjectError}
-                      showPhaseError={showPhaseError}
-                      showKS4OptionError={showKS4OptionError}
-                      selectedPhase={selectedPhase}
-                      selectedKS4Option={selectedKS4Option}
-                    />
-                  </PickerButton>
+                  <OakFlex $gap={"spacing-4"}>
+                    <PickerButton
+                      ref={phasePickerButton}
+                      data-testid="phase-picker-button"
+                      onClick={toggleShowPhases}
+                      title="Phase"
+                      aria-expanded={showPhases}
+                    >
+                      <PhaseButtonContent
+                        showSubjectError={showSubjectError}
+                        showPhaseError={showPhaseError}
+                        showKS4OptionError={showKS4OptionError}
+                        selectedPhase={selectedPhase}
+                        selectedKS4Option={selectedKS4Option}
+                      />
+                    </PickerButton>
+                    <OakFlex
+                      $pr="spacing-16"
+                      $alignSelf="center"
+                      $alignContent="center"
+                      $maxWidth={["spacing-100", "spacing-160"]}
+                      $width="fit-content"
+                      $height="100%"
+                      $display={["none", "block"]}
+                      $zIndex={3}
+                      ref={subjectPickerButtonDesktopContainer}
+                    >
+                      <OakPrimaryButton
+                        iconName="arrow-right"
+                        isTrailingIcon
+                        onClick={handleViewCurriculum}
+                        data-testid="lot-picker-view-curriculum-button"
+                        isLoading={isNavigating}
+                      >
+                        View
+                      </OakPrimaryButton>
+                    </OakFlex>
+                  </OakFlex>
                 </OakFocusIndicatorAlt>
-
                 {showDesktopPhasePicker && (
                   <DesktopPhasePicker
                     phases={phases}
@@ -1665,29 +1696,6 @@ const SubjectPhasePicker = ({
                     onViewCurriculum={handleViewCurriculum}
                   />
                 )}
-
-                <OakFlex
-                  $position="absolute"
-                  $right="spacing-0"
-                  $pr="spacing-16"
-                  $alignContent="center"
-                  $maxWidth={["spacing-100", "spacing-160"]}
-                  $width="fit-content"
-                  $height="100%"
-                  $display={["none", "block"]}
-                  $zIndex={3}
-                  ref={subjectPickerButtonDesktopContainer}
-                >
-                  <OakPrimaryButton
-                    iconName="arrow-right"
-                    isTrailingIcon
-                    onClick={handleViewCurriculum}
-                    data-testid="lot-picker-view-curriculum-button"
-                    isLoading={isNavigating}
-                  >
-                    View
-                  </OakPrimaryButton>
-                </OakFlex>
               </OakFlex>
             </OakBox>
           </OakFlex>
