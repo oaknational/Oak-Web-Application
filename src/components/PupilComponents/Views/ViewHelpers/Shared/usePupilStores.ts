@@ -92,8 +92,9 @@ export const usePupilStores = (params?: UsePupilStoresParams) => {
   ]);
 
   useEffect(() => {
+    if (!classroom.isReady) return;
     setReadOnly(classroom.isReadOnly);
-  }, [classroom.isReadOnly, setReadOnly]);
+  }, [classroom.isReady, classroom.isReadOnly, setReadOnly]);
 
   useEffect(() => {
     setRefreshReadOnly(classroom.refreshReadOnly);
