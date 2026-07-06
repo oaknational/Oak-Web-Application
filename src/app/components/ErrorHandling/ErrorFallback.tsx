@@ -55,9 +55,7 @@ export default function ErrorFallback({
         </OakHeading>
 
         <OakP $mb="spacing-24">Let's get you back to browsing</OakP>
-        {actionSlot ? (
-          actionSlot
-        ) : (
+        {actionSlot ?? (
           <OakFlex $flexDirection="column" $gap="spacing-24">
             <OakTertiaryButton
               onClick={() =>
