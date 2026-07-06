@@ -19,7 +19,7 @@ let installed = false;
  * https://www.notion.so/oaknationalacademy/Add-static-pupil-section-pages-legacy-experience-33b26cc4e1b1808884f7dc2a7987a674
  */
 export const installPresentationRequestIframeGuard = (): void => {
-  if (installed || typeof globalThis.window === "undefined") return;
+  if (installed || !globalThis.window) return;
   installed = true;
 
   const globalWithPresentation =
