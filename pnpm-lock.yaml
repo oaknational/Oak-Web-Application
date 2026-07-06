@@ -54,7 +54,7 @@ importers:
         specifier: ^1.33.0
         version: 1.33.0(@google-cloud/firestore@7.11.6)(@googleapis/classroom@4.9.0)(@oaknational/oak-components@https://codeload.github.com/orangemug/tmp-oak-components-build/tar.gz/1d8b12060b6ad6ba379327362ed432cd7ddbb683(@tiptap/core@2.14.0(@tiptap/pm@2.14.0))(@tiptap/pm@2.14.0)(next-cloudinary@6.16.0(next@15.5.15(@babel/core@7.28.3)(@opentelemetry/api@1.9.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.75.0))(react@18.3.1))(next@15.5.15(@babel/core@7.28.3)(@opentelemetry/api@1.9.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.75.0))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(styled-components@5.3.11(@babel/core@7.28.3)(react-dom@18.3.1(react@18.3.1))(react-is@18.2.0)(react@18.3.1)))(google-auth-library@9.15.1)(next@15.5.15(@babel/core@7.28.3)(@opentelemetry/api@1.9.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.75.0))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(zod@4.3.6)(zustand@5.0.12(@types/react@18.2.79)(react@18.3.1)(use-sync-external-store@1.4.0(react@18.3.1)))
       '@oaknational/oak-components':
-        specifier: git+https://github.com/orangemug/tmp-oak-components-build#1d8b12060b6ad6ba379327362ed432cd7ddbb683
+        specifier: github:orangemug/tmp-oak-components-build#1d8b12060b6ad6ba379327362ed432cd7ddbb683
         version: https://codeload.github.com/orangemug/tmp-oak-components-build/tar.gz/1d8b12060b6ad6ba379327362ed432cd7ddbb683(@tiptap/core@2.14.0(@tiptap/pm@2.14.0))(@tiptap/pm@2.14.0)(next-cloudinary@6.16.0(next@15.5.15(@babel/core@7.28.3)(@opentelemetry/api@1.9.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.75.0))(react@18.3.1))(next@15.5.15(@babel/core@7.28.3)(@opentelemetry/api@1.9.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.75.0))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(styled-components@5.3.11(@babel/core@7.28.3)(react-dom@18.3.1(react@18.3.1))(react-is@18.2.0)(react@18.3.1))
       '@oaknational/oak-consent-client':
         specifier: 2.4.0
@@ -3132,7 +3132,7 @@ packages:
       zustand: '>=5.0.9'
 
   '@oaknational/oak-components@https://codeload.github.com/orangemug/tmp-oak-components-build/tar.gz/1d8b12060b6ad6ba379327362ed432cd7ddbb683':
-    resolution: {gitHosted: true, integrity: sha512-tkQzKoTm+mPXIjbOe5rmX+utzJGeJJqqJDYa+7VQntZW0OSNcXBfykyO+p4h7QOmXoOq2jJjF2TGFauiq2iriw==, tarball: https://codeload.github.com/orangemug/tmp-oak-components-build/tar.gz/1d8b12060b6ad6ba379327362ed432cd7ddbb683}
+    resolution: {gitHosted: true, tarball: https://codeload.github.com/orangemug/tmp-oak-components-build/tar.gz/1d8b12060b6ad6ba379327362ed432cd7ddbb683}
     version: 2.41.2
     engines: {node: '24', pnpm: '>=11'}
     peerDependencies:
