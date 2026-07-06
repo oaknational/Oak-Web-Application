@@ -3,8 +3,8 @@ import {
   OakBox,
   OakFlex,
   OakFlexProps,
-  OakIconName,
   OakInformativeModal,
+  OakPrimaryButton,
   OakTertiaryButton,
 } from "@oaknational/oak-components";
 
@@ -16,28 +16,14 @@ export type MobileFiltersProps = {
   withBackButton?: boolean;
   page?: PostCategoryPage;
   children: ReactNode;
-  iconOpened?: OakIconName;
-  iconClosed?: OakIconName;
   label: string;
-  labelOpened?: string;
-  applyForTablet?: boolean;
 } & OakFlexProps;
 const MobileFilters: FC<MobileFiltersProps> = (props) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const { open: menuOpen } = useMenuContext();
 
-  const {
-    withBackButton,
-    page,
-    children,
-    iconOpened = "chevron-up",
-    iconClosed = "chevron-down",
-    label,
-    labelOpened = label,
-    applyForTablet,
-    ...flexProps
-  } = props;
+  const { withBackButton, page, children, label, ...flexProps } = props;
 
   const close = useCallback(() => {
     setIsOpen(false);
@@ -53,7 +39,7 @@ const MobileFilters: FC<MobileFiltersProps> = (props) => {
   return (
     <OakFlex
       $mt={props.$mt ?? "spacing-24"}
-      $display={["flex", applyForTablet ? "flex" : "none", "none"]}
+      $display={["flex", "none", "none"]}
       $flexDirection={"column"}
       $width={"100%"}
       $alignItems={"flex-end"}
@@ -83,13 +69,13 @@ const MobileFilters: FC<MobileFiltersProps> = (props) => {
           )}
         <OakTertiaryButton
           $ml="auto"
-          iconName={isOpen ? iconOpened : iconClosed}
+          iconName={"filter"}
           isTrailingIcon
           onClick={() => setIsOpen((isOpen) => !isOpen)}
-          aria-expanded={isOpen}
           $pointerEvents={"all"}
+          aria-haspopup="dialog"
         >
-          {isOpen ? labelOpened : label}
+          {label}
         </OakTertiaryButton>
       </OakFlex>
       <OakInformativeModal
@@ -97,6 +83,20 @@ const MobileFilters: FC<MobileFiltersProps> = (props) => {
         onClose={close}
         closeOnBackgroundClick
         aria-label={label}
+        footerSlot={
+          <OakBox
+            $pa={"spacing-12"}
+            $bt={"border-solid-s"}
+            $borderColor={"border-neutral-lighter"}
+          >
+            <OakPrimaryButton
+              data-testid="mobile-done-thread-modal-button"
+              onClick={() => setIsOpen(false)}
+            >
+              Show results
+            </OakPrimaryButton>
+          </OakBox>
+        }
       >
         <OakFlex
           $flexDirection={"column"}
