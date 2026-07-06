@@ -60,5 +60,4 @@ export const SimulateErrorControls = ({
 
 const MockError = () => {
   throw new Error("Mock error");
-  return <h1>Whoops</h1>;
 };
