@@ -1,23 +1,26 @@
 "use client";
 
-import {
-  OakAllSpacingToken,
-  OakBox,
-  OakSecondaryButton,
-} from "@oaknational/oak-components";
+import { OakBox, OakSecondaryButton } from "@oaknational/oak-components";
 import { useState } from "react";
+import styled from "styled-components";
 
 export type ErrorBoundaryLevel = "global" | "root" | "core";
-const getBottomSpacing = (level: ErrorBoundaryLevel): OakAllSpacingToken => {
+
+const getBottomSpacing = (level: ErrorBoundaryLevel): number => {
   if (level === "core") {
-    return "spacing-120";
+    return 144;
   }
   if (level === "root") {
-    return "spacing-64";
+    return 84;
   }
-
-  return "spacing-12";
+  return 24;
 };
+
+const StyledBox = styled(OakBox)<{ level: ErrorBoundaryLevel }>`
+  position: fixed;
+  left: 48px;
+  bottom: ${(props) => getBottomSpacing(props.level)}px;
+`;
 
 /**
  * A component to aid with debugging error pages
@@ -43,21 +46,11 @@ export const SimulateErrorControls = ({
   }
 
   return (
-    <OakBox
-      $position="fixed"
-      $left="spacing-48"
-      $zIndex="in-front"
-      $bottom={getBottomSpacing(errorBoundaryLevel)}
-    >
-      <OakSecondaryButton
-        onClick={() => {
-          setIsError(true);
-        }}
-        iconName="warning"
-      >
+    <StyledBox $zIndex="in-front" level={errorBoundaryLevel}>
+      <OakSecondaryButton onClick={() => setIsError(true)} iconName="warning">
         Simulate {errorBoundaryLevel} error
       </OakSecondaryButton>
-    </OakBox>
+    </StyledBox>
   );
 };
 
