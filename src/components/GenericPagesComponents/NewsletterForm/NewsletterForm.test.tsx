@@ -52,15 +52,15 @@ describe("NewsletterForm", () => {
       userRole: "Student",
     });
   });
-  test("should display error hint on blur if no name is entered", async () => {
-    const { getByPlaceholderText } = render(
+  test("should display error hint on submit if no name is entered", async () => {
+    const { getByPlaceholderText, getByRole } = render(
       <NewsletterForm descriptionId="id1" id={"1"} onSubmit={onSubmit} />,
     );
 
     const input = getByPlaceholderText("Anna Smith");
+    const submit = getByRole("button", { name: "Sign up to the newsletter" });
     const user = userEvent.setup();
-    await user.click(input);
-    await user.tab();
+    await user.click(submit);
 
     // HACK: wait for next tick
     await waitForNextTick();
@@ -68,18 +68,19 @@ describe("NewsletterForm", () => {
     const description = computeAccessibleDescription(input);
     expect(description).toBe("Error Enter a name");
   });
-  test("should display error hint on blur if name more than 60 chars", async () => {
-    const { getByPlaceholderText } = render(
+  test("should display error hint on submit if name more than 60 chars", async () => {
+    const { getByPlaceholderText, getByRole } = render(
       <NewsletterForm descriptionId="id1" id={"1"} onSubmit={onSubmit} />,
     );
 
     const input = getByPlaceholderText("Anna Smith");
+    const submit = getByRole("button", { name: "Sign up to the newsletter" });
     const user = userEvent.setup();
     await user.click(input);
     await user.keyboard(
       "iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii",
     );
-    await user.tab();
+    await user.click(submit);
 
     // HACK: wait for next tick
     await waitForNextTick();
@@ -87,15 +88,15 @@ describe("NewsletterForm", () => {
     const description = computeAccessibleDescription(input);
     expect(description).toBe("Error Name must contain fewer than 60 charaters");
   });
-  test("should display error hint on blur if no email is entered", async () => {
-    const { getByPlaceholderText } = render(
+  test("should display error hint on submit if no email is entered", async () => {
+    const { getByPlaceholderText, getByRole } = render(
       <NewsletterForm descriptionId="id1" id={"1"} onSubmit={onSubmit} />,
     );
 
     const input = getByPlaceholderText("anna@amail.com");
+    const submit = getByRole("button", { name: "Sign up to the newsletter" });
     const user = userEvent.setup();
-    await user.click(input);
-    await user.tab();
+    await user.click(submit);
 
     // HACK: wait for next tick
     await waitForNextTick();
@@ -103,16 +104,17 @@ describe("NewsletterForm", () => {
     const description = computeAccessibleDescription(input);
     expect(description).toBe("Error Enter an email");
   });
-  test("should display error hint on blur email not formatted correctly", async () => {
-    const { getByPlaceholderText } = render(
+  test("should display error hint on submit email not formatted correctly", async () => {
+    const { getByPlaceholderText, getByRole } = render(
       <NewsletterForm descriptionId="id1" id={"1"} onSubmit={onSubmit} />,
     );
 
     const input = getByPlaceholderText("anna@amail.com");
+    const submit = getByRole("button", { name: "Sign up to the newsletter" });
     const user = userEvent.setup();
     await user.click(input);
     await user.keyboard("not an email");
-    await user.tab();
+    await user.click(submit);
 
     // HACK: wait for next tick
     await waitForNextTick();
