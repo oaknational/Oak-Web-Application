@@ -79,6 +79,14 @@ describe("usePupilReviewExperience", () => {
     );
   });
 
+  it("does not redirect an incomplete read-only assignment away from review", () => {
+    usePupilLessonProgress.getState().setReadOnly(true);
+
+    renderReview();
+
+    expect(routerPush).not.toHaveBeenCalled();
+  });
+
   it("logs an attempt and tracks the summary when the lesson is complete", () => {
     completeLesson();
     renderReview();

@@ -184,11 +184,11 @@ export const usePupilReviewExperience = ({
   ]);
 
   useEffect(() => {
-    if (!isLessonComplete) {
+    if (!isLessonComplete && !isReadOnly) {
       void router.push(overviewHref);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isLessonComplete]);
+  }, [isLessonComplete, isReadOnly]);
 
   return {
     isReadOnly,
