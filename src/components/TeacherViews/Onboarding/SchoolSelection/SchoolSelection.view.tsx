@@ -29,7 +29,8 @@ export const SchoolSelectionView = () => {
   const { formState, setValue, handleSubmit, control, trigger, reset } =
     useForm({
       resolver: zodResolver(schoolSelectFormSchema),
-      mode: "onBlur",
+      mode: "onSubmit",
+      reValidateMode: "onSubmit",
       defaultValues: {
         newsletterSignUp: false,
       },
