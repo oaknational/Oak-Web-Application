@@ -34,6 +34,7 @@ import NoResourcesToDownload from "@/components/TeacherComponents/NoResourcesToD
 import TermsAgreementForm from "@/components/TeacherComponents/TermsAgreementForm";
 import { getFormErrorMessages } from "@/components/TeacherComponents/helpers/downloadAndShareHelpers/getDownloadFormErrorMessage";
 import { SHARE_FORM_ERROR_IDS } from "@/components/TeacherComponents/helpers/downloadAndShareHelpers/shareDownloadFormErrorIds";
+import { VALIDATION_SUMMARY_PREFIX } from "@/components/TeacherComponents/helpers/downloadAndShareHelpers/validationSummaryText";
 import { LessonDownloadsPageData } from "@/node-lib/curriculum-api-2023/queries/lessonDownloads/lessonDownloads.schema";
 import { DownloadTypeLabel } from "@/components/CurriculumComponents/CurriculumDownloadView/helper";
 
@@ -62,6 +63,7 @@ type DownloadPageWithAccordionProps = ResourcePageDetailsCompletedProps &
     lessonDownloads?: LessonDownloadsPageData["downloads"];
     curriculumDownloads?: DownloadTypeLabel[];
     additionalFiles?: LessonDownloadsPageData["additionalFiles"];
+    validationSummaryKey?: number;
   };
 
 export type DownloadWrapperProps = {
@@ -150,6 +152,7 @@ export const DownloadPageWithAccordionContent = (
     | "geoRestricted"
     | "cta"
     | "apiError"
+    | "validationSummaryKey"
   >,
 ) => {
   const {
@@ -180,16 +183,23 @@ export const DownloadPageWithAccordionContent = (
     geoRestricted,
     cta,
     apiError,
+    validationSummaryKey,
   } = props;
 
   const hasFormErrors = Object.keys(errors).length > 0;
+  const validationErrorMessages = getFormErrorMessages(errors);
+  const hasValidationSummary = validationErrorMessages.length > 0;
   const showFormErrors = hasFormErrors && !downloadsRestricted;
   const showForm = showTermsAgreement && !downloadsRestricted;
   const hideCallToAction = downloadsRestricted;
 
   return (
     <OakFlex $flexDirection={"column"} $gap={"spacing-48"}>
-      <FieldError id={SHARE_FORM_ERROR_IDS.resources} withoutMarginBottom>
+      <FieldError
+        id={SHARE_FORM_ERROR_IDS.resources}
+        withoutMarginBottom
+        ariaLive="polite"
+      >
         {errors?.resources?.message}
       </FieldError>
       <OakDownloadsAccordion
@@ -253,30 +263,39 @@ export const DownloadPageWithAccordionContent = (
               )}
             </>
           )}
-          {showFormErrors && (
-            <OakFlex $flexDirection={"row"}>
-              <OakIcon
-                iconName="content-guidance"
-                $colorFilter={"icon-error"}
-                $width={"spacing-24"}
-                $height={"spacing-24"}
-              />
-              <OakFlex $flexDirection={"column"}>
-                <OakP $ml="spacing-4" $color={"text-error"}>
-                  To complete correct the following:
-                </OakP>
-                <OakUL $mr="spacing-24">
-                  {getFormErrorMessages(errors).map((err) => {
-                    return (
-                      <OakLI $color={"text-error"} key={err}>
-                        {err}
-                      </OakLI>
-                    );
-                  })}
-                </OakUL>
+          <OakFlex
+            key={validationSummaryKey}
+            role="status"
+            aria-live="polite"
+            aria-atomic="true"
+            data-testid="download-validation-summary"
+            $flexDirection={"column"}
+          >
+            {showFormErrors && hasValidationSummary && (
+              <OakFlex $flexDirection={"row"}>
+                <OakIcon
+                  iconName="content-guidance"
+                  $colorFilter={"icon-error"}
+                  $width={"spacing-24"}
+                  $height={"spacing-24"}
+                />
+                <OakFlex $flexDirection={"column"}>
+                  <OakP $ml="spacing-4" $color={"text-error"}>
+                    {VALIDATION_SUMMARY_PREFIX}
+                  </OakP>
+                  <OakUL $mr="spacing-24">
+                    {validationErrorMessages.map((err) => {
+                      return (
+                        <OakLI $color={"text-error"} key={err}>
+                          {err}
+                        </OakLI>
+                      );
+                    })}
+                  </OakUL>
+                </OakFlex>
               </OakFlex>
-            </OakFlex>
-          )}
+            )}
+          </OakFlex>
           {hideCallToAction ? (
             <LoginRequiredButton
               loginRequired={loginRequired ?? false}

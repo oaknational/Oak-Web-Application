@@ -69,12 +69,12 @@ export function AboutSharedHeaderImage({
   imageAlt,
   imageUrl,
 }: Readonly<{
-  imageAlt: string;
+  imageAlt?: string;
   imageUrl: string;
 }>) {
   return (
     <OakImage
-      alt={imageAlt}
+      alt={imageAlt ?? ""}
       src={imageUrl}
       $objectFit={"contain"}
       $height={"100%"}

@@ -325,6 +325,7 @@ export const ProgrammeDownloads = ({
                 control={form.control}
                 showPostAlbCopyright={true}
                 triggerForm={form.trigger}
+                validationSummaryKey={form.submitCount}
                 apiError={submitError}
                 cardGroup={
                   <OakFlex

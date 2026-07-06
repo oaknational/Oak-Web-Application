@@ -1,8 +1,8 @@
 import { screen } from "@testing-library/dom";
 
-import renderWithProviders from "../../__helpers__/renderWithProviders";
+import SchoolSelection from "./page";
 
-import SchoolSelection from "@/pages/onboarding/school-selection";
+import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 import { mockLoggedIn } from "@/__tests__/__helpers__/mockUser";
 import { setUseUserReturn } from "@/__tests__/__helpers__/mockClerk";
 
@@ -14,6 +14,8 @@ jest.mock("posthog-js/react", () => ({
 jest.mock("next/navigation", () => ({
   ...jest.requireActual("next/navigation"),
   usePathname: jest.fn(() => "/onboarding"),
+  useRouter: jest.fn(() => ({ push: jest.fn() })),
+  useSearchParams: jest.fn(() => new URLSearchParams()),
 }));
 
 describe("Onboarding school selection page", () => {

@@ -70,3 +70,33 @@ export function sortUnits(a: Unit, b: Unit) {
   // We now have grouped years so we must order by year number and unit order.
   return aYear * 100 + a.order - (bYear * 100 + b.order);
 }
+
+function getKs4OptionSortGroup(slug: string) {
+  switch (slug) {
+    case "gcse":
+      return 0;
+    case "core":
+      return 1;
+    default:
+      return 2;
+  }
+}
+
+/**
+ * Sorts KS4 options for display, grouping GCSE and core options together and
+ * placing exam boards last.
+ */
+export function sortKs4OptionsForDisplay<
+  T extends { slug: string; title: string },
+>(ks4Options: T[]): T[] {
+  return [...ks4Options].toSorted((a, b) => {
+    const groupDiff =
+      getKs4OptionSortGroup(a.slug) - getKs4OptionSortGroup(b.slug);
+
+    if (groupDiff !== 0) {
+      return groupDiff;
+    }
+
+    return a.title.localeCompare(b.title);
+  });
+}

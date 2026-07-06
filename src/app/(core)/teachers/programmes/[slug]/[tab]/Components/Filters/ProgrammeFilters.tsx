@@ -1,7 +1,7 @@
 import {
-  ProgrammeFiltersExamBoard,
-  shouldDisplayExamBoardFilter,
-} from "./ProgrammeFiltersExamBoard";
+  ProgrammeFiltersKs4Options,
+  shouldDisplayKs4OptionsFilter,
+} from "./ProgrammeFiltersKs4Options";
 import { ProgrammeFiltersThreads } from "./ProgrammeFiltersThreads";
 import { ProgrammePageFiltersProps } from "./ProgrammePageFiltersDesktop";
 
@@ -30,9 +30,9 @@ export const getDisplayedFilters = (
       shouldDisplayFilter: shouldDisplayFilter(data, filters, "years"),
     },
     {
-      key: "examBoard",
+      key: "ks4Options",
       component: null,
-      shouldDisplayFilter: shouldDisplayExamBoardFilter(
+      shouldDisplayFilter: shouldDisplayKs4OptionsFilter(
         slugs,
         filters,
         ks4Options,
@@ -73,7 +73,7 @@ export function ProgrammeFilters({
   data,
   slugs,
   ks4Options,
-  examboardFilterDimensions,
+  ks4OptionFilterDimensions,
 }: Readonly<ProgrammeFiltersProps>) {
   return (
     <>
@@ -83,16 +83,16 @@ export function ProgrammeFilters({
             return null;
           }
 
-          if (key === "examBoard") {
+          if (key === "ks4Options") {
             return (
-              <ProgrammeFiltersExamBoard
+              <ProgrammeFiltersKs4Options
                 key={key}
                 filters={filters}
                 onChangeFilters={onChangeFilters}
                 data={data}
                 slugs={slugs}
                 ks4Options={ks4Options}
-                examboardFilterDimensions={examboardFilterDimensions}
+                ks4OptionFilterDimensions={ks4OptionFilterDimensions}
               />
             );
           }
