@@ -13,7 +13,6 @@ import ErrorFallback from "./components/ErrorHandling/ErrorFallback";
 
 import errorReporter from "@/common-lib/error-reporter";
 
-
 const lexend = Lexend({ subsets: ["latin"] });
 
 export default function GlobalError({
