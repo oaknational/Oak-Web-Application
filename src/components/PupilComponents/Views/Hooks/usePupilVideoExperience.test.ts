@@ -194,6 +194,34 @@ describe("usePupilVideoExperience", () => {
     expect(result.current.shouldTrackEndAnalytics).toBe(false);
   });
 
+  it("keeps end analytics suppressed after the pupil seeks back and resumes from the later persisted position", () => {
+    const { result } = renderVideo();
+
+    act(() =>
+      result.current.handleVideoEvent({
+        event: "end",
+        timeElapsed: 90,
+        duration: 100,
+        muted: false,
+      }),
+    );
+
+    act(() =>
+      result.current.handleVideoEvent({
+        event: "pause",
+        timeElapsed: 50,
+        duration: 100,
+        muted: false,
+      }),
+    );
+
+    const videoResult = usePupilLessonProgress.getState().sectionResults.video;
+    expect(videoResult?.timeElapsed).toBe(50);
+    expect(videoResult?.endAnalyticsTracked).toBe(true);
+    expect(result.current.videoInitialTimeElapsed).toBe(50);
+    expect(result.current.shouldTrackEndAnalytics).toBe(false);
+  });
+
   it("resumes a partially-watched video from its persisted time elapsed", () => {
     usePupilLessonProgress.getState().updateSectionInProgressResult("video", {
       played: true,

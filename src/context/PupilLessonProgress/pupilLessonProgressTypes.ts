@@ -22,6 +22,7 @@ export type VideoResult = {
   muted: boolean;
   signedOpened: boolean;
   transcriptOpened: boolean;
+  endAnalyticsTracked?: boolean;
 };
 
 export type IntroResult = Partial<{

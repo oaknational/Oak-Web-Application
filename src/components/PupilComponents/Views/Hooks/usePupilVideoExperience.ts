@@ -24,10 +24,13 @@ export type UsePupilVideoExperienceParams = Pick<
 const getHasVideoFinished = ({
   duration,
   timeElapsed,
+  endAnalyticsTracked,
 }: {
   duration?: number;
   timeElapsed?: number;
+  endAnalyticsTracked?: boolean;
 }) => {
+  if (endAnalyticsTracked) return true;
   if (!duration || !timeElapsed) return false;
   return (timeElapsed / duration) * 100 >= 90;
 };
@@ -109,6 +112,7 @@ export const usePupilVideoExperience = ({
     muted: sectionResults.video?.muted || false,
     signedOpened: sectionResults.video?.signedOpened || false,
     transcriptOpened: sectionResults.video?.transcriptOpened || false,
+    endAnalyticsTracked: sectionResults.video?.endAnalyticsTracked || false,
   });
 
   const getSectionResultsAfterComplete = () => ({
@@ -135,6 +139,7 @@ export const usePupilVideoExperience = ({
     getHasVideoFinished({
       duration: sectionResults.video?.duration,
       timeElapsed: sectionResults.video?.timeElapsed,
+      endAnalyticsTracked: sectionResults.video?.endAnalyticsTracked,
     });
   const proceedLabel =
     !isCompletingAndRedirecting && isVideoComplete
@@ -153,6 +158,9 @@ export const usePupilVideoExperience = ({
     videoResultRef.current.played = true;
     videoResultRef.current.duration = duration || 0;
     videoResultRef.current.muted = muted || false;
+    if (event === "end") {
+      videoResultRef.current.endAnalyticsTracked = true;
+    }
     const nextTimeElapsed = timeElapsed || 0;
     if (
       shouldPersistVideoTimeElapsed({
