@@ -2,11 +2,11 @@ import { screen, waitFor } from "@testing-library/dom";
 import userEvent from "@testing-library/user-event";
 import { usePathname, useSearchParams } from "next/navigation";
 
-import { ExamBoardFocusProvider } from "./ExamBoardFocus";
+import { KS4OptionFocusProvider } from "./KS4OptionFocus";
 import {
   FOCUS_KS4_OPTION_QUERY_PARAM,
   OPEN_FILTERS_MODAL_QUERY_PARAM,
-} from "./ExamBoardFocus/examBoardFocusParams";
+} from "./KS4OptionFocus/ks4OptionFocusParams";
 import ProgrammePageFiltersMobile from "./ProgrammePageFiltersMobile";
 import { ProgrammePageFiltersProps } from "./ProgrammePageFiltersDesktop";
 import { ProgrammePageFiltersModalProvider } from "./ProgrammePageFiltersModalProvider";
@@ -130,7 +130,7 @@ const defaultProps: ProgrammePageFiltersProps = {
     ks4OptionSlug: null,
   },
   ks4Options: [],
-  examboardFilterDimensions: {},
+  ks4OptionFilterDimensions: {},
   onChangeFilters: jest.fn(),
 };
 
@@ -152,7 +152,7 @@ const ks4ExamBoardProps: ProgrammePageFiltersProps = {
     { slug: "edexcel", title: "Edexcel" },
     { slug: "ocr", title: "OCR" },
   ],
-  examboardFilterDimensions: {
+  ks4OptionFilterDimensions: {
     ocr: {
       tierSlugs: ["foundation"],
       pathwaySlugs: [],
@@ -166,9 +166,9 @@ const render = renderWithProviders();
 function renderMobile(props: ProgrammePageFiltersProps = defaultProps) {
   return render(
     <ProgrammePageFiltersModalProvider>
-      <ExamBoardFocusProvider>
+      <KS4OptionFocusProvider>
         <ProgrammePageFiltersMobile {...props} />
-      </ExamBoardFocusProvider>
+      </KS4OptionFocusProvider>
     </ProgrammePageFiltersModalProvider>,
   );
 }

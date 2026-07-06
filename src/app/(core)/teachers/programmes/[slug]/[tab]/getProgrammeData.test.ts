@@ -248,15 +248,15 @@ describe("getProgrammeData", () => {
       );
     });
 
-    it("should not fetch examboard filter dimensions for primary phase", async () => {
+    it("should not fetch ks4 option filter dimensions for primary phase", async () => {
       const result = await getProgrammeData("maths-primary", defaultSubjects());
 
-      expect(result?.examboardFilterDimensions).toEqual({});
+      expect(result?.ks4OptionFilterDimensions).toEqual({});
       expect(mockCurriculumApi.curriculumSequenceSlugs).not.toHaveBeenCalled();
       expect(mockCurriculumApi.curriculumPhaseOptions).not.toHaveBeenCalled();
     });
 
-    it("should fetch examboard filter dimensions in parallel for secondary phase", async () => {
+    it("should fetch ks4 option filter dimensions in parallel for secondary phase", async () => {
       const slugUnits = [
         {
           examboard_slug: "aqa",
@@ -282,7 +282,7 @@ describe("getProgrammeData", () => {
 
       const result = await getProgrammeData("english-secondary-aqa", subjects);
 
-      expect(result?.examboardFilterDimensions).toEqual({
+      expect(result?.ks4OptionFilterDimensions).toEqual({
         aqa: {
           tierSlugs: ["foundation"],
           pathwaySlugs: [],
@@ -324,7 +324,7 @@ describe("getProgrammeData", () => {
       });
     });
 
-    it("should remove core ks4 option when excludeCoreUnits is true", async () => {
+    it("should retain full ks4 options including core on exam board slugs", async () => {
       mockCurriculumApi.curriculumPhaseOptions.mockResolvedValue([
         {
           title: "Maths",
@@ -343,6 +343,7 @@ describe("getProgrammeData", () => {
       );
       expect(subjectResults?.subjects[0]?.ks4_options).toEqual([
         { title: "AQA", slug: "aqa" },
+        { title: "Core", slug: "core" },
       ]);
     });
 

@@ -1,0 +1,105 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SupportYou renders correctly 1`] = `
+<body>
+  <div>
+    <div
+      class="sc-aXZVg guaSoh"
+    >
+      <div
+        class="sc-aXZVg bZTQLO"
+      >
+        <div
+          class="sc-aXZVg sc-tagGq jPvJsJ ktvIBS"
+        >
+          <div
+            class="sc-aXZVg sc-gEvEer sc-esYiGF jPvJsJ iDBIXi guxPwy"
+          >
+            <div
+              class="sc-aXZVg sc-gEvEer jPvJsJ fQjiFG"
+            >
+              <div
+                class="sc-aXZVg sc-gEvEer jPvJsJ daEtut"
+              >
+                <h2
+                  class="sc-eldPxv kLaSLy"
+                >
+                  TESTING_HEADING
+                </h2>
+                <p
+                  class="sc-ikkxIA raLvq"
+                >
+                  TESTING_CONTENT
+                </p>
+              </div>
+              <div
+                class="sc-aXZVg sc-gEvEer jPvJsJ bktafW"
+              >
+                <div
+                  class="sc-aXZVg sc-kpDqfm bhFzn cvxBYX"
+                >
+                  <div
+                    class="sc-aXZVg kpXzs grey-shadow"
+                  />
+                  <div
+                    class="sc-aXZVg kpXzs yellow-shadow"
+                  />
+                  <a
+                    aria-label="TESTING_LINK (opens in new tab)"
+                    class="sc-dcJsrY sc-jXbUNg cLXsQH dglRoS internal-button"
+                    href="#"
+                    target="_blank"
+                  >
+                    <div
+                      class="sc-aXZVg sc-gEvEer jPvJsJ krHAKs"
+                    >
+                      <span
+                        class="sc-eqUAAy edqVpV"
+                      >
+                        TESTING_LINK
+                      </span>
+                      <span
+                        class="sc-aXZVg jJQFnr"
+                      >
+                        <img
+                          alt=""
+                          class="sc-iGgWBj bOyFfb"
+                          data-nimg="fill"
+                          decoding="async"
+                          loading="lazy"
+                          src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1699953892/icons/hlxmejse3mcr4tqo6t8u.svg"
+                          style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                        />
+                      </span>
+                    </div>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div
+            class="sc-aXZVg sc-gEvEer sc-esYiGF jPvJsJ iDBIXi hkWRSL"
+          >
+            <div
+              class="sc-aXZVg sc-gEvEer doMEuo fXHtRp"
+            >
+              <img
+                alt="TEST_ALT"
+                class="sc-ba397cd3-0 knxbUF"
+                data-nimg="1"
+                decoding="async"
+                height="0"
+                loading="lazy"
+                src="https://NEXT_PUBLIC_SANITY_ASSET_CDN_HOST/images/NEXT_PUBLIC_SANITY_PROJECT_ID/NEXT_PUBLIC_SANITY_DATASET/1-300x300.png?w=16&fm=webp&q=80&fit=clip&auto=format"
+                srcset="https://NEXT_PUBLIC_SANITY_ASSET_CDN_HOST/images/NEXT_PUBLIC_SANITY_PROJECT_ID/NEXT_PUBLIC_SANITY_DATASET/1-300x300.png?w=16&fm=webp&q=80&fit=clip&auto=format 1x"
+                style="color: transparent;"
+                width="0"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+`;

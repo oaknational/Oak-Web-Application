@@ -45,7 +45,7 @@ describe("eyfs layout", () => {
     mockEyfsPage.mockRejectedValueOnce(
       new OakError({ code: "curriculum-api/not-found" }),
     );
-    expect(async () =>
+    await expect(async () =>
       render(
         await EYFSLayout({
           params: Promise.resolve({ subjectSlug: "maths" }),

@@ -1,4 +1,9 @@
-import { sortChildSubjects, sortUnits, sortYears } from "./sorting";
+import {
+  sortChildSubjects,
+  sortKs4OptionsForDisplay,
+  sortUnits,
+  sortYears,
+} from "./sorting";
 import { Subject, Unit } from "./types";
 
 describe("sortYears", () => {
@@ -94,5 +99,32 @@ describe("sortUnits", () => {
       { slug: "c", order: 2, year: "2" },
       { slug: "d", order: 3, year: "2" },
     ]);
+  });
+});
+
+describe("sortKs4OptionsForDisplay", () => {
+  it("orders GCSE before Core before exam boards", () => {
+    const options = [
+      { slug: "ocr", title: "OCR" },
+      { slug: "core", title: "Core" },
+      { slug: "gcse", title: "GCSE" },
+      { slug: "aqa", title: "AQA" },
+    ];
+
+    expect(
+      sortKs4OptionsForDisplay(options).map((option) => option.slug),
+    ).toEqual(["gcse", "core", "aqa", "ocr"]);
+  });
+
+  it("sorts exam boards alphabetically by title when no pathway options", () => {
+    const options = [
+      { slug: "ocr", title: "OCR" },
+      { slug: "aqa", title: "AQA" },
+      { slug: "edexcel", title: "Edexcel" },
+    ];
+
+    expect(
+      sortKs4OptionsForDisplay(options).map((option) => option.slug),
+    ).toEqual(["aqa", "edexcel", "ocr"]);
   });
 });

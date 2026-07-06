@@ -15,9 +15,9 @@ import LessonMetadata from "@/components/SharedComponents/LessonMetadata";
 import TagPromotional from "@/components/SharedComponents/TagPromotional";
 import SearchDropdown from "@/components/TeacherComponents/SearchDropdown";
 import {
-  UnitOverviewLinkProps,
   LessonOverviewLinkProps,
   resolveOakHref,
+  UnitOverviewLinkProps,
 } from "@/common-lib/urls";
 import { PathwaySchemaCamel } from "@/context/Search/search.types";
 import { NEW_COHORT } from "@/config/cohort";

@@ -10,6 +10,7 @@ export type ErrorCode =
   | "misc/import-count"
   | "search/failed-to-get-intent"
   | "search/unknown"
+  | "search/unknown-filter-type"
   | "hubspot/invalid-email"
   | "hubspot/unknown"
   | "video/unknown"
@@ -73,6 +74,10 @@ const errorConfigs: Record<ErrorCode, ErrorConfig> = {
   },
   "search/unknown": {
     message: "Search doesn't seem to be working, we're looking into it.",
+    shouldNotify: true,
+  },
+  "search/unknown-filter-type": {
+    message: "Unknown search filter type",
     shouldNotify: true,
   },
   "hubspot/invalid-email": {
