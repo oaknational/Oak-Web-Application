@@ -30,7 +30,8 @@ export const usePupilIntroExperience = ({
   /*********
    * State *
    *********/
-  const { router, getSectionHref, goToSection } = usePupilExperienceBase();
+  const { router, getSectionHref, goToSection, ensureCanProgress } =
+    usePupilExperienceBase();
 
   const {
     sectionResults,
@@ -100,7 +101,9 @@ export const usePupilIntroExperience = ({
   /*****************************
    * Page interaction handlers *
    *****************************/
-  const handleProceed = () => {
+  const handleProceed = async () => {
+    if (!(await ensureCanProgress())) return;
+
     if (!sectionResults.intro?.isComplete) {
       setIsCompletingAndRedirecting(true);
       if (!lessonStarted) {

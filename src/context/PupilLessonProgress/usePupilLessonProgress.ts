@@ -14,6 +14,7 @@ export const createPupilLessonProgressState: StateCreator<
   PupilLessonProgressState
 > = (set) => ({
   ...getDefaultLessonProgressState(),
+  refreshReadOnly: async () => false,
   initialiseLessonProgress: ({
     lessonSlug,
     lessonReviewSections,
@@ -33,6 +34,14 @@ export const createPupilLessonProgressState: StateCreator<
   markLessonStarted: () =>
     set(() => ({
       lessonStarted: true,
+    })),
+  setReadOnly: (isReadOnly) =>
+    set(() => ({
+      isReadOnly,
+    })),
+  setRefreshReadOnly: (refreshReadOnly) =>
+    set(() => ({
+      refreshReadOnly,
     })),
   completeSection: (section) =>
     set((state) => completeSectionAction(state, section)),

@@ -1,5 +1,4 @@
-import { useEffect, useMemo, useRef, useState } from "react";
-import { useRouter } from "next/router";
+import { useEffect, useRef, useState } from "react";
 import {
   OakBackLink,
   OakCloudinaryConfigProvider,
@@ -44,6 +43,7 @@ import {
   usePupilLessonQuiz,
 } from "@/context/PupilLessonQuiz";
 import { isMatchAnswer } from "@/components/PupilComponents/QuizUtils/answerTypeDiscriminators";
+import { usePupilExperienceBase } from "@/components/PupilComponents/Views/Hooks";
 
 type QuizPageContentProps = {
   section: QuizSection;
@@ -58,11 +58,8 @@ export const QuizPageContent = ({
   lessonSlug,
   phase,
 }: QuizPageContentProps) => {
-  const router = useRouter();
-  const currentSearchParams = useMemo(
-    () => new URLSearchParams(router.asPath.split("?")[1]),
-    [router.asPath],
-  );
+  const { router, currentSearchParams, goToSection, ensureCanProgress } =
+    usePupilExperienceBase();
   const initialiseKeyRef = useRef<string | null>(null);
   const sectionStartedAtRef = useRef(Date.now());
   const {
@@ -203,13 +200,7 @@ export const QuizPageContent = ({
   ]);
 
   const navigateToSection = (nextSection: "overview" | "review") => {
-    void router.push(
-      getNewLessonSectionHref({
-        currentRoute: router.asPath,
-        section: nextSection,
-        searchParams: currentSearchParams,
-      }),
-    );
+    goToSection(nextSection);
   };
 
   const persistCurrentQuizState = () => {
@@ -298,7 +289,9 @@ export const QuizPageContent = ({
     return nextSectionResults;
   };
 
-  const onNext = () => {
+  const onNext = async () => {
+    if (!(await ensureCanProgress())) return;
+
     const nextStep = getQuizNextStep({
       currentQuestionIndex,
       numQuestions,
@@ -325,10 +318,11 @@ export const QuizPageContent = ({
     );
   };
 
-  const onBack = () => {
+  const onBack = async () => {
     const alreadyComplete = sectionResults[section]?.isComplete;
 
     if (!alreadyComplete && isQuizEffectivelyComplete()) {
+      if (!(await ensureCanProgress())) return;
       completeQuizAndTrack();
     } else if (!alreadyComplete) {
       if (!lessonStarted) {

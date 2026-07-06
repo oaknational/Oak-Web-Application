@@ -52,6 +52,10 @@ export const usePupilStores = (params?: UsePupilStoresParams) => {
   const initialiseLessonProgress = usePupilLessonProgress(
     (state) => state.initialiseLessonProgress,
   );
+  const setReadOnly = usePupilLessonProgress((state) => state.setReadOnly);
+  const setRefreshReadOnly = usePupilLessonProgress(
+    (state) => state.setRefreshReadOnly,
+  );
   const currentLessonSlug = usePupilLessonProgress((state) => state.lessonSlug);
   const { initialisePupilLessonAnalytics } = usePupilLessonAnalytics();
   const pathwayData = useMemo(
@@ -86,6 +90,14 @@ export const usePupilStores = (params?: UsePupilStoresParams) => {
     classroom.initialSectionResults,
     classroom.isReadOnly,
   ]);
+
+  useEffect(() => {
+    setReadOnly(classroom.isReadOnly);
+  }, [classroom.isReadOnly, setReadOnly]);
+
+  useEffect(() => {
+    setRefreshReadOnly(classroom.refreshReadOnly);
+  }, [classroom.refreshReadOnly, setRefreshReadOnly]);
 
   useEffect(() => {
     if (!browseData || !lessonContent || !pathwayData) return;

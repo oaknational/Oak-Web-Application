@@ -63,6 +63,7 @@ beforeEach(() => {
   jest.clearAllMocks();
   asPath = "/pupils/lessons/lesson-1/intro";
   usePupilLessonProgress.setState(getDefaultLessonProgressState());
+  usePupilLessonProgress.getState().setRefreshReadOnly(async () => false);
   usePupilLessonProgress.getState().initialiseLessonProgress({
     lessonSlug: "lesson-1",
     lessonReviewSections: [...reviewSections],
@@ -70,9 +71,11 @@ beforeEach(() => {
 });
 
 describe("usePupilIntroExperience", () => {
-  it("on first proceed: completes the intro section, tracks completion, and navigates to overview", () => {
+  it("on first proceed: completes the intro section, tracks completion, and navigates to overview", async () => {
     const { result } = renderIntro();
-    act(() => result.current.handleProceed());
+    await act(async () => {
+      await result.current.handleProceed();
+    });
 
     expect(track.trackIntroCompleted).toHaveBeenCalledTimes(1);
     expect(
@@ -83,7 +86,7 @@ describe("usePupilIntroExperience", () => {
     );
   });
 
-  it("when intro already complete: navigates to the next incomplete section", () => {
+  it("when intro already complete: navigates to the next incomplete section", async () => {
     usePupilLessonProgress.setState({
       sectionResults: {
         ...usePupilLessonProgress.getState().sectionResults,
@@ -91,11 +94,30 @@ describe("usePupilIntroExperience", () => {
       },
     } as never);
     const { result } = renderIntro();
-    act(() => result.current.handleProceed());
+    await act(async () => {
+      await result.current.handleProceed();
+    });
 
     expect(routerPush).toHaveBeenCalledWith(
       "/pupils/lessons/lesson-1/starter-quiz",
     );
+  });
+
+  it("redirects to review without completing intro when progression discovers read-only state", async () => {
+    usePupilLessonProgress
+      .getState()
+      .setRefreshReadOnly(jest.fn().mockResolvedValue(true));
+
+    const { result } = renderIntro();
+    await act(async () => {
+      await result.current.handleProceed();
+    });
+
+    expect(track.trackIntroCompleted).not.toHaveBeenCalled();
+    expect(
+      usePupilLessonProgress.getState().sectionResults.intro?.isComplete,
+    ).not.toBe(true);
+    expect(routerPush).toHaveBeenCalledWith("/pupils/lessons/lesson-1/review");
   });
 
   it("back to overview tracks intro abandoned when incomplete and navigates", () => {

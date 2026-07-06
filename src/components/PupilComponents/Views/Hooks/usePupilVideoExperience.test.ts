@@ -53,6 +53,7 @@ beforeEach(() => {
   jest.clearAllMocks();
   asPath = "/pupils/lessons/lesson-1/video";
   usePupilLessonProgress.setState(getDefaultLessonProgressState());
+  usePupilLessonProgress.getState().setRefreshReadOnly(async () => false);
   usePupilLessonProgress.getState().initialiseLessonProgress({
     lessonSlug: "lesson-1",
     lessonReviewSections: [...reviewSections],
@@ -65,9 +66,11 @@ describe("usePupilVideoExperience", () => {
     expect(result.current.proceedLabel).toBe("I've finished the video");
   });
 
-  it("on first proceed: completes the video section, tracks completion, and navigates", () => {
+  it("on first proceed: completes the video section, tracks completion, and navigates", async () => {
     const { result } = renderVideo();
-    act(() => result.current.handleProceed());
+    await act(async () => {
+      await result.current.handleProceed();
+    });
 
     expect(
       usePupilLessonProgress.getState().sectionResults.video?.isComplete,
@@ -76,6 +79,23 @@ describe("usePupilVideoExperience", () => {
     expect(routerPush).toHaveBeenCalledWith(
       "/pupils/lessons/lesson-1/overview",
     );
+  });
+
+  it("redirects to review without completing video when progression discovers read-only state", async () => {
+    usePupilLessonProgress
+      .getState()
+      .setRefreshReadOnly(jest.fn().mockResolvedValue(true));
+
+    const { result } = renderVideo();
+    await act(async () => {
+      await result.current.handleProceed();
+    });
+
+    expect(
+      usePupilLessonProgress.getState().sectionResults.video?.isComplete,
+    ).toBeUndefined();
+    expect(track.trackVideoCompleted).not.toHaveBeenCalled();
+    expect(routerPush).toHaveBeenCalledWith("/pupils/lessons/lesson-1/review");
   });
 
   it("back to overview tracks video abandoned when incomplete and navigates", () => {
@@ -132,7 +152,7 @@ describe("usePupilVideoExperience", () => {
     expect(videoResult?.timeElapsed).toBe(12);
   });
 
-  it("flushes the accumulated video result to the store on completion (PUPIL-1770)", () => {
+  it("flushes the accumulated video result to the store on completion (PUPIL-1770)", async () => {
     const { result } = renderVideo();
     act(() =>
       result.current.handleVideoEvent({
@@ -146,7 +166,9 @@ describe("usePupilVideoExperience", () => {
       usePupilLessonProgress.getState().sectionResults.video?.duration,
     ).not.toBe(200);
 
-    act(() => result.current.handleProceed());
+    await act(async () => {
+      await result.current.handleProceed();
+    });
 
     const video = usePupilLessonProgress.getState().sectionResults.video;
     expect(video?.isComplete).toBe(true);

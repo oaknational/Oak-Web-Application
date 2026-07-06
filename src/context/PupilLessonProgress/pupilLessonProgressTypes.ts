@@ -53,10 +53,13 @@ export type PupilLessonProgressState = {
   lessonStarted: boolean;
   isLessonComplete: boolean;
   isReadOnly: boolean;
+  refreshReadOnly: () => Promise<boolean>;
   isHydratingInitialProgress: boolean;
   contentGuidanceDismissed: boolean;
   initialiseLessonProgress: (args: LessonProgressInitArgs) => void;
   markLessonStarted: () => void;
+  setReadOnly: (isReadOnly: boolean) => void;
+  setRefreshReadOnly: (refreshReadOnly: () => Promise<boolean>) => void;
   completeSection: (section: LessonReviewSection) => void;
   updateSectionInProgressResult: (
     section: LessonReviewSection,
@@ -73,6 +76,9 @@ export type PupilLessonProgressDataState = Omit<
   PupilLessonProgressState,
   | "initialiseLessonProgress"
   | "markLessonStarted"
+  | "refreshReadOnly"
+  | "setReadOnly"
+  | "setRefreshReadOnly"
   | "completeSection"
   | "updateSectionInProgressResult"
   | "updateWorksheetDownloaded"

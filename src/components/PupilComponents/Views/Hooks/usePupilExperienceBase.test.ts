@@ -2,6 +2,9 @@ import { renderHook, act } from "@testing-library/react";
 
 import { usePupilExperienceBase } from "./usePupilExperienceBase";
 
+import { usePupilLessonProgress } from "@/context/PupilLessonProgress";
+import { getDefaultLessonProgressState } from "@/context/PupilLessonProgress/pupilLessonProgressHelpers";
+
 let asPath = "/pupils/lessons/lesson-1/overview";
 const routerPush = jest.fn();
 jest.mock("next/router", () => ({
@@ -11,6 +14,8 @@ jest.mock("next/router", () => ({
 beforeEach(() => {
   jest.clearAllMocks();
   asPath = "/pupils/lessons/lesson-1/overview";
+  usePupilLessonProgress.setState(getDefaultLessonProgressState());
+  usePupilLessonProgress.getState().setRefreshReadOnly(async () => false);
 });
 
 describe("usePupilExperienceBase", () => {
@@ -43,5 +48,29 @@ describe("usePupilExperienceBase", () => {
     expect(routerPush).toHaveBeenCalledWith(
       "/pupils/lessons/lesson-1/starter-quiz",
     );
+  });
+
+  it("redirects to review when the current progress state is read-only", () => {
+    usePupilLessonProgress.getState().setReadOnly(true);
+
+    renderHook(() => usePupilExperienceBase());
+
+    expect(routerPush).toHaveBeenCalledWith("/pupils/lessons/lesson-1/review");
+  });
+
+  it("blocks progression and redirects when refresh resolves read-only", async () => {
+    const refreshReadOnly = jest.fn().mockResolvedValue(true);
+    usePupilLessonProgress.getState().setRefreshReadOnly(refreshReadOnly);
+
+    const { result } = renderHook(() => usePupilExperienceBase());
+    let canProgress: boolean | undefined;
+    await act(async () => {
+      canProgress = await result.current.ensureCanProgress();
+    });
+
+    expect(refreshReadOnly).toHaveBeenCalledTimes(1);
+    expect(canProgress).toBe(false);
+    expect(usePupilLessonProgress.getState().isReadOnly).toBe(true);
+    expect(routerPush).toHaveBeenCalledWith("/pupils/lessons/lesson-1/review");
   });
 });

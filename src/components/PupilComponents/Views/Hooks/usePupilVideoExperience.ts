@@ -40,7 +40,8 @@ export const usePupilVideoExperience = ({
   /*********
    * State *
    *********/
-  const { router, getSectionHref, goToSection } = usePupilExperienceBase();
+  const { router, getSectionHref, goToSection, ensureCanProgress } =
+    usePupilExperienceBase();
 
   const {
     sectionResults,
@@ -181,7 +182,9 @@ export const usePupilVideoExperience = ({
     void router.push(overviewHref);
   };
 
-  const handleProceed = () => {
+  const handleProceed = async () => {
+    if (!(await ensureCanProgress())) return;
+
     if (!sectionResults.video?.isComplete) {
       setIsCompletingAndRedirecting(true);
       if (!lessonStarted) {

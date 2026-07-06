@@ -12,6 +12,7 @@ import type { LessonSectionResults } from "@/context/PupilLessonProgress";
 export type ResolvedClassroomAddonContext = ClassroomAssignmentContext & {
   initialSectionResults: LessonSectionResults;
   isReadOnly: boolean;
+  refreshReadOnly: () => Promise<boolean>;
   isReady: boolean;
 };
 
@@ -38,22 +39,49 @@ export const useClassroomAddonContext = (): ResolvedClassroomAddonContext => {
   const [isReadOnly, setIsReadOnly] = useState(false);
   const [isReady, setIsReady] = useState(false);
 
-  const refreshReadOnly = useCallback(
+  const getReadOnlyState = useCallback(
     async (args: {
       courseId: string;
       itemId: string;
       attachmentId: string;
       submissionId: string;
-    }) => {
+    }): Promise<boolean | null> => {
       const state = await googleClassroomApi.getPostSubmissionState(args);
-      if (!state) return;
-      setIsReadOnly(
+      if (!state) return null;
+      return (
         state.submissionState === PostSubmissionState.RETURNED ||
-          state.submissionState === PostSubmissionState.TURNED_IN,
+        state.submissionState === PostSubmissionState.TURNED_IN
       );
     },
     [],
   );
+
+  const refreshReadOnly = useCallback(async () => {
+    if (!courseId || !itemId || !attachmentId || !submissionId) {
+      return isReadOnly;
+    }
+
+    try {
+      const nextIsReadOnly = await getReadOnlyState({
+        courseId,
+        itemId,
+        attachmentId,
+        submissionId,
+      });
+      if (nextIsReadOnly === null) return isReadOnly;
+      setIsReadOnly(nextIsReadOnly);
+      return nextIsReadOnly;
+    } catch {
+      return isReadOnly;
+    }
+  }, [
+    attachmentId,
+    courseId,
+    getReadOnlyState,
+    isReadOnly,
+    itemId,
+    submissionId,
+  ]);
 
   useEffect(() => {
     if (!classroomAssignmentChecked) return;
@@ -92,12 +120,15 @@ export const useClassroomAddonContext = (): ResolvedClassroomAddonContext => {
               mapPupilLessonProgressToSectionResults(progress),
             );
           }
-          await refreshReadOnly({
+          const nextIsReadOnly = await getReadOnlyState({
             courseId,
             itemId,
             attachmentId,
             submissionId: resolvedSubmissionId,
           });
+          if (nextIsReadOnly !== null) {
+            setIsReadOnly(nextIsReadOnly);
+          }
         }
       } catch {
         // Failed to resolve context — progress sync disabled, lesson still works.
@@ -113,7 +144,7 @@ export const useClassroomAddonContext = (): ResolvedClassroomAddonContext => {
     courseId,
     itemId,
     attachmentId,
-    refreshReadOnly,
+    getReadOnlyState,
   ]);
 
   // Re-check read-only when the pupil refocuses the tab (teacher may have returned the work in the meantime).
@@ -128,7 +159,7 @@ export const useClassroomAddonContext = (): ResolvedClassroomAddonContext => {
       return;
     }
     const onFocus = () => {
-      void refreshReadOnly({ courseId, itemId, attachmentId, submissionId });
+      void refreshReadOnly();
     };
     globalThis.window.addEventListener("focus", onFocus);
     return () => globalThis.window.removeEventListener("focus", onFocus);
@@ -152,6 +183,7 @@ export const useClassroomAddonContext = (): ResolvedClassroomAddonContext => {
     clientEnvironment,
     initialSectionResults,
     isReadOnly,
+    refreshReadOnly,
     isReady,
   };
 };
