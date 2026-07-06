@@ -52,6 +52,7 @@
     "test": "jest --watch --collectCoverage=false",
     "test:coverage": "jest --watch",
     "test:ci": "jest",
+    "test:prepush": "jest --collectCoverage=false --workerIdleMemoryLimit=1GB --maxWorkers=50%",
     "test:pages": "jest -c ./jest.pages.config.cjs ./src/__tests__",
     "test:components": "jest -c ./jest.components.config.cjs ./src/components",
     "test:storybook": "jest --config=jest.storybook.config.cjs",
