@@ -1,5 +1,10 @@
 import { FC } from "react";
-import { OakSpan, OakIcon, OakBox, OakFlex } from "@oaknational/oak-components";
+import {
+  OakSpan,
+  OakBox,
+  OakFlex,
+  OakImage,
+} from "@oaknational/oak-components";
 
 type LessonOverviewSpeechBubbleProps = {
   text?: string | null | undefined;
@@ -39,8 +44,9 @@ const LessonOverviewSpeechBubble: FC<LessonOverviewSpeechBubbleProps> = ({
             {text}
           </OakSpan>
         </OakFlex>
-        <OakIcon
-          iconName="speech-bubble"
+        <OakImage
+          alt=""
+          src={`https://${process.env.NEXT_PUBLIC_OAK_ASSETS_HOST}/${process.env.NEXT_PUBLIC_OAK_ASSETS_PATH}/v1734537300/OWA/ui-graphics/speech-bubble_magqjf.svg`}
           $position={"absolute"}
           $top={"spacing-4"}
           $height={"spacing-360"}

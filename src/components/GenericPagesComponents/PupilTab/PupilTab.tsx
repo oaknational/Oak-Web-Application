@@ -5,8 +5,8 @@ import {
   OakTypography,
   OakHeading,
   OakFlex,
-  OakIcon,
   OakMaxWidth,
+  OakImage,
 } from "@oaknational/oak-components";
 
 import ImageContainer from "@/components/GenericPagesComponents/ImageContainer";
@@ -71,8 +71,9 @@ const PupilTab: FC = () => {
               sizes={getSizes([100, 518])}
             >
               {/* @todo check left position with marketing */}
-              <OakIcon
-                iconName="burst"
+              <OakImage
+                alt=""
+                src={`https://${process.env.NEXT_PUBLIC_OAK_ASSETS_HOST}/${process.env.NEXT_PUBLIC_OAK_ASSETS_PATH}/v1734537152/OWA/ui-graphics/burst_k0mkht.svg`}
                 $position={"absolute"}
                 $top={"spacing-0"}
                 $left={"spacing-0"}

@@ -4,9 +4,9 @@ import {
   OakHeading,
   OakSpan,
   OakBox,
-  OakIcon,
   OakLink,
   OakTertiaryButton,
+  OakImage,
 } from "@oaknational/oak-components";
 import { useOakConsent } from "@oaknational/oak-consent-client";
 import styled from "styled-components";
@@ -146,8 +146,9 @@ const DownloadConfirmation: FC<DownloadConfirmationProps> = ({
           $justifyContent={"center"}
           $position={"relative"}
         >
-          <OakIcon
-            iconName="tick-mark-happiness"
+          <OakImage
+            alt={""}
+            src={`https://${process.env.NEXT_PUBLIC_OAK_ASSETS_HOST}/${process.env.NEXT_PUBLIC_OAK_ASSETS_PATH}/v1734537080/OWA/ui-graphics/tick-mark-happiness_fyst07.svg`}
             $height={"100%"}
             $width={"100%"}
           />
