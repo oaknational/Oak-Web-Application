@@ -79,7 +79,8 @@ const NewsletterForm: FC<NewsletterFormProps> = ({
   const [error, setError] = useState("");
   const { register, handleSubmit, formState } = useForm<NewsletterFormValues>({
     resolver: zodResolver(schema),
-    mode: "onBlur",
+    mode: "onSubmit",
+    reValidateMode: "onSubmit",
   });
 
   const { errors } = formState;
