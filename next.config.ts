@@ -199,7 +199,11 @@ export default async (phase: NextConfig["phase"]): Promise<NextConfig> => {
     },
 
     // See <https://github.com/vercel/next.js/issues/40183#issuecomment-3063588870>
-    transpilePackages: ["@ooxml-tools/units", "@ooxml-tools/xml"],
+    transpilePackages: [
+      "@ooxml-tools/units",
+      "@ooxml-tools/xml",
+      "@oaknational/oak-components",
+    ],
 
     webpack: function getWebpackConfig(
       config: WebpackConfig,
