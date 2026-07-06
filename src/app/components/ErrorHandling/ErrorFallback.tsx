@@ -16,10 +16,12 @@ export default function ErrorFallback({
   error,
   reportError,
   reset,
+  actionSlot,
 }: Readonly<{
   error: Error & { digest?: string };
   reportError: ReturnType<typeof errorReporter>;
   reset: () => void;
+  actionSlot?: React.ReactElement;
 }>) {
   const router = useRouter();
 
@@ -53,25 +55,29 @@ export default function ErrorFallback({
         </OakHeading>
 
         <OakP $mb="spacing-24">Let's get you back to browsing</OakP>
-        <OakFlex $flexDirection="column" $gap="spacing-24">
-          <OakTertiaryButton
-            onClick={() =>
-              startTransition(() => {
-                reset();
-                router.refresh();
-              })
-            }
-            iconName="retake"
-          >
-            Retry
-          </OakTertiaryButton>
-          <OakTertiaryButton
-            onClick={() => router.back()}
-            iconName="arrow-left"
-          >
-            Go back
-          </OakTertiaryButton>
-        </OakFlex>
+        {actionSlot ? (
+          actionSlot
+        ) : (
+          <OakFlex $flexDirection="column" $gap="spacing-24">
+            <OakTertiaryButton
+              onClick={() =>
+                startTransition(() => {
+                  reset();
+                  router.refresh();
+                })
+              }
+              iconName="retake"
+            >
+              Retry
+            </OakTertiaryButton>
+            <OakTertiaryButton
+              onClick={() => router.back()}
+              iconName="arrow-left"
+            >
+              Go back
+            </OakTertiaryButton>
+          </OakFlex>
+        )}
       </OakFlex>
     </OakMaxWidth>
   );

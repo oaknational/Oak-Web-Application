@@ -7,13 +7,16 @@ import {
 } from "@oaknational/oak-components";
 import { useState } from "react";
 
-export type ErrorBoundaryLevel = "root" | "core";
+export type ErrorBoundaryLevel = "global" | "root" | "core";
 const getBottomSpacing = (level: ErrorBoundaryLevel): OakAllSpacingToken => {
   if (level === "core") {
-    return "spacing-80";
+    return "spacing-120";
+  }
+  if (level === "root") {
+    return "spacing-64";
   }
 
-  return "spacing-24";
+  return "spacing-12";
 };
 
 /**
