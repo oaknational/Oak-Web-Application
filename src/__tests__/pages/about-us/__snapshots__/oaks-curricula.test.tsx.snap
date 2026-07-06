@@ -3140,7 +3140,7 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
   box-shadow: none;
 }
 
-.c120:has(> * > * button:focus-visible) {
+.c120:has([data-testid="lot-picker-view-curriculum-button"]:focus-visible) {
   box-shadow: none;
 }
 

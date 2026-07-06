@@ -60,7 +60,7 @@ const OakFocusIndicatorAlt = styled(OakFocusIndicator)<{
   /*
    * Don't show a ring around the view button, because the user can't interact with it
    */
-  &:has(> * > * button:focus-visible) {
+  &:has([data-testid="lot-picker-view-curriculum-button"]:focus-visible) {
     box-shadow: ${(props) =>
       props.assertFocus ? `rgb(87, 87, 87) 0px 0px 0px 0.125rem` : "none"};
   }

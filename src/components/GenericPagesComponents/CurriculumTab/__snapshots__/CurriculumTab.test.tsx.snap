@@ -1060,7 +1060,7 @@ exports[`CurriculumTab renders 1`] = `
   box-shadow: none;
 }
 
-.c38:has(> * > * button:focus-visible) {
+.c38:has([data-testid="lot-picker-view-curriculum-button"]:focus-visible) {
   box-shadow: none;
 }
 
