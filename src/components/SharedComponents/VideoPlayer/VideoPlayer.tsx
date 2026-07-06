@@ -54,6 +54,8 @@ export type VideoPlayerProps = {
   autoFocusPlayButton?: boolean;
   /** When false, pauses playback */
   isActive?: boolean;
+  /** When false, suppresses the analytics event for reaching the end. */
+  shouldTrackEndAnalytics?: boolean;
 };
 
 export type VideoEventCallbackArgs = {
@@ -140,6 +142,7 @@ const VideoPlayer: FC<VideoPlayerProps> = (props) => {
     muxAssetId,
     autoFocusPlayButton = false,
     isActive = true,
+    shouldTrackEndAnalytics = true,
   } = props;
 
   const mediaElRef = useRef<MuxPlayerElement | null>(null);
@@ -360,6 +363,7 @@ const VideoPlayer: FC<VideoPlayerProps> = (props) => {
             userEventCallback,
             playbackId,
             endTracked,
+            shouldTrackEndAnalytics,
             playingClassname: PLAYING_CLASSNAME,
           })
         }

@@ -176,6 +176,24 @@ describe("usePupilVideoExperience", () => {
     expect(video?.duration).toBe(200);
   });
 
+  it("suppresses video finished analytics after the first end event persists", () => {
+    const { result } = renderVideo();
+
+    expect(result.current.shouldTrackEndAnalytics).toBe(true);
+
+    act(() =>
+      result.current.handleVideoEvent({
+        event: "end",
+        timeElapsed: 90,
+        duration: 100,
+        muted: false,
+      }),
+    );
+
+    expect(result.current.videoInitialTimeElapsed).toBe(90);
+    expect(result.current.shouldTrackEndAnalytics).toBe(false);
+  });
+
   it("resumes a partially-watched video from its persisted time elapsed", () => {
     usePupilLessonProgress.getState().updateSectionInProgressResult("video", {
       played: true,
@@ -189,9 +207,10 @@ describe("usePupilVideoExperience", () => {
     const { result } = renderVideo();
 
     expect(result.current.videoInitialTimeElapsed).toBe(42);
+    expect(result.current.shouldTrackEndAnalytics).toBe(true);
   });
 
-  it("starts a near-finished incomplete video from the beginning so re-opening does not re-fire video finished", () => {
+  it("resumes a near-finished incomplete video from its persisted time and suppresses duplicate video finished analytics", () => {
     usePupilLessonProgress.getState().updateSectionInProgressResult("video", {
       played: true,
       duration: 100,
@@ -203,10 +222,11 @@ describe("usePupilVideoExperience", () => {
 
     const { result } = renderVideo();
 
-    expect(result.current.videoInitialTimeElapsed).toBe(0);
+    expect(result.current.videoInitialTimeElapsed).toBe(90);
+    expect(result.current.shouldTrackEndAnalytics).toBe(false);
   });
 
-  it("starts a completed video from the beginning so re-opening does not re-fire video finished", () => {
+  it("resumes a completed video from its persisted time and suppresses duplicate video finished analytics", () => {
     usePupilLessonProgress.getState().updateSectionInProgressResult("video", {
       played: true,
       duration: 100,
@@ -219,6 +239,7 @@ describe("usePupilVideoExperience", () => {
 
     const { result } = renderVideo();
 
-    expect(result.current.videoInitialTimeElapsed).toBe(0);
+    expect(result.current.videoInitialTimeElapsed).toBe(98);
+    expect(result.current.shouldTrackEndAnalytics).toBe(false);
   });
 });

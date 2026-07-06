@@ -130,6 +130,12 @@ export const usePupilVideoExperience = ({
   };
 
   const isVideoComplete = sectionResults.video?.isComplete ?? false;
+  const hasVideoFinished =
+    isVideoComplete ||
+    getHasVideoFinished({
+      duration: sectionResults.video?.duration,
+      timeElapsed: sectionResults.video?.timeElapsed,
+    });
   const proceedLabel =
     !isCompletingAndRedirecting && isVideoComplete
       ? "Continue lesson"
@@ -248,14 +254,8 @@ export const usePupilVideoExperience = ({
     transcriptSentences,
     signLanguageOn,
     isAdditionalFilesDownloading,
-    videoInitialTimeElapsed:
-      isVideoComplete ||
-      getHasVideoFinished({
-        duration: sectionResults.video?.duration,
-        timeElapsed: sectionResults.video?.timeElapsed,
-      })
-        ? 0
-        : (sectionResults.video?.timeElapsed ?? 0),
+    videoInitialTimeElapsed: sectionResults.video?.timeElapsed ?? 0,
+    shouldTrackEndAnalytics: !hasVideoFinished,
     handleVideoEvent,
     handleBackToOverview,
     handleProceed,

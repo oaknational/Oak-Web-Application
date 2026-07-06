@@ -30,6 +30,7 @@ const VideoContent = ({
     signLanguageOn,
     isAdditionalFilesDownloading,
     videoInitialTimeElapsed,
+    shouldTrackEndAnalytics,
     handleVideoEvent,
     handleBackToOverview,
     handleProceed,
@@ -68,6 +69,7 @@ const VideoContent = ({
             isLegacy={lessonContent.isLegacy ?? false}
             userEventCallback={handleVideoEvent}
             pathwayData={getPupilPathwayData(browseData)}
+            shouldTrackEndAnalytics={shouldTrackEndAnalytics}
           />
         ) : (
           <OakP $font="body-1">This lesson does not contain a video</OakP>
