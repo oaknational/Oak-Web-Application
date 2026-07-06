@@ -807,11 +807,11 @@ exports[`Teachers Page Page component renders 1`] = `
                             style="width: 50%;"
                           >
                             <div
-                              class="sc-aXZVg sc-hZDyAQ sc-70789f8d-1 eAVyBL bKETPQ ggmYeW"
+                              class="sc-aXZVg sc-hZDyAQ sc-f4ade8c1-1 eAVyBL bKETPQ chvCvJ"
                             >
                               <button
                                 aria-expanded="false"
-                                class="sc-70789f8d-3 iYrdVL"
+                                class="sc-f4ade8c1-3 joHLPE"
                                 data-testid="subject-picker-button"
                                 title="Subject"
                               >
@@ -876,70 +876,74 @@ exports[`Teachers Page Page component renders 1`] = `
                               class="sc-aXZVg sc-gEvEer Clfe dbzvZO"
                             >
                               <div
-                                class="sc-aXZVg sc-hZDyAQ sc-70789f8d-1 hWaSHT bKETPQ ggmYeW"
-                              >
-                                <button
-                                  aria-expanded="false"
-                                  class="sc-70789f8d-3 iYrdVL"
-                                  data-testid="phase-picker-button"
-                                  title="Phase"
-                                >
-                                  <div
-                                    class="sc-aXZVg eRMbhw"
-                                  >
-                                    <span
-                                      class="sc-eqUAAy dhmOzB"
-                                      data-testid="phase-picker-button-heading"
-                                    >
-                                      School phase
-                                    </span>
-                                    <div
-                                      class="sc-aXZVg jUaOuR"
-                                    >
-                                      Select
-                                    </div>
-                                  </div>
-                                </button>
-                              </div>
-                              <div
-                                class="sc-aXZVg sc-gEvEer bNELAf kcQyVM"
+                                class="sc-aXZVg sc-hZDyAQ sc-f4ade8c1-1 hWaSHT bKETPQ chvCvJ"
                               >
                                 <div
-                                  class="sc-aXZVg sc-kpDqfm bhFzn cvxBYX"
+                                  class="sc-aXZVg sc-gEvEer jPvJsJ inWRga"
                                 >
-                                  <div
-                                    class="sc-aXZVg kpXzs grey-shadow"
-                                  />
-                                  <div
-                                    class="sc-aXZVg kpXzs yellow-shadow"
-                                  />
                                   <button
-                                    class="sc-dcJsrY sc-jXbUNg cLXsQH dglRoS internal-button"
-                                    data-testid="lot-picker-view-curriculum-button"
+                                    aria-expanded="false"
+                                    class="sc-f4ade8c1-3 joHLPE"
+                                    data-testid="phase-picker-button"
+                                    title="Phase"
                                   >
                                     <div
-                                      class="sc-aXZVg sc-gEvEer jPvJsJ krHAKs"
+                                      class="sc-aXZVg eRMbhw"
                                     >
                                       <span
-                                        class="sc-eqUAAy edqVpV"
+                                        class="sc-eqUAAy dhmOzB"
+                                        data-testid="phase-picker-button-heading"
                                       >
-                                        View
+                                        School phase
                                       </span>
-                                      <span
-                                        class="sc-aXZVg jJQFnr"
+                                      <div
+                                        class="sc-aXZVg jUaOuR"
                                       >
-                                        <img
-                                          alt=""
-                                          class="sc-iGgWBj bOyFfb"
-                                          data-nimg="fill"
-                                          decoding="async"
-                                          loading="lazy"
-                                          src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1707149070/icons/fv0z57zerrioft52dd9n.svg"
-                                          style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
-                                        />
-                                      </span>
+                                        Select
+                                      </div>
                                     </div>
                                   </button>
+                                  <div
+                                    class="sc-aXZVg sc-gEvEer hzMHDf fKNXyu"
+                                  >
+                                    <div
+                                      class="sc-aXZVg sc-kpDqfm bhFzn cvxBYX"
+                                    >
+                                      <div
+                                        class="sc-aXZVg kpXzs grey-shadow"
+                                      />
+                                      <div
+                                        class="sc-aXZVg kpXzs yellow-shadow"
+                                      />
+                                      <button
+                                        class="sc-dcJsrY sc-jXbUNg cLXsQH dglRoS internal-button"
+                                        data-testid="lot-picker-view-curriculum-button"
+                                      >
+                                        <div
+                                          class="sc-aXZVg sc-gEvEer jPvJsJ krHAKs"
+                                        >
+                                          <span
+                                            class="sc-eqUAAy edqVpV"
+                                          >
+                                            View
+                                          </span>
+                                          <span
+                                            class="sc-aXZVg jJQFnr"
+                                          >
+                                            <img
+                                              alt=""
+                                              class="sc-iGgWBj bOyFfb"
+                                              data-nimg="fill"
+                                              decoding="async"
+                                              loading="lazy"
+                                              src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1707149070/icons/fv0z57zerrioft52dd9n.svg"
+                                              style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                                            />
+                                          </span>
+                                        </div>
+                                      </button>
+                                    </div>
+                                  </div>
                                 </div>
                               </div>
                             </div>
@@ -1122,11 +1126,11 @@ exports[`Teachers Page Page component renders 1`] = `
                           style="width: 50%;"
                         >
                           <div
-                            class="sc-aXZVg sc-hZDyAQ sc-70789f8d-1 eAVyBL bKETPQ ggmYeW"
+                            class="sc-aXZVg sc-hZDyAQ sc-f4ade8c1-1 eAVyBL bKETPQ chvCvJ"
                           >
                             <button
                               aria-expanded="false"
-                              class="sc-70789f8d-3 iYrdVL"
+                              class="sc-f4ade8c1-3 joHLPE"
                               data-testid="subject-picker-button"
                               title="Subject"
                             >
@@ -1191,70 +1195,74 @@ exports[`Teachers Page Page component renders 1`] = `
                             class="sc-aXZVg sc-gEvEer Clfe dbzvZO"
                           >
                             <div
-                              class="sc-aXZVg sc-hZDyAQ sc-70789f8d-1 hWaSHT bKETPQ ggmYeW"
-                            >
-                              <button
-                                aria-expanded="false"
-                                class="sc-70789f8d-3 iYrdVL"
-                                data-testid="phase-picker-button"
-                                title="Phase"
-                              >
-                                <div
-                                  class="sc-aXZVg eRMbhw"
-                                >
-                                  <span
-                                    class="sc-eqUAAy dhmOzB"
-                                    data-testid="phase-picker-button-heading"
-                                  >
-                                    School phase
-                                  </span>
-                                  <div
-                                    class="sc-aXZVg jUaOuR"
-                                  >
-                                    Select
-                                  </div>
-                                </div>
-                              </button>
-                            </div>
-                            <div
-                              class="sc-aXZVg sc-gEvEer bNELAf kcQyVM"
+                              class="sc-aXZVg sc-hZDyAQ sc-f4ade8c1-1 hWaSHT bKETPQ chvCvJ"
                             >
                               <div
-                                class="sc-aXZVg sc-kpDqfm bhFzn cvxBYX"
+                                class="sc-aXZVg sc-gEvEer jPvJsJ inWRga"
                               >
-                                <div
-                                  class="sc-aXZVg kpXzs grey-shadow"
-                                />
-                                <div
-                                  class="sc-aXZVg kpXzs yellow-shadow"
-                                />
                                 <button
-                                  class="sc-dcJsrY sc-jXbUNg cLXsQH dglRoS internal-button"
-                                  data-testid="lot-picker-view-curriculum-button"
+                                  aria-expanded="false"
+                                  class="sc-f4ade8c1-3 joHLPE"
+                                  data-testid="phase-picker-button"
+                                  title="Phase"
                                 >
                                   <div
-                                    class="sc-aXZVg sc-gEvEer jPvJsJ krHAKs"
+                                    class="sc-aXZVg eRMbhw"
                                   >
                                     <span
-                                      class="sc-eqUAAy edqVpV"
+                                      class="sc-eqUAAy dhmOzB"
+                                      data-testid="phase-picker-button-heading"
                                     >
-                                      View
+                                      School phase
                                     </span>
-                                    <span
-                                      class="sc-aXZVg jJQFnr"
+                                    <div
+                                      class="sc-aXZVg jUaOuR"
                                     >
-                                      <img
-                                        alt=""
-                                        class="sc-iGgWBj bOyFfb"
-                                        data-nimg="fill"
-                                        decoding="async"
-                                        loading="lazy"
-                                        src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1707149070/icons/fv0z57zerrioft52dd9n.svg"
-                                        style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
-                                      />
-                                    </span>
+                                      Select
+                                    </div>
                                   </div>
                                 </button>
+                                <div
+                                  class="sc-aXZVg sc-gEvEer hzMHDf fKNXyu"
+                                >
+                                  <div
+                                    class="sc-aXZVg sc-kpDqfm bhFzn cvxBYX"
+                                  >
+                                    <div
+                                      class="sc-aXZVg kpXzs grey-shadow"
+                                    />
+                                    <div
+                                      class="sc-aXZVg kpXzs yellow-shadow"
+                                    />
+                                    <button
+                                      class="sc-dcJsrY sc-jXbUNg cLXsQH dglRoS internal-button"
+                                      data-testid="lot-picker-view-curriculum-button"
+                                    >
+                                      <div
+                                        class="sc-aXZVg sc-gEvEer jPvJsJ krHAKs"
+                                      >
+                                        <span
+                                          class="sc-eqUAAy edqVpV"
+                                        >
+                                          View
+                                        </span>
+                                        <span
+                                          class="sc-aXZVg jJQFnr"
+                                        >
+                                          <img
+                                            alt=""
+                                            class="sc-iGgWBj bOyFfb"
+                                            data-nimg="fill"
+                                            decoding="async"
+                                            loading="lazy"
+                                            src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1707149070/icons/fv0z57zerrioft52dd9n.svg"
+                                            style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                                          />
+                                        </span>
+                                      </div>
+                                    </button>
+                                  </div>
+                                </div>
                               </div>
                             </div>
                           </div>
@@ -1415,11 +1423,11 @@ exports[`Teachers Page Page component renders 1`] = `
                               style="width: 50%;"
                             >
                               <div
-                                class="sc-aXZVg sc-hZDyAQ sc-70789f8d-1 eAVyBL bKETPQ ggmYeW"
+                                class="sc-aXZVg sc-hZDyAQ sc-f4ade8c1-1 eAVyBL bKETPQ chvCvJ"
                               >
                                 <button
                                   aria-expanded="false"
-                                  class="sc-70789f8d-3 iYrdVL"
+                                  class="sc-f4ade8c1-3 joHLPE"
                                   data-testid="subject-picker-button"
                                   title="Subject"
                                 >
@@ -1484,70 +1492,74 @@ exports[`Teachers Page Page component renders 1`] = `
                                 class="sc-aXZVg sc-gEvEer Clfe dbzvZO"
                               >
                                 <div
-                                  class="sc-aXZVg sc-hZDyAQ sc-70789f8d-1 hWaSHT bKETPQ ggmYeW"
-                                >
-                                  <button
-                                    aria-expanded="false"
-                                    class="sc-70789f8d-3 iYrdVL"
-                                    data-testid="phase-picker-button"
-                                    title="Phase"
-                                  >
-                                    <div
-                                      class="sc-aXZVg eRMbhw"
-                                    >
-                                      <span
-                                        class="sc-eqUAAy dhmOzB"
-                                        data-testid="phase-picker-button-heading"
-                                      >
-                                        School phase
-                                      </span>
-                                      <div
-                                        class="sc-aXZVg jUaOuR"
-                                      >
-                                        Select
-                                      </div>
-                                    </div>
-                                  </button>
-                                </div>
-                                <div
-                                  class="sc-aXZVg sc-gEvEer bNELAf kcQyVM"
+                                  class="sc-aXZVg sc-hZDyAQ sc-f4ade8c1-1 hWaSHT bKETPQ chvCvJ"
                                 >
                                   <div
-                                    class="sc-aXZVg sc-kpDqfm bhFzn cvxBYX"
+                                    class="sc-aXZVg sc-gEvEer jPvJsJ inWRga"
                                   >
-                                    <div
-                                      class="sc-aXZVg kpXzs grey-shadow"
-                                    />
-                                    <div
-                                      class="sc-aXZVg kpXzs yellow-shadow"
-                                    />
                                     <button
-                                      class="sc-dcJsrY sc-jXbUNg cLXsQH dglRoS internal-button"
-                                      data-testid="lot-picker-view-curriculum-button"
+                                      aria-expanded="false"
+                                      class="sc-f4ade8c1-3 joHLPE"
+                                      data-testid="phase-picker-button"
+                                      title="Phase"
                                     >
                                       <div
-                                        class="sc-aXZVg sc-gEvEer jPvJsJ krHAKs"
+                                        class="sc-aXZVg eRMbhw"
                                       >
                                         <span
-                                          class="sc-eqUAAy edqVpV"
+                                          class="sc-eqUAAy dhmOzB"
+                                          data-testid="phase-picker-button-heading"
                                         >
-                                          View
+                                          School phase
                                         </span>
-                                        <span
-                                          class="sc-aXZVg jJQFnr"
+                                        <div
+                                          class="sc-aXZVg jUaOuR"
                                         >
-                                          <img
-                                            alt=""
-                                            class="sc-iGgWBj bOyFfb"
-                                            data-nimg="fill"
-                                            decoding="async"
-                                            loading="lazy"
-                                            src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1707149070/icons/fv0z57zerrioft52dd9n.svg"
-                                            style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
-                                          />
-                                        </span>
+                                          Select
+                                        </div>
                                       </div>
                                     </button>
+                                    <div
+                                      class="sc-aXZVg sc-gEvEer hzMHDf fKNXyu"
+                                    >
+                                      <div
+                                        class="sc-aXZVg sc-kpDqfm bhFzn cvxBYX"
+                                      >
+                                        <div
+                                          class="sc-aXZVg kpXzs grey-shadow"
+                                        />
+                                        <div
+                                          class="sc-aXZVg kpXzs yellow-shadow"
+                                        />
+                                        <button
+                                          class="sc-dcJsrY sc-jXbUNg cLXsQH dglRoS internal-button"
+                                          data-testid="lot-picker-view-curriculum-button"
+                                        >
+                                          <div
+                                            class="sc-aXZVg sc-gEvEer jPvJsJ krHAKs"
+                                          >
+                                            <span
+                                              class="sc-eqUAAy edqVpV"
+                                            >
+                                              View
+                                            </span>
+                                            <span
+                                              class="sc-aXZVg jJQFnr"
+                                            >
+                                              <img
+                                                alt=""
+                                                class="sc-iGgWBj bOyFfb"
+                                                data-nimg="fill"
+                                                decoding="async"
+                                                loading="lazy"
+                                                src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1707149070/icons/fv0z57zerrioft52dd9n.svg"
+                                                style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                                              />
+                                            </span>
+                                          </div>
+                                        </button>
+                                      </div>
+                                    </div>
                                   </div>
                                 </div>
                               </div>
