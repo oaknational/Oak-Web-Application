@@ -34,6 +34,6 @@ describe("SimulateErrorControls", () => {
       name: "Simulate root error",
     });
     const user = userEvent.setup();
-    await expect(() => user.click(simulateErrorBtn)).rejects.toThrow();
+    await expect(user.click(simulateErrorBtn)).rejects.toThrow();
   });
 });
