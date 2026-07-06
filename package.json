@@ -95,7 +95,7 @@
     "@mux/mux-player": "^3.10.2",
     "@mux/mux-player-react": "3.10.2",
     "@oaknational/google-classroom-addon": "^1.33.0",
-    "@oaknational/oak-components": "git+https://github.com/orangemug/tmp-oak-components-build#e1c005bec91d33a17659fb3c8b0505a6604af1ff",
+    "@oaknational/oak-components": "git+https://github.com/orangemug/tmp-oak-components-build#1d8b12060b6ad6ba379327362ed432cd7ddbb683",
     "@oaknational/oak-consent-client": "2.4.0",
     "@oaknational/oak-curriculum-schema": "2.14.1",
     "@ooxml-tools/units": "^0.3.0",
