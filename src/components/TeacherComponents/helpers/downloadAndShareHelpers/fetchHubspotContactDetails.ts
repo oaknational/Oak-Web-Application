@@ -35,7 +35,7 @@ const hubspotContactsFetcher = async (url: string) => {
       err instanceof OakError
         ? err
         : new OakError({
-            code: "hubspot/unknown",
+            code: "hubspot/contacts",
             originalError: err,
           });
 
