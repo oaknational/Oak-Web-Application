@@ -1,4 +1,3 @@
-import React from "react";
 import { StoryObj, Meta } from "@storybook/react";
 import {
   OakBreadcrumbs,
@@ -11,6 +10,7 @@ import UnitHeader, { UnitHeaderProps } from "./UnitHeader";
 
 import { __setMockAuthState } from "@/storybook-mocks/clerk";
 import useUnitDownloadExistenceCheck from "@/components/TeacherComponents/hooks/downloadAndShareHooks/useUnitDownloadExistenceCheck";
+import NotificationsDecorator from "@/storybook-decorators/NotificationsDecorator";
 
 const meta: Meta<typeof UnitHeader> = {
   component: UnitHeader,
@@ -46,6 +46,7 @@ const meta: Meta<typeof UnitHeader> = {
     },
   },
   decorators: [
+    NotificationsDecorator,
     (Story) => {
       __setMockAuthState({ isSignedIn: true });
       return (

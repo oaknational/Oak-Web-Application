@@ -11,6 +11,7 @@ import { __setMockAuthState } from "@/storybook-mocks/clerk";
 import NotificationsDecorator from "@/storybook-decorators/NotificationsDecorator";
 import SaveCountDecorator from "@/storybook-decorators/SaveCountDecorator";
 import type { LessonListSchema } from "@/node-lib/curriculum-api-2023/shared.schema";
+import CookieConsentDecorator from "@/storybook-decorators/CookieConsentDecorator";
 
 const lessons: LessonListSchema = [
   {
@@ -78,6 +79,7 @@ const meta: Meta<typeof DownloadSuccessView> = {
   decorators: [
     SaveCountDecorator,
     NotificationsDecorator,
+    CookieConsentDecorator,
     (Story) => (
       <ClerkProvider>
         <OakThemeProvider theme={oakDefaultTheme}>
