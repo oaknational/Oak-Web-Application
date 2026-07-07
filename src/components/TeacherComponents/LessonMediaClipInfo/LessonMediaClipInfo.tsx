@@ -59,7 +59,9 @@ export const LessonMediaClipInfo: FC<LessonMediaClipInfoProps> = ({
             <OakSignLanguageButton onClick={onSignLanguageButtonClick} />
           )
         }
-        copyLinkControl={copyLinkButtonEnabled && <OakCopyLinkButton />}
+        copyLinkControl={
+          copyLinkButtonEnabled && <OakCopyLinkButton aria-live="polite" />
+        }
       >
         {videoTranscript}
       </OakVideoTranscript>
