@@ -40,7 +40,7 @@ type NewsletterSignUpData = Partial<{
   schools: School[];
   schoolId?: string;
   schoolName?: string;
-  email?: string;
+  email: string;
   schoolNotListed?: boolean;
   name: string;
   schoolOrg?: string;
