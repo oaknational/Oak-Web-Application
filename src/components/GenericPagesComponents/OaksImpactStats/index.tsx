@@ -25,7 +25,7 @@ export type OaksImpactStatsProps = {
     body: string;
   }[];
 };
-export function OaksImpactStats(props: OaksImpactStatsProps) {
+export function OaksImpactStats(props: Readonly<OaksImpactStatsProps>) {
   return (
     <OakFlex
       $background={"bg-decorative2-main"}
