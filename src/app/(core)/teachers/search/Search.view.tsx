@@ -381,7 +381,11 @@ const Search: FC<SearchProps> = (props) => {
                     $right={"spacing-0"}
                     $pointerEvents={"none"}
                   >
-                    <MobileFilters $mt={"spacing-0"} label="Filters">
+                    <MobileFilters
+                      $mt={"spacing-0"}
+                      label="Filters"
+                      hasShowResultsButton={true}
+                    >
                       <OakBox>
                         <SearchFilters
                           {...searchFilters}

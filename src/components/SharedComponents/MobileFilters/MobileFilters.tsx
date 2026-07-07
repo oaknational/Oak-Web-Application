@@ -13,17 +13,25 @@ import { PostCategoryPage } from "@/components/SharedComponents/PostCategoryList
 import { resolveOakHref } from "@/common-lib/urls";
 
 export type MobileFiltersProps = {
-  withBackButton?: boolean;
-  page?: PostCategoryPage;
   children: ReactNode;
   label: string;
+  hasShowResultsButton?: boolean;
+  withBackButton?: boolean;
+  page?: PostCategoryPage;
 } & OakFlexProps;
 const MobileFilters: FC<MobileFiltersProps> = (props) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const { open: menuOpen } = useMenuContext();
 
-  const { withBackButton, page, children, label, ...flexProps } = props;
+  const {
+    withBackButton,
+    page,
+    children,
+    label,
+    hasShowResultsButton,
+    ...flexProps
+  } = props;
 
   const close = useCallback(() => {
     setIsOpen(false);
@@ -84,18 +92,20 @@ const MobileFilters: FC<MobileFiltersProps> = (props) => {
         closeOnBackgroundClick
         aria-label={label}
         footerSlot={
-          <OakBox
-            $pa={"spacing-12"}
-            $bt={"border-solid-s"}
-            $borderColor={"border-neutral-lighter"}
-          >
-            <OakPrimaryButton
-              data-testid="mobile-done-thread-modal-button"
-              onClick={() => setIsOpen(false)}
+          hasShowResultsButton && (
+            <OakBox
+              $pa={"spacing-12"}
+              $bt={"border-solid-s"}
+              $borderColor={"border-neutral-lighter"}
             >
-              Show results
-            </OakPrimaryButton>
-          </OakBox>
+              <OakPrimaryButton
+                data-testid="mobile-done-thread-modal-button"
+                onClick={() => setIsOpen(false)}
+              >
+                Show results
+              </OakPrimaryButton>
+            </OakBox>
+          )
         }
       >
         <OakFlex
