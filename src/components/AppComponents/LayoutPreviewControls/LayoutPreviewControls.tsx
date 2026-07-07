@@ -1,9 +1,13 @@
+import Link from "next/link";
 import { FC } from "react";
 import { useRouter } from "next/router";
-import { OakSpan, OakFlex } from "@oaknational/oak-components";
+import {
+  OakSpan,
+  OakFlex,
+  OakTertiaryButton,
+} from "@oaknational/oak-components";
 
 import BrushBorders from "@/components/SharedComponents/SpriteSheet/BrushSvgs/BrushBorders";
-import ButtonAsLink from "@/components/SharedComponents/Button/ButtonAsLink";
 import CopyLinkButton from "@/components/SharedComponents/Button/CopyLinkButton";
 
 /**
@@ -42,13 +46,12 @@ const LayoutPreviewControls: FC = () => {
       $background="bg-primary"
     >
       <OakSpan $mr="spacing-24">Preview mode enabled</OakSpan>
-      <ButtonAsLink
-        page={null}
-        label="Exit preview"
+      <OakTertiaryButton
+        element={Link}
         href={`/api/exit-preview${router.asPath}`}
-        variant="minimal"
-        $mr={24}
-      />
+      >
+        Exit preview
+      </OakTertiaryButton>
       {secretParam && <CopyLinkButton href={previewURL} />}
       <BrushBorders color="bg-primary" />
     </OakFlex>
