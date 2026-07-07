@@ -36,7 +36,10 @@ const PostSingleLayout: FC<PostSingleLayoutProps> = (props) => {
   return (
     <OakMaxWidth>
       <OakGrid $ph={["spacing-12", "spacing-0"]}>
-        <OakGridArea $colSpan={[12, 0]} $mt={"spacing-24"}>
+        <OakGridArea
+          $colSpan={[12, 0]}
+          $mt={["spacing-24", "spacing-0", "spacing-0"]}
+        >
           <MobileFilters page={page} withBackButton label={CATEGORY_NAV_LABEL}>
             <PostCategoryList
               $pv={"spacing-24"}
