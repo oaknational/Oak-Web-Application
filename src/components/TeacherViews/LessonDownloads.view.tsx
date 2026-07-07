@@ -384,6 +384,7 @@ export function LessonDownloads(props: Readonly<LessonDownloadsProps>) {
             control={form.control}
             showPostAlbCopyright={!isLegacyDownload}
             triggerForm={form.trigger}
+            validationSummaryKey={form.submitCount}
             apiError={apiError}
             copyrightYear={updatedAt}
             withHomeschool={true}

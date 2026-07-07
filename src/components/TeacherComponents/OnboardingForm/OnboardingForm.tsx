@@ -6,7 +6,7 @@ import {
   UseFormTrigger,
 } from "react-hook-form";
 import { BaseSyntheticEvent, ChangeEvent, useEffect, useState } from "react";
-import { useRouter } from "next/router";
+import { useRouter, useSearchParams } from "next/navigation";
 import { useUser } from "@clerk/nextjs";
 import {
   OakBox,
@@ -63,6 +63,7 @@ const OnboardingForm = ({
   continueButtonDescription?: string;
 }) => {
   const router = useRouter();
+  const searchParams = useSearchParams();
   const utmParams = useUtmParams();
   const { posthogDistinctId } = useAnalytics();
   const { user } = useUser();
@@ -74,7 +75,7 @@ const OnboardingForm = ({
   >(undefined);
   const { track } = useAnalytics();
   // Accumulate onboarding data from all steps
-  const collectedOnboardingData = decodeOnboardingDataQueryParam(router.query);
+  const collectedOnboardingData = decodeOnboardingDataQueryParam(searchParams);
 
   useEffect(() => {
     if (forceHideNewsletterSignUp) {
@@ -102,8 +103,8 @@ const OnboardingForm = ({
       ...collectedOnboardingData,
       ...data,
     };
-    const newQuery = encodeOnboardingDataQueryParam(
-      router.query,
+    const query = encodeOnboardingDataQueryParam(
+      searchParams,
       latestOnboardingData,
     );
 
@@ -118,14 +119,13 @@ const OnboardingForm = ({
             event?.nativeEvent,
           ),
         );
-      router.push({
-        pathname: resolveOakHref({
+      router.push(
+        `${resolveOakHref({
           page: data.worksInSchool
             ? "onboarding-school-selection"
             : "onboarding-role-selection",
-        }),
-        query: newQuery,
-      });
+        })}?${query}`,
+      );
     } else if (isSchoolSelectData(data) && showNewsletterSignUp) {
       user &&
         posthogDistinctId &&
@@ -137,18 +137,28 @@ const OnboardingForm = ({
             event?.nativeEvent,
           ),
         );
-      router.push({
-        pathname: resolveOakHref({
+      router.push(
+        `${resolveOakHref({
           page: "onboarding-use-of-oak",
-        }),
-        query: newQuery,
-      });
+        })}?${query}`,
+      );
     } else {
       setIsSubmitting(true);
       const isTeacher = "school" in data || "manualSchoolName" in data;
 
       try {
         await onboardUser({ isTeacher });
+        user &&
+          posthogDistinctId &&
+          track.userOnboardingCompleted(
+            collectOnboardingTrackingProps(
+              posthogDistinctId,
+              user,
+              latestOnboardingData,
+              event?.nativeEvent,
+            ),
+          );
+
         await user?.reload();
       } catch (_error) {
         setSubmitError("Something went wrong. Please try again.");
@@ -178,22 +188,11 @@ const OnboardingForm = ({
         userEmail,
       });
 
-      user &&
-        posthogDistinctId &&
-        track.userOnboardingCompleted(
-          collectOnboardingTrackingProps(
-            posthogDistinctId,
-            user,
-            latestOnboardingData,
-            event?.nativeEvent,
-          ),
-        );
-
       // Return the user to the page they originally arrived from
       // or to the home page as a fallback
       router.push(
         toSafeRedirect(
-          router.query.returnTo?.toString() ?? "/",
+          searchParams?.get("returnTo") ?? "/",
           new URL(typeof window !== "undefined" ? window.location.origin : "/"),
         ) ?? "/",
       );

@@ -117,6 +117,65 @@ describe("Download Page With Accordion", () => {
     expect(errorMessage).toBeInTheDocument();
   });
 
+  it("announces validation summary in a polite live region", async () => {
+    renderWithProviders()(
+      <ComponentWrapper
+        {...props}
+        errors={{
+          resources: { message: "downloads error" },
+          terms: { message: "terms error", type: "required" },
+        }}
+      />,
+    );
+
+    const validationSummary = screen.getByTestId("download-validation-summary");
+
+    expect(validationSummary).toBeInTheDocument();
+    expect(validationSummary).toHaveAttribute("role", "status");
+    expect(validationSummary).toHaveAttribute("aria-live", "polite");
+    expect(validationSummary).toHaveAttribute("aria-atomic", "true");
+    expect(validationSummary).toHaveTextContent(
+      "To complete, correct the following:",
+    );
+    expect(validationSummary).toHaveTextContent(
+      "select at least one resource to continue",
+    );
+    expect(validationSummary).toHaveTextContent(
+      "accept terms and conditions to continue",
+    );
+  });
+
+  it("remounts screen-reader validation summary when validationSummaryKey changes", () => {
+    const validationErrors = {
+      resources: { message: "downloads error" },
+      terms: { message: "terms error", type: "required" },
+    };
+
+    const { rerender } = renderWithProviders()(
+      <ComponentWrapper
+        {...props}
+        errors={validationErrors}
+        validationSummaryKey={1}
+      />,
+    );
+
+    const firstValidationSummary = screen.getByTestId(
+      "download-validation-summary",
+    );
+
+    rerender(
+      <ComponentWrapper
+        {...props}
+        errors={validationErrors}
+        validationSummaryKey={2}
+      />,
+    );
+
+    expect(screen.getByTestId("download-validation-summary")).not.toBe(
+      firstValidationSummary,
+    );
+  });
+
   it("handles api error", () => {
     const { rerender } = renderWithProviders()(<ComponentWrapper {...props} />);
 

@@ -1,7 +1,34 @@
 import { FC, memo, useState } from "react";
-import { OakBox } from "@oaknational/oak-components";
+import { OakBox, OakFocusIndicator } from "@oaknational/oak-components";
+import styled from "styled-components";
 
 import AspectRatio from "@/components/SharedComponents/AspectRatio";
+
+const StyledSlideIframe = styled.iframe`
+  border: 0;
+`;
+
+const FocusTarget = styled(OakBox)`
+  position: relative;
+  outline: none;
+
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0;
+    z-index: 2;
+    box-shadow:
+      0 0 0 2px #ffe555,
+      0 0 0 5px #575757;
+    transition: opacity 0.15s ease;
+  }
+
+  &:focus-visible::before {
+    opacity: 1;
+  }
+`;
 
 interface LessonOverviewPresentationProps {
   asset: string | null;
@@ -23,23 +50,41 @@ const LessonOverviewPresentation: FC<LessonOverviewPresentationProps> = ({
   const srcUrl =
     isAdditionalMaterial && asset
       ? `https://docs.google.com/document/d/${slidesId}/pub?embedded=true`
-      : `https://docs.google.com/presentation/d/${slidesId}/embed?start=false&amp;loop=false&amp`;
+      : `https://docs.google.com/presentation/d/${slidesId}/embed?start=false&loop=false`;
+
   return (
     <OakBox $ba={["border-solid-m"]} $width={"100%"}>
       <AspectRatio ratio={isWorksheetPortrait ? "2:3" : "16:9"}>
-        <iframe
-          src={srcUrl}
-          title={`slide deck: ${title}`}
-          width="100%"
-          height="100%"
-          // We know the google slides aren't accessible.
-          className="pa11y-ignore"
-          data-testid="overview-presentation"
-          style={{
-            border: "none",
-          }}
-          loading="eager"
-        />
+        <OakFocusIndicator
+          $width={"100%"}
+          $height={"100%"}
+          hoverBackground="bg-decorative6-main"
+        >
+          <FocusTarget
+            as="div"
+            role="region"
+            tabIndex={0}
+            $width={"100%"}
+            $height={"100%"}
+            data-testid="overview-presentation-focus-target"
+            aria-label={`${isAdditionalMaterial ? "Document" : "Slide deck"} preview for ${title}`}
+          >
+            <StyledSlideIframe
+              src={srcUrl}
+              title={`Presentation: ${title}`}
+              width="100%"
+              height="100%"
+              // We know the google slides aren't accessible.
+              className="pa11y-ignore"
+              data-testid="overview-presentation"
+              allowFullScreen
+              // Keep the embedded player out of the tab order to avoid keyboard traps.
+              tabIndex={-1}
+              aria-hidden="true"
+              loading="eager"
+            />
+          </FocusTarget>
+        </OakFocusIndicator>
       </AspectRatio>
     </OakBox>
   );
