@@ -70,7 +70,11 @@ const ErrorView: FC<ErrorViewProps> = (props) => {
           <OakP $mb="spacing-24">Let's get you back to browsing</OakP>
           <ButtonGroup>
             {onBackClick && (
-              <OakTertiaryButton onClick={onBackClick} iconName="arrow-left">
+              <OakTertiaryButton
+                isTrailingIcon
+                onClick={onBackClick}
+                iconName="arrow-left"
+              >
                 Go back
               </OakTertiaryButton>
             )}
@@ -78,6 +82,7 @@ const ErrorView: FC<ErrorViewProps> = (props) => {
               data-testid="homeButton"
               element={Link}
               iconName="home"
+              isTrailingIcon
               href={resolveOakHref({ page: "home" })}
             >
               Home
