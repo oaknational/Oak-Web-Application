@@ -639,19 +639,208 @@ exports[`pages/about-us/oaks-impact.tsx renders title when feature flag is enabl
             </div>
           </div>
           <div
-            class="sc-aXZVg gXhAcH"
+            class="sc-aXZVg sc-gEvEer gMsqAK iDBIXi"
           >
-            TODO: Stats
+            <div
+              class="sc-aXZVg sc-gEvEer sc-kAkpmW hjiwHg fUxOFh"
+            >
+              <div
+                class="sc-aXZVg sc-gEvEer jPvJsJ grLzfc"
+              >
+                <div
+                  class="sc-aXZVg sc-gEvEer iiXlSv iwFTtF"
+                >
+                  <div
+                    class="sc-aXZVg sc-gEvEer jPvJsJ daEtut"
+                  >
+                    <h2
+                      class="sc-eldPxv epUAyb"
+                    >
+                      Oak is now used in 72% of schools
+                    </h2>
+                    <p
+                      class="sc-ikkxIA bevdi"
+                    >
+                      Our latest independent evaluation shows just how valuable this support has already become for teachers and school leaders.
+                    </p>
+                  </div>
+                  <div
+                    class="sc-aXZVg sc-kpDqfm bhFzn cvxBYX"
+                  >
+                    <div
+                      class="sc-aXZVg kpXzs grey-shadow"
+                    />
+                    <div
+                      class="sc-aXZVg kpXzs yellow-shadow"
+                    />
+                    <a
+                      class="sc-dcJsrY sc-jXbUNg cLXsQH dglRoS internal-button"
+                      href="#"
+                    >
+                      <div
+                        class="sc-aXZVg sc-gEvEer jPvJsJ krHAKs"
+                      >
+                        <span
+                          class="sc-aXZVg jJQFnr"
+                        >
+                          <img
+                            alt=""
+                            class="sc-iGgWBj bOyFfb"
+                            data-nimg="fill"
+                            decoding="async"
+                            loading="lazy"
+                            src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1699953892/icons/hlxmejse3mcr4tqo6t8u.svg"
+                            style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                          />
+                        </span>
+                        <span
+                          class="sc-eqUAAy edqVpV"
+                        >
+                          Read the 24/25 impact report
+                        </span>
+                      </div>
+                    </a>
+                  </div>
+                </div>
+                <div
+                  class="sc-aXZVg sc-gEvEer jPvJsJ crYpLM"
+                >
+                  <div
+                    class="sc-aXZVg sc-gEvEer jPvJsJ fLgPAy"
+                  >
+                    <div
+                      class="sc-aXZVg sc-gEvEer kBnJtM fEHKal"
+                    >
+                      <div
+                        class="sc-aXZVg sc-gEvEer jPvJsJ iDBIXi"
+                      >
+                        <span
+                          class="sc-aXZVg iFYCBG"
+                        >
+                          <img
+                            alt=""
+                            class="sc-iGgWBj dZvqhO"
+                            data-nimg="fill"
+                            decoding="async"
+                            loading="lazy"
+                            src="https://res.cloudinary.com/oak-web-application/image/upload/v1749031463/icons/clipboard_yll2yj.svg"
+                            style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                          />
+                        </span>
+                      </div>
+                      <div
+                        class="sc-aXZVg sc-gEvEer kBnJtM cQXbIi"
+                      >
+                        <div
+                          class="sc-aXZVg gFNIew"
+                        >
+                          200,000
+                        </div>
+                        <p
+                          class="sc-ikkxIA jUPyul"
+                        >
+                          Between January and July 2025 alone, almost 200,000 teachers used Oak, with over 54,000 using it every week – a 53% rise on the previous year.
+                        </p>
+                      </div>
+                    </div>
+                    <div
+                      class="sc-aXZVg eDWeGI"
+                    />
+                    <div
+                      class="sc-aXZVg sc-gEvEer kBnJtM fEHKal"
+                    >
+                      <div
+                        class="sc-aXZVg sc-gEvEer jPvJsJ iDBIXi"
+                      >
+                        <span
+                          class="sc-aXZVg iFYCBG"
+                        >
+                          <img
+                            alt=""
+                            class="sc-iGgWBj dZvqhO"
+                            data-nimg="fill"
+                            decoding="async"
+                            loading="lazy"
+                            src="https://res.cloudinary.com/oak-web-application/image/upload/v1749031463/icons/clipboard_yll2yj.svg"
+                            style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                          />
+                        </span>
+                      </div>
+                      <div
+                        class="sc-aXZVg sc-gEvEer kBnJtM cQXbIi"
+                      >
+                        <div
+                          class="sc-aXZVg gFNIew"
+                        >
+                          85%
+                        </div>
+                        <p
+                          class="sc-ikkxIA jUPyul"
+                        >
+                          85% of Oak users say it has a positive impact on their workload. Two thirds (67%) report an overall workload reduction, saving a median four hours per week.
+                        </p>
+                      </div>
+                    </div>
+                    <div
+                      class="sc-aXZVg eDWeGI"
+                    />
+                    <div
+                      class="sc-aXZVg sc-gEvEer kBnJtM fEHKal"
+                    >
+                      <div
+                        class="sc-aXZVg sc-gEvEer jPvJsJ iDBIXi"
+                      >
+                        <span
+                          class="sc-aXZVg iFYCBG"
+                        >
+                          <img
+                            alt=""
+                            class="sc-iGgWBj dZvqhO"
+                            data-nimg="fill"
+                            decoding="async"
+                            loading="lazy"
+                            src="https://res.cloudinary.com/oak-web-application/image/upload/v1749031463/icons/clipboard_yll2yj.svg"
+                            style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                          />
+                        </span>
+                      </div>
+                      <div
+                        class="sc-aXZVg sc-gEvEer kBnJtM cQXbIi"
+                      >
+                        <div
+                          class="sc-aXZVg gFNIew"
+                        >
+                          92%
+                        </div>
+                        <p
+                          class="sc-ikkxIA jUPyul"
+                        >
+                          92% of Oak users see themselves staying in a teaching role in the next two years compared to 77% of non-users, indicating higher retention could be linked to Oak usage.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
           <div
-            class="sc-aXZVg gXhAcH"
+            class="sc-aXZVg sc-gEvEer sc-kAkpmW hjiwHg fUxOFh"
           >
-            TODO: Case Studies
+            <div
+              class="sc-aXZVg inFEUJ"
+            >
+              TODO: Case Studies
+            </div>
           </div>
           <div
-            class="sc-aXZVg gXhAcH"
+            class="sc-aXZVg sc-gEvEer sc-kAkpmW hjiwHg fUxOFh"
           >
-            TODO: Quotes
+            <div
+              class="sc-aXZVg inFEUJ"
+            >
+              TODO: Quotes
+            </div>
           </div>
           <div
             class="sc-aXZVg guaSoh"
