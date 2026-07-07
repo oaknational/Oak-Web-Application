@@ -13,6 +13,7 @@ import OakError from "@/errors/OakError";
 import DropdownSelect from "@/components/GenericPagesComponents/DropdownSelect";
 import errorReporter from "@/common-lib/error-reporter";
 import Form from "@/components/GenericPagesComponents/Form";
+import { createEmailSchema } from "@/common-lib/forms/emailSchema";
 import {
   USER_ROLES,
   UserRole,
@@ -20,15 +21,10 @@ import {
 
 const reportError = errorReporter("NewsletterForm.tsx");
 
-const emailSchema = (() => {
-  const minLengthSchema = z.string().min(1, {
-    error: "Enter an email",
-  });
-  const emailFormatSchema = z.email({
-    error: "Enter a valid email",
-  });
-  return z.intersection(minLengthSchema, emailFormatSchema);
-})();
+const emailSchema = createEmailSchema({
+  emptyField: "Enter an email",
+  invalidField: "Enter a valid email",
+});
 
 const schema = z.object({
   name: z

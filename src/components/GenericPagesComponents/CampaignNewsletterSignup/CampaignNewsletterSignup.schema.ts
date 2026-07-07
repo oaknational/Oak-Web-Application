@@ -1,5 +1,7 @@
 import { z } from "zod";
 
+import { createEmailSchema } from "@/common-lib/forms/emailSchema";
+
 const ERRORS = {
   school: "Select school, type ‘homeschool’ or tick ‘My school isn’t listed’",
   email: "Please enter a valid email address",
@@ -19,16 +21,11 @@ export const nameInputSchema = z
   })
   .min(1, ERRORS.name);
 
-export const emailRequiredSchema = z
-  .string({
-    error: () => ERRORS.email,
-  })
-  .min(1, ERRORS.email)
-  .pipe(
-    z.email({
-      error: () => ERRORS.email,
-    }),
-  );
+export const emailRequiredSchema = createEmailSchema({
+  emptyField: ERRORS.email,
+  invalidField: ERRORS.email,
+  type: ERRORS.email,
+});
 
 const schoolCombinedSchema = z
   .object({
