@@ -44,7 +44,8 @@ export const Default: Story = {
         ],
         image: {
           asset: {
-            url: "https://res.cloudinary.com/oak-web-application/image/upload/v1734523721/homepage/teacher-reading-map_glwhyh.svg",
+            _id: "image-3d69eb7b767b748dbc841a0381a1d073f9e768f9-56x94-svg",
+            url: "https://sanity-asset-cdn.thenational.academy/images/cuvjke51/production/3d69eb7b767b748dbc841a0381a1d073f9e768f9-56x94.svg",
           },
           altText: "test",
         },
@@ -69,7 +70,8 @@ export const Default: Story = {
         ],
         image: {
           asset: {
-            url: "https://res.cloudinary.com/oak-web-application/image/upload/v1734523721/homepage/teacher-reading-map_glwhyh.svg",
+            _id: "image-3d69eb7b767b748dbc841a0381a1d073f9e768f9-56x94-svg",
+            url: "https://sanity-asset-cdn.thenational.academy/images/cuvjke51/production/3d69eb7b767b748dbc841a0381a1d073f9e768f9-56x94.svg",
           },
           altText: "test",
         },
@@ -94,7 +96,8 @@ export const Default: Story = {
         ],
         image: {
           asset: {
-            url: "https://res.cloudinary.com/oak-web-application/image/upload/v1734523721/homepage/teacher-reading-map_glwhyh.svg",
+            _id: "image-3d69eb7b767b748dbc841a0381a1d073f9e768f9-56x94-svg",
+            url: "https://sanity-asset-cdn.thenational.academy/images/cuvjke51/production/3d69eb7b767b748dbc841a0381a1d073f9e768f9-56x94.svg",
           },
           altText: "test",
         },
@@ -119,13 +122,14 @@ export const Default: Story = {
         ],
         image: {
           asset: {
-            url: "https://res.cloudinary.com/oak-web-application/image/upload/v1734523721/homepage/teacher-reading-map_glwhyh.svg",
+            _id: "image-3d69eb7b767b748dbc841a0381a1d073f9e768f9-56x94-svg",
+            url: "https://sanity-asset-cdn.thenational.academy/images/cuvjke51/production/3d69eb7b767b748dbc841a0381a1d073f9e768f9-56x94.svg",
           },
           altText: "test",
         },
       },
       {
-        heading: "Free, and always will be",
+        heading: "Free, and always will be 3",
         textRaw: [
           {
             _key: "test5",
@@ -144,13 +148,14 @@ export const Default: Story = {
         ],
         image: {
           asset: {
-            url: "https://res.cloudinary.com/oak-web-application/image/upload/v1734523721/homepage/teacher-reading-map_glwhyh.svg",
+            _id: "image-3d69eb7b767b748dbc841a0381a1d073f9e768f9-56x94-svg",
+            url: "https://sanity-asset-cdn.thenational.academy/images/cuvjke51/production/3d69eb7b767b748dbc841a0381a1d073f9e768f9-56x94.svg",
           },
           altText: "test",
         },
       },
       {
-        heading: "Independent and optional",
+        heading: "Independent and optional 2",
         textRaw: [
           {
             _key: "test6",
@@ -169,13 +174,14 @@ export const Default: Story = {
         ],
         image: {
           asset: {
-            url: "https://res.cloudinary.com/oak-web-application/image/upload/v1734523721/homepage/teacher-reading-map_glwhyh.svg",
+            _id: "image-3d69eb7b767b748dbc841a0381a1d073f9e768f9-56x94-svg",
+            url: "https://sanity-asset-cdn.thenational.academy/images/cuvjke51/production/3d69eb7b767b748dbc841a0381a1d073f9e768f9-56x94.svg",
           },
           altText: "test",
         },
       },
       {
-        heading: "Free, and always will be",
+        heading: "Free, and always will be 2",
         textRaw: [
           {
             _key: "test7",
@@ -194,13 +200,14 @@ export const Default: Story = {
         ],
         image: {
           asset: {
-            url: "https://res.cloudinary.com/oak-web-application/image/upload/v1734523721/homepage/teacher-reading-map_glwhyh.svg",
+            _id: "image-3d69eb7b767b748dbc841a0381a1d073f9e768f9-56x94-svg",
+            url: "https://sanity-asset-cdn.thenational.academy/images/cuvjke51/production/3d69eb7b767b748dbc841a0381a1d073f9e768f9-56x94.svg",
           },
           altText: "test",
         },
       },
       {
-        heading: "Independent and optional",
+        heading: "Independent and optional 3",
         textRaw: [
           {
             _key: "test8",
@@ -219,7 +226,8 @@ export const Default: Story = {
         ],
         image: {
           asset: {
-            url: "https://res.cloudinary.com/oak-web-application/image/upload/v1734523721/homepage/teacher-reading-map_glwhyh.svg",
+            _id: "image-3d69eb7b767b748dbc841a0381a1d073f9e768f9-56x94-svg",
+            url: "https://sanity-asset-cdn.thenational.academy/images/cuvjke51/production/3d69eb7b767b748dbc841a0381a1d073f9e768f9-56x94.svg",
           },
           altText: "test",
         },

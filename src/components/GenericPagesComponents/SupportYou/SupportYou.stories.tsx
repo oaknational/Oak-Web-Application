@@ -30,7 +30,7 @@ export const Default: Story = {
     },
     image: {
       asset: {
-        _id: "ef2a05d634b1ade34d33664c44fa36cb62e1aaba-3000x2001-jpg",
+        _id: "image-ef2a05d634b1ade34d33664c44fa36cb62e1aaba-3000x2001-jpg",
         url: "https://sanity-asset-cdn.thenational.academy/images/cuvjke51/production/ef2a05d634b1ade34d33664c44fa36cb62e1aaba-3000x2001.jpg",
       },
       altText: "",
