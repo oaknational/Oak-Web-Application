@@ -75,6 +75,7 @@ const ErrorView: FC<ErrorViewProps> = (props) => {
               </OakTertiaryButton>
             )}
             <OakTertiaryButton
+              data-testid="homeButton"
               element={Link}
               iconName="home"
               href={resolveOakHref({ page: "home" })}

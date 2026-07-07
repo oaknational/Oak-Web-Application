@@ -2612,13 +2612,6 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
   background-color: #999999;
 }
 
-.c138 {
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-}
-
 .c156 {
   background: none;
   color: inherit;
@@ -2654,6 +2647,13 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
   column-gap: 1rem;
   grid-auto-rows: 1fr;
   grid-template-columns: repeat(3,1fr);
+}
+
+.c138 {
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
 }
 
 .c141 {

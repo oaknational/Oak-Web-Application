@@ -15,7 +15,6 @@ import Illustration from "@/components/SharedComponents/Illustration";
 export type UpcomingWebinarWallProps = {
   headingTag?: OakHeadingTag;
   headingText: string;
-  buttonOnClick: () => void;
   buttonHref: string;
   buttonText: string;
   buttonSuffixA11y: string;
@@ -36,7 +35,6 @@ const UpcomingWebinarWall: FC<UpcomingWebinarWallProps> = (props) => {
     headingText,
     buttonText,
     buttonHref,
-    buttonOnClick,
     buttonSuffixA11y,
   } = props;
   return (
@@ -57,7 +55,6 @@ const UpcomingWebinarWall: FC<UpcomingWebinarWallProps> = (props) => {
         <OakTertiaryButton
           $mt={"spacing-24"}
           element={Link}
-          onClick={buttonOnClick}
           iconName="arrow-right"
           isTrailingIcon
           href={buttonHref}
