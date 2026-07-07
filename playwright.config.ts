@@ -46,4 +46,15 @@ export default defineConfig({
       use: { ...devices["Desktop Chrome"] },
     },
   ],
+
+  /* Automatically start the dev server locally. In CI, BASE_URL points at the
+     Vercel deployment so no local server is needed. */
+  webServer: process.env.CI
+    ? undefined
+    : {
+        command: "pnpm dev",
+        url: "http://localhost:3000",
+        reuseExistingServer: true,
+        timeout: 120_000,
+      },
 });
