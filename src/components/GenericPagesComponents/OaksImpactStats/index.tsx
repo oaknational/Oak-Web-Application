@@ -59,8 +59,10 @@ export function OaksImpactStats(props: Readonly<OaksImpactStatsProps>) {
             </OakFlex>
             <OakPrimaryButton
               element="a"
+              aria-label={`${props.link.text} (opens in a new tab)`}
               href={props.link.href}
               iconName={"external"}
+              isTrailingIcon={true}
             >
               {props.link.text}
             </OakPrimaryButton>

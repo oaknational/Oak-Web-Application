@@ -39,12 +39,18 @@ exports[`SupportYou renders correctly 1`] = `
                 class="sc-aXZVg kpXzs yellow-shadow"
               />
               <a
+                aria-label="LINK (opens in a new tab)"
                 class="sc-dcJsrY sc-jXbUNg cLXsQH dglRoS internal-button"
                 href="#"
               >
                 <div
                   class="sc-aXZVg sc-gEvEer jPvJsJ krHAKs"
                 >
+                  <span
+                    class="sc-eqUAAy edqVpV"
+                  >
+                    LINK
+                  </span>
                   <span
                     class="sc-aXZVg jJQFnr"
                   >
@@ -57,11 +63,6 @@ exports[`SupportYou renders correctly 1`] = `
                       src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1699953892/icons/hlxmejse3mcr4tqo6t8u.svg"
                       style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
                     />
-                  </span>
-                  <span
-                    class="sc-eqUAAy edqVpV"
-                  >
-                    LINK
                   </span>
                 </div>
               </a>
