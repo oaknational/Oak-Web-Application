@@ -279,3 +279,213 @@ exports[`LessonDownloadsSuccessPage passes ctaVariant test when feature flag is 
   />
 </TeacherBrowseAnalyticsStoreProvider>
 `;
+
+exports[`LessonDownloadsSuccessPage renders control variant when feature flag is control 1`] = `
+<TeacherBrowseAnalyticsStoreProvider
+  programmeState={
+    {
+      "programmeState": {
+        "browseLevel": "lesson",
+        "examboard": null,
+        "keystage": {
+          "slug": "ks3",
+          "title": "Key Stage 3",
+        },
+        "lesson": {
+          "lessonReleaseDate": "2026-01-01",
+          "slug": "solid-and-liquid-states",
+          "title": "Solid and liquid states",
+        },
+        "pathway": null,
+        "phase": {
+          "slug": undefined,
+          "title": undefined,
+        },
+        "subject": {
+          "slug": "science",
+          "title": "Science",
+        },
+        "tier": null,
+        "unit": {
+          "slug": "solid-liquid-gas-states-and-changes-of-state",
+          "title": "Solid, liquid and gas states and changes of state",
+        },
+        "year": {
+          "slug": undefined,
+          "title": undefined,
+        },
+      },
+    }
+  }
+>
+  <DownloadSuccessView
+    ctaVariant="control"
+    lesson={
+      {
+        "keyStageSlug": "ks3",
+        "keyStageTitle": "Key Stage 3",
+        "lessonReleaseDate": "2026-01-01",
+        "lessonSlug": "solid-and-liquid-states",
+        "lessonTitle": "Solid and liquid states",
+        "lessons": [
+          {
+            "geoRestricted": false,
+            "isUnpublished": false,
+            "lessonReleaseDate": "2026-01-01",
+            "lessonSlug": "solid-and-liquid-states",
+            "lessonTitle": "Solid and liquid states",
+            "loginRequired": false,
+          },
+        ],
+        "slug": "science-secondary-ks3",
+        "subjectSlug": "science",
+        "subjectTitle": "Science",
+        "unitDescription": "Unit description",
+        "unitSlug": "solid-liquid-gas-states-and-changes-of-state",
+        "unitTitle": "Solid, liquid and gas states and changes of state",
+        "unitvariantId": 123,
+      }
+    }
+  />
+</TeacherBrowseAnalyticsStoreProvider>
+`;
+
+exports[`LessonDownloadsSuccessPage renders control variant when feature flag is undefined 1`] = `
+<TeacherBrowseAnalyticsStoreProvider
+  programmeState={
+    {
+      "programmeState": {
+        "browseLevel": "lesson",
+        "examboard": null,
+        "keystage": {
+          "slug": "ks3",
+          "title": "Key Stage 3",
+        },
+        "lesson": {
+          "lessonReleaseDate": "2026-01-01",
+          "slug": "solid-and-liquid-states",
+          "title": "Solid and liquid states",
+        },
+        "pathway": null,
+        "phase": {
+          "slug": undefined,
+          "title": undefined,
+        },
+        "subject": {
+          "slug": "science",
+          "title": "Science",
+        },
+        "tier": null,
+        "unit": {
+          "slug": "solid-liquid-gas-states-and-changes-of-state",
+          "title": "Solid, liquid and gas states and changes of state",
+        },
+        "year": {
+          "slug": undefined,
+          "title": undefined,
+        },
+      },
+    }
+  }
+>
+  <DownloadSuccessView
+    ctaVariant="control"
+    lesson={
+      {
+        "keyStageSlug": "ks3",
+        "keyStageTitle": "Key Stage 3",
+        "lessonReleaseDate": "2026-01-01",
+        "lessonSlug": "solid-and-liquid-states",
+        "lessonTitle": "Solid and liquid states",
+        "lessons": [
+          {
+            "geoRestricted": false,
+            "isUnpublished": false,
+            "lessonReleaseDate": "2026-01-01",
+            "lessonSlug": "solid-and-liquid-states",
+            "lessonTitle": "Solid and liquid states",
+            "loginRequired": false,
+          },
+        ],
+        "slug": "science-secondary-ks3",
+        "subjectSlug": "science",
+        "subjectTitle": "Science",
+        "unitDescription": "Unit description",
+        "unitSlug": "solid-liquid-gas-states-and-changes-of-state",
+        "unitTitle": "Solid, liquid and gas states and changes of state",
+        "unitvariantId": 123,
+      }
+    }
+  />
+</TeacherBrowseAnalyticsStoreProvider>
+`;
+
+exports[`LessonDownloadsSuccessPage renders test variant when feature flag is test 1`] = `
+<TeacherBrowseAnalyticsStoreProvider
+  programmeState={
+    {
+      "programmeState": {
+        "browseLevel": "lesson",
+        "examboard": null,
+        "keystage": {
+          "slug": "ks3",
+          "title": "Key Stage 3",
+        },
+        "lesson": {
+          "lessonReleaseDate": "2026-01-01",
+          "slug": "solid-and-liquid-states",
+          "title": "Solid and liquid states",
+        },
+        "pathway": null,
+        "phase": {
+          "slug": undefined,
+          "title": undefined,
+        },
+        "subject": {
+          "slug": "science",
+          "title": "Science",
+        },
+        "tier": null,
+        "unit": {
+          "slug": "solid-liquid-gas-states-and-changes-of-state",
+          "title": "Solid, liquid and gas states and changes of state",
+        },
+        "year": {
+          "slug": undefined,
+          "title": undefined,
+        },
+      },
+    }
+  }
+>
+  <DownloadSuccessView
+    ctaVariant="test"
+    lesson={
+      {
+        "keyStageSlug": "ks3",
+        "keyStageTitle": "Key Stage 3",
+        "lessonReleaseDate": "2026-01-01",
+        "lessonSlug": "solid-and-liquid-states",
+        "lessonTitle": "Solid and liquid states",
+        "lessons": [
+          {
+            "geoRestricted": false,
+            "isUnpublished": false,
+            "lessonReleaseDate": "2026-01-01",
+            "lessonSlug": "solid-and-liquid-states",
+            "lessonTitle": "Solid and liquid states",
+            "loginRequired": false,
+          },
+        ],
+        "slug": "science-secondary-ks3",
+        "subjectSlug": "science",
+        "subjectTitle": "Science",
+        "unitDescription": "Unit description",
+        "unitSlug": "solid-liquid-gas-states-and-changes-of-state",
+        "unitTitle": "Solid, liquid and gas states and changes of state",
+        "unitvariantId": 123,
+      }
+    }
+  />
+</TeacherBrowseAnalyticsStoreProvider>
+`;
