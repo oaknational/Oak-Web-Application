@@ -1,9 +1,8 @@
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
 
-import { getCachedUnitData } from "../../../getCachedUnitData";
-
 import { DownloadSuccessView } from "./Components/DownloadSuccessView";
+import { getSuccessData } from "./getSuccessData";
 
 import withPageErrorHandling, {
   AppPageProps,
@@ -19,26 +18,6 @@ type LessonDownloadsSuccessPageParams = {
 };
 
 export const dynamic = "force-dynamic";
-
-export const getSuccessData = async (
-  programmeSlug: string,
-  unitSlug: string,
-  lessonSlug: string,
-) => {
-  const unitData = await getCachedUnitData(programmeSlug, unitSlug);
-
-  const lesson = unitData.lessons.find((l) => l.lessonSlug === lessonSlug);
-  if (!lesson?.lessonReleaseDate) {
-    return null;
-  }
-
-  return {
-    lessonTitle: lesson.lessonTitle,
-    lessonSlug: lesson.lessonSlug,
-    lessonReleaseDate: lesson.lessonReleaseDate,
-    ...unitData,
-  };
-};
 
 export async function generateMetadata(
   props: AppPageProps<LessonDownloadsSuccessPageParams>,
