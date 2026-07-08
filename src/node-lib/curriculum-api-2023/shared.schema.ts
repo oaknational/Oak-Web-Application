@@ -2,8 +2,11 @@ import { z } from "zod";
 import {
   actionsSchema,
   keystageSlugs,
+  pathwayDescriptions,
   SyntheticUnitvariantsWithLessonIdsByKsCamel,
   syntheticUnitvariantsWithLessonIdsByKsSchema,
+  tierDescriptions,
+  tierSlugs,
 } from "@oaknational/oak-curriculum-schema";
 import zodToCamelCase from "zod-to-camel-case";
 
@@ -187,9 +190,9 @@ export const baseLessonOverviewSchema = z.object({
   isLegacy: z.boolean(),
   lessonSlug: z.string(),
   lessonTitle: z.string(),
-  tierTitle: z.string().nullable().optional(),
-  tierSlug: z.string().nullable().optional(),
-  pathwayTitle: z.string().nullable().optional(),
+  tierTitle: tierDescriptions.nullish(),
+  tierSlug: tierSlugs.nullish(),
+  pathwayTitle: pathwayDescriptions.nullish(),
   contentGuidance: z
     .array(contentGuidanceSchemaCamelCase)
     .nullable()

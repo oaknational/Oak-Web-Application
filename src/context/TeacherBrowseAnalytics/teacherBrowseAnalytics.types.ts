@@ -1,10 +1,4 @@
-import {
-  subjectSlugs,
-  subjects,
-  phaseSlugs,
-  phaseDescriptions,
-} from "@oaknational/oak-curriculum-schema";
-import z from "zod";
+import { ProgrammeFields } from "@oaknational/oak-curriculum-schema";
 
 import {
   KeyStageTitleValueType,
@@ -13,25 +7,35 @@ import {
   PathwayValueType,
 } from "@/browser-lib/avo/Avo";
 
-type ItemState = {
-  slug: string;
-  title: string;
-};
-
 export type ProgrammeState = {
   subject: {
-    slug: z.infer<typeof subjectSlugs>;
-    title: z.infer<typeof subjects>;
+    slug: ProgrammeFields["subject_slug"];
+    title: ProgrammeFields["subject"];
   };
   phase: {
-    slug: z.infer<typeof phaseSlugs>;
-    title: z.infer<typeof phaseDescriptions>;
+    slug: ProgrammeFields["phase_slug"];
+    title: ProgrammeFields["phase_description"];
   };
-  year: ItemState; // TODO: use proper types for each value
-  keystage: ItemState;
-  tier: ItemState | null;
-  examboard: ItemState | null;
-  pathway: ItemState | null;
+  year: {
+    slug: ProgrammeFields["year"];
+    title: ProgrammeFields["year_description"];
+  };
+  keystage: {
+    slug: ProgrammeFields["keystage_slug"];
+    title: ProgrammeFields["keystage_description"];
+  };
+  tier: {
+    slug: ProgrammeFields["tier_slug"];
+    title: ProgrammeFields["tier_description"];
+  } | null;
+  examboard: {
+    slug: ProgrammeFields["examboard_slug"];
+    title: ProgrammeFields["examboard"];
+  } | null;
+  pathway: {
+    slug: ProgrammeFields["pathway_slug"];
+    title: ProgrammeFields["pathway_description"];
+  } | null;
 } & (
   | { browseLevel: "programme" }
   | { browseLevel: "unit"; unit: UnitState }
@@ -48,9 +52,13 @@ export type ProgrammeStateLesson = Extract<
   { browseLevel: "lesson" }
 >;
 
-export type UnitState = ItemState;
-
-export type LessonState = ItemState & {
+type UnitState = {
+  slug: string;
+  title: string;
+};
+type LessonState = {
+  slug: string;
+  title: string;
   lessonReleaseDate: string;
 };
 
@@ -67,7 +75,7 @@ export type UnitPathwayData = ProgrammePathwayData & {
   unitName: string;
   unitSlug: string;
 };
-export type lessonPathwayData = ProgrammePathwayData &
+export type LessonPathwayData = ProgrammePathwayData &
   UnitPathwayData & {
     lessonName: string;
     lessonSlug: string;

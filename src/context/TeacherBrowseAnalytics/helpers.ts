@@ -1,5 +1,5 @@
 import {
-  lessonPathwayData,
+  LessonPathwayData,
   ProgrammePathwayData,
   ProgrammeState,
   ProgrammeStateLesson,
@@ -43,7 +43,7 @@ export const getUnitAnalyticsProperties = (
 
 export const getLessonAnalyticsProperties = (
   programmeState: ProgrammeStateLesson,
-): lessonPathwayData => {
+): LessonPathwayData => {
   const unitPathwayData = getUnitAnalyticsProperties(programmeState);
   return {
     ...unitPathwayData,
@@ -74,21 +74,22 @@ export const getProgrammeStateForUnit = (
       slug: data.keyStageSlug,
       title: data.keyStageTitle,
     },
-    tier: data.tierTitle
-      ? {
-          slug: data.tierSlug ?? data.tierTitle,
-          title: data.tierTitle,
-        }
-      : null,
+    tier:
+      data.tierTitle && data.tierSlug
+        ? {
+            slug: data.tierSlug,
+            title: data.tierTitle,
+          }
+        : null,
     examboard: data.examBoardTitle
       ? {
-          slug: data.examBoardSlug ?? data.examBoardTitle,
+          slug: data.examBoardSlug,
           title: data.examBoardTitle,
         }
       : null,
     pathway: data.pathwayTitle
       ? {
-          slug: data.pathwaySlug ?? data.pathwayTitle,
+          slug: data.pathwaySlug,
           title: data.pathwayTitle,
         }
       : null,
@@ -120,21 +121,22 @@ export const getProgrammeStateForLesson = (
       slug: data.keyStageSlug,
       title: data.keyStageTitle,
     },
-    tier: data.tierTitle
-      ? {
-          slug: data.tierTitle,
-          title: data.tierTitle,
-        }
-      : null,
+    tier:
+      data.tierTitle && data.tierSlug
+        ? {
+            slug: data.tierSlug,
+            title: data.tierTitle,
+          }
+        : null,
     examboard: data.examBoardTitle
       ? {
-          slug: data.examBoardSlug ?? data.examBoardTitle,
+          slug: data.examBoardSlug,
           title: data.examBoardTitle,
         }
       : null,
     pathway: data.pathwayTitle
       ? {
-          slug: data.pathwaySlug ?? data.pathwayTitle,
+          slug: data.pathwaySlug,
           title: data.pathwayTitle,
         }
       : null,
