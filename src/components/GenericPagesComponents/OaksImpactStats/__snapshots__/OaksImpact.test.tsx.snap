@@ -40,7 +40,7 @@ exports[`SupportYou renders correctly 1`] = `
               />
               <a
                 aria-label="LINK (opens in a new tab)"
-                class="sc-dcJsrY sc-jXbUNg cLXsQH dglRoS internal-button"
+                class="sc-dcJsrY sc-jXbUNg bALQkH khQbhv internal-button"
                 href="#"
               >
                 <div
@@ -56,7 +56,7 @@ exports[`SupportYou renders correctly 1`] = `
                   >
                     <img
                       alt=""
-                      class="sc-iGgWBj bOyFfb"
+                      class="sc-iGgWBj lcrpYX"
                       data-nimg="fill"
                       decoding="async"
                       loading="lazy"

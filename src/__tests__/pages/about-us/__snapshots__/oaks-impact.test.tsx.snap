@@ -675,7 +675,7 @@ exports[`pages/about-us/oaks-impact.tsx renders title when feature flag is enabl
                     />
                     <a
                       aria-label="Read the 24/25 impact report (opens in a new tab)"
-                      class="sc-dcJsrY sc-jXbUNg cLXsQH dglRoS internal-button"
+                      class="sc-dcJsrY sc-jXbUNg bALQkH khQbhv internal-button"
                       href="#"
                     >
                       <div
@@ -691,7 +691,7 @@ exports[`pages/about-us/oaks-impact.tsx renders title when feature flag is enabl
                         >
                           <img
                             alt=""
-                            class="sc-iGgWBj bOyFfb"
+                            class="sc-iGgWBj lcrpYX"
                             data-nimg="fill"
                             decoding="async"
                             loading="lazy"

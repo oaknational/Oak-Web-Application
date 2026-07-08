@@ -5,7 +5,7 @@ import {
   OakImage,
   OakMaxWidth,
   OakP,
-  OakPrimaryButton,
+  OakSecondaryButton,
 } from "@oaknational/oak-components";
 import { Fragment } from "react";
 
@@ -57,7 +57,7 @@ export function OaksImpactStats(props: Readonly<OaksImpactStatsProps>) {
                 {props.headingCopy}
               </OakP>
             </OakFlex>
-            <OakPrimaryButton
+            <OakSecondaryButton
               element="a"
               aria-label={`${props.link.text} (opens in a new tab)`}
               href={props.link.href}
@@ -65,7 +65,7 @@ export function OaksImpactStats(props: Readonly<OaksImpactStatsProps>) {
               isTrailingIcon={true}
             >
               {props.link.text}
-            </OakPrimaryButton>
+            </OakSecondaryButton>
           </OakFlex>
           <OakFlex $gap={"spacing-8"}>
             <OakFlex $flexDirection={"column"} $gap={"spacing-40"}>
