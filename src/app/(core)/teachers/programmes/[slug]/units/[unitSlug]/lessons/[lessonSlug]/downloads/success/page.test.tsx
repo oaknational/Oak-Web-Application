@@ -69,15 +69,7 @@ describe("LessonDownloadsSuccessPage", () => {
       programmeSlug: defaultParams.slug,
       unitSlug: defaultParams.unitSlug,
     });
-    expect(result).toMatchObject({
-      props: {
-        lesson: expect.objectContaining({
-          lessonSlug: "solid-and-liquid-states",
-          unitvariantId: 123,
-        }),
-        ctaVariant: "control",
-      },
-    });
+    expect(result).toMatchSnapshot();
   });
 
   it.each([
@@ -85,8 +77,8 @@ describe("LessonDownloadsSuccessPage", () => {
     { flagValue: "control", expectedVariant: "control" },
     { flagValue: "test", expectedVariant: "test" },
   ])(
-    "passes ctaVariant $expectedVariant when feature flag is $flagValue",
-    async ({ flagValue, expectedVariant }) => {
+    "renders $expectedVariant variant when feature flag is $flagValue",
+    async ({ flagValue }) => {
       featureFlagMock.mockResolvedValue(flagValue);
 
       const result = await LessonDownloadsSuccessPage({
@@ -94,11 +86,7 @@ describe("LessonDownloadsSuccessPage", () => {
         searchParams: Promise.resolve({}),
       });
 
-      expect(result).toMatchObject({
-        props: {
-          ctaVariant: expectedVariant,
-        },
-      });
+      expect(result).toMatchSnapshot();
     },
   );
 

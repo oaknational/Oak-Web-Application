@@ -54,7 +54,28 @@ export const getProgrammeStateForUnit = (
 };
 
 export const getProgrammeStateForLesson = (
-  data: TeachersLessonOverviewPageData,
+  data: Pick<
+    TeachersLessonOverviewPageData,
+    | "subjectSlug"
+    | "subjectTitle"
+    | "phaseSlug"
+    | "phaseTitle"
+    | "year"
+    | "yearGroupTitle"
+    | "keyStageSlug"
+    | "keyStageTitle"
+    | "tierSlug"
+    | "tierTitle"
+    | "examBoardSlug"
+    | "examBoardTitle"
+    | "pathwaySlug"
+    | "pathwayTitle"
+    | "unitSlug"
+    | "unitTitle"
+    | "lessonSlug"
+    | "lessonTitle"
+    | "lessonReleaseDate"
+  >,
 ): ProgrammeStateLesson => {
   return {
     browseLevel: "lesson",
