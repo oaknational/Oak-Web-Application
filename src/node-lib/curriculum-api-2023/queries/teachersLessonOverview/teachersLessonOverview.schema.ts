@@ -5,6 +5,8 @@ import {
   LessonContentCamel as LessonContentCamelFull,
   SyntheticUnitvariantLessonsByKsCamel,
   programmeFieldsSchema,
+  subjectSlugs,
+  subjects,
 } from "@oaknational/oak-curriculum-schema";
 
 import { baseLessonOverviewSchema } from "@/node-lib/curriculum-api-2023/shared.schema";
@@ -80,8 +82,8 @@ export const teachersLessonOverviewSchema =
     unitTitle: z.string(),
     keyStageSlug: z.string(),
     keyStageTitle: z.string(),
-    subjectSlug: z.string(),
-    subjectTitle: z.string(),
+    subjectSlug: subjectSlugs,
+    subjectTitle: subjects,
     subjectParent: programmeFieldsSchema.shape.subject_parent,
     phaseSlug: programmeFieldsSchema.shape.phase_slug,
     phaseTitle: programmeFieldsSchema.shape.phase_description,
