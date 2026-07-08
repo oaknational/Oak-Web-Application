@@ -7,6 +7,7 @@ import {
   OakTertiaryButton,
 } from "@oaknational/oak-components";
 import { usePathname } from "next/navigation";
+import Link from "next/link";
 
 /**
  * A small toast-like banner in the bottom left corner to inform
@@ -27,7 +28,7 @@ const LayoutPreviewControls: FC = () => {
       $background="bg-primary"
     >
       <OakSpan $mr="spacing-24">Preview mode enabled</OakSpan>
-      <OakTertiaryButton element="a" href={exitUrl}>
+      <OakTertiaryButton element={Link} href={exitUrl}>
         Exit preview
       </OakTertiaryButton>
     </OakFlex>
