@@ -10,11 +10,15 @@ import {
 
 import {
   AnalyticsUseCaseValueType,
+  ComponentType,
   DownloadResourceButtonNameValueType,
+  EngagementIntent,
   EventVersionValueType,
   PlatformValueType,
   ProductValueType,
 } from "@/browser-lib/avo/Avo";
+import errorReporter from "@/common-lib/error-reporter";
+import OakError from "@/errors/OakError";
 
 export type TeacherBrowseAnalyticsStore = {
   programmeState: ProgrammeState;
@@ -39,6 +43,8 @@ const coreProperties: {
   analyticsUseCase: "Teacher",
 };
 
+const reportError = errorReporter("teacher-browse-analytics");
+
 export const createTeacherBrowseAnalyticsStore = (
   initialState: Pick<TeacherBrowseAnalyticsStore, "programmeState" | "track">,
 ) => {
@@ -51,16 +57,21 @@ export const createTeacherBrowseAnalyticsStore = (
         const { track, programmeState } = get();
 
         if (programmeState.browseLevel !== "lesson") {
-          // TODO: error handling
-          throw new Error("Invalid browse level for event");
+          reportError(
+            new OakError({
+              code: "analytics/teacher-browse",
+              meta: { event: "lessonResourceDownloadStarted" },
+            }),
+          );
+          return;
         }
 
         const analyticsProperties =
           getLessonAnalyticsProperties(programmeState);
 
         track.lessonResourceDownloadStarted({
-          engagementIntent: "use",
-          componentType: "lesson_download_button",
+          engagementIntent: EngagementIntent.USE,
+          componentType: ComponentType.LESSON_DOWNLOAD_BUTTON,
           downloadResourceButtonName,
           lessonReleaseCohort: "2023-2026",
           ...coreProperties,
@@ -71,14 +82,20 @@ export const createTeacherBrowseAnalyticsStore = (
         const { track, programmeState } = get();
 
         if (programmeState.browseLevel === "programme") {
-          throw new Error("Invalid browse level for event");
+          reportError(
+            new OakError({
+              code: "analytics/teacher-browse",
+              meta: { event: "unitDownloadInitiated" },
+            }),
+          );
+          return;
         }
 
         const analyticsProperties = getUnitAnalyticsProperties(programmeState);
 
         track.unitDownloadInitiated({
-          engagementIntent: "use",
-          componentType: "unit_download_button",
+          engagementIntent: EngagementIntent.USE,
+          componentType: ComponentType.UNIT_DOWNLOAD_BUTTON,
           ...coreProperties,
           ...analyticsProperties,
         });
