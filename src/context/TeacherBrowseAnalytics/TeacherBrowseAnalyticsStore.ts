@@ -81,6 +81,7 @@ export const createTeacherBrowseAnalyticsStore = (
       trackUnitDownloadInitiated: () => {
         const { track, programmeState } = get();
 
+        // Can be tracked from the unit overview page or the lesson download success page
         if (programmeState.browseLevel === "programme") {
           reportError(
             new OakError({
