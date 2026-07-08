@@ -157,11 +157,11 @@ exports[`Teachers Page Page component renders 1`] = `
                     pupils
                   </span>
                   <span
-                    class="sc-aXZVg jJQFnr"
+                    class="sc-aXZVg jZQmlG"
                   >
                     <img
                       alt=""
-                      class="sc-iGgWBj cMzyFO"
+                      class="sc-iGgWBj dZvqhO"
                       data-nimg="fill"
                       decoding="async"
                       loading="lazy"

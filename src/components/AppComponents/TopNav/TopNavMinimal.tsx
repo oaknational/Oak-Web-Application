@@ -6,7 +6,6 @@ import TabLink from "./TabLink/TabLink";
 import {
   OakBox,
   OakFlex,
-  OakIcon,
   OakImage,
   OakLink,
   useMediaQuery,
@@ -78,8 +77,9 @@ const TopNavMinimal = ({
           isSelected={activeArea === "PUPILS"}
           href={resolveOakHref({ page: "pupil-year-index" })}
           iconOverride={
-            <OakIcon
-              iconName="pencil"
+            <OakImage
+              alt=""
+              src={`https://${process.env.NEXT_PUBLIC_OAK_ASSETS_HOST}/${process.env.NEXT_PUBLIC_OAK_ASSETS_PATH}/v1765890807/icons/pencil.svg`}
               $width={"spacing-24"}
               $height={"spacing-24"}
             />

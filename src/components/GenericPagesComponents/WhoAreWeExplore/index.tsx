@@ -6,6 +6,7 @@ import {
   OakIconProps,
   OakFocusIndicator,
   parseSpacing,
+  OakImage,
 } from "@oaknational/oak-components";
 import Link from "next/link";
 import { useId } from "react";
@@ -64,8 +65,9 @@ export function WhoAreWeExplore({
 
   return (
     <OakBox $background={"bg-decorative1-main"} $position={"relative"}>
-      <OakIcon
-        iconName="confetti"
+      <OakImage
+        alt=""
+        src={`https://${process.env.NEXT_PUBLIC_OAK_ASSETS_HOST}/${process.env.NEXT_PUBLIC_OAK_ASSETS_PATH}/v1763546694/ui-graphics/confetti-background_xbvfrc.svg`}
         $position={"absolute"}
         $top={"spacing-0"}
         $left={"spacing-0"}

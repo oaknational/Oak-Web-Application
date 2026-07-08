@@ -156,11 +156,11 @@ exports[`pages/about-us/oaks-impact.tsx renders title when feature flag is enabl
                   pupils
                 </span>
                 <span
-                  class="sc-aXZVg jJQFnr"
+                  class="sc-aXZVg jZQmlG"
                 >
                   <img
                     alt=""
-                    class="sc-iGgWBj cMzyFO"
+                    class="sc-iGgWBj dZvqhO"
                     data-nimg="fill"
                     decoding="async"
                     loading="lazy"
@@ -758,12 +758,12 @@ exports[`pages/about-us/oaks-impact.tsx renders title when feature flag is enabl
               class="sc-aXZVg fMrRXk"
             >
               <span
-                class="sc-aXZVg cegGxk"
+                class="sc-aXZVg kZhQgx"
                 style="pointer-events: none;"
               >
                 <img
                   alt=""
-                  class="sc-iGgWBj cMzyFO"
+                  class="sc-iGgWBj dZvqhO"
                   data-nimg="fill"
                   decoding="async"
                   loading="lazy"
@@ -787,10 +787,10 @@ exports[`pages/about-us/oaks-impact.tsx renders title when feature flag is enabl
                     aria-labelledby="react-use-id-test-result"
                   >
                     <ul
-                      class="sc-ea54c430-2 flLvBT"
+                      class="sc-36a6b83-2 gdcpHp"
                     >
                       <li
-                        class="sc-ea54c430-1 duAgam"
+                        class="sc-36a6b83-1 jXqwfI"
                       >
                         <div
                           class="sc-aXZVg sc-hZDyAQ kBnJtM bXQMrr"
@@ -800,7 +800,7 @@ exports[`pages/about-us/oaks-impact.tsx renders title when feature flag is enabl
                             style="outline: none;"
                           >
                             <div
-                              class="sc-aXZVg sc-gEvEer sc-ea54c430-0 jtqxcT egjftS egvGNM"
+                              class="sc-aXZVg sc-gEvEer sc-36a6b83-0 jtqxcT egjftS dPYnxC"
                               data-testid="who-we-are-explore-item"
                             >
                               <div
@@ -847,7 +847,7 @@ exports[`pages/about-us/oaks-impact.tsx renders title when feature flag is enabl
                         </div>
                       </li>
                       <li
-                        class="sc-ea54c430-1 duAgam"
+                        class="sc-36a6b83-1 jXqwfI"
                       >
                         <div
                           class="sc-aXZVg sc-hZDyAQ kBnJtM bXQMrr"
@@ -857,7 +857,7 @@ exports[`pages/about-us/oaks-impact.tsx renders title when feature flag is enabl
                             style="outline: none;"
                           >
                             <div
-                              class="sc-aXZVg sc-gEvEer sc-ea54c430-0 jtqxcT egjftS egvGNM"
+                              class="sc-aXZVg sc-gEvEer sc-36a6b83-0 jtqxcT egjftS dPYnxC"
                               data-testid="who-we-are-explore-item"
                             >
                               <div
@@ -904,7 +904,7 @@ exports[`pages/about-us/oaks-impact.tsx renders title when feature flag is enabl
                         </div>
                       </li>
                       <li
-                        class="sc-ea54c430-1 duAgam"
+                        class="sc-36a6b83-1 jXqwfI"
                       >
                         <div
                           class="sc-aXZVg sc-hZDyAQ kBnJtM bXQMrr"
@@ -914,7 +914,7 @@ exports[`pages/about-us/oaks-impact.tsx renders title when feature flag is enabl
                             style="outline: none;"
                           >
                             <div
-                              class="sc-aXZVg sc-gEvEer sc-ea54c430-0 jtqxcT egjftS egvGNM"
+                              class="sc-aXZVg sc-gEvEer sc-36a6b83-0 jtqxcT egjftS dPYnxC"
                               data-testid="who-we-are-explore-item"
                             >
                               <div
@@ -961,7 +961,7 @@ exports[`pages/about-us/oaks-impact.tsx renders title when feature flag is enabl
                         </div>
                       </li>
                       <li
-                        class="sc-ea54c430-1 duAgam"
+                        class="sc-36a6b83-1 jXqwfI"
                       >
                         <div
                           class="sc-aXZVg sc-hZDyAQ kBnJtM bXQMrr"
@@ -971,7 +971,7 @@ exports[`pages/about-us/oaks-impact.tsx renders title when feature flag is enabl
                             style="outline: none;"
                           >
                             <div
-                              class="sc-aXZVg sc-gEvEer sc-ea54c430-0 jtqxcT egjftS egvGNM"
+                              class="sc-aXZVg sc-gEvEer sc-36a6b83-0 jtqxcT egjftS dPYnxC"
                               data-testid="who-we-are-explore-item"
                             >
                               <div
