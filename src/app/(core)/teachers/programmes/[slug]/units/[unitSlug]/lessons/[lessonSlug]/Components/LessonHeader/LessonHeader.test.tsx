@@ -10,6 +10,9 @@ import {
   mockGeorestrictedUser,
   mockLoggedIn,
 } from "@/__tests__/__helpers__/mockUser";
+import { TeacherBrowseAnalyticsStoreProvider } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
+import { getProgrammeStateForLesson } from "@/context/TeacherBrowseAnalytics/helpers";
+import teachersLessonOverviewFixture from "@/node-lib/curriculum-api-2023/fixtures/teachersLessonOverview.fixture";
 
 const lessonResourceDownloadStarted = jest.fn();
 jest.mock("@/context/Analytics/useAnalytics", () => ({
@@ -24,24 +27,15 @@ jest.mock("@/context/Analytics/useAnalytics", () => ({
 
 const render = renderWithTheme;
 
+const baseProps = teachersLessonOverviewFixture();
+const programmeState = getProgrammeStateForLesson(baseProps);
+
 const defaultProps: LessonHeaderProps = {
   heading: "Lesson title",
-  lessonTitle: "Lesson title",
   heroImage: "imageSrc",
   currentLessonSlug: "lesson-2",
   programmeSlug: "programme-1",
   unitSlug: "unit-1",
-  unitTitle: "Unit 1",
-  keyStageSlug: "ks4",
-  keyStageTitle: "KS4",
-  subjectSlug: "english",
-  subjectTitle: "English",
-  year: "10",
-  yearGroupTitle: "Year 10",
-  examBoardTitle: null,
-  tierTitle: null,
-  pathwayTitle: null,
-  lessonReleaseDate: "2024-01-01",
   prevLesson: {
     lessonIndex: 1,
     lessonSlug: "lesson-1",
@@ -56,13 +50,25 @@ const defaultProps: LessonHeaderProps = {
   georestricted: false,
 };
 
+const renderLessonHeader = (props?: Partial<LessonHeaderProps>) => {
+  return render(
+    <TeacherBrowseAnalyticsStoreProvider
+      programmeState={{
+        programmeState,
+      }}
+    >
+      <LessonHeader {...defaultProps} {...props} />
+    </TeacherBrowseAnalyticsStoreProvider>,
+  );
+};
+
 describe("LessonHeader", () => {
   beforeEach(() => {
     jest.clearAllMocks();
   });
 
   it("renders prev and next lesson buttons", () => {
-    render(<LessonHeader {...defaultProps} />);
+    renderLessonHeader();
 
     const prevLessonLink = screen.getByRole("link", {
       name: "Previous lesson",
@@ -91,8 +97,7 @@ describe("LessonHeader", () => {
     );
   });
   it("renders a download link", () => {
-    render(<LessonHeader {...defaultProps} />);
-
+    renderLessonHeader();
     const downloadLink = screen.getByRole("link", {
       name: "Download",
     });
@@ -109,8 +114,7 @@ describe("LessonHeader", () => {
     );
   });
   it("fires lesson resource download started when download link is clicked", () => {
-    render(<LessonHeader {...defaultProps} />);
-
+    renderLessonHeader();
     const downloadLink = screen.getByTestId("download-all-button");
 
     act(() => {
@@ -124,7 +128,7 @@ describe("LessonHeader", () => {
     );
   });
   it("renders a sign up button for lessons with complex copyright when signed out", () => {
-    render(<LessonHeader {...defaultProps} loginRequired={true} />);
+    renderLessonHeader({ loginRequired: true });
 
     const downloadLink = screen.getByRole("button", {
       name: "Sign in to download",
@@ -134,7 +138,7 @@ describe("LessonHeader", () => {
   it("renders a link to downloads page for lessons with complex copyright when signed in", () => {
     setUseUserReturn(mockLoggedIn);
 
-    render(<LessonHeader {...defaultProps} loginRequired={true} />);
+    renderLessonHeader({ loginRequired: true });
     const downloadLink = screen.getByRole("link", {
       name: "Download",
     });
@@ -142,7 +146,7 @@ describe("LessonHeader", () => {
   });
   it("does not render a download page link for georestricted lessons when geoblocked", () => {
     setUseUserReturn(mockGeorestrictedUser);
-    render(<LessonHeader {...defaultProps} georestricted={true} />);
+    renderLessonHeader({ georestricted: true });
 
     const downloadLink = screen.queryByRole("link", { name: "Download" });
     expect(downloadLink).not.toBeInTheDocument();

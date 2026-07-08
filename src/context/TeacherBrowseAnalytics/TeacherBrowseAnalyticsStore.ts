@@ -5,7 +5,13 @@ import { TrackFns } from "../Analytics/AnalyticsProvider";
 import { ProgrammeState } from "./teacherBrowseAnalytics.types";
 import { getLessonAnalyticsProperties } from "./helpers";
 
-import { DownloadResourceButtonNameValueType } from "@/browser-lib/avo/Avo";
+import {
+  AnalyticsUseCaseValueType,
+  DownloadResourceButtonNameValueType,
+  EventVersionValueType,
+  PlatformValueType,
+  ProductValueType,
+} from "@/browser-lib/avo/Avo";
 
 export type TeacherBrowseAnalyticsStore = {
   programmeState: ProgrammeState;
@@ -15,6 +21,18 @@ export type TeacherBrowseAnalyticsStore = {
       downloadResourceButtonName: DownloadResourceButtonNameValueType,
     ) => void;
   };
+};
+
+const coreProperties: {
+  platform: PlatformValueType;
+  product: ProductValueType;
+  eventVersion: EventVersionValueType;
+  analyticsUseCase: AnalyticsUseCaseValueType;
+} = {
+  platform: "owa",
+  product: "teacher lesson resources",
+  eventVersion: "2.0.0",
+  analyticsUseCase: "Teacher",
 };
 
 export const createTeacherBrowseAnalyticsStore = (
@@ -37,14 +55,11 @@ export const createTeacherBrowseAnalyticsStore = (
           getLessonAnalyticsProperties(programmeState);
 
         track.lessonResourceDownloadStarted({
-          platform: "owa",
-          product: "teacher lesson resources",
           engagementIntent: "use",
           componentType: "lesson_download_button",
-          eventVersion: "2.0.0",
-          analyticsUseCase: "Teacher",
           downloadResourceButtonName,
           lessonReleaseCohort: "2023-2026",
+          ...coreProperties,
           ...analyticsProperties,
         });
       },

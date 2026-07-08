@@ -18,7 +18,7 @@ import { getTeacherSubjectPhaseSlug } from "@/utils/curriculum/slugs";
 import { cacheData } from "@/node-lib/cache";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 import { TeacherBrowseAnalyticsStoreProvider } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
-import { TeacherBrowseAnalyticsStore } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsStore";
+import { getProgrammeStateForLesson } from "@/context/TeacherBrowseAnalytics/helpers";
 
 type LessonPageParams = {
   slug: string;
@@ -80,52 +80,7 @@ const InnerLessonPage = async (props: AppPageProps<LessonPageParams>) => {
 
   const data = await getCachedLessonData(programmeSlug, unitSlug, lessonSlug);
 
-  const programmeState: TeacherBrowseAnalyticsStore["programmeState"] = {
-    browseLevel: "lesson",
-    subject: {
-      slug: data.subjectSlug,
-      title: data.subjectTitle,
-    },
-    phase: {
-      slug: data.phaseSlug,
-      title: data.phaseTitle,
-    },
-    year: {
-      slug: data.year,
-      title: data.yearGroupTitle,
-    },
-    keystage: {
-      slug: data.keyStageSlug,
-      title: data.keyStageTitle,
-    },
-    tier: data.tierTitle
-      ? {
-          slug: data.tierTitle,
-          title: data.tierTitle,
-        }
-      : null,
-    examboard: data.examBoardTitle
-      ? {
-          slug: data.examBoardSlug ?? data.examBoardTitle,
-          title: data.examBoardTitle,
-        }
-      : null,
-    pathway: data.pathwayTitle
-      ? {
-          slug: data.pathwaySlug ?? data.pathwayTitle,
-          title: data.pathwayTitle,
-        }
-      : null,
-    unit: {
-      slug: data.unitSlug,
-      title: data.unitTitle,
-    },
-    lesson: {
-      slug: data.lessonSlug,
-      title: data.lessonTitle,
-      lessonReleaseDate: data.lessonReleaseDate ?? "unpublished",
-    },
-  };
+  const programmeState = getProgrammeStateForLesson(data);
 
   return (
     <TeacherBrowseAnalyticsStoreProvider programmeState={{ programmeState }}>
