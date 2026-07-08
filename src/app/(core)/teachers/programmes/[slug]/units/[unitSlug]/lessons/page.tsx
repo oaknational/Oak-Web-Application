@@ -10,6 +10,8 @@ import { getOpenGraphMetadata, getTwitterMetadata } from "@/app/metadata";
 import withPageErrorHandling, {
   AppPageProps,
 } from "@/hocs/withPageErrorHandling";
+import { TeacherBrowseAnalyticsStoreProvider } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
+import { getProgrammeStateForUnit } from "@/context/TeacherBrowseAnalytics/helpers";
 
 type LessonsPageParams = { slug: string; unitSlug: string };
 
@@ -55,7 +57,13 @@ const InnerUnitPage = async (props: AppPageProps<LessonsPageParams>) => {
 
   const data = await getCachedUnitData(programmeSlug, unitSlug);
 
-  return <UnitView {...data} />;
+  const programmeState = getProgrammeStateForUnit(data);
+
+  return (
+    <TeacherBrowseAnalyticsStoreProvider programmeState={{ programmeState }}>
+      <UnitView {...data} />
+    </TeacherBrowseAnalyticsStoreProvider>
+  );
 };
 
 const UnitPage = withPageErrorHandling(InnerUnitPage, "unit-page::app");
