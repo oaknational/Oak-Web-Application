@@ -22,12 +22,12 @@ import OakError from "@/errors/OakError";
 
 export type TeacherBrowseAnalyticsStore = {
   programmeState: ProgrammeState;
-  track: TrackFns;
-  actions: {
-    trackLessonResourceDownloadStarted: (
+  avo: TrackFns;
+  track: {
+    lessonResourceDownloadStarted: (
       downloadResourceButtonName: DownloadResourceButtonNameValueType,
     ) => void;
-    trackUnitDownloadInitiated: () => void;
+    unitDownloadInitiated: () => void;
   };
 };
 
@@ -46,15 +46,15 @@ const coreProperties: {
 const reportError = errorReporter("teacher-browse-analytics");
 
 export const createTeacherBrowseAnalyticsStore = (
-  initialState: Pick<TeacherBrowseAnalyticsStore, "programmeState" | "track">,
+  initialState: Pick<TeacherBrowseAnalyticsStore, "programmeState" | "avo">,
 ) => {
   return createStore<TeacherBrowseAnalyticsStore>()((_, get) => ({
     ...initialState,
-    actions: {
-      trackLessonResourceDownloadStarted: (
+    track: {
+      lessonResourceDownloadStarted: (
         downloadResourceButtonName: DownloadResourceButtonNameValueType,
       ) => {
-        const { track, programmeState } = get();
+        const { avo, programmeState } = get();
 
         if (programmeState.browseLevel !== "lesson") {
           reportError(
@@ -69,7 +69,7 @@ export const createTeacherBrowseAnalyticsStore = (
         const analyticsProperties =
           getLessonAnalyticsProperties(programmeState);
 
-        track.lessonResourceDownloadStarted({
+        avo.lessonResourceDownloadStarted({
           engagementIntent: EngagementIntent.USE,
           componentType: ComponentType.LESSON_DOWNLOAD_BUTTON,
           downloadResourceButtonName,
@@ -78,8 +78,8 @@ export const createTeacherBrowseAnalyticsStore = (
           ...analyticsProperties,
         });
       },
-      trackUnitDownloadInitiated: () => {
-        const { track, programmeState } = get();
+      unitDownloadInitiated: () => {
+        const { avo, programmeState } = get();
 
         // Can be tracked from the unit overview page or the lesson download success page
         if (programmeState.browseLevel === "programme") {
@@ -94,7 +94,7 @@ export const createTeacherBrowseAnalyticsStore = (
 
         const analyticsProperties = getUnitAnalyticsProperties(programmeState);
 
-        track.unitDownloadInitiated({
+        avo.unitDownloadInitiated({
           engagementIntent: EngagementIntent.USE,
           componentType: ComponentType.UNIT_DOWNLOAD_BUTTON,
           ...coreProperties,

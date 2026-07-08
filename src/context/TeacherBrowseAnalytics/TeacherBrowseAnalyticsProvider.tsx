@@ -28,7 +28,7 @@ export const TeacherBrowseAnalyticsStoreProvider = ({
   const { track } = useAnalytics();
 
   const [store] = useState(() =>
-    createTeacherBrowseAnalyticsStore({ ...programmeState, track }),
+    createTeacherBrowseAnalyticsStore({ ...programmeState, avo: track }),
   );
 
   return (

@@ -9,12 +9,11 @@ import { NavigatedFrom } from "@/browser-lib/avo/Avo";
 
 const state = {
   programmeState: getProgrammeStateForLesson(teachersLessonOverviewFixture()),
-  track: { ...noopTrackingFns, NavigatedFrom },
-  actions: {
-    trackLessonResourceDownloadStarted: () =>
-      console.log("trackLessonResourceDownloadStarted fired"),
-    trackUnitDownloadInitiated: () =>
-      console.log("trackUnitDownloadInitiated fired"),
+  avo: { ...noopTrackingFns, NavigatedFrom },
+  track: {
+    lessonResourceDownloadStarted: () =>
+      console.log("lessonResourceDownloadStarted fired"),
+    unitDownloadInitiated: () => console.log("unitDownloadInitiated fired"),
   },
 };
 

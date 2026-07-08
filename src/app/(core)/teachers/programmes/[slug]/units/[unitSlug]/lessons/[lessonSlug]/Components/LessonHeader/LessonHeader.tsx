@@ -33,8 +33,8 @@ const LessonHeader = (props: LessonHeaderProps) => {
     loginRequired,
     georestricted,
   } = props;
-  const { trackLessonResourceDownloadStarted } = useTeacherBrowseAnalyticsStore(
-    (s) => s.actions,
+  const { lessonResourceDownloadStarted } = useTeacherBrowseAnalyticsStore(
+    (s) => s.track,
   );
 
   return (
@@ -86,7 +86,7 @@ const LessonHeader = (props: LessonHeaderProps) => {
                 </OakSpan>
               ),
               onClick: () => {
-                trackLessonResourceDownloadStarted("all");
+                lessonResourceDownloadStarted("all");
               },
               isActionGeorestricted: true,
               shouldHidewhenGeoRestricted: true,
