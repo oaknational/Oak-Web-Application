@@ -6,7 +6,7 @@ import { ProgrammeState } from "./teacherBrowseAnalytics.types";
 import {
   getLessonAnalyticsProperties,
   getUnitAnalyticsProperties,
-} from "./helpers";
+} from "./utils/getAnalyticsProperties";
 
 import {
   AnalyticsUseCaseValueType,

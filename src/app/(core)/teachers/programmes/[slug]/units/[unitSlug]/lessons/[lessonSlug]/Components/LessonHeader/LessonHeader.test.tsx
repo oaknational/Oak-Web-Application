@@ -11,7 +11,7 @@ import {
   mockLoggedIn,
 } from "@/__tests__/__helpers__/mockUser";
 import { TeacherBrowseAnalyticsStoreProvider } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
-import { getProgrammeStateForLesson } from "@/context/TeacherBrowseAnalytics/helpers";
+import { getProgrammeStateForLesson } from "@/context/TeacherBrowseAnalytics/utils/getProgrammeState";
 import teachersLessonOverviewFixture from "@/node-lib/curriculum-api-2023/fixtures/teachersLessonOverview.fixture";
 
 const lessonResourceDownloadStarted = jest.fn();

@@ -11,7 +11,7 @@ import withPageErrorHandling, {
   AppPageProps,
 } from "@/hocs/withPageErrorHandling";
 import { TeacherBrowseAnalyticsStoreProvider } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
-import { getProgrammeStateForUnit } from "@/context/TeacherBrowseAnalytics/helpers";
+import { getProgrammeStateForUnit } from "@/context/TeacherBrowseAnalytics/utils/getProgrammeState";
 
 type LessonsPageParams = { slug: string; unitSlug: string };
 

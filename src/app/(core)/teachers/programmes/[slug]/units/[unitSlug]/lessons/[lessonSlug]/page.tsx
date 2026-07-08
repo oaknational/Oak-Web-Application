@@ -18,7 +18,7 @@ import { getTeacherSubjectPhaseSlug } from "@/utils/curriculum/slugs";
 import { cacheData } from "@/node-lib/cache";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 import { TeacherBrowseAnalyticsStoreProvider } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
-import { getProgrammeStateForLesson } from "@/context/TeacherBrowseAnalytics/helpers";
+import { getProgrammeStateForLesson } from "@/context/TeacherBrowseAnalytics/utils/getProgrammeState";
 
 type LessonPageParams = {
   slug: string;
