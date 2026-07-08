@@ -89,7 +89,7 @@ export default function LessonView(
   });
   const isMathJaxLesson = hasLessonMathJax(props, props.subjectSlug, false);
   const MathJaxLessonProvider = isMathJaxLesson ? MathJaxProvider : Fragment;
-  const { lessonResourceDownloadStarted } = useTeacherBrowseAnalyticsStore(
+  const { trackLessonResourceDownloadStarted } = useTeacherBrowseAnalyticsStore(
     (s) => s.actions,
   );
 
@@ -191,7 +191,7 @@ export default function LessonView(
                     unitSlug,
                     showDownloadAll: true,
                     onClickDownloadAll: () => {
-                      lessonResourceDownloadStarted("all");
+                      trackLessonResourceDownloadStarted("all");
                     },
                     geoRestricted,
                     loginRequired,
@@ -299,7 +299,7 @@ export default function LessonView(
                     resource={resource}
                     key={resource.resourceType}
                     onDownloadButtonClick={(props) =>
-                      lessonResourceDownloadStarted(
+                      trackLessonResourceDownloadStarted(
                         props.downloadResourceButtonName,
                       )
                     }
