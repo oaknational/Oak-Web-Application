@@ -3,7 +3,10 @@ import { createStore } from "zustand";
 import { TrackFns } from "../Analytics/AnalyticsProvider";
 
 import { ProgrammeState } from "./teacherBrowseAnalytics.types";
-import { getLessonAnalyticsProperties } from "./helpers";
+import {
+  getLessonAnalyticsProperties,
+  getUnitAnalyticsProperties,
+} from "./helpers";
 
 import {
   AnalyticsUseCaseValueType,
@@ -20,6 +23,7 @@ export type TeacherBrowseAnalyticsStore = {
     trackLessonResourceDownloadStarted: (
       downloadResourceButtonName: DownloadResourceButtonNameValueType,
     ) => void;
+    trackUnitDownloadInitiated: () => void;
   };
 };
 
@@ -59,6 +63,22 @@ export const createTeacherBrowseAnalyticsStore = (
           componentType: "lesson_download_button",
           downloadResourceButtonName,
           lessonReleaseCohort: "2023-2026",
+          ...coreProperties,
+          ...analyticsProperties,
+        });
+      },
+      trackUnitDownloadInitiated: () => {
+        const { track, programmeState } = get();
+
+        if (programmeState.browseLevel === "programme") {
+          throw new Error("Invalid browse level for event");
+        }
+
+        const analyticsProperties = getUnitAnalyticsProperties(programmeState);
+
+        track.unitDownloadInitiated({
+          engagementIntent: "use",
+          componentType: "unit_download_button",
           ...coreProperties,
           ...analyticsProperties,
         });
