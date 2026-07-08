@@ -4,7 +4,7 @@ import { renderWithProvidersByName } from "@/__tests__/__helpers__/renderWithPro
 
 const render = renderWithProvidersByName(["oakTheme"]);
 
-describe("SupportYou", () => {
+describe("OaksImpactStats", () => {
   it("renders correctly", () => {
     const data = {
       headingText: "MAIN_HEADER",
