@@ -22,10 +22,7 @@ import type { TeachersLessonOverviewPageData } from "@/node-lib/curriculum-api-2
 import PreviousNextNav from "@/components/TeacherComponents/PreviousNextNav/PreviousNextNav";
 import { resolveOakHref } from "@/common-lib/urls";
 import { useComplexCopyright } from "@/hooks/useComplexCopyright";
-import {
-  DownloadResourceButtonNameValueType,
-  TeachingMaterialTypeValueType,
-} from "@/browser-lib/avo/Avo";
+import { TeachingMaterialTypeValueType } from "@/browser-lib/avo/Avo";
 import useAnalytics from "@/context/Analytics/useAnalytics";
 import { getAnalyticsBrowseData } from "@/components/TeacherComponents/helpers/getAnalyticsBrowseData";
 import SkipLink from "@/components/CurriculumComponents/OakComponentsKitchen/SkipLink";
@@ -35,6 +32,7 @@ import { hasLessonMathJax } from "@/components/TeacherViews/LessonOverview/hasLe
 import { getSideNavLinksFromResources } from "@/components/TeacherComponents/LessonOverviewSideNavAnchorLinks/LessonOverviewSideNavAnchorLinks";
 import ComplexCopyrightRestrictionBanner from "@/components/TeacherComponents/ComplexCopyrightRestrictionBanner/ComplexCopyrightRestrictionBanner";
 import { RestrictedContentPrompt } from "@/components/TeacherComponents/RestrictedContentPrompt/RestrictedContentPrompt";
+import { useTeacherBrowseAnalyticsStore } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
 
 export default function LessonView(
   props: Readonly<TeachersLessonOverviewPageData>,
@@ -91,6 +89,9 @@ export default function LessonView(
   });
   const isMathJaxLesson = hasLessonMathJax(props, props.subjectSlug, false);
   const MathJaxLessonProvider = isMathJaxLesson ? MathJaxProvider : Fragment;
+  const { lessonResourceDownloadStarted } = useTeacherBrowseAnalyticsStore(
+    (s) => s.actions,
+  );
 
   const browsePathwayData = getAnalyticsBrowseData({
     keyStageSlug,
@@ -109,23 +110,6 @@ export default function LessonView(
     lessonReleaseDate,
     isLegacy: false,
   });
-
-  const trackDownloadResourceButtonClicked = ({
-    downloadResourceButtonName,
-  }: {
-    downloadResourceButtonName: DownloadResourceButtonNameValueType;
-  }) => {
-    track.lessonResourceDownloadStarted({
-      platform: "owa",
-      product: "teacher lesson resources",
-      engagementIntent: "use",
-      componentType: "lesson_download_button",
-      eventVersion: "2.0.0",
-      analyticsUseCase: "Teacher",
-      downloadResourceButtonName,
-      ...browsePathwayData,
-    });
-  };
 
   const trackMediaClipsButtonClicked = ({
     mediaClipsButtonName,
@@ -207,9 +191,7 @@ export default function LessonView(
                     unitSlug,
                     showDownloadAll: true,
                     onClickDownloadAll: () => {
-                      trackDownloadResourceButtonClicked({
-                        downloadResourceButtonName: "all",
-                      });
+                      lessonResourceDownloadStarted("all");
                     },
                     geoRestricted,
                     loginRequired,
@@ -316,7 +298,11 @@ export default function LessonView(
                     }}
                     resource={resource}
                     key={resource.resourceType}
-                    onDownloadButtonClick={trackDownloadResourceButtonClicked}
+                    onDownloadButtonClick={(props) =>
+                      lessonResourceDownloadStarted(
+                        props.downloadResourceButtonName,
+                      )
+                    }
                     onMediaClipsButtonClick={trackMediaClipsButtonClicked}
                   />
                 ))}
