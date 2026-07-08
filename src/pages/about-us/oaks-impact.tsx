@@ -3,7 +3,7 @@ import {
   GetServerSidePropsResult,
   NextPage,
 } from "next/dist/types";
-import { OakBox, OakCard, OakFlex, OakHeading, OakMaxWidth } from "@oaknational/oak-components";
+import { OakBox } from "@oaknational/oak-components";
 
 import getBrowserConfig from "@/browser-lib/getBrowserConfig";
 import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
@@ -14,6 +14,7 @@ import {
   AboutSharedHeader,
   AboutSharedHeaderImage,
 } from "@/components/GenericPagesComponents/AboutSharedHeader";
+import { OaksImpactCaseStudies } from "@/components/GenericPagesComponents/OaksImpactCaseStudies";
 import { SupportYou } from "@/components/GenericPagesComponents/SupportYou";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 import getPageProps from "@/node-lib/getPageProps";
@@ -52,39 +53,25 @@ const OaksImpact: NextPage<OaksImpactPageProps> = ({ topNav }) => {
         >
           TODO: Stats
         </OakBox>
-        <OakBox $background={"bg-decorative2-subdued"}>
-          <OakMaxWidth>
-            <OakFlex
-              $flexDirection={"column"}
-              $ph={["spacing-32", "spacing-40", "spacing-100"]}
-              $pv={["spacing-56", "spacing-80"]}
-              $gap={"spacing-24"}
-            >
-              <OakHeading
-                tag={"h2"}
-                $font={["heading-5", "heading-3"]}
-              >
-                Case studies
-              </OakHeading>
-                <OakFlex
-                  $gap={"spacing-16"}
-                  $flexDirection={["column", "row"]}
-                >
-                  {["Case study 1", "Case study 2", "Case study 3"].map((caseStudy, index) => (
-                    <OakCard
-                      key={index}
-                      heading={caseStudy}
-                      href="#"
-                      imageSrc="https://res.cloudinary.com/oak-web-application/image/upload/v1698336490/sample.jpg"
-                      aspectRatio="4/3"
-                      linkText="Watch the video"
-                      cardWidth={"100%"}
-                    />
-                  ))}
-                </OakFlex>
-            </OakFlex>
-          </OakMaxWidth>
-        </OakBox>
+        <OaksImpactCaseStudies
+          caseStudies={[
+            {
+              heading: "Case study 1",
+              href: "#",
+              imageSrc: "https://res.cloudinary.com/oak-web-application/image/upload/v1698336490/sample.jpg",
+            },
+            {
+              heading: "Case study 2",
+              href: "#",
+              imageSrc: "https://res.cloudinary.com/oak-web-application/image/upload/v1698336490/sample.jpg",
+            },
+            {
+              heading: "Case study 3",
+              href: "#",
+              imageSrc: "https://res.cloudinary.com/oak-web-application/image/upload/v1698336490/sample.jpg",
+            },
+          ]}
+        />
         <OakBox
           $ma={"spacing-48"}
           $pa={"spacing-48"}
