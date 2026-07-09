@@ -22,6 +22,7 @@ import OakError from "@/errors/OakError";
 
 export type TeacherBrowseAnalyticsStore = {
   programmeState: ProgrammeState;
+  journeyId: string | null;
   avo: TrackFns;
   track: {
     lessonResourceDownloadStarted: (
@@ -46,7 +47,10 @@ const coreProperties: {
 const reportError = errorReporter("teacher-browse-analytics");
 
 export const createTeacherBrowseAnalyticsStore = (
-  initialState: Pick<TeacherBrowseAnalyticsStore, "programmeState" | "avo">,
+  initialState: Pick<
+    TeacherBrowseAnalyticsStore,
+    "programmeState" | "avo" | "journeyId"
+  >,
 ) => {
   return createStore<TeacherBrowseAnalyticsStore>()((_, get) => ({
     ...initialState,

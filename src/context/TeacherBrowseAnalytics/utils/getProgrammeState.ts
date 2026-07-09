@@ -14,6 +14,7 @@ import { TeachersUnitOverviewData } from "@/node-lib/curriculum-api-2023/queries
 
 const getSharedProgrammeState = (data: SharedProgrammeState) => {
   return {
+    programmeSlug: data.programmeSlug,
     subjectSlug: data.subjectSlug,
     subjectTitle: data.subjectTitle,
     phaseSlug: data.phaseSlug,

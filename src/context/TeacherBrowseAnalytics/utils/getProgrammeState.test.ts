@@ -11,6 +11,7 @@ describe("getProgrammeState", () => {
     const result = getProgrammeStateForUnit(teachersUnitOverviewFixture());
     expect(result).toEqual({
       browseLevel: "unit",
+      programmeSlug: "biology-secondary-ks3",
       examBoardSlug: null,
       examBoardTitle: null,
       keyStageSlug: "ks3",
@@ -42,6 +43,7 @@ describe("getProgrammeState", () => {
     );
     expect(result).toEqual({
       browseLevel: "unit",
+      programmeSlug: "biology-secondary-ks3",
       examBoardSlug: "aqa",
       examBoardTitle: "AQA",
       keyStageSlug: "ks3",
@@ -70,6 +72,7 @@ describe("getProgrammeState", () => {
       }),
     );
     expect(result).toEqual({
+      programmeSlug: "biology-secondary-ks3",
       browseLevel: "lesson",
       examBoardSlug: null,
       examBoardTitle: null,

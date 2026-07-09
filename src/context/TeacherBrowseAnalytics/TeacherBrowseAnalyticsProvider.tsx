@@ -1,5 +1,5 @@
 "use client";
-import { createContext, ReactNode, useContext, useState } from "react";
+import { createContext, ReactNode, useContext, useMemo, useState } from "react";
 import { useStore } from "zustand";
 
 import useAnalytics from "../Analytics/useAnalytics";
@@ -25,10 +25,23 @@ export const TeacherBrowseAnalyticsStoreProvider = ({
   programmeState,
   children,
 }: TeacherBrowseAnalyticsStoreProviderProps) => {
-  const { track } = useAnalytics();
+  const { track, getSessionId } = useAnalytics();
+
+  const sessionId = useMemo(() => getSessionId(), [getSessionId]);
+
+  const journeyId = useMemo(() => {
+    if (!sessionId) {
+      return null;
+    }
+    return `${sessionId}:${programmeState.programmeState.programmeSlug}`;
+  }, [sessionId, programmeState.programmeState.programmeSlug]);
 
   const [store] = useState(() =>
-    createTeacherBrowseAnalyticsStore({ ...programmeState, avo: track }),
+    createTeacherBrowseAnalyticsStore({
+      ...programmeState,
+      avo: track,
+      journeyId,
+    }),
   );
 
   return (

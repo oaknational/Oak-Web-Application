@@ -10,6 +10,7 @@ import { NavigatedFrom } from "@/browser-lib/avo/Avo";
 const state = {
   programmeState: getProgrammeStateForLesson(teachersLessonOverviewFixture()),
   avo: { ...noopTrackingFns, NavigatedFrom },
+  journeyId: "mockJourneyId",
   track: {
     lessonResourceDownloadStarted: () =>
       console.log("lessonResourceDownloadStarted fired"),

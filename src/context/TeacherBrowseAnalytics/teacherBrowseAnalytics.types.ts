@@ -22,6 +22,7 @@ import { VideoTrackingGetState } from "@/components/SharedComponents/VideoPlayer
 
 // Core programme properties used at all browse levels
 export type SharedProgrammeState = {
+  programmeSlug: string;
   subjectSlug: ProgrammeFields["subject_slug"];
   subjectTitle: ProgrammeFields["subject"];
   phaseSlug: ProgrammeFields["phase_slug"];
