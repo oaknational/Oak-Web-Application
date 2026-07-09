@@ -86,8 +86,8 @@ describe("getProgrammeState", () => {
       phaseTitle: "Secondary",
       subjectSlug: "biology",
       subjectTitle: "Biology",
-      tierSlug: undefined,
-      tierTitle: undefined,
+      tierSlug: null,
+      tierTitle: null,
       unit: {
         slug: "cells",
         title: "Cells",
