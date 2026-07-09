@@ -5,7 +5,20 @@ import {
   TierNameValueType,
   ExamBoardValueType,
   PathwayValueType,
+  DownloadResourceButtonNameValueType,
+  SearchResultTypeValueType,
+  FilterTypeValueType,
+  SearchFilterMatchTypeType,
+  MediaClipsButtonNameValueType,
+  TeachingMaterialTypeValueType,
+  OnwardIntentValueType,
+  SearchSourceValueType,
+  TeacherSchoolManualEntryDetails,
+  UserAccountVerificationStatusValueType,
+  UserRoleTypeValueType,
 } from "@/browser-lib/avo/Avo";
+import { ResourceFormValues } from "@/components/TeacherComponents/types/downloadAndShare.types";
+import { VideoTrackingGetState } from "@/components/SharedComponents/VideoPlayer/useVideoTracking";
 
 // Core programme properties used at all browse levels
 export type SharedProgrammeState = {
@@ -71,3 +84,154 @@ export type LessonPathwayData = ProgrammePathwayData &
     lessonSlug: string;
     lessonReleaseDate: string;
   };
+
+// All Track Fns used in the teacher browse journey
+export type TeacherBrowseTrackFns = {
+  // NAVIGATION
+  browseRefined: () => void;
+  browseRefinedAccessed: () => void;
+
+  // PROGRAMMES (fka Curriculum Visualiser)
+  curriculumVisualiserAccessed: () => void;
+  curriculumExplainerExplored: () => void;
+  curriculumResourcesDownloaded: (data: ResourceFormValues) => void;
+  curriculumResourcesDownloadRefined: () => void;
+
+  //UNITS
+  unitAccessed: () => void;
+  unitDownloadInitiated: () => void;
+  unitOverviewAccessed: (props: {
+    unitHighlighted: boolean;
+    selectedThread?: { slug: string; title: string }; // TD add filters to state
+  }) => void;
+  unitSequenceRefined: (props: {
+    selectedThread?: { slug: string; title: string }; // TD add filters to state
+    subjectCategory?: string; // TD add filters to state
+    childSubjectSlug?: string; // TD add filters to state
+  }) => void;
+
+  // LESSONS
+  lessonAccessed: () => void;
+  lessonResourceDownloadStarted: (
+    downloadResourceButtonName: DownloadResourceButtonNameValueType,
+  ) => void;
+  lessonMediaClipsStarted: (props: {
+    mediaClipsButtonName: MediaClipsButtonNameValueType;
+    learningCycle?: string | null;
+  }) => void;
+  mediaClipsPlaylistPlayed: (props: {
+    learningCycle: string;
+    durationSeconds: number;
+    isCaptioned: boolean;
+    videoPlaybackId: string[];
+    videoTitle: string;
+    timeElapsedSeconds: number;
+    isMuted: boolean;
+    mediaClipsCount: number;
+    mediaClipIndex: number;
+  }) => void;
+  lessonShareStarted: () => void;
+  createTeachingMaterialsInitiated: (props: { isLoggedIn: boolean }) => void;
+  teachingMaterialsSelected: (props: {
+    teachingMaterialType: TeachingMaterialTypeValueType;
+  }) => void;
+  onwardContentSelected: (props: {
+    onwardIntent: OnwardIntentValueType;
+  }) => void;
+  videoPlayed: (
+    props: ReturnType<VideoTrackingGetState> & {
+      cloudinaryUrl: string | null;
+      muxAssetId: string | null;
+    },
+  ) => void;
+  videoStarted: (
+    props: ReturnType<VideoTrackingGetState> & {
+      cloudinaryUrl: string | null;
+      muxAssetId: string | null;
+    },
+  ) => void;
+  videoPaused: (
+    props: ReturnType<VideoTrackingGetState> & {
+      cloudinaryUrl: string | null;
+      muxAssetId: string | null;
+    },
+  ) => void;
+  videoFinished: (
+    props: ReturnType<VideoTrackingGetState> & {
+      cloudinaryUrl: string | null;
+      muxAssetId: string | null;
+    },
+  ) => void;
+  lessonAssistantAccessed: (props: { isLoggedIn: boolean }) => void;
+  // The following events are for the teacher notes feature which is not available in integrated journey
+  teacherNoteDialogueOpened: () => void;
+  teacherNoteSaved: () => void;
+  teacherShareActivated: () => void;
+  teacherShareInitiated: () => void;
+  teacherShareConverted: () => void;
+
+  // REGISTRATION
+  userOnboardingProgressed: (props: {
+    userId: string;
+    signUpDate: string | null | undefined;
+    userRoleType: UserRoleTypeValueType | null | undefined;
+    teacherSchoolUrn: string | null | undefined;
+    userDefinedRole: string | null | undefined;
+    userDetailsLastModifiedDate: string;
+    userAccountVerificationStatus?: UserAccountVerificationStatusValueType | null;
+    teacherSchoolManualEntryDetails?: TeacherSchoolManualEntryDetails | null;
+  }) => void;
+  userOnboardingCompleted: (props: {
+    userId: string;
+    signUpDate: string;
+    userRoleType: UserRoleTypeValueType | null | undefined;
+    teacherSchoolUrn: string | null | undefined;
+    userDefinedRole: string | null | undefined;
+    userDetailsLastModifiedDate: string;
+    userAccountVerificationStatus: UserAccountVerificationStatusValueType;
+    teacherSchoolManualEntryDetails?: TeacherSchoolManualEntryDetails | null;
+  }) => void;
+  contentBlockNotificationDisplayed: (props: {
+    accessBlockType: string;
+  }) => void;
+
+  // SEARCH
+  searchJourneyInitiated: (props: {
+    searchSource: SearchSourceValueType;
+  }) => void;
+  searchAccessed: (props: {
+    searchResultCount: number;
+    searchResultsLoadTime: number;
+  }) => void;
+  searchRefined: (props: {
+    searchResultCount: number;
+    activeFilters: Record<string, string>; // TD add filters to state
+    searchTerm: string; // TD add query to state
+  }) => void;
+  searchExpanded: (props: {
+    searchRank: number;
+    searchFilterOptionSelected: string[];
+    searchResultCount: number;
+    searchResultType: SearchResultTypeValueType;
+  }) => void;
+  searchResultOpened: (props: {
+    searchRank: number;
+    searchFilterOptionSelected: string[];
+    searchResultCount: number;
+    searchResultType: SearchResultTypeValueType;
+  }) => void;
+  searchFilterModified: (props: {
+    checked: boolean;
+    filterType: FilterTypeValueType;
+    filtervalue: string;
+    searchTerm: string; // TD move to state
+    searchFilterMatchType: SearchFilterMatchTypeType;
+  }) => void;
+
+  // MY LIBRARY
+  contentSaved: () => void; // likely want to create two fns to wrap this for unit and lesson
+  contentUnsaved: () => void;
+
+  // MISC
+  newsletterSignUpCompleted: () => void;
+};
