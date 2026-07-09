@@ -15,7 +15,7 @@ const track = {
 };
 jest.mock("@/context/Analytics/useAnalytics", () => ({
   __esModule: true,
-  default: () => ({ track }),
+  default: () => ({ track, getSessionId: jest.fn() }),
 }));
 
 const setCurrentToastProps = jest.fn();

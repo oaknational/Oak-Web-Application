@@ -18,6 +18,7 @@ const lessonResourceDownloadStarted = jest.fn();
 jest.mock("@/context/Analytics/useAnalytics", () => ({
   __esModule: true,
   default: () => ({
+    getSessionId: jest.fn(),
     track: {
       lessonResourceDownloadStarted: (...args: unknown[]) =>
         lessonResourceDownloadStarted(...args),

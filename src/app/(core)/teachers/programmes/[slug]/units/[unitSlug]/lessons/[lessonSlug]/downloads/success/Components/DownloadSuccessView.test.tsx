@@ -29,6 +29,7 @@ jest.mock("@/context/Analytics/useAnalytics", () => ({
     track: {
       onwardContentSelected,
     },
+    getSessionId: jest.fn(),
   }),
 }));
 

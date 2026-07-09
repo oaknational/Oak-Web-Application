@@ -23,6 +23,7 @@ const mockTeachingMaterialsSelected = jest.fn();
 jest.mock("@/context/Analytics/useAnalytics", () => ({
   __esModule: true,
   default: () => ({
+    getSessionId: jest.fn(),
     track: {
       lessonMediaClipsStarted: (...args: unknown[]) =>
         lessonMediaClipsStarted(...args),
@@ -445,7 +446,7 @@ describe("Tracking callbacks", () => {
     expect(lessonResourceDownloadStarted).toHaveBeenCalledWith(
       expect.objectContaining({
         keyStageSlug: baseProps.keyStageSlug,
-        keyStageTitle: baseProps.keyStageTitle,
+        keyStageTitle: "Key stage 3", // transformed to sentence case
         subjectSlug: baseProps.subjectSlug,
         subjectTitle: baseProps.subjectTitle,
         unitSlug: baseProps.unitSlug,

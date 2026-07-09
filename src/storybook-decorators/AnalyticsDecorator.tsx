@@ -20,6 +20,7 @@ export default function AnalyticsDecorator(Story: StoryFn) {
   const value = {
     identify: noop,
     alias: noop,
+    getSessionId: () => "mockSessionId",
     posthogDistinctId: testPosthogDistinctId,
     track: {
       ...noopTrackingFns,
