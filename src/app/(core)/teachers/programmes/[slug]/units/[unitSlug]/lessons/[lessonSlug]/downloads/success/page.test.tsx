@@ -3,6 +3,8 @@
  */
 import LessonDownloadsSuccessPage, { generateMetadata } from "./page";
 
+import teachersUnitOverviewFixture from "@/node-lib/curriculum-api-2023/fixtures/teachersUnitOverview.fixture";
+
 jest.mock("next/navigation", () => ({
   __esModule: true,
   notFound: () => {
@@ -24,22 +26,8 @@ jest.mock("@/node-lib/curriculum-api-2023", () => ({
   },
 }));
 
-const defaultParams = {
-  slug: "science-secondary-ks3",
-  unitSlug: "solid-liquid-gas-states-and-changes-of-state",
-  lessonSlug: "solid-and-liquid-states",
-};
-
-const teachersUnitOverviewFixture = {
-  slug: "science-secondary-ks3",
-  unitSlug: "solid-liquid-gas-states-and-changes-of-state",
-  unitvariantId: 123,
-  unitTitle: "Solid, liquid and gas states and changes of state",
-  unitDescription: "Unit description",
-  keyStageSlug: "ks3",
-  keyStageTitle: "Key Stage 3",
-  subjectSlug: "science",
-  subjectTitle: "Science",
+const unitFixture = {
+  ...teachersUnitOverviewFixture(),
   lessons: [
     {
       lessonSlug: "solid-and-liquid-states",
@@ -51,10 +39,15 @@ const teachersUnitOverviewFixture = {
     },
   ],
 };
+const defaultParams = {
+  slug: unitFixture.programmeSlug,
+  unitSlug: unitFixture.unitSlug,
+  lessonSlug: "solid-and-liquid-states",
+};
 
 describe("LessonDownloadsSuccessPage", () => {
   beforeEach(() => {
-    mockTeachersUnitOverview.mockResolvedValue(teachersUnitOverviewFixture);
+    mockTeachersUnitOverview.mockResolvedValue(unitFixture);
     featureFlagMock.mockResolvedValue(undefined);
   });
 
@@ -92,10 +85,10 @@ describe("LessonDownloadsSuccessPage", () => {
 
   it("renders 404 when lesson release date is missing", async () => {
     mockTeachersUnitOverview.mockResolvedValue({
-      ...teachersUnitOverviewFixture,
+      ...unitFixture,
       lessons: [
         {
-          ...teachersUnitOverviewFixture.lessons[0],
+          ...unitFixture.lessons[0],
           lessonReleaseDate: null,
         },
       ],
@@ -123,7 +116,7 @@ describe("generateMetadata", () => {
   });
 
   it("returns metadata with noindex and nofollow when fetch succeeds", async () => {
-    mockTeachersUnitOverview.mockResolvedValue(teachersUnitOverviewFixture);
+    mockTeachersUnitOverview.mockResolvedValue(unitFixture);
 
     const result = await generateMetadata({
       params: Promise.resolve(defaultParams),
@@ -131,7 +124,7 @@ describe("generateMetadata", () => {
     });
 
     expect(result).toMatchObject({
-      title: "Thanks for downloading! Solid and liquid states | KS3 Science",
+      title: "Thanks for downloading! Solid and liquid states | KS3 Biology",
       robots: {
         index: false,
         follow: false,
