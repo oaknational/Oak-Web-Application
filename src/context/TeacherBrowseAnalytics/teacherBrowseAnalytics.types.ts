@@ -7,40 +7,30 @@ import {
   PathwayValueType,
 } from "@/browser-lib/avo/Avo";
 
-export type ProgrammeState = {
-  subject: {
-    slug: ProgrammeFields["subject_slug"];
-    title: ProgrammeFields["subject"];
-  };
-  phase: {
-    slug: ProgrammeFields["phase_slug"];
-    title: ProgrammeFields["phase_description"];
-  };
-  year: {
-    slug: ProgrammeFields["year"];
-    title: ProgrammeFields["year_description"];
-  };
-  keystage: {
-    slug: ProgrammeFields["keystage_slug"];
-    title: ProgrammeFields["keystage_description"];
-  };
-  tier: {
-    slug: ProgrammeFields["tier_slug"];
-    title: ProgrammeFields["tier_description"];
-  } | null;
-  examboard: {
-    slug: ProgrammeFields["examboard_slug"];
-    title: ProgrammeFields["examboard"];
-  } | null;
-  pathway: {
-    slug: ProgrammeFields["pathway_slug"];
-    title: ProgrammeFields["pathway_description"];
-  } | null;
-} & (
-  | { browseLevel: "programme" }
-  | { browseLevel: "unit"; unit: UnitState }
-  | { browseLevel: "lesson"; unit: UnitState; lesson: LessonState }
-);
+// Core programme properties used at all browse levels
+export type SharedProgrammeState = {
+  subjectSlug: ProgrammeFields["subject_slug"];
+  subjectTitle: ProgrammeFields["subject"];
+  phaseSlug: ProgrammeFields["phase_slug"];
+  phaseTitle: ProgrammeFields["phase_description"];
+  year: ProgrammeFields["year"];
+  yearGroupTitle: ProgrammeFields["year_description"];
+  keyStageSlug: ProgrammeFields["keystage_slug"];
+  keyStageTitle: ProgrammeFields["keystage_description"];
+  tierSlug: ProgrammeFields["tier_slug"];
+  tierTitle: ProgrammeFields["tier_description"];
+  examBoardSlug: ProgrammeFields["examboard_slug"];
+  examBoardTitle: ProgrammeFields["examboard"];
+  pathwaySlug: ProgrammeFields["pathway_slug"];
+  pathwayTitle: ProgrammeFields["pathway_description"];
+};
+
+export type ProgrammeState = SharedProgrammeState &
+  (
+    | { browseLevel: "programme" }
+    | { browseLevel: "unit"; unit: UnitState }
+    | { browseLevel: "lesson"; unit: UnitState; lesson: LessonState }
+  );
 
 export type ProgrammeStateUnit = Extract<
   ProgrammeState,
@@ -52,11 +42,11 @@ export type ProgrammeStateLesson = Extract<
   { browseLevel: "lesson" }
 >;
 
-type UnitState = {
+export type UnitState = {
   slug: string;
   title: string;
 };
-type LessonState = {
+export type LessonState = {
   slug: string;
   title: string;
   lessonReleaseDate: string;

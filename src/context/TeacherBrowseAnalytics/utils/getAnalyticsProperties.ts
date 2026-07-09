@@ -14,17 +14,22 @@ import {
   TierNameValueType,
 } from "@/browser-lib/avo/Avo";
 
+/**
+ * Helper fns to transform curriculum data into the shape Avo expects
+ * to be sent with events
+ */
+
 export const getProgrammeAnalyticsProperties = (
   programmeState: ProgrammeState,
 ): ProgrammePathwayData => {
   return {
-    examBoard: programmeState.examboard?.title as ExamBoardValueType,
-    keyStageSlug: programmeState.keystage.slug,
-    keyStageTitle: programmeState.keystage.title as KeyStageTitleValueType,
-    pathway: programmeState.pathway?.title as PathwayValueType,
-    subjectSlug: programmeState.subject.slug,
-    subjectTitle: programmeState.subject.title,
-    tierName: programmeState.tier?.title as TierNameValueType,
+    examBoard: programmeState.examBoardTitle as ExamBoardValueType,
+    keyStageSlug: programmeState.keyStageSlug,
+    keyStageTitle: programmeState.keyStageTitle as KeyStageTitleValueType,
+    pathway: programmeState.pathwayTitle as PathwayValueType,
+    subjectSlug: programmeState.subjectSlug,
+    subjectTitle: programmeState.subjectTitle,
+    tierName: programmeState.tierTitle as TierNameValueType,
   };
 };
 

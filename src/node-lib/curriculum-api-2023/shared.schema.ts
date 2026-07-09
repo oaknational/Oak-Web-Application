@@ -190,9 +190,9 @@ export const baseLessonOverviewSchema = z.object({
   isLegacy: z.boolean(),
   lessonSlug: z.string(),
   lessonTitle: z.string(),
-  tierTitle: tierDescriptions.nullish(),
-  tierSlug: tierSlugs.nullish(),
-  pathwayTitle: pathwayDescriptions.nullish(),
+  tierTitle: tierDescriptions.nullable(),
+  tierSlug: tierSlugs.nullable(),
+  pathwayTitle: pathwayDescriptions.nullable(),
   contentGuidance: z
     .array(contentGuidanceSchemaCamelCase)
     .nullable()
