@@ -32,7 +32,7 @@ import { hasLessonMathJax } from "@/components/TeacherViews/LessonOverview/hasLe
 import { getSideNavLinksFromResources } from "@/components/TeacherComponents/LessonOverviewSideNavAnchorLinks/LessonOverviewSideNavAnchorLinks";
 import ComplexCopyrightRestrictionBanner from "@/components/TeacherComponents/ComplexCopyrightRestrictionBanner/ComplexCopyrightRestrictionBanner";
 import { RestrictedContentPrompt } from "@/components/TeacherComponents/RestrictedContentPrompt/RestrictedContentPrompt";
-import { useTeacherBrowseAnalyticsStore } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
+import { useTeacherBrowseAnalytics } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
 
 export default function LessonView(
   props: Readonly<TeachersLessonOverviewPageData>,
@@ -89,7 +89,7 @@ export default function LessonView(
   });
   const isMathJaxLesson = hasLessonMathJax(props, props.subjectSlug, false);
   const MathJaxLessonProvider = isMathJaxLesson ? MathJaxProvider : Fragment;
-  const { lessonResourceDownloadStarted } = useTeacherBrowseAnalyticsStore(
+  const { lessonResourceDownloadStarted } = useTeacherBrowseAnalytics(
     (s) => s.track,
   );
 

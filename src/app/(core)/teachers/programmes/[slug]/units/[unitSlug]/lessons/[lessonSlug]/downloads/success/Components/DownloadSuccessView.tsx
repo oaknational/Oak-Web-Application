@@ -19,7 +19,7 @@ import { resolveOakHref } from "@/common-lib/urls";
 import useAnalytics from "@/context/Analytics/useAnalytics";
 import type { LessonListSchema } from "@/node-lib/curriculum-api-2023/shared.schema";
 import { getUnitDownloadFileId } from "@/utils/getUnitDownloadFileId";
-import { useTeacherBrowseAnalyticsStore } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
+import { useTeacherBrowseAnalytics } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
 
 type DownloadSuccessViewLesson = {
   lessonTitle: string;
@@ -62,9 +62,7 @@ export function DownloadSuccessView({
 
   const { track } = useAnalytics();
   const { onwardContentSelected } = track;
-  const { unitDownloadInitiated } = useTeacherBrowseAnalyticsStore(
-    (s) => s.track,
-  );
+  const { unitDownloadInitiated } = useTeacherBrowseAnalytics((s) => s.track);
 
   const {
     setShowDownloadMessage,

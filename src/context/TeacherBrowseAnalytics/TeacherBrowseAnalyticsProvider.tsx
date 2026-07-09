@@ -51,7 +51,7 @@ export const TeacherBrowseAnalyticsStoreProvider = ({
   );
 };
 
-export const useTeacherBrowseAnalyticsStore = <T,>(
+export const useTeacherBrowseAnalytics = <T,>(
   selector: (store: TeacherBrowseAnalyticsStore) => T,
 ): T => {
   const teacherBrowseAnalyticsStoreContext = useContext(

@@ -11,7 +11,7 @@ import { resolveOakHref } from "@/common-lib/urls";
 import { TeachersLessonOverviewAdjacentLesson } from "@/node-lib/curriculum-api-2023/queries/teachersLessonOverview/teachersLessonOverview.schema";
 import { getBreakpoint } from "@/styles/utils/responsive";
 import LoginRequiredButton from "@/components/TeacherComponents/LoginRequiredButton/LoginRequiredButton";
-import { useTeacherBrowseAnalyticsStore } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
+import { useTeacherBrowseAnalytics } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
 
 export type LessonHeaderProps = Omit<LargeHeaderProps, "layoutVariant"> & {
   currentLessonSlug: string;
@@ -33,7 +33,7 @@ const LessonHeader = (props: LessonHeaderProps) => {
     loginRequired,
     georestricted,
   } = props;
-  const { lessonResourceDownloadStarted } = useTeacherBrowseAnalyticsStore(
+  const { lessonResourceDownloadStarted } = useTeacherBrowseAnalytics(
     (s) => s.track,
   );
 

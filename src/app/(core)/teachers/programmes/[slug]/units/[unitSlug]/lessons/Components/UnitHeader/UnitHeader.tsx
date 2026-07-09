@@ -18,7 +18,7 @@ import { TeachersUnitOverviewAdjacentUnit } from "@/node-lib/curriculum-api-2023
 import { resolveOakHref } from "@/common-lib/urls";
 import { UnitHeaderNavFooter } from "@/components/TeacherComponents/HeaderNavFooter/UnitHeaderNavFooter/UnitHeaderNavFooter";
 import { useOakNotificationsContext } from "@/context/OakNotifications/useOakNotificationsContext";
-import { useTeacherBrowseAnalyticsStore } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
+import { useTeacherBrowseAnalytics } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
 
 export type UnitHeaderProps = Omit<
   CompactHeaderProps,
@@ -78,9 +78,7 @@ const UnitHeader = (props: UnitHeaderProps) => {
     programmeSlug,
     downloadButtonState,
   } = props;
-  const { unitDownloadInitiated } = useTeacherBrowseAnalyticsStore(
-    (s) => s.track,
-  );
+  const { unitDownloadInitiated } = useTeacherBrowseAnalytics((s) => s.track);
   const { setCurrentToastProps } = useOakNotificationsContext();
   const { ref, isStuck } = useDetectStuck();
 
