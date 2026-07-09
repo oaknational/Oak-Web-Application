@@ -6,34 +6,29 @@ exports[`LessonDownloadsSuccessPage fetches unit data and renders success confir
     {
       "programmeState": {
         "browseLevel": "lesson",
-        "examboard": null,
-        "keystage": {
-          "slug": "ks3",
-          "title": "Key Stage 3",
-        },
+        "examBoardSlug": undefined,
+        "examBoardTitle": undefined,
+        "keyStageSlug": "ks3",
+        "keyStageTitle": "Key Stage 3",
         "lesson": {
           "lessonReleaseDate": "2026-01-01",
           "slug": "solid-and-liquid-states",
           "title": "Solid and liquid states",
         },
-        "pathway": null,
-        "phase": {
-          "slug": undefined,
-          "title": undefined,
-        },
-        "subject": {
-          "slug": "science",
-          "title": "Science",
-        },
-        "tier": null,
+        "pathwaySlug": undefined,
+        "pathwayTitle": undefined,
+        "phaseSlug": undefined,
+        "phaseTitle": undefined,
+        "subjectSlug": "science",
+        "subjectTitle": "Science",
+        "tierSlug": undefined,
+        "tierTitle": undefined,
         "unit": {
           "slug": "solid-liquid-gas-states-and-changes-of-state",
           "title": "Solid, liquid and gas states and changes of state",
         },
-        "year": {
-          "slug": undefined,
-          "title": undefined,
-        },
+        "year": undefined,
+        "yearGroupTitle": undefined,
       },
     }
   }
@@ -76,34 +71,29 @@ exports[`LessonDownloadsSuccessPage renders control variant when feature flag is
     {
       "programmeState": {
         "browseLevel": "lesson",
-        "examboard": null,
-        "keystage": {
-          "slug": "ks3",
-          "title": "Key Stage 3",
-        },
+        "examBoardSlug": undefined,
+        "examBoardTitle": undefined,
+        "keyStageSlug": "ks3",
+        "keyStageTitle": "Key Stage 3",
         "lesson": {
           "lessonReleaseDate": "2026-01-01",
           "slug": "solid-and-liquid-states",
           "title": "Solid and liquid states",
         },
-        "pathway": null,
-        "phase": {
-          "slug": undefined,
-          "title": undefined,
-        },
-        "subject": {
-          "slug": "science",
-          "title": "Science",
-        },
-        "tier": null,
+        "pathwaySlug": undefined,
+        "pathwayTitle": undefined,
+        "phaseSlug": undefined,
+        "phaseTitle": undefined,
+        "subjectSlug": "science",
+        "subjectTitle": "Science",
+        "tierSlug": undefined,
+        "tierTitle": undefined,
         "unit": {
           "slug": "solid-liquid-gas-states-and-changes-of-state",
           "title": "Solid, liquid and gas states and changes of state",
         },
-        "year": {
-          "slug": undefined,
-          "title": undefined,
-        },
+        "year": undefined,
+        "yearGroupTitle": undefined,
       },
     }
   }
@@ -146,34 +136,29 @@ exports[`LessonDownloadsSuccessPage renders control variant when feature flag is
     {
       "programmeState": {
         "browseLevel": "lesson",
-        "examboard": null,
-        "keystage": {
-          "slug": "ks3",
-          "title": "Key Stage 3",
-        },
+        "examBoardSlug": undefined,
+        "examBoardTitle": undefined,
+        "keyStageSlug": "ks3",
+        "keyStageTitle": "Key Stage 3",
         "lesson": {
           "lessonReleaseDate": "2026-01-01",
           "slug": "solid-and-liquid-states",
           "title": "Solid and liquid states",
         },
-        "pathway": null,
-        "phase": {
-          "slug": undefined,
-          "title": undefined,
-        },
-        "subject": {
-          "slug": "science",
-          "title": "Science",
-        },
-        "tier": null,
+        "pathwaySlug": undefined,
+        "pathwayTitle": undefined,
+        "phaseSlug": undefined,
+        "phaseTitle": undefined,
+        "subjectSlug": "science",
+        "subjectTitle": "Science",
+        "tierSlug": undefined,
+        "tierTitle": undefined,
         "unit": {
           "slug": "solid-liquid-gas-states-and-changes-of-state",
           "title": "Solid, liquid and gas states and changes of state",
         },
-        "year": {
-          "slug": undefined,
-          "title": undefined,
-        },
+        "year": undefined,
+        "yearGroupTitle": undefined,
       },
     }
   }
@@ -216,34 +201,29 @@ exports[`LessonDownloadsSuccessPage renders test variant when feature flag is te
     {
       "programmeState": {
         "browseLevel": "lesson",
-        "examboard": null,
-        "keystage": {
-          "slug": "ks3",
-          "title": "Key Stage 3",
-        },
+        "examBoardSlug": undefined,
+        "examBoardTitle": undefined,
+        "keyStageSlug": "ks3",
+        "keyStageTitle": "Key Stage 3",
         "lesson": {
           "lessonReleaseDate": "2026-01-01",
           "slug": "solid-and-liquid-states",
           "title": "Solid and liquid states",
         },
-        "pathway": null,
-        "phase": {
-          "slug": undefined,
-          "title": undefined,
-        },
-        "subject": {
-          "slug": "science",
-          "title": "Science",
-        },
-        "tier": null,
+        "pathwaySlug": undefined,
+        "pathwayTitle": undefined,
+        "phaseSlug": undefined,
+        "phaseTitle": undefined,
+        "subjectSlug": "science",
+        "subjectTitle": "Science",
+        "tierSlug": undefined,
+        "tierTitle": undefined,
         "unit": {
           "slug": "solid-liquid-gas-states-and-changes-of-state",
           "title": "Solid, liquid and gas states and changes of state",
         },
-        "year": {
-          "slug": undefined,
-          "title": undefined,
-        },
+        "year": undefined,
+        "yearGroupTitle": undefined,
       },
     }
   }
