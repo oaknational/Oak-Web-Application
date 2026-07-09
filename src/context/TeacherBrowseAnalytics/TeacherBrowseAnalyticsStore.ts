@@ -60,7 +60,11 @@ export const createTeacherBrowseAnalyticsStore = (
           reportError(
             new OakError({
               code: "analytics/teacher-browse",
-              meta: { event: "lessonResourceDownloadStarted" },
+              meta: {
+                event: "lessonResourceDownloadStarted",
+                browseLevel: programmeState.browseLevel,
+                downloadResourceButtonName,
+              },
             }),
           );
           return;
@@ -86,7 +90,10 @@ export const createTeacherBrowseAnalyticsStore = (
           reportError(
             new OakError({
               code: "analytics/teacher-browse",
-              meta: { event: "unitDownloadInitiated" },
+              meta: {
+                event: "unitDownloadInitiated",
+                browseLevel: programmeState.browseLevel,
+              },
             }),
           );
           return;
