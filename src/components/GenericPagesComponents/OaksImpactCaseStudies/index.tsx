@@ -30,9 +30,9 @@ export const OaksImpactCaseStudies = ({
             Case studies
           </OakHeading>
           <OakFlex $gap={"spacing-16"} $flexDirection={["column", "row"]}>
-            {caseStudies.map((caseStudy, index) => (
+            {caseStudies.map((caseStudy) => (
               <OakCard
-                key={index}
+                key={caseStudy.heading}
                 heading={caseStudy.heading}
                 href={caseStudy.href}
                 imageSrc={caseStudy.imageSrc}
