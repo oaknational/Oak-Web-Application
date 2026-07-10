@@ -25,7 +25,7 @@ exports[`OaksImpactCaseStudies renders correctly 1`] = `
             >
               <a
                 class="sc-aXZVg sc-gEvEer sc-kYxDKI joqqED fVNIMq gWtfUy"
-                href="#"
+                href="/about-us/oaks-impact/case-study-1"
               >
                 <span
                   class="sc-aXZVg kvjdhA sc-bpUBKd iUDiVD"
@@ -88,7 +88,7 @@ exports[`OaksImpactCaseStudies renders correctly 1`] = `
             >
               <a
                 class="sc-aXZVg sc-gEvEer sc-kYxDKI joqqED fVNIMq gWtfUy"
-                href="#"
+                href="/about-us/oaks-impact/case-study-2"
               >
                 <span
                   class="sc-aXZVg kvjdhA sc-bpUBKd iUDiVD"
@@ -100,8 +100,8 @@ exports[`OaksImpactCaseStudies renders correctly 1`] = `
                     decoding="async"
                     loading="lazy"
                     sizes="100vw"
-                    src="http://localhost/_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Foak-web-application%2Fimage%2Fupload%2Fv1698336490%2Fsample.jpg&w=3840&q=75"
-                    srcset="/_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Foak-web-application%2Fimage%2Fupload%2Fv1698336490%2Fsample.jpg&w=640&q=75 640w, /_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Foak-web-application%2Fimage%2Fupload%2Fv1698336490%2Fsample.jpg&w=750&q=75 750w, /_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Foak-web-application%2Fimage%2Fupload%2Fv1698336490%2Fsample.jpg&w=828&q=75 828w, /_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Foak-web-application%2Fimage%2Fupload%2Fv1698336490%2Fsample.jpg&w=1080&q=75 1080w, /_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Foak-web-application%2Fimage%2Fupload%2Fv1698336490%2Fsample.jpg&w=1200&q=75 1200w, /_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Foak-web-application%2Fimage%2Fupload%2Fv1698336490%2Fsample.jpg&w=1920&q=75 1920w, /_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Foak-web-application%2Fimage%2Fupload%2Fv1698336490%2Fsample.jpg&w=2048&q=75 2048w, /_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Foak-web-application%2Fimage%2Fupload%2Fv1698336490%2Fsample.jpg&w=3840&q=75 3840w"
+                    src="http://localhost/_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Foak-web-application%2Fimage%2Fupload%2Fv1698336494%2Fsamples%2Flandscapes%2Fnature-mountains.jpg&w=3840&q=75"
+                    srcset="/_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Foak-web-application%2Fimage%2Fupload%2Fv1698336494%2Fsamples%2Flandscapes%2Fnature-mountains.jpg&w=640&q=75 640w, /_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Foak-web-application%2Fimage%2Fupload%2Fv1698336494%2Fsamples%2Flandscapes%2Fnature-mountains.jpg&w=750&q=75 750w, /_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Foak-web-application%2Fimage%2Fupload%2Fv1698336494%2Fsamples%2Flandscapes%2Fnature-mountains.jpg&w=828&q=75 828w, /_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Foak-web-application%2Fimage%2Fupload%2Fv1698336494%2Fsamples%2Flandscapes%2Fnature-mountains.jpg&w=1080&q=75 1080w, /_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Foak-web-application%2Fimage%2Fupload%2Fv1698336494%2Fsamples%2Flandscapes%2Fnature-mountains.jpg&w=1200&q=75 1200w, /_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Foak-web-application%2Fimage%2Fupload%2Fv1698336494%2Fsamples%2Flandscapes%2Fnature-mountains.jpg&w=1920&q=75 1920w, /_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Foak-web-application%2Fimage%2Fupload%2Fv1698336494%2Fsamples%2Flandscapes%2Fnature-mountains.jpg&w=2048&q=75 2048w, /_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Foak-web-application%2Fimage%2Fupload%2Fv1698336494%2Fsamples%2Flandscapes%2Fnature-mountains.jpg&w=3840&q=75 3840w"
                     style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
                   />
                 </span>
@@ -151,7 +151,7 @@ exports[`OaksImpactCaseStudies renders correctly 1`] = `
             >
               <a
                 class="sc-aXZVg sc-gEvEer sc-kYxDKI joqqED fVNIMq gWtfUy"
-                href="#"
+                href="/about-us/oaks-impact/case-study-3"
               >
                 <span
                   class="sc-aXZVg kvjdhA sc-bpUBKd iUDiVD"
@@ -163,8 +163,8 @@ exports[`OaksImpactCaseStudies renders correctly 1`] = `
                     decoding="async"
                     loading="lazy"
                     sizes="100vw"
-                    src="http://localhost/_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Foak-web-application%2Fimage%2Fupload%2Fv1698336490%2Fsample.jpg&w=3840&q=75"
-                    srcset="/_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Foak-web-application%2Fimage%2Fupload%2Fv1698336490%2Fsample.jpg&w=640&q=75 640w, /_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Foak-web-application%2Fimage%2Fupload%2Fv1698336490%2Fsample.jpg&w=750&q=75 750w, /_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Foak-web-application%2Fimage%2Fupload%2Fv1698336490%2Fsample.jpg&w=828&q=75 828w, /_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Foak-web-application%2Fimage%2Fupload%2Fv1698336490%2Fsample.jpg&w=1080&q=75 1080w, /_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Foak-web-application%2Fimage%2Fupload%2Fv1698336490%2Fsample.jpg&w=1200&q=75 1200w, /_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Foak-web-application%2Fimage%2Fupload%2Fv1698336490%2Fsample.jpg&w=1920&q=75 1920w, /_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Foak-web-application%2Fimage%2Fupload%2Fv1698336490%2Fsample.jpg&w=2048&q=75 2048w, /_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Foak-web-application%2Fimage%2Fupload%2Fv1698336490%2Fsample.jpg&w=3840&q=75 3840w"
+                    src="http://localhost/_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Foak-web-application%2Fimage%2Fupload%2Fv1698336494%2Fsamples%2Fanimals%2Fcat.jpg&w=3840&q=75"
+                    srcset="/_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Foak-web-application%2Fimage%2Fupload%2Fv1698336494%2Fsamples%2Fanimals%2Fcat.jpg&w=640&q=75 640w, /_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Foak-web-application%2Fimage%2Fupload%2Fv1698336494%2Fsamples%2Fanimals%2Fcat.jpg&w=750&q=75 750w, /_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Foak-web-application%2Fimage%2Fupload%2Fv1698336494%2Fsamples%2Fanimals%2Fcat.jpg&w=828&q=75 828w, /_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Foak-web-application%2Fimage%2Fupload%2Fv1698336494%2Fsamples%2Fanimals%2Fcat.jpg&w=1080&q=75 1080w, /_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Foak-web-application%2Fimage%2Fupload%2Fv1698336494%2Fsamples%2Fanimals%2Fcat.jpg&w=1200&q=75 1200w, /_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Foak-web-application%2Fimage%2Fupload%2Fv1698336494%2Fsamples%2Fanimals%2Fcat.jpg&w=1920&q=75 1920w, /_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Foak-web-application%2Fimage%2Fupload%2Fv1698336494%2Fsamples%2Fanimals%2Fcat.jpg&w=2048&q=75 2048w, /_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Foak-web-application%2Fimage%2Fupload%2Fv1698336494%2Fsamples%2Fanimals%2Fcat.jpg&w=3840&q=75 3840w"
                     style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
                   />
                 </span>

@@ -14,14 +14,9 @@ describe("OaksImpactCaseStudies", () => {
 
     expect(baseElement).toMatchSnapshot();
     expect(getByRole("heading", { name: "Case studies" })).toBeInTheDocument();
-
-    const links = getAllByRole("link", { name: "Watch the video" });
-    expect(links).toHaveLength(3);
-
-    const caseStudyHeadings = getAllByRole("heading", { level: 3 });
-    expect(caseStudyHeadings).toHaveLength(3);
-
-    const images = getAllByRole("img");
-    expect(images).toHaveLength(3);
+    expect(
+      getAllByRole("link", { name: /case study [1-3] watch the video/i }),
+    ).toHaveLength(3);
+    expect(getAllByRole("heading", { level: 3 })).toHaveLength(3);
   });
 });
