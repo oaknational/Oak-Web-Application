@@ -15,6 +15,7 @@ import {
   AboutSharedHeaderImage,
 } from "@/components/GenericPagesComponents/AboutSharedHeader";
 import { OaksImpactCaseStudies } from "@/components/GenericPagesComponents/OaksImpactCaseStudies";
+import { oaksImpactCaseStudiesFixture } from "@/components/GenericPagesComponents/OaksImpactCaseStudies/OaksImpactCaseStudies.fixtures";
 import { SupportYou } from "@/components/GenericPagesComponents/SupportYou";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 import getPageProps from "@/node-lib/getPageProps";
@@ -53,25 +54,7 @@ const OaksImpact: NextPage<OaksImpactPageProps> = ({ topNav }) => {
         >
           TODO: Stats
         </OakBox>
-        <OaksImpactCaseStudies
-          caseStudies={[
-            {
-              heading: "Case study 1",
-              href: "#",
-              imageSrc: "https://res.cloudinary.com/oak-web-application/image/upload/v1698336490/sample.jpg",
-            },
-            {
-              heading: "Case study 2",
-              href: "#",
-              imageSrc: "https://res.cloudinary.com/oak-web-application/image/upload/v1698336490/sample.jpg",
-            },
-            {
-              heading: "Case study 3",
-              href: "#",
-              imageSrc: "https://res.cloudinary.com/oak-web-application/image/upload/v1698336490/sample.jpg",
-            },
-          ]}
-        />
+        <OaksImpactCaseStudies caseStudies={oaksImpactCaseStudiesFixture} />
         <OakBox
           $ma={"spacing-48"}
           $pa={"spacing-48"}

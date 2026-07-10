@@ -1,3 +1,5 @@
+import { oaksImpactCaseStudiesFixture } from "./OaksImpactCaseStudies.fixtures";
+
 import { OaksImpactCaseStudies } from ".";
 
 import { renderWithProvidersByName } from "@/__tests__/__helpers__/renderWithProviders";
@@ -7,25 +9,7 @@ const render = renderWithProvidersByName(["oakTheme"]);
 describe("OaksImpactCaseStudies", () => {
   it("renders correctly", () => {
     const { baseElement, getByRole, getAllByRole } = render(
-      <OaksImpactCaseStudies 
-        caseStudies={[
-          {
-            heading: "Case study 1",
-            href: "#",
-            imageSrc: "https://res.cloudinary.com/oak-web-application/image/upload/v1698336490/sample.jpg",
-          },
-          {
-            heading: "Case study 2",
-            href: "#",
-            imageSrc: "https://res.cloudinary.com/oak-web-application/image/upload/v1698336490/sample.jpg",
-          },
-          {
-            heading: "Case study 3",
-            href: "#",
-            imageSrc: "https://res.cloudinary.com/oak-web-application/image/upload/v1698336490/sample.jpg",
-          },
-        ]}
-      />,
+      <OaksImpactCaseStudies caseStudies={oaksImpactCaseStudiesFixture} />,
     );
 
     expect(baseElement).toMatchSnapshot();

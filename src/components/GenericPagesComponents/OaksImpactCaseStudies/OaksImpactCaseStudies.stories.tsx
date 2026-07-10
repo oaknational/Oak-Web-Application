@@ -1,6 +1,8 @@
 import { Meta, StoryObj } from "@storybook/nextjs";
 import { oakDefaultTheme, OakThemeProvider } from "@oaknational/oak-components";
 
+import { oaksImpactCaseStudiesFixture } from "./OaksImpactCaseStudies.fixtures";
+
 import { OaksImpactCaseStudies as Component } from ".";
 
 const meta: Meta<typeof Component> = {
@@ -22,24 +24,7 @@ type Story = StoryObj<typeof Component>;
 
 export const Default: Story = {
   args: {
-    caseStudies: [
-      {
-        heading: "Case study 1",
-        href: "#",
-        imageSrc: "https://res.cloudinary.com/oak-web-application/image/upload/v1698336490/sample.jpg",
-      },
-      {
-        heading: "Case study 2",
-        href: "#",
-        imageSrc: "https://res.cloudinary.com/oak-web-application/image/upload/v1698336490/sample.jpg",
-      },
-      {
-        heading: "Case study 3",
-        href: "#",
-        imageSrc: "https://res.cloudinary.com/oak-web-application/image/upload/v1698336490/sample.jpg",
-      },
-    ]
+    caseStudies: oaksImpactCaseStudiesFixture,
   },
   render: (args) => <Component {...args} />,
-  
 };
