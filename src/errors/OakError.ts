@@ -92,9 +92,9 @@ const errorConfigs: Record<ErrorCode, ErrorConfig> = {
     shouldNotify: true,
   },
   "hubspot/contacts": {
-    message: "Could not get hubspot contact information for user",
+    message: "Could not get Hubspot contact information for user",
     shouldNotify: true,
-  },
+  }
   "hubspot/subscription": {
     message: "Could not get hubspot subscription status for user",
     shouldNotify: true,
