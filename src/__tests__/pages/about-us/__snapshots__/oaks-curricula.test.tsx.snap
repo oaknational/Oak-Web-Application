@@ -2777,16 +2777,16 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
   margin-top: 2rem;
 }
 
-.c153:hover {
+.c154:hover {
   box-shadow: 2px 2px 0 0 #ffe555;
 }
 
-.c148 {
+.c149 {
   padding: 0;
   margin: 0;
 }
 
-.c147 {
+.c148 {
   margin: 0;
   padding: 0;
   list-style: none;
@@ -2798,7 +2798,7 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
   grid-template-columns: repeat(3,1fr);
 }
 
-.c182 {
+.c183 {
   -webkit-transition: all 0.3s ease;
   transition: all 0.3s ease;
   font-family: --var(google-font),Lexend,sans-serif;
