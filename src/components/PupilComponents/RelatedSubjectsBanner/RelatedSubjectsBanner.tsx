@@ -32,7 +32,7 @@ const subjectBannerContent = {
     imageAlt: "Illustration representing digital literacy",
     linkText: "New digital literacy lessons",
     subCopy:
-      "Learn fun and easy ways to use technology confidently and safely in real life.",
+      "Lessons offering practical knowledge and skills, developed independently of the national curriculum.",
     subjectSlug: "digital-literacy",
     testId: "digital-literacy-banner",
   },
