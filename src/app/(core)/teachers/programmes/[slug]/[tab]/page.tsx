@@ -1,6 +1,7 @@
 import { notFound, redirect, RedirectType } from "next/navigation";
 import { Metadata } from "next";
 import { cache } from "react";
+import { draftMode } from "next/headers";
 
 import { ProgrammeView } from "./Components/ProgrammeView";
 import { isTabSlug } from "./tabSchema";
@@ -51,6 +52,7 @@ export type ProgrammeCmsParams = {
   subjectTitle: string;
   phaseSlug: string;
   programmePageSlug: string;
+  isPreviewModeEnabled: boolean;
 };
 
 const getCachedProgrammeCms = cache(
@@ -60,17 +62,20 @@ const getCachedProgrammeCms = cache(
       subjectTitle,
       phaseSlug,
       programmePageSlug,
+      isPreviewModeEnabled,
     }: ProgrammeCmsParams) => {
       const [curriculumCMSInfo, subjectPhaseSanityData, mvRefreshTime] =
         await Promise.all([
           nonCurriculum
             ? null
             : CMSClient.curriculumOverviewPage({
-                previewMode: false,
+                previewMode: isPreviewModeEnabled,
                 subjectTitle,
                 phaseSlug,
               }),
-          CMSClient.programmePageBySlug(programmePageSlug),
+          CMSClient.programmePageBySlug(programmePageSlug, {
+            previewMode: isPreviewModeEnabled,
+          }),
           getMvRefreshTime(),
         ]);
 
@@ -214,6 +219,7 @@ const InnerProgrammePage = async (props: AppPageProps<ProgrammePageParams>) => {
     tab: "units" as const,
   };
 
+  const { isEnabled } = await draftMode();
   const { curriculumCMSInfo, subjectPhaseSanityData, mvRefreshTime } =
     await getCachedProgrammeCms({
       subjectPhaseSlug,
@@ -221,6 +227,7 @@ const InnerProgrammePage = async (props: AppPageProps<ProgrammePageParams>) => {
       subjectTitle: programmeUnitsData.subjectTitle,
       phaseSlug: subjectPhaseKeystageSlugs.phaseSlug,
       programmePageSlug: `${subjectPhaseKeystageSlugs.subjectSlug}-${subjectPhaseKeystageSlugs.phaseSlug}`,
+      isPreviewModeEnabled: isEnabled,
     });
 
   if (!curriculumCMSInfo && !programmeUnitsData.nonCurriculum) {
