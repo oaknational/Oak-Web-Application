@@ -1,3 +1,12 @@
+# [1.1116.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1115.0...v1.1116.0) (2026-07-13)
+
+
+### Features
+
+* enable draft mode in programme page ([144ebd5](https://github.com/oaknational/Oak-Web-Application/commit/144ebd52acf8f5cc7e4465be4c1a17d4697c4ffa))
+* move preview routes to app router using draftMode ([019634c](https://github.com/oaknational/Oak-Web-Application/commit/019634c86d4f8608d604294b6c5a24ef12decea7))
+* use next Link for exit preview button ([9e48754](https://github.com/oaknational/Oak-Web-Application/commit/9e48754b2b1435d2accb63dc51e2b19d6c9e3341))
+
 # [1.1115.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1114.1...v1.1115.0) (2026-07-07)
 
 
