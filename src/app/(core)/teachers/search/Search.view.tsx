@@ -384,11 +384,9 @@ const Search: FC<SearchProps> = (props) => {
                     <MobileFilters
                       $mt={"spacing-0"}
                       label="Filters"
-                      labelOpened="Close"
-                      iconOpened="cross"
-                      iconClosed="filter"
+                      hasShowResultsButton={true}
                     >
-                      <OakBox $mt={["spacing-24", null, null]}>
+                      <OakBox>
                         <SearchFilters
                           {...searchFilters}
                           isMobileFilter

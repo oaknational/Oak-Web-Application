@@ -1,3 +1,49 @@
+# [1.1115.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1114.1...v1.1115.0) (2026-07-07)
+
+
+### Bug Fixes
+
+* fix spacing mt rendering in tablet and desktop ([e07bab8](https://github.com/oaknational/Oak-Web-Application/commit/e07bab824475bac5ee57e7e6980d03413c933a1f))
+
+
+### Features
+
+* add show results, change icon, simplify props further ([2a9647e](https://github.com/oaknational/Oak-Web-Application/commit/2a9647e514bd2a11f556ffcb1f5dacc036578f9a))
+* hide show results from blog and webinar pages ([d8eddf6](https://github.com/oaknational/Oak-Web-Application/commit/d8eddf6d5d323b1545ef331b5797082dce004eac))
+* refactor mobile filters to use OakInformativeModal component ([f8be11b](https://github.com/oaknational/Oak-Web-Application/commit/f8be11bed3052f703e7080cbd600642a0c31fba6))
+* rm unused alignSelf prop ([19dfe25](https://github.com/oaknational/Oak-Web-Application/commit/19dfe2537bc9d1a3cde627ae6ea71df4a2fbc6c6))
+
+## [1.1114.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.1114.0...v1.1114.1) (2026-07-07)
+
+# [1.1114.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1113.0...v1.1114.0) (2026-07-06)
+
+
+### Bug Fixes
+
+* fix grammar ([0873dc3](https://github.com/oaknational/Oak-Web-Application/commit/0873dc388c30b9925701f612b04e6312f8f3aba2))
+* fix grammar ([f841194](https://github.com/oaknational/Oak-Web-Application/commit/f841194af32ae7882e8abfae3dfe6825d8b817b7))
+
+
+### Features
+
+* add aria live polite to oak copy link button ([1b73336](https://github.com/oaknational/Oak-Web-Application/commit/1b73336f51435d4b6df5e8e77ea7aa3914821a69))
+* add use effect for screen reader message to apply to resource selection accordion ([0060383](https://github.com/oaknational/Oak-Web-Application/commit/00603831d9879a42b2082a70ba65087547a3065b))
+* show screen reader specific message using aria live polite on download form error ([d8ea878](https://github.com/oaknational/Oak-Web-Application/commit/d8ea87894bbb41bbe251984e3cea52a77f07e080))
+
+# [1.1113.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1112.1...v1.1113.0) (2026-07-03)
+
+
+### Bug Fixes
+
+* add role to focus target ([9d5a19a](https://github.com/oaknational/Oak-Web-Application/commit/9d5a19a0e690aaf974c64445addc1ef4e9f12bb7))
+* hacky css fix to get focus to show ([9d1322d](https://github.com/oaknational/Oak-Web-Application/commit/9d1322dcfc61d09d389cc6ab31fe771d12b874e6))
+
+
+### Features
+
+* add focus indicator and open in google slides button to lesson slides ([73054cb](https://github.com/oaknational/Oak-Web-Application/commit/73054cb77fa5bd35338a1e33b89534b1200ca2d9))
+* try add group role ([ae5f8c5](https://github.com/oaknational/Oak-Web-Application/commit/ae5f8c5d2a712f732c4577462d91eb8793410793))
+
 ## [1.1112.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.1112.0...v1.1112.1) (2026-07-02)
 
 
