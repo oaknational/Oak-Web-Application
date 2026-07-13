@@ -2059,6 +2059,43 @@ export type ImageWithAltText = {
   media?: Maybe<GlobalDocumentReference>;
 };
 
+export type ImageWithAltTextAndDarkMode = {
+  __typename?: 'ImageWithAltTextAndDarkMode';
+  _key?: Maybe<Scalars['String']['output']>;
+  _type?: Maybe<Scalars['String']['output']>;
+  altText?: Maybe<Scalars['String']['output']>;
+  asset?: Maybe<SanityImageAsset>;
+  crop?: Maybe<SanityImageCrop>;
+  darkModeImage?: Maybe<Image>;
+  hotspot?: Maybe<SanityImageHotspot>;
+  /** Should this image be read aloud to screen readers, or is it purely presentational? */
+  isPresentational?: Maybe<Scalars['Boolean']['output']>;
+  media?: Maybe<GlobalDocumentReference>;
+};
+
+export type ImageWithAltTextAndDarkModeFilter = {
+  _key?: InputMaybe<StringFilter>;
+  _type?: InputMaybe<StringFilter>;
+  altText?: InputMaybe<StringFilter>;
+  asset?: InputMaybe<SanityImageAssetFilter>;
+  crop?: InputMaybe<SanityImageCropFilter>;
+  darkModeImage?: InputMaybe<ImageFilter>;
+  hotspot?: InputMaybe<SanityImageHotspotFilter>;
+  isPresentational?: InputMaybe<BooleanFilter>;
+  media?: InputMaybe<GlobalDocumentReferenceFilter>;
+};
+
+export type ImageWithAltTextAndDarkModeSorting = {
+  _key?: InputMaybe<SortOrder>;
+  _type?: InputMaybe<SortOrder>;
+  altText?: InputMaybe<SortOrder>;
+  crop?: InputMaybe<SanityImageCropSorting>;
+  darkModeImage?: InputMaybe<ImageSorting>;
+  hotspot?: InputMaybe<SanityImageHotspotSorting>;
+  isPresentational?: InputMaybe<SortOrder>;
+  media?: InputMaybe<GlobalDocumentReferenceSorting>;
+};
+
 export type ImageWithAltTextFilter = {
   _key?: InputMaybe<StringFilter>;
   _type?: InputMaybe<StringFilter>;
