@@ -1,4 +1,9 @@
-import { isExternalHref, resolveOakHref, ResolveOakHrefProps } from "./urls";
+import {
+  isExternalHref,
+  resolveOakHref,
+  resolveProgrammeUnitsHref,
+  ResolveOakHrefProps,
+} from "./urls";
 
 describe("urls.ts", () => {
   describe("isExternalHref()", () => {
@@ -73,15 +78,6 @@ describe("urls.ts", () => {
       };
       expect(resolveOakHref(props)).toBe("/webinars?page=6");
     });
-    it("Unit listing", () => {
-      const props: ResolveOakHrefProps = {
-        page: "unit-index",
-        programmeSlug: "primary-ks2-maths",
-      };
-      expect(resolveOakHref(props)).toBe(
-        "/teachers/programmes/primary-ks2-maths/units",
-      );
-    });
     it("Unit overview", () => {
       expect(
         resolveOakHref({
@@ -91,17 +87,6 @@ describe("urls.ts", () => {
         }),
       ).toBe(
         "/teachers/programmes/primary-ks2-maths/units/geometry-349/lessons",
-      );
-    });
-    it("Unit listing with query", () => {
-      expect(
-        resolveOakHref({
-          page: "unit-index",
-          programmeSlug: "primary-ks2-maths",
-          search: { "learning-theme": "circls" },
-        }),
-      ).toBe(
-        "/teachers/programmes/primary-ks2-maths/units?learning-theme=circls",
       );
     });
     it("Lesson overview", () => {
@@ -326,6 +311,58 @@ describe("urls.ts", () => {
         subjectSlug: "maths",
       };
       expect(resolveOakHref(props)).toBe("/teachers/eyfs/maths");
+    });
+  });
+
+  describe("resolveProgrammeUnitsHref()", () => {
+    it("converts a simple ks3 programme slug to a teacher-programme units URL", () => {
+      expect(resolveProgrammeUnitsHref("history-secondary-ks3")).toBe(
+        "/teachers/programmes/history-secondary/units?keystages=ks3",
+      );
+    });
+
+    it("converts an EYFS programme slug to a teacher-programme units URL", () => {
+      expect(
+        resolveProgrammeUnitsHref(
+          "maths-foundation-early-years-foundation-stage-l",
+        ),
+      ).toBe(
+        "/teachers/programmes/maths-foundation/units?keystages=early-years-foundation-stage",
+      );
+    });
+
+    it("maps legacy learning-theme search param to threads query key", () => {
+      expect(
+        resolveProgrammeUnitsHref("english-secondary-ks3", {
+          "learning-theme": "reading",
+        }),
+      ).toBe(
+        "/teachers/programmes/english-secondary/units?keystages=ks3&threads=reading",
+      );
+    });
+
+    it("maps legacy category search param to subject_categories query key", () => {
+      expect(
+        resolveProgrammeUnitsHref("english-secondary-ks3", {
+          category: "grammar",
+        }),
+      ).toBe(
+        "/teachers/programmes/english-secondary/units?keystages=ks3&subject_categories=grammar",
+      );
+    });
+
+    it("maps KS4 science child-subject slug to science parent", () => {
+      expect(
+        resolveProgrammeUnitsHref("biology-secondary-ks4-higher-aqa"),
+      ).toBe(
+        "/teachers/programmes/science-secondary-aqa/units?keystages=ks4&tiers=higher&child_subjects=biology",
+      );
+    });
+
+    it("falls back to a raw programme units URL for unparseable slugs", () => {
+      expect(resolveProgrammeUnitsHref("not-a-valid-slug")).toBe(
+        "/teachers/programmes/not-a-valid-slug/units",
+      );
     });
   });
 });

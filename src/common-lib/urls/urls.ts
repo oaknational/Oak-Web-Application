@@ -14,11 +14,19 @@ import {
   PreselectedDownloadType,
   PreselectedShareType,
 } from "@/components/TeacherComponents/types/downloadAndShare.types";
-import isSlugEYFS, {
-  EYFS_PROGRAMME_SLUG_REGEX,
-} from "@/utils/slugModifiers/isSlugEYFS";
+import {
+  getTeacherSubjectPhaseSlug,
+  parseProgrammeSlug,
+} from "@/utils/curriculum/slugs";
 
 const reportError = errorReporter("urls.ts");
+
+const SCIENCE_CHILD_SUBJECT_SLUGS = new Set([
+  "biology",
+  "chemistry",
+  "physics",
+  "combined-science",
+]);
 
 /**
  * type pattern below is to allow any string value whilst offering autocomplete
@@ -80,13 +88,10 @@ export type WebinarListingLinkProps = {
   };
 };
 
-export type UnitListingLinkProps = {
-  page: "unit-index";
-  programmeSlug: string;
-  search?: {
-    ["learning-theme"]?: string | null;
-    ["category"]?: string | null;
-  };
+type ProgrammeUnitsSearch = {
+  ["learning-theme"]?: string | null;
+  category?: string | null;
+  year?: string | null;
 };
 
 export type UnitOverviewLinkProps = {
@@ -312,6 +317,8 @@ type ProgrammePageProps = {
     tiers?: string;
     years?: string;
     pathways?: string;
+    threads?: string;
+    subject_categories?: string;
     focus_ks4option?: string;
     open_filters_modal?: string;
   };
@@ -372,7 +379,6 @@ export type OakLinkProps =
   | PupilYearListingLinkProps
   | LessonOverviewCanonicalLinkProps
   | UnitOverviewLinkProps
-  | UnitListingLinkProps
   | BlogListingLinkProps
   | BlogSingleLinkProps
   | CampaignSingleLinkProps
@@ -557,30 +563,50 @@ const postResolveHref =
     return `${path}?${queryString}`;
   };
 
-const unitIndexMatchHref = (href: string) => {
-  const pattern = "/teachers/programmes/:programmeSlug/units";
-  if (match(pattern)(href)) {
-    return match<UnitListingLinkProps>(pattern)(href);
-  }
-  return false;
-};
+export function resolveProgrammeUnitsHref(
+  programmeSlug: string,
+  search?: ProgrammeUnitsSearch,
+): string {
+  const parsedProgrammeSlug = parseProgrammeSlug(programmeSlug);
+  if (parsedProgrammeSlug) {
+    const scienceChildSubjectSlug = SCIENCE_CHILD_SUBJECT_SLUGS.has(
+      parsedProgrammeSlug.subjectSlug,
+    )
+      ? parsedProgrammeSlug.subjectSlug
+      : null;
 
-const unitIndexResolveHref = (props: UnitListingLinkProps): string => {
-  if (isSlugEYFS(props.programmeSlug)) {
-    const eyfsSubjectSlug = EYFS_PROGRAMME_SLUG_REGEX.exec(props.programmeSlug)
-      ?.groups?.subject;
-    return `/teachers/eyfs/${encodeURIComponent(eyfsSubjectSlug || "maths")}`;
+    const subjectPhaseSlug = getTeacherSubjectPhaseSlug({
+      subjectSlug: scienceChildSubjectSlug
+        ? "science"
+        : parsedProgrammeSlug.subjectSlug,
+      phaseSlug: parsedProgrammeSlug.phaseSlug,
+      examboardSlug: parsedProgrammeSlug.examboardSlug,
+      pathwaySlug: parsedProgrammeSlug.pathwaySlug,
+    });
+
+    const query: ProgrammePageProps["query"] = {
+      keystages: parsedProgrammeSlug.keystageSlug ?? undefined,
+      years: parsedProgrammeSlug.yearSlug?.replace(/^year-/, "") ?? undefined,
+      tiers: parsedProgrammeSlug.tierSlug ?? undefined,
+      child_subjects: scienceChildSubjectSlug ?? undefined,
+      threads: search?.["learning-theme"] ?? undefined,
+      subject_categories: search?.category ?? undefined,
+    };
+
+    if (search?.year) {
+      query.years = search.year.replace(/^year-/, "");
+    }
+
+    return resolveOakHref({
+      page: "teacher-programme",
+      subjectPhaseSlug,
+      tab: "units",
+      query,
+    });
   }
-  const path = `/teachers/programmes/${encodeURIComponent(props.programmeSlug)}/units`;
-  if (!props.search) {
-    return path;
-  }
-  const queryString = createQueryStringFromObject(props.search);
-  if (!queryString) {
-    return path;
-  }
-  return `${path}?${queryString}`;
-};
+
+  return `/teachers/programmes/${encodeURIComponent(programmeSlug)}/units`;
+}
 
 export const OAK_PAGES: {
   [K in keyof OakPages]: OakPages[K] & { pageType: K };
@@ -918,13 +944,6 @@ export const OAK_PAGES: {
     analyticsPageName: "Curriculum Unit Sequence",
     configType: "internal",
     pageType: "teacher-programme",
-  }),
-  "unit-index": createOakPageConfig({
-    analyticsPageName: "Unit Listing",
-    configType: "internal-custom-resolve",
-    pageType: "unit-index",
-    matchHref: unitIndexMatchHref,
-    resolveHref: unitIndexResolveHref,
   }),
   "classroom-sign-in": createOakPageConfig({
     pathPattern: "/classroom/sign-in",
