@@ -280,7 +280,6 @@ const OnboardingForm = ({
                     e: ChangeEvent<HTMLInputElement>,
                   ) => {
                     onChange(e.target.checked);
-                    props.trigger("newsletterSignUp");
                   };
                   return (
                     <OakCheckBox
