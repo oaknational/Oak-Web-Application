@@ -1,3 +1,45 @@
+# [1.1118.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1117.0...v1.1118.0) (2026-07-13)
+
+
+### Features
+
+* add digial lit banner ([624a35b](https://github.com/oaknational/Oak-Web-Application/commit/624a35b2d4fe0d98ffe4bd3daec52de4d33193c4))
+* add new tag ([5a0a37b](https://github.com/oaknational/Oak-Web-Application/commit/5a0a37b165681efd7163a1686526b6eb3e028045))
+* merge main ([321ee1d](https://github.com/oaknational/Oak-Web-Application/commit/321ee1dd3c4bba169c9ae426a73677fe54e6ad8d))
+* merge main ([ea49e9d](https://github.com/oaknational/Oak-Web-Application/commit/ea49e9d6d9ec76494c2770ace562db37caae2daf))
+* remove duplication ([5236bf2](https://github.com/oaknational/Oak-Web-Application/commit/5236bf2c81373a8251ca9dba61f47896cb30e018))
+* remove duplication ([386b323](https://github.com/oaknational/Oak-Web-Application/commit/386b3239fdd383ab4cfe3e81454899665287d5a7))
+* remove duplication ([d309600](https://github.com/oaknational/Oak-Web-Application/commit/d309600099f138b3b1ecd99890e221bdde9ddb13))
+* snap updates ([c3ab34e](https://github.com/oaknational/Oak-Web-Application/commit/c3ab34e1a6e07b9edd0f30529f85920b657a852b))
+* update copy ([50cbc81](https://github.com/oaknational/Oak-Web-Application/commit/50cbc810bcd4362672428aa00b3865e54f9567d8))
+* update copy ([3915c18](https://github.com/oaknational/Oak-Web-Application/commit/3915c18ecb2a3f284dfd8cef4660dde0a9f611e8))
+* use new oakcard ([f714041](https://github.com/oaknational/Oak-Web-Application/commit/f714041295de14dcbe035833fd1e05c35c99257d))
+
+# [1.1117.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1116.0...v1.1117.0) (2026-07-13)
+
+
+### Bug Fixes
+
+* fix broken error message on mythbusting page ([2f13d0e](https://github.com/oaknational/Oak-Web-Application/commit/2f13d0e9bb8e615dd773ddaf0a519dd94e6fc84a))
+* reset edurole on set data ([f81631c](https://github.com/oaknational/Oak-Web-Application/commit/f81631cf92677d9b1e9190291dd8f042b9ac30a5))
+
+
+### Features
+
+* change onblur to onsubmit for form validation ([416bdb5](https://github.com/oaknational/Oak-Web-Application/commit/416bdb58ed36970b0f26c7de5768dd2028ab19cc))
+* errors only show on continue button with school selection form ([6620f7d](https://github.com/oaknational/Oak-Web-Application/commit/6620f7d76d92d6aa7f2f5eb644b3ff2e850d54f1))
+* handle errors on submit during onboarding ([7b1c7d7](https://github.com/oaknational/Oak-Web-Application/commit/7b1c7d76ebcfc8aaf2d0a01ae23ccf485f89613b))
+* revalidate form only on submit ([cebc6bd](https://github.com/oaknational/Oak-Web-Application/commit/cebc6bd962b0f78b386266ae2e008c21e8e7077b))
+
+# [1.1116.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1115.0...v1.1116.0) (2026-07-13)
+
+
+### Features
+
+* enable draft mode in programme page ([144ebd5](https://github.com/oaknational/Oak-Web-Application/commit/144ebd52acf8f5cc7e4465be4c1a17d4697c4ffa))
+* move preview routes to app router using draftMode ([019634c](https://github.com/oaknational/Oak-Web-Application/commit/019634c86d4f8608d604294b6c5a24ef12decea7))
+* use next Link for exit preview button ([9e48754](https://github.com/oaknational/Oak-Web-Application/commit/9e48754b2b1435d2accb63dc51e2b19d6c9e3341))
+
 # [1.1115.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1114.1...v1.1115.0) (2026-07-07)
 
 
