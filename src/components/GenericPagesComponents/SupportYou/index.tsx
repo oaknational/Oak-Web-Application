@@ -57,16 +57,12 @@ export function SupportYou({ headingTag = "h2" }: Readonly<SupportYouProps>) {
             </OakFlex>
           </OakGridArea>
           <OakGridArea $colStart={[0, 7, 7]} $colSpan={[12, 6, 6]}>
-            <OakFlex
-              $flexGrow={1}
-              $background={"bg-decorative1-subdued"}
-              $aspectRatio={"4/3"}
-            >
+            <OakFlex $flexGrow={1} $aspectRatio={"4/3"}>
               <CMSImage
-                $objectFit={"cover"}
+                $objectFit={"contain"}
                 image={{
-                  _id: "image-ef2a05d634b1ade34d33664c44fa36cb62e1aaba-3000x2001-jpg",
-                  url: "https://sanity-asset-cdn.thenational.academy/images/cuvjke51/production/ef2a05d634b1ade34d33664c44fa36cb62e1aaba-3000x2001.jpg",
+                  _id: "image-f5112552f3d0d37304f71c7cd63fc18be513a17c-632x454-png",
+                  url: "https://cdn.sanity.io/images/cuvjke51/production/f5112552f3d0d37304f71c7cd63fc18be513a17c-632x454.png",
                 }}
               />
             </OakFlex>
