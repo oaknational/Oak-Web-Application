@@ -13,6 +13,7 @@ import OakError from "@/errors/OakError";
 import DropdownSelect from "@/components/GenericPagesComponents/DropdownSelect";
 import errorReporter from "@/common-lib/error-reporter";
 import Form from "@/components/GenericPagesComponents/Form";
+import { createEmailSchema } from "@/common-lib/forms/emailSchema";
 import {
   USER_ROLES,
   UserRole,
@@ -20,15 +21,10 @@ import {
 
 const reportError = errorReporter("NewsletterForm.tsx");
 
-const emailSchema = (() => {
-  const minLengthSchema = z.string().min(1, {
-    error: "Enter an email",
-  });
-  const emailFormatSchema = z.email({
-    error: "Enter a valid email",
-  });
-  return z.intersection(minLengthSchema, emailFormatSchema);
-})();
+const emailSchema = createEmailSchema({
+  emptyField: "Enter an email",
+  invalidField: "Enter a valid email",
+});
 
 const schema = z.object({
   name: z
@@ -36,7 +32,7 @@ const schema = z.object({
     .min(1, {
       error: "Enter a name",
     })
-    .max(60, "Name must contain fewer than 60 charaters"),
+    .max(60, "Name must contain fewer than 60 characters"),
   email: emailSchema,
   userRole: z.union([z.enum(USER_ROLES), z.literal("")]),
 });
@@ -79,7 +75,8 @@ const NewsletterForm: FC<NewsletterFormProps> = ({
   const [error, setError] = useState("");
   const { register, handleSubmit, formState } = useForm<NewsletterFormValues>({
     resolver: zodResolver(schema),
-    mode: "onBlur",
+    mode: "onSubmit",
+    reValidateMode: "onSubmit",
   });
 
   const { errors } = formState;
