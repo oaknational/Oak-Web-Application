@@ -1,6 +1,6 @@
 import { screen } from "@testing-library/react";
 
-import RootError from "./error";
+import CoreError from "./error";
 
 import errorReporter from "@/common-lib/error-reporter";
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
@@ -8,7 +8,7 @@ import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 jest.mock("@/common-lib/error-reporter", () => jest.fn());
 
 const render = renderWithProviders();
-describe("app error", () => {
+describe("core error", () => {
   beforeEach(() => {
     jest.clearAllMocks();
   });
@@ -21,13 +21,13 @@ describe("app error", () => {
       digest: "abc123",
     });
 
-    render(<RootError error={error} reset={jest.fn()} />);
+    render(<CoreError error={error} reset={jest.fn()} />);
 
     const errorMessage = screen.getByRole("heading", {
       name: "An error occurred",
     });
     expect(errorMessage).toBeInTheDocument();
-    expect(errorReporter).toHaveBeenCalledWith("app::root-layout");
+    expect(errorReporter).toHaveBeenCalledWith("app::core-layout");
     expect(reportErrorMock).toHaveBeenCalledWith(error);
   });
 });
