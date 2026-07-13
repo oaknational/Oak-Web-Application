@@ -48,6 +48,7 @@ export const OaksImpactCaseStudies = ({
               <UnstyledLi key={caseStudy.heading}>
                 <OakCard
                   heading={caseStudy.heading}
+                  headingLevel={"div"}
                   href={caseStudy.href}
                   imageSrc={caseStudy.imageSrc}
                   aspectRatio="4/3"
