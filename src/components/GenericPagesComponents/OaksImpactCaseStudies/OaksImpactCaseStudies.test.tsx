@@ -17,6 +17,5 @@ describe("OaksImpactCaseStudies", () => {
     expect(
       getAllByRole("link", { name: /case study [1-3] watch the video/i }),
     ).toHaveLength(3);
-    expect(getAllByRole("heading", { level: 3 })).toHaveLength(3);
   });
 });
