@@ -1,3 +1,20 @@
+# [1.1115.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1114.1...v1.1115.0) (2026-07-07)
+
+
+### Bug Fixes
+
+* fix spacing mt rendering in tablet and desktop ([e07bab8](https://github.com/oaknational/Oak-Web-Application/commit/e07bab824475bac5ee57e7e6980d03413c933a1f))
+
+
+### Features
+
+* add show results, change icon, simplify props further ([2a9647e](https://github.com/oaknational/Oak-Web-Application/commit/2a9647e514bd2a11f556ffcb1f5dacc036578f9a))
+* hide show results from blog and webinar pages ([d8eddf6](https://github.com/oaknational/Oak-Web-Application/commit/d8eddf6d5d323b1545ef331b5797082dce004eac))
+* refactor mobile filters to use OakInformativeModal component ([f8be11b](https://github.com/oaknational/Oak-Web-Application/commit/f8be11bed3052f703e7080cbd600642a0c31fba6))
+* rm unused alignSelf prop ([19dfe25](https://github.com/oaknational/Oak-Web-Application/commit/19dfe2537bc9d1a3cde627ae6ea71df4a2fbc6c6))
+
+## [1.1114.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.1114.0...v1.1114.1) (2026-07-07)
+
 # [1.1114.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1113.0...v1.1114.0) (2026-07-06)
 
 
