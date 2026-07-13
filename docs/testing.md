@@ -39,6 +39,10 @@ Logic tests and snapshot tests should be in different files because their "failu
 
 We use [Playwright](https://playwright.dev/) for browser-based end-to-end tests.
 
+Before running Playwright tests locally, install browser binaries once per machine:
+
+- `pnpm exec playwright install chromium`
+
 ### Location
 
 - E2E test files live under [src/tests/e2e](../src/tests/e2e/).
@@ -53,12 +57,12 @@ We use [Playwright](https://playwright.dev/) for browser-based end-to-end tests.
 
 ### Local Execution
 
-- If `BASE_URL` is not set, Playwright uses `http://localhost:3000`, so the app must be running locally.
+- If `BASE_URL` is not set, Playwright uses `http://localhost:3000` and automatically starts the local dev server via Playwright `webServer`.
 - To run against a deployment URL, set `BASE_URL` to that deployment URL before running tests.
 
 ### CI Behavior
 
-- CI workflow wiring for Playwright is follow-up work. When added, CI should install Playwright browser binaries (Chromium) before running tests and upload `playwright-report/` as an artifact.
+- CI workflow wiring for Playwright is follow-up work. When added, CI should install Playwright browser binaries with `pnpm exec playwright install --with-deps chromium` before running tests and upload `playwright-report/` as an artifact.
 - Retries are configured as `1` in CI and `0` locally.
 
 ### Jest Separation

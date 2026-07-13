@@ -1,10 +1,12 @@
 import { defineConfig, devices } from "@playwright/test";
 
 /**
- * BASE_URL is set in CI to the Vercel preview/production deployment URL.
- * Locally, point at your dev server: BASE_URL=http://localhost:3000 pnpm run test:e2e
+ * In CI, BASE_URL is set to the Vercel preview/production deployment URL.
+ * Locally, BASE_URL defaults to http://localhost:3000 and Playwright starts
+https://oak-web-application-website-git-test-lesq-2113playwright-setup.vercel.thenational.academy/
  */
 const baseURL = process.env.BASE_URL ?? "http://localhost:3000";
+const shouldStartWebServer = !process.env.CI && !process.env.BASE_URL;
 
 export default defineConfig({
   testDir: "./src/tests/e2e",
@@ -47,14 +49,14 @@ export default defineConfig({
     },
   ],
 
-  /* Automatically start the dev server locally. In CI, BASE_URL points at the
-     Vercel deployment so no local server is needed. */
-  webServer: process.env.CI
-    ? undefined
-    : {
+  /* Start the local dev server only when running locally with the default
+     BASE_URL. If BASE_URL is explicitly set, run against that URL instead. */
+  webServer: shouldStartWebServer
+    ? {
         command: "pnpm dev",
         url: "http://localhost:3000",
         reuseExistingServer: true,
         timeout: 120_000,
-      },
+      }
+    : undefined,
 });
