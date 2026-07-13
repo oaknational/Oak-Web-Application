@@ -35,7 +35,7 @@ import {
   CurriculumUnitsFormattedData,
   CurriculumUnitsTrackingData,
 } from "@/pages-helpers/curriculum/docx/tab-helpers";
-import { getDefaultFilter, useFilters } from "@/utils/curriculum/filteringApp";
+import { getDefaultFilter, useFilters } from "@/utils/curriculum/filtering";
 import {
   CurriculumSelectionSlugs,
   CurriculumSelectionTitles,

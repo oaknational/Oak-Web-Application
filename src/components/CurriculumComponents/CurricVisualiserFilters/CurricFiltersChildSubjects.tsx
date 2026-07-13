@@ -8,8 +8,7 @@ import { useId } from "react";
 
 import { CurriculumFilters, Unit } from "@/utils/curriculum/types";
 import { getValidSubjectIconName } from "@/utils/getValidSubjectIconName";
-import { getFilterData } from "@/utils/curriculum/filtering";
-import { scopeYearsToKeystageFilter } from "@/utils/curriculum/filtersUrl";
+import { getFilterData , scopeYearsToKeystageFilter } from "@/utils/curriculum/filtersUrl";
 import {
   byKeyStageSlug,
   presentAtKeyStageSlugs,

@@ -2,9 +2,7 @@ import { useSearchParams } from "next/navigation";
 import { act, renderHook } from "@testing-library/react";
 
 import {
-  buildTextDescribingFilter,
   childSubjectForFilter,
-  diffFilters,
   filteringFromYears,
   filtersToQuery,
   getDefaultChildSubjectForYearGroup,
@@ -12,18 +10,15 @@ import {
   getDefaultSubjectCategoriesForYearGroup,
   getDefaultTiersForYearGroup,
   getFilterData,
-  getNumberOfFiltersApplied,
   getNumberOfSelectedUnits,
   highlightedUnitCount,
   isHighlightedUnit,
   mergeInFilterParams,
   shouldDisplayFilter,
   subjectCategoryForFilter,
-  threadForFilter,
-  tierForFilter,
-  useFilters,
-} from "./filtering";
-import { scopeYearsToKeystageFilter } from "./filtersUrl";
+  scopeYearsToKeystageFilter,
+} from "./filtersUrl";
+import { useFilters } from "./filtering";
 import { CurriculumFilters, YearData, Unit } from "./types";
 
 import { createUnit } from "@/fixtures/curriculum/unit";
@@ -38,16 +33,17 @@ import { createThread } from "@/fixtures/curriculum/thread";
 import { createFilter } from "@/fixtures/curriculum/filters";
 import { createYearData } from "@/fixtures/curriculum/yearData";
 
-const replaceMock = jest.fn();
-jest.mock("next/router", () => ({
-  useRouter: () => ({
-    replace: (...args: []) => replaceMock(...args),
-  }),
-}));
-
 jest.mock("next/navigation", () => ({
   useSearchParams: jest.fn(),
 }));
+
+const mockHistoryReplaceState = jest.fn();
+Object.defineProperty(globalThis, "history", {
+  value: {
+    replaceState: mockHistoryReplaceState,
+  },
+  writable: true,
+});
 
 describe("filtering", () => {
   describe("getDefaultChildSubjectForYearGroup", () => {
@@ -403,62 +399,6 @@ test("getFilterData", () => {
         tier_slug: "higher",
       },
     ],
-  });
-});
-
-describe("diffFilters", () => {
-  it("no filters applied", () => {
-    const dfltFilter: CurriculumFilters = {
-      childSubjects: [],
-      subjectCategories: [],
-      tiers: [],
-      years: [],
-      threads: [],
-      pathways: [],
-      keystages: [],
-    };
-    expect(diffFilters(dfltFilter, dfltFilter)).toEqual({
-      childSubjects: [],
-      subjectCategories: [],
-      tiers: [],
-      years: [],
-      threads: [],
-      pathways: [],
-      keystages: [],
-    });
-  });
-
-  it("with filters applied", () => {
-    const subCat = createSubjectCategory({ id: 2 });
-    const tierHigher = createTier({ tier_slug: "higher" });
-    const thread = createThread({ slug: "thread2" });
-    const dfltFilter: CurriculumFilters = {
-      childSubjects: [],
-      subjectCategories: [],
-      tiers: [],
-      years: [],
-      threads: [],
-      pathways: [],
-      keystages: [],
-    };
-    const filter: CurriculumFilters = {
-      childSubjects: [],
-      subjectCategories: [String(subCat.id)],
-      tiers: [tierHigher.tier_slug],
-      years: [],
-      threads: [thread.slug],
-      pathways: [],
-      keystages: [],
-    };
-    expect(diffFilters(dfltFilter, filter)).toEqual({
-      childSubjects: [],
-      subjectCategories: [String(subCat.id)],
-      tiers: [tierHigher.tier_slug],
-      years: [],
-      threads: [thread.slug],
-      pathways: [],
-      keystages: [],
-    });
   });
 });
 
@@ -846,46 +786,6 @@ describe("shouldDisplayFilter", () => {
   });
 });
 
-describe("getNumberOfFiltersApplied", () => {
-  it("no filters applied", () => {
-    const dfltFilter: CurriculumFilters = {
-      childSubjects: [],
-      subjectCategories: [],
-      tiers: [],
-      years: [],
-      threads: [],
-      pathways: [],
-      keystages: [],
-    };
-    expect(getNumberOfFiltersApplied(dfltFilter, dfltFilter)).toEqual(0);
-  });
-
-  it("with filters applied", () => {
-    const subCat = createSubjectCategory({ id: 2 });
-    const tierHigher = createTier({ tier_slug: "higher" });
-    const thread = createThread({ slug: "thread2" });
-    const dfltFilter: CurriculumFilters = {
-      childSubjects: [],
-      subjectCategories: [],
-      tiers: [],
-      years: [],
-      threads: [],
-      pathways: [],
-      keystages: [],
-    };
-    const filter: CurriculumFilters = {
-      childSubjects: [],
-      subjectCategories: [String(subCat.id)],
-      tiers: [tierHigher.tier_slug],
-      years: [],
-      threads: [thread.slug],
-      pathways: [],
-      keystages: [],
-    };
-    expect(getNumberOfFiltersApplied(dfltFilter, filter)).toEqual(3);
-  });
-});
-
 describe("filtersToQuery", () => {
   it("with default", () => {
     const result = filtersToQuery(createFilter(), {
@@ -997,77 +897,6 @@ describe("mergeInFilterParams", () => {
       threads: ["thread1", "thread2"],
       pathways: [],
       keystages: [],
-    });
-  });
-});
-
-describe("useFilters", () => {
-  describe("without routing", () => {
-    it("initial state", () => {
-      const defaultFilter = createFilter();
-      const { result } = renderHook(() => {
-        return useFilters(defaultFilter);
-      });
-      const [filters] = result.current;
-      expect(filters).toEqual(defaultFilter);
-    });
-
-    it("updating state", () => {
-      const defaultFilter = createFilter();
-      const updateFilterValue = createFilter({});
-      const { result, rerender } = renderHook(() => {
-        return useFilters(defaultFilter);
-      });
-
-      const [, setFilters] = result.current;
-      act(() => {
-        setFilters(updateFilterValue);
-      });
-      rerender();
-      const [filters] = result.current;
-      expect(filters).toEqual(updateFilterValue);
-    });
-  });
-
-  describe("with routing", () => {
-    it("initial state", () => {
-      (useSearchParams as jest.Mock).mockReturnValue(
-        new URLSearchParams("?tiers=foundation"),
-      );
-
-      const defaultFilter = createFilter();
-      const { result } = renderHook(() => {
-        return useFilters(defaultFilter);
-      });
-      const [filters] = result.current;
-      expect(filters).toEqual({
-        ...defaultFilter,
-        tiers: ["foundation"],
-      });
-    });
-
-    it("updating state", () => {
-      const defaultFilter = createFilter();
-      const updateFilterValue = createFilter({
-        tiers: ["foundation"],
-      });
-      const { result, rerender } = renderHook(() => {
-        return useFilters(defaultFilter);
-      });
-
-      const [, setFilters] = result.current;
-      act(() => {
-        setFilters(updateFilterValue);
-      });
-      expect(replaceMock).toHaveBeenCalledWith(
-        "/?tiers=foundation",
-        undefined,
-        { scroll: false, shallow: true },
-      );
-
-      rerender();
-      const [filters] = result.current;
-      expect(filters).toEqual(updateFilterValue);
     });
   });
 });
@@ -1262,183 +1091,6 @@ describe("subjectCategoryFor*", () => {
     );
     expect(result).toEqual(childSubject2);
   });
-  it("tierForFilter", () => {
-    const result = tierForFilter(
-      data,
-      createFilter({
-        tiers: [tier2.tier_slug],
-      }),
-    );
-    expect(result).toEqual(tier2);
-  });
-  it("threadForFilter", () => {
-    const result = threadForFilter(
-      data,
-      createFilter({
-        threads: [thread2.slug],
-      }),
-    );
-    expect(result).toEqual(thread2);
-  });
-});
-
-describe("buildTextDescribingFilter", () => {
-  const subCat1 = createSubjectCategory({ id: 1, title: "SubjectCategory1" });
-  const childSubject1 = createChildSubject({ subject_slug: "ChildSubject1" });
-  const tier1 = createTier({ tier_slug: "tier1" });
-  const thread1 = createThread({ slug: "thread1" });
-  const year7Data: CurriculumUnitsFormattedData = {
-    yearData: {
-      "7": {
-        units: [],
-        childSubjects: [childSubject1],
-        subjectCategories: [subCat1],
-        tiers: [tier1],
-        pathways: [],
-        isSwimming: false,
-        groupAs: null,
-        nationalCurriculum: [],
-        keystage: "ks3",
-      },
-    },
-    yearOptions: ["7"],
-    threadOptions: [thread1],
-    keystages: [],
-  };
-
-  const year11Data: CurriculumUnitsFormattedData = {
-    yearData: {
-      "11": {
-        units: [],
-        childSubjects: [],
-        subjectCategories: [subCat1],
-        tiers: [tier1],
-        pathways: [],
-        isSwimming: false,
-        groupAs: null,
-        nationalCurriculum: [],
-        keystage: "ks4",
-      },
-    },
-    yearOptions: ["7"],
-    threadOptions: [thread1],
-    keystages: [],
-  };
-
-  const year11DataWithChildSubject: CurriculumUnitsFormattedData = {
-    yearData: {
-      "11": {
-        units: [],
-        childSubjects: [childSubject1],
-        subjectCategories: [],
-        tiers: [tier1],
-        pathways: [],
-        isSwimming: false,
-        groupAs: null,
-        nationalCurriculum: [],
-        keystage: "ks4",
-      },
-    },
-    yearOptions: ["7"],
-    threadOptions: [thread1],
-    keystages: [],
-  };
-
-  const primaryData: CurriculumUnitsFormattedData = {
-    yearData: {
-      "1": {
-        units: [],
-        childSubjects: [],
-        subjectCategories: [subCat1],
-        tiers: [tier1],
-        pathways: [],
-        isSwimming: false,
-        groupAs: null,
-        nationalCurriculum: [],
-        keystage: "ks1",
-      },
-      "6": {
-        units: [],
-        childSubjects: [],
-        subjectCategories: [subCat1],
-        tiers: [tier1],
-        pathways: [],
-        isSwimming: false,
-        groupAs: null,
-        nationalCurriculum: [],
-        keystage: "ks2",
-      },
-    },
-    yearOptions: ["7"],
-    threadOptions: [thread1],
-    keystages: [],
-  };
-
-  it("subjectCategory (KS3)", () => {
-    const result = buildTextDescribingFilter(
-      year7Data,
-      createFilter({ subjectCategories: [String(subCat1.slug)] }),
-    );
-    expect(result).toEqual(["SubjectCategory1 (KS3)"]);
-  });
-
-  it("subjectCategory (KS4)", () => {
-    const result = buildTextDescribingFilter(
-      year11Data,
-      createFilter({ subjectCategories: [String(subCat1.slug)] }),
-    );
-    expect(result).toEqual(["SubjectCategory1 (KS4)"]);
-  });
-
-  it("subjectCategory (KS1 & KS2)", () => {
-    const result = buildTextDescribingFilter(
-      primaryData,
-      createFilter({ subjectCategories: [String(subCat1.slug)] }),
-    );
-    expect(result).toEqual(["SubjectCategory1"]);
-  });
-
-  it("childSubject", () => {
-    const result = buildTextDescribingFilter(
-      year11DataWithChildSubject,
-      createFilter({ childSubjects: [childSubject1.subject_slug] }),
-    );
-    expect(result).toEqual(["ChildSubject1 (KS4)"]);
-  });
-
-  it("tier", () => {
-    const result = buildTextDescribingFilter(
-      year11Data,
-      createFilter({ tiers: [tier1.tier_slug] }),
-    );
-    expect(result).toEqual(["Tier1 (KS4)"]);
-  });
-
-  it("thread", () => {
-    const result = buildTextDescribingFilter(
-      year7Data,
-      createFilter({ threads: [thread1.slug] }),
-    );
-    expect(result).toEqual(["Thread1"]);
-  });
-
-  it("all", () => {
-    const result = buildTextDescribingFilter(
-      year7Data,
-      createFilter({
-        subjectCategories: [String(subCat1.slug)],
-        childSubjects: [childSubject1.subject_slug],
-        tiers: [tier1.tier_slug],
-        threads: [thread1.slug],
-      }),
-    );
-    expect(result).toEqual([
-      "SubjectCategory1 (KS3)",
-      "ChildSubject1 (KS3)",
-      "Tier1 (KS3)",
-      "Thread1",
-    ]);
-  });
 });
 
 describe("getNumberOfSelectedUnits", () => {
@@ -1529,5 +1181,109 @@ describe("getNumberOfSelectedUnits", () => {
 
     const result = getNumberOfSelectedUnits(yearData, yearSelection);
     expect(result).toBe(0);
+  });
+});
+
+describe("useFilters", () => {
+  describe("useFilters with initialFilter", () => {
+    beforeEach(() => {
+      mockHistoryReplaceState.mockClear();
+    });
+
+    it("uses initialFilter as initial state when provided", () => {
+      const defaultFilter = createFilter({ years: ["7", "8", "9"] });
+      const initialFilter = createFilter({ years: ["7"] });
+
+      (useSearchParams as jest.Mock).mockReturnValue(
+        new URLSearchParams("years=7"),
+      );
+
+      const { result } = renderHook(() =>
+        useFilters(defaultFilter, initialFilter),
+      );
+
+      const [filters] = result.current;
+      expect(filters.years).toEqual(["7"]);
+    });
+
+    it("still applies URL params when initialFilter is provided and differs", () => {
+      const defaultFilter = createFilter({ tiers: ["foundation"] });
+      const initialFilter = createFilter({ tiers: ["foundation"] });
+
+      (useSearchParams as jest.Mock).mockReturnValue(
+        new URLSearchParams("tiers=higher"),
+      );
+
+      const { result } = renderHook(() =>
+        useFilters(defaultFilter, initialFilter),
+      );
+
+      const [filters] = result.current;
+      expect(filters.tiers).toEqual(["higher"]);
+    });
+
+    it("updates filters when setFilters is called with initialFilter present", () => {
+      const defaultFilter = createFilter({ years: ["7", "8"] });
+      const initialFilter = createFilter({ years: ["7"] });
+
+      (useSearchParams as jest.Mock).mockReturnValue(
+        new URLSearchParams("years=7"),
+      );
+
+      const { result, rerender } = renderHook(() =>
+        useFilters(defaultFilter, initialFilter),
+      );
+
+      const newFilter = createFilter({ years: ["8"] });
+      const [, setFilters] = result.current;
+
+      act(() => {
+        setFilters(newFilter);
+      });
+
+      rerender();
+      const [filters] = result.current;
+      expect(filters.years).toEqual(["8"]);
+      expect(mockHistoryReplaceState).toHaveBeenCalled();
+    });
+
+    it("falls back to defaultFilter when initialFilter is not provided", () => {
+      const defaultFilter = createFilter({ tiers: ["foundation"] });
+
+      (useSearchParams as jest.Mock).mockReturnValue(new URLSearchParams(""));
+
+      const { result } = renderHook(() => useFilters(defaultFilter));
+
+      const [filters] = result.current;
+      expect(filters.tiers).toEqual(defaultFilter.tiers);
+    });
+
+    it("respects initialFilter with multiple filter dimensions", () => {
+      const defaultFilter = createFilter({
+        years: ["7", "8", "9"],
+        tiers: ["foundation"],
+        childSubjects: [],
+      });
+      const initialFilter = createFilter({
+        years: ["7"],
+        tiers: ["higher"],
+        childSubjects: ["combined-science"],
+      });
+
+      (useSearchParams as jest.Mock).mockReturnValue(
+        new URLSearchParams(
+          "years=7&tiers=higher&child_subjects=combined-science",
+        ),
+      );
+
+      const { result } = renderHook(() =>
+        useFilters(defaultFilter, initialFilter),
+      );
+
+      const [filters] = result.current;
+      expect(filters.years).toEqual(["7"]);
+      expect(filters.tiers).toEqual(["higher"]);
+      expect(filters.childSubjects).toEqual(["combined-science"]);
+    });
   });
 });

@@ -1,17 +1,15 @@
+"use client";
 import { useSearchParams } from "next/navigation";
 import { useCallback, useLayoutEffect, useState } from "react";
-import { useRouter } from "next/router";
 
 import { CurriculumFilters } from "./types";
 import { mergeInFilterParams, filtersToQuery } from "./filtersUrl";
 
-// Re-export all pure functions from filtersUrl (single source of truth)
 export {
+  getDefaultFilter,
   getDefaultChildSubjectForYearGroup,
   getDefaultSubjectCategoriesForYearGroup,
   getDefaultTiersForYearGroup,
-  getDefaultFilter,
-  FILTER_TO_QS,
   filtersToQuery,
   mergeInFilterParams,
   getFilterData,
@@ -19,23 +17,21 @@ export {
   filteringFromYears,
   highlightedUnitCount,
   shouldDisplayFilter,
-  diffFilters,
-  getNumberOfFiltersApplied,
   subjectCategoryForFilter,
   childSubjectForFilter,
-  tierForFilter,
-  threadForFilter,
-  buildTextDescribingFilter,
-  keystageSuffixForFilter,
   getNumberOfSelectedUnits,
+  FILTER_TO_QS,
 } from "./filtersUrl";
 
 export function useFilters(
   defaultFilter: CurriculumFilters,
+  initialFilter?: CurriculumFilters,
 ): [CurriculumFilters, (newFilters: CurriculumFilters) => void] {
   const searchParams = useSearchParams();
-  const router = useRouter();
-  const [filters, setFilters] = useState<CurriculumFilters>(defaultFilter);
+
+  const [filters, setFilters] = useState<CurriculumFilters>(
+    initialFilter ?? defaultFilter,
+  );
   useLayoutEffect(() => {
     setFilters(mergeInFilterParams(defaultFilter, searchParams));
   }, [searchParams, defaultFilter]);
@@ -49,14 +45,11 @@ export function useFilters(
           Object.entries(filtersToQuery(newFilters, defaultFilter)),
         ).toString();
 
-      router.replace(url, undefined, {
-        shallow: true,
-        scroll: false,
-      });
+      globalThis.history.replaceState(null, "", url);
 
       setFilters(newFilters);
     },
-    [defaultFilter, router],
+    [defaultFilter],
   );
 
   return [filters, setExternalFilters];
