@@ -4,6 +4,8 @@ import { OakBox, OakSecondaryButton } from "@oaknational/oak-components";
 import { useState } from "react";
 import styled from "styled-components";
 
+import getBrowserConfig from "@/browser-lib/getBrowserConfig";
+
 export type ErrorBoundaryLevel = "global" | "root" | "core";
 
 const getBottomSpacing = (level: ErrorBoundaryLevel): number => {
@@ -37,7 +39,9 @@ export const SimulateErrorControls = ({
   const simulateErrorControlsEnabled =
     process.env.NEXT_PUBLIC_SIMULATE_ERROR === "true";
 
-  if (!simulateErrorControlsEnabled) {
+  const isDevelopmentBuild = getBrowserConfig("releaseStage") === "development";
+
+  if (!simulateErrorControlsEnabled || !isDevelopmentBuild) {
     return null;
   }
 

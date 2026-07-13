@@ -9,6 +9,10 @@ const render = renderWithProviders();
 
 jest.spyOn(console, "error").mockImplementation(() => {});
 
+jest.mock("@/browser-lib/getBrowserConfig", () => {
+  return jest.fn().mockReturnValue("development");
+});
+
 describe("SimulateErrorControls", () => {
   it("does not render when disabled", async () => {
     process.env.NEXT_PUBLIC_SIMULATE_ERROR = "false";
