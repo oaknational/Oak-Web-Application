@@ -31,7 +31,8 @@ const RoleSelectionView = () => {
     register,
   } = useForm({
     resolver: zodResolver(roleSelectFormSchema),
-    mode: "onBlur",
+    mode: "onSubmit",
+    reValidateMode: "onSubmit",
     defaultValues: {
       newsletterSignUp: false,
     },
