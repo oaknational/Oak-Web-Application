@@ -491,7 +491,7 @@ exports[`pages/about-us/oaks-impact.tsx renders title when feature flag is enabl
               </div>
               <a
                 aria-label="My library"
-                class="sc-dcJsrY sc-dGCmGc fIyhTG kNXJqf"
+                class="sc-dcJsrY sc-bJBgwP fIyhTG gGlhYE"
                 href="/teachers/my-library"
               >
                 <div
@@ -661,7 +661,7 @@ exports[`pages/about-us/oaks-impact.tsx renders title when feature flag is enabl
                   class="sc-aXZVg sc-gEvEer bMQSvq fpGKdI"
                 >
                   <li
-                    class="sc-fcb8356f-0 knJhHF"
+                    class="sc-8f92ab2c-0 ctvzKn"
                   >
                     <div
                       class="sc-aXZVg sc-hZDyAQ gQdNNR hppJPj"
@@ -691,11 +691,11 @@ exports[`pages/about-us/oaks-impact.tsx renders title when feature flag is enabl
                           <div
                             class="sc-aXZVg sc-gEvEer jPvJsJ fVNIMq"
                           >
-                            <h3
+                            <div
                               class="sc-eldPxv ibGcSM"
                             >
                               Case study 1
-                            </h3>
+                            </div>
                           </div>
                           <div
                             class="sc-aXZVg sc-gEvEer jPvJsJ bRjxks"
@@ -728,7 +728,7 @@ exports[`pages/about-us/oaks-impact.tsx renders title when feature flag is enabl
                     </div>
                   </li>
                   <li
-                    class="sc-fcb8356f-0 knJhHF"
+                    class="sc-8f92ab2c-0 ctvzKn"
                   >
                     <div
                       class="sc-aXZVg sc-hZDyAQ gQdNNR hppJPj"
@@ -758,11 +758,11 @@ exports[`pages/about-us/oaks-impact.tsx renders title when feature flag is enabl
                           <div
                             class="sc-aXZVg sc-gEvEer jPvJsJ fVNIMq"
                           >
-                            <h3
+                            <div
                               class="sc-eldPxv ibGcSM"
                             >
                               Case study 2
-                            </h3>
+                            </div>
                           </div>
                           <div
                             class="sc-aXZVg sc-gEvEer jPvJsJ bRjxks"
@@ -795,7 +795,7 @@ exports[`pages/about-us/oaks-impact.tsx renders title when feature flag is enabl
                     </div>
                   </li>
                   <li
-                    class="sc-fcb8356f-0 knJhHF"
+                    class="sc-8f92ab2c-0 ctvzKn"
                   >
                     <div
                       class="sc-aXZVg sc-hZDyAQ gQdNNR hppJPj"
@@ -825,11 +825,11 @@ exports[`pages/about-us/oaks-impact.tsx renders title when feature flag is enabl
                           <div
                             class="sc-aXZVg sc-gEvEer jPvJsJ fVNIMq"
                           >
-                            <h3
+                            <div
                               class="sc-eldPxv ibGcSM"
                             >
                               Case study 3
-                            </h3>
+                            </div>
                           </div>
                           <div
                             class="sc-aXZVg sc-gEvEer jPvJsJ bRjxks"

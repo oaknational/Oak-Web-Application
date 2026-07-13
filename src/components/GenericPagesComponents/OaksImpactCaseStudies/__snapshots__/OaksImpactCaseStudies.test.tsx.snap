@@ -21,7 +21,7 @@ exports[`OaksImpactCaseStudies renders correctly 1`] = `
             class="sc-aXZVg sc-gEvEer bMQSvq fpGKdI"
           >
             <li
-              class="sc-fcb8356f-0 knJhHF"
+              class="sc-8f92ab2c-0 ctvzKn"
             >
               <div
                 class="sc-aXZVg sc-hZDyAQ gQdNNR hppJPj"
@@ -51,11 +51,11 @@ exports[`OaksImpactCaseStudies renders correctly 1`] = `
                     <div
                       class="sc-aXZVg sc-gEvEer jPvJsJ fVNIMq"
                     >
-                      <h3
+                      <div
                         class="sc-eldPxv ibGcSM"
                       >
                         Case study 1
-                      </h3>
+                      </div>
                     </div>
                     <div
                       class="sc-aXZVg sc-gEvEer jPvJsJ bRjxks"
@@ -88,7 +88,7 @@ exports[`OaksImpactCaseStudies renders correctly 1`] = `
               </div>
             </li>
             <li
-              class="sc-fcb8356f-0 knJhHF"
+              class="sc-8f92ab2c-0 ctvzKn"
             >
               <div
                 class="sc-aXZVg sc-hZDyAQ gQdNNR hppJPj"
@@ -118,11 +118,11 @@ exports[`OaksImpactCaseStudies renders correctly 1`] = `
                     <div
                       class="sc-aXZVg sc-gEvEer jPvJsJ fVNIMq"
                     >
-                      <h3
+                      <div
                         class="sc-eldPxv ibGcSM"
                       >
                         Case study 2
-                      </h3>
+                      </div>
                     </div>
                     <div
                       class="sc-aXZVg sc-gEvEer jPvJsJ bRjxks"
@@ -155,7 +155,7 @@ exports[`OaksImpactCaseStudies renders correctly 1`] = `
               </div>
             </li>
             <li
-              class="sc-fcb8356f-0 knJhHF"
+              class="sc-8f92ab2c-0 ctvzKn"
             >
               <div
                 class="sc-aXZVg sc-hZDyAQ gQdNNR hppJPj"
@@ -185,11 +185,11 @@ exports[`OaksImpactCaseStudies renders correctly 1`] = `
                     <div
                       class="sc-aXZVg sc-gEvEer jPvJsJ fVNIMq"
                     >
-                      <h3
+                      <div
                         class="sc-eldPxv ibGcSM"
                       >
                         Case study 3
-                      </h3>
+                      </div>
                     </div>
                     <div
                       class="sc-aXZVg sc-gEvEer jPvJsJ bRjxks"
