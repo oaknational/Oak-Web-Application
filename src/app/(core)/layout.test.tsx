@@ -20,6 +20,12 @@ jest.mock("@/node-lib/curriculum-api-2023", () => ({
 // Unmock the mock created in jest setup to get access to the notFound function
 jest.unmock("next/navigation");
 
+jest.mock("next/headers", () => ({
+  draftMode: jest.fn().mockResolvedValue({
+    isEnabled: true,
+  }),
+}));
+
 const render = renderWithProviders();
 
 describe("core layout", () => {
