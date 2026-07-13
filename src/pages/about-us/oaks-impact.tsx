@@ -27,6 +27,11 @@ export type OaksImpactPageProps = {
   pageData: OaksImpactPage;
 };
 
+const placeholderImage = {
+  _id: "image-ef2a05d634b1ade34d33664c44fa36cb62e1aaba-3000x2001-jpg",
+  url: "https://sanity-asset-cdn.thenational.academy/images/cuvjke51/production/ef2a05d634b1ade34d33664c44fa36cb62e1aaba-3000x2001.jpg",
+};
+
 const OaksImpact: NextPage<OaksImpactPageProps> = ({ topNav, pageData }) => {
   return (
     <Layout
@@ -40,11 +45,7 @@ const OaksImpact: NextPage<OaksImpactPageProps> = ({ topNav, pageData }) => {
           titleHighlight="bg-decorative2-main"
           content={pageData.header.introText}
         >
-          <AboutSharedHeaderImage
-            imageUrl={
-              "https://sanity-asset-cdn.thenational.academy/images/cuvjke51/production/ef2a05d634b1ade34d33664c44fa36cb62e1aaba-3000x2001.jpg"
-            }
-          />
+          <AboutSharedHeaderImage imageUrl={placeholderImage.url} />
         </AboutSharedHeader>
         <OakBox
           $ma={"spacing-48"}
