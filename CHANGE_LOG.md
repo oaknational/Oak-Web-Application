@@ -1,3 +1,20 @@
+# [1.1118.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1117.0...v1.1118.0) (2026-07-13)
+
+
+### Features
+
+* add digial lit banner ([624a35b](https://github.com/oaknational/Oak-Web-Application/commit/624a35b2d4fe0d98ffe4bd3daec52de4d33193c4))
+* add new tag ([5a0a37b](https://github.com/oaknational/Oak-Web-Application/commit/5a0a37b165681efd7163a1686526b6eb3e028045))
+* merge main ([321ee1d](https://github.com/oaknational/Oak-Web-Application/commit/321ee1dd3c4bba169c9ae426a73677fe54e6ad8d))
+* merge main ([ea49e9d](https://github.com/oaknational/Oak-Web-Application/commit/ea49e9d6d9ec76494c2770ace562db37caae2daf))
+* remove duplication ([5236bf2](https://github.com/oaknational/Oak-Web-Application/commit/5236bf2c81373a8251ca9dba61f47896cb30e018))
+* remove duplication ([386b323](https://github.com/oaknational/Oak-Web-Application/commit/386b3239fdd383ab4cfe3e81454899665287d5a7))
+* remove duplication ([d309600](https://github.com/oaknational/Oak-Web-Application/commit/d309600099f138b3b1ecd99890e221bdde9ddb13))
+* snap updates ([c3ab34e](https://github.com/oaknational/Oak-Web-Application/commit/c3ab34e1a6e07b9edd0f30529f85920b657a852b))
+* update copy ([50cbc81](https://github.com/oaknational/Oak-Web-Application/commit/50cbc810bcd4362672428aa00b3865e54f9567d8))
+* update copy ([3915c18](https://github.com/oaknational/Oak-Web-Application/commit/3915c18ecb2a3f284dfd8cef4660dde0a9f611e8))
+* use new oakcard ([f714041](https://github.com/oaknational/Oak-Web-Application/commit/f714041295de14dcbe035833fd1e05c35c99257d))
+
 # [1.1117.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1116.0...v1.1117.0) (2026-07-13)
 
 
