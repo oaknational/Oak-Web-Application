@@ -8,7 +8,7 @@ import styled from "styled-components";
 
 import { getSearchSuggestionBannerProps } from "./getSearchSuggestionBannerProps";
 
-import { resolveOakHref } from "@/common-lib/urls";
+import { resolveProgrammeUnitsHref } from "@/common-lib/urls";
 import { SearchIntent } from "@/common-lib/schemas/search-intent";
 import useAnalytics from "@/context/Analytics/useAnalytics";
 import { KeyStageTitleValueType } from "@/browser-lib/avo/Avo";
@@ -52,17 +52,14 @@ export const SearchSuggestionBanner = (props: {
   // so linking to the programme page doesn't automatically redirect as it doesn't know whether
   // to direct to core or gcse.
   const getLinkHref = (link: KsLinkProps) => {
-    return link.pathwayTitle
-      ? resolveOakHref({
-          page: "unit-index",
-          programmeSlug:
-            link.pathwayTitle == "Core"
-              ? "citizenship-secondary-ks4-core"
-              : "citizenship-secondary-ks4-gcse",
-        })
-      : resolveOakHref({
-          page: "home",
-        });
+    if (!link.pathwayTitle) {
+      return "/";
+    }
+    return resolveProgrammeUnitsHref(
+      link.pathwayTitle === "Core"
+        ? "citizenship-secondary-ks4-core"
+        : "citizenship-secondary-ks4-gcse",
+    );
   };
 
   const getLinkTitle = (link: KsLinkProps) => {

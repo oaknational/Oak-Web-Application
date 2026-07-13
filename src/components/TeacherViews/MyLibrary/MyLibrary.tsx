@@ -18,7 +18,7 @@ import {
   PathwayValueType,
   TierNameValueType,
 } from "@/browser-lib/avo/Avo";
-import { resolveOakHref } from "@/common-lib/urls";
+import { resolveProgrammeUnitsHref } from "@/common-lib/urls";
 import MyLibraryProgrammeCard from "@/components/TeacherComponents/MyLibraryProgrammeCard/MyLibraryProgrammeCard";
 import { getValidSubjectIconName } from "@/utils/getValidSubjectIconName";
 import useAnalytics from "@/context/Analytics/useAnalytics";
@@ -101,13 +101,10 @@ export default function MyLibrary(props: Readonly<MyLibraryProps>) {
                 key={collection.uniqueProgrammeKey}
                 programmeTitle={collection.programmeTitle}
                 anchorId={collection.uniqueProgrammeKey}
-                programmeHref={resolveOakHref({
-                  page: "unit-index",
-                  programmeSlug: collection.programmeSlug,
-                  search: {
-                    category: collection.searchQuery,
-                  },
-                })}
+                programmeHref={resolveProgrammeUnitsHref(
+                  collection.programmeSlug,
+                  { category: collection.searchQuery },
+                )}
                 trackBrowseRefined={() =>
                   track.browseRefined({
                     platform: "owa",

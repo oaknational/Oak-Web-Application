@@ -17,7 +17,7 @@ import {
 import type { MediaClip } from "@/node-lib/curriculum-api-2023/queries/lessonMediaClips/lessonMediaClips.schema";
 import removeLegacySlugSuffix from "@/utils/slugModifiers/removeLegacySlugSuffix";
 import { LessonItemTitle } from "@/components/TeacherComponents/LessonItemContainer";
-import { resolveOakHref } from "@/common-lib/urls";
+import { resolveOakHref, resolveProgrammeUnitsHref } from "@/common-lib/urls";
 
 /**
  * Returns the intersection different pathways.
@@ -226,10 +226,7 @@ export const getBreadcrumbsForLessonPathway = (
       : null,
     subjectTitle && programmeSlug && programmeSlugForMathsUnits
       ? {
-          href: resolveOakHref({
-            page: "unit-index",
-            programmeSlug: programmeSlugForMathsUnits,
-          }),
+          href: resolveProgrammeUnitsHref(programmeSlugForMathsUnits),
           label: subjectTitle,
         }
       : null,
