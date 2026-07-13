@@ -5,7 +5,7 @@ import { oaksImpactCaseStudiesFixture } from "./OaksImpactCaseStudies.fixtures";
 
 import { OaksImpactCaseStudies as Component } from ".";
 
-const meta: Meta<typeof Component> = {
+const meta = {
   component: Component,
   tags: ["autodocs"],
   title: "Components/GenericPagesComponents/OaksImpactCaseStudies",
@@ -17,10 +17,10 @@ const meta: Meta<typeof Component> = {
       </OakThemeProvider>
     ),
   ],
-};
+} satisfies Meta<typeof Component>
 
 export default meta;
-type Story = StoryObj<typeof Component>;
+type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   args: {
