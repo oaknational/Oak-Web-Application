@@ -17,7 +17,7 @@ const meta = {
       </OakThemeProvider>
     ),
   ],
-} satisfies Meta<typeof Component>
+} satisfies Meta<typeof Component>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
