@@ -20,7 +20,9 @@ allowBuilds:
   unrs-resolver: true
 overrides:
   # Security pins for transitive critical/high advisories (Dependagames June 2026).
-  protobufjs: ">=7.5.6"
+  # 7.5.9 keeps CVE-2026-44291 fix and avoids the 7.5.6–7.5.8 Next.js
+  # bundler regression that breaks Firestore gRPC (undefined status).
+  protobufjs: "7.5.9"
   axios: ">=1.16.0"
   tar: ">=7.5.11"
   ws: ">=8.21.0"
@@ -29,5 +31,6 @@ overrides:
   form-data: ">=4.0.6"
   undici: ">=6.27.0"
   "@xmldom/xmldom": ">=0.8.13"
-  "@grpc/grpc-js": ">=1.13.5"
+  # Stay on the 1.13 line patched for CVE-2026-48068/48069; avoid 1.14.x jump.
+  "@grpc/grpc-js": "1.13.5"
   js-cookie: ">=3.0.8"
