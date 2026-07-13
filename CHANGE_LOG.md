@@ -1,3 +1,45 @@
+# [1.1117.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1116.0...v1.1117.0) (2026-07-13)
+
+
+### Bug Fixes
+
+* fix broken error message on mythbusting page ([2f13d0e](https://github.com/oaknational/Oak-Web-Application/commit/2f13d0e9bb8e615dd773ddaf0a519dd94e6fc84a))
+* reset edurole on set data ([f81631c](https://github.com/oaknational/Oak-Web-Application/commit/f81631cf92677d9b1e9190291dd8f042b9ac30a5))
+
+
+### Features
+
+* change onblur to onsubmit for form validation ([416bdb5](https://github.com/oaknational/Oak-Web-Application/commit/416bdb58ed36970b0f26c7de5768dd2028ab19cc))
+* errors only show on continue button with school selection form ([6620f7d](https://github.com/oaknational/Oak-Web-Application/commit/6620f7d76d92d6aa7f2f5eb644b3ff2e850d54f1))
+* handle errors on submit during onboarding ([7b1c7d7](https://github.com/oaknational/Oak-Web-Application/commit/7b1c7d76ebcfc8aaf2d0a01ae23ccf485f89613b))
+* revalidate form only on submit ([cebc6bd](https://github.com/oaknational/Oak-Web-Application/commit/cebc6bd962b0f78b386266ae2e008c21e8e7077b))
+
+# [1.1116.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1115.0...v1.1116.0) (2026-07-13)
+
+
+### Features
+
+* enable draft mode in programme page ([144ebd5](https://github.com/oaknational/Oak-Web-Application/commit/144ebd52acf8f5cc7e4465be4c1a17d4697c4ffa))
+* move preview routes to app router using draftMode ([019634c](https://github.com/oaknational/Oak-Web-Application/commit/019634c86d4f8608d604294b6c5a24ef12decea7))
+* use next Link for exit preview button ([9e48754](https://github.com/oaknational/Oak-Web-Application/commit/9e48754b2b1435d2accb63dc51e2b19d6c9e3341))
+
+# [1.1115.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1114.1...v1.1115.0) (2026-07-07)
+
+
+### Bug Fixes
+
+* fix spacing mt rendering in tablet and desktop ([e07bab8](https://github.com/oaknational/Oak-Web-Application/commit/e07bab824475bac5ee57e7e6980d03413c933a1f))
+
+
+### Features
+
+* add show results, change icon, simplify props further ([2a9647e](https://github.com/oaknational/Oak-Web-Application/commit/2a9647e514bd2a11f556ffcb1f5dacc036578f9a))
+* hide show results from blog and webinar pages ([d8eddf6](https://github.com/oaknational/Oak-Web-Application/commit/d8eddf6d5d323b1545ef331b5797082dce004eac))
+* refactor mobile filters to use OakInformativeModal component ([f8be11b](https://github.com/oaknational/Oak-Web-Application/commit/f8be11bed3052f703e7080cbd600642a0c31fba6))
+* rm unused alignSelf prop ([19dfe25](https://github.com/oaknational/Oak-Web-Application/commit/19dfe2537bc9d1a3cde627ae6ea71df4a2fbc6c6))
+
+## [1.1114.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.1114.0...v1.1114.1) (2026-07-07)
+
 # [1.1114.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1113.0...v1.1114.0) (2026-07-06)
 
 
