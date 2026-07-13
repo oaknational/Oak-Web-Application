@@ -17,7 +17,8 @@ import OnboardingForm from "@/components/TeacherComponents/OnboardingForm/Onboar
 export const OnboardingView = () => {
   const { formState, setValue, handleSubmit, control, trigger } = useForm({
     resolver: zodResolver(worksInSchoolFormSchema),
-    mode: "onBlur",
+    mode: "onSubmit",
+    reValidateMode: "onSubmit",
   });
 
   const setWorksInSchool = useCallback(

@@ -1,9 +1,11 @@
 import { notFound } from "next/navigation";
+import { draftMode } from "next/headers";
 
 import LayoutSiteFooter from "@/components/AppComponents/LayoutSiteFooter";
 import TopNav from "@/components/AppComponents/TopNav/TopNav";
 import OakError from "@/errors/OakError";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
+import LayoutPreviewControls from "@/components/AppComponents/LayoutPreviewControls";
 import { SimulateErrorControls } from "@/app/components/ErrorHandling/SimulateErrorControls";
 
 // TD: [integrated journey] get revalidate from env somehow
@@ -17,6 +19,7 @@ export default async function CoreLayout({
 }>) {
   try {
     const topNavProps = await curriculumApi2023.topNav({ withCache: true });
+    const { isEnabled } = await draftMode();
 
     return (
       <>
@@ -24,6 +27,7 @@ export default async function CoreLayout({
         <SimulateErrorControls errorBoundaryLevel="root" />
         <main id="main">{children}</main>
         <LayoutSiteFooter />
+        {isEnabled && <LayoutPreviewControls />}
       </>
     );
   } catch (error) {

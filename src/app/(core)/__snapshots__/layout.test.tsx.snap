@@ -412,5 +412,6 @@ exports[`core layout renders correctly 1`] = `
     </styled.div>
   </main>
   <LayoutSiteFooter />
+  <LayoutPreviewControls />
 </React.Fragment>
 `;
