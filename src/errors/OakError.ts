@@ -96,9 +96,9 @@ const errorConfigs: Record<ErrorCode, ErrorConfig> = {
     shouldNotify: true,
   }
   "hubspot/subscription": {
-    message: "Could not get hubspot subscription status for user",
+    message: "Could not get Hubspot subscription status for user",
     shouldNotify: true,
-  },
+  }
   "hubspot/not-loaded": {
     message: "Hubspot not properly instantiated",
     shouldNotify: true,
