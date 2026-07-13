@@ -274,6 +274,34 @@ describe("QuizPageContent", () => {
       fireEvent.click(getByRole("button", { name: "Next question" }));
     });
     expect(quizState.handleNextQuestion).toHaveBeenCalledTimes(1);
+    expect(progressState.refreshReadOnly).not.toHaveBeenCalled();
+  });
+
+  it("uses cached read-only for mid-quiz next without refreshing submission state", async () => {
+    progressState = buildProgressState({
+      isReadOnly: true,
+      refreshReadOnly: jest.fn().mockResolvedValue(true),
+    });
+    progressHookMock.mockImplementation((selector) => selector(progressState));
+    quizState = buildQuizState({
+      questionState: [
+        { ...baseQuestionState, mode: "feedback", grade: 1 },
+        baseQuestionState,
+      ],
+      currentQuestionIndex: 0,
+      numQuestions: 2,
+      numInteractiveQuestions: 2,
+    });
+    quizHookMock.mockImplementation((selector) => selector(quizState));
+
+    const { getByRole } = renderPage();
+    await act(async () => {
+      fireEvent.click(getByRole("button", { name: "Next question" }));
+    });
+
+    expect(quizState.handleNextQuestion).not.toHaveBeenCalled();
+    expect(progressState.refreshReadOnly).not.toHaveBeenCalled();
+    expect(routerPush.mock.calls[0]?.[0]).toContain("review");
   });
 
   it("completes the quiz and navigates to the overview when finishing the starter quiz", async () => {

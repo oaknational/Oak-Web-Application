@@ -290,14 +290,13 @@ export const QuizPageContent = ({
   };
 
   const onNext = async () => {
-    if (!(await ensureCanProgress())) return;
-
     const nextStep = getQuizNextStep({
       currentQuestionIndex,
       numQuestions,
       isReadOnly,
     });
 
+    // Use cached isReadOnly so Next question is not blocked on a network call.
     if (nextStep.action === "next-question") {
       handleNextQuestion();
       return;
@@ -308,6 +307,8 @@ export const QuizPageContent = ({
       navigateToSection("review");
       return;
     }
+
+    if (!(await ensureCanProgress())) return;
 
     const nextSectionResults = completeQuizAndTrack();
     navigateToSection(
