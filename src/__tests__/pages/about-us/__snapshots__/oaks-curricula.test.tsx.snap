@@ -478,7 +478,6 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
 
 .c134 {
   padding-top: 5rem;
-  padding-bottom: 5rem;
   font-family: --var(google-font),Lexend,sans-serif;
 }
 

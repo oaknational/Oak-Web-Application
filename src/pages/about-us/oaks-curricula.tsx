@@ -175,7 +175,7 @@ export const OaksCurricula: NextPage<OaksCurriculaPageProps> = ({
           <NewGutterMaxWidth>
             <OakFlex
               $flexDirection={"column"}
-              $pv={"spacing-80"}
+              $pt={"spacing-80"}
               $gap={"spacing-56"}
             >
               <OakHeading
