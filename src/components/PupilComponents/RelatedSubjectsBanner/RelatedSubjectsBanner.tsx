@@ -30,7 +30,7 @@ const subjectBannerContent = {
   "digital-literacy": {
     heading: "Check out our new digital literacy lessons!",
     imageAlt: "Illustration representing digital literacy",
-    linkText: "Go to new digital literacy lessons",
+    linkText: "New digital literacy lessons",
     subCopy:
       "Learn fun and easy ways to use technology confidently and safely in real life.",
     subjectSlug: "digital-literacy",
