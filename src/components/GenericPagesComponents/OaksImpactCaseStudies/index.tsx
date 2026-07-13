@@ -12,6 +12,7 @@ export type OaksImpactCaseStudiesProps = {
     heading: string;
     href: string;
     imageSrc: string;
+    linkText?: string;
   }[];
 };
 
@@ -37,7 +38,7 @@ export const OaksImpactCaseStudies = ({
                 href={caseStudy.href}
                 imageSrc={caseStudy.imageSrc}
                 aspectRatio="4/3"
-                linkText="Watch the video"
+                linkText={caseStudy.linkText || "Watch the video"}
                 cardWidth={"100%"}
               />
             ))}
