@@ -16,15 +16,15 @@ import {
 
 export type PostCategoryPage = "blog-index" | "webinar-index";
 
+export const CATEGORY_NAV_LABEL = "Categories";
+
 export type PostCategoryListProps = OakBoxProps & {
-  labelledBy: string;
   categories: { slug: string; title: string }[];
   selectedCategorySlug?: string | null;
   page: PostCategoryPage;
 };
 const PostCategoryList: FC<PostCategoryListProps> = (props) => {
-  const { categories, selectedCategorySlug, labelledBy, page, ...boxProps } =
-    props;
+  const { categories, selectedCategorySlug, page, ...boxProps } = props;
   const { getIsSelected, setSelected } = useCategoryFilterList({
     selectedKey: selectedCategorySlug,
     getKey: (linkProps: BlogListingLinkProps | WebinarListingLinkProps) =>
@@ -34,7 +34,7 @@ const PostCategoryList: FC<PostCategoryListProps> = (props) => {
   return (
     <OakBox {...boxProps}>
       <CategoryFilterList
-        labelledBy={labelledBy}
+        ariaLabel={CATEGORY_NAV_LABEL}
         getIsSelected={getIsSelected}
         setSelected={setSelected}
         categories={[
