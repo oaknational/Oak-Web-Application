@@ -7,7 +7,10 @@ import {
 import { useId } from "react";
 
 import { CurriculumFilters } from "@/utils/curriculum/types";
-import { getFilterData , scopeYearsToKeystageFilter } from "@/utils/curriculum/filtersUrl";
+import {
+  getFilterData,
+  scopeYearsToKeystageFilter,
+} from "@/utils/curriculum/filtersUrl";
 import {
   byKeyStageSlug,
   presentAtKeyStageSlugs,

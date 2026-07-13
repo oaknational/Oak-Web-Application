@@ -8,7 +8,10 @@ import { useMemo, useId } from "react";
 
 import { getValidSubjectCategoryIconById } from "@/utils/getValidSubjectCategoryIconById";
 import { CurriculumFilters } from "@/utils/curriculum/types";
-import { getFilterData , scopeYearsToKeystageFilter } from "@/utils/curriculum/filtersUrl";
+import {
+  getFilterData,
+  scopeYearsToKeystageFilter,
+} from "@/utils/curriculum/filtersUrl";
 import {
   byKeyStageSlug,
   presentAtKeyStageSlugs,
