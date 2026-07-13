@@ -491,7 +491,7 @@ exports[`pages/about-us/oaks-impact.tsx renders title when feature flag is enabl
               </div>
               <a
                 aria-label="My library"
-                class="sc-dcJsrY sc-bJBgwP fIyhTG gGlhYE"
+                class="sc-dcJsrY sc-dGCmGc fIyhTG kNXJqf"
                 href="/teachers/my-library"
               >
                 <div
@@ -667,11 +667,11 @@ exports[`pages/about-us/oaks-impact.tsx renders title when feature flag is enabl
                       class="sc-aXZVg sc-hZDyAQ gQdNNR hppJPj"
                     >
                       <a
-                        class="sc-aXZVg sc-gEvEer sc-kYxDKI joqqED fVNIMq gWtfUy"
+                        class="sc-aXZVg sc-gEvEer sc-eyvILC eyLmQc dXoawi cstkxg"
                         href="/about-us/oaks-impact/case-study-1"
                       >
                         <span
-                          class="sc-aXZVg kvjdhA sc-bpUBKd iUDiVD"
+                          class="sc-aXZVg kvjdhA sc-bpUBKd gXHgWu"
                         >
                           <img
                             alt=""
@@ -686,7 +686,7 @@ exports[`pages/about-us/oaks-impact.tsx renders title when feature flag is enabl
                           />
                         </span>
                         <div
-                          class="sc-aXZVg sc-gEvEer GZohP jFNgPm"
+                          class="sc-aXZVg sc-gEvEer sc-kYxDKI jPvJsJ jFNgPm"
                         >
                           <div
                             class="sc-aXZVg sc-gEvEer jPvJsJ fVNIMq"
@@ -734,11 +734,11 @@ exports[`pages/about-us/oaks-impact.tsx renders title when feature flag is enabl
                       class="sc-aXZVg sc-hZDyAQ gQdNNR hppJPj"
                     >
                       <a
-                        class="sc-aXZVg sc-gEvEer sc-kYxDKI joqqED fVNIMq gWtfUy"
+                        class="sc-aXZVg sc-gEvEer sc-eyvILC eyLmQc dXoawi cstkxg"
                         href="/about-us/oaks-impact/case-study-2"
                       >
                         <span
-                          class="sc-aXZVg kvjdhA sc-bpUBKd iUDiVD"
+                          class="sc-aXZVg kvjdhA sc-bpUBKd gXHgWu"
                         >
                           <img
                             alt=""
@@ -753,7 +753,7 @@ exports[`pages/about-us/oaks-impact.tsx renders title when feature flag is enabl
                           />
                         </span>
                         <div
-                          class="sc-aXZVg sc-gEvEer GZohP jFNgPm"
+                          class="sc-aXZVg sc-gEvEer sc-kYxDKI jPvJsJ jFNgPm"
                         >
                           <div
                             class="sc-aXZVg sc-gEvEer jPvJsJ fVNIMq"
@@ -801,11 +801,11 @@ exports[`pages/about-us/oaks-impact.tsx renders title when feature flag is enabl
                       class="sc-aXZVg sc-hZDyAQ gQdNNR hppJPj"
                     >
                       <a
-                        class="sc-aXZVg sc-gEvEer sc-kYxDKI joqqED fVNIMq gWtfUy"
+                        class="sc-aXZVg sc-gEvEer sc-eyvILC eyLmQc dXoawi cstkxg"
                         href="/about-us/oaks-impact/case-study-3"
                       >
                         <span
-                          class="sc-aXZVg kvjdhA sc-bpUBKd iUDiVD"
+                          class="sc-aXZVg kvjdhA sc-bpUBKd gXHgWu"
                         >
                           <img
                             alt=""
@@ -820,7 +820,7 @@ exports[`pages/about-us/oaks-impact.tsx renders title when feature flag is enabl
                           />
                         </span>
                         <div
-                          class="sc-aXZVg sc-gEvEer GZohP jFNgPm"
+                          class="sc-aXZVg sc-gEvEer sc-kYxDKI jPvJsJ jFNgPm"
                         >
                           <div
                             class="sc-aXZVg sc-gEvEer jPvJsJ fVNIMq"
