@@ -21,6 +21,7 @@ import errorReporter from "@/common-lib/error-reporter";
 import useSaveCountContext from "@/context/SaveCount/useSaveCountContext";
 import useAnalytics from "@/context/Analytics/useAnalytics";
 import { CollectionData } from "@/components/TeacherViews/MyLibrary/MyLibrary";
+import { getSubjectPhaseSlug } from "@/components/TeacherComponents/helpers/getSubjectPhaseSlug";
 
 const reportError = errorReporter("educatorApi");
 
@@ -52,13 +53,16 @@ export const useMyLibrary = () => {
               programmeSlug,
               keystage,
               pathway,
+              pathwaySlug,
               subject,
               examboard,
+              examboardSlug,
               tier,
               units,
               subjectSlug,
               keystageSlug,
               subjectCategory,
+              phaseSlug,
             } = programmeData;
 
             const subjectCategoryHeading = `${subjectCategory ? `${subjectCategory} ` : ""}`;
@@ -66,9 +70,16 @@ export const useMyLibrary = () => {
             const subheading = `${subjectCategoryHeading}${examboard ? examboard + " " : ""}${tier ? tier + " " : ""}${pathway ? pathway + " " : ""}${keystage}`;
 
             const programmeTitle = `${subject}${subjectCategoryHeading && ":"} ${subheading}`;
-            const searchQuery = subjectCategory
-              ? `${kebabCase(subjectCategory)}`
-              : null;
+            const subjectCategoryQuery = subjectCategory
+              ? `${kebabCase(subjectCategory.toLocaleLowerCase())}`
+              : undefined;
+
+            const subjectPhaseSlug = getSubjectPhaseSlug({
+              subject: subjectSlug,
+              phaseSlug,
+              examBoardSlug: examboardSlug,
+              pathwaySlug: pathwaySlug,
+            });
 
             units.sort(
               (a, b) => a.yearOrder - b.yearOrder || a.unitOrder - b.unitOrder,
@@ -83,8 +94,9 @@ export const useMyLibrary = () => {
               units,
               programmeSlug,
               programmeTitle,
-              searchQuery,
+              subjectCategoryQuery,
               uniqueProgrammeKey,
+              subjectPhaseSlug,
             };
           })
           .sort((a, b) => {

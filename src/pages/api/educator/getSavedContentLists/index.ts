@@ -57,9 +57,12 @@ async function handleRequest(req: NextApiRequest, res: NextApiResponse) {
             subjectCategory: useSubjectCategory ? subjectCategory : null,
             keystage: browseData.keystage,
             keystageSlug: browseData.keystage_slug,
+            phaseSlug: browseData.phase_slug,
             pathway: browseData.pathway,
+            pathwaySlug: browseData.pathway_slug,
             tier: browseData.tier,
             examboard: browseData.examboard,
+            examboardSlug: browseData.examboard_slug,
             units: [],
           };
         }
