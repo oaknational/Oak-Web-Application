@@ -19,7 +19,7 @@ const hubspotContactsFetcher = async (url: string) => {
   try {
     const response = await fetch(url);
 
-    if (response.status === 204 || response.status === 401) {
+    if (response.status === 204) {
       return null;
     }
 
