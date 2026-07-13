@@ -28,6 +28,7 @@ import CMSClient from "@/node-lib/cms";
 import getPageProps from "@/node-lib/getPageProps";
 import { OaksCurriculaPage } from "@/common-lib/cms-types/aboutPages";
 import getProxiedSanityAssetUrl from "@/common-lib/urls/getProxiedSanityAssetUrl";
+import { SupportYou } from "@/components/GenericPagesComponents/SupportYou";
 
 export type OaksCurriculaPageProps = {
   pageData: OaksCurriculaPage;
@@ -200,7 +201,7 @@ export const OaksCurricula: NextPage<OaksCurriculaPageProps> = ({
             </OakFlex>
           </NewGutterMaxWidth>
         )}
-        {/* @debt: Can oak support you section */}
+        <SupportYou />
       </AboutUsLayout>
     </Layout>
   );
