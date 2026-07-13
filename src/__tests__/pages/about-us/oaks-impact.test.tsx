@@ -108,5 +108,17 @@ describe("pages/about-us/oaks-impact.tsx", () => {
         notFound: true,
       });
     });
+
+    it("should return notFound when CMS returns null", async () => {
+      mockCMSClient.oaksImpactPage.mockResolvedValueOnce(null);
+
+      const propsResult = await getServerSideProps({
+        req: { cookies: {} },
+      } as GetServerSidePropsContext);
+
+      expect(propsResult).toMatchObject({
+        notFound: true,
+      });
+    });
   });
 });
