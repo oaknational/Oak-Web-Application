@@ -6,32 +6,14 @@ const render = renderWithProvidersByName(["oakTheme"]);
 
 describe("SupportYou", () => {
   it("renders correctly", () => {
-    const { baseElement, getByRole } = render(
-      <SupportYou
-        title="TESTING_HEADING"
-        body="TESTING_CONTENT"
-        link={{
-          href: "#",
-          text: "TESTING_LINK",
-        }}
-        image={{
-          asset: {
-            _id: "ef2a05d634b1ade34d33664c44fa36cb62e1aaba-3000x2001-jpg",
-            url: "https://NEXT_PUBLIC_SANITY_ASSET_CDN_HOST/images/NEXT_PUBLIC_SANITY_PROJECT_ID/NEXT_PUBLIC_SANITY_DATASET/1-300x300.png",
-          },
-          altText: "TEST_ALT",
-        }}
-      />,
-    );
+    const { baseElement, getByRole } = render(<SupportYou />);
     expect(baseElement).toMatchSnapshot();
-    expect(getByRole("heading")).toHaveTextContent("TESTING_HEADING");
-    expect(getByRole("paragraph")).toHaveTextContent("TESTING_CONTENT");
-    expect(getByRole("link")).toHaveTextContent("TESTING_LINK");
-    const imageEl = getByRole("img");
-    expect(imageEl).toHaveAttribute(
-      "src",
-      "https://NEXT_PUBLIC_SANITY_ASSET_CDN_HOST/images/NEXT_PUBLIC_SANITY_PROJECT_ID/NEXT_PUBLIC_SANITY_DATASET/1-300x300.png?w=16&fm=webp&q=80&fit=clip&auto=format",
+    expect(getByRole("heading")).toHaveTextContent(
+      "Discover how Oak can support you",
     );
-    expect(imageEl).toHaveAttribute("alt", "TEST_ALT");
+    expect(getByRole("paragraph")).toHaveTextContent(
+      "To explore the impact Oak’s curricula could have in your school or trust, fill out the form below and one of our experts will be in touch shortly.",
+    );
+    expect(getByRole("link")).toHaveTextContent("Get in touch with an expert");
   });
 });

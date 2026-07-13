@@ -24,12 +24,12 @@ exports[`SupportYou renders correctly 1`] = `
                 <h2
                   class="sc-eldPxv kLaSLy"
                 >
-                  TESTING_HEADING
+                  Discover how Oak can support you
                 </h2>
                 <p
                   class="sc-ikkxIA raLvq"
                 >
-                  TESTING_CONTENT
+                  To explore the impact Oak’s curricula could have in your school or trust, fill out the form below and one of our experts will be in touch shortly.
                 </p>
               </div>
               <div
@@ -45,9 +45,9 @@ exports[`SupportYou renders correctly 1`] = `
                     class="sc-aXZVg kpXzs yellow-shadow"
                   />
                   <a
-                    aria-label="TESTING_LINK (opens in new tab)"
+                    aria-label="Get in touch with an expert (opens in new tab)"
                     class="sc-dcJsrY sc-jXbUNg cLXsQH dglRoS internal-button"
-                    href="#"
+                    href="https://share.hsforms.com/2yBT-92_WT6CvX1b6L3Iw8Qbvumd"
                     target="_blank"
                   >
                     <div
@@ -56,7 +56,7 @@ exports[`SupportYou renders correctly 1`] = `
                       <span
                         class="sc-eqUAAy edqVpV"
                       >
-                        TESTING_LINK
+                        Get in touch with an expert
                       </span>
                       <span
                         class="sc-aXZVg jJQFnr"
@@ -84,16 +84,16 @@ exports[`SupportYou renders correctly 1`] = `
               class="sc-aXZVg sc-gEvEer doMEuo fXHtRp"
             >
               <img
-                alt="TEST_ALT"
+                alt=""
                 class="sc-ba397cd3-0 knxbUF"
                 data-nimg="1"
                 decoding="async"
-                height="0"
+                height="2001"
                 loading="lazy"
-                src="https://NEXT_PUBLIC_SANITY_ASSET_CDN_HOST/images/NEXT_PUBLIC_SANITY_PROJECT_ID/NEXT_PUBLIC_SANITY_DATASET/1-300x300.png?w=16&fm=webp&q=80&fit=clip&auto=format"
-                srcset="https://NEXT_PUBLIC_SANITY_ASSET_CDN_HOST/images/NEXT_PUBLIC_SANITY_PROJECT_ID/NEXT_PUBLIC_SANITY_DATASET/1-300x300.png?w=16&fm=webp&q=80&fit=clip&auto=format 1x"
+                src="https://NEXT_PUBLIC_SANITY_ASSET_CDN_HOST/images/NEXT_PUBLIC_SANITY_PROJECT_ID/NEXT_PUBLIC_SANITY_DATASET/ef2a05d634b1ade34d33664c44fa36cb62e1aaba-3000x2001.jpg?w=3840&h=2561&fm=webp&q=80&fit=clip&auto=format"
+                srcset="https://NEXT_PUBLIC_SANITY_ASSET_CDN_HOST/images/NEXT_PUBLIC_SANITY_PROJECT_ID/NEXT_PUBLIC_SANITY_DATASET/ef2a05d634b1ade34d33664c44fa36cb62e1aaba-3000x2001.jpg?w=3840&h=2561&fm=webp&q=80&fit=clip&auto=format 1x"
                 style="color: transparent;"
-                width="0"
+                width="3000"
               />
             </div>
           </div>

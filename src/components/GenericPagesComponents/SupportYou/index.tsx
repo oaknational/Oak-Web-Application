@@ -11,26 +11,13 @@ import {
 
 import { NewGutterMaxWidth } from "../NewGutterMaxWidth";
 
-import { Image } from "@/common-lib/cms-types";
 import CMSImage from "@/components/SharedComponents/CMSImage/CMSImage";
 
 export type SupportYouProps = {
-  title: string;
   headingTag?: OakHeadingProps["tag"];
-  body: string;
-  link: {
-    href: string;
-    text: string;
-  };
-  image: Image;
 };
-export function SupportYou({
-  title,
-  headingTag = "h2",
-  body,
-  link,
-  image,
-}: Readonly<SupportYouProps>) {
+
+export function SupportYou({ headingTag = "h2" }: Readonly<SupportYouProps>) {
   return (
     <OakBox $pv={["spacing-56", "spacing-80", "spacing-80"]}>
       <NewGutterMaxWidth>
@@ -47,20 +34,24 @@ export function SupportYou({
                   $font={["heading-5", "heading-3", "heading-3"]}
                   tag={headingTag}
                 >
-                  {title}
+                  Discover how Oak can support you
                 </OakHeading>
-                <OakP $font="body-1">{body}</OakP>
+                <OakP $font="body-1">
+                  To explore the impact Oak’s curricula could have in your
+                  school or trust, fill out the form below and one of our
+                  experts will be in touch shortly.
+                </OakP>
               </OakFlex>
               <OakFlex $flexDirection="column">
                 <OakPrimaryButton
                   iconName="external"
                   isTrailingIcon={true}
                   element="a"
-                  href={link.href}
+                  href="https://share.hsforms.com/2yBT-92_WT6CvX1b6L3Iw8Qbvumd"
                   target="_blank"
-                  aria-label={`${link.text} (opens in new tab)`}
+                  aria-label="Get in touch with an expert (opens in new tab)"
                 >
-                  {link.text}
+                  Get in touch with an expert
                 </OakPrimaryButton>
               </OakFlex>
             </OakFlex>
@@ -71,7 +62,13 @@ export function SupportYou({
               $background={"bg-decorative1-subdued"}
               $aspectRatio={"4/3"}
             >
-              <CMSImage $objectFit={"cover"} image={image} />
+              <CMSImage
+                $objectFit={"cover"}
+                image={{
+                  _id: "image-ef2a05d634b1ade34d33664c44fa36cb62e1aaba-3000x2001-jpg",
+                  url: "https://sanity-asset-cdn.thenational.academy/images/cuvjke51/production/ef2a05d634b1ade34d33664c44fa36cb62e1aaba-3000x2001.jpg",
+                }}
+              />
             </OakFlex>
           </OakGridArea>
         </OakGrid>
