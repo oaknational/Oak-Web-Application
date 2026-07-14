@@ -101,6 +101,18 @@ const mockProgrammeDataWithPathways: UserlistContentApiResponse =
     phaseSlug: "secondary",
   });
 
+const mockProgrammeDataWithParentSubject: UserlistContentApiResponse =
+  userListContentFixture("programme1", {
+    keystage: "KS4",
+    keystageSlug: "ks4",
+    subject: "Biology",
+    subjectSlug: "biology",
+    examboard: "AQA",
+    examboardSlug: "aqa",
+    subjectParent: "Science",
+    phaseSlug: "secondary",
+  });
+
 const mockTrackingData = {
   savedFrom: "my-library-save-button" as const,
   keyStageTitle: "Key stage 1" as KeyStageTitleValueType,
@@ -302,6 +314,48 @@ describe("useMyLibrary", () => {
           },
         ],
         subjectCategoryQuery: undefined,
+      },
+    ]);
+  });
+  it("should handle programmes with parent subjects", async () => {
+    mockUseGetEducatorData.mockImplementation(() => ({
+      data: mockProgrammeDataWithParentSubject,
+      error: null,
+      isLoading: false,
+    }));
+    const { result } = renderHook(() => useMyLibrary());
+    expect(result.current.collectionData).toEqual([
+      {
+        keystage: "KS4",
+        keystageSlug: "ks4",
+        programmeSlug: "programme1",
+        programmeTitle: "Biology AQA KS4",
+        subheading: "AQA KS4",
+        subject: "Biology",
+        subjectCategoryQuery: undefined,
+        subjectPhaseSlug: "science-secondary-aqa",
+        subjectSlug: "biology",
+        uniqueProgrammeKey: "programme1",
+        units: [
+          {
+            lessons: [
+              {
+                order: 1,
+                slug: "lesson1",
+                state: "published",
+                title: "Lesson 1",
+              },
+            ],
+            optionalityTitle: null,
+            savedAt: "2023-10-01T00:00:00Z",
+            unitOrder: 1,
+            unitSlug: "unit1",
+            unitTitle: "Unit 1",
+            year: "1",
+            yearOrder: 1,
+            yearSlug: "year-1",
+          },
+        ],
       },
     ]);
   });
