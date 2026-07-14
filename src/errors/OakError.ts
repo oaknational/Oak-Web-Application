@@ -13,6 +13,8 @@ export type ErrorCode =
   | "search/unknown-filter-type"
   | "hubspot/invalid-email"
   | "hubspot/unknown"
+  | "hubspot/contacts"
+  | "hubspot/subscription"
   | "video/unknown"
   | "video/persistent-unknown"
   | "video/fetch-signed-token"
@@ -87,6 +89,14 @@ const errorConfigs: Record<ErrorCode, ErrorConfig> = {
   },
   "hubspot/unknown": {
     message: "Sorry, we couldn't sign you up just now, try again later.",
+    shouldNotify: true,
+  },
+  "hubspot/contacts": {
+    message: "Could not get Hubspot contact information for user",
+    shouldNotify: true,
+  },
+  "hubspot/subscription": {
+    message: "Could not get Hubspot subscription status for user",
     shouldNotify: true,
   },
   "hubspot/not-loaded": {

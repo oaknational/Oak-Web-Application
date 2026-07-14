@@ -1,7 +1,7 @@
 import { VideoLocationValueType } from "@/browser-lib/avo/Avo";
 import errorReporter from "@/common-lib/error-reporter";
 import useAnalytics from "@/context/Analytics/useAnalytics";
-import { PupilPathwayData } from "@/components/PupilComponents/PupilAnalyticsProvider/PupilAnalyticsProvider";
+import { PupilPathwayData } from "@/context/PupilLessonAnalytics/pupilAnalyticsHelpers";
 import { AnalyticsBrowseData } from "@/components/TeacherComponents/types/lesson.types";
 
 const reportError = errorReporter("useVideoTracking");
