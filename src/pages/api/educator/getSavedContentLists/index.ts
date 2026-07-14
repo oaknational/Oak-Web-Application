@@ -55,6 +55,7 @@ async function handleRequest(req: NextApiRequest, res: NextApiResponse) {
             subject: browseData.subject,
             subjectSlug: browseData.subject_slug,
             subjectCategory: useSubjectCategory ? subjectCategory : null,
+            subjectParent: browseData.subject_parent,
             keystage: browseData.keystage,
             keystageSlug: browseData.keystage_slug,
             phaseSlug: browseData.phase_slug,

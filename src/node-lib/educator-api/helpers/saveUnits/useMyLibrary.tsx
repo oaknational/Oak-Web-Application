@@ -21,7 +21,7 @@ import errorReporter from "@/common-lib/error-reporter";
 import useSaveCountContext from "@/context/SaveCount/useSaveCountContext";
 import useAnalytics from "@/context/Analytics/useAnalytics";
 import { CollectionData } from "@/components/TeacherViews/MyLibrary/MyLibrary";
-import { getSubjectPhaseSlug } from "@/components/TeacherComponents/helpers/getSubjectPhaseSlug";
+import { getTeacherSubjectPhaseSlug } from "@/utils/curriculum/slugs";
 
 const reportError = errorReporter("educatorApi");
 
@@ -55,6 +55,7 @@ export const useMyLibrary = () => {
               pathway,
               pathwaySlug,
               subject,
+              subjectParent,
               examboard,
               examboardSlug,
               tier,
@@ -74,11 +75,12 @@ export const useMyLibrary = () => {
               ? `${kebabCase(subjectCategory.toLocaleLowerCase().replace("&", "and"))}`
               : undefined;
 
-            const subjectPhaseSlug = getSubjectPhaseSlug({
-              subject: subjectSlug,
+            const subjectPhaseSlug = getTeacherSubjectPhaseSlug({
+              subjectSlug,
               phaseSlug,
-              examBoardSlug: examboardSlug,
-              pathwaySlug: pathwaySlug,
+              examboardSlug,
+              pathwaySlug,
+              subjectParentTitle: subjectParent,
             });
 
             units.sort(

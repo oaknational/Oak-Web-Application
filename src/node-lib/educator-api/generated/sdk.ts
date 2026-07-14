@@ -24871,6 +24871,7 @@ export type GetUserListContentQuery = {
         unit_order?: any | null;
         year_order?: any | null;
         subject_categories?: any | null;
+        subject_parent?: any | null;
       }>;
     };
   }>;
@@ -25013,6 +25014,7 @@ export const GetUserListContentDocument = gql`
           unit_order: supplementary_data(path: "unit_order")
           year_order: programme_fields(path: "year_display_order")
           subject_categories: unit_data(path: "subjectcategories")
+          subject_parent: programme_fields(path: "subject_parent")
         }
       }
       created_at

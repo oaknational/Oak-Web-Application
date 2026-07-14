@@ -25,6 +25,7 @@ query getUserListContent($userId: String!) {
         unit_order: supplementary_data(path: "unit_order")
         year_order: programme_fields(path: "year_display_order")
         subject_categories: unit_data(path: "subjectcategories")
+        subject_parent: programme_fields(path: "subject_parent")
       }
     }
     created_at
