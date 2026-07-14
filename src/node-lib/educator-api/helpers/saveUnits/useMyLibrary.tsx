@@ -72,7 +72,7 @@ export const useMyLibrary = () => {
 
             const programmeTitle = `${subject}${subjectCategoryHeading && ":"} ${subheading}`;
             const subjectCategoryQuery = subjectCategory
-              ? `${kebabCase(subjectCategory.toLocaleLowerCase().replace("&", "and"))}`
+              ? `${kebabCase(subjectCategory.toLocaleLowerCase().replaceAll(/&/g, "and"))}`
               : undefined;
 
             const subjectPhaseSlug = getTeacherSubjectPhaseSlug({
