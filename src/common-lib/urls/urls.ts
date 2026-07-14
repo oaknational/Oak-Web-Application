@@ -605,7 +605,13 @@ export function resolveProgrammeUnitsHref(
     });
   }
 
-  return `/teachers/programmes/${encodeURIComponent(programmeSlug)}/units`;
+  const path = `/teachers/programmes/${encodeURIComponent(programmeSlug)}/units`;
+  if (!search) {
+    return path;
+  }
+  const queryString = createQueryStringFromObject(search);
+
+  return queryString ? `${path}?${queryString}` : path;
 }
 
 export const OAK_PAGES: {

@@ -364,5 +364,17 @@ describe("urls.ts", () => {
         "/teachers/programmes/not-a-valid-slug/units",
       );
     });
+
+    it("falls back to a raw programme units URL for unparseable slugs with search params", () => {
+      expect(
+        resolveProgrammeUnitsHref("not-a-valid-slug", {
+          year: "year-7",
+          "learning-theme": "reading",
+          category: "grammar",
+        }),
+      ).toBe(
+        "/teachers/programmes/not-a-valid-slug/units?year=year-7&learning-theme=reading&category=grammar",
+      );
+    });
   });
 });
