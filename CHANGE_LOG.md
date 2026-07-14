@@ -1,3 +1,23 @@
+## [1.1120.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.1120.0...v1.1120.1) (2026-07-14)
+
+
+### Bug Fixes
+
+* truncate text in phase picker ([8821576](https://github.com/oaknational/Oak-Web-Application/commit/88215769217f7528b1a22296937d04de56a915eb))
+
+# [1.1120.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1119.0...v1.1120.0) (2026-07-14)
+
+
+### Bug Fixes
+
+* only request hubspot contact details when signed in ([02976fe](https://github.com/oaknational/Oak-Web-Application/commit/02976fe19ce70e78574fdc1ce136eac74cb6bbad))
+* revert allowing 401 error as this path should no longer be reachable outside of a genuine error ([06a1724](https://github.com/oaknational/Oak-Web-Application/commit/06a172462e3f7e80f3899c41dc60fddb9cb6be7d))
+
+
+### Features
+
+*  add additional error codes for hubspot to capture known routes ([644169c](https://github.com/oaknational/Oak-Web-Application/commit/644169c056851ec19dae7ff8417a6fdebfedfe9a))
+
 # [1.1119.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1118.0...v1.1119.0) (2026-07-13)
 
 
