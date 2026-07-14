@@ -187,14 +187,14 @@ exports[`CurriculumTab renders 1`] = `
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c48 {
+.c49 {
   padding-left: 1rem;
   padding-top: 0.75rem;
   padding-bottom: 0.75rem;
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c49 {
+.c50 {
   color: #222222;
   font-family: --var(google-font),Lexend,sans-serif;
   font-weight: 300;
@@ -206,9 +206,7 @@ exports[`CurriculumTab renders 1`] = `
   letter-spacing: -0.005rem;
 }
 
-.c50 {
-  position: absolute;
-  right: 0rem;
+.c51 {
   width: -webkit-fit-content;
   width: -moz-fit-content;
   width: fit-content;
@@ -220,7 +218,7 @@ exports[`CurriculumTab renders 1`] = `
   z-index: 3;
 }
 
-.c52 {
+.c53 {
   position: relative;
   width: -webkit-max-content;
   width: -moz-max-content;
@@ -229,7 +227,7 @@ exports[`CurriculumTab renders 1`] = `
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c54 {
+.c55 {
   position: absolute;
   top: 0rem;
   width: 100%;
@@ -238,7 +236,7 @@ exports[`CurriculumTab renders 1`] = `
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c59 {
+.c60 {
   position: relative;
   width: 1.5rem;
   min-width: 1.5rem;
@@ -248,19 +246,19 @@ exports[`CurriculumTab renders 1`] = `
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c61 {
+.c62 {
   display: none;
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c65 {
+.c66 {
   max-width: 60rem;
   padding-top: 1.5rem;
   display: block;
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c66 {
+.c67 {
   position: fixed;
   right: 0rem;
   width: 100%;
@@ -270,7 +268,7 @@ exports[`CurriculumTab renders 1`] = `
   z-index: 1;
 }
 
-.c69 {
+.c70 {
   position: -webkit-sticky;
   position: sticky;
   bottom: 0rem;
@@ -278,7 +276,7 @@ exports[`CurriculumTab renders 1`] = `
   z-index: 299;
 }
 
-.c70 {
+.c71 {
   color: #222222;
   background: #f2f2f2;
   border-top: 0.063rem solid;
@@ -286,13 +284,13 @@ exports[`CurriculumTab renders 1`] = `
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c71 {
+.c72 {
   margin-left: auto;
   margin-right: auto;
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c72 {
+.c73 {
   padding-top: 1.5rem;
   padding-bottom: 1.5rem;
   margin-left: 1rem;
@@ -300,7 +298,7 @@ exports[`CurriculumTab renders 1`] = `
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c74 {
+.c75 {
   font-family: --var(google-font),Lexend,sans-serif;
   font-weight: 300;
   font-size: 0.875rem;
@@ -311,7 +309,7 @@ exports[`CurriculumTab renders 1`] = `
   letter-spacing: -0.005rem;
 }
 
-.c77 {
+.c78 {
   font-family: --var(google-font),Lexend,sans-serif;
   white-space: nowrap;
 }
@@ -427,14 +425,25 @@ exports[`CurriculumTab renders 1`] = `
   gap: 1rem;
 }
 
-.c51 {
+.c48 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  gap: 0.25rem;
+}
+
+.c52 {
   display: none;
   -webkit-align-content: center;
   -ms-flex-line-pack: center;
   align-content: center;
+  -webkit-align-self: center;
+  -ms-flex-item-align: center;
+  align-self: center;
 }
 
-.c57 {
+.c58 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -453,7 +462,7 @@ exports[`CurriculumTab renders 1`] = `
   gap: 0.5rem;
 }
 
-.c62 {
+.c63 {
   display: none;
   -webkit-flex-direction: row;
   -ms-flex-direction: row;
@@ -472,7 +481,7 @@ exports[`CurriculumTab renders 1`] = `
   flex-grow: 1;
 }
 
-.c63 {
+.c64 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -483,7 +492,7 @@ exports[`CurriculumTab renders 1`] = `
   gap: 0.5rem;
 }
 
-.c67 {
+.c68 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -498,7 +507,7 @@ exports[`CurriculumTab renders 1`] = `
   gap: 0.75rem;
 }
 
-.c73 {
+.c74 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -513,7 +522,7 @@ exports[`CurriculumTab renders 1`] = `
   gap: 1.5rem;
 }
 
-.c76 {
+.c77 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -535,7 +544,7 @@ exports[`CurriculumTab renders 1`] = `
   gap: 0.75rem;
 }
 
-.c78 {
+.c79 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -563,7 +572,7 @@ exports[`CurriculumTab renders 1`] = `
   letter-spacing: 0.0115rem;
 }
 
-.c58 {
+.c59 {
   font-family: --var(google-font),Lexend,sans-serif;
   font-weight: 600;
   font-size: 1rem;
@@ -575,7 +584,7 @@ exports[`CurriculumTab renders 1`] = `
   text-align: left;
 }
 
-.c75 {
+.c76 {
   font-family: --var(google-font),Lexend,sans-serif;
   font-weight: 700;
   font-size: 0.875rem;
@@ -586,7 +595,7 @@ exports[`CurriculumTab renders 1`] = `
   letter-spacing: -0.005rem;
 }
 
-.c55 {
+.c56 {
   background: none;
   color: inherit;
   border: none;
@@ -609,12 +618,12 @@ exports[`CurriculumTab renders 1`] = `
   border-radius: 0.25rem;
 }
 
-.c55:disabled {
+.c56:disabled {
   pointer-events: none;
   cursor: default;
 }
 
-.c80 {
+.c81 {
   background: none;
   color: inherit;
   border: none;
@@ -637,7 +646,7 @@ exports[`CurriculumTab renders 1`] = `
   border-radius: 0.25rem;
 }
 
-.c80:disabled {
+.c81:disabled {
   pointer-events: none;
   cursor: default;
 }
@@ -652,19 +661,19 @@ exports[`CurriculumTab renders 1`] = `
   object-fit: contain;
 }
 
-.c60 {
+.c61 {
   -webkit-filter: invert(98%) sepia(98%) saturate(0%) hue-rotate(328deg) brightness(102%) contrast(102%);
   filter: invert(98%) sepia(98%) saturate(0%) hue-rotate(328deg) brightness(102%) contrast(102%);
   object-fit: contain;
 }
 
-.c56 {
+.c57 {
   position: relative;
   width: 100%;
   height: 100%;
 }
 
-.c56:hover {
+.c57:hover {
   -webkit-text-decoration: underline;
   text-decoration: underline;
   color: #ffffff;
@@ -672,37 +681,37 @@ exports[`CurriculumTab renders 1`] = `
   border-color: #575757;
 }
 
-.c56:hover [data-state="selected"] {
+.c57:hover [data-state="selected"] {
   display: none;
 }
 
-.c56:active {
+.c57:active {
   background: #222222;
   border-color: #222222;
   color: #ffffff;
 }
 
-.c56:active [data-state="selected"] {
+.c57:active [data-state="selected"] {
   display: none;
 }
 
-.c56:disabled {
+.c57:disabled {
   background: #808080;
   border-color: #808080;
   color: #ffffff;
 }
 
-.c56:disabled [data-state="selected"] {
+.c57:disabled [data-state="selected"] {
   display: none;
 }
 
-.c81 {
+.c82 {
   position: relative;
   width: 100%;
   height: 100%;
 }
 
-.c81:hover {
+.c82:hover {
   -webkit-text-decoration: underline;
   text-decoration: underline;
   color: #222222;
@@ -710,52 +719,52 @@ exports[`CurriculumTab renders 1`] = `
   border-color: #222222;
 }
 
-.c81:hover [data-state="selected"] {
+.c82:hover [data-state="selected"] {
   display: none;
 }
 
-.c81:active {
+.c82:active {
   background: #ffffff;
   border-color: #222222;
   color: #222222;
 }
 
-.c81:active [data-state="selected"] {
+.c82:active [data-state="selected"] {
   display: none;
 }
 
-.c81:disabled {
+.c82:disabled {
   background: #e4e4e4;
   border-color: #808080;
   color: #808080;
 }
 
-.c81:disabled [data-state="selected"] {
+.c82:disabled [data-state="selected"] {
   display: none;
 }
 
-.c53 .grey-shadow:has(+ * + .internal-button:focus-visible) {
+.c54 .grey-shadow:has(+ * + .internal-button:focus-visible) {
   box-shadow: 0 0 0 0.3rem rgba(87,87,87,100%);
 }
 
-.c53 .yellow-shadow:has(+ .internal-button:focus-visible) {
+.c54 .yellow-shadow:has(+ .internal-button:focus-visible) {
   box-shadow: 0 0 0 0.125rem rgba(255,229,85,100%);
 }
 
-.c53 .yellow-shadow:has(+ .internal-button:hover),
-.c53 .yellow-shadow:has(+ .internal-button:hover:not(:focus-visible,:active)) {
+.c54 .yellow-shadow:has(+ .internal-button:hover),
+.c54 .yellow-shadow:has(+ .internal-button:hover:not(:focus-visible,:active)) {
   box-shadow: 0.125rem 0.125rem 0 rgba(255,229,85,100%);
 }
 
-.c53 .grey-shadow:has(+ * + .internal-button:hover) {
+.c54 .grey-shadow:has(+ * + .internal-button:hover) {
   box-shadow: none;
 }
 
-.c53 .grey-shadow:has(+ * + .internal-button:active) {
+.c54 .grey-shadow:has(+ * + .internal-button:active) {
   box-shadow: 0.25rem 0.25rem 0 rgba(87,87,87,100%);
 }
 
-.c53 .yellow-shadow:has(+ .internal-button:active) {
+.c54 .yellow-shadow:has(+ .internal-button:active) {
   box-shadow: 0.125rem 0.125rem 0 rgba(255,229,85,100%);
 }
 
@@ -909,7 +918,7 @@ exports[`CurriculumTab renders 1`] = `
   filter: invert(54%) sepia(0%) saturate(38%) hue-rotate(176deg) brightness(92%) contrast(91%);
 }
 
-.c79 {
+.c80 {
   display: inline;
   -webkit-align-items: center;
   -webkit-box-align: center;
@@ -942,42 +951,42 @@ exports[`CurriculumTab renders 1`] = `
   overflow-wrap: break-word;
 }
 
-.c79 .c24 {
+.c80 .c24 {
   -webkit-filter: invert(10%) sepia(1%) saturate(236%) hue-rotate(314deg) brightness(95%) contrast(91%);
   filter: invert(10%) sepia(1%) saturate(236%) hue-rotate(314deg) brightness(95%) contrast(91%);
   display: inline-block;
   vertical-align: text-top;
 }
 
-.c79:focus-visible {
+.c80:focus-visible {
   box-shadow: 0 0 0 0.125rem rgba(255,229,85,100%), 0 0 0 0.3rem rgba(87,87,87,100%);
 }
 
-.c79:visited {
+.c80:visited {
   color: #222222;
 }
 
-.c79:visited .c24 {
+.c80:visited .c24 {
   -webkit-filter: invert(10%) sepia(1%) saturate(236%) hue-rotate(314deg) brightness(95%) contrast(91%);
   filter: invert(10%) sepia(1%) saturate(236%) hue-rotate(314deg) brightness(95%) contrast(91%);
 }
 
-.c79:active {
+.c80:active {
   color: #222222;
   outline: 1px solid #222222;
 }
 
-.c79:active .c24 {
+.c80:active .c24 {
   -webkit-filter: invert(10%) sepia(1%) saturate(236%) hue-rotate(314deg) brightness(95%) contrast(91%);
   filter: invert(10%) sepia(1%) saturate(236%) hue-rotate(314deg) brightness(95%) contrast(91%);
 }
 
-.c79[disabled] {
+.c80[disabled] {
   cursor: not-allowed;
   color: #808080;
 }
 
-.c79[disabled] .c24 {
+.c80[disabled] .c24 {
   -webkit-filter: invert(54%) sepia(0%) saturate(38%) hue-rotate(176deg) brightness(92%) contrast(91%);
   filter: invert(54%) sepia(0%) saturate(38%) hue-rotate(176deg) brightness(92%) contrast(91%);
 }
@@ -1003,7 +1012,7 @@ exports[`CurriculumTab renders 1`] = `
   box-shadow: none;
 }
 
-.c64 {
+.c65 {
   object-fit: contain;
   width: 100%;
   height: auto;
@@ -1014,18 +1023,18 @@ exports[`CurriculumTab renders 1`] = `
   transform: none;
 }
 
-.c64::-webkit-scrollbar-track {
+.c65::-webkit-scrollbar-track {
   border-radius: 15px;
   background-color: #ffffff;
 }
 
-.c64::-webkit-scrollbar {
+.c65::-webkit-scrollbar {
   width: 10px;
   border-radius: 15px;
   background-color: #ffffff;
 }
 
-.c64::-webkit-scrollbar-thumb {
+.c65::-webkit-scrollbar-thumb {
   border-radius: 15px;
   background-color: #999999;
 }
@@ -1043,7 +1052,7 @@ exports[`CurriculumTab renders 1`] = `
   transition: all 0.3s ease;
 }
 
-.c68 {
+.c69 {
   top: 152px;
 }
 
@@ -1051,9 +1060,14 @@ exports[`CurriculumTab renders 1`] = `
   box-shadow: none;
 }
 
+.c38:has([data-testid="lot-picker-view-curriculum-button"]:focus-visible) {
+  box-shadow: none;
+}
+
 .c39 {
   background: none;
   width: 100%;
+  min-width: 0;
   border: none;
   padding: 0px;
   outline: none;
@@ -1156,129 +1170,8 @@ exports[`CurriculumTab renders 1`] = `
 }
 
 @media (min-width:750px) {
-  .c50 {
+  .c51 {
     max-width: 10rem;
-  }
-}
-
-@media (min-width:750px) {
-  .c50 {
-    display: block;
-  }
-}
-
-@media (min-width:750px) {
-  .c61 {
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: -ms-flexbox;
-    display: flex;
-  }
-}
-
-@media (min-width:1280px) {
-  .c61 {
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: -ms-flexbox;
-    display: flex;
-  }
-}
-
-@media (min-width:750px) {
-  .c65 {
-    display: block;
-  }
-}
-
-@media (min-width:1280px) {
-  .c65 {
-    display: none;
-  }
-}
-
-@media (min-width:750px) {
-  .c66 {
-    right: 1.5rem;
-  }
-}
-
-@media (min-width:750px) {
-  .c66 {
-    width: -webkit-max-content;
-    width: -moz-max-content;
-    width: max-content;
-  }
-}
-
-@media (min-width:750px) {
-  .c66 {
-    padding-left: 0rem;
-  }
-}
-
-@media (min-width:750px) {
-  .c66 {
-    padding-right: 0rem;
-  }
-}
-
-@media (min-width:750px) {
-  .c72 {
-    margin-left: 1.5rem;
-  }
-}
-
-@media (min-width:1280px) {
-  .c72 {
-    margin-left: 3.5rem;
-  }
-}
-
-@media (min-width:750px) {
-  .c72 {
-    margin-right: 1.5rem;
-  }
-}
-
-@media (min-width:1280px) {
-  .c72 {
-    margin-right: 3.5rem;
-  }
-}
-
-@media (min-width:750px) {
-  .c74 {
-    font-weight: 300;
-  }
-}
-
-@media (min-width:750px) {
-  .c74 {
-    font-size: 1rem;
-  }
-}
-
-@media (min-width:750px) {
-  .c74 {
-    line-height: 1.5rem;
-  }
-}
-
-@media (min-width:750px) {
-  .c74 {
-    -webkit-letter-spacing: -0.005rem;
-    -moz-letter-spacing: -0.005rem;
-    -ms-letter-spacing: -0.005rem;
-    letter-spacing: -0.005rem;
-  }
-}
-
-@media (min-width:750px) {
-  .c32 {
-    -webkit-flex-direction: row;
-    -ms-flex-direction: row;
-    flex-direction: row;
   }
 }
 
@@ -1307,93 +1200,70 @@ exports[`CurriculumTab renders 1`] = `
 }
 
 @media (min-width:750px) {
+  .c66 {
+    display: block;
+  }
+}
+
+@media (min-width:1280px) {
+  .c66 {
+    display: none;
+  }
+}
+
+@media (min-width:750px) {
   .c67 {
-    -webkit-align-items: flex-end;
-    -webkit-box-align: flex-end;
-    -ms-flex-align: flex-end;
-    align-items: flex-end;
+    right: 1.5rem;
+  }
+}
+
+@media (min-width:750px) {
+  .c67 {
+    width: -webkit-max-content;
+    width: -moz-max-content;
+    width: max-content;
+  }
+}
+
+@media (min-width:750px) {
+  .c67 {
+    padding-left: 0rem;
+  }
+}
+
+@media (min-width:750px) {
+  .c67 {
+    padding-right: 0rem;
   }
 }
 
 @media (min-width:750px) {
   .c73 {
-    -webkit-flex-direction: column;
-    -ms-flex-direction: column;
-    flex-direction: column;
+    margin-left: 1.5rem;
   }
 }
 
 @media (min-width:1280px) {
   .c73 {
-    -webkit-flex-direction: row;
-    -ms-flex-direction: row;
-    flex-direction: row;
+    margin-left: 3.5rem;
   }
 }
 
 @media (min-width:750px) {
   .c73 {
-    -webkit-align-items: flex-start;
-    -webkit-box-align: flex-start;
-    -ms-flex-align: flex-start;
-    align-items: flex-start;
+    margin-right: 1.5rem;
   }
 }
 
 @media (min-width:1280px) {
   .c73 {
-    -webkit-align-items: center;
-    -webkit-box-align: center;
-    -ms-flex-align: center;
-    align-items: center;
-  }
-}
-
-@media (min-width:750px) {
-  .c73 {
-    gap: 1.5rem;
-  }
-}
-
-@media (min-width:1280px) {
-  .c73 {
-    gap: 2rem;
-  }
-}
-
-@media (min-width:750px) {
-  .c76 {
-    -webkit-flex-direction: row;
-    -ms-flex-direction: row;
-    flex-direction: row;
-  }
-}
-
-@media (min-width:750px) {
-  .c76 {
-    -webkit-flex-wrap: wrap;
-    -ms-flex-wrap: wrap;
-    flex-wrap: wrap;
-  }
-}
-
-@media (min-width:1280px) {
-  .c76 {
-    -webkit-flex-wrap: nowrap;
-    -ms-flex-wrap: nowrap;
-    flex-wrap: nowrap;
-  }
-}
-
-@media (min-width:750px) {
-  .c76 {
-    gap: 2rem;
+    margin-right: 3.5rem;
   }
 }
 
 @media (min-width:750px) {
   .c75 {
-    font-weight: 700;
+    font-weight: 300;
   }
 }
 
@@ -1411,6 +1281,150 @@ exports[`CurriculumTab renders 1`] = `
 
 @media (min-width:750px) {
   .c75 {
+    -webkit-letter-spacing: -0.005rem;
+    -moz-letter-spacing: -0.005rem;
+    -ms-letter-spacing: -0.005rem;
+    letter-spacing: -0.005rem;
+  }
+}
+
+@media (min-width:750px) {
+  .c32 {
+    -webkit-flex-direction: row;
+    -ms-flex-direction: row;
+    flex-direction: row;
+  }
+}
+
+@media (min-width:750px) {
+  .c52 {
+    display: block;
+  }
+}
+
+@media (min-width:750px) {
+  .c63 {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+  }
+}
+
+@media (min-width:1280px) {
+  .c63 {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+  }
+}
+
+@media (min-width:750px) {
+  .c68 {
+    -webkit-align-items: flex-end;
+    -webkit-box-align: flex-end;
+    -ms-flex-align: flex-end;
+    align-items: flex-end;
+  }
+}
+
+@media (min-width:750px) {
+  .c74 {
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+  }
+}
+
+@media (min-width:1280px) {
+  .c74 {
+    -webkit-flex-direction: row;
+    -ms-flex-direction: row;
+    flex-direction: row;
+  }
+}
+
+@media (min-width:750px) {
+  .c74 {
+    -webkit-align-items: flex-start;
+    -webkit-box-align: flex-start;
+    -ms-flex-align: flex-start;
+    align-items: flex-start;
+  }
+}
+
+@media (min-width:1280px) {
+  .c74 {
+    -webkit-align-items: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+  }
+}
+
+@media (min-width:750px) {
+  .c74 {
+    gap: 1.5rem;
+  }
+}
+
+@media (min-width:1280px) {
+  .c74 {
+    gap: 2rem;
+  }
+}
+
+@media (min-width:750px) {
+  .c77 {
+    -webkit-flex-direction: row;
+    -ms-flex-direction: row;
+    flex-direction: row;
+  }
+}
+
+@media (min-width:750px) {
+  .c77 {
+    -webkit-flex-wrap: wrap;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+  }
+}
+
+@media (min-width:1280px) {
+  .c77 {
+    -webkit-flex-wrap: nowrap;
+    -ms-flex-wrap: nowrap;
+    flex-wrap: nowrap;
+  }
+}
+
+@media (min-width:750px) {
+  .c77 {
+    gap: 2rem;
+  }
+}
+
+@media (min-width:750px) {
+  .c76 {
+    font-weight: 700;
+  }
+}
+
+@media (min-width:750px) {
+  .c76 {
+    font-size: 1rem;
+  }
+}
+
+@media (min-width:750px) {
+  .c76 {
+    line-height: 1.5rem;
+  }
+}
+
+@media (min-width:750px) {
+  .c76 {
     -webkit-letter-spacing: -0.005rem;
     -moz-letter-spacing: -0.005rem;
     -ms-letter-spacing: -0.005rem;
@@ -1490,8 +1504,8 @@ exports[`CurriculumTab renders 1`] = `
 }
 
 @media (hover:hover) {
-  .c79:hover,
-  .c79:visited:hover {
+  .c80:hover,
+  .c80:visited:hover {
     color: #222222;
     -webkit-text-decoration: underline;
     text-decoration: underline;
@@ -1499,15 +1513,15 @@ exports[`CurriculumTab renders 1`] = `
     text-decoration-thickness: 18%;
   }
 
-  .c79:hover .c24,
-  .c79:visited:hover .c24 {
+  .c80:hover .c24,
+  .c80:visited:hover .c24 {
     -webkit-filter: invert(10%) sepia(1%) saturate(236%) hue-rotate(314deg) brightness(95%) contrast(91%);
     filter: invert(10%) sepia(1%) saturate(236%) hue-rotate(314deg) brightness(95%) contrast(91%);
   }
 }
 
 @media (min-width:750px) {
-  .c64 {
+  .c65 {
     -webkit-transform: none;
     -ms-transform: none;
     transform: none;
@@ -1515,7 +1529,7 @@ exports[`CurriculumTab renders 1`] = `
 }
 
 @media (min-width:1280px) {
-  .c64 {
+  .c65 {
     -webkit-transform: rotate(-2deg);
     -ms-transform: rotate(-2deg);
     transform: rotate(-2deg);
@@ -1733,68 +1747,72 @@ exports[`CurriculumTab renders 1`] = `
                             <div
                               class="c47 c37 c38"
                             >
-                              <button
-                                aria-expanded="false"
-                                class="c39"
-                                data-testid="phase-picker-button"
-                                title="Phase"
+                              <div
+                                class="c5 c48"
                               >
-                                <div
-                                  class="c48"
+                                <button
+                                  aria-expanded="false"
+                                  class="c39"
+                                  data-testid="phase-picker-button"
+                                  title="Phase"
                                 >
-                                  <span
-                                    class="c41"
-                                    data-testid="phase-picker-button-heading"
-                                  >
-                                    School phase
-                                  </span>
                                   <div
                                     class="c49"
                                   >
-                                    Select
-                                  </div>
-                                </div>
-                              </button>
-                            </div>
-                            <div
-                              class="c50 c51"
-                            >
-                              <div
-                                class="c52 c53"
-                              >
-                                <div
-                                  class="c54 grey-shadow"
-                                />
-                                <div
-                                  class="c54 yellow-shadow"
-                                />
-                                <button
-                                  class="c55 c56 internal-button"
-                                  data-testid="lot-picker-view-curriculum-button"
-                                >
-                                  <div
-                                    class="c5 c57"
-                                  >
                                     <span
-                                      class="c58"
+                                      class="c41"
+                                      data-testid="phase-picker-button-heading"
                                     >
-                                      View
+                                      School phase
                                     </span>
-                                    <span
-                                      class="c59"
+                                    <div
+                                      class="c50"
                                     >
-                                      <img
-                                        alt=""
-                                        class="c60"
-                                        data-nimg="fill"
-                                        decoding="async"
-                                        loading="lazy"
-                                        src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1707149070/icons/fv0z57zerrioft52dd9n.svg"
-                                        style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
-                                      />
-                                    </span>
+                                      Select
+                                    </div>
                                   </div>
                                 </button>
+                                <div
+                                  class="c51 c52"
+                                >
+                                  <div
+                                    class="c53 c54"
+                                  >
+                                    <div
+                                      class="c55 grey-shadow"
+                                    />
+                                    <div
+                                      class="c55 yellow-shadow"
+                                    />
+                                    <button
+                                      class="c56 c57 internal-button"
+                                      data-testid="lot-picker-view-curriculum-button"
+                                    >
+                                      <div
+                                        class="c5 c58"
+                                      >
+                                        <span
+                                          class="c59"
+                                        >
+                                          View
+                                        </span>
+                                        <span
+                                          class="c60"
+                                        >
+                                          <img
+                                            alt=""
+                                            class="c61"
+                                            data-nimg="fill"
+                                            decoding="async"
+                                            loading="lazy"
+                                            src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1707149070/icons/fv0z57zerrioft52dd9n.svg"
+                                            style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                                          />
+                                        </span>
+                                      </div>
+                                    </button>
+                                  </div>
+                                </div>
                               </div>
                             </div>
                           </div>
@@ -1806,14 +1824,14 @@ exports[`CurriculumTab renders 1`] = `
               </div>
             </div>
             <div
-              class="c61 c62"
+              class="c62 c63"
             >
               <div
-                class="c5 c63"
+                class="c5 c64"
               >
                 <img
                   alt=""
-                  class="c64"
+                  class="c65"
                   data-nimg="1"
                   decoding="async"
                   height="628"
@@ -1826,7 +1844,7 @@ exports[`CurriculumTab renders 1`] = `
             </div>
           </div>
           <div
-            class="c65"
+            class="c66"
           >
             <nav
               aria-labelledby="choose-curriculum-label-small"
@@ -1924,68 +1942,72 @@ exports[`CurriculumTab renders 1`] = `
                         <div
                           class="c47 c37 c38"
                         >
-                          <button
-                            aria-expanded="false"
-                            class="c39"
-                            data-testid="phase-picker-button"
-                            title="Phase"
+                          <div
+                            class="c5 c48"
                           >
-                            <div
-                              class="c48"
+                            <button
+                              aria-expanded="false"
+                              class="c39"
+                              data-testid="phase-picker-button"
+                              title="Phase"
                             >
-                              <span
-                                class="c41"
-                                data-testid="phase-picker-button-heading"
-                              >
-                                School phase
-                              </span>
                               <div
                                 class="c49"
                               >
-                                Select
-                              </div>
-                            </div>
-                          </button>
-                        </div>
-                        <div
-                          class="c50 c51"
-                        >
-                          <div
-                            class="c52 c53"
-                          >
-                            <div
-                              class="c54 grey-shadow"
-                            />
-                            <div
-                              class="c54 yellow-shadow"
-                            />
-                            <button
-                              class="c55 c56 internal-button"
-                              data-testid="lot-picker-view-curriculum-button"
-                            >
-                              <div
-                                class="c5 c57"
-                              >
                                 <span
-                                  class="c58"
+                                  class="c41"
+                                  data-testid="phase-picker-button-heading"
                                 >
-                                  View
+                                  School phase
                                 </span>
-                                <span
-                                  class="c59"
+                                <div
+                                  class="c50"
                                 >
-                                  <img
-                                    alt=""
-                                    class="c60"
-                                    data-nimg="fill"
-                                    decoding="async"
-                                    loading="lazy"
-                                    src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1707149070/icons/fv0z57zerrioft52dd9n.svg"
-                                    style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
-                                  />
-                                </span>
+                                  Select
+                                </div>
                               </div>
                             </button>
+                            <div
+                              class="c51 c52"
+                            >
+                              <div
+                                class="c53 c54"
+                              >
+                                <div
+                                  class="c55 grey-shadow"
+                                />
+                                <div
+                                  class="c55 yellow-shadow"
+                                />
+                                <button
+                                  class="c56 c57 internal-button"
+                                  data-testid="lot-picker-view-curriculum-button"
+                                >
+                                  <div
+                                    class="c5 c58"
+                                  >
+                                    <span
+                                      class="c59"
+                                    >
+                                      View
+                                    </span>
+                                    <span
+                                      class="c60"
+                                    >
+                                      <img
+                                        alt=""
+                                        class="c61"
+                                        data-nimg="fill"
+                                        decoding="async"
+                                        loading="lazy"
+                                        src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1707149070/icons/fv0z57zerrioft52dd9n.svg"
+                                        style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                                      />
+                                    </span>
+                                  </div>
+                                </button>
+                              </div>
+                            </div>
                           </div>
                         </div>
                       </div>
@@ -1999,27 +2021,27 @@ exports[`CurriculumTab renders 1`] = `
       </div>
       <div
         aria-live="polite"
-        class="c66 c67 c68"
+        class="c67 c68 c69"
       />
     </div>
     <div
-      class="c69"
+      class="c70"
     >
       <div
-        class="c70"
+        class="c71"
         data-testid="cookie-banner"
       >
         <div
-          class="c71"
+          class="c72"
         >
           <div
-            class="c72 c73"
+            class="c73 c74"
           >
             <div
-              class="c74"
+              class="c75"
             >
               <strong
-                class="c75"
+                class="c76"
               >
                 This site uses cookies to store information on your computer.
               </strong>
@@ -2027,13 +2049,13 @@ exports[`CurriculumTab renders 1`] = `
               Some of these cookies are essential, while others help us to improve your experience by providing insights into how the site is being used.
             </div>
             <div
-              class="c5 c76"
+              class="c5 c77"
             >
               <div
-                class="c77 c78"
+                class="c78 c79"
               >
                 <button
-                  class="c79"
+                  class="c80"
                   data-testid="cookie-banner-reject"
                   type="button"
                 >
@@ -2045,22 +2067,22 @@ exports[`CurriculumTab renders 1`] = `
                 </button>
               </div>
               <div
-                class="c52 c53"
+                class="c53 c54"
               >
                 <div
-                  class="c54 grey-shadow"
+                  class="c55 grey-shadow"
                 />
                 <div
-                  class="c54 yellow-shadow"
+                  class="c55 yellow-shadow"
                 />
                 <button
-                  class="c80 c81 internal-button"
+                  class="c81 c82 internal-button"
                 >
                   <div
-                    class="c5 c57"
+                    class="c5 c58"
                   >
                     <span
-                      class="c58"
+                      class="c59"
                     >
                       Cookie settings
                     </span>
@@ -2068,23 +2090,23 @@ exports[`CurriculumTab renders 1`] = `
                 </button>
               </div>
               <div
-                class="c52 c53"
+                class="c53 c54"
               >
                 <div
-                  class="c54 grey-shadow"
+                  class="c55 grey-shadow"
                 />
                 <div
-                  class="c54 yellow-shadow"
+                  class="c55 yellow-shadow"
                 />
                 <button
-                  class="c55 c56 internal-button"
+                  class="c56 c57 internal-button"
                   data-testid="cookie-banner-accept"
                 >
                   <div
-                    class="c5 c57"
+                    class="c5 c58"
                   >
                     <span
-                      class="c58"
+                      class="c59"
                     >
                       Accept all cookies
                     </span>
