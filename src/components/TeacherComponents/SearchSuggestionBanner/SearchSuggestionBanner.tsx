@@ -8,7 +8,7 @@ import styled from "styled-components";
 
 import { getSearchSuggestionBannerProps } from "./getSearchSuggestionBannerProps";
 
-import { resolveProgrammeUnitsHref } from "@/common-lib/urls";
+import { resolveOakHref, resolveProgrammeUnitsHref } from "@/common-lib/urls";
 import { SearchIntent } from "@/common-lib/schemas/search-intent";
 import useAnalytics from "@/context/Analytics/useAnalytics";
 import { KeyStageTitleValueType } from "@/browser-lib/avo/Avo";
@@ -53,7 +53,7 @@ export const SearchSuggestionBanner = (props: {
   // to direct to core or gcse.
   const getLinkHref = (link: KsLinkProps) => {
     if (!link.pathwayTitle) {
-      return "/";
+      return resolveOakHref({ page: "home" });
     }
     return resolveProgrammeUnitsHref(
       link.pathwayTitle === "Core"
