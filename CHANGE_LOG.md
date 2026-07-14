@@ -1,3 +1,10 @@
+## [1.1120.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.1120.0...v1.1120.1) (2026-07-14)
+
+
+### Bug Fixes
+
+* truncate text in phase picker ([8821576](https://github.com/oaknational/Oak-Web-Application/commit/88215769217f7528b1a22296937d04de56a915eb))
+
 # [1.1120.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1119.0...v1.1120.0) (2026-07-14)
 
 
