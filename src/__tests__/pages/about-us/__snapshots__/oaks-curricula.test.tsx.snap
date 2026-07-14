@@ -2768,6 +2768,27 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
   margin-top: 2rem;
 }
 
+.c153:hover {
+  box-shadow: 2px 2px 0 0 #ffe555;
+}
+
+.c148 {
+  padding: 0;
+  margin: 0;
+}
+
+.c147 {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  row-gap: 1rem;
+  -webkit-column-gap: 1rem;
+  column-gap: 1rem;
+  grid-auto-rows: 1fr;
+  grid-template-columns: repeat(3,1fr);
+}
+
 .c182 {
   -webkit-transition: all 0.3s ease;
   transition: all 0.3s ease;
@@ -2848,27 +2869,6 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
 .c175::-webkit-scrollbar-thumb {
   border-radius: 15px;
   background-color: #999999;
-}
-
-.c153:hover {
-  box-shadow: 2px 2px 0 0 #ffe555;
-}
-
-.c148 {
-  padding: 0;
-  margin: 0;
-}
-
-.c147 {
-  margin: 0;
-  padding: 0;
-  list-style: none;
-  display: grid;
-  row-gap: 1rem;
-  -webkit-column-gap: 1rem;
-  column-gap: 1rem;
-  grid-auto-rows: 1fr;
-  grid-template-columns: repeat(3,1fr);
 }
 
 .c171 {
