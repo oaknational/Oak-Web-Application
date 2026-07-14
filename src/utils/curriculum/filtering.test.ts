@@ -14,7 +14,7 @@ import {
   shouldDisplayFilter,
   subjectCategoryForFilter,
   scopeYearsToKeystageFilter,
-} from "./filtersUrl";
+} from "./filtering";
 import { CurriculumFilters, YearData, Unit } from "./types";
 
 import { createUnit } from "@/fixtures/curriculum/unit";

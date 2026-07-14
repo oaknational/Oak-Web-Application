@@ -6,7 +6,7 @@ import {
 import { useId } from "react";
 
 import { Thread, CurriculumFilters } from "@/utils/curriculum/types";
-import { highlightedUnitCount } from "@/utils/curriculum/filtersUrl";
+import { highlightedUnitCount } from "@/utils/curriculum/filtering";
 import { CurriculumUnitsFormattedData } from "@/pages-helpers/curriculum/docx/tab-helpers";
 import { ComponentTypeValueType } from "@/browser-lib/avo/Avo";
 import { pluralizeUnits } from "@/utils/curriculum/formatting";

@@ -10,7 +10,7 @@ import { CurriculumFilters } from "@/utils/curriculum/types";
 import {
   getFilterData,
   scopeYearsToKeystageFilter,
-} from "@/utils/curriculum/filtersUrl";
+} from "@/utils/curriculum/filtering";
 import {
   byKeyStageSlug,
   presentAtKeyStageSlugs,

@@ -6,7 +6,7 @@ import { CurriculumFilters } from "@/utils/curriculum/types";
 import {
   mergeInFilterParams,
   filtersToQuery,
-} from "@/utils/curriculum/filtersUrl";
+} from "@/utils/curriculum/filtering";
 
 export function useFilters(
   defaultFilter: CurriculumFilters,

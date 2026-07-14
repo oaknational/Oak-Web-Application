@@ -11,7 +11,7 @@ import { getValidSubjectIconName } from "@/utils/getValidSubjectIconName";
 import {
   getFilterData,
   scopeYearsToKeystageFilter,
-} from "@/utils/curriculum/filtersUrl";
+} from "@/utils/curriculum/filtering";
 import {
   byKeyStageSlug,
   presentAtKeyStageSlugs,

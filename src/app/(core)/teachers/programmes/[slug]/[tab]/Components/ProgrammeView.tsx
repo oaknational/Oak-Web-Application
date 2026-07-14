@@ -50,7 +50,7 @@ import type { Ks4Option } from "@/node-lib/curriculum-api-2023/queries/curriculu
 import { resolveOakHref } from "@/common-lib/urls";
 import { CurriculumOverviewMVData } from "@/node-lib/curriculum-api-2023";
 import { validateSearchParams } from "@/utils/validateProgrammePageSearchParams";
-import { getDefaultFilter } from "@/utils/curriculum/filtersUrl";
+import { getDefaultFilter } from "@/utils/curriculum/filtering";
 
 type ProgrammePageProps = {
   subjectPhaseSlug: string;
