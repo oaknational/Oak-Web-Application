@@ -1,6 +1,5 @@
 import { FC, useEffect, useState } from "react";
 import { OakFlex, OakSecondaryButton } from "@oaknational/oak-components";
-import { useFeatureFlagEnabled } from "posthog-js/react";
 
 import { SharePageNumberedHeading } from "../SharePageNumberedHeading/SharePageNumberedHeading";
 
@@ -15,20 +14,15 @@ import { LessonSection } from "@/components/PupilComponents/lessonSections";
 export const SHARE_WITH_PUPILS_HEADING_ID = "share-with-pupils-heading";
 
 const LessonShareLinks: FC<{
-  disabled: boolean;
   lessonSlug: string;
   selectedActivities: LessonSection[];
   schoolUrn?: string;
   onSubmit: (shareMedium: ShareMediumValueType) => boolean;
-  onGoogleClassroomClick?: () => void;
 }> = (props) => {
   const lessonShareVariantSlug =
     getLessonShareVariantSlug(props.selectedActivities) || "";
   const [isShareSuccessful, setIsShareSuccessful] = useState(false);
   const { setCurrentToastProps } = useOakNotificationsContext();
-  const useGoogleClassroomAddon = useFeatureFlagEnabled(
-    "google-classroom-free-tier",
-  );
 
   useEffect(() => {
     setIsShareSuccessful(false);
@@ -36,9 +30,7 @@ const LessonShareLinks: FC<{
 
   const linkShareOptions = [
     shareLinkConfig.microsoftTeams,
-    ...(props.onGoogleClassroomClick && useGoogleClassroomAddon
-      ? []
-      : [shareLinkConfig.googleClassroom]),
+    shareLinkConfig.googleClassroom,
   ];
 
   const onShareClick = (link: ShareLinkConfig) => {
@@ -117,21 +109,6 @@ const LessonShareLinks: FC<{
             ? "Link copied to clipboard"
             : shareLinkConfig.copy.name}
         </OakSecondaryButton>
-
-        {props.onGoogleClassroomClick && useGoogleClassroomAddon && (
-          <OakSecondaryButton
-            iconName={shareLinkConfig.googleClassroom.icon}
-            isTrailingIcon={true}
-            onClick={() => {
-              props.onSubmit(shareLinkConfig.googleClassroom.avoMedium);
-              props.onGoogleClassroomClick!();
-            }}
-            disabled={props.disabled}
-            aria-label="Assign to Google Classroom"
-          >
-            {shareLinkConfig.googleClassroom.name}
-          </OakSecondaryButton>
-        )}
 
         {linkShareOptions.map((link) => (
           <OakSecondaryButton

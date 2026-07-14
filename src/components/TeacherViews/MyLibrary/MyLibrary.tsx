@@ -18,7 +18,7 @@ import {
   PathwayValueType,
   TierNameValueType,
 } from "@/browser-lib/avo/Avo";
-import { resolveProgrammeUnitsHref } from "@/common-lib/urls";
+import { resolveOakHref } from "@/common-lib/urls";
 import MyLibraryProgrammeCard from "@/components/TeacherComponents/MyLibraryProgrammeCard/MyLibraryProgrammeCard";
 import { getValidSubjectIconName } from "@/utils/getValidSubjectIconName";
 import useAnalytics from "@/context/Analytics/useAnalytics";
@@ -26,13 +26,14 @@ import useAnalytics from "@/context/Analytics/useAnalytics";
 export type CollectionData = Array<{
   subject: string;
   subjectSlug: string;
+  subjectPhaseSlug: string;
   subheading: string;
   keystage: string;
   keystageSlug: string;
   units: Array<MyLibraryUnit>;
   programmeSlug: string;
   programmeTitle: string;
-  searchQuery: string | null;
+  subjectCategoryQuery?: string;
   uniqueProgrammeKey: string;
 }>;
 
@@ -101,10 +102,15 @@ export default function MyLibrary(props: Readonly<MyLibraryProps>) {
                 key={collection.uniqueProgrammeKey}
                 programmeTitle={collection.programmeTitle}
                 anchorId={collection.uniqueProgrammeKey}
-                programmeHref={resolveProgrammeUnitsHref(
-                  collection.programmeSlug,
-                  { category: collection.searchQuery },
-                )}
+                programmeHref={resolveOakHref({
+                  page: "teacher-programme",
+                  subjectPhaseSlug: collection.subjectPhaseSlug,
+                  tab: "units",
+                  query: {
+                    keystages: collection.keystageSlug,
+                    subject_categories: collection.subjectCategoryQuery,
+                  },
+                })}
                 trackBrowseRefined={() =>
                   track.browseRefined({
                     platform: "owa",

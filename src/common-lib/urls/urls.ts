@@ -321,6 +321,7 @@ type ProgrammePageProps = {
     subject_categories?: string;
     focus_ks4option?: string;
     open_filters_modal?: string;
+    subject_categories?: string;
   };
 };
 

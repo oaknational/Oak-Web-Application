@@ -1,3 +1,71 @@
+# [1.1122.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1121.0...v1.1122.0) (2026-07-14)
+
+
+### Bug Fixes
+
+* replace ampersand in category slug with "and" ([3f783a1](https://github.com/oaknational/Oak-Web-Application/commit/3f783a1c70220a4410bbd0747453f62781fd8524))
+* use replaceAll ([44929b1](https://github.com/oaknational/Oak-Web-Application/commit/44929b1d570f7e503a3fdada311928ebe8d9d9b0))
+
+
+### Features
+
+* ensure programme link goes to subject parent when applicable ([8342105](https://github.com/oaknational/Oak-Web-Application/commit/8342105d78ed2bad3ed4d65c92e3833b808e8a22))
+* use update programme page links on my library to use new url config ([216b207](https://github.com/oaknational/Oak-Web-Application/commit/216b2075d7c71de0ab0f94c3cf11af741a6859aa))
+
+# [1.1121.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1120.1...v1.1121.0) (2026-07-14)
+
+
+### Bug Fixes
+
+* added back missing google-classroom work in new pupil exp components ([18192d7](https://github.com/oaknational/Oak-Web-Application/commit/18192d7267691fc6e57ba4ce41ab3964146c6459))
+* added back the google classroom analytics hook for addOnOpened ([99c3b0a](https://github.com/oaknational/Oak-Web-Application/commit/99c3b0a8eaa02e42114bb5c8933857138c9a864d))
+* added guard to prevent Mux/Cast SDK videos crashing when in iframes without allow-presentation ([2477966](https://github.com/oaknational/Oak-Web-Application/commit/24779668d3df644cd6a42743bfed9a6225d3bd22))
+* classify videoInitialTimeElapsed as 0 if 90%+ complete to match video finished behaviour ([f5eebd0](https://github.com/oaknational/Oak-Web-Application/commit/f5eebd02e888bdcb54b3b6b82cbfc94f048ca9be))
+* dont redirect away from review page if readonly mode is true ([5112bad](https://github.com/oaknational/Oak-Web-Application/commit/5112bad50433925bc04e06aab04aa0956edb5bc0))
+* ensure sections with no data are hidden ([1c8018f](https://github.com/oaknational/Oak-Web-Application/commit/1c8018f351133f8083762cd312c1ba8f5754afe5))
+* fix bug where rewinding video and going to end double fired finish event ([dfd257b](https://github.com/oaknational/Oak-Web-Application/commit/dfd257bcce917dda00e3bcad3f75b552ce2a581f))
+* fixed regression where handed in GC work did not redirect ([02e169c](https://github.com/oaknational/Oak-Web-Application/commit/02e169c536878ff70e8b7949604a3c0b1b409cd5))
+* fixed sonarcloud issues and test coverage ([10e8ad0](https://github.com/oaknational/Oak-Web-Application/commit/10e8ad07435c333deb6a5dacbf1ac5ed784302cd))
+* made sure video finished event only fires once from pupil exp ([8227a58](https://github.com/oaknational/Oak-Web-Application/commit/8227a58a72605cee0ed529db745ba7d1c0c6a235))
+* make sure GC progress syncs on per question not per section ([bf9174b](https://github.com/oaknational/Oak-Web-Application/commit/bf9174b1d3e57d72c29561d85d3ded81d1461358))
+* prevent google classrom isReady loop for pupils ([5e085d7](https://github.com/oaknational/Oak-Web-Application/commit/5e085d7d4d6730f2319e524ba307406905ca43f4))
+* prevent refire of video complete event by resetting timeElapsed when video complete ([e72a7cb](https://github.com/oaknational/Oak-Web-Application/commit/e72a7cb72a80336e649b3ea0ce6f3abafb55bdef))
+* **PUPIL-1687:** avoid GC read-only network check on quiz next question ([07c29ec](https://github.com/oaknational/Oak-Web-Application/commit/07c29ec27054157f166efdbcded996417d25b76c))
+* **PUPIL-1770:** persist video result on completion in usePupilVideoExperience ([c8539e4](https://github.com/oaknational/Oak-Web-Application/commit/c8539e474494838ba408f1ff9e895e256fe337f5))
+
+
+### Features
+
+* added back readonly banner for Google Classroom ([cec1d2b](https://github.com/oaknational/Oak-Web-Application/commit/cec1d2bd15a13f23f4eadf40bf8d2b7560d05544))
+* migrated pupil overview page logic into reusable hook ([6c3fc8a](https://github.com/oaknational/Oak-Web-Application/commit/6c3fc8ae63363150a697f6e2efaac9a7836ae383))
+* migrated remaining pupil page logic into reusable hooks ([f62abc9](https://github.com/oaknational/Oak-Web-Application/commit/f62abc9747c44235cf2ca38e07f685ec1376548e))
+* remove old /pupils/l/redirectFrom route as no longer used ([086bc4d](https://github.com/oaknational/Oak-Web-Application/commit/086bc4d40271f0168c94451ef4be7d5481bd7402))
+* removed google classroom free tier coursework integration ([2b453de](https://github.com/oaknational/Oak-Web-Application/commit/2b453de45317e9c43748dfb31fa06f1b3ebe4915))
+* updated pupil beta lessons to use new pupil exp for full lessons ([4699c5e](https://github.com/oaknational/Oak-Web-Application/commit/4699c5e79af8f7527e5f400b3e9655c1dc9b18d2))
+* updated pupil browse lessons to use new pupil exp for full lessons ([32bfc1d](https://github.com/oaknational/Oak-Web-Application/commit/32bfc1d2971418800db4baa69d133b80c7591e9b))
+* updated pupil canoncial lessons to use new pupil exp for full lessons ([893e3cf](https://github.com/oaknational/Oak-Web-Application/commit/893e3cfe024b7706c3b5ba80379a9a2fd3124e53))
+* updated pupil legacy redirectFrom lessons to use new pupil exp for full lessons ([fe40207](https://github.com/oaknational/Oak-Web-Application/commit/fe40207eba0a6885342711a570d6b5585090d44a))
+
+## [1.1120.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.1120.0...v1.1120.1) (2026-07-14)
+
+
+### Bug Fixes
+
+* truncate text in phase picker ([8821576](https://github.com/oaknational/Oak-Web-Application/commit/88215769217f7528b1a22296937d04de56a915eb))
+
+# [1.1120.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1119.0...v1.1120.0) (2026-07-14)
+
+
+### Bug Fixes
+
+* only request hubspot contact details when signed in ([02976fe](https://github.com/oaknational/Oak-Web-Application/commit/02976fe19ce70e78574fdc1ce136eac74cb6bbad))
+* revert allowing 401 error as this path should no longer be reachable outside of a genuine error ([06a1724](https://github.com/oaknational/Oak-Web-Application/commit/06a172462e3f7e80f3899c41dc60fddb9cb6be7d))
+
+
+### Features
+
+*  add additional error codes for hubspot to capture known routes ([644169c](https://github.com/oaknational/Oak-Web-Application/commit/644169c056851ec19dae7ff8417a6fdebfedfe9a))
+
 # [1.1119.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1118.0...v1.1119.0) (2026-07-13)
 
 
