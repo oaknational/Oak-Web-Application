@@ -90,7 +90,7 @@ export default function LessonView(
   const isMathJaxLesson = hasLessonMathJax(props, props.subjectSlug, false);
   const MathJaxLessonProvider = isMathJaxLesson ? MathJaxProvider : Fragment;
   const { lessonResourceDownloadStarted } = useTeacherBrowseAnalytics(
-    (s) => s.track,
+    (store) => store.track,
   );
 
   const browsePathwayData = getAnalyticsBrowseData({

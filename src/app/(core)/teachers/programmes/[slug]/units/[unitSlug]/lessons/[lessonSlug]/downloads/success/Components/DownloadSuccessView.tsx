@@ -62,7 +62,9 @@ export function DownloadSuccessView({
 
   const { track } = useAnalytics();
   const { onwardContentSelected } = track;
-  const { unitDownloadInitiated } = useTeacherBrowseAnalytics((s) => s.track);
+  const { unitDownloadInitiated } = useTeacherBrowseAnalytics(
+    (store) => store.track,
+  );
 
   const {
     setShowDownloadMessage,

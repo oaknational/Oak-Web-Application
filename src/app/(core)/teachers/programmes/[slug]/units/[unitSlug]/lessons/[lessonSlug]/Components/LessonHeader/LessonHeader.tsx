@@ -34,7 +34,7 @@ const LessonHeader = (props: LessonHeaderProps) => {
     georestricted,
   } = props;
   const { lessonResourceDownloadStarted } = useTeacherBrowseAnalytics(
-    (s) => s.track,
+    (store) => store.track,
   );
 
   return (

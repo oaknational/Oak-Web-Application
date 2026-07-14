@@ -78,7 +78,9 @@ const UnitHeader = (props: UnitHeaderProps) => {
     programmeSlug,
     downloadButtonState,
   } = props;
-  const { unitDownloadInitiated } = useTeacherBrowseAnalytics((s) => s.track);
+  const { unitDownloadInitiated } = useTeacherBrowseAnalytics(
+    (store) => store.track,
+  );
   const { setCurrentToastProps } = useOakNotificationsContext();
   const { ref, isStuck } = useDetectStuck();
 
