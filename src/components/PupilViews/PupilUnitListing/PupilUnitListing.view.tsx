@@ -13,7 +13,7 @@ import SignpostTeachersInlineBanner from "@/components/PupilComponents/SignpostT
 import { PupilUnitsSection } from "@/components/PupilComponents/PupilUnitsSection";
 import useAnalytics from "@/context/Analytics/useAnalytics";
 import { UnitListingBrowseData } from "@/node-lib/curriculum-api-2023/queries/pupilUnitListing/pupilUnitListing.schema";
-import { generateKeyStageTitle } from "@/components/PupilComponents/PupilAnalyticsProvider/PupilAnalyticsProvider";
+import { generateKeyStageTitle } from "@/context/PupilLessonAnalytics/pupilAnalyticsHelpers";
 import { SubjectSlugs } from "@/node-lib/curriculum-api-2023/queries/pupilSubjectListing/pupilSubjectListing.schema";
 import RelatedSubjectsBanner from "@/components/PupilComponents/RelatedSubjectsBanner/RelatedSubjectsBanner";
 import PupilSubjectDescription from "@/components/PupilComponents/PupilSubjectDescription/PupilSubjectDescription";
