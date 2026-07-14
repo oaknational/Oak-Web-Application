@@ -1,3 +1,17 @@
+# [1.1122.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1121.0...v1.1122.0) (2026-07-14)
+
+
+### Bug Fixes
+
+* replace ampersand in category slug with "and" ([3f783a1](https://github.com/oaknational/Oak-Web-Application/commit/3f783a1c70220a4410bbd0747453f62781fd8524))
+* use replaceAll ([44929b1](https://github.com/oaknational/Oak-Web-Application/commit/44929b1d570f7e503a3fdada311928ebe8d9d9b0))
+
+
+### Features
+
+* ensure programme link goes to subject parent when applicable ([8342105](https://github.com/oaknational/Oak-Web-Application/commit/8342105d78ed2bad3ed4d65c92e3833b808e8a22))
+* use update programme page links on my library to use new url config ([216b207](https://github.com/oaknational/Oak-Web-Application/commit/216b2075d7c71de0ab0f94c3cf11af741a6859aa))
+
 # [1.1121.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1120.1...v1.1121.0) (2026-07-14)
 
 
