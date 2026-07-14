@@ -20,7 +20,7 @@ import theme, { OakColorName } from "@/styles/theme";
 import errorReporter from "@/common-lib/error-reporter";
 import { VideoLocationValueType } from "@/browser-lib/avo/Avo";
 import OakError from "@/errors/OakError";
-import { PupilPathwayData } from "@/components/PupilComponents/PupilAnalyticsProvider/PupilAnalyticsProvider";
+import { PupilPathwayData } from "@/context/PupilLessonAnalytics/pupilAnalyticsHelpers";
 import { AnalyticsBrowseData } from "@/components/TeacherComponents/types/lesson.types";
 
 const INITIAL_DEBUG = false;
@@ -54,6 +54,8 @@ export type VideoPlayerProps = {
   autoFocusPlayButton?: boolean;
   /** When false, pauses playback */
   isActive?: boolean;
+  /** When false, suppresses the analytics event for reaching the end. */
+  shouldTrackEndAnalytics?: boolean;
 };
 
 export type VideoEventCallbackArgs = {
@@ -140,6 +142,7 @@ const VideoPlayer: FC<VideoPlayerProps> = (props) => {
     muxAssetId,
     autoFocusPlayButton = false,
     isActive = true,
+    shouldTrackEndAnalytics = true,
   } = props;
 
   const mediaElRef = useRef<MuxPlayerElement | null>(null);
@@ -360,6 +363,7 @@ const VideoPlayer: FC<VideoPlayerProps> = (props) => {
             userEventCallback,
             playbackId,
             endTracked,
+            shouldTrackEndAnalytics,
             playingClassname: PLAYING_CLASSNAME,
           })
         }

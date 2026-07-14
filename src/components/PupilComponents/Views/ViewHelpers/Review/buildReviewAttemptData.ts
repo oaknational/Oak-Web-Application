@@ -1,5 +1,5 @@
 import { AttemptDataCamelCase } from "@/node-lib/pupil-api/types";
-import { LessonSectionResults } from "@/components/PupilComponents/LessonEngineProvider";
+import { LessonSectionResults } from "@/context/PupilLessonProgress";
 
 export const buildReviewAttemptData = ({
   lessonSlug,
