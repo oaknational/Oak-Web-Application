@@ -401,6 +401,9 @@ exports[`core layout renders correctly 1`] = `
       }
     }
   />
+  <SimulateErrorControls
+    errorBoundaryLevel="root"
+  />
   <main
     id="main"
   >
