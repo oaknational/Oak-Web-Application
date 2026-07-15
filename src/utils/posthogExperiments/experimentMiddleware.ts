@@ -15,6 +15,11 @@ const posthogApiKey = getServerConfig("posthogApiKey");
 const controlGroupKeys = new Set(["control"]);
 const testGroupKeys = new Set(["test"]);
 
+/**
+ * A middleware function designed to be used when running A/B experiments in Posthog
+ * to enable variant page caching
+ */
+
 export default async function experimentMiddleware({
   request,
   featureFlag,
