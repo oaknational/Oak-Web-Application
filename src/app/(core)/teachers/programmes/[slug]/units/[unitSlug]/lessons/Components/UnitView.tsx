@@ -1,5 +1,5 @@
 "use client";
-import { OakBox, OakPrimaryButton } from "@oaknational/oak-components";
+import { OakBox } from "@oaknational/oak-components";
 
 import UnitHeader from "./UnitHeader/UnitHeader";
 import { Breadcrumbs } from "./Breadcrumbs/Breadcrumbs";
@@ -13,9 +13,7 @@ import { getUnitDownloadFileId } from "@/utils/getUnitDownloadFileId";
 import ComplexCopyrightRestrictionBanner from "@/components/TeacherComponents/ComplexCopyrightRestrictionBanner/ComplexCopyrightRestrictionBanner";
 import { useCaptureFeatureFlag } from "@/utils/posthogExperiments/useCaptureFeatureFlag";
 
-export type UnitPageProps = TeachersUnitOverviewData & { isEnabled: boolean };
-
-export const UnitView = (props: UnitPageProps) => {
+export const UnitView = (props: TeachersUnitOverviewData) => {
   useCaptureFeatureFlag("test-flag");
 
   const subjectIconName = `subject-${props.subjectSlug}` as SubjectIcon;
@@ -54,7 +52,6 @@ export const UnitView = (props: UnitPageProps) => {
         }
         downloadButtonState={downloadButtonState}
       />
-      {props.isEnabled && <OakPrimaryButton>TEST BUTTON</OakPrimaryButton>}
       <OakBox $ph="spacing-40">
         <OakBox $mh="auto" $width={"100%"} $maxWidth={"spacing-1280"}>
           <ComplexCopyrightRestrictionBanner

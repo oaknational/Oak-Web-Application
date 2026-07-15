@@ -27,7 +27,7 @@ const InnerUnitPage = async (props: AppPageProps<LessonsPageParams>) => {
 
   return (
     <TeacherBrowseAnalyticsStoreProvider programmeState={{ programmeState }}>
-      <UnitView {...data} isEnabled={false} />
+      <UnitView {...data} />
     </TeacherBrowseAnalyticsStoreProvider>
   );
 };
