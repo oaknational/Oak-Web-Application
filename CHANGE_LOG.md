@@ -1,3 +1,26 @@
+# [1.1125.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1124.0...v1.1125.0) (2026-07-15)
+
+
+### Bug Fixes
+
+* ensure card heading is a div ([95fd909](https://github.com/oaknational/Oak-Web-Application/commit/95fd90936c2bce8e4c9ac4bdd58d7a6dad49e1cc))
+* format ([2c4380c](https://github.com/oaknational/Oak-Web-Application/commit/2c4380c31651011b4f9bc9e50575e518d6c11c2e))
+* genn'd file ([7c0fdcd](https://github.com/oaknational/Oak-Web-Application/commit/7c0fdcd1d4ac6b6a9fec13f6d2eaeb794c49d06d))
+* make ul and cards li ([4f5b492](https://github.com/oaknational/Oak-Web-Application/commit/4f5b4922ced6d1b0c892113d2fd6f002c6e29ed9))
+* remove heading test ([a353ec4](https://github.com/oaknational/Oak-Web-Application/commit/a353ec4ea3fc8435927ee094674a2d9272c3a6a8))
+* snaps ([e73a725](https://github.com/oaknational/Oak-Web-Application/commit/e73a72572b565c6e4b707e1c015056cb3db34e8b))
+* snaps ([9264a25](https://github.com/oaknational/Oak-Web-Application/commit/9264a2577c5d35e3a11a0a468eac13d2777ec9c8))
+* tests ([aa2bd34](https://github.com/oaknational/Oak-Web-Application/commit/aa2bd34e4e95428e6db55ecd50710b11517fb5ba))
+* use heading as key over index ([7cb40b6](https://github.com/oaknational/Oak-Web-Application/commit/7cb40b633ec25ea6d0400ea005a7081bc2c47be6))
+
+
+### Features
+
+* add case studies section to oaks impact ([5d77bed](https://github.com/oaknational/Oak-Web-Application/commit/5d77bed4f0d227818ae2cac7c0641384dc5792e3))
+* add story ([e6165e8](https://github.com/oaknational/Oak-Web-Application/commit/e6165e89c6391f2e86f92e306409e0a927edcf90))
+* add tests ([a66bbb8](https://github.com/oaknational/Oak-Web-Application/commit/a66bbb89e4b1f7cc95a3adaae3c9f0e0a858b85d))
+* use link text from sanity ([3268782](https://github.com/oaknational/Oak-Web-Application/commit/326878273c805049f996154ab35b26fcaf352e1e))
+
 # [1.1124.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1123.0...v1.1124.0) (2026-07-15)
 
 
