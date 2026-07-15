@@ -14,10 +14,6 @@ import {
   PreselectedDownloadType,
   PreselectedShareType,
 } from "@/components/TeacherComponents/types/downloadAndShare.types";
-import {
-  getTeacherSubjectPhaseSlug,
-  parseProgrammeSlug,
-} from "@/utils/curriculum/slugs";
 
 const reportError = errorReporter("urls.ts");
 
@@ -79,16 +75,6 @@ export type WebinarListingLinkProps = {
   search?: {
     page?: string;
   };
-};
-
-type ProgrammeUnitsSearch = {
-  ["learning-theme"]?: string | null;
-  category?: string | null;
-  year?: string | null;
-};
-
-type ProgrammeUnitsContext = {
-  subjectParentTitle?: string | null;
 };
 
 export type UnitOverviewLinkProps = {
@@ -559,64 +545,6 @@ const postResolveHref =
 
     return `${path}?${queryString}`;
   };
-
-export function resolveProgrammeUnitsHref(
-  programmeSlug: string,
-  search?: ProgrammeUnitsSearch,
-  context?: ProgrammeUnitsContext,
-): string {
-  const parsedProgrammeSlug = parseProgrammeSlug(programmeSlug);
-  if (parsedProgrammeSlug) {
-    const subjectPhaseSlugWithoutParent = getTeacherSubjectPhaseSlug({
-      subjectSlug: parsedProgrammeSlug.subjectSlug,
-      phaseSlug: parsedProgrammeSlug.phaseSlug,
-      examboardSlug: parsedProgrammeSlug.examboardSlug,
-      pathwaySlug: parsedProgrammeSlug.pathwaySlug,
-    });
-
-    const subjectPhaseSlug = getTeacherSubjectPhaseSlug({
-      subjectSlug: parsedProgrammeSlug.subjectSlug,
-      phaseSlug: parsedProgrammeSlug.phaseSlug,
-      examboardSlug: parsedProgrammeSlug.examboardSlug,
-      pathwaySlug: parsedProgrammeSlug.pathwaySlug,
-      subjectParentTitle: context?.subjectParentTitle,
-    });
-
-    const hasParentSubjectContext =
-      context?.subjectParentTitle &&
-      subjectPhaseSlug !== subjectPhaseSlugWithoutParent;
-
-    const query: ProgrammePageProps["query"] = {
-      keystages: parsedProgrammeSlug.keystageSlug ?? undefined,
-      years: parsedProgrammeSlug.yearSlug?.replace(/^year-/, "") ?? undefined,
-      tiers: parsedProgrammeSlug.tierSlug ?? undefined,
-      child_subjects: hasParentSubjectContext
-        ? parsedProgrammeSlug.subjectSlug
-        : undefined,
-      threads: search?.["learning-theme"] ?? undefined,
-      subject_categories: search?.category ?? undefined,
-    };
-
-    if (search?.year) {
-      query.years = search.year.replace(/^year-/, "");
-    }
-
-    return resolveOakHref({
-      page: "teacher-programme",
-      subjectPhaseSlug,
-      tab: "units",
-      query,
-    });
-  }
-
-  const path = `/teachers/programmes/${encodeURIComponent(programmeSlug)}/units`;
-  if (!search) {
-    return path;
-  }
-  const queryString = createQueryStringFromObject(search);
-
-  return queryString ? `${path}?${queryString}` : path;
-}
 
 export const OAK_PAGES: {
   [K in keyof OakPages]: OakPages[K] & { pageType: K };

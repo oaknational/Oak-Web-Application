@@ -1,9 +1,4 @@
-import {
-  isExternalHref,
-  resolveOakHref,
-  resolveProgrammeUnitsHref,
-  ResolveOakHrefProps,
-} from "./urls";
+import { isExternalHref, resolveOakHref, ResolveOakHrefProps } from "./urls";
 
 describe("urls.ts", () => {
   describe("isExternalHref()", () => {
@@ -311,82 +306,6 @@ describe("urls.ts", () => {
         subjectSlug: "maths",
       };
       expect(resolveOakHref(props)).toBe("/teachers/eyfs/maths");
-    });
-  });
-
-  describe("resolveProgrammeUnitsHref()", () => {
-    it("converts a simple ks3 programme slug to a teacher-programme units URL", () => {
-      expect(resolveProgrammeUnitsHref("history-secondary-ks3")).toBe(
-        "/teachers/programmes/history-secondary/units?keystages=ks3",
-      );
-    });
-
-    it("converts an EYFS programme slug to a teacher-programme units URL", () => {
-      expect(
-        resolveProgrammeUnitsHref(
-          "maths-foundation-early-years-foundation-stage-l",
-        ),
-      ).toBe(
-        "/teachers/programmes/maths-foundation/units?keystages=early-years-foundation-stage",
-      );
-    });
-
-    it("maps legacy learning-theme search param to threads query key", () => {
-      expect(
-        resolveProgrammeUnitsHref("english-secondary-ks3", {
-          "learning-theme": "reading",
-        }),
-      ).toBe(
-        "/teachers/programmes/english-secondary/units?keystages=ks3&threads=reading",
-      );
-    });
-
-    it("maps legacy category search param to subject_categories query key", () => {
-      expect(
-        resolveProgrammeUnitsHref("english-secondary-ks3", {
-          category: "grammar",
-        }),
-      ).toBe(
-        "/teachers/programmes/english-secondary/units?keystages=ks3&subject_categories=grammar",
-      );
-    });
-
-    it("maps KS4 science child-subject slug to science parent when parent subject context is provided", () => {
-      expect(
-        resolveProgrammeUnitsHref(
-          "biology-secondary-ks4-higher-aqa",
-          undefined,
-          { subjectParentTitle: "Science" },
-        ),
-      ).toBe(
-        "/teachers/programmes/science-secondary-aqa/units?keystages=ks4&tiers=higher&child_subjects=biology",
-      );
-    });
-
-    it("falls back to the subject slug in the programme slug when parent subject context is not provided", () => {
-      expect(
-        resolveProgrammeUnitsHref("history-secondary-ks3", undefined, {
-          subjectParentTitle: null,
-        }),
-      ).toBe("/teachers/programmes/history-secondary/units?keystages=ks3");
-    });
-
-    it("falls back to a raw programme units URL for unparseable slugs", () => {
-      expect(resolveProgrammeUnitsHref("not-a-valid-slug")).toBe(
-        "/teachers/programmes/not-a-valid-slug/units",
-      );
-    });
-
-    it("falls back to a raw programme units URL for unparseable slugs with search params", () => {
-      expect(
-        resolveProgrammeUnitsHref("not-a-valid-slug", {
-          year: "year-7",
-          "learning-theme": "reading",
-          category: "grammar",
-        }),
-      ).toBe(
-        "/teachers/programmes/not-a-valid-slug/units?year=year-7&learning-theme=reading&category=grammar",
-      );
     });
   });
 });
