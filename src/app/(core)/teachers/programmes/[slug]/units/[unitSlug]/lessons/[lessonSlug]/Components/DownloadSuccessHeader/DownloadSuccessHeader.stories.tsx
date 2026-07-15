@@ -5,7 +5,6 @@ import { DownloadSuccessHeader } from "./DownloadSuccessHeader";
 
 import CookieConsentDecorator from "@/storybook-decorators/CookieConsentDecorator";
 
-
 const meta: Meta<typeof DownloadSuccessHeader> = {
   component: DownloadSuccessHeader,
   title: "App/Programmes/Units/Lessons/DownloadSuccessHeader",
