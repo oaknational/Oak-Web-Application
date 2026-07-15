@@ -14,6 +14,8 @@ import {
   AboutSharedHeader,
   AboutSharedHeaderImage,
 } from "@/components/GenericPagesComponents/AboutSharedHeader";
+import { OaksImpactCaseStudies } from "@/components/GenericPagesComponents/OaksImpactCaseStudies";
+import { oaksImpactCaseStudiesFixture } from "@/components/GenericPagesComponents/OaksImpactCaseStudies/OaksImpactCaseStudies.fixtures";
 import { SupportYou } from "@/components/GenericPagesComponents/SupportYou";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 import getPageProps from "@/node-lib/getPageProps";
@@ -52,14 +54,7 @@ const OaksImpact: NextPage<OaksImpactPageProps> = ({ topNav }) => {
         >
           TODO: Stats
         </OakBox>
-        <OakBox
-          $ma={"spacing-48"}
-          $pa={"spacing-48"}
-          $borderColor="red"
-          $ba="border-solid-xxl"
-        >
-          TODO: Case Studies
-        </OakBox>
+        <OaksImpactCaseStudies caseStudies={oaksImpactCaseStudiesFixture} />
         <OakBox
           $ma={"spacing-48"}
           $pa={"spacing-48"}
