@@ -664,7 +664,7 @@ exports[`pages/about-us/oaks-impact.tsx renders title when feature flag is enabl
                     class="sc-8f92ab2c-0 ctvzKn"
                   >
                     <div
-                      class="sc-aXZVg sc-hZDyAQ gQdNNR hppJPj"
+                      class="sc-aXZVg sc-hZDyAQ gQdNNR dmBajW"
                     >
                       <a
                         class="sc-aXZVg sc-gEvEer sc-eyvILC eyLmQc dXoawi cstkxg"
@@ -731,7 +731,7 @@ exports[`pages/about-us/oaks-impact.tsx renders title when feature flag is enabl
                     class="sc-8f92ab2c-0 ctvzKn"
                   >
                     <div
-                      class="sc-aXZVg sc-hZDyAQ gQdNNR hppJPj"
+                      class="sc-aXZVg sc-hZDyAQ gQdNNR dmBajW"
                     >
                       <a
                         class="sc-aXZVg sc-gEvEer sc-eyvILC eyLmQc dXoawi cstkxg"
@@ -798,7 +798,7 @@ exports[`pages/about-us/oaks-impact.tsx renders title when feature flag is enabl
                     class="sc-8f92ab2c-0 ctvzKn"
                   >
                     <div
-                      class="sc-aXZVg sc-hZDyAQ gQdNNR hppJPj"
+                      class="sc-aXZVg sc-hZDyAQ gQdNNR dmBajW"
                     >
                       <a
                         class="sc-aXZVg sc-gEvEer sc-eyvILC eyLmQc dXoawi cstkxg"
@@ -1010,7 +1010,7 @@ exports[`pages/about-us/oaks-impact.tsx renders title when feature flag is enabl
                         class="sc-ea54c430-1 duAgam"
                       >
                         <div
-                          class="sc-aXZVg sc-hZDyAQ kBnJtM bXQMrr"
+                          class="sc-aXZVg sc-hZDyAQ kBnJtM bgTTVq"
                         >
                           <a
                             href="/about-us/who-we-are"
@@ -1067,7 +1067,7 @@ exports[`pages/about-us/oaks-impact.tsx renders title when feature flag is enabl
                         class="sc-ea54c430-1 duAgam"
                       >
                         <div
-                          class="sc-aXZVg sc-hZDyAQ kBnJtM bXQMrr"
+                          class="sc-aXZVg sc-hZDyAQ kBnJtM bgTTVq"
                         >
                           <a
                             href="/about-us/oaks-curricula"
@@ -1124,7 +1124,7 @@ exports[`pages/about-us/oaks-impact.tsx renders title when feature flag is enabl
                         class="sc-ea54c430-1 duAgam"
                       >
                         <div
-                          class="sc-aXZVg sc-hZDyAQ kBnJtM bXQMrr"
+                          class="sc-aXZVg sc-hZDyAQ kBnJtM bgTTVq"
                         >
                           <a
                             href="/about-us/meet-the-team"
@@ -1181,7 +1181,7 @@ exports[`pages/about-us/oaks-impact.tsx renders title when feature flag is enabl
                         class="sc-ea54c430-1 duAgam"
                       >
                         <div
-                          class="sc-aXZVg sc-hZDyAQ kBnJtM bXQMrr"
+                          class="sc-aXZVg sc-hZDyAQ kBnJtM bgTTVq"
                         >
                           <a
                             href="/about-us/get-involved"

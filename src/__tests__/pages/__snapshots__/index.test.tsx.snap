@@ -807,7 +807,7 @@ exports[`Teachers Page Page component renders 1`] = `
                             style="width: 50%;"
                           >
                             <div
-                              class="sc-aXZVg sc-hZDyAQ sc-42aa3e70-1 eAVyBL bKETPQ bcHUdy"
+                              class="sc-aXZVg sc-hZDyAQ sc-42aa3e70-1 eAVyBL goHzHJ bcHUdy"
                             >
                               <button
                                 aria-expanded="false"
@@ -876,7 +876,7 @@ exports[`Teachers Page Page component renders 1`] = `
                               class="sc-aXZVg sc-gEvEer Clfe dbzvZO"
                             >
                               <div
-                                class="sc-aXZVg sc-hZDyAQ sc-42aa3e70-1 hWaSHT bKETPQ bcHUdy"
+                                class="sc-aXZVg sc-hZDyAQ sc-42aa3e70-1 hWaSHT goHzHJ bcHUdy"
                               >
                                 <div
                                   class="sc-aXZVg sc-gEvEer jPvJsJ inWRga"
@@ -1126,7 +1126,7 @@ exports[`Teachers Page Page component renders 1`] = `
                           style="width: 50%;"
                         >
                           <div
-                            class="sc-aXZVg sc-hZDyAQ sc-42aa3e70-1 eAVyBL bKETPQ bcHUdy"
+                            class="sc-aXZVg sc-hZDyAQ sc-42aa3e70-1 eAVyBL goHzHJ bcHUdy"
                           >
                             <button
                               aria-expanded="false"
@@ -1195,7 +1195,7 @@ exports[`Teachers Page Page component renders 1`] = `
                             class="sc-aXZVg sc-gEvEer Clfe dbzvZO"
                           >
                             <div
-                              class="sc-aXZVg sc-hZDyAQ sc-42aa3e70-1 hWaSHT bKETPQ bcHUdy"
+                              class="sc-aXZVg sc-hZDyAQ sc-42aa3e70-1 hWaSHT goHzHJ bcHUdy"
                             >
                               <div
                                 class="sc-aXZVg sc-gEvEer jPvJsJ inWRga"
@@ -1423,7 +1423,7 @@ exports[`Teachers Page Page component renders 1`] = `
                               style="width: 50%;"
                             >
                               <div
-                                class="sc-aXZVg sc-hZDyAQ sc-42aa3e70-1 eAVyBL bKETPQ bcHUdy"
+                                class="sc-aXZVg sc-hZDyAQ sc-42aa3e70-1 eAVyBL goHzHJ bcHUdy"
                               >
                                 <button
                                   aria-expanded="false"
@@ -1492,7 +1492,7 @@ exports[`Teachers Page Page component renders 1`] = `
                                 class="sc-aXZVg sc-gEvEer Clfe dbzvZO"
                               >
                                 <div
-                                  class="sc-aXZVg sc-hZDyAQ sc-42aa3e70-1 hWaSHT bKETPQ bcHUdy"
+                                  class="sc-aXZVg sc-hZDyAQ sc-42aa3e70-1 hWaSHT goHzHJ bcHUdy"
                                 >
                                   <div
                                     class="sc-aXZVg sc-gEvEer jPvJsJ inWRga"
