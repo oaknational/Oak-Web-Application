@@ -60,6 +60,11 @@ const mockProgrammeDataWithSubjectCategories: UserlistContentApiResponse = {
     subjectSlug: "english",
     subjectCategory: "Literacy",
   }),
+  ...userListContentFixture("programme1-reading-writing-and-oracy", {
+    subject: "English",
+    subjectSlug: "english",
+    subjectCategory: "Reading, writing & oracy",
+  }),
   ...userListContentFixture("programme2", {
     units: [
       {
@@ -93,6 +98,19 @@ const mockProgrammeDataWithPathways: UserlistContentApiResponse =
     subject: "Maths",
     subjectSlug: "maths",
     pathway: "Core",
+    phaseSlug: "secondary",
+  });
+
+const mockProgrammeDataWithParentSubject: UserlistContentApiResponse =
+  userListContentFixture("programme1", {
+    keystage: "KS4",
+    keystageSlug: "ks4",
+    subject: "Biology",
+    subjectSlug: "biology",
+    examboard: "AQA",
+    examboardSlug: "aqa",
+    subjectParent: "Science",
+    phaseSlug: "secondary",
   });
 
 const mockTrackingData = {
@@ -124,6 +142,7 @@ describe("useMyLibrary", () => {
         programmeTitle: "Maths KS1",
         subject: "Maths",
         subjectSlug: "maths",
+        subjectPhaseSlug: "maths-primary",
         subheading: "KS1",
         uniqueProgrammeKey: "programme1",
         units: [
@@ -146,7 +165,7 @@ describe("useMyLibrary", () => {
             ],
           },
         ],
-        searchQuery: null,
+        subjectCategoryQuery: undefined,
       },
     ]);
   });
@@ -187,7 +206,8 @@ describe("useMyLibrary", () => {
             ],
           },
         ],
-        searchQuery: null,
+        subjectCategoryQuery: undefined,
+        subjectPhaseSlug: "biology-primary",
       },
       {
         keystage: "KS1",
@@ -196,6 +216,7 @@ describe("useMyLibrary", () => {
         programmeTitle: "English: Literacy KS1",
         subject: "English",
         subjectSlug: "english",
+        subjectPhaseSlug: "english-primary",
         subheading: "Literacy KS1",
         uniqueProgrammeKey: "programme1-Literacy",
         units: [
@@ -218,7 +239,39 @@ describe("useMyLibrary", () => {
             ],
           },
         ],
-        searchQuery: "literacy",
+        subjectCategoryQuery: "literacy",
+      },
+      {
+        keystage: "KS1",
+        keystageSlug: "ks1",
+        programmeSlug: "programme1-reading-writing-and-oracy",
+        programmeTitle: "English: Reading, writing & oracy KS1",
+        subheading: "Reading, writing & oracy KS1",
+        subject: "English",
+        subjectCategoryQuery: "reading-writing-and-oracy",
+        subjectPhaseSlug: "english-primary",
+        subjectSlug: "english",
+        uniqueProgrammeKey: "programme1-reading-writing-and-oracy",
+        units: [
+          {
+            lessons: [
+              {
+                order: 1,
+                slug: "lesson1",
+                state: "published",
+                title: "Lesson 1",
+              },
+            ],
+            optionalityTitle: null,
+            savedAt: "2023-10-01T00:00:00Z",
+            unitOrder: 1,
+            unitSlug: "unit1",
+            unitTitle: "Unit 1",
+            year: "1",
+            yearOrder: 1,
+            yearSlug: "year-1",
+          },
+        ],
       },
     ]);
   });
@@ -237,6 +290,7 @@ describe("useMyLibrary", () => {
         programmeTitle: "Maths Core KS4",
         subject: "Maths",
         subjectSlug: "maths",
+        subjectPhaseSlug: "maths-secondary",
         subheading: "Core KS4",
         uniqueProgrammeKey: "programme1",
         units: [
@@ -259,7 +313,49 @@ describe("useMyLibrary", () => {
             ],
           },
         ],
-        searchQuery: null,
+        subjectCategoryQuery: undefined,
+      },
+    ]);
+  });
+  it("should handle programmes with parent subjects", async () => {
+    mockUseGetEducatorData.mockImplementation(() => ({
+      data: mockProgrammeDataWithParentSubject,
+      error: null,
+      isLoading: false,
+    }));
+    const { result } = renderHook(() => useMyLibrary());
+    expect(result.current.collectionData).toEqual([
+      {
+        keystage: "KS4",
+        keystageSlug: "ks4",
+        programmeSlug: "programme1",
+        programmeTitle: "Biology AQA KS4",
+        subheading: "AQA KS4",
+        subject: "Biology",
+        subjectCategoryQuery: undefined,
+        subjectPhaseSlug: "science-secondary-aqa",
+        subjectSlug: "biology",
+        uniqueProgrammeKey: "programme1",
+        units: [
+          {
+            lessons: [
+              {
+                order: 1,
+                slug: "lesson1",
+                state: "published",
+                title: "Lesson 1",
+              },
+            ],
+            optionalityTitle: null,
+            savedAt: "2023-10-01T00:00:00Z",
+            unitOrder: 1,
+            unitSlug: "unit1",
+            unitTitle: "Unit 1",
+            year: "1",
+            yearOrder: 1,
+            yearSlug: "year-1",
+          },
+        ],
       },
     ]);
   });

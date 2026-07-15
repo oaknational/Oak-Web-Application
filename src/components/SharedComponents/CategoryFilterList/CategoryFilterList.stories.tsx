@@ -36,7 +36,7 @@ const CategoryFilterListWithHooks = () => {
 
   return (
     <Component
-      labelledBy="category-filter"
+      ariaLabel="Categories"
       categories={mockCategories}
       getIsSelected={getIsSelected}
       setSelected={setSelected}

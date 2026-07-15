@@ -10,6 +10,9 @@ import teachersLessonOverviewFixture from "@/node-lib/curriculum-api-2023/fixtur
 import lessonMediaClipsFixtures from "@/node-lib/curriculum-api-2023/fixtures/lessonMediaClips.fixture";
 import { setUseUserReturn } from "@/__tests__/__helpers__/mockClerk";
 import { mockLoggedIn } from "@/__tests__/__helpers__/mockUser";
+import { TeacherBrowseAnalyticsStoreProvider } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
+import { TeachersLessonOverviewPageData } from "@/node-lib/curriculum-api-2023/queries/teachersLessonOverview/teachersLessonOverview.schema";
+import { getProgrammeStateForLesson } from "@/context/TeacherBrowseAnalytics/utils/getProgrammeState";
 
 const lessonResourceDownloadStarted = jest.fn();
 const lessonMediaClipsStarted = jest.fn();
@@ -20,6 +23,7 @@ const mockTeachingMaterialsSelected = jest.fn();
 jest.mock("@/context/Analytics/useAnalytics", () => ({
   __esModule: true,
   default: () => ({
+    getSessionId: jest.fn(),
     track: {
       lessonMediaClipsStarted: (...args: unknown[]) =>
         lessonMediaClipsStarted(...args),
@@ -49,24 +53,34 @@ const mockUseFeatureFlagEnabled = useFeatureFlagEnabled as jest.MockedFunction<
 const render = renderWithProviders();
 
 const baseProps = teachersLessonOverviewFixture();
+const programmeState = getProgrammeStateForLesson(baseProps);
+
+const renderLessonView = (props?: Partial<TeachersLessonOverviewPageData>) => {
+  return render(
+    <TeacherBrowseAnalyticsStoreProvider
+      programmeState={{
+        programmeState,
+      }}
+    >
+      <LessonView {...baseProps} {...props} />
+    </TeacherBrowseAnalyticsStoreProvider>,
+  );
+};
 
 describe("Previous and Next Lesson Navigation", () => {
   it("renders previous and next lesson links when adjacent lessons exist", () => {
-    render(
-      <LessonView
-        {...baseProps}
-        previousLesson={{
-          lessonSlug: "lesson-2",
-          lessonTitle: "Previous lesson",
-          lessonIndex: 2,
-        }}
-        nextLesson={{
-          lessonSlug: "lesson-4",
-          lessonTitle: "Next lesson",
-          lessonIndex: 4,
-        }}
-      />,
-    );
+    renderLessonView({
+      previousLesson: {
+        lessonSlug: "lesson-2",
+        lessonTitle: "Previous lesson",
+        lessonIndex: 2,
+      },
+      nextLesson: {
+        lessonSlug: "lesson-4",
+        lessonTitle: "Next lesson",
+        lessonIndex: 4,
+      },
+    });
 
     expect(
       screen.getByRole("link", { name: /Previous lesson/i }),
@@ -91,9 +105,7 @@ describe("Previous and Next Lesson Navigation", () => {
   });
 
   it("does not render lesson nav links when adjacent lessons are missing", () => {
-    render(
-      <LessonView {...baseProps} previousLesson={null} nextLesson={null} />,
-    );
+    renderLessonView({ previousLesson: null, nextLesson: null });
 
     expect(
       screen.queryByRole("link", { name: /Previous lesson/i }),
@@ -104,22 +116,19 @@ describe("Previous and Next Lesson Navigation", () => {
   });
 
   it("renders previous and next lesson links when orderInUnit is null", () => {
-    render(
-      <LessonView
-        {...baseProps}
-        orderInUnit={null}
-        previousLesson={{
-          lessonSlug: "lesson-2",
-          lessonTitle: "Previous lesson",
-          lessonIndex: 2,
-        }}
-        nextLesson={{
-          lessonSlug: "lesson-4",
-          lessonTitle: "Next lesson",
-          lessonIndex: 4,
-        }}
-      />,
-    );
+    renderLessonView({
+      orderInUnit: null,
+      previousLesson: {
+        lessonSlug: "lesson-2",
+        lessonTitle: "Previous lesson",
+        lessonIndex: 2,
+      },
+      nextLesson: {
+        lessonSlug: "lesson-4",
+        lessonTitle: "Next lesson",
+        lessonIndex: 4,
+      },
+    });
 
     expect(
       screen.getByRole("link", { name: /Previous lesson/i }),
@@ -151,7 +160,7 @@ describe("Heatwave banner", () => {
   });
 
   it("shows the heatwave banner when the feature flag is enabled and share is available", () => {
-    render(<LessonView {...baseProps} />);
+    renderLessonView();
 
     expect(
       screen.getByText(
@@ -162,7 +171,7 @@ describe("Heatwave banner", () => {
 
   it("does not show the heatwave banner when the feature flag is disabled", () => {
     mockUseFeatureFlagEnabled.mockReturnValue(false);
-    render(<LessonView {...baseProps} />);
+    renderLessonView();
 
     expect(
       screen.queryByText(
@@ -172,7 +181,7 @@ describe("Heatwave banner", () => {
   });
 
   it("does not show the heatwave banner when the share button is disabled (e.g. Practical PE)", () => {
-    render(<LessonView {...baseProps} actions={{ disablePupilShare: true }} />);
+    renderLessonView({ actions: { disablePupilShare: true } });
 
     expect(
       screen.queryByText(
@@ -183,8 +192,7 @@ describe("Heatwave banner", () => {
 
   it("hides the heatwave banner when the dismiss button is clicked", async () => {
     const user = userEvent.setup();
-    render(<LessonView {...baseProps} />);
-
+    renderLessonView();
     expect(
       screen.getByText(
         /Disruption this week due to hot weather\? Set this lesson as remote work/i,
@@ -207,36 +215,28 @@ describe("Lesson resources", () => {
   });
 
   it("renders lesson details section", () => {
-    render(<LessonView {...baseProps} />);
-
+    renderLessonView();
     expect(
       screen.getByRole("heading", { name: /Lesson details/i }),
     ).toBeInTheDocument();
   });
 
   it("renders starter quiz when data is provided", () => {
-    render(<LessonView {...baseProps} />);
-
+    renderLessonView();
     expect(
       screen.getByRole("heading", { name: /Prior knowledge starter quiz/i }),
     ).toBeInTheDocument();
   });
 
   it("renders exit quiz when data is provided", () => {
-    render(<LessonView {...baseProps} />);
-
+    renderLessonView();
     expect(
       screen.getByRole("heading", { name: /Assessment exit quiz/i }),
     ).toBeInTheDocument();
   });
 
   it("renders worksheet section when worksheetUrl is provided", () => {
-    render(
-      <LessonView
-        {...baseProps}
-        worksheetUrl="https://example.com/worksheet.pdf"
-      />,
-    );
+    renderLessonView({ worksheetUrl: "https://example.com/worksheet.pdf" });
 
     expect(
       screen.getByRole("heading", { name: /Worksheet/i }),
@@ -244,7 +244,7 @@ describe("Lesson resources", () => {
   });
 
   it("does not render worksheet section when worksheetUrl is null", () => {
-    render(<LessonView {...baseProps} worksheetUrl={null} />);
+    renderLessonView({ worksheetUrl: null });
 
     expect(
       screen.queryByRole("heading", { name: /^Worksheet$/i }),
@@ -252,12 +252,7 @@ describe("Lesson resources", () => {
   });
 
   it("renders lesson slides when presentationUrl is provided", () => {
-    render(
-      <LessonView
-        {...baseProps}
-        presentationUrl="https://example.com/slides.pdf"
-      />,
-    );
+    renderLessonView({ presentationUrl: "https://example.com/slides.pdf" });
 
     expect(
       screen.getByRole("heading", { name: /Lesson slides/i }),
@@ -265,12 +260,7 @@ describe("Lesson resources", () => {
   });
 
   it("renders lesson guide when lessonGuideUrl is provided", () => {
-    render(
-      <LessonView
-        {...baseProps}
-        lessonGuideUrl="https://example.com/guide.pdf"
-      />,
-    );
+    renderLessonView({ lessonGuideUrl: "https://example.com/guide.pdf" });
 
     expect(
       screen.getByRole("heading", { name: /Lesson guide/i }),
@@ -278,13 +268,10 @@ describe("Lesson resources", () => {
   });
 
   it("renders media clips when hasMediaClips is true and lessonMediaClips provided", () => {
-    render(
-      <LessonView
-        {...baseProps}
-        hasMediaClips={true}
-        lessonMediaClips={lessonMediaClipsFixtures().mediaClips}
-      />,
-    );
+    renderLessonView({
+      hasMediaClips: true,
+      lessonMediaClips: lessonMediaClipsFixtures().mediaClips,
+    });
 
     expect(
       screen.getByRole("heading", { name: /Video & audio clips/i }),
@@ -292,13 +279,10 @@ describe("Lesson resources", () => {
   });
 
   it("does not render media clips section when lessonMediaClips is null", () => {
-    render(
-      <LessonView
-        {...baseProps}
-        hasMediaClips={false}
-        lessonMediaClips={null}
-      />,
-    );
+    renderLessonView({
+      hasMediaClips: false,
+      lessonMediaClips: null,
+    });
 
     expect(
       screen.queryByRole("heading", { name: /Video & audio clips/i }),
@@ -306,12 +290,9 @@ describe("Lesson resources", () => {
   });
 
   it("renders additional material when additionalMaterialUrl is provided", () => {
-    render(
-      <LessonView
-        {...baseProps}
-        additionalMaterialUrl="https://example.com/additional.pdf"
-      />,
-    );
+    renderLessonView({
+      additionalMaterialUrl: "https://example.com/additional.pdf",
+    });
 
     expect(
       screen.getByRole("heading", { name: /Additional material/i }),
@@ -319,7 +300,7 @@ describe("Lesson resources", () => {
   });
 
   it("does not render additional material when additionalMaterialUrl is null", () => {
-    render(<LessonView {...baseProps} additionalMaterialUrl={null} />);
+    renderLessonView({ additionalMaterialUrl: null });
 
     expect(
       screen.queryByRole("heading", { name: /Additional material/i }),
@@ -327,13 +308,10 @@ describe("Lesson resources", () => {
   });
 
   it("renders download button for downloadable resources", () => {
-    render(
-      <LessonView
-        {...baseProps}
-        presentationUrl="https://example.com/slides.pdf"
-        downloads={[{ exists: true, type: "presentation" }]}
-      />,
-    );
+    renderLessonView({
+      presentationUrl: "https://example.com/slides.pdf",
+      downloads: [{ exists: true, type: "presentation" }],
+    });
 
     expect(
       screen.getByRole("link", { name: /Download lesson slides \(PPTX\)/i }),
@@ -341,7 +319,7 @@ describe("Lesson resources", () => {
   });
 
   it("does not render create with ai button when the lesson has complex copyright", () => {
-    render(<LessonView {...baseProps} geoRestricted loginRequired />);
+    renderLessonView({ geoRestricted: true, loginRequired: true });
 
     const createWithAiButton = screen.queryByRole("button", {
       name: "Create more with AI",
@@ -350,7 +328,7 @@ describe("Lesson resources", () => {
   });
 
   it("does not render create with ai button when excludedFromTeachingMaterials is true", () => {
-    render(<LessonView {...baseProps} excludedFromTeachingMaterials={true} />);
+    renderLessonView({ excludedFromTeachingMaterials: true });
 
     expect(
       screen.queryByRole("button", { name: "Create more with AI" }),
@@ -358,8 +336,7 @@ describe("Lesson resources", () => {
   });
 
   it("does not create with ai button when the lesson has no complex copyright", () => {
-    render(<LessonView {...baseProps} />);
-
+    renderLessonView();
     const createWithAiButton = screen.getByRole("button", {
       name: "Create more with AI",
     });
@@ -373,13 +350,10 @@ describe("Tracking callbacks", () => {
   });
 
   it("calls lessonResourceDownloadStarted when download button is clicked for slides", () => {
-    render(
-      <LessonView
-        {...baseProps}
-        presentationUrl="https://example.com/slides.pdf"
-        downloads={[{ exists: true, type: "presentation" }]}
-      />,
-    );
+    renderLessonView({
+      presentationUrl: "https://example.com/slides.pdf",
+      downloads: [{ exists: true, type: "presentation" }],
+    });
 
     const downloadButton = screen.getByRole("link", {
       name: /Download lesson slides \(PPTX\)/i,
@@ -402,16 +376,13 @@ describe("Tracking callbacks", () => {
   });
 
   it("calls lessonResourceDownloadStarted when download button is clicked for worksheet", () => {
-    render(
-      <LessonView
-        {...baseProps}
-        worksheetUrl="https://example.com/worksheet.pdf"
-        downloads={[
-          { exists: true, type: "worksheet-pdf" },
-          { exists: true, type: "worksheet-pptx" },
-        ]}
-      />,
-    );
+    renderLessonView({
+      worksheetUrl: "https://example.com/worksheet.pdf",
+      downloads: [
+        { exists: true, type: "worksheet-pdf" },
+        { exists: true, type: "worksheet-pptx" },
+      ],
+    });
 
     const downloadButton = screen.getByRole("link", {
       name: /Download worksheet \(PPTX\/PDF\)/i,
@@ -428,8 +399,7 @@ describe("Tracking callbacks", () => {
   });
 
   it("calls lessonResourceDownloadStarted when starter quiz download is clicked", () => {
-    render(<LessonView {...baseProps} />);
-
+    renderLessonView();
     const downloadButton = screen.getByRole("link", {
       name: /Download starter quiz questions \(PDF\)/i,
     });
@@ -445,8 +415,7 @@ describe("Tracking callbacks", () => {
   });
 
   it("calls lessonResourceDownloadStarted when exit quiz download is clicked", () => {
-    render(<LessonView {...baseProps} />);
-
+    renderLessonView();
     const downloadButton = screen.getByRole("link", {
       name: /Download exit quiz questions \(PDF\)/i,
     });
@@ -462,13 +431,10 @@ describe("Tracking callbacks", () => {
   });
 
   it("includes browse pathway data in tracking calls", () => {
-    render(
-      <LessonView
-        {...baseProps}
-        presentationUrl="https://example.com/slides.pdf"
-        downloads={[{ exists: true, type: "presentation" }]}
-      />,
-    );
+    renderLessonView({
+      presentationUrl: "https://example.com/slides.pdf",
+      downloads: [{ exists: true, type: "presentation" }],
+    });
 
     const downloadButton = screen.getByRole("link", {
       name: /Download lesson slides \(PPTX\)/i,
@@ -480,7 +446,7 @@ describe("Tracking callbacks", () => {
     expect(lessonResourceDownloadStarted).toHaveBeenCalledWith(
       expect.objectContaining({
         keyStageSlug: baseProps.keyStageSlug,
-        keyStageTitle: baseProps.keyStageTitle,
+        keyStageTitle: "Key stage 3", // transformed to sentence case
         subjectSlug: baseProps.subjectSlug,
         subjectTitle: baseProps.subjectTitle,
         unitSlug: baseProps.unitSlug,
@@ -492,13 +458,10 @@ describe("Tracking callbacks", () => {
   });
 
   it("calls lessonMediaClipsStarted when play all button is clicked", async () => {
-    render(
-      <LessonView
-        {...baseProps}
-        hasMediaClips={true}
-        lessonMediaClips={lessonMediaClipsFixtures().mediaClips}
-      />,
-    );
+    renderLessonView({
+      hasMediaClips: true,
+      lessonMediaClips: lessonMediaClipsFixtures().mediaClips,
+    });
 
     const playAllButton = screen.getByText("Play all");
     const user = userEvent.setup();
@@ -519,8 +482,7 @@ describe("Tracking callbacks", () => {
   });
 
   it("calls lessonShareStarted when share lesson with pupils is clicked", () => {
-    render(<LessonView {...baseProps} />);
-
+    renderLessonView();
     const shareButton = screen.getByRole("link", {
       name: "Share lesson with pupils",
     });
@@ -544,8 +506,7 @@ describe("Tracking callbacks", () => {
 
   it("calls createTeachingMaterialsInitiated and teachingMaterialsSelected when clicked in create with ai dropdown", async () => {
     setUseUserReturn(mockLoggedIn);
-    render(<LessonView {...baseProps} />);
-
+    renderLessonView();
     const createWithAiButton = screen.getByRole("button", {
       name: "Create more with AI",
     });

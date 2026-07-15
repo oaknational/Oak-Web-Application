@@ -16,10 +16,9 @@ import {
 } from "@/components/TeacherComponents/Header/Header";
 import { TeachersUnitOverviewAdjacentUnit } from "@/node-lib/curriculum-api-2023/queries/teachersUnitOverview/teachersUnitOverview.schema";
 import { resolveOakHref } from "@/common-lib/urls";
-import useAnalytics from "@/context/Analytics/useAnalytics";
-import { KeyStageTitleValueType } from "@/browser-lib/avo/Avo";
 import { UnitHeaderNavFooter } from "@/components/TeacherComponents/HeaderNavFooter/UnitHeaderNavFooter/UnitHeaderNavFooter";
 import { useOakNotificationsContext } from "@/context/OakNotifications/useOakNotificationsContext";
+import { useTeacherBrowseAnalytics } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
 
 export type UnitHeaderProps = Omit<
   CompactHeaderProps,
@@ -32,14 +31,6 @@ export type UnitHeaderProps = Omit<
   prevUnit: TeachersUnitOverviewAdjacentUnit;
   subjectPhaseSlug: string;
   programmeSlug: string;
-  trackingProps: {
-    unitName: string;
-    unitSlug: string;
-    keyStageSlug: string;
-    keyStageTitle: KeyStageTitleValueType;
-    subjectSlug: string;
-    subjectTitle: string;
-  };
   downloadButtonState: ReturnType<typeof useUnitDownloadButtonState>;
 };
 
@@ -82,13 +73,14 @@ const UnitHeader = (props: UnitHeaderProps) => {
     phase,
     unitDownloadFileId,
     isGeorestrictedUnit,
-    trackingProps,
     prevUnit,
     nextUnit,
     programmeSlug,
     downloadButtonState,
   } = props;
-  const { track } = useAnalytics();
+  const { unitDownloadInitiated } = useTeacherBrowseAnalytics(
+    (store) => store.track,
+  );
   const { setCurrentToastProps } = useOakNotificationsContext();
   const { ref, isStuck } = useDetectStuck();
 
@@ -116,15 +108,7 @@ const UnitHeader = (props: UnitHeaderProps) => {
             downloadInProgress={downloadInProgress}
             unitFileId={unitDownloadFileId}
             onDownloadSuccess={() => {
-              track.unitDownloadInitiated({
-                platform: "owa",
-                product: "teacher lesson resources",
-                engagementIntent: "use",
-                componentType: "unit_download_button",
-                eventVersion: "2.0.0",
-                analyticsUseCase: "Teacher",
-                ...trackingProps,
-              });
+              unitDownloadInitiated();
               setCurrentToastProps({
                 message: "Download started. This may take a few minutes.",
                 variant: "success",
