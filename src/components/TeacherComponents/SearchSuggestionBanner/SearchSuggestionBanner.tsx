@@ -8,10 +8,11 @@ import styled from "styled-components";
 
 import { getSearchSuggestionBannerProps } from "./getSearchSuggestionBannerProps";
 
-import { resolveOakHref, resolveProgrammeUnitsHref } from "@/common-lib/urls";
+import { resolveOakHref } from "@/common-lib/urls";
 import { SearchIntent } from "@/common-lib/schemas/search-intent";
 import useAnalytics from "@/context/Analytics/useAnalytics";
 import { KeyStageTitleValueType } from "@/browser-lib/avo/Avo";
+import { getTeacherSubjectPhaseSlug } from "@/utils/curriculum/slugs";
 
 type KsLinkProps = {
   keystageSlug: string;
@@ -55,11 +56,21 @@ export const SearchSuggestionBanner = (props: {
     if (!link.pathwayTitle) {
       return resolveOakHref({ page: "home" });
     }
-    return resolveProgrammeUnitsHref(
-      link.pathwayTitle === "Core"
-        ? "citizenship-secondary-ks4-core"
-        : "citizenship-secondary-ks4-gcse",
-    );
+
+    const subjectPhaseSlug = getTeacherSubjectPhaseSlug({
+      subjectSlug,
+      phaseSlug: "secondary",
+      pathwaySlug: link.pathwayTitle === "Core" ? "core" : "gcse",
+    });
+
+    return resolveOakHref({
+      page: "teacher-programme",
+      subjectPhaseSlug,
+      tab: "units",
+      query: {
+        keystages: link.keystageSlug,
+      },
+    });
   };
 
   const getLinkTitle = (link: KsLinkProps) => {
