@@ -75,6 +75,40 @@ describe("CurricFiltersYears", () => {
     expect(radios[4]).toHaveAccessibleName("Year 11 (GCSE)");
   });
 
+  it("renders correctly (pathways) on integrated journey without Core/GCSE duplication", () => {
+    const { getAllByRole } = render(
+      <CurricFiltersYears
+        context="integrated-journey"
+        filters={{
+          childSubjects: [],
+          subjectCategories: [],
+          tiers: [],
+          years: ["10", "11"],
+          threads: [],
+          pathways: [],
+          keystages: [],
+        }}
+        onChangeFilters={() => {}}
+        data={basicSetup}
+        ks4Options={[
+          { slug: "core", title: "Core" },
+          { slug: "gcse", title: "Gcse" },
+        ]}
+        slugs={{
+          phaseSlug: "secondary",
+          subjectSlug: "citizenship",
+          ks4OptionSlug: "core",
+        }}
+      />,
+    );
+
+    const radios = getAllByRole("radio");
+    expect(radios).toHaveLength(3);
+    expect(radios[0]).toHaveAccessibleName("All");
+    expect(radios[1]).toHaveAccessibleName("Year 10");
+    expect(radios[2]).toHaveAccessibleName("Year 11");
+  });
+
   it("interacts correctly (non-pathway)", () => {
     const onChangeFilters = jest.fn();
     const { getAllByRole, rerender } = render(

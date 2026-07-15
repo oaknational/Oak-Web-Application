@@ -13,6 +13,8 @@ export type ErrorCode =
   | "search/unknown-filter-type"
   | "hubspot/invalid-email"
   | "hubspot/unknown"
+  | "hubspot/contacts"
+  | "hubspot/subscription"
   | "video/unknown"
   | "video/persistent-unknown"
   | "video/fetch-signed-token"
@@ -40,7 +42,8 @@ export type ErrorCode =
   | "educator-api/failed-to-save-unit"
   | "educator-api/failed-to-get-saved-units"
   | "educator-api/failed-to-unsave-unit"
-  | "graphql/timeout";
+  | "graphql/timeout"
+  | "analytics/teacher-browse";
 
 type ErrorConfig = {
   // Message intended for developer's convenience. Human error messages should probably be handled in the view layer
@@ -87,6 +90,14 @@ const errorConfigs: Record<ErrorCode, ErrorConfig> = {
   },
   "hubspot/unknown": {
     message: "Sorry, we couldn't sign you up just now, try again later.",
+    shouldNotify: true,
+  },
+  "hubspot/contacts": {
+    message: "Could not get Hubspot contact information for user",
+    shouldNotify: true,
+  },
+  "hubspot/subscription": {
+    message: "Could not get Hubspot subscription status for user",
     shouldNotify: true,
   },
   "hubspot/not-loaded": {
@@ -216,6 +227,10 @@ const errorConfigs: Record<ErrorCode, ErrorConfig> = {
   },
   "graphql/timeout": {
     message: "Graphql timeout error",
+    shouldNotify: true,
+  },
+  "analytics/teacher-browse": {
+    message: "Invalid browse level for analytics event",
     shouldNotify: true,
   },
 };

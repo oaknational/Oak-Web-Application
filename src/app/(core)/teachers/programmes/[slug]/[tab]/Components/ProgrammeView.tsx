@@ -12,7 +12,7 @@ import {
   tabSlugToName,
   isTabSlug,
 } from "../tabSchema";
-import type { ExamboardFilterDimension } from "../buildExamboardFilterDimensions";
+import type { Ks4OptionFilterDimension } from "../buildKs4OptionFilterDimensions";
 
 import { ProgrammeHeader } from "./ProgrammeHeader/ProgrammeHeader";
 import { buildProgrammeHeading } from "./ProgrammeHeader/buildProgrammeHeading";
@@ -63,7 +63,7 @@ type ProgrammePageProps = {
   mvRefreshTime: number;
   tabSlug: TabSlug;
   ks4Options: Ks4Option[];
-  examboardFilterDimensions: Record<string, ExamboardFilterDimension>;
+  ks4OptionFilterDimensions: Record<string, Ks4OptionFilterDimension>;
   trackingData: CurriculumUnitsTrackingData;
   initialFilter?: CurriculumFilters;
 };
@@ -80,14 +80,13 @@ export const ProgrammeView = ({
   tabSlug,
   subjectPhaseSlug,
   ks4Options,
-  examboardFilterDimensions,
+  ks4OptionFilterDimensions,
   trackingData,
   initialFilter,
 }: ProgrammePageProps) => {
   const searchParams = useSearchParams();
 
-  const { keystages: keystagesParam, years: yearsParam } =
-    validateSearchParams(searchParams);
+  const validatedParams = validateSearchParams(searchParams);
 
   const [activeTab, setActiveTab] = useState<TabSlug>(tabSlug);
 
@@ -116,10 +115,12 @@ export const ProgrammeView = ({
     track.unitSequenceRefined(analyticsData);
   };
 
-  const schoolYear = filters.years.find((year) => yearsParam === year);
+  const schoolYear = filters.years.find(
+    (year) => validatedParams?.years === year,
+  );
 
   const selectedKeystageSlug = filters.keystages.find(
-    (ks) => keystagesParam === ks,
+    (ks) => validatedParams?.keystages === ks,
   );
 
   const heading = buildProgrammeHeading({
@@ -145,7 +146,9 @@ export const ProgrammeView = ({
   }, [pathname]);
 
   const preserveKeystagesParamInUrl = (url: string) => {
-    return keystagesParam ? `${url}?keystages=${keystagesParam}` : url;
+    return validatedParams?.keystages
+      ? `${url}?keystages=${validatedParams?.keystages}`
+      : url;
   };
 
   return (
@@ -184,7 +187,7 @@ export const ProgrammeView = ({
                 subjectPhaseSlug,
                 tab: tabNameToSlug[tab],
                 query: {
-                  keystages: keystagesParam ?? undefined,
+                  keystages: validatedParams?.keystages,
                 },
               }),
             }))}
@@ -203,7 +206,7 @@ export const ProgrammeView = ({
         filters={filters}
         setFilters={onChangeFilters}
         ks4Options={ks4Options}
-        examboardFilterDimensions={examboardFilterDimensions}
+        ks4OptionFilterDimensions={ks4OptionFilterDimensions}
       />
     </>
   );
@@ -221,7 +224,7 @@ const TabContent = ({
   filters,
   setFilters,
   ks4Options,
-  examboardFilterDimensions,
+  ks4OptionFilterDimensions,
 }: { tabSlug: TabSlug } & UnitSequenceViewProps &
   Omit<ProgrammeOverviewProps, "curriculumCMSInfo"> & {
     curriculumCMSInfo: CurriculumOverviewSanityData | null;
@@ -234,7 +237,7 @@ const TabContent = ({
         filters={filters}
         setFilters={setFilters}
         ks4Options={ks4Options}
-        examboardFilterDimensions={examboardFilterDimensions}
+        ks4OptionFilterDimensions={ks4OptionFilterDimensions}
       />
     );
   } else if (tabSlug === "curriculum-explainer") {

@@ -1,6 +1,7 @@
 import { notFound, redirect, RedirectType } from "next/navigation";
 import { Metadata } from "next";
 import { cache } from "react";
+import { draftMode } from "next/headers";
 
 import { ProgrammeView } from "./Components/ProgrammeView";
 import { isTabSlug } from "./tabSchema";
@@ -51,6 +52,7 @@ export type ProgrammeCmsParams = {
   subjectTitle: string;
   phaseSlug: string;
   programmePageSlug: string;
+  isPreviewModeEnabled: boolean;
 };
 
 const getCachedProgrammeCms = cache(
@@ -60,17 +62,20 @@ const getCachedProgrammeCms = cache(
       subjectTitle,
       phaseSlug,
       programmePageSlug,
+      isPreviewModeEnabled,
     }: ProgrammeCmsParams) => {
       const [curriculumCMSInfo, subjectPhaseSanityData, mvRefreshTime] =
         await Promise.all([
           nonCurriculum
             ? null
             : CMSClient.curriculumOverviewPage({
-                previewMode: false,
+                previewMode: isPreviewModeEnabled,
                 subjectTitle,
                 phaseSlug,
               }),
-          CMSClient.programmePageBySlug(programmePageSlug),
+          CMSClient.programmePageBySlug(programmePageSlug, {
+            previewMode: isPreviewModeEnabled,
+          }),
           getMvRefreshTime(),
         ]);
 
@@ -105,8 +110,10 @@ export async function generateMetadata({
 
     const canonicalURL = new URL(
       resolveOakHref({
-        page: "unit-index",
-        programmeSlug: slug,
+        page: "teacher-programme",
+        subjectPhaseSlug: slug,
+        tab: "units",
+        query: pageSearchParams,
       }),
       getBrowserConfig("seoAppUrl"),
     ).toString();
@@ -204,7 +211,7 @@ const InnerProgrammePage = async (props: AppPageProps<ProgrammePageParams>) => {
     return notFound();
   }
 
-  const { programmeUnitsData, curriculumUnitsData, examboardFilterDimensions } =
+  const { programmeUnitsData, curriculumUnitsData, ks4OptionFilterDimensions } =
     cachedProgrammeData;
 
   const curriculumPhaseOptions = {
@@ -212,6 +219,7 @@ const InnerProgrammePage = async (props: AppPageProps<ProgrammePageParams>) => {
     tab: "units" as const,
   };
 
+  const { isEnabled } = await draftMode();
   const { curriculumCMSInfo, subjectPhaseSanityData, mvRefreshTime } =
     await getCachedProgrammeCms({
       subjectPhaseSlug,
@@ -219,6 +227,7 @@ const InnerProgrammePage = async (props: AppPageProps<ProgrammePageParams>) => {
       subjectTitle: programmeUnitsData.subjectTitle,
       phaseSlug: subjectPhaseKeystageSlugs.phaseSlug,
       programmePageSlug: `${subjectPhaseKeystageSlugs.subjectSlug}-${subjectPhaseKeystageSlugs.phaseSlug}`,
+      isPreviewModeEnabled: isEnabled,
     });
 
   if (!curriculumCMSInfo && !programmeUnitsData.nonCurriculum) {
@@ -282,7 +291,7 @@ const InnerProgrammePage = async (props: AppPageProps<ProgrammePageParams>) => {
     tabSlug: tab,
     curriculumCMSInfo,
     ks4Options,
-    examboardFilterDimensions,
+    ks4OptionFilterDimensions,
     trackingData: curriculumUnitsTrackingData,
     curriculumInfo: cachedProgrammeData.programmeUnitsData,
     curriculumDownloadsTabData,

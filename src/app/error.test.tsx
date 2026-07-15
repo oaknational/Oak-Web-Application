@@ -1,6 +1,6 @@
 import { screen } from "@testing-library/react";
 
-import CoreError from "./error";
+import RootError from "./error";
 
 import errorReporter from "@/common-lib/error-reporter";
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
@@ -21,13 +21,13 @@ describe("app error", () => {
       digest: "abc123",
     });
 
-    render(<CoreError error={error} />);
+    render(<RootError error={error} reset={jest.fn()} />);
 
     const errorMessage = screen.getByRole("heading", {
       name: "An error occurred",
     });
     expect(errorMessage).toBeInTheDocument();
-    expect(errorReporter).toHaveBeenCalledWith("app::error-boundary");
+    expect(errorReporter).toHaveBeenCalledWith("app::root-layout");
     expect(reportErrorMock).toHaveBeenCalledWith(error);
   });
 });
