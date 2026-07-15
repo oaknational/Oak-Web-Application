@@ -36,6 +36,7 @@ export type EventProperties = Record<string, unknown>;
 export type EventFn = (
   eventName: EventName,
   properties: EventProperties,
+  options?: { sendInstantly?: boolean },
 ) => void;
 export type PageProperties = {
   path: string;
@@ -80,6 +81,7 @@ export type AnalyticsContext = {
   identify: IdentifyFn;
   alias?: AliasFn;
   trackFeatureFlag?: TrackFeatureFlagFunction;
+  getSessionId: () => string | undefined;
   posthogDistinctId: PosthogDistinctId | null;
 };
 
@@ -94,6 +96,7 @@ export type AnalyticsService<ServiceConfig> = {
   alias?: AliasFn;
   optOut: () => void;
   optIn: () => void;
+  getSessionId?: () => string;
 };
 
 type AvoOptions = Parameters<typeof initAvo>[0];
@@ -246,6 +249,9 @@ const AnalyticsProvider: FC<AnalyticsProviderProps> = (props) => {
     },
     [posthog],
   );
+  const getSessionId = useCallback(() => {
+    return posthog.getSessionId?.();
+  }, [posthog]);
   /**
    * Event tracking
    * Object containing Track functions as defined in the Avo tracking plan.
@@ -267,10 +273,17 @@ const AnalyticsProvider: FC<AnalyticsProviderProps> = (props) => {
       identify,
       alias,
       trackFeatureFlag,
+      getSessionId,
       posthogDistinctId,
     };
-  }, [track, identify, posthogDistinctId, alias, trackFeatureFlag]);
-
+  }, [
+    track,
+    identify,
+    posthogDistinctId,
+    alias,
+    trackFeatureFlag,
+    getSessionId,
+  ]);
   return (
     <analyticsContext.Provider value={analytics}>
       {children}

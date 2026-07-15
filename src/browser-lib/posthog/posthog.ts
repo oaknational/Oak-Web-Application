@@ -51,13 +51,16 @@ export const posthogToAnalyticsServiceWithoutQueue = (
   alias: (aliasId, userId) => {
     client.alias(aliasId, userId);
   },
+  getSessionId: () => {
+    return client.get_session_id();
+  },
   page: () => {
     client.capture("$pageview");
   },
   trackFeatureFlag: (properties) => {
     client.capture("$feature_flag_called", properties);
   },
-  track: (name, properties) => {
+  track: (name, properties, options) => {
     const m = window.location.search.match(/update_tracking_profile=true/);
 
     if ((name === "$pageview" || name === "$autocapture") && m) {
@@ -67,7 +70,13 @@ export const posthogToAnalyticsServiceWithoutQueue = (
         },
       });
     }
-    client.capture(name, properties);
+    client.capture(
+      name,
+      properties,
+      options?.sendInstantly
+        ? { send_instantly: true, transport: "sendBeacon" }
+        : undefined,
+    );
   },
   optIn: () => {
     if (client.has_opted_out_capturing()) {

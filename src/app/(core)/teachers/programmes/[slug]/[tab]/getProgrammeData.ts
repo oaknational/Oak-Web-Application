@@ -1,7 +1,7 @@
 import {
-  buildExamboardFilterDimensions,
-  type ExamboardFilterDimension,
-} from "./buildExamboardFilterDimensions";
+  buildKs4OptionFilterDimensions,
+  type Ks4OptionFilterDimension,
+} from "./buildKs4OptionFilterDimensions";
 
 import curriculumApi2023, {
   CurriculumPhaseOptions,
@@ -16,7 +16,6 @@ import {
 import { filterValidCurriculumPhaseOptions } from "@/pages-helpers/curriculum/docx/tab-helpers";
 import { CurriculumFilters } from "@/utils/curriculum/types";
 import { scopeYearsToKeystageFilter } from "@/utils/curriculum/filtersUrl";
-import { isExamboardSlug } from "@/pages-helpers/pupil/options-pages/options-pages-helpers";
 
 const PAGE_KEY = "programme-page-data";
 
@@ -93,14 +92,6 @@ const sortUnits = (units: CurriculumUnit[]): CurriculumUnit[] => {
   return sorted;
 };
 
-const excludeCoreFromSubjects = (subjects: CurriculumPhaseOptions) => {
-  return subjects.map((subject) => ({
-    ...subject,
-    ks4_options:
-      subject.ks4_options?.filter(({ slug }) => slug !== "core") ?? null,
-  }));
-};
-
 export async function getSubjectPhaseOptions(subjectPhaseSlug: string) {
   const subjectPhaseKeystageSlugs = parseSubjectPhaseSlug(subjectPhaseSlug);
 
@@ -108,21 +99,15 @@ export async function getSubjectPhaseOptions(subjectPhaseSlug: string) {
     return null;
   }
   const originalSubjects = await getCachedCurriculumPhaseOptions();
-  let subjects = filterValidCurriculumPhaseOptions(originalSubjects);
-  // We exclude core units when the ks4 option is not core
-  // TD: after the integrated journey launches we should make this the default in the query
-  const excludeCoreUnits = subjectPhaseKeystageSlugs.ks4OptionSlug !== "core";
-  if (excludeCoreUnits) {
-    subjects = excludeCoreFromSubjects(subjects);
-  }
+  const subjects = filterValidCurriculumPhaseOptions(originalSubjects);
 
   return { subjects, subjectPhaseKeystageSlugs };
 }
 
-async function getExamboardFilterDimensions(
+async function getKs4OptionFilterDimensions(
   subjectPhaseKeystageSlugs: CurriculumSelectionSlugs,
   subjects: CurriculumPhaseOptions,
-): Promise<Record<string, ExamboardFilterDimension>> {
+): Promise<Record<string, Ks4OptionFilterDimension>> {
   if (subjectPhaseKeystageSlugs.phaseSlug !== "secondary") {
     return {};
   }
@@ -131,11 +116,9 @@ async function getExamboardFilterDimensions(
     subjects.find(
       (subject) => subject.slug === subjectPhaseKeystageSlugs.subjectSlug,
     )?.ks4_options ?? [];
-  const examBoardSlugs = ks4Options
-    .map((option) => option.slug)
-    .filter((slug) => isExamboardSlug(slug));
+  const ks4OptionSlugs = ks4Options.map((option) => option.slug);
 
-  if (examBoardSlugs.length === 0) {
+  if (ks4OptionSlugs.length === 0) {
     return {};
   }
 
@@ -144,7 +127,7 @@ async function getExamboardFilterDimensions(
     subjectPhaseKeystageSlugs.phaseSlug,
   );
 
-  return buildExamboardFilterDimensions(slugUnits, examBoardSlugs);
+  return buildKs4OptionFilterDimensions(slugUnits, ks4OptionSlugs);
 }
 
 export async function getProgrammeData(
@@ -161,7 +144,7 @@ export async function getProgrammeData(
   // TD: after the integrated journey launches we should make this the default in the query
   const excludeCoreUnits = subjectPhaseKeystageSlugs.ks4OptionSlug !== "core";
 
-  const [programmeUnitsData, curriculumUnitsData, examboardFilterDimensions] =
+  const [programmeUnitsData, curriculumUnitsData, ks4OptionFilterDimensions] =
     await Promise.all([
       getCachedCurriculumOverview(
         subjectPhaseKeystageSlugs.subjectSlug,
@@ -173,7 +156,7 @@ export async function getProgrammeData(
         subjectPhaseKeystageSlugs.ks4OptionSlug,
         excludeCoreUnits,
       ),
-      getExamboardFilterDimensions(subjectPhaseKeystageSlugs, subjects),
+      getKs4OptionFilterDimensions(subjectPhaseKeystageSlugs, subjects),
     ]);
 
   // Sort units to have examboard versions first, then by unit order
@@ -182,7 +165,7 @@ export async function getProgrammeData(
   return {
     programmeUnitsData,
     curriculumUnitsData,
-    examboardFilterDimensions,
+    ks4OptionFilterDimensions,
   };
 }
 

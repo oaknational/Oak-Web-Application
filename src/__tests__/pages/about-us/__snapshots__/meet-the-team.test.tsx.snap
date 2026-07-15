@@ -290,14 +290,6 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
 .c98 {
   height: 100%;
   padding: 1rem;
-  color: #222222;
-  font-family: --var(google-font),Lexend,sans-serif;
-}
-
-.c100 {
-  height: 100%;
-  padding-top: 0rem;
-  padding-bottom: 0rem;
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
@@ -933,6 +925,14 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
   -webkit-flex-direction: column;
   -ms-flex-direction: column;
   flex-direction: column;
+  gap: 1rem;
+}
+
+.c99 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
   gap: 1rem;
 }
 
@@ -2413,26 +2413,29 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
   box-shadow: 0.125rem 0.125rem 0 rgba(255,229,85,100%),0.25rem 0.25rem 0 rgba(87,87,87,100%);
 }
 
-.c99 {
+.c100 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  gap: 1rem;
   -webkit-flex-direction: column;
   -ms-flex-direction: column;
   flex-direction: column;
-  pa: 1rem;
-  gap: 1rem;
 }
 
-.c99:hover h1,
-.c99:hover h2,
-.c99:hover h3,
-.c99:hover h4,
-.c99:hover h5,
-.c99:hover h6,
-.c99:hover span {
+.c100:hover h1,
+.c100:hover h2,
+.c100:hover h3,
+.c100:hover h4,
+.c100:hover h5,
+.c100:hover h6,
+.c100:hover span {
   -webkit-text-decoration: underline;
   text-decoration: underline;
 }
 
-.c99:hover span {
+.c100:hover span {
   -webkit-text-decoration-thickness: 18%;
   text-decoration-thickness: 18%;
 }
@@ -2530,6 +2533,43 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
   margin-top: 2rem;
 }
 
+.c156 {
+  background: none;
+  color: inherit;
+  border: none;
+  padding: 0;
+  font: inherit;
+  cursor: pointer;
+  text-align: left;
+  font-family: unset;
+}
+
+.c75 {
+  height: 410px;
+  width: auto;
+}
+
+.c120:hover {
+  box-shadow: 2px 2px 0 0 #ffe555;
+}
+
+.c115 {
+  padding: 0;
+  margin: 0;
+}
+
+.c114 {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  row-gap: 1rem;
+  -webkit-column-gap: 1rem;
+  column-gap: 1rem;
+  grid-auto-rows: 1fr;
+  grid-template-columns: repeat(3,1fr);
+}
+
 .c148 {
   -webkit-transition: all 0.3s ease;
   transition: all 0.3s ease;
@@ -2617,43 +2657,6 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-}
-
-.c156 {
-  background: none;
-  color: inherit;
-  border: none;
-  padding: 0;
-  font: inherit;
-  cursor: pointer;
-  text-align: left;
-  font-family: unset;
-}
-
-.c75 {
-  height: 410px;
-  width: auto;
-}
-
-.c120:hover {
-  box-shadow: 2px 2px 0 0 #ffe555;
-}
-
-.c115 {
-  padding: 0;
-  margin: 0;
-}
-
-.c114 {
-  margin: 0;
-  padding: 0;
-  list-style: none;
-  display: grid;
-  row-gap: 1rem;
-  -webkit-column-gap: 1rem;
-  column-gap: 1rem;
-  grid-auto-rows: 1fr;
-  grid-template-columns: repeat(3,1fr);
 }
 
 .c141 {
@@ -4908,11 +4911,11 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
                           class="c96 c97"
                         >
                           <a
-                            class="c98 c90 c99"
+                            class="c98 c99 c100"
                             href="/about-us/meet-the-team/ed-southall?section=leadership"
                           >
                             <div
-                              class="c100 c101"
+                              class="c9 c101"
                             >
                               <div
                                 class="c9 c90"
@@ -4992,11 +4995,11 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
                           class="c96 c97"
                         >
                           <a
-                            class="c98 c90 c99"
+                            class="c98 c99 c100"
                             href="/about-us/meet-the-team/ed-southall?section=board"
                           >
                             <div
-                              class="c100 c101"
+                              class="c9 c101"
                             >
                               <div
                                 class="c9 c90"

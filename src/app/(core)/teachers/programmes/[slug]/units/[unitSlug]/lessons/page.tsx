@@ -7,6 +7,9 @@ import {
 import withPageErrorHandling, {
   AppPageProps,
 } from "@/hocs/withPageErrorHandling";
+import { TeacherBrowseAnalyticsStoreProvider } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
+import { getProgrammeStateForUnit } from "@/context/TeacherBrowseAnalytics/utils/getProgrammeState";
+
 type LessonsPageParams = { slug: string; unitSlug: string };
 
 export const dynamic = "force-static";
@@ -20,7 +23,13 @@ const InnerUnitPage = async (props: AppPageProps<LessonsPageParams>) => {
 
   const data = await getCachedUnitData(programmeSlug, unitSlug);
 
-  return <UnitView {...data} isEnabled={false} />;
+  const programmeState = getProgrammeStateForUnit(data);
+
+  return (
+    <TeacherBrowseAnalyticsStoreProvider programmeState={{ programmeState }}>
+      <UnitView {...data} isEnabled={false} />
+    </TeacherBrowseAnalyticsStoreProvider>
+  );
 };
 
 const UnitPage = withPageErrorHandling(InnerUnitPage, "unit-page::app");
