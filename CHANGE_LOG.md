@@ -1,3 +1,30 @@
+# [1.1123.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1122.0...v1.1123.0) (2026-07-15)
+
+
+### Bug Fixes
+
+* move fn to separate file outside of page ([29e1c04](https://github.com/oaknational/Oak-Web-Application/commit/29e1c04a42159a592cfad417e80d43e09391b303))
+* revert and remove export of fn ([412ae4d](https://github.com/oaknational/Oak-Web-Application/commit/412ae4dafd69fff2dcefd6d2714ab0540f18628a))
+
+
+### Features
+
+* add decorator for analytics store and add to stories ([6c67685](https://github.com/oaknational/Oak-Web-Application/commit/6c6768580fbf4a5d95295c7f6a879159986b1648))
+* add error reporting for invalid event triggers ([a29435f](https://github.com/oaknational/Oak-Web-Application/commit/a29435f5b4f883a2431a87b069a31fa5c66fdc25))
+* add getSessionId to posthog analytics context ([2b46808](https://github.com/oaknational/Oak-Web-Application/commit/2b46808966222b2a423eba2cd34a433dc056f092))
+* add store provider to unit overview page ([37f7cfb](https://github.com/oaknational/Oak-Web-Application/commit/37f7cfbeafefa0e013973101dbbc3d3978ed8629))
+* add teacher browse analytics store ([733732a](https://github.com/oaknational/Oak-Web-Application/commit/733732a41a8c39136ac5a5f4db908bd6433fa904))
+* add trackUnitDownloadInitiated to store ([d1e75be](https://github.com/oaknational/Oak-Web-Application/commit/d1e75be67163bbb859f27a5c847fcd901a8ccdf8))
+* create type to define tracking fns and props that will be required ([417717b](https://github.com/oaknational/Oak-Web-Application/commit/417717b5fa245d12f401f2688bbc6e61f6043be7))
+* enhance error messages ([6176ba7](https://github.com/oaknational/Oak-Web-Application/commit/6176ba733cf389ebcec311b24f5d0673759d0398))
+* extract types and add helper fns to get analytics properties ([cdd74a5](https://github.com/oaknational/Oak-Web-Application/commit/cdd74a5ae63ebc764136de59a7e4bb39eec04fb7))
+* generate journeyId in the new store ([2609e9a](https://github.com/oaknational/Oak-Web-Application/commit/2609e9a94fe5a2d3cd13f63af1bfcf3f276b523d))
+* implement tracking lesson resource download event using store ([d533d6d](https://github.com/oaknational/Oak-Web-Application/commit/d533d6d7f584dcb703c1765fe50f5df0a234930b))
+* remove type casts on avo properties ([8cf0ebb](https://github.com/oaknational/Oak-Web-Application/commit/8cf0ebb4bd56973a519252fdd3e3a12e640b99fd))
+* update types for programme state ([f634cd9](https://github.com/oaknational/Oak-Web-Application/commit/f634cd97125071ee0ff2eb29227b832a0fde6cf4))
+* use store to track unit download in unit header ([f22c866](https://github.com/oaknational/Oak-Web-Application/commit/f22c866147a984a050ceb5155a9d748f131ce4a3))
+* use store to track unit download on lesson download success page ([78d281f](https://github.com/oaknational/Oak-Web-Application/commit/78d281f6cce799feed955b9ce75ed13fcf44e53d))
+
 # [1.1122.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1121.0...v1.1122.0) (2026-07-14)
 
 
