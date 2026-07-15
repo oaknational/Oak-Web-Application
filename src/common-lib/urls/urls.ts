@@ -21,13 +21,6 @@ import {
 
 const reportError = errorReporter("urls.ts");
 
-const SCIENCE_CHILD_SUBJECT_SLUGS = new Set([
-  "biology",
-  "chemistry",
-  "physics",
-  "combined-science",
-]);
-
 /**
  * type pattern below is to allow any string value whilst offering autocomplete
  * on a union type specified. E.g. type A =  OrString<"foo" | "bar"> would
@@ -92,6 +85,10 @@ type ProgrammeUnitsSearch = {
   ["learning-theme"]?: string | null;
   category?: string | null;
   year?: string | null;
+};
+
+type ProgrammeUnitsContext = {
+  subjectParentTitle?: string | null;
 };
 
 export type UnitOverviewLinkProps = {
@@ -318,7 +315,6 @@ type ProgrammePageProps = {
     years?: string;
     pathways?: string;
     threads?: string;
-    subject_categories?: string;
     focus_ks4option?: string;
     open_filters_modal?: string;
     subject_categories?: string;
@@ -567,29 +563,36 @@ const postResolveHref =
 export function resolveProgrammeUnitsHref(
   programmeSlug: string,
   search?: ProgrammeUnitsSearch,
+  context?: ProgrammeUnitsContext,
 ): string {
   const parsedProgrammeSlug = parseProgrammeSlug(programmeSlug);
   if (parsedProgrammeSlug) {
-    const scienceChildSubjectSlug = SCIENCE_CHILD_SUBJECT_SLUGS.has(
-      parsedProgrammeSlug.subjectSlug,
-    )
-      ? parsedProgrammeSlug.subjectSlug
-      : null;
-
-    const subjectPhaseSlug = getTeacherSubjectPhaseSlug({
-      subjectSlug: scienceChildSubjectSlug
-        ? "science"
-        : parsedProgrammeSlug.subjectSlug,
+    const subjectPhaseSlugWithoutParent = getTeacherSubjectPhaseSlug({
+      subjectSlug: parsedProgrammeSlug.subjectSlug,
       phaseSlug: parsedProgrammeSlug.phaseSlug,
       examboardSlug: parsedProgrammeSlug.examboardSlug,
       pathwaySlug: parsedProgrammeSlug.pathwaySlug,
     });
 
+    const subjectPhaseSlug = getTeacherSubjectPhaseSlug({
+      subjectSlug: parsedProgrammeSlug.subjectSlug,
+      phaseSlug: parsedProgrammeSlug.phaseSlug,
+      examboardSlug: parsedProgrammeSlug.examboardSlug,
+      pathwaySlug: parsedProgrammeSlug.pathwaySlug,
+      subjectParentTitle: context?.subjectParentTitle,
+    });
+
+    const hasParentSubjectContext =
+      context?.subjectParentTitle &&
+      subjectPhaseSlug !== subjectPhaseSlugWithoutParent;
+
     const query: ProgrammePageProps["query"] = {
       keystages: parsedProgrammeSlug.keystageSlug ?? undefined,
       years: parsedProgrammeSlug.yearSlug?.replace(/^year-/, "") ?? undefined,
       tiers: parsedProgrammeSlug.tierSlug ?? undefined,
-      child_subjects: scienceChildSubjectSlug ?? undefined,
+      child_subjects: hasParentSubjectContext
+        ? parsedProgrammeSlug.subjectSlug
+        : undefined,
       threads: search?.["learning-theme"] ?? undefined,
       subject_categories: search?.category ?? undefined,
     };

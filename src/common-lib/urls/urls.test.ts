@@ -351,12 +351,24 @@ describe("urls.ts", () => {
       );
     });
 
-    it("maps KS4 science child-subject slug to science parent", () => {
+    it("maps KS4 science child-subject slug to science parent when parent subject context is provided", () => {
       expect(
-        resolveProgrammeUnitsHref("biology-secondary-ks4-higher-aqa"),
+        resolveProgrammeUnitsHref(
+          "biology-secondary-ks4-higher-aqa",
+          undefined,
+          { subjectParentTitle: "Science" },
+        ),
       ).toBe(
         "/teachers/programmes/science-secondary-aqa/units?keystages=ks4&tiers=higher&child_subjects=biology",
       );
+    });
+
+    it("falls back to the subject slug in the programme slug when parent subject context is not provided", () => {
+      expect(
+        resolveProgrammeUnitsHref("history-secondary-ks3", undefined, {
+          subjectParentTitle: null,
+        }),
+      ).toBe("/teachers/programmes/history-secondary/units?keystages=ks3");
     });
 
     it("falls back to a raw programme units URL for unparseable slugs", () => {
