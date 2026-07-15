@@ -56,9 +56,9 @@ export default function MyLibrary(props: Readonly<MyLibraryProps>) {
   const { track } = useAnalytics();
   const collections = collectionData ?? [];
 
-  const showNoSavedContent = !isLoading && collections.length === 0;
-  const showCollections = !isLoading && collections.length > 0;
-
+  const hasLoadedCollections = !isLoading && collectionData !== null;
+  const showNoSavedContent = hasLoadedCollections && collections.length === 0;
+  const showCollections = hasLoadedCollections && collections.length > 0;
   return (
     <OakMaxWidth
       $gap={["spacing-0", "spacing-48"]}
