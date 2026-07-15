@@ -14,12 +14,12 @@ export const getQuizNextStep = ({
 }): QuizNextStep => {
   const nextQuestionIndex = Math.min(currentQuestionIndex + 1, numQuestions);
 
-  if (nextQuestionIndex === numQuestions) {
-    return { action: "complete-quiz" };
-  }
-
   if (isReadOnly) {
     return { action: "go-review" };
+  }
+
+  if (nextQuestionIndex === numQuestions) {
+    return { action: "complete-quiz" };
   }
 
   return { action: "next-question" };

@@ -17,6 +17,8 @@ import withPageErrorHandling, {
 import { getTeacherSubjectPhaseSlug } from "@/utils/curriculum/slugs";
 import { cacheData } from "@/node-lib/cache";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
+import { TeacherBrowseAnalyticsStoreProvider } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
+import { getProgrammeStateForLesson } from "@/context/TeacherBrowseAnalytics/utils/getProgrammeState";
 
 type LessonPageParams = {
   slug: string;
@@ -78,28 +80,18 @@ const InnerLessonPage = async (props: AppPageProps<LessonPageParams>) => {
 
   const data = await getCachedLessonData(programmeSlug, unitSlug, lessonSlug);
 
+  const programmeState = getProgrammeStateForLesson(data);
+
   return (
-    <>
+    <TeacherBrowseAnalyticsStoreProvider programmeState={{ programmeState }}>
       <LessonHeader
         heroImage={getSubjectHeroImageUrl(data.subjectSlug as SubjectName)}
         heading={data.lessonTitle}
-        lessonTitle={data.lessonTitle}
         currentLessonSlug={data.lessonSlug}
+        unitSlug={data.unitSlug}
         nextLesson={data.nextLesson}
         prevLesson={data.previousLesson}
         programmeSlug={data.programmeSlug}
-        unitSlug={data.unitSlug}
-        unitTitle={data.unitTitle}
-        keyStageSlug={data.keyStageSlug}
-        keyStageTitle={data.keyStageTitle}
-        subjectSlug={data.subjectSlug}
-        subjectTitle={data.subjectTitle}
-        year={data.year}
-        yearGroupTitle={data.yearGroupTitle}
-        examBoardTitle={data.examBoardTitle}
-        tierTitle={data.tierTitle}
-        pathwayTitle={data.pathwayTitle}
-        lessonReleaseDate={data.lessonReleaseDate}
         headerSlot={
           <Breadcrumbs
             data={data}
@@ -117,7 +109,7 @@ const InnerLessonPage = async (props: AppPageProps<LessonPageParams>) => {
         loginRequired={data.loginRequired}
       />
       <LessonView {...data} />
-    </>
+    </TeacherBrowseAnalyticsStoreProvider>
   );
 };
 

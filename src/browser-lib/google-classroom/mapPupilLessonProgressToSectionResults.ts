@@ -1,15 +1,17 @@
-import {
-  CourseWorkPupilProgress,
-  PupilLessonProgress,
-} from "@oaknational/google-classroom-addon/types";
+import { PupilLessonProgress } from "@oaknational/google-classroom-addon/types";
 
-import { LessonSectionResults } from "@/components/PupilComponents/LessonEngineProvider";
+import { LessonSectionResults } from "@/context/PupilLessonProgress";
 
 const isRecord = (value: unknown): value is Record<string, unknown> =>
   typeof value === "object" && value !== null;
 
+/**
+ * Maps a Google Classroom add-on pupil lesson progress payload back into the
+ * shape consumed by the pupil lesson progress store, so a pupil resuming a
+ * Classroom assignment sees their prior answers restored.
+ */
 export const mapPupilLessonProgressToSectionResults = (
-  lessonProgress: PupilLessonProgress | CourseWorkPupilProgress,
+  lessonProgress: PupilLessonProgress,
 ): LessonSectionResults => {
   if (!isRecord(lessonProgress)) {
     return {};
