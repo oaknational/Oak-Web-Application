@@ -60,8 +60,6 @@ export const usePupilOverviewExperience = ({
     })),
   );
 
-  // GC-only: wait until progress init so dismiss cannot race
-  // initialiseLessonProgress resetting contentGuidanceDismissed.
   const contentGuidanceCanOpen =
     classroomAssignmentChecked &&
     (isClassroomAssignment !== true || lessonSlug === browseData.lessonSlug);
