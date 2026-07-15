@@ -11,11 +11,8 @@ import { SubjectIcon } from "@/components/TeacherComponents/Header/Header";
 import { useUnitDownloadButtonState } from "@/components/TeacherComponents/UnitDownloadButton/UnitDownloadButton";
 import { getUnitDownloadFileId } from "@/utils/getUnitDownloadFileId";
 import ComplexCopyrightRestrictionBanner from "@/components/TeacherComponents/ComplexCopyrightRestrictionBanner/ComplexCopyrightRestrictionBanner";
-import { useCaptureFeatureFlag } from "@/utils/posthogExperiments/useCaptureFeatureFlag";
 
 export const UnitView = (props: TeachersUnitOverviewData) => {
-  useCaptureFeatureFlag("test-flag");
-
   const subjectIconName = `subject-${props.subjectSlug}` as SubjectIcon;
 
   const subjectPhaseSlug = getTeacherSubjectPhaseSlug({
