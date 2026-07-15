@@ -1,6 +1,6 @@
 import { create } from "zustand";
 
-import { getPupilVideoData } from "@/components/PupilComponents/PupilAnalyticsProvider/PupilAnalyticsProvider";
+import { getPupilVideoData } from "@/context/PupilLessonAnalytics/pupilAnalyticsHelpers";
 import type {
   AdditionalArgs,
   PupilLessonAnalyticsState,
@@ -53,6 +53,9 @@ export const usePupilLessonAnalyticsStore = create<PupilLessonAnalyticsState>()(
         attachmentId,
         clientEnvironment,
         classroomAssignmentId,
+        submissionId,
+        teacherLoginHint,
+        pupilLoginHint,
       } = classroomAssignmentContext;
       const additionalArgs: AdditionalArgs = {
         ...pupilPathwayData,
@@ -62,9 +65,9 @@ export const usePupilLessonAnalyticsStore = create<PupilLessonAnalyticsState>()(
         courseId,
         itemId,
         attachmentId,
-        submissionId: null,
-        teacherLoginHint: null,
-        pupilLoginHint: null,
+        submissionId,
+        teacherLoginHint,
+        pupilLoginHint,
       };
 
       if (get().accessedLessonSlug !== pupilPathwayData.lessonSlug) {

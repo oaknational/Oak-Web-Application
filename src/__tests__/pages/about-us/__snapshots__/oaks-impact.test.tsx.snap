@@ -491,7 +491,7 @@ exports[`pages/about-us/oaks-impact.tsx renders title when feature flag is enabl
               </div>
               <a
                 aria-label="My library"
-                class="sc-dcJsrY sc-bJBgwP fIyhTG gGlhYE"
+                class="sc-dcJsrY sc-dGCmGc fIyhTG kNXJqf"
                 href="/teachers/my-library"
               >
                 <div

@@ -29,7 +29,8 @@ export const SchoolSelectionView = () => {
   const { formState, setValue, handleSubmit, control, trigger, reset } =
     useForm({
       resolver: zodResolver(schoolSelectFormSchema),
-      mode: "onBlur",
+      mode: "onSubmit",
+      reValidateMode: "onSubmit",
       defaultValues: {
         newsletterSignUp: false,
       },
@@ -39,27 +40,27 @@ export const SchoolSelectionView = () => {
     (isSchoolName: boolean, value: string) => {
       if (isSchoolName) {
         setValue("manualSchoolName", value, {
-          shouldValidate: true,
+          shouldValidate: formState.isSubmitted,
         });
       } else {
         setValue("schoolAddress", value, {
-          shouldValidate: true,
+          shouldValidate: formState.isSubmitted,
         });
       }
     },
-    [setValue],
+    [formState.isSubmitted, setValue],
   );
 
   const setSchoolDetailsInForm = useCallback(
     (value: string, name: string) => {
       setValue("school", value, {
-        shouldValidate: true,
+        shouldValidate: formState.isSubmitted,
       });
       setValue("schoolName", name, {
-        shouldValidate: true,
+        shouldValidate: formState.isSubmitted,
       });
     },
-    [setValue],
+    [formState.isSubmitted, setValue],
   );
 
   const {
@@ -71,18 +72,18 @@ export const SchoolSelectionView = () => {
   } = useSchoolPicker({ withHomeschool: false });
 
   useEffect(() => {
-    if (selectedSchool && schoolPickerInputValue !== "") {
+    if (
+      activeView === "school-picker" &&
+      selectedSchool &&
+      schoolPickerInputValue !== ""
+    ) {
       setSchoolDetailsInForm(selectedSchool.toString(), schoolPickerInputValue);
     }
-    if (activeView === "manual-entry") {
-      reset();
-    }
   }, [
+    activeView,
     selectedSchool,
     schoolPickerInputValue,
     setSchoolDetailsInForm,
-    activeView,
-    reset,
   ]);
 
   const onSchoolPickerInputChange = (value: React.SetStateAction<string>) => {
@@ -130,7 +131,8 @@ export const SchoolSelectionView = () => {
               Can't find your school?{" "}
               <OakSpan $font="body-2-bold">
                 <OakLink
-                  onClick={() => {
+                  onClick={(event) => {
+                    event.preventDefault();
                     setActiveView("manual-entry");
                     reset();
                   }}

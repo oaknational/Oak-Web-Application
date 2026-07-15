@@ -99,7 +99,8 @@ const ManualEntrySchoolDetails: FC<ManualEntrySchoolDetailsProps> = ({
       />
       <OakBox $font="body-2-bold">
         <OakLink
-          onClick={() => {
+          onClick={(event) => {
+            event.preventDefault();
             setRenderManualSchoolInput();
             reset();
           }}
