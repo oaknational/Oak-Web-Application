@@ -467,7 +467,7 @@ export const createAttributionObject = (
     const attributions: Attribution[] = questions.reduce(
       (acc: Attribution[], question, index) => {
         const questionNumber = `Q${index + 1}`;
-        if (question && question.questionStem) {
+        if (question?.questionStem) {
           const { questionStem } = question;
           const imageStems = questionStem.filter(
             (stem) =>
@@ -489,7 +489,7 @@ export const createAttributionObject = (
           }) as Attribution[];
           acc.push(...mappedAttributions);
         }
-        if (question && question.answers) {
+        if (question?.answers) {
           const { answers } = question;
           if (answers["multiple-choice"]) {
             const { "multiple-choice": multipleChoice } = answers;
@@ -498,8 +498,7 @@ export const createAttributionObject = (
                 if (
                   stem.type === "image" &&
                   !Array.isArray(stem.imageObject.metadata) &&
-                  stem.imageObject.metadata &&
-                  stem.imageObject.metadata.attribution
+                  stem.imageObject.metadata?.attribution
                 ) {
                   acc.push({
                     questionNumber: `${questionNumber} image ${index + 1}`,
