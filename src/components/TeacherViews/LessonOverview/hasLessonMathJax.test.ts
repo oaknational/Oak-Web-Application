@@ -10,6 +10,7 @@ describe("hasLessonMathJax", () => {
     lessonTitle: "Example Lesson Title",
     tierTitle: null,
     tierSlug: null,
+    pathwayTitle: null,
     contentGuidance: [],
     misconceptionsAndCommonMistakes: [],
     teacherTips: [],

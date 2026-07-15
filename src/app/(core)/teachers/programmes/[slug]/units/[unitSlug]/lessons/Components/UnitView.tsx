@@ -5,7 +5,6 @@ import UnitHeader from "./UnitHeader/UnitHeader";
 import { Breadcrumbs } from "./Breadcrumbs/Breadcrumbs";
 import { UnitOverviewContent } from "./UnitOverviewContent/UnitOverviewContent";
 
-import { KeyStageTitleValueType } from "@/browser-lib/avo/Avo";
 import { TeachersUnitOverviewData } from "@/node-lib/curriculum-api-2023/queries/teachersUnitOverview/teachersUnitOverview.schema";
 import { getTeacherSubjectPhaseSlug } from "@/utils/curriculum/slugs";
 import { SubjectIcon } from "@/components/TeacherComponents/Header/Header";
@@ -43,14 +42,6 @@ export const UnitView = (props: UnitPageProps) => {
           props.unitvariantId,
         )}
         isGeorestrictedUnit={props.containsGeorestrictedLessons}
-        trackingProps={{
-          unitName: props.unitTitle,
-          unitSlug: props.unitSlug,
-          keyStageSlug: props.keyStageSlug,
-          keyStageTitle: props.keyStageTitle as KeyStageTitleValueType,
-          subjectSlug: props.subjectSlug,
-          subjectTitle: props.subjectTitle,
-        }}
         headerSlot={
           <Breadcrumbs
             data={props}

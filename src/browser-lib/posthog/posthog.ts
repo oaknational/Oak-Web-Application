@@ -51,6 +51,9 @@ export const posthogToAnalyticsServiceWithoutQueue = (
   alias: (aliasId, userId) => {
     client.alias(aliasId, userId);
   },
+  getSessionId: () => {
+    return client.get_session_id();
+  },
   page: () => {
     client.capture("$pageview");
   },

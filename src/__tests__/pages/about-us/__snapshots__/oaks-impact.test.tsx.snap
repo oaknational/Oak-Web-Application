@@ -491,7 +491,7 @@ exports[`pages/about-us/oaks-impact.tsx renders title when feature flag is enabl
               </div>
               <a
                 aria-label="My library"
-                class="sc-dcJsrY sc-bJBgwP fIyhTG gGlhYE"
+                class="sc-dcJsrY sc-dGCmGc fIyhTG kNXJqf"
                 href="/teachers/my-library"
               >
                 <div
@@ -731,19 +731,19 @@ exports[`pages/about-us/oaks-impact.tsx renders title when feature flag is enabl
                   class="sc-aXZVg sc-gEvEer sc-esYiGF jPvJsJ iDBIXi hkWRSL"
                 >
                   <div
-                    class="sc-aXZVg sc-gEvEer doMEuo fXHtRp"
+                    class="sc-aXZVg sc-gEvEer bbXyUw fXHtRp"
                   >
                     <img
                       alt=""
-                      class="sc-ba397cd3-0 knxbUF"
+                      class="sc-ba397cd3-0 dUdpvg"
                       data-nimg="1"
                       decoding="async"
-                      height="2001"
+                      height="454"
                       loading="lazy"
-                      src="https://NEXT_PUBLIC_SANITY_ASSET_CDN_HOST/images/NEXT_PUBLIC_SANITY_PROJECT_ID/NEXT_PUBLIC_SANITY_DATASET/ef2a05d634b1ade34d33664c44fa36cb62e1aaba-3000x2001.jpg?w=3840&h=2561&fm=webp&q=80&fit=clip&auto=format"
-                      srcset="https://NEXT_PUBLIC_SANITY_ASSET_CDN_HOST/images/NEXT_PUBLIC_SANITY_PROJECT_ID/NEXT_PUBLIC_SANITY_DATASET/ef2a05d634b1ade34d33664c44fa36cb62e1aaba-3000x2001.jpg?w=3840&h=2561&fm=webp&q=80&fit=clip&auto=format 1x"
+                      src="https://NEXT_PUBLIC_SANITY_ASSET_CDN_HOST/images/NEXT_PUBLIC_SANITY_PROJECT_ID/NEXT_PUBLIC_SANITY_DATASET/f5112552f3d0d37304f71c7cd63fc18be513a17c-632x454.png?w=1920&h=1379&fm=webp&q=80&fit=clip&auto=format"
+                      srcset="https://NEXT_PUBLIC_SANITY_ASSET_CDN_HOST/images/NEXT_PUBLIC_SANITY_PROJECT_ID/NEXT_PUBLIC_SANITY_DATASET/f5112552f3d0d37304f71c7cd63fc18be513a17c-632x454.png?rect=0,1,632,453&w=640&h=459&fm=webp&q=80&fit=clip&auto=format 1x, https://NEXT_PUBLIC_SANITY_ASSET_CDN_HOST/images/NEXT_PUBLIC_SANITY_PROJECT_ID/NEXT_PUBLIC_SANITY_DATASET/f5112552f3d0d37304f71c7cd63fc18be513a17c-632x454.png?w=1920&h=1379&fm=webp&q=80&fit=clip&auto=format 2x"
                       style="color: transparent;"
-                      width="3000"
+                      width="632"
                     />
                   </div>
                 </div>

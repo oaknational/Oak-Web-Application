@@ -35,6 +35,12 @@ jest.mock("next/navigation", () => {
   };
 });
 
+jest.mock("next/headers", () => ({
+  draftMode: jest.fn().mockResolvedValue({
+    isEnabled: true,
+  }),
+}));
+
 jest.mock("@/node-lib/cms", () => ({
   __esModule: true,
   default: {

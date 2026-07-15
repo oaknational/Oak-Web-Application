@@ -69,15 +69,10 @@ const OaksImpact: NextPage<OaksImpactPageProps> = ({ topNav }) => {
           TODO: Quotes
         </OakBox>
         <SupportYou
-          title="Discover how Oak can support you"
           headingTag="h2"
-          body="To explore the impact Oak’s curricula could have in your school or trust, fill out the form below and one of our experts will be in touch shortly."
           link={{
-            href: "https://share.hsforms.com/2yBT-92_WT6CvX1b6L3Iw8Qbvumd",
             text: "Get in touch with an expert",
-          }}
-          image={{
-            asset: placeholderImage,
+            href: "https://share.hsforms.com/2yBT-92_WT6CvX1b6L3Iw8Qbvumd",
           }}
         />
       </AboutUsLayout>
