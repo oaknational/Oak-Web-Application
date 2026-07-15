@@ -78,6 +78,7 @@ describe("useGoogleClassroomAnalytics", () => {
       track: trackMock as unknown as TrackFns,
       identify: jest.fn(),
       alias: jest.fn(),
+      getSessionId: jest.fn(),
       posthogDistinctId: null,
     });
   });

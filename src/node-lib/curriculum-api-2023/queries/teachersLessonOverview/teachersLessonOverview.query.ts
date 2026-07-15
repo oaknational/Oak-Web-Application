@@ -6,7 +6,6 @@ import {
   LessonUnitDataByKs,
   lessonUnitDataByKsSchema,
 } from "../../shared.schema";
-import { toSentenceCase } from "../../helpers";
 import { applyGenericOverridesAndExceptions } from "../../helpers/overridesAndExceptions";
 import { getCorrectYear } from "../../helpers/getCorrectYear";
 import { isExcludedFromTeachingMaterials } from "../../helpers/teachingMaterialsAi/isExcluded";
@@ -201,9 +200,7 @@ export const transformedTeachersLessonOverviewData = (
     unitSlug: browseData.unitSlug,
     unitTitle,
     keyStageSlug: browseData.programmeFields.keystageSlug,
-    keyStageTitle: toSentenceCase(
-      browseData.programmeFields.keystageDescription,
-    ),
+    keyStageTitle: browseData.programmeFields.keystageDescription,
     subjectSlug: browseData.programmeFields.subjectSlug,
     subjectTitle: browseData.programmeFields.subject,
     subjectParent: browseData.programmeFields.subjectParent ?? null,
