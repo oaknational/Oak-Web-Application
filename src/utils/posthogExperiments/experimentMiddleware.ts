@@ -1,8 +1,14 @@
 import { NextRequest, NextResponse } from "next/server";
 
-import { getExperimentCookieKey } from "./getExperimentCookieKey";
+import {
+  getConsentFromCookie,
+  getExperimentCookieKey,
+  getDistinctIdFromCookie,
+} from "./cookieHelpers";
 
 import getServerConfig from "@/node-lib/getServerConfig";
+import errorReporter from "@/common-lib/error-reporter";
+import OakError from "@/errors/OakError";
 
 const posthogApiKey = getServerConfig("posthogApiKey");
 
@@ -16,55 +22,71 @@ export default async function experimentMiddleware({
   request: NextRequest;
   featureFlag: string;
 }) {
-  const cookie = getExperimentCookieKey(featureFlag);
-  const existing = request.cookies.get(cookie)?.value;
+  // We don't have access to the consent client here so we need to read the statistics policy value
+  // from the cookie to determine whether to enable the experiment
+  const consentState = getConsentFromCookie(request);
+  if (!consentState || consentState !== "granted") {
+    return NextResponse.next();
+  }
+
+  const experimentCookie = getExperimentCookieKey(featureFlag);
+  const experimentCookieValue = request.cookies.get(experimentCookie)?.value;
   const rewriteUrl = new URL(
     request.nextUrl.pathname + "/variant",
     request.url,
   );
 
-  if (existing) {
-    if (testGroupKeys.has(existing)) {
+  if (experimentCookieValue) {
+    // The user has already been placed into an experiment group so we direct them
+    // to the appropriate variant based on their experiment cookie value
+    if (testGroupKeys.has(experimentCookieValue)) {
       return NextResponse.rewrite(rewriteUrl);
     }
 
-    if (controlGroupKeys.has(existing)) {
+    if (controlGroupKeys.has(experimentCookieValue)) {
       return NextResponse.next();
     }
   }
 
-  // No cookie yet — evaluate the flag
-  const posthogCookie = request.cookies.get(`ph_${posthogApiKey}_posthog`);
-  const cookieValue = posthogCookie ? JSON.parse(posthogCookie.value) : {};
-  const distinctId = cookieValue["distinct_id"];
+  // No cookie yet — evaluate the flag in Posthog
+  const distinctId = getDistinctIdFromCookie(request);
 
   if (distinctId) {
-    const phRes = await fetch(
-      `${getServerConfig("posthogApiHost")}/decide?v=3`,
-      {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          api_key: posthogApiKey,
-          distinct_id: distinctId,
+    try {
+      const phRes = await fetch(
+        `${getServerConfig("posthogApiHost")}/decide?v=3`,
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            api_key: posthogApiKey,
+            distinct_id: distinctId,
+          }),
+        },
+      );
+
+      const data = await phRes.json();
+      const variant = data?.featureFlags?.[featureFlag];
+
+      const isTest = testGroupKeys.has(variant);
+      const response = isTest
+        ? NextResponse.rewrite(rewriteUrl)
+        : NextResponse.next();
+
+      response.cookies.set(experimentCookie, isTest ? "test" : "control", {
+        maxAge: 60 * 60 * 24 * 30,
+        path: "/",
+      });
+      return response;
+    } catch (error) {
+      // Report error and fallback to control route
+      errorReporter("posthog-experiment")(
+        new OakError({
+          code: "misc/network-error",
+          meta: { featureFlag, error, distinctId },
         }),
-      },
-    );
-
-    if (!phRes.ok) return null;
-
-    const data = await phRes.json();
-    const variant = data?.featureFlags?.["test-flag"] ?? null;
-
-    const isTest = variant === "test";
-    const res = isTest ? NextResponse.rewrite(rewriteUrl) : NextResponse.next();
-
-    res.cookies.set(cookie, isTest ? "test" : "control", {
-      maxAge: 60 * 60 * 24 * 30,
-      sameSite: "lax",
-      path: "/",
-    });
-    return res;
+      );
+    }
   }
 
   return NextResponse.next();

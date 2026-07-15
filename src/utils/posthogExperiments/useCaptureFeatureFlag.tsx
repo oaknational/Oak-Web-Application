@@ -1,7 +1,7 @@
 import Cookies from "js-cookie";
 import { useEffect } from "react";
 
-import { getExperimentCookieKey } from "./getExperimentCookieKey";
+import { getExperimentCookieKey } from "./cookieHelpers";
 
 import useAnalytics from "@/context/Analytics/useAnalytics";
 
