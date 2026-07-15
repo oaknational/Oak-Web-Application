@@ -15,9 +15,12 @@ import {
   StemImageObject,
 } from "@/node-lib/curriculum-api-2023/shared.schema";
 import type { MediaClip } from "@/node-lib/curriculum-api-2023/queries/lessonMediaClips/lessonMediaClips.schema";
-import removeLegacySlugSuffix from "@/utils/slugModifiers/removeLegacySlugSuffix";
 import { LessonItemTitle } from "@/components/TeacherComponents/LessonItemContainer";
-import { resolveOakHref, resolveProgrammeUnitsHref } from "@/common-lib/urls";
+import { resolveOakHref } from "@/common-lib/urls";
+import {
+  getTeacherSubjectPhaseSlug,
+  parseProgrammeSlug,
+} from "@/utils/curriculum/slugs";
 
 /**
  * Returns the intersection different pathways.
@@ -202,12 +205,16 @@ export const getBreadcrumbsForLessonPathway = (
     unitSlug,
     unitTitle,
   } = lesson;
+  const parsed = parseProgrammeSlug(programmeSlug ?? "");
 
-  let programmeSlugForMathsUnits = programmeSlug;
-
-  if (subjectTitle === "Maths" && programmeSlug) {
-    programmeSlugForMathsUnits = removeLegacySlugSuffix(programmeSlug);
-  }
+  const subjectPhaseSlug = parsed
+    ? getTeacherSubjectPhaseSlug({
+        subjectSlug: parsed.subjectSlug,
+        phaseSlug: parsed.phaseSlug,
+        examboardSlug: parsed.examboardSlug,
+        pathwaySlug: parsed.pathwaySlug,
+      })
+    : null;
 
   const nullableBreadcrumbs: (Breadcrumb | null)[] = [
     {
@@ -224,9 +231,18 @@ export const getBreadcrumbsForLessonPathway = (
           label: keyStageTitle,
         }
       : null,
-    subjectTitle && programmeSlug && programmeSlugForMathsUnits
+    subjectTitle && programmeSlug && subjectPhaseSlug
       ? {
-          href: resolveProgrammeUnitsHref(programmeSlugForMathsUnits),
+          href: resolveOakHref({
+            page: "teacher-programme",
+            subjectPhaseSlug: subjectPhaseSlug,
+            tab: "units",
+            query: {
+              keystages: parsed?.keystageSlug ?? undefined,
+              years: parsed?.yearSlug?.replace(/^year-/, ""),
+              tiers: parsed?.tierSlug ?? undefined,
+            },
+          }),
           label: subjectTitle,
         }
       : null,
