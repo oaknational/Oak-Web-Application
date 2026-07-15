@@ -1,3 +1,28 @@
+## [1.1126.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.1126.1...v1.1126.2) (2026-07-15)
+
+
+### Bug Fixes
+
+* bump oak-components to v2.44.0 ([95852f6](https://github.com/oaknational/Oak-Web-Application/commit/95852f6fb2da4b725ca3e3b08401e6724d6e2c1b))
+* use new hasLeftBorder prop in place of setting colour to transparent for OakQuote ([e585965](https://github.com/oaknational/Oak-Web-Application/commit/e58596510aae9bad95fc779def53e21894ca1c16))
+
+## [1.1126.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.1126.0...v1.1126.1) (2026-07-15)
+
+# [1.1126.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1125.0...v1.1126.0) (2026-07-15)
+
+
+### Bug Fixes
+
+* placeholder image ([130336d](https://github.com/oaknational/Oak-Web-Application/commit/130336d04661cf4981ad0d124c7c971e81125cac))
+
+
+### Features
+
+* image with alt and dark mode gql fragment ([39bf306](https://github.com/oaknational/Oak-Web-Application/commit/39bf30673b95ed468ec818e9480b2a42b2938ef8))
+* oaks impact page pulling data from sanity ([9e46810](https://github.com/oaknational/Oak-Web-Application/commit/9e46810178bb85f80076dff9537fb8068073393b))
+* oaks impact sanity query and types ([a85afd9](https://github.com/oaknational/Oak-Web-Application/commit/a85afd984c7e7f39dd9e61e55fb091f7987a6e07))
+* oaks impact zod schemas ([0b35d3b](https://github.com/oaknational/Oak-Web-Application/commit/0b35d3bb84d173034f52349b7edc0bf46223b0fb))
+
 # [1.1125.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1124.0...v1.1125.0) (2026-07-15)
 
 
