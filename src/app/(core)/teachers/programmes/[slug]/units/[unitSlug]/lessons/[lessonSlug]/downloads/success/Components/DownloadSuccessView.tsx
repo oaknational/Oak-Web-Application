@@ -18,8 +18,8 @@ import UnitDownloadButton, {
 import { resolveOakHref } from "@/common-lib/urls";
 import useAnalytics from "@/context/Analytics/useAnalytics";
 import type { LessonListSchema } from "@/node-lib/curriculum-api-2023/shared.schema";
-import { KeyStageTitleValueType } from "@/browser-lib/avo/Avo";
 import { getUnitDownloadFileId } from "@/utils/getUnitDownloadFileId";
+import { useTeacherBrowseAnalytics } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
 
 type DownloadSuccessViewLesson = {
   lessonTitle: string;
@@ -31,10 +31,6 @@ type DownloadSuccessViewLesson = {
   lessonReleaseDate: string;
   lessons: LessonListSchema;
   unitvariantId: number;
-  keyStageSlug: string;
-  keyStageTitle: string;
-  subjectSlug: string;
-  subjectTitle: string;
 };
 
 export type DownloadSuccessViewProps = {
@@ -62,14 +58,13 @@ export function DownloadSuccessView({
     lessonReleaseDate,
     lessons,
     unitvariantId,
-    keyStageSlug,
-    keyStageTitle,
-    subjectSlug,
-    subjectTitle,
   } = lesson;
 
   const { track } = useAnalytics();
-  const { onwardContentSelected, unitDownloadInitiated } = track;
+  const { onwardContentSelected } = track;
+  const { unitDownloadInitiated } = useTeacherBrowseAnalytics(
+    (store) => store.track,
+  );
 
   const {
     setShowDownloadMessage,
@@ -166,22 +161,7 @@ export function DownloadSuccessView({
                   setShowIncompleteMessage={setShowIncompleteMessage}
                   downloadInProgress={downloadInProgress}
                   unitFileId={getUnitDownloadFileId(unitTitle, unitvariantId)}
-                  onDownloadSuccess={() => {
-                    unitDownloadInitiated({
-                      platform: "owa",
-                      product: "teacher lesson resources",
-                      engagementIntent: "use",
-                      componentType: "unit_download_button",
-                      eventVersion: "2.0.0",
-                      analyticsUseCase: "Teacher",
-                      unitName: unitTitle,
-                      unitSlug,
-                      keyStageSlug,
-                      keyStageTitle: keyStageTitle as KeyStageTitleValueType,
-                      subjectSlug,
-                      subjectTitle,
-                    });
-                  }}
+                  onDownloadSuccess={() => unitDownloadInitiated()}
                   showNewTag={false}
                   geoRestricted={isGeorestrictedUnit}
                   size="small"
