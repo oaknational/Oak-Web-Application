@@ -201,7 +201,12 @@ export const OaksCurricula: NextPage<OaksCurriculaPageProps> = ({
             </OakFlex>
           </NewGutterMaxWidth>
         )}
-        <SupportYou />
+        <SupportYou
+          link={{
+            text: "Get in touch with an expert",
+            href: "https://share.hsforms.com/2yBT-92_WT6CvX1b6L3Iw8Qbvumd",
+          }}
+        />
       </AboutUsLayout>
     </Layout>
   );

@@ -68,7 +68,13 @@ const OaksImpact: NextPage<OaksImpactPageProps> = ({ topNav }) => {
         >
           TODO: Quotes
         </OakBox>
-        <SupportYou headingTag="h2" />
+        <SupportYou
+          headingTag="h2"
+          link={{
+            text: "Get in touch with an expert",
+            href: "https://share.hsforms.com/2yBT-92_WT6CvX1b6L3Iw8Qbvumd",
+          }}
+        />
       </AboutUsLayout>
     </Layout>
   );

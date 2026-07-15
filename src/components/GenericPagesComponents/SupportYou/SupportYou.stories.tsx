@@ -7,6 +7,12 @@ const meta: Meta<typeof Component> = {
   component: Component,
   tags: ["autodocs"],
   title: "Components/GenericPagesComponents/SupportYou",
+  args: {
+    link: {
+      text: "Get in touch with an expert",
+      href: "https://share.hsforms.com/2yBT-92_WT6CvX1b6L3Iw8Qbvumd",
+    },
+  },
   argTypes: {},
   decorators: [
     (Story) => (

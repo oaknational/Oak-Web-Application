@@ -6,7 +6,14 @@ const render = renderWithProvidersByName(["oakTheme"]);
 
 describe("SupportYou", () => {
   it("renders correctly", () => {
-    const { baseElement, getByRole } = render(<SupportYou />);
+    const { baseElement, getByRole } = render(
+      <SupportYou
+        link={{
+          text: "Get in touch with an expert",
+          href: "https://share.hsforms.com/2yBT-92_WT6CvX1b6L3Iw8Qbvumd",
+        }}
+      />,
+    );
     expect(baseElement).toMatchSnapshot();
     expect(getByRole("heading")).toHaveTextContent(
       "Discover how Oak can support you",
