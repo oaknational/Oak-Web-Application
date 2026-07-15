@@ -1,3 +1,11 @@
+## [1.1126.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.1126.1...v1.1126.2) (2026-07-15)
+
+
+### Bug Fixes
+
+* bump oak-components to v2.44.0 ([95852f6](https://github.com/oaknational/Oak-Web-Application/commit/95852f6fb2da4b725ca3e3b08401e6724d6e2c1b))
+* use new hasLeftBorder prop in place of setting colour to transparent for OakQuote ([e585965](https://github.com/oaknational/Oak-Web-Application/commit/e58596510aae9bad95fc779def53e21894ca1c16))
+
 ## [1.1126.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.1126.0...v1.1126.1) (2026-07-15)
 
 # [1.1126.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1125.0...v1.1126.0) (2026-07-15)
