@@ -77,14 +77,7 @@ export function OaksImpactSchoolQuote({
                 <OakFlex $flexDirection={"column"} $gap={"spacing-40"}>
                   <OakFlex $width={"100%"} $maxWidth={"spacing-640"}>
                     <OakFlex $flexDirection={"column"} $gap={"spacing-16"}>
-                      <OakBox
-                        $font={[
-                          "heading-light-6",
-                          "heading-light-6",
-                          "heading-light-6",
-                        ]}
-                        $color={"text-primary"}
-                      >
+                      <OakBox $font={"heading-light-6"} $color={"text-primary"}>
                         <TightLetterSpacing
                           $flexDirection={"column"}
                           $gap={"spacing-12"}
