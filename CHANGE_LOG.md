@@ -1,3 +1,16 @@
+# [1.1124.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1123.0...v1.1124.0) (2026-07-15)
+
+
+### Bug Fixes
+
+* oaks curricula spacing ([ba99e64](https://github.com/oaknational/Oak-Web-Application/commit/ba99e6483cb0aa7fe7fdbdf8ba1308feb0eb030c))
+
+
+### Features
+
+* add support you component to oaks curricula page ([a0eacf0](https://github.com/oaknational/Oak-Web-Application/commit/a0eacf0f6c8487f7c0e9c8d8c2108f6f3c197afe))
+* use correct image in support you component ([c0eb058](https://github.com/oaknational/Oak-Web-Application/commit/c0eb05855021a68b83bfc3fb91e372d334e01103))
+
 # [1.1123.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1122.0...v1.1123.0) (2026-07-15)
 
 
