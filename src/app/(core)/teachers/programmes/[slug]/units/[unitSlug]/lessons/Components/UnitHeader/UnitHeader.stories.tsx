@@ -10,6 +10,7 @@ import UnitHeader, { UnitHeaderProps } from "./UnitHeader";
 
 import { __setMockAuthState } from "@/storybook-mocks/clerk";
 import useUnitDownloadExistenceCheck from "@/components/TeacherComponents/hooks/downloadAndShareHooks/useUnitDownloadExistenceCheck";
+import TeacherBrowseAnalyticsDecorator from "@/storybook-decorators/TeacherBrowseAnalyticsDecorator";
 import NotificationsDecorator from "@/storybook-decorators/NotificationsDecorator";
 
 const meta: Meta<typeof UnitHeader> = {
@@ -47,6 +48,7 @@ const meta: Meta<typeof UnitHeader> = {
   },
   decorators: [
     NotificationsDecorator,
+    TeacherBrowseAnalyticsDecorator,
     (Story) => {
       __setMockAuthState({ isSignedIn: true });
       return (
@@ -71,14 +73,6 @@ const coreProps: UnitHeaderProps = {
   prevUnit: { title: "unit 1", slug: "unit-1" },
   programmeSlug: "computer-science-ks4-aqa",
   subjectPhaseSlug: "computer-science-secondary-aqa",
-  trackingProps: {
-    unitName: "IT and the world of work",
-    unitSlug: "",
-    keyStageSlug: "",
-    keyStageTitle: "Key stage 4",
-    subjectSlug: "computer-science",
-    subjectTitle: "Computer science",
-  },
   downloadButtonState: {
     downloadError: false,
     setDownloadError: fn(),

@@ -11,6 +11,7 @@ import { __setMockAuthState } from "@/storybook-mocks/clerk";
 import NotificationsDecorator from "@/storybook-decorators/NotificationsDecorator";
 import SaveCountDecorator from "@/storybook-decorators/SaveCountDecorator";
 import type { LessonListSchema } from "@/node-lib/curriculum-api-2023/shared.schema";
+import TeacherBrowseAnalyticsDecorator from "@/storybook-decorators/TeacherBrowseAnalyticsDecorator";
 import CookieConsentDecorator from "@/storybook-decorators/CookieConsentDecorator";
 
 const lessons: LessonListSchema = [
@@ -66,10 +67,6 @@ const lessonWithUnitList: DownloadSuccessViewProps["lesson"] = {
   lessonReleaseDate: "2025-09-29T14:00:00.000Z",
   lessons,
   unitvariantId: 1,
-  keyStageSlug: "ks4",
-  keyStageTitle: "Key Stage 4",
-  subjectSlug: "combined-science",
-  subjectTitle: "Combined science",
 };
 
 const meta: Meta<typeof DownloadSuccessView> = {
@@ -80,6 +77,7 @@ const meta: Meta<typeof DownloadSuccessView> = {
     SaveCountDecorator,
     NotificationsDecorator,
     CookieConsentDecorator,
+    TeacherBrowseAnalyticsDecorator,
     (Story) => (
       <ClerkProvider>
         <OakThemeProvider theme={oakDefaultTheme}>
