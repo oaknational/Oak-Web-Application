@@ -42,6 +42,7 @@ export const usePupilOverviewExperience = ({
     isReadOnly,
     isHydratingInitialProgress,
     contentGuidanceDismissed,
+    lessonSlug,
     markLessonStarted,
     dismissContentGuidance,
   } = usePupilLessonProgress(
@@ -53,10 +54,17 @@ export const usePupilOverviewExperience = ({
       isReadOnly: state.isReadOnly,
       isHydratingInitialProgress: state.isHydratingInitialProgress,
       contentGuidanceDismissed: state.contentGuidanceDismissed,
+      lessonSlug: state.lessonSlug,
       markLessonStarted: state.markLessonStarted,
       dismissContentGuidance: state.dismissContentGuidance,
     })),
   );
+
+  // GC-only: wait until progress init so dismiss cannot race
+  // initialiseLessonProgress resetting contentGuidanceDismissed.
+  const contentGuidanceCanOpen =
+    classroomAssignmentChecked &&
+    (isClassroomAssignment !== true || lessonSlug === browseData.lessonSlug);
 
   const {
     trackSectionStarted,
@@ -175,6 +183,7 @@ export const usePupilOverviewExperience = ({
     isClassroomAssignment,
     classroomAssignmentChecked,
     contentGuidanceDismissed,
+    contentGuidanceCanOpen,
     isMounted,
     redirectOverlayCleared,
     setRedirectOverlayCleared,

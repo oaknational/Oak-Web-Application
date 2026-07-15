@@ -18,6 +18,7 @@ const contentGuidance = [
 const defaultProps = {
   redirectOverlayCleared: true,
   contentGuidanceDismissed: false,
+  contentGuidanceCanOpen: true,
   contentGuidance,
   supervisionLevel: "Adult supervision recommended",
   ageRestriction: null,
@@ -59,6 +60,19 @@ describe("PupilLessonOverviewContentGuidanceModal", () => {
       <PupilLessonOverviewContentGuidanceModal
         {...defaultProps}
         contentGuidanceDismissed
+      />,
+    );
+
+    expect(
+      document.querySelector('[role="alertdialog"]'),
+    ).not.toBeInTheDocument();
+  });
+
+  it("does not render until content guidance can open", () => {
+    render(
+      <PupilLessonOverviewContentGuidanceModal
+        {...defaultProps}
+        contentGuidanceCanOpen={false}
       />,
     );
 
