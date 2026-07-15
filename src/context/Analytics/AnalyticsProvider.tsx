@@ -76,6 +76,7 @@ export type AnalyticsContext = {
   track: TrackFns;
   identify: IdentifyFn;
   alias?: AliasFn;
+  getSessionId: () => string | undefined;
   posthogDistinctId: PosthogDistinctId | null;
 };
 
@@ -89,6 +90,7 @@ export type AnalyticsService<ServiceConfig> = {
   alias?: AliasFn;
   optOut: () => void;
   optIn: () => void;
+  getSessionId?: () => string;
 };
 
 type AvoOptions = Parameters<typeof initAvo>[0];
@@ -235,6 +237,9 @@ const AnalyticsProvider: FC<AnalyticsProviderProps> = (props) => {
     },
     [posthog],
   );
+  const getSessionId = useCallback(() => {
+    return posthog.getSessionId?.();
+  }, [posthog]);
   /**
    * Event tracking
    * Object containing Track functions as defined in the Avo tracking plan.
@@ -255,9 +260,10 @@ const AnalyticsProvider: FC<AnalyticsProviderProps> = (props) => {
       track,
       identify,
       alias,
+      getSessionId,
       posthogDistinctId,
     };
-  }, [track, identify, posthogDistinctId, alias]);
+  }, [track, identify, posthogDistinctId, alias, getSessionId]);
 
   return (
     <analyticsContext.Provider value={analytics}>

@@ -14,6 +14,8 @@ import {
   AboutSharedHeader,
   AboutSharedHeaderImage,
 } from "@/components/GenericPagesComponents/AboutSharedHeader";
+import { OaksImpactCaseStudies } from "@/components/GenericPagesComponents/OaksImpactCaseStudies";
+import { oaksImpactCaseStudiesFixture } from "@/components/GenericPagesComponents/OaksImpactCaseStudies/OaksImpactCaseStudies.fixtures";
 import { SupportYou } from "@/components/GenericPagesComponents/SupportYou";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 import getPageProps from "@/node-lib/getPageProps";
@@ -52,14 +54,7 @@ const OaksImpact: NextPage<OaksImpactPageProps> = ({ topNav }) => {
         >
           TODO: Stats
         </OakBox>
-        <OakBox
-          $ma={"spacing-48"}
-          $pa={"spacing-48"}
-          $borderColor="red"
-          $ba="border-solid-xxl"
-        >
-          TODO: Case Studies
-        </OakBox>
+        <OaksImpactCaseStudies caseStudies={oaksImpactCaseStudiesFixture} />
         <OakBox
           $ma={"spacing-48"}
           $pa={"spacing-48"}
@@ -69,15 +64,10 @@ const OaksImpact: NextPage<OaksImpactPageProps> = ({ topNav }) => {
           TODO: Quotes
         </OakBox>
         <SupportYou
-          title="Discover how Oak can support you"
           headingTag="h2"
-          body="To explore the impact Oak’s curricula could have in your school or trust, fill out the form below and one of our experts will be in touch shortly."
           link={{
-            href: "https://share.hsforms.com/2yBT-92_WT6CvX1b6L3Iw8Qbvumd",
             text: "Get in touch with an expert",
-          }}
-          image={{
-            asset: placeholderImage,
+            href: "https://share.hsforms.com/2yBT-92_WT6CvX1b6L3Iw8Qbvumd",
           }}
         />
       </AboutUsLayout>

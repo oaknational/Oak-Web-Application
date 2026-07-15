@@ -9,6 +9,8 @@ import withPageErrorHandling, {
   AppPageProps,
 } from "@/hocs/withPageErrorHandling";
 import { getFeatureFlagValue } from "@/utils/featureFlags";
+import { TeacherBrowseAnalyticsStoreProvider } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
+import { getProgrammeStateForLesson } from "@/context/TeacherBrowseAnalytics/utils/getProgrammeState";
 
 type LessonDownloadsSuccessPageParams = {
   slug: string;
@@ -33,17 +35,8 @@ const getSuccessData = async (
   return {
     lessonTitle: lesson.lessonTitle,
     lessonSlug: lesson.lessonSlug,
-    programmeSlug: unitData.programmeSlug,
-    unitSlug: unitData.unitSlug,
-    unitTitle: unitData.unitTitle,
-    unitDescription: unitData.unitDescription,
-    lessons: unitData.lessons,
-    unitvariantId: unitData.unitvariantId,
-    keyStageSlug: unitData.keyStageSlug,
-    keyStageTitle: unitData.keyStageTitle,
-    subjectSlug: unitData.subjectSlug,
-    subjectTitle: unitData.subjectTitle,
     lessonReleaseDate: lesson.lessonReleaseDate,
+    ...unitData,
   };
 };
 
@@ -86,7 +79,13 @@ const InnerLessonDownloadsSuccessPage = async (
   );
   const ctaVariant = variantKey === "test" ? "test" : "control";
 
-  return <DownloadSuccessView lesson={data} ctaVariant={ctaVariant} />;
+  const programmeState = getProgrammeStateForLesson(data);
+
+  return (
+    <TeacherBrowseAnalyticsStoreProvider programmeState={{ programmeState }}>
+      <DownloadSuccessView lesson={data} ctaVariant={ctaVariant} />
+    </TeacherBrowseAnalyticsStoreProvider>
+  );
 };
 
 const LessonDownloadsSuccessPage = withPageErrorHandling(
