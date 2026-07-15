@@ -1,4 +1,5 @@
 import userEvent from "@testing-library/user-event";
+import { screen } from "@testing-library/dom";
 
 import {
   DownloadSuccessView,
@@ -14,6 +15,9 @@ import {
 } from "@/utils/mockLinkClick";
 import { ServicePolicyMap } from "@/browser-lib/cookie-consent/ServicePolicyMap";
 import type { LessonListSchema } from "@/node-lib/curriculum-api-2023/shared.schema";
+import { getProgrammeStateForLesson } from "@/context/TeacherBrowseAnalytics/utils/getProgrammeState";
+import teachersLessonOverviewFixture from "@/node-lib/curriculum-api-2023/fixtures/teachersLessonOverview.fixture";
+import { TeacherBrowseAnalyticsStoreProvider } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
 
 globalThis.fetch = jest.fn().mockResolvedValue({ ok: true });
 
@@ -25,6 +29,7 @@ jest.mock("@/context/Analytics/useAnalytics", () => ({
     track: {
       onwardContentSelected,
     },
+    getSessionId: jest.fn(),
   }),
 }));
 
@@ -84,15 +89,30 @@ const baseLesson: DownloadSuccessViewProps["lesson"] = {
   lessonReleaseDate: "2025-09-29T14:00:00.000Z",
   lessons,
   unitvariantId: 1,
-  keyStageSlug: "ks4",
-  keyStageTitle: "Key Stage 4",
-  subjectSlug: "combined-science",
-  subjectTitle: "Combined science",
+};
+
+const baseProps = teachersLessonOverviewFixture();
+const programmeState = getProgrammeStateForLesson(baseProps);
+
+const renderDownloadSuccessView = (
+  props?: Partial<DownloadSuccessViewProps>,
+) => {
+  return renderWithProviders()(
+    <TeacherBrowseAnalyticsStoreProvider
+      programmeState={{
+        programmeState,
+      }}
+    >
+      <DownloadSuccessView
+        lesson={baseLesson}
+        ctaVariant="control"
+        {...props}
+      />
+    </TeacherBrowseAnalyticsStoreProvider>,
+  );
 };
 
 describe("DownloadSuccessView", () => {
-  const renderComponent = renderWithProviders();
-
   beforeEach(() => {
     setupMockLinkClick();
     jest.clearAllMocks();
@@ -107,24 +127,20 @@ describe("DownloadSuccessView", () => {
   });
 
   it("renders the confirmation heading and intro copy", () => {
-    const { getByRole, getByText } = renderComponent(
-      <DownloadSuccessView lesson={baseLesson} ctaVariant="control" />,
-    );
+    renderDownloadSuccessView();
 
     expect(
-      getByRole("heading", { name: "Thanks for downloading!" }),
+      screen.getByRole("heading", { name: "Thanks for downloading!" }),
     ).toBeInTheDocument();
     expect(
-      getByText(/We hope you find the resources useful/i),
+      screen.getByText(/We hope you find the resources useful/i),
     ).toBeInTheDocument();
   });
 
   it("back to lesson links to the lesson overview", () => {
-    const { getByRole } = renderComponent(
-      <DownloadSuccessView lesson={baseLesson} ctaVariant="control" />,
-    );
+    renderDownloadSuccessView();
 
-    const link = getByRole("link", { name: "Back to lesson" });
+    const link = screen.getByRole("link", { name: "Back to lesson" });
     expect(link).toHaveAttribute(
       "href",
       resolveOakHref({
@@ -138,11 +154,9 @@ describe("DownloadSuccessView", () => {
 
   it("calls onwardContentSelected when Back to lesson is clicked", async () => {
     const user = userEvent.setup();
-    const { getByRole } = renderComponent(
-      <DownloadSuccessView lesson={baseLesson} ctaVariant="control" />,
-    );
+    renderDownloadSuccessView();
 
-    await user.click(getByRole("link", { name: "Back to lesson" }));
+    await user.click(screen.getByRole("link", { name: "Back to lesson" }));
 
     expect(mockLinkClick).toHaveBeenCalledWith(
       `http://localhost${resolveOakHref({
@@ -170,26 +184,22 @@ describe("DownloadSuccessView", () => {
       lessons,
       unitDescription: "Unit description text",
     };
-    const { getByText } = renderComponent(
-      <DownloadSuccessView lesson={lesson} ctaVariant="control" />,
-    );
 
-    expect(getByText("Ready to keep going?")).toBeInTheDocument();
-    expect(getByText("Measuring wave speed")).toBeInTheDocument();
-    expect(getByText("Current lesson")).toBeInTheDocument();
+    renderDownloadSuccessView({ lesson });
+
+    expect(screen.getByText("Ready to keep going?")).toBeInTheDocument();
+    expect(screen.getByText("Measuring wave speed")).toBeInTheDocument();
+    expect(screen.getByText("Current lesson")).toBeInTheDocument();
   });
 
   it("shows extra help copy when statistics (Gleap) consent is granted", () => {
     mockGetConsent.mockImplementation((slug: unknown) =>
       slug === ServicePolicyMap.GLEAP ? "granted" : "pending",
     );
-
-    const { getByText } = renderComponent(
-      <DownloadSuccessView lesson={baseLesson} ctaVariant="control" />,
-    );
+    renderDownloadSuccessView();
 
     expect(
-      getByText(
+      screen.getByText(
         /Click the question mark in the bottom-right of the page if you need extra help with this/i,
       ),
     ).toBeInTheDocument();
@@ -200,25 +210,21 @@ describe("DownloadSuccessView", () => {
       slug === ServicePolicyMap.GLEAP ? "denied" : "pending",
     );
 
-    const { queryByText } = renderComponent(
-      <DownloadSuccessView lesson={baseLesson} ctaVariant="control" />,
-    );
+    renderDownloadSuccessView();
 
     expect(
-      queryByText(
+      screen.queryByText(
         /Click the question mark in the bottom-right of the page if you need extra help with this/i,
       ),
     ).not.toBeInTheDocument();
   });
 
   it("renders test variant CTA copy when ctaVariant is test", () => {
-    const { getByText, queryByText } = renderComponent(
-      <DownloadSuccessView lesson={baseLesson} ctaVariant="test" />,
-    );
+    renderDownloadSuccessView({ ctaVariant: "test" });
 
     expect(
-      getByText("Everything you need to plan a unit in one click"),
+      screen.getByText("Everything you need to plan a unit in one click"),
     ).toBeInTheDocument();
-    expect(queryByText("Ready to keep going?")).not.toBeInTheDocument();
+    expect(screen.queryByText("Ready to keep going?")).not.toBeInTheDocument();
   });
 });

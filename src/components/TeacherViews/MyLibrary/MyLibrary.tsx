@@ -26,13 +26,14 @@ import useAnalytics from "@/context/Analytics/useAnalytics";
 export type CollectionData = Array<{
   subject: string;
   subjectSlug: string;
+  subjectPhaseSlug: string;
   subheading: string;
   keystage: string;
   keystageSlug: string;
   units: Array<MyLibraryUnit>;
   programmeSlug: string;
   programmeTitle: string;
-  searchQuery: string | null;
+  subjectCategoryQuery?: string;
   uniqueProgrammeKey: string;
 }>;
 
@@ -102,10 +103,12 @@ export default function MyLibrary(props: Readonly<MyLibraryProps>) {
                 programmeTitle={collection.programmeTitle}
                 anchorId={collection.uniqueProgrammeKey}
                 programmeHref={resolveOakHref({
-                  page: "unit-index",
-                  programmeSlug: collection.programmeSlug,
-                  search: {
-                    category: collection.searchQuery,
+                  page: "teacher-programme",
+                  subjectPhaseSlug: collection.subjectPhaseSlug,
+                  tab: "units",
+                  query: {
+                    keystages: collection.keystageSlug,
+                    subject_categories: collection.subjectCategoryQuery,
                   },
                 })}
                 trackBrowseRefined={() =>
