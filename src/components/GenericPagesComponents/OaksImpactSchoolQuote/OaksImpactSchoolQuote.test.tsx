@@ -20,4 +20,12 @@ describe("OaksImpactSchoolQuote", () => {
     );
     expect(imageEl).toHaveAttribute("alt", "TEST_ALT");
   });
+
+  it("renders as='li'", () => {
+    const { container } = render(
+      <OaksImpactSchoolQuote {...fixtureData} as="li" />,
+    );
+    expect(container).toMatchSnapshot();
+    expect(container.firstElementChild?.tagName).toBe("LI");
+  });
 });

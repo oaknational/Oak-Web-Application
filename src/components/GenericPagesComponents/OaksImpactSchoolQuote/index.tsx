@@ -24,6 +24,7 @@ const TightLetterSpacing = styled(OakBox)`
 `;
 
 export type OaksImpactSchoolQuoteProps = {
+  as?: "div" | "li";
   title: string;
   image: {
     alt: string;
@@ -38,6 +39,7 @@ export type OaksImpactSchoolQuoteProps = {
   };
 };
 export function OaksImpactSchoolQuote({
+  as = "div",
   title,
   image,
   subTitle,
@@ -47,6 +49,7 @@ export function OaksImpactSchoolQuote({
 
   return (
     <OakFlex
+      as={as}
       $flexDirection={"column"}
       $background={"bg-neutral"}
       $ba="border-solid-m"
