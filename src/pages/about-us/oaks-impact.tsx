@@ -14,14 +14,19 @@ import {
   AboutSharedHeader,
   AboutSharedHeaderImage,
 } from "@/components/GenericPagesComponents/AboutSharedHeader";
+import { OaksImpactCaseStudies } from "@/components/GenericPagesComponents/OaksImpactCaseStudies";
+import { oaksImpactCaseStudiesFixture } from "@/components/GenericPagesComponents/OaksImpactCaseStudies/OaksImpactCaseStudies.fixtures";
 import { SupportYou } from "@/components/GenericPagesComponents/SupportYou";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 import getPageProps from "@/node-lib/getPageProps";
 import { getFeatureFlag } from "@/node-lib/posthog/getFeatureFlag";
 import { getPosthogIdFromCookie } from "@/node-lib/posthog/getPosthogId";
+import CMSClient from "@/node-lib/cms";
+import { OaksImpactPage } from "@/common-lib/cms-types";
 
 export type OaksImpactPageProps = {
   topNav: TopNavProps;
+  pageData: OaksImpactPage;
 };
 
 const placeholderImage = {
@@ -29,7 +34,7 @@ const placeholderImage = {
   url: "https://sanity-asset-cdn.thenational.academy/images/cuvjke51/production/ef2a05d634b1ade34d33664c44fa36cb62e1aaba-3000x2001.jpg",
 };
 
-const OaksImpact: NextPage<OaksImpactPageProps> = ({ topNav }) => {
+const OaksImpact: NextPage<OaksImpactPageProps> = ({ topNav, pageData }) => {
   return (
     <Layout
       seoProps={getSeoProps({ title: "Oak's impact" })}
@@ -40,7 +45,7 @@ const OaksImpact: NextPage<OaksImpactPageProps> = ({ topNav }) => {
         <AboutSharedHeader
           title="Oak's impact"
           titleHighlight="bg-decorative2-main"
-          content="How our world-class curriculum is making a difference in schools and trusts across the country"
+          content={pageData.header.introText}
         >
           <AboutSharedHeaderImage imageUrl={placeholderImage.url} />
         </AboutSharedHeader>
@@ -52,14 +57,7 @@ const OaksImpact: NextPage<OaksImpactPageProps> = ({ topNav }) => {
         >
           TODO: Stats
         </OakBox>
-        <OakBox
-          $ma={"spacing-48"}
-          $pa={"spacing-48"}
-          $borderColor="red"
-          $ba="border-solid-xxl"
-        >
-          TODO: Case Studies
-        </OakBox>
+        <OaksImpactCaseStudies caseStudies={oaksImpactCaseStudiesFixture} />
         <OakBox
           $ma={"spacing-48"}
           $pa={"spacing-48"}
@@ -107,10 +105,22 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     withIsr: false,
     getProps: async () => {
       const topNav = await curriculumApi2023.topNav();
+      const isPreviewMode = context.preview === true;
+
+      const pageData = await CMSClient.oaksImpactPage({
+        previewMode: isPreviewMode,
+      });
+
+      if (!pageData) {
+        return {
+          notFound: true,
+        };
+      }
 
       const results: GetServerSidePropsResult<OaksImpactPageProps> = {
         props: {
           topNav,
+          pageData,
         },
       };
       return results;

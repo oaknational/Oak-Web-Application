@@ -1,6 +1,5 @@
 import React from "react";
 import { ThemeProvider } from "styled-components";
-import * as NextImage from "next/image";
 import { RouterContext } from "next/dist/shared/lib/router-context.shared-runtime";
 import { fn, sb } from "storybook/test";
 import { Lexend } from "next/font/google";
@@ -13,16 +12,6 @@ import InlineSpriteSheet from "../src/components/GenericPagesComponents/InlineSp
 
 import "./jest-mock";
 import { oakDefaultTheme, OakThemeProvider } from "@oaknational/oak-components";
-
-const OriginalNextImage = NextImage.default;
-// @ts-ignore
-OriginalNextImage.propTypes = {
-  unoptimized: undefined,
-};
-// @ts-ignore
-OriginalNextImage.defaultProps = {
-  unoptimized: true,
-};
 
 const lexend = Lexend({
   subsets: ["latin"],

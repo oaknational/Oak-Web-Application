@@ -36,178 +36,166 @@ exports[`WhoAreWeExplore renders correctly 1`] = `
             aria-labelledby="react-use-id-test-result"
           >
             <ul
-              class="sc-ea54c430-2 flLvBT"
+              class="sc-d3fa22d1-1 fewXIw"
             >
               <li
-                class="sc-ea54c430-1 duAgam"
+                class="sc-aXZVg sc-hZDyAQ kBnJtM iMmmjC"
               >
-                <div
-                  class="sc-aXZVg sc-hZDyAQ kBnJtM bXQMrr"
+                <a
+                  href="#item_one"
+                  style="outline: none;"
                 >
-                  <a
-                    href="#item_one"
-                    style="outline: none;"
+                  <div
+                    class="sc-aXZVg sc-gEvEer sc-d3fa22d1-0 jtqxcT egjftS dykJko"
+                    data-testid="who-we-are-explore-item"
                   >
                     <div
-                      class="sc-aXZVg sc-gEvEer sc-ea54c430-0 jtqxcT egjftS egvGNM"
-                      data-testid="who-we-are-explore-item"
+                      class="sc-aXZVg sc-gEvEer jPvJsJ iDBIXi"
                     >
-                      <div
-                        class="sc-aXZVg sc-gEvEer jPvJsJ iDBIXi"
+                      <span
+                        class="sc-aXZVg fRjhP"
                       >
-                        <span
-                          class="sc-aXZVg fRjhP"
-                        >
-                          <img
-                            alt=""
-                            class="sc-iGgWBj cMzyFO"
-                            data-nimg="fill"
-                            decoding="async"
-                            loading="lazy"
-                            src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1704901279/icons/canbi3fuz5fanzom2hvi.svg"
-                            style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
-                          />
-                        </span>
-                      </div>
-                      <div
-                        class="sc-aXZVg sc-gEvEer bkdnoh fXHtRp"
-                      >
-                        ITEM_ONE
-                      </div>
-                      <div
-                        class="sc-aXZVg sc-gEvEer jPvJsJ iDBIXi"
-                      >
-                        <span
-                          class="sc-aXZVg fjkwRj"
-                        >
-                          <img
-                            alt=""
-                            class="sc-iGgWBj cMzyFO"
-                            data-nimg="fill"
-                            decoding="async"
-                            loading="lazy"
-                            src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1707149070/icons/fv0z57zerrioft52dd9n.svg"
-                            style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
-                          />
-                        </span>
-                      </div>
+                        <img
+                          alt=""
+                          class="sc-iGgWBj cMzyFO"
+                          data-nimg="fill"
+                          decoding="async"
+                          loading="lazy"
+                          src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1704901279/icons/canbi3fuz5fanzom2hvi.svg"
+                          style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                        />
+                      </span>
                     </div>
-                  </a>
-                </div>
+                    <div
+                      class="sc-aXZVg sc-gEvEer bkdnoh fXHtRp"
+                    >
+                      ITEM_ONE
+                    </div>
+                    <div
+                      class="sc-aXZVg sc-gEvEer jPvJsJ iDBIXi"
+                    >
+                      <span
+                        class="sc-aXZVg fjkwRj"
+                      >
+                        <img
+                          alt=""
+                          class="sc-iGgWBj cMzyFO"
+                          data-nimg="fill"
+                          decoding="async"
+                          loading="lazy"
+                          src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1707149070/icons/fv0z57zerrioft52dd9n.svg"
+                          style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                        />
+                      </span>
+                    </div>
+                  </div>
+                </a>
               </li>
               <li
-                class="sc-ea54c430-1 duAgam"
+                class="sc-aXZVg sc-hZDyAQ kBnJtM iMmmjC"
               >
-                <div
-                  class="sc-aXZVg sc-hZDyAQ kBnJtM bXQMrr"
+                <a
+                  href="#item_two"
+                  style="outline: none;"
                 >
-                  <a
-                    href="#item_two"
-                    style="outline: none;"
+                  <div
+                    class="sc-aXZVg sc-gEvEer sc-d3fa22d1-0 jtqxcT egjftS dykJko"
+                    data-testid="who-we-are-explore-item"
                   >
                     <div
-                      class="sc-aXZVg sc-gEvEer sc-ea54c430-0 jtqxcT egjftS egvGNM"
-                      data-testid="who-we-are-explore-item"
+                      class="sc-aXZVg sc-gEvEer jPvJsJ iDBIXi"
                     >
-                      <div
-                        class="sc-aXZVg sc-gEvEer jPvJsJ iDBIXi"
+                      <span
+                        class="sc-aXZVg fRjhP"
                       >
-                        <span
-                          class="sc-aXZVg fRjhP"
-                        >
-                          <img
-                            alt=""
-                            class="sc-iGgWBj cMzyFO"
-                            data-nimg="fill"
-                            decoding="async"
-                            loading="lazy"
-                            src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1704901279/icons/canbi3fuz5fanzom2hvi.svg"
-                            style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
-                          />
-                        </span>
-                      </div>
-                      <div
-                        class="sc-aXZVg sc-gEvEer bkdnoh fXHtRp"
-                      >
-                        ITEM_TWO
-                      </div>
-                      <div
-                        class="sc-aXZVg sc-gEvEer jPvJsJ iDBIXi"
-                      >
-                        <span
-                          class="sc-aXZVg fjkwRj"
-                        >
-                          <img
-                            alt=""
-                            class="sc-iGgWBj cMzyFO"
-                            data-nimg="fill"
-                            decoding="async"
-                            loading="lazy"
-                            src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1707149070/icons/fv0z57zerrioft52dd9n.svg"
-                            style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
-                          />
-                        </span>
-                      </div>
+                        <img
+                          alt=""
+                          class="sc-iGgWBj cMzyFO"
+                          data-nimg="fill"
+                          decoding="async"
+                          loading="lazy"
+                          src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1704901279/icons/canbi3fuz5fanzom2hvi.svg"
+                          style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                        />
+                      </span>
                     </div>
-                  </a>
-                </div>
+                    <div
+                      class="sc-aXZVg sc-gEvEer bkdnoh fXHtRp"
+                    >
+                      ITEM_TWO
+                    </div>
+                    <div
+                      class="sc-aXZVg sc-gEvEer jPvJsJ iDBIXi"
+                    >
+                      <span
+                        class="sc-aXZVg fjkwRj"
+                      >
+                        <img
+                          alt=""
+                          class="sc-iGgWBj cMzyFO"
+                          data-nimg="fill"
+                          decoding="async"
+                          loading="lazy"
+                          src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1707149070/icons/fv0z57zerrioft52dd9n.svg"
+                          style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                        />
+                      </span>
+                    </div>
+                  </div>
+                </a>
               </li>
               <li
-                class="sc-ea54c430-1 duAgam"
+                class="sc-aXZVg sc-hZDyAQ kBnJtM iMmmjC"
               >
-                <div
-                  class="sc-aXZVg sc-hZDyAQ kBnJtM bXQMrr"
+                <a
+                  href="#item_three"
+                  style="outline: none;"
                 >
-                  <a
-                    href="#item_three"
-                    style="outline: none;"
+                  <div
+                    class="sc-aXZVg sc-gEvEer sc-d3fa22d1-0 jtqxcT egjftS dykJko"
+                    data-testid="who-we-are-explore-item"
                   >
                     <div
-                      class="sc-aXZVg sc-gEvEer sc-ea54c430-0 jtqxcT egjftS egvGNM"
-                      data-testid="who-we-are-explore-item"
+                      class="sc-aXZVg sc-gEvEer jPvJsJ iDBIXi"
                     >
-                      <div
-                        class="sc-aXZVg sc-gEvEer jPvJsJ iDBIXi"
+                      <span
+                        class="sc-aXZVg fRjhP"
                       >
-                        <span
-                          class="sc-aXZVg fRjhP"
-                        >
-                          <img
-                            alt=""
-                            class="sc-iGgWBj cMzyFO"
-                            data-nimg="fill"
-                            decoding="async"
-                            loading="lazy"
-                            src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1704901279/icons/canbi3fuz5fanzom2hvi.svg"
-                            style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
-                          />
-                        </span>
-                      </div>
-                      <div
-                        class="sc-aXZVg sc-gEvEer bkdnoh fXHtRp"
-                      >
-                        ITEM_THREE
-                      </div>
-                      <div
-                        class="sc-aXZVg sc-gEvEer jPvJsJ iDBIXi"
-                      >
-                        <span
-                          class="sc-aXZVg fjkwRj"
-                        >
-                          <img
-                            alt=""
-                            class="sc-iGgWBj cMzyFO"
-                            data-nimg="fill"
-                            decoding="async"
-                            loading="lazy"
-                            src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1707149070/icons/fv0z57zerrioft52dd9n.svg"
-                            style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
-                          />
-                        </span>
-                      </div>
+                        <img
+                          alt=""
+                          class="sc-iGgWBj cMzyFO"
+                          data-nimg="fill"
+                          decoding="async"
+                          loading="lazy"
+                          src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1704901279/icons/canbi3fuz5fanzom2hvi.svg"
+                          style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                        />
+                      </span>
                     </div>
-                  </a>
-                </div>
+                    <div
+                      class="sc-aXZVg sc-gEvEer bkdnoh fXHtRp"
+                    >
+                      ITEM_THREE
+                    </div>
+                    <div
+                      class="sc-aXZVg sc-gEvEer jPvJsJ iDBIXi"
+                    >
+                      <span
+                        class="sc-aXZVg fjkwRj"
+                      >
+                        <img
+                          alt=""
+                          class="sc-iGgWBj cMzyFO"
+                          data-nimg="fill"
+                          decoding="async"
+                          loading="lazy"
+                          src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1707149070/icons/fv0z57zerrioft52dd9n.svg"
+                          style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                        />
+                      </span>
+                    </div>
+                  </div>
+                </a>
               </li>
             </ul>
           </nav>
