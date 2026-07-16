@@ -54,6 +54,11 @@ export default function MyLibrary(props: Readonly<MyLibraryProps>) {
   const { collectionData, isLoading, onSaveToggle, isUnitSaved, isUnitSaving } =
     props;
   const { track } = useAnalytics();
+  const collections = collectionData ?? [];
+
+  const hasLoadedCollections = !isLoading && collectionData !== null;
+  const showNoSavedContent = hasLoadedCollections && collections.length === 0;
+  const showCollections = hasLoadedCollections && collections.length > 0;
   return (
     <OakMaxWidth
       $gap={["spacing-0", "spacing-48"]}
@@ -63,9 +68,8 @@ export default function MyLibrary(props: Readonly<MyLibraryProps>) {
       $maxWidth={["unset", "spacing-1280"]}
     >
       <MyLibraryHeader />
-      {isLoading || !collectionData ? null : collectionData.length === 0 ? (
-        <NoSavedContent />
-      ) : (
+      {showNoSavedContent ? <NoSavedContent /> : null}
+      {showCollections ? (
         <OakGrid
           $ph={["spacing-0", "spacing-48"]}
           $position="relative"
@@ -81,7 +85,7 @@ export default function MyLibrary(props: Readonly<MyLibraryProps>) {
             $overflow={["unset", "auto"]}
           >
             <OakSideMenuNav
-              menuItems={collectionData.map((item) => ({
+              menuItems={collections.map((item) => ({
                 heading: item.subject,
                 subheading: item.subheading,
                 href: `#${item.uniqueProgrammeKey}`,
@@ -97,7 +101,7 @@ export default function MyLibrary(props: Readonly<MyLibraryProps>) {
             $gap={["spacing-24", "spacing-48"]}
             $ph={["spacing-16", "spacing-0"]}
           >
-            {collectionData.map((collection) => (
+            {collections.map((collection) => (
               <MyLibraryProgrammeCard
                 key={collection.uniqueProgrammeKey}
                 programmeTitle={collection.programmeTitle}
@@ -205,7 +209,7 @@ export default function MyLibrary(props: Readonly<MyLibraryProps>) {
             ))}
           </OakGridArea>
         </OakGrid>
-      )}
+      ) : null}
     </OakMaxWidth>
   );
 }
