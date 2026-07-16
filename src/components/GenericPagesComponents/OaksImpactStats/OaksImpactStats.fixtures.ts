@@ -20,13 +20,13 @@ export const fixtureData: OaksImpactStatsProps = {
         altText: "",
         darkModeImage: {
           asset: {
-            _id: "test-dark",
-            url: "https://res.cloudinary.com/oak-web-application/image/upload/v1749031463/icons/clipboard_yll2yj.svg",
+            _id: "image-84ac53e9bd17c0782b0455d519f302467744a2ce-120x120-svg",
+            url: "https://cdn.sanity.io/images/cuvjke51/production/84ac53e9bd17c0782b0455d519f302467744a2ce-120x120.svg",
           },
         },
         asset: {
-          _id: "test",
-          url: "https://res.cloudinary.com/oak-web-application/image/upload/v1749031463/icons/clipboard_yll2yj.svg",
+          _id: "image-84ac53e9bd17c0782b0455d519f302467744a2ce-120x120-svg",
+          url: "https://cdn.sanity.io/images/cuvjke51/production/84ac53e9bd17c0782b0455d519f302467744a2ce-120x120.svg",
         },
       },
       heading: "200,000",
@@ -39,13 +39,13 @@ export const fixtureData: OaksImpactStatsProps = {
         altText: "",
         darkModeImage: {
           asset: {
-            _id: "test-dark",
-            url: "https://res.cloudinary.com/oak-web-application/image/upload/v1749031463/icons/clipboard_yll2yj.svg",
+            _id: "image-84ac53e9bd17c0782b0455d519f302467744a2ce-120x120-svg",
+            url: "https://cdn.sanity.io/images/cuvjke51/production/84ac53e9bd17c0782b0455d519f302467744a2ce-120x120.svg",
           },
         },
         asset: {
-          _id: "test",
-          url: "https://res.cloudinary.com/oak-web-application/image/upload/v1749031463/icons/clipboard_yll2yj.svg",
+          _id: "image-84ac53e9bd17c0782b0455d519f302467744a2ce-120x120-svg",
+          url: "https://cdn.sanity.io/images/cuvjke51/production/84ac53e9bd17c0782b0455d519f302467744a2ce-120x120.svg",
         },
       },
       heading: "85%",
@@ -58,13 +58,13 @@ export const fixtureData: OaksImpactStatsProps = {
         altText: "",
         darkModeImage: {
           asset: {
-            _id: "test-dark",
-            url: "https://res.cloudinary.com/oak-web-application/image/upload/v1749031463/icons/clipboard_yll2yj.svg",
+            _id: "image-84ac53e9bd17c0782b0455d519f302467744a2ce-120x120-svg",
+            url: "https://cdn.sanity.io/images/cuvjke51/production/84ac53e9bd17c0782b0455d519f302467744a2ce-120x120.svg",
           },
         },
         asset: {
-          _id: "test",
-          url: "https://res.cloudinary.com/oak-web-application/image/upload/v1749031463/icons/clipboard_yll2yj.svg",
+          _id: "image-84ac53e9bd17c0782b0455d519f302467744a2ce-120x120-svg",
+          url: "https://cdn.sanity.io/images/cuvjke51/production/84ac53e9bd17c0782b0455d519f302467744a2ce-120x120.svg",
         },
       },
       heading: "92%",

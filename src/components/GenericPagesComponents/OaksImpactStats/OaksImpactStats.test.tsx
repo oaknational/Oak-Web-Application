@@ -8,8 +8,9 @@ const render = renderWithProvidersByName(["oakTheme"]);
 
 describe("OaksImpactStats", () => {
   it("renders correctly", () => {
-    const data = fixtureData;
-    const { baseElement, getByRole } = render(<OaksImpactStats {...data} />);
+    const { baseElement, getByRole } = render(
+      <OaksImpactStats {...fixtureData} />,
+    );
     expect(baseElement).toMatchSnapshot();
     expect(getByRole("heading", { level: 2 })).toHaveTextContent(
       "Oak is now used in 72% of schools",
