@@ -2,37 +2,26 @@ import {
   OakBox,
   OakFlex,
   OakHeading,
-  OakImage,
-  OakMaxWidth,
-  OakP,
   OakSecondaryButton,
 } from "@oaknational/oak-components";
 import { Fragment } from "react";
+import z from "zod";
 
-export type OaksImpactStatsProps = {
-  headingText: string;
-  headingCopy: string;
-  link: {
-    text: string;
-    href: string;
-  };
-  items: {
-    image: {
-      alt: string;
-      src: string;
-    };
-    headingText: string;
-    body: string;
-  }[];
-};
+import { NewGutterMaxWidth } from "../NewGutterMaxWidth";
+
+import { oaksImpactPageStatsSectionSchema } from "@/common-lib/cms-types/aboutPages";
+import CMSImage from "@/components/SharedComponents/CMSImage/CMSImage";
+import { PortableTextWithDefaults } from "@/components/SharedComponents/PortableText";
+import { getLinkHref } from "@/utils/portableText/resolveInternalHref";
+
+
+export type OaksImpactStatsProps = z.infer<
+  typeof oaksImpactPageStatsSectionSchema
+>;
 export function OaksImpactStats(props: Readonly<OaksImpactStatsProps>) {
   return (
-    <OakFlex
-      $background={"bg-decorative2-main"}
-      $ph={["spacing-32", "spacing-40", "spacing-100"]}
-      $pv={"spacing-80"}
-    >
-      <OakMaxWidth>
+    <OakFlex $background={"bg-decorative2-main"} $pv={"spacing-80"}>
+      <NewGutterMaxWidth>
         <OakFlex
           $flexDirection={["column", "row", "row"]}
           $gap={["spacing-32", "spacing-16", "spacing-120"]}
@@ -48,28 +37,32 @@ export function OaksImpactStats(props: Readonly<OaksImpactStatsProps>) {
                 $color={"text-primary"}
                 $font={"heading-3"}
               >
-                {props.headingText}
+                {props.textBlock.title}
               </OakHeading>
-              <OakP
+              <OakBox
                 $color={"text-primary"}
                 $font={["body-2", "body-1", "body-1"]}
               >
-                {props.headingCopy}
-              </OakP>
+                <PortableTextWithDefaults
+                  value={props.textBlock.bodyPortableText}
+                />
+              </OakBox>
             </OakFlex>
-            <OakSecondaryButton
-              element="a"
-              aria-label={`${props.link.text} (opens in a new tab)`}
-              href={props.link.href}
-              iconName={"external"}
-              isTrailingIcon={true}
-            >
-              {props.link.text}
-            </OakSecondaryButton>
+            {props.textBlock.cta && (
+              <OakSecondaryButton
+                element="a"
+                aria-label={`${props.textBlock.cta.label} (opens in a new tab)`}
+                href={getLinkHref(props.textBlock.cta)}
+                iconName={"external"}
+                isTrailingIcon={true}
+              >
+                {props.textBlock.cta.label}
+              </OakSecondaryButton>
+            )}
           </OakFlex>
           <OakFlex $gap={"spacing-8"}>
             <OakFlex $flexDirection={"column"} $gap={"spacing-40"}>
-              {props.items.map((item, index) => {
+              {props.stats.map((item, index) => {
                 return (
                   <Fragment key={index}>
                     {index > 0 && (
@@ -85,14 +78,14 @@ export function OaksImpactStats(props: Readonly<OaksImpactStatsProps>) {
                       $borderRadius={"border-radius-m2"}
                       $gap={["spacing-20", "spacing-20", "spacing-32"]}
                     >
-                      <OakFlex>
-                        <OakImage
-                          alt={item.image.alt}
-                          $width={"spacing-120"}
-                          $height={"spacing-120"}
-                          src={item.image.src}
-                        />
-                      </OakFlex>
+                      <OakBox
+                        $minWidth="spacing-120"
+                        $minHeight="spacing-120"
+                        $width="spacing-120"
+                        $height="spacing-120"
+                      >
+                        <CMSImage image={item.icon} />
+                      </OakBox>
                       <OakFlex
                         $flexDirection={"column"}
                         $borderRadius={"border-radius-m2"}
@@ -102,11 +95,11 @@ export function OaksImpactStats(props: Readonly<OaksImpactStatsProps>) {
                           $color={"text-primary"}
                           $font={"heading-light-1"}
                         >
-                          {item.headingText}
+                          {item.heading}
                         </OakBox>
-                        <OakP $color={"text-primary"} $font={"body-1"}>
-                          {item.body}
-                        </OakP>
+                        <OakBox $color={"text-primary"} $font={"body-1"}>
+                          <PortableTextWithDefaults value={item.textRaw} />
+                        </OakBox>
                       </OakFlex>
                     </OakFlex>
                   </Fragment>
@@ -115,7 +108,7 @@ export function OaksImpactStats(props: Readonly<OaksImpactStatsProps>) {
             </OakFlex>
           </OakFlex>
         </OakFlex>
-      </OakMaxWidth>
+      </NewGutterMaxWidth>
     </OakFlex>
   );
 }
