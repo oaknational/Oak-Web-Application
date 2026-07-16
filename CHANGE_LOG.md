@@ -1,3 +1,10 @@
+## [1.1127.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.1127.0...v1.1127.1) (2026-07-16)
+
+
+### Bug Fixes
+
+* add fallback query string ([18a038d](https://github.com/oaknational/Oak-Web-Application/commit/18a038dad046b19352038b37517499c94acf9b36))
+
 # [1.1127.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1126.5...v1.1127.0) (2026-07-16)
 
 
