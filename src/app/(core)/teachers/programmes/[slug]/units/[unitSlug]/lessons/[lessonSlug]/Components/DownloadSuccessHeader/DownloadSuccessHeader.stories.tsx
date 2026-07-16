@@ -1,5 +1,5 @@
 import React from "react";
-import { StoryObj, Meta } from "@storybook/react";
+import { StoryObj, Meta } from "@storybook/nextjs";
 import { oakDefaultTheme, OakThemeProvider } from "@oaknational/oak-components";
 
 import { DownloadSuccessHeader } from "./DownloadSuccessHeader";
