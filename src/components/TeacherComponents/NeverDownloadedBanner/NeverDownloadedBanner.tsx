@@ -1,3 +1,4 @@
+"use client";
 import { useEffect, useState } from "react";
 import { OakInlineBanner } from "@oaknational/oak-components";
 import { useFeatureFlagEnabled, usePostHog } from "posthog-js/react";
