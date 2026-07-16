@@ -209,8 +209,6 @@ export type MyLibraryUnitCardProps = Omit<
   "yearOrder" | "unitOrder" | "yearSlug" | "pathway" | "examboard"
 > & {
   programmeSlug: string;
-  onSave: () => void;
-  isSaved: boolean;
   isSaving: boolean;
   keyStageSlug: string;
   keyStageTitle: KeyStageTitleValueType | undefined;

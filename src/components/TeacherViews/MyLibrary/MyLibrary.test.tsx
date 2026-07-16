@@ -22,14 +22,37 @@ jest.mock("@/context/Analytics/useAnalytics", () => ({
   }),
 }));
 
-// Mock secondary link so it doesn't attempt to navigate on click
+const mockSaveToggle = jest.fn();
+const mockIsUnitSavedInternal = jest.fn().mockReturnValue(false);
+const mockIsUnitSaving = jest.fn().mockReturnValue(false);
+jest.mock("@/node-lib/educator-api/helpers/saveUnits/useSaveUnits", () => ({
+  useSaveUnits: () => ({
+    onSaveToggle: mockSaveToggle,
+    isUnitSaved: mockIsUnitSavedInternal,
+    showSignIn: false,
+    setShowSignIn: jest.fn(),
+    isUnitSaving: mockIsUnitSaving,
+  }),
+}));
+
+// Mock links so they don't attempt to navigate on click
 jest.mock("@oaknational/oak-components", () => ({
   ...jest.requireActual("@oaknational/oak-components"),
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  OakSecondaryLink: (args: any) => <a {...args} href="" />,
+  OakLink: ({ children, onClick }: any) => (
+    <a href="" onClick={onClick}>
+      {children}
+    </a>
+  ),
 }));
 
 describe("MyLibrary", () => {
+  beforeEach(() => {
+    jest.clearAllMocks();
+    mockIsUnitSavedInternal.mockReturnValue(false);
+    mockIsUnitSaving.mockReturnValue(false);
+  });
+
   it("renders a header and no content when loading", () => {
     render(
       <MyLibrary
@@ -78,7 +101,7 @@ describe("MyLibrary", () => {
         isLoading={false}
         onSaveToggle={jest.fn()}
         isUnitSaved={mockIsUnitSaved}
-        isUnitSaving={jest.fn().mockResolvedValue(false)}
+        isUnitSaving={jest.fn().mockReturnValue(false)}
       />,
     );
     const saveButton = screen.getByRole("button", { name: /Save/i });
@@ -165,6 +188,42 @@ describe("MyLibrary", () => {
       yearGroupSlug: "year-1",
     });
   });
+  it("shows Saved state when isUnitSaved returns true", () => {
+    mockIsUnitSavedInternal.mockReturnValue(true);
+    render(
+      <MyLibrary
+        collectionData={generateMockCollectionData(1)}
+        isLoading={false}
+        onSaveToggle={jest.fn()}
+        isUnitSaved={() => true}
+        isUnitSaving={() => false}
+      />,
+    );
+    const unsaveButtons = screen.getAllByRole("button", {
+      name: /Unsave this unit/i,
+    });
+    expect(unsaveButtons[0]).toBeInTheDocument();
+  });
+
+  it("calls onSaveToggle when save button is clicked", async () => {
+    render(
+      <MyLibrary
+        collectionData={generateMockCollectionData(1)}
+        isLoading={false}
+        onSaveToggle={jest.fn()}
+        isUnitSaved={() => false}
+        isUnitSaving={() => false}
+      />,
+    );
+    const [saveButton] = screen.getAllByRole("button", {
+      name: /Save this unit/i,
+    });
+    if (!saveButton) throw new Error("Save button not found");
+    const user = userEvent.setup();
+    await user.click(saveButton);
+    expect(mockSaveToggle).toHaveBeenCalledWith("unit-1");
+  });
+
   it("tracks browse refined with the correct arguments", async () => {
     render(
       <MyLibrary
