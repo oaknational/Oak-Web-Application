@@ -6,6 +6,7 @@ import {
   SubjectName,
 } from "../../../../[tab]/Components/ProgrammeHeader/getSubjectHeroImageUrl";
 import { Breadcrumbs } from "../Components/Breadcrumbs/Breadcrumbs";
+import { NeverDownloadedBanner } from "../../../../../../../../../components/TeacherComponents/NeverDownloadedBanner/NeverDownloadedBanner";
 
 import LessonView from "./Components/LessonView";
 import LessonHeader from "./Components/LessonHeader/LessonHeader";
@@ -116,6 +117,7 @@ const InnerLessonPage = async (props: AppPageProps<LessonPageParams>) => {
         georestricted={data.geoRestricted}
         loginRequired={data.loginRequired}
       />
+      <NeverDownloadedBanner context="lesson" />
       <LessonView {...data} />
     </>
   );

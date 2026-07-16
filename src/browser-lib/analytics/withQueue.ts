@@ -28,6 +28,16 @@ type QueueItem =
     };
 type Queue = QueueItem[];
 
+const DOWNLOAD_EVENTS = new Set([
+  "Lesson Plan Resources Downloaded",
+  "Lesson Resources Downloaded",
+  "Lesson Activity Downloaded",
+  "Teaching Material Downloaded",
+  "Curriculum Resources Downloaded",
+  "Lesson Resource Download Started",
+  "Unit Download Initiated",
+]);
+
 const withQueue = <T>(
   service: AnalyticsService<T>,
   intervalMs = 3000,
@@ -66,6 +76,9 @@ const withQueue = <T>(
         break;
       case "track":
         service.track(item.eventName, item.props, item.options);
+        if (DOWNLOAD_EVENTS.has(item.eventName)) {
+          service.setPersonProperties?.({ has_downloaded: true });
+        }
         break;
       case "page":
         service.page(item.props);

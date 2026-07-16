@@ -12,6 +12,7 @@ import { SubjectIcon } from "@/components/TeacherComponents/Header/Header";
 import { useUnitDownloadButtonState } from "@/components/TeacherComponents/UnitDownloadButton/UnitDownloadButton";
 import { getUnitDownloadFileId } from "@/utils/getUnitDownloadFileId";
 import ComplexCopyrightRestrictionBanner from "@/components/TeacherComponents/ComplexCopyrightRestrictionBanner/ComplexCopyrightRestrictionBanner";
+import { NeverDownloadedBanner } from "@/components/TeacherComponents/NeverDownloadedBanner/NeverDownloadedBanner";
 
 export type UnitPageProps = TeachersUnitOverviewData;
 
@@ -60,6 +61,7 @@ export const UnitView = (props: UnitPageProps) => {
         }
         downloadButtonState={downloadButtonState}
       />
+      <NeverDownloadedBanner context="unit" />
       <OakBox $ph="spacing-40">
         <OakBox $mh="auto" $width={"100%"} $maxWidth={"spacing-1280"}>
           <ComplexCopyrightRestrictionBanner

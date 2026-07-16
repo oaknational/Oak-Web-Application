@@ -87,6 +87,7 @@ export type AnalyticsService<ServiceConfig> = {
   page: PageFn;
   identify: IdentifyFn;
   alias?: AliasFn;
+  setPersonProperties?: (properties: EventProperties) => void;
   optOut: () => void;
   optIn: () => void;
 };

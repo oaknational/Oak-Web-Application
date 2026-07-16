@@ -32,6 +32,7 @@ import { findContainingAnchor } from "@/utils/curriculum/dom";
 import { CurriculumSelectionSlugs } from "@/utils/curriculum/slugs";
 import { PhaseValueType } from "@/browser-lib/avo/Avo";
 import { resolveOakHref } from "@/common-lib/urls";
+import { NeverDownloadedBanner } from "@/components/TeacherComponents/NeverDownloadedBanner/NeverDownloadedBanner";
 
 export type CurriculumOverviewTabData = {
   subjectTitle: string;
@@ -247,6 +248,7 @@ const OverviewTab: FC<OverviewTabProps> = ({
       $mt={["spacing-0", "spacing-0", "spacing-56"]}
       $color="text-primary"
     >
+      <NeverDownloadedBanner context="curriculum" />
       <OakBox $minWidth={"100%"} $display={["block", "block", "none"]}>
         <OakBox
           $background={"bg-decorative1-very-subdued"}
