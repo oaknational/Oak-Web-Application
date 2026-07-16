@@ -1,3 +1,24 @@
+# [1.1127.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1126.5...v1.1127.0) (2026-07-16)
+
+
+### Bug Fixes
+
+* multiline quote spacing fixes ([4beb023](https://github.com/oaknational/Oak-Web-Application/commit/4beb0234a4d4025c7b224c7d57214df598d7542a))
+* remove extra $maxWidth ([93210dc](https://github.com/oaknational/Oak-Web-Application/commit/93210dcfc372afe1a513a55327b8ec4e15ea509d))
+
+
+### Features
+
+* added <OaksImpactSchoolQuote/> component ([a1bd9da](https://github.com/oaknational/Oak-Web-Application/commit/a1bd9da868f4b75a8b60931c7e03c273792ced7b))
+* added as="li" to <OaksImpactSchoolQuote/> ([f9f6fed](https://github.com/oaknational/Oak-Web-Application/commit/f9f6fed1d06b0bc2028a25adf8c421383dc90295))
+
+## [1.1126.5](https://github.com/oaknational/Oak-Web-Application/compare/v1.1126.4...v1.1126.5) (2026-07-16)
+
+
+### Bug Fixes
+
+* remove unstyled <li/> and use as="li" instead ([149b67c](https://github.com/oaknational/Oak-Web-Application/commit/149b67c945fac2a49a950afe7ec46afc539ab8ad))
+
 ## [1.1126.4](https://github.com/oaknational/Oak-Web-Application/compare/v1.1126.3...v1.1126.4) (2026-07-15)
 
 

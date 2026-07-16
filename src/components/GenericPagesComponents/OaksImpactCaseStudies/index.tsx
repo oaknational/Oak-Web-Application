@@ -4,7 +4,6 @@ import {
   OakFlex,
   OakHeading,
 } from "@oaknational/oak-components";
-import styled from "styled-components";
 
 import { NewGutterMaxWidth } from "@/components/GenericPagesComponents/NewGutterMaxWidth";
 
@@ -16,12 +15,6 @@ export type OaksImpactCaseStudiesProps = {
     linkText?: string;
   }[];
 };
-
-const UnstyledLi = styled.li`
-  display: flex;
-  flex: 1 1 0;
-  list-style: none;
-`;
 
 export const OaksImpactCaseStudies = ({
   caseStudies,
@@ -45,17 +38,17 @@ export const OaksImpactCaseStudies = ({
             $ma={"spacing-0"}
           >
             {caseStudies.map((caseStudy) => (
-              <UnstyledLi key={caseStudy.heading}>
-                <OakCard
-                  heading={caseStudy.heading}
-                  headingLevel={"div"}
-                  href={caseStudy.href}
-                  imageSrc={caseStudy.imageSrc}
-                  aspectRatio="4/3"
-                  linkText={caseStudy.linkText || "Watch the video"}
-                  cardWidth={"100%"}
-                />
-              </UnstyledLi>
+              <OakCard
+                as="li"
+                key={caseStudy.heading}
+                heading={caseStudy.heading}
+                headingLevel={"div"}
+                href={caseStudy.href}
+                imageSrc={caseStudy.imageSrc}
+                aspectRatio="4/3"
+                linkText={caseStudy.linkText || "Watch the video"}
+                cardWidth={"100%"}
+              />
             ))}
           </OakFlex>
         </OakFlex>
