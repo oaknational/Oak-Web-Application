@@ -1,7 +1,7 @@
 import { useSearchParams } from "next/navigation";
 import { act, renderHook } from "@testing-library/react";
 
-import { useFilters } from "./filteringApp";
+import { useFilters } from "./useFilters";
 
 import { createFilter } from "@/fixtures/curriculum/filters";
 
@@ -17,7 +17,7 @@ Object.defineProperty(globalThis, "history", {
   writable: true,
 });
 
-describe("filteringApp", () => {
+describe("useFilters", () => {
   describe("useFilters with initialFilter", () => {
     beforeEach(() => {
       mockHistoryReplaceState.mockClear();

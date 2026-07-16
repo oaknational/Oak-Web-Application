@@ -35,7 +35,7 @@ import {
   CurriculumUnitsFormattedData,
   CurriculumUnitsTrackingData,
 } from "@/pages-helpers/curriculum/docx/tab-helpers";
-import { getDefaultFilter, useFilters } from "@/utils/curriculum/filteringApp";
+import { useFilters } from "@/hooks/useFilters";
 import {
   CurriculumSelectionSlugs,
   CurriculumSelectionTitles,
@@ -50,6 +50,7 @@ import type { Ks4Option } from "@/node-lib/curriculum-api-2023/queries/curriculu
 import { resolveOakHref } from "@/common-lib/urls";
 import { CurriculumOverviewMVData } from "@/node-lib/curriculum-api-2023";
 import { validateSearchParams } from "@/utils/validateProgrammePageSearchParams";
+import { getDefaultFilter } from "@/utils/curriculum/filtering";
 
 type ProgrammePageProps = {
   subjectPhaseSlug: string;

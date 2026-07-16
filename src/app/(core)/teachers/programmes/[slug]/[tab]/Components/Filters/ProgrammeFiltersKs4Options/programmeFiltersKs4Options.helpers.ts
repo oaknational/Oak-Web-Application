@@ -6,7 +6,7 @@ import {
   isExamboardSlug,
   isPathwaySlug,
 } from "@/pages-helpers/pupil/options-pages/options-pages-helpers";
-import { scopeYearsToKeystageFilter } from "@/utils/curriculum/filtersUrl";
+import { scopeYearsToKeystageFilter } from "@/utils/curriculum/filtering";
 import { keystageYearMappings } from "@/utils/curriculum/keystage";
 import { CurriculumSelectionSlugs } from "@/utils/curriculum/slugs";
 import { CurriculumFilters } from "@/utils/curriculum/types";
