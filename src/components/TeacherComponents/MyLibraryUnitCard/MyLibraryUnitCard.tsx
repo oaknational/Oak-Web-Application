@@ -49,7 +49,6 @@ const UnitCardHeader = ({ ...props }: MyLibraryUnitCardProps) => {
     year,
     savedAt,
     optionalityTitle,
-    isSaving,
     keyStageSlug,
     keyStageTitle,
     subjectTitle,
@@ -97,7 +96,6 @@ const UnitCardHeader = ({ ...props }: MyLibraryUnitCardProps) => {
           programmeSlug={props.programmeSlug}
           unitSlug={props.unitSlug}
           unitTitle={unitTitle}
-          disabled={isSaving}
           trackingProps={{
             savedFrom: "my-library-save-button",
             keyStageTitle: keyStageTitle,
@@ -122,7 +120,6 @@ const UnitCardContent = ({
     unitSlug,
     programmeSlug,
     lessons,
-    isSaving,
     keyStageTitle,
     keyStageSlug,
     subjectTitle,
@@ -140,7 +137,6 @@ const UnitCardContent = ({
               programmeSlug={props.programmeSlug}
               unitSlug={props.unitSlug}
               unitTitle={unitTitle}
-              disabled={isSaving}
               trackingProps={{
                 savedFrom: "my-library-save-button",
                 keyStageTitle,
@@ -209,7 +205,6 @@ export type MyLibraryUnitCardProps = Omit<
   "yearOrder" | "unitOrder" | "yearSlug" | "pathway" | "examboard"
 > & {
   programmeSlug: string;
-  isSaving: boolean;
   keyStageSlug: string;
   keyStageTitle: KeyStageTitleValueType | undefined;
   subjectTitle: string;

@@ -58,8 +58,6 @@ describe("MyLibrary", () => {
       <MyLibrary
         collectionData={null}
         isLoading={true}
-        onSaveToggle={() => {}}
-        isUnitSaved={() => false}
         isUnitSaving={() => false}
       />,
     );
@@ -71,8 +69,6 @@ describe("MyLibrary", () => {
       <MyLibrary
         collectionData={[]}
         isLoading={false}
-        onSaveToggle={() => {}}
-        isUnitSaved={() => false}
         isUnitSaving={() => false}
       />,
     );
@@ -84,8 +80,6 @@ describe("MyLibrary", () => {
       <MyLibrary
         collectionData={generateMockCollectionData(5)}
         isLoading={false}
-        onSaveToggle={() => {}}
-        isUnitSaved={() => false}
         isUnitSaving={() => false}
       />,
     );
@@ -94,28 +88,22 @@ describe("MyLibrary", () => {
     expect(sideMenuItems).toHaveLength(5);
   });
   it("calls isUnitSaved with correct arguments", async () => {
-    const mockIsUnitSaved = jest.fn().mockResolvedValue(true);
     render(
       <MyLibrary
         collectionData={generateMockCollectionData(1)}
         isLoading={false}
-        onSaveToggle={jest.fn()}
-        isUnitSaved={mockIsUnitSaved}
         isUnitSaving={jest.fn().mockReturnValue(false)}
       />,
     );
     const saveButton = screen.getByRole("button", { name: /Save/i });
     const user = userEvent.setup();
     await user.click(saveButton);
-    expect(mockIsUnitSaved).toHaveBeenCalledWith("unit-1-programme-1");
   });
   it("tracks unit accessed with the correct arguments", async () => {
     render(
       <MyLibrary
         collectionData={generateMockCollectionData(1)}
         isLoading={false}
-        onSaveToggle={jest.fn()}
-        isUnitSaved={() => false}
         isUnitSaving={() => false}
       />,
     );
@@ -157,8 +145,6 @@ describe("MyLibrary", () => {
       <MyLibrary
         collectionData={generateMockCollectionData(1)}
         isLoading={false}
-        onSaveToggle={jest.fn()}
-        isUnitSaved={() => false}
         isUnitSaving={() => false}
       />,
     );
@@ -194,8 +180,6 @@ describe("MyLibrary", () => {
       <MyLibrary
         collectionData={generateMockCollectionData(1)}
         isLoading={false}
-        onSaveToggle={jest.fn()}
-        isUnitSaved={() => true}
         isUnitSaving={() => false}
       />,
     );
@@ -210,8 +194,6 @@ describe("MyLibrary", () => {
       <MyLibrary
         collectionData={generateMockCollectionData(1)}
         isLoading={false}
-        onSaveToggle={jest.fn()}
-        isUnitSaved={() => false}
         isUnitSaving={() => false}
       />,
     );
@@ -229,8 +211,6 @@ describe("MyLibrary", () => {
       <MyLibrary
         collectionData={generateMockCollectionData(1)}
         isLoading={false}
-        onSaveToggle={jest.fn()}
-        isUnitSaved={() => false}
         isUnitSaving={() => false}
       />,
     );

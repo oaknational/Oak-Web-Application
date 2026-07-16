@@ -110,7 +110,6 @@ export default function MyLibraryProgrammeCard(
               year={unit.year}
               savedAt={unit.savedAt}
               lessons={unit.lessons}
-              isSaving={unit.isSaving}
               keyStageSlug={unit.keyStageSlug}
               keyStageTitle={unit.keyStageTitle}
               subjectTitle={unit.subjectTitle}

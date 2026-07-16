@@ -8,10 +8,7 @@ import {
 import MyLibraryHeader from "@/components/TeacherComponents/MyLibraryHeader/MyLibraryHeader";
 import NoSavedContent from "@/components/TeacherComponents/NoSavedContent/NoSavedContent";
 import { MyLibraryUnit } from "@/node-lib/educator-api/queries/getUserListContent/getUserListContent.types";
-import {
-  getUnitProgrammeSlug,
-  TrackingProgrammeData,
-} from "@/node-lib/educator-api/helpers/saveUnits/utils";
+import { getUnitProgrammeSlug } from "@/node-lib/educator-api/helpers/saveUnits/utils";
 import {
   ExamBoardValueType,
   KeyStageTitleValueType,
@@ -40,19 +37,11 @@ export type CollectionData = Array<{
 type MyLibraryProps = {
   collectionData: CollectionData | null;
   isLoading: boolean;
-  onSaveToggle: (
-    unitSlug: string,
-    programmeSlug: string,
-    uniqueProgrammeKey: string,
-    trackingData: TrackingProgrammeData,
-  ) => void;
-  isUnitSaved: (unitProgrammeSlug: string) => boolean;
   isUnitSaving: (unitProgrammeSlug: string) => boolean;
 };
 
 export default function MyLibrary(props: Readonly<MyLibraryProps>) {
-  const { collectionData, isLoading, onSaveToggle, isUnitSaved, isUnitSaving } =
-    props;
+  const { collectionData, isLoading, isUnitSaving } = props;
   const { track } = useAnalytics();
   const collections = collectionData ?? [];
 
@@ -183,26 +172,6 @@ export default function MyLibrary(props: Readonly<MyLibraryProps>) {
                       lessonReleaseCohort: "2023-2026",
                       lessonReleaseDate: "", // we don't have access to lesson content data here
                     }),
-                  onSave: () =>
-                    onSaveToggle(
-                      unit.unitSlug,
-                      collection.programmeSlug,
-                      collection.uniqueProgrammeKey,
-                      {
-                        keyStageTitle:
-                          collection.keystage as KeyStageTitleValueType,
-                        subjectTitle: collection.subject,
-                        savedFrom: "my-library-save-button",
-                        keyStageSlug: collection.keystageSlug,
-                        subjectSlug: collection.subjectSlug,
-                      },
-                    ),
-                  isSaved: isUnitSaved(
-                    getUnitProgrammeSlug(
-                      unit.unitSlug,
-                      collection.uniqueProgrammeKey,
-                    ),
-                  ),
                   isSaving: isUnitSaving(
                     getUnitProgrammeSlug(
                       unit.unitSlug,
