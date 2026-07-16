@@ -2,7 +2,6 @@ import {
   OakHeading,
   OakIcon,
   OakIconName,
-  OakSecondaryLink,
   OakLI,
   OakAnchorTarget,
   OakBox,
@@ -69,7 +68,7 @@ export default function MyLibraryProgrammeCard(
     trackBrowseRefined,
   } = props;
 
-  const headingIdString = `programme-heading-${programmeTitle.split(" ").join("-").toLowerCase()}`;
+  const headingIdString = `programme-heading-${programmeTitle.replaceAll(" ", "-").toLowerCase()}`;
 
   return (
     <OakFlex
@@ -82,13 +81,17 @@ export default function MyLibraryProgrammeCard(
       $position="relative"
     >
       <OakAnchorTarget id={anchorId} />
-      <OakSecondaryLink href={programmeHref} onClick={trackBrowseRefined}>
+      <OakLink
+        variant="secondary"
+        href={programmeHref}
+        onClick={trackBrowseRefined}
+      >
         <ProgrammeHeader
           headingIdString={headingIdString}
           iconName={iconName}
           programmeTitle={programmeTitle}
         />
-      </OakSecondaryLink>
+      </OakLink>
       <OakFlex
         as="ul"
         $gap="spacing-32"
@@ -110,6 +113,10 @@ export default function MyLibraryProgrammeCard(
               onSave={unit.onSave}
               isSaved={unit.isSaved}
               isSaving={unit.isSaving}
+              keyStageSlug={unit.keyStageSlug}
+              keyStageTitle={unit.keyStageTitle}
+              subjectTitle={unit.subjectTitle}
+              subjectSlug={unit.subjectSlug}
               trackUnitAccessed={unit.trackUnitAccessed}
               trackLessonAccessed={unit.trackLessonAccessed}
             />

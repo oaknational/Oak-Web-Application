@@ -129,6 +129,10 @@ export default function MyLibrary(props: Readonly<MyLibraryProps>) {
                 iconName={getValidSubjectIconName(collection.subjectSlug)}
                 savedUnits={collection.units.map((unit) => ({
                   ...unit,
+                  keyStageTitle: collection.keystage as KeyStageTitleValueType,
+                  keyStageSlug: collection.keystageSlug,
+                  subjectTitle: collection.subject,
+                  subjectSlug: collection.subjectSlug,
                   programmeSlug: collection.programmeSlug,
                   trackUnitAccessed: () =>
                     track.unitAccessed({
