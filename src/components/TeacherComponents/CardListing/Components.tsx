@@ -1,16 +1,17 @@
 import {
-  OakSecondaryLink,
   OakTypography,
   OakTagFunctional,
   OakFlex,
   OakGrid,
   parseColor,
+  OakLink,
+  OakLinkProps,
 } from "@oaknational/oak-components";
 import styled from "styled-components";
 
 import CardListing, { CardListingProps } from "./CardListing";
 
-export const CardListingStyledLink = styled(OakSecondaryLink)`
+export const CardListingStyledLink = styled(OakLink)<OakLinkProps>`
   width: 100%;
   &:visited {
     color: ${parseColor("text-link-visited")};
