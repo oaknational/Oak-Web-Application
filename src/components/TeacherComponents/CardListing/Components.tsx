@@ -12,7 +12,6 @@ import CardListing, { CardListingProps } from "./CardListing";
 
 export const CardListingStyledLink = styled(OakSecondaryLink)`
   width: 100%;
-  height: 100%;
   &:visited {
     color: ${parseColor("text-link-visited")};
   }
