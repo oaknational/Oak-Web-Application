@@ -15,6 +15,7 @@ import {
   userSignUpCompleted,
 } from "@/node-lib/avo/Avo";
 import { pickSingleSignOnService } from "@/utils/pickSingleSignOnService";
+import { setPersonPropertiesOnce } from "@/node-lib/posthog/setPersonPropertiesOnce";
 
 export async function POST(req: NextRequest) {
   const signingSecret = getServerConfig("clerkSigningSecret");
@@ -128,6 +129,20 @@ export async function POST(req: NextRequest) {
         } catch (e) {
           reportError(e, {
             message: "Failed to track user sign-up event",
+          });
+        }
+
+        try {
+          // Seed personalisation defaults for the new user. `$set_once` means
+          // a genuine download that sets `has_downloaded: true` (now or later,
+          // in any order) is never clobbered back to false.
+          await setPersonPropertiesOnce(evt.data.id, {
+            has_downloaded: false,
+            has_seen_download_banner: false,
+          });
+        } catch (e) {
+          reportError(e, {
+            message: "Failed to seed personalisation defaults",
           });
         }
         break;
