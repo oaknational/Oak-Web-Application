@@ -1,6 +1,4 @@
-import React from "react";
 import { StoryObj, Meta } from "@storybook/nextjs";
-import { oakDefaultTheme, OakThemeProvider } from "@oaknational/oak-components";
 
 import { subjectHeroImages } from "./getSubjectHeroImageUrl";
 import { ProgrammeHeader } from "./ProgrammeHeader";
@@ -55,13 +53,6 @@ const meta: Meta<typeof ProgrammeHeader> = {
       ],
     },
   },
-  decorators: [
-    (Story) => (
-      <OakThemeProvider theme={oakDefaultTheme}>
-        <Story />
-      </OakThemeProvider>
-    ),
-  ],
 };
 
 export default meta;

@@ -6,9 +6,7 @@ import {
   OakP,
   OakPrimaryInvertedButton,
   OakSpan,
-  OakThemeProvider,
   OakUL,
-  oakDefaultTheme,
 } from "@oaknational/oak-components";
 
 import { PupilLessonIntroAdditionalFileItem } from "../PupilLessonIntroAdditionalFileItem/PupilLessonIntroAdditionalFileItem";
@@ -20,13 +18,6 @@ import { PupilLessonIntroView } from "./PupilLessonIntro.view";
 
 const meta = {
   component: PupilLessonIntroView,
-  decorators: [
-    (StoryComponent) => (
-      <OakThemeProvider theme={oakDefaultTheme}>
-        <StoryComponent />
-      </OakThemeProvider>
-    ),
-  ],
 } satisfies Meta<typeof PupilLessonIntroView>;
 
 export default meta;

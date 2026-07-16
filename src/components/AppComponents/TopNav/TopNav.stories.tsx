@@ -1,5 +1,4 @@
 import type { Meta, StoryObj } from "@storybook/nextjs";
-import { oakDefaultTheme, OakThemeProvider } from "@oaknational/oak-components";
 
 import Component from "./TopNav";
 
@@ -17,11 +16,9 @@ const { teachers, pupils } = topNavFixture;
 
 export const TopNav: Story = {
   render: (args) => (
-    <OakThemeProvider theme={oakDefaultTheme}>
-      <OakNotificationsProvider>
-        <Component {...args} />
-      </OakNotificationsProvider>
-    </OakThemeProvider>
+    <OakNotificationsProvider>
+      <Component {...args} />
+    </OakNotificationsProvider>
   ),
   args: {
     teachers,
@@ -31,11 +28,9 @@ export const TopNav: Story = {
 
 export const WithoutData: Story = {
   render: (args) => (
-    <OakThemeProvider theme={oakDefaultTheme}>
-      <OakNotificationsProvider>
-        <Component {...args} />
-      </OakNotificationsProvider>
-    </OakThemeProvider>
+    <OakNotificationsProvider>
+      <Component {...args} />
+    </OakNotificationsProvider>
   ),
   args: {
     teachers: null,

@@ -1,10 +1,6 @@
 import React from "react";
 import { StoryObj, Meta } from "@storybook/nextjs";
-import {
-  OakBreadcrumbs,
-  oakDefaultTheme,
-  OakThemeProvider,
-} from "@oaknational/oak-components";
+import { OakBreadcrumbs } from "@oaknational/oak-components";
 import { fn, mocked } from "storybook/test";
 
 import UnitHeader, { UnitHeaderProps } from "./UnitHeader";
@@ -47,18 +43,7 @@ const meta: Meta<typeof UnitHeader> = {
       ],
     },
   },
-  decorators: [
-    NotificationsDecorator,
-    TeacherBrowseAnalyticsDecorator,
-    (Story) => {
-      __setMockAuthState({ isSignedIn: true });
-      return (
-        <OakThemeProvider theme={oakDefaultTheme}>
-          <Story />
-        </OakThemeProvider>
-      );
-    },
-  ],
+  decorators: [NotificationsDecorator, TeacherBrowseAnalyticsDecorator],
 };
 
 export default meta;
@@ -160,16 +145,6 @@ export const WithTags: Story = {
 };
 
 export const SignedOut: Story = {
-  decorators: [
-    (Story) => {
-      __setMockAuthState({ isSignedIn: false });
-      return (
-        <OakThemeProvider theme={oakDefaultTheme}>
-          <Story />
-        </OakThemeProvider>
-      );
-    },
-  ],
   args: {
     ...coreProps,
     headerSlot: (

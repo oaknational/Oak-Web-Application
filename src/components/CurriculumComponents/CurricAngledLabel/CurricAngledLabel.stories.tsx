@@ -1,18 +1,10 @@
 import type { Meta, StoryObj } from "@storybook/nextjs";
-import { oakDefaultTheme, OakThemeProvider } from "@oaknational/oak-components";
 
 import { CurricAngledLabel } from "./CurricAngledLabel";
 
 const meta: Meta<typeof CurricAngledLabel> = {
   title: "Components/Curriculum/CurricAngledLabel",
   component: CurricAngledLabel,
-  decorators: [
-    (Story) => (
-      <OakThemeProvider theme={oakDefaultTheme}>
-        <Story />
-      </OakThemeProvider>
-    ),
-  ],
   tags: ["autodocs"],
   argTypes: {
     children: {

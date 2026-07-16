@@ -1,23 +1,12 @@
 import React from "react";
 import { StoryObj, Meta } from "@storybook/nextjs";
-import {
-  oakDefaultTheme,
-  OakPrimaryButton,
-  OakThemeProvider,
-} from "@oaknational/oak-components";
+import { OakPrimaryButton } from "@oaknational/oak-components";
 
 import { UnitHeaderNavFooter } from "./UnitHeaderNavFooter";
 
 const meta: Meta<typeof UnitHeaderNavFooter> = {
   component: UnitHeaderNavFooter,
   tags: ["autodocs"],
-  decorators: [
-    (Story) => (
-      <OakThemeProvider theme={oakDefaultTheme}>
-        <Story />
-      </OakThemeProvider>
-    ),
-  ],
 };
 
 export default meta;

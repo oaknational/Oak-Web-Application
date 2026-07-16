@@ -1,6 +1,5 @@
 import React from "react";
 import type { Meta, StoryObj } from "@storybook/nextjs";
-import { oakDefaultTheme, OakThemeProvider } from "@oaknational/oak-components";
 
 import { Testimonials } from "./Testimonials";
 
@@ -53,11 +52,7 @@ const testimonials: HomePage["testimonials"] = [
 
 export const Default: Story = {
   render: (args) => {
-    return (
-      <OakThemeProvider theme={oakDefaultTheme}>
-        <Testimonials {...args} />
-      </OakThemeProvider>
-    );
+    return <Testimonials {...args} />;
   },
   args: {
     testimonials: testimonials,

@@ -1,5 +1,4 @@
 import { Meta, StoryObj } from "@storybook/nextjs";
-import { oakDefaultTheme, OakThemeProvider } from "@oaknational/oak-components";
 
 import { GetInvolvedLinkCard as Component } from ".";
 
@@ -8,13 +7,6 @@ const meta: Meta<typeof Component> = {
   tags: ["autodocs"],
   title: "Components/GenericPagesComponents/GetInvolvedLinkCard",
   argTypes: {},
-  decorators: [
-    (Story) => (
-      <OakThemeProvider theme={oakDefaultTheme}>
-        <Story />
-      </OakThemeProvider>
-    ),
-  ],
 };
 
 export default meta;

@@ -1,5 +1,4 @@
 import type { Meta, StoryObj } from "@storybook/nextjs";
-import { oakDefaultTheme, OakThemeProvider } from "@oaknational/oak-components";
 
 import CopyrightLicence from "./CopyrightLicence";
 
@@ -23,13 +22,6 @@ const meta = {
       },
     },
   },
-  decorators: [
-    (Story) => (
-      <OakThemeProvider theme={oakDefaultTheme}>
-        <Story />
-      </OakThemeProvider>
-    ),
-  ],
 } satisfies Meta<typeof CopyrightLicence>;
 export default meta;
 

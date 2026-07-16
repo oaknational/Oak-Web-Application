@@ -1,10 +1,6 @@
 import React from "react";
 import { StoryObj, Meta } from "@storybook/nextjs";
-import {
-  OakBreadcrumbs,
-  oakDefaultTheme,
-  OakThemeProvider,
-} from "@oaknational/oak-components";
+import { OakBreadcrumbs } from "@oaknational/oak-components";
 
 import LessonHeader from "./LessonHeader";
 
@@ -19,13 +15,6 @@ const meta: Meta<typeof LessonHeader> = {
       include: ["heading"],
     },
   },
-  decorators: [
-    (Story) => (
-      <OakThemeProvider theme={oakDefaultTheme}>
-        <Story />
-      </OakThemeProvider>
-    ),
-  ],
 };
 
 export default meta;

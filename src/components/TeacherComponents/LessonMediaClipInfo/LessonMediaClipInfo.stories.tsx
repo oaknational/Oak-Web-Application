@@ -1,9 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/nextjs";
-import {
-  OakP,
-  OakThemeProvider,
-  oakDefaultTheme,
-} from "@oaknational/oak-components";
+import { OakP } from "@oaknational/oak-components";
 
 import {
   LessonMediaClipInfo,
@@ -33,10 +29,6 @@ export default meta;
 type Story = StoryObj<typeof LessonMediaClipInfo>;
 
 export const Standard: Story = {
-  render: ({ ...args }) => (
-    <OakThemeProvider theme={oakDefaultTheme}>
-      <LessonMediaClipInfo {...args} />
-    </OakThemeProvider>
-  ),
+  render: ({ ...args }) => <LessonMediaClipInfo {...args} />,
   args: { ...props },
 };

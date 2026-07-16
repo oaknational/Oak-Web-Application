@@ -1,4 +1,5 @@
 import { collapseFragments } from "@ooxml-tools/xml";
+import { Element } from "xml-js";
 
 import {
   cdataJson,
@@ -199,7 +200,7 @@ describe("xml", () => {
         ],
       };
       const inputClone = JSON.parse(JSON.stringify(input));
-      const out = collapseFragments(input);
+      const out = collapseFragments(input) as Element;
       expect(inputClone).toEqual(input);
       expect(input.elements[1]!.elements![0]!.elements[0]?.elements[3]).toBe(
         out.elements![1]!.elements![2],

@@ -1,9 +1,5 @@
 import { Meta, StoryObj } from "@storybook/nextjs";
-import {
-  OakPrimaryButton,
-  OakThemeProvider,
-  oakDefaultTheme,
-} from "@oaknational/oak-components";
+import { OakPrimaryButton } from "@oaknational/oak-components";
 import { ClerkProvider } from "@clerk/nextjs";
 import { ComponentProps } from "react";
 import { mocked } from "storybook/test";
@@ -39,9 +35,7 @@ const meta: Meta<typeof LessonList> = {
     NotificationsDecorator,
     (Story) => (
       <ClerkProvider>
-        <OakThemeProvider theme={oakDefaultTheme}>
-          <Story />
-        </OakThemeProvider>
+        <Story />
       </ClerkProvider>
     ),
   ],

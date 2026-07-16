@@ -1,5 +1,4 @@
 import type { Meta, StoryObj } from "@storybook/nextjs";
-import { OakThemeProvider, oakDefaultTheme } from "@oaknational/oak-components";
 
 import { Breadcrumbs } from "./Breadcrumbs";
 
@@ -42,13 +41,6 @@ const meta: Meta<typeof Breadcrumbs> = {
   title: "App/Programmes/Units/Lessons/Breadcrumbs",
   component: Breadcrumbs,
   tags: ["autodocs"],
-  decorators: [
-    (Story) => (
-      <OakThemeProvider theme={oakDefaultTheme}>
-        <Story />
-      </OakThemeProvider>
-    ),
-  ],
 };
 
 export default meta;
