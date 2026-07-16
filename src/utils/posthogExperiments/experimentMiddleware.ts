@@ -70,6 +70,10 @@ export default async function experimentMiddleware({
         },
       );
 
+      if (phRes.status !== 200) {
+        throw new Error("Posthog fetch error");
+      }
+
       const data = await phRes.json();
       const variant = data?.featureFlags?.[featureFlag];
 
