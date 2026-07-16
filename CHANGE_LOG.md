@@ -1,3 +1,10 @@
+## [1.1126.5](https://github.com/oaknational/Oak-Web-Application/compare/v1.1126.4...v1.1126.5) (2026-07-16)
+
+
+### Bug Fixes
+
+* remove unstyled <li/> and use as="li" instead ([149b67c](https://github.com/oaknational/Oak-Web-Application/commit/149b67c945fac2a49a950afe7ec46afc539ab8ad))
+
 ## [1.1126.4](https://github.com/oaknational/Oak-Web-Application/compare/v1.1126.3...v1.1126.4) (2026-07-15)
 
 
