@@ -9,8 +9,10 @@ export const fixtureData: OaksImpactSchoolQuoteProps = {
   subTitle:
     "Ormiston Academies Trust supports pupils in 45 schools across secondary, primary, alternative provision and special schools.",
   quote: {
-    quote:
-      "In Ormiston, we value our partnership with Oak, through which we have strengthened the R.E. curriculum in our schools, whilst contributing to a high-quality national resource for all. Ormiston primary schools are using science and humanities resources to strengthen their curricular offer, and are benefitting from the high quality curriculum design, and opportunities to work in partnership with colleagues at Oak.",
+    quote: [
+      "In Ormiston, we value our partnership with Oak, through which we have strengthened the R.E. curriculum in our schools, whilst contributing to a high-quality national resource for all.",
+      "Ormiston primary schools are using science and humanities resources to strengthen their curricular offer, and are benefitting from the high quality curriculum design, and opportunities to work in partnership with colleagues at Oak.",
+    ],
     authorName: "Tom Rees",
     authorTitle: "CEO, Ormiston Academies Trust",
     authorImageSrc: `https://${process.env.NEXT_PUBLIC_OAK_ASSETS_HOST}/${process.env.NEXT_PUBLIC_OAK_ASSETS_PATH}/v1698336490/test-images/test_quote_author.jpg`,

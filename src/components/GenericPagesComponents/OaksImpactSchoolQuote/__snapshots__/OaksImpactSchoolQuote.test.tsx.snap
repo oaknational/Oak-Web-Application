@@ -66,13 +66,18 @@ exports[`OaksImpactSchoolQuote renders as='li' 1`] = `
                       class="sc-aXZVg cmRFEa"
                     >
                       <div
-                        class="sc-aXZVg sc-6657036a-1 jPvJsJ edGQPr"
+                        class="sc-aXZVg sc-gEvEer sc-7b0ac5f3-1 jPvJsJ NsOKr kVKIra"
                       >
                         <p
                           class="sc-ikkxIA fqNJfa"
                         >
                           “
-                          In Ormiston, we value our partnership with Oak, through which we have strengthened the R.E. curriculum in our schools, whilst contributing to a high-quality national resource for all. Ormiston primary schools are using science and humanities resources to strengthen their curricular offer, and are benefitting from the high quality curriculum design, and opportunities to work in partnership with colleagues at Oak.
+                          In Ormiston, we value our partnership with Oak, through which we have strengthened the R.E. curriculum in our schools, whilst contributing to a high-quality national resource for all.
+                        </p>
+                        <p
+                          class="sc-ikkxIA fqNJfa"
+                        >
+                          Ormiston primary schools are using science and humanities resources to strengthen their curricular offer, and are benefitting from the high quality curriculum design, and opportunities to work in partnership with colleagues at Oak.
                           ”
                         </p>
                       </div>
@@ -81,7 +86,7 @@ exports[`OaksImpactSchoolQuote renders as='li' 1`] = `
                       class="sc-aXZVg sc-gEvEer jPvJsJ fWqiDO"
                     >
                       <span
-                        class="sc-aXZVg kvjdhA sc-6657036a-0 feBLRd"
+                        class="sc-aXZVg kvjdhA sc-7b0ac5f3-0 LaaaE"
                         role="presentation"
                       >
                         <img
@@ -190,13 +195,18 @@ exports[`OaksImpactSchoolQuote renders correctly 1`] = `
                         class="sc-aXZVg cmRFEa"
                       >
                         <div
-                          class="sc-aXZVg sc-6657036a-1 jPvJsJ edGQPr"
+                          class="sc-aXZVg sc-gEvEer sc-7b0ac5f3-1 jPvJsJ NsOKr kVKIra"
                         >
                           <p
                             class="sc-ikkxIA fqNJfa"
                           >
                             “
-                            In Ormiston, we value our partnership with Oak, through which we have strengthened the R.E. curriculum in our schools, whilst contributing to a high-quality national resource for all. Ormiston primary schools are using science and humanities resources to strengthen their curricular offer, and are benefitting from the high quality curriculum design, and opportunities to work in partnership with colleagues at Oak.
+                            In Ormiston, we value our partnership with Oak, through which we have strengthened the R.E. curriculum in our schools, whilst contributing to a high-quality national resource for all.
+                          </p>
+                          <p
+                            class="sc-ikkxIA fqNJfa"
+                          >
+                            Ormiston primary schools are using science and humanities resources to strengthen their curricular offer, and are benefitting from the high quality curriculum design, and opportunities to work in partnership with colleagues at Oak.
                             ”
                           </p>
                         </div>
@@ -205,7 +215,7 @@ exports[`OaksImpactSchoolQuote renders correctly 1`] = `
                         class="sc-aXZVg sc-gEvEer jPvJsJ fWqiDO"
                       >
                         <span
-                          class="sc-aXZVg kvjdhA sc-6657036a-0 feBLRd"
+                          class="sc-aXZVg kvjdhA sc-7b0ac5f3-0 LaaaE"
                           role="presentation"
                         >
                           <img

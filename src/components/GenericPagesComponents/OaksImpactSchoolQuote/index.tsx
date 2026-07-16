@@ -16,7 +16,7 @@ const StyledAuthorImage = styled(OakImage)`
   }
 `;
 
-const TightLetterSpacing = styled(OakBox)`
+const TightLetterSpacing = styled(OakFlex)`
   letter-spacing: -0.01em;
   @media (min-width: 750px) {
     letter-spacing: -0.02em;
@@ -83,7 +83,7 @@ export function OaksImpactSchoolQuote({
                       <OakBox $font={"heading-light-6"} $color={"text-primary"}>
                         <TightLetterSpacing
                           $flexDirection={"column"}
-                          $gap={"spacing-12"}
+                          $gap={"spacing-20"}
                         >
                           {quoteLines.map((quoteLine, quoteLineIndex) => {
                             const isFirst = quoteLineIndex === 0;
