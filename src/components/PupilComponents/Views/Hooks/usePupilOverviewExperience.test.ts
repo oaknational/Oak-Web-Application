@@ -32,11 +32,12 @@ jest.mock("@/context/PupilLessonAnalytics/usePupilLessonAnalytics", () => ({
   usePupilLessonAnalytics: () => track,
 }));
 
-let isClassroomAssignment = false;
+let isClassroomAssignment: boolean | null = false;
+let classroomAssignmentChecked = true;
 jest.mock("@/hooks/useAssignmentSearchParams", () => ({
   useAssignmentSearchParams: () => ({
     isClassroomAssignment,
-    classroomAssignmentChecked: true,
+    classroomAssignmentChecked,
   }),
 }));
 
@@ -58,6 +59,7 @@ beforeEach(() => {
   jest.clearAllMocks();
   asPath = "/pupils/lessons/lesson-1/overview";
   isClassroomAssignment = false;
+  classroomAssignmentChecked = true;
   usePupilLessonProgress.setState(getDefaultLessonProgressState());
   usePupilLessonProgress.getState().initialiseLessonProgress({
     lessonSlug: "lesson-1",
@@ -130,5 +132,37 @@ describe("usePupilOverviewExperience", () => {
     const { result } = renderOverview();
     act(() => result.current.handleViewAllLessonsClick());
     expect(track.trackLessonAbandoned).toHaveBeenCalledTimes(1);
+  });
+
+  it("allows content guidance to open immediately for non-classroom lessons", () => {
+    usePupilLessonProgress.setState(getDefaultLessonProgressState());
+    const { result } = renderOverview();
+
+    expect(result.current.contentGuidanceCanOpen).toBe(true);
+  });
+
+  it("waits for lesson progress init before allowing content guidance for classroom assignments", () => {
+    isClassroomAssignment = true;
+    usePupilLessonProgress.setState(getDefaultLessonProgressState());
+    const { result, rerender } = renderOverview();
+
+    expect(result.current.contentGuidanceCanOpen).toBe(false);
+
+    act(() => {
+      usePupilLessonProgress.getState().initialiseLessonProgress({
+        lessonSlug: lessonBrowseDataFixture({}).lessonSlug,
+        lessonReviewSections: [...reviewSections],
+      });
+    });
+    rerender();
+
+    expect(result.current.contentGuidanceCanOpen).toBe(true);
+  });
+
+  it("does not allow content guidance to open until classroom assignment check completes", () => {
+    classroomAssignmentChecked = false;
+    const { result } = renderOverview();
+
+    expect(result.current.contentGuidanceCanOpen).toBe(false);
   });
 });

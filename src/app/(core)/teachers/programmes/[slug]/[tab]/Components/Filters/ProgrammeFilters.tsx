@@ -12,7 +12,7 @@ import {
   CurricFiltersChildSubjects,
   CurricFiltersTiers,
 } from "@/components/CurriculumComponents/CurricVisualiserFilters";
-import { shouldDisplayFilter } from "@/utils/curriculum/filteringApp";
+import { shouldDisplayFilter } from "@/utils/curriculum/filtering";
 import { CurriculumFilters } from "@/utils/curriculum/types";
 import type { Ks4Option } from "@/node-lib/curriculum-api-2023/queries/curriculumPhaseOptions/curriculumPhaseOptions.schema";
 import { CurriculumSelectionSlugs } from "@/utils/curriculum/slugs";

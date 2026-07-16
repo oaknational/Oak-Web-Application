@@ -1,3 +1,13 @@
+## [1.1126.4](https://github.com/oaknational/Oak-Web-Application/compare/v1.1126.3...v1.1126.4) (2026-07-15)
+
+
+### Bug Fixes
+
+* **PUPIL-1780:** prevent GC content guidance modal from reopening after dismiss ([1a2e4ec](https://github.com/oaknational/Oak-Web-Application/commit/1a2e4ec3e0a4a877f9248c1380fa5fc019df0fd4))
+* **PUPIL-1780:** remove misleading contentGuidanceCanOpen comment ([1caa01d](https://github.com/oaknational/Oak-Web-Application/commit/1caa01dc1e7bd4c73c0d87f745d6b33e33d6a01b))
+
+## [1.1126.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.1126.2...v1.1126.3) (2026-07-15)
+
 ## [1.1126.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.1126.1...v1.1126.2) (2026-07-15)
 
 
