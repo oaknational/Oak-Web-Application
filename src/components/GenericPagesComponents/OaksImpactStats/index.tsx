@@ -14,7 +14,6 @@ import CMSImage from "@/components/SharedComponents/CMSImage/CMSImage";
 import { PortableTextWithDefaults } from "@/components/SharedComponents/PortableText";
 import { getLinkHref } from "@/utils/portableText/resolveInternalHref";
 
-
 export type OaksImpactStatsProps = z.infer<
   typeof oaksImpactPageStatsSectionSchema
 >;
