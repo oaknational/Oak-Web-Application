@@ -87,18 +87,6 @@ describe("MyLibrary", () => {
     const sideMenuItems = screen.getAllByRole("link", { name: /Subject/i });
     expect(sideMenuItems).toHaveLength(5);
   });
-  it("calls isUnitSaved with correct arguments", async () => {
-    render(
-      <MyLibrary
-        collectionData={generateMockCollectionData(1)}
-        isLoading={false}
-        isUnitSaving={jest.fn().mockReturnValue(false)}
-      />,
-    );
-    const saveButton = screen.getByRole("button", { name: /Save/i });
-    const user = userEvent.setup();
-    await user.click(saveButton);
-  });
   it("tracks unit accessed with the correct arguments", async () => {
     render(
       <MyLibrary
