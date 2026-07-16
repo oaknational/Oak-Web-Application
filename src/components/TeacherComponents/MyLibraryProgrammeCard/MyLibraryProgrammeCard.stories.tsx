@@ -8,6 +8,7 @@ import {
   completeUnitLessons,
   incompleteUnitLessons,
 } from "@/fixtures/teachers/myLibrary";
+import { KeyStageTitleValueType } from "@/browser-lib/avo/Avo";
 
 const sampleUnits = [
   {
@@ -21,6 +22,10 @@ const sampleUnits = [
     onSave: () => console.log("Unsave unit 1"),
     isSaved: true,
     isSaving: false,
+    keyStageTitle: "Key Stage 4" as KeyStageTitleValueType,
+    keyStageSlug: "key-stage-4",
+    subjectTitle: "English",
+    subjectSlug: "english",
     trackUnitAccessed: () => console.log("Track unit accessed 1"),
     trackLessonAccessed: () => console.log("Track lesson accessed 1"),
   },
@@ -35,6 +40,10 @@ const sampleUnits = [
     onSave: () => console.log("Unsave unit 2"),
     isSaved: true,
     isSaving: false,
+    keyStageTitle: "Key Stage 4" as KeyStageTitleValueType,
+    keyStageSlug: "key-stage-4",
+    subjectTitle: "English",
+    subjectSlug: "english",
     trackUnitAccessed: () => console.log("Track unit accessed 2"),
     trackLessonAccessed: () => console.log("Track lesson accessed"),
   },
@@ -49,6 +58,10 @@ const sampleUnits = [
     onSave: () => console.log("Unsave unit 3"),
     isSaved: true,
     isSaving: false,
+    keyStageTitle: "Key Stage 4" as KeyStageTitleValueType,
+    keyStageSlug: "key-stage-4",
+    subjectTitle: "English",
+    subjectSlug: "english",
     trackUnitAccessed: () => console.log("Track unit accessed 3"),
     trackLessonAccessed: () => console.log("Track lesson accessed"),
   },
