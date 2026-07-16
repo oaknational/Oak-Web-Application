@@ -1,18 +1,14 @@
 import { Meta, StoryObj } from "@storybook/nextjs";
 import { oakDefaultTheme, OakThemeProvider } from "@oaknational/oak-components";
 
-import { SupportYou as Component } from ".";
+import { oaksImpactCaseStudiesFixture } from "./OaksImpactCaseStudies.fixtures";
 
-const meta: Meta<typeof Component> = {
+import { OaksImpactCaseStudies as Component } from ".";
+
+const meta = {
   component: Component,
   tags: ["autodocs"],
-  title: "Components/GenericPagesComponents/SupportYou",
-  args: {
-    link: {
-      text: "Get in touch with an expert",
-      href: "https://share.hsforms.com/2yBT-92_WT6CvX1b6L3Iw8Qbvumd",
-    },
-  },
+  title: "Components/GenericPagesComponents/OaksImpactCaseStudies",
   argTypes: {},
   decorators: [
     (Story) => (
@@ -21,11 +17,14 @@ const meta: Meta<typeof Component> = {
       </OakThemeProvider>
     ),
   ],
-};
+} satisfies Meta<typeof Component>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
+  args: {
+    caseStudies: oaksImpactCaseStudiesFixture,
+  },
   render: (args) => <Component {...args} />,
 };

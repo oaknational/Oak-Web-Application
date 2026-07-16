@@ -1,3 +1,74 @@
+## [1.1126.4](https://github.com/oaknational/Oak-Web-Application/compare/v1.1126.3...v1.1126.4) (2026-07-15)
+
+
+### Bug Fixes
+
+* **PUPIL-1780:** prevent GC content guidance modal from reopening after dismiss ([1a2e4ec](https://github.com/oaknational/Oak-Web-Application/commit/1a2e4ec3e0a4a877f9248c1380fa5fc019df0fd4))
+* **PUPIL-1780:** remove misleading contentGuidanceCanOpen comment ([1caa01d](https://github.com/oaknational/Oak-Web-Application/commit/1caa01dc1e7bd4c73c0d87f745d6b33e33d6a01b))
+
+## [1.1126.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.1126.2...v1.1126.3) (2026-07-15)
+
+## [1.1126.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.1126.1...v1.1126.2) (2026-07-15)
+
+
+### Bug Fixes
+
+* bump oak-components to v2.44.0 ([95852f6](https://github.com/oaknational/Oak-Web-Application/commit/95852f6fb2da4b725ca3e3b08401e6724d6e2c1b))
+* use new hasLeftBorder prop in place of setting colour to transparent for OakQuote ([e585965](https://github.com/oaknational/Oak-Web-Application/commit/e58596510aae9bad95fc779def53e21894ca1c16))
+
+## [1.1126.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.1126.0...v1.1126.1) (2026-07-15)
+
+# [1.1126.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1125.0...v1.1126.0) (2026-07-15)
+
+
+### Bug Fixes
+
+* placeholder image ([130336d](https://github.com/oaknational/Oak-Web-Application/commit/130336d04661cf4981ad0d124c7c971e81125cac))
+
+
+### Features
+
+* image with alt and dark mode gql fragment ([39bf306](https://github.com/oaknational/Oak-Web-Application/commit/39bf30673b95ed468ec818e9480b2a42b2938ef8))
+* oaks impact page pulling data from sanity ([9e46810](https://github.com/oaknational/Oak-Web-Application/commit/9e46810178bb85f80076dff9537fb8068073393b))
+* oaks impact sanity query and types ([a85afd9](https://github.com/oaknational/Oak-Web-Application/commit/a85afd984c7e7f39dd9e61e55fb091f7987a6e07))
+* oaks impact zod schemas ([0b35d3b](https://github.com/oaknational/Oak-Web-Application/commit/0b35d3bb84d173034f52349b7edc0bf46223b0fb))
+
+# [1.1125.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1124.0...v1.1125.0) (2026-07-15)
+
+
+### Bug Fixes
+
+* ensure card heading is a div ([95fd909](https://github.com/oaknational/Oak-Web-Application/commit/95fd90936c2bce8e4c9ac4bdd58d7a6dad49e1cc))
+* format ([2c4380c](https://github.com/oaknational/Oak-Web-Application/commit/2c4380c31651011b4f9bc9e50575e518d6c11c2e))
+* genn'd file ([7c0fdcd](https://github.com/oaknational/Oak-Web-Application/commit/7c0fdcd1d4ac6b6a9fec13f6d2eaeb794c49d06d))
+* make ul and cards li ([4f5b492](https://github.com/oaknational/Oak-Web-Application/commit/4f5b4922ced6d1b0c892113d2fd6f002c6e29ed9))
+* remove heading test ([a353ec4](https://github.com/oaknational/Oak-Web-Application/commit/a353ec4ea3fc8435927ee094674a2d9272c3a6a8))
+* snaps ([e73a725](https://github.com/oaknational/Oak-Web-Application/commit/e73a72572b565c6e4b707e1c015056cb3db34e8b))
+* snaps ([9264a25](https://github.com/oaknational/Oak-Web-Application/commit/9264a2577c5d35e3a11a0a468eac13d2777ec9c8))
+* tests ([aa2bd34](https://github.com/oaknational/Oak-Web-Application/commit/aa2bd34e4e95428e6db55ecd50710b11517fb5ba))
+* use heading as key over index ([7cb40b6](https://github.com/oaknational/Oak-Web-Application/commit/7cb40b633ec25ea6d0400ea005a7081bc2c47be6))
+
+
+### Features
+
+* add case studies section to oaks impact ([5d77bed](https://github.com/oaknational/Oak-Web-Application/commit/5d77bed4f0d227818ae2cac7c0641384dc5792e3))
+* add story ([e6165e8](https://github.com/oaknational/Oak-Web-Application/commit/e6165e89c6391f2e86f92e306409e0a927edcf90))
+* add tests ([a66bbb8](https://github.com/oaknational/Oak-Web-Application/commit/a66bbb89e4b1f7cc95a3adaae3c9f0e0a858b85d))
+* use link text from sanity ([3268782](https://github.com/oaknational/Oak-Web-Application/commit/326878273c805049f996154ab35b26fcaf352e1e))
+
+# [1.1124.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1123.0...v1.1124.0) (2026-07-15)
+
+
+### Bug Fixes
+
+* oaks curricula spacing ([ba99e64](https://github.com/oaknational/Oak-Web-Application/commit/ba99e6483cb0aa7fe7fdbdf8ba1308feb0eb030c))
+
+
+### Features
+
+* add support you component to oaks curricula page ([a0eacf0](https://github.com/oaknational/Oak-Web-Application/commit/a0eacf0f6c8487f7c0e9c8d8c2108f6f3c197afe))
+* use correct image in support you component ([c0eb058](https://github.com/oaknational/Oak-Web-Application/commit/c0eb05855021a68b83bfc3fb91e372d334e01103))
+
 # [1.1123.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1122.0...v1.1123.0) (2026-07-15)
 
 

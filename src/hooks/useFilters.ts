@@ -2,33 +2,11 @@
 import { useSearchParams } from "next/navigation";
 import { useCallback, useLayoutEffect, useState } from "react";
 
-import { CurriculumFilters } from "./types";
-import { mergeInFilterParams, filtersToQuery } from "./filtersUrl";
-
-// Re-export all pure functions for backwards compatibility
-export {
-  getDefaultFilter,
-  getDefaultChildSubjectForYearGroup,
-  getDefaultSubjectCategoriesForYearGroup,
-  getDefaultTiersForYearGroup,
-  filtersToQuery,
+import { CurriculumFilters } from "@/utils/curriculum/types";
+import {
   mergeInFilterParams,
-  getFilterData,
-  isHighlightedUnit,
-  filteringFromYears,
-  highlightedUnitCount,
-  shouldDisplayFilter,
-  diffFilters,
-  getNumberOfFiltersApplied,
-  subjectCategoryForFilter,
-  childSubjectForFilter,
-  tierForFilter,
-  threadForFilter,
-  buildTextDescribingFilter,
-  keystageSuffixForFilter,
-  getNumberOfSelectedUnits,
-  FILTER_TO_QS,
-} from "./filtersUrl";
+  filtersToQuery,
+} from "@/utils/curriculum/filtering";
 
 export function useFilters(
   defaultFilter: CurriculumFilters,
