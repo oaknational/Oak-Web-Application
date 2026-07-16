@@ -15,6 +15,7 @@ const meta = {
   args: {
     redirectOverlayCleared: true,
     contentGuidanceDismissed: false,
+    contentGuidanceCanOpen: true,
     isClassroomAssignment: false,
     onAccept: () => {},
     onDecline: () => {},

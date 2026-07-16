@@ -30,7 +30,7 @@ import withPageErrorHandling, {
 } from "@/hocs/withPageErrorHandling";
 import { resolveOakHref } from "@/common-lib/urls";
 import { getSubjectPhaseSlug } from "@/components/TeacherComponents/helpers/getSubjectPhaseSlug";
-import { resolveFilterFromSearchParams } from "@/utils/curriculum/filtersUrl";
+import { resolveFilterFromSearchParams } from "@/utils/curriculum/filtering";
 import { redirectProgrammeSlugIfNeeded } from "@/utils/integratedJourney/legacyProgrammeUnitsRedirect";
 import { cacheData } from "@/node-lib/cache";
 import CMSClient from "@/node-lib/cms";
