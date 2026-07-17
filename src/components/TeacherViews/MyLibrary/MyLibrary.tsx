@@ -8,7 +8,6 @@ import {
 import MyLibraryHeader from "@/components/TeacherComponents/MyLibraryHeader/MyLibraryHeader";
 import NoSavedContent from "@/components/TeacherComponents/NoSavedContent/NoSavedContent";
 import { MyLibraryUnit } from "@/node-lib/educator-api/queries/getUserListContent/getUserListContent.types";
-import { getUnitProgrammeSlug } from "@/node-lib/educator-api/helpers/saveUnits/utils";
 import {
   ExamBoardValueType,
   KeyStageTitleValueType,
@@ -37,11 +36,10 @@ export type CollectionData = Array<{
 type MyLibraryProps = {
   collectionData: CollectionData | null;
   isLoading: boolean;
-  isUnitSaving: (unitProgrammeSlug: string) => boolean;
 };
 
 export default function MyLibrary(props: Readonly<MyLibraryProps>) {
-  const { collectionData, isLoading, isUnitSaving } = props;
+  const { collectionData, isLoading } = props;
   const { track } = useAnalytics();
   const collections = collectionData ?? [];
 
@@ -172,12 +170,6 @@ export default function MyLibrary(props: Readonly<MyLibraryProps>) {
                       lessonReleaseCohort: "2023-2026",
                       lessonReleaseDate: "", // we don't have access to lesson content data here
                     }),
-                  isSaving: isUnitSaving(
-                    getUnitProgrammeSlug(
-                      unit.unitSlug,
-                      collection.uniqueProgrammeKey,
-                    ),
-                  ),
                 }))}
               />
             ))}

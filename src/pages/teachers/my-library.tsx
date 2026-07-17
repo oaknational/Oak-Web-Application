@@ -13,7 +13,7 @@ import { TopNavProps } from "@/components/AppComponents/TopNav/TopNav";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 
 function MyLibraryPage({ topNav }: Readonly<{ topNav: TopNavProps }>) {
-  const { collectionData, isLoading, isUnitSaving } = useMyLibrary();
+  const { collectionData, isLoading } = useMyLibrary();
 
   return (
     <AppLayout
@@ -27,11 +27,7 @@ function MyLibraryPage({ topNav }: Readonly<{ topNav: TopNavProps }>) {
       }}
       topNavProps={topNav}
     >
-      <MyLibrary
-        collectionData={collectionData}
-        isLoading={isLoading}
-        isUnitSaving={isUnitSaving}
-      />
+      <MyLibrary collectionData={collectionData} isLoading={isLoading} />
     </AppLayout>
   );
 }

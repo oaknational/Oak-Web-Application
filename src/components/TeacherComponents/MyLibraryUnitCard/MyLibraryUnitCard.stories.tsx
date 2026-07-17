@@ -21,7 +21,6 @@ const unit = {
   keyStageSlug: "key-stage-4",
   subjectTitle: "English",
   subjectSlug: "english",
-  isSaving: false,
   trackUnitAccessed: () => console.log("Track unit accessed"),
   trackLessonAccessed: () => console.log("Track lesson accessed"),
 };
