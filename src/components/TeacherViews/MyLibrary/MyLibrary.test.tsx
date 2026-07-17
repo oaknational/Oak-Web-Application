@@ -54,24 +54,12 @@ describe("MyLibrary", () => {
   });
 
   it("renders a header and no content when loading", () => {
-    render(
-      <MyLibrary
-        collectionData={null}
-        isLoading={true}
-        isUnitSaving={() => false}
-      />,
-    );
+    render(<MyLibrary collectionData={null} isLoading={true} />);
     expect(screen.getByText("My library")).toBeInTheDocument();
     expect(screen.queryByText("No units yet")).not.toBeInTheDocument();
   });
   it("renders a header and no content when there is no collection data", () => {
-    render(
-      <MyLibrary
-        collectionData={[]}
-        isLoading={false}
-        isUnitSaving={() => false}
-      />,
-    );
+    render(<MyLibrary collectionData={[]} isLoading={false} />);
     expect(screen.getByText("My library")).toBeInTheDocument();
     expect(screen.queryByText("No units yet")).toBeInTheDocument();
   });
@@ -80,7 +68,6 @@ describe("MyLibrary", () => {
       <MyLibrary
         collectionData={generateMockCollectionData(5)}
         isLoading={false}
-        isUnitSaving={() => false}
       />,
     );
 
@@ -92,7 +79,6 @@ describe("MyLibrary", () => {
       <MyLibrary
         collectionData={generateMockCollectionData(1)}
         isLoading={false}
-        isUnitSaving={() => false}
       />,
     );
 
@@ -133,7 +119,6 @@ describe("MyLibrary", () => {
       <MyLibrary
         collectionData={generateMockCollectionData(1)}
         isLoading={false}
-        isUnitSaving={() => false}
       />,
     );
 
@@ -168,7 +153,6 @@ describe("MyLibrary", () => {
       <MyLibrary
         collectionData={generateMockCollectionData(1)}
         isLoading={false}
-        isUnitSaving={() => false}
       />,
     );
     const unsaveButtons = screen.getAllByRole("button", {
@@ -182,7 +166,6 @@ describe("MyLibrary", () => {
       <MyLibrary
         collectionData={generateMockCollectionData(1)}
         isLoading={false}
-        isUnitSaving={() => false}
       />,
     );
     const [saveButton] = screen.getAllByRole("button", {
@@ -199,7 +182,6 @@ describe("MyLibrary", () => {
       <MyLibrary
         collectionData={generateMockCollectionData(1)}
         isLoading={false}
-        isUnitSaving={() => false}
       />,
     );
 
