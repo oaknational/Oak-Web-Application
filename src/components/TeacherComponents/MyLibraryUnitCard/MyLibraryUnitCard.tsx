@@ -7,11 +7,13 @@ import {
   OakLI,
   OakLink,
 } from "@oaknational/oak-components";
+import { ReactNode } from "react";
 import styled from "styled-components";
 
 import { SaveUnitButton } from "../SaveUnitButton/SaveUnitButton";
 
 import { resolveOakHref } from "@/common-lib/urls";
+import useMediaQuery from "@/hooks/useMediaQuery";
 import { MyLibraryUnit } from "@/node-lib/educator-api/queries/getUserListContent/getUserListContent.types";
 import { KeyStageTitleValueType } from "@/browser-lib/avo/Avo";
 
@@ -43,24 +45,26 @@ const getLastSavedText = (date: string) => {
     : `Saved on ${formattedDate} at ${formattedTime}`;
 };
 
-const UnitCardHeader = ({ ...props }: MyLibraryUnitCardProps) => {
-  const {
-    unitTitle,
-    year,
-    savedAt,
-    optionalityTitle,
-    keyStageSlug,
-    keyStageTitle,
-    subjectTitle,
-    subjectSlug,
-  } = props;
+const UnitCardHeader = ({
+  saveButton,
+  ...props
+}: MyLibraryUnitCardProps & {
+  saveButton?: ReactNode;
+}) => {
+  const { unitTitle, year, savedAt, optionalityTitle } = props;
 
   const lastSavedText = getLastSavedText(savedAt);
   const mainTitle = optionalityTitle ?? unitTitle;
   const superTitle = optionalityTitle ? unitTitle : undefined;
 
   return (
-    <OakFlex $flexGrow={1} $alignItems={"start"} $gap={"spacing-12"}>
+    <OakFlex
+      $flexGrow={1}
+      $alignItems={["stretch", "start"]}
+      $justifyContent={["start", "space-between"]}
+      $flexDirection={["column", "row"]}
+      $gap={["spacing-16", "spacing-12"]}
+    >
       <OakFlex $flexGrow={1} $flexDirection={"column"} $gap={"spacing-8"}>
         {superTitle && (
           <OakP $font={"heading-light-7"} $color={"text-primary"}>
@@ -90,62 +94,27 @@ const UnitCardHeader = ({ ...props }: MyLibraryUnitCardProps) => {
           {lastSavedText}
         </OakP>
       </OakFlex>
-      <OakBox $display={["none", "block"]}>
-        <SaveUnitButton
-          buttonVariant="default"
-          programmeSlug={props.programmeSlug}
-          unitSlug={props.unitSlug}
-          unitTitle={unitTitle}
-          trackingProps={{
-            savedFrom: "my-library-save-button",
-            keyStageTitle: keyStageTitle,
-            keyStageSlug: keyStageSlug,
-            subjectTitle: subjectTitle,
-            subjectSlug: subjectSlug,
-          }}
-        />
-      </OakBox>
+      {saveButton ? <OakBox>{saveButton}</OakBox> : null}
     </OakFlex>
   );
 };
 
 const UnitCardContent = ({
   lessonCountHeader,
+  saveButton,
   ...props
 }: {
   lessonCountHeader: string;
+  saveButton?: ReactNode;
 } & MyLibraryUnitCardProps) => {
-  const {
-    unitTitle,
-    unitSlug,
-    programmeSlug,
-    lessons,
-    keyStageTitle,
-    keyStageSlug,
-    subjectTitle,
-    subjectSlug,
-  } = props;
+  const { unitSlug, programmeSlug, lessons } = props;
 
   return (
     <OakFlex>
-      <OakFlex $flexDirection={"column"} $gap={"spacing-24"}>
+      <OakFlex $flexDirection={"column"} $gap={"spacing-24"} $width="100%">
         <OakFlex $justifyContent={"space-between"} $alignItems="center">
           <OakP $font={"heading-light-7"}>{lessonCountHeader}</OakP>
-          <OakBox $display={["block", "none"]}>
-            <SaveUnitButton
-              buttonVariant="default"
-              programmeSlug={props.programmeSlug}
-              unitSlug={props.unitSlug}
-              unitTitle={unitTitle}
-              trackingProps={{
-                savedFrom: "my-library-save-button",
-                keyStageTitle,
-                keyStageSlug,
-                subjectTitle,
-                subjectSlug,
-              }}
-            />
-          </OakBox>
+          {saveButton ? <OakBox>{saveButton}</OakBox> : null}
         </OakFlex>
         <OakBox
           $bl={["border-solid-none", "border-solid-s"]}
@@ -214,7 +183,18 @@ export type MyLibraryUnitCardProps = Omit<
 };
 
 export default function MyLibraryUnitCard(props: MyLibraryUnitCardProps) {
-  const { lessons } = props;
+  const {
+    lessons,
+    unitTitle,
+    programmeSlug,
+    unitSlug,
+    keyStageTitle,
+    keyStageSlug,
+    subjectTitle,
+    subjectSlug,
+  } = props;
+
+  const isMobile = useMediaQuery("mobile");
 
   const unpublishedLessonCount = lessons.filter(
     (lesson) => lesson.state !== "published",
@@ -223,6 +203,22 @@ export default function MyLibraryUnitCard(props: MyLibraryUnitCardProps) {
   const lessonCountHeader = unpublishedLessonCount
     ? `${lessons.length - unpublishedLessonCount}/${lessons.length} lessons`
     : `${lessons.length} lessons`;
+
+  const saveButton = (
+    <SaveUnitButton
+      buttonVariant="default"
+      programmeSlug={programmeSlug}
+      unitSlug={unitSlug}
+      unitTitle={unitTitle}
+      trackingProps={{
+        savedFrom: "my-library-save-button",
+        keyStageTitle,
+        keyStageSlug,
+        subjectTitle,
+        subjectSlug,
+      }}
+    />
+  );
 
   return (
     <OakFlex
@@ -236,9 +232,13 @@ export default function MyLibraryUnitCard(props: MyLibraryUnitCardProps) {
       $width="100%"
     >
       <OakFlex $gap={["spacing-16", "spacing-24"]}>
-        <UnitCardHeader {...props} />
+        <UnitCardHeader {...props} saveButton={isMobile ? null : saveButton} />
       </OakFlex>
-      <UnitCardContent lessonCountHeader={lessonCountHeader} {...props} />
+      <UnitCardContent
+        lessonCountHeader={lessonCountHeader}
+        saveButton={isMobile ? saveButton : null}
+        {...props}
+      />
     </OakFlex>
   );
 }
