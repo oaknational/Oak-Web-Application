@@ -1,13 +1,10 @@
 import styled from "styled-components";
-import {
-  OakBox,
-  OakFlex,
-  OakHeading,
-  OakImage,
-  OakP,
-} from "@oaknational/oak-components";
+import { OakBox, OakFlex, OakHeading, OakP } from "@oaknational/oak-components";
 
-const StyledAuthorImage = styled(OakImage)`
+import { Image } from "@/common-lib/cms-types";
+import CMSImage from "@/components/SharedComponents/CMSImage";
+
+const StyledAuthorImage = styled(CMSImage)`
   width: 54px;
   height: 54px;
   flex-shrink: 0;
@@ -25,23 +22,21 @@ const TightLetterSpacing = styled(OakFlex)`
 
 export type OaksImpactSchoolQuoteProps = {
   as?: "div" | "li";
-  title: string;
-  image: {
-    alt: string;
-    src: string;
-  };
+  organisation: string;
+  logo: Image;
   subTitle: string;
   quote: {
     quote: string | string[];
-    authorName?: string;
-    authorTitle?: string;
-    authorImageSrc?: string;
+    authorName: string;
+    authorTitle: string;
+    authorImage: Image;
   };
 };
+
 export function OaksImpactSchoolQuote({
   as = "div",
-  title,
-  image,
+  organisation,
+  logo,
   subTitle,
   quote,
 }: Readonly<OaksImpactSchoolQuoteProps>) {
@@ -56,8 +51,9 @@ export function OaksImpactSchoolQuote({
       $borderColor="border-neutral-lighter"
       $borderRadius={"border-radius-l"}
       $overflow="hidden"
+      $flexGrow={1}
     >
-      <OakImage {...image} $aspectRatio={"16/9"} />
+      <CMSImage image={logo} />
       <OakFlex
         $flexDirection={"column"}
         $ph={"spacing-24"}
@@ -66,7 +62,7 @@ export function OaksImpactSchoolQuote({
       >
         <OakFlex $flexDirection={"column"} $gap={"spacing-8"}>
           <OakHeading tag={"h3"} $color={"text-primary"} $font={"heading-5"}>
-            {title}
+            {organisation}
           </OakHeading>
           <OakP $color={"text-primary"} $font={"body-2"}>
             {subTitle}
@@ -79,7 +75,7 @@ export function OaksImpactSchoolQuote({
               <OakFlex $alignItems={"flex-start"}>
                 <OakFlex $flexDirection={"column"} $gap={"spacing-40"}>
                   <OakFlex $width={"100%"}>
-                    <OakFlex $flexDirection={"column"} $gap={"spacing-16"}>
+                    <OakFlex $flexDirection={"column"} $gap={"spacing-20"}>
                       <OakBox $font={"heading-light-6"} $color={"text-primary"}>
                         <TightLetterSpacing
                           $flexDirection={"column"}
@@ -99,28 +95,20 @@ export function OaksImpactSchoolQuote({
                           })}
                         </TightLetterSpacing>
                       </OakBox>
-
-                      {quote.authorName ? (
-                        <OakFlex $gap={"spacing-16"} $alignItems={"center"}>
-                          {quote.authorImageSrc ? (
-                            <StyledAuthorImage
-                              alt={""}
-                              role={"presentation"}
-                              src={quote.authorImageSrc}
-                            />
-                          ) : null}
-                          <OakFlex $flexDirection={"column"}>
-                            <OakP $font={"body-2-bold"} $color={"text-primary"}>
-                              {quote.authorName}
-                            </OakP>
-                            {quote.authorTitle ? (
-                              <OakP $font={"body-2"} $color={"text-primary"}>
-                                {quote.authorTitle}
-                              </OakP>
-                            ) : null}
-                          </OakFlex>
+                      <OakFlex
+                        $gap={"spacing-16"}
+                        $alignItems={["top", "center"]}
+                      >
+                        <StyledAuthorImage image={quote.authorImage} />
+                        <OakFlex $flexDirection={"column"}>
+                          <OakP $font={"body-2-bold"} $color={"text-primary"}>
+                            {quote.authorName}
+                          </OakP>
+                          <OakP $font={"body-2"} $color={"text-primary"}>
+                            {quote.authorTitle}, {organisation}
+                          </OakP>
                         </OakFlex>
-                      ) : null}
+                      </OakFlex>
                     </OakFlex>
                   </OakFlex>
                 </OakFlex>
