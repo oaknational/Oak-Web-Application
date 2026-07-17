@@ -94,7 +94,7 @@ const UnitCardHeader = ({
           {lastSavedText}
         </OakP>
       </OakFlex>
-      {saveButton ? <OakBox>{saveButton}</OakBox> : null}
+      {saveButton || null}
     </OakFlex>
   );
 };
@@ -114,7 +114,7 @@ const UnitCardContent = ({
       <OakFlex $flexDirection={"column"} $gap={"spacing-24"} $width="100%">
         <OakFlex $justifyContent={"space-between"} $alignItems="center">
           <OakP $font={"heading-light-7"}>{lessonCountHeader}</OakP>
-          {saveButton ? <OakBox>{saveButton}</OakBox> : null}
+          {saveButton || null}
         </OakFlex>
         <OakBox
           $bl={["border-solid-none", "border-solid-s"]}
