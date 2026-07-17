@@ -2896,7 +2896,7 @@ export type NewAboutCorePageOaksImpact = Document & {
   _updatedAt?: Maybe<Scalars['DateTime']['output']>;
   caseStudies?: Maybe<OaksImpactPageCaseStudies>;
   header?: Maybe<OaksImpactPageHeader>;
-  schoolQuotes?: Maybe<OaksImpactPageSchoolQuotes>;
+  schoolQuotes?: Maybe<OaksImpactPageSchoolQuotesSection>;
   statsSection?: Maybe<OaksImpactPageStatsSection>;
 };
 
@@ -2911,7 +2911,7 @@ export type NewAboutCorePageOaksImpactFilter = {
   _updatedAt?: InputMaybe<DatetimeFilter>;
   caseStudies?: InputMaybe<OaksImpactPageCaseStudiesFilter>;
   header?: InputMaybe<OaksImpactPageHeaderFilter>;
-  schoolQuotes?: InputMaybe<OaksImpactPageSchoolQuotesFilter>;
+  schoolQuotes?: InputMaybe<OaksImpactPageSchoolQuotesSectionFilter>;
   statsSection?: InputMaybe<OaksImpactPageStatsSectionFilter>;
 };
 
@@ -2924,7 +2924,7 @@ export type NewAboutCorePageOaksImpactSorting = {
   _updatedAt?: InputMaybe<SortOrder>;
   caseStudies?: InputMaybe<OaksImpactPageCaseStudiesSorting>;
   header?: InputMaybe<OaksImpactPageHeaderSorting>;
-  schoolQuotes?: InputMaybe<OaksImpactPageSchoolQuotesSorting>;
+  schoolQuotes?: InputMaybe<OaksImpactPageSchoolQuotesSectionSorting>;
   statsSection?: InputMaybe<OaksImpactPageStatsSectionSorting>;
 };
 
@@ -3301,13 +3301,24 @@ export type OaksImpactPageHeaderSorting = {
   videoDescription?: InputMaybe<SortOrder>;
 };
 
+export type OaksImpactPageSchoolQuote = {
+  __typename?: 'OaksImpactPageSchoolQuote';
+  _key?: Maybe<Scalars['String']['output']>;
+  _type?: Maybe<Scalars['String']['output']>;
+  attribution?: Maybe<Scalars['String']['output']>;
+  organisation?: Maybe<Scalars['String']['output']>;
+  role?: Maybe<Scalars['String']['output']>;
+  /** Quotation marks will be added automatically */
+  text?: Maybe<Scalars['String']['output']>;
+};
+
 export type OaksImpactPageSchoolQuoteCard = {
   __typename?: 'OaksImpactPageSchoolQuoteCard';
   _key?: Maybe<Scalars['String']['output']>;
   _type?: Maybe<Scalars['String']['output']>;
   headshot?: Maybe<ImageWithAltText>;
   logo?: Maybe<ImageWithAltText>;
-  quote?: Maybe<Quote>;
+  quote?: Maybe<OaksImpactPageSchoolQuote>;
   summary?: Maybe<Scalars['String']['output']>;
 };
 
@@ -3316,7 +3327,7 @@ export type OaksImpactPageSchoolQuoteCardFilter = {
   _type?: InputMaybe<StringFilter>;
   headshot?: InputMaybe<ImageWithAltTextFilter>;
   logo?: InputMaybe<ImageWithAltTextFilter>;
-  quote?: InputMaybe<QuoteFilter>;
+  quote?: InputMaybe<OaksImpactPageSchoolQuoteFilter>;
   summary?: InputMaybe<StringFilter>;
 };
 
@@ -3325,25 +3336,43 @@ export type OaksImpactPageSchoolQuoteCardSorting = {
   _type?: InputMaybe<SortOrder>;
   headshot?: InputMaybe<ImageWithAltTextSorting>;
   logo?: InputMaybe<ImageWithAltTextSorting>;
-  quote?: InputMaybe<QuoteSorting>;
+  quote?: InputMaybe<OaksImpactPageSchoolQuoteSorting>;
   summary?: InputMaybe<SortOrder>;
 };
 
-export type OaksImpactPageSchoolQuotes = {
-  __typename?: 'OaksImpactPageSchoolQuotes';
+export type OaksImpactPageSchoolQuoteFilter = {
+  _key?: InputMaybe<StringFilter>;
+  _type?: InputMaybe<StringFilter>;
+  attribution?: InputMaybe<StringFilter>;
+  organisation?: InputMaybe<StringFilter>;
+  role?: InputMaybe<StringFilter>;
+  text?: InputMaybe<StringFilter>;
+};
+
+export type OaksImpactPageSchoolQuoteSorting = {
+  _key?: InputMaybe<SortOrder>;
+  _type?: InputMaybe<SortOrder>;
+  attribution?: InputMaybe<SortOrder>;
+  organisation?: InputMaybe<SortOrder>;
+  role?: InputMaybe<SortOrder>;
+  text?: InputMaybe<SortOrder>;
+};
+
+export type OaksImpactPageSchoolQuotesSection = {
+  __typename?: 'OaksImpactPageSchoolQuotesSection';
   _key?: Maybe<Scalars['String']['output']>;
   _type?: Maybe<Scalars['String']['output']>;
   cards?: Maybe<Array<Maybe<OaksImpactPageSchoolQuoteCard>>>;
   heading?: Maybe<Scalars['String']['output']>;
 };
 
-export type OaksImpactPageSchoolQuotesFilter = {
+export type OaksImpactPageSchoolQuotesSectionFilter = {
   _key?: InputMaybe<StringFilter>;
   _type?: InputMaybe<StringFilter>;
   heading?: InputMaybe<StringFilter>;
 };
 
-export type OaksImpactPageSchoolQuotesSorting = {
+export type OaksImpactPageSchoolQuotesSectionSorting = {
   _key?: InputMaybe<SortOrder>;
   _type?: InputMaybe<SortOrder>;
   heading?: InputMaybe<SortOrder>;
@@ -6306,7 +6335,7 @@ export type OaksImpactPageQueryVariables = Exact<{
 }>;
 
 
-export type OaksImpactPageQuery = { __typename?: 'RootQuery', allNewAboutCorePageOaksImpact: Array<{ __typename?: 'NewAboutCorePageOaksImpact', id?: string | null, header?: { __typename?: 'OaksImpactPageHeader', introText?: string | null, videoDescription?: string | null, video?: { __typename?: 'Video', title?: string | null, captions?: Array<string | null> | null, video?: { __typename?: 'MuxVideo', asset?: { __typename?: 'MuxVideoAsset', assetId?: string | null, thumbTime?: number | null, playbackId?: string | null } | null } | null } | null } | null, statsSection?: { __typename?: 'OaksImpactPageStatsSection', textBlock?: { __typename?: 'TextBlock', title?: string | null, bodyPortableText?: any | null, cta?: { __typename?: 'Cta', label?: string | null, linkType?: string | null, external?: string | null, anchor?: string | null, internal?: { __typename?: 'AboutCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePageBoard', id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePageLeadership', id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePagePartners', id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePageWhoWeAre', id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePageWorkWithUs', id?: string | null, contentType?: string | null } | { __typename?: 'Attachment', title?: string | null, id?: string | null, contentType?: string | null, file?: { __typename?: 'File', asset?: { __typename?: 'SanityFileAsset', extension?: string | null, size?: number | null, url?: string | null } | null } | null } | { __typename?: 'ContactCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'Homepage', id?: string | null, contentType?: string | null } | { __typename?: 'LandingPage', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'NewsListingPage', id?: string | null, contentType?: string | null } | { __typename?: 'NewsPost', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'PlanningCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'PolicyPage', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'SupportCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'Webinar', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'WebinarListingPage', id?: string | null, contentType?: string | null } | null } | null } | null, stats?: Array<{ __typename?: 'OaksImpactPageStat', heading?: string | null, textRaw?: any | null, icon?: { __typename?: 'ImageWithAltTextAndDarkMode', altText?: string | null, isPresentational?: boolean | null, asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null, darkModeImage?: { __typename?: 'Image', asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null } | null, hotspot?: { __typename?: 'SanityImageHotspot', x?: number | null, y?: number | null, width?: number | null, height?: number | null } | null } | null } | null> | null } | null, caseStudies?: { __typename?: 'OaksImpactPageCaseStudies', cards?: Array<{ __typename?: 'Card', title?: string | null, bodyPortableText?: any | null, image?: { __typename?: 'ImageWithAltText', asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null } | null, cta?: { __typename?: 'Cta', label?: string | null, linkType?: string | null, external?: string | null, anchor?: string | null, internal?: { __typename?: 'AboutCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePageBoard', id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePageLeadership', id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePagePartners', id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePageWhoWeAre', id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePageWorkWithUs', id?: string | null, contentType?: string | null } | { __typename?: 'Attachment', title?: string | null, id?: string | null, contentType?: string | null, file?: { __typename?: 'File', asset?: { __typename?: 'SanityFileAsset', extension?: string | null, size?: number | null, url?: string | null } | null } | null } | { __typename?: 'ContactCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'Homepage', id?: string | null, contentType?: string | null } | { __typename?: 'LandingPage', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'NewsListingPage', id?: string | null, contentType?: string | null } | { __typename?: 'NewsPost', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'PlanningCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'PolicyPage', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'SupportCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'Webinar', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'WebinarListingPage', id?: string | null, contentType?: string | null } | null } | null } | null> | null } | null, schoolQuotes?: { __typename?: 'OaksImpactPageSchoolQuotes', heading?: string | null, cards?: Array<{ __typename?: 'OaksImpactPageSchoolQuoteCard', summary?: string | null, logo?: { __typename?: 'ImageWithAltText', altText?: string | null, isPresentational?: boolean | null, asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null, hotspot?: { __typename?: 'SanityImageHotspot', x?: number | null, y?: number | null, width?: number | null, height?: number | null } | null } | null, quote?: { __typename?: 'Quote', text?: string | null, role?: string | null, organisation?: string | null, attribution?: string | null } | null, headshot?: { __typename?: 'ImageWithAltText', altText?: string | null, isPresentational?: boolean | null, asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null, hotspot?: { __typename?: 'SanityImageHotspot', x?: number | null, y?: number | null, width?: number | null, height?: number | null } | null } | null } | null> | null } | null }> };
+export type OaksImpactPageQuery = { __typename?: 'RootQuery', allNewAboutCorePageOaksImpact: Array<{ __typename?: 'NewAboutCorePageOaksImpact', id?: string | null, header?: { __typename?: 'OaksImpactPageHeader', introText?: string | null, videoDescription?: string | null, video?: { __typename?: 'Video', title?: string | null, captions?: Array<string | null> | null, video?: { __typename?: 'MuxVideo', asset?: { __typename?: 'MuxVideoAsset', assetId?: string | null, thumbTime?: number | null, playbackId?: string | null } | null } | null } | null } | null, statsSection?: { __typename?: 'OaksImpactPageStatsSection', textBlock?: { __typename?: 'TextBlock', title?: string | null, bodyPortableText?: any | null, cta?: { __typename?: 'Cta', label?: string | null, linkType?: string | null, external?: string | null, anchor?: string | null, internal?: { __typename?: 'AboutCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePageBoard', id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePageLeadership', id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePagePartners', id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePageWhoWeAre', id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePageWorkWithUs', id?: string | null, contentType?: string | null } | { __typename?: 'Attachment', title?: string | null, id?: string | null, contentType?: string | null, file?: { __typename?: 'File', asset?: { __typename?: 'SanityFileAsset', extension?: string | null, size?: number | null, url?: string | null } | null } | null } | { __typename?: 'ContactCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'Homepage', id?: string | null, contentType?: string | null } | { __typename?: 'LandingPage', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'NewsListingPage', id?: string | null, contentType?: string | null } | { __typename?: 'NewsPost', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'PlanningCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'PolicyPage', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'SupportCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'Webinar', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'WebinarListingPage', id?: string | null, contentType?: string | null } | null } | null } | null, stats?: Array<{ __typename?: 'OaksImpactPageStat', heading?: string | null, textRaw?: any | null, icon?: { __typename?: 'ImageWithAltTextAndDarkMode', altText?: string | null, isPresentational?: boolean | null, asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null, darkModeImage?: { __typename?: 'Image', asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null } | null, hotspot?: { __typename?: 'SanityImageHotspot', x?: number | null, y?: number | null, width?: number | null, height?: number | null } | null } | null } | null> | null } | null, caseStudies?: { __typename?: 'OaksImpactPageCaseStudies', cards?: Array<{ __typename?: 'Card', title?: string | null, bodyPortableText?: any | null, image?: { __typename?: 'ImageWithAltText', asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null } | null, cta?: { __typename?: 'Cta', label?: string | null, linkType?: string | null, external?: string | null, anchor?: string | null, internal?: { __typename?: 'AboutCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePageBoard', id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePageLeadership', id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePagePartners', id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePageWhoWeAre', id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePageWorkWithUs', id?: string | null, contentType?: string | null } | { __typename?: 'Attachment', title?: string | null, id?: string | null, contentType?: string | null, file?: { __typename?: 'File', asset?: { __typename?: 'SanityFileAsset', extension?: string | null, size?: number | null, url?: string | null } | null } | null } | { __typename?: 'ContactCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'Homepage', id?: string | null, contentType?: string | null } | { __typename?: 'LandingPage', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'NewsListingPage', id?: string | null, contentType?: string | null } | { __typename?: 'NewsPost', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'PlanningCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'PolicyPage', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'SupportCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'Webinar', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'WebinarListingPage', id?: string | null, contentType?: string | null } | null } | null } | null> | null } | null, schoolQuotes?: { __typename?: 'OaksImpactPageSchoolQuotesSection', heading?: string | null, cards?: Array<{ __typename?: 'OaksImpactPageSchoolQuoteCard', summary?: string | null, logo?: { __typename?: 'ImageWithAltText', altText?: string | null, isPresentational?: boolean | null, asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null, hotspot?: { __typename?: 'SanityImageHotspot', x?: number | null, y?: number | null, width?: number | null, height?: number | null } | null } | null, quote?: { __typename?: 'OaksImpactPageSchoolQuote', text?: string | null, role?: string | null, organisation?: string | null, attribution?: string | null } | null, headshot?: { __typename?: 'ImageWithAltText', altText?: string | null, isPresentational?: boolean | null, asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null, hotspot?: { __typename?: 'SanityImageHotspot', x?: number | null, y?: number | null, width?: number | null, height?: number | null } | null } | null } | null> | null } | null }> };
 
 export type PlanALessonPageQueryVariables = Exact<{
   isDraftFilter?: InputMaybe<Sanity_DocumentFilter>;
@@ -7463,7 +7492,10 @@ export const OaksImpactPageDocument = gql`
         }
         summary
         quote {
-          ...Quote
+          text
+          role
+          organisation
+          attribution
         }
         headshot {
           ...ImageWithAltText
@@ -7476,8 +7508,7 @@ export const OaksImpactPageDocument = gql`
 ${TextBlockFragmentDoc}
 ${ImageWithAltTextAndDarkModeFragmentDoc}
 ${CardFragmentDoc}
-${ImageWithAltTextFragmentDoc}
-${QuoteFragmentDoc}`;
+${ImageWithAltTextFragmentDoc}`;
 export const PlanALessonPageDocument = gql`
     query planALessonPage($isDraftFilter: Sanity_DocumentFilter) {
   allPlanALessonCorePage(
