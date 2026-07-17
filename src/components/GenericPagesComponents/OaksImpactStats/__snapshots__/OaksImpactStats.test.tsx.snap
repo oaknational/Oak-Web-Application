@@ -1,0 +1,208 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`OaksImpactStats renders correctly 1`] = `
+<body>
+  <div>
+    <div
+      class="sc-aXZVg sc-gEvEer joTwcV iDBIXi"
+    >
+      <div
+        class="sc-aXZVg bZTQLO"
+      >
+        <div
+          class="sc-aXZVg sc-gEvEer jPvJsJ grLzfc"
+        >
+          <div
+            class="sc-aXZVg sc-gEvEer iiXlSv iwFTtF"
+          >
+            <div
+              class="sc-aXZVg sc-gEvEer jPvJsJ daEtut"
+            >
+              <h2
+                class="sc-eldPxv epUAyb"
+              >
+                Oak is now used in 72% of schools
+              </h2>
+              <div
+                class="sc-aXZVg iSruHh"
+              >
+                <p
+                  class="sc-ikkxIA sc-94fdfbc9-0 cFDVg ghkYMu"
+                >
+                  Our latest independent evaluation shows just how valuable this support has already become for teachers and school leaders.
+                </p>
+              </div>
+            </div>
+            <div
+              class="sc-aXZVg sc-kpDqfm bhFzn cvxBYX"
+            >
+              <div
+                class="sc-aXZVg kpXzs grey-shadow"
+              />
+              <div
+                class="sc-aXZVg kpXzs yellow-shadow"
+              />
+              <a
+                aria-label="Read the 24/25 impact report (opens in a new tab)"
+                class="sc-dcJsrY sc-jXbUNg bALQkH khQbhv internal-button"
+                href="#"
+              >
+                <div
+                  class="sc-aXZVg sc-gEvEer jPvJsJ krHAKs"
+                >
+                  <span
+                    class="sc-eqUAAy edqVpV"
+                  >
+                    Read the 24/25 impact report
+                  </span>
+                  <span
+                    class="sc-aXZVg jJQFnr"
+                  >
+                    <img
+                      alt=""
+                      class="sc-iGgWBj lcrpYX"
+                      data-nimg="fill"
+                      decoding="async"
+                      loading="lazy"
+                      src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1699953892/icons/hlxmejse3mcr4tqo6t8u.svg"
+                      style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                    />
+                  </span>
+                </div>
+              </a>
+            </div>
+          </div>
+          <div
+            class="sc-aXZVg sc-gEvEer jPvJsJ crYpLM"
+          >
+            <div
+              class="sc-aXZVg sc-gEvEer jPvJsJ fLgPAy"
+            >
+              <div
+                class="sc-aXZVg sc-gEvEer kBnJtM fEHKal"
+              >
+                <div
+                  class="sc-aXZVg gagJjx"
+                >
+                  <img
+                    alt=""
+                    class="sc-ba397cd3-0 dMngOi"
+                    data-nimg="1"
+                    decoding="async"
+                    height="120"
+                    loading="lazy"
+                    src="https://NEXT_PUBLIC_SANITY_ASSET_CDN_HOST/images/NEXT_PUBLIC_SANITY_PROJECT_ID/NEXT_PUBLIC_SANITY_DATASET/84ac53e9bd17c0782b0455d519f302467744a2ce-120x120.svg?w=256&h=256&fm=webp&q=80&fit=clip&auto=format"
+                    srcset="https://NEXT_PUBLIC_SANITY_ASSET_CDN_HOST/images/NEXT_PUBLIC_SANITY_PROJECT_ID/NEXT_PUBLIC_SANITY_DATASET/84ac53e9bd17c0782b0455d519f302467744a2ce-120x120.svg?w=128&h=128&fm=webp&q=80&fit=clip&auto=format 1x, https://NEXT_PUBLIC_SANITY_ASSET_CDN_HOST/images/NEXT_PUBLIC_SANITY_PROJECT_ID/NEXT_PUBLIC_SANITY_DATASET/84ac53e9bd17c0782b0455d519f302467744a2ce-120x120.svg?w=256&h=256&fm=webp&q=80&fit=clip&auto=format 2x"
+                    style="color: transparent;"
+                    width="120"
+                  />
+                </div>
+                <div
+                  class="sc-aXZVg sc-gEvEer kBnJtM cQXbIi"
+                >
+                  <div
+                    class="sc-aXZVg gFNIew"
+                  >
+                    200,000
+                  </div>
+                  <div
+                    class="sc-aXZVg jMhfMS"
+                  >
+                    <p
+                      class="sc-ikkxIA sc-94fdfbc9-0 cFDVg ghkYMu"
+                    >
+                      Between January and July 2025 alone, almost 200,000 teachers used Oak, with over 54,000 using it every week – a 53% rise on the previous year.
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div
+                class="sc-aXZVg eDWeGI"
+              />
+              <div
+                class="sc-aXZVg sc-gEvEer kBnJtM fEHKal"
+              >
+                <div
+                  class="sc-aXZVg gagJjx"
+                >
+                  <img
+                    alt=""
+                    class="sc-ba397cd3-0 dMngOi"
+                    data-nimg="1"
+                    decoding="async"
+                    height="120"
+                    loading="lazy"
+                    src="https://NEXT_PUBLIC_SANITY_ASSET_CDN_HOST/images/NEXT_PUBLIC_SANITY_PROJECT_ID/NEXT_PUBLIC_SANITY_DATASET/84ac53e9bd17c0782b0455d519f302467744a2ce-120x120.svg?w=256&h=256&fm=webp&q=80&fit=clip&auto=format"
+                    srcset="https://NEXT_PUBLIC_SANITY_ASSET_CDN_HOST/images/NEXT_PUBLIC_SANITY_PROJECT_ID/NEXT_PUBLIC_SANITY_DATASET/84ac53e9bd17c0782b0455d519f302467744a2ce-120x120.svg?w=128&h=128&fm=webp&q=80&fit=clip&auto=format 1x, https://NEXT_PUBLIC_SANITY_ASSET_CDN_HOST/images/NEXT_PUBLIC_SANITY_PROJECT_ID/NEXT_PUBLIC_SANITY_DATASET/84ac53e9bd17c0782b0455d519f302467744a2ce-120x120.svg?w=256&h=256&fm=webp&q=80&fit=clip&auto=format 2x"
+                    style="color: transparent;"
+                    width="120"
+                  />
+                </div>
+                <div
+                  class="sc-aXZVg sc-gEvEer kBnJtM cQXbIi"
+                >
+                  <div
+                    class="sc-aXZVg gFNIew"
+                  >
+                    85%
+                  </div>
+                  <div
+                    class="sc-aXZVg jMhfMS"
+                  >
+                    <p
+                      class="sc-ikkxIA sc-94fdfbc9-0 cFDVg ghkYMu"
+                    >
+                      85% of Oak users say it has a positive impact on their workload. Two thirds (67%) report an overall workload reduction, saving a median four hours per week.
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div
+                class="sc-aXZVg eDWeGI"
+              />
+              <div
+                class="sc-aXZVg sc-gEvEer kBnJtM fEHKal"
+              >
+                <div
+                  class="sc-aXZVg gagJjx"
+                >
+                  <img
+                    alt=""
+                    class="sc-ba397cd3-0 dMngOi"
+                    data-nimg="1"
+                    decoding="async"
+                    height="120"
+                    loading="lazy"
+                    src="https://NEXT_PUBLIC_SANITY_ASSET_CDN_HOST/images/NEXT_PUBLIC_SANITY_PROJECT_ID/NEXT_PUBLIC_SANITY_DATASET/84ac53e9bd17c0782b0455d519f302467744a2ce-120x120.svg?w=256&h=256&fm=webp&q=80&fit=clip&auto=format"
+                    srcset="https://NEXT_PUBLIC_SANITY_ASSET_CDN_HOST/images/NEXT_PUBLIC_SANITY_PROJECT_ID/NEXT_PUBLIC_SANITY_DATASET/84ac53e9bd17c0782b0455d519f302467744a2ce-120x120.svg?w=128&h=128&fm=webp&q=80&fit=clip&auto=format 1x, https://NEXT_PUBLIC_SANITY_ASSET_CDN_HOST/images/NEXT_PUBLIC_SANITY_PROJECT_ID/NEXT_PUBLIC_SANITY_DATASET/84ac53e9bd17c0782b0455d519f302467744a2ce-120x120.svg?w=256&h=256&fm=webp&q=80&fit=clip&auto=format 2x"
+                    style="color: transparent;"
+                    width="120"
+                  />
+                </div>
+                <div
+                  class="sc-aXZVg sc-gEvEer kBnJtM cQXbIi"
+                >
+                  <div
+                    class="sc-aXZVg gFNIew"
+                  >
+                    92%
+                  </div>
+                  <div
+                    class="sc-aXZVg jMhfMS"
+                  >
+                    <p
+                      class="sc-ikkxIA sc-94fdfbc9-0 cFDVg ghkYMu"
+                    >
+                      92% of Oak users see themselves staying in a teaching role in the next two years compared to 77% of non-users, indicating higher retention could be linked to Oak usage.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+`;

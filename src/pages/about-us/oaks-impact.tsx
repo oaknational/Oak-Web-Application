@@ -21,6 +21,7 @@ import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 import getPageProps from "@/node-lib/getPageProps";
 import { getFeatureFlag } from "@/node-lib/posthog/getFeatureFlag";
 import { getPosthogIdFromCookie } from "@/node-lib/posthog/getPosthogId";
+import { OaksImpactStats } from "@/components/GenericPagesComponents/OaksImpactStats";
 import CMSClient from "@/node-lib/cms";
 import { OaksImpactPage } from "@/common-lib/cms-types";
 
@@ -49,14 +50,7 @@ const OaksImpact: NextPage<OaksImpactPageProps> = ({ topNav, pageData }) => {
         >
           <AboutSharedHeaderImage imageUrl={placeholderImage.url} />
         </AboutSharedHeader>
-        <OakBox
-          $ma={"spacing-48"}
-          $pa={"spacing-48"}
-          $borderColor="red"
-          $ba="border-solid-xxl"
-        >
-          TODO: Stats
-        </OakBox>
+        <OaksImpactStats {...pageData.statsSection} />
         <OaksImpactCaseStudies caseStudies={oaksImpactCaseStudiesFixture} />
         <OakBox
           $ma={"spacing-48"}
