@@ -3,7 +3,12 @@ import {
   GetServerSidePropsResult,
   NextPage,
 } from "next/dist/types";
-import { OakBox } from "@oaknational/oak-components";
+import {
+  OakBox,
+  OakGrid,
+  OakGridArea,
+  OakHeading,
+} from "@oaknational/oak-components";
 
 import getBrowserConfig from "@/browser-lib/getBrowserConfig";
 import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
@@ -23,6 +28,8 @@ import { getFeatureFlag } from "@/node-lib/posthog/getFeatureFlag";
 import { getPosthogIdFromCookie } from "@/node-lib/posthog/getPosthogId";
 import CMSClient from "@/node-lib/cms";
 import { OaksImpactPage } from "@/common-lib/cms-types";
+import { NewGutterMaxWidth } from "@/components/GenericPagesComponents/NewGutterMaxWidth";
+import { OaksImpactSchoolQuote } from "@/components/GenericPagesComponents/OaksImpactSchoolQuote";
 
 export type OaksImpactPageProps = {
   topNav: TopNavProps;
@@ -49,6 +56,7 @@ const OaksImpact: NextPage<OaksImpactPageProps> = ({ topNav, pageData }) => {
         >
           <AboutSharedHeaderImage imageUrl={placeholderImage.url} />
         </AboutSharedHeader>
+
         <OakBox
           $ma={"spacing-48"}
           $pa={"spacing-48"}
@@ -57,15 +65,50 @@ const OaksImpact: NextPage<OaksImpactPageProps> = ({ topNav, pageData }) => {
         >
           TODO: Stats
         </OakBox>
+
         <OaksImpactCaseStudies caseStudies={oaksImpactCaseStudiesFixture} />
-        <OakBox
-          $ma={"spacing-48"}
-          $pa={"spacing-48"}
-          $borderColor="red"
-          $ba="border-solid-xxl"
-        >
-          TODO: Quotes
-        </OakBox>
+
+        <NewGutterMaxWidth>
+          <OakHeading
+            tag={"h2"}
+            $font={["heading-5", "heading-3"]}
+            $textAlign={["left", "center"]}
+            $mt={["spacing-56", "spacing-80"]}
+            $mb={["spacing-24", "spacing-40"]}
+          >
+            {pageData.schoolQuotes.heading}
+          </OakHeading>
+          <OakGrid
+            as="ul"
+            $rg={"spacing-16"}
+            $cg={"spacing-16"}
+            $pl={"spacing-0"}
+            $mv={"spacing-0"}
+          >
+            {pageData.schoolQuotes.cards.map(
+              ({ quote, summary, logo, headshot }) => (
+                <OakGridArea
+                  as="li"
+                  key={quote.organisation}
+                  $colSpan={[12, 6]}
+                >
+                  <OaksImpactSchoolQuote
+                    organisation={quote.organisation}
+                    subTitle={summary}
+                    logo={logo}
+                    quote={{
+                      quote: quote.text.split("\n").filter(Boolean),
+                      authorName: quote.attribution,
+                      authorTitle: quote.role,
+                      authorImage: headshot,
+                    }}
+                  />
+                </OakGridArea>
+              ),
+            )}
+          </OakGrid>
+        </NewGutterMaxWidth>
+
         <SupportYou
           headingTag="h2"
           link={{
