@@ -3250,6 +3250,8 @@ packages:
 
   '@oaknational/oak-components@2.45.0':
     resolution: {integrity: sha512-KanG2Tu/WjyNgKaN7+ZjvfxHIdXYuSl6NZtYkfPkMX0vnk5Lyzny8skxEA65UqMdUBbuPITlaculT6aURiT1Fw==}
+  '@oaknational/oak-components@2.45.0':
+    resolution: {integrity: sha512-KanG2Tu/WjyNgKaN7+ZjvfxHIdXYuSl6NZtYkfPkMX0vnk5Lyzny8skxEA65UqMdUBbuPITlaculT6aURiT1Fw==}
     engines: {node: '24', pnpm: '>=11'}
     peerDependencies:
       next: '>=14.2.12'
