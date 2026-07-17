@@ -1,3 +1,20 @@
+# [1.1128.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1127.1...v1.1128.0) (2026-07-17)
+
+
+### Bug Fixes
+
+* added <OakMaxWidth/> into layout ([70ed567](https://github.com/oaknational/Oak-Web-Application/commit/70ed567532231c7afe874fc4207ea7ed00e81e4f))
+* added missing wrapper accidentally removed ([ab42d6b](https://github.com/oaknational/Oak-Web-Application/commit/ab42d6b6618ceb79a4e0f8056db5d90e1eff7d3b))
+* icon placement and aria-label ([03eb440](https://github.com/oaknational/Oak-Web-Application/commit/03eb4409f876ac5c5162204470e81dd482356740))
+* mark OaksImpactStatsProps as Readonly ([eae7066](https://github.com/oaknational/Oak-Web-Application/commit/eae706690dfb8ef9f24649b243414019c58851df))
+
+
+### Features
+
+* added <OaksImpactStats/> component ([b7cf40b](https://github.com/oaknational/Oak-Web-Application/commit/b7cf40ba5ea36d00c7894d497b9dcdd482943ffb))
+* complete <OaksImpactStats/> component ([5468665](https://github.com/oaknational/Oak-Web-Application/commit/54686657288cfc36d9f5e0e6c7eadaebb5e24a1d))
+* pull <OaksImpactStats/> data from CMS ([018e9ee](https://github.com/oaknational/Oak-Web-Application/commit/018e9eecdbe858801833de8e75b7e88b5acf03eb))
+
 ## [1.1127.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.1127.0...v1.1127.1) (2026-07-16)
 
 
