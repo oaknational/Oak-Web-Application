@@ -12,6 +12,7 @@ import CardListing, { CardListingProps } from "./CardListing";
 
 export const CardListingStyledLink = styled(OakLink)`
   width: 100%;
+  flex-grow: 1;
   &:visited {
     color: ${parseColor("text-link-visited")};
   }
