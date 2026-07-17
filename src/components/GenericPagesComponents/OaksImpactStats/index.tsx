@@ -54,6 +54,7 @@ export function OaksImpactStats(props: Readonly<OaksImpactStatsProps>) {
                 href={getLinkHref(props.textBlock.cta)}
                 iconName={"external"}
                 isTrailingIcon={true}
+                target="_blank"
               >
                 {props.textBlock.cta.label}
               </OakSecondaryButton>
