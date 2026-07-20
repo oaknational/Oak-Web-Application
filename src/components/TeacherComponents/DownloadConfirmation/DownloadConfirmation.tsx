@@ -11,8 +11,7 @@ import {
 import { useOakConsent } from "@oaknational/oak-consent-client";
 import styled from "styled-components";
 
-import { useTeacherShareButton } from "../TeacherShareButton/useTeacherShareButton";
-
+import { useCopyLink } from "@/hooks/useCopyLink";
 import DownloadConfirmationNextLessonContainer from "@/components/TeacherComponents/DownloadConfirmationNextLessonContainer";
 import { NextLesson } from "@/node-lib/curriculum-api-2023/queries/lessonDownloads/lessonDownloads.schema";
 import { useShare } from "@/pages-helpers/teacher/share/useShare";
@@ -119,9 +118,9 @@ const DownloadConfirmation: FC<DownloadConfirmationProps> = ({
     overrideExistingShareId: true,
   });
 
-  const { handleClick } = useTeacherShareButton({
-    shareUrl,
-    shareActivated,
+  const { handleClick } = useCopyLink({
+    linkToCopy: shareUrl,
+    copyActivated: shareActivated,
   });
 
   const teacherShareButton = (

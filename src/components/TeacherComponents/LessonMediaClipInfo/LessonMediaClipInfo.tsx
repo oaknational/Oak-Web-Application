@@ -7,8 +7,7 @@ import {
   OakSmallSecondaryButton,
 } from "@oaknational/oak-components";
 
-import { useTeacherShareButton } from "../TeacherShareButton/useTeacherShareButton";
-
+import { useCopyLink } from "@/hooks/useCopyLink";
 import LessonMetadata from "@/components/SharedComponents/LessonMetadata";
 
 /**
@@ -42,7 +41,7 @@ export const LessonMediaClipInfo: FC<LessonMediaClipInfoProps> = ({
   copyLinkButtonEnabled = false,
   isMobile,
 }: LessonMediaClipInfoProps) => {
-  const { handleClick } = useTeacherShareButton({ shareUrl: null });
+  const { handleClick } = useCopyLink({ linkToCopy: window.location.href });
   return (
     <OakBox>
       <OakHeading tag="h5" $font={"heading-5"} $mb="spacing-12">

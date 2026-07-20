@@ -2,25 +2,25 @@ import { useState } from "react";
 
 import { useOakNotificationsContext } from "@/context/OakNotifications/useOakNotificationsContext";
 
-export const useTeacherShareButton = ({
-  shareUrl,
-  shareActivated,
+export const useCopyLink = ({
+  linkToCopy,
+  copyActivated,
 }: {
-  shareUrl: string | null;
-  shareActivated?: () => void;
+  linkToCopy: string | null;
+  copyActivated?: () => void;
 }) => {
   const [linkCopied, setLinkCopied] = useState(false);
   const { setCurrentToastProps } = useOakNotificationsContext();
 
   const handleClick = () => {
-    const urlToCopy = shareUrl || window.location.href;
-    if (!linkCopied && shareActivated) {
-      shareActivated();
+    if (!linkToCopy) return;
+    if (!linkCopied && copyActivated) {
+      copyActivated();
     }
 
     setLinkCopied(true);
     // copy url to clipboard
-    navigator.clipboard.writeText(urlToCopy);
+    navigator.clipboard.writeText(linkToCopy);
     setCurrentToastProps({
       message: "Link copied to clipboard",
       variant: "green",
