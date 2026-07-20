@@ -30,7 +30,10 @@ export const OaksImpactCaseStudies = ({
           </OakHeading>
           <OakGrid
             as="ul"
-            $gridTemplateColumns={["1fr", "repeat(3, 1fr)"]}
+            $gridTemplateColumns={[
+              "1fr",
+              "repeat(auto-fit, minmax(200px, 1fr))",
+            ]}
             $cg={"spacing-16"}
             $rg={"spacing-16"}
             $pa={"spacing-0"}
