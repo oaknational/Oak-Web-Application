@@ -11,6 +11,8 @@ type SubjectCategoryActions = {
 export function sortYears(a: string, b: string) {
   if (a === "all-years") {
     return -1;
+  } else if (b === "all-years") {
+    return 1;
   }
   return Number.parseInt(a) - Number.parseInt(b);
 }

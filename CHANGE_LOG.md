@@ -1,3 +1,24 @@
+# [1.1130.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1129.2...v1.1130.0) (2026-07-20)
+
+
+### Bug Fixes
+
+* icon trailing in 404 page ([1e008a1](https://github.com/oaknational/Oak-Web-Application/commit/1e008a16f8a2ae327400f3c78021c0e18415a8f1))
+
+
+### Features
+
+* overrides for critical security updates ([1094f03](https://github.com/oaknational/Oak-Web-Application/commit/1094f0310b90c09afeb472897a5eb0b1442debc8))
+* redirects ([fcb7e85](https://github.com/oaknational/Oak-Web-Application/commit/fcb7e85d820f2bf8f0ef47070d2bb92d434e956d))
+* security updates- next, clerk dompurify and js-cookie ([7436162](https://github.com/oaknational/Oak-Web-Application/commit/74361622ec4d95a119c86929d7e3931bd685cbfd))
+
+## [1.1129.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.1129.1...v1.1129.2) (2026-07-20)
+
+
+### Bug Fixes
+
+* update sortYears fn to handle all years in the second sort position ([aacbbb6](https://github.com/oaknational/Oak-Web-Application/commit/aacbbb67b2659bd1538ff3cd6ac76ef714f34b61))
+
 ## [1.1129.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.1129.0...v1.1129.1) (2026-07-20)
 
 # [1.1129.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1128.1...v1.1129.0) (2026-07-20)
