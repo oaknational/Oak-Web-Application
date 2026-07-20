@@ -194,6 +194,19 @@ export const oaksImpactPageSchema = z.object({
 
 export type OaksImpactPage = z.infer<typeof oaksImpactPageSchema>;
 
+export const oaksImpactCaseStudyPageSchema = z.object({
+  image: imageSchema,
+  slug: z.object({
+    current: z.string(),
+  }),
+  textRaw: portableTextSchema,
+  video: videoSchema,
+});
+
+export type OaksImpactCaseStudyPage = z.infer<
+  typeof oaksImpactCaseStudyPageSchema
+>;
+
 // Aliases for about pages (old naming convention - mapping new queries to existing schemas)
 export const aboutWhoWeArePageSchema = whoWeArePageSchema;
 

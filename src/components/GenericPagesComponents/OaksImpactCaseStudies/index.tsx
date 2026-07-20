@@ -45,7 +45,8 @@ export const OaksImpactCaseStudies = ({
                 key={caseStudy.slug.current}
                 heading={caseStudy.video.title || ""}
                 headingLevel={"div"}
-                href={`#/case-studies/${caseStudy.slug.current}`}
+                // TODO: We need to sort out analytics to allow for resolveOakHref(...)
+                href={`/about-us/oaks-impact/case-studies/${caseStudy.slug.current}`}
                 imageSrc={
                   getProxiedSanityAssetUrl(caseStudy.image?.asset?.url) ?? ""
                 }
