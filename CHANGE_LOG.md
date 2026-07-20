@@ -1,3 +1,21 @@
+# [1.1129.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1128.1...v1.1129.0) (2026-07-20)
+
+
+### Bug Fixes
+
+* ensure clerk middleware doesn't run on experiment route ([247bffc](https://github.com/oaknational/Oak-Web-Application/commit/247bffca1fbae86f93f2dfd775efc658c5585feb))
+* rewrite url ([633586a](https://github.com/oaknational/Oak-Web-Application/commit/633586a4e320082b97b2367888105c6cae8e6ce5))
+
+
+### Features
+
+* add capture feature flag method for manual tracking ([6694d1b](https://github.com/oaknational/Oak-Web-Application/commit/6694d1b020ebd9484bbee7e08b06fed7285fdab5))
+* add consent status check in experiment middleware ([b59c782](https://github.com/oaknational/Oak-Web-Application/commit/b59c782b4f65121d5291874dc6dda31af645d09a))
+* add flag storage in cookie for ssr page ([1c9fd2e](https://github.com/oaknational/Oak-Web-Application/commit/1c9fd2e063e987f0637730880eb843a1865166e2))
+* add middleware redirect for experiment variant page ([ec95879](https://github.com/oaknational/Oak-Web-Application/commit/ec958799f7e4ffd05c0ec95d9dbc3f2a6b29659e))
+* add ssr version of page for experiment ([be6e161](https://github.com/oaknational/Oak-Web-Application/commit/be6e1615c86d94a3270b2157836904f97161df07))
+* extract experimentMiddleware fn ([3fe254e](https://github.com/oaknational/Oak-Web-Application/commit/3fe254e0a7b4abec5ce558639fa433108b347008))
+
 ## [1.1128.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.1128.0...v1.1128.1) (2026-07-20)
 
 
