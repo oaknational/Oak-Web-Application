@@ -363,7 +363,7 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
 
 .c120 {
   font-family: --var(google-font),Lexend,sans-serif;
-  font-weight: 700;
+  font-weight: 500;
   font-size: 1.125rem;
   line-height: 1.75rem;
   -webkit-letter-spacing: -0.005rem;
@@ -1159,7 +1159,7 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
 
 .c17 {
   font-family: --var(google-font),Lexend,sans-serif;
-  font-weight: 700;
+  font-weight: 500;
   font-size: 0.875rem;
   line-height: 1.25rem;
   -webkit-letter-spacing: -0.005rem;
@@ -1175,7 +1175,7 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
 
 .c34 {
   font-family: --var(google-font),Lexend,sans-serif;
-  font-weight: 700;
+  font-weight: 500;
   font-size: 0.875rem;
   line-height: 1.25rem;
   -webkit-letter-spacing: -0.005rem;
@@ -1239,7 +1239,7 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
 
 .c209 {
   font-family: --var(google-font),Lexend,sans-serif;
-  font-weight: 700;
+  font-weight: 500;
   font-size: 0.875rem;
   line-height: 1.25rem;
   -webkit-letter-spacing: -0.005rem;
@@ -1423,7 +1423,7 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
   font-family: unset;
   outline: none;
   font-family: --var(google-font),Lexend,sans-serif;
-  font-weight: 700;
+  font-weight: 500;
   font-size: 0.875rem;
   line-height: 1.25rem;
   -webkit-letter-spacing: -0.005rem;
@@ -1985,7 +1985,7 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
 
 .c194 {
   font-family: --var(google-font),Lexend,sans-serif;
-  font-weight: 700;
+  font-weight: 500;
   font-size: 0.875rem;
   line-height: 1.25rem;
   -webkit-letter-spacing: -0.005rem;
@@ -2369,6 +2369,9 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
 }
 
 .c96 {
+  list-style: none;
+  margin: 0;
+  padding: 0;
   box-shadow: none;
 }
 
@@ -2392,6 +2395,9 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
 }
 
 .c115 {
+  list-style: none;
+  margin: 0;
+  padding: 0;
   box-shadow: none;
 }
 
@@ -3611,7 +3617,7 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
 
 @media (min-width:750px) {
   .c209 {
-    font-weight: 700;
+    font-weight: 500;
   }
 }
 
@@ -4895,7 +4901,7 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
                     <ul
                       class="c93 c94"
                     >
-                      <div
+                      <li
                         class="c95 c96"
                       >
                         <a
@@ -4947,7 +4953,7 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
                             </div>
                           </div>
                         </a>
-                      </div>
+                      </li>
                     </ul>
                   </div>
                 </div>
@@ -4975,7 +4981,7 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
                     <ul
                       class="c93 c94"
                     >
-                      <div
+                      <li
                         class="c95 c96"
                       >
                         <a
@@ -5027,7 +5033,7 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
                             </div>
                           </div>
                         </a>
-                      </div>
+                      </li>
                     </ul>
                   </div>
                 </div>

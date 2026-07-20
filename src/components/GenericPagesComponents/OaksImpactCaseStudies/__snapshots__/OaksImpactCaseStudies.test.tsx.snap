@@ -20,8 +20,8 @@ exports[`OaksImpactCaseStudies renders correctly 1`] = `
           <ul
             class="sc-aXZVg sc-gEvEer bMQSvq fpGKdI"
           >
-            <div
-              class="sc-aXZVg sc-hZDyAQ gQdNNR hppJPj"
+            <li
+              class="sc-aXZVg sc-hZDyAQ gQdNNR hpWhFC"
             >
               <a
                 class="sc-aXZVg sc-gEvEer sc-eyvILC eyLmQc dXoawi cstkxg"
@@ -82,9 +82,9 @@ exports[`OaksImpactCaseStudies renders correctly 1`] = `
                   </div>
                 </div>
               </a>
-            </div>
-            <div
-              class="sc-aXZVg sc-hZDyAQ gQdNNR hppJPj"
+            </li>
+            <li
+              class="sc-aXZVg sc-hZDyAQ gQdNNR hpWhFC"
             >
               <a
                 class="sc-aXZVg sc-gEvEer sc-eyvILC eyLmQc dXoawi cstkxg"
@@ -145,9 +145,9 @@ exports[`OaksImpactCaseStudies renders correctly 1`] = `
                   </div>
                 </div>
               </a>
-            </div>
-            <div
-              class="sc-aXZVg sc-hZDyAQ gQdNNR hppJPj"
+            </li>
+            <li
+              class="sc-aXZVg sc-hZDyAQ gQdNNR hpWhFC"
             >
               <a
                 class="sc-aXZVg sc-gEvEer sc-eyvILC eyLmQc dXoawi cstkxg"
@@ -208,7 +208,7 @@ exports[`OaksImpactCaseStudies renders correctly 1`] = `
                   </div>
                 </div>
               </a>
-            </div>
+            </li>
           </ul>
         </div>
       </div>
