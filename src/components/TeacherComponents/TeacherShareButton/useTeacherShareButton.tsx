@@ -13,14 +13,14 @@ export const useTeacherShareButton = ({
   const { setCurrentToastProps } = useOakNotificationsContext();
 
   const handleClick = () => {
-    if (!shareUrl) return;
+    const urlToCopy = shareUrl || window.location.href;
     if (!linkCopied && shareActivated) {
       shareActivated();
     }
 
     setLinkCopied(true);
     // copy url to clipboard
-    navigator.clipboard.writeText(shareUrl);
+    navigator.clipboard.writeText(urlToCopy);
     setCurrentToastProps({
       message: "Link copied to clipboard",
       variant: "green",
