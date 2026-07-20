@@ -7,8 +7,8 @@ import {
 } from "@oaknational/oak-components";
 
 import { CaseStudyCard } from "@/common-lib/cms-types/caseStudy";
-import { NewGutterMaxWidth } from "@/components/GenericPagesComponents/NewGutterMaxWidth";
 import getProxiedSanityAssetUrl from "@/common-lib/urls/getProxiedSanityAssetUrl";
+import { NewGutterMaxWidth } from "@/components/GenericPagesComponents/NewGutterMaxWidth";
 
 export type OaksImpactCaseStudiesProps = {
   caseStudies: CaseStudyCard[];
