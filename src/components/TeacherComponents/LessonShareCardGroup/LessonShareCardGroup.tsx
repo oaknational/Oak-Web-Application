@@ -1,7 +1,6 @@
 import { ChangeEvent, FC } from "react";
 import { Control, Controller } from "react-hook-form";
 import { OakDownloadCard, OakFlex, OakGrid } from "@oaknational/oak-components";
-import { uniq } from "lodash";
 
 import ResourceCard, {
   getActivityDownloadCardAriaLabel,
@@ -41,19 +40,23 @@ const LessonShareCardGroup: FC<LessonShareCardGroupProps> = (props) => {
   ) => {
     if (e.target.checked) {
       onChange(
-        uniq([
-          ...fieldValue,
-          ...(Array.isArray(resourceType) ? resourceType : [resourceType]),
-        ]),
+        Array.from(
+          new Set([
+            ...fieldValue,
+            ...(Array.isArray(resourceType) ? resourceType : [resourceType]),
+          ]),
+        ),
       );
     } else {
       onChange(
-        uniq(
-          fieldValue.filter(
-            (val) =>
-              !(Array.isArray(resourceType)
-                ? resourceType.includes(val)
-                : val === resourceType),
+        Array.from(
+          new Set(
+            fieldValue.filter(
+              (val) =>
+                !(Array.isArray(resourceType)
+                  ? resourceType.includes(val)
+                  : val === resourceType),
+            ),
           ),
         ),
       );
