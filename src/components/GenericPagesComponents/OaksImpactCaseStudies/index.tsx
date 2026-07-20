@@ -6,15 +6,11 @@ import {
 } from "@oaknational/oak-components";
 import styled from "styled-components";
 
+import { CaseStudyCard } from "@/common-lib/cms-types/caseStudy";
 import { NewGutterMaxWidth } from "@/components/GenericPagesComponents/NewGutterMaxWidth";
 
 export type OaksImpactCaseStudiesProps = {
-  caseStudies: {
-    heading: string;
-    href: string;
-    imageSrc: string;
-    linkText?: string;
-  }[];
+  caseStudies: CaseStudyCard[];
 };
 
 const UnstyledLi = styled.li`
@@ -45,14 +41,14 @@ export const OaksImpactCaseStudies = ({
             $ma={"spacing-0"}
           >
             {caseStudies.map((caseStudy) => (
-              <UnstyledLi key={caseStudy.heading}>
+              <UnstyledLi key={caseStudy.slug.current}>
                 <OakCard
-                  heading={caseStudy.heading}
+                  heading={caseStudy.video.title || ""}
                   headingLevel={"div"}
-                  href={caseStudy.href}
-                  imageSrc={caseStudy.imageSrc}
+                  href={`#/case-studies/${caseStudy.slug.current}`}
+                  imageSrc={caseStudy.image.asset?.url}
                   aspectRatio="4/3"
-                  linkText={caseStudy.linkText || "Watch the video"}
+                  linkText={"Watch the video"}
                   cardWidth={"100%"}
                 />
               </UnstyledLi>
