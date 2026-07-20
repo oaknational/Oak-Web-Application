@@ -1,3 +1,39 @@
+## [1.1129.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.1129.1...v1.1129.2) (2026-07-20)
+
+
+### Bug Fixes
+
+* update sortYears fn to handle all years in the second sort position ([aacbbb6](https://github.com/oaknational/Oak-Web-Application/commit/aacbbb67b2659bd1538ff3cd6ac76ef714f34b61))
+
+## [1.1129.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.1129.0...v1.1129.1) (2026-07-20)
+
+# [1.1129.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1128.1...v1.1129.0) (2026-07-20)
+
+
+### Bug Fixes
+
+* ensure clerk middleware doesn't run on experiment route ([247bffc](https://github.com/oaknational/Oak-Web-Application/commit/247bffca1fbae86f93f2dfd775efc658c5585feb))
+* rewrite url ([633586a](https://github.com/oaknational/Oak-Web-Application/commit/633586a4e320082b97b2367888105c6cae8e6ce5))
+
+
+### Features
+
+* add capture feature flag method for manual tracking ([6694d1b](https://github.com/oaknational/Oak-Web-Application/commit/6694d1b020ebd9484bbee7e08b06fed7285fdab5))
+* add consent status check in experiment middleware ([b59c782](https://github.com/oaknational/Oak-Web-Application/commit/b59c782b4f65121d5291874dc6dda31af645d09a))
+* add flag storage in cookie for ssr page ([1c9fd2e](https://github.com/oaknational/Oak-Web-Application/commit/1c9fd2e063e987f0637730880eb843a1865166e2))
+* add middleware redirect for experiment variant page ([ec95879](https://github.com/oaknational/Oak-Web-Application/commit/ec958799f7e4ffd05c0ec95d9dbc3f2a6b29659e))
+* add ssr version of page for experiment ([be6e161](https://github.com/oaknational/Oak-Web-Application/commit/be6e1615c86d94a3270b2157836904f97161df07))
+* extract experimentMiddleware fn ([3fe254e](https://github.com/oaknational/Oak-Web-Application/commit/3fe254e0a7b4abec5ce558639fa433108b347008))
+
+## [1.1128.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.1128.0...v1.1128.1) (2026-07-20)
+
+
+### Bug Fixes
+
+* ensure card content fills the whole card ([4f7db17](https://github.com/oaknational/Oak-Web-Application/commit/4f7db17816f844e346566e229b23555320fcec6a))
+* move variant prop into helper fn to avoid invalid props ([9bd1452](https://github.com/oaknational/Oak-Web-Application/commit/9bd14526978fbcb28a20d71debbcf0b0b25b40dd))
+* remove 100% height on link ([bed0742](https://github.com/oaknational/Oak-Web-Application/commit/bed07420eb2afd6d0e0595c13f9925f45d56d4b3))
+
 # [1.1128.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1127.1...v1.1128.0) (2026-07-17)
 
 
