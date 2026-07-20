@@ -44,5 +44,6 @@ export const UpcomingWebinarWall = {
     headingText: "Register to view",
     buttonHref: "https://example.com",
     buttonText: "Register",
+    buttonSuffixA11y: "some text",
   },
 };
