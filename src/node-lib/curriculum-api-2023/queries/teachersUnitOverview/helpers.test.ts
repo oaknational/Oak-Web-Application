@@ -460,7 +460,7 @@ describe("getUnitCounts", () => {
         year: "3",
         actions: null,
       },
-      // Intentionally placed second in the array despite being the earlier year
+      // Intentionally placed before the Year 3 swimming unit despite being the later year
       {
         unitSlug: "swimming-year-4",
         unitTitle: "Swimming Year 4",
