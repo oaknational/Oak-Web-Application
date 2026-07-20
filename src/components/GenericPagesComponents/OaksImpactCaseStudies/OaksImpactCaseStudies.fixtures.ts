@@ -9,7 +9,7 @@ export const oaksImpactCaseStudiesFixture = [
     image: {
       asset: {
         _id: "id-1",
-        url: "https://res.cloudinary.com/oak-web-application/image/upload/v1698336494/samples/landscapes/nature-mountains.jpg",
+        url: "https://res.cloudinary.com/oak-web-application/image/upload/v1698336490/sample.jpg",
       },
     },
     text: "Some text about case study 1",
@@ -39,7 +39,7 @@ export const oaksImpactCaseStudiesFixture = [
     image: {
       asset: {
         _id: "id-3",
-        url: "https://res.cloudinary.com/oak-web-application/image/upload/v1698336494/samples/landscapes/nature-mountains.jpg",
+        url: "https://res.cloudinary.com/oak-web-application/image/upload/v1698336494/samples/animals/cat.jpg",
       },
     },
     text: "Some text about case study 3",
