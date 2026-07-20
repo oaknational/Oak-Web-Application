@@ -8,6 +8,7 @@ import {
   completeUnitLessons,
   incompleteUnitLessons,
 } from "@/fixtures/teachers/myLibrary";
+import { KeyStageTitleValueType } from "@/browser-lib/avo/Avo";
 
 const unit = {
   unitTitle: "Fiction: Science Fiction Writing",
@@ -16,9 +17,10 @@ const unit = {
   year: "Year 10",
   savedAt: "2025-05-01T09:00:00.199406+00:00",
   href: "/teachers/programmes/english-secondary-ks4-aqa/units/fiction-science-fiction-writing/lessons",
-  onSave: () => console.log("onSave!"),
-  isSaved: false,
-  isSaving: false,
+  keyStageTitle: "Key Stage 4" as KeyStageTitleValueType,
+  keyStageSlug: "key-stage-4",
+  subjectTitle: "English",
+  subjectSlug: "english",
   trackUnitAccessed: () => console.log("Track unit accessed"),
   trackLessonAccessed: () => console.log("Track lesson accessed"),
 };
@@ -59,11 +61,6 @@ const meta: Meta<typeof MyLibraryUnitCard> = {
     savedAt: {
       control: {
         type: "text",
-      },
-    },
-    isSaved: {
-      control: {
-        type: "boolean",
       },
     },
   },

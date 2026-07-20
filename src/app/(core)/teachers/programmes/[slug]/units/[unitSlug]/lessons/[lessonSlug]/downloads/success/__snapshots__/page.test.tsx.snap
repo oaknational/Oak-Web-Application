@@ -1,0 +1,405 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`LessonDownloadsSuccessPage fetches unit data and renders success confirmation 1`] = `
+<TeacherBrowseAnalyticsStoreProvider
+  programmeState={
+    {
+      "programmeState": {
+        "browseLevel": "lesson",
+        "examBoardSlug": null,
+        "examBoardTitle": null,
+        "keyStageSlug": "ks3",
+        "keyStageTitle": "Key Stage 3",
+        "lesson": {
+          "lessonReleaseDate": "2026-01-01",
+          "slug": "solid-and-liquid-states",
+          "title": "Solid and liquid states",
+        },
+        "pathwaySlug": null,
+        "pathwayTitle": null,
+        "phaseSlug": "secondary",
+        "phaseTitle": "Secondary",
+        "programmeSlug": "biology-secondary-ks3",
+        "subjectSlug": "biology",
+        "subjectTitle": "Biology",
+        "tierSlug": null,
+        "tierTitle": null,
+        "unit": {
+          "slug": "cells",
+          "title": "Cells",
+        },
+        "year": "7",
+        "yearGroupTitle": "Year 7",
+      },
+    }
+  }
+>
+  <DownloadSuccessView
+    ctaVariant="control"
+    lesson={
+      {
+        "containsGeorestrictedLessons": false,
+        "containsLoginRequiredLessons": false,
+        "examBoardSlug": null,
+        "examBoardTitle": null,
+        "keyStageSlug": "ks3",
+        "keyStageTitle": "Key Stage 3",
+        "lessonReleaseDate": "2026-01-01",
+        "lessonSlug": "solid-and-liquid-states",
+        "lessonTitle": "Solid and liquid states",
+        "lessons": [
+          {
+            "geoRestricted": false,
+            "isUnpublished": false,
+            "lessonReleaseDate": "2026-01-01",
+            "lessonSlug": "solid-and-liquid-states",
+            "lessonTitle": "Solid and liquid states",
+            "loginRequired": false,
+          },
+        ],
+        "nextUnit": {
+          "slug": "unit-2",
+          "title": "Unit 2",
+        },
+        "pathwayDisplayOrder": null,
+        "pathwaySlug": null,
+        "pathwayTitle": null,
+        "phaseSlug": "secondary",
+        "phaseTitle": "Secondary",
+        "prevUnit": null,
+        "priorKnowledgeRequirements": [
+          "prior",
+          "knowledge",
+          "requirements",
+        ],
+        "programmeSlug": "biology-secondary-ks3",
+        "subjectCategories": null,
+        "subjectOptionToggles": [],
+        "subjectSlug": "biology",
+        "subjectTitle": "Biology",
+        "threads": [
+          "Thread 1",
+          "Thread 2",
+          "Thread 3",
+        ],
+        "tierOptionToggles": [],
+        "tierSlug": null,
+        "tierTitle": null,
+        "unitCount": 10,
+        "unitDescription": "Unit about cells",
+        "unitIndex": 1,
+        "unitSlug": "cells",
+        "unitTitle": "Cells",
+        "unitvariantId": 1,
+        "whyThisWhyNow": "why this why now",
+        "year": "7",
+        "yearGroupTitle": "Year 7",
+        "yearSlug": "year-7",
+      }
+    }
+  />
+</TeacherBrowseAnalyticsStoreProvider>
+`;
+
+exports[`LessonDownloadsSuccessPage renders control variant when feature flag is control 1`] = `
+<TeacherBrowseAnalyticsStoreProvider
+  programmeState={
+    {
+      "programmeState": {
+        "browseLevel": "lesson",
+        "examBoardSlug": null,
+        "examBoardTitle": null,
+        "keyStageSlug": "ks3",
+        "keyStageTitle": "Key Stage 3",
+        "lesson": {
+          "lessonReleaseDate": "2026-01-01",
+          "slug": "solid-and-liquid-states",
+          "title": "Solid and liquid states",
+        },
+        "pathwaySlug": null,
+        "pathwayTitle": null,
+        "phaseSlug": "secondary",
+        "phaseTitle": "Secondary",
+        "programmeSlug": "biology-secondary-ks3",
+        "subjectSlug": "biology",
+        "subjectTitle": "Biology",
+        "tierSlug": null,
+        "tierTitle": null,
+        "unit": {
+          "slug": "cells",
+          "title": "Cells",
+        },
+        "year": "7",
+        "yearGroupTitle": "Year 7",
+      },
+    }
+  }
+>
+  <DownloadSuccessView
+    ctaVariant="control"
+    lesson={
+      {
+        "containsGeorestrictedLessons": false,
+        "containsLoginRequiredLessons": false,
+        "examBoardSlug": null,
+        "examBoardTitle": null,
+        "keyStageSlug": "ks3",
+        "keyStageTitle": "Key Stage 3",
+        "lessonReleaseDate": "2026-01-01",
+        "lessonSlug": "solid-and-liquid-states",
+        "lessonTitle": "Solid and liquid states",
+        "lessons": [
+          {
+            "geoRestricted": false,
+            "isUnpublished": false,
+            "lessonReleaseDate": "2026-01-01",
+            "lessonSlug": "solid-and-liquid-states",
+            "lessonTitle": "Solid and liquid states",
+            "loginRequired": false,
+          },
+        ],
+        "nextUnit": {
+          "slug": "unit-2",
+          "title": "Unit 2",
+        },
+        "pathwayDisplayOrder": null,
+        "pathwaySlug": null,
+        "pathwayTitle": null,
+        "phaseSlug": "secondary",
+        "phaseTitle": "Secondary",
+        "prevUnit": null,
+        "priorKnowledgeRequirements": [
+          "prior",
+          "knowledge",
+          "requirements",
+        ],
+        "programmeSlug": "biology-secondary-ks3",
+        "subjectCategories": null,
+        "subjectOptionToggles": [],
+        "subjectSlug": "biology",
+        "subjectTitle": "Biology",
+        "threads": [
+          "Thread 1",
+          "Thread 2",
+          "Thread 3",
+        ],
+        "tierOptionToggles": [],
+        "tierSlug": null,
+        "tierTitle": null,
+        "unitCount": 10,
+        "unitDescription": "Unit about cells",
+        "unitIndex": 1,
+        "unitSlug": "cells",
+        "unitTitle": "Cells",
+        "unitvariantId": 1,
+        "whyThisWhyNow": "why this why now",
+        "year": "7",
+        "yearGroupTitle": "Year 7",
+        "yearSlug": "year-7",
+      }
+    }
+  />
+</TeacherBrowseAnalyticsStoreProvider>
+`;
+
+exports[`LessonDownloadsSuccessPage renders control variant when feature flag is undefined 1`] = `
+<TeacherBrowseAnalyticsStoreProvider
+  programmeState={
+    {
+      "programmeState": {
+        "browseLevel": "lesson",
+        "examBoardSlug": null,
+        "examBoardTitle": null,
+        "keyStageSlug": "ks3",
+        "keyStageTitle": "Key Stage 3",
+        "lesson": {
+          "lessonReleaseDate": "2026-01-01",
+          "slug": "solid-and-liquid-states",
+          "title": "Solid and liquid states",
+        },
+        "pathwaySlug": null,
+        "pathwayTitle": null,
+        "phaseSlug": "secondary",
+        "phaseTitle": "Secondary",
+        "programmeSlug": "biology-secondary-ks3",
+        "subjectSlug": "biology",
+        "subjectTitle": "Biology",
+        "tierSlug": null,
+        "tierTitle": null,
+        "unit": {
+          "slug": "cells",
+          "title": "Cells",
+        },
+        "year": "7",
+        "yearGroupTitle": "Year 7",
+      },
+    }
+  }
+>
+  <DownloadSuccessView
+    ctaVariant="control"
+    lesson={
+      {
+        "containsGeorestrictedLessons": false,
+        "containsLoginRequiredLessons": false,
+        "examBoardSlug": null,
+        "examBoardTitle": null,
+        "keyStageSlug": "ks3",
+        "keyStageTitle": "Key Stage 3",
+        "lessonReleaseDate": "2026-01-01",
+        "lessonSlug": "solid-and-liquid-states",
+        "lessonTitle": "Solid and liquid states",
+        "lessons": [
+          {
+            "geoRestricted": false,
+            "isUnpublished": false,
+            "lessonReleaseDate": "2026-01-01",
+            "lessonSlug": "solid-and-liquid-states",
+            "lessonTitle": "Solid and liquid states",
+            "loginRequired": false,
+          },
+        ],
+        "nextUnit": {
+          "slug": "unit-2",
+          "title": "Unit 2",
+        },
+        "pathwayDisplayOrder": null,
+        "pathwaySlug": null,
+        "pathwayTitle": null,
+        "phaseSlug": "secondary",
+        "phaseTitle": "Secondary",
+        "prevUnit": null,
+        "priorKnowledgeRequirements": [
+          "prior",
+          "knowledge",
+          "requirements",
+        ],
+        "programmeSlug": "biology-secondary-ks3",
+        "subjectCategories": null,
+        "subjectOptionToggles": [],
+        "subjectSlug": "biology",
+        "subjectTitle": "Biology",
+        "threads": [
+          "Thread 1",
+          "Thread 2",
+          "Thread 3",
+        ],
+        "tierOptionToggles": [],
+        "tierSlug": null,
+        "tierTitle": null,
+        "unitCount": 10,
+        "unitDescription": "Unit about cells",
+        "unitIndex": 1,
+        "unitSlug": "cells",
+        "unitTitle": "Cells",
+        "unitvariantId": 1,
+        "whyThisWhyNow": "why this why now",
+        "year": "7",
+        "yearGroupTitle": "Year 7",
+        "yearSlug": "year-7",
+      }
+    }
+  />
+</TeacherBrowseAnalyticsStoreProvider>
+`;
+
+exports[`LessonDownloadsSuccessPage renders test variant when feature flag is test 1`] = `
+<TeacherBrowseAnalyticsStoreProvider
+  programmeState={
+    {
+      "programmeState": {
+        "browseLevel": "lesson",
+        "examBoardSlug": null,
+        "examBoardTitle": null,
+        "keyStageSlug": "ks3",
+        "keyStageTitle": "Key Stage 3",
+        "lesson": {
+          "lessonReleaseDate": "2026-01-01",
+          "slug": "solid-and-liquid-states",
+          "title": "Solid and liquid states",
+        },
+        "pathwaySlug": null,
+        "pathwayTitle": null,
+        "phaseSlug": "secondary",
+        "phaseTitle": "Secondary",
+        "programmeSlug": "biology-secondary-ks3",
+        "subjectSlug": "biology",
+        "subjectTitle": "Biology",
+        "tierSlug": null,
+        "tierTitle": null,
+        "unit": {
+          "slug": "cells",
+          "title": "Cells",
+        },
+        "year": "7",
+        "yearGroupTitle": "Year 7",
+      },
+    }
+  }
+>
+  <DownloadSuccessView
+    ctaVariant="test"
+    lesson={
+      {
+        "containsGeorestrictedLessons": false,
+        "containsLoginRequiredLessons": false,
+        "examBoardSlug": null,
+        "examBoardTitle": null,
+        "keyStageSlug": "ks3",
+        "keyStageTitle": "Key Stage 3",
+        "lessonReleaseDate": "2026-01-01",
+        "lessonSlug": "solid-and-liquid-states",
+        "lessonTitle": "Solid and liquid states",
+        "lessons": [
+          {
+            "geoRestricted": false,
+            "isUnpublished": false,
+            "lessonReleaseDate": "2026-01-01",
+            "lessonSlug": "solid-and-liquid-states",
+            "lessonTitle": "Solid and liquid states",
+            "loginRequired": false,
+          },
+        ],
+        "nextUnit": {
+          "slug": "unit-2",
+          "title": "Unit 2",
+        },
+        "pathwayDisplayOrder": null,
+        "pathwaySlug": null,
+        "pathwayTitle": null,
+        "phaseSlug": "secondary",
+        "phaseTitle": "Secondary",
+        "prevUnit": null,
+        "priorKnowledgeRequirements": [
+          "prior",
+          "knowledge",
+          "requirements",
+        ],
+        "programmeSlug": "biology-secondary-ks3",
+        "subjectCategories": null,
+        "subjectOptionToggles": [],
+        "subjectSlug": "biology",
+        "subjectTitle": "Biology",
+        "threads": [
+          "Thread 1",
+          "Thread 2",
+          "Thread 3",
+        ],
+        "tierOptionToggles": [],
+        "tierSlug": null,
+        "tierTitle": null,
+        "unitCount": 10,
+        "unitDescription": "Unit about cells",
+        "unitIndex": 1,
+        "unitSlug": "cells",
+        "unitTitle": "Cells",
+        "unitvariantId": 1,
+        "whyThisWhyNow": "why this why now",
+        "year": "7",
+        "yearGroupTitle": "Year 7",
+        "yearSlug": "year-7",
+      }
+    }
+  />
+</TeacherBrowseAnalyticsStoreProvider>
+`;

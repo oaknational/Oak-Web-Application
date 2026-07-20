@@ -27,6 +27,11 @@ describe("sortYears", () => {
       "11",
     ]);
   });
+
+  it("sorts all-years correctly when it is passed as the first or second argument", () => {
+    expect(sortYears("all-years", "7")).toEqual(-1);
+    expect(sortYears("4", "all-years")).toEqual(1);
+  });
 });
 
 test("sortChildSubjects", () => {

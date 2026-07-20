@@ -1,6 +1,6 @@
 "use client";
 
-import { type ReactNode, useState } from "react";
+import { type ReactNode } from "react";
 import {
   OakBox,
   OakHandDrawnHR,
@@ -35,7 +35,6 @@ import {
 import { useHubspotSubmit } from "@/components/TeacherComponents/hooks/downloadAndShareHooks/useHubspotSubmit";
 import type { LessonShareData } from "@/node-lib/curriculum-api-2023/queries/lessonShare/lessonShare.schema";
 import { useOnboardingStatus } from "@/components/TeacherComponents/hooks/useOnboardingStatus";
-import { AssignToClassroomModal } from "@/components/TeacherComponents/AssignToClassroomModal/AssignToClassroomModal";
 import {
   isLessonSection,
   LessonSection,
@@ -84,18 +83,6 @@ export function LessonShare(props: Readonly<LessonShareProps>) {
     expired,
     lessonReleaseDate,
   } = lesson;
-
-  const exitQuizNumQuestions = (() => {
-    const exitQuizResource = shareableResources.find(
-      (r) => r.type === "exit-quiz",
-    );
-    const parsed = exitQuizResource
-      ? Number.parseInt(exitQuizResource.metadata ?? "", 10)
-      : Number.NaN;
-    return Number.isNaN(parsed) ? undefined : parsed;
-  })();
-
-  const [isClassroomModalOpen, setIsClassroomModalOpen] = useState(false);
 
   const { track } = useAnalytics();
   const { lessonShared } = track;
@@ -253,31 +240,12 @@ export function LessonShare(props: Readonly<LessonShareProps>) {
             />
           }
           cta={
-            <>
-              <LessonShareLinks
-                disabled={
-                  hasFormErrors ||
-                  expired ||
-                  (!form.formState.isValid && !localStorageDetails)
-                }
-                lessonSlug={lessonSlug}
-                selectedActivities={selectedLessonSections}
-                schoolUrn={schoolUrn}
-                onSubmit={onValidateAndSubmit}
-                onGoogleClassroomClick={() => setIsClassroomModalOpen(true)}
-              />
-              {programmeSlug && unitSlug && (
-                <AssignToClassroomModal
-                  isOpen={isClassroomModalOpen}
-                  onClose={() => setIsClassroomModalOpen(false)}
-                  lessonTitle={lessonTitle}
-                  lessonSlug={lessonSlug}
-                  programmeSlug={programmeSlug}
-                  unitSlug={unitSlug}
-                  exitQuizNumQuestions={exitQuizNumQuestions}
-                />
-              )}
-            </>
+            <LessonShareLinks
+              lessonSlug={lessonSlug}
+              selectedActivities={selectedLessonSections}
+              schoolUrn={schoolUrn}
+              onSubmit={onValidateAndSubmit}
+            />
           }
         />
       </OakMaxWidth>

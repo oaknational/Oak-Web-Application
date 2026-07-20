@@ -401,6 +401,9 @@ exports[`core layout renders correctly 1`] = `
       }
     }
   />
+  <SimulateErrorControls
+    errorBoundaryLevel="root"
+  />
   <main
     id="main"
   >
@@ -409,5 +412,6 @@ exports[`core layout renders correctly 1`] = `
     </styled.div>
   </main>
   <LayoutSiteFooter />
+  <LayoutPreviewControls />
 </React.Fragment>
 `;

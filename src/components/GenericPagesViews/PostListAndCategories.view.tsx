@@ -9,8 +9,10 @@ import {
 import { PostListingPageProps } from "@/components/GenericPagesViews/BlogIndex.view";
 import { PostListItemProps } from "@/components/SharedComponents/PostListItem";
 import PostCategoryList from "@/components/SharedComponents/PostCategoryList";
-import { PostCategoryPage } from "@/components/SharedComponents/PostCategoryList/PostCategoryList";
-import usePostCategoryList from "@/components/SharedComponents/PostCategoryList/usePostCategoryList";
+import {
+  CATEGORY_NAV_LABEL,
+  PostCategoryPage,
+} from "@/components/SharedComponents/PostCategoryList/PostCategoryList";
 import PostList from "@/components/SharedComponents/PostList";
 import usePostList from "@/components/SharedComponents/PostList/usePostList";
 
@@ -21,7 +23,6 @@ export type PostListAndCategoriesProps = Omit<PostListingPageProps, "blogs"> & {
 
 const PostListAndCategories: FC<PostListAndCategoriesProps> = (props) => {
   const { blogs, categories, categorySlug, page } = props;
-  const blogCategoriesListProps = usePostCategoryList();
   const blogListProps = usePostList({
     items: blogs,
     withImage: page === "blog-index" ? false : true,
@@ -40,15 +41,10 @@ const PostListAndCategories: FC<PostListAndCategoriesProps> = (props) => {
           $mt={["spacing-0", "spacing-24"]}
           $pt={["spacing-48"]}
         >
-          <OakHeading
-            tag="h3"
-            $font="body-3"
-            id={blogCategoriesListProps.labelId}
-          >
-            Categories
+          <OakHeading tag="h3" $font="body-3">
+            {CATEGORY_NAV_LABEL}
           </OakHeading>
           <PostCategoryList
-            labelledBy={blogCategoriesListProps.labelId}
             $mt={"spacing-24"}
             categories={categories}
             selectedCategorySlug={categorySlug}
