@@ -1,3 +1,10 @@
+## [1.1129.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.1129.1...v1.1129.2) (2026-07-20)
+
+
+### Bug Fixes
+
+* update sortYears fn to handle all years in the second sort position ([aacbbb6](https://github.com/oaknational/Oak-Web-Application/commit/aacbbb67b2659bd1538ff3cd6ac76ef714f34b61))
+
 ## [1.1129.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.1129.0...v1.1129.1) (2026-07-20)
 
 # [1.1129.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1128.1...v1.1129.0) (2026-07-20)
