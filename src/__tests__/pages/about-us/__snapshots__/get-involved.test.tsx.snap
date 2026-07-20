@@ -352,7 +352,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
 
 .c123 {
   font-family: --var(google-font),Lexend,sans-serif;
-  font-weight: 500;
+  font-weight: 700;
   font-size: 1.125rem;
   line-height: 1.75rem;
   -webkit-letter-spacing: -0.005rem;
@@ -1154,7 +1154,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
 
 .c17 {
   font-family: --var(google-font),Lexend,sans-serif;
-  font-weight: 500;
+  font-weight: 700;
   font-size: 0.875rem;
   line-height: 1.25rem;
   -webkit-letter-spacing: -0.005rem;
@@ -1170,7 +1170,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
 
 .c34 {
   font-family: --var(google-font),Lexend,sans-serif;
-  font-weight: 500;
+  font-weight: 700;
   font-size: 0.875rem;
   line-height: 1.25rem;
   -webkit-letter-spacing: -0.005rem;
@@ -1222,7 +1222,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
 
 .c210 {
   font-family: --var(google-font),Lexend,sans-serif;
-  font-weight: 500;
+  font-weight: 700;
   font-size: 0.875rem;
   line-height: 1.25rem;
   -webkit-letter-spacing: -0.005rem;
@@ -1406,7 +1406,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
   font-family: unset;
   outline: none;
   font-family: --var(google-font),Lexend,sans-serif;
-  font-weight: 500;
+  font-weight: 700;
   font-size: 0.875rem;
   line-height: 1.25rem;
   -webkit-letter-spacing: -0.005rem;
@@ -1972,7 +1972,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
 
 .c195 {
   font-family: --var(google-font),Lexend,sans-serif;
-  font-weight: 500;
+  font-weight: 700;
   font-size: 0.875rem;
   line-height: 1.25rem;
   -webkit-letter-spacing: -0.005rem;
@@ -2387,9 +2387,6 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
 }
 
 .c118 {
-  list-style: none;
-  margin: 0;
-  padding: 0;
   box-shadow: none;
 }
 
@@ -3535,7 +3532,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
 
 @media (min-width:750px) {
   .c210 {
-    font-weight: 500;
+    font-weight: 700;
   }
 }
 

@@ -105,7 +105,7 @@ exports[`OaksImpactSchoolQuote renders as='li' 1`] = `
                         class="sc-aXZVg sc-gEvEer jPvJsJ bktafW"
                       >
                         <p
-                          class="sc-ikkxIA gkELLE"
+                          class="sc-ikkxIA kcINcy"
                         >
                           Tom Rees
                         </p>
@@ -234,7 +234,7 @@ exports[`OaksImpactSchoolQuote renders correctly 1`] = `
                           class="sc-aXZVg sc-gEvEer jPvJsJ bktafW"
                         >
                           <p
-                            class="sc-ikkxIA gkELLE"
+                            class="sc-ikkxIA kcINcy"
                           >
                             Tom Rees
                           </p>

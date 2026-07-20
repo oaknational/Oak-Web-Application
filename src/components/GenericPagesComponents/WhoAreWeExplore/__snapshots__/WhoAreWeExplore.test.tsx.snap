@@ -39,7 +39,7 @@ exports[`WhoAreWeExplore renders correctly 1`] = `
               class="sc-d3fa22d1-1 fewXIw"
             >
               <li
-                class="sc-aXZVg sc-hZDyAQ kBnJtM iMmmjC"
+                class="sc-aXZVg sc-hZDyAQ kBnJtM bXQMrr"
               >
                 <a
                   href="#item_one"
@@ -67,7 +67,7 @@ exports[`WhoAreWeExplore renders correctly 1`] = `
                       </span>
                     </div>
                     <div
-                      class="sc-aXZVg sc-gEvEer gFyjML fXHtRp"
+                      class="sc-aXZVg sc-gEvEer bkdnoh fXHtRp"
                     >
                       ITEM_ONE
                     </div>
@@ -92,7 +92,7 @@ exports[`WhoAreWeExplore renders correctly 1`] = `
                 </a>
               </li>
               <li
-                class="sc-aXZVg sc-hZDyAQ kBnJtM iMmmjC"
+                class="sc-aXZVg sc-hZDyAQ kBnJtM bXQMrr"
               >
                 <a
                   href="#item_two"
@@ -120,7 +120,7 @@ exports[`WhoAreWeExplore renders correctly 1`] = `
                       </span>
                     </div>
                     <div
-                      class="sc-aXZVg sc-gEvEer gFyjML fXHtRp"
+                      class="sc-aXZVg sc-gEvEer bkdnoh fXHtRp"
                     >
                       ITEM_TWO
                     </div>
@@ -145,7 +145,7 @@ exports[`WhoAreWeExplore renders correctly 1`] = `
                 </a>
               </li>
               <li
-                class="sc-aXZVg sc-hZDyAQ kBnJtM iMmmjC"
+                class="sc-aXZVg sc-hZDyAQ kBnJtM bXQMrr"
               >
                 <a
                   href="#item_three"
@@ -173,7 +173,7 @@ exports[`WhoAreWeExplore renders correctly 1`] = `
                       </span>
                     </div>
                     <div
-                      class="sc-aXZVg sc-gEvEer gFyjML fXHtRp"
+                      class="sc-aXZVg sc-gEvEer bkdnoh fXHtRp"
                     >
                       ITEM_THREE
                     </div>

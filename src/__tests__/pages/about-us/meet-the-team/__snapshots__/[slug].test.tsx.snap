@@ -893,7 +893,7 @@ exports[`pages/about/meet-the-team/[slug].tsx renders 1`] = `
 
 .c17 {
   font-family: --var(google-font),Lexend,sans-serif;
-  font-weight: 500;
+  font-weight: 700;
   font-size: 0.875rem;
   line-height: 1.25rem;
   -webkit-letter-spacing: -0.005rem;
@@ -909,7 +909,7 @@ exports[`pages/about/meet-the-team/[slug].tsx renders 1`] = `
 
 .c34 {
   font-family: --var(google-font),Lexend,sans-serif;
-  font-weight: 500;
+  font-weight: 700;
   font-size: 0.875rem;
   line-height: 1.25rem;
   -webkit-letter-spacing: -0.005rem;
@@ -932,7 +932,7 @@ exports[`pages/about/meet-the-team/[slug].tsx renders 1`] = `
 
 .c143 {
   font-family: --var(google-font),Lexend,sans-serif;
-  font-weight: 500;
+  font-weight: 700;
   font-size: 0.875rem;
   line-height: 1.25rem;
   -webkit-letter-spacing: -0.005rem;
@@ -1116,7 +1116,7 @@ exports[`pages/about/meet-the-team/[slug].tsx renders 1`] = `
   font-family: unset;
   outline: none;
   font-family: --var(google-font),Lexend,sans-serif;
-  font-weight: 500;
+  font-weight: 700;
   font-size: 0.875rem;
   line-height: 1.25rem;
   -webkit-letter-spacing: -0.005rem;
@@ -1624,7 +1624,7 @@ exports[`pages/about/meet-the-team/[slug].tsx renders 1`] = `
 
 .c128 {
   font-family: --var(google-font),Lexend,sans-serif;
-  font-weight: 500;
+  font-weight: 700;
   font-size: 0.875rem;
   line-height: 1.25rem;
   -webkit-letter-spacing: -0.005rem;
@@ -2705,7 +2705,7 @@ exports[`pages/about/meet-the-team/[slug].tsx renders 1`] = `
 
 @media (min-width:750px) {
   .c143 {
-    font-weight: 500;
+    font-weight: 700;
   }
 }
 
