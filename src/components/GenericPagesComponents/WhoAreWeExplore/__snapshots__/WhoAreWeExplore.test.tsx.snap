@@ -67,7 +67,7 @@ exports[`WhoAreWeExplore renders correctly 1`] = `
                       </span>
                     </div>
                     <div
-                      class="sc-aXZVg sc-gEvEer bkdnoh fXHtRp"
+                      class="sc-aXZVg sc-gEvEer gFyjML fXHtRp"
                     >
                       ITEM_ONE
                     </div>
@@ -120,7 +120,7 @@ exports[`WhoAreWeExplore renders correctly 1`] = `
                       </span>
                     </div>
                     <div
-                      class="sc-aXZVg sc-gEvEer bkdnoh fXHtRp"
+                      class="sc-aXZVg sc-gEvEer gFyjML fXHtRp"
                     >
                       ITEM_TWO
                     </div>
@@ -173,7 +173,7 @@ exports[`WhoAreWeExplore renders correctly 1`] = `
                       </span>
                     </div>
                     <div
-                      class="sc-aXZVg sc-gEvEer bkdnoh fXHtRp"
+                      class="sc-aXZVg sc-gEvEer gFyjML fXHtRp"
                     >
                       ITEM_THREE
                     </div>

@@ -9,10 +9,6 @@ import MyLibraryHeader from "@/components/TeacherComponents/MyLibraryHeader/MyLi
 import NoSavedContent from "@/components/TeacherComponents/NoSavedContent/NoSavedContent";
 import { MyLibraryUnit } from "@/node-lib/educator-api/queries/getUserListContent/getUserListContent.types";
 import {
-  getUnitProgrammeSlug,
-  TrackingProgrammeData,
-} from "@/node-lib/educator-api/helpers/saveUnits/utils";
-import {
   ExamBoardValueType,
   KeyStageTitleValueType,
   PathwayValueType,
@@ -40,20 +36,16 @@ export type CollectionData = Array<{
 type MyLibraryProps = {
   collectionData: CollectionData | null;
   isLoading: boolean;
-  onSaveToggle: (
-    unitSlug: string,
-    programmeSlug: string,
-    uniqueProgrammeKey: string,
-    trackingData: TrackingProgrammeData,
-  ) => void;
-  isUnitSaved: (unitProgrammeSlug: string) => boolean;
-  isUnitSaving: (unitProgrammeSlug: string) => boolean;
 };
 
 export default function MyLibrary(props: Readonly<MyLibraryProps>) {
-  const { collectionData, isLoading, onSaveToggle, isUnitSaved, isUnitSaving } =
-    props;
+  const { collectionData, isLoading } = props;
   const { track } = useAnalytics();
+  const collections = collectionData ?? [];
+
+  const hasLoadedCollections = !isLoading && collectionData !== null;
+  const showNoSavedContent = hasLoadedCollections && collections.length === 0;
+  const showCollections = hasLoadedCollections && collections.length > 0;
   return (
     <OakMaxWidth
       $gap={["spacing-0", "spacing-48"]}
@@ -63,9 +55,9 @@ export default function MyLibrary(props: Readonly<MyLibraryProps>) {
       $maxWidth={["unset", "spacing-1280"]}
     >
       <MyLibraryHeader />
-      {isLoading || !collectionData ? null : collectionData.length === 0 ? (
-        <NoSavedContent />
-      ) : (
+      {showNoSavedContent ? <NoSavedContent /> : null}
+
+      {showCollections ? (
         <OakGrid
           $ph={["spacing-0", "spacing-48"]}
           $position="relative"
@@ -81,7 +73,7 @@ export default function MyLibrary(props: Readonly<MyLibraryProps>) {
             $overflow={["unset", "auto"]}
           >
             <OakSideMenuNav
-              menuItems={collectionData.map((item) => ({
+              menuItems={collections.map((item) => ({
                 heading: item.subject,
                 subheading: item.subheading,
                 href: `#${item.uniqueProgrammeKey}`,
@@ -97,7 +89,7 @@ export default function MyLibrary(props: Readonly<MyLibraryProps>) {
             $gap={["spacing-24", "spacing-48"]}
             $ph={["spacing-16", "spacing-0"]}
           >
-            {collectionData.map((collection) => (
+            {collections.map((collection) => (
               <MyLibraryProgrammeCard
                 key={collection.uniqueProgrammeKey}
                 programmeTitle={collection.programmeTitle}
@@ -129,6 +121,10 @@ export default function MyLibrary(props: Readonly<MyLibraryProps>) {
                 iconName={getValidSubjectIconName(collection.subjectSlug)}
                 savedUnits={collection.units.map((unit) => ({
                   ...unit,
+                  keyStageTitle: collection.keystage as KeyStageTitleValueType,
+                  keyStageSlug: collection.keystageSlug,
+                  subjectTitle: collection.subject,
+                  subjectSlug: collection.subjectSlug,
                   programmeSlug: collection.programmeSlug,
                   trackUnitAccessed: () =>
                     track.unitAccessed({
@@ -174,38 +170,12 @@ export default function MyLibrary(props: Readonly<MyLibraryProps>) {
                       lessonReleaseCohort: "2023-2026",
                       lessonReleaseDate: "", // we don't have access to lesson content data here
                     }),
-                  onSave: () =>
-                    onSaveToggle(
-                      unit.unitSlug,
-                      collection.programmeSlug,
-                      collection.uniqueProgrammeKey,
-                      {
-                        keyStageTitle:
-                          collection.keystage as KeyStageTitleValueType,
-                        subjectTitle: collection.subject,
-                        savedFrom: "my-library-save-button",
-                        keyStageSlug: collection.keystageSlug,
-                        subjectSlug: collection.subjectSlug,
-                      },
-                    ),
-                  isSaved: isUnitSaved(
-                    getUnitProgrammeSlug(
-                      unit.unitSlug,
-                      collection.uniqueProgrammeKey,
-                    ),
-                  ),
-                  isSaving: isUnitSaving(
-                    getUnitProgrammeSlug(
-                      unit.unitSlug,
-                      collection.uniqueProgrammeKey,
-                    ),
-                  ),
                 }))}
               />
             ))}
           </OakGridArea>
         </OakGrid>
-      )}
+      ) : null}
     </OakMaxWidth>
   );
 }

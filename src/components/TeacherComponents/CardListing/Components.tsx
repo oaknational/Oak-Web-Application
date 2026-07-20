@@ -5,14 +5,14 @@ import {
   OakGrid,
   parseColor,
   OakLink,
-  OakLinkProps,
 } from "@oaknational/oak-components";
 import styled from "styled-components";
 
 import CardListing, { CardListingProps } from "./CardListing";
 
-export const CardListingStyledLink = styled(OakLink)<OakLinkProps>`
+export const CardListingStyledLink = styled(OakLink)`
   width: 100%;
+  flex-grow: 1;
   &:visited {
     color: ${parseColor("text-link-visited")};
   }

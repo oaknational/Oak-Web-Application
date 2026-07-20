@@ -127,11 +127,7 @@ const CardListingRenderLayout = (props: CardListingProps) => {
     // Horizontal layout with optional save and lesson count
     return (
       <OakFlex $flexDirection={"row"} $gap={"spacing-20"} $width={"100%"}>
-        <CardListingStyledLink
-          {...cardLinkProps}
-          className="styled-link"
-          variant="secondary"
-        >
+        <CardListingStyledLink {...cardLinkProps} className="styled-link">
           <OakFlex
             $flexDirection={["column", "column", "row"]}
             $gap={["spacing-12", "spacing-12", "spacing-20"]}
@@ -180,7 +176,7 @@ const CardListingRenderLayout = (props: CardListingProps) => {
         $height={"100%"}
         $justifyContent={"space-between"}
       >
-        <CardListingStyledLink {...cardLinkProps} variant="secondary">
+        <CardListingStyledLink {...cardLinkProps}>
           <OakFlex
             $flexDirection={"column"}
             $justifyContent={"space-between"}

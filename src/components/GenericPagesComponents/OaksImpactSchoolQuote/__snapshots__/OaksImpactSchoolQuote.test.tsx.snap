@@ -1,0 +1,259 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`OaksImpactSchoolQuote renders as='li' 1`] = `
+<div>
+  <li
+    class="sc-aXZVg sc-gEvEer kTrAkM bktafW"
+  >
+    <span
+      class="sc-aXZVg kMYEmk"
+    >
+      <img
+        alt="TEST_ALT"
+        class="sc-iGgWBj dZvqhO"
+        data-nimg="fill"
+        decoding="async"
+        loading="lazy"
+        sizes="100vw"
+        src="http://localhost/_next/image?url=https%3A%2F%2Fsanity-asset-cdn.thenational.academy%2Fimages%2Fcuvjke51%2Fproduction%2Fb81ee19a35baa3192360a210fda34cc9b21f4fd6-5824x3264.jpg%3Fw%3D640%26fm%3Dwebp%26q%3D80%26fit%3Dclip%26auto%3Dformat&w=3840&q=75"
+        srcset="/_next/image?url=https%3A%2F%2Fsanity-asset-cdn.thenational.academy%2Fimages%2Fcuvjke51%2Fproduction%2Fb81ee19a35baa3192360a210fda34cc9b21f4fd6-5824x3264.jpg%3Fw%3D640%26fm%3Dwebp%26q%3D80%26fit%3Dclip%26auto%3Dformat&w=640&q=75 640w, /_next/image?url=https%3A%2F%2Fsanity-asset-cdn.thenational.academy%2Fimages%2Fcuvjke51%2Fproduction%2Fb81ee19a35baa3192360a210fda34cc9b21f4fd6-5824x3264.jpg%3Fw%3D640%26fm%3Dwebp%26q%3D80%26fit%3Dclip%26auto%3Dformat&w=750&q=75 750w, /_next/image?url=https%3A%2F%2Fsanity-asset-cdn.thenational.academy%2Fimages%2Fcuvjke51%2Fproduction%2Fb81ee19a35baa3192360a210fda34cc9b21f4fd6-5824x3264.jpg%3Fw%3D640%26fm%3Dwebp%26q%3D80%26fit%3Dclip%26auto%3Dformat&w=828&q=75 828w, /_next/image?url=https%3A%2F%2Fsanity-asset-cdn.thenational.academy%2Fimages%2Fcuvjke51%2Fproduction%2Fb81ee19a35baa3192360a210fda34cc9b21f4fd6-5824x3264.jpg%3Fw%3D640%26fm%3Dwebp%26q%3D80%26fit%3Dclip%26auto%3Dformat&w=1080&q=75 1080w, /_next/image?url=https%3A%2F%2Fsanity-asset-cdn.thenational.academy%2Fimages%2Fcuvjke51%2Fproduction%2Fb81ee19a35baa3192360a210fda34cc9b21f4fd6-5824x3264.jpg%3Fw%3D640%26fm%3Dwebp%26q%3D80%26fit%3Dclip%26auto%3Dformat&w=1200&q=75 1200w, /_next/image?url=https%3A%2F%2Fsanity-asset-cdn.thenational.academy%2Fimages%2Fcuvjke51%2Fproduction%2Fb81ee19a35baa3192360a210fda34cc9b21f4fd6-5824x3264.jpg%3Fw%3D640%26fm%3Dwebp%26q%3D80%26fit%3Dclip%26auto%3Dformat&w=1920&q=75 1920w, /_next/image?url=https%3A%2F%2Fsanity-asset-cdn.thenational.academy%2Fimages%2Fcuvjke51%2Fproduction%2Fb81ee19a35baa3192360a210fda34cc9b21f4fd6-5824x3264.jpg%3Fw%3D640%26fm%3Dwebp%26q%3D80%26fit%3Dclip%26auto%3Dformat&w=2048&q=75 2048w, /_next/image?url=https%3A%2F%2Fsanity-asset-cdn.thenational.academy%2Fimages%2Fcuvjke51%2Fproduction%2Fb81ee19a35baa3192360a210fda34cc9b21f4fd6-5824x3264.jpg%3Fw%3D640%26fm%3Dwebp%26q%3D80%26fit%3Dclip%26auto%3Dformat&w=3840&q=75 3840w"
+        style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+      />
+    </span>
+    <div
+      class="sc-aXZVg sc-gEvEer eLpsLG iwFTtF"
+    >
+      <div
+        class="sc-aXZVg sc-gEvEer jPvJsJ gWBhKY"
+      >
+        <h3
+          class="sc-eldPxv groWut"
+        >
+          Ormiston Academies Trust
+        </h3>
+        <p
+          class="sc-ikkxIA jkEPvG"
+        >
+          Ormiston Academies Trust supports pupils in 45 schools across secondary, primary, alternative provision and special schools.
+        </p>
+      </div>
+      <div
+        class="sc-aXZVg jgMjjt"
+        style="background: rgb(217, 217, 217);"
+      />
+      <div
+        class="sc-aXZVg sc-gEvEer jPvJsJ bktafW"
+      >
+        <div
+          class="sc-aXZVg sc-gEvEer jPvJsJ bktafW"
+        >
+          <div
+            class="sc-aXZVg sc-gEvEer jPvJsJ bktafW"
+          >
+            <div
+              class="sc-aXZVg sc-gEvEer jPvJsJ jIBBQP"
+            >
+              <div
+                class="sc-aXZVg sc-gEvEer jPvJsJ fLgPAy"
+              >
+                <div
+                  class="sc-aXZVg sc-gEvEer bwVgbu iDBIXi"
+                >
+                  <div
+                    class="sc-aXZVg sc-gEvEer jPvJsJ fVNIMq"
+                  >
+                    <div
+                      class="sc-aXZVg cmRFEa"
+                    >
+                      <div
+                        class="sc-aXZVg sc-gEvEer sc-7b0ac5f3-1 jPvJsJ NsOKr kVKIra"
+                      >
+                        <p
+                          class="sc-ikkxIA fqNJfa"
+                        >
+                          “
+                          In Ormiston, we value our partnership with Oak, through which we have strengthened the R.E. curriculum in our schools, whilst contributing to a high-quality national resource for all.
+                        </p>
+                        <p
+                          class="sc-ikkxIA fqNJfa"
+                        >
+                          Ormiston primary schools are using science and humanities resources to strengthen their curricular offer, and are benefitting from the high quality curriculum design, and opportunities to work in partnership with colleagues at Oak.
+                          ”
+                        </p>
+                      </div>
+                    </div>
+                    <div
+                      class="sc-aXZVg sc-gEvEer jPvJsJ fWqiDO"
+                    >
+                      <span
+                        class="sc-aXZVg kvjdhA sc-7b0ac5f3-0 LaaaE"
+                        role="presentation"
+                      >
+                        <img
+                          alt=""
+                          class="sc-iGgWBj dZvqhO"
+                          data-nimg="fill"
+                          decoding="async"
+                          loading="lazy"
+                          sizes="100vw"
+                          src="http://localhost/_next/image?url=https%3A%2F%2FNEXT_PUBLIC_OAK_ASSETS_HOST%2FNEXT_PUBLIC_OAK_ASSETS_PATH%2Fv1698336490%2Ftest-images%2Ftest_quote_author.jpg&w=3840&q=75"
+                          srcset="/_next/image?url=https%3A%2F%2FNEXT_PUBLIC_OAK_ASSETS_HOST%2FNEXT_PUBLIC_OAK_ASSETS_PATH%2Fv1698336490%2Ftest-images%2Ftest_quote_author.jpg&w=640&q=75 640w, /_next/image?url=https%3A%2F%2FNEXT_PUBLIC_OAK_ASSETS_HOST%2FNEXT_PUBLIC_OAK_ASSETS_PATH%2Fv1698336490%2Ftest-images%2Ftest_quote_author.jpg&w=750&q=75 750w, /_next/image?url=https%3A%2F%2FNEXT_PUBLIC_OAK_ASSETS_HOST%2FNEXT_PUBLIC_OAK_ASSETS_PATH%2Fv1698336490%2Ftest-images%2Ftest_quote_author.jpg&w=828&q=75 828w, /_next/image?url=https%3A%2F%2FNEXT_PUBLIC_OAK_ASSETS_HOST%2FNEXT_PUBLIC_OAK_ASSETS_PATH%2Fv1698336490%2Ftest-images%2Ftest_quote_author.jpg&w=1080&q=75 1080w, /_next/image?url=https%3A%2F%2FNEXT_PUBLIC_OAK_ASSETS_HOST%2FNEXT_PUBLIC_OAK_ASSETS_PATH%2Fv1698336490%2Ftest-images%2Ftest_quote_author.jpg&w=1200&q=75 1200w, /_next/image?url=https%3A%2F%2FNEXT_PUBLIC_OAK_ASSETS_HOST%2FNEXT_PUBLIC_OAK_ASSETS_PATH%2Fv1698336490%2Ftest-images%2Ftest_quote_author.jpg&w=1920&q=75 1920w, /_next/image?url=https%3A%2F%2FNEXT_PUBLIC_OAK_ASSETS_HOST%2FNEXT_PUBLIC_OAK_ASSETS_PATH%2Fv1698336490%2Ftest-images%2Ftest_quote_author.jpg&w=2048&q=75 2048w, /_next/image?url=https%3A%2F%2FNEXT_PUBLIC_OAK_ASSETS_HOST%2FNEXT_PUBLIC_OAK_ASSETS_PATH%2Fv1698336490%2Ftest-images%2Ftest_quote_author.jpg&w=3840&q=75 3840w"
+                          style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                        />
+                      </span>
+                      <div
+                        class="sc-aXZVg sc-gEvEer jPvJsJ bktafW"
+                      >
+                        <p
+                          class="sc-ikkxIA gkELLE"
+                        >
+                          Tom Rees
+                        </p>
+                        <p
+                          class="sc-ikkxIA jkEPvG"
+                        >
+                          CEO, Ormiston Academies Trust
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </li>
+</div>
+`;
+
+exports[`OaksImpactSchoolQuote renders correctly 1`] = `
+<body>
+  <div>
+    <div
+      class="sc-aXZVg sc-gEvEer kTrAkM bktafW"
+    >
+      <span
+        class="sc-aXZVg kMYEmk"
+      >
+        <img
+          alt="TEST_ALT"
+          class="sc-iGgWBj dZvqhO"
+          data-nimg="fill"
+          decoding="async"
+          loading="lazy"
+          sizes="100vw"
+          src="http://localhost/_next/image?url=https%3A%2F%2Fsanity-asset-cdn.thenational.academy%2Fimages%2Fcuvjke51%2Fproduction%2Fb81ee19a35baa3192360a210fda34cc9b21f4fd6-5824x3264.jpg%3Fw%3D640%26fm%3Dwebp%26q%3D80%26fit%3Dclip%26auto%3Dformat&w=3840&q=75"
+          srcset="/_next/image?url=https%3A%2F%2Fsanity-asset-cdn.thenational.academy%2Fimages%2Fcuvjke51%2Fproduction%2Fb81ee19a35baa3192360a210fda34cc9b21f4fd6-5824x3264.jpg%3Fw%3D640%26fm%3Dwebp%26q%3D80%26fit%3Dclip%26auto%3Dformat&w=640&q=75 640w, /_next/image?url=https%3A%2F%2Fsanity-asset-cdn.thenational.academy%2Fimages%2Fcuvjke51%2Fproduction%2Fb81ee19a35baa3192360a210fda34cc9b21f4fd6-5824x3264.jpg%3Fw%3D640%26fm%3Dwebp%26q%3D80%26fit%3Dclip%26auto%3Dformat&w=750&q=75 750w, /_next/image?url=https%3A%2F%2Fsanity-asset-cdn.thenational.academy%2Fimages%2Fcuvjke51%2Fproduction%2Fb81ee19a35baa3192360a210fda34cc9b21f4fd6-5824x3264.jpg%3Fw%3D640%26fm%3Dwebp%26q%3D80%26fit%3Dclip%26auto%3Dformat&w=828&q=75 828w, /_next/image?url=https%3A%2F%2Fsanity-asset-cdn.thenational.academy%2Fimages%2Fcuvjke51%2Fproduction%2Fb81ee19a35baa3192360a210fda34cc9b21f4fd6-5824x3264.jpg%3Fw%3D640%26fm%3Dwebp%26q%3D80%26fit%3Dclip%26auto%3Dformat&w=1080&q=75 1080w, /_next/image?url=https%3A%2F%2Fsanity-asset-cdn.thenational.academy%2Fimages%2Fcuvjke51%2Fproduction%2Fb81ee19a35baa3192360a210fda34cc9b21f4fd6-5824x3264.jpg%3Fw%3D640%26fm%3Dwebp%26q%3D80%26fit%3Dclip%26auto%3Dformat&w=1200&q=75 1200w, /_next/image?url=https%3A%2F%2Fsanity-asset-cdn.thenational.academy%2Fimages%2Fcuvjke51%2Fproduction%2Fb81ee19a35baa3192360a210fda34cc9b21f4fd6-5824x3264.jpg%3Fw%3D640%26fm%3Dwebp%26q%3D80%26fit%3Dclip%26auto%3Dformat&w=1920&q=75 1920w, /_next/image?url=https%3A%2F%2Fsanity-asset-cdn.thenational.academy%2Fimages%2Fcuvjke51%2Fproduction%2Fb81ee19a35baa3192360a210fda34cc9b21f4fd6-5824x3264.jpg%3Fw%3D640%26fm%3Dwebp%26q%3D80%26fit%3Dclip%26auto%3Dformat&w=2048&q=75 2048w, /_next/image?url=https%3A%2F%2Fsanity-asset-cdn.thenational.academy%2Fimages%2Fcuvjke51%2Fproduction%2Fb81ee19a35baa3192360a210fda34cc9b21f4fd6-5824x3264.jpg%3Fw%3D640%26fm%3Dwebp%26q%3D80%26fit%3Dclip%26auto%3Dformat&w=3840&q=75 3840w"
+          style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+        />
+      </span>
+      <div
+        class="sc-aXZVg sc-gEvEer eLpsLG iwFTtF"
+      >
+        <div
+          class="sc-aXZVg sc-gEvEer jPvJsJ gWBhKY"
+        >
+          <h3
+            class="sc-eldPxv groWut"
+          >
+            Ormiston Academies Trust
+          </h3>
+          <p
+            class="sc-ikkxIA jkEPvG"
+          >
+            Ormiston Academies Trust supports pupils in 45 schools across secondary, primary, alternative provision and special schools.
+          </p>
+        </div>
+        <div
+          class="sc-aXZVg jgMjjt"
+          style="background: rgb(217, 217, 217);"
+        />
+        <div
+          class="sc-aXZVg sc-gEvEer jPvJsJ bktafW"
+        >
+          <div
+            class="sc-aXZVg sc-gEvEer jPvJsJ bktafW"
+          >
+            <div
+              class="sc-aXZVg sc-gEvEer jPvJsJ bktafW"
+            >
+              <div
+                class="sc-aXZVg sc-gEvEer jPvJsJ jIBBQP"
+              >
+                <div
+                  class="sc-aXZVg sc-gEvEer jPvJsJ fLgPAy"
+                >
+                  <div
+                    class="sc-aXZVg sc-gEvEer bwVgbu iDBIXi"
+                  >
+                    <div
+                      class="sc-aXZVg sc-gEvEer jPvJsJ fVNIMq"
+                    >
+                      <div
+                        class="sc-aXZVg cmRFEa"
+                      >
+                        <div
+                          class="sc-aXZVg sc-gEvEer sc-7b0ac5f3-1 jPvJsJ NsOKr kVKIra"
+                        >
+                          <p
+                            class="sc-ikkxIA fqNJfa"
+                          >
+                            “
+                            In Ormiston, we value our partnership with Oak, through which we have strengthened the R.E. curriculum in our schools, whilst contributing to a high-quality national resource for all.
+                          </p>
+                          <p
+                            class="sc-ikkxIA fqNJfa"
+                          >
+                            Ormiston primary schools are using science and humanities resources to strengthen their curricular offer, and are benefitting from the high quality curriculum design, and opportunities to work in partnership with colleagues at Oak.
+                            ”
+                          </p>
+                        </div>
+                      </div>
+                      <div
+                        class="sc-aXZVg sc-gEvEer jPvJsJ fWqiDO"
+                      >
+                        <span
+                          class="sc-aXZVg kvjdhA sc-7b0ac5f3-0 LaaaE"
+                          role="presentation"
+                        >
+                          <img
+                            alt=""
+                            class="sc-iGgWBj dZvqhO"
+                            data-nimg="fill"
+                            decoding="async"
+                            loading="lazy"
+                            sizes="100vw"
+                            src="http://localhost/_next/image?url=https%3A%2F%2FNEXT_PUBLIC_OAK_ASSETS_HOST%2FNEXT_PUBLIC_OAK_ASSETS_PATH%2Fv1698336490%2Ftest-images%2Ftest_quote_author.jpg&w=3840&q=75"
+                            srcset="/_next/image?url=https%3A%2F%2FNEXT_PUBLIC_OAK_ASSETS_HOST%2FNEXT_PUBLIC_OAK_ASSETS_PATH%2Fv1698336490%2Ftest-images%2Ftest_quote_author.jpg&w=640&q=75 640w, /_next/image?url=https%3A%2F%2FNEXT_PUBLIC_OAK_ASSETS_HOST%2FNEXT_PUBLIC_OAK_ASSETS_PATH%2Fv1698336490%2Ftest-images%2Ftest_quote_author.jpg&w=750&q=75 750w, /_next/image?url=https%3A%2F%2FNEXT_PUBLIC_OAK_ASSETS_HOST%2FNEXT_PUBLIC_OAK_ASSETS_PATH%2Fv1698336490%2Ftest-images%2Ftest_quote_author.jpg&w=828&q=75 828w, /_next/image?url=https%3A%2F%2FNEXT_PUBLIC_OAK_ASSETS_HOST%2FNEXT_PUBLIC_OAK_ASSETS_PATH%2Fv1698336490%2Ftest-images%2Ftest_quote_author.jpg&w=1080&q=75 1080w, /_next/image?url=https%3A%2F%2FNEXT_PUBLIC_OAK_ASSETS_HOST%2FNEXT_PUBLIC_OAK_ASSETS_PATH%2Fv1698336490%2Ftest-images%2Ftest_quote_author.jpg&w=1200&q=75 1200w, /_next/image?url=https%3A%2F%2FNEXT_PUBLIC_OAK_ASSETS_HOST%2FNEXT_PUBLIC_OAK_ASSETS_PATH%2Fv1698336490%2Ftest-images%2Ftest_quote_author.jpg&w=1920&q=75 1920w, /_next/image?url=https%3A%2F%2FNEXT_PUBLIC_OAK_ASSETS_HOST%2FNEXT_PUBLIC_OAK_ASSETS_PATH%2Fv1698336490%2Ftest-images%2Ftest_quote_author.jpg&w=2048&q=75 2048w, /_next/image?url=https%3A%2F%2FNEXT_PUBLIC_OAK_ASSETS_HOST%2FNEXT_PUBLIC_OAK_ASSETS_PATH%2Fv1698336490%2Ftest-images%2Ftest_quote_author.jpg&w=3840&q=75 3840w"
+                            style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                          />
+                        </span>
+                        <div
+                          class="sc-aXZVg sc-gEvEer jPvJsJ bktafW"
+                        >
+                          <p
+                            class="sc-ikkxIA gkELLE"
+                          >
+                            Tom Rees
+                          </p>
+                          <p
+                            class="sc-ikkxIA jkEPvG"
+                          >
+                            CEO, Ormiston Academies Trust
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+`;
