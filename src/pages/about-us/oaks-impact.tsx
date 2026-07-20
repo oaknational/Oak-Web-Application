@@ -3,7 +3,6 @@ import {
   GetServerSidePropsResult,
   NextPage,
 } from "next/dist/types";
-import { OakGrid, OakGridArea, OakHeading } from "@oaknational/oak-components";
 
 import getBrowserConfig from "@/browser-lib/getBrowserConfig";
 import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
@@ -24,8 +23,7 @@ import { getPosthogIdFromCookie } from "@/node-lib/posthog/getPosthogId";
 import { OaksImpactStats } from "@/components/GenericPagesComponents/OaksImpactStats";
 import CMSClient from "@/node-lib/cms";
 import { OaksImpactPage } from "@/common-lib/cms-types";
-import { NewGutterMaxWidth } from "@/components/GenericPagesComponents/NewGutterMaxWidth";
-import { OaksImpactSchoolQuote } from "@/components/GenericPagesComponents/OaksImpactSchoolQuote";
+import { OaksImpactSchoolQuotesSection } from "@/components/GenericPagesComponents/OaksImpactSchoolQuotesSection";
 
 export type OaksImpactPageProps = {
   topNav: TopNavProps;
@@ -54,48 +52,7 @@ const OaksImpact: NextPage<OaksImpactPageProps> = ({ topNav, pageData }) => {
         </AboutSharedHeader>
         <OaksImpactStats {...pageData.statsSection} />
         <OaksImpactCaseStudies caseStudies={oaksImpactCaseStudiesFixture} />
-
-        <NewGutterMaxWidth>
-          <OakHeading
-            tag={"h2"}
-            $font={["heading-5", "heading-3"]}
-            $textAlign={["left", "center"]}
-            $mt={["spacing-56", "spacing-80"]}
-            $mb={["spacing-24", "spacing-40"]}
-          >
-            {pageData.schoolQuotes.heading}
-          </OakHeading>
-          <OakGrid
-            as="ul"
-            $rg={"spacing-16"}
-            $cg={"spacing-16"}
-            $pl={"spacing-0"}
-            $mv={"spacing-0"}
-          >
-            {pageData.schoolQuotes.cards.map(
-              ({ quote, summary, logo, headshot }) => (
-                <OakGridArea
-                  as="li"
-                  key={quote.organisation}
-                  $colSpan={[12, 6]}
-                >
-                  <OaksImpactSchoolQuote
-                    organisation={quote.organisation}
-                    subTitle={summary}
-                    logo={logo}
-                    quote={{
-                      quote: quote.text.split("\n").filter(Boolean),
-                      authorName: quote.attribution,
-                      authorTitle: quote.role,
-                      authorImage: headshot,
-                    }}
-                  />
-                </OakGridArea>
-              ),
-            )}
-          </OakGrid>
-        </NewGutterMaxWidth>
-
+        <OaksImpactSchoolQuotesSection {...pageData.schoolQuotes} />
         <SupportYou
           headingTag="h2"
           link={{
