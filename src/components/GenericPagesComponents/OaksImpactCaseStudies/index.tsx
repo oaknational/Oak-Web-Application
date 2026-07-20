@@ -41,7 +41,6 @@ export const OaksImpactCaseStudies = ({
                 heading={caseStudy.video.title || ""}
                 headingLevel={"div"}
                 href={`#/case-studies/${caseStudy.slug.current}`}
-                // imageSrc={caseStudy.image.asset?.url}
                 imageSrc={
                   getProxiedSanityAssetUrl(caseStudy.image?.asset?.url) ?? ""
                 }
