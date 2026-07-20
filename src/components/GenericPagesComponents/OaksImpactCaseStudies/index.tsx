@@ -7,6 +7,7 @@ import {
 
 import { CaseStudyCard } from "@/common-lib/cms-types/caseStudy";
 import { NewGutterMaxWidth } from "@/components/GenericPagesComponents/NewGutterMaxWidth";
+import getProxiedSanityAssetUrl from "@/common-lib/urls/getProxiedSanityAssetUrl";
 
 export type OaksImpactCaseStudiesProps = {
   caseStudies: CaseStudyCard[];
@@ -40,7 +41,10 @@ export const OaksImpactCaseStudies = ({
                 heading={caseStudy.video.title || ""}
                 headingLevel={"div"}
                 href={`#/case-studies/${caseStudy.slug.current}`}
-                imageSrc={caseStudy.image.asset?.url}
+                // imageSrc={caseStudy.image.asset?.url}
+                imageSrc={
+                  getProxiedSanityAssetUrl(caseStudy.image?.asset?.url) ?? ""
+                }
                 aspectRatio="4/3"
                 linkText={"Watch the video"}
                 cardWidth={"100%"}
