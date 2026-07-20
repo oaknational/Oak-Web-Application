@@ -448,7 +448,7 @@ describe("getUnitCounts", () => {
 
   it("orders swimming units by yearOrder across years", () => {
     // Both swimming units have unitOrder: 1 (first unit in their respective year),
-    // so sorting by unitOrder alone is unstable. yearOrder must be the primary sort key.
+    // so sorting by unitOrder alone is insufficient (it would preserve input/API order). yearOrder must be the primary sort key.
     const sequence: UnitSequence = [
       {
         unitSlug: "unit-1",
