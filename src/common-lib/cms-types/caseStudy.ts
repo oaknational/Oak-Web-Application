@@ -1,18 +1,16 @@
 import * as z from "zod";
 
-import { documentSchema, imageSchema, videoSchema } from "./base";
+import { imageSchema, videoSchema } from "./base";
 import { portableTextSchema } from "./portableText";
 
-export const caseStudySchema = z
-  .object({
-    video: videoSchema,
-    slug: z.object({
-      current: z.string(),
-    }),
-    image: imageSchema,
-    text: portableTextSchema.nullish(),
-  })
-  .merge(documentSchema);
+export const caseStudySchema = z.object({
+  video: videoSchema,
+  slug: z.object({
+    current: z.string(),
+  }),
+  image: imageSchema,
+  text: portableTextSchema.nullish(),
+});
 
 export type CaseStudy = z.infer<typeof caseStudySchema>;
 
