@@ -63,7 +63,7 @@ exports[`OaksImpactSchoolQuote renders as='li' 1`] = `
                       class="sc-aXZVg cmRFEa"
                     >
                       <div
-                        class="sc-aXZVg sc-gEvEer sc-e70b3cb8-1 jPvJsJ NsOKr kQQOsr"
+                        class="sc-aXZVg sc-gEvEer sc-9041c11f-1 jPvJsJ NsOKr bHbhqk"
                       >
                         <p
                           class="sc-ikkxIA fqNJfa"
@@ -84,7 +84,7 @@ exports[`OaksImpactSchoolQuote renders as='li' 1`] = `
                     >
                       <img
                         alt=""
-                        class="sc-ba397cd3-0 dMngOi sc-e70b3cb8-0 eeSxoR"
+                        class="sc-ba397cd3-0 dMngOi sc-9041c11f-0 crIFrm"
                         data-nimg="1"
                         decoding="async"
                         height="54"
@@ -105,7 +105,7 @@ exports[`OaksImpactSchoolQuote renders as='li' 1`] = `
                         <p
                           class="sc-ikkxIA jkEPvG"
                         >
-                          CEO, Ormiston Academies Trust
+                          CEO
                           , 
                           Ormiston Academies Trust
                         </p>
@@ -187,7 +187,7 @@ exports[`OaksImpactSchoolQuote renders correctly 1`] = `
                         class="sc-aXZVg cmRFEa"
                       >
                         <div
-                          class="sc-aXZVg sc-gEvEer sc-e70b3cb8-1 jPvJsJ NsOKr kQQOsr"
+                          class="sc-aXZVg sc-gEvEer sc-9041c11f-1 jPvJsJ NsOKr bHbhqk"
                         >
                           <p
                             class="sc-ikkxIA fqNJfa"
@@ -208,7 +208,7 @@ exports[`OaksImpactSchoolQuote renders correctly 1`] = `
                       >
                         <img
                           alt=""
-                          class="sc-ba397cd3-0 dMngOi sc-e70b3cb8-0 eeSxoR"
+                          class="sc-ba397cd3-0 dMngOi sc-9041c11f-0 crIFrm"
                           data-nimg="1"
                           decoding="async"
                           height="54"
@@ -229,7 +229,7 @@ exports[`OaksImpactSchoolQuote renders correctly 1`] = `
                           <p
                             class="sc-ikkxIA jkEPvG"
                           >
-                            CEO, Ormiston Academies Trust
+                            CEO
                             , 
                             Ormiston Academies Trust
                           </p>

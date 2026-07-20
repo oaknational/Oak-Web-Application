@@ -1,8 +1,9 @@
 import styled from "styled-components";
 import { OakBox, OakFlex, OakHeading, OakP } from "@oaknational/oak-components";
+import z from "zod";
 
-import { Image } from "@/common-lib/cms-types";
 import CMSImage from "@/components/SharedComponents/CMSImage";
+import { oaksImpactSchoolQuoteCardSchema } from "@/common-lib/cms-types";
 
 const StyledAuthorImage = styled(CMSImage)`
   width: 54px;
@@ -22,25 +23,17 @@ const TightLetterSpacing = styled(OakFlex)`
 
 export type OaksImpactSchoolQuoteProps = {
   as?: "div" | "li";
-  organisation: string;
-  logo: Image;
-  subTitle: string;
-  quote: {
-    quote: string | string[];
-    authorName: string;
-    authorTitle: string;
-    authorImage: Image;
-  };
-};
+} & z.infer<typeof oaksImpactSchoolQuoteCardSchema>;
 
 export function OaksImpactSchoolQuote({
   as = "div",
-  organisation,
   logo,
-  subTitle,
+  summary,
   quote,
+  headshot,
 }: Readonly<OaksImpactSchoolQuoteProps>) {
-  const quoteLines = Array.isArray(quote.quote) ? quote.quote : [quote.quote];
+  const quoteLines = quote.text.split("\n").filter(Boolean);
+  const { attribution: authorName, role, organisation } = quote;
 
   return (
     <OakFlex
@@ -65,7 +58,7 @@ export function OaksImpactSchoolQuote({
             {organisation}
           </OakHeading>
           <OakP $color={"text-primary"} $font={"body-2"}>
-            {subTitle}
+            {summary}
           </OakP>
         </OakFlex>
         <OakBox $height="spacing-2" style={{ background: "#D9D9D9" }} />
@@ -99,13 +92,13 @@ export function OaksImpactSchoolQuote({
                         $gap={"spacing-16"}
                         $alignItems={["top", "center"]}
                       >
-                        <StyledAuthorImage image={quote.authorImage} />
+                        <StyledAuthorImage image={headshot} />
                         <OakFlex $flexDirection={"column"}>
                           <OakP $font={"body-2-bold"} $color={"text-primary"}>
-                            {quote.authorName}
+                            {authorName}
                           </OakP>
                           <OakP $font={"body-2"} $color={"text-primary"}>
-                            {quote.authorTitle}, {organisation}
+                            {role}, {organisation}
                           </OakP>
                         </OakFlex>
                       </OakFlex>
