@@ -40,8 +40,15 @@ export const LessonMediaClipInfo: FC<LessonMediaClipInfoProps> = ({
   onSignLanguageButtonClick = () => {},
   copyLinkButtonEnabled = false,
   isMobile,
+  copyLinkHref,
 }: LessonMediaClipInfoProps) => {
-  const { handleClick } = useCopyLink({ linkToCopy: window.location.href });
+  const linkToCopy =
+    copyLinkHref || typeof window !== "undefined" ? window.location.href : null;
+
+  const { handleClick } = useCopyLink({
+    linkToCopy,
+  });
+
   return (
     <OakBox>
       <OakHeading tag="h5" $font={"heading-5"} $mb="spacing-12">
