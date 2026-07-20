@@ -39,6 +39,7 @@ import {
   isLessonSection,
   LessonSection,
 } from "@/components/PupilComponents/lessonSections";
+import LessonShareRadioGroup from "@/components/TeacherComponents/LessonShareRadioGroup/LessonShareRadioGroup";
 
 export type LessonShareProps = {
   breadcrumbsSlot?: ReactNode;
@@ -239,12 +240,29 @@ export function LessonShare(props: Readonly<LessonShareProps>) {
               hideCheckboxes={true}
             />
           }
+          radioGroups={
+            <LessonShareRadioGroup
+              control={form.control}
+              triggerForm={form.trigger}
+              name={"hideYearGroup"}
+              title={"Hide year group when sharing?"}
+              description={
+                "Hiding the year group when sharing can help pupils of different, ages, abilities, or contexts engage with the material without worrying whether its aimed at their year group."
+              }
+              icon={"class-grouping"} // todo: use new hide icon
+              options={[
+                { value: "show", label: "Show year group" },
+                { value: "hide", label: "Hide year group" },
+              ]}
+            />
+          }
           cta={
             <LessonShareLinks
               lessonSlug={lessonSlug}
               selectedActivities={selectedLessonSections}
               schoolUrn={schoolUrn}
               onSubmit={onValidateAndSubmit}
+              selectedHideYearGroup={form.getValues("hideYearGroup") === "hide"}
             />
           }
         />

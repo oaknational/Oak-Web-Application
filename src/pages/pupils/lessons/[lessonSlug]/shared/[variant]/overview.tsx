@@ -35,7 +35,11 @@ const OverviewPageContent = ({
   browseData,
   lessonContent,
   backUrl,
-}: Pick<PupilLessonPageProps, "browseData" | "lessonContent" | "backUrl">) => {
+  variant,
+}: Pick<
+  PupilLessonPageProps,
+  "browseData" | "lessonContent" | "backUrl" | "variant"
+>) => {
   const {
     isClassroomAssignment,
     classroomAssignmentChecked,
@@ -67,6 +71,8 @@ const OverviewPageContent = ({
   } = browseData;
 
   const { lessonTitle, contentGuidance, supervisionLevel } = lessonContent;
+
+  const hideYearGroup = variant?.hideYearGroup ?? false;
 
   return (
     <>
@@ -113,7 +119,7 @@ const OverviewPageContent = ({
         }
         header={{
           lessonTitle: lessonTitle ?? "",
-          yearDescription,
+          yearDescription: hideYearGroup ? undefined : yearDescription,
           subject,
           subjectSlug,
           phase: phase as "primary" | "secondary",
@@ -165,6 +171,7 @@ const PupilLessonOverviewNewPage = (props: PupilLessonPageProps) => {
         browseData={browseData}
         lessonContent={lessonContent}
         backUrl={backUrl}
+        variant={variant}
       />
     </PupilLayout>
   );
