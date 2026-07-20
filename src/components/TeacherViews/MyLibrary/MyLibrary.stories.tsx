@@ -40,8 +40,5 @@ export const Default: Story = {
   args: {
     collectionData: generateMockCollectionData(1),
     isLoading: false,
-    onSaveToggle: () => {},
-    isUnitSaved: () => false,
-    isUnitSaving: () => false,
   },
 };

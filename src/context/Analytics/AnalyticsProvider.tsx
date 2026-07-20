@@ -41,6 +41,10 @@ export type EventFn = (
 export type PageProperties = {
   path: string;
 };
+export type TrackFeatureFlagFunction = (properties: {
+  $feature_flag: string;
+  $feature_flag_response: string;
+}) => void;
 export type PageFn = (properties: PageProperties) => void;
 export type IdentifyProperties = { email?: string };
 export type IdentifyFn = (
@@ -76,6 +80,7 @@ export type AnalyticsContext = {
   track: TrackFns;
   identify: IdentifyFn;
   alias?: AliasFn;
+  trackFeatureFlag?: TrackFeatureFlagFunction;
   getSessionId: () => string | undefined;
   posthogDistinctId: PosthogDistinctId | null;
 };
@@ -87,6 +92,7 @@ export type AnalyticsService<ServiceConfig> = {
   track: EventFn;
   page: PageFn;
   identify: IdentifyFn;
+  trackFeatureFlag?: TrackFeatureFlagFunction;
   alias?: AliasFn;
   optOut: () => void;
   optIn: () => void;
@@ -237,6 +243,12 @@ const AnalyticsProvider: FC<AnalyticsProviderProps> = (props) => {
     },
     [posthog],
   );
+  const trackFeatureFlag: TrackFeatureFlagFunction = useCallback(
+    (properties) => {
+      posthog.trackFeatureFlag?.(properties);
+    },
+    [posthog],
+  );
   const getSessionId = useCallback(() => {
     return posthog.getSessionId?.();
   }, [posthog]);
@@ -260,11 +272,18 @@ const AnalyticsProvider: FC<AnalyticsProviderProps> = (props) => {
       track,
       identify,
       alias,
+      trackFeatureFlag,
       getSessionId,
       posthogDistinctId,
     };
-  }, [track, identify, posthogDistinctId, alias, getSessionId]);
-
+  }, [
+    track,
+    identify,
+    posthogDistinctId,
+    alias,
+    trackFeatureFlag,
+    getSessionId,
+  ]);
   return (
     <analyticsContext.Provider value={analytics}>
       {children}
