@@ -2,6 +2,7 @@ import {
   OakBox,
   OakCard,
   OakFlex,
+  OakGrid,
   OakHeading,
 } from "@oaknational/oak-components";
 
@@ -27,10 +28,11 @@ export const OaksImpactCaseStudies = ({
           <OakHeading tag={"h2"} $font={["heading-5", "heading-3"]}>
             Case studies
           </OakHeading>
-          <OakFlex
+          <OakGrid
             as="ul"
-            $gap={"spacing-16"}
-            $flexDirection={["column", "row"]}
+            $gridTemplateColumns={["1fr", "repeat(3, 1fr)"]}
+            $cg={"spacing-16"}
+            $rg={"spacing-16"}
             $pa={"spacing-0"}
             $ma={"spacing-0"}
           >
@@ -49,7 +51,7 @@ export const OaksImpactCaseStudies = ({
                 cardWidth={"100%"}
               />
             ))}
-          </OakFlex>
+          </OakGrid>
         </OakFlex>
       </NewGutterMaxWidth>
     </OakBox>
