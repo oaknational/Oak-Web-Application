@@ -57,6 +57,9 @@ export const posthogToAnalyticsServiceWithoutQueue = (
   page: () => {
     client.capture("$pageview");
   },
+  trackFeatureFlag: (properties) => {
+    client.capture("$feature_flag_called", properties);
+  },
   track: (name, properties, options) => {
     const m = window.location.search.match(/update_tracking_profile=true/);
 
