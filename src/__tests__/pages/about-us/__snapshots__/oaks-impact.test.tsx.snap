@@ -125,7 +125,7 @@ exports[`pages/about-us/oaks-impact.tsx renders title when feature flag is enabl
                 class="sc-aXZVg sc-gEvEer jPvJsJ krHAKs"
               >
                 <span
-                  class="sc-eqUAAy eZioic"
+                  class="sc-eqUAAy iIwSBe"
                 >
                   Teachers
                 </span>
@@ -150,7 +150,7 @@ exports[`pages/about-us/oaks-impact.tsx renders title when feature flag is enabl
                 class="sc-aXZVg sc-gEvEer jPvJsJ krHAKs"
               >
                 <span
-                  class="sc-eqUAAy eZioic"
+                  class="sc-eqUAAy iIwSBe"
                 >
                   Go to 
                   pupils
@@ -232,7 +232,7 @@ exports[`pages/about-us/oaks-impact.tsx renders title when feature flag is enabl
                         class="sc-aXZVg sc-gEvEer jPvJsJ kejpBe"
                       >
                         <span
-                          class="sc-eqUAAy fdMrRw"
+                          class="sc-eqUAAy kJIzWq"
                         >
                           Primary
                         </span>
@@ -263,7 +263,7 @@ exports[`pages/about-us/oaks-impact.tsx renders title when feature flag is enabl
                         class="sc-aXZVg sc-gEvEer jPvJsJ kejpBe"
                       >
                         <span
-                          class="sc-eqUAAy fdMrRw"
+                          class="sc-eqUAAy kJIzWq"
                         >
                           Secondary
                         </span>
@@ -294,7 +294,7 @@ exports[`pages/about-us/oaks-impact.tsx renders title when feature flag is enabl
                         class="sc-aXZVg sc-gEvEer jPvJsJ kejpBe"
                       >
                         <span
-                          class="sc-eqUAAy fdMrRw"
+                          class="sc-eqUAAy kJIzWq"
                         >
                           Guidance
                         </span>
@@ -325,7 +325,7 @@ exports[`pages/about-us/oaks-impact.tsx renders title when feature flag is enabl
                         class="sc-aXZVg sc-gEvEer jPvJsJ kejpBe"
                       >
                         <span
-                          class="sc-eqUAAy fdMrRw"
+                          class="sc-eqUAAy kJIzWq"
                         >
                           About us
                         </span>
@@ -356,7 +356,7 @@ exports[`pages/about-us/oaks-impact.tsx renders title when feature flag is enabl
                         class="sc-aXZVg sc-gEvEer jPvJsJ kejpBe"
                       >
                         <span
-                          class="sc-eqUAAy fdMrRw"
+                          class="sc-eqUAAy kJIzWq"
                         >
                           Ai experiments
                         </span>
@@ -528,13 +528,13 @@ exports[`pages/about-us/oaks-impact.tsx renders title when feature flag is enabl
                   class="sc-aXZVg kpXzs yellow-shadow"
                 />
                 <button
-                  class="sc-dcJsrY sc-jXbUNg fldxbr dcSnMW internal-button"
+                  class="sc-dcJsrY sc-jXbUNg bVEHjt dcSnMW internal-button"
                 >
                   <div
                     class="sc-aXZVg sc-gEvEer jPvJsJ kejpBe"
                   >
                     <span
-                      class="sc-eqUAAy fdMrRw"
+                      class="sc-eqUAAy kJIzWq"
                     >
                       Sign in
                     </span>
@@ -1053,7 +1053,7 @@ exports[`pages/about-us/oaks-impact.tsx renders title when feature flag is enabl
                               </span>
                             </div>
                             <div
-                              class="sc-aXZVg sc-gEvEer bkdnoh fXHtRp"
+                              class="sc-aXZVg sc-gEvEer gFyjML fXHtRp"
                             >
                               About Oak
                             </div>
@@ -1106,7 +1106,7 @@ exports[`pages/about-us/oaks-impact.tsx renders title when feature flag is enabl
                               </span>
                             </div>
                             <div
-                              class="sc-aXZVg sc-gEvEer bkdnoh fXHtRp"
+                              class="sc-aXZVg sc-gEvEer gFyjML fXHtRp"
                             >
                               Oak's curricula
                             </div>
@@ -1159,7 +1159,7 @@ exports[`pages/about-us/oaks-impact.tsx renders title when feature flag is enabl
                               </span>
                             </div>
                             <div
-                              class="sc-aXZVg sc-gEvEer bkdnoh fXHtRp"
+                              class="sc-aXZVg sc-gEvEer gFyjML fXHtRp"
                             >
                               Meet the team
                             </div>
@@ -1212,7 +1212,7 @@ exports[`pages/about-us/oaks-impact.tsx renders title when feature flag is enabl
                               </span>
                             </div>
                             <div
-                              class="sc-aXZVg sc-gEvEer bkdnoh fXHtRp"
+                              class="sc-aXZVg sc-gEvEer gFyjML fXHtRp"
                             >
                               Get involved
                             </div>
@@ -2686,7 +2686,7 @@ exports[`pages/about-us/oaks-impact.tsx renders title when feature flag is enabl
                 class="sc-aXZVg sc-gEvEer cJVcct bktafW"
               >
                 <p
-                  class="sc-ikkxIA bEvYEq"
+                  class="sc-ikkxIA cfEVLw"
                 >
                   © Oak National Academy Limited, No 14174888
                 </p>
@@ -2749,7 +2749,7 @@ exports[`pages/about-us/oaks-impact.tsx renders title when feature flag is enabl
             class="sc-aXZVg bURnqS"
           >
             <strong
-              class="sc-eqUAAy byNDSE"
+              class="sc-eqUAAy jPKsIw"
             >
               This site uses cookies to store information on your computer.
             </strong>
