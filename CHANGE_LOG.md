@@ -1,3 +1,11 @@
+## [1.1131.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.1131.0...v1.1131.1) (2026-07-21)
+
+
+### Bug Fixes
+
+* pass through copyLinkHref to useCopyLink when provided ([cc0b906](https://github.com/oaknational/Oak-Web-Application/commit/cc0b906c6b469c540e6020a21b4d8d55c2951317))
+* use existing copy link notification on media page ([a11b697](https://github.com/oaknational/Oak-Web-Application/commit/a11b6976d340d09242800977f7c28a23edf04565))
+
 # [1.1131.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1130.1...v1.1131.0) (2026-07-21)
 
 
