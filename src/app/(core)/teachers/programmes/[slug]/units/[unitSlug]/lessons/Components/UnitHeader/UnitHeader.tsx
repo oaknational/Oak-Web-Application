@@ -56,8 +56,20 @@ function useDetectStuck() {
     }
 
     const observer = new IntersectionObserver(
-      ([entry]) => setIsStuck(entry ? !entry.isIntersecting : false),
-      { threshold: [0], rootMargin: "0px" },
+      ([entry]) => {
+        if (!entry) {
+          setIsStuck(false);
+          return;
+        }
+
+        const viewportTop = entry.rootBounds?.top ?? 0;
+        const hasScrolledPastSentinel =
+          !entry.isIntersecting &&
+          entry.boundingClientRect.bottom <= viewportTop;
+
+        setIsStuck(hasScrolledPastSentinel);
+      },
+      { threshold: 0, rootMargin: "-1px 0px 0px" },
     );
     observer.observe(ref.current);
 
