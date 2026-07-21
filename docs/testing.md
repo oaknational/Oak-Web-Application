@@ -73,7 +73,9 @@ Before running Playwright tests locally, install browser binaries once per machi
 ## Storybook
 
 - Design and engineering inspection of components in isolation, including a11y checks.
-- Storybook test runner can be used to check that all stories compile without errors using `pnpm run test:storybook`.
+- Storybook test runner can be used to check that all stories compile without errors using:
+  1. `pnpm exec playwright install`
+  2. `pnpm run test:storybook`
 
 ## Percy
 
