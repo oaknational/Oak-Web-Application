@@ -14,6 +14,11 @@ const meta: Meta<typeof Component> = {
   decorators: [AnalyticsDecorator],
   component: Component,
   argTypes: {},
+  parameters: {
+    nextjs: {
+      appDirectory: false,
+    },
+  },
 };
 
 export default meta;
