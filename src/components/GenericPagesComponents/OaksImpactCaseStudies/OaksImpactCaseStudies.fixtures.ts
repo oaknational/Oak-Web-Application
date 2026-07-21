@@ -1,23 +1,47 @@
 export const oaksImpactCaseStudiesFixture = [
   {
-    heading: "Case study 1",
-    href: "/about-us/oaks-impact/case-study-1",
-    imageSrc:
-      "https://res.cloudinary.com/oak-web-application/image/upload/v1698336490/sample.jpg",
-    linkText: "Watch the video",
+    video: {
+      title: "Case study 1",
+    },
+    slug: {
+      current: "case-study-1",
+    },
+    image: {
+      asset: {
+        _id: "id-1",
+        url: "https://res.cloudinary.com/oak-web-application/image/upload/v1698336490/sample.jpg",
+      },
+    },
+    text: "Some text about case study 1",
   },
   {
-    heading: "Case study 2",
-    href: "/about-us/oaks-impact/case-study-2",
-    imageSrc:
-      "https://res.cloudinary.com/oak-web-application/image/upload/v1698336494/samples/landscapes/nature-mountains.jpg",
-    linkText: "Watch the video",
+    video: {
+      title: "Case study 2",
+    },
+    slug: {
+      current: "case-study-2",
+    },
+    image: {
+      asset: {
+        _id: "id-2",
+        url: "https://res.cloudinary.com/oak-web-application/image/upload/v1698336494/samples/landscapes/nature-mountains.jpg",
+      },
+    },
+    text: "Some text about case study 2",
   },
   {
-    heading: "Case study 3",
-    href: "/about-us/oaks-impact/case-study-3",
-    imageSrc:
-      "https://res.cloudinary.com/oak-web-application/image/upload/v1698336494/samples/animals/cat.jpg",
-    linkText: "Watch the video",
+    video: {
+      title: "Case study 3",
+    },
+    slug: {
+      current: "case-study-3",
+    },
+    image: {
+      asset: {
+        _id: "id-3",
+        url: "https://res.cloudinary.com/oak-web-application/image/upload/v1698336494/samples/animals/cat.jpg",
+      },
+    },
+    text: "Some text about case study 3",
   },
 ];
