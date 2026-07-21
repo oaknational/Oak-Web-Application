@@ -20,13 +20,15 @@ export const SearchView = ({
   const postHog = usePostHog();
   const { isSignedIn } = useUser();
   const enabled = useFeatureFlagEnabled("enable-search-recording");
-
+  console.log("component", { enabled, isSignedIn });
   useEffect(() => {
     if (isSignedIn && enabled) {
+      console.log("useEffect", "starting recording");
       postHog.startSessionRecording();
     }
   }, [enabled, isSignedIn, postHog]);
 
+  console.log("Recording started:", postHog.sessionRecordingStarted());
   const {
     subjects: allSubjects,
     keyStages: allKeyStages,
