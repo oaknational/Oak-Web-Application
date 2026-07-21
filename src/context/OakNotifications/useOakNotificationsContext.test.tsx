@@ -21,7 +21,7 @@ describe("useToastContext", () => {
     });
     const { currentToastProps } = result.current;
 
-    expect(currentToastProps).toBe(null);
+    expect(currentToastProps).toBeNull();
   });
   test("oakToast properties should update  when set", () => {
     const { result } = renderHookWithTheme(() => useOakNotificationsContext(), {

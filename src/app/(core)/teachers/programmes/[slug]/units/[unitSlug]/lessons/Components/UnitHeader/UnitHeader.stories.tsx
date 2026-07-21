@@ -5,7 +5,6 @@ import { fn, mocked } from "storybook/test";
 
 import UnitHeader, { UnitHeaderProps } from "./UnitHeader";
 
-import { __setMockAuthState } from "@/storybook-mocks/clerk";
 import useUnitDownloadExistenceCheck from "@/components/TeacherComponents/hooks/downloadAndShareHooks/useUnitDownloadExistenceCheck";
 import TeacherBrowseAnalyticsDecorator from "@/storybook-decorators/TeacherBrowseAnalyticsDecorator";
 import NotificationsDecorator from "@/storybook-decorators/NotificationsDecorator";
