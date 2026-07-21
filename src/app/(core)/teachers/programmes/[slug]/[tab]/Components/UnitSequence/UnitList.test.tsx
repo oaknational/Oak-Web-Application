@@ -219,6 +219,6 @@ describe("getKeyStageTitle", () => {
   });
 
   it("returns ks1 for 'all-ks slugs", () => {
-    expect(getKeyStageTitle("all-ks")).toBe("ks1");
+    expect(getKeyStageTitle("all-ks")).toBe("Key stage 1");
   });
 });
