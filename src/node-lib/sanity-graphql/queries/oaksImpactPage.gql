@@ -49,10 +49,7 @@ query oaksImpactPage($isDraftFilter: Sanity_DocumentFilter) {
         }
         summary
         quote {
-          attribution,
-          organisation,
-          role,
-          text
+          ...Quote
         }
         headshot {
           ...ImageWithAltText
