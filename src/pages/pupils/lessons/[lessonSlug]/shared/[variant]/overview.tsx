@@ -26,6 +26,7 @@ import {
 import isSlugLegacy from "@/utils/slugModifiers/isSlugLegacy";
 import { PupilLessonPageProps } from "@/pages-helpers/pupil/lessons-pages/pupilLessonPage.types";
 import { PupilRedirectedOverlay } from "@/components/PupilComponents/PupilRedirectedOverlay/PupilRedirectedOverlay";
+import { allLessonReviewSections } from "@/components/PupilComponents/lessonSections";
 
 type OverviewPageURLParams = {
   lessonSlug: string;
@@ -73,6 +74,9 @@ const OverviewPageContent = ({
   const { lessonTitle, contentGuidance, supervisionLevel } = lessonContent;
 
   const hideYearGroup = variant?.hideYearGroup ?? false;
+  const showSharedActivitiesBanner =
+    variant !== null &&
+    variant.reviewSections.length < allLessonReviewSections.length;
 
   return (
     <>
@@ -111,10 +115,12 @@ const OverviewPageContent = ({
               onwardHref={unitListingHref}
               isSingle
             />
-            <OakInlineBanner
-              message="You can only click on the activities your teacher has shared with you today."
-              isOpen={true}
-            />
+            {showSharedActivitiesBanner && (
+              <OakInlineBanner
+                message="You can only click on the activities your teacher has shared with you today."
+                isOpen={true}
+              />
+            )}
           </>
         }
         header={{

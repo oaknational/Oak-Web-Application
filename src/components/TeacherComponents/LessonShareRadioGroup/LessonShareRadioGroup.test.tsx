@@ -19,22 +19,13 @@ const defaultProps = {
     { value: "show", label: "Show year group" },
     { value: "hide", label: "Hide year group" },
   ],
-} satisfies Omit<LessonShareRadioGroupProps, "control" | "triggerForm">;
+} satisfies Omit<LessonShareRadioGroupProps, "control">;
 
-const ComponentWrapper = (
-  props: Partial<LessonShareRadioGroupProps> & {
-    triggerForm?: jest.Mock;
-  },
-) => {
+const ComponentWrapper = (props: Partial<LessonShareRadioGroupProps>) => {
   const { control } = useForm<ResourceFormValues>();
 
   return (
-    <LessonShareRadioGroup
-      {...defaultProps}
-      {...props}
-      control={control}
-      triggerForm={props.triggerForm ?? jest.fn()}
-    />
+    <LessonShareRadioGroup {...defaultProps} {...props} control={control} />
   );
 };
 
@@ -105,10 +96,9 @@ describe("LessonShareRadioGroup", () => {
     ).toBeChecked();
   });
 
-  it("updates the selected option and triggers the form", async () => {
-    const triggerForm = jest.fn();
+  it("updates the selected option", async () => {
     const user = userEvent.setup();
-    renderWithTheme(<ComponentWrapper triggerForm={triggerForm} />);
+    renderWithTheme(<ComponentWrapper />);
 
     const hideYearGroup = screen.getByRole("radio", {
       name: "Hide year group",
@@ -116,6 +106,5 @@ describe("LessonShareRadioGroup", () => {
     await user.click(hideYearGroup);
 
     expect(hideYearGroup).toBeChecked();
-    expect(triggerForm).toHaveBeenCalledTimes(1);
   });
 });

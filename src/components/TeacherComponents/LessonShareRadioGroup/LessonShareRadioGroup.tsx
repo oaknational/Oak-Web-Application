@@ -16,7 +16,6 @@ import { ResourceFormValues } from "@/components/TeacherComponents/types/downloa
 
 export type LessonShareRadioGroupProps = {
   control: Control<ResourceFormValues>;
-  triggerForm: () => void;
   name: keyof ResourceFormValues;
   title: string;
   description: string;
@@ -46,7 +45,7 @@ const LessonShareRadioGroup: FC<LessonShareRadioGroupProps> = (props) => {
           {props.title}
         </OakHeading>
       </OakFlex>
-      <OakP $font={"body-2-bold"}>{props.description}</OakP>
+      <OakP $font={"body-2"}>{props.description}</OakP>
       <OakFieldset aria-labelledby={kebabCase(props.title)}>
         <Controller
           control={props.control}
@@ -57,10 +56,7 @@ const LessonShareRadioGroup: FC<LessonShareRadioGroupProps> = (props) => {
               <OakRadioGroup
                 name={name}
                 aria-label={props.title}
-                onChange={(e) => {
-                  onChange(e);
-                  props.triggerForm();
-                }}
+                onChange={onChange}
                 value={fieldValue?.toString()}
               >
                 {props.options.map((option) => (

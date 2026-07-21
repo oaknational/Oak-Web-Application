@@ -129,6 +129,7 @@ export function LessonShare(props: Readonly<LessonShareProps>) {
   };
 
   const selectedLessonSections = getSelectedLessonSections(selectedResources);
+  const selectedHideYearGroup = form.watch("hideYearGroup") === "hide";
 
   const onboardingStatus = useOnboardingStatus();
 
@@ -148,7 +149,7 @@ export function LessonShare(props: Readonly<LessonShareProps>) {
 
     const isEmailSupplied = data.email ? true : false;
 
-    lessonShared({
+    const lessonSharedProperties = {
       lessonName: lessonTitle,
       lessonSlug: lessonSlug,
       schoolUrn: schoolUrn,
@@ -168,10 +169,15 @@ export function LessonShare(props: Readonly<LessonShareProps>) {
           const activity = classroomActivityMap[resource];
           return activity ? [activity] : [];
         }),
+      yearGroupHidden: selectedHideYearGroup,
       audience: "Pupil",
       lessonReleaseCohort: isLegacy ? "2020-2023" : "2023-2026",
       lessonReleaseDate: lessonReleaseDate ?? "unpublished",
-    });
+    } satisfies Parameters<typeof lessonShared>[0] & {
+      yearGroupHidden: boolean;
+    };
+
+    lessonShared(lessonSharedProperties);
   };
 
   return (
@@ -243,11 +249,10 @@ export function LessonShare(props: Readonly<LessonShareProps>) {
           radioGroups={
             <LessonShareRadioGroup
               control={form.control}
-              triggerForm={form.trigger}
               name={"hideYearGroup"}
               title={"Hide year group when sharing?"}
               description={
-                "Hiding the year group when sharing can help pupils of different, ages, abilities, or contexts engage with the material without worrying whether its aimed at their year group."
+                "Hiding the year group when sharing can help pupils of different ages, abilities, or contexts engage with the material without worrying whether it's for their year."
               }
               icon={"class-grouping"} // todo: use new hide icon
               options={[
@@ -262,7 +267,7 @@ export function LessonShare(props: Readonly<LessonShareProps>) {
               selectedActivities={selectedLessonSections}
               schoolUrn={schoolUrn}
               onSubmit={onValidateAndSubmit}
-              selectedHideYearGroup={form.getValues("hideYearGroup") === "hide"}
+              selectedHideYearGroup={selectedHideYearGroup}
             />
           }
         />

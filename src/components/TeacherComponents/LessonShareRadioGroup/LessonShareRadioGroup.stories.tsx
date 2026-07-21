@@ -21,10 +21,10 @@ export default meta;
 
 type Story = StoryObj<typeof Component>;
 
-const Wrapper = (args: LessonShareRadioGroupProps) => {
-  const { control, trigger } = useForm<ResourceFormValues>();
+const Wrapper = (args: Omit<LessonShareRadioGroupProps, "control">) => {
+  const { control } = useForm<ResourceFormValues>();
 
-  return <Component {...args} control={control} triggerForm={trigger} />;
+  return <Component {...args} control={control} />;
 };
 
 export const HideYearGroup: Story = {
@@ -32,7 +32,7 @@ export const HideYearGroup: Story = {
     name: "hideYearGroup",
     title: "Hide year group when sharing?",
     description:
-      "Hiding the year group when sharing can help pupils of different ages, abilities, or contexts engage with the material without worrying whether it is aimed at their year group.",
+      "Hiding the year group when sharing can help pupils of different ages, abilities, or contexts engage with the material without worrying whether it's for their year.",
     icon: "class-grouping",
     options: [
       { value: "show", label: "Show year group" },
