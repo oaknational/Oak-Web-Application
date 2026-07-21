@@ -26,7 +26,7 @@ export const getPosthogInitConfig = ({
   cookieless_mode: "on_reject" as const,
   debug: getBrowserConfig("releaseStage") !== "production",
   loaded,
-  disable_session_recording: false,
+  disable_session_recording: true,
   capture_pageview: false as const,
   capture_heatmaps: true,
   autocapture: {

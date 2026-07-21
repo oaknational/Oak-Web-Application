@@ -1,6 +1,9 @@
 "use client";
 
 import { useSearchParams, useRouter } from "next/navigation";
+import { useFeatureFlagEnabled, usePostHog } from "posthog-js/react";
+import { useUser } from "@clerk/nextjs";
+import { useEffect } from "react";
 
 import Search from "@/app/(core)/teachers/search/Search.view";
 import useSearch from "@/context/Search/useSearch";
@@ -14,6 +17,15 @@ export const SearchView = ({
 }) => {
   const router = useRouter();
   const searchParams = useSearchParams();
+  const postHog = usePostHog();
+  const { isSignedIn } = useUser();
+  const enabled = useFeatureFlagEnabled("enable-search-recording");
+
+  useEffect(() => {
+    if (isSignedIn && enabled) {
+      postHog.startSessionRecording();
+    }
+  }, [enabled, isSignedIn, postHog]);
 
   const {
     subjects: allSubjects,
