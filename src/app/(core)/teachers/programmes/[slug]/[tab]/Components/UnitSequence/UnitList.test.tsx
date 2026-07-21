@@ -218,7 +218,7 @@ describe("getKeyStageTitle", () => {
     );
   });
 
-  it("returns undefined for unknown slugs", () => {
-    expect(getKeyStageTitle("unknown")).toBeUndefined();
+  it("returns ks1 for 'all-ks slugs", () => {
+    expect(getKeyStageTitle("all-ks")).toBe("ks1");
   });
 });
