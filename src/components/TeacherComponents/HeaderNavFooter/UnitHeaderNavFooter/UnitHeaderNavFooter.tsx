@@ -333,7 +333,7 @@ export const UnitHeaderNavFooter = (props: UnitHeaderNavFooterProps) => {
         </FadeInFlex>
       </MobileAnimatedShell>
       {/* Switch only after the initial footer has completely left the viewport. */}
-      <div style={{ height: "1px" }} ref={sentinelRef} />
+      <div style={{ height: "1px", marginTop: "-1px" }} ref={sentinelRef} />
     </>
   );
 };

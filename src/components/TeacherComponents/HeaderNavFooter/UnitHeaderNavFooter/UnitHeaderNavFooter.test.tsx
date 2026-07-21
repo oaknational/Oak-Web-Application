@@ -119,16 +119,13 @@ describe("UnitHeaderNavFooter", () => {
 
     const { unmount } = render(<UnitHeaderNavFooter {...defaultProps} />);
 
-    expect(addEventListener).toHaveBeenCalledWith(
-      "resize",
-      expect.any(Function),
-    );
+    const resizeHandler = addEventListener.mock.calls.find(
+      ([eventName]) => eventName === "resize",
+    )?.[1];
+    expect(resizeHandler).toEqual(expect.any(Function));
 
     unmount();
-    expect(removeEventListener).toHaveBeenCalledWith(
-      "resize",
-      expect.any(Function),
-    );
+    expect(removeEventListener).toHaveBeenCalledWith("resize", resizeHandler);
 
     Object.defineProperty(window, "ResizeObserver", {
       configurable: true,
