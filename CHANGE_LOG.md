@@ -1,3 +1,10 @@
+## [1.1130.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.1130.0...v1.1130.1) (2026-07-21)
+
+
+### Bug Fixes
+
+* sort by year then unit for swimming ([2406d73](https://github.com/oaknational/Oak-Web-Application/commit/2406d738bec152b71398d914b129cad6f74a22d4))
+
 # [1.1130.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1129.2...v1.1130.0) (2026-07-20)
 
 
