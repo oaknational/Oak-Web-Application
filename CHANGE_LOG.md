@@ -1,3 +1,28 @@
+# [1.1131.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1130.1...v1.1131.0) (2026-07-21)
+
+
+### Bug Fixes
+
+* case studys fixture ([db1782f](https://github.com/oaknational/Oak-Web-Application/commit/db1782f8b445381a681e8df027e62f8c80414722))
+* remove comment ([d1496c1](https://github.com/oaknational/Oak-Web-Application/commit/d1496c123fcfee8a35e15b1ce772c0a74a17cc27))
+* remove unnecessary deprecated merge doc ([0a9ea40](https://github.com/oaknational/Oak-Web-Application/commit/0a9ea407c0611cc0c6925c9471d6230d02c14951))
+* row template ([5a00677](https://github.com/oaknational/Oak-Web-Application/commit/5a00677ef1b608fe9661f0575901beec3d81094e))
+* sanity image url ([2af3b65](https://github.com/oaknational/Oak-Web-Application/commit/2af3b654ece21d2f6965bcb7e5f731cf723d78cb))
+* snaps ([9f585d0](https://github.com/oaknational/Oak-Web-Application/commit/9f585d0163d320d2fe57a4bcfbe1a3a0bf3b5ee7))
+* snaps ([86853b8](https://github.com/oaknational/Oak-Web-Application/commit/86853b8310b2392308fec4bc046d70b953c0e4ff))
+* snaps ([14ad15b](https://github.com/oaknational/Oak-Web-Application/commit/14ad15b2c86733361ff63b2d274f34bdd227724b))
+* tests and snaps ([b7859a7](https://github.com/oaknational/Oak-Web-Application/commit/b7859a7d334afea985b5783ef6cf7eaeee4ed072))
+* update image urls for storybook variety ([f6c5794](https://github.com/oaknational/Oak-Web-Application/commit/f6c5794bea9ce8cc387fd95df05596da8d0eb241))
+* use grid > flex ([efdf72c](https://github.com/oaknational/Oak-Web-Application/commit/efdf72cb86591fc3f889a57c9358e50b110a0ee1))
+
+
+### Features
+
+* add caseStudy schemas and use in about pages schemas ([6f64e12](https://github.com/oaknational/Oak-Web-Application/commit/6f64e124207ccc057170943274d6927c4a8a2efd))
+* update query and sdk ([0cef21b](https://github.com/oaknational/Oak-Web-Application/commit/0cef21bd12713924b5b3d56b64a488bdbd6a3557))
+* use caseStudy refs in case studies comp ([5822482](https://github.com/oaknational/Oak-Web-Application/commit/5822482928cae317244df520537f97c70c59ec62))
+* use irl data ([a1223a8](https://github.com/oaknational/Oak-Web-Application/commit/a1223a8ec2ec57e5d77ab99f36e73a939bfe2c58))
+
 ## [1.1130.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.1130.0...v1.1130.1) (2026-07-21)
 
 
