@@ -9,7 +9,7 @@ export default {
 
 export const LessonAppearsInPathwayCard = {
   args: {
-    headingTag: "h2",
+    headingTag: "h3",
     examBoardTagColor: "lavender",
     unitSlug: "unit-slug",
     examBoardTitle: "AQA",
