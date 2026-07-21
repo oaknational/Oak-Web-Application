@@ -15,12 +15,12 @@ import {
   AboutSharedHeaderImage,
 } from "@/components/GenericPagesComponents/AboutSharedHeader";
 import { OaksImpactCaseStudies } from "@/components/GenericPagesComponents/OaksImpactCaseStudies";
-import { oaksImpactCaseStudiesFixture } from "@/components/GenericPagesComponents/OaksImpactCaseStudies/OaksImpactCaseStudies.fixtures";
 import { SupportYou } from "@/components/GenericPagesComponents/SupportYou";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 import getPageProps from "@/node-lib/getPageProps";
 import { getFeatureFlag } from "@/node-lib/posthog/getFeatureFlag";
 import { getPosthogIdFromCookie } from "@/node-lib/posthog/getPosthogId";
+import { OaksImpactStats } from "@/components/GenericPagesComponents/OaksImpactStats";
 import CMSClient from "@/node-lib/cms";
 import { OaksImpactPage } from "@/common-lib/cms-types";
 
@@ -49,15 +49,10 @@ const OaksImpact: NextPage<OaksImpactPageProps> = ({ topNav, pageData }) => {
         >
           <AboutSharedHeaderImage imageUrl={placeholderImage.url} />
         </AboutSharedHeader>
-        <OakBox
-          $ma={"spacing-48"}
-          $pa={"spacing-48"}
-          $borderColor="red"
-          $ba="border-solid-xxl"
-        >
-          TODO: Stats
-        </OakBox>
-        <OaksImpactCaseStudies caseStudies={oaksImpactCaseStudiesFixture} />
+        <OaksImpactStats {...pageData.statsSection} />
+        <OaksImpactCaseStudies
+          caseStudies={pageData.caseStudiesSection.caseStudies}
+        />
         <OakBox
           $ma={"spacing-48"}
           $pa={"spacing-48"}

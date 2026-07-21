@@ -1,4 +1,3 @@
-import React from "react";
 import type { Meta, StoryObj } from "@storybook/nextjs";
 
 import { Testimonials } from "./Testimonials";
@@ -15,7 +14,7 @@ type Story = StoryObj<typeof meta>;
 
 const image = {
   asset: {
-    _id: "test_quote_author",
+    _id: "image-6490d1b3cb3cb5428f87e352decc98ced68dbaba-1260x839-jpg",
     url: `https://${process.env.NEXT_PUBLIC_OAK_ASSETS_HOST}/${process.env.NEXT_PUBLIC_OAK_ASSETS_PATH}/v1698336490/test-images/test_quote_author.jpg`,
   },
 };

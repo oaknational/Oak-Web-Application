@@ -42,7 +42,6 @@ import {
 } from "@/components/TeacherComponents/helpers/lessonHelpers/lesson.helpers";
 import { LessonPathway } from "@/components/TeacherComponents/types/lesson.types";
 import DownloadPageWithAccordion from "@/components/TeacherComponents/DownloadPageWithAccordion";
-import DownloadConfirmation from "@/components/TeacherComponents/DownloadConfirmation";
 import {
   LessonDownloadsPageData,
   NextLesson,
@@ -150,8 +149,6 @@ export function LessonDownloads(props: Readonly<LessonDownloadsProps>) {
         return nextLesson.lessonSlug;
       })
     : [];
-
-  const { onwardContentSelected } = track;
 
   const downloadsFilteredByCopyright = useMemo(
     () => getResourcesWithoutLegacyCopyright(downloads, legacyCopyrightContent),
@@ -365,37 +362,6 @@ export function LessonDownloads(props: Readonly<LessonDownloadsProps>) {
               programmeSlug: programmeSlug!,
               unitSlug: unitSlug!,
             })}
-          />
-        )}
-        {!showGeoBlocked && isDownloadSuccessful && (
-          <DownloadConfirmation
-            lessonSlug={lessonSlug}
-            lessonTitle={lessonTitle}
-            unitSlug={unitSlug}
-            unitTitle={unitTitle}
-            programmeSlug={programmeSlug}
-            data-testid="downloads-confirmation"
-            isCanonical={false}
-            nextLessons={lesson.nextLessons}
-            onwardContentSelected={(props) => {
-              onwardContentSelected({
-                ...props,
-                lessonReleaseCohort: isLegacyDownload
-                  ? "2020-2023"
-                  : "2023-2026",
-                lessonReleaseDate: lessonReleaseDate ?? "unreleased",
-              });
-            }}
-            subjectSlug={subjectSlug}
-            subjectTitle={subjectTitle}
-            keyStageSlug={keyStageSlug === undefined ? null : keyStageSlug}
-            keyStageTitle={
-              keyStageTitle === undefined
-                ? null
-                : (keyStageTitle as KeyStageTitleValueType)
-            }
-            isLegacy={isLegacyDownload}
-            lessonReleaseDate={lessonReleaseDate ?? "unreleased"}
           />
         )}
         {!showGeoBlocked && !isDownloadSuccessful && (

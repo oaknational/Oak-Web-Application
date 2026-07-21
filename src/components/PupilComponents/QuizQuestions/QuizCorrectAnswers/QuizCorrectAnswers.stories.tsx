@@ -2,8 +2,17 @@ import type { Meta, StoryObj } from "@storybook/nextjs";
 
 import { QuizCorrectAnswers } from "./QuizCorrectAnswers";
 
+import { MathJaxProvider } from "@/browser-lib/mathjax/MathJaxProvider";
+
 const meta = {
   component: QuizCorrectAnswers,
+  decorators: [
+    (Story) => (
+      <MathJaxProvider>
+        <Story />
+      </MathJaxProvider>
+    ),
+  ],
 } satisfies Meta<typeof QuizCorrectAnswers>;
 
 export default meta;
