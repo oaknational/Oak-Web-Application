@@ -4,8 +4,7 @@ import {
 } from "@oaknational/oak-components";
 import { useOakConsent } from "@oaknational/oak-consent-client";
 
-import { useTeacherShareButton } from "../TeacherShareButton/useTeacherShareButton";
-
+import { useCopyLink } from "@/hooks/useCopyLink";
 import { TeacherShareButton } from "@/components/TeacherComponents/TeacherShareButton/TeacherShareButton";
 import { useComplexCopyright } from "@/hooks/useComplexCopyright";
 
@@ -38,9 +37,9 @@ export const TeacherShareNotesButton = ({
       ? OakSmallPrimaryInvertedButton
       : OakSmallSecondaryButton;
   const { state } = useOakConsent();
-  const { handleClick } = useTeacherShareButton({
-    shareUrl,
-    shareActivated,
+  const { handleClick } = useCopyLink({
+    linkToCopy: shareUrl,
+    copyActivated: shareActivated,
   });
   if (showGeoBlocked) return null;
   const cookiesNotAccepted = !!state.policyConsents.find(

@@ -1,4 +1,3 @@
-import React from "react";
 import { StoryObj, Meta } from "@storybook/react";
 import {
   OakBreadcrumbs,
@@ -9,6 +8,7 @@ import {
 import LessonHeader from "./LessonHeader";
 
 import { getCloudinaryImageUrl } from "@/utils/getCloudinaryImageUrl";
+import TeacherBrowseAnalyticsDecorator from "@/storybook-decorators/TeacherBrowseAnalyticsDecorator";
 
 const meta: Meta<typeof LessonHeader> = {
   component: LessonHeader,
@@ -20,6 +20,7 @@ const meta: Meta<typeof LessonHeader> = {
     },
   },
   decorators: [
+    TeacherBrowseAnalyticsDecorator,
     (Story) => (
       <OakThemeProvider theme={oakDefaultTheme}>
         <Story />

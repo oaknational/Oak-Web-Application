@@ -30,7 +30,7 @@ export default {
     name: "@storybook/nextjs",
     options: {
       builder: {
-        lazyCompilation: true,
+        lazyCompilation: !process.env.STORYBOOK_TEST,
       },
     },
   },
@@ -72,6 +72,11 @@ export default {
       {
         test: /\.svg$/i,
         use: ["@svgr/webpack"],
+      },
+      {
+        test: /\.mjs$/,
+        include: /node_modules/,
+        type: "javascript/auto",
       },
     ];
 
