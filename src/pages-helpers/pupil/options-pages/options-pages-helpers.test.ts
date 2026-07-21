@@ -7,7 +7,7 @@ import {
   isExamboardSlug,
 } from "./options-pages-helpers";
 
-import * as curriculumApi2023 from "@/node-lib/curriculum-api-2023/__mocks__/index";
+import * as curriculumApi2023 from "@/node-lib/curriculum-api-2023/__mocks__/curriculumApi2023Mock";
 import { programmeFieldsFixture } from "@/node-lib/curriculum-api-2023/fixtures/programmeFields.fixture";
 import { PupilProgrammeListingData } from "@/node-lib/curriculum-api-2023/queries/pupilProgrammeListing/pupilProgrammeListing.schema";
 import OakError from "@/errors/OakError";

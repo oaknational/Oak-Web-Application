@@ -1,26 +1,30 @@
-import { Meta } from "@storybook/nextjs";
+import { Meta, StoryObj } from "@storybook/nextjs";
 
 import Component from "./SearchResultsItem";
 
 import AnalyticsDecorator from "@/storybook-decorators/AnalyticsDecorator";
-import elasticResponseFixture from "@/context/Search/search-api/2023/elasticResponse.2023.fixture.json";
+import { hitsFixture } from "@/context/Search/search-api/2023/searchResults.fixture";
 import keyStagesFixture from "@/node-lib/curriculum-api-2023/fixtures/keyStages.fixture";
-import { searchResultsHitSchema } from "@/context/Search/search.schema";
 import { getSearchHitObject } from "@/app/(core)/teachers/search/helpers/index";
 
-export default {
+const meta = {
   decorators: [AnalyticsDecorator],
   component: Component,
   argTypes: {},
-} as Meta<typeof Component>;
+} satisfies Meta<typeof Component>;
 
-const hit = searchResultsHitSchema.parse(elasticResponseFixture.hits.hits[0]);
+export default meta;
+
+const hit = hitsFixture[0]!;
 
 const allKeyStages = keyStagesFixture().keyStages;
-const searchHitObject = getSearchHitObject(hit, allKeyStages);
+const searchHitObject = getSearchHitObject(hit, allKeyStages)!;
 
-export const SearchResultsItem = {
+type Story = StoryObj<typeof meta>;
+
+export const SearchResultsItem: Story = {
   args: {
     ...searchHitObject,
   },
+  render: (args) => <Component {...args} />,
 };
