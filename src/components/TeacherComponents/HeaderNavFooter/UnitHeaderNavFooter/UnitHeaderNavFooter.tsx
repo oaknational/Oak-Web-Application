@@ -241,9 +241,16 @@ export const UnitHeaderNavFooter = (props: UnitHeaderNavFooterProps) => {
 
   return (
     <>
-      {isStuck && <MobileFlowPlaceholder $height={mobileFlowHeight} />}
+      {isStuck && (
+        <MobileFlowPlaceholder
+          data-testid="unit-header-nav-footer-placeholder"
+          $height={mobileFlowHeight}
+        />
+      )}
       <MobileAnimatedShell
         ref={shellRef}
+        data-testid="unit-header-nav-footer"
+        data-stuck={Boolean(isStuck)}
         $animateIn={isStuck}
         $zIndex={"in-front"}
         {...shell}
