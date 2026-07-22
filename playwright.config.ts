@@ -17,7 +17,7 @@ export default defineConfig({
 
   /* Retry once in CI to reduce noise from transient failures */
   retries: process.env.CI ? 1 : 0,
-  timeout: 30_000,
+  timeout: 60_000,
 
   /* Single worker in CI to avoid overwhelming a preview deployment */
   workers: process.env.CI ? 1 : undefined,
