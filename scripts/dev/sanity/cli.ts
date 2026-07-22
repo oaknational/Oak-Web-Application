@@ -1,6 +1,6 @@
 #!/usr/bin/env ./node_modules/.bin/tsx
-import { readFile } from "fs/promises";
-import { join } from "path";
+import { readFile } from "node:fs/promises";
+import { join } from "node:path";
 
 import "dotenv/config";
 import yargs from "yargs/yargs";
