@@ -41,10 +41,11 @@ export const OaksImpactCaseStudies = ({
                 as="li"
                 key={caseStudy.slug.current}
                 $colSpan={[12, 4]}
-                $colStart={[
-                  1,
-                  caseStudies.length === 2 ? (index === 0 ? 3 : 7) : undefined,
-                ]}
+                $colStart={
+                  caseStudies.length === 2
+                    ? [1, index === 0 ? 3 : 7]
+                    : [1, undefined]
+                }
               >
                 <OakCard
                   heading={caseStudy.video.title || ""}
