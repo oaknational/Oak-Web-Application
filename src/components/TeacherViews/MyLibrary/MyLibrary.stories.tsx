@@ -1,4 +1,3 @@
-import React from "react";
 import { Meta, StoryObj } from "@storybook/nextjs";
 import { oakDefaultTheme, OakThemeProvider } from "@oaknational/oak-components";
 
@@ -6,7 +5,7 @@ import MyLibrary from "./MyLibrary";
 
 import { generateMockCollectionData } from "@/fixtures/teachers/myLibrary/collectionData";
 
-const meta: Meta<typeof MyLibrary> = {
+const meta = {
   component: MyLibrary,
   tags: ["autodocs"],
   argTypes: {
@@ -27,10 +26,10 @@ const meta: Meta<typeof MyLibrary> = {
       },
     },
   },
-};
+} satisfies Meta<typeof MyLibrary>;
 export default meta;
 
-type Story = StoryObj<typeof MyLibrary>;
+type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   render: (args) => (

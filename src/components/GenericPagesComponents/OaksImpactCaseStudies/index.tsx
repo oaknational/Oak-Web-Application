@@ -2,18 +2,16 @@ import {
   OakBox,
   OakCard,
   OakFlex,
+  OakGrid,
   OakHeading,
 } from "@oaknational/oak-components";
 
+import { CaseStudyCard } from "@/common-lib/cms-types/caseStudy";
+import getProxiedSanityAssetUrl from "@/common-lib/urls/getProxiedSanityAssetUrl";
 import { NewGutterMaxWidth } from "@/components/GenericPagesComponents/NewGutterMaxWidth";
 
 export type OaksImpactCaseStudiesProps = {
-  caseStudies: {
-    heading: string;
-    href: string;
-    imageSrc: string;
-    linkText?: string;
-  }[];
+  caseStudies: CaseStudyCard[];
 };
 
 export const OaksImpactCaseStudies = ({
@@ -30,27 +28,33 @@ export const OaksImpactCaseStudies = ({
           <OakHeading tag={"h2"} $font={["heading-5", "heading-3"]}>
             Case studies
           </OakHeading>
-          <OakFlex
+          <OakGrid
             as="ul"
-            $gap={"spacing-16"}
-            $flexDirection={["column", "row"]}
+            $gridTemplateColumns={[
+              "1fr",
+              "repeat(auto-fit, minmax(200px, 1fr))",
+            ]}
+            $cg={"spacing-16"}
+            $rg={"spacing-16"}
             $pa={"spacing-0"}
             $ma={"spacing-0"}
           >
             {caseStudies.map((caseStudy) => (
               <OakCard
                 as="li"
-                key={caseStudy.heading}
-                heading={caseStudy.heading}
+                key={caseStudy.slug.current}
+                heading={caseStudy.video.title || ""}
                 headingLevel={"div"}
-                href={caseStudy.href}
-                imageSrc={caseStudy.imageSrc}
+                href={`#/case-studies/${caseStudy.slug.current}`}
+                imageSrc={
+                  getProxiedSanityAssetUrl(caseStudy.image?.asset?.url) ?? ""
+                }
                 aspectRatio="4/3"
-                linkText={caseStudy.linkText || "Watch the video"}
+                linkText={"Watch the video"}
                 cardWidth={"100%"}
               />
             ))}
-          </OakFlex>
+          </OakGrid>
         </OakFlex>
       </NewGutterMaxWidth>
     </OakBox>
