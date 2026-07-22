@@ -1,3 +1,23 @@
+## [1.1134.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.1134.0...v1.1134.1) (2026-07-22)
+
+
+### Bug Fixes
+
+* remove flickering on download header footer ([a0439c8](https://github.com/oaknational/Oak-Web-Application/commit/a0439c876ae184eb0841d47228419319af3b053f))
+
+# [1.1134.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1133.0...v1.1134.0) (2026-07-22)
+
+
+### Bug Fixes
+
+* groq scripts ([5f02f1d](https://github.com/oaknational/Oak-Web-Application/commit/5f02f1d281a64707d05a912037e62467953cbb57))
+* incorrect script name updated ([8af90bd](https://github.com/oaknational/Oak-Web-Application/commit/8af90bda3764e2d23d25a710f7f5f40f3a40063b))
+
+
+### Features
+
+* added sanity script to the CLI ([bad8879](https://github.com/oaknational/Oak-Web-Application/commit/bad8879401e2d682d2080fa0caeb430978ddc284))
+
 # [1.1133.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1132.1...v1.1133.0) (2026-07-22)
 
 
