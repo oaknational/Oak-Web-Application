@@ -1,13 +1,14 @@
-import React from "react";
 import { StoryObj, Meta } from "@storybook/nextjs";
 import { OakBreadcrumbs } from "@oaknational/oak-components";
 import { fn, mocked } from "storybook/test";
 
+import useUnitDownloadExistenceCheck from "../../../../../../../../../../components/TeacherComponents/hooks/downloadAndShareHooks/useUnitDownloadExistenceCheck";
+
 import UnitHeader, { UnitHeaderProps } from "./UnitHeader";
 
-import useUnitDownloadExistenceCheck from "@/components/TeacherComponents/hooks/downloadAndShareHooks/useUnitDownloadExistenceCheck";
 import TeacherBrowseAnalyticsDecorator from "@/storybook-decorators/TeacherBrowseAnalyticsDecorator";
 import NotificationsDecorator from "@/storybook-decorators/NotificationsDecorator";
+import { __setMockAuthState } from "@/storybook-mocks/clerk";
 
 const meta: Meta<typeof UnitHeader> = {
   component: UnitHeader,
@@ -42,7 +43,14 @@ const meta: Meta<typeof UnitHeader> = {
       ],
     },
   },
-  decorators: [NotificationsDecorator, TeacherBrowseAnalyticsDecorator],
+  decorators: [
+    NotificationsDecorator,
+    TeacherBrowseAnalyticsDecorator,
+    (Story) => {
+      __setMockAuthState({ isSignedIn: true });
+      return <Story />;
+    },
+  ],
 };
 
 export default meta;
