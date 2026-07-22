@@ -1,0 +1,60 @@
+query oaksImpactPage($isDraftFilter: Sanity_DocumentFilter) {
+  allNewAboutCorePageOaksImpact(
+    where: {
+      _: $isDraftFilter
+      _id: { matches: "*newAboutCorePage.oaksImpact" }
+    }
+    sort: { _updatedAt: DESC }
+    limit: 1
+  ) {
+    id: _id
+    header {
+      introText
+      video {
+        ...Video
+      }
+      videoDescription
+    }
+    statsSection {
+      textBlock {
+        ...TextBlock
+      }
+      stats {
+        icon {
+          ...ImageWithAltTextAndDarkMode
+        }
+        heading
+        textRaw
+      }
+    }
+    caseStudiesSection {
+      caseStudies {
+        video {
+          ...Video
+        }
+        slug {
+          current
+        }
+        image {
+          ...ImageWithAltText
+        }
+        textRaw
+      }
+    }
+    schoolQuotes {
+      heading
+      cards {
+        logo {
+          ...ImageWithAltText
+        }
+        summary
+        quote {
+          ...Quote
+        }
+        headshot {
+          ...ImageWithAltText
+        }
+      }
+    }
+  }
+}

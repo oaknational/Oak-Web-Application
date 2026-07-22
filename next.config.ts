@@ -405,6 +405,16 @@ export default async (phase: NextConfig["phase"]): Promise<NextConfig> => {
             "/pupils/programmes/:programmeSlug/units/:unitSlug/lessons/:lessonSlug/overview",
           permanent: true,
         },
+        {
+          source: "/pupils",
+          destination: "/pupils/years",
+          permanent: true,
+        },
+        {
+          source: "/ai",
+          destination: "https://labs.thenational.academy/",
+          permanent: true,
+        },
       ];
 
       const aboutUsRedirects = [

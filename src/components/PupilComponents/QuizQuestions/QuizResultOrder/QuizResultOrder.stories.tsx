@@ -40,7 +40,7 @@ export const CorrectOrder: Story = {
   args: {
     answers: orderAnswers,
     feedback: ["correct", "correct", "correct", "correct"],
-    pupilAnswers: [0, 1, 2, 3],
+    pupilAnswers: [1, 2, 3, 4],
   },
 };
 
@@ -51,6 +51,6 @@ export const IncorrectOrder: Story = {
   args: {
     answers: orderAnswers,
     feedback: ["correct", "incorrect", "correct", "incorrect"],
-    pupilAnswers: [0, 3, 2, 1],
+    pupilAnswers: [3, 2, 1, 4],
   },
 };

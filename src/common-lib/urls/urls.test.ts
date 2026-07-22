@@ -73,15 +73,6 @@ describe("urls.ts", () => {
       };
       expect(resolveOakHref(props)).toBe("/webinars?page=6");
     });
-    it("Unit listing", () => {
-      const props: ResolveOakHrefProps = {
-        page: "unit-index",
-        programmeSlug: "primary-ks2-maths",
-      };
-      expect(resolveOakHref(props)).toBe(
-        "/teachers/programmes/primary-ks2-maths/units",
-      );
-    });
     it("Unit overview", () => {
       expect(
         resolveOakHref({
@@ -91,17 +82,6 @@ describe("urls.ts", () => {
         }),
       ).toBe(
         "/teachers/programmes/primary-ks2-maths/units/geometry-349/lessons",
-      );
-    });
-    it("Unit listing with query", () => {
-      expect(
-        resolveOakHref({
-          page: "unit-index",
-          programmeSlug: "primary-ks2-maths",
-          search: { "learning-theme": "circls" },
-        }),
-      ).toBe(
-        "/teachers/programmes/primary-ks2-maths/units?learning-theme=circls",
       );
     });
     it("Lesson overview", () => {

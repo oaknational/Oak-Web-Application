@@ -42,7 +42,8 @@ export type ErrorCode =
   | "educator-api/failed-to-save-unit"
   | "educator-api/failed-to-get-saved-units"
   | "educator-api/failed-to-unsave-unit"
-  | "graphql/timeout";
+  | "graphql/timeout"
+  | "analytics/teacher-browse";
 
 type ErrorConfig = {
   // Message intended for developer's convenience. Human error messages should probably be handled in the view layer
@@ -226,6 +227,10 @@ const errorConfigs: Record<ErrorCode, ErrorConfig> = {
   },
   "graphql/timeout": {
     message: "Graphql timeout error",
+    shouldNotify: true,
+  },
+  "analytics/teacher-browse": {
+    message: "Invalid browse level for analytics event",
     shouldNotify: true,
   },
 };

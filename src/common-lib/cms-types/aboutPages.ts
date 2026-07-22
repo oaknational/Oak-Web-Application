@@ -1,8 +1,17 @@
 import * as z from "zod";
 
-import { attachmentSchema, imageSchema, seoSchema } from "./base";
+import {
+  attachmentSchema,
+  imageSchema,
+  imageWithAltTextAndDarkModeSchema,
+  quoteSchema,
+  seoSchema,
+  videoSchema,
+} from "./base";
 import { portableTextSchema } from "./portableText";
 import { teamMemberSchema } from "./teamMember";
+import { textBlockSchema } from "./blocks";
+import { caseStudyCardSchema } from "./caseStudy";
 
 // Oak's Curricula Page
 export const oaksCurriculaPageHeaderSchema = z.object({
@@ -139,6 +148,51 @@ export const getInvolvedPageSchema = z.object({
 });
 
 export type GetInvolvedPage = z.infer<typeof getInvolvedPageSchema>;
+
+// Oak's Impact Page
+
+export const oaksImpactPageHeaderSchema = z.object({
+  introText: z.string(),
+  video: videoSchema,
+  videoDescription: z.string(),
+});
+
+export const oaksImpactPageStatsSchema = z.object({
+  icon: imageWithAltTextAndDarkModeSchema,
+  heading: z.string(),
+  textRaw: portableTextSchema,
+});
+
+export const oaksImpactPageStatsSectionSchema = z.object({
+  textBlock: textBlockSchema,
+  stats: z.array(oaksImpactPageStatsSchema),
+});
+
+export const oaksImpactPageCaseStudiesSectionSchema = z.object({
+  caseStudies: z.array(caseStudyCardSchema),
+});
+
+export const oaksImpactSchoolQuoteCardSchema = z.object({
+  logo: imageSchema,
+  summary: z.string(),
+  quote: quoteSchema,
+  headshot: imageSchema,
+});
+
+export const oaksImpactPageSchoolQuotesSchema = z.object({
+  heading: z.string(),
+  cards: z.array(oaksImpactSchoolQuoteCardSchema),
+});
+
+export const oaksImpactPageSchema = z.object({
+  header: oaksImpactPageHeaderSchema,
+  statsSection: oaksImpactPageStatsSectionSchema,
+  caseStudiesSection: oaksImpactPageCaseStudiesSectionSchema,
+  schoolQuotes: oaksImpactPageSchoolQuotesSchema,
+  seo: seoSchema.nullish(),
+});
+
+export type OaksImpactPage = z.infer<typeof oaksImpactPageSchema>;
 
 // Aliases for about pages (old naming convention - mapping new queries to existing schemas)
 export const aboutWhoWeArePageSchema = whoWeArePageSchema;

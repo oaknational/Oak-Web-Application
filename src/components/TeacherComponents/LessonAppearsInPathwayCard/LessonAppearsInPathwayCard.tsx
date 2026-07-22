@@ -1,13 +1,15 @@
+import Link from "next/link";
 import {
   OakHeading,
   OakHeadingTag,
   OakSpan,
   OakFlex,
+  OakTertiaryButton,
 } from "@oaknational/oak-components";
 
-import ButtonAsLink from "@/components/SharedComponents/Button/ButtonAsLink";
 import { TagFunctional } from "@/components/SharedComponents/TagFunctional";
 import { TagColor } from "@/components/SharedComponents/TagFunctional/TagFunctional";
+import { resolveOakHref } from "@/common-lib/urls";
 
 type LessonAppearsInPathwayCardProps = {
   headingTag: OakHeadingTag;
@@ -53,23 +55,28 @@ export function LessonAppearsInPathwayCard(
           <OakSpan $font="heading-5">{subjectTitle}</OakSpan>
         </OakFlex>
       </OakHeading>
-      <OakFlex $flexDirection={["row"]} $pa="spacing-16" $flexWrap="wrap">
-        {tiers.map(({ tierTitle, programmeSlug }, i) => {
+      <OakFlex
+        $flexDirection={["row"]}
+        $pa="spacing-16"
+        $flexWrap="wrap"
+        $gap={"spacing-24"}
+      >
+        {tiers.map(({ tierTitle, programmeSlug }) => {
           const label = tierTitle ? `Show ${tierTitle} unit` : "Show unit";
           return (
-            <ButtonAsLink
+            <OakTertiaryButton
+              element={Link}
               key={`tier-${programmeSlug}-${unitSlug}`}
-              variant="minimal"
-              size="small"
-              label={label}
-              page="unit-overview"
-              programmeSlug={programmeSlug}
-              unitSlug={unitSlug}
-              icon="chevron-right"
-              $iconPosition="trailing"
-              $mr={i === tiers.length ? 0 : 24}
-              $hoverStyles={["underline-link-text"]}
-            />
+              href={resolveOakHref({
+                page: "unit-overview",
+                programmeSlug,
+                unitSlug,
+              })}
+              iconName="chevron-right"
+              isTrailingIcon={true}
+            >
+              {label}
+            </OakTertiaryButton>
           );
         })}
       </OakFlex>
