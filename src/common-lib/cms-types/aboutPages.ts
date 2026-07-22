@@ -11,7 +11,7 @@ import {
 import { portableTextSchema } from "./portableText";
 import { teamMemberSchema } from "./teamMember";
 import { textBlockSchema } from "./blocks";
-import { caseStudyCardSchema } from "./caseStudy";
+import { caseStudyCardSchema, caseStudySchema } from "./caseStudy";
 
 // Oak's Curricula Page
 export const oaksCurriculaPageHeaderSchema = z.object({
@@ -194,14 +194,7 @@ export const oaksImpactPageSchema = z.object({
 
 export type OaksImpactPage = z.infer<typeof oaksImpactPageSchema>;
 
-export const oaksImpactCaseStudyPageSchema = z.object({
-  image: imageSchema,
-  slug: z.object({
-    current: z.string(),
-  }),
-  textRaw: portableTextSchema,
-  video: videoSchema,
-});
+export const oaksImpactCaseStudyPageSchema = caseStudySchema;
 
 export type OaksImpactCaseStudyPage = z.infer<
   typeof oaksImpactCaseStudyPageSchema
