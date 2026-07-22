@@ -1,3 +1,3 @@
-*[_type == "video" && fieldForCaptionsDoNotUse != null] {
+*[_type == "video" && fieldForCaptionsDoNotUse == null] {
   ...
 }
