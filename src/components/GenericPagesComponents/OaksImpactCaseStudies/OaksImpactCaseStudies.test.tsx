@@ -18,4 +18,34 @@ describe("OaksImpactCaseStudies", () => {
       getAllByRole("link", { name: /case study [1-3] watch the video/i }),
     ).toHaveLength(3);
   });
+
+  it("renders only the first 3 case studies when more are provided", () => {
+    const caseStudiesWithFourth = [
+      ...oaksImpactCaseStudiesFixture,
+      {
+        video: {
+          title: "Case study 4",
+        },
+        slug: {
+          current: "case-study-4",
+        },
+        image: {
+          asset: {
+            _id: "id-4",
+            url: "https://res.cloudinary.com/oak-web-application/image/upload/v1698336494/samples/food/spices.jpg",
+          },
+        },
+        text: "Some text about case study 4",
+      },
+    ];
+
+    const { getAllByRole, queryByRole } = render(
+      <OaksImpactCaseStudies caseStudies={caseStudiesWithFourth} />,
+    );
+
+    expect(getAllByRole("link", { name: /watch the video/i })).toHaveLength(3);
+    expect(
+      queryByRole("link", { name: /case study 4 watch the video/i }),
+    ).not.toBeInTheDocument();
+  });
 });

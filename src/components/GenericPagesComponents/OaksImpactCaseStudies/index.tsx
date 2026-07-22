@@ -36,7 +36,7 @@ export const OaksImpactCaseStudies = ({
             $pa={"spacing-0"}
             $ma={"spacing-0"}
           >
-            {caseStudies.map((caseStudy, index) => (
+            {caseStudies.slice(0, 3).map((caseStudy, index) => (
               <OakGridArea
                 as="li"
                 key={caseStudy.slug.current}
