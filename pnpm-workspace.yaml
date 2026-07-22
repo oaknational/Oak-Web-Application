@@ -18,6 +18,7 @@ allowBuilds:
   re2: true
   sharp: true
   unrs-resolver: true
+  '@oaknational/oak-components': false
 overrides:
   # Security pins for transitive critical/high advisories (Dependagames June 2026).
   protobufjs: ">=7.5.9"
