@@ -1,3 +1,10 @@
+## [1.1132.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.1132.0...v1.1132.1) (2026-07-22)
+
+
+### Bug Fixes
+
+* set z index on oak toast to modal-dialog ([3572575](https://github.com/oaknational/Oak-Web-Application/commit/35725756ea61687e1a1ac6b310e185aad41baef3))
+
 # [1.1132.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1131.1...v1.1132.0) (2026-07-21)
 
 
