@@ -7,7 +7,7 @@ import { renderWithProvidersByName } from "@/__tests__/__helpers__/renderWithPro
 const render = renderWithProvidersByName(["oakTheme"]);
 
 describe("OaksImpactCaseStudies", () => {
-  it("renders correctly", () => {
+  it("renders correctly when 3 case studies are provided", () => {
     const { baseElement, getByRole, getAllByRole } = render(
       <OaksImpactCaseStudies caseStudies={oaksImpactCaseStudiesFixture} />,
     );
@@ -17,6 +17,20 @@ describe("OaksImpactCaseStudies", () => {
     expect(
       getAllByRole("link", { name: /case study [1-3] watch the video/i }),
     ).toHaveLength(3);
+  });
+
+  it("renders correctly when 2 case studies are provided", () => {
+    const { baseElement, getByRole, getAllByRole } = render(
+      <OaksImpactCaseStudies
+        caseStudies={oaksImpactCaseStudiesFixture.slice(0, 2)}
+      />,
+    );
+
+    expect(baseElement).toMatchSnapshot();
+    expect(getByRole("heading", { name: "Case studies" })).toBeInTheDocument();
+    expect(
+      getAllByRole("link", { name: /case study [1-2] watch the video/i }),
+    ).toHaveLength(2);
   });
 
   it("renders only the first 3 case studies when more are provided", () => {
