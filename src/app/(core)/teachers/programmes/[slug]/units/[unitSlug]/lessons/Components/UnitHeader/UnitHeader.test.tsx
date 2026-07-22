@@ -1,8 +1,8 @@
 import { screen } from "@testing-library/dom";
-import { act } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 
 import UnitHeader, { UnitHeaderProps } from "./UnitHeader";
+import { useStickyUnitHeader } from "./useStickyUnitHeader";
 
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 import { setUseUserReturn } from "@/__tests__/__helpers__/mockClerk";
@@ -46,6 +46,13 @@ jest.mock(
   }),
 );
 
+jest.mock("./useStickyUnitHeader", () => ({
+  useStickyUnitHeader: jest.fn(() => ({
+    sentinelRef: { current: null },
+    isStuck: false,
+  })),
+}));
+
 const render = renderWithProviders();
 
 const baseProps = teachersUnitOverviewFixture();
@@ -87,6 +94,8 @@ const mockAdjacentUnit = {
   slug: "adjacent-unit",
   title: "Adjacent unit",
 } as UnitHeaderProps["nextUnit"];
+
+const mockedUseStickyUnitHeader = jest.mocked(useStickyUnitHeader);
 
 describe("UnitHeader", () => {
   beforeEach(() => {
@@ -146,99 +155,29 @@ describe("UnitHeader", () => {
   });
 
   describe("Sticky Nav Footer", () => {
-    const observe = jest.fn();
-    const disconnect = jest.fn();
-    const intersectionObserver = {
-      disconnect,
-      observe,
-      root: null,
-      rootMargin: "-1px 0px 0px",
-      takeRecords: jest.fn(() => []),
-      thresholds: [0],
-      unobserve: jest.fn(),
-    } as unknown as IntersectionObserver;
-
-    let intersectionObserverCallback: IntersectionObserverCallback;
-    let intersectionObserverSpy: jest.SpyInstance;
-
-    const triggerIntersection = ({
-      bottom,
-      isIntersecting,
-      rootTop,
-    }: {
-      bottom: number;
-      isIntersecting: boolean;
-      rootTop: number | null;
-    }) => {
-      const entry = {
-        boundingClientRect: { bottom },
-        isIntersecting,
-        rootBounds: rootTop === null ? null : { top: rootTop },
-      } as IntersectionObserverEntry;
-
-      act(() => intersectionObserverCallback([entry], intersectionObserver));
-    };
-
-    beforeEach(() => {
-      intersectionObserverSpy = jest
-        .spyOn(window, "IntersectionObserver")
-        .mockImplementation((callback, options) => {
-          if (options?.rootMargin === "-1px 0px 0px") {
-            intersectionObserverCallback = callback;
-          }
-          return intersectionObserver;
-        });
-    });
-
-    afterEach(() => {
-      intersectionObserverSpy.mockRestore();
-    });
-
-    it("only uses the stuck state after the sentinel has passed above the viewport", () => {
+    it("renders unstuck by default", () => {
       renderUnitHeader({ unitDownloadFileId: "unit-file-id" });
 
       const footer = screen.getByTestId("unit-header-nav-footer");
-      expect(observe).toHaveBeenCalledTimes(1);
       expect(footer).toHaveAttribute("data-stuck", "false");
+      expect(
+        screen.queryByTestId("unit-header-nav-footer-placeholder"),
+      ).not.toBeInTheDocument();
+    });
 
-      triggerIntersection({
-        bottom: 100,
-        isIntersecting: false,
-        rootTop: 0,
+    it("renders stuck output when hook returns stuck", () => {
+      mockedUseStickyUnitHeader.mockReturnValueOnce({
+        sentinelRef: { current: null },
+        isStuck: true,
       });
-      expect(footer).toHaveAttribute("data-stuck", "false");
 
-      triggerIntersection({
-        bottom: -1,
-        isIntersecting: false,
-        rootTop: null,
-      });
+      renderUnitHeader({ unitDownloadFileId: "unit-file-id" });
+
+      const footer = screen.getByTestId("unit-header-nav-footer");
       expect(footer).toHaveAttribute("data-stuck", "true");
       expect(
         screen.getByTestId("unit-header-nav-footer-placeholder"),
       ).toBeInTheDocument();
-
-      triggerIntersection({
-        bottom: 0,
-        isIntersecting: true,
-        rootTop: 0,
-      });
-      expect(footer).toHaveAttribute("data-stuck", "false");
-    });
-
-    it("falls back to the initial state when the observer supplies no entry", () => {
-      const { unmount } = renderUnitHeader();
-
-      act(() => intersectionObserverCallback([], intersectionObserver));
-
-      expect(screen.getByTestId("unit-header-nav-footer")).toHaveAttribute(
-        "data-stuck",
-        "false",
-      );
-
-      disconnect.mockClear();
-      unmount();
-      expect(disconnect).toHaveBeenCalled();
     });
   });
 });
