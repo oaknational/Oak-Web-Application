@@ -5,7 +5,6 @@ import { PupilLessonIntroInfoCard } from "./PupilLessonIntroInfoCard";
 
 const meta = {
   component: PupilLessonIntroInfoCard,
-  decorators: [(StoryComponent) => <StoryComponent />],
 } satisfies Meta<typeof PupilLessonIntroInfoCard>;
 
 export default meta;
