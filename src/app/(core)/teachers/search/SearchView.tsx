@@ -1,14 +1,12 @@
 "use client";
 
 import { useSearchParams, useRouter } from "next/navigation";
-import { useFeatureFlagEnabled, usePostHog } from "posthog-js/react";
-import { useUser } from "@clerk/nextjs";
-import { useEffect } from "react";
 
 import Search from "@/app/(core)/teachers/search/Search.view";
 import useSearch from "@/context/Search/useSearch";
 import useSearchFilters from "@/context/Search/useSearchFilters";
 import { SearchPageData } from "@/node-lib/curriculum-api-2023";
+import { usePostHogSessionRecording } from "@/hooks/usePostHogSessionRecording";
 
 export const SearchView = ({
   curriculumData,
@@ -17,21 +15,8 @@ export const SearchView = ({
 }) => {
   const router = useRouter();
   const searchParams = useSearchParams();
-  const postHog = usePostHog();
-  const { isSignedIn } = useUser();
-  const enabled = useFeatureFlagEnabled("enable-search-recording");
-  console.log("component", { enabled, isSignedIn });
-  useEffect(() => {
-    if (isSignedIn && enabled) {
-      console.log("useEffect", "starting recording");
-      postHog.startSessionRecording();
-    } else {
-      // important to prevent searches being recorded after a user signs out!
-      postHog.stopSessionRecording();
-    }
-  }, [enabled, isSignedIn, postHog]);
+  usePostHogSessionRecording("enable-search-recording");
 
-  console.log("Recording started:", postHog.sessionRecordingStarted());
   const {
     subjects: allSubjects,
     keyStages: allKeyStages,
