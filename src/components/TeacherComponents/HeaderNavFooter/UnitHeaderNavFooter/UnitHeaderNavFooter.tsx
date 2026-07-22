@@ -242,6 +242,7 @@ export const UnitHeaderNavFooter = (props: UnitHeaderNavFooterProps) => {
   return (
     <>
       {isStuck && (
+        /* Keeps the document flow height on mobile when the footer becomes fixed. */
         <MobileFlowPlaceholder
           data-testid="unit-header-nav-footer-placeholder"
           $height={mobileFlowHeight}
