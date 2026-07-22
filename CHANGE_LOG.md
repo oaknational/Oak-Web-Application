@@ -1,3 +1,10 @@
+## [1.1134.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.1134.0...v1.1134.1) (2026-07-22)
+
+
+### Bug Fixes
+
+* remove flickering on download header footer ([a0439c8](https://github.com/oaknational/Oak-Web-Application/commit/a0439c876ae184eb0841d47228419319af3b053f))
+
 # [1.1134.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1133.0...v1.1134.0) (2026-07-22)
 
 

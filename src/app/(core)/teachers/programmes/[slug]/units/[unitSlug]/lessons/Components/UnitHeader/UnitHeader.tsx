@@ -5,7 +5,8 @@ import {
   getMediaQuery,
 } from "@oaknational/oak-components";
 import styled from "styled-components";
-import { useRef, useState, useEffect } from "react";
+
+import { useStickyUnitHeader } from "./useStickyUnitHeader";
 
 import UnitDownloadButton, {
   useUnitDownloadButtonState,
@@ -45,28 +46,6 @@ const NegativeBorderBox = styled(OakBox)`
   }
 `;
 
-function useDetectStuck() {
-  const ref = useRef<HTMLDivElement>(null);
-
-  const [isStuck, setIsStuck] = useState<boolean>(false);
-
-  useEffect(() => {
-    if (!ref.current) {
-      return;
-    }
-
-    const observer = new IntersectionObserver(
-      ([entry]) => setIsStuck(entry ? !entry.isIntersecting : false),
-      { threshold: [0], rootMargin: "0px" },
-    );
-    observer.observe(ref.current);
-
-    return () => observer.disconnect();
-  }, []);
-
-  return { ref, isStuck };
-}
-
 const UnitHeader = (props: UnitHeaderProps) => {
   const {
     subjectPhaseSlug,
@@ -82,7 +61,7 @@ const UnitHeader = (props: UnitHeaderProps) => {
     (store) => store.track,
   );
   const { setCurrentToastProps } = useOakNotificationsContext();
-  const { ref, isStuck } = useDetectStuck();
+  const { sentinelRef, isStuck } = useStickyUnitHeader();
 
   const backgroundColorLevel = phase === "primary" ? 4 : 3;
 
@@ -133,7 +112,7 @@ const UnitHeader = (props: UnitHeaderProps) => {
         backgroundColorLevel={backgroundColorLevel}
       />
       <UnitHeaderNavFooter
-        sentinelRef={ref}
+        sentinelRef={sentinelRef}
         isStuck={isStuck}
         title={props.heading}
         backgroundColorLevel={backgroundColorLevel}
