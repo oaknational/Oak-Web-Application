@@ -25,6 +25,9 @@ export const SearchView = ({
     if (isSignedIn && enabled) {
       console.log("useEffect", "starting recording");
       postHog.startSessionRecording();
+    } else {
+      // important to prevent searches being recorded after a user signs out!
+      postHog.stopSessionRecording();
     }
   }, [enabled, isSignedIn, postHog]);
 
