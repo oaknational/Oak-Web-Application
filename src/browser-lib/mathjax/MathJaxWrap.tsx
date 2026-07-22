@@ -10,7 +10,7 @@ const MathJaxWrap = ({
   inline?: boolean;
 }) => {
   return (
-    <MathJax hideUntilTypeset="every" inline={inline}>
+    <MathJax hideUntilTypeset="first" inline={inline}>
       {children}
     </MathJax>
   );
