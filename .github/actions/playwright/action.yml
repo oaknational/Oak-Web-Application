@@ -24,10 +24,17 @@ runs:
         BASE_URL: ${{ inputs.base_url }}
         VERCEL_AUTOMATION_BYPASS_SECRET: ${{ env.VERCEL_AUTOMATION_BYPASS_SECRET }}
 
+    - name: Build safe artifact suffix
+      if: ${{ inputs.branch_name != '' }}
+      shell: bash
+      run: |
+        safe_branch_name="$(printf '%s' "${{ inputs.branch_name }}" | tr '/\\:*?"<>|' '-')"
+        echo "PLAYWRIGHT_ARTIFACT_SUFFIX=-${safe_branch_name}" >> "$GITHUB_ENV"
+
     - name: Upload Playwright report
       if: ${{ always() }}
-      uses: actions/upload-artifact@v4
+      uses: actions/upload-artifact@v5
       with:
-        name: playwright-report${{ inputs.branch_name != '' && format('-{0}', inputs.branch_name) || '' }}
+        name: playwright-report${{ env.PLAYWRIGHT_ARTIFACT_SUFFIX }}
         path: playwright-report/
         retention-days: 14
