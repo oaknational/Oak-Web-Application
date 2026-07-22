@@ -1,3 +1,58 @@
+# [1.1134.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1133.0...v1.1134.0) (2026-07-22)
+
+
+### Bug Fixes
+
+* groq scripts ([5f02f1d](https://github.com/oaknational/Oak-Web-Application/commit/5f02f1d281a64707d05a912037e62467953cbb57))
+* incorrect script name updated ([8af90bd](https://github.com/oaknational/Oak-Web-Application/commit/8af90bda3764e2d23d25a710f7f5f40f3a40063b))
+
+
+### Features
+
+* added sanity script to the CLI ([bad8879](https://github.com/oaknational/Oak-Web-Application/commit/bad8879401e2d682d2080fa0caeb430978ddc284))
+
+# [1.1133.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1132.1...v1.1133.0) (2026-07-22)
+
+
+### Features
+
+* update type in currc schema response for keystage slug ([45cb0b9](https://github.com/oaknational/Oak-Web-Application/commit/45cb0b96eec5bbf07ab505f9d86b67656cc60517))
+
+## [1.1132.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.1132.0...v1.1132.1) (2026-07-22)
+
+
+### Bug Fixes
+
+* set z index on oak toast to modal-dialog ([3572575](https://github.com/oaknational/Oak-Web-Application/commit/35725756ea61687e1a1ac6b310e185aad41baef3))
+
+# [1.1132.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1131.1...v1.1132.0) (2026-07-21)
+
+
+### Bug Fixes
+
+* add missing decorator to lesson header story ([47d0bc0](https://github.com/oaknational/Oak-Web-Application/commit/47d0bc0df502a63d5895d41744b568e2ad3577e1))
+* add missing providers decorators to stories ([1efae60](https://github.com/oaknational/Oak-Web-Application/commit/1efae600197d05724ca19b6e566402aa432b249d))
+* add to mocked clerk components for stories ([867a9a7](https://github.com/oaknational/Oak-Web-Application/commit/867a9a78f746bb5acfcbc114352c652d1119afe3))
+* broken test mocks imports ([b201b90](https://github.com/oaknational/Oak-Web-Application/commit/b201b90a91d2e43b57fd368bbea00f67b2cd4199))
+* image id references in stories ([d29698f](https://github.com/oaknational/Oak-Web-Application/commit/d29698f1fbbb1dfcbfeca46b51f676b3d2147e01))
+* pnpm-lock.yaml ([0a03d40](https://github.com/oaknational/Oak-Web-Application/commit/0a03d4035e4712f506897b97ada86088695949e0))
+* update app router config for pages component stories ([766a6ad](https://github.com/oaknational/Oak-Web-Application/commit/766a6ad0c27509194e254bb38f5c1e8a1a6a190c))
+* update missing props in stories ([0faf109](https://github.com/oaknational/Oak-Web-Application/commit/0faf109f8fc8e91d9cea23325b79312269a447aa))
+* use mock data in lesson overview video stories ([3c8a8a7](https://github.com/oaknational/Oak-Web-Application/commit/3c8a8a72895dfbb992075884d59ab6fba21a1aab))
+
+
+### Features
+
+* storybook test local command ([c03ce7a](https://github.com/oaknational/Oak-Web-Application/commit/c03ce7a878ed81c7d0625373274c1088e7a196d9))
+
+## [1.1131.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.1131.0...v1.1131.1) (2026-07-21)
+
+
+### Bug Fixes
+
+* pass through copyLinkHref to useCopyLink when provided ([cc0b906](https://github.com/oaknational/Oak-Web-Application/commit/cc0b906c6b469c540e6020a21b4d8d55c2951317))
+* use existing copy link notification on media page ([a11b697](https://github.com/oaknational/Oak-Web-Application/commit/a11b6976d340d09242800977f7c28a23edf04565))
+
 # [1.1131.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1130.1...v1.1131.0) (2026-07-21)
 
 
