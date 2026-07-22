@@ -3,6 +3,7 @@ import {
   OakCard,
   OakFlex,
   OakGrid,
+  OakGridArea,
   OakHeading,
 } from "@oaknational/oak-components";
 
@@ -30,29 +31,33 @@ export const OaksImpactCaseStudies = ({
           </OakHeading>
           <OakGrid
             as="ul"
-            $gridTemplateColumns={[
-              "1fr",
-              "repeat(auto-fit, minmax(200px, 1fr))",
-            ]}
             $cg={"spacing-16"}
             $rg={"spacing-16"}
             $pa={"spacing-0"}
             $ma={"spacing-0"}
           >
-            {caseStudies.map((caseStudy) => (
-              <OakCard
+            {caseStudies.map((caseStudy, index) => (
+              <OakGridArea
                 as="li"
                 key={caseStudy.slug.current}
-                heading={caseStudy.video.title || ""}
-                headingLevel={"div"}
-                href={`#/case-studies/${caseStudy.slug.current}`}
-                imageSrc={
-                  getProxiedSanityAssetUrl(caseStudy.image?.asset?.url) ?? ""
-                }
-                aspectRatio="4/3"
-                linkText={"Watch the video"}
-                cardWidth={"100%"}
-              />
+                $colSpan={[12, 4]}
+                $colStart={[
+                  1,
+                  caseStudies.length === 2 ? (index === 0 ? 3 : 7) : undefined,
+                ]}
+              >
+                <OakCard
+                  heading={caseStudy.video.title || ""}
+                  headingLevel={"div"}
+                  href={`#/case-studies/${caseStudy.slug.current}`}
+                  imageSrc={
+                    getProxiedSanityAssetUrl(caseStudy.image?.asset?.url) ?? ""
+                  }
+                  aspectRatio="4/3"
+                  linkText={"Watch the video"}
+                  cardWidth={"100%"}
+                />
+              </OakGridArea>
             ))}
           </OakGrid>
         </OakFlex>
