@@ -47,11 +47,11 @@ export function CurriculumPartners({
       <OakBox>
         <OakGrid
           as="ul"
-          $gridTemplateColumns={[
-            "repeat(3, 1fr)",
-            "repeat(5, 1fr)",
-            "repeat(6, 1fr)",
-          ]}
+          $gridTemplateColumns={
+            title === "Current"
+              ? ["repeat(3, 1fr)", "repeat(5, 1fr)", "repeat(6, 1fr)"]
+              : ["repeat(4, 1fr)", "repeat(7, 1fr)", "repeat(8, 1fr)"]
+          }
           $cg={"spacing-16"}
           $rg={"spacing-16"}
           $pa={"spacing-0"}
