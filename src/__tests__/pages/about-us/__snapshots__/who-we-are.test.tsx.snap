@@ -652,7 +652,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
   padding-left: 0.75rem;
   padding-right: 0.75rem;
   font-family: --var(google-font),Lexend,sans-serif;
-  z-index: 1;
+  z-index: 300;
 }
 
 .c212 {
