@@ -9,6 +9,7 @@ import { EYFSLessonGroupProvider } from "../EyfsLessonGroupProvider";
 
 import { EYFSLessonCard } from "./EyfsLessonCard";
 
+import NotificationsDecorator from "@/storybook-decorators/NotificationsDecorator";
 import { __setMockAuthState } from "@/storybook-mocks/clerk";
 import type { EYFSLesson } from "@/node-lib/curriculum-api-2023/queries/eyfs/eyfsSchema";
 
@@ -92,6 +93,7 @@ const meta: Meta<typeof EYFSLessonCard> = {
   component: EYFSLessonCard,
   title: "App/Teachers/Eyfs/EyfsLessonCard",
   decorators: [
+    NotificationsDecorator,
     (Story) => (
       <OakThemeProvider theme={oakDefaultTheme}>
         <EYFSLessonGroupProvider>
