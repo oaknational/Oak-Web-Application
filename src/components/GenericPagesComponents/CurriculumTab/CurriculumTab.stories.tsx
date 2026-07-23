@@ -1,13 +1,27 @@
-import { Meta } from "@storybook/nextjs";
+import { Meta, StoryObj } from "@storybook/nextjs";
 
 import Component from "./CurriculumTab";
 
+import curriculumPhaseOptions from "@/browser-lib/fixtures/curriculumPhaseOptions";
 import AnalyticsDecorator from "@/storybook-decorators/AnalyticsDecorator";
 
-export default {
+const meta = {
   decorators: [AnalyticsDecorator],
   component: Component,
   argTypes: {},
-} as Meta<typeof Component>;
+  parameters: {
+    nextjs: {
+      appDirectory: false,
+    },
+  },
+} satisfies Meta<typeof Component>;
 
-export const CurriculumTab = {};
+export default meta;
+
+type Story = StoryObj<typeof meta>;
+
+export const CurriculumTab: Story = {
+  args: {
+    curriculumPhaseOptions,
+  },
+};

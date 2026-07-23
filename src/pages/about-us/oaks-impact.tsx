@@ -3,7 +3,6 @@ import {
   GetServerSidePropsResult,
   NextPage,
 } from "next/dist/types";
-import { OakBox } from "@oaknational/oak-components";
 
 import getBrowserConfig from "@/browser-lib/getBrowserConfig";
 import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
@@ -15,7 +14,6 @@ import {
   AboutSharedHeaderImage,
 } from "@/components/GenericPagesComponents/AboutSharedHeader";
 import { OaksImpactCaseStudies } from "@/components/GenericPagesComponents/OaksImpactCaseStudies";
-import { oaksImpactCaseStudiesFixture } from "@/components/GenericPagesComponents/OaksImpactCaseStudies/OaksImpactCaseStudies.fixtures";
 import { SupportYou } from "@/components/GenericPagesComponents/SupportYou";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 import getPageProps from "@/node-lib/getPageProps";
@@ -24,6 +22,7 @@ import { getPosthogIdFromCookie } from "@/node-lib/posthog/getPosthogId";
 import { OaksImpactStats } from "@/components/GenericPagesComponents/OaksImpactStats";
 import CMSClient from "@/node-lib/cms";
 import { OaksImpactPage } from "@/common-lib/cms-types";
+import { OaksImpactSchoolQuotesSection } from "@/components/GenericPagesComponents/OaksImpactSchoolQuotesSection";
 
 export type OaksImpactPageProps = {
   topNav: TopNavProps;
@@ -51,15 +50,10 @@ const OaksImpact: NextPage<OaksImpactPageProps> = ({ topNav, pageData }) => {
           <AboutSharedHeaderImage imageUrl={placeholderImage.url} />
         </AboutSharedHeader>
         <OaksImpactStats {...pageData.statsSection} />
-        <OaksImpactCaseStudies caseStudies={oaksImpactCaseStudiesFixture} />
-        <OakBox
-          $ma={"spacing-48"}
-          $pa={"spacing-48"}
-          $borderColor="red"
-          $ba="border-solid-xxl"
-        >
-          TODO: Quotes
-        </OakBox>
+        <OaksImpactCaseStudies
+          caseStudies={pageData.caseStudiesSection.caseStudies}
+        />
+        <OaksImpactSchoolQuotesSection {...pageData.schoolQuotes} />
         <SupportYou
           headingTag="h2"
           link={{

@@ -688,205 +688,22 @@ exports[`pages/about-us/oaks-impact.tsx renders title when feature flag is enabl
                   Case studies
                 </h2>
                 <ul
-                  class="sc-aXZVg sc-gEvEer bMQSvq fpGKdI"
-                >
-                  <li
-                    class="sc-aXZVg sc-hZDyAQ gQdNNR hpWhFC"
-                  >
-                    <a
-                      class="sc-aXZVg sc-gEvEer sc-eyvILC eyLmQc dXoawi cstkxg"
-                      href="/about-us/oaks-impact/case-study-1"
-                    >
-                      <span
-                        class="sc-aXZVg kvjdhA sc-bpUBKd gXHgWu"
-                      >
-                        <img
-                          alt=""
-                          class="sc-iGgWBj dZvqhO"
-                          data-nimg="fill"
-                          decoding="async"
-                          loading="lazy"
-                          sizes="100vw"
-                          src="http://localhost/_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Foak-web-application%2Fimage%2Fupload%2Fv1698336490%2Fsample.jpg&w=3840&q=75"
-                          srcset="/_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Foak-web-application%2Fimage%2Fupload%2Fv1698336490%2Fsample.jpg&w=640&q=75 640w, /_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Foak-web-application%2Fimage%2Fupload%2Fv1698336490%2Fsample.jpg&w=750&q=75 750w, /_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Foak-web-application%2Fimage%2Fupload%2Fv1698336490%2Fsample.jpg&w=828&q=75 828w, /_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Foak-web-application%2Fimage%2Fupload%2Fv1698336490%2Fsample.jpg&w=1080&q=75 1080w, /_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Foak-web-application%2Fimage%2Fupload%2Fv1698336490%2Fsample.jpg&w=1200&q=75 1200w, /_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Foak-web-application%2Fimage%2Fupload%2Fv1698336490%2Fsample.jpg&w=1920&q=75 1920w, /_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Foak-web-application%2Fimage%2Fupload%2Fv1698336490%2Fsample.jpg&w=2048&q=75 2048w, /_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Foak-web-application%2Fimage%2Fupload%2Fv1698336490%2Fsample.jpg&w=3840&q=75 3840w"
-                          style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
-                        />
-                      </span>
-                      <div
-                        class="sc-aXZVg sc-gEvEer sc-kYxDKI jPvJsJ jFNgPm"
-                      >
-                        <div
-                          class="sc-aXZVg sc-gEvEer jPvJsJ fVNIMq"
-                        >
-                          <div
-                            class="sc-eldPxv ibGcSM"
-                          >
-                            Case study 1
-                          </div>
-                        </div>
-                        <div
-                          class="sc-aXZVg sc-gEvEer jPvJsJ bRjxks"
-                        >
-                          <div
-                            class="sc-aXZVg sc-gEvEer jPvJsJ uEMma"
-                          >
-                            <span
-                              class="sc-eqUAAy dECBeo"
-                            >
-                              Watch the video
-                            </span>
-                            <span
-                              class="sc-aXZVg jJQFnr"
-                            >
-                              <img
-                                alt=""
-                                class="sc-iGgWBj cMzyFO"
-                                data-nimg="fill"
-                                decoding="async"
-                                loading="lazy"
-                                src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1707149070/icons/fv0z57zerrioft52dd9n.svg"
-                                style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
-                              />
-                            </span>
-                          </div>
-                        </div>
-                      </div>
-                    </a>
-                  </li>
-                  <li
-                    class="sc-aXZVg sc-hZDyAQ gQdNNR hpWhFC"
-                  >
-                    <a
-                      class="sc-aXZVg sc-gEvEer sc-eyvILC eyLmQc dXoawi cstkxg"
-                      href="/about-us/oaks-impact/case-study-2"
-                    >
-                      <span
-                        class="sc-aXZVg kvjdhA sc-bpUBKd gXHgWu"
-                      >
-                        <img
-                          alt=""
-                          class="sc-iGgWBj dZvqhO"
-                          data-nimg="fill"
-                          decoding="async"
-                          loading="lazy"
-                          sizes="100vw"
-                          src="http://localhost/_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Foak-web-application%2Fimage%2Fupload%2Fv1698336494%2Fsamples%2Flandscapes%2Fnature-mountains.jpg&w=3840&q=75"
-                          srcset="/_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Foak-web-application%2Fimage%2Fupload%2Fv1698336494%2Fsamples%2Flandscapes%2Fnature-mountains.jpg&w=640&q=75 640w, /_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Foak-web-application%2Fimage%2Fupload%2Fv1698336494%2Fsamples%2Flandscapes%2Fnature-mountains.jpg&w=750&q=75 750w, /_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Foak-web-application%2Fimage%2Fupload%2Fv1698336494%2Fsamples%2Flandscapes%2Fnature-mountains.jpg&w=828&q=75 828w, /_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Foak-web-application%2Fimage%2Fupload%2Fv1698336494%2Fsamples%2Flandscapes%2Fnature-mountains.jpg&w=1080&q=75 1080w, /_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Foak-web-application%2Fimage%2Fupload%2Fv1698336494%2Fsamples%2Flandscapes%2Fnature-mountains.jpg&w=1200&q=75 1200w, /_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Foak-web-application%2Fimage%2Fupload%2Fv1698336494%2Fsamples%2Flandscapes%2Fnature-mountains.jpg&w=1920&q=75 1920w, /_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Foak-web-application%2Fimage%2Fupload%2Fv1698336494%2Fsamples%2Flandscapes%2Fnature-mountains.jpg&w=2048&q=75 2048w, /_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Foak-web-application%2Fimage%2Fupload%2Fv1698336494%2Fsamples%2Flandscapes%2Fnature-mountains.jpg&w=3840&q=75 3840w"
-                          style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
-                        />
-                      </span>
-                      <div
-                        class="sc-aXZVg sc-gEvEer sc-kYxDKI jPvJsJ jFNgPm"
-                      >
-                        <div
-                          class="sc-aXZVg sc-gEvEer jPvJsJ fVNIMq"
-                        >
-                          <div
-                            class="sc-eldPxv ibGcSM"
-                          >
-                            Case study 2
-                          </div>
-                        </div>
-                        <div
-                          class="sc-aXZVg sc-gEvEer jPvJsJ bRjxks"
-                        >
-                          <div
-                            class="sc-aXZVg sc-gEvEer jPvJsJ uEMma"
-                          >
-                            <span
-                              class="sc-eqUAAy dECBeo"
-                            >
-                              Watch the video
-                            </span>
-                            <span
-                              class="sc-aXZVg jJQFnr"
-                            >
-                              <img
-                                alt=""
-                                class="sc-iGgWBj cMzyFO"
-                                data-nimg="fill"
-                                decoding="async"
-                                loading="lazy"
-                                src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1707149070/icons/fv0z57zerrioft52dd9n.svg"
-                                style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
-                              />
-                            </span>
-                          </div>
-                        </div>
-                      </div>
-                    </a>
-                  </li>
-                  <li
-                    class="sc-aXZVg sc-hZDyAQ gQdNNR hpWhFC"
-                  >
-                    <a
-                      class="sc-aXZVg sc-gEvEer sc-eyvILC eyLmQc dXoawi cstkxg"
-                      href="/about-us/oaks-impact/case-study-3"
-                    >
-                      <span
-                        class="sc-aXZVg kvjdhA sc-bpUBKd gXHgWu"
-                      >
-                        <img
-                          alt=""
-                          class="sc-iGgWBj dZvqhO"
-                          data-nimg="fill"
-                          decoding="async"
-                          loading="lazy"
-                          sizes="100vw"
-                          src="http://localhost/_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Foak-web-application%2Fimage%2Fupload%2Fv1698336494%2Fsamples%2Fanimals%2Fcat.jpg&w=3840&q=75"
-                          srcset="/_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Foak-web-application%2Fimage%2Fupload%2Fv1698336494%2Fsamples%2Fanimals%2Fcat.jpg&w=640&q=75 640w, /_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Foak-web-application%2Fimage%2Fupload%2Fv1698336494%2Fsamples%2Fanimals%2Fcat.jpg&w=750&q=75 750w, /_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Foak-web-application%2Fimage%2Fupload%2Fv1698336494%2Fsamples%2Fanimals%2Fcat.jpg&w=828&q=75 828w, /_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Foak-web-application%2Fimage%2Fupload%2Fv1698336494%2Fsamples%2Fanimals%2Fcat.jpg&w=1080&q=75 1080w, /_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Foak-web-application%2Fimage%2Fupload%2Fv1698336494%2Fsamples%2Fanimals%2Fcat.jpg&w=1200&q=75 1200w, /_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Foak-web-application%2Fimage%2Fupload%2Fv1698336494%2Fsamples%2Fanimals%2Fcat.jpg&w=1920&q=75 1920w, /_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Foak-web-application%2Fimage%2Fupload%2Fv1698336494%2Fsamples%2Fanimals%2Fcat.jpg&w=2048&q=75 2048w, /_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Foak-web-application%2Fimage%2Fupload%2Fv1698336494%2Fsamples%2Fanimals%2Fcat.jpg&w=3840&q=75 3840w"
-                          style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
-                        />
-                      </span>
-                      <div
-                        class="sc-aXZVg sc-gEvEer sc-kYxDKI jPvJsJ jFNgPm"
-                      >
-                        <div
-                          class="sc-aXZVg sc-gEvEer jPvJsJ fVNIMq"
-                        >
-                          <div
-                            class="sc-eldPxv ibGcSM"
-                          >
-                            Case study 3
-                          </div>
-                        </div>
-                        <div
-                          class="sc-aXZVg sc-gEvEer jPvJsJ bRjxks"
-                        >
-                          <div
-                            class="sc-aXZVg sc-gEvEer jPvJsJ uEMma"
-                          >
-                            <span
-                              class="sc-eqUAAy dECBeo"
-                            >
-                              Watch the video
-                            </span>
-                            <span
-                              class="sc-aXZVg jJQFnr"
-                            >
-                              <img
-                                alt=""
-                                class="sc-iGgWBj cMzyFO"
-                                data-nimg="fill"
-                                decoding="async"
-                                loading="lazy"
-                                src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1707149070/icons/fv0z57zerrioft52dd9n.svg"
-                                style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
-                              />
-                            </span>
-                          </div>
-                        </div>
-                      </div>
-                    </a>
-                  </li>
-                </ul>
+                  class="sc-aXZVg sc-tagGq bMQSvq jFIZYB"
+                />
               </div>
             </div>
           </div>
           <div
-            class="sc-aXZVg gXhAcH"
+            class="sc-aXZVg bZTQLO"
           >
-            TODO: Quotes
+            <h2
+              class="sc-eldPxv haIdjY"
+            >
+              Oaks Impact school quotes heading
+            </h2>
+            <ul
+              class="sc-aXZVg sc-tagGq icrVol jFIZYB"
+            />
           </div>
           <div
             class="sc-aXZVg guaSoh"
@@ -2729,7 +2546,7 @@ exports[`pages/about-us/oaks-impact.tsx renders title when feature flag is enabl
     </div>
     <div
       aria-live="polite"
-      class="sc-aXZVg sc-gEvEer sc-84e7982d-0 bRmOVg hpzNYH fkcvun"
+      class="sc-aXZVg sc-gEvEer sc-372e3d03-0 huaWfm hpzNYH fYWdOt"
     />
   </div>
   <div
