@@ -28,8 +28,8 @@ import { ToastProvider } from "@/context/Toast";
 import InlineSpriteSheet from "@/components/GenericPagesComponents/InlineSpriteSheet";
 import AppHooks from "@/components/AppComponents/App/AppHooks";
 import { OakNotificationsProvider } from "@/context/OakNotifications/OakNotificationsProvider";
+import { ClerkProviderWithRedirects } from "@/browser-lib/appProviders";
 import { SaveCountProvider } from "@/context/SaveCount/SaveCountProvider";
-import { ClerkProviderWithRedirects } from "@/app/providers";
 
 const lexend = Lexend({ subsets: ["latin"] });
 

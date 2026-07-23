@@ -3,7 +3,6 @@ import { Lexend } from "next/font/google";
 import parse from "html-react-parser";
 import { Metadata } from "next";
 
-import { ClerkProviderWithRedirects, PHProvider } from "./providers";
 import StyledComponentsRegistry from "./styles-registry";
 import AnalyticsWrapper from "./components/AnalyticsWrapper";
 import { getTwitterMetadata, getOpenGraphMetadata } from "./metadata";
@@ -19,6 +18,10 @@ import getBrowserConfig from "@/browser-lib/getBrowserConfig";
 import { MenuProvider } from "@/context/Menu";
 import { OakNotificationsProvider } from "@/context/OakNotifications/OakNotificationsProvider";
 import { SaveCountProvider } from "@/context/SaveCount/SaveCountProvider";
+import {
+  PHProvider,
+  ClerkProviderWithRedirects,
+} from "@/browser-lib/appProviders";
 
 // https://nextjs.org/docs/app/getting-started/metadata-and-og-images
 export const metadata: Metadata = {
