@@ -8,6 +8,7 @@ import { PHProvider } from "./providers";
 import StyledComponentsRegistry from "./styles-registry";
 import AnalyticsWrapper from "./components/AnalyticsWrapper";
 import { getTwitterMetadata, getOpenGraphMetadata } from "./metadata";
+import { SimulateErrorControls } from "./components/ErrorHandling/SimulateErrorControls";
 
 import "@/styles/app-global.css";
 import "@/browser-lib/gleap/gleap.css";
@@ -94,7 +95,10 @@ export default function RootLayout({
                     <AnalyticsWrapper>
                       <AppHooks />
                       <MenuProvider>
-                        <SaveCountProvider>{children}</SaveCountProvider>
+                        <SaveCountProvider>
+                          <SimulateErrorControls errorBoundaryLevel="global" />
+                          {children}
+                        </SaveCountProvider>
                       </MenuProvider>
                     </AnalyticsWrapper>
                   </ClerkProvider>

@@ -7,9 +7,10 @@ export const generateMockCollectionData = (count: number): CollectionData => {
     subheading: index % 2 === 0 ? `AQA foundation` : `Edexcel higher`,
     keystage: "KS4",
     keystageSlug: "ks4",
+    subjectPhaseSlug: `subject-${index + 1}-secondary`,
     programmeTitle:
       index === 3 ? "Programme: subcategory KS4" : `Programme ${index + 1} KS4`,
-    searchQuery: null,
+    subjectCategoryQuery: undefined,
     uniqueProgrammeKey: `programme-${index + 1}`,
     units: [
       {

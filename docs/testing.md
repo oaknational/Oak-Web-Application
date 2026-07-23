@@ -35,13 +35,47 @@ Tests live next to the code they are testing wherever possible. Next does not al
 
 Logic tests and snapshot tests should be in different files because their "failure" state has a different meaning. Snapshot tests should live next to the component they are testing, and have a name following the pattern `<component_name>.snapshot.test.tsx`.
 
+## Playwright E2E
+
+We use [Playwright](https://playwright.dev/) for browser-based end-to-end tests.
+
+Before running Playwright tests locally, install browser binaries once per machine:
+
+- `pnpm exec playwright install chromium`
+
 ### Location
 
-The current tests live [here](../e2e_tests/browser/engineering/). The naming is intended to leave room for creating some product-facing tests using feature files, this is subject to change.
+- E2E test files live under [src/tests/e2e](../src/tests/e2e/).
+- Current teacher flow tests live in [src/tests/e2e/teacher/lesson-page.spec.ts](../src/tests/e2e/teacher/lesson-page.spec.ts).
+- Playwright config lives in [playwright.config.ts](../playwright.config.ts).
+
+### Commands
+
+- `pnpm run test:e2e` runs all Playwright tests.
+- `pnpm run test:e2e -- src/tests/e2e/teacher/lesson-page.spec.ts` runs a single spec.
+- `pnpm run test:e2e:ci` runs Playwright with the HTML report enabled.
+
+### Local Execution
+
+- If `BASE_URL` is not set, Playwright uses `http://localhost:3000` and automatically starts the local dev server via Playwright `webServer`.
+- To run against a deployment URL, set `BASE_URL` to that deployment URL before running tests.
+
+### CI Behavior
+
+- CI workflow wiring for Playwright is follow-up work. When added, CI should install Playwright browser binaries with `pnpm exec playwright install --with-deps chromium` before running tests and upload `playwright-report/` as an artifact.
+- Retries are configured as `1` in CI and `0` locally.
+
+### Jest Separation
+
+- Unit tests run with Jest and E2E tests run with Playwright.
+- Jest ignores `src/tests/e2e/` so Playwright specs are not run during `pnpm run test:ci`.
 
 ## Storybook
 
 - Design and engineering inspection of components in isolation, including a11y checks.
+- Storybook test runner can be used to check that all stories compile without errors using:
+  1. `pnpm exec playwright install`
+  2. `pnpm run test:storybook`
 
 ## Percy
 

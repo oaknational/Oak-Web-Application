@@ -21,6 +21,7 @@ import errorReporter from "@/common-lib/error-reporter";
 import useSaveCountContext from "@/context/SaveCount/useSaveCountContext";
 import useAnalytics from "@/context/Analytics/useAnalytics";
 import { CollectionData } from "@/components/TeacherViews/MyLibrary/MyLibrary";
+import { getTeacherSubjectPhaseSlug } from "@/utils/curriculum/slugs";
 
 const reportError = errorReporter("educatorApi");
 
@@ -52,13 +53,17 @@ export const useMyLibrary = () => {
               programmeSlug,
               keystage,
               pathway,
+              pathwaySlug,
               subject,
+              subjectParent,
               examboard,
+              examboardSlug,
               tier,
               units,
               subjectSlug,
               keystageSlug,
               subjectCategory,
+              phaseSlug,
             } = programmeData;
 
             const subjectCategoryHeading = `${subjectCategory ? `${subjectCategory} ` : ""}`;
@@ -66,9 +71,17 @@ export const useMyLibrary = () => {
             const subheading = `${subjectCategoryHeading}${examboard ? examboard + " " : ""}${tier ? tier + " " : ""}${pathway ? pathway + " " : ""}${keystage}`;
 
             const programmeTitle = `${subject}${subjectCategoryHeading && ":"} ${subheading}`;
-            const searchQuery = subjectCategory
-              ? `${kebabCase(subjectCategory)}`
-              : null;
+            const subjectCategoryQuery = subjectCategory
+              ? `${kebabCase(subjectCategory.toLocaleLowerCase().replaceAll("&", "and"))}`
+              : undefined;
+
+            const subjectPhaseSlug = getTeacherSubjectPhaseSlug({
+              subjectSlug,
+              phaseSlug,
+              examboardSlug,
+              pathwaySlug,
+              subjectParentTitle: subjectParent,
+            });
 
             units.sort(
               (a, b) => a.yearOrder - b.yearOrder || a.unitOrder - b.unitOrder,
@@ -83,8 +96,9 @@ export const useMyLibrary = () => {
               units,
               programmeSlug,
               programmeTitle,
-              searchQuery,
+              subjectCategoryQuery,
               uniqueProgrammeKey,
+              subjectPhaseSlug,
             };
           })
           .sort((a, b) => {
@@ -151,8 +165,8 @@ export const useMyLibrary = () => {
       engagementIntent: "use",
       componentType: "unit_listing_save_button",
       analyticsUseCase: "Teacher",
-      keyStageSlug: trackingData.keyStageSlug ?? "specialist",
-      keyStageTitle: trackingData.keyStageTitle ?? "Specialist",
+      keyStageSlug: trackingData.keyStageSlug,
+      keyStageTitle: trackingData.keyStageTitle,
       subjectSlug: trackingData.subjectSlug,
       subjectTitle: trackingData.subjectTitle,
       contentType: "unit",
@@ -189,8 +203,8 @@ export const useMyLibrary = () => {
       engagementIntent: "use",
       componentType: trackingData.savedFrom,
       analyticsUseCase: "Teacher",
-      keyStageSlug: trackingData.keyStageSlug ?? "specialist",
-      keyStageTitle: trackingData.keyStageTitle ?? "Specialist",
+      keyStageSlug: trackingData.keyStageSlug,
+      keyStageTitle: trackingData.keyStageTitle,
       subjectSlug: trackingData.subjectSlug,
       subjectTitle: trackingData.subjectTitle,
       contentType: "unit",

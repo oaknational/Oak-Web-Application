@@ -83,7 +83,9 @@ jest.mock("./src/components/AppComponents/ErrorBoundary/ErrorBoundary", () => {
 });
 
 jest.mock("./src/node-lib/curriculum-api-2023", () =>
-  jest.requireActual("./src/node-lib/curriculum-api-2023/__mocks__"),
+  jest.requireActual(
+    "./src/node-lib/curriculum-api-2023/__mocks__/curriculumApi2023Mock",
+  ),
 );
 
 jest.mock("posthog-js", () => ({

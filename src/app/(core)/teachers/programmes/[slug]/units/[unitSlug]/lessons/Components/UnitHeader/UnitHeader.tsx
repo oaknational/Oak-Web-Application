@@ -5,7 +5,8 @@ import {
   getMediaQuery,
 } from "@oaknational/oak-components";
 import styled from "styled-components";
-import { useRef, useState, useEffect } from "react";
+
+import { useStickyUnitHeader } from "./useStickyUnitHeader";
 
 import UnitDownloadButton, {
   useUnitDownloadButtonState,
@@ -16,10 +17,9 @@ import {
 } from "@/components/TeacherComponents/Header/Header";
 import { TeachersUnitOverviewAdjacentUnit } from "@/node-lib/curriculum-api-2023/queries/teachersUnitOverview/teachersUnitOverview.schema";
 import { resolveOakHref } from "@/common-lib/urls";
-import useAnalytics from "@/context/Analytics/useAnalytics";
-import { KeyStageTitleValueType } from "@/browser-lib/avo/Avo";
 import { UnitHeaderNavFooter } from "@/components/TeacherComponents/HeaderNavFooter/UnitHeaderNavFooter/UnitHeaderNavFooter";
 import { useOakNotificationsContext } from "@/context/OakNotifications/useOakNotificationsContext";
+import { useTeacherBrowseAnalytics } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
 
 export type UnitHeaderProps = Omit<
   CompactHeaderProps,
@@ -32,14 +32,6 @@ export type UnitHeaderProps = Omit<
   prevUnit: TeachersUnitOverviewAdjacentUnit;
   subjectPhaseSlug: string;
   programmeSlug: string;
-  trackingProps: {
-    unitName: string;
-    unitSlug: string;
-    keyStageSlug: string;
-    keyStageTitle: KeyStageTitleValueType;
-    subjectSlug: string;
-    subjectTitle: string;
-  };
   downloadButtonState: ReturnType<typeof useUnitDownloadButtonState>;
 };
 
@@ -54,43 +46,22 @@ const NegativeBorderBox = styled(OakBox)`
   }
 `;
 
-function useDetectStuck() {
-  const ref = useRef<HTMLDivElement>(null);
-
-  const [isStuck, setIsStuck] = useState<boolean>(false);
-
-  useEffect(() => {
-    if (!ref.current) {
-      return;
-    }
-
-    const observer = new IntersectionObserver(
-      ([entry]) => setIsStuck(entry ? !entry.isIntersecting : false),
-      { threshold: [0], rootMargin: "0px" },
-    );
-    observer.observe(ref.current);
-
-    return () => observer.disconnect();
-  }, []);
-
-  return { ref, isStuck };
-}
-
 const UnitHeader = (props: UnitHeaderProps) => {
   const {
     subjectPhaseSlug,
     phase,
     unitDownloadFileId,
     isGeorestrictedUnit,
-    trackingProps,
     prevUnit,
     nextUnit,
     programmeSlug,
     downloadButtonState,
   } = props;
-  const { track } = useAnalytics();
+  const { unitDownloadInitiated } = useTeacherBrowseAnalytics(
+    (store) => store.track,
+  );
   const { setCurrentToastProps } = useOakNotificationsContext();
-  const { ref, isStuck } = useDetectStuck();
+  const { sentinelRef, isStuck } = useStickyUnitHeader();
 
   const backgroundColorLevel = phase === "primary" ? 4 : 3;
 
@@ -116,15 +87,7 @@ const UnitHeader = (props: UnitHeaderProps) => {
             downloadInProgress={downloadInProgress}
             unitFileId={unitDownloadFileId}
             onDownloadSuccess={() => {
-              track.unitDownloadInitiated({
-                platform: "owa",
-                product: "teacher lesson resources",
-                engagementIntent: "use",
-                componentType: "unit_download_button",
-                eventVersion: "2.0.0",
-                analyticsUseCase: "Teacher",
-                ...trackingProps,
-              });
+              unitDownloadInitiated();
               setCurrentToastProps({
                 message: "Download started. This may take a few minutes.",
                 variant: "success",
@@ -149,7 +112,7 @@ const UnitHeader = (props: UnitHeaderProps) => {
         backgroundColorLevel={backgroundColorLevel}
       />
       <UnitHeaderNavFooter
-        sentinelRef={ref}
+        sentinelRef={sentinelRef}
         isStuck={isStuck}
         title={props.heading}
         backgroundColorLevel={backgroundColorLevel}
