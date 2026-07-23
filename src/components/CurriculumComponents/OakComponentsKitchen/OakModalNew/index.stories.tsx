@@ -1,4 +1,3 @@
-import { OakThemeProvider, oakDefaultTheme } from "@oaknational/oak-components";
 import { Meta, StoryObj } from "@storybook/nextjs";
 import { useArgs } from "storybook/preview-api";
 
@@ -22,12 +21,12 @@ export const OakModalNew: Story = {
   render: function Render(args) {
     const [, setArgs] = useArgs();
     return (
-      <OakThemeProvider theme={oakDefaultTheme}>
+      <>
         <button onClick={() => setArgs({ open: !args.open })}>
           open modal
         </button>
         <Component {...args} onClose={() => setArgs({ open: !args.open })} />
-      </OakThemeProvider>
+      </>
     );
   },
 };

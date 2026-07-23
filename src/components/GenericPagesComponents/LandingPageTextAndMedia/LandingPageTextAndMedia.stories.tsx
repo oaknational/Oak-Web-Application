@@ -1,9 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/nextjs";
-import {
-  OakFlex,
-  OakThemeProvider,
-  oakDefaultTheme,
-} from "@oaknational/oak-components";
+import { OakFlex } from "@oaknational/oak-components";
 
 import { LandingPageTextAndMedia as Component } from "./LandingPageTextAndMedia";
 
@@ -41,15 +37,13 @@ export const LandingPagesTextAndMedia: Story = {
     image: mockImageAsset(),
   },
   render: (args) => (
-    <OakThemeProvider theme={oakDefaultTheme}>
-      <OakFlex
-        $pa="spacing-24"
-        $background={"bg-decorative3-subdued"}
-        $justifyContent={"center"}
-        $width="100%"
-      >
-        <Component {...args} />
-      </OakFlex>
-    </OakThemeProvider>
+    <OakFlex
+      $pa="spacing-24"
+      $background={"bg-decorative3-subdued"}
+      $justifyContent={"center"}
+      $width="100%"
+    >
+      <Component {...args} />
+    </OakFlex>
   ),
 };

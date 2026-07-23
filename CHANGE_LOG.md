@@ -1,3 +1,76 @@
+# [1.1138.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1137.0...v1.1138.0) (2026-07-23)
+
+
+### Bug Fixes
+
+* text -> textRaw and use caseStudySchema instead of redefining schema ([2e2a779](https://github.com/oaknational/Oak-Web-Application/commit/2e2a7792259be705db2b3c3de18fa4643eef82d7))
+* update from prod sanity schema ([021345c](https://github.com/oaknational/Oak-Web-Application/commit/021345c20509674c817ce06aefb4d61da904b39f))
+
+
+### Features
+
+* add case studies page ([0ecf65b](https://github.com/oaknational/Oak-Web-Application/commit/0ecf65b60970892771b6298f3e1f4cdaf0535153))
+
+# [1.1137.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1136.1...v1.1137.0) (2026-07-23)
+
+
+### Bug Fixes
+
+* added back in __setMockAuthState ([3344f92](https://github.com/oaknational/Oak-Web-Application/commit/3344f92d6cf10ac4396f88d80321914c4afa354b))
+* broken stories ([593d393](https://github.com/oaknational/Oak-Web-Application/commit/593d39315b5219bd820f1c999ed570485ada1f63))
+
+
+### Features
+
+* added dark theme switcher to storybook ([65d63c8](https://github.com/oaknational/Oak-Web-Application/commit/65d63c814f0cbf7ceeb623a76dbd14e59783b7d8))
+* upgrade storybook ([9fd9034](https://github.com/oaknational/Oak-Web-Application/commit/9fd9034d2b57eed5ac13aef4859173e7bff03dbf))
+
+## [1.1136.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.1136.0...v1.1136.1) (2026-07-23)
+
+
+### Bug Fixes
+
+* detect screen size with css to prevent logo flickering ([4bacb68](https://github.com/oaknational/Oak-Web-Application/commit/4bacb68282f0035f8d66ef8d511dd5bc18d47b92))
+
+# [1.1136.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1135.1...v1.1136.0) (2026-07-23)
+
+
+### Features
+
+* rm ci worker memory limit ([28db606](https://github.com/oaknational/Oak-Web-Application/commit/28db606e77995889aa91b985c8ab4157db77624b))
+
+## [1.1135.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.1135.0...v1.1135.1) (2026-07-22)
+
+
+### Bug Fixes
+
+* add slice for extra security ([08c82dd](https://github.com/oaknational/Oak-Web-Application/commit/08c82dd4ec2b6546f8e6286faf87a67206c53843))
+* ensure case studies are centred and same size if 2 or 3 cards ([6704275](https://github.com/oaknational/Oak-Web-Application/commit/67042759975e702ee58980b45a2878a367dbbf10))
+* tests for 2 and 3 case studies ([4aed109](https://github.com/oaknational/Oak-Web-Application/commit/4aed109dc7c140d024184ad148225afb8281835b))
+* un-nest ternary ([949b93e](https://github.com/oaknational/Oak-Web-Application/commit/949b93ed5f019b73995c68176bbc31a543d1ba69))
+
+# [1.1135.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1134.1...v1.1135.0) (2026-07-22)
+
+
+### Bug Fixes
+
+* stats link to report opens in new tab ([1f9f513](https://github.com/oaknational/Oak-Web-Application/commit/1f9f5131c3b1817c9a52b5a631bf6677e1f4e4cf))
+
+
+### Features
+
+* bring sanity school quotes into oaks impact ([c72ad49](https://github.com/oaknational/Oak-Web-Application/commit/c72ad49ceae5d854fa40abcb62ae33abbd469ff5))
+* merged generated sanity types ([ba0efbf](https://github.com/oaknational/Oak-Web-Application/commit/ba0efbf540147620ef471379c4e716329f969df0))
+* update gql query and generated types ([e2cd942](https://github.com/oaknational/Oak-Web-Application/commit/e2cd9421b81e11ff0b6a7fa1eb5bdca33aa5908b))
+* update typing for impact school quotes ([d51910e](https://github.com/oaknational/Oak-Web-Application/commit/d51910eaa09cacc9e86192d87ce64e1f38a903b7))
+
+## [1.1134.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.1134.0...v1.1134.1) (2026-07-22)
+
+
+### Bug Fixes
+
+* remove flickering on download header footer ([a0439c8](https://github.com/oaknational/Oak-Web-Application/commit/a0439c876ae184eb0841d47228419319af3b053f))
+
 # [1.1134.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1133.0...v1.1134.0) (2026-07-22)
 
 

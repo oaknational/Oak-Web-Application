@@ -11,7 +11,7 @@ import {
 import { portableTextSchema } from "./portableText";
 import { teamMemberSchema } from "./teamMember";
 import { textBlockSchema } from "./blocks";
-import { caseStudyCardSchema } from "./caseStudy";
+import { caseStudyCardSchema, caseStudySchema } from "./caseStudy";
 
 // Oak's Curricula Page
 export const oaksCurriculaPageHeaderSchema = z.object({
@@ -175,7 +175,11 @@ export const oaksImpactPageCaseStudiesSectionSchema = z.object({
 export const oaksImpactSchoolQuoteCardSchema = z.object({
   logo: imageSchema,
   summary: z.string(),
-  quote: quoteSchema,
+  quote: quoteSchema.extend({
+    attribution: z.string(),
+    role: z.string(),
+    organisation: z.string(),
+  }),
   headshot: imageSchema,
 });
 
@@ -193,6 +197,12 @@ export const oaksImpactPageSchema = z.object({
 });
 
 export type OaksImpactPage = z.infer<typeof oaksImpactPageSchema>;
+
+export const oaksImpactCaseStudyPageSchema = caseStudySchema;
+
+export type OaksImpactCaseStudyPage = z.infer<
+  typeof oaksImpactCaseStudyPageSchema
+>;
 
 // Aliases for about pages (old naming convention - mapping new queries to existing schemas)
 export const aboutWhoWeArePageSchema = whoWeArePageSchema;
