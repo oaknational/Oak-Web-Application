@@ -1,6 +1,5 @@
 "use client";
 import { ClerkProvider } from "@clerk/nextjs";
-import { usePathname, useSearchParams } from "next/navigation";
 import { useMemo } from "react";
 
 // Pathnames for pages that are gated behind login
@@ -10,10 +9,9 @@ export function ClerkProviderWithRedirects({
   children,
   fontFamily,
 }: Readonly<{ children: React.ReactNode; fontFamily: string }>) {
-  const pathname = usePathname();
-  const searchParams = useSearchParams();
-
   const signOutUrl = useMemo(() => {
+    const pathname = window.location.pathname;
+    const searchParams = window.location.search;
     if (pathname) {
       const isAuthRequiredPath = pathname.match(authRequiredPathnameRegex);
       if (isAuthRequiredPath) {
@@ -21,11 +19,11 @@ export function ClerkProviderWithRedirects({
       }
       let currentPath = pathname;
       if (searchParams) {
-        currentPath += `?${searchParams.toString()}`;
+        currentPath += searchParams;
       }
       return currentPath;
     }
-  }, [pathname, searchParams]);
+  }, []);
 
   return (
     <ClerkProvider
