@@ -16,6 +16,53 @@ test("teacher can click download all resources on lesson page", async ({
 test("teacher can complete download flow and download lesson assets", async ({
   lessonPage,
 }, testInfo) => {
+  const networkIssues: Array<{
+    kind: "response" | "requestfailed";
+    url: string;
+    method: string;
+    status?: number;
+    statusText?: string;
+    failureText?: string;
+  }> = [];
+
+  const pushNetworkIssue = (event: (typeof networkIssues)[number]): void => {
+    networkIssues.push(event);
+    if (networkIssues.length > 40) networkIssues.shift();
+  };
+
+  const isRelevantUrl = (url: string): boolean => {
+    return (
+      url.includes("/downloads") ||
+      url.includes("/api") ||
+      url.includes("lesson-assets")
+    );
+  };
+
+  lessonPage.on("response", (response) => {
+    const url = response.url();
+    if (!response.ok() && isRelevantUrl(url)) {
+      pushNetworkIssue({
+        kind: "response",
+        url,
+        method: response.request().method(),
+        status: response.status(),
+        statusText: response.statusText(),
+      });
+    }
+  });
+
+  lessonPage.on("requestfailed", (request) => {
+    const url = request.url();
+    if (isRelevantUrl(url)) {
+      pushNetworkIssue({
+        kind: "requestfailed",
+        url,
+        method: request.method(),
+        failureText: request.failure()?.errorText,
+      });
+    }
+  });
+
   // Arrange
   const downloadAllButton = lessonPage
     .locator('[data-testid="download-all-button"]:visible')
@@ -41,6 +88,19 @@ test("teacher can complete download flow and download lesson assets", async ({
     timeout: 20_000,
   });
 
+  // Ensure the required school field is populated so submit can become ready.
+  const schoolNotListedCheckbox = lessonPage.getByRole("checkbox", {
+    name: /my school isn't listed/i,
+  });
+  if (!(await schoolNotListedCheckbox.isChecked())) {
+    await schoolNotListedCheckbox.check({ timeout: 20_000 });
+  }
+
+  const schoolInput = lessonPage.getByLabel(/school \(required\)/i);
+  await schoolInput.fill("Homeschool", { timeout: 20_000 });
+  await lessonPage.getByText(/^Homeschool$/).click({ timeout: 20_000 });
+  await expect(schoolInput).toHaveValue("Homeschool", { timeout: 20_000 });
+
   const downloadButton = lessonPage.getByRole("button", {
     name: /loading\.{3}|download\s*\.zip/i,
   });
@@ -53,7 +113,6 @@ test("teacher can complete download flow and download lesson assets", async ({
   await expect(downloadButton).toBeEnabled({ timeout: 30_000 });
 
   // Temporary CI diagnostics to inspect form and button state before click.
-  const schoolInput = lessonPage.getByLabel(/school \(required\)/i);
   const diagnostics = {
     url: lessonPage.url(),
     buttonText: await downloadButton.textContent(),
@@ -65,6 +124,8 @@ test("teacher can complete download flow and download lesson assets", async ({
       .getByTestId("termsCheckboxInput")
       .isChecked(),
     schoolInputValue: await schoolInput.inputValue().catch(() => null),
+    networkIssueCount: networkIssues.length,
+    networkIssues,
   };
 
   await testInfo.attach("download-flow-diagnostics", {
