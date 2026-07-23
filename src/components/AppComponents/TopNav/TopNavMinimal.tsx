@@ -9,7 +9,6 @@ import {
   OakIcon,
   OakImage,
   OakLink,
-  useMediaQuery,
 } from "@/styles/oakThemeApp";
 import { getCloudinaryImageUrl } from "@/utils/getCloudinaryImageUrl";
 import { resolveOakHref } from "@/common-lib/urls";
@@ -37,7 +36,6 @@ const TopNavMinimal = ({
   menuSlot?: React.ReactNode;
 }) => {
   const activeArea = useSelectedArea();
-  const isMobile = useMediaQuery("mobile");
 
   return (
     <OakBox
@@ -108,15 +106,20 @@ const TopNavMinimal = ({
           aria-label="Home"
         >
           <OakImage
-            src={getCloudinaryImageUrl(
-              isMobile
-                ? "v1711468346/logo-mark.svg"
-                : "v1765468420/OakLogoWithText.svg",
-            )}
+            src={getCloudinaryImageUrl("v1711468346/logo-mark.svg")}
             alt=""
-            $height={["spacing-40", "spacing-48"]}
-            $width={["spacing-32", "spacing-100"]}
+            $height={"spacing-40"}
+            $width={"spacing-32"}
             $pa={"spacing-0"}
+            $display={["block", "none"]} // render this logo on mobile only
+          />
+          <OakImage
+            src={getCloudinaryImageUrl("v1765468420/OakLogoWithText.svg")}
+            alt=""
+            $height={"spacing-48"}
+            $width={"spacing-100"}
+            $pa={"spacing-0"}
+            $display={["none", "block"]} // render this logo on desktop only
           />
         </OakLink>
         {subnavSlot}
