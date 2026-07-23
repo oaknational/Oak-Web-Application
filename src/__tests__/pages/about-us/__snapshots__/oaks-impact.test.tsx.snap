@@ -688,15 +688,22 @@ exports[`pages/about-us/oaks-impact.tsx renders title when feature flag is enabl
                   Case studies
                 </h2>
                 <ul
-                  class="sc-aXZVg sc-tagGq bMQSvq htgkdF"
+                  class="sc-aXZVg sc-tagGq bMQSvq jFIZYB"
                 />
               </div>
             </div>
           </div>
           <div
-            class="sc-aXZVg gXhAcH"
+            class="sc-aXZVg bZTQLO"
           >
-            TODO: Quotes
+            <h2
+              class="sc-eldPxv haIdjY"
+            >
+              Oaks Impact school quotes heading
+            </h2>
+            <ul
+              class="sc-aXZVg sc-tagGq icrVol jFIZYB"
+            />
           </div>
           <div
             class="sc-aXZVg guaSoh"

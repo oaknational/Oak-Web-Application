@@ -2,6 +2,7 @@ import { screen } from "@testing-library/dom";
 import userEvent from "@testing-library/user-event";
 
 import UnitHeader, { UnitHeaderProps } from "./UnitHeader";
+import { useStickyUnitHeader } from "./useStickyUnitHeader";
 
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 import { setUseUserReturn } from "@/__tests__/__helpers__/mockClerk";
@@ -45,6 +46,13 @@ jest.mock(
   }),
 );
 
+jest.mock("./useStickyUnitHeader", () => ({
+  useStickyUnitHeader: jest.fn(() => ({
+    sentinelRef: { current: null },
+    isStuck: false,
+  })),
+}));
+
 const render = renderWithProviders();
 
 const baseProps = teachersUnitOverviewFixture();
@@ -86,6 +94,8 @@ const mockAdjacentUnit = {
   slug: "adjacent-unit",
   title: "Adjacent unit",
 } as UnitHeaderProps["nextUnit"];
+
+const mockedUseStickyUnitHeader = jest.mocked(useStickyUnitHeader);
 
 describe("UnitHeader", () => {
   beforeEach(() => {
@@ -142,5 +152,32 @@ describe("UnitHeader", () => {
         variant: "success",
       }),
     );
+  });
+
+  describe("Sticky Nav Footer", () => {
+    it("renders unstuck by default", () => {
+      renderUnitHeader({ unitDownloadFileId: "unit-file-id" });
+
+      const footer = screen.getByTestId("unit-header-nav-footer");
+      expect(footer).toHaveAttribute("data-stuck", "false");
+      expect(
+        screen.queryByTestId("unit-header-nav-footer-placeholder"),
+      ).not.toBeInTheDocument();
+    });
+
+    it("renders stuck output when hook returns stuck", () => {
+      mockedUseStickyUnitHeader.mockReturnValueOnce({
+        sentinelRef: { current: null },
+        isStuck: true,
+      });
+
+      renderUnitHeader({ unitDownloadFileId: "unit-file-id" });
+
+      const footer = screen.getByTestId("unit-header-nav-footer");
+      expect(footer).toHaveAttribute("data-stuck", "true");
+      expect(
+        screen.getByTestId("unit-header-nav-footer-placeholder"),
+      ).toBeInTheDocument();
+    });
   });
 });

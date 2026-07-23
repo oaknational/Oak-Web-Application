@@ -1,3 +1,35 @@
+## [1.1135.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.1135.0...v1.1135.1) (2026-07-22)
+
+
+### Bug Fixes
+
+* add slice for extra security ([08c82dd](https://github.com/oaknational/Oak-Web-Application/commit/08c82dd4ec2b6546f8e6286faf87a67206c53843))
+* ensure case studies are centred and same size if 2 or 3 cards ([6704275](https://github.com/oaknational/Oak-Web-Application/commit/67042759975e702ee58980b45a2878a367dbbf10))
+* tests for 2 and 3 case studies ([4aed109](https://github.com/oaknational/Oak-Web-Application/commit/4aed109dc7c140d024184ad148225afb8281835b))
+* un-nest ternary ([949b93e](https://github.com/oaknational/Oak-Web-Application/commit/949b93ed5f019b73995c68176bbc31a543d1ba69))
+
+# [1.1135.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1134.1...v1.1135.0) (2026-07-22)
+
+
+### Bug Fixes
+
+* stats link to report opens in new tab ([1f9f513](https://github.com/oaknational/Oak-Web-Application/commit/1f9f5131c3b1817c9a52b5a631bf6677e1f4e4cf))
+
+
+### Features
+
+* bring sanity school quotes into oaks impact ([c72ad49](https://github.com/oaknational/Oak-Web-Application/commit/c72ad49ceae5d854fa40abcb62ae33abbd469ff5))
+* merged generated sanity types ([ba0efbf](https://github.com/oaknational/Oak-Web-Application/commit/ba0efbf540147620ef471379c4e716329f969df0))
+* update gql query and generated types ([e2cd942](https://github.com/oaknational/Oak-Web-Application/commit/e2cd9421b81e11ff0b6a7fa1eb5bdca33aa5908b))
+* update typing for impact school quotes ([d51910e](https://github.com/oaknational/Oak-Web-Application/commit/d51910eaa09cacc9e86192d87ce64e1f38a903b7))
+
+## [1.1134.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.1134.0...v1.1134.1) (2026-07-22)
+
+
+### Bug Fixes
+
+* remove flickering on download header footer ([a0439c8](https://github.com/oaknational/Oak-Web-Application/commit/a0439c876ae184eb0841d47228419319af3b053f))
+
 # [1.1134.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1133.0...v1.1134.0) (2026-07-22)
 
 

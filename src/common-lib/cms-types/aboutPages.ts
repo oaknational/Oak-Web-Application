@@ -175,7 +175,11 @@ export const oaksImpactPageCaseStudiesSectionSchema = z.object({
 export const oaksImpactSchoolQuoteCardSchema = z.object({
   logo: imageSchema,
   summary: z.string(),
-  quote: quoteSchema,
+  quote: quoteSchema.extend({
+    attribution: z.string(),
+    role: z.string(),
+    organisation: z.string(),
+  }),
   headshot: imageSchema,
 });
 
