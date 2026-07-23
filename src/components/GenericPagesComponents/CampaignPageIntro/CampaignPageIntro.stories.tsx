@@ -1,6 +1,5 @@
 import React from "react";
 import { Meta, StoryObj } from "@storybook/nextjs";
-import { oakDefaultTheme, OakThemeProvider } from "@oaknational/oak-components";
 
 import { CampaignPageIntro } from "./CampaignPageIntro";
 
@@ -19,11 +18,9 @@ type Story = StoryObj<typeof CampaignPageIntro>;
 
 export const Default: Story = {
   render: () => (
-    <OakThemeProvider theme={oakDefaultTheme}>
-      <CampaignPageIntro
-        heading={headingPortableText()}
-        body={bodyPortableTextWithStyling()}
-      />
-    </OakThemeProvider>
+    <CampaignPageIntro
+      heading={headingPortableText()}
+      body={bodyPortableTextWithStyling()}
+    />
   ),
 };

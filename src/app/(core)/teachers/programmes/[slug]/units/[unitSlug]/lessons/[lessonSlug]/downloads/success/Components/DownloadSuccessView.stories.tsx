@@ -1,5 +1,4 @@
 import type { Meta, StoryObj } from "@storybook/nextjs";
-import { OakThemeProvider, oakDefaultTheme } from "@oaknational/oak-components";
 import { ClerkProvider } from "@clerk/nextjs";
 
 import {
@@ -80,9 +79,7 @@ const meta: Meta<typeof DownloadSuccessView> = {
     TeacherBrowseAnalyticsDecorator,
     (Story) => (
       <ClerkProvider>
-        <OakThemeProvider theme={oakDefaultTheme}>
-          <Story />
-        </OakThemeProvider>
+        <Story />
       </ClerkProvider>
     ),
   ],
