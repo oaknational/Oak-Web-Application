@@ -1,10 +1,8 @@
 /* istanbul ignore file */
-import { ClerkProvider } from "@clerk/nextjs";
 import { Lexend } from "next/font/google";
 import parse from "html-react-parser";
 import { Metadata } from "next";
 
-import { PHProvider } from "./providers";
 import StyledComponentsRegistry from "./styles-registry";
 import AnalyticsWrapper from "./components/AnalyticsWrapper";
 import { getTwitterMetadata, getOpenGraphMetadata } from "./metadata";
@@ -20,6 +18,10 @@ import getBrowserConfig from "@/browser-lib/getBrowserConfig";
 import { MenuProvider } from "@/context/Menu";
 import { OakNotificationsProvider } from "@/context/OakNotifications/OakNotificationsProvider";
 import { SaveCountProvider } from "@/context/SaveCount/SaveCountProvider";
+import {
+  PHProvider,
+  ClerkProviderWithRedirects,
+} from "@/browser-lib/appProviders";
 
 // https://nextjs.org/docs/app/getting-started/metadata-and-og-images
 export const metadata: Metadata = {
@@ -55,42 +57,8 @@ export default function RootLayout({
             <CookieConsentProvider>
               <PHProvider>
                 <OakNotificationsProvider>
-                  <ClerkProvider
-                    signInUrl={"/sign-in"}
-                    signUpUrl={"/sign-in"}
-                    localization={{
-                      signUp: {
-                        start: {
-                          title: "Sign up to Oak in seconds",
-                          subtitle: "Choose a method",
-                        },
-                      },
-                    }}
-                    appearance={{
-                      layout: {
-                        logoLinkUrl: "/",
-                      },
-                      variables: {
-                        colorPrimary: "#222222",
-                        fontFamily: lexend.style.fontFamily,
-                        borderRadius: "4px",
-                      },
-                      elements: {
-                        cardBox: {
-                          boxShadow: "none",
-                          overflow: "auto",
-                          borderRadius: "8px",
-                        },
-                        card: {
-                          paddingBlock: "40px",
-                          boxShadow: "none",
-                          borderRadius: "8px",
-                        },
-                        footer: {
-                          background: "#ffffff",
-                        },
-                      },
-                    }}
+                  <ClerkProviderWithRedirects
+                    fontFamily={lexend.style.fontFamily}
                   >
                     <AnalyticsWrapper>
                       <AppHooks />
@@ -101,7 +69,7 @@ export default function RootLayout({
                         </SaveCountProvider>
                       </MenuProvider>
                     </AnalyticsWrapper>
-                  </ClerkProvider>
+                  </ClerkProviderWithRedirects>
                 </OakNotificationsProvider>
               </PHProvider>
             </CookieConsentProvider>
