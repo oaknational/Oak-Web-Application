@@ -289,7 +289,7 @@ export const QuizPageContent = ({
     return nextSectionResults;
   };
 
-  const onNext = async () => {
+  const onNext = () => {
     const nextStep = getQuizNextStep({
       currentQuestionIndex,
       numQuestions,
@@ -308,7 +308,7 @@ export const QuizPageContent = ({
       return;
     }
 
-    if (!(await ensureCanProgress())) return;
+    if (!ensureCanProgress()) return;
 
     const nextSectionResults = completeQuizAndTrack();
     navigateToSection(
@@ -319,11 +319,11 @@ export const QuizPageContent = ({
     );
   };
 
-  const onBack = async () => {
+  const onBack = () => {
     const alreadyComplete = sectionResults[section]?.isComplete;
 
     if (!alreadyComplete && isQuizEffectivelyComplete()) {
-      if (!(await ensureCanProgress())) return;
+      if (!ensureCanProgress()) return;
       completeQuizAndTrack();
     } else if (!alreadyComplete) {
       if (!lessonStarted) {

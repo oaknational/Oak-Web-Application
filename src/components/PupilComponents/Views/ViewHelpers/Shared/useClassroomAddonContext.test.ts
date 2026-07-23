@@ -77,7 +77,7 @@ describe("useClassroomAddonContext", () => {
       submissionState: PostSubmissionState.RETURNED,
     });
 
-    const { result } = renderHook(() => useClassroomAddonContext());
+    const { result, rerender } = renderHook(() => useClassroomAddonContext());
 
     await waitFor(() => expect(result.current.isReady).toBe(true));
     expect(result.current.submissionId).toBe("submission-1");
@@ -88,6 +88,16 @@ describe("useClassroomAddonContext", () => {
     expect(result.current.initialSectionResults).toEqual({
       intro: { isComplete: true },
     });
+    expect(mockedApi.getPostSubmissionState).toHaveBeenCalledTimes(1);
+    expect(mockedApi.getPostSubmissionState).toHaveBeenCalledWith({
+      courseId: "course-1",
+      itemId: "item-1",
+      attachmentId: "attachment-1",
+      submissionId: "submission-1",
+    });
+
+    rerender();
+    expect(mockedApi.getPostSubmissionState).toHaveBeenCalledTimes(1);
   });
 
   it("stays usable when the add-on context fails to resolve", async () => {

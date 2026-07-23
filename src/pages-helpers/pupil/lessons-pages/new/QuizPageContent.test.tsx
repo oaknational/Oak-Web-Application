@@ -304,7 +304,12 @@ describe("QuizPageContent", () => {
     expect(routerPush.mock.calls[0]?.[0]).toContain("review");
   });
 
-  it("completes the quiz and navigates to the overview when finishing the starter quiz", async () => {
+  it("completes and navigates without waiting for a submission-state refresh", () => {
+    const refreshReadOnly = jest.fn(
+      () => new Promise<boolean>(() => undefined),
+    );
+    progressState = buildProgressState({ refreshReadOnly });
+    progressHookMock.mockImplementation((selector) => selector(progressState));
     quizState = buildQuizState({
       questionState: [{ ...baseQuestionState, mode: "feedback", grade: 1 }],
       currentQuestionIndex: 0,
@@ -314,18 +319,19 @@ describe("QuizPageContent", () => {
     quizHookMock.mockImplementation((selector) => selector(quizState));
 
     const { getByRole } = renderPage();
-    await act(async () => {
-      fireEvent.click(getByRole("button", { name: "Continue lesson" }));
-    });
+    fireEvent.click(getByRole("button", { name: "Continue lesson" }));
+
+    expect(refreshReadOnly).not.toHaveBeenCalled();
     expect(progressState.completeSection).toHaveBeenCalledWith("starter-quiz");
     expect(trackQuizCompleted).toHaveBeenCalledTimes(1);
     expect(trackLessonStarted).toHaveBeenCalledTimes(1);
     expect(routerPush.mock.calls[0]?.[0]).toContain("overview");
   });
 
-  it("redirects to review without completing the quiz when progression discovers read-only state", async () => {
+  it("redirects to review without completing the quiz when cached state is read-only", async () => {
     progressState = buildProgressState({
-      refreshReadOnly: jest.fn().mockResolvedValue(true),
+      isReadOnly: true,
+      refreshReadOnly: jest.fn(() => new Promise<boolean>(() => undefined)),
       setReadOnly: jest.fn(),
     });
     progressHookMock.mockImplementation((selector) => selector(progressState));
@@ -343,6 +349,7 @@ describe("QuizPageContent", () => {
     });
 
     expect(progressState.completeSection).not.toHaveBeenCalled();
+    expect(progressState.refreshReadOnly).not.toHaveBeenCalled();
     expect(trackQuizCompleted).not.toHaveBeenCalled();
     expect(routerPush.mock.calls[0]?.[0]).toContain("review");
   });
