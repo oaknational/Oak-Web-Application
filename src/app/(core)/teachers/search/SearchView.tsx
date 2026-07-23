@@ -1,11 +1,12 @@
 "use client";
 
-import { useRouter, useSearchParams } from "next/navigation";
+import { useSearchParams, useRouter } from "next/navigation";
 
 import Search from "@/app/(core)/teachers/search/Search.view";
 import useSearch from "@/context/Search/useSearch";
 import useSearchFilters from "@/context/Search/useSearchFilters";
 import { SearchPageData } from "@/node-lib/curriculum-api-2023";
+import { usePostHogSessionRecording } from "@/hooks/usePostHogSessionRecording";
 
 export const SearchView = ({
   curriculumData,
@@ -14,6 +15,7 @@ export const SearchView = ({
 }) => {
   const router = useRouter();
   const searchParams = useSearchParams();
+  usePostHogSessionRecording("enable-search-recording");
 
   const {
     subjects: allSubjects,
