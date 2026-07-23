@@ -19,9 +19,7 @@ const MathJaxProvider = ({ children }: PropsWithChildren) => {
       src={"/mathjax/tex-chtml.js"}
       config={config}
       onError={(e) =>
-        reportError(
-          new OakError({ code: "mathjax/startup", meta: { originalError: e } }),
-        )
+        reportError(new OakError({ code: "mathjax/startup", originalError: e }))
       }
     >
       {children}
