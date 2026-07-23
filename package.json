@@ -52,6 +52,7 @@
     "test": "jest --watch --collectCoverage=false",
     "test:coverage": "jest --watch",
     "test:ci": "jest",
+    "test:prepush": "jest --changedSince=origin/main --collectCoverage=false",
     "test:pages": "jest -c ./jest.pages.config.cjs ./src/__tests__",
     "test:components": "jest -c ./jest.components.config.cjs ./src/components",
     "test:storybook": "concurrently -k -s second -n \"SB,TEST\" \"STORYBOOK_TEST=true storybook dev -p 6006 --quiet --no-open\" \"wait-on http://localhost:6006 && STORYBOOK_TEST=true test-storybook\"",
