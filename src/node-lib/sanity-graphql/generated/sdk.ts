@@ -6391,6 +6391,14 @@ export type OaksCurriculaPageQueryVariables = Exact<{
 
 export type OaksCurriculaPageQuery = { __typename?: 'RootQuery', allNewAboutCorePageOaksCurricula: Array<{ __typename?: 'NewAboutCorePageOaksCurricula', id?: string | null, header?: { __typename?: 'OaksCurriculaPageHeader', introText?: string | null, image?: { __typename?: 'ImageWithAltText', altText?: string | null, isPresentational?: boolean | null, asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null, hotspot?: { __typename?: 'SanityImageHotspot', x?: number | null, y?: number | null, width?: number | null, height?: number | null } | null } | null } | null, guidingPrinciples?: { __typename?: 'OaksCurriculaPageGuidingPrinciples', textRaw?: any | null, image?: { __typename?: 'ImageWithAltText', altText?: string | null, isPresentational?: boolean | null, asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null, hotspot?: { __typename?: 'SanityImageHotspot', x?: number | null, y?: number | null, width?: number | null, height?: number | null } | null } | null, principles?: Array<{ __typename?: 'OaksCurriculaPageGuidingPrinciple', heading?: string | null, text2Raw?: any | null } | null> | null } | null, currentPartners?: { __typename?: 'OaksCurriculaPagePartnerSection', textRaw?: any | null, partners?: Array<{ __typename?: 'OaksCurriculaPagePartner', logo?: { __typename?: 'ImageWithAltText', altText?: string | null, isPresentational?: boolean | null, asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null, hotspot?: { __typename?: 'SanityImageHotspot', x?: number | null, y?: number | null, width?: number | null, height?: number | null } | null } | null } | null> | null } | null, legacyPartners?: { __typename?: 'OaksCurriculaPagePartnerSection', textRaw?: any | null, partners?: Array<{ __typename?: 'OaksCurriculaPagePartner', logo?: { __typename?: 'ImageWithAltText', altText?: string | null, isPresentational?: boolean | null, asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null, hotspot?: { __typename?: 'SanityImageHotspot', x?: number | null, y?: number | null, width?: number | null, height?: number | null } | null } | null } | null> | null } | null, seo?: { __typename?: 'Seo', title?: string | null, description?: string | null, canonicalURL?: string | null } | null }> };
 
+export type OaksImpactCaseStudyPageQueryVariables = Exact<{
+  slug?: InputMaybe<Scalars['String']['input']>;
+  isDraftFilter?: InputMaybe<Sanity_DocumentFilter>;
+}>;
+
+
+export type OaksImpactCaseStudyPageQuery = { __typename?: 'RootQuery', allCaseStudy: Array<{ __typename?: 'CaseStudy', textRaw?: any | null, slug?: { __typename?: 'Slug', current?: string | null } | null, image?: { __typename?: 'ImageWithAltText', altText?: string | null, isPresentational?: boolean | null, asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null, hotspot?: { __typename?: 'SanityImageHotspot', x?: number | null, y?: number | null, width?: number | null, height?: number | null } | null } | null, video?: { __typename?: 'Video', title?: string | null, captions?: Array<string | null> | null, video?: { __typename?: 'MuxVideo', asset?: { __typename?: 'MuxVideoAsset', assetId?: string | null, thumbTime?: number | null, playbackId?: string | null } | null } | null } | null }> };
+
 export type OaksImpactPageQueryVariables = Exact<{
   isDraftFilter?: InputMaybe<Sanity_DocumentFilter>;
 }>;
@@ -7513,6 +7521,26 @@ export const OaksCurriculaPageDocument = gql`
 }
     ${ImageWithAltTextFragmentDoc}
 ${SeoFragmentDoc}`;
+export const OaksImpactCaseStudyPageDocument = gql`
+    query oaksImpactCaseStudyPage($slug: String, $isDraftFilter: Sanity_DocumentFilter) {
+  allCaseStudy(
+    where: {_: $isDraftFilter, slug: {current: {eq: $slug}}}
+    sort: {_updatedAt: DESC}
+  ) {
+    slug {
+      current
+    }
+    image {
+      ...ImageWithAltText
+    }
+    textRaw
+    video {
+      ...Video
+    }
+  }
+}
+    ${ImageWithAltTextFragmentDoc}
+${VideoFragmentDoc}`;
 export const OaksImpactPageDocument = gql`
     query oaksImpactPage($isDraftFilter: Sanity_DocumentFilter) {
   allNewAboutCorePageOaksImpact(
@@ -7929,6 +7957,9 @@ export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = 
     },
     oaksCurriculaPage(variables?: OaksCurriculaPageQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<OaksCurriculaPageQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<OaksCurriculaPageQuery>({ document: OaksCurriculaPageDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'oaksCurriculaPage', 'query', variables);
+    },
+    oaksImpactCaseStudyPage(variables?: OaksImpactCaseStudyPageQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<OaksImpactCaseStudyPageQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<OaksImpactCaseStudyPageQuery>({ document: OaksImpactCaseStudyPageDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'oaksImpactCaseStudyPage', 'query', variables);
     },
     oaksImpactPage(variables?: OaksImpactPageQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<OaksImpactPageQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<OaksImpactPageQuery>({ document: OaksImpactPageDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'oaksImpactPage', 'query', variables);

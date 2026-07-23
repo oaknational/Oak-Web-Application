@@ -50,7 +50,7 @@ export const OaksImpactCaseStudies = ({
                 <OakCard
                   heading={caseStudy.video.title || ""}
                   headingLevel={"div"}
-                  href={`#/case-studies/${caseStudy.slug.current}`}
+                  href={`/about-us/oaks-impact/case-studies/${caseStudy.slug.current}`}
                   imageSrc={
                     getProxiedSanityAssetUrl(caseStudy.image?.asset?.url) ?? ""
                   }
