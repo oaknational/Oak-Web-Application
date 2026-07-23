@@ -1,17 +1,9 @@
 import { Meta, StoryObj } from "@storybook/nextjs";
-import { oakDefaultTheme, OakThemeProvider } from "@oaknational/oak-components";
 
 import { CurricTermCard as Component } from ".";
 
 const meta: Meta<typeof Component> = {
   component: Component,
-  decorators: [
-    (Story) => (
-      <OakThemeProvider theme={oakDefaultTheme}>
-        <Story />
-      </OakThemeProvider>
-    ),
-  ],
   argTypes: {
     title: {
       defaultValue: "Year 1",

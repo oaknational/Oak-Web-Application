@@ -1,11 +1,6 @@
 import React from "react";
-import { StoryObj, Meta } from "@storybook/react";
-import {
-  oakDefaultTheme,
-  OakFlex,
-  OakPrimaryButton,
-  OakThemeProvider,
-} from "@oaknational/oak-components";
+import { StoryObj, Meta } from "@storybook/nextjs";
+import { OakFlex, OakPrimaryButton } from "@oaknational/oak-components";
 
 import { Header } from "./Header";
 
@@ -42,13 +37,6 @@ const meta: Meta<typeof Header> = {
       ],
     },
   },
-  decorators: [
-    (Story) => (
-      <OakThemeProvider theme={oakDefaultTheme}>
-        <Story />
-      </OakThemeProvider>
-    ),
-  ],
 };
 
 export default meta;

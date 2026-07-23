@@ -65,7 +65,10 @@ export async function insertNumbering<T extends Record<string, string>>(
     );
   }
 
-  zip.writeJson(docNumberingPath, collapseFragments(json as Element));
+  zip.writeJson(
+    docNumberingPath,
+    collapseFragments(json as Element) as Element,
+  );
 
   return lookup;
 }

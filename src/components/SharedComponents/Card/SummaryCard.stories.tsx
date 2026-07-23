@@ -1,18 +1,10 @@
 import { Meta } from "@storybook/nextjs";
-import { oakDefaultTheme, OakThemeProvider } from "@oaknational/oak-components";
 
 import Component from "./SummaryCard";
 
 export default {
   component: Component,
   argTypes: {},
-  decorators: [
-    (Story) => (
-      <OakThemeProvider theme={oakDefaultTheme}>
-        <Story />
-      </OakThemeProvider>
-    ),
-  ],
 } as Meta<typeof Component>;
 
 export const SummaryCard = {

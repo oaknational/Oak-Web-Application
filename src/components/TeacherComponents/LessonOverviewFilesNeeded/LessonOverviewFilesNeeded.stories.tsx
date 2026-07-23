@@ -1,6 +1,5 @@
 import { Meta, StoryObj } from "@storybook/nextjs";
 import { JSX } from "react";
-import { OakThemeProvider, oakDefaultTheme } from "@oaknational/oak-components";
 
 import Component from "./LessonOverviewFilesNeeded";
 
@@ -28,11 +27,7 @@ const LessonOverviewFilesNeededComponent = (
     };
   },
 ) => {
-  return (
-    <OakThemeProvider theme={oakDefaultTheme}>
-      <Component {...args} />
-    </OakThemeProvider>
-  );
+  return <Component {...args} />;
 };
 
 export const Default: Story = {

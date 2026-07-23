@@ -1,17 +1,9 @@
 import { Meta, StoryObj } from "@storybook/nextjs";
-import { OakThemeProvider, oakDefaultTheme } from "@oaknational/oak-components";
 
 import Component from "./CurricUnitDetailsAccordion";
 
 const meta: Meta<typeof Component> = {
   component: Component,
-  decorators: [
-    (Story) => (
-      <OakThemeProvider theme={oakDefaultTheme}>
-        <Story />
-      </OakThemeProvider>
-    ),
-  ],
   argTypes: {
     title: {
       defaultValue: "Lesson in unit",

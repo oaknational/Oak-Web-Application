@@ -1,3 +1,67 @@
+# [1.1140.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1139.0...v1.1140.0) (2026-07-23)
+
+
+### Bug Fixes
+
+* quiz answer overflowing container ([bceda05](https://github.com/oaknational/Oak-Web-Application/commit/bceda059fc023e9001cdb6d03fa8380e696b92d5))
+
+
+### Features
+
+* revert code-3 font prop ([bebbc3d](https://github.com/oaknational/Oak-Web-Application/commit/bebbc3dbc359d1b8b52af58df0ccffd2a9696e88))
+
+# [1.1139.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1138.0...v1.1139.0) (2026-07-23)
+
+
+### Bug Fixes
+
+* added allowBuilds false for oak-components ([7f9ff38](https://github.com/oaknational/Oak-Web-Application/commit/7f9ff38d0b873a5db02c64b84d0f139ae43ed419))
+* bump oak-components with build fixes for tree-shaking ([427dbdd](https://github.com/oaknational/Oak-Web-Application/commit/427dbdd0d5a388658a739b013df5ead3ff5d182e))
+* bump tmp-oak-components-build with build fixes ([ccdf166](https://github.com/oaknational/Oak-Web-Application/commit/ccdf1666a3948bacc2a74561e63fab16fcc29269))
+* bump to new oak-components release ([d6288e5](https://github.com/oaknational/Oak-Web-Application/commit/d6288e593f969a1162cc108bb24f0b39193f9401))
+* remaining build issues ([e9f0328](https://github.com/oaknational/Oak-Web-Application/commit/e9f0328c782ee2c3abebfecd56b3170ddd8db91f))
+* try different install format ([a707182](https://github.com/oaknational/Oak-Web-Application/commit/a7071827055dc8518fd62134e3366dce9ae99c85))
+
+
+### Features
+
+* bump oak-components to v3.1.0 ([043da89](https://github.com/oaknational/Oak-Web-Application/commit/043da89c934df5fc59e49900cd09b9292a94dac3))
+* make oak-components tree-shakable ([1484f0c](https://github.com/oaknational/Oak-Web-Application/commit/1484f0c62fab0904db3972cb605b7c131ec56da0))
+
+# [1.1138.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1137.0...v1.1138.0) (2026-07-23)
+
+
+### Bug Fixes
+
+* text -> textRaw and use caseStudySchema instead of redefining schema ([2e2a779](https://github.com/oaknational/Oak-Web-Application/commit/2e2a7792259be705db2b3c3de18fa4643eef82d7))
+* update from prod sanity schema ([021345c](https://github.com/oaknational/Oak-Web-Application/commit/021345c20509674c817ce06aefb4d61da904b39f))
+
+
+### Features
+
+* add case studies page ([0ecf65b](https://github.com/oaknational/Oak-Web-Application/commit/0ecf65b60970892771b6298f3e1f4cdaf0535153))
+
+# [1.1137.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1136.1...v1.1137.0) (2026-07-23)
+
+
+### Bug Fixes
+
+* added back in __setMockAuthState ([3344f92](https://github.com/oaknational/Oak-Web-Application/commit/3344f92d6cf10ac4396f88d80321914c4afa354b))
+* broken stories ([593d393](https://github.com/oaknational/Oak-Web-Application/commit/593d39315b5219bd820f1c999ed570485ada1f63))
+
+
+### Features
+
+* added dark theme switcher to storybook ([65d63c8](https://github.com/oaknational/Oak-Web-Application/commit/65d63c814f0cbf7ceeb623a76dbd14e59783b7d8))
+* upgrade storybook ([9fd9034](https://github.com/oaknational/Oak-Web-Application/commit/9fd9034d2b57eed5ac13aef4859173e7bff03dbf))
+
+## [1.1136.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.1136.0...v1.1136.1) (2026-07-23)
+
+
+### Bug Fixes
+
+* detect screen size with css to prevent logo flickering ([4bacb68](https://github.com/oaknational/Oak-Web-Application/commit/4bacb68282f0035f8d66ef8d511dd5bc18d47b92))
+
 # [1.1136.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1135.1...v1.1136.0) (2026-07-23)
 
 
