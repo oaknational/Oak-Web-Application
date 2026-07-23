@@ -42,15 +42,12 @@ jest.mock(
   }),
 );
 
-jest.mock(
-  "@/components/TeacherComponents/TeacherShareButton/useTeacherShareButton",
-  () => ({
-    useTeacherShareButton: () => ({
-      handleClick: jest.fn(),
-      copiedComponent: <div>Link copied to clipboard</div>,
-    }),
+jest.mock("@/hooks/useCopyLink", () => ({
+  useCopyLink: () => ({
+    handleClick: jest.fn(),
+    copiedComponent: <div>Link copied to clipboard</div>,
   }),
-);
+}));
 
 const mockUseOakConsent = jest.fn();
 jest.mock("@oaknational/oak-consent-client", () => ({

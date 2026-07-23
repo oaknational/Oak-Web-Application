@@ -10,7 +10,8 @@ import {
 } from "./base";
 import { portableTextSchema } from "./portableText";
 import { teamMemberSchema } from "./teamMember";
-import { cardSchema, textBlockSchema } from "./blocks";
+import { textBlockSchema } from "./blocks";
+import { caseStudyCardSchema } from "./caseStudy";
 
 // Oak's Curricula Page
 export const oaksCurriculaPageHeaderSchema = z.object({
@@ -167,18 +168,18 @@ export const oaksImpactPageStatsSectionSchema = z.object({
   stats: z.array(oaksImpactPageStatsSchema),
 });
 
-export const oaksImpactPageCaseStudiesSchema = z.object({
-  cards: z.array(
-    cardSchema.extend({
-      bodyPortableText: portableTextSchema.nullable(),
-    }),
-  ),
+export const oaksImpactPageCaseStudiesSectionSchema = z.object({
+  caseStudies: z.array(caseStudyCardSchema),
 });
 
 export const oaksImpactSchoolQuoteCardSchema = z.object({
   logo: imageSchema,
   summary: z.string(),
-  quote: quoteSchema,
+  quote: quoteSchema.extend({
+    attribution: z.string(),
+    role: z.string(),
+    organisation: z.string(),
+  }),
   headshot: imageSchema,
 });
 
@@ -190,7 +191,7 @@ export const oaksImpactPageSchoolQuotesSchema = z.object({
 export const oaksImpactPageSchema = z.object({
   header: oaksImpactPageHeaderSchema,
   statsSection: oaksImpactPageStatsSectionSchema,
-  caseStudies: oaksImpactPageCaseStudiesSchema,
+  caseStudiesSection: oaksImpactPageCaseStudiesSectionSchema,
   schoolQuotes: oaksImpactPageSchoolQuotesSchema,
   seo: seoSchema.nullish(),
 });

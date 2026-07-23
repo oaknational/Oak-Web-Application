@@ -93,7 +93,7 @@ export const OakNotificationsProvider: FC<{
       {children}
       <StyledOakNotificationsContainer
         $position="fixed"
-        $zIndex="in-front"
+        $zIndex="modal-dialog"
         offsetTop={offsetTop}
         $right={["spacing-0", "spacing-24"]}
         $width={["100%", "max-content"]}

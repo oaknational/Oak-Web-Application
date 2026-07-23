@@ -4,7 +4,7 @@ import { fireEvent } from "@testing-library/react";
 import PupilLessonOverviewPage, {
   getStaticProps,
 } from "@/pages/pupils/programmes/[programmeSlug]/units/[unitSlug]/lessons/[lessonSlug]/overview";
-import * as curriculumApi2023 from "@/node-lib/curriculum-api-2023/__mocks__/index";
+import * as curriculumApi2023 from "@/node-lib/curriculum-api-2023/__mocks__/curriculumApi2023Mock";
 import OakError from "@/errors/OakError";
 import { lessonContentFixture } from "@/node-lib/curriculum-api-2023/fixtures/lessonContent.fixture";
 import { lessonBrowseDataFixture } from "@/node-lib/curriculum-api-2023/fixtures/lessonBrowseData.fixture";
