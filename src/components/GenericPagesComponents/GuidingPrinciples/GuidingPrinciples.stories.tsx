@@ -1,9 +1,5 @@
 import { Meta, StoryObj } from "@storybook/nextjs";
-import {
-  oakDefaultTheme,
-  OakThemeProvider,
-  oakUiRoleTokens,
-} from "@oaknational/oak-components";
+import { oakUiRoleTokens } from "@oaknational/oak-components";
 
 import { GuidingPrinciples as Component } from ".";
 
@@ -19,13 +15,6 @@ const meta: Meta<typeof Component> = {
       options: oakUiRoleTokens,
     },
   },
-  decorators: [
-    (Story) => (
-      <OakThemeProvider theme={oakDefaultTheme}>
-        <Story />
-      </OakThemeProvider>
-    ),
-  ],
 };
 
 export default meta;

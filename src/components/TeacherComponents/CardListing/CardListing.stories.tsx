@@ -1,10 +1,5 @@
 import { Meta, StoryObj } from "@storybook/nextjs";
-import {
-  oakDefaultTheme,
-  OakFlex,
-  OakThemeProvider,
-  OakTypography,
-} from "@oaknational/oak-components";
+import { OakFlex, OakTypography } from "@oaknational/oak-components";
 import { ClerkProvider } from "@clerk/nextjs";
 
 import CardListing from "./CardListing";
@@ -19,9 +14,7 @@ const meta: Meta<typeof CardListing> = {
     NotificationsDecorator,
     (Story) => (
       <ClerkProvider>
-        <OakThemeProvider theme={oakDefaultTheme}>
-          <Story />
-        </OakThemeProvider>
+        <Story />
       </ClerkProvider>
     ),
   ],

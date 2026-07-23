@@ -1,17 +1,9 @@
 import type { Meta, StoryObj } from "@storybook/nextjs";
-import { OakThemeProvider, oakDefaultTheme } from "@oaknational/oak-components";
 
 import { PupilLessonOverviewOutcomes } from "./PupilLessonOverviewOutcomes";
 
 const meta = {
   component: PupilLessonOverviewOutcomes,
-  decorators: [
-    (StoryComponent) => (
-      <OakThemeProvider theme={oakDefaultTheme}>
-        <StoryComponent />
-      </OakThemeProvider>
-    ),
-  ],
 } satisfies Meta<typeof PupilLessonOverviewOutcomes>;
 
 export default meta;
