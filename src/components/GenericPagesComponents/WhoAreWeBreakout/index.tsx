@@ -1,8 +1,8 @@
-import { OakFlex, OakP } from "@oaknational/oak-components";
+import { OakFlex, OakImage, OakP } from "@oaknational/oak-components";
 import styled from "styled-components";
 
 import { Image } from "@/common-lib/cms-types";
-import CMSImage from "@/components/SharedComponents/CMSImage";
+import getProxiedSanityAssetUrl from "@/common-lib/urls/getProxiedSanityAssetUrl";
 
 const CustomFlex = styled(OakFlex)`
   flex-direction: row;
@@ -28,7 +28,11 @@ export function WhoAreWeBreakout({
         $minWidth={["100%", "spacing-640", "spacing-640"]}
         $aspectRatio={"4/3"}
       >
-        <CMSImage $objectFit={"cover"} image={image} />
+        <OakImage
+          $objectFit={"cover"}
+          src={getProxiedSanityAssetUrl(image.asset?.url ?? "")}
+          alt={image.altText ?? ""}
+        />
       </OakFlex>
       <OakFlex
         $flexShrink={1}

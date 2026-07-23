@@ -7,11 +7,12 @@ import {
   OakHeading,
   OakP,
   OakHeadingProps,
+  OakImage,
 } from "@oaknational/oak-components";
 
 import { NewGutterMaxWidth } from "@/components/GenericPagesComponents/NewGutterMaxWidth";
-import CMSImage from "@/components/SharedComponents/CMSImage/CMSImage";
 import { Image } from "@/common-lib/cms-types";
+import getProxiedSanityAssetUrl from "@/common-lib/urls/getProxiedSanityAssetUrl";
 
 export type SupportYouProps = {
   link: {
@@ -72,7 +73,11 @@ export function SupportYou({
           </OakGridArea>
           <OakGridArea $colStart={[0, 7, 7]} $colSpan={[12, 6, 6]}>
             <OakFlex $flexGrow={1} $aspectRatio={"4/3"}>
-              <CMSImage $objectFit={"contain"} image={image} />
+              <OakImage
+                $objectFit={"contain"}
+                src={getProxiedSanityAssetUrl(image.asset?.url) ?? ""}
+                alt={image.altText ?? ""}
+              />
             </OakFlex>
           </OakGridArea>
         </OakGrid>
