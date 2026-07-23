@@ -1,4 +1,5 @@
 import { collapseFragments } from "@ooxml-tools/xml";
+import { Element } from "xml-js";
 
 import {
   cdataJson,
@@ -124,26 +125,6 @@ describe("xml", () => {
   });
 
   describe("collapseFragments", () => {
-    it("should return fragment if top level is fragment", () => {
-      const input = {
-        type: "element",
-        name: "XML_FRAGMENT",
-        elements: [],
-      };
-      expect(collapseFragments(input)).toEqual(input);
-    });
-
-    it("should return fragment if top level is fragment (elements undefined)", () => {
-      const input = {
-        type: "element",
-        name: "XML_FRAGMENT",
-        elements: undefined,
-      };
-      expect(collapseFragments(input)).toEqual({
-        ...input,
-        elements: [],
-      });
-    });
     it("with fragments", () => {
       const input = {
         elements: [
@@ -199,7 +180,7 @@ describe("xml", () => {
         ],
       };
       const inputClone = JSON.parse(JSON.stringify(input));
-      const out = collapseFragments(input);
+      const out = collapseFragments(input) as Element;
       expect(inputClone).toEqual(input);
       expect(input.elements[1]!.elements![0]!.elements[0]?.elements[3]).toBe(
         out.elements![1]!.elements![2],

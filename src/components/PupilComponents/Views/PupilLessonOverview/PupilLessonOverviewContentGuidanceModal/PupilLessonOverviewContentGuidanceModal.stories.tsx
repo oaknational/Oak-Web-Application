@@ -1,17 +1,9 @@
 import type { Meta, StoryObj } from "@storybook/nextjs";
-import { OakThemeProvider, oakDefaultTheme } from "@oaknational/oak-components";
 
 import { PupilLessonOverviewContentGuidanceModal } from "./PupilLessonOverviewContentGuidanceModal";
 
 const meta = {
   component: PupilLessonOverviewContentGuidanceModal,
-  decorators: [
-    (StoryComponent) => (
-      <OakThemeProvider theme={oakDefaultTheme}>
-        <StoryComponent />
-      </OakThemeProvider>
-    ),
-  ],
   args: {
     redirectOverlayCleared: true,
     contentGuidanceDismissed: false,

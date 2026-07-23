@@ -1,5 +1,4 @@
 import type { Meta, StoryObj } from "@storybook/nextjs";
-import { OakThemeProvider, oakDefaultTheme } from "@oaknational/oak-components";
 
 import {
   QuizResultQuestionStem,
@@ -19,9 +18,7 @@ const meta: Meta<typeof QuizResultQuestionStem> = {
   decorators: [
     (Story) => (
       <MathJaxProvider>
-        <OakThemeProvider theme={oakDefaultTheme}>
-          <Story />
-        </OakThemeProvider>
+        <Story />
       </MathJaxProvider>
     ),
   ],
