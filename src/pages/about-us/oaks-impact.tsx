@@ -3,7 +3,6 @@ import {
   GetServerSidePropsResult,
   NextPage,
 } from "next/dist/types";
-import { OakBox } from "@oaknational/oak-components";
 
 import getBrowserConfig from "@/browser-lib/getBrowserConfig";
 import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
@@ -23,6 +22,7 @@ import { getPosthogIdFromCookie } from "@/node-lib/posthog/getPosthogId";
 import { OaksImpactStats } from "@/components/GenericPagesComponents/OaksImpactStats";
 import CMSClient from "@/node-lib/cms";
 import { OaksImpactPage } from "@/common-lib/cms-types";
+import { OaksImpactSchoolQuotesSection } from "@/components/GenericPagesComponents/OaksImpactSchoolQuotesSection";
 
 export type OaksImpactPageProps = {
   topNav: TopNavProps;
@@ -53,14 +53,7 @@ const OaksImpact: NextPage<OaksImpactPageProps> = ({ topNav, pageData }) => {
         <OaksImpactCaseStudies
           caseStudies={pageData.caseStudiesSection.caseStudies}
         />
-        <OakBox
-          $ma={"spacing-48"}
-          $pa={"spacing-48"}
-          $borderColor="red"
-          $ba="border-solid-xxl"
-        >
-          TODO: Quotes
-        </OakBox>
+        <OaksImpactSchoolQuotesSection {...pageData.schoolQuotes} />
         <SupportYou
           headingTag="h2"
           link={{
