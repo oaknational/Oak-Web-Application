@@ -4239,7 +4239,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
   }
 }
 
-@media (max-width:1212px) {
+@media (max-width:1000px) {
   .c79 {
     -webkit-flex-direction: column;
     -ms-flex-direction: column;

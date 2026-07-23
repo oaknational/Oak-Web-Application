@@ -7,7 +7,7 @@ import getProxiedSanityAssetUrl from "@/common-lib/urls/getProxiedSanityAssetUrl
 const CustomFlex = styled(OakFlex)`
   flex-direction: row;
 
-  @media (max-width: 1212px) {
+  @media (max-width: 1000px) {
     flex-direction: column;
   }
 `;
