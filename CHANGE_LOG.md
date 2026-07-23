@@ -1,3 +1,16 @@
+# [1.1138.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1137.0...v1.1138.0) (2026-07-23)
+
+
+### Bug Fixes
+
+* text -> textRaw and use caseStudySchema instead of redefining schema ([2e2a779](https://github.com/oaknational/Oak-Web-Application/commit/2e2a7792259be705db2b3c3de18fa4643eef82d7))
+* update from prod sanity schema ([021345c](https://github.com/oaknational/Oak-Web-Application/commit/021345c20509674c817ce06aefb4d61da904b39f))
+
+
+### Features
+
+* add case studies page ([0ecf65b](https://github.com/oaknational/Oak-Web-Application/commit/0ecf65b60970892771b6298f3e1f4cdaf0535153))
+
 # [1.1137.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1136.1...v1.1137.0) (2026-07-23)
 
 
