@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`OaksImpactCaseStudies renders correctly 1`] = `
+exports[`OaksImpactCaseStudies renders correctly when 2 case studies are provided 1`] = `
 <body>
   <div>
     <div
@@ -18,196 +18,370 @@ exports[`OaksImpactCaseStudies renders correctly 1`] = `
             Case studies
           </h2>
           <ul
-            class="sc-aXZVg sc-tagGq bMQSvq htgkdF"
+            class="sc-aXZVg sc-tagGq bMQSvq jFIZYB"
           >
             <li
-              class="sc-aXZVg sc-hZDyAQ gQdNNR hpWhFC"
+              class="sc-aXZVg sc-gEvEer sc-esYiGF jPvJsJ iDBIXi jYNrWW"
             >
-              <a
-                class="sc-aXZVg sc-gEvEer sc-eyvILC eyLmQc dXoawi cstkxg"
-                href="#/case-studies/case-study-1"
+              <div
+                class="sc-aXZVg sc-hZDyAQ gQdNNR dmBajW"
               >
-                <span
-                  class="sc-aXZVg kvjdhA sc-bpUBKd gXHgWu"
+                <a
+                  class="sc-aXZVg sc-gEvEer sc-eyvILC eyLmQc dXoawi cstkxg"
+                  href="#/case-studies/case-study-1"
                 >
-                  <img
-                    alt=""
-                    class="sc-iGgWBj dZvqhO"
-                    data-nimg="fill"
-                    decoding="async"
-                    loading="lazy"
-                    sizes="100vw"
-                    src="http://localhost/_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Foak-web-application%2Fimage%2Fupload%2Fv1698336490%2Fsample.jpg&w=3840&q=75"
-                    srcset="/_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Foak-web-application%2Fimage%2Fupload%2Fv1698336490%2Fsample.jpg&w=640&q=75 640w, /_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Foak-web-application%2Fimage%2Fupload%2Fv1698336490%2Fsample.jpg&w=750&q=75 750w, /_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Foak-web-application%2Fimage%2Fupload%2Fv1698336490%2Fsample.jpg&w=828&q=75 828w, /_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Foak-web-application%2Fimage%2Fupload%2Fv1698336490%2Fsample.jpg&w=1080&q=75 1080w, /_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Foak-web-application%2Fimage%2Fupload%2Fv1698336490%2Fsample.jpg&w=1200&q=75 1200w, /_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Foak-web-application%2Fimage%2Fupload%2Fv1698336490%2Fsample.jpg&w=1920&q=75 1920w, /_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Foak-web-application%2Fimage%2Fupload%2Fv1698336490%2Fsample.jpg&w=2048&q=75 2048w, /_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Foak-web-application%2Fimage%2Fupload%2Fv1698336490%2Fsample.jpg&w=3840&q=75 3840w"
-                    style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
-                  />
-                </span>
-                <div
-                  class="sc-aXZVg sc-gEvEer sc-kYxDKI jPvJsJ jFNgPm"
-                >
+                  <span
+                    class="sc-aXZVg kvjdhA sc-bpUBKd gXHgWu"
+                  >
+                    <img
+                      alt=""
+                      class="sc-iGgWBj dZvqhO"
+                      data-nimg="fill"
+                      decoding="async"
+                      loading="lazy"
+                      sizes="100vw"
+                      src="http://localhost/_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Foak-web-application%2Fimage%2Fupload%2Fv1698336490%2Fsample.jpg&w=3840&q=75"
+                      srcset="/_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Foak-web-application%2Fimage%2Fupload%2Fv1698336490%2Fsample.jpg&w=640&q=75 640w, /_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Foak-web-application%2Fimage%2Fupload%2Fv1698336490%2Fsample.jpg&w=750&q=75 750w, /_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Foak-web-application%2Fimage%2Fupload%2Fv1698336490%2Fsample.jpg&w=828&q=75 828w, /_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Foak-web-application%2Fimage%2Fupload%2Fv1698336490%2Fsample.jpg&w=1080&q=75 1080w, /_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Foak-web-application%2Fimage%2Fupload%2Fv1698336490%2Fsample.jpg&w=1200&q=75 1200w, /_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Foak-web-application%2Fimage%2Fupload%2Fv1698336490%2Fsample.jpg&w=1920&q=75 1920w, /_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Foak-web-application%2Fimage%2Fupload%2Fv1698336490%2Fsample.jpg&w=2048&q=75 2048w, /_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Foak-web-application%2Fimage%2Fupload%2Fv1698336490%2Fsample.jpg&w=3840&q=75 3840w"
+                      style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                    />
+                  </span>
                   <div
-                    class="sc-aXZVg sc-gEvEer jPvJsJ fVNIMq"
+                    class="sc-aXZVg sc-gEvEer sc-kYxDKI jPvJsJ jFNgPm"
                   >
                     <div
-                      class="sc-eldPxv ibGcSM"
+                      class="sc-aXZVg sc-gEvEer jPvJsJ fVNIMq"
                     >
-                      Case study 1
+                      <div
+                        class="sc-eldPxv ibGcSM"
+                      >
+                        Case study 1
+                      </div>
                     </div>
-                  </div>
-                  <div
-                    class="sc-aXZVg sc-gEvEer jPvJsJ bRjxks"
-                  >
                     <div
-                      class="sc-aXZVg sc-gEvEer jPvJsJ uEMma"
+                      class="sc-aXZVg sc-gEvEer jPvJsJ bRjxks"
                     >
-                      <span
-                        class="sc-eqUAAy dECBeo"
+                      <div
+                        class="sc-aXZVg sc-gEvEer jPvJsJ uEMma"
                       >
-                        Watch the video
-                      </span>
-                      <span
-                        class="sc-aXZVg jJQFnr"
-                      >
-                        <img
-                          alt=""
-                          class="sc-iGgWBj cMzyFO"
-                          data-nimg="fill"
-                          decoding="async"
-                          loading="lazy"
-                          src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1707149070/icons/fv0z57zerrioft52dd9n.svg"
-                          style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
-                        />
-                      </span>
+                        <span
+                          class="sc-eqUAAy dECBeo"
+                        >
+                          Watch the video
+                        </span>
+                        <span
+                          class="sc-aXZVg jJQFnr"
+                        >
+                          <img
+                            alt=""
+                            class="sc-iGgWBj cMzyFO"
+                            data-nimg="fill"
+                            decoding="async"
+                            loading="lazy"
+                            src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1707149070/icons/fv0z57zerrioft52dd9n.svg"
+                            style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                          />
+                        </span>
+                      </div>
                     </div>
                   </div>
-                </div>
-              </a>
+                </a>
+              </div>
             </li>
             <li
-              class="sc-aXZVg sc-hZDyAQ gQdNNR hpWhFC"
+              class="sc-aXZVg sc-gEvEer sc-esYiGF jPvJsJ iDBIXi bGCzCa"
             >
-              <a
-                class="sc-aXZVg sc-gEvEer sc-eyvILC eyLmQc dXoawi cstkxg"
-                href="#/case-studies/case-study-2"
+              <div
+                class="sc-aXZVg sc-hZDyAQ gQdNNR dmBajW"
               >
-                <span
-                  class="sc-aXZVg kvjdhA sc-bpUBKd gXHgWu"
+                <a
+                  class="sc-aXZVg sc-gEvEer sc-eyvILC eyLmQc dXoawi cstkxg"
+                  href="#/case-studies/case-study-2"
                 >
-                  <img
-                    alt=""
-                    class="sc-iGgWBj dZvqhO"
-                    data-nimg="fill"
-                    decoding="async"
-                    loading="lazy"
-                    sizes="100vw"
-                    src="http://localhost/_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Foak-web-application%2Fimage%2Fupload%2Fv1698336494%2Fsamples%2Flandscapes%2Fnature-mountains.jpg&w=3840&q=75"
-                    srcset="/_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Foak-web-application%2Fimage%2Fupload%2Fv1698336494%2Fsamples%2Flandscapes%2Fnature-mountains.jpg&w=640&q=75 640w, /_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Foak-web-application%2Fimage%2Fupload%2Fv1698336494%2Fsamples%2Flandscapes%2Fnature-mountains.jpg&w=750&q=75 750w, /_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Foak-web-application%2Fimage%2Fupload%2Fv1698336494%2Fsamples%2Flandscapes%2Fnature-mountains.jpg&w=828&q=75 828w, /_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Foak-web-application%2Fimage%2Fupload%2Fv1698336494%2Fsamples%2Flandscapes%2Fnature-mountains.jpg&w=1080&q=75 1080w, /_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Foak-web-application%2Fimage%2Fupload%2Fv1698336494%2Fsamples%2Flandscapes%2Fnature-mountains.jpg&w=1200&q=75 1200w, /_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Foak-web-application%2Fimage%2Fupload%2Fv1698336494%2Fsamples%2Flandscapes%2Fnature-mountains.jpg&w=1920&q=75 1920w, /_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Foak-web-application%2Fimage%2Fupload%2Fv1698336494%2Fsamples%2Flandscapes%2Fnature-mountains.jpg&w=2048&q=75 2048w, /_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Foak-web-application%2Fimage%2Fupload%2Fv1698336494%2Fsamples%2Flandscapes%2Fnature-mountains.jpg&w=3840&q=75 3840w"
-                    style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
-                  />
-                </span>
-                <div
-                  class="sc-aXZVg sc-gEvEer sc-kYxDKI jPvJsJ jFNgPm"
-                >
+                  <span
+                    class="sc-aXZVg kvjdhA sc-bpUBKd gXHgWu"
+                  >
+                    <img
+                      alt=""
+                      class="sc-iGgWBj dZvqhO"
+                      data-nimg="fill"
+                      decoding="async"
+                      loading="lazy"
+                      sizes="100vw"
+                      src="http://localhost/_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Foak-web-application%2Fimage%2Fupload%2Fv1698336494%2Fsamples%2Flandscapes%2Fnature-mountains.jpg&w=3840&q=75"
+                      srcset="/_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Foak-web-application%2Fimage%2Fupload%2Fv1698336494%2Fsamples%2Flandscapes%2Fnature-mountains.jpg&w=640&q=75 640w, /_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Foak-web-application%2Fimage%2Fupload%2Fv1698336494%2Fsamples%2Flandscapes%2Fnature-mountains.jpg&w=750&q=75 750w, /_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Foak-web-application%2Fimage%2Fupload%2Fv1698336494%2Fsamples%2Flandscapes%2Fnature-mountains.jpg&w=828&q=75 828w, /_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Foak-web-application%2Fimage%2Fupload%2Fv1698336494%2Fsamples%2Flandscapes%2Fnature-mountains.jpg&w=1080&q=75 1080w, /_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Foak-web-application%2Fimage%2Fupload%2Fv1698336494%2Fsamples%2Flandscapes%2Fnature-mountains.jpg&w=1200&q=75 1200w, /_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Foak-web-application%2Fimage%2Fupload%2Fv1698336494%2Fsamples%2Flandscapes%2Fnature-mountains.jpg&w=1920&q=75 1920w, /_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Foak-web-application%2Fimage%2Fupload%2Fv1698336494%2Fsamples%2Flandscapes%2Fnature-mountains.jpg&w=2048&q=75 2048w, /_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Foak-web-application%2Fimage%2Fupload%2Fv1698336494%2Fsamples%2Flandscapes%2Fnature-mountains.jpg&w=3840&q=75 3840w"
+                      style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                    />
+                  </span>
                   <div
-                    class="sc-aXZVg sc-gEvEer jPvJsJ fVNIMq"
+                    class="sc-aXZVg sc-gEvEer sc-kYxDKI jPvJsJ jFNgPm"
                   >
                     <div
-                      class="sc-eldPxv ibGcSM"
+                      class="sc-aXZVg sc-gEvEer jPvJsJ fVNIMq"
                     >
-                      Case study 2
+                      <div
+                        class="sc-eldPxv ibGcSM"
+                      >
+                        Case study 2
+                      </div>
+                    </div>
+                    <div
+                      class="sc-aXZVg sc-gEvEer jPvJsJ bRjxks"
+                    >
+                      <div
+                        class="sc-aXZVg sc-gEvEer jPvJsJ uEMma"
+                      >
+                        <span
+                          class="sc-eqUAAy dECBeo"
+                        >
+                          Watch the video
+                        </span>
+                        <span
+                          class="sc-aXZVg jJQFnr"
+                        >
+                          <img
+                            alt=""
+                            class="sc-iGgWBj cMzyFO"
+                            data-nimg="fill"
+                            decoding="async"
+                            loading="lazy"
+                            src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1707149070/icons/fv0z57zerrioft52dd9n.svg"
+                            style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                          />
+                        </span>
+                      </div>
                     </div>
                   </div>
+                </a>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+`;
+
+exports[`OaksImpactCaseStudies renders correctly when 3 case studies are provided 1`] = `
+<body>
+  <div>
+    <div
+      class="sc-aXZVg kNKvOG"
+    >
+      <div
+        class="sc-aXZVg bZTQLO"
+      >
+        <div
+          class="sc-aXZVg sc-gEvEer bkFrQJ daEtut"
+        >
+          <h2
+            class="sc-eldPxv dGkyUI"
+          >
+            Case studies
+          </h2>
+          <ul
+            class="sc-aXZVg sc-tagGq bMQSvq jFIZYB"
+          >
+            <li
+              class="sc-aXZVg sc-gEvEer sc-esYiGF jPvJsJ iDBIXi dJOgIA"
+            >
+              <div
+                class="sc-aXZVg sc-hZDyAQ gQdNNR dmBajW"
+              >
+                <a
+                  class="sc-aXZVg sc-gEvEer sc-eyvILC eyLmQc dXoawi cstkxg"
+                  href="#/case-studies/case-study-1"
+                >
+                  <span
+                    class="sc-aXZVg kvjdhA sc-bpUBKd gXHgWu"
+                  >
+                    <img
+                      alt=""
+                      class="sc-iGgWBj dZvqhO"
+                      data-nimg="fill"
+                      decoding="async"
+                      loading="lazy"
+                      sizes="100vw"
+                      src="http://localhost/_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Foak-web-application%2Fimage%2Fupload%2Fv1698336490%2Fsample.jpg&w=3840&q=75"
+                      srcset="/_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Foak-web-application%2Fimage%2Fupload%2Fv1698336490%2Fsample.jpg&w=640&q=75 640w, /_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Foak-web-application%2Fimage%2Fupload%2Fv1698336490%2Fsample.jpg&w=750&q=75 750w, /_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Foak-web-application%2Fimage%2Fupload%2Fv1698336490%2Fsample.jpg&w=828&q=75 828w, /_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Foak-web-application%2Fimage%2Fupload%2Fv1698336490%2Fsample.jpg&w=1080&q=75 1080w, /_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Foak-web-application%2Fimage%2Fupload%2Fv1698336490%2Fsample.jpg&w=1200&q=75 1200w, /_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Foak-web-application%2Fimage%2Fupload%2Fv1698336490%2Fsample.jpg&w=1920&q=75 1920w, /_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Foak-web-application%2Fimage%2Fupload%2Fv1698336490%2Fsample.jpg&w=2048&q=75 2048w, /_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Foak-web-application%2Fimage%2Fupload%2Fv1698336490%2Fsample.jpg&w=3840&q=75 3840w"
+                      style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                    />
+                  </span>
                   <div
-                    class="sc-aXZVg sc-gEvEer jPvJsJ bRjxks"
+                    class="sc-aXZVg sc-gEvEer sc-kYxDKI jPvJsJ jFNgPm"
                   >
                     <div
-                      class="sc-aXZVg sc-gEvEer jPvJsJ uEMma"
+                      class="sc-aXZVg sc-gEvEer jPvJsJ fVNIMq"
                     >
-                      <span
-                        class="sc-eqUAAy dECBeo"
+                      <div
+                        class="sc-eldPxv ibGcSM"
                       >
-                        Watch the video
-                      </span>
-                      <span
-                        class="sc-aXZVg jJQFnr"
+                        Case study 1
+                      </div>
+                    </div>
+                    <div
+                      class="sc-aXZVg sc-gEvEer jPvJsJ bRjxks"
+                    >
+                      <div
+                        class="sc-aXZVg sc-gEvEer jPvJsJ uEMma"
                       >
-                        <img
-                          alt=""
-                          class="sc-iGgWBj cMzyFO"
-                          data-nimg="fill"
-                          decoding="async"
-                          loading="lazy"
-                          src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1707149070/icons/fv0z57zerrioft52dd9n.svg"
-                          style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
-                        />
-                      </span>
+                        <span
+                          class="sc-eqUAAy dECBeo"
+                        >
+                          Watch the video
+                        </span>
+                        <span
+                          class="sc-aXZVg jJQFnr"
+                        >
+                          <img
+                            alt=""
+                            class="sc-iGgWBj cMzyFO"
+                            data-nimg="fill"
+                            decoding="async"
+                            loading="lazy"
+                            src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1707149070/icons/fv0z57zerrioft52dd9n.svg"
+                            style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                          />
+                        </span>
+                      </div>
                     </div>
                   </div>
-                </div>
-              </a>
+                </a>
+              </div>
             </li>
             <li
-              class="sc-aXZVg sc-hZDyAQ gQdNNR hpWhFC"
+              class="sc-aXZVg sc-gEvEer sc-esYiGF jPvJsJ iDBIXi dJOgIA"
             >
-              <a
-                class="sc-aXZVg sc-gEvEer sc-eyvILC eyLmQc dXoawi cstkxg"
-                href="#/case-studies/case-study-3"
+              <div
+                class="sc-aXZVg sc-hZDyAQ gQdNNR dmBajW"
               >
-                <span
-                  class="sc-aXZVg kvjdhA sc-bpUBKd gXHgWu"
+                <a
+                  class="sc-aXZVg sc-gEvEer sc-eyvILC eyLmQc dXoawi cstkxg"
+                  href="#/case-studies/case-study-2"
                 >
-                  <img
-                    alt=""
-                    class="sc-iGgWBj dZvqhO"
-                    data-nimg="fill"
-                    decoding="async"
-                    loading="lazy"
-                    sizes="100vw"
-                    src="http://localhost/_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Foak-web-application%2Fimage%2Fupload%2Fv1698336494%2Fsamples%2Fanimals%2Fcat.jpg&w=3840&q=75"
-                    srcset="/_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Foak-web-application%2Fimage%2Fupload%2Fv1698336494%2Fsamples%2Fanimals%2Fcat.jpg&w=640&q=75 640w, /_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Foak-web-application%2Fimage%2Fupload%2Fv1698336494%2Fsamples%2Fanimals%2Fcat.jpg&w=750&q=75 750w, /_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Foak-web-application%2Fimage%2Fupload%2Fv1698336494%2Fsamples%2Fanimals%2Fcat.jpg&w=828&q=75 828w, /_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Foak-web-application%2Fimage%2Fupload%2Fv1698336494%2Fsamples%2Fanimals%2Fcat.jpg&w=1080&q=75 1080w, /_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Foak-web-application%2Fimage%2Fupload%2Fv1698336494%2Fsamples%2Fanimals%2Fcat.jpg&w=1200&q=75 1200w, /_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Foak-web-application%2Fimage%2Fupload%2Fv1698336494%2Fsamples%2Fanimals%2Fcat.jpg&w=1920&q=75 1920w, /_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Foak-web-application%2Fimage%2Fupload%2Fv1698336494%2Fsamples%2Fanimals%2Fcat.jpg&w=2048&q=75 2048w, /_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Foak-web-application%2Fimage%2Fupload%2Fv1698336494%2Fsamples%2Fanimals%2Fcat.jpg&w=3840&q=75 3840w"
-                    style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
-                  />
-                </span>
-                <div
-                  class="sc-aXZVg sc-gEvEer sc-kYxDKI jPvJsJ jFNgPm"
-                >
+                  <span
+                    class="sc-aXZVg kvjdhA sc-bpUBKd gXHgWu"
+                  >
+                    <img
+                      alt=""
+                      class="sc-iGgWBj dZvqhO"
+                      data-nimg="fill"
+                      decoding="async"
+                      loading="lazy"
+                      sizes="100vw"
+                      src="http://localhost/_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Foak-web-application%2Fimage%2Fupload%2Fv1698336494%2Fsamples%2Flandscapes%2Fnature-mountains.jpg&w=3840&q=75"
+                      srcset="/_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Foak-web-application%2Fimage%2Fupload%2Fv1698336494%2Fsamples%2Flandscapes%2Fnature-mountains.jpg&w=640&q=75 640w, /_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Foak-web-application%2Fimage%2Fupload%2Fv1698336494%2Fsamples%2Flandscapes%2Fnature-mountains.jpg&w=750&q=75 750w, /_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Foak-web-application%2Fimage%2Fupload%2Fv1698336494%2Fsamples%2Flandscapes%2Fnature-mountains.jpg&w=828&q=75 828w, /_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Foak-web-application%2Fimage%2Fupload%2Fv1698336494%2Fsamples%2Flandscapes%2Fnature-mountains.jpg&w=1080&q=75 1080w, /_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Foak-web-application%2Fimage%2Fupload%2Fv1698336494%2Fsamples%2Flandscapes%2Fnature-mountains.jpg&w=1200&q=75 1200w, /_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Foak-web-application%2Fimage%2Fupload%2Fv1698336494%2Fsamples%2Flandscapes%2Fnature-mountains.jpg&w=1920&q=75 1920w, /_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Foak-web-application%2Fimage%2Fupload%2Fv1698336494%2Fsamples%2Flandscapes%2Fnature-mountains.jpg&w=2048&q=75 2048w, /_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Foak-web-application%2Fimage%2Fupload%2Fv1698336494%2Fsamples%2Flandscapes%2Fnature-mountains.jpg&w=3840&q=75 3840w"
+                      style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                    />
+                  </span>
                   <div
-                    class="sc-aXZVg sc-gEvEer jPvJsJ fVNIMq"
+                    class="sc-aXZVg sc-gEvEer sc-kYxDKI jPvJsJ jFNgPm"
                   >
                     <div
-                      class="sc-eldPxv ibGcSM"
+                      class="sc-aXZVg sc-gEvEer jPvJsJ fVNIMq"
                     >
-                      Case study 3
+                      <div
+                        class="sc-eldPxv ibGcSM"
+                      >
+                        Case study 2
+                      </div>
+                    </div>
+                    <div
+                      class="sc-aXZVg sc-gEvEer jPvJsJ bRjxks"
+                    >
+                      <div
+                        class="sc-aXZVg sc-gEvEer jPvJsJ uEMma"
+                      >
+                        <span
+                          class="sc-eqUAAy dECBeo"
+                        >
+                          Watch the video
+                        </span>
+                        <span
+                          class="sc-aXZVg jJQFnr"
+                        >
+                          <img
+                            alt=""
+                            class="sc-iGgWBj cMzyFO"
+                            data-nimg="fill"
+                            decoding="async"
+                            loading="lazy"
+                            src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1707149070/icons/fv0z57zerrioft52dd9n.svg"
+                            style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                          />
+                        </span>
+                      </div>
                     </div>
                   </div>
+                </a>
+              </div>
+            </li>
+            <li
+              class="sc-aXZVg sc-gEvEer sc-esYiGF jPvJsJ iDBIXi dJOgIA"
+            >
+              <div
+                class="sc-aXZVg sc-hZDyAQ gQdNNR dmBajW"
+              >
+                <a
+                  class="sc-aXZVg sc-gEvEer sc-eyvILC eyLmQc dXoawi cstkxg"
+                  href="#/case-studies/case-study-3"
+                >
+                  <span
+                    class="sc-aXZVg kvjdhA sc-bpUBKd gXHgWu"
+                  >
+                    <img
+                      alt=""
+                      class="sc-iGgWBj dZvqhO"
+                      data-nimg="fill"
+                      decoding="async"
+                      loading="lazy"
+                      sizes="100vw"
+                      src="http://localhost/_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Foak-web-application%2Fimage%2Fupload%2Fv1698336494%2Fsamples%2Fanimals%2Fcat.jpg&w=3840&q=75"
+                      srcset="/_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Foak-web-application%2Fimage%2Fupload%2Fv1698336494%2Fsamples%2Fanimals%2Fcat.jpg&w=640&q=75 640w, /_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Foak-web-application%2Fimage%2Fupload%2Fv1698336494%2Fsamples%2Fanimals%2Fcat.jpg&w=750&q=75 750w, /_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Foak-web-application%2Fimage%2Fupload%2Fv1698336494%2Fsamples%2Fanimals%2Fcat.jpg&w=828&q=75 828w, /_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Foak-web-application%2Fimage%2Fupload%2Fv1698336494%2Fsamples%2Fanimals%2Fcat.jpg&w=1080&q=75 1080w, /_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Foak-web-application%2Fimage%2Fupload%2Fv1698336494%2Fsamples%2Fanimals%2Fcat.jpg&w=1200&q=75 1200w, /_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Foak-web-application%2Fimage%2Fupload%2Fv1698336494%2Fsamples%2Fanimals%2Fcat.jpg&w=1920&q=75 1920w, /_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Foak-web-application%2Fimage%2Fupload%2Fv1698336494%2Fsamples%2Fanimals%2Fcat.jpg&w=2048&q=75 2048w, /_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Foak-web-application%2Fimage%2Fupload%2Fv1698336494%2Fsamples%2Fanimals%2Fcat.jpg&w=3840&q=75 3840w"
+                      style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                    />
+                  </span>
                   <div
-                    class="sc-aXZVg sc-gEvEer jPvJsJ bRjxks"
+                    class="sc-aXZVg sc-gEvEer sc-kYxDKI jPvJsJ jFNgPm"
                   >
                     <div
-                      class="sc-aXZVg sc-gEvEer jPvJsJ uEMma"
+                      class="sc-aXZVg sc-gEvEer jPvJsJ fVNIMq"
                     >
-                      <span
-                        class="sc-eqUAAy dECBeo"
+                      <div
+                        class="sc-eldPxv ibGcSM"
                       >
-                        Watch the video
-                      </span>
-                      <span
-                        class="sc-aXZVg jJQFnr"
+                        Case study 3
+                      </div>
+                    </div>
+                    <div
+                      class="sc-aXZVg sc-gEvEer jPvJsJ bRjxks"
+                    >
+                      <div
+                        class="sc-aXZVg sc-gEvEer jPvJsJ uEMma"
                       >
-                        <img
-                          alt=""
-                          class="sc-iGgWBj cMzyFO"
-                          data-nimg="fill"
-                          decoding="async"
-                          loading="lazy"
-                          src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1707149070/icons/fv0z57zerrioft52dd9n.svg"
-                          style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
-                        />
-                      </span>
+                        <span
+                          class="sc-eqUAAy dECBeo"
+                        >
+                          Watch the video
+                        </span>
+                        <span
+                          class="sc-aXZVg jJQFnr"
+                        >
+                          <img
+                            alt=""
+                            class="sc-iGgWBj cMzyFO"
+                            data-nimg="fill"
+                            decoding="async"
+                            loading="lazy"
+                            src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1707149070/icons/fv0z57zerrioft52dd9n.svg"
+                            style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                          />
+                        </span>
+                      </div>
                     </div>
                   </div>
-                </div>
-              </a>
+                </a>
+              </div>
             </li>
           </ul>
         </div>
