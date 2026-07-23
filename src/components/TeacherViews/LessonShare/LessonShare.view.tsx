@@ -39,6 +39,7 @@ import {
   isLessonSection,
   LessonSection,
 } from "@/components/PupilComponents/lessonSections";
+import LessonShareRadioGroup from "@/components/TeacherComponents/LessonShareRadioGroup/LessonShareRadioGroup";
 
 export type LessonShareProps = {
   breadcrumbsSlot?: ReactNode;
@@ -128,6 +129,7 @@ export function LessonShare(props: Readonly<LessonShareProps>) {
   };
 
   const selectedLessonSections = getSelectedLessonSections(selectedResources);
+  const selectedHideYearGroup = form.watch("hideYearGroup") === "hide";
 
   const onboardingStatus = useOnboardingStatus();
 
@@ -147,7 +149,7 @@ export function LessonShare(props: Readonly<LessonShareProps>) {
 
     const isEmailSupplied = data.email ? true : false;
 
-    lessonShared({
+    const lessonSharedProperties = {
       lessonName: lessonTitle,
       lessonSlug: lessonSlug,
       schoolUrn: schoolUrn,
@@ -167,10 +169,15 @@ export function LessonShare(props: Readonly<LessonShareProps>) {
           const activity = classroomActivityMap[resource];
           return activity ? [activity] : [];
         }),
+      yearGroupHidden: selectedHideYearGroup,
       audience: "Pupil",
       lessonReleaseCohort: isLegacy ? "2020-2023" : "2023-2026",
       lessonReleaseDate: lessonReleaseDate ?? "unpublished",
-    });
+    } satisfies Parameters<typeof lessonShared>[0] & {
+      yearGroupHidden: boolean;
+    };
+
+    lessonShared(lessonSharedProperties);
   };
 
   return (
@@ -239,12 +246,28 @@ export function LessonShare(props: Readonly<LessonShareProps>) {
               hideCheckboxes={true}
             />
           }
+          radioGroups={
+            <LessonShareRadioGroup
+              control={form.control}
+              name={"hideYearGroup"}
+              title={"Hide year group when sharing?"}
+              description={
+                "Hiding the year group when sharing can help pupils of different ages, abilities, or contexts engage with the material without worrying whether it's for their year."
+              }
+              icon={"class-grouping"} // todo: use new hide icon
+              options={[
+                { value: "show", label: "Show year group" },
+                { value: "hide", label: "Hide year group" },
+              ]}
+            />
+          }
           cta={
             <LessonShareLinks
               lessonSlug={lessonSlug}
               selectedActivities={selectedLessonSections}
               schoolUrn={schoolUrn}
               onSubmit={onValidateAndSubmit}
+              selectedHideYearGroup={selectedHideYearGroup}
             />
           }
         />
