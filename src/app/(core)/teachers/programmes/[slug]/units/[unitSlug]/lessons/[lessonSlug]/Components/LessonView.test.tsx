@@ -190,15 +190,26 @@ describe("Heatwave banner", () => {
     ).not.toBeInTheDocument();
   });
 
-  it("does not show share for restricted lessons even when user is signed in", () => {
+  afterEach(() => {
+    setUseUserReturn(mockLoggedOut);
+  });
+
+  it("does not show share for geo restricted lessons even when user is signed in", () => {
     setUseUserReturn(mockLoggedIn);
     renderLessonView({ geoRestricted: true });
 
     expect(
       screen.queryByRole("link", { name: "Share lesson with pupils" }),
     ).not.toBeInTheDocument();
+  });
 
-    setUseUserReturn(mockLoggedOut);
+  it("does not show share for login required lessons even when user is signed in", () => {
+    setUseUserReturn(mockLoggedIn);
+    renderLessonView({ loginRequired: true });
+
+    expect(
+      screen.queryByRole("link", { name: "Share lesson with pupils" }),
+    ).not.toBeInTheDocument();
   });
 
   it("hides the heatwave banner when the dismiss button is clicked", async () => {
