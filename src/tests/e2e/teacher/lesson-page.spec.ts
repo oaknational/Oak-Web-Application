@@ -78,8 +78,37 @@ test("teacher can complete download flow and download lesson assets", async ({
     timeout: 20_000,
   });
 
-  // Act
+  // The download button starts in a loading state while the page fetches
+  // initial data. Wait for it to become ready BEFORE touching the form,
+  // since locally this resolves without any user input.
+  const downloadButton = lessonPage.getByRole("button", {
+    name: /loading\.{3}|download\s*\.zip/i,
+  });
 
+  // Capture diagnostics early so they are always available even if the wait below fails.
+  const earlyDiagnostics = {
+    url: lessonPage.url(),
+    buttonTextOnArrival: await downloadButton.textContent().catch(() => null),
+    networkIssueCount: networkIssues.length,
+    networkIssues: [...networkIssues],
+  };
+
+  await testInfo.attach("download-page-on-arrival", {
+    body: JSON.stringify(earlyDiagnostics, null, 2),
+    contentType: "application/json",
+  });
+
+  await testInfo.attach("download-page-screenshot-on-arrival", {
+    body: await lessonPage.screenshot({ fullPage: true }),
+    contentType: "image/png",
+  });
+
+  // Wait for the initial data fetch to complete and button to become interactive.
+  await expect(downloadButton).toHaveAccessibleName(/download\s*\.zip/i, {
+    timeout: 40_000,
+  });
+
+  // Act — fill the form now that the page is ready.
   await lessonPage.getByTestId("checkbox-download").check({
     timeout: 20_000,
   });
@@ -88,55 +117,22 @@ test("teacher can complete download flow and download lesson assets", async ({
     timeout: 20_000,
   });
 
-  // Ensure the required school field is populated so submit can become ready.
-  const schoolNotListedCheckbox = lessonPage.getByRole("checkbox", {
-    name: /my school isn't listed/i,
-  });
-  if (!(await schoolNotListedCheckbox.isChecked())) {
-    await schoolNotListedCheckbox.check({ timeout: 20_000 });
-  }
-
+  // Select school via autocomplete.
   const schoolInput = lessonPage.getByLabel(/school \(required\)/i);
-  await schoolInput.fill("Homeschool", { timeout: 20_000 });
-  await lessonPage.getByText(/^Homeschool$/).click({ timeout: 20_000 });
-  await expect(schoolInput).toHaveValue("Homeschool", { timeout: 20_000 });
-
-  const downloadButton = lessonPage.getByRole("button", {
-    name: /loading\.{3}|download\s*\.zip/i,
-  });
-
-  // Wait for the same button to leave its loading state.
-  await expect(downloadButton).toHaveAccessibleName(/download\s*\.zip/i, {
-    timeout: 40_000,
-  });
+  await schoolInput.pressSequentially("Homeschool", { timeout: 20_000 });
+  await lessonPage
+    .getByRole("option", { name: /homeschool/i })
+    .first()
+    .click({ timeout: 20_000 })
+    .catch(() =>
+      lessonPage
+        .getByText(/^Homeschool$/i)
+        .first()
+        .click({ timeout: 10_000 }),
+    );
+  await expect(schoolInput).toHaveValue(/homeschool/i, { timeout: 20_000 });
 
   await expect(downloadButton).toBeEnabled({ timeout: 30_000 });
-
-  // Temporary CI diagnostics to inspect form and button state before click.
-  const diagnostics = {
-    url: lessonPage.url(),
-    buttonText: await downloadButton.textContent(),
-    buttonAriaDisabled: await downloadButton.getAttribute("aria-disabled"),
-    checkboxDownloadChecked: await lessonPage
-      .getByTestId("checkbox-download")
-      .isChecked(),
-    termsCheckboxChecked: await lessonPage
-      .getByTestId("termsCheckboxInput")
-      .isChecked(),
-    schoolInputValue: await schoolInput.inputValue().catch(() => null),
-    networkIssueCount: networkIssues.length,
-    networkIssues,
-  };
-
-  await testInfo.attach("download-flow-diagnostics", {
-    body: JSON.stringify(diagnostics, null, 2),
-    contentType: "application/json",
-  });
-
-  await testInfo.attach("download-flow-pre-click", {
-    body: await lessonPage.screenshot({ fullPage: true }),
-    contentType: "image/png",
-  });
 
   const downloadPromise = lessonPage.waitForEvent("download", {
     timeout: 30_000,
