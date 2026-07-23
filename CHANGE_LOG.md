@@ -1,3 +1,21 @@
+# [1.1139.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1138.0...v1.1139.0) (2026-07-23)
+
+
+### Bug Fixes
+
+* added allowBuilds false for oak-components ([7f9ff38](https://github.com/oaknational/Oak-Web-Application/commit/7f9ff38d0b873a5db02c64b84d0f139ae43ed419))
+* bump oak-components with build fixes for tree-shaking ([427dbdd](https://github.com/oaknational/Oak-Web-Application/commit/427dbdd0d5a388658a739b013df5ead3ff5d182e))
+* bump tmp-oak-components-build with build fixes ([ccdf166](https://github.com/oaknational/Oak-Web-Application/commit/ccdf1666a3948bacc2a74561e63fab16fcc29269))
+* bump to new oak-components release ([d6288e5](https://github.com/oaknational/Oak-Web-Application/commit/d6288e593f969a1162cc108bb24f0b39193f9401))
+* remaining build issues ([e9f0328](https://github.com/oaknational/Oak-Web-Application/commit/e9f0328c782ee2c3abebfecd56b3170ddd8db91f))
+* try different install format ([a707182](https://github.com/oaknational/Oak-Web-Application/commit/a7071827055dc8518fd62134e3366dce9ae99c85))
+
+
+### Features
+
+* bump oak-components to v3.1.0 ([043da89](https://github.com/oaknational/Oak-Web-Application/commit/043da89c934df5fc59e49900cd09b9292a94dac3))
+* make oak-components tree-shakable ([1484f0c](https://github.com/oaknational/Oak-Web-Application/commit/1484f0c62fab0904db3972cb605b7c131ec56da0))
+
 # [1.1138.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1137.0...v1.1138.0) (2026-07-23)
 
 
