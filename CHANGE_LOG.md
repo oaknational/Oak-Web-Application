@@ -1,3 +1,10 @@
+## [1.1136.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.1136.0...v1.1136.1) (2026-07-23)
+
+
+### Bug Fixes
+
+* detect screen size with css to prevent logo flickering ([4bacb68](https://github.com/oaknational/Oak-Web-Application/commit/4bacb68282f0035f8d66ef8d511dd5bc18d47b92))
+
 # [1.1136.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1135.1...v1.1136.0) (2026-07-23)
 
 
