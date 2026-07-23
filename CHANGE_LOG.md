@@ -1,3 +1,17 @@
+# [1.1137.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1136.1...v1.1137.0) (2026-07-23)
+
+
+### Bug Fixes
+
+* added back in __setMockAuthState ([3344f92](https://github.com/oaknational/Oak-Web-Application/commit/3344f92d6cf10ac4396f88d80321914c4afa354b))
+* broken stories ([593d393](https://github.com/oaknational/Oak-Web-Application/commit/593d39315b5219bd820f1c999ed570485ada1f63))
+
+
+### Features
+
+* added dark theme switcher to storybook ([65d63c8](https://github.com/oaknational/Oak-Web-Application/commit/65d63c814f0cbf7ceeb623a76dbd14e59783b7d8))
+* upgrade storybook ([9fd9034](https://github.com/oaknational/Oak-Web-Application/commit/9fd9034d2b57eed5ac13aef4859173e7bff03dbf))
+
 ## [1.1136.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.1136.0...v1.1136.1) (2026-07-23)
 
 
