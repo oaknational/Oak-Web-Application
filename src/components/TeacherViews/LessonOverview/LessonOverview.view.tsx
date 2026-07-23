@@ -322,7 +322,11 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
     ).length > 0;
 
   const showDownloadAll = hasDownloadableAssets && !contentRestricted;
-  const showShare = !actions?.disablePupilShare && !contentRestricted;
+  const showShare =
+    !loginRequired &&
+    !geoRestricted &&
+    !actions?.disablePupilShare &&
+    !contentRestricted;
 
   const pageLinks = getPageLinksWithSubheadingsForLesson(
     lesson,
@@ -355,7 +359,12 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
         track={track}
         analyticsUseCase={analyticsUseCase}
         isNew={isNew}
-        isShareable={!expired && !actions?.disablePupilShare}
+        isShareable={
+          !expired &&
+          !loginRequired &&
+          !geoRestricted &&
+          !actions?.disablePupilShare
+        }
         onClickDownloadAll={() => {
           trackDownloadResourceButtonClicked({
             downloadResourceButtonName: "all",
