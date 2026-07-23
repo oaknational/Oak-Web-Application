@@ -78,6 +78,10 @@ test("teacher can complete download flow and download lesson assets", async ({
     timeout: 20_000,
   });
 
+  // Wait for all page JS chunks to finish loading before checking state.
+  // In CI, the downloads page bundle can be aborted mid-load without this.
+  await lessonPage.waitForLoadState("networkidle", { timeout: 30_000 });
+
   // The download button starts in a loading state while the page fetches
   // initial data. Wait for it to become ready BEFORE touching the form,
   // since locally this resolves without any user input.

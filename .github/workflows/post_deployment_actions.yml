@@ -161,8 +161,7 @@ jobs:
         with:
           base_url: ${{ github.event.deployment_status.environment_url }}
           branch_name: ${{ steps.ref_from_sha.outputs.branch_name }}
-        env:
-          VERCEL_AUTOMATION_BYPASS_SECRET: ${{ secrets.VERCEL_AUTOMATION_BYPASS_SECRET }}
+          vercel_bypass_secret: ${{ secrets.VERCEL_AUTOMATION_BYPASS_SECRET }}
 
       # Set custom status so results preserved between multiple
       # deployment events from same commit
