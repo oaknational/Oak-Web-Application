@@ -60,7 +60,7 @@ export function getPhaseSlugFromKeystage(keystage: KeystageSlug) {
   }
 }
 
-export function getKeystageSlug(year: string) {
+export function getKeystageSlug(year: string): KeystageSlug {
   const yearNum = Number.parseInt(year);
   if (yearNum <= 2) return "ks1";
   if (yearNum <= 6) return "ks2";

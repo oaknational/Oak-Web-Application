@@ -185,7 +185,7 @@ exports[`Teachers Page Page component renders 1`] = `
                 class="sc-eqUAAy iGfTGj"
               >
                 <span
-                  class="sc-aXZVg cZEtHK"
+                  class="sc-aXZVg etAHNY"
                 >
                   <img
                     alt=""
@@ -194,6 +194,19 @@ exports[`Teachers Page Page component renders 1`] = `
                     decoding="async"
                     loading="lazy"
                     src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1711468346/logo-mark.svg"
+                    style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                  />
+                </span>
+                <span
+                  class="sc-aXZVg bmLRQH"
+                >
+                  <img
+                    alt=""
+                    class="sc-iGgWBj dZvqhO"
+                    data-nimg="fill"
+                    decoding="async"
+                    loading="lazy"
+                    src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1765468420/OakLogoWithText.svg"
                     style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
                   />
                 </span>
@@ -3597,7 +3610,7 @@ exports[`Teachers Page Page component renders 1`] = `
       </div>
       <div
         aria-live="polite"
-        class="sc-aXZVg sc-gEvEer sc-84e7982d-0 bRmOVg hpzNYH fkcvun"
+        class="sc-aXZVg sc-gEvEer sc-372e3d03-0 huaWfm hpzNYH fYWdOt"
       />
     </div>
     <div

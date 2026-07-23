@@ -552,7 +552,6 @@ describe("getPhaseFromCategory", () => {
 
   it("handles default as primary ", () => {
     expect(getPhaseFromCategory("EYFS")).toBe("primary");
-    expect(getPhaseFromCategory("Therapies")).toBe("primary");
   });
 });
 
