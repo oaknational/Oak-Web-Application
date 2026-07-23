@@ -83,18 +83,21 @@ exports[`SupportYou renders correctly 1`] = `
             <div
               class="sc-aXZVg sc-gEvEer bbXyUw fXHtRp"
             >
-              <img
-                alt=""
-                class="sc-ba397cd3-0 dUdpvg"
-                data-nimg="1"
-                decoding="async"
-                height="454"
-                loading="lazy"
-                src="https://NEXT_PUBLIC_SANITY_ASSET_CDN_HOST/images/NEXT_PUBLIC_SANITY_PROJECT_ID/NEXT_PUBLIC_SANITY_DATASET/f5112552f3d0d37304f71c7cd63fc18be513a17c-632x454.png?w=1920&h=1379&fm=webp&q=80&fit=clip&auto=format"
-                srcset="https://NEXT_PUBLIC_SANITY_ASSET_CDN_HOST/images/NEXT_PUBLIC_SANITY_PROJECT_ID/NEXT_PUBLIC_SANITY_DATASET/f5112552f3d0d37304f71c7cd63fc18be513a17c-632x454.png?rect=0,1,632,453&w=640&h=459&fm=webp&q=80&fit=clip&auto=format 1x, https://NEXT_PUBLIC_SANITY_ASSET_CDN_HOST/images/NEXT_PUBLIC_SANITY_PROJECT_ID/NEXT_PUBLIC_SANITY_DATASET/f5112552f3d0d37304f71c7cd63fc18be513a17c-632x454.png?w=1920&h=1379&fm=webp&q=80&fit=clip&auto=format 2x"
-                style="color: transparent;"
-                width="632"
-              />
+              <span
+                class="sc-aXZVg kvjdhA"
+              >
+                <img
+                  alt=""
+                  class="sc-iGgWBj dZvqhO"
+                  data-nimg="fill"
+                  decoding="async"
+                  loading="lazy"
+                  sizes="100vw"
+                  src="http://localhost/_next/image?url=https%3A%2F%2FNEXT_PUBLIC_SANITY_ASSET_CDN_HOST%2Fimages%2Fcuvjke51%2Fproduction%2Ff5112552f3d0d37304f71c7cd63fc18be513a17c-632x454.png&w=3840&q=75"
+                  srcset="/_next/image?url=https%3A%2F%2FNEXT_PUBLIC_SANITY_ASSET_CDN_HOST%2Fimages%2Fcuvjke51%2Fproduction%2Ff5112552f3d0d37304f71c7cd63fc18be513a17c-632x454.png&w=640&q=75 640w, /_next/image?url=https%3A%2F%2FNEXT_PUBLIC_SANITY_ASSET_CDN_HOST%2Fimages%2Fcuvjke51%2Fproduction%2Ff5112552f3d0d37304f71c7cd63fc18be513a17c-632x454.png&w=750&q=75 750w, /_next/image?url=https%3A%2F%2FNEXT_PUBLIC_SANITY_ASSET_CDN_HOST%2Fimages%2Fcuvjke51%2Fproduction%2Ff5112552f3d0d37304f71c7cd63fc18be513a17c-632x454.png&w=828&q=75 828w, /_next/image?url=https%3A%2F%2FNEXT_PUBLIC_SANITY_ASSET_CDN_HOST%2Fimages%2Fcuvjke51%2Fproduction%2Ff5112552f3d0d37304f71c7cd63fc18be513a17c-632x454.png&w=1080&q=75 1080w, /_next/image?url=https%3A%2F%2FNEXT_PUBLIC_SANITY_ASSET_CDN_HOST%2Fimages%2Fcuvjke51%2Fproduction%2Ff5112552f3d0d37304f71c7cd63fc18be513a17c-632x454.png&w=1200&q=75 1200w, /_next/image?url=https%3A%2F%2FNEXT_PUBLIC_SANITY_ASSET_CDN_HOST%2Fimages%2Fcuvjke51%2Fproduction%2Ff5112552f3d0d37304f71c7cd63fc18be513a17c-632x454.png&w=1920&q=75 1920w, /_next/image?url=https%3A%2F%2FNEXT_PUBLIC_SANITY_ASSET_CDN_HOST%2Fimages%2Fcuvjke51%2Fproduction%2Ff5112552f3d0d37304f71c7cd63fc18be513a17c-632x454.png&w=2048&q=75 2048w, /_next/image?url=https%3A%2F%2FNEXT_PUBLIC_SANITY_ASSET_CDN_HOST%2Fimages%2Fcuvjke51%2Fproduction%2Ff5112552f3d0d37304f71c7cd63fc18be513a17c-632x454.png&w=3840&q=75 3840w"
+                  style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                />
+              </span>
             </div>
           </div>
         </div>

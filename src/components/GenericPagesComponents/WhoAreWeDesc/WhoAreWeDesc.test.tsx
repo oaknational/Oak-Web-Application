@@ -16,9 +16,8 @@ describe("WhoAreWeDesc", () => {
         image: {
           asset: {
             _id: `image-${index}-300x300-png`,
-            url: `http://example.com/${index}-300x300-png`,
+            url: `https://cdn.sanity.io/images/p/d/${index}-300x300.png`,
           },
-
           altText: `ITEM_ALT_${index}`,
         },
       };
@@ -27,16 +26,13 @@ describe("WhoAreWeDesc", () => {
     const { baseElement, getAllByRole, getAllByTestId } = render(
       <WhoAreWeDesc title={"TESTING_TITLE"} items={items} />,
     );
+    expect(baseElement).toMatchSnapshot();
 
     expect(getAllByRole("heading")[0]).toHaveTextContent("TESTING_TITLE");
     const itemElements = getAllByTestId("who-we-are-desc-item");
     expect(itemElements).toHaveLength(items.length);
 
     items.forEach((item, index) => {
-      expect(getByRole(itemElements[index]!, "img")).toHaveAttribute(
-        "src",
-        `https://NEXT_PUBLIC_SANITY_ASSET_CDN_HOST/images/NEXT_PUBLIC_SANITY_PROJECT_ID/NEXT_PUBLIC_SANITY_DATASET/${index}-300x300.png?w=640&h=640&fm=webp&q=80&fit=clip&auto=format`,
-      );
       expect(getByRole(itemElements[index]!, "img")).toHaveAttribute(
         "alt",
         item.image.altText,
@@ -46,7 +42,5 @@ describe("WhoAreWeDesc", () => {
       );
       expect(itemElements[index]!).toHaveTextContent(`ITEM_TEXT_${index}`);
     });
-
-    expect(baseElement).toMatchSnapshot();
   });
 });

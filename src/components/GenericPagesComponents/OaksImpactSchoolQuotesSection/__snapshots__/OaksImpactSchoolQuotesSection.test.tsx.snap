@@ -20,18 +20,21 @@ exports[`OaksImpactSchoolQuotesSection renders correctly 1`] = `
           <div
             class="sc-aXZVg sc-gEvEer kTrAkM fUxOFh"
           >
-            <img
-              alt="TEST_ALT"
-              class="sc-ba397cd3-0 dMngOi"
-              data-nimg="1"
-              decoding="async"
-              height="3264"
-              loading="lazy"
-              src="https://NEXT_PUBLIC_SANITY_ASSET_CDN_HOST/images/NEXT_PUBLIC_SANITY_PROJECT_ID/NEXT_PUBLIC_SANITY_DATASET/b81ee19a35baa3192360a210fda34cc9b21f4fd6-5824x3264.jpg?w=3840&h=2152&fm=webp&q=80&fit=clip&auto=format"
-              srcset="https://NEXT_PUBLIC_SANITY_ASSET_CDN_HOST/images/NEXT_PUBLIC_SANITY_PROJECT_ID/NEXT_PUBLIC_SANITY_DATASET/b81ee19a35baa3192360a210fda34cc9b21f4fd6-5824x3264.jpg?w=3840&h=2152&fm=webp&q=80&fit=clip&auto=format 1x"
-              style="color: transparent;"
-              width="5824"
-            />
+            <span
+              class="sc-aXZVg kMYEmk"
+            >
+              <img
+                alt="TEST_ALT"
+                class="sc-iGgWBj dZvqhO"
+                data-nimg="fill"
+                decoding="async"
+                loading="lazy"
+                sizes="100vw"
+                src="http://localhost/_next/image?url=https%3A%2F%2Fsanity-asset-cdn.thenational.academy%2Fimages%2Fcuvjke51%2Fproduction%2Fb81ee19a35baa3192360a210fda34cc9b21f4fd6-5824x3264.jpg&w=3840&q=75"
+                srcset="/_next/image?url=https%3A%2F%2Fsanity-asset-cdn.thenational.academy%2Fimages%2Fcuvjke51%2Fproduction%2Fb81ee19a35baa3192360a210fda34cc9b21f4fd6-5824x3264.jpg&w=640&q=75 640w, /_next/image?url=https%3A%2F%2Fsanity-asset-cdn.thenational.academy%2Fimages%2Fcuvjke51%2Fproduction%2Fb81ee19a35baa3192360a210fda34cc9b21f4fd6-5824x3264.jpg&w=750&q=75 750w, /_next/image?url=https%3A%2F%2Fsanity-asset-cdn.thenational.academy%2Fimages%2Fcuvjke51%2Fproduction%2Fb81ee19a35baa3192360a210fda34cc9b21f4fd6-5824x3264.jpg&w=828&q=75 828w, /_next/image?url=https%3A%2F%2Fsanity-asset-cdn.thenational.academy%2Fimages%2Fcuvjke51%2Fproduction%2Fb81ee19a35baa3192360a210fda34cc9b21f4fd6-5824x3264.jpg&w=1080&q=75 1080w, /_next/image?url=https%3A%2F%2Fsanity-asset-cdn.thenational.academy%2Fimages%2Fcuvjke51%2Fproduction%2Fb81ee19a35baa3192360a210fda34cc9b21f4fd6-5824x3264.jpg&w=1200&q=75 1200w, /_next/image?url=https%3A%2F%2Fsanity-asset-cdn.thenational.academy%2Fimages%2Fcuvjke51%2Fproduction%2Fb81ee19a35baa3192360a210fda34cc9b21f4fd6-5824x3264.jpg&w=1920&q=75 1920w, /_next/image?url=https%3A%2F%2Fsanity-asset-cdn.thenational.academy%2Fimages%2Fcuvjke51%2Fproduction%2Fb81ee19a35baa3192360a210fda34cc9b21f4fd6-5824x3264.jpg&w=2048&q=75 2048w, /_next/image?url=https%3A%2F%2Fsanity-asset-cdn.thenational.academy%2Fimages%2Fcuvjke51%2Fproduction%2Fb81ee19a35baa3192360a210fda34cc9b21f4fd6-5824x3264.jpg&w=3840&q=75 3840w"
+                style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+              />
+            </span>
             <div
               class="sc-aXZVg sc-gEvEer eLpsLG iwFTtF"
             >
@@ -78,7 +81,7 @@ exports[`OaksImpactSchoolQuotesSection renders correctly 1`] = `
                               class="sc-aXZVg cmRFEa"
                             >
                               <div
-                                class="sc-aXZVg sc-gEvEer sc-3b9ef4a7-1 jPvJsJ NsOKr isynMY"
+                                class="sc-aXZVg sc-gEvEer sc-9153a742-1 jPvJsJ NsOKr fzhpEf"
                               >
                                 <p
                                   class="sc-ikkxIA fqNJfa"
@@ -97,18 +100,21 @@ exports[`OaksImpactSchoolQuotesSection renders correctly 1`] = `
                             <div
                               class="sc-aXZVg sc-gEvEer jPvJsJ jjyfYk"
                             >
-                              <img
-                                alt=""
-                                class="sc-ba397cd3-0 dMngOi sc-3b9ef4a7-0 dIlPPm"
-                                data-nimg="1"
-                                decoding="async"
-                                height="54"
-                                loading="lazy"
-                                src="https://NEXT_PUBLIC_SANITY_ASSET_CDN_HOST/images/NEXT_PUBLIC_SANITY_PROJECT_ID/NEXT_PUBLIC_SANITY_DATASET/d40d4c63b117e248ec11b995951aa738969531aa-54x54.png?w=128&h=128&fm=webp&q=80&fit=clip&auto=format"
-                                srcset="https://NEXT_PUBLIC_SANITY_ASSET_CDN_HOST/images/NEXT_PUBLIC_SANITY_PROJECT_ID/NEXT_PUBLIC_SANITY_DATASET/d40d4c63b117e248ec11b995951aa738969531aa-54x54.png?w=64&h=64&fm=webp&q=80&fit=clip&auto=format 1x, https://NEXT_PUBLIC_SANITY_ASSET_CDN_HOST/images/NEXT_PUBLIC_SANITY_PROJECT_ID/NEXT_PUBLIC_SANITY_DATASET/d40d4c63b117e248ec11b995951aa738969531aa-54x54.png?w=128&h=128&fm=webp&q=80&fit=clip&auto=format 2x"
-                                style="color: transparent;"
-                                width="54"
-                              />
+                              <span
+                                class="sc-aXZVg kvjdhA sc-9153a742-0 hXqlHJ"
+                              >
+                                <img
+                                  alt=""
+                                  class="sc-iGgWBj dZvqhO"
+                                  data-nimg="fill"
+                                  decoding="async"
+                                  loading="lazy"
+                                  sizes="100vw"
+                                  src="http://localhost/_next/image?url=https%3A%2F%2Fsanity-asset-cdn.thenational.academy%2Fimages%2Fcuvjke51%2Fproduction%2Fd40d4c63b117e248ec11b995951aa738969531aa-54x54.png&w=3840&q=75"
+                                  srcset="/_next/image?url=https%3A%2F%2Fsanity-asset-cdn.thenational.academy%2Fimages%2Fcuvjke51%2Fproduction%2Fd40d4c63b117e248ec11b995951aa738969531aa-54x54.png&w=640&q=75 640w, /_next/image?url=https%3A%2F%2Fsanity-asset-cdn.thenational.academy%2Fimages%2Fcuvjke51%2Fproduction%2Fd40d4c63b117e248ec11b995951aa738969531aa-54x54.png&w=750&q=75 750w, /_next/image?url=https%3A%2F%2Fsanity-asset-cdn.thenational.academy%2Fimages%2Fcuvjke51%2Fproduction%2Fd40d4c63b117e248ec11b995951aa738969531aa-54x54.png&w=828&q=75 828w, /_next/image?url=https%3A%2F%2Fsanity-asset-cdn.thenational.academy%2Fimages%2Fcuvjke51%2Fproduction%2Fd40d4c63b117e248ec11b995951aa738969531aa-54x54.png&w=1080&q=75 1080w, /_next/image?url=https%3A%2F%2Fsanity-asset-cdn.thenational.academy%2Fimages%2Fcuvjke51%2Fproduction%2Fd40d4c63b117e248ec11b995951aa738969531aa-54x54.png&w=1200&q=75 1200w, /_next/image?url=https%3A%2F%2Fsanity-asset-cdn.thenational.academy%2Fimages%2Fcuvjke51%2Fproduction%2Fd40d4c63b117e248ec11b995951aa738969531aa-54x54.png&w=1920&q=75 1920w, /_next/image?url=https%3A%2F%2Fsanity-asset-cdn.thenational.academy%2Fimages%2Fcuvjke51%2Fproduction%2Fd40d4c63b117e248ec11b995951aa738969531aa-54x54.png&w=2048&q=75 2048w, /_next/image?url=https%3A%2F%2Fsanity-asset-cdn.thenational.academy%2Fimages%2Fcuvjke51%2Fproduction%2Fd40d4c63b117e248ec11b995951aa738969531aa-54x54.png&w=3840&q=75 3840w"
+                                  style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                                />
+                              </span>
                               <div
                                 class="sc-aXZVg sc-gEvEer jPvJsJ bktafW"
                               >
@@ -142,18 +148,21 @@ exports[`OaksImpactSchoolQuotesSection renders correctly 1`] = `
           <div
             class="sc-aXZVg sc-gEvEer kTrAkM fUxOFh"
           >
-            <img
-              alt="TEST_ALT"
-              class="sc-ba397cd3-0 dMngOi"
-              data-nimg="1"
-              decoding="async"
-              height="3264"
-              loading="lazy"
-              src="https://NEXT_PUBLIC_SANITY_ASSET_CDN_HOST/images/NEXT_PUBLIC_SANITY_PROJECT_ID/NEXT_PUBLIC_SANITY_DATASET/b81ee19a35baa3192360a210fda34cc9b21f4fd6-5824x3264.jpg?w=3840&h=2152&fm=webp&q=80&fit=clip&auto=format"
-              srcset="https://NEXT_PUBLIC_SANITY_ASSET_CDN_HOST/images/NEXT_PUBLIC_SANITY_PROJECT_ID/NEXT_PUBLIC_SANITY_DATASET/b81ee19a35baa3192360a210fda34cc9b21f4fd6-5824x3264.jpg?w=3840&h=2152&fm=webp&q=80&fit=clip&auto=format 1x"
-              style="color: transparent;"
-              width="5824"
-            />
+            <span
+              class="sc-aXZVg kMYEmk"
+            >
+              <img
+                alt="TEST_ALT"
+                class="sc-iGgWBj dZvqhO"
+                data-nimg="fill"
+                decoding="async"
+                loading="lazy"
+                sizes="100vw"
+                src="http://localhost/_next/image?url=https%3A%2F%2Fsanity-asset-cdn.thenational.academy%2Fimages%2Fcuvjke51%2Fproduction%2Fb81ee19a35baa3192360a210fda34cc9b21f4fd6-5824x3264.jpg&w=3840&q=75"
+                srcset="/_next/image?url=https%3A%2F%2Fsanity-asset-cdn.thenational.academy%2Fimages%2Fcuvjke51%2Fproduction%2Fb81ee19a35baa3192360a210fda34cc9b21f4fd6-5824x3264.jpg&w=640&q=75 640w, /_next/image?url=https%3A%2F%2Fsanity-asset-cdn.thenational.academy%2Fimages%2Fcuvjke51%2Fproduction%2Fb81ee19a35baa3192360a210fda34cc9b21f4fd6-5824x3264.jpg&w=750&q=75 750w, /_next/image?url=https%3A%2F%2Fsanity-asset-cdn.thenational.academy%2Fimages%2Fcuvjke51%2Fproduction%2Fb81ee19a35baa3192360a210fda34cc9b21f4fd6-5824x3264.jpg&w=828&q=75 828w, /_next/image?url=https%3A%2F%2Fsanity-asset-cdn.thenational.academy%2Fimages%2Fcuvjke51%2Fproduction%2Fb81ee19a35baa3192360a210fda34cc9b21f4fd6-5824x3264.jpg&w=1080&q=75 1080w, /_next/image?url=https%3A%2F%2Fsanity-asset-cdn.thenational.academy%2Fimages%2Fcuvjke51%2Fproduction%2Fb81ee19a35baa3192360a210fda34cc9b21f4fd6-5824x3264.jpg&w=1200&q=75 1200w, /_next/image?url=https%3A%2F%2Fsanity-asset-cdn.thenational.academy%2Fimages%2Fcuvjke51%2Fproduction%2Fb81ee19a35baa3192360a210fda34cc9b21f4fd6-5824x3264.jpg&w=1920&q=75 1920w, /_next/image?url=https%3A%2F%2Fsanity-asset-cdn.thenational.academy%2Fimages%2Fcuvjke51%2Fproduction%2Fb81ee19a35baa3192360a210fda34cc9b21f4fd6-5824x3264.jpg&w=2048&q=75 2048w, /_next/image?url=https%3A%2F%2Fsanity-asset-cdn.thenational.academy%2Fimages%2Fcuvjke51%2Fproduction%2Fb81ee19a35baa3192360a210fda34cc9b21f4fd6-5824x3264.jpg&w=3840&q=75 3840w"
+                style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+              />
+            </span>
             <div
               class="sc-aXZVg sc-gEvEer eLpsLG iwFTtF"
             >
@@ -200,7 +209,7 @@ exports[`OaksImpactSchoolQuotesSection renders correctly 1`] = `
                               class="sc-aXZVg cmRFEa"
                             >
                               <div
-                                class="sc-aXZVg sc-gEvEer sc-3b9ef4a7-1 jPvJsJ NsOKr isynMY"
+                                class="sc-aXZVg sc-gEvEer sc-9153a742-1 jPvJsJ NsOKr fzhpEf"
                               >
                                 <p
                                   class="sc-ikkxIA fqNJfa"
@@ -219,18 +228,21 @@ exports[`OaksImpactSchoolQuotesSection renders correctly 1`] = `
                             <div
                               class="sc-aXZVg sc-gEvEer jPvJsJ jjyfYk"
                             >
-                              <img
-                                alt=""
-                                class="sc-ba397cd3-0 dMngOi sc-3b9ef4a7-0 dIlPPm"
-                                data-nimg="1"
-                                decoding="async"
-                                height="54"
-                                loading="lazy"
-                                src="https://NEXT_PUBLIC_SANITY_ASSET_CDN_HOST/images/NEXT_PUBLIC_SANITY_PROJECT_ID/NEXT_PUBLIC_SANITY_DATASET/d40d4c63b117e248ec11b995951aa738969531aa-54x54.png?w=128&h=128&fm=webp&q=80&fit=clip&auto=format"
-                                srcset="https://NEXT_PUBLIC_SANITY_ASSET_CDN_HOST/images/NEXT_PUBLIC_SANITY_PROJECT_ID/NEXT_PUBLIC_SANITY_DATASET/d40d4c63b117e248ec11b995951aa738969531aa-54x54.png?w=64&h=64&fm=webp&q=80&fit=clip&auto=format 1x, https://NEXT_PUBLIC_SANITY_ASSET_CDN_HOST/images/NEXT_PUBLIC_SANITY_PROJECT_ID/NEXT_PUBLIC_SANITY_DATASET/d40d4c63b117e248ec11b995951aa738969531aa-54x54.png?w=128&h=128&fm=webp&q=80&fit=clip&auto=format 2x"
-                                style="color: transparent;"
-                                width="54"
-                              />
+                              <span
+                                class="sc-aXZVg kvjdhA sc-9153a742-0 hXqlHJ"
+                              >
+                                <img
+                                  alt=""
+                                  class="sc-iGgWBj dZvqhO"
+                                  data-nimg="fill"
+                                  decoding="async"
+                                  loading="lazy"
+                                  sizes="100vw"
+                                  src="http://localhost/_next/image?url=https%3A%2F%2Fsanity-asset-cdn.thenational.academy%2Fimages%2Fcuvjke51%2Fproduction%2Fd40d4c63b117e248ec11b995951aa738969531aa-54x54.png&w=3840&q=75"
+                                  srcset="/_next/image?url=https%3A%2F%2Fsanity-asset-cdn.thenational.academy%2Fimages%2Fcuvjke51%2Fproduction%2Fd40d4c63b117e248ec11b995951aa738969531aa-54x54.png&w=640&q=75 640w, /_next/image?url=https%3A%2F%2Fsanity-asset-cdn.thenational.academy%2Fimages%2Fcuvjke51%2Fproduction%2Fd40d4c63b117e248ec11b995951aa738969531aa-54x54.png&w=750&q=75 750w, /_next/image?url=https%3A%2F%2Fsanity-asset-cdn.thenational.academy%2Fimages%2Fcuvjke51%2Fproduction%2Fd40d4c63b117e248ec11b995951aa738969531aa-54x54.png&w=828&q=75 828w, /_next/image?url=https%3A%2F%2Fsanity-asset-cdn.thenational.academy%2Fimages%2Fcuvjke51%2Fproduction%2Fd40d4c63b117e248ec11b995951aa738969531aa-54x54.png&w=1080&q=75 1080w, /_next/image?url=https%3A%2F%2Fsanity-asset-cdn.thenational.academy%2Fimages%2Fcuvjke51%2Fproduction%2Fd40d4c63b117e248ec11b995951aa738969531aa-54x54.png&w=1200&q=75 1200w, /_next/image?url=https%3A%2F%2Fsanity-asset-cdn.thenational.academy%2Fimages%2Fcuvjke51%2Fproduction%2Fd40d4c63b117e248ec11b995951aa738969531aa-54x54.png&w=1920&q=75 1920w, /_next/image?url=https%3A%2F%2Fsanity-asset-cdn.thenational.academy%2Fimages%2Fcuvjke51%2Fproduction%2Fd40d4c63b117e248ec11b995951aa738969531aa-54x54.png&w=2048&q=75 2048w, /_next/image?url=https%3A%2F%2Fsanity-asset-cdn.thenational.academy%2Fimages%2Fcuvjke51%2Fproduction%2Fd40d4c63b117e248ec11b995951aa738969531aa-54x54.png&w=3840&q=75 3840w"
+                                  style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                                />
+                              </span>
                               <div
                                 class="sc-aXZVg sc-gEvEer jPvJsJ bktafW"
                               >
@@ -264,18 +276,21 @@ exports[`OaksImpactSchoolQuotesSection renders correctly 1`] = `
           <div
             class="sc-aXZVg sc-gEvEer kTrAkM fUxOFh"
           >
-            <img
-              alt="TEST_ALT"
-              class="sc-ba397cd3-0 dMngOi"
-              data-nimg="1"
-              decoding="async"
-              height="3264"
-              loading="lazy"
-              src="https://NEXT_PUBLIC_SANITY_ASSET_CDN_HOST/images/NEXT_PUBLIC_SANITY_PROJECT_ID/NEXT_PUBLIC_SANITY_DATASET/b81ee19a35baa3192360a210fda34cc9b21f4fd6-5824x3264.jpg?w=3840&h=2152&fm=webp&q=80&fit=clip&auto=format"
-              srcset="https://NEXT_PUBLIC_SANITY_ASSET_CDN_HOST/images/NEXT_PUBLIC_SANITY_PROJECT_ID/NEXT_PUBLIC_SANITY_DATASET/b81ee19a35baa3192360a210fda34cc9b21f4fd6-5824x3264.jpg?w=3840&h=2152&fm=webp&q=80&fit=clip&auto=format 1x"
-              style="color: transparent;"
-              width="5824"
-            />
+            <span
+              class="sc-aXZVg kMYEmk"
+            >
+              <img
+                alt="TEST_ALT"
+                class="sc-iGgWBj dZvqhO"
+                data-nimg="fill"
+                decoding="async"
+                loading="lazy"
+                sizes="100vw"
+                src="http://localhost/_next/image?url=https%3A%2F%2Fsanity-asset-cdn.thenational.academy%2Fimages%2Fcuvjke51%2Fproduction%2Fb81ee19a35baa3192360a210fda34cc9b21f4fd6-5824x3264.jpg&w=3840&q=75"
+                srcset="/_next/image?url=https%3A%2F%2Fsanity-asset-cdn.thenational.academy%2Fimages%2Fcuvjke51%2Fproduction%2Fb81ee19a35baa3192360a210fda34cc9b21f4fd6-5824x3264.jpg&w=640&q=75 640w, /_next/image?url=https%3A%2F%2Fsanity-asset-cdn.thenational.academy%2Fimages%2Fcuvjke51%2Fproduction%2Fb81ee19a35baa3192360a210fda34cc9b21f4fd6-5824x3264.jpg&w=750&q=75 750w, /_next/image?url=https%3A%2F%2Fsanity-asset-cdn.thenational.academy%2Fimages%2Fcuvjke51%2Fproduction%2Fb81ee19a35baa3192360a210fda34cc9b21f4fd6-5824x3264.jpg&w=828&q=75 828w, /_next/image?url=https%3A%2F%2Fsanity-asset-cdn.thenational.academy%2Fimages%2Fcuvjke51%2Fproduction%2Fb81ee19a35baa3192360a210fda34cc9b21f4fd6-5824x3264.jpg&w=1080&q=75 1080w, /_next/image?url=https%3A%2F%2Fsanity-asset-cdn.thenational.academy%2Fimages%2Fcuvjke51%2Fproduction%2Fb81ee19a35baa3192360a210fda34cc9b21f4fd6-5824x3264.jpg&w=1200&q=75 1200w, /_next/image?url=https%3A%2F%2Fsanity-asset-cdn.thenational.academy%2Fimages%2Fcuvjke51%2Fproduction%2Fb81ee19a35baa3192360a210fda34cc9b21f4fd6-5824x3264.jpg&w=1920&q=75 1920w, /_next/image?url=https%3A%2F%2Fsanity-asset-cdn.thenational.academy%2Fimages%2Fcuvjke51%2Fproduction%2Fb81ee19a35baa3192360a210fda34cc9b21f4fd6-5824x3264.jpg&w=2048&q=75 2048w, /_next/image?url=https%3A%2F%2Fsanity-asset-cdn.thenational.academy%2Fimages%2Fcuvjke51%2Fproduction%2Fb81ee19a35baa3192360a210fda34cc9b21f4fd6-5824x3264.jpg&w=3840&q=75 3840w"
+                style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+              />
+            </span>
             <div
               class="sc-aXZVg sc-gEvEer eLpsLG iwFTtF"
             >
@@ -322,7 +337,7 @@ exports[`OaksImpactSchoolQuotesSection renders correctly 1`] = `
                               class="sc-aXZVg cmRFEa"
                             >
                               <div
-                                class="sc-aXZVg sc-gEvEer sc-3b9ef4a7-1 jPvJsJ NsOKr isynMY"
+                                class="sc-aXZVg sc-gEvEer sc-9153a742-1 jPvJsJ NsOKr fzhpEf"
                               >
                                 <p
                                   class="sc-ikkxIA fqNJfa"
@@ -341,18 +356,21 @@ exports[`OaksImpactSchoolQuotesSection renders correctly 1`] = `
                             <div
                               class="sc-aXZVg sc-gEvEer jPvJsJ jjyfYk"
                             >
-                              <img
-                                alt=""
-                                class="sc-ba397cd3-0 dMngOi sc-3b9ef4a7-0 dIlPPm"
-                                data-nimg="1"
-                                decoding="async"
-                                height="54"
-                                loading="lazy"
-                                src="https://NEXT_PUBLIC_SANITY_ASSET_CDN_HOST/images/NEXT_PUBLIC_SANITY_PROJECT_ID/NEXT_PUBLIC_SANITY_DATASET/d40d4c63b117e248ec11b995951aa738969531aa-54x54.png?w=128&h=128&fm=webp&q=80&fit=clip&auto=format"
-                                srcset="https://NEXT_PUBLIC_SANITY_ASSET_CDN_HOST/images/NEXT_PUBLIC_SANITY_PROJECT_ID/NEXT_PUBLIC_SANITY_DATASET/d40d4c63b117e248ec11b995951aa738969531aa-54x54.png?w=64&h=64&fm=webp&q=80&fit=clip&auto=format 1x, https://NEXT_PUBLIC_SANITY_ASSET_CDN_HOST/images/NEXT_PUBLIC_SANITY_PROJECT_ID/NEXT_PUBLIC_SANITY_DATASET/d40d4c63b117e248ec11b995951aa738969531aa-54x54.png?w=128&h=128&fm=webp&q=80&fit=clip&auto=format 2x"
-                                style="color: transparent;"
-                                width="54"
-                              />
+                              <span
+                                class="sc-aXZVg kvjdhA sc-9153a742-0 hXqlHJ"
+                              >
+                                <img
+                                  alt=""
+                                  class="sc-iGgWBj dZvqhO"
+                                  data-nimg="fill"
+                                  decoding="async"
+                                  loading="lazy"
+                                  sizes="100vw"
+                                  src="http://localhost/_next/image?url=https%3A%2F%2Fsanity-asset-cdn.thenational.academy%2Fimages%2Fcuvjke51%2Fproduction%2Fd40d4c63b117e248ec11b995951aa738969531aa-54x54.png&w=3840&q=75"
+                                  srcset="/_next/image?url=https%3A%2F%2Fsanity-asset-cdn.thenational.academy%2Fimages%2Fcuvjke51%2Fproduction%2Fd40d4c63b117e248ec11b995951aa738969531aa-54x54.png&w=640&q=75 640w, /_next/image?url=https%3A%2F%2Fsanity-asset-cdn.thenational.academy%2Fimages%2Fcuvjke51%2Fproduction%2Fd40d4c63b117e248ec11b995951aa738969531aa-54x54.png&w=750&q=75 750w, /_next/image?url=https%3A%2F%2Fsanity-asset-cdn.thenational.academy%2Fimages%2Fcuvjke51%2Fproduction%2Fd40d4c63b117e248ec11b995951aa738969531aa-54x54.png&w=828&q=75 828w, /_next/image?url=https%3A%2F%2Fsanity-asset-cdn.thenational.academy%2Fimages%2Fcuvjke51%2Fproduction%2Fd40d4c63b117e248ec11b995951aa738969531aa-54x54.png&w=1080&q=75 1080w, /_next/image?url=https%3A%2F%2Fsanity-asset-cdn.thenational.academy%2Fimages%2Fcuvjke51%2Fproduction%2Fd40d4c63b117e248ec11b995951aa738969531aa-54x54.png&w=1200&q=75 1200w, /_next/image?url=https%3A%2F%2Fsanity-asset-cdn.thenational.academy%2Fimages%2Fcuvjke51%2Fproduction%2Fd40d4c63b117e248ec11b995951aa738969531aa-54x54.png&w=1920&q=75 1920w, /_next/image?url=https%3A%2F%2Fsanity-asset-cdn.thenational.academy%2Fimages%2Fcuvjke51%2Fproduction%2Fd40d4c63b117e248ec11b995951aa738969531aa-54x54.png&w=2048&q=75 2048w, /_next/image?url=https%3A%2F%2Fsanity-asset-cdn.thenational.academy%2Fimages%2Fcuvjke51%2Fproduction%2Fd40d4c63b117e248ec11b995951aa738969531aa-54x54.png&w=3840&q=75 3840w"
+                                  style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                                />
+                              </span>
                               <div
                                 class="sc-aXZVg sc-gEvEer jPvJsJ bktafW"
                               >
@@ -386,18 +404,21 @@ exports[`OaksImpactSchoolQuotesSection renders correctly 1`] = `
           <div
             class="sc-aXZVg sc-gEvEer kTrAkM fUxOFh"
           >
-            <img
-              alt="TEST_ALT"
-              class="sc-ba397cd3-0 dMngOi"
-              data-nimg="1"
-              decoding="async"
-              height="3264"
-              loading="lazy"
-              src="https://NEXT_PUBLIC_SANITY_ASSET_CDN_HOST/images/NEXT_PUBLIC_SANITY_PROJECT_ID/NEXT_PUBLIC_SANITY_DATASET/b81ee19a35baa3192360a210fda34cc9b21f4fd6-5824x3264.jpg?w=3840&h=2152&fm=webp&q=80&fit=clip&auto=format"
-              srcset="https://NEXT_PUBLIC_SANITY_ASSET_CDN_HOST/images/NEXT_PUBLIC_SANITY_PROJECT_ID/NEXT_PUBLIC_SANITY_DATASET/b81ee19a35baa3192360a210fda34cc9b21f4fd6-5824x3264.jpg?w=3840&h=2152&fm=webp&q=80&fit=clip&auto=format 1x"
-              style="color: transparent;"
-              width="5824"
-            />
+            <span
+              class="sc-aXZVg kMYEmk"
+            >
+              <img
+                alt="TEST_ALT"
+                class="sc-iGgWBj dZvqhO"
+                data-nimg="fill"
+                decoding="async"
+                loading="lazy"
+                sizes="100vw"
+                src="http://localhost/_next/image?url=https%3A%2F%2Fsanity-asset-cdn.thenational.academy%2Fimages%2Fcuvjke51%2Fproduction%2Fb81ee19a35baa3192360a210fda34cc9b21f4fd6-5824x3264.jpg&w=3840&q=75"
+                srcset="/_next/image?url=https%3A%2F%2Fsanity-asset-cdn.thenational.academy%2Fimages%2Fcuvjke51%2Fproduction%2Fb81ee19a35baa3192360a210fda34cc9b21f4fd6-5824x3264.jpg&w=640&q=75 640w, /_next/image?url=https%3A%2F%2Fsanity-asset-cdn.thenational.academy%2Fimages%2Fcuvjke51%2Fproduction%2Fb81ee19a35baa3192360a210fda34cc9b21f4fd6-5824x3264.jpg&w=750&q=75 750w, /_next/image?url=https%3A%2F%2Fsanity-asset-cdn.thenational.academy%2Fimages%2Fcuvjke51%2Fproduction%2Fb81ee19a35baa3192360a210fda34cc9b21f4fd6-5824x3264.jpg&w=828&q=75 828w, /_next/image?url=https%3A%2F%2Fsanity-asset-cdn.thenational.academy%2Fimages%2Fcuvjke51%2Fproduction%2Fb81ee19a35baa3192360a210fda34cc9b21f4fd6-5824x3264.jpg&w=1080&q=75 1080w, /_next/image?url=https%3A%2F%2Fsanity-asset-cdn.thenational.academy%2Fimages%2Fcuvjke51%2Fproduction%2Fb81ee19a35baa3192360a210fda34cc9b21f4fd6-5824x3264.jpg&w=1200&q=75 1200w, /_next/image?url=https%3A%2F%2Fsanity-asset-cdn.thenational.academy%2Fimages%2Fcuvjke51%2Fproduction%2Fb81ee19a35baa3192360a210fda34cc9b21f4fd6-5824x3264.jpg&w=1920&q=75 1920w, /_next/image?url=https%3A%2F%2Fsanity-asset-cdn.thenational.academy%2Fimages%2Fcuvjke51%2Fproduction%2Fb81ee19a35baa3192360a210fda34cc9b21f4fd6-5824x3264.jpg&w=2048&q=75 2048w, /_next/image?url=https%3A%2F%2Fsanity-asset-cdn.thenational.academy%2Fimages%2Fcuvjke51%2Fproduction%2Fb81ee19a35baa3192360a210fda34cc9b21f4fd6-5824x3264.jpg&w=3840&q=75 3840w"
+                style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+              />
+            </span>
             <div
               class="sc-aXZVg sc-gEvEer eLpsLG iwFTtF"
             >
@@ -444,7 +465,7 @@ exports[`OaksImpactSchoolQuotesSection renders correctly 1`] = `
                               class="sc-aXZVg cmRFEa"
                             >
                               <div
-                                class="sc-aXZVg sc-gEvEer sc-3b9ef4a7-1 jPvJsJ NsOKr isynMY"
+                                class="sc-aXZVg sc-gEvEer sc-9153a742-1 jPvJsJ NsOKr fzhpEf"
                               >
                                 <p
                                   class="sc-ikkxIA fqNJfa"
@@ -463,18 +484,21 @@ exports[`OaksImpactSchoolQuotesSection renders correctly 1`] = `
                             <div
                               class="sc-aXZVg sc-gEvEer jPvJsJ jjyfYk"
                             >
-                              <img
-                                alt=""
-                                class="sc-ba397cd3-0 dMngOi sc-3b9ef4a7-0 dIlPPm"
-                                data-nimg="1"
-                                decoding="async"
-                                height="54"
-                                loading="lazy"
-                                src="https://NEXT_PUBLIC_SANITY_ASSET_CDN_HOST/images/NEXT_PUBLIC_SANITY_PROJECT_ID/NEXT_PUBLIC_SANITY_DATASET/d40d4c63b117e248ec11b995951aa738969531aa-54x54.png?w=128&h=128&fm=webp&q=80&fit=clip&auto=format"
-                                srcset="https://NEXT_PUBLIC_SANITY_ASSET_CDN_HOST/images/NEXT_PUBLIC_SANITY_PROJECT_ID/NEXT_PUBLIC_SANITY_DATASET/d40d4c63b117e248ec11b995951aa738969531aa-54x54.png?w=64&h=64&fm=webp&q=80&fit=clip&auto=format 1x, https://NEXT_PUBLIC_SANITY_ASSET_CDN_HOST/images/NEXT_PUBLIC_SANITY_PROJECT_ID/NEXT_PUBLIC_SANITY_DATASET/d40d4c63b117e248ec11b995951aa738969531aa-54x54.png?w=128&h=128&fm=webp&q=80&fit=clip&auto=format 2x"
-                                style="color: transparent;"
-                                width="54"
-                              />
+                              <span
+                                class="sc-aXZVg kvjdhA sc-9153a742-0 hXqlHJ"
+                              >
+                                <img
+                                  alt=""
+                                  class="sc-iGgWBj dZvqhO"
+                                  data-nimg="fill"
+                                  decoding="async"
+                                  loading="lazy"
+                                  sizes="100vw"
+                                  src="http://localhost/_next/image?url=https%3A%2F%2Fsanity-asset-cdn.thenational.academy%2Fimages%2Fcuvjke51%2Fproduction%2Fd40d4c63b117e248ec11b995951aa738969531aa-54x54.png&w=3840&q=75"
+                                  srcset="/_next/image?url=https%3A%2F%2Fsanity-asset-cdn.thenational.academy%2Fimages%2Fcuvjke51%2Fproduction%2Fd40d4c63b117e248ec11b995951aa738969531aa-54x54.png&w=640&q=75 640w, /_next/image?url=https%3A%2F%2Fsanity-asset-cdn.thenational.academy%2Fimages%2Fcuvjke51%2Fproduction%2Fd40d4c63b117e248ec11b995951aa738969531aa-54x54.png&w=750&q=75 750w, /_next/image?url=https%3A%2F%2Fsanity-asset-cdn.thenational.academy%2Fimages%2Fcuvjke51%2Fproduction%2Fd40d4c63b117e248ec11b995951aa738969531aa-54x54.png&w=828&q=75 828w, /_next/image?url=https%3A%2F%2Fsanity-asset-cdn.thenational.academy%2Fimages%2Fcuvjke51%2Fproduction%2Fd40d4c63b117e248ec11b995951aa738969531aa-54x54.png&w=1080&q=75 1080w, /_next/image?url=https%3A%2F%2Fsanity-asset-cdn.thenational.academy%2Fimages%2Fcuvjke51%2Fproduction%2Fd40d4c63b117e248ec11b995951aa738969531aa-54x54.png&w=1200&q=75 1200w, /_next/image?url=https%3A%2F%2Fsanity-asset-cdn.thenational.academy%2Fimages%2Fcuvjke51%2Fproduction%2Fd40d4c63b117e248ec11b995951aa738969531aa-54x54.png&w=1920&q=75 1920w, /_next/image?url=https%3A%2F%2Fsanity-asset-cdn.thenational.academy%2Fimages%2Fcuvjke51%2Fproduction%2Fd40d4c63b117e248ec11b995951aa738969531aa-54x54.png&w=2048&q=75 2048w, /_next/image?url=https%3A%2F%2Fsanity-asset-cdn.thenational.academy%2Fimages%2Fcuvjke51%2Fproduction%2Fd40d4c63b117e248ec11b995951aa738969531aa-54x54.png&w=3840&q=75 3840w"
+                                  style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                                />
+                              </span>
                               <div
                                 class="sc-aXZVg sc-gEvEer jPvJsJ bktafW"
                               >
