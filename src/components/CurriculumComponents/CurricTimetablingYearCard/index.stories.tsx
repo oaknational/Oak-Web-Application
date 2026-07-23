@@ -1,10 +1,4 @@
-import {
-  OakBox,
-  OakFlex,
-  OakInlineBanner,
-  OakThemeProvider,
-  oakDefaultTheme,
-} from "@oaknational/oak-components";
+import { OakBox, OakFlex, OakInlineBanner } from "@oaknational/oak-components";
 import { Meta, StoryObj } from "@storybook/nextjs";
 
 import CurricUnitCard from "../CurricUnitCard";
@@ -80,10 +74,6 @@ export const WithCurricTermCard: Story = {
     ),
   },
   render: function Render(args) {
-    return (
-      <OakThemeProvider theme={oakDefaultTheme}>
-        <Component {...args} />
-      </OakThemeProvider>
-    );
+    return <Component {...args} />;
   },
 };

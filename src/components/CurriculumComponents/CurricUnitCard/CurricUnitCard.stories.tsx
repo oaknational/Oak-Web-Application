@@ -1,4 +1,3 @@
-import { OakThemeProvider, oakDefaultTheme } from "@oaknational/oak-components";
 import { Meta, StoryObj } from "@storybook/nextjs";
 
 import Component from "./CurricUnitCard";
@@ -20,11 +19,7 @@ export const CurricUnitCard: Story = {
     href: "#",
   },
   render: function Render(args) {
-    return (
-      <OakThemeProvider theme={oakDefaultTheme}>
-        <Component {...args} />
-      </OakThemeProvider>
-    );
+    return <Component {...args} />;
   },
 };
 
@@ -36,10 +31,6 @@ export const CurricUnitCardHighlighted: Story = {
     href: "#",
   },
   render: function Render(args) {
-    return (
-      <OakThemeProvider theme={oakDefaultTheme}>
-        <Component {...args} />
-      </OakThemeProvider>
-    );
+    return <Component {...args} />;
   },
 };

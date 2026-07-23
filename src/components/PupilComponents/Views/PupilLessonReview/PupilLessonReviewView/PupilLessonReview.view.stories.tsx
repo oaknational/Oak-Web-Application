@@ -1,11 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/nextjs";
-import {
-  OakImage,
-  OakP,
-  OakTertiaryButton,
-  OakThemeProvider,
-  oakDefaultTheme,
-} from "@oaknational/oak-components";
+import { OakImage, OakP, OakTertiaryButton } from "@oaknational/oak-components";
 
 import { PupilLessonReviewBottomNav } from "../PupilLessonReviewBottomNav/PupilLessonReviewBottomNav";
 import { PupilLessonReviewFeedbackCard } from "../PupilLessonReviewFeedbackCard/PupilLessonReviewFeedbackCard";
@@ -16,13 +10,6 @@ import { PupilLessonReviewView } from "./PupilLessonReview.view";
 
 const meta = {
   component: PupilLessonReviewView,
-  decorators: [
-    (StoryComponent) => (
-      <OakThemeProvider theme={oakDefaultTheme}>
-        <StoryComponent />
-      </OakThemeProvider>
-    ),
-  ],
 } satisfies Meta<typeof PupilLessonReviewView>;
 
 export default meta;

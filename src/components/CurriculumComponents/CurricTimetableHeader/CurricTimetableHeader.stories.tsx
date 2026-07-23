@@ -1,5 +1,4 @@
 import { Meta, StoryObj } from "@storybook/nextjs";
-import { oakDefaultTheme, OakThemeProvider } from "@oaknational/oak-components";
 
 import { CurricTimetableHeader as Component } from ".";
 
@@ -27,13 +26,6 @@ const meta: Meta<typeof Component> = {
       include: ["titleSlot", "additionalSlot", "illustrationSlug"],
     },
   },
-  decorators: [
-    (Story) => (
-      <OakThemeProvider theme={oakDefaultTheme}>
-        <Story />
-      </OakThemeProvider>
-    ),
-  ],
   render: (args) => <Component {...args} />,
 };
 

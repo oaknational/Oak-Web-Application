@@ -1,10 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/nextjs";
-import {
-  OakBackLink,
-  OakP,
-  OakThemeProvider,
-  oakDefaultTheme,
-} from "@oaknational/oak-components";
+import { OakBackLink, OakP } from "@oaknational/oak-components";
 
 import { PupilLessonIntroAdditionalFileItem } from "../../PupilLessonIntro";
 import { PupilLessonVideoAdditionalFilesCard } from "../PupilLessonVideoAdditionalFilesCard/PupilLessonVideoAdditionalFilesCard";
@@ -14,13 +9,6 @@ import { PupilLessonVideoView } from "./PupilLessonVideo.view";
 
 const meta = {
   component: PupilLessonVideoView,
-  decorators: [
-    (StoryComponent) => (
-      <OakThemeProvider theme={oakDefaultTheme}>
-        <StoryComponent />
-      </OakThemeProvider>
-    ),
-  ],
 } satisfies Meta<typeof PupilLessonVideoView>;
 
 export default meta;
