@@ -9,6 +9,8 @@ import {
 } from "@oaknational/oak-components";
 import { PortableTextBlockComponent } from "@portabletext/react";
 
+import { sizeConfig } from "./config";
+
 import { PortableTextJSON } from "@/common-lib/cms-types";
 import { PortableTextWithDefaults } from "@/components/SharedComponents/PortableText";
 
@@ -23,11 +25,13 @@ export type CurriculumPartnersProps = {
     imageUrl: string;
     alt: string;
   }[];
+  size?: "sm" | "md";
 };
 export function CurriculumPartners({
   title,
   text,
   items,
+  size = "md",
 }: Readonly<CurriculumPartnersProps>) {
   return (
     <OakFlex $flexDirection={"column"} $gap={"spacing-24"}>
@@ -47,11 +51,7 @@ export function CurriculumPartners({
       <OakBox>
         <OakGrid
           as="ul"
-          $gridTemplateColumns={
-            title === "Current"
-              ? ["repeat(3, 1fr)", "repeat(5, 1fr)", "repeat(6, 1fr)"]
-              : ["repeat(4, 1fr)", "repeat(7, 1fr)", "repeat(8, 1fr)"]
-          }
+          $gridTemplateColumns={sizeConfig[size].gridTemplateColumns}
           $cg={"spacing-16"}
           $rg={"spacing-16"}
           $pa={"spacing-0"}
