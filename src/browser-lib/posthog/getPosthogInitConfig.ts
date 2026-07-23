@@ -28,7 +28,6 @@ export const getPosthogInitConfig = ({
   loaded,
   disable_session_recording: true,
   capture_pageview: false as const,
-  capture_heatmaps: true,
   autocapture: {
     url_allowlist: POSTHOG_AUTOCAPTURE_URL_ALLOWLIST,
   },
