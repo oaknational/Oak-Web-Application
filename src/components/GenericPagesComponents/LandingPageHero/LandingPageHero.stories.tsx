@@ -1,23 +1,12 @@
 import React from "react";
 import { StoryFn, Meta } from "@storybook/nextjs";
-import {
-  OakFlex,
-  oakDefaultTheme,
-  OakThemeProvider,
-} from "@oaknational/oak-components";
+import { OakFlex } from "@oaknational/oak-components";
 
 import Component from "./LandingPageHero";
 
 export default {
   component: Component,
   argTypes: {},
-  decorators: [
-    (Story) => (
-      <OakThemeProvider theme={oakDefaultTheme}>
-        <Story />
-      </OakThemeProvider>
-    ),
-  ],
 } as Meta<typeof Component>;
 
 const Template: StoryFn<typeof Component> = (args) => (

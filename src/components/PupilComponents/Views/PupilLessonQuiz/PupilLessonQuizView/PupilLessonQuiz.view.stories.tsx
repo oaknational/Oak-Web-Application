@@ -6,8 +6,6 @@ import {
   OakHeading,
   OakP,
   OakSpan,
-  OakThemeProvider,
-  oakDefaultTheme,
 } from "@oaknational/oak-components";
 
 import { PupilLessonQuizCheckButton } from "../PupilLessonQuizCheckButton/PupilLessonQuizCheckButton";
@@ -18,13 +16,6 @@ import { PupilLessonQuizView } from "./PupilLessonQuiz.view";
 const meta = {
   title: "Components/PupilComponents/Views/PupilLessonQuiz/PupilLessonQuizView",
   component: PupilLessonQuizView,
-  decorators: [
-    (StoryComponent) => (
-      <OakThemeProvider theme={oakDefaultTheme}>
-        <StoryComponent />
-      </OakThemeProvider>
-    ),
-  ],
 } satisfies Meta<typeof PupilLessonQuizView>;
 
 export default meta;

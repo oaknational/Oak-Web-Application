@@ -1,17 +1,13 @@
-import { StoryObj, Meta } from "@storybook/react";
-import {
-  OakBreadcrumbs,
-  oakDefaultTheme,
-  OakThemeProvider,
-} from "@oaknational/oak-components";
+import { StoryObj, Meta } from "@storybook/nextjs";
+import { OakBreadcrumbs } from "@oaknational/oak-components";
 import { fn, mocked } from "storybook/test";
 
 import UnitHeader, { UnitHeaderProps } from "./UnitHeader";
 
-import { __setMockAuthState } from "@/storybook-mocks/clerk";
 import useUnitDownloadExistenceCheck from "@/components/TeacherComponents/hooks/downloadAndShareHooks/useUnitDownloadExistenceCheck";
 import TeacherBrowseAnalyticsDecorator from "@/storybook-decorators/TeacherBrowseAnalyticsDecorator";
 import NotificationsDecorator from "@/storybook-decorators/NotificationsDecorator";
+import { __setMockAuthState } from "@/storybook-mocks/clerk";
 
 const meta: Meta<typeof UnitHeader> = {
   component: UnitHeader,
@@ -51,11 +47,7 @@ const meta: Meta<typeof UnitHeader> = {
     TeacherBrowseAnalyticsDecorator,
     (Story) => {
       __setMockAuthState({ isSignedIn: true });
-      return (
-        <OakThemeProvider theme={oakDefaultTheme}>
-          <Story />
-        </OakThemeProvider>
-      );
+      return <Story />;
     },
   ],
 };
@@ -159,16 +151,6 @@ export const WithTags: Story = {
 };
 
 export const SignedOut: Story = {
-  decorators: [
-    (Story) => {
-      __setMockAuthState({ isSignedIn: false });
-      return (
-        <OakThemeProvider theme={oakDefaultTheme}>
-          <Story />
-        </OakThemeProvider>
-      );
-    },
-  ],
   args: {
     ...coreProps,
     headerSlot: (

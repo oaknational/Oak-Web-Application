@@ -1,5 +1,4 @@
-import { StoryObj, Meta } from "@storybook/react";
-import { oakDefaultTheme, OakThemeProvider } from "@oaknational/oak-components";
+import { StoryObj, Meta } from "@storybook/nextjs";
 
 import { DownloadSuccessHeader } from "./DownloadSuccessHeader";
 
@@ -9,14 +8,7 @@ const meta: Meta<typeof DownloadSuccessHeader> = {
   component: DownloadSuccessHeader,
   title: "App/Programmes/Units/Lessons/DownloadSuccessHeader",
   tags: ["autodocs"],
-  decorators: [
-    CookieConsentDecorator,
-    (Story) => (
-      <OakThemeProvider theme={oakDefaultTheme}>
-        <Story />
-      </OakThemeProvider>
-    ),
-  ],
+  decorators: [CookieConsentDecorator],
 };
 
 export default meta;

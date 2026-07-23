@@ -1,18 +1,10 @@
 import { Meta, StoryObj } from "@storybook/nextjs";
-import { oakDefaultTheme, OakThemeProvider } from "@oaknational/oak-components";
 
 import { CurricFiltersChildSubjects as Component } from "./CurricFiltersChildSubjects";
 import { ks4Setup } from "./CurricFiltersChildSubjects.fixtures";
 
 const meta: Meta<typeof Component> = {
   component: Component,
-  decorators: [
-    (Story) => (
-      <OakThemeProvider theme={oakDefaultTheme}>
-        <Story />
-      </OakThemeProvider>
-    ),
-  ],
   argTypes: {},
 };
 

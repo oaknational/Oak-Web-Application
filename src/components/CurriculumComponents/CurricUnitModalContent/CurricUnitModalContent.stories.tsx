@@ -1,4 +1,3 @@
-import { OakThemeProvider, oakDefaultTheme } from "@oaknational/oak-components";
 import { Meta, StoryObj } from "@storybook/nextjs";
 import { ComponentProps } from "react";
 
@@ -33,11 +32,7 @@ export const CurricUnitModalOptionality: Story = {
     basePath: "",
   },
   render: function Render(args: ComponentProps<typeof Component>) {
-    return (
-      <OakThemeProvider theme={oakDefaultTheme}>
-        <Component {...args} />
-      </OakThemeProvider>
-    );
+    return <Component {...args} />;
   },
 };
 
@@ -49,11 +44,7 @@ export const CurricUnitModalOptionalityOptions: Story = {
     basePath: "",
   },
   render: function Render(args: ComponentProps<typeof Component>) {
-    return (
-      <OakThemeProvider theme={oakDefaultTheme}>
-        <Component {...args} />
-      </OakThemeProvider>
-    );
+    return <Component {...args} />;
   },
 };
 
@@ -71,10 +62,6 @@ export const CurricUnitModalWhyThisWhyNow: Story = {
     basePath: "",
   },
   render: function Render(args: ComponentProps<typeof Component>) {
-    return (
-      <OakThemeProvider theme={oakDefaultTheme}>
-        <Component {...args} />
-      </OakThemeProvider>
-    );
+    return <Component {...args} />;
   },
 };

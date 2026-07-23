@@ -1,12 +1,7 @@
 import { Meta, StoryObj } from "@storybook/nextjs";
-import {
-  OakPrimaryButton,
-  OakThemeProvider,
-  oakDefaultTheme,
-} from "@oaknational/oak-components";
+import { OakPrimaryButton } from "@oaknational/oak-components";
 import { ClerkProvider } from "@clerk/nextjs";
 import { ComponentProps } from "react";
-import { mocked } from "storybook/test";
 
 import LessonList from "./LessonList";
 
@@ -16,7 +11,6 @@ import SaveCountDecorator from "@/storybook-decorators/SaveCountDecorator";
 import lessonListingFixture, {
   lessonsWithUnpublishedContent,
 } from "@/node-lib/curriculum-api-2023/fixtures/lessonListing.fixture";
-import useUnitDownloadExistenceCheck from "@/components/TeacherComponents/hooks/downloadAndShareHooks/useUnitDownloadExistenceCheck";
 
 const meta: Meta<typeof LessonList> = {
   component: LessonList,
@@ -27,21 +21,12 @@ const meta: Meta<typeof LessonList> = {
       defaultViewport: "desktop",
     },
   },
-  beforeEach: () => {
-    mocked(useUnitDownloadExistenceCheck).mockReturnValue({
-      exists: true,
-      fileSize: "100MB",
-      hasCheckedFiles: true,
-    });
-  },
   decorators: [
     SaveCountDecorator,
     NotificationsDecorator,
     (Story) => (
       <ClerkProvider>
-        <OakThemeProvider theme={oakDefaultTheme}>
-          <Story />
-        </OakThemeProvider>
+        <Story />
       </ClerkProvider>
     ),
   ],
