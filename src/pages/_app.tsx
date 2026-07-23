@@ -5,7 +5,6 @@ import { ThemeProvider } from "styled-components";
 import { OverlayProvider } from "react-aria";
 import posthog from "posthog-js";
 import { PostHogProvider } from "posthog-js/react";
-import { ClerkProvider } from "@clerk/nextjs";
 import {
   oakDefaultTheme,
   OakGlobalStyle,
@@ -30,6 +29,7 @@ import InlineSpriteSheet from "@/components/GenericPagesComponents/InlineSpriteS
 import AppHooks from "@/components/AppComponents/App/AppHooks";
 import { OakNotificationsProvider } from "@/context/OakNotifications/OakNotificationsProvider";
 import { SaveCountProvider } from "@/context/SaveCount/SaveCountProvider";
+import { ClerkProviderWithRedirects } from "@/app/providers";
 
 const lexend = Lexend({ subsets: ["latin"] });
 
@@ -47,11 +47,7 @@ const OakWebApplication: FC<OakWebApplicationProps> = ({
   return (
     <>
       <GlobalStyle fontFamily={lexend.style.fontFamily} />
-      <ClerkProvider
-        signInUrl="/sign-in"
-        signUpUrl="/sign-in"
-        afterSignOutUrl="/"
-      >
+      <ClerkProviderWithRedirects fontFamily={lexend.style.fontFamily}>
         <CookieConsentProvider>
           <ThemeProvider theme={theme}>
             <OakThemeProvider theme={oakDefaultTheme}>
@@ -87,7 +83,7 @@ const OakWebApplication: FC<OakWebApplicationProps> = ({
             </OakThemeProvider>
           </ThemeProvider>
         </CookieConsentProvider>
-      </ClerkProvider>
+      </ClerkProviderWithRedirects>
     </>
   );
 };
