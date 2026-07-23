@@ -159,6 +159,10 @@ describe("Heatwave banner", () => {
     mockUseFeatureFlagEnabled.mockReturnValue(true);
   });
 
+  afterEach(() => {
+    setUseUserReturn(mockLoggedOut);
+  });
+
   it("shows the heatwave banner when the feature flag is enabled and share is available", () => {
     renderLessonView();
 
@@ -188,10 +192,6 @@ describe("Heatwave banner", () => {
         /Disruption this week due to hot weather\? Set this lesson as remote work/i,
       ),
     ).not.toBeInTheDocument();
-  });
-
-  afterEach(() => {
-    setUseUserReturn(mockLoggedOut);
   });
 
   it("does not show share for geo restricted lessons even when user is signed in", () => {
