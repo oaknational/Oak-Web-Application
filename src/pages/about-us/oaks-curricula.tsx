@@ -196,6 +196,7 @@ export const OaksCurricula: NextPage<OaksCurriculaPageProps> = ({
                   title="Legacy"
                   text={pageData.legacyPartners.textRaw}
                   items={legacyPartnerItems}
+                  size={"sm"}
                 />
               )}
             </OakFlex>
