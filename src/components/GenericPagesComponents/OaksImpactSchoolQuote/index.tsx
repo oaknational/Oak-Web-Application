@@ -1,11 +1,17 @@
 import styled from "styled-components";
-import { OakBox, OakFlex, OakHeading, OakP } from "@oaknational/oak-components";
+import {
+  OakBox,
+  OakFlex,
+  OakHeading,
+  OakImage,
+  OakP,
+} from "@oaknational/oak-components";
 import z from "zod";
 
-import CMSImage from "@/components/SharedComponents/CMSImage";
 import { oaksImpactSchoolQuoteCardSchema } from "@/common-lib/cms-types";
+import getProxiedSanityAssetUrl from "@/common-lib/urls/getProxiedSanityAssetUrl";
 
-const StyledAuthorImage = styled(CMSImage)`
+const StyledAuthorImage = styled(OakImage)`
   width: 54px;
   height: 54px;
   flex-shrink: 0;
@@ -46,7 +52,11 @@ export function OaksImpactSchoolQuote({
       $overflow="hidden"
       $flexGrow={1}
     >
-      <CMSImage image={logo} />
+      <OakImage
+        src={getProxiedSanityAssetUrl(logo.asset?.url ?? "")}
+        alt={logo.altText ?? ""}
+        $aspectRatio={"16/9"}
+      />
       <OakFlex
         $flexDirection={"column"}
         $ph={"spacing-24"}
@@ -92,7 +102,12 @@ export function OaksImpactSchoolQuote({
                         $gap={"spacing-16"}
                         $alignItems={["top", "center"]}
                       >
-                        <StyledAuthorImage image={headshot} />
+                        <StyledAuthorImage
+                          src={getProxiedSanityAssetUrl(
+                            headshot.asset?.url ?? "",
+                          )}
+                          alt={headshot.altText ?? ""}
+                        />
                         <OakFlex $flexDirection={"column"}>
                           <OakP $font={"body-2-bold"} $color={"text-primary"}>
                             {authorName}
