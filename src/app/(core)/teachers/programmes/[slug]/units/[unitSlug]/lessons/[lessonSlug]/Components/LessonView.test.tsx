@@ -9,7 +9,7 @@ import { resolveOakHref } from "@/common-lib/urls";
 import teachersLessonOverviewFixture from "@/node-lib/curriculum-api-2023/fixtures/teachersLessonOverview.fixture";
 import lessonMediaClipsFixtures from "@/node-lib/curriculum-api-2023/fixtures/lessonMediaClips.fixture";
 import { setUseUserReturn } from "@/__tests__/__helpers__/mockClerk";
-import { mockLoggedIn } from "@/__tests__/__helpers__/mockUser";
+import { mockLoggedIn, mockLoggedOut } from "@/__tests__/__helpers__/mockUser";
 import { TeacherBrowseAnalyticsStoreProvider } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
 import { TeachersLessonOverviewPageData } from "@/node-lib/curriculum-api-2023/queries/teachersLessonOverview/teachersLessonOverview.schema";
 import { getProgrammeStateForLesson } from "@/context/TeacherBrowseAnalytics/utils/getProgrammeState";
@@ -188,6 +188,17 @@ describe("Heatwave banner", () => {
         /Disruption this week due to hot weather\? Set this lesson as remote work/i,
       ),
     ).not.toBeInTheDocument();
+  });
+
+  it("does not show share for restricted lessons even when user is signed in", () => {
+    setUseUserReturn(mockLoggedIn);
+    renderLessonView({ geoRestricted: true });
+
+    expect(
+      screen.queryByRole("link", { name: "Share lesson with pupils" }),
+    ).not.toBeInTheDocument();
+
+    setUseUserReturn(mockLoggedOut);
   });
 
   it("hides the heatwave banner when the dismiss button is clicked", async () => {

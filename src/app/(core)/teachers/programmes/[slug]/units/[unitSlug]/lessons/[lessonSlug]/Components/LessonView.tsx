@@ -65,16 +65,16 @@ export default function LessonView(
     excludedFromTeachingMaterials,
   } = props;
 
+  const copyrightState = useComplexCopyright({
+    loginRequired,
+    geoRestricted,
+  });
   const {
     showSignedOutGeoRestricted,
     showSignedOutLoginRequired,
     showGeoBlocked,
     showSignedInNotOnboarded,
-  } = useComplexCopyright({
-    loginRequired,
-    geoRestricted,
-  });
-
+  } = copyrightState;
   const contentRestricted =
     showSignedOutGeoRestricted ||
     showSignedOutLoginRequired ||
@@ -83,10 +83,6 @@ export default function LessonView(
 
   const { track } = useAnalytics();
   const { isSignedIn } = useUser();
-  const copyrightState = useComplexCopyright({
-    loginRequired,
-    geoRestricted,
-  });
   const isMathJaxLesson = hasLessonMathJax(props, props.subjectSlug, false);
   const MathJaxLessonProvider = isMathJaxLesson ? MathJaxProvider : Fragment;
   const { lessonResourceDownloadStarted } = useTeacherBrowseAnalytics(
@@ -142,7 +138,11 @@ export default function LessonView(
   });
 
   const showPupilShare =
-    !contentRestricted && !expired && !actions?.disablePupilShare;
+    !loginRequired &&
+    !geoRestricted &&
+    !contentRestricted &&
+    !expired &&
+    !actions?.disablePupilShare;
 
   const isHeatwaveBannerEnabled =
     useFeatureFlagEnabled("heatwave-banner") ?? false;
