@@ -1,4 +1,4 @@
-import { renderHook, waitFor } from "@testing-library/react";
+import { act, renderHook, waitFor } from "@testing-library/react";
 import { PostSubmissionState } from "@oaknational/google-classroom-addon/types";
 
 import { useClassroomAddonContext } from "./useClassroomAddonContext";
@@ -110,5 +110,150 @@ describe("useClassroomAddonContext", () => {
     expect(result.current.submissionId).toBeNull();
     expect(result.current.initialSectionResults).toEqual({});
     expect(mockedApi.getPupilLessonProgress).not.toHaveBeenCalled();
+  });
+
+  it("shares concurrent submission-state refreshes", async () => {
+    mockedUseGoogleClassroomContext.mockReturnValue(classroomContext);
+    mockedApi.getAddOnContext.mockResolvedValue({
+      studentContext: { submissionId: "submission-1" },
+      pupilLoginHint: "pupil-hint",
+    });
+    mockedApi.getPupilLessonProgress.mockResolvedValue(null);
+    mockedApi.getPostSubmissionState.mockResolvedValueOnce({
+      submissionState: PostSubmissionState.CREATED,
+    });
+    const { result } = renderHook(() => useClassroomAddonContext());
+    await waitFor(() => expect(result.current.isReady).toBe(true));
+
+    let resolveRefresh:
+      | ((value: { submissionState: PostSubmissionState }) => void)
+      | undefined;
+    mockedApi.getPostSubmissionState.mockReset();
+    mockedApi.getPostSubmissionState.mockReturnValue(
+      new Promise((resolve) => {
+        resolveRefresh = resolve;
+      }),
+    );
+
+    let first: Promise<boolean>;
+    let second: Promise<boolean>;
+    act(() => {
+      first = result.current.refreshReadOnly();
+      second = result.current.refreshReadOnly();
+    });
+
+    expect(mockedApi.getPostSubmissionState).toHaveBeenCalledTimes(1);
+    let refreshResults: boolean[] = [];
+    await act(async () => {
+      resolveRefresh?.({
+        submissionState: PostSubmissionState.RETURNED,
+      });
+      refreshResults = await Promise.all([first!, second!]);
+    });
+    expect(refreshResults).toEqual([true, true]);
+    await waitFor(() => expect(result.current.isReadOnly).toBe(true));
+  });
+
+  it("hydrates a new assignment when the Classroom context changes", async () => {
+    let currentContext = classroomContext;
+    mockedUseGoogleClassroomContext.mockImplementation(() => currentContext);
+    mockedApi.getAddOnContext
+      .mockResolvedValueOnce({
+        studentContext: { submissionId: "submission-1" },
+        pupilLoginHint: "pupil-1",
+      })
+      .mockResolvedValueOnce({
+        studentContext: { submissionId: "submission-2" },
+        pupilLoginHint: "pupil-2",
+      });
+    mockedApi.getPupilLessonProgress
+      .mockResolvedValueOnce({
+        intro: { isComplete: true },
+      } as never)
+      .mockResolvedValueOnce({
+        video: { isComplete: true },
+      } as never);
+    mockedApi.getPostSubmissionState.mockResolvedValue({
+      submissionState: PostSubmissionState.CREATED,
+    });
+
+    const { result, rerender } = renderHook(() => useClassroomAddonContext());
+    await waitFor(() =>
+      expect(result.current.submissionId).toBe("submission-1"),
+    );
+
+    currentContext = {
+      ...classroomContext,
+      courseId: "course-2",
+      itemId: "item-2",
+      attachmentId: "attachment-2",
+      classroomAssignmentId: "course-2:item-2",
+    };
+    rerender();
+
+    await waitFor(() => expect(result.current.isReady).toBe(true));
+    expect(result.current.submissionId).toBe("submission-2");
+    expect(result.current.pupilLoginHint).toBe("pupil-2");
+    expect(result.current.initialSectionResults).toEqual({
+      video: { isComplete: true },
+    });
+    expect(mockedApi.getAddOnContext).toHaveBeenCalledTimes(2);
+  });
+
+  it("ignores hydration that resolves after the assignment changes", async () => {
+    let currentContext = classroomContext;
+    mockedUseGoogleClassroomContext.mockImplementation(() => currentContext);
+    let resolveFirstContext:
+      | ((value: {
+          studentContext: { submissionId: string };
+          pupilLoginHint: string;
+        }) => void)
+      | undefined;
+    mockedApi.getAddOnContext
+      .mockReturnValueOnce(
+        new Promise((resolve) => {
+          resolveFirstContext = resolve;
+        }),
+      )
+      .mockResolvedValueOnce({
+        studentContext: { submissionId: "submission-2" },
+        pupilLoginHint: "pupil-2",
+      });
+    mockedApi.getPupilLessonProgress.mockResolvedValue({
+      video: { isComplete: true },
+    } as never);
+    mockedApi.getPostSubmissionState.mockResolvedValue({
+      submissionState: PostSubmissionState.CREATED,
+    });
+
+    const { result, rerender } = renderHook(() => useClassroomAddonContext());
+    await waitFor(() =>
+      expect(mockedApi.getAddOnContext).toHaveBeenCalledTimes(1),
+    );
+
+    currentContext = {
+      ...classroomContext,
+      courseId: "course-2",
+      itemId: "item-2",
+      attachmentId: "attachment-2",
+      classroomAssignmentId: "course-2:item-2",
+    };
+    rerender();
+    await waitFor(() =>
+      expect(result.current.submissionId).toBe("submission-2"),
+    );
+
+    await act(async () => {
+      resolveFirstContext?.({
+        studentContext: { submissionId: "stale-submission" },
+        pupilLoginHint: "stale-pupil",
+      });
+    });
+
+    expect(result.current.submissionId).toBe("submission-2");
+    expect(result.current.pupilLoginHint).toBe("pupil-2");
+    expect(result.current.initialSectionResults).toEqual({
+      video: { isComplete: true },
+    });
   });
 });

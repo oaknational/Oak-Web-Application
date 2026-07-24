@@ -1,4 +1,5 @@
 import { QuestionState } from "@/components/PupilComponents/QuizUtils/questionTypes";
+import type { SubmitPupilProgressResult } from "@/browser-lib/google-classroom/googleClassroomApi";
 
 export const allLessonReviewSections = [
   "intro",
@@ -55,12 +56,20 @@ export type PupilLessonProgressState = {
   isLessonComplete: boolean;
   isReadOnly: boolean;
   refreshReadOnly: () => Promise<boolean>;
+  submitClassroomProgress: (
+    sectionResults: LessonSectionResults,
+  ) => Promise<SubmitPupilProgressResult | null>;
   isHydratingInitialProgress: boolean;
   contentGuidanceDismissed: boolean;
   initialiseLessonProgress: (args: LessonProgressInitArgs) => void;
   markLessonStarted: () => void;
   setReadOnly: (isReadOnly: boolean) => void;
   setRefreshReadOnly: (refreshReadOnly: () => Promise<boolean>) => void;
+  setSubmitClassroomProgress: (
+    submitClassroomProgress: (
+      sectionResults: LessonSectionResults,
+    ) => Promise<SubmitPupilProgressResult | null>,
+  ) => void;
   completeSection: (section: LessonReviewSection) => void;
   updateSectionInProgressResult: (
     section: LessonReviewSection,
@@ -78,8 +87,10 @@ export type PupilLessonProgressDataState = Omit<
   | "initialiseLessonProgress"
   | "markLessonStarted"
   | "refreshReadOnly"
+  | "submitClassroomProgress"
   | "setReadOnly"
   | "setRefreshReadOnly"
+  | "setSubmitClassroomProgress"
   | "completeSection"
   | "updateSectionInProgressResult"
   | "updateWorksheetDownloaded"

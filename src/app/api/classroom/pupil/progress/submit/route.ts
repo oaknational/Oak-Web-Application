@@ -1,6 +1,11 @@
 import { NextRequest, NextResponse } from "next/server";
-import { upsertPupilLessonProgressArgsSchema } from "@oaknational/google-classroom-addon/types";
+import {
+  PostSubmissionState,
+  pupilLessonProgressSchema,
+  upsertPupilLessonProgressArgsSchema,
+} from "@oaknational/google-classroom-addon/types";
 
+import type { SubmitPupilProgressResult } from "@/browser-lib/google-classroom/googleClassroomApi";
 import {
   createClassroomErrorReporter,
   getOakGoogleClassroomAddon,
@@ -13,6 +18,33 @@ const hasAuthHeaders = (request: NextRequest) => {
   const accessToken = request.headers.get("Authorization");
   const session = request.headers.get("x-oakgc-session");
   return { accessToken, session };
+};
+
+const writeStatuses = ["PERSISTED", "READ_ONLY", "GRADE_SUBMITTED"] as const;
+
+const normaliseWriteResult = (result: unknown): SubmitPupilProgressResult => {
+  if (
+    result &&
+    typeof result === "object" &&
+    "progress" in result &&
+    "status" in result &&
+    writeStatuses.includes(result.status as SubmitPupilProgressResult["status"])
+  ) {
+    return {
+      progress: pupilLessonProgressSchema.parse(result.progress),
+      status: result.status as SubmitPupilProgressResult["status"],
+    };
+  }
+
+  const progress = pupilLessonProgressSchema.parse(result);
+  const isReadOnly =
+    progress.postSubmissionState === PostSubmissionState.TURNED_IN ||
+    progress.postSubmissionState === PostSubmissionState.RETURNED;
+
+  return {
+    progress,
+    status: isReadOnly ? "READ_ONLY" : "PERSISTED",
+  };
 };
 
 export async function POST(request: NextRequest) {
@@ -42,9 +74,9 @@ export async function POST(request: NextRequest) {
       session,
     );
 
-    return NextResponse.json(result, { status: 200 });
+    return NextResponse.json(normaliseWriteResult(result), { status: 200 });
   } catch (e) {
-    // Check if it's an OakGoogleClassroomException with submission state error
+    // return classroom submission errors without obscuring their status
     if (isOakGoogleClassroomException(e)) {
       const errorObject = e.toObject();
       reportError(errorObject);

@@ -47,6 +47,7 @@ const mockProgressArgs = {
 
 const mockUpsertPupilLessonProgress = jest.fn().mockResolvedValue({
   ...mockProgressArgs,
+  postSubmissionState: "CREATED",
   createdAt: "2026-01-01T00:00:00.000Z",
   updatedAt: "2026-01-01T00:00:00.000Z",
 });
@@ -83,9 +84,56 @@ describe("POST /api/classroom/pupil/progress/submit", () => {
       mockSession,
     );
     expect(NextResponse.json).toHaveBeenCalledWith(
-      expect.objectContaining({
-        submissionId: "submission-123",
-      }),
+      {
+        progress: expect.objectContaining({
+          submissionId: "submission-123",
+        }),
+        status: "PERSISTED",
+      },
+      { status: 200 },
+    );
+  });
+
+  it("should preserve an explicit grade-submitted result", async () => {
+    const progress = {
+      ...mockProgressArgs,
+      postSubmissionState: "CREATED",
+      createdAt: "2026-01-01T00:00:00.000Z",
+      updatedAt: "2026-01-01T00:00:00.000Z",
+    };
+    mockUpsertPupilLessonProgress.mockResolvedValueOnce({
+      progress,
+      status: "GRADE_SUBMITTED",
+    });
+    mockRequest = {
+      json: async () => mockProgressArgs,
+      headers: mockHeaders,
+    } as unknown as NextRequest;
+
+    await POST(mockRequest);
+
+    expect(NextResponse.json).toHaveBeenCalledWith(
+      { progress, status: "GRADE_SUBMITTED" },
+      { status: 200 },
+    );
+  });
+
+  it("should identify a skipped legacy write as read-only", async () => {
+    mockUpsertPupilLessonProgress.mockResolvedValueOnce({
+      ...mockProgressArgs,
+      postSubmissionState: "TURNED_IN",
+      createdAt: "2026-01-01T00:00:00.000Z",
+      updatedAt: "2026-01-01T00:00:00.000Z",
+    });
+    mockRequest = {
+      json: async () => mockProgressArgs,
+      headers: mockHeaders,
+    } as unknown as NextRequest;
+
+    await POST(mockRequest);
+
+    expect(NextResponse.json).toHaveBeenCalledWith(
+      expect.objectContaining({ status: "READ_ONLY" }),
       { status: 200 },
     );
   });

@@ -67,6 +67,8 @@ export const QuizPageContent = ({
     lessonReviewSections,
     lessonStarted,
     isReadOnly,
+    setReadOnly,
+    submitClassroomProgress,
     completeSection,
     updateSectionInProgressResult,
   } = usePupilLessonProgress(
@@ -75,6 +77,8 @@ export const QuizPageContent = ({
       lessonReviewSections: state.lessonReviewSections,
       lessonStarted: state.lessonStarted,
       isReadOnly: state.isReadOnly,
+      setReadOnly: state.setReadOnly,
+      submitClassroomProgress: state.submitClassroomProgress,
       completeSection: state.completeSection,
       updateSectionInProgressResult: state.updateSectionInProgressResult,
     })),
@@ -129,7 +133,18 @@ export const QuizPageContent = ({
     questionIndex: number;
     pressed: boolean;
   }>({ questionIndex: currentQuestionIndex, pressed: false });
+  const [isCompleting, setIsCompleting] = useState(false);
+  const isCompletingRef = useRef(false);
+  const completionAttemptRef = useRef(0);
   const formId = "quiz-form";
+
+  useEffect(
+    () => () => {
+      completionAttemptRef.current += 1;
+      isCompletingRef.current = false;
+    },
+    [],
+  );
 
   useEffect(() => {
     const initialiseKey = `${lessonSlug}:${section}`;
@@ -263,12 +278,13 @@ export const QuizPageContent = ({
     );
   };
 
-  const completeQuizAndTrack = () => {
-    completeSection(section);
-    const nextSectionResults = getCompletedQuizSectionResults({
+  const completeQuizAndTrack = (
+    nextSectionResults = getCompletedQuizSectionResults({
       section,
       sectionResults,
-    });
+    }),
+  ) => {
+    completeSection(section);
     if (!lessonStarted) {
       trackLessonStarted();
     }
@@ -289,14 +305,47 @@ export const QuizPageContent = ({
     return nextSectionResults;
   };
 
-  const onNext = () => {
+  const finaliseQuiz = async () => {
+    if (!ensureCanProgress() || isCompletingRef.current) return null;
+
+    const nextSectionResults = getCompletedQuizSectionResults({
+      section,
+      sectionResults,
+    });
+
+    if (section === "exit-quiz") {
+      const completionAttempt = ++completionAttemptRef.current;
+      isCompletingRef.current = true;
+      setIsCompleting(true);
+      try {
+        const result = await submitClassroomProgress(nextSectionResults);
+        if (completionAttemptRef.current !== completionAttempt) return null;
+        if (result?.status === "READ_ONLY") {
+          setReadOnly(true);
+          navigateToSection("review");
+          return null;
+        }
+      } catch {
+        return null;
+      } finally {
+        if (completionAttemptRef.current === completionAttempt) {
+          isCompletingRef.current = false;
+          setIsCompleting(false);
+        }
+      }
+    }
+
+    return completeQuizAndTrack(nextSectionResults);
+  };
+
+  const onNext = async () => {
     const nextStep = getQuizNextStep({
       currentQuestionIndex,
       numQuestions,
       isReadOnly,
     });
 
-    // Use cached isReadOnly so Next question is not blocked on a network call.
+    // use cached state so next-question navigation stays immediate
     if (nextStep.action === "next-question") {
       handleNextQuestion();
       return;
@@ -308,9 +357,8 @@ export const QuizPageContent = ({
       return;
     }
 
-    if (!ensureCanProgress()) return;
-
-    const nextSectionResults = completeQuizAndTrack();
+    const nextSectionResults = await finaliseQuiz();
+    if (!nextSectionResults) return;
     navigateToSection(
       getQuizCompletionDestination({
         sectionResults: nextSectionResults,
@@ -320,6 +368,14 @@ export const QuizPageContent = ({
   };
 
   const onBack = () => {
+    if (isCompletingRef.current) {
+      completionAttemptRef.current += 1;
+      isCompletingRef.current = false;
+      setIsCompleting(false);
+      navigateToSection("overview");
+      return;
+    }
+
     const alreadyComplete = sectionResults[section]?.isComplete;
 
     if (!alreadyComplete && isQuizEffectivelyComplete()) {
@@ -442,6 +498,7 @@ export const QuizPageContent = ({
                     currentSection: section,
                   })}
                   onClick={onNext}
+                  isLoading={isCompleting}
                 />
               ),
           }}
