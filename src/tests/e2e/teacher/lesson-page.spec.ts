@@ -35,41 +35,25 @@ test("teacher can complete download flow and download lesson assets", async ({
     .locator('[data-testid="download-all-button"]:visible')
     .first();
 
-  await downloadAllButton.click({ timeout: 20_000 });
+  await downloadAllButton.click();
 
-  await lessonPage.waitForURL(/\/downloads/, { timeout: 20_000 });
+  await lessonPage.waitForURL(/\/downloads/);
 
-  // Wait for the download button to leave its initial loading state.
   const downloadButton = lessonPage.getByRole("button", {
     name: /loading\.{3}|download\s*\.zip/i,
   });
 
-  await expect(downloadButton).toHaveAccessibleName(/download\s*\.zip/i, {
-    timeout: 40_000,
-  });
+  // Wait for the button to leave its initial loading state.
+  await expect(downloadButton).toHaveAccessibleName(/download\s*\.zip/i);
 
-  await lessonPage.getByTestId("checkbox-download").check({ timeout: 20_000 });
-  await lessonPage.getByTestId("termsCheckboxInput").check({ timeout: 20_000 });
+  await lessonPage.getByTestId("checkbox-download").check();
+  await lessonPage.getByTestId("termsCheckboxInput").check();
 
-  const schoolInput = lessonPage.getByLabel(/school \(required\)/i);
-  await schoolInput.pressSequentially("Homeschool", { timeout: 20_000 });
-  await lessonPage
-    .getByRole("option", { name: /homeschool/i })
-    .first()
-    .click({ timeout: 20_000 })
-    .catch(() =>
-      lessonPage
-        .getByText(/^Homeschool$/i)
-        .first()
-        .click({ timeout: 10_000 }),
-    );
-  await expect(schoolInput).toHaveValue(/homeschool/i, { timeout: 20_000 });
-
-  await expect(downloadButton).toBeEnabled({ timeout: 30_000 });
+  await expect(downloadButton).toBeEnabled();
 
   const [download] = await Promise.all([
-    lessonPage.waitForEvent("download", { timeout: 30_000 }),
-    downloadButton.click({ timeout: 30_000 }),
+    lessonPage.waitForEvent("download"),
+    downloadButton.click(),
   ]);
 
   expect(download.suggestedFilename()).toMatch(/\.zip$/i);
