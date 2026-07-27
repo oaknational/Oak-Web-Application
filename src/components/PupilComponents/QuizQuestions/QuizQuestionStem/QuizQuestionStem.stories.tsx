@@ -1,5 +1,4 @@
 import type { Meta, StoryObj } from "@storybook/nextjs";
-import { OakThemeProvider, oakDefaultTheme } from "@oaknational/oak-components";
 
 import {
   QuizQuestionStem,
@@ -11,13 +10,6 @@ import { quizQuestions } from "@/node-lib/curriculum-api-2023/fixtures/quizEleme
 const meta = {
   title: "Components/PupilComponents/QuizQuestions/QuizQuestionStem",
   component: QuizQuestionStem,
-  decorators: [
-    (StoryComponent) => (
-      <OakThemeProvider theme={oakDefaultTheme}>
-        <StoryComponent />
-      </OakThemeProvider>
-    ),
-  ],
   argTypes: {},
 } satisfies Meta<typeof QuizQuestionStem>;
 

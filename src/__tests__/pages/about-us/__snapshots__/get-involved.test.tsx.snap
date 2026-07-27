@@ -88,19 +88,28 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c37 {
+.c28 {
+  position: relative;
+  width: 6.25rem;
+  height: 3rem;
+  padding: 0rem;
+  display: none;
+  font-family: --var(google-font),Lexend,sans-serif;
+}
+
+.c38 {
   position: relative;
   max-width: 11.25rem;
   display: none;
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c38 {
+.c39 {
   display: none;
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c39 {
+.c40 {
   position: relative;
   height: -webkit-fit-content;
   height: -moz-fit-content;
@@ -121,17 +130,17 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
   letter-spacing: -0.005rem;
 }
 
-.c39:hover {
+.c40:hover {
   cursor: pointer;
 }
 
-.c43 {
+.c44 {
   top: 50%;
   right: 0.5rem;
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c44 {
+.c45 {
   position: relative;
   width: -webkit-max-content;
   width: -moz-max-content;
@@ -139,7 +148,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c50 {
+.c51 {
   position: relative;
   width: 2rem;
   min-width: 2rem;
@@ -150,7 +159,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c52 {
+.c53 {
   position: absolute;
   top: 0rem;
   width: 100%;
@@ -159,12 +168,12 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c55 {
+.c56 {
   display: block;
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c58 {
+.c59 {
   width: -webkit-fit-content;
   width: -moz-fit-content;
   width: fit-content;
@@ -184,7 +193,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
   letter-spacing: 0.0115rem;
 }
 
-.c60 {
+.c61 {
   position: relative;
   width: 1.5rem;
   min-width: 1.5rem;
@@ -194,28 +203,28 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c61 {
+.c62 {
   display: none;
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c64 {
+.c65 {
   display: block;
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c66 {
+.c67 {
   width: 100%;
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c67 {
+.c68 {
   color: #222222;
   font-family: --var(google-font),Lexend,sans-serif;
   z-index: 0;
 }
 
-.c68 {
+.c69 {
   max-width: 80rem;
   padding-left: 1.25rem;
   padding-right: 1.25rem;
@@ -224,7 +233,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c69 {
+.c70 {
   overflow: hidden;
   padding-top: 3.5rem;
   padding-bottom: 3.5rem;
@@ -232,7 +241,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
   overflow: hidden;
 }
 
-.c76 {
+.c77 {
   position: relative;
   width: 2rem;
   min-width: 2rem;
@@ -242,41 +251,41 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c78 {
+.c79 {
   background: #e3e9fb;
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c79 {
+.c80 {
   padding-top: 3.5rem;
   padding-bottom: 3.5rem;
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c85 {
+.c86 {
   height: 100%;
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c87 {
+.c88 {
   position: relative;
   width: 100%;
   display: block;
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c90 {
+.c91 {
   background: #ffffff;
   border-radius: 0.25rem;
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c91 {
+.c92 {
   padding: 1.5rem;
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c100 {
+.c101 {
   font-family: --var(google-font),Lexend,sans-serif;
   font-weight: 300;
   font-size: 1rem;
@@ -287,26 +296,26 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
   letter-spacing: -0.005rem;
 }
 
-.c106 {
+.c107 {
   width: 100%;
   aspect-ratio: 16/9;
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c110 {
+.c111 {
   overflow: hidden;
   padding-top: 4.5rem;
   font-family: --var(google-font),Lexend,sans-serif;
   overflow: hidden;
 }
 
-.c111 {
+.c112 {
   position: relative;
   background: #bef2bd;
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c112 {
+.c113 {
   position: absolute;
   top: 0rem;
   left: 0rem;
@@ -321,26 +330,26 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c113 {
+.c114 {
   position: relative;
   padding-top: 3.5rem;
   padding-bottom: 3.5rem;
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c117 {
+.c118 {
   border-radius: 0.5rem;
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c119 {
+.c120 {
   padding: 1rem;
   background: #ffffff;
   border-radius: 0.5rem;
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c122 {
+.c123 {
   position: relative;
   width: 3.5rem;
   min-width: 3.5rem;
@@ -350,7 +359,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c123 {
+.c124 {
   font-family: --var(google-font),Lexend,sans-serif;
   font-weight: 500;
   font-size: 1.125rem;
@@ -361,14 +370,14 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
   letter-spacing: -0.005rem;
 }
 
-.c125 {
+.c126 {
   padding-top: 3.5rem;
   padding-bottom: 3.5rem;
   background: #dff9de;
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c127 {
+.c128 {
   position: relative;
   padding: 1.5rem;
   padding-left: 1.5rem;
@@ -380,12 +389,12 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c130 {
+.c131 {
   margin-bottom: 1.5rem;
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c132 {
+.c133 {
   position: relative;
   width: 3.5rem;
   min-width: 3.5rem;
@@ -399,36 +408,36 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c135 {
+.c136 {
   margin-top: 0.75rem;
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c152 {
+.c153 {
   position: relative;
   margin-top: 2rem;
   background: #ffffff;
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c155 {
+.c156 {
   position: absolute;
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c158 {
+.c159 {
   padding-top: 0.5rem;
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c162 {
+.c163 {
   position: relative;
   width: 100%;
   height: auto;
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c166 {
+.c167 {
   position: relative;
   overflow: hidden;
   width: 100%;
@@ -438,13 +447,13 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
   z-index: 0;
 }
 
-.c167 {
+.c168 {
   position: relative;
   height: 0.25rem;
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c169 {
+.c170 {
   width: 100%;
   max-width: 30rem;
   padding-left: 1rem;
@@ -456,12 +465,12 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c172 {
+.c173 {
   margin-top: 2rem;
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c174 {
+.c175 {
   color: #222222;
   font-family: --var(google-font),Lexend,sans-serif;
   font-weight: 300;
@@ -473,18 +482,18 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
   letter-spacing: -0.005rem;
 }
 
-.c178 {
+.c179 {
   margin-top: 0rem;
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c179 {
+.c180 {
   padding-left: 0.25rem;
   display: inline-block;
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c183 {
+.c184 {
   position: relative;
   width: 10rem;
   height: 4rem;
@@ -493,7 +502,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c184 {
+.c185 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -501,7 +510,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c188 {
+.c189 {
   position: relative;
   width: 2rem;
   min-width: 2rem;
@@ -512,7 +521,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c189 {
+.c190 {
   position: absolute;
   top: 0rem;
   width: 100%;
@@ -523,7 +532,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c191 {
+.c192 {
   width: 100%;
   padding-top: 0.75rem;
   margin-top: 2rem;
@@ -531,12 +540,12 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c193 {
+.c194 {
   display: none;
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c197 {
+.c198 {
   position: absolute;
   top: 0rem;
   right: 0rem;
@@ -554,7 +563,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
   z-index: -1;
 }
 
-.c199 {
+.c200 {
   position: absolute;
   top: 0rem;
   right: 0rem;
@@ -572,7 +581,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
   z-index: -1;
 }
 
-.c201 {
+.c202 {
   position: fixed;
   right: 0rem;
   width: 100%;
@@ -582,7 +591,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
   z-index: 300;
 }
 
-.c204 {
+.c205 {
   position: -webkit-sticky;
   position: sticky;
   bottom: 0rem;
@@ -590,7 +599,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
   z-index: 299;
 }
 
-.c205 {
+.c206 {
   color: #222222;
   background: #f2f2f2;
   border-top: 0.063rem solid;
@@ -598,13 +607,13 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c206 {
+.c207 {
   margin-left: auto;
   margin-right: auto;
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c207 {
+.c208 {
   padding-top: 1.5rem;
   padding-bottom: 1.5rem;
   margin-left: 1rem;
@@ -612,7 +621,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c209 {
+.c210 {
   font-family: --var(google-font),Lexend,sans-serif;
   font-weight: 300;
   font-size: 0.875rem;
@@ -623,7 +632,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
   letter-spacing: -0.005rem;
 }
 
-.c212 {
+.c213 {
   font-family: --var(google-font),Lexend,sans-serif;
   white-space: nowrap;
 }
@@ -685,7 +694,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
   gap: 1.5rem;
 }
 
-.c28 {
+.c29 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -704,7 +713,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
   flex-grow: 1;
 }
 
-.c33 {
+.c34 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -723,7 +732,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
   gap: 0.25rem;
 }
 
-.c36 {
+.c37 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -735,7 +744,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
   gap: 1.5rem;
 }
 
-.c40 {
+.c41 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -746,14 +755,14 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
   align-items: center;
 }
 
-.c45 {
+.c46 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
 }
 
-.c49 {
+.c50 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -772,7 +781,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
   gap: 0rem;
 }
 
-.c51 {
+.c52 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -787,7 +796,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
   justify-content: center;
 }
 
-.c59 {
+.c60 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -803,7 +812,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
   gap: 0.25rem;
 }
 
-.c80 {
+.c81 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -813,7 +822,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
   flex-direction: column;
 }
 
-.c70 {
+.c71 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -829,7 +838,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
   gap: 0rem;
 }
 
-.c71 {
+.c72 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -840,7 +849,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
   gap: 1.5rem;
 }
 
-.c86 {
+.c87 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -851,7 +860,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
   align-items: flex-end;
 }
 
-.c92 {
+.c93 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -862,7 +871,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
   gap: 2rem;
 }
 
-.c93 {
+.c94 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -873,7 +882,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
   gap: 1rem;
 }
 
-.c96 {
+.c97 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -884,7 +893,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
   gap: 0.75rem;
 }
 
-.c98 {
+.c99 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -895,7 +904,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
   justify-content: flex-start;
 }
 
-.c101 {
+.c102 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -906,7 +915,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
   gap: 1.25rem;
 }
 
-.c102 {
+.c103 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -920,7 +929,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
   gap: 1rem;
 }
 
-.c103 {
+.c104 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -931,7 +940,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
   justify-content: center;
 }
 
-.c105 {
+.c106 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -942,7 +951,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
   gap: 1.5rem;
 }
 
-.c108 {
+.c109 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -961,7 +970,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
   row-gap: 1.5rem;
 }
 
-.c114 {
+.c115 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -972,7 +981,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
   gap: 2rem;
 }
 
-.c120 {
+.c121 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -987,7 +996,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
   gap: 1rem;
 }
 
-.c124 {
+.c125 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -998,7 +1007,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
   flex-grow: 1;
 }
 
-.c131 {
+.c132 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -1012,7 +1021,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
   align-items: center;
 }
 
-.c170 {
+.c171 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -1030,7 +1039,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
   flex-grow: 1;
 }
 
-.c182 {
+.c183 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -1041,7 +1050,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
   justify-content: left;
 }
 
-.c185 {
+.c186 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -1057,7 +1066,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
   gap: 1rem;
 }
 
-.c192 {
+.c193 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -1075,7 +1084,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
   justify-content: flex-start;
 }
 
-.c194 {
+.c195 {
   display: none;
   -webkit-align-items: center;
   -webkit-box-align: center;
@@ -1088,7 +1097,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
   gap: 1rem;
 }
 
-.c202 {
+.c203 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -1103,7 +1112,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
   gap: 0.75rem;
 }
 
-.c208 {
+.c209 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -1118,7 +1127,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
   gap: 1.5rem;
 }
 
-.c211 {
+.c212 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -1168,7 +1177,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c34 {
+.c35 {
   font-family: --var(google-font),Lexend,sans-serif;
   font-weight: 500;
   font-size: 0.875rem;
@@ -1180,7 +1189,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
   text-align: left;
 }
 
-.c54 {
+.c55 {
   font-family: --var(google-font),Lexend,sans-serif;
   font-weight: 600;
   font-size: 1rem;
@@ -1191,14 +1200,14 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
   letter-spacing: 0.0115rem;
 }
 
-.c73 {
+.c74 {
   background: #a0b6f2;
   padding-left: 0.25rem;
   padding-right: 0.25rem;
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c146 {
+.c147 {
   font-family: --var(google-font),Lexend,sans-serif;
   font-weight: 400;
   font-size: 1rem;
@@ -1209,7 +1218,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
   letter-spacing: 0.0115rem;
 }
 
-.c160 {
+.c161 {
   font-family: --var(google-font),Lexend,sans-serif;
   font-weight: 300;
   font-size: 1rem;
@@ -1220,7 +1229,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
   letter-spacing: -0.005rem;
 }
 
-.c210 {
+.c211 {
   font-family: --var(google-font),Lexend,sans-serif;
   font-weight: 500;
   font-size: 0.875rem;
@@ -1231,7 +1240,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
   letter-spacing: -0.005rem;
 }
 
-.c168 {
+.c169 {
   position: absolute;
   top: 0rem;
   left: 0rem;
@@ -1330,7 +1339,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
   cursor: default;
 }
 
-.c31 {
+.c32 {
   background: none;
   color: inherit;
   border: none;
@@ -1353,12 +1362,12 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
   border-radius: 0.25rem;
 }
 
-.c31:disabled {
+.c32:disabled {
   pointer-events: none;
   cursor: default;
 }
 
-.c47 {
+.c48 {
   background: none;
   color: inherit;
   border: none;
@@ -1372,12 +1381,12 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
   color: #222222;
 }
 
-.c47:disabled {
+.c48:disabled {
   pointer-events: none;
   cursor: default;
 }
 
-.c56 {
+.c57 {
   background: none;
   color: inherit;
   border: none;
@@ -1390,12 +1399,12 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c56:disabled {
+.c57:disabled {
   pointer-events: none;
   cursor: default;
 }
 
-.c62 {
+.c63 {
   background: none;
   color: inherit;
   border: none;
@@ -1425,12 +1434,12 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
   border-radius: 0.25rem;
 }
 
-.c62:disabled {
+.c63:disabled {
   pointer-events: none;
   cursor: default;
 }
 
-.c65 {
+.c66 {
   background: none;
   color: inherit;
   border: none;
@@ -1454,12 +1463,12 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
   border-style: none;
 }
 
-.c65:disabled {
+.c66:disabled {
   pointer-events: none;
   cursor: default;
 }
 
-.c163 {
+.c164 {
   background: none;
   color: inherit;
   border: none;
@@ -1483,12 +1492,12 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
   border-radius: 0.25rem;
 }
 
-.c163:disabled {
+.c164:disabled {
   pointer-events: none;
   cursor: default;
 }
 
-.c214 {
+.c215 {
   background: none;
   color: inherit;
   border: none;
@@ -1511,7 +1520,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
   border-radius: 0.25rem;
 }
 
-.c214:disabled {
+.c215:disabled {
   pointer-events: none;
   cursor: default;
 }
@@ -1520,25 +1529,25 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
   object-fit: contain;
 }
 
-.c35 {
+.c36 {
   -webkit-filter: invert(10%) sepia(1%) saturate(236%) hue-rotate(314deg) brightness(95%) contrast(91%);
   filter: invert(10%) sepia(1%) saturate(236%) hue-rotate(314deg) brightness(95%) contrast(91%);
   object-fit: contain;
 }
 
-.c53 {
+.c54 {
   -webkit-filter: invert(98%) sepia(98%) saturate(0%) hue-rotate(328deg) brightness(102%) contrast(102%);
   filter: invert(98%) sepia(98%) saturate(0%) hue-rotate(328deg) brightness(102%) contrast(102%);
   object-fit: contain;
 }
 
-.c198 {
+.c199 {
   -webkit-filter: brightness(0) saturate(100%) invert(85%) sepia(7%) saturate(1206%) hue-rotate(70deg) brightness(110%) contrast(90%);
   filter: brightness(0) saturate(100%) invert(85%) sepia(7%) saturate(1206%) hue-rotate(70deg) brightness(110%) contrast(90%);
   object-fit: fill;
 }
 
-.c200 {
+.c201 {
   -webkit-filter: brightness(0) saturate(100%) invert(95%) sepia(3%) saturate(1596%) hue-rotate(279deg) brightness(95%) contrast(87%);
   filter: brightness(0) saturate(100%) invert(95%) sepia(3%) saturate(1596%) hue-rotate(279deg) brightness(95%) contrast(87%);
   object-fit: fill;
@@ -1553,7 +1562,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
   object-fit: contain;
 }
 
-.c107 {
+.c108 {
   background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGZpbGw9Im5vbmUiIHZpZXdCb3g9IjAgMCA2NCA2NCI+PHBhdGggZmlsbD0iIzIyMiIgZD0iTTI4Ljc3OSAxOS4xNzZhMjcuMTkxIDI3LjE5MSAwIDAgMC0zLjggMS42IDE2LjcgMTYuNyAwIDAgMC03LjEgOC40YzAgLjEtLjEuMi0uMS4zLS43IDIuNC0uNiAyIDEuMyAyLjMgMS45LjMgMSAuNSAxIDEuMy0uMSA4LjggNC4xIDE1LjEgMTEuNCAxOS42YTEuNSAxLjUgMCAwIDAgMS43LjJjNS43LTIuNiA5LjMtNyAxMC4zLTEzLjJhMSAxIDAgMCAxIDEtMWwzLS4yYy44IDAgMS4zLjIgMS4yIDEuMmExNy45IDE3LjkgMCAwIDEtMy4yIDkuMiAyMy43IDIzLjcgMCAwIDEtMTAuOSA5LjEgNS40MDEgNS40MDEgMCAwIDEtNC41LS4yIDI2LjI5OCAyNi4yOTggMCAwIDEtOC41LTYuNiAyNS45IDI1LjkgMCAwIDEtNi40LTE0LjRjMC0uNi0uMi0uNy0uOC0uOC0yLjUtLjQtMi41LS4xLTIuMy0yLjlhMTkuMyAxOS4zIDAgMCAxIDEwLjgtMTYuNiAzOC45OTkgMzguOTk5IDAgMCAxIDUuNy0yLjEgMi4xIDIuMSAwIDAgMCAuOS0xLjMgMTQuMSAxNC4xIDAgMCAxIDMuNS02LjNsLjMtLjNjMS45LTIgMi42LTIgNC4zLjJsLjQuNWMxLjEgMS4xIDEgMS41LS4xIDIuNmExMS45IDExLjkgMCAwIDAtMy4yIDQuNCAxNi45IDE2LjkgMCAwIDEgNy41IDIuM2M1LjcgMy41IDkuMiA4LjMgOS45IDE1IC4wMTYuOTAxLS4wMTcgMS44MDItLjEgMi43IDAgLjgtLjYgMS0xLjIgMS4yYTE2LjEgMTYuMSAwIDAgMS0xMS0uNyAxNy45MDEgMTcuOTAxIDAgMCAxLTEwLjktMTMuNiA5Ljc5NiA5Ljc5NiAwIDAgMS0uMS0xLjlabTE4LjEgMTIuMmMuNC01LjUtNi45LTEyLjYtMTMtMTIuMS41IDYuNSA3LjYgMTIuOCAxMyAxMi4xWiIgb3BhY2l0eT0iLjEiLz48L3N2Zz4=);
   background-color: #e7f6f5;
   background-size: 4rem;
@@ -1638,13 +1647,13 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
   display: none;
 }
 
-.c32 {
+.c33 {
   position: relative;
   width: 100%;
   height: 100%;
 }
 
-.c32:hover {
+.c33:hover {
   -webkit-text-decoration: none;
   text-decoration: none;
   color: #222222;
@@ -1652,37 +1661,37 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
   border-color: #f2f2f2;
 }
 
-.c32:hover [data-state="selected"] {
+.c33:hover [data-state="selected"] {
   display: none;
 }
 
-.c32:active {
+.c33:active {
   background: #ffffff;
   border-color: #ffffff;
   color: #222222;
 }
 
-.c32:active [data-state="selected"] {
+.c33:active [data-state="selected"] {
   display: none;
 }
 
-.c32:disabled {
+.c33:disabled {
   background: #ffffff;
   border-color: #ffffff;
   color: #808080;
 }
 
-.c32:disabled [data-state="selected"] {
+.c33:disabled [data-state="selected"] {
   display: none;
 }
 
-.c63 {
+.c64 {
   position: relative;
   width: 100%;
   height: 100%;
 }
 
-.c63:hover {
+.c64:hover {
   -webkit-text-decoration: none;
   text-decoration: none;
   color: #ffffff;
@@ -1690,27 +1699,27 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
   border-color: #575757;
 }
 
-.c63:hover [data-state="selected"] {
+.c64:hover [data-state="selected"] {
   display: none;
 }
 
-.c63:active {
+.c64:active {
   background: #222222;
   border-color: #222222;
   color: #ffffff;
 }
 
-.c63:active [data-state="selected"] {
+.c64:active [data-state="selected"] {
   display: none;
 }
 
-.c63:disabled {
+.c64:disabled {
   background: #808080;
   border-color: #808080;
   color: #ffffff;
 }
 
-.c63:disabled [data-state="selected"] {
+.c64:disabled [data-state="selected"] {
   display: none;
 }
 
@@ -1764,74 +1773,74 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
   box-shadow: 0.125rem 0.125rem 0 rgba(255,229,85,100%);
 }
 
-.c48 {
+.c49 {
   display: inline-block;
   position: relative;
 }
 
-.c48:hover {
+.c49:hover {
   -webkit-text-decoration: underline;
   text-decoration: underline;
   color: #575757;
 }
 
-.c48:active {
+.c49:active {
   color: #222222;
 }
 
-.c48:disabled {
+.c49:disabled {
   color: #808080;
 }
 
-.c46 > :first-child:focus-visible .shadow {
+.c47 > :first-child:focus-visible .shadow {
   box-shadow: 0 0 0 0.125rem rgba(255,229,85,100%), 0 0 0 0.3rem rgba(87,87,87,100%);
 }
 
-.c46 > :first-child:hover .shadow {
+.c47 > :first-child:hover .shadow {
   box-shadow: 0.125rem 0.125rem 0 rgba(255,229,85,100%);
 }
 
-.c46 > :first-child:active .shadow {
+.c47 > :first-child:active .shadow {
   box-shadow: 0.125rem 0.125rem 0 rgba(255,229,85,100%), 0.25rem 0.25rem 0 rgba(87,87,87,100%);
 }
 
-.c46 > :first-child:disabled .icon-container {
+.c47 > :first-child:disabled .icon-container {
   background: #808080;
 }
 
-.c46 > :first-child:hover .icon-container {
+.c47 > :first-child:hover .icon-container {
   background: #575757;
 }
 
-.c46 > :first-child:active .icon-container {
+.c47 > :first-child:active .icon-container {
   background: #222222;
 }
 
-.c186 > :first-child:focus-visible .shadow {
+.c187 > :first-child:focus-visible .shadow {
   box-shadow: 0 0 0 0.125rem rgba(255,229,85,100%), 0 0 0 0.3rem rgba(87,87,87,100%);
 }
 
-.c186 > :first-child:hover .shadow {
+.c187 > :first-child:hover .shadow {
   box-shadow: 0.125rem 0.125rem 0 rgba(255,229,85,100%);
 }
 
-.c186 > :first-child:active .shadow {
+.c187 > :first-child:active .shadow {
   box-shadow: 0.125rem 0.125rem 0 rgba(255,229,85,100%), 0.25rem 0.25rem 0 rgba(87,87,87,100%);
 }
 
-.c186 > :first-child:disabled .icon-container {
+.c187 > :first-child:disabled .icon-container {
   background: #e4e4e4;
 }
 
-.c186 > :first-child:hover .icon-container {
+.c187 > :first-child:hover .icon-container {
   background: #ffffff;
 }
 
-.c186 > :first-child:active .icon-container {
+.c187 > :first-child:active .icon-container {
   background: #ffffff;
 }
 
-.c72 {
+.c73 {
   font-family: --var(google-font),Lexend,sans-serif;
   font-weight: 600;
   font-size: 2rem;
@@ -1842,7 +1851,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
   letter-spacing: 0.0115rem;
 }
 
-.c83 {
+.c84 {
   font-family: --var(google-font),Lexend,sans-serif;
   font-weight: 600;
   font-size: 1.5rem;
@@ -1853,7 +1862,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
   letter-spacing: 0.0115rem;
 }
 
-.c94 {
+.c95 {
   font-family: --var(google-font),Lexend,sans-serif;
   font-weight: 600;
   font-size: 1.25rem;
@@ -1864,7 +1873,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
   letter-spacing: 0.0115rem;
 }
 
-.c115 {
+.c116 {
   font-family: --var(google-font),Lexend,sans-serif;
   font-weight: 600;
   font-size: 1.5rem;
@@ -1876,7 +1885,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
   text-align: center;
 }
 
-.c133 {
+.c134 {
   font-family: --var(google-font),Lexend,sans-serif;
   font-weight: 600;
   font-size: 1.5rem;
@@ -1887,7 +1896,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
   letter-spacing: 0.0115rem;
 }
 
-.c173 {
+.c174 {
   font-family: --var(google-font),Lexend,sans-serif;
   font-weight: 600;
   font-size: 1rem;
@@ -1900,7 +1909,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
   color: #222222;
 }
 
-.c30 {
+.c31 {
   display: revert;
   font-family: --var(google-font),Lexend,sans-serif;
   font-family: --var(google-font),Lexend,sans-serif;
@@ -1908,7 +1917,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
   display: revert;
 }
 
-.c176 {
+.c177 {
   margin-top: 0.75rem;
   display: revert;
   font-family: --var(google-font),Lexend,sans-serif;
@@ -1917,7 +1926,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
   display: revert;
 }
 
-.c74 {
+.c75 {
   font-family: --var(google-font),Lexend,sans-serif;
   font-weight: 400;
   font-size: 1.5rem;
@@ -1928,7 +1937,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
   letter-spacing: 0.0115rem;
 }
 
-.c95 {
+.c96 {
   font-family: --var(google-font),Lexend,sans-serif;
   font-weight: 300;
   font-size: 1rem;
@@ -1939,13 +1948,13 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
   letter-spacing: -0.005rem;
 }
 
-.c134 {
+.c135 {
   font-family: --var(google-font),Lexend,sans-serif;
   margin-right: 0rem;
   margin-bottom: 1.5rem;
 }
 
-.c164 {
+.c165 {
   font-family: --var(google-font),Lexend,sans-serif;
   font-weight: 300;
   font-size: 0.875rem;
@@ -1958,7 +1967,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
   margin-top: 0rem;
 }
 
-.c165 {
+.c166 {
   font-family: --var(google-font),Lexend,sans-serif;
   font-weight: 300;
   font-size: 0.875rem;
@@ -1970,7 +1979,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
   margin-top: 0rem;
 }
 
-.c195 {
+.c196 {
   font-family: --var(google-font),Lexend,sans-serif;
   font-weight: 500;
   font-size: 0.875rem;
@@ -1981,7 +1990,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
   letter-spacing: -0.005rem;
 }
 
-.c196 {
+.c197 {
   font-family: --var(google-font),Lexend,sans-serif;
   font-weight: 300;
   font-size: 0.75rem;
@@ -1992,7 +2001,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
   letter-spacing: -0.005rem;
 }
 
-.c175 {
+.c176 {
   font-family: --var(google-font),Lexend,sans-serif;
   font-weight: 300;
   font-size: 1rem;
@@ -2003,7 +2012,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
   letter-spacing: -0.005rem;
 }
 
-.c29 {
+.c30 {
   list-style: none;
   padding: 0;
   margin: 0;
@@ -2024,7 +2033,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
   gap: 0.75rem;
 }
 
-.c181 {
+.c182 {
   width: 1.25em;
   min-width: 1.25em;
   height: 1.25em;
@@ -2055,7 +2064,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
   overflow-wrap: break-word;
 }
 
-.c24 .c180 {
+.c24 .c181 {
   -webkit-filter: invert(21%) sepia(90%) saturate(3220%) hue-rotate(232deg) brightness(71%) contrast(127%);
   filter: invert(21%) sepia(90%) saturate(3220%) hue-rotate(232deg) brightness(71%) contrast(127%);
   display: inline-block;
@@ -2070,7 +2079,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
   color: #081676;
 }
 
-.c24:visited .c180 {
+.c24:visited .c181 {
   -webkit-filter: invert(12%) sepia(79%) saturate(3172%) hue-rotate(231deg) brightness(82%) contrast(114%);
   filter: invert(12%) sepia(79%) saturate(3172%) hue-rotate(231deg) brightness(82%) contrast(114%);
 }
@@ -2080,7 +2089,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
   outline: 1px solid #081676;
 }
 
-.c24:active .c180 {
+.c24:active .c181 {
   -webkit-filter: invert(12%) sepia(79%) saturate(3172%) hue-rotate(231deg) brightness(82%) contrast(114%);
   filter: invert(12%) sepia(79%) saturate(3172%) hue-rotate(231deg) brightness(82%) contrast(114%);
 }
@@ -2090,12 +2099,12 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
   color: #808080;
 }
 
-.c24[disabled] .c180 {
+.c24[disabled] .c181 {
   -webkit-filter: invert(54%) sepia(0%) saturate(38%) hue-rotate(176deg) brightness(92%) contrast(91%);
   filter: invert(54%) sepia(0%) saturate(38%) hue-rotate(176deg) brightness(92%) contrast(91%);
 }
 
-.c177 {
+.c178 {
   display: inline;
   -webkit-align-items: center;
   -webkit-box-align: center;
@@ -2119,47 +2128,47 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
   overflow-wrap: break-word;
 }
 
-.c177 .c180 {
+.c178 .c181 {
   -webkit-filter: invert(10%) sepia(1%) saturate(236%) hue-rotate(314deg) brightness(95%) contrast(91%);
   filter: invert(10%) sepia(1%) saturate(236%) hue-rotate(314deg) brightness(95%) contrast(91%);
   display: inline-block;
   vertical-align: text-top;
 }
 
-.c177:focus-visible {
+.c178:focus-visible {
   box-shadow: 0 0 0 0.125rem rgba(255,229,85,100%), 0 0 0 0.3rem rgba(87,87,87,100%);
 }
 
-.c177:visited {
+.c178:visited {
   color: #222222;
 }
 
-.c177:visited .c180 {
+.c178:visited .c181 {
   -webkit-filter: invert(10%) sepia(1%) saturate(236%) hue-rotate(314deg) brightness(95%) contrast(91%);
   filter: invert(10%) sepia(1%) saturate(236%) hue-rotate(314deg) brightness(95%) contrast(91%);
 }
 
-.c177:active {
+.c178:active {
   color: #222222;
   outline: 1px solid #222222;
 }
 
-.c177:active .c180 {
+.c178:active .c181 {
   -webkit-filter: invert(10%) sepia(1%) saturate(236%) hue-rotate(314deg) brightness(95%) contrast(91%);
   filter: invert(10%) sepia(1%) saturate(236%) hue-rotate(314deg) brightness(95%) contrast(91%);
 }
 
-.c177[disabled] {
+.c178[disabled] {
   cursor: not-allowed;
   color: #808080;
 }
 
-.c177[disabled] .c180 {
+.c178[disabled] .c181 {
   -webkit-filter: invert(54%) sepia(0%) saturate(38%) hue-rotate(176deg) brightness(92%) contrast(91%);
   filter: invert(54%) sepia(0%) saturate(38%) hue-rotate(176deg) brightness(92%) contrast(91%);
 }
 
-.c213 {
+.c214 {
   display: inline;
   -webkit-align-items: center;
   -webkit-box-align: center;
@@ -2192,47 +2201,47 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
   overflow-wrap: break-word;
 }
 
-.c213 .c180 {
+.c214 .c181 {
   -webkit-filter: invert(10%) sepia(1%) saturate(236%) hue-rotate(314deg) brightness(95%) contrast(91%);
   filter: invert(10%) sepia(1%) saturate(236%) hue-rotate(314deg) brightness(95%) contrast(91%);
   display: inline-block;
   vertical-align: text-top;
 }
 
-.c213:focus-visible {
+.c214:focus-visible {
   box-shadow: 0 0 0 0.125rem rgba(255,229,85,100%), 0 0 0 0.3rem rgba(87,87,87,100%);
 }
 
-.c213:visited {
+.c214:visited {
   color: #222222;
 }
 
-.c213:visited .c180 {
+.c214:visited .c181 {
   -webkit-filter: invert(10%) sepia(1%) saturate(236%) hue-rotate(314deg) brightness(95%) contrast(91%);
   filter: invert(10%) sepia(1%) saturate(236%) hue-rotate(314deg) brightness(95%) contrast(91%);
 }
 
-.c213:active {
+.c214:active {
   color: #222222;
   outline: 1px solid #222222;
 }
 
-.c213:active .c180 {
+.c214:active .c181 {
   -webkit-filter: invert(10%) sepia(1%) saturate(236%) hue-rotate(314deg) brightness(95%) contrast(91%);
   filter: invert(10%) sepia(1%) saturate(236%) hue-rotate(314deg) brightness(95%) contrast(91%);
 }
 
-.c213[disabled] {
+.c214[disabled] {
   cursor: not-allowed;
   color: #808080;
 }
 
-.c213[disabled] .c180 {
+.c214[disabled] .c181 {
   -webkit-filter: invert(54%) sepia(0%) saturate(38%) hue-rotate(176deg) brightness(92%) contrast(91%);
   filter: invert(54%) sepia(0%) saturate(38%) hue-rotate(176deg) brightness(92%) contrast(91%);
 }
 
-.c42 {
+.c43 {
   -webkit-appearance: none !important;
   -moz-appearance: none !important;
   appearance: none !important;
@@ -2248,49 +2257,49 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
   width: 100%;
 }
 
-.c42::-webkit-input-placeholder {
+.c43::-webkit-input-placeholder {
   color: #575757;
 }
 
-.c42::-moz-placeholder {
+.c43::-moz-placeholder {
   color: #575757;
 }
 
-.c42:-ms-input-placeholder {
+.c43:-ms-input-placeholder {
   color: #575757;
 }
 
-.c42::placeholder {
+.c43::placeholder {
   color: #575757;
 }
 
-.c42::-webkit-search-decoration,
-.c42::-webkit-search-cancel-button,
-.c42::-webkit-search-results-button,
-.c42::-webkit-search-results-decoration {
+.c43::-webkit-search-decoration,
+.c43::-webkit-search-cancel-button,
+.c43::-webkit-search-results-button,
+.c43::-webkit-search-results-decoration {
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
 }
 
-.c42:disabled {
+.c43:disabled {
   cursor: not-allowed;
 }
 
-.c41 {
+.c42 {
   background: #ffffff;
 }
 
-.c41:hover {
+.c42:hover {
   cursor: text;
 }
 
-.c41:focus-within {
+.c42:focus-within {
   border-color: #222222;
   background: #ffffff;
 }
 
-.c81 {
+.c82 {
   display: grid;
   grid-template-columns: repeat(12,1fr);
   width: 100%;
@@ -2300,7 +2309,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
   grid-template-columns: repeat(4,1fr);
 }
 
-.c97 {
+.c98 {
   display: grid;
   grid-template-columns: repeat(12,1fr);
   width: 100%;
@@ -2309,13 +2318,13 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
   column-gap: 0rem;
 }
 
-.c128 {
+.c129 {
   display: grid;
   grid-template-columns: repeat(12,1fr);
   width: 100%;
 }
 
-.c82 {
+.c83 {
   -webkit-flex-direction: column;
   -ms-flex-direction: column;
   flex-direction: column;
@@ -2326,7 +2335,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
   grid-row-start: 1;
 }
 
-.c84 {
+.c85 {
   -webkit-flex-direction: column;
   -ms-flex-direction: column;
   flex-direction: column;
@@ -2337,7 +2346,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
   grid-row-start: 3;
 }
 
-.c89 {
+.c90 {
   -webkit-flex-direction: column;
   -ms-flex-direction: column;
   flex-direction: column;
@@ -2348,7 +2357,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
   grid-row-start: 2;
 }
 
-.c99 {
+.c100 {
   -webkit-flex-direction: column;
   -ms-flex-direction: column;
   flex-direction: column;
@@ -2358,7 +2367,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
   grid-column-start: 1;
 }
 
-.c104 {
+.c105 {
   -webkit-flex-direction: column;
   -ms-flex-direction: column;
   flex-direction: column;
@@ -2368,7 +2377,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
   grid-column-start: 1;
 }
 
-.c129 {
+.c130 {
   -webkit-flex-direction: column;
   -ms-flex-direction: column;
   flex-direction: column;
@@ -2377,7 +2386,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
   grid-row: span 1;
 }
 
-.c171 {
+.c172 {
   -webkit-flex-direction: column;
   -ms-flex-direction: column;
   flex-direction: column;
@@ -2386,58 +2395,58 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
   grid-row: span 1;
 }
 
-.c118 {
+.c119 {
   list-style: none;
   margin: 0;
   padding: 0;
   box-shadow: none;
 }
 
-.c118:has(a:hover,button:hover) {
+.c119:has(a:hover,button:hover) {
   box-shadow: none;
 }
 
-.c118:has( a, button) {
+.c119:has( a, button) {
   border-radius: 0.5rem;
   box-shadow: 0 0 0 0.125rem rgba(255,229,85,100%),0 0 0 0.3rem rgba(87,87,87,100%);
 }
 
-.c118:has( a, button)  a,
-.c118:has( a, button) button {
+.c119:has( a, button)  a,
+.c119:has( a, button) button {
   outline: none;
 }
 
-.c118:has(a:active,button:active) {
+.c119:has(a:active,button:active) {
   box-shadow: 0.125rem 0.125rem 0 rgba(255,229,85,100%),0.25rem 0.25rem 0 rgba(87,87,87,100%);
 }
 
-.c57:hover .oak-save-count {
+.c58:hover .oak-save-count {
   background-color: #bef2bd;
 }
 
-.c57:focus-visible .oak-save-count {
+.c58:focus-visible .oak-save-count {
   box-shadow: 0 0 0 0.125rem rgba(255,229,85,100%), 0 0 0 0.3rem rgba(87,87,87,100%);
 }
 
-.c203 {
+.c204 {
   top: 152px;
 }
 
-.c187 .icon-container > *:first-child {
+.c188 .icon-container > *:first-child {
   border: 0;
 }
 
-.c190 {
+.c191 {
   height: 87px;
   width: 77px;
   margin-top: 2rem;
 }
 
-.c121:hover {
+.c122:hover {
   box-shadow: 2px 2px 0 0 #ffe555;
 }
 
-.c116 {
+.c117 {
   margin: 0;
   padding: 0;
   list-style: none;
@@ -2449,13 +2458,13 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
   grid-template-columns: repeat(3,1fr);
 }
 
-.c149 {
+.c150 {
   -webkit-transition: all 0.3s ease;
   transition: all 0.3s ease;
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c137 {
+.c138 {
   width: 100%;
   margin-bottom: 2rem;
   background-color: #fff;
@@ -2466,23 +2475,23 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
   display: flex;
 }
 
-.c137::-webkit-scrollbar-track {
+.c138::-webkit-scrollbar-track {
   border-radius: 15px;
   background-color: #ffffff;
 }
 
-.c137::-webkit-scrollbar {
+.c138::-webkit-scrollbar {
   width: 10px;
   border-radius: 15px;
   background-color: #ffffff;
 }
 
-.c137::-webkit-scrollbar-thumb {
+.c138::-webkit-scrollbar-thumb {
   border-radius: 15px;
   background-color: #999999;
 }
 
-.c140 {
+.c141 {
   position: relative;
   width: 100%;
   display: -webkit-box;
@@ -2491,23 +2500,23 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
   display: flex;
 }
 
-.c140::-webkit-scrollbar-track {
+.c141::-webkit-scrollbar-track {
   border-radius: 15px;
   background-color: #ffffff;
 }
 
-.c140::-webkit-scrollbar {
+.c141::-webkit-scrollbar {
   width: 10px;
   border-radius: 15px;
   background-color: #ffffff;
 }
 
-.c140::-webkit-scrollbar-thumb {
+.c141::-webkit-scrollbar-thumb {
   border-radius: 15px;
   background-color: #999999;
 }
 
-.c142 {
+.c143 {
   position: absolute;
   display: -webkit-box;
   display: -webkit-flex;
@@ -2515,30 +2524,30 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
   display: flex;
 }
 
-.c142::-webkit-scrollbar-track {
+.c143::-webkit-scrollbar-track {
   border-radius: 15px;
   background-color: #ffffff;
 }
 
-.c142::-webkit-scrollbar {
+.c143::-webkit-scrollbar {
   width: 10px;
   border-radius: 15px;
   background-color: #ffffff;
 }
 
-.c142::-webkit-scrollbar-thumb {
+.c143::-webkit-scrollbar-thumb {
   border-radius: 15px;
   background-color: #999999;
 }
 
-.c138 {
+.c139 {
   -webkit-align-items: center;
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
 }
 
-.c141 {
+.c142 {
   position: absolute;
   top: 0rem;
   right: 0rem;
@@ -2550,7 +2559,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
   transition: all 0.3s ease;
 }
 
-.c147 {
+.c148 {
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
@@ -2561,32 +2570,32 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
   font-family: fontFamily;
 }
 
-.c147::-webkit-input-placeholder {
+.c148::-webkit-input-placeholder {
   color: #575757;
 }
 
-.c147::-moz-placeholder {
+.c148::-moz-placeholder {
   color: #575757;
 }
 
-.c147:-ms-input-placeholder {
+.c148:-ms-input-placeholder {
   color: #575757;
 }
 
-.c147::placeholder {
+.c148::placeholder {
   color: #575757;
 }
 
-.c147::-webkit-search-decoration,
-.c147::-webkit-search-cancel-button,
-.c147::-webkit-search-results-button,
-.c147::-webkit-search-results-decoration {
+.c148::-webkit-search-decoration,
+.c148::-webkit-search-cancel-button,
+.c148::-webkit-search-results-button,
+.c148::-webkit-search-results-decoration {
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
 }
 
-.c144 {
+.c145 {
   font-weight: 600;
   font-size: 1rem;
   line-height: 1.25rem;
@@ -2596,7 +2605,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
   letter-spacing: 0.0115em;
 }
 
-.c151 {
+.c152 {
   display: none;
   position: absolute;
   bottom: -4px;
@@ -2609,7 +2618,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
   z-index: 1;
 }
 
-.c145 {
+.c146 {
   position: relative;
   padding: 4px 8px;
   -webkit-transform: rotate(-2deg) translateY(-16px) translateX(8px);
@@ -2620,16 +2629,16 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
   color: #222222;
 }
 
-.c139:focus-within .c143 {
+.c140:focus-within .c144 {
   background: #374cf1;
   color: #fff;
 }
 
-.c139:focus-within .c150 {
+.c140:focus-within .c151 {
   display: inline;
 }
 
-.c148 {
+.c149 {
   color: #222222;
   height: 60px;
   border-radius: 8px;
@@ -2645,7 +2654,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
   outline: none;
 }
 
-.c148::-webkit-input-placeholder {
+.c149::-webkit-input-placeholder {
   font-size: 16px;
   font-weight: 300;
   font-family: fontFamily;
@@ -2653,7 +2662,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
   opacity: 1;
 }
 
-.c148::-moz-placeholder {
+.c149::-moz-placeholder {
   font-size: 16px;
   font-weight: 300;
   font-family: fontFamily;
@@ -2661,7 +2670,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
   opacity: 1;
 }
 
-.c148:-ms-input-placeholder {
+.c149:-ms-input-placeholder {
   font-size: 16px;
   font-weight: 300;
   font-family: fontFamily;
@@ -2669,7 +2678,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
   opacity: 1;
 }
 
-.c148::placeholder {
+.c149::placeholder {
   font-size: 16px;
   font-weight: 300;
   font-family: fontFamily;
@@ -2677,31 +2686,31 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
   opacity: 1;
 }
 
-.c148:valid:not([value=""]) {
+.c149:valid:not([value=""]) {
   border-color: #2d2d2d;
 }
 
-.c148:valid:not([value=""])::-webkit-input-placeholder {
+.c149:valid:not([value=""])::-webkit-input-placeholder {
   font-size: 16px;
   color: #575757;
 }
 
-.c148:valid:not([value=""])::-moz-placeholder {
+.c149:valid:not([value=""])::-moz-placeholder {
   font-size: 16px;
   color: #575757;
 }
 
-.c148:valid:not([value=""]):-ms-input-placeholder {
+.c149:valid:not([value=""]):-ms-input-placeholder {
   font-size: 16px;
   color: #575757;
 }
 
-.c148:valid:not([value=""])::placeholder {
+.c149:valid:not([value=""])::placeholder {
   font-size: 16px;
   color: #575757;
 }
 
-.c156 {
+.c157 {
   background: none;
   color: inherit;
   border: none;
@@ -2712,16 +2721,16 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
   font-family: unset;
 }
 
-.c154 {
+.c155 {
   display: none;
 }
 
-.c153:focus-within .c143 {
+.c154:focus-within .c144 {
   background: #374cf1;
   color: #fff;
 }
 
-.c157 {
+.c158 {
   color: #222222;
   height: 60px;
   padding-left: 16px;
@@ -2748,43 +2757,43 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
   color: #575757;
 }
 
-.c159 {
+.c160 {
   max-width: calc(100% - 20px);
 }
 
-.c161 {
+.c162 {
   white-space: nowrap;
   text-overflow: ellipsis;
   min-width: 0;
   overflow: hidden;
 }
 
-.c136 {
+.c137 {
   width: 100%;
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c126 {
+.c127 {
   max-width: 100%;
   justify-self: center;
 }
 
-.c75 {
+.c76 {
   height: 410px;
   width: auto;
 }
 
-.c77 {
+.c78 {
   height: 125%;
   -webkit-filter: invert(70%) sepia(24%) saturate(580%) hue-rotate(188deg) brightness(100%) contrast(94%);
   filter: invert(70%) sepia(24%) saturate(580%) hue-rotate(188deg) brightness(100%) contrast(94%);
 }
 
-.c88 {
+.c89 {
   height: 260px;
 }
 
-.c109 {
+.c110 {
   max-height: 40px;
   height: auto;
   width: auto;
@@ -2837,18 +2846,18 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
 
 @media (min-width:750px) {
   .c26 {
-    width: 6.25rem;
+    display: none;
   }
 }
 
 @media (min-width:750px) {
-  .c26 {
-    height: 3rem;
+  .c28 {
+    display: block;
   }
 }
 
 @media (min-width:750px) {
-  .c37 {
+  .c38 {
     display: -webkit-box;
     display: -webkit-flex;
     display: -ms-flexbox;
@@ -2857,19 +2866,19 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
 }
 
 @media (min-width:750px) {
-  .c38 {
+  .c39 {
     display: block;
   }
 }
 
 @media (min-width:750px) {
-  .c43 {
+  .c44 {
     position: absolute;
   }
 }
 
 @media (min-width:750px) {
-  .c43 {
+  .c44 {
     -webkit-transform: translateY(-50%);
     -ms-transform: translateY(-50%);
     transform: translateY(-50%);
@@ -2877,37 +2886,37 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
 }
 
 @media (min-width:750px) {
-  .c55 {
+  .c56 {
     display: none;
   }
 }
 
 @media (min-width:750px) {
-  .c58 {
+  .c59 {
     padding-left: 0.25rem;
   }
 }
 
 @media (min-width:750px) {
-  .c58 {
+  .c59 {
     padding-right: 0.5rem;
   }
 }
 
 @media (min-width:750px) {
-  .c61 {
+  .c62 {
     display: contents;
   }
 }
 
 @media (min-width:750px) {
-  .c64 {
+  .c65 {
     display: block;
   }
 }
 
 @media (min-width:1280px) {
-  .c64 {
+  .c65 {
     display: none;
   }
 }
@@ -2921,79 +2930,79 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
 }
 
 @media (min-width:750px) {
-  .c68 {
+  .c69 {
     padding-left: 2.5rem;
   }
 }
 
 @media (min-width:750px) {
-  .c68 {
+  .c69 {
     padding-right: 2.5rem;
   }
 }
 
 @media (min-width:750px) {
-  .c69 {
+  .c70 {
     padding-top: 4.5rem;
   }
 }
 
 @media (min-width:750px) {
-  .c69 {
+  .c70 {
     padding-bottom: 4.5rem;
   }
 }
 
 @media (min-width:750px) {
-  .c79 {
+  .c80 {
     padding-top: 5rem;
   }
 }
 
 @media (min-width:750px) {
-  .c79 {
+  .c80 {
     padding-bottom: 5rem;
   }
 }
 
 @media (min-width:750px) {
-  .c100 {
+  .c101 {
     font-weight: 300;
   }
 }
 
 @media (min-width:1280px) {
-  .c100 {
+  .c101 {
     font-weight: 300;
   }
 }
 
 @media (min-width:750px) {
-  .c100 {
+  .c101 {
     font-size: 1.125rem;
   }
 }
 
 @media (min-width:1280px) {
-  .c100 {
+  .c101 {
     font-size: 1.125rem;
   }
 }
 
 @media (min-width:750px) {
-  .c100 {
+  .c101 {
     line-height: 1.75rem;
   }
 }
 
 @media (min-width:1280px) {
-  .c100 {
+  .c101 {
     line-height: 1.75rem;
   }
 }
 
 @media (min-width:750px) {
-  .c100 {
+  .c101 {
     -webkit-letter-spacing: -0.005rem;
     -moz-letter-spacing: -0.005rem;
     -ms-letter-spacing: -0.005rem;
@@ -3002,7 +3011,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
 }
 
 @media (min-width:1280px) {
-  .c100 {
+  .c101 {
     -webkit-letter-spacing: -0.005rem;
     -moz-letter-spacing: -0.005rem;
     -ms-letter-spacing: -0.005rem;
@@ -3011,13 +3020,13 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
 }
 
 @media (min-width:750px) {
-  .c112 {
+  .c113 {
     display: block;
   }
 }
 
 @media (min-width:750px) {
-  .c112 {
+  .c113 {
     -webkit-transform: scale(1.1) translateX(-0.65%) translateY(4%);
     -ms-transform: scale(1.1) translateX(-0.65%) translateY(4%);
     transform: scale(1.1) translateX(-0.65%) translateY(4%);
@@ -3025,7 +3034,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
 }
 
 @media (min-width:1280px) {
-  .c112 {
+  .c113 {
     -webkit-transform: scale(1.4) translateY(4%);
     -ms-transform: scale(1.4) translateY(4%);
     transform: scale(1.4) translateY(4%);
@@ -3033,79 +3042,79 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
 }
 
 @media (min-width:750px) {
-  .c113 {
+  .c114 {
     padding-top: 5rem;
   }
 }
 
 @media (min-width:1280px) {
-  .c113 {
+  .c114 {
     padding-top: 5rem;
   }
 }
 
 @media (min-width:750px) {
-  .c113 {
+  .c114 {
     padding-bottom: 5rem;
   }
 }
 
 @media (min-width:1280px) {
-  .c113 {
+  .c114 {
     padding-bottom: 5rem;
   }
 }
 
 @media (min-width:750px) {
-  .c127 {
+  .c128 {
     padding-top: 2.5rem;
   }
 }
 
 @media (min-width:750px) {
-  .c127 {
+  .c128 {
     padding-bottom: 2.5rem;
   }
 }
 
 @media (min-width:750px) {
-  .c169 {
+  .c170 {
     max-width: 80rem;
   }
 }
 
 @media (min-width:750px) {
-  .c169 {
+  .c170 {
     padding-top: 5rem;
   }
 }
 
 @media (min-width:750px) {
-  .c172 {
+  .c173 {
     margin-top: 0rem;
   }
 }
 
 @media (min-width:750px) {
-  .c178 {
+  .c179 {
     margin-top: 2rem;
   }
 }
 
 @media (min-width:750px) {
-  .c184 {
+  .c185 {
     display: none;
   }
 }
 
 @media (min-width:750px) {
-  .c191 {
+  .c192 {
     padding-top: 0rem;
   }
 }
 
 @media (min-width:750px) {
-  .c193 {
+  .c194 {
     display: -webkit-box;
     display: -webkit-flex;
     display: -ms-flexbox;
@@ -3114,13 +3123,13 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
 }
 
 @media (min-width:750px) {
-  .c197 {
+  .c198 {
     display: block;
   }
 }
 
 @media (min-width:750px) {
-  .c197 {
+  .c198 {
     -webkit-transform: translate(25%,25%) scale(0.7) rotate(-10deg);
     -ms-transform: translate(25%,25%) scale(0.7) rotate(-10deg);
     transform: translate(25%,25%) scale(0.7) rotate(-10deg);
@@ -3128,7 +3137,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
 }
 
 @media (min-width:1280px) {
-  .c197 {
+  .c198 {
     -webkit-transform: translate(25%,15%) rotate(-10deg);
     -ms-transform: translate(25%,15%) rotate(-10deg);
     transform: translate(25%,15%) rotate(-10deg);
@@ -3136,19 +3145,19 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
 }
 
 @media (min-width:750px) {
-  .c199 {
+  .c200 {
     display: none;
   }
 }
 
 @media (min-width:750px) {
-  .c201 {
+  .c202 {
     right: 1.5rem;
   }
 }
 
 @media (min-width:750px) {
-  .c201 {
+  .c202 {
     width: -webkit-max-content;
     width: -moz-max-content;
     width: max-content;
@@ -3156,61 +3165,61 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
 }
 
 @media (min-width:750px) {
-  .c201 {
+  .c202 {
     padding-left: 0rem;
   }
 }
 
 @media (min-width:750px) {
-  .c201 {
+  .c202 {
     padding-right: 0rem;
   }
 }
 
 @media (min-width:750px) {
-  .c207 {
+  .c208 {
     margin-left: 1.5rem;
   }
 }
 
 @media (min-width:1280px) {
-  .c207 {
+  .c208 {
     margin-left: 3.5rem;
   }
 }
 
 @media (min-width:750px) {
-  .c207 {
+  .c208 {
     margin-right: 1.5rem;
   }
 }
 
 @media (min-width:1280px) {
-  .c207 {
+  .c208 {
     margin-right: 3.5rem;
   }
 }
 
 @media (min-width:750px) {
-  .c209 {
+  .c210 {
     font-weight: 300;
   }
 }
 
 @media (min-width:750px) {
-  .c209 {
+  .c210 {
     font-size: 1rem;
   }
 }
 
 @media (min-width:750px) {
-  .c209 {
+  .c210 {
     line-height: 1.5rem;
   }
 }
 
 @media (min-width:750px) {
-  .c209 {
+  .c210 {
     -webkit-letter-spacing: -0.005rem;
     -moz-letter-spacing: -0.005rem;
     -ms-letter-spacing: -0.005rem;
@@ -3228,19 +3237,19 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
 }
 
 @media (min-width:750px) {
-  .c36 {
+  .c37 {
     gap: 1rem;
   }
 }
 
 @media (min-width:1280px) {
-  .c36 {
+  .c37 {
     gap: 1rem;
   }
 }
 
 @media (min-width:750px) {
-  .c59 {
+  .c60 {
     -webkit-box-pack: initial;
     -webkit-justify-content: initial;
     -ms-flex-pack: initial;
@@ -3257,31 +3266,31 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
 }
 
 @media (min-width:750px) {
-  .c70 {
+  .c71 {
     gap: 3rem;
   }
 }
 
 @media (min-width:1280px) {
-  .c70 {
+  .c71 {
     gap: 15rem;
   }
 }
 
 @media (min-width:750px) {
-  .c93 {
+  .c94 {
     gap: 1.5rem;
   }
 }
 
 @media (min-width:1280px) {
-  .c93 {
+  .c94 {
     gap: 1.5rem;
   }
 }
 
 @media (min-width:750px) {
-  .c98 {
+  .c99 {
     -webkit-box-pack: center;
     -webkit-justify-content: center;
     -ms-flex-pack: center;
@@ -3290,7 +3299,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
 }
 
 @media (min-width:1280px) {
-  .c98 {
+  .c99 {
     -webkit-box-pack: center;
     -webkit-justify-content: center;
     -ms-flex-pack: center;
@@ -3299,25 +3308,25 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
 }
 
 @media (min-width:750px) {
-  .c101 {
+  .c102 {
     gap: 1.5rem;
   }
 }
 
 @media (min-width:750px) {
-  .c105 {
+  .c106 {
     gap: 1.5rem;
   }
 }
 
 @media (min-width:1280px) {
-  .c105 {
+  .c106 {
     gap: 2rem;
   }
 }
 
 @media (min-width:750px) {
-  .c108 {
+  .c109 {
     -webkit-flex-direction: column;
     -ms-flex-direction: column;
     flex-direction: column;
@@ -3325,7 +3334,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
 }
 
 @media (min-width:1280px) {
-  .c108 {
+  .c109 {
     -webkit-flex-direction: row;
     -ms-flex-direction: row;
     flex-direction: row;
@@ -3333,19 +3342,19 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
 }
 
 @media (min-width:750px) {
-  .c114 {
+  .c115 {
     gap: 3.5rem;
   }
 }
 
 @media (min-width:1280px) {
-  .c114 {
+  .c115 {
     gap: 3.5rem;
   }
 }
 
 @media (min-width:750px) {
-  .c182 {
+  .c183 {
     -webkit-box-pack: right;
     -webkit-justify-content: right;
     -ms-flex-pack: right;
@@ -3354,13 +3363,13 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
 }
 
 @media (min-width:750px) {
-  .c185 {
+  .c186 {
     display: none;
   }
 }
 
 @media (min-width:750px) {
-  .c192 {
+  .c193 {
     -webkit-flex-direction: row;
     -ms-flex-direction: row;
     flex-direction: row;
@@ -3368,7 +3377,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
 }
 
 @media (min-width:750px) {
-  .c192 {
+  .c193 {
     -webkit-align-items: center;
     -webkit-box-align: center;
     -ms-flex-align: center;
@@ -3377,7 +3386,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
 }
 
 @media (min-width:750px) {
-  .c192 {
+  .c193 {
     -webkit-box-pack: justify;
     -webkit-justify-content: space-between;
     -ms-flex-pack: justify;
@@ -3386,7 +3395,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
 }
 
 @media (min-width:750px) {
-  .c194 {
+  .c195 {
     display: -webkit-box;
     display: -webkit-flex;
     display: -ms-flexbox;
@@ -3395,7 +3404,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
 }
 
 @media (min-width:750px) {
-  .c202 {
+  .c203 {
     -webkit-align-items: flex-end;
     -webkit-box-align: flex-end;
     -ms-flex-align: flex-end;
@@ -3404,7 +3413,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
 }
 
 @media (min-width:750px) {
-  .c208 {
+  .c209 {
     -webkit-flex-direction: column;
     -ms-flex-direction: column;
     flex-direction: column;
@@ -3412,7 +3421,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
 }
 
 @media (min-width:1280px) {
-  .c208 {
+  .c209 {
     -webkit-flex-direction: row;
     -ms-flex-direction: row;
     flex-direction: row;
@@ -3420,7 +3429,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
 }
 
 @media (min-width:750px) {
-  .c208 {
+  .c209 {
     -webkit-align-items: flex-start;
     -webkit-box-align: flex-start;
     -ms-flex-align: flex-start;
@@ -3429,7 +3438,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
 }
 
 @media (min-width:1280px) {
-  .c208 {
+  .c209 {
     -webkit-align-items: center;
     -webkit-box-align: center;
     -ms-flex-align: center;
@@ -3438,19 +3447,19 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
 }
 
 @media (min-width:750px) {
-  .c208 {
+  .c209 {
     gap: 1.5rem;
   }
 }
 
 @media (min-width:1280px) {
-  .c208 {
+  .c209 {
     gap: 2rem;
   }
 }
 
 @media (min-width:750px) {
-  .c211 {
+  .c212 {
     -webkit-flex-direction: row;
     -ms-flex-direction: row;
     flex-direction: row;
@@ -3458,7 +3467,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
 }
 
 @media (min-width:750px) {
-  .c211 {
+  .c212 {
     -webkit-flex-wrap: wrap;
     -ms-flex-wrap: wrap;
     flex-wrap: wrap;
@@ -3466,7 +3475,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
 }
 
 @media (min-width:1280px) {
-  .c211 {
+  .c212 {
     -webkit-flex-wrap: nowrap;
     -ms-flex-wrap: nowrap;
     flex-wrap: nowrap;
@@ -3474,7 +3483,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
 }
 
 @media (min-width:750px) {
-  .c211 {
+  .c212 {
     gap: 2rem;
   }
 }
@@ -3534,25 +3543,25 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
 }
 
 @media (min-width:750px) {
-  .c210 {
+  .c211 {
     font-weight: 500;
   }
 }
 
 @media (min-width:750px) {
-  .c210 {
+  .c211 {
     font-size: 1rem;
   }
 }
 
 @media (min-width:750px) {
-  .c210 {
+  .c211 {
     line-height: 1.5rem;
   }
 }
 
 @media (min-width:750px) {
-  .c210 {
+  .c211 {
     -webkit-letter-spacing: -0.005rem;
     -moz-letter-spacing: -0.005rem;
     -ms-letter-spacing: -0.005rem;
@@ -3585,43 +3594,43 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
 }
 
 @media (min-width:750px) {
-  .c72 {
+  .c73 {
     font-weight: 600;
   }
 }
 
 @media (min-width:1280px) {
-  .c72 {
+  .c73 {
     font-weight: 600;
   }
 }
 
 @media (min-width:750px) {
-  .c72 {
+  .c73 {
     font-size: 3rem;
   }
 }
 
 @media (min-width:1280px) {
-  .c72 {
+  .c73 {
     font-size: 3rem;
   }
 }
 
 @media (min-width:750px) {
-  .c72 {
+  .c73 {
     line-height: 3.5rem;
   }
 }
 
 @media (min-width:1280px) {
-  .c72 {
+  .c73 {
     line-height: 3.5rem;
   }
 }
 
 @media (min-width:750px) {
-  .c72 {
+  .c73 {
     -webkit-letter-spacing: 0.0115rem;
     -moz-letter-spacing: 0.0115rem;
     -ms-letter-spacing: 0.0115rem;
@@ -3630,7 +3639,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
 }
 
 @media (min-width:1280px) {
-  .c72 {
+  .c73 {
     -webkit-letter-spacing: 0.0115rem;
     -moz-letter-spacing: 0.0115rem;
     -ms-letter-spacing: 0.0115rem;
@@ -3639,43 +3648,43 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
 }
 
 @media (min-width:750px) {
-  .c83 {
+  .c84 {
     font-weight: 600;
   }
 }
 
 @media (min-width:1280px) {
-  .c83 {
+  .c84 {
     font-weight: 600;
   }
 }
 
 @media (min-width:750px) {
-  .c83 {
+  .c84 {
     font-size: 2.5rem;
   }
 }
 
 @media (min-width:1280px) {
-  .c83 {
+  .c84 {
     font-size: 2.5rem;
   }
 }
 
 @media (min-width:750px) {
-  .c83 {
+  .c84 {
     line-height: 3rem;
   }
 }
 
 @media (min-width:1280px) {
-  .c83 {
+  .c84 {
     line-height: 3rem;
   }
 }
 
 @media (min-width:750px) {
-  .c83 {
+  .c84 {
     -webkit-letter-spacing: 0.0115rem;
     -moz-letter-spacing: 0.0115rem;
     -ms-letter-spacing: 0.0115rem;
@@ -3684,169 +3693,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
 }
 
 @media (min-width:1280px) {
-  .c83 {
-    -webkit-letter-spacing: 0.0115rem;
-    -moz-letter-spacing: 0.0115rem;
-    -ms-letter-spacing: 0.0115rem;
-    letter-spacing: 0.0115rem;
-  }
-}
-
-@media (min-width:750px) {
-  .c94 {
-    font-weight: 600;
-  }
-}
-
-@media (min-width:1280px) {
-  .c94 {
-    font-weight: 600;
-  }
-}
-
-@media (min-width:750px) {
-  .c94 {
-    font-size: 2rem;
-  }
-}
-
-@media (min-width:1280px) {
-  .c94 {
-    font-size: 2rem;
-  }
-}
-
-@media (min-width:750px) {
-  .c94 {
-    line-height: 2.5rem;
-  }
-}
-
-@media (min-width:1280px) {
-  .c94 {
-    line-height: 2.5rem;
-  }
-}
-
-@media (min-width:750px) {
-  .c94 {
-    -webkit-letter-spacing: 0.0115rem;
-    -moz-letter-spacing: 0.0115rem;
-    -ms-letter-spacing: 0.0115rem;
-    letter-spacing: 0.0115rem;
-  }
-}
-
-@media (min-width:1280px) {
-  .c94 {
-    -webkit-letter-spacing: 0.0115rem;
-    -moz-letter-spacing: 0.0115rem;
-    -ms-letter-spacing: 0.0115rem;
-    letter-spacing: 0.0115rem;
-  }
-}
-
-@media (min-width:750px) {
-  .c115 {
-    font-weight: 600;
-  }
-}
-
-@media (min-width:1280px) {
-  .c115 {
-    font-weight: 600;
-  }
-}
-
-@media (min-width:750px) {
-  .c115 {
-    font-size: 2rem;
-  }
-}
-
-@media (min-width:1280px) {
-  .c115 {
-    font-size: 2rem;
-  }
-}
-
-@media (min-width:750px) {
-  .c115 {
-    line-height: 2.5rem;
-  }
-}
-
-@media (min-width:1280px) {
-  .c115 {
-    line-height: 2.5rem;
-  }
-}
-
-@media (min-width:750px) {
-  .c115 {
-    -webkit-letter-spacing: 0.0115rem;
-    -moz-letter-spacing: 0.0115rem;
-    -ms-letter-spacing: 0.0115rem;
-    letter-spacing: 0.0115rem;
-  }
-}
-
-@media (min-width:1280px) {
-  .c115 {
-    -webkit-letter-spacing: 0.0115rem;
-    -moz-letter-spacing: 0.0115rem;
-    -ms-letter-spacing: 0.0115rem;
-    letter-spacing: 0.0115rem;
-  }
-}
-
-@media (min-width:750px) {
-  .c74 {
-    font-weight: 400;
-  }
-}
-
-@media (min-width:1280px) {
-  .c74 {
-    font-weight: 400;
-  }
-}
-
-@media (min-width:750px) {
-  .c74 {
-    font-size: 2.5rem;
-  }
-}
-
-@media (min-width:1280px) {
-  .c74 {
-    font-size: 2.5rem;
-  }
-}
-
-@media (min-width:750px) {
-  .c74 {
-    line-height: 3rem;
-  }
-}
-
-@media (min-width:1280px) {
-  .c74 {
-    line-height: 3rem;
-  }
-}
-
-@media (min-width:750px) {
-  .c74 {
-    -webkit-letter-spacing: 0.0115rem;
-    -moz-letter-spacing: 0.0115rem;
-    -ms-letter-spacing: 0.0115rem;
-    letter-spacing: 0.0115rem;
-  }
-}
-
-@media (min-width:1280px) {
-  .c74 {
+  .c84 {
     -webkit-letter-spacing: 0.0115rem;
     -moz-letter-spacing: 0.0115rem;
     -ms-letter-spacing: 0.0115rem;
@@ -3856,24 +3703,186 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
 
 @media (min-width:750px) {
   .c95 {
+    font-weight: 600;
+  }
+}
+
+@media (min-width:1280px) {
+  .c95 {
+    font-weight: 600;
+  }
+}
+
+@media (min-width:750px) {
+  .c95 {
+    font-size: 2rem;
+  }
+}
+
+@media (min-width:1280px) {
+  .c95 {
+    font-size: 2rem;
+  }
+}
+
+@media (min-width:750px) {
+  .c95 {
+    line-height: 2.5rem;
+  }
+}
+
+@media (min-width:1280px) {
+  .c95 {
+    line-height: 2.5rem;
+  }
+}
+
+@media (min-width:750px) {
+  .c95 {
+    -webkit-letter-spacing: 0.0115rem;
+    -moz-letter-spacing: 0.0115rem;
+    -ms-letter-spacing: 0.0115rem;
+    letter-spacing: 0.0115rem;
+  }
+}
+
+@media (min-width:1280px) {
+  .c95 {
+    -webkit-letter-spacing: 0.0115rem;
+    -moz-letter-spacing: 0.0115rem;
+    -ms-letter-spacing: 0.0115rem;
+    letter-spacing: 0.0115rem;
+  }
+}
+
+@media (min-width:750px) {
+  .c116 {
+    font-weight: 600;
+  }
+}
+
+@media (min-width:1280px) {
+  .c116 {
+    font-weight: 600;
+  }
+}
+
+@media (min-width:750px) {
+  .c116 {
+    font-size: 2rem;
+  }
+}
+
+@media (min-width:1280px) {
+  .c116 {
+    font-size: 2rem;
+  }
+}
+
+@media (min-width:750px) {
+  .c116 {
+    line-height: 2.5rem;
+  }
+}
+
+@media (min-width:1280px) {
+  .c116 {
+    line-height: 2.5rem;
+  }
+}
+
+@media (min-width:750px) {
+  .c116 {
+    -webkit-letter-spacing: 0.0115rem;
+    -moz-letter-spacing: 0.0115rem;
+    -ms-letter-spacing: 0.0115rem;
+    letter-spacing: 0.0115rem;
+  }
+}
+
+@media (min-width:1280px) {
+  .c116 {
+    -webkit-letter-spacing: 0.0115rem;
+    -moz-letter-spacing: 0.0115rem;
+    -ms-letter-spacing: 0.0115rem;
+    letter-spacing: 0.0115rem;
+  }
+}
+
+@media (min-width:750px) {
+  .c75 {
+    font-weight: 400;
+  }
+}
+
+@media (min-width:1280px) {
+  .c75 {
+    font-weight: 400;
+  }
+}
+
+@media (min-width:750px) {
+  .c75 {
+    font-size: 2.5rem;
+  }
+}
+
+@media (min-width:1280px) {
+  .c75 {
+    font-size: 2.5rem;
+  }
+}
+
+@media (min-width:750px) {
+  .c75 {
+    line-height: 3rem;
+  }
+}
+
+@media (min-width:1280px) {
+  .c75 {
+    line-height: 3rem;
+  }
+}
+
+@media (min-width:750px) {
+  .c75 {
+    -webkit-letter-spacing: 0.0115rem;
+    -moz-letter-spacing: 0.0115rem;
+    -ms-letter-spacing: 0.0115rem;
+    letter-spacing: 0.0115rem;
+  }
+}
+
+@media (min-width:1280px) {
+  .c75 {
+    -webkit-letter-spacing: 0.0115rem;
+    -moz-letter-spacing: 0.0115rem;
+    -ms-letter-spacing: 0.0115rem;
+    letter-spacing: 0.0115rem;
+  }
+}
+
+@media (min-width:750px) {
+  .c96 {
     font-weight: 300;
   }
 }
 
 @media (min-width:750px) {
-  .c95 {
+  .c96 {
     font-size: 1.125rem;
   }
 }
 
 @media (min-width:750px) {
-  .c95 {
+  .c96 {
     line-height: 1.75rem;
   }
 }
 
 @media (min-width:750px) {
-  .c95 {
+  .c96 {
     -webkit-letter-spacing: -0.005rem;
     -moz-letter-spacing: -0.005rem;
     -ms-letter-spacing: -0.005rem;
@@ -3882,7 +3891,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
 }
 
 @media (min-width:750px) {
-  .c134 {
+  .c135 {
     margin-right: 1.5rem;
   }
 }
@@ -3897,16 +3906,16 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
     text-decoration-thickness: 18%;
   }
 
-  .c24:hover .c180,
-  .c24:visited:hover .c180 {
+  .c24:hover .c181,
+  .c24:visited:hover .c181 {
     -webkit-filter: invert(16%) sepia(72%) saturate(7176%) hue-rotate(239deg) brightness(61%) contrast(109%);
     filter: invert(16%) sepia(72%) saturate(7176%) hue-rotate(239deg) brightness(61%) contrast(109%);
   }
 }
 
 @media (hover:hover) {
-  .c177:hover,
-  .c177:visited:hover {
+  .c178:hover,
+  .c178:visited:hover {
     color: #222222;
     -webkit-text-decoration: underline;
     text-decoration: underline;
@@ -3914,16 +3923,16 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
     text-decoration-thickness: 18%;
   }
 
-  .c177:hover .c180,
-  .c177:visited:hover .c180 {
+  .c178:hover .c181,
+  .c178:visited:hover .c181 {
     -webkit-filter: invert(10%) sepia(1%) saturate(236%) hue-rotate(314deg) brightness(95%) contrast(91%);
     filter: invert(10%) sepia(1%) saturate(236%) hue-rotate(314deg) brightness(95%) contrast(91%);
   }
 }
 
 @media (hover:hover) {
-  .c213:hover,
-  .c213:visited:hover {
+  .c214:hover,
+  .c214:visited:hover {
     color: #222222;
     -webkit-text-decoration: underline;
     text-decoration: underline;
@@ -3931,288 +3940,288 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
     text-decoration-thickness: 18%;
   }
 
-  .c213:hover .c180,
-  .c213:visited:hover .c180 {
+  .c214:hover .c181,
+  .c214:visited:hover .c181 {
     -webkit-filter: invert(10%) sepia(1%) saturate(236%) hue-rotate(314deg) brightness(95%) contrast(91%);
     filter: invert(10%) sepia(1%) saturate(236%) hue-rotate(314deg) brightness(95%) contrast(91%);
   }
 }
 
 @media (max-width:750px) {
-  .c42 {
+  .c43 {
     font-size: 16px;
   }
 }
 
 @media (hover:hover) {
-  .c41:hover:not(:focus-within) {
+  .c42:hover:not(:focus-within) {
     background: #f2f2f2;
     border-color: #808080;
   }
 }
 
 @media (min-width:750px) {
-  .c81 {
+  .c82 {
     row-gap: 2.5rem;
   }
 }
 
 @media (min-width:1280px) {
-  .c81 {
+  .c82 {
     row-gap: 1rem;
   }
 }
 
 @media (min-width:750px) {
-  .c81 {
+  .c82 {
     grid-template-columns: repeat(8,1fr);
   }
 }
 
 @media (min-width:1280px) {
-  .c81 {
+  .c82 {
     grid-template-columns: repeat(12,1fr);
   }
 }
 
 @media (min-width:750px) {
-  .c97 {
+  .c98 {
     row-gap: 2.5rem;
   }
 }
 
 @media (min-width:1280px) {
-  .c97 {
+  .c98 {
     row-gap: 1rem;
   }
 }
 
 @media (min-width:750px) {
-  .c97 {
+  .c98 {
     -webkit-column-gap: 2.5rem;
     column-gap: 2.5rem;
   }
 }
 
 @media (min-width:1280px) {
-  .c97 {
+  .c98 {
     -webkit-column-gap: 1rem;
     column-gap: 1rem;
   }
 }
 
 @media (min-width:750px) {
-  .c82 {
+  .c83 {
     grid-column: 1 / span 4;
   }
 }
 
 @media (min-width:1280px) {
-  .c82 {
+  .c83 {
     grid-column: 1 / span 5;
   }
 }
 
 @media (min-width:750px) {
-  .c82 {
+  .c83 {
     grid-column-start: 1;
   }
 }
 
 @media (min-width:1280px) {
-  .c82 {
+  .c83 {
     grid-column-start: 1;
   }
 }
 
 @media (min-width:750px) {
-  .c82 {
+  .c83 {
     grid-row-start: 1;
   }
 }
 
 @media (min-width:1280px) {
-  .c82 {
+  .c83 {
     grid-row-start: 1;
   }
 }
 
 @media (min-width:750px) {
-  .c84 {
+  .c85 {
     grid-column: 2 / span 3;
   }
 }
 
 @media (min-width:1280px) {
-  .c84 {
+  .c85 {
     grid-column: 3 / span 3;
   }
 }
 
 @media (min-width:750px) {
-  .c84 {
+  .c85 {
     grid-row: 1 / span 1;
   }
 }
 
 @media (min-width:1280px) {
-  .c84 {
+  .c85 {
     grid-row: 1 / span 1;
   }
 }
 
 @media (min-width:750px) {
-  .c84 {
+  .c85 {
     grid-column-start: 2;
   }
 }
 
 @media (min-width:1280px) {
-  .c84 {
+  .c85 {
     grid-column-start: 3;
   }
 }
 
 @media (min-width:750px) {
-  .c84 {
+  .c85 {
     grid-row-start: 1;
   }
 }
 
 @media (min-width:1280px) {
-  .c84 {
+  .c85 {
     grid-row-start: 1;
   }
 }
 
 @media (min-width:750px) {
-  .c89 {
+  .c90 {
     grid-column: 5 / span 4;
   }
 }
 
 @media (min-width:1280px) {
-  .c89 {
+  .c90 {
     grid-column: 7 / span 6;
   }
 }
 
 @media (min-width:750px) {
-  .c89 {
+  .c90 {
     grid-column-start: 5;
   }
 }
 
 @media (min-width:1280px) {
-  .c89 {
+  .c90 {
     grid-column-start: 7;
   }
 }
 
 @media (min-width:750px) {
-  .c89 {
+  .c90 {
     grid-row-start: 1;
   }
 }
 
 @media (min-width:1280px) {
-  .c89 {
+  .c90 {
     grid-row-start: 1;
   }
 }
 
 @media (min-width:750px) {
-  .c99 {
+  .c100 {
     grid-column: 1 / span 6;
   }
 }
 
 @media (min-width:1280px) {
-  .c99 {
+  .c100 {
     grid-column: 1 / span 4;
   }
 }
 
 @media (min-width:750px) {
-  .c99 {
+  .c100 {
     grid-column-start: 1;
   }
 }
 
 @media (min-width:1280px) {
-  .c99 {
+  .c100 {
     grid-column-start: 1;
   }
 }
 
 @media (min-width:750px) {
-  .c104 {
+  .c105 {
     grid-column: 7 / span 6;
   }
 }
 
 @media (min-width:1280px) {
-  .c104 {
+  .c105 {
     grid-column: 6 / span 7;
   }
 }
 
 @media (min-width:750px) {
-  .c104 {
+  .c105 {
     grid-column-start: 7;
   }
 }
 
 @media (min-width:1280px) {
-  .c104 {
+  .c105 {
     grid-column-start: 6;
   }
 }
 
 @media (min-width:750px) {
-  .c129 {
+  .c130 {
     grid-column: span 6;
   }
 }
 
 @media (min-width:750px) {
-  .c171 {
+  .c172 {
     grid-column: span 3;
   }
 }
 
 @media (max-width:800px) {
-  .c116 {
+  .c117 {
     grid-template-columns: repeat(1,1fr);
   }
 }
 
 @media (max-width:750px) {
-  .c148 {
+  .c149 {
     font-size: 16px;
   }
 }
 
 @media (min-width:750px) {
-  .c126 {
+  .c127 {
     max-width: 870px;
   }
 }
 
 @media (max-width:920px) {
-  .c75 {
+  .c76 {
     display: none;
   }
 }
 
 @media (min-width:750px) {
-  .c77 {
+  .c78 {
     min-width: 400px;
   }
 }
 
 @media (min-width:921px) and (max-width:1050px) {
-  .c77 {
+  .c78 {
     display: block;
     -webkit-translate: 14% -35%;
     translate: 14% -35%;
@@ -4223,7 +4232,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
 }
 
 @media (min-width:1051px) and (max-width:1180px) {
-  .c77 {
+  .c78 {
     -webkit-translate: 21% -33%;
     translate: 21% -33%;
     -webkit-transform: scale(1.6) rotate(-9deg);
@@ -4233,7 +4242,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
 }
 
 @media (min-width:1181px) and (max-width:1279px) {
-  .c77 {
+  .c78 {
     -webkit-transform: scale(1.55) rotate(-8.5deg);
     -ms-transform: scale(1.55) rotate(-8.5deg);
     transform: scale(1.55) rotate(-8.5deg);
@@ -4243,7 +4252,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
 }
 
 @media (min-width:1280px) {
-  .c77 {
+  .c78 {
     -webkit-translate: 20% -41%;
     translate: 20% -41%;
     -webkit-transform: scale(1.7) rotate(-8deg);
@@ -4253,25 +4262,25 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
 }
 
 @media (min-width:750px) {
-  .c88 {
+  .c89 {
     height: 380px;
   }
 }
 
 @media (min-width:1280px) {
-  .c88 {
+  .c89 {
     height: 430px;
   }
 }
 
 @media (min-width:750px) {
-  .c109 {
+  .c110 {
     max-height: 56px;
   }
 }
 
 @media (min-width:1280px) {
-  .c109 {
+  .c110 {
     max-height: 64px;
   }
 }
@@ -4471,10 +4480,23 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                   style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
                 />
               </span>
+              <span
+                class="c28"
+              >
+                <img
+                  alt=""
+                  class="c27"
+                  data-nimg="fill"
+                  decoding="async"
+                  loading="lazy"
+                  src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1765468420/OakLogoWithText.svg"
+                  style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                />
+              </span>
             </span>
           </a>
           <div
-            class="c9 c28"
+            class="c9 c29"
             data-testid="teachers-subnav"
             id="teachers-subnav"
           >
@@ -4482,10 +4504,10 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
               class="c9"
             >
               <ul
-                class="c29"
+                class="c30"
               >
                 <li
-                  class="c30"
+                  class="c31"
                 >
                   <div
                     class="c4 c15"
@@ -4499,15 +4521,15 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                     <button
                       aria-expanded="false"
                       aria-haspopup="true"
-                      class="c31 c32 internal-button"
+                      class="c32 c33 internal-button"
                       data-testid="teachers-primary"
                       id="teachers-primary"
                     >
                       <div
-                        class="c9 c33"
+                        class="c9 c34"
                       >
                         <span
-                          class="c34"
+                          class="c35"
                         >
                           Primary
                         </span>
@@ -4516,7 +4538,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                   </div>
                 </li>
                 <li
-                  class="c30"
+                  class="c31"
                 >
                   <div
                     class="c4 c15"
@@ -4530,15 +4552,15 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                     <button
                       aria-expanded="false"
                       aria-haspopup="true"
-                      class="c31 c32 internal-button"
+                      class="c32 c33 internal-button"
                       data-testid="teachers-secondary"
                       id="teachers-secondary"
                     >
                       <div
-                        class="c9 c33"
+                        class="c9 c34"
                       >
                         <span
-                          class="c34"
+                          class="c35"
                         >
                           Secondary
                         </span>
@@ -4547,7 +4569,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                   </div>
                 </li>
                 <li
-                  class="c30"
+                  class="c31"
                 >
                   <div
                     class="c4 c15"
@@ -4561,15 +4583,15 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                     <button
                       aria-expanded="false"
                       aria-haspopup="true"
-                      class="c31 c32 internal-button"
+                      class="c32 c33 internal-button"
                       data-testid="teachers-guidance"
                       id="teachers-guidance"
                     >
                       <div
-                        class="c9 c33"
+                        class="c9 c34"
                       >
                         <span
-                          class="c34"
+                          class="c35"
                         >
                           Guidance
                         </span>
@@ -4578,7 +4600,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                   </div>
                 </li>
                 <li
-                  class="c30"
+                  class="c31"
                 >
                   <div
                     class="c4 c15"
@@ -4592,15 +4614,15 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                     <button
                       aria-expanded="false"
                       aria-haspopup="true"
-                      class="c31 c32 internal-button"
+                      class="c32 c33 internal-button"
                       data-testid="teachers-aboutUs"
                       id="teachers-aboutUs"
                     >
                       <div
-                        class="c9 c33"
+                        class="c9 c34"
                       >
                         <span
-                          class="c34"
+                          class="c35"
                         >
                           About us
                         </span>
@@ -4609,7 +4631,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                   </div>
                 </li>
                 <li
-                  class="c30"
+                  class="c31"
                 >
                   <div
                     class="c4 c15"
@@ -4622,16 +4644,16 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                     />
                     <a
                       aria-label="Ai experiments (this will open in a new tab)"
-                      class="c31 c32 internal-button"
+                      class="c32 c33 internal-button"
                       href="https://labs.thenational.academy"
                       id="teachers-labs"
                       target="_blank"
                     >
                       <div
-                        class="c9 c33"
+                        class="c9 c34"
                       >
                         <span
-                          class="c34"
+                          class="c35"
                         >
                           Ai experiments
                         </span>
@@ -4640,7 +4662,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                         >
                           <img
                             alt=""
-                            class="c35"
+                            class="c36"
                             data-nimg="fill"
                             decoding="async"
                             loading="lazy"
@@ -4655,24 +4677,24 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
               </ul>
             </div>
             <div
-              class="c9 c36"
+              class="c9 c37"
             >
               <form
                 action="/teachers/search"
-                class="c37"
+                class="c38"
                 method="get"
                 role="search"
               >
                 <div
-                  class="c38"
+                  class="c39"
                 >
                   <div
-                    class="c39 c40 c41"
+                    class="c40 c41 c42"
                   >
                     <input
                       aria-invalid="false"
                       aria-label="Lesson and unit search"
-                      class="c42"
+                      class="c43"
                       name="term"
                       placeholder="Search"
                       type="search"
@@ -4680,24 +4702,24 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                   </div>
                 </div>
                 <div
-                  class="c43"
+                  class="c44"
                 >
                   <div
-                    class="c44 c45 c46"
+                    class="c45 c46 c47"
                   >
                     <button
                       aria-label="Submit search"
-                      class="c47 c48"
+                      class="c48 c49"
                       type="submit"
                     >
                       <div
-                        class="c9 c49"
+                        class="c9 c50"
                       >
                         <div
-                          class="c50 c51 icon-container"
+                          class="c51 c52 icon-container"
                         >
                           <div
-                            class="c52 shadow"
+                            class="c53 shadow"
                           />
                           <span
                             class="c20"
@@ -4705,7 +4727,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                           >
                             <img
                               alt=""
-                              class="c53"
+                              class="c54"
                               data-nimg="fill"
                               decoding="async"
                               loading="lazy"
@@ -4715,7 +4737,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                           </span>
                         </div>
                         <span
-                          class="c54"
+                          class="c55"
                         />
                       </div>
                     </button>
@@ -4723,24 +4745,24 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                 </div>
               </form>
               <div
-                class="c55"
+                class="c56"
               >
                 <div
-                  class="c44 c45 c46"
+                  class="c45 c46 c47"
                 >
                   <a
                     aria-label="Search"
-                    class="c47 c48"
+                    class="c48 c49"
                     href="/teachers/search"
                   >
                     <div
-                      class="c9 c49"
+                      class="c9 c50"
                     >
                       <div
-                        class="c50 c51 icon-container"
+                        class="c51 c52 icon-container"
                       >
                         <div
-                          class="c52 shadow"
+                          class="c53 shadow"
                         />
                         <span
                           class="c20"
@@ -4748,7 +4770,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                         >
                           <img
                             alt=""
-                            class="c53"
+                            class="c54"
                             data-nimg="fill"
                             decoding="async"
                             loading="lazy"
@@ -4758,7 +4780,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                         </span>
                       </div>
                       <span
-                        class="c54"
+                        class="c55"
                       />
                     </div>
                   </a>
@@ -4766,14 +4788,14 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
               </div>
               <a
                 aria-label="My library"
-                class="c56 c57"
+                class="c57 c58"
                 href="/teachers/my-library"
               >
                 <div
-                  class="c58 c59 oak-save-count"
+                  class="c59 c60 oak-save-count"
                 >
                   <span
-                    class="c60"
+                    class="c61"
                     data-testid="bookmark-outlined"
                   >
                     <img
@@ -4787,7 +4809,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                     />
                   </span>
                   <div
-                    class="c61"
+                    class="c62"
                   >
                     My library
                   </div>
@@ -4803,13 +4825,13 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                   class="c6 yellow-shadow"
                 />
                 <button
-                  class="c62 c63 internal-button"
+                  class="c63 c64 internal-button"
                 >
                   <div
-                    class="c9 c33"
+                    class="c9 c34"
                   >
                     <span
-                      class="c34"
+                      class="c35"
                     >
                       Sign in
                     </span>
@@ -4819,7 +4841,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
             </div>
           </div>
           <div
-            class="c64"
+            class="c65"
           >
             <div
               class="c4 c5"
@@ -4833,18 +4855,18 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
               <button
                 aria-expanded="false"
                 aria-label="Open navigation menu"
-                class="c65 c8 internal-button"
+                class="c66 c8 internal-button"
                 data-testid="top-nav-hamburger-button"
               >
                 <div
-                  class="c9 c49"
+                  class="c9 c50"
                 >
                   <span
                     class="c20"
                   >
                     <img
                       alt=""
-                      class="c35"
+                      class="c36"
                       data-nimg="fill"
                       decoding="async"
                       loading="lazy"
@@ -4862,41 +4884,41 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
         </nav>
       </header>
       <main
-        class="c66 c1"
+        class="c67 c1"
         id="main"
       >
         <div
-          class="c67"
+          class="c68"
         >
           <div
-            class="c68"
+            class="c69"
           >
             <div
-              class="c69 c70"
+              class="c70 c71"
             >
               <div
-                class="c9 c71"
+                class="c9 c72"
               >
                 <h1
-                  class="c72"
+                  class="c73"
                 >
                   <span
-                    class="c73"
+                    class="c74"
                   >
                     Get involved
                   </span>
                 </h1>
                 <p
-                  class="c74"
+                  class="c75"
                 >
                   We need your help to understand what's needed in the classroom. Want to get involved? We can't wait to hear from you.
                 </p>
               </div>
               <div
-                class="c9 c75"
+                class="c9 c76"
               >
                 <span
-                  class="c76 c77"
+                  class="c77 c78"
                   data-testid="about-shared-loop"
                 >
                   <img
@@ -4913,34 +4935,34 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
             </div>
           </div>
           <div
-            class="c78"
+            class="c79"
           >
             <div
-              class="c68"
+              class="c69"
             >
               <div
-                class="c79 c80"
+                class="c80 c81"
               >
                 <div
-                  class="c9 c81"
+                  class="c9 c82"
                 >
                   <div
-                    class="c9 c45 c82"
+                    class="c9 c46 c83"
                   >
                     <h2
-                      class="c83"
+                      class="c84"
                     >
                       Collaborate with us
                     </h2>
                   </div>
                   <div
-                    class="c9 c45 c84"
+                    class="c9 c46 c85"
                   >
                     <div
-                      class="c85 c86"
+                      class="c86 c87"
                     >
                       <span
-                        class="c87 c88"
+                        class="c88 c89"
                       >
                         <img
                           alt=""
@@ -4955,33 +4977,33 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                     </div>
                   </div>
                   <div
-                    class="c9 c45 c89"
+                    class="c9 c46 c90"
                   >
                     <div
-                      class="c9 c71"
+                      class="c9 c72"
                     >
                       <div
-                        class="c90"
+                        class="c91"
                       >
                         <div
-                          class="c91 c92"
+                          class="c92 c93"
                         >
                           <div
-                            class="c9 c93"
+                            class="c9 c94"
                           >
                             <h3
-                              class="c94"
+                              class="c95"
                             >
                               Join our teacher research panel
                             </h3>
                             <p
-                              class="c95"
+                              class="c96"
                             >
                               Share your story and we'll send you a gift voucher as a thanks for your time. Whether you've planned more efficiently, strengthened your subject knowledge or refreshed your curriculum design, your experience can inspire other teachers.
                             </p>
                           </div>
                           <div
-                            class="c9 c96"
+                            class="c9 c97"
                           >
                             <div
                               class="c4 c5"
@@ -5050,27 +5072,27 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                         </div>
                       </div>
                       <div
-                        class="c90"
+                        class="c91"
                       >
                         <div
-                          class="c91 c92"
+                          class="c92 c93"
                         >
                           <div
-                            class="c9 c93"
+                            class="c9 c94"
                           >
                             <h3
-                              class="c94"
+                              class="c95"
                             >
                               Give your feedback
                             </h3>
                             <p
-                              class="c95"
+                              class="c96"
                             >
                               Teachers are at the heart of everything we build. Have your say by taking part in research or road-testing new resources in your school. 
                             </p>
                           </div>
                           <div
-                            class="c9 c96"
+                            class="c9 c97"
                           >
                             <div
                               class="c4 c5"
@@ -5121,37 +5143,37 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
             </div>
           </div>
           <div
-            class="c68"
+            class="c69"
           >
             <div
-              class="c79 c97"
+              class="c80 c98"
             >
               <div
-                class="c9 c98 c99"
+                class="c9 c99 c100"
               >
                 <div
-                  class="c9 c92"
+                  class="c9 c93"
                 >
                   <div
-                    class="c9 c71"
+                    class="c9 c72"
                   >
                     <h2
-                      class="c83"
+                      class="c84"
                     >
                       Work with us
                     </h2>
                     <div
-                      class="c100 c101"
+                      class="c101 c102"
                     >
                       <p
-                        class="c95"
+                        class="c96"
                       >
                         We're a fast-paced and innovative team, working to support and inspire teachers to deliver great teaching, so every pupil benefits. All our roles are remote-first. If you want to be part of something unique that's making a difference to millions of children's lives, we'd love to hear from you.
                       </p>
                     </div>
                   </div>
                   <div
-                    class="c9 c102"
+                    class="c9 c103"
                   >
                     <div
                       class="c4 c5"
@@ -5235,20 +5257,20 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                 </div>
               </div>
               <div
-                class="c9 c103 c104"
+                class="c9 c104 c105"
               >
                 <div
-                  class="c9 c105"
+                  class="c9 c106"
                 >
                   <div
-                    class="c106 c45"
+                    class="c107 c46"
                   >
                     <span
-                      class="c87"
+                      class="c88"
                     >
                       <img
                         alt=""
-                        class="c107"
+                        class="c108"
                         data-nimg="fill"
                         decoding="async"
                         loading="lazy"
@@ -5260,21 +5282,21 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                     </span>
                   </div>
                   <div
-                    class="c9 c108"
+                    class="c9 c109"
                   >
                     <img
                       alt="'In Escape the City's top 1% of employers'"
-                      class="c109"
+                      class="c110"
                       src="https://res.cloudinary.com/oak-web-application/image/upload/v1764066553/about-us/top-1-percent-logo_hyga8g.svg"
                     />
                     <img
                       alt="Awarded Gold in Investors In People"
-                      class="c109"
+                      class="c110"
                       src="https://res.cloudinary.com/oak-web-application/image/upload/v1764066553/about-us/investor-in-people_eymeqv.svg"
                     />
                     <img
                       alt="Certified as Disability Confident Committed"
-                      class="c109"
+                      class="c110"
                       src="https://res.cloudinary.com/oak-web-application/image/upload/v1764066553/about-us/disability-confident_ym07wl.png"
                     />
                   </div>
@@ -5283,14 +5305,14 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
             </div>
           </div>
           <div
-            class="c110"
+            class="c111"
             style="margin-top: -72px;"
           >
             <div
-              class="c111"
+              class="c112"
             >
               <span
-                class="c112"
+                class="c113"
                 style="pointer-events: none;"
               >
                 <img
@@ -5304,13 +5326,13 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                 />
               </span>
               <div
-                class="c68"
+                class="c69"
               >
                 <div
-                  class="c113 c114"
+                  class="c114 c115"
                 >
                   <h2
-                    class="c115"
+                    class="c116"
                     id="react-use-id-test-result"
                   >
                     Explore more about Oak
@@ -5319,24 +5341,24 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                     aria-labelledby="react-use-id-test-result"
                   >
                     <ul
-                      class="c116"
+                      class="c117"
                     >
                       <li
-                        class="c117 c118"
+                        class="c118 c119"
                       >
                         <a
                           href="/about-us/who-we-are"
                           style="outline: none;"
                         >
                           <div
-                            class="c119 c120 c121"
+                            class="c120 c121 c122"
                             data-testid="who-we-are-explore-item"
                           >
                             <div
-                              class="c9 c45"
+                              class="c9 c46"
                             >
                               <span
-                                class="c122"
+                                class="c123"
                               >
                                 <img
                                   alt=""
@@ -5350,15 +5372,15 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                               </span>
                             </div>
                             <div
-                              class="c123 c124"
+                              class="c124 c125"
                             >
                               About Oak
                             </div>
                             <div
-                              class="c9 c45"
+                              class="c9 c46"
                             >
                               <span
-                                class="c76"
+                                class="c77"
                               >
                                 <img
                                   alt=""
@@ -5375,21 +5397,21 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                         </a>
                       </li>
                       <li
-                        class="c117 c118"
+                        class="c118 c119"
                       >
                         <a
                           href="/about-us/oaks-curricula"
                           style="outline: none;"
                         >
                           <div
-                            class="c119 c120 c121"
+                            class="c120 c121 c122"
                             data-testid="who-we-are-explore-item"
                           >
                             <div
-                              class="c9 c45"
+                              class="c9 c46"
                             >
                               <span
-                                class="c122"
+                                class="c123"
                               >
                                 <img
                                   alt=""
@@ -5403,15 +5425,15 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                               </span>
                             </div>
                             <div
-                              class="c123 c124"
+                              class="c124 c125"
                             >
                               Oak's curricula
                             </div>
                             <div
-                              class="c9 c45"
+                              class="c9 c46"
                             >
                               <span
-                                class="c76"
+                                class="c77"
                               >
                                 <img
                                   alt=""
@@ -5428,21 +5450,21 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                         </a>
                       </li>
                       <li
-                        class="c117 c118"
+                        class="c118 c119"
                       >
                         <a
                           href="/about-us/meet-the-team"
                           style="outline: none;"
                         >
                           <div
-                            class="c119 c120 c121"
+                            class="c120 c121 c122"
                             data-testid="who-we-are-explore-item"
                           >
                             <div
-                              class="c9 c45"
+                              class="c9 c46"
                             >
                               <span
-                                class="c122"
+                                class="c123"
                               >
                                 <img
                                   alt=""
@@ -5456,15 +5478,15 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                               </span>
                             </div>
                             <div
-                              class="c123 c124"
+                              class="c124 c125"
                             >
                               Meet the team
                             </div>
                             <div
-                              class="c9 c45"
+                              class="c9 c46"
                             >
                               <span
-                                class="c76"
+                                class="c77"
                               >
                                 <img
                                   alt=""
@@ -5481,21 +5503,21 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                         </a>
                       </li>
                       <li
-                        class="c117 c118"
+                        class="c118 c119"
                       >
                         <a
                           href="/about-us/get-involved"
                           style="outline: none;"
                         >
                           <div
-                            class="c119 c120 c121"
+                            class="c120 c121 c122"
                             data-testid="who-we-are-explore-item"
                           >
                             <div
-                              class="c9 c45"
+                              class="c9 c46"
                             >
                               <span
-                                class="c122"
+                                class="c123"
                               >
                                 <img
                                   alt=""
@@ -5509,15 +5531,15 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                               </span>
                             </div>
                             <div
-                              class="c123 c124"
+                              class="c124 c125"
                             >
                               Get involved
                             </div>
                             <div
-                              class="c9 c45"
+                              class="c9 c46"
                             >
                               <span
-                                class="c76"
+                                class="c77"
                               >
                                 <img
                                   alt=""
@@ -5540,29 +5562,29 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
             </div>
           </div>
           <div
-            class="c125"
+            class="c126"
             id="newsletter-signup"
           >
             <div
-              class="c68"
+              class="c69"
             >
               <div
-                class="c9 c45 c126"
+                class="c9 c46 c127"
               >
                 <div
-                  class="c127 c1"
+                  class="c128 c1"
                 >
                   <div
-                    class="c9 c128"
+                    class="c9 c129"
                   >
                     <div
-                      class="c9 c45 c129"
+                      class="c9 c46 c130"
                     >
                       <div
-                        class="c130 c131"
+                        class="c131 c132"
                       >
                         <span
-                          class="c132"
+                          class="c133"
                         >
                           <img
                             alt=""
@@ -5575,13 +5597,13 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                           />
                         </span>
                         <h2
-                          class="c133"
+                          class="c134"
                         >
                           Don’t miss out
                         </h2>
                       </div>
                       <p
-                        class="c134"
+                        class="c135"
                         color="text-primary"
                         id="react-use-id-test-result-newsletter-form-description"
                       >
@@ -5601,18 +5623,18 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                       </p>
                     </div>
                     <div
-                      class="c135 c45 c129"
+                      class="c136 c46 c130"
                     >
                       <form
                         aria-describedby="react-use-id-test-result-newsletter-form-description"
-                        class="c136"
+                        class="c137"
                         novalidate=""
                       >
                         <div
-                          class="c137 c138 c139"
+                          class="c138 c139 c140"
                         >
                           <div
-                            class="c140 "
+                            class="c141 "
                           >
                             <div
                               aria-hidden="true"
@@ -5621,7 +5643,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                             >
                               <svg
                                 aria-hidden="true"
-                                class="c141"
+                                class="c142"
                                 height="100%"
                                 name="box-border-top"
                                 style="height: 3px;"
@@ -5646,7 +5668,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                               </svg>
                               <svg
                                 aria-hidden="true"
-                                class="c141"
+                                class="c142"
                                 height="100%"
                                 name="box-border-right"
                                 style="width: 3px; height: 90%;"
@@ -5671,7 +5693,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                               </svg>
                               <svg
                                 aria-hidden="true"
-                                class="c141"
+                                class="c142"
                                 height="100%"
                                 name="box-border-bottom"
                                 style="height: 3px; width: 100%;"
@@ -5696,7 +5718,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                               </svg>
                               <svg
                                 aria-hidden="true"
-                                class="c141"
+                                class="c142"
                                 height="100%"
                                 name="box-border-left"
                                 style="width: 3px;"
@@ -5721,11 +5743,11 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                               </svg>
                             </div>
                             <div
-                              class="c142 "
+                              class="c143 "
                             >
                               <label
                                 aria-hidden="true"
-                                class="c143 c144 c145"
+                                class="c144 c145 c146"
                                 color="black"
                                 data-testid="rotated-input-label"
                                 for="react-use-id-test-result-newsletter-signup-name"
@@ -5737,7 +5759,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                                   Name
                                    
                                   <span
-                                    class="c146"
+                                    class="c147"
                                   >
                                     (required)
                                   </span>
@@ -5748,7 +5770,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                               aria-invalid="false"
                               aria-labelledby="react-use-id-test-result-newsletter-signup-name-label"
                               autocomplete="name"
-                              class="c147 c148"
+                              class="c148 c149"
                               id="react-use-id-test-result-newsletter-signup-name"
                               name="name"
                               placeholder="Anna Smith"
@@ -5756,7 +5778,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                             />
                             <svg
                               aria-hidden="true"
-                              class="c149 c150 c151"
+                              class="c150 c151 c152"
                               height="100%"
                               name="underline-1"
                               width="100%"
@@ -5769,10 +5791,10 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                           </div>
                         </div>
                         <div
-                          class="c137 c138 c139"
+                          class="c138 c139 c140"
                         >
                           <div
-                            class="c140 "
+                            class="c141 "
                           >
                             <div
                               aria-hidden="true"
@@ -5781,7 +5803,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                             >
                               <svg
                                 aria-hidden="true"
-                                class="c141"
+                                class="c142"
                                 height="100%"
                                 name="box-border-top"
                                 style="height: 3px;"
@@ -5806,7 +5828,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                               </svg>
                               <svg
                                 aria-hidden="true"
-                                class="c141"
+                                class="c142"
                                 height="100%"
                                 name="box-border-right"
                                 style="width: 3px; height: 90%;"
@@ -5831,7 +5853,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                               </svg>
                               <svg
                                 aria-hidden="true"
-                                class="c141"
+                                class="c142"
                                 height="100%"
                                 name="box-border-bottom"
                                 style="height: 3px; width: 100%;"
@@ -5856,7 +5878,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                               </svg>
                               <svg
                                 aria-hidden="true"
-                                class="c141"
+                                class="c142"
                                 height="100%"
                                 name="box-border-left"
                                 style="width: 3px;"
@@ -5881,11 +5903,11 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                               </svg>
                             </div>
                             <div
-                              class="c142 "
+                              class="c143 "
                             >
                               <label
                                 aria-hidden="true"
-                                class="c143 c144 c145"
+                                class="c144 c145 c146"
                                 color="black"
                                 data-testid="rotated-input-label"
                                 for="react-use-id-test-result-newsletter-signup-email"
@@ -5897,7 +5919,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                                   Email
                                    
                                   <span
-                                    class="c146"
+                                    class="c147"
                                   >
                                     (required)
                                   </span>
@@ -5908,7 +5930,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                               aria-invalid="false"
                               aria-labelledby="react-use-id-test-result-newsletter-signup-email-label"
                               autocomplete="email"
-                              class="c147 c148"
+                              class="c148 c149"
                               id="react-use-id-test-result-newsletter-signup-email"
                               name="email"
                               placeholder="anna@amail.com"
@@ -5916,7 +5938,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                             />
                             <svg
                               aria-hidden="true"
-                              class="c149 c150 c151"
+                              class="c150 c151 c152"
                               height="100%"
                               name="underline-1"
                               width="100%"
@@ -5929,7 +5951,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                           </div>
                         </div>
                         <div
-                          class="c152 c80 c153"
+                          class="c153 c81 c154"
                         >
                           <div
                             aria-hidden="true"
@@ -5938,7 +5960,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                           >
                             <svg
                               aria-hidden="true"
-                              class="c141"
+                              class="c142"
                               height="100%"
                               name="box-border-top"
                               style="height: 3px;"
@@ -5963,7 +5985,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                             </svg>
                             <svg
                               aria-hidden="true"
-                              class="c141"
+                              class="c142"
                               height="100%"
                               name="box-border-right"
                               style="width: 3px; height: 90%;"
@@ -5988,7 +6010,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                             </svg>
                             <svg
                               aria-hidden="true"
-                              class="c141"
+                              class="c142"
                               height="100%"
                               name="box-border-bottom"
                               style="height: 3px; width: 100%;"
@@ -6013,7 +6035,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                             </svg>
                             <svg
                               aria-hidden="true"
-                              class="c141"
+                              class="c142"
                               height="100%"
                               name="box-border-left"
                               style="width: 3px;"
@@ -6039,7 +6061,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                           </div>
                           <svg
                             aria-hidden="true"
-                            class="c149 c150 c151 c154"
+                            class="c150 c151 c152 c155"
                             height="100%"
                             name="underline-1"
                             width="100%"
@@ -6050,10 +6072,10 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                             />
                           </svg>
                           <div
-                            class="c155 c45"
+                            class="c156 c46"
                           >
                             <label
-                              class="c143 c144 c145"
+                              class="c144 c145 c146"
                               color="black"
                               id="react-use-id-test-result"
                             >
@@ -6065,16 +6087,16 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                             aria-haspopup="listbox"
                             aria-invalid="false"
                             aria-labelledby="react-use-id-test-result react-use-id-test-result-button"
-                            class="c156 c157"
+                            class="c157 c158"
                             data-testid="select"
                             id="react-use-id-test-result-button"
                             type="button"
                           >
                             <div
-                              class="c158 c40 c159"
+                              class="c159 c41 c160"
                             >
                               <span
-                                class="c160 c161"
+                                class="c161 c162"
                                 data-testid="select-span"
                                 id="react-use-id-test-result-value"
                                 title="What describes you best?"
@@ -6098,7 +6120,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                           </button>
                         </div>
                         <div
-                          class="c162 c5"
+                          class="c163 c5"
                         >
                           <div
                             class="c6 grey-shadow"
@@ -6107,7 +6129,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                             class="c6 yellow-shadow"
                           />
                           <button
-                            class="c163 c19 internal-button"
+                            class="c164 c19 internal-button"
                           >
                             <div
                               class="c9 c10"
@@ -6122,12 +6144,12 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                         </div>
                         <p
                           aria-live="assertive"
-                          class="c164"
+                          class="c165"
                           role="alert"
                         />
                         <p
                           aria-live="polite"
-                          class="c165"
+                          class="c166"
                         />
                       </form>
                     </div>
@@ -6139,14 +6161,14 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
         </div>
       </main>
       <footer
-        class="c166"
+        class="c167"
       >
         <div
-          class="c167 c45"
+          class="c168 c46"
         >
           <svg
             aria-hidden="true"
-            class="c168"
+            class="c169"
             height="100%"
             name="header-underline"
             width="100%"
@@ -6169,33 +6191,33 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
           id="site-footer"
         >
           <div
-            class="c169 c170"
+            class="c170 c171"
           >
             <div
-              class="c9 c128"
+              class="c9 c129"
             >
               <div
-                class="c9 c45 c171"
+                class="c9 c46 c172"
               >
                 <div
-                  class="c172 c80"
+                  class="c173 c81"
                 >
                   <h2
-                    class="c173"
+                    class="c174"
                   >
                     Pupils
                   </h2>
                   <div
-                    class="c174 c175"
+                    class="c175 c176"
                   >
                     <ul
                       role="list"
                     >
                       <li
-                        class="c176"
+                        class="c177"
                       >
                         <a
-                          class="c177 "
+                          class="c178 "
                           href="/pupils/years"
                         >
                           <span
@@ -6209,27 +6231,27 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                   </div>
                 </div>
                 <div
-                  class="c178"
+                  class="c179"
                 />
                 <div
-                  class="c172 c80"
+                  class="c173 c81"
                 >
                   <h2
-                    class="c173"
+                    class="c174"
                   >
                     Teachers
                   </h2>
                   <div
-                    class="c174 c175"
+                    class="c175 c176"
                   >
                     <ul
                       role="list"
                     >
                       <li
-                        class="c176"
+                        class="c177"
                       >
                         <a
-                          class="c177 "
+                          class="c178 "
                           href="/teachers/eyfs/maths"
                         >
                           <span
@@ -6240,10 +6262,10 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                         </a>
                       </li>
                       <li
-                        class="c176"
+                        class="c177"
                       >
                         <a
-                          class="c177 "
+                          class="c178 "
                           href="/lesson-planning"
                         >
                           <span
@@ -6254,10 +6276,10 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                         </a>
                       </li>
                       <li
-                        class="c176"
+                        class="c177"
                       >
                         <a
-                          class="c177 "
+                          class="c178 "
                           href="https://labs.thenational.academy"
                           target="_blank"
                         >
@@ -6267,10 +6289,10 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                             Aila, Oak’s AI lesson assistant
                           </span>
                           <div
-                            class="c179"
+                            class="c180"
                           >
                             <span
-                              class="c76 c180 c181"
+                              class="c77 c181 c182"
                             >
                               <img
                                 alt=""
@@ -6286,10 +6308,10 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                         </a>
                       </li>
                       <li
-                        class="c176"
+                        class="c177"
                       >
                         <a
-                          class="c177 "
+                          class="c178 "
                           href="/blog"
                         >
                           <span
@@ -6304,27 +6326,27 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                 </div>
               </div>
               <div
-                class="c9 c45 c171"
+                class="c9 c46 c172"
               >
                 <div
-                  class="c172 c80"
+                  class="c173 c81"
                 >
                   <h2
-                    class="c173"
+                    class="c174"
                   >
                     Oak
                   </h2>
                   <div
-                    class="c174 c175"
+                    class="c175 c176"
                   >
                     <ul
                       role="list"
                     >
                       <li
-                        class="c176"
+                        class="c177"
                       >
                         <a
-                          class="c177 "
+                          class="c178 "
                           href="/"
                         >
                           <span
@@ -6335,10 +6357,10 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                         </a>
                       </li>
                       <li
-                        class="c176"
+                        class="c177"
                       >
                         <a
-                          class="c177 "
+                          class="c178 "
                           href="/about-us/who-we-are"
                         >
                           <span
@@ -6349,10 +6371,10 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                         </a>
                       </li>
                       <li
-                        class="c176"
+                        class="c177"
                       >
                         <a
-                          class="c177 "
+                          class="c178 "
                           href="/about-us/oaks-curricula"
                         >
                           <span
@@ -6363,10 +6385,10 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                         </a>
                       </li>
                       <li
-                        class="c176"
+                        class="c177"
                       >
                         <a
-                          class="c177 "
+                          class="c178 "
                           href="/about-us/get-involved"
                         >
                           <span
@@ -6377,10 +6399,10 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                         </a>
                       </li>
                       <li
-                        class="c176"
+                        class="c177"
                       >
                         <a
-                          class="c177 "
+                          class="c178 "
                           href="/about-us/meet-the-team"
                         >
                           <span
@@ -6391,11 +6413,11 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                         </a>
                       </li>
                       <li
-                        class="c176"
+                        class="c177"
                       >
                         <a
                           aria-label="Careers (opens in a new tab)"
-                          class="c177 "
+                          class="c178 "
                           href="https://jobs.thenational.academy"
                           target="_blank"
                         >
@@ -6405,10 +6427,10 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                             Careers
                           </span>
                           <div
-                            class="c179"
+                            class="c180"
                           >
                             <span
-                              class="c76 c180 c181"
+                              class="c77 c181 c182"
                             >
                               <img
                                 alt=""
@@ -6424,10 +6446,10 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                         </a>
                       </li>
                       <li
-                        class="c176"
+                        class="c177"
                       >
                         <a
-                          class="c177 "
+                          class="c178 "
                           href="/contact-us"
                         >
                           <span
@@ -6438,11 +6460,11 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                         </a>
                       </li>
                       <li
-                        class="c176"
+                        class="c177"
                       >
                         <a
                           aria-label="Help (opens in a new tab)"
-                          class="c177 "
+                          class="c178 "
                           href="https://support.thenational.academy"
                           target="_blank"
                         >
@@ -6452,10 +6474,10 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                             Help
                           </span>
                           <div
-                            class="c179"
+                            class="c180"
                           >
                             <span
-                              class="c76 c180 c181"
+                              class="c77 c181 c182"
                             >
                               <img
                                 alt=""
@@ -6471,10 +6493,10 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                         </a>
                       </li>
                       <li
-                        class="c176"
+                        class="c177"
                       >
                         <a
-                          class="c177 "
+                          class="c178 "
                           href="/webinars"
                         >
                           <span
@@ -6485,11 +6507,11 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                         </a>
                       </li>
                       <li
-                        class="c176"
+                        class="c177"
                       >
                         <a
                           aria-label="Status (opens in a new tab)"
-                          class="c177 "
+                          class="c178 "
                           href="https://status.thenational.academy"
                           target="_blank"
                         >
@@ -6499,10 +6521,10 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                             Status
                           </span>
                           <div
-                            class="c179"
+                            class="c180"
                           >
                             <span
-                              class="c76 c180 c181"
+                              class="c77 c181 c182"
                             >
                               <img
                                 alt=""
@@ -6522,27 +6544,27 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                 </div>
               </div>
               <div
-                class="c9 c45 c171"
+                class="c9 c46 c172"
               >
                 <div
-                  class="c172 c80"
+                  class="c173 c81"
                 >
                   <h2
-                    class="c173"
+                    class="c174"
                   >
                     Legal
                   </h2>
                   <div
-                    class="c174 c175"
+                    class="c175 c176"
                   >
                     <ul
                       role="list"
                     >
                       <li
-                        class="c176"
+                        class="c177"
                       >
                         <a
-                          class="c177 "
+                          class="c178 "
                           href="/legal/terms-and-conditions"
                         >
                           <span
@@ -6553,10 +6575,10 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                         </a>
                       </li>
                       <li
-                        class="c176"
+                        class="c177"
                       >
                         <a
-                          class="c177 "
+                          class="c178 "
                           href="/legal/privacy-policy"
                         >
                           <span
@@ -6567,10 +6589,10 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                         </a>
                       </li>
                       <li
-                        class="c176"
+                        class="c177"
                       >
                         <a
-                          class="c177 "
+                          class="c178 "
                           href="/legal/cookie-policy"
                         >
                           <span
@@ -6581,10 +6603,10 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                         </a>
                       </li>
                       <li
-                        class="c176"
+                        class="c177"
                       >
                         <button
-                          class="c177 "
+                          class="c178 "
                         >
                           <span
                             class="c25"
@@ -6594,10 +6616,10 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                         </button>
                       </li>
                       <li
-                        class="c176"
+                        class="c177"
                       >
                         <a
-                          class="c177 "
+                          class="c178 "
                           href="/legal/copyright-notice"
                         >
                           <span
@@ -6608,10 +6630,10 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                         </a>
                       </li>
                       <li
-                        class="c176"
+                        class="c177"
                       >
                         <a
-                          class="c177 "
+                          class="c178 "
                           href="/legal/accessibility-statement"
                         >
                           <span
@@ -6622,10 +6644,10 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                         </a>
                       </li>
                       <li
-                        class="c176"
+                        class="c177"
                       >
                         <a
-                          class="c177 "
+                          class="c178 "
                           href="/legal/safeguarding-statement"
                         >
                           <span
@@ -6636,10 +6658,10 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                         </a>
                       </li>
                       <li
-                        class="c176"
+                        class="c177"
                       >
                         <a
-                          class="c177 "
+                          class="c178 "
                           href="/legal/physical-activity-disclaimer"
                         >
                           <span
@@ -6650,10 +6672,10 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                         </a>
                       </li>
                       <li
-                        class="c176"
+                        class="c177"
                       >
                         <a
-                          class="c177 "
+                          class="c178 "
                           href="/legal/complaints"
                         >
                           <span
@@ -6664,10 +6686,10 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                         </a>
                       </li>
                       <li
-                        class="c176"
+                        class="c177"
                       >
                         <a
-                          class="c177 "
+                          class="c178 "
                           href="/legal/freedom-of-information-requests"
                         >
                           <span
@@ -6682,16 +6704,16 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                 </div>
               </div>
               <div
-                class="c9 c45 c171"
+                class="c9 c46 c172"
               >
                 <div
-                  class="c172 c182"
+                  class="c173 c183"
                 >
                   <div
-                    class="c38"
+                    class="c39"
                   >
                     <span
-                      class="c183"
+                      class="c184"
                     >
                       <img
                         alt=""
@@ -6705,24 +6727,24 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                     </span>
                   </div>
                   <div
-                    class="c184 c185"
+                    class="c185 c186"
                   >
                     <div
-                      class="c44 c45 c186 c187"
+                      class="c45 c46 c187 c188"
                     >
                       <a
                         aria-label="instagram for Oak National Academy"
-                        class="c47 c48"
+                        class="c48 c49"
                         href="https://instagram.com/oaknational"
                       >
                         <div
-                          class="c9 c49"
+                          class="c9 c50"
                         >
                           <div
-                            class="c188 c51 icon-container"
+                            class="c189 c52 icon-container"
                           >
                             <div
-                              class="c189 shadow"
+                              class="c190 shadow"
                             />
                             <span
                               class="c20"
@@ -6730,7 +6752,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                             >
                               <img
                                 alt=""
-                                class="c35"
+                                class="c36"
                                 data-nimg="fill"
                                 decoding="async"
                                 loading="lazy"
@@ -6740,27 +6762,27 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                             </span>
                           </div>
                           <span
-                            class="c54"
+                            class="c55"
                           />
                         </div>
                       </a>
                     </div>
                     <div
-                      class="c44 c45 c186 c187"
+                      class="c45 c46 c187 c188"
                     >
                       <a
                         aria-label="facebook for Oak National Academy"
-                        class="c47 c48"
+                        class="c48 c49"
                         href="https://facebook.com/oaknationalacademy"
                       >
                         <div
-                          class="c9 c49"
+                          class="c9 c50"
                         >
                           <div
-                            class="c188 c51 icon-container"
+                            class="c189 c52 icon-container"
                           >
                             <div
-                              class="c189 shadow"
+                              class="c190 shadow"
                             />
                             <span
                               class="c20"
@@ -6768,7 +6790,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                             >
                               <img
                                 alt=""
-                                class="c35"
+                                class="c36"
                                 data-nimg="fill"
                                 decoding="async"
                                 loading="lazy"
@@ -6778,27 +6800,27 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                             </span>
                           </div>
                           <span
-                            class="c54"
+                            class="c55"
                           />
                         </div>
                       </a>
                     </div>
                     <div
-                      class="c44 c45 c186 c187"
+                      class="c45 c46 c187 c188"
                     >
                       <a
                         aria-label="linkedIn for Oak National Academy"
-                        class="c47 c48"
+                        class="c48 c49"
                         href="https://www.linkedin.com/company/oak-national-academy"
                       >
                         <div
-                          class="c9 c49"
+                          class="c9 c50"
                         >
                           <div
-                            class="c188 c51 icon-container"
+                            class="c189 c52 icon-container"
                           >
                             <div
-                              class="c189 shadow"
+                              class="c190 shadow"
                             />
                             <span
                               class="c20"
@@ -6806,7 +6828,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                             >
                               <img
                                 alt=""
-                                class="c35"
+                                class="c36"
                                 data-nimg="fill"
                                 decoding="async"
                                 loading="lazy"
@@ -6816,7 +6838,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                             </span>
                           </div>
                           <span
-                            class="c54"
+                            class="c55"
                           />
                         </div>
                       </a>
@@ -6826,7 +6848,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
               </div>
             </div>
             <span
-              class="c87 c190"
+              class="c88 c191"
               data-percy-hide="contents"
             >
               <img
@@ -6842,27 +6864,27 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
               />
             </span>
             <div
-              class="c191 c192"
+              class="c192 c193"
             >
               <div
-                class="c193 c194"
+                class="c194 c195"
               >
                 <div
-                  class="c44 c45 c186 c187"
+                  class="c45 c46 c187 c188"
                 >
                   <a
                     aria-label="instagram for Oak National Academy"
-                    class="c47 c48"
+                    class="c48 c49"
                     href="https://instagram.com/oaknational"
                   >
                     <div
-                      class="c9 c49"
+                      class="c9 c50"
                     >
                       <div
-                        class="c188 c51 icon-container"
+                        class="c189 c52 icon-container"
                       >
                         <div
-                          class="c189 shadow"
+                          class="c190 shadow"
                         />
                         <span
                           class="c20"
@@ -6870,7 +6892,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                         >
                           <img
                             alt=""
-                            class="c35"
+                            class="c36"
                             data-nimg="fill"
                             decoding="async"
                             loading="lazy"
@@ -6880,27 +6902,27 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                         </span>
                       </div>
                       <span
-                        class="c54"
+                        class="c55"
                       />
                     </div>
                   </a>
                 </div>
                 <div
-                  class="c44 c45 c186 c187"
+                  class="c45 c46 c187 c188"
                 >
                   <a
                     aria-label="facebook for Oak National Academy"
-                    class="c47 c48"
+                    class="c48 c49"
                     href="https://facebook.com/oaknationalacademy"
                   >
                     <div
-                      class="c9 c49"
+                      class="c9 c50"
                     >
                       <div
-                        class="c188 c51 icon-container"
+                        class="c189 c52 icon-container"
                       >
                         <div
-                          class="c189 shadow"
+                          class="c190 shadow"
                         />
                         <span
                           class="c20"
@@ -6908,7 +6930,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                         >
                           <img
                             alt=""
-                            class="c35"
+                            class="c36"
                             data-nimg="fill"
                             decoding="async"
                             loading="lazy"
@@ -6918,27 +6940,27 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                         </span>
                       </div>
                       <span
-                        class="c54"
+                        class="c55"
                       />
                     </div>
                   </a>
                 </div>
                 <div
-                  class="c44 c45 c186 c187"
+                  class="c45 c46 c187 c188"
                 >
                   <a
                     aria-label="linkedIn for Oak National Academy"
-                    class="c47 c48"
+                    class="c48 c49"
                     href="https://www.linkedin.com/company/oak-national-academy"
                   >
                     <div
-                      class="c9 c49"
+                      class="c9 c50"
                     >
                       <div
-                        class="c188 c51 icon-container"
+                        class="c189 c52 icon-container"
                       >
                         <div
-                          class="c189 shadow"
+                          class="c190 shadow"
                         />
                         <span
                           class="c20"
@@ -6946,7 +6968,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                         >
                           <img
                             alt=""
-                            class="c35"
+                            class="c36"
                             data-nimg="fill"
                             decoding="async"
                             loading="lazy"
@@ -6956,17 +6978,17 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                         </span>
                       </div>
                       <span
-                        class="c54"
+                        class="c55"
                       />
                     </div>
                   </a>
                 </div>
               </div>
               <div
-                class="c55"
+                class="c56"
               >
                 <span
-                  class="c183"
+                  class="c184"
                 >
                   <img
                     alt=""
@@ -6980,15 +7002,15 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                 </span>
               </div>
               <div
-                class="c172 c80"
+                class="c173 c81"
               >
                 <p
-                  class="c195"
+                  class="c196"
                 >
                   © Oak National Academy Limited, No 14174888
                 </p>
                 <p
-                  class="c196"
+                  class="c197"
                 >
                   1 Scott Place, 2 Hardman Street, Manchester, M3 3AA
                 </p>
@@ -6997,11 +7019,11 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
           </div>
         </nav>
         <span
-          class="c197"
+          class="c198"
         >
           <img
             alt=""
-            class="c198"
+            class="c199"
             data-nimg="fill"
             decoding="async"
             loading="lazy"
@@ -7010,11 +7032,11 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
           />
         </span>
         <span
-          class="c199"
+          class="c200"
         >
           <img
             alt=""
-            class="c200"
+            class="c201"
             data-nimg="fill"
             decoding="async"
             loading="lazy"
@@ -7026,27 +7048,27 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
     </div>
     <div
       aria-live="polite"
-      class="c201 c202 c203"
+      class="c202 c203 c204"
     />
   </div>
   <div
-    class="c204"
+    class="c205"
   >
     <div
-      class="c205"
+      class="c206"
       data-testid="cookie-banner"
     >
       <div
-        class="c206"
+        class="c207"
       >
         <div
-          class="c207 c208"
+          class="c208 c209"
         >
           <div
-            class="c209"
+            class="c210"
           >
             <strong
-              class="c210"
+              class="c211"
             >
               This site uses cookies to store information on your computer.
             </strong>
@@ -7054,13 +7076,13 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
             Some of these cookies are essential, while others help us to improve your experience by providing insights into how the site is being used.
           </div>
           <div
-            class="c9 c211"
+            class="c9 c212"
           >
             <div
-              class="c212 c40"
+              class="c213 c41"
             >
               <button
-                class="c213"
+                class="c214"
                 data-testid="cookie-banner-reject"
                 type="button"
               >
@@ -7104,7 +7126,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                 class="c6 yellow-shadow"
               />
               <button
-                class="c214 c19 internal-button"
+                class="c215 c19 internal-button"
                 data-testid="cookie-banner-accept"
               >
                 <div

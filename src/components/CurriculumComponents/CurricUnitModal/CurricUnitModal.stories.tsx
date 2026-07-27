@@ -1,4 +1,3 @@
-import { OakThemeProvider, oakDefaultTheme } from "@oaknational/oak-components";
 import { Meta, StoryObj } from "@storybook/nextjs";
 import { ComponentProps } from "react";
 
@@ -22,10 +21,6 @@ export const CurricUnitModal: Story = {
     filters: createFilter({}),
   },
   render: function Render(args: ComponentProps<typeof Component>) {
-    return (
-      <OakThemeProvider theme={oakDefaultTheme}>
-        <Component {...args} />
-      </OakThemeProvider>
-    );
+    return <Component {...args} />;
   },
 };
