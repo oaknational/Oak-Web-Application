@@ -1,9 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/nextjs";
-import {
-  OakThemeProvider,
-  OakUL,
-  oakDefaultTheme,
-} from "@oaknational/oak-components";
+import { OakUL } from "@oaknational/oak-components";
 
 import { PupilLessonIntroAdditionalFileItem } from "./PupilLessonIntroAdditionalFileItem";
 
@@ -11,11 +7,9 @@ const meta = {
   component: PupilLessonIntroAdditionalFileItem,
   decorators: [
     (StoryComponent) => (
-      <OakThemeProvider theme={oakDefaultTheme}>
-        <OakUL $reset>
-          <StoryComponent />
-        </OakUL>
-      </OakThemeProvider>
+      <OakUL $reset>
+        <StoryComponent />
+      </OakUL>
     ),
   ],
 } satisfies Meta<typeof PupilLessonIntroAdditionalFileItem>;

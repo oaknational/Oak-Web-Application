@@ -28,7 +28,7 @@ exports[`OaksImpactCaseStudies renders correctly when 2 case studies are provide
               >
                 <a
                   class="sc-aXZVg sc-gEvEer sc-eyvILC eyLmQc dXoawi cstkxg"
-                  href="#/case-studies/case-study-1"
+                  href="/about-us/oaks-impact/case-studies/case-study-1"
                 >
                   <span
                     class="sc-aXZVg kvjdhA sc-bpUBKd gXHgWu"
@@ -95,7 +95,7 @@ exports[`OaksImpactCaseStudies renders correctly when 2 case studies are provide
               >
                 <a
                   class="sc-aXZVg sc-gEvEer sc-eyvILC eyLmQc dXoawi cstkxg"
-                  href="#/case-studies/case-study-2"
+                  href="/about-us/oaks-impact/case-studies/case-study-2"
                 >
                   <span
                     class="sc-aXZVg kvjdhA sc-bpUBKd gXHgWu"
@@ -190,7 +190,7 @@ exports[`OaksImpactCaseStudies renders correctly when 3 case studies are provide
               >
                 <a
                   class="sc-aXZVg sc-gEvEer sc-eyvILC eyLmQc dXoawi cstkxg"
-                  href="#/case-studies/case-study-1"
+                  href="/about-us/oaks-impact/case-studies/case-study-1"
                 >
                   <span
                     class="sc-aXZVg kvjdhA sc-bpUBKd gXHgWu"
@@ -257,7 +257,7 @@ exports[`OaksImpactCaseStudies renders correctly when 3 case studies are provide
               >
                 <a
                   class="sc-aXZVg sc-gEvEer sc-eyvILC eyLmQc dXoawi cstkxg"
-                  href="#/case-studies/case-study-2"
+                  href="/about-us/oaks-impact/case-studies/case-study-2"
                 >
                   <span
                     class="sc-aXZVg kvjdhA sc-bpUBKd gXHgWu"
@@ -324,7 +324,7 @@ exports[`OaksImpactCaseStudies renders correctly when 3 case studies are provide
               >
                 <a
                   class="sc-aXZVg sc-gEvEer sc-eyvILC eyLmQc dXoawi cstkxg"
-                  href="#/case-studies/case-study-3"
+                  href="/about-us/oaks-impact/case-studies/case-study-3"
                 >
                   <span
                     class="sc-aXZVg kvjdhA sc-bpUBKd gXHgWu"

@@ -5,8 +5,6 @@ import {
   OakHeading,
   OakJauntyAngleLabel,
   OakP,
-  oakDefaultTheme,
-  OakThemeProvider,
 } from "@oaknational/oak-components";
 import { useState } from "react";
 
@@ -44,11 +42,9 @@ const meta: Meta<typeof Component> = {
   },
   decorators: [
     (Story) => (
-      <OakThemeProvider theme={oakDefaultTheme}>
-        <OakBox $pa="spacing-24">
-          <Story />
-        </OakBox>
-      </OakThemeProvider>
+      <OakBox $pa="spacing-24">
+        <Story />
+      </OakBox>
     ),
   ],
 };
@@ -85,12 +81,58 @@ function ValidationDemo() {
   const [isValid, setIsValid] = useState(true);
 
   return (
-    <OakThemeProvider theme={oakDefaultTheme}>
-      <OakFlex $flexDirection="column" $gap="spacing-24">
+    <OakFlex $flexDirection="column" $gap="spacing-24">
+      <OakFlex $position="relative" $flexDirection="column">
+        <OakJauntyAngleLabel
+          as="label"
+          htmlFor="validated-input"
+          label="Number of lessons"
+          $font="heading-7"
+          $background="bg-decorative5-main"
+          $color="text-primary"
+          $zIndex="in-front"
+          $position="absolute"
+          $top={"-20px"}
+          $left={"5px"}
+          $borderRadius="border-radius-square"
+        />
+        <Component
+          id="validated-input"
+          value={value}
+          onChange={setValue}
+          min={5}
+          max={35}
+          step={1}
+          onValidationChange={setIsValid}
+        />
+      </OakFlex>
+      <OakBox $pa="spacing-16">
+        <OakP $font="body-2">
+          Validation status: {isValid ? "✓ Valid" : "✗ Invalid"}
+        </OakP>
+        <OakP $font="body-3" $color="text-subdued">
+          Try entering a value outside the range (5-35) to see error feedback
+        </OakP>
+      </OakBox>
+    </OakFlex>
+  );
+}
+
+function MultipleInputsDemo() {
+  const [autumn, setAutumn] = useState(30);
+  const [spring, setSpring] = useState(30);
+  const [summer, setSummer] = useState(30);
+
+  return (
+    <OakFlex $flexDirection="column" $gap="spacing-48">
+      <OakFlex $flexDirection="column" $gap="spacing-32">
+        <OakHeading id="autumn-heading" tag="h3" $font="heading-3">
+          Autumn
+        </OakHeading>
         <OakFlex $position="relative" $flexDirection="column">
           <OakJauntyAngleLabel
             as="label"
-            htmlFor="validated-input"
+            htmlFor="autumn-lessons"
             label="Number of lessons"
             $font="heading-7"
             $background="bg-decorative5-main"
@@ -102,127 +144,77 @@ function ValidationDemo() {
             $borderRadius="border-radius-square"
           />
           <Component
-            id="validated-input"
-            value={value}
-            onChange={setValue}
+            id="autumn-lessons"
+            value={autumn}
+            onChange={setAutumn}
+            ariaDescribedBy="autumn-heading"
             min={5}
             max={35}
             step={1}
-            onValidationChange={setIsValid}
           />
         </OakFlex>
-        <OakBox $pa="spacing-16">
-          <OakP $font="body-2">
-            Validation status: {isValid ? "✓ Valid" : "✗ Invalid"}
-          </OakP>
-          <OakP $font="body-3" $color="text-subdued">
-            Try entering a value outside the range (5-35) to see error feedback
-          </OakP>
-        </OakBox>
       </OakFlex>
-    </OakThemeProvider>
-  );
-}
 
-function MultipleInputsDemo() {
-  const [autumn, setAutumn] = useState(30);
-  const [spring, setSpring] = useState(30);
-  const [summer, setSummer] = useState(30);
-
-  return (
-    <OakThemeProvider theme={oakDefaultTheme}>
-      <OakFlex $flexDirection="column" $gap="spacing-48">
-        <OakFlex $flexDirection="column" $gap="spacing-32">
-          <OakHeading id="autumn-heading" tag="h3" $font="heading-3">
-            Autumn
-          </OakHeading>
-          <OakFlex $position="relative" $flexDirection="column">
-            <OakJauntyAngleLabel
-              as="label"
-              htmlFor="autumn-lessons"
-              label="Number of lessons"
-              $font="heading-7"
-              $background="bg-decorative5-main"
-              $color="text-primary"
-              $zIndex="in-front"
-              $position="absolute"
-              $top={"-20px"}
-              $left={"5px"}
-              $borderRadius="border-radius-square"
-            />
-            <Component
-              id="autumn-lessons"
-              value={autumn}
-              onChange={setAutumn}
-              ariaDescribedBy="autumn-heading"
-              min={5}
-              max={35}
-              step={1}
-            />
-          </OakFlex>
-        </OakFlex>
-
-        <OakFlex $flexDirection="column" $gap="spacing-32">
-          <OakHeading id="spring-heading" tag="h3" $font="heading-3">
-            Spring
-          </OakHeading>
-          <OakFlex $position="relative" $flexDirection="column">
-            <OakJauntyAngleLabel
-              as="label"
-              htmlFor="spring-lessons"
-              label="Number of lessons"
-              $font="heading-7"
-              $background="bg-decorative5-main"
-              $color="text-primary"
-              $zIndex="in-front"
-              $position="absolute"
-              $top={"-20px"}
-              $left={"5px"}
-              $borderRadius="border-radius-square"
-            />
-            <Component
-              id="spring-lessons"
-              value={spring}
-              onChange={setSpring}
-              ariaDescribedBy="spring-heading"
-              min={5}
-              max={35}
-              step={1}
-            />
-          </OakFlex>
-        </OakFlex>
-
-        <OakFlex $flexDirection="column" $gap="spacing-32">
-          <OakHeading id="summer-heading" tag="h3" $font="heading-3">
-            Summer
-          </OakHeading>
-          <OakFlex $position="relative" $flexDirection="column">
-            <OakJauntyAngleLabel
-              as="label"
-              htmlFor="summer-lessons"
-              label="Number of lessons"
-              $font="heading-7"
-              $background="bg-decorative5-main"
-              $color="text-primary"
-              $zIndex="in-front"
-              $position="absolute"
-              $top={"-20px"}
-              $left={"5px"}
-              $borderRadius="border-radius-square"
-            />
-            <Component
-              id="summer-lessons"
-              value={summer}
-              onChange={setSummer}
-              ariaDescribedBy="summer-heading"
-              min={5}
-              max={35}
-              step={1}
-            />
-          </OakFlex>
+      <OakFlex $flexDirection="column" $gap="spacing-32">
+        <OakHeading id="spring-heading" tag="h3" $font="heading-3">
+          Spring
+        </OakHeading>
+        <OakFlex $position="relative" $flexDirection="column">
+          <OakJauntyAngleLabel
+            as="label"
+            htmlFor="spring-lessons"
+            label="Number of lessons"
+            $font="heading-7"
+            $background="bg-decorative5-main"
+            $color="text-primary"
+            $zIndex="in-front"
+            $position="absolute"
+            $top={"-20px"}
+            $left={"5px"}
+            $borderRadius="border-radius-square"
+          />
+          <Component
+            id="spring-lessons"
+            value={spring}
+            onChange={setSpring}
+            ariaDescribedBy="spring-heading"
+            min={5}
+            max={35}
+            step={1}
+          />
         </OakFlex>
       </OakFlex>
-    </OakThemeProvider>
+
+      <OakFlex $flexDirection="column" $gap="spacing-32">
+        <OakHeading id="summer-heading" tag="h3" $font="heading-3">
+          Summer
+        </OakHeading>
+        <OakFlex $position="relative" $flexDirection="column">
+          <OakJauntyAngleLabel
+            as="label"
+            htmlFor="summer-lessons"
+            label="Number of lessons"
+            $font="heading-7"
+            $background="bg-decorative5-main"
+            $color="text-primary"
+            $zIndex="in-front"
+            $position="absolute"
+            $top={"-20px"}
+            $left={"5px"}
+            $borderRadius="border-radius-square"
+          />
+          <Component
+            id="summer-lessons"
+            value={summer}
+            onChange={setSummer}
+            ariaDescribedBy="summer-heading"
+            min={5}
+            max={35}
+            step={1}
+          />
+        </OakFlex>
+      </OakFlex>
+    </OakFlex>
   );
 }
 
@@ -280,14 +272,12 @@ export const WithDescription: Story = {
     ariaDescribedBy: "term-heading",
   },
   render: (args) => (
-    <OakThemeProvider theme={oakDefaultTheme}>
-      <OakFlex $flexDirection="column" $gap="spacing-32">
-        <OakHeading id="term-heading" tag="h3" $font="heading-3">
-          Autumn Term
-        </OakHeading>
-        <InteractiveWrapper {...args} />
-      </OakFlex>
-    </OakThemeProvider>
+    <OakFlex $flexDirection="column" $gap="spacing-32">
+      <OakHeading id="term-heading" tag="h3" $font="heading-3">
+        Autumn Term
+      </OakHeading>
+      <InteractiveWrapper {...args} />
+    </OakFlex>
   ),
 };
 

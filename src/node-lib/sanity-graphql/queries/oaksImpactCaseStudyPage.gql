@@ -1,0 +1,20 @@
+query oaksImpactCaseStudyPage($slug: String, $isDraftFilter: Sanity_DocumentFilter) {
+  allCaseStudy(
+    where: {
+      _: $isDraftFilter,
+      slug: { current: { eq: $slug } }
+    }
+    sort: { _updatedAt: DESC }
+  ) {
+    slug {
+      current
+    },
+    image {
+      ...ImageWithAltText
+    },
+    textRaw,
+    video {
+      ...Video
+    }
+  }
+}

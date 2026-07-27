@@ -1,9 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/nextjs";
-import {
-  OakBox,
-  OakThemeProvider,
-  oakDefaultTheme,
-} from "@oaknational/oak-components";
+import { OakBox } from "@oaknational/oak-components";
 
 import { QuizOrderQuestion } from "./QuizOrderQuestion";
 
@@ -44,11 +40,9 @@ const meta = {
   decorators: [
     (Story) => (
       <MathJaxProvider>
-        <OakThemeProvider theme={oakDefaultTheme}>
-          <OakBox $background="bg-decorative1-very-subdued" $pa="spacing-16">
-            <Story />
-          </OakBox>
-        </OakThemeProvider>
+        <OakBox $background="bg-decorative1-very-subdued" $pa="spacing-16">
+          <Story />
+        </OakBox>
       </MathJaxProvider>
     ),
   ],
