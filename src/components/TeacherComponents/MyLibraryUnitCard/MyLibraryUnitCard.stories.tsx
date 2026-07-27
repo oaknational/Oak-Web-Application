@@ -1,6 +1,5 @@
 import React from "react";
 import { Meta, StoryObj } from "@storybook/nextjs";
-import { oakDefaultTheme, OakThemeProvider } from "@oaknational/oak-components";
 
 import MyLibraryUnitCard from "./MyLibraryUnitCard";
 
@@ -70,17 +69,9 @@ export default meta;
 type Story = StoryObj<typeof MyLibraryUnitCard>;
 
 export const CompleteUnit: Story = {
-  render: () => (
-    <OakThemeProvider theme={oakDefaultTheme}>
-      <MyLibraryUnitCard lessons={completeUnitLessons} {...unit} />
-    </OakThemeProvider>
-  ),
+  render: () => <MyLibraryUnitCard lessons={completeUnitLessons} {...unit} />,
 };
 
 export const IncompleteUnit: Story = {
-  render: () => (
-    <OakThemeProvider theme={oakDefaultTheme}>
-      <MyLibraryUnitCard lessons={incompleteUnitLessons} {...unit} />
-    </OakThemeProvider>
-  ),
+  render: () => <MyLibraryUnitCard lessons={incompleteUnitLessons} {...unit} />,
 };

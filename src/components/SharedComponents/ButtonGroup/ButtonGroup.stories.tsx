@@ -1,22 +1,11 @@
 import React from "react";
-import {
-  OakTertiaryButton,
-  OakThemeProvider,
-  oakDefaultTheme,
-} from "@oaknational/oak-components";
+import { OakTertiaryButton } from "@oaknational/oak-components";
 import { StoryFn, Meta } from "@storybook/nextjs";
 
 import Component from "./ButtonGroup";
 
 export default {
   component: Component,
-  decorators: [
-    (Story) => (
-      <OakThemeProvider theme={oakDefaultTheme}>
-        <Story />
-      </OakThemeProvider>
-    ),
-  ],
 } as Meta<typeof Component>;
 
 const Template: StoryFn<typeof Component> = (args) => (

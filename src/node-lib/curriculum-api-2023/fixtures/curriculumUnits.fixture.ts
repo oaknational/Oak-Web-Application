@@ -17,7 +17,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 10,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks3",
+      keystage_slug: "ks3" as const,
       lessons: [
         {
           slug: "what-forces-do",
@@ -115,7 +115,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 8,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks3",
+      keystage_slug: "ks3" as const,
       lessons: [
         {
           slug: "interdependence-within-ecosystems",
@@ -204,7 +204,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 4,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks3",
+      keystage_slug: "ks3" as const,
       lessons: [
         {
           slug: "plant-nutrition",
@@ -274,7 +274,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 9,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "cells",
@@ -357,7 +357,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 9,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "cells",
@@ -440,7 +440,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 18,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "atomic-structure-very-small-electron-mass",
@@ -527,7 +527,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 18,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "atomic-structure-very-small-electron-mass",
@@ -614,7 +614,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 15,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "calculating-density",
@@ -716,7 +716,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 15,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "calculating-density",
@@ -818,7 +818,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 8,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "defences-of-the-human-body-against-pathogens-and-the-human-immune-system",
@@ -883,7 +883,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 8,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "defences-of-the-human-body-against-pathogens",
@@ -952,7 +952,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 15,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "earths-resources",
@@ -1076,7 +1076,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 15,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "earths-resources",
@@ -1190,7 +1190,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 8,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "defences-of-the-human-body-against-pathogens-and-the-human-immune-system",
@@ -1250,7 +1250,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 8,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "defences-of-the-human-body-against-pathogens",
@@ -1314,7 +1314,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 19,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "resultant-forces",
@@ -1413,7 +1413,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 19,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "resultant-forces-in-two-dimensions",
@@ -1524,7 +1524,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 7,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks3",
+      keystage_slug: "ks3" as const,
       lessons: [
         {
           slug: "solid-and-liquid-states",
@@ -1608,7 +1608,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 10,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks3",
+      keystage_slug: "ks3" as const,
       lessons: [
         {
           slug: "characteristics-of-chemical-reactions",
@@ -1707,7 +1707,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 10,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks3",
+      keystage_slug: "ks3" as const,
       lessons: [
         {
           slug: "composite-materials",
@@ -1806,7 +1806,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 11,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "the-genome",
@@ -1869,7 +1869,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 11,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "the-genome",
@@ -1953,7 +1953,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 20,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "why-chemical-reactions-happen",
@@ -2092,7 +2092,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 20,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "why-chemical-reactions-happen",
@@ -2241,7 +2241,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 9,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "cells",
@@ -2325,7 +2325,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 9,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "cells",
@@ -2409,7 +2409,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 42,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "different-speeds-vs-t",
@@ -2517,7 +2517,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 42,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "different-speeds-vs-t",
@@ -2620,7 +2620,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 5,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "aerobic-cellular-respiration-in-humans-and-other-organisms",
@@ -2680,7 +2680,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 5,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "properties-of-group-0-elements",
@@ -2753,7 +2753,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 5,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "properties-of-group-0-elements",
@@ -2821,7 +2821,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 14,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "the-rate-of-a-chemical-reaction",
@@ -2940,7 +2940,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 20,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "background-radiation",
@@ -3053,7 +3053,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 20,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "background-radiation",
@@ -3167,7 +3167,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 6,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks3",
+      keystage_slug: "ks3" as const,
       lessons: [
         {
           slug: "the-common-processes-of-all-living-organisms",
@@ -3252,7 +3252,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 10,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks3",
+      keystage_slug: "ks3" as const,
       lessons: [
         {
           slug: "calculating-speed",
@@ -3352,7 +3352,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 10,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks3",
+      keystage_slug: "ks3" as const,
       lessons: [
         {
           slug: "gravitational-force-and-weight",
@@ -3452,7 +3452,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 14,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "diseases",
@@ -3536,7 +3536,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 7,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "the-particle-model",
@@ -3619,7 +3619,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 7,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "the-particle-model",
@@ -3697,7 +3697,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 15,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "calculating-density",
@@ -3795,7 +3795,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 15,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "calculating-density",
@@ -3893,7 +3893,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 15,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "rules-for-electric-charge",
@@ -3986,7 +3986,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 15,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "rules-for-electric-charge",
@@ -4079,7 +4079,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 9,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "trophic-levels-and-pyramids-of-biomass",
@@ -4162,7 +4162,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 9,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "trophic-levels-and-pyramids-of-biomass",
@@ -4252,7 +4252,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 11,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "earths-atmosphere-approximate-values",
@@ -4346,7 +4346,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 5,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "aerobic-cellular-respiration-in-humans-and-other-organisms",
@@ -4405,7 +4405,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 15,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "magnetic-fields-2",
@@ -4482,7 +4482,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 15,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "the-motor-effect",
@@ -4570,7 +4570,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 10,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks3",
+      keystage_slug: "ks3" as const,
       lessons: [
         {
           slug: "the-spinning-earth",
@@ -4669,7 +4669,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 4,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks3",
+      keystage_slug: "ks3" as const,
       lessons: [
         {
           slug: "classification-and-species",
@@ -4740,7 +4740,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 8,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks3",
+      keystage_slug: "ks3" as const,
       lessons: [
         {
           slug: "fossils-show-that-species-change-over-time",
@@ -4830,7 +4830,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 9,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "biological-molecules",
@@ -4917,7 +4917,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 20,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "separating-mixtures-including-formulations",
@@ -5055,7 +5055,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 11,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "the-genome",
@@ -5113,7 +5113,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 11,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "the-genome",
@@ -5171,7 +5171,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 13,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "transverse-waves",
@@ -5274,7 +5274,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 13,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "transverse-waves",
@@ -5368,7 +5368,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 12,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "a-model-of-diffusion-through-a-selectively-permeable-cell-membrane",
@@ -5454,7 +5454,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 15,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "transition-metals",
@@ -5577,7 +5577,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 15,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "transition-metals",
@@ -5696,7 +5696,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 19,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "resultant-forces-in-two-dimensions",
@@ -5780,7 +5780,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 19,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "resultant-forces",
@@ -5863,7 +5863,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 20,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "reflection-of-light",
@@ -5987,7 +5987,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 20,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "reflection-of-light",
@@ -6117,7 +6117,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 11,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks3",
+      keystage_slug: "ks3" as const,
       lessons: [
         {
           slug: "pure-substances",
@@ -6223,7 +6223,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 5,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks3",
+      keystage_slug: "ks3" as const,
       lessons: [
         {
           slug: "reproduction-and-variation",
@@ -6298,7 +6298,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 10,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks3",
+      keystage_slug: "ks3" as const,
       lessons: [
         {
           slug: "physical-weathering-and-erosion",
@@ -6399,7 +6399,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 8,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "the-human-circulatory-system",
@@ -6485,7 +6485,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 18,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "three-types-of-chemical-reaction",
@@ -6603,7 +6603,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 18,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "three-types-of-chemical-reaction",
@@ -6671,7 +6671,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 7,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "the-particle-model",
@@ -6754,7 +6754,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 7,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "the-particle-model",
@@ -6832,7 +6832,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 42,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "work-done-calculations-w-equals-f-s",
@@ -6922,7 +6922,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 42,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "work-done-w-equals-f-s",
@@ -7011,7 +7011,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 6,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "hormones",
@@ -7080,7 +7080,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 6,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "hormones",
@@ -7137,7 +7137,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 7,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "chemical-tests-cations",
@@ -7219,7 +7219,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 7,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "chemical-tests-cations",
@@ -7296,7 +7296,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 9,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "deforestation-and-habitat-destruction",
@@ -7354,7 +7354,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 9,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "deforestation-and-habitat-destruction",
@@ -7412,7 +7412,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 15,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "danger-from-electric-shock",
@@ -7520,7 +7520,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 15,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "danger-from-electric-shock",
@@ -7618,7 +7618,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 9,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks3",
+      keystage_slug: "ks3" as const,
       lessons: [
         {
           slug: "food-chains",
@@ -7713,7 +7713,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 10,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks3",
+      keystage_slug: "ks3" as const,
       lessons: [
         {
           slug: "inside-rock",
@@ -7813,7 +7813,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 10,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks3",
+      keystage_slug: "ks3" as const,
       lessons: [
         {
           slug: "water-waves",
@@ -7913,7 +7913,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 10,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "the-human-nervous-system",
@@ -7998,7 +7998,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 10,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "the-human-nervous-system",
@@ -8082,7 +8082,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 23,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "describing-salts",
@@ -8212,7 +8212,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 23,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "describing-salts",
@@ -8373,7 +8373,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 14,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "diseases",
@@ -8458,7 +8458,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 14,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "thermal-conduction-in-metals-and-non-metals",
@@ -8563,7 +8563,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 14,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "thermal-conduction-in-metals-and-non-metals",
@@ -8666,7 +8666,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 6,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "plant-hormones",
@@ -8741,7 +8741,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 6,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "plant-hormones",
@@ -8809,7 +8809,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 10,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "alkenes",
@@ -8891,7 +8891,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 10,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "alkenes",
@@ -8984,7 +8984,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 15,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "earths-resources",
@@ -9108,7 +9108,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 15,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "earths-resources",
@@ -9221,7 +9221,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 10,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "gravity-in-the-solar-system",
@@ -9299,7 +9299,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 10,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "gravity-in-the-solar-system",
@@ -9377,7 +9377,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 10,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks3",
+      keystage_slug: "ks3" as const,
       lessons: [
         {
           slug: "sound-vibrations",
@@ -9476,7 +9476,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 10,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks3",
+      keystage_slug: "ks3" as const,
       lessons: [
         {
           slug: "static-electricity",
@@ -9575,7 +9575,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 9,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks3",
+      keystage_slug: "ks3" as const,
       lessons: [
         {
           slug: "differences-between-infectious-and-non-infectious-disease",
@@ -9670,7 +9670,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 6,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "the-human-endocrine-system",
@@ -9737,7 +9737,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 6,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "the-human-endocrine-system",
@@ -9803,7 +9803,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 10,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "bonding-to-carbon-atoms",
@@ -9901,7 +9901,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 10,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "bonding-to-carbon-atoms",
@@ -9999,7 +9999,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 14,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "measuring-the-resistance-of-a-filament-bulb-practical",
@@ -10102,7 +10102,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 14,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "measuring-the-resistance-of-a-filament-bulb-practical",
@@ -10206,7 +10206,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 13,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "the-effect-of-sugar-concentration-on-mass-of-plant-tissue-plan",
@@ -10299,7 +10299,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 13,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "the-effect-of-sugar-concentration-on-mass-of-plant-tissue-plan",
@@ -10383,7 +10383,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 14,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "principles-of-electrolysis",
@@ -10497,7 +10497,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 14,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "principles-of-electrolysis",
@@ -10603,7 +10603,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 12,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "a-model-of-diffusion-through-a-selectively-permeable-cell-membrane",
@@ -10690,7 +10690,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 7,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks3",
+      keystage_slug: "ks3" as const,
       lessons: [
         {
           slug: "heredity",
@@ -10774,7 +10774,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 8,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks3",
+      keystage_slug: "ks3" as const,
       lessons: [
         {
           slug: "reproduction-and-inheritance",
@@ -10863,7 +10863,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 7,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks3",
+      keystage_slug: "ks3" as const,
       lessons: [
         {
           slug: "groups-of-elements-in-the-periodic-table",
@@ -10954,7 +10954,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 6,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "producers-consumers-and-photosynthesis",
@@ -11021,7 +11021,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 6,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "producers-consumers-and-photosynthesis",
@@ -11085,7 +11085,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 6,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "energy-changes-in-reactions",
@@ -11163,7 +11163,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 6,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "energy-changes-in-reactions",
@@ -11236,7 +11236,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 9,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "biological-molecules",
@@ -11323,7 +11323,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 13,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "the-inputs-and-outputs-of-photosynthesis-including-the-role-of-chlorophyll",
@@ -11418,7 +11418,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 13,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "the-inputs-and-outputs-of-photosynthesis",
@@ -11508,7 +11508,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 20,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "background-radiation",
@@ -11617,7 +11617,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 20,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "background-radiation",
@@ -11726,7 +11726,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 7,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks3",
+      keystage_slug: "ks3" as const,
       lessons: [
         {
           slug: "separating-an-insoluble-solid-from-a-liquid",
@@ -11810,7 +11810,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 10,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks3",
+      keystage_slug: "ks3" as const,
       lessons: [
         {
           slug: "exothermic-and-endothermic-chemical-reactions",
@@ -11909,7 +11909,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 10,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks3",
+      keystage_slug: "ks3" as const,
       lessons: [
         {
           slug: "electrical-resistance",
@@ -12008,7 +12008,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 8,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "dna-chromosomes-and-genes",
@@ -12091,7 +12091,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 8,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "dna-chromosomes-and-genes",
@@ -12174,7 +12174,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 14,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "the-rate-of-a-chemical-reaction",
@@ -12293,7 +12293,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 20,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "why-chemical-reactions-happen",
@@ -12432,7 +12432,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 20,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "why-chemical-reactions-happen",
@@ -12576,7 +12576,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 7,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "antibiotics",
@@ -12640,7 +12640,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 7,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "antibiotics",
@@ -12703,7 +12703,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 6,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "hormones",
@@ -12772,7 +12772,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 6,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "hormones",
@@ -12830,7 +12830,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 4,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks3",
+      keystage_slug: "ks3" as const,
       lessons: [
         {
           slug: "the-human-skeleton",
@@ -12900,7 +12900,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 10,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks3",
+      keystage_slug: "ks3" as const,
       lessons: [
         {
           slug: "making-colour",
@@ -12999,7 +12999,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 8,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks3",
+      keystage_slug: "ks3" as const,
       lessons: [
         {
           slug: "flower-structure",
@@ -13088,7 +13088,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 7,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "growth-in-multicellular-organisms",
@@ -13156,7 +13156,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 7,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "growth-in-multicellular-organisms",
@@ -13225,7 +13225,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 8,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "the-human-circulatory-system",
@@ -13312,7 +13312,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 8,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "genetic-variation",
@@ -13398,7 +13398,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 8,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "genetic-variation",
@@ -13483,7 +13483,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 5,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "properties-of-group-0-elements",
@@ -13556,7 +13556,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 5,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "properties-of-group-0-elements",
@@ -13626,7 +13626,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 10,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks3",
+      keystage_slug: "ks3" as const,
       lessons: [
         {
           slug: "measuring-temperature",
@@ -13725,7 +13725,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 9,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks3",
+      keystage_slug: "ks3" as const,
       lessons: [
         {
           slug: "good-and-ill-health",
@@ -13819,7 +13819,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 6,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "specialised-cells-in-multicellular-organisms",
@@ -13893,7 +13893,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 15,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "rules-for-electric-charge",
@@ -13981,7 +13981,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 15,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "rules-for-electric-charge",
@@ -14070,7 +14070,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 5,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "classifying-organisms-as-eukaryotic-or-prokaryotic",
@@ -14135,7 +14135,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 5,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "classifying-organisms-as-eukaryotic-or-prokaryotic",
@@ -14202,7 +14202,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 13,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "the-effect-of-sugar-concentration-on-mass-of-plant-tissue-plan",
@@ -14271,7 +14271,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 4,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks3",
+      keystage_slug: "ks3" as const,
       lessons: [
         {
           slug: "diffusion-moving-particles",
@@ -14342,7 +14342,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 10,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks3",
+      keystage_slug: "ks3" as const,
       lessons: [
         {
           slug: "identifying-acids",
@@ -14443,7 +14443,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 8,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "the-fossil-record-provides-evidence-for-evolution",
@@ -14530,7 +14530,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 8,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "the-fossil-record-provides-evidence-for-evolution",
@@ -14616,7 +14616,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 10,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "the-human-nervous-system",
@@ -14689,7 +14689,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 6,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "genetic-testing-for-healthcare",
@@ -14757,7 +14757,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 6,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "genetic-testing-for-healthcare",
@@ -14825,7 +14825,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 15,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "magnetic-fields-2",
@@ -14902,7 +14902,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 15,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "the-motor-effect",
@@ -14980,7 +14980,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 5,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks3",
+      keystage_slug: "ks3" as const,
       lessons: [
         {
           slug: "the-parts-of-the-human-digestive-system",
@@ -15055,7 +15055,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 10,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks3",
+      keystage_slug: "ks3" as const,
       lessons: [
         {
           slug: "magnetic-poles",
@@ -15155,7 +15155,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 10,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "components-of-an-ecosystem",
@@ -15251,7 +15251,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 10,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "components-of-an-ecosystem",
@@ -15346,7 +15346,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 20,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "separating-mixtures-including-formulations",
@@ -15484,7 +15484,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 13,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "the-inputs-and-outputs-of-photosynthesis-including-the-role-of-chlorophyll",
@@ -15579,7 +15579,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 13,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "the-inputs-and-outputs-of-photosynthesis",
@@ -15669,7 +15669,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 10,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks3",
+      keystage_slug: "ks3" as const,
       lessons: [
         {
           slug: "atoms-and-elements",
@@ -15768,7 +15768,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 8,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks3",
+      keystage_slug: "ks3" as const,
       lessons: [
         {
           slug: "breathing-respiration-and-gas-exchange",
@@ -15860,7 +15860,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 6,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "the-human-endocrine-system",
@@ -15927,7 +15927,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 6,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "the-human-endocrine-system",
@@ -15993,7 +15993,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 11,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "earths-atmosphere-approximate-values",
@@ -16087,7 +16087,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 13,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "transverse-waves",
@@ -16190,7 +16190,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 13,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "transverse-waves",
@@ -16283,7 +16283,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 7,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "antibiotics",
@@ -16341,7 +16341,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 7,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "antibiotics",
@@ -16401,7 +16401,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 6,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "producers-consumers-and-photosynthesis",
@@ -16468,7 +16468,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 6,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "producers-consumers-and-photosynthesis",
@@ -16532,7 +16532,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 20,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "reflection-of-light",
@@ -16636,7 +16636,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 20,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "reflection-of-light",
@@ -16745,7 +16745,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 18,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "three-types-of-chemical-reaction",
@@ -16858,7 +16858,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 18,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "three-types-of-chemical-reaction",
@@ -16927,7 +16927,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 8,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "genetic-variation",
@@ -17007,7 +17007,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 8,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "genetic-variation",
@@ -17086,7 +17086,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 8,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "dna-chromosomes-and-genes",
@@ -17164,7 +17164,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 8,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "dna-chromosomes-and-genes",
@@ -17241,7 +17241,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 15,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "introduction-to-reversible-chemical-reactions",
@@ -17308,7 +17308,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 15,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "introduction-to-reversible-chemical-reactions",
@@ -17381,7 +17381,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 42,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "work-done-w-equals-f-s",
@@ -17470,7 +17470,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 42,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "work-done-calculations-w-equals-f-s",
@@ -17560,7 +17560,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 5,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "classifying-organisms-as-eukaryotic-or-prokaryotic",
@@ -17626,7 +17626,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 5,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "classifying-organisms-as-eukaryotic-or-prokaryotic",
@@ -17691,7 +17691,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 7,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "growth-in-multicellular-organisms",
@@ -17759,7 +17759,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 7,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "growth-in-multicellular-organisms",
@@ -17826,7 +17826,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 15,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "danger-from-electric-shock",
@@ -17923,7 +17923,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 15,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "danger-from-electric-shock",
@@ -18022,7 +18022,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 23,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "describing-salts",
@@ -18142,7 +18142,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 23,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "describing-salts",
@@ -18281,7 +18281,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 6,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "genetic-testing-for-healthcare",
@@ -18349,7 +18349,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 6,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "genetic-testing-for-healthcare",
@@ -18418,7 +18418,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 6,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "specialised-cells-in-multicellular-organisms",
@@ -18491,7 +18491,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 14,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "principles-of-electrolysis",
@@ -18595,7 +18595,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 14,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "principles-of-electrolysis",
@@ -18691,7 +18691,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 14,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "thermal-conduction-in-metals-and-non-metals",
@@ -18795,7 +18795,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 14,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "thermal-conduction-in-metals-and-non-metals",
@@ -18901,7 +18901,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 8,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "the-fossil-record-provides-evidence-for-evolution",
@@ -18982,7 +18982,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 8,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "the-fossil-record-provides-evidence-for-evolution",
@@ -19061,7 +19061,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 10,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "bonding-to-carbon-atoms",
@@ -19149,7 +19149,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 10,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "bonding-to-carbon-atoms",
@@ -19238,7 +19238,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 10,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "components-of-an-ecosystem",
@@ -19324,7 +19324,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 10,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "components-of-an-ecosystem",
@@ -19409,7 +19409,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 14,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "measuring-the-resistance-of-a-filament-bulb-practical",
@@ -19512,7 +19512,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 14,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "measuring-the-resistance-of-a-filament-bulb-practical",
@@ -19615,7 +19615,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 6,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "energy-changes-in-reactions",
@@ -19688,7 +19688,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 6,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "energy-changes-in-reactions",

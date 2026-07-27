@@ -1,17 +1,24 @@
 import React from "react";
-import { ThemeProvider } from "styled-components";
+import { createGlobalStyle, ThemeProvider } from "styled-components";
 import { RouterContext } from "next/dist/shared/lib/router-context.shared-runtime";
 import { fn, sb } from "storybook/test";
 import { Lexend } from "next/font/google";
+import { withThemeFromJSXProvider } from "@storybook/addon-themes";
+import { OakGlobalStyle, parseColor } from "@oaknational/oak-components";
 
 import "../src/browser-lib/oak-globals/oakGlobals";
-import useOakTheme, { THEME_NAMES } from "../src/hooks/useOakTheme";
 import GlobalStyle from "../src/styles/GlobalStyle";
 import SpriteSheet from "../src/components/SharedComponents/SpriteSheet";
 import InlineSpriteSheet from "../src/components/GenericPagesComponents/InlineSpriteSheet";
+import theme from "../src/styles/theme";
 
 import "./jest-mock";
-import { oakDefaultTheme, OakThemeProvider } from "@oaknational/oak-components";
+import {
+  oakDarkTheme,
+  oakDefaultTheme,
+  OakThemeProvider,
+} from "@oaknational/oak-components";
+import { Decorator, ReactRenderer } from "@storybook/nextjs";
 
 const lexend = Lexend({
   subsets: ["latin"],
@@ -32,7 +39,6 @@ export const parameters = {
       date: /Date$/,
     },
   },
-
   options: {
     storySort: {
       method: "alphabetical",
@@ -62,38 +68,47 @@ export const parameters = {
   },
 };
 
-const WithThemeProvider = (Story, context) => {
-  const { theme } = useOakTheme({ overrideTheme: context.globals.theme });
+export const OakThemeStyle = createGlobalStyle<{ theme: string }>`
+  body, .docs-story, .sbdocs-preview {
+    background-color: ${({ theme }) => {
+      return parseColor(theme === "dark" ? "black" : "white");
+    }}
+  }
+`;
+
+const globalDecorator: Decorator = (Story, context) => {
   return (
-    <OakThemeProvider theme={oakDefaultTheme}>
-      <ThemeProvider theme={theme}>
+    <ThemeProvider theme={{ ...theme }}>
+      <OakThemeProvider
+        theme={
+          context.globals.theme === "default" ? oakDefaultTheme : oakDarkTheme
+        }
+      >
         <GlobalStyle fontFamily={lexend.style.fontFamily} />
+        <OakThemeStyle theme={context.globals.theme} />
         <div className={lexend.variable}>
           <Story {...context} />
         </div>
         <SpriteSheet />
         <InlineSpriteSheet />
-      </ThemeProvider>
-    </OakThemeProvider>
+      </OakThemeProvider>
+    </ThemeProvider>
   );
 };
-export const decorators = [WithThemeProvider];
-
-export const globalTypes = {
-  // This will show in UI but not change theme until hook is updated and can take a theme string
-  theme: {
-    name: "Theme",
-    description: "Global theme for components",
-    defaultValue: "default",
-    toolbar: {
-      icon: "circlehollow",
-      // Array of plain string values or MenuItem shape (see below)
-      items: THEME_NAMES,
-      // Property that specifies if the name of the item will be displayed
-      showName: true,
+export const decorators = [
+  withThemeFromJSXProvider<ReactRenderer>({
+    themes: {
+      default: oakDefaultTheme,
+      dark: oakDarkTheme,
     },
-  },
-};
+    defaultTheme: "default",
+    Provider: ThemeProvider,
+    GlobalStyles: OakGlobalStyle,
+  }),
+  globalDecorator,
+];
+
+export const globalTypes = {};
 export const tags = ["autodocs", "autodocs", "autodocs"];
 
 // spy on useUnitDownloadExistence check in stories so the return value can be mocked

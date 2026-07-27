@@ -1,4 +1,3 @@
-import { OakThemeProvider, oakDefaultTheme } from "@oaknational/oak-components";
 import { Meta, StoryObj } from "@storybook/nextjs";
 
 import { Category } from "./CategoryFilterListItem";
@@ -45,14 +44,7 @@ const CategoryFilterListWithHooks = () => {
 };
 
 const meta: Meta<typeof Component> = {
-  decorators: [
-    AnalyticsDecorator,
-    (Story) => (
-      <OakThemeProvider theme={oakDefaultTheme}>
-        <Story />
-      </OakThemeProvider>
-    ),
-  ],
+  decorators: [AnalyticsDecorator],
   component: Component,
 };
 

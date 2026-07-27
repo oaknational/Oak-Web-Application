@@ -1,10 +1,5 @@
 import { Meta, StoryObj } from "@storybook/nextjs";
-import {
-  OakFlex,
-  OakHeading,
-  OakThemeProvider,
-  oakDefaultTheme,
-} from "@oaknational/oak-components";
+import { OakFlex, OakHeading } from "@oaknational/oak-components";
 import { ClerkProvider, SignIn, SignOutButton } from "@clerk/nextjs";
 
 import LoginRequiredButton from "./LoginRequiredButton";
@@ -91,26 +86,24 @@ type Story = StoryObj<typeof LoginRequiredButton>;
 export const Default: Story = {
   render: (args) => (
     <ClerkProvider>
-      <OakThemeProvider theme={oakDefaultTheme}>
-        <OakFlex $flexDirection="column" $gap="spacing-24">
-          <OakFlex
-            $background="bg-decorative1-main"
-            $justifyContent="center"
-            $alignItems="center"
-            $borderRadius="border-radius-s"
-            $pa="spacing-24"
-          >
-            <LoginRequiredButton {...args} />
-          </OakFlex>
-          <OakHeading tag="h1" $font="heading-light-7">
-            Sign in / out via OWA to test the states on this button (or use the
-            clerk components below, you may need to refresh and won't be able to
-            onboard a new user)
-          </OakHeading>
-          <SignOutButton>Quick sign out</SignOutButton>
-          <SignIn routing="hash" />
+      <OakFlex $flexDirection="column" $gap="spacing-24">
+        <OakFlex
+          $background="bg-decorative1-main"
+          $justifyContent="center"
+          $alignItems="center"
+          $borderRadius="border-radius-s"
+          $pa="spacing-24"
+        >
+          <LoginRequiredButton {...args} />
         </OakFlex>
-      </OakThemeProvider>
+        <OakHeading tag="h1" $font="heading-light-7">
+          Sign in / out via OWA to test the states on this button (or use the
+          clerk components below, you may need to refresh and won't be able to
+          onboard a new user)
+        </OakHeading>
+        <SignOutButton>Quick sign out</SignOutButton>
+        <SignIn routing="hash" />
+      </OakFlex>
     </ClerkProvider>
   ),
 };

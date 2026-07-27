@@ -175,7 +175,7 @@ export type MyLibraryUnitCardProps = Omit<
 > & {
   programmeSlug: string;
   keyStageSlug: string;
-  keyStageTitle: KeyStageTitleValueType | undefined;
+  keyStageTitle: KeyStageTitleValueType;
   subjectTitle: string;
   subjectSlug: string;
   trackUnitAccessed: () => void;

@@ -1,18 +1,11 @@
 import type { Meta, StoryObj } from "@storybook/nextjs";
-import { OakThemeProvider, oakDefaultTheme } from "@oaknational/oak-components";
 
 import { QuizResultShortAnswer } from "./QuizResultShortAnswer";
 
 const meta = {
   title: "Components/PupilComponents/QuizQuestions/QuizResultShortAnswer",
   component: QuizResultShortAnswer,
-  decorators: [
-    (Story) => (
-      <OakThemeProvider theme={oakDefaultTheme}>
-        <Story />
-      </OakThemeProvider>
-    ),
-  ],
+  decorators: [(Story) => <Story />],
   parameters: {
     controls: {
       include: [],
