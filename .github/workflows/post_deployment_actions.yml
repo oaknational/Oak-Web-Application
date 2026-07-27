@@ -89,7 +89,7 @@ jobs:
           cache: "pnpm"
 
       # Install.
-      - run: pnpm install --verbose
+      - run: pnpm install --ignore-scripts --verbose
 
       - name: Log out URL
         run: echo "${{ github.event.deployment_status.environment_url }}"
@@ -138,7 +138,7 @@ jobs:
           node-version: 24
           cache: "pnpm"
 
-      - run: pnpm install --verbose
+      - run: pnpm install --ignore-scripts --verbose
 
       - name: Log out URL
         run: echo "${{ github.event.deployment_status.environment_url }}"
@@ -197,7 +197,7 @@ jobs:
           node-version: 24
           cache: "pnpm"
 
-      - run: pnpm install --verbose
+      - run: pnpm install --ignore-scripts --verbose
 
       - name: Log out URL
         run: echo "${{ github.event.deployment_status.environment_url }}"

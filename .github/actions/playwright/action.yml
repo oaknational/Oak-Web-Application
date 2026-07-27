@@ -19,6 +19,8 @@ runs:
   steps:
     - name: Install Playwright browser binaries
       shell: bash
+      env:
+        npm_config_ignore_scripts: "true"
       run: pnpm exec playwright install --with-deps chromium
 
     - name: Run Playwright tests
