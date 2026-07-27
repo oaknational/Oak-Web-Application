@@ -7,9 +7,9 @@ test("teacher can click download all resources on lesson page", async ({
     .locator('[data-testid="download-all-button"]:visible')
     .first();
 
-  await downloadAllButton.click({ timeout: 20_000 });
+  await downloadAllButton.click();
 
-  await lessonPage.waitForURL(/\/downloads/, { timeout: 20_000 });
+  await expect(lessonPage).toHaveURL(/\/downloads/);
 });
 
 test("teacher can complete download flow and download lesson assets", async ({
