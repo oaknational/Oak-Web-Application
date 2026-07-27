@@ -14,7 +14,7 @@ export function ClerkProviderWithRedirects({
       const pathname = window.location.pathname;
       const searchParams = window.location.search;
       if (pathname) {
-        const isAuthRequiredPath = pathname.match(authRequiredPathnameRegex);
+        const isAuthRequiredPath = authRequiredPathnameRegex.exec(pathname);
         if (isAuthRequiredPath) {
           return "/";
         }
