@@ -3,28 +3,24 @@ import { ClerkProvider } from "@clerk/nextjs";
 import { useMemo } from "react";
 
 // Pathnames for pages that are gated behind login
-const authRequiredPathnameRegex = /teachers\/my-library/;
+const AUTH_REQUIRED_PATH_PREFIXES = ["/teachers/my-library"];
 
 export function ClerkProviderWithRedirects({
   children,
   fontFamily,
 }: Readonly<{ children: React.ReactNode; fontFamily: string }>) {
   const signOutUrl = useMemo(() => {
-    if (typeof window !== "undefined") {
-      const pathname = window.location.pathname;
-      const searchParams = window.location.search;
-      if (pathname) {
-        const isAuthRequiredPath = authRequiredPathnameRegex.exec(pathname);
-        if (isAuthRequiredPath) {
-          return "/";
-        }
-        let currentPath = pathname;
-        if (searchParams) {
-          currentPath += searchParams;
-        }
-        return currentPath;
-      }
+    if (typeof window === "undefined") {
+      return "/";
     }
+
+    const { pathname, search } = window.location;
+
+    if (AUTH_REQUIRED_PATH_PREFIXES.some((prefix) => pathname.startsWith(prefix))) {
+      return "/";
+    }
+
+    return `${pathname}${search}`;
   }, []);
 
   return (
