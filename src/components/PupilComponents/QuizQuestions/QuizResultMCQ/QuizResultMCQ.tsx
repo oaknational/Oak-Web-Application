@@ -11,7 +11,7 @@ import {
   isImage,
   isText,
 } from "@/components/PupilComponents/QuizUtils/stemUtils";
-import { MathJaxWrap } from "@/browser-lib/mathjax/MathJaxWrap";
+import { MathJaxWrapInitial } from "@/browser-lib/mathjax/MathJaxWrapInitial";
 
 export type QuizResultMCQProps = {
   answers: MCAnswer[];
@@ -42,7 +42,7 @@ export const QuizResultMCQ = ({
     const standardText = isText(text) && text?.text ? text.text : undefined;
 
     return (
-      <MathJaxWrap key={`max-jax-wrap-${index}`}>
+      <MathJaxWrapInitial key={`max-jax-wrap-${index}`}>
         <OakQuizResultItem
           key={index}
           standardText={standardText}
@@ -50,7 +50,7 @@ export const QuizResultMCQ = ({
           imageAlt={"Image for option " + (index + 1)}
           feedbackState={feedbackState}
         />
-      </MathJaxWrap>
+      </MathJaxWrapInitial>
     );
   });
 

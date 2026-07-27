@@ -3,7 +3,7 @@ import { OakCodeRenderer, OakSpan } from "@oaknational/oak-components";
 import { isString } from "lodash";
 
 import { QuestionState } from "@/components/PupilComponents/QuizUtils/questionTypes";
-import { MathJaxWrap } from "@/browser-lib/mathjax/MathJaxWrap";
+import { MathJaxWrapInitial } from "@/browser-lib/mathjax/MathJaxWrapInitial";
 
 type Props = {
   questionState?: QuestionState;
@@ -47,9 +47,9 @@ export const QuizCorrectAnswers = ({ questionState }: Props) => {
       {answers.map((answer, index) => (
         <Fragment key={`${answer}-${index}`}>
           {index > 0 && <OakSpan>, </OakSpan>}
-          <MathJaxWrap inline>
+          <MathJaxWrapInitial inline>
             <OakCodeRenderer string={answer} $font="code-3" />
-          </MathJaxWrap>
+          </MathJaxWrapInitial>
         </Fragment>
       ))}
     </OakSpan>

@@ -17,7 +17,7 @@ import {
   isImage,
   isText,
 } from "@/components/PupilComponents/QuizUtils/stemUtils";
-import { MathJaxWrap } from "@/browser-lib/mathjax/MathJaxWrap";
+import { MathJaxWrapInitial } from "@/browser-lib/mathjax/MathJaxWrapInitial";
 import { QuizQuestion } from "@/node-lib/curriculum-api-2023/queries/pupilLesson/pupilLesson.schema";
 
 type Props = {
@@ -104,7 +104,7 @@ export const QuizSingleQuestion = ({
               value={`${questionData.questionUid}: ${index}`}
               label={
                 <CodeRenderWrapper>
-                  <MathJaxWrap>{label?.text}</MathJaxWrap>
+                  <MathJaxWrapInitial>{label?.text}</MathJaxWrapInitial>
                 </CodeRenderWrapper>
               }
               feedback={

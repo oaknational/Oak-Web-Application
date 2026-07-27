@@ -13,7 +13,7 @@ import {
 import { isMatchAnswer } from "@/components/PupilComponents/QuizUtils/answerTypeDiscriminators";
 import { getStemTextData } from "@/components/PupilComponents/QuizUtils/stemUtils";
 import { invariant } from "@/utils/invariant";
-import { MathJaxWrap } from "@/browser-lib/mathjax/MathJaxWrap";
+import { MathJaxWrapInitial } from "@/browser-lib/mathjax/MathJaxWrapInitial";
 import { QuizQuestion } from "@/node-lib/curriculum-api-2023/queries/pupilLesson/pupilLesson.schema";
 import {
   QuestionFeedbackType,
@@ -64,7 +64,9 @@ export const QuizMatchQuestion = ({
     () =>
       Object.keys(answers).map((key, index) => ({
         id: index.toString(),
-        label: <MathJaxWrap key={`match-${key}`}>{key}</MathJaxWrap>,
+        label: (
+          <MathJaxWrapInitial key={`match-${key}`}>{key}</MathJaxWrapInitial>
+        ),
         announcement: key,
       })),
     [answers],
@@ -74,7 +76,11 @@ export const QuizMatchQuestion = ({
     () =>
       Object.entries(answers).map(([matchKey, value], index) => ({
         id: index.toString(),
-        label: <MathJaxWrap key={`choice-${matchKey}`}>{value}</MathJaxWrap>,
+        label: (
+          <MathJaxWrapInitial key={`choice-${matchKey}`}>
+            {value}
+          </MathJaxWrapInitial>
+        ),
         announcement: value,
       })),
     [answers],

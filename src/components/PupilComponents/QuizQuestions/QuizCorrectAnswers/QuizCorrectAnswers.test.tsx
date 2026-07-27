@@ -7,8 +7,8 @@ import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 import { QuestionState } from "@/components/PupilComponents/QuizUtils/questionTypes";
 import { imageObject } from "@/node-lib/curriculum-api-2023/fixtures/quizElements.new.fixture";
 
-jest.mock("@/browser-lib/mathjax/MathJaxWrap", () => ({
-  MathJaxWrap: ({ children }: { children: ReactNode }) => (
+jest.mock("@/browser-lib/mathjax/MathJaxWrapInitial", () => ({
+  MathJaxWrapInitial: ({ children }: { children: ReactNode }) => (
     <span data-testid="mathjax-wrap">{children}</span>
   ),
 }));
