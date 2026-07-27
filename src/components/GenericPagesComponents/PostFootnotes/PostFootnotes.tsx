@@ -8,6 +8,7 @@ import type {
 import {
   OakBox,
   OakLI,
+  OakLink,
   OakOL,
   OakSpan,
   parseColor,
@@ -123,7 +124,7 @@ export const PostFootnotesSection: FC<PostFootnotesSectionProps> = ({
           return (
             <OakLI id={footnoteCitationAnchor(markKey)} key={markKey}>
               {source ? (
-                <FootnoteLink href={source}>{label}</FootnoteLink>
+                <OakLink href={source}>{label}</OakLink>
               ) : (
                 <StyledLabel>{label}</StyledLabel>
               )}{" "}
