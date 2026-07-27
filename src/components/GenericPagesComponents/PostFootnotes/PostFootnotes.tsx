@@ -11,7 +11,6 @@ import {
   OakLink,
   OakOL,
   OakSpan,
-  parseColor,
 } from "@oaknational/oak-components";
 
 import AnchorTarget from "@/components/SharedComponents/AnchorTarget";
@@ -93,17 +92,6 @@ type PostFootnotesSectionProps = {
   footnotes: Footnote[];
 };
 
-/**
- * Using a styled link instead of OakLink here as we don't want
- * any of the OakLink functionality, and OakLink appears to mangle
- * in-page anchor links by prepending the whole path to the href
- */
-const FootnoteLink = styled.a`
-  display: inline;
-  text-decoration: underline;
-  color: ${parseColor("text-link-active")};
-`;
-
 const StyledLabel = styled.span`
   word-wrap: break-word;
   max-width: 100%;
@@ -128,13 +116,13 @@ export const PostFootnotesSection: FC<PostFootnotesSectionProps> = ({
               ) : (
                 <StyledLabel>{label}</StyledLabel>
               )}{" "}
-              <FootnoteLink
+              <OakLink
                 href={`#${footnoteBackLinkAnchor(markKey)}`}
                 aria-label={`Back to reference ${index}`}
                 role="doc-backlink"
               >
                 ↩
-              </FootnoteLink>
+              </OakLink>
             </OakLI>
           );
         })}
