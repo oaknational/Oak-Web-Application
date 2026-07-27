@@ -11,9 +11,11 @@ import {
 import {
   AnalyticsUseCaseValueType,
   ComponentType,
+  ComponentTypeValueType,
   DownloadResourceButtonNameValueType,
   EngagementIntent,
   EventVersionValueType,
+  KeyStageTitleValueType,
   PlatformValueType,
   ProductValueType,
 } from "@/browser-lib/avo/Avo";
@@ -21,7 +23,7 @@ import errorReporter from "@/common-lib/error-reporter";
 import OakError from "@/errors/OakError";
 
 export type TeacherBrowseAnalyticsStore = {
-  programmeState: ProgrammeState;
+  programmeState: ProgrammeState | null;
   journeyId: string | null;
   avo: TrackFns;
   track: {
@@ -29,6 +31,23 @@ export type TeacherBrowseAnalyticsStore = {
       downloadResourceButtonName: DownloadResourceButtonNameValueType,
     ) => void;
     unitDownloadInitiated: () => void;
+    contentSaved: (props: {
+      componentType: ComponentTypeValueType;
+      keyStageTitle: KeyStageTitleValueType;
+      keyStageSlug: string;
+      subjectTitle: string;
+      subjectSlug: string;
+      contentItemSlug: string;
+    }) => void;
+    contentUnsaved: (props: {
+      componentType: ComponentTypeValueType;
+      keyStageTitle: KeyStageTitleValueType;
+      keyStageSlug: string;
+      subjectTitle: string;
+      subjectSlug: string;
+      contentItemSlug: string;
+    }) => void;
+    newsletterSignUpCompleted: () => void;
   };
 };
 
@@ -60,13 +79,13 @@ export const createTeacherBrowseAnalyticsStore = (
       ) => {
         const { avo, programmeState } = get();
 
-        if (programmeState.browseLevel !== "lesson") {
+        if (programmeState?.browseLevel !== "lesson") {
           reportError(
             new OakError({
               code: "analytics/teacher-browse",
               meta: {
                 event: "lessonResourceDownloadStarted",
-                browseLevel: programmeState.browseLevel,
+                browseLevel: programmeState?.browseLevel,
                 downloadResourceButtonName,
               },
             }),
@@ -90,13 +109,16 @@ export const createTeacherBrowseAnalyticsStore = (
         const { avo, programmeState } = get();
 
         // Can be tracked from the unit overview page or the lesson download success page
-        if (programmeState.browseLevel === "programme") {
+        if (
+          programmeState?.browseLevel !== "unit" &&
+          programmeState?.browseLevel !== "lesson"
+        ) {
           reportError(
             new OakError({
               code: "analytics/teacher-browse",
               meta: {
                 event: "unitDownloadInitiated",
-                browseLevel: programmeState.browseLevel,
+                browseLevel: programmeState?.browseLevel,
               },
             }),
           );
@@ -111,6 +133,55 @@ export const createTeacherBrowseAnalyticsStore = (
           ...coreProperties,
           ...analyticsProperties,
         });
+      },
+      contentSaved: ({
+        componentType,
+        keyStageTitle,
+        keyStageSlug,
+        subjectTitle,
+        subjectSlug,
+        contentItemSlug,
+      }) => {
+        const { avo } = get();
+
+        avo.contentSaved({
+          engagementIntent: EngagementIntent.USE,
+          componentType,
+          keyStageTitle,
+          keyStageSlug,
+          subjectTitle,
+          subjectSlug,
+          contentType: "unit",
+          contentItemSlug,
+          ...coreProperties,
+        });
+      },
+      contentUnsaved: ({
+        componentType,
+        keyStageTitle,
+        keyStageSlug,
+        subjectTitle,
+        subjectSlug,
+        contentItemSlug,
+      }) => {
+        const { avo } = get();
+
+        avo.contentUnsaved({
+          engagementIntent: EngagementIntent.USE,
+          componentType,
+          keyStageTitle,
+          keyStageSlug,
+          subjectTitle,
+          subjectSlug,
+          contentType: "unit",
+          contentItemSlug,
+          ...coreProperties,
+        });
+      },
+      newsletterSignUpCompleted: () => {
+        const { avo } = get();
+
+        avo.newsletterSignUpCompleted();
       },
     },
   }));

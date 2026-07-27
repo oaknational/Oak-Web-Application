@@ -16,6 +16,7 @@ import {
   TeacherSchoolManualEntryDetails,
   UserAccountVerificationStatusValueType,
   UserRoleTypeValueType,
+  ComponentTypeValueType,
 } from "@/browser-lib/avo/Avo";
 import { ResourceFormValues } from "@/components/TeacherComponents/types/downloadAndShare.types";
 import { VideoTrackingGetState } from "@/components/SharedComponents/VideoPlayer/useVideoTracking";
@@ -230,8 +231,22 @@ export type TeacherBrowseTrackFns = {
   }) => void;
 
   // MY LIBRARY
-  contentSaved: () => void; // likely want to create two fns to wrap this for unit and lesson
-  contentUnsaved: () => void;
+  contentSaved: (props: {
+    componentType: ComponentTypeValueType;
+    keyStageTitle: KeyStageTitleValueType;
+    keyStageSlug: string;
+    subjectTitle: string;
+    subjectSlug: string;
+    contentItemSlug: string;
+  }) => void;
+  contentUnsaved: (props: {
+    componentType: ComponentTypeValueType;
+    keyStageTitle: KeyStageTitleValueType;
+    keyStageSlug: string;
+    subjectTitle: string;
+    subjectSlug: string;
+    contentItemSlug: string;
+  }) => void;
 
   // MISC
   newsletterSignUpCompleted: () => void;
