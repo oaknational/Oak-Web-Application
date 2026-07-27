@@ -16,7 +16,9 @@ export function ClerkProviderWithRedirects({
 
     const { pathname, search } = window.location;
 
-    if (AUTH_REQUIRED_PATH_PREFIXES.some((prefix) => pathname.startsWith(prefix))) {
+    if (
+      AUTH_REQUIRED_PATH_PREFIXES.some((prefix) => pathname.startsWith(prefix))
+    ) {
       return "/";
     }
 
