@@ -198,7 +198,11 @@ export const oaksImpactPageSchema = z.object({
 
 export type OaksImpactPage = z.infer<typeof oaksImpactPageSchema>;
 
-export const oaksImpactCaseStudyPageSchema = caseStudySchema;
+export const oaksImpactCaseStudyPageSchema = z.object({
+  caseStudiesSection: z.object({
+    caseStudies: z.array(caseStudySchema),
+  }),
+});
 
 export type OaksImpactCaseStudyPage = z.infer<
   typeof oaksImpactCaseStudyPageSchema
