@@ -19,14 +19,19 @@ import { useOakNotificationsContext } from "@/context/OakNotifications/useOakNot
 import { postEducatorData } from "@/node-lib/educator-api/helpers/postEducatorData";
 import errorReporter from "@/common-lib/error-reporter";
 import useSaveCountContext from "@/context/SaveCount/useSaveCountContext";
-import useAnalytics from "@/context/Analytics/useAnalytics";
 import { CollectionData } from "@/components/TeacherViews/MyLibrary/MyLibrary";
 import { getTeacherSubjectPhaseSlug } from "@/utils/curriculum/slugs";
+import { useOptionalTeacherBrowseAnalytics } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
 
 const reportError = errorReporter("educatorApi");
 
 export const useMyLibrary = () => {
-  const { track } = useAnalytics();
+  const contentSaved = useOptionalTeacherBrowseAnalytics(
+    (store) => store.track.contentSaved,
+  );
+  const contentUnsaved = useOptionalTeacherBrowseAnalytics(
+    (store) => store.track.contentUnsaved,
+  );
   const { data: savedProgrammeUnits, isLoading } =
     useGetEducatorData<UserlistContentApiResponse>(
       `/api/educator/getSavedContentLists`,
@@ -159,19 +164,13 @@ export const useMyLibrary = () => {
       },
     );
     setIsSavingUnit(null);
-    track.contentSaved({
-      platform: "owa",
-      product: "teacher lesson resources",
-      engagementIntent: "use",
+    contentSaved({
       componentType: "unit_listing_save_button",
-      analyticsUseCase: "Teacher",
       keyStageSlug: trackingData.keyStageSlug,
       keyStageTitle: trackingData.keyStageTitle,
       subjectSlug: trackingData.subjectSlug,
       subjectTitle: trackingData.subjectTitle,
-      contentType: "unit",
       contentItemSlug: unitSlug,
-      eventVersion: "2.0.0",
     });
   };
 
@@ -197,19 +196,13 @@ export const useMyLibrary = () => {
       },
     );
     setIsSavingUnit(null);
-    track.contentUnsaved({
-      platform: "owa",
-      product: "teacher lesson resources",
-      engagementIntent: "use",
+    contentUnsaved({
       componentType: trackingData.savedFrom,
-      analyticsUseCase: "Teacher",
       keyStageSlug: trackingData.keyStageSlug,
       keyStageTitle: trackingData.keyStageTitle,
       subjectSlug: trackingData.subjectSlug,
       subjectTitle: trackingData.subjectTitle,
-      contentType: "unit",
       contentItemSlug: unitSlug,
-      eventVersion: "2.0.0",
     });
   };
 
