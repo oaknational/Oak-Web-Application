@@ -1,5 +1,13 @@
 "use client";
-import { createContext, ReactNode, useContext, useMemo, useState } from "react";
+import {
+  createContext,
+  ReactNode,
+  useContext,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from "react";
 import { useStore } from "zustand";
 
 import useAnalytics from "../Analytics/useAnalytics";
@@ -17,7 +25,7 @@ export const TeacherBrowseAnalyticsStoreContext = createContext<
 >(undefined);
 
 export interface TeacherBrowseAnalyticsStoreProviderProps {
-  programmeState: Pick<TeacherBrowseAnalyticsStore, "programmeState">;
+  programmeState?: Pick<TeacherBrowseAnalyticsStore, "programmeState">;
   children: ReactNode;
 }
 
@@ -30,15 +38,15 @@ export const TeacherBrowseAnalyticsStoreProvider = ({
   const sessionId = useMemo(() => getSessionId(), [getSessionId]);
 
   const journeyId = useMemo(() => {
-    if (!sessionId) {
+    if (!sessionId || !programmeState?.programmeState) {
       return null;
     }
     return `${sessionId}:${programmeState.programmeState.programmeSlug}`;
-  }, [sessionId, programmeState.programmeState.programmeSlug]);
+  }, [sessionId, programmeState?.programmeState]);
 
   const [store] = useState(() =>
     createTeacherBrowseAnalyticsStore({
-      ...programmeState,
+      programmeState: programmeState?.programmeState ?? null,
       avo: track,
       journeyId,
     }),
@@ -64,4 +72,28 @@ export const useTeacherBrowseAnalytics = <T,>(
   }
 
   return useStore(teacherBrowseAnalyticsStoreContext, selector);
+};
+
+export const useOptionalTeacherBrowseAnalytics = <T,>(
+  selector: (store: TeacherBrowseAnalyticsStore) => T,
+): T => {
+  const { track } = useAnalytics();
+  const teacherBrowseAnalyticsStoreContext = useContext(
+    TeacherBrowseAnalyticsStoreContext,
+  );
+  const fallbackStoreRef = useRef<TeacherBrowseAnalyticsStoreApi | null>(null);
+
+  fallbackStoreRef.current ??= createTeacherBrowseAnalyticsStore({
+    programmeState: null,
+    avo: track,
+    journeyId: null,
+  });
+
+  useEffect(() => {
+    fallbackStoreRef.current?.setState({ avo: track });
+  }, [track]);
+
+  const store = teacherBrowseAnalyticsStoreContext ?? fallbackStoreRef.current;
+
+  return useStore(store, selector);
 };

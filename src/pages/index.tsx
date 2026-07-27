@@ -17,6 +17,7 @@ import getPageProps from "@/node-lib/getPageProps";
 import { TopNavProps } from "@/components/AppComponents/TopNav/TopNav";
 import { SubjectPhasePickerData } from "@/components/SharedComponents/SubjectPhasePicker/SubjectPhasePicker";
 import { filterValidCurriculumPhaseOptions } from "@/pages-helpers/curriculum/docx/tab-helpers";
+import { TeacherBrowseAnalyticsStoreProvider } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
 
 export type HomePageProps = BlogPostProps & {
   curriculumPhaseOptions: SubjectPhasePickerData;
@@ -61,12 +62,14 @@ const HomePage: NextPage<HomePageProps> = (props) => {
         curriculumPhaseOptions={curriculumPhaseOptions}
         aria-current="page"
       />
-      <HomePageLowerView
-        campaignPromoBanner={campaignPromoBanner}
-        posts={posts}
-        testimonials={testimonials}
-        introVideo={intro}
-      />
+      <TeacherBrowseAnalyticsStoreProvider>
+        <HomePageLowerView
+          campaignPromoBanner={campaignPromoBanner}
+          posts={posts}
+          testimonials={testimonials}
+          introVideo={intro}
+        />
+      </TeacherBrowseAnalyticsStoreProvider>
     </AppLayout>
   );
 };
