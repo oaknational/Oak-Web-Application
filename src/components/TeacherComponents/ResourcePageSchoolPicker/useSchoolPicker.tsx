@@ -12,10 +12,8 @@ export const fetcher = async (queryUrl: string) => {
   try {
     const res = await fetch(queryUrl);
     if (!res.ok) {
-      if (res.status === 400) {
-        // Don't report bad request errors due to invalid input characters
-        return undefined;
-      } else {
+      if (res.status !== 400) {
+        // Don't report bad request errors due to invalid input characters ie. 400 response
         throw new Error(
           new OakError({
             code: "school-picker/fetch-suggestions",
@@ -43,6 +41,7 @@ export const fetcher = async (queryUrl: string) => {
     }
 
     reportError(oakError);
+    throw oakError;
   }
 };
 
