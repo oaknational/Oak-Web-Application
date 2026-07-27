@@ -5,7 +5,11 @@ import { noopTrackingFns } from "./AnalyticsDecorator";
 import { TeacherBrowseAnalyticsStoreContext } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
 import { getProgrammeStateForLesson } from "@/context/TeacherBrowseAnalytics/utils/getProgrammeState";
 import teachersLessonOverviewFixture from "@/node-lib/curriculum-api-2023/fixtures/teachersLessonOverview.fixture";
-import { NavigatedFrom } from "@/browser-lib/avo/Avo";
+import {
+  ContentSavedProperties,
+  ContentUnsavedProperties,
+  NavigatedFrom,
+} from "@/browser-lib/avo/Avo";
 
 const state = {
   programmeState: getProgrammeStateForLesson(teachersLessonOverviewFixture()),
@@ -15,6 +19,12 @@ const state = {
     lessonResourceDownloadStarted: () =>
       console.log("lessonResourceDownloadStarted fired"),
     unitDownloadInitiated: () => console.log("unitDownloadInitiated fired"),
+    contentSaved: (props: ContentSavedProperties) =>
+      console.log("contentSaved fired", props),
+    contentUnsaved: (props: ContentUnsavedProperties) =>
+      console.log("contentUnsaved fired", props),
+    newsletterSignUpCompleted: () =>
+      console.log("newsletterSignUpCompleted fired"),
   },
 };
 

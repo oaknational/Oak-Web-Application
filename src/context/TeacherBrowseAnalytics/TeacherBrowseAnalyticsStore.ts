@@ -11,11 +11,11 @@ import {
 import {
   AnalyticsUseCaseValueType,
   ComponentType,
-  ComponentTypeValueType,
+  ContentSavedProperties,
+  ContentUnsavedProperties,
   DownloadResourceButtonNameValueType,
   EngagementIntent,
   EventVersionValueType,
-  KeyStageTitleValueType,
   PlatformValueType,
   ProductValueType,
 } from "@/browser-lib/avo/Avo";
@@ -31,22 +31,8 @@ export type TeacherBrowseAnalyticsStore = {
       downloadResourceButtonName: DownloadResourceButtonNameValueType,
     ) => void;
     unitDownloadInitiated: () => void;
-    contentSaved: (props: {
-      componentType: ComponentTypeValueType;
-      keyStageTitle: KeyStageTitleValueType;
-      keyStageSlug: string;
-      subjectTitle: string;
-      subjectSlug: string;
-      contentItemSlug: string;
-    }) => void;
-    contentUnsaved: (props: {
-      componentType: ComponentTypeValueType;
-      keyStageTitle: KeyStageTitleValueType;
-      keyStageSlug: string;
-      subjectTitle: string;
-      subjectSlug: string;
-      contentItemSlug: string;
-    }) => void;
+    contentSaved: (props: ContentSavedProperties) => void;
+    contentUnsaved: (props: ContentUnsavedProperties) => void;
     newsletterSignUpCompleted: () => void;
   };
 };
