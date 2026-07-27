@@ -18,7 +18,7 @@ import { PostListItemProps } from "@/components/SharedComponents/PostListItem";
 import { blogToPostListItem } from "@/components/GenericPagesViews/BlogIndex.view";
 import { SerializedPost } from "@/pages-helpers/home/getBlogPosts";
 import { webinarToPostListItem } from "@/components/GenericPagesViews/WebinarsIndex.view";
-import useAnalytics from "@/context/Analytics/useAnalytics";
+import { useOptionalTeacherBrowseAnalytics } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
 import { Testimonials } from "@/components/GenericPagesComponents/Testimonials";
 import { HomePage } from "@/common-lib/cms-types";
 import CMSVideo from "@/components/SharedComponents/CMSVideo";
@@ -48,9 +48,11 @@ export const HomePageLowerView = (props: HomePageLowerViewProps) => {
   const blogListProps = usePostList({ items: posts, withImage: true });
   const { introVideo } = props;
 
-  const { track } = useAnalytics();
+  const newsletterSignUpCompleted = useOptionalTeacherBrowseAnalytics(
+    (store) => store.track.newsletterSignUpCompleted,
+  );
   const newsletterFormProps = useNewsletterForm({
-    onSubmit: track.newsletterSignUpCompleted,
+    onSubmit: newsletterSignUpCompleted,
   });
 
   const showCampaignBanner = campaignPromoBanner?.media[0];
