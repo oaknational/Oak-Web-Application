@@ -10,18 +10,20 @@ export function ClerkProviderWithRedirects({
   fontFamily,
 }: Readonly<{ children: React.ReactNode; fontFamily: string }>) {
   const signOutUrl = useMemo(() => {
-    const pathname = window.location.pathname;
-    const searchParams = window.location.search;
-    if (pathname) {
-      const isAuthRequiredPath = pathname.match(authRequiredPathnameRegex);
-      if (isAuthRequiredPath) {
-        return "/";
+    if (typeof window !== "undefined") {
+      const pathname = window.location.pathname;
+      const searchParams = window.location.search;
+      if (pathname) {
+        const isAuthRequiredPath = pathname.match(authRequiredPathnameRegex);
+        if (isAuthRequiredPath) {
+          return "/";
+        }
+        let currentPath = pathname;
+        if (searchParams) {
+          currentPath += searchParams;
+        }
+        return currentPath;
       }
-      let currentPath = pathname;
-      if (searchParams) {
-        currentPath += searchParams;
-      }
-      return currentPath;
     }
   }, []);
 
