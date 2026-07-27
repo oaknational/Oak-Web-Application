@@ -1,3 +1,10 @@
+## [1.1140.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.1140.0...v1.1140.1) (2026-07-27)
+
+
+### Bug Fixes
+
+* ensure share with pupils button doesn't show on copyrighted lessons ([100a442](https://github.com/oaknational/Oak-Web-Application/commit/100a442701a615eb154ba686d52a24a64d4260a6))
+
 # [1.1140.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1139.0...v1.1140.0) (2026-07-23)
 
 
