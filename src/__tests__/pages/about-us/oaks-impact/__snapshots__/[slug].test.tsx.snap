@@ -616,7 +616,7 @@ exports[`pages/about-us/oaks-impact/case-studies/[slug].tsx renders title when f
                 class="sc-aXZVg gxLfcM"
               >
                 <div
-                  class="sc-aXZVg sc-tagGq jPvJsJ fNndNZ"
+                  class="sc-aXZVg sc-tagGq jPvJsJ eSQvfu"
                 >
                   <div
                     class="sc-aXZVg sc-gEvEer sc-esYiGF jPvJsJ iDBIXi iPMjoE"
@@ -706,7 +706,7 @@ exports[`pages/about-us/oaks-impact/case-studies/[slug].tsx renders title when f
                     </nav>
                   </div>
                   <div
-                    class="sc-aXZVg sc-gEvEer sc-esYiGF jPvJsJ iDBIXi kAxxYH"
+                    class="sc-aXZVg sc-gEvEer sc-esYiGF jPvJsJ iDBIXi jua-DQf"
                   >
                     <div
                       class="sc-aXZVg sc-gEvEer xdoGL gSlSXH"
@@ -721,7 +721,7 @@ exports[`pages/about-us/oaks-impact/case-studies/[slug].tsx renders title when f
                         </label>
                       </div>
                       <h1
-                        class="sc-eldPxv dncfxI"
+                        class="sc-eldPxv cTFVAh"
                       >
                         Test Video
                       </h1>
@@ -729,7 +729,7 @@ exports[`pages/about-us/oaks-impact/case-studies/[slug].tsx renders title when f
                         class="sc-aXZVg sc-gEvEer jPvJsJ feoULz"
                       >
                         <div
-                          class="sc-aXZVg sc-gEvEer jPvJsJ fXHtRp"
+                          class="sc-aXZVg sc-gEvEer jEgKDG fXHtRp"
                         >
                           14 July 2026
                         </div>
@@ -767,9 +767,30 @@ exports[`pages/about-us/oaks-impact/case-studies/[slug].tsx renders title when f
             </div>
           </div>
           <div
-            class="sc-aXZVg jzNfKb"
+            class="sc-aXZVg bZTQLO"
           >
-            TODO: Content
+            <div
+              class="sc-aXZVg sc-tagGq jPvJsJ eSQvfu"
+            >
+              <div
+                class="sc-aXZVg sc-gEvEer sc-esYiGF jPvJsJ iDBIXi iOEKvA"
+              >
+                <div
+                  class="sc-aXZVg jzNfKb"
+                >
+                  TODO: Menu
+                </div>
+              </div>
+              <div
+                class="sc-aXZVg sc-gEvEer sc-esYiGF jPvJsJ iDBIXi declXx"
+              >
+                <div
+                  class="sc-aXZVg jzNfKb"
+                >
+                  TODO: Main
+                </div>
+              </div>
+            </div>
           </div>
           <div
             class="sc-aXZVg kNKvOG"
@@ -780,11 +801,19 @@ exports[`pages/about-us/oaks-impact/case-studies/[slug].tsx renders title when f
               <div
                 class="sc-aXZVg sc-gEvEer bkFrQJ daEtut"
               >
-                <h2
-                  class="sc-eldPxv dGkyUI"
+                <div
+                  class="sc-aXZVg sc-tagGq jPvJsJ fNndNZ"
                 >
-                  Case studies
-                </h2>
+                  <div
+                    class="sc-aXZVg sc-gEvEer sc-esYiGF jPvJsJ iDBIXi jYNrWW"
+                  >
+                    <h2
+                      class="sc-eldPxv dGkyUI"
+                    >
+                      Case studies
+                    </h2>
+                  </div>
+                </div>
                 <ul
                   class="sc-aXZVg sc-tagGq bMQSvq jFIZYB"
                 >

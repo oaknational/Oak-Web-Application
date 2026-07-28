@@ -64,7 +64,7 @@ const AboutUsOaksImpactCaseStudy: NextPage<
         >
           <NewGutterMaxWidth>
             <OakBox $mt="spacing-40" $mb="spacing-56">
-              <OakGrid>
+              <OakGrid $cg="spacing-16">
                 <OakGridArea $rowStart={1} $colSpan={12}>
                   <OakBreadcrumbs
                     breadcrumbs={[
@@ -76,8 +76,8 @@ const AboutUsOaksImpactCaseStudy: NextPage<
                 </OakGridArea>
                 <OakGridArea
                   $rowStart={2}
-                  $colStart={[0, 2, 2]}
-                  $colSpan={[12, 10, 10]}
+                  $colStart={[0, 0, 3]}
+                  $colSpan={[12, 12, 8]}
                 >
                   <OakFlex
                     $pt="spacing-32"
@@ -89,7 +89,10 @@ const AboutUsOaksImpactCaseStudy: NextPage<
                       label="Optional tag"
                       $background="bg-decorative2-main"
                     />
-                    <OakHeading tag="h1" $font="heading-3">
+                    <OakHeading
+                      tag="h1"
+                      $font={["heading-4", "heading-3", "heading-3"]}
+                    >
                       {caseStudy.video.title}
                     </OakHeading>
                     <OakFlex
@@ -97,7 +100,12 @@ const AboutUsOaksImpactCaseStudy: NextPage<
                       $flexGrow={1}
                       $alignSelf="stretch"
                     >
-                      <OakFlex $flexGrow={1}>14 July 2026</OakFlex>
+                      <OakFlex
+                        $flexGrow={1}
+                        $font={["body-2", "body-1", "body-1"]}
+                      >
+                        14 July 2026
+                      </OakFlex>
                       <OakLink
                         element="button"
                         variant="secondary"
@@ -113,9 +121,28 @@ const AboutUsOaksImpactCaseStudy: NextPage<
             </OakBox>
           </NewGutterMaxWidth>
         </OakBox>
-        <OakBox $ba="border-solid-m" $pa="spacing-24" $borderColor="icon-error">
-          TODO: Content
-        </OakBox>
+        <NewGutterMaxWidth>
+          <OakGrid $cg="spacing-16">
+            <OakGridArea $rowStart={1} $colSpan={[12, 3, 2]}>
+              <OakBox
+                $ba="border-solid-m"
+                $pa="spacing-24"
+                $borderColor="icon-error"
+              >
+                TODO: Menu
+              </OakBox>
+            </OakGridArea>
+            <OakGridArea $colStart={[1, 4, 3]} $colSpan={[12, 9, 8]}>
+              <OakBox
+                $ba="border-solid-m"
+                $pa="spacing-24"
+                $borderColor="icon-error"
+              >
+                TODO: Main
+              </OakBox>
+            </OakGridArea>
+          </OakGrid>
+        </NewGutterMaxWidth>
 
         <OaksImpactCaseStudies caseStudies={otherCaseStudies} />
       </OakBox>

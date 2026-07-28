@@ -37,7 +37,7 @@ describe("src/app/providers", () => {
 
   test("initialises posthog with consent-safe defaults on app boot", () => {
     jest.isolateModules(() => {
-      require("./providers");
+      require("@/browser-lib/appProviders/posthogProvider");
     });
 
     expect(init).toHaveBeenCalledWith(
