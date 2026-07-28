@@ -31,8 +31,28 @@ export type TeacherBrowseAnalyticsStore = {
       downloadResourceButtonName: DownloadResourceButtonNameValueType,
     ) => void;
     unitDownloadInitiated: () => void;
-    contentSaved: (props: ContentSavedProperties) => void;
-    contentUnsaved: (props: ContentUnsavedProperties) => void;
+    contentSaved: (
+      props: Pick<
+        ContentSavedProperties,
+        | "componentType"
+        | "keyStageSlug"
+        | "keyStageTitle"
+        | "subjectSlug"
+        | "subjectTitle"
+        | "contentItemSlug"
+      >,
+    ) => void;
+    contentUnsaved: (
+      props: Pick<
+        ContentUnsavedProperties,
+        | "componentType"
+        | "keyStageSlug"
+        | "keyStageTitle"
+        | "subjectSlug"
+        | "subjectTitle"
+        | "contentItemSlug"
+      >,
+    ) => void;
     newsletterSignUpCompleted: () => void;
   };
 };

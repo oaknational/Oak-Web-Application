@@ -171,12 +171,6 @@ export const useMyLibrary = () => {
       subjectSlug: trackingData.subjectSlug,
       subjectTitle: trackingData.subjectTitle,
       contentItemSlug: unitSlug,
-      platform: "owa",
-      product: "media clips",
-      engagementIntent: "use",
-      eventVersion: "2.0.0",
-      analyticsUseCase: "Pupil",
-      contentType: "",
     });
   };
 
@@ -209,12 +203,6 @@ export const useMyLibrary = () => {
       subjectSlug: trackingData.subjectSlug,
       subjectTitle: trackingData.subjectTitle,
       contentItemSlug: unitSlug,
-      platform: "owa",
-      product: "media clips",
-      engagementIntent: "use",
-      eventVersion: "2.0.0",
-      analyticsUseCase: "Pupil",
-      contentType: "",
     });
   };
 
