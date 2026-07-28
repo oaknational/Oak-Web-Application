@@ -711,15 +711,6 @@ exports[`pages/about-us/oaks-impact/case-studies/[slug].tsx renders title when f
                     <div
                       class="sc-aXZVg sc-gEvEer xdoGL gSlSXH"
                     >
-                      <div
-                        class="sc-aXZVg sc-gEvEer leqxDc crYpLM"
-                      >
-                        <label
-                          class="sc-dtBdUo kpGXCl"
-                        >
-                          Optional tag
-                        </label>
-                      </div>
                       <h1
                         class="sc-eldPxv cTFVAh"
                       >

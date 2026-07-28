@@ -2,10 +2,6 @@ import { NextPage, GetServerSideProps, GetStaticPropsResult } from "next";
 import {
   OakBreadcrumbs,
   OakBox,
-  OakHeading,
-  OakTagFunctional,
-  OakFlex,
-  OakLink,
   OakGrid,
   OakGridArea,
 } from "@oaknational/oak-components";
@@ -23,6 +19,8 @@ import { getPosthogIdFromCookie } from "@/node-lib/posthog/getPosthogId";
 import { resolveOakHref } from "@/common-lib/urls";
 import { NewGutterMaxWidth } from "@/components/GenericPagesComponents/NewGutterMaxWidth";
 import { useOakNotificationsContext } from "@/context/OakNotifications/useOakNotificationsContext";
+import { OaksImpactCaseStudyHeader } from "@/components/GenericPagesComponents/OaksImpactCaseStudyHeader";
+import { OaksImpactCaseStudyContent } from "@/components/GenericPagesComponents/OaksImpactCaseStudyContent";
 
 export type AboutUsOaksImpactCaseStudyPageProps = {
   pageData: {
@@ -79,69 +77,18 @@ const AboutUsOaksImpactCaseStudy: NextPage<
                   $colStart={[0, 0, 3]}
                   $colSpan={[12, 12, 8]}
                 >
-                  <OakFlex
-                    $pt="spacing-32"
-                    $gap="spacing-16"
-                    $flexDirection="column"
-                    $alignItems="flex-start"
-                  >
-                    <OakTagFunctional
-                      label="Optional tag"
-                      $background="bg-decorative2-main"
-                    />
-                    <OakHeading
-                      tag="h1"
-                      $font={["heading-4", "heading-3", "heading-3"]}
-                    >
-                      {caseStudy.video.title}
-                    </OakHeading>
-                    <OakFlex
-                      $flexDirection="row"
-                      $flexGrow={1}
-                      $alignSelf="stretch"
-                    >
-                      <OakFlex
-                        $flexGrow={1}
-                        $font={["body-2", "body-1", "body-1"]}
-                      >
-                        14 July 2026
-                      </OakFlex>
-                      <OakLink
-                        element="button"
-                        variant="secondary"
-                        onClick={onCopyLink}
-                        iconName="copy"
-                      >
-                        Copy link
-                      </OakLink>
-                    </OakFlex>
-                  </OakFlex>
+                  <OaksImpactCaseStudyHeader
+                    title={caseStudy.video.title}
+                    publishedDate={"14 July 2026"}
+                    onCopyLink={onCopyLink}
+                  />
                 </OakGridArea>
               </OakGrid>
             </OakBox>
           </NewGutterMaxWidth>
         </OakBox>
         <NewGutterMaxWidth>
-          <OakGrid $cg="spacing-16">
-            <OakGridArea $rowStart={1} $colSpan={[12, 3, 2]}>
-              <OakBox
-                $ba="border-solid-m"
-                $pa="spacing-24"
-                $borderColor="icon-error"
-              >
-                TODO: Menu
-              </OakBox>
-            </OakGridArea>
-            <OakGridArea $colStart={[1, 4, 3]} $colSpan={[12, 9, 8]}>
-              <OakBox
-                $ba="border-solid-m"
-                $pa="spacing-24"
-                $borderColor="icon-error"
-              >
-                TODO: Main
-              </OakBox>
-            </OakGridArea>
-          </OakGrid>
+          <OaksImpactCaseStudyContent />
         </NewGutterMaxWidth>
 
         <OaksImpactCaseStudies caseStudies={otherCaseStudies} />
