@@ -13,7 +13,56 @@ jest.mock("@/browser-lib/avo/Avo", () => ({
 }));
 
 describe("WhoAreWeExplore", () => {
-  it("renders correctly", () => {
+  it("renders correctly with 4 items", () => {
+    const { baseElement, getByRole, getAllByRole } = render(
+      <WhoAreWeExplore
+        title={"TEST_TITLE"}
+        items={[
+          {
+            iconName: "search",
+            title: "ITEM_ONE",
+            href: "#item_one",
+            componentType: "about_oak",
+          },
+          {
+            iconName: "search",
+            title: "ITEM_TWO",
+            href: "#item_two",
+            componentType: "get_involved",
+          },
+          {
+            iconName: "search",
+            title: "ITEM_THREE",
+            href: "#item_three",
+            componentType: "meet_the_team",
+          },
+          {
+            iconName: "search",
+            title: "ITEM_FOUR",
+            href: "#item_four",
+            componentType: "oaks_impact",
+          },
+        ]}
+      />,
+    );
+
+    expect(getByRole("heading")).toHaveTextContent("TEST_TITLE");
+
+    const elements = getAllByRole("link");
+    expect(elements.length).toEqual(4);
+
+    expect(elements[0]).toHaveTextContent("ITEM_ONE");
+    expect(elements[0]).toHaveAttribute("href", "#item_one");
+    expect(elements[1]).toHaveTextContent("ITEM_TWO");
+    expect(elements[1]).toHaveAttribute("href", "#item_two");
+    expect(elements[2]).toHaveTextContent("ITEM_THREE");
+    expect(elements[2]).toHaveAttribute("href", "#item_three");
+    expect(elements[3]).toHaveTextContent("ITEM_FOUR");
+    expect(elements[3]).toHaveAttribute("href", "#item_four");
+    expect(baseElement).toMatchSnapshot();
+  });
+
+  it("renders correctly with 3 items", () => {
     const { baseElement, getByRole, getAllByRole } = render(
       <WhoAreWeExplore
         title={"TEST_TITLE"}

@@ -27,7 +27,7 @@ const HoverableCard = styled(OakFlex)`
   }
 `;
 
-const CustomUlAsGrid = styled.ul`
+const CustomUlAsGrid = styled.ul<{ size: number }>`
   margin: 0;
   padding: 0;
   list-style: none;
@@ -35,7 +35,7 @@ const CustomUlAsGrid = styled.ul`
   row-gap: ${() => parseSpacing("spacing-16")};
   column-gap: ${() => parseSpacing("spacing-16")};
   grid-auto-rows: 1fr;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: ${({ size }) => `repeat(${size === 3 ? 3 : 2}, 1fr)`};
 
   @media (max-width: 800px) {
     grid-template-columns: repeat(1, 1fr);
@@ -90,7 +90,7 @@ export function WhoAreWeExplore({
             {title}
           </OakHeading>
           <nav aria-labelledby={headingId}>
-            <CustomUlAsGrid>
+            <CustomUlAsGrid size={items.length}>
               {items.map(({ title, iconName, href, componentType }) => {
                 return (
                   <OakFocusIndicator

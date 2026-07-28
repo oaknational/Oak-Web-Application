@@ -2455,7 +2455,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
   -webkit-column-gap: 1rem;
   column-gap: 1rem;
   grid-auto-rows: 1fr;
-  grid-template-columns: repeat(3,1fr);
+  grid-template-columns: repeat(2,1fr);
 }
 
 .c150 {
@@ -5342,6 +5342,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                   >
                     <ul
                       class="c117"
+                      size="4"
                     >
                       <li
                         class="c118 c119"
