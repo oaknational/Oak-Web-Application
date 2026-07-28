@@ -1,19 +1,20 @@
 import { OakSpan } from "@oaknational/oak-components";
 
-const toAlphanumericOnly = (value: string) => value.replace(/[^a-z0-9]/gi, "");
+// Escape regex metacharacters to avoid errors when using the value to create a regex
+const escapeRegExp = (value: string) =>
+  value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 
 export const formatSchoolName = (
   schoolName: string,
-  inputValue: string | undefined = "",
+  inputValue: string | undefined,
 ) => {
-  const normalizedInput = toAlphanumericOnly(inputValue);
-
-  if (!normalizedInput) {
+  if (!inputValue) {
     return <OakSpan $font={"heading-light-7"}>{schoolName}</OakSpan>;
   }
 
-  const splitRegex = new RegExp(`(${normalizedInput})`, "gi");
-  const exactMatchRegex = new RegExp(`^${normalizedInput}$`, "i");
+  const escapedInput = escapeRegExp(inputValue);
+  const splitRegex = new RegExp(`(${escapedInput})`, "gi");
+  const exactMatchRegex = new RegExp(`^${escapedInput}$`, "i");
   const splitSchoolName = schoolName.split(splitRegex);
 
   return (
