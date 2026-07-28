@@ -88,7 +88,7 @@ jobs:
           node-version: 24
           cache: "pnpm"
 
-      # Install.
+      # Install dependencies without lifecycle scripts (security hardening).
       - run: pnpm install --ignore-scripts --verbose
 
       - name: Log out URL

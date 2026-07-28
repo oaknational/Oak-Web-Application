@@ -20,16 +20,18 @@ test("teacher can complete download flow and download lesson assets", async ({
   // immediately as unauthenticated. The proper long-term fix is to use
   // @clerk/testing with CLERK_SECRET_KEY and CLERK_PUBLISHABLE_KEY configured
   // as GitHub Actions secrets (tracked as a platform request).
-  await lessonPage.route(
-    /clerk\.browser\.js|clerk\.accounts\.dev|\.clerk\.accounts/,
-    async (route) => {
-      await route.fulfill({
-        status: 200,
-        contentType: "application/javascript",
-        body: `(function(){const c={activeSessions:[],sessions:[],signInAttempt:null,signUpAttempt:null};window.Clerk={loaded:true,user:null,session:null,client:c,load:()=>Promise.resolve(),addListener:(fn)=>{setTimeout(()=>fn({user:null,session:null,client:c}),0);return()=>{}},removeListener:()=>{}};})();`,
-      });
-    },
-  );
+  await lessonPage.route(/clerk\.browser\.js/, async (route, request) => {
+    if (request.resourceType() !== "script") {
+      await route.continue();
+      return;
+    }
+
+    await route.fulfill({
+      status: 200,
+      contentType: "application/javascript",
+      body: `(function(){const c={activeSessions:[],sessions:[],signInAttempt:null,signUpAttempt:null};window.Clerk={loaded:true,user:null,session:null,client:c,load:()=>Promise.resolve(),addListener:(fn)=>{setTimeout(()=>fn({user:null,session:null,client:c}),0);return()=>{}},removeListener:()=>{}};})();`,
+    });
+  });
 
   const downloadAllButton = lessonPage
     .locator('[data-testid="download-all-button"]:visible')
