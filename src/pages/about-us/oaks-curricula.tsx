@@ -5,10 +5,10 @@ import {
   OakFlex,
   OakHeading,
   OakIconName,
+  OakP
 } from "@oaknational/oak-components";
 import styled from "styled-components";
 import type { PortableTextBlockComponent } from "@portabletext/react";
-import { OakP } from "@oaknational/oak-components";
 
 import Layout from "@/components/AppComponents/AppLayout";
 import { AboutUsLayout } from "@/components/GenericPagesComponents/AboutUsLayout";
