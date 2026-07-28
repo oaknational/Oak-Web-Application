@@ -5,7 +5,7 @@ import {
   OakFlex,
   OakHeading,
   OakIconName,
-  OakP
+  OakP,
 } from "@oaknational/oak-components";
 import styled from "styled-components";
 import type { PortableTextBlockComponent } from "@portabletext/react";
@@ -92,19 +92,19 @@ export const OaksCurricula: NextPage<OaksCurriculaPageProps> = ({
   const guidingPrinciplesImageAlt =
     pageData.guidingPrinciples.image?.altText ?? "";
 
-  const currentPartnerItems = (pageData.curriculumPartners.current.partners ?? []).map(
-    (partner) => ({
-      imageUrl: getProxiedSanityAssetUrl(partner.logo?.asset?.url) ?? "",
-      alt: partner.logo?.altText ?? "",
-    }),
-  );
+  const currentPartnerItems = (
+    pageData.curriculumPartners.current.partners ?? []
+  ).map((partner) => ({
+    imageUrl: getProxiedSanityAssetUrl(partner.logo?.asset?.url) ?? "",
+    alt: partner.logo?.altText ?? "",
+  }));
 
-  const legacyPartnerItems = (pageData.curriculumPartners.legacy.partners ?? []).map(
-    (partner) => ({
-      imageUrl: getProxiedSanityAssetUrl(partner.logo?.asset?.url) ?? "",
-      alt: partner.logo?.altText ?? "",
-    }),
-  );
+  const legacyPartnerItems = (
+    pageData.curriculumPartners.legacy.partners ?? []
+  ).map((partner) => ({
+    imageUrl: getProxiedSanityAssetUrl(partner.logo?.asset?.url) ?? "",
+    alt: partner.logo?.altText ?? "",
+  }));
 
   return (
     <Layout
