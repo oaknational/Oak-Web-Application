@@ -18,12 +18,9 @@ export const QuizQuestionsMCAnswers = (props: {
 }) => {
   const { answers, questionNumber } = props;
 
-  const containsImages =
-    answers.filter(
-      (choice) =>
-        choice.answer.filter((answerItem) => answerItem.type === "image")
-          .length > 0,
-    ).length > 0;
+  const containsImages = answers.some((choice) =>
+    choice.answer.some((answerItem) => answerItem.type === "image"),
+  );
 
   return (
     <OakFlex
@@ -108,12 +105,13 @@ export const QuizQuestionsMCAnswers = (props: {
                     key={`q-${questionNumber}-answer-element-${j}`}
                     src={answerItem.imageObject}
                     answerIsCorrect={choice.answerIsCorrect && imageAnswer}
-                    alt="An image in a quiz"
+                    alt={answerItem.imageObject.alt}
                   />
                 ) : (
                   <QuizImage
                     key={`q-${questionNumber}-answer-element-${j}`}
                     src={answerItem.imageObject}
+                    alt={answerItem.imageObject.alt}
                   />
                 );
               }

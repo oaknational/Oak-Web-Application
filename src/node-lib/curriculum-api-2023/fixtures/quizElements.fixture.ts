@@ -16,6 +16,7 @@ export const imageObject: StemImageObject["imageObject"] = {
   width: 1280,
   height: 852,
   metadata: { attribution: "test attribution picture" },
+  alt: undefined,
   publicId: "Trees",
   version: 1687374653,
 };

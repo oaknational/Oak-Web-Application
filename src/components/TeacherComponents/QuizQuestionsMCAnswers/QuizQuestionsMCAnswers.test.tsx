@@ -14,7 +14,7 @@ describe("QuizQuestionsMCAnswers", () => {
     );
     const answers = getAllByRole("listitem");
 
-    expect(answers.length).toBe(4);
+    expect(answers).toHaveLength(4);
   });
 
   it("renders the answer text", () => {
@@ -63,6 +63,32 @@ describe("QuizQuestionsMCAnswers", () => {
       <QuizQuestionsMCAnswers answers={mcqImageAnswers} questionNumber={0} />,
     );
 
-    expect(getAllByRole("presentation").length).toBe(3);
+    expect(getAllByRole("presentation")).toHaveLength(3);
+  });
+
+  it("uses image alt text when present on image object", () => {
+    const answersWithAlt: MCAnswer[] = [
+      {
+        answer: [
+          {
+            type: "image",
+            imageObject: {
+              format: "jpg",
+              secureUrl:
+                "https://oaknationalacademy-res.cloudinary.com/image/upload/v1687374653/Trees.jpg",
+              metadata: [],
+              alt: "A tree in a field",
+            },
+          },
+        ],
+        answerIsCorrect: true,
+      },
+    ];
+
+    const { getByAltText } = renderWithTheme(
+      <QuizQuestionsMCAnswers answers={answersWithAlt} questionNumber={0} />,
+    );
+
+    expect(getByAltText("A tree in a field")).toBeInTheDocument();
   });
 });

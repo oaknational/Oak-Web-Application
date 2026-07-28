@@ -68,25 +68,51 @@ export const isStemTextObject = (
   return obj.type === "text";
 };
 
-const stemImageObjectSchema = z.object({
-  imageObject: z.object({
-    format: z.enum(["png", "jpg", "jpeg", "webp", "gif", "svg"]).optional(),
-    secureUrl: z.url(),
-    url: z.url().optional(),
-    height: z.number().optional(),
-    width: z.number().optional(),
-    metadata: z.union([
-      z.array(z.any()),
-      z.object({
-        attribution: z.string().optional(),
-        usageRestriction: z.string().optional(),
-      }),
-    ]),
-    publicId: z.string().optional(),
-    version: z.number().optional(),
-  }),
-  type: z.literal("image"),
-});
+const stemImageObjectSchema = z
+  .object({
+    imageObject: z.object({
+      format: z.enum(["png", "jpg", "jpeg", "webp", "gif", "svg"]).optional(),
+      secureUrl: z.url(),
+      url: z.url().optional(),
+      height: z.number().optional(),
+      width: z.number().optional(),
+      metadata: z.union([
+        z.array(z.any()),
+        z.object({
+          attribution: z.string().optional(),
+          usageRestriction: z.string().optional(),
+          assetDescription: z.string().optional(),
+        }),
+      ]),
+      context: z
+        .object({
+          custom: z
+            .object({
+              alt: z.string().optional(),
+            })
+            .optional(),
+        })
+        .optional(),
+
+      displayName: z.string().optional(),
+      publicId: z.string().optional(),
+      version: z.number().optional(),
+    }),
+    type: z.literal("image"),
+  })
+  // Cloudinary does not return a top-level `alt`, so derive one for consumers.
+  .transform(({ imageObject, ...rest }) => ({
+    ...rest,
+    imageObject: {
+      ...imageObject,
+      alt:
+        imageObject.context?.custom?.alt ??
+        (Array.isArray(imageObject.metadata)
+          ? undefined
+          : imageObject.metadata.assetDescription) ??
+        imageObject.displayName,
+    },
+  }));
 
 export type StemImageObject = z.infer<typeof stemImageObjectSchema>;
 
