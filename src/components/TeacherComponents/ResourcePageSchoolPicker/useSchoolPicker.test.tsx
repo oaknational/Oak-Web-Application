@@ -96,11 +96,11 @@ describe("useSchoolPicker", () => {
     });
     await expect(
       async () => await fetcher("https://school-picker/value"),
-    ).rejects.toThrowError(
+    ).rejects.toThrow(
       new OakError({ code: "school-picker/fetch-suggestions" }),
     );
-    expect(mockJson).toBeCalled();
-    expect(reportError).toBeCalled();
+    expect(mockJson).toHaveBeenCalled();
+    expect(reportError).toHaveBeenCalled();
   });
   test("should return and empty array with no data ", async () => {
     fetch.mockResolvedValue({
@@ -115,5 +115,27 @@ describe("useSchoolPicker", () => {
     );
 
     expect(result.current.schools).toEqual([]);
+  });
+  test("should retun an empty array on 400 error", async () => {
+    fetch.mockResolvedValue({
+      json: jest.fn().mockResolvedValue({ res: undefined }),
+      ok: true,
+      status: 400,
+      statusText: "",
+    });
+    const { result } = renderHook(() =>
+      useSchoolPicker({ withHomeschool: true }),
+    );
+    expect(result.current.schools).toEqual([]);
+  });
+  test("should not report 400 errors", async () => {
+    fetch.mockResolvedValue({
+      json: jest.fn().mockResolvedValue({ res: undefined }),
+      ok: true,
+      status: 400,
+      statusText: "",
+    });
+    renderHook(() => useSchoolPicker({ withHomeschool: true }));
+    expect(reportError).not.toHaveBeenCalled();
   });
 });
