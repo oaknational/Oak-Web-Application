@@ -105,7 +105,7 @@ export const QuizQuestionsMCAnswers = (props: {
                     key={`q-${questionNumber}-answer-element-${j}`}
                     src={answerItem.imageObject}
                     answerIsCorrect={choice.answerIsCorrect && imageAnswer}
-                    alt={answerItem.imageObject.alt}
+                    alt={answerItem.imageObject.alt ?? "Answer image"}
                   />
                 ) : (
                   <QuizImage

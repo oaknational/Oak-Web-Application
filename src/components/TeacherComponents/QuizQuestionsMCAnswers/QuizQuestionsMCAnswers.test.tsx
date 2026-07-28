@@ -91,4 +91,30 @@ describe("QuizQuestionsMCAnswers", () => {
 
     expect(getByAltText("A tree in a field")).toBeInTheDocument();
   });
+
+  it("uses a fallback alt text for image-only answers when alt is missing", () => {
+    const answersWithoutAlt: MCAnswer[] = [
+      {
+        answer: [
+          {
+            type: "image",
+            imageObject: {
+              format: "jpg",
+              secureUrl:
+                "https://oaknationalacademy-res.cloudinary.com/image/upload/v1687374653/Trees.jpg",
+              metadata: [],
+              alt: undefined,
+            },
+          },
+        ],
+        answerIsCorrect: false,
+      },
+    ];
+
+    const { getByAltText } = renderWithTheme(
+      <QuizQuestionsMCAnswers answers={answersWithoutAlt} questionNumber={0} />,
+    );
+
+    expect(getByAltText("Answer image")).toBeInTheDocument();
+  });
 });
