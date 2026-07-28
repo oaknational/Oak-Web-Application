@@ -51,8 +51,8 @@ importers:
         specifier: 3.10.2
         version: 3.10.2(@types/react-dom@18.3.0)(@types/react@18.2.79)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@oaknational/google-classroom-addon':
-        specifier: ^1.33.0
-        version: 1.33.0(@google-cloud/firestore@7.11.6)(@googleapis/classroom@4.9.0)(@oaknational/oak-components@2.44.0(next-cloudinary@6.16.0(next@15.5.15(@babel/core@7.28.3)(@opentelemetry/api@1.9.1)(@playwright/test@1.61.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.75.0))(react@18.3.1))(next@15.5.15(@babel/core@7.28.3)(@opentelemetry/api@1.9.1)(@playwright/test@1.61.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.75.0))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(styled-components@5.3.11(@babel/core@7.28.3)(react-dom@18.3.1(react@18.3.1))(react-is@18.2.0)(react@18.3.1)))(google-auth-library@9.15.1)(next@15.5.15(@babel/core@7.28.3)(@opentelemetry/api@1.9.1)(@playwright/test@1.61.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.75.0))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(zod@4.3.6)(zustand@5.0.12(@types/react@18.2.79)(react@18.3.1)(use-sync-external-store@1.4.0(react@18.3.1)))
+        specifier: github:oaknational/google-classroom-addon#b8cc5fb9d52379a18047cf579ebfbe499e9d5b38
+        version: git+https://github.com/oaknational/google-classroom-addon.git#b8cc5fb9d52379a18047cf579ebfbe499e9d5b38(@google-cloud/firestore@7.11.6)(@googleapis/classroom@4.9.0)(@oaknational/oak-components@2.44.0(next-cloudinary@6.16.0(next@15.5.15(@babel/core@7.28.3)(@opentelemetry/api@1.9.1)(@playwright/test@1.61.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.75.0))(react@18.3.1))(next@15.5.15(@babel/core@7.28.3)(@opentelemetry/api@1.9.1)(@playwright/test@1.61.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.75.0))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(styled-components@5.3.11(@babel/core@7.28.3)(react-dom@18.3.1(react@18.3.1))(react-is@18.2.0)(react@18.3.1)))(google-auth-library@9.15.1)(next@15.5.15(@babel/core@7.28.3)(@opentelemetry/api@1.9.1)(@playwright/test@1.61.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.75.0))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(zod@4.3.6)(zustand@5.0.12(@types/react@18.2.79)(react@18.3.1)(use-sync-external-store@1.4.0(react@18.3.1)))
       '@oaknational/oak-components':
         specifier: ^2.44.0
         version: 2.44.0(next-cloudinary@6.16.0(next@15.5.15(@babel/core@7.28.3)(@opentelemetry/api@1.9.1)(@playwright/test@1.61.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.75.0))(react@18.3.1))(next@15.5.15(@babel/core@7.28.3)(@opentelemetry/api@1.9.1)(@playwright/test@1.61.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.75.0))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(styled-components@5.3.11(@babel/core@7.28.3)(react-dom@18.3.1(react@18.3.1))(react-is@18.2.0)(react@18.3.1))
@@ -3098,8 +3098,9 @@ packages:
     resolution: {integrity: sha512-gOBg5YHMfZy+TfHArfVogwgfBeQnKbbGo3pSUyK/gSI0AVu+pEiDVcKlQb0D8Mg1LNRZILZ6XG8I5dJ4KuAd9Q==}
     engines: {node: ^20.17.0 || >=22.9.0}
 
-  '@oaknational/google-classroom-addon@1.33.0':
-    resolution: {integrity: sha512-6tTljlVl+fgYpn9l6LcDwQZovAAxodF569HdmLzKCljA/SmnG4Bhlx5rItH/5humAx0xg5koi+PMjAWFWvymbA==}
+  '@oaknational/google-classroom-addon@git+https://github.com/oaknational/google-classroom-addon.git#b8cc5fb9d52379a18047cf579ebfbe499e9d5b38':
+    resolution: {commit: b8cc5fb9d52379a18047cf579ebfbe499e9d5b38, repo: https://github.com/oaknational/google-classroom-addon.git, type: git}
+    version: 1.34.0
     peerDependencies:
       '@google-cloud/firestore': '>=7.11.2'
       '@googleapis/classroom': 4.9.0
@@ -17066,8 +17067,8 @@ snapshots:
   '@npmcli/redact@4.0.0':
     optional: true
 
-  '@oaknational/google-classroom-addon@1.33.0(@google-cloud/firestore@7.11.6)(@googleapis/classroom@4.9.0)(@oaknational/oak-components@2.44.0(next-cloudinary@6.16.0(next@15.5.15(@babel/core@7.28.3)(@opentelemetry/api@1.9.1)(@playwright/test@1.61.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.75.0))(react@18.3.1))(next@15.5.15(@babel/core@7.28.3)(@opentelemetry/api@1.9.1)(@playwright/test@1.61.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.75.0))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(styled-components@5.3.11(@babel/core@7.28.3)(react-dom@18.3.1(react@18.3.1))(react-is@18.2.0)(react@18.3.1)))(google-auth-library@9.15.1)(next@15.5.15(@babel/core@7.28.3)(@opentelemetry/api@1.9.1)(@playwright/test@1.61.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.75.0))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(zod@4.3.6)(zustand@5.0.12(@types/react@18.2.79)(react@18.3.1)(use-sync-external-store@1.4.0(react@18.3.1)))':
-    dependencies:
+  ? '@oaknational/google-classroom-addon@git+https://github.com/oaknational/google-classroom-addon.git#b8cc5fb9d52379a18047cf579ebfbe499e9d5b38(@google-cloud/firestore@7.11.6)(@googleapis/classroom@4.9.0)(@oaknational/oak-components@2.44.0(next-cloudinary@6.16.0(next@15.5.15(@babel/core@7.28.3)(@opentelemetry/api@1.9.1)(@playwright/test@1.61.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.75.0))(react@18.3.1))(next@15.5.15(@babel/core@7.28.3)(@opentelemetry/api@1.9.1)(@playwright/test@1.61.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.75.0))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(styled-components@5.3.11(@babel/core@7.28.3)(react-dom@18.3.1(react@18.3.1))(react-is@18.2.0)(react@18.3.1)))(google-auth-library@9.15.1)(next@15.5.15(@babel/core@7.28.3)(@opentelemetry/api@1.9.1)(@playwright/test@1.61.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.75.0))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(zod@4.3.6)(zustand@5.0.12(@types/react@18.2.79)(react@18.3.1)(use-sync-external-store@1.4.0(react@18.3.1)))'
+  : dependencies:
       '@google-cloud/firestore': 7.11.6
       '@googleapis/classroom': 4.9.0
       '@oaknational/oak-components': 2.44.0(next-cloudinary@6.16.0(next@15.5.15(@babel/core@7.28.3)(@opentelemetry/api@1.9.1)(@playwright/test@1.61.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.75.0))(react@18.3.1))(next@15.5.15(@babel/core@7.28.3)(@opentelemetry/api@1.9.1)(@playwright/test@1.61.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.75.0))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(styled-components@5.3.11(@babel/core@7.28.3)(react-dom@18.3.1(react@18.3.1))(react-is@18.2.0)(react@18.3.1))

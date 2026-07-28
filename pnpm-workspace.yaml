@@ -6,6 +6,7 @@ minimumReleaseAgeExclude:
   - "@oaknational/oak-curriculum-schema"
 allowBuilds:
   "@clerk/shared": true
+  "@oaknational/google-classroom-addon": true
   "@percy/core": true
   "@sentry/cli": true
   "@swc/core": true
