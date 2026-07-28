@@ -19,10 +19,28 @@ const state = {
     lessonResourceDownloadStarted: () =>
       console.log("lessonResourceDownloadStarted fired"),
     unitDownloadInitiated: () => console.log("unitDownloadInitiated fired"),
-    contentSaved: (props: ContentSavedProperties) =>
-      console.log("contentSaved fired", props),
-    contentUnsaved: (props: ContentUnsavedProperties) =>
-      console.log("contentUnsaved fired", props),
+    contentSaved: (
+      props: Pick<
+        ContentSavedProperties,
+        | "componentType"
+        | "keyStageSlug"
+        | "keyStageTitle"
+        | "subjectSlug"
+        | "subjectTitle"
+        | "contentItemSlug"
+      >,
+    ) => console.log("contentSaved fired", props),
+    contentUnsaved: (
+      props: Pick<
+        ContentUnsavedProperties,
+        | "componentType"
+        | "keyStageSlug"
+        | "keyStageTitle"
+        | "subjectSlug"
+        | "subjectTitle"
+        | "contentItemSlug"
+      >,
+    ) => console.log("contentUnsaved fired", props),
     newsletterSignUpCompleted: () =>
       console.log("newsletterSignUpCompleted fired"),
   },
