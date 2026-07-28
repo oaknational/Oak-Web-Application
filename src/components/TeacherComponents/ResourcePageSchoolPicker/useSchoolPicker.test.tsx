@@ -116,7 +116,7 @@ describe("useSchoolPicker", () => {
 
     expect(result.current.schools).toEqual([]);
   });
-  test("should retun an empty array on 400 error", async () => {
+  test("should return an empty array on 400 error", async () => {
     fetch.mockResolvedValue({
       json: jest.fn().mockResolvedValue({ res: undefined }),
       ok: true,
