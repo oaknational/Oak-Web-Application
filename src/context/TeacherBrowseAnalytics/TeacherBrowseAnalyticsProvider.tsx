@@ -34,23 +34,32 @@ export const TeacherBrowseAnalyticsStoreProvider = ({
   children,
 }: TeacherBrowseAnalyticsStoreProviderProps) => {
   const { track, getSessionId } = useAnalytics();
+  const currentProgrammeState = programmeState?.programmeState ?? null;
 
   const sessionId = useMemo(() => getSessionId(), [getSessionId]);
 
   const journeyId = useMemo(() => {
-    if (!sessionId || !programmeState?.programmeState) {
+    if (!sessionId || !currentProgrammeState) {
       return null;
     }
-    return `${sessionId}:${programmeState.programmeState.programmeSlug}`;
-  }, [sessionId, programmeState?.programmeState]);
+    return `${sessionId}:${currentProgrammeState.programmeSlug}`;
+  }, [sessionId, currentProgrammeState]);
 
   const [store] = useState(() =>
     createTeacherBrowseAnalyticsStore({
-      programmeState: programmeState?.programmeState ?? null,
+      programmeState: currentProgrammeState,
       avo: track,
       journeyId,
     }),
   );
+
+  useEffect(() => {
+    store.setState({
+      avo: track,
+      journeyId,
+      programmeState: currentProgrammeState,
+    });
+  }, [store, track, journeyId, currentProgrammeState]);
 
   return (
     <TeacherBrowseAnalyticsStoreContext.Provider value={store}>
