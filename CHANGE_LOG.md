@@ -1,3 +1,10 @@
+## [1.1141.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.1141.0...v1.1141.1) (2026-07-28)
+
+
+### Bug Fixes
+
+* change FootnoteLink to OakLink ([8be4d12](https://github.com/oaknational/Oak-Web-Application/commit/8be4d12b167b83bb1342f9eec12b9afa2f692894))
+
 # [1.1141.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1140.1...v1.1141.0) (2026-07-28)
 
 
