@@ -3,7 +3,7 @@
 
 set -euo pipefail
 
-json=$(npm audit --json 2>/dev/null || true)
+json=$(pnpm audit --json 2>/dev/null || true)
 
 if [[ -z "$json" ]] || [[ "$json" = "{}" ]]; then
   echo "✅ No vulnerabilities found."

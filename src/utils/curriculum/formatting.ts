@@ -36,11 +36,9 @@ function hasKs(keystages: { slug: string }[], num: number) {
 }
 
 // Types are loose coming out of the API so we cast to `KeystageSlug` to
-// do our best to map it to the correct title. Fallback to undefined if we can't map it.
-export function getKeyStageTitle(
-  ksSlug: string,
-): KeyStageTitleValueType | undefined {
-  switch (ksSlug as KeystageSlug) {
+// do our best to map it to the correct title. Fallback if we can't map it.
+export function getKeyStageTitle(ksSlug: KeystageSlug): KeyStageTitleValueType {
+  switch (ksSlug) {
     case "ks1":
       return "Key stage 1";
     case "ks2":
@@ -52,7 +50,7 @@ export function getKeyStageTitle(
     case "early-years-foundation-stage":
       return "Early Years Foundation stage";
     default:
-      return undefined;
+      return "Key stage 1"; // all ks has no option
   }
 }
 

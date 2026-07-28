@@ -1,0 +1,509 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`OaksImpactSchoolQuotesSection renders correctly 1`] = `
+<body>
+  <div>
+    <div
+      class="sc-aXZVg bZTQLO"
+    >
+      <h2
+        class="sc-eldPxv haIdjY"
+      >
+        How schools and MATs are embedding Oak’s curriculum
+      </h2>
+      <ul
+        class="sc-aXZVg sc-tagGq icrVol jFIZYB"
+      >
+        <li
+          class="sc-aXZVg sc-gEvEer sc-esYiGF jPvJsJ iDBIXi nZkbm"
+        >
+          <div
+            class="sc-aXZVg sc-gEvEer kTrAkM fUxOFh"
+          >
+            <img
+              alt="TEST_ALT"
+              class="sc-ba397cd3-0 dMngOi"
+              data-nimg="1"
+              decoding="async"
+              height="3264"
+              loading="lazy"
+              src="https://NEXT_PUBLIC_SANITY_ASSET_CDN_HOST/images/NEXT_PUBLIC_SANITY_PROJECT_ID/NEXT_PUBLIC_SANITY_DATASET/b81ee19a35baa3192360a210fda34cc9b21f4fd6-5824x3264.jpg?w=3840&h=2152&fm=webp&q=80&fit=clip&auto=format"
+              srcset="https://NEXT_PUBLIC_SANITY_ASSET_CDN_HOST/images/NEXT_PUBLIC_SANITY_PROJECT_ID/NEXT_PUBLIC_SANITY_DATASET/b81ee19a35baa3192360a210fda34cc9b21f4fd6-5824x3264.jpg?w=3840&h=2152&fm=webp&q=80&fit=clip&auto=format 1x"
+              style="color: transparent;"
+              width="5824"
+            />
+            <div
+              class="sc-aXZVg sc-gEvEer eLpsLG iwFTtF"
+            >
+              <div
+                class="sc-aXZVg sc-gEvEer jPvJsJ gWBhKY"
+              >
+                <h3
+                  class="sc-eldPxv groWut"
+                >
+                  Ormiston Academies Trust
+                </h3>
+                <p
+                  class="sc-ikkxIA jkEPvG"
+                >
+                  Ormiston Academies Trust supports pupils in 45 schools across secondary, primary, alternative provision and special schools.
+                </p>
+              </div>
+              <div
+                class="sc-aXZVg jgMjjt"
+                style="background: rgb(217, 217, 217);"
+              />
+              <div
+                class="sc-aXZVg sc-gEvEer jPvJsJ bktafW"
+              >
+                <div
+                  class="sc-aXZVg sc-gEvEer jPvJsJ bktafW"
+                >
+                  <div
+                    class="sc-aXZVg sc-gEvEer jPvJsJ bktafW"
+                  >
+                    <div
+                      class="sc-aXZVg sc-gEvEer jPvJsJ jIBBQP"
+                    >
+                      <div
+                        class="sc-aXZVg sc-gEvEer jPvJsJ fLgPAy"
+                      >
+                        <div
+                          class="sc-aXZVg sc-gEvEer bwVgbu iDBIXi"
+                        >
+                          <div
+                            class="sc-aXZVg sc-gEvEer jPvJsJ NsOKr"
+                          >
+                            <div
+                              class="sc-aXZVg cmRFEa"
+                            >
+                              <div
+                                class="sc-aXZVg sc-gEvEer sc-3b9ef4a7-1 jPvJsJ NsOKr isynMY"
+                              >
+                                <p
+                                  class="sc-ikkxIA fqNJfa"
+                                >
+                                  “
+                                  In Ormiston, we value our partnership with Oak, through which we have strengthened the R.E. curriculum in our schools, whilst contributing to a high-quality national resource for all.
+                                </p>
+                                <p
+                                  class="sc-ikkxIA fqNJfa"
+                                >
+                                  Ormiston primary schools are using science and humanities resources to strengthen their curricular offer, and are benefitting from the high quality curriculum design, and opportunities to work in partnership with colleagues at Oak.
+                                  ”
+                                </p>
+                              </div>
+                            </div>
+                            <div
+                              class="sc-aXZVg sc-gEvEer jPvJsJ jjyfYk"
+                            >
+                              <img
+                                alt=""
+                                class="sc-ba397cd3-0 dMngOi sc-3b9ef4a7-0 dIlPPm"
+                                data-nimg="1"
+                                decoding="async"
+                                height="54"
+                                loading="lazy"
+                                src="https://NEXT_PUBLIC_SANITY_ASSET_CDN_HOST/images/NEXT_PUBLIC_SANITY_PROJECT_ID/NEXT_PUBLIC_SANITY_DATASET/d40d4c63b117e248ec11b995951aa738969531aa-54x54.png?w=128&h=128&fm=webp&q=80&fit=clip&auto=format"
+                                srcset="https://NEXT_PUBLIC_SANITY_ASSET_CDN_HOST/images/NEXT_PUBLIC_SANITY_PROJECT_ID/NEXT_PUBLIC_SANITY_DATASET/d40d4c63b117e248ec11b995951aa738969531aa-54x54.png?w=64&h=64&fm=webp&q=80&fit=clip&auto=format 1x, https://NEXT_PUBLIC_SANITY_ASSET_CDN_HOST/images/NEXT_PUBLIC_SANITY_PROJECT_ID/NEXT_PUBLIC_SANITY_DATASET/d40d4c63b117e248ec11b995951aa738969531aa-54x54.png?w=128&h=128&fm=webp&q=80&fit=clip&auto=format 2x"
+                                style="color: transparent;"
+                                width="54"
+                              />
+                              <div
+                                class="sc-aXZVg sc-gEvEer jPvJsJ bktafW"
+                              >
+                                <p
+                                  class="sc-ikkxIA gkELLE"
+                                >
+                                  Tom Rees
+                                </p>
+                                <p
+                                  class="sc-ikkxIA jkEPvG"
+                                >
+                                  CEO
+                                  , 
+                                  Ormiston Academies Trust
+                                </p>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </li>
+        <li
+          class="sc-aXZVg sc-gEvEer sc-esYiGF jPvJsJ iDBIXi nZkbm"
+        >
+          <div
+            class="sc-aXZVg sc-gEvEer kTrAkM fUxOFh"
+          >
+            <img
+              alt="TEST_ALT"
+              class="sc-ba397cd3-0 dMngOi"
+              data-nimg="1"
+              decoding="async"
+              height="3264"
+              loading="lazy"
+              src="https://NEXT_PUBLIC_SANITY_ASSET_CDN_HOST/images/NEXT_PUBLIC_SANITY_PROJECT_ID/NEXT_PUBLIC_SANITY_DATASET/b81ee19a35baa3192360a210fda34cc9b21f4fd6-5824x3264.jpg?w=3840&h=2152&fm=webp&q=80&fit=clip&auto=format"
+              srcset="https://NEXT_PUBLIC_SANITY_ASSET_CDN_HOST/images/NEXT_PUBLIC_SANITY_PROJECT_ID/NEXT_PUBLIC_SANITY_DATASET/b81ee19a35baa3192360a210fda34cc9b21f4fd6-5824x3264.jpg?w=3840&h=2152&fm=webp&q=80&fit=clip&auto=format 1x"
+              style="color: transparent;"
+              width="5824"
+            />
+            <div
+              class="sc-aXZVg sc-gEvEer eLpsLG iwFTtF"
+            >
+              <div
+                class="sc-aXZVg sc-gEvEer jPvJsJ gWBhKY"
+              >
+                <h3
+                  class="sc-eldPxv groWut"
+                >
+                  Lift Schools
+                </h3>
+                <p
+                  class="sc-ikkxIA jkEPvG"
+                >
+                  Ormiston Academies Trust supports pupils in 45 schools across secondary, primary, alternative provision and special schools.
+                </p>
+              </div>
+              <div
+                class="sc-aXZVg jgMjjt"
+                style="background: rgb(217, 217, 217);"
+              />
+              <div
+                class="sc-aXZVg sc-gEvEer jPvJsJ bktafW"
+              >
+                <div
+                  class="sc-aXZVg sc-gEvEer jPvJsJ bktafW"
+                >
+                  <div
+                    class="sc-aXZVg sc-gEvEer jPvJsJ bktafW"
+                  >
+                    <div
+                      class="sc-aXZVg sc-gEvEer jPvJsJ jIBBQP"
+                    >
+                      <div
+                        class="sc-aXZVg sc-gEvEer jPvJsJ fLgPAy"
+                      >
+                        <div
+                          class="sc-aXZVg sc-gEvEer bwVgbu iDBIXi"
+                        >
+                          <div
+                            class="sc-aXZVg sc-gEvEer jPvJsJ NsOKr"
+                          >
+                            <div
+                              class="sc-aXZVg cmRFEa"
+                            >
+                              <div
+                                class="sc-aXZVg sc-gEvEer sc-3b9ef4a7-1 jPvJsJ NsOKr isynMY"
+                              >
+                                <p
+                                  class="sc-ikkxIA fqNJfa"
+                                >
+                                  “
+                                  In Ormiston, we value our partnership with Oak, through which we have strengthened the R.E. curriculum in our schools, whilst contributing to a high-quality national resource for all.
+                                </p>
+                                <p
+                                  class="sc-ikkxIA fqNJfa"
+                                >
+                                  Ormiston primary schools are using science and humanities resources to strengthen their curricular offer, and are benefitting from the high quality curriculum design, and opportunities to work in partnership with colleagues at Oak.
+                                  ”
+                                </p>
+                              </div>
+                            </div>
+                            <div
+                              class="sc-aXZVg sc-gEvEer jPvJsJ jjyfYk"
+                            >
+                              <img
+                                alt=""
+                                class="sc-ba397cd3-0 dMngOi sc-3b9ef4a7-0 dIlPPm"
+                                data-nimg="1"
+                                decoding="async"
+                                height="54"
+                                loading="lazy"
+                                src="https://NEXT_PUBLIC_SANITY_ASSET_CDN_HOST/images/NEXT_PUBLIC_SANITY_PROJECT_ID/NEXT_PUBLIC_SANITY_DATASET/d40d4c63b117e248ec11b995951aa738969531aa-54x54.png?w=128&h=128&fm=webp&q=80&fit=clip&auto=format"
+                                srcset="https://NEXT_PUBLIC_SANITY_ASSET_CDN_HOST/images/NEXT_PUBLIC_SANITY_PROJECT_ID/NEXT_PUBLIC_SANITY_DATASET/d40d4c63b117e248ec11b995951aa738969531aa-54x54.png?w=64&h=64&fm=webp&q=80&fit=clip&auto=format 1x, https://NEXT_PUBLIC_SANITY_ASSET_CDN_HOST/images/NEXT_PUBLIC_SANITY_PROJECT_ID/NEXT_PUBLIC_SANITY_DATASET/d40d4c63b117e248ec11b995951aa738969531aa-54x54.png?w=128&h=128&fm=webp&q=80&fit=clip&auto=format 2x"
+                                style="color: transparent;"
+                                width="54"
+                              />
+                              <div
+                                class="sc-aXZVg sc-gEvEer jPvJsJ bktafW"
+                              >
+                                <p
+                                  class="sc-ikkxIA gkELLE"
+                                >
+                                  Tom Rees
+                                </p>
+                                <p
+                                  class="sc-ikkxIA jkEPvG"
+                                >
+                                  CEO
+                                  , 
+                                  Lift Schools
+                                </p>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </li>
+        <li
+          class="sc-aXZVg sc-gEvEer sc-esYiGF jPvJsJ iDBIXi nZkbm"
+        >
+          <div
+            class="sc-aXZVg sc-gEvEer kTrAkM fUxOFh"
+          >
+            <img
+              alt="TEST_ALT"
+              class="sc-ba397cd3-0 dMngOi"
+              data-nimg="1"
+              decoding="async"
+              height="3264"
+              loading="lazy"
+              src="https://NEXT_PUBLIC_SANITY_ASSET_CDN_HOST/images/NEXT_PUBLIC_SANITY_PROJECT_ID/NEXT_PUBLIC_SANITY_DATASET/b81ee19a35baa3192360a210fda34cc9b21f4fd6-5824x3264.jpg?w=3840&h=2152&fm=webp&q=80&fit=clip&auto=format"
+              srcset="https://NEXT_PUBLIC_SANITY_ASSET_CDN_HOST/images/NEXT_PUBLIC_SANITY_PROJECT_ID/NEXT_PUBLIC_SANITY_DATASET/b81ee19a35baa3192360a210fda34cc9b21f4fd6-5824x3264.jpg?w=3840&h=2152&fm=webp&q=80&fit=clip&auto=format 1x"
+              style="color: transparent;"
+              width="5824"
+            />
+            <div
+              class="sc-aXZVg sc-gEvEer eLpsLG iwFTtF"
+            >
+              <div
+                class="sc-aXZVg sc-gEvEer jPvJsJ gWBhKY"
+              >
+                <h3
+                  class="sc-eldPxv groWut"
+                >
+                  Primary School
+                </h3>
+                <p
+                  class="sc-ikkxIA jkEPvG"
+                >
+                  Ormiston Academies Trust supports pupils in 45 schools across secondary, primary, alternative provision and special schools.
+                </p>
+              </div>
+              <div
+                class="sc-aXZVg jgMjjt"
+                style="background: rgb(217, 217, 217);"
+              />
+              <div
+                class="sc-aXZVg sc-gEvEer jPvJsJ bktafW"
+              >
+                <div
+                  class="sc-aXZVg sc-gEvEer jPvJsJ bktafW"
+                >
+                  <div
+                    class="sc-aXZVg sc-gEvEer jPvJsJ bktafW"
+                  >
+                    <div
+                      class="sc-aXZVg sc-gEvEer jPvJsJ jIBBQP"
+                    >
+                      <div
+                        class="sc-aXZVg sc-gEvEer jPvJsJ fLgPAy"
+                      >
+                        <div
+                          class="sc-aXZVg sc-gEvEer bwVgbu iDBIXi"
+                        >
+                          <div
+                            class="sc-aXZVg sc-gEvEer jPvJsJ NsOKr"
+                          >
+                            <div
+                              class="sc-aXZVg cmRFEa"
+                            >
+                              <div
+                                class="sc-aXZVg sc-gEvEer sc-3b9ef4a7-1 jPvJsJ NsOKr isynMY"
+                              >
+                                <p
+                                  class="sc-ikkxIA fqNJfa"
+                                >
+                                  “
+                                  In Ormiston, we value our partnership with Oak, through which we have strengthened the R.E. curriculum in our schools, whilst contributing to a high-quality national resource for all.
+                                </p>
+                                <p
+                                  class="sc-ikkxIA fqNJfa"
+                                >
+                                  Ormiston primary schools are using science and humanities resources to strengthen their curricular offer, and are benefitting from the high quality curriculum design, and opportunities to work in partnership with colleagues at Oak.
+                                  ”
+                                </p>
+                              </div>
+                            </div>
+                            <div
+                              class="sc-aXZVg sc-gEvEer jPvJsJ jjyfYk"
+                            >
+                              <img
+                                alt=""
+                                class="sc-ba397cd3-0 dMngOi sc-3b9ef4a7-0 dIlPPm"
+                                data-nimg="1"
+                                decoding="async"
+                                height="54"
+                                loading="lazy"
+                                src="https://NEXT_PUBLIC_SANITY_ASSET_CDN_HOST/images/NEXT_PUBLIC_SANITY_PROJECT_ID/NEXT_PUBLIC_SANITY_DATASET/d40d4c63b117e248ec11b995951aa738969531aa-54x54.png?w=128&h=128&fm=webp&q=80&fit=clip&auto=format"
+                                srcset="https://NEXT_PUBLIC_SANITY_ASSET_CDN_HOST/images/NEXT_PUBLIC_SANITY_PROJECT_ID/NEXT_PUBLIC_SANITY_DATASET/d40d4c63b117e248ec11b995951aa738969531aa-54x54.png?w=64&h=64&fm=webp&q=80&fit=clip&auto=format 1x, https://NEXT_PUBLIC_SANITY_ASSET_CDN_HOST/images/NEXT_PUBLIC_SANITY_PROJECT_ID/NEXT_PUBLIC_SANITY_DATASET/d40d4c63b117e248ec11b995951aa738969531aa-54x54.png?w=128&h=128&fm=webp&q=80&fit=clip&auto=format 2x"
+                                style="color: transparent;"
+                                width="54"
+                              />
+                              <div
+                                class="sc-aXZVg sc-gEvEer jPvJsJ bktafW"
+                              >
+                                <p
+                                  class="sc-ikkxIA gkELLE"
+                                >
+                                  Tom Rees
+                                </p>
+                                <p
+                                  class="sc-ikkxIA jkEPvG"
+                                >
+                                  CEO
+                                  , 
+                                  Primary School
+                                </p>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </li>
+        <li
+          class="sc-aXZVg sc-gEvEer sc-esYiGF jPvJsJ iDBIXi nZkbm"
+        >
+          <div
+            class="sc-aXZVg sc-gEvEer kTrAkM fUxOFh"
+          >
+            <img
+              alt="TEST_ALT"
+              class="sc-ba397cd3-0 dMngOi"
+              data-nimg="1"
+              decoding="async"
+              height="3264"
+              loading="lazy"
+              src="https://NEXT_PUBLIC_SANITY_ASSET_CDN_HOST/images/NEXT_PUBLIC_SANITY_PROJECT_ID/NEXT_PUBLIC_SANITY_DATASET/b81ee19a35baa3192360a210fda34cc9b21f4fd6-5824x3264.jpg?w=3840&h=2152&fm=webp&q=80&fit=clip&auto=format"
+              srcset="https://NEXT_PUBLIC_SANITY_ASSET_CDN_HOST/images/NEXT_PUBLIC_SANITY_PROJECT_ID/NEXT_PUBLIC_SANITY_DATASET/b81ee19a35baa3192360a210fda34cc9b21f4fd6-5824x3264.jpg?w=3840&h=2152&fm=webp&q=80&fit=clip&auto=format 1x"
+              style="color: transparent;"
+              width="5824"
+            />
+            <div
+              class="sc-aXZVg sc-gEvEer eLpsLG iwFTtF"
+            >
+              <div
+                class="sc-aXZVg sc-gEvEer jPvJsJ gWBhKY"
+              >
+                <h3
+                  class="sc-eldPxv groWut"
+                >
+                  Secondary School
+                </h3>
+                <p
+                  class="sc-ikkxIA jkEPvG"
+                >
+                  Ormiston Academies Trust supports pupils in 45 schools across secondary, primary, alternative provision and special schools.
+                </p>
+              </div>
+              <div
+                class="sc-aXZVg jgMjjt"
+                style="background: rgb(217, 217, 217);"
+              />
+              <div
+                class="sc-aXZVg sc-gEvEer jPvJsJ bktafW"
+              >
+                <div
+                  class="sc-aXZVg sc-gEvEer jPvJsJ bktafW"
+                >
+                  <div
+                    class="sc-aXZVg sc-gEvEer jPvJsJ bktafW"
+                  >
+                    <div
+                      class="sc-aXZVg sc-gEvEer jPvJsJ jIBBQP"
+                    >
+                      <div
+                        class="sc-aXZVg sc-gEvEer jPvJsJ fLgPAy"
+                      >
+                        <div
+                          class="sc-aXZVg sc-gEvEer bwVgbu iDBIXi"
+                        >
+                          <div
+                            class="sc-aXZVg sc-gEvEer jPvJsJ NsOKr"
+                          >
+                            <div
+                              class="sc-aXZVg cmRFEa"
+                            >
+                              <div
+                                class="sc-aXZVg sc-gEvEer sc-3b9ef4a7-1 jPvJsJ NsOKr isynMY"
+                              >
+                                <p
+                                  class="sc-ikkxIA fqNJfa"
+                                >
+                                  “
+                                  In Ormiston, we value our partnership with Oak, through which we have strengthened the R.E. curriculum in our schools, whilst contributing to a high-quality national resource for all.
+                                </p>
+                                <p
+                                  class="sc-ikkxIA fqNJfa"
+                                >
+                                  Ormiston primary schools are using science and humanities resources to strengthen their curricular offer, and are benefitting from the high quality curriculum design, and opportunities to work in partnership with colleagues at Oak.
+                                  ”
+                                </p>
+                              </div>
+                            </div>
+                            <div
+                              class="sc-aXZVg sc-gEvEer jPvJsJ jjyfYk"
+                            >
+                              <img
+                                alt=""
+                                class="sc-ba397cd3-0 dMngOi sc-3b9ef4a7-0 dIlPPm"
+                                data-nimg="1"
+                                decoding="async"
+                                height="54"
+                                loading="lazy"
+                                src="https://NEXT_PUBLIC_SANITY_ASSET_CDN_HOST/images/NEXT_PUBLIC_SANITY_PROJECT_ID/NEXT_PUBLIC_SANITY_DATASET/d40d4c63b117e248ec11b995951aa738969531aa-54x54.png?w=128&h=128&fm=webp&q=80&fit=clip&auto=format"
+                                srcset="https://NEXT_PUBLIC_SANITY_ASSET_CDN_HOST/images/NEXT_PUBLIC_SANITY_PROJECT_ID/NEXT_PUBLIC_SANITY_DATASET/d40d4c63b117e248ec11b995951aa738969531aa-54x54.png?w=64&h=64&fm=webp&q=80&fit=clip&auto=format 1x, https://NEXT_PUBLIC_SANITY_ASSET_CDN_HOST/images/NEXT_PUBLIC_SANITY_PROJECT_ID/NEXT_PUBLIC_SANITY_DATASET/d40d4c63b117e248ec11b995951aa738969531aa-54x54.png?w=128&h=128&fm=webp&q=80&fit=clip&auto=format 2x"
+                                style="color: transparent;"
+                                width="54"
+                              />
+                              <div
+                                class="sc-aXZVg sc-gEvEer jPvJsJ bktafW"
+                              >
+                                <p
+                                  class="sc-ikkxIA gkELLE"
+                                >
+                                  Tom Rees
+                                </p>
+                                <p
+                                  class="sc-ikkxIA jkEPvG"
+                                >
+                                  CEO
+                                  , 
+                                  Secondary School
+                                </p>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</body>
+`;

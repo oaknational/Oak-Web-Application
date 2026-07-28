@@ -62,6 +62,20 @@ describe("parseProgrammeSlug", () => {
     });
   });
 
+  it("parses EYFS programme slug", () => {
+    expect(
+      parseProgrammeSlug("maths-foundation-early-years-foundation-stage-l"),
+    ).toEqual({
+      subjectSlug: "maths",
+      phaseSlug: "foundation",
+      keystageSlug: "early-years-foundation-stage",
+      yearSlug: null,
+      tierSlug: null,
+      pathwaySlug: null,
+      examboardSlug: null,
+    });
+  });
+
   it("parses legacy science programme slug with biology as subject", () => {
     expect(
       parseProgrammeSlug("biology-secondary-ks4-higher-aqa"),

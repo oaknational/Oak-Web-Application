@@ -199,7 +199,11 @@ export default async (phase: NextConfig["phase"]): Promise<NextConfig> => {
     },
 
     // See <https://github.com/vercel/next.js/issues/40183#issuecomment-3063588870>
-    transpilePackages: ["@ooxml-tools/units", "@ooxml-tools/xml"],
+    transpilePackages: [
+      "@ooxml-tools/units",
+      "@ooxml-tools/xml",
+      "@oaknational/oak-components",
+    ],
 
     webpack: function getWebpackConfig(
       config: WebpackConfig,
@@ -399,6 +403,16 @@ export default async (phase: NextConfig["phase"]): Promise<NextConfig> => {
             "/pupils/programmes/:programmeSlug/units/:unitSlug/lessons/:lessonSlug",
           destination:
             "/pupils/programmes/:programmeSlug/units/:unitSlug/lessons/:lessonSlug/overview",
+          permanent: true,
+        },
+        {
+          source: "/pupils",
+          destination: "/pupils/years",
+          permanent: true,
+        },
+        {
+          source: "/ai",
+          destination: "https://labs.thenational.academy/",
           permanent: true,
         },
       ];

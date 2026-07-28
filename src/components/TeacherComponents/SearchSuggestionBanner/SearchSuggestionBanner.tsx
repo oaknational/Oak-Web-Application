@@ -12,6 +12,7 @@ import { resolveOakHref } from "@/common-lib/urls";
 import { SearchIntent } from "@/common-lib/schemas/search-intent";
 import useAnalytics from "@/context/Analytics/useAnalytics";
 import { KeyStageTitleValueType } from "@/browser-lib/avo/Avo";
+import { getTeacherSubjectPhaseSlug } from "@/utils/curriculum/slugs";
 
 type KsLinkProps = {
   keystageSlug: string;
@@ -52,17 +53,24 @@ export const SearchSuggestionBanner = (props: {
   // so linking to the programme page doesn't automatically redirect as it doesn't know whether
   // to direct to core or gcse.
   const getLinkHref = (link: KsLinkProps) => {
-    return link.pathwayTitle
-      ? resolveOakHref({
-          page: "unit-index",
-          programmeSlug:
-            link.pathwayTitle == "Core"
-              ? "citizenship-secondary-ks4-core"
-              : "citizenship-secondary-ks4-gcse",
-        })
-      : resolveOakHref({
-          page: "home",
-        });
+    if (!link.pathwayTitle) {
+      return resolveOakHref({ page: "home" });
+    }
+
+    const subjectPhaseSlug = getTeacherSubjectPhaseSlug({
+      subjectSlug,
+      phaseSlug: "secondary",
+      pathwaySlug: link.pathwayTitle === "Core" ? "core" : "gcse",
+    });
+
+    return resolveOakHref({
+      page: "teacher-programme",
+      subjectPhaseSlug,
+      tab: "units",
+      query: {
+        keystages: link.keystageSlug,
+      },
+    });
   };
 
   const getLinkTitle = (link: KsLinkProps) => {

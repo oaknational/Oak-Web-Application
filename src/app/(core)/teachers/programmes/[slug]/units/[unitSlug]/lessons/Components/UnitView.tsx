@@ -12,9 +12,7 @@ import { useUnitDownloadButtonState } from "@/components/TeacherComponents/UnitD
 import { getUnitDownloadFileId } from "@/utils/getUnitDownloadFileId";
 import ComplexCopyrightRestrictionBanner from "@/components/TeacherComponents/ComplexCopyrightRestrictionBanner/ComplexCopyrightRestrictionBanner";
 
-export type UnitPageProps = TeachersUnitOverviewData;
-
-export const UnitView = (props: UnitPageProps) => {
+export const UnitView = (props: TeachersUnitOverviewData) => {
   const subjectIconName = `subject-${props.subjectSlug}` as SubjectIcon;
 
   const subjectPhaseSlug = getTeacherSubjectPhaseSlug({

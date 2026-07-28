@@ -26,6 +26,7 @@ const OverviewContent = ({
     isClassroomAssignment,
     classroomAssignmentChecked,
     contentGuidanceDismissed,
+    contentGuidanceCanOpen,
     isMounted,
     redirectOverlayCleared,
     setRedirectOverlayCleared,
@@ -58,6 +59,7 @@ const OverviewContent = ({
       <PupilLessonOverviewContentGuidanceModal
         redirectOverlayCleared={redirectOverlayCleared}
         contentGuidanceDismissed={contentGuidanceDismissed}
+        contentGuidanceCanOpen={contentGuidanceCanOpen}
         contentGuidance={contentGuidance}
         supervisionLevel={supervisionLevel}
         ageRestriction={browseData.features?.ageRestriction}

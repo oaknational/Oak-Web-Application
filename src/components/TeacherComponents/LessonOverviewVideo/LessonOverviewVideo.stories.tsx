@@ -4,7 +4,7 @@ import {
   LessonOverviewVideo,
   LessonOverviewVideoProps,
 } from "./LessonOverviewVideo";
-import { mockBrowsePathwayData } from "./LessonOverviewVideo.test";
+import { mockBrowsePathwayData } from "./LessonOverviewVideo.fixtures";
 
 import AnalyticsDecorator from "@/storybook-decorators/AnalyticsDecorator";
 

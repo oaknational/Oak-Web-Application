@@ -16,6 +16,7 @@ export type ContentGuidanceTrackingArgs = {
 type PupilLessonOverviewContentGuidanceModalProps = {
   redirectOverlayCleared: boolean;
   contentGuidanceDismissed: boolean;
+  contentGuidanceCanOpen: boolean;
   contentGuidance: OakPupilContentGuidance[] | null | undefined;
   supervisionLevel: string | null | undefined;
   ageRestriction: string | null | undefined;
@@ -35,6 +36,7 @@ const defaultContentGuidance: OakPupilContentGuidance[] = [
 export const PupilLessonOverviewContentGuidanceModal = ({
   redirectOverlayCleared,
   contentGuidanceDismissed,
+  contentGuidanceCanOpen,
   contentGuidance,
   supervisionLevel,
   ageRestriction,
@@ -53,7 +55,10 @@ export const PupilLessonOverviewContentGuidanceModal = ({
     ageRestriction: ageRestriction ?? "all",
   };
   const isModalOpen =
-    hasContentGuidance && !contentGuidanceDismissed && redirectOverlayCleared;
+    hasContentGuidance &&
+    !contentGuidanceDismissed &&
+    redirectOverlayCleared &&
+    contentGuidanceCanOpen;
   const declineIcon = isClassroomAssignment ? "cross" : undefined;
   const declineText = isClassroomAssignment ? "Exit lesson" : undefined;
   const ageRestrictionProps: Partial<OakPupilJourneyContentGuidanceProps> = {

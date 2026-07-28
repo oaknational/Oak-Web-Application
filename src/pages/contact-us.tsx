@@ -20,7 +20,6 @@ import Card from "@/components/SharedComponents/Card";
 import { useNewsletterForm } from "@/components/GenericPagesComponents/NewsletterForm";
 import SummaryCard from "@/components/SharedComponents/Card/SummaryCard";
 import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
-import BrushBorders from "@/components/SharedComponents/SpriteSheet/BrushSvgs/BrushBorders";
 import NewsletterFormWrap from "@/components/GenericPagesComponents/NewsletterFormWrap";
 import getPageProps from "@/node-lib/getPageProps";
 import { PortableTextWithDefaults } from "@/components/SharedComponents/PortableText";
@@ -88,6 +87,7 @@ const ContactUs: NextPage<ContactPageProps> = ({ pageData, topNav }) => {
       >
         <SummaryCard {...pageData} />
         <Card
+          $borderRadius={"border-radius-l"}
           $justifyContent={"space-between"}
           $background={"bg-decorative4-subdued"}
           $ph={["spacing-16", "spacing-24"]}
@@ -95,7 +95,6 @@ const ContactUs: NextPage<ContactPageProps> = ({ pageData, topNav }) => {
           $mt={["spacing-72", "spacing-80"]}
           $font={["body-2", "body-1"]}
         >
-          <BrushBorders hideOnMobileH color={"bg-decorative4-subdued"} />
           <OakFlex
             $alignItems={["flex-start", "center"]}
             $flexDirection={["column", "row"]}

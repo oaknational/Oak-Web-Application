@@ -1,4 +1,9 @@
-import path from "path";
+// This file has been automatically migrated to valid ESM format by Storybook.
+import { fileURLToPath } from "node:url";
+import path, { dirname } from "path";
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 export default {
   env: (config) => {
@@ -24,13 +29,14 @@ export default {
     "storybook-css-modules-preset",
     "@storybook/addon-a11y",
     "@storybook/addon-docs",
+    "@storybook/addon-themes",
   ],
 
   framework: {
     name: "@storybook/nextjs",
     options: {
       builder: {
-        lazyCompilation: true,
+        lazyCompilation: !process.env.STORYBOOK_TEST,
       },
     },
   },
@@ -72,6 +78,11 @@ export default {
       {
         test: /\.svg$/i,
         use: ["@svgr/webpack"],
+      },
+      {
+        test: /\.mjs$/,
+        include: /node_modules/,
+        type: "javascript/auto",
       },
     ];
 

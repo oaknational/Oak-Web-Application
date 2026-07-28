@@ -22,8 +22,10 @@ const props = {
     },
     {
       oakLinkProps: {
-        page: "unit-index",
-        programmeSlug: "history-primary-ks1",
+        page: "teacher-programme",
+        subjectPhaseSlug: "history-primary",
+        tab: "units",
+        query: { keystages: "ks1" },
       },
       label: "History",
     },

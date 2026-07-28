@@ -126,7 +126,7 @@ exports[`Teachers Page Page component renders 1`] = `
                   class="sc-aXZVg sc-gEvEer jPvJsJ krHAKs"
                 >
                   <span
-                    class="sc-eqUAAy eZioic"
+                    class="sc-eqUAAy iIwSBe"
                   >
                     Teachers
                   </span>
@@ -151,7 +151,7 @@ exports[`Teachers Page Page component renders 1`] = `
                   class="sc-aXZVg sc-gEvEer jPvJsJ krHAKs"
                 >
                   <span
-                    class="sc-eqUAAy eZioic"
+                    class="sc-eqUAAy iIwSBe"
                   >
                     Go to 
                     pupils
@@ -185,7 +185,7 @@ exports[`Teachers Page Page component renders 1`] = `
                 class="sc-eqUAAy iGfTGj"
               >
                 <span
-                  class="sc-aXZVg cZEtHK"
+                  class="sc-aXZVg etAHNY"
                 >
                   <img
                     alt=""
@@ -194,6 +194,19 @@ exports[`Teachers Page Page component renders 1`] = `
                     decoding="async"
                     loading="lazy"
                     src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1711468346/logo-mark.svg"
+                    style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                  />
+                </span>
+                <span
+                  class="sc-aXZVg bmLRQH"
+                >
+                  <img
+                    alt=""
+                    class="sc-iGgWBj dZvqhO"
+                    data-nimg="fill"
+                    decoding="async"
+                    loading="lazy"
+                    src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1765468420/OakLogoWithText.svg"
                     style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
                   />
                 </span>
@@ -233,7 +246,7 @@ exports[`Teachers Page Page component renders 1`] = `
                           class="sc-aXZVg sc-gEvEer jPvJsJ kejpBe"
                         >
                           <span
-                            class="sc-eqUAAy fdMrRw"
+                            class="sc-eqUAAy kJIzWq"
                           >
                             Primary
                           </span>
@@ -264,7 +277,7 @@ exports[`Teachers Page Page component renders 1`] = `
                           class="sc-aXZVg sc-gEvEer jPvJsJ kejpBe"
                         >
                           <span
-                            class="sc-eqUAAy fdMrRw"
+                            class="sc-eqUAAy kJIzWq"
                           >
                             Secondary
                           </span>
@@ -295,7 +308,7 @@ exports[`Teachers Page Page component renders 1`] = `
                           class="sc-aXZVg sc-gEvEer jPvJsJ kejpBe"
                         >
                           <span
-                            class="sc-eqUAAy fdMrRw"
+                            class="sc-eqUAAy kJIzWq"
                           >
                             Guidance
                           </span>
@@ -326,7 +339,7 @@ exports[`Teachers Page Page component renders 1`] = `
                           class="sc-aXZVg sc-gEvEer jPvJsJ kejpBe"
                         >
                           <span
-                            class="sc-eqUAAy fdMrRw"
+                            class="sc-eqUAAy kJIzWq"
                           >
                             About us
                           </span>
@@ -357,7 +370,7 @@ exports[`Teachers Page Page component renders 1`] = `
                           class="sc-aXZVg sc-gEvEer jPvJsJ kejpBe"
                         >
                           <span
-                            class="sc-eqUAAy fdMrRw"
+                            class="sc-eqUAAy kJIzWq"
                           >
                             Ai experiments
                           </span>
@@ -529,13 +542,13 @@ exports[`Teachers Page Page component renders 1`] = `
                     class="sc-aXZVg kpXzs yellow-shadow"
                   />
                   <button
-                    class="sc-dcJsrY sc-jXbUNg fldxbr dcSnMW internal-button"
+                    class="sc-dcJsrY sc-jXbUNg bVEHjt dcSnMW internal-button"
                   >
                     <div
                       class="sc-aXZVg sc-gEvEer jPvJsJ kejpBe"
                     >
                       <span
-                        class="sc-eqUAAy fdMrRw"
+                        class="sc-eqUAAy kJIzWq"
                       >
                         Sign in
                       </span>
@@ -611,7 +624,7 @@ exports[`Teachers Page Page component renders 1`] = `
                       style="display: inline-block; transform: rotate(-1.5deg); padding: 4px 8px;"
                     >
                       <span
-                        class="sc-eqUAAy kVreFz"
+                        class="sc-eqUAAy cDjIHt"
                       >
                         Myths
                       </span>
@@ -807,7 +820,7 @@ exports[`Teachers Page Page component renders 1`] = `
                             style="width: 50%;"
                           >
                             <div
-                              class="sc-aXZVg sc-hZDyAQ sc-42aa3e70-1 eAVyBL bKETPQ bcHUdy"
+                              class="sc-aXZVg sc-hZDyAQ sc-42aa3e70-1 eAVyBL goHzHJ bcHUdy"
                             >
                               <button
                                 aria-expanded="false"
@@ -876,7 +889,7 @@ exports[`Teachers Page Page component renders 1`] = `
                               class="sc-aXZVg sc-gEvEer Clfe dbzvZO"
                             >
                               <div
-                                class="sc-aXZVg sc-hZDyAQ sc-42aa3e70-1 hWaSHT bKETPQ bcHUdy"
+                                class="sc-aXZVg sc-hZDyAQ sc-42aa3e70-1 hWaSHT goHzHJ bcHUdy"
                               >
                                 <div
                                   class="sc-aXZVg sc-gEvEer jPvJsJ inWRga"
@@ -978,7 +991,7 @@ exports[`Teachers Page Page component renders 1`] = `
                       </span>
                     </div>
                     <p
-                      class="sc-ikkxIA bFpFFZ"
+                      class="sc-ikkxIA jlqRlb"
                     >
                       Teaching resources
                     </p>
@@ -1005,7 +1018,7 @@ exports[`Teachers Page Page component renders 1`] = `
                       </span>
                     </div>
                     <p
-                      class="sc-ikkxIA bFpFFZ"
+                      class="sc-ikkxIA jlqRlb"
                     >
                       Curriculum plans
                     </p>
@@ -1032,7 +1045,7 @@ exports[`Teachers Page Page component renders 1`] = `
                       </span>
                     </div>
                     <p
-                      class="sc-ikkxIA bFpFFZ"
+                      class="sc-ikkxIA jlqRlb"
                     >
                       AI tools
                     </p>
@@ -1126,7 +1139,7 @@ exports[`Teachers Page Page component renders 1`] = `
                           style="width: 50%;"
                         >
                           <div
-                            class="sc-aXZVg sc-hZDyAQ sc-42aa3e70-1 eAVyBL bKETPQ bcHUdy"
+                            class="sc-aXZVg sc-hZDyAQ sc-42aa3e70-1 eAVyBL goHzHJ bcHUdy"
                           >
                             <button
                               aria-expanded="false"
@@ -1195,7 +1208,7 @@ exports[`Teachers Page Page component renders 1`] = `
                             class="sc-aXZVg sc-gEvEer Clfe dbzvZO"
                           >
                             <div
-                              class="sc-aXZVg sc-hZDyAQ sc-42aa3e70-1 hWaSHT bKETPQ bcHUdy"
+                              class="sc-aXZVg sc-hZDyAQ sc-42aa3e70-1 hWaSHT goHzHJ bcHUdy"
                             >
                               <div
                                 class="sc-aXZVg sc-gEvEer jPvJsJ inWRga"
@@ -1297,7 +1310,7 @@ exports[`Teachers Page Page component renders 1`] = `
                     </span>
                   </div>
                   <p
-                    class="sc-ikkxIA bFpFFZ"
+                    class="sc-ikkxIA jlqRlb"
                   >
                     Teaching resources
                   </p>
@@ -1324,7 +1337,7 @@ exports[`Teachers Page Page component renders 1`] = `
                     </span>
                   </div>
                   <p
-                    class="sc-ikkxIA bFpFFZ"
+                    class="sc-ikkxIA jlqRlb"
                   >
                     Curriculum plans
                   </p>
@@ -1351,7 +1364,7 @@ exports[`Teachers Page Page component renders 1`] = `
                     </span>
                   </div>
                   <p
-                    class="sc-ikkxIA bFpFFZ"
+                    class="sc-ikkxIA jlqRlb"
                   >
                     AI tools
                   </p>
@@ -1423,7 +1436,7 @@ exports[`Teachers Page Page component renders 1`] = `
                               style="width: 50%;"
                             >
                               <div
-                                class="sc-aXZVg sc-hZDyAQ sc-42aa3e70-1 eAVyBL bKETPQ bcHUdy"
+                                class="sc-aXZVg sc-hZDyAQ sc-42aa3e70-1 eAVyBL goHzHJ bcHUdy"
                               >
                                 <button
                                   aria-expanded="false"
@@ -1492,7 +1505,7 @@ exports[`Teachers Page Page component renders 1`] = `
                                 class="sc-aXZVg sc-gEvEer Clfe dbzvZO"
                               >
                                 <div
-                                  class="sc-aXZVg sc-hZDyAQ sc-42aa3e70-1 hWaSHT bKETPQ bcHUdy"
+                                  class="sc-aXZVg sc-hZDyAQ sc-42aa3e70-1 hWaSHT goHzHJ bcHUdy"
                                 >
                                   <div
                                     class="sc-aXZVg sc-gEvEer jPvJsJ inWRga"
@@ -1613,7 +1626,7 @@ exports[`Teachers Page Page component renders 1`] = `
                         </span>
                       </div>
                       <p
-                        class="sc-ikkxIA bFpFFZ"
+                        class="sc-ikkxIA jlqRlb"
                       >
                         Teaching resources
                       </p>
@@ -1640,7 +1653,7 @@ exports[`Teachers Page Page component renders 1`] = `
                         </span>
                       </div>
                       <p
-                        class="sc-ikkxIA bFpFFZ"
+                        class="sc-ikkxIA jlqRlb"
                       >
                         Curriculum plans
                       </p>
@@ -1667,7 +1680,7 @@ exports[`Teachers Page Page component renders 1`] = `
                         </span>
                       </div>
                       <p
-                        class="sc-ikkxIA bFpFFZ"
+                        class="sc-ikkxIA jlqRlb"
                       >
                         AI tools
                       </p>
@@ -3554,7 +3567,7 @@ exports[`Teachers Page Page component renders 1`] = `
                   class="sc-aXZVg sc-gEvEer cJVcct bktafW"
                 >
                   <p
-                    class="sc-ikkxIA bEvYEq"
+                    class="sc-ikkxIA cfEVLw"
                   >
                     © Oak National Academy Limited, No 14174888
                   </p>
@@ -3597,7 +3610,7 @@ exports[`Teachers Page Page component renders 1`] = `
       </div>
       <div
         aria-live="polite"
-        class="sc-aXZVg sc-gEvEer sc-84e7982d-0 bRmOVg hpzNYH fkcvun"
+        class="sc-aXZVg sc-gEvEer sc-372e3d03-0 huaWfm hpzNYH fYWdOt"
       />
     </div>
     <div
@@ -3617,7 +3630,7 @@ exports[`Teachers Page Page component renders 1`] = `
               class="sc-aXZVg bURnqS"
             >
               <strong
-                class="sc-eqUAAy byNDSE"
+                class="sc-eqUAAy jPKsIw"
               >
                 This site uses cookies to store information on your computer.
               </strong>

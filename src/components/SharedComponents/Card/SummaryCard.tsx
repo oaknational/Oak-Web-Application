@@ -10,7 +10,6 @@ import {
 import Card from "./Card";
 
 import { PortableTextJSON, Image } from "@/common-lib/cms-types";
-import BrushBorders from "@/components/SharedComponents/SpriteSheet/BrushSvgs/BrushBorders";
 import { PortableTextWithDefaults } from "@/components/SharedComponents/PortableText";
 import Cover from "@/components/SharedComponents/Cover";
 import CMSImage from "@/components/SharedComponents/CMSImage";
@@ -44,6 +43,7 @@ const SummaryCard: FC<SummaryCardProps> = ({
 }) => {
   return (
     <Card
+      $borderRadius={"border-radius-l"}
       $pa={"spacing-0"}
       $background={background}
       $flexDirection={"row"}
@@ -111,7 +111,6 @@ const SummaryCard: FC<SummaryCardProps> = ({
         </OakFlex>
         {children}
       </OakFlex>
-      <BrushBorders hideOnMobileH color={background || "inherit"} />
     </Card>
   );
 };

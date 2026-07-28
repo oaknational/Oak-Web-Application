@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { FC } from "react";
 import {
   OakBox,
@@ -5,16 +6,15 @@ import {
   OakGridArea,
   OakHeading,
   OakHeadingTag,
+  OakTertiaryButton,
 } from "@oaknational/oak-components";
 
 import Cover from "@/components/SharedComponents/Cover";
 import Illustration from "@/components/SharedComponents/Illustration";
-import ButtonAsLink from "@/components/SharedComponents/Button/ButtonAsLink";
 
 export type UpcomingWebinarWallProps = {
   headingTag?: OakHeadingTag;
   headingText: string;
-  buttonOnClick: () => void;
   buttonHref: string;
   buttonText: string;
   buttonSuffixA11y: string;
@@ -35,7 +35,6 @@ const UpcomingWebinarWall: FC<UpcomingWebinarWallProps> = (props) => {
     headingText,
     buttonText,
     buttonHref,
-    buttonOnClick,
     buttonSuffixA11y,
   } = props;
   return (
@@ -53,17 +52,16 @@ const UpcomingWebinarWall: FC<UpcomingWebinarWallProps> = (props) => {
         <OakHeading tag={headingTag} $font={["heading-6", "heading-5"]}>
           {headingText}
         </OakHeading>
-        <ButtonAsLink
-          $mt={28}
-          background="blue"
-          htmlAnchorProps={{ onClick: buttonOnClick, target: "_blank" }}
-          page={null}
+        <OakTertiaryButton
+          $mt={"spacing-24"}
+          element={Link}
+          iconName="arrow-right"
+          isTrailingIcon
           href={buttonHref}
-          label={buttonText}
-          labelSuffixA11y={buttonSuffixA11y}
-          icon="chevron-right"
-          $iconPosition="trailing"
-        />
+          aria-label={`${buttonText} ${buttonSuffixA11y}`}
+        >
+          {buttonText}
+        </OakTertiaryButton>
       </OakBox>
       <OakGrid
         $right="spacing-0"

@@ -23,6 +23,8 @@ export type ParsedProgrammeSlug = {
   examboardSlug: string | null;
 };
 
+const EYFS_KEYSTAGE_SLUG = "early-years-foundation-stage";
+
 function takeOption(
   parts: string[],
   options: readonly string[],
@@ -67,6 +69,19 @@ export function parseProgrammeSlug(
   }
 
   const phaseSlug = parts.shift()!;
+
+  if (parts.join("-") === EYFS_KEYSTAGE_SLUG && phaseSlug === "foundation") {
+    return {
+      subjectSlug,
+      phaseSlug,
+      keystageSlug: EYFS_KEYSTAGE_SLUG,
+      yearSlug: null,
+      tierSlug: null,
+      pathwaySlug: null,
+      examboardSlug: null,
+    };
+  }
+
   const pathwaySlug = takeOption(parts, pathwaySlugs.options);
   const tierSlug = takeOption(parts, tierSlugs.options);
   const examboardSlug = takeOption(parts, examboardSlugs.options);

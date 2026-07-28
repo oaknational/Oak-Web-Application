@@ -25,7 +25,7 @@ export function xmlElementToJson(xmlData?: string) {
   if (rootNode.elements.length !== 1) {
     throw new Error("Expecting a single root node in XML");
   }
-  return collapseFragments(rootNode as Element)?.elements?.[0];
+  return (collapseFragments(rootNode as Element) as Element)?.elements?.[0];
 }
 
 export function createFragment(elements: Element[]): Element {

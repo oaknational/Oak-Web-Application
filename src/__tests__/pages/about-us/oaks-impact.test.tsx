@@ -59,8 +59,8 @@ const mockPageData: OaksImpactPage = {
     },
     stats: [],
   },
-  caseStudies: {
-    cards: [],
+  caseStudiesSection: {
+    caseStudies: [],
   },
   schoolQuotes: {
     heading: "Oaks Impact school quotes heading",

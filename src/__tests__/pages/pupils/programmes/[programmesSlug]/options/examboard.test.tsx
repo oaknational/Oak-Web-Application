@@ -1,7 +1,7 @@
 import PupilProgrammeListingPage, {
   getStaticProps,
 } from "@/pages/pupils/programmes/[programmeSlug]/options/examboard/[examboardSlug]";
-import * as curriculumApi2023 from "@/node-lib/curriculum-api-2023/__mocks__/index";
+import * as curriculumApi2023 from "@/node-lib/curriculum-api-2023/__mocks__/curriculumApi2023Mock";
 import { PupilViewsProgrammeListing } from "@/components/PupilViews/PupilProgrammeListing/PupilProgrammeListing.view";
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 import { getAvailableProgrammeFactor } from "@/pages-helpers/pupil/options-pages/getAvailableProgrammeFactor";

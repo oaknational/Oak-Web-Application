@@ -1,15 +1,16 @@
 import type { Meta, StoryObj } from "@storybook/nextjs";
-import { OakThemeProvider, oakDefaultTheme } from "@oaknational/oak-components";
 
 import { QuizCorrectAnswers } from "./QuizCorrectAnswers";
+
+import { MathJaxProvider } from "@/browser-lib/mathjax/MathJaxProvider";
 
 const meta = {
   component: QuizCorrectAnswers,
   decorators: [
     (Story) => (
-      <OakThemeProvider theme={oakDefaultTheme}>
+      <MathJaxProvider>
         <Story />
-      </OakThemeProvider>
+      </MathJaxProvider>
     ),
   ],
 } satisfies Meta<typeof QuizCorrectAnswers>;

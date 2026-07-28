@@ -4,9 +4,10 @@ import {
   OakHeading,
   OakVideoTranscript,
   OakSignLanguageButton,
-  OakCopyLinkButton,
+  OakSmallSecondaryButton,
 } from "@oaknational/oak-components";
 
+import { useCopyLink } from "@/hooks/useCopyLink";
 import LessonMetadata from "@/components/SharedComponents/LessonMetadata";
 
 /**
@@ -39,7 +40,15 @@ export const LessonMediaClipInfo: FC<LessonMediaClipInfoProps> = ({
   onSignLanguageButtonClick = () => {},
   copyLinkButtonEnabled = false,
   isMobile,
+  copyLinkHref,
 }: LessonMediaClipInfoProps) => {
+  const linkToCopy =
+    copyLinkHref || typeof window !== "undefined" ? window.location.href : null;
+
+  const { handleClick } = useCopyLink({
+    linkToCopy,
+  });
+
   return (
     <OakBox>
       <OakHeading tag="h5" $font={"heading-5"} $mb="spacing-12">
@@ -60,7 +69,15 @@ export const LessonMediaClipInfo: FC<LessonMediaClipInfoProps> = ({
           )
         }
         copyLinkControl={
-          copyLinkButtonEnabled && <OakCopyLinkButton aria-live="polite" />
+          copyLinkButtonEnabled && (
+            <OakSmallSecondaryButton
+              onClick={handleClick}
+              iconName="copy"
+              isTrailingIcon
+            >
+              Copy link
+            </OakSmallSecondaryButton>
+          )
         }
       >
         {videoTranscript}

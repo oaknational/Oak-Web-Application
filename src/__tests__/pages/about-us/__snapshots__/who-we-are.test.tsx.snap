@@ -88,19 +88,28 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c37 {
+.c28 {
+  position: relative;
+  width: 6.25rem;
+  height: 3rem;
+  padding: 0rem;
+  display: none;
+  font-family: --var(google-font),Lexend,sans-serif;
+}
+
+.c38 {
   position: relative;
   max-width: 11.25rem;
   display: none;
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c38 {
+.c39 {
   display: none;
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c39 {
+.c40 {
   position: relative;
   height: -webkit-fit-content;
   height: -moz-fit-content;
@@ -121,17 +130,17 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
   letter-spacing: -0.005rem;
 }
 
-.c39:hover {
+.c40:hover {
   cursor: pointer;
 }
 
-.c43 {
+.c44 {
   top: 50%;
   right: 0.5rem;
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c44 {
+.c45 {
   position: relative;
   width: -webkit-max-content;
   width: -moz-max-content;
@@ -139,7 +148,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c50 {
+.c51 {
   position: relative;
   width: 2rem;
   min-width: 2rem;
@@ -150,7 +159,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c52 {
+.c53 {
   position: absolute;
   top: 0rem;
   width: 100%;
@@ -159,12 +168,12 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c55 {
+.c56 {
   display: block;
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c58 {
+.c59 {
   width: -webkit-fit-content;
   width: -moz-fit-content;
   width: fit-content;
@@ -184,7 +193,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
   letter-spacing: 0.0115rem;
 }
 
-.c60 {
+.c61 {
   position: relative;
   width: 1.5rem;
   min-width: 1.5rem;
@@ -194,28 +203,28 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c61 {
+.c62 {
   display: none;
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c64 {
+.c65 {
   display: block;
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c66 {
+.c67 {
   width: 100%;
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c67 {
+.c68 {
   color: #222222;
   font-family: --var(google-font),Lexend,sans-serif;
   z-index: 0;
 }
 
-.c68 {
+.c69 {
   max-width: 80rem;
   padding-left: 1.25rem;
   padding-right: 1.25rem;
@@ -224,7 +233,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c69 {
+.c70 {
   overflow: hidden;
   padding-top: 3.5rem;
   padding-bottom: 3.5rem;
@@ -232,7 +241,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
   overflow: hidden;
 }
 
-.c76 {
+.c77 {
   position: relative;
   width: 22.5rem;
   height: 100%;
@@ -240,21 +249,21 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c77 {
+.c78 {
   margin-left: auto;
   margin-right: auto;
   background: #bef2bd;
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c79 {
+.c80 {
   min-width: 100%;
   aspect-ratio: 4/3;
   background: #dff9de;
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c82 {
+.c83 {
   padding-left: 1.25rem;
   padding-right: 1.25rem;
   padding-top: 3.5rem;
@@ -262,17 +271,17 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c85 {
+.c86 {
   background: #ebfbeb;
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c86 {
+.c87 {
   padding-top: 3.5rem;
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c91 {
+.c92 {
   font-family: --var(google-font),Lexend,sans-serif;
   font-weight: 600;
   font-size: 1.25rem;
@@ -283,12 +292,12 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
   letter-spacing: 0.0115rem;
 }
 
-.c96 {
+.c97 {
   width: 1.5rem;
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c98 {
+.c99 {
   width: 1.5rem;
   height: 1.5rem;
   background: #bef2bd;
@@ -299,7 +308,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c100 {
+.c101 {
   width: 0rem;
   border: 0rem solid;
   border-left: 0.188rem solid;
@@ -308,12 +317,12 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c101 {
+.c102 {
   margin-bottom: 3.5rem;
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c102 {
+.c103 {
   font-family: --var(google-font),Lexend,sans-serif;
   font-weight: 600;
   font-size: 1rem;
@@ -324,7 +333,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
   letter-spacing: 0.0115rem;
 }
 
-.c104 {
+.c105 {
   font-family: --var(google-font),Lexend,sans-serif;
   font-weight: 300;
   font-size: 1rem;
@@ -335,13 +344,13 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
   letter-spacing: -0.005rem;
 }
 
-.c107 {
+.c108 {
   padding-top: 3.5rem;
   padding-bottom: 3.5rem;
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c113 {
+.c114 {
   height: 15rem;
   padding: 1.5rem;
   background: #a0b6f2;
@@ -349,20 +358,20 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c118 {
+.c119 {
   overflow: hidden;
   padding-top: 4.5rem;
   font-family: --var(google-font),Lexend,sans-serif;
   overflow: hidden;
 }
 
-.c119 {
+.c120 {
   position: relative;
   background: #bef2bd;
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c120 {
+.c121 {
   position: absolute;
   top: 0rem;
   left: 0rem;
@@ -377,7 +386,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c121 {
+.c122 {
   position: relative;
   padding-top: 3.5rem;
   padding-bottom: 3.5rem;
@@ -408,7 +417,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
 
 .c131 {
   font-family: --var(google-font),Lexend,sans-serif;
-  font-weight: 700;
+  font-weight: 500;
   font-size: 1.125rem;
   line-height: 1.75rem;
   -webkit-letter-spacing: -0.005rem;
@@ -652,7 +661,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
   padding-left: 0.75rem;
   padding-right: 0.75rem;
   font-family: --var(google-font),Lexend,sans-serif;
-  z-index: 1;
+  z-index: 300;
 }
 
 .c213 {
@@ -758,7 +767,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
   gap: 1.5rem;
 }
 
-.c28 {
+.c29 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -777,7 +786,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
   flex-grow: 1;
 }
 
-.c33 {
+.c34 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -796,7 +805,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
   gap: 0.25rem;
 }
 
-.c36 {
+.c37 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -808,7 +817,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
   gap: 1.5rem;
 }
 
-.c40 {
+.c41 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -819,14 +828,14 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
   align-items: center;
 }
 
-.c45 {
+.c46 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
 }
 
-.c49 {
+.c50 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -845,7 +854,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
   gap: 0rem;
 }
 
-.c51 {
+.c52 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -860,7 +869,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
   justify-content: center;
 }
 
-.c59 {
+.c60 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -876,7 +885,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
   gap: 0.25rem;
 }
 
-.c90 {
+.c91 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -887,7 +896,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
   gap: 0.5rem;
 }
 
-.c94 {
+.c95 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -897,7 +906,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
   flex-direction: column;
 }
 
-.c70 {
+.c71 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -913,7 +922,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
   gap: 0rem;
 }
 
-.c71 {
+.c72 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -924,7 +933,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
   gap: 1.5rem;
 }
 
-.c80 {
+.c81 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -935,7 +944,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
   flex-grow: 1;
 }
 
-.c83 {
+.c84 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -949,7 +958,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
   flex-shrink: 1;
 }
 
-.c87 {
+.c88 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -960,7 +969,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
   gap: 2.5rem;
 }
 
-.c95 {
+.c96 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -968,7 +977,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
   gap: 1rem;
 }
 
-.c97 {
+.c98 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -985,7 +994,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
   flex-shrink: 0;
 }
 
-.c99 {
+.c100 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -996,7 +1005,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
   flex-grow: 0;
 }
 
-.c108 {
+.c109 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -1007,7 +1016,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
   gap: 2rem;
 }
 
-.c115 {
+.c116 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -1189,7 +1198,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
 
 .c17 {
   font-family: --var(google-font),Lexend,sans-serif;
-  font-weight: 700;
+  font-weight: 500;
   font-size: 0.875rem;
   line-height: 1.25rem;
   -webkit-letter-spacing: -0.005rem;
@@ -1203,9 +1212,9 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c34 {
+.c35 {
   font-family: --var(google-font),Lexend,sans-serif;
-  font-weight: 700;
+  font-weight: 500;
   font-size: 0.875rem;
   line-height: 1.25rem;
   -webkit-letter-spacing: -0.005rem;
@@ -1215,7 +1224,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
   text-align: left;
 }
 
-.c54 {
+.c55 {
   font-family: --var(google-font),Lexend,sans-serif;
   font-weight: 600;
   font-size: 1rem;
@@ -1226,7 +1235,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
   letter-spacing: 0.0115rem;
 }
 
-.c73 {
+.c74 {
   background: #bef2bd;
   padding-left: 0.25rem;
   padding-right: 0.25rem;
@@ -1257,7 +1266,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
 
 .c219 {
   font-family: --var(google-font),Lexend,sans-serif;
-  font-weight: 700;
+  font-weight: 500;
   font-size: 0.875rem;
   line-height: 1.25rem;
   -webkit-letter-spacing: -0.005rem;
@@ -1365,7 +1374,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
   cursor: default;
 }
 
-.c31 {
+.c32 {
   background: none;
   color: inherit;
   border: none;
@@ -1388,12 +1397,12 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
   border-radius: 0.25rem;
 }
 
-.c31:disabled {
+.c32:disabled {
   pointer-events: none;
   cursor: default;
 }
 
-.c47 {
+.c48 {
   background: none;
   color: inherit;
   border: none;
@@ -1407,12 +1416,12 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
   color: #222222;
 }
 
-.c47:disabled {
+.c48:disabled {
   pointer-events: none;
   cursor: default;
 }
 
-.c56 {
+.c57 {
   background: none;
   color: inherit;
   border: none;
@@ -1425,12 +1434,12 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c56:disabled {
+.c57:disabled {
   pointer-events: none;
   cursor: default;
 }
 
-.c62 {
+.c63 {
   background: none;
   color: inherit;
   border: none;
@@ -1441,7 +1450,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
   font-family: unset;
   outline: none;
   font-family: --var(google-font),Lexend,sans-serif;
-  font-weight: 700;
+  font-weight: 500;
   font-size: 0.875rem;
   line-height: 1.25rem;
   -webkit-letter-spacing: -0.005rem;
@@ -1460,12 +1469,12 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
   border-radius: 0.25rem;
 }
 
-.c62:disabled {
+.c63:disabled {
   pointer-events: none;
   cursor: default;
 }
 
-.c65 {
+.c66 {
   background: none;
   color: inherit;
   border: none;
@@ -1489,7 +1498,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
   border-style: none;
 }
 
-.c65:disabled {
+.c66:disabled {
   pointer-events: none;
   cursor: default;
 }
@@ -1555,13 +1564,13 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
   object-fit: contain;
 }
 
-.c35 {
+.c36 {
   -webkit-filter: invert(10%) sepia(1%) saturate(236%) hue-rotate(314deg) brightness(95%) contrast(91%);
   filter: invert(10%) sepia(1%) saturate(236%) hue-rotate(314deg) brightness(95%) contrast(91%);
   object-fit: contain;
 }
 
-.c53 {
+.c54 {
   -webkit-filter: invert(98%) sepia(98%) saturate(0%) hue-rotate(328deg) brightness(102%) contrast(102%);
   filter: invert(98%) sepia(98%) saturate(0%) hue-rotate(328deg) brightness(102%) contrast(102%);
   object-fit: contain;
@@ -1664,13 +1673,13 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
   display: none;
 }
 
-.c32 {
+.c33 {
   position: relative;
   width: 100%;
   height: 100%;
 }
 
-.c32:hover {
+.c33:hover {
   -webkit-text-decoration: none;
   text-decoration: none;
   color: #222222;
@@ -1678,37 +1687,37 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
   border-color: #f2f2f2;
 }
 
-.c32:hover [data-state="selected"] {
+.c33:hover [data-state="selected"] {
   display: none;
 }
 
-.c32:active {
+.c33:active {
   background: #ffffff;
   border-color: #ffffff;
   color: #222222;
 }
 
-.c32:active [data-state="selected"] {
+.c33:active [data-state="selected"] {
   display: none;
 }
 
-.c32:disabled {
+.c33:disabled {
   background: #ffffff;
   border-color: #ffffff;
   color: #808080;
 }
 
-.c32:disabled [data-state="selected"] {
+.c33:disabled [data-state="selected"] {
   display: none;
 }
 
-.c63 {
+.c64 {
   position: relative;
   width: 100%;
   height: 100%;
 }
 
-.c63:hover {
+.c64:hover {
   -webkit-text-decoration: none;
   text-decoration: none;
   color: #ffffff;
@@ -1716,27 +1725,27 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
   border-color: #575757;
 }
 
-.c63:hover [data-state="selected"] {
+.c64:hover [data-state="selected"] {
   display: none;
 }
 
-.c63:active {
+.c64:active {
   background: #222222;
   border-color: #222222;
   color: #ffffff;
 }
 
-.c63:active [data-state="selected"] {
+.c64:active [data-state="selected"] {
   display: none;
 }
 
-.c63:disabled {
+.c64:disabled {
   background: #808080;
   border-color: #808080;
   color: #ffffff;
 }
 
-.c63:disabled [data-state="selected"] {
+.c64:disabled [data-state="selected"] {
   display: none;
 }
 
@@ -1790,46 +1799,46 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
   box-shadow: 0.125rem 0.125rem 0 rgba(255,229,85,100%);
 }
 
-.c48 {
+.c49 {
   display: inline-block;
   position: relative;
 }
 
-.c48:hover {
+.c49:hover {
   -webkit-text-decoration: underline;
   text-decoration: underline;
   color: #575757;
 }
 
-.c48:active {
+.c49:active {
   color: #222222;
 }
 
-.c48:disabled {
+.c49:disabled {
   color: #808080;
 }
 
-.c46 > :first-child:focus-visible .shadow {
+.c47 > :first-child:focus-visible .shadow {
   box-shadow: 0 0 0 0.125rem rgba(255,229,85,100%), 0 0 0 0.3rem rgba(87,87,87,100%);
 }
 
-.c46 > :first-child:hover .shadow {
+.c47 > :first-child:hover .shadow {
   box-shadow: 0.125rem 0.125rem 0 rgba(255,229,85,100%);
 }
 
-.c46 > :first-child:active .shadow {
+.c47 > :first-child:active .shadow {
   box-shadow: 0.125rem 0.125rem 0 rgba(255,229,85,100%), 0.25rem 0.25rem 0 rgba(87,87,87,100%);
 }
 
-.c46 > :first-child:disabled .icon-container {
+.c47 > :first-child:disabled .icon-container {
   background: #808080;
 }
 
-.c46 > :first-child:hover .icon-container {
+.c47 > :first-child:hover .icon-container {
   background: #575757;
 }
 
-.c46 > :first-child:active .icon-container {
+.c47 > :first-child:active .icon-container {
   background: #222222;
 }
 
@@ -1857,7 +1866,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
   background: #ffffff;
 }
 
-.c72 {
+.c73 {
   font-family: --var(google-font),Lexend,sans-serif;
   font-weight: 600;
   font-size: 2rem;
@@ -1868,7 +1877,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
   letter-spacing: 0.0115rem;
 }
 
-.c92 {
+.c93 {
   font-family: --var(google-font),Lexend,sans-serif;
   font-weight: 600;
   font-size: 1.5rem;
@@ -1879,7 +1888,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
   letter-spacing: 0.0115rem;
 }
 
-.c103 {
+.c104 {
   font-family: --var(google-font),Lexend,sans-serif;
   font-weight: 600;
   font-size: 1.25rem;
@@ -1890,7 +1899,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
   letter-spacing: 0.0115rem;
 }
 
-.c109 {
+.c110 {
   font-family: --var(google-font),Lexend,sans-serif;
   font-weight: 600;
   font-size: 1.5rem;
@@ -1902,7 +1911,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
   text-align: left;
 }
 
-.c116 {
+.c117 {
   font-family: --var(google-font),Lexend,sans-serif;
   font-weight: 600;
   font-size: 1.25rem;
@@ -1913,7 +1922,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
   letter-spacing: 0.0115rem;
 }
 
-.c122 {
+.c123 {
   font-family: --var(google-font),Lexend,sans-serif;
   font-weight: 600;
   font-size: 1.5rem;
@@ -1949,7 +1958,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
   color: #222222;
 }
 
-.c30 {
+.c31 {
   display: revert;
   font-family: --var(google-font),Lexend,sans-serif;
   font-family: --var(google-font),Lexend,sans-serif;
@@ -1966,7 +1975,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
   display: revert;
 }
 
-.c74 {
+.c75 {
   font-family: --var(google-font),Lexend,sans-serif;
   font-weight: 400;
   font-size: 1.5rem;
@@ -1977,7 +1986,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
   letter-spacing: 0.0115rem;
 }
 
-.c84 {
+.c85 {
   font-family: --var(google-font),Lexend,sans-serif;
   font-weight: 400;
   font-size: 1rem;
@@ -1988,7 +1997,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
   letter-spacing: 0.0115rem;
 }
 
-.c105 {
+.c106 {
   font-family: --var(google-font),Lexend,sans-serif;
   font-weight: 300;
   font-size: 1rem;
@@ -2000,7 +2009,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
   margin-top: 1rem;
 }
 
-.c117 {
+.c118 {
   font-family: --var(google-font),Lexend,sans-serif;
   font-weight: 300;
   font-size: 1rem;
@@ -2044,7 +2053,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
 
 .c204 {
   font-family: --var(google-font),Lexend,sans-serif;
-  font-weight: 700;
+  font-weight: 500;
   font-size: 0.875rem;
   line-height: 1.25rem;
   -webkit-letter-spacing: -0.005rem;
@@ -2075,7 +2084,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
   letter-spacing: -0.005rem;
 }
 
-.c29 {
+.c30 {
   list-style: none;
   padding: 0;
   margin: 0;
@@ -2304,7 +2313,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
   filter: invert(54%) sepia(0%) saturate(38%) hue-rotate(176deg) brightness(92%) contrast(91%);
 }
 
-.c42 {
+.c43 {
   -webkit-appearance: none !important;
   -moz-appearance: none !important;
   appearance: none !important;
@@ -2320,49 +2329,49 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
   width: 100%;
 }
 
-.c42::-webkit-input-placeholder {
+.c43::-webkit-input-placeholder {
   color: #575757;
 }
 
-.c42::-moz-placeholder {
+.c43::-moz-placeholder {
   color: #575757;
 }
 
-.c42:-ms-input-placeholder {
+.c43:-ms-input-placeholder {
   color: #575757;
 }
 
-.c42::placeholder {
+.c43::placeholder {
   color: #575757;
 }
 
-.c42::-webkit-search-decoration,
-.c42::-webkit-search-cancel-button,
-.c42::-webkit-search-results-button,
-.c42::-webkit-search-results-decoration {
+.c43::-webkit-search-decoration,
+.c43::-webkit-search-cancel-button,
+.c43::-webkit-search-results-button,
+.c43::-webkit-search-results-decoration {
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
 }
 
-.c42:disabled {
+.c43:disabled {
   cursor: not-allowed;
 }
 
-.c41 {
+.c42 {
   background: #ffffff;
 }
 
-.c41:hover {
+.c42:hover {
   cursor: text;
 }
 
-.c41:focus-within {
+.c42:focus-within {
   border-color: #222222;
   background: #ffffff;
 }
 
-.c88 {
+.c89 {
   display: grid;
   grid-template-columns: repeat(12,1fr);
   width: 100%;
@@ -2371,7 +2380,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
   column-gap: 1rem;
 }
 
-.c110 {
+.c111 {
   display: grid;
   grid-template-columns: repeat(12,1fr);
   width: 100%;
@@ -2386,7 +2395,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
   width: 100%;
 }
 
-.c89 {
+.c90 {
   -webkit-flex-direction: column;
   -ms-flex-direction: column;
   flex-direction: column;
@@ -2396,7 +2405,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
   grid-column-start: 0;
 }
 
-.c93 {
+.c94 {
   -webkit-flex-direction: column;
   -ms-flex-direction: column;
   flex-direction: column;
@@ -2406,7 +2415,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
   grid-column-start: 0;
 }
 
-.c111 {
+.c112 {
   -webkit-flex-direction: column;
   -ms-flex-direction: column;
   flex-direction: column;
@@ -2434,6 +2443,9 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
 }
 
 .c126 {
+  list-style: none;
+  margin: 0;
+  padding: 0;
   box-shadow: none;
 }
 
@@ -2455,11 +2467,11 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
   box-shadow: 0.125rem 0.125rem 0 rgba(255,229,85,100%),0.25rem 0.25rem 0 rgba(87,87,87,100%);
 }
 
-.c57:hover .oak-save-count {
+.c58:hover .oak-save-count {
   background-color: #bef2bd;
 }
 
-.c57:focus-visible .oak-save-count {
+.c58:focus-visible .oak-save-count {
   box-shadow: 0 0 0 0.125rem rgba(255,229,85,100%), 0 0 0 0.3rem rgba(87,87,87,100%);
 }
 
@@ -2478,11 +2490,11 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
   font-family: unset;
 }
 
-.c106:first-child {
+.c107:first-child {
   margin-top: 0;
 }
 
-.c75 {
+.c76 {
   height: 410px;
   width: auto;
 }
@@ -2563,57 +2575,57 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
   background-color: #999999;
 }
 
-.c81 {
+.c82 {
   object-fit: cover;
   width: 100%;
   height: auto;
 }
 
-.c81::-webkit-scrollbar-track {
+.c82::-webkit-scrollbar-track {
   border-radius: 15px;
   background-color: #ffffff;
 }
 
-.c81::-webkit-scrollbar {
+.c82::-webkit-scrollbar {
   width: 10px;
   border-radius: 15px;
   background-color: #ffffff;
 }
 
-.c81::-webkit-scrollbar-thumb {
+.c82::-webkit-scrollbar-thumb {
   border-radius: 15px;
   background-color: #999999;
 }
 
-.c114 {
+.c115 {
   object-fit: contain;
   width: 100%;
   height: 100%;
 }
 
-.c114::-webkit-scrollbar-track {
+.c115::-webkit-scrollbar-track {
   border-radius: 15px;
   background-color: #ffffff;
 }
 
-.c114::-webkit-scrollbar {
+.c115::-webkit-scrollbar {
   width: 10px;
   border-radius: 15px;
   background-color: #ffffff;
 }
 
-.c114::-webkit-scrollbar-thumb {
+.c115::-webkit-scrollbar-thumb {
   border-radius: 15px;
   background-color: #999999;
 }
 
-.c78 {
+.c79 {
   -webkit-flex-direction: row;
   -ms-flex-direction: row;
   flex-direction: row;
 }
 
-.c112 {
+.c113 {
   grid-column: span 3;
 }
 
@@ -2622,11 +2634,6 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
 }
 
 .c124 {
-  padding: 0;
-  margin: 0;
-}
-
-.c123 {
   margin: 0;
   padding: 0;
   list-style: none;
@@ -2927,18 +2934,18 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
 
 @media (min-width:750px) {
   .c26 {
-    width: 6.25rem;
+    display: none;
   }
 }
 
 @media (min-width:750px) {
-  .c26 {
-    height: 3rem;
+  .c28 {
+    display: block;
   }
 }
 
 @media (min-width:750px) {
-  .c37 {
+  .c38 {
     display: -webkit-box;
     display: -webkit-flex;
     display: -ms-flexbox;
@@ -2947,19 +2954,19 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
 }
 
 @media (min-width:750px) {
-  .c38 {
+  .c39 {
     display: block;
   }
 }
 
 @media (min-width:750px) {
-  .c43 {
+  .c44 {
     position: absolute;
   }
 }
 
 @media (min-width:750px) {
-  .c43 {
+  .c44 {
     -webkit-transform: translateY(-50%);
     -ms-transform: translateY(-50%);
     transform: translateY(-50%);
@@ -2967,37 +2974,37 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
 }
 
 @media (min-width:750px) {
-  .c55 {
+  .c56 {
     display: none;
   }
 }
 
 @media (min-width:750px) {
-  .c58 {
+  .c59 {
     padding-left: 0.25rem;
   }
 }
 
 @media (min-width:750px) {
-  .c58 {
+  .c59 {
     padding-right: 0.5rem;
   }
 }
 
 @media (min-width:750px) {
-  .c61 {
+  .c62 {
     display: contents;
   }
 }
 
 @media (min-width:750px) {
-  .c64 {
+  .c65 {
     display: block;
   }
 }
 
 @media (min-width:1280px) {
-  .c64 {
+  .c65 {
     display: none;
   }
 }
@@ -3011,115 +3018,115 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
 }
 
 @media (min-width:750px) {
-  .c68 {
+  .c69 {
     padding-left: 2.5rem;
   }
 }
 
 @media (min-width:750px) {
-  .c68 {
+  .c69 {
     padding-right: 2.5rem;
   }
 }
 
 @media (min-width:750px) {
-  .c69 {
+  .c70 {
     padding-top: 4.5rem;
   }
 }
 
 @media (min-width:750px) {
-  .c69 {
+  .c70 {
     padding-bottom: 4.5rem;
   }
 }
 
 @media (min-width:750px) {
-  .c79 {
+  .c80 {
     min-width: 40rem;
   }
 }
 
 @media (min-width:1280px) {
-  .c79 {
+  .c80 {
     min-width: 40rem;
   }
 }
 
 @media (min-width:750px) {
-  .c82 {
+  .c83 {
     padding-left: 2.5rem;
   }
 }
 
 @media (min-width:1280px) {
-  .c82 {
+  .c83 {
     padding-left: 5rem;
   }
 }
 
 @media (min-width:750px) {
-  .c82 {
+  .c83 {
     padding-right: 2.5rem;
   }
 }
 
 @media (min-width:1280px) {
-  .c82 {
+  .c83 {
     padding-right: 5rem;
   }
 }
 
 @media (min-width:750px) {
-  .c82 {
+  .c83 {
     padding-top: 2.5rem;
   }
 }
 
 @media (min-width:1280px) {
-  .c82 {
+  .c83 {
     padding-top: 2.5rem;
   }
 }
 
 @media (min-width:750px) {
-  .c82 {
+  .c83 {
     padding-bottom: 2.5rem;
   }
 }
 
 @media (min-width:1280px) {
-  .c82 {
+  .c83 {
     padding-bottom: 2.5rem;
   }
 }
 
 @media (min-width:750px) {
-  .c86 {
+  .c87 {
     padding-top: 4.5rem;
   }
 }
 
 @media (min-width:750px) {
-  .c91 {
+  .c92 {
     font-weight: 600;
   }
 }
 
 @media (min-width:750px) {
-  .c91 {
+  .c92 {
     font-size: 1.5rem;
   }
 }
 
 @media (min-width:750px) {
-  .c91 {
+  .c92 {
     line-height: 2rem;
   }
 }
 
 @media (min-width:750px) {
-  .c91 {
+  .c92 {
     -webkit-letter-spacing: 0.0115rem;
     -moz-letter-spacing: 0.0115rem;
     -ms-letter-spacing: 0.0115rem;
@@ -3128,31 +3135,31 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
 }
 
 @media (min-width:750px) {
-  .c101 {
+  .c102 {
     margin-bottom: 4.5rem;
   }
 }
 
 @media (min-width:750px) {
-  .c104 {
+  .c105 {
     font-weight: 300;
   }
 }
 
 @media (min-width:750px) {
-  .c104 {
+  .c105 {
     font-size: 1.125rem;
   }
 }
 
 @media (min-width:750px) {
-  .c104 {
+  .c105 {
     line-height: 1.75rem;
   }
 }
 
 @media (min-width:750px) {
-  .c104 {
+  .c105 {
     -webkit-letter-spacing: -0.005rem;
     -moz-letter-spacing: -0.005rem;
     -ms-letter-spacing: -0.005rem;
@@ -3161,37 +3168,37 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
 }
 
 @media (min-width:750px) {
-  .c107 {
+  .c108 {
     padding-top: 5rem;
   }
 }
 
 @media (min-width:1280px) {
-  .c107 {
+  .c108 {
     padding-top: 5rem;
   }
 }
 
 @media (min-width:750px) {
-  .c107 {
+  .c108 {
     padding-bottom: 5rem;
   }
 }
 
 @media (min-width:1280px) {
-  .c107 {
+  .c108 {
     padding-bottom: 5rem;
   }
 }
 
 @media (min-width:750px) {
-  .c120 {
+  .c121 {
     display: block;
   }
 }
 
 @media (min-width:750px) {
-  .c120 {
+  .c121 {
     -webkit-transform: scale(1.1) translateX(-0.65%) translateY(4%);
     -ms-transform: scale(1.1) translateX(-0.65%) translateY(4%);
     transform: scale(1.1) translateX(-0.65%) translateY(4%);
@@ -3199,7 +3206,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
 }
 
 @media (min-width:1280px) {
-  .c120 {
+  .c121 {
     -webkit-transform: scale(1.4) translateY(4%);
     -ms-transform: scale(1.4) translateY(4%);
     transform: scale(1.4) translateY(4%);
@@ -3207,25 +3214,25 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
 }
 
 @media (min-width:750px) {
-  .c121 {
+  .c122 {
     padding-top: 5rem;
   }
 }
 
 @media (min-width:1280px) {
-  .c121 {
+  .c122 {
     padding-top: 5rem;
   }
 }
 
 @media (min-width:750px) {
-  .c121 {
+  .c122 {
     padding-bottom: 5rem;
   }
 }
 
 @media (min-width:1280px) {
-  .c121 {
+  .c122 {
     padding-bottom: 5rem;
   }
 }
@@ -3402,19 +3409,19 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
 }
 
 @media (min-width:750px) {
-  .c36 {
+  .c37 {
     gap: 1rem;
   }
 }
 
 @media (min-width:1280px) {
-  .c36 {
+  .c37 {
     gap: 1rem;
   }
 }
 
 @media (min-width:750px) {
-  .c59 {
+  .c60 {
     -webkit-box-pack: initial;
     -webkit-justify-content: initial;
     -ms-flex-pack: initial;
@@ -3431,31 +3438,31 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
 }
 
 @media (min-width:750px) {
-  .c70 {
+  .c71 {
     gap: 3rem;
   }
 }
 
 @media (min-width:1280px) {
-  .c70 {
+  .c71 {
     gap: 15rem;
   }
 }
 
 @media (min-width:750px) {
-  .c87 {
+  .c88 {
     gap: 3.5rem;
   }
 }
 
 @media (min-width:750px) {
-  .c108 {
+  .c109 {
     gap: 3.5rem;
   }
 }
 
 @media (min-width:1280px) {
-  .c108 {
+  .c109 {
     gap: 3.5rem;
   }
 }
@@ -3651,7 +3658,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
 
 @media (min-width:750px) {
   .c219 {
-    font-weight: 700;
+    font-weight: 500;
   }
 }
 
@@ -3701,43 +3708,43 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
 }
 
 @media (min-width:750px) {
-  .c72 {
+  .c73 {
     font-weight: 600;
   }
 }
 
 @media (min-width:1280px) {
-  .c72 {
+  .c73 {
     font-weight: 600;
   }
 }
 
 @media (min-width:750px) {
-  .c72 {
+  .c73 {
     font-size: 3rem;
   }
 }
 
 @media (min-width:1280px) {
-  .c72 {
+  .c73 {
     font-size: 3rem;
   }
 }
 
 @media (min-width:750px) {
-  .c72 {
+  .c73 {
     line-height: 3.5rem;
   }
 }
 
 @media (min-width:1280px) {
-  .c72 {
+  .c73 {
     line-height: 3.5rem;
   }
 }
 
 @media (min-width:750px) {
-  .c72 {
+  .c73 {
     -webkit-letter-spacing: 0.0115rem;
     -moz-letter-spacing: 0.0115rem;
     -ms-letter-spacing: 0.0115rem;
@@ -3746,7 +3753,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
 }
 
 @media (min-width:1280px) {
-  .c72 {
+  .c73 {
     -webkit-letter-spacing: 0.0115rem;
     -moz-letter-spacing: 0.0115rem;
     -ms-letter-spacing: 0.0115rem;
@@ -3755,25 +3762,25 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
 }
 
 @media (min-width:750px) {
-  .c92 {
+  .c93 {
     font-weight: 600;
   }
 }
 
 @media (min-width:750px) {
-  .c92 {
+  .c93 {
     font-size: 2.5rem;
   }
 }
 
 @media (min-width:750px) {
-  .c92 {
+  .c93 {
     line-height: 3rem;
   }
 }
 
 @media (min-width:750px) {
-  .c92 {
+  .c93 {
     -webkit-letter-spacing: 0.0115rem;
     -moz-letter-spacing: 0.0115rem;
     -ms-letter-spacing: 0.0115rem;
@@ -3782,25 +3789,25 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
 }
 
 @media (min-width:750px) {
-  .c103 {
+  .c104 {
     font-weight: 600;
   }
 }
 
 @media (min-width:750px) {
-  .c103 {
+  .c104 {
     font-size: 1.5rem;
   }
 }
 
 @media (min-width:750px) {
-  .c103 {
+  .c104 {
     line-height: 2rem;
   }
 }
 
 @media (min-width:750px) {
-  .c103 {
+  .c104 {
     -webkit-letter-spacing: 0.0115rem;
     -moz-letter-spacing: 0.0115rem;
     -ms-letter-spacing: 0.0115rem;
@@ -3809,43 +3816,43 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
 }
 
 @media (min-width:750px) {
-  .c109 {
+  .c110 {
     font-weight: 600;
   }
 }
 
 @media (min-width:1280px) {
-  .c109 {
+  .c110 {
     font-weight: 600;
   }
 }
 
 @media (min-width:750px) {
-  .c109 {
+  .c110 {
     font-size: 2.5rem;
   }
 }
 
 @media (min-width:1280px) {
-  .c109 {
+  .c110 {
     font-size: 2.5rem;
   }
 }
 
 @media (min-width:750px) {
-  .c109 {
+  .c110 {
     line-height: 3rem;
   }
 }
 
 @media (min-width:1280px) {
-  .c109 {
+  .c110 {
     line-height: 3rem;
   }
 }
 
 @media (min-width:750px) {
-  .c109 {
+  .c110 {
     -webkit-letter-spacing: 0.0115rem;
     -moz-letter-spacing: 0.0115rem;
     -ms-letter-spacing: 0.0115rem;
@@ -3854,7 +3861,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
 }
 
 @media (min-width:1280px) {
-  .c109 {
+  .c110 {
     -webkit-letter-spacing: 0.0115rem;
     -moz-letter-spacing: 0.0115rem;
     -ms-letter-spacing: 0.0115rem;
@@ -3863,55 +3870,55 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
 }
 
 @media (min-width:750px) {
-  .c109 {
+  .c110 {
     text-align: center;
   }
 }
 
 @media (min-width:1280px) {
-  .c109 {
+  .c110 {
     text-align: center;
   }
 }
 
 @media (min-width:750px) {
-  .c116 {
+  .c117 {
     font-weight: 600;
   }
 }
 
 @media (min-width:1280px) {
-  .c116 {
+  .c117 {
     font-weight: 600;
   }
 }
 
 @media (min-width:750px) {
-  .c116 {
+  .c117 {
     font-size: 1.5rem;
   }
 }
 
 @media (min-width:1280px) {
-  .c116 {
+  .c117 {
     font-size: 1.5rem;
   }
 }
 
 @media (min-width:750px) {
-  .c116 {
+  .c117 {
     line-height: 2rem;
   }
 }
 
 @media (min-width:1280px) {
-  .c116 {
+  .c117 {
     line-height: 2rem;
   }
 }
 
 @media (min-width:750px) {
-  .c116 {
+  .c117 {
     -webkit-letter-spacing: 0.0115rem;
     -moz-letter-spacing: 0.0115rem;
     -ms-letter-spacing: 0.0115rem;
@@ -3920,7 +3927,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
 }
 
 @media (min-width:1280px) {
-  .c116 {
+  .c117 {
     -webkit-letter-spacing: 0.0115rem;
     -moz-letter-spacing: 0.0115rem;
     -ms-letter-spacing: 0.0115rem;
@@ -3929,43 +3936,43 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
 }
 
 @media (min-width:750px) {
-  .c122 {
+  .c123 {
     font-weight: 600;
   }
 }
 
 @media (min-width:1280px) {
-  .c122 {
+  .c123 {
     font-weight: 600;
   }
 }
 
 @media (min-width:750px) {
-  .c122 {
+  .c123 {
     font-size: 2rem;
   }
 }
 
 @media (min-width:1280px) {
-  .c122 {
+  .c123 {
     font-size: 2rem;
   }
 }
 
 @media (min-width:750px) {
-  .c122 {
+  .c123 {
     line-height: 2.5rem;
   }
 }
 
 @media (min-width:1280px) {
-  .c122 {
+  .c123 {
     line-height: 2.5rem;
   }
 }
 
 @media (min-width:750px) {
-  .c122 {
+  .c123 {
     -webkit-letter-spacing: 0.0115rem;
     -moz-letter-spacing: 0.0115rem;
     -ms-letter-spacing: 0.0115rem;
@@ -3974,7 +3981,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
 }
 
 @media (min-width:1280px) {
-  .c122 {
+  .c123 {
     -webkit-letter-spacing: 0.0115rem;
     -moz-letter-spacing: 0.0115rem;
     -ms-letter-spacing: 0.0115rem;
@@ -3983,43 +3990,43 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
 }
 
 @media (min-width:750px) {
-  .c74 {
+  .c75 {
     font-weight: 400;
   }
 }
 
 @media (min-width:1280px) {
-  .c74 {
+  .c75 {
     font-weight: 400;
   }
 }
 
 @media (min-width:750px) {
-  .c74 {
+  .c75 {
     font-size: 2.5rem;
   }
 }
 
 @media (min-width:1280px) {
-  .c74 {
+  .c75 {
     font-size: 2.5rem;
   }
 }
 
 @media (min-width:750px) {
-  .c74 {
+  .c75 {
     line-height: 3rem;
   }
 }
 
 @media (min-width:1280px) {
-  .c74 {
+  .c75 {
     line-height: 3rem;
   }
 }
 
 @media (min-width:750px) {
-  .c74 {
+  .c75 {
     -webkit-letter-spacing: 0.0115rem;
     -moz-letter-spacing: 0.0115rem;
     -ms-letter-spacing: 0.0115rem;
@@ -4028,7 +4035,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
 }
 
 @media (min-width:1280px) {
-  .c74 {
+  .c75 {
     -webkit-letter-spacing: 0.0115rem;
     -moz-letter-spacing: 0.0115rem;
     -ms-letter-spacing: 0.0115rem;
@@ -4037,25 +4044,25 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
 }
 
 @media (min-width:750px) {
-  .c84 {
+  .c85 {
     font-weight: 400;
   }
 }
 
 @media (min-width:750px) {
-  .c84 {
+  .c85 {
     font-size: 1.5rem;
   }
 }
 
 @media (min-width:750px) {
-  .c84 {
+  .c85 {
     line-height: 2rem;
   }
 }
 
 @media (min-width:750px) {
-  .c84 {
+  .c85 {
     -webkit-letter-spacing: 0.0115rem;
     -moz-letter-spacing: 0.0115rem;
     -ms-letter-spacing: 0.0115rem;
@@ -4064,25 +4071,25 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
 }
 
 @media (min-width:750px) {
-  .c105 {
+  .c106 {
     font-weight: 300;
   }
 }
 
 @media (min-width:750px) {
-  .c105 {
+  .c106 {
     font-size: 1.125rem;
   }
 }
 
 @media (min-width:750px) {
-  .c105 {
+  .c106 {
     line-height: 1.75rem;
   }
 }
 
 @media (min-width:750px) {
-  .c105 {
+  .c106 {
     -webkit-letter-spacing: -0.005rem;
     -moz-letter-spacing: -0.005rem;
     -ms-letter-spacing: -0.005rem;
@@ -4091,31 +4098,31 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
 }
 
 @media (min-width:750px) {
-  .c105 {
+  .c106 {
     margin-top: 1.5rem;
   }
 }
 
 @media (min-width:750px) {
-  .c117 {
+  .c118 {
     font-weight: 300;
   }
 }
 
 @media (min-width:750px) {
-  .c117 {
+  .c118 {
     font-size: 1.125rem;
   }
 }
 
 @media (min-width:750px) {
-  .c117 {
+  .c118 {
     line-height: 1.75rem;
   }
 }
 
 @media (min-width:750px) {
-  .c117 {
+  .c118 {
     -webkit-letter-spacing: -0.005rem;
     -moz-letter-spacing: -0.005rem;
     -ms-letter-spacing: -0.005rem;
@@ -4181,62 +4188,62 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
 }
 
 @media (max-width:750px) {
-  .c42 {
+  .c43 {
     font-size: 16px;
   }
 }
 
 @media (hover:hover) {
-  .c41:hover:not(:focus-within) {
+  .c42:hover:not(:focus-within) {
     background: #f2f2f2;
     border-color: #808080;
   }
 }
 
 @media (min-width:750px) {
-  .c89 {
+  .c90 {
     grid-column: span 12;
   }
 }
 
 @media (min-width:1280px) {
-  .c89 {
+  .c90 {
     grid-column: 2 / span 9;
   }
 }
 
 @media (min-width:750px) {
-  .c89 {
+  .c90 {
     grid-column-start: 0;
   }
 }
 
 @media (min-width:1280px) {
-  .c89 {
+  .c90 {
     grid-column-start: 2;
   }
 }
 
 @media (min-width:750px) {
-  .c93 {
+  .c94 {
     grid-column: span 12;
   }
 }
 
 @media (min-width:1280px) {
-  .c93 {
+  .c94 {
     grid-column: 3 / span 8;
   }
 }
 
 @media (min-width:750px) {
-  .c93 {
+  .c94 {
     grid-column-start: 0;
   }
 }
 
 @media (min-width:1280px) {
-  .c93 {
+  .c94 {
     grid-column-start: 3;
   }
 }
@@ -4254,13 +4261,13 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
 }
 
 @media (max-width:920px) {
-  .c75 {
+  .c76 {
     display: none;
   }
 }
 
 @media (max-width:1212px) {
-  .c78 {
+  .c79 {
     -webkit-flex-direction: column;
     -ms-flex-direction: column;
     flex-direction: column;
@@ -4268,19 +4275,19 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
 }
 
 @media (max-width:1040px) {
-  .c112 {
+  .c113 {
     grid-column: span 6;
   }
 }
 
 @media (max-width:749px) {
-  .c112 {
+  .c113 {
     grid-column: span 12;
   }
 }
 
 @media (max-width:800px) {
-  .c123 {
+  .c124 {
     grid-template-columns: repeat(1,1fr);
   }
 }
@@ -4492,10 +4499,23 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                   style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
                 />
               </span>
+              <span
+                class="c28"
+              >
+                <img
+                  alt=""
+                  class="c27"
+                  data-nimg="fill"
+                  decoding="async"
+                  loading="lazy"
+                  src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1765468420/OakLogoWithText.svg"
+                  style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                />
+              </span>
             </span>
           </a>
           <div
-            class="c9 c28"
+            class="c9 c29"
             data-testid="teachers-subnav"
             id="teachers-subnav"
           >
@@ -4503,10 +4523,10 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
               class="c9"
             >
               <ul
-                class="c29"
+                class="c30"
               >
                 <li
-                  class="c30"
+                  class="c31"
                 >
                   <div
                     class="c4 c15"
@@ -4520,15 +4540,15 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                     <button
                       aria-expanded="false"
                       aria-haspopup="true"
-                      class="c31 c32 internal-button"
+                      class="c32 c33 internal-button"
                       data-testid="teachers-primary"
                       id="teachers-primary"
                     >
                       <div
-                        class="c9 c33"
+                        class="c9 c34"
                       >
                         <span
-                          class="c34"
+                          class="c35"
                         >
                           Primary
                         </span>
@@ -4537,7 +4557,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                   </div>
                 </li>
                 <li
-                  class="c30"
+                  class="c31"
                 >
                   <div
                     class="c4 c15"
@@ -4551,15 +4571,15 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                     <button
                       aria-expanded="false"
                       aria-haspopup="true"
-                      class="c31 c32 internal-button"
+                      class="c32 c33 internal-button"
                       data-testid="teachers-secondary"
                       id="teachers-secondary"
                     >
                       <div
-                        class="c9 c33"
+                        class="c9 c34"
                       >
                         <span
-                          class="c34"
+                          class="c35"
                         >
                           Secondary
                         </span>
@@ -4568,7 +4588,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                   </div>
                 </li>
                 <li
-                  class="c30"
+                  class="c31"
                 >
                   <div
                     class="c4 c15"
@@ -4582,15 +4602,15 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                     <button
                       aria-expanded="false"
                       aria-haspopup="true"
-                      class="c31 c32 internal-button"
+                      class="c32 c33 internal-button"
                       data-testid="teachers-guidance"
                       id="teachers-guidance"
                     >
                       <div
-                        class="c9 c33"
+                        class="c9 c34"
                       >
                         <span
-                          class="c34"
+                          class="c35"
                         >
                           Guidance
                         </span>
@@ -4599,7 +4619,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                   </div>
                 </li>
                 <li
-                  class="c30"
+                  class="c31"
                 >
                   <div
                     class="c4 c15"
@@ -4613,15 +4633,15 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                     <button
                       aria-expanded="false"
                       aria-haspopup="true"
-                      class="c31 c32 internal-button"
+                      class="c32 c33 internal-button"
                       data-testid="teachers-aboutUs"
                       id="teachers-aboutUs"
                     >
                       <div
-                        class="c9 c33"
+                        class="c9 c34"
                       >
                         <span
-                          class="c34"
+                          class="c35"
                         >
                           About us
                         </span>
@@ -4630,7 +4650,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                   </div>
                 </li>
                 <li
-                  class="c30"
+                  class="c31"
                 >
                   <div
                     class="c4 c15"
@@ -4643,16 +4663,16 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                     />
                     <a
                       aria-label="Ai experiments (this will open in a new tab)"
-                      class="c31 c32 internal-button"
+                      class="c32 c33 internal-button"
                       href="https://labs.thenational.academy"
                       id="teachers-labs"
                       target="_blank"
                     >
                       <div
-                        class="c9 c33"
+                        class="c9 c34"
                       >
                         <span
-                          class="c34"
+                          class="c35"
                         >
                           Ai experiments
                         </span>
@@ -4661,7 +4681,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                         >
                           <img
                             alt=""
-                            class="c35"
+                            class="c36"
                             data-nimg="fill"
                             decoding="async"
                             loading="lazy"
@@ -4676,24 +4696,24 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
               </ul>
             </div>
             <div
-              class="c9 c36"
+              class="c9 c37"
             >
               <form
                 action="/teachers/search"
-                class="c37"
+                class="c38"
                 method="get"
                 role="search"
               >
                 <div
-                  class="c38"
+                  class="c39"
                 >
                   <div
-                    class="c39 c40 c41"
+                    class="c40 c41 c42"
                   >
                     <input
                       aria-invalid="false"
                       aria-label="Lesson and unit search"
-                      class="c42"
+                      class="c43"
                       name="term"
                       placeholder="Search"
                       type="search"
@@ -4701,24 +4721,24 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                   </div>
                 </div>
                 <div
-                  class="c43"
+                  class="c44"
                 >
                   <div
-                    class="c44 c45 c46"
+                    class="c45 c46 c47"
                   >
                     <button
                       aria-label="Submit search"
-                      class="c47 c48"
+                      class="c48 c49"
                       type="submit"
                     >
                       <div
-                        class="c9 c49"
+                        class="c9 c50"
                       >
                         <div
-                          class="c50 c51 icon-container"
+                          class="c51 c52 icon-container"
                         >
                           <div
-                            class="c52 shadow"
+                            class="c53 shadow"
                           />
                           <span
                             class="c20"
@@ -4726,7 +4746,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                           >
                             <img
                               alt=""
-                              class="c53"
+                              class="c54"
                               data-nimg="fill"
                               decoding="async"
                               loading="lazy"
@@ -4736,7 +4756,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                           </span>
                         </div>
                         <span
-                          class="c54"
+                          class="c55"
                         />
                       </div>
                     </button>
@@ -4744,24 +4764,24 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                 </div>
               </form>
               <div
-                class="c55"
+                class="c56"
               >
                 <div
-                  class="c44 c45 c46"
+                  class="c45 c46 c47"
                 >
                   <a
                     aria-label="Search"
-                    class="c47 c48"
+                    class="c48 c49"
                     href="/teachers/search"
                   >
                     <div
-                      class="c9 c49"
+                      class="c9 c50"
                     >
                       <div
-                        class="c50 c51 icon-container"
+                        class="c51 c52 icon-container"
                       >
                         <div
-                          class="c52 shadow"
+                          class="c53 shadow"
                         />
                         <span
                           class="c20"
@@ -4769,7 +4789,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                         >
                           <img
                             alt=""
-                            class="c53"
+                            class="c54"
                             data-nimg="fill"
                             decoding="async"
                             loading="lazy"
@@ -4779,7 +4799,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                         </span>
                       </div>
                       <span
-                        class="c54"
+                        class="c55"
                       />
                     </div>
                   </a>
@@ -4787,14 +4807,14 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
               </div>
               <a
                 aria-label="My library"
-                class="c56 c57"
+                class="c57 c58"
                 href="/teachers/my-library"
               >
                 <div
-                  class="c58 c59 oak-save-count"
+                  class="c59 c60 oak-save-count"
                 >
                   <span
-                    class="c60"
+                    class="c61"
                     data-testid="bookmark-outlined"
                   >
                     <img
@@ -4808,7 +4828,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                     />
                   </span>
                   <div
-                    class="c61"
+                    class="c62"
                   >
                     My library
                   </div>
@@ -4824,13 +4844,13 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                   class="c6 yellow-shadow"
                 />
                 <button
-                  class="c62 c63 internal-button"
+                  class="c63 c64 internal-button"
                 >
                   <div
-                    class="c9 c33"
+                    class="c9 c34"
                   >
                     <span
-                      class="c34"
+                      class="c35"
                     >
                       Sign in
                     </span>
@@ -4840,7 +4860,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
             </div>
           </div>
           <div
-            class="c64"
+            class="c65"
           >
             <div
               class="c4 c5"
@@ -4854,18 +4874,18 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
               <button
                 aria-expanded="false"
                 aria-label="Open navigation menu"
-                class="c65 c8 internal-button"
+                class="c66 c8 internal-button"
                 data-testid="top-nav-hamburger-button"
               >
                 <div
-                  class="c9 c49"
+                  class="c9 c50"
                 >
                   <span
                     class="c20"
                   >
                     <img
                       alt=""
-                      class="c35"
+                      class="c36"
                       data-nimg="fill"
                       decoding="async"
                       loading="lazy"
@@ -4883,41 +4903,41 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
         </nav>
       </header>
       <main
-        class="c66 c1"
+        class="c67 c1"
         id="main"
       >
         <div
-          class="c67"
+          class="c68"
         >
           <div
-            class="c68"
+            class="c69"
           >
             <div
-              class="c69 c70"
+              class="c70 c71"
             >
               <div
-                class="c9 c71"
+                class="c9 c72"
               >
                 <h1
-                  class="c72"
+                  class="c73"
                 >
                   <span
-                    class="c73"
+                    class="c74"
                   >
                     About Oak
                   </span>
                 </h1>
                 <p
-                  class="c74"
+                  class="c75"
                 >
                   We create free resources for teachers.
                 </p>
               </div>
               <div
-                class="c9 c75"
+                class="c9 c76"
               >
                 <span
-                  class="c76"
+                  class="c77"
                 >
                   <img
                     alt=""
@@ -4935,14 +4955,14 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
             </div>
           </div>
           <div
-            class="c77 c45 c78"
+            class="c78 c46 c79"
           >
             <div
-              class="c79 c80"
+              class="c80 c81"
             >
               <img
                 alt=""
-                class="c81"
+                class="c82"
                 data-nimg="1"
                 decoding="async"
                 height="300"
@@ -4954,44 +4974,44 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
               />
             </div>
             <div
-              class="c82 c83"
+              class="c83 c84"
             >
               <p
-                class="c84"
+                class="c85"
               >
                 Oak National Academy was created in response to the pandemic.
               </p>
             </div>
           </div>
           <div
-            class="c85"
+            class="c86"
           >
             <div
-              class="c68"
+              class="c69"
             >
               <div
-                class="c86 c87"
+                class="c87 c88"
               >
                 <div
-                  class="c9 c88"
+                  class="c9 c89"
                 >
                   <div
-                    class="c9 c45 c89"
+                    class="c9 c46 c90"
                   >
                     <div
-                      class="c9 c90"
+                      class="c9 c91"
                     >
                       <div
-                        class="c91"
+                        class="c92"
                       >
                         <span
-                          class="c73"
+                          class="c74"
                         >
                           Oak’s story
                         </span>
                       </div>
                       <h2
-                        class="c92"
+                        class="c93"
                       >
                         As teaching evolves, so do we...
                       </h2>
@@ -4999,50 +5019,50 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                   </div>
                 </div>
                 <div
-                  class="c9 c88"
+                  class="c9 c89"
                 >
                   <div
-                    class="c9 c45 c93"
+                    class="c9 c46 c94"
                   >
                     <div
-                      class="c9 c94"
+                      class="c9 c95"
                     >
                       <div
-                        class="c9 c95"
+                        class="c9 c96"
                         data-testid="timetable-timeline-item"
                       >
                         <div
-                          class="c96 c97"
+                          class="c97 c98"
                         >
                           <div
-                            class="c98 c99"
+                            class="c99 c100"
                           />
                           <div
-                            class="c100 c80"
+                            class="c101 c81"
                           />
                         </div>
                         <div
-                          class="c101 c90"
+                          class="c102 c91"
                         >
                           <div
-                            class="c102"
+                            class="c103"
                           >
                             <span
-                              class="c73"
+                              class="c74"
                             >
                               Oak is born
                             </span>
                           </div>
                           <h3
-                            class="c103"
+                            class="c104"
                           >
                             2020
                           </h3>
                           <div
-                            class="c104 c94"
+                            class="c105 c95"
                           >
                             <p
-                              class="c105 c106"
+                              class="c106 c107"
                             >
                               Oak launched during lockdown.
                             </p>
@@ -5056,32 +5076,32 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
             </div>
           </div>
           <div
-            class="c68"
+            class="c69"
           >
             <div
-              class="c107 c108"
+              class="c108 c109"
             >
               <h2
-                class="c109"
+                class="c110"
               >
                 We are...
               </h2>
               <div
-                class="c9 c110"
+                class="c9 c111"
               >
                 <div
-                  class="c9 c45 c111 c112"
+                  class="c9 c46 c112 c113"
                   data-testid="who-we-are-desc-item"
                 >
                   <div
-                    class="c9 c71"
+                    class="c9 c72"
                   >
                     <div
-                      class="c113"
+                      class="c114"
                     >
                       <img
                         alt=""
-                        class="c114"
+                        class="c115"
                         data-nimg="1"
                         decoding="async"
                         height="300"
@@ -5093,15 +5113,15 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                       />
                     </div>
                     <div
-                      class="c9 c115"
+                      class="c9 c116"
                     >
                       <h3
-                        class="c116"
+                        class="c117"
                       >
                         Free
                       </h3>
                       <p
-                        class="c117"
+                        class="c118"
                       >
                         All our resources are free.
                       </p>
@@ -5112,14 +5132,14 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
             </div>
           </div>
           <div
-            class="c118"
+            class="c119"
             style="margin-top: -72px;"
           >
             <div
-              class="c119"
+              class="c120"
             >
               <span
-                class="c120"
+                class="c121"
                 style="pointer-events: none;"
               >
                 <img
@@ -5133,13 +5153,13 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                 />
               </span>
               <div
-                class="c68"
+                class="c69"
               >
                 <div
-                  class="c121 c108"
+                  class="c122 c109"
                 >
                   <h2
-                    class="c122"
+                    class="c123"
                     id="react-use-id-test-result"
                   >
                     Explore more about Oak
@@ -5148,235 +5168,219 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                     aria-labelledby="react-use-id-test-result"
                   >
                     <ul
-                      class="c123"
+                      class="c124"
                     >
                       <li
-                        class="c124"
+                        class="c125 c126"
                       >
-                        <div
-                          class="c125 c126"
+                        <a
+                          href="/about-us/who-we-are"
+                          style="outline: none;"
                         >
-                          <a
-                            href="/about-us/who-we-are"
-                            style="outline: none;"
+                          <div
+                            class="c127 c128 c129"
+                            data-testid="who-we-are-explore-item"
                           >
                             <div
-                              class="c127 c128 c129"
-                              data-testid="who-we-are-explore-item"
+                              class="c9 c46"
                             >
-                              <div
-                                class="c9 c45"
+                              <span
+                                class="c130"
                               >
-                                <span
-                                  class="c130"
-                                >
-                                  <img
-                                    alt=""
-                                    class="c21"
-                                    data-nimg="fill"
-                                    decoding="async"
-                                    loading="lazy"
-                                    src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1711468346/logo-mark.svg"
-                                    style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
-                                  />
-                                </span>
-                              </div>
-                              <div
-                                class="c131 c80"
-                              >
-                                About Oak
-                              </div>
-                              <div
-                                class="c9 c45"
-                              >
-                                <span
-                                  class="c132"
-                                >
-                                  <img
-                                    alt=""
-                                    class="c21"
-                                    data-nimg="fill"
-                                    decoding="async"
-                                    loading="lazy"
-                                    src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1707149070/icons/fv0z57zerrioft52dd9n.svg"
-                                    style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
-                                  />
-                                </span>
-                              </div>
+                                <img
+                                  alt=""
+                                  class="c21"
+                                  data-nimg="fill"
+                                  decoding="async"
+                                  loading="lazy"
+                                  src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1711468346/logo-mark.svg"
+                                  style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                                />
+                              </span>
                             </div>
-                          </a>
-                        </div>
+                            <div
+                              class="c131 c81"
+                            >
+                              About Oak
+                            </div>
+                            <div
+                              class="c9 c46"
+                            >
+                              <span
+                                class="c132"
+                              >
+                                <img
+                                  alt=""
+                                  class="c21"
+                                  data-nimg="fill"
+                                  decoding="async"
+                                  loading="lazy"
+                                  src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1707149070/icons/fv0z57zerrioft52dd9n.svg"
+                                  style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                                />
+                              </span>
+                            </div>
+                          </div>
+                        </a>
                       </li>
                       <li
-                        class="c124"
+                        class="c125 c126"
                       >
-                        <div
-                          class="c125 c126"
+                        <a
+                          href="/about-us/oaks-curricula"
+                          style="outline: none;"
                         >
-                          <a
-                            href="/about-us/oaks-curricula"
-                            style="outline: none;"
+                          <div
+                            class="c127 c128 c129"
+                            data-testid="who-we-are-explore-item"
                           >
                             <div
-                              class="c127 c128 c129"
-                              data-testid="who-we-are-explore-item"
+                              class="c9 c46"
                             >
-                              <div
-                                class="c9 c45"
+                              <span
+                                class="c130"
                               >
-                                <span
-                                  class="c130"
-                                >
-                                  <img
-                                    alt=""
-                                    class="c21"
-                                    data-nimg="fill"
-                                    decoding="async"
-                                    loading="lazy"
-                                    src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1734523721/homepage/teacher-reading-map_glwhyh.svg"
-                                    style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
-                                  />
-                                </span>
-                              </div>
-                              <div
-                                class="c131 c80"
-                              >
-                                Oak's curricula
-                              </div>
-                              <div
-                                class="c9 c45"
-                              >
-                                <span
-                                  class="c132"
-                                >
-                                  <img
-                                    alt=""
-                                    class="c21"
-                                    data-nimg="fill"
-                                    decoding="async"
-                                    loading="lazy"
-                                    src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1707149070/icons/fv0z57zerrioft52dd9n.svg"
-                                    style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
-                                  />
-                                </span>
-                              </div>
+                                <img
+                                  alt=""
+                                  class="c21"
+                                  data-nimg="fill"
+                                  decoding="async"
+                                  loading="lazy"
+                                  src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1734523721/homepage/teacher-reading-map_glwhyh.svg"
+                                  style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                                />
+                              </span>
                             </div>
-                          </a>
-                        </div>
+                            <div
+                              class="c131 c81"
+                            >
+                              Oak's curricula
+                            </div>
+                            <div
+                              class="c9 c46"
+                            >
+                              <span
+                                class="c132"
+                              >
+                                <img
+                                  alt=""
+                                  class="c21"
+                                  data-nimg="fill"
+                                  decoding="async"
+                                  loading="lazy"
+                                  src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1707149070/icons/fv0z57zerrioft52dd9n.svg"
+                                  style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                                />
+                              </span>
+                            </div>
+                          </div>
+                        </a>
                       </li>
                       <li
-                        class="c124"
+                        class="c125 c126"
                       >
-                        <div
-                          class="c125 c126"
+                        <a
+                          href="/about-us/meet-the-team"
+                          style="outline: none;"
                         >
-                          <a
-                            href="/about-us/meet-the-team"
-                            style="outline: none;"
+                          <div
+                            class="c127 c128 c129"
+                            data-testid="who-we-are-explore-item"
                           >
                             <div
-                              class="c127 c128 c129"
-                              data-testid="who-we-are-explore-item"
+                              class="c9 c46"
                             >
-                              <div
-                                class="c9 c45"
+                              <span
+                                class="c130"
                               >
-                                <span
-                                  class="c130"
-                                >
-                                  <img
-                                    alt=""
-                                    class="c21"
-                                    data-nimg="fill"
-                                    decoding="async"
-                                    loading="lazy"
-                                    src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1763393167/icons/snackbreak_illustration_fguw7l.svg"
-                                    style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
-                                  />
-                                </span>
-                              </div>
-                              <div
-                                class="c131 c80"
-                              >
-                                Meet the team
-                              </div>
-                              <div
-                                class="c9 c45"
-                              >
-                                <span
-                                  class="c132"
-                                >
-                                  <img
-                                    alt=""
-                                    class="c21"
-                                    data-nimg="fill"
-                                    decoding="async"
-                                    loading="lazy"
-                                    src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1707149070/icons/fv0z57zerrioft52dd9n.svg"
-                                    style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
-                                  />
-                                </span>
-                              </div>
+                                <img
+                                  alt=""
+                                  class="c21"
+                                  data-nimg="fill"
+                                  decoding="async"
+                                  loading="lazy"
+                                  src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1763393167/icons/snackbreak_illustration_fguw7l.svg"
+                                  style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                                />
+                              </span>
                             </div>
-                          </a>
-                        </div>
+                            <div
+                              class="c131 c81"
+                            >
+                              Meet the team
+                            </div>
+                            <div
+                              class="c9 c46"
+                            >
+                              <span
+                                class="c132"
+                              >
+                                <img
+                                  alt=""
+                                  class="c21"
+                                  data-nimg="fill"
+                                  decoding="async"
+                                  loading="lazy"
+                                  src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1707149070/icons/fv0z57zerrioft52dd9n.svg"
+                                  style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                                />
+                              </span>
+                            </div>
+                          </div>
+                        </a>
                       </li>
                       <li
-                        class="c124"
+                        class="c125 c126"
                       >
-                        <div
-                          class="c125 c126"
+                        <a
+                          href="/about-us/get-involved"
+                          style="outline: none;"
                         >
-                          <a
-                            href="/about-us/get-involved"
-                            style="outline: none;"
+                          <div
+                            class="c127 c128 c129"
+                            data-testid="who-we-are-explore-item"
                           >
                             <div
-                              class="c127 c128 c129"
-                              data-testid="who-we-are-explore-item"
+                              class="c9 c46"
                             >
-                              <div
-                                class="c9 c45"
+                              <span
+                                class="c130"
                               >
-                                <span
-                                  class="c130"
-                                >
-                                  <img
-                                    alt=""
-                                    class="c21"
-                                    data-nimg="fill"
-                                    decoding="async"
-                                    loading="lazy"
-                                    src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1763393163/icons/chatting-illustration_l52zaf.svg"
-                                    style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
-                                  />
-                                </span>
-                              </div>
-                              <div
-                                class="c131 c80"
-                              >
-                                Get involved
-                              </div>
-                              <div
-                                class="c9 c45"
-                              >
-                                <span
-                                  class="c132"
-                                >
-                                  <img
-                                    alt=""
-                                    class="c21"
-                                    data-nimg="fill"
-                                    decoding="async"
-                                    loading="lazy"
-                                    src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1707149070/icons/fv0z57zerrioft52dd9n.svg"
-                                    style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
-                                  />
-                                </span>
-                              </div>
+                                <img
+                                  alt=""
+                                  class="c21"
+                                  data-nimg="fill"
+                                  decoding="async"
+                                  loading="lazy"
+                                  src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1763393163/icons/chatting-illustration_l52zaf.svg"
+                                  style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                                />
+                              </span>
                             </div>
-                          </a>
-                        </div>
+                            <div
+                              class="c131 c81"
+                            >
+                              Get involved
+                            </div>
+                            <div
+                              class="c9 c46"
+                            >
+                              <span
+                                class="c132"
+                              >
+                                <img
+                                  alt=""
+                                  class="c21"
+                                  data-nimg="fill"
+                                  decoding="async"
+                                  loading="lazy"
+                                  src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1707149070/icons/fv0z57zerrioft52dd9n.svg"
+                                  style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                                />
+                              </span>
+                            </div>
+                          </div>
+                        </a>
                       </li>
                     </ul>
                   </nav>
@@ -5389,10 +5393,10 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
             id="newsletter-signup"
           >
             <div
-              class="c68"
+              class="c69"
             >
               <div
-                class="c9 c45 c134"
+                class="c9 c46 c134"
               >
                 <div
                   class="c135 c1"
@@ -5401,7 +5405,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                     class="c9 c136"
                   >
                     <div
-                      class="c9 c45 c137"
+                      class="c9 c46 c137"
                     >
                       <div
                         class="c138 c139"
@@ -5446,7 +5450,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                       </p>
                     </div>
                     <div
-                      class="c143 c45 c137"
+                      class="c143 c46 c137"
                     >
                       <form
                         aria-describedby="react-use-id-test-result-newsletter-form-description"
@@ -5774,7 +5778,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                           </div>
                         </div>
                         <div
-                          class="c160 c94 c161"
+                          class="c160 c95 c161"
                         >
                           <div
                             aria-hidden="true"
@@ -5895,7 +5899,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                             />
                           </svg>
                           <div
-                            class="c163 c45"
+                            class="c163 c46"
                           >
                             <label
                               class="c151 c152 c153"
@@ -5916,7 +5920,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                             type="button"
                           >
                             <div
-                              class="c166 c40 c167"
+                              class="c166 c41 c167"
                             >
                               <span
                                 class="c168 c169"
@@ -5987,7 +5991,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
         class="c174"
       >
         <div
-          class="c175 c45"
+          class="c175 c46"
         >
           <svg
             aria-hidden="true"
@@ -6020,10 +6024,10 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
               class="c9 c136"
             >
               <div
-                class="c9 c45 c179"
+                class="c9 c46 c179"
               >
                 <div
-                  class="c180 c94"
+                  class="c180 c95"
                 >
                   <h2
                     class="c181"
@@ -6057,7 +6061,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                   class="c186"
                 />
                 <div
-                  class="c180 c94"
+                  class="c180 c95"
                 >
                   <h2
                     class="c181"
@@ -6149,10 +6153,10 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                 </div>
               </div>
               <div
-                class="c9 c45 c179"
+                class="c9 c46 c179"
               >
                 <div
-                  class="c180 c94"
+                  class="c180 c95"
                 >
                   <h2
                     class="c181"
@@ -6367,10 +6371,10 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                 </div>
               </div>
               <div
-                class="c9 c45 c179"
+                class="c9 c46 c179"
               >
                 <div
-                  class="c180 c94"
+                  class="c180 c95"
                 >
                   <h2
                     class="c181"
@@ -6527,13 +6531,13 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                 </div>
               </div>
               <div
-                class="c9 c45 c179"
+                class="c9 c46 c179"
               >
                 <div
                   class="c180 c190"
                 >
                   <div
-                    class="c38"
+                    class="c39"
                   >
                     <span
                       class="c191"
@@ -6553,18 +6557,18 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                     class="c192 c193"
                   >
                     <div
-                      class="c44 c45 c194 c195"
+                      class="c45 c46 c194 c195"
                     >
                       <a
                         aria-label="instagram for Oak National Academy"
-                        class="c47 c48"
+                        class="c48 c49"
                         href="https://instagram.com/oaknational"
                       >
                         <div
-                          class="c9 c49"
+                          class="c9 c50"
                         >
                           <div
-                            class="c196 c51 icon-container"
+                            class="c196 c52 icon-container"
                           >
                             <div
                               class="c197 shadow"
@@ -6575,7 +6579,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                             >
                               <img
                                 alt=""
-                                class="c35"
+                                class="c36"
                                 data-nimg="fill"
                                 decoding="async"
                                 loading="lazy"
@@ -6585,24 +6589,24 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                             </span>
                           </div>
                           <span
-                            class="c54"
+                            class="c55"
                           />
                         </div>
                       </a>
                     </div>
                     <div
-                      class="c44 c45 c194 c195"
+                      class="c45 c46 c194 c195"
                     >
                       <a
                         aria-label="facebook for Oak National Academy"
-                        class="c47 c48"
+                        class="c48 c49"
                         href="https://facebook.com/oaknationalacademy"
                       >
                         <div
-                          class="c9 c49"
+                          class="c9 c50"
                         >
                           <div
-                            class="c196 c51 icon-container"
+                            class="c196 c52 icon-container"
                           >
                             <div
                               class="c197 shadow"
@@ -6613,7 +6617,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                             >
                               <img
                                 alt=""
-                                class="c35"
+                                class="c36"
                                 data-nimg="fill"
                                 decoding="async"
                                 loading="lazy"
@@ -6623,24 +6627,24 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                             </span>
                           </div>
                           <span
-                            class="c54"
+                            class="c55"
                           />
                         </div>
                       </a>
                     </div>
                     <div
-                      class="c44 c45 c194 c195"
+                      class="c45 c46 c194 c195"
                     >
                       <a
                         aria-label="linkedIn for Oak National Academy"
-                        class="c47 c48"
+                        class="c48 c49"
                         href="https://www.linkedin.com/company/oak-national-academy"
                       >
                         <div
-                          class="c9 c49"
+                          class="c9 c50"
                         >
                           <div
-                            class="c196 c51 icon-container"
+                            class="c196 c52 icon-container"
                           >
                             <div
                               class="c197 shadow"
@@ -6651,7 +6655,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                             >
                               <img
                                 alt=""
-                                class="c35"
+                                class="c36"
                                 data-nimg="fill"
                                 decoding="async"
                                 loading="lazy"
@@ -6661,7 +6665,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                             </span>
                           </div>
                           <span
-                            class="c54"
+                            class="c55"
                           />
                         </div>
                       </a>
@@ -6693,18 +6697,18 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                 class="c202 c203"
               >
                 <div
-                  class="c44 c45 c194 c195"
+                  class="c45 c46 c194 c195"
                 >
                   <a
                     aria-label="instagram for Oak National Academy"
-                    class="c47 c48"
+                    class="c48 c49"
                     href="https://instagram.com/oaknational"
                   >
                     <div
-                      class="c9 c49"
+                      class="c9 c50"
                     >
                       <div
-                        class="c196 c51 icon-container"
+                        class="c196 c52 icon-container"
                       >
                         <div
                           class="c197 shadow"
@@ -6715,7 +6719,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                         >
                           <img
                             alt=""
-                            class="c35"
+                            class="c36"
                             data-nimg="fill"
                             decoding="async"
                             loading="lazy"
@@ -6725,24 +6729,24 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                         </span>
                       </div>
                       <span
-                        class="c54"
+                        class="c55"
                       />
                     </div>
                   </a>
                 </div>
                 <div
-                  class="c44 c45 c194 c195"
+                  class="c45 c46 c194 c195"
                 >
                   <a
                     aria-label="facebook for Oak National Academy"
-                    class="c47 c48"
+                    class="c48 c49"
                     href="https://facebook.com/oaknationalacademy"
                   >
                     <div
-                      class="c9 c49"
+                      class="c9 c50"
                     >
                       <div
-                        class="c196 c51 icon-container"
+                        class="c196 c52 icon-container"
                       >
                         <div
                           class="c197 shadow"
@@ -6753,7 +6757,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                         >
                           <img
                             alt=""
-                            class="c35"
+                            class="c36"
                             data-nimg="fill"
                             decoding="async"
                             loading="lazy"
@@ -6763,24 +6767,24 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                         </span>
                       </div>
                       <span
-                        class="c54"
+                        class="c55"
                       />
                     </div>
                   </a>
                 </div>
                 <div
-                  class="c44 c45 c194 c195"
+                  class="c45 c46 c194 c195"
                 >
                   <a
                     aria-label="linkedIn for Oak National Academy"
-                    class="c47 c48"
+                    class="c48 c49"
                     href="https://www.linkedin.com/company/oak-national-academy"
                   >
                     <div
-                      class="c9 c49"
+                      class="c9 c50"
                     >
                       <div
-                        class="c196 c51 icon-container"
+                        class="c196 c52 icon-container"
                       >
                         <div
                           class="c197 shadow"
@@ -6791,7 +6795,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                         >
                           <img
                             alt=""
-                            class="c35"
+                            class="c36"
                             data-nimg="fill"
                             decoding="async"
                             loading="lazy"
@@ -6801,14 +6805,14 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                         </span>
                       </div>
                       <span
-                        class="c54"
+                        class="c55"
                       />
                     </div>
                   </a>
                 </div>
               </div>
               <div
-                class="c55"
+                class="c56"
               >
                 <span
                   class="c191"
@@ -6825,7 +6829,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                 </span>
               </div>
               <div
-                class="c180 c94"
+                class="c180 c95"
               >
                 <p
                   class="c204"
@@ -6902,7 +6906,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
             class="c9 c220"
           >
             <div
-              class="c221 c40"
+              class="c221 c41"
             >
               <button
                 class="c222"

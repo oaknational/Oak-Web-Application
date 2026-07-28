@@ -15,9 +15,12 @@ import {
   StemImageObject,
 } from "@/node-lib/curriculum-api-2023/shared.schema";
 import type { MediaClip } from "@/node-lib/curriculum-api-2023/queries/lessonMediaClips/lessonMediaClips.schema";
-import removeLegacySlugSuffix from "@/utils/slugModifiers/removeLegacySlugSuffix";
 import { LessonItemTitle } from "@/components/TeacherComponents/LessonItemContainer";
 import { resolveOakHref } from "@/common-lib/urls";
+import {
+  getTeacherSubjectPhaseSlug,
+  parseProgrammeSlug,
+} from "@/utils/curriculum/slugs";
 
 /**
  * Returns the intersection different pathways.
@@ -202,12 +205,16 @@ export const getBreadcrumbsForLessonPathway = (
     unitSlug,
     unitTitle,
   } = lesson;
+  const parsed = parseProgrammeSlug(programmeSlug ?? "");
 
-  let programmeSlugForMathsUnits = programmeSlug;
-
-  if (subjectTitle === "Maths" && programmeSlug) {
-    programmeSlugForMathsUnits = removeLegacySlugSuffix(programmeSlug);
-  }
+  const subjectPhaseSlug = parsed
+    ? getTeacherSubjectPhaseSlug({
+        subjectSlug: parsed.subjectSlug,
+        phaseSlug: parsed.phaseSlug,
+        examboardSlug: parsed.examboardSlug,
+        pathwaySlug: parsed.pathwaySlug,
+      })
+    : null;
 
   const nullableBreadcrumbs: (Breadcrumb | null)[] = [
     {
@@ -224,11 +231,17 @@ export const getBreadcrumbsForLessonPathway = (
           label: keyStageTitle,
         }
       : null,
-    subjectTitle && programmeSlug && programmeSlugForMathsUnits
+    subjectTitle && programmeSlug && subjectPhaseSlug
       ? {
           href: resolveOakHref({
-            page: "unit-index",
-            programmeSlug: programmeSlugForMathsUnits,
+            page: "teacher-programme",
+            subjectPhaseSlug: subjectPhaseSlug,
+            tab: "units",
+            query: {
+              keystages: parsed?.keystageSlug ?? undefined,
+              years: parsed?.yearSlug?.replace(/^year-/, ""),
+              tiers: parsed?.tierSlug ?? undefined,
+            },
           }),
           label: subjectTitle,
         }
@@ -454,7 +467,7 @@ export const createAttributionObject = (
     const attributions: Attribution[] = questions.reduce(
       (acc: Attribution[], question, index) => {
         const questionNumber = `Q${index + 1}`;
-        if (question && question.questionStem) {
+        if (question?.questionStem) {
           const { questionStem } = question;
           const imageStems = questionStem.filter(
             (stem) =>
@@ -476,7 +489,7 @@ export const createAttributionObject = (
           }) as Attribution[];
           acc.push(...mappedAttributions);
         }
-        if (question && question.answers) {
+        if (question?.answers) {
           const { answers } = question;
           if (answers["multiple-choice"]) {
             const { "multiple-choice": multipleChoice } = answers;
@@ -485,8 +498,7 @@ export const createAttributionObject = (
                 if (
                   stem.type === "image" &&
                   !Array.isArray(stem.imageObject.metadata) &&
-                  stem.imageObject.metadata &&
-                  stem.imageObject.metadata.attribution
+                  stem.imageObject.metadata?.attribution
                 ) {
                   acc.push({
                     questionNumber: `${questionNumber} image ${index + 1}`,

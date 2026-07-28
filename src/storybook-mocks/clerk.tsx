@@ -75,6 +75,18 @@ export const SignInButton = ({ children }: { children: React.ReactNode }) => (
   <>{children}</>
 );
 
+export const SignIn = ({ children }: { children: React.ReactNode }) => (
+  <>{children}</>
+);
+
+export const SignOutButton = ({ children }: { children: React.ReactNode }) => (
+  <>{children}</>
+);
+
+export const UserButton = ({ children }: { children: React.ReactNode }) => (
+  <>{children}</>
+);
+
 /**
  * Optional: redirect helpers (no-op)
  */

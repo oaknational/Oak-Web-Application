@@ -1,4 +1,3 @@
-import React from "react";
 import { StoryFn, Meta } from "@storybook/nextjs";
 
 import Component from "./TeachersTab";
@@ -10,6 +9,11 @@ export default {
   decorators: [AnalyticsDecorator],
   component: Component,
   argTypes: {},
+  parameters: {
+    nextjs: {
+      appDirectory: false,
+    },
+  },
 } as Meta<typeof Component>;
 
 const Template: StoryFn<typeof Component> = (args) => (
