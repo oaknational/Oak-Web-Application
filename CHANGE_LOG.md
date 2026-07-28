@@ -1,3 +1,23 @@
+## [1.1141.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.1141.0...v1.1141.1) (2026-07-28)
+
+
+### Bug Fixes
+
+* change FootnoteLink to OakLink ([8be4d12](https://github.com/oaknational/Oak-Web-Application/commit/8be4d12b167b83bb1342f9eec12b9afa2f692894))
+
+# [1.1141.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1140.1...v1.1141.0) (2026-07-28)
+
+
+### Bug Fixes
+
+* check window is defined ([0c97404](https://github.com/oaknational/Oak-Web-Application/commit/0c97404f00a5150b7ecd8085aa2f0964ac1cc1ff))
+* remove next navigation hooks to prevent opting into dynamic render ([6ff3510](https://github.com/oaknational/Oak-Web-Application/commit/6ff35101debc48b070c5ac2e9a7859b29b2ab5ba))
+
+
+### Features
+
+* add redirect to current page when not auth blocked ([297bf12](https://github.com/oaknational/Oak-Web-Application/commit/297bf12b7c89a253f9983e9d9a71ba381b287dd1))
+
 ## [1.1140.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.1140.0...v1.1140.1) (2026-07-27)
 
 
