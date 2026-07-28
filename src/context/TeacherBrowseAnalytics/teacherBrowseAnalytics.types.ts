@@ -16,7 +16,8 @@ import {
   TeacherSchoolManualEntryDetails,
   UserAccountVerificationStatusValueType,
   UserRoleTypeValueType,
-  ComponentTypeValueType,
+  ContentSavedProperties,
+  ContentUnsavedProperties,
 } from "@/browser-lib/avo/Avo";
 import { ResourceFormValues } from "@/components/TeacherComponents/types/downloadAndShare.types";
 import { VideoTrackingGetState } from "@/components/SharedComponents/VideoPlayer/useVideoTracking";
@@ -231,22 +232,28 @@ export type TeacherBrowseTrackFns = {
   }) => void;
 
   // MY LIBRARY
-  contentSaved: (props: {
-    componentType: ComponentTypeValueType;
-    keyStageTitle: KeyStageTitleValueType;
-    keyStageSlug: string;
-    subjectTitle: string;
-    subjectSlug: string;
-    contentItemSlug: string;
-  }) => void;
-  contentUnsaved: (props: {
-    componentType: ComponentTypeValueType;
-    keyStageTitle: KeyStageTitleValueType;
-    keyStageSlug: string;
-    subjectTitle: string;
-    subjectSlug: string;
-    contentItemSlug: string;
-  }) => void;
+  contentSaved: (
+    props: Pick<
+      ContentSavedProperties,
+      | "componentType"
+      | "keyStageSlug"
+      | "keyStageTitle"
+      | "subjectSlug"
+      | "subjectTitle"
+      | "contentItemSlug"
+    >,
+  ) => void;
+  contentUnsaved: (
+    props: Pick<
+      ContentUnsavedProperties,
+      | "componentType"
+      | "keyStageSlug"
+      | "keyStageTitle"
+      | "subjectSlug"
+      | "subjectTitle"
+      | "contentItemSlug"
+    >,
+  ) => void;
 
   // MISC
   newsletterSignUpCompleted: () => void;
