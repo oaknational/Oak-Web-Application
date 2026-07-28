@@ -1,9 +1,5 @@
 import { OakSpan } from "@oaknational/oak-components";
 
-// Escape regex metacharacters to avoid errors when using the value to create a regex
-const escapeRegExp = (value: string) =>
-  value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
-
 export const formatSchoolName = (
   schoolName: string,
   inputValue: string | undefined,
@@ -12,7 +8,7 @@ export const formatSchoolName = (
     return <OakSpan $font={"heading-light-7"}>{schoolName}</OakSpan>;
   }
 
-  const escapedInput = escapeRegExp(inputValue);
+  const escapedInput = RegExp.escape(inputValue);
   const splitRegex = new RegExp(`(${escapedInput})`, "gi");
   const exactMatchRegex = new RegExp(`^${escapedInput}$`, "i");
   const splitSchoolName = schoolName.split(splitRegex);
