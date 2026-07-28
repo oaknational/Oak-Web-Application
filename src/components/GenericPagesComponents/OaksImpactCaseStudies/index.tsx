@@ -26,16 +26,9 @@ export const OaksImpactCaseStudies = ({
           $pv={["spacing-56", "spacing-80"]}
           $gap={"spacing-24"}
         >
-          <OakGrid>
-            <OakGridArea
-              $colSpan={[12, 4]}
-              $colStart={caseStudies.length === 2 ? [1, 3] : [1, undefined]}
-            >
-              <OakHeading tag={"h2"} $font={["heading-5", "heading-3"]}>
-                Case studies
-              </OakHeading>
-            </OakGridArea>
-          </OakGrid>
+          <OakHeading tag={"h2"} $font={["heading-5", "heading-3"]}>
+            Case studies
+          </OakHeading>
           <OakGrid
             as="ul"
             $cg={"spacing-16"}

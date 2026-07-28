@@ -695,19 +695,11 @@ exports[`pages/about-us/oaks-impact.tsx renders title when feature flag is enabl
               <div
                 class="sc-aXZVg sc-gEvEer bkFrQJ daEtut"
               >
-                <div
-                  class="sc-aXZVg sc-tagGq jPvJsJ fNndNZ"
+                <h2
+                  class="sc-eldPxv dGkyUI"
                 >
-                  <div
-                    class="sc-aXZVg sc-gEvEer sc-esYiGF jPvJsJ iDBIXi dJOgIA"
-                  >
-                    <h2
-                      class="sc-eldPxv dGkyUI"
-                    >
-                      Case studies
-                    </h2>
-                  </div>
-                </div>
+                  Case studies
+                </h2>
                 <ul
                   class="sc-aXZVg sc-tagGq bMQSvq jFIZYB"
                 />
