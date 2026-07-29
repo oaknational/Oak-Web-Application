@@ -30,20 +30,25 @@ export const oaksCurriculaPageGuidingPrinciplesSchema = z.object({
   principles: z.array(oaksCurriculaPageGuidingPrincipleSchema),
 });
 
-export const oaksCurriculaPageCurriculumPartnerSchema = z.object({
+export const oaksCurriculaPagePartnerSchema = z.object({
   logo: imageSchema,
 });
 
-export const oaksCurriculaPageCurriculumPartnersSchema = z.object({
+export const oaksCurriculaPagePartnerSectionSchema = z.object({
   textRaw: portableTextSchema,
-  partners: z.array(oaksCurriculaPageCurriculumPartnerSchema),
+  partners: z.array(oaksCurriculaPagePartnerSchema),
+});
+
+export const oaksCurriculaPageCurriculumPartnersSectionSchema = z.object({
+  textRaw: portableTextSchema,
+  current: oaksCurriculaPagePartnerSectionSchema,
+  legacy: oaksCurriculaPagePartnerSectionSchema,
 });
 
 export const oaksCurriculaPageSchema = z.object({
   header: oaksCurriculaPageHeaderSchema,
   guidingPrinciples: oaksCurriculaPageGuidingPrinciplesSchema,
-  currentPartners: oaksCurriculaPageCurriculumPartnersSchema,
-  legacyPartners: oaksCurriculaPageCurriculumPartnersSchema,
+  curriculumPartners: oaksCurriculaPageCurriculumPartnersSectionSchema,
   seo: seoSchema.nullish(),
 });
 
@@ -216,9 +221,9 @@ export const aboutBoardPageSchema = meetTheTeamPageOurBoardSchema;
 export type AboutBoardPage = z.infer<typeof meetTheTeamPageOurBoardSchema>;
 
 export const aboutPartnersPageSchema =
-  oaksCurriculaPageCurriculumPartnersSchema;
+  oaksCurriculaPageCurriculumPartnersSectionSchema;
 export type AboutPartnersPage = z.infer<
-  typeof oaksCurriculaPageCurriculumPartnersSchema
+  typeof oaksCurriculaPageCurriculumPartnersSectionSchema
 >;
 
 export const aboutWorkWithUsPageSchema = getInvolvedPageWorkWithUsSchema;
