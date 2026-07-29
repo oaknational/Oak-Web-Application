@@ -2885,7 +2885,7 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
   -webkit-column-gap: 1rem;
   column-gap: 1rem;
   grid-auto-rows: 1fr;
-  grid-template-columns: repeat(3,1fr);
+  grid-template-columns: repeat(2,1fr);
 }
 
 .c193 {
