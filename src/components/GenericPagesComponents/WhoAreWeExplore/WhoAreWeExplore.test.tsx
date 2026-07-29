@@ -49,7 +49,7 @@ describe("WhoAreWeExplore", () => {
     expect(getByRole("heading")).toHaveTextContent("TEST_TITLE");
 
     const elements = getAllByRole("link");
-    expect(elements.length).toEqual(4);
+    expect(elements).toHaveLength(4);
 
     expect(elements[0]).toHaveTextContent("ITEM_ONE");
     expect(elements[0]).toHaveAttribute("href", "#item_one");
@@ -92,7 +92,7 @@ describe("WhoAreWeExplore", () => {
     expect(getByRole("heading")).toHaveTextContent("TEST_TITLE");
 
     const elements = getAllByRole("link");
-    expect(elements.length).toEqual(3);
+    expect(elements).toHaveLength(3);
 
     expect(elements[0]).toHaveTextContent("ITEM_ONE");
     expect(elements[0]).toHaveAttribute("href", "#item_one");
