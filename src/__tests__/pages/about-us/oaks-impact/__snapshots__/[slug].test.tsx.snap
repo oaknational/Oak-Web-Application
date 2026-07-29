@@ -688,7 +688,7 @@ exports[`pages/about-us/oaks-impact/case-studies/[slug].tsx renders title when f
                     aria-labelledby="react-use-id-test-result"
                   >
                     <ul
-                      class="sc-982d7e83-1 jvmsVB"
+                      class="sc-55af3af8-1 jFmwgk"
                     >
                       <li
                         class="sc-aXZVg sc-hZDyAQ kBnJtM iMmmjC"
@@ -698,7 +698,7 @@ exports[`pages/about-us/oaks-impact/case-studies/[slug].tsx renders title when f
                           style="outline: none;"
                         >
                           <div
-                            class="sc-aXZVg sc-gEvEer sc-982d7e83-0 jtqxcT egjftS kLpzZb"
+                            class="sc-aXZVg sc-gEvEer sc-55af3af8-0 jtqxcT egjftS iWbjPe"
                             data-testid="who-we-are-explore-item"
                           >
                             <div
@@ -751,7 +751,7 @@ exports[`pages/about-us/oaks-impact/case-studies/[slug].tsx renders title when f
                           style="outline: none;"
                         >
                           <div
-                            class="sc-aXZVg sc-gEvEer sc-982d7e83-0 jtqxcT egjftS kLpzZb"
+                            class="sc-aXZVg sc-gEvEer sc-55af3af8-0 jtqxcT egjftS iWbjPe"
                             data-testid="who-we-are-explore-item"
                           >
                             <div
@@ -804,7 +804,7 @@ exports[`pages/about-us/oaks-impact/case-studies/[slug].tsx renders title when f
                           style="outline: none;"
                         >
                           <div
-                            class="sc-aXZVg sc-gEvEer sc-982d7e83-0 jtqxcT egjftS kLpzZb"
+                            class="sc-aXZVg sc-gEvEer sc-55af3af8-0 jtqxcT egjftS iWbjPe"
                             data-testid="who-we-are-explore-item"
                           >
                             <div
@@ -857,7 +857,7 @@ exports[`pages/about-us/oaks-impact/case-studies/[slug].tsx renders title when f
                           style="outline: none;"
                         >
                           <div
-                            class="sc-aXZVg sc-gEvEer sc-982d7e83-0 jtqxcT egjftS kLpzZb"
+                            class="sc-aXZVg sc-gEvEer sc-55af3af8-0 jtqxcT egjftS iWbjPe"
                             data-testid="who-we-are-explore-item"
                           >
                             <div
