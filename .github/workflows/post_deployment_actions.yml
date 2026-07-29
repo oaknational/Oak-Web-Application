@@ -4,8 +4,6 @@ on: deployment_status
 
 permissions:
   contents: read
-  pull-requests: read
-  statuses: write
 
 env:
   PUPPETEER_DOWNLOAD_PATH: /home/runner/.npm/chromium
@@ -78,6 +76,9 @@ jobs:
     name: Pa11y
     runs-on: ubuntu-24.04
     timeout-minutes: 60
+    permissions:
+      contents: read
+      statuses: write
 
     steps:
       - uses: actions/checkout@v5
@@ -128,6 +129,10 @@ jobs:
     name: Playwright
     runs-on: ubuntu-24.04
     timeout-minutes: 60
+    permissions:
+      contents: read
+      pull-requests: read
+      statuses: write
 
     steps:
       - uses: actions/checkout@v5
@@ -187,6 +192,10 @@ jobs:
     name: Percy
     runs-on: ubuntu-24.04
     timeout-minutes: 60
+    permissions:
+      contents: read
+      pull-requests: read
+      statuses: write
 
     steps:
       - uses: actions/checkout@v5
