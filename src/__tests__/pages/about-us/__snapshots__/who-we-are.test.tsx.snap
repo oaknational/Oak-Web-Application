@@ -5169,7 +5169,6 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                   >
                     <ul
                       class="c124"
-                      size="4"
                     >
                       <li
                         class="c125 c126"

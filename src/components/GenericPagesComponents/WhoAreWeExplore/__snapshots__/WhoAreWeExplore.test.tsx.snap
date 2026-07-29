@@ -36,8 +36,7 @@ exports[`WhoAreWeExplore renders correctly with 3 items 1`] = `
             aria-labelledby="react-use-id-test-result"
           >
             <ul
-              class="sc-eb50514b-1 kobMMa"
-              size="3"
+              class="sc-982d7e83-1 eSBxYo"
             >
               <li
                 class="sc-aXZVg sc-hZDyAQ kBnJtM iMmmjC"
@@ -47,7 +46,7 @@ exports[`WhoAreWeExplore renders correctly with 3 items 1`] = `
                   style="outline: none;"
                 >
                   <div
-                    class="sc-aXZVg sc-gEvEer sc-eb50514b-0 jtqxcT egjftS fUdzbp"
+                    class="sc-aXZVg sc-gEvEer sc-982d7e83-0 jtqxcT egjftS kLpzZb"
                     data-testid="who-we-are-explore-item"
                   >
                     <div
@@ -100,7 +99,7 @@ exports[`WhoAreWeExplore renders correctly with 3 items 1`] = `
                   style="outline: none;"
                 >
                   <div
-                    class="sc-aXZVg sc-gEvEer sc-eb50514b-0 jtqxcT egjftS fUdzbp"
+                    class="sc-aXZVg sc-gEvEer sc-982d7e83-0 jtqxcT egjftS kLpzZb"
                     data-testid="who-we-are-explore-item"
                   >
                     <div
@@ -153,7 +152,7 @@ exports[`WhoAreWeExplore renders correctly with 3 items 1`] = `
                   style="outline: none;"
                 >
                   <div
-                    class="sc-aXZVg sc-gEvEer sc-eb50514b-0 jtqxcT egjftS fUdzbp"
+                    class="sc-aXZVg sc-gEvEer sc-982d7e83-0 jtqxcT egjftS kLpzZb"
                     data-testid="who-we-are-explore-item"
                   >
                     <div
@@ -243,8 +242,7 @@ exports[`WhoAreWeExplore renders correctly with 4 items 1`] = `
             aria-labelledby="react-use-id-test-result"
           >
             <ul
-              class="sc-eb50514b-1 hZZYCP"
-              size="4"
+              class="sc-982d7e83-1 jvmsVB"
             >
               <li
                 class="sc-aXZVg sc-hZDyAQ kBnJtM iMmmjC"
@@ -254,7 +252,7 @@ exports[`WhoAreWeExplore renders correctly with 4 items 1`] = `
                   style="outline: none;"
                 >
                   <div
-                    class="sc-aXZVg sc-gEvEer sc-eb50514b-0 jtqxcT egjftS fUdzbp"
+                    class="sc-aXZVg sc-gEvEer sc-982d7e83-0 jtqxcT egjftS kLpzZb"
                     data-testid="who-we-are-explore-item"
                   >
                     <div
@@ -307,7 +305,7 @@ exports[`WhoAreWeExplore renders correctly with 4 items 1`] = `
                   style="outline: none;"
                 >
                   <div
-                    class="sc-aXZVg sc-gEvEer sc-eb50514b-0 jtqxcT egjftS fUdzbp"
+                    class="sc-aXZVg sc-gEvEer sc-982d7e83-0 jtqxcT egjftS kLpzZb"
                     data-testid="who-we-are-explore-item"
                   >
                     <div
@@ -360,7 +358,7 @@ exports[`WhoAreWeExplore renders correctly with 4 items 1`] = `
                   style="outline: none;"
                 >
                   <div
-                    class="sc-aXZVg sc-gEvEer sc-eb50514b-0 jtqxcT egjftS fUdzbp"
+                    class="sc-aXZVg sc-gEvEer sc-982d7e83-0 jtqxcT egjftS kLpzZb"
                     data-testid="who-we-are-explore-item"
                   >
                     <div
@@ -413,7 +411,7 @@ exports[`WhoAreWeExplore renders correctly with 4 items 1`] = `
                   style="outline: none;"
                 >
                   <div
-                    class="sc-aXZVg sc-gEvEer sc-eb50514b-0 jtqxcT egjftS fUdzbp"
+                    class="sc-aXZVg sc-gEvEer sc-982d7e83-0 jtqxcT egjftS kLpzZb"
                     data-testid="who-we-are-explore-item"
                   >
                     <div

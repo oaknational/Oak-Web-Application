@@ -5116,7 +5116,6 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
                   >
                     <ul
                       class="c114"
-                      size="4"
                     >
                       <li
                         class="c115 c116"

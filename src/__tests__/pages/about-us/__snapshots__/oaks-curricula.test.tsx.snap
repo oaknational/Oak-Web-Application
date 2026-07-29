@@ -6021,7 +6021,6 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
                   >
                     <ul
                       class="c160"
-                      size="4"
                     >
                       <li
                         class="c161 c162"

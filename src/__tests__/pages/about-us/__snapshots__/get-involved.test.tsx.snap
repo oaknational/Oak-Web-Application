@@ -5342,7 +5342,6 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                   >
                     <ul
                       class="c117"
-                      size="4"
                     >
                       <li
                         class="c118 c119"
