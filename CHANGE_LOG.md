@@ -1,3 +1,15 @@
+# [1.1143.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1142.0...v1.1143.0) (2026-07-29)
+
+
+### Bug Fixes
+
+* size -> $size in styled-components so it doesn't appear in DOM ([1e6f90e](https://github.com/oaknational/Oak-Web-Application/commit/1e6f90e60ec12eb51d5f6ce7f97739c5d411b85e))
+
+
+### Features
+
+* changed <WhoAreWeExplore/> to support 4 items ([f563e46](https://github.com/oaknational/Oak-Web-Application/commit/f563e469122656e7638c38b006a89210f1f0e63c))
+
 # [1.1142.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1141.1...v1.1142.0) (2026-07-28)
 
 
