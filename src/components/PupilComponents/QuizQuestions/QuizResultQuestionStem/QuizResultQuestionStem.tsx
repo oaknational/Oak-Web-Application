@@ -14,7 +14,7 @@ import {
   TextItem,
 } from "@/node-lib/curriculum-api-2023/queries/pupilLesson/pupilLesson.schema";
 import { getSizes } from "@/components/SharedComponents/CMSImage/getSizes";
-import { MathJaxWrapInitial } from "@/browser-lib/mathjax/MathJaxWrapInitial";
+import { MathJaxWrap } from "@/browser-lib/mathjax/MathJaxWrap";
 
 export interface QuizQuestionStemProps {
   questionStem: (ImageItem | TextItem)[];
@@ -31,7 +31,7 @@ export const QuizResultQuestionStem = (props: QuizQuestionStemProps) => {
 
   return (
     <CodeRenderWrapper>
-      <MathJaxWrapInitial>
+      <MathJaxWrap>
         <OakFlex
           $flexDirection={"column"}
           $gap={"spacing-24"}
@@ -85,7 +85,7 @@ export const QuizResultQuestionStem = (props: QuizQuestionStemProps) => {
             }
           })}
         </OakFlex>
-      </MathJaxWrapInitial>
+      </MathJaxWrap>
     </CodeRenderWrapper>
   );
 };

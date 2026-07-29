@@ -35,7 +35,7 @@ import { pickQuizTabId } from "@/components/PupilComponents/QuizQuestions/helper
 import { usePupilLessonAnalytics } from "@/context/PupilLessonAnalytics/usePupilLessonAnalytics";
 import { usePupilLessonProgress } from "@/context/PupilLessonProgress";
 import { MathJaxProvider } from "@/browser-lib/mathjax/MathJaxProvider";
-import { MathJaxWrapInitial } from "@/browser-lib/mathjax/MathJaxWrapInitial";
+import { MathJaxWrap } from "@/browser-lib/mathjax/MathJaxWrap";
 import {
   buildPersistedQuizResult,
   getCurrentQuestionDisplayIndex,
@@ -358,9 +358,9 @@ export const QuizPageContent = ({
     }
 
     return (
-      <MathJaxWrapInitial>
+      <MathJaxWrap>
         <QuizCorrectAnswers questionState={currentQuestionState} />
-      </MathJaxWrapInitial>
+      </MathJaxWrap>
     );
   };
 
@@ -408,12 +408,12 @@ export const QuizPageContent = ({
           }}
           bottomNav={{
             hint: currentQuestionData?.hint && (
-              <MathJaxWrapInitial>
+              <MathJaxWrap>
                 <OakCodeRenderer
                   string={currentQuestionData.hint}
                   $font="code-3"
                 />
-              </MathJaxWrapInitial>
+              </MathJaxWrap>
             ),
             onHintToggled: ({ isOpen }) => {
               if (isOpen) {

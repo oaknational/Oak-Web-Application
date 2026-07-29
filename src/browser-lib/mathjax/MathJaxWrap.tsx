@@ -4,10 +4,10 @@ import React from "react";
 
 /**
  * Wraps content that contains math to be transformed using Mathjax
- * Only math provided to the initial render will be typeset; if the math content is expected to
- * change and will need to be re-typeset use the `dynamic` flag on the Mathjax wrapper
+ * Only math provided to the initial render will be typeset unless the
+ * `dynamic` prop is set on the Mathjax wrapper
  */
-export const MathJaxWrapInitial = ({
+export const MathJaxWrap = ({
   children,
   inline,
   dynamic,

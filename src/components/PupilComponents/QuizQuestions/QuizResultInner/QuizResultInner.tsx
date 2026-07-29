@@ -12,7 +12,7 @@ import { QuizResultMCQ } from "@/components/PupilComponents/QuizQuestions/QuizRe
 import { QuizResultShortAnswer } from "@/components/PupilComponents/QuizQuestions/QuizResultShortAnswer";
 import { QuizResultOrder } from "@/components/PupilComponents/QuizQuestions/QuizResultOrder";
 import { QuizResultMatch } from "@/components/PupilComponents/QuizQuestions/QuizResultMatch";
-import { MathJaxWrapInitial } from "@/browser-lib/mathjax/MathJaxWrapInitial";
+import { MathJaxWrap } from "@/browser-lib/mathjax/MathJaxWrap";
 import { QuestionsArray } from "@/context/PupilLessonQuiz";
 import type { QuizQuestion } from "@/node-lib/curriculum-api-2023/queries/pupilLesson/pupilLesson.schema";
 
@@ -48,7 +48,7 @@ const CorrectAnswerSection = (props: CorectAnswerSectionProps) => {
             }
 
             return (
-              <MathJaxWrapInitial key={`result-${index}`}>
+              <MathJaxWrap key={`result-${index}`}>
                 <OakQuizResultItem
                   key={index}
                   standardText={correctAnswerText}
@@ -60,7 +60,7 @@ const CorrectAnswerSection = (props: CorectAnswerSectionProps) => {
                   imageURL={imageURL}
                   imageAlt={"Image for option " + (index + 1)}
                 />
-              </MathJaxWrapInitial>
+              </MathJaxWrap>
             );
           })}
       </OakFlex>

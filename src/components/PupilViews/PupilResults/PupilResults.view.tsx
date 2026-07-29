@@ -7,7 +7,7 @@ import {
 } from "@oaknational/oak-components";
 
 import { QuestionsArray } from "@/context/PupilLessonQuiz/pupilLessonQuizTypes";
-import { MathJaxWrapInitial } from "@/browser-lib/mathjax/MathJaxWrapInitial";
+import { MathJaxWrap } from "@/browser-lib/mathjax/MathJaxWrap";
 import { LessonBrowseData } from "@/node-lib/curriculum-api-2023/queries/pupilLesson/pupilLesson.schema";
 import { CopyrightNotice } from "@/components/PupilComponents/CopyrightNotice";
 import { LessonAttemptCamelCase } from "@/node-lib/pupil-api/types";
@@ -50,7 +50,7 @@ export const PupilViewsResults = (props: PupilViewsResultsProps) => {
   const iconSlug = `subject-${subjectSlug}`;
 
   return (
-    <MathJaxWrapInitial>
+    <MathJaxWrap>
       <OakMaxWidth
         $gap={"spacing-24"}
         $flexDirection={"column"}
@@ -83,6 +83,6 @@ export const PupilViewsResults = (props: PupilViewsResultsProps) => {
           <CopyrightNotice isLegacyLicense={isLegacy} />
         </OakFlex>
       </OakMaxWidth>
-    </MathJaxWrapInitial>
+    </MathJaxWrap>
   );
 };

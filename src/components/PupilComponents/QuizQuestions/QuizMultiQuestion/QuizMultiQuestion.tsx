@@ -15,7 +15,7 @@ import {
   isImage,
   isText,
 } from "@/components/PupilComponents/QuizUtils/stemUtils";
-import { MathJaxWrapInitial } from "@/browser-lib/mathjax/MathJaxWrapInitial";
+import { MathJaxWrap } from "@/browser-lib/mathjax/MathJaxWrap";
 import { QuizQuestion } from "@/node-lib/curriculum-api-2023/queries/pupilLesson/pupilLesson.schema";
 import { QuizSection } from "@/components/PupilComponents/Views/PupilLessonQuiz";
 import { QuestionState } from "@/components/PupilComponents/QuizUtils/questionTypes";
@@ -104,7 +104,7 @@ export const QuizMultiQuestion = ({
           ) : undefined;
 
           return (
-            <MathJaxWrapInitial
+            <MathJaxWrap
               key={multipleChoiceAnswerId(questionData.questionUid, index)}
             >
               <OakQuizCheckBox
@@ -127,7 +127,7 @@ export const QuizMultiQuestion = ({
                 disabled={isExitQuizReadOnly || isFeedbackMode}
                 isHighlighted={questionState.mode === "incomplete"}
               />
-            </MathJaxWrapInitial>
+            </MathJaxWrap>
           );
         })}
       </OakFlex>

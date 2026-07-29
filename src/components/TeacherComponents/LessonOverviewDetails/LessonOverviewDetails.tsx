@@ -25,7 +25,7 @@ import {
   ContentGuidance,
   Equipment,
 } from "@/components/TeacherComponents/LessonOverviewRequirements/LessonOverviewRequirements";
-import { MathJaxWrapInitial } from "@/browser-lib/mathjax/MathJaxWrapInitial";
+import { MathJaxWrap } from "@/browser-lib/mathjax/MathJaxWrap";
 import LessonOverviewVocabButton from "@/components/TeacherComponents/LessonOverviewVocabButton";
 import LessonOverviewFilesNeeded from "@/components/TeacherComponents/LessonOverviewFilesNeeded";
 import { Slugs } from "@/components/TeacherComponents/LessonItemContainer/LessonItemContainer";
@@ -75,7 +75,7 @@ const LessonOverviewDetails: FC<LessonOverviewDetailsProps> = ({
   useIntegratedJourneyLayout,
 }) => {
   const { lessonSlug, unitSlug, programmeSlug } = slugs;
-  const MathJaxWrapper = isMathJaxLesson ? MathJaxWrapInitial : Fragment;
+  const MathJaxWrapper = isMathJaxLesson ? MathJaxWrap : Fragment;
 
   const getTeacherTips = () => {
     if (teacherTips) {

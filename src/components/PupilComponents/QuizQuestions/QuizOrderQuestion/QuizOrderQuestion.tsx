@@ -17,7 +17,7 @@ import {
   QuestionState,
 } from "@/components/PupilComponents/QuizUtils/questionTypes";
 import { QuizSection } from "@/components/PupilComponents/Views/PupilLessonQuiz";
-import { MathJaxWrapInitial } from "@/browser-lib/mathjax/MathJaxWrapInitial";
+import { MathJaxWrap } from "@/browser-lib/mathjax/MathJaxWrap";
 
 type Props = {
   section: QuizSection;
@@ -110,7 +110,7 @@ export const QuizOrderQuestion = ({
     );
 
     return (
-      <MathJaxWrapInitial dynamic>
+      <MathJaxWrap dynamic>
         {currentOrder.map((item, index) => {
           const currentFeedback = questionState.feedback?.at(index);
           invariant(currentFeedback, "feedback is missing");
@@ -126,12 +126,12 @@ export const QuizOrderQuestion = ({
             </OakDroppable>
           );
         })}
-      </MathJaxWrapInitial>
+      </MathJaxWrap>
     );
   }
 
   return (
-    <MathJaxWrapInitial>
+    <MathJaxWrap>
       <OakQuizOrder
         initialItems={initialItems}
         onChange={isExitQuizReadOnly ? undefined : handleOrderChange}
@@ -147,6 +147,6 @@ export const QuizOrderQuestion = ({
           data-testid="order-input"
         />
       ))}
-    </MathJaxWrapInitial>
+    </MathJaxWrap>
   );
 };

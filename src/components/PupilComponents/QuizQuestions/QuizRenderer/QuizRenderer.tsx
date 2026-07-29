@@ -16,7 +16,7 @@ import {
   isSingleAnswerMCQ,
 } from "@/components/PupilComponents/QuizUtils/answerTypeDiscriminators";
 import { QuizQuestionStem } from "@/components/PupilComponents/QuizQuestions/QuizQuestionStem";
-import { MathJaxWrapInitial } from "@/browser-lib/mathjax/MathJaxWrapInitial";
+import { MathJaxWrap } from "@/browser-lib/mathjax/MathJaxWrap";
 import { QuizAttribution } from "@/components/PupilComponents/QuizQuestions/QuizAttribution";
 import { QuizSection } from "@/components/PupilComponents/Views/PupilLessonQuiz";
 import {
@@ -142,7 +142,7 @@ export const QuizRenderer = ({
         >
           <OakFlex $flexDirection="column" $gap="spacing-24" $height="100%">
             {currentQuestionData.questionStem && (
-              <MathJaxWrapInitial>
+              <MathJaxWrap>
                 <QuizQuestionStem
                   questionUid={currentQuestionData.questionUid}
                   questionStem={currentQuestionData.questionStem}
@@ -151,7 +151,7 @@ export const QuizRenderer = ({
                     currentQuestionData.questionType === "explanatory-text"
                   }
                 />{" "}
-              </MathJaxWrapInitial>
+              </MathJaxWrap>
             )}
             {answerRender}
 
