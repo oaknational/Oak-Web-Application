@@ -42,7 +42,7 @@ const AboutUsOaksImpactCaseStudy: NextPage<
     setCurrentToastProps({
       message: "Link copied to clipboard.",
       variant: "green",
-      autoDismiss: false,
+      autoDismiss: true,
       autoDismissDuration: 4000,
       showIcon: true,
     });
