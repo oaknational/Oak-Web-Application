@@ -110,7 +110,7 @@ export const QuizOrderQuestion = ({
     );
 
     return (
-      <MathJaxWrapInitial>
+      <MathJaxWrapInitial dynamic>
         {currentOrder.map((item, index) => {
           const currentFeedback = questionState.feedback?.at(index);
           invariant(currentFeedback, "feedback is missing");

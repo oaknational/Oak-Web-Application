@@ -10,12 +10,14 @@ import React from "react";
 export const MathJaxWrapInitial = ({
   children,
   inline,
+  dynamic,
 }: {
   children: React.ReactNode;
   inline?: boolean;
+  dynamic?: boolean;
 }) => {
   return (
-    <MathJax hideUntilTypeset="first" inline={inline}>
+    <MathJax hideUntilTypeset="first" inline={inline} dynamic={dynamic}>
       {children}
     </MathJax>
   );
