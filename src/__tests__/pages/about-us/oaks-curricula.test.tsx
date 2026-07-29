@@ -42,13 +42,18 @@ const mockPageData: OaksCurriculaPageProps["pageData"] = {
       },
     ],
   },
-  currentPartners: {
-    textRaw: portableTextFromString("Our current partners"),
-    partners: [{ logo: mockImageAsset() }],
-  },
-  legacyPartners: {
-    textRaw: portableTextFromString("Our legacy partners"),
-    partners: [{ logo: mockImageAsset() }],
+  curriculumPartners: {
+    textRaw: portableTextFromString(
+      "We're hugely grateful to all our curriculum partners past and present, whose insight and expertise have been vital in shaping and refining Oak's curricula.",
+    ),
+    current: {
+      textRaw: portableTextFromString("Our current partners"),
+      partners: [{ logo: mockImageAsset() }],
+    },
+    legacy: {
+      textRaw: portableTextFromString("Our legacy partners"),
+      partners: [{ logo: mockImageAsset() }],
+    },
   },
   seo: null,
 };
@@ -92,9 +97,12 @@ describe("pages/about/oaks-curricula.tsx", () => {
   it("does not render current partners section when no current partners", () => {
     const pageDataWithoutCurrentPartners = {
       ...mockPageData,
-      currentPartners: {
-        textRaw: portableTextFromString("Our current partners"),
-        partners: [],
+      curriculumPartners: {
+        ...mockPageData.curriculumPartners,
+        current: {
+          textRaw: portableTextFromString("Our current partners"),
+          partners: [],
+        },
       },
     };
     const { queryByText } = renderWithProviders()(
@@ -114,9 +122,12 @@ describe("pages/about/oaks-curricula.tsx", () => {
   it("does not render legacy partners section when no legacy partners", () => {
     const pageDataWithoutLegacyPartners = {
       ...mockPageData,
-      legacyPartners: {
-        textRaw: portableTextFromString("Our legacy partners"),
-        partners: [],
+      curriculumPartners: {
+        ...mockPageData.curriculumPartners,
+        legacy: {
+          textRaw: portableTextFromString("Our legacy partners"),
+          partners: [],
+        },
       },
     };
     const { queryByText } = renderWithProviders()(
@@ -136,13 +147,16 @@ describe("pages/about/oaks-curricula.tsx", () => {
   it("does not render curriculum partners section when no partners at all", () => {
     const pageDataWithoutPartners = {
       ...mockPageData,
-      currentPartners: {
-        textRaw: portableTextFromString("Our current partners"),
-        partners: [],
-      },
-      legacyPartners: {
-        textRaw: portableTextFromString("Our legacy partners"),
-        partners: [],
+      curriculumPartners: {
+        ...mockPageData.curriculumPartners,
+        current: {
+          textRaw: portableTextFromString("Our current partners"),
+          partners: [],
+        },
+        legacy: {
+          textRaw: portableTextFromString("Our legacy partners"),
+          partners: [],
+        },
       },
     };
     const { queryByText } = renderWithProviders()(
