@@ -3022,7 +3022,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
 
 @media (min-width:1280px) {
   .c80 {
-    min-width: 40rem;
+    min-width: 60rem;
   }
 }
 
