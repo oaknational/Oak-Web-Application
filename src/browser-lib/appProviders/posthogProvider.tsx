@@ -2,8 +2,8 @@
 import posthog from "posthog-js";
 import { PostHogProvider } from "posthog-js/react";
 
-import getBrowserConfig from "@/browser-lib/getBrowserConfig";
 import { getPosthogInitConfig } from "@/browser-lib/posthog/getPosthogInitConfig";
+import getBrowserConfig from "@/browser-lib/getBrowserConfig";
 
 if (typeof window !== "undefined") {
   const isDevelopmentBuild = getBrowserConfig("releaseStage") === "development";
@@ -20,6 +20,7 @@ if (typeof window !== "undefined") {
     }),
   );
 }
+
 export function PHProvider({
   children,
 }: Readonly<{ children: React.ReactNode }>) {

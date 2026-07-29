@@ -5,8 +5,10 @@ import {
   OakFlex,
   OakHeading,
   OakIconName,
+  OakP,
 } from "@oaknational/oak-components";
 import styled from "styled-components";
+import type { PortableTextBlockComponent } from "@portabletext/react";
 
 import Layout from "@/components/AppComponents/AppLayout";
 import { AboutUsLayout } from "@/components/GenericPagesComponents/AboutUsLayout";
@@ -17,6 +19,7 @@ import {
 } from "@/components/GenericPagesComponents/AboutSharedHeader";
 import { NewGutterMaxWidth } from "@/components/GenericPagesComponents/NewGutterMaxWidth";
 import { TopNavProps } from "@/components/AppComponents/TopNav/TopNav";
+import { PortableTextWithDefaults } from "@/components/SharedComponents/PortableText";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 import SubjectPhasePicker from "@/components/SharedComponents/SubjectPhasePicker";
 import { SubjectPhasePickerData } from "@/components/SharedComponents/SubjectPhasePicker/SubjectPhasePicker";
@@ -34,6 +37,10 @@ export type OaksCurriculaPageProps = {
   pageData: OaksCurriculaPage;
   curriculumPhaseOptions: SubjectPhasePickerData;
   topNav: TopNavProps;
+};
+
+const OakPStyled: PortableTextBlockComponent = (props) => {
+  return <OakP $font={["body-2", "body-1"]}>{props.children}</OakP>;
 };
 
 const UnstyledLi = styled.li`
@@ -85,19 +92,19 @@ export const OaksCurricula: NextPage<OaksCurriculaPageProps> = ({
   const guidingPrinciplesImageAlt =
     pageData.guidingPrinciples.image?.altText ?? "";
 
-  const currentPartnerItems = (pageData.currentPartners.partners ?? []).map(
-    (partner) => ({
-      imageUrl: getProxiedSanityAssetUrl(partner.logo?.asset?.url) ?? "",
-      alt: partner.logo?.altText ?? "",
-    }),
-  );
+  const currentPartnerItems = (
+    pageData.curriculumPartners.current.partners ?? []
+  ).map((partner) => ({
+    imageUrl: getProxiedSanityAssetUrl(partner.logo?.asset?.url) ?? "",
+    alt: partner.logo?.altText ?? "",
+  }));
 
-  const legacyPartnerItems = (pageData.legacyPartners.partners ?? []).map(
-    (partner) => ({
-      imageUrl: getProxiedSanityAssetUrl(partner.logo?.asset?.url) ?? "",
-      alt: partner.logo?.altText ?? "",
-    }),
-  );
+  const legacyPartnerItems = (
+    pageData.curriculumPartners.legacy.partners ?? []
+  ).map((partner) => ({
+    imageUrl: getProxiedSanityAssetUrl(partner.logo?.asset?.url) ?? "",
+    alt: partner.logo?.altText ?? "",
+  }));
 
   return (
     <Layout
@@ -178,24 +185,39 @@ export const OaksCurricula: NextPage<OaksCurriculaPageProps> = ({
               $pt={"spacing-80"}
               $gap={"spacing-56"}
             >
-              <OakHeading
-                tag="h2"
-                $font={["heading-4", "heading-3", "heading-3"]}
+              <OakFlex
+                $flexDirection={"column"}
+                $gap={"spacing-8"}
+                $maxWidth={"spacing-960"}
               >
-                Curriculum partners
-              </OakHeading>
+                <OakHeading
+                  tag="h2"
+                  $font={["heading-4", "heading-3", "heading-3"]}
+                >
+                  Curriculum partners
+                </OakHeading>
+                <PortableTextWithDefaults
+                  value={pageData.curriculumPartners.textRaw}
+                  components={{
+                    block: {
+                      normal: OakPStyled,
+                    },
+                  }}
+                />
+              </OakFlex>
               {currentPartnerItems.length > 0 && (
                 <CurriculumPartners
                   title="Current"
-                  text={pageData.currentPartners.textRaw}
+                  text={pageData.curriculumPartners.current.textRaw}
                   items={currentPartnerItems}
                 />
               )}
               {legacyPartnerItems.length > 0 && (
                 <CurriculumPartners
                   title="Legacy"
-                  text={pageData.legacyPartners.textRaw}
+                  text={pageData.curriculumPartners.legacy.textRaw}
                   items={legacyPartnerItems}
+                  size={"sm"}
                 />
               )}
             </OakFlex>

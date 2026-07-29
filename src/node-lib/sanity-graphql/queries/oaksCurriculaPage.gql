@@ -24,19 +24,22 @@ query oaksCurriculaPage($isDraftFilter: Sanity_DocumentFilter) {
         text2Raw
       }
     }
-    currentPartners {
+    curriculumPartners {
       textRaw
-      partners {
-        logo {
-          ...ImageWithAltText
+      current {
+        textRaw
+        partners {
+          logo {
+            ...ImageWithAltText
+          }
         }
       }
-    }
-    legacyPartners {
-      textRaw
-      partners {
-        logo {
-          ...ImageWithAltText
+      legacy {
+        textRaw
+        partners {
+          logo {
+            ...ImageWithAltText
+          }
         }
       }
     }
