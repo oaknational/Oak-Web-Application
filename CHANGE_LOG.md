@@ -1,3 +1,23 @@
+# [1.1142.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1141.1...v1.1142.0) (2026-07-28)
+
+
+### Bug Fixes
+
+* imports ([03fef66](https://github.com/oaknational/Oak-Web-Application/commit/03fef66b2e4f113a1a83a27a1a363ada89dacc0d))
+* lint ([bc4088d](https://github.com/oaknational/Oak-Web-Application/commit/bc4088d0e67c7d15e8b1e704942fe2693c0f68bb))
+* logo size changes dependant on legacy or current ([a7822c5](https://github.com/oaknational/Oak-Web-Application/commit/a7822c5670a6495b2032d102e92b3e55e91894be))
+* oaks curricula tests ([579088b](https://github.com/oaknational/Oak-Web-Application/commit/579088b8d0b2f15fca643d6fe8086e6437d703ab))
+* snap ([5a43693](https://github.com/oaknational/Oak-Web-Application/commit/5a4369348cda2826106dad85f0da6705f4cb9243))
+* snaps ([520180e](https://github.com/oaknational/Oak-Web-Application/commit/520180e09e599d5a4245d3bf59391f58afd1f446))
+
+
+### Features
+
+* add text to oak's curric and use new shape ([42593f5](https://github.com/oaknational/Oak-Web-Application/commit/42593f5c6f1ad43d71103ff0771b8bfb6ce7234d))
+* curricula page query update ([6a0c858](https://github.com/oaknational/Oak-Web-Application/commit/6a0c8588d35f0b0b896d42ec4e7fcf73299913b6))
+* sdk ([f3d69e4](https://github.com/oaknational/Oak-Web-Application/commit/f3d69e406c91c7856dfa5a66a973967e315202aa))
+* update types for curriciulum partners ([77b8d23](https://github.com/oaknational/Oak-Web-Application/commit/77b8d23a899999e53bff2c7cc7ba3df3845c3f35))
+
 ## [1.1141.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.1141.0...v1.1141.1) (2026-07-28)
 
 
