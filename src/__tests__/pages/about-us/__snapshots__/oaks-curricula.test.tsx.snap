@@ -6020,12 +6020,8 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
                     aria-labelledby="react-use-id-test-result"
                   >
                     <ul
-<<<<<<< HEAD
-                      class="c158"
-                      size="4"
-=======
                       class="c160"
->>>>>>> origin/main
+                      size="4"
                     >
                       <li
                         class="c161 c162"
