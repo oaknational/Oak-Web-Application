@@ -13,7 +13,7 @@ Encryption: https://www.thenational.academy/.well-known/pgp-key.txt
 Encryption: https://keys.openpgp.org/vks/v1/by-fingerprint/E925058764BF1E055A95CFA7971F062051B60B7D
 
 # This security policy is annually reviewed
-Expires: 2026-08-01T10:48:00.000Z
+Expires: 2027-08-01T09:57:00.000Z
 
 # Oak National Academy Security Disclosure Policy
 Policy: https://www.thenational.academy/legal/security-disclosure-policy/
@@ -30,18 +30,18 @@ Hiring: https://jobs.thenational.academy
 # Please see https://securitytxt.org/ for details of the specification of this file
 -----BEGIN PGP SIGNATURE-----
 
-iQJPBAEBCAA5FiEE6SUFh2S/HgValc+nlx8GIFG2C30FAmprKU0bFIAAAAAABAAO
-bWFudTIsMi41KzEuMTIsMCwzAAoJEJcfBiBRtgt99h8P/irEp3fhgU6aklSxNJaB
-a9xO0Gy8/3tFP0m62fVOWnVGLJqQAyc46LMeT//U5EK1NpJ0NKIb3bgUCXTmLen0
-7g2UDOW/Jfgmy0UFz48wi13pRPdNTDl8J10sGomx5s+ELOpnblD0ccpFCnzwv+k5
-er9/BYJvkIZHcdkzcWvSNlcX36dNkDgQdIaATRab0/K92r2fn0nr/XsRRCrUU8Qm
-NTkk9S3GPlBNaRST0jPup2JdGaP8xGkQ/z3JLuW1m0yEqVAaGOg4A+Ya8JUCKyAy
-0aAn9HSJAhHsf9OQpF+zRdKqIVCZqVNp4Gb7OPmbOGQHRh7MDvKUQLiFnKSx5yDR
-zhHpnbwDaqBroxdwkUDcQs0euQ2rGT2Kczu389Ne5bwI9Nbo869zVYWhVMI/StjC
-2W0hhaUPgF/jKwT2bEuX3u04/vqqnrxAxy4MgzaVjlkIXFtnrnLH/+BZRtqA82cW
-uZK/kTmVj4fndu96RQ2Q4qXaoC4G6pOJvPO1/3DSdlPkWXnl6hNi60B7t3Zkw8g3
-y6KOBtWfa7YNWKlhImk54ZoxP/BdjW6VCpYjx6S7g1pCJ78p4ks/2550EZbvO6d1
-UL5hGd6J0TXSQFch8XMnLQ0tipS8OsemHCd1z15Kl5trx+rGMgAfA4XEdVNoijqI
-3yklzcIWkHmngU1b3ghKGqWQ
-=lirA
+iQJPBAEBCAA5FiEE6SUFh2S/HgValc+nlx8GIFG2C30FAmprYD4bFIAAAAAABAAO
+bWFudTIsMi41KzEuMTIsMCwzAAoJEJcfBiBRtgt9zFAP/jadqVhA9PwMeEQSqRgn
+baXp3jkKxNifJJGT0hU++lYiuzWl7WT+ZzyiR3QlQwvhDxZ4RU5dPyy8ykDWm7ZE
+befSVRPLNz2VMrvu4ZAgjFAuwhcwlPuZTiK5E4hOSKKKSzAFY9l2kXFaDE3k0zuT
+leLPeI9CaXQV+g4M/ObSTQo9taD6UfjQ4+R3hj7ywXkHaCKiOrmeUtJONjm/ZMON
+swSl8ZNHtgKsHyfvw/ngtrShIemn2S89thiJZ0p/dNU3/p+TLAkrkwCQefpNACeu
+erhEexI3zZ4G/WkmdZkHlg15am+kovCo0yjqfI0nlXYSmmQUGwnHus7LYYA4AJL+
+P9ny+Y7g/17O/vC6LpO884RzPUnuCfCy5cY+W15Wv0A3cHKOcoW3fJOarN6NTt6L
+yFIgBuMmd5xkJOGMmBqNkCZhktawsruydcJdEgaUdi6il1gePM6UoOkW98pgkYuQ
+TYQCJtckItMh/DF+TKhyqESKI07JIRGPh2cy3i7c86vLMNhMzOR7GxwZS4NhE1La
+RuWuTTHhjVkTaZUfj1Yg+Uft9NckIJ6I+pA3cBKyk7xVylU9ebgYNs92pSyxAkRU
+x0wmmDajjUin4o8lw18fTFcKM1/2mpjk+DfMcJLcBBOQTVAK+evkb9NThEMMOXRC
+ZTkJrN8KBNfWuNMTj8RTJj98
+=xgRE
 -----END PGP SIGNATURE-----
