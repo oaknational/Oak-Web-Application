@@ -1,3 +1,10 @@
+## [1.1144.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.1144.0...v1.1144.1) (2026-07-30)
+
+
+### Bug Fixes
+
+* update version ([8fccf74](https://github.com/oaknational/Oak-Web-Application/commit/8fccf743a4c1ef30925ef526b22b2111127b579d))
+
 # [1.1144.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1143.1...v1.1144.0) (2026-07-30)
 
 
