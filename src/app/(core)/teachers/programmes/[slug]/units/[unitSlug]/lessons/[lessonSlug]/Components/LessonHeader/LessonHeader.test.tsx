@@ -53,11 +53,7 @@ const defaultProps: LessonHeaderProps = {
 
 const renderLessonHeader = (props?: Partial<LessonHeaderProps>) => {
   return render(
-    <TeacherBrowseAnalyticsStoreProvider
-      programmeState={{
-        programmeState,
-      }}
-    >
+    <TeacherBrowseAnalyticsStoreProvider programmeState={programmeState}>
       <LessonHeader {...defaultProps} {...props} />
     </TeacherBrowseAnalyticsStoreProvider>,
   );

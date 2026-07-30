@@ -98,11 +98,7 @@ const renderDownloadSuccessView = (
   props?: Partial<DownloadSuccessViewProps>,
 ) => {
   return renderWithProviders()(
-    <TeacherBrowseAnalyticsStoreProvider
-      programmeState={{
-        programmeState,
-      }}
-    >
+    <TeacherBrowseAnalyticsStoreProvider programmeState={programmeState}>
       <DownloadSuccessView
         lesson={baseLesson}
         ctaVariant="control"

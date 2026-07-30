@@ -83,7 +83,7 @@ const InnerLessonPage = async (props: AppPageProps<LessonPageParams>) => {
   const programmeState = getProgrammeStateForLesson(data);
 
   return (
-    <TeacherBrowseAnalyticsStoreProvider programmeState={{ programmeState }}>
+    <TeacherBrowseAnalyticsStoreProvider programmeState={programmeState}>
       <LessonHeader
         heroImage={getSubjectHeroImageUrl(data.subjectSlug as SubjectName)}
         heading={data.lessonTitle}
