@@ -4,7 +4,7 @@ import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 import { topNavFixture } from "@/node-lib/curriculum-api-2023/fixtures/topNav.fixture";
 import OaksImpact, {
   getServerSideProps,
-} from "@/pages/about-us/oaks-impact/case-studies/[slug]";
+} from "@/pages/about-us/case-studies/[slug]";
 import CMSClient from "@/node-lib/cms";
 import { OaksImpactCaseStudyPage } from "@/common-lib/cms-types/aboutPages";
 import { portableTextFromString } from "@/__tests__/__helpers__/cms";
@@ -62,6 +62,7 @@ function caseStudyFixture(slug: string) {
       },
       captions: ["Test captions"],
     },
+    publishedAt: "2023-01-01",
   };
 }
 
