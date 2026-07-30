@@ -25,7 +25,7 @@ export function WhoAreWeBreakout({
       <OakFlex
         $flexGrow={1}
         $background={"bg-decorative1-subdued"}
-        $minWidth={["100%", "spacing-640", "spacing-960"]}
+        $minWidth={["100%", "spacing-640", "spacing-800"]}
         $aspectRatio={"4/3"}
       >
         <OakImage
