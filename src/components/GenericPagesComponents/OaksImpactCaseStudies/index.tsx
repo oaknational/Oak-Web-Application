@@ -12,10 +12,12 @@ import getProxiedSanityAssetUrl from "@/common-lib/urls/getProxiedSanityAssetUrl
 import { NewGutterMaxWidth } from "@/components/GenericPagesComponents/NewGutterMaxWidth";
 
 export type OaksImpactCaseStudiesProps = {
+  title: string;
   caseStudies: CaseStudyCard[];
 };
 
 export const OaksImpactCaseStudies = ({
+  title,
   caseStudies,
 }: OaksImpactCaseStudiesProps) => {
   return (
@@ -27,7 +29,7 @@ export const OaksImpactCaseStudies = ({
           $gap={"spacing-24"}
         >
           <OakHeading tag={"h2"} $font={["heading-5", "heading-3"]}>
-            Case studies
+            {title}
           </OakHeading>
           <OakGrid
             as="ul"
@@ -36,21 +38,17 @@ export const OaksImpactCaseStudies = ({
             $pa={"spacing-0"}
             $ma={"spacing-0"}
           >
-            {caseStudies.slice(0, 3).map((caseStudy, index) => (
+            {caseStudies.slice(0, 3).map((caseStudy) => (
               <OakGridArea
                 as="li"
                 key={caseStudy.slug.current}
                 $colSpan={[12, 4]}
-                $colStart={
-                  caseStudies.length === 2
-                    ? [1, index === 0 ? 3 : 7]
-                    : [1, undefined]
-                }
+                $colStart={[1]}
               >
                 <OakCard
                   heading={caseStudy.video.title || ""}
                   headingLevel={"div"}
-                  href={`/about-us/oaks-impact/case-studies/${caseStudy.slug.current}`}
+                  href={`/about-us/case-studies/${caseStudy.slug.current}`}
                   imageSrc={
                     getProxiedSanityAssetUrl(caseStudy.image?.asset?.url) ?? ""
                   }
