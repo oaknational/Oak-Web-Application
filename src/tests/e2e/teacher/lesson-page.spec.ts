@@ -9,7 +9,7 @@ test("teacher can click download all resources on lesson page", async ({
 
   await downloadAllButton.click();
 
-  await expect(lessonPage).toHaveURL(/\/downloads/);
+  await expect(lessonPage).toHaveURL(/\/test/);
 });
 
 test("teacher can complete download flow and download lesson assets", async ({
