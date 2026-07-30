@@ -6418,12 +6418,11 @@ export type OaksCurriculaPageQueryVariables = Exact<{
 export type OaksCurriculaPageQuery = { __typename?: 'RootQuery', allNewAboutCorePageOaksCurricula: Array<{ __typename?: 'NewAboutCorePageOaksCurricula', id?: string | null, header?: { __typename?: 'OaksCurriculaPageHeader', introText?: string | null, image?: { __typename?: 'ImageWithAltText', altText?: string | null, isPresentational?: boolean | null, asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null, hotspot?: { __typename?: 'SanityImageHotspot', x?: number | null, y?: number | null, width?: number | null, height?: number | null } | null } | null } | null, guidingPrinciples?: { __typename?: 'OaksCurriculaPageGuidingPrinciples', textRaw?: any | null, image?: { __typename?: 'ImageWithAltText', altText?: string | null, isPresentational?: boolean | null, asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null, hotspot?: { __typename?: 'SanityImageHotspot', x?: number | null, y?: number | null, width?: number | null, height?: number | null } | null } | null, principles?: Array<{ __typename?: 'OaksCurriculaPageGuidingPrinciple', heading?: string | null, text2Raw?: any | null } | null> | null } | null, curriculumPartners?: { __typename?: 'OaksCurriculaPageCurriculumPartnersSection', textRaw?: any | null, current?: { __typename?: 'OaksCurriculaPagePartnerSection', textRaw?: any | null, partners?: Array<{ __typename?: 'OaksCurriculaPagePartner', logo?: { __typename?: 'ImageWithAltText', altText?: string | null, isPresentational?: boolean | null, asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null, hotspot?: { __typename?: 'SanityImageHotspot', x?: number | null, y?: number | null, width?: number | null, height?: number | null } | null } | null } | null> | null } | null, legacy?: { __typename?: 'OaksCurriculaPagePartnerSection', textRaw?: any | null, partners?: Array<{ __typename?: 'OaksCurriculaPagePartner', logo?: { __typename?: 'ImageWithAltText', altText?: string | null, isPresentational?: boolean | null, asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null, hotspot?: { __typename?: 'SanityImageHotspot', x?: number | null, y?: number | null, width?: number | null, height?: number | null } | null } | null } | null> | null } | null } | null, seo?: { __typename?: 'Seo', title?: string | null, description?: string | null, canonicalURL?: string | null } | null }> };
 
 export type OaksImpactCaseStudyPageQueryVariables = Exact<{
-  slug?: InputMaybe<Scalars['String']['input']>;
   isDraftFilter?: InputMaybe<Sanity_DocumentFilter>;
 }>;
 
 
-export type OaksImpactCaseStudyPageQuery = { __typename?: 'RootQuery', allCaseStudy: Array<{ __typename?: 'CaseStudy', textRaw?: any | null, slug?: { __typename?: 'Slug', current?: string | null } | null, image?: { __typename?: 'ImageWithAltText', altText?: string | null, isPresentational?: boolean | null, asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null, hotspot?: { __typename?: 'SanityImageHotspot', x?: number | null, y?: number | null, width?: number | null, height?: number | null } | null } | null, video?: { __typename?: 'Video', title?: string | null, captions?: Array<string | null> | null, video?: { __typename?: 'MuxVideo', asset?: { __typename?: 'MuxVideoAsset', assetId?: string | null, thumbTime?: number | null, playbackId?: string | null } | null } | null } | null }> };
+export type OaksImpactCaseStudyPageQuery = { __typename?: 'RootQuery', allNewAboutCorePageOaksImpact: Array<{ __typename?: 'NewAboutCorePageOaksImpact', caseStudiesSection?: { __typename?: 'OaksImpactPageCaseStudiesSection', caseStudies?: Array<{ __typename?: 'CaseStudy', textRaw?: any | null, slug?: { __typename?: 'Slug', current?: string | null } | null, image?: { __typename?: 'ImageWithAltText', altText?: string | null, isPresentational?: boolean | null, asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null, hotspot?: { __typename?: 'SanityImageHotspot', x?: number | null, y?: number | null, width?: number | null, height?: number | null } | null } | null, video?: { __typename?: 'Video', title?: string | null, captions?: Array<string | null> | null, video?: { __typename?: 'MuxVideo', asset?: { __typename?: 'MuxVideoAsset', assetId?: string | null, thumbTime?: number | null, playbackId?: string | null } | null } | null } | null } | null> | null } | null }> };
 
 export type OaksImpactPageQueryVariables = Exact<{
   isDraftFilter?: InputMaybe<Sanity_DocumentFilter>;
@@ -7551,20 +7550,25 @@ export const OaksCurriculaPageDocument = gql`
     ${ImageWithAltTextFragmentDoc}
 ${SeoFragmentDoc}`;
 export const OaksImpactCaseStudyPageDocument = gql`
-    query oaksImpactCaseStudyPage($slug: String, $isDraftFilter: Sanity_DocumentFilter) {
-  allCaseStudy(
-    where: {_: $isDraftFilter, slug: {current: {eq: $slug}}}
+    query oaksImpactCaseStudyPage($isDraftFilter: Sanity_DocumentFilter) {
+  allNewAboutCorePageOaksImpact(
+    where: {_: $isDraftFilter, _id: {matches: "*newAboutCorePage.oaksImpact"}}
     sort: {_updatedAt: DESC}
+    limit: 1
   ) {
-    slug {
-      current
-    }
-    image {
-      ...ImageWithAltText
-    }
-    textRaw
-    video {
-      ...Video
+    caseStudiesSection {
+      caseStudies {
+        slug {
+          current
+        }
+        image {
+          ...ImageWithAltText
+        }
+        textRaw
+        video {
+          ...Video
+        }
+      }
     }
   }
 }
