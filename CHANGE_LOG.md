@@ -1,3 +1,25 @@
+## [1.1143.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.1143.0...v1.1143.1) (2026-07-29)
+
+
+### Bug Fixes
+
+* don't report errors due to malformed input ([3699066](https://github.com/oaknational/Oak-Web-Application/commit/3699066389949700fbc98a7d1f6a09517d0c5561))
+* normalize school input name to prevent invalid regex error ([1606c8f](https://github.com/oaknational/Oak-Web-Application/commit/1606c8f770f7ea5b757eeccaf54eb1778d9fa114))
+* return empty array for 400 errors ([b0a46b1](https://github.com/oaknational/Oak-Web-Application/commit/b0a46b1e7452a9cfef7f9a03d64c349515d7b3c2))
+* rever regex change and use string.raw to escape ([e91fb67](https://github.com/oaknational/Oak-Web-Application/commit/e91fb6718e8eaa1f49182283e393c862a20a3912))
+
+# [1.1143.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1142.0...v1.1143.0) (2026-07-29)
+
+
+### Bug Fixes
+
+* size -> $size in styled-components so it doesn't appear in DOM ([1e6f90e](https://github.com/oaknational/Oak-Web-Application/commit/1e6f90e60ec12eb51d5f6ce7f97739c5d411b85e))
+
+
+### Features
+
+* changed <WhoAreWeExplore/> to support 4 items ([f563e46](https://github.com/oaknational/Oak-Web-Application/commit/f563e469122656e7638c38b006a89210f1f0e63c))
+
 # [1.1142.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1141.1...v1.1142.0) (2026-07-28)
 
 
