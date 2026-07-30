@@ -16,8 +16,8 @@ export function OaksImpactCaseStudyContentLayout({
         </OakGridArea>
       )}
       <OakGridArea
-        $colStart={menu ? [1, 4, 3] : [1]}
-        $colSpan={menu ? [12, 9, 8] : [12]}
+        $colStart={menu ? [1, 4, 3] : [1, 1, 3]}
+        $colSpan={menu ? [12, 9, 8] : [12, 12, 8]}
       >
         <OakBox>{children}</OakBox>
       </OakGridArea>
