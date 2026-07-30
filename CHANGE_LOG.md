@@ -1,3 +1,15 @@
+# [1.1144.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1143.1...v1.1144.0) (2026-07-30)
+
+
+### Bug Fixes
+
+* change to `autoDismiss` ([e7c47ea](https://github.com/oaknational/Oak-Web-Application/commit/e7c47eaeca1093fef741c69a8fa6bdd02c6c3e51))
+
+
+### Features
+
+* build out case study page ([ffa5a22](https://github.com/oaknational/Oak-Web-Application/commit/ffa5a2221db1590f03fe306308194ef5626fda56))
+
 ## [1.1143.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.1143.0...v1.1143.1) (2026-07-29)
 
 
