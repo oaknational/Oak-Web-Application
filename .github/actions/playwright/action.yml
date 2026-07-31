@@ -17,11 +17,26 @@ inputs:
 runs:
   using: "composite"
   steps:
-    - name: Install Playwright browser binaries
+    - name: Get installed Playwright version
+      id: playwright-version
       shell: bash
-      env:
-        npm_config_ignore_scripts: "true"
-      run: ./node_modules/.bin/playwright install --with-deps chromium
+      run: echo "version=$(./node_modules/.bin/playwright --version | awk '{print $2}')" >> "$GITHUB_OUTPUT"
+
+    - name: Cache Playwright browser
+      id: playwright-cache
+      uses: actions/cache@v4
+      with:
+        path: ~/.cache/ms-playwright
+        key: playwright-${{ runner.os }}-${{ runner.arch }}-chromium-${{ steps.playwright-version.outputs.version }}
+
+    - name: Install Playwright system dependencies
+      shell: bash
+      run: ./node_modules/.bin/playwright install-deps chromium
+
+    - name: Install Playwright browser
+      if: steps.playwright-cache.outputs.cache-hit != 'true'
+      shell: bash
+      run: ./node_modules/.bin/playwright install chromium
 
     - name: Run Playwright tests
       shell: bash
