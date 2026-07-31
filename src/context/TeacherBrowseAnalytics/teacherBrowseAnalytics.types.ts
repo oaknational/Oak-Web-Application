@@ -16,17 +16,22 @@ import {
   TeacherSchoolManualEntryDetails,
   UserAccountVerificationStatusValueType,
   UserRoleTypeValueType,
+  PhaseValueType,
 } from "@/browser-lib/avo/Avo";
 import { ResourceFormValues } from "@/components/TeacherComponents/types/downloadAndShare.types";
 import { VideoTrackingGetState } from "@/components/SharedComponents/VideoPlayer/useVideoTracking";
 
 // Core programme properties used at all browse levels
-export type SharedProgrammeState = {
+export type CoreProgrammeState = {
   programmeSlug: string;
   subjectSlug: ProgrammeFields["subject_slug"];
-  subjectTitle: ProgrammeFields["subject"];
+  subjectTitle: string; // looser type as title can be overriden with any value
   phaseSlug: ProgrammeFields["phase_slug"];
   phaseTitle: ProgrammeFields["phase_description"];
+};
+
+// Expanded programme factor state used at unit and lesson browse levels
+export type ProgrammeFactorState = CoreProgrammeState & {
   year: ProgrammeFields["year"];
   yearGroupTitle: ProgrammeFields["year_description"];
   keyStageSlug: ProgrammeFields["keystage_slug"];
@@ -39,12 +44,24 @@ export type SharedProgrammeState = {
   pathwayTitle: ProgrammeFields["pathway_description"];
 };
 
-export type ProgrammeState = SharedProgrammeState &
-  (
-    | { browseLevel: "programme" }
-    | { browseLevel: "unit"; unit: UnitState }
-    | { browseLevel: "lesson"; unit: UnitState; lesson: LessonState }
-  );
+export const isProgrammeFactorState = (
+  u: CoreProgrammeState | ProgrammeFactorState,
+): u is ProgrammeFactorState => {
+  return Object.hasOwn(u, "year");
+};
+
+export type ProgrammeState =
+  | (CoreProgrammeState & { browseLevel: "programme" })
+  | (ProgrammeFactorState &
+      (
+        | { browseLevel: "unit"; unit: UnitState }
+        | { browseLevel: "lesson"; unit: UnitState; lesson: LessonState }
+      ));
+
+export type ProgrammeStateProgramme = Extract<
+  ProgrammeState,
+  { browseLevel: "programme" }
+>;
 
 export type ProgrammeStateUnit = Extract<
   ProgrammeState,
@@ -67,18 +84,21 @@ export type LessonState = {
 };
 
 export type ProgrammePathwayData = {
-  keyStageTitle: KeyStageTitleValueType;
-  keyStageSlug: string;
   subjectTitle: string;
   subjectSlug: string;
+  phase: PhaseValueType;
+};
+
+export type UnitPathwayData = ProgrammePathwayData & {
+  keyStageTitle: KeyStageTitleValueType;
+  keyStageSlug: string;
   tierName: TierNameValueType | null;
   examBoard: ExamBoardValueType | null;
   pathway: PathwayValueType | null;
-};
-export type UnitPathwayData = ProgrammePathwayData & {
   unitName: string;
   unitSlug: string;
 };
+
 export type LessonPathwayData = ProgrammePathwayData &
   UnitPathwayData & {
     lessonName: string;
