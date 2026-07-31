@@ -21,10 +21,7 @@ import {
   UnitSequenceViewProps,
 } from "./UnitSequence/UnitSequenceView";
 import { SubjectHeroImageName } from "./ProgrammeHeader/getSubjectHeroImageUrl";
-import {
-  ProgrammeOverview,
-  ProgrammeOverviewProps,
-} from "./ProgrammeOverview/ProgrammeOverview";
+import { ProgrammeOverview } from "./ProgrammeOverview/ProgrammeOverview";
 import {
   ProgrammeDownloadsProps,
   ProgrammeDownloads,
@@ -198,7 +195,6 @@ export const ProgrammeView = ({
       <TabContent
         tabSlug={activeTab}
         curriculumSelectionSlugs={curriculumSelectionSlugs}
-        subjectTitle={curriculumSelectionTitles.subjectTitle}
         curriculumUnitsFormattedData={curriculumUnitsFormattedData}
         curriculumCMSInfo={curriculumCMSInfo}
         curriculumDownloadsTabData={curriculumDownloadsTabData}
@@ -216,7 +212,6 @@ export const ProgrammeView = ({
 const TabContent = ({
   tabSlug,
   curriculumSelectionSlugs,
-  subjectTitle,
   curriculumUnitsFormattedData,
   curriculumCMSInfo,
   curriculumInfo,
@@ -226,8 +221,7 @@ const TabContent = ({
   setFilters,
   ks4Options,
   ks4OptionFilterDimensions,
-}: { tabSlug: TabSlug } & UnitSequenceViewProps &
-  Omit<ProgrammeOverviewProps, "curriculumCMSInfo"> & {
+}: { tabSlug: TabSlug } & UnitSequenceViewProps & {
     curriculumCMSInfo: CurriculumOverviewSanityData | null;
   } & ProgrammeDownloadsProps) => {
   if (tabSlug === "units") {
@@ -245,13 +239,7 @@ const TabContent = ({
     if (!curriculumCMSInfo) {
       notFound();
     }
-    return (
-      <ProgrammeOverview
-        subjectTitle={subjectTitle}
-        curriculumCMSInfo={curriculumCMSInfo}
-        curriculumSelectionSlugs={curriculumSelectionSlugs}
-      />
-    );
+    return <ProgrammeOverview curriculumCMSInfo={curriculumCMSInfo} />;
   } else if (tabSlug === "download") {
     return (
       <ProgrammeDownloads

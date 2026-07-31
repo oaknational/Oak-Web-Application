@@ -36,6 +36,8 @@ import { cacheData } from "@/node-lib/cache";
 import CMSClient from "@/node-lib/cms";
 import { getMvRefreshTime } from "@/pages-helpers/curriculum/downloads/getMvRefreshTime";
 import { validateServerSearchParams } from "@/utils/validateProgrammePageSearchParams";
+import { TeacherBrowseAnalyticsStoreProvider } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
+import { getProgrammeStateForProgramme } from "@/context/TeacherBrowseAnalytics/utils/getProgrammeState";
 
 const reportError = errorReporter("programme-page::app");
 
@@ -299,7 +301,17 @@ const InnerProgrammePage = async (props: AppPageProps<ProgrammePageParams>) => {
     initialFilter: resolvedFilter,
   };
 
-  return <ProgrammeView {...results} />;
+  const programmeState = getProgrammeStateForProgramme({
+    programmeSlug: subjectPhaseSlug,
+    ...subjectPhaseKeystageSlugs,
+    ...curriculumSelectionTitles,
+  });
+
+  return (
+    <TeacherBrowseAnalyticsStoreProvider programmeState={programmeState}>
+      <ProgrammeView {...results} />
+    </TeacherBrowseAnalyticsStoreProvider>
+  );
 };
 
 const ProgrammePage = withPageErrorHandling(

@@ -5,6 +5,7 @@ import { TrackFns } from "../Analytics/AnalyticsProvider";
 import { ProgrammeState } from "./teacherBrowseAnalytics.types";
 import {
   getLessonAnalyticsProperties,
+  getProgrammeAnalyticsProperties,
   getUnitAnalyticsProperties,
 } from "./utils/getAnalyticsProperties";
 
@@ -29,6 +30,7 @@ export type TeacherBrowseAnalyticsStore = {
       downloadResourceButtonName: DownloadResourceButtonNameValueType,
     ) => void;
     unitDownloadInitiated: () => void;
+    curriculumExplainerExplored: () => void;
   };
 };
 
@@ -108,6 +110,19 @@ export const createTeacherBrowseAnalyticsStore = (
         avo.unitDownloadInitiated({
           engagementIntent: EngagementIntent.USE,
           componentType: ComponentType.UNIT_DOWNLOAD_BUTTON,
+          ...coreProperties,
+          ...analyticsProperties,
+        });
+      },
+      curriculumExplainerExplored: () => {
+        const { avo, programmeState } = get();
+
+        const analyticsProperties =
+          getProgrammeAnalyticsProperties(programmeState);
+
+        avo.curriculumExplainerExplored({
+          engagementIntent: "explore",
+          componentType: "explainer_tab",
           ...coreProperties,
           ...analyticsProperties,
         });

@@ -15,6 +15,8 @@ const state = {
     lessonResourceDownloadStarted: () =>
       console.log("lessonResourceDownloadStarted fired"),
     unitDownloadInitiated: () => console.log("unitDownloadInitiated fired"),
+    curriculumExplainerExplored: () =>
+      console.log("curriculumExplainerExplore fired"),
   },
 };
 
