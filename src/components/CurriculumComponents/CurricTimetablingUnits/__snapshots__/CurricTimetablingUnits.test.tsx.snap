@@ -42,7 +42,7 @@ exports[`CurricTimetablingUnits snapshot (mode=debug) 1`] = `
                 class="sc-eldPxv iuXWKp"
                 data-testid="timetable-header-title"
               >
-                Your Transfiguration timetable
+                Your Maths timetable
               </h1>
               <div
                 class="sc-aXZVg jPvJsJ"
@@ -590,7 +590,7 @@ exports[`CurricTimetablingUnits snapshot (mode=normal) 1`] = `
                 class="sc-eldPxv iuXWKp"
                 data-testid="timetable-header-title"
               >
-                Your Transfiguration timetable
+                Your Maths timetable
               </h1>
               <div
                 class="sc-aXZVg jPvJsJ"

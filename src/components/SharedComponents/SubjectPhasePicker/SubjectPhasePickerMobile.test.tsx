@@ -563,8 +563,8 @@ describe("Component - Mobile subject phase picker", () => {
     test("populates lot picker with the correct subject and phase selections", () => {
       const currentSelection = {
         subject: {
-          title: "English",
-          slug: "english",
+          title: "English" as const,
+          slug: "english" as const,
           phases: [],
           cycle: "1",
           ks4_options: [{ title: "AQA", slug: "aqa" }],

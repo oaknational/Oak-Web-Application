@@ -52,7 +52,7 @@ import { CurriculumOverviewMVData } from "@/node-lib/curriculum-api-2023";
 import { validateSearchParams } from "@/utils/validateProgrammePageSearchParams";
 import { getDefaultFilter } from "@/utils/curriculum/filtering";
 
-type ProgrammePageProps = {
+export type ProgrammePageProps = {
   subjectPhaseSlug: string;
   curriculumSelectionSlugs: CurriculumSelectionSlugs;
   curriculumSelectionTitles: CurriculumSelectionTitles;

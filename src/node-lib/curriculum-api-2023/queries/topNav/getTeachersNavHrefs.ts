@@ -1,4 +1,7 @@
-import { PhaseSlug, SubjectsMenu } from "./topNav.schema";
+import z from "zod";
+import { subjectSlugs } from "@oaknational/oak-curriculum-schema";
+
+import { PhaseSlug } from "./topNav.schema";
 
 import { resolveOakHref } from "@/common-lib/urls";
 import { getSubjectPhaseSlug } from "@/components/TeacherComponents/helpers/getSubjectPhaseSlug";
@@ -19,7 +22,7 @@ export function getTeachersSubjectNavHref({
   phaseSlug,
   curriculumPhaseOptionsSubjects,
 }: {
-  subject: Pick<SubjectsMenu, "slug" | "pathwaySlug" | "programmeSlug">;
+  subject: { slug: z.infer<typeof subjectSlugs>; pathwaySlug: string | null };
   keyStageSlug?: string;
   phaseSlug: PhaseSlug;
   curriculumPhaseOptionsSubjects: CurriculumPhaseOptions;

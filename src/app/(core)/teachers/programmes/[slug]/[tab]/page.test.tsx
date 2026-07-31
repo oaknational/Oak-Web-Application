@@ -314,8 +314,8 @@ describe("generateMetadata", () => {
         curriculumPhaseOptionsFixture(),
       ),
       subjectPhaseKeystageSlugs: {
-        subjectSlug: "maths",
-        phaseSlug: "primary",
+        subjectSlug: "maths" as const,
+        phaseSlug: "primary" as const,
         ks4OptionSlug: null,
       },
     };
@@ -368,8 +368,8 @@ describe("generateMetadata", () => {
         curriculumPhaseOptionsFixture(),
       ),
       subjectPhaseKeystageSlugs: {
-        subjectSlug: "maths",
-        phaseSlug: "primary",
+        subjectSlug: "maths" as const,
+        phaseSlug: "primary" as const,
         ks4OptionSlug: null,
       },
     };
@@ -424,8 +424,8 @@ describe("generateMetadata", () => {
         curriculumPhaseOptionsFixture(),
       ),
       subjectPhaseKeystageSlugs: {
-        subjectSlug: "computing",
-        phaseSlug: "secondary",
+        subjectSlug: "computing" as const,
+        phaseSlug: "secondary" as const,
         examboardSlug: "aqa",
         ks4OptionSlug: null,
       },
@@ -495,8 +495,8 @@ describe("generateMetadata", () => {
         curriculumPhaseOptionsFixture(),
       ),
       subjectPhaseKeystageSlugs: {
-        subjectSlug: "maths",
-        phaseSlug: "secondary",
+        subjectSlug: "maths" as const,
+        phaseSlug: "secondary" as const,
         ks4OptionSlug: null,
       },
     };

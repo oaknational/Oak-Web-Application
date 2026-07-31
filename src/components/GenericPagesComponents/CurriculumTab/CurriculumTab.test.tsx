@@ -9,15 +9,15 @@ const render = renderWithProviders();
 
 const mockCurriculumPhaseOptionsData = [
   {
-    title: "Physical education",
-    slug: "physical-education",
+    title: "Physical education" as const,
+    slug: "physical-education" as const,
     phases: [
       {
-        slug: "primary",
+        slug: "primary" as const,
         title: "Primary",
       },
       {
-        slug: "secondary",
+        slug: "secondary" as const,
         title: "Secondary",
       },
     ],
@@ -63,15 +63,15 @@ const mockCurriculumPhaseOptionsData = [
     ],
   },
   {
-    title: "Maths",
-    slug: "maths",
+    title: "Maths" as const,
+    slug: "maths" as const,
     phases: [
       {
-        slug: "primary",
+        slug: "primary" as const,
         title: "Primary",
       },
       {
-        slug: "secondary",
+        slug: "secondary" as const,
         title: "Secondary",
       },
     ],

@@ -2,6 +2,7 @@ import {
   examboardSlugs,
   keystageSlugs,
   pathwaySlugs,
+  phaseDescriptions,
   phaseSlugs,
   subjectSlugs,
   tierSlugs,
@@ -123,7 +124,7 @@ export type CurriculumSelectionSlugs = {
 };
 
 export type CurriculumSelectionTitles = {
-  phaseTitle: string;
+  phaseTitle: z.infer<typeof phaseDescriptions>;
   subjectTitle: string;
   examboardTitle: string | undefined;
 };

@@ -115,8 +115,8 @@ const defaultProps = {
   mvRefreshTime,
   curriculumInfo: {
     curriculaDesc: "",
-    subjectTitle: "English",
-    phaseTitle: "Secondary",
+    subjectTitle: "English" as const,
+    phaseTitle: "Secondary" as const,
     examboardTitle: null,
     nonCurriculum: false,
   },
@@ -315,8 +315,8 @@ describe("trackCurriculumDownload", () => {
 
     const subjectTitle = "Mathematics";
     const slugs = {
-      phaseSlug: "primary",
-      subjectSlug: "maths",
+      phaseSlug: "primary" as const,
+      subjectSlug: "maths" as const,
       ks4OptionSlug: "",
     };
     await trackCurriculumDownload(

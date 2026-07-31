@@ -1,8 +1,12 @@
-import { subjects, subjectSlugs } from "@oaknational/oak-curriculum-schema";
+import {
+  phaseSlugs,
+  subjects,
+  subjectSlugs,
+} from "@oaknational/oak-curriculum-schema";
 import { z } from "zod";
 
 const phaseSchema = z.object({
-  slug: z.string(),
+  slug: phaseSlugs,
   title: z.string(),
 });
 
