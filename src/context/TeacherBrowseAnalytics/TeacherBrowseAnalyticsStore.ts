@@ -23,6 +23,8 @@ import {
 } from "@/browser-lib/avo/Avo";
 import errorReporter from "@/common-lib/error-reporter";
 import OakError from "@/errors/OakError";
+import { Thread, Unit } from "@/utils/curriculum/types";
+import { buildUnitOverviewAccessedAnalytics } from "@/utils/curriculum/analytics";
 import { ResourceFormValues } from "@/components/TeacherComponents/types/downloadAndShare.types";
 import {
   getSchoolOption,
@@ -41,6 +43,11 @@ export type TeacherBrowseAnalyticsStore = {
     ) => void;
     unitDownloadInitiated: () => void;
     curriculumExplainerExplored: () => void;
+    unitOverviewAccessed: (
+      unit: Unit,
+      isHighlighted: boolean,
+      selectedThread: Thread | undefined,
+    ) => void;
     curriculumResourcesDownloadRefined: (data: {
       tierSlug?: string | null;
       childSubjectSlug?: string | null;
@@ -128,6 +135,34 @@ export const createTeacherBrowseAnalyticsStore = (
           ...coreProperties,
           ...analyticsProperties,
         });
+      },
+      unitOverviewAccessed: (unit, isHighlighted, selectedThread) => {
+        const { avo, programmeState, journeyId } = get();
+        if (programmeState.browseLevel !== "unit" || !journeyId) {
+          reportError(
+            new OakError({
+              code: "analytics/teacher-browse",
+              meta: {
+                event: "unitOverviewAccessed",
+                browseLevel: programmeState.browseLevel,
+                unitSlug: unit.slug,
+              },
+            }),
+          );
+          return;
+        }
+        const analyticsProperties = buildUnitOverviewAccessedAnalytics({
+          unit,
+          isHighlighted,
+          componentType: "unit_info_button",
+          selectedThread,
+          analyticsUseCase: "Teacher",
+          journeyId,
+          accessLevel: "unit",
+          navigationType: "across",
+        });
+
+        avo.unitOverviewAccessed(analyticsProperties);
       },
       curriculumExplainerExplored: () => {
         const { avo, programmeState } = get();
