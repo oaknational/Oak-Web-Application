@@ -3,7 +3,7 @@ import { Metadata } from "next";
 import { cache } from "react";
 import { draftMode } from "next/headers";
 
-import { ProgrammeView } from "./Components/ProgrammeView";
+import { ProgrammePageProps, ProgrammeView } from "./Components/ProgrammeView";
 import { isTabSlug } from "./tabSchema";
 import { getMetaTitle } from "./getMetaTitle";
 import {
@@ -284,7 +284,7 @@ const InnerProgrammePage = async (props: AppPageProps<ProgrammePageParams>) => {
     ks4OptionTitle: curriculumSelectionTitles.examboardTitle,
   };
 
-  const results = {
+  const results: ProgrammePageProps = {
     subjectPhaseSlug,
     curriculumSelectionSlugs: subjectPhaseKeystageSlugs,
     curriculumSelectionTitles,
@@ -295,7 +295,6 @@ const InnerProgrammePage = async (props: AppPageProps<ProgrammePageParams>) => {
     ks4Options,
     ks4OptionFilterDimensions,
     trackingData: curriculumUnitsTrackingData,
-    curriculumInfo: cachedProgrammeData.programmeUnitsData,
     curriculumDownloadsTabData,
     mvRefreshTime,
     initialFilter: resolvedFilter,
