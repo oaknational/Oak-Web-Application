@@ -1,20 +1,25 @@
-query oaksImpactCaseStudyPage($slug: String, $isDraftFilter: Sanity_DocumentFilter) {
-  allCaseStudy(
+query oaksImpactCaseStudyPage($isDraftFilter: Sanity_DocumentFilter) {
+  allNewAboutCorePageOaksImpact(
     where: {
-      _: $isDraftFilter,
-      slug: { current: { eq: $slug } }
+      _: $isDraftFilter
+      _id: { matches: "*newAboutCorePage.oaksImpact" }
     }
     sort: { _updatedAt: DESC }
+    limit: 1
   ) {
-    slug {
-      current
-    },
-    image {
-      ...ImageWithAltText
-    },
-    textRaw,
-    video {
-      ...Video
+    caseStudiesSection {
+      caseStudies {
+        slug {
+          current
+        },
+        image {
+          ...ImageWithAltText
+        },
+        textRaw,
+        video {
+          ...Video
+        }
+      }
     }
   }
 }

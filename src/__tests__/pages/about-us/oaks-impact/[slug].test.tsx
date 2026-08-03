@@ -38,28 +38,40 @@ beforeEach(() => {
 
 const mockCMSClient = CMSClient as jest.MockedObject<typeof CMSClient>;
 
-const mockPageData: OaksImpactCaseStudyPage = {
-  image: {
-    altText: "Test image alt text",
-    asset: {
-      _id: "test-image-asset-id",
-      url: "https://example.com/test-image.jpg",
-    },
-  },
-  slug: {
-    current: "test-slug",
-  },
-  textRaw: portableTextFromString("testing"),
-  video: {
-    title: "Test Video",
-    video: {
+function caseStudyFixture(slug: string) {
+  return {
+    image: {
+      altText: "Test image alt text",
       asset: {
-        assetId: "test-asset-id",
-        playbackId: "test-playback-id",
-        thumbTime: null,
+        _id: "test-image-asset-id",
+        url: "https://example.com/test-image.jpg",
       },
     },
-    captions: ["Test captions"],
+    slug: {
+      current: slug,
+    },
+    textRaw: portableTextFromString("testing"),
+    video: {
+      title: "Test Video",
+      video: {
+        asset: {
+          assetId: "test-asset-id",
+          playbackId: "test-playback-id",
+          thumbTime: null,
+        },
+      },
+      captions: ["Test captions"],
+    },
+  };
+}
+
+const mockPageData: OaksImpactCaseStudyPage = {
+  caseStudiesSection: {
+    caseStudies: [
+      caseStudyFixture("test-slug-1"),
+      caseStudyFixture("test-slug-2"),
+      caseStudyFixture("test-slug-3"),
+    ],
   },
 };
 
@@ -68,7 +80,14 @@ describe("pages/about-us/oaks-impact/case-studies/[slug].tsx", () => {
     mockGetFeatureFlag.mockResolvedValue(true);
 
     const { container } = renderWithProviders()(
-      <OaksImpact pageData={mockPageData} topNav={topNavFixture} />,
+      <OaksImpact
+        pageData={{
+          caseStudy: mockPageData.caseStudiesSection.caseStudies[0]!,
+          otherCaseStudies:
+            mockPageData.caseStudiesSection.caseStudies.slice(1),
+        }}
+        topNav={topNavFixture}
+      />,
     );
 
     expect(container).toMatchSnapshot();
@@ -79,7 +98,7 @@ describe("pages/about-us/oaks-impact/case-studies/[slug].tsx", () => {
       mockGetFeatureFlag.mockResolvedValue(true);
 
       const propsResult = await getServerSideProps({
-        params: { slug: "test-slug" },
+        params: { slug: "test-slug-1" },
         req: { cookies: {} },
       } as unknown as GetServerSidePropsContext<{ slug: string }>);
 
@@ -94,7 +113,7 @@ describe("pages/about-us/oaks-impact/case-studies/[slug].tsx", () => {
       mockGetFeatureFlag.mockResolvedValue(false);
 
       const propsResult = await getServerSideProps({
-        params: { slug: "test-slug" },
+        params: { slug: "test-slug-1" },
         req: { cookies: {} },
       } as unknown as GetServerSidePropsContext<{ slug: string }>);
 
