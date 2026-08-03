@@ -1,4 +1,4 @@
-name: 1. PR Playwright Preview Tests
+name: PR Playwright Preview Tests
 
 # This workflow runs Playwright on PRs against the actual Vercel preview for the PR head SHA.
 # It uses a pinned vercel/wait-for-deployment-action and validates the returned URL
