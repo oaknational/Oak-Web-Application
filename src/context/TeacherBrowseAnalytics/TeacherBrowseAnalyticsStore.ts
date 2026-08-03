@@ -41,18 +41,21 @@ export type TeacherBrowseAnalyticsStore = {
     lessonResourceDownloadStarted: (
       downloadResourceButtonName: DownloadResourceButtonNameValueType,
     ) => void;
-    unitDownloadInitiated: () => void;
     curriculumExplainerExplored: () => void;
-    unitOverviewAccessed: (
-      unit: Unit,
-      isHighlighted: boolean,
-      selectedThread: Thread | undefined,
-    ) => void;
     curriculumResourcesDownloadRefined: (data: {
       tierSlug?: string | null;
       childSubjectSlug?: string | null;
     }) => void;
     curriculumResourcesDownloaded: (data: ResourceFormValues) => void;
+    programmeRefined: () => void;
+    programmeAccessed: () => void;
+    unitRefined: () => void;
+    unitDownloadInitiated: () => void;
+    unitOverviewAccessed: (
+      unit: Unit,
+      isHighlighted: boolean,
+      selectedThread: Thread | undefined,
+    ) => void;
   };
 };
 
@@ -136,6 +139,69 @@ export const createTeacherBrowseAnalyticsStore = (
           ...analyticsProperties,
         });
       },
+      programmeRefined: () => {
+        const { avo, journeyId, programmeState } = get();
+
+        if (programmeState.browseLevel !== "programme") {
+          reportError(
+            new OakError({
+              code: "analytics/teacher-browse",
+              meta: {
+                event: "programmeRefined",
+                browseLevel: programmeState.browseLevel,
+              },
+            }),
+          );
+          return;
+        }
+
+        const analyticsProperties =
+          getProgrammeAnalyticsProperties(programmeState);
+
+        avo.programmeRefined({
+          journeyId,
+          ...coreProperties,
+          ...analyticsProperties,
+        });
+      },
+      programmeAccessed: () => {
+        const { avo, journeyId, programmeState } = get();
+
+        if (programmeState.browseLevel !== "programme") {
+          reportError(
+            new OakError({
+              code: "analytics/teacher-browse",
+              meta: {
+                event: "programmeAccessed",
+                browseLevel: programmeState.browseLevel,
+              },
+            }),
+          );
+          return;
+        }
+
+        const analyticsProperties =
+          getProgrammeAnalyticsProperties(programmeState);
+
+        if (!avo.programmeAccessed) {
+          reportError(
+            new OakError({
+              code: "analytics/teacher-browse",
+              meta: {
+                event: "programmeAccessed",
+                reason: "missingTrackFn",
+              },
+            }),
+          );
+          return;
+        }
+
+        avo.programmeAccessed({
+          journeyId,
+          ...coreProperties,
+          ...analyticsProperties,
+        });
+      },
       unitOverviewAccessed: (unit, isHighlighted, selectedThread) => {
         const { avo, programmeState, journeyId } = get();
         if (programmeState.browseLevel !== "unit" || !journeyId) {
@@ -163,6 +229,43 @@ export const createTeacherBrowseAnalyticsStore = (
         });
 
         avo.unitOverviewAccessed(analyticsProperties);
+      },
+      unitRefined: () => {
+        const { avo, journeyId, programmeState } = get();
+
+        if (programmeState.browseLevel !== "unit") {
+          reportError(
+            new OakError({
+              code: "analytics/teacher-browse",
+              meta: {
+                event: "unitRefined",
+                browseLevel: programmeState.browseLevel,
+              },
+            }),
+          );
+          return;
+        }
+
+        const analyticsProperties = getUnitAnalyticsProperties(programmeState);
+
+        if (!avo.unitRefined) {
+          reportError(
+            new OakError({
+              code: "analytics/teacher-browse",
+              meta: {
+                event: "unitRefined",
+                reason: "missingTrackFn",
+              },
+            }),
+          );
+          return;
+        }
+
+        avo.unitRefined({
+          journeyId,
+          ...coreProperties,
+          ...analyticsProperties,
+        });
       },
       curriculumExplainerExplored: () => {
         const { avo, programmeState } = get();

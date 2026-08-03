@@ -109,7 +109,9 @@ export type LessonPathwayData = UnitPathwayData & {
 export type TeacherBrowseTrackFns = {
   // NAVIGATION
   browseRefined: () => void;
-  browseRefinedAccessed: () => void;
+  programmeAccessed: () => void;
+  programmeRefined: () => void;
+  unitRefined: () => void;
 
   // PROGRAMMES (fka Curriculum Visualiser)
   curriculumExplainerExplored: () => void;
