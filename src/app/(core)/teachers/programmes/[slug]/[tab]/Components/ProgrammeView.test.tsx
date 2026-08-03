@@ -119,7 +119,7 @@ const defaultProps = {
     child_subjects: [],
   },
   mvRefreshTime: 0,
-  curriculumInfo: curriculumOverviewMVFixture(),
+  nonCurriculum: curriculumOverviewMVFixture().nonCurriculum,
   curriculumCMSInfo: curriculumOverviewCMSFixture(),
   subjectPhaseSanityData: null,
   tabSlug: "units" as const,
@@ -304,7 +304,7 @@ describe("ProgrammeView", () => {
   describe("non-curriculum subjects", () => {
     const nonCurriculumProps = {
       ...defaultProps,
-      curriculumInfo: curriculumOverviewMVFixture({ nonCurriculum: true }),
+      nonCurriculum: true,
       curriculumCMSInfo: null,
     };
 

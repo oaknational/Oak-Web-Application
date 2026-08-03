@@ -298,6 +298,7 @@ const InnerProgrammePage = async (props: AppPageProps<ProgrammePageParams>) => {
     curriculumDownloadsTabData,
     mvRefreshTime,
     initialFilter: resolvedFilter,
+    nonCurriculum: cachedProgrammeData.programmeUnitsData.nonCurriculum,
   };
 
   const programmeState = getProgrammeStateForProgramme({
