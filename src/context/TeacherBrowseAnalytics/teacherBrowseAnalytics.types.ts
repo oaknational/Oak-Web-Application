@@ -17,6 +17,7 @@ import {
   UserAccountVerificationStatusValueType,
   UserRoleTypeValueType,
   PhaseValueType,
+  LessonReleaseCohortValueType,
 } from "@/browser-lib/avo/Avo";
 import { ResourceFormValues } from "@/components/TeacherComponents/types/downloadAndShare.types";
 import { VideoTrackingGetState } from "@/components/SharedComponents/VideoPlayer/useVideoTracking";
@@ -103,6 +104,10 @@ export type LessonPathwayData = UnitPathwayData & {
   lessonName: string;
   lessonSlug: string;
   lessonReleaseDate: string;
+  lessonReleaseCohort: LessonReleaseCohortValueType;
+  releaseGroup: string;
+  yearGroupName: string;
+  yearGroupSlug: string;
 };
 
 // All Track Fns used in the teacher browse journey

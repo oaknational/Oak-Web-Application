@@ -51,9 +51,7 @@ import {
   checkIfResourceHasLegacyCopyright,
   getIsResourceDownloadable,
 } from "@/components/TeacherComponents/helpers/downloadAndShareHelpers/downloadsLegacyCopyright";
-import LessonOverviewMediaClips, {
-  TrackingCallbackProps,
-} from "@/components/TeacherComponents/LessonOverviewMediaClips";
+import LessonOverviewMediaClips from "@/components/TeacherComponents/LessonOverviewMediaClips";
 import LessonOverviewDocPresentation from "@/components/TeacherComponents/LessonOverviewDocPresentation";
 import { TeacherNoteInline } from "@/components/TeacherComponents/TeacherNoteInline/TeacherNoteInline";
 import LessonOverviewSideNavAnchorLinks from "@/components/TeacherComponents/LessonOverviewSideNavAnchorLinks";
@@ -67,6 +65,7 @@ import {
 } from "@/components/SharedComponents/TakedownBanner/TakedownBanner";
 import isSlugLegacy from "@/utils/slugModifiers/isSlugLegacy";
 import { resolveOakHref } from "@/common-lib/urls";
+import { useTeacherBrowseAnalytics } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
 
 export type LessonOverviewProps = {
   lesson: LessonOverviewPageData & {
@@ -138,6 +137,10 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
     loginRequired,
     geoRestricted,
   });
+
+  const { lessonMediaClipsStarted } = useTeacherBrowseAnalytics(
+    (store) => store.track,
+  );
 
   const contentRestricted =
     showSignedOutGeoRestricted ||
@@ -228,23 +231,6 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
       eventVersion: "2.0.0",
       analyticsUseCase: "Teacher",
       downloadResourceButtonName,
-      ...browsePathwayData,
-    });
-  };
-
-  const trackMediaClipsButtonClicked = ({
-    mediaClipsButtonName,
-    learningCycle,
-  }: TrackingCallbackProps) => {
-    track.lessonMediaClipsStarted({
-      platform: "owa",
-      product: "media clips",
-      engagementIntent: "use",
-      componentType: "go_to_media_clips_page_button",
-      eventVersion: "2.0.0",
-      analyticsUseCase: "Teacher",
-      mediaClipsButtonName,
-      learningCycle,
       ...browsePathwayData,
     });
   };
@@ -524,8 +510,9 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
                       pageLinks={pageLinks}
                       displayMediaClipButton={true}
                       onPlayALLMediaClipButtonClick={() => {
-                        trackMediaClipsButtonClicked({
+                        lessonMediaClipsStarted({
                           mediaClipsButtonName: "play all",
+                          learningCycle: null,
                         });
                       }}
                       isCanonical={isCanonical}
@@ -539,7 +526,7 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
                         lessonOutline={lessonOutline}
                         isPELesson={!!actions?.displayPETitle}
                         isMFL={!!actions?.displayVocabButton}
-                        onTrackingCallback={trackMediaClipsButtonClicked}
+                        onTrackingCallback={lessonMediaClipsStarted}
                       />
                     </LessonItemContainer>
                   )}

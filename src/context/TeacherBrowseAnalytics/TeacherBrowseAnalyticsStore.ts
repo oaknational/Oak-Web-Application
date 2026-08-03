@@ -18,6 +18,7 @@ import {
   EngagementIntent,
   EventVersionValueType,
   LearningTierValueType,
+  MediaClipsButtonNameValueType,
   PlatformValueType,
   ProductValueType,
   ResourceTypeValueType,
@@ -54,6 +55,10 @@ export type TeacherBrowseAnalyticsStore = {
       childSubjectSlug?: string | null;
     }) => void;
     curriculumResourcesDownloaded: (data: ResourceFormValues) => void;
+    lessonMediaClipsStarted: (data: {
+      mediaClipsButtonName: MediaClipsButtonNameValueType;
+      learningCycle: string | null;
+    }) => void;
   };
 };
 
@@ -144,7 +149,6 @@ export const createTeacherBrowseAnalyticsStore = (
           engagementIntent: EngagementIntent.USE,
           componentType: ComponentType.LESSON_DOWNLOAD_BUTTON,
           downloadResourceButtonName,
-          lessonReleaseCohort: "2023-2026",
           ...coreProperties,
           ...analyticsProperties,
         });
@@ -251,6 +255,33 @@ export const createTeacherBrowseAnalyticsStore = (
           schoolUrn: getSchoolUrn(data.school, schoolOption),
           keyStageSlug: null,
           keyStageTitle: null,
+        });
+      },
+      lessonMediaClipsStarted: (data) => {
+        const { avo, programmeState } = get();
+
+        if (programmeState.browseLevel !== "lesson") {
+          reportError(
+            new OakError({
+              code: "analytics/teacher-browse",
+              meta: {
+                event: "lessonMediaClipsStarted",
+                browseLevel: programmeState.browseLevel,
+              },
+            }),
+          );
+          return;
+        }
+
+        const analyticsProperties =
+          getLessonAnalyticsProperties(programmeState);
+
+        avo.lessonMediaClipsStarted({
+          ...coreProperties,
+          ...analyticsProperties,
+          ...data,
+          engagementIntent: "use",
+          componentType: "go_to_media_clips_page_button",
         });
       },
     },
