@@ -1,3 +1,14 @@
+# [1.1145.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1144.2...v1.1145.0) (2026-08-03)
+
+
+### Features
+
+* bump oak components ([0bedfc8](https://github.com/oaknational/Oak-Web-Application/commit/0bedfc816bedb4a7f4f6043ed1d70928f8e14053))
+* increase who we are breakout image size ([55a03c5](https://github.com/oaknational/Oak-Web-Application/commit/55a03c558ffacf2ef165b1c6e5096389e0482a00))
+* reduce break point for who are we breakout ([4d2b307](https://github.com/oaknational/Oak-Web-Application/commit/4d2b307dc6b91d6bed589908be5921fe5b06f273))
+* replace cms image with oak image in about us ([21da3b9](https://github.com/oaknational/Oak-Web-Application/commit/21da3b9a1c186a6185bf1198b2e1116d01289299))
+* use spacing 800 in who are we breakout image ([8e53d1d](https://github.com/oaknational/Oak-Web-Application/commit/8e53d1dcd82d654bdf42f3ca3704d947db42de63))
+
 ## [1.1144.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.1144.1...v1.1144.2) (2026-07-30)
 
 ## [1.1144.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.1144.0...v1.1144.1) (2026-07-30)
