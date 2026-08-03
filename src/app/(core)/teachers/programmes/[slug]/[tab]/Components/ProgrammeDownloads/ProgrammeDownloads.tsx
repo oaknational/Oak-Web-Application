@@ -43,6 +43,7 @@ import { CurriculumSelectionSlugs } from "@/utils/curriculum/slugs";
 import useResourceFormSubmit from "@/components/TeacherComponents/hooks/downloadAndShareHooks/useResourceFormSubmit";
 import downloadDebouncedSubmit from "@/components/TeacherComponents/helpers/downloadAndShareHelpers/downloadDebounceSubmit";
 import { useTeacherBrowseAnalytics } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
+
 export type ProgrammeDownloadsProps = {
   mvRefreshTime: number;
   curriculumDownloadsTabData: CurriculumDownloadsTierSubjectProps;
@@ -205,6 +206,7 @@ export const ProgrammeDownloads = ({
         resources: ["docx"],
       });
       curriculumResourcesDownloaded(data);
+
       setIsDone(true);
     } catch {
       setSubmitError(
