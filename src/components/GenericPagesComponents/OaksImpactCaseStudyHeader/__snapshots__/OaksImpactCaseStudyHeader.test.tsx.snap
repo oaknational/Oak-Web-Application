@@ -1,0 +1,52 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`OaksImpactCaseStudies renders correctly 1`] = `
+<body>
+  <div>
+    <div
+      class="sc-aXZVg sc-gEvEer xdoGL gSlSXH"
+    >
+      <h1
+        class="sc-eldPxv cTFVAh"
+      >
+        TEST_TITLE
+      </h1>
+      <div
+        class="sc-aXZVg sc-gEvEer jPvJsJ feoULz"
+      >
+        <div
+          class="sc-aXZVg sc-gEvEer jEgKDG fXHtRp"
+        >
+          TEST_DATE
+        </div>
+        <button
+          class="sc-fHjqPf cTauop"
+        >
+          <div
+            class="sc-aXZVg bsftYB"
+          >
+            <span
+              class="sc-aXZVg fjkwRj sc-fUnMCh esqnRZ"
+            >
+              <img
+                alt=""
+                class="sc-iGgWBj cMzyFO"
+                data-nimg="fill"
+                decoding="async"
+                loading="lazy"
+                src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1727861316/icons/Icon_Copy_qxgynv.svg"
+                style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+              />
+            </span>
+          </div>
+          <span
+            class="sc-eqUAAy iGfTGj"
+          >
+            Copy link
+          </span>
+        </button>
+      </div>
+    </div>
+  </div>
+</body>
+`;

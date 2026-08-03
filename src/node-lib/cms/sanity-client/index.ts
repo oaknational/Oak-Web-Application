@@ -244,7 +244,7 @@ const getSanityClient = () => ({
   oaksImpactCaseStudyPage: getSingleton(
     sanityGraphqlApi.oaksImpactCaseStudyPage,
     oaksImpactCaseStudyPageSchema,
-    (result) => result?.allCaseStudy?.[0],
+    (result) => result?.allNewAboutCorePageOaksImpact?.[0],
   ),
   meetTheTeamPage: getSingleton(
     sanityGraphqlApi.meetTheTeamPage,

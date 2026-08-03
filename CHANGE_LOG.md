@@ -1,3 +1,99 @@
+# [1.1146.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1145.0...v1.1146.0) (2026-08-03)
+
+
+### Bug Fixes
+
+* avo pull --branch "main" ([1b7ffc2](https://github.com/oaknational/Oak-Web-Application/commit/1b7ffc23627aa0c1b8566cf56548d6f3ad68d1f5))
+* kessonshare addition ([20d162a](https://github.com/oaknational/Oak-Web-Application/commit/20d162a7b58d673b9e8abe2ecba4236e6c21dabd))
+* move case studies out of oak's impact ([1bab7d7](https://github.com/oaknational/Oak-Web-Application/commit/1bab7d72d073d44e42146126e056fcffbc6e5859))
+* snap ([985de81](https://github.com/oaknational/Oak-Web-Application/commit/985de8110f6ba7c957ea73dbfb1394e746ad8e80))
+
+
+### Features
+
+* add avo tracking for oak's impact and case studies ([426dc5a](https://github.com/oaknational/Oak-Web-Application/commit/426dc5ab135ec8fee6a0b189a12958f4c491abf5))
+
+# [1.1145.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1144.2...v1.1145.0) (2026-08-03)
+
+
+### Features
+
+* bump oak components ([0bedfc8](https://github.com/oaknational/Oak-Web-Application/commit/0bedfc816bedb4a7f4f6043ed1d70928f8e14053))
+* increase who we are breakout image size ([55a03c5](https://github.com/oaknational/Oak-Web-Application/commit/55a03c558ffacf2ef165b1c6e5096389e0482a00))
+* reduce break point for who are we breakout ([4d2b307](https://github.com/oaknational/Oak-Web-Application/commit/4d2b307dc6b91d6bed589908be5921fe5b06f273))
+* replace cms image with oak image in about us ([21da3b9](https://github.com/oaknational/Oak-Web-Application/commit/21da3b9a1c186a6185bf1198b2e1116d01289299))
+* use spacing 800 in who are we breakout image ([8e53d1d](https://github.com/oaknational/Oak-Web-Application/commit/8e53d1dcd82d654bdf42f3ca3704d947db42de63))
+
+## [1.1144.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.1144.1...v1.1144.2) (2026-07-30)
+
+## [1.1144.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.1144.0...v1.1144.1) (2026-07-30)
+
+
+### Bug Fixes
+
+* update version ([8fccf74](https://github.com/oaknational/Oak-Web-Application/commit/8fccf743a4c1ef30925ef526b22b2111127b579d))
+
+# [1.1144.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1143.1...v1.1144.0) (2026-07-30)
+
+
+### Bug Fixes
+
+* change to `autoDismiss` ([e7c47ea](https://github.com/oaknational/Oak-Web-Application/commit/e7c47eaeca1093fef741c69a8fa6bdd02c6c3e51))
+
+
+### Features
+
+* build out case study page ([ffa5a22](https://github.com/oaknational/Oak-Web-Application/commit/ffa5a2221db1590f03fe306308194ef5626fda56))
+
+## [1.1143.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.1143.0...v1.1143.1) (2026-07-29)
+
+
+### Bug Fixes
+
+* don't report errors due to malformed input ([3699066](https://github.com/oaknational/Oak-Web-Application/commit/3699066389949700fbc98a7d1f6a09517d0c5561))
+* normalize school input name to prevent invalid regex error ([1606c8f](https://github.com/oaknational/Oak-Web-Application/commit/1606c8f770f7ea5b757eeccaf54eb1778d9fa114))
+* return empty array for 400 errors ([b0a46b1](https://github.com/oaknational/Oak-Web-Application/commit/b0a46b1e7452a9cfef7f9a03d64c349515d7b3c2))
+* rever regex change and use string.raw to escape ([e91fb67](https://github.com/oaknational/Oak-Web-Application/commit/e91fb6718e8eaa1f49182283e393c862a20a3912))
+
+# [1.1143.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1142.0...v1.1143.0) (2026-07-29)
+
+
+### Bug Fixes
+
+* size -> $size in styled-components so it doesn't appear in DOM ([1e6f90e](https://github.com/oaknational/Oak-Web-Application/commit/1e6f90e60ec12eb51d5f6ce7f97739c5d411b85e))
+
+
+### Features
+
+* changed <WhoAreWeExplore/> to support 4 items ([f563e46](https://github.com/oaknational/Oak-Web-Application/commit/f563e469122656e7638c38b006a89210f1f0e63c))
+
+# [1.1142.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1141.1...v1.1142.0) (2026-07-28)
+
+
+### Bug Fixes
+
+* imports ([03fef66](https://github.com/oaknational/Oak-Web-Application/commit/03fef66b2e4f113a1a83a27a1a363ada89dacc0d))
+* lint ([bc4088d](https://github.com/oaknational/Oak-Web-Application/commit/bc4088d0e67c7d15e8b1e704942fe2693c0f68bb))
+* logo size changes dependant on legacy or current ([a7822c5](https://github.com/oaknational/Oak-Web-Application/commit/a7822c5670a6495b2032d102e92b3e55e91894be))
+* oaks curricula tests ([579088b](https://github.com/oaknational/Oak-Web-Application/commit/579088b8d0b2f15fca643d6fe8086e6437d703ab))
+* snap ([5a43693](https://github.com/oaknational/Oak-Web-Application/commit/5a4369348cda2826106dad85f0da6705f4cb9243))
+* snaps ([520180e](https://github.com/oaknational/Oak-Web-Application/commit/520180e09e599d5a4245d3bf59391f58afd1f446))
+
+
+### Features
+
+* add text to oak's curric and use new shape ([42593f5](https://github.com/oaknational/Oak-Web-Application/commit/42593f5c6f1ad43d71103ff0771b8bfb6ce7234d))
+* curricula page query update ([6a0c858](https://github.com/oaknational/Oak-Web-Application/commit/6a0c8588d35f0b0b896d42ec4e7fcf73299913b6))
+* sdk ([f3d69e4](https://github.com/oaknational/Oak-Web-Application/commit/f3d69e406c91c7856dfa5a66a973967e315202aa))
+* update types for curriciulum partners ([77b8d23](https://github.com/oaknational/Oak-Web-Application/commit/77b8d23a899999e53bff2c7cc7ba3df3845c3f35))
+
+## [1.1141.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.1141.0...v1.1141.1) (2026-07-28)
+
+
+### Bug Fixes
+
+* change FootnoteLink to OakLink ([8be4d12](https://github.com/oaknational/Oak-Web-Application/commit/8be4d12b167b83bb1342f9eec12b9afa2f692894))
+
 # [1.1141.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1140.1...v1.1141.0) (2026-07-28)
 
 

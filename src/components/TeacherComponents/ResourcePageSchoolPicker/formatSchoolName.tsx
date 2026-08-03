@@ -1,39 +1,40 @@
-import { ReactNode } from "react";
 import { OakSpan } from "@oaknational/oak-components";
 
+// Escape regex metacharacters to avoid errors when using the value to create a regex
+const escapeRegExp = (value: string) =>
+  value.replace(/[.*+?^${}()|[\]\\]/g, String.raw`\$&`);
+
 export const formatSchoolName = (
-  schoolName: ReactNode,
+  schoolName: string,
   inputValue: string | undefined,
 ) => {
-  const schoolNameString = `${schoolName}`;
-  const inputValueString = inputValue || "";
-  const regexPattern = new RegExp(inputValueString, "i");
-  const firstIndexOfPattern = schoolNameString.search(regexPattern);
-  const splitSchoolName = schoolNameString.split(regexPattern);
-  const sliceToMakeBold = schoolNameString.slice(
-    firstIndexOfPattern,
-    firstIndexOfPattern + (inputValueString.length || 0),
-  );
+  if (!inputValue) {
+    return <OakSpan $font={"heading-light-7"}>{schoolName}</OakSpan>;
+  }
+
+  const escapedInput = escapeRegExp(inputValue);
+  const splitRegex = new RegExp(`(${escapedInput})`, "gi");
+  const exactMatchRegex = new RegExp(`^${escapedInput}$`, "i");
+  const splitSchoolName = schoolName.split(splitRegex);
 
   return (
     <OakSpan $font={"heading-light-7"}>
-      {splitSchoolName.map((splitSchoolNameItem: string, index: number) => {
-        return (
-          <OakSpan key={index}>
-            {`${splitSchoolNameItem}`}
-            {index < splitSchoolName.length - 1 && (
-              <OakSpan
-                $font={"body-2-bold"}
-                $textDecoration={"underline"}
-                $color={"text-link-active"}
-                data-testid="strong-element"
-              >
-                {sliceToMakeBold}
-              </OakSpan>
-            )}
-          </OakSpan>
-        );
-      })}
+      {splitSchoolName.map((part: string, index: number) => (
+        <OakSpan key={index}>
+          {exactMatchRegex.test(part) ? (
+            <OakSpan
+              $font={"body-2-bold"}
+              $textDecoration={"underline"}
+              $color={"text-link-active"}
+              data-testid="strong-element"
+            >
+              {part}
+            </OakSpan>
+          ) : (
+            part
+          )}
+        </OakSpan>
+      ))}
     </OakSpan>
   );
 };
