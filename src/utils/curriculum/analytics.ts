@@ -14,6 +14,8 @@ import {
   PathwayValueType,
   UnitOverviewAccessedProperties,
   ComponentTypeValueType,
+  AccessLevelValueType,
+  NavigationTypeValueType,
 } from "@/browser-lib/avo/Avo";
 import { CurriculumUnitsTrackingData } from "@/pages-helpers/curriculum/docx/tab-helpers";
 
@@ -85,12 +87,18 @@ export function buildUnitOverviewAccessedAnalytics({
   analyticsUseCase,
   selectedThread,
   componentType,
+  journeyId,
+  accessLevel,
+  navigationType,
 }: {
   unit: Unit;
   isHighlighted: boolean;
   analyticsUseCase: AnalyticsUseCaseValueType;
   selectedThread?: Thread;
   componentType: UnitOverviewAccessedProperties["componentType"];
+  journeyId: string;
+  accessLevel: AccessLevelValueType;
+  navigationType: NavigationTypeValueType;
 }): UnitOverviewAccessedProperties {
   return {
     unitName: unit.title,
@@ -109,5 +117,8 @@ export function buildUnitOverviewAccessedAnalytics({
     analyticsUseCase,
     unitHighlighted: isHighlighted,
     isUnitPublished: areLessonsAvailable(unit.lessons),
+    journeyId,
+    accessLevel,
+    navigationType,
   };
 }

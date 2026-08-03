@@ -22,6 +22,7 @@ const state: TeacherBrowseAnalyticsStore = {
       console.log("curriculumResourcesDownloaded fired"),
     curriculumResourcesDownloadRefined: () =>
       console.log("curriculumResourcesDownloadRefined fired"),
+    unitOverviewAccessed: () => console.log("unitOverviewAccessed fired"),
   },
 };
 
