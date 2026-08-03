@@ -1,11 +1,12 @@
 import { act } from "@testing-library/react";
 
-import { ProgrammeOverview, ProgrammeOverviewProps } from "./ProgrammeOverview";
+import { ProgrammeOverview } from "./ProgrammeOverview";
 
 import curriculumOverviewTabFixture from "@/node-lib/curriculum-api-2023/fixtures/curriculumOverview.fixture";
 import { renderWithProvidersByName } from "@/__tests__/__helpers__/renderWithProviders";
 import { TeacherBrowseAnalyticsStoreProvider } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
 import { getProgrammeStateForProgramme } from "@/context/TeacherBrowseAnalytics/utils/getProgrammeState";
+import { CurriculumOverviewSanityData } from "@/common-lib/cms-types";
 
 const render = renderWithProvidersByName(["theme", "oakTheme", "analytics"]);
 
@@ -30,7 +31,9 @@ const programmeState = getProgrammeStateForProgramme({
   subjectTitle: "Maths",
 });
 
-const renderProgrammeOverview = (props?: Partial<ProgrammeOverviewProps>) => {
+const renderProgrammeOverview = (
+  props?: Partial<{ curriculumCMSInfo: CurriculumOverviewSanityData }>,
+) => {
   return render(
     <TeacherBrowseAnalyticsStoreProvider programmeState={programmeState}>
       <ProgrammeOverview {...defaultProps} {...props} />
