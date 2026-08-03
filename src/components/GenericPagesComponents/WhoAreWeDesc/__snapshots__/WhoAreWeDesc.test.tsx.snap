@@ -18,7 +18,7 @@ exports[`WhoAreWeDesc renders correctly 1`] = `
           class="sc-aXZVg sc-tagGq jPvJsJ dwIuIO"
         >
           <div
-            class="sc-aXZVg sc-gEvEer sc-esYiGF sc-cfe45633-0 jPvJsJ iDBIXi giQTDM jHIizF"
+            class="sc-aXZVg sc-gEvEer sc-esYiGF sc-43691944-0 jPvJsJ iDBIXi giQTDM kVfdza"
             data-testid="who-we-are-desc-item"
           >
             <div
@@ -27,18 +27,21 @@ exports[`WhoAreWeDesc renders correctly 1`] = `
               <div
                 class="sc-aXZVg gGNRVt"
               >
-                <img
-                  alt="ITEM_ALT_0"
-                  class="sc-ba397cd3-0 cYPPcj"
-                  data-nimg="1"
-                  decoding="async"
-                  height="300"
-                  loading="lazy"
-                  src="https://NEXT_PUBLIC_SANITY_ASSET_CDN_HOST/images/NEXT_PUBLIC_SANITY_PROJECT_ID/NEXT_PUBLIC_SANITY_DATASET/0-300x300.png?w=640&h=640&fm=webp&q=80&fit=clip&auto=format"
-                  srcset="https://NEXT_PUBLIC_SANITY_ASSET_CDN_HOST/images/NEXT_PUBLIC_SANITY_PROJECT_ID/NEXT_PUBLIC_SANITY_DATASET/0-300x300.png?w=384&h=384&fm=webp&q=80&fit=clip&auto=format 1x, https://NEXT_PUBLIC_SANITY_ASSET_CDN_HOST/images/NEXT_PUBLIC_SANITY_PROJECT_ID/NEXT_PUBLIC_SANITY_DATASET/0-300x300.png?w=640&h=640&fm=webp&q=80&fit=clip&auto=format 2x"
-                  style="color: transparent;"
-                  width="300"
-                />
+                <span
+                  class="sc-aXZVg kQNEcu"
+                >
+                  <img
+                    alt="ITEM_ALT_0"
+                    class="sc-iGgWBj dZvqhO"
+                    data-nimg="fill"
+                    decoding="async"
+                    loading="lazy"
+                    sizes="100vw"
+                    src="http://localhost/_next/image?url=https%3A%2F%2FNEXT_PUBLIC_SANITY_ASSET_CDN_HOST%2Fimages%2Fp%2Fd%2F0-300x300.png&w=3840&q=75"
+                    srcset="/_next/image?url=https%3A%2F%2FNEXT_PUBLIC_SANITY_ASSET_CDN_HOST%2Fimages%2Fp%2Fd%2F0-300x300.png&w=640&q=75 640w, /_next/image?url=https%3A%2F%2FNEXT_PUBLIC_SANITY_ASSET_CDN_HOST%2Fimages%2Fp%2Fd%2F0-300x300.png&w=750&q=75 750w, /_next/image?url=https%3A%2F%2FNEXT_PUBLIC_SANITY_ASSET_CDN_HOST%2Fimages%2Fp%2Fd%2F0-300x300.png&w=828&q=75 828w, /_next/image?url=https%3A%2F%2FNEXT_PUBLIC_SANITY_ASSET_CDN_HOST%2Fimages%2Fp%2Fd%2F0-300x300.png&w=1080&q=75 1080w, /_next/image?url=https%3A%2F%2FNEXT_PUBLIC_SANITY_ASSET_CDN_HOST%2Fimages%2Fp%2Fd%2F0-300x300.png&w=1200&q=75 1200w, /_next/image?url=https%3A%2F%2FNEXT_PUBLIC_SANITY_ASSET_CDN_HOST%2Fimages%2Fp%2Fd%2F0-300x300.png&w=1920&q=75 1920w, /_next/image?url=https%3A%2F%2FNEXT_PUBLIC_SANITY_ASSET_CDN_HOST%2Fimages%2Fp%2Fd%2F0-300x300.png&w=2048&q=75 2048w, /_next/image?url=https%3A%2F%2FNEXT_PUBLIC_SANITY_ASSET_CDN_HOST%2Fimages%2Fp%2Fd%2F0-300x300.png&w=3840&q=75 3840w"
+                    style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                  />
+                </span>
               </div>
               <div
                 class="sc-aXZVg sc-gEvEer jPvJsJ fVNIMq"
@@ -57,7 +60,7 @@ exports[`WhoAreWeDesc renders correctly 1`] = `
             </div>
           </div>
           <div
-            class="sc-aXZVg sc-gEvEer sc-esYiGF sc-cfe45633-0 jPvJsJ iDBIXi giQTDM jHIizF"
+            class="sc-aXZVg sc-gEvEer sc-esYiGF sc-43691944-0 jPvJsJ iDBIXi giQTDM kVfdza"
             data-testid="who-we-are-desc-item"
           >
             <div
@@ -66,18 +69,21 @@ exports[`WhoAreWeDesc renders correctly 1`] = `
               <div
                 class="sc-aXZVg FTJSB"
               >
-                <img
-                  alt="ITEM_ALT_1"
-                  class="sc-ba397cd3-0 cYPPcj"
-                  data-nimg="1"
-                  decoding="async"
-                  height="300"
-                  loading="lazy"
-                  src="https://NEXT_PUBLIC_SANITY_ASSET_CDN_HOST/images/NEXT_PUBLIC_SANITY_PROJECT_ID/NEXT_PUBLIC_SANITY_DATASET/1-300x300.png?w=640&h=640&fm=webp&q=80&fit=clip&auto=format"
-                  srcset="https://NEXT_PUBLIC_SANITY_ASSET_CDN_HOST/images/NEXT_PUBLIC_SANITY_PROJECT_ID/NEXT_PUBLIC_SANITY_DATASET/1-300x300.png?w=384&h=384&fm=webp&q=80&fit=clip&auto=format 1x, https://NEXT_PUBLIC_SANITY_ASSET_CDN_HOST/images/NEXT_PUBLIC_SANITY_PROJECT_ID/NEXT_PUBLIC_SANITY_DATASET/1-300x300.png?w=640&h=640&fm=webp&q=80&fit=clip&auto=format 2x"
-                  style="color: transparent;"
-                  width="300"
-                />
+                <span
+                  class="sc-aXZVg kQNEcu"
+                >
+                  <img
+                    alt="ITEM_ALT_1"
+                    class="sc-iGgWBj dZvqhO"
+                    data-nimg="fill"
+                    decoding="async"
+                    loading="lazy"
+                    sizes="100vw"
+                    src="http://localhost/_next/image?url=https%3A%2F%2FNEXT_PUBLIC_SANITY_ASSET_CDN_HOST%2Fimages%2Fp%2Fd%2F1-300x300.png&w=3840&q=75"
+                    srcset="/_next/image?url=https%3A%2F%2FNEXT_PUBLIC_SANITY_ASSET_CDN_HOST%2Fimages%2Fp%2Fd%2F1-300x300.png&w=640&q=75 640w, /_next/image?url=https%3A%2F%2FNEXT_PUBLIC_SANITY_ASSET_CDN_HOST%2Fimages%2Fp%2Fd%2F1-300x300.png&w=750&q=75 750w, /_next/image?url=https%3A%2F%2FNEXT_PUBLIC_SANITY_ASSET_CDN_HOST%2Fimages%2Fp%2Fd%2F1-300x300.png&w=828&q=75 828w, /_next/image?url=https%3A%2F%2FNEXT_PUBLIC_SANITY_ASSET_CDN_HOST%2Fimages%2Fp%2Fd%2F1-300x300.png&w=1080&q=75 1080w, /_next/image?url=https%3A%2F%2FNEXT_PUBLIC_SANITY_ASSET_CDN_HOST%2Fimages%2Fp%2Fd%2F1-300x300.png&w=1200&q=75 1200w, /_next/image?url=https%3A%2F%2FNEXT_PUBLIC_SANITY_ASSET_CDN_HOST%2Fimages%2Fp%2Fd%2F1-300x300.png&w=1920&q=75 1920w, /_next/image?url=https%3A%2F%2FNEXT_PUBLIC_SANITY_ASSET_CDN_HOST%2Fimages%2Fp%2Fd%2F1-300x300.png&w=2048&q=75 2048w, /_next/image?url=https%3A%2F%2FNEXT_PUBLIC_SANITY_ASSET_CDN_HOST%2Fimages%2Fp%2Fd%2F1-300x300.png&w=3840&q=75 3840w"
+                    style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                  />
+                </span>
               </div>
               <div
                 class="sc-aXZVg sc-gEvEer jPvJsJ fVNIMq"
@@ -96,7 +102,7 @@ exports[`WhoAreWeDesc renders correctly 1`] = `
             </div>
           </div>
           <div
-            class="sc-aXZVg sc-gEvEer sc-esYiGF sc-cfe45633-0 jPvJsJ iDBIXi giQTDM jHIizF"
+            class="sc-aXZVg sc-gEvEer sc-esYiGF sc-43691944-0 jPvJsJ iDBIXi giQTDM kVfdza"
             data-testid="who-we-are-desc-item"
           >
             <div
@@ -105,18 +111,21 @@ exports[`WhoAreWeDesc renders correctly 1`] = `
               <div
                 class="sc-aXZVg bbAMnw"
               >
-                <img
-                  alt="ITEM_ALT_2"
-                  class="sc-ba397cd3-0 cYPPcj"
-                  data-nimg="1"
-                  decoding="async"
-                  height="300"
-                  loading="lazy"
-                  src="https://NEXT_PUBLIC_SANITY_ASSET_CDN_HOST/images/NEXT_PUBLIC_SANITY_PROJECT_ID/NEXT_PUBLIC_SANITY_DATASET/2-300x300.png?w=640&h=640&fm=webp&q=80&fit=clip&auto=format"
-                  srcset="https://NEXT_PUBLIC_SANITY_ASSET_CDN_HOST/images/NEXT_PUBLIC_SANITY_PROJECT_ID/NEXT_PUBLIC_SANITY_DATASET/2-300x300.png?w=384&h=384&fm=webp&q=80&fit=clip&auto=format 1x, https://NEXT_PUBLIC_SANITY_ASSET_CDN_HOST/images/NEXT_PUBLIC_SANITY_PROJECT_ID/NEXT_PUBLIC_SANITY_DATASET/2-300x300.png?w=640&h=640&fm=webp&q=80&fit=clip&auto=format 2x"
-                  style="color: transparent;"
-                  width="300"
-                />
+                <span
+                  class="sc-aXZVg kQNEcu"
+                >
+                  <img
+                    alt="ITEM_ALT_2"
+                    class="sc-iGgWBj dZvqhO"
+                    data-nimg="fill"
+                    decoding="async"
+                    loading="lazy"
+                    sizes="100vw"
+                    src="http://localhost/_next/image?url=https%3A%2F%2FNEXT_PUBLIC_SANITY_ASSET_CDN_HOST%2Fimages%2Fp%2Fd%2F2-300x300.png&w=3840&q=75"
+                    srcset="/_next/image?url=https%3A%2F%2FNEXT_PUBLIC_SANITY_ASSET_CDN_HOST%2Fimages%2Fp%2Fd%2F2-300x300.png&w=640&q=75 640w, /_next/image?url=https%3A%2F%2FNEXT_PUBLIC_SANITY_ASSET_CDN_HOST%2Fimages%2Fp%2Fd%2F2-300x300.png&w=750&q=75 750w, /_next/image?url=https%3A%2F%2FNEXT_PUBLIC_SANITY_ASSET_CDN_HOST%2Fimages%2Fp%2Fd%2F2-300x300.png&w=828&q=75 828w, /_next/image?url=https%3A%2F%2FNEXT_PUBLIC_SANITY_ASSET_CDN_HOST%2Fimages%2Fp%2Fd%2F2-300x300.png&w=1080&q=75 1080w, /_next/image?url=https%3A%2F%2FNEXT_PUBLIC_SANITY_ASSET_CDN_HOST%2Fimages%2Fp%2Fd%2F2-300x300.png&w=1200&q=75 1200w, /_next/image?url=https%3A%2F%2FNEXT_PUBLIC_SANITY_ASSET_CDN_HOST%2Fimages%2Fp%2Fd%2F2-300x300.png&w=1920&q=75 1920w, /_next/image?url=https%3A%2F%2FNEXT_PUBLIC_SANITY_ASSET_CDN_HOST%2Fimages%2Fp%2Fd%2F2-300x300.png&w=2048&q=75 2048w, /_next/image?url=https%3A%2F%2FNEXT_PUBLIC_SANITY_ASSET_CDN_HOST%2Fimages%2Fp%2Fd%2F2-300x300.png&w=3840&q=75 3840w"
+                    style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                  />
+                </span>
               </div>
               <div
                 class="sc-aXZVg sc-gEvEer jPvJsJ fVNIMq"
@@ -135,7 +144,7 @@ exports[`WhoAreWeDesc renders correctly 1`] = `
             </div>
           </div>
           <div
-            class="sc-aXZVg sc-gEvEer sc-esYiGF sc-cfe45633-0 jPvJsJ iDBIXi giQTDM jHIizF"
+            class="sc-aXZVg sc-gEvEer sc-esYiGF sc-43691944-0 jPvJsJ iDBIXi giQTDM kVfdza"
             data-testid="who-we-are-desc-item"
           >
             <div
@@ -144,18 +153,21 @@ exports[`WhoAreWeDesc renders correctly 1`] = `
               <div
                 class="sc-aXZVg gXXlHk"
               >
-                <img
-                  alt="ITEM_ALT_3"
-                  class="sc-ba397cd3-0 cYPPcj"
-                  data-nimg="1"
-                  decoding="async"
-                  height="300"
-                  loading="lazy"
-                  src="https://NEXT_PUBLIC_SANITY_ASSET_CDN_HOST/images/NEXT_PUBLIC_SANITY_PROJECT_ID/NEXT_PUBLIC_SANITY_DATASET/3-300x300.png?w=640&h=640&fm=webp&q=80&fit=clip&auto=format"
-                  srcset="https://NEXT_PUBLIC_SANITY_ASSET_CDN_HOST/images/NEXT_PUBLIC_SANITY_PROJECT_ID/NEXT_PUBLIC_SANITY_DATASET/3-300x300.png?w=384&h=384&fm=webp&q=80&fit=clip&auto=format 1x, https://NEXT_PUBLIC_SANITY_ASSET_CDN_HOST/images/NEXT_PUBLIC_SANITY_PROJECT_ID/NEXT_PUBLIC_SANITY_DATASET/3-300x300.png?w=640&h=640&fm=webp&q=80&fit=clip&auto=format 2x"
-                  style="color: transparent;"
-                  width="300"
-                />
+                <span
+                  class="sc-aXZVg kQNEcu"
+                >
+                  <img
+                    alt="ITEM_ALT_3"
+                    class="sc-iGgWBj dZvqhO"
+                    data-nimg="fill"
+                    decoding="async"
+                    loading="lazy"
+                    sizes="100vw"
+                    src="http://localhost/_next/image?url=https%3A%2F%2FNEXT_PUBLIC_SANITY_ASSET_CDN_HOST%2Fimages%2Fp%2Fd%2F3-300x300.png&w=3840&q=75"
+                    srcset="/_next/image?url=https%3A%2F%2FNEXT_PUBLIC_SANITY_ASSET_CDN_HOST%2Fimages%2Fp%2Fd%2F3-300x300.png&w=640&q=75 640w, /_next/image?url=https%3A%2F%2FNEXT_PUBLIC_SANITY_ASSET_CDN_HOST%2Fimages%2Fp%2Fd%2F3-300x300.png&w=750&q=75 750w, /_next/image?url=https%3A%2F%2FNEXT_PUBLIC_SANITY_ASSET_CDN_HOST%2Fimages%2Fp%2Fd%2F3-300x300.png&w=828&q=75 828w, /_next/image?url=https%3A%2F%2FNEXT_PUBLIC_SANITY_ASSET_CDN_HOST%2Fimages%2Fp%2Fd%2F3-300x300.png&w=1080&q=75 1080w, /_next/image?url=https%3A%2F%2FNEXT_PUBLIC_SANITY_ASSET_CDN_HOST%2Fimages%2Fp%2Fd%2F3-300x300.png&w=1200&q=75 1200w, /_next/image?url=https%3A%2F%2FNEXT_PUBLIC_SANITY_ASSET_CDN_HOST%2Fimages%2Fp%2Fd%2F3-300x300.png&w=1920&q=75 1920w, /_next/image?url=https%3A%2F%2FNEXT_PUBLIC_SANITY_ASSET_CDN_HOST%2Fimages%2Fp%2Fd%2F3-300x300.png&w=2048&q=75 2048w, /_next/image?url=https%3A%2F%2FNEXT_PUBLIC_SANITY_ASSET_CDN_HOST%2Fimages%2Fp%2Fd%2F3-300x300.png&w=3840&q=75 3840w"
+                    style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                  />
+                </span>
               </div>
               <div
                 class="sc-aXZVg sc-gEvEer jPvJsJ fVNIMq"

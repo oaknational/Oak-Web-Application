@@ -10,6 +10,7 @@ import {
 import { CaseStudyCard } from "@/common-lib/cms-types/caseStudy";
 import getProxiedSanityAssetUrl from "@/common-lib/urls/getProxiedSanityAssetUrl";
 import { NewGutterMaxWidth } from "@/components/GenericPagesComponents/NewGutterMaxWidth";
+import { resolveOakHref } from "@/common-lib/urls";
 
 export type OaksImpactCaseStudiesProps = {
   title: string;
@@ -48,7 +49,10 @@ export const OaksImpactCaseStudies = ({
                 <OakCard
                   heading={caseStudy.video.title || ""}
                   headingLevel={"div"}
-                  href={`/about-us/case-studies/${caseStudy.slug.current}`}
+                  href={resolveOakHref({
+                    page: "about-case-study",
+                    slug: caseStudy.slug.current,
+                  })}
                   imageSrc={
                     getProxiedSanityAssetUrl(caseStudy.image?.asset?.url) ?? ""
                   }

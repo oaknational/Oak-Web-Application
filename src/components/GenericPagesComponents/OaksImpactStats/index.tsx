@@ -2,6 +2,7 @@ import {
   OakBox,
   OakFlex,
   OakHeading,
+  OakImage,
   OakSecondaryButton,
 } from "@oaknational/oak-components";
 import { Fragment } from "react";
@@ -10,9 +11,9 @@ import z from "zod";
 import { NewGutterMaxWidth } from "../NewGutterMaxWidth";
 
 import { oaksImpactPageStatsSectionSchema } from "@/common-lib/cms-types/aboutPages";
-import CMSImage from "@/components/SharedComponents/CMSImage/CMSImage";
 import { PortableTextWithDefaults } from "@/components/SharedComponents/PortableText";
 import { getLinkHref } from "@/utils/portableText/resolveInternalHref";
+import getProxiedSanityAssetUrl from "@/common-lib/urls/getProxiedSanityAssetUrl";
 
 export type OaksImpactStatsProps = z.infer<
   typeof oaksImpactPageStatsSectionSchema
@@ -77,6 +78,7 @@ export function OaksImpactStats(props: Readonly<OaksImpactStatsProps>) {
                       $flexDirection={["column", "row", "row"]}
                       $borderRadius={"border-radius-m2"}
                       $gap={["spacing-20", "spacing-20", "spacing-32"]}
+                      $alignItems={["flex-start", "center"]}
                     >
                       <OakBox
                         $minWidth="spacing-120"
@@ -84,7 +86,13 @@ export function OaksImpactStats(props: Readonly<OaksImpactStatsProps>) {
                         $width="spacing-120"
                         $height="spacing-120"
                       >
-                        <CMSImage image={item.icon} />
+                        <OakImage
+                          src={getProxiedSanityAssetUrl(
+                            item.icon.asset?.url ?? "",
+                          )}
+                          alt={item.icon.altText ?? ""}
+                          $aspectRatio={"1/1"}
+                        />
                       </OakBox>
                       <OakFlex
                         $flexDirection={"column"}
