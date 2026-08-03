@@ -12,47 +12,45 @@ const meta: Meta<typeof Component> = {
 export default meta;
 type Story = StoryObj<typeof Component>;
 
-export const Default: Story = {
+const items = [
+  {
+    iconName: "logo",
+    title: "About Oak",
+    href: "#",
+    componentType: "about_oak",
+  },
+  {
+    iconName: "homepage-teacher-map",
+    title: "Oak's curricula",
+    href: "#",
+    componentType: "about_curriculum",
+  },
+  {
+    iconName: "snack-break",
+    title: "Meet the team",
+    href: "#",
+    componentType: "meet_the_team",
+  },
+  {
+    iconName: "chatting",
+    title: "Get involved",
+    href: "#",
+    componentType: "get_involved",
+  },
+] as const;
+
+export const FourItems: Story = {
   args: {
     title: "Explore more about Oak",
-    items: [
-      {
-        iconName: "curriculum-plan",
-        title: "About Oak’s curriculum",
-        href: "#",
-        componentType: "about_curriculum",
-      },
-      {
-        iconName: "ai-worksheet",
-        title: "Oak’s impact",
-        href: "#",
-        componentType: "oaks_impact",
-      },
-      {
-        iconName: "ai-worksheet",
-        title: "Meet the team",
-        href: "#",
-        componentType: "meet_the_team",
-      },
-      {
-        iconName: "ai-worksheet",
-        title: "Get involved",
-        href: "#",
-        componentType: "get_involved",
-      },
-      {
-        iconName: "ai-worksheet",
-        title: "Something else",
-        href: "#",
-        componentType: "about_oak",
-      },
-      {
-        iconName: "ai-worksheet",
-        title: "Yet another thing",
-        href: "#",
-        componentType: "about_oak",
-      },
-    ],
+    items: items.slice(0, 4),
+  },
+  render: (args) => <Component {...args} />,
+};
+
+export const ThreeItems: Story = {
+  args: {
+    title: "Explore more about Oak",
+    items: items.slice(0, 3),
   },
   render: (args) => <Component {...args} />,
 };
