@@ -1,0 +1,134 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`OaksImpactHeader renders correctly 1`] = `
+<body>
+  <div>
+    <div
+      class="sc-aXZVg bZTQLO"
+    >
+      <div
+        class="sc-aXZVg sc-gEvEer sc-c3209468-0 jPvJsJ iDBIXi fUOqtU"
+      >
+        <div
+          class="sc-aXZVg sc-gEvEer jUamtR fqICts"
+        >
+          <div
+            class="sc-aXZVg sc-gEvEer fnKdFm gUPrwF"
+          >
+            <h1
+              class="sc-eldPxv lmVQYy"
+            >
+              TEST_TITLE
+            </h1>
+          </div>
+          <p
+            class="sc-ikkxIA dmWYlZ"
+          >
+            TEST_BODY
+          </p>
+        </div>
+        <div
+          class="sc-aXZVg sc-gEvEer jPvJsJ fVNIMq"
+        >
+          <div
+            class="sc-aXZVg sc-c3209468-1 jPvJsJ cxzUIL"
+          >
+            <div
+              class="sc-aXZVg sc-gEvEer jPvJsJ daEtut"
+            >
+              <div
+                class="sc-aXZVg sc-gEvEer dApLPd daEtut"
+              >
+                <div
+                  class="sc-aXZVg dLPTTd"
+                />
+              </div>
+              <div
+                class="sc-aXZVg sc-gEvEer jPvJsJ gWBhKY"
+              >
+                <p
+                  class="sc-ikkxIA bevdi"
+                >
+                  TEST_VIDEO_DESCRIPTION
+                </p>
+              </div>
+              <div
+                class="sc-aXZVg sc-gEvEer jPvJsJ jnOuEE"
+              >
+                <div
+                  class="sc-aXZVg sc-gEvEer jPvJsJ eBByVS"
+                >
+                  <div
+                    class="sc-aXZVg sc-kpDqfm bhFzn cvxBYX"
+                  >
+                    <div
+                      class="sc-aXZVg kpXzs grey-shadow"
+                    />
+                    <div
+                      class="sc-aXZVg kpXzs yellow-shadow"
+                    />
+                    <button
+                      aria-controls=":r0:"
+                      aria-expanded="false"
+                      class="sc-dcJsrY sc-jXbUNg hkWkDf eTptGn internal-button"
+                    >
+                      <div
+                        class="sc-aXZVg sc-gEvEer jPvJsJ kejpBe"
+                      >
+                        <span
+                          class="sc-eqUAAy kJIzWq"
+                        >
+                          Show
+                           transcript
+                        </span>
+                        <span
+                          class="sc-aXZVg jJQFnr"
+                        >
+                          <img
+                            alt=""
+                            class="sc-iGgWBj lcrpYX"
+                            data-nimg="fill"
+                            decoding="async"
+                            loading="lazy"
+                            src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1699953557/icons/botfld6brychmttwtv6u.svg"
+                            style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                          />
+                        </span>
+                      </div>
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <div
+                class="sc-aXZVg sc-gEvEer TfzCi jLfsQU"
+                data-testid="oak-video-transcript-container"
+                id=":r0:"
+              >
+                <div
+                  class="sc-aXZVg sc-gEvEer hkAEUL gWBhKY"
+                >
+                  <p
+                    class="sc-ikkxIA raLvq"
+                  >
+                    test
+                  </p>
+                  <p
+                    class="sc-ikkxIA raLvq"
+                  >
+                    test
+                  </p>
+                  <p
+                    class="sc-ikkxIA raLvq"
+                  >
+                    test
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+`;
