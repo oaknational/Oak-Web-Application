@@ -29,9 +29,16 @@ export const OaksImpactCaseStudies = ({
           $pv={["spacing-56", "spacing-80"]}
           $gap={"spacing-24"}
         >
-          <OakHeading tag={"h2"} $font={["heading-5", "heading-3"]}>
-            {title}
-          </OakHeading>
+          <OakGrid>
+            <OakGridArea
+              $colSpan={caseStudies.length === 2 ? [12, 8, 8] : [12]}
+              $colStart={caseStudies.length === 2 ? [1, 3, 3] : [1]}
+            >
+              <OakHeading tag={"h2"} $font={["heading-5", "heading-3"]}>
+                {title}
+              </OakHeading>
+            </OakGridArea>
+          </OakGrid>
           <OakGrid
             as="ul"
             $cg={"spacing-16"}
@@ -39,12 +46,16 @@ export const OaksImpactCaseStudies = ({
             $pa={"spacing-0"}
             $ma={"spacing-0"}
           >
-            {caseStudies.slice(0, 3).map((caseStudy) => (
+            {caseStudies.slice(0, 3).map((caseStudy, index) => (
               <OakGridArea
                 as="li"
                 key={caseStudy.slug.current}
                 $colSpan={[12, 4]}
-                $colStart={[1]}
+                $colStart={
+                  caseStudies.length === 2
+                    ? [1, index === 0 ? 3 : 7]
+                    : [1, undefined]
+                }
               >
                 <OakCard
                   heading={caseStudy.video.title || ""}

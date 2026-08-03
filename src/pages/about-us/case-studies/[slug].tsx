@@ -4,7 +4,6 @@ import {
   OakBox,
   OakGrid,
   OakGridArea,
-  OakFlex,
   OakVideo,
   OakHandDrawnHR,
 } from "@oaknational/oak-components";
@@ -106,7 +105,7 @@ const AboutUsOaksImpactCaseStudy: NextPage<
         </OakBox>
         <NewGutterMaxWidth>
           <OaksImpactCaseStudyContentLayout>
-            <OakFlex $pv="spacing-100" $position={"relative"}>
+            <OakBox $pv="spacing-100" $position={"relative"}>
               <OakVideo
                 videoSlot={
                   caseStudy.video.video.asset && (
@@ -127,7 +126,7 @@ const AboutUsOaksImpactCaseStudy: NextPage<
                 ]}
                 body={"Testing text"}
               />
-            </OakFlex>
+            </OakBox>
           </OaksImpactCaseStudyContentLayout>
         </NewGutterMaxWidth>
 
