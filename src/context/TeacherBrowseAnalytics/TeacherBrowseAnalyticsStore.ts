@@ -23,7 +23,7 @@ import {
   ResourceTypeValueType,
 } from "@/browser-lib/avo/Avo";
 import errorReporter from "@/common-lib/error-reporter";
-import OakError from "@/errors/OakError";
+import OakError, { ErrorMeta } from "@/errors/OakError";
 import { Thread, Unit } from "@/utils/curriculum/types";
 import { buildUnitOverviewAccessedAnalytics } from "@/utils/curriculum/analytics";
 import { ResourceFormValues } from "@/components/TeacherComponents/types/downloadAndShare.types";
@@ -71,6 +71,47 @@ const coreProperties: {
 
 const reportError = errorReporter("teacher-browse-analytics");
 
+type AnalyticsErrorMeta = ErrorMeta & {
+  event: keyof TeacherBrowseAnalyticsStore["track"];
+  programmeState: ProgrammeState;
+};
+
+/**
+ * Report a tracking problem, tagged with the event and the browse level it
+ * was fired from.
+ */
+const reportAnalyticsError = ({
+  event,
+  programmeState,
+  ...meta
+}: AnalyticsErrorMeta) => {
+  reportError(
+    new OakError({
+      code: "analytics/teacher-browse",
+      meta: {
+        event,
+        browseLevel: programmeState.browseLevel,
+        ...meta,
+      },
+    }),
+  );
+};
+
+/**
+ * A journeyId should always be present, but the event is still worth sending
+ * without one, so report the error and fall back to an empty string.
+ */
+const resolveJourneyId = (
+  journeyId: string | null,
+  errorMeta: AnalyticsErrorMeta,
+): string => {
+  if (!journeyId) {
+    reportAnalyticsError(errorMeta);
+    return "";
+  }
+  return journeyId;
+};
+
 export const createTeacherBrowseAnalyticsStore = (
   initialState: Pick<
     TeacherBrowseAnalyticsStore,
@@ -85,17 +126,14 @@ export const createTeacherBrowseAnalyticsStore = (
       ) => {
         const { avo, programmeState } = get();
 
+        // Lesson properties are unavailable at other browse levels, so the
+        // event can't be sent
         if (programmeState.browseLevel !== "lesson") {
-          reportError(
-            new OakError({
-              code: "analytics/teacher-browse",
-              meta: {
-                event: "lessonResourceDownloadStarted",
-                browseLevel: programmeState.browseLevel,
-                downloadResourceButtonName,
-              },
-            }),
-          );
+          reportAnalyticsError({
+            event: "lessonResourceDownloadStarted",
+            programmeState,
+            downloadResourceButtonName,
+          });
           return;
         }
 
@@ -115,16 +153,8 @@ export const createTeacherBrowseAnalyticsStore = (
         const { avo, programmeState, journeyId } = get();
 
         // Can be tracked from the unit overview page or the lesson download success page
-        if (programmeState.browseLevel === "programme" || !journeyId) {
-          reportError(
-            new OakError({
-              code: "analytics/teacher-browse",
-              meta: {
-                event: "unitDownloaded",
-                browseLevel: programmeState.browseLevel,
-              },
-            }),
-          );
+        if (programmeState.browseLevel === "programme") {
+          reportAnalyticsError({ event: "unitDownloaded", programmeState });
           return;
         }
 
@@ -133,7 +163,10 @@ export const createTeacherBrowseAnalyticsStore = (
         avo.unitDownloaded({
           engagementIntent: EngagementIntent.USE,
           componentType: ComponentType.UNIT_DOWNLOAD_BUTTON,
-          journeyId,
+          journeyId: resolveJourneyId(journeyId, {
+            event: "unitDownloaded",
+            programmeState,
+          }),
           accessLevel,
           ...coreProperties,
           ...analyticsProperties,
@@ -141,26 +174,27 @@ export const createTeacherBrowseAnalyticsStore = (
       },
       unitOverviewAccessed: (unit, isHighlighted, selectedThread) => {
         const { avo, programmeState, journeyId } = get();
-        if (programmeState.browseLevel !== "unit" || !journeyId) {
-          reportError(
-            new OakError({
-              code: "analytics/teacher-browse",
-              meta: {
-                event: "unitOverviewAccessed",
-                browseLevel: programmeState.browseLevel,
-                unitSlug: unit.slug,
-              },
-            }),
-          );
+
+        if (programmeState.browseLevel !== "unit") {
+          reportAnalyticsError({
+            event: "unitOverviewAccessed",
+            programmeState,
+            unitSlug: unit.slug,
+          });
           return;
         }
+
         const analyticsProperties = buildUnitOverviewAccessedAnalytics({
           unit,
           isHighlighted,
           componentType: "unit_info_button",
           selectedThread,
           analyticsUseCase: "Teacher",
-          journeyId,
+          journeyId: resolveJourneyId(journeyId, {
+            event: "unitOverviewAccessed",
+            programmeState,
+            unitSlug: unit.slug,
+          }),
           accessLevel: "unit",
           navigationType: "across",
         });
