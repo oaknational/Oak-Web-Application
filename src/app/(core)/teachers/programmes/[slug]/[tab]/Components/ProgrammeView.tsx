@@ -198,7 +198,6 @@ export const ProgrammeView = ({
         curriculumUnitsFormattedData={curriculumUnitsFormattedData}
         curriculumCMSInfo={curriculumCMSInfo}
         curriculumDownloadsTabData={curriculumDownloadsTabData}
-        curriculumInfo={curriculumInfo}
         mvRefreshTime={mvRefreshTime}
         filters={filters}
         setFilters={onChangeFilters}
@@ -214,7 +213,6 @@ const TabContent = ({
   curriculumSelectionSlugs,
   curriculumUnitsFormattedData,
   curriculumCMSInfo,
-  curriculumInfo,
   curriculumDownloadsTabData,
   mvRefreshTime,
   filters,
@@ -246,7 +244,6 @@ const TabContent = ({
         mvRefreshTime={mvRefreshTime}
         curriculumSelectionSlugs={curriculumSelectionSlugs}
         curriculumDownloadsTabData={curriculumDownloadsTabData}
-        curriculumInfo={curriculumInfo}
         curriculumUnitsFormattedData={curriculumUnitsFormattedData}
       />
     );

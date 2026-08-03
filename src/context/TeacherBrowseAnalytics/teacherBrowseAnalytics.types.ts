@@ -112,10 +112,12 @@ export type TeacherBrowseTrackFns = {
   browseRefinedAccessed: () => void;
 
   // PROGRAMMES (fka Curriculum Visualiser)
-  curriculumVisualiserAccessed: () => void;
-  curriculumExplainerExplored: () => void;
+  curriculumExplainerExplored: () => void; // done
   curriculumResourcesDownloaded: (data: ResourceFormValues) => void;
-  curriculumResourcesDownloadRefined: () => void;
+  curriculumResourcesDownloadRefined: (data: {
+    tierSlug?: string | null;
+    childSubjectSlug?: string | null;
+  }) => void;
 
   //UNITS
   unitAccessed: () => void;
