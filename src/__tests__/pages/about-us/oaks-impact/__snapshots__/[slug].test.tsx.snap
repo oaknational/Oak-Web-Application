@@ -808,7 +808,7 @@ exports[`pages/about-us/oaks-impact/case-studies/[slug].tsx renders title when f
                     >
                       <a
                         class="sc-aXZVg sc-gEvEer sc-eyvILC eyLmQc dXoawi cstkxg"
-                        href="/about-us/oaks-impact/case-studies/test-slug-2"
+                        href="/about-us/case-studies/test-slug-2"
                       >
                         <span
                           class="sc-aXZVg kvjdhA sc-bpUBKd gXHgWu"
@@ -875,7 +875,7 @@ exports[`pages/about-us/oaks-impact/case-studies/[slug].tsx renders title when f
                     >
                       <a
                         class="sc-aXZVg sc-gEvEer sc-eyvILC eyLmQc dXoawi cstkxg"
-                        href="/about-us/oaks-impact/case-studies/test-slug-3"
+                        href="/about-us/case-studies/test-slug-3"
                       >
                         <span
                           class="sc-aXZVg kvjdhA sc-bpUBKd gXHgWu"
