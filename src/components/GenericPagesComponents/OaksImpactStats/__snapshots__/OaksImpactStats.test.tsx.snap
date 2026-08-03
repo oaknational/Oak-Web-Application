@@ -80,23 +80,24 @@ exports[`OaksImpactStats renders correctly 1`] = `
               class="sc-aXZVg sc-gEvEer jPvJsJ fLgPAy"
             >
               <div
-                class="sc-aXZVg sc-gEvEer kBnJtM fEHKal"
+                class="sc-aXZVg sc-gEvEer kBnJtM dQTdIa"
               >
                 <div
                   class="sc-aXZVg gagJjx"
                 >
-                  <img
-                    alt=""
-                    class="sc-ba397cd3-0 dMngOi"
-                    data-nimg="1"
-                    decoding="async"
-                    height="120"
-                    loading="lazy"
-                    src="https://NEXT_PUBLIC_SANITY_ASSET_CDN_HOST/images/NEXT_PUBLIC_SANITY_PROJECT_ID/NEXT_PUBLIC_SANITY_DATASET/84ac53e9bd17c0782b0455d519f302467744a2ce-120x120.svg?w=256&h=256&fm=webp&q=80&fit=clip&auto=format"
-                    srcset="https://NEXT_PUBLIC_SANITY_ASSET_CDN_HOST/images/NEXT_PUBLIC_SANITY_PROJECT_ID/NEXT_PUBLIC_SANITY_DATASET/84ac53e9bd17c0782b0455d519f302467744a2ce-120x120.svg?w=128&h=128&fm=webp&q=80&fit=clip&auto=format 1x, https://NEXT_PUBLIC_SANITY_ASSET_CDN_HOST/images/NEXT_PUBLIC_SANITY_PROJECT_ID/NEXT_PUBLIC_SANITY_DATASET/84ac53e9bd17c0782b0455d519f302467744a2ce-120x120.svg?w=256&h=256&fm=webp&q=80&fit=clip&auto=format 2x"
-                    style="color: transparent;"
-                    width="120"
-                  />
+                  <span
+                    class="sc-aXZVg kjblMC"
+                  >
+                    <img
+                      alt=""
+                      class="sc-iGgWBj dZvqhO"
+                      data-nimg="fill"
+                      decoding="async"
+                      loading="lazy"
+                      src="https://next_public_sanity_asset_cdn_host/images/cuvjke51/production/84ac53e9bd17c0782b0455d519f302467744a2ce-120x120.svg"
+                      style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                    />
+                  </span>
                 </div>
                 <div
                   class="sc-aXZVg sc-gEvEer kBnJtM cQXbIi"
@@ -121,23 +122,24 @@ exports[`OaksImpactStats renders correctly 1`] = `
                 class="sc-aXZVg eDWeGI"
               />
               <div
-                class="sc-aXZVg sc-gEvEer kBnJtM fEHKal"
+                class="sc-aXZVg sc-gEvEer kBnJtM dQTdIa"
               >
                 <div
                   class="sc-aXZVg gagJjx"
                 >
-                  <img
-                    alt=""
-                    class="sc-ba397cd3-0 dMngOi"
-                    data-nimg="1"
-                    decoding="async"
-                    height="120"
-                    loading="lazy"
-                    src="https://NEXT_PUBLIC_SANITY_ASSET_CDN_HOST/images/NEXT_PUBLIC_SANITY_PROJECT_ID/NEXT_PUBLIC_SANITY_DATASET/84ac53e9bd17c0782b0455d519f302467744a2ce-120x120.svg?w=256&h=256&fm=webp&q=80&fit=clip&auto=format"
-                    srcset="https://NEXT_PUBLIC_SANITY_ASSET_CDN_HOST/images/NEXT_PUBLIC_SANITY_PROJECT_ID/NEXT_PUBLIC_SANITY_DATASET/84ac53e9bd17c0782b0455d519f302467744a2ce-120x120.svg?w=128&h=128&fm=webp&q=80&fit=clip&auto=format 1x, https://NEXT_PUBLIC_SANITY_ASSET_CDN_HOST/images/NEXT_PUBLIC_SANITY_PROJECT_ID/NEXT_PUBLIC_SANITY_DATASET/84ac53e9bd17c0782b0455d519f302467744a2ce-120x120.svg?w=256&h=256&fm=webp&q=80&fit=clip&auto=format 2x"
-                    style="color: transparent;"
-                    width="120"
-                  />
+                  <span
+                    class="sc-aXZVg kjblMC"
+                  >
+                    <img
+                      alt=""
+                      class="sc-iGgWBj dZvqhO"
+                      data-nimg="fill"
+                      decoding="async"
+                      loading="lazy"
+                      src="https://next_public_sanity_asset_cdn_host/images/cuvjke51/production/84ac53e9bd17c0782b0455d519f302467744a2ce-120x120.svg"
+                      style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                    />
+                  </span>
                 </div>
                 <div
                   class="sc-aXZVg sc-gEvEer kBnJtM cQXbIi"
@@ -162,23 +164,24 @@ exports[`OaksImpactStats renders correctly 1`] = `
                 class="sc-aXZVg eDWeGI"
               />
               <div
-                class="sc-aXZVg sc-gEvEer kBnJtM fEHKal"
+                class="sc-aXZVg sc-gEvEer kBnJtM dQTdIa"
               >
                 <div
                   class="sc-aXZVg gagJjx"
                 >
-                  <img
-                    alt=""
-                    class="sc-ba397cd3-0 dMngOi"
-                    data-nimg="1"
-                    decoding="async"
-                    height="120"
-                    loading="lazy"
-                    src="https://NEXT_PUBLIC_SANITY_ASSET_CDN_HOST/images/NEXT_PUBLIC_SANITY_PROJECT_ID/NEXT_PUBLIC_SANITY_DATASET/84ac53e9bd17c0782b0455d519f302467744a2ce-120x120.svg?w=256&h=256&fm=webp&q=80&fit=clip&auto=format"
-                    srcset="https://NEXT_PUBLIC_SANITY_ASSET_CDN_HOST/images/NEXT_PUBLIC_SANITY_PROJECT_ID/NEXT_PUBLIC_SANITY_DATASET/84ac53e9bd17c0782b0455d519f302467744a2ce-120x120.svg?w=128&h=128&fm=webp&q=80&fit=clip&auto=format 1x, https://NEXT_PUBLIC_SANITY_ASSET_CDN_HOST/images/NEXT_PUBLIC_SANITY_PROJECT_ID/NEXT_PUBLIC_SANITY_DATASET/84ac53e9bd17c0782b0455d519f302467744a2ce-120x120.svg?w=256&h=256&fm=webp&q=80&fit=clip&auto=format 2x"
-                    style="color: transparent;"
-                    width="120"
-                  />
+                  <span
+                    class="sc-aXZVg kjblMC"
+                  >
+                    <img
+                      alt=""
+                      class="sc-iGgWBj dZvqhO"
+                      data-nimg="fill"
+                      decoding="async"
+                      loading="lazy"
+                      src="https://next_public_sanity_asset_cdn_host/images/cuvjke51/production/84ac53e9bd17c0782b0455d519f302467744a2ce-120x120.svg"
+                      style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                    />
+                  </span>
                 </div>
                 <div
                   class="sc-aXZVg sc-gEvEer kBnJtM cQXbIi"
