@@ -11,6 +11,7 @@ import {
 } from "./utils/getAnalyticsProperties";
 
 import {
+  AccessLevelValueType,
   AnalyticsUseCaseValueType,
   ComponentType,
   DownloadResourceButtonNameValueType,
@@ -41,7 +42,7 @@ export type TeacherBrowseAnalyticsStore = {
     lessonResourceDownloadStarted: (
       downloadResourceButtonName: DownloadResourceButtonNameValueType,
     ) => void;
-    unitDownloadInitiated: () => void;
+    unitDownloaded: (accessLevel: AccessLevelValueType) => void;
     curriculumExplainerExplored: () => void;
     unitOverviewAccessed: (
       unit: Unit,
@@ -110,16 +111,16 @@ export const createTeacherBrowseAnalyticsStore = (
           ...analyticsProperties,
         });
       },
-      unitDownloadInitiated: () => {
-        const { avo, programmeState } = get();
+      unitDownloaded: (accessLevel) => {
+        const { avo, programmeState, journeyId } = get();
 
         // Can be tracked from the unit overview page or the lesson download success page
-        if (programmeState.browseLevel === "programme") {
+        if (programmeState.browseLevel === "programme" || !journeyId) {
           reportError(
             new OakError({
               code: "analytics/teacher-browse",
               meta: {
-                event: "unitDownloadInitiated",
+                event: "unitDownloaded",
                 browseLevel: programmeState.browseLevel,
               },
             }),
@@ -129,9 +130,11 @@ export const createTeacherBrowseAnalyticsStore = (
 
         const analyticsProperties = getUnitAnalyticsProperties(programmeState);
 
-        avo.unitDownloadInitiated({
+        avo.unitDownloaded({
           engagementIntent: EngagementIntent.USE,
           componentType: ComponentType.UNIT_DOWNLOAD_BUTTON,
+          journeyId,
+          accessLevel,
           ...coreProperties,
           ...analyticsProperties,
         });
