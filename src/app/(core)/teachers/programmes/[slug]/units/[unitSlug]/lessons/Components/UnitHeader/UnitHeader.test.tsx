@@ -60,11 +60,7 @@ const programmeState = getProgrammeStateForUnit(baseProps);
 
 const renderUnitHeader = (props?: Partial<UnitHeaderProps>) => {
   return render(
-    <TeacherBrowseAnalyticsStoreProvider
-      programmeState={{
-        programmeState,
-      }}
-    >
+    <TeacherBrowseAnalyticsStoreProvider programmeState={programmeState}>
       <UnitHeader {...defaultProps} {...props} />
     </TeacherBrowseAnalyticsStoreProvider>,
   );

@@ -21,10 +21,7 @@ import {
   UnitSequenceViewProps,
 } from "./UnitSequence/UnitSequenceView";
 import { SubjectHeroImageName } from "./ProgrammeHeader/getSubjectHeroImageUrl";
-import {
-  ProgrammeOverview,
-  ProgrammeOverviewProps,
-} from "./ProgrammeOverview/ProgrammeOverview";
+import { ProgrammeOverview } from "./ProgrammeOverview/ProgrammeOverview";
 import {
   ProgrammeDownloadsProps,
   ProgrammeDownloads,
@@ -48,18 +45,17 @@ import { ProgrammePageHeaderCMS } from "@/common-lib/cms-types/programmePage";
 import { CurriculumOverviewSanityData } from "@/common-lib/cms-types";
 import type { Ks4Option } from "@/node-lib/curriculum-api-2023/queries/curriculumPhaseOptions/curriculumPhaseOptions.schema";
 import { resolveOakHref } from "@/common-lib/urls";
-import { CurriculumOverviewMVData } from "@/node-lib/curriculum-api-2023";
 import { validateSearchParams } from "@/utils/validateProgrammePageSearchParams";
 import { getDefaultFilter } from "@/utils/curriculum/filtering";
 
-type ProgrammePageProps = {
+export type ProgrammePageProps = {
   subjectPhaseSlug: string;
   curriculumSelectionSlugs: CurriculumSelectionSlugs;
   curriculumSelectionTitles: CurriculumSelectionTitles;
   curriculumUnitsFormattedData: CurriculumUnitsFormattedData;
   subjectPhaseSanityData: ProgrammePageHeaderCMS | null;
   curriculumCMSInfo: CurriculumOverviewSanityData | null;
-  curriculumInfo: CurriculumOverviewMVData;
+  nonCurriculum: boolean;
   curriculumDownloadsTabData: CurriculumDownloadsTierSubjectProps;
   mvRefreshTime: number;
   tabSlug: TabSlug;
@@ -75,7 +71,7 @@ export const ProgrammeView = ({
   curriculumUnitsFormattedData,
   subjectPhaseSanityData,
   curriculumCMSInfo,
-  curriculumInfo,
+  nonCurriculum,
   curriculumDownloadsTabData,
   mvRefreshTime,
   tabSlug,
@@ -161,7 +157,7 @@ export const ProgrammeView = ({
         summary={subjectPhaseSanityData?.bodyCopy}
         bullets={subjectPhaseSanityData?.bullets}
       />
-      {curriculumInfo.nonCurriculum ? null : (
+      {nonCurriculum ? null : (
         <OakMaxWidth
           as="nav"
           aria-label="Programme page tabs"
@@ -198,11 +194,9 @@ export const ProgrammeView = ({
       <TabContent
         tabSlug={activeTab}
         curriculumSelectionSlugs={curriculumSelectionSlugs}
-        subjectTitle={curriculumSelectionTitles.subjectTitle}
         curriculumUnitsFormattedData={curriculumUnitsFormattedData}
         curriculumCMSInfo={curriculumCMSInfo}
         curriculumDownloadsTabData={curriculumDownloadsTabData}
-        curriculumInfo={curriculumInfo}
         mvRefreshTime={mvRefreshTime}
         filters={filters}
         setFilters={onChangeFilters}
@@ -216,18 +210,15 @@ export const ProgrammeView = ({
 const TabContent = ({
   tabSlug,
   curriculumSelectionSlugs,
-  subjectTitle,
   curriculumUnitsFormattedData,
   curriculumCMSInfo,
-  curriculumInfo,
   curriculumDownloadsTabData,
   mvRefreshTime,
   filters,
   setFilters,
   ks4Options,
   ks4OptionFilterDimensions,
-}: { tabSlug: TabSlug } & UnitSequenceViewProps &
-  Omit<ProgrammeOverviewProps, "curriculumCMSInfo"> & {
+}: { tabSlug: TabSlug } & UnitSequenceViewProps & {
     curriculumCMSInfo: CurriculumOverviewSanityData | null;
   } & ProgrammeDownloadsProps) => {
   if (tabSlug === "units") {
@@ -245,20 +236,13 @@ const TabContent = ({
     if (!curriculumCMSInfo) {
       notFound();
     }
-    return (
-      <ProgrammeOverview
-        subjectTitle={subjectTitle}
-        curriculumCMSInfo={curriculumCMSInfo}
-        curriculumSelectionSlugs={curriculumSelectionSlugs}
-      />
-    );
+    return <ProgrammeOverview curriculumCMSInfo={curriculumCMSInfo} />;
   } else if (tabSlug === "download") {
     return (
       <ProgrammeDownloads
         mvRefreshTime={mvRefreshTime}
         curriculumSelectionSlugs={curriculumSelectionSlugs}
         curriculumDownloadsTabData={curriculumDownloadsTabData}
-        curriculumInfo={curriculumInfo}
         curriculumUnitsFormattedData={curriculumUnitsFormattedData}
       />
     );

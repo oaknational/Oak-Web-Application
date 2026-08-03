@@ -57,11 +57,7 @@ const programmeState = getProgrammeStateForLesson(baseProps);
 
 const renderLessonView = (props?: Partial<TeachersLessonOverviewPageData>) => {
   return render(
-    <TeacherBrowseAnalyticsStoreProvider
-      programmeState={{
-        programmeState,
-      }}
-    >
+    <TeacherBrowseAnalyticsStoreProvider programmeState={programmeState}>
       <LessonView {...baseProps} {...props} />
     </TeacherBrowseAnalyticsStoreProvider>,
   );

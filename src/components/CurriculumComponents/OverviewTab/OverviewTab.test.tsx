@@ -1,11 +1,13 @@
 import { forwardRef } from "react";
 import { act } from "@testing-library/react";
 
-import OverviewTab from "./OverviewTab";
+import OverviewTab, { OverviewTabProps } from "./OverviewTab";
 
 import curriculumOverviewTabFixture from "@/node-lib/curriculum-api-2023/fixtures/curriculumOverview.fixture";
 import { renderWithProvidersByName } from "@/__tests__/__helpers__/renderWithProviders";
 import { mockVideoAsset } from "@/__tests__/__helpers__/cms";
+import { getProgrammeStateForProgramme } from "@/context/TeacherBrowseAnalytics/utils/getProgrammeState";
+import { TeacherBrowseAnalyticsStoreProvider } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
 
 const render = renderWithProvidersByName(["theme", "oakTheme", "analytics"]);
 
@@ -16,9 +18,30 @@ jest.mock("@mux/mux-player-react/lazy", () => {
   });
 });
 
-describe("Component - Overview Tab", () => {
-  const mockOnClickNavItem = jest.fn();
+const mockOnClickNavItem = jest.fn();
+const { curriculumCMSInfo } = curriculumOverviewTabFixture();
 
+const programmeState = getProgrammeStateForProgramme({
+  programmeSlug: "secondary-maths",
+  phaseSlug: "secondary",
+  subjectSlug: "maths",
+  phaseTitle: "Secondary",
+  subjectTitle: "Maths",
+});
+
+const renderOverviewTab = (props?: Partial<OverviewTabProps>) => {
+  return render(
+    <TeacherBrowseAnalyticsStoreProvider programmeState={programmeState}>
+      <OverviewTab
+        onClickNavItem={mockOnClickNavItem}
+        curriculumCMSInfo={curriculumCMSInfo}
+        {...props}
+      />
+    </TeacherBrowseAnalyticsStoreProvider>,
+  );
+};
+
+describe("Component - Overview Tab", () => {
   beforeEach(() => {
     jest.resetAllMocks();
     jest.clearAllMocks();
@@ -34,9 +57,9 @@ describe("Component - Overview Tab", () => {
     fixture.curriculumCMSInfo.subjectPrinciples = [
       "Sequences learning over time which: • Builds musical knowledge, techniques and specialist language • Promotes the understanding of a diverse range of genres, traditions and styles • Develops pupils analytical skills in responding to different types of music",
     ];
-    const { getByTestId, queryByTestId } = render(
-      <OverviewTab data={fixture} onClickNavItem={mockOnClickNavItem} />,
-    );
+    const { getByTestId, queryByTestId } = renderOverviewTab({
+      curriculumCMSInfo,
+    });
     const explainer = getByTestId("explainer");
     expect(explainer).toHaveTextContent("Aims and purpose");
     expect(queryByTestId("video-guide")).not.toBeInTheDocument();
@@ -80,9 +103,9 @@ describe("Component - Overview Tab", () => {
         curriculumPartner: fixture.curriculumCMSInfo.curriculumPartner,
       },
     ];
-    const { queryAllByTestId } = render(
-      <OverviewTab data={fixture} onClickNavItem={mockOnClickNavItem} />,
-    );
+    const { queryAllByTestId } = renderOverviewTab({
+      curriculumCMSInfo: fixture.curriculumCMSInfo,
+    });
     const partnerElements = queryAllByTestId("curriculum-partner");
     expect(partnerElements.length).toBe(2);
     expect(partnerElements[0]).toHaveTextContent("PARTNER_PORTABLETEXT_1");
@@ -103,9 +126,9 @@ describe("Component - Overview Tab", () => {
         curriculumPartner: fixture.curriculumCMSInfo.curriculumPartner,
       },
     ];
-    const { queryAllByTestId } = render(
-      <OverviewTab data={fixture} onClickNavItem={mockOnClickNavItem} />,
-    );
+    const { queryAllByTestId } = renderOverviewTab({
+      curriculumCMSInfo: fixture.curriculumCMSInfo,
+    });
     const partnerElements = queryAllByTestId("curriculum-partner");
     expect(partnerElements.length).toBe(2);
     expect(partnerElements[0]).toHaveTextContent("PARTNER_1");
@@ -119,9 +142,9 @@ describe("Component - Overview Tab", () => {
     ];
     fixture.curriculumCMSInfo.video = mockVideoAsset();
     fixture.curriculumCMSInfo.videoExplainer = "testing";
-    const { getByTestId, queryByTestId } = render(
-      <OverviewTab data={fixture} onClickNavItem={mockOnClickNavItem} />,
-    );
+    const { getByTestId, queryByTestId } = renderOverviewTab({
+      curriculumCMSInfo: fixture.curriculumCMSInfo,
+    });
     const explainer = getByTestId("explainer");
     expect(explainer).toHaveTextContent("Aims and purpose");
     expect(queryByTestId("video-guide")).toBeInTheDocument();
@@ -129,9 +152,9 @@ describe("Component - Overview Tab", () => {
 
   test("click heading links", async () => {
     const fixture = curriculumOverviewTabFixture();
-    const { getAllByRole } = render(
-      <OverviewTab data={fixture} onClickNavItem={mockOnClickNavItem} />,
-    );
+    const { getAllByRole } = renderOverviewTab({
+      curriculumCMSInfo: fixture.curriculumCMSInfo,
+    });
     const links = getAllByRole("link");
     expect(links[0]).toHaveTextContent("Aims and purpose");
     act(() => {

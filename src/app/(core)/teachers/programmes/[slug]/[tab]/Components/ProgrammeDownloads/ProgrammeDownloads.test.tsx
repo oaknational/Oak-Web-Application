@@ -6,15 +6,15 @@ import {
   ProgrammeDownloads,
   ProgrammeDownloadsProps,
 } from "./ProgrammeDownloads";
-import { trackCurriculumDownload } from "./tracking";
 
 import { renderWithProvidersByName } from "@/__tests__/__helpers__/renderWithProviders";
-import { TrackFns } from "@/context/Analytics/AnalyticsProvider";
 import { parseSubjectPhaseSlug } from "@/utils/curriculum/slugs";
 import { createCurriculumDownloadsUrl } from "@/utils/curriculum/urls";
 import { createYearData } from "@/fixtures/curriculum/yearData";
 import { createUnit } from "@/fixtures/curriculum/unit";
-import { DownloadType } from "@/components/CurriculumComponents/CurriculumDownloadView/helper";
+import { CurriculumOverviewMVData } from "@/node-lib/curriculum-api-2023";
+import { TeacherBrowseAnalyticsStoreProvider } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
+import { getProgrammeStateForProgramme } from "@/context/TeacherBrowseAnalytics/utils/getProgrammeState";
 
 jest.mock("next/navigation");
 
@@ -55,6 +55,7 @@ jest.mock("@/context/Analytics/useAnalytics", () => ({
       curriculumResourcesDownloadRefined: (...args: unknown[]) =>
         curriculumResourcesDownloadRefined(...args),
     },
+    getSessionId: jest.fn(),
   }),
 }));
 
@@ -99,6 +100,7 @@ jest.mock(
     }),
   }),
 );
+
 const defaultProps = {
   curriculumSelectionSlugs: parseSubjectPhaseSlug("english-secondary-aqa")!,
   curriculumUnitsFormattedData: {
@@ -119,10 +121,23 @@ const defaultProps = {
     phaseTitle: "Secondary",
     examboardTitle: null,
     nonCurriculum: false,
-  },
+  } satisfies CurriculumOverviewMVData,
 };
 const renderComponent = (overrides: Partial<ProgrammeDownloadsProps>) => {
-  return render(<ProgrammeDownloads {...defaultProps} {...overrides} />);
+  const programmeState = getProgrammeStateForProgramme({
+    programmeSlug: "english-secondary-aqa",
+    subjectSlug:
+      overrides.curriculumSelectionSlugs?.subjectSlug ??
+      defaultProps.curriculumSelectionSlugs.subjectSlug,
+    subjectTitle: defaultProps.curriculumInfo.subjectTitle,
+    phaseSlug: defaultProps.curriculumSelectionSlugs.phaseSlug,
+    phaseTitle: defaultProps.curriculumInfo.phaseTitle,
+  });
+  return render(
+    <TeacherBrowseAnalyticsStoreProvider programmeState={programmeState}>
+      <ProgrammeDownloads {...defaultProps} {...overrides} />
+    </TeacherBrowseAnalyticsStoreProvider>,
+  );
 };
 
 describe("Programme Downloads", () => {
@@ -224,7 +239,8 @@ describe("Programme Downloads", () => {
         eventVersion: "2.0.0",
         learningTier: "Foundation",
         platform: "owa",
-        product: "curriculum resources",
+        product: "teacher lesson resources",
+        phase: "secondary",
         subjectSlug: "science",
         subjectTitle: "English",
       });
@@ -280,78 +296,5 @@ describe("Downloads tab: unit tests", () => {
     expect(url).toEqual(
       `/api/curriculum-downloads/?types=curriculum-plans&mvRefreshTime=1721314874829&subjectSlug=english&phaseSlug=primary&state=published`,
     );
-  });
-});
-
-describe("trackCurriculumDownload", () => {
-  const mockTrack = {
-    curriculumResourcesDownloaded: jest.fn(),
-  } as unknown as TrackFns;
-  const mockOnHubspotSubmit = jest.fn().mockResolvedValue("mockResponse");
-
-  beforeEach(() => {
-    jest.clearAllMocks();
-  });
-
-  test("calls onHubspotSubmit and track.curriculumResourcesDownloadedCurriculumDocument with correct parameters", async () => {
-    const data = {
-      school: "123456-Test school",
-      schoolName: "Test School",
-      email: "test@example.com",
-      terms: true as const,
-      schoolNotListed: false,
-      schools: [
-        {
-          urn: "123456",
-          name: "Test School",
-          la: "test-la",
-          postcode: "T1 WTF",
-          fullInfo: "Test School, test-la, T1 WTF",
-          status: "Open",
-        },
-      ],
-      resources: ["curriculum-plans"] as DownloadType[],
-    };
-
-    const subjectTitle = "Mathematics";
-    const slugs = {
-      phaseSlug: "primary",
-      subjectSlug: "maths",
-      ks4OptionSlug: "",
-    };
-    await trackCurriculumDownload(
-      data,
-      subjectTitle,
-      mockOnHubspotSubmit,
-      mockTrack,
-      slugs,
-    );
-
-    expect(mockOnHubspotSubmit).toHaveBeenCalledWith({
-      school: "123456-Test school",
-      schoolName: "Test School",
-      email: "test@example.com",
-      terms: true,
-      resources: ["docx"],
-      onSubmit: expect.any(Function),
-    });
-
-    expect(mockTrack.curriculumResourcesDownloaded).toHaveBeenCalledWith({
-      subjectTitle: "Mathematics",
-      analyticsUseCase: "Teacher",
-      keyStageSlug: null,
-      keyStageTitle: null,
-      emailSupplied: true,
-      schoolOption: "Selected school",
-      schoolUrn: "123456",
-      schoolName: "Test school",
-      engagementIntent: "explore",
-      eventVersion: "2.0.0",
-      phase: "primary",
-      platform: "owa",
-      product: "curriculum resources",
-      resourceType: ["curriculum document"],
-      componentType: "download_button",
-    });
   });
 });

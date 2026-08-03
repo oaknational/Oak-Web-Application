@@ -1,10 +1,12 @@
 import { createStore } from "zustand";
+import { capitalize } from "lodash";
 
 import { TrackFns } from "../Analytics/AnalyticsProvider";
 
 import { ProgrammeState } from "./teacherBrowseAnalytics.types";
 import {
   getLessonAnalyticsProperties,
+  getProgrammeAnalyticsProperties,
   getUnitAnalyticsProperties,
 } from "./utils/getAnalyticsProperties";
 
@@ -14,11 +16,20 @@ import {
   DownloadResourceButtonNameValueType,
   EngagementIntent,
   EventVersionValueType,
+  LearningTierValueType,
   PlatformValueType,
   ProductValueType,
+  ResourceTypeValueType,
 } from "@/browser-lib/avo/Avo";
 import errorReporter from "@/common-lib/error-reporter";
 import OakError from "@/errors/OakError";
+import { ResourceFormValues } from "@/components/TeacherComponents/types/downloadAndShare.types";
+import {
+  getSchoolOption,
+  getSchoolName,
+  getSchoolUrn,
+} from "@/components/TeacherComponents/helpers/downloadAndShareHelpers/getFormattedDetailsForTracking";
+import { convertUnitSlugToTitle } from "@/app/(core)/teachers/search/helpers";
 
 export type TeacherBrowseAnalyticsStore = {
   programmeState: ProgrammeState;
@@ -29,6 +40,12 @@ export type TeacherBrowseAnalyticsStore = {
       downloadResourceButtonName: DownloadResourceButtonNameValueType,
     ) => void;
     unitDownloadInitiated: () => void;
+    curriculumExplainerExplored: () => void;
+    curriculumResourcesDownloadRefined: (data: {
+      tierSlug?: string | null;
+      childSubjectSlug?: string | null;
+    }) => void;
+    curriculumResourcesDownloaded: (data: ResourceFormValues) => void;
   };
 };
 
@@ -110,6 +127,58 @@ export const createTeacherBrowseAnalyticsStore = (
           componentType: ComponentType.UNIT_DOWNLOAD_BUTTON,
           ...coreProperties,
           ...analyticsProperties,
+        });
+      },
+      curriculumExplainerExplored: () => {
+        const { avo, programmeState } = get();
+
+        const analyticsProperties =
+          getProgrammeAnalyticsProperties(programmeState);
+
+        avo.curriculumExplainerExplored({
+          engagementIntent: "explore",
+          componentType: "explainer_tab",
+          ...coreProperties,
+          ...analyticsProperties,
+        });
+      },
+      curriculumResourcesDownloadRefined: (data) => {
+        const { avo, programmeState } = get();
+        const { tierSlug, childSubjectSlug } = data;
+
+        const analyticsProperties =
+          getProgrammeAnalyticsProperties(programmeState);
+
+        avo.curriculumResourcesDownloadRefined({
+          ...coreProperties,
+          ...analyticsProperties,
+          engagementIntent: "refine",
+          componentType: "download_tab",
+          childSubjectSlug: childSubjectSlug || "",
+          childSubjectName: convertUnitSlugToTitle(childSubjectSlug || ""),
+          learningTier: capitalize(tierSlug || "") as LearningTierValueType,
+        });
+      },
+      curriculumResourcesDownloaded: (data: ResourceFormValues) => {
+        const { avo, programmeState } = get();
+
+        const analyticsProperties =
+          getProgrammeAnalyticsProperties(programmeState);
+
+        const schoolOption = getSchoolOption(data.school);
+
+        avo.curriculumResourcesDownloaded({
+          ...coreProperties,
+          ...analyticsProperties,
+          engagementIntent: "explore",
+          componentType: "download_button",
+          emailSupplied: data.email != null,
+          resourceType: ["curriculum document"] as ResourceTypeValueType[],
+          schoolOption,
+          schoolName: getSchoolName(data.school, schoolOption),
+          schoolUrn: getSchoolUrn(data.school, schoolOption),
+          keyStageSlug: null,
+          keyStageTitle: null,
         });
       },
     },

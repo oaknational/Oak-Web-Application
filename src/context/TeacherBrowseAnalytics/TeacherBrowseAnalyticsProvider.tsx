@@ -16,16 +16,19 @@ export const TeacherBrowseAnalyticsStoreContext = createContext<
   TeacherBrowseAnalyticsStoreApi | undefined
 >(undefined);
 
-export interface TeacherBrowseAnalyticsStoreProviderProps {
-  programmeState: Pick<TeacherBrowseAnalyticsStore, "programmeState">;
+export type TeacherBrowseAnalyticsStoreProviderProps = Pick<
+  TeacherBrowseAnalyticsStore,
+  "programmeState"
+> & {
   children: ReactNode;
-}
+};
 
 export const TeacherBrowseAnalyticsStoreProvider = ({
   programmeState,
   children,
 }: TeacherBrowseAnalyticsStoreProviderProps) => {
   const { track, getSessionId } = useAnalytics();
+  const { subjectSlug, phaseSlug } = programmeState;
 
   const sessionId = useMemo(() => getSessionId(), [getSessionId]);
 
@@ -33,12 +36,12 @@ export const TeacherBrowseAnalyticsStoreProvider = ({
     if (!sessionId) {
       return null;
     }
-    return `${sessionId}:${programmeState.programmeState.programmeSlug}`;
-  }, [sessionId, programmeState.programmeState.programmeSlug]);
+    return `${sessionId}:${phaseSlug}-${subjectSlug}`;
+  }, [sessionId, subjectSlug, phaseSlug]);
 
   const [store] = useState(() =>
     createTeacherBrowseAnalyticsStore({
-      ...programmeState,
+      programmeState,
       avo: track,
       journeyId,
     }),

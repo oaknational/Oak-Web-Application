@@ -6,8 +6,9 @@ import { TeacherBrowseAnalyticsStoreContext } from "@/context/TeacherBrowseAnaly
 import { getProgrammeStateForLesson } from "@/context/TeacherBrowseAnalytics/utils/getProgrammeState";
 import teachersLessonOverviewFixture from "@/node-lib/curriculum-api-2023/fixtures/teachersLessonOverview.fixture";
 import { NavigatedFrom } from "@/browser-lib/avo/Avo";
+import { TeacherBrowseAnalyticsStore } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsStore";
 
-const state = {
+const state: TeacherBrowseAnalyticsStore = {
   programmeState: getProgrammeStateForLesson(teachersLessonOverviewFixture()),
   avo: { ...noopTrackingFns, NavigatedFrom },
   journeyId: "mockJourneyId",
@@ -15,6 +16,12 @@ const state = {
     lessonResourceDownloadStarted: () =>
       console.log("lessonResourceDownloadStarted fired"),
     unitDownloadInitiated: () => console.log("unitDownloadInitiated fired"),
+    curriculumExplainerExplored: () =>
+      console.log("curriculumExplainerExplore fired"),
+    curriculumResourcesDownloaded: () =>
+      console.log("curriculumResourcesDownloaded fired"),
+    curriculumResourcesDownloadRefined: () =>
+      console.log("curriculumResourcesDownloadRefined fired"),
   },
 };
 

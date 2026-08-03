@@ -4,33 +4,31 @@ exports[`LessonDownloadsSuccessPage fetches unit data and renders success confir
 <TeacherBrowseAnalyticsStoreProvider
   programmeState={
     {
-      "programmeState": {
-        "browseLevel": "lesson",
-        "examBoardSlug": null,
-        "examBoardTitle": null,
-        "keyStageSlug": "ks3",
-        "keyStageTitle": "Key Stage 3",
-        "lesson": {
-          "lessonReleaseDate": "2026-01-01",
-          "slug": "solid-and-liquid-states",
-          "title": "Solid and liquid states",
-        },
-        "pathwaySlug": null,
-        "pathwayTitle": null,
-        "phaseSlug": "secondary",
-        "phaseTitle": "Secondary",
-        "programmeSlug": "biology-secondary-ks3",
-        "subjectSlug": "biology",
-        "subjectTitle": "Biology",
-        "tierSlug": null,
-        "tierTitle": null,
-        "unit": {
-          "slug": "cells",
-          "title": "Cells",
-        },
-        "year": "7",
-        "yearGroupTitle": "Year 7",
+      "browseLevel": "lesson",
+      "examBoardSlug": null,
+      "examBoardTitle": null,
+      "keyStageSlug": "ks3",
+      "keyStageTitle": "Key Stage 3",
+      "lesson": {
+        "lessonReleaseDate": "2026-01-01",
+        "slug": "solid-and-liquid-states",
+        "title": "Solid and liquid states",
       },
+      "pathwaySlug": null,
+      "pathwayTitle": null,
+      "phaseSlug": "secondary",
+      "phaseTitle": "Secondary",
+      "programmeSlug": "biology-secondary-ks3",
+      "subjectSlug": "biology",
+      "subjectTitle": "Biology",
+      "tierSlug": null,
+      "tierTitle": null,
+      "unit": {
+        "slug": "cells",
+        "title": "Cells",
+      },
+      "year": "7",
+      "yearGroupTitle": "Year 7",
     }
   }
 >
@@ -105,33 +103,31 @@ exports[`LessonDownloadsSuccessPage renders control variant when feature flag is
 <TeacherBrowseAnalyticsStoreProvider
   programmeState={
     {
-      "programmeState": {
-        "browseLevel": "lesson",
-        "examBoardSlug": null,
-        "examBoardTitle": null,
-        "keyStageSlug": "ks3",
-        "keyStageTitle": "Key Stage 3",
-        "lesson": {
-          "lessonReleaseDate": "2026-01-01",
-          "slug": "solid-and-liquid-states",
-          "title": "Solid and liquid states",
-        },
-        "pathwaySlug": null,
-        "pathwayTitle": null,
-        "phaseSlug": "secondary",
-        "phaseTitle": "Secondary",
-        "programmeSlug": "biology-secondary-ks3",
-        "subjectSlug": "biology",
-        "subjectTitle": "Biology",
-        "tierSlug": null,
-        "tierTitle": null,
-        "unit": {
-          "slug": "cells",
-          "title": "Cells",
-        },
-        "year": "7",
-        "yearGroupTitle": "Year 7",
+      "browseLevel": "lesson",
+      "examBoardSlug": null,
+      "examBoardTitle": null,
+      "keyStageSlug": "ks3",
+      "keyStageTitle": "Key Stage 3",
+      "lesson": {
+        "lessonReleaseDate": "2026-01-01",
+        "slug": "solid-and-liquid-states",
+        "title": "Solid and liquid states",
       },
+      "pathwaySlug": null,
+      "pathwayTitle": null,
+      "phaseSlug": "secondary",
+      "phaseTitle": "Secondary",
+      "programmeSlug": "biology-secondary-ks3",
+      "subjectSlug": "biology",
+      "subjectTitle": "Biology",
+      "tierSlug": null,
+      "tierTitle": null,
+      "unit": {
+        "slug": "cells",
+        "title": "Cells",
+      },
+      "year": "7",
+      "yearGroupTitle": "Year 7",
     }
   }
 >
@@ -206,33 +202,31 @@ exports[`LessonDownloadsSuccessPage renders control variant when feature flag is
 <TeacherBrowseAnalyticsStoreProvider
   programmeState={
     {
-      "programmeState": {
-        "browseLevel": "lesson",
-        "examBoardSlug": null,
-        "examBoardTitle": null,
-        "keyStageSlug": "ks3",
-        "keyStageTitle": "Key Stage 3",
-        "lesson": {
-          "lessonReleaseDate": "2026-01-01",
-          "slug": "solid-and-liquid-states",
-          "title": "Solid and liquid states",
-        },
-        "pathwaySlug": null,
-        "pathwayTitle": null,
-        "phaseSlug": "secondary",
-        "phaseTitle": "Secondary",
-        "programmeSlug": "biology-secondary-ks3",
-        "subjectSlug": "biology",
-        "subjectTitle": "Biology",
-        "tierSlug": null,
-        "tierTitle": null,
-        "unit": {
-          "slug": "cells",
-          "title": "Cells",
-        },
-        "year": "7",
-        "yearGroupTitle": "Year 7",
+      "browseLevel": "lesson",
+      "examBoardSlug": null,
+      "examBoardTitle": null,
+      "keyStageSlug": "ks3",
+      "keyStageTitle": "Key Stage 3",
+      "lesson": {
+        "lessonReleaseDate": "2026-01-01",
+        "slug": "solid-and-liquid-states",
+        "title": "Solid and liquid states",
       },
+      "pathwaySlug": null,
+      "pathwayTitle": null,
+      "phaseSlug": "secondary",
+      "phaseTitle": "Secondary",
+      "programmeSlug": "biology-secondary-ks3",
+      "subjectSlug": "biology",
+      "subjectTitle": "Biology",
+      "tierSlug": null,
+      "tierTitle": null,
+      "unit": {
+        "slug": "cells",
+        "title": "Cells",
+      },
+      "year": "7",
+      "yearGroupTitle": "Year 7",
     }
   }
 >
@@ -307,33 +301,31 @@ exports[`LessonDownloadsSuccessPage renders test variant when feature flag is te
 <TeacherBrowseAnalyticsStoreProvider
   programmeState={
     {
-      "programmeState": {
-        "browseLevel": "lesson",
-        "examBoardSlug": null,
-        "examBoardTitle": null,
-        "keyStageSlug": "ks3",
-        "keyStageTitle": "Key Stage 3",
-        "lesson": {
-          "lessonReleaseDate": "2026-01-01",
-          "slug": "solid-and-liquid-states",
-          "title": "Solid and liquid states",
-        },
-        "pathwaySlug": null,
-        "pathwayTitle": null,
-        "phaseSlug": "secondary",
-        "phaseTitle": "Secondary",
-        "programmeSlug": "biology-secondary-ks3",
-        "subjectSlug": "biology",
-        "subjectTitle": "Biology",
-        "tierSlug": null,
-        "tierTitle": null,
-        "unit": {
-          "slug": "cells",
-          "title": "Cells",
-        },
-        "year": "7",
-        "yearGroupTitle": "Year 7",
+      "browseLevel": "lesson",
+      "examBoardSlug": null,
+      "examBoardTitle": null,
+      "keyStageSlug": "ks3",
+      "keyStageTitle": "Key Stage 3",
+      "lesson": {
+        "lessonReleaseDate": "2026-01-01",
+        "slug": "solid-and-liquid-states",
+        "title": "Solid and liquid states",
       },
+      "pathwaySlug": null,
+      "pathwayTitle": null,
+      "phaseSlug": "secondary",
+      "phaseTitle": "Secondary",
+      "programmeSlug": "biology-secondary-ks3",
+      "subjectSlug": "biology",
+      "subjectTitle": "Biology",
+      "tierSlug": null,
+      "tierTitle": null,
+      "unit": {
+        "slug": "cells",
+        "title": "Cells",
+      },
+      "year": "7",
+      "yearGroupTitle": "Year 7",
     }
   }
 >
