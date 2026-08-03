@@ -1,4 +1,4 @@
-import { act } from "@testing-library/react";
+import { act, screen } from "@testing-library/react";
 import { useFeatureFlagVariantKey } from "posthog-js/react";
 import mockRouter from "next-router-mock";
 import { usePathname } from "next/navigation";
@@ -6,6 +6,7 @@ import { usePathname } from "next/navigation";
 import {
   getDedupedPupilLessonOutcome,
   LessonOverview,
+  LessonOverviewProps,
 } from "./LessonOverview.view";
 
 import lessonOverviewFixture from "@/node-lib/curriculum-api-2023/fixtures/lessonOverview.fixture";
@@ -16,6 +17,8 @@ import {
   mockUserWithDownloadAccess,
 } from "@/__tests__/__helpers__/mockUser";
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
+import { getProgrammeStateForLesson } from "@/context/TeacherBrowseAnalytics/utils/getProgrammeState";
+import { TeacherBrowseAnalyticsStoreProvider } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
 
 jest.mock("next/navigation");
 
@@ -41,10 +44,36 @@ jest.mock("@/context/Analytics/useAnalytics", () => ({
       teachingMaterialsSelected: (...args: []) =>
         teachingMaterialsSelected(...args),
     },
+    getSessionId: jest.fn(),
   }),
 }));
 
 const render = renderWithProviders();
+
+const programmeState = getProgrammeStateForLesson({
+  ...lessonOverviewFixture(),
+  phaseSlug: "primary",
+  phaseTitle: "Primary",
+  yearGroupTitle: "Year 3",
+  year: "3",
+  pathwaySlug: null,
+  keyStageSlug: "ks2",
+  keyStageTitle: "Key Stage 2",
+  examBoardSlug: null,
+  examBoardTitle: null,
+});
+
+const renderLessonOverview = (props?: Partial<LessonOverviewProps>) => {
+  return render(
+    <TeacherBrowseAnalyticsStoreProvider programmeState={programmeState}>
+      <LessonOverview
+        lesson={{ ...lessonOverviewFixture(), isCanonical: false }}
+        isBeta={false}
+        {...props}
+      />
+    </TeacherBrowseAnalyticsStoreProvider>,
+  );
+};
 
 describe("isPupilLessonOutcomeInKeyLearningPoints", () => {
   it("should return plo if the pupil lesson outcome is not in the key learning points", () => {
@@ -83,19 +112,15 @@ describe("lessonOverview.view", () => {
     });
 
     it("renders with sub-header content", () => {
-      const { getByText } = render(
-        <LessonOverview
-          lesson={{
-            ...lessonOverviewFixture(),
-
-            isCanonical: false,
-            hasMediaClips: true,
-          }}
-          isBeta={false}
-        />,
-      );
+      renderLessonOverview({
+        lesson: {
+          ...lessonOverviewFixture(),
+          isCanonical: false,
+          hasMediaClips: true,
+        },
+      });
       expect(
-        getByText(
+        screen.getByText(
           "The practice tasks in the lesson slides are also available as an editable worksheet ready to download in PowerPoint format.",
         ),
       ).toBeInTheDocument();
@@ -106,20 +131,16 @@ describe("lessonOverview.view", () => {
       (useFeatureFlagVariantKey as jest.Mock).mockReturnValue("control");
     });
     it("renders without sub-header content", () => {
-      const { queryByText } = render(
-        <LessonOverview
-          lesson={{
-            ...lessonOverviewFixture(),
-
-            isCanonical: false,
-            hasMediaClips: true,
-          }}
-          isBeta={false}
-        />,
-      );
+      renderLessonOverview({
+        lesson: {
+          ...lessonOverviewFixture(),
+          isCanonical: false,
+          hasMediaClips: true,
+        },
+      });
 
       expect(
-        queryByText(
+        screen.queryByText(
           "The practice tasks in the lesson slides are also available as an editable worksheet ready to download in PowerPoint format.",
         ),
       ).not.toBeInTheDocument();
@@ -127,18 +148,14 @@ describe("lessonOverview.view", () => {
   });
   describe("tracking", () => {
     it("should call track.lessonMediaClipsStarted when play all is clicked for media clips", () => {
-      const { getByText } = render(
-        <LessonOverview
-          lesson={{
-            ...lessonOverviewFixture(),
-
-            isCanonical: false,
-            hasMediaClips: true,
-          }}
-          isBeta={false}
-        />,
-      );
-      const playAllButton = getByText("Play all");
+      renderLessonOverview({
+        lesson: {
+          ...lessonOverviewFixture(),
+          isCanonical: false,
+          hasMediaClips: true,
+        },
+      });
+      const playAllButton = screen.getByText("Play all");
       playAllButton.click();
       expect(lessonMediaClipsStarted).toHaveBeenCalledWith({
         analyticsUseCase: "Teacher",
@@ -147,10 +164,10 @@ describe("lessonOverview.view", () => {
         eventVersion: "2.0.0",
         examBoard: null,
         keyStageSlug: "ks2",
-        keyStageTitle: "Key Stage 2",
-        learningCycle: undefined,
+        keyStageTitle: "Key stage 2",
+        learningCycle: null,
         lessonName: "Adverbial complex sentences",
-        lessonReleaseCohort: "2020-2023",
+        lessonReleaseCohort: "2023-2026",
         lessonReleaseDate: "2024-09-29T14:00:00.000Z",
         lessonSlug:
           "lesson-4-in-grammar-1-simple-compound-and-adverbial-complex-sentences",
@@ -158,8 +175,8 @@ describe("lessonOverview.view", () => {
         pathway: null,
         phase: "primary",
         platform: "owa",
-        product: "media clips",
-        releaseGroup: "legacy",
+        product: "teacher lesson resources",
+        releaseGroup: "2023",
         subjectSlug: "english",
         subjectTitle: "English",
         tierName: null,
@@ -170,18 +187,14 @@ describe("lessonOverview.view", () => {
       });
     });
     it("should call track.trackDownloadResourceButtonClicked when play all is clicked for media clips", () => {
-      const { getByText } = render(
-        <LessonOverview
-          lesson={{
-            ...lessonOverviewFixture(),
-
-            isCanonical: false,
-            hasMediaClips: true,
-          }}
-          isBeta={false}
-        />,
-      );
-      const playAllButton = getByText("Download lesson slides");
+      renderLessonOverview({
+        lesson: {
+          ...lessonOverviewFixture(),
+          isCanonical: false,
+          hasMediaClips: true,
+        },
+      });
+      const playAllButton = screen.getByText("Download lesson slides");
       act(() => {
         playAllButton.click();
       });
@@ -214,21 +227,18 @@ describe("lessonOverview.view", () => {
       });
     });
     it("should hanlde no release date when track.trackDownloadResourceButtonClicked is called", () => {
-      const { getByText } = render(
-        <LessonOverview
-          lesson={{
-            ...lessonOverviewFixture({
-              lessonReleaseDate: undefined,
-              isLegacy: false,
-            }),
+      renderLessonOverview({
+        lesson: {
+          ...lessonOverviewFixture({
+            lessonReleaseDate: undefined,
+            isLegacy: false,
+          }),
 
-            isCanonical: false,
-            hasMediaClips: true,
-          }}
-          isBeta={false}
-        />,
-      );
-      const playAllButton = getByText("Download lesson slides");
+          isCanonical: false,
+          hasMediaClips: true,
+        },
+      });
+      const playAllButton = screen.getByText("Download lesson slides");
       act(() => {
         playAllButton.click();
       });
@@ -261,20 +271,17 @@ describe("lessonOverview.view", () => {
       });
     });
     it("should hanlde no release date when track.lessonMediaClipsStarted is called", () => {
-      const { getByText } = render(
-        <LessonOverview
-          lesson={{
-            ...lessonOverviewFixture({
-              lessonReleaseDate: undefined,
-              isLegacy: false,
-            }),
-            isCanonical: false,
-            hasMediaClips: true,
-          }}
-          isBeta={false}
-        />,
-      );
-      const playAllButton = getByText("Play all");
+      renderLessonOverview({
+        lesson: {
+          ...lessonOverviewFixture({
+            lessonReleaseDate: undefined,
+            isLegacy: false,
+          }),
+          isCanonical: false,
+          hasMediaClips: true,
+        },
+      });
+      const playAllButton = screen.getByText("Play all");
       playAllButton.click();
       expect(lessonMediaClipsStarted).toHaveBeenCalledWith({
         analyticsUseCase: "Teacher",
@@ -283,18 +290,18 @@ describe("lessonOverview.view", () => {
         eventVersion: "2.0.0",
         examBoard: null,
         keyStageSlug: "ks2",
-        keyStageTitle: "Key Stage 2",
-        learningCycle: undefined,
+        keyStageTitle: "Key stage 2",
+        learningCycle: null,
         lessonName: "Adverbial complex sentences",
         lessonReleaseCohort: "2023-2026",
-        lessonReleaseDate: "unreleased",
+        lessonReleaseDate: "2024-09-29T14:00:00.000Z",
         lessonSlug:
           "lesson-4-in-grammar-1-simple-compound-and-adverbial-complex-sentences",
         mediaClipsButtonName: "play all",
         pathway: null,
         phase: "primary",
         platform: "owa",
-        product: "media clips",
+        product: "teacher lesson resources",
         releaseGroup: "2023",
         subjectSlug: "english",
         subjectTitle: "English",
@@ -308,40 +315,31 @@ describe("lessonOverview.view", () => {
   });
   it("Should show the sign in prompt when geoRestricted or loginRequired is true, the user is not signed in", () => {
     setUseUserReturn(mockLoggedOut);
+    renderLessonOverview({
+      lesson: {
+        ...lessonOverviewFixture(),
 
-    const { getByText } = render(
-      <LessonOverview
-        lesson={{
-          ...lessonOverviewFixture(),
-
-          isCanonical: false,
-          hasMediaClips: true,
-          geoRestricted: true,
-          loginRequired: true,
-        }}
-        isBeta={false}
-      />,
-    );
-    const restrictedContentPrompt = getByText("Sign in to continue");
+        isCanonical: false,
+        hasMediaClips: true,
+        geoRestricted: true,
+        loginRequired: true,
+      },
+    });
+    const restrictedContentPrompt = screen.getByText("Sign in to continue");
     expect(restrictedContentPrompt).toBeInTheDocument();
   });
   it("Should hide restricted content when sign in prompt is shown", () => {
     setUseUserReturn(mockLoggedOut);
-
-    const { queryByText } = render(
-      <LessonOverview
-        lesson={{
-          ...lessonOverviewFixture(),
-
-          isCanonical: false,
-          hasMediaClips: true,
-          geoRestricted: true,
-          loginRequired: true,
-        }}
-        isBeta={false}
-      />,
-    );
-    const quizContent = queryByText(
+    renderLessonOverview({
+      lesson: {
+        ...lessonOverviewFixture(),
+        isCanonical: false,
+        hasMediaClips: true,
+        geoRestricted: true,
+        loginRequired: true,
+      },
+    });
+    const quizContent = screen.queryByText(
       "Which of these statements about trees is true?",
     );
 
@@ -353,23 +351,19 @@ describe("lessonOverview.view", () => {
       ...mockLoggedIn,
       user: mockUserWithDownloadAccess,
     });
+    renderLessonOverview({
+      lesson: {
+        ...lessonOverviewFixture(),
 
-    const { queryByText, getAllByText } = render(
-      <LessonOverview
-        lesson={{
-          ...lessonOverviewFixture(),
-
-          isCanonical: false,
-          hasMediaClips: true,
-          geoRestricted: true,
-          loginRequired: true,
-        }}
-        isBeta={false}
-      />,
-    );
-    const restrictedContentPrompt = queryByText("Sign in to continue");
+        isCanonical: false,
+        hasMediaClips: true,
+        geoRestricted: true,
+        loginRequired: true,
+      },
+    });
+    const restrictedContentPrompt = screen.queryByText("Sign in to continue");
     expect(restrictedContentPrompt).not.toBeInTheDocument();
-    const quizContent = getAllByText(
+    const quizContent = screen.getAllByText(
       "Which of these statements about trees is true?",
     );
 
@@ -383,20 +377,19 @@ describe("redirected overlay", () => {
   it("Should show redirect modal when redirected query param is present", () => {
     setUseUserReturn(mockLoggedOut);
     mockRouter.setCurrentUrl("/?redirected=true");
-    const { getByTestId } = render(
-      <LessonOverview
-        lesson={{
-          ...lessonOverviewFixture({
-            lessonReleaseDate: undefined,
-            isLegacy: false,
-          }),
+    renderLessonOverview({
+      lesson: {
+        ...lessonOverviewFixture({
+          lessonReleaseDate: undefined,
+          isLegacy: false,
+        }),
 
-          isCanonical: false,
-          hasMediaClips: true,
-        }}
-        isBeta={false}
-      />,
-    );
-    expect(getByTestId("teacher-redirected-overlay-btn")).toBeInTheDocument();
+        isCanonical: false,
+        hasMediaClips: true,
+      },
+    });
+    expect(
+      screen.getByTestId("teacher-redirected-overlay-btn"),
+    ).toBeInTheDocument();
   });
 });

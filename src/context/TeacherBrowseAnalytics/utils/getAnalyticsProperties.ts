@@ -57,5 +57,9 @@ export const getLessonAnalyticsProperties = (
     lessonName: programmeState.lesson.title,
     lessonSlug: programmeState.lesson.slug,
     lessonReleaseDate: programmeState.lesson.lessonReleaseDate,
+    lessonReleaseCohort: "2023-2026",
+    releaseGroup: "2023",
+    yearGroupName: programmeState.yearGroupTitle,
+    yearGroupSlug: `year-${programmeState.year}`,
   };
 };
