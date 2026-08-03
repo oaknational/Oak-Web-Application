@@ -27,7 +27,6 @@ import useAnalytics from "@/context/Analytics/useAnalytics";
 import { getAnalyticsBrowseData } from "@/components/TeacherComponents/helpers/getAnalyticsBrowseData";
 import SkipLink from "@/components/CurriculumComponents/OakComponentsKitchen/SkipLink";
 import { MathJaxProvider } from "@/browser-lib/mathjax/MathJaxProvider";
-import { TrackingCallbackProps } from "@/components/TeacherComponents/LessonOverviewMediaClips";
 import { hasLessonMathJax } from "@/components/TeacherViews/LessonOverview/hasLessonMathJax";
 import { getSideNavLinksFromResources } from "@/components/TeacherComponents/LessonOverviewSideNavAnchorLinks/LessonOverviewSideNavAnchorLinks";
 import ComplexCopyrightRestrictionBanner from "@/components/TeacherComponents/ComplexCopyrightRestrictionBanner/ComplexCopyrightRestrictionBanner";
@@ -85,9 +84,8 @@ export default function LessonView(
   const { isSignedIn } = useUser();
   const isMathJaxLesson = hasLessonMathJax(props, props.subjectSlug, false);
   const MathJaxLessonProvider = isMathJaxLesson ? MathJaxProvider : Fragment;
-  const { lessonResourceDownloadStarted } = useTeacherBrowseAnalytics(
-    (store) => store.track,
-  );
+  const { lessonResourceDownloadStarted, lessonMediaClipsStarted } =
+    useTeacherBrowseAnalytics((store) => store.track);
 
   const browsePathwayData = getAnalyticsBrowseData({
     keyStageSlug,
@@ -107,23 +105,6 @@ export default function LessonView(
     isLegacy: false,
   });
 
-  const trackMediaClipsButtonClicked = ({
-    mediaClipsButtonName,
-    learningCycle,
-  }: TrackingCallbackProps) => {
-    track.lessonMediaClipsStarted({
-      platform: "owa",
-      product: "media clips",
-      engagementIntent: "use",
-      componentType: "go_to_media_clips_page_button",
-      eventVersion: "2.0.0",
-      analyticsUseCase: "Teacher",
-      mediaClipsButtonName,
-      learningCycle,
-      ...browsePathwayData,
-    });
-  };
-
   const trackShare = () => {
     track.lessonShareStarted(browsePathwayData);
   };
@@ -133,7 +114,7 @@ export default function LessonView(
     data: props,
     copyrightState,
     isMathJaxLesson,
-    trackMediaClipsButtonClicked,
+    trackMediaClipsButtonClicked: lessonMediaClipsStarted,
     contentRestricted,
   });
 
@@ -303,7 +284,7 @@ export default function LessonView(
                         props.downloadResourceButtonName,
                       )
                     }
-                    onMediaClipsButtonClick={trackMediaClipsButtonClicked}
+                    onMediaClipsButtonClick={lessonMediaClipsStarted}
                   />
                 ))}
 

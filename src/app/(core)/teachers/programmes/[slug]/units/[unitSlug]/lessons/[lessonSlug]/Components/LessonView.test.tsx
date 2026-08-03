@@ -488,12 +488,6 @@ describe("Tracking callbacks", () => {
 
     expect(lessonMediaClipsStarted).toHaveBeenCalledWith(
       expect.objectContaining({
-        platform: "owa",
-        product: "media clips",
-        engagementIntent: "use",
-        componentType: "go_to_media_clips_page_button",
-        eventVersion: "2.0.0",
-        analyticsUseCase: "Teacher",
         mediaClipsButtonName: "play all",
       }),
     );
