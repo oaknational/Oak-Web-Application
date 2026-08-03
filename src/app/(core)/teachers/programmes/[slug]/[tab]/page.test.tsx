@@ -11,6 +11,7 @@ import { createUnit } from "@/fixtures/curriculum/unit";
 import { curriculumOverviewMVFixture } from "@/node-lib/curriculum-api-2023/fixtures/curriculumOverview.fixture";
 import curriculumPhaseOptionsFixture from "@/node-lib/curriculum-api-2023/fixtures/curriculumPhaseOptions.fixture";
 import { filterValidCurriculumPhaseOptions } from "@/pages-helpers/curriculum/docx/tab-helpers";
+import { CurriculumSelectionSlugs } from "@/utils/curriculum/slugs";
 
 const defaultParams = new URLSearchParams("");
 const mockUseSearchParams = jest.fn(() => defaultParams);
@@ -314,10 +315,10 @@ describe("generateMetadata", () => {
         curriculumPhaseOptionsFixture(),
       ),
       subjectPhaseKeystageSlugs: {
-        subjectSlug: "maths" as const,
-        phaseSlug: "primary" as const,
+        subjectSlug: "maths",
+        phaseSlug: "primary",
         ks4OptionSlug: null,
-      },
+      } satisfies CurriculumSelectionSlugs,
     };
 
     jest.mocked(getSubjectPhaseOptions).mockResolvedValue(mockSubjectData);
@@ -368,10 +369,10 @@ describe("generateMetadata", () => {
         curriculumPhaseOptionsFixture(),
       ),
       subjectPhaseKeystageSlugs: {
-        subjectSlug: "maths" as const,
-        phaseSlug: "primary" as const,
+        subjectSlug: "maths",
+        phaseSlug: "primary",
         ks4OptionSlug: null,
-      },
+      } satisfies CurriculumSelectionSlugs,
     };
 
     jest.mocked(getSubjectPhaseOptions).mockResolvedValue(mockSubjectData);
@@ -424,11 +425,10 @@ describe("generateMetadata", () => {
         curriculumPhaseOptionsFixture(),
       ),
       subjectPhaseKeystageSlugs: {
-        subjectSlug: "computing" as const,
-        phaseSlug: "secondary" as const,
-        examboardSlug: "aqa",
+        subjectSlug: "computing",
+        phaseSlug: "secondary",
         ks4OptionSlug: null,
-      },
+      } satisfies CurriculumSelectionSlugs,
     };
     jest.mocked(getSubjectPhaseOptions).mockResolvedValue(mockSubjectData);
 
@@ -467,7 +467,7 @@ describe("generateMetadata", () => {
         subjects: filterValidCurriculumPhaseOptions(
           curriculumPhaseOptionsFixture(),
         ),
-        tab: "units" as const,
+        tab: "units",
       },
       subjectPhaseKeystageSlugs: {
         subjectSlug: "maths",
@@ -495,10 +495,10 @@ describe("generateMetadata", () => {
         curriculumPhaseOptionsFixture(),
       ),
       subjectPhaseKeystageSlugs: {
-        subjectSlug: "maths" as const,
-        phaseSlug: "secondary" as const,
+        subjectSlug: "maths",
+        phaseSlug: "secondary",
         ks4OptionSlug: null,
-      },
+      } satisfies CurriculumSelectionSlugs,
     };
 
     beforeEach(() => {

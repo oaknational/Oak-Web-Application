@@ -237,12 +237,12 @@ describe("ProgrammeView", () => {
         phaseSlug: "primary",
         subjectSlug: "english",
         ks4OptionSlug: null,
-      } as CurriculumSelectionSlugs,
+      } satisfies CurriculumSelectionSlugs,
       curriculumSelectionTitles: {
         subjectTitle: "English",
         phaseTitle: "Primary",
         examboardTitle: undefined,
-      } as CurriculumSelectionTitles,
+      } satisfies CurriculumSelectionTitles,
       curriculumUnitsFormattedData: formatCurriculumUnitsData(
         curriculumUnitsTabFixture({
           units: [

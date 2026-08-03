@@ -10,11 +10,15 @@ import { trackCurriculumDownload } from "./tracking";
 
 import { renderWithProvidersByName } from "@/__tests__/__helpers__/renderWithProviders";
 import { TrackFns } from "@/context/Analytics/AnalyticsProvider";
-import { parseSubjectPhaseSlug } from "@/utils/curriculum/slugs";
+import {
+  CurriculumSelectionSlugs,
+  parseSubjectPhaseSlug,
+} from "@/utils/curriculum/slugs";
 import { createCurriculumDownloadsUrl } from "@/utils/curriculum/urls";
 import { createYearData } from "@/fixtures/curriculum/yearData";
 import { createUnit } from "@/fixtures/curriculum/unit";
 import { DownloadType } from "@/components/CurriculumComponents/CurriculumDownloadView/helper";
+import { CurriculumOverviewMVData } from "@/node-lib/curriculum-api-2023";
 
 jest.mock("next/navigation");
 
@@ -115,11 +119,11 @@ const defaultProps = {
   mvRefreshTime,
   curriculumInfo: {
     curriculaDesc: "",
-    subjectTitle: "English" as const,
-    phaseTitle: "Secondary" as const,
+    subjectTitle: "English",
+    phaseTitle: "Secondary",
     examboardTitle: null,
     nonCurriculum: false,
-  },
+  } satisfies CurriculumOverviewMVData,
 };
 const renderComponent = (overrides: Partial<ProgrammeDownloadsProps>) => {
   return render(<ProgrammeDownloads {...defaultProps} {...overrides} />);
@@ -314,9 +318,9 @@ describe("trackCurriculumDownload", () => {
     };
 
     const subjectTitle = "Mathematics";
-    const slugs = {
-      phaseSlug: "primary" as const,
-      subjectSlug: "maths" as const,
+    const slugs: CurriculumSelectionSlugs = {
+      phaseSlug: "primary",
+      subjectSlug: "maths",
       ks4OptionSlug: "",
     };
     await trackCurriculumDownload(
