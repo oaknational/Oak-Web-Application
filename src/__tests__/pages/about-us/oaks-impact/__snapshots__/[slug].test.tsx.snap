@@ -796,7 +796,7 @@ exports[`pages/about-us/oaks-impact/case-studies/[slug].tsx renders title when f
                   class="sc-aXZVg jPvJsJ"
                 >
                   <div
-                    class="sc-aXZVg sc-gEvEer bflClx iDBIXi"
+                    class="sc-aXZVg bflClx"
                   >
                     <div
                       class="sc-aXZVg sc-gEvEer jPvJsJ daEtut"
@@ -995,16 +995,24 @@ exports[`pages/about-us/oaks-impact/case-studies/[slug].tsx renders title when f
               <div
                 class="sc-aXZVg sc-gEvEer bkFrQJ daEtut"
               >
-                <h2
-                  class="sc-eldPxv dGkyUI"
+                <div
+                  class="sc-aXZVg sc-tagGq jPvJsJ fNndNZ"
                 >
-                  Explore more case studies
-                </h2>
+                  <div
+                    class="sc-aXZVg sc-gEvEer sc-esYiGF jPvJsJ iDBIXi cSXJqk"
+                  >
+                    <h2
+                      class="sc-eldPxv dGkyUI"
+                    >
+                      Explore more case studies
+                    </h2>
+                  </div>
+                </div>
                 <ul
                   class="sc-aXZVg sc-tagGq bMQSvq jFIZYB"
                 >
                   <li
-                    class="sc-aXZVg sc-gEvEer sc-esYiGF jPvJsJ iDBIXi dJOgIA"
+                    class="sc-aXZVg sc-gEvEer sc-esYiGF jPvJsJ iDBIXi jYNrWW"
                   >
                     <div
                       class="sc-aXZVg sc-hZDyAQ gQdNNR dmBajW"
@@ -1071,7 +1079,7 @@ exports[`pages/about-us/oaks-impact/case-studies/[slug].tsx renders title when f
                     </div>
                   </li>
                   <li
-                    class="sc-aXZVg sc-gEvEer sc-esYiGF jPvJsJ iDBIXi dJOgIA"
+                    class="sc-aXZVg sc-gEvEer sc-esYiGF jPvJsJ iDBIXi bGCzCa"
                   >
                     <div
                       class="sc-aXZVg sc-hZDyAQ gQdNNR dmBajW"
