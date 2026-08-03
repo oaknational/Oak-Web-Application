@@ -70,7 +70,6 @@ export function OaksImpactHeader({
   return (
     <NewGutterMaxWidth>
       <Layout>
-        {/* <OakFlex $flexDirection={["column", "column", "row"]} $pb={["spacing-56", "spacing-80", "spacing-72"]} $pt={["spacing-56", "spacing-80", "spacing-56"]} $gap={["spacing-16", "spacing-40", "spacing-16"]}> */}
         <OakFlex
           $justifyContent={"center"}
           $height={[undefined, undefined, "spacing-480"]}
