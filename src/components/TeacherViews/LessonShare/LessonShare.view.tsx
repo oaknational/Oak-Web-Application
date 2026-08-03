@@ -170,6 +170,7 @@ export function LessonShare(props: Readonly<LessonShareProps>) {
       audience: "Pupil",
       lessonReleaseCohort: isLegacy ? "2020-2023" : "2023-2026",
       lessonReleaseDate: lessonReleaseDate ?? "unpublished",
+      yearGroupHidden: false,
     });
   };
 
