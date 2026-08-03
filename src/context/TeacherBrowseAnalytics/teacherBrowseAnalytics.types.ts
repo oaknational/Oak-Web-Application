@@ -99,12 +99,11 @@ export type UnitPathwayData = ProgrammePathwayData & {
   unitSlug: string;
 };
 
-export type LessonPathwayData = ProgrammePathwayData &
-  UnitPathwayData & {
-    lessonName: string;
-    lessonSlug: string;
-    lessonReleaseDate: string;
-  };
+export type LessonPathwayData = UnitPathwayData & {
+  lessonName: string;
+  lessonSlug: string;
+  lessonReleaseDate: string;
+};
 
 // All Track Fns used in the teacher browse journey
 export type TeacherBrowseTrackFns = {
