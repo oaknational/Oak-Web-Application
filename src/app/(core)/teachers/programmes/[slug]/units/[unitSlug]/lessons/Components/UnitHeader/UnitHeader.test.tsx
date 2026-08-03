@@ -12,7 +12,7 @@ import { getProgrammeStateForUnit } from "@/context/TeacherBrowseAnalytics/utils
 import { TeacherBrowseAnalyticsStoreProvider } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
 
 const track = {
-  unitDownloadInitiated: jest.fn(),
+  unitDownloaded: jest.fn(),
 };
 jest.mock("@/context/Analytics/useAnalytics", () => ({
   __esModule: true,
@@ -135,7 +135,7 @@ describe("UnitHeader", () => {
     const user = userEvent.setup();
     await user.click(screen.getByRole("button", { name: /Download/ }));
 
-    expect(track.unitDownloadInitiated).toHaveBeenCalledWith(
+    expect(track.unitDownloaded).toHaveBeenCalledWith(
       expect.objectContaining({
         platform: "owa",
         componentType: "unit_download_button",

@@ -13,6 +13,9 @@ const state: TeacherBrowseAnalyticsStore = {
   avo: { ...noopTrackingFns, NavigatedFrom },
   journeyId: "mockJourneyId",
   track: {
+    lessonResourceDownloadStarted: () =>
+      console.log("lessonResourceDownloadStarted fired"),
+    unitDownloaded: () => console.log("unitDownloaded fired"),
     curriculumExplainerExplored: () =>
       console.log("curriculumExplainerExplore fired"),
     curriculumResourcesDownloaded: () =>
