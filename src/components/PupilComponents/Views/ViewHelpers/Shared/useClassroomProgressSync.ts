@@ -169,11 +169,9 @@ export const useClassroomProgressSync = ({
     return usePupilLessonProgress.subscribe(
       (state) => state.sectionResults,
       (sectionResults) => {
-        try {
-          void submitProgress(sectionResults).catch(() => undefined);
-        } catch {
-          return;
-        }
+        void Promise.resolve()
+          .then(() => submitProgress(sectionResults))
+          .catch(() => undefined);
       },
     );
   }, [

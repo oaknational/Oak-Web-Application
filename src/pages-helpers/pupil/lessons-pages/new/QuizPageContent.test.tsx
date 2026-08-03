@@ -1,5 +1,5 @@
 import "@testing-library/jest-dom";
-import { act, fireEvent } from "@testing-library/react";
+import { act, fireEvent, waitFor } from "@testing-library/react";
 
 import { QuizPageContent } from "./QuizPageContent";
 
@@ -435,9 +435,7 @@ describe("QuizPageContent", () => {
     const { getByRole } = renderExitPage();
     const button = getByRole("button", { name: "Lesson review" });
 
-    await act(async () => {
-      fireEvent.click(button);
-    });
+    fireEvent.click(button);
 
     expect(button).toBeDisabled();
     expect(progressState.completeSection).not.toHaveBeenCalled();
@@ -472,11 +470,11 @@ describe("QuizPageContent", () => {
     quizHookMock.mockImplementation((selector) => selector(quizState));
     const { getByRole } = renderExitPage();
 
-    await act(async () => {
-      fireEvent.click(getByRole("button", { name: "Lesson review" }));
-    });
+    fireEvent.click(getByRole("button", { name: "Lesson review" }));
 
-    expect(progressState.setReadOnly).toHaveBeenCalledWith(true);
+    await waitFor(() =>
+      expect(progressState.setReadOnly).toHaveBeenCalledWith(true),
+    );
     expect(progressState.completeSection).not.toHaveBeenCalled();
     expect(trackQuizCompleted).not.toHaveBeenCalled();
     expect(routerPush.mock.calls[0]?.[0]).toContain("review");
@@ -512,17 +510,15 @@ describe("QuizPageContent", () => {
     const { getByRole } = renderExitPage();
     const button = getByRole("button", { name: "Lesson review" });
 
-    await act(async () => {
-      fireEvent.click(button);
-    });
-    expect(button).toBeEnabled();
+    fireEvent.click(button);
+    await waitFor(() => expect(button).toBeEnabled());
     expect(progressState.completeSection).not.toHaveBeenCalled();
     expect(routerPush).not.toHaveBeenCalled();
 
-    await act(async () => {
-      fireEvent.click(button);
-    });
-    expect(submitClassroomProgress).toHaveBeenCalledTimes(2);
+    fireEvent.click(button);
+    await waitFor(() =>
+      expect(submitClassroomProgress).toHaveBeenCalledTimes(2),
+    );
     expect(progressState.completeSection).toHaveBeenCalledTimes(1);
     expect(routerPush.mock.calls[0]?.[0]).toContain("review");
   });
@@ -548,10 +544,8 @@ describe("QuizPageContent", () => {
     const { getByRole } = renderExitPage();
     const button = getByRole("button", { name: "Lesson review" });
 
-    await act(async () => {
-      fireEvent.click(button);
-      fireEvent.click(button);
-    });
+    fireEvent.click(button);
+    fireEvent.click(button);
     expect(submitClassroomProgress).toHaveBeenCalledTimes(1);
 
     await act(async () => {
@@ -585,9 +579,7 @@ describe("QuizPageContent", () => {
     quizHookMock.mockImplementation((selector) => selector(quizState));
     const { getByLabelText, getByRole } = renderExitPage();
 
-    await act(async () => {
-      fireEvent.click(getByRole("button", { name: "Lesson review" }));
-    });
+    fireEvent.click(getByRole("button", { name: "Lesson review" }));
     fireEvent.click(getByLabelText(/Back/));
     expect(routerPush).toHaveBeenCalledTimes(1);
     expect(routerPush.mock.calls[0]?.[0]).toContain("overview");
