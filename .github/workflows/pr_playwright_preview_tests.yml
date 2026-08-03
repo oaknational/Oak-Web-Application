@@ -1,0 +1,86 @@
+name: 1. PR Playwright Preview Tests
+
+# This workflow runs Playwright on PRs against the actual Vercel preview for the PR head SHA.
+# It uses a pinned vercel/wait-for-deployment-action and validates the returned URL
+# against the expected project slug to avoid unrelated or stale deployments.
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened, ready_for_review]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: pr-playwright-preview-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
+jobs:
+  playwright_preview:
+    # Vercel token is not available to workflows triggered from forks.
+    if: ${{ !github.event.pull_request.draft && github.event.pull_request.head.repo.fork == false }}
+    name: Playwright (Vercel preview)
+    runs-on: ubuntu-24.04
+    timeout-minutes: 60
+    permissions:
+      contents: read
+      deployments: read
+      statuses: read
+      pull-requests: read
+
+    env:
+      VERCEL_PROJECT_SLUG: oak-web-application-website
+
+    steps:
+      - uses: actions/checkout@v5
+
+      - name: setup pnpm
+        uses: pnpm/action-setup@08c4be7e2e672a47d11bd04269e27e5f3e8529cb #v6
+        with:
+          cache: true
+
+      - name: setup node
+        uses: actions/setup-node@v6
+        with:
+          node-version: 24
+          cache: "pnpm"
+
+      - run: pnpm install --ignore-scripts --verbose
+
+      - name: Wait for Vercel deployment
+        id: deployment
+        uses: vercel/wait-for-deployment-action@0e2b0c5c5cce31f1648108aeec56467187aca037
+        with:
+          project-slug: ${{ env.VERCEL_PROJECT_SLUG }}
+          environment: preview
+          require-deployment-id: false
+          timeout: 1200
+
+      - name: Validate deployment URL target
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          deployment_url="${{ steps.deployment.outputs.deployment-url }}"
+
+          if [[ -z "${deployment_url}" ]]; then
+            echo "wait-for-deployment-action returned an empty deployment-url"
+            exit 1
+          fi
+
+          if [[ "${deployment_url}" != *"${VERCEL_PROJECT_SLUG}"* ]]; then
+            echo "Deployment URL does not match expected project slug ${VERCEL_PROJECT_SLUG}: ${deployment_url}"
+            exit 1
+          fi
+
+          if [[ "${deployment_url}" == *"storybook"* ]]; then
+            echo "Deployment URL unexpectedly points to storybook: ${deployment_url}"
+            exit 1
+          fi
+
+      - name: Run Playwright tests against preview
+        uses: ./.github/actions/playwright
+        with:
+          base_url: ${{ steps.deployment.outputs.deployment-url }}
+          branch_name: ${{ github.head_ref }}
+          vercel_bypass_secret: ${{ secrets.VERCEL_AUTOMATION_BYPASS_SECRET }}
