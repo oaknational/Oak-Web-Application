@@ -4,6 +4,18 @@ import {
   GetStaticPropsResult,
 } from "next";
 import { OakFlex, OakMaxWidth } from "@oaknational/oak-components";
+import {
+  examboards,
+  examboardSlugs,
+  keystageDescriptions,
+  keystageSlugs,
+  pathwayDescriptions,
+  pathwaySlugs,
+  phaseDescriptions,
+  phaseSlugs,
+  yearDescriptions,
+  years,
+} from "@oaknational/oak-curriculum-schema";
 
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 import getPageProps from "@/node-lib/getPageProps";
@@ -28,6 +40,8 @@ import {
   redirectToEyfsPage,
 } from "@/pages-helpers/shared/lesson-pages/eyfsRedirect";
 import { LessonOverview } from "@/components/TeacherViews/LessonOverview/LessonOverview.view";
+import { TeacherBrowseAnalyticsStoreProvider } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
+import { getProgrammeStateForLesson } from "@/context/TeacherBrowseAnalytics/utils/getProgrammeState";
 
 type PageProps = {
   lesson: LessonOverviewPageData;
@@ -74,47 +88,94 @@ export default function LessonOverviewCanonicalPage({
   });
 
   const pathwayGroups = groupLessonPathways(lesson.pathways);
+
+  const getProgrammePropsForCanonicalLesson = () => {
+    const firstPathway = lesson.pathways[0];
+
+    const phaseTitle =
+      phaseDescriptions.safeParse(firstPathway?.phaseTitle).data ?? "Primary";
+    const phaseSlug =
+      phaseSlugs.safeParse(phaseTitle.toLocaleLowerCase()).data ?? "primary";
+    const yearGroupTitle =
+      yearDescriptions.safeParse(firstPathway?.yearGroupTitle).data ??
+      "All years";
+    const year = years.safeParse(firstPathway?.yearGroupSlug).data ?? "All";
+    const pathwayTitle =
+      pathwayDescriptions.safeParse(firstPathway?.pathwayTitle).data ?? null;
+    const pathwaySlug =
+      pathwaySlugs.safeParse(pathwayTitle?.toLocaleLowerCase()).data ?? null;
+    const examBoardSlug =
+      examboardSlugs.safeParse(firstPathway?.examBoardSlug).data ?? null;
+    const examBoardTitle =
+      examboards.safeParse(firstPathway?.examBoardTitle).data ?? null;
+    const keyStageSlug =
+      keystageSlugs.safeParse(lesson.keyStageSlug).data ?? "all-ks";
+    const keyStageTitle =
+      keystageDescriptions.safeParse(lesson.keyStageTitle).data ??
+      "All Key Stages";
+
+    return {
+      phaseSlug,
+      phaseTitle,
+      year,
+      yearGroupTitle,
+      pathwayTitle,
+      pathwaySlug,
+      examBoardSlug,
+      examBoardTitle,
+      keyStageSlug,
+      keyStageTitle,
+    };
+  };
+
   return (
-    <AppLayout
-      topNavProps={topNav}
-      seoProps={{
-        ...getSeoProps({
-          title: `Lesson: ${lesson.lessonTitle}`,
-          description: "Overview of lesson",
-          canonicalURL: `${getBrowserConfig("seoAppUrl")}/teachers/lessons/${lesson.lessonSlug}`,
-        }),
-      }}
+    <TeacherBrowseAnalyticsStoreProvider
+      programmeState={getProgrammeStateForLesson({
+        ...lesson,
+        ...getProgrammePropsForCanonicalLesson(),
+      })}
     >
-      <LessonOverview
-        lesson={{
-          ...lesson,
-          isCanonical: true,
-          teacherShareButton: teacherNotesButton,
-          teacherShareButtonProps: TeacherNotesButtonProps,
-          teacherNoteHtml: teacherNoteHtml,
-          teacherNoteError: error,
+      <AppLayout
+        topNavProps={topNav}
+        seoProps={{
+          ...getSeoProps({
+            title: `Lesson: ${lesson.lessonTitle}`,
+            description: "Overview of lesson",
+            canonicalURL: `${getBrowserConfig("seoAppUrl")}/teachers/lessons/${lesson.lessonSlug}`,
+          }),
         }}
-        isBeta={false}
-      />
-      <OakFlex $background={"bg-decorative4-subdued"} $width={"100%"}>
-        <OakMaxWidth $pv="spacing-80">
-          <LessonAppearsIn {...pathwayGroups} />
-        </OakMaxWidth>
-      </OakFlex>
-      {teacherNote && isEditable && (
-        <TeacherNotesModal
-          isOpen={teacherNotesOpen}
-          onClose={() => {
-            setTeacherNotesOpen(false);
+      >
+        <LessonOverview
+          lesson={{
+            ...lesson,
+            isCanonical: true,
+            teacherShareButton: teacherNotesButton,
+            teacherShareButtonProps: TeacherNotesButtonProps,
+            teacherNoteHtml: teacherNoteHtml,
+            teacherNoteError: error,
           }}
-          teacherNote={teacherNote}
-          saveTeacherNote={saveTeacherNote}
-          sharingUrl={shareUrl}
-          error={error}
-          shareActivated={shareActivated}
+          isBeta={false}
         />
-      )}
-    </AppLayout>
+        <OakFlex $background={"bg-decorative4-subdued"} $width={"100%"}>
+          <OakMaxWidth $pv="spacing-80">
+            <LessonAppearsIn {...pathwayGroups} />
+          </OakMaxWidth>
+        </OakFlex>
+        {teacherNote && isEditable && (
+          <TeacherNotesModal
+            isOpen={teacherNotesOpen}
+            onClose={() => {
+              setTeacherNotesOpen(false);
+            }}
+            teacherNote={teacherNote}
+            saveTeacherNote={saveTeacherNote}
+            sharingUrl={shareUrl}
+            error={error}
+            shareActivated={shareActivated}
+          />
+        )}
+      </AppLayout>
+    </TeacherBrowseAnalyticsStoreProvider>
   );
 }
 
