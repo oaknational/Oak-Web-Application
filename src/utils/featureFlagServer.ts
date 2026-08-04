@@ -4,31 +4,30 @@ import { getFeatureFlag } from "@/node-lib/posthog/getFeatureFlag";
 import { getPosthogIdFromCookie } from "@/node-lib/posthog/getPosthogId";
 import getBrowserConfig from "@/browser-lib/getBrowserConfig";
 
+export const FLAGS = {
+  get "oaks-impact"() {
+    return process.env.FORCE_FEATURE_FLAG_OAKS_IMPACT ?? "false";
+  },
+} as const;
+
 export function isFeatureFlagEnabledAtBuild(
-  constant: string | undefined,
+  featureFlagKey: keyof typeof FLAGS,
 ): boolean {
-  return constant === "true";
+  return FLAGS[featureFlagKey] === "true";
 }
 
 /**
  * A utility function to check if a feature flag is enabled
  * @param context only provided in getServerSideProps, not provided in build time rendered components
  * @param featureFlagKey the key of the feature flag to check
- * @param constant a constant value that can override the feature flag
  * @returns a boolean indicating whether the feature flag is enabled
  */
 export async function isFeatureFlagEnabled(
-  context: GetServerSidePropsContext | undefined,
-  featureFlagKey: string,
-  constant: string | undefined,
+  context: GetServerSidePropsContext,
+  featureFlagKey: keyof typeof FLAGS,
 ): Promise<boolean> {
-  if (isFeatureFlagEnabledAtBuild(constant)) {
+  if (isFeatureFlagEnabledAtBuild(featureFlagKey)) {
     return true;
-  }
-
-  // Early exit, if no context is provided, we cannot check the feature flag. This is for build time rendered components
-  if (!context) {
-    return false;
   }
 
   const posthogUserId = getPosthogIdFromCookie(

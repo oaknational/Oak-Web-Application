@@ -176,7 +176,6 @@ export const getServerSideProps: GetServerSideProps<
   const isImpactPageEnabled = await isFeatureFlagEnabled(
     context,
     "oaks-impact",
-    process.env.ENABLE_OAKS_IMPACT_PAGE,
   );
   if (!isImpactPageEnabled) {
     return {

@@ -17,17 +17,17 @@ jest.mock("next/headers", () => ({
   })),
 }));
 
+jest.mock("./featureFlags", () => ({
+  process: {
+    env: {
+      get FORCE_FEATURE_FLAG_OAKS_IMPACT() {
+        return "false";
+      },
+    },
+  },
+}));
+
 describe("isFeatureFlagEnabled", () => {
-  test("returns true when constant is 'true'", async () => {
-    const result = await isFeatureFlagEnabled(undefined, "test-flag", "true");
-    expect(result).toBe(true);
-  });
-
-  test("returns false when context is undefined and constant is not 'true'", async () => {
-    const result = await isFeatureFlagEnabled(undefined, "test-flag", "false");
-    expect(result).toBe(false);
-  });
-
   test("returns true when feature flag is enabled for the user", async () => {
     (getPosthogIdFromCookie as jest.Mock).mockReturnValue("1111");
     (getFeatureFlag as jest.Mock).mockResolvedValue(true);
@@ -40,11 +40,7 @@ describe("isFeatureFlagEnabled", () => {
       },
     } as unknown as GetServerSidePropsContext;
 
-    const result = await isFeatureFlagEnabled(
-      mockContext,
-      "test-flag",
-      "false",
-    );
+    const result = await isFeatureFlagEnabled(mockContext, "oaks-impact");
     expect(result).toBe(true);
   });
 
@@ -60,23 +56,21 @@ describe("isFeatureFlagEnabled", () => {
       },
     } as unknown as GetServerSidePropsContext;
 
-    const result = await isFeatureFlagEnabled(
-      mockContext,
-      "test-flag",
-      "false",
-    );
+    const result = await isFeatureFlagEnabled(mockContext, "oaks-impact");
     expect(result).toBe(false);
   });
 });
 
 describe("isFeatureFlagEnabledAtBuild", () => {
   test("returns true when constant is 'true'", () => {
-    const result = isFeatureFlagEnabledAtBuild("true");
+    process.env.FORCE_FEATURE_FLAG_OAKS_IMPACT = "true";
+    const result = isFeatureFlagEnabledAtBuild("oaks-impact");
     expect(result).toBe(true);
   });
 
   test("returns false when constant is not 'true'", () => {
-    const result = isFeatureFlagEnabledAtBuild("false");
+    process.env.FORCE_FEATURE_FLAG_OAKS_IMPACT = "false";
+    const result = isFeatureFlagEnabledAtBuild("oaks-impact");
     expect(result).toBe(false);
   });
 });
