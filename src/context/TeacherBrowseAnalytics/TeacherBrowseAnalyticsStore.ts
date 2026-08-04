@@ -158,7 +158,10 @@ export const createTeacherBrowseAnalyticsStore = (
 
         // Can be tracked from the unit overview page or the lesson download success page
         if (programmeState.browseLevel === "programme") {
-          reportAnalyticsError({ event: "unitDownloaded", programmeState });
+          reportAnalyticsError({
+            event: "unitDownloadStarted",
+            programmeState,
+          });
           return;
         }
 
