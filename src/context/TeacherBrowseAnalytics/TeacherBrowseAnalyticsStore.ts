@@ -80,6 +80,7 @@ export type TeacherBrowseAnalyticsStore = {
       mediaClipsCount: number;
       mediaClipIndex: number;
     }) => void;
+    lessonShareStarted: () => void;
   };
 };
 
@@ -399,6 +400,22 @@ export const createTeacherBrowseAnalyticsStore = (
           engagementIntent: "use",
           componentType: "media_clips_played",
           videoLocation: "media clips",
+        });
+      },
+      lessonShareStarted: () => {
+        const { avo, programmeState, journeyId } = get();
+
+        if (programmeState.browseLevel !== "lesson") {
+          reportAnalyticsError({ event: "lessonShareStarted", programmeState });
+          return;
+        }
+
+        const analyticsProps = getLessonAnalyticsProperties(programmeState);
+
+        avo.lessonShareStarted({
+          ...coreProperties,
+          ...analyticsProps,
+          journeyId,
         });
       },
     },
