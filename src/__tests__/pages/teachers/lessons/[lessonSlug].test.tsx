@@ -21,8 +21,6 @@ import {
 } from "@/node-lib/curriculum-api-2023/queries/lessonOverview/lessonOverview.schema";
 import { useTeacherNotes } from "@/pages-helpers/teacher/share/useTeacherNotes";
 import { topNavFixture } from "@/node-lib/curriculum-api-2023/fixtures/topNav.fixture";
-import { getProgrammeStateForLesson } from "@/context/TeacherBrowseAnalytics/utils/getProgrammeState";
-import { TeacherBrowseAnalyticsStoreProvider } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
 
 const url = "";
 
@@ -92,28 +90,13 @@ const lesson = lessonOverviewFixture({
   excludedFromTeachingMaterials: true,
 });
 
-const programmeState = getProgrammeStateForLesson({
-  ...lesson,
-  phaseSlug: "primary",
-  phaseTitle: "Primary",
-  yearGroupTitle: "Year 3",
-  year: "3",
-  pathwaySlug: null,
-  keyStageSlug: "ks2",
-  keyStageTitle: "Key Stage 2",
-  examBoardSlug: null,
-  examBoardTitle: null,
-});
-
 const renderLesson = (props?: Partial<{ lesson: LessonOverviewPageData }>) => {
   return render(
-    <TeacherBrowseAnalyticsStoreProvider programmeState={programmeState}>
-      <LessonOverviewCanonicalPage
-        topNav={topNavFixture}
-        lesson={lesson}
-        {...props}
-      />
-    </TeacherBrowseAnalyticsStoreProvider>,
+    <LessonOverviewCanonicalPage
+      topNav={topNavFixture}
+      lesson={lesson}
+      {...props}
+    />,
   );
 };
 

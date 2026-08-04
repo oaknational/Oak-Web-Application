@@ -63,6 +63,17 @@ export type TeacherBrowseAnalyticsStore = {
       mediaClipsButtonName: MediaClipsButtonNameValueType;
       learningCycle: string | null;
     }) => void;
+    mediaClipsPlaylistPlayed: (props: {
+      learningCycle: string;
+      durationSeconds: number;
+      isCaptioned: boolean;
+      videoPlaybackId: string[];
+      videoTitle: string;
+      timeElapsedSeconds: number;
+      isMuted: boolean;
+      mediaClipsCount: number;
+      mediaClipIndex: number;
+    }) => void;
   };
 };
 
@@ -310,7 +321,7 @@ export const createTeacherBrowseAnalyticsStore = (
         });
       },
       curriculumExplainerExplored: () => {
-        const { avo, programmeState } = get();
+        const { avo, programmeState, journeyId } = get();
 
         const analyticsProperties =
           getProgrammeAnalyticsProperties(programmeState);
@@ -318,12 +329,13 @@ export const createTeacherBrowseAnalyticsStore = (
         avo.curriculumExplainerExplored({
           engagementIntent: "explore",
           componentType: "explainer_tab",
+          journeyId,
           ...coreProperties,
           ...analyticsProperties,
         });
       },
       curriculumResourcesDownloadRefined: (data) => {
-        const { avo, programmeState } = get();
+        const { avo, programmeState, journeyId } = get();
         const { tierSlug, childSubjectSlug } = data;
 
         const analyticsProperties =
@@ -332,6 +344,7 @@ export const createTeacherBrowseAnalyticsStore = (
         avo.curriculumResourcesDownloadRefined({
           ...coreProperties,
           ...analyticsProperties,
+          journeyId,
           engagementIntent: "refine",
           componentType: "download_tab",
           childSubjectSlug: childSubjectSlug || "",
@@ -340,7 +353,7 @@ export const createTeacherBrowseAnalyticsStore = (
         });
       },
       curriculumResourcesDownloaded: (data: ResourceFormValues) => {
-        const { avo, programmeState } = get();
+        const { avo, programmeState, journeyId } = get();
 
         const analyticsProperties =
           getProgrammeAnalyticsProperties(programmeState);
@@ -350,6 +363,7 @@ export const createTeacherBrowseAnalyticsStore = (
         avo.curriculumResourcesDownloaded({
           ...coreProperties,
           ...analyticsProperties,
+          journeyId,
           engagementIntent: "explore",
           componentType: "download_button",
           emailSupplied: data.email != null,
@@ -362,7 +376,7 @@ export const createTeacherBrowseAnalyticsStore = (
         });
       },
       lessonMediaClipsStarted: (data) => {
-        const { avo, programmeState } = get();
+        const { avo, programmeState, journeyId } = get();
 
         if (programmeState.browseLevel !== "lesson") {
           reportError(
@@ -384,8 +398,37 @@ export const createTeacherBrowseAnalyticsStore = (
           ...coreProperties,
           ...analyticsProperties,
           ...data,
+          journeyId,
           engagementIntent: "use",
           componentType: "go_to_media_clips_page_button",
+        });
+      },
+      mediaClipsPlaylistPlayed: (data) => {
+        const { avo, programmeState, journeyId } = get();
+
+        if (programmeState.browseLevel !== "lesson") {
+          reportError(
+            new OakError({
+              code: "analytics/teacher-browse",
+              meta: {
+                event: "lessonMediaClipsStarted",
+                browseLevel: programmeState.browseLevel,
+              },
+            }),
+          );
+          return;
+        }
+
+        const analyticsProperties =
+          getLessonAnalyticsProperties(programmeState);
+        avo.mediaClipsPlaylistPlayed({
+          ...coreProperties,
+          ...analyticsProperties,
+          ...data,
+          journeyId,
+          engagementIntent: "use",
+          componentType: "media_clips_played",
+          videoLocation: "media clips",
         });
       },
     },

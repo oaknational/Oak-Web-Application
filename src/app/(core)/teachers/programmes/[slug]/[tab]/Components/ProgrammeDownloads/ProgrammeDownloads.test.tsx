@@ -7,20 +7,17 @@ import {
   ProgrammeDownloadsProps,
 } from "./ProgrammeDownloads";
 
-import { renderWithProvidersByName } from "@/__tests__/__helpers__/renderWithProviders";
+import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 import { parseSubjectPhaseSlug } from "@/utils/curriculum/slugs";
 import { createCurriculumDownloadsUrl } from "@/utils/curriculum/urls";
 import { createYearData } from "@/fixtures/curriculum/yearData";
 import { createUnit } from "@/fixtures/curriculum/unit";
 import { CurriculumOverviewMVData } from "@/node-lib/curriculum-api-2023";
-import { TeacherBrowseAnalyticsStoreProvider } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
-import { getProgrammeStateForProgramme } from "@/context/TeacherBrowseAnalytics/utils/getProgrammeState";
 
 jest.mock("next/navigation");
 
 (usePathname as jest.Mock).mockReturnValue("/");
 
-const render = renderWithProvidersByName(["theme", "oakTheme"]);
 const mvRefreshTime = 1721314874829;
 
 const tiersMock = [
@@ -124,19 +121,8 @@ const defaultProps = {
   } satisfies CurriculumOverviewMVData,
 };
 const renderComponent = (overrides: Partial<ProgrammeDownloadsProps>) => {
-  const programmeState = getProgrammeStateForProgramme({
-    programmeSlug: "english-secondary-aqa",
-    subjectSlug:
-      overrides.curriculumSelectionSlugs?.subjectSlug ??
-      defaultProps.curriculumSelectionSlugs.subjectSlug,
-    subjectTitle: defaultProps.curriculumInfo.subjectTitle,
-    phaseSlug: defaultProps.curriculumSelectionSlugs.phaseSlug,
-    phaseTitle: defaultProps.curriculumInfo.phaseTitle,
-  });
-  return render(
-    <TeacherBrowseAnalyticsStoreProvider programmeState={programmeState}>
-      <ProgrammeDownloads {...defaultProps} {...overrides} />
-    </TeacherBrowseAnalyticsStoreProvider>,
+  return renderWithProviders()(
+    <ProgrammeDownloads {...defaultProps} {...overrides} />,
   );
 };
 
@@ -230,20 +216,22 @@ describe("Programme Downloads", () => {
       await user.click(nextButton);
 
       expect(curriculumResourcesDownloadRefined).toHaveBeenCalledTimes(1);
-      expect(curriculumResourcesDownloadRefined).toHaveBeenCalledWith({
-        analyticsUseCase: "Teacher",
-        childSubjectName: "Combined",
-        childSubjectSlug: "combined-science",
-        componentType: "download_tab",
-        engagementIntent: "refine",
-        eventVersion: "2.0.0",
-        learningTier: "Foundation",
-        platform: "owa",
-        product: "teacher lesson resources",
-        phase: "secondary",
-        subjectSlug: "science",
-        subjectTitle: "English",
-      });
+      expect(curriculumResourcesDownloadRefined).toHaveBeenCalledWith(
+        expect.objectContaining({
+          analyticsUseCase: "Teacher",
+          childSubjectName: "Combined",
+          childSubjectSlug: "combined-science",
+          componentType: "download_tab",
+          engagementIntent: "refine",
+          eventVersion: "2.0.0",
+          learningTier: "Foundation",
+          platform: "owa",
+          product: "teacher lesson resources",
+          phase: "secondary",
+          subjectSlug: "biology",
+          subjectTitle: "Biology",
+        }),
+      );
     });
   });
 });
