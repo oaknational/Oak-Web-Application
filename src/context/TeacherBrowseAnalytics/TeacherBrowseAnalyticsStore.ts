@@ -120,21 +120,6 @@ const reportAnalyticsError = ({
   );
 };
 
-/**
- * A journeyId should always be present, but the event is still worth sending
- * without one, so report the error and fall back to an empty string.
- */
-const resolveJourneyId = (
-  journeyId: string | null,
-  errorMeta: AnalyticsErrorMeta,
-): string => {
-  if (!journeyId) {
-    reportAnalyticsError(errorMeta);
-    return "";
-  }
-  return journeyId;
-};
-
 export const createTeacherBrowseAnalyticsStore = (
   initialState: Pick<
     TeacherBrowseAnalyticsStore,
@@ -185,10 +170,7 @@ export const createTeacherBrowseAnalyticsStore = (
         avo.unitDownloaded({
           engagementIntent: EngagementIntent.USE,
           componentType: ComponentType.UNIT_DOWNLOAD_BUTTON,
-          journeyId: resolveJourneyId(journeyId, {
-            event: "unitDownloaded",
-            programmeState,
-          }),
+          journeyId,
           accessLevel,
           ...coreProperties,
           ...analyticsProperties,
@@ -212,11 +194,7 @@ export const createTeacherBrowseAnalyticsStore = (
           componentType: "unit_info_button",
           selectedThread,
           analyticsUseCase: "Teacher",
-          journeyId: resolveJourneyId(journeyId, {
-            event: "unitOverviewAccessed",
-            programmeState,
-            unitSlug: unit.slug,
-          }),
+          journeyId,
           accessLevel: "unit",
           navigationType: "across",
         });
@@ -244,10 +222,7 @@ export const createTeacherBrowseAnalyticsStore = (
           ...filterProperties,
           ...coreProperties,
           ...analyticsProperties,
-          journeyId: resolveJourneyId(journeyId, {
-            event: "unitSequenceRefined",
-            programmeState,
-          }),
+          journeyId,
         });
       },
       curriculumExplainerExplored: () => {
