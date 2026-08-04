@@ -31,7 +31,6 @@ import LessonOverviewPresentation from "@/components/TeacherComponents/LessonOve
 import LessonOverviewVideo from "@/components/TeacherComponents/LessonOverviewVideo";
 import QuizContainerNew from "@/components/TeacherComponents/LessonOverviewQuizContainer";
 import useAnalytics from "@/context/Analytics/useAnalytics";
-import type { DownloadResourceButtonNameValueType } from "@/browser-lib/avo/Avo";
 import useAnalyticsPageProps from "@/hooks/useAnalyticsPageProps";
 import LessonDetails from "@/components/TeacherComponents/LessonOverviewDetails";
 import { LessonItemContainer } from "@/components/TeacherComponents/LessonItemContainer";
@@ -140,6 +139,7 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
     lessonShareStarted,
     createTeachingMaterialsInitiated,
     teachingMaterialsSelected,
+    lessonResourceDownloadStarted,
   } = useTeacherBrowseAnalytics((store) => store.track);
 
   const contentRestricted =
@@ -217,23 +217,6 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
     lessonReleaseDate,
     isLegacy: lesson.isLegacy,
   });
-
-  const trackDownloadResourceButtonClicked = ({
-    downloadResourceButtonName,
-  }: {
-    downloadResourceButtonName: DownloadResourceButtonNameValueType;
-  }) => {
-    track.lessonResourceDownloadStarted({
-      platform: "owa",
-      product: "teacher lesson resources",
-      engagementIntent: "use",
-      componentType: "lesson_download_button",
-      eventVersion: "2.0.0",
-      analyticsUseCase: "Teacher",
-      downloadResourceButtonName,
-      ...browsePathwayData,
-    });
-  };
 
   const slugs = { unitSlug, lessonSlug, programmeSlug };
 
@@ -321,9 +304,7 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
           !actions?.disablePupilShare
         }
         onClickDownloadAll={() => {
-          trackDownloadResourceButtonClicked({
-            downloadResourceButtonName: "all",
-          });
+          lessonResourceDownloadStarted("all");
         }}
         onClickShareAll={lessonShareStarted}
         pupilLessonOutcome={getDedupedPupilLessonOutcome(
@@ -377,10 +358,9 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
                     currentSectionId={currentSectionId}
                     downloadAllButtonProps={{
                       showDownloadAll,
-                      onClickDownloadAll: () =>
-                        trackDownloadResourceButtonClicked({
-                          downloadResourceButtonName: "all",
-                        }),
+                      onClickDownloadAll: () => ({
+                        downloadResourceButtonName: "all",
+                      }),
 
                       ...lesson,
                       ...commonPathway,
@@ -421,9 +401,7 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
                         legacyCopyrightContent,
                       )}
                       onDownloadButtonClick={() => {
-                        trackDownloadResourceButtonClicked({
-                          downloadResourceButtonName: "lesson guide",
-                        });
+                        lessonResourceDownloadStarted("lesson guide");
                       }}
                       slugs={slugs}
                       anchorId="lesson-guide"
@@ -453,9 +431,7 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
                         legacyCopyrightContent,
                       )}
                       onDownloadButtonClick={() => {
-                        trackDownloadResourceButtonClicked({
-                          downloadResourceButtonName: "slide deck",
-                        });
+                        lessonResourceDownloadStarted("slide deck");
                       }}
                       slugs={slugs}
                       anchorId="slide-deck"
@@ -606,9 +582,7 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
                       }
                       shareable={isLegacyLicense && showShare}
                       onDownloadButtonClick={() => {
-                        trackDownloadResourceButtonClicked({
-                          downloadResourceButtonName: "worksheet",
-                        });
+                        lessonResourceDownloadStarted("worksheet");
                       }}
                       slugs={slugs}
                       isFinalElement={
@@ -668,9 +642,7 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
                           )
                         }
                         onDownloadButtonClick={() => {
-                          trackDownloadResourceButtonClicked({
-                            downloadResourceButtonName: "starter quiz",
-                          });
+                          lessonResourceDownloadStarted("starter quiz");
                         }}
                         slugs={slugs}
                         isFinalElement={
@@ -722,9 +694,7 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
                         }
                         shareable={isLegacyLicense && showShare}
                         onDownloadButtonClick={() => {
-                          trackDownloadResourceButtonClicked({
-                            downloadResourceButtonName: "exit quiz",
-                          });
+                          lessonResourceDownloadStarted("exit quiz");
                         }}
                         slugs={slugs}
                         isFinalElement={
@@ -770,9 +740,7 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
                       }
                       shareable={isLegacyLicense && showShare}
                       onDownloadButtonClick={() => {
-                        trackDownloadResourceButtonClicked({
-                          downloadResourceButtonName: "additional material",
-                        });
+                        lessonResourceDownloadStarted("additional material");
                       }}
                       slugs={slugs}
                       isFinalElement={
