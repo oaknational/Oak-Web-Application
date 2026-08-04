@@ -16,7 +16,6 @@ import UnitDownloadButton, {
   useUnitDownloadButtonState,
 } from "@/components/TeacherComponents/UnitDownloadButton/UnitDownloadButton";
 import { resolveOakHref } from "@/common-lib/urls";
-import useAnalytics from "@/context/Analytics/useAnalytics";
 import type { LessonListSchema } from "@/node-lib/curriculum-api-2023/shared.schema";
 import { getUnitDownloadFileId } from "@/utils/getUnitDownloadFileId";
 import { useTeacherBrowseAnalytics } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
@@ -60,9 +59,9 @@ export function DownloadSuccessView({
     unitvariantId,
   } = lesson;
 
-  const { track } = useAnalytics();
-  const { onwardContentSelected } = track;
-  const { unitDownloaded } = useTeacherBrowseAnalytics((store) => store.track);
+  const { unitDownloaded, onwardContentSelected } = useTeacherBrowseAnalytics(
+    (store) => store.track,
+  );
 
   const {
     setShowDownloadMessage,
@@ -88,8 +87,6 @@ export function DownloadSuccessView({
         onBackClick={() =>
           onwardContentSelected({
             lessonName: lessonTitle,
-            unitName: unitTitle,
-            unitSlug,
             lessonSlug,
             onwardIntent: "view-lesson",
             lessonReleaseCohort: "2023-2026",

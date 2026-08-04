@@ -22,7 +22,9 @@ import {
   EngagementIntent,
   EventVersionValueType,
   LearningTierValueType,
+  LessonReleaseCohortValueType,
   MediaClipsButtonNameValueType,
+  OnwardIntentValueType,
   PlatformValueType,
   ProductValueType,
   ResourceTypeValueType,
@@ -85,6 +87,13 @@ export type TeacherBrowseAnalyticsStore = {
       isMuted: boolean;
       mediaClipsCount: number;
       mediaClipIndex: number;
+    }) => void;
+    onwardContentSelected: (props: {
+      onwardIntent: OnwardIntentValueType;
+      lessonName: string;
+      lessonSlug: string;
+      lessonReleaseCohort: LessonReleaseCohortValueType;
+      lessonReleaseDate: string;
     }) => void;
     teachingMaterialsSelected: (props: {
       teachingMaterialType: TeachingMaterialTypeValueType;
@@ -188,6 +197,28 @@ export const createTeacherBrowseAnalyticsStore = (
           accessLevel,
           ...coreProperties,
           ...analyticsProperties,
+        });
+      },
+      onwardContentSelected: (data) => {
+        const { avo, programmeState, journeyId, accessLevel } = get();
+
+        if (programmeState.browseLevel !== "unit") {
+          reportAnalyticsError({
+            event: "onwardContentSelected",
+            programmeState,
+          });
+          return;
+        }
+
+        const analyticsProperties = getUnitAnalyticsProperties(programmeState);
+
+        avo.onwardContentSelected({
+          ...coreProperties,
+          ...analyticsProperties,
+          ...data,
+          journeyId,
+          accessLevel,
+          navigationType: "narrow",
         });
       },
       programmeRefined: () => {
