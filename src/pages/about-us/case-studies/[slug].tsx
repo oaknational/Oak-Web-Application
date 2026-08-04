@@ -4,7 +4,10 @@ import {
   OakBox,
   OakGrid,
   OakGridArea,
+  OakVideo,
+  OakHandDrawnHR,
 } from "@oaknational/oak-components";
+import { format } from "date-fns";
 
 import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
 import { OaksImpactCaseStudyPage } from "@/common-lib/cms-types/aboutPages";
@@ -17,8 +20,9 @@ import { resolveOakHref } from "@/common-lib/urls";
 import { NewGutterMaxWidth } from "@/components/GenericPagesComponents/NewGutterMaxWidth";
 import { useOakNotificationsContext } from "@/context/OakNotifications/useOakNotificationsContext";
 import { OaksImpactCaseStudyHeader } from "@/components/GenericPagesComponents/OaksImpactCaseStudyHeader";
-import { OaksImpactCaseStudyContent } from "@/components/GenericPagesComponents/OaksImpactCaseStudyContent";
 import { isFeatureFlagEnabled } from "@/utils/featureFlagServer";
+import { OaksImpactCaseStudyContentLayout } from "@/components/GenericPagesComponents/OaksImpactCaseStudyContentLayout";
+import VideoPlayer from "@/components/SharedComponents/VideoPlayer";
 
 export type AboutUsOaksImpactCaseStudyPageProps = {
   pageData: {
@@ -62,12 +66,21 @@ const AboutUsOaksImpactCaseStudy: NextPage<
             <OakBox $mt="spacing-40" $mb="spacing-56">
               <OakGrid $cg="spacing-16">
                 <OakGridArea $rowStart={1} $colSpan={12}>
-                  <OakBreadcrumbs
-                    breadcrumbs={[
-                      { href: resolveOakHref({ page: "home" }), text: "Home" },
-                      { href: "/about-us/oaks-impact", text: "Oak's Impact" },
-                      { text: caseStudy.video.title },
-                    ]}
+                  <OakBox $pb="spacing-20">
+                    <OakBreadcrumbs
+                      breadcrumbs={[
+                        {
+                          href: resolveOakHref({ page: "home" }),
+                          text: "Home",
+                        },
+                        { href: "/about-us/oaks-impact", text: "Case studies" },
+                        { text: caseStudy.video.title },
+                      ]}
+                    />
+                  </OakBox>
+                  <OakHandDrawnHR
+                    hrColor={"bg-neutral-stronger"}
+                    $height={"spacing-4"}
                   />
                 </OakGridArea>
                 <OakGridArea
@@ -77,7 +90,10 @@ const AboutUsOaksImpactCaseStudy: NextPage<
                 >
                   <OaksImpactCaseStudyHeader
                     title={caseStudy.video.title}
-                    publishedDate={"14 July 2026"}
+                    publishedDate={format(
+                      new Date(caseStudy.publishedAt),
+                      "d MMMM y",
+                    )}
                     onCopyLink={onCopyLink}
                   />
                 </OakGridArea>
@@ -86,10 +102,36 @@ const AboutUsOaksImpactCaseStudy: NextPage<
           </NewGutterMaxWidth>
         </OakBox>
         <NewGutterMaxWidth>
-          <OaksImpactCaseStudyContent />
+          <OaksImpactCaseStudyContentLayout>
+            <OakBox $pv="spacing-100" $position={"relative"}>
+              <OakVideo
+                videoSlot={
+                  caseStudy.video.video.asset && (
+                    <VideoPlayer
+                      playbackPolicy="public"
+                      thumbnailTime={caseStudy.video.video.asset.thumbTime}
+                      playbackId={caseStudy.video.video.asset.playbackId}
+                      title={caseStudy.video.title}
+                      isLegacy={true}
+                      location="marketing"
+                      omitBorder={true}
+                    />
+                  )
+                }
+                showTranscript={true}
+                transcript={[
+                  ...new Array(20).fill(true).map(() => "test transcript text"),
+                ]}
+                body={"Testing text"}
+              />
+            </OakBox>
+          </OaksImpactCaseStudyContentLayout>
         </NewGutterMaxWidth>
 
-        <OaksImpactCaseStudies caseStudies={otherCaseStudies} />
+        <OaksImpactCaseStudies
+          title="Explore more case studies"
+          caseStudies={otherCaseStudies}
+        />
       </OakBox>
     </Layout>
   );

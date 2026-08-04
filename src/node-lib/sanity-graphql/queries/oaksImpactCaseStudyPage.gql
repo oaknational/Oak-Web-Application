@@ -18,7 +18,8 @@ query oaksImpactCaseStudyPage($isDraftFilter: Sanity_DocumentFilter) {
         textRaw,
         video {
           ...Video
-        }
+        },
+        publishedAt
       }
     }
   }

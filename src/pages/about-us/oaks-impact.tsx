@@ -49,6 +49,7 @@ const OaksImpact: NextPage<OaksImpactPageProps> = ({ topNav, pageData }) => {
         </AboutSharedHeader>
         <OaksImpactStats {...pageData.statsSection} />
         <OaksImpactCaseStudies
+          title="Case studies"
           caseStudies={pageData.caseStudiesSection.caseStudies}
         />
         <OaksImpactSchoolQuotesSection {...pageData.schoolQuotes} />
