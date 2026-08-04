@@ -58,6 +58,17 @@ export type TeacherBrowseAnalyticsStore = {
       mediaClipsButtonName: MediaClipsButtonNameValueType;
       learningCycle: string | null;
     }) => void;
+    mediaClipsPlaylistPlayed: (props: {
+      learningCycle: string;
+      durationSeconds: number;
+      isCaptioned: boolean;
+      videoPlaybackId: string[];
+      videoTitle: string;
+      timeElapsedSeconds: number;
+      isMuted: boolean;
+      mediaClipsCount: number;
+      mediaClipIndex: number;
+    }) => void;
   };
 };
 
@@ -221,7 +232,7 @@ export const createTeacherBrowseAnalyticsStore = (
         });
       },
       lessonMediaClipsStarted: (data) => {
-        const { avo, programmeState } = get();
+        const { avo, programmeState, journeyId } = get();
 
         if (programmeState.browseLevel !== "lesson") {
           reportError(
@@ -243,8 +254,37 @@ export const createTeacherBrowseAnalyticsStore = (
           ...coreProperties,
           ...analyticsProperties,
           ...data,
+          journeyId,
           engagementIntent: "use",
           componentType: "go_to_media_clips_page_button",
+        });
+      },
+      mediaClipsPlaylistPlayed: (data) => {
+        const { avo, programmeState, journeyId } = get();
+
+        if (programmeState.browseLevel !== "lesson") {
+          reportError(
+            new OakError({
+              code: "analytics/teacher-browse",
+              meta: {
+                event: "lessonMediaClipsStarted",
+                browseLevel: programmeState.browseLevel,
+              },
+            }),
+          );
+          return;
+        }
+
+        const analyticsProperties =
+          getLessonAnalyticsProperties(programmeState);
+        avo.mediaClipsPlaylistPlayed({
+          ...coreProperties,
+          ...analyticsProperties,
+          ...data,
+          journeyId,
+          engagementIntent: "use",
+          componentType: "media_clips_played",
+          videoLocation: "media clips",
         });
       },
     },
