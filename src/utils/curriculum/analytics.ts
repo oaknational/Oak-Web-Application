@@ -107,7 +107,7 @@ export function buildUnitOverviewAccessedAnalytics({
   analyticsUseCase: AnalyticsUseCaseValueType;
   selectedThread?: Thread;
   componentType: UnitOverviewAccessedProperties["componentType"];
-  journeyId: string;
+  journeyId: string | null;
   accessLevel: AccessLevelValueType;
   navigationType: NavigationTypeValueType;
 }): UnitOverviewAccessedProperties {

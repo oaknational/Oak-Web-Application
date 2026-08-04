@@ -9,6 +9,7 @@ import {
   getProgrammeAnalyticsProperties,
   getUnitAnalyticsProperties,
 } from "./utils/getAnalyticsProperties";
+import { reportAnalyticsError } from "./utils/reportAnalyticsError";
 
 import {
   AccessLevelValueType,
@@ -23,8 +24,6 @@ import {
   ProductValueType,
   ResourceTypeValueType,
 } from "@/browser-lib/avo/Avo";
-import errorReporter from "@/common-lib/error-reporter";
-import OakError, { ErrorMeta } from "@/errors/OakError";
 import { Thread, Unit, CurriculumFilters } from "@/utils/curriculum/types";
 import {
   buildUnitOverviewAccessedAnalytics,
@@ -96,49 +95,6 @@ const coreProperties: {
   analyticsUseCase: "Teacher",
 };
 
-const reportError = errorReporter("teacher-browse-analytics");
-
-type AnalyticsErrorMeta = ErrorMeta & {
-  event: keyof TeacherBrowseAnalyticsStore["track"];
-  programmeState: ProgrammeState;
-};
-
-/**
- * Report a tracking problem, tagged with the event and the browse level it
- * was fired from.
- */
-const reportAnalyticsError = ({
-  event,
-  programmeState,
-  ...meta
-}: AnalyticsErrorMeta) => {
-  reportError(
-    new OakError({
-      code: "analytics/teacher-browse",
-      meta: {
-        event,
-        browseLevel: programmeState.browseLevel,
-        ...meta,
-      },
-    }),
-  );
-};
-
-/**
- * A journeyId should always be present, but the event is still worth sending
- * without one, so report the error and fall back to an empty string.
- */
-const resolveJourneyId = (
-  journeyId: string | null,
-  errorMeta: AnalyticsErrorMeta,
-): string => {
-  if (!journeyId) {
-    reportAnalyticsError(errorMeta);
-    return "";
-  }
-  return journeyId;
-};
-
 export const createTeacherBrowseAnalyticsStore = (
   initialState: Pick<
     TeacherBrowseAnalyticsStore,
@@ -189,10 +145,7 @@ export const createTeacherBrowseAnalyticsStore = (
         avo.unitDownloaded({
           engagementIntent: EngagementIntent.USE,
           componentType: ComponentType.UNIT_DOWNLOAD_BUTTON,
-          journeyId: resolveJourneyId(journeyId, {
-            event: "unitDownloaded",
-            programmeState,
-          }),
+          journeyId,
           accessLevel,
           ...coreProperties,
           ...analyticsProperties,
@@ -279,11 +232,7 @@ export const createTeacherBrowseAnalyticsStore = (
           componentType: "unit_info_button",
           selectedThread,
           analyticsUseCase: "Teacher",
-          journeyId: resolveJourneyId(journeyId, {
-            event: "unitOverviewAccessed",
-            programmeState,
-            unitSlug: unit.slug,
-          }),
+          journeyId,
           accessLevel: "unit",
           navigationType: "across",
         });
@@ -311,10 +260,7 @@ export const createTeacherBrowseAnalyticsStore = (
           ...filterProperties,
           ...coreProperties,
           ...analyticsProperties,
-          journeyId: resolveJourneyId(journeyId, {
-            event: "unitSequenceRefined",
-            programmeState,
-          }),
+          journeyId,
         });
       },
       unitRefined: () => {
@@ -413,15 +359,10 @@ export const createTeacherBrowseAnalyticsStore = (
         const { avo, programmeState, journeyId } = get();
 
         if (programmeState.browseLevel !== "lesson") {
-          reportError(
-            new OakError({
-              code: "analytics/teacher-browse",
-              meta: {
-                event: "lessonMediaClipsStarted",
-                browseLevel: programmeState.browseLevel,
-              },
-            }),
-          );
+          reportAnalyticsError({
+            event: "lessonMediaClipsStarted",
+            programmeState,
+          });
           return;
         }
 
@@ -441,15 +382,10 @@ export const createTeacherBrowseAnalyticsStore = (
         const { avo, programmeState, journeyId } = get();
 
         if (programmeState.browseLevel !== "lesson") {
-          reportError(
-            new OakError({
-              code: "analytics/teacher-browse",
-              meta: {
-                event: "lessonMediaClipsStarted",
-                browseLevel: programmeState.browseLevel,
-              },
-            }),
-          );
+          reportAnalyticsError({
+            event: "mediaClipsPlaylistPlayed",
+            programmeState,
+          });
           return;
         }
 

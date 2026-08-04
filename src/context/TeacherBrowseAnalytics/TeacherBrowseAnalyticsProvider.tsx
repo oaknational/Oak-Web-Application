@@ -1,13 +1,25 @@
 "use client";
-import { createContext, ReactNode, useContext, useMemo, useState } from "react";
+import {
+  createContext,
+  ReactNode,
+  useContext,
+  useEffect,
+  useMemo,
+  useState,
+} from "react";
 import { useStore } from "zustand";
+import { useOakConsent } from "@oaknational/oak-consent-client";
 
 import useAnalytics from "../Analytics/useAnalytics";
+import OakError from "../../errors/OakError";
+import errorReporter from "../../common-lib/error-reporter";
 
 import {
   createTeacherBrowseAnalyticsStore,
   TeacherBrowseAnalyticsStore,
 } from "./TeacherBrowseAnalyticsStore";
+
+import { ServicePolicyMap } from "@/browser-lib/cookie-consent/ServicePolicyMap";
 
 export type TeacherBrowseAnalyticsStoreApi = ReturnType<
   typeof createTeacherBrowseAnalyticsStore
@@ -23,21 +35,38 @@ export type TeacherBrowseAnalyticsStoreProviderProps = Pick<
   children: ReactNode;
 };
 
+const reportError = errorReporter("teacher-browse-analytics");
+
 export const TeacherBrowseAnalyticsStoreProvider = ({
   programmeState,
   children,
 }: TeacherBrowseAnalyticsStoreProviderProps) => {
   const { track, getSessionId } = useAnalytics();
   const { subjectSlug, phaseSlug } = programmeState;
-
-  const sessionId = useMemo(() => getSessionId(), [getSessionId]);
+  const posthogConsent = useOakConsent().getConsent(ServicePolicyMap.POSTHOG);
+  const hasConsent = posthogConsent === "granted";
 
   const journeyId = useMemo(() => {
+    if (!hasConsent) {
+      return null;
+    }
+    const sessionId = getSessionId();
+
     if (!sessionId) {
+      // user consented to cookies but does not have a session id
+      reportError(
+        new OakError({
+          code: "analytics/teacher-browse",
+          meta: {
+            sessionId,
+            message: "Missing session id",
+          },
+        }),
+      );
       return null;
     }
     return `${sessionId}:${phaseSlug}-${subjectSlug}`;
-  }, [sessionId, subjectSlug, phaseSlug]);
+  }, [hasConsent, getSessionId, subjectSlug, phaseSlug]);
 
   const [store] = useState(() =>
     createTeacherBrowseAnalyticsStore({
@@ -46,6 +75,10 @@ export const TeacherBrowseAnalyticsStoreProvider = ({
       journeyId,
     }),
   );
+
+  useEffect(() => {
+    store.setState({ journeyId });
+  }, [store, journeyId]);
 
   return (
     <TeacherBrowseAnalyticsStoreContext.Provider value={store}>
