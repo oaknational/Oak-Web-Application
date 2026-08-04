@@ -44,13 +44,10 @@ import {
   createLearningCycleVideosTitleMap,
 } from "@/components/TeacherComponents/helpers/lessonMediaHelpers/lessonMedia.helpers";
 import { RestrictedContentPrompt } from "@/components/TeacherComponents/RestrictedContentPrompt/RestrictedContentPrompt";
-import {
-  KeyStageTitleValueType,
-  PathwayValueType,
-} from "@/browser-lib/avo/Avo";
 import { useComplexCopyright } from "@/hooks/useComplexCopyright";
 import { LEGACY_COHORT } from "@/config/cohort";
 import useAnalytics from "@/context/Analytics/useAnalytics";
+import { useTeacherBrowseAnalytics } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
 
 type BaseLessonMedia = {
   lessonTitle: string;
@@ -101,6 +98,9 @@ export const LessonMedia = (
   } = lesson;
 
   const { track } = useAnalytics();
+  const { mediaClipsPlaylistPlayed } = useTeacherBrowseAnalytics(
+    (store) => store.track,
+  );
   const {
     showSignedOutLoginRequired,
     showSignedOutGeoRestricted,
@@ -273,72 +273,15 @@ export const LessonMedia = (
     }
   };
 
-  const trackMediaClipsPlaylistPlayed = ({
-    learningCycle,
-    durationSeconds,
-    isCaptioned,
-    videoPlaybackId,
-    videoTitle,
-    timeElapsedSeconds,
-    isMuted,
-    mediaClipsCount,
-    mediaClipIndex,
-  }: {
-    learningCycle?: string | null;
-    durationSeconds: number;
-    isCaptioned: boolean;
-    videoPlaybackId: string[];
-    videoTitle: string;
-    timeElapsedSeconds: number;
-    isMuted: boolean;
-    mediaClipsCount: number;
-    mediaClipIndex: number;
-  }) => {
-    track.mediaClipsPlaylistPlayed({
-      platform: "owa",
-      product: "media clips",
-      engagementIntent: "use",
-      componentType: "media_clips_played",
-      eventVersion: "2.0.0",
-      analyticsUseCase: "Teacher",
-      keyStageSlug,
-      keyStageTitle: keyStageTitle as KeyStageTitleValueType,
-      subjectSlug,
-      subjectTitle,
-      unitSlug,
-      unitName: unitTitle,
-      lessonSlug,
-      lessonName: lessonTitle,
-      pathway: pathwayTitle as PathwayValueType,
-      tierName: null,
-      yearGroupName: null,
-      yearGroupSlug: null,
-      examBoard: null,
-      learningCycle,
-      releaseGroup: "2023",
-      phase: null,
-      durationSeconds, // int
-      isCaptioned, // bool
-      videoPlaybackId, // list of string
-      videoTitle, // string
-      timeElapsedSeconds, // int
-      isMuted, // bool
-      videoLocation: "media clips", // nulla
-      mediaClipsCount, // int
-      mediaClipIndex,
-      lessonReleaseCohort: "2023-2026",
-      lessonReleaseDate: lessonReleaseDate ?? "unreleased",
-    });
-  };
-
   const onMediaClipClick = (clipSlug: string) => {
     const clickedMediaClip = listOfAllClips.find(
       (clip) => clip.mediaId === clipSlug,
     );
     clickedMediaClip && handleVideoChange(clickedMediaClip);
     videoPlayerWrapper.current?.focus();
-    trackMediaClipsPlaylistPlayed({
-      learningCycle: clickedMediaClip?.learningCycle,
+
+    mediaClipsPlaylistPlayed({
+      learningCycle: clickedMediaClip?.learningCycle ?? null,
       durationSeconds: clickedMediaClip?.videoObject?.duration ?? 0,
       isCaptioned: false,
       videoPlaybackId: [

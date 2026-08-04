@@ -60,7 +60,7 @@ export type TeacherBrowseAnalyticsStore = {
       learningCycle: string | null;
     }) => void;
     mediaClipsPlaylistPlayed: (props: {
-      learningCycle: string;
+      learningCycle: string | null;
       durationSeconds: number;
       isCaptioned: boolean;
       videoPlaybackId: string[];
