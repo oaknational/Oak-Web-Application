@@ -84,6 +84,7 @@ const UnitHeader = (props: UnitHeaderProps) => {
             setShowIncompleteMessage={setShowIncompleteMessage}
             downloadInProgress={downloadInProgress}
             unitFileId={unitDownloadFileId}
+            accessLevel="unit"
             onDownloadSuccess={() => {
               unitDownloaded("unit");
               setCurrentToastProps({

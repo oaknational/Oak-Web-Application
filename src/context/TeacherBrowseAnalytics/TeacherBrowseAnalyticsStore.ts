@@ -47,7 +47,7 @@ export type TeacherBrowseAnalyticsStore = {
       downloadResourceButtonName: DownloadResourceButtonNameValueType,
     ) => void;
     unitDownloaded: (accessLevel: AccessLevelValueType) => void;
-    unitDownloadInitiated: (accessLevel: AccessLevelValueType) => void;
+    unitDownloadStarted: (accessLevel: AccessLevelValueType) => void;
     curriculumExplainerExplored: () => void;
     unitSequenceRefined: (data: {
       filters: CurriculumFilters;
@@ -153,7 +153,7 @@ export const createTeacherBrowseAnalyticsStore = (
           ...analyticsProperties,
         });
       },
-      unitDownloadInitiated: (accessLevel) => {
+      unitDownloadStarted: (accessLevel) => {
         const { avo, programmeState, journeyId } = get();
 
         // Can be tracked from the unit overview page or the lesson download success page
@@ -164,7 +164,7 @@ export const createTeacherBrowseAnalyticsStore = (
 
         const analyticsProperties = getUnitAnalyticsProperties(programmeState);
 
-        avo.unitDownloaded({
+        avo.unitDownloadStarted({
           engagementIntent: EngagementIntent.USE,
           componentType: ComponentType.UNIT_DOWNLOAD_BUTTON,
           journeyId,
