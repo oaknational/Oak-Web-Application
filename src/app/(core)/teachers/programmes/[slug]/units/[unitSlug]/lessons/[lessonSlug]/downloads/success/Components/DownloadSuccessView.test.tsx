@@ -20,15 +20,17 @@ globalThis.fetch = jest.fn().mockResolvedValue({ ok: true });
 
 const onwardContentSelected = jest.fn();
 
-jest.mock("@/context/Analytics/useAnalytics", () => ({
-  __esModule: true,
-  default: () => ({
-    track: {
+jest.mock(
+  "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider",
+  () => ({
+    ...jest.requireActual(
+      "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider",
+    ),
+    useTeacherBrowseAnalytics: () => ({
       onwardContentSelected,
-    },
-    getSessionId: jest.fn(),
+    }),
   }),
-}));
+);
 
 const mockGetConsent = jest.fn();
 
@@ -152,13 +154,7 @@ describe("DownloadSuccessView", () => {
     );
     expect(onwardContentSelected).toHaveBeenCalledTimes(1);
     expect(onwardContentSelected).toHaveBeenCalledWith({
-      lessonName: baseLesson.lessonTitle,
-      unitName: baseLesson.unitTitle,
-      unitSlug: baseLesson.unitSlug,
-      lessonSlug: baseLesson.lessonSlug,
       onwardIntent: "view-lesson",
-      lessonReleaseCohort: "2023-2026",
-      lessonReleaseDate: baseLesson.lessonReleaseDate,
     });
   });
 
