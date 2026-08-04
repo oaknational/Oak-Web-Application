@@ -62,9 +62,7 @@ export function DownloadSuccessView({
 
   const { track } = useAnalytics();
   const { onwardContentSelected } = track;
-  const { unitDownloadInitiated } = useTeacherBrowseAnalytics(
-    (store) => store.track,
-  );
+  const { unitDownloaded } = useTeacherBrowseAnalytics((store) => store.track);
 
   const {
     setShowDownloadMessage,
@@ -161,7 +159,7 @@ export function DownloadSuccessView({
                   setShowIncompleteMessage={setShowIncompleteMessage}
                   downloadInProgress={downloadInProgress}
                   unitFileId={getUnitDownloadFileId(unitTitle, unitvariantId)}
-                  onDownloadSuccess={() => unitDownloadInitiated()}
+                  onDownloadSuccess={() => unitDownloaded("lesson")}
                   showNewTag={false}
                   geoRestricted={isGeorestrictedUnit}
                   size="small"

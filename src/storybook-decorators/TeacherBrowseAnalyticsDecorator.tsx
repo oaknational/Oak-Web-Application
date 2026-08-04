@@ -15,7 +15,7 @@ const state: TeacherBrowseAnalyticsStore = {
   track: {
     lessonResourceDownloadStarted: () =>
       console.log("lessonResourceDownloadStarted fired"),
-    unitDownloadInitiated: () => console.log("unitDownloadInitiated fired"),
+    unitDownloaded: () => console.log("unitDownloaded fired"),
     curriculumExplainerExplored: () =>
       console.log("curriculumExplainerExplore fired"),
     curriculumResourcesDownloaded: () =>

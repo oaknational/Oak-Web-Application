@@ -527,7 +527,7 @@ _avo_invoke = function _avo_invoke(
 ) {
   try {
     _avo_invoke_payload({
-      ac: "i5awYTC6AY9DLLBTWOqj",
+      ac: "GSuv4X0KdeO7G8CEZMTP",
       br: "TXja698DdsQSi5EJ77tnq",
       en: env,
       ev: eventId,
@@ -556,7 +556,7 @@ _avo_invoke_meta = function _avo_invoke_meta(
 ) {
   try {
     _avo_invoke_payload({
-      ac: "i5awYTC6AY9DLLBTWOqj",
+      ac: "GSuv4X0KdeO7G8CEZMTP",
       br: "TXja698DdsQSi5EJ77tnq",
       en: env,
       ty: type,

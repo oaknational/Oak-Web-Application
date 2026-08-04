@@ -126,7 +126,7 @@ export type TeacherBrowseTrackFns = {
 
   //UNITS
   unitAccessed: () => void;
-  unitDownloadInitiated: () => void;
+  unitDownloaded: () => void;
   unitOverviewAccessed: (props: {
     unitHighlighted: boolean;
     selectedThread?: { slug: string; title: string }; // TD add filters to state
