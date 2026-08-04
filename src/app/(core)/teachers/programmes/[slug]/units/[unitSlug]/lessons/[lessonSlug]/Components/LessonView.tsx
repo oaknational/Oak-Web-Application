@@ -84,8 +84,11 @@ export default function LessonView(
   const { isSignedIn } = useUser();
   const isMathJaxLesson = hasLessonMathJax(props, props.subjectSlug, false);
   const MathJaxLessonProvider = isMathJaxLesson ? MathJaxProvider : Fragment;
-  const { lessonResourceDownloadStarted, lessonMediaClipsStarted } =
-    useTeacherBrowseAnalytics((store) => store.track);
+  const {
+    lessonResourceDownloadStarted,
+    lessonMediaClipsStarted,
+    lessonShareStarted,
+  } = useTeacherBrowseAnalytics((store) => store.track);
 
   const browsePathwayData = getAnalyticsBrowseData({
     keyStageSlug,
@@ -104,10 +107,6 @@ export default function LessonView(
     lessonReleaseDate,
     isLegacy: false,
   });
-
-  const trackShare = () => {
-    track.lessonShareStarted(browsePathwayData);
-  };
 
   const lessonResources = getLessonResources({
     browsePathwayData,
@@ -257,7 +256,7 @@ export default function LessonView(
                 lessonSlug={lessonSlug}
                 unitSlug={unitSlug}
                 programmeSlug={programmeSlug}
-                onClickShare={trackShare}
+                onClickShare={lessonShareStarted}
               />
             </OakGridArea>
             <OakGridArea

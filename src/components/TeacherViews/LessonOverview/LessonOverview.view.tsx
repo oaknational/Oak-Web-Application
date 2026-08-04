@@ -138,9 +138,8 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
     geoRestricted,
   });
 
-  const { lessonMediaClipsStarted } = useTeacherBrowseAnalytics(
-    (store) => store.track,
-  );
+  const { lessonMediaClipsStarted, lessonShareStarted } =
+    useTeacherBrowseAnalytics((store) => store.track);
 
   const contentRestricted =
     showSignedOutGeoRestricted ||
@@ -233,10 +232,6 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
       downloadResourceButtonName,
       ...browsePathwayData,
     });
-  };
-
-  const trackShareAll = () => {
-    track.lessonShareStarted(browsePathwayData);
   };
 
   const trackCreateWithAiButtonClicked = () => {
@@ -356,7 +351,7 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
             downloadResourceButtonName: "all",
           });
         }}
-        onClickShareAll={trackShareAll}
+        onClickShareAll={lessonShareStarted}
         pupilLessonOutcome={getDedupedPupilLessonOutcome(
           pupilLessonOutcome,
           keyLearningPoints,

@@ -495,14 +495,16 @@ describe("Tracking callbacks", () => {
 
     expect(lessonShareStarted).toHaveBeenCalledWith(
       expect.objectContaining({
-        keyStageSlug: baseProps.keyStageSlug,
-        keyStageTitle: baseProps.keyStageTitle,
-        subjectSlug: baseProps.subjectSlug,
-        subjectTitle: baseProps.subjectTitle,
-        unitSlug: baseProps.unitSlug,
-        unitName: baseProps.unitTitle,
-        lessonSlug: baseProps.lessonSlug,
-        lessonName: baseProps.lessonTitle,
+        keyStageSlug: "ks3",
+        keyStageTitle: "Key stage 3",
+        lessonName: "Structure of cells",
+        lessonSlug: "lesson-3-structure-of-cells",
+        subjectSlug: "biology",
+        subjectTitle: "Biology",
+        unitName: "Cells",
+        unitSlug: "cells",
+        yearGroupName: "Year 7",
+        yearGroupSlug: "year-7",
       }),
     );
   });
