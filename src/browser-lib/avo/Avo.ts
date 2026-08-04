@@ -974,7 +974,7 @@ _avo_invoke = function _avo_invoke(env: AvoEnv, eventId: string, hash: string, m
         method: "POST",
         headers: {"Content-Type": "application/json"},
         body: JSON.stringify({
-          "ac": "fd9TugUl7AlqNAej7M5i",
+          "ac": "RCpKOnOGbQ7aC3EqcbUS",
           "br": "TXja698DdsQSi5EJ77tnq",
           "en": env,
           "ev": eventId,
@@ -1001,7 +1001,7 @@ _avo_invoke_meta = function _avo_invoke_meta(env: AvoEnv, type: string, messages
         method: "POST",
         headers: {"Content-Type": "application/json"},
         body: JSON.stringify({
-          "ac": "fd9TugUl7AlqNAej7M5i",
+          "ac": "RCpKOnOGbQ7aC3EqcbUS",
           "br": "TXja698DdsQSi5EJ77tnq",
           "en": env,
           "ty": type,
@@ -1621,6 +1621,7 @@ export const AccessLevel = {
   'BLOGS_EMBEDDED_LINKS': 'blogs_embedded_links',
   'SEARCH': 'search',
   'MY_LIBRARY': 'my_library',
+  'FOOTER': 'footer',
 } as const;
 export type AccessLevelType = typeof AccessLevel;
 export type AccessLevelValueType = AccessLevelType[keyof AccessLevelType];
@@ -2759,7 +2760,7 @@ export function unitAccessed(properties: UnitAccessedProperties) {
     let messages: AvoAssertMessage[] = [];
     // debug console in Avo
     if (!__AVO_NOOP__) {
-      _avo_invoke(__AVO_ENV__, "Me4ouIgPxh", "60a33b87a0d9e9fe5138282ce44d8af07d705cbaaad0c964a315b84cdc1de296", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
+      _avo_invoke(__AVO_ENV__, "Me4ouIgPxh", "2a6fad9ea46f9ac9b4a5960d6a34afcd633cb97509cd118bcdb618ca36f739d7", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
     }
     InternalAvoLogger.logEventSent("Unit Accessed", eventProperties, userProperties);
     if (__WEB_DEBUGGER__) {
@@ -2770,7 +2771,7 @@ export function unitAccessed(properties: UnitAccessedProperties) {
   if (!__AVO_NOOP__) {
     if (__INSPECTOR__ != null) {
       // @ts-ignore
-      __INSPECTOR__._avoFunctionTrackSchemaFromEvent("Unit Accessed", eventProperties, "Me4ouIgPxh", "60a33b87a0d9e9fe5138282ce44d8af07d705cbaaad0c964a315b84cdc1de296");
+      __INSPECTOR__._avoFunctionTrackSchemaFromEvent("Unit Accessed", eventProperties, "Me4ouIgPxh", "2a6fad9ea46f9ac9b4a5960d6a34afcd633cb97509cd118bcdb618ca36f739d7");
     }
     // destination PostHogEU
     PostHogEU.logEvent("Unit Accessed", (Object as any).assign({}, eventProperties));
@@ -3569,7 +3570,7 @@ export function unitOverviewAccessed(properties: UnitOverviewAccessedProperties)
     let messages: AvoAssertMessage[] = [];
     // debug console in Avo
     if (!__AVO_NOOP__) {
-      _avo_invoke(__AVO_ENV__, "OnjKTo8kYs", "c4017d9e56b22a63a2235dc00c074d6eb0c7e462d3a5edb024baa6154caa09ea", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
+      _avo_invoke(__AVO_ENV__, "OnjKTo8kYs", "4d194cb11a95296caa66910b12c8766b5d92641528d86d7ecf77e9ef298aa5ce", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
     }
     InternalAvoLogger.logEventSent("Unit Overview Accessed", eventProperties, userProperties);
     if (__WEB_DEBUGGER__) {
@@ -3580,7 +3581,7 @@ export function unitOverviewAccessed(properties: UnitOverviewAccessedProperties)
   if (!__AVO_NOOP__) {
     if (__INSPECTOR__ != null) {
       // @ts-ignore
-      __INSPECTOR__._avoFunctionTrackSchemaFromEvent("Unit Overview Accessed", eventProperties, "OnjKTo8kYs", "c4017d9e56b22a63a2235dc00c074d6eb0c7e462d3a5edb024baa6154caa09ea");
+      __INSPECTOR__._avoFunctionTrackSchemaFromEvent("Unit Overview Accessed", eventProperties, "OnjKTo8kYs", "4d194cb11a95296caa66910b12c8766b5d92641528d86d7ecf77e9ef298aa5ce");
     }
     // destination PostHogEU
     PostHogEU.logEvent("Unit Overview Accessed", (Object as any).assign({}, eventProperties));
@@ -3767,6 +3768,7 @@ export interface LessonShareStartedProperties {
   keyStageSlug: string | null | undefined;
   subjectTitle: string | null | undefined;
   subjectSlug: string | null | undefined;
+  journeyId: string | null | undefined;
 }
 /**
  * Lesson Share Started: A user beings the process of sharing a lesson with their pupils. This event shows they are interested in sharing something but happens prior to a user generating the required link that would suggest the sharing has taken place.
@@ -3790,6 +3792,7 @@ NB. There is no sharing of slide decks at this time
  * @param properties.keyStageSlug: Human-readable unique ID of the current key stage.
  * @param properties.subjectTitle: Title of the current subject.
  * @param properties.subjectSlug: Human-readable unique ID of the current subject.
+ * @param properties.journeyId: A unique ID for a user's journey in a specific programme triggered by a direct or accessed event. Journey end is triggered by a programme slug disappearing or changing.
  * 
  * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/TXja698DdsQSi5EJ77tnq/events/PS8tcnGrN2}
  */
@@ -3818,6 +3821,9 @@ export function lessonShareStarted(properties: LessonShareStartedProperties) {
   properties.subjectSlug !== undefined && properties.subjectSlug !== null ?
     eventPropertiesArray.push({id: "8GyPDAapC-", name: "Subject Slug", value: properties.subjectSlug}) :
     eventPropertiesArray.push({id: "8GyPDAapC-", name: "Subject Slug", value: null});
+  properties.journeyId !== undefined && properties.journeyId !== null ?
+    eventPropertiesArray.push({id: "J9ORuaNS9rZOq5UE9Q91k", name: "Journey Id", value: properties.journeyId}) :
+    eventPropertiesArray.push({id: "J9ORuaNS9rZOq5UE9Q91k", name: "Journey Id", value: null});
   let eventProperties = convertPropertiesArrayToMap(eventPropertiesArray)
   // @ts-ignore
   let userPropertiesArray: array = [];
@@ -3827,7 +3833,7 @@ export function lessonShareStarted(properties: LessonShareStartedProperties) {
     let messages: AvoAssertMessage[] = [];
     // debug console in Avo
     if (!__AVO_NOOP__) {
-      _avo_invoke(__AVO_ENV__, "PS8tcnGrN2", "28694d3cd14fddb46dea226070b3af410bd127585f43afd95f5ca43581b988c2", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
+      _avo_invoke(__AVO_ENV__, "PS8tcnGrN2", "ffcfa1d1f46864cc9f11f83fc88f58464691ade277ae6e4ce7ceb7a0b490399c", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
     }
     InternalAvoLogger.logEventSent("Lesson Share Started", eventProperties, userProperties);
     if (__WEB_DEBUGGER__) {
@@ -3838,7 +3844,7 @@ export function lessonShareStarted(properties: LessonShareStartedProperties) {
   if (!__AVO_NOOP__) {
     if (__INSPECTOR__ != null) {
       // @ts-ignore
-      __INSPECTOR__._avoFunctionTrackSchemaFromEvent("Lesson Share Started", eventProperties, "PS8tcnGrN2", "28694d3cd14fddb46dea226070b3af410bd127585f43afd95f5ca43581b988c2");
+      __INSPECTOR__._avoFunctionTrackSchemaFromEvent("Lesson Share Started", eventProperties, "PS8tcnGrN2", "ffcfa1d1f46864cc9f11f83fc88f58464691ade277ae6e4ce7ceb7a0b490399c");
     }
     // destination PostHogEU
     PostHogEU.logEvent("Lesson Share Started", (Object as any).assign({}, eventProperties));
@@ -7470,7 +7476,7 @@ export function lessonAccessed(properties: LessonAccessedProperties) {
     let messages: AvoAssertMessage[] = [];
     // debug console in Avo
     if (!__AVO_NOOP__) {
-      _avo_invoke(__AVO_ENV__, "u21IHcK8_t", "22cccdb9d3d1bace5923ff391d0eb409ca9f4933ea9bb1e0ec166c5123938d71", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
+      _avo_invoke(__AVO_ENV__, "u21IHcK8_t", "4a7edabe25b994958b9f3b78a80b56f98a2c609116ade99c8e8f07e994aff28a", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
     }
     InternalAvoLogger.logEventSent("Lesson Accessed", eventProperties, userProperties);
     if (__WEB_DEBUGGER__) {
@@ -7481,7 +7487,7 @@ export function lessonAccessed(properties: LessonAccessedProperties) {
   if (!__AVO_NOOP__) {
     if (__INSPECTOR__ != null) {
       // @ts-ignore
-      __INSPECTOR__._avoFunctionTrackSchemaFromEvent("Lesson Accessed", eventProperties, "u21IHcK8_t", "22cccdb9d3d1bace5923ff391d0eb409ca9f4933ea9bb1e0ec166c5123938d71");
+      __INSPECTOR__._avoFunctionTrackSchemaFromEvent("Lesson Accessed", eventProperties, "u21IHcK8_t", "4a7edabe25b994958b9f3b78a80b56f98a2c609116ade99c8e8f07e994aff28a");
     }
     // destination PostHogEU
     PostHogEU.logEvent("Lesson Accessed", (Object as any).assign({}, eventProperties));
@@ -7624,7 +7630,7 @@ export function lessonAccessedPupilJourney(properties: LessonAccessedPupilJourne
     let messages: AvoAssertMessage[] = [];
     // debug console in Avo
     if (!__AVO_NOOP__) {
-      _avo_invoke(__AVO_ENV__, "u21IHcK8_t.ohEZ3G-E4C1P-RIAsc4D_", "5ce39f23e6e2fec64ebf16d2f16132329722f18fcca5782f0dd9c1af12c33e73", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
+      _avo_invoke(__AVO_ENV__, "u21IHcK8_t.ohEZ3G-E4C1P-RIAsc4D_", "0f0115c957988509d1dd452c8745cad3c8ce627c7fcbe871622f0c891d355f04", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
     }
     InternalAvoLogger.logEventSent("Lesson Accessed", eventProperties, userProperties);
     if (__WEB_DEBUGGER__) {
@@ -7635,7 +7641,7 @@ export function lessonAccessedPupilJourney(properties: LessonAccessedPupilJourne
   if (!__AVO_NOOP__) {
     if (__INSPECTOR__ != null) {
       // @ts-ignore
-      __INSPECTOR__._avoFunctionTrackSchemaFromEvent("Lesson Accessed", eventProperties, "u21IHcK8_t.ohEZ3G-E4C1P-RIAsc4D_", "5ce39f23e6e2fec64ebf16d2f16132329722f18fcca5782f0dd9c1af12c33e73");
+      __INSPECTOR__._avoFunctionTrackSchemaFromEvent("Lesson Accessed", eventProperties, "u21IHcK8_t.ohEZ3G-E4C1P-RIAsc4D_", "0f0115c957988509d1dd452c8745cad3c8ce627c7fcbe871622f0c891d355f04");
     }
     // destination PostHogEU
     PostHogEU.logEvent("Lesson Accessed", (Object as any).assign({}, eventProperties));
@@ -9270,7 +9276,7 @@ export function browseAccessed(properties: BrowseAccessedProperties) {
     let messages: AvoAssertMessage[] = [];
     // debug console in Avo
     if (!__AVO_NOOP__) {
-      _avo_invoke(__AVO_ENV__, "MFzroCdj0", "9b12c88ad7cc480d324908a8bb73e6d12e608d4008e8356770fc71cce114d95d", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
+      _avo_invoke(__AVO_ENV__, "MFzroCdj0", "6f248ec5b31c351c882adf5451d46e539e359480a3765b690f48c9b5788bc28a", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
     }
     InternalAvoLogger.logEventSent("Browse Accessed", eventProperties, userProperties);
     if (__WEB_DEBUGGER__) {
@@ -9281,7 +9287,7 @@ export function browseAccessed(properties: BrowseAccessedProperties) {
   if (!__AVO_NOOP__) {
     if (__INSPECTOR__ != null) {
       // @ts-ignore
-      __INSPECTOR__._avoFunctionTrackSchemaFromEvent("Browse Accessed", eventProperties, "MFzroCdj0", "9b12c88ad7cc480d324908a8bb73e6d12e608d4008e8356770fc71cce114d95d");
+      __INSPECTOR__._avoFunctionTrackSchemaFromEvent("Browse Accessed", eventProperties, "MFzroCdj0", "6f248ec5b31c351c882adf5451d46e539e359480a3765b690f48c9b5788bc28a");
     }
     // destination PostHogEU
     PostHogEU.logEvent("Browse Accessed", (Object as any).assign({}, eventProperties));
@@ -9863,7 +9869,7 @@ export function unitDownloaded(properties: UnitDownloadedProperties) {
     let messages: AvoAssertMessage[] = [];
     // debug console in Avo
     if (!__AVO_NOOP__) {
-      _avo_invoke(__AVO_ENV__, "72bRke5-7b0", "9fffa3d889aeb2f70bbf2cc2b0ad6af4601c9a05a519d71a06eee8b1ee1c1aca", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
+      _avo_invoke(__AVO_ENV__, "72bRke5-7b0", "aaaf631723fa8e00b2e5fe2412fbae670338730984a4429cfdc57a854cefda45", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
     }
     InternalAvoLogger.logEventSent("Unit Downloaded", eventProperties, userProperties);
     if (__WEB_DEBUGGER__) {
@@ -9874,7 +9880,7 @@ export function unitDownloaded(properties: UnitDownloadedProperties) {
   if (!__AVO_NOOP__) {
     if (__INSPECTOR__ != null) {
       // @ts-ignore
-      __INSPECTOR__._avoFunctionTrackSchemaFromEvent("Unit Downloaded", eventProperties, "72bRke5-7b0", "9fffa3d889aeb2f70bbf2cc2b0ad6af4601c9a05a519d71a06eee8b1ee1c1aca");
+      __INSPECTOR__._avoFunctionTrackSchemaFromEvent("Unit Downloaded", eventProperties, "72bRke5-7b0", "aaaf631723fa8e00b2e5fe2412fbae670338730984a4429cfdc57a854cefda45");
     }
     // destination PostHogEU
     PostHogEU.logEvent("Unit Downloaded", (Object as any).assign({}, eventProperties));
@@ -12519,7 +12525,7 @@ export function programmeRefined(properties: ProgrammeRefinedProperties) {
     let messages: AvoAssertMessage[] = [];
     // debug console in Avo
     if (!__AVO_NOOP__) {
-      _avo_invoke(__AVO_ENV__, "c4mJzrmGf_5D5QuDPODpn", "50f59b5604be2661e9b490ecc279650fccbb393495501989bee2ee344eddbed8", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
+      _avo_invoke(__AVO_ENV__, "c4mJzrmGf_5D5QuDPODpn", "9bfd774b27f085394201152095af37e652e271c4d2c86c0d2bd4538a08fa43a2", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
     }
     InternalAvoLogger.logEventSent("Programme Refined", eventProperties, userProperties);
     if (__WEB_DEBUGGER__) {
@@ -12530,7 +12536,7 @@ export function programmeRefined(properties: ProgrammeRefinedProperties) {
   if (!__AVO_NOOP__) {
     if (__INSPECTOR__ != null) {
       // @ts-ignore
-      __INSPECTOR__._avoFunctionTrackSchemaFromEvent("Programme Refined", eventProperties, "c4mJzrmGf_5D5QuDPODpn", "50f59b5604be2661e9b490ecc279650fccbb393495501989bee2ee344eddbed8");
+      __INSPECTOR__._avoFunctionTrackSchemaFromEvent("Programme Refined", eventProperties, "c4mJzrmGf_5D5QuDPODpn", "9bfd774b27f085394201152095af37e652e271c4d2c86c0d2bd4538a08fa43a2");
     }
     // destination PostHogEU
     PostHogEU.logEvent("Programme Refined", (Object as any).assign({}, eventProperties));
@@ -12619,7 +12625,7 @@ export function unitRefined(properties: UnitRefinedProperties) {
     let messages: AvoAssertMessage[] = [];
     // debug console in Avo
     if (!__AVO_NOOP__) {
-      _avo_invoke(__AVO_ENV__, "oY_aSUaUvf18ywGxI-X6z", "1d23bdebadbe8e8e72b81fd17ecffba642057464ea42168efd58b470340bded0", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
+      _avo_invoke(__AVO_ENV__, "oY_aSUaUvf18ywGxI-X6z", "347be1addd308b5e13dbf5dc45d983dac4d5250201d12c9ce300feb07983688d", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
     }
     InternalAvoLogger.logEventSent("Unit Refined", eventProperties, userProperties);
     if (__WEB_DEBUGGER__) {
@@ -12630,7 +12636,7 @@ export function unitRefined(properties: UnitRefinedProperties) {
   if (!__AVO_NOOP__) {
     if (__INSPECTOR__ != null) {
       // @ts-ignore
-      __INSPECTOR__._avoFunctionTrackSchemaFromEvent("Unit Refined", eventProperties, "oY_aSUaUvf18ywGxI-X6z", "1d23bdebadbe8e8e72b81fd17ecffba642057464ea42168efd58b470340bded0");
+      __INSPECTOR__._avoFunctionTrackSchemaFromEvent("Unit Refined", eventProperties, "oY_aSUaUvf18ywGxI-X6z", "347be1addd308b5e13dbf5dc45d983dac4d5250201d12c9ce300feb07983688d");
     }
     // destination PostHogEU
     PostHogEU.logEvent("Unit Refined", (Object as any).assign({}, eventProperties));
@@ -12719,7 +12725,7 @@ export function programmeAccessed(properties: ProgrammeAccessedProperties) {
     let messages: AvoAssertMessage[] = [];
     // debug console in Avo
     if (!__AVO_NOOP__) {
-      _avo_invoke(__AVO_ENV__, "n3ZOBTu172etcRz3zYUVl", "611cf62821a9e60fe7073a694d5593cb17c3de9cae721d6b41135ffb898a24da", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
+      _avo_invoke(__AVO_ENV__, "n3ZOBTu172etcRz3zYUVl", "474002fc17117f70c74ba61cbc30fd49bc2ed732032c74b40fc1f823e3290ac9", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
     }
     InternalAvoLogger.logEventSent("Programme Accessed", eventProperties, userProperties);
     if (__WEB_DEBUGGER__) {
@@ -12730,7 +12736,7 @@ export function programmeAccessed(properties: ProgrammeAccessedProperties) {
   if (!__AVO_NOOP__) {
     if (__INSPECTOR__ != null) {
       // @ts-ignore
-      __INSPECTOR__._avoFunctionTrackSchemaFromEvent("Programme Accessed", eventProperties, "n3ZOBTu172etcRz3zYUVl", "611cf62821a9e60fe7073a694d5593cb17c3de9cae721d6b41135ffb898a24da");
+      __INSPECTOR__._avoFunctionTrackSchemaFromEvent("Programme Accessed", eventProperties, "n3ZOBTu172etcRz3zYUVl", "474002fc17117f70c74ba61cbc30fd49bc2ed732032c74b40fc1f823e3290ac9");
     }
     // destination PostHogEU
     PostHogEU.logEvent("Programme Accessed", (Object as any).assign({}, eventProperties));
