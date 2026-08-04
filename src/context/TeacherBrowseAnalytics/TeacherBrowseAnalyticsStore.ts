@@ -36,6 +36,7 @@ import {
   getSchoolUrn,
 } from "@/components/TeacherComponents/helpers/downloadAndShareHelpers/getFormattedDetailsForTracking";
 import { convertUnitSlugToTitle } from "@/app/(core)/teachers/search/helpers";
+import OakError from "@/errors/OakError";
 
 export type TeacherBrowseAnalyticsStore = {
   programmeState: ProgrammeState;
@@ -46,6 +47,7 @@ export type TeacherBrowseAnalyticsStore = {
       downloadResourceButtonName: DownloadResourceButtonNameValueType,
     ) => void;
     unitDownloaded: (accessLevel: AccessLevelValueType) => void;
+    unitDownloadInitiated: (accessLevel: AccessLevelValueType) => void;
     curriculumExplainerExplored: () => void;
     unitSequenceRefined: (data: {
       filters: CurriculumFilters;
@@ -59,7 +61,6 @@ export type TeacherBrowseAnalyticsStore = {
     programmeRefined: () => void;
     programmeAccessed: () => void;
     unitRefined: () => void;
-    unitDownloadInitiated: () => void;
     unitOverviewAccessed: (
       unit: Unit,
       isHighlighted: boolean,
@@ -133,6 +134,26 @@ export const createTeacherBrowseAnalyticsStore = (
         });
       },
       unitDownloaded: (accessLevel) => {
+        const { avo, programmeState, journeyId } = get();
+
+        // Can be tracked from the unit overview page or the lesson download success page
+        if (programmeState.browseLevel === "programme") {
+          reportAnalyticsError({ event: "unitDownloaded", programmeState });
+          return;
+        }
+
+        const analyticsProperties = getUnitAnalyticsProperties(programmeState);
+
+        avo.unitDownloaded({
+          engagementIntent: EngagementIntent.USE,
+          componentType: ComponentType.UNIT_DOWNLOAD_BUTTON,
+          journeyId,
+          accessLevel,
+          ...coreProperties,
+          ...analyticsProperties,
+        });
+      },
+      unitDownloadInitiated: (accessLevel) => {
         const { avo, programmeState, journeyId } = get();
 
         // Can be tracked from the unit overview page or the lesson download success page
