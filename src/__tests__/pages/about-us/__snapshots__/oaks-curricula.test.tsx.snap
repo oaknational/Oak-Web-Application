@@ -6896,9 +6896,8 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
                         class="c219"
                       >
                         <a
-                          class="c220"
+                          class="c220 "
                           href="/pupils/years"
-                          variant="secondary"
                         >
                           <span
                             class="c25"
@@ -6931,9 +6930,8 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
                         class="c219"
                       >
                         <a
-                          class="c220"
+                          class="c220 "
                           href="/teachers/eyfs/maths"
-                          variant="secondary"
                         >
                           <span
                             class="c25"
@@ -6946,9 +6944,8 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
                         class="c219"
                       >
                         <a
-                          class="c220"
+                          class="c220 "
                           href="/lesson-planning"
-                          variant="secondary"
                         >
                           <span
                             class="c25"
@@ -6961,10 +6958,9 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
                         class="c219"
                       >
                         <a
-                          class="c220"
+                          class="c220 "
                           href="https://labs.thenational.academy"
                           target="_blank"
-                          variant="secondary"
                         >
                           <span
                             class="c25"
@@ -6994,9 +6990,8 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
                         class="c219"
                       >
                         <a
-                          class="c220"
+                          class="c220 "
                           href="/blog"
-                          variant="secondary"
                         >
                           <span
                             class="c25"
@@ -7030,9 +7025,8 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
                         class="c219"
                       >
                         <a
-                          class="c220"
+                          class="c220 "
                           href="/"
-                          variant="secondary"
                         >
                           <span
                             class="c25"
@@ -7045,9 +7039,8 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
                         class="c219"
                       >
                         <a
-                          class="c220"
+                          class="c220 "
                           href="/about-us/who-we-are"
-                          variant="secondary"
                         >
                           <span
                             class="c25"
@@ -7060,9 +7053,8 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
                         class="c219"
                       >
                         <a
-                          class="c220"
+                          class="c220 "
                           href="/about-us/oaks-curricula"
-                          variant="secondary"
                         >
                           <span
                             class="c25"
@@ -7075,9 +7067,8 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
                         class="c219"
                       >
                         <a
-                          class="c220"
+                          class="c220 "
                           href="/about-us/get-involved"
-                          variant="secondary"
                         >
                           <span
                             class="c25"
@@ -7090,9 +7081,8 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
                         class="c219"
                       >
                         <a
-                          class="c220"
+                          class="c220 "
                           href="/about-us/meet-the-team"
-                          variant="secondary"
                         >
                           <span
                             class="c25"
@@ -7106,10 +7096,9 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
                       >
                         <a
                           aria-label="Careers (opens in a new tab)"
-                          class="c220"
+                          class="c220 "
                           href="https://jobs.thenational.academy"
                           target="_blank"
-                          variant="secondary"
                         >
                           <span
                             class="c25"
@@ -7139,9 +7128,8 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
                         class="c219"
                       >
                         <a
-                          class="c220"
+                          class="c220 "
                           href="/contact-us"
-                          variant="secondary"
                         >
                           <span
                             class="c25"
@@ -7155,10 +7143,9 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
                       >
                         <a
                           aria-label="Help (opens in a new tab)"
-                          class="c220"
+                          class="c220 "
                           href="https://support.thenational.academy"
                           target="_blank"
-                          variant="secondary"
                         >
                           <span
                             class="c25"
@@ -7188,9 +7175,8 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
                         class="c219"
                       >
                         <a
-                          class="c220"
+                          class="c220 "
                           href="/webinars"
-                          variant="secondary"
                         >
                           <span
                             class="c25"
@@ -7204,10 +7190,9 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
                       >
                         <a
                           aria-label="Status (opens in a new tab)"
-                          class="c220"
+                          class="c220 "
                           href="https://status.thenational.academy"
                           target="_blank"
-                          variant="secondary"
                         >
                           <span
                             class="c25"
@@ -7258,9 +7243,8 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
                         class="c219"
                       >
                         <a
-                          class="c220"
+                          class="c220 "
                           href="/legal/terms-and-conditions"
-                          variant="secondary"
                         >
                           <span
                             class="c25"
@@ -7273,9 +7257,8 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
                         class="c219"
                       >
                         <a
-                          class="c220"
+                          class="c220 "
                           href="/legal/privacy-policy"
-                          variant="secondary"
                         >
                           <span
                             class="c25"
@@ -7288,9 +7271,8 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
                         class="c219"
                       >
                         <a
-                          class="c220"
+                          class="c220 "
                           href="/legal/cookie-policy"
-                          variant="secondary"
                         >
                           <span
                             class="c25"
@@ -7303,7 +7285,7 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
                         class="c219"
                       >
                         <button
-                          class="c220"
+                          class="c220 "
                         >
                           <span
                             class="c25"
@@ -7316,9 +7298,8 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
                         class="c219"
                       >
                         <a
-                          class="c220"
+                          class="c220 "
                           href="/legal/copyright-notice"
-                          variant="secondary"
                         >
                           <span
                             class="c25"
@@ -7331,9 +7312,8 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
                         class="c219"
                       >
                         <a
-                          class="c220"
+                          class="c220 "
                           href="/legal/accessibility-statement"
-                          variant="secondary"
                         >
                           <span
                             class="c25"
@@ -7346,9 +7326,8 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
                         class="c219"
                       >
                         <a
-                          class="c220"
+                          class="c220 "
                           href="/legal/safeguarding-statement"
-                          variant="secondary"
                         >
                           <span
                             class="c25"
@@ -7361,9 +7340,8 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
                         class="c219"
                       >
                         <a
-                          class="c220"
+                          class="c220 "
                           href="/legal/physical-activity-disclaimer"
-                          variant="secondary"
                         >
                           <span
                             class="c25"
@@ -7376,9 +7354,8 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
                         class="c219"
                       >
                         <a
-                          class="c220"
+                          class="c220 "
                           href="/legal/complaints"
-                          variant="secondary"
                         >
                           <span
                             class="c25"
@@ -7391,9 +7368,8 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
                         class="c219"
                       >
                         <a
-                          class="c220"
+                          class="c220 "
                           href="/legal/freedom-of-information-requests"
-                          variant="secondary"
                         >
                           <span
                             class="c25"
