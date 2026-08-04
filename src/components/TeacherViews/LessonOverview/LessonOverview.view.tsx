@@ -138,8 +138,11 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
     geoRestricted,
   });
 
-  const { lessonMediaClipsStarted, lessonShareStarted } =
-    useTeacherBrowseAnalytics((store) => store.track);
+  const {
+    lessonMediaClipsStarted,
+    lessonShareStarted,
+    createTeachingMaterialsInitiated,
+  } = useTeacherBrowseAnalytics((store) => store.track);
 
   const contentRestricted =
     showSignedOutGeoRestricted ||
@@ -231,18 +234,6 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
       analyticsUseCase: "Teacher",
       downloadResourceButtonName,
       ...browsePathwayData,
-    });
-  };
-
-  const trackCreateWithAiButtonClicked = () => {
-    track.createTeachingMaterialsInitiated({
-      platform: "owa",
-      product: "teacher lesson resources",
-      engagementIntent: "use",
-      componentType: "create_more_with_ai_button",
-      eventVersion: "2.0.0",
-      analyticsUseCase: "Teacher",
-      isLoggedIn: user.isSignedIn ?? false,
     });
   };
 
@@ -360,7 +351,11 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
         showShare={showShare}
         teacherShareButton={teacherShareButton}
         trackTeachingMaterialsSelected={trackTeachingMaterialsSelected}
-        trackCreateWithAiButtonClicked={trackCreateWithAiButtonClicked}
+        trackCreateWithAiButtonClicked={() =>
+          createTeachingMaterialsInitiated({
+            isLoggedIn: user.isSignedIn ?? false,
+          })
+        }
         contentRestricted={contentRestricted}
       />
       <OakMaxWidth $ph={"spacing-16"} $pb={"spacing-80"}>

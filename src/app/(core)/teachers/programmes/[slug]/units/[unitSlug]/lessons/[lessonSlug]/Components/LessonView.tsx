@@ -88,6 +88,7 @@ export default function LessonView(
     lessonResourceDownloadStarted,
     lessonMediaClipsStarted,
     lessonShareStarted,
+    createTeachingMaterialsInitiated,
   } = useTeacherBrowseAnalytics((store) => store.track);
 
   const browsePathwayData = getAnalyticsBrowseData({
@@ -228,13 +229,7 @@ export default function LessonView(
                         actions,
                         subjectSlug,
                         trackCreateWithAiButtonClicked: () =>
-                          track.createTeachingMaterialsInitiated({
-                            platform: "owa",
-                            product: "teacher lesson resources",
-                            engagementIntent: "use",
-                            componentType: "create_more_with_ai_button",
-                            eventVersion: "2.0.0",
-                            analyticsUseCase: "Teacher",
+                          createTeachingMaterialsInitiated({
                             isLoggedIn: isSignedIn ?? false,
                           }),
                         trackTeachingMaterialsSelected: (
