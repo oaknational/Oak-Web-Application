@@ -2,6 +2,7 @@
 
 exports[`LessonDownloadsSuccessPage fetches unit data and renders success confirmation 1`] = `
 <TeacherBrowseAnalyticsStoreProvider
+  accessLevel="lesson"
   programmeState={
     {
       "browseLevel": "lesson",
@@ -101,6 +102,7 @@ exports[`LessonDownloadsSuccessPage fetches unit data and renders success confir
 
 exports[`LessonDownloadsSuccessPage renders control variant when feature flag is control 1`] = `
 <TeacherBrowseAnalyticsStoreProvider
+  accessLevel="lesson"
   programmeState={
     {
       "browseLevel": "lesson",
@@ -200,6 +202,7 @@ exports[`LessonDownloadsSuccessPage renders control variant when feature flag is
 
 exports[`LessonDownloadsSuccessPage renders control variant when feature flag is undefined 1`] = `
 <TeacherBrowseAnalyticsStoreProvider
+  accessLevel="lesson"
   programmeState={
     {
       "browseLevel": "lesson",
@@ -299,6 +302,7 @@ exports[`LessonDownloadsSuccessPage renders control variant when feature flag is
 
 exports[`LessonDownloadsSuccessPage renders test variant when feature flag is test 1`] = `
 <TeacherBrowseAnalyticsStoreProvider
+  accessLevel="lesson"
   programmeState={
     {
       "browseLevel": "lesson",

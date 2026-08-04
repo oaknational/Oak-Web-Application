@@ -134,6 +134,7 @@ export default function LessonOverviewCanonicalPage({
         ...lesson,
         ...getProgrammePropsForCanonicalLesson(),
       })}
+      accessLevel="lesson"
     >
       <AppLayout
         topNavProps={topNav}

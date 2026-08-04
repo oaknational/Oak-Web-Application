@@ -12,9 +12,14 @@ const state: TeacherBrowseAnalyticsStore = {
   programmeState: getProgrammeStateForLesson(teachersLessonOverviewFixture()),
   avo: { ...noopTrackingFns, NavigatedFrom },
   journeyId: "mockJourneyId",
+  accessLevel: "unit",
   track: {
+    lessonMediaClipsStarted: () => console.log("lessonMediaClipsStarted fired"),
     lessonResourceDownloadStarted: () =>
       console.log("lessonResourceDownloadStarted fired"),
+    lessonShareStarted: () => console.log("lessonShareStarted fired"),
+    mediaClipsPlaylistPlayed: () =>
+      console.log("mediaClipsPlaylistPlayed fired"),
     unitDownloaded: () => console.log("unitDownloaded fired"),
     curriculumExplainerExplored: () =>
       console.log("curriculumExplainerExplore fired"),
@@ -22,7 +27,12 @@ const state: TeacherBrowseAnalyticsStore = {
       console.log("curriculumResourcesDownloaded fired"),
     curriculumResourcesDownloadRefined: () =>
       console.log("curriculumResourcesDownloadRefined fired"),
+    programmeAccessed: () => console.log("programmeAccessed fired"),
+    programmeRefined: () => console.log("programmeRefined fired"),
+    unitDownloadStarted: () => console.log("unitDownloadStarted fired"),
     unitOverviewAccessed: () => console.log("unitOverviewAccessed fired"),
+    unitRefined: () => console.log("unitRefined fired"),
+    unitSequenceRefined: () => console.log("unitSequenceRefined fired"),
   },
 };
 

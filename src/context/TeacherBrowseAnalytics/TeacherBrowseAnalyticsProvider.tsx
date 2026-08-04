@@ -30,7 +30,7 @@ export const TeacherBrowseAnalyticsStoreContext = createContext<
 
 export type TeacherBrowseAnalyticsStoreProviderProps = Pick<
   TeacherBrowseAnalyticsStore,
-  "programmeState"
+  "programmeState" | "accessLevel"
 > & {
   children: ReactNode;
 };
@@ -39,6 +39,7 @@ const reportError = errorReporter("teacher-browse-analytics");
 
 export const TeacherBrowseAnalyticsStoreProvider = ({
   programmeState,
+  accessLevel,
   children,
 }: TeacherBrowseAnalyticsStoreProviderProps) => {
   const { track, getSessionId } = useAnalytics();
@@ -73,6 +74,7 @@ export const TeacherBrowseAnalyticsStoreProvider = ({
       programmeState,
       avo: track,
       journeyId,
+      accessLevel,
     }),
   );
 

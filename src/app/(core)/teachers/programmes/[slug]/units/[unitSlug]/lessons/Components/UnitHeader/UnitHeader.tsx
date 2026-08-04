@@ -85,7 +85,7 @@ const UnitHeader = (props: UnitHeaderProps) => {
             downloadInProgress={downloadInProgress}
             unitFileId={unitDownloadFileId}
             onDownloadSuccess={() => {
-              unitDownloaded("unit");
+              unitDownloaded();
               setCurrentToastProps({
                 message: "Download started. This may take a few minutes.",
                 variant: "success",
