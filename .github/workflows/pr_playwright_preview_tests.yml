@@ -58,25 +58,27 @@ jobs:
 
       - name: Validate deployment URL target
         shell: bash
+        env:
+          DEPLOYMENT_URL: ${{ steps.deployment.outputs.deployment-url }}
         run: |
           set -euo pipefail
 
-          deployment_url="${{ steps.deployment.outputs.deployment-url }}"
-
-          if [[ -z "${deployment_url}" ]]; then
-            echo "wait-for-deployment-action returned an empty deployment-url"
+          if [[ -z "${DEPLOYMENT_URL}" ]]; then
+            echo "::error::wait-for-deployment-action returned an empty deployment URL"
             exit 1
           fi
 
-          if [[ "${deployment_url}" != *"${VERCEL_PROJECT_SLUG}"* ]]; then
-            echo "Deployment URL does not match expected project slug ${VERCEL_PROJECT_SLUG}: ${deployment_url}"
+          if [[ "${DEPLOYMENT_URL}" != *"${VERCEL_PROJECT_SLUG}"* ]]; then
+            echo "::error::Deployment URL does not match expected project slug ${VERCEL_PROJECT_SLUG}: ${DEPLOYMENT_URL}"
             exit 1
           fi
 
-          if [[ "${deployment_url}" == *"storybook"* ]]; then
-            echo "Deployment URL unexpectedly points to storybook: ${deployment_url}"
+          if [[ "${DEPLOYMENT_URL,,}" == *"storybook"* ]]; then
+            echo "::error::Deployment URL unexpectedly points to Storybook: ${DEPLOYMENT_URL}"
             exit 1
           fi
+
+          echo "Validated deployment URL: ${DEPLOYMENT_URL}"
 
       - name: Run Playwright tests against preview
         uses: ./.github/actions/playwright

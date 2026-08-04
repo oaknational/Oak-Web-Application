@@ -120,69 +120,6 @@ jobs:
           state: ${{ steps.run_pa11y.outcome }}
           github_token: ${{ secrets.GITHUB_TOKEN }}
 
-  # Run Playwright end-to-end tests against preview and production deployments.
-  playwright:
-    # needs: warm_caches
-    # Only want to run on success, otherwise it might be "pending", or "failure".
-    # Filter out Storybook deployments.
-    if: ${{ (github.event.deployment_status.state == 'success') && !endsWith(github.event.deployment_status.environment, 'storybook') && !endsWith(github.event.deployment_status.environment, 'storybook-console')}}
-    name: Playwright
-    runs-on: ubuntu-24.04
-    timeout-minutes: 60
-    permissions:
-      contents: read
-      pull-requests: read
-      statuses: write
-
-    steps:
-      - uses: actions/checkout@v5
-
-      - name: setup pnpm
-        uses: pnpm/action-setup@08c4be7e2e672a47d11bd04269e27e5f3e8529cb #v6
-        with:
-          cache: true
-
-      - name: setup node
-        uses: actions/setup-node@v6
-        with:
-          node-version: 24
-          cache: "pnpm"
-
-      - run: pnpm install --ignore-scripts --verbose
-
-      - name: Log out URL
-        run: echo "${{ github.event.deployment_status.environment_url }}"
-
-      - uses: ./.github/actions/ref_from_sha
-        name: Get PR Ref from SHA
-        id: ref_from_sha
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: print branch name and PR number from sha
-        run: |
-          echo "${{ steps.ref_from_sha.outputs.branch_name }}"
-          echo "${{ steps.ref_from_sha.outputs.pr_number }}"
-
-      - uses: ./.github/actions/playwright
-        name: run playwright
-        id: run_playwright
-        continue-on-error: true
-        with:
-          base_url: ${{ github.event.deployment_status.environment_url }}
-          branch_name: ${{ steps.ref_from_sha.outputs.branch_name }}
-          vercel_bypass_secret: ${{ secrets.VERCEL_AUTOMATION_BYPASS_SECRET }}
-
-      # Set custom status so results preserved between multiple
-      # deployment events from same commit
-      - uses: ./.github/actions/custom_statuses
-        name: Set Playwright check result
-        if: ${{ always() }}
-        with:
-          description: Playwright (${{github.event.deployment_status.environment}})
-          state: ${{ steps.run_playwright.outcome }}
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-
   # Run Percy visual regression tests against preview and production deployments.
   percy:
     # needs: warm_caches
