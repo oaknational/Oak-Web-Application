@@ -97,7 +97,6 @@ describe("UnitDownloadButton", () => {
         downloadInProgress={false}
         onDownloadSuccess={jest.fn()}
         unitFileId="mockSlug"
-        accessLevel="unit"
         showNewTag
         geoRestricted={false}
       />,
@@ -116,7 +115,6 @@ describe("UnitDownloadButton", () => {
         downloadInProgress={false}
         onDownloadSuccess={jest.fn()}
         unitFileId="mockSlug"
-        accessLevel="unit"
         showNewTag
         geoRestricted={false}
       />,
@@ -134,7 +132,6 @@ describe("UnitDownloadButton", () => {
         downloadInProgress={true}
         onDownloadSuccess={jest.fn()}
         unitFileId="mockSlug"
-        accessLevel="unit"
         showNewTag
         geoRestricted={false}
       />,
@@ -155,7 +152,6 @@ describe("UnitDownloadButton", () => {
         downloadInProgress={false}
         onDownloadSuccess={jest.fn()}
         unitFileId="mockSlug"
-        accessLevel="unit"
         showNewTag
         geoRestricted={false}
       />,
@@ -175,7 +171,6 @@ describe("UnitDownloadButton", () => {
         downloadInProgress={false}
         onDownloadSuccess={jest.fn()}
         unitFileId="mockSlug"
-        accessLevel="unit"
         showNewTag
         geoRestricted={true}
       />,
@@ -197,7 +192,6 @@ describe("UnitDownloadButton", () => {
         downloadInProgress={false}
         onDownloadSuccess={jest.fn()}
         unitFileId="mockSlug"
-        accessLevel="unit"
         showNewTag
         geoRestricted={false}
       />,
@@ -217,7 +211,6 @@ describe("UnitDownloadButton", () => {
         downloadInProgress={false}
         onDownloadSuccess={onDownloadSuccess}
         unitFileId="mockSlug"
-        accessLevel="unit"
         showNewTag
         geoRestricted={false}
       />,
@@ -247,7 +240,6 @@ describe("UnitDownloadButton", () => {
         downloadInProgress={false}
         onDownloadSuccess={jest.fn()}
         unitFileId="mockSlug"
-        accessLevel="unit"
         showNewTag
         geoRestricted={false}
       />,
@@ -273,7 +265,6 @@ describe("UnitDownloadButton", () => {
         downloadInProgress={false}
         onDownloadSuccess={jest.fn()}
         unitFileId="mockSlug"
-        accessLevel="unit"
         showNewTag
         geoRestricted={false}
         isStuck
@@ -292,7 +283,6 @@ describe("UnitDownloadButton", () => {
         downloadInProgress={false}
         onDownloadSuccess={jest.fn()}
         unitFileId="mockSlug"
-        accessLevel="unit"
         showNewTag
         geoRestricted={false}
       />,
@@ -311,7 +301,6 @@ describe("UnitDownloadButton", () => {
         downloadInProgress={false}
         onDownloadSuccess={jest.fn()}
         unitFileId="mockSlug"
-        accessLevel="unit"
         showNewTag
         geoRestricted={false}
         longTextOnMobile
@@ -331,7 +320,6 @@ describe("UnitDownloadButton", () => {
         downloadInProgress={false}
         onDownloadSuccess={jest.fn()}
         unitFileId="mockSlug"
-        accessLevel="unit"
         showNewTag
         geoRestricted={false}
       />,
@@ -351,7 +339,6 @@ describe("UnitDownloadButton", () => {
           downloadInProgress={false}
           onDownloadSuccess={jest.fn()}
           unitFileId="mockSlug"
-          accessLevel="unit"
           showNewTag
           geoRestricted={false}
         />,
@@ -360,7 +347,6 @@ describe("UnitDownloadButton", () => {
       await userEvent.setup().click(screen.getByText("Download complete unit"));
 
       expect(mockUnitDownloadStarted).toHaveBeenCalledTimes(1);
-      expect(mockUnitDownloadStarted).toHaveBeenCalledWith("unit");
     });
 
     it("tracks the event when a user who has not onboarded starts the onboarding flow", async () => {
@@ -374,7 +360,6 @@ describe("UnitDownloadButton", () => {
           downloadInProgress={false}
           onDownloadSuccess={jest.fn()}
           unitFileId="mockSlug"
-          accessLevel="unit"
           showNewTag
           geoRestricted={false}
         />,
@@ -386,7 +371,6 @@ describe("UnitDownloadButton", () => {
       await userEvent.setup().click(link);
 
       expect(mockUnitDownloadStarted).toHaveBeenCalledTimes(1);
-      expect(mockUnitDownloadStarted).toHaveBeenCalledWith("unit");
     });
 
     it("does not track the event when an onboarded user downloads directly", async () => {
@@ -400,7 +384,6 @@ describe("UnitDownloadButton", () => {
           downloadInProgress={false}
           onDownloadSuccess={jest.fn()}
           unitFileId="mockSlug"
-          accessLevel="unit"
           showNewTag
           geoRestricted={false}
         />,
@@ -422,9 +405,8 @@ describe("UnitDownloadButton", () => {
           setShowDownloadMessage={jest.fn()}
           setShowIncompleteMessage={jest.fn()}
           downloadInProgress={false}
-          onDownloadSuccess={() => mockUnitDownloaded("unit")}
+          onDownloadSuccess={() => mockUnitDownloaded()}
           unitFileId="mockSlug"
-          accessLevel="unit"
           showNewTag
           geoRestricted={false}
         />,
@@ -435,7 +417,6 @@ describe("UnitDownloadButton", () => {
         .click(screen.getByRole("button", { name: "Download (.zip 1.2MB)" }));
 
       expect(mockUnitDownloaded).toHaveBeenCalledTimes(1);
-      expect(mockUnitDownloaded).toHaveBeenCalledWith("unit");
     });
 
     it("does not track the unit downloaded event when the download fails", async () => {
@@ -451,9 +432,8 @@ describe("UnitDownloadButton", () => {
           setShowDownloadMessage={jest.fn()}
           setShowIncompleteMessage={jest.fn()}
           downloadInProgress={false}
-          onDownloadSuccess={() => mockUnitDownloaded("unit")}
+          onDownloadSuccess={() => mockUnitDownloaded()}
           unitFileId="mockSlug"
-          accessLevel="unit"
           showNewTag
           geoRestricted={false}
         />,

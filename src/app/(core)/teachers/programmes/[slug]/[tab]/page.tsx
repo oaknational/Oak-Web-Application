@@ -299,7 +299,10 @@ const InnerProgrammePage = async (props: AppPageProps<ProgrammePageParams>) => {
   });
 
   return (
-    <TeacherBrowseAnalyticsStoreProvider programmeState={programmeState}>
+    <TeacherBrowseAnalyticsStoreProvider
+      programmeState={programmeState}
+      accessLevel="programme"
+    >
       <ProgrammeView {...results} />
     </TeacherBrowseAnalyticsStoreProvider>
   );

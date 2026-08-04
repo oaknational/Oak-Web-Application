@@ -7,6 +7,7 @@ import { TeacherBrowseAnalyticsStoreContext } from "@/context/TeacherBrowseAnaly
 import { ProgrammeState } from "@/context/TeacherBrowseAnalytics/teacherBrowseAnalytics.types";
 import { getProgrammeStateForLesson } from "@/context/TeacherBrowseAnalytics/utils/getProgrammeState";
 import teachersLessonOverviewFixture from "@/node-lib/curriculum-api-2023/fixtures/teachersLessonOverview.fixture";
+import { AccessLevelValueType } from "@/browser-lib/avo/Avo";
 
 export const mockJourneyId = "mockJourneyId";
 
@@ -20,8 +21,13 @@ export const mockProgrammeState: ProgrammeState = getProgrammeStateForLesson(
  */
 const MockedTeacherBrowseAnalyticsProvider: FC<{
   programmeState?: ProgrammeState;
+  accessLevel?: AccessLevelValueType;
   children?: ReactNode;
-}> = ({ programmeState = mockProgrammeState, children }) => {
+}> = ({
+  programmeState = mockProgrammeState,
+  accessLevel = "unit",
+  children,
+}) => {
   const { track } = useAnalytics();
 
   const [store] = useState(() =>
@@ -29,6 +35,7 @@ const MockedTeacherBrowseAnalyticsProvider: FC<{
       programmeState,
       avo: track,
       journeyId: mockJourneyId,
+      accessLevel,
     }),
   );
 

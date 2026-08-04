@@ -159,8 +159,7 @@ export function DownloadSuccessView({
                   setShowIncompleteMessage={setShowIncompleteMessage}
                   downloadInProgress={downloadInProgress}
                   unitFileId={getUnitDownloadFileId(unitTitle, unitvariantId)}
-                  accessLevel="lesson"
-                  onDownloadSuccess={() => unitDownloaded("lesson")}
+                  onDownloadSuccess={() => unitDownloaded()}
                   showNewTag={false}
                   geoRestricted={isGeorestrictedUnit}
                   size="small"

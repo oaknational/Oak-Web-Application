@@ -36,6 +36,7 @@ import CookieConsentProvider from "@/browser-lib/cookie-consent/CookieConsentPro
 import { OakNotificationsProvider } from "@/context/OakNotifications/OakNotificationsProvider";
 import { SaveCountProvider } from "@/context/SaveCount/SaveCountProvider";
 import { ProgrammeState } from "@/context/TeacherBrowseAnalytics/teacherBrowseAnalytics.types";
+import { AccessLevelValueType } from "@/browser-lib/avo/Avo";
 
 export type ProviderProps = {
   children?: React.ReactNode;
@@ -53,7 +54,10 @@ type ProviderPropsByName = {
   menu: Record<string, never>;
   oakNotifications: Record<string, never>;
   saveCount: Record<string, never>;
-  teacherBrowseAnalytics: { programmeState?: ProgrammeState };
+  teacherBrowseAnalytics: {
+    programmeState?: ProgrammeState;
+    accessLevel?: AccessLevelValueType;
+  };
 };
 
 export type ProviderPartialProps = {

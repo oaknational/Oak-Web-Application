@@ -55,7 +55,10 @@ const JourneyId = () => {
 
 const renderProvider = () =>
   render(
-    <TeacherBrowseAnalyticsStoreProvider programmeState={programmeState}>
+    <TeacherBrowseAnalyticsStoreProvider
+      programmeState={programmeState}
+      accessLevel="lesson"
+    >
       <JourneyId />
     </TeacherBrowseAnalyticsStoreProvider>,
   );
@@ -119,7 +122,10 @@ describe("TeacherBrowseAnalyticsStoreProvider", () => {
     getSessionId.mockReturnValue("session-1");
 
     rerender(
-      <TeacherBrowseAnalyticsStoreProvider programmeState={programmeState}>
+      <TeacherBrowseAnalyticsStoreProvider
+        programmeState={programmeState}
+        accessLevel="lesson"
+      >
         <JourneyId />
       </TeacherBrowseAnalyticsStoreProvider>,
     );

@@ -41,13 +41,14 @@ import OakError from "@/errors/OakError";
 export type TeacherBrowseAnalyticsStore = {
   programmeState: ProgrammeState;
   journeyId: string | null;
+  accessLevel: AccessLevelValueType;
   avo: TrackFns;
   track: {
     lessonResourceDownloadStarted: (
       downloadResourceButtonName: DownloadResourceButtonNameValueType,
     ) => void;
-    unitDownloaded: (accessLevel: AccessLevelValueType) => void;
-    unitDownloadStarted: (accessLevel: AccessLevelValueType) => void;
+    unitDownloaded: () => void;
+    unitDownloadStarted: () => void;
     curriculumExplainerExplored: () => void;
     unitSequenceRefined: (data: {
       filters: CurriculumFilters;
@@ -100,7 +101,7 @@ const coreProperties: {
 export const createTeacherBrowseAnalyticsStore = (
   initialState: Pick<
     TeacherBrowseAnalyticsStore,
-    "programmeState" | "avo" | "journeyId"
+    "programmeState" | "avo" | "journeyId" | "accessLevel"
   >,
 ) => {
   return createStore<TeacherBrowseAnalyticsStore>()((_, get) => ({
@@ -133,8 +134,8 @@ export const createTeacherBrowseAnalyticsStore = (
           ...analyticsProperties,
         });
       },
-      unitDownloaded: (accessLevel) => {
-        const { avo, programmeState, journeyId } = get();
+      unitDownloaded: () => {
+        const { avo, programmeState, journeyId, accessLevel } = get();
 
         // Can be tracked from the unit overview page or the lesson download success page
         if (programmeState.browseLevel === "programme") {
@@ -153,8 +154,8 @@ export const createTeacherBrowseAnalyticsStore = (
           ...analyticsProperties,
         });
       },
-      unitDownloadStarted: (accessLevel) => {
-        const { avo, programmeState, journeyId } = get();
+      unitDownloadStarted: () => {
+        const { avo, programmeState, journeyId, accessLevel } = get();
 
         // Can be tracked from the unit overview page or the lesson download success page
         if (programmeState.browseLevel === "programme") {

@@ -18,7 +18,6 @@ import createAndClickHiddenDownloadLink from "@/components/SharedComponents/help
 import { createUnitDownloadLink } from "@/components/SharedComponents/helpers/downloadAndShareHelpers/createDownloadLink";
 import { resolveOakHref } from "@/common-lib/urls";
 import { useTeacherBrowseAnalytics } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
-import { AccessLevelValueType } from "@/browser-lib/avo/Avo";
 
 const getLabel = ({
   isStuck,
@@ -256,7 +255,6 @@ export const useUnitDownloadButtonState = () => {
 
 export type UnitDownloadButtonProps = {
   unitFileId: string;
-  accessLevel: AccessLevelValueType;
   onDownloadSuccess: () => void;
   setDownloadError: Dispatch<SetStateAction<boolean | undefined>>;
   setDownloadInProgress: Dispatch<SetStateAction<boolean>>;
@@ -281,7 +279,7 @@ export type UnitDownloadButtonProps = {
  * If there is no download for this unit, or unit download is disabled, the button will not be shown (ie. legacy units)
  */
 export default function UnitDownloadButton(props: UnitDownloadButtonProps) {
-  const { unitFileId, geoRestricted, accessLevel } = props;
+  const { unitFileId, geoRestricted } = props;
   const { isSignedIn, isLoaded, user } = useUser();
   const auth = useAuth();
   const pathname = usePathname();
@@ -348,7 +346,7 @@ export default function UnitDownloadButton(props: UnitDownloadButtonProps) {
         page: "onboarding",
         query: { returnTo: pathname ?? "" },
       })}
-      onClick={() => unitDownloadStarted(accessLevel)}
+      onClick={unitDownloadStarted}
       showNewTag={props.showNewTag}
       size={props.size}
       ariaLabel={props.ariaLabel}
@@ -358,7 +356,7 @@ export default function UnitDownloadButton(props: UnitDownloadButtonProps) {
     <UnitDownloadSignInButton
       isStuck={isStuck}
       redirectUrl={`/onboarding?returnTo=${pathname}`}
-      onClick={() => unitDownloadStarted(accessLevel)}
+      onClick={unitDownloadStarted}
       showNewTag={props.showNewTag}
       isDesktop={isDesktop}
       isMobile={isMobile}

@@ -84,9 +84,8 @@ const UnitHeader = (props: UnitHeaderProps) => {
             setShowIncompleteMessage={setShowIncompleteMessage}
             downloadInProgress={downloadInProgress}
             unitFileId={unitDownloadFileId}
-            accessLevel="unit"
             onDownloadSuccess={() => {
-              unitDownloaded("unit");
+              unitDownloaded();
               setCurrentToastProps({
                 message: "Download started. This may take a few minutes.",
                 variant: "success",
