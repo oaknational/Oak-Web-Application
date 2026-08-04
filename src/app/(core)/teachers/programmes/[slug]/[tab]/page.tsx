@@ -14,7 +14,6 @@ import {
 
 import {
   createDownloadsData,
-  CurriculumUnitsTrackingData,
   formatCurriculumUnitsData,
 } from "@/pages-helpers/curriculum/docx/tab-helpers";
 import { getOpenGraphMetadata, getTwitterMetadata } from "@/app/metadata";
@@ -277,13 +276,6 @@ const InnerProgrammePage = async (props: AppPageProps<ProgrammePageParams>) => {
     examboardTitle: ks4Option?.title,
   };
 
-  // TD: [integrated journey] tracking
-  const curriculumUnitsTrackingData: CurriculumUnitsTrackingData = {
-    ...subjectPhaseKeystageSlugs,
-    subjectTitle: curriculumSelectionTitles.subjectTitle,
-    ks4OptionTitle: curriculumSelectionTitles.examboardTitle,
-  };
-
   const results: ProgrammePageProps = {
     subjectPhaseSlug,
     curriculumSelectionSlugs: subjectPhaseKeystageSlugs,
@@ -294,7 +286,6 @@ const InnerProgrammePage = async (props: AppPageProps<ProgrammePageParams>) => {
     curriculumCMSInfo,
     ks4Options,
     ks4OptionFilterDimensions,
-    trackingData: curriculumUnitsTrackingData,
     curriculumDownloadsTabData,
     mvRefreshTime,
     initialFilter: resolvedFilter,

@@ -30,7 +30,6 @@ import {
 import {
   CurriculumDownloadsTierSubjectProps,
   CurriculumUnitsFormattedData,
-  CurriculumUnitsTrackingData,
 } from "@/pages-helpers/curriculum/docx/tab-helpers";
 import { useFilters } from "@/hooks/useFilters";
 import {
@@ -38,15 +37,13 @@ import {
   CurriculumSelectionTitles,
 } from "@/utils/curriculum/slugs";
 import { CurriculumFilters } from "@/utils/curriculum/types";
-import useAnalytics from "@/context/Analytics/useAnalytics";
-import { buildUnitSequenceRefinedAnalytics } from "@/utils/curriculum/analytics";
-import useAnalyticsPageProps from "@/hooks/useAnalyticsPageProps";
 import { ProgrammePageHeaderCMS } from "@/common-lib/cms-types/programmePage";
 import { CurriculumOverviewSanityData } from "@/common-lib/cms-types";
 import type { Ks4Option } from "@/node-lib/curriculum-api-2023/queries/curriculumPhaseOptions/curriculumPhaseOptions.schema";
 import { resolveOakHref } from "@/common-lib/urls";
 import { validateSearchParams } from "@/utils/validateProgrammePageSearchParams";
 import { getDefaultFilter } from "@/utils/curriculum/filtering";
+import { useTeacherBrowseAnalytics } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
 
 export type ProgrammePageProps = {
   subjectPhaseSlug: string;
@@ -61,7 +58,6 @@ export type ProgrammePageProps = {
   tabSlug: TabSlug;
   ks4Options: Ks4Option[];
   ks4OptionFilterDimensions: Record<string, Ks4OptionFilterDimension>;
-  trackingData: CurriculumUnitsTrackingData;
   initialFilter?: CurriculumFilters;
 };
 
@@ -78,7 +74,6 @@ export const ProgrammeView = ({
   subjectPhaseSlug,
   ks4Options,
   ks4OptionFilterDimensions,
-  trackingData,
   initialFilter,
 }: ProgrammePageProps) => {
   const searchParams = useSearchParams();
@@ -97,19 +92,17 @@ export const ProgrammeView = ({
 
   const [filters, setFilters] = useFilters(defaultFilter, initialFilter);
 
-  const { track } = useAnalytics();
-  const { analyticsUseCase } = useAnalyticsPageProps();
+  const { unitSequenceRefined } = useTeacherBrowseAnalytics(
+    (store) => store.track,
+  );
 
   const onChangeFilters = (newFilters: CurriculumFilters) => {
     setFilters(newFilters);
 
-    const analyticsData = buildUnitSequenceRefinedAnalytics(
-      analyticsUseCase,
-      trackingData,
-      newFilters,
-    );
-
-    track.unitSequenceRefined(analyticsData);
+    unitSequenceRefined({
+      filters: newFilters,
+      examBoardTitle: examboardTitle,
+    });
   };
 
   const schoolYear = filters.years.find(
