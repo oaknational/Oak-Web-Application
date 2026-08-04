@@ -974,7 +974,7 @@ _avo_invoke = function _avo_invoke(env: AvoEnv, eventId: string, hash: string, m
         method: "POST",
         headers: {"Content-Type": "application/json"},
         body: JSON.stringify({
-          "ac": "KlBiq7LbMHaRpKPpCoBK",
+          "ac": "GdGXMUoRWnnhkrKZQr1v",
           "br": "TXja698DdsQSi5EJ77tnq",
           "en": env,
           "ev": eventId,
@@ -1001,7 +1001,7 @@ _avo_invoke_meta = function _avo_invoke_meta(env: AvoEnv, type: string, messages
         method: "POST",
         headers: {"Content-Type": "application/json"},
         body: JSON.stringify({
-          "ac": "KlBiq7LbMHaRpKPpCoBK",
+          "ac": "GdGXMUoRWnnhkrKZQr1v",
           "br": "TXja698DdsQSi5EJ77tnq",
           "en": env,
           "ty": type,
@@ -3045,6 +3045,7 @@ export interface LessonResourceDownloadStartedProperties {
   examBoard: ExamBoardValueType | null | undefined;
   pathway: PathwayValueType | null | undefined;
   downloadResourceButtonName: DownloadResourceButtonNameValueType;
+  journeyId: string | null | undefined;
 }
 /**
  * Lesson Resource Download Started: A download button is clicked on the lesson overview page
@@ -3078,6 +3079,7 @@ export interface LessonResourceDownloadStartedProperties {
  * @param properties.examBoard: The name of the exam board for a given unit, lesson etc…
  * @param properties.pathway: Optionality around type of study (i.e. whether working towards a particular certificate or not).
  * @param properties.downloadResourceButtonName: The name of the button to download the resource (all, or individual resources)
+ * @param properties.journeyId: A unique ID for a user's journey in a specific programme triggered by a direct or accessed event. Journey end is triggered by a programme slug disappearing or changing.
  * 
  * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/TXja698DdsQSi5EJ77tnq/events/0n50tfMg2N}
  */
@@ -3122,6 +3124,9 @@ properties.pathway !== undefined && properties.pathway !== null ?
   eventPropertiesArray.push({id: "hjCgkqBH8U", name: "Pathway", value: properties.pathway}) :
   eventPropertiesArray.push({id: "hjCgkqBH8U", name: "Pathway", value: null});
 eventPropertiesArray.push({id: "GeeELBAAq", name: "Download Resource Button Name", value: properties.downloadResourceButtonName});
+properties.journeyId !== undefined && properties.journeyId !== null ?
+  eventPropertiesArray.push({id: "J9ORuaNS9rZOq5UE9Q91k", name: "Journey Id", value: properties.journeyId}) :
+  eventPropertiesArray.push({id: "J9ORuaNS9rZOq5UE9Q91k", name: "Journey Id", value: null});
 let eventProperties = convertPropertiesArrayToMap(eventPropertiesArray)
 // @ts-ignore
 let userPropertiesArray: array = [];
@@ -3131,7 +3136,7 @@ if (__AVO_ENV__ !== AvoEnv.Prod || __WEB_DEBUGGER__) {
   let messages: AvoAssertMessage[] = [];
   // debug console in Avo
   if (!__AVO_NOOP__) {
-    _avo_invoke(__AVO_ENV__, "0n50tfMg2N", "176633f56f9eff9badca6efa6a68d671cb745413e2fd8af61ba18b85124bb26d", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
+    _avo_invoke(__AVO_ENV__, "0n50tfMg2N", "f97cccb2f0353885a131466d11cdddb4737d6d2305c7def3f3aa586e4dc74dcf", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
 }
 InternalAvoLogger.logEventSent("Lesson Resource Download Started", eventProperties, userProperties);
 if (__WEB_DEBUGGER__) {
@@ -3142,7 +3147,7 @@ if (__WEB_DEBUGGER__) {
 if (!__AVO_NOOP__) {
   if (__INSPECTOR__ != null) {
     // @ts-ignore
-    __INSPECTOR__._avoFunctionTrackSchemaFromEvent("Lesson Resource Download Started", eventProperties, "0n50tfMg2N", "176633f56f9eff9badca6efa6a68d671cb745413e2fd8af61ba18b85124bb26d");
+    __INSPECTOR__._avoFunctionTrackSchemaFromEvent("Lesson Resource Download Started", eventProperties, "0n50tfMg2N", "f97cccb2f0353885a131466d11cdddb4737d6d2305c7def3f3aa586e4dc74dcf");
 }
 // destination PostHogEU
 PostHogEU.logEvent("Lesson Resource Download Started", (Object as any).assign({}, eventProperties));

@@ -115,7 +115,7 @@ export const createTeacherBrowseAnalyticsStore = (
       lessonResourceDownloadStarted: (
         downloadResourceButtonName: DownloadResourceButtonNameValueType,
       ) => {
-        const { avo, programmeState } = get();
+        const { avo, programmeState, journeyId } = get();
 
         // Lesson properties are unavailable at other browse levels, so the
         // event can't be sent
@@ -135,6 +135,7 @@ export const createTeacherBrowseAnalyticsStore = (
           engagementIntent: EngagementIntent.USE,
           componentType: ComponentType.LESSON_DOWNLOAD_BUTTON,
           downloadResourceButtonName,
+          journeyId,
           ...coreProperties,
           ...analyticsProperties,
         });
