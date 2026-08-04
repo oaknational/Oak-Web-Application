@@ -7,7 +7,7 @@ exports[`OaksImpactHeader renders correctly 1`] = `
       class="sc-aXZVg bZTQLO"
     >
       <div
-        class="sc-aXZVg sc-gEvEer sc-c3209468-0 jPvJsJ iDBIXi fUOqtU"
+        class="sc-aXZVg sc-gEvEer sc-df6bbcb8-0 jPvJsJ iDBIXi ezoxrY"
       >
         <div
           class="sc-aXZVg sc-gEvEer jUamtR fqICts"
@@ -16,13 +16,13 @@ exports[`OaksImpactHeader renders correctly 1`] = `
             class="sc-aXZVg sc-gEvEer fnKdFm gUPrwF"
           >
             <h1
-              class="sc-eldPxv lmVQYy"
+              class="sc-eldPxv hJmOde"
             >
               TEST_TITLE
             </h1>
           </div>
           <p
-            class="sc-ikkxIA dmWYlZ"
+            class="sc-ikkxIA jAnQin"
           >
             TEST_BODY
           </p>
@@ -31,7 +31,7 @@ exports[`OaksImpactHeader renders correctly 1`] = `
           class="sc-aXZVg sc-gEvEer jPvJsJ fVNIMq"
         >
           <div
-            class="sc-aXZVg sc-c3209468-1 jPvJsJ cxzUIL"
+            class="sc-aXZVg sc-df6bbcb8-1 jPvJsJ iGKZab"
           >
             <div
               class="sc-aXZVg sc-gEvEer jPvJsJ daEtut"

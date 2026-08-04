@@ -83,11 +83,18 @@ export function OaksImpactHeader({
             $ph={"spacing-4"}
             $gap={"spacing-8"}
           >
-            <OakHeading tag={"h1"} $color={"text-primary"} $font={"heading-2"}>
+            <OakHeading
+              tag={"h1"}
+              $color={"text-primary"}
+              $font={["heading-4", "heading-2", "heading-2"]}
+            >
               {title}
             </OakHeading>
           </OakFlex>
-          <OakP $color={"text-primary"} $font={"heading-light-3"}>
+          <OakP
+            $color={"text-primary"}
+            $font={["heading-light-5", "heading-light-3", "heading-light-3"]}
+          >
             {body}
           </OakP>
         </OakFlex>
