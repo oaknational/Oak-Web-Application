@@ -974,7 +974,7 @@ _avo_invoke = function _avo_invoke(env: AvoEnv, eventId: string, hash: string, m
         method: "POST",
         headers: {"Content-Type": "application/json"},
         body: JSON.stringify({
-          "ac": "KZfuaVEANKbBVHLTvzJ0",
+          "ac": "KlBiq7LbMHaRpKPpCoBK",
           "br": "TXja698DdsQSi5EJ77tnq",
           "en": env,
           "ev": eventId,
@@ -1001,7 +1001,7 @@ _avo_invoke_meta = function _avo_invoke_meta(env: AvoEnv, type: string, messages
         method: "POST",
         headers: {"Content-Type": "application/json"},
         body: JSON.stringify({
-          "ac": "KZfuaVEANKbBVHLTvzJ0",
+          "ac": "KlBiq7LbMHaRpKPpCoBK",
           "br": "TXja698DdsQSi5EJ77tnq",
           "en": env,
           "ty": type,
@@ -11328,6 +11328,7 @@ export interface TeachingMaterialsSelectedProperties {
   analyticsUseCase: AnalyticsUseCaseValueType;
   interactionId: string;
   teachingMaterialType: TeachingMaterialTypeValueType;
+  journeyId: string | null | undefined;
 }
 /**
  * Teaching Materials Selected: The user selects which type of additional material they wish to create.
@@ -11347,6 +11348,7 @@ export interface TeachingMaterialsSelectedProperties {
  * NB - This will be removed, but keeping to ease transition from AUC to 'product'
  * @param properties.interactionId: Currently applies to interactions with the Additional Material creation flow. Groups together elements of an interaction to form one journey.
  * @param properties.teachingMaterialType: Type of Additional Material user has selected to generate.
+ * @param properties.journeyId: A unique ID for a user's journey in a specific programme triggered by a direct or accessed event. Journey end is triggered by a programme slug disappearing or changing.
  * 
  * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/TXja698DdsQSi5EJ77tnq/events/53a2df64-53be-4f28-9b3e-2918d78d9477}
  */
@@ -11361,6 +11363,9 @@ eventPropertiesArray.push({id: "3ZqdV-PbJL", name: "Event Version", value: prope
 eventPropertiesArray.push({id: "DAS5R4dcvH", name: "Analytics Use Case", value: properties.analyticsUseCase});
 eventPropertiesArray.push({id: "Z-m3BRBS_MyzwLoFY6MAi", name: "Interaction ID", value: properties.interactionId});
 eventPropertiesArray.push({id: "gB0s5mJz83dHx9yISWrQH", name: "Teaching Material Type", value: properties.teachingMaterialType});
+properties.journeyId !== undefined && properties.journeyId !== null ?
+  eventPropertiesArray.push({id: "J9ORuaNS9rZOq5UE9Q91k", name: "Journey Id", value: properties.journeyId}) :
+  eventPropertiesArray.push({id: "J9ORuaNS9rZOq5UE9Q91k", name: "Journey Id", value: null});
 let eventProperties = convertPropertiesArrayToMap(eventPropertiesArray)
 // @ts-ignore
 let userPropertiesArray: array = [];
@@ -11370,7 +11375,7 @@ if (__AVO_ENV__ !== AvoEnv.Prod || __WEB_DEBUGGER__) {
   let messages: AvoAssertMessage[] = [];
   // debug console in Avo
   if (!__AVO_NOOP__) {
-    _avo_invoke(__AVO_ENV__, "53a2df64-53be-4f28-9b3e-2918d78d9477", "3c89a6f0a6f74bf204a29ecb5e65ce4ec9efae9c943daf43e950154c3f504d9a", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
+    _avo_invoke(__AVO_ENV__, "53a2df64-53be-4f28-9b3e-2918d78d9477", "19df5e293959e06fb932fa7179731d7d89089f7dbe375f74a2d16e840ccb4091", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
 }
 InternalAvoLogger.logEventSent("Teaching Materials Selected", eventProperties, userProperties);
 if (__WEB_DEBUGGER__) {
@@ -11381,7 +11386,7 @@ if (__WEB_DEBUGGER__) {
 if (!__AVO_NOOP__) {
   if (__INSPECTOR__ != null) {
     // @ts-ignore
-    __INSPECTOR__._avoFunctionTrackSchemaFromEvent("Teaching Materials Selected", eventProperties, "53a2df64-53be-4f28-9b3e-2918d78d9477", "3c89a6f0a6f74bf204a29ecb5e65ce4ec9efae9c943daf43e950154c3f504d9a");
+    __INSPECTOR__._avoFunctionTrackSchemaFromEvent("Teaching Materials Selected", eventProperties, "53a2df64-53be-4f28-9b3e-2918d78d9477", "19df5e293959e06fb932fa7179731d7d89089f7dbe375f74a2d16e840ccb4091");
 }
 // destination PostHogEU
 PostHogEU.logEvent("Teaching Materials Selected", (Object as any).assign({}, eventProperties));

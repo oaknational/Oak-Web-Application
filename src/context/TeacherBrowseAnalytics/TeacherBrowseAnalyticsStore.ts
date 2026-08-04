@@ -23,6 +23,7 @@ import {
   PlatformValueType,
   ProductValueType,
   ResourceTypeValueType,
+  TeachingMaterialTypeValueType,
 } from "@/browser-lib/avo/Avo";
 import { Thread, Unit, CurriculumFilters } from "@/utils/curriculum/types";
 import {
@@ -81,6 +82,9 @@ export type TeacherBrowseAnalyticsStore = {
       isMuted: boolean;
       mediaClipsCount: number;
       mediaClipIndex: number;
+    }) => void;
+    teachingMaterialsSelected: (props: {
+      teachingMaterialType: TeachingMaterialTypeValueType;
     }) => void;
     lessonShareStarted: () => void;
     createTeachingMaterialsInitiated: (props: { isLoggedIn: boolean }) => void;
@@ -463,6 +467,28 @@ export const createTeacherBrowseAnalyticsStore = (
           journeyId,
           engagementIntent: "use",
           componentType: "create_more_with_ai_button",
+        });
+      },
+      teachingMaterialsSelected: (data) => {
+        const { avo, programmeState, journeyId } = get();
+
+        if (programmeState.browseLevel !== "lesson") {
+          reportAnalyticsError({
+            event: "createTeachingMaterialsInitiated",
+            programmeState,
+          });
+          return;
+        }
+
+        const analyticsProps = getLessonAnalyticsProperties(programmeState);
+        avo.teachingMaterialsSelected({
+          ...coreProperties,
+          ...analyticsProps,
+          ...data,
+          journeyId,
+          interactionId: "",
+          engagementIntent: "use",
+          componentType: "create_more_with_ai_dropdown",
         });
       },
     },
