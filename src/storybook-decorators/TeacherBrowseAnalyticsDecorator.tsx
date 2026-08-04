@@ -14,6 +14,8 @@ const state: TeacherBrowseAnalyticsStore = {
   journeyId: "mockJourneyId",
   accessLevel: "unit",
   track: {
+    createTeachingMaterialsInitiated: () =>
+      console.log("createTeachingMaterialsInitiated fired"),
     lessonMediaClipsStarted: () => console.log("lessonMediaClipsStarted fired"),
     lessonResourceDownloadStarted: () =>
       console.log("lessonResourceDownloadStarted fired"),
@@ -29,6 +31,8 @@ const state: TeacherBrowseAnalyticsStore = {
       console.log("curriculumResourcesDownloadRefined fired"),
     programmeAccessed: () => console.log("programmeAccessed fired"),
     programmeRefined: () => console.log("programmeRefined fired"),
+    teachingMaterialsSelected: () =>
+      console.log("teachingMaterialsSelected fired"),
     unitDownloadStarted: () => console.log("unitDownloadStarted fired"),
     unitOverviewAccessed: () => console.log("unitOverviewAccessed fired"),
     unitRefined: () => console.log("unitRefined fired"),
