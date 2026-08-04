@@ -77,6 +77,7 @@ export type TeacherBrowseAnalyticsStore = {
       mediaClipIndex: number;
     }) => void;
     lessonShareStarted: () => void;
+    createTeachingMaterialsInitiated: (props: { isLoggedIn: boolean }) => void;
   };
 };
 
@@ -312,6 +313,27 @@ export const createTeacherBrowseAnalyticsStore = (
           ...coreProperties,
           ...analyticsProps,
           journeyId,
+        });
+      },
+      createTeachingMaterialsInitiated: (data) => {
+        const { avo, programmeState, journeyId } = get();
+
+        if (programmeState.browseLevel !== "lesson") {
+          reportAnalyticsError({
+            event: "createTeachingMaterialsInitiated",
+            programmeState,
+          });
+          return;
+        }
+
+        const analyticsProps = getLessonAnalyticsProperties(programmeState);
+        avo.createTeachingMaterialsInitiated({
+          ...coreProperties,
+          ...analyticsProps,
+          ...data,
+          journeyId,
+          engagementIntent: "use",
+          componentType: "create_more_with_ai_button",
         });
       },
     },
