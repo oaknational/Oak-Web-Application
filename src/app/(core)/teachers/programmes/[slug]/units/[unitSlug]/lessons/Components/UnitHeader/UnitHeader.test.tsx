@@ -7,9 +7,6 @@ import { useStickyUnitHeader } from "./useStickyUnitHeader";
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 import { setUseUserReturn } from "@/__tests__/__helpers__/mockClerk";
 import { mockLoggedIn } from "@/__tests__/__helpers__/mockUser";
-import teachersUnitOverviewFixture from "@/node-lib/curriculum-api-2023/fixtures/teachersUnitOverview.fixture";
-import { getProgrammeStateForUnit } from "@/context/TeacherBrowseAnalytics/utils/getProgrammeState";
-import { TeacherBrowseAnalyticsStoreProvider } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
 
 const track = {
   unitDownloaded: jest.fn(),
@@ -53,17 +50,8 @@ jest.mock("./useStickyUnitHeader", () => ({
   })),
 }));
 
-const render = renderWithProviders();
-
-const baseProps = teachersUnitOverviewFixture();
-const programmeState = getProgrammeStateForUnit(baseProps);
-
 const renderUnitHeader = (props?: Partial<UnitHeaderProps>) => {
-  return render(
-    <TeacherBrowseAnalyticsStoreProvider programmeState={programmeState}>
-      <UnitHeader {...defaultProps} {...props} />
-    </TeacherBrowseAnalyticsStoreProvider>,
-  );
+  return renderWithProviders()(<UnitHeader {...defaultProps} {...props} />);
 };
 
 const defaultProps: UnitHeaderProps = {

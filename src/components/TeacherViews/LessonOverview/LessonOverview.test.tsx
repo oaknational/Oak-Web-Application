@@ -17,8 +17,6 @@ import {
   mockUserWithDownloadAccess,
 } from "@/__tests__/__helpers__/mockUser";
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
-import { getProgrammeStateForLesson } from "@/context/TeacherBrowseAnalytics/utils/getProgrammeState";
-import { TeacherBrowseAnalyticsStoreProvider } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
 
 jest.mock("next/navigation");
 
@@ -48,32 +46,14 @@ jest.mock("@/context/Analytics/useAnalytics", () => ({
   }),
 }));
 
-const render = renderWithProviders();
-
-const programmeState = getProgrammeStateForLesson({
-  ...lessonOverviewFixture(),
-  phaseSlug: "primary",
-  phaseTitle: "Primary",
-  yearGroupTitle: "Year 3",
-  year: "3",
-  pathwaySlug: null,
-  keyStageSlug: "ks2",
-  keyStageTitle: "Key Stage 2",
-  examBoardSlug: null,
-  examBoardTitle: null,
-});
-
-const renderLessonOverview = (props?: Partial<LessonOverviewProps>) => {
-  return render(
-    <TeacherBrowseAnalyticsStoreProvider programmeState={programmeState}>
-      <LessonOverview
-        lesson={{ ...lessonOverviewFixture(), isCanonical: false }}
-        isBeta={false}
-        {...props}
-      />
-    </TeacherBrowseAnalyticsStoreProvider>,
+const renderLessonOverview = (props?: Partial<LessonOverviewProps>) =>
+  renderWithProviders()(
+    <LessonOverview
+      lesson={{ ...lessonOverviewFixture(), isCanonical: false }}
+      isBeta={false}
+      {...props}
+    />,
   );
-};
 
 describe("isPupilLessonOutcomeInKeyLearningPoints", () => {
   it("should return plo if the pupil lesson outcome is not in the key learning points", () => {
@@ -161,29 +141,29 @@ describe("lessonOverview.view", () => {
         analyticsUseCase: "Teacher",
         componentType: "go_to_media_clips_page_button",
         engagementIntent: "use",
-        eventVersion: "2.0.0",
-        examBoard: null,
-        keyStageSlug: "ks2",
-        keyStageTitle: "Key stage 2",
-        learningCycle: null,
-        lessonName: "Adverbial complex sentences",
-        lessonReleaseCohort: "2023-2026",
-        lessonReleaseDate: "2024-09-29T14:00:00.000Z",
-        lessonSlug:
-          "lesson-4-in-grammar-1-simple-compound-and-adverbial-complex-sentences",
+        phase: "secondary",
         mediaClipsButtonName: "play all",
-        pathway: null,
-        phase: "primary",
+        eventVersion: "2.0.0",
+        journeyId: "mockJourneyId",
+        learningCycle: null,
         platform: "owa",
         product: "teacher lesson resources",
-        releaseGroup: "2023",
-        subjectSlug: "english",
-        subjectTitle: "English",
+        examBoard: null,
+        keyStageSlug: "ks3",
+        keyStageTitle: "Key stage 3",
+        pathway: null,
+        subjectSlug: "biology",
+        subjectTitle: "Biology",
         tierName: null,
-        unitName: "Simple, Compound and Adverbial Complex Sentences",
-        unitSlug: "grammar-1-simple-compound-and-adverbial-complex-sentences",
-        yearGroupName: "Year 3",
-        yearGroupSlug: "year-3",
+        unitName: "Cells",
+        unitSlug: "cells",
+        lessonName: "Structure of cells",
+        lessonSlug: "lesson-3-structure-of-cells",
+        lessonReleaseDate: "2024-09-29T14:00:00.000Z",
+        lessonReleaseCohort: "2023-2026",
+        releaseGroup: "2023",
+        yearGroupName: "Year 7",
+        yearGroupSlug: "year-7",
       });
     });
     it("should call track.trackDownloadResourceButtonClicked when play all is clicked for media clips", () => {
@@ -287,29 +267,29 @@ describe("lessonOverview.view", () => {
         analyticsUseCase: "Teacher",
         componentType: "go_to_media_clips_page_button",
         engagementIntent: "use",
-        eventVersion: "2.0.0",
-        examBoard: null,
-        keyStageSlug: "ks2",
-        keyStageTitle: "Key stage 2",
-        learningCycle: null,
-        lessonName: "Adverbial complex sentences",
-        lessonReleaseCohort: "2023-2026",
-        lessonReleaseDate: "2024-09-29T14:00:00.000Z",
-        lessonSlug:
-          "lesson-4-in-grammar-1-simple-compound-and-adverbial-complex-sentences",
+        phase: "secondary",
         mediaClipsButtonName: "play all",
-        pathway: null,
-        phase: "primary",
+        eventVersion: "2.0.0",
+        journeyId: "mockJourneyId",
+        learningCycle: null,
         platform: "owa",
         product: "teacher lesson resources",
-        releaseGroup: "2023",
-        subjectSlug: "english",
-        subjectTitle: "English",
+        examBoard: null,
+        keyStageSlug: "ks3",
+        keyStageTitle: "Key stage 3",
+        pathway: null,
+        subjectSlug: "biology",
+        subjectTitle: "Biology",
         tierName: null,
-        unitName: "Simple, Compound and Adverbial Complex Sentences",
-        unitSlug: "grammar-1-simple-compound-and-adverbial-complex-sentences",
-        yearGroupName: "Year 3",
-        yearGroupSlug: "year-3",
+        unitName: "Cells",
+        unitSlug: "cells",
+        lessonName: "Structure of cells",
+        lessonSlug: "lesson-3-structure-of-cells",
+        lessonReleaseDate: "2024-09-29T14:00:00.000Z",
+        lessonReleaseCohort: "2023-2026",
+        releaseGroup: "2023",
+        yearGroupName: "Year 7",
+        yearGroupSlug: "year-7",
       });
     });
   });

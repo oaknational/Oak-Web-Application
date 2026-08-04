@@ -13,12 +13,10 @@ import {
   curriculumOverviewCMSFixture,
   curriculumOverviewMVFixture,
 } from "@/node-lib/curriculum-api-2023/fixtures/curriculumOverview.fixture";
-import { getProgrammeStateForProgramme } from "@/context/TeacherBrowseAnalytics/utils/getProgrammeState";
 import {
   CurriculumSelectionSlugs,
   CurriculumSelectionTitles,
 } from "@/utils/curriculum/slugs";
-import { TeacherBrowseAnalyticsStoreProvider } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
 
 const subjectPhaseSlug = "science-secondary-aqa";
 
@@ -132,8 +130,6 @@ const defaultProps = {
   },
 };
 
-const render = renderWithProviders();
-
 const lightweightUnitsProps = {
   ...defaultProps,
   curriculumUnitsFormattedData: formatCurriculumUnitsData(
@@ -143,25 +139,13 @@ const lightweightUnitsProps = {
   ),
 };
 
-const programmeState = getProgrammeStateForProgramme({
-  programmeSlug: defaultProps.subjectPhaseSlug,
-  phaseSlug: defaultProps.curriculumSelectionSlugs.phaseSlug,
-  subjectSlug: defaultProps.curriculumSelectionSlugs.subjectSlug,
-  phaseTitle: defaultProps.curriculumSelectionTitles.phaseTitle,
-  subjectTitle: defaultProps.curriculumSelectionTitles.subjectTitle,
-});
-
 const renderProgrammeView = (props?: Partial<ProgrammePageProps>) => {
-  return render(
-    <TeacherBrowseAnalyticsStoreProvider programmeState={programmeState}>
-      <ProgrammeView {...defaultProps} {...props} />
-    </TeacherBrowseAnalyticsStoreProvider>,
-  );
+  return renderWithProviders()(<ProgrammeView {...defaultProps} {...props} />);
 };
 
 describe("ProgrammeView", () => {
   it("renders the programme header", () => {
-    render(<ProgrammeView {...defaultProps} />);
+    renderWithProviders()(<ProgrammeView {...defaultProps} />);
     const heading = screen.getByRole("heading", {
       name: "Science secondary AQA",
     });
