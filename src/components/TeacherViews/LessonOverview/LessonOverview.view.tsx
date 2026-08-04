@@ -31,10 +31,7 @@ import LessonOverviewPresentation from "@/components/TeacherComponents/LessonOve
 import LessonOverviewVideo from "@/components/TeacherComponents/LessonOverviewVideo";
 import QuizContainerNew from "@/components/TeacherComponents/LessonOverviewQuizContainer";
 import useAnalytics from "@/context/Analytics/useAnalytics";
-import type {
-  DownloadResourceButtonNameValueType,
-  TeachingMaterialTypeValueType,
-} from "@/browser-lib/avo/Avo";
+import type { DownloadResourceButtonNameValueType } from "@/browser-lib/avo/Avo";
 import useAnalyticsPageProps from "@/hooks/useAnalyticsPageProps";
 import LessonDetails from "@/components/TeacherComponents/LessonOverviewDetails";
 import { LessonItemContainer } from "@/components/TeacherComponents/LessonItemContainer";
@@ -142,6 +139,7 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
     lessonMediaClipsStarted,
     lessonShareStarted,
     createTeachingMaterialsInitiated,
+    teachingMaterialsSelected,
   } = useTeacherBrowseAnalytics((store) => store.track);
 
   const contentRestricted =
@@ -234,21 +232,6 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
       analyticsUseCase: "Teacher",
       downloadResourceButtonName,
       ...browsePathwayData,
-    });
-  };
-
-  const trackTeachingMaterialsSelected = (
-    teachingMaterialType: TeachingMaterialTypeValueType,
-  ) => {
-    track.teachingMaterialsSelected({
-      platform: "owa",
-      product: "teacher lesson resources",
-      engagementIntent: "use",
-      componentType: "create_more_with_ai_dropdown",
-      eventVersion: "2.0.0",
-      analyticsUseCase: "Teacher",
-      interactionId: "",
-      teachingMaterialType: teachingMaterialType,
     });
   };
 
@@ -350,7 +333,9 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
         showDownloadAll={showDownloadAll}
         showShare={showShare}
         teacherShareButton={teacherShareButton}
-        trackTeachingMaterialsSelected={trackTeachingMaterialsSelected}
+        trackTeachingMaterialsSelected={(teachingMaterialType) =>
+          teachingMaterialsSelected({ teachingMaterialType })
+        }
         trackCreateWithAiButtonClicked={() =>
           createTeachingMaterialsInitiated({
             isLoggedIn: user.isSignedIn ?? false,

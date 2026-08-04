@@ -23,7 +23,6 @@ import PreviousNextNav from "@/components/TeacherComponents/PreviousNextNav/Prev
 import { resolveOakHref } from "@/common-lib/urls";
 import { useComplexCopyright } from "@/hooks/useComplexCopyright";
 import { TeachingMaterialTypeValueType } from "@/browser-lib/avo/Avo";
-import useAnalytics from "@/context/Analytics/useAnalytics";
 import { getAnalyticsBrowseData } from "@/components/TeacherComponents/helpers/getAnalyticsBrowseData";
 import SkipLink from "@/components/CurriculumComponents/OakComponentsKitchen/SkipLink";
 import { MathJaxProvider } from "@/browser-lib/mathjax/MathJaxProvider";
@@ -80,15 +79,16 @@ export default function LessonView(
     showGeoBlocked ||
     showSignedInNotOnboarded;
 
-  const { track } = useAnalytics();
   const { isSignedIn } = useUser();
   const isMathJaxLesson = hasLessonMathJax(props, props.subjectSlug, false);
   const MathJaxLessonProvider = isMathJaxLesson ? MathJaxProvider : Fragment;
+
   const {
     lessonResourceDownloadStarted,
     lessonMediaClipsStarted,
     lessonShareStarted,
     createTeachingMaterialsInitiated,
+    teachingMaterialsSelected,
   } = useTeacherBrowseAnalytics((store) => store.track);
 
   const browsePathwayData = getAnalyticsBrowseData({
@@ -235,14 +235,7 @@ export default function LessonView(
                         trackTeachingMaterialsSelected: (
                           teachingMaterialType: TeachingMaterialTypeValueType,
                         ) => {
-                          track.teachingMaterialsSelected({
-                            platform: "owa",
-                            product: "teacher lesson resources",
-                            engagementIntent: "use",
-                            componentType: "create_more_with_ai_dropdown",
-                            eventVersion: "2.0.0",
-                            analyticsUseCase: "Teacher",
-                            interactionId: "",
+                          teachingMaterialsSelected({
                             teachingMaterialType: teachingMaterialType,
                           });
                         },
