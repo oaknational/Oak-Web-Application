@@ -9,6 +9,10 @@ import {
   getProgrammeAnalyticsProperties,
   getUnitAnalyticsProperties,
 } from "./utils/getAnalyticsProperties";
+import {
+  AnalyticsErrorMeta,
+  reportAnalyticsError,
+} from "./utils/reportAnalyticsError";
 
 import {
   AccessLevelValueType,
@@ -23,8 +27,6 @@ import {
   ProductValueType,
   ResourceTypeValueType,
 } from "@/browser-lib/avo/Avo";
-import errorReporter from "@/common-lib/error-reporter";
-import OakError, { ErrorMeta } from "@/errors/OakError";
 import { Thread, Unit, CurriculumFilters } from "@/utils/curriculum/types";
 import {
   buildUnitOverviewAccessedAnalytics,
@@ -90,34 +92,6 @@ const coreProperties: {
   product: "teacher lesson resources",
   eventVersion: "2.0.0",
   analyticsUseCase: "Teacher",
-};
-
-const reportError = errorReporter("teacher-browse-analytics");
-
-type AnalyticsErrorMeta = ErrorMeta & {
-  event: keyof TeacherBrowseAnalyticsStore["track"];
-  programmeState: ProgrammeState;
-};
-
-/**
- * Report a tracking problem, tagged with the event and the browse level it
- * was fired from.
- */
-const reportAnalyticsError = ({
-  event,
-  programmeState,
-  ...meta
-}: AnalyticsErrorMeta) => {
-  reportError(
-    new OakError({
-      code: "analytics/teacher-browse",
-      meta: {
-        event,
-        browseLevel: programmeState.browseLevel,
-        ...meta,
-      },
-    }),
-  );
 };
 
 /**
@@ -309,15 +283,10 @@ export const createTeacherBrowseAnalyticsStore = (
         const { avo, programmeState, journeyId } = get();
 
         if (programmeState.browseLevel !== "lesson") {
-          reportError(
-            new OakError({
-              code: "analytics/teacher-browse",
-              meta: {
-                event: "lessonMediaClipsStarted",
-                browseLevel: programmeState.browseLevel,
-              },
-            }),
-          );
+          reportAnalyticsError({
+            event: "lessonMediaClipsStarted",
+            programmeState,
+          });
           return;
         }
 
@@ -337,15 +306,10 @@ export const createTeacherBrowseAnalyticsStore = (
         const { avo, programmeState, journeyId } = get();
 
         if (programmeState.browseLevel !== "lesson") {
-          reportError(
-            new OakError({
-              code: "analytics/teacher-browse",
-              meta: {
-                event: "lessonMediaClipsStarted",
-                browseLevel: programmeState.browseLevel,
-              },
-            }),
-          );
+          reportAnalyticsError({
+            event: "mediaClipsPlaylistPlayed",
+            programmeState,
+          });
           return;
         }
 
