@@ -178,10 +178,6 @@ export type TeacherBrowseTrackFns = {
   }) => void;
   onwardContentSelected: (props: {
     onwardIntent: OnwardIntentValueType;
-    lessonName: string;
-    lessonSlug: string;
-    lessonReleaseCohort: LessonReleaseCohortValueType;
-    lessonReleaseDate: string;
   }) => void;
   videoPlayed: (props: VideoTrackingProperties) => void;
   videoStarted: (props: VideoTrackingProperties) => void;

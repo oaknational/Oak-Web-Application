@@ -22,7 +22,6 @@ import {
   EngagementIntent,
   EventVersionValueType,
   LearningTierValueType,
-  LessonReleaseCohortValueType,
   MediaClipsButtonNameValueType,
   OnwardIntentValueType,
   PlatformValueType,
@@ -90,10 +89,6 @@ export type TeacherBrowseAnalyticsStore = {
     }) => void;
     onwardContentSelected: (props: {
       onwardIntent: OnwardIntentValueType;
-      lessonName: string;
-      lessonSlug: string;
-      lessonReleaseCohort: LessonReleaseCohortValueType;
-      lessonReleaseDate: string;
     }) => void;
     teachingMaterialsSelected: (props: {
       teachingMaterialType: TeachingMaterialTypeValueType;
@@ -202,7 +197,7 @@ export const createTeacherBrowseAnalyticsStore = (
       onwardContentSelected: (data) => {
         const { avo, programmeState, journeyId, accessLevel } = get();
 
-        if (programmeState.browseLevel !== "unit") {
+        if (programmeState.browseLevel !== "lesson") {
           reportAnalyticsError({
             event: "onwardContentSelected",
             programmeState,
@@ -210,7 +205,8 @@ export const createTeacherBrowseAnalyticsStore = (
           return;
         }
 
-        const analyticsProperties = getUnitAnalyticsProperties(programmeState);
+        const analyticsProperties =
+          getLessonAnalyticsProperties(programmeState);
 
         avo.onwardContentSelected({
           ...coreProperties,

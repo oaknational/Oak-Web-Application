@@ -49,12 +49,10 @@ export function DownloadSuccessView({
   ctaVariant,
 }: Readonly<DownloadSuccessViewProps>) {
   const {
-    lessonTitle,
     lessonSlug,
     programmeSlug,
     unitSlug,
     unitTitle,
-    lessonReleaseDate,
     lessons,
     unitvariantId,
   } = lesson;
@@ -86,11 +84,7 @@ export function DownloadSuccessView({
         })}
         onBackClick={() =>
           onwardContentSelected({
-            lessonName: lessonTitle,
-            lessonSlug,
             onwardIntent: "view-lesson",
-            lessonReleaseCohort: "2023-2026",
-            lessonReleaseDate: lessonReleaseDate,
           })
         }
         backgroundColorLevel={1}
