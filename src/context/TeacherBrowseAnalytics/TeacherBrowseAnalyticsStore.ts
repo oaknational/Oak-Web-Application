@@ -25,8 +25,11 @@ import {
 } from "@/browser-lib/avo/Avo";
 import errorReporter from "@/common-lib/error-reporter";
 import OakError, { ErrorMeta } from "@/errors/OakError";
-import { Thread, Unit } from "@/utils/curriculum/types";
-import { buildUnitOverviewAccessedAnalytics } from "@/utils/curriculum/analytics";
+import { Thread, Unit, CurriculumFilters } from "@/utils/curriculum/types";
+import {
+  buildUnitOverviewAccessedAnalytics,
+  buildUnitSequenceRefinedAnalytics,
+} from "@/utils/curriculum/analytics";
 import { ResourceFormValues } from "@/components/TeacherComponents/types/downloadAndShare.types";
 import {
   getSchoolOption,
@@ -45,6 +48,10 @@ export type TeacherBrowseAnalyticsStore = {
     ) => void;
     unitDownloaded: (accessLevel: AccessLevelValueType) => void;
     curriculumExplainerExplored: () => void;
+    unitSequenceRefined: (data: {
+      filters: CurriculumFilters;
+      examBoardTitle?: string | null;
+    }) => void;
     curriculumResourcesDownloadRefined: (data: {
       tierSlug?: string | null;
       childSubjectSlug?: string | null;
@@ -64,7 +71,7 @@ export type TeacherBrowseAnalyticsStore = {
       learningCycle: string | null;
     }) => void;
     mediaClipsPlaylistPlayed: (props: {
-      learningCycle: string;
+      learningCycle: string | null;
       durationSeconds: number;
       isCaptioned: boolean;
       videoPlaybackId: string[];
@@ -282,6 +289,33 @@ export const createTeacherBrowseAnalyticsStore = (
         });
 
         avo.unitOverviewAccessed(analyticsProperties);
+      },
+      unitSequenceRefined: ({ filters, examBoardTitle }) => {
+        const { avo, programmeState, journeyId } = get();
+
+        const analyticsProperties =
+          getProgrammeAnalyticsProperties(programmeState);
+
+        const filterProperties = buildUnitSequenceRefinedAnalytics(
+          coreProperties.analyticsUseCase,
+          {
+            subjectSlug: programmeState.subjectSlug,
+            subjectTitle: programmeState.subjectTitle,
+            phaseSlug: programmeState.phaseSlug,
+            ks4OptionTitle: examBoardTitle,
+          },
+          filters,
+        );
+
+        avo.unitSequenceRefined({
+          ...filterProperties,
+          ...coreProperties,
+          ...analyticsProperties,
+          journeyId: resolveJourneyId(journeyId, {
+            event: "unitSequenceRefined",
+            programmeState,
+          }),
+        });
       },
       unitRefined: () => {
         const { avo, journeyId, programmeState } = get();
