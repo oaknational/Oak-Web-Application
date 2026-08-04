@@ -1,6 +1,9 @@
 import type { GetServerSidePropsContext } from "next";
 
-import { isFeatureFlagEnabled } from "./featureFlagServer";
+import {
+  isFeatureFlagEnabled,
+  isFeatureFlagEnabledAtBuild,
+} from "./featureFlagServer";
 
 import { getFeatureFlag } from "@/node-lib/posthog/getFeatureFlag";
 import { getPosthogIdFromCookie } from "@/node-lib/posthog/getPosthogId";
@@ -62,6 +65,18 @@ describe("isFeatureFlagEnabled", () => {
       "test-flag",
       "false",
     );
+    expect(result).toBe(false);
+  });
+});
+
+describe("isFeatureFlagEnabledAtBuild", () => {
+  test("returns true when constant is 'true'", () => {
+    const result = isFeatureFlagEnabledAtBuild("true");
+    expect(result).toBe(true);
+  });
+
+  test("returns false when constant is not 'true'", () => {
+    const result = isFeatureFlagEnabledAtBuild("false");
     expect(result).toBe(false);
   });
 });

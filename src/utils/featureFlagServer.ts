@@ -4,6 +4,12 @@ import { getFeatureFlag } from "@/node-lib/posthog/getFeatureFlag";
 import { getPosthogIdFromCookie } from "@/node-lib/posthog/getPosthogId";
 import getBrowserConfig from "@/browser-lib/getBrowserConfig";
 
+export function isFeatureFlagEnabledAtBuild(
+  constant: string | undefined,
+): boolean {
+  return constant === "true";
+}
+
 /**
  * A utility function to check if a feature flag is enabled
  * @param context only provided in getServerSideProps, not provided in build time rendered components
@@ -16,7 +22,7 @@ export async function isFeatureFlagEnabled(
   featureFlagKey: string,
   constant: string | undefined,
 ): Promise<boolean> {
-  if (constant === "true") {
+  if (isFeatureFlagEnabledAtBuild(constant)) {
     return true;
   }
 
