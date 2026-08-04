@@ -30,7 +30,6 @@ import { getAnalyticsBrowseData } from "@/components/TeacherComponents/helpers/g
 import LessonOverviewPresentation from "@/components/TeacherComponents/LessonOverviewPresentation";
 import LessonOverviewVideo from "@/components/TeacherComponents/LessonOverviewVideo";
 import QuizContainerNew from "@/components/TeacherComponents/LessonOverviewQuizContainer";
-import useAnalytics from "@/context/Analytics/useAnalytics";
 import useAnalyticsPageProps from "@/hooks/useAnalyticsPageProps";
 import LessonDetails from "@/components/TeacherComponents/LessonOverviewDetails";
 import { LessonItemContainer } from "@/components/TeacherComponents/LessonItemContainer";
@@ -151,7 +150,6 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
   const isSubHeader =
     useFeatureFlagVariantKey("lesson-overview-subheader-experiment") === "test";
 
-  const { track } = useAnalytics();
   const { analyticsUseCase } = useAnalyticsPageProps();
 
   const commonPathway: LessonPathway = {
@@ -294,7 +292,6 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
         ]}
         background={"bg-decorative4-very-subdued"}
         subjectIconBackgroundColor={"bg-decorative4-main"}
-        track={track}
         analyticsUseCase={analyticsUseCase}
         isNew={isNew}
         isShareable={

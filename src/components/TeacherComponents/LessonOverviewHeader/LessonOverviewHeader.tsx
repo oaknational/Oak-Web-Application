@@ -17,7 +17,6 @@ import {
   AnalyticsUseCaseValueType,
   TeachingMaterialTypeValueType,
 } from "@/browser-lib/avo/Avo";
-import { TrackFns } from "@/context/Analytics/AnalyticsProvider";
 import { TeacherNotesButtonProps } from "@/pages-helpers/teacher/useLesson/useLesson";
 
 /**
@@ -56,7 +55,6 @@ export type LessonOverviewHeaderProps = {
   isNew: boolean;
   isShareable: boolean;
   subjectIconBackgroundColor: OakUiRoleToken;
-  track: TrackFns;
   analyticsUseCase: AnalyticsUseCaseValueType;
   pupilLessonOutcome?: string | null;
   onClickDownloadAll: () => void;
