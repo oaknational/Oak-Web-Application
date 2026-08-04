@@ -18,6 +18,7 @@ import {
   UserRoleTypeValueType,
   PhaseValueType,
   LessonReleaseCohortValueType,
+  VideoLocationValueType,
 } from "@/browser-lib/avo/Avo";
 import { ResourceFormValues } from "@/components/TeacherComponents/types/downloadAndShare.types";
 import { VideoTrackingGetState } from "@/components/SharedComponents/VideoPlayer/useVideoTracking";
@@ -110,6 +111,16 @@ export type LessonPathwayData = UnitPathwayData & {
   yearGroupSlug: string;
 };
 
+export type VideoTrackingProperties = {
+  durationSeconds: number | null | undefined;
+  isCaptioned: boolean;
+  videoPlaybackId: string[];
+  videoTitle: string;
+  timeElapsedSeconds: number;
+  isMuted: boolean;
+  videoLocation: VideoLocationValueType | null | undefined;
+};
+
 // All Track Fns used in the teacher browse journey
 export type TeacherBrowseTrackFns = {
   // NAVIGATION
@@ -174,19 +185,19 @@ export type TeacherBrowseTrackFns = {
     },
   ) => void;
   videoStarted: (
-    props: ReturnType<VideoTrackingGetState> & {
+    props: VideoTrackingProperties & {
       cloudinaryUrl: string | null;
       muxAssetId: string | null;
     },
   ) => void;
   videoPaused: (
-    props: ReturnType<VideoTrackingGetState> & {
+    props: VideoTrackingProperties & {
       cloudinaryUrl: string | null;
       muxAssetId: string | null;
     },
   ) => void;
   videoFinished: (
-    props: ReturnType<VideoTrackingGetState> & {
+    props: VideoTrackingProperties & {
       cloudinaryUrl: string | null;
       muxAssetId: string | null;
     },

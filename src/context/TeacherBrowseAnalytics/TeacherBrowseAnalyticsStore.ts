@@ -3,7 +3,10 @@ import { capitalize } from "lodash";
 
 import { TrackFns } from "../Analytics/AnalyticsProvider";
 
-import { ProgrammeState } from "./teacherBrowseAnalytics.types";
+import {
+  ProgrammeState,
+  VideoTrackingProperties,
+} from "./teacherBrowseAnalytics.types";
 import {
   getLessonAnalyticsProperties,
   getProgrammeAnalyticsProperties,
@@ -88,6 +91,12 @@ export type TeacherBrowseAnalyticsStore = {
     }) => void;
     lessonShareStarted: () => void;
     createTeachingMaterialsInitiated: (props: { isLoggedIn: boolean }) => void;
+    videoPlayed: (
+      props: VideoTrackingProperties & {
+        cloudinaryUrl: string | null;
+        muxAssetId: string | null;
+      },
+    ) => void;
   };
 };
 
@@ -490,6 +499,25 @@ export const createTeacherBrowseAnalyticsStore = (
           interactionId: "",
           engagementIntent: "use",
           componentType: "create_more_with_ai_dropdown",
+        });
+      },
+      videoPlayed: (data) => {
+        const { avo, programmeState, journeyId } = get();
+
+        if (programmeState.browseLevel !== "lesson") {
+          reportAnalyticsError({
+            event: "createTeachingMaterialsInitiated",
+            programmeState,
+          });
+          return;
+        }
+
+        const analyticsProps = getLessonAnalyticsProperties(programmeState);
+        avo.videoPlayed({
+          ...coreProperties,
+          ...analyticsProps,
+          ...data,
+          journeyId,
         });
       },
     },
