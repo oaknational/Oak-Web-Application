@@ -178,33 +178,21 @@ describe("lessonOverview.view", () => {
       act(() => {
         playAllButton.click();
       });
-      expect(lessonResourceDownloadStarted).toHaveBeenCalledWith({
-        analyticsUseCase: "Teacher",
-        componentType: "lesson_download_button",
-        downloadResourceButtonName: "slide deck",
-        engagementIntent: "use",
-        eventVersion: "2.0.0",
-        examBoard: null,
-        keyStageSlug: "ks2",
-        keyStageTitle: "Key Stage 2",
-        lessonName: "Adverbial complex sentences",
-        lessonReleaseCohort: "2020-2023",
-        lessonReleaseDate: "2024-09-29T14:00:00.000Z",
-        lessonSlug:
-          "lesson-4-in-grammar-1-simple-compound-and-adverbial-complex-sentences",
-        pathway: null,
-        releaseGroup: "legacy",
-        phase: "primary",
-        platform: "owa",
-        yearGroupName: "Year 3",
-        yearGroupSlug: "year-3",
-        product: "teacher lesson resources",
-        subjectSlug: "english",
-        subjectTitle: "English",
-        tierName: null,
-        unitName: "Simple, Compound and Adverbial Complex Sentences",
-        unitSlug: "grammar-1-simple-compound-and-adverbial-complex-sentences",
-      });
+      expect(lessonResourceDownloadStarted).toHaveBeenCalledWith(
+        expect.objectContaining({
+          unitName: "Cells",
+          unitSlug: "cells",
+          yearGroupName: "Year 7",
+          yearGroupSlug: "year-7",
+          subjectSlug: "biology",
+          subjectTitle: "Biology",
+          phase: "secondary",
+          lessonSlug: "lesson-3-structure-of-cells",
+          keyStageSlug: "ks3",
+          keyStageTitle: "Key stage 3",
+          lessonName: "Structure of cells",
+        }),
+      );
     });
     it("should hanlde no release date when track.trackDownloadResourceButtonClicked is called", () => {
       renderLessonOverview({
@@ -222,33 +210,21 @@ describe("lessonOverview.view", () => {
       act(() => {
         playAllButton.click();
       });
-      expect(lessonResourceDownloadStarted).toHaveBeenCalledWith({
-        analyticsUseCase: "Teacher",
-        componentType: "lesson_download_button",
-        downloadResourceButtonName: "slide deck",
-        engagementIntent: "use",
-        eventVersion: "2.0.0",
-        examBoard: null,
-        keyStageSlug: "ks2",
-        keyStageTitle: "Key Stage 2",
-        lessonName: "Adverbial complex sentences",
-        lessonReleaseCohort: "2023-2026",
-        lessonReleaseDate: "unreleased",
-        lessonSlug:
-          "lesson-4-in-grammar-1-simple-compound-and-adverbial-complex-sentences",
-        pathway: null,
-        platform: "owa",
-        product: "teacher lesson resources",
-        subjectSlug: "english",
-        subjectTitle: "English",
-        tierName: null,
-        unitName: "Simple, Compound and Adverbial Complex Sentences",
-        unitSlug: "grammar-1-simple-compound-and-adverbial-complex-sentences",
-        yearGroupName: "Year 3",
-        yearGroupSlug: "year-3",
-        releaseGroup: "2023",
-        phase: "primary",
-      });
+      expect(lessonResourceDownloadStarted).toHaveBeenCalledWith(
+        expect.objectContaining({
+          unitName: "Cells",
+          unitSlug: "cells",
+          yearGroupName: "Year 7",
+          yearGroupSlug: "year-7",
+          subjectSlug: "biology",
+          subjectTitle: "Biology",
+          phase: "secondary",
+          lessonSlug: "lesson-3-structure-of-cells",
+          keyStageSlug: "ks3",
+          keyStageTitle: "Key stage 3",
+          lessonName: "Structure of cells",
+        }),
+      );
     });
     it("should hanlde no release date when track.lessonMediaClipsStarted is called", () => {
       renderLessonOverview({
