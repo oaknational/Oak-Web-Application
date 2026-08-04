@@ -3,6 +3,7 @@ import errorReporter from "@/common-lib/error-reporter";
 import useAnalytics from "@/context/Analytics/useAnalytics";
 import { PupilPathwayData } from "@/context/PupilLessonAnalytics/pupilAnalyticsHelpers";
 import { AnalyticsBrowseData } from "@/components/TeacherComponents/types/lesson.types";
+import { useTeacherBrowseAnalytics } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
 
 const reportError = errorReporter("useVideoTracking");
 
@@ -55,6 +56,65 @@ type UseVideoTrackingProps = {
   cloudinaryUrl?: string | null;
   muxAssetId?: string | null;
 };
+
+export const useTeacherVideoTracking = (
+  props: Exclude<UseVideoTrackingProps, "pathwayData">,
+) => {
+  const { videoPlayed, videoFinished, videoPaused, videoStarted } =
+    useTeacherBrowseAnalytics((state) => state.track);
+
+  const onPlay = (isVideoStart: boolean) => {
+    const eventProps = getEventPropsOrWarn(props);
+    if (!eventProps) {
+      return;
+    }
+
+    const trackingProps = {
+      ...eventProps,
+      cloudinaryUrl: props.cloudinaryUrl ?? null,
+      muxAssetId: props.muxAssetId ?? null,
+    };
+
+    videoPlayed(trackingProps);
+
+    if (isVideoStart) {
+      videoStarted(trackingProps);
+    }
+  };
+  const onPause = () => {
+    const eventProps = getEventPropsOrWarn(props);
+
+    if (!eventProps) {
+      return;
+    }
+    const trackingProps = {
+      ...eventProps,
+      cloudinaryUrl: props.cloudinaryUrl ?? null,
+      muxAssetId: props.muxAssetId ?? null,
+    };
+    videoPaused(trackingProps);
+  };
+  const onEnd = () => {
+    const eventProps = getEventPropsOrWarn(props);
+
+    if (!eventProps) {
+      return;
+    }
+    const trackingProps = {
+      ...eventProps,
+      cloudinaryUrl: props.cloudinaryUrl ?? null,
+      muxAssetId: props.muxAssetId ?? null,
+    };
+    videoFinished(trackingProps);
+  };
+
+  return {
+    onPlay,
+    onEnd,
+    onPause,
+  };
+};
+
 const useVideoTracking = (props: UseVideoTrackingProps) => {
   const { track } = useAnalytics();
 
@@ -73,13 +133,16 @@ const useVideoTracking = (props: UseVideoTrackingProps) => {
       ...pathwayData,
       cloudinaryUrl: props.cloudinaryUrl,
       muxAssetId: props.muxAssetId,
+      journeyId: null,
     });
+
     if (isVideoStart) {
       track.videoStarted({
         ...eventProps,
         ...pathwayData,
         cloudinaryUrl: props.cloudinaryUrl,
         muxAssetId: props.muxAssetId,
+        journeyId: null,
       });
     }
   };
@@ -94,6 +157,7 @@ const useVideoTracking = (props: UseVideoTrackingProps) => {
       ...pathwayData,
       cloudinaryUrl: props.cloudinaryUrl,
       muxAssetId: props.muxAssetId,
+      journeyId: null,
     });
   };
   const onEnd = () => {
@@ -107,6 +171,7 @@ const useVideoTracking = (props: UseVideoTrackingProps) => {
       ...pathwayData,
       cloudinaryUrl: props.cloudinaryUrl,
       muxAssetId: props.muxAssetId,
+      journeyId: null,
     });
   };
 

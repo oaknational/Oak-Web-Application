@@ -27,6 +27,7 @@ const eventProps = {
   videoLocation: "webinar",
   videoPlaybackId: ["12mux67"],
   videoTitle: "Top video",
+  journeyId: null,
 };
 const getState: VideoTrackingGetState = () => ({
   duration: 234,

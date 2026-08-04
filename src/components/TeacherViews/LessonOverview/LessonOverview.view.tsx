@@ -26,7 +26,6 @@ import {
   getPageLinksWithSubheadingsForLesson,
   getCommonPathway,
 } from "@/components/TeacherComponents/helpers/lessonHelpers/lesson.helpers";
-import { getAnalyticsBrowseData } from "@/components/TeacherComponents/helpers/getAnalyticsBrowseData";
 import LessonOverviewPresentation from "@/components/TeacherComponents/LessonOverviewPresentation";
 import LessonOverviewVideo from "@/components/TeacherComponents/LessonOverviewVideo";
 import QuizContainerNew from "@/components/TeacherComponents/LessonOverviewQuizContainer";
@@ -118,7 +117,6 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
     teacherNoteError,
     additionalFiles,
     lessonOutline,
-    lessonReleaseDate,
     loginRequired,
     geoRestricted,
   } = lesson;
@@ -169,20 +167,8 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
     lessonCohort: lesson.lessonCohort,
     pathwayTitle: lesson.pathwayTitle ?? null,
   };
-  const {
-    keyStageSlug,
-    keyStageTitle,
-    subjectTitle,
-    subjectSlug,
-    unitTitle,
-    unitSlug,
-    programmeSlug,
-    yearGroupTitle,
-    examBoardTitle,
-    tierTitle,
-    pathwayTitle,
-    yearGroupSlug,
-  } = commonPathway;
+  const { subjectSlug, unitSlug, programmeSlug } = commonPathway;
+
   const user = useUser();
   const isLegacyLicense = !lessonCohort || lessonCohort === LEGACY_COHORT;
   const isNew = lessonCohort === NEW_COHORT;
@@ -197,24 +183,6 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
     : "Video & audio clips";
 
   const MathJaxLessonProvider = isMathJaxLesson ? MathJaxProvider : Fragment;
-
-  const browsePathwayData = getAnalyticsBrowseData({
-    keyStageSlug,
-    keyStageTitle,
-    subjectSlug,
-    subjectTitle,
-    unitSlug,
-    unitTitle,
-    year: yearGroupSlug,
-    yearTitle: yearGroupTitle,
-    examBoardTitle,
-    tierTitle,
-    pathwayTitle,
-    lessonSlug,
-    lessonName: lessonTitle,
-    lessonReleaseDate,
-    isLegacy: lesson.isLegacy,
-  });
 
   const slugs = { unitSlug, lessonSlug, programmeSlug };
 
@@ -554,7 +522,6 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
                         title={lessonTitle}
                         transcriptSentences={transcriptSentences}
                         isLegacy={isLegacyLicense}
-                        browsePathwayData={browsePathwayData}
                       />
                     </LessonItemContainer>
                   )}

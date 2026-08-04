@@ -23,7 +23,6 @@ import PreviousNextNav from "@/components/TeacherComponents/PreviousNextNav/Prev
 import { resolveOakHref } from "@/common-lib/urls";
 import { useComplexCopyright } from "@/hooks/useComplexCopyright";
 import { TeachingMaterialTypeValueType } from "@/browser-lib/avo/Avo";
-import { getAnalyticsBrowseData } from "@/components/TeacherComponents/helpers/getAnalyticsBrowseData";
 import SkipLink from "@/components/CurriculumComponents/OakComponentsKitchen/SkipLink";
 import { MathJaxProvider } from "@/browser-lib/mathjax/MathJaxProvider";
 import { hasLessonMathJax } from "@/components/TeacherViews/LessonOverview/hasLessonMathJax";
@@ -45,18 +44,13 @@ export default function LessonView(
     loginRequired,
     geoRestricted,
     expired,
-    lessonReleaseDate,
     lessonTitle,
     keyStageTitle,
     keyStageSlug,
     subjectTitle,
     unitTitle,
     year,
-    yearGroupTitle,
-    examBoardTitle,
     examBoardSlug,
-    tierTitle,
-    pathwayTitle,
     phaseSlug,
     actions,
     subjectCategories,
@@ -91,26 +85,7 @@ export default function LessonView(
     teachingMaterialsSelected,
   } = useTeacherBrowseAnalytics((store) => store.track);
 
-  const browsePathwayData = getAnalyticsBrowseData({
-    keyStageSlug,
-    keyStageTitle,
-    subjectSlug,
-    subjectTitle,
-    unitSlug,
-    unitTitle,
-    year,
-    yearTitle: yearGroupTitle,
-    examBoardTitle,
-    tierTitle,
-    pathwayTitle,
-    lessonSlug,
-    lessonName: lessonTitle,
-    lessonReleaseDate,
-    isLegacy: false,
-  });
-
   const lessonResources = getLessonResources({
-    browsePathwayData,
     data: props,
     copyrightState,
     isMathJaxLesson,

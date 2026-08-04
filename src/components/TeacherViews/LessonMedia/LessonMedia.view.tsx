@@ -29,7 +29,6 @@ import {
   sortMediaClipsByOrder,
 } from "@/components/TeacherComponents/helpers/lessonHelpers/lesson.helpers";
 import { LessonPathway } from "@/components/TeacherComponents/types/lesson.types";
-import { getAnalyticsBrowseData } from "@/components/TeacherComponents/helpers/getAnalyticsBrowseData";
 import { LessonMediaClipInfo } from "@/components/TeacherComponents/LessonMediaClipInfo";
 import { LessonMediaAttributions } from "@/components/TeacherComponents/LessonMediaAttributions/LessonMediaAttributions";
 import type {
@@ -129,32 +128,11 @@ export const LessonMedia = (
     unitSlug,
     subjectTitle,
     yearTitle,
-    keyStageSlug,
     unitTitle,
-    pathwayTitle,
-    examBoardTitle,
-    tierTitle,
     lessonCohort,
   } = commonPathway;
 
   const isLegacy = lessonCohort === LEGACY_COHORT;
-  const pathwayData = getAnalyticsBrowseData({
-    keyStageSlug,
-    keyStageTitle,
-    subjectSlug,
-    subjectTitle,
-    unitSlug,
-    unitTitle,
-    year: commonPathway.year,
-    yearTitle,
-    examBoardTitle,
-    tierTitle,
-    pathwayTitle,
-    lessonSlug,
-    lessonName: lessonTitle,
-    lessonReleaseDate,
-    isLegacy,
-  });
 
   const searchParams = useSearchParams();
   const videoQueryParam = searchParams?.get("video") ?? null;
@@ -312,7 +290,7 @@ export const LessonMedia = (
       defaultHiddenCaptions={isPEPractical}
       cloudinaryUrl={currentClip.mediaObject.url}
       muxAssetId={currentClip.videoObject?.muxAssetId}
-      pathwayData={pathwayData}
+      useTeacherBrowseTracking
     />
   );
 

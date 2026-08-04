@@ -26,7 +26,6 @@ import { TeachersLessonOverviewPageData } from "@/node-lib/curriculum-api-2023/q
 import LessonDetails from "@/components/TeacherComponents/LessonOverviewDetails";
 import QuizContainerNew from "@/components/TeacherComponents/LessonOverviewQuizContainer";
 import { DownloadResourceButtonNameValueType } from "@/browser-lib/avo/Avo";
-import { AnalyticsBrowseData } from "@/components/TeacherComponents/types/lesson.types";
 
 /**
  * Checks if a resource is downloadable based on its type and available downloads.
@@ -101,13 +100,11 @@ const getSkipLinkUrl = ({
 };
 
 export function getLessonResources({
-  browsePathwayData,
   data,
   isMathJaxLesson,
   trackMediaClipsButtonClicked,
   contentRestricted,
 }: {
-  browsePathwayData: AnalyticsBrowseData;
   data: TeachersLessonOverviewPageData;
   copyrightState: ReturnType<typeof useComplexCopyright>;
   isMathJaxLesson: boolean;
@@ -175,7 +172,6 @@ export function getLessonResources({
       title={data.lessonTitle}
       transcriptSentences={data.transcriptSentences}
       isLegacy={false}
-      browsePathwayData={browsePathwayData}
     />
   ) : undefined;
   const worksheet = data.worksheetUrl ? (

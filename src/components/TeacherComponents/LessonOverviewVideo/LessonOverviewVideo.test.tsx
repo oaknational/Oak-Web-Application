@@ -4,7 +4,6 @@ import {
   LessonOverviewVideo,
   LessonOverviewVideoProps,
 } from "./LessonOverviewVideo";
-import { mockBrowsePathwayData } from "./LessonOverviewVideo.fixtures";
 
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 
@@ -21,7 +20,6 @@ describe("LessonOverviewVideo", () => {
       transcriptSentences: ["test sentence 1", "test sentence 2"],
       signLanguageVideo: "signLanguageVideo",
       isLegacy: true,
-      browsePathwayData: mockBrowsePathwayData,
     };
     const { getByTestId } = renderWithTheme(<LessonOverviewVideo {...props} />);
     expect(getByTestId("video-element")).toBeInTheDocument();
@@ -34,7 +32,6 @@ describe("LessonOverviewVideo", () => {
       transcriptSentences: ["test sentence 1", "test sentence 2"],
       signLanguageVideo: "signLanguageVideo",
       isLegacy: true,
-      browsePathwayData: mockBrowsePathwayData,
     };
     const { getByText } = renderWithTheme(<LessonOverviewVideo {...props} />);
     expect(getByText("Show transcript")).toBeInTheDocument();
@@ -46,7 +43,6 @@ describe("LessonOverviewVideo", () => {
       title: "title",
       signLanguageVideo: "signLanguageVideo",
       isLegacy: true,
-      browsePathwayData: mockBrowsePathwayData,
     };
     const { getByText } = renderWithTheme(<LessonOverviewVideo {...props} />);
     expect(() => getByText("Show transcript")).toThrow();
@@ -59,7 +55,6 @@ describe("LessonOverviewVideo", () => {
       transcriptSentences: ["test sentence 1", "test sentence 2"],
       signLanguageVideo: "signLanguageVideo",
       isLegacy: true,
-      browsePathwayData: mockBrowsePathwayData,
     };
     const { getByText } = renderWithTheme(<LessonOverviewVideo {...props} />);
 
@@ -75,7 +70,6 @@ describe("LessonOverviewVideo", () => {
       transcriptSentences: ["test sentence 1", "test sentence 2"],
       signLanguageVideo: "signLanguageVideo",
       isLegacy: true,
-      browsePathwayData: mockBrowsePathwayData,
     };
     const { getByText } = renderWithTheme(<LessonOverviewVideo {...props} />);
 
@@ -92,7 +86,6 @@ describe("LessonOverviewVideo", () => {
       transcriptSentences: ["test sentence 1", "test sentence 2"],
       signLanguageVideo: "signLanguageVideo",
       isLegacy: true,
-      browsePathwayData: mockBrowsePathwayData,
     };
     const { getByText } = renderWithTheme(<LessonOverviewVideo {...props} />);
     expect(getByText("Show sign language")).toBeInTheDocument();
@@ -105,7 +98,6 @@ describe("LessonOverviewVideo", () => {
       transcriptSentences: ["test sentence 1", "test sentence 2"],
       signLanguageVideo: null,
       isLegacy: true,
-      browsePathwayData: mockBrowsePathwayData,
     };
     const { getByText } = renderWithTheme(<LessonOverviewVideo {...props} />);
     expect(() => getByText("Show sign language")).toThrow();

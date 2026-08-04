@@ -4,7 +4,10 @@ import type { Tokens } from "@mux/mux-player";
 import MuxPlayerElement from "@mux/mux-player";
 import { OakP, OakFlex, OakUiRoleToken } from "@oaknational/oak-components";
 
-import useVideoTracking, { VideoTrackingGetState } from "./useVideoTracking";
+import useVideoTracking, {
+  useTeacherVideoTracking,
+  VideoTrackingGetState,
+} from "./useVideoTracking";
 import getTimeElapsed from "./getTimeElapsed";
 import getSubtitleTrack from "./getSubtitleTrack";
 import getDuration from "./getDuration";
@@ -56,6 +59,8 @@ export type VideoPlayerProps = {
   isActive?: boolean;
   /** When false, suppresses the analytics event for reaching the end. */
   shouldTrackEndAnalytics?: boolean;
+  /** Enables the TeacherBrowseAnalyticsStore for video event tracking */
+  useTeacherBrowseTracking?: boolean;
 };
 
 export type VideoEventCallbackArgs = {
@@ -143,6 +148,7 @@ const VideoPlayer: FC<VideoPlayerProps> = (props) => {
     autoFocusPlayButton = false,
     isActive = true,
     shouldTrackEndAnalytics = true,
+    useTeacherBrowseTracking,
   } = props;
 
   const mediaElRef = useRef<MuxPlayerElement | null>(null);
@@ -188,6 +194,12 @@ const VideoPlayer: FC<VideoPlayerProps> = (props) => {
   const videoTracking = useVideoTracking({
     getState,
     pathwayData,
+    cloudinaryUrl,
+    muxAssetId,
+  });
+
+  const teacherVideoTracking = useTeacherVideoTracking({
+    getState,
     cloudinaryUrl,
     muxAssetId,
   });
@@ -340,7 +352,9 @@ const VideoPlayer: FC<VideoPlayerProps> = (props) => {
           onPlay({
             mediaElRef,
             setVideoIsPlaying,
-            trackOnPlay: videoTracking.onPlay,
+            trackOnPlay: useTeacherBrowseTracking
+              ? teacherVideoTracking.onPlay
+              : videoTracking.onPlay,
             userEventCallback,
             playingClassname: PLAYING_CLASSNAME,
           })
@@ -349,7 +363,9 @@ const VideoPlayer: FC<VideoPlayerProps> = (props) => {
           onPause({
             mediaElRef,
             setVideoIsPlaying,
-            trackOnPause: videoTracking.onPause,
+            trackOnPause: useTeacherBrowseTracking
+              ? teacherVideoTracking.onPause
+              : videoTracking.onPause,
             userEventCallback,
             playingClassname: PLAYING_CLASSNAME,
           })
@@ -359,7 +375,9 @@ const VideoPlayer: FC<VideoPlayerProps> = (props) => {
           onTimeUpdate({
             mediaElRef,
             setEndTracked,
-            trackOnEnd: videoTracking.onEnd,
+            trackOnEnd: useTeacherBrowseTracking
+              ? teacherVideoTracking.onEnd
+              : videoTracking.onEnd,
             userEventCallback,
             playbackId,
             endTracked,
