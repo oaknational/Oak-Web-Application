@@ -21,7 +21,6 @@ import {
   VideoLocationValueType,
 } from "@/browser-lib/avo/Avo";
 import { ResourceFormValues } from "@/components/TeacherComponents/types/downloadAndShare.types";
-import { VideoTrackingGetState } from "@/components/SharedComponents/VideoPlayer/useVideoTracking";
 
 // Core programme properties used at all browse levels
 export type CoreProgrammeState = {
@@ -112,6 +111,8 @@ export type LessonPathwayData = UnitPathwayData & {
 };
 
 export type VideoTrackingProperties = {
+  cloudinaryUrl: string | null;
+  muxAssetId: string | null;
   durationSeconds: number | null | undefined;
   isCaptioned: boolean;
   videoPlaybackId: string[];
@@ -178,30 +179,10 @@ export type TeacherBrowseTrackFns = {
   onwardContentSelected: (props: {
     onwardIntent: OnwardIntentValueType;
   }) => void;
-  videoPlayed: (
-    props: ReturnType<VideoTrackingGetState> & {
-      cloudinaryUrl: string | null;
-      muxAssetId: string | null;
-    },
-  ) => void;
-  videoStarted: (
-    props: VideoTrackingProperties & {
-      cloudinaryUrl: string | null;
-      muxAssetId: string | null;
-    },
-  ) => void;
-  videoPaused: (
-    props: VideoTrackingProperties & {
-      cloudinaryUrl: string | null;
-      muxAssetId: string | null;
-    },
-  ) => void;
-  videoFinished: (
-    props: VideoTrackingProperties & {
-      cloudinaryUrl: string | null;
-      muxAssetId: string | null;
-    },
-  ) => void;
+  videoPlayed: (props: VideoTrackingProperties) => void;
+  videoStarted: (props: VideoTrackingProperties) => void;
+  videoPaused: (props: VideoTrackingProperties) => void;
+  videoFinished: (props: VideoTrackingProperties) => void;
   lessonAssistantAccessed: (props: { isLoggedIn: boolean }) => void;
   // The following events are for the teacher notes feature which is not available in integrated journey
   teacherNoteDialogueOpened: () => void;

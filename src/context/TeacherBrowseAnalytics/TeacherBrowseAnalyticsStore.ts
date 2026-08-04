@@ -91,12 +91,10 @@ export type TeacherBrowseAnalyticsStore = {
     }) => void;
     lessonShareStarted: () => void;
     createTeachingMaterialsInitiated: (props: { isLoggedIn: boolean }) => void;
-    videoPlayed: (
-      props: VideoTrackingProperties & {
-        cloudinaryUrl: string | null;
-        muxAssetId: string | null;
-      },
-    ) => void;
+    videoPlayed: (props: VideoTrackingProperties) => void;
+    videoStarted: (props: VideoTrackingProperties) => void;
+    videoPaused: (props: VideoTrackingProperties) => void;
+    videoFinished: (props: VideoTrackingProperties) => void;
   };
 };
 
@@ -514,6 +512,63 @@ export const createTeacherBrowseAnalyticsStore = (
 
         const analyticsProps = getLessonAnalyticsProperties(programmeState);
         avo.videoPlayed({
+          ...coreProperties,
+          ...analyticsProps,
+          ...data,
+          journeyId,
+        });
+      },
+      videoStarted: (data) => {
+        const { avo, programmeState, journeyId } = get();
+
+        if (programmeState.browseLevel !== "lesson") {
+          reportAnalyticsError({
+            event: "createTeachingMaterialsInitiated",
+            programmeState,
+          });
+          return;
+        }
+
+        const analyticsProps = getLessonAnalyticsProperties(programmeState);
+        avo.videoStarted({
+          ...coreProperties,
+          ...analyticsProps,
+          ...data,
+          journeyId,
+        });
+      },
+      videoPaused: (data) => {
+        const { avo, programmeState, journeyId } = get();
+
+        if (programmeState.browseLevel !== "lesson") {
+          reportAnalyticsError({
+            event: "createTeachingMaterialsInitiated",
+            programmeState,
+          });
+          return;
+        }
+
+        const analyticsProps = getLessonAnalyticsProperties(programmeState);
+        avo.videoPaused({
+          ...coreProperties,
+          ...analyticsProps,
+          ...data,
+          journeyId,
+        });
+      },
+      videoFinished: (data) => {
+        const { avo, programmeState, journeyId } = get();
+
+        if (programmeState.browseLevel !== "lesson") {
+          reportAnalyticsError({
+            event: "createTeachingMaterialsInitiated",
+            programmeState,
+          });
+          return;
+        }
+
+        const analyticsProps = getLessonAnalyticsProperties(programmeState);
+        avo.videoFinished({
           ...coreProperties,
           ...analyticsProps,
           ...data,

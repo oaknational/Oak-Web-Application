@@ -974,7 +974,7 @@ _avo_invoke = function _avo_invoke(env: AvoEnv, eventId: string, hash: string, m
         method: "POST",
         headers: {"Content-Type": "application/json"},
         body: JSON.stringify({
-          "ac": "1ylJYazQMLmwiZaysao2",
+          "ac": "KIzVYScdJnuOettRRWDH",
           "br": "TXja698DdsQSi5EJ77tnq",
           "en": env,
           "ev": eventId,
@@ -1001,7 +1001,7 @@ _avo_invoke_meta = function _avo_invoke_meta(env: AvoEnv, type: string, messages
         method: "POST",
         headers: {"Content-Type": "application/json"},
         body: JSON.stringify({
-          "ac": "1ylJYazQMLmwiZaysao2",
+          "ac": "KIzVYScdJnuOettRRWDH",
           "br": "TXja698DdsQSi5EJ77tnq",
           "en": env,
           "ty": type,
@@ -1911,6 +1911,7 @@ export interface VideoStartedProperties {
   phase: PhaseValueType | null | undefined;
   cloudinaryUrl: string | null | undefined;
   muxAssetId: string | null | undefined;
+  journeyId: string | null | undefined;
 }
 /**
  * Video Started: A video is played for the first time after a user lands on a page
@@ -1942,6 +1943,7 @@ export interface VideoStartedProperties {
  * @param properties.phase: School phase related to key stage and age of audience
  * @param properties.cloudinaryUrl: Url for the asset in cloudinary
  * @param properties.muxAssetId: Unique identifier of the asset in mux
+ * @param properties.journeyId: A unique ID for a user's journey in a specific programme triggered by a direct or accessed event. Journey end is triggered by a programme slug disappearing or changing.
  * 
  * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/TXja698DdsQSi5EJ77tnq/events/G0I28K0B2f}
  */
@@ -2012,6 +2014,9 @@ properties.cloudinaryUrl !== undefined && properties.cloudinaryUrl !== null ?
 properties.muxAssetId !== undefined && properties.muxAssetId !== null ?
   eventPropertiesArray.push({id: "epT5BpeF8uu2yJdFNZMly", name: "Mux Asset Id", value: properties.muxAssetId}) :
   eventPropertiesArray.push({id: "epT5BpeF8uu2yJdFNZMly", name: "Mux Asset Id", value: null});
+properties.journeyId !== undefined && properties.journeyId !== null ?
+  eventPropertiesArray.push({id: "J9ORuaNS9rZOq5UE9Q91k", name: "Journey Id", value: properties.journeyId}) :
+  eventPropertiesArray.push({id: "J9ORuaNS9rZOq5UE9Q91k", name: "Journey Id", value: null});
 let eventProperties = convertPropertiesArrayToMap(eventPropertiesArray)
 // @ts-ignore
 let userPropertiesArray: array = [];
@@ -2021,7 +2026,7 @@ if (__AVO_ENV__ !== AvoEnv.Prod || __WEB_DEBUGGER__) {
   let messages: AvoAssertMessage[] = [];
   // debug console in Avo
   if (!__AVO_NOOP__) {
-    _avo_invoke(__AVO_ENV__, "G0I28K0B2f", "76fe9bd227d389e8aed268ff0437eb8f58faf3d23b2237910b1899f9f813c18e", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
+    _avo_invoke(__AVO_ENV__, "G0I28K0B2f", "90ddc3de772467fec62d5ed1469e321f783675582247e51dc8a323583c8f0655", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
 }
 InternalAvoLogger.logEventSent("Video Started", eventProperties, userProperties);
 if (__WEB_DEBUGGER__) {
@@ -2032,7 +2037,7 @@ if (__WEB_DEBUGGER__) {
 if (!__AVO_NOOP__) {
   if (__INSPECTOR__ != null) {
     // @ts-ignore
-    __INSPECTOR__._avoFunctionTrackSchemaFromEvent("Video Started", eventProperties, "G0I28K0B2f", "76fe9bd227d389e8aed268ff0437eb8f58faf3d23b2237910b1899f9f813c18e");
+    __INSPECTOR__._avoFunctionTrackSchemaFromEvent("Video Started", eventProperties, "G0I28K0B2f", "90ddc3de772467fec62d5ed1469e321f783675582247e51dc8a323583c8f0655");
 }
 // destination PostHogEU
 PostHogEU.logEvent("Video Started", (Object as any).assign({}, eventProperties));
@@ -2068,6 +2073,7 @@ export interface VideoPausedProperties {
   phase: PhaseValueType | null | undefined;
   cloudinaryUrl: string | null | undefined;
   muxAssetId: string | null | undefined;
+  journeyId: string | null | undefined;
 }
 /**
  * Video Paused: A video is paused before it it finished
@@ -2099,6 +2105,7 @@ export interface VideoPausedProperties {
  * @param properties.phase: School phase related to key stage and age of audience
  * @param properties.cloudinaryUrl: Url for the asset in cloudinary
  * @param properties.muxAssetId: Unique identifier of the asset in mux
+ * @param properties.journeyId: A unique ID for a user's journey in a specific programme triggered by a direct or accessed event. Journey end is triggered by a programme slug disappearing or changing.
  * 
  * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/TXja698DdsQSi5EJ77tnq/events/z91WauKeVB}
  */
@@ -2169,6 +2176,9 @@ properties.cloudinaryUrl !== undefined && properties.cloudinaryUrl !== null ?
 properties.muxAssetId !== undefined && properties.muxAssetId !== null ?
   eventPropertiesArray.push({id: "epT5BpeF8uu2yJdFNZMly", name: "Mux Asset Id", value: properties.muxAssetId}) :
   eventPropertiesArray.push({id: "epT5BpeF8uu2yJdFNZMly", name: "Mux Asset Id", value: null});
+properties.journeyId !== undefined && properties.journeyId !== null ?
+  eventPropertiesArray.push({id: "J9ORuaNS9rZOq5UE9Q91k", name: "Journey Id", value: properties.journeyId}) :
+  eventPropertiesArray.push({id: "J9ORuaNS9rZOq5UE9Q91k", name: "Journey Id", value: null});
 let eventProperties = convertPropertiesArrayToMap(eventPropertiesArray)
 // @ts-ignore
 let userPropertiesArray: array = [];
@@ -2178,7 +2188,7 @@ if (__AVO_ENV__ !== AvoEnv.Prod || __WEB_DEBUGGER__) {
   let messages: AvoAssertMessage[] = [];
   // debug console in Avo
   if (!__AVO_NOOP__) {
-    _avo_invoke(__AVO_ENV__, "z91WauKeVB", "8e3a79254b7657c36ab9d414571ad51fe35c430c428ceae840fd20ce34915998", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
+    _avo_invoke(__AVO_ENV__, "z91WauKeVB", "2d95b08a94e2d1d8c4a276e80fc248da918e1b42e7cf10c035ca24f197c75312", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
 }
 InternalAvoLogger.logEventSent("Video Paused", eventProperties, userProperties);
 if (__WEB_DEBUGGER__) {
@@ -2189,7 +2199,7 @@ if (__WEB_DEBUGGER__) {
 if (!__AVO_NOOP__) {
   if (__INSPECTOR__ != null) {
     // @ts-ignore
-    __INSPECTOR__._avoFunctionTrackSchemaFromEvent("Video Paused", eventProperties, "z91WauKeVB", "8e3a79254b7657c36ab9d414571ad51fe35c430c428ceae840fd20ce34915998");
+    __INSPECTOR__._avoFunctionTrackSchemaFromEvent("Video Paused", eventProperties, "z91WauKeVB", "2d95b08a94e2d1d8c4a276e80fc248da918e1b42e7cf10c035ca24f197c75312");
 }
 // destination PostHogEU
 PostHogEU.logEvent("Video Paused", (Object as any).assign({}, eventProperties));
@@ -2387,6 +2397,7 @@ export interface VideoFinishedProperties {
   releaseGroup: string | null | undefined;
   cloudinaryUrl: string | null | undefined;
   muxAssetId: string | null | undefined;
+  journeyId: string | null | undefined;
 }
 /**
  * Video Finished: The end of a video is reached
@@ -2418,6 +2429,7 @@ export interface VideoFinishedProperties {
  * @param properties.releaseGroup: Categorisation used to identify and distinguish different batches or versions of content based on when they became available on Oak's Platform (e.g legacy, cohort)
  * @param properties.cloudinaryUrl: Url for the asset in cloudinary
  * @param properties.muxAssetId: Unique identifier of the asset in mux
+ * @param properties.journeyId: A unique ID for a user's journey in a specific programme triggered by a direct or accessed event. Journey end is triggered by a programme slug disappearing or changing.
  * 
  * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/TXja698DdsQSi5EJ77tnq/events/NP9klWkaki}
  */
@@ -2488,6 +2500,9 @@ properties.cloudinaryUrl !== undefined && properties.cloudinaryUrl !== null ?
 properties.muxAssetId !== undefined && properties.muxAssetId !== null ?
   eventPropertiesArray.push({id: "epT5BpeF8uu2yJdFNZMly", name: "Mux Asset Id", value: properties.muxAssetId}) :
   eventPropertiesArray.push({id: "epT5BpeF8uu2yJdFNZMly", name: "Mux Asset Id", value: null});
+properties.journeyId !== undefined && properties.journeyId !== null ?
+  eventPropertiesArray.push({id: "J9ORuaNS9rZOq5UE9Q91k", name: "Journey Id", value: properties.journeyId}) :
+  eventPropertiesArray.push({id: "J9ORuaNS9rZOq5UE9Q91k", name: "Journey Id", value: null});
 let eventProperties = convertPropertiesArrayToMap(eventPropertiesArray)
 // @ts-ignore
 let userPropertiesArray: array = [];
@@ -2497,7 +2512,7 @@ if (__AVO_ENV__ !== AvoEnv.Prod || __WEB_DEBUGGER__) {
   let messages: AvoAssertMessage[] = [];
   // debug console in Avo
   if (!__AVO_NOOP__) {
-    _avo_invoke(__AVO_ENV__, "NP9klWkaki", "281254c0386f7f5cdf9cbc7554416d31bd14e7106094b482cb957e767dd7f298", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
+    _avo_invoke(__AVO_ENV__, "NP9klWkaki", "aae4ade7639f1fac08b7fab111db6284224bca3290a1f37507074fc7c91c2e7c", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
 }
 InternalAvoLogger.logEventSent("Video Finished", eventProperties, userProperties);
 if (__WEB_DEBUGGER__) {
@@ -2508,7 +2523,7 @@ if (__WEB_DEBUGGER__) {
 if (!__AVO_NOOP__) {
   if (__INSPECTOR__ != null) {
     // @ts-ignore
-    __INSPECTOR__._avoFunctionTrackSchemaFromEvent("Video Finished", eventProperties, "NP9klWkaki", "281254c0386f7f5cdf9cbc7554416d31bd14e7106094b482cb957e767dd7f298");
+    __INSPECTOR__._avoFunctionTrackSchemaFromEvent("Video Finished", eventProperties, "NP9klWkaki", "aae4ade7639f1fac08b7fab111db6284224bca3290a1f37507074fc7c91c2e7c");
 }
 // destination PostHogEU
 PostHogEU.logEvent("Video Finished", (Object as any).assign({}, eventProperties));
