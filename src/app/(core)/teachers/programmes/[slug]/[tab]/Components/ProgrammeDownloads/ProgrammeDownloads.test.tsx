@@ -216,20 +216,22 @@ describe("Programme Downloads", () => {
       await user.click(nextButton);
 
       expect(curriculumResourcesDownloadRefined).toHaveBeenCalledTimes(1);
-      expect(curriculumResourcesDownloadRefined).toHaveBeenCalledWith({
-        analyticsUseCase: "Teacher",
-        childSubjectName: "Combined",
-        childSubjectSlug: "combined-science",
-        componentType: "download_tab",
-        engagementIntent: "refine",
-        eventVersion: "2.0.0",
-        learningTier: "Foundation",
-        platform: "owa",
-        product: "teacher lesson resources",
-        phase: "secondary",
-        subjectSlug: "biology",
-        subjectTitle: "Biology",
-      });
+      expect(curriculumResourcesDownloadRefined).toHaveBeenCalledWith(
+        expect.objectContaining({
+          analyticsUseCase: "Teacher",
+          childSubjectName: "Combined",
+          childSubjectSlug: "combined-science",
+          componentType: "download_tab",
+          engagementIntent: "refine",
+          eventVersion: "2.0.0",
+          learningTier: "Foundation",
+          platform: "owa",
+          product: "teacher lesson resources",
+          phase: "secondary",
+          subjectSlug: "biology",
+          subjectTitle: "Biology",
+        }),
+      );
     });
   });
 });
