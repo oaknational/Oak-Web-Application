@@ -6253,6 +6253,7 @@ export interface CurriculumResourcesDownloadedProperties {
   subjectTitle: string;
   phase: PhaseValueType;
   journeyId: string | null | undefined;
+  journeyId: string | null | undefined;
 }
 /**
  * Curriculum Resources Downloaded: Curriculum Resources Downloaded: A user downloaded one or more resources for a curriculum - this can either be a curriculum plan or previously released curriculum content. 
@@ -6282,6 +6283,7 @@ export interface CurriculumResourcesDownloadedProperties {
  * @param properties.subjectTitle: Title of the current subject.
  * @param properties.phase: School phase related to key stage and age of audience
  * @param properties.journeyId: A unique ID for a user's journey in a specific programme triggered by a direct or accessed event. Journey end is triggered by a programme slug disappearing or changing.
+ * @param properties.journeyId: A unique ID for a user's journey in a specific programme triggered by a direct or accessed event. Journey end is triggered by a programme slug disappearing or changing.
  * 
  * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/TXja698DdsQSi5EJ77tnq/events/L7-HOgqfOB}
  */
@@ -6310,6 +6312,9 @@ export function curriculumResourcesDownloaded(properties: CurriculumResourcesDow
   properties.journeyId !== undefined && properties.journeyId !== null ?
     eventPropertiesArray.push({id: "J9ORuaNS9rZOq5UE9Q91k", name: "Journey Id", value: properties.journeyId}) :
     eventPropertiesArray.push({id: "J9ORuaNS9rZOq5UE9Q91k", name: "Journey Id", value: null});
+  properties.journeyId !== undefined && properties.journeyId !== null ?
+    eventPropertiesArray.push({id: "J9ORuaNS9rZOq5UE9Q91k", name: "Journey Id", value: properties.journeyId}) :
+    eventPropertiesArray.push({id: "J9ORuaNS9rZOq5UE9Q91k", name: "Journey Id", value: null});
   let eventProperties = convertPropertiesArrayToMap(eventPropertiesArray)
   // @ts-ignore
   let userPropertiesArray: array = [];
@@ -6319,6 +6324,7 @@ export function curriculumResourcesDownloaded(properties: CurriculumResourcesDow
     let messages: AvoAssertMessage[] = [];
     // debug console in Avo
     if (!__AVO_NOOP__) {
+      _avo_invoke(__AVO_ENV__, "L7-HOgqfOB", "7b910732ae6f00c3dc3e92c822851e47dd290d5682e1a3db7860a69e57e7e6d9", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
       _avo_invoke(__AVO_ENV__, "L7-HOgqfOB", "7b910732ae6f00c3dc3e92c822851e47dd290d5682e1a3db7860a69e57e7e6d9", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
     }
     InternalAvoLogger.logEventSent("Curriculum Resources Downloaded", eventProperties, userProperties);
@@ -6330,6 +6336,7 @@ export function curriculumResourcesDownloaded(properties: CurriculumResourcesDow
   if (!__AVO_NOOP__) {
     if (__INSPECTOR__ != null) {
       // @ts-ignore
+      __INSPECTOR__._avoFunctionTrackSchemaFromEvent("Curriculum Resources Downloaded", eventProperties, "L7-HOgqfOB", "7b910732ae6f00c3dc3e92c822851e47dd290d5682e1a3db7860a69e57e7e6d9");
       __INSPECTOR__._avoFunctionTrackSchemaFromEvent("Curriculum Resources Downloaded", eventProperties, "L7-HOgqfOB", "7b910732ae6f00c3dc3e92c822851e47dd290d5682e1a3db7860a69e57e7e6d9");
     }
     // destination PostHogEU
@@ -10519,6 +10526,7 @@ export interface CurriculumExplainerExploredProperties {
   analyticsUseCase: AnalyticsUseCaseValueType;
   phase: PhaseValueType;
   journeyId: string | null | undefined;
+  journeyId: string | null | undefined;
 }
 /**
  * Curriculum Explainer Explored: User navigates to any of the areas of the contents page within the Explainer tab of the Curriculum Visualiser
@@ -10540,6 +10548,7 @@ export interface CurriculumExplainerExploredProperties {
  * NB - This will be removed, but keeping to ease transition from AUC to 'product'
  * @param properties.phase: School phase related to key stage and age of audience
  * @param properties.journeyId: A unique ID for a user's journey in a specific programme triggered by a direct or accessed event. Journey end is triggered by a programme slug disappearing or changing.
+ * @param properties.journeyId: A unique ID for a user's journey in a specific programme triggered by a direct or accessed event. Journey end is triggered by a programme slug disappearing or changing.
  * 
  * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/TXja698DdsQSi5EJ77tnq/events/FP1B-pCMEjGG0k3hk6oXU}
  */
@@ -10558,6 +10567,9 @@ export function curriculumExplainerExplored(properties: CurriculumExplainerExplo
   properties.journeyId !== undefined && properties.journeyId !== null ?
     eventPropertiesArray.push({id: "J9ORuaNS9rZOq5UE9Q91k", name: "Journey Id", value: properties.journeyId}) :
     eventPropertiesArray.push({id: "J9ORuaNS9rZOq5UE9Q91k", name: "Journey Id", value: null});
+  properties.journeyId !== undefined && properties.journeyId !== null ?
+    eventPropertiesArray.push({id: "J9ORuaNS9rZOq5UE9Q91k", name: "Journey Id", value: properties.journeyId}) :
+    eventPropertiesArray.push({id: "J9ORuaNS9rZOq5UE9Q91k", name: "Journey Id", value: null});
   let eventProperties = convertPropertiesArrayToMap(eventPropertiesArray)
   // @ts-ignore
   let userPropertiesArray: array = [];
@@ -10567,6 +10579,7 @@ export function curriculumExplainerExplored(properties: CurriculumExplainerExplo
     let messages: AvoAssertMessage[] = [];
     // debug console in Avo
     if (!__AVO_NOOP__) {
+      _avo_invoke(__AVO_ENV__, "FP1B-pCMEjGG0k3hk6oXU", "a2660b5a423355a8041fd6627db8dcef3b9d823c726d171bf352a66bd867918c", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
       _avo_invoke(__AVO_ENV__, "FP1B-pCMEjGG0k3hk6oXU", "a2660b5a423355a8041fd6627db8dcef3b9d823c726d171bf352a66bd867918c", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
     }
     InternalAvoLogger.logEventSent("Curriculum Explainer Explored", eventProperties, userProperties);
@@ -10578,6 +10591,7 @@ export function curriculumExplainerExplored(properties: CurriculumExplainerExplo
   if (!__AVO_NOOP__) {
     if (__INSPECTOR__ != null) {
       // @ts-ignore
+      __INSPECTOR__._avoFunctionTrackSchemaFromEvent("Curriculum Explainer Explored", eventProperties, "FP1B-pCMEjGG0k3hk6oXU", "a2660b5a423355a8041fd6627db8dcef3b9d823c726d171bf352a66bd867918c");
       __INSPECTOR__._avoFunctionTrackSchemaFromEvent("Curriculum Explainer Explored", eventProperties, "FP1B-pCMEjGG0k3hk6oXU", "a2660b5a423355a8041fd6627db8dcef3b9d823c726d171bf352a66bd867918c");
     }
     // destination PostHogEU
@@ -10599,6 +10613,7 @@ export interface CurriculumResourcesDownloadRefinedProperties {
   childSubjectSlug: string;
   childSubjectName: string;
   learningTier: LearningTierValueType;
+  journeyId: string | null | undefined;
   journeyId: string | null | undefined;
 }
 /**
@@ -10623,6 +10638,7 @@ export interface CurriculumResourcesDownloadRefinedProperties {
  * @param properties.childSubjectName: Name of the Child Subject Associated with the event
  * @param properties.learningTier: Learning tier that was selected
  * @param properties.journeyId: A unique ID for a user's journey in a specific programme triggered by a direct or accessed event. Journey end is triggered by a programme slug disappearing or changing.
+ * @param properties.journeyId: A unique ID for a user's journey in a specific programme triggered by a direct or accessed event. Journey end is triggered by a programme slug disappearing or changing.
  * 
  * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/TXja698DdsQSi5EJ77tnq/events/cTKf4kbAHd211SR05Bbq8}
  */
@@ -10643,6 +10659,9 @@ export function curriculumResourcesDownloadRefined(properties: CurriculumResourc
   properties.journeyId !== undefined && properties.journeyId !== null ?
     eventPropertiesArray.push({id: "J9ORuaNS9rZOq5UE9Q91k", name: "Journey Id", value: properties.journeyId}) :
     eventPropertiesArray.push({id: "J9ORuaNS9rZOq5UE9Q91k", name: "Journey Id", value: null});
+  properties.journeyId !== undefined && properties.journeyId !== null ?
+    eventPropertiesArray.push({id: "J9ORuaNS9rZOq5UE9Q91k", name: "Journey Id", value: properties.journeyId}) :
+    eventPropertiesArray.push({id: "J9ORuaNS9rZOq5UE9Q91k", name: "Journey Id", value: null});
   let eventProperties = convertPropertiesArrayToMap(eventPropertiesArray)
   // @ts-ignore
   let userPropertiesArray: array = [];
@@ -10652,6 +10671,7 @@ export function curriculumResourcesDownloadRefined(properties: CurriculumResourc
     let messages: AvoAssertMessage[] = [];
     // debug console in Avo
     if (!__AVO_NOOP__) {
+      _avo_invoke(__AVO_ENV__, "cTKf4kbAHd211SR05Bbq8", "eca89e5afaec7252b3125f0271627a8aded0d8ddbef90e4bb5c598cee45d114d", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
       _avo_invoke(__AVO_ENV__, "cTKf4kbAHd211SR05Bbq8", "eca89e5afaec7252b3125f0271627a8aded0d8ddbef90e4bb5c598cee45d114d", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
     }
     InternalAvoLogger.logEventSent("Curriculum Resources Download Refined", eventProperties, userProperties);
@@ -10663,6 +10683,7 @@ export function curriculumResourcesDownloadRefined(properties: CurriculumResourc
   if (!__AVO_NOOP__) {
     if (__INSPECTOR__ != null) {
       // @ts-ignore
+      __INSPECTOR__._avoFunctionTrackSchemaFromEvent("Curriculum Resources Download Refined", eventProperties, "cTKf4kbAHd211SR05Bbq8", "eca89e5afaec7252b3125f0271627a8aded0d8ddbef90e4bb5c598cee45d114d");
       __INSPECTOR__._avoFunctionTrackSchemaFromEvent("Curriculum Resources Download Refined", eventProperties, "cTKf4kbAHd211SR05Bbq8", "eca89e5afaec7252b3125f0271627a8aded0d8ddbef90e4bb5c598cee45d114d");
     }
     // destination PostHogEU

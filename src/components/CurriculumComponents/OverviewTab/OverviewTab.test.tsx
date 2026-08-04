@@ -4,10 +4,8 @@ import { act } from "@testing-library/react";
 import OverviewTab, { OverviewTabProps } from "./OverviewTab";
 
 import curriculumOverviewTabFixture from "@/node-lib/curriculum-api-2023/fixtures/curriculumOverview.fixture";
-import { renderWithProvidersByName } from "@/__tests__/__helpers__/renderWithProviders";
+import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 import { mockVideoAsset } from "@/__tests__/__helpers__/cms";
-
-const render = renderWithProvidersByName(["theme", "oakTheme", "analytics"]);
 
 jest.mock("@mux/mux-player-react/lazy", () => {
   return forwardRef((props, ref) => {
@@ -20,7 +18,7 @@ const mockOnClickNavItem = jest.fn();
 const { curriculumCMSInfo } = curriculumOverviewTabFixture();
 
 const renderOverviewTab = (props?: Partial<OverviewTabProps>) => {
-  return render(
+  return renderWithProviders()(
     <OverviewTab
       onClickNavItem={mockOnClickNavItem}
       curriculumCMSInfo={curriculumCMSInfo}

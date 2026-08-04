@@ -251,7 +251,7 @@ export const createTeacherBrowseAnalyticsStore = (
         });
       },
       curriculumExplainerExplored: () => {
-        const { avo, programmeState } = get();
+        const { avo, programmeState, journeyId } = get();
 
         const analyticsProperties =
           getProgrammeAnalyticsProperties(programmeState);
@@ -259,12 +259,13 @@ export const createTeacherBrowseAnalyticsStore = (
         avo.curriculumExplainerExplored({
           engagementIntent: "explore",
           componentType: "explainer_tab",
+          journeyId,
           ...coreProperties,
           ...analyticsProperties,
         });
       },
       curriculumResourcesDownloadRefined: (data) => {
-        const { avo, programmeState } = get();
+        const { avo, programmeState, journeyId } = get();
         const { tierSlug, childSubjectSlug } = data;
 
         const analyticsProperties =
@@ -273,6 +274,7 @@ export const createTeacherBrowseAnalyticsStore = (
         avo.curriculumResourcesDownloadRefined({
           ...coreProperties,
           ...analyticsProperties,
+          journeyId,
           engagementIntent: "refine",
           componentType: "download_tab",
           childSubjectSlug: childSubjectSlug || "",
@@ -281,7 +283,7 @@ export const createTeacherBrowseAnalyticsStore = (
         });
       },
       curriculumResourcesDownloaded: (data: ResourceFormValues) => {
-        const { avo, programmeState } = get();
+        const { avo, programmeState, journeyId } = get();
 
         const analyticsProperties =
           getProgrammeAnalyticsProperties(programmeState);
@@ -291,6 +293,7 @@ export const createTeacherBrowseAnalyticsStore = (
         avo.curriculumResourcesDownloaded({
           ...coreProperties,
           ...analyticsProperties,
+          journeyId,
           engagementIntent: "explore",
           componentType: "download_button",
           emailSupplied: data.email != null,
