@@ -974,7 +974,7 @@ _avo_invoke = function _avo_invoke(env: AvoEnv, eventId: string, hash: string, m
         method: "POST",
         headers: {"Content-Type": "application/json"},
         body: JSON.stringify({
-          "ac": "fd9TugUl7AlqNAej7M5i",
+          "ac": "m6Sws4bdfYjEjeW6pl20",
           "br": "TXja698DdsQSi5EJ77tnq",
           "en": env,
           "ev": eventId,
@@ -1001,7 +1001,7 @@ _avo_invoke_meta = function _avo_invoke_meta(env: AvoEnv, type: string, messages
         method: "POST",
         headers: {"Content-Type": "application/json"},
         body: JSON.stringify({
-          "ac": "fd9TugUl7AlqNAej7M5i",
+          "ac": "m6Sws4bdfYjEjeW6pl20",
           "br": "TXja698DdsQSi5EJ77tnq",
           "en": env,
           "ty": type,
@@ -3767,6 +3767,7 @@ export interface LessonShareStartedProperties {
   keyStageSlug: string | null | undefined;
   subjectTitle: string | null | undefined;
   subjectSlug: string | null | undefined;
+  journeyId: string | null | undefined;
 }
 /**
  * Lesson Share Started: A user beings the process of sharing a lesson with their pupils. This event shows they are interested in sharing something but happens prior to a user generating the required link that would suggest the sharing has taken place.
@@ -3790,6 +3791,7 @@ NB. There is no sharing of slide decks at this time
  * @param properties.keyStageSlug: Human-readable unique ID of the current key stage.
  * @param properties.subjectTitle: Title of the current subject.
  * @param properties.subjectSlug: Human-readable unique ID of the current subject.
+ * @param properties.journeyId: A unique ID for a user's journey in a specific programme triggered by a direct or accessed event. Journey end is triggered by a programme slug disappearing or changing.
  * 
  * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/TXja698DdsQSi5EJ77tnq/events/PS8tcnGrN2}
  */
@@ -3818,6 +3820,9 @@ export function lessonShareStarted(properties: LessonShareStartedProperties) {
   properties.subjectSlug !== undefined && properties.subjectSlug !== null ?
     eventPropertiesArray.push({id: "8GyPDAapC-", name: "Subject Slug", value: properties.subjectSlug}) :
     eventPropertiesArray.push({id: "8GyPDAapC-", name: "Subject Slug", value: null});
+  properties.journeyId !== undefined && properties.journeyId !== null ?
+    eventPropertiesArray.push({id: "J9ORuaNS9rZOq5UE9Q91k", name: "Journey Id", value: properties.journeyId}) :
+    eventPropertiesArray.push({id: "J9ORuaNS9rZOq5UE9Q91k", name: "Journey Id", value: null});
   let eventProperties = convertPropertiesArrayToMap(eventPropertiesArray)
   // @ts-ignore
   let userPropertiesArray: array = [];
@@ -3827,7 +3832,7 @@ export function lessonShareStarted(properties: LessonShareStartedProperties) {
     let messages: AvoAssertMessage[] = [];
     // debug console in Avo
     if (!__AVO_NOOP__) {
-      _avo_invoke(__AVO_ENV__, "PS8tcnGrN2", "28694d3cd14fddb46dea226070b3af410bd127585f43afd95f5ca43581b988c2", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
+      _avo_invoke(__AVO_ENV__, "PS8tcnGrN2", "ffcfa1d1f46864cc9f11f83fc88f58464691ade277ae6e4ce7ceb7a0b490399c", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
     }
     InternalAvoLogger.logEventSent("Lesson Share Started", eventProperties, userProperties);
     if (__WEB_DEBUGGER__) {
@@ -3838,7 +3843,7 @@ export function lessonShareStarted(properties: LessonShareStartedProperties) {
   if (!__AVO_NOOP__) {
     if (__INSPECTOR__ != null) {
       // @ts-ignore
-      __INSPECTOR__._avoFunctionTrackSchemaFromEvent("Lesson Share Started", eventProperties, "PS8tcnGrN2", "28694d3cd14fddb46dea226070b3af410bd127585f43afd95f5ca43581b988c2");
+      __INSPECTOR__._avoFunctionTrackSchemaFromEvent("Lesson Share Started", eventProperties, "PS8tcnGrN2", "ffcfa1d1f46864cc9f11f83fc88f58464691ade277ae6e4ce7ceb7a0b490399c");
     }
     // destination PostHogEU
     PostHogEU.logEvent("Lesson Share Started", (Object as any).assign({}, eventProperties));
