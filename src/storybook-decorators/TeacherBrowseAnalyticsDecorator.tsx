@@ -37,6 +37,10 @@ const state: TeacherBrowseAnalyticsStore = {
     unitOverviewAccessed: () => console.log("unitOverviewAccessed fired"),
     unitRefined: () => console.log("unitRefined fired"),
     unitSequenceRefined: () => console.log("unitSequenceRefined fired"),
+    videoPlayed: () => console.log("videoPlayed fired"),
+    videoStarted: () => console.log("videoStarted fired"),
+    videoPaused: () => console.log("videoPaused fired"),
+    videoFinished: () => console.log("videoFinished fired"),
   },
 };
 
