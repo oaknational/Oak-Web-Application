@@ -58,6 +58,7 @@ describe("buildUnitSequenceRefinedAnalytics", () => {
       learningTier: null,
       subjectCategory: null,
       pathway: null,
+      examBoard: null,
     });
   });
 

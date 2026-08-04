@@ -9,6 +9,7 @@ import {
   EventVersion,
   Phase,
   LearningTier,
+  LearningTierValueType,
   UnitSequenceRefinedProperties,
   AnalyticsUseCaseValueType,
   PathwayValueType,
@@ -16,8 +17,22 @@ import {
   ComponentTypeValueType,
   AccessLevelValueType,
   NavigationTypeValueType,
+  ExamBoardValueType,
 } from "@/browser-lib/avo/Avo";
 import { CurriculumUnitsTrackingData } from "@/pages-helpers/curriculum/docx/tab-helpers";
+
+function assertValidLearningTier(
+  tier: string | undefined,
+): LearningTierValueType | null {
+  switch (tier?.toLowerCase()) {
+    case "foundation":
+      return LearningTier.FOUNDATION;
+    case "higher":
+      return LearningTier.HIGHER;
+    default:
+      return null;
+  }
+}
 
 function assertValidPathway(
   pathway: string | undefined,
@@ -44,7 +59,7 @@ export function buildUnitSequenceRefinedAnalytics(
   curriculumUnitsTrackingData: CurriculumUnitsTrackingData,
   filters: CurriculumFilters,
   componentType?: ComponentTypeValueType,
-): UnitSequenceRefinedProperties {
+): Omit<UnitSequenceRefinedProperties, "journeyId"> {
   const { phaseSlug } = curriculumUnitsTrackingData;
 
   return {
@@ -65,19 +80,15 @@ export function buildUnitSequenceRefinedAnalytics(
     childSubjectName:
       filters.childSubjects.length > 0 ? filters.childSubjects[0] : null,
     phase: phaseSlug === "primary" ? Phase.PRIMARY : Phase.SECONDARY,
-    learningTier:
-      filters.tiers.length > 0 && filters.tiers[0]
-        ? filters.tiers[0].toLowerCase() === "foundation"
-          ? LearningTier.FOUNDATION
-          : filters.tiers[0].toLowerCase() === "higher"
-            ? LearningTier.HIGHER
-            : null
-        : null,
+    learningTier: assertValidLearningTier(filters.tiers[0]),
     subjectCategory:
       filters.subjectCategories.length > 0
         ? filters.subjectCategories[0]
         : null,
     pathway: assertValidPathway(filters.pathways[0]),
+    examBoard:
+      (curriculumUnitsTrackingData.ks4OptionTitle as ExamBoardValueType) ??
+      null,
   };
 }
 
