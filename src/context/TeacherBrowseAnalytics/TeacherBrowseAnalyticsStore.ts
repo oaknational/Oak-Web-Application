@@ -224,7 +224,7 @@ export const createTeacherBrowseAnalyticsStore = (
           analyticsUseCase: "Teacher",
           journeyId,
           accessLevel: "programme",
-          navigationType: "across",
+          navigationType: "narrow",
         });
 
         avo.unitOverviewAccessed(analyticsProperties);
