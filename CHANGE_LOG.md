@@ -1,3 +1,26 @@
+# [1.1148.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1147.0...v1.1148.0) (2026-08-05)
+
+
+### Features
+
+* also added isFeatureFlagEnabledAtBuild(...) ([f6d66fb](https://github.com/oaknational/Oak-Web-Application/commit/f6d66fb53087d7a48888f40fc55054ee38d12482))
+* better feature flag implementation that supports server-time, build-time & override ([081a578](https://github.com/oaknational/Oak-Web-Application/commit/081a57865e8ae5d4e771b5d4bbc02081ebe0a4dd))
+* improved API for isFeatureFlagEnabled(...) ([928ad21](https://github.com/oaknational/Oak-Web-Application/commit/928ad21c871d3a89788a199375e54777390faf10))
+
+# [1.1147.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1146.0...v1.1147.0) (2026-08-04)
+
+
+### Bug Fixes
+
+* broken tests for impact page updates ([079a92f](https://github.com/oaknational/Oak-Web-Application/commit/079a92fe61cbb39c49a9e10c7c54a78a7d656def))
+* design tweaks for case studies with two items ([8063617](https://github.com/oaknational/Oak-Web-Application/commit/8063617ee4cec2e50976fca3858adf66241bf1ef))
+* desktop width of video section ([a45763d](https://github.com/oaknational/Oak-Web-Application/commit/a45763d59c9bbc078c2c7cd01176da0bf58a1512))
+
+
+### Features
+
+* improve case study page now closer to figma designs ([7d2d23b](https://github.com/oaknational/Oak-Web-Application/commit/7d2d23b0a2393d10c3bf2a052a3e18322b7115ad))
+
 # [1.1146.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1145.0...v1.1146.0) (2026-08-03)
 
 
