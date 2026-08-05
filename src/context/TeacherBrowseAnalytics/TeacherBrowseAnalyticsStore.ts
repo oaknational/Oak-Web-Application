@@ -18,9 +18,11 @@ import {
   AccessLevelValueType,
   AnalyticsUseCaseValueType,
   ComponentType,
+  ComponentTypeValueType,
   DownloadResourceButtonNameValueType,
   EngagementIntent,
   EventVersionValueType,
+  FilterTypeValueType,
   LearningTierValueType,
   MediaClipsButtonNameValueType,
   OnwardIntentValueType,
@@ -30,10 +32,7 @@ import {
   TeachingMaterialTypeValueType,
 } from "@/browser-lib/avo/Avo";
 import { Thread, Unit, CurriculumFilters } from "@/utils/curriculum/types";
-import {
-  buildUnitOverviewAccessedAnalytics,
-  buildUnitSequenceRefinedAnalytics,
-} from "@/utils/curriculum/analytics";
+import { buildUnitOverviewAccessedAnalytics } from "@/utils/curriculum/analytics";
 import { ResourceFormValues } from "@/components/TeacherComponents/types/downloadAndShare.types";
 import {
   getSchoolOption,
@@ -54,9 +53,11 @@ export type TeacherBrowseAnalyticsStore = {
     unitDownloaded: () => void;
     unitDownloadStarted: () => void;
     curriculumExplainerExplored: () => void;
-    unitSequenceRefined: (data: {
-      filters: CurriculumFilters;
-      examBoardTitle?: string | null;
+    programmeRefined: (data: {
+      componentType: ComponentTypeValueType;
+      activeFilters: CurriculumFilters;
+      filterType: FilterTypeValueType;
+      filterValue: string;
     }) => void;
     curriculumResourcesDownloadRefined: (data: {
       tierSlug?: string | null;
@@ -229,27 +230,29 @@ export const createTeacherBrowseAnalyticsStore = (
 
         avo.unitOverviewAccessed(analyticsProperties);
       },
-      unitSequenceRefined: ({ filters, examBoardTitle }) => {
-        const { avo, programmeState, journeyId } = get();
+      programmeRefined: ({
+        componentType,
+        activeFilters,
+        filterType,
+        filterValue,
+      }) => {
+        const { avo, programmeState, journeyId, accessLevel } = get();
 
         const analyticsProperties =
           getProgrammeAnalyticsProperties(programmeState);
 
-        const filterProperties = buildUnitSequenceRefinedAnalytics(
-          coreProperties.analyticsUseCase,
-          {
-            subjectSlug: programmeState.subjectSlug,
-            subjectTitle: programmeState.subjectTitle,
-            phaseSlug: programmeState.phaseSlug,
-            ks4OptionTitle: examBoardTitle,
-          },
-          filters,
-        );
-
-        avo.unitSequenceRefined({
-          ...filterProperties,
+        avo.programmeRefined({
           ...coreProperties,
           ...analyticsProperties,
+          engagementIntent: "refine",
+          navigationType: "narrow",
+          googleLoginHint: null,
+          clientEnvironment: null,
+          activeFilters,
+          filterType,
+          filterValue,
+          componentType,
+          accessLevel,
           journeyId,
         });
       },
