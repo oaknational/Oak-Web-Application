@@ -130,10 +130,11 @@ describe("Programme Downloads", () => {
     jest.clearAllMocks();
   });
 
-  test("expect download size to be in document", async () => {
+  test("expect download size to be in document (normal)", async () => {
     renderComponent({
       curriculumDownloadsTabData: {
-        ...defaultProps.curriculumDownloadsTabData,
+        tiers: [],
+        child_subjects: [],
       },
       fileSizes: [
         {
@@ -144,8 +145,7 @@ describe("Programme Downloads", () => {
         },
       ],
     });
-    const downloadSize = await screen.findByText("123 kB");
-    expect(downloadSize).toBeInTheDocument();
+    expect(await screen.findByText("123 kB")).toBeInTheDocument();
   });
 
   describe("Curriculum Downloads Tab: Secondary Maths", () => {

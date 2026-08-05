@@ -40,6 +40,7 @@ import { getMvRefreshTime } from "@/pages-helpers/curriculum/downloads/getMvRefr
 import { validateServerSearchParams } from "@/utils/validateProgrammePageSearchParams";
 import { createCurriculumDownloadsUrl } from "@/utils/curriculum/urls";
 import { DOWNLOAD_TYPE_LABELS } from "@/components/CurriculumComponents/CurriculumDownloadView/helper";
+import { contentLengthFromResource } from "@/utils/resource";
 
 const reportError = errorReporter("programme-page::app");
 
@@ -155,7 +156,7 @@ export async function generateMetadata({
   }
 }
 
-async function getFileSizes(
+export async function getFileSizes(
   subjectPhaseKeystageSlugs: CurriculumSelectionSlugs,
   curriculumDownloadsTabData: CurriculumDownloadsTierSubjectProps,
   mvRefreshTime: number,
@@ -203,18 +204,12 @@ async function getFileSizes(
 
   const fileSizes = await Promise.all(
     downloadUrls.flat().map(async ({ id, url, tier, childSubject }) => {
-      const response = await fetch(url, { method: "HEAD" });
-      const contentLength = response.headers.get("content-length");
-      if (contentLength) {
-        return {
-          downloadId: id,
-          size: parseInt(contentLength),
-          tier,
-          childSubject,
-        };
-      } else {
-        return { downloadId: id, size: -1, tier, childSubject };
-      }
+      return {
+        downloadId: id,
+        size: await contentLengthFromResource(url),
+        tier,
+        childSubject,
+      };
     }),
   );
 
