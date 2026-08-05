@@ -214,16 +214,7 @@ export const createTeacherBrowseAnalyticsStore = (
         });
       },
       unitOverviewAccessed: (unit, isHighlighted, selectedThread) => {
-        const { avo, programmeState, journeyId } = get();
-
-        if (programmeState.browseLevel !== "unit") {
-          reportAnalyticsError({
-            event: "unitOverviewAccessed",
-            programmeState,
-            unitSlug: unit.slug,
-          });
-          return;
-        }
+        const { avo, journeyId } = get();
 
         const analyticsProperties = buildUnitOverviewAccessedAnalytics({
           unit,
@@ -232,7 +223,7 @@ export const createTeacherBrowseAnalyticsStore = (
           selectedThread,
           analyticsUseCase: "Teacher",
           journeyId,
-          accessLevel: "unit",
+          accessLevel: "programme",
           navigationType: "across",
         });
 
