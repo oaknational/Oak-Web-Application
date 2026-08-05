@@ -11,10 +11,10 @@ import {
   getProgrammeData,
   getSubjectOverride,
 } from "./getProgrammeData";
+import { getFileSizes } from "./Components/getFileSizes";
 
 import {
   createDownloadsData,
-  CurriculumDownloadsTierSubjectProps,
   CurriculumUnitsTrackingData,
   formatCurriculumUnitsData,
 } from "@/pages-helpers/curriculum/docx/tab-helpers";
@@ -24,7 +24,6 @@ import OakError from "@/errors/OakError";
 import {
   isValidSubjectPhaseSlug,
   getKs4RedirectSlug,
-  CurriculumSelectionSlugs,
 } from "@/utils/curriculum/slugs";
 import errorReporter from "@/common-lib/error-reporter";
 import withPageErrorHandling, {
@@ -38,9 +37,6 @@ import { cacheData } from "@/node-lib/cache";
 import CMSClient from "@/node-lib/cms";
 import { getMvRefreshTime } from "@/pages-helpers/curriculum/downloads/getMvRefreshTime";
 import { validateServerSearchParams } from "@/utils/validateProgrammePageSearchParams";
-import { createCurriculumDownloadsUrl } from "@/utils/curriculum/urls";
-import { DOWNLOAD_TYPE_LABELS } from "@/components/CurriculumComponents/CurriculumDownloadView/helper";
-import { contentLengthFromResource } from "@/utils/resource";
 
 const reportError = errorReporter("programme-page::app");
 
@@ -154,66 +150,6 @@ export async function generateMetadata({
     // Return and fallback to layout metadata
     return {};
   }
-}
-
-export async function getFileSizes(
-  subjectPhaseKeystageSlugs: CurriculumSelectionSlugs,
-  curriculumDownloadsTabData: CurriculumDownloadsTierSubjectProps,
-  mvRefreshTime: number,
-) {
-  const downloadUrls = DOWNLOAD_TYPE_LABELS.map(({ id: downloadId }) => {
-    function genItem(tier: string | null, childSubject: string | null) {
-      return {
-        id: downloadId,
-        tier,
-        childSubject,
-        url:
-          process.env.NEXT_PUBLIC_CLIENT_APP_BASE_URL +
-          createCurriculumDownloadsUrl(
-            [downloadId],
-            "published",
-            mvRefreshTime,
-            subjectPhaseKeystageSlugs.subjectSlug,
-            subjectPhaseKeystageSlugs.phaseSlug,
-            subjectPhaseKeystageSlugs.ks4OptionSlug,
-            tier,
-            childSubject,
-          ),
-      };
-    }
-    if (curriculumDownloadsTabData.child_subjects) {
-      return curriculumDownloadsTabData.child_subjects.flatMap(
-        (child_subject) => {
-          if (curriculumDownloadsTabData.tiers) {
-            return curriculumDownloadsTabData.tiers.map((tier) => {
-              return genItem(tier.tier_slug, child_subject.subject_slug);
-            });
-          } else {
-            return [genItem(null, child_subject.subject_slug)];
-          }
-        },
-      );
-    } else if (curriculumDownloadsTabData.tiers) {
-      return curriculumDownloadsTabData.tiers.map((tier) => {
-        return genItem(tier.tier_slug, null);
-      });
-    } else {
-      return [genItem(null, null)];
-    }
-  });
-
-  const fileSizes = await Promise.all(
-    downloadUrls.flat().map(async ({ id, url, tier, childSubject }) => {
-      return {
-        downloadId: id,
-        size: await contentLengthFromResource(url),
-        tier,
-        childSubject,
-      };
-    }),
-  );
-
-  return fileSizes;
 }
 
 const InnerProgrammePage = async (props: AppPageProps<ProgrammePageParams>) => {
