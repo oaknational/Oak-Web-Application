@@ -3,7 +3,6 @@ import {
   GetServerSidePropsResult,
   NextPage,
 } from "next/dist/types";
-import { OakPrimaryButton } from "@oaknational/oak-components";
 
 import getBrowserConfig from "@/browser-lib/getBrowserConfig";
 import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
@@ -24,7 +23,11 @@ import { OaksImpactStats } from "@/components/GenericPagesComponents/OaksImpactS
 import CMSClient from "@/node-lib/cms";
 import { OaksImpactPage } from "@/common-lib/cms-types";
 import { OaksImpactSchoolQuotesSection } from "@/components/GenericPagesComponents/OaksImpactSchoolQuotesSection";
+import TrackScrolledTo from "@/components/SharedComponents/TrackScrolledTo";
+
 import useAnalytics from "@/context/Analytics/useAnalytics";
+import { useEffect } from "react";
+
 
 export type OaksImpactPageProps = {
   topNav: TopNavProps;
@@ -36,17 +39,29 @@ const placeholderImage = {
   url: "https://sanity-asset-cdn.thenational.academy/images/cuvjke51/production/ef2a05d634b1ade34d33664c44fa36cb62e1aaba-3000x2001.jpg",
 };
 
-const OaksImpact: NextPage<OaksImpactPageProps> = ({ topNav, pageData }) => {
+// to do - do the track and extract to hook
+// what is exit intent?
+const useTrackExitIntended = () => {
   const { track } = useAnalytics();
 
-  const fireScrolledTo = () => {
-    track.scrolledTo({ key: "support_you" });
-  };
+  useEffect(() => {
+      const functionToHandleMouseOut = (e: MouseEvent) => {
+    // Check if cursor moves outside the top of the window viewport
+    if (e.clientY <= 0 && !e.relatedTarget) {
+      console.log("User is intending to exit the page");
+      // track.exitIntended();
+    }
+  }
 
-  const fireExitIntent = () => {
-    track.scrolledTo({ key: "banana" });
-  };
+    window.addEventListener("mouseout", functionToHandleMouseOut);
+    return () => {
+      window.removeEventListener("mouseout", functionToHandleMouseOut);
+    };
+  }, [track]);
+};
 
+const OaksImpact: NextPage<OaksImpactPageProps> = ({ topNav, pageData }) => {
+  useTrackExitIntended();
   return (
     <Layout
       seoProps={getSeoProps({ title: "Oak's impact" })}
@@ -61,18 +76,15 @@ const OaksImpact: NextPage<OaksImpactPageProps> = ({ topNav, pageData }) => {
         >
           <AboutSharedHeaderImage imageUrl={placeholderImage.url} />
         </AboutSharedHeader>
-        <OakPrimaryButton onClick={() => fireScrolledTo()}>
-          FIRE SCROLL EVENT!
-        </OakPrimaryButton>
-        <OakPrimaryButton onClick={() => fireExitIntent()}>
-          FIRE BANANA EVENT!
-        </OakPrimaryButton>
         <OaksImpactStats {...pageData.statsSection} />
         <OaksImpactCaseStudies
           title="Case studies"
           caseStudies={pageData.caseStudiesSection.caseStudies}
         />
         <OaksImpactSchoolQuotesSection {...pageData.schoolQuotes} />
+        <TrackScrolledTo
+          eventKey="support_you"
+        />
         <SupportYou
           headingTag="h2"
           link={{
