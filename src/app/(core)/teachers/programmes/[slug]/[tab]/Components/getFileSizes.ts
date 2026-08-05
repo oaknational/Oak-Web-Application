@@ -10,13 +10,20 @@ export async function getFileSizes(
   mvRefreshTime: number,
 ) {
   const downloadUrls = DOWNLOAD_TYPE_LABELS.flatMap(({ id: downloadId }) => {
+    function withProtocol(url?: string) {
+      if (!url) return "";
+      if (url.startsWith("http://") || url.startsWith("https://")) {
+        return url;
+      }
+      return "https://" + url;
+    }
     function genItem(tier: string | null, childSubject: string | null) {
       return {
         id: downloadId,
         tier,
         childSubject,
         url:
-          process.env.NEXT_PUBLIC_CLIENT_APP_BASE_URL +
+          withProtocol(process.env.NEXT_PUBLIC_CLIENT_APP_BASE_URL) +
           createCurriculumDownloadsUrl(
             [downloadId],
             "published",
