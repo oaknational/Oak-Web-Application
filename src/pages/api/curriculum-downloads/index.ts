@@ -226,53 +226,16 @@ async function getData(opts: {
   };
 }
 
-export default async function handler(
-  req: NextApiRequest,
-  res: NextApiResponse<Buffer>,
-) {
-  const {
-    types,
-    mvRefreshTime,
-    subjectSlug,
-    phaseSlug,
-    state,
-    ks4OptionSlug,
-    tierSlug,
-    childSubjectSlug,
-  } = curriculumDownloadQuerySchema.parse(req.query);
-
-  const mvRefreshTimeParsed = Number.parseInt(mvRefreshTime);
+export async function getFile({
+  types,
+  subjectSlug,
+  phaseSlug,
+  state,
+  ks4OptionSlug,
+  tierSlug,
+  childSubjectSlug,
+}: Omit<curriculumDownloadQueryProps, "mvRefreshTime">) {
   const actualMvRefreshTime = await getMvRefreshTime();
-
-  // Note: Disable this check to allow 'new' documents
-  if (state === "new") {
-    res.status(404).end();
-    return;
-  }
-
-  // Check if we should redirect (new cache-hit)
-  if (mvRefreshTimeParsed !== actualMvRefreshTime) {
-    const slugOb = omitBy(
-      {
-        types,
-        subjectSlug,
-        phaseSlug,
-        state,
-        ks4OptionSlug,
-        tierSlug,
-        childSubjectSlug,
-        mvRefreshTime: actualMvRefreshTime,
-      },
-      isUndefined,
-    ) as Record<string, string>;
-    const newSlugs = new URLSearchParams(slugOb);
-
-    const redirectUrl = `/api/curriculum-downloads/?${newSlugs}`;
-
-    // Netlify-Vary is a hack to hopefully resolve
-    res.setHeader("Netlify-Vary", "query").redirect(307, redirectUrl);
-    return;
-  }
 
   const allHandlers = [
     {
@@ -325,68 +288,132 @@ export default async function handler(
   });
 
   // FIXME: Poor use of types here
-  if (data.notFound === false) {
-    const promises = handlers.map(async ({ handler, getFilename }) => {
-      const buffer = Buffer.from(
-        await handler(
-          data.combinedCurriculumData,
-          {
-            subjectSlug: data.subjectSlug,
-            phaseSlug: data.phaseSlug,
-            keyStageSlug: data.phaseSlug,
-            ks4OptionSlug: data.ks4OptionSlug,
-            tierSlug,
-            childSubjectSlug,
-          },
-          data.ks4Options,
-        ),
-      );
+  if (data.notFound === true) {
+    throw new Error("Data not found");
+  }
 
-      const filename = getFilename(data);
+  const promises = handlers.map(async ({ handler, getFilename }) => {
+    const buffer = Buffer.from(
+      await handler(
+        data.combinedCurriculumData,
+        {
+          subjectSlug: data.subjectSlug,
+          phaseSlug: data.phaseSlug,
+          keyStageSlug: data.phaseSlug,
+          ks4OptionSlug: data.ks4OptionSlug,
+          tierSlug,
+          childSubjectSlug,
+        },
+        data.ks4Options,
+      ),
+    );
 
-      return { filename, buffer };
+    const filename = getFilename(data);
+
+    return { filename, buffer };
+  });
+
+  const files = await Promise.all(promises);
+
+  let outputBuffer: Buffer;
+  let outputFileName: string;
+  if (files.length > 1) {
+    outputBuffer = await zipFromFiles(files);
+    outputFileName = getFilename("zip", {
+      subjectTitle: data.combinedCurriculumData.subjectTitle,
+      phaseTitle: data.combinedCurriculumData.phaseTitle,
+      examboardTitle: data.combinedCurriculumData?.examboardTitle,
+      childSubjectSlug,
+      tierSlug,
+      prefix: "Curriculum downloads",
+      suffix: generateHash([...types, actualMvRefreshTime].join("|")).slice(
+        0,
+        8,
+      ),
     });
+  } else if (files.length === 1 && files[0]) {
+    outputBuffer = files[0].buffer;
+    outputFileName = files[0].filename;
+  } else {
+    throw new Error("Invalid file list");
+  }
 
-    const files = await Promise.all(promises);
+  return {
+    buffer: outputBuffer,
+    filename: outputFileName,
+  };
+}
 
-    let outputBuffer: Buffer;
-    let outputFileName: string;
-    if (files.length > 1) {
-      outputBuffer = await zipFromFiles(files);
-      outputFileName = getFilename("zip", {
-        subjectTitle: data.combinedCurriculumData.subjectTitle,
-        phaseTitle: data.combinedCurriculumData.phaseTitle,
-        examboardTitle: data.combinedCurriculumData?.examboardTitle,
-        childSubjectSlug,
+export default async function handler(
+  req: NextApiRequest,
+  res: NextApiResponse<Buffer>,
+) {
+  const {
+    types,
+    mvRefreshTime,
+    subjectSlug,
+    phaseSlug,
+    state,
+    ks4OptionSlug,
+    tierSlug,
+    childSubjectSlug,
+  } = curriculumDownloadQuerySchema.parse(req.query);
+
+  const mvRefreshTimeParsed = Number.parseInt(mvRefreshTime);
+  const actualMvRefreshTime = await getMvRefreshTime();
+
+  // Note: Disable this check to allow 'new' documents
+  if (state === "new") {
+    res.status(404).end();
+    return;
+  }
+
+  // Check if we should redirect (new cache-hit)
+  if (mvRefreshTimeParsed !== actualMvRefreshTime) {
+    const slugOb = omitBy(
+      {
+        types,
+        subjectSlug,
+        phaseSlug,
+        state,
+        ks4OptionSlug,
         tierSlug,
-        prefix: "Curriculum downloads",
-        suffix: generateHash([...types, actualMvRefreshTime].join("|")).slice(
-          0,
-          8,
-        ),
-      });
-    } else if (files.length === 1 && files[0]) {
-      outputBuffer = files[0].buffer;
-      outputFileName = files[0].filename;
-    } else {
-      throw new Error("Invalid file list");
-    }
+        childSubjectSlug,
+        mvRefreshTime: actualMvRefreshTime,
+      },
+      isUndefined,
+    ) as Record<string, string>;
+    const newSlugs = new URLSearchParams(slugOb);
 
+    const redirectUrl = `/api/curriculum-downloads/?${newSlugs}`;
+
+    // Netlify-Vary is a hack to hopefully resolve
+    res.setHeader("Netlify-Vary", "query").redirect(307, redirectUrl);
+    return;
+  }
+
+  try {
+    const { buffer, filename } = await getFile({
+      types,
+      subjectSlug,
+      phaseSlug,
+      state,
+      ks4OptionSlug,
+      tierSlug,
+      childSubjectSlug,
+    });
     res
       .setHeader("content-type", "application/msword")
       .setHeader(
         "Cache-Control",
         `public, durable, s-maxage=${s_maxage_seconds}, stale-while-revalidate=${stale_while_revalidate_seconds}`,
       )
-      .setHeader(
-        "Content-Disposition",
-        `attachment; filename="${outputFileName}`,
-      )
-      .setHeader("x-filename", `${outputFileName}`)
+      .setHeader("Content-Disposition", `attachment; filename="${filename}`)
+      .setHeader("x-filename", `${filename}`)
       .status(200)
-      .send(Buffer.from(outputBuffer));
-    return;
-  } else {
+      .send(Buffer.from(buffer));
+  } catch (error) {
+    console.error(error);
     res.status(404).end();
     return;
   }

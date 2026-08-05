@@ -37,7 +37,6 @@ describe("getFileSizes", () => {
         ],
         child_subjects: [],
       },
-      1,
     );
 
     expect(out).toEqual([
@@ -111,7 +110,6 @@ describe("getFileSizes", () => {
           },
         ],
       },
-      1,
     );
 
     expect(out).toEqual([

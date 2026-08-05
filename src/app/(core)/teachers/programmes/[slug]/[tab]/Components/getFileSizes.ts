@@ -1,39 +1,50 @@
-import { DOWNLOAD_TYPE_LABELS } from "@/components/CurriculumComponents/CurriculumDownloadView/helper";
 import { CurriculumSelectionSlugs } from "@/utils/curriculum/slugs";
 import { CurriculumDownloadsTierSubjectProps } from "@/pages-helpers/curriculum/docx/tab-helpers";
-import { createCurriculumDownloadsUrl } from "@/utils/curriculum/urls";
-import { contentLengthFromResource } from "@/utils/resource";
+import { getFile } from "@/pages/api/curriculum-downloads";
+
+export const DOWNLOAD_TYPE_LABELS: {
+  id: string;
+  label: string;
+  disabled?: boolean;
+  icon: "curriculum-plan" | "spreadsheet";
+  subTitle?: string;
+  fileExt: string;
+}[] = [
+  {
+    id: "curriculum-plans",
+    label: "Curriculum plan",
+    subTitle: "Word (accessible)",
+    icon: "curriculum-plan",
+    fileExt: "DOCX",
+  },
+  {
+    id: "national-curriculum",
+    label: "National curriculum",
+    subTitle: "Excel (accessible)",
+    icon: "spreadsheet",
+    fileExt: "XLSX",
+  },
+];
 
 export async function getFileSizes(
   subjectPhaseKeystageSlugs: CurriculumSelectionSlugs,
   curriculumDownloadsTabData: CurriculumDownloadsTierSubjectProps,
-  mvRefreshTime: number,
 ) {
-  const downloadUrls = DOWNLOAD_TYPE_LABELS.flatMap(({ id: downloadId }) => {
-    function withProtocol(url?: string) {
-      if (!url) return "";
-      if (url.startsWith("http://") || url.startsWith("https://")) {
-        return url;
-      }
-      return "https://" + url;
-    }
+  const files = DOWNLOAD_TYPE_LABELS.flatMap(({ id: downloadId }) => {
     function genItem(tier: string | null, childSubject: string | null) {
       return {
         id: downloadId,
         tier,
         childSubject,
-        url:
-          withProtocol(process.env.NEXT_PUBLIC_CLIENT_APP_BASE_URL) +
-          createCurriculumDownloadsUrl(
-            [downloadId],
-            "published",
-            mvRefreshTime,
-            subjectPhaseKeystageSlugs.subjectSlug,
-            subjectPhaseKeystageSlugs.phaseSlug,
-            subjectPhaseKeystageSlugs.ks4OptionSlug,
-            tier,
-            childSubject,
-          ),
+        buffer: getFile({
+          types: [downloadId],
+          subjectSlug: subjectPhaseKeystageSlugs.subjectSlug,
+          phaseSlug: subjectPhaseKeystageSlugs.phaseSlug,
+          state: "published",
+          ks4OptionSlug: subjectPhaseKeystageSlugs.ks4OptionSlug ?? undefined,
+          tierSlug: tier ?? undefined,
+          childSubjectSlug: childSubject ?? undefined,
+        }),
       };
     }
     if (
@@ -67,10 +78,10 @@ export async function getFileSizes(
   });
 
   const fileSizes = await Promise.all(
-    downloadUrls.map(async ({ id, url, tier, childSubject }) => {
+    files.map(async ({ id, buffer, tier, childSubject }) => {
       return {
         downloadId: id,
-        size: await contentLengthFromResource(url),
+        size: (await buffer).buffer.length,
         tier,
         childSubject,
       };

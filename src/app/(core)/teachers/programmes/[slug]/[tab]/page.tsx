@@ -286,7 +286,6 @@ const InnerProgrammePage = async (props: AppPageProps<ProgrammePageParams>) => {
   const fileSizes = await getFileSizes(
     subjectPhaseKeystageSlugs,
     curriculumDownloadsTabData,
-    mvRefreshTime,
   );
 
   const results = {
