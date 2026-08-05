@@ -45,6 +45,14 @@ export function AboutUsLayout({ children }: Readonly<AboutUsLayoutProps>) {
       componentType: "about_curriculum" as const,
     },
     {
+      iconName: "data" as const,
+      title: "Oak's impact",
+      href: resolveOakHref({
+        page: "about-oaks-impact",
+      }),
+      componentType: "about_curriculum" as const,
+    },
+    {
       iconName: "snack-break" as const,
       title: "Meet the team",
       href: resolveOakHref({
