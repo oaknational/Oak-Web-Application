@@ -6,7 +6,10 @@ import {
 } from "@oaknational/oak-components";
 import { useId } from "react";
 
-import { CurriculumFilters } from "@/utils/curriculum/types";
+import {
+  CurriculumFilters,
+  OnChangeCurriculumFilters,
+} from "@/utils/curriculum/types";
 import {
   getFilterData,
   scopeYearsToKeystageFilter,
@@ -16,14 +19,11 @@ import {
   presentAtKeyStageSlugs,
 } from "@/utils/curriculum/keystage";
 import { CurriculumUnitsFormattedData } from "@/pages-helpers/curriculum/docx/tab-helpers";
-import { ComponentTypeValueType } from "@/browser-lib/avo/Avo";
+import { FilterType } from "@/browser-lib/avo/Avo";
 
 export type CurricFiltersTiersProps = {
   filters: CurriculumFilters;
-  onChangeFilters: (
-    newFilters: CurriculumFilters,
-    source: ComponentTypeValueType,
-  ) => void;
+  onChangeFilters: OnChangeCurriculumFilters;
   data: CurriculumUnitsFormattedData;
   // The context prop can be removed once the integrated journey is fully launched
   context: "curriculum-visualiser" | "integrated-journey";
@@ -50,7 +50,11 @@ export function CurricFiltersTiers({
   );
 
   function setSingleInFilter(key: keyof CurriculumFilters, newValue: string) {
-    onChangeFilters({ ...filters, [key]: [newValue] }, "learning_tier_button");
+    onChangeFilters({
+      newFilters: { ...filters, [key]: [newValue] },
+      filterType: FilterType.TIER_FILTER,
+      filterValue: newValue,
+    });
   }
 
   return (

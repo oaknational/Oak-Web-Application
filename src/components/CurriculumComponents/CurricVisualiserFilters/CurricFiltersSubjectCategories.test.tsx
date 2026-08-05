@@ -102,8 +102,8 @@ describe("CurricFiltersSubjectCategories", () => {
     expect(elements.length).toEqual(3);
 
     act(() => elements[0]!.click());
-    expect(onChangeFilters).toHaveBeenCalledWith(
-      {
+    expect(onChangeFilters).toHaveBeenCalledWith({
+      newFilters: {
         subjectCategories: ["biology"],
         childSubjects: [],
         threads: [],
@@ -112,11 +112,12 @@ describe("CurricFiltersSubjectCategories", () => {
         pathways: [],
         keystages: [],
       },
-      "subject_category_button",
-    );
+      filterType: "Subject filter",
+      filterValue: "biology",
+    });
     act(() => elements[1]!.click());
-    expect(onChangeFilters).toHaveBeenCalledWith(
-      {
+    expect(onChangeFilters).toHaveBeenCalledWith({
+      newFilters: {
         subjectCategories: ["chemistry"],
         childSubjects: [],
         threads: [],
@@ -125,11 +126,12 @@ describe("CurricFiltersSubjectCategories", () => {
         pathways: [],
         keystages: [],
       },
-      "subject_category_button",
-    );
+      filterType: "Subject filter",
+      filterValue: "chemistry",
+    });
     act(() => elements[2]!.click());
-    expect(onChangeFilters).toHaveBeenCalledWith(
-      {
+    expect(onChangeFilters).toHaveBeenCalledWith({
+      newFilters: {
         subjectCategories: ["physics"],
         childSubjects: [],
         threads: [],
@@ -138,7 +140,8 @@ describe("CurricFiltersSubjectCategories", () => {
         pathways: [],
         keystages: [],
       },
-      "subject_category_button",
-    );
+      filterType: "Subject filter",
+      filterValue: "physics",
+    });
   });
 });

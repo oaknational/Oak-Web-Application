@@ -6,7 +6,10 @@ import type { Ks4OptionFilterDimension } from "../../buildKs4OptionFilterDimensi
 import { KS4OptionFocusScope } from "./KS4OptionFocus";
 import { ProgrammeFilters } from "./ProgrammeFilters";
 
-import { CurriculumFilters } from "@/utils/curriculum/types";
+import {
+  CurriculumFilters,
+  OnChangeCurriculumFilters,
+} from "@/utils/curriculum/types";
 import { CurriculumUnitsFormattedData } from "@/pages-helpers/curriculum/docx/tab-helpers";
 import { CurriculumSelectionSlugs } from "@/utils/curriculum/slugs";
 import SkipLink from "@/components/CurriculumComponents/OakComponentsKitchen/SkipLink";
@@ -17,7 +20,7 @@ import type { Ks4Option } from "@/node-lib/curriculum-api-2023/queries/curriculu
 
 export type ProgrammePageFiltersProps = {
   filters: CurriculumFilters;
-  onChangeFilters: (newFilters: CurriculumFilters) => void;
+  onChangeFilters: OnChangeCurriculumFilters;
   data: CurriculumUnitsFormattedData;
   slugs: CurriculumSelectionSlugs;
   ks4Options: Ks4Option[];

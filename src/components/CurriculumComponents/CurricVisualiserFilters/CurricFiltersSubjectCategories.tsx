@@ -7,7 +7,10 @@ import {
 import { useMemo, useId } from "react";
 
 import { getValidSubjectCategoryIconById } from "@/utils/getValidSubjectCategoryIconById";
-import { CurriculumFilters } from "@/utils/curriculum/types";
+import {
+  CurriculumFilters,
+  OnChangeCurriculumFilters,
+} from "@/utils/curriculum/types";
 import {
   getFilterData,
   scopeYearsToKeystageFilter,
@@ -18,14 +21,11 @@ import {
 } from "@/utils/curriculum/keystage";
 import { CurriculumUnitsFormattedData } from "@/pages-helpers/curriculum/docx/tab-helpers";
 import { CurriculumSelectionSlugs } from "@/utils/curriculum/slugs";
-import { ComponentTypeValueType } from "@/browser-lib/avo/Avo";
+import { FilterType } from "@/browser-lib/avo/Avo";
 
 export type CurricFiltersSubjectCategoriesProps = {
   filters: CurriculumFilters;
-  onChangeFilters: (
-    newFilters: CurriculumFilters,
-    source: ComponentTypeValueType,
-  ) => void;
+  onChangeFilters: OnChangeCurriculumFilters;
   data: CurriculumUnitsFormattedData;
   slugs: CurriculumSelectionSlugs;
   // The context prop can be removed once the integrated journey is fully launched
@@ -59,10 +59,11 @@ export function CurricFiltersSubjectCategories({
   ).filter((ks) => !childSubjectsAt.includes(ks));
 
   function setSingleInFilter(key: keyof CurriculumFilters, newValue: string) {
-    onChangeFilters(
-      { ...filters, [key]: [newValue] },
-      "subject_category_button",
-    );
+    onChangeFilters({
+      newFilters: { ...filters, [key]: [newValue] },
+      filterType: FilterType.SUBJECT_FILTER,
+      filterValue: newValue,
+    });
   }
 
   const subjectCategoryIdAsString = useMemo(() => {

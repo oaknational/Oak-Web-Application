@@ -974,7 +974,7 @@ _avo_invoke = function _avo_invoke(env: AvoEnv, eventId: string, hash: string, m
         method: "POST",
         headers: {"Content-Type": "application/json"},
         body: JSON.stringify({
-          "ac": "5ue6kGIdfu1eXQmhjzUs",
+          "ac": "WHdfroGVE7GijIeSGyuY",
           "br": "TXja698DdsQSi5EJ77tnq",
           "en": env,
           "ev": eventId,
@@ -1001,7 +1001,7 @@ _avo_invoke_meta = function _avo_invoke_meta(env: AvoEnv, type: string, messages
         method: "POST",
         headers: {"Content-Type": "application/json"},
         body: JSON.stringify({
-          "ac": "5ue6kGIdfu1eXQmhjzUs",
+          "ac": "WHdfroGVE7GijIeSGyuY",
           "br": "TXja698DdsQSi5EJ77tnq",
           "en": env,
           "ty": type,
@@ -2784,147 +2784,6 @@ export function unitAccessed(properties: UnitAccessedProperties) {
     }
     // destination PostHogEU
     PostHogEU.logEvent("Unit Accessed", (Object as any).assign({}, eventProperties));
-  } else {
-    // do nothing
-  }
-}
-
-export interface UnitSequenceRefinedProperties {
-  yearGroupName: string | null | undefined;
-  yearGroupSlug: string | null | undefined;
-  subjectTitle: string;
-  subjectSlug: string;
-  threadTitle: string | null | undefined;
-  threadSlug: string | null | undefined;
-  platform: PlatformValueType;
-  product: ProductValueType;
-  engagementIntent: EngagementIntentValueType;
-  componentType: ComponentTypeValueType;
-  eventVersion: EventVersionValueType;
-  analyticsUseCase: AnalyticsUseCaseValueType;
-  childSubjectSlug: string | null | undefined;
-  childSubjectName: string | null | undefined;
-  phase: PhaseValueType;
-  learningTier: LearningTierValueType | null | undefined;
-  subjectCategory: string | null | undefined;
-  pathway: PathwayValueType | null | undefined;
-  examBoard: ExamBoardValueType | null | undefined;
-  journeyId: string | null | undefined;
-}
-/**
- * Unit Sequence Refined: A user of the curriculum visualiser narrows down the units that are displayed in some way. 
- * 
- * When to trigger this event:
- * 1. An example of year group being selected from within the curriculum visualiser tool
- * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/TXja698DdsQSi5EJ77tnq/events/6DwKZEuYUk/trigger/Y36tMwp1l
- * 2. User selects a learning tier
- * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/TXja698DdsQSi5EJ77tnq/events/6DwKZEuYUk/trigger/wNnLPxDLB
- * 3. User selects a subject category
- * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/TXja698DdsQSi5EJ77tnq/events/6DwKZEuYUk/trigger/6ah3h300p
- * 4. Another example of year group being selected within the curriculum visualiser tool (new layout).
- * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/TXja698DdsQSi5EJ77tnq/events/6DwKZEuYUk/trigger/83b58SsoMa00aIvxdXAc8
- * 5. New way of user selecting subject category - selecting one of the buttons on the left menu
- * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/TXja698DdsQSi5EJ77tnq/events/6DwKZEuYUk/trigger/YJGa0DxCzKH6WnBCKuAHX
- * 6. Another example of how the user can select a Learning Tier - on button click
- * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/TXja698DdsQSi5EJ77tnq/events/6DwKZEuYUk/trigger/JVy21DEdSwv_cJGcwWhht
- * 7. User selects one of the Exam subjects - button click
- * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/TXja698DdsQSi5EJ77tnq/events/6DwKZEuYUk/trigger/xbLsT77YcTEO3WXlZDRvM
- * 
- * @param properties the properties associated with this event
- * @param properties.yearGroupName: Name of the current year group.
- * @param properties.yearGroupSlug: Human-readable unique ID of the current year group.
- * @param properties.subjectTitle: Title of the current subject.
- * @param properties.subjectSlug: Human-readable unique ID of the current subject.
- * @param properties.threadTitle: The title (in plain English including spaces) of a thread corresponding to a sequence of lessons across units
- * @param properties.threadSlug: The human readable identifier (n-kebab-case) for a sequence of lessons
- * @param properties.platform: Describes the 'platform' or 'codebase' from which the event was sent. Historically this would have been acorn, but now this will cover OWA, Aila and Google Classroom. These should typically also have a one to one relationship with the 'sources' as defined in this Avo project (Oak's Tracking Plan).
- * @param properties.product: Product that the event was sent from to clear distinguish between Oak products
- * @param properties.engagementIntent: The level or intent of engagement behind the event. This is a high-level categorisation that helps determine whether this event is one that represents 'use' or 'advocacy for one of Oak's products, or whether this action would be considered to be related to 'exploring' Oak's products, or some kind of 'refinement' which limits the amount of content displayed (such as in a filter or a browse journey.
- * This property should be populated with a single value for each event/product combination (i.e. the instance of each event within a product should determine the level of engagement).
- * @param properties.componentType: The web component used to carry out the action on the Oak object
- * @param properties.eventVersion: The version (semver) of the event, which acts as a tag for when the event was introduced/updated. Helps with handling events that could cause downstream logic to change or create 'breaking ' changes in the downstream pipelines.
- * @param properties.analyticsUseCase: User is engaging with the site as a pupil or a teacher as defined by the page url (eg. thenational.academy/pupils or thenational.academy/teachers
- * NB - This will be removed, but keeping to ease transition from AUC to 'product'
- * @param properties.childSubjectSlug: Slug of Child Subject associated with the event
- * @param properties.childSubjectName: Name of the Child Subject Associated with the event
- * @param properties.phase: School phase related to key stage and age of audience
- * @param properties.learningTier: Learning tier that was selected
- * @param properties.subjectCategory: no description
- * @param properties.pathway: Optionality around type of study (i.e. whether working towards a particular certificate or not).
- * @param properties.examBoard: The name of the exam board for a given unit, lesson etc…
- * @param properties.journeyId: A unique ID for a user's journey in a specific programme triggered by a direct or accessed event. Journey end is triggered by a programme slug disappearing or changing.
- * 
- * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/TXja698DdsQSi5EJ77tnq/events/6DwKZEuYUk}
- */
-export function unitSequenceRefined(properties: UnitSequenceRefinedProperties) {
-  // @ts-ignore
-  let eventPropertiesArray: array = [];
-  properties.yearGroupName !== undefined && properties.yearGroupName !== null ?
-    eventPropertiesArray.push({id: "mIpfmyUTSY", name: "Year Group Name", value: properties.yearGroupName}) :
-    eventPropertiesArray.push({id: "mIpfmyUTSY", name: "Year Group Name", value: null});
-  properties.yearGroupSlug !== undefined && properties.yearGroupSlug !== null ?
-    eventPropertiesArray.push({id: "ySTg1Sz9in", name: "Year Group Slug", value: properties.yearGroupSlug}) :
-    eventPropertiesArray.push({id: "ySTg1Sz9in", name: "Year Group Slug", value: null});
-  eventPropertiesArray.push({id: "-MoOjO43sV", name: "Subject Title", value: properties.subjectTitle});
-  eventPropertiesArray.push({id: "8GyPDAapC-", name: "Subject Slug", value: properties.subjectSlug});
-  properties.threadTitle !== undefined && properties.threadTitle !== null ?
-    eventPropertiesArray.push({id: "5vqHiL5Sh", name: "Thread Title", value: properties.threadTitle}) :
-    eventPropertiesArray.push({id: "5vqHiL5Sh", name: "Thread Title", value: null});
-  properties.threadSlug !== undefined && properties.threadSlug !== null ?
-    eventPropertiesArray.push({id: "E1mlACg_OT", name: "Thread Slug", value: properties.threadSlug}) :
-    eventPropertiesArray.push({id: "E1mlACg_OT", name: "Thread Slug", value: null});
-  eventPropertiesArray.push({id: "M1ukA4HClh", name: "Platform", value: properties.platform});
-  eventPropertiesArray.push({id: "JmUs_uxup", name: "Product", value: properties.product});
-  eventPropertiesArray.push({id: "xJlB159-KB", name: "Engagement Intent", value: properties.engagementIntent});
-  eventPropertiesArray.push({id: "9b_lf1oq8", name: "Component Type", value: properties.componentType});
-  eventPropertiesArray.push({id: "3ZqdV-PbJL", name: "Event Version", value: properties.eventVersion});
-  eventPropertiesArray.push({id: "DAS5R4dcvH", name: "Analytics Use Case", value: properties.analyticsUseCase});
-  properties.childSubjectSlug !== undefined && properties.childSubjectSlug !== null ?
-    eventPropertiesArray.push({id: "S4dKDojap", name: "Child Subject Slug", value: properties.childSubjectSlug}) :
-    eventPropertiesArray.push({id: "S4dKDojap", name: "Child Subject Slug", value: null});
-  properties.childSubjectName !== undefined && properties.childSubjectName !== null ?
-    eventPropertiesArray.push({id: "5QAyZtsHD", name: "Child Subject Name", value: properties.childSubjectName}) :
-    eventPropertiesArray.push({id: "5QAyZtsHD", name: "Child Subject Name", value: null});
-  eventPropertiesArray.push({id: "SsbNnb9vD", name: "Phase", value: properties.phase});
-  properties.learningTier !== undefined && properties.learningTier !== null ?
-    eventPropertiesArray.push({id: "uWHOnx61K", name: "Learning Tier", value: properties.learningTier}) :
-    eventPropertiesArray.push({id: "uWHOnx61K", name: "Learning Tier", value: null});
-  properties.subjectCategory !== undefined && properties.subjectCategory !== null ?
-    eventPropertiesArray.push({id: "PGhVxy16A", name: "Subject Category", value: properties.subjectCategory}) :
-    eventPropertiesArray.push({id: "PGhVxy16A", name: "Subject Category", value: null});
-  properties.pathway !== undefined && properties.pathway !== null ?
-    eventPropertiesArray.push({id: "hjCgkqBH8U", name: "Pathway", value: properties.pathway}) :
-    eventPropertiesArray.push({id: "hjCgkqBH8U", name: "Pathway", value: null});
-  properties.examBoard !== undefined && properties.examBoard !== null ?
-    eventPropertiesArray.push({id: "7Emhfe0Q2", name: "Exam Board", value: properties.examBoard}) :
-    eventPropertiesArray.push({id: "7Emhfe0Q2", name: "Exam Board", value: null});
-  properties.journeyId !== undefined && properties.journeyId !== null ?
-    eventPropertiesArray.push({id: "J9ORuaNS9rZOq5UE9Q91k", name: "Journey Id", value: properties.journeyId}) :
-    eventPropertiesArray.push({id: "J9ORuaNS9rZOq5UE9Q91k", name: "Journey Id", value: null});
-  let eventProperties = convertPropertiesArrayToMap(eventPropertiesArray)
-  // @ts-ignore
-  let userPropertiesArray: array = [];
-  let userProperties = convertPropertiesArrayToMap(userPropertiesArray)
-  // assert properties
-  if (__AVO_ENV__ !== AvoEnv.Prod || __WEB_DEBUGGER__) {
-    let messages: AvoAssertMessage[] = [];
-    // debug console in Avo
-    if (!__AVO_NOOP__) {
-      _avo_invoke(__AVO_ENV__, "6DwKZEuYUk", "0300112065cd7c8bff6d3d1b3259abbfa59b790b8985f3fe850276e207883992", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
-    }
-    InternalAvoLogger.logEventSent("Unit Sequence Refined", eventProperties, userProperties);
-    if (__WEB_DEBUGGER__) {
-      // Avo web debugger
-      _avo_debugger_log("6DwKZEuYUk", "Unit Sequence Refined", messages, eventPropertiesArray, userPropertiesArray, []);
-    }
-  }
-  if (!__AVO_NOOP__) {
-    if (__INSPECTOR__ != null) {
-      // @ts-ignore
-      __INSPECTOR__._avoFunctionTrackSchemaFromEvent("Unit Sequence Refined", eventProperties, "6DwKZEuYUk", "0300112065cd7c8bff6d3d1b3259abbfa59b790b8985f3fe850276e207883992");
-    }
-    // destination PostHogEU
-    PostHogEU.logEvent("Unit Sequence Refined", (Object as any).assign({}, eventProperties));
   } else {
     // do nothing
   }
@@ -12899,7 +12758,6 @@ export default {
   videoFinished,
   lessonResourcesDownloaded,
   unitAccessed,
-  unitSequenceRefined,
   webinarPageViewed,
   pageview,
   lessonResourceDownloadStarted,
@@ -12992,4 +12850,4 @@ export default {
 }
 
 // AVOMODULEMAP:"Avo"
-// AVOEVENTMAP:["newsletterSignUpCompleted","classroomSelected","videoStarted","videoPaused","videoPlayed","videoFinished","lessonResourcesDownloaded","unitAccessed","unitSequenceRefined","webinarPageViewed","pageview","lessonResourceDownloadStarted","searchAccessed","searchResultOpened","searchJourneyInitiated","curriculumVisualiserAccessed","unitOverviewAccessed","onwardContentSelected","lessonShared","lessonShareStarted","searchRefined","searchResultExpanded","lessonCompleted","lessonActivityCompleted","lessonActivityCompletedIntroduction","lessonActivityCompletedStarterQuiz","lessonActivityCompletedLessonVideo","lessonActivityCompletedExitQuiz","lessonActivityCompletedLessonAudio","lessonStarted","lessonActivityStarted","lessonActivityStartedIntroduction","lessonActivityStartedStarterQuiz","lessonActivityStartedLessonVideo","lessonActivityStartedExitQuiz","lessonActivityStartedLessonAudio","curriculumResourcesDownloaded","lessonActivityAbandoned","lessonActivityAbandonedStarterQuiz","lessonActivityAbandonedIntroduction","lessonActivityAbandonedLessonVideo","lessonActivityAbandonedExitQuiz","lessonActivityAbandonedLessonAudio","lessonAssistantAccessed","lessonAccessed","lessonAccessedPupilJourney","browseRefined","browseRefinedAccessed","lessonActivityDownloaded","lessonActivityDownloadedWorksheet","contentGuidanceAccepted","contentGuidanceDeclined","activityResultsShared","lessonSummaryReviewed","userSignUpCompleted","userOnboardingCompleted","userSignIn","userSignOut","lessonAbandoned","browseAccessed","questionAttemptSubmitted","teacherShareInitiated","teacherShareActivated","teacherShareConverted","unitDownloaded","teacherNoteDialogueOpened","teacherNoteSaved","curriculumVisualiserExited","curriculumVisualiserTabAccessed","unitOverviewExplored","productHomepageAccessed","curriculumLandingPageAccessed","curriculumExplainerExplored","curriculumResourcesDownloadRefined","searchFilterModified","lessonMediaClipsStarted","mediaClipsPlaylistPlayed","contentSaved","contentUnsaved","createTeachingMaterialsInitiated","teachingMaterialsSelected","teachingMaterialsRefined","teachingMaterialDownloaded","contentBlockNotificationDisplayed","userOnboardingProgressed","aboutUsAccessed","aboutUsExplored","aboutUsContactInitiated","classroomSignInCompleted","classroomSignInStarted","classroomLessonSelected","classroomLessonPreviewed","classroomLessonsAttached","classroomAddOnOpened","programmeRefined","unitRefined","programmeAccessed","unitDownloadStarted"]
+// AVOEVENTMAP:["newsletterSignUpCompleted","classroomSelected","videoStarted","videoPaused","videoPlayed","videoFinished","lessonResourcesDownloaded","unitAccessed","webinarPageViewed","pageview","lessonResourceDownloadStarted","searchAccessed","searchResultOpened","searchJourneyInitiated","curriculumVisualiserAccessed","unitOverviewAccessed","onwardContentSelected","lessonShared","lessonShareStarted","searchRefined","searchResultExpanded","lessonCompleted","lessonActivityCompleted","lessonActivityCompletedIntroduction","lessonActivityCompletedStarterQuiz","lessonActivityCompletedLessonVideo","lessonActivityCompletedExitQuiz","lessonActivityCompletedLessonAudio","lessonStarted","lessonActivityStarted","lessonActivityStartedIntroduction","lessonActivityStartedStarterQuiz","lessonActivityStartedLessonVideo","lessonActivityStartedExitQuiz","lessonActivityStartedLessonAudio","curriculumResourcesDownloaded","lessonActivityAbandoned","lessonActivityAbandonedStarterQuiz","lessonActivityAbandonedIntroduction","lessonActivityAbandonedLessonVideo","lessonActivityAbandonedExitQuiz","lessonActivityAbandonedLessonAudio","lessonAssistantAccessed","lessonAccessed","lessonAccessedPupilJourney","browseRefined","browseRefinedAccessed","lessonActivityDownloaded","lessonActivityDownloadedWorksheet","contentGuidanceAccepted","contentGuidanceDeclined","activityResultsShared","lessonSummaryReviewed","userSignUpCompleted","userOnboardingCompleted","userSignIn","userSignOut","lessonAbandoned","browseAccessed","questionAttemptSubmitted","teacherShareInitiated","teacherShareActivated","teacherShareConverted","unitDownloaded","teacherNoteDialogueOpened","teacherNoteSaved","curriculumVisualiserExited","curriculumVisualiserTabAccessed","unitOverviewExplored","productHomepageAccessed","curriculumLandingPageAccessed","curriculumExplainerExplored","curriculumResourcesDownloadRefined","searchFilterModified","lessonMediaClipsStarted","mediaClipsPlaylistPlayed","contentSaved","contentUnsaved","createTeachingMaterialsInitiated","teachingMaterialsSelected","teachingMaterialsRefined","teachingMaterialDownloaded","contentBlockNotificationDisplayed","userOnboardingProgressed","aboutUsAccessed","aboutUsExplored","aboutUsContactInitiated","classroomSignInCompleted","classroomSignInStarted","classroomLessonSelected","classroomLessonPreviewed","classroomLessonsAttached","classroomAddOnOpened","programmeRefined","unitRefined","programmeAccessed","unitDownloadStarted"]

@@ -36,7 +36,10 @@ import {
   CurriculumSelectionSlugs,
   CurriculumSelectionTitles,
 } from "@/utils/curriculum/slugs";
-import { CurriculumFilters } from "@/utils/curriculum/types";
+import {
+  CurriculumFilters,
+  OnChangeCurriculumFilters,
+} from "@/utils/curriculum/types";
 import { ProgrammePageHeaderCMS } from "@/common-lib/cms-types/programmePage";
 import { CurriculumOverviewSanityData } from "@/common-lib/cms-types";
 import type { Ks4Option } from "@/node-lib/curriculum-api-2023/queries/curriculumPhaseOptions/curriculumPhaseOptions.schema";
@@ -92,16 +95,26 @@ export const ProgrammeView = ({
 
   const [filters, setFilters] = useFilters(defaultFilter, initialFilter);
 
-  const { unitSequenceRefined } = useTeacherBrowseAnalytics(
+  const { programmeRefined } = useTeacherBrowseAnalytics(
     (store) => store.track,
   );
 
-  const onChangeFilters = (newFilters: CurriculumFilters) => {
+  const onChangeFilters: OnChangeCurriculumFilters = ({
+    newFilters,
+    filterType,
+    filterValue,
+  }) => {
     setFilters(newFilters);
 
-    unitSequenceRefined({
-      filters: newFilters,
-      examBoardTitle: examboardTitle,
+    if (!filterType) {
+      return;
+    }
+
+    programmeRefined({
+      componentType: "filter_link",
+      activeFilters: newFilters,
+      filterType,
+      filterValue,
     });
   };
 
