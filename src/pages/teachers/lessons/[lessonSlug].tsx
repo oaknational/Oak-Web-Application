@@ -4,18 +4,6 @@ import {
   GetStaticPropsResult,
 } from "next";
 import { OakFlex, OakMaxWidth } from "@oaknational/oak-components";
-import {
-  examboards,
-  examboardSlugs,
-  keystageDescriptions,
-  keystageSlugs,
-  pathwayDescriptions,
-  pathwaySlugs,
-  phaseDescriptions,
-  phaseSlugs,
-  yearDescriptions,
-  years,
-} from "@oaknational/oak-curriculum-schema";
 
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 import getPageProps from "@/node-lib/getPageProps";
@@ -42,6 +30,7 @@ import {
 import { LessonOverview } from "@/components/TeacherViews/LessonOverview/LessonOverview.view";
 import { TeacherBrowseAnalyticsStoreProvider } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
 import { getProgrammeStateForLesson } from "@/context/TeacherBrowseAnalytics/utils/getProgrammeState";
+import { getProgrammePropsForCanonicalLesson } from "@/pages-helpers/teacher/getProgrammePropsForCanonicalLesson";
 
 type PageProps = {
   lesson: LessonOverviewPageData;
@@ -89,50 +78,11 @@ export default function LessonOverviewCanonicalPage({
 
   const pathwayGroups = groupLessonPathways(lesson.pathways);
 
-  const getProgrammePropsForCanonicalLesson = () => {
-    const firstPathway = lesson.pathways[0];
-
-    const phaseTitle =
-      phaseDescriptions.safeParse(firstPathway?.phaseTitle).data ?? "Primary";
-    const phaseSlug =
-      phaseSlugs.safeParse(phaseTitle.toLocaleLowerCase()).data ?? "primary";
-    const yearGroupTitle =
-      yearDescriptions.safeParse(firstPathway?.yearGroupTitle).data ??
-      "All years";
-    const year = years.safeParse(firstPathway?.yearGroupSlug).data ?? "All";
-    const pathwayTitle =
-      pathwayDescriptions.safeParse(firstPathway?.pathwayTitle).data ?? null;
-    const pathwaySlug =
-      pathwaySlugs.safeParse(pathwayTitle?.toLocaleLowerCase()).data ?? null;
-    const examBoardSlug =
-      examboardSlugs.safeParse(firstPathway?.examBoardSlug).data ?? null;
-    const examBoardTitle =
-      examboards.safeParse(firstPathway?.examBoardTitle).data ?? null;
-    const keyStageSlug =
-      keystageSlugs.safeParse(lesson.keyStageSlug).data ?? "all-ks";
-    const keyStageTitle =
-      keystageDescriptions.safeParse(lesson.keyStageTitle).data ??
-      "All Key Stages";
-
-    return {
-      phaseSlug,
-      phaseTitle,
-      year,
-      yearGroupTitle,
-      pathwayTitle,
-      pathwaySlug,
-      examBoardSlug,
-      examBoardTitle,
-      keyStageSlug,
-      keyStageTitle,
-    };
-  };
-
   return (
     <TeacherBrowseAnalyticsStoreProvider
       programmeState={getProgrammeStateForLesson({
         ...lesson,
-        ...getProgrammePropsForCanonicalLesson(),
+        ...getProgrammePropsForCanonicalLesson(lesson),
       })}
       accessLevel="lesson"
     >

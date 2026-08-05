@@ -7,6 +7,7 @@ import {
 
 import VideoPlayer from "@/components/SharedComponents/VideoPlayer";
 import TranscriptViewer from "@/components/TeacherComponents/TranscriptViewer";
+import { useTeacherBrowseAnalytics } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
 
 export interface LessonOverviewVideoProps {
   video: string | null;
@@ -34,6 +35,9 @@ export const LessonOverviewVideo: FC<LessonOverviewVideoProps> = ({
     setTranscriptOn(!transcriptOn);
   };
 
+  const { videoPlayed, videoFinished, videoPaused, videoStarted } =
+    useTeacherBrowseAnalytics((state) => state.track);
+
   return (
     <OakFlex $flexDirection={"column"} $gap={["spacing-24"]}>
       {video && (
@@ -46,7 +50,12 @@ export const LessonOverviewVideo: FC<LessonOverviewVideoProps> = ({
           location={"lesson"}
           isLegacy={isLegacy}
           defaultHiddenCaptions={signLanguageOn}
-          useTeacherBrowseTracking
+          analyticsOverrides={{
+            videoPlayed,
+            videoFinished,
+            videoPaused,
+            videoStarted,
+          }}
         />
       )}
       <OakFlex

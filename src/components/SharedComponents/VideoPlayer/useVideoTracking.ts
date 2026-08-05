@@ -3,7 +3,7 @@ import errorReporter from "@/common-lib/error-reporter";
 import useAnalytics from "@/context/Analytics/useAnalytics";
 import { PupilPathwayData } from "@/context/PupilLessonAnalytics/pupilAnalyticsHelpers";
 import { AnalyticsBrowseData } from "@/components/TeacherComponents/types/lesson.types";
-import { useTeacherBrowseAnalytics } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
+import { TeacherBrowseTrackFns } from "@/context/TeacherBrowseAnalytics/teacherBrowseAnalytics.types";
 
 const reportError = errorReporter("useVideoTracking");
 
@@ -57,66 +57,27 @@ type UseVideoTrackingProps = {
   muxAssetId?: string | null;
 };
 
-export const useTeacherVideoTracking = (
-  props: Exclude<UseVideoTrackingProps, "pathwayData">,
+export type VideoAnalyticsOverrides = Pick<
+  TeacherBrowseTrackFns,
+  "videoFinished" | "videoPaused" | "videoPlayed" | "videoStarted"
+>;
+
+const useVideoTracking = (
+  props: UseVideoTrackingProps & {
+    analyticsOverrides?: VideoAnalyticsOverrides;
+  },
 ) => {
-  const { videoPlayed, videoFinished, videoPaused, videoStarted } =
-    useTeacherBrowseAnalytics((state) => state.track);
-
-  const onPlay = (isVideoStart: boolean) => {
-    const eventProps = getEventPropsOrWarn(props);
-    if (!eventProps) {
-      return;
-    }
-
-    const trackingProps = {
-      ...eventProps,
-      cloudinaryUrl: props.cloudinaryUrl ?? null,
-      muxAssetId: props.muxAssetId ?? null,
-    };
-
-    videoPlayed(trackingProps);
-
-    if (isVideoStart) {
-      videoStarted(trackingProps);
-    }
-  };
-  const onPause = () => {
-    const eventProps = getEventPropsOrWarn(props);
-
-    if (!eventProps) {
-      return;
-    }
-    const trackingProps = {
-      ...eventProps,
-      cloudinaryUrl: props.cloudinaryUrl ?? null,
-      muxAssetId: props.muxAssetId ?? null,
-    };
-    videoPaused(trackingProps);
-  };
-  const onEnd = () => {
-    const eventProps = getEventPropsOrWarn(props);
-
-    if (!eventProps) {
-      return;
-    }
-    const trackingProps = {
-      ...eventProps,
-      cloudinaryUrl: props.cloudinaryUrl ?? null,
-      muxAssetId: props.muxAssetId ?? null,
-    };
-    videoFinished(trackingProps);
-  };
-
-  return {
-    onPlay,
-    onEnd,
-    onPause,
-  };
-};
-
-const useVideoTracking = (props: UseVideoTrackingProps) => {
+  // When all tracking is integrated into the store we can remove this useAnalytics hook fallback and overrides
   const { track } = useAnalytics();
+  const trackVideoPlayed =
+    props.analyticsOverrides?.videoPlayed ?? track.videoPlayed;
+  const trackVideoStarted =
+    props.analyticsOverrides?.videoStarted ?? track.videoStarted;
+  const trackVideoPaused =
+    props.analyticsOverrides?.videoPaused ?? track.videoPaused;
+  const trackVideoFinished =
+    props.analyticsOverrides?.videoFinished ?? track.videoFinished;
+  const journeyId = props.analyticsOverrides ? undefined : null;
 
   const pathwayData = props.pathwayData
     ? props.pathwayData
@@ -128,21 +89,21 @@ const useVideoTracking = (props: UseVideoTrackingProps) => {
       return;
     }
 
-    track.videoPlayed({
+    trackVideoPlayed({
       ...eventProps,
       ...pathwayData,
-      cloudinaryUrl: props.cloudinaryUrl,
-      muxAssetId: props.muxAssetId,
-      journeyId: null,
+      cloudinaryUrl: props.cloudinaryUrl ?? null,
+      muxAssetId: props.muxAssetId ?? null,
+      journeyId,
     });
 
     if (isVideoStart) {
-      track.videoStarted({
+      trackVideoStarted({
         ...eventProps,
         ...pathwayData,
-        cloudinaryUrl: props.cloudinaryUrl,
-        muxAssetId: props.muxAssetId,
-        journeyId: null,
+        cloudinaryUrl: props.cloudinaryUrl ?? null,
+        muxAssetId: props.muxAssetId ?? null,
+        journeyId,
       });
     }
   };
@@ -152,12 +113,12 @@ const useVideoTracking = (props: UseVideoTrackingProps) => {
     if (!eventProps) {
       return;
     }
-    track.videoPaused({
+    trackVideoPaused({
       ...eventProps,
       ...pathwayData,
-      cloudinaryUrl: props.cloudinaryUrl,
-      muxAssetId: props.muxAssetId,
-      journeyId: null,
+      cloudinaryUrl: props.cloudinaryUrl ?? null,
+      muxAssetId: props.muxAssetId ?? null,
+      journeyId,
     });
   };
   const onEnd = () => {
@@ -166,12 +127,12 @@ const useVideoTracking = (props: UseVideoTrackingProps) => {
     if (!eventProps) {
       return;
     }
-    track.videoFinished({
+    trackVideoFinished({
       ...eventProps,
       ...pathwayData,
-      cloudinaryUrl: props.cloudinaryUrl,
-      muxAssetId: props.muxAssetId,
-      journeyId: null,
+      cloudinaryUrl: props.cloudinaryUrl ?? null,
+      muxAssetId: props.muxAssetId ?? null,
+      journeyId,
     });
   };
 

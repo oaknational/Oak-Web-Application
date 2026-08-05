@@ -97,9 +97,13 @@ export const LessonMedia = (
   } = lesson;
 
   const { track } = useAnalytics();
-  const { mediaClipsPlaylistPlayed } = useTeacherBrowseAnalytics(
-    (store) => store.track,
-  );
+  const {
+    mediaClipsPlaylistPlayed,
+    videoFinished,
+    videoPaused,
+    videoStarted,
+    videoPlayed,
+  } = useTeacherBrowseAnalytics((store) => store.track);
   const {
     showSignedOutLoginRequired,
     showSignedOutGeoRestricted,
@@ -290,7 +294,12 @@ export const LessonMedia = (
       defaultHiddenCaptions={isPEPractical}
       cloudinaryUrl={currentClip.mediaObject.url}
       muxAssetId={currentClip.videoObject?.muxAssetId}
-      useTeacherBrowseTracking
+      analyticsOverrides={{
+        videoFinished,
+        videoPaused,
+        videoPlayed,
+        videoStarted,
+      }}
     />
   );
 

@@ -5,12 +5,14 @@ import {
   LessonOverviewVideoProps,
 } from "./LessonOverviewVideo";
 
-import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
+import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 
 jest.mock("@/components/SharedComponents/VideoPlayer/VideoPlayer", () => ({
   __esModule: true,
   default: () => <video data-testid="video-element" />,
 }));
+
+const render = renderWithProviders();
 
 describe("LessonOverviewVideo", () => {
   it("Renders the video player", () => {
@@ -21,7 +23,7 @@ describe("LessonOverviewVideo", () => {
       signLanguageVideo: "signLanguageVideo",
       isLegacy: true,
     };
-    const { getByTestId } = renderWithTheme(<LessonOverviewVideo {...props} />);
+    const { getByTestId } = render(<LessonOverviewVideo {...props} />);
     expect(getByTestId("video-element")).toBeInTheDocument();
   });
 
@@ -33,7 +35,7 @@ describe("LessonOverviewVideo", () => {
       signLanguageVideo: "signLanguageVideo",
       isLegacy: true,
     };
-    const { getByText } = renderWithTheme(<LessonOverviewVideo {...props} />);
+    const { getByText } = render(<LessonOverviewVideo {...props} />);
     expect(getByText("Show transcript")).toBeInTheDocument();
   });
 
@@ -44,7 +46,7 @@ describe("LessonOverviewVideo", () => {
       signLanguageVideo: "signLanguageVideo",
       isLegacy: true,
     };
-    const { getByText } = renderWithTheme(<LessonOverviewVideo {...props} />);
+    const { getByText } = render(<LessonOverviewVideo {...props} />);
     expect(() => getByText("Show transcript")).toThrow();
   });
 
@@ -56,7 +58,7 @@ describe("LessonOverviewVideo", () => {
       signLanguageVideo: "signLanguageVideo",
       isLegacy: true,
     };
-    const { getByText } = renderWithTheme(<LessonOverviewVideo {...props} />);
+    const { getByText } = render(<LessonOverviewVideo {...props} />);
 
     await fireEvent.click(getByText("Show transcript"));
 
@@ -71,7 +73,7 @@ describe("LessonOverviewVideo", () => {
       signLanguageVideo: "signLanguageVideo",
       isLegacy: true,
     };
-    const { getByText } = renderWithTheme(<LessonOverviewVideo {...props} />);
+    const { getByText } = render(<LessonOverviewVideo {...props} />);
 
     await fireEvent.click(getByText("Show transcript"));
     await fireEvent.click(getByText("Hide transcript"));
@@ -87,7 +89,7 @@ describe("LessonOverviewVideo", () => {
       signLanguageVideo: "signLanguageVideo",
       isLegacy: true,
     };
-    const { getByText } = renderWithTheme(<LessonOverviewVideo {...props} />);
+    const { getByText } = render(<LessonOverviewVideo {...props} />);
     expect(getByText("Show sign language")).toBeInTheDocument();
   });
 
@@ -99,7 +101,7 @@ describe("LessonOverviewVideo", () => {
       signLanguageVideo: null,
       isLegacy: true,
     };
-    const { getByText } = renderWithTheme(<LessonOverviewVideo {...props} />);
+    const { getByText } = render(<LessonOverviewVideo {...props} />);
     expect(() => getByText("Show sign language")).toThrow();
   });
 });
