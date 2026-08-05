@@ -974,7 +974,7 @@ _avo_invoke = function _avo_invoke(env: AvoEnv, eventId: string, hash: string, m
         method: "POST",
         headers: {"Content-Type": "application/json"},
         body: JSON.stringify({
-          "ac": "6LShc36t84ICWJMVcAsH",
+          "ac": "5ue6kGIdfu1eXQmhjzUs",
           "br": "TXja698DdsQSi5EJ77tnq",
           "en": env,
           "ev": eventId,
@@ -1001,7 +1001,7 @@ _avo_invoke_meta = function _avo_invoke_meta(env: AvoEnv, type: string, messages
         method: "POST",
         headers: {"Content-Type": "application/json"},
         body: JSON.stringify({
-          "ac": "6LShc36t84ICWJMVcAsH",
+          "ac": "5ue6kGIdfu1eXQmhjzUs",
           "br": "TXja698DdsQSi5EJ77tnq",
           "en": env,
           "ty": type,
@@ -2703,9 +2703,6 @@ export interface UnitAccessedProperties {
   tierName: TierNameValueType | null | undefined;
   examBoard: ExamBoardValueType | null | undefined;
   pathway: PathwayValueType | null | undefined;
-  journeyId: string;
-  accessLevel: AccessLevelValueType;
-  navigationType: NavigationTypeValueType;
 }
 /**
  * Unit Accessed: A teacher chooses the unit they want to view.
@@ -2734,10 +2731,6 @@ export interface UnitAccessedProperties {
  * @param properties.tierName: Name of the learning tier
  * @param properties.examBoard: The name of the exam board for a given unit, lesson etc…
  * @param properties.pathway: Optionality around type of study (i.e. whether working towards a particular certificate or not).
- * @param properties.journeyId: A unique ID for a user's journey in a specific programme triggered by a direct or accessed event. Journey end is triggered by a programme slug disappearing or changing.
- * @param properties.accessLevel: Indicates where the user is going from when navigating content, whether zooming in, out, or across.
- * @param properties.navigationType: How a user is navigating our content, zooming in, out, or across.
- * Indicates the direction of movement and what it represents.
  * 
  * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/TXja698DdsQSi5EJ77tnq/events/Me4ouIgPxh}
  */
@@ -2767,9 +2760,6 @@ export function unitAccessed(properties: UnitAccessedProperties) {
   properties.pathway !== undefined && properties.pathway !== null ?
     eventPropertiesArray.push({id: "hjCgkqBH8U", name: "Pathway", value: properties.pathway}) :
     eventPropertiesArray.push({id: "hjCgkqBH8U", name: "Pathway", value: null});
-  eventPropertiesArray.push({id: "J9ORuaNS9rZOq5UE9Q91k", name: "Journey Id", value: properties.journeyId});
-  eventPropertiesArray.push({id: "qf_a_ttCPfRkzKQyLStvY", name: "Access Level", value: properties.accessLevel});
-  eventPropertiesArray.push({id: "MSzgvcM11YCYl-3H4YNVa", name: "Navigation Type", value: properties.navigationType});
   let eventProperties = convertPropertiesArrayToMap(eventPropertiesArray)
   // @ts-ignore
   let userPropertiesArray: array = [];
@@ -2779,7 +2769,7 @@ export function unitAccessed(properties: UnitAccessedProperties) {
     let messages: AvoAssertMessage[] = [];
     // debug console in Avo
     if (!__AVO_NOOP__) {
-      _avo_invoke(__AVO_ENV__, "Me4ouIgPxh", "60a33b87a0d9e9fe5138282ce44d8af07d705cbaaad0c964a315b84cdc1de296", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
+      _avo_invoke(__AVO_ENV__, "Me4ouIgPxh", "70e6bd442457815ec2a0cb771654e3e21e968be2e06d55fa8c879f8a21b3673a", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
     }
     InternalAvoLogger.logEventSent("Unit Accessed", eventProperties, userProperties);
     if (__WEB_DEBUGGER__) {
@@ -2790,7 +2780,7 @@ export function unitAccessed(properties: UnitAccessedProperties) {
   if (!__AVO_NOOP__) {
     if (__INSPECTOR__ != null) {
       // @ts-ignore
-      __INSPECTOR__._avoFunctionTrackSchemaFromEvent("Unit Accessed", eventProperties, "Me4ouIgPxh", "60a33b87a0d9e9fe5138282ce44d8af07d705cbaaad0c964a315b84cdc1de296");
+      __INSPECTOR__._avoFunctionTrackSchemaFromEvent("Unit Accessed", eventProperties, "Me4ouIgPxh", "70e6bd442457815ec2a0cb771654e3e21e968be2e06d55fa8c879f8a21b3673a");
     }
     // destination PostHogEU
     PostHogEU.logEvent("Unit Accessed", (Object as any).assign({}, eventProperties));
@@ -7430,9 +7420,6 @@ export interface LessonAccessedProperties {
   tierName: TierNameValueType | null | undefined;
   examBoard: ExamBoardValueType | null | undefined;
   pathway: PathwayValueType | null | undefined;
-  journeyId: string;
-  navigationType: NavigationTypeValueType;
-  accessLevel: AccessLevelValueType;
 }
 /**
  * Lesson Accessed: Replaces the previous "Lesson Selected" event. Describes a user visiting a lesson in either the Teacher or Pupil Experience, typically at the end of a search or browse journey.
@@ -7465,10 +7452,6 @@ export interface LessonAccessedProperties {
  * @param properties.tierName: Name of the learning tier
  * @param properties.examBoard: The name of the exam board for a given unit, lesson etc…
  * @param properties.pathway: Optionality around type of study (i.e. whether working towards a particular certificate or not).
- * @param properties.journeyId: A unique ID for a user's journey in a specific programme triggered by a direct or accessed event. Journey end is triggered by a programme slug disappearing or changing.
- * @param properties.navigationType: How a user is navigating our content, zooming in, out, or across.
- * Indicates the direction of movement and what it represents.
- * @param properties.accessLevel: Indicates where the user is going from when navigating content, whether zooming in, out, or across.
  * 
  * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/TXja698DdsQSi5EJ77tnq/events/u21IHcK8_t}
  */
@@ -7500,9 +7483,6 @@ export function lessonAccessed(properties: LessonAccessedProperties) {
   properties.pathway !== undefined && properties.pathway !== null ?
     eventPropertiesArray.push({id: "hjCgkqBH8U", name: "Pathway", value: properties.pathway}) :
     eventPropertiesArray.push({id: "hjCgkqBH8U", name: "Pathway", value: null});
-  eventPropertiesArray.push({id: "J9ORuaNS9rZOq5UE9Q91k", name: "Journey Id", value: properties.journeyId});
-  eventPropertiesArray.push({id: "MSzgvcM11YCYl-3H4YNVa", name: "Navigation Type", value: properties.navigationType});
-  eventPropertiesArray.push({id: "qf_a_ttCPfRkzKQyLStvY", name: "Access Level", value: properties.accessLevel});
   let eventProperties = convertPropertiesArrayToMap(eventPropertiesArray)
   // @ts-ignore
   let userPropertiesArray: array = [];
@@ -7512,7 +7492,7 @@ export function lessonAccessed(properties: LessonAccessedProperties) {
     let messages: AvoAssertMessage[] = [];
     // debug console in Avo
     if (!__AVO_NOOP__) {
-      _avo_invoke(__AVO_ENV__, "u21IHcK8_t", "22cccdb9d3d1bace5923ff391d0eb409ca9f4933ea9bb1e0ec166c5123938d71", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
+      _avo_invoke(__AVO_ENV__, "u21IHcK8_t", "2341178828d30d6951d91584dfa9b30f29ef090b61e5a472a085a4bead1ec7df", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
     }
     InternalAvoLogger.logEventSent("Lesson Accessed", eventProperties, userProperties);
     if (__WEB_DEBUGGER__) {
@@ -7523,7 +7503,7 @@ export function lessonAccessed(properties: LessonAccessedProperties) {
   if (!__AVO_NOOP__) {
     if (__INSPECTOR__ != null) {
       // @ts-ignore
-      __INSPECTOR__._avoFunctionTrackSchemaFromEvent("Lesson Accessed", eventProperties, "u21IHcK8_t", "22cccdb9d3d1bace5923ff391d0eb409ca9f4933ea9bb1e0ec166c5123938d71");
+      __INSPECTOR__._avoFunctionTrackSchemaFromEvent("Lesson Accessed", eventProperties, "u21IHcK8_t", "2341178828d30d6951d91584dfa9b30f29ef090b61e5a472a085a4bead1ec7df");
     }
     // destination PostHogEU
     PostHogEU.logEvent("Lesson Accessed", (Object as any).assign({}, eventProperties));
@@ -7560,9 +7540,6 @@ export interface LessonAccessedPupilJourneyProperties {
   teacherLoginHint: string | null | undefined;
   pupilLoginHint: string | null | undefined;
   clientEnvironment: ClientEnvironmentValueType;
-  journeyId: string;
-  navigationType: NavigationTypeValueType;
-  accessLevel: AccessLevelValueType;
 }
 /**
  * Lesson Accessed: Replaces the previous "Lesson Selected" event. Describes a user visiting a lesson in either the Teacher or Pupil Experience, typically at the end of a search or browse journey., event variant
@@ -7597,10 +7574,6 @@ export interface LessonAccessedPupilJourneyProperties {
  * @param properties.teacherLoginHint: Google Classroom Teacher Login Hint
  * @param properties.pupilLoginHint: Google Classroom Pupil Login Hint
  * @param properties.clientEnvironment: Denotes the environment the client is running
- * @param properties.journeyId: A unique ID for a user's journey in a specific programme triggered by a direct or accessed event. Journey end is triggered by a programme slug disappearing or changing.
- * @param properties.navigationType: How a user is navigating our content, zooming in, out, or across.
- * Indicates the direction of movement and what it represents.
- * @param properties.accessLevel: Indicates where the user is going from when navigating content, whether zooming in, out, or across.
  * 
  * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/TXja698DdsQSi5EJ77tnq/events/u21IHcK8_t.ohEZ3G-E4C1P-RIAsc4D_}
  */
@@ -7654,9 +7627,6 @@ export function lessonAccessedPupilJourney(properties: LessonAccessedPupilJourne
     eventPropertiesArray.push({id: "e1RKlQxiyzPf_uYY0wYuq", name: "Pupil Login Hint", value: properties.pupilLoginHint}) :
     eventPropertiesArray.push({id: "e1RKlQxiyzPf_uYY0wYuq", name: "Pupil Login Hint", value: null});
   eventPropertiesArray.push({id: "9RoNY4Sg_zpaBzxCl3sTB", name: "Client Environment", value: properties.clientEnvironment});
-  eventPropertiesArray.push({id: "J9ORuaNS9rZOq5UE9Q91k", name: "Journey Id", value: properties.journeyId});
-  eventPropertiesArray.push({id: "MSzgvcM11YCYl-3H4YNVa", name: "Navigation Type", value: properties.navigationType});
-  eventPropertiesArray.push({id: "qf_a_ttCPfRkzKQyLStvY", name: "Access Level", value: properties.accessLevel});
   let eventProperties = convertPropertiesArrayToMap(eventPropertiesArray)
   // @ts-ignore
   let userPropertiesArray: array = [];
@@ -7666,7 +7636,7 @@ export function lessonAccessedPupilJourney(properties: LessonAccessedPupilJourne
     let messages: AvoAssertMessage[] = [];
     // debug console in Avo
     if (!__AVO_NOOP__) {
-      _avo_invoke(__AVO_ENV__, "u21IHcK8_t.ohEZ3G-E4C1P-RIAsc4D_", "5ce39f23e6e2fec64ebf16d2f16132329722f18fcca5782f0dd9c1af12c33e73", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
+      _avo_invoke(__AVO_ENV__, "u21IHcK8_t.ohEZ3G-E4C1P-RIAsc4D_", "5dbfa941524903345e9538670a2bdb5515056639edc0b6d8feefaf6ecb166b23", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
     }
     InternalAvoLogger.logEventSent("Lesson Accessed", eventProperties, userProperties);
     if (__WEB_DEBUGGER__) {
@@ -7677,7 +7647,7 @@ export function lessonAccessedPupilJourney(properties: LessonAccessedPupilJourne
   if (!__AVO_NOOP__) {
     if (__INSPECTOR__ != null) {
       // @ts-ignore
-      __INSPECTOR__._avoFunctionTrackSchemaFromEvent("Lesson Accessed", eventProperties, "u21IHcK8_t.ohEZ3G-E4C1P-RIAsc4D_", "5ce39f23e6e2fec64ebf16d2f16132329722f18fcca5782f0dd9c1af12c33e73");
+      __INSPECTOR__._avoFunctionTrackSchemaFromEvent("Lesson Accessed", eventProperties, "u21IHcK8_t.ohEZ3G-E4C1P-RIAsc4D_", "5dbfa941524903345e9538670a2bdb5515056639edc0b6d8feefaf6ecb166b23");
     }
     // destination PostHogEU
     PostHogEU.logEvent("Lesson Accessed", (Object as any).assign({}, eventProperties));
@@ -9268,9 +9238,6 @@ export interface BrowseAccessedProperties {
   componentType: ComponentTypeValueType;
   eventVersion: EventVersionValueType;
   analyticsUseCase: AnalyticsUseCaseValueType;
-  journeyId: string;
-  accessLevel: AccessLevelValueType;
-  navigationType: NavigationTypeValueType;
 }
 /**
  * Browse Accessed: The browse experience has been accessed
@@ -9284,10 +9251,6 @@ export interface BrowseAccessedProperties {
  * @param properties.eventVersion: The version (semver) of the event, which acts as a tag for when the event was introduced/updated. Helps with handling events that could cause downstream logic to change or create 'breaking ' changes in the downstream pipelines.
  * @param properties.analyticsUseCase: User is engaging with the site as a pupil or a teacher as defined by the page url (eg. thenational.academy/pupils or thenational.academy/teachers
  * NB - This will be removed, but keeping to ease transition from AUC to 'product'
- * @param properties.journeyId: A unique ID for a user's journey in a specific programme triggered by a direct or accessed event. Journey end is triggered by a programme slug disappearing or changing.
- * @param properties.accessLevel: Indicates where the user is going from when navigating content, whether zooming in, out, or across.
- * @param properties.navigationType: How a user is navigating our content, zooming in, out, or across.
- * Indicates the direction of movement and what it represents.
  * 
  * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/TXja698DdsQSi5EJ77tnq/events/MFzroCdj0}
  */
@@ -9300,9 +9263,6 @@ export function browseAccessed(properties: BrowseAccessedProperties) {
   eventPropertiesArray.push({id: "9b_lf1oq8", name: "Component Type", value: properties.componentType});
   eventPropertiesArray.push({id: "3ZqdV-PbJL", name: "Event Version", value: properties.eventVersion});
   eventPropertiesArray.push({id: "DAS5R4dcvH", name: "Analytics Use Case", value: properties.analyticsUseCase});
-  eventPropertiesArray.push({id: "J9ORuaNS9rZOq5UE9Q91k", name: "Journey Id", value: properties.journeyId});
-  eventPropertiesArray.push({id: "qf_a_ttCPfRkzKQyLStvY", name: "Access Level", value: properties.accessLevel});
-  eventPropertiesArray.push({id: "MSzgvcM11YCYl-3H4YNVa", name: "Navigation Type", value: properties.navigationType});
   let eventProperties = convertPropertiesArrayToMap(eventPropertiesArray)
   // @ts-ignore
   let userPropertiesArray: array = [];
@@ -9312,7 +9272,7 @@ export function browseAccessed(properties: BrowseAccessedProperties) {
     let messages: AvoAssertMessage[] = [];
     // debug console in Avo
     if (!__AVO_NOOP__) {
-      _avo_invoke(__AVO_ENV__, "MFzroCdj0", "9b12c88ad7cc480d324908a8bb73e6d12e608d4008e8356770fc71cce114d95d", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
+      _avo_invoke(__AVO_ENV__, "MFzroCdj0", "8da6135e0272248ddd17d85b959c4ae1cc70ca0e078f186e636f6b352c249d10", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
     }
     InternalAvoLogger.logEventSent("Browse Accessed", eventProperties, userProperties);
     if (__WEB_DEBUGGER__) {
@@ -9323,7 +9283,7 @@ export function browseAccessed(properties: BrowseAccessedProperties) {
   if (!__AVO_NOOP__) {
     if (__INSPECTOR__ != null) {
       // @ts-ignore
-      __INSPECTOR__._avoFunctionTrackSchemaFromEvent("Browse Accessed", eventProperties, "MFzroCdj0", "9b12c88ad7cc480d324908a8bb73e6d12e608d4008e8356770fc71cce114d95d");
+      __INSPECTOR__._avoFunctionTrackSchemaFromEvent("Browse Accessed", eventProperties, "MFzroCdj0", "8da6135e0272248ddd17d85b959c4ae1cc70ca0e078f186e636f6b352c249d10");
     }
     // destination PostHogEU
     PostHogEU.logEvent("Browse Accessed", (Object as any).assign({}, eventProperties));
