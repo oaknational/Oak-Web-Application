@@ -35,7 +35,6 @@ exports[`LessonDownloadsSuccessPage fetches unit data and renders success confir
   }
 >
   <DownloadSuccessView
-    ctaVariant="control"
     lesson={
       {
         "containsGeorestrictedLessons": false,
@@ -136,7 +135,6 @@ exports[`LessonDownloadsSuccessPage renders control variant when feature flag is
   }
 >
   <DownloadSuccessView
-    ctaVariant="control"
     lesson={
       {
         "containsGeorestrictedLessons": false,
@@ -237,7 +235,6 @@ exports[`LessonDownloadsSuccessPage renders control variant when feature flag is
   }
 >
   <DownloadSuccessView
-    ctaVariant="control"
     lesson={
       {
         "containsGeorestrictedLessons": false,
@@ -338,7 +335,6 @@ exports[`LessonDownloadsSuccessPage renders test variant when feature flag is te
   }
 >
   <DownloadSuccessView
-    ctaVariant="test"
     lesson={
       {
         "containsGeorestrictedLessons": false,
