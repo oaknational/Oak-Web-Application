@@ -36,6 +36,8 @@ import { cacheData } from "@/node-lib/cache";
 import CMSClient from "@/node-lib/cms";
 import { getMvRefreshTime } from "@/pages-helpers/curriculum/downloads/getMvRefreshTime";
 import { validateServerSearchParams } from "@/utils/validateProgrammePageSearchParams";
+import { createCurriculumDownloadsUrl } from "@/utils/curriculum/urls";
+import { DOWNLOAD_TYPE_LABELS } from "@/components/CurriculumComponents/CurriculumDownloadView/helper";
 
 const reportError = errorReporter("programme-page::app");
 
@@ -282,6 +284,56 @@ const InnerProgrammePage = async (props: AppPageProps<ProgrammePageParams>) => {
     ks4OptionTitle: curriculumSelectionTitles.examboardTitle,
   };
 
+  const downloadUrls = DOWNLOAD_TYPE_LABELS.map(({ id: downloadId }) => {
+    function gen(tier: string | null, childSubject: string | null) {
+      return {
+        id: downloadId,
+        tier,
+        childSubject,
+        url:
+          process.env.NEXT_PUBLIC_CLIENT_APP_BASE_URL +
+          createCurriculumDownloadsUrl(
+            [downloadId],
+            "published",
+            mvRefreshTime,
+            subjectPhaseKeystageSlugs.subjectSlug,
+            subjectPhaseKeystageSlugs.phaseSlug,
+            subjectPhaseKeystageSlugs.ks4OptionSlug,
+            tier,
+            childSubject,
+          ),
+      };
+    }
+    if (curriculumDownloadsTabData.tiers) {
+      return curriculumDownloadsTabData.tiers.map((tier) => {
+        return gen(tier.tier_slug, null);
+      });
+    } else if (curriculumDownloadsTabData.child_subjects) {
+      return curriculumDownloadsTabData.child_subjects.map((child_subject) => {
+        return gen(null, child_subject.subject_slug);
+      });
+    } else {
+      return [gen(null, null)];
+    }
+  });
+
+  const fileSizes = await Promise.all(
+    downloadUrls.flat().map(async ({ id, url, tier, childSubject }) => {
+      const response = await fetch(url, { method: "HEAD" });
+      const contentLength = response.headers.get("content-length");
+      if (contentLength) {
+        return {
+          downloadId: id,
+          size: parseInt(contentLength),
+          tier,
+          childSubject,
+        };
+      } else {
+        return { downloadId: id, size: -1, tier, childSubject };
+      }
+    }),
+  );
+
   const results = {
     subjectPhaseSlug,
     curriculumSelectionSlugs: subjectPhaseKeystageSlugs,
@@ -297,6 +349,7 @@ const InnerProgrammePage = async (props: AppPageProps<ProgrammePageParams>) => {
     curriculumDownloadsTabData,
     mvRefreshTime,
     initialFilter: resolvedFilter,
+    fileSizes,
   };
 
   return <ProgrammeView {...results} />;

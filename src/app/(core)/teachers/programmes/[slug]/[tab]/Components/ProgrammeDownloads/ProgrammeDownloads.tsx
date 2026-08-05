@@ -22,6 +22,7 @@ import {
   ChangeEvent,
 } from "react";
 import { Controller, ControllerRenderProps } from "react-hook-form";
+import prettyBytes from "pretty-bytes";
 
 import { DownloadSuccessHeader } from "../../../units/[unitSlug]/lessons/[lessonSlug]/Components/DownloadSuccessHeader/DownloadSuccessHeader";
 
@@ -48,12 +49,19 @@ import { doUnitsHaveNc, flatUnitsFromYearData } from "@/utils/curriculum/units";
 import { CurriculumSelectionSlugs } from "@/utils/curriculum/slugs";
 import useResourceFormSubmit from "@/components/TeacherComponents/hooks/downloadAndShareHooks/useResourceFormSubmit";
 import downloadDebouncedSubmit from "@/components/TeacherComponents/helpers/downloadAndShareHelpers/downloadDebounceSubmit";
+
 export type ProgrammeDownloadsProps = {
   mvRefreshTime: number;
   curriculumInfo: CurriculumOverviewMVData;
   curriculumDownloadsTabData: CurriculumDownloadsTierSubjectProps;
   curriculumUnitsFormattedData: CurriculumUnitsFormattedData;
   curriculumSelectionSlugs: CurriculumSelectionSlugs;
+  fileSizes?: {
+    downloadId: string;
+    size: number;
+    tier: string | null;
+    childSubject: string | null;
+  }[];
 };
 
 export const ProgrammeDownloads = ({
@@ -62,6 +70,7 @@ export const ProgrammeDownloads = ({
   curriculumSelectionSlugs,
   mvRefreshTime,
   curriculumInfo,
+  fileSizes,
 }: ProgrammeDownloadsProps) => {
   const { track } = useAnalytics();
   const { onHubspotSubmit } = useHubspotSubmit();
@@ -79,15 +88,18 @@ export const ProgrammeDownloads = ({
     });
   }, [curriculumUnitsFormattedData]);
 
-  const curriculumDownloadsWithLabels = DOWNLOAD_TYPE_LABELS.filter(({ id }) =>
-    availableDownloadTypes.includes(id),
-  );
+  const curriculumDownloadsWithLabels = useMemo(() => {
+    return DOWNLOAD_TYPE_LABELS.filter(({ id }) =>
+      availableDownloadTypes.includes(id),
+    );
+  }, [availableDownloadTypes]);
 
   // Convert the data into OWA component format (using camelCase instead of snake_case for keys.)
   const [tierSelected, setTierSelected] = useState<string | null>(null);
   const [childSubjectSelected, setChildSubjectSelected] = useState<
     string | null
   >(null);
+
   const tiers = useMemo<Tier[]>(() => {
     return curriculumDownloadsTabData.tiers &&
       curriculumDownloadsTabData.tiers.length > 0
@@ -341,6 +353,12 @@ export const ProgrammeDownloads = ({
                         render={({
                           field: { value: fieldValue, onChange },
                         }) => {
+                          const fileSize = fileSizes?.find(
+                            (fileSize) =>
+                              fileSize.downloadId === download.id &&
+                              fileSize.tier === tierSelected &&
+                              fileSize.childSubject === childSubjectSelected,
+                          );
                           return (
                             <OakDownloadCard
                               key={download.id}
@@ -350,6 +368,9 @@ export const ProgrammeDownloads = ({
                               name="curriculum-download"
                               title={download.label}
                               checked={fieldValue.includes(download.id)}
+                              fileSize={
+                                fileSize ? prettyBytes(fileSize.size) : "—"
+                              }
                               format={
                                 <OakFlex
                                   $alignItems={"center"}

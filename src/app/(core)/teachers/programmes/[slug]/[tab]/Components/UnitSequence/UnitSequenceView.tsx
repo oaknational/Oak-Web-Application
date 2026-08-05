@@ -31,6 +31,12 @@ export type UnitSequenceViewProps = {
   curriculumUnitsFormattedData: CurriculumUnitsFormattedData;
   ks4Options: Ks4Option[];
   ks4OptionFilterDimensions: Record<string, Ks4OptionFilterDimension>;
+  fileSizes?: {
+    downloadId: string;
+    size: number;
+    tier: string | null;
+    childSubject: string | null;
+  }[];
 };
 
 export const UnitSequenceView = ({
