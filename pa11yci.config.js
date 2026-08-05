@@ -24,7 +24,7 @@ const config = {
     runners: ["axe"],
     actions: [
       "wait for element #__next to be visible",
-      "wait for element head > title:not(:empty) to be added",
+      "wait for element head > title:not(:empty), body > title:not(:empty) to be added",
     ],
     hideElements:
       /**
