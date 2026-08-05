@@ -1,3 +1,12 @@
+# [1.1148.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1147.0...v1.1148.0) (2026-08-05)
+
+
+### Features
+
+* also added isFeatureFlagEnabledAtBuild(...) ([f6d66fb](https://github.com/oaknational/Oak-Web-Application/commit/f6d66fb53087d7a48888f40fc55054ee38d12482))
+* better feature flag implementation that supports server-time, build-time & override ([081a578](https://github.com/oaknational/Oak-Web-Application/commit/081a57865e8ae5d4e771b5d4bbc02081ebe0a4dd))
+* improved API for isFeatureFlagEnabled(...) ([928ad21](https://github.com/oaknational/Oak-Web-Application/commit/928ad21c871d3a89788a199375e54777390faf10))
+
 # [1.1147.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1146.0...v1.1147.0) (2026-08-04)
 
 
