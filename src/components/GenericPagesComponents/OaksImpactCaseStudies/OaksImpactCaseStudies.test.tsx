@@ -9,7 +9,10 @@ const render = renderWithProvidersByName(["oakTheme"]);
 describe("OaksImpactCaseStudies", () => {
   it("renders correctly when 3 case studies are provided", () => {
     const { baseElement, getByRole, getAllByRole } = render(
-      <OaksImpactCaseStudies caseStudies={oaksImpactCaseStudiesFixture} />,
+      <OaksImpactCaseStudies
+        title={"Case studies"}
+        caseStudies={oaksImpactCaseStudiesFixture}
+      />,
     );
 
     expect(baseElement).toMatchSnapshot();
@@ -22,6 +25,7 @@ describe("OaksImpactCaseStudies", () => {
   it("renders correctly when 2 case studies are provided", () => {
     const { baseElement, getByRole, getAllByRole } = render(
       <OaksImpactCaseStudies
+        title={"Case studies"}
         caseStudies={oaksImpactCaseStudiesFixture.slice(0, 2)}
       />,
     );
@@ -54,7 +58,10 @@ describe("OaksImpactCaseStudies", () => {
     ];
 
     const { getAllByRole, queryByRole } = render(
-      <OaksImpactCaseStudies caseStudies={caseStudiesWithFourth} />,
+      <OaksImpactCaseStudies
+        title={"Case studies"}
+        caseStudies={caseStudiesWithFourth}
+      />,
     );
 
     expect(getAllByRole("link", { name: /watch the video/i })).toHaveLength(3);

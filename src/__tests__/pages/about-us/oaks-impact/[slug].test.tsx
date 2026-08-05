@@ -62,6 +62,7 @@ function caseStudyFixture(slug: string) {
       },
       captions: ["Test captions"],
     },
+    publishedAt: "2023-01-01",
   };
 }
 
