@@ -14,6 +14,7 @@ import {
 
 import {
   createDownloadsData,
+  CurriculumDownloadsTierSubjectProps,
   CurriculumUnitsTrackingData,
   formatCurriculumUnitsData,
 } from "@/pages-helpers/curriculum/docx/tab-helpers";
@@ -23,6 +24,7 @@ import OakError from "@/errors/OakError";
 import {
   isValidSubjectPhaseSlug,
   getKs4RedirectSlug,
+  CurriculumSelectionSlugs,
 } from "@/utils/curriculum/slugs";
 import errorReporter from "@/common-lib/error-reporter";
 import withPageErrorHandling, {
@@ -151,6 +153,72 @@ export async function generateMetadata({
     // Return and fallback to layout metadata
     return {};
   }
+}
+
+async function getFileSizes(
+  subjectPhaseKeystageSlugs: CurriculumSelectionSlugs,
+  curriculumDownloadsTabData: CurriculumDownloadsTierSubjectProps,
+  mvRefreshTime: number,
+) {
+  const downloadUrls = DOWNLOAD_TYPE_LABELS.map(({ id: downloadId }) => {
+    function genItem(tier: string | null, childSubject: string | null) {
+      return {
+        id: downloadId,
+        tier,
+        childSubject,
+        url:
+          process.env.NEXT_PUBLIC_CLIENT_APP_BASE_URL +
+          createCurriculumDownloadsUrl(
+            [downloadId],
+            "published",
+            mvRefreshTime,
+            subjectPhaseKeystageSlugs.subjectSlug,
+            subjectPhaseKeystageSlugs.phaseSlug,
+            subjectPhaseKeystageSlugs.ks4OptionSlug,
+            tier,
+            childSubject,
+          ),
+      };
+    }
+    if (curriculumDownloadsTabData.child_subjects) {
+      return curriculumDownloadsTabData.child_subjects.flatMap(
+        (child_subject) => {
+          if (curriculumDownloadsTabData.tiers) {
+            return curriculumDownloadsTabData.tiers.map((tier) => {
+              return genItem(tier.tier_slug, child_subject.subject_slug);
+            });
+          } else {
+            return [genItem(null, child_subject.subject_slug)];
+          }
+        },
+      );
+    } else if (curriculumDownloadsTabData.tiers) {
+      return curriculumDownloadsTabData.tiers.map((tier) => {
+        return genItem(tier.tier_slug, null);
+      });
+    } else {
+      return [genItem(null, null)];
+    }
+  });
+
+  const fileSizes = await Promise.all(
+    downloadUrls.flat().map(async ({ id, url, tier, childSubject }) => {
+      const response = await fetch(url, { method: "HEAD" });
+      const contentLength = response.headers.get("content-length");
+      if (contentLength) {
+        return {
+          downloadId: id,
+          size: parseInt(contentLength),
+          tier,
+          childSubject,
+        };
+      } else {
+        return { downloadId: id, size: -1, tier, childSubject };
+      }
+    }),
+  );
+
+  return fileSizes;
 }
 
 const InnerProgrammePage = async (props: AppPageProps<ProgrammePageParams>) => {
@@ -284,54 +352,10 @@ const InnerProgrammePage = async (props: AppPageProps<ProgrammePageParams>) => {
     ks4OptionTitle: curriculumSelectionTitles.examboardTitle,
   };
 
-  const downloadUrls = DOWNLOAD_TYPE_LABELS.map(({ id: downloadId }) => {
-    function gen(tier: string | null, childSubject: string | null) {
-      return {
-        id: downloadId,
-        tier,
-        childSubject,
-        url:
-          process.env.NEXT_PUBLIC_CLIENT_APP_BASE_URL +
-          createCurriculumDownloadsUrl(
-            [downloadId],
-            "published",
-            mvRefreshTime,
-            subjectPhaseKeystageSlugs.subjectSlug,
-            subjectPhaseKeystageSlugs.phaseSlug,
-            subjectPhaseKeystageSlugs.ks4OptionSlug,
-            tier,
-            childSubject,
-          ),
-      };
-    }
-    if (curriculumDownloadsTabData.tiers) {
-      return curriculumDownloadsTabData.tiers.map((tier) => {
-        return gen(tier.tier_slug, null);
-      });
-    } else if (curriculumDownloadsTabData.child_subjects) {
-      return curriculumDownloadsTabData.child_subjects.map((child_subject) => {
-        return gen(null, child_subject.subject_slug);
-      });
-    } else {
-      return [gen(null, null)];
-    }
-  });
-
-  const fileSizes = await Promise.all(
-    downloadUrls.flat().map(async ({ id, url, tier, childSubject }) => {
-      const response = await fetch(url, { method: "HEAD" });
-      const contentLength = response.headers.get("content-length");
-      if (contentLength) {
-        return {
-          downloadId: id,
-          size: parseInt(contentLength),
-          tier,
-          childSubject,
-        };
-      } else {
-        return { downloadId: id, size: -1, tier, childSubject };
-      }
-    }),
+  const fileSizes = await getFileSizes(
+    subjectPhaseKeystageSlugs,
+    curriculumDownloadsTabData,
+    mvRefreshTime,
   );
 
   const results = {
