@@ -90,6 +90,12 @@ const footerSections: FooterSections = {
         track: trackAboutUsFooter,
       },
       {
+        text: "Oak's impact",
+        type: "link",
+        href: resolveOakHref({ page: "about-oaks-impact" }),
+        track: trackAboutUsFooter,
+      },
+      {
         text: "Get involved",
         type: "link",
         href: resolveOakHref({ page: "about-get-involved" }),
