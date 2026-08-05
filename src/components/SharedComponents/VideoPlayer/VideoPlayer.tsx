@@ -59,6 +59,7 @@ export type VideoPlayerProps = {
   isActive?: boolean;
   /** When false, suppresses the analytics event for reaching the end. */
   shouldTrackEndAnalytics?: boolean;
+  omitBorder?: boolean;
   /** Used to override the functions used to track analytics events  */
   analyticsOverrides?: VideoAnalyticsOverrides;
 };
@@ -107,7 +108,10 @@ function focusPlayButton(el: MuxPlayerElement) {
   } as FocusOptions);
 }
 
-function VideoContainer({ children }: Readonly<{ children: React.ReactNode }>) {
+function VideoContainer({
+  omitBorder,
+  children,
+}: Readonly<{ omitBorder: boolean; children: React.ReactNode }>) {
   return (
     <OakFlex
       // NOTE: Hiding video contents because otherwise we get some percy
@@ -116,7 +120,7 @@ function VideoContainer({ children }: Readonly<{ children: React.ReactNode }>) {
       data-percy-hide="contents"
       $alignItems={"center"}
       $justifyContent={"center"}
-      $ba={"border-solid-l"}
+      $ba={omitBorder ? "border-none" : "border-solid-l"}
       $minWidth={"100%"}
       $borderColor={"border-primary"}
       style={{
@@ -148,6 +152,7 @@ const VideoPlayer: FC<VideoPlayerProps> = (props) => {
     autoFocusPlayButton = false,
     isActive = true,
     shouldTrackEndAnalytics = true,
+    omitBorder = false,
     analyticsOverrides,
   } = props;
 
@@ -297,7 +302,7 @@ const VideoPlayer: FC<VideoPlayerProps> = (props) => {
 
   if (videoToken.loading || thumbnailToken.loading || storyboardToken.loading) {
     return (
-      <VideoContainer>
+      <VideoContainer omitBorder={omitBorder}>
         <OakP $color={loadingTextColor} $textAlign="center">
           Loading...
         </OakP>
@@ -325,7 +330,7 @@ const VideoPlayer: FC<VideoPlayerProps> = (props) => {
   }
 
   return (
-    <VideoContainer>
+    <VideoContainer omitBorder={omitBorder}>
       <MuxPlayer
         key={reloadOnErrors.length}
         preload="metadata"

@@ -1,13 +1,11 @@
 import { Meta, StoryObj } from "@storybook/nextjs";
 
-import { oaksImpactCaseStudiesFixture } from "./OaksImpactCaseStudies.fixtures";
-
-import { OaksImpactCaseStudies as Component } from ".";
+import { OaksImpactCaseStudyHeader as Component } from ".";
 
 const meta = {
   component: Component,
   tags: ["autodocs"],
-  title: "Components/GenericPagesComponents/OaksImpactCaseStudies",
+  title: "Components/GenericPagesComponents/OaksImpactCaseStudyHeader",
   argTypes: {},
 } satisfies Meta<typeof Component>;
 
@@ -16,8 +14,10 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   args: {
-    title: "Explore more case studies",
-    caseStudies: oaksImpactCaseStudiesFixture,
+    title: "Testing",
+    tag: "Optional tag",
+    publishedDate: "14 July 2026",
+    onCopyLink: () => {},
   },
   render: (args) => <Component {...args} />,
 };

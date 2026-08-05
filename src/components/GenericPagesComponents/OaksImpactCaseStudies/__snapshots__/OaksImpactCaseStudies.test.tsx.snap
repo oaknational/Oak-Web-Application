@@ -12,11 +12,19 @@ exports[`OaksImpactCaseStudies renders correctly when 2 case studies are provide
         <div
           class="sc-aXZVg sc-gEvEer bkFrQJ daEtut"
         >
-          <h2
-            class="sc-eldPxv dGkyUI"
+          <div
+            class="sc-aXZVg sc-tagGq jPvJsJ fNndNZ"
           >
-            Case studies
-          </h2>
+            <div
+              class="sc-aXZVg sc-gEvEer sc-esYiGF jPvJsJ iDBIXi cSXJqk"
+            >
+              <h2
+                class="sc-eldPxv dGkyUI"
+              >
+                Case studies
+              </h2>
+            </div>
+          </div>
           <ul
             class="sc-aXZVg sc-tagGq bMQSvq jFIZYB"
           >
@@ -28,7 +36,7 @@ exports[`OaksImpactCaseStudies renders correctly when 2 case studies are provide
               >
                 <a
                   class="sc-aXZVg sc-gEvEer sc-eyvILC eyLmQc dXoawi cstkxg"
-                  href="/about-us/oaks-impact/case-studies/case-study-1"
+                  href="/about-us/case-studies/case-study-1"
                 >
                   <span
                     class="sc-aXZVg kvjdhA sc-bpUBKd gXHgWu"
@@ -95,7 +103,7 @@ exports[`OaksImpactCaseStudies renders correctly when 2 case studies are provide
               >
                 <a
                   class="sc-aXZVg sc-gEvEer sc-eyvILC eyLmQc dXoawi cstkxg"
-                  href="/about-us/oaks-impact/case-studies/case-study-2"
+                  href="/about-us/case-studies/case-study-2"
                 >
                   <span
                     class="sc-aXZVg kvjdhA sc-bpUBKd gXHgWu"
@@ -174,11 +182,19 @@ exports[`OaksImpactCaseStudies renders correctly when 3 case studies are provide
         <div
           class="sc-aXZVg sc-gEvEer bkFrQJ daEtut"
         >
-          <h2
-            class="sc-eldPxv dGkyUI"
+          <div
+            class="sc-aXZVg sc-tagGq jPvJsJ fNndNZ"
           >
-            Case studies
-          </h2>
+            <div
+              class="sc-aXZVg sc-gEvEer sc-esYiGF jPvJsJ iDBIXi bdQReA"
+            >
+              <h2
+                class="sc-eldPxv dGkyUI"
+              >
+                Case studies
+              </h2>
+            </div>
+          </div>
           <ul
             class="sc-aXZVg sc-tagGq bMQSvq jFIZYB"
           >
@@ -190,7 +206,7 @@ exports[`OaksImpactCaseStudies renders correctly when 3 case studies are provide
               >
                 <a
                   class="sc-aXZVg sc-gEvEer sc-eyvILC eyLmQc dXoawi cstkxg"
-                  href="/about-us/oaks-impact/case-studies/case-study-1"
+                  href="/about-us/case-studies/case-study-1"
                 >
                   <span
                     class="sc-aXZVg kvjdhA sc-bpUBKd gXHgWu"
@@ -257,7 +273,7 @@ exports[`OaksImpactCaseStudies renders correctly when 3 case studies are provide
               >
                 <a
                   class="sc-aXZVg sc-gEvEer sc-eyvILC eyLmQc dXoawi cstkxg"
-                  href="/about-us/oaks-impact/case-studies/case-study-2"
+                  href="/about-us/case-studies/case-study-2"
                 >
                   <span
                     class="sc-aXZVg kvjdhA sc-bpUBKd gXHgWu"
@@ -324,7 +340,7 @@ exports[`OaksImpactCaseStudies renders correctly when 3 case studies are provide
               >
                 <a
                   class="sc-aXZVg sc-gEvEer sc-eyvILC eyLmQc dXoawi cstkxg"
-                  href="/about-us/oaks-impact/case-studies/case-study-3"
+                  href="/about-us/case-studies/case-study-3"
                 >
                   <span
                     class="sc-aXZVg kvjdhA sc-bpUBKd gXHgWu"

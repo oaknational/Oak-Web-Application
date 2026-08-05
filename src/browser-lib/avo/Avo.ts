@@ -1465,6 +1465,8 @@ export const PageName = {
   'CLASSROOM_SIGN_IN': 'Classroom: Sign In',
   'CLASSROOM_SUBJECTS': 'Classroom: Subjects',
   'CLASSROOM_UNITS': 'Classroom: Units',
+  'ABOUT_US_CASE_STUDY': 'About Us: Case Study',
+  'ABOUT_US_OAKS_IMPACT': 'About Us: Oak\'s Impact',
 } as const;
 export type PageNameType = typeof PageName;
 export type PageNameValueType = PageNameType[keyof PageNameType];
@@ -3013,7 +3015,7 @@ export function pageview(properties: PageviewProperties) {
     let messages: AvoAssertMessage[] = [];
     // debug console in Avo
     if (!__AVO_NOOP__) {
-      _avo_invoke(__AVO_ENV__, "iYVEEwNT0q", "c3c56caad8dd9d1e731348ce3aa908582f7dd05e4bf4a49ba18647115c247922", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
+      _avo_invoke(__AVO_ENV__, "iYVEEwNT0q", "08d105c11619146c96ff694fd34457a756417b450a8ccd7d940a30a8da1f95f2", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
     }
     InternalAvoLogger.logEventSent("$pageview", eventProperties, userProperties);
     if (__WEB_DEBUGGER__) {
@@ -3024,7 +3026,7 @@ export function pageview(properties: PageviewProperties) {
   if (!__AVO_NOOP__) {
     if (__INSPECTOR__ != null) {
       // @ts-ignore
-      __INSPECTOR__._avoFunctionTrackSchemaFromEvent("$pageview", eventProperties, "iYVEEwNT0q", "c3c56caad8dd9d1e731348ce3aa908582f7dd05e4bf4a49ba18647115c247922");
+      __INSPECTOR__._avoFunctionTrackSchemaFromEvent("$pageview", eventProperties, "iYVEEwNT0q", "08d105c11619146c96ff694fd34457a756417b450a8ccd7d940a30a8da1f95f2");
     }
     // destination PostHogEU
     PostHogEU.logEvent("$pageview", (Object as any).assign({}, eventProperties));
