@@ -41,7 +41,6 @@ import {
   getSchoolUrn,
 } from "@/components/TeacherComponents/helpers/downloadAndShareHelpers/getFormattedDetailsForTracking";
 import { convertUnitSlugToTitle } from "@/app/(core)/teachers/search/helpers";
-import OakError from "@/errors/OakError";
 
 export type TeacherBrowseAnalyticsStore = {
   programmeState: ProgrammeState;
@@ -64,9 +63,6 @@ export type TeacherBrowseAnalyticsStore = {
       childSubjectSlug?: string | null;
     }) => void;
     curriculumResourcesDownloaded: (data: ResourceFormValues) => void;
-    programmeRefined: () => void;
-    programmeAccessed: () => void;
-    unitRefined: () => void;
     unitOverviewAccessed: (
       unit: Unit,
       isHighlighted: boolean,
@@ -217,69 +213,6 @@ export const createTeacherBrowseAnalyticsStore = (
           navigationType: "narrow",
         });
       },
-      programmeRefined: () => {
-        const { avo, journeyId, programmeState } = get();
-
-        if (programmeState.browseLevel !== "programme") {
-          reportError(
-            new OakError({
-              code: "analytics/teacher-browse",
-              meta: {
-                event: "programmeRefined",
-                browseLevel: programmeState.browseLevel,
-              },
-            }),
-          );
-          return;
-        }
-
-        const analyticsProperties =
-          getProgrammeAnalyticsProperties(programmeState);
-
-        avo.programmeRefined({
-          journeyId,
-          ...coreProperties,
-          ...analyticsProperties,
-        });
-      },
-      programmeAccessed: () => {
-        const { avo, journeyId, programmeState } = get();
-
-        if (programmeState.browseLevel !== "programme") {
-          reportError(
-            new OakError({
-              code: "analytics/teacher-browse",
-              meta: {
-                event: "programmeAccessed",
-                browseLevel: programmeState.browseLevel,
-              },
-            }),
-          );
-          return;
-        }
-
-        const analyticsProperties =
-          getProgrammeAnalyticsProperties(programmeState);
-
-        if (!avo.programmeAccessed) {
-          reportError(
-            new OakError({
-              code: "analytics/teacher-browse",
-              meta: {
-                event: "programmeAccessed",
-                reason: "missingTrackFn",
-              },
-            }),
-          );
-          return;
-        }
-
-        avo.programmeAccessed({
-          journeyId,
-          ...coreProperties,
-          ...analyticsProperties,
-        });
-      },
       unitOverviewAccessed: (unit, isHighlighted, selectedThread) => {
         const { avo, programmeState, journeyId } = get();
 
@@ -327,43 +260,6 @@ export const createTeacherBrowseAnalyticsStore = (
           ...coreProperties,
           ...analyticsProperties,
           journeyId,
-        });
-      },
-      unitRefined: () => {
-        const { avo, journeyId, programmeState } = get();
-
-        if (programmeState.browseLevel !== "unit") {
-          reportError(
-            new OakError({
-              code: "analytics/teacher-browse",
-              meta: {
-                event: "unitRefined",
-                browseLevel: programmeState.browseLevel,
-              },
-            }),
-          );
-          return;
-        }
-
-        const analyticsProperties = getUnitAnalyticsProperties(programmeState);
-
-        if (!avo.unitRefined) {
-          reportError(
-            new OakError({
-              code: "analytics/teacher-browse",
-              meta: {
-                event: "unitRefined",
-                reason: "missingTrackFn",
-              },
-            }),
-          );
-          return;
-        }
-
-        avo.unitRefined({
-          journeyId,
-          ...coreProperties,
-          ...analyticsProperties,
         });
       },
       curriculumExplainerExplored: () => {

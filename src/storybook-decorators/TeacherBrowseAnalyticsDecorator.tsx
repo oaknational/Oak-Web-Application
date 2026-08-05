@@ -29,13 +29,10 @@ const state: TeacherBrowseAnalyticsStore = {
       console.log("curriculumResourcesDownloaded fired"),
     curriculumResourcesDownloadRefined: () =>
       console.log("curriculumResourcesDownloadRefined fired"),
-    programmeAccessed: () => console.log("programmeAccessed fired"),
-    programmeRefined: () => console.log("programmeRefined fired"),
     teachingMaterialsSelected: () =>
       console.log("teachingMaterialsSelected fired"),
     unitDownloadStarted: () => console.log("unitDownloadStarted fired"),
     unitOverviewAccessed: () => console.log("unitOverviewAccessed fired"),
-    unitRefined: () => console.log("unitRefined fired"),
     unitSequenceRefined: () => console.log("unitSequenceRefined fired"),
     videoPlayed: () => console.log("videoPlayed fired"),
     videoStarted: () => console.log("videoStarted fired"),
