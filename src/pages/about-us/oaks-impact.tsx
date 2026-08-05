@@ -3,6 +3,7 @@ import {
   GetServerSidePropsResult,
   NextPage,
 } from "next/dist/types";
+import { OakPrimaryButton } from "@oaknational/oak-components";
 
 import getBrowserConfig from "@/browser-lib/getBrowserConfig";
 import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
@@ -23,6 +24,7 @@ import { OaksImpactStats } from "@/components/GenericPagesComponents/OaksImpactS
 import CMSClient from "@/node-lib/cms";
 import { OaksImpactPage } from "@/common-lib/cms-types";
 import { OaksImpactSchoolQuotesSection } from "@/components/GenericPagesComponents/OaksImpactSchoolQuotesSection";
+import useAnalytics from "@/context/Analytics/useAnalytics";
 
 export type OaksImpactPageProps = {
   topNav: TopNavProps;
@@ -35,6 +37,16 @@ const placeholderImage = {
 };
 
 const OaksImpact: NextPage<OaksImpactPageProps> = ({ topNav, pageData }) => {
+  const { track } = useAnalytics();
+
+  const fireScrolledTo = () => {
+    track.scrolledTo({ key: "support_you" });
+  };
+
+  const fireExitIntent = () => {
+    track.scrolledTo({ key: "banana" });
+  };
+
   return (
     <Layout
       seoProps={getSeoProps({ title: "Oak's impact" })}
@@ -49,6 +61,12 @@ const OaksImpact: NextPage<OaksImpactPageProps> = ({ topNav, pageData }) => {
         >
           <AboutSharedHeaderImage imageUrl={placeholderImage.url} />
         </AboutSharedHeader>
+        <OakPrimaryButton onClick={() => fireScrolledTo()}>
+          FIRE SCROLL EVENT!
+        </OakPrimaryButton>
+        <OakPrimaryButton onClick={() => fireExitIntent()}>
+          FIRE BANANA EVENT!
+        </OakPrimaryButton>
         <OaksImpactStats {...pageData.statsSection} />
         <OaksImpactCaseStudies
           title="Case studies"
