@@ -967,6 +967,59 @@ exports[`pages/about-us/oaks-impact.tsx renders title when feature flag is enabl
                         class="sc-aXZVg sc-hZDyAQ kBnJtM iMmmjC"
                       >
                         <a
+                          href="/about-us/oaks-impact"
+                          style="outline: none;"
+                        >
+                          <div
+                            class="sc-aXZVg sc-gEvEer sc-55af3af8-0 jtqxcT egjftS iWbjPe"
+                            data-testid="who-we-are-explore-item"
+                          >
+                            <div
+                              class="sc-aXZVg sc-gEvEer jPvJsJ iDBIXi"
+                            >
+                              <span
+                                class="sc-aXZVg fRjhP"
+                              >
+                                <img
+                                  alt=""
+                                  class="sc-iGgWBj cMzyFO"
+                                  data-nimg="fill"
+                                  decoding="async"
+                                  loading="lazy"
+                                  src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1763393164/icons/data-illustration_ukwdxg.svg"
+                                  style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                                />
+                              </span>
+                            </div>
+                            <div
+                              class="sc-aXZVg sc-gEvEer gFyjML fXHtRp"
+                            >
+                              Oak's impact
+                            </div>
+                            <div
+                              class="sc-aXZVg sc-gEvEer jPvJsJ iDBIXi"
+                            >
+                              <span
+                                class="sc-aXZVg fjkwRj"
+                              >
+                                <img
+                                  alt=""
+                                  class="sc-iGgWBj cMzyFO"
+                                  data-nimg="fill"
+                                  decoding="async"
+                                  loading="lazy"
+                                  src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1707149070/icons/fv0z57zerrioft52dd9n.svg"
+                                  style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                                />
+                              </span>
+                            </div>
+                          </div>
+                        </a>
+                      </li>
+                      <li
+                        class="sc-aXZVg sc-hZDyAQ kBnJtM iMmmjC"
+                      >
+                        <a
                           href="/about-us/meet-the-team"
                           style="outline: none;"
                         >
@@ -1083,7 +1136,7 @@ exports[`pages/about-us/oaks-impact.tsx renders title when feature flag is enabl
               class="sc-aXZVg bZTQLO"
             >
               <div
-                class="sc-aXZVg sc-gEvEer sc-f20d0454-0 jPvJsJ iDBIXi cxZSCY"
+                class="sc-aXZVg sc-gEvEer sc-8dbb083c-0 jPvJsJ iDBIXi jYaFZx"
               >
                 <div
                   class="sc-aXZVg sc-gEvEer sc-d650a570-0 ePSBwI fUxOFh"
@@ -1903,6 +1956,20 @@ exports[`pages/about-us/oaks-impact.tsx renders title when feature flag is enabl
                       >
                         <a
                           class="sc-fHjqPf cTauop sc-kbhJrz"
+                          href="/about-us/oaks-impact"
+                        >
+                          <span
+                            class="sc-eqUAAy iGfTGj"
+                          >
+                            Oak's impact
+                          </span>
+                        </a>
+                      </li>
+                      <li
+                        class="sc-fPXMVe jFJaNg"
+                      >
+                        <a
+                          class="sc-fHjqPf cTauop sc-kbhJrz"
                           href="/about-us/get-involved"
                         >
                           <span
@@ -2362,7 +2429,7 @@ exports[`pages/about-us/oaks-impact.tsx renders title when feature flag is enabl
               </div>
             </div>
             <span
-              class="sc-aXZVg kvjdhA sc-3644c74a-0 cYwwNK"
+              class="sc-aXZVg kvjdhA sc-61fb3035-0 kGcrlM"
               data-percy-hide="contents"
             >
               <img
