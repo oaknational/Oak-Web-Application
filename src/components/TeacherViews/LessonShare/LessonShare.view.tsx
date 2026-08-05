@@ -254,7 +254,7 @@ export function LessonShare(props: Readonly<LessonShareProps>) {
               description={
                 "Hiding the year group when sharing can help pupils of different ages, abilities, or contexts engage with the material without worrying whether it's for their year."
               }
-              icon={"class-grouping"} // todo: use new hide icon
+              icon={"hide"}
               options={[
                 { value: "show", label: "Show year group" },
                 { value: "hide", label: "Hide year group" },
