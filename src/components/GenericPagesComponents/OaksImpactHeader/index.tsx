@@ -108,7 +108,7 @@ export function OaksImpactHeader({
                     thumbnailTime={video.video.asset.thumbTime}
                     playbackId={video.video.asset.playbackId}
                     title={video.title}
-                    isLegacy={true}
+                    isLegacy={false}
                     location="marketing"
                     omitBorder={true}
                   />
