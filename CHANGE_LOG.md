@@ -1,3 +1,22 @@
+## [1.1149.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.1149.0...v1.1149.1) (2026-08-06)
+
+# [1.1149.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1148.0...v1.1149.0) (2026-08-06)
+
+
+### Bug Fixes
+
+* font size on mobile ([1b38618](https://github.com/oaknational/Oak-Web-Application/commit/1b38618954e248a63605d214d086c4989459afba))
+* font size on mobile ([df561f0](https://github.com/oaknational/Oak-Web-Application/commit/df561f0a10df9327f688a921a9d474d199ba9bf0))
+* large-tablet layout issue ([4352b34](https://github.com/oaknational/Oak-Web-Application/commit/4352b340c6647684aa515225d318bafbca8f9bbc))
+* make video non-optional ([f91b9b9](https://github.com/oaknational/Oak-Web-Application/commit/f91b9b9b070af1c1a7832c0ffee7ed6c09cd8eb9))
+* no need to support legacy videos ([12be47d](https://github.com/oaknational/Oak-Web-Application/commit/12be47df6fe8e8f257b4d3bb798415f17d1141e7))
+
+
+### Features
+
+* added <OaksImpactHeader/> component ([64ee5a2](https://github.com/oaknational/Oak-Web-Application/commit/64ee5a2af18b5d0e490fa9de401f78c32938614c))
+* added <OaksImpactHeader/> component ([ba74d06](https://github.com/oaknational/Oak-Web-Application/commit/ba74d06c1bc82c378f1afb1c00bec6f4b2bf725f))
+
 # [1.1148.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1147.0...v1.1148.0) (2026-08-05)
 
 
