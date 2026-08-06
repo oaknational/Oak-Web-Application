@@ -40,6 +40,7 @@ export function ImplementationGuideCallout({
               iconName="chevron-right"
               isTrailingIcon
               variant="secondary"
+              aria-label="Download our implementation toolkit"
             >
               Download
             </OakLink>
