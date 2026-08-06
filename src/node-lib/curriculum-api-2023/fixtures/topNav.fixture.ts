@@ -1,4 +1,5 @@
 import { TopNavProps } from "@/components/AppComponents/TopNav/TopNav";
+import { isFeatureFlagEnabledStatic } from "@/utils/featureFlagChecks/static";
 
 export const topNavFixture: TopNavProps = {
   teachers: {
@@ -288,11 +289,15 @@ export const topNavFixture: TopNavProps = {
           title: "Oak's curricula",
           href: "/about-us/oaks-curricula",
         },
-        {
-          slug: "about-oaks-impact",
-          title: "Oak's impact",
-          href: "/about-us/oaks-impact",
-        },
+        ...(isFeatureFlagEnabledStatic("oaks-impact")
+          ? [
+              {
+                slug: "about-oaks-impact",
+                title: "Oak's impact",
+                href: "/about-us/oaks-impact",
+              },
+            ]
+          : []),
         {
           slug: "about-get-involved",
           title: "Get involved",

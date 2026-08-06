@@ -7,6 +7,7 @@ import { WhoAreWeExplore } from "@/components/GenericPagesComponents/WhoAreWeExp
 import NewsletterFormWrap from "@/components/GenericPagesComponents/NewsletterFormWrap";
 import { useNewsletterForm } from "@/components/GenericPagesComponents/NewsletterForm";
 import { NewGutterMaxWidth } from "@/components/GenericPagesComponents/NewGutterMaxWidth";
+import { isFeatureFlagEnabledStatic } from "@/utils/featureFlagChecks/static";
 import { resolveOakHref } from "@/common-lib/urls";
 
 const NewsletterWrapper = styled(OakFlex)`
@@ -44,14 +45,18 @@ export function AboutUsLayout({ children }: Readonly<AboutUsLayoutProps>) {
       }),
       componentType: "about_curriculum" as const,
     },
-    {
-      iconName: "data" as const,
-      title: "Oak's impact",
-      href: resolveOakHref({
-        page: "about-oaks-impact",
-      }),
-      componentType: "about_curriculum" as const,
-    },
+    ...(isFeatureFlagEnabledStatic("oaks-impact")
+      ? [
+          {
+            iconName: "data" as const,
+            title: "Oak's impact",
+            href: resolveOakHref({
+              page: "about-oaks-impact",
+            }),
+            componentType: "about_curriculum" as const,
+          },
+        ]
+      : []),
     {
       iconName: "snack-break" as const,
       title: "Meet the team",

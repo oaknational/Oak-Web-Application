@@ -13,6 +13,7 @@ import errorReporter from "@/common-lib/error-reporter";
 import { resolveOakHref } from "@/common-lib/urls";
 import { TopNavProps } from "@/components/AppComponents/TopNav/TopNav";
 import OakError from "@/errors/OakError";
+import { isFeatureFlagEnabledStatic } from "@/utils/featureFlagChecks/static";
 
 const topNavQuery = (sdk: Sdk) => {
   const cachedTopNav = cacheData(sdk.topNav, [
@@ -109,11 +110,15 @@ const topNavQuery = (sdk: Sdk) => {
             slug: "about-oaks-curricula",
             href: resolveOakHref({ page: "about-oaks-curricula" }),
           },
-          {
-            title: "Oak's impact",
-            slug: "about-oaks-impact",
-            href: resolveOakHref({ page: "about-oaks-impact" }),
-          },
+          ...(isFeatureFlagEnabledStatic("oaks-impact")
+            ? [
+                {
+                  title: "Oak's impact",
+                  slug: "about-oaks-impact",
+                  href: resolveOakHref({ page: "about-oaks-impact" }),
+                },
+              ]
+            : []),
           {
             title: "Get involved",
             slug: "about-get-involved",
