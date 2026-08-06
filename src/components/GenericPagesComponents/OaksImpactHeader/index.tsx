@@ -55,6 +55,15 @@ const VideoLayout = styled(OakBox)`
   }
 `;
 
+const LeftTextLayout = styled(OakFlex)`
+  @media (min-width: 1000px) AND (max-width: 1279px) {
+    height: ${parseSpacing("spacing-360")};
+  }
+  @media (min-width: 1280px) {
+    height: ${parseSpacing("spacing-480")};
+  }
+`;
+
 export type OaksImpactHeaderProps = {
   title: string;
   body: string;
@@ -70,9 +79,8 @@ export function OaksImpactHeader({
   return (
     <NewGutterMaxWidth>
       <Layout>
-        <OakFlex
+        <LeftTextLayout
           $justifyContent={"center"}
-          $height={[undefined, undefined, "spacing-480"]}
           $alignItems={"flex-start"}
           $flexDirection={"column"}
           $gap={"spacing-24"}
@@ -97,7 +105,7 @@ export function OaksImpactHeader({
           >
             {body}
           </OakP>
-        </OakFlex>
+        </LeftTextLayout>
         <OakFlex $flexDirection={"column"} $gap={"spacing-16"}>
           <VideoLayout>
             <OakVideo
