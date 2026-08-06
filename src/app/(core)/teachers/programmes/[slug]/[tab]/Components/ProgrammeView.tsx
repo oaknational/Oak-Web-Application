@@ -67,6 +67,12 @@ type ProgrammePageProps = {
   ks4OptionFilterDimensions: Record<string, Ks4OptionFilterDimension>;
   trackingData: CurriculumUnitsTrackingData;
   initialFilter?: CurriculumFilters;
+  fileSizes?: {
+    downloadId: string;
+    size: number;
+    tier: string | null;
+    childSubject: string | null;
+  }[];
 };
 
 export const ProgrammeView = ({
@@ -84,6 +90,7 @@ export const ProgrammeView = ({
   ks4OptionFilterDimensions,
   trackingData,
   initialFilter,
+  fileSizes,
 }: ProgrammePageProps) => {
   const searchParams = useSearchParams();
 
@@ -208,6 +215,7 @@ export const ProgrammeView = ({
         setFilters={onChangeFilters}
         ks4Options={ks4Options}
         ks4OptionFilterDimensions={ks4OptionFilterDimensions}
+        fileSizes={fileSizes}
       />
     </>
   );
@@ -226,6 +234,7 @@ const TabContent = ({
   setFilters,
   ks4Options,
   ks4OptionFilterDimensions,
+  fileSizes,
 }: { tabSlug: TabSlug } & UnitSequenceViewProps &
   Omit<ProgrammeOverviewProps, "curriculumCMSInfo"> & {
     curriculumCMSInfo: CurriculumOverviewSanityData | null;
@@ -260,6 +269,7 @@ const TabContent = ({
         curriculumDownloadsTabData={curriculumDownloadsTabData}
         curriculumInfo={curriculumInfo}
         curriculumUnitsFormattedData={curriculumUnitsFormattedData}
+        fileSizes={fileSizes}
       />
     );
   }

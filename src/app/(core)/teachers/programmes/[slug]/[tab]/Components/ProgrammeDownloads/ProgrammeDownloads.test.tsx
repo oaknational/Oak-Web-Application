@@ -130,6 +130,24 @@ describe("Programme Downloads", () => {
     jest.clearAllMocks();
   });
 
+  test("expect download size to be in document (normal)", async () => {
+    renderComponent({
+      curriculumDownloadsTabData: {
+        tiers: [],
+        child_subjects: [],
+      },
+      fileSizes: [
+        {
+          downloadId: "curriculum-plans",
+          size: 123456,
+          tier: null,
+          childSubject: null,
+        },
+      ],
+    });
+    expect(await screen.findByText("123 kB")).toBeInTheDocument();
+  });
+
   describe("Curriculum Downloads Tab: Secondary Maths", () => {
     test("user can see the tier selector for secondary maths", async () => {
       renderComponent({

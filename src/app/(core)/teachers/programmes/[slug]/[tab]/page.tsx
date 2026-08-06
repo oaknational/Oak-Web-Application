@@ -11,6 +11,7 @@ import {
   getProgrammeData,
   getSubjectOverride,
 } from "./getProgrammeData";
+import { getFileSizes } from "./Components/getFileSizes";
 
 import {
   createDownloadsData,
@@ -282,6 +283,11 @@ const InnerProgrammePage = async (props: AppPageProps<ProgrammePageParams>) => {
     ks4OptionTitle: curriculumSelectionTitles.examboardTitle,
   };
 
+  const fileSizes = await getFileSizes(
+    subjectPhaseKeystageSlugs,
+    curriculumDownloadsTabData,
+  );
+
   const results = {
     subjectPhaseSlug,
     curriculumSelectionSlugs: subjectPhaseKeystageSlugs,
@@ -297,6 +303,7 @@ const InnerProgrammePage = async (props: AppPageProps<ProgrammePageParams>) => {
     curriculumDownloadsTabData,
     mvRefreshTime,
     initialFilter: resolvedFilter,
+    fileSizes,
   };
 
   return <ProgrammeView {...results} />;
