@@ -323,9 +323,10 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
                     currentSectionId={currentSectionId}
                     downloadAllButtonProps={{
                       showDownloadAll,
-                      onClickDownloadAll: () => ({
-                        downloadResourceButtonName: "all",
-                      }),
+                      onClickDownloadAll: () =>
+                        lessonResourceDownloadStarted({
+                          downloadResourceButtonName: "all",
+                        }),
 
                       ...lesson,
                       ...commonPathway,
