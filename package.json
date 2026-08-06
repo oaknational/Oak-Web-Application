@@ -51,6 +51,7 @@
     "storybook:static-serve": "storybook build --quiet && http-server ./storybook-static --port=6006",
     "test": "jest --watch --collectCoverage=false",
     "test:coverage": "jest --watch",
+    "test:chromatic": "playwright test && chromatic --playwright",
     "test:ci": "jest",
     "test:prepush": "jest --changedSince=origin/main --collectCoverage=false",
     "test:pages": "jest -c ./jest.pages.config.cjs ./src/__tests__",
