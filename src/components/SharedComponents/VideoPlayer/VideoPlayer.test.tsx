@@ -82,15 +82,6 @@ jest.mock("./useVideoTracking", () =>
     onEnd: jest.fn(),
   })),
 );
-jest.mock("./useVideoTracking", () => ({
-  __esModule: true,
-  default: jest.fn(() => ({
-    onPlay: jest.fn(),
-    onPause: jest.fn(),
-    onEnd: jest.fn(),
-  })),
-  useTeacherVideoTracking: jest.fn(),
-}));
 
 jest.mock("./useSignedVideoToken", () => ({
   useSignedVideoToken: jest.fn(() => ({
