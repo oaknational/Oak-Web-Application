@@ -1,20 +1,11 @@
 import { GetServerSidePropsContext } from "next";
 
+import { FLAGS } from "./flags";
+import { isFeatureFlagEnabledStatic } from "./static";
+
 import { getFeatureFlag } from "@/node-lib/posthog/getFeatureFlag";
 import { getPosthogIdFromCookie } from "@/node-lib/posthog/getPosthogId";
 import getBrowserConfig from "@/browser-lib/getBrowserConfig";
-
-export const FLAGS = {
-  get "oaks-impact"() {
-    return process.env.FORCE_FEATURE_FLAG_OAKS_IMPACT ?? "false";
-  },
-} as const;
-
-export function isFeatureFlagEnabledAtBuild(
-  featureFlagKey: keyof typeof FLAGS,
-): boolean {
-  return FLAGS[featureFlagKey] === "true";
-}
 
 /**
  * A utility function to check if a feature flag is enabled
@@ -22,11 +13,11 @@ export function isFeatureFlagEnabledAtBuild(
  * @param featureFlagKey the key of the feature flag to check
  * @returns a boolean indicating whether the feature flag is enabled
  */
-export async function isFeatureFlagEnabled(
+export async function isFeatureFlagEnabledServer(
   context: GetServerSidePropsContext,
   featureFlagKey: keyof typeof FLAGS,
 ): Promise<boolean> {
-  if (isFeatureFlagEnabledAtBuild(featureFlagKey)) {
+  if (isFeatureFlagEnabledStatic(featureFlagKey)) {
     return true;
   }
 
