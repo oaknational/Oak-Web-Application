@@ -127,7 +127,7 @@ describe("lessonOverview.view", () => {
     });
   });
   describe("tracking", () => {
-    it("should call track.lessonMediaClipsStarted when play all is clicked for media clips", () => {
+    it("should call lessonMediaClipsStarted when play all is clicked for media clips", () => {
       renderLessonOverview({
         lesson: {
           ...lessonOverviewFixture(),
@@ -166,35 +166,26 @@ describe("lessonOverview.view", () => {
         yearGroupSlug: "year-7",
       });
     });
-    it("should call track.trackDownloadResourceButtonClicked when play all is clicked for media clips", () => {
-      renderLessonOverview({
-        lesson: {
-          ...lessonOverviewFixture(),
-          isCanonical: false,
-          hasMediaClips: true,
-        },
-      });
-      const playAllButton = screen.getByText("Download lesson slides");
-      act(() => {
-        playAllButton.click();
-      });
-      expect(lessonResourceDownloadStarted).toHaveBeenCalledWith(
-        expect.objectContaining({
-          unitName: "Cells",
-          unitSlug: "cells",
-          yearGroupName: "Year 7",
-          yearGroupSlug: "year-7",
-          subjectSlug: "biology",
-          subjectTitle: "Biology",
-          phase: "secondary",
-          lessonSlug: "lesson-3-structure-of-cells",
-          keyStageSlug: "ks3",
-          keyStageTitle: "Key stage 3",
-          lessonName: "Structure of cells",
-        }),
-      );
-    });
-    it("should hanlde no release date when track.trackDownloadResourceButtonClicked is called", () => {
+    it.each(["lesson slides", "worksheet"])(
+      "should call lessonResourceDownloadStarted when %s download button clicked",
+      async (resource) => {
+        renderLessonOverview({
+          lesson: {
+            ...lessonOverviewFixture(),
+            isCanonical: false,
+            hasMediaClips: true,
+          },
+        });
+        const downloadLink = screen.getByText(`Download ${resource}`);
+
+        act(() => {
+          downloadLink.click();
+        });
+
+        expect(lessonResourceDownloadStarted).toHaveBeenCalled();
+      },
+    );
+    it("should handle no release date when lessonResourceDownloadStarted is called", () => {
       renderLessonOverview({
         lesson: {
           ...lessonOverviewFixture({
@@ -206,9 +197,9 @@ describe("lessonOverview.view", () => {
           hasMediaClips: true,
         },
       });
-      const playAllButton = screen.getByText("Download lesson slides");
+      const downloadLink = screen.getByText("Download lesson slides");
       act(() => {
-        playAllButton.click();
+        downloadLink.click();
       });
       expect(lessonResourceDownloadStarted).toHaveBeenCalledWith(
         expect.objectContaining({
@@ -226,7 +217,7 @@ describe("lessonOverview.view", () => {
         }),
       );
     });
-    it("should hanlde no release date when track.lessonMediaClipsStarted is called", () => {
+    it("should handle no release date when lessonMediaClipsStarted is called", () => {
       renderLessonOverview({
         lesson: {
           ...lessonOverviewFixture({
