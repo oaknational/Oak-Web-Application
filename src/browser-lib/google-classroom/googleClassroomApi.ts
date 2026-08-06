@@ -186,6 +186,11 @@ export type AddOnContextArgs = {
   attachmentId: string;
 };
 
+export type SubmitPupilProgressResult = {
+  progress: PupilLessonProgress;
+  status: "PERSISTED" | "READ_ONLY" | "GRADE_SUBMITTED";
+};
+
 const getAddOnContext = async (
   args: AddOnContextArgs,
 ): Promise<AddOnContextResponse | null> => {
@@ -205,9 +210,9 @@ const getAddOnContext = async (
 
 const submitPupilProgress = async (
   args: UpsertPupilLessonProgressArgs,
-): Promise<void> => {
+): Promise<SubmitPupilProgressResult> => {
   const headers = await getOakGCAuthHeaders(true);
-  await sendRequest<void, UpsertPupilLessonProgressArgs>(
+  return sendRequest<SubmitPupilProgressResult, UpsertPupilLessonProgressArgs>(
     "/api/classroom/pupil/progress/submit",
     "POST",
     args,

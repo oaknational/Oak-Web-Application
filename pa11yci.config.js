@@ -22,6 +22,10 @@ const config = {
     userAgent: "oak testing Pa11y",
     timeout: 120000,
     runners: ["axe"],
+    actions: [
+      "wait for element #__next to be visible",
+      "wait for element head > title:not(:empty), body > title:not(:empty) to be added",
+    ],
     hideElements:
       /**
        * Elements we hide from Pa11y.
@@ -49,7 +53,7 @@ const config = {
     headers: {
       "x-vercel-protection-bypass": vercelAutomationBypass,
     },
-    concurrency: 5,
+    concurrency: 1,
     // If running pa11y locally fails, comment out the following section
     chromeLaunchConfig: {
       executablePath: "/usr/bin/google-chrome",
@@ -78,8 +82,6 @@ config.urls = relativeUrls.map((relUrl) => {
     return {
       url: pa11yUrl,
       timeout: 120000,
-      // Should help detect if we get served, e.g. a Cloudflare error page.
-      actions: ["wait for element #__next to be visible"],
     };
     // Return the already created URL config object.
   } else {

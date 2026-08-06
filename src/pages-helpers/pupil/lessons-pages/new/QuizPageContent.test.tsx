@@ -1,5 +1,5 @@
 import "@testing-library/jest-dom";
-import { act, fireEvent } from "@testing-library/react";
+import { act, fireEvent, waitFor } from "@testing-library/react";
 
 import { QuizPageContent } from "./QuizPageContent";
 
@@ -23,6 +23,7 @@ type ProgressState = {
   lessonStarted: boolean;
   isReadOnly: boolean;
   refreshReadOnly: jest.Mock<Promise<boolean>>;
+  submitClassroomProgress: jest.Mock<Promise<unknown>>;
   setReadOnly: jest.Mock;
   completeSection: jest.Mock;
   updateSectionInProgressResult: jest.Mock;
@@ -102,6 +103,7 @@ const buildProgressState = (
   lessonStarted: false,
   isReadOnly: false,
   refreshReadOnly: jest.fn().mockResolvedValue(false),
+  submitClassroomProgress: jest.fn().mockResolvedValue(null),
   setReadOnly: jest.fn(),
   completeSection: jest.fn(),
   updateSectionInProgressResult: jest.fn(),
@@ -143,6 +145,16 @@ const renderPage = () =>
   renderWithTheme(
     <QuizPageContent
       section="starter-quiz"
+      questionsArray={[mcqQuestion]}
+      lessonSlug="test-lesson"
+      phase="primary"
+    />,
+  );
+
+const renderExitPage = () =>
+  renderWithTheme(
+    <QuizPageContent
+      section="exit-quiz"
       questionsArray={[mcqQuestion]}
       lessonSlug="test-lesson"
       phase="primary"
@@ -304,7 +316,12 @@ describe("QuizPageContent", () => {
     expect(routerPush.mock.calls[0]?.[0]).toContain("review");
   });
 
-  it("completes the quiz and navigates to the overview when finishing the starter quiz", async () => {
+  it("completes and navigates without waiting for a submission-state refresh", async () => {
+    const refreshReadOnly = jest.fn(
+      () => new Promise<boolean>(() => undefined),
+    );
+    progressState = buildProgressState({ refreshReadOnly });
+    progressHookMock.mockImplementation((selector) => selector(progressState));
     quizState = buildQuizState({
       questionState: [{ ...baseQuestionState, mode: "feedback", grade: 1 }],
       currentQuestionIndex: 0,
@@ -317,15 +334,19 @@ describe("QuizPageContent", () => {
     await act(async () => {
       fireEvent.click(getByRole("button", { name: "Continue lesson" }));
     });
+
+    expect(refreshReadOnly).not.toHaveBeenCalled();
+    expect(progressState.submitClassroomProgress).not.toHaveBeenCalled();
     expect(progressState.completeSection).toHaveBeenCalledWith("starter-quiz");
     expect(trackQuizCompleted).toHaveBeenCalledTimes(1);
     expect(trackLessonStarted).toHaveBeenCalledTimes(1);
     expect(routerPush.mock.calls[0]?.[0]).toContain("overview");
   });
 
-  it("redirects to review without completing the quiz when progression discovers read-only state", async () => {
+  it("redirects to review without completing the quiz when cached state is read-only", async () => {
     progressState = buildProgressState({
-      refreshReadOnly: jest.fn().mockResolvedValue(true),
+      isReadOnly: true,
+      refreshReadOnly: jest.fn(() => new Promise<boolean>(() => undefined)),
       setReadOnly: jest.fn(),
     });
     progressHookMock.mockImplementation((selector) => selector(progressState));
@@ -343,6 +364,7 @@ describe("QuizPageContent", () => {
     });
 
     expect(progressState.completeSection).not.toHaveBeenCalled();
+    expect(progressState.refreshReadOnly).not.toHaveBeenCalled();
     expect(trackQuizCompleted).not.toHaveBeenCalled();
     expect(routerPush.mock.calls[0]?.[0]).toContain("review");
   });
@@ -382,6 +404,197 @@ describe("QuizPageContent", () => {
     });
     expect(progressState.completeSection).toHaveBeenCalledWith("exit-quiz");
     expect(trackLessonCompleted).toHaveBeenCalledTimes(1);
+  });
+
+  it("shows a spinner and waits for exit progress to persist", async () => {
+    let resolveSubmission: ((value: unknown) => void) | undefined;
+    progressState = buildProgressState({
+      sectionResults: {
+        "starter-quiz": {
+          isComplete: true,
+          grade: 1,
+          numQuestions: 1,
+        },
+      },
+      submitClassroomProgress: jest.fn(
+        () =>
+          new Promise((resolve) => {
+            resolveSubmission = resolve;
+          }),
+      ),
+    });
+    progressHookMock.mockImplementation((selector) => selector(progressState));
+    quizState = buildQuizState({
+      section: "exit-quiz",
+      questionState: [{ ...baseQuestionState, mode: "feedback", grade: 1 }],
+      currentQuestionIndex: 0,
+      numQuestions: 1,
+      numInteractiveQuestions: 1,
+    });
+    quizHookMock.mockImplementation((selector) => selector(quizState));
+    const { getByRole } = renderExitPage();
+    const button = getByRole("button", { name: "Lesson review" });
+
+    fireEvent.click(button);
+
+    expect(button).toBeDisabled();
+    expect(progressState.completeSection).not.toHaveBeenCalled();
+    expect(routerPush).not.toHaveBeenCalled();
+
+    await act(async () => {
+      resolveSubmission?.({
+        progress: {},
+        status: "GRADE_SUBMITTED",
+      });
+    });
+
+    expect(progressState.completeSection).toHaveBeenCalledWith("exit-quiz");
+    expect(routerPush.mock.calls[0]?.[0]).toContain("review");
+  });
+
+  it("redirects without local completion when the final write is read-only", async () => {
+    progressState = buildProgressState({
+      submitClassroomProgress: jest.fn().mockResolvedValue({
+        progress: {},
+        status: "READ_ONLY",
+      }),
+    });
+    progressHookMock.mockImplementation((selector) => selector(progressState));
+    quizState = buildQuizState({
+      section: "exit-quiz",
+      questionState: [{ ...baseQuestionState, mode: "feedback", grade: 1 }],
+      currentQuestionIndex: 0,
+      numQuestions: 1,
+      numInteractiveQuestions: 1,
+    });
+    quizHookMock.mockImplementation((selector) => selector(quizState));
+    const { getByRole } = renderExitPage();
+
+    fireEvent.click(getByRole("button", { name: "Lesson review" }));
+
+    await waitFor(() =>
+      expect(progressState.setReadOnly).toHaveBeenCalledWith(true),
+    );
+    expect(progressState.completeSection).not.toHaveBeenCalled();
+    expect(trackQuizCompleted).not.toHaveBeenCalled();
+    expect(routerPush.mock.calls[0]?.[0]).toContain("review");
+  });
+
+  it("keeps the pupil on the quiz and allows retry after a failed final write", async () => {
+    const submitClassroomProgress = jest
+      .fn()
+      .mockRejectedValueOnce(new Error("temporary failure"))
+      .mockResolvedValueOnce({
+        progress: {},
+        status: "GRADE_SUBMITTED",
+      });
+    progressState = buildProgressState({
+      sectionResults: {
+        "starter-quiz": {
+          isComplete: true,
+          grade: 1,
+          numQuestions: 1,
+        },
+      },
+      submitClassroomProgress,
+    });
+    progressHookMock.mockImplementation((selector) => selector(progressState));
+    quizState = buildQuizState({
+      section: "exit-quiz",
+      questionState: [{ ...baseQuestionState, mode: "feedback", grade: 1 }],
+      currentQuestionIndex: 0,
+      numQuestions: 1,
+      numInteractiveQuestions: 1,
+    });
+    quizHookMock.mockImplementation((selector) => selector(quizState));
+    const { getByRole } = renderExitPage();
+    const button = getByRole("button", { name: "Lesson review" });
+
+    fireEvent.click(button);
+    await waitFor(() => expect(button).toBeEnabled());
+    expect(progressState.completeSection).not.toHaveBeenCalled();
+    expect(routerPush).not.toHaveBeenCalled();
+
+    fireEvent.click(button);
+    await waitFor(() =>
+      expect(submitClassroomProgress).toHaveBeenCalledTimes(2),
+    );
+    expect(progressState.completeSection).toHaveBeenCalledTimes(1);
+    expect(routerPush.mock.calls[0]?.[0]).toContain("review");
+  });
+
+  it("ignores repeated clicks while final progress is pending", async () => {
+    let resolveSubmission: ((value: unknown) => void) | undefined;
+    const submitClassroomProgress = jest.fn(
+      () =>
+        new Promise((resolve) => {
+          resolveSubmission = resolve;
+        }),
+    );
+    progressState = buildProgressState({ submitClassroomProgress });
+    progressHookMock.mockImplementation((selector) => selector(progressState));
+    quizState = buildQuizState({
+      section: "exit-quiz",
+      questionState: [{ ...baseQuestionState, mode: "feedback", grade: 1 }],
+      currentQuestionIndex: 0,
+      numQuestions: 1,
+      numInteractiveQuestions: 1,
+    });
+    quizHookMock.mockImplementation((selector) => selector(quizState));
+    const { getByRole } = renderExitPage();
+    const button = getByRole("button", { name: "Lesson review" });
+
+    fireEvent.click(button);
+    fireEvent.click(button);
+    expect(submitClassroomProgress).toHaveBeenCalledTimes(1);
+
+    await act(async () => {
+      resolveSubmission?.({
+        progress: {},
+        status: "GRADE_SUBMITTED",
+      });
+    });
+    expect(progressState.completeSection).toHaveBeenCalledTimes(1);
+    expect(routerPush).toHaveBeenCalledTimes(1);
+  });
+
+  it("does not complete or redirect after going back during the final write", async () => {
+    let resolveSubmission: ((value: unknown) => void) | undefined;
+    progressState = buildProgressState({
+      submitClassroomProgress: jest.fn(
+        () =>
+          new Promise((resolve) => {
+            resolveSubmission = resolve;
+          }),
+      ),
+    });
+    progressHookMock.mockImplementation((selector) => selector(progressState));
+    quizState = buildQuizState({
+      section: "exit-quiz",
+      questionState: [{ ...baseQuestionState, mode: "feedback", grade: 1 }],
+      currentQuestionIndex: 0,
+      numQuestions: 1,
+      numInteractiveQuestions: 1,
+    });
+    quizHookMock.mockImplementation((selector) => selector(quizState));
+    const { getByLabelText, getByRole } = renderExitPage();
+
+    fireEvent.click(getByRole("button", { name: "Lesson review" }));
+    fireEvent.click(getByLabelText(/Back/));
+    expect(routerPush).toHaveBeenCalledTimes(1);
+    expect(routerPush.mock.calls[0]?.[0]).toContain("overview");
+
+    await act(async () => {
+      resolveSubmission?.({
+        progress: {},
+        status: "GRADE_SUBMITTED",
+      });
+    });
+
+    expect(progressState.completeSection).not.toHaveBeenCalled();
+    expect(trackQuizCompleted).not.toHaveBeenCalled();
+    expect(trackLessonCompleted).not.toHaveBeenCalled();
+    expect(routerPush).toHaveBeenCalledTimes(1);
   });
 
   it("skips tracking lesson started on completion when the lesson is already in progress", async () => {

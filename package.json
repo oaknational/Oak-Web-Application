@@ -97,7 +97,7 @@
     "@mux/mux-node": "^9.0.1",
     "@mux/mux-player": "^3.10.2",
     "@mux/mux-player-react": "3.10.2",
-    "@oaknational/google-classroom-addon": "^1.33.0",
+    "@oaknational/google-classroom-addon": "^1.34.1",
     "@oaknational/oak-components": "^3.3.2",
     "@oaknational/oak-consent-client": "2.4.0",
     "@oaknational/oak-curriculum-schema": "2.14.1",

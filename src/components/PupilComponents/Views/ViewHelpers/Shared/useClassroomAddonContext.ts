@@ -30,14 +30,27 @@ export const useClassroomAddonContext = (): ResolvedClassroomAddonContext => {
   const isGoogleClassroomAssignment =
     isClassroomAssignment === true && classroomAssignmentChecked;
 
-  const resolvedRef = useRef(false);
+  const contextKey =
+    isGoogleClassroomAssignment && courseId && itemId && attachmentId
+      ? JSON.stringify({ courseId, itemId, attachmentId })
+      : null;
+  const activeContextKeyRef = useRef(contextKey);
+  activeContextKeyRef.current = contextKey;
+  const resolvedContextKeyRef = useRef<string | null>(null);
+  const hydrationGenerationRef = useRef(0);
+  const submissionStateRequestRef = useRef<{
+    key: string;
+    request: Promise<boolean | null>;
+  } | null>(null);
   const [submissionId, setSubmissionId] = useState<string | null>(null);
   const [pupilLoginHint, setPupilLoginHint] = useState<string | null>(null);
   const [teacherLoginHint, setTeacherLoginHint] = useState<string | null>(null);
   const [initialSectionResults, setInitialSectionResults] =
     useState<LessonSectionResults>({});
   const [isReadOnly, setIsReadOnly] = useState(false);
+  const isReadOnlyRef = useRef(isReadOnly);
   const [isReady, setIsReady] = useState(false);
+  isReadOnlyRef.current = isReadOnly;
 
   const getReadOnlyState = useCallback(
     async (args: {
@@ -46,21 +59,39 @@ export const useClassroomAddonContext = (): ResolvedClassroomAddonContext => {
       attachmentId: string;
       submissionId: string;
     }): Promise<boolean | null> => {
-      const state = await googleClassroomApi.getPostSubmissionState(args);
-      if (!state) return null;
-      return (
-        state.submissionState === PostSubmissionState.RETURNED ||
-        state.submissionState === PostSubmissionState.TURNED_IN
-      );
+      const key = JSON.stringify(args);
+      if (submissionStateRequestRef.current?.key === key) {
+        return submissionStateRequestRef.current.request;
+      }
+
+      const request = googleClassroomApi
+        .getPostSubmissionState(args)
+        .then((state) => {
+          if (!state) return null;
+          return (
+            state.submissionState === PostSubmissionState.RETURNED ||
+            state.submissionState === PostSubmissionState.TURNED_IN
+          );
+        });
+      submissionStateRequestRef.current = { key, request };
+
+      try {
+        return await request;
+      } finally {
+        if (submissionStateRequestRef.current?.request === request) {
+          submissionStateRequestRef.current = null;
+        }
+      }
     },
     [],
   );
 
   const refreshReadOnly = useCallback(async () => {
     if (!courseId || !itemId || !attachmentId || !submissionId) {
-      return isReadOnly;
+      return isReadOnlyRef.current;
     }
 
+    const requestContextKey = contextKey;
     try {
       const nextIsReadOnly = await getReadOnlyState({
         courseId,
@@ -68,33 +99,66 @@ export const useClassroomAddonContext = (): ResolvedClassroomAddonContext => {
         attachmentId,
         submissionId,
       });
-      if (nextIsReadOnly === null) return isReadOnly;
+      if (activeContextKeyRef.current !== requestContextKey) {
+        return isReadOnlyRef.current;
+      }
+      if (nextIsReadOnly === null) return isReadOnlyRef.current;
       setIsReadOnly(nextIsReadOnly);
       return nextIsReadOnly;
     } catch {
-      return isReadOnly;
+      return isReadOnlyRef.current;
     }
   }, [
     attachmentId,
+    contextKey,
     courseId,
     getReadOnlyState,
-    isReadOnly,
     itemId,
     submissionId,
   ]);
 
   useEffect(() => {
-    if (!classroomAssignmentChecked) return;
-    if (!isGoogleClassroomAssignment) {
+    if (!classroomAssignmentChecked) {
+      if (resolvedContextKeyRef.current !== null) {
+        hydrationGenerationRef.current += 1;
+        resolvedContextKeyRef.current = null;
+        setSubmissionId(null);
+        setPupilLoginHint(null);
+        setTeacherLoginHint(null);
+        setInitialSectionResults({});
+        setIsReadOnly(false);
+      }
+      setIsReady(false);
+      return;
+    }
+
+    if (!contextKey || !courseId || !itemId || !attachmentId) {
+      if (resolvedContextKeyRef.current !== null) {
+        hydrationGenerationRef.current += 1;
+        resolvedContextKeyRef.current = null;
+        setSubmissionId(null);
+        setPupilLoginHint(null);
+        setTeacherLoginHint(null);
+        setInitialSectionResults({});
+        setIsReadOnly(false);
+      }
       setIsReady(true);
       return;
     }
-    if (resolvedRef.current) return;
-    if (!courseId || !itemId || !attachmentId) {
-      setIsReady(true);
-      return;
-    }
-    resolvedRef.current = true;
+    if (resolvedContextKeyRef.current === contextKey) return;
+
+    resolvedContextKeyRef.current = contextKey;
+    const hydrationGeneration = ++hydrationGenerationRef.current;
+    setSubmissionId(null);
+    setPupilLoginHint(null);
+    setTeacherLoginHint(null);
+    setInitialSectionResults({});
+    setIsReadOnly(false);
+    setIsReady(false);
+
+    const isCurrentContext = () =>
+      hydrationGenerationRef.current === hydrationGeneration &&
+      activeContextKeyRef.current === contextKey;
 
     const hydrate = async () => {
       try {
@@ -103,6 +167,8 @@ export const useClassroomAddonContext = (): ResolvedClassroomAddonContext => {
           itemId,
           attachmentId,
         });
+        if (!isCurrentContext()) return;
+
         const resolvedSubmissionId =
           addonContext?.studentContext?.submissionId ?? null;
         setSubmissionId(resolvedSubmissionId);
@@ -115,6 +181,7 @@ export const useClassroomAddonContext = (): ResolvedClassroomAddonContext => {
             itemId,
             attachmentId,
           });
+          if (!isCurrentContext()) return;
           if (progress) {
             setInitialSectionResults(
               mapPupilLessonProgressToSectionResults(progress),
@@ -126,14 +193,17 @@ export const useClassroomAddonContext = (): ResolvedClassroomAddonContext => {
             attachmentId,
             submissionId: resolvedSubmissionId,
           });
+          if (!isCurrentContext()) return;
           if (nextIsReadOnly !== null) {
             setIsReadOnly(nextIsReadOnly);
           }
         }
       } catch {
-        // Failed to resolve context — progress sync disabled, lesson still works.
+        // keep the lesson usable if progress context cannot be resolved
       } finally {
-        setIsReady(true);
+        if (isCurrentContext()) {
+          setIsReady(true);
+        }
       }
     };
 
@@ -144,10 +214,11 @@ export const useClassroomAddonContext = (): ResolvedClassroomAddonContext => {
     courseId,
     itemId,
     attachmentId,
+    contextKey,
     getReadOnlyState,
   ]);
 
-  // Re-check read-only when the pupil refocuses the tab (teacher may have returned the work in the meantime).
+  // recheck read-only when the tab regains focus
   useEffect(() => {
     if (
       !isGoogleClassroomAssignment ||

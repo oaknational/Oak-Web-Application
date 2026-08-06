@@ -27,4 +27,18 @@ describe("PupilLessonBottomNav", () => {
     expect(document.body).toHaveTextContent("Continue lesson");
     expect(onProceed).toHaveBeenCalledTimes(1);
   });
+
+  it("disables the proceed button while loading", () => {
+    render(
+      <PupilLessonBottomNav
+        proceedLabel="Continue lesson"
+        onProceed={jest.fn()}
+        isLoading
+      />,
+    );
+
+    expect(
+      document.querySelector('[data-testid="proceed-to-next-section"]'),
+    ).toBeDisabled();
+  });
 });
