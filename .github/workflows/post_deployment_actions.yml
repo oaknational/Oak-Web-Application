@@ -2,6 +2,9 @@ name: Deployment Actions
 
 on: deployment_status
 
+permissions:
+  contents: read
+
 env:
   PUPPETEER_DOWNLOAD_PATH: /home/runner/.npm/chromium
 
@@ -12,7 +15,7 @@ jobs:
   # Do a find-and-replace to add a link to the deployment to the PR body
  # update_pr_description:
     # Only want to run on success, otherwise it might be "pending", or "failure".
-    # Filter out storybook deployments and temporarily Netlify deployments
+    # Filter out Storybook deployments.
  #   if: ${{ (github.event.deployment.ref != 'main') && (github.event.deployment_status.state == 'success') && !endsWith(github.event.deployment_status.environment, 'storybook') && !endsWith(github.event.deployment_status.environment, 'storybook-console')}}
  #   name: Add deploy URL to PR description
  #   runs-on: ubuntu-24.04
@@ -45,7 +48,7 @@ jobs:
   # Warm the caches on the test URLs
   # warm_caches:
   #   # Only want to run on success, otherwise it might be "pending", or "failure".
-  #   # Filter out storybook deployments and temporarily Netlify deployments
+  #   # Filter out Storybook deployments.
   #   if: ${{ (github.event.deployment_status.state == 'success') && !startsWith(github.event.deployment_status.environment, 'storybook')}}
   #   name: Warm Caches
   #   runs-on: ubuntu-24.04
@@ -68,11 +71,14 @@ jobs:
   pa11y:
     # needs: warm_caches
     # Only want to run on success, otherwise it might be "pending", or "failure".
-    # Filter out storybook deployments and temporarily Netlify deployments
+    # Filter out Storybook deployments.
     if: ${{ (github.event.deployment_status.state == 'success') && !endsWith(github.event.deployment_status.environment, 'storybook') && !endsWith(github.event.deployment_status.environment, 'storybook-console')}}
     name: Pa11y
     runs-on: ubuntu-24.04
     timeout-minutes: 60
+    permissions:
+      contents: read
+      statuses: write
 
     steps:
       - uses: actions/checkout@v5
@@ -88,8 +94,8 @@ jobs:
           node-version: 24
           cache: "pnpm"
 
-      # Install.
-      - run: pnpm install --verbose
+      # Install dependencies without lifecycle scripts (security hardening).
+      - run: pnpm install --ignore-scripts --verbose
 
       - name: Log out URL
         run: echo "${{ github.event.deployment_status.environment_url }}"
@@ -118,11 +124,15 @@ jobs:
   percy:
     # needs: warm_caches
     # Only want to run on success, otherwise it might be "pending", or "failure".
-    # Filter out storybook deployments and temporarily Netlify deployments
+    # Filter out Storybook deployments.
     if: ${{ (github.event.deployment_status.state == 'success') && !endsWith(github.event.deployment_status.environment, 'storybook') && !endsWith(github.event.deployment_status.environment, 'storybook-console')}}
     name: Percy
     runs-on: ubuntu-24.04
     timeout-minutes: 60
+    permissions:
+      contents: read
+      pull-requests: read
+      statuses: write
 
     steps:
       - uses: actions/checkout@v5
@@ -138,7 +148,7 @@ jobs:
           node-version: 24
           cache: "pnpm"
 
-      - run: pnpm install --verbose
+      - run: pnpm install --ignore-scripts --verbose
 
       - name: Log out URL
         run: echo "${{ github.event.deployment_status.environment_url }}"
