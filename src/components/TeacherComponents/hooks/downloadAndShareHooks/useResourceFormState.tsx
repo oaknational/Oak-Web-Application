@@ -66,6 +66,7 @@ export const useResourceFormState = (props: UseResourceFormStateProps) => {
   const [schoolUrn, setSchoolUrn] = useState("");
 
   const [hubspotLoaded, setHubspotLoaded] = useState(false);
+  const [hubspotLookupCompleted, setHubspotLookupCompleted] = useState(false);
   const [schoolFromHubspot, setSchoolFromHubspot] = useState<null | {
     schoolId: string;
     schoolName: string;
@@ -92,43 +93,52 @@ export const useResourceFormState = (props: UseResourceFormStateProps) => {
     const userEmail = user?.emailAddresses?.[0]?.emailAddress;
 
     const updateUserDetailsFromHubspot = async (email: string) => {
-      const hubspotContact = await fetchHubspotContactDetails();
-      setTermsInLocalStorage(true);
-      setValue("terms", true);
+      try {
+        const hubspotContact = await fetchHubspotContactDetails();
+        setTermsInLocalStorage(true);
+        setValue("terms", true);
 
-      setEmailInLocalStorage(email);
-      setValue("email", email);
+        setEmailInLocalStorage(email);
+        setValue("email", email);
 
-      if (hubspotContact) {
-        const schoolUrn = hubspotContact.schoolId;
-        // @sonar-ignore
-        // current sonar rule typescript:S6606 incorrectly flags this, see open issue here https://sonarsource.atlassian.net/browse/JS-373
-        const schoolName = hubspotContact.schoolName || "notListed";
-        // @sonar-end
+        if (hubspotContact) {
+          const schoolUrn = hubspotContact.schoolId;
+          // @sonar-ignore
+          // current sonar rule typescript:S6606 incorrectly flags this, see open issue here https://sonarsource.atlassian.net/browse/JS-373
+          const schoolName = hubspotContact.schoolName || "notListed";
+          // @sonar-end
 
-        // hubspot stores schoolUrn isolated from schoolName, but we need to store them together in local storage
-        const schoolId = schoolUrn ? `${schoolUrn}-${schoolName}` : "notListed";
+          // hubspot stores schoolUrn isolated from schoolName, but we need to store them together in local storage
+          const schoolId = schoolUrn
+            ? `${schoolUrn}-${schoolName}`
+            : "notListed";
 
-        const school = {
-          schoolId,
-          schoolName,
-        };
+          const school = {
+            schoolId,
+            schoolName,
+          };
 
-        setSchoolInLocalStorage(school);
-        setSchoolFromHubspot(school);
+          setSchoolInLocalStorage(school);
+          setSchoolFromHubspot(school);
 
-        if (schoolName) {
-          setValue("schoolName", schoolName);
+          if (schoolName) {
+            setValue("schoolName", schoolName);
+          }
+
+          if (schoolId) {
+            setValue("school", schoolId);
+          }
         }
-
-        if (schoolId) {
-          setValue("school", schoolId);
-        }
+      } finally {
+        setHubspotLookupCompleted(true);
       }
     };
 
     if (userEmail && isSignedIn) {
       updateUserDetailsFromHubspot(userEmail);
+      return;
+    } else {
+      setHubspotLookupCompleted(true);
     }
   }, [
     isSignedIn,
@@ -141,15 +151,20 @@ export const useResourceFormState = (props: UseResourceFormStateProps) => {
 
   // Set finished loading when local storage matches hubspot or when no details expected in hubspot
   useEffect(() => {
-    const detailsUpdatedFromHubspot =
+    const schoolDetailsMatch =
       schoolFromHubspot?.schoolId === schoolFromLocalStorage.schoolId &&
       schoolFromHubspot?.schoolName === schoolFromLocalStorage.schoolName;
 
-    const noDetailsInHubspot =
+    const userNotSignedInOrOnboarded =
       isSignedIn === false ||
       (isSignedIn && !user?.publicMetadata?.owa?.isOnboarded); // user has signed in but not onboarded
 
-    if ((detailsUpdatedFromHubspot || noDetailsInHubspot) && !hubspotLoaded) {
+    if (
+      (schoolDetailsMatch ||
+        userNotSignedInOrOnboarded ||
+        hubspotLookupCompleted) &&
+      !hubspotLoaded
+    ) {
       setHubspotLoaded(true);
     }
   }, [
@@ -157,6 +172,7 @@ export const useResourceFormState = (props: UseResourceFormStateProps) => {
     schoolFromLocalStorage,
     isSignedIn,
     hubspotLoaded,
+    hubspotLookupCompleted,
     user,
   ]);
 
