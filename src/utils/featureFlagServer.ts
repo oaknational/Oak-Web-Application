@@ -1,5 +1,3 @@
-import { GetServerSidePropsContext } from "next";
-
 import { getFeatureFlag } from "@/node-lib/posthog/getFeatureFlag";
 import { getPosthogIdFromCookie } from "@/node-lib/posthog/getPosthogId";
 import getBrowserConfig from "@/browser-lib/getBrowserConfig";
@@ -7,6 +5,9 @@ import getBrowserConfig from "@/browser-lib/getBrowserConfig";
 export const FLAGS = {
   get "oaks-impact"() {
     return process.env.FORCE_FEATURE_FLAG_OAKS_IMPACT ?? "false";
+  },
+  get "implementation-guides"() {
+    return process.env.FORCE_FEATURE_FLAG_IMPLEMENTATION_GUIDES ?? "false";
   },
 } as const;
 
@@ -23,7 +24,9 @@ export function isFeatureFlagEnabledAtBuild(
  * @returns a boolean indicating whether the feature flag is enabled
  */
 export async function isFeatureFlagEnabled(
-  context: GetServerSidePropsContext,
+  cookies: Partial<{
+    [key: string]: string;
+  }>,
   featureFlagKey: keyof typeof FLAGS,
 ): Promise<boolean> {
   if (isFeatureFlagEnabledAtBuild(featureFlagKey)) {
@@ -31,7 +34,7 @@ export async function isFeatureFlagEnabled(
   }
 
   const posthogUserId = getPosthogIdFromCookie(
-    context.req.cookies,
+    cookies,
     getBrowserConfig("posthogApiKey"),
   );
 
