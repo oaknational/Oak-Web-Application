@@ -253,22 +253,25 @@ describe("TeacherBrowseAnalyticsStoreProvider", () => {
       );
     });
     it("handles invalid browse level for lesson level events", () => {
-      renderTrackingTest(programmeLevelState, "lessonShareStarted");
+      renderTrackingTest(programmeLevelState, "lessonResourceDownloadStarted", {
+        downloadResourceButtonName: "all",
+      });
 
       const trackBtn = screen.getByRole("button", { name: "Track" });
-      trackBtn.click();
+      const result = trackBtn.click();
       expect(reportError).toHaveBeenCalledWith(
         expect.objectContaining({
           code: "analytics/teacher-browse",
           meta: expect.objectContaining({ browseLevel: "programme" }),
         }),
       );
-      expect(lessonShareStarted).not.toHaveBeenCalled();
+      expect(lessonResourceDownloadStarted).not.toHaveBeenCalled();
+      expect(result).toBeUndefined();
     });
     it("handles invalid browse level for unit level events", () => {
       renderTrackingTest(programmeLevelState, "unitDownloadStarted");
       const trackBtn = screen.getByRole("button", { name: "Track" });
-      trackBtn.click();
+      const result = trackBtn.click();
       expect(reportError).toHaveBeenCalledWith(
         expect.objectContaining({
           code: "analytics/teacher-browse",
@@ -276,6 +279,7 @@ describe("TeacherBrowseAnalyticsStoreProvider", () => {
         }),
       );
       expect(unitDownloadStarted).not.toHaveBeenCalled();
+      expect(result).toBeUndefined();
     });
   });
 });
