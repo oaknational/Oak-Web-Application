@@ -1,23 +1,21 @@
 import { getFileSizes } from "./getFileSizes";
 
-import { contentLengthFromResource } from "@/utils/resource";
+import { getFile } from "@/pages/api/curriculum-downloads";
 
-jest.mock("@/utils/resource", () => ({
-  contentLengthFromResource: jest.fn().mockResolvedValue(1234),
+jest.mock("@/pages/api/curriculum-downloads", () => ({
+  getFile: jest.fn().mockResolvedValue({}),
 }));
 
 describe("getFileSizes", () => {
   test("expect download size to be in document (tiers)", async () => {
-    (contentLengthFromResource as jest.Mock).mockImplementation(
-      async (url: string) => {
-        if (url.includes("foundation")) {
-          return 123456;
-        } else if (url.includes("higher")) {
-          return 223456;
-        }
-        return -1;
-      },
-    );
+    (getFile as jest.Mock).mockImplementation(async ({ tierSlug }) => {
+      if (tierSlug === "foundation") {
+        return Buffer.alloc(123456);
+      } else if (tierSlug === "higher") {
+        return Buffer.alloc(223456);
+      }
+      return;
+    });
     const out = await getFileSizes(
       {
         phaseSlug: "secondary",
@@ -68,18 +66,27 @@ describe("getFileSizes", () => {
   });
 
   test("expect download size to be in document (child subjects & tiers)", async () => {
-    (contentLengthFromResource as jest.Mock).mockImplementation(
-      async (url: string) => {
-        if (url.includes("foundation") && url.includes("combined-science")) {
-          return 123456;
-        } else if (url.includes("higher") && url.includes("combined-science")) {
-          return 223456;
-        } else if (url.includes("foundation") && url.includes("biology")) {
-          return 323456;
-        } else if (url.includes("higher") && url.includes("biology")) {
-          return 423456;
+    (getFile as jest.Mock).mockImplementation(
+      async ({ tierSlug, childSubjectSlug }) => {
+        if (
+          tierSlug === "foundation" &&
+          childSubjectSlug === "combined-science"
+        ) {
+          return Buffer.alloc(123456);
+        } else if (
+          tierSlug === "higher" &&
+          childSubjectSlug === "combined-science"
+        ) {
+          return Buffer.alloc(223456);
+        } else if (
+          tierSlug === "foundation" &&
+          childSubjectSlug === "biology"
+        ) {
+          return Buffer.alloc(323456);
+        } else if (tierSlug === "higher" && childSubjectSlug === "biology") {
+          return Buffer.alloc(423456);
         }
-        return -1;
+        return;
       },
     );
     const out = await getFileSizes(

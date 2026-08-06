@@ -1,5 +1,9 @@
 import { sum } from "lodash";
 import JSZip from "jszip";
+import {
+  generateOakIconURL,
+  isValidIconName,
+} from "@oaknational/oak-components";
 
 import { zipToSimpleObject } from "../zip";
 import { Slugs } from "..";
@@ -126,10 +130,11 @@ export function zipToSnapshotObject(zip: JSZip) {
   return zipToSimpleObject(zip, { hashBuffers: true });
 }
 
-// TODO: Replace me with generateOakIconURL from @oaknational/oak-components when it is available in the package
-export function generateIconURL(iconName: string) {
-  return `https://${process.env.NEXT_PUBLIC_OAK_ASSETS_HOST}/${process.env.NEXT_PUBLIC_OAK_ASSETS_PATH}/v1706872277/icons/question-mark.svg?icon=${iconName}`;
-}
+export const generateIconURL = (subjectSlug: string): string => {
+  const key = `subject-${subjectSlug}`;
+  const iconName = isValidIconName(key) ? key : "subject-english";
+  return generateOakIconURL(iconName);
+};
 
 export function groupUnitsBySubjectCategory(units: Unit[]) {
   const out: Record<string, Unit[]> = {};

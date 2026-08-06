@@ -36,7 +36,7 @@ export async function getFileSizes(
         id: downloadId,
         tier,
         childSubject,
-        buffer: getFile({
+        file: getFile({
           types: [downloadId],
           subjectSlug: subjectPhaseKeystageSlugs.subjectSlug,
           phaseSlug: subjectPhaseKeystageSlugs.phaseSlug,
@@ -78,10 +78,11 @@ export async function getFileSizes(
   });
 
   const fileSizes = await Promise.all(
-    files.map(async ({ id, buffer, tier, childSubject }) => {
+    files.map(async ({ id, file, tier, childSubject }) => {
+      const buffer = await file;
       return {
         downloadId: id,
-        size: (await buffer).buffer.length,
+        size: buffer.buffer.byteLength,
         tier,
         childSubject,
       };
