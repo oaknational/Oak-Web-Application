@@ -245,7 +245,6 @@ const TabContent = ({
   if (tabSlug === "units") {
     return (
       <UnitSequenceView
-        subjectTitle={subjectTitle}
         curriculumSelectionSlugs={curriculumSelectionSlugs}
         curriculumUnitsFormattedData={curriculumUnitsFormattedData}
         filters={filters}
