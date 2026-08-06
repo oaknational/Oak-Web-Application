@@ -26,6 +26,8 @@ const onwardContentSelected = jest.fn();
 const curriculumExplainerExplored = jest.fn();
 const lessonShareStarted = jest.fn();
 const programmeRefined = jest.fn();
+const curriculumResourcesDownloaded = jest.fn();
+const lessonMediaClipsStarted = jest.fn();
 
 jest.mock("@/context/Analytics/useAnalytics", () => ({
   __esModule: true,
@@ -40,6 +42,10 @@ jest.mock("@/context/Analytics/useAnalytics", () => ({
       unitDownloaded: (...args: []) => unitDownloaded(...args),
       onwardContentSelected: (...args: []) => onwardContentSelected(...args),
       programmeRefined: (...args: []) => programmeRefined(...args),
+      curriculumResourcesDownloaded: (...args: []) =>
+        curriculumResourcesDownloaded(...args),
+      lessonMediaClipsStarted: (...args: []) =>
+        lessonMediaClipsStarted(...args),
     },
     getSessionId: () => getSessionId(),
   }),
@@ -343,6 +349,36 @@ describe("TeacherBrowseAnalyticsStoreProvider", () => {
         subjectTitle: "Biology",
       });
     });
+    it("calls curriculumResourcesDownloaded with the correct props", () => {
+      renderTrackingTest(programmeLevelState, "curriculumResourcesDownloaded", {
+        school: "test-school",
+        terms: true,
+        resources: ["curriculum-doc"],
+      });
+
+      const trackBtn = screen.getByRole("button", { name: "Track" });
+      trackBtn.click();
+
+      expect(curriculumResourcesDownloaded).toHaveBeenCalledWith({
+        analyticsUseCase: "Teacher",
+        componentType: "download_button",
+        emailSupplied: false,
+        engagementIntent: "explore",
+        eventVersion: "2.0.0",
+        journeyId: "session-1:secondary-biology",
+        keyStageSlug: null,
+        keyStageTitle: null,
+        phase: "secondary",
+        platform: "owa",
+        product: "teacher lesson resources",
+        resourceType: ["curriculum document"],
+        schoolName: "",
+        schoolOption: "Selected school",
+        schoolUrn: "",
+        subjectSlug: "biology",
+        subjectTitle: "Biology",
+      });
+    });
     it("handles invalid browse level for lessonResourceDownloadStarted", () => {
       renderTrackingTest(programmeLevelState, "lessonResourceDownloadStarted", {
         downloadResourceButtonName: "all",
@@ -398,6 +434,24 @@ describe("TeacherBrowseAnalyticsStoreProvider", () => {
         }),
       );
       expect(onwardContentSelected).not.toHaveBeenCalled();
+      expect(result).toBeUndefined();
+    });
+    it("handles invalid browse state for lessonMediaClipsStarted", () => {
+      renderTrackingTest(programmeLevelState, "lessonMediaClipsStarted", {
+        mediaClipsButtonName: "play all",
+        learningCycle: "1",
+      });
+      const trackBtn = screen.getByRole("button", { name: "Track" });
+      const result = trackBtn.click();
+
+      expect(reportError).toHaveBeenCalledWith(
+        expect.objectContaining({
+          code: "analytics/teacher-browse",
+          meta: expect.objectContaining({ browseLevel: "programme" }),
+        }),
+      );
+
+      expect(lessonMediaClipsStarted).not.toHaveBeenCalled();
       expect(result).toBeUndefined();
     });
   });
