@@ -396,7 +396,7 @@ export const createTeacherBrowseAnalyticsStore = (
 
         if (programmeState.browseLevel !== "lesson") {
           reportAnalyticsError({
-            event: "createTeachingMaterialsInitiated",
+            event: "teachingMaterialsSelected",
             programmeState,
           });
           return;
@@ -418,7 +418,7 @@ export const createTeacherBrowseAnalyticsStore = (
 
         if (programmeState.browseLevel !== "lesson") {
           reportAnalyticsError({
-            event: "createTeachingMaterialsInitiated",
+            event: "videoPlayed",
             programmeState,
           });
           return;
@@ -437,7 +437,7 @@ export const createTeacherBrowseAnalyticsStore = (
 
         if (programmeState.browseLevel !== "lesson") {
           reportAnalyticsError({
-            event: "createTeachingMaterialsInitiated",
+            event: "videoStarted",
             programmeState,
           });
           return;
@@ -456,7 +456,7 @@ export const createTeacherBrowseAnalyticsStore = (
 
         if (programmeState.browseLevel !== "lesson") {
           reportAnalyticsError({
-            event: "createTeachingMaterialsInitiated",
+            event: "videoPaused",
             programmeState,
           });
           return;
@@ -475,7 +475,7 @@ export const createTeacherBrowseAnalyticsStore = (
 
         if (programmeState.browseLevel !== "lesson") {
           reportAnalyticsError({
-            event: "createTeachingMaterialsInitiated",
+            event: "videoFinished",
             programmeState,
           });
           return;
