@@ -58,7 +58,7 @@ const VideoLayout = styled(OakBox)`
 export type OaksImpactHeaderProps = {
   title: string;
   body: string;
-  video?: Video;
+  video: Video;
   videoDescription: string;
 };
 export function OaksImpactHeader({
@@ -102,17 +102,15 @@ export function OaksImpactHeader({
           <VideoLayout>
             <OakVideo
               videoSlot={
-                video && (
-                  <VideoPlayer
-                    playbackPolicy="public"
-                    thumbnailTime={video.video.asset.thumbTime}
-                    playbackId={video.video.asset.playbackId}
-                    title={video.title}
-                    isLegacy={false}
-                    location="marketing"
-                    omitBorder={true}
-                  />
-                )
+                <VideoPlayer
+                  playbackPolicy="public"
+                  thumbnailTime={video.video.asset.thumbTime}
+                  playbackId={video.video.asset.playbackId}
+                  title={video.title}
+                  isLegacy={false}
+                  location="marketing"
+                  omitBorder={true}
+                />
               }
               body={videoDescription}
               transcript={["test", "test", "test"]}

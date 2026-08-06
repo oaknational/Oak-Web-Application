@@ -15,7 +15,16 @@ type Story = StoryObj<typeof meta>;
 export const Default: Story = {
   args: {
     videoDescription: "How Oak is making an impact in schools across England.",
-    video: undefined,
+    video: {
+      video: {
+        asset: {
+          assetId: "Kx9emKZOPdDNfMB2q202Oksaf7wHHywaXlcG3YURSTEw",
+          playbackId: "VUW02Q7BTn3t11L027yUl9iDWwtOqdMgMyUxmo3O65p00k",
+          thumbTime: 82,
+        },
+      },
+      title: "Test Video",
+    },
     title: "Oak's impact",
     body: "How our world-class curriculum is making a difference in schools and trusts across the country.",
   },
