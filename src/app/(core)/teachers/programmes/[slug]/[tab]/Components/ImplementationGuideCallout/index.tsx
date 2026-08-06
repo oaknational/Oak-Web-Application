@@ -21,7 +21,7 @@ export function ImplementationGuideCallout({
 }: Readonly<ImplementationGuideCalloutProps>) {
   const linkHref = resolveOakHref({
     page: "teacher-programme",
-    tab: "downloads",
+    tab: "download",
     subjectPhaseSlug: `${subject}-${phase}`,
   });
 
