@@ -610,44 +610,131 @@ exports[`pages/about-us/oaks-impact.tsx renders title when feature flag is enabl
             class="sc-aXZVg bZTQLO"
           >
             <div
-              class="sc-aXZVg sc-gEvEer fjNszh hPyKbx"
+              class="sc-aXZVg sc-gEvEer sc-e4b64e41-0 jPvJsJ iDBIXi hoavYY"
             >
               <div
-                class="sc-aXZVg sc-gEvEer jPvJsJ daEtut"
+                class="sc-aXZVg sc-gEvEer sc-e4b64e41-2 jPvJsJ fqICts jrLota"
               >
-                <h1
-                  class="sc-eldPxv kSQYKV"
+                <div
+                  class="sc-aXZVg sc-gEvEer fnKdFm gUPrwF"
                 >
-                  <span
-                    class="sc-eqUAAy ffxKII"
+                  <h1
+                    class="sc-eldPxv hJmOde"
                   >
                     Oak's impact
-                  </span>
-                </h1>
+                  </h1>
+                </div>
                 <p
-                  class="sc-ikkxIA fPezaI"
+                  class="sc-ikkxIA jAnQin"
                 >
                   Oaks Impact intro
                 </p>
               </div>
               <div
-                class="sc-aXZVg sc-2c4f354b-0 jPvJsJ bnaXAx"
+                class="sc-aXZVg sc-gEvEer jPvJsJ fVNIMq"
               >
-                <span
-                  class="sc-aXZVg iLOJBD"
+                <div
+                  class="sc-aXZVg sc-e4b64e41-1 jPvJsJ jNveOT"
                 >
-                  <img
-                    alt=""
-                    class="sc-iGgWBj dZvqhO"
-                    data-nimg="fill"
-                    decoding="async"
-                    loading="lazy"
-                    sizes="100vw"
-                    src="http://localhost/_next/image?url=https%3A%2F%2Fsanity-asset-cdn.thenational.academy%2Fimages%2Fcuvjke51%2Fproduction%2Fef2a05d634b1ade34d33664c44fa36cb62e1aaba-3000x2001.jpg&w=3840&q=75"
-                    srcset="/_next/image?url=https%3A%2F%2Fsanity-asset-cdn.thenational.academy%2Fimages%2Fcuvjke51%2Fproduction%2Fef2a05d634b1ade34d33664c44fa36cb62e1aaba-3000x2001.jpg&w=640&q=75 640w, /_next/image?url=https%3A%2F%2Fsanity-asset-cdn.thenational.academy%2Fimages%2Fcuvjke51%2Fproduction%2Fef2a05d634b1ade34d33664c44fa36cb62e1aaba-3000x2001.jpg&w=750&q=75 750w, /_next/image?url=https%3A%2F%2Fsanity-asset-cdn.thenational.academy%2Fimages%2Fcuvjke51%2Fproduction%2Fef2a05d634b1ade34d33664c44fa36cb62e1aaba-3000x2001.jpg&w=828&q=75 828w, /_next/image?url=https%3A%2F%2Fsanity-asset-cdn.thenational.academy%2Fimages%2Fcuvjke51%2Fproduction%2Fef2a05d634b1ade34d33664c44fa36cb62e1aaba-3000x2001.jpg&w=1080&q=75 1080w, /_next/image?url=https%3A%2F%2Fsanity-asset-cdn.thenational.academy%2Fimages%2Fcuvjke51%2Fproduction%2Fef2a05d634b1ade34d33664c44fa36cb62e1aaba-3000x2001.jpg&w=1200&q=75 1200w, /_next/image?url=https%3A%2F%2Fsanity-asset-cdn.thenational.academy%2Fimages%2Fcuvjke51%2Fproduction%2Fef2a05d634b1ade34d33664c44fa36cb62e1aaba-3000x2001.jpg&w=1920&q=75 1920w, /_next/image?url=https%3A%2F%2Fsanity-asset-cdn.thenational.academy%2Fimages%2Fcuvjke51%2Fproduction%2Fef2a05d634b1ade34d33664c44fa36cb62e1aaba-3000x2001.jpg&w=2048&q=75 2048w, /_next/image?url=https%3A%2F%2Fsanity-asset-cdn.thenational.academy%2Fimages%2Fcuvjke51%2Fproduction%2Fef2a05d634b1ade34d33664c44fa36cb62e1aaba-3000x2001.jpg&w=3840&q=75 3840w"
-                    style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
-                  />
-                </span>
+                  <div
+                    class="sc-aXZVg sc-gEvEer jPvJsJ daEtut"
+                  >
+                    <div
+                      class="sc-aXZVg sc-gEvEer dApLPd daEtut"
+                    >
+                      <div
+                        class="sc-aXZVg dLPTTd"
+                      >
+                        <div
+                          class="sc-aXZVg sc-gEvEer laLcvy jMLdOa"
+                          data-percy-hide="contents"
+                          style="box-sizing: content-box;"
+                        />
+                      </div>
+                    </div>
+                    <div
+                      class="sc-aXZVg sc-gEvEer jPvJsJ gWBhKY"
+                    >
+                      <p
+                        class="sc-ikkxIA bevdi"
+                      >
+                        Oaks Impact video description
+                      </p>
+                    </div>
+                    <div
+                      class="sc-aXZVg sc-gEvEer jPvJsJ jnOuEE"
+                    >
+                      <div
+                        class="sc-aXZVg sc-gEvEer jPvJsJ eBByVS"
+                      >
+                        <div
+                          class="sc-aXZVg sc-kpDqfm bhFzn cvxBYX"
+                        >
+                          <div
+                            class="sc-aXZVg kpXzs grey-shadow"
+                          />
+                          <div
+                            class="sc-aXZVg kpXzs yellow-shadow"
+                          />
+                          <button
+                            aria-controls=":r0:"
+                            aria-expanded="false"
+                            class="sc-dcJsrY sc-jXbUNg hkWkDf eTptGn internal-button"
+                          >
+                            <div
+                              class="sc-aXZVg sc-gEvEer jPvJsJ kejpBe"
+                            >
+                              <span
+                                class="sc-eqUAAy kJIzWq"
+                              >
+                                Show
+                                 transcript
+                              </span>
+                              <span
+                                class="sc-aXZVg jJQFnr"
+                              >
+                                <img
+                                  alt=""
+                                  class="sc-iGgWBj lcrpYX"
+                                  data-nimg="fill"
+                                  decoding="async"
+                                  loading="lazy"
+                                  src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1699953557/icons/botfld6brychmttwtv6u.svg"
+                                  style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                                />
+                              </span>
+                            </div>
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                    <div
+                      class="sc-aXZVg sc-gEvEer TfzCi jLfsQU"
+                      data-testid="oak-video-transcript-container"
+                      id=":r0:"
+                    >
+                      <div
+                        class="sc-aXZVg sc-gEvEer hkAEUL gWBhKY"
+                      >
+                        <p
+                          class="sc-ikkxIA raLvq"
+                        >
+                          test
+                        </p>
+                        <p
+                          class="sc-ikkxIA raLvq"
+                        >
+                          test
+                        </p>
+                        <p
+                          class="sc-ikkxIA raLvq"
+                        >
+                          test
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
