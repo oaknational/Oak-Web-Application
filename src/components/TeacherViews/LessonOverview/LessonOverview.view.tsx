@@ -269,7 +269,7 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
           !actions?.disablePupilShare
         }
         onClickDownloadAll={() => {
-          lessonResourceDownloadStarted("all");
+          lessonResourceDownloadStarted({ downloadResourceButtonName: "all" });
         }}
         onClickShareAll={lessonShareStarted}
         pupilLessonOutcome={getDedupedPupilLessonOutcome(
@@ -366,7 +366,9 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
                         legacyCopyrightContent,
                       )}
                       onDownloadButtonClick={() => {
-                        lessonResourceDownloadStarted("lesson guide");
+                        lessonResourceDownloadStarted({
+                          downloadResourceButtonName: "lesson guide",
+                        });
                       }}
                       slugs={slugs}
                       anchorId="lesson-guide"
@@ -396,7 +398,9 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
                         legacyCopyrightContent,
                       )}
                       onDownloadButtonClick={() => {
-                        lessonResourceDownloadStarted("slide deck");
+                        lessonResourceDownloadStarted({
+                          downloadResourceButtonName: "slide deck",
+                        });
                       }}
                       slugs={slugs}
                       anchorId="slide-deck"
@@ -546,7 +550,9 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
                       }
                       shareable={isLegacyLicense && showShare}
                       onDownloadButtonClick={() => {
-                        lessonResourceDownloadStarted("worksheet");
+                        lessonResourceDownloadStarted({
+                          downloadResourceButtonName: "worksheet",
+                        });
                       }}
                       slugs={slugs}
                       isFinalElement={
@@ -606,7 +612,9 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
                           )
                         }
                         onDownloadButtonClick={() => {
-                          lessonResourceDownloadStarted("starter quiz");
+                          lessonResourceDownloadStarted({
+                            downloadResourceButtonName: "starter quiz",
+                          });
                         }}
                         slugs={slugs}
                         isFinalElement={
@@ -658,7 +666,9 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
                         }
                         shareable={isLegacyLicense && showShare}
                         onDownloadButtonClick={() => {
-                          lessonResourceDownloadStarted("exit quiz");
+                          lessonResourceDownloadStarted({
+                            downloadResourceButtonName: "exit quiz",
+                          });
                         }}
                         slugs={slugs}
                         isFinalElement={
@@ -704,7 +714,9 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
                       }
                       shareable={isLegacyLicense && showShare}
                       onDownloadButtonClick={() => {
-                        lessonResourceDownloadStarted("additional material");
+                        lessonResourceDownloadStarted({
+                          downloadResourceButtonName: "additional material",
+                        });
                       }}
                       slugs={slugs}
                       isFinalElement={

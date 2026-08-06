@@ -147,7 +147,9 @@ export default function LessonView(
                     unitSlug,
                     showDownloadAll: true,
                     onClickDownloadAll: () => {
-                      lessonResourceDownloadStarted("all");
+                      lessonResourceDownloadStarted({
+                        downloadResourceButtonName: "all",
+                      });
                     },
                     geoRestricted,
                     loginRequired,
@@ -242,9 +244,10 @@ export default function LessonView(
                     resource={resource}
                     key={resource.resourceType}
                     onDownloadButtonClick={(props) =>
-                      lessonResourceDownloadStarted(
-                        props.downloadResourceButtonName,
-                      )
+                      lessonResourceDownloadStarted({
+                        downloadResourceButtonName:
+                          props.downloadResourceButtonName,
+                      })
                     }
                     onMediaClipsButtonClick={lessonMediaClipsStarted}
                   />

@@ -4,17 +4,36 @@ import {
   TeacherBrowseAnalyticsStoreProvider,
   useTeacherBrowseAnalytics,
 } from "./TeacherBrowseAnalyticsProvider";
-import { getProgrammeStateForLesson } from "./utils/getProgrammeState";
+import { TeacherBrowseAnalyticsStore } from "./TeacherBrowseAnalyticsStore";
+import {
+  getProgrammeStateForLesson,
+  getProgrammeStateForProgramme,
+  getProgrammeStateForUnit,
+} from "./utils/getProgrammeState";
+import { ProgrammeState } from "./teacherBrowseAnalytics.types";
 
 import teachersLessonOverviewFixture from "@/node-lib/curriculum-api-2023/fixtures/teachersLessonOverview.fixture";
 import { ServicePolicyMap } from "@/browser-lib/cookie-consent/ServicePolicyMap";
+import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
+import teachersUnitOverviewFixture from "@/node-lib/curriculum-api-2023/fixtures/teachersUnitOverview.fixture";
 
 const getSessionId = jest.fn();
 
+const lessonResourceDownloadStarted = jest.fn();
+const unitDownloadStarted = jest.fn();
+const curriculumExplainerExplored = jest.fn();
+const lessonShareStarted = jest.fn();
 jest.mock("@/context/Analytics/useAnalytics", () => ({
   __esModule: true,
   default: () => ({
-    track: {},
+    track: {
+      lessonResourceDownloadStarted: (...args: []) =>
+        lessonResourceDownloadStarted(...args),
+      unitDownloadStarted: (...args: []) => unitDownloadStarted(...args),
+      curriculumExplainerExplored: (...args: []) =>
+        curriculumExplainerExplored(...args),
+      lessonShareStarted: (...args: []) => lessonShareStarted(...args),
+    },
     getSessionId: () => getSessionId(),
   }),
 }));
@@ -135,4 +154,154 @@ describe("TeacherBrowseAnalyticsStoreProvider", () => {
     );
     expect(reportError).not.toHaveBeenCalled();
   });
+  describe("tracking", () => {
+    const programmeLevelState = getProgrammeStateForProgramme(
+      teachersLessonOverviewFixture(),
+    );
+    const unitLevelState = getProgrammeStateForUnit(
+      teachersUnitOverviewFixture(),
+    );
+    const lessonLevelState = getProgrammeStateForLesson(
+      teachersLessonOverviewFixture(),
+    );
+
+    it("handles lesson level tracking with the correct props", () => {
+      renderTrackingTest(lessonLevelState, "lessonResourceDownloadStarted", {
+        downloadResourceButtonName: "all",
+      });
+
+      const trackBtn = screen.getByRole("button", { name: "Track" });
+      trackBtn.click();
+
+      expect(lessonResourceDownloadStarted).toHaveBeenCalledWith(
+        expect.objectContaining({
+          analyticsUseCase: "Teacher",
+          componentType: "lesson_download_button",
+          downloadResourceButtonName: "all",
+          engagementIntent: "use",
+          eventVersion: "2.0.0",
+          examBoard: null,
+          journeyId: "session-1:secondary-biology",
+          keyStageSlug: "ks3",
+          keyStageTitle: "Key stage 3",
+          lessonName: "Structure of cells",
+          lessonReleaseCohort: "2023-2026",
+          lessonReleaseDate: "2024-09-29T14:00:00.000Z",
+          lessonSlug: "lesson-3-structure-of-cells",
+          pathway: null,
+          phase: "secondary",
+          platform: "owa",
+          product: "teacher lesson resources",
+          releaseGroup: "2023",
+          subjectSlug: "biology",
+          subjectTitle: "Biology",
+          tierName: null,
+          unitName: "Cells",
+          unitSlug: "cells",
+          yearGroupName: "Year 7",
+          yearGroupSlug: "year-7",
+        }),
+      );
+    });
+    it("handles unit level tracking with the correct props", () => {
+      renderTrackingTest(unitLevelState, "unitDownloadStarted");
+
+      const trackBtn = screen.getByRole("button", { name: "Track" });
+      trackBtn.click();
+
+      expect(unitDownloadStarted).toHaveBeenCalledWith(
+        expect.objectContaining({
+          analyticsUseCase: "Teacher",
+          componentType: "unit_download_button",
+          engagementIntent: "use",
+          eventVersion: "2.0.0",
+          examBoard: null,
+          journeyId: "session-1:secondary-biology",
+          keyStageSlug: "ks3",
+          keyStageTitle: "Key stage 3",
+          pathway: null,
+          phase: "secondary",
+          platform: "owa",
+          product: "teacher lesson resources",
+          subjectSlug: "biology",
+          subjectTitle: "Biology",
+          tierName: null,
+          unitName: "Cells",
+          unitSlug: "cells",
+        }),
+      );
+    });
+    it("handles programe level tracking", () => {
+      renderTrackingTest(programmeLevelState, "curriculumExplainerExplored");
+
+      const trackBtn = screen.getByRole("button", { name: "Track" });
+      trackBtn.click();
+
+      expect(curriculumExplainerExplored).toHaveBeenCalledWith(
+        expect.objectContaining({
+          analyticsUseCase: "Teacher",
+          componentType: "explainer_tab",
+          engagementIntent: "explore",
+          eventVersion: "2.0.0",
+          journeyId: "session-1:secondary-biology",
+          phase: "secondary",
+          platform: "owa",
+          product: "teacher lesson resources",
+          subjectSlug: "biology",
+          subjectTitle: "Biology",
+        }),
+      );
+    });
+    it("handles invalid browse level for lesson level events", () => {
+      renderTrackingTest(programmeLevelState, "lessonShareStarted");
+
+      const trackBtn = screen.getByRole("button", { name: "Track" });
+      trackBtn.click();
+      expect(reportError).toHaveBeenCalledWith(
+        expect.objectContaining({
+          code: "analytics/teacher-browse",
+          meta: expect.objectContaining({ browseLevel: "programme" }),
+        }),
+      );
+      expect(lessonShareStarted).not.toHaveBeenCalled();
+    });
+    it("handles invalid browse level for unit level events", () => {
+      renderTrackingTest(programmeLevelState, "unitDownloadStarted");
+      const trackBtn = screen.getByRole("button", { name: "Track" });
+      trackBtn.click();
+      expect(reportError).toHaveBeenCalledWith(
+        expect.objectContaining({
+          code: "analytics/teacher-browse",
+          meta: expect.objectContaining({ browseLevel: "programme" }),
+        }),
+      );
+      expect(unitDownloadStarted).not.toHaveBeenCalled();
+    });
+  });
 });
+
+// Helper fn to render a button to test each tracking function in the store
+const renderTrackingTest = <
+  K extends keyof TeacherBrowseAnalyticsStore["track"],
+>(
+  programmeState: ProgrammeState,
+  eventName: K,
+  ...eventProps: Parameters<TeacherBrowseAnalyticsStore["track"][K]>
+) => {
+  const TrackButton = () => {
+    const track = useTeacherBrowseAnalytics((state) => state.track);
+    const trackEvent = track[eventName] as (
+      ...args: Parameters<TeacherBrowseAnalyticsStore["track"][K]>
+    ) => void;
+    return <button onClick={() => trackEvent(...eventProps)}>Track</button>;
+  };
+
+  return renderWithProviders()(
+    <TeacherBrowseAnalyticsStoreProvider
+      programmeState={programmeState}
+      accessLevel="lesson"
+    >
+      <TrackButton />
+    </TeacherBrowseAnalyticsStoreProvider>,
+  );
+};

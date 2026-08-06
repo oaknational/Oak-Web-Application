@@ -47,9 +47,9 @@ export type TeacherBrowseAnalyticsStore = {
   accessLevel: AccessLevelValueType;
   avo: TrackFns;
   track: {
-    lessonResourceDownloadStarted: (
-      downloadResourceButtonName: DownloadResourceButtonNameValueType,
-    ) => void;
+    lessonResourceDownloadStarted: (data: {
+      downloadResourceButtonName: DownloadResourceButtonNameValueType;
+    }) => void;
     unitDownloaded: () => void;
     unitDownloadStarted: () => void;
     curriculumExplainerExplored: () => void;
@@ -120,9 +120,7 @@ export const createTeacherBrowseAnalyticsStore = (
   return createStore<TeacherBrowseAnalyticsStore>()((_, get) => ({
     ...initialState,
     track: {
-      lessonResourceDownloadStarted: (
-        downloadResourceButtonName: DownloadResourceButtonNameValueType,
-      ) => {
+      lessonResourceDownloadStarted: (data) => {
         const { avo, programmeState, journeyId } = get();
 
         // Lesson properties are unavailable at other browse levels, so the
@@ -131,18 +129,17 @@ export const createTeacherBrowseAnalyticsStore = (
           reportAnalyticsError({
             event: "lessonResourceDownloadStarted",
             programmeState,
-            downloadResourceButtonName,
+            downloadResourceButtonName: data.downloadResourceButtonName,
           });
           return;
         }
 
         const analyticsProperties =
           getLessonAnalyticsProperties(programmeState);
-
         avo.lessonResourceDownloadStarted({
           engagementIntent: EngagementIntent.USE,
           componentType: ComponentType.LESSON_DOWNLOAD_BUTTON,
-          downloadResourceButtonName,
+          ...data,
           journeyId,
           ...coreProperties,
           ...analyticsProperties,
