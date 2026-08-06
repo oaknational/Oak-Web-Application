@@ -1,7 +1,7 @@
 import { notFound, redirect, RedirectType } from "next/navigation";
 import { Metadata } from "next";
 import { cache } from "react";
-import { draftMode } from "next/headers";
+import { cookies, draftMode } from "next/headers";
 
 import { ProgrammeView } from "./Components/ProgrammeView";
 import { isTabSlug } from "./tabSchema";
@@ -36,6 +36,7 @@ import { cacheData } from "@/node-lib/cache";
 import CMSClient from "@/node-lib/cms";
 import { getMvRefreshTime } from "@/pages-helpers/curriculum/downloads/getMvRefreshTime";
 import { validateServerSearchParams } from "@/utils/validateProgrammePageSearchParams";
+import { isFeatureFlagEnabled } from "@/utils/featureFlagServer";
 
 const reportError = errorReporter("programme-page::app");
 
@@ -152,6 +153,7 @@ export async function generateMetadata({
 }
 
 const InnerProgrammePage = async (props: AppPageProps<ProgrammePageParams>) => {
+  const cookieStore = await cookies();
   const originalSearchParams = await props.searchParams!;
   const searchParams = validateServerSearchParams(originalSearchParams);
   const { slug: subjectPhaseSlug, tab } = await props.params;
@@ -282,6 +284,15 @@ const InnerProgrammePage = async (props: AppPageProps<ProgrammePageParams>) => {
     ks4OptionTitle: curriculumSelectionTitles.examboardTitle,
   };
 
+  const isImplementationGuidesEnabled = await isFeatureFlagEnabled(
+    Object.fromEntries(
+      cookieStore.getAll().map(({ name, value }) => [name, value]),
+    ),
+    "implementation-guides",
+  );
+
+  console.log({ isImplementationGuidesEnabled });
+
   const results = {
     subjectPhaseSlug,
     curriculumSelectionSlugs: subjectPhaseKeystageSlugs,
@@ -297,6 +308,9 @@ const InnerProgrammePage = async (props: AppPageProps<ProgrammePageParams>) => {
     curriculumDownloadsTabData,
     mvRefreshTime,
     initialFilter: resolvedFilter,
+    featureFlags: {
+      "implementation-guides": isImplementationGuidesEnabled,
+    },
   };
 
   return <ProgrammeView {...results} />;

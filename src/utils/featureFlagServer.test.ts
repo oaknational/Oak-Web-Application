@@ -1,5 +1,3 @@
-import type { GetServerSidePropsContext } from "next";
-
 import {
   isFeatureFlagEnabled,
   isFeatureFlagEnabledAtBuild,
@@ -9,13 +7,6 @@ import { getFeatureFlag } from "@/node-lib/posthog/getFeatureFlag";
 import { getPosthogIdFromCookie } from "@/node-lib/posthog/getPosthogId";
 jest.mock("@/node-lib/posthog/getFeatureFlag");
 jest.mock("@/node-lib/posthog/getPosthogId");
-
-const getAllCookiesMock = jest.fn();
-jest.mock("next/headers", () => ({
-  cookies: jest.fn(() => ({
-    getAll: (...args: []) => getAllCookiesMock(...args),
-  })),
-}));
 
 jest.mock("./featureFlags", () => ({
   process: {
@@ -32,15 +23,7 @@ describe("isFeatureFlagEnabled", () => {
     (getPosthogIdFromCookie as jest.Mock).mockReturnValue("1111");
     (getFeatureFlag as jest.Mock).mockResolvedValue(true);
 
-    const mockContext = {
-      req: {
-        cookies: {
-          getAll: () => getAllCookiesMock(),
-        },
-      },
-    } as unknown as GetServerSidePropsContext;
-
-    const result = await isFeatureFlagEnabled(mockContext, "oaks-impact");
+    const result = await isFeatureFlagEnabled({}, "oaks-impact");
     expect(result).toBe(true);
   });
 
@@ -48,15 +31,7 @@ describe("isFeatureFlagEnabled", () => {
     (getPosthogIdFromCookie as jest.Mock).mockReturnValue("1111");
     (getFeatureFlag as jest.Mock).mockResolvedValue(false);
 
-    const mockContext = {
-      req: {
-        cookies: {
-          getAll: () => getAllCookiesMock(),
-        },
-      },
-    } as unknown as GetServerSidePropsContext;
-
-    const result = await isFeatureFlagEnabled(mockContext, "oaks-impact");
+    const result = await isFeatureFlagEnabled({}, "oaks-impact");
     expect(result).toBe(false);
   });
 });

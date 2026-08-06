@@ -124,6 +124,7 @@ const defaultProps = {
     subjectTitle: "Science",
     ks4OptionTitle: "AQA",
   },
+  featureFlags: {},
 };
 
 const render = renderWithProviders();
@@ -389,5 +390,18 @@ describe("ProgrammeView", () => {
       });
       expect(heading).toBeInTheDocument();
     });
+  });
+
+  test("shows the implementation guide callout when enabled", () => {
+    const featureFlagProps = {
+      ...defaultProps,
+      featureFlags: { "implementation-guides": true },
+    };
+
+    render(<ProgrammeView {...featureFlagProps} />);
+    const callout = screen.getByText(
+      /Leading your school's use of Oak's Science Secondary curriculum\? Download our implementation toolkit\./i,
+    );
+    expect(callout).toBeInTheDocument();
   });
 });
