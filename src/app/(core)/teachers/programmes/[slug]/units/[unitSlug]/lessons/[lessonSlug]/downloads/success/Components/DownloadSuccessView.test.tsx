@@ -94,7 +94,7 @@ const renderDownloadSuccessView = (
   props?: Partial<DownloadSuccessViewProps>,
 ) => {
   return renderWithProviders()(
-    <DownloadSuccessView lesson={baseLesson} ctaVariant="control" {...props} />,
+    <DownloadSuccessView lesson={baseLesson} {...props} />,
   );
 };
 
@@ -197,14 +197,5 @@ describe("DownloadSuccessView", () => {
         /Click the question mark in the bottom-right of the page if you need extra help with this/i,
       ),
     ).not.toBeInTheDocument();
-  });
-
-  it("renders test variant CTA copy when ctaVariant is test", () => {
-    renderDownloadSuccessView({ ctaVariant: "test" });
-
-    expect(
-      screen.getByText("Everything you need to plan a unit in one click"),
-    ).toBeInTheDocument();
-    expect(screen.queryByText("Ready to keep going?")).not.toBeInTheDocument();
   });
 });
