@@ -21,8 +21,12 @@ const getSessionId = jest.fn();
 
 const lessonResourceDownloadStarted = jest.fn();
 const unitDownloadStarted = jest.fn();
+const unitDownloaded = jest.fn();
+const onwardContentSelected = jest.fn();
 const curriculumExplainerExplored = jest.fn();
 const lessonShareStarted = jest.fn();
+const programmeRefined = jest.fn();
+
 jest.mock("@/context/Analytics/useAnalytics", () => ({
   __esModule: true,
   default: () => ({
@@ -33,6 +37,9 @@ jest.mock("@/context/Analytics/useAnalytics", () => ({
       curriculumExplainerExplored: (...args: []) =>
         curriculumExplainerExplored(...args),
       lessonShareStarted: (...args: []) => lessonShareStarted(...args),
+      unitDownloaded: (...args: []) => unitDownloaded(...args),
+      onwardContentSelected: (...args: []) => onwardContentSelected(...args),
+      programmeRefined: (...args: []) => programmeRefined(...args),
     },
     getSessionId: () => getSessionId(),
   }),
@@ -165,7 +172,7 @@ describe("TeacherBrowseAnalyticsStoreProvider", () => {
       teachersLessonOverviewFixture(),
     );
 
-    it("handles lesson level tracking with the correct props", () => {
+    it("calls lessonResourceDownloadStarted with the correct props", () => {
       renderTrackingTest(lessonLevelState, "lessonResourceDownloadStarted", {
         downloadResourceButtonName: "all",
       });
@@ -203,7 +210,7 @@ describe("TeacherBrowseAnalyticsStoreProvider", () => {
         }),
       );
     });
-    it("handles unit level tracking with the correct props", () => {
+    it("calls unitDownloadStarted with the correct props", () => {
       renderTrackingTest(unitLevelState, "unitDownloadStarted");
 
       const trackBtn = screen.getByRole("button", { name: "Track" });
@@ -231,7 +238,7 @@ describe("TeacherBrowseAnalyticsStoreProvider", () => {
         }),
       );
     });
-    it("handles programe level tracking", () => {
+    it("calls curriculumExplainerExplored with the correct props", () => {
       renderTrackingTest(programmeLevelState, "curriculumExplainerExplored");
 
       const trackBtn = screen.getByRole("button", { name: "Track" });
@@ -252,7 +259,91 @@ describe("TeacherBrowseAnalyticsStoreProvider", () => {
         }),
       );
     });
-    it("handles invalid browse level for lesson level events", () => {
+    it("calls onwardContentSelected with the correct props", () => {
+      renderTrackingTest(lessonLevelState, "onwardContentSelected", {
+        onwardIntent: "view-lesson",
+      });
+
+      const trackBtn = screen.getByRole("button", { name: "Track" });
+      trackBtn.click();
+
+      expect(onwardContentSelected).toHaveBeenCalledWith(
+        expect.objectContaining({
+          analyticsUseCase: "Teacher",
+          eventVersion: "2.0.0",
+          examBoard: null,
+          journeyId: "session-1:secondary-biology",
+          keyStageSlug: "ks3",
+          keyStageTitle: "Key stage 3",
+          lessonName: "Structure of cells",
+          lessonReleaseCohort: "2023-2026",
+          lessonReleaseDate: "2024-09-29T14:00:00.000Z",
+          lessonSlug: "lesson-3-structure-of-cells",
+          navigationType: "narrow",
+          onwardIntent: "view-lesson",
+          pathway: null,
+          phase: "secondary",
+          platform: "owa",
+          product: "teacher lesson resources",
+          releaseGroup: "2023",
+          subjectSlug: "biology",
+          subjectTitle: "Biology",
+          tierName: null,
+          unitName: "Cells",
+          unitSlug: "cells",
+          yearGroupName: "Year 7",
+          yearGroupSlug: "year-7",
+        }),
+      );
+    });
+    it("calls programmeRefined with the correct props", () => {
+      renderTrackingTest(lessonLevelState, "programmeRefined", {
+        componentType: "all_filters",
+        activeFilters: {
+          childSubjects: [],
+          subjectCategories: [],
+          tiers: [],
+          years: [],
+          threads: [],
+          pathways: [],
+          keystages: [],
+        },
+        filterType: "Content type filter",
+        filterValue: "test",
+      });
+
+      const trackBtn = screen.getByRole("button", { name: "Track" });
+      trackBtn.click();
+
+      expect(programmeRefined).toHaveBeenCalledWith({
+        accessLevel: "lesson",
+        activeFilters: {
+          childSubjects: [],
+          keystages: [],
+          pathways: [],
+          subjectCategories: [],
+          threads: [],
+          tiers: [],
+          years: [],
+        },
+        analyticsUseCase: "Teacher",
+        clientEnvironment: null,
+        componentType: "all_filters",
+        engagementIntent: "refine",
+        eventVersion: "2.0.0",
+        filterType: "Content type filter",
+        filterValue: "test",
+        googleLoginHint: null,
+        journeyId: "session-1:secondary-biology",
+        navigationType: "narrow",
+        phase: "secondary",
+        platform: "owa",
+        product: "teacher lesson resources",
+        subjectSlug: "biology",
+        subjectTitle: "Biology",
+      });
+    });
+    it("handles invalid browse level for lessonResourceDownloadStarted", () => {
       renderTrackingTest(programmeLevelState, "lessonResourceDownloadStarted", {
         downloadResourceButtonName: "all",
       });
@@ -268,7 +359,7 @@ describe("TeacherBrowseAnalyticsStoreProvider", () => {
       expect(lessonResourceDownloadStarted).not.toHaveBeenCalled();
       expect(result).toBeUndefined();
     });
-    it("handles invalid browse level for unit level events", () => {
+    it("handles invalid browse level for unitDownloadStarted", () => {
       renderTrackingTest(programmeLevelState, "unitDownloadStarted");
       const trackBtn = screen.getByRole("button", { name: "Track" });
       const result = trackBtn.click();
@@ -279,6 +370,34 @@ describe("TeacherBrowseAnalyticsStoreProvider", () => {
         }),
       );
       expect(unitDownloadStarted).not.toHaveBeenCalled();
+      expect(result).toBeUndefined();
+    });
+    it("handles invalid browse level for unitDownloaded", () => {
+      renderTrackingTest(programmeLevelState, "unitDownloaded");
+      const trackBtn = screen.getByRole("button", { name: "Track" });
+      const result = trackBtn.click();
+      expect(reportError).toHaveBeenCalledWith(
+        expect.objectContaining({
+          code: "analytics/teacher-browse",
+          meta: expect.objectContaining({ browseLevel: "programme" }),
+        }),
+      );
+      expect(unitDownloaded).not.toHaveBeenCalled();
+      expect(result).toBeUndefined();
+    });
+    it("handles invalid browse level for onwardContentSelected", () => {
+      renderTrackingTest(programmeLevelState, "onwardContentSelected", {
+        onwardIntent: "view-unit",
+      });
+      const trackBtn = screen.getByRole("button", { name: "Track" });
+      const result = trackBtn.click();
+      expect(reportError).toHaveBeenCalledWith(
+        expect.objectContaining({
+          code: "analytics/teacher-browse",
+          meta: expect.objectContaining({ browseLevel: "programme" }),
+        }),
+      );
+      expect(onwardContentSelected).not.toHaveBeenCalled();
       expect(result).toBeUndefined();
     });
   });
