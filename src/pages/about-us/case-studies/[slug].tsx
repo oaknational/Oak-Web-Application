@@ -137,7 +137,7 @@ const AboutUsOaksImpactCaseStudy: NextPage<
                     };
                   }),
                 ]}
-                body={caseStudy.textRaw ?? []}
+                body={caseStudy.textRaw ?? undefined}
               />
             </OakBox>
           </OaksImpactCaseStudyContentLayout>
