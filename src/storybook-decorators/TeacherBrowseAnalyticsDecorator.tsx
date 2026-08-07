@@ -39,6 +39,8 @@ const state: TeacherBrowseAnalyticsStore = {
     videoStarted: () => console.log("videoStarted fired"),
     videoPaused: () => console.log("videoPaused fired"),
     videoFinished: () => console.log("videoFinished fired"),
+    lessonResourcesDownloaded: () =>
+      console.log("lessonResourcesDownloaded fired"),
   },
 };
 

@@ -178,7 +178,7 @@ export const createTeacherBrowseAnalyticsStore = (
           journeyId,
           componentType: "lesson_download_button",
           engagementIntent: "use",
-          emailSupplied: !!data?.email,
+          emailSupplied: !!data.email,
           onwardContent: data.onwardContent,
           resourceType: formattedSchool.selectedResourcesForTracking,
           totalDownloadableResources: data.totalDownloadableResources,
