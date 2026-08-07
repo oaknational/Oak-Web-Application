@@ -21,15 +21,8 @@ import {
   DownloadResourceType,
   ResourceFormValues,
 } from "@/components/TeacherComponents/types/downloadAndShare.types";
-import Breadcrumbs from "@/components/SharedComponents/Breadcrumbs";
 import DownloadCardGroup from "@/components/TeacherComponents/DownloadCardGroup";
 import debouncedSubmit from "@/components/TeacherComponents/helpers/downloadAndShareHelpers/downloadDebounceSubmit";
-import {
-  getLessonOverviewBreadCrumb,
-  getLessonDownloadsBreadCrumb,
-  getBreadcrumbsForLessonPathway,
-  getCommonPathway,
-} from "@/components/TeacherComponents/helpers/lessonHelpers/lesson.helpers";
 import { LessonPathway } from "@/components/TeacherComponents/types/lesson.types";
 import DownloadPageWithAccordion from "@/components/TeacherComponents/DownloadPageWithAccordion";
 import {
@@ -74,7 +67,7 @@ type NonCanonicalLesson = BaseLessonDownload & {
 
 type LessonDownloadsProps = {
   lesson: NonCanonicalLesson;
-  breadcrumbsSlot?: ReactNode;
+  breadcrumbsSlot: ReactNode;
   successRedirect?: string;
 };
 
@@ -268,29 +261,7 @@ export function LessonDownloads(props: Readonly<LessonDownloadsProps>) {
           $mb={isDownloadSuccessful ? "spacing-0" : "spacing-32"}
           $mt={"spacing-24"}
         >
-          {props.breadcrumbsSlot ? (
-            props.breadcrumbsSlot
-          ) : (
-            // TD: remove legacy breadcrumbs once the integrated journey is fully rolled out.
-            <Breadcrumbs
-              breadcrumbs={[
-                ...getBreadcrumbsForLessonPathway(getCommonPathway([lesson])),
-                getLessonOverviewBreadCrumb({
-                  lessonTitle,
-                  lessonSlug,
-                  programmeSlug,
-                  unitSlug,
-                  isCanonical: false,
-                }),
-                getLessonDownloadsBreadCrumb({
-                  lessonSlug,
-                  programmeSlug,
-                  unitSlug,
-                  disabled: true,
-                }),
-              ]}
-            />
-          )}
+          {props.breadcrumbsSlot}
           <OakHandDrawnHR
             hrColor={"text-subdued"}
             $height={"spacing-4"}
