@@ -22,10 +22,15 @@ export default defineConfig({
   /* Single worker in CI to avoid overwhelming a preview deployment */
   workers: process.env.CI ? 1 : undefined,
 
-  reporter: [
-    ["list"],
-    ["html", { outputFolder: "playwright-report", open: "never" }],
-  ],
+  reporter: process.env.CI
+    ? [
+        ["github"],
+        ["html", { outputFolder: "playwright-report", open: "never" }],
+      ]
+    : [
+        ["list"],
+        ["html", { outputFolder: "playwright-report", open: "never" }],
+      ],
 
   use: {
     baseURL,

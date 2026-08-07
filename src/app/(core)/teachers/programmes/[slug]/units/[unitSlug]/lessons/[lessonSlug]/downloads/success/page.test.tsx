@@ -12,11 +12,6 @@ jest.mock("next/navigation", () => ({
   },
 }));
 
-const featureFlagMock = jest.fn().mockResolvedValue(undefined);
-jest.mock("@/utils/featureFlags", () => ({
-  getFeatureFlagValue: () => featureFlagMock(),
-}));
-
 const mockTeachersUnitOverview = jest.fn();
 jest.mock("@/node-lib/curriculum-api-2023", () => ({
   __esModule: true,
@@ -48,7 +43,6 @@ const defaultParams = {
 describe("LessonDownloadsSuccessPage", () => {
   beforeEach(() => {
     mockTeachersUnitOverview.mockResolvedValue(unitFixture);
-    featureFlagMock.mockResolvedValue(undefined);
   });
 
   it("fetches unit data and renders success confirmation", async () => {
@@ -64,24 +58,6 @@ describe("LessonDownloadsSuccessPage", () => {
     });
     expect(result).toMatchSnapshot();
   });
-
-  it.each([
-    { flagValue: undefined, expectedVariant: "control" },
-    { flagValue: "control", expectedVariant: "control" },
-    { flagValue: "test", expectedVariant: "test" },
-  ])(
-    "renders $expectedVariant variant when feature flag is $flagValue",
-    async ({ flagValue }) => {
-      featureFlagMock.mockResolvedValue(flagValue);
-
-      const result = await LessonDownloadsSuccessPage({
-        params: Promise.resolve(defaultParams),
-        searchParams: Promise.resolve({}),
-      });
-
-      expect(result).toMatchSnapshot();
-    },
-  );
 
   it("renders 404 when lesson release date is missing", async () => {
     mockTeachersUnitOverview.mockResolvedValue({
