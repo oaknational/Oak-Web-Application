@@ -1,0 +1,47 @@
+query nationalCurriculumInsightsSubjectBySlug(
+  $subjectSlug: String
+  $isDraftFilter: Sanity_DocumentFilter
+) {
+  allNationalCurriculumInsightsSubject(
+    where: { _: $isDraftFilter, slug: { current: { eq: $subjectSlug } } }
+    sort: { _updatedAt: DESC }
+    limit: 1
+  ) {
+    id: _id
+    title
+    summary
+    modules {
+      ...NationalCurriculumInsightsModules
+    }
+    slug {
+      current
+    }
+    curriculumSubjectSlugs
+    tabs {
+      kind
+      label
+      page {
+        id: _id
+        pageType
+        title
+        summary
+        keyStages {
+          keyStage
+          label
+          page {
+            id: _id
+            keyStage
+            title
+            summary
+            modules {
+              ...NationalCurriculumInsightsModules
+            }
+          }
+        }
+        modules {
+          ...NationalCurriculumInsightsModules
+        }
+      }
+    }
+  }
+}

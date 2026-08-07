@@ -1,0 +1,194 @@
+fragment NationalCurriculumInsightsModules on NationalCurriculumInsightsFaqSectionOrNationalCurriculumInsightsHeroSectionOrNationalCurriculumInsightsImageTextSectionOrNationalCurriculumInsightsKeyStageCardsSectionOrNationalCurriculumInsightsNewsletterSectionOrNationalCurriculumInsightsOverviewSectionOrNationalCurriculumInsightsPhaseCardsSectionOrNationalCurriculumInsightsPromotionalHeadingSectionOrNationalCurriculumInsightsQuoteSectionOrNationalCurriculumInsightsRichTextSectionOrNationalCurriculumInsightsSubjectNavigationSectionOrNationalCurriculumInsightsTableSectionOrNationalCurriculumInsightsVideoCardsSection {
+  __typename
+  ... on NationalCurriculumInsightsHeroSection {
+    heading
+    bodyPortableText: bodyRaw
+    image {
+      altText
+      isPresentational
+      asset {
+        _id
+        url
+      }
+    }
+    authorName
+    authorRole
+    authorImage {
+      altText
+      isPresentational
+      asset {
+        _id
+        url
+      }
+    }
+    statusMessage
+  }
+  ... on NationalCurriculumInsightsOverviewSection {
+    heading
+    bodyPortableText: bodyRaw
+    image {
+      altText
+      isPresentational
+      asset {
+        _id
+        url
+      }
+    }
+  }
+  ... on NationalCurriculumInsightsPhaseCardsSection {
+    cards {
+      phase
+      heading
+      linkLabel
+      image {
+        altText
+        isPresentational
+        asset {
+          _id
+          url
+        }
+      }
+    }
+  }
+  ... on NationalCurriculumInsightsKeyStageCardsSection {
+    cards {
+      keyStage
+      heading
+      linkLabel
+      image {
+        altText
+        isPresentational
+        asset {
+          _id
+          url
+        }
+      }
+    }
+  }
+  ... on NationalCurriculumInsightsPromotionalHeadingSection {
+    heading
+  }
+  ... on NationalCurriculumInsightsSubjectNavigationSection {
+    phases
+    primaryHeading
+    secondaryHeading
+  }
+  ... on NationalCurriculumInsightsNewsletterSection {
+    heading
+    introduction
+    benefits
+    illustration {
+      altText
+      isPresentational
+      asset {
+        _id
+        url
+      }
+    }
+    privacyPortableText: privacyTextRaw
+    formId
+    buttonLabel
+  }
+  ... on NationalCurriculumInsightsFaqSection {
+    heading
+    items {
+      question
+      answerPortableText: answerRaw
+      initiallyExpanded
+    }
+  }
+  ... on NationalCurriculumInsightsRichTextSection {
+    heading
+    contentPortableText: contentRaw
+  }
+  ... on NationalCurriculumInsightsImageTextSection {
+    heading
+    bodyPortableText: bodyRaw
+    image {
+      altText
+      isPresentational
+      asset {
+        _id
+        url
+      }
+    }
+    imagePosition
+    background
+    ctaLabel
+    ctaHref
+  }
+  ... on NationalCurriculumInsightsVideoCardsSection {
+    heading
+    introductionPortableText: introductionRaw
+    cards {
+      heading
+      description
+      image {
+        altText
+        isPresentational
+        asset {
+          _id
+          url
+        }
+      }
+      videoUrl
+      duration
+    }
+  }
+  ... on NationalCurriculumInsightsQuoteSection {
+    quote
+    attribution
+    role
+    image {
+      altText
+      isPresentational
+      asset {
+        _id
+        url
+      }
+    }
+  }
+  ... on NationalCurriculumInsightsTableSection {
+    heading
+    table {
+      rows {
+        cells
+      }
+    }
+  }
+}
+
+query nationalCurriculumInsightsHub($isDraftFilter: Sanity_DocumentFilter) {
+  allNationalCurriculumInsightsHub(
+    where: {
+      _: $isDraftFilter
+      _id: { matches: "*nationalCurriculumInsightsHub" }
+    }
+    sort: { _updatedAt: DESC }
+    limit: 1
+  ) {
+    id: _id
+    title
+    summary
+    subjects {
+      id: _id
+      title
+      slug {
+        current
+      }
+      curriculumSubjectSlugs
+      tabs {
+        kind
+        label
+        page {
+          id: _id
+          pageType
+          title
+        }
+      }
+    }
+    modules {
+      ...NationalCurriculumInsightsModules
+    }
+  }
+}
