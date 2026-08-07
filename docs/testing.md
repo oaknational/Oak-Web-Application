@@ -62,7 +62,8 @@ Before running Playwright tests locally, install browser binaries once per machi
 
 ### CI Behavior
 
-- CI workflow wiring for Playwright is follow-up work. When added, CI should install Playwright browser binaries with `pnpm exec playwright install --with-deps chromium` before running tests and upload `playwright-report/` as an artifact.
+- Playwright CI runs in the PR workflow [`.github/workflows/pr_playwright_preview_tests.yml`](../.github/workflows/pr_playwright_preview_tests.yml), which waits for the PR preview deployment and then runs tests against that URL.
+- The shared Playwright action caches Chromium binaries (keyed by OS, architecture, and Playwright version), installs required system dependencies, and uploads the HTML report artifact.
 - Retries are configured as `1` in CI and `0` locally.
 
 ### Jest Separation

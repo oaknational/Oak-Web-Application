@@ -1,3 +1,13 @@
+## [1.1149.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.1149.1...v1.1149.2) (2026-08-06)
+
+
+### Bug Fixes
+
+* textRaw can be nullish so default to undefined to make component API ([a6f328c](https://github.com/oaknational/Oak-Web-Application/commit/a6f328c7f02b27fcddcc5fc4bd1de1888da58526))
+* updated oak-components and use new portabletext as input ([6324d81](https://github.com/oaknational/Oak-Web-Application/commit/6324d817c4502d2be248fc871bd378408276b4ae))
+
+## [1.1149.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.1149.0...v1.1149.1) (2026-08-06)
+
 # [1.1149.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1148.0...v1.1149.0) (2026-08-06)
 
 
