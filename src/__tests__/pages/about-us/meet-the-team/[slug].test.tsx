@@ -11,8 +11,13 @@ import AboutUsMeetTheTeamPerson, {
 } from "@/pages/about-us/meet-the-team/[slug]";
 import { topNavFixture } from "@/node-lib/curriculum-api-2023/fixtures/topNav.fixture";
 import CMSClient from "@/node-lib/cms";
+import { isFeatureFlagEnabledStatic } from "@/utils/featureFlagChecks/static";
 
 jest.mock("../../../../node-lib/cms");
+jest.mock("@/utils/featureFlagChecks/static", () => ({
+  isFeatureFlagEnabledStatic: jest.fn(),
+}));
+const mockIsFeatureFlagEnabledStatic = jest.mocked(isFeatureFlagEnabledStatic);
 
 const mockTeamMember: AboutUsMeetTheTeamPersonPageProps["pageData"] = {
   id: "test-id",
@@ -76,6 +81,7 @@ describe("pages/about/meet-the-team/[slug].tsx", () => {
   beforeEach(() => {
     jest.clearAllMocks();
     jest.resetModules();
+    mockIsFeatureFlagEnabledStatic.mockReturnValue(false);
     (CMSClient.teamMemberBySlug as jest.Mock).mockResolvedValue(mockTeamMember);
     (CMSClient.meetTheTeamPage as jest.Mock).mockResolvedValue(
       mockMeetTheTeamPage,

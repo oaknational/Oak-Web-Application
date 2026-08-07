@@ -4,8 +4,14 @@ import { SerializedPost } from "@/pages-helpers/home/getBlogPosts";
 import { BlogPostPreview, WebinarPreview } from "@/common-lib/cms-types";
 import { topNavFixture } from "@/node-lib/curriculum-api-2023/fixtures/topNav.fixture";
 import curriculumPhaseOptions from "@/browser-lib/fixtures/curriculumPhaseOptions";
+import { isFeatureFlagEnabledStatic } from "@/utils/featureFlagChecks/static";
+
+jest.mock("@/utils/featureFlagChecks/static", () => ({
+  isFeatureFlagEnabledStatic: jest.fn(),
+}));
 
 const render = renderWithProviders();
+const mockIsFeatureFlagEnabledStatic = jest.mocked(isFeatureFlagEnabledStatic);
 
 export const mockPosts = [
   {
@@ -61,6 +67,11 @@ jest.mock("@/node-lib/cms", () => ({
 }));
 
 describe("Teachers Page", () => {
+  beforeEach(() => {
+    jest.clearAllMocks();
+    mockIsFeatureFlagEnabledStatic.mockReturnValue(false);
+  });
+
   describe("Page component", () => {
     it("renders", () => {
       const { baseElement } = render(<Home {...props} />);
@@ -96,6 +107,7 @@ describe("Teachers Page", () => {
     beforeEach(() => {
       jest.clearAllMocks();
       jest.resetModules();
+      mockIsFeatureFlagEnabledStatic.mockReturnValue(false);
     });
 
     it("Should return no more than 4 posts", async () => {
