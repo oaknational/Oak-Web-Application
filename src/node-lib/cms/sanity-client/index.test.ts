@@ -6,6 +6,11 @@ import webinarBySlugFixture from "../../sanity-graphql/fixtures/webinarBySlug.js
 import landingPageBySlugFixture from "../../sanity-graphql/fixtures/landingPageBySlug.json";
 import { videoSchema } from "../../../common-lib/cms-types/base";
 
+import {
+  getNationalCurriculumInsightsHub,
+  getNationalCurriculumInsightsSubjectBySlug,
+} from "./nationalCurriculumInsightsGroq";
+
 import getSanityClient from "./";
 
 /**
@@ -13,6 +18,11 @@ import getSanityClient from "./";
  * sanity-graphql/__mocks__
  */
 jest.mock("../../sanity-graphql");
+jest.mock("./nationalCurriculumInsightsGroq", () => ({
+  __esModule: true,
+  getNationalCurriculumInsightsHub: jest.fn(),
+  getNationalCurriculumInsightsSubjectBySlug: jest.fn(),
+}));
 
 jest.mock("./parseResults", () => {
   const original = jest.requireActual("./parseResults");
@@ -34,6 +44,67 @@ jest.mock("./resolveSanityReferences", () => {
 const mockSanityGraphqlApi = sanityGraphqlApi as jest.MockedObject<
   typeof sanityGraphqlApi
 >;
+const mockGetNationalCurriculumInsightsSubjectBySlug =
+  getNationalCurriculumInsightsSubjectBySlug as jest.MockedFunction<
+    typeof getNationalCurriculumInsightsSubjectBySlug
+  >;
+const mockGetNationalCurriculumInsightsHub =
+  getNationalCurriculumInsightsHub as jest.MockedFunction<
+    typeof getNationalCurriculumInsightsHub
+  >;
+
+const insightsModule = {
+  __typename: "NationalCurriculumInsightsRichTextSection" as const,
+  heading: "Introduction",
+  contentPortableText: [
+    {
+      _key: "block",
+      _type: "block",
+      children: [{ _key: "span", _type: "span", marks: [], text: "Content" }],
+      markDefs: [],
+      style: "normal",
+    },
+  ],
+};
+const insightsSubject = {
+  id: "nationalCurriculumInsightsSubject-science",
+  pageType: "overview" as const,
+  title: "Science",
+  summary: "Science overview summary",
+  modules: [insightsModule],
+  slug: "science",
+  curriculumSubjectSlugs: ["biology"],
+  tabs: [
+    {
+      kind: "primary" as const,
+      label: "Primary",
+      page: {
+        id: "nationalCurriculumInsightsPage-science-primary",
+        pageType: "primary" as const,
+        title: "Primary science",
+        summary: "Primary science summary",
+        keyStages: [],
+        modules: [insightsModule],
+      },
+    },
+  ],
+};
+const insightsHub = {
+  id: "nationalCurriculumInsightsHub",
+  title: "National curriculum insights",
+  summary: "Explore changes",
+  modules: [insightsModule],
+  subjects: [
+    {
+      ...insightsSubject,
+      tabs: insightsSubject.tabs.map(({ kind, label, page }) => ({
+        kind,
+        label,
+        page: { id: page.id, pageType: page.pageType, title: page.title },
+      })),
+    },
+  ],
+};
 
 const testVideo = {
   title: "Some video from the library because it's the only one I can find",
@@ -49,6 +120,27 @@ describe("cms/sanity-client", () => {
   beforeEach(() => {
     jest.clearAllMocks();
     jest.resetModules();
+    mockGetNationalCurriculumInsightsHub.mockResolvedValue(insightsHub);
+    mockGetNationalCurriculumInsightsSubjectBySlug.mockImplementation(
+      async (_subjectSlug, params) =>
+        params?.previewMode
+          ? {
+              ...insightsSubject,
+              tabs: insightsSubject.tabs.map((tab) =>
+                tab.kind === "primary"
+                  ? {
+                      ...tab,
+                      page: {
+                        ...tab.page,
+                        id: `drafts.${tab.page.id}`,
+                        title: "Draft primary science",
+                      },
+                    }
+                  : tab,
+              ),
+            }
+          : insightsSubject,
+    );
   });
 
   describe("webinarsBySlug", () => {
@@ -154,6 +246,78 @@ describe("cms/sanity-client", () => {
 
       await expect(getSanityClient().landingPages()).rejects.toThrow();
     });
+  });
+
+  describe("national curriculum insights", () => {
+    it("returns the independently editable hub and ordered catalogue", async () => {
+      const result = await getSanityClient().nationalCurriculumInsightsHub();
+
+      expect(result?.subjects[0]?.slug).toBe("science");
+      expect(result?.modules).toEqual([insightsModule]);
+      expect(mockGetNationalCurriculumInsightsHub).toBeCalledWith({});
+    });
+
+    it("returns the subject Overview and its independently referenced phase pages", async () => {
+      const result =
+        await getSanityClient().nationalCurriculumInsightsSubjectBySlug(
+          "science",
+        );
+
+      expect(result?.pageType).toBe("overview");
+      expect(result?.modules).toEqual([insightsModule]);
+      expect(result?.tabs.map(({ kind }) => kind)).toEqual(["primary"]);
+      expect(result?.id).not.toBe(result?.tabs[0]?.page.id);
+      expect(mockGetNationalCurriculumInsightsSubjectBySlug).toBeCalledWith(
+        "science",
+        {},
+      );
+    });
+
+    it("passes preview mode through to the subject reader", async () => {
+      const result =
+        await getSanityClient().nationalCurriculumInsightsSubjectBySlug(
+          "science",
+          { previewMode: true },
+        );
+
+      expect(result?.tabs[0]?.page.id).toBe(
+        "drafts.nationalCurriculumInsightsPage-science-primary",
+      );
+      expect(mockGetNationalCurriculumInsightsSubjectBySlug).toBeCalledWith(
+        "science",
+        { previewMode: true },
+      );
+    });
+
+    it("returns null for an unknown subject", async () => {
+      mockGetNationalCurriculumInsightsSubjectBySlug.mockResolvedValueOnce(
+        null,
+      );
+
+      await expect(
+        getSanityClient().nationalCurriculumInsightsSubjectBySlug(
+          "unknown-subject",
+        ),
+      ).resolves.toBeNull();
+    });
+
+    it.each([
+      ["an empty subject slug", ""],
+      ["a malformed subject slug", "science!"],
+    ])(
+      "returns null without querying for %s",
+      async (_description, subjectSlug) => {
+        await expect(
+          getSanityClient().nationalCurriculumInsightsSubjectBySlug(
+            subjectSlug,
+          ),
+        ).resolves.toBeNull();
+
+        expect(
+          mockGetNationalCurriculumInsightsSubjectBySlug,
+        ).not.toHaveBeenCalled();
+      },
+    );
   });
 
   describe("videoSchema", () => {
