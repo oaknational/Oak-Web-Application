@@ -138,9 +138,6 @@ export const useResourceFormState = (props: UseResourceFormStateProps) => {
     setSchoolUrn,
   } = useSyncHubspotAndLocalStorage({ setValue });
 
-  const shouldDisplayDetailsCompleted =
-    !!hasDetailsFromLocalStorage && !editDetailsClicked;
-
   const resources = useMemo(() => getResourcesForType(props), [props]);
   const additionalResources = useMemo(
     () => getAdditionalResourcesForType(props),
@@ -162,18 +159,13 @@ export const useResourceFormState = (props: UseResourceFormStateProps) => {
     [initialResources],
   );
 
+  // Mark local storage for refresh when edit details button clicked
   useEffect(() => {
-    if (hasDetailsFromLocalStorage || shouldDisplayDetailsCompleted) {
-      setHasLocalStorageDetails(true);
+    if (hasDetailsFromLocalStorage) {
+      const localStorageNeedsRefreshing = !editDetailsClicked;
+      setHasLocalStorageDetails(localStorageNeedsRefreshing);
     }
-    if (editDetailsClicked) {
-      setHasLocalStorageDetails(false);
-    }
-  }, [
-    hasDetailsFromLocalStorage,
-    editDetailsClicked,
-    shouldDisplayDetailsCompleted,
-  ]);
+  }, [hasDetailsFromLocalStorage, editDetailsClicked]);
 
   const setSchool = useCallback(
     (value: string, name?: string) => {
@@ -315,7 +307,8 @@ export const useResourceFormState = (props: UseResourceFormStateProps) => {
     schoolNameFromLocalStorage,
     schoolIdFromLocalStorage,
     setSchool,
-    shouldDisplayDetailsCompleted,
+    shouldDisplayDetailsCompleted:
+      !!hasDetailsFromLocalStorage && !editDetailsClicked,
     handleEditDetailsCompletedClick,
     selectedResources,
     schoolUrn,
