@@ -33,7 +33,7 @@ describe("AboutUsLayout", () => {
       isReady: true,
       isPreview: false,
     } as never);
-    process.env.FORCE_FEATURE_FLAG_OAKS_IMPACT = "false";
+    process.env.NEXT_PUBLIC_FORCE_FEATURE_FLAG_OAKS_IMPACT = "false";
   });
 
   it("renders children correctly", () => {
@@ -172,7 +172,7 @@ describe("AboutUsLayout", () => {
   });
 
   it("does not render Oak's impact link when feature flag is false", () => {
-    process.env.FORCE_FEATURE_FLAG_OAKS_IMPACT = "false";
+    process.env.NEXT_PUBLIC_FORCE_FEATURE_FLAG_OAKS_IMPACT = "false";
 
     const { queryByText } = renderWithProviders()(
       <AboutUsLayout>
@@ -185,11 +185,11 @@ describe("AboutUsLayout", () => {
 
   describe("when Oak's impact feature flag is enabled", () => {
     beforeEach(() => {
-      process.env.FORCE_FEATURE_FLAG_OAKS_IMPACT = "true";
+      process.env.NEXT_PUBLIC_FORCE_FEATURE_FLAG_OAKS_IMPACT = "true";
     });
 
     afterEach(() => {
-      process.env.FORCE_FEATURE_FLAG_OAKS_IMPACT = "false";
+      process.env.NEXT_PUBLIC_FORCE_FEATURE_FLAG_OAKS_IMPACT = "false";
     });
 
     it("renders Oak's impact link", () => {

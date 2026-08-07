@@ -29,7 +29,7 @@ async function expectFeatureFlagResult({
   forceFlag: "true" | "false";
   posthogEnabled: boolean;
 }) {
-  process.env.FORCE_FEATURE_FLAG_OAKS_IMPACT = forceFlag;
+  process.env.NEXT_PUBLIC_FORCE_FEATURE_FLAG_OAKS_IMPACT = forceFlag;
   (getPosthogIdFromCookie as jest.Mock).mockReturnValue("1111");
   (getFeatureFlag as jest.Mock).mockResolvedValue(posthogEnabled);
 }
