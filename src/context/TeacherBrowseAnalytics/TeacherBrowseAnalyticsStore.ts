@@ -299,11 +299,12 @@ export const createTeacherBrowseAnalyticsStore = (
           getProgrammeAnalyticsProperties(programmeState);
 
         avo.curriculumExplainerExplored({
+          ...coreProperties,
+          ...analyticsProperties,
           engagementIntent: "explore",
           componentType: "explainer_tab",
           journeyId,
-          ...coreProperties,
-          ...analyticsProperties,
+          product: "curriculum resources",
         });
       },
       curriculumResourcesDownloadRefined: (data) => {
@@ -319,6 +320,7 @@ export const createTeacherBrowseAnalyticsStore = (
           journeyId,
           engagementIntent: "refine",
           componentType: "download_tab",
+          product: "curriculum resources",
           childSubjectSlug: childSubjectSlug || "",
           childSubjectName: convertUnitSlugToTitle(childSubjectSlug || ""),
           learningTier: capitalize(tierSlug || "") as LearningTierValueType,
@@ -338,6 +340,7 @@ export const createTeacherBrowseAnalyticsStore = (
           journeyId,
           engagementIntent: "explore",
           componentType: "download_button",
+          product: "curriculum resources",
           emailSupplied: data.email != null,
           resourceType: ["curriculum document"] as ResourceTypeValueType[],
           schoolOption,
