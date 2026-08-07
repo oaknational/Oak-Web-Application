@@ -7,6 +7,9 @@ export type TrackScrolledToProps = {
   eventKey: string;
 };
 
+/*
+  Component to track when a user scrolls to a specific section of the page.
+*/
 export default function TrackScrolledTo({
   eventKey,
 }: Readonly<TrackScrolledToProps>) {
