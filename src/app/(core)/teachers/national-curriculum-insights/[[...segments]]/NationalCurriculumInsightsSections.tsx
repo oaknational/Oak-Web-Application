@@ -747,6 +747,8 @@ export const NationalCurriculumInsightsRichText = ({
 );
 
 const TableScroll = styled(OakBox)`
+  width: 100%;
+  max-width: 100%;
   overflow-x: auto;
 `;
 
