@@ -19,7 +19,7 @@ import {
   OakSubjectIconButton,
 } from "@oaknational/oak-components";
 import Link from "next/link";
-import { FormEvent, useState } from "react";
+import { FormEvent, useId, useState } from "react";
 import styled from "styled-components";
 
 import type { NationalCurriculumInsightsRouteData } from "./getNationalCurriculumInsightsData";
@@ -113,44 +113,53 @@ const OverviewImage = styled(OakBox)`
 
 export const NationalCurriculumInsightsOverview = ({
   section,
-}: SectionProps<"NationalCurriculumInsightsOverviewSection">) => (
-  <OakBox $ph={["spacing-20", "spacing-40"]} $pv={["spacing-32", "spacing-48"]}>
-    <OverviewPanel
-      as="section"
-      $mh="auto"
-      $background="bg-decorative2-subdued"
-      $pa={["spacing-24", "spacing-40"]}
-      $borderRadius="border-radius-l"
-      aria-labelledby={`insights-overview-${section.heading}`}
+}: SectionProps<"NationalCurriculumInsightsOverviewSection">) => {
+  const headingId = useId();
+
+  return (
+    <OakBox
+      $ph={["spacing-20", "spacing-40"]}
+      $pv={["spacing-32", "spacing-48"]}
     >
-      <OverviewHeading
-        id={`insights-overview-${section.heading}`}
-        tag="h2"
-        $font={["heading-4", "heading-3"]}
+      <OverviewPanel
+        as="section"
+        $mh="auto"
+        $background="bg-decorative2-subdued"
+        $pa={["spacing-24", "spacing-40"]}
+        $borderRadius="border-radius-l"
+        aria-labelledby={headingId}
       >
-        {section.heading}
-      </OverviewHeading>
-      <OverviewBody>
-        <PortableTextWithDefaults
-          value={section.bodyPortableText}
-          components={portableTextComponents}
-        />
-      </OverviewBody>
-      <OverviewImage aria-hidden={section.image.isPresentational || undefined}>
-        <OakImage
-          src={imageUrl(
-            section.image,
-            "/images/national-curriculum-insights/overview.png",
-          )}
-          alt={imageAlt(section.image)}
-          $width="100%"
-          $height="100%"
-          $objectFit="cover"
-        />
-      </OverviewImage>
-    </OverviewPanel>
-  </OakBox>
-);
+        <OverviewHeading
+          id={headingId}
+          tag="h2"
+          $font={["heading-4", "heading-3"]}
+        >
+          {section.heading}
+        </OverviewHeading>
+        <OverviewBody>
+          <PortableTextWithDefaults
+            value={section.bodyPortableText}
+            components={portableTextComponents}
+          />
+        </OverviewBody>
+        <OverviewImage
+          aria-hidden={section.image.isPresentational || undefined}
+        >
+          <OakImage
+            src={imageUrl(
+              section.image,
+              "/images/national-curriculum-insights/overview.png",
+            )}
+            alt={imageAlt(section.image)}
+            $width="100%"
+            $height="100%"
+            $objectFit="cover"
+          />
+        </OverviewImage>
+      </OverviewPanel>
+    </OakBox>
+  );
+};
 
 const PhaseCardList = styled.ul`
   display: grid;
@@ -488,58 +497,62 @@ const EditorialSection = styled(OakBox)`
 
 export const NationalCurriculumInsightsImageText = ({
   section,
-}: SectionProps<"NationalCurriculumInsightsImageTextSection">) => (
-  <EditorialSection
-    as="section"
-    $background={editorialBackground[section.background]}
-    $ph={["spacing-20", "spacing-40"]}
-    $pv={["spacing-48", "spacing-64"]}
-    aria-labelledby={`insights-editorial-${section.heading}`}
-  >
-    <SectionMaxWidth $mh="auto">
-      <OakFlex
-        $flexDirection={[
-          "column",
-          "column",
-          section.imagePosition === "left" ? "row" : "row-reverse",
-        ]}
-        $alignItems="center"
-        $gap={["spacing-32", "spacing-64"]}
-      >
-        <EditorialImage
-          $borderRadius="border-radius-m2"
-          aria-hidden={section.image.isPresentational || undefined}
+}: SectionProps<"NationalCurriculumInsightsImageTextSection">) => {
+  const headingId = useId();
+
+  return (
+    <EditorialSection
+      as="section"
+      $background={editorialBackground[section.background]}
+      $ph={["spacing-20", "spacing-40"]}
+      $pv={["spacing-48", "spacing-64"]}
+      aria-labelledby={headingId}
+    >
+      <SectionMaxWidth $mh="auto">
+        <OakFlex
+          $flexDirection={[
+            "column",
+            "column",
+            section.imagePosition === "left" ? "row" : "row-reverse",
+          ]}
+          $alignItems="center"
+          $gap={["spacing-32", "spacing-64"]}
         >
-          <OakImage
-            src={imageUrl(section.image)}
-            alt={imageAlt(section.image)}
-            $width="100%"
-            $height="100%"
-            $objectFit="cover"
-          />
-        </EditorialImage>
-        <EditorialCopy $flexDirection="column" $gap="spacing-24">
-          <OakHeading
-            tag="h2"
-            id={`insights-editorial-${section.heading}`}
-            $font={["heading-4", "heading-3"]}
+          <EditorialImage
+            $borderRadius="border-radius-m2"
+            aria-hidden={section.image.isPresentational || undefined}
           >
-            {section.heading}
-          </OakHeading>
-          <PortableTextWithDefaults
-            value={section.bodyPortableText}
-            components={portableTextComponents}
-          />
-          {section.ctaLabel && section.ctaHref ? (
-            <OakLink href={section.ctaHref} iconName="arrow-right">
-              {section.ctaLabel}
-            </OakLink>
-          ) : null}
-        </EditorialCopy>
-      </OakFlex>
-    </SectionMaxWidth>
-  </EditorialSection>
-);
+            <OakImage
+              src={imageUrl(section.image)}
+              alt={imageAlt(section.image)}
+              $width="100%"
+              $height="100%"
+              $objectFit="cover"
+            />
+          </EditorialImage>
+          <EditorialCopy $flexDirection="column" $gap="spacing-24">
+            <OakHeading
+              tag="h2"
+              id={headingId}
+              $font={["heading-4", "heading-3"]}
+            >
+              {section.heading}
+            </OakHeading>
+            <PortableTextWithDefaults
+              value={section.bodyPortableText}
+              components={portableTextComponents}
+            />
+            {section.ctaLabel && section.ctaHref ? (
+              <OakLink href={section.ctaHref} iconName="arrow-right">
+                {section.ctaLabel}
+              </OakLink>
+            ) : null}
+          </EditorialCopy>
+        </OakFlex>
+      </SectionMaxWidth>
+    </EditorialSection>
+  );
+};
 
 const VideoCardFrame = styled.div`
   width: 100%;
@@ -593,6 +606,7 @@ const QuoteSection = styled(OakBox)`
 export const NationalCurriculumInsightsVideoCards = ({
   section,
 }: SectionProps<"NationalCurriculumInsightsVideoCardsSection">) => {
+  const headingId = useId();
   const [featured, ...remaining] = section.cards;
 
   return (
@@ -601,7 +615,7 @@ export const NationalCurriculumInsightsVideoCards = ({
       $background="bg-decorative1-very-subdued"
       $ph={["spacing-20", "spacing-40"]}
       $pv={["spacing-48", "spacing-64"]}
-      aria-labelledby={`insights-videos-${section.heading}`}
+      aria-labelledby={headingId}
     >
       <SectionMaxWidth $mh="auto">
         <OakFlex $flexDirection="column" $gap="spacing-32">
@@ -618,7 +632,7 @@ export const NationalCurriculumInsightsVideoCards = ({
             >
               <OakHeading
                 tag="h2"
-                id={`insights-videos-${section.heading}`}
+                id={headingId}
                 $font={["heading-4", "heading-2"]}
               >
                 {section.heading}
@@ -721,30 +735,30 @@ export const NationalCurriculumInsightsQuote = ({
 
 export const NationalCurriculumInsightsRichText = ({
   section,
-}: SectionProps<"NationalCurriculumInsightsRichTextSection">) => (
-  <OakBox
-    as="section"
-    $ph={["spacing-20", "spacing-40"]}
-    $pv={["spacing-32", "spacing-48"]}
-    aria-labelledby={`insights-rich-text-${section.heading}`}
-  >
-    <OakFlex
-      $mh="auto"
-      $maxWidth="spacing-960"
-      $flexDirection="column"
-      $gap="spacing-24"
+}: SectionProps<"NationalCurriculumInsightsRichTextSection">) => {
+  const headingId = useId();
+
+  return (
+    <OakBox
+      as="section"
+      $ph={["spacing-20", "spacing-40"]}
+      $pv={["spacing-32", "spacing-48"]}
+      aria-labelledby={headingId}
     >
-      <OakHeading
-        tag="h2"
-        id={`insights-rich-text-${section.heading}`}
-        $font={["heading-4", "heading-3"]}
+      <OakFlex
+        $mh="auto"
+        $maxWidth="spacing-960"
+        $flexDirection="column"
+        $gap="spacing-24"
       >
-        {section.heading}
-      </OakHeading>
-      <PortableTextWithDefaults value={section.contentPortableText} />
-    </OakFlex>
-  </OakBox>
-);
+        <OakHeading tag="h2" id={headingId} $font={["heading-4", "heading-3"]}>
+          {section.heading}
+        </OakHeading>
+        <PortableTextWithDefaults value={section.contentPortableText} />
+      </OakFlex>
+    </OakBox>
+  );
+};
 
 const TableScroll = styled(OakBox)`
   width: 100%;
@@ -791,50 +805,57 @@ const InsightsTable = styled.table`
 
 export const NationalCurriculumInsightsTable = ({
   section,
-}: SectionProps<"NationalCurriculumInsightsTableSection">) => (
-  <OakBox
-    as="section"
-    $ph={["spacing-20", "spacing-40"]}
-    $pv={["spacing-32", "spacing-48"]}
-    aria-labelledby={`insights-table-${section.heading}`}
-  >
-    <SectionMaxWidth $mh="auto">
-      <OakFlex $flexDirection="column" $gap="spacing-24">
-        <OakHeading
-          tag="h2"
-          id={`insights-table-${section.heading}`}
-          $font={["heading-4", "heading-3"]}
-        >
-          {section.heading}
-        </OakHeading>
-        <TableScroll>
-          <InsightsTable>
-            <thead>
-              <tr>
-                {section.table.rows[0]?.cells.map((cell, cellIndex) => (
-                  <th scope="col" key={`${section.heading}-head-${cellIndex}`}>
-                    {cell}
-                  </th>
-                ))}
-              </tr>
-            </thead>
-            <tbody>
-              {section.table.rows.slice(1).map((row, rowIndex) => (
-                <tr key={`${section.heading}-${rowIndex}`}>
-                  {row.cells.map((cell, cellIndex) => (
-                    <td key={`${section.heading}-${rowIndex}-${cellIndex}`}>
+}: SectionProps<"NationalCurriculumInsightsTableSection">) => {
+  const headingId = useId();
+
+  return (
+    <OakBox
+      as="section"
+      $ph={["spacing-20", "spacing-40"]}
+      $pv={["spacing-32", "spacing-48"]}
+      aria-labelledby={headingId}
+    >
+      <SectionMaxWidth $mh="auto">
+        <OakFlex $flexDirection="column" $gap="spacing-24">
+          <OakHeading
+            tag="h2"
+            id={headingId}
+            $font={["heading-4", "heading-3"]}
+          >
+            {section.heading}
+          </OakHeading>
+          <TableScroll>
+            <InsightsTable>
+              <thead>
+                <tr>
+                  {section.table.rows[0]?.cells.map((cell, cellIndex) => (
+                    <th
+                      scope="col"
+                      key={`${section.heading}-head-${cellIndex}`}
+                    >
                       {cell}
-                    </td>
+                    </th>
                   ))}
                 </tr>
-              ))}
-            </tbody>
-          </InsightsTable>
-        </TableScroll>
-      </OakFlex>
-    </SectionMaxWidth>
-  </OakBox>
-);
+              </thead>
+              <tbody>
+                {section.table.rows.slice(1).map((row, rowIndex) => (
+                  <tr key={`${section.heading}-${rowIndex}`}>
+                    {row.cells.map((cell, cellIndex) => (
+                      <td key={`${section.heading}-${rowIndex}-${cellIndex}`}>
+                        {cell}
+                      </td>
+                    ))}
+                  </tr>
+                ))}
+              </tbody>
+            </InsightsTable>
+          </TableScroll>
+        </OakFlex>
+      </SectionMaxWidth>
+    </OakBox>
+  );
+};
 
 const NewsletterList = styled(OakFlex)`
   list-style: disc;
