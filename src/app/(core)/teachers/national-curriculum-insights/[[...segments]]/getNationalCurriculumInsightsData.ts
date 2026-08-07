@@ -58,6 +58,23 @@ const localImage = {
   isPresentational: true,
 };
 
+const pageHeading = (
+  pageType:
+    | NationalCurriculumInsightsTabKind
+    | NationalCurriculumInsightsKeyStage,
+  subjectTitle: string,
+) => {
+  if (pageType === "overview") {
+    return `${subjectTitle} national curriculum insights`;
+  }
+  if (pageType.startsWith("KS")) {
+    return `${subjectTitle} key stage ${pageType.slice(2)} curriculum insights`;
+  }
+
+  const phase = pageType === "primary" ? "Primary" : "Secondary";
+  return `${phase} ${subjectTitle.toLowerCase()} curriculum insights`;
+};
+
 const pageModules = (
   pageType:
     | NationalCurriculumInsightsTabKind
@@ -66,12 +83,7 @@ const pageModules = (
 ): NationalCurriculumInsightsModule[] => [
   {
     __typename: "NationalCurriculumInsightsHeroSection",
-    heading:
-      pageType === "overview"
-        ? `${subjectTitle} national curriculum insights`
-        : pageType.startsWith("KS")
-          ? `${subjectTitle} key stage ${pageType.slice(2)} curriculum insights`
-          : `${pageType === "primary" ? "Primary" : "Secondary"} ${subjectTitle.toLowerCase()} curriculum insights`,
+    heading: pageHeading(pageType, subjectTitle),
     bodyPortableText: portableText(
       `${subjectTitle}-${pageType}-hero`,
       `Explore the proposed curriculum changes and what they mean for ${subjectTitle.toLowerCase()} teaching.`,
@@ -293,9 +305,8 @@ export const getNationalCurriculumInsightsRouteData = async (
     { previewMode },
   );
   if (
-    !subject ||
-    subject.id.replace(/^drafts\./, "") !==
-      catalogueSubject.id.replace(/^drafts\./, "")
+    subject?.id.replace(/^drafts\./, "") !==
+    catalogueSubject.id.replace(/^drafts\./, "")
   ) {
     return null;
   }
@@ -309,14 +320,16 @@ export const getNationalCurriculumInsightsRouteData = async (
     route.kind === "subjectPhaseKeyStage"
       ? nationalCurriculumInsightsKeyStageFromSlug(route.keyStageSlug)
       : null;
-  const page =
-    activeTab === "overview"
-      ? subject
-      : activeKeyStage
-        ? phasePage?.keyStages.find(
-            ({ keyStage }) => keyStage === activeKeyStage,
-          )?.page
-        : phasePage;
+  let page;
+  if (activeTab === "overview") {
+    page = subject;
+  } else if (activeKeyStage) {
+    page = phasePage?.keyStages.find(
+      ({ keyStage }) => keyStage === activeKeyStage,
+    )?.page;
+  } else {
+    page = phasePage;
+  }
   if (!page) {
     return null;
   }

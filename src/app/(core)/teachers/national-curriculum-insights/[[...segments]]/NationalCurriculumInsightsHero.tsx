@@ -28,14 +28,31 @@ const DEFAULT_HERO_IMAGE = "/images/national-curriculum-insights/hero.jpg";
 
 type HeroPageKind = "hub" | "subject" | "phase";
 
+const heroSectionMinHeight = ({ $pageKind }: { $pageKind: HeroPageKind }) => {
+  switch ($pageKind) {
+    case "hub":
+      return "439px";
+    case "subject":
+      return "770px";
+    case "phase":
+      return "654px";
+  }
+};
+
+const heroTextMinHeight = ({ $pageKind }: { $pageKind: HeroPageKind }) => {
+  switch ($pageKind) {
+    case "subject":
+      return "600px";
+    case "phase":
+      return "484px";
+    case "hub":
+      return "auto";
+  }
+};
+
 const HeroSection = styled(OakBox)<{ $pageKind: HeroPageKind }>`
   @media (${getMediaQuery("desktop")}) {
-    min-height: ${({ $pageKind }) =>
-      $pageKind === "hub"
-        ? "439px"
-        : $pageKind === "subject"
-          ? "770px"
-          : "654px"};
+    min-height: ${heroSectionMinHeight};
     display: flex;
     align-items: center;
   }
@@ -61,12 +78,7 @@ const HeroTextColumn = styled(OakFlex)<{ $pageKind: HeroPageKind }>`
 
   @media (${getMediaQuery("desktop")}) {
     width: 807px;
-    min-height: ${({ $pageKind }) =>
-      $pageKind === "subject"
-        ? "600px"
-        : $pageKind === "phase"
-          ? "484px"
-          : "auto"};
+    min-height: ${heroTextMinHeight};
     justify-content: ${({ $pageKind }) =>
       $pageKind === "hub" ? "flex-start" : "space-between"};
   }
@@ -135,20 +147,137 @@ const heroBreadcrumbs = (data: NationalCurriculumInsightsRouteData) => {
     if (route.kind === "subjectPhase") {
       breadcrumbs.push({ text: phaseLabel });
     } else {
-      breadcrumbs.push({
-        href: nationalCurriculumInsightsSubjectPhaseHref(
-          data.subject.slug,
-          route.phase,
-        ),
-        text: phaseLabel,
-      });
-      breadcrumbs.push({
-        text: `Key stage ${route.keyStageSlug.slice("key-stage-".length)}`,
-      });
+      breadcrumbs.push(
+        {
+          href: nationalCurriculumInsightsSubjectPhaseHref(
+            data.subject.slug,
+            route.phase,
+          ),
+          text: phaseLabel,
+        },
+        {
+          text: `Key stage ${route.keyStageSlug.slice("key-stage-".length)}`,
+        },
+      );
     }
   }
 
   return breadcrumbs as Parameters<typeof OakBreadcrumbs>[0]["breadcrumbs"];
+};
+
+const getHeroPageKind = (
+  data: NationalCurriculumInsightsRouteData,
+): HeroPageKind => {
+  switch (data.route.kind) {
+    case "hub":
+      return "hub";
+    case "subject":
+      return "subject";
+    case "subjectPhase":
+    case "subjectPhaseKeyStage":
+      return "phase";
+  }
+};
+
+const optionalImageUrl = (
+  image: NationalCurriculumInsightsHeroSection["authorImage"],
+) => (image?.asset?.url ? getProxiedSanityAssetUrl(image.asset.url) : null);
+
+const HeroPageMeta = ({
+  data,
+  section,
+}: {
+  data: NationalCurriculumInsightsRouteData;
+  section: NationalCurriculumInsightsHeroSection;
+}) => {
+  if (
+    data.route.kind === "hub" ||
+    (!section.authorName && !section.statusMessage)
+  ) {
+    return null;
+  }
+
+  const isSubject = data.route.kind === "subject";
+  const authorImageUrl = optionalImageUrl(section.authorImage);
+
+  return (
+    <OakFlex
+      $flexDirection={isSubject ? "column" : ["column", "column", "row"]}
+      $alignItems={isSubject ? "flex-start" : ["stretch", "stretch", "center"]}
+      $justifyContent={isSubject ? "flex-start" : "space-between"}
+      $gap="spacing-24"
+    >
+      {section.authorName ? (
+        <OakFlex $alignItems="center" $gap="spacing-12">
+          {authorImageUrl ? (
+            <AuthorImage $borderRadius="border-radius-circle">
+              <OakImage
+                src={authorImageUrl}
+                alt={section.authorImage?.altText ?? ""}
+                $width="100%"
+                $height="100%"
+                $objectFit="cover"
+              />
+            </AuthorImage>
+          ) : null}
+          <OakFlex $flexDirection="column" $gap="spacing-4">
+            <OakP $font="heading-7" $mv="spacing-0">
+              {section.authorName}
+            </OakP>
+            {section.authorRole ? (
+              <OakP $font="body-3" $mv="spacing-0">
+                {section.authorRole}
+              </OakP>
+            ) : null}
+          </OakFlex>
+        </OakFlex>
+      ) : null}
+      {section.statusMessage ? (
+        <OakInlineBanner
+          isOpen
+          type="info"
+          message={section.statusMessage}
+          $maxWidth="spacing-480"
+        />
+      ) : null}
+    </OakFlex>
+  );
+};
+
+const HubHeroImage = ({
+  isHub,
+  section,
+}: {
+  isHub: boolean;
+  section: NationalCurriculumInsightsHeroSection;
+}) => {
+  if (!isHub) {
+    return null;
+  }
+
+  const imageUrl = section.image.asset?.url
+    ? getProxiedSanityAssetUrl(section.image.asset.url)
+    : DEFAULT_HERO_IMAGE;
+  const imageAlt = section.image.isPresentational
+    ? ""
+    : (section.image.altText ?? "");
+
+  return (
+    <HeroImageContainer
+      $order={[1, 1, 2]}
+      $overflow="hidden"
+      aria-hidden={section.image.isPresentational ? true : undefined}
+    >
+      <OakImage
+        src={imageUrl}
+        alt={imageAlt}
+        $width="100%"
+        $height="100%"
+        $objectFit="cover"
+        priority
+      />
+    </HeroImageContainer>
+  );
 };
 
 export const NationalCurriculumInsightsHero = ({
@@ -159,23 +288,8 @@ export const NationalCurriculumInsightsHero = ({
   section: NationalCurriculumInsightsHeroSection;
 }) => {
   const isHub = data.route.kind === "hub";
-  const pageKind: HeroPageKind = isHub
-    ? "hub"
-    : data.route.kind === "subject"
-      ? "subject"
-      : "phase";
+  const pageKind = getHeroPageKind(data);
   const breadcrumbs = heroBreadcrumbs(data);
-  const imageUrl = section.image.asset?.url
-    ? getProxiedSanityAssetUrl(section.image.asset.url)
-    : DEFAULT_HERO_IMAGE;
-  const imageAlt = section.image.isPresentational
-    ? ""
-    : (section.image.altText ?? "");
-  const authorImageUrl = section.authorImage?.asset?.url
-    ? getProxiedSanityAssetUrl(section.authorImage.asset.url)
-    : null;
-  const showPageMeta =
-    !isHub && Boolean(section.authorName || section.statusMessage);
 
   return (
     <HeroSection
@@ -213,76 +327,9 @@ export const NationalCurriculumInsightsHero = ({
               />
             </HeroCopy>
           </HeroCopyColumn>
-          {showPageMeta ? (
-            <OakFlex
-              $flexDirection={
-                data.route.kind === "subject"
-                  ? "column"
-                  : ["column", "column", "row"]
-              }
-              $alignItems={
-                data.route.kind === "subject"
-                  ? "flex-start"
-                  : ["stretch", "stretch", "center"]
-              }
-              $justifyContent={
-                data.route.kind === "subject" ? "flex-start" : "space-between"
-              }
-              $gap="spacing-24"
-            >
-              {section.authorName ? (
-                <OakFlex $alignItems="center" $gap="spacing-12">
-                  {authorImageUrl ? (
-                    <AuthorImage $borderRadius="border-radius-circle">
-                      <OakImage
-                        src={authorImageUrl}
-                        alt={section.authorImage?.altText ?? ""}
-                        $width="100%"
-                        $height="100%"
-                        $objectFit="cover"
-                      />
-                    </AuthorImage>
-                  ) : null}
-                  <OakFlex $flexDirection="column" $gap="spacing-4">
-                    <OakP $font="heading-7" $mv="spacing-0">
-                      {section.authorName}
-                    </OakP>
-                    {section.authorRole ? (
-                      <OakP $font="body-3" $mv="spacing-0">
-                        {section.authorRole}
-                      </OakP>
-                    ) : null}
-                  </OakFlex>
-                </OakFlex>
-              ) : null}
-              {section.statusMessage ? (
-                <OakInlineBanner
-                  isOpen
-                  type="info"
-                  message={section.statusMessage}
-                  $maxWidth="spacing-480"
-                />
-              ) : null}
-            </OakFlex>
-          ) : null}
+          <HeroPageMeta data={data} section={section} />
         </HeroTextColumn>
-
-        {isHub ? (
-          <HeroImageContainer
-            $order={[1, 1, 2]}
-            $overflow="hidden"
-            aria-hidden={section.image.isPresentational ? true : undefined}
-          >
-            <OakImage
-              src={imageUrl}
-              alt={imageAlt}
-              $width="100%"
-              $height="100%"
-              $objectFit="cover"
-              priority
-            />
-          </HeroImageContainer>
-        ) : null}
+        <HubHeroImage isHub={isHub} section={section} />
       </HeroContent>
     </HeroSection>
   );
