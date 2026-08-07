@@ -1,6 +1,6 @@
 import { renderHook } from "@testing-library/react";
 
-import useTrackExitIntended from "./usetrackExitIntended";
+import useTrackExitIntended from "./useTrackExitIntended";
 
 import useAnalytics from "@/context/Analytics/useAnalytics";
 

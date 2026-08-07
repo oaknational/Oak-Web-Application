@@ -19,7 +19,7 @@ import { OaksImpactSchoolQuotesSection } from "@/components/GenericPagesComponen
 import TrackScrolledTo from "@/components/SharedComponents/TrackScrolledTo";
 import { OaksImpactHeader } from "@/components/GenericPagesComponents/OaksImpactHeader";
 import { isFeatureFlagEnabled } from "@/utils/featureFlagServer";
-import useTrackExitIntended from "@/hooks/usetrackExitIntended";
+import useTrackExitIntended from "@/hooks/useTrackExitIntended";
 
 export type OaksImpactPageProps = {
   topNav: TopNavProps;
