@@ -10,19 +10,17 @@ import {
 import { format } from "date-fns";
 
 import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
-import getBrowserConfig from "@/browser-lib/getBrowserConfig";
-import { getFeatureFlag } from "@/node-lib/posthog/getFeatureFlag";
 import { OaksImpactCaseStudyPage } from "@/common-lib/cms-types/aboutPages";
 import CMSClient from "@/node-lib/cms";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 import Layout from "@/components/AppComponents/AppLayout";
 import { TopNavProps } from "@/components/AppComponents/TopNav/TopNav";
 import { OaksImpactCaseStudies } from "@/components/GenericPagesComponents/OaksImpactCaseStudies";
-import { getPosthogIdFromCookie } from "@/node-lib/posthog/getPosthogId";
 import { resolveOakHref } from "@/common-lib/urls";
 import { NewGutterMaxWidth } from "@/components/GenericPagesComponents/NewGutterMaxWidth";
 import { useOakNotificationsContext } from "@/context/OakNotifications/useOakNotificationsContext";
 import { OaksImpactCaseStudyHeader } from "@/components/GenericPagesComponents/OaksImpactCaseStudyHeader";
+import { isFeatureFlagEnabled } from "@/utils/featureFlagServer";
 import { OaksImpactCaseStudyContentLayout } from "@/components/GenericPagesComponents/OaksImpactCaseStudyContentLayout";
 import VideoPlayer from "@/components/SharedComponents/VideoPlayer";
 
@@ -122,9 +120,24 @@ const AboutUsOaksImpactCaseStudy: NextPage<
                 }
                 showTranscript={true}
                 transcript={[
-                  ...new Array(20).fill(true).map(() => "test transcript text"),
+                  ...new Array(20).fill(true).map((i, index) => {
+                    return {
+                      _key: `b9955be0a1c7${index}`,
+                      _type: "block",
+                      children: [
+                        {
+                          _type: "span",
+                          _key: `f44d2133da69${index}`,
+                          text: "Test text.",
+                          marks: [],
+                        },
+                      ],
+                      markDefs: [],
+                      style: "normal",
+                    };
+                  }),
                 ]}
-                body={"Testing text"}
+                body={caseStudy.textRaw ?? undefined}
               />
             </OakBox>
           </OaksImpactCaseStudyContentLayout>
@@ -175,20 +188,10 @@ export const getServerSideProps: GetServerSideProps<
   AboutUsOaksImpactCaseStudyPageProps,
   URLParams
 > = async (context) => {
-  const posthogUserId = getPosthogIdFromCookie(
-    context.req.cookies,
-    getBrowserConfig("posthogApiKey"),
+  const isImpactPageEnabled = await isFeatureFlagEnabled(
+    context,
+    "oaks-impact",
   );
-
-  let isImpactPageEnabled: boolean = false;
-  if (posthogUserId) {
-    isImpactPageEnabled =
-      (await getFeatureFlag({
-        featureFlagKey: "oaks-impact",
-        posthogUserId,
-      })) === true;
-  }
-
   if (!isImpactPageEnabled) {
     return {
       notFound: true,

@@ -1,0 +1,68 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`OaksImpactHeader renders correctly 1`] = `
+<body>
+  <div>
+    <div
+      class="sc-aXZVg bZTQLO"
+    >
+      <div
+        class="sc-aXZVg sc-gEvEer sc-3b3f68b8-0 jPvJsJ iDBIXi jCYpst"
+      >
+        <div
+          class="sc-aXZVg sc-gEvEer sc-3b3f68b8-2 jPvJsJ fqICts bihscv"
+        >
+          <div
+            class="sc-aXZVg sc-gEvEer fnKdFm gUPrwF"
+          >
+            <h1
+              class="sc-eldPxv hJmOde"
+            >
+              TEST_TITLE
+            </h1>
+          </div>
+          <p
+            class="sc-ikkxIA jAnQin"
+          >
+            TEST_BODY
+          </p>
+        </div>
+        <div
+          class="sc-aXZVg sc-gEvEer jPvJsJ fVNIMq"
+        >
+          <div
+            class="sc-aXZVg sc-3b3f68b8-1 jPvJsJ hKUwby"
+          >
+            <div
+              class="sc-aXZVg sc-gEvEer jPvJsJ daEtut"
+            >
+              <div
+                class="sc-aXZVg sc-gEvEer dApLPd daEtut"
+              >
+                <div
+                  class="sc-aXZVg dLPTTd"
+                >
+                  <div
+                    class="sc-aXZVg sc-gEvEer laLcvy jMLdOa"
+                    data-percy-hide="contents"
+                    style="box-sizing: content-box;"
+                  />
+                </div>
+              </div>
+              <div
+                class="sc-aXZVg sc-gEvEer jPvJsJ gWBhKY"
+              >
+                <p
+                  class="sc-ikkxIA bevdi"
+                >
+                  TEST_VIDEO_DESCRIPTION
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+`;
