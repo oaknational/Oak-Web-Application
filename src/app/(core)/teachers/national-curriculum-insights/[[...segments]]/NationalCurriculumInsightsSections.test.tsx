@@ -87,7 +87,7 @@ describe("National Curriculum Insights sections", () => {
     const data = await getData();
     const body = portableText("section", "Editable section copy.");
 
-    renderWithTheme(
+    const { container } = renderWithTheme(
       <>
         <NationalCurriculumInsightsOverview
           section={moduleOf({
@@ -231,6 +231,13 @@ describe("National Curriculum Insights sections", () => {
     expect(
       screen.getByRole("heading", { name: "Curriculum overview" }),
     ).toBeInTheDocument();
+    container
+      .querySelectorAll<HTMLElement>("section[aria-labelledby]")
+      .forEach((section) => {
+        const headingId = section.getAttribute("aria-labelledby");
+        expect(headingId).not.toMatch(/\s/);
+        expect(document.getElementById(headingId!)).toBeInTheDocument();
+      });
     expect(
       screen.getByRole("link", { name: "Read the details" }),
     ).toHaveAttribute("href", "/teachers");
