@@ -42,8 +42,12 @@ type Phase = "primary" | "secondary";
 
 type SectionProps<T extends InsightSection["__typename"]> = {
   section: Extract<InsightSection, { __typename: T }>;
-  data: NationalCurriculumInsightsRouteData;
 };
+
+type ContextualSectionProps<T extends InsightSection["__typename"]> =
+  SectionProps<T> & {
+    data: NationalCurriculumInsightsRouteData;
+  };
 
 const DEFAULT_IMAGE = "/images/national-curriculum-insights/hero.jpg";
 
@@ -170,7 +174,7 @@ const PhaseCardItem = styled.li`
 export const NationalCurriculumInsightsPhaseCards = ({
   section,
   data,
-}: SectionProps<"NationalCurriculumInsightsPhaseCardsSection">) => {
+}: ContextualSectionProps<"NationalCurriculumInsightsPhaseCardsSection">) => {
   const subjectSlug = data.subject?.slug;
   if (!subjectSlug) {
     return null;
@@ -209,7 +213,7 @@ export const NationalCurriculumInsightsPhaseCards = ({
 export const NationalCurriculumInsightsKeyStageCards = ({
   section,
   data,
-}: SectionProps<"NationalCurriculumInsightsKeyStageCardsSection">) => {
+}: ContextualSectionProps<"NationalCurriculumInsightsKeyStageCardsSection">) => {
   if (!data.subject || !data.activeTab || data.activeTab === "overview") {
     return null;
   }
@@ -341,7 +345,7 @@ const normaliseSubjectIcon = (subject: Subject) => {
 export const NationalCurriculumInsightsSubjectNavigation = ({
   section,
   data,
-}: SectionProps<"NationalCurriculumInsightsSubjectNavigationSection">) => {
+}: ContextualSectionProps<"NationalCurriculumInsightsSubjectNavigationSection">) => {
   if (data.route.kind !== "hub") {
     const phase =
       data.activeTab && data.activeTab !== "overview"
@@ -1030,7 +1034,7 @@ const FaqAccordionList = styled(OakFlex)`
 export const NationalCurriculumInsightsFaq = ({
   section,
   data,
-}: SectionProps<"NationalCurriculumInsightsFaqSection">) => (
+}: ContextualSectionProps<"NationalCurriculumInsightsFaqSection">) => (
   <FaqSection
     $isHub={data.route.kind === "hub"}
     as="section"

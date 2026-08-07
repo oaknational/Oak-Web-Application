@@ -183,7 +183,7 @@ const nationalCurriculumInsightsVideoCardsSectionSchema = z.object({
         heading: z.string().min(1),
         description: z.string().min(1),
         image: imageSchema,
-        videoUrl: z.string().url(),
+        videoUrl: z.url(),
         duration: z.string().min(1).nullable().optional(),
       }),
     )
@@ -233,13 +233,12 @@ const nationalCurriculumInsightsPageContentSchema = z.object({
   modules: z.array(nationalCurriculumInsightsModuleSchema).min(1),
 });
 
-export const nationalCurriculumInsightsKeyStagePageSchema = z
-  .object({
-    pageType: z.literal("keyStage"),
-    keyStage: nationalCurriculumInsightsKeyStageSchema,
-  })
-  .merge(nationalCurriculumInsightsPageContentSchema)
-  .merge(documentSchema);
+export const nationalCurriculumInsightsKeyStagePageSchema = z.object({
+  pageType: z.literal("keyStage"),
+  keyStage: nationalCurriculumInsightsKeyStageSchema,
+  ...nationalCurriculumInsightsPageContentSchema.shape,
+  ...documentSchema.shape,
+});
 
 const nationalCurriculumInsightsKeyStagePageReferenceSchema = z
   .object({
@@ -261,9 +260,9 @@ export const nationalCurriculumInsightsPageSchema = z
   .object({
     pageType: nationalCurriculumInsightsPhaseSchema,
     keyStages: z.array(nationalCurriculumInsightsKeyStagePageReferenceSchema),
+    ...nationalCurriculumInsightsPageContentSchema.shape,
+    ...documentSchema.shape,
   })
-  .merge(nationalCurriculumInsightsPageContentSchema)
-  .merge(documentSchema)
   .superRefine(({ id, keyStages, pageType }, context) => {
     if (
       new Set(keyStages.map(({ keyStage }) => keyStage)).size !==
@@ -311,12 +310,11 @@ export const nationalCurriculumInsightsPageSchema = z
     }
   });
 
-export const nationalCurriculumInsightsPageSummarySchema = z
-  .object({
-    pageType: nationalCurriculumInsightsPhaseSchema,
-    title: z.string().min(1),
-  })
-  .merge(documentSchema);
+export const nationalCurriculumInsightsPageSummarySchema = z.object({
+  pageType: nationalCurriculumInsightsPhaseSchema,
+  title: z.string().min(1),
+  ...documentSchema.shape,
+});
 
 const refineSubjectTabs = <
   T extends {
@@ -364,34 +362,32 @@ export const nationalCurriculumInsightsTabSummarySchema = z.object({
   page: nationalCurriculumInsightsPageSummarySchema,
 });
 
-export const nationalCurriculumInsightsSubjectSchema = z
-  .object({
-    pageType: z.literal("overview"),
-    title: z.string().min(1),
-    summary: z.string().min(1),
-    modules: z.array(nationalCurriculumInsightsModuleSchema).min(1),
-    slug: slugSchema,
-    curriculumSubjectSlugs: z.array(z.string().min(1)).min(1),
-    tabs: z
-      .array(nationalCurriculumInsightsTabSchema)
-      .min(1)
-      .max(2)
-      .superRefine(refineSubjectTabs),
-  })
-  .merge(documentSchema);
+export const nationalCurriculumInsightsSubjectSchema = z.object({
+  pageType: z.literal("overview"),
+  title: z.string().min(1),
+  summary: z.string().min(1),
+  modules: z.array(nationalCurriculumInsightsModuleSchema).min(1),
+  slug: slugSchema,
+  curriculumSubjectSlugs: z.array(z.string().min(1)).min(1),
+  tabs: z
+    .array(nationalCurriculumInsightsTabSchema)
+    .min(1)
+    .max(2)
+    .superRefine(refineSubjectTabs),
+  ...documentSchema.shape,
+});
 
-export const nationalCurriculumInsightsSubjectSummarySchema = z
-  .object({
-    title: z.string().min(1),
-    slug: slugSchema,
-    curriculumSubjectSlugs: z.array(z.string().min(1)).min(1),
-    tabs: z
-      .array(nationalCurriculumInsightsTabSummarySchema)
-      .min(1)
-      .max(2)
-      .superRefine(refineSubjectTabs),
-  })
-  .merge(documentSchema);
+export const nationalCurriculumInsightsSubjectSummarySchema = z.object({
+  title: z.string().min(1),
+  slug: slugSchema,
+  curriculumSubjectSlugs: z.array(z.string().min(1)).min(1),
+  tabs: z
+    .array(nationalCurriculumInsightsTabSummarySchema)
+    .min(1)
+    .max(2)
+    .superRefine(refineSubjectTabs),
+  ...documentSchema.shape,
+});
 
 export const nationalCurriculumInsightsHubSchema = z
   .object({
@@ -399,8 +395,8 @@ export const nationalCurriculumInsightsHubSchema = z
     summary: z.string().min(1),
     subjects: z.array(nationalCurriculumInsightsSubjectSummarySchema).min(1),
     modules: z.array(nationalCurriculumInsightsModuleSchema).min(1),
+    ...documentSchema.shape,
   })
-  .merge(documentSchema)
   .superRefine(({ subjects }, context) => {
     const subjectIds = subjects.map(({ id }) => id.replace(/^drafts\./, ""));
     const subjectSlugs = subjects.map(({ slug }) => slug);

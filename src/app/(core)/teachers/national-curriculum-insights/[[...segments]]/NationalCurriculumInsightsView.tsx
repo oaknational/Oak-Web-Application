@@ -31,6 +31,12 @@ const assertNever = (value: never): never => {
   throw new Error(`Unsupported National Curriculum Insights module: ${value}`);
 };
 
+type InsightTab = {
+  active: boolean;
+  href: string;
+  label: string;
+};
+
 const ModuleView = ({
   module,
   data,
@@ -42,9 +48,7 @@ const ModuleView = ({
     case "NationalCurriculumInsightsHeroSection":
       return <NationalCurriculumInsightsHero section={module} data={data} />;
     case "NationalCurriculumInsightsOverviewSection":
-      return (
-        <NationalCurriculumInsightsOverview section={module} data={data} />
-      );
+      return <NationalCurriculumInsightsOverview section={module} />;
     case "NationalCurriculumInsightsPhaseCardsSection":
       return (
         <NationalCurriculumInsightsPhaseCards section={module} data={data} />
@@ -54,12 +58,7 @@ const ModuleView = ({
         <NationalCurriculumInsightsKeyStageCards section={module} data={data} />
       );
     case "NationalCurriculumInsightsPromotionalHeadingSection":
-      return (
-        <NationalCurriculumInsightsPromotionalHeading
-          section={module}
-          data={data}
-        />
-      );
+      return <NationalCurriculumInsightsPromotionalHeading section={module} />;
     case "NationalCurriculumInsightsSubjectNavigationSection":
       return (
         <NationalCurriculumInsightsSubjectNavigation
@@ -68,27 +67,19 @@ const ModuleView = ({
         />
       );
     case "NationalCurriculumInsightsNewsletterSection":
-      return (
-        <NationalCurriculumInsightsNewsletter section={module} data={data} />
-      );
+      return <NationalCurriculumInsightsNewsletter section={module} />;
     case "NationalCurriculumInsightsFaqSection":
       return <NationalCurriculumInsightsFaq section={module} data={data} />;
     case "NationalCurriculumInsightsRichTextSection":
-      return (
-        <NationalCurriculumInsightsRichText section={module} data={data} />
-      );
+      return <NationalCurriculumInsightsRichText section={module} />;
     case "NationalCurriculumInsightsImageTextSection":
-      return (
-        <NationalCurriculumInsightsImageText section={module} data={data} />
-      );
+      return <NationalCurriculumInsightsImageText section={module} />;
     case "NationalCurriculumInsightsVideoCardsSection":
-      return (
-        <NationalCurriculumInsightsVideoCards section={module} data={data} />
-      );
+      return <NationalCurriculumInsightsVideoCards section={module} />;
     case "NationalCurriculumInsightsQuoteSection":
-      return <NationalCurriculumInsightsQuote section={module} data={data} />;
+      return <NationalCurriculumInsightsQuote section={module} />;
     case "NationalCurriculumInsightsTableSection":
-      return <NationalCurriculumInsightsTable section={module} data={data} />;
+      return <NationalCurriculumInsightsTable section={module} />;
     default:
       return assertNever(module);
   }
@@ -189,43 +180,43 @@ const InsightsTabs = ({
   const phaseTab = isSubjectOverview
     ? null
     : data.subject.tabs.find(({ kind }) => kind === data.activeTab);
-  const tabs = isSubjectOverview
-    ? [
-        {
-          active: true,
-          href: nationalCurriculumInsightsTabHref(
-            data.subject.slug,
-            "overview",
-          ),
-          label: `${data.subject.title} changes overview`,
-        },
-        ...data.subject.tabs.map(({ kind, label }) => ({
-          active: false,
-          href: nationalCurriculumInsightsTabHref(data.subject!.slug, kind),
-          label: `${data.subject!.title} ${label} changes`,
-        })),
-      ]
-    : phaseTab
-      ? [
-          {
-            active: data.activeKeyStage === null,
-            href: nationalCurriculumInsightsSubjectPhaseHref(
-              data.subject.slug,
-              phaseTab.kind,
-            ),
-            label: `${phaseTab.label} ${data.subject.title} changes overview`,
-          },
-          ...phaseTab.page.keyStages.map(({ keyStage }) => ({
-            active: data.activeKeyStage === keyStage,
-            href: nationalCurriculumInsightsSubjectPhaseKeyStageHref(
-              data.subject!.slug,
-              phaseTab.kind,
-              nationalCurriculumInsightsKeyStageSlug(keyStage),
-            ),
-            label: `${data.subject!.title} ${phaseTab.label} - ${keyStage} changes`,
-          })),
-        ]
-      : [];
+  let tabs: InsightTab[];
+  if (isSubjectOverview) {
+    tabs = [
+      {
+        active: true,
+        href: nationalCurriculumInsightsTabHref(data.subject.slug, "overview"),
+        label: `${data.subject.title} changes overview`,
+      },
+      ...data.subject.tabs.map(({ kind, label }) => ({
+        active: false,
+        href: nationalCurriculumInsightsTabHref(data.subject!.slug, kind),
+        label: `${data.subject!.title} ${label} changes`,
+      })),
+    ];
+  } else if (phaseTab) {
+    tabs = [
+      {
+        active: data.activeKeyStage === null,
+        href: nationalCurriculumInsightsSubjectPhaseHref(
+          data.subject.slug,
+          phaseTab.kind,
+        ),
+        label: `${phaseTab.label} ${data.subject.title} changes overview`,
+      },
+      ...phaseTab.page.keyStages.map(({ keyStage }) => ({
+        active: data.activeKeyStage === keyStage,
+        href: nationalCurriculumInsightsSubjectPhaseKeyStageHref(
+          data.subject!.slug,
+          phaseTab.kind,
+          nationalCurriculumInsightsKeyStageSlug(keyStage),
+        ),
+        label: `${data.subject!.title} ${phaseTab.label} - ${keyStage} changes`,
+      })),
+    ];
+  } else {
+    tabs = [];
+  }
   const activeLabel = tabs.find(({ active }) => active)?.label;
 
   if (!activeLabel || tabs.length === 0) {

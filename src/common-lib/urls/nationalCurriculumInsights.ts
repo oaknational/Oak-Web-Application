@@ -160,7 +160,7 @@ export const parseNationalCurriculumInsightsRoute = (
   }
 
   const decodedSegments = segments.map(decodeRouteSegment);
-  if (decodedSegments.some((segment) => segment === null)) {
+  if (decodedSegments.includes(null)) {
     return null;
   }
 
