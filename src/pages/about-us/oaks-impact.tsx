@@ -3,7 +3,6 @@ import {
   GetServerSidePropsResult,
   NextPage,
 } from "next/dist/types";
-import { useEffect } from "react";
 
 import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
 import Layout from "@/components/AppComponents/AppLayout";
@@ -18,34 +17,13 @@ import CMSClient from "@/node-lib/cms";
 import { OaksImpactPage } from "@/common-lib/cms-types";
 import { OaksImpactSchoolQuotesSection } from "@/components/GenericPagesComponents/OaksImpactSchoolQuotesSection";
 import TrackScrolledTo from "@/components/SharedComponents/TrackScrolledTo";
-import useAnalytics from "@/context/Analytics/useAnalytics";
 import { OaksImpactHeader } from "@/components/GenericPagesComponents/OaksImpactHeader";
 import { isFeatureFlagEnabled } from "@/utils/featureFlagServer";
+import useTrackExitIntended from "@/hooks/usetrackExitIntended";
 
 export type OaksImpactPageProps = {
   topNav: TopNavProps;
   pageData: OaksImpactPage;
-};
-
-// to do - do the track and extract to hook
-// what is exit intent?
-const useTrackExitIntended = () => {
-  const { track } = useAnalytics();
-
-  useEffect(() => {
-    const functionToHandleMouseOut = (e: MouseEvent) => {
-      // Check if cursor moves outside the top of the window viewport
-      if (e.clientY <= 0 && !e.relatedTarget) {
-        console.log("User is intending to exit the page");
-        // track.exitIntended();
-      }
-    };
-
-    window.addEventListener("mouseout", functionToHandleMouseOut);
-    return () => {
-      window.removeEventListener("mouseout", functionToHandleMouseOut);
-    };
-  }, [track]);
 };
 
 const OaksImpact: NextPage<OaksImpactPageProps> = ({ topNav, pageData }) => {
