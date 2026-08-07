@@ -226,7 +226,7 @@ describe("Programme Downloads", () => {
           eventVersion: "2.0.0",
           learningTier: "Foundation",
           platform: "owa",
-          product: "teacher lesson resources",
+          product: "curriculum resources",
           phase: "secondary",
           subjectSlug: "biology",
           subjectTitle: "Biology",
