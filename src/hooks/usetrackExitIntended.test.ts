@@ -72,6 +72,27 @@ describe("useTrackExitIntended()", () => {
     expect(exitIntended).toHaveBeenCalledTimes(1);
   });
 
+  test("tracks exit intent only once when multiple valid exits happen", () => {
+    const addEventListenerSpy = jest.spyOn(window, "addEventListener");
+
+    renderHook(() => useTrackExitIntended());
+
+    const mouseoutListener = addEventListenerSpy.mock.calls.find(
+      ([eventName]) => eventName === "mouseout",
+    )?.[1] as (event: MouseEvent) => void;
+
+    const firstEvent = new MouseEvent("mouseout", { clientY: 0 });
+    Object.defineProperty(firstEvent, "relatedTarget", { value: null });
+
+    const secondEvent = new MouseEvent("mouseout", { clientY: -5 });
+    Object.defineProperty(secondEvent, "relatedTarget", { value: null });
+
+    mouseoutListener(firstEvent);
+    mouseoutListener(secondEvent);
+
+    expect(exitIntended).toHaveBeenCalledTimes(1);
+  });
+
   test("does not track exit intent when cursor does not leave through the top", () => {
     const addEventListenerSpy = jest.spyOn(window, "addEventListener");
 
