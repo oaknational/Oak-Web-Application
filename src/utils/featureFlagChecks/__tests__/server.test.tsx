@@ -23,11 +23,11 @@ const mockContext = {
 } as unknown as GetServerSidePropsContext;
 
 async function expectFeatureFlagResult({
-  forceFlag,
   posthogEnabled,
+  forceFlag,
 }: {
-  forceFlag: "true" | "false";
   posthogEnabled: boolean;
+  forceFlag: "true" | "false";
 }) {
   process.env.NEXT_PUBLIC_FORCE_FEATURE_FLAG_OAKS_IMPACT = forceFlag;
   (getPosthogIdFromCookie as jest.Mock).mockReturnValue("1111");
@@ -35,47 +35,63 @@ async function expectFeatureFlagResult({
 }
 
 describe("isFeatureFlagEnabledServer", () => {
-  test("returns true when posthog feature flag is enabled for the user and constant is 'true'", async () => {
-    expectFeatureFlagResult({
-      forceFlag: "true",
-      posthogEnabled: true,
+  describe("when posthog feature flag is enabled for the user", () => {
+    test("returns true when the constant is 'true'", async () => {
+      expectFeatureFlagResult({
+        posthogEnabled: true,
+        forceFlag: "true",
+      });
+
+      const result = await isFeatureFlagEnabledServer(
+        mockContext,
+        "oaks-impact",
+      );
+
+      expect(result).toBe(true);
     });
 
-    const result = await isFeatureFlagEnabledServer(mockContext, "oaks-impact");
+    test("returns true when the constant is 'false'", async () => {
+      expectFeatureFlagResult({
+        posthogEnabled: true,
+        forceFlag: "false",
+      });
 
-    expect(result).toBe(true);
+      const result = await isFeatureFlagEnabledServer(
+        mockContext,
+        "oaks-impact",
+      );
+
+      expect(result).toBe(true);
+    });
   });
 
-  test("returns true when posthog feature flag is enabled for the user but constant is 'false'", async () => {
-    expectFeatureFlagResult({
-      forceFlag: "false",
-      posthogEnabled: true,
+  describe("when posthog feature flag is not enabled for the user", () => {
+    test("returns true when the constant is 'true'", async () => {
+      expectFeatureFlagResult({
+        posthogEnabled: false,
+        forceFlag: "true",
+      });
+
+      const result = await isFeatureFlagEnabledServer(
+        mockContext,
+        "oaks-impact",
+      );
+
+      expect(result).toBe(true);
     });
 
-    const result = await isFeatureFlagEnabledServer(mockContext, "oaks-impact");
+    test("returns false when the constant is 'false'", async () => {
+      expectFeatureFlagResult({
+        posthogEnabled: false,
+        forceFlag: "false",
+      });
 
-    expect(result).toBe(true);
-  });
+      const result = await isFeatureFlagEnabledServer(
+        mockContext,
+        "oaks-impact",
+      );
 
-  test("returns true when posthog feature flag is not enabled for the user but constant is 'true'", async () => {
-    expectFeatureFlagResult({
-      forceFlag: "true",
-      posthogEnabled: false,
+      expect(result).toBe(false);
     });
-
-    const result = await isFeatureFlagEnabledServer(mockContext, "oaks-impact");
-
-    expect(result).toBe(true);
-  });
-
-  test("returns false when posthog feature flag is not enabled for the user and constant is 'false'", async () => {
-    expectFeatureFlagResult({
-      forceFlag: "false",
-      posthogEnabled: false,
-    });
-
-    const result = await isFeatureFlagEnabledServer(mockContext, "oaks-impact");
-
-    expect(result).toBe(false);
   });
 });
