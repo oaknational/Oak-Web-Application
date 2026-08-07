@@ -6,8 +6,9 @@ import {
   OakSmallPrimaryInvertedButton,
   OakFlexProps,
   OakUiRoleToken,
+  getMediaQuery,
 } from "@oaknational/oak-components";
-import { Ref } from "react";
+import { Ref, useLayoutEffect, useRef, useState } from "react";
 import styled, { css, keyframes } from "styled-components";
 
 import {
@@ -48,6 +49,38 @@ const fadeIn = keyframes`
   }
   to {
     opacity: 1;
+  }
+`;
+
+const slideInFromBottom = keyframes`
+  from {
+    transform: translateY(100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+`;
+
+const MobileAnimatedShell = styled(OakFlex)<{ $animateIn?: boolean }>`
+  @media (${getMediaQuery("mobile")}) {
+    ${(props) =>
+      props.$animateIn &&
+      css`
+        animation: ${slideInFromBottom} 250ms ease-out;
+
+        @media (prefers-reduced-motion: reduce) {
+          animation: none;
+        }
+      `}
+  }
+`;
+
+const MobileFlowPlaceholder = styled.div<{ $height: number }>`
+  display: none;
+
+  @media (${getMediaQuery("mobile")}) {
+    display: block;
+    height: ${(props) => props.$height}px;
   }
 `;
 
@@ -93,7 +126,7 @@ type UnitHeaderNavFooterAppearance = {
  * |          | not stuck     | stuck            |
  * | -------- | ---------     | ---------------- |
  * | mobile   | static        | fixed, bottom: 0 |
- * | tablet+  | sticky, top: 0| sticky, top: 0   |
+ * | tablet+  | static        | sticky, top: 0   |
  */
 function getUnitHeaderNavFooterAppearance(
   isStuck: boolean | undefined,
@@ -109,9 +142,9 @@ function getUnitHeaderNavFooterAppearance(
   if (!isStuck) {
     return {
       shell: {
-        $position: ["static", "sticky"],
+        $position: "static",
         $bottom: [null, null],
-        $top: [null, "spacing-0"],
+        $top: [null, null],
         $left: [null, null],
       },
       fadeIn: {
@@ -177,14 +210,49 @@ function getUnitHeaderNavFooterAppearance(
 
 export const UnitHeaderNavFooter = (props: UnitHeaderNavFooterProps) => {
   const { sentinelRef, isStuck } = props;
+  const shellRef = useRef<HTMLDivElement>(null);
+  const [mobileFlowHeight, setMobileFlowHeight] = useState(0);
   const { shell, fadeIn, content, displays, borderColor } =
     getUnitHeaderNavFooterAppearance(isStuck, props.backgroundColorLevel);
 
+  useLayoutEffect(() => {
+    const element = shellRef.current;
+
+    if (!element || isStuck) {
+      return;
+    }
+
+    const updateFlowHeight = () => {
+      setMobileFlowHeight(element.getBoundingClientRect().height);
+    };
+
+    updateFlowHeight();
+
+    if (typeof ResizeObserver === "undefined") {
+      window.addEventListener("resize", updateFlowHeight);
+      return () => window.removeEventListener("resize", updateFlowHeight);
+    }
+
+    const resizeObserver = new ResizeObserver(updateFlowHeight);
+    resizeObserver.observe(element);
+
+    return () => resizeObserver.disconnect();
+  }, [isStuck]);
+
   return (
     <>
-      {/* Sentinel element, for checking when the user has scrolled past this point */}
-      <OakBox ref={sentinelRef} $height="spacing-0" />
-      <OakFlex
+      {isStuck && (
+        /* Keeps the document flow height on mobile when the footer becomes fixed. */
+        <MobileFlowPlaceholder
+          data-testid="unit-header-nav-footer-placeholder"
+          $height={mobileFlowHeight}
+        />
+      )}
+      <MobileAnimatedShell
+        ref={shellRef}
+        data-testid="unit-header-nav-footer"
+        data-stuck={Boolean(isStuck)}
+        $animateIn={isStuck}
         $zIndex={"in-front"}
         {...shell}
         $width={"100%"}
@@ -264,7 +332,9 @@ export const UnitHeaderNavFooter = (props: UnitHeaderNavFooterProps) => {
             </OakBox>
           </OakFlex>
         </FadeInFlex>
-      </OakFlex>
+      </MobileAnimatedShell>
+      {/* Switch only after the initial footer has completely left the viewport. */}
+      <div style={{ height: "1px", marginTop: "-1px" }} ref={sentinelRef} />
     </>
   );
 };

@@ -1,6 +1,5 @@
 import React from "react";
 import { Meta, StoryObj } from "@storybook/nextjs";
-import { oakDefaultTheme, OakThemeProvider } from "@oaknational/oak-components";
 
 import { CampaignPageHeader } from "./CampaignPageHeader";
 
@@ -16,27 +15,23 @@ type Story = StoryObj<typeof CampaignPageHeader>;
 
 export const Default: Story = {
   render: () => (
-    <OakThemeProvider theme={oakDefaultTheme}>
-      <CampaignPageHeader
-        campaignHeader={{
-          heading: "Campaign Header",
-          image: mockImageAsset(),
-        }}
-      />
-    </OakThemeProvider>
+    <CampaignPageHeader
+      campaignHeader={{
+        heading: "Campaign Header",
+        image: mockImageAsset(),
+      }}
+    />
   ),
 };
 
 export const WithSubheading: Story = {
   render: () => (
-    <OakThemeProvider theme={oakDefaultTheme}>
-      <CampaignPageHeader
-        campaignHeader={{
-          heading: "Campaign Header",
-          subheading: "This is a subheading",
-          image: mockImageAsset(),
-        }}
-      />
-    </OakThemeProvider>
+    <CampaignPageHeader
+      campaignHeader={{
+        heading: "Campaign Header",
+        subheading: "This is a subheading",
+        image: mockImageAsset(),
+      }}
+    />
   ),
 };

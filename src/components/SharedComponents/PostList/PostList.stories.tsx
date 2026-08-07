@@ -1,4 +1,3 @@
-import { OakThemeProvider, oakDefaultTheme } from "@oaknational/oak-components";
 import { StoryFn, Meta } from "@storybook/nextjs";
 
 import { PaginationProps } from "../Pagination/usePagination";
@@ -79,13 +78,6 @@ const currentPageItems: PostListProps["currentPageItems"] = [
 
 export default {
   component: Component,
-  decorators: [
-    (Story) => (
-      <OakThemeProvider theme={oakDefaultTheme}>
-        <Story />
-      </OakThemeProvider>
-    ),
-  ],
 } as Meta<typeof Component>;
 
 const Template: StoryFn<typeof Component> = (args) => {

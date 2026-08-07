@@ -11,7 +11,7 @@ import {
 import { portableTextSchema } from "./portableText";
 import { teamMemberSchema } from "./teamMember";
 import { textBlockSchema } from "./blocks";
-import { caseStudyCardSchema } from "./caseStudy";
+import { caseStudyCardSchema, caseStudySchema } from "./caseStudy";
 
 // Oak's Curricula Page
 export const oaksCurriculaPageHeaderSchema = z.object({
@@ -30,20 +30,25 @@ export const oaksCurriculaPageGuidingPrinciplesSchema = z.object({
   principles: z.array(oaksCurriculaPageGuidingPrincipleSchema),
 });
 
-export const oaksCurriculaPageCurriculumPartnerSchema = z.object({
+export const oaksCurriculaPagePartnerSchema = z.object({
   logo: imageSchema,
 });
 
-export const oaksCurriculaPageCurriculumPartnersSchema = z.object({
+export const oaksCurriculaPagePartnerSectionSchema = z.object({
   textRaw: portableTextSchema,
-  partners: z.array(oaksCurriculaPageCurriculumPartnerSchema),
+  partners: z.array(oaksCurriculaPagePartnerSchema),
+});
+
+export const oaksCurriculaPageCurriculumPartnersSectionSchema = z.object({
+  textRaw: portableTextSchema,
+  current: oaksCurriculaPagePartnerSectionSchema,
+  legacy: oaksCurriculaPagePartnerSectionSchema,
 });
 
 export const oaksCurriculaPageSchema = z.object({
   header: oaksCurriculaPageHeaderSchema,
   guidingPrinciples: oaksCurriculaPageGuidingPrinciplesSchema,
-  currentPartners: oaksCurriculaPageCurriculumPartnersSchema,
-  legacyPartners: oaksCurriculaPageCurriculumPartnersSchema,
+  curriculumPartners: oaksCurriculaPageCurriculumPartnersSectionSchema,
   seo: seoSchema.nullish(),
 });
 
@@ -175,7 +180,11 @@ export const oaksImpactPageCaseStudiesSectionSchema = z.object({
 export const oaksImpactSchoolQuoteCardSchema = z.object({
   logo: imageSchema,
   summary: z.string(),
-  quote: quoteSchema,
+  quote: quoteSchema.extend({
+    attribution: z.string(),
+    role: z.string(),
+    organisation: z.string(),
+  }),
   headshot: imageSchema,
 });
 
@@ -194,6 +203,16 @@ export const oaksImpactPageSchema = z.object({
 
 export type OaksImpactPage = z.infer<typeof oaksImpactPageSchema>;
 
+export const oaksImpactCaseStudyPageSchema = z.object({
+  caseStudiesSection: z.object({
+    caseStudies: z.array(caseStudySchema),
+  }),
+});
+
+export type OaksImpactCaseStudyPage = z.infer<
+  typeof oaksImpactCaseStudyPageSchema
+>;
+
 // Aliases for about pages (old naming convention - mapping new queries to existing schemas)
 export const aboutWhoWeArePageSchema = whoWeArePageSchema;
 
@@ -206,9 +225,9 @@ export const aboutBoardPageSchema = meetTheTeamPageOurBoardSchema;
 export type AboutBoardPage = z.infer<typeof meetTheTeamPageOurBoardSchema>;
 
 export const aboutPartnersPageSchema =
-  oaksCurriculaPageCurriculumPartnersSchema;
+  oaksCurriculaPageCurriculumPartnersSectionSchema;
 export type AboutPartnersPage = z.infer<
-  typeof oaksCurriculaPageCurriculumPartnersSchema
+  typeof oaksCurriculaPageCurriculumPartnersSectionSchema
 >;
 
 export const aboutWorkWithUsPageSchema = getInvolvedPageWorkWithUsSchema;

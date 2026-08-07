@@ -1,9 +1,5 @@
 import { StoryFn, Meta } from "@storybook/nextjs";
-import {
-  OakBox,
-  oakDefaultTheme,
-  OakThemeProvider,
-} from "@oaknational/oak-components";
+import { OakBox } from "@oaknational/oak-components";
 
 import Component from ".";
 
@@ -18,13 +14,11 @@ export default {
   },
   decorators: [
     (Story) => (
-      <OakThemeProvider theme={oakDefaultTheme}>
-        <OakBox $position="relative" $maxWidth="spacing-640" $ma="auto">
-          <AspectRatio ratio={"16:9"}>
-            <Story />
-          </AspectRatio>
-        </OakBox>
-      </OakThemeProvider>
+      <OakBox $position="relative" $maxWidth="spacing-640" $ma="auto">
+        <AspectRatio ratio={"16:9"}>
+          <Story />
+        </AspectRatio>
+      </OakBox>
     ),
   ],
   argTypes: {

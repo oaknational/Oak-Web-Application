@@ -1,9 +1,5 @@
 import { Meta, StoryObj } from "@storybook/nextjs";
-import {
-  OakFlex,
-  OakThemeProvider,
-  oakDefaultTheme,
-} from "@oaknational/oak-components";
+import { OakFlex } from "@oaknational/oak-components";
 
 import Component from "./SubjectPhasePicker";
 
@@ -27,11 +23,9 @@ type Story = StoryObj<typeof Component>;
 export const KeyStageKeypad: Story = {
   render: () => {
     return (
-      <OakThemeProvider theme={oakDefaultTheme}>
-        <OakFlex $flexDirection={"column"} $pa="spacing-16">
-          <Component {...curriculumPhaseOptions} />
-        </OakFlex>
-      </OakThemeProvider>
+      <OakFlex $flexDirection={"column"} $pa="spacing-16">
+        <Component {...curriculumPhaseOptions} />
+      </OakFlex>
     );
   },
 };

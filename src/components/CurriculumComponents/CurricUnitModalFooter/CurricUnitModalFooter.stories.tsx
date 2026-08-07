@@ -1,4 +1,3 @@
-import { OakThemeProvider, oakDefaultTheme } from "@oaknational/oak-components";
 import { Meta, StoryObj } from "@storybook/nextjs";
 import { ComponentProps } from "react";
 
@@ -23,11 +22,7 @@ export const LessonsComingSoon: Story = {
     unitData: mockUnit,
   },
   render: function Render(args: ComponentProps<typeof Component>) {
-    return (
-      <OakThemeProvider theme={oakDefaultTheme}>
-        <Component {...args} />
-      </OakThemeProvider>
-    );
+    return <Component {...args} />;
   },
 };
 
@@ -37,10 +32,6 @@ export const HasLessons: Story = {
     unitData: mockUnitWithLessons,
   },
   render: function Render(args: ComponentProps<typeof Component>) {
-    return (
-      <OakThemeProvider theme={oakDefaultTheme}>
-        <Component {...args} />
-      </OakThemeProvider>
-    );
+    return <Component {...args} />;
   },
 };

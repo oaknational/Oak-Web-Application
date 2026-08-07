@@ -1,7 +1,7 @@
 import { Meta, StoryObj } from "@storybook/nextjs";
 import { oakDefaultTheme, OakThemeProvider } from "@oaknational/oak-components";
 
-import { fixtureData } from "./OaksImpactSchoolQuote.fixtures";
+import { fixtureData } from "../OaksImpactSchoolQuotesSection/OaksImpactSchoolQuotesSection.fixtures";
 
 import { OaksImpactSchoolQuote as Component } from ".";
 
@@ -24,7 +24,7 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   args: {
-    ...fixtureData,
+    ...fixtureData.cards[0]!,
   },
   render: (args) => <Component {...args} />,
 };

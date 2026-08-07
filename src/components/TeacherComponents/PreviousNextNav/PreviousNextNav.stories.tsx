@@ -1,19 +1,10 @@
-import React from "react";
 import { Meta, StoryObj } from "@storybook/nextjs";
-import { OakThemeProvider, oakDefaultTheme } from "@oaknational/oak-components";
 
 import PreviousNextNav from "./PreviousNextNav";
 
 const meta: Meta<typeof PreviousNextNav> = {
   component: PreviousNextNav,
   tags: ["autodocs"],
-  decorators: [
-    (Story) => (
-      <OakThemeProvider theme={oakDefaultTheme}>
-        <Story />
-      </OakThemeProvider>
-    ),
-  ],
   args: {
     currentIndex: 3,
     backgroundColorLevel: 3,

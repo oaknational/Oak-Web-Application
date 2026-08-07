@@ -6,6 +6,10 @@ import {
   OakImage,
   OakP,
 } from "@oaknational/oak-components";
+import z from "zod";
+
+import { oaksImpactSchoolQuoteCardSchema } from "@/common-lib/cms-types";
+import getProxiedSanityAssetUrl from "@/common-lib/urls/getProxiedSanityAssetUrl";
 
 const StyledAuthorImage = styled(OakImage)`
   width: 54px;
@@ -25,27 +29,17 @@ const TightLetterSpacing = styled(OakFlex)`
 
 export type OaksImpactSchoolQuoteProps = {
   as?: "div" | "li";
-  title: string;
-  image: {
-    alt: string;
-    src: string;
-  };
-  subTitle: string;
-  quote: {
-    quote: string | string[];
-    authorName?: string;
-    authorTitle?: string;
-    authorImageSrc?: string;
-  };
-};
+} & z.infer<typeof oaksImpactSchoolQuoteCardSchema>;
+
 export function OaksImpactSchoolQuote({
   as = "div",
-  title,
-  image,
-  subTitle,
+  logo,
+  summary,
   quote,
+  headshot,
 }: Readonly<OaksImpactSchoolQuoteProps>) {
-  const quoteLines = Array.isArray(quote.quote) ? quote.quote : [quote.quote];
+  const quoteLines = quote.text.split("\n").filter(Boolean);
+  const { attribution: authorName, role, organisation } = quote;
 
   return (
     <OakFlex
@@ -56,8 +50,13 @@ export function OaksImpactSchoolQuote({
       $borderColor="border-neutral-lighter"
       $borderRadius={"border-radius-l"}
       $overflow="hidden"
+      $flexGrow={1}
     >
-      <OakImage {...image} $aspectRatio={"16/9"} />
+      <OakImage
+        src={getProxiedSanityAssetUrl(logo.asset?.url ?? "")}
+        alt={logo.altText ?? ""}
+        $aspectRatio={"16/9"}
+      />
       <OakFlex
         $flexDirection={"column"}
         $ph={"spacing-24"}
@@ -66,10 +65,10 @@ export function OaksImpactSchoolQuote({
       >
         <OakFlex $flexDirection={"column"} $gap={"spacing-8"}>
           <OakHeading tag={"h3"} $color={"text-primary"} $font={"heading-5"}>
-            {title}
+            {organisation}
           </OakHeading>
           <OakP $color={"text-primary"} $font={"body-2"}>
-            {subTitle}
+            {summary}
           </OakP>
         </OakFlex>
         <OakBox $height="spacing-2" style={{ background: "#D9D9D9" }} />
@@ -79,7 +78,7 @@ export function OaksImpactSchoolQuote({
               <OakFlex $alignItems={"flex-start"}>
                 <OakFlex $flexDirection={"column"} $gap={"spacing-40"}>
                   <OakFlex $width={"100%"}>
-                    <OakFlex $flexDirection={"column"} $gap={"spacing-16"}>
+                    <OakFlex $flexDirection={"column"} $gap={"spacing-20"}>
                       <OakBox $font={"heading-light-6"} $color={"text-primary"}>
                         <TightLetterSpacing
                           $flexDirection={"column"}
@@ -99,28 +98,25 @@ export function OaksImpactSchoolQuote({
                           })}
                         </TightLetterSpacing>
                       </OakBox>
-
-                      {quote.authorName ? (
-                        <OakFlex $gap={"spacing-16"} $alignItems={"center"}>
-                          {quote.authorImageSrc ? (
-                            <StyledAuthorImage
-                              alt={""}
-                              role={"presentation"}
-                              src={quote.authorImageSrc}
-                            />
-                          ) : null}
-                          <OakFlex $flexDirection={"column"}>
-                            <OakP $font={"body-2-bold"} $color={"text-primary"}>
-                              {quote.authorName}
-                            </OakP>
-                            {quote.authorTitle ? (
-                              <OakP $font={"body-2"} $color={"text-primary"}>
-                                {quote.authorTitle}
-                              </OakP>
-                            ) : null}
-                          </OakFlex>
+                      <OakFlex
+                        $gap={"spacing-16"}
+                        $alignItems={["top", "center"]}
+                      >
+                        <StyledAuthorImage
+                          src={getProxiedSanityAssetUrl(
+                            headshot.asset?.url ?? "",
+                          )}
+                          alt={headshot.altText ?? ""}
+                        />
+                        <OakFlex $flexDirection={"column"}>
+                          <OakP $font={"body-2-bold"} $color={"text-primary"}>
+                            {authorName}
+                          </OakP>
+                          <OakP $font={"body-2"} $color={"text-primary"}>
+                            {role}, {organisation}
+                          </OakP>
                         </OakFlex>
-                      ) : null}
+                      </OakFlex>
                     </OakFlex>
                   </OakFlex>
                 </OakFlex>

@@ -1,11 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/nextjs";
-import {
-  oakDefaultTheme,
-  OakFlex,
-  OakP,
-  OakPromoTag,
-  OakThemeProvider,
-} from "@oaknational/oak-components";
+import { OakFlex, OakP, OakPromoTag } from "@oaknational/oak-components";
 
 import PromoBanner from "./PromoBanner";
 
@@ -50,9 +44,5 @@ export const Banner: Story = {
     background: "bg-decorative5-main",
     message: "curriculum",
   },
-  render: (args) => (
-    <OakThemeProvider theme={oakDefaultTheme}>
-      <PromoBanner {...args} />
-    </OakThemeProvider>
-  ),
+  render: (args) => <PromoBanner {...args} />,
 };
