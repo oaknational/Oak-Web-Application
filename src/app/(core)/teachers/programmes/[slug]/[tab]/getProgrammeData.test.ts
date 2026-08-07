@@ -12,7 +12,9 @@ import { createUnit } from "@/fixtures/curriculum/unit";
 import curriculumPhaseOptionsFixture from "@/node-lib/curriculum-api-2023/fixtures/curriculumPhaseOptions.fixture";
 import { curriculumOverviewMVFixture } from "@/node-lib/curriculum-api-2023/fixtures/curriculumOverview.fixture";
 import OakError from "@/errors/OakError";
-import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
+import curriculumApi2023, {
+  CurriculumPhaseOptions,
+} from "@/node-lib/curriculum-api-2023";
 import { filterValidCurriculumPhaseOptions } from "@/pages-helpers/curriculum/docx/tab-helpers";
 
 jest.mock("@/node-lib/curriculum-api-2023", () => ({
@@ -266,7 +268,7 @@ describe("getProgrammeData", () => {
           subject_parent_slug: null,
         },
       ];
-      const subjects = [
+      const subjects: CurriculumPhaseOptions = [
         {
           title: "English",
           slug: "english",

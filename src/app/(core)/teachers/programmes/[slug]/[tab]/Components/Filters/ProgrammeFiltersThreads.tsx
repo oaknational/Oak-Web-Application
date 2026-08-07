@@ -5,18 +5,19 @@ import {
 } from "@oaknational/oak-components";
 import { useId } from "react";
 
-import { Thread, CurriculumFilters } from "@/utils/curriculum/types";
+import {
+  Thread,
+  CurriculumFilters,
+  OnChangeCurriculumFilters,
+} from "@/utils/curriculum/types";
 import { highlightedUnitCount } from "@/utils/curriculum/filtering";
 import { CurriculumUnitsFormattedData } from "@/pages-helpers/curriculum/docx/tab-helpers";
-import { ComponentTypeValueType } from "@/browser-lib/avo/Avo";
+import { FilterType } from "@/browser-lib/avo/Avo";
 import { pluralizeUnits } from "@/utils/curriculum/formatting";
 
 export type ProgrammeFiltersThreadsProps = {
   filters: CurriculumFilters;
-  onChangeFilters: (
-    newFilters: CurriculumFilters,
-    source?: ComponentTypeValueType,
-  ) => void;
+  onChangeFilters: OnChangeCurriculumFilters;
   data: CurriculumUnitsFormattedData;
 };
 
@@ -54,7 +55,11 @@ export function ProgrammeFiltersThreads({
       name={`threads-${id}`}
       onChange={(e) => {
         const threads = e.target.value.trim() === "" ? [] : [e.target.value];
-        onChangeFilters({ ...filters, threads });
+        onChangeFilters({
+          newFilters: { ...filters, threads },
+          filterType: FilterType.LEARNING_THEME_FILTER,
+          filterValue: e.target.value.trim(),
+        });
       }}
       value={filters.threads.at(0) ?? ""}
       $gap="spacing-12"

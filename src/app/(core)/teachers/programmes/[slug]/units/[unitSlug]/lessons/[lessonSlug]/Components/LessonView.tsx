@@ -23,11 +23,8 @@ import PreviousNextNav from "@/components/TeacherComponents/PreviousNextNav/Prev
 import { resolveOakHref } from "@/common-lib/urls";
 import { useComplexCopyright } from "@/hooks/useComplexCopyright";
 import { TeachingMaterialTypeValueType } from "@/browser-lib/avo/Avo";
-import useAnalytics from "@/context/Analytics/useAnalytics";
-import { getAnalyticsBrowseData } from "@/components/TeacherComponents/helpers/getAnalyticsBrowseData";
 import SkipLink from "@/components/CurriculumComponents/OakComponentsKitchen/SkipLink";
 import { MathJaxProvider } from "@/browser-lib/mathjax/MathJaxProvider";
-import { TrackingCallbackProps } from "@/components/TeacherComponents/LessonOverviewMediaClips";
 import { hasLessonMathJax } from "@/components/TeacherViews/LessonOverview/hasLessonMathJax";
 import { getSideNavLinksFromResources } from "@/components/TeacherComponents/LessonOverviewSideNavAnchorLinks/LessonOverviewSideNavAnchorLinks";
 import ComplexCopyrightRestrictionBanner from "@/components/TeacherComponents/ComplexCopyrightRestrictionBanner/ComplexCopyrightRestrictionBanner";
@@ -47,18 +44,13 @@ export default function LessonView(
     loginRequired,
     geoRestricted,
     expired,
-    lessonReleaseDate,
     lessonTitle,
     keyStageTitle,
     keyStageSlug,
     subjectTitle,
     unitTitle,
     year,
-    yearGroupTitle,
-    examBoardTitle,
     examBoardSlug,
-    tierTitle,
-    pathwayTitle,
     phaseSlug,
     actions,
     subjectCategories,
@@ -81,59 +73,23 @@ export default function LessonView(
     showGeoBlocked ||
     showSignedInNotOnboarded;
 
-  const { track } = useAnalytics();
   const { isSignedIn } = useUser();
   const isMathJaxLesson = hasLessonMathJax(props, props.subjectSlug, false);
   const MathJaxLessonProvider = isMathJaxLesson ? MathJaxProvider : Fragment;
-  const { lessonResourceDownloadStarted } = useTeacherBrowseAnalytics(
-    (store) => store.track,
-  );
 
-  const browsePathwayData = getAnalyticsBrowseData({
-    keyStageSlug,
-    keyStageTitle,
-    subjectSlug,
-    subjectTitle,
-    unitSlug,
-    unitTitle,
-    year,
-    yearTitle: yearGroupTitle,
-    examBoardTitle,
-    tierTitle,
-    pathwayTitle,
-    lessonSlug,
-    lessonName: lessonTitle,
-    lessonReleaseDate,
-    isLegacy: false,
-  });
-
-  const trackMediaClipsButtonClicked = ({
-    mediaClipsButtonName,
-    learningCycle,
-  }: TrackingCallbackProps) => {
-    track.lessonMediaClipsStarted({
-      platform: "owa",
-      product: "media clips",
-      engagementIntent: "use",
-      componentType: "go_to_media_clips_page_button",
-      eventVersion: "2.0.0",
-      analyticsUseCase: "Teacher",
-      mediaClipsButtonName,
-      learningCycle,
-      ...browsePathwayData,
-    });
-  };
-
-  const trackShare = () => {
-    track.lessonShareStarted(browsePathwayData);
-  };
+  const {
+    lessonResourceDownloadStarted,
+    lessonMediaClipsStarted,
+    lessonShareStarted,
+    createTeachingMaterialsInitiated,
+    teachingMaterialsSelected,
+  } = useTeacherBrowseAnalytics((store) => store.track);
 
   const lessonResources = getLessonResources({
-    browsePathwayData,
     data: props,
     copyrightState,
     isMathJaxLesson,
-    trackMediaClipsButtonClicked,
+    trackMediaClipsButtonClicked: lessonMediaClipsStarted,
     contentRestricted,
   });
 
@@ -191,7 +147,9 @@ export default function LessonView(
                     unitSlug,
                     showDownloadAll: true,
                     onClickDownloadAll: () => {
-                      lessonResourceDownloadStarted("all");
+                      lessonResourceDownloadStarted({
+                        downloadResourceButtonName: "all",
+                      });
                     },
                     geoRestricted,
                     loginRequired,
@@ -248,26 +206,13 @@ export default function LessonView(
                         actions,
                         subjectSlug,
                         trackCreateWithAiButtonClicked: () =>
-                          track.createTeachingMaterialsInitiated({
-                            platform: "owa",
-                            product: "teacher lesson resources",
-                            engagementIntent: "use",
-                            componentType: "create_more_with_ai_button",
-                            eventVersion: "2.0.0",
-                            analyticsUseCase: "Teacher",
+                          createTeachingMaterialsInitiated({
                             isLoggedIn: isSignedIn ?? false,
                           }),
                         trackTeachingMaterialsSelected: (
                           teachingMaterialType: TeachingMaterialTypeValueType,
                         ) => {
-                          track.teachingMaterialsSelected({
-                            platform: "owa",
-                            product: "teacher lesson resources",
-                            engagementIntent: "use",
-                            componentType: "create_more_with_ai_dropdown",
-                            eventVersion: "2.0.0",
-                            analyticsUseCase: "Teacher",
-                            interactionId: "",
+                          teachingMaterialsSelected({
                             teachingMaterialType: teachingMaterialType,
                           });
                         },
@@ -276,7 +221,7 @@ export default function LessonView(
                 lessonSlug={lessonSlug}
                 unitSlug={unitSlug}
                 programmeSlug={programmeSlug}
-                onClickShare={trackShare}
+                onClickShare={lessonShareStarted}
               />
             </OakGridArea>
             <OakGridArea
@@ -299,11 +244,12 @@ export default function LessonView(
                     resource={resource}
                     key={resource.resourceType}
                     onDownloadButtonClick={(props) =>
-                      lessonResourceDownloadStarted(
-                        props.downloadResourceButtonName,
-                      )
+                      lessonResourceDownloadStarted({
+                        downloadResourceButtonName:
+                          props.downloadResourceButtonName,
+                      })
                     }
-                    onMediaClipsButtonClick={trackMediaClipsButtonClicked}
+                    onMediaClipsButtonClick={lessonMediaClipsStarted}
                   />
                 ))}
 

@@ -26,15 +26,9 @@ import {
   getPageLinksWithSubheadingsForLesson,
   getCommonPathway,
 } from "@/components/TeacherComponents/helpers/lessonHelpers/lesson.helpers";
-import { getAnalyticsBrowseData } from "@/components/TeacherComponents/helpers/getAnalyticsBrowseData";
 import LessonOverviewPresentation from "@/components/TeacherComponents/LessonOverviewPresentation";
 import LessonOverviewVideo from "@/components/TeacherComponents/LessonOverviewVideo";
 import QuizContainerNew from "@/components/TeacherComponents/LessonOverviewQuizContainer";
-import useAnalytics from "@/context/Analytics/useAnalytics";
-import type {
-  DownloadResourceButtonNameValueType,
-  TeachingMaterialTypeValueType,
-} from "@/browser-lib/avo/Avo";
 import useAnalyticsPageProps from "@/hooks/useAnalyticsPageProps";
 import LessonDetails from "@/components/TeacherComponents/LessonOverviewDetails";
 import { LessonItemContainer } from "@/components/TeacherComponents/LessonItemContainer";
@@ -51,9 +45,7 @@ import {
   checkIfResourceHasLegacyCopyright,
   getIsResourceDownloadable,
 } from "@/components/TeacherComponents/helpers/downloadAndShareHelpers/downloadsLegacyCopyright";
-import LessonOverviewMediaClips, {
-  TrackingCallbackProps,
-} from "@/components/TeacherComponents/LessonOverviewMediaClips";
+import LessonOverviewMediaClips from "@/components/TeacherComponents/LessonOverviewMediaClips";
 import LessonOverviewDocPresentation from "@/components/TeacherComponents/LessonOverviewDocPresentation";
 import { TeacherNoteInline } from "@/components/TeacherComponents/TeacherNoteInline/TeacherNoteInline";
 import LessonOverviewSideNavAnchorLinks from "@/components/TeacherComponents/LessonOverviewSideNavAnchorLinks";
@@ -67,6 +59,7 @@ import {
 } from "@/components/SharedComponents/TakedownBanner/TakedownBanner";
 import isSlugLegacy from "@/utils/slugModifiers/isSlugLegacy";
 import { resolveOakHref } from "@/common-lib/urls";
+import { useTeacherBrowseAnalytics } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
 
 export type LessonOverviewProps = {
   lesson: LessonOverviewPageData & {
@@ -124,7 +117,6 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
     teacherNoteError,
     additionalFiles,
     lessonOutline,
-    lessonReleaseDate,
     loginRequired,
     geoRestricted,
   } = lesson;
@@ -139,6 +131,14 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
     geoRestricted,
   });
 
+  const {
+    lessonMediaClipsStarted,
+    lessonShareStarted,
+    createTeachingMaterialsInitiated,
+    teachingMaterialsSelected,
+    lessonResourceDownloadStarted,
+  } = useTeacherBrowseAnalytics((store) => store.track);
+
   const contentRestricted =
     showSignedOutGeoRestricted ||
     showSignedOutLoginRequired ||
@@ -148,7 +148,6 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
   const isSubHeader =
     useFeatureFlagVariantKey("lesson-overview-subheader-experiment") === "test";
 
-  const { track } = useAnalytics();
   const { analyticsUseCase } = useAnalyticsPageProps();
 
   const commonPathway: LessonPathway = {
@@ -168,20 +167,8 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
     lessonCohort: lesson.lessonCohort,
     pathwayTitle: lesson.pathwayTitle ?? null,
   };
-  const {
-    keyStageSlug,
-    keyStageTitle,
-    subjectTitle,
-    subjectSlug,
-    unitTitle,
-    unitSlug,
-    programmeSlug,
-    yearGroupTitle,
-    examBoardTitle,
-    tierTitle,
-    pathwayTitle,
-    yearGroupSlug,
-  } = commonPathway;
+  const { subjectSlug, unitSlug, programmeSlug } = commonPathway;
+
   const user = useUser();
   const isLegacyLicense = !lessonCohort || lessonCohort === LEGACY_COHORT;
   const isNew = lessonCohort === NEW_COHORT;
@@ -196,89 +183,6 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
     : "Video & audio clips";
 
   const MathJaxLessonProvider = isMathJaxLesson ? MathJaxProvider : Fragment;
-
-  const browsePathwayData = getAnalyticsBrowseData({
-    keyStageSlug,
-    keyStageTitle,
-    subjectSlug,
-    subjectTitle,
-    unitSlug,
-    unitTitle,
-    year: yearGroupSlug,
-    yearTitle: yearGroupTitle,
-    examBoardTitle,
-    tierTitle,
-    pathwayTitle,
-    lessonSlug,
-    lessonName: lessonTitle,
-    lessonReleaseDate,
-    isLegacy: lesson.isLegacy,
-  });
-
-  const trackDownloadResourceButtonClicked = ({
-    downloadResourceButtonName,
-  }: {
-    downloadResourceButtonName: DownloadResourceButtonNameValueType;
-  }) => {
-    track.lessonResourceDownloadStarted({
-      platform: "owa",
-      product: "teacher lesson resources",
-      engagementIntent: "use",
-      componentType: "lesson_download_button",
-      eventVersion: "2.0.0",
-      analyticsUseCase: "Teacher",
-      downloadResourceButtonName,
-      ...browsePathwayData,
-    });
-  };
-
-  const trackMediaClipsButtonClicked = ({
-    mediaClipsButtonName,
-    learningCycle,
-  }: TrackingCallbackProps) => {
-    track.lessonMediaClipsStarted({
-      platform: "owa",
-      product: "media clips",
-      engagementIntent: "use",
-      componentType: "go_to_media_clips_page_button",
-      eventVersion: "2.0.0",
-      analyticsUseCase: "Teacher",
-      mediaClipsButtonName,
-      learningCycle,
-      ...browsePathwayData,
-    });
-  };
-
-  const trackShareAll = () => {
-    track.lessonShareStarted(browsePathwayData);
-  };
-
-  const trackCreateWithAiButtonClicked = () => {
-    track.createTeachingMaterialsInitiated({
-      platform: "owa",
-      product: "teacher lesson resources",
-      engagementIntent: "use",
-      componentType: "create_more_with_ai_button",
-      eventVersion: "2.0.0",
-      analyticsUseCase: "Teacher",
-      isLoggedIn: user.isSignedIn ?? false,
-    });
-  };
-
-  const trackTeachingMaterialsSelected = (
-    teachingMaterialType: TeachingMaterialTypeValueType,
-  ) => {
-    track.teachingMaterialsSelected({
-      platform: "owa",
-      product: "teacher lesson resources",
-      engagementIntent: "use",
-      componentType: "create_more_with_ai_dropdown",
-      eventVersion: "2.0.0",
-      analyticsUseCase: "Teacher",
-      interactionId: "",
-      teachingMaterialType: teachingMaterialType,
-    });
-  };
 
   const slugs = { unitSlug, lessonSlug, programmeSlug };
 
@@ -356,7 +260,6 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
         ]}
         background={"bg-decorative4-very-subdued"}
         subjectIconBackgroundColor={"bg-decorative4-main"}
-        track={track}
         analyticsUseCase={analyticsUseCase}
         isNew={isNew}
         isShareable={
@@ -366,11 +269,9 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
           !actions?.disablePupilShare
         }
         onClickDownloadAll={() => {
-          trackDownloadResourceButtonClicked({
-            downloadResourceButtonName: "all",
-          });
+          lessonResourceDownloadStarted({ downloadResourceButtonName: "all" });
         }}
-        onClickShareAll={trackShareAll}
+        onClickShareAll={lessonShareStarted}
         pupilLessonOutcome={getDedupedPupilLessonOutcome(
           pupilLessonOutcome,
           keyLearningPoints,
@@ -378,8 +279,14 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
         showDownloadAll={showDownloadAll}
         showShare={showShare}
         teacherShareButton={teacherShareButton}
-        trackTeachingMaterialsSelected={trackTeachingMaterialsSelected}
-        trackCreateWithAiButtonClicked={trackCreateWithAiButtonClicked}
+        trackTeachingMaterialsSelected={(teachingMaterialType) =>
+          teachingMaterialsSelected({ teachingMaterialType })
+        }
+        trackCreateWithAiButtonClicked={() =>
+          createTeachingMaterialsInitiated({
+            isLoggedIn: user.isSignedIn ?? false,
+          })
+        }
         contentRestricted={contentRestricted}
       />
       <OakMaxWidth $ph={"spacing-16"} $pb={"spacing-80"}>
@@ -417,7 +324,7 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
                     downloadAllButtonProps={{
                       showDownloadAll,
                       onClickDownloadAll: () =>
-                        trackDownloadResourceButtonClicked({
+                        lessonResourceDownloadStarted({
                           downloadResourceButtonName: "all",
                         }),
 
@@ -460,7 +367,7 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
                         legacyCopyrightContent,
                       )}
                       onDownloadButtonClick={() => {
-                        trackDownloadResourceButtonClicked({
+                        lessonResourceDownloadStarted({
                           downloadResourceButtonName: "lesson guide",
                         });
                       }}
@@ -492,7 +399,7 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
                         legacyCopyrightContent,
                       )}
                       onDownloadButtonClick={() => {
-                        trackDownloadResourceButtonClicked({
+                        lessonResourceDownloadStarted({
                           downloadResourceButtonName: "slide deck",
                         });
                       }}
@@ -524,8 +431,9 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
                       pageLinks={pageLinks}
                       displayMediaClipButton={true}
                       onPlayALLMediaClipButtonClick={() => {
-                        trackMediaClipsButtonClicked({
+                        lessonMediaClipsStarted({
                           mediaClipsButtonName: "play all",
+                          learningCycle: null,
                         });
                       }}
                       isCanonical={isCanonical}
@@ -539,7 +447,7 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
                         lessonOutline={lessonOutline}
                         isPELesson={!!actions?.displayPETitle}
                         isMFL={!!actions?.displayVocabButton}
-                        onTrackingCallback={trackMediaClipsButtonClicked}
+                        onTrackingCallback={lessonMediaClipsStarted}
                       />
                     </LessonItemContainer>
                   )}
@@ -619,7 +527,6 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
                         title={lessonTitle}
                         transcriptSentences={transcriptSentences}
                         isLegacy={isLegacyLicense}
-                        browsePathwayData={browsePathwayData}
                       />
                     </LessonItemContainer>
                   )}
@@ -644,7 +551,7 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
                       }
                       shareable={isLegacyLicense && showShare}
                       onDownloadButtonClick={() => {
-                        trackDownloadResourceButtonClicked({
+                        lessonResourceDownloadStarted({
                           downloadResourceButtonName: "worksheet",
                         });
                       }}
@@ -706,7 +613,7 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
                           )
                         }
                         onDownloadButtonClick={() => {
-                          trackDownloadResourceButtonClicked({
+                          lessonResourceDownloadStarted({
                             downloadResourceButtonName: "starter quiz",
                           });
                         }}
@@ -760,7 +667,7 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
                         }
                         shareable={isLegacyLicense && showShare}
                         onDownloadButtonClick={() => {
-                          trackDownloadResourceButtonClicked({
+                          lessonResourceDownloadStarted({
                             downloadResourceButtonName: "exit quiz",
                           });
                         }}
@@ -808,7 +715,7 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
                       }
                       shareable={isLegacyLicense && showShare}
                       onDownloadButtonClick={() => {
-                        trackDownloadResourceButtonClicked({
+                        lessonResourceDownloadStarted({
                           downloadResourceButtonName: "additional material",
                         });
                       }}

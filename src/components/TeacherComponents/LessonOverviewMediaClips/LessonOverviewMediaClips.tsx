@@ -10,7 +10,7 @@ import { MediaClipsButtonNameValueType } from "@/browser-lib/avo/Avo";
 
 export type TrackingCallbackProps = {
   mediaClipsButtonName: MediaClipsButtonNameValueType;
-  learningCycle?: string;
+  learningCycle: string;
 };
 
 type LessonOverviewMediaClipsProps = {

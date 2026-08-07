@@ -2,11 +2,7 @@
 
 import { ReactNode, useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
-import {
-  ActionsCamel,
-  examboards,
-  tierDescriptions,
-} from "@oaknational/oak-curriculum-schema";
+import { ActionsCamel } from "@oaknational/oak-curriculum-schema";
 import {
   OakBox,
   OakHandDrawnHR,
@@ -19,27 +15,14 @@ import { useOnboardingStatus } from "../TeacherComponents/hooks/useOnboardingSta
 import Banners from "../SharedComponents/Banners";
 import { waitForLinkCallback } from "../SharedComponents/helpers/downloadAndShareHelpers/createAndClickHiddenDownloadLink";
 
-import useAnalytics from "@/context/Analytics/useAnalytics";
-import {
-  KeyStageTitleValueType,
-  PathwayValueType,
-} from "@/browser-lib/avo/Avo";
-import getFormattedDetailsForTracking from "@/components/TeacherComponents/helpers/downloadAndShareHelpers/getFormattedDetailsForTracking";
 import useLessonDownloadExistenceCheck from "@/components/TeacherComponents/hooks/downloadAndShareHooks/useLessonDownloadExistenceCheck";
 import useResourceFormSubmit from "@/components/TeacherComponents/hooks/downloadAndShareHooks/useResourceFormSubmit";
 import {
   DownloadResourceType,
   ResourceFormValues,
 } from "@/components/TeacherComponents/types/downloadAndShare.types";
-import Breadcrumbs from "@/components/SharedComponents/Breadcrumbs";
 import DownloadCardGroup from "@/components/TeacherComponents/DownloadCardGroup";
 import debouncedSubmit from "@/components/TeacherComponents/helpers/downloadAndShareHelpers/downloadDebounceSubmit";
-import {
-  getLessonOverviewBreadCrumb,
-  getLessonDownloadsBreadCrumb,
-  getBreadcrumbsForLessonPathway,
-  getCommonPathway,
-} from "@/components/TeacherComponents/helpers/lessonHelpers/lesson.helpers";
 import { LessonPathway } from "@/components/TeacherComponents/types/lesson.types";
 import DownloadPageWithAccordion from "@/components/TeacherComponents/DownloadPageWithAccordion";
 import {
@@ -55,6 +38,7 @@ import { LessonDownloadRegionBlocked } from "@/components/TeacherComponents/Less
 import { resolveOakHref } from "@/common-lib/urls";
 import { useComplexCopyright } from "@/hooks/useComplexCopyright";
 import { useOakNotificationsContext } from "@/context/OakNotifications/useOakNotificationsContext";
+import { useTeacherBrowseAnalytics } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
 
 type BaseLessonDownload = {
   expired: boolean | null;
@@ -83,7 +67,7 @@ type NonCanonicalLesson = BaseLessonDownload & {
 
 type LessonDownloadsProps = {
   lesson: NonCanonicalLesson;
-  breadcrumbsSlot?: ReactNode;
+  breadcrumbsSlot: ReactNode;
   successRedirect?: string;
 };
 
@@ -128,20 +112,11 @@ export function LessonDownloads(props: Readonly<LessonDownloadsProps>) {
 
   const showRiskAssessmentBanner = actions?.isPePractical;
 
-  const commonPathway = getCommonPathway([props.lesson]);
+  const { programmeSlug, unitSlug, lessonCohort } = props.lesson;
 
-  const {
-    programmeSlug,
-    keyStageTitle,
-    keyStageSlug,
-    subjectSlug,
-    subjectTitle,
-    unitSlug,
-    unitTitle,
-    lessonCohort,
-    pathwayTitle,
-  } = commonPathway;
-  const { track } = useAnalytics();
+  const { lessonResourcesDownloaded } = useTeacherBrowseAnalytics(
+    (store) => store.track,
+  );
   const isLegacyDownload = !lessonCohort || lessonCohort === LEGACY_COHORT;
 
   const onwardContent = lesson.nextLessons
@@ -238,44 +213,10 @@ export function LessonDownloads(props: Readonly<LessonDownloadsProps>) {
         setEmailInLocalStorage("");
       }
 
-      const {
-        schoolOption,
-        schoolName,
-        schoolUrn,
-        selectedResourcesForTracking,
-      } = getFormattedDetailsForTracking({
-        school: data.school,
-        selectedResources,
-      });
-
-      const examboard = examboards.safeParse(commonPathway.examBoardTitle);
-      const tier = tierDescriptions.safeParse(commonPathway.tierTitle);
-      track.lessonResourcesDownloaded({
-        keyStageTitle: keyStageTitle as KeyStageTitleValueType,
-        keyStageSlug,
-        unitName: unitTitle,
-        unitSlug,
-        subjectTitle,
-        subjectSlug,
-        lessonName: lessonTitle,
-        lessonSlug,
-        resourceType: selectedResourcesForTracking,
-        schoolUrn,
-        schoolName,
-        schoolOption,
+      lessonResourcesDownloaded({
+        ...data,
         onwardContent,
-        emailSupplied: !!data?.email,
-        platform: "owa",
-        product: "teacher lesson resources",
-        engagementIntent: "use",
-        analyticsUseCase: "Teacher",
-        eventVersion: "2.0.0",
-        examBoard: examboard.success ? examboard.data : null,
-        tierName: tier.success ? tier.data : null,
-        componentType: "lesson_download_button",
-        pathway: pathwayTitle as PathwayValueType,
-        lessonReleaseCohort: isLegacyDownload ? "2020-2023" : "2023-2026",
-        lessonReleaseDate: lessonReleaseDate ?? "unreleased",
+        selectedResources,
         totalDownloadableResources:
           (downloadsFilteredByCopyright?.length ?? 0) +
           (additionalFiles?.length ?? 0),
@@ -320,29 +261,7 @@ export function LessonDownloads(props: Readonly<LessonDownloadsProps>) {
           $mb={isDownloadSuccessful ? "spacing-0" : "spacing-32"}
           $mt={"spacing-24"}
         >
-          {props.breadcrumbsSlot ? (
-            props.breadcrumbsSlot
-          ) : (
-            // TD: remove legacy breadcrumbs once the integrated journey is fully rolled out.
-            <Breadcrumbs
-              breadcrumbs={[
-                ...getBreadcrumbsForLessonPathway(commonPathway),
-                getLessonOverviewBreadCrumb({
-                  lessonTitle,
-                  lessonSlug,
-                  programmeSlug,
-                  unitSlug,
-                  isCanonical: false,
-                }),
-                getLessonDownloadsBreadCrumb({
-                  lessonSlug,
-                  programmeSlug,
-                  unitSlug,
-                  disabled: true,
-                }),
-              ]}
-            />
-          )}
+          {props.breadcrumbsSlot}
           <OakHandDrawnHR
             hrColor={"text-subdued"}
             $height={"spacing-4"}
