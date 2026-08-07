@@ -71,6 +71,22 @@ describe("TrackScrolledTo", () => {
     expect(scrolledTo).toHaveBeenCalledWith({ key: "support_you" });
   });
 
+  test("tracks only once when intersecting multiple times", () => {
+    render(<TrackScrolledTo eventKey="support_you" />);
+
+    ioCallback(
+      [{ isIntersecting: true } as IntersectionObserverEntry],
+      {} as IntersectionObserver,
+    );
+
+    ioCallback(
+      [{ isIntersecting: true } as IntersectionObserverEntry],
+      {} as IntersectionObserver,
+    );
+
+    expect(scrolledTo).toHaveBeenCalledTimes(1);
+  });
+
   test("does not track when the component is not intersecting", () => {
     render(<TrackScrolledTo eventKey="support_you" />);
 

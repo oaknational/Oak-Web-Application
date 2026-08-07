@@ -12,6 +12,7 @@ export default function TrackScrolledTo({
 }: Readonly<TrackScrolledToProps>) {
   const { track } = useAnalytics();
   const ref = useRef<HTMLDivElement>(null);
+  const hasTracked = useRef(false);
 
   useEffect(() => {
     if (!ref.current) {
@@ -20,8 +21,10 @@ export default function TrackScrolledTo({
 
     const observer = new IntersectionObserver(
       ([entry]) => {
-        if (entry?.isIntersecting) {
+        if (entry?.isIntersecting && !hasTracked.current) {
+          hasTracked.current = true;
           track.scrolledTo({ key: eventKey });
+          observer.disconnect();
         }
       },
       { threshold: 0, rootMargin: "-1px 0px 0px" },
