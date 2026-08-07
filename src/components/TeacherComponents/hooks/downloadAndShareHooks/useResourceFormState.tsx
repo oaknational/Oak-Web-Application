@@ -2,12 +2,9 @@ import { useCallback, useEffect, useMemo, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useSearchParams } from "next/navigation";
 import { useRouter } from "next/compat/router";
-import { useUser } from "@clerk/nextjs";
 import { zodResolver } from "@hookform/resolvers/zod";
 
-import { fetchHubspotContactDetails } from "../../helpers/downloadAndShareHelpers/fetchHubspotContactDetails";
-
-import useLocalStorageForDownloads from "./useLocalStorageForDownloads";
+import { useSyncHubspotAndLocalStorage } from "./useSyncHubspotAndLocalStorage";
 
 import {
   getSchoolOption,
@@ -39,11 +36,6 @@ export type UseResourceFormStateProps =
       type: "download";
     }
   | { curriculumResources: DownloadType[]; type: "curriculum" };
-
-type HubspotSchool = {
-  schoolId: string;
-  schoolName: string;
-};
 
 const getResourcesForType = (props: UseResourceFormStateProps) => {
   switch (props.type) {
@@ -102,29 +94,14 @@ const getInitialAdditionalFileTypes = (
     .map((resource) => `${resource.type}-${resource.assetId.toString()}`);
 };
 
-const getHubspotSchool = (hubspotContact: {
-  schoolId?: string | null;
-  schoolName?: string | null;
-}) => {
-  const schoolUrn = hubspotContact.schoolId || "";
-  // @sonar-ignore
-  // current sonar rule typescript:S6606 incorrectly flags this, see open issue here https://sonarsource.atlassian.net/browse/JS-373
-  const schoolName = hubspotContact.schoolName || "notListed";
-  // @sonar-end
-
-  const schoolId = schoolUrn ? `${schoolUrn}-${schoolName}` : "notListed";
-
-  return {
-    schoolId,
-    schoolName,
-  };
-};
-
 export const useResourceFormState = (props: UseResourceFormStateProps) => {
   const isCurriculum = props.type === "curriculum";
   const isDownload = props.type === "download";
   const isShare = props.type === "share";
   const selectAllByDefault = isCurriculum;
+
+  const router = useRouter();
+  const searchParams = useSearchParams();
 
   const {
     register,
@@ -144,132 +121,25 @@ export const useResourceFormState = (props: UseResourceFormStateProps) => {
   });
 
   const [selectAllChecked, setSelectAllChecked] = useState(selectAllByDefault);
-
-  const [isLocalStorageLoading, setIsLocalStorageLoading] = useState(true);
-  const [schoolUrn, setSchoolUrn] = useState("");
-
-  const [hubspotLoaded, setHubspotLoaded] = useState(false);
-  const [hubspotLookupCompleted, setHubspotLookupCompleted] = useState(false);
-  const [schoolFromHubspot, setSchoolFromHubspot] =
-    useState<HubspotSchool | null>(null);
-
-  const { isSignedIn, user } = useUser();
+  const [editDetailsClicked, setEditDetailsClicked] = useState(false);
+  const [hasLocalStorageDetails, setHasLocalStorageDetails] = useState(false);
 
   const {
-    schoolFromLocalStorage,
-    emailFromLocalStorage,
-    termsFromLocalStorage,
     hasDetailsFromLocalStorage,
-    setEmailInLocalStorage,
-    setSchoolInLocalStorage,
-    setTermsInLocalStorage,
-  } = useLocalStorageForDownloads();
-
-  const {
-    schoolName: schoolNameFromLocalStorage,
-    schoolId: schoolIdFromLocalStorage,
-  } = schoolFromLocalStorage;
-
-  const userEmail = user?.emailAddresses?.[0]?.emailAddress;
-  const isOnboarded = !!user?.publicMetadata?.owa?.isOnboarded;
-
-  useEffect(() => {
-    let cancelled = false;
-
-    const syncSignedInUserWithHubspot = async (email: string) => {
-      try {
-        const hubspotContact = await fetchHubspotContactDetails();
-        if (cancelled) return;
-
-        setTermsInLocalStorage(true);
-        setValue("terms", true);
-
-        setEmailInLocalStorage(email);
-        setValue("email", email);
-
-        if (hubspotContact) {
-          const school = getHubspotSchool(hubspotContact);
-
-          setSchoolInLocalStorage(school);
-          setSchoolFromHubspot(school);
-
-          setValue("schoolName", school.schoolName);
-          setValue("school", school.schoolId);
-        }
-      } finally {
-        if (!cancelled) {
-          setHubspotLookupCompleted(true);
-        }
-      }
-    };
-
-    if (isSignedIn && userEmail) {
-      syncSignedInUserWithHubspot(userEmail);
-    } else {
-      setHubspotLookupCompleted(true);
-    }
-
-    return () => {
-      cancelled = true;
-    };
-  }, [
-    isSignedIn,
-    userEmail,
-    setEmailInLocalStorage,
-    setSchoolInLocalStorage,
-    setTermsInLocalStorage,
-    setValue,
-  ]);
-
-  // Set finished loading when local storage matches hubspot or when no details expected in hubspot
-  useEffect(() => {
-    const schoolDetailsMatch =
-      schoolFromHubspot?.schoolId === schoolFromLocalStorage.schoolId &&
-      schoolFromHubspot?.schoolName === schoolFromLocalStorage.schoolName;
-
-    const userDoesNotNeedHubspotSync = !isSignedIn || !isOnboarded;
-    const noSchoolFromHubspot = hubspotLookupCompleted && !schoolFromHubspot;
-
-    if (
-      (schoolDetailsMatch ||
-        userDoesNotNeedHubspotSync ||
-        noSchoolFromHubspot) &&
-      !hubspotLoaded
-    ) {
-      setHubspotLoaded(true);
-    }
-  }, [
-    schoolFromHubspot,
-    schoolFromLocalStorage,
-    isSignedIn,
-    hubspotLoaded,
-    hubspotLookupCompleted,
-    isOnboarded,
-  ]);
-
-  useEffect(() => {
-    if (emailFromLocalStorage) {
-      setValue("email", emailFromLocalStorage);
-    }
-
-    if (termsFromLocalStorage) {
-      setValue("terms", termsFromLocalStorage);
-    }
-
-    if (schoolIdFromLocalStorage) {
-      setValue("school", schoolIdFromLocalStorage);
-      const schoolUrn = getSchoolUrn(
-        schoolIdFromLocalStorage,
-        getSchoolOption(schoolIdFromLocalStorage),
-      );
-      setSchoolUrn(schoolUrn);
-    }
-  }, [
     emailFromLocalStorage,
     schoolIdFromLocalStorage,
-    setValue,
-    termsFromLocalStorage,
-  ]);
+    schoolNameFromLocalStorage,
+    schoolUrn,
+    hubspotLoaded,
+    isLocalStorageLoading,
+    setEmailInLocalStorage,
+    setSchoolInLocalStorage,
+    setTermsInLocalStorage,
+    setSchoolUrn,
+  } = useSyncHubspotAndLocalStorage({ setValue });
+
+  const shouldDisplayDetailsCompleted =
+    !!hasDetailsFromLocalStorage && !editDetailsClicked;
 
   const resources = useMemo(() => getResourcesForType(props), [props]);
   const additionalResources = useMemo(
@@ -293,21 +163,11 @@ export const useResourceFormState = (props: UseResourceFormStateProps) => {
   );
 
   useEffect(() => {
-    setIsLocalStorageLoading(false);
-  }, [hasDetailsFromLocalStorage]);
-
-  const [editDetailsClicked, setEditDetailsClicked] = useState(false);
-
-  const shouldDisplayDetailsCompleted =
-    !!hasDetailsFromLocalStorage && !editDetailsClicked;
-  const [localStorageDetails, setLocalStorageDetails] = useState(false);
-
-  useEffect(() => {
     if (hasDetailsFromLocalStorage || shouldDisplayDetailsCompleted) {
-      setLocalStorageDetails(true);
+      setHasLocalStorageDetails(true);
     }
     if (editDetailsClicked) {
-      setLocalStorageDetails(false);
+      setHasLocalStorageDetails(false);
     }
   }, [
     hasDetailsFromLocalStorage,
@@ -326,7 +186,7 @@ export const useResourceFormState = (props: UseResourceFormStateProps) => {
       const schoolUrn = getSchoolUrn(value, getSchoolOption(value));
       setSchoolUrn(schoolUrn);
     },
-    [setValue, schoolNameFromLocalStorage],
+    [setValue, schoolNameFromLocalStorage, setSchoolUrn],
   );
 
   const { errors, submitCount } = formState;
@@ -357,12 +217,9 @@ export const useResourceFormState = (props: UseResourceFormStateProps) => {
 
   const handleEditDetailsCompletedClick = () => {
     setEditDetailsClicked(true);
-    setLocalStorageDetails(false);
+    setHasLocalStorageDetails(false);
     setValue("email", emailFromLocalStorage);
   };
-
-  const router = useRouter();
-  const searchParams = useSearchParams();
 
   useEffect(() => {
     if (router && !router.isReady) return;
@@ -466,7 +323,7 @@ export const useResourceFormState = (props: UseResourceFormStateProps) => {
     setEmailInLocalStorage,
     setSchoolInLocalStorage,
     setTermsInLocalStorage,
-    localStorageDetails,
+    localStorageDetails: hasLocalStorageDetails,
     editDetailsClicked,
     setEditDetailsClicked,
     activeResources,
