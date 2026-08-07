@@ -10,10 +10,15 @@ import {
 
 import useLocalStorageForDownloads from "./useLocalStorageForDownloads";
 
+import errorReporter from "@/common-lib/error-reporter";
+import OakError from "@/errors/OakError";
+
 type HubspotSchool = {
   schoolId: string;
   schoolName: string;
 };
+
+const reportError = errorReporter("fetchHubspotContact");
 
 const getHubspotSchool = (hubspotContact: {
   schoolId?: string | null;
@@ -99,6 +104,12 @@ export const useSyncHubspotAndLocalStorage = ({
           setValue("schoolName", school.schoolName);
           setValue("school", school.schoolId);
         }
+      } catch (err) {
+        const error = new OakError({
+          code: "hubspot/contacts",
+          originalError: err,
+        });
+        reportError(error);
       } finally {
         if (!cancelled) {
           setHubspotLookupCompleted(true);
