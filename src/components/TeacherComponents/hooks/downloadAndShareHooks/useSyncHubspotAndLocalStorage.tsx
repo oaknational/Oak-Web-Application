@@ -40,8 +40,8 @@ export const useSyncHubspotAndLocalStorage = ({
     school: string;
     terms: true;
     resources: string[];
-    schoolName?: string | undefined;
-    email?: string | undefined;
+    schoolName?: string;
+    email?: string;
   }>;
 }) => {
   const { isSignedIn, user } = useUser();
