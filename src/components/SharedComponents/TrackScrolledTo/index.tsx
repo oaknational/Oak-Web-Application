@@ -3,16 +3,16 @@ import { OakBox } from "@oaknational/oak-components";
 
 import useAnalytics from "@/context/Analytics/useAnalytics";
 
-
 export type TrackScrolledToProps = {
   eventKey: string;
 };
 
-// to do - add tests, storybook?
-export default function TrackScrolledTo({ eventKey }: Readonly<TrackScrolledToProps>) {
+export default function TrackScrolledTo({
+  eventKey,
+}: Readonly<TrackScrolledToProps>) {
   const { track } = useAnalytics();
   const ref = useRef<HTMLDivElement>(null);
-  
+
   useEffect(() => {
     if (!ref.current) {
       return;
@@ -32,9 +32,5 @@ export default function TrackScrolledTo({ eventKey }: Readonly<TrackScrolledToPr
     return () => observer.disconnect();
   }, [ref, eventKey, track]);
 
-  return (
-    <OakBox 
-      ref={ref}
-    />
-  )
+  return <OakBox ref={ref} />;
 }
