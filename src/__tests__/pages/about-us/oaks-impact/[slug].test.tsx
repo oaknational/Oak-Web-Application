@@ -8,6 +8,7 @@ import OaksImpact, {
 import CMSClient from "@/node-lib/cms";
 import { OaksImpactCaseStudyPage } from "@/common-lib/cms-types/aboutPages";
 import { portableTextFromString } from "@/__tests__/__helpers__/cms";
+import { isFeatureFlagEnabledStatic } from "@/utils/featureFlagChecks/static";
 
 const mockGetFeatureFlag = jest.fn();
 
@@ -28,15 +29,14 @@ jest.mock("@/node-lib/curriculum-api-2023", () => ({
   },
 }));
 
+jest.mock("@/utils/featureFlagChecks/static", () => ({
+  isFeatureFlagEnabledStatic: jest.fn(),
+}));
+
 jest.mock("@/node-lib/cms");
 
-beforeEach(() => {
-  jest.clearAllMocks();
-  jest.resetModules();
-  mockCMSClient.oaksImpactCaseStudyPage.mockResolvedValue(mockPageData);
-});
-
 const mockCMSClient = CMSClient as jest.MockedObject<typeof CMSClient>;
+const mockIsFeatureFlagEnabledStatic = jest.mocked(isFeatureFlagEnabledStatic);
 
 function caseStudyFixture(slug: string) {
   return {
@@ -75,6 +75,13 @@ const mockPageData: OaksImpactCaseStudyPage = {
     ],
   },
 };
+
+beforeEach(() => {
+  jest.clearAllMocks();
+  jest.resetModules();
+  mockIsFeatureFlagEnabledStatic.mockReturnValue(false);
+  mockCMSClient.oaksImpactCaseStudyPage.mockResolvedValue(mockPageData);
+});
 
 describe("pages/about-us/oaks-impact/case-studies/[slug].tsx", () => {
   it("renders title when feature flag is enabled", async () => {
