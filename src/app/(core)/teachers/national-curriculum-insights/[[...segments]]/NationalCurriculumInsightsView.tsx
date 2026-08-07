@@ -1,6 +1,7 @@
 "use client";
 
 import { OakBox, OakHeading, OakP, OakTabs } from "@oaknational/oak-components";
+import styled from "styled-components";
 
 import { NationalCurriculumInsightsHero } from "./NationalCurriculumInsightsHero";
 import {
@@ -36,6 +37,12 @@ type InsightTab = {
   href: string;
   label: string;
 };
+
+const TabsScroller = styled(OakBox)`
+  width: 100%;
+  max-width: 100%;
+  overflow-x: auto;
+`;
 
 const ModuleView = ({
   module,
@@ -224,7 +231,7 @@ const InsightsTabs = ({
   }
 
   return (
-    <OakBox
+    <TabsScroller
       as="nav"
       aria-label={`${data.subject.title} insights`}
       $mh="auto"
@@ -242,7 +249,7 @@ const InsightsTabs = ({
           type: "link" as const,
         }))}
       />
-    </OakBox>
+    </TabsScroller>
   );
 };
 
