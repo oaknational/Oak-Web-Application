@@ -14,72 +14,68 @@ jest.mock("next/headers", () => ({
   })),
 }));
 
+const mockContext = {
+  req: {
+    cookies: {
+      getAll: () => getAllCookiesMock(),
+    },
+  },
+} as unknown as GetServerSidePropsContext;
+
+async function expectFeatureFlagResult({
+  forceFlag,
+  posthogEnabled,
+}: {
+  forceFlag: "true" | "false";
+  posthogEnabled: boolean;
+}) {
+  process.env.FORCE_FEATURE_FLAG_OAKS_IMPACT = forceFlag;
+  (getPosthogIdFromCookie as jest.Mock).mockReturnValue("1111");
+  (getFeatureFlag as jest.Mock).mockResolvedValue(posthogEnabled);
+}
+
 describe("isFeatureFlagEnabledServer", () => {
   test("returns true when posthog feature flag is enabled for the user and constant is 'true'", async () => {
-    process.env.FORCE_FEATURE_FLAG_OAKS_IMPACT = "true";
-    (getPosthogIdFromCookie as jest.Mock).mockReturnValue("1111");
-    (getFeatureFlag as jest.Mock).mockResolvedValue(true);
-
-    const mockContext = {
-      req: {
-        cookies: {
-          getAll: () => getAllCookiesMock(),
-        },
-      },
-    } as unknown as GetServerSidePropsContext;
+    expectFeatureFlagResult({
+      forceFlag: "true",
+      posthogEnabled: true,
+    });
 
     const result = await isFeatureFlagEnabledServer(mockContext, "oaks-impact");
+
     expect(result).toBe(true);
   });
 
   test("returns true when posthog feature flag is enabled for the user but constant is 'false'", async () => {
-    process.env.FORCE_FEATURE_FLAG_OAKS_IMPACT = "false";
-    (getPosthogIdFromCookie as jest.Mock).mockReturnValue("1111");
-    (getFeatureFlag as jest.Mock).mockResolvedValue(true);
-
-    const mockContext = {
-      req: {
-        cookies: {
-          getAll: () => getAllCookiesMock(),
-        },
-      },
-    } as unknown as GetServerSidePropsContext;
+    expectFeatureFlagResult({
+      forceFlag: "false",
+      posthogEnabled: true,
+    });
 
     const result = await isFeatureFlagEnabledServer(mockContext, "oaks-impact");
+
     expect(result).toBe(true);
   });
 
   test("returns true when posthog feature flag is not enabled for the user but constant is 'true'", async () => {
-    process.env.FORCE_FEATURE_FLAG_OAKS_IMPACT = "true";
-    (getPosthogIdFromCookie as jest.Mock).mockReturnValue("1111");
-    (getFeatureFlag as jest.Mock).mockResolvedValue(false);
-
-    const mockContext = {
-      req: {
-        cookies: {
-          getAll: () => getAllCookiesMock(),
-        },
-      },
-    } as unknown as GetServerSidePropsContext;
+    expectFeatureFlagResult({
+      forceFlag: "true",
+      posthogEnabled: false,
+    });
 
     const result = await isFeatureFlagEnabledServer(mockContext, "oaks-impact");
+
     expect(result).toBe(true);
   });
 
   test("returns false when posthog feature flag is not enabled for the user and constant is 'false'", async () => {
-    process.env.FORCE_FEATURE_FLAG_OAKS_IMPACT = "false";
-    (getPosthogIdFromCookie as jest.Mock).mockReturnValue("1111");
-    (getFeatureFlag as jest.Mock).mockResolvedValue(false);
-
-    const mockContext = {
-      req: {
-        cookies: {
-          getAll: () => getAllCookiesMock(),
-        },
-      },
-    } as unknown as GetServerSidePropsContext;
+    expectFeatureFlagResult({
+      forceFlag: "false",
+      posthogEnabled: false,
+    });
 
     const result = await isFeatureFlagEnabledServer(mockContext, "oaks-impact");
+
     expect(result).toBe(false);
   });
 });
