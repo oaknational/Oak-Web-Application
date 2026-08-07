@@ -2951,20 +2951,6 @@ exports[`Teachers Page Page component renders 1`] = `
                         >
                           <a
                             class="sc-fHjqPf cTauop sc-kbhJrz"
-                            href="/about-us/oaks-impact"
-                          >
-                            <span
-                              class="sc-eqUAAy iGfTGj"
-                            >
-                              Oak's impact
-                            </span>
-                          </a>
-                        </li>
-                        <li
-                          class="sc-fPXMVe jFJaNg"
-                        >
-                          <a
-                            class="sc-fHjqPf cTauop sc-kbhJrz"
                             href="/about-us/get-involved"
                           >
                             <span
@@ -3424,7 +3410,7 @@ exports[`Teachers Page Page component renders 1`] = `
                 </div>
               </div>
               <span
-                class="sc-aXZVg kvjdhA sc-61fb3035-0 kGcrlM"
+                class="sc-aXZVg kvjdhA sc-98540f6b-0 qLtgo"
                 data-percy-hide="contents"
               >
                 <img

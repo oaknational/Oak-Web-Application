@@ -84,11 +84,6 @@ exports[`core layout renders correctly 1`] = `
               "title": "Oak's curricula",
             },
             {
-              "href": "/about-us/oaks-impact",
-              "slug": "about-oaks-impact",
-              "title": "Oak's impact",
-            },
-            {
               "href": "/about-us/get-involved",
               "slug": "about-get-involved",
               "title": "Get involved",

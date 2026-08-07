@@ -1380,20 +1380,6 @@ exports[`pages/about-us/oaks-impact/case-studies/[slug].tsx renders title when f
                       >
                         <a
                           class="sc-fHjqPf cTauop sc-kbhJrz"
-                          href="/about-us/oaks-impact"
-                        >
-                          <span
-                            class="sc-eqUAAy iGfTGj"
-                          >
-                            Oak's impact
-                          </span>
-                        </a>
-                      </li>
-                      <li
-                        class="sc-fPXMVe jFJaNg"
-                      >
-                        <a
-                          class="sc-fHjqPf cTauop sc-kbhJrz"
                           href="/about-us/get-involved"
                         >
                           <span
@@ -1853,7 +1839,7 @@ exports[`pages/about-us/oaks-impact/case-studies/[slug].tsx renders title when f
               </div>
             </div>
             <span
-              class="sc-aXZVg kvjdhA sc-61fb3035-0 kGcrlM"
+              class="sc-aXZVg kvjdhA sc-98540f6b-0 qLtgo"
               data-percy-hide="contents"
             >
               <img
