@@ -34,7 +34,7 @@ import {
 import { Thread, Unit, CurriculumFilters } from "@/utils/curriculum/types";
 import { buildUnitOverviewAccessedAnalytics } from "@/utils/curriculum/analytics";
 import { ResourceFormValues } from "@/components/TeacherComponents/types/downloadAndShare.types";
-import {
+import getFormattedDetailsForTracking, {
   getSchoolOption,
   getSchoolName,
   getSchoolUrn,
@@ -90,6 +90,13 @@ export type TeacherBrowseAnalyticsStore = {
     teachingMaterialsSelected: (props: {
       teachingMaterialType: TeachingMaterialTypeValueType;
     }) => void;
+    lessonResourcesDownloaded: (
+      props: ResourceFormValues & {
+        selectedResources: string[];
+        onwardContent: string[];
+        totalDownloadableResources: number;
+      },
+    ) => void;
     lessonShareStarted: () => void;
     createTeachingMaterialsInitiated: (props: { isLoggedIn: boolean }) => void;
     videoPlayed: (props: VideoTrackingProperties) => void;
@@ -143,6 +150,38 @@ export const createTeacherBrowseAnalyticsStore = (
           journeyId,
           ...coreProperties,
           ...analyticsProperties,
+        });
+      },
+      lessonResourcesDownloaded: (data) => {
+        const { avo, programmeState, journeyId } = get();
+
+        if (programmeState.browseLevel !== "lesson") {
+          reportAnalyticsError({
+            event: "lessonResourcesDownloaded",
+            programmeState,
+          });
+          return;
+        }
+
+        const analyticsProperties =
+          getLessonAnalyticsProperties(programmeState);
+
+        const formattedSchool = getFormattedDetailsForTracking({
+          school: data.school,
+          selectedResources: data.selectedResources,
+        });
+
+        avo.lessonResourcesDownloaded({
+          ...coreProperties,
+          ...analyticsProperties,
+          ...formattedSchool,
+          journeyId,
+          componentType: "lesson_download_button",
+          engagementIntent: "use",
+          emailSupplied: !!data?.email,
+          onwardContent: data.onwardContent,
+          resourceType: formattedSchool.selectedResourcesForTracking,
+          totalDownloadableResources: data.totalDownloadableResources,
         });
       },
       unitDownloaded: () => {
