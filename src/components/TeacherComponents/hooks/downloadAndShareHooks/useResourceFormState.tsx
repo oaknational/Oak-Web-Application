@@ -162,7 +162,7 @@ export const useResourceFormState = (props: UseResourceFormStateProps) => {
     if (
       (schoolDetailsMatch ||
         userNotSignedInOrOnboarded ||
-        hubspotLookupCompleted) &&
+        (hubspotLookupCompleted && !schoolFromHubspot)) &&
       !hubspotLoaded
     ) {
       setHubspotLoaded(true);
