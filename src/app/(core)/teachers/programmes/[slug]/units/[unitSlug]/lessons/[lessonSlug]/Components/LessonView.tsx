@@ -78,8 +78,6 @@ export default function LessonView(
   const MathJaxLessonProvider = isMathJaxLesson ? MathJaxProvider : Fragment;
 
   const {
-    lessonResourceDownloadStarted,
-    lessonMediaClipsStarted,
     lessonShareStarted,
     createTeachingMaterialsInitiated,
     teachingMaterialsSelected,
@@ -89,7 +87,6 @@ export default function LessonView(
     data: props,
     copyrightState,
     isMathJaxLesson,
-    trackMediaClipsButtonClicked: lessonMediaClipsStarted,
     contentRestricted,
   });
 
@@ -146,11 +143,6 @@ export default function LessonView(
                     programmeSlug,
                     unitSlug,
                     showDownloadAll: true,
-                    onClickDownloadAll: () => {
-                      lessonResourceDownloadStarted({
-                        downloadResourceButtonName: "all",
-                      });
-                    },
                     geoRestricted,
                     loginRequired,
                     expired,
@@ -243,13 +235,6 @@ export default function LessonView(
                     }}
                     resource={resource}
                     key={resource.resourceType}
-                    onDownloadButtonClick={(props) =>
-                      lessonResourceDownloadStarted({
-                        downloadResourceButtonName:
-                          props.downloadResourceButtonName,
-                      })
-                    }
-                    onMediaClipsButtonClick={lessonMediaClipsStarted}
                   />
                 ))}
 

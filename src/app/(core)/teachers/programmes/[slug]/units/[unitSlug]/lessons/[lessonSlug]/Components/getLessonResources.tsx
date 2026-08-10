@@ -14,9 +14,7 @@ import {
   getMediaClipLabel,
 } from "@/components/TeacherComponents/helpers/lessonHelpers/lesson.helpers";
 import LessonOverviewDocPresentation from "@/components/TeacherComponents/LessonOverviewDocPresentation";
-import LessonOverviewMediaClips, {
-  TrackingCallbackProps,
-} from "@/components/TeacherComponents/LessonOverviewMediaClips";
+import LessonOverviewMediaClips from "@/components/TeacherComponents/LessonOverviewMediaClips";
 import LessonOverviewPresentation from "@/components/TeacherComponents/LessonOverviewPresentation";
 import LessonOverviewVideo from "@/components/TeacherComponents/LessonOverviewVideo";
 import { DownloadableLessonTitles } from "@/components/TeacherComponents/types/downloadAndShare.types";
@@ -102,13 +100,11 @@ const getSkipLinkUrl = ({
 export function getLessonResources({
   data,
   isMathJaxLesson,
-  trackMediaClipsButtonClicked,
   contentRestricted,
 }: {
   data: TeachersLessonOverviewPageData;
   copyrightState: ReturnType<typeof useComplexCopyright>;
   isMathJaxLesson: boolean;
-  trackMediaClipsButtonClicked: (props: TrackingCallbackProps) => void;
   contentRestricted: boolean;
 }): LessonResource[] {
   const lessonGuide = data.lessonGuideUrl ? (
@@ -136,7 +132,6 @@ export function getLessonResources({
       lessonOutline={data.lessonOutline}
       isPELesson={!!data.actions?.displayPETitle}
       isMFL={!!data.actions?.displayVocabButton}
-      onTrackingCallback={trackMediaClipsButtonClicked}
     />
   ) : undefined;
   const lessonDetails = (

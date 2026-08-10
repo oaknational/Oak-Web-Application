@@ -132,7 +132,6 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
   });
 
   const {
-    lessonMediaClipsStarted,
     lessonShareStarted,
     createTeachingMaterialsInitiated,
     teachingMaterialsSelected,
@@ -323,11 +322,6 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
                     currentSectionId={currentSectionId}
                     downloadAllButtonProps={{
                       showDownloadAll,
-                      onClickDownloadAll: () =>
-                        lessonResourceDownloadStarted({
-                          downloadResourceButtonName: "all",
-                        }),
-
                       ...lesson,
                       ...commonPathway,
                     }}
@@ -430,12 +424,6 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
                       slugs={slugs}
                       pageLinks={pageLinks}
                       displayMediaClipButton={true}
-                      onPlayALLMediaClipButtonClick={() => {
-                        lessonMediaClipsStarted({
-                          mediaClipsButtonName: "play all",
-                          learningCycle: null,
-                        });
-                      }}
                       isCanonical={isCanonical}
                     >
                       <LessonOverviewMediaClips
@@ -447,7 +435,6 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
                         lessonOutline={lessonOutline}
                         isPELesson={!!actions?.displayPETitle}
                         isMFL={!!actions?.displayVocabButton}
-                        onTrackingCallback={lessonMediaClipsStarted}
                       />
                     </LessonItemContainer>
                   )}
