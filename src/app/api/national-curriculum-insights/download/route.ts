@@ -33,10 +33,13 @@ const jsonError = (error: string, status: number) =>
     { status, headers: { "Cache-Control": "no-store" } },
   );
 
-export async function POST(request: Request) {
-  const parsed = requestSchema.safeParse(
-    await request.json().catch(() => undefined),
-  );
+const selectionFromQuery = (selection: string) => {
+  const [subjectSlug, phase, ...unexpected] = selection.split(":");
+  return unexpected.length === 0 ? { phase, subjectSlug } : null;
+};
+
+const createDownload = async (selections: unknown) => {
+  const parsed = requestSchema.safeParse({ selections });
   if (!parsed.success) {
     return jsonError("Select at least one valid subject.", 400);
   }
@@ -110,4 +113,18 @@ export async function POST(request: Request) {
       400,
     );
   }
+};
+
+export async function GET(request: Request) {
+  const selections = new URL(request.url).searchParams
+    .getAll("selection")
+    .map(selectionFromQuery);
+  return createDownload(selections);
+}
+
+export async function POST(request: Request) {
+  const body = (await request.json().catch(() => undefined)) as
+    | { selections?: unknown }
+    | undefined;
+  return createDownload(body?.selections);
 }

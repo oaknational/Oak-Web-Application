@@ -270,14 +270,6 @@ const ErrorMessage = styled(OakP)`
   color: #b00020;
 `;
 
-const parseSelection = (value: string) => {
-  const [subjectSlug, phase] = value.split(":");
-  if (!subjectSlug || (phase !== "primary" && phase !== "secondary")) {
-    throw new Error("Invalid curriculum selection");
-  }
-  return { subjectSlug, phase };
-};
-
 const responseFilename = (response: Response) => {
   const explicitFilename = response.headers.get("x-filename");
   if (explicitFilename) return explicitFilename;
@@ -346,15 +338,12 @@ export const NationalCurriculumInsightsDownload = ({
     setDownloading(true);
     setError(null);
     try {
+      const query = new URLSearchParams();
+      selectedValues.forEach((selection) =>
+        query.append("selection", selection),
+      );
       const response = await fetch(
-        "/api/national-curriculum-insights/download",
-        {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            selections: selectedValues.map(parseSelection),
-          }),
-        },
+        `/api/national-curriculum-insights/download?${query.toString()}`,
       );
       if (!response.ok) {
         const result = (await response.json().catch(() => null)) as {
