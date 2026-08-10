@@ -291,8 +291,6 @@ const InnerProgrammePage = async (props: AppPageProps<ProgrammePageParams>) => {
     "implementation-guides",
   );
 
-  console.log({ isImplementationGuidesEnabled });
-
   const results = {
     subjectPhaseSlug,
     curriculumSelectionSlugs: subjectPhaseKeystageSlugs,
