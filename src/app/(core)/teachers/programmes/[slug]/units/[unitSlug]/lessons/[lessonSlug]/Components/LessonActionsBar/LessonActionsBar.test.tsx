@@ -2,15 +2,27 @@ import { fireEvent, screen } from "@testing-library/react";
 
 import LessonActionsBar from "./LessonActionsBar";
 
-import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
+import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 import { resolveOakHref } from "@/common-lib/urls";
+
+const lessonShareStarted = jest.fn();
+jest.mock("@/context/Analytics/useAnalytics", () => ({
+  __esModule: true,
+  default: () => ({
+    getSessionId: jest.fn(),
+    track: {
+      lessonShareStarted: (...args: unknown[]) => lessonShareStarted(...args),
+    },
+  }),
+}));
+
+const render = renderWithProviders();
 
 const defaultProps = {
   showPupilShare: true,
   lessonSlug: "lesson-1",
   unitSlug: "unit-1",
   programmeSlug: "programme-1",
-  onClickShare: jest.fn(),
 };
 
 describe("LessonActionsBar", () => {
@@ -19,7 +31,7 @@ describe("LessonActionsBar", () => {
   });
 
   it("renders pupil share link when showPupilShare is true", () => {
-    renderWithTheme(<LessonActionsBar {...defaultProps} />);
+    render(<LessonActionsBar {...defaultProps} />);
     const pupilShareLink = screen.getByRole("link", {
       name: "Share lesson with pupils",
     });
@@ -40,23 +52,18 @@ describe("LessonActionsBar", () => {
     );
   });
 
-  it("calls onClickShare when pupil share link is clicked", () => {
-    const onClickShare = jest.fn();
-    renderWithTheme(
-      <LessonActionsBar {...defaultProps} onClickShare={onClickShare} />,
-    );
+  it("tracks lessonShareStarted when pupil share link is clicked", () => {
+    render(<LessonActionsBar {...defaultProps} />);
 
     fireEvent.click(
       screen.getByRole("link", { name: "Share lesson with pupils" }),
     );
 
-    expect(onClickShare).toHaveBeenCalledTimes(1);
+    expect(lessonShareStarted).toHaveBeenCalledTimes(1);
   });
 
   it("does not render pupil share link when showPupilShare is false", () => {
-    renderWithTheme(
-      <LessonActionsBar {...defaultProps} showPupilShare={false} />,
-    );
+    render(<LessonActionsBar {...defaultProps} showPupilShare={false} />);
 
     expect(
       screen.queryByRole("link", { name: "Share lesson with pupils" }),
@@ -64,7 +71,7 @@ describe("LessonActionsBar", () => {
   });
 
   it("always renders create more with AI link", () => {
-    renderWithTheme(
+    render(
       <LessonActionsBar
         {...defaultProps}
         showPupilShare={false}

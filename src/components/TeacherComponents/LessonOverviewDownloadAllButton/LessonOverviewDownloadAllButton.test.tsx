@@ -60,7 +60,6 @@ const baseProps = {
   track: jest.fn() as unknown as TrackFns,
   analyticsUseCase: "Teacher" as AnalyticsUseCaseValueType,
   isShareable: true,
-  onClickShareAll: jest.fn(),
   showShare: true,
   trackTeachingMaterialsSelected: jest.fn(),
   trackCreateWithAiButtonClicked: jest.fn(),

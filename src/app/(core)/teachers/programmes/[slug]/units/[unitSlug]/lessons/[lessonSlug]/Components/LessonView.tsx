@@ -77,11 +77,8 @@ export default function LessonView(
   const isMathJaxLesson = hasLessonMathJax(props, props.subjectSlug, false);
   const MathJaxLessonProvider = isMathJaxLesson ? MathJaxProvider : Fragment;
 
-  const {
-    lessonShareStarted,
-    createTeachingMaterialsInitiated,
-    teachingMaterialsSelected,
-  } = useTeacherBrowseAnalytics((store) => store.track);
+  const { createTeachingMaterialsInitiated, teachingMaterialsSelected } =
+    useTeacherBrowseAnalytics((store) => store.track);
 
   const lessonResources = getLessonResources({
     data: props,
@@ -213,7 +210,6 @@ export default function LessonView(
                 lessonSlug={lessonSlug}
                 unitSlug={unitSlug}
                 programmeSlug={programmeSlug}
-                onClickShare={lessonShareStarted}
               />
             </OakGridArea>
             <OakGridArea

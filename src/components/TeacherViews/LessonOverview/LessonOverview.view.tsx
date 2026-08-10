@@ -132,7 +132,6 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
   });
 
   const {
-    lessonShareStarted,
     createTeachingMaterialsInitiated,
     teachingMaterialsSelected,
     lessonResourceDownloadStarted,
@@ -267,10 +266,6 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
           !geoRestricted &&
           !actions?.disablePupilShare
         }
-        onClickDownloadAll={() => {
-          lessonResourceDownloadStarted({ downloadResourceButtonName: "all" });
-        }}
-        onClickShareAll={lessonShareStarted}
         pupilLessonOutcome={getDedupedPupilLessonOutcome(
           pupilLessonOutcome,
           keyLearningPoints,

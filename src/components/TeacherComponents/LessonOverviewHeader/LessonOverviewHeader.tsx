@@ -57,8 +57,6 @@ export type LessonOverviewHeaderProps = {
   subjectIconBackgroundColor: OakUiRoleToken;
   analyticsUseCase: AnalyticsUseCaseValueType;
   pupilLessonOutcome?: string | null;
-  onClickDownloadAll: () => void;
-  onClickShareAll: () => void;
   showDownloadAll: boolean;
   showShare: boolean;
   contentRestricted: boolean;
