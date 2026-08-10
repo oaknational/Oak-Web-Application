@@ -1,3 +1,11 @@
+# [1.1151.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1150.0...v1.1151.0) (2026-08-10)
+
+
+### Features
+
+* update gql query to fetch video transcript ([3142560](https://github.com/oaknational/Oak-Web-Application/commit/3142560414c59907e5fd4d916f58cf3505941f6c))
+* use cms transcript for oaks impact and case studies ([d1c1ac8](https://github.com/oaknational/Oak-Web-Application/commit/d1c1ac8258f16a65904e4c154c235ae8f3898a3c))
+
 # [1.1150.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1149.2...v1.1150.0) (2026-08-10)
 
 

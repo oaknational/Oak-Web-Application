@@ -119,24 +119,7 @@ const AboutUsOaksImpactCaseStudy: NextPage<
                   )
                 }
                 showTranscript={true}
-                transcript={[
-                  ...new Array(20).fill(true).map((i, index) => {
-                    return {
-                      _key: `b9955be0a1c7${index}`,
-                      _type: "block",
-                      children: [
-                        {
-                          _type: "span",
-                          _key: `f44d2133da69${index}`,
-                          text: "Test text.",
-                          marks: [],
-                        },
-                      ],
-                      markDefs: [],
-                      style: "normal",
-                    };
-                  }),
-                ]}
+                transcript={caseStudy.video.transcript ?? undefined}
                 body={caseStudy.textRaw ?? undefined}
               />
             </OakBox>
