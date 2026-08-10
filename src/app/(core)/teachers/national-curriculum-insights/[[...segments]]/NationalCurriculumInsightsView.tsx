@@ -55,7 +55,9 @@ const ModuleView = ({
     case "NationalCurriculumInsightsHeroSection":
       return <NationalCurriculumInsightsHero section={module} data={data} />;
     case "NationalCurriculumInsightsOverviewSection":
-      return <NationalCurriculumInsightsOverview section={module} />;
+      return (
+        <NationalCurriculumInsightsOverview section={module} data={data} />
+      );
     case "NationalCurriculumInsightsPhaseCardsSection":
       return (
         <NationalCurriculumInsightsPhaseCards section={module} data={data} />

@@ -90,6 +90,7 @@ describe("National Curriculum Insights sections", () => {
     const { container } = renderWithTheme(
       <>
         <NationalCurriculumInsightsOverview
+          data={data}
           section={moduleOf({
             __typename: "NationalCurriculumInsightsOverviewSection",
             heading: "Curriculum overview",
@@ -179,6 +180,7 @@ describe("National Curriculum Insights sections", () => {
           section={moduleOf({
             __typename: "NationalCurriculumInsightsRichTextSection",
             heading: "Further detail",
+            headingStyle: "section",
             contentPortableText: body,
           })}
         />

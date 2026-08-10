@@ -21,6 +21,7 @@ fragment NationalCurriculumInsightsModules on NationalCurriculumInsightsFaqSecti
         url
       }
     }
+    statusHeading
     statusMessage
   }
   ... on NationalCurriculumInsightsOverviewSection {
@@ -67,6 +68,7 @@ fragment NationalCurriculumInsightsModules on NationalCurriculumInsightsFaqSecti
   }
   ... on NationalCurriculumInsightsPromotionalHeadingSection {
     heading
+    variant
   }
   ... on NationalCurriculumInsightsSubjectNavigationSection {
     phases
@@ -76,6 +78,7 @@ fragment NationalCurriculumInsightsModules on NationalCurriculumInsightsFaqSecti
   ... on NationalCurriculumInsightsNewsletterSection {
     heading
     introduction
+    benefitsHeading
     benefits
     illustration {
       altText
@@ -99,6 +102,7 @@ fragment NationalCurriculumInsightsModules on NationalCurriculumInsightsFaqSecti
   }
   ... on NationalCurriculumInsightsRichTextSection {
     heading
+    headingStyle
     contentPortableText: contentRaw
   }
   ... on NationalCurriculumInsightsImageTextSection {

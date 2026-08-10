@@ -81,6 +81,7 @@ const nationalCurriculumInsightsHeroSectionSchema = z.object({
   authorName: z.string().min(1).nullable().optional(),
   authorRole: z.string().min(1).nullable().optional(),
   authorImage: imageSchema.nullable().optional(),
+  statusHeading: z.string().min(1).nullable().optional(),
   statusMessage: z.string().min(1).nullable().optional(),
 });
 
@@ -122,6 +123,7 @@ const nationalCurriculumInsightsKeyStageCardsSectionSchema = z.object({
 const nationalCurriculumInsightsPromotionalHeadingSectionSchema = z.object({
   __typename: z.literal("NationalCurriculumInsightsPromotionalHeadingSection"),
   heading: z.string().min(1),
+  variant: z.enum(["explorer", "keyStage"]).nullable().optional(),
 });
 
 const nationalCurriculumInsightsSubjectNavigationSectionSchema = z.object({
@@ -135,6 +137,7 @@ const nationalCurriculumInsightsNewsletterSectionSchema = z.object({
   __typename: z.literal("NationalCurriculumInsightsNewsletterSection"),
   heading: z.string().min(1),
   introduction: z.string().min(1),
+  benefitsHeading: z.string().min(1).nullable().optional(),
   benefits: z.array(z.string().min(1)).min(1),
   illustration: imageSchema,
   privacyPortableText: portableTextSchema,
@@ -159,6 +162,7 @@ const nationalCurriculumInsightsFaqSectionSchema = z.object({
 const nationalCurriculumInsightsRichTextSectionSchema = z.object({
   __typename: z.literal("NationalCurriculumInsightsRichTextSection"),
   heading: z.string().min(1),
+  headingStyle: z.enum(["section", "detail"]).default("section"),
   contentPortableText: portableTextSchema,
 });
 

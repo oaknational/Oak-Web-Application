@@ -93,6 +93,7 @@ const pageModules = (
   {
     __typename: "NationalCurriculumInsightsRichTextSection",
     heading: "What this page covers",
+    headingStyle: "section",
     contentPortableText: portableText(
       `${subjectTitle}-${pageType}-body`,
       `This is independently editable ${pageType} content for ${subjectTitle}.`,

@@ -56,6 +56,7 @@ const mockGetNationalCurriculumInsightsHub =
 const insightsModule = {
   __typename: "NationalCurriculumInsightsRichTextSection" as const,
   heading: "Introduction",
+  headingStyle: "section" as const,
   contentPortableText: [
     {
       _key: "block",

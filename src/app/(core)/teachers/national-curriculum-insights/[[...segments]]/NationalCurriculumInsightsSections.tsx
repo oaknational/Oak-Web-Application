@@ -9,6 +9,7 @@ import {
   OakCheckBox,
   OakFlex,
   OakHeading,
+  OakIcon,
   OakImage,
   OakJauntyAngleLabel,
   OakLink,
@@ -78,43 +79,59 @@ const SectionMaxWidth = styled(OakBox)`
   max-width: 1221px;
 `;
 
-const OverviewPanel = styled(SectionMaxWidth)`
-  display: grid;
-  grid-template-areas:
-    "heading"
-    "image"
-    "body";
+const OverviewPanel = styled(SectionMaxWidth)<{ $isKeyStage: boolean }>`
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
   gap: 24px;
 
   @media (${getMediaQuery("desktop")}) {
-    grid-template-columns: minmax(0, 1fr) 332px;
-    grid-template-areas:
-      "heading image"
-      "body image";
-    column-gap: 40px;
-    row-gap: 24px;
+    height: ${({ $isKeyStage }) => ($isKeyStage ? "505px" : "472px")};
+    flex-direction: row;
+    align-items: center;
+    gap: ${({ $isKeyStage }) => ($isKeyStage ? "81px" : "40px")};
   }
 `;
 
-const OverviewHeading = styled(OakHeading)`
-  grid-area: heading;
+const OverviewCopy = styled(OakFlex)`
+  width: 100%;
+
+  @media (${getMediaQuery("desktop")}) {
+    width: 684px;
+    flex: 0 0 684px;
+  }
 `;
 
-const OverviewBody = styled(OakBox)`
-  grid-area: body;
-`;
-
-const OverviewImage = styled(OakBox)`
-  grid-area: image;
+const OverviewImage = styled(OakBox)<{ $isKeyStage: boolean }>`
   width: 100%;
   aspect-ratio: 332 / 259;
   overflow: hidden;
+
+  @media (${getMediaQuery("desktop")}) {
+    width: ${({ $isKeyStage }) => ($isKeyStage ? "295px" : "332px")};
+    height: ${({ $isKeyStage }) => ($isKeyStage ? "312px" : "259px")};
+    flex: ${({ $isKeyStage }) => ($isKeyStage ? "0 0 295px" : "0 0 332px")};
+  }
 `;
+
+const overviewBackground = (data: NationalCurriculumInsightsRouteData) => {
+  switch (data.route.kind) {
+    case "subjectPhase":
+      return "bg-decorative1-very-subdued" as const;
+    case "subjectPhaseKeyStage":
+      return "bg-decorative3-very-subdued" as const;
+    case "hub":
+    case "subject":
+      return "bg-decorative2-subdued" as const;
+  }
+};
 
 export const NationalCurriculumInsightsOverview = ({
   section,
-}: SectionProps<"NationalCurriculumInsightsOverviewSection">) => {
+  data,
+}: ContextualSectionProps<"NationalCurriculumInsightsOverviewSection">) => {
   const headingId = useId();
+  const isKeyStage = data.route.kind === "subjectPhaseKeyStage";
 
   return (
     <OakBox
@@ -122,27 +139,44 @@ export const NationalCurriculumInsightsOverview = ({
       $pv={["spacing-32", "spacing-48"]}
     >
       <OverviewPanel
+        $isKeyStage={isKeyStage}
         as="section"
         $mh="auto"
-        $background="bg-decorative2-subdued"
+        $background={overviewBackground(data)}
+        style={{
+          backgroundColor:
+            data.route.kind === "subjectPhase"
+              ? "#ebfbeb"
+              : data.route.kind === "subjectPhaseKeyStage"
+                ? "#e3e9fb"
+                : "#d7f1ef",
+        }}
         $pa={["spacing-24", "spacing-40"]}
         $borderRadius="border-radius-l"
         aria-labelledby={headingId}
+        data-insights-module="overview"
       >
-        <OverviewHeading
-          id={headingId}
-          tag="h2"
-          $font={["heading-4", "heading-3"]}
+        <OverviewCopy
+          $flexDirection="column"
+          $gap={isKeyStage ? "spacing-40" : "spacing-20"}
         >
-          {section.heading}
-        </OverviewHeading>
-        <OverviewBody>
+          <OakP $font="body-2" $mv="spacing-0">
+            At a glance
+          </OakP>
+          <OakHeading
+            id={headingId}
+            tag="h2"
+            $font={["heading-4", "heading-3"]}
+          >
+            {section.heading}
+          </OakHeading>
           <PortableTextWithDefaults
             value={section.bodyPortableText}
             components={portableTextComponents}
           />
-        </OverviewBody>
+        </OverviewCopy>
         <OverviewImage
+          $isKeyStage={isKeyStage}
           aria-hidden={section.image.isPresentational || undefined}
         >
           <OakImage
@@ -163,21 +197,52 @@ export const NationalCurriculumInsightsOverview = ({
 
 const PhaseCardList = styled.ul`
   display: grid;
-  grid-template-columns: minmax(0, 416px);
+  grid-template-columns: minmax(0, 1fr);
   justify-content: center;
-  gap: 32px;
+  gap: 17px;
   list-style: none;
   margin: 0;
   padding: 0;
 
   @media (${getMediaQuery("desktop")}) {
-    grid-template-columns: repeat(2, minmax(0, 416px));
-    gap: 64px;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 `;
 
 const PhaseCardItem = styled.li`
   width: 100%;
+`;
+
+const InsightsJumpCard = styled(Link)<{ $height: number }>`
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  width: 100%;
+  height: ${({ $height }) => $height}px;
+  padding: 16px;
+  border: 1px solid #e4e4e4;
+  border-radius: 8px;
+  background: #ffffff;
+  color: #222222;
+  text-decoration: none;
+
+  &:hover {
+    background: #f7f7f7;
+  }
+`;
+
+const JumpCardImage = styled(OakBox)`
+  width: 72px;
+  height: 72px;
+  flex: 0 0 72px;
+  overflow: hidden;
+`;
+
+const JumpCardCopy = styled(OakFlex)`
+  flex: 1;
+  align-self: stretch;
+  justify-content: center;
 `;
 
 export const NationalCurriculumInsightsPhaseCards = ({
@@ -195,22 +260,45 @@ export const NationalCurriculumInsightsPhaseCards = ({
       $pv={["spacing-32", "spacing-48"]}
     >
       <SectionMaxWidth $mh="auto">
-        <PhaseCardList>
+        <PhaseCardList data-insights-module="phase-cards">
           {section.cards.map((card) => (
             <PhaseCardItem key={`${card.phase}-${card.heading}`}>
-              <OakCard
-                heading={card.heading}
-                headingLevel="h2"
+              <InsightsJumpCard
+                $height={240}
                 href={nationalCurriculumInsightsSubjectPhaseHref(
                   subjectSlug,
                   card.phase,
                 )}
-                imageSrc={imageUrl(card.image)}
-                imageAlt={imageAlt(card.image)}
-                aspectRatio="4/3"
-                linkText={card.linkLabel}
-                linkIconName="arrow-right"
-              />
+              >
+                <JumpCardImage
+                  aria-hidden={card.image?.isPresentational || undefined}
+                >
+                  <OakImage
+                    src={imageUrl(card.image)}
+                    alt={imageAlt(card.image)}
+                    $width="100%"
+                    $height="100%"
+                    $objectFit="contain"
+                  />
+                </JumpCardImage>
+                <JumpCardCopy
+                  $flexDirection="column"
+                  $justifyContent="center"
+                  $gap="spacing-4"
+                >
+                  <OakHeading tag="h2" $font="heading-6">
+                    {card.heading}
+                  </OakHeading>
+                  <OakP $font="body-2" $color="text-subdued" $mv="spacing-0">
+                    {card.linkLabel}
+                  </OakP>
+                </JumpCardCopy>
+                <OakIcon
+                  iconName="arrow-right"
+                  $width="spacing-32"
+                  $height="spacing-32"
+                />
+              </InsightsJumpCard>
             </PhaseCardItem>
           ))}
         </PhaseCardList>
@@ -246,23 +334,46 @@ export const NationalCurriculumInsightsKeyStageCards = ({
       $pv={["spacing-32", "spacing-48"]}
     >
       <SectionMaxWidth $mh="auto">
-        <PhaseCardList>
+        <PhaseCardList data-insights-module="key-stage-cards">
           {cards.map((card) => (
             <PhaseCardItem key={`${card.keyStage}-${card.heading}`}>
-              <OakCard
-                heading={card.heading}
-                headingLevel="h2"
+              <InsightsJumpCard
+                $height={246}
                 href={nationalCurriculumInsightsSubjectPhaseKeyStageHref(
                   data.subject!.slug,
                   phase,
                   nationalCurriculumInsightsKeyStageSlug(card.keyStage),
                 )}
-                imageSrc={imageUrl(card.image)}
-                imageAlt={imageAlt(card.image)}
-                aspectRatio="4/3"
-                linkText={card.linkLabel}
-                linkIconName="arrow-right"
-              />
+              >
+                <JumpCardImage
+                  aria-hidden={card.image?.isPresentational || undefined}
+                >
+                  <OakImage
+                    src={imageUrl(card.image)}
+                    alt={imageAlt(card.image)}
+                    $width="100%"
+                    $height="100%"
+                    $objectFit="contain"
+                  />
+                </JumpCardImage>
+                <JumpCardCopy
+                  $flexDirection="column"
+                  $justifyContent="center"
+                  $gap="spacing-4"
+                >
+                  <OakHeading tag="h2" $font="heading-6">
+                    {card.heading}
+                  </OakHeading>
+                  <OakP $font="body-2" $color="text-subdued" $mv="spacing-0">
+                    {card.linkLabel}
+                  </OakP>
+                </JumpCardCopy>
+                <OakIcon
+                  iconName="arrow-right"
+                  $width="spacing-32"
+                  $height="spacing-32"
+                />
+              </InsightsJumpCard>
             </PhaseCardItem>
           ))}
         </PhaseCardList>
@@ -271,51 +382,69 @@ export const NationalCurriculumInsightsKeyStageCards = ({
   );
 };
 
-const PromotionalHeading = styled(OakFlex)`
-  position: relative;
-  width: fit-content;
-  max-width: 680px;
-  background: #b8e5e2;
-  min-height: 49px;
+const PromotionalHeadingFrame = styled(OakFlex)<{
+  $variant: "explorer" | "keyStage";
+}>`
+  box-sizing: border-box;
+  width: 100%;
+  max-width: ${({ $variant }) =>
+    $variant === "keyStage" ? "956px" : "1106px"};
+  height: ${({ $variant }) => ($variant === "keyStage" ? "72px" : "93px")};
+`;
 
-  &::before {
-    content: "";
-    position: absolute;
-    left: 12px;
-    top: -5px;
-    width: 3px;
-    height: calc(100% + 10px);
-    background: #222222;
-    transform: rotate(-2deg);
+const PromotionalHeading = styled(OakFlex)<{
+  $variant: "explorer" | "keyStage";
+}>`
+  box-sizing: border-box;
+  width: ${({ $variant }) =>
+    $variant === "keyStage" ? "max-content" : "100%"};
+  min-height: 64px;
+  background: ${({ $variant }) =>
+    $variant === "keyStage" ? "#e3e9fb" : "#b8e5e2"};
+  transform: rotate(-1.5deg);
+
+  h2 {
+    letter-spacing: -0.96px;
   }
 
   @media (${getMediaQuery("desktop")}) {
-    min-height: 81px;
+    h2 {
+      white-space: nowrap;
+    }
   }
 `;
 
 export const NationalCurriculumInsightsPromotionalHeading = ({
   section,
-}: SectionProps<"NationalCurriculumInsightsPromotionalHeadingSection">) => (
-  <OakBox $ph={["spacing-20", "spacing-40"]} $pv={["spacing-32", "spacing-48"]}>
-    <PromotionalHeading
-      $mh="auto"
-      $maxWidth="spacing-680"
-      $alignItems="center"
-      $justifyContent="center"
-      $ph="spacing-24"
-      $borderRadius="border-radius-m"
+}: SectionProps<"NationalCurriculumInsightsPromotionalHeadingSection">) => {
+  const variant = section.variant ?? "explorer";
+
+  return (
+    <OakBox
+      $ph={["spacing-20", "spacing-40"]}
+      $pv={["spacing-32", "spacing-48"]}
     >
-      <OakHeading
-        tag="h2"
-        $font={["heading-5", "heading-1"]}
-        $textAlign="center"
+      <PromotionalHeadingFrame
+        $variant={variant}
+        $mh="auto"
+        $alignItems="center"
+        data-insights-module="promotional-heading"
       >
-        {section.heading}
-      </OakHeading>
-    </PromotionalHeading>
-  </OakBox>
-);
+        <PromotionalHeading
+          $variant={variant}
+          $alignItems="center"
+          $ph="spacing-8"
+          $pv="spacing-4"
+          $borderRadius="border-radius-m"
+        >
+          <OakHeading tag="h2" $font={["heading-5", "heading-2"]}>
+            {section.heading}
+          </OakHeading>
+        </PromotionalHeading>
+      </PromotionalHeadingFrame>
+    </OakBox>
+  );
+};
 
 const SubjectList = styled(OakFlex)`
   list-style: none;
@@ -323,11 +452,29 @@ const SubjectList = styled(OakFlex)`
   padding: 0;
 `;
 
+const SubjectNavigationMaxWidth = styled(OakBox)`
+  width: 100%;
+  max-width: 998px;
+
+  @media (${getMediaQuery("desktop")}) {
+    min-height: 176px;
+    display: flex;
+    align-items: center;
+  }
+
+  a {
+    background: #ffffff;
+    border-color: #e4e4e4;
+  }
+`;
+
 const HubSubjectItem = styled.li`
   width: 225px;
+  height: 225px;
 
   > * {
     width: 100%;
+    height: 100%;
   }
 `;
 
@@ -335,7 +482,7 @@ const HubSubjectList = styled.ul`
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 12px;
+  gap: 16px;
   list-style: none;
   margin: 0;
   padding: 0;
@@ -359,7 +506,7 @@ export const NationalCurriculumInsightsSubjectNavigation = ({
     const phase =
       data.activeTab && data.activeTab !== "overview"
         ? data.activeTab
-        : section.phases[0];
+        : undefined;
     const subjects = data.hub.subjects.filter(
       (subject) => !phase || subject.tabs.some(({ kind }) => kind === phase),
     );
@@ -371,7 +518,10 @@ export const NationalCurriculumInsightsSubjectNavigation = ({
         $ph={["spacing-20", "spacing-40"]}
         $pb={["spacing-48", "spacing-64"]}
       >
-        <SectionMaxWidth $mh="auto">
+        <SubjectNavigationMaxWidth
+          $mh="auto"
+          data-insights-module="subject-navigation"
+        >
           <SubjectList
             as="ul"
             $flexWrap="wrap"
@@ -393,14 +543,13 @@ export const NationalCurriculumInsightsSubjectNavigation = ({
                         )
                       : nationalCurriculumInsightsSubjectHref(subject.slug)
                   }
-                  selected={data.subject?.slug === subject.slug}
                 >
                   {subject.title}
                 </OakSubjectIconButton>
               </li>
             ))}
           </SubjectList>
-        </SectionMaxWidth>
+        </SubjectNavigationMaxWidth>
       </OakBox>
     );
   }
@@ -410,8 +559,8 @@ export const NationalCurriculumInsightsSubjectNavigation = ({
       $ph={["spacing-20", "spacing-40"]}
       $pb={["spacing-48", "spacing-64"]}
     >
-      <SectionMaxWidth $mh="auto">
-        <OakFlex $flexDirection="column" $gap="spacing-48">
+      <SectionMaxWidth $mh="auto" data-insights-module="subject-catalogue">
+        <OakFlex $flexDirection="column" $gap="spacing-32">
           {section.phases.map((phase) => (
             <nav
               key={phase}
@@ -419,7 +568,7 @@ export const NationalCurriculumInsightsSubjectNavigation = ({
             >
               <OakFlex
                 $flexDirection="column"
-                $gap="spacing-24"
+                $gap="spacing-16"
                 $alignItems="center"
               >
                 <OakHeading
@@ -742,23 +891,45 @@ export const NationalCurriculumInsightsRichText = ({
     <OakBox
       as="section"
       $ph={["spacing-20", "spacing-40"]}
-      $pv={["spacing-32", "spacing-48"]}
+      $pv="spacing-16"
       aria-labelledby={headingId}
     >
-      <OakFlex
+      <InsightsContentMaxWidth
         $mh="auto"
-        $maxWidth="spacing-960"
         $flexDirection="column"
-        $gap="spacing-24"
+        data-insights-module="rich-text"
       >
-        <OakHeading tag="h2" id={headingId} $font={["heading-4", "heading-3"]}>
-          {section.heading}
-        </OakHeading>
-        <PortableTextWithDefaults value={section.contentPortableText} />
-      </OakFlex>
+        <RichTextContent
+          $flexDirection="column"
+          $gap={section.headingStyle === "detail" ? "spacing-32" : "spacing-24"}
+        >
+          <OakHeading
+            tag="h2"
+            id={headingId}
+            $font={
+              section.headingStyle === "detail"
+                ? "heading-7"
+                : ["heading-5", "heading-4"]
+            }
+          >
+            {section.heading}
+          </OakHeading>
+          <PortableTextWithDefaults value={section.contentPortableText} />
+        </RichTextContent>
+      </InsightsContentMaxWidth>
     </OakBox>
   );
 };
+
+const InsightsContentMaxWidth = styled(OakFlex)`
+  width: 100%;
+  max-width: 956px;
+`;
+
+const RichTextContent = styled(OakFlex)`
+  width: 100%;
+  max-width: 830px;
+`;
 
 const TableScroll = styled(OakBox)`
   width: 100%;
@@ -771,26 +942,33 @@ const InsightsTable = styled.table`
   min-width: 640px;
   border-spacing: 0;
   border-collapse: separate;
-  border: 2px solid #222222;
+  border: 1px solid #93e892;
   border-radius: 8px;
   overflow: hidden;
 
   th,
   td {
-    padding: 16px 20px;
-    border-right: 1px solid #222222;
-    border-bottom: 1px solid #222222;
+    padding: 12px;
+    border-right: 1px solid #93e892;
+    border-bottom: 1px solid #93e892;
     text-align: left;
     vertical-align: top;
+    font-size: 16px;
+    line-height: 24px;
   }
 
   th {
-    background: #b6f2b3;
+    background: #bef2bd;
     font-weight: 700;
+    line-height: 20px;
   }
 
   tbody tr:nth-child(odd) td {
-    background: #e8f8e7;
+    background: #ffffff;
+  }
+
+  tbody tr:nth-child(even) td {
+    background: #ebfbeb;
   }
 
   tr:last-child td {
@@ -806,53 +984,43 @@ const InsightsTable = styled.table`
 export const NationalCurriculumInsightsTable = ({
   section,
 }: SectionProps<"NationalCurriculumInsightsTableSection">) => {
-  const headingId = useId();
-
   return (
     <OakBox
       as="section"
       $ph={["spacing-20", "spacing-40"]}
-      $pv={["spacing-32", "spacing-48"]}
-      aria-labelledby={headingId}
+      $pv="spacing-16"
+      aria-label={section.heading}
     >
-      <SectionMaxWidth $mh="auto">
-        <OakFlex $flexDirection="column" $gap="spacing-24">
-          <OakHeading
-            tag="h2"
-            id={headingId}
-            $font={["heading-4", "heading-3"]}
-          >
-            {section.heading}
-          </OakHeading>
-          <TableScroll>
-            <InsightsTable>
-              <thead>
-                <tr>
-                  {section.table.rows[0]?.cells.map((cell, cellIndex) => (
-                    <th
-                      scope="col"
-                      key={`${section.heading}-head-${cellIndex}`}
-                    >
+      <InsightsContentMaxWidth
+        $mh="auto"
+        $flexDirection="column"
+        data-insights-module="table"
+      >
+        <TableScroll>
+          <InsightsTable>
+            <thead>
+              <tr>
+                {section.table.rows[0]?.cells.map((cell, cellIndex) => (
+                  <th scope="col" key={`${section.heading}-head-${cellIndex}`}>
+                    {cell}
+                  </th>
+                ))}
+              </tr>
+            </thead>
+            <tbody>
+              {section.table.rows.slice(1).map((row, rowIndex) => (
+                <tr key={`${section.heading}-${rowIndex}`}>
+                  {row.cells.map((cell, cellIndex) => (
+                    <td key={`${section.heading}-${rowIndex}-${cellIndex}`}>
                       {cell}
-                    </th>
+                    </td>
                   ))}
                 </tr>
-              </thead>
-              <tbody>
-                {section.table.rows.slice(1).map((row, rowIndex) => (
-                  <tr key={`${section.heading}-${rowIndex}`}>
-                    {row.cells.map((cell, cellIndex) => (
-                      <td key={`${section.heading}-${rowIndex}-${cellIndex}`}>
-                        {cell}
-                      </td>
-                    ))}
-                  </tr>
-                ))}
-              </tbody>
-            </InsightsTable>
-          </TableScroll>
-        </OakFlex>
-      </SectionMaxWidth>
+              ))}
+            </tbody>
+          </InsightsTable>
+        </TableScroll>
+      </InsightsContentMaxWidth>
     </OakBox>
   );
 };
@@ -864,10 +1032,49 @@ const NewsletterList = styled(OakFlex)`
 `;
 
 const NewsletterSection = styled(OakBox)`
+  box-sizing: border-box;
+
   @media (${getMediaQuery("desktop")}) {
-    min-height: 600px;
+    height: 632px;
     display: flex;
     align-items: center;
+  }
+`;
+
+const NewsletterInner = styled(OakBox)`
+  width: 100%;
+  max-width: 1058px;
+
+  @media (${getMediaQuery("desktop")}) {
+    transform: translateX(12px);
+  }
+`;
+
+const NewsletterCopy = styled(OakFlex)`
+  width: 100%;
+
+  @media (${getMediaQuery("desktop")}) {
+    width: 544px;
+    flex: 0 0 544px;
+  }
+`;
+
+const NewsletterForm = styled(OakFlex)`
+  width: 100%;
+
+  input,
+  select {
+    min-height: 64px;
+  }
+
+  button {
+    height: 48px;
+    min-height: 48px;
+  }
+
+  @media (${getMediaQuery("desktop")}) {
+    width: 475px;
+    flex: 0 0 475px;
   }
 `;
 
@@ -898,43 +1105,46 @@ export const NationalCurriculumInsightsNewsletter = ({
     <NewsletterSection
       as="section"
       $background="bg-decorative5-very-subdued"
+      style={{ backgroundColor: "#fff7cc" }}
       $ph={["spacing-20", "spacing-40"]}
-      $pv={["spacing-48", "spacing-64"]}
+      $pv={["spacing-48", "spacing-48"]}
+      $borderRadius="border-radius-l"
       aria-labelledby="national-curriculum-insights-newsletter-heading"
+      data-insights-module="newsletter"
     >
-      <SectionMaxWidth $mh="auto">
+      <NewsletterInner $mh="auto">
         <OakFlex
           $flexDirection={["column", "column", "row"]}
-          $gap={["spacing-40", "spacing-64"]}
+          $gap={["spacing-40", "spacing-40"]}
           $alignItems="stretch"
           $justifyContent="space-between"
         >
-          <OakFlex
-            $flexDirection="column"
-            $gap="spacing-24"
-            $maxWidth="spacing-600"
-          >
-            <OakFlex $alignItems="center" $gap="spacing-16">
+          <NewsletterCopy $flexDirection="column" $gap="spacing-16">
+            <OakFlex $alignItems="center" $gap="spacing-12">
               <OakImage
                 src={imageUrl(
                   section.illustration,
                   "/images/national-curriculum-insights/newsletter.png",
                 )}
                 alt={imageAlt(section.illustration)}
-                $width="spacing-80"
-                $height="spacing-80"
-                $objectFit="cover"
+                style={{ width: 60, height: 50 }}
+                $objectFit="contain"
                 aria-hidden={section.illustration.isPresentational || undefined}
               />
               <OakHeading
                 tag="h2"
                 id="national-curriculum-insights-newsletter-heading"
-                $font={["heading-4", "heading-2"]}
+                $font={["heading-4", "heading-3"]}
               >
                 {section.heading}
               </OakHeading>
             </OakFlex>
-            <OakP $font="body-1">{section.introduction}</OakP>
+            <OakP $font="heading-7" $mv="spacing-0">
+              {section.introduction}
+            </OakP>
+            <OakP $font="body-1" $mv="spacing-0">
+              {section.benefitsHeading ?? "Sign up now for:"}
+            </OakP>
             <NewsletterList as="ul" $flexDirection="column" $gap="spacing-16">
               {section.benefits.map((benefit) => (
                 <li key={benefit}>
@@ -945,14 +1155,13 @@ export const NationalCurriculumInsightsNewsletter = ({
               ))}
             </NewsletterList>
             <PortableTextWithDefaults value={section.privacyPortableText} />
-          </OakFlex>
+          </NewsletterCopy>
 
-          <OakFlex
+          <NewsletterForm
             as="form"
             onSubmit={onSubmit}
-            $gap="spacing-32"
+            $gap="spacing-48"
             $flexDirection="column"
-            $minWidth={["100%", "100%", "spacing-480"]}
             data-form-id={section.formId ?? undefined}
           >
             <OakInputWithLabel
@@ -992,21 +1201,23 @@ export const NationalCurriculumInsightsNewsletter = ({
                 ))}
               </NewsletterSelect>
             </OakBox>
-            <OakInputWithLabel
-              label="School or organisation"
-              id="insights-newsletter-school"
-              name="school"
-              required={false}
-              onChange={() => undefined}
-              placeholder="Type your school or organisation"
-              autocomplete="organization"
-            />
-            <OakCheckBox
-              id="insights-newsletter-school-not-listed"
-              name="schoolNotListed"
-              value="not-listed"
-              displayValue="My school isn't listed"
-            />
+            <OakFlex $flexDirection="column" $gap="spacing-12">
+              <OakInputWithLabel
+                label="School or organisation"
+                id="insights-newsletter-school"
+                name="school"
+                required={false}
+                onChange={() => undefined}
+                placeholder="Type your school or organisation"
+                autocomplete="organization"
+              />
+              <OakCheckBox
+                id="insights-newsletter-school-not-listed"
+                name="schoolNotListed"
+                value="not-listed"
+                displayValue="My school isn't listed"
+              />
+            </OakFlex>
             <OakInputWithLabel
               label="Email"
               id="insights-newsletter-email"
@@ -1029,19 +1240,30 @@ export const NationalCurriculumInsightsNewsletter = ({
                 Preview only: form submission is disabled.
               </OakP>
             ) : null}
-          </OakFlex>
+          </NewsletterForm>
         </OakFlex>
-      </SectionMaxWidth>
+      </NewsletterInner>
     </NewsletterSection>
   );
 };
 
 const FaqSection = styled(OakBox)<{ $isHub: boolean }>`
+  box-sizing: border-box;
+
   @media (${getMediaQuery("desktop")}) {
-    min-height: ${({ $isHub }) => ($isHub ? "800px" : "540px")};
+    height: ${({ $isHub }) => ($isHub ? "804px" : "541px")};
     display: flex;
     align-items: center;
   }
+`;
+
+const FaqInner = styled(OakBox)`
+  width: 100%;
+  max-width: 956px;
+`;
+
+const FaqHeading = styled(OakHeading)`
+  max-width: 632px;
 `;
 
 const FaqAccordionList = styled(OakFlex)`
@@ -1062,19 +1284,21 @@ export const NationalCurriculumInsightsFaq = ({
     $isHub={data.route.kind === "hub"}
     as="section"
     $background="bg-decorative2-very-subdued"
+    style={{ backgroundColor: "#e7f6f5" }}
     $ph={["spacing-20", "spacing-40"]}
     $pv={["spacing-48", "spacing-64"]}
     aria-labelledby="national-curriculum-insights-faq-heading"
+    data-insights-module="faq"
   >
-    <OakBox $mh="auto" $maxWidth="spacing-960">
-      <OakHeading
+    <FaqInner $mh="auto">
+      <FaqHeading
         tag="h2"
         id="national-curriculum-insights-faq-heading"
         $font="heading-4"
         $mb="spacing-32"
       >
         {section.heading}
-      </OakHeading>
+      </FaqHeading>
       <FaqAccordionList $flexDirection="column">
         {section.items.map((item, index) => (
           <OakOutlineAccordion
@@ -1086,12 +1310,12 @@ export const NationalCurriculumInsightsFaq = ({
                 {item.question}
               </OakHeading>
             }
-            $pv="spacing-16"
+            $pv="spacing-12"
           >
             <PortableTextWithDefaults value={item.answerPortableText} />
           </OakOutlineAccordion>
         ))}
       </FaqAccordionList>
-    </OakBox>
+    </FaqInner>
   </FaqSection>
 );
