@@ -46,7 +46,10 @@ import useAnalytics from "@/context/Analytics/useAnalytics";
 import { buildUnitSequenceRefinedAnalytics } from "@/utils/curriculum/analytics";
 import useAnalyticsPageProps from "@/hooks/useAnalyticsPageProps";
 import { ProgrammePageHeaderCMS } from "@/common-lib/cms-types/programmePage";
-import { CurriculumOverviewSanityData } from "@/common-lib/cms-types";
+import {
+  CurriculumOverviewSanityData,
+  ImplementationGuides,
+} from "@/common-lib/cms-types";
 import type { Ks4Option } from "@/node-lib/curriculum-api-2023/queries/curriculumPhaseOptions/curriculumPhaseOptions.schema";
 import { resolveOakHref } from "@/common-lib/urls";
 import { CurriculumOverviewMVData } from "@/node-lib/curriculum-api-2023";
@@ -69,6 +72,7 @@ type ProgrammePageProps = {
   trackingData: CurriculumUnitsTrackingData;
   initialFilter?: CurriculumFilters;
   featureFlags: Record<string, boolean>;
+  implementationGuides: ImplementationGuides | null;
 };
 
 export const ProgrammeView = ({
@@ -87,6 +91,7 @@ export const ProgrammeView = ({
   trackingData,
   initialFilter,
   featureFlags,
+  implementationGuides,
 }: ProgrammePageProps) => {
   const searchParams = useSearchParams();
 
@@ -223,6 +228,7 @@ export const ProgrammeView = ({
         setFilters={onChangeFilters}
         ks4Options={ks4Options}
         ks4OptionFilterDimensions={ks4OptionFilterDimensions}
+        implementationGuides={implementationGuides}
       />
     </>
   );
@@ -241,9 +247,11 @@ const TabContent = ({
   setFilters,
   ks4Options,
   ks4OptionFilterDimensions,
+  implementationGuides,
 }: { tabSlug: TabSlug } & UnitSequenceViewProps &
   Omit<ProgrammeOverviewProps, "curriculumCMSInfo"> & {
     curriculumCMSInfo: CurriculumOverviewSanityData | null;
+    implementationGuides: ImplementationGuides | null;
   } & ProgrammeDownloadsProps) => {
   if (tabSlug === "units") {
     return (
@@ -275,6 +283,7 @@ const TabContent = ({
         curriculumDownloadsTabData={curriculumDownloadsTabData}
         curriculumInfo={curriculumInfo}
         curriculumUnitsFormattedData={curriculumUnitsFormattedData}
+        implementationGuides={implementationGuides}
       />
     );
   }

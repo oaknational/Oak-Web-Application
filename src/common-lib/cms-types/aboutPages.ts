@@ -234,3 +234,19 @@ export const aboutWorkWithUsPageSchema = getInvolvedPageWorkWithUsSchema;
 export type AboutWorkWithUsPage = z.infer<
   typeof getInvolvedPageWorkWithUsSchema
 >;
+
+export const fileSchema = z.object({
+  extension: z.string(),
+  size: z.number(),
+  url: z.string(),
+});
+
+export const implementationGuidesSchema = z.object({
+  curriculumQuality: fileSchema.optional(),
+  whatsIncluded: fileSchema.optional(),
+  assessment: fileSchema.optional(),
+  commonQuestions: fileSchema.optional(),
+  equipmentList: fileSchema.optional(),
+});
+
+export type ImplementationGuides = z.infer<typeof implementationGuidesSchema>;
