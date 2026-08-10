@@ -404,4 +404,26 @@ describe("ProgrammeView", () => {
     );
     expect(callout).toBeInTheDocument();
   });
+
+  test("shows the new on download tab when implementation-guides enabled", () => {
+    const { baseElement, rerender } = render(
+      <ProgrammeView
+        {...defaultProps}
+        featureFlags={{
+          "implementation-guides": false,
+        }}
+      />,
+    );
+    expect(baseElement).not.toHaveTextContent("DownloadNew");
+
+    rerender(
+      <ProgrammeView
+        {...defaultProps}
+        featureFlags={{
+          "implementation-guides": true,
+        }}
+      />,
+    );
+    expect(baseElement).toHaveTextContent("DownloadNew");
+  });
 });
