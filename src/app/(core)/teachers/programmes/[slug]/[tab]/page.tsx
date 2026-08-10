@@ -12,6 +12,7 @@ import {
   getSubjectOverride,
 } from "./getProgrammeData";
 
+import { isFeatureFlagEnabledServer } from "@/utils/featureFlagChecks/server";
 import {
   createDownloadsData,
   CurriculumUnitsTrackingData,
@@ -36,7 +37,6 @@ import { cacheData } from "@/node-lib/cache";
 import CMSClient from "@/node-lib/cms";
 import { getMvRefreshTime } from "@/pages-helpers/curriculum/downloads/getMvRefreshTime";
 import { validateServerSearchParams } from "@/utils/validateProgrammePageSearchParams";
-import { isFeatureFlagEnabled } from "@/utils/featureFlagServer";
 
 const reportError = errorReporter("programme-page::app");
 
@@ -284,7 +284,7 @@ const InnerProgrammePage = async (props: AppPageProps<ProgrammePageParams>) => {
     ks4OptionTitle: curriculumSelectionTitles.examboardTitle,
   };
 
-  const isImplementationGuidesEnabled = await isFeatureFlagEnabled(
+  const isImplementationGuidesEnabled = await isFeatureFlagEnabledServer(
     Object.fromEntries(
       cookieStore.getAll().map(({ name, value }) => [name, value]),
     ),

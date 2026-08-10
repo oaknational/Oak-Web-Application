@@ -14,8 +14,12 @@ import {
   portableTextFromString,
   mockImageAsset,
 } from "@/__tests__/__helpers__/cms";
+import { isFeatureFlagEnabledStatic } from "@/utils/featureFlagChecks/static";
 
 jest.mock("../../../node-lib/cms");
+jest.mock("@/utils/featureFlagChecks/static", () => ({
+  isFeatureFlagEnabledStatic: jest.fn(),
+}));
 jest.mock("@mux/mux-player-react/lazy", () => {
   return forwardRef((props, ref) => {
     ref; // This prevents warning about ref not being used
@@ -24,6 +28,7 @@ jest.mock("@mux/mux-player-react/lazy", () => {
 });
 
 const mockCMSClient = CMSClient as jest.MockedObject<typeof CMSClient>;
+const mockIsFeatureFlagEnabledStatic = jest.mocked(isFeatureFlagEnabledStatic);
 
 const mockPageData: WhoWeArePage = {
   header2: {
@@ -65,6 +70,7 @@ describe("pages/about/who-we-are.tsx", () => {
   beforeEach(() => {
     jest.clearAllMocks();
     jest.resetModules();
+    mockIsFeatureFlagEnabledStatic.mockReturnValue(false);
     mockCMSClient.whoWeArePage.mockResolvedValue(mockPageData);
   });
 
