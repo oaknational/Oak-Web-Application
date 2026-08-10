@@ -20,7 +20,7 @@ import { resolveOakHref } from "@/common-lib/urls";
 import { NewGutterMaxWidth } from "@/components/GenericPagesComponents/NewGutterMaxWidth";
 import { useOakNotificationsContext } from "@/context/OakNotifications/useOakNotificationsContext";
 import { OaksImpactCaseStudyHeader } from "@/components/GenericPagesComponents/OaksImpactCaseStudyHeader";
-import { isFeatureFlagEnabled } from "@/utils/featureFlagServer";
+import { isFeatureFlagEnabledServer } from "@/utils/featureFlagChecks/server";
 import { OaksImpactCaseStudyContentLayout } from "@/components/GenericPagesComponents/OaksImpactCaseStudyContentLayout";
 import VideoPlayer from "@/components/SharedComponents/VideoPlayer";
 
@@ -171,7 +171,7 @@ export const getServerSideProps: GetServerSideProps<
   AboutUsOaksImpactCaseStudyPageProps,
   URLParams
 > = async (context) => {
-  const isImpactPageEnabled = await isFeatureFlagEnabled(
+  const isImpactPageEnabled = await isFeatureFlagEnabledServer(
     context,
     "oaks-impact",
   );
