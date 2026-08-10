@@ -26,6 +26,7 @@ import {
 import isSlugLegacy from "@/utils/slugModifiers/isSlugLegacy";
 import { PupilLessonPageProps } from "@/pages-helpers/pupil/lessons-pages/pupilLessonPage.types";
 import { PupilRedirectedOverlay } from "@/components/PupilComponents/PupilRedirectedOverlay/PupilRedirectedOverlay";
+import { allLessonReviewSections } from "@/components/PupilComponents/lessonSections";
 
 type OverviewPageURLParams = {
   lessonSlug: string;
@@ -35,7 +36,11 @@ const OverviewPageContent = ({
   browseData,
   lessonContent,
   backUrl,
-}: Pick<PupilLessonPageProps, "browseData" | "lessonContent" | "backUrl">) => {
+  variant,
+}: Pick<
+  PupilLessonPageProps,
+  "browseData" | "lessonContent" | "backUrl" | "variant"
+>) => {
   const {
     isClassroomAssignment,
     classroomAssignmentChecked,
@@ -67,6 +72,11 @@ const OverviewPageContent = ({
   } = browseData;
 
   const { lessonTitle, contentGuidance, supervisionLevel } = lessonContent;
+
+  const hideYearGroup = variant?.hideYearGroup ?? false;
+  const showSharedActivitiesBanner =
+    variant !== null &&
+    variant.reviewSections.length < allLessonReviewSections.length;
 
   return (
     <>
@@ -105,15 +115,17 @@ const OverviewPageContent = ({
               onwardHref={unitListingHref}
               isSingle
             />
-            <OakInlineBanner
-              message="You can only click on the activities your teacher has shared with you today."
-              isOpen={true}
-            />
+            {showSharedActivitiesBanner && (
+              <OakInlineBanner
+                message="You can only click on the activities your teacher has shared with you today."
+                isOpen={true}
+              />
+            )}
           </>
         }
         header={{
           lessonTitle: lessonTitle ?? "",
-          yearDescription,
+          yearDescription: hideYearGroup ? undefined : yearDescription,
           subject,
           subjectSlug,
           phase: phase as "primary" | "secondary",
@@ -165,6 +177,7 @@ const PupilLessonOverviewNewPage = (props: PupilLessonPageProps) => {
         browseData={browseData}
         lessonContent={lessonContent}
         backUrl={backUrl}
+        variant={variant}
       />
     </PupilLayout>
   );
