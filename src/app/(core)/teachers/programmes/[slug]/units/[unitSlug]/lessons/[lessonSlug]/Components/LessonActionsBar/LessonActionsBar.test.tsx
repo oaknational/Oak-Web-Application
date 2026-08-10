@@ -81,8 +81,6 @@ describe("LessonActionsBar", () => {
           keyStageSlug: "ks1",
           subjectCategories: [],
           actions: {},
-          trackCreateWithAiButtonClicked: jest.fn,
-          trackTeachingMaterialsSelected: jest.fn,
           subjectSlug: "maths",
         }}
       />,

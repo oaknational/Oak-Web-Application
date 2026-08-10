@@ -8,7 +8,6 @@ import {
   OakInlineBanner,
 } from "@oaknational/oak-components";
 import { Fragment, useState } from "react";
-import { useUser } from "@clerk/nextjs";
 import { useFeatureFlagEnabled } from "posthog-js/react";
 
 import { CurrentSectionIdProvider } from "./CurrentSectionIdProvider";
@@ -22,14 +21,12 @@ import type { TeachersLessonOverviewPageData } from "@/node-lib/curriculum-api-2
 import PreviousNextNav from "@/components/TeacherComponents/PreviousNextNav/PreviousNextNav";
 import { resolveOakHref } from "@/common-lib/urls";
 import { useComplexCopyright } from "@/hooks/useComplexCopyright";
-import { TeachingMaterialTypeValueType } from "@/browser-lib/avo/Avo";
 import SkipLink from "@/components/CurriculumComponents/OakComponentsKitchen/SkipLink";
 import { MathJaxProvider } from "@/browser-lib/mathjax/MathJaxProvider";
 import { hasLessonMathJax } from "@/components/TeacherViews/LessonOverview/hasLessonMathJax";
 import { getSideNavLinksFromResources } from "@/components/TeacherComponents/LessonOverviewSideNavAnchorLinks/LessonOverviewSideNavAnchorLinks";
 import ComplexCopyrightRestrictionBanner from "@/components/TeacherComponents/ComplexCopyrightRestrictionBanner/ComplexCopyrightRestrictionBanner";
 import { RestrictedContentPrompt } from "@/components/TeacherComponents/RestrictedContentPrompt/RestrictedContentPrompt";
-import { useTeacherBrowseAnalytics } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
 
 export default function LessonView(
   props: Readonly<TeachersLessonOverviewPageData>,
@@ -73,12 +70,8 @@ export default function LessonView(
     showGeoBlocked ||
     showSignedInNotOnboarded;
 
-  const { isSignedIn } = useUser();
   const isMathJaxLesson = hasLessonMathJax(props, props.subjectSlug, false);
   const MathJaxLessonProvider = isMathJaxLesson ? MathJaxProvider : Fragment;
-
-  const { createTeachingMaterialsInitiated, teachingMaterialsSelected } =
-    useTeacherBrowseAnalytics((store) => store.track);
 
   const lessonResources = getLessonResources({
     data: props,
@@ -194,17 +187,6 @@ export default function LessonView(
                         subjectCategories,
                         actions,
                         subjectSlug,
-                        trackCreateWithAiButtonClicked: () =>
-                          createTeachingMaterialsInitiated({
-                            isLoggedIn: isSignedIn ?? false,
-                          }),
-                        trackTeachingMaterialsSelected: (
-                          teachingMaterialType: TeachingMaterialTypeValueType,
-                        ) => {
-                          teachingMaterialsSelected({
-                            teachingMaterialType: teachingMaterialType,
-                          });
-                        },
                       }
                 }
                 lessonSlug={lessonSlug}

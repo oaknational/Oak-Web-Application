@@ -61,8 +61,6 @@ const baseProps = {
   analyticsUseCase: "Teacher" as AnalyticsUseCaseValueType,
   isShareable: true,
   showShare: true,
-  trackTeachingMaterialsSelected: jest.fn(),
-  trackCreateWithAiButtonClicked: jest.fn(),
   contentRestricted: false,
 };
 

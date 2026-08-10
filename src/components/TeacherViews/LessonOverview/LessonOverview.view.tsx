@@ -12,7 +12,6 @@ import {
   OakAnchorTarget,
 } from "@oaknational/oak-components";
 import { useFeatureFlagVariantKey } from "posthog-js/react";
-import { useUser } from "@clerk/nextjs";
 
 import { getContainerId } from "../../TeacherComponents/LessonItemContainer/LessonItemContainer";
 
@@ -131,11 +130,9 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
     geoRestricted,
   });
 
-  const {
-    createTeachingMaterialsInitiated,
-    teachingMaterialsSelected,
-    lessonResourceDownloadStarted,
-  } = useTeacherBrowseAnalytics((store) => store.track);
+  const { lessonResourceDownloadStarted } = useTeacherBrowseAnalytics(
+    (store) => store.track,
+  );
 
   const contentRestricted =
     showSignedOutGeoRestricted ||
@@ -167,7 +164,6 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
   };
   const { subjectSlug, unitSlug, programmeSlug } = commonPathway;
 
-  const user = useUser();
   const isLegacyLicense = !lessonCohort || lessonCohort === LEGACY_COHORT;
   const isNew = lessonCohort === NEW_COHORT;
   const isMathJaxLesson = hasLessonMathJax(
@@ -273,14 +269,6 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
         showDownloadAll={showDownloadAll}
         showShare={showShare}
         teacherShareButton={teacherShareButton}
-        trackTeachingMaterialsSelected={(teachingMaterialType) =>
-          teachingMaterialsSelected({ teachingMaterialType })
-        }
-        trackCreateWithAiButtonClicked={() =>
-          createTeachingMaterialsInitiated({
-            isLoggedIn: user.isSignedIn ?? false,
-          })
-        }
         contentRestricted={contentRestricted}
       />
       <OakMaxWidth $ph={"spacing-16"} $pb={"spacing-80"}>

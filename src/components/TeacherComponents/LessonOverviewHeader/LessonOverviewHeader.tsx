@@ -13,10 +13,7 @@ import { Breadcrumb } from "@/components/SharedComponents/Breadcrumbs";
 import { LessonHeaderWrapper } from "@/components/TeacherComponents/LessonHeaderWrapper";
 import { LessonOverviewHeaderMobile } from "@/components/TeacherComponents/LessonOverviewHeaderMobile";
 import { LessonOverviewHeaderDesktop } from "@/components/TeacherComponents/LessonOverviewHeaderDesktop";
-import {
-  AnalyticsUseCaseValueType,
-  TeachingMaterialTypeValueType,
-} from "@/browser-lib/avo/Avo";
+import { AnalyticsUseCaseValueType } from "@/browser-lib/avo/Avo";
 import { TeacherNotesButtonProps } from "@/pages-helpers/teacher/useLesson/useLesson";
 
 /**
@@ -65,10 +62,6 @@ export type LessonOverviewHeaderProps = {
   teacherShareButtonProps?: TeacherNotesButtonProps;
   // AI
   excludedFromTeachingMaterials?: boolean;
-  trackTeachingMaterialsSelected?: (
-    teachingMaterialType: TeachingMaterialTypeValueType,
-  ) => void;
-  trackCreateWithAiButtonClicked?: () => void;
   subjectCategories?: Array<string | number | null> | null;
   actions?: ActionsCamel | null;
 };
