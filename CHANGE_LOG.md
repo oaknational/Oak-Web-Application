@@ -1,3 +1,18 @@
+# [1.1150.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1149.2...v1.1150.0) (2026-08-10)
+
+
+### Bug Fixes
+
+* fixed 5 issues raised on PR after QA ([3630dc0](https://github.com/oaknational/Oak-Web-Application/commit/3630dc0c05446ff556be29f8cccc40ec8115cda4))
+* made sure hideYearGroup is included in download error message keys ([c45a659](https://github.com/oaknational/Oak-Web-Application/commit/c45a6596fc4d783d861059548680419741cddc50))
+* merge main ([976d4ba](https://github.com/oaknational/Oak-Web-Application/commit/976d4ba3c3b625bd8221e65a915223a434c7b57d))
+
+
+### Features
+
+* add hide icon from package update ([3d052c9](https://github.com/oaknational/Oak-Web-Application/commit/3d052c9197eca23e11ab9f8bedd88aac3e9dfa3e))
+* added variants with hidden year group ([6421954](https://github.com/oaknational/Oak-Web-Application/commit/6421954085534583b539a8b1cae0df3a087ae45b))
+
 ## [1.1149.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.1149.1...v1.1149.2) (2026-08-06)
 
 
