@@ -1,4 +1,8 @@
+import previewSnapshot from "./nationalCurriculumInsightsPreviewSnapshot.json";
+
 import {
+  nationalCurriculumInsightsHubSchema,
+  nationalCurriculumInsightsSubjectSchema,
   type NationalCurriculumInsightsHub,
   type NationalCurriculumInsightsKeyStage,
   type NationalCurriculumInsightsKeyStagePage,
@@ -12,6 +16,7 @@ import {
 } from "@/common-lib/cms-types/nationalCurriculumInsights";
 import type { NationalCurriculumInsightsRoute } from "@/common-lib/urls/nationalCurriculumInsights";
 import CMSClient from "@/node-lib/cms";
+
 
 export type NationalCurriculumInsightsReader = Pick<
   typeof CMSClient,
@@ -267,11 +272,44 @@ const localNationalCurriculumInsightsReader: NationalCurriculumInsightsReader =
     },
   };
 
+const localPreviewHub = nationalCurriculumInsightsHubSchema.parse(
+  previewSnapshot.hub,
+);
+const localPreviewSubjects = previewSnapshot.subjects.map((subject) =>
+  nationalCurriculumInsightsSubjectSchema.parse(subject),
+);
+
+const localPreviewSnapshotReader: NationalCurriculumInsightsReader = {
+  nationalCurriculumInsightsHub: async () => localPreviewHub,
+  nationalCurriculumInsightsSubjectBySlug: async (subjectSlug) =>
+    localPreviewSubjects.find(({ slug }) => slug === subjectSlug) ?? null,
+};
+
+export const getNationalCurriculumInsightsReader =
+  (): NationalCurriculumInsightsReader => {
+    const localPreviewRequested =
+      process.env.NATIONAL_CURRICULUM_INSIGHTS_LOCAL_FIXTURES === "true";
+    const isLocalPreviewRuntime =
+      process.env.NATIONAL_CURRICULUM_INSIGHTS_LOCAL_PREVIEW_RUNTIME === "true";
+
+    if (!localPreviewRequested) {
+      return CMSClient;
+    }
+
+    if (process.env.NODE_ENV !== "development" && !isLocalPreviewRuntime) {
+      throw new Error(
+        "National Curriculum Insights preview content is only available in development or the dedicated local preview runtime",
+      );
+    }
+
+    return localPreviewSnapshotReader;
+  };
+
 export const getNationalCurriculumInsightsRouteData = async (
   route: NationalCurriculumInsightsRoute,
   {
     previewMode,
-    reader = CMSClient,
+    reader = getNationalCurriculumInsightsReader(),
   }: {
     previewMode: boolean;
     reader?: NationalCurriculumInsightsReader;

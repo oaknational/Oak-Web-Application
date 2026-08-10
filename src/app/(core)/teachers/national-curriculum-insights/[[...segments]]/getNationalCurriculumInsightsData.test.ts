@@ -1,4 +1,5 @@
 import {
+  getNationalCurriculumInsightsReader,
   getNationalCurriculumInsightsRouteData,
   localNationalCurriculumInsightsFixtures,
   type NationalCurriculumInsightsReader,
@@ -171,5 +172,55 @@ describe("getNationalCurriculumInsightsRouteData", () => {
         reader,
       }),
     ).resolves.toBeNull();
+  });
+});
+
+describe("getNationalCurriculumInsightsReader", () => {
+  const originalFixtures =
+    process.env.NATIONAL_CURRICULUM_INSIGHTS_LOCAL_FIXTURES;
+  const originalRuntime =
+    process.env.NATIONAL_CURRICULUM_INSIGHTS_LOCAL_PREVIEW_RUNTIME;
+
+  afterEach(() => {
+    if (originalFixtures === undefined) {
+      delete process.env.NATIONAL_CURRICULUM_INSIGHTS_LOCAL_FIXTURES;
+    } else {
+      process.env.NATIONAL_CURRICULUM_INSIGHTS_LOCAL_FIXTURES =
+        originalFixtures;
+    }
+    if (originalRuntime === undefined) {
+      delete process.env.NATIONAL_CURRICULUM_INSIGHTS_LOCAL_PREVIEW_RUNTIME;
+    } else {
+      process.env.NATIONAL_CURRICULUM_INSIGHTS_LOCAL_PREVIEW_RUNTIME =
+        originalRuntime;
+    }
+  });
+
+  it("uses the exported feature-dataset snapshot in the local preview runtime", async () => {
+    process.env.NATIONAL_CURRICULUM_INSIGHTS_LOCAL_FIXTURES = "true";
+    process.env.NATIONAL_CURRICULUM_INSIGHTS_LOCAL_PREVIEW_RUNTIME = "true";
+
+    const hub =
+      await getNationalCurriculumInsightsReader().nationalCurriculumInsightsHub(
+        { previewMode: false },
+      );
+
+    expect(hub?.subjects).toHaveLength(16);
+    expect(hub?.modules.map(({ __typename }) => __typename)).toEqual([
+      "NationalCurriculumInsightsHeroSection",
+      "NationalCurriculumInsightsPromotionalHeadingSection",
+      "NationalCurriculumInsightsSubjectNavigationSection",
+      "NationalCurriculumInsightsNewsletterSection",
+      "NationalCurriculumInsightsFaqSection",
+    ]);
+  });
+
+  it("rejects preview content outside development or the dedicated runtime", () => {
+    process.env.NATIONAL_CURRICULUM_INSIGHTS_LOCAL_FIXTURES = "true";
+    delete process.env.NATIONAL_CURRICULUM_INSIGHTS_LOCAL_PREVIEW_RUNTIME;
+
+    expect(() => getNationalCurriculumInsightsReader()).toThrow(
+      "dedicated local preview runtime",
+    );
   });
 });
