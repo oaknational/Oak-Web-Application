@@ -11,7 +11,7 @@ import {
   OakP,
   OakTextInput,
 } from "@oaknational/oak-components";
-import { FormEvent, useId, useMemo, useState } from "react";
+import { ChangeEvent, FormEvent, useId, useMemo, useState } from "react";
 import styled from "styled-components";
 
 import type { NationalCurriculumInsightsRouteData } from "./getNationalCurriculumInsightsData";
@@ -405,7 +405,9 @@ export const NationalCurriculumInsightsDownload = ({
                     id={`${formId}-name`}
                     name="name"
                     value={name}
-                    onChange={(event) => setName(event.target.value)}
+                    onChange={(event: ChangeEvent<HTMLInputElement>) =>
+                      setName(event.target.value)
+                    }
                     placeholder="Type your name"
                     autoComplete="name"
                     wrapperWidth="100%"
@@ -428,7 +430,9 @@ export const NationalCurriculumInsightsDownload = ({
                     id={`${formId}-school`}
                     name="school"
                     value={school}
-                    onChange={(event) => setSchool(event.target.value)}
+                    onChange={(event: ChangeEvent<HTMLInputElement>) =>
+                      setSchool(event.target.value)
+                    }
                     placeholder="Type school name, postcode, or ‘homeschool’"
                     disabled={schoolNotListed}
                     autoComplete="organization"
@@ -487,7 +491,9 @@ export const NationalCurriculumInsightsDownload = ({
                     name="email"
                     type="email"
                     value={email}
-                    onChange={(event) => setEmail(event.target.value)}
+                    onChange={(event: ChangeEvent<HTMLInputElement>) =>
+                      setEmail(event.target.value)
+                    }
                     placeholder="Enter email address here"
                     autoComplete="email"
                     wrapperWidth="100%"

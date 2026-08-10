@@ -208,6 +208,7 @@ describe("getNationalCurriculumInsightsReader", () => {
     expect(hub?.subjects).toHaveLength(16);
     expect(hub?.modules.map(({ __typename }) => __typename)).toEqual([
       "NationalCurriculumInsightsHeroSection",
+      "NationalCurriculumInsightsDownloadSection",
       "NationalCurriculumInsightsPromotionalHeadingSection",
       "NationalCurriculumInsightsSubjectNavigationSection",
       "NationalCurriculumInsightsNewsletterSection",
