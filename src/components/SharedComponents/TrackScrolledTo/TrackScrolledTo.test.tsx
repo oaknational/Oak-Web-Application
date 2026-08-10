@@ -12,7 +12,7 @@ jest.mock("@/context/Analytics/useAnalytics", () => ({
 const mockUseAnalytics = jest.mocked(useAnalytics);
 
 describe("TrackScrolledTo", () => {
-  let ioCallback: IntersectionObserverCallback;
+  let observerCallback: IntersectionObserverCallback;
   const observe = jest.fn();
   const disconnect = jest.fn();
   const unobserve = jest.fn();
@@ -31,7 +31,7 @@ describe("TrackScrolledTo", () => {
     jest
       .spyOn(window, "IntersectionObserver")
       .mockImplementation((cb: IntersectionObserverCallback) => {
-        ioCallback = cb;
+        observerCallback = cb;
         return {
           observe,
           disconnect,
@@ -63,7 +63,7 @@ describe("TrackScrolledTo", () => {
   test("tracks when the component scrolls into view", () => {
     render(<TrackScrolledTo eventKey="support_you" />);
 
-    ioCallback(
+    observerCallback(
       [{ isIntersecting: true } as IntersectionObserverEntry],
       {} as IntersectionObserver,
     );
@@ -74,12 +74,12 @@ describe("TrackScrolledTo", () => {
   test("tracks only once when intersecting multiple times", () => {
     render(<TrackScrolledTo eventKey="support_you" />);
 
-    ioCallback(
+    observerCallback(
       [{ isIntersecting: true } as IntersectionObserverEntry],
       {} as IntersectionObserver,
     );
 
-    ioCallback(
+    observerCallback(
       [{ isIntersecting: true } as IntersectionObserverEntry],
       {} as IntersectionObserver,
     );
@@ -90,7 +90,7 @@ describe("TrackScrolledTo", () => {
   test("does not track when the component is not intersecting", () => {
     render(<TrackScrolledTo eventKey="support_you" />);
 
-    ioCallback(
+    observerCallback(
       [{ isIntersecting: false } as IntersectionObserverEntry],
       {} as IntersectionObserver,
     );
