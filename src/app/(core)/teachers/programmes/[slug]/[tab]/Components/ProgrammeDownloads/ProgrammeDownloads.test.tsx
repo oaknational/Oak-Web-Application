@@ -1,4 +1,4 @@
-import { screen } from "@testing-library/react";
+import { screen, waitFor } from "@testing-library/react";
 import { usePathname } from "next/navigation";
 import userEvent from "@testing-library/user-event";
 
@@ -45,16 +45,56 @@ const childSubjectsMock = [
 ];
 
 const curriculumResourcesDownloadRefined = jest.fn();
+const curriculumResourcesDownloaded = jest.fn();
 jest.mock("@/context/Analytics/useAnalytics", () => ({
   __esModule: true,
   default: () => ({
     track: {
       curriculumResourcesDownloadRefined: (...args: unknown[]) =>
         curriculumResourcesDownloadRefined(...args),
+      curriculumResourcesDownloaded: (...args: unknown[]) =>
+        curriculumResourcesDownloaded(...args),
     },
     getSessionId: jest.fn(),
   }),
 }));
+
+const onHubspotSubmit = jest.fn();
+jest.mock(
+  "@/components/TeacherComponents/hooks/downloadAndShareHooks/useHubspotSubmit",
+  () => ({
+    useHubspotSubmit: () => ({
+      onHubspotSubmit: (...args: unknown[]) => onHubspotSubmit(...args),
+    }),
+  }),
+);
+
+jest.mock(
+  "@/components/TeacherComponents/hooks/downloadAndShareHooks/useResourceFormSubmit",
+  () => ({
+    __esModule: true,
+    default: () => ({ onSubmit: jest.fn() }),
+  }),
+);
+
+jest.mock(
+  "@/components/TeacherComponents/hooks/downloadAndShareHooks/useLocalStorageForDownloads",
+  () => ({
+    __esModule: true,
+    default: () => ({
+      schoolFromLocalStorage: {
+        schoolId: "123456-Test school",
+        schoolName: "Test school",
+      },
+      emailFromLocalStorage: "test@example.com",
+      termsFromLocalStorage: true,
+      hasDetailsFromLocalStorage: true,
+      setEmailInLocalStorage: jest.fn(),
+      setSchoolInLocalStorage: jest.fn(),
+      setTermsInLocalStorage: jest.fn(),
+    }),
+  }),
+);
 
 jest.mock("@clerk/nextjs", () => ({
   useUser: jest.fn(() => ({
@@ -230,6 +270,43 @@ describe("Programme Downloads", () => {
           phase: "secondary",
           subjectSlug: "biology",
           subjectTitle: "Biology",
+        }),
+      );
+    });
+  });
+
+  describe("analytics: curriculumResourcesDownloaded", () => {
+    it("submits the details to hubspot and sends a tracking event when the download is submitted", async () => {
+      const { findByText } = renderComponent({});
+
+      const user = userEvent.setup();
+      await user.click(await findByText("Download"));
+
+      await waitFor(() =>
+        expect(onHubspotSubmit).toHaveBeenCalledWith({
+          school: "123456-Test school",
+          schoolName: undefined,
+          email: "test@example.com",
+          terms: true,
+          resources: ["docx"],
+        }),
+      );
+
+      expect(curriculumResourcesDownloaded).toHaveBeenCalledWith(
+        expect.objectContaining({
+          analyticsUseCase: "Teacher",
+          componentType: "download_button",
+          engagementIntent: "explore",
+          emailSupplied: true,
+          eventVersion: "2.0.0",
+          keyStageSlug: null,
+          keyStageTitle: null,
+          platform: "owa",
+          product: "curriculum resources",
+          resourceType: ["curriculum document"],
+          schoolName: "Test school",
+          schoolOption: "Selected school",
+          schoolUrn: "123456",
         }),
       );
     });
