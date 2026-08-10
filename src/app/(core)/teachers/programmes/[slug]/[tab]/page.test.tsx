@@ -35,6 +35,10 @@ jest.mock("next/navigation", () => {
   };
 });
 
+jest.mock("@/utils/featureFlagServer.ts", () => ({
+  isFeatureFlagEnabled: jest.fn(() => false),
+}));
+
 jest.mock("next/headers", () => ({
   draftMode: jest.fn().mockResolvedValue({
     isEnabled: true,
