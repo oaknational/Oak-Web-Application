@@ -14,6 +14,8 @@ function getDeploymentTestUrls() {
     // About Us pages
     "/about-us/who-we-are",
     "/about-us/oaks-curricula",
+    "/about-us/oaks-impact",
+    "/about-us/case-studies/tackling-blank-page-syndrome-with-aila",
     "/about-us/meet-the-team",
     "/about-us/meet-the-team/john-roberts?section=leadership",
     "/about-us/get-involved",
