@@ -35,7 +35,7 @@ jest.mock("next/navigation", () => {
   };
 });
 
-jest.mock("@/utils/featureFlagServer.ts", () => ({
+jest.mock("@/utils/featureFlagServer", () => ({
   isFeatureFlagEnabled: jest.fn(() => false),
 }));
 
