@@ -37,21 +37,26 @@ describe("isFeatureFlagEnabled", () => {
 
   test("returns true when override set", async () => {
     process.env.FORCE_FEATURE_FLAG_OAKS_IMPACT = "true";
-    const result = await isFeatureFlagEnabled({}, "oaks-impact");
-    expect(result).toBe(true);
+    expect(await isFeatureFlagEnabled({}, "oaks-impact")).toBe(true);
+
+    process.env.FORCE_FEATURE_FLAG_IMPLEMENTATION_GUIDES = "true";
+    expect(await isFeatureFlagEnabled({}, "implementation-guides")).toBe(true);
   });
 });
 
 describe("isFeatureFlagEnabledAtBuild", () => {
   test("returns true when constant is 'true'", () => {
     process.env.FORCE_FEATURE_FLAG_OAKS_IMPACT = "true";
-    const result = isFeatureFlagEnabledAtBuild("oaks-impact");
-    expect(result).toBe(true);
+    expect(isFeatureFlagEnabledAtBuild("oaks-impact")).toBe(true);
+    process.env.FORCE_FEATURE_FLAG_IMPLEMENTATION_GUIDES = "true";
+    expect(isFeatureFlagEnabledAtBuild("implementation-guides")).toBe(true);
   });
 
   test("returns false when constant is not 'true'", () => {
     process.env.FORCE_FEATURE_FLAG_OAKS_IMPACT = "false";
-    const result = isFeatureFlagEnabledAtBuild("oaks-impact");
-    expect(result).toBe(false);
+    expect(isFeatureFlagEnabledAtBuild("oaks-impact")).toBe(false);
+
+    process.env.FORCE_FEATURE_FLAG_IMPLEMENTATION_GUIDES = "false";
+    expect(isFeatureFlagEnabledAtBuild("implementation-guides")).toBe(false);
   });
 });
