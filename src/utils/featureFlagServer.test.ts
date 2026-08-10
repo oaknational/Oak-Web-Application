@@ -34,6 +34,12 @@ describe("isFeatureFlagEnabled", () => {
     const result = await isFeatureFlagEnabled({}, "oaks-impact");
     expect(result).toBe(false);
   });
+
+  test("returns true when override set", async () => {
+    process.env.FORCE_FEATURE_FLAG_OAKS_IMPACT = "true";
+    const result = await isFeatureFlagEnabled({}, "oaks-impact");
+    expect(result).toBe(true);
+  });
 });
 
 describe("isFeatureFlagEnabledAtBuild", () => {
