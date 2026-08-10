@@ -1,12 +1,11 @@
-import type { NextApiRequest, NextApiResponse } from "next";
 import { format } from "date-fns";
 import * as z from "zod";
 
+import { getNationalCurriculumInsightsReader } from "@/app/(core)/teachers/national-curriculum-insights/[[...segments]]/getNationalCurriculumInsightsData";
 import {
   nationalCurriculumInsightsPhaseSchema,
   type NationalCurriculumInsightsPhase,
 } from "@/common-lib/cms-types/nationalCurriculumInsights";
-import { getNationalCurriculumInsightsReader } from "@/app/(core)/teachers/national-curriculum-insights/[[...segments]]/getNationalCurriculumInsightsData";
 import {
   generateNationalCurriculumInsightsDocx,
   nationalCurriculumInsightsDownloadFilename,
@@ -28,29 +27,25 @@ const requestSchema = z.object({
 const attachmentHeader = (filename: string) =>
   `attachment; filename="${filename.replace(/["\\]/g, "")}"`;
 
-export default async function handler(
-  request: NextApiRequest,
-  response: NextApiResponse,
-) {
-  if (request.method !== "POST") {
-    response.setHeader("Allow", "POST").status(405).end();
-    return;
-  }
+const jsonError = (error: string, status: number) =>
+  Response.json(
+    { error },
+    { status, headers: { "Cache-Control": "no-store" } },
+  );
 
-  const parsed = requestSchema.safeParse(request.body);
+export async function POST(request: Request) {
+  const parsed = requestSchema.safeParse(
+    await request.json().catch(() => undefined),
+  );
   if (!parsed.success) {
-    response.status(400).json({ error: "Select at least one valid subject." });
-    return;
+    return jsonError("Select at least one valid subject.", 400);
   }
 
   try {
     const reader = getNationalCurriculumInsightsReader();
     const hub = await reader.nationalCurriculumInsightsHub();
     if (!hub) {
-      response
-        .status(503)
-        .json({ error: "Curriculum insights are unavailable." });
-      return;
+      return jsonError("Curriculum insights are unavailable.", 503);
     }
 
     const uniqueSelections = [
@@ -96,23 +91,23 @@ export default async function handler(
       : files[0]!.filename;
     const output = multiple ? await zipFromFiles(files) : files[0]!.buffer;
 
-    response
-      .setHeader(
-        "Content-Type",
-        multiple
+    return new Response(new Uint8Array(output), {
+      status: 200,
+      headers: {
+        "Cache-Control": "private, no-store",
+        "Content-Disposition": attachmentHeader(filename),
+        "Content-Type": multiple
           ? "application/zip"
           : "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
-      )
-      .setHeader("Cache-Control", "private, no-store")
-      .setHeader("Content-Disposition", attachmentHeader(filename))
-      .setHeader("x-filename", filename)
-      .status(200)
-      .send(output);
+        "x-filename": filename,
+      },
+    });
   } catch (error) {
-    const message =
+    return jsonError(
       error instanceof Error
         ? error.message
-        : "The download could not be made.";
-    response.status(400).json({ error: message });
+        : "The download could not be made.",
+      400,
+    );
   }
 }
