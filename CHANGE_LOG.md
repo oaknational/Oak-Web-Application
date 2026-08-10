@@ -1,3 +1,30 @@
+# [1.1152.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1151.0...v1.1152.0) (2026-08-10)
+
+
+### Bug Fixes
+
+* aboutuslayout tests ([452d8cd](https://github.com/oaknational/Oak-Web-Application/commit/452d8cd9046147efd4b34fae271bf3e971d76273))
+* add feature flag mock to more tests ([d399ab1](https://github.com/oaknational/Oak-Web-Application/commit/d399ab1a3ebb5b5eb7e2a778ae8d6f02397678d5))
+* add to footer no flag ([849084d](https://github.com/oaknational/Oak-Web-Application/commit/849084dae8ea7f646e940aa16bd509754d0ec9d0))
+* process env needs to be client friendly ([c12ea78](https://github.com/oaknational/Oak-Web-Application/commit/c12ea78fe0da49dc700dcb0b40782beda43f6b73))
+* remove oaks impact from snaps ([3bf8155](https://github.com/oaknational/Oak-Web-Application/commit/3bf81551e1a1c47cbda84ff14a1e39e3731edccd))
+* remove old tests ([93cfee4](https://github.com/oaknational/Oak-Web-Application/commit/93cfee4300f6ad142467520c284769fc702adf4e))
+* snaps ([591c4f1](https://github.com/oaknational/Oak-Web-Application/commit/591c4f1b2555c25e1836c68a18299022a07b4290))
+* sonarqube tests ([7973ba3](https://github.com/oaknational/Oak-Web-Application/commit/7973ba33b765b98f5b2a8b015bd56cd6ef973c54))
+* tests ([3510d8f](https://github.com/oaknational/Oak-Web-Application/commit/3510d8f316c768d3e8e1021779b4c5dec348d642))
+* top nav query tests ([b851282](https://github.com/oaknational/Oak-Web-Application/commit/b851282e4d376458266a5bde9e03d8e44988908c))
+* try to appear sonarqube ([b18469b](https://github.com/oaknational/Oak-Web-Application/commit/b18469b7568dd0eed2ce5af837a017ecd91c5047))
+* uncomment posthog ([c9385ea](https://github.com/oaknational/Oak-Web-Application/commit/c9385eabde0f62a9b1ae0b0231e12dde0f1e4c0b))
+
+
+### Features
+
+* add feature flag mock to about us pages ([7a6aebb](https://github.com/oaknational/Oak-Web-Application/commit/7a6aebbf420bd49a2b3db7ceea22af8a27f1ff1e))
+* add to explore more no flag ([0804674](https://github.com/oaknational/Oak-Web-Application/commit/0804674c0bf7eca1016f4421143f2a513a2d2d4f))
+* add to top nav and fixture ([5a00dc7](https://github.com/oaknational/Oak-Web-Application/commit/5a00dc7a3becb43059804638fab8f2854d457010))
+* put nav, footer and explore more oak's impact changed behind static feature flag check ([7c9be9d](https://github.com/oaknational/Oak-Web-Application/commit/7c9be9d33d1fe189e0baae3d7d0e5acf05821635))
+* tests for static and server feature flag ([efafefe](https://github.com/oaknational/Oak-Web-Application/commit/efafefe4a7816e67a025c9ea7c54e0e8b9ba756c))
+
 # [1.1151.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1150.0...v1.1151.0) (2026-08-10)
 
 
