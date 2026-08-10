@@ -39,17 +39,25 @@ const LessonShareCardGroup: FC<LessonShareCardGroupProps> = (props) => {
     resourceType: string | string[],
   ) => {
     if (e.target.checked) {
-      onChange([
-        ...fieldValue,
-        ...(Array.isArray(resourceType) ? resourceType : [resourceType]),
-      ]);
+      onChange(
+        Array.from(
+          new Set([
+            ...fieldValue,
+            ...(Array.isArray(resourceType) ? resourceType : [resourceType]),
+          ]),
+        ),
+      );
     } else {
       onChange(
-        fieldValue.filter(
-          (val) =>
-            !(Array.isArray(resourceType)
-              ? resourceType.includes(val)
-              : val === resourceType),
+        Array.from(
+          new Set(
+            fieldValue.filter(
+              (val) =>
+                !(Array.isArray(resourceType)
+                  ? resourceType.includes(val)
+                  : val === resourceType),
+            ),
+          ),
         ),
       );
     }
