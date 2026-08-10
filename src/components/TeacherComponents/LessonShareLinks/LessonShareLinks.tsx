@@ -18,9 +18,13 @@ const LessonShareLinks: FC<{
   selectedActivities: LessonSection[];
   schoolUrn?: string;
   onSubmit: (shareMedium: ShareMediumValueType) => boolean;
+  selectedHideYearGroup?: boolean;
 }> = (props) => {
   const lessonShareVariantSlug =
-    getLessonShareVariantSlug(props.selectedActivities) || "";
+    getLessonShareVariantSlug(
+      props.selectedActivities,
+      props.selectedHideYearGroup,
+    ) || "";
   const [isShareSuccessful, setIsShareSuccessful] = useState(false);
   const { setCurrentToastProps } = useOakNotificationsContext();
 
