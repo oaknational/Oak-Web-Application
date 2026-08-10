@@ -50,19 +50,19 @@ const HeaderInner = styled.span`
   display: flex;
   align-items: center;
   width: 100%;
-  max-width: 1432px;
+  max-width: 1280px;
   min-height: 60px;
   margin: 0 auto;
-  gap: 16px;
 `;
 
 const HeaderIcon = styled.span`
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 60px;
-  height: 60px;
-  flex: 0 0 60px;
+  width: 44px;
+  height: 44px;
+  flex: 0 0 44px;
+  margin-right: 24px;
   border-radius: 50%;
   background: #ffffff;
   color: #00746a;
@@ -72,7 +72,6 @@ const HeaderHeading = styled.span`
   font-size: 16px;
   font-weight: 600;
   line-height: 20px;
-  letter-spacing: -1px;
   text-align: left;
 `;
 
@@ -87,19 +86,29 @@ const HeaderCta = styled.span`
   font-weight: 600;
   line-height: 20px;
   letter-spacing: -0.5px;
+  margin-left: 16px;
 
-  @media (${getMediaQuery("tablet")}) {
+  @media (${getMediaQuery("tablet")}), (${getMediaQuery("desktop")}) {
     display: inline-flex;
   }
 `;
 
-const Toggle = styled.span`
+const Toggle = styled.span<{ $expanded: boolean }>`
   display: inline-flex;
   align-items: center;
   justify-content: center;
   width: 24px;
   min-height: 32px;
   margin-left: auto;
+
+  &::before {
+    width: 9px;
+    height: 9px;
+    border-right: 2px solid currentColor;
+    border-bottom: 2px solid currentColor;
+    content: "";
+    transform: rotate(${({ $expanded }) => ($expanded ? "45deg" : "225deg")});
+  }
 `;
 
 const Expanded = styled.form`
@@ -109,11 +118,11 @@ const Expanded = styled.form`
 
 const Columns = styled.div`
   display: grid;
-  max-width: 1512px;
+  max-width: 1280px;
   margin: 0 auto;
 
   @media (${getMediaQuery("desktop")}) {
-    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    grid-template-columns: minmax(0, 53%) minmax(0, 47%);
   }
 `;
 
@@ -128,9 +137,11 @@ const Column = styled.div`
 
   @media (${getMediaQuery("desktop")}) {
     min-height: 632px;
-    padding: 24px 40px;
+    padding: 24px 64px 0 0;
 
     & + & {
+      padding-right: 0;
+      padding-left: 64px;
       border-top: 0;
       border-left: 1px solid #e4e4e4;
     }
@@ -141,15 +152,21 @@ const Fields = styled.div`
   display: flex;
   flex-direction: column;
   gap: 32px;
-  margin-top: 36px;
+  margin-top: 32px;
+`;
+
+const SchoolFields = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
 `;
 
 const Field = styled.div`
   position: relative;
   width: 100%;
 
-  [data-testid="text-input"] {
-    height: 64px;
+  input {
+    height: 60px;
   }
 
   select {
@@ -185,14 +202,25 @@ const Notice = styled(OakP)`
   max-width: 620px;
 `;
 
+const TermsBox = styled.div`
+  display: flex;
+  min-height: 56px;
+  align-items: center;
+  padding: 8px;
+  border-radius: 4px;
+  background: #e4e4e4;
+`;
+
 const ActionBar = styled.div`
   display: grid;
+  max-width: 1280px;
   min-height: 80px;
+  margin: 0 auto;
   border-top: 1px solid #e4e4e4;
   background: #ffffff;
 
   @media (${getMediaQuery("desktop")}) {
-    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    grid-template-columns: minmax(0, 53%) minmax(0, 47%);
   }
 `;
 
@@ -203,7 +231,7 @@ const ActionCell = styled.div`
 
   @media (${getMediaQuery("desktop")}) {
     grid-column: 2;
-    padding: 12px 40px;
+    padding: 12px 0 12px 76px;
     border-left: 1px solid #e4e4e4;
   }
 `;
@@ -365,19 +393,14 @@ export const NationalCurriculumInsightsDownload = ({
         <HeaderInner>
           <HeaderIcon aria-hidden="true">
             <OakIcon
-              iconName="download"
+              iconName="worksheet"
               $width="spacing-32"
               $height="spacing-32"
             />
           </HeaderIcon>
           <HeaderHeading>{section.barHeading}</HeaderHeading>
           <HeaderCta>{section.barCtaLabel}</HeaderCta>
-          <Toggle aria-hidden="true">
-            <OakIcon
-              iconName={expanded ? "chevron-up" : "chevron-down"}
-              $color="icon-inverted"
-            />
-          </Toggle>
+          <Toggle $expanded={expanded} aria-hidden="true" />
         </HeaderInner>
       </HeaderButton>
 
@@ -414,40 +437,44 @@ export const NationalCurriculumInsightsDownload = ({
                     $height="spacing-64"
                   />
                 </Field>
-                <Field>
-                  <OakJauntyAngleLabel
-                    as="label"
-                    htmlFor={`${formId}-school`}
-                    label="School (required)"
-                    $background="bg-decorative5-main"
-                    $font="heading-7"
-                    $position="absolute"
-                    $top="-20px"
-                    $left="spacing-8"
-                    $zIndex="in-front"
-                  />
-                  <OakTextInput
-                    id={`${formId}-school`}
-                    name="school"
-                    value={school}
-                    onChange={(event: ChangeEvent<HTMLInputElement>) =>
-                      setSchool(event.target.value)
+                <SchoolFields>
+                  <Field>
+                    <OakJauntyAngleLabel
+                      as="label"
+                      htmlFor={`${formId}-school`}
+                      label="School (required)"
+                      $background="bg-decorative5-main"
+                      $font="heading-7"
+                      $position="absolute"
+                      $top="-20px"
+                      $left="spacing-8"
+                      $zIndex="in-front"
+                    />
+                    <OakTextInput
+                      id={`${formId}-school`}
+                      name="school"
+                      value={school}
+                      onChange={(event: ChangeEvent<HTMLInputElement>) =>
+                        setSchool(event.target.value)
+                      }
+                      placeholder="Type school name, postcode, or ‘homeschool’"
+                      disabled={schoolNotListed}
+                      autoComplete="organization"
+                      wrapperWidth="100%"
+                      $height="spacing-64"
+                    />
+                  </Field>
+                  <OakCheckBox
+                    id={`${formId}-school-not-listed`}
+                    name="school-not-listed"
+                    value="school-not-listed"
+                    displayValue="My school isn't listed"
+                    checked={schoolNotListed}
+                    onChange={(event) =>
+                      setSchoolNotListed(event.target.checked)
                     }
-                    placeholder="Type school name, postcode, or ‘homeschool’"
-                    disabled={schoolNotListed}
-                    autoComplete="organization"
-                    wrapperWidth="100%"
-                    $height="spacing-64"
                   />
-                </Field>
-                <OakCheckBox
-                  id={`${formId}-school-not-listed`}
-                  name="school-not-listed"
-                  value="school-not-listed"
-                  displayValue="My school isn't listed"
-                  checked={schoolNotListed}
-                  onChange={(event) => setSchoolNotListed(event.target.checked)}
-                />
+                </SchoolFields>
                 <Field>
                   <OakJauntyAngleLabel
                     as="label"
@@ -508,14 +535,16 @@ export const NationalCurriculumInsightsDownload = ({
                   </OakLink>
                   .
                 </Notice>
-                <OakCheckBox
-                  id={`${formId}-terms`}
-                  name="terms"
-                  value="terms"
-                  displayValue="I accept the terms and conditions (required)"
-                  checked={acceptedTerms}
-                  onChange={(event) => setAcceptedTerms(event.target.checked)}
-                />
+                <TermsBox>
+                  <OakCheckBox
+                    id={`${formId}-terms`}
+                    name="terms"
+                    value="terms"
+                    displayValue="I accept the terms and conditions (required)"
+                    checked={acceptedTerms}
+                    onChange={(event) => setAcceptedTerms(event.target.checked)}
+                  />
+                </TermsBox>
               </Fields>
             </Column>
 
