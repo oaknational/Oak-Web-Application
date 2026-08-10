@@ -1,3 +1,10 @@
+## [1.1152.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.1152.0...v1.1152.1) (2026-08-10)
+
+
+### Bug Fixes
+
+* update case studies to be oak's impact in case study breadcrumbs ([91a684b](https://github.com/oaknational/Oak-Web-Application/commit/91a684b652ecd0fa06cf2f8eb2825000cac261d2))
+
 # [1.1152.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1151.0...v1.1152.0) (2026-08-10)
 
 
