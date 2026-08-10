@@ -208,6 +208,16 @@ const nationalCurriculumInsightsTableSectionSchema = z.object({
   table: nationalCurriculumInsightsTableSchema,
 });
 
+const nationalCurriculumInsightsDownloadSectionSchema = z.object({
+  __typename: z.literal("NationalCurriculumInsightsDownloadSection"),
+  barHeading: z.string().min(1),
+  barCtaLabel: z.string().min(1),
+  detailsHeading: z.string().min(1),
+  downloadsHeading: z.string().min(1),
+  downloadsIntroduction: z.string().min(1),
+  downloadButtonLabel: z.string().min(1),
+});
+
 export const nationalCurriculumInsightsModuleSchema = z.discriminatedUnion(
   "__typename",
   [
@@ -224,6 +234,7 @@ export const nationalCurriculumInsightsModuleSchema = z.discriminatedUnion(
     nationalCurriculumInsightsVideoCardsSectionSchema,
     nationalCurriculumInsightsQuoteSectionSchema,
     nationalCurriculumInsightsTableSectionSchema,
+    nationalCurriculumInsightsDownloadSectionSchema,
   ],
 );
 

@@ -33,7 +33,8 @@ const modulesProjection = `modules[]{
     _type == "nationalCurriculumInsightsImageTextSection" => "NationalCurriculumInsightsImageTextSection",
     _type == "nationalCurriculumInsightsVideoCardsSection" => "NationalCurriculumInsightsVideoCardsSection",
     _type == "nationalCurriculumInsightsQuoteSection" => "NationalCurriculumInsightsQuoteSection",
-    _type == "nationalCurriculumInsightsTableSection" => "NationalCurriculumInsightsTableSection"
+    _type == "nationalCurriculumInsightsTableSection" => "NationalCurriculumInsightsTableSection",
+    _type == "nationalCurriculumInsightsDownloadSection" => "NationalCurriculumInsightsDownloadSection"
   ),
   heading,
   headingStyle,
@@ -47,6 +48,12 @@ const modulesProjection = `modules[]{
   "privacyPortableText": privacyText,
   formId,
   buttonLabel,
+  barHeading,
+  barCtaLabel,
+  detailsHeading,
+  downloadsHeading,
+  downloadsIntroduction,
+  downloadButtonLabel,
   illustration ${imageProjection},
   "bodyPortableText": body,
   "contentPortableText": content,

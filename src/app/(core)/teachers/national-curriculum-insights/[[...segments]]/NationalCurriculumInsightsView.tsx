@@ -4,6 +4,7 @@ import { OakBox, OakHeading, OakP, OakTabs } from "@oaknational/oak-components";
 import styled from "styled-components";
 
 import { NationalCurriculumInsightsHero } from "./NationalCurriculumInsightsHero";
+import { NationalCurriculumInsightsDownload } from "./NationalCurriculumInsightsDownload";
 import {
   NationalCurriculumInsightsFaq,
   NationalCurriculumInsightsImageText,
@@ -89,6 +90,10 @@ const ModuleView = ({
       return <NationalCurriculumInsightsQuote section={module} />;
     case "NationalCurriculumInsightsTableSection":
       return <NationalCurriculumInsightsTable section={module} />;
+    case "NationalCurriculumInsightsDownloadSection":
+      return (
+        <NationalCurriculumInsightsDownload section={module} data={data} />
+      );
     default:
       return assertNever(module);
   }
