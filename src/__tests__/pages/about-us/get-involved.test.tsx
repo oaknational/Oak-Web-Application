@@ -16,6 +16,7 @@ import {
 } from "@/__tests__/__helpers__/cms";
 import CMSClient from "@/node-lib/cms";
 import { topNavFixture } from "@/node-lib/curriculum-api-2023/fixtures/topNav.fixture";
+import { isFeatureFlagEnabledStatic } from "@/utils/featureFlagChecks/static";
 jest.mock("../../../node-lib/cms");
 jest.mock("@mux/mux-player-react/lazy", () => {
   return forwardRef((props, ref) => {
@@ -23,6 +24,10 @@ jest.mock("@mux/mux-player-react/lazy", () => {
     return <div data-testid="mux-player-mock" />;
   });
 });
+jest.mock("@/utils/featureFlagChecks/static", () => ({
+  isFeatureFlagEnabledStatic: jest.fn(),
+}));
+const mockIsFeatureFlagEnabledStatic = jest.mocked(isFeatureFlagEnabledStatic);
 
 const testGetInvolvedPageData: GetInvolvedPageProps["pageData"] = {
   ...testAboutPageBaseData,
@@ -50,6 +55,7 @@ describe("pages/about/get-involved.tsx", () => {
   beforeEach(() => {
     jest.clearAllMocks();
     jest.resetModules();
+    mockIsFeatureFlagEnabledStatic.mockReturnValue(false);
     (CMSClient.getInvolvedPage as jest.Mock).mockResolvedValue(
       testGetInvolvedPageData,
     );
