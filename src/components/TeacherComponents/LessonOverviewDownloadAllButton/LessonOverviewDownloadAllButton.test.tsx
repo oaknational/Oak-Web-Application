@@ -27,17 +27,6 @@ jest.mock("@/hooks/useComplexCopyright", () => ({
 }));
 
 const mockDownloadAllButton = jest.fn();
-jest.mock("@/context/Analytics/useAnalytics", () => ({
-  __esModule: true,
-  default: () => ({
-    getSessionId: jest.fn(),
-    track: {
-      lessonResourceDownloadStarted: (...args: unknown[]) =>
-        mockDownloadAllButton(...args),
-    },
-  }),
-}));
-
 const baseProps = {
   ...lessonOverviewFixture(),
   lessonSlug: "test-lesson",
@@ -45,6 +34,7 @@ const baseProps = {
   programmeSlug: "test-programme",
   expired: false,
   showDownloadAll: true,
+  onClickDownloadAll: mockDownloadAllButton,
   isCanonical: false,
   geoRestricted: false,
   loginRequired: false,
@@ -60,7 +50,10 @@ const baseProps = {
   track: jest.fn() as unknown as TrackFns,
   analyticsUseCase: "Teacher" as AnalyticsUseCaseValueType,
   isShareable: true,
+  onClickShareAll: jest.fn(),
   showShare: true,
+  trackTeachingMaterialsSelected: jest.fn(),
+  trackCreateWithAiButtonClicked: jest.fn(),
   contentRestricted: false,
 };
 

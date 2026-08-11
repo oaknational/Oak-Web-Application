@@ -7,7 +7,6 @@ import {
 import { LessonOverviewHeaderProps } from "@/components/TeacherComponents/LessonOverviewHeader";
 import { resolveOakHref } from "@/common-lib/urls";
 import { invariant } from "@/utils/invariant";
-import { useTeacherBrowseAnalytics } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
 
 export type LessonOverviewHeaderShareAllButtonProps = Omit<
   LessonOverviewHeaderProps,
@@ -24,13 +23,11 @@ export const LessonOverviewHeaderShareAllButton: FC<
     unitSlug,
     programmeSlug,
     isShareable,
+    onClickShareAll,
     geoRestricted,
     loginRequired,
     variant = "primary",
   } = props;
-  const { lessonShareStarted } = useTeacherBrowseAnalytics(
-    (store) => store.track,
-  );
 
   if (geoRestricted || loginRequired) return null;
 
@@ -72,7 +69,7 @@ export const LessonOverviewHeaderShareAllButton: FC<
       rel="nofollow"
       element="a"
       href={href}
-      onClick={() => lessonShareStarted()}
+      onClick={onClickShareAll}
       data-testid="share-all-button"
       iconName="arrow-right"
       isTrailingIcon

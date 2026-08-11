@@ -57,7 +57,9 @@ const UnitHeader = (props: UnitHeaderProps) => {
     programmeSlug,
     downloadButtonState,
   } = props;
-  const { unitDownloaded } = useTeacherBrowseAnalytics((store) => store.track);
+  const { unitDownloadInitiated } = useTeacherBrowseAnalytics(
+    (store) => store.track,
+  );
   const { setCurrentToastProps } = useOakNotificationsContext();
   const { sentinelRef, isStuck } = useStickyUnitHeader();
 
@@ -85,7 +87,7 @@ const UnitHeader = (props: UnitHeaderProps) => {
             downloadInProgress={downloadInProgress}
             unitFileId={unitDownloadFileId}
             onDownloadSuccess={() => {
-              unitDownloaded();
+              unitDownloadInitiated();
               setCurrentToastProps({
                 message: "Download started. This may take a few minutes.",
                 variant: "success",

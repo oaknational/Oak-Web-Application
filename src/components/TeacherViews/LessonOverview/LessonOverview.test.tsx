@@ -1,4 +1,4 @@
-import { act, screen } from "@testing-library/react";
+import { act } from "@testing-library/react";
 import { useFeatureFlagVariantKey } from "posthog-js/react";
 import mockRouter from "next-router-mock";
 import { usePathname } from "next/navigation";
@@ -6,7 +6,6 @@ import { usePathname } from "next/navigation";
 import {
   getDedupedPupilLessonOutcome,
   LessonOverview,
-  LessonOverviewProps,
 } from "./LessonOverview.view";
 
 import lessonOverviewFixture from "@/node-lib/curriculum-api-2023/fixtures/lessonOverview.fixture";
@@ -42,18 +41,10 @@ jest.mock("@/context/Analytics/useAnalytics", () => ({
       teachingMaterialsSelected: (...args: []) =>
         teachingMaterialsSelected(...args),
     },
-    getSessionId: jest.fn(),
   }),
 }));
 
-const renderLessonOverview = (props?: Partial<LessonOverviewProps>) =>
-  renderWithProviders()(
-    <LessonOverview
-      lesson={{ ...lessonOverviewFixture(), isCanonical: false }}
-      isBeta={false}
-      {...props}
-    />,
-  );
+const render = renderWithProviders();
 
 describe("isPupilLessonOutcomeInKeyLearningPoints", () => {
   it("should return plo if the pupil lesson outcome is not in the key learning points", () => {
@@ -92,15 +83,19 @@ describe("lessonOverview.view", () => {
     });
 
     it("renders with sub-header content", () => {
-      renderLessonOverview({
-        lesson: {
-          ...lessonOverviewFixture(),
-          isCanonical: false,
-          hasMediaClips: true,
-        },
-      });
+      const { getByText } = render(
+        <LessonOverview
+          lesson={{
+            ...lessonOverviewFixture(),
+
+            isCanonical: false,
+            hasMediaClips: true,
+          }}
+          isBeta={false}
+        />,
+      );
       expect(
-        screen.getByText(
+        getByText(
           "The practice tasks in the lesson slides are also available as an editable worksheet ready to download in PowerPoint format.",
         ),
       ).toBeInTheDocument();
@@ -111,182 +106,242 @@ describe("lessonOverview.view", () => {
       (useFeatureFlagVariantKey as jest.Mock).mockReturnValue("control");
     });
     it("renders without sub-header content", () => {
-      renderLessonOverview({
-        lesson: {
-          ...lessonOverviewFixture(),
-          isCanonical: false,
-          hasMediaClips: true,
-        },
-      });
+      const { queryByText } = render(
+        <LessonOverview
+          lesson={{
+            ...lessonOverviewFixture(),
+
+            isCanonical: false,
+            hasMediaClips: true,
+          }}
+          isBeta={false}
+        />,
+      );
 
       expect(
-        screen.queryByText(
+        queryByText(
           "The practice tasks in the lesson slides are also available as an editable worksheet ready to download in PowerPoint format.",
         ),
       ).not.toBeInTheDocument();
     });
   });
   describe("tracking", () => {
-    it("should call lessonMediaClipsStarted when play all is clicked for media clips", () => {
-      renderLessonOverview({
-        lesson: {
-          ...lessonOverviewFixture(),
-          isCanonical: false,
-          hasMediaClips: true,
-        },
-      });
-      const playAllButton = screen.getByText("Play all");
-      playAllButton.click();
-      expect(lessonMediaClipsStarted).toHaveBeenCalledWith({
-        analyticsUseCase: "Teacher",
-        componentType: "go_to_media_clips_page_button",
-        engagementIntent: "use",
-        phase: "secondary",
-        mediaClipsButtonName: "play all",
-        eventVersion: "2.0.0",
-        journeyId: "mockJourneyId",
-        learningCycle: null,
-        platform: "owa",
-        product: "teacher lesson resources",
-        examBoard: null,
-        keyStageSlug: "ks3",
-        keyStageTitle: "Key stage 3",
-        pathway: null,
-        subjectSlug: "biology",
-        subjectTitle: "Biology",
-        tierName: null,
-        unitName: "Cells",
-        unitSlug: "cells",
-        lessonName: "Structure of cells",
-        lessonSlug: "lesson-3-structure-of-cells",
-        lessonReleaseDate: "2024-09-29T14:00:00.000Z",
-        lessonReleaseCohort: "2023-2026",
-        releaseGroup: "2023",
-        yearGroupName: "Year 7",
-        yearGroupSlug: "year-7",
-      });
-    });
-    it.each(["lesson slides", "worksheet"])(
-      "should call lessonResourceDownloadStarted when %s download button clicked",
-      async (resource) => {
-        renderLessonOverview({
-          lesson: {
+    it("should call track.lessonMediaClipsStarted when play all is clicked for media clips", () => {
+      const { getByText } = render(
+        <LessonOverview
+          lesson={{
             ...lessonOverviewFixture(),
+
             isCanonical: false,
             hasMediaClips: true,
-          },
-        });
-        const downloadLink = screen.getByText(`Download ${resource}`);
-
-        act(() => {
-          downloadLink.click();
-        });
-
-        expect(lessonResourceDownloadStarted).toHaveBeenCalled();
-      },
-    );
-    it("should handle no release date when lessonResourceDownloadStarted is called", () => {
-      renderLessonOverview({
-        lesson: {
-          ...lessonOverviewFixture({
-            lessonReleaseDate: undefined,
-            isLegacy: false,
-          }),
-
-          isCanonical: false,
-          hasMediaClips: true,
-        },
-      });
-      const downloadLink = screen.getByText("Download lesson slides");
-      act(() => {
-        downloadLink.click();
-      });
-      expect(lessonResourceDownloadStarted).toHaveBeenCalledWith(
-        expect.objectContaining({
-          unitName: "Cells",
-          unitSlug: "cells",
-          yearGroupName: "Year 7",
-          yearGroupSlug: "year-7",
-          subjectSlug: "biology",
-          subjectTitle: "Biology",
-          phase: "secondary",
-          lessonSlug: "lesson-3-structure-of-cells",
-          keyStageSlug: "ks3",
-          keyStageTitle: "Key stage 3",
-          lessonName: "Structure of cells",
-        }),
+          }}
+          isBeta={false}
+        />,
       );
-    });
-    it("should handle no release date when lessonMediaClipsStarted is called", () => {
-      renderLessonOverview({
-        lesson: {
-          ...lessonOverviewFixture({
-            lessonReleaseDate: undefined,
-            isLegacy: false,
-          }),
-          isCanonical: false,
-          hasMediaClips: true,
-        },
-      });
-      const playAllButton = screen.getByText("Play all");
+      const playAllButton = getByText("Play all");
       playAllButton.click();
       expect(lessonMediaClipsStarted).toHaveBeenCalledWith({
         analyticsUseCase: "Teacher",
         componentType: "go_to_media_clips_page_button",
         engagementIntent: "use",
-        phase: "secondary",
-        mediaClipsButtonName: "play all",
         eventVersion: "2.0.0",
-        journeyId: "mockJourneyId",
-        learningCycle: null,
+        examBoard: null,
+        keyStageSlug: "ks2",
+        keyStageTitle: "Key Stage 2",
+        learningCycle: undefined,
+        lessonName: "Adverbial complex sentences",
+        lessonReleaseCohort: "2020-2023",
+        lessonReleaseDate: "2024-09-29T14:00:00.000Z",
+        lessonSlug:
+          "lesson-4-in-grammar-1-simple-compound-and-adverbial-complex-sentences",
+        mediaClipsButtonName: "play all",
+        pathway: null,
+        phase: "primary",
+        platform: "owa",
+        product: "media clips",
+        releaseGroup: "legacy",
+        subjectSlug: "english",
+        subjectTitle: "English",
+        tierName: null,
+        unitName: "Simple, Compound and Adverbial Complex Sentences",
+        unitSlug: "grammar-1-simple-compound-and-adverbial-complex-sentences",
+        yearGroupName: "Year 3",
+        yearGroupSlug: "year-3",
+      });
+    });
+    it("should call track.trackDownloadResourceButtonClicked when play all is clicked for media clips", () => {
+      const { getByText } = render(
+        <LessonOverview
+          lesson={{
+            ...lessonOverviewFixture(),
+
+            isCanonical: false,
+            hasMediaClips: true,
+          }}
+          isBeta={false}
+        />,
+      );
+      const playAllButton = getByText("Download lesson slides");
+      act(() => {
+        playAllButton.click();
+      });
+      expect(lessonResourceDownloadStarted).toHaveBeenCalledWith({
+        analyticsUseCase: "Teacher",
+        componentType: "lesson_download_button",
+        downloadResourceButtonName: "slide deck",
+        engagementIntent: "use",
+        eventVersion: "2.0.0",
+        examBoard: null,
+        keyStageSlug: "ks2",
+        keyStageTitle: "Key Stage 2",
+        lessonName: "Adverbial complex sentences",
+        lessonReleaseCohort: "2020-2023",
+        lessonReleaseDate: "2024-09-29T14:00:00.000Z",
+        lessonSlug:
+          "lesson-4-in-grammar-1-simple-compound-and-adverbial-complex-sentences",
+        pathway: null,
+        releaseGroup: "legacy",
+        phase: "primary",
+        platform: "owa",
+        yearGroupName: "Year 3",
+        yearGroupSlug: "year-3",
+        product: "teacher lesson resources",
+        subjectSlug: "english",
+        subjectTitle: "English",
+        tierName: null,
+        unitName: "Simple, Compound and Adverbial Complex Sentences",
+        unitSlug: "grammar-1-simple-compound-and-adverbial-complex-sentences",
+      });
+    });
+    it("should hanlde no release date when track.trackDownloadResourceButtonClicked is called", () => {
+      const { getByText } = render(
+        <LessonOverview
+          lesson={{
+            ...lessonOverviewFixture({
+              lessonReleaseDate: undefined,
+              isLegacy: false,
+            }),
+
+            isCanonical: false,
+            hasMediaClips: true,
+          }}
+          isBeta={false}
+        />,
+      );
+      const playAllButton = getByText("Download lesson slides");
+      act(() => {
+        playAllButton.click();
+      });
+      expect(lessonResourceDownloadStarted).toHaveBeenCalledWith({
+        analyticsUseCase: "Teacher",
+        componentType: "lesson_download_button",
+        downloadResourceButtonName: "slide deck",
+        engagementIntent: "use",
+        eventVersion: "2.0.0",
+        examBoard: null,
+        keyStageSlug: "ks2",
+        keyStageTitle: "Key Stage 2",
+        lessonName: "Adverbial complex sentences",
+        lessonReleaseCohort: "2023-2026",
+        lessonReleaseDate: "unreleased",
+        lessonSlug:
+          "lesson-4-in-grammar-1-simple-compound-and-adverbial-complex-sentences",
+        pathway: null,
         platform: "owa",
         product: "teacher lesson resources",
-        examBoard: null,
-        keyStageSlug: "ks3",
-        keyStageTitle: "Key stage 3",
-        pathway: null,
-        subjectSlug: "biology",
-        subjectTitle: "Biology",
+        subjectSlug: "english",
+        subjectTitle: "English",
         tierName: null,
-        unitName: "Cells",
-        unitSlug: "cells",
-        lessonName: "Structure of cells",
-        lessonSlug: "lesson-3-structure-of-cells",
-        lessonReleaseDate: "2024-09-29T14:00:00.000Z",
-        lessonReleaseCohort: "2023-2026",
+        unitName: "Simple, Compound and Adverbial Complex Sentences",
+        unitSlug: "grammar-1-simple-compound-and-adverbial-complex-sentences",
+        yearGroupName: "Year 3",
+        yearGroupSlug: "year-3",
         releaseGroup: "2023",
-        yearGroupName: "Year 7",
-        yearGroupSlug: "year-7",
+        phase: "primary",
+      });
+    });
+    it("should hanlde no release date when track.lessonMediaClipsStarted is called", () => {
+      const { getByText } = render(
+        <LessonOverview
+          lesson={{
+            ...lessonOverviewFixture({
+              lessonReleaseDate: undefined,
+              isLegacy: false,
+            }),
+            isCanonical: false,
+            hasMediaClips: true,
+          }}
+          isBeta={false}
+        />,
+      );
+      const playAllButton = getByText("Play all");
+      playAllButton.click();
+      expect(lessonMediaClipsStarted).toHaveBeenCalledWith({
+        analyticsUseCase: "Teacher",
+        componentType: "go_to_media_clips_page_button",
+        engagementIntent: "use",
+        eventVersion: "2.0.0",
+        examBoard: null,
+        keyStageSlug: "ks2",
+        keyStageTitle: "Key Stage 2",
+        learningCycle: undefined,
+        lessonName: "Adverbial complex sentences",
+        lessonReleaseCohort: "2023-2026",
+        lessonReleaseDate: "unreleased",
+        lessonSlug:
+          "lesson-4-in-grammar-1-simple-compound-and-adverbial-complex-sentences",
+        mediaClipsButtonName: "play all",
+        pathway: null,
+        phase: "primary",
+        platform: "owa",
+        product: "media clips",
+        releaseGroup: "2023",
+        subjectSlug: "english",
+        subjectTitle: "English",
+        tierName: null,
+        unitName: "Simple, Compound and Adverbial Complex Sentences",
+        unitSlug: "grammar-1-simple-compound-and-adverbial-complex-sentences",
+        yearGroupName: "Year 3",
+        yearGroupSlug: "year-3",
       });
     });
   });
   it("Should show the sign in prompt when geoRestricted or loginRequired is true, the user is not signed in", () => {
     setUseUserReturn(mockLoggedOut);
-    renderLessonOverview({
-      lesson: {
-        ...lessonOverviewFixture(),
 
-        isCanonical: false,
-        hasMediaClips: true,
-        geoRestricted: true,
-        loginRequired: true,
-      },
-    });
-    const restrictedContentPrompt = screen.getByText("Sign in to continue");
+    const { getByText } = render(
+      <LessonOverview
+        lesson={{
+          ...lessonOverviewFixture(),
+
+          isCanonical: false,
+          hasMediaClips: true,
+          geoRestricted: true,
+          loginRequired: true,
+        }}
+        isBeta={false}
+      />,
+    );
+    const restrictedContentPrompt = getByText("Sign in to continue");
     expect(restrictedContentPrompt).toBeInTheDocument();
   });
   it("Should hide restricted content when sign in prompt is shown", () => {
     setUseUserReturn(mockLoggedOut);
-    renderLessonOverview({
-      lesson: {
-        ...lessonOverviewFixture(),
-        isCanonical: false,
-        hasMediaClips: true,
-        geoRestricted: true,
-        loginRequired: true,
-      },
-    });
-    const quizContent = screen.queryByText(
+
+    const { queryByText } = render(
+      <LessonOverview
+        lesson={{
+          ...lessonOverviewFixture(),
+
+          isCanonical: false,
+          hasMediaClips: true,
+          geoRestricted: true,
+          loginRequired: true,
+        }}
+        isBeta={false}
+      />,
+    );
+    const quizContent = queryByText(
       "Which of these statements about trees is true?",
     );
 
@@ -298,19 +353,23 @@ describe("lessonOverview.view", () => {
       ...mockLoggedIn,
       user: mockUserWithDownloadAccess,
     });
-    renderLessonOverview({
-      lesson: {
-        ...lessonOverviewFixture(),
 
-        isCanonical: false,
-        hasMediaClips: true,
-        geoRestricted: true,
-        loginRequired: true,
-      },
-    });
-    const restrictedContentPrompt = screen.queryByText("Sign in to continue");
+    const { queryByText, getAllByText } = render(
+      <LessonOverview
+        lesson={{
+          ...lessonOverviewFixture(),
+
+          isCanonical: false,
+          hasMediaClips: true,
+          geoRestricted: true,
+          loginRequired: true,
+        }}
+        isBeta={false}
+      />,
+    );
+    const restrictedContentPrompt = queryByText("Sign in to continue");
     expect(restrictedContentPrompt).not.toBeInTheDocument();
-    const quizContent = screen.getAllByText(
+    const quizContent = getAllByText(
       "Which of these statements about trees is true?",
     );
 
@@ -324,19 +383,20 @@ describe("redirected overlay", () => {
   it("Should show redirect modal when redirected query param is present", () => {
     setUseUserReturn(mockLoggedOut);
     mockRouter.setCurrentUrl("/?redirected=true");
-    renderLessonOverview({
-      lesson: {
-        ...lessonOverviewFixture({
-          lessonReleaseDate: undefined,
-          isLegacy: false,
-        }),
+    const { getByTestId } = render(
+      <LessonOverview
+        lesson={{
+          ...lessonOverviewFixture({
+            lessonReleaseDate: undefined,
+            isLegacy: false,
+          }),
 
-        isCanonical: false,
-        hasMediaClips: true,
-      },
-    });
-    expect(
-      screen.getByTestId("teacher-redirected-overlay-btn"),
-    ).toBeInTheDocument();
+          isCanonical: false,
+          hasMediaClips: true,
+        }}
+        isBeta={false}
+      />,
+    );
+    expect(getByTestId("teacher-redirected-overlay-btn")).toBeInTheDocument();
   });
 });

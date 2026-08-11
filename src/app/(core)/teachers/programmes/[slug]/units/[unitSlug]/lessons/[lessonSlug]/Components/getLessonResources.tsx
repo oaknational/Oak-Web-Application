@@ -14,7 +14,9 @@ import {
   getMediaClipLabel,
 } from "@/components/TeacherComponents/helpers/lessonHelpers/lesson.helpers";
 import LessonOverviewDocPresentation from "@/components/TeacherComponents/LessonOverviewDocPresentation";
-import LessonOverviewMediaClips from "@/components/TeacherComponents/LessonOverviewMediaClips";
+import LessonOverviewMediaClips, {
+  TrackingCallbackProps,
+} from "@/components/TeacherComponents/LessonOverviewMediaClips";
 import LessonOverviewPresentation from "@/components/TeacherComponents/LessonOverviewPresentation";
 import LessonOverviewVideo from "@/components/TeacherComponents/LessonOverviewVideo";
 import { DownloadableLessonTitles } from "@/components/TeacherComponents/types/downloadAndShare.types";
@@ -24,6 +26,7 @@ import { TeachersLessonOverviewPageData } from "@/node-lib/curriculum-api-2023/q
 import LessonDetails from "@/components/TeacherComponents/LessonOverviewDetails";
 import QuizContainerNew from "@/components/TeacherComponents/LessonOverviewQuizContainer";
 import { DownloadResourceButtonNameValueType } from "@/browser-lib/avo/Avo";
+import { AnalyticsBrowseData } from "@/components/TeacherComponents/types/lesson.types";
 
 /**
  * Checks if a resource is downloadable based on its type and available downloads.
@@ -98,13 +101,17 @@ const getSkipLinkUrl = ({
 };
 
 export function getLessonResources({
+  browsePathwayData,
   data,
   isMathJaxLesson,
+  trackMediaClipsButtonClicked,
   contentRestricted,
 }: {
+  browsePathwayData: AnalyticsBrowseData;
   data: TeachersLessonOverviewPageData;
   copyrightState: ReturnType<typeof useComplexCopyright>;
   isMathJaxLesson: boolean;
+  trackMediaClipsButtonClicked: (props: TrackingCallbackProps) => void;
   contentRestricted: boolean;
 }): LessonResource[] {
   const lessonGuide = data.lessonGuideUrl ? (
@@ -132,6 +139,7 @@ export function getLessonResources({
       lessonOutline={data.lessonOutline}
       isPELesson={!!data.actions?.displayPETitle}
       isMFL={!!data.actions?.displayVocabButton}
+      onTrackingCallback={trackMediaClipsButtonClicked}
     />
   ) : undefined;
   const lessonDetails = (
@@ -167,6 +175,7 @@ export function getLessonResources({
       title={data.lessonTitle}
       transcriptSentences={data.transcriptSentences}
       isLegacy={false}
+      browsePathwayData={browsePathwayData}
     />
   ) : undefined;
   const worksheet = data.worksheetUrl ? (

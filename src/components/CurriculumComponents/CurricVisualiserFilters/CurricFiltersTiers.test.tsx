@@ -105,20 +105,18 @@ describe("CurricFiltersTiers", () => {
     expect(elements.length).toEqual(2);
 
     act(() => elements[0]!.click());
-    expect(onChangeFilters).toHaveBeenCalledWith({
-      newFilters: expect.objectContaining({
+    expect(onChangeFilters).toHaveBeenCalledWith(
+      expect.objectContaining({
         tiers: ["foundation"],
       }),
-      filterType: "Tier filter",
-      filterValue: "foundation",
-    });
+      "learning_tier_button",
+    );
     act(() => elements[1]!.click());
-    expect(onChangeFilters).toHaveBeenCalledWith({
-      newFilters: expect.objectContaining({
+    expect(onChangeFilters).toHaveBeenCalledWith(
+      expect.objectContaining({
         tiers: ["higher"],
       }),
-      filterType: "Tier filter",
-      filterValue: "higher",
-    });
+      "learning_tier_button",
+    );
   });
 });

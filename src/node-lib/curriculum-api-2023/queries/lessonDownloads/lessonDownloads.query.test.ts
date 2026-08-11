@@ -1,9 +1,9 @@
 import {
+  syntheticUnitvariantLessonsFixture,
   additionalFilesFixture,
   lessonFixture,
   Lesson,
   LessonCamel,
-  syntheticUnitvariantLessonsByKsFixture,
 } from "@oaknational/oak-curriculum-schema";
 import { ZodError } from "zod";
 
@@ -74,7 +74,7 @@ describe("lessonDownloads()", () => {
       lessonDownloads: jest.fn(() =>
         Promise.resolve({
           download_assets: [downloadAssets],
-          browse_data: [syntheticUnitvariantLessonsByKsFixture()],
+          browse_data: [syntheticUnitvariantLessonsFixture()],
         }),
       ),
     })({
@@ -91,7 +91,7 @@ describe("lessonDownloads()", () => {
       lessonDownloads: jest.fn(() =>
         Promise.resolve({
           download_assets: [downloadAssets],
-          browse_data: [syntheticUnitvariantLessonsByKsFixture()],
+          browse_data: [syntheticUnitvariantLessonsFixture()],
         }),
       ),
     })({
@@ -127,7 +127,7 @@ describe("lessonDownloads()", () => {
       lessonDownloads: jest.fn(() =>
         Promise.resolve({
           download_assets: [downloadAssetsWithEmptyAdditionalFiles],
-          browse_data: [syntheticUnitvariantLessonsByKsFixture()],
+          browse_data: [syntheticUnitvariantLessonsFixture()],
         }),
       ),
     })({
@@ -161,7 +161,7 @@ describe("lessonDownloads()", () => {
                 login_required: false,
               },
             ],
-            browse_data: [syntheticUnitvariantLessonsByKsFixture()],
+            browse_data: [syntheticUnitvariantLessonsFixture()],
           }),
         ),
       })({
@@ -202,7 +202,7 @@ describe("lessonDownloadsCanonical()", () => {
         lessonDownloads: jest.fn(() =>
           Promise.resolve({
             download_assets: [],
-            browse_data: [syntheticUnitvariantLessonsByKsFixture()],
+            browse_data: [syntheticUnitvariantLessonsFixture()],
           }),
         ),
       })({
@@ -252,7 +252,7 @@ describe("lessonDownloadsCanonical()", () => {
                 login_required: false,
               },
             ],
-            browse_data: [syntheticUnitvariantLessonsByKsFixture()],
+            browse_data: [syntheticUnitvariantLessonsFixture()],
           }),
         ),
       })({
@@ -291,7 +291,7 @@ describe("lessonDownloadsCanonical()", () => {
           Promise.resolve({
             download_assets: [downloadAssets],
             browse_data: [
-              syntheticUnitvariantLessonsByKsFixture({
+              syntheticUnitvariantLessonsFixture({
                 overrides: {
                   lesson_data: lessonFixture({
                     overrides: {
@@ -319,7 +319,7 @@ describe("lessonDownloadsCanonical()", () => {
           Promise.resolve({
             download_assets: [downloadAssets],
             browse_data: [
-              syntheticUnitvariantLessonsByKsFixture({
+              syntheticUnitvariantLessonsFixture({
                 overrides: {
                   lesson_data: lessonFixture({
                     overrides: {

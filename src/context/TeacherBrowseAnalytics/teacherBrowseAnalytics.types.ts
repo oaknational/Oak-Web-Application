@@ -16,23 +16,17 @@ import {
   TeacherSchoolManualEntryDetails,
   UserAccountVerificationStatusValueType,
   UserRoleTypeValueType,
-  PhaseValueType,
-  LessonReleaseCohortValueType,
-  VideoLocationValueType,
 } from "@/browser-lib/avo/Avo";
 import { ResourceFormValues } from "@/components/TeacherComponents/types/downloadAndShare.types";
+import { VideoTrackingGetState } from "@/components/SharedComponents/VideoPlayer/useVideoTracking";
 
 // Core programme properties used at all browse levels
-export type CoreProgrammeState = {
+export type SharedProgrammeState = {
   programmeSlug: string;
   subjectSlug: ProgrammeFields["subject_slug"];
-  subjectTitle: string; // looser type as title can be overriden with any value
+  subjectTitle: ProgrammeFields["subject"];
   phaseSlug: ProgrammeFields["phase_slug"];
   phaseTitle: ProgrammeFields["phase_description"];
-};
-
-// Expanded programme factor state used at unit and lesson browse levels
-export type ProgrammeFactorState = CoreProgrammeState & {
   year: ProgrammeFields["year"];
   yearGroupTitle: ProgrammeFields["year_description"];
   keyStageSlug: ProgrammeFields["keystage_slug"];
@@ -45,24 +39,12 @@ export type ProgrammeFactorState = CoreProgrammeState & {
   pathwayTitle: ProgrammeFields["pathway_description"];
 };
 
-export const isProgrammeFactorState = (
-  u: CoreProgrammeState | ProgrammeFactorState,
-): u is ProgrammeFactorState => {
-  return Object.hasOwn(u, "year");
-};
-
-export type ProgrammeState =
-  | (CoreProgrammeState & { browseLevel: "programme" })
-  | (ProgrammeFactorState &
-      (
-        | { browseLevel: "unit"; unit: UnitState }
-        | { browseLevel: "lesson"; unit: UnitState; lesson: LessonState }
-      ));
-
-export type ProgrammeStateProgramme = Extract<
-  ProgrammeState,
-  { browseLevel: "programme" }
->;
+export type ProgrammeState = SharedProgrammeState &
+  (
+    | { browseLevel: "programme" }
+    | { browseLevel: "unit"; unit: UnitState }
+    | { browseLevel: "lesson"; unit: UnitState; lesson: LessonState }
+  );
 
 export type ProgrammeStateUnit = Extract<
   ProgrammeState,
@@ -85,59 +67,40 @@ export type LessonState = {
 };
 
 export type ProgrammePathwayData = {
-  subjectTitle: string;
-  subjectSlug: string;
-  phase: PhaseValueType;
-};
-
-export type UnitPathwayData = ProgrammePathwayData & {
   keyStageTitle: KeyStageTitleValueType;
   keyStageSlug: string;
+  subjectTitle: string;
+  subjectSlug: string;
   tierName: TierNameValueType | null;
   examBoard: ExamBoardValueType | null;
   pathway: PathwayValueType | null;
+};
+export type UnitPathwayData = ProgrammePathwayData & {
   unitName: string;
   unitSlug: string;
 };
-
-export type LessonPathwayData = UnitPathwayData & {
-  lessonName: string;
-  lessonSlug: string;
-  lessonReleaseDate: string;
-  lessonReleaseCohort: LessonReleaseCohortValueType;
-  releaseGroup: string;
-  yearGroupName: string;
-  yearGroupSlug: string;
-};
-
-export type VideoTrackingProperties = {
-  cloudinaryUrl: string | null;
-  muxAssetId: string | null;
-  durationSeconds: number | null | undefined;
-  isCaptioned: boolean;
-  videoPlaybackId: string[];
-  videoTitle: string;
-  timeElapsedSeconds: number;
-  isMuted: boolean;
-  videoLocation: VideoLocationValueType | null | undefined;
-};
+export type LessonPathwayData = ProgrammePathwayData &
+  UnitPathwayData & {
+    lessonName: string;
+    lessonSlug: string;
+    lessonReleaseDate: string;
+  };
 
 // All Track Fns used in the teacher browse journey
 export type TeacherBrowseTrackFns = {
   // NAVIGATION
   browseRefined: () => void;
+  browseRefinedAccessed: () => void;
 
   // PROGRAMMES (fka Curriculum Visualiser)
+  curriculumVisualiserAccessed: () => void;
   curriculumExplainerExplored: () => void;
   curriculumResourcesDownloaded: (data: ResourceFormValues) => void;
-  curriculumResourcesDownloadRefined: (data: {
-    tierSlug?: string | null;
-    childSubjectSlug?: string | null;
-  }) => void;
+  curriculumResourcesDownloadRefined: () => void;
 
   //UNITS
   unitAccessed: () => void;
-  unitDownloaded: () => void;
+  unitDownloadInitiated: () => void;
   unitOverviewAccessed: (props: {
     unitHighlighted: boolean;
     selectedThread?: { slug: string; title: string }; // TD add filters to state
@@ -176,10 +139,30 @@ export type TeacherBrowseTrackFns = {
   onwardContentSelected: (props: {
     onwardIntent: OnwardIntentValueType;
   }) => void;
-  videoPlayed: (props: VideoTrackingProperties) => void;
-  videoStarted: (props: VideoTrackingProperties) => void;
-  videoPaused: (props: VideoTrackingProperties) => void;
-  videoFinished: (props: VideoTrackingProperties) => void;
+  videoPlayed: (
+    props: ReturnType<VideoTrackingGetState> & {
+      cloudinaryUrl: string | null;
+      muxAssetId: string | null;
+    },
+  ) => void;
+  videoStarted: (
+    props: ReturnType<VideoTrackingGetState> & {
+      cloudinaryUrl: string | null;
+      muxAssetId: string | null;
+    },
+  ) => void;
+  videoPaused: (
+    props: ReturnType<VideoTrackingGetState> & {
+      cloudinaryUrl: string | null;
+      muxAssetId: string | null;
+    },
+  ) => void;
+  videoFinished: (
+    props: ReturnType<VideoTrackingGetState> & {
+      cloudinaryUrl: string | null;
+      muxAssetId: string | null;
+    },
+  ) => void;
   lessonAssistantAccessed: (props: { isLoggedIn: boolean }) => void;
   // The following events are for the teacher notes feature which is not available in integrated journey
   teacherNoteDialogueOpened: () => void;

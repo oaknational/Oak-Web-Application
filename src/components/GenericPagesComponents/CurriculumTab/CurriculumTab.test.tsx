@@ -4,11 +4,10 @@ import "jest-styled-components";
 import CurriculumTab from "./CurriculumTab";
 
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
-import { CurriculumPhaseOptions } from "@/node-lib/curriculum-api-2023";
 
 const render = renderWithProviders();
 
-const mockCurriculumPhaseOptionsData: CurriculumPhaseOptions = [
+const mockCurriculumPhaseOptionsData = [
   {
     title: "Physical education",
     slug: "physical-education",

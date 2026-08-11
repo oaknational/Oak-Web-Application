@@ -34,7 +34,7 @@ describe("hasLessonMathJax", () => {
     keyStageTitle: "Example Key Stage Title",
     keyStageSlug: "example-key-stage-slug",
     subjectTitle: "Example Subject Title",
-    subjectSlug: "maths",
+    subjectSlug: "example-subject-slug",
     unitTitle: "Example Unit Title",
     unitSlug: "example-unit-slug",
     programmeSlug: "example-programme-slug",

@@ -8,12 +8,15 @@ import {
 } from "@/components/TeacherComponents/LessonItemContainer/LessonItemContainer";
 import { LessonItemContainerLink } from "@/components/TeacherComponents/LessonItemContainerLink";
 import LessonPlayAllButton from "@/components/TeacherComponents/LessonPlayAllButton";
+import { DownloadResourceButtonNameValueType } from "@/browser-lib/avo/Avo";
+import { TrackingCallbackProps } from "@/components/TeacherComponents/LessonOverviewMediaClips";
 import SkipLink from "@/components/CurriculumComponents/OakComponentsKitchen/SkipLink";
-import { useTeacherBrowseAnalytics } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
 
 export function LessonItem({
   resource,
   slugs,
+  onDownloadButtonClick,
+  onMediaClipsButtonClick,
 }: Readonly<{
   resource: LessonResource;
   slugs: {
@@ -21,10 +24,11 @@ export function LessonItem({
     unitSlug: string;
     programmeSlug: string;
   };
+  onDownloadButtonClick: (props: {
+    downloadResourceButtonName: DownloadResourceButtonNameValueType;
+  }) => void;
+  onMediaClipsButtonClick: (props: TrackingCallbackProps) => void;
 }>) {
-  const { lessonResourceDownloadStarted } = useTeacherBrowseAnalytics(
-    (store) => store.track,
-  );
   const { title } = resource;
   const preselectedDownload = resource.downloadable
     ? getPreselectedDownloadFromTitle(resource.title)
@@ -61,14 +65,22 @@ export function LessonItem({
               </OakHeading>
             )}
             {resource.resourceType === "media-clips" && slugs && (
-              <LessonPlayAllButton {...slugs} />
+              <LessonPlayAllButton
+                {...slugs}
+                onTrackingCallback={() => {
+                  onMediaClipsButtonClick({
+                    mediaClipsButtonName: "play all",
+                    learningCycle: "n/a",
+                  });
+                }}
+              />
             )}
             {resource.downloadable && slugs && (
               <LessonItemContainerLink
                 page={"download"}
                 resourceTitle={downloadTitle!}
                 onClick={() => {
-                  lessonResourceDownloadStarted({
+                  onDownloadButtonClick({
                     downloadResourceButtonName: resource.trackingTitle!,
                   });
                 }}

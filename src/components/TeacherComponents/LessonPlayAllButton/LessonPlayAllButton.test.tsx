@@ -1,30 +1,17 @@
 import LessonPlayAllButton from "./LessonPlayAllButton";
 
 import { resolveOakHref } from "@/common-lib/urls";
-import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
-
-const lessonMediaClipsStarted = jest.fn();
-jest.mock("@/context/Analytics/useAnalytics", () => ({
-  __esModule: true,
-  default: () => ({
-    getSessionId: jest.fn(),
-    track: {
-      lessonMediaClipsStarted: (...args: unknown[]) =>
-        lessonMediaClipsStarted(...args),
-    },
-  }),
-}));
-
-const render = renderWithProviders();
+import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 
 describe("Copy link button", () => {
   it("renders", () => {
-    const { getByText } = render(
+    const { getByText } = renderWithTheme(
       <LessonPlayAllButton
         lessonSlug="lesson-slug"
         unitSlug="unit-slug"
         programmeSlug="programme-slug"
         isCanonical={false}
+        onTrackingCallback={() => {}}
       />,
     );
 
@@ -32,7 +19,7 @@ describe("Copy link button", () => {
   });
 
   it("links to lesson media route", () => {
-    const { getByText } = render(
+    const { getByText } = renderWithTheme(
       <LessonPlayAllButton
         lessonSlug="lesson-slug"
         unitSlug="unit-slug"
@@ -53,24 +40,22 @@ describe("Copy link button", () => {
   });
 
   describe("tracking", () => {
-    it("tracks lessonMediaClipsStarted when clicked", () => {
-      const { getByText } = render(
+    it("calls the tracking callback when clicked", () => {
+      const onTrackingCallback = jest.fn();
+      const { getByText } = renderWithTheme(
         <LessonPlayAllButton
           lessonSlug="lesson-slug"
           unitSlug="unit-slug"
           programmeSlug="programme-slug"
           isCanonical={false}
+          onTrackingCallback={onTrackingCallback}
         />,
       );
 
       const button = getByText("Play all");
       button.click();
 
-      expect(lessonMediaClipsStarted).toHaveBeenCalledWith(
-        expect.objectContaining({
-          mediaClipsButtonName: "play all",
-        }),
-      );
+      expect(onTrackingCallback).toHaveBeenCalled();
     });
   });
 });

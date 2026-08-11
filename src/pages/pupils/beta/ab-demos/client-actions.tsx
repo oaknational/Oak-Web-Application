@@ -68,7 +68,6 @@ const Page = () => {
       muxAssetId: null,
       cloudinaryUrl: null,
       ...pathwayData,
-      journeyId: null,
     });
 
     // display success message

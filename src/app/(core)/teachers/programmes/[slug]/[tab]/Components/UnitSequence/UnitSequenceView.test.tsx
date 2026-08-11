@@ -27,8 +27,8 @@ const defaultProps: UnitSequenceViewProps = {
   filters: createFilter({ years: ["7", "10"] }),
   setFilters: jest.fn(),
   curriculumSelectionSlugs: {
-    phaseSlug: "primary",
-    subjectSlug: "maths",
+    phaseSlug: "",
+    subjectSlug: "",
     ks4OptionSlug: null,
   },
   curriculumUnitsFormattedData: mockProgrammeFiltersData,

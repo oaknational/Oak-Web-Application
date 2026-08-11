@@ -1,8 +1,4 @@
-import {
-  keystageSlugs,
-  subjects,
-  subjectSlugs,
-} from "@oaknational/oak-curriculum-schema";
+import { keystageSlugs } from "@oaknational/oak-curriculum-schema";
 import { z } from "zod";
 
 const curriculumSequenceSchema = z.object({
@@ -29,8 +25,8 @@ const curriculumSequenceSchema = z.object({
         .nullable(),
       order: z.number(),
       slug: z.string(),
-      subject: subjects,
-      subject_slug: subjectSlugs,
+      subject: z.string(),
+      subject_slug: z.string(),
       subject_parent: z.string().nullable(),
       subject_parent_slug: z.string().nullable(),
       tier: z.string().nullable(),

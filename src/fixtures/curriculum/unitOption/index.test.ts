@@ -21,8 +21,8 @@ describe("createUnitOption", () => {
 
   it("with overrides", () => {
     const result = createUnitOption({
-      slug: "plain-maths",
-      title: "Plain maths",
+      slug: "plain-transfiguration",
+      title: "Plain Transfiguration",
     });
 
     expect(result).toEqual({
@@ -31,8 +31,8 @@ describe("createUnitOption", () => {
       connection_future_unit_description: null,
       connection_future_unit_title: null,
       connection_prior_unit_title: null,
-      slug: "plain-maths",
-      title: "Plain maths",
+      slug: "plain-transfiguration",
+      title: "Plain Transfiguration",
       lessons: [],
       description: null,
       why_this_why_now: null,
@@ -42,7 +42,7 @@ describe("createUnitOption", () => {
 
   it("with only slug override", () => {
     const result = createUnitOption({
-      slug: "plain-maths",
+      slug: "plain-transfiguration",
     });
 
     expect(result).toEqual({
@@ -51,8 +51,8 @@ describe("createUnitOption", () => {
       connection_future_unit_description: null,
       connection_future_unit_title: null,
       connection_prior_unit_title: null,
-      slug: "plain-maths",
-      title: "Plain maths",
+      slug: "plain-transfiguration",
+      title: "Plain transfiguration",
       lessons: [],
       description: null,
       why_this_why_now: null,

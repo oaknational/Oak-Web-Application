@@ -21,7 +21,10 @@ import {
   UnitSequenceViewProps,
 } from "./UnitSequence/UnitSequenceView";
 import { SubjectHeroImageName } from "./ProgrammeHeader/getSubjectHeroImageUrl";
-import { ProgrammeOverview } from "./ProgrammeOverview/ProgrammeOverview";
+import {
+  ProgrammeOverview,
+  ProgrammeOverviewProps,
+} from "./ProgrammeOverview/ProgrammeOverview";
 import {
   ProgrammeDownloadsProps,
   ProgrammeDownloads,
@@ -30,37 +33,39 @@ import {
 import {
   CurriculumDownloadsTierSubjectProps,
   CurriculumUnitsFormattedData,
+  CurriculumUnitsTrackingData,
 } from "@/pages-helpers/curriculum/docx/tab-helpers";
 import { useFilters } from "@/hooks/useFilters";
 import {
   CurriculumSelectionSlugs,
   CurriculumSelectionTitles,
 } from "@/utils/curriculum/slugs";
-import {
-  CurriculumFilters,
-  OnChangeCurriculumFilters,
-} from "@/utils/curriculum/types";
+import { CurriculumFilters } from "@/utils/curriculum/types";
+import useAnalytics from "@/context/Analytics/useAnalytics";
+import { buildUnitSequenceRefinedAnalytics } from "@/utils/curriculum/analytics";
+import useAnalyticsPageProps from "@/hooks/useAnalyticsPageProps";
 import { ProgrammePageHeaderCMS } from "@/common-lib/cms-types/programmePage";
 import { CurriculumOverviewSanityData } from "@/common-lib/cms-types";
 import type { Ks4Option } from "@/node-lib/curriculum-api-2023/queries/curriculumPhaseOptions/curriculumPhaseOptions.schema";
 import { resolveOakHref } from "@/common-lib/urls";
+import { CurriculumOverviewMVData } from "@/node-lib/curriculum-api-2023";
 import { validateSearchParams } from "@/utils/validateProgrammePageSearchParams";
 import { getDefaultFilter } from "@/utils/curriculum/filtering";
-import { useTeacherBrowseAnalytics } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
 
-export type ProgrammePageProps = {
+type ProgrammePageProps = {
   subjectPhaseSlug: string;
   curriculumSelectionSlugs: CurriculumSelectionSlugs;
   curriculumSelectionTitles: CurriculumSelectionTitles;
   curriculumUnitsFormattedData: CurriculumUnitsFormattedData;
   subjectPhaseSanityData: ProgrammePageHeaderCMS | null;
   curriculumCMSInfo: CurriculumOverviewSanityData | null;
-  nonCurriculum: boolean;
+  curriculumInfo: CurriculumOverviewMVData;
   curriculumDownloadsTabData: CurriculumDownloadsTierSubjectProps;
   mvRefreshTime: number;
   tabSlug: TabSlug;
   ks4Options: Ks4Option[];
   ks4OptionFilterDimensions: Record<string, Ks4OptionFilterDimension>;
+  trackingData: CurriculumUnitsTrackingData;
   initialFilter?: CurriculumFilters;
 };
 
@@ -70,13 +75,14 @@ export const ProgrammeView = ({
   curriculumUnitsFormattedData,
   subjectPhaseSanityData,
   curriculumCMSInfo,
-  nonCurriculum,
+  curriculumInfo,
   curriculumDownloadsTabData,
   mvRefreshTime,
   tabSlug,
   subjectPhaseSlug,
   ks4Options,
   ks4OptionFilterDimensions,
+  trackingData,
   initialFilter,
 }: ProgrammePageProps) => {
   const searchParams = useSearchParams();
@@ -95,27 +101,19 @@ export const ProgrammeView = ({
 
   const [filters, setFilters] = useFilters(defaultFilter, initialFilter);
 
-  const { programmeRefined } = useTeacherBrowseAnalytics(
-    (store) => store.track,
-  );
+  const { track } = useAnalytics();
+  const { analyticsUseCase } = useAnalyticsPageProps();
 
-  const onChangeFilters: OnChangeCurriculumFilters = ({
-    newFilters,
-    filterType,
-    filterValue,
-  }) => {
+  const onChangeFilters = (newFilters: CurriculumFilters) => {
     setFilters(newFilters);
 
-    if (!filterType) {
-      return;
-    }
+    const analyticsData = buildUnitSequenceRefinedAnalytics(
+      analyticsUseCase,
+      trackingData,
+      newFilters,
+    );
 
-    programmeRefined({
-      componentType: "filter_link",
-      activeFilters: newFilters,
-      filterType,
-      filterValue,
-    });
+    track.unitSequenceRefined(analyticsData);
   };
 
   const schoolYear = filters.years.find(
@@ -163,7 +161,7 @@ export const ProgrammeView = ({
         summary={subjectPhaseSanityData?.bodyCopy}
         bullets={subjectPhaseSanityData?.bullets}
       />
-      {nonCurriculum ? null : (
+      {curriculumInfo.nonCurriculum ? null : (
         <OakMaxWidth
           as="nav"
           aria-label="Programme page tabs"
@@ -200,9 +198,11 @@ export const ProgrammeView = ({
       <TabContent
         tabSlug={activeTab}
         curriculumSelectionSlugs={curriculumSelectionSlugs}
+        subjectTitle={curriculumSelectionTitles.subjectTitle}
         curriculumUnitsFormattedData={curriculumUnitsFormattedData}
         curriculumCMSInfo={curriculumCMSInfo}
         curriculumDownloadsTabData={curriculumDownloadsTabData}
+        curriculumInfo={curriculumInfo}
         mvRefreshTime={mvRefreshTime}
         filters={filters}
         setFilters={onChangeFilters}
@@ -216,15 +216,18 @@ export const ProgrammeView = ({
 const TabContent = ({
   tabSlug,
   curriculumSelectionSlugs,
+  subjectTitle,
   curriculumUnitsFormattedData,
   curriculumCMSInfo,
+  curriculumInfo,
   curriculumDownloadsTabData,
   mvRefreshTime,
   filters,
   setFilters,
   ks4Options,
   ks4OptionFilterDimensions,
-}: { tabSlug: TabSlug } & UnitSequenceViewProps & {
+}: { tabSlug: TabSlug } & UnitSequenceViewProps &
+  Omit<ProgrammeOverviewProps, "curriculumCMSInfo"> & {
     curriculumCMSInfo: CurriculumOverviewSanityData | null;
   } & ProgrammeDownloadsProps) => {
   if (tabSlug === "units") {
@@ -242,13 +245,20 @@ const TabContent = ({
     if (!curriculumCMSInfo) {
       notFound();
     }
-    return <ProgrammeOverview curriculumCMSInfo={curriculumCMSInfo} />;
+    return (
+      <ProgrammeOverview
+        subjectTitle={subjectTitle}
+        curriculumCMSInfo={curriculumCMSInfo}
+        curriculumSelectionSlugs={curriculumSelectionSlugs}
+      />
+    );
   } else if (tabSlug === "download") {
     return (
       <ProgrammeDownloads
         mvRefreshTime={mvRefreshTime}
         curriculumSelectionSlugs={curriculumSelectionSlugs}
         curriculumDownloadsTabData={curriculumDownloadsTabData}
+        curriculumInfo={curriculumInfo}
         curriculumUnitsFormattedData={curriculumUnitsFormattedData}
       />
     );

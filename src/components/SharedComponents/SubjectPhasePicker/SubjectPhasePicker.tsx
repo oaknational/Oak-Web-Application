@@ -85,14 +85,13 @@ const DEFAULT_PHASES = [
   { title: "Secondary", slug: "secondary" },
 ];
 
-export type CurrentSelection = {
-  subject: CurriculumPhaseOption;
-  phase: Phase;
-  ks4Option: KS4Option | null;
-};
 export type SubjectPhasePickerData = {
   subjects: CurriculumPhaseOptions;
-  currentSelection?: CurrentSelection;
+  currentSelection?: {
+    subject: CurriculumPhaseOption;
+    phase: Phase;
+    ks4Option: KS4Option | null;
+  };
   tab: "overview" | "units" | "downloads";
 };
 

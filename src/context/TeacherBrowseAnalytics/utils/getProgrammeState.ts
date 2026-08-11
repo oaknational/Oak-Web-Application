@@ -1,10 +1,7 @@
 import {
-  ProgrammeFactorState,
+  SharedProgrammeState,
   ProgrammeStateLesson,
   ProgrammeStateUnit,
-  ProgrammeStateProgramme,
-  CoreProgrammeState,
-  isProgrammeFactorState,
 } from "../teacherBrowseAnalytics.types";
 
 import { TeachersLessonOverviewPageData } from "@/node-lib/curriculum-api-2023/queries/teachersLessonOverview/teachersLessonOverview.schema";
@@ -15,52 +12,28 @@ import { TeachersUnitOverviewData } from "@/node-lib/curriculum-api-2023/queries
  * the Teacher Browse store
  */
 
-// Overload function to sanitise either Core or ProgrammeFactor state from query input
-function getSharedProgrammeState(
-  data: ProgrammeFactorState,
-): ProgrammeFactorState;
-function getSharedProgrammeState(data: CoreProgrammeState): CoreProgrammeState;
-function getSharedProgrammeState(
-  data: ProgrammeFactorState | CoreProgrammeState,
-) {
-  const coreState = {
+const getSharedProgrammeState = (data: SharedProgrammeState) => {
+  return {
     programmeSlug: data.programmeSlug,
     subjectSlug: data.subjectSlug,
     subjectTitle: data.subjectTitle,
     phaseSlug: data.phaseSlug,
     phaseTitle: data.phaseTitle,
-  };
-
-  if (isProgrammeFactorState(data)) {
-    return {
-      ...coreState,
-      year: data.year,
-      yearGroupTitle: data.yearGroupTitle,
-      keyStageSlug: data.keyStageSlug,
-      keyStageTitle: data.keyStageTitle,
-      tierSlug: data.tierSlug,
-      tierTitle: data.tierTitle,
-      examBoardSlug: data.examBoardSlug,
-      examBoardTitle: data.examBoardTitle,
-      pathwaySlug: data.pathwaySlug,
-      pathwayTitle: data.pathwayTitle,
-    };
-  }
-
-  return coreState;
-}
-
-export const getProgrammeStateForProgramme = (
-  data: CoreProgrammeState,
-): ProgrammeStateProgramme => {
-  return {
-    browseLevel: "programme",
-    ...getSharedProgrammeState(data),
+    year: data.year,
+    yearGroupTitle: data.yearGroupTitle,
+    keyStageSlug: data.keyStageSlug,
+    keyStageTitle: data.keyStageTitle,
+    tierSlug: data.tierSlug,
+    tierTitle: data.tierTitle,
+    examBoardSlug: data.examBoardSlug,
+    examBoardTitle: data.examBoardTitle,
+    pathwaySlug: data.pathwaySlug,
+    pathwayTitle: data.pathwayTitle,
   };
 };
 
 export const getProgrammeStateForUnit = (
-  data: ProgrammeFactorState &
+  data: SharedProgrammeState &
     Pick<TeachersUnitOverviewData, "unitSlug" | "unitTitle">,
 ): ProgrammeStateUnit => {
   return {
@@ -74,7 +47,7 @@ export const getProgrammeStateForUnit = (
 };
 
 export const getProgrammeStateForLesson = (
-  data: ProgrammeFactorState &
+  data: SharedProgrammeState &
     Pick<
       TeachersLessonOverviewPageData,
       | "unitSlug"

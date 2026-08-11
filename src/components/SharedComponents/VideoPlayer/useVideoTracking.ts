@@ -3,7 +3,6 @@ import errorReporter from "@/common-lib/error-reporter";
 import useAnalytics from "@/context/Analytics/useAnalytics";
 import { PupilPathwayData } from "@/context/PupilLessonAnalytics/pupilAnalyticsHelpers";
 import { AnalyticsBrowseData } from "@/components/TeacherComponents/types/lesson.types";
-import { TeacherBrowseTrackFns } from "@/context/TeacherBrowseAnalytics/teacherBrowseAnalytics.types";
 
 const reportError = errorReporter("useVideoTracking");
 
@@ -56,28 +55,8 @@ type UseVideoTrackingProps = {
   cloudinaryUrl?: string | null;
   muxAssetId?: string | null;
 };
-
-export type VideoAnalyticsOverrides = Pick<
-  TeacherBrowseTrackFns,
-  "videoFinished" | "videoPaused" | "videoPlayed" | "videoStarted"
->;
-
-const useVideoTracking = (
-  props: UseVideoTrackingProps & {
-    analyticsOverrides?: VideoAnalyticsOverrides;
-  },
-) => {
-  // When all tracking is integrated into the store we can remove this useAnalytics hook fallback and overrides
+const useVideoTracking = (props: UseVideoTrackingProps) => {
   const { track } = useAnalytics();
-  const trackVideoPlayed =
-    props.analyticsOverrides?.videoPlayed ?? track.videoPlayed;
-  const trackVideoStarted =
-    props.analyticsOverrides?.videoStarted ?? track.videoStarted;
-  const trackVideoPaused =
-    props.analyticsOverrides?.videoPaused ?? track.videoPaused;
-  const trackVideoFinished =
-    props.analyticsOverrides?.videoFinished ?? track.videoFinished;
-  const journeyId = props.analyticsOverrides ? undefined : null;
 
   const pathwayData = props.pathwayData
     ? props.pathwayData
@@ -89,21 +68,18 @@ const useVideoTracking = (
       return;
     }
 
-    trackVideoPlayed({
+    track.videoPlayed({
       ...eventProps,
       ...pathwayData,
-      cloudinaryUrl: props.cloudinaryUrl ?? null,
-      muxAssetId: props.muxAssetId ?? null,
-      journeyId,
+      cloudinaryUrl: props.cloudinaryUrl,
+      muxAssetId: props.muxAssetId,
     });
-
     if (isVideoStart) {
-      trackVideoStarted({
+      track.videoStarted({
         ...eventProps,
         ...pathwayData,
-        cloudinaryUrl: props.cloudinaryUrl ?? null,
-        muxAssetId: props.muxAssetId ?? null,
-        journeyId,
+        cloudinaryUrl: props.cloudinaryUrl,
+        muxAssetId: props.muxAssetId,
       });
     }
   };
@@ -113,12 +89,11 @@ const useVideoTracking = (
     if (!eventProps) {
       return;
     }
-    trackVideoPaused({
+    track.videoPaused({
       ...eventProps,
       ...pathwayData,
-      cloudinaryUrl: props.cloudinaryUrl ?? null,
-      muxAssetId: props.muxAssetId ?? null,
-      journeyId,
+      cloudinaryUrl: props.cloudinaryUrl,
+      muxAssetId: props.muxAssetId,
     });
   };
   const onEnd = () => {
@@ -127,12 +102,11 @@ const useVideoTracking = (
     if (!eventProps) {
       return;
     }
-    trackVideoFinished({
+    track.videoFinished({
       ...eventProps,
       ...pathwayData,
-      cloudinaryUrl: props.cloudinaryUrl ?? null,
-      muxAssetId: props.muxAssetId ?? null,
-      journeyId,
+      cloudinaryUrl: props.cloudinaryUrl,
+      muxAssetId: props.muxAssetId,
     });
   };
 

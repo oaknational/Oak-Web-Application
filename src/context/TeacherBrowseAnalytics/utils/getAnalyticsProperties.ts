@@ -9,7 +9,7 @@ import {
   LessonPathwayData,
 } from "../teacherBrowseAnalytics.types";
 
-import { KeyStageTitleValueType, PhaseValueType } from "@/browser-lib/avo/Avo";
+import { KeyStageTitleValueType } from "@/browser-lib/avo/Avo";
 
 /**
  * Helper fns to transform curriculum data into the shape Avo expects
@@ -25,17 +25,6 @@ export const getProgrammeAnalyticsProperties = (
   programmeState: ProgrammeState,
 ): ProgrammePathwayData => {
   return {
-    phase: programmeState.phaseSlug as PhaseValueType,
-    subjectSlug: programmeState.subjectSlug,
-    subjectTitle: programmeState.subjectTitle,
-  };
-};
-
-export const getUnitAnalyticsProperties = (
-  programmeState: ProgrammeStateUnit,
-): UnitPathwayData => {
-  return {
-    phase: programmeState.phaseSlug as PhaseValueType,
     examBoard: programmeState.examBoardTitle,
     keyStageSlug: programmeState.keyStageSlug,
     keyStageTitle: convertKsTitle(programmeState.keyStageTitle),
@@ -43,6 +32,15 @@ export const getUnitAnalyticsProperties = (
     subjectSlug: programmeState.subjectSlug,
     subjectTitle: programmeState.subjectTitle,
     tierName: programmeState.tierTitle,
+  };
+};
+
+export const getUnitAnalyticsProperties = (
+  programmeState: ProgrammeStateUnit,
+): UnitPathwayData => {
+  const programmePathwayData = getProgrammeAnalyticsProperties(programmeState);
+  return {
+    ...programmePathwayData,
     unitName: programmeState.unit.title,
     unitSlug: programmeState.unit.slug,
   };
@@ -57,9 +55,5 @@ export const getLessonAnalyticsProperties = (
     lessonName: programmeState.lesson.title,
     lessonSlug: programmeState.lesson.slug,
     lessonReleaseDate: programmeState.lesson.lessonReleaseDate,
-    lessonReleaseCohort: "2023-2026",
-    releaseGroup: "2023",
-    yearGroupName: programmeState.yearGroupTitle,
-    yearGroupSlug: `year-${programmeState.year}`,
   };
 };

@@ -21,8 +21,8 @@ describe("createUnit", () => {
       title: "Test",
       lessons: [],
       order: 0,
-      subject: "Maths",
-      subject_slug: "maths",
+      subject: "Transfiguration",
+      subject_slug: "transfiguration",
       subject_parent: null,
       subject_parent_slug: null,
       tier: null,
@@ -42,8 +42,8 @@ describe("createUnit", () => {
 
   it("with overrides", () => {
     const result = createUnit({
-      slug: "plain-maths",
-      title: "Plain maths",
+      slug: "plain-transfiguration",
+      title: "Plain Transfiguration",
     });
 
     expect(result).toEqual({
@@ -57,12 +57,12 @@ describe("createUnit", () => {
       phase: "Primary",
       phase_slug: "primary",
       keystage_slug: "ks2",
-      slug: "plain-maths",
-      title: "Plain maths",
+      slug: "plain-transfiguration",
+      title: "Plain Transfiguration",
       lessons: [],
       order: 0,
-      subject: "Maths",
-      subject_slug: "maths",
+      subject: "Transfiguration",
+      subject_slug: "transfiguration",
       subject_parent: null,
       subject_parent_slug: null,
       tier: null,
@@ -82,7 +82,7 @@ describe("createUnit", () => {
 
   it("with only slug override", () => {
     const result = createUnit({
-      slug: "plain-maths",
+      slug: "plain-transfiguration",
     });
 
     expect(result).toEqual({
@@ -96,12 +96,12 @@ describe("createUnit", () => {
       phase: "Primary",
       phase_slug: "primary",
       keystage_slug: "ks2",
-      slug: "plain-maths",
-      title: "Plain maths",
+      slug: "plain-transfiguration",
+      title: "Plain transfiguration",
       lessons: [],
       order: 0,
-      subject: "Maths",
-      subject_slug: "maths",
+      subject: "Transfiguration",
+      subject_slug: "transfiguration",
       subject_parent: null,
       subject_parent_slug: null,
       tier: null,
@@ -142,8 +142,8 @@ describe("createUnit", () => {
       title: "Test",
       lessons: [],
       order: 0,
-      subject: "Maths",
-      subject_slug: "maths",
+      subject: "Transfiguration",
+      subject_slug: "transfiguration",
       subject_parent: null,
       subject_parent_slug: null,
       tier: null,
@@ -181,8 +181,8 @@ describe("createUnit", () => {
       title: "Test",
       lessons: [],
       order: 0,
-      subject: "Maths",
-      subject_slug: "maths",
+      subject: "Transfiguration",
+      subject_slug: "transfiguration",
       subject_parent: null,
       subject_parent_slug: null,
       tier: null,
@@ -226,8 +226,8 @@ describe("createUnit", () => {
       title: "Test",
       lessons: [],
       order: 0,
-      subject: "Maths",
-      subject_slug: "maths",
+      subject: "Transfiguration",
+      subject_slug: "transfiguration",
       subject_parent: null,
       subject_parent_slug: null,
       tier: null,

@@ -199,7 +199,7 @@ export const CurricTimetablingUnits = ({
             >
               <CurricTimetablingFilters
                 filters={filters}
-                onChangeFilters={({ newFilters }) => setFilters(newFilters)}
+                onChangeFilters={setFilters}
                 slugs={slugs}
                 data={unitData}
               />

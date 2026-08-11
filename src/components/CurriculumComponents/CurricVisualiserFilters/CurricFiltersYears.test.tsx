@@ -139,8 +139,8 @@ describe("CurricFiltersYears", () => {
 
     // 10
     act(() => elements[1]!.click());
-    expect(onChangeFilters).toHaveBeenCalledWith({
-      newFilters: {
+    expect(onChangeFilters).toHaveBeenCalledWith(
+      {
         subjectCategories: [],
         childSubjects: [],
         threads: [],
@@ -149,14 +149,13 @@ describe("CurricFiltersYears", () => {
         pathways: [],
         keystages: [],
       },
-      filterType: "Year filter",
-      filterValue: "10",
-    });
+      "year_group_button",
+    );
 
     // 11
     act(() => elements[2]!.click());
-    expect(onChangeFilters).toHaveBeenCalledWith({
-      newFilters: {
+    expect(onChangeFilters).toHaveBeenCalledWith(
+      {
         subjectCategories: [],
         childSubjects: [],
         threads: [],
@@ -165,9 +164,8 @@ describe("CurricFiltersYears", () => {
         pathways: [],
         keystages: [],
       },
-      filterType: "Year filter",
-      filterValue: "11",
-    });
+      "year_group_button",
+    );
 
     // Re-render because "all" will be selected by default
     rerender(
@@ -195,8 +193,8 @@ describe("CurricFiltersYears", () => {
 
     // All
     act(() => elements[0]!.click());
-    expect(onChangeFilters).toHaveBeenCalledWith({
-      newFilters: {
+    expect(onChangeFilters).toHaveBeenCalledWith(
+      {
         subjectCategories: [],
         childSubjects: [],
         threads: [],
@@ -205,9 +203,8 @@ describe("CurricFiltersYears", () => {
         pathways: [],
         keystages: [],
       },
-      filterType: "Year filter",
-      filterValue: "all",
-    });
+      "year_group_button",
+    );
   });
 
   it("interacts correctly (pathway)", () => {
@@ -243,8 +240,8 @@ describe("CurricFiltersYears", () => {
 
     // 10-core
     act(() => elements[1]!.click());
-    expect(onChangeFilters).toHaveBeenCalledWith({
-      newFilters: {
+    expect(onChangeFilters).toHaveBeenCalledWith(
+      {
         subjectCategories: [],
         childSubjects: [],
         threads: [],
@@ -253,14 +250,13 @@ describe("CurricFiltersYears", () => {
         pathways: ["core"],
         keystages: [],
       },
-      filterType: "Year filter",
-      filterValue: "10",
-    });
+      "year_group_button",
+    );
 
     // 11-core
     act(() => elements[2]!.click());
-    expect(onChangeFilters).toHaveBeenCalledWith({
-      newFilters: {
+    expect(onChangeFilters).toHaveBeenCalledWith(
+      {
         subjectCategories: [],
         childSubjects: [],
         threads: [],
@@ -269,14 +265,13 @@ describe("CurricFiltersYears", () => {
         pathways: ["core"],
         keystages: [],
       },
-      filterType: "Year filter",
-      filterValue: "11",
-    });
+      "year_group_button",
+    );
 
     // 10-gcse
     act(() => elements[3]!.click());
-    expect(onChangeFilters).toHaveBeenCalledWith({
-      newFilters: {
+    expect(onChangeFilters).toHaveBeenCalledWith(
+      {
         subjectCategories: [],
         childSubjects: [],
         threads: [],
@@ -285,14 +280,13 @@ describe("CurricFiltersYears", () => {
         pathways: ["non_core"],
         keystages: [],
       },
-      filterType: "Year filter",
-      filterValue: "10",
-    });
+      "year_group_button",
+    );
 
     // 11-gcse
     act(() => elements[4]!.click());
-    expect(onChangeFilters).toHaveBeenCalledWith({
-      newFilters: {
+    expect(onChangeFilters).toHaveBeenCalledWith(
+      {
         subjectCategories: [],
         childSubjects: [],
         threads: [],
@@ -301,9 +295,8 @@ describe("CurricFiltersYears", () => {
         pathways: ["non_core"],
         keystages: [],
       },
-      filterType: "Year filter",
-      filterValue: "11",
-    });
+      "year_group_button",
+    );
 
     // Re-render because "all" will be selected by default
     rerender(
@@ -331,8 +324,8 @@ describe("CurricFiltersYears", () => {
 
     // All
     act(() => elements[0]!.click());
-    expect(onChangeFilters).toHaveBeenCalledWith({
-      newFilters: {
+    expect(onChangeFilters).toHaveBeenCalledWith(
+      {
         subjectCategories: [],
         childSubjects: [],
         threads: [],
@@ -341,8 +334,7 @@ describe("CurricFiltersYears", () => {
         pathways: [],
         keystages: [],
       },
-      filterType: "Year filter",
-      filterValue: "all",
-    });
+      "year_group_button",
+    );
   });
 });

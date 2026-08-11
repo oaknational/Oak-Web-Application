@@ -6,37 +6,22 @@ import {
   LessonOverviewCreateWithAiProps,
 } from "./LessonOverviewCreateWithAiDropdown";
 
-import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
-import { setUseUserReturn } from "@/__tests__/__helpers__/mockClerk";
-import { mockLoggedIn } from "@/__tests__/__helpers__/mockUser";
-
-const createTeachingMaterialsInitiated = jest.fn();
-const teachingMaterialsSelected = jest.fn();
-jest.mock("@/context/Analytics/useAnalytics", () => ({
-  __esModule: true,
-  default: () => ({
-    getSessionId: jest.fn(),
-    track: {
-      createTeachingMaterialsInitiated: (...args: unknown[]) =>
-        createTeachingMaterialsInitiated(...args),
-      teachingMaterialsSelected: (...args: unknown[]) =>
-        teachingMaterialsSelected(...args),
-    },
-  }),
-}));
-
-const render = renderWithProviders();
+import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 
 describe("LessonOverviewCreateWithAiDropdown", () => {
+  let mockTrackCreateWithAiButtonClicked: jest.Mock;
+  let mockTrackTeachingMaterialsSelected: jest.Mock;
   let defaultProps: LessonOverviewCreateWithAiProps;
 
   beforeEach(() => {
-    jest.clearAllMocks();
-    setUseUserReturn(mockLoggedIn);
+    mockTrackCreateWithAiButtonClicked = jest.fn();
+    mockTrackTeachingMaterialsSelected = jest.fn();
 
     defaultProps = {
       lessonSlug: "test-lesson-slug",
       programmeSlug: "test-programme-slug",
+      trackCreateWithAiButtonClicked: mockTrackCreateWithAiButtonClicked,
+      trackTeachingMaterialsSelected: mockTrackTeachingMaterialsSelected,
       subjectSlug: "test-subject",
       subjectCategories: ["category1", "category2"],
     };
@@ -57,22 +42,20 @@ describe("LessonOverviewCreateWithAiDropdown", () => {
       document.removeEventListener("click", stopNav, true);
     });
 
-    it("tracks createTeachingMaterialsInitiated when primary button is clicked", async () => {
+    it("calls trackCreateWithAiButtonClicked when primary button is clicked", async () => {
       const user = userEvent.setup();
-      const { getByText } = render(
+      const { getByText } = renderWithTheme(
         <LessonOverviewCreateWithAiDropdown {...defaultProps} />,
       );
 
       await user.click(getByText("Create more with AI"));
 
-      expect(createTeachingMaterialsInitiated).toHaveBeenCalledWith(
-        expect.objectContaining({ isLoggedIn: true }),
-      );
+      expect(mockTrackCreateWithAiButtonClicked).toHaveBeenCalledTimes(1);
     });
 
-    it("tracks teachingMaterialsSelected with correct parameter when glossary is clicked", async () => {
+    it("calls trackTeachingMaterialsSelected with correct parameter when glossary is clicked", async () => {
       const user = userEvent.setup();
-      const { getByText } = render(
+      const { getByText } = renderWithTheme(
         <LessonOverviewCreateWithAiDropdown {...defaultProps} />,
       );
 
@@ -85,14 +68,14 @@ describe("LessonOverviewCreateWithAiDropdown", () => {
 
       await user.click(button);
 
-      expect(teachingMaterialsSelected).toHaveBeenCalledWith(
-        expect.objectContaining({ teachingMaterialType: "glossary" }),
+      expect(mockTrackTeachingMaterialsSelected).toHaveBeenCalledWith(
+        "glossary",
       );
     });
 
-    it("tracks teachingMaterialsSelected with correct parameter when comprehension task is clicked", async () => {
+    it("calls trackTeachingMaterialsSelected with correct parameter when comprehension task is clicked", async () => {
       const user = userEvent.setup();
-      const { getByText } = render(
+      const { getByText } = renderWithTheme(
         <LessonOverviewCreateWithAiDropdown {...defaultProps} />,
       );
 
@@ -101,16 +84,14 @@ describe("LessonOverviewCreateWithAiDropdown", () => {
 
       await user.click(getByText("Comprehension task"));
 
-      expect(teachingMaterialsSelected).toHaveBeenCalledWith(
-        expect.objectContaining({
-          teachingMaterialType: "comprehension task",
-        }),
+      expect(mockTrackTeachingMaterialsSelected).toHaveBeenCalledWith(
+        "comprehension task",
       );
     });
 
-    it("tracks teachingMaterialsSelected with correct parameter when exit quiz is clicked", async () => {
+    it("calls trackTeachingMaterialsSelected with correct parameter when exit quiz is clicked", async () => {
       const user = userEvent.setup();
-      const { getByText } = render(
+      const { getByText } = renderWithTheme(
         <LessonOverviewCreateWithAiDropdown {...defaultProps} />,
       );
 
@@ -119,14 +100,14 @@ describe("LessonOverviewCreateWithAiDropdown", () => {
 
       await user.click(getByText("More exit quiz questions"));
 
-      expect(teachingMaterialsSelected).toHaveBeenCalledWith(
-        expect.objectContaining({ teachingMaterialType: "exit quiz" }),
+      expect(mockTrackTeachingMaterialsSelected).toHaveBeenCalledWith(
+        "exit quiz",
       );
     });
 
-    it("tracks teachingMaterialsSelected with correct parameter when starter quiz is clicked", async () => {
+    it("calls trackTeachingMaterialsSelected with correct parameter when starter quiz is clicked", async () => {
       const user = userEvent.setup();
-      const { getByText } = render(
+      const { getByText } = renderWithTheme(
         <LessonOverviewCreateWithAiDropdown {...defaultProps} />,
       );
 
@@ -135,8 +116,8 @@ describe("LessonOverviewCreateWithAiDropdown", () => {
 
       await user.click(getByText("More starter quiz questions"));
 
-      expect(teachingMaterialsSelected).toHaveBeenCalledWith(
-        expect.objectContaining({ teachingMaterialType: "starter quiz" }),
+      expect(mockTrackTeachingMaterialsSelected).toHaveBeenCalledWith(
+        "starter quiz",
       );
     });
   });

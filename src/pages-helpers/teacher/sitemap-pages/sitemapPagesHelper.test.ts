@@ -1,6 +1,5 @@
 import { buildTeachersSitemapEntries } from "./sitemapPagesHelper";
 
-import { CurriculumPhaseOptions } from "@/node-lib/curriculum-api-2023";
 import curriculumPhaseOptionsFixture from "@/node-lib/curriculum-api-2023/fixtures/curriculumPhaseOptions.fixture";
 import { teachersSitemapDataFixtureCamelCase } from "@/node-lib/curriculum-api-2023/fixtures/teachersSiteMap.fixture";
 
@@ -96,7 +95,7 @@ describe("teacher sitemaps", () => {
     });
 
     it("includes keystage and year programme page variants", () => {
-      const subjects: CurriculumPhaseOptions = [
+      const subjects = [
         ...curriculumPhaseOptionsFixture(),
         {
           title: "Physical education",
@@ -135,7 +134,7 @@ describe("teacher sitemaps", () => {
     });
 
     it("omits variants when all units collapse to a single year bucket (cross-keystage)", () => {
-      const subjects: CurriculumPhaseOptions = [
+      const subjects = [
         {
           title: "Rule of law",
           slug: "rule-of-law",

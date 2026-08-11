@@ -9,17 +9,7 @@ import { TrackFns } from "@/context/Analytics/AnalyticsProvider";
 import { AnalyticsUseCaseValueType } from "@/browser-lib/avo/Avo";
 
 jest.mock("next/router", () => require("next-router-mock"));
-const mockLessonShareStarted = jest.fn();
-jest.mock("@/context/Analytics/useAnalytics", () => ({
-  __esModule: true,
-  default: () => ({
-    getSessionId: jest.fn(),
-    track: {
-      lessonShareStarted: (...args: unknown[]) =>
-        mockLessonShareStarted(...args),
-    },
-  }),
-}));
+const mockOnClickShareAll = jest.fn();
 
 const baseProps = {
   ...lessonOverviewFixture(),
@@ -27,6 +17,7 @@ const baseProps = {
   unitSlug: "test-unit",
   programmeSlug: "test-programme",
   isShareable: true,
+  onClickShareAll: mockOnClickShareAll,
   geoRestricted: false,
   loginRequired: false,
   breadcrumbs: [],
@@ -40,6 +31,7 @@ const baseProps = {
   unitTitle: "Test Unit",
   track: jest.fn() as unknown as TrackFns,
   analyticsUseCase: "Teacher" as AnalyticsUseCaseValueType,
+  onClickDownloadAll: jest.fn(),
   showDownloadAll: true,
   showShare: true,
   contentRestricted: false,
@@ -69,7 +61,7 @@ describe("LessonOverviewHeaderShareAllButton", () => {
     );
     expect(shareButton).toHaveTextContent("Share activities with pupils");
     shareButton.click();
-    expect(mockLessonShareStarted).toHaveBeenCalled();
+    expect(mockOnClickShareAll).toHaveBeenCalled();
   });
 
   it("disables share button when isShareable is false", () => {

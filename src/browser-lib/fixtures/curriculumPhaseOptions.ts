@@ -1,6 +1,4 @@
-import { SubjectPhasePickerData } from "@/components/SharedComponents/SubjectPhasePicker/SubjectPhasePicker";
-
-const curriculumPhaseOptions: SubjectPhasePickerData = {
+const curriculumPhaseOptions = {
   subjects: [
     {
       title: "English",
@@ -20,7 +18,7 @@ const curriculumPhaseOptions: SubjectPhasePickerData = {
     },
     {
       title: "Physical education",
-      slug: "physical-education",
+      slug: "Physical education",
       phases: [
         { title: "Primary", slug: "primary" },
         { title: "Secondary", slug: "secondary" },

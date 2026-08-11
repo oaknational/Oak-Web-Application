@@ -27,7 +27,6 @@ export const constructLessonMediaData = (
     unitSlug: browseData.unitSlug,
     unitTitle,
     keyStageSlug: browseData.programmeFields.keystageSlug,
-    year: browseData.programmeFields.year,
     subjectSlug: browseData.programmeFields.subjectSlug,
     subjectTitle: browseData.programmeFields.subject,
     subjectParent: browseData.programmeFields.subjectParent,

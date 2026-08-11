@@ -9,7 +9,7 @@ import VideoPlayer, {
   VideoPlayerProps,
 } from "./VideoPlayer";
 
-import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
+import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 
 // Custom elements that simulate MuxPlayer's shadow DOM structure for autofocus tests.
 // findPlayButtonInShadowRoots recursively searches shadow roots for media-play-button.
@@ -82,7 +82,6 @@ jest.mock("./useVideoTracking", () =>
     onEnd: jest.fn(),
   })),
 );
-
 jest.mock("./useSignedVideoToken", () => ({
   useSignedVideoToken: jest.fn(() => ({
     loading: false,
@@ -103,17 +102,11 @@ jest.mock("./getDuration", () => jest.fn(() => 100));
 jest.mock("./getPercentageElapsed", () => jest.fn(() => 50));
 
 const mockErrorReporter = jest.fn();
-jest.mock("@/common-lib/error-reporter", () => ({
-  __esModule: true,
-  default:
-    () =>
-    (...args: []) =>
-      mockErrorReporter(...args),
-}));
+jest.mock("@/common-lib/error-reporter", () =>
+  jest.fn(() => mockErrorReporter),
+);
 
 type MockVideoCallbackArgs = jest.Mock<void, [VideoEventCallbackArgs]>;
-
-const render = renderWithProviders();
 
 describe("VideoPlayer", () => {
   const userEventCallbackMock = jest.fn() as MockVideoCallbackArgs;
@@ -127,7 +120,7 @@ describe("VideoPlayer", () => {
   };
 
   it("handles and doesn't report network error event", async () => {
-    render(<VideoPlayer {...defaultProps} />);
+    renderWithTheme(<VideoPlayer {...defaultProps} />);
     const errorButton = screen.getByTestId("error-button");
     mockErrorReporter.mockClear();
 
@@ -137,7 +130,7 @@ describe("VideoPlayer", () => {
   });
 
   it("handles and reports unknown error event", async () => {
-    render(<VideoPlayer {...defaultProps} />);
+    renderWithTheme(<VideoPlayer {...defaultProps} />);
     const errorButton = screen.getByTestId("error-button");
     mockErrorReporter.mockClear();
 
@@ -160,7 +153,7 @@ describe("VideoPlayer", () => {
   });
 
   it("handles and reports onPlay event", async () => {
-    render(<VideoPlayer {...defaultProps} />);
+    renderWithTheme(<VideoPlayer {...defaultProps} />);
     const playButton = screen.getByTestId("play-button");
     jest.clearAllMocks();
     await userEvent.click(playButton);
@@ -174,7 +167,7 @@ describe("VideoPlayer", () => {
   });
 
   it("handles and reports onPause event", async () => {
-    render(<VideoPlayer {...defaultProps} />);
+    renderWithTheme(<VideoPlayer {...defaultProps} />);
     const playButton = screen.getByTestId("play-button");
     await userEvent.click(playButton);
     setTimeout(async () => {
@@ -192,9 +185,7 @@ describe("VideoPlayer", () => {
 
   it("focuses the play button when autoFocusPlayButton is true", () => {
     jest.useFakeTimers();
-    renderWithProviders()(
-      <VideoPlayer {...defaultProps} autoFocusPlayButton />,
-    );
+    renderWithTheme(<VideoPlayer {...defaultProps} autoFocusPlayButton />);
 
     const muxPlayer = screen.getByTestId("mux-player");
     const mediaController = muxPlayer.shadowRoot?.querySelector(

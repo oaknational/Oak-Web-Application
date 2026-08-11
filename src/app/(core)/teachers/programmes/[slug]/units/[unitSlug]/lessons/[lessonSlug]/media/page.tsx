@@ -14,8 +14,6 @@ import { getTeacherSubjectPhaseSlug } from "@/utils/curriculum/slugs";
 import { LessonMediaClipsData } from "@/node-lib/curriculum-api-2023/queries/lessonMediaClips/lessonMediaClips.schema";
 import { cacheData } from "@/node-lib/cache";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
-import { getProgrammeStateForLesson } from "@/context/TeacherBrowseAnalytics/utils/getProgrammeState";
-import { TeacherBrowseAnalyticsStoreProvider } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
 
 type LessonMediaPageParams = {
   slug: string;
@@ -99,26 +97,19 @@ const InnerLessonMediaPage = async (
     pathwaySlug: data.pathwaySlug,
   });
 
-  const programmeState = getProgrammeStateForLesson(lessonData);
-
   return (
-    <TeacherBrowseAnalyticsStoreProvider
-      programmeState={programmeState}
-      accessLevel="lesson"
-    >
-      <LessonMedia
-        isCanonical={false}
-        lesson={lessonData}
-        breadcrumbsSlot={
-          <Breadcrumbs
-            key="lesson-media-breadcrumbs"
-            data={lessonData}
-            subjectPhaseSlug={breadcrumbsSubjectPhaseSlug}
-            mode="media"
-          />
-        }
-      />
-    </TeacherBrowseAnalyticsStoreProvider>
+    <LessonMedia
+      isCanonical={false}
+      lesson={lessonData}
+      breadcrumbsSlot={
+        <Breadcrumbs
+          key="lesson-media-breadcrumbs"
+          data={lessonData}
+          subjectPhaseSlug={breadcrumbsSubjectPhaseSlug}
+          mode="media"
+        />
+      }
+    />
   );
 };
 

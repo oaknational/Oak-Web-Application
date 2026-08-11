@@ -3,7 +3,6 @@ import {
   CurriculumOverviewMVData,
   CurriculumUnitsTabData,
 } from "@/node-lib/curriculum-api-2023";
-import type { FilterTypeValueType } from "@/browser-lib/avo/Avo";
 
 export function notUndefined<TValue>(
   value: TValue | undefined,
@@ -72,23 +71,6 @@ export type CurriculumFilters = {
   pathways: Pathway["pathway_slug"][];
   keystages: string[];
 };
-
-export type CurriculumFilterChange = {
-  newFilters: CurriculumFilters;
-} & (
-  | {
-      filterType: FilterTypeValueType;
-      filterValue: string;
-    }
-  | {
-      filterType?: undefined;
-      filterValue?: undefined;
-    }
-);
-
-export type OnChangeCurriculumFilters = (
-  change: CurriculumFilterChange,
-) => void;
 
 export type Lesson = {
   title: string;

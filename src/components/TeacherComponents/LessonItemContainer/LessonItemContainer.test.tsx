@@ -6,7 +6,6 @@ import { LessonItemContainer } from "./LessonItemContainer";
 
 import Card from "@/components/SharedComponents/Card";
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
-import MockedTeacherBrowseAnalyticsProvider from "@/__tests__/__helpers__/MockedTeacherBrowseAnalyticsProvider";
 import lessonOverviewFixture from "@/node-lib/curriculum-api-2023/fixtures/lessonOverview.fixture";
 import { LessonOverviewPageData } from "@/node-lib/curriculum-api-2023/queries/lessonOverview/lessonOverview.schema";
 import {
@@ -283,24 +282,22 @@ describe("LessonItemContainer", () => {
   });
   it("renders the play all button when displayMediaClip is true and curriculum data is provided", () => {
     const { getAllByRole } = renderWithTheme(
-      <MockedTeacherBrowseAnalyticsProvider>
-        <LessonItemContainer
-          title={"Demonstration videos"}
-          downloadable={false}
-          anchorId={"media-clips"}
-          displayMediaClipButton={true}
-          slugs={lessonOverview}
-          pageLinks={[]}
+      <LessonItemContainer
+        title={"Demonstration videos"}
+        downloadable={false}
+        anchorId={"media-clips"}
+        displayMediaClipButton={true}
+        slugs={lessonOverview}
+        pageLinks={[]}
+      >
+        <Card
+          $background={"bg-primary"}
+          $ba={"border-solid-l"}
+          $borderColor={"bg-neutral-stronger"}
         >
-          <Card
-            $background={"bg-primary"}
-            $ba={"border-solid-l"}
-            $borderColor={"bg-neutral-stronger"}
-          >
-            Inner content
-          </Card>
-        </LessonItemContainer>
-      </MockedTeacherBrowseAnalyticsProvider>,
+          Inner content
+        </Card>
+      </LessonItemContainer>,
     );
     expect(getAllByRole("link")).toHaveLength(1);
   });

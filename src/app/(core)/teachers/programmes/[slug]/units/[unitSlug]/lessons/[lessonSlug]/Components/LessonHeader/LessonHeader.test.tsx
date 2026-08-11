@@ -3,13 +3,16 @@ import { act } from "@testing-library/react";
 
 import LessonHeader, { LessonHeaderProps } from "./LessonHeader";
 
+import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 import { resolveOakHref } from "@/common-lib/urls";
 import { setUseUserReturn } from "@/__tests__/__helpers__/mockClerk";
 import {
   mockGeorestrictedUser,
   mockLoggedIn,
 } from "@/__tests__/__helpers__/mockUser";
-import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
+import { TeacherBrowseAnalyticsStoreProvider } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
+import { getProgrammeStateForLesson } from "@/context/TeacherBrowseAnalytics/utils/getProgrammeState";
+import teachersLessonOverviewFixture from "@/node-lib/curriculum-api-2023/fixtures/teachersLessonOverview.fixture";
 
 const lessonResourceDownloadStarted = jest.fn();
 jest.mock("@/context/Analytics/useAnalytics", () => ({
@@ -22,6 +25,11 @@ jest.mock("@/context/Analytics/useAnalytics", () => ({
     },
   }),
 }));
+
+const render = renderWithTheme;
+
+const baseProps = teachersLessonOverviewFixture();
+const programmeState = getProgrammeStateForLesson(baseProps);
 
 const defaultProps: LessonHeaderProps = {
   heading: "Lesson title",
@@ -44,7 +52,15 @@ const defaultProps: LessonHeaderProps = {
 };
 
 const renderLessonHeader = (props?: Partial<LessonHeaderProps>) => {
-  return renderWithProviders()(<LessonHeader {...defaultProps} {...props} />);
+  return render(
+    <TeacherBrowseAnalyticsStoreProvider
+      programmeState={{
+        programmeState,
+      }}
+    >
+      <LessonHeader {...defaultProps} {...props} />
+    </TeacherBrowseAnalyticsStoreProvider>,
+  );
 };
 
 describe("LessonHeader", () => {

@@ -18,10 +18,12 @@ import {
 import { getSubjectCategoryMessage } from "@/utils/curriculum/formatting";
 import { resolveOakHref } from "@/common-lib/urls";
 import { createTeacherProgrammeSlug } from "@/utils/curriculum/slugs";
+import useAnalytics from "@/context/Analytics/useAnalytics";
+import useAnalyticsPageProps from "@/hooks/useAnalyticsPageProps";
+import { buildUnitOverviewAccessedAnalytics } from "@/utils/curriculum/analytics";
 import CardListing, {
   CardProps,
 } from "@/components/TeacherComponents/CardListing/CardListing";
-import { useTeacherBrowseAnalytics } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
 
 type ProgrammeUnitListProps = {
   units: Unit[];
@@ -37,13 +39,20 @@ export function ProgrammeUnitList({
   filters,
   selectedThread,
 }: Readonly<ProgrammeUnitListProps>) {
-  const { unitOverviewAccessed } = useTeacherBrowseAnalytics(
-    (store) => store.track,
-  );
+  const { track } = useAnalytics();
+  const { analyticsUseCase } = useAnalyticsPageProps();
   const isMobile = useMediaQuery("mobile");
 
   const onClick = (unit: Unit, isHighlighted: boolean) => {
-    unitOverviewAccessed(unit, isHighlighted, selectedThread);
+    track.unitOverviewAccessed(
+      buildUnitOverviewAccessedAnalytics({
+        unit,
+        isHighlighted,
+        componentType: "unit_info_button",
+        selectedThread,
+        analyticsUseCase,
+      }),
+    );
   };
 
   function getItems(unit: Unit, index: number, isMobile: boolean) {

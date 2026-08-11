@@ -74,7 +74,6 @@ describe("constructMediaClips", () => {
         examBoardSlug: null,
         examBoardTitle: null,
         updatedAt: "2024-02-28T08:09:20.247619+00:00",
-        year: "1",
         lessonSlug: "running-as-a-team",
         lessonTitle: "lesson-title",
         tierTitle: null,

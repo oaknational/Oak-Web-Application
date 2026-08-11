@@ -22,14 +22,22 @@ import {
 import styled from "styled-components";
 import slugify from "slugify";
 
+import useAnalytics from "@/context/Analytics/useAnalytics";
 import ScreenReaderOnly from "@/components/SharedComponents/ScreenReaderOnly";
 import { CurriculumOverviewSanityData } from "@/common-lib/cms-types";
 import CMSImage from "@/components/SharedComponents/CMSImage";
 import CMSVideo from "@/components/SharedComponents/CMSVideo";
 import { basePortableTextComponents } from "@/components/SharedComponents/PortableText";
 import { findContainingAnchor } from "@/utils/curriculum/dom";
+import { CurriculumSelectionSlugs } from "@/utils/curriculum/slugs";
+import { PhaseValueType } from "@/browser-lib/avo/Avo";
 import { resolveOakHref } from "@/common-lib/urls";
-import { useTeacherBrowseAnalytics } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
+
+export type CurriculumOverviewTabData = {
+  subjectTitle: string;
+  curriculumCMSInfo: CurriculumOverviewSanityData;
+  curriculumSelectionSlugs: CurriculumSelectionSlugs;
+};
 
 export type OverviewTabProps = {
   /**
@@ -57,7 +65,7 @@ export type OverviewTabProps = {
    * Can be removed once the integrated programme page is launched and components are reorganised.
    */
   outerPh?: OakBoxProps["$ph"];
-  curriculumCMSInfo: CurriculumOverviewSanityData;
+  data: CurriculumOverviewTabData;
 };
 
 const ExplainerStyles = styled("div")`
@@ -148,8 +156,12 @@ const OverviewTab: FC<OverviewTabProps> = ({
   onClickNavItem,
   ph = "spacing-16",
   outerPh = "spacing-0",
-  curriculumCMSInfo,
+  data,
 }: OverviewTabProps) => {
+  const { track } = useAnalytics();
+
+  const { curriculumCMSInfo, curriculumSelectionSlugs, subjectTitle } = data;
+  const { subjectSlug, phaseSlug } = curriculumSelectionSlugs;
   const {
     curriculumExplainer,
     curriculumPartnerOverviews,
@@ -193,9 +205,19 @@ const OverviewTab: FC<OverviewTabProps> = ({
     title: partnerTitle,
   });
 
-  const { curriculumExplainerExplored } = useTeacherBrowseAnalytics(
-    (s) => s.track,
-  );
+  const handleAnalytics = () => {
+    track.curriculumExplainerExplored({
+      subjectTitle: subjectTitle,
+      subjectSlug: subjectSlug,
+      platform: "owa",
+      product: "curriculum visualiser",
+      engagementIntent: "explore",
+      componentType: "explainer_tab",
+      eventVersion: "2.0.0",
+      analyticsUseCase: "Teacher",
+      phase: phaseSlug as PhaseValueType,
+    });
+  };
 
   const handleClickNavItem = (e: React.MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault();
@@ -203,7 +225,7 @@ const OverviewTab: FC<OverviewTabProps> = ({
       const anchor = findContainingAnchor(e.target);
       if (anchor) {
         const url = new URL(anchor.href);
-        curriculumExplainerExplored();
+        handleAnalytics();
         onClickNavItem(url.hash);
         goToAnchor(url.hash);
       }

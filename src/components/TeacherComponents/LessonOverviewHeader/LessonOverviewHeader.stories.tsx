@@ -5,7 +5,6 @@ import { LessonOverviewHeaderProps } from "./LessonOverviewHeader";
 import Component from ".";
 
 import AnalyticsDecorator from "@/storybook-decorators/AnalyticsDecorator";
-import TeacherBrowseAnalyticsDecorator from "@/storybook-decorators/TeacherBrowseAnalyticsDecorator";
 
 const props = {
   breadcrumbs: [
@@ -126,7 +125,7 @@ const props = {
 };
 
 const meta: Meta<typeof Component> = {
-  decorators: [AnalyticsDecorator, TeacherBrowseAnalyticsDecorator],
+  decorators: [AnalyticsDecorator],
   component: Component,
 };
 

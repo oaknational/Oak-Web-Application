@@ -26,10 +26,7 @@ const InnerUnitPage = async (props: AppPageProps<LessonsPageParams>) => {
   const programmeState = getProgrammeStateForUnit(data);
 
   return (
-    <TeacherBrowseAnalyticsStoreProvider
-      programmeState={programmeState}
-      accessLevel="unit"
-    >
+    <TeacherBrowseAnalyticsStoreProvider programmeState={{ programmeState }}>
       <UnitView {...data} />
     </TeacherBrowseAnalyticsStoreProvider>
   );

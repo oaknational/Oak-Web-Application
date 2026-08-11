@@ -15,6 +15,7 @@ import UnitDownloadButton, {
   useUnitDownloadButtonState,
 } from "@/components/TeacherComponents/UnitDownloadButton/UnitDownloadButton";
 import { resolveOakHref } from "@/common-lib/urls";
+import useAnalytics from "@/context/Analytics/useAnalytics";
 import type { LessonListSchema } from "@/node-lib/curriculum-api-2023/shared.schema";
 import { getUnitDownloadFileId } from "@/utils/getUnitDownloadFileId";
 import { useTeacherBrowseAnalytics } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
@@ -39,15 +40,19 @@ export function DownloadSuccessView({
   lesson,
 }: Readonly<DownloadSuccessViewProps>) {
   const {
+    lessonTitle,
     lessonSlug,
     programmeSlug,
     unitSlug,
     unitTitle,
+    lessonReleaseDate,
     lessons,
     unitvariantId,
   } = lesson;
 
-  const { unitDownloaded, onwardContentSelected } = useTeacherBrowseAnalytics(
+  const { track } = useAnalytics();
+  const { onwardContentSelected } = track;
+  const { unitDownloadInitiated } = useTeacherBrowseAnalytics(
     (store) => store.track,
   );
 
@@ -74,7 +79,13 @@ export function DownloadSuccessView({
         })}
         onBackClick={() =>
           onwardContentSelected({
+            lessonName: lessonTitle,
+            unitName: unitTitle,
+            unitSlug,
+            lessonSlug,
             onwardIntent: "view-lesson",
+            lessonReleaseCohort: "2023-2026",
+            lessonReleaseDate: lessonReleaseDate,
           })
         }
         backgroundColorLevel={1}
@@ -120,7 +131,7 @@ export function DownloadSuccessView({
                   setShowIncompleteMessage={setShowIncompleteMessage}
                   downloadInProgress={downloadInProgress}
                   unitFileId={getUnitDownloadFileId(unitTitle, unitvariantId)}
-                  onDownloadSuccess={() => unitDownloaded()}
+                  onDownloadSuccess={() => unitDownloadInitiated()}
                   showNewTag={false}
                   geoRestricted={isGeorestrictedUnit}
                   size="small"

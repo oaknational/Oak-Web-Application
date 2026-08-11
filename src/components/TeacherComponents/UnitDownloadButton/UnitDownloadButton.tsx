@@ -17,7 +17,6 @@ import useUnitDownloadExistenceCheck from "../hooks/downloadAndShareHooks/useUni
 import createAndClickHiddenDownloadLink from "@/components/SharedComponents/helpers/downloadAndShareHelpers/createAndClickHiddenDownloadLink";
 import { createUnitDownloadLink } from "@/components/SharedComponents/helpers/downloadAndShareHelpers/createDownloadLink";
 import { resolveOakHref } from "@/common-lib/urls";
-import { useTeacherBrowseAnalytics } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
 
 const getLabel = ({
   isStuck,
@@ -49,11 +48,9 @@ const UnitDownloadOnboardButton = ({
   size,
   ariaLabel,
   fullWidthOnMobile,
-  onClick,
 }: {
   href: string;
   showNewTag: boolean;
-  onClick: () => void;
   size?: "small";
   ariaLabel?: string;
   fullWidthOnMobile?: boolean;
@@ -62,7 +59,6 @@ const UnitDownloadOnboardButton = ({
     <ButtonForSize
       size={size}
       fullWidthOnMobile={fullWidthOnMobile}
-      onClick={onClick}
       element="a"
       href={href}
       aria-label={ariaLabel}
@@ -94,13 +90,11 @@ const UnitDownloadSignInButton = ({
   buttonLabel,
   ariaLabel,
   isStuck,
-  onClick,
 }: {
   redirectUrl: string;
   showNewTag: boolean;
   isDesktop: boolean;
   isMobile: boolean;
-  onClick: () => void;
   longTextOnMobile?: boolean;
   fullWidthOnMobile?: boolean;
   size?: "small";
@@ -128,7 +122,6 @@ const UnitDownloadSignInButton = ({
         fullWidthOnMobile={fullWidthOnMobile}
         iconName={"download"}
         isTrailingIcon
-        onClick={onClick}
         aria-label={ariaLabel}
       >
         <OakFlex $alignItems="center" $gap="spacing-12">
@@ -285,9 +278,6 @@ export default function UnitDownloadButton(props: UnitDownloadButtonProps) {
   const pathname = usePathname();
   const isDesktop = useMediaQuery("desktop");
   const isMobile = useMediaQuery("mobile");
-  const { unitDownloadStarted } = useTeacherBrowseAnalytics(
-    (store) => store.track,
-  );
 
   const {
     onDownloadSuccess,
@@ -346,7 +336,6 @@ export default function UnitDownloadButton(props: UnitDownloadButtonProps) {
         page: "onboarding",
         query: { returnTo: pathname ?? "" },
       })}
-      onClick={unitDownloadStarted}
       showNewTag={props.showNewTag}
       size={props.size}
       ariaLabel={props.ariaLabel}
@@ -356,7 +345,6 @@ export default function UnitDownloadButton(props: UnitDownloadButtonProps) {
     <UnitDownloadSignInButton
       isStuck={isStuck}
       redirectUrl={`/onboarding?returnTo=${pathname}`}
-      onClick={unitDownloadStarted}
       showNewTag={props.showNewTag}
       isDesktop={isDesktop}
       isMobile={isMobile}

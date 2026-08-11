@@ -28,9 +28,6 @@ import {
   redirectToEyfsPage,
 } from "@/pages-helpers/shared/lesson-pages/eyfsRedirect";
 import { LessonOverview } from "@/components/TeacherViews/LessonOverview/LessonOverview.view";
-import { TeacherBrowseAnalyticsStoreProvider } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
-import { getProgrammeStateForLesson } from "@/context/TeacherBrowseAnalytics/utils/getProgrammeState";
-import { getProgrammePropsForCanonicalLesson } from "@/pages-helpers/teacher/getProgrammePropsForCanonicalLesson";
 
 type PageProps = {
   lesson: LessonOverviewPageData;
@@ -77,56 +74,47 @@ export default function LessonOverviewCanonicalPage({
   });
 
   const pathwayGroups = groupLessonPathways(lesson.pathways);
-
   return (
-    <TeacherBrowseAnalyticsStoreProvider
-      programmeState={getProgrammeStateForLesson({
-        ...lesson,
-        ...getProgrammePropsForCanonicalLesson(lesson),
-      })}
-      accessLevel="lesson"
+    <AppLayout
+      topNavProps={topNav}
+      seoProps={{
+        ...getSeoProps({
+          title: `Lesson: ${lesson.lessonTitle}`,
+          description: "Overview of lesson",
+          canonicalURL: `${getBrowserConfig("seoAppUrl")}/teachers/lessons/${lesson.lessonSlug}`,
+        }),
+      }}
     >
-      <AppLayout
-        topNavProps={topNav}
-        seoProps={{
-          ...getSeoProps({
-            title: `Lesson: ${lesson.lessonTitle}`,
-            description: "Overview of lesson",
-            canonicalURL: `${getBrowserConfig("seoAppUrl")}/teachers/lessons/${lesson.lessonSlug}`,
-          }),
+      <LessonOverview
+        lesson={{
+          ...lesson,
+          isCanonical: true,
+          teacherShareButton: teacherNotesButton,
+          teacherShareButtonProps: TeacherNotesButtonProps,
+          teacherNoteHtml: teacherNoteHtml,
+          teacherNoteError: error,
         }}
-      >
-        <LessonOverview
-          lesson={{
-            ...lesson,
-            isCanonical: true,
-            teacherShareButton: teacherNotesButton,
-            teacherShareButtonProps: TeacherNotesButtonProps,
-            teacherNoteHtml: teacherNoteHtml,
-            teacherNoteError: error,
+        isBeta={false}
+      />
+      <OakFlex $background={"bg-decorative4-subdued"} $width={"100%"}>
+        <OakMaxWidth $pv="spacing-80">
+          <LessonAppearsIn {...pathwayGroups} />
+        </OakMaxWidth>
+      </OakFlex>
+      {teacherNote && isEditable && (
+        <TeacherNotesModal
+          isOpen={teacherNotesOpen}
+          onClose={() => {
+            setTeacherNotesOpen(false);
           }}
-          isBeta={false}
+          teacherNote={teacherNote}
+          saveTeacherNote={saveTeacherNote}
+          sharingUrl={shareUrl}
+          error={error}
+          shareActivated={shareActivated}
         />
-        <OakFlex $background={"bg-decorative4-subdued"} $width={"100%"}>
-          <OakMaxWidth $pv="spacing-80">
-            <LessonAppearsIn {...pathwayGroups} />
-          </OakMaxWidth>
-        </OakFlex>
-        {teacherNote && isEditable && (
-          <TeacherNotesModal
-            isOpen={teacherNotesOpen}
-            onClose={() => {
-              setTeacherNotesOpen(false);
-            }}
-            teacherNote={teacherNote}
-            saveTeacherNote={saveTeacherNote}
-            sharingUrl={shareUrl}
-            error={error}
-            shareActivated={shareActivated}
-          />
-        )}
-      </AppLayout>
-    </TeacherBrowseAnalyticsStoreProvider>
+      )}
+    </AppLayout>
   );
 }
 

@@ -2,9 +2,7 @@ import { act, screen } from "@testing-library/react";
 
 import { ProgrammeUnitList } from "./UnitList";
 
-import renderWithProviders, {
-  allProviders,
-} from "@/__tests__/__helpers__/renderWithProviders";
+import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 import { getOakUiColor } from "@/__tests__/__helpers__/getOakUiColor";
 import { createFilter } from "@/fixtures/curriculum/filters";
 import { createThread } from "@/fixtures/curriculum/thread";
@@ -12,15 +10,8 @@ import { createUnit } from "@/fixtures/curriculum/unit";
 import { createUnitOption } from "@/fixtures/curriculum/unitOption";
 import { createYearData } from "@/fixtures/curriculum/yearData";
 import { getKeyStageTitle } from "@/utils/curriculum/formatting";
-import { getProgrammeStateForUnit } from "@/context/TeacherBrowseAnalytics/utils/getProgrammeState";
-import teachersUnitOverviewFixture from "@/node-lib/curriculum-api-2023/fixtures/teachersUnitOverview.fixture";
 
-const render = renderWithProviders({
-  ...allProviders,
-  teacherBrowseAnalytics: {
-    programmeState: getProgrammeStateForUnit(teachersUnitOverviewFixture()),
-  },
-});
+const render = renderWithProviders();
 
 jest.mock("next/navigation", () => ({
   __esModule: true,

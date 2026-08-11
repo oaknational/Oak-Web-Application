@@ -69,6 +69,25 @@ describe("LessonMediaPage", () => {
     mockLessonMediaClips.mockResolvedValue(lessonMediaFixture);
   });
 
+  it("renders the lesson media page", async () => {
+    const result = await LessonMediaPage({
+      params: Promise.resolve(defaultParams),
+      searchParams: Promise.resolve({}),
+    });
+
+    expect(result).toBeDefined();
+    expect(mockLessonMediaClips).toHaveBeenCalledWith({
+      programmeSlug: defaultParams.slug,
+      unitSlug: defaultParams.unitSlug,
+      lessonSlug: defaultParams.lessonSlug,
+    });
+    expect(result).toMatchObject({
+      props: {
+        breadcrumbsSlot: expect.anything(),
+      },
+    });
+  });
+
   it("returns 404 when media clips are missing", async () => {
     mockLessonMediaClips.mockResolvedValue({
       ...lessonMediaFixture,

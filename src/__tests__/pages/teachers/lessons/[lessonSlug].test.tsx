@@ -1,7 +1,6 @@
 import { GetStaticPropsContext, PreviewData } from "next";
 import { omit } from "lodash";
 import { MockOakConsentClient } from "@oaknational/oak-consent-client";
-import { screen } from "@testing-library/dom";
 
 import LessonOverviewCanonicalPage, {
   URLParams,
@@ -15,10 +14,7 @@ import curriculumApi2023, {
   CurriculumApi,
 } from "@/node-lib/curriculum-api-2023";
 import OakError from "@/errors/OakError";
-import {
-  LessonOverviewCanonical,
-  LessonOverviewPageData,
-} from "@/node-lib/curriculum-api-2023/queries/lessonOverview/lessonOverview.schema";
+import { LessonOverviewCanonical } from "@/node-lib/curriculum-api-2023/queries/lessonOverview/lessonOverview.schema";
 import { useTeacherNotes } from "@/pages-helpers/teacher/share/useTeacherNotes";
 import { topNavFixture } from "@/node-lib/curriculum-api-2023/fixtures/topNav.fixture";
 
@@ -90,16 +86,6 @@ const lesson = lessonOverviewFixture({
   excludedFromTeachingMaterials: true,
 });
 
-const renderLesson = (props?: Partial<{ lesson: LessonOverviewPageData }>) => {
-  return render(
-    <LessonOverviewCanonicalPage
-      topNav={topNavFixture}
-      lesson={lesson}
-      {...props}
-    />,
-  );
-};
-
 describe("Lesson Overview Canonical Page", () => {
   beforeAll(() => {
     console.error = jest.fn();
@@ -111,16 +97,24 @@ describe("Lesson Overview Canonical Page", () => {
     });
 
     it("Renders title from the props", async () => {
-      const result = renderLesson();
+      const result = render(
+        <LessonOverviewCanonicalPage
+          topNav={topNavFixture}
+          lesson={{ ...lesson, pathways: [] }}
+        />,
+      );
 
       expect(result.getByRole("heading", { level: 1 })).toHaveTextContent(
         lesson.lessonTitle,
       );
     });
     it("Renders the lesson overview when no lessonReleaseDate", async () => {
-      const result = renderLesson({
-        lesson: { ...lesson, lessonReleaseDate: null, pathways: [] },
-      });
+      const result = render(
+        <LessonOverviewCanonicalPage
+          topNav={topNavFixture}
+          lesson={{ ...lesson, lessonReleaseDate: null, pathways: [] }}
+        />,
+      );
 
       expect(result.getByRole("heading", { level: 1 })).toHaveTextContent(
         lesson.lessonTitle,
@@ -136,9 +130,13 @@ describe("Lesson Overview Canonical Page", () => {
         error: undefined,
       });
 
-      renderLesson();
-
-      expect(screen.getAllByText("Add teacher note and share")).toHaveLength(2);
+      const { getAllByText } = render(
+        <LessonOverviewCanonicalPage
+          topNav={topNavFixture}
+          lesson={{ ...lesson, pathways: [] }}
+        />,
+      );
+      expect(getAllByText("Add teacher note and share")).toHaveLength(2);
     });
   });
 

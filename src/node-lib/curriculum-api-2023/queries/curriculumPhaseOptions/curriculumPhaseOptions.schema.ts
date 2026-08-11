@@ -1,12 +1,7 @@
-import {
-  phaseSlugs,
-  subjects,
-  subjectSlugs,
-} from "@oaknational/oak-curriculum-schema";
 import { z } from "zod";
 
 const phaseSchema = z.object({
-  slug: phaseSlugs,
+  slug: z.string(),
   title: z.string(),
 });
 
@@ -24,8 +19,8 @@ const keystage = z.object({
 
 const curriculumPhaseOptionsSchema = z
   .object({
-    slug: subjectSlugs,
-    title: subjects,
+    slug: z.string(),
+    title: z.string(),
     phases: z.array(phaseSchema),
     keystages: z.array(keystage).optional().nullable(),
     state: z.string().optional(),

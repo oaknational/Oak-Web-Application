@@ -1,8 +1,6 @@
 import LessonOverviewSideNavAnchorLinks from "./LessonOverviewSideNavAnchorLinks";
 
-import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
-
-const render = renderWithProviders();
+import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 
 const links = [
   { label: "Lesson Guide", anchorId: "lesson-guide" },
@@ -17,6 +15,7 @@ const downloadAllBtnProps = {
   programmeSlug: "test-programme",
   expired: false,
   showDownloadAll: false,
+  onClickDownloadAll: jest.fn(),
   isCanonical: false,
   geoRestricted: false,
   loginRequired: false,
@@ -25,7 +24,7 @@ const downloadAllBtnProps = {
 
 describe("LessonOverviewSideNavAnchorLinks", () => {
   it("should render the links correctly when contentRestricted is false", () => {
-    const { getByText } = render(
+    const { getByText } = renderWithTheme(
       <LessonOverviewSideNavAnchorLinks
         contentRestricted={false}
         links={links}
@@ -39,7 +38,7 @@ describe("LessonOverviewSideNavAnchorLinks", () => {
   });
 
   it("should redirect restricted links to restricted-content anchor", () => {
-    const { getByText } = render(
+    const { getByText } = renderWithTheme(
       <LessonOverviewSideNavAnchorLinks
         contentRestricted={true}
         links={links}

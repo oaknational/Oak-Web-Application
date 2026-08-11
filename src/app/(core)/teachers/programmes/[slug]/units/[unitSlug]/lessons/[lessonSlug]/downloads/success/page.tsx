@@ -75,10 +75,7 @@ const InnerLessonDownloadsSuccessPage = async (
   const programmeState = getProgrammeStateForLesson(data);
 
   return (
-    <TeacherBrowseAnalyticsStoreProvider
-      programmeState={programmeState}
-      accessLevel="lesson"
-    >
+    <TeacherBrowseAnalyticsStoreProvider programmeState={{ programmeState }}>
       <DownloadSuccessView lesson={data} />
     </TeacherBrowseAnalyticsStoreProvider>
   );
