@@ -20,7 +20,10 @@ export type OaksImpactStatsProps = z.infer<
 >;
 export function OaksImpactStats(props: Readonly<OaksImpactStatsProps>) {
   return (
-    <OakFlex $background={"bg-decorative2-main"} $pv={"spacing-80"}>
+    <OakFlex
+      $background={"bg-decorative2-main"}
+      $pv={["spacing-56", "spacing-80", "spacing-80"]}
+    >
       <NewGutterMaxWidth>
         <OakFlex
           $flexDirection={["column", "row", "row"]}
