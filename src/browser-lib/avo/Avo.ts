@@ -974,7 +974,7 @@ _avo_invoke = function _avo_invoke(env: AvoEnv, eventId: string, hash: string, m
         method: "POST",
         headers: {"Content-Type": "application/json"},
         body: JSON.stringify({
-          "ac": "M4t1zh8WtvBtRYZsDs1a",
+          "ac": "ID3Kl6KbI3TAH55gchn9",
           "br": "master",
           "en": env,
           "ev": eventId,
@@ -1001,7 +1001,7 @@ _avo_invoke_meta = function _avo_invoke_meta(env: AvoEnv, type: string, messages
         method: "POST",
         headers: {"Content-Type": "application/json"},
         body: JSON.stringify({
-          "ac": "M4t1zh8WtvBtRYZsDs1a",
+          "ac": "ID3Kl6KbI3TAH55gchn9",
           "br": "master",
           "en": env,
           "ty": type,
@@ -12712,6 +12712,87 @@ export function unitDownloadStarted(properties: UnitDownloadStartedProperties) {
   }
 }
 
+export interface ScrolledToProperties {
+  key: string;
+}
+/**
+ * Scrolled To: User scrolls to a given position on the page, identified by the key.
+ * 
+ * @param properties the properties associated with this event
+ * @param properties.key: The identifier of the scroll position
+ * 
+ * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/6sIUwYy1D_6UwtP2zAqCc}
+ */
+export function scrolledTo(properties: ScrolledToProperties) {
+  // @ts-ignore
+  let eventPropertiesArray: array = [];
+  eventPropertiesArray.push({id: "F_YG6ioZKxxtm_rvFs3tq", name: "Key", value: properties.key});
+  let eventProperties = convertPropertiesArrayToMap(eventPropertiesArray)
+  // @ts-ignore
+  let userPropertiesArray: array = [];
+  let userProperties = convertPropertiesArrayToMap(userPropertiesArray)
+  // assert properties
+  if (__AVO_ENV__ !== AvoEnv.Prod || __WEB_DEBUGGER__) {
+    let messages: AvoAssertMessage[] = [];
+    // debug console in Avo
+    if (!__AVO_NOOP__) {
+      _avo_invoke(__AVO_ENV__, "6sIUwYy1D_6UwtP2zAqCc", "e61f5d893401b172f038f53c2a3d36bd396c01396b538538248c13db32627b91", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
+    }
+    InternalAvoLogger.logEventSent("Scrolled To", eventProperties, userProperties);
+    if (__WEB_DEBUGGER__) {
+      // Avo web debugger
+      _avo_debugger_log("6sIUwYy1D_6UwtP2zAqCc", "Scrolled To", messages, eventPropertiesArray, userPropertiesArray, []);
+    }
+  }
+  if (!__AVO_NOOP__) {
+    if (__INSPECTOR__ != null) {
+      // @ts-ignore
+      __INSPECTOR__._avoFunctionTrackSchemaFromEvent("Scrolled To", eventProperties, "6sIUwYy1D_6UwtP2zAqCc", "e61f5d893401b172f038f53c2a3d36bd396c01396b538538248c13db32627b91");
+    }
+    // destination PostHogEU
+    PostHogEU.logEvent("Scrolled To", (Object as any).assign({}, eventProperties));
+  } else {
+    // do nothing
+  }
+}
+
+/**
+ * Exit Intended: User's mouse moves out of the viewport
+ * 
+ * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/nyqGzMKPEl11t7qMaKKCT}
+ */
+export function exitIntended() {
+  // @ts-ignore
+  let eventPropertiesArray: array = [];
+  let eventProperties = convertPropertiesArrayToMap(eventPropertiesArray)
+  // @ts-ignore
+  let userPropertiesArray: array = [];
+  let userProperties = convertPropertiesArrayToMap(userPropertiesArray)
+  // assert properties
+  if (__AVO_ENV__ !== AvoEnv.Prod || __WEB_DEBUGGER__) {
+    let messages: AvoAssertMessage[] = [];
+    // debug console in Avo
+    if (!__AVO_NOOP__) {
+      _avo_invoke(__AVO_ENV__, "nyqGzMKPEl11t7qMaKKCT", "629c96de9a7eb89684e7d6da59bdb40184c60fc2e945e3b3aa5cd89ef4dc79e7", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
+    }
+    InternalAvoLogger.logEventSent("Exit Intended", eventProperties, userProperties);
+    if (__WEB_DEBUGGER__) {
+      // Avo web debugger
+      _avo_debugger_log("nyqGzMKPEl11t7qMaKKCT", "Exit Intended", messages, eventPropertiesArray, userPropertiesArray, []);
+    }
+  }
+  if (!__AVO_NOOP__) {
+    if (__INSPECTOR__ != null) {
+      // @ts-ignore
+      __INSPECTOR__._avoFunctionTrackSchemaFromEvent("Exit Intended", eventProperties, "nyqGzMKPEl11t7qMaKKCT", "629c96de9a7eb89684e7d6da59bdb40184c60fc2e945e3b3aa5cd89ef4dc79e7");
+    }
+    // destination PostHogEU
+    PostHogEU.logEvent("Exit Intended", (Object as any).assign({}, eventProperties));
+  } else {
+    // do nothing
+  }
+}
+
 export default {
   AvoEnv,
   initAvo,
@@ -12856,7 +12937,9 @@ export default {
   unitRefined,
   programmeAccessed,
   unitDownloadStarted,
+  scrolledTo,
+  exitIntended,
 }
 
 // AVOMODULEMAP:"Avo"
-// AVOEVENTMAP:["newsletterSignUpCompleted","classroomSelected","videoStarted","videoPaused","videoPlayed","videoFinished","lessonResourcesDownloaded","unitAccessed","webinarPageViewed","pageview","lessonResourceDownloadStarted","searchAccessed","searchResultOpened","searchJourneyInitiated","curriculumVisualiserAccessed","unitOverviewAccessed","onwardContentSelected","lessonShared","lessonShareStarted","searchRefined","searchResultExpanded","lessonCompleted","lessonActivityCompleted","lessonActivityCompletedIntroduction","lessonActivityCompletedStarterQuiz","lessonActivityCompletedLessonVideo","lessonActivityCompletedExitQuiz","lessonActivityCompletedLessonAudio","lessonStarted","lessonActivityStarted","lessonActivityStartedIntroduction","lessonActivityStartedStarterQuiz","lessonActivityStartedLessonVideo","lessonActivityStartedExitQuiz","lessonActivityStartedLessonAudio","curriculumResourcesDownloaded","lessonActivityAbandoned","lessonActivityAbandonedStarterQuiz","lessonActivityAbandonedIntroduction","lessonActivityAbandonedLessonVideo","lessonActivityAbandonedExitQuiz","lessonActivityAbandonedLessonAudio","lessonAssistantAccessed","lessonAccessed","lessonAccessedPupilJourney","browseRefined","browseRefinedAccessed","lessonActivityDownloaded","lessonActivityDownloadedWorksheet","contentGuidanceAccepted","contentGuidanceDeclined","activityResultsShared","lessonSummaryReviewed","userSignUpCompleted","userOnboardingCompleted","userSignIn","userSignOut","lessonAbandoned","browseAccessed","questionAttemptSubmitted","teacherShareInitiated","teacherShareActivated","teacherShareConverted","unitDownloaded","teacherNoteDialogueOpened","teacherNoteSaved","curriculumVisualiserExited","curriculumVisualiserTabAccessed","unitOverviewExplored","productHomepageAccessed","curriculumLandingPageAccessed","curriculumExplainerExplored","curriculumResourcesDownloadRefined","searchFilterModified","lessonMediaClipsStarted","mediaClipsPlaylistPlayed","contentSaved","contentUnsaved","createTeachingMaterialsInitiated","teachingMaterialsSelected","teachingMaterialsRefined","teachingMaterialDownloaded","contentBlockNotificationDisplayed","userOnboardingProgressed","aboutUsAccessed","aboutUsExplored","aboutUsContactInitiated","classroomSignInCompleted","classroomSignInStarted","classroomLessonSelected","classroomLessonPreviewed","classroomLessonsAttached","classroomAddOnOpened","programmeRefined","unitRefined","programmeAccessed","unitDownloadStarted"]
+// AVOEVENTMAP:["newsletterSignUpCompleted","classroomSelected","videoStarted","videoPaused","videoPlayed","videoFinished","lessonResourcesDownloaded","unitAccessed","webinarPageViewed","pageview","lessonResourceDownloadStarted","searchAccessed","searchResultOpened","searchJourneyInitiated","curriculumVisualiserAccessed","unitOverviewAccessed","onwardContentSelected","lessonShared","lessonShareStarted","searchRefined","searchResultExpanded","lessonCompleted","lessonActivityCompleted","lessonActivityCompletedIntroduction","lessonActivityCompletedStarterQuiz","lessonActivityCompletedLessonVideo","lessonActivityCompletedExitQuiz","lessonActivityCompletedLessonAudio","lessonStarted","lessonActivityStarted","lessonActivityStartedIntroduction","lessonActivityStartedStarterQuiz","lessonActivityStartedLessonVideo","lessonActivityStartedExitQuiz","lessonActivityStartedLessonAudio","curriculumResourcesDownloaded","lessonActivityAbandoned","lessonActivityAbandonedStarterQuiz","lessonActivityAbandonedIntroduction","lessonActivityAbandonedLessonVideo","lessonActivityAbandonedExitQuiz","lessonActivityAbandonedLessonAudio","lessonAssistantAccessed","lessonAccessed","lessonAccessedPupilJourney","browseRefined","browseRefinedAccessed","lessonActivityDownloaded","lessonActivityDownloadedWorksheet","contentGuidanceAccepted","contentGuidanceDeclined","activityResultsShared","lessonSummaryReviewed","userSignUpCompleted","userOnboardingCompleted","userSignIn","userSignOut","lessonAbandoned","browseAccessed","questionAttemptSubmitted","teacherShareInitiated","teacherShareActivated","teacherShareConverted","unitDownloaded","teacherNoteDialogueOpened","teacherNoteSaved","curriculumVisualiserExited","curriculumVisualiserTabAccessed","unitOverviewExplored","productHomepageAccessed","curriculumLandingPageAccessed","curriculumExplainerExplored","curriculumResourcesDownloadRefined","searchFilterModified","lessonMediaClipsStarted","mediaClipsPlaylistPlayed","contentSaved","contentUnsaved","createTeachingMaterialsInitiated","teachingMaterialsSelected","teachingMaterialsRefined","teachingMaterialDownloaded","contentBlockNotificationDisplayed","userOnboardingProgressed","aboutUsAccessed","aboutUsExplored","aboutUsContactInitiated","classroomSignInCompleted","classroomSignInStarted","classroomLessonSelected","classroomLessonPreviewed","classroomLessonsAttached","classroomAddOnOpened","programmeRefined","unitRefined","programmeAccessed","unitDownloadStarted","scrolledTo","exitIntended"]
