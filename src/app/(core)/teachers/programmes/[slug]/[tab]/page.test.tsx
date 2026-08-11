@@ -13,6 +13,7 @@ import curriculumPhaseOptionsFixture from "@/node-lib/curriculum-api-2023/fixtur
 import { filterValidCurriculumPhaseOptions } from "@/pages-helpers/curriculum/docx/tab-helpers";
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 import { isFeatureFlagEnabledServer } from "@/utils/featureFlagChecks/server";
+import { CurriculumSelectionSlugs } from "@/utils/curriculum/slugs";
 
 const defaultParams = new URLSearchParams("");
 const mockUseSearchParams = jest.fn(() => defaultParams);
@@ -379,7 +380,7 @@ describe("generateMetadata", () => {
         subjectSlug: "maths",
         phaseSlug: "primary",
         ks4OptionSlug: null,
-      },
+      } satisfies CurriculumSelectionSlugs,
     };
 
     jest.mocked(getSubjectPhaseOptions).mockResolvedValue(mockSubjectData);
@@ -433,7 +434,7 @@ describe("generateMetadata", () => {
         subjectSlug: "maths",
         phaseSlug: "primary",
         ks4OptionSlug: null,
-      },
+      } satisfies CurriculumSelectionSlugs,
     };
 
     jest.mocked(getSubjectPhaseOptions).mockResolvedValue(mockSubjectData);
@@ -488,9 +489,8 @@ describe("generateMetadata", () => {
       subjectPhaseKeystageSlugs: {
         subjectSlug: "computing",
         phaseSlug: "secondary",
-        examboardSlug: "aqa",
         ks4OptionSlug: null,
-      },
+      } satisfies CurriculumSelectionSlugs,
     };
     jest.mocked(getSubjectPhaseOptions).mockResolvedValue(mockSubjectData);
 
@@ -529,7 +529,7 @@ describe("generateMetadata", () => {
         subjects: filterValidCurriculumPhaseOptions(
           curriculumPhaseOptionsFixture(),
         ),
-        tab: "units" as const,
+        tab: "units",
       },
       subjectPhaseKeystageSlugs: {
         subjectSlug: "maths",
@@ -560,7 +560,7 @@ describe("generateMetadata", () => {
         subjectSlug: "maths",
         phaseSlug: "secondary",
         ks4OptionSlug: null,
-      },
+      } satisfies CurriculumSelectionSlugs,
     };
 
     beforeEach(() => {

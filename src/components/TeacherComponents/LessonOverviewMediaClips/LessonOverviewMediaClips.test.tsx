@@ -2,11 +2,25 @@ import { keysToCamelCase } from "zod-to-camel-case";
 
 import LessonOverviewMediaClips from "./LessonOverviewMediaClips";
 
-import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
+import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 import { resolveOakHref } from "@/common-lib/urls";
 import lessonMediaClipsFixtures, {
   additionalCycles,
 } from "@/node-lib/curriculum-api-2023/fixtures/lessonMediaClips.fixture";
+
+const lessonMediaClipsStarted = jest.fn();
+jest.mock("@/context/Analytics/useAnalytics", () => ({
+  __esModule: true,
+  default: () => ({
+    getSessionId: jest.fn(),
+    track: {
+      lessonMediaClipsStarted: (...args: unknown[]) =>
+        lessonMediaClipsStarted(...args),
+    },
+  }),
+}));
+
+const render = renderWithProviders();
 
 const mockLearningCycleVideos = lessonMediaClipsFixtures().mediaClips;
 const lessonOutline = [
@@ -18,7 +32,7 @@ const lessonOutline = [
 
 describe("LessonOverviewMediaClips", () => {
   it("renders titles correctly when there is an intro video", () => {
-    const { getByText } = renderWithTheme(
+    const { getByText } = render(
       <LessonOverviewMediaClips
         learningCycleVideos={keysToCamelCase(mockLearningCycleVideos)}
         lessonSlug="lesson-slug"
@@ -34,7 +48,7 @@ describe("LessonOverviewMediaClips", () => {
   });
 
   it("renders titles correctly when there is no intro video", () => {
-    const { getByText } = renderWithTheme(
+    const { getByText } = render(
       <LessonOverviewMediaClips
         learningCycleVideos={additionalCycles}
         lessonSlug="lesson-slug"
@@ -51,7 +65,7 @@ describe("LessonOverviewMediaClips", () => {
   });
 
   it("renders titles correctly for PE lesson with custom title", () => {
-    const { getByText } = renderWithTheme(
+    const { getByText } = render(
       <LessonOverviewMediaClips
         learningCycleVideos={keysToCamelCase(mockLearningCycleVideos)}
         lessonSlug="lesson-slug"
@@ -67,7 +81,7 @@ describe("LessonOverviewMediaClips", () => {
   });
 
   it("renders titles correctly for MFL lesson with an intro video", () => {
-    const { getByText } = renderWithTheme(
+    const { getByText } = render(
       <LessonOverviewMediaClips
         learningCycleVideos={keysToCamelCase(mockLearningCycleVideos)}
         lessonSlug="lesson-slug"
@@ -84,7 +98,7 @@ describe("LessonOverviewMediaClips", () => {
   });
 
   it("links clip tiles to lesson media", () => {
-    const { getByRole } = renderWithTheme(
+    const { getByRole } = render(
       <LessonOverviewMediaClips
         learningCycleVideos={keysToCamelCase(mockLearningCycleVideos)}
         lessonSlug="lesson-slug"
@@ -110,7 +124,7 @@ describe("LessonOverviewMediaClips", () => {
   });
 
   it("links clip tiles to teachers lesson media when programmeSlug and unitSlug are provided", () => {
-    const { getByRole } = renderWithTheme(
+    const { getByRole } = render(
       <LessonOverviewMediaClips
         learningCycleVideos={keysToCamelCase(mockLearningCycleVideos)}
         lessonSlug="lesson-slug"
@@ -136,7 +150,7 @@ describe("LessonOverviewMediaClips", () => {
   });
 
   it("links clip tiles to canonical lesson media when programmeSlug and unitSlug are not provided", () => {
-    const { getByRole } = renderWithTheme(
+    const { getByRole } = render(
       <LessonOverviewMediaClips
         learningCycleVideos={keysToCamelCase(mockLearningCycleVideos)}
         lessonSlug="lesson-slug"
@@ -160,7 +174,7 @@ describe("LessonOverviewMediaClips", () => {
   });
 
   it("if no learning cycle videos component returns null", () => {
-    const { container } = renderWithTheme(
+    const { queryByRole } = render(
       <LessonOverviewMediaClips
         learningCycleVideos={null}
         lessonSlug="lesson-slug"
@@ -171,12 +185,11 @@ describe("LessonOverviewMediaClips", () => {
         isMFL={false}
       />,
     );
-    expect(container.firstChild).toBeNull();
+    expect(queryByRole("link")).toBeNull();
   });
   describe("tracking", () => {
-    test("If onTrackingCallback, onclick fire ontracking callback", async () => {
-      const callback = jest.fn();
-      const { getByText } = renderWithTheme(
+    test("fires lessonMediaClipsStarted when a clip is clicked", async () => {
+      const { getByText } = render(
         <LessonOverviewMediaClips
           learningCycleVideos={keysToCamelCase(mockLearningCycleVideos)}
           lessonSlug="lesson-slug"
@@ -185,16 +198,17 @@ describe("LessonOverviewMediaClips", () => {
           lessonOutline={lessonOutline}
           isPELesson={false}
           isMFL={false}
-          onTrackingCallback={callback}
         />,
       );
 
       const lessonClip = getByText("Lesson outline for cycle 2");
       lessonClip.click();
-      expect(callback).toHaveBeenCalledWith({
-        mediaClipsButtonName: "select clip",
-        learningCycle: "cycle2",
-      });
+      expect(lessonMediaClipsStarted).toHaveBeenCalledWith(
+        expect.objectContaining({
+          mediaClipsButtonName: "select clip",
+          learningCycle: "cycle2",
+        }),
+      );
     });
   });
 });

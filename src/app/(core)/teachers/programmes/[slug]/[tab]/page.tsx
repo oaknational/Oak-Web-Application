@@ -3,7 +3,7 @@ import { Metadata } from "next";
 import { cache } from "react";
 import { cookies, draftMode } from "next/headers";
 
-import { ProgrammeView } from "./Components/ProgrammeView";
+import { ProgrammePageProps, ProgrammeView } from "./Components/ProgrammeView";
 import { isTabSlug } from "./tabSchema";
 import { getMetaTitle } from "./getMetaTitle";
 import {
@@ -15,7 +15,6 @@ import {
 import { isFeatureFlagEnabledServer } from "@/utils/featureFlagChecks/server";
 import {
   createDownloadsData,
-  CurriculumUnitsTrackingData,
   formatCurriculumUnitsData,
 } from "@/pages-helpers/curriculum/docx/tab-helpers";
 import { getOpenGraphMetadata, getTwitterMetadata } from "@/app/metadata";
@@ -37,6 +36,8 @@ import { cacheData } from "@/node-lib/cache";
 import CMSClient from "@/node-lib/cms";
 import { getMvRefreshTime } from "@/pages-helpers/curriculum/downloads/getMvRefreshTime";
 import { validateServerSearchParams } from "@/utils/validateProgrammePageSearchParams";
+import { TeacherBrowseAnalyticsStoreProvider } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
+import { getProgrammeStateForProgramme } from "@/context/TeacherBrowseAnalytics/utils/getProgrammeState";
 
 const reportError = errorReporter("programme-page::app");
 
@@ -277,13 +278,6 @@ const InnerProgrammePage = async (props: AppPageProps<ProgrammePageParams>) => {
     examboardTitle: ks4Option?.title,
   };
 
-  // TD: [integrated journey] tracking
-  const curriculumUnitsTrackingData: CurriculumUnitsTrackingData = {
-    ...subjectPhaseKeystageSlugs,
-    subjectTitle: curriculumSelectionTitles.subjectTitle,
-    ks4OptionTitle: curriculumSelectionTitles.examboardTitle,
-  };
-
   const isImplementationGuidesEnabled = await isFeatureFlagEnabledServer(
     Object.fromEntries(
       cookieStore.getAll().map(({ name, value }) => [name, value]),
@@ -291,7 +285,7 @@ const InnerProgrammePage = async (props: AppPageProps<ProgrammePageParams>) => {
     "implementation-guides",
   );
 
-  const results = {
+  const results: ProgrammePageProps = {
     subjectPhaseSlug,
     curriculumSelectionSlugs: subjectPhaseKeystageSlugs,
     curriculumSelectionTitles,
@@ -301,17 +295,29 @@ const InnerProgrammePage = async (props: AppPageProps<ProgrammePageParams>) => {
     curriculumCMSInfo,
     ks4Options,
     ks4OptionFilterDimensions,
-    trackingData: curriculumUnitsTrackingData,
-    curriculumInfo: cachedProgrammeData.programmeUnitsData,
     curriculumDownloadsTabData,
     mvRefreshTime,
     initialFilter: resolvedFilter,
     featureFlags: {
       "implementation-guides": isImplementationGuidesEnabled,
     },
+    nonCurriculum: cachedProgrammeData.programmeUnitsData.nonCurriculum,
   };
 
-  return <ProgrammeView {...results} />;
+  const programmeState = getProgrammeStateForProgramme({
+    programmeSlug: subjectPhaseSlug,
+    ...subjectPhaseKeystageSlugs,
+    ...curriculumSelectionTitles,
+  });
+
+  return (
+    <TeacherBrowseAnalyticsStoreProvider
+      programmeState={programmeState}
+      accessLevel="programme"
+    >
+      <ProgrammeView {...results} />
+    </TeacherBrowseAnalyticsStoreProvider>
+  );
 };
 
 const ProgrammePage = withPageErrorHandling(

@@ -45,7 +45,7 @@ export default function ProgrammePageFiltersMobile({
 
   function onClose(action: CloseAction) {
     if (action === "close_button") {
-      onChangeFilters(initialFilterState);
+      onChangeFilters({ newFilters: initialFilterState });
     }
     setIsOpen(false);
   }
