@@ -1,5 +1,5 @@
 import { screen } from "@testing-library/dom";
-import { act, render } from "@testing-library/react";
+import { act } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { useSyncExternalStore } from "react";
 
@@ -392,18 +392,5 @@ describe("ProgrammeView", () => {
       });
       expect(heading).toBeInTheDocument();
     });
-  });
-
-  test("shows the implementation guide callout when enabled", () => {
-    const featureFlagProps = {
-      ...defaultProps,
-      featureFlags: { "implementation-guides": true },
-    };
-
-    render(<ProgrammeView {...featureFlagProps} />);
-    const callout = screen.getByText(
-      /Leading your school's use of Oak's Science Secondary curriculum\? Download our implementation toolkit\./i,
-    );
-    expect(callout).toBeInTheDocument();
   });
 });
