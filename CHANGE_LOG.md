@@ -1,3 +1,42 @@
+# [1.1156.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1155.0...v1.1156.0) (2026-08-11)
+
+
+### Bug Fixes
+
+* add aria-label to link ([68e40a8](https://github.com/oaknational/Oak-Web-Application/commit/68e40a8434a0e8771bef6a5092e20e3391c1220e))
+* failing tests/types with new feature-flag changes ([8f21c8a](https://github.com/oaknational/Oak-Web-Application/commit/8f21c8a93883a5d6b42bd585a5eeceb17099323e))
+* remove old code fixing build error ([7442297](https://github.com/oaknational/Oak-Web-Application/commit/7442297f3865fb441ec53fa081e767672f43076c))
+* remove title "Information" from inline banner ([a2ec3ce](https://github.com/oaknational/Oak-Web-Application/commit/a2ec3ceb295d6fa60f53e9f78c84963c80b9e830))
+* typo ([a28cf5a](https://github.com/oaknational/Oak-Web-Application/commit/a28cf5afe0ada871cb44ed59383377409461487c))
+
+
+### Features
+
+* added implementation-guide banner behind flag ([82d3063](https://github.com/oaknational/Oak-Web-Application/commit/82d3063400e2e5c96ce0e72e3854e5d6bc5f83fb))
+
+# [1.1155.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1154.0...v1.1155.0) (2026-08-11)
+
+
+### Bug Fixes
+
+* avo main ([962533e](https://github.com/oaknational/Oak-Web-Application/commit/962533e2010d74b592d39e152b6f6490cf7ab365))
+* avo main ([2522f90](https://github.com/oaknational/Oak-Web-Application/commit/2522f90a70313205df71c96ff31cc761898651b0))
+* ioObserver test rename ([eb305da](https://github.com/oaknational/Oak-Web-Application/commit/eb305da25bf3405399e8449e1080cd8308548eab))
+* merge main ([c30b00d](https://github.com/oaknational/Oak-Web-Application/commit/c30b00d0c3b9b5450730775ed7de495b3f96f4e9))
+* rename ([98dad5c](https://github.com/oaknational/Oak-Web-Application/commit/98dad5c63a56ea4f8ca6ad98f4d1af6b6f0137f4))
+* snap ([e9030a2](https://github.com/oaknational/Oak-Web-Application/commit/e9030a23c9da735aacbcd7f0dfaaec702b9a35e0))
+
+
+### Features
+
+* add comp desc ([bf0ec60](https://github.com/oaknational/Oak-Web-Application/commit/bf0ec6037c84cb3fc3a15485db0d0a2c7b36de92))
+* add tests for exit intent track hook ([45141c9](https://github.com/oaknational/Oak-Web-Application/commit/45141c9a8696225c868b4b7facda70a341dac888))
+* add tests for trackScrolledTo component ([e05809a](https://github.com/oaknational/Oak-Web-Application/commit/e05809a6f158455fa89325bc3b7dd4c50a922530))
+* extract scrolledTo component and call track event ([b4a7556](https://github.com/oaknational/Oak-Web-Application/commit/b4a755636b3b21cd1a4f4c02ad3f29507bf321ae))
+* only called exit intent the first time ([5524178](https://github.com/oaknational/Oak-Web-Application/commit/55241782a3eafc63226d839182994c81d49a4b8e))
+* only send scroll to event once per visit ([f5798b7](https://github.com/oaknational/Oak-Web-Application/commit/f5798b75a6d54df4bc0428819f9fa07acacafd43))
+* start adding hook for exit intent in oaks impact ([acd93ff](https://github.com/oaknational/Oak-Web-Application/commit/acd93ffe9e04b5707c6a293a67ad178d7291226e))
+
 # [1.1154.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1153.0...v1.1154.0) (2026-08-11)
 
 
