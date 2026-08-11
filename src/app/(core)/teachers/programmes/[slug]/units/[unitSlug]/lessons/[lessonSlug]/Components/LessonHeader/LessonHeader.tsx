@@ -86,7 +86,9 @@ const LessonHeader = (props: LessonHeaderProps) => {
                 </OakSpan>
               ),
               onClick: () => {
-                lessonResourceDownloadStarted("all");
+                lessonResourceDownloadStarted({
+                  downloadResourceButtonName: "all",
+                });
               },
               isActionGeorestricted: true,
               shouldHidewhenGeoRestricted: true,

@@ -51,7 +51,8 @@ const unitWithSubject = (subject_slug: string): Unit =>
     title: "Unit",
     year: "7",
     order: 1,
-  }) as Unit;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  }) as any as Unit;
 
 describe("getSubheadingIconName", () => {
   describe("subject categories path (KS1-KS3)", () => {

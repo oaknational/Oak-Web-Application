@@ -38,6 +38,7 @@ describe("xlsxNationalCurriculum e2e", () => {
       createUnit({
         year: "9",
         subject_slug: "english",
+        subject: "English",
         slug: "unit-a",
         features: { national_curriculum_content: true },
       }),
@@ -56,12 +57,14 @@ describe("xlsxNationalCurriculum e2e", () => {
       createUnit({
         year: "9",
         subject_slug: "computing",
+        subject: "Computing",
         slug: "cs-unit-ks3",
         features: { national_curriculum_content: true },
       }),
       createUnit({
         year: "10",
         subject_slug: "computing",
+        subject: "Computing",
         slug: "cs-unit-a",
         examboard: "AQA",
         features: { national_curriculum_content: true },
@@ -109,6 +112,7 @@ describe("xlsxNationalCurriculum e2e", () => {
       createUnit({
         year: "10",
         subject_slug: "citizenship",
+        subject: "Citizenship",
         slug: "cit-unit-a",
         features: { national_curriculum_content: true },
       }),
@@ -128,6 +132,7 @@ describe("xlsxNationalCurriculum e2e", () => {
       createUnit({
         year: "10",
         subject_slug: "citizenship",
+        subject: "Citizenship",
         slug: "cit-unit-a",
         features: { national_curriculum_content: true },
       }),
@@ -147,12 +152,14 @@ describe("xlsxNationalCurriculum e2e", () => {
       createUnit({
         year: "9",
         subject_slug: "history",
+        subject: "History",
         slug: "hist-a",
         features: { national_curriculum_content: true },
       }),
       createUnit({
         year: "10",
         subject_slug: "history",
+        subject: "History",
         slug: "hist-b",
         features: { national_curriculum_content: true },
       }),
@@ -174,12 +181,14 @@ describe("xlsxNationalCurriculum e2e", () => {
       createUnit({
         year: "9",
         subject_slug: "geography",
+        subject: "Geography",
         slug: "geog-a",
         features: { national_curriculum_content: true },
       }),
       createUnit({
         year: "10",
         subject_slug: "geography",
+        subject: "Geography",
         slug: "geog-b",
         features: { national_curriculum_content: true },
       }),
@@ -200,27 +209,30 @@ describe("xlsxNationalCurriculum e2e", () => {
     const units = [
       createUnit({
         year: "9",
-        subject_slug: "religious-studies",
+        subject_slug: "religious-education",
+        subject: "Religious education",
+
         slug: "re-a",
         features: { national_curriculum_content: true },
       }),
       createUnit({
         year: "10",
-        subject_slug: "religious-studies",
+        subject_slug: "religious-education",
+        subject: "Religious education",
         slug: "re-b",
         features: { national_curriculum_content: true },
       }),
     ];
     const slugs = {
-      subjectSlug: "religious-studies",
+      subjectSlug: "religious-education",
       phaseSlug: "secondary",
     } as const;
     const worksheets = await getWorksheetXml(units, slugs);
     const allXml = Object.values(worksheets).join("");
-    expect(allXml).toContain("Year 9 Religious studies");
-    expect(allXml).toContain("Year 10 Religious studies");
-    expect(allXml).not.toContain("Year 9 Religious studies, GCSE");
-    expect(allXml).not.toContain("Year 10 Religious studies, GCSE");
+    expect(allXml).toContain("Year 9 Religious education");
+    expect(allXml).toContain("Year 10 Religious education");
+    expect(allXml).not.toContain("Year 9 Religious education, GCSE");
+    expect(allXml).not.toContain("Year 10 Religious education, GCSE");
   });
 
   test("year programmes split by tier - KS4 Maths (GCSE, Higher)", async () => {
@@ -268,6 +280,7 @@ describe("xlsxNationalCurriculum e2e", () => {
       createUnit({
         year: "9",
         subject_slug: "chemistry",
+        subject: "Chemistry",
         slug: "chem-ks3",
         // No tier for KS3
         features: { national_curriculum_content: true },
@@ -275,6 +288,7 @@ describe("xlsxNationalCurriculum e2e", () => {
       createUnit({
         year: "10",
         subject_slug: "chemistry",
+        subject: "Chemistry",
         slug: "chem-a",
         tier: "Foundation",
         tier_slug: "foundation",
@@ -283,6 +297,7 @@ describe("xlsxNationalCurriculum e2e", () => {
       createUnit({
         year: "11",
         subject_slug: "chemistry",
+        subject: "Chemistry",
         slug: "chem-b",
         tier: "Foundation",
         tier_slug: "foundation",
