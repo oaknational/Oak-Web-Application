@@ -1,3 +1,10 @@
+# [1.1157.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1156.0...v1.1157.0) (2026-08-11)
+
+
+### Features
+
+* add "new" to download tab when implementation-guides enabled ([e107a1b](https://github.com/oaknational/Oak-Web-Application/commit/e107a1b0bedea3e2cbb1c3d1b572aa9cc01d4cc1))
+
 # [1.1156.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1155.0...v1.1156.0) (2026-08-11)
 
 
