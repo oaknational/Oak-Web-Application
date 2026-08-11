@@ -104,7 +104,9 @@ export const ProgrammeDownloads = ({
   const implementationGuideDownloadsWithLabels = DOWNLOAD_TYPE_LABELS.filter(
     ({ id, group }) => {
       return (
-        group === "implementation-guide" && availableDownloadTypes.includes(id)
+        featureFlags["implementation-guides"] &&
+        group === "implementation-guide" &&
+        availableDownloadTypes.includes(id)
       );
     },
   );
