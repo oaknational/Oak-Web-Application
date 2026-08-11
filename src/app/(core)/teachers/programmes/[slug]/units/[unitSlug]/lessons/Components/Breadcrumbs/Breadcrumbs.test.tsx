@@ -134,7 +134,7 @@ describe("Breadcrumbs", () => {
   it("renders downloads breadcrumb trail with lesson link and downloads as current page", () => {
     const mockDownloadsData = lessonDownloadsFixture({
       subjectTitle: "Biology",
-      keyStageTitle: "KS4",
+      keyStageTitle: "Key Stage 4",
       tierTitle: "Foundation",
       examBoardTitle: "AQA",
       yearGroupTitle: "Year 10",
@@ -148,7 +148,7 @@ describe("Breadcrumbs", () => {
     );
 
     const programmeBreadcrumbText =
-      "Biology, Secondary, KS4, Year 10, Foundation, AQA";
+      "Biology, Secondary, Key Stage 4, Year 10, Foundation, AQA";
     const programmeLink = screen.getByRole("link", {
       name: programmeBreadcrumbText,
     });
@@ -192,7 +192,7 @@ describe("Breadcrumbs", () => {
   it("renders media breadcrumb trail with lesson link and media as current page", () => {
     const mockMediaData = lessonMediaClipsFixtures({
       subjectTitle: "Biology",
-      keyStageTitle: "KS4",
+      keyStageTitle: "Key Stage 4",
       tierTitle: "Foundation",
       examBoardTitle: "AQA",
       yearGroupTitle: "Year 10",
@@ -209,7 +209,7 @@ describe("Breadcrumbs", () => {
     );
 
     const programmeBreadcrumbText =
-      "Biology, Secondary, KS4, Year 10, Foundation, AQA";
+      "Biology, Secondary, Key Stage 4, Year 10, Foundation, AQA";
     const programmeLink = screen.getByRole("link", {
       name: programmeBreadcrumbText,
     });

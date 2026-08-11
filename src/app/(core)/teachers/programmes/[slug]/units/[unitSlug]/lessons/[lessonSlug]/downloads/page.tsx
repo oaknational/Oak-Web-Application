@@ -12,6 +12,8 @@ import { resolveOakHref } from "@/common-lib/urls";
 import { getTeacherSubjectPhaseSlug } from "@/utils/curriculum/slugs";
 import { cacheData } from "@/node-lib/cache";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
+import { TeacherBrowseAnalyticsStoreProvider } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
+import { getProgrammeStateForLesson } from "@/context/TeacherBrowseAnalytics/utils/getProgrammeState";
 
 type LessonDownloadsPageParams = {
   slug: string;
@@ -82,23 +84,28 @@ const InnerLessonDownloadsPage = async (
   });
 
   return (
-    <LessonDownloads
-      lesson={data}
-      breadcrumbsSlot={
-        <Breadcrumbs
-          key="lesson-downloads-breadcrumbs"
-          data={data}
-          subjectPhaseSlug={breadcrumbsSubjectPhaseSlug}
-          mode="downloads"
-        />
-      }
-      successRedirect={resolveOakHref({
-        page: "lesson-downloads-success",
-        programmeSlug,
-        unitSlug,
-        lessonSlug,
-      })}
-    />
+    <TeacherBrowseAnalyticsStoreProvider
+      accessLevel="lesson"
+      programmeState={getProgrammeStateForLesson(data)}
+    >
+      <LessonDownloads
+        lesson={data}
+        breadcrumbsSlot={
+          <Breadcrumbs
+            key="lesson-downloads-breadcrumbs"
+            data={data}
+            subjectPhaseSlug={breadcrumbsSubjectPhaseSlug}
+            mode="downloads"
+          />
+        }
+        successRedirect={resolveOakHref({
+          page: "lesson-downloads-success",
+          programmeSlug,
+          unitSlug,
+          lessonSlug,
+        })}
+      />
+    </TeacherBrowseAnalyticsStoreProvider>
   );
 };
 

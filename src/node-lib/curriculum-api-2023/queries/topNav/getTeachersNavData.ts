@@ -181,8 +181,8 @@ const handleParentSubjectChildren = () => {
 
   return {
     phaseChildren,
-    updatePhaseChild: updatePhaseChild,
-    updateParentExamBoardsOnPhaseChild: updateParentExamBoardsOnPhaseChild,
+    updatePhaseChild,
+    updateParentExamBoardsOnPhaseChild,
     values,
   };
 };
@@ -303,9 +303,9 @@ const getSubjectsByPhase = (
     const { subject_slug, subject_parent, keystage_slug } =
       programme.programme_fields;
     const pathwaySlug = programme.programme_fields.pathway_slug ?? null;
-    const parentSubjectSlug = subject_parent
-      ? convertSubjectToSlug(subject_parent).toLocaleLowerCase()
-      : subject_slug;
+    const parentSubjectSlug =
+      subject_parent && convertSubjectToSlug(subject_parent);
+    const subjectSlug = parentSubjectSlug ?? subject_slug;
     const phaseSlugForHref = normalizePhaseSlugForHref(
       programme.programme_fields.phase_slug,
     );
@@ -314,9 +314,8 @@ const getSubjectsByPhase = (
     if (isKs4ChildProgramme(programme)) {
       const parentHref = getTeachersSubjectNavHref({
         subject: {
-          slug: parentSubjectSlug,
+          slug: subjectSlug,
           pathwaySlug: null,
-          programmeSlug: programme.programme_slug,
         },
         phaseSlug: phaseSlugForHref,
         curriculumPhaseOptionsSubjects: curriculumPhaseOptionsWithoutCore,
@@ -332,7 +331,7 @@ const getSubjectsByPhase = (
       });
 
       phaseChildrenAccumulator.updateParentExamBoardsOnPhaseChild({
-        parentSlug: parentSubjectSlug,
+        parentSlug: subjectSlug,
         parentTitle: subject_parent ?? subject_slug,
         href: parentHref,
         nonCurriculum: Boolean(programme.features.non_curriculum),
@@ -351,7 +350,6 @@ const getSubjectsByPhase = (
       subject: {
         slug: subject_slug,
         pathwaySlug,
-        programmeSlug: programme.programme_slug,
       },
       phaseSlug: phaseSlugForHref,
       curriculumPhaseOptionsSubjects: curriculumPhaseOptionsWithoutCore,
@@ -515,7 +513,6 @@ const getKeystages = (
         const href = getTeachersSubjectNavHref({
           subject: {
             slug: subjectSlug,
-            programmeSlug,
             pathwaySlug,
           },
           keyStageSlug: ks.slug,

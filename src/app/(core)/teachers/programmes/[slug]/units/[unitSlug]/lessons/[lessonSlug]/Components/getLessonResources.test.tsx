@@ -26,14 +26,11 @@ const mockBrowsePathwayData: AnalyticsBrowseData = {
   lessonReleaseDate: "2024-09-29T14:00:00.000Z",
 };
 
-const mockTrackMediaClipsButtonClicked = jest.fn();
-
 const defaultTestProps = () => ({
   browsePathwayData: mockBrowsePathwayData,
   data: teachersLessonOverviewFixture(),
   copyrightState: defaultCopyrightRequirements,
   isMathJaxLesson: false,
-  trackMediaClipsButtonClicked: mockTrackMediaClipsButtonClicked,
   contentRestricted: false,
 });
 
