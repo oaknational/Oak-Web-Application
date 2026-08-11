@@ -1,6 +1,6 @@
 const {
   isFeatureFlagEnabledStatic,
-} = require("@/utils/featureFlagChecks/static");
+} = require("./src/utils/featureFlagChecks/static");
 // Relative URLs used by pa11y and percy
 
 // Commented out urls have pa11y errors to be fixed in this ticket - https://github.com/oaknational/Oak-Web-Application/issues/1693

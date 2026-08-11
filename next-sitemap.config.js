@@ -2,7 +2,7 @@ const path = require("node:path/posix");
 
 const {
   isFeatureFlagEnabledStatic,
-} = require("@/utils/featureFlagChecks/static");
+} = require("./src/utils/featureFlagChecks/static");
 
 // SITEMAP_BASE_URL is written to the .env file during next.config.js execution.
 const sitemapBaseUrl = process.env.SITEMAP_BASE_URL;
