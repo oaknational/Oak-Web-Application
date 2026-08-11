@@ -50,4 +50,5 @@ export const resourceFormValuesSchema = z.object({
   resources: z.array(z.string()).min(1, {
     error: () => "Select at least one resource to continue",
   }),
+  hideYearGroup: z.union([z.literal("show"), z.literal("hide")]).optional(),
 });

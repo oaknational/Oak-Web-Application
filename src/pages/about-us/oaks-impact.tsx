@@ -17,7 +17,7 @@ import CMSClient from "@/node-lib/cms";
 import { OaksImpactPage } from "@/common-lib/cms-types";
 import { OaksImpactSchoolQuotesSection } from "@/components/GenericPagesComponents/OaksImpactSchoolQuotesSection";
 import { OaksImpactHeader } from "@/components/GenericPagesComponents/OaksImpactHeader";
-import { isFeatureFlagEnabled } from "@/utils/featureFlagServer";
+import { isFeatureFlagEnabledServer } from "@/utils/featureFlagChecks/server";
 
 export type OaksImpactPageProps = {
   topNav: TopNavProps;
@@ -57,7 +57,7 @@ const OaksImpact: NextPage<OaksImpactPageProps> = ({ topNav, pageData }) => {
 };
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
-  const isImpactPageEnabled = await isFeatureFlagEnabled(
+  const isImpactPageEnabled = await isFeatureFlagEnabledServer(
     context,
     "oaks-impact",
   );
