@@ -35,7 +35,7 @@ export function OaksImpactStats(props: Readonly<OaksImpactStatsProps>) {
               <OakHeading
                 tag={"h2"}
                 $color={"text-primary"}
-                $font={"heading-3"}
+                $font={["heading-5", "heading-3", "heading-3"]}
               >
                 {props.textBlock.title}
               </OakHeading>
@@ -101,7 +101,11 @@ export function OaksImpactStats(props: Readonly<OaksImpactStatsProps>) {
                       >
                         <OakBox
                           $color={"text-primary"}
-                          $font={"heading-light-1"}
+                          $font={[
+                            "heading-light-3",
+                            "heading-light-3",
+                            "heading-light-1",
+                          ]}
                         >
                           {item.heading}
                         </OakBox>

@@ -19,7 +19,7 @@ exports[`OaksImpactStats renders correctly 1`] = `
               class="sc-aXZVg sc-gEvEer jPvJsJ daEtut"
             >
               <h2
-                class="sc-eldPxv epUAyb"
+                class="sc-eldPxv cIrFKd"
               >
                 Oak is now used in 72% of schools
               </h2>
@@ -103,7 +103,7 @@ exports[`OaksImpactStats renders correctly 1`] = `
                   class="sc-aXZVg sc-gEvEer kBnJtM cQXbIi"
                 >
                   <div
-                    class="sc-aXZVg gFNIew"
+                    class="sc-aXZVg gndKVA"
                   >
                     200,000
                   </div>
@@ -145,7 +145,7 @@ exports[`OaksImpactStats renders correctly 1`] = `
                   class="sc-aXZVg sc-gEvEer kBnJtM cQXbIi"
                 >
                   <div
-                    class="sc-aXZVg gFNIew"
+                    class="sc-aXZVg gndKVA"
                   >
                     85%
                   </div>
@@ -187,7 +187,7 @@ exports[`OaksImpactStats renders correctly 1`] = `
                   class="sc-aXZVg sc-gEvEer kBnJtM cQXbIi"
                 >
                   <div
-                    class="sc-aXZVg gFNIew"
+                    class="sc-aXZVg gndKVA"
                   >
                     92%
                   </div>

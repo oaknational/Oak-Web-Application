@@ -682,7 +682,7 @@ exports[`pages/about-us/oaks-impact.tsx renders title when feature flag is enabl
                     class="sc-aXZVg sc-gEvEer jPvJsJ daEtut"
                   >
                     <h2
-                      class="sc-eldPxv epUAyb"
+                      class="sc-eldPxv cIrFKd"
                     >
                       Oaks Impact stats heading
                     </h2>
