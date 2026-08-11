@@ -1,3 +1,10 @@
+# [1.1154.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1153.0...v1.1154.0) (2026-08-11)
+
+
+### Features
+
+* merge avo main branch ([1608920](https://github.com/oaknational/Oak-Web-Application/commit/16089204e5150a55393a5d6041b40116afa0f195))
+
 # [1.1153.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1152.1...v1.1153.0) (2026-08-11)
 
 
