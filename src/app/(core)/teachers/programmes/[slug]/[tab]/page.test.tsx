@@ -11,8 +11,9 @@ import { createUnit } from "@/fixtures/curriculum/unit";
 import { curriculumOverviewMVFixture } from "@/node-lib/curriculum-api-2023/fixtures/curriculumOverview.fixture";
 import curriculumPhaseOptionsFixture from "@/node-lib/curriculum-api-2023/fixtures/curriculumPhaseOptions.fixture";
 import { filterValidCurriculumPhaseOptions } from "@/pages-helpers/curriculum/docx/tab-helpers";
-import { isFeatureFlagEnabled } from "@/utils/featureFlagServer";
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
+import { isFeatureFlagEnabledServer } from "@/utils/featureFlagChecks/server";
+import { CurriculumSelectionSlugs } from "@/utils/curriculum/slugs";
 
 const defaultParams = new URLSearchParams("");
 const mockUseSearchParams = jest.fn(() => defaultParams);
@@ -37,8 +38,8 @@ jest.mock("next/navigation", () => {
   };
 });
 
-jest.mock("@/utils/featureFlagServer", () => ({
-  isFeatureFlagEnabled: jest.fn(() => false),
+jest.mock("@/utils/featureFlagChecks/server", () => ({
+  isFeatureFlagEnabledServer: jest.fn(() => false),
 }));
 
 jest.mock("next/headers", () => ({
@@ -305,9 +306,11 @@ describe("Programme page tabs", () => {
       ks4OptionFilterDimensions: {},
     });
 
-    (isFeatureFlagEnabled as jest.Mock).mockImplementation((_cookies, flag) => {
-      return flag === "implementation-guides" ? true : false;
-    });
+    (isFeatureFlagEnabledServer as jest.Mock).mockImplementation(
+      (_cookies, flag) => {
+        return flag === "implementation-guides" ? true : false;
+      },
+    );
 
     const { container } = renderWithProviders()(
       (await ProgrammePageTabs({
@@ -377,7 +380,7 @@ describe("generateMetadata", () => {
         subjectSlug: "maths",
         phaseSlug: "primary",
         ks4OptionSlug: null,
-      },
+      } satisfies CurriculumSelectionSlugs,
     };
 
     jest.mocked(getSubjectPhaseOptions).mockResolvedValue(mockSubjectData);
@@ -431,7 +434,7 @@ describe("generateMetadata", () => {
         subjectSlug: "maths",
         phaseSlug: "primary",
         ks4OptionSlug: null,
-      },
+      } satisfies CurriculumSelectionSlugs,
     };
 
     jest.mocked(getSubjectPhaseOptions).mockResolvedValue(mockSubjectData);
@@ -486,9 +489,8 @@ describe("generateMetadata", () => {
       subjectPhaseKeystageSlugs: {
         subjectSlug: "computing",
         phaseSlug: "secondary",
-        examboardSlug: "aqa",
         ks4OptionSlug: null,
-      },
+      } satisfies CurriculumSelectionSlugs,
     };
     jest.mocked(getSubjectPhaseOptions).mockResolvedValue(mockSubjectData);
 
@@ -527,7 +529,7 @@ describe("generateMetadata", () => {
         subjects: filterValidCurriculumPhaseOptions(
           curriculumPhaseOptionsFixture(),
         ),
-        tab: "units" as const,
+        tab: "units",
       },
       subjectPhaseKeystageSlugs: {
         subjectSlug: "maths",
@@ -558,7 +560,7 @@ describe("generateMetadata", () => {
         subjectSlug: "maths",
         phaseSlug: "secondary",
         ks4OptionSlug: null,
-      },
+      } satisfies CurriculumSelectionSlugs,
     };
 
     beforeEach(() => {

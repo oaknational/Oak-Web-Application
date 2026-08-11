@@ -15,23 +15,22 @@ import {
 } from "@/utils/mockLinkClick";
 import { ServicePolicyMap } from "@/browser-lib/cookie-consent/ServicePolicyMap";
 import type { LessonListSchema } from "@/node-lib/curriculum-api-2023/shared.schema";
-import { getProgrammeStateForLesson } from "@/context/TeacherBrowseAnalytics/utils/getProgrammeState";
-import teachersLessonOverviewFixture from "@/node-lib/curriculum-api-2023/fixtures/teachersLessonOverview.fixture";
-import { TeacherBrowseAnalyticsStoreProvider } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
 
 globalThis.fetch = jest.fn().mockResolvedValue({ ok: true });
 
 const onwardContentSelected = jest.fn();
 
-jest.mock("@/context/Analytics/useAnalytics", () => ({
-  __esModule: true,
-  default: () => ({
-    track: {
+jest.mock(
+  "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider",
+  () => ({
+    ...jest.requireActual(
+      "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider",
+    ),
+    useTeacherBrowseAnalytics: () => ({
       onwardContentSelected,
-    },
-    getSessionId: jest.fn(),
+    }),
   }),
-}));
+);
 
 const mockGetConsent = jest.fn();
 
@@ -91,20 +90,11 @@ const baseLesson: DownloadSuccessViewProps["lesson"] = {
   unitvariantId: 1,
 };
 
-const baseProps = teachersLessonOverviewFixture();
-const programmeState = getProgrammeStateForLesson(baseProps);
-
 const renderDownloadSuccessView = (
   props?: Partial<DownloadSuccessViewProps>,
 ) => {
   return renderWithProviders()(
-    <TeacherBrowseAnalyticsStoreProvider
-      programmeState={{
-        programmeState,
-      }}
-    >
-      <DownloadSuccessView lesson={baseLesson} {...props} />
-    </TeacherBrowseAnalyticsStoreProvider>,
+    <DownloadSuccessView lesson={baseLesson} {...props} />,
   );
 };
 
@@ -164,13 +154,7 @@ describe("DownloadSuccessView", () => {
     );
     expect(onwardContentSelected).toHaveBeenCalledTimes(1);
     expect(onwardContentSelected).toHaveBeenCalledWith({
-      lessonName: baseLesson.lessonTitle,
-      unitName: baseLesson.unitTitle,
-      unitSlug: baseLesson.unitSlug,
-      lessonSlug: baseLesson.lessonSlug,
       onwardIntent: "view-lesson",
-      lessonReleaseCohort: "2023-2026",
-      lessonReleaseDate: baseLesson.lessonReleaseDate,
     });
   });
 
