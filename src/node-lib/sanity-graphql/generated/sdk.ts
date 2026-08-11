@@ -3380,7 +3380,6 @@ export type OaksImpactPageHeader = {
   _key?: Maybe<Scalars['String']['output']>;
   _type?: Maybe<Scalars['String']['output']>;
   introText?: Maybe<Scalars['String']['output']>;
-  transcript?: Maybe<Scalars['String']['output']>;
   video?: Maybe<Video>;
   videoDescription?: Maybe<Scalars['String']['output']>;
 };
@@ -3389,7 +3388,6 @@ export type OaksImpactPageHeaderFilter = {
   _key?: InputMaybe<StringFilter>;
   _type?: InputMaybe<StringFilter>;
   introText?: InputMaybe<StringFilter>;
-  transcript?: InputMaybe<StringFilter>;
   video?: InputMaybe<VideoFilter>;
   videoDescription?: InputMaybe<StringFilter>;
 };
@@ -3398,7 +3396,6 @@ export type OaksImpactPageHeaderSorting = {
   _key?: InputMaybe<SortOrder>;
   _type?: InputMaybe<SortOrder>;
   introText?: InputMaybe<SortOrder>;
-  transcript?: InputMaybe<SortOrder>;
   videoDescription?: InputMaybe<SortOrder>;
 };
 
@@ -5908,8 +5905,10 @@ export type Video = Document & {
   /** Date the document was last modified */
   _updatedAt?: Maybe<Scalars['DateTime']['output']>;
   fieldForCaptionsDoNotUse?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
+  /** Used to generate the in-video captions and the text transcript that appears beneath the video. */
   googleDriveURL?: Maybe<Scalars['String']['output']>;
   title?: Maybe<Scalars['String']['output']>;
+  transcriptRaw?: Maybe<Scalars['JSON']['output']>;
   video?: Maybe<MuxVideo>;
 };
 

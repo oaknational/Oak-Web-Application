@@ -120,6 +120,8 @@ const defaultProps = {
     examboardTitle: null,
     nonCurriculum: false,
   },
+  implementationGuides: {},
+  featureFlags: {},
 };
 const renderComponent = (overrides: Partial<ProgrammeDownloadsProps>) => {
   return render(<ProgrammeDownloads {...defaultProps} {...overrides} />);
