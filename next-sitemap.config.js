@@ -1,5 +1,9 @@
 const path = require("node:path/posix");
 
+const {
+  isFeatureFlagEnabledStatic,
+} = require("@/utils/featureFlagChecks/static");
+
 // SITEMAP_BASE_URL is written to the .env file during next.config.js execution.
 const sitemapBaseUrl = process.env.SITEMAP_BASE_URL;
 if (!sitemapBaseUrl || sitemapBaseUrl === "undefined") {
@@ -29,7 +33,9 @@ const serversideSitemapUrls = serversideSitemapPaths.map(
 const additionalAboutUsPaths = [
   "/about-us/who-we-are",
   "/about-us/oaks-curricula",
-  "/about-us/oaks-impact",
+  ...(isFeatureFlagEnabledStatic("oaks-impact")
+    ? ["/about-us/oaks-impact"]
+    : []),
   "/about-us/meet-the-team",
   "/about-us/get-involved",
 ];

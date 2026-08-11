@@ -1,3 +1,6 @@
+const {
+  isFeatureFlagEnabledStatic,
+} = require("@/utils/featureFlagChecks/static");
 // Relative URLs used by pa11y and percy
 
 // Commented out urls have pa11y errors to be fixed in this ticket - https://github.com/oaknational/Oak-Web-Application/issues/1693
@@ -14,7 +17,12 @@ function getDeploymentTestUrls() {
     // About Us pages
     "/about-us/who-we-are",
     "/about-us/oaks-curricula",
-    "/about-us/oaks-impact",
+    ...(isFeatureFlagEnabledStatic("oaks-impact")
+      ? [
+          "/about-us/oaks-impact",
+          "/about-us/case-studies/tackling-blank-page-syndrome-with-aila",
+        ]
+      : []),
     "/about-us/case-studies/tackling-blank-page-syndrome-with-aila",
     "/about-us/meet-the-team",
     "/about-us/meet-the-team/john-roberts?section=leadership",
