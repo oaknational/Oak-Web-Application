@@ -3,6 +3,7 @@ import {
   OakGridArea,
   OakInlineBanner,
   OakLink,
+  OakBox,
 } from "@oaknational/oak-components";
 
 import { resolveOakHref } from "@/common-lib/urls";
@@ -30,20 +31,21 @@ export function ImplementationGuideCallout({
       <OakGridArea $colStart={[1, 3, 3]} $colSpan={[12, 8, 8]}>
         <OakInlineBanner
           isOpen
-          title="Information"
           type="info"
           variant="regular"
           message={`Leading your school's use of Oak's ${subjectTitle} ${phaseTitle} curriculum? Download our implementation toolkit.`}
           cta={
-            <OakLink
-              href={linkHref}
-              iconName="chevron-right"
-              isTrailingIcon
-              variant="secondary"
-              aria-label="Download our implementation toolkit"
-            >
-              Download
-            </OakLink>
+            <OakBox $whiteSpace="nowrap">
+              <OakLink
+                href={linkHref}
+                iconName="chevron-right"
+                isTrailingIcon
+                variant="secondary"
+                aria-label="Download our implementation toolkit"
+              >
+                Download
+              </OakLink>
+            </OakBox>
           }
         />
       </OakGridArea>
