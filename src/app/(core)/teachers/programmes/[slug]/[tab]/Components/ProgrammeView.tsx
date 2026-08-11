@@ -188,6 +188,9 @@ export const ProgrammeView = ({
             tabs={TAB_NAMES.map((tab) => ({
               label: tab,
               type: "link",
+              showPromo:
+                featureFlags["implementation-guides"] &&
+                tabNameToSlug[tab] === "download",
               href: resolveOakHref({
                 page: "teacher-programme",
                 subjectPhaseSlug,
