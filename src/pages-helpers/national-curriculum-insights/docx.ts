@@ -146,6 +146,7 @@ const moduleXml = (module: NationalCurriculumInsightsModule): string => {
         .join("");
     case "NationalCurriculumInsightsPromotionalHeadingSection":
       return paragraph(module.heading, "Heading2");
+    case "NationalCurriculumInsightsPhaseNavigationSection":
     case "NationalCurriculumInsightsSubjectNavigationSection":
     case "NationalCurriculumInsightsNewsletterSection":
     case "NationalCurriculumInsightsDownloadSection":

@@ -18,12 +18,19 @@ import {
   OakPrimaryButton,
   OakQuote,
   OakSubjectIconButton,
+  type OakUiRoleToken,
+  parseColor,
 } from "@oaknational/oak-components";
 import Link from "next/link";
 import { FormEvent, useId, useState } from "react";
 import styled from "styled-components";
 
 import type { NationalCurriculumInsightsRouteData } from "./getNationalCurriculumInsightsData";
+import {
+  nationalCurriculumInsightsKeyStageIllustration,
+  nationalCurriculumInsightsPhaseIllustration,
+  nationalCurriculumInsightsPresentation,
+} from "./nationalCurriculumInsightsPresentation";
 
 import { nationalCurriculumInsightsKeyStageSlug } from "@/common-lib/cms-types/nationalCurriculumInsights";
 import {
@@ -114,24 +121,13 @@ const OverviewImage = styled(OakBox)<{ $isKeyStage: boolean }>`
   }
 `;
 
-const overviewBackground = (data: NationalCurriculumInsightsRouteData) => {
-  switch (data.route.kind) {
-    case "subjectPhase":
-      return "bg-decorative1-very-subdued" as const;
-    case "subjectPhaseKeyStage":
-      return "bg-decorative3-very-subdued" as const;
-    case "hub":
-    case "subject":
-      return "bg-decorative2-subdued" as const;
-  }
-};
-
 export const NationalCurriculumInsightsOverview = ({
   section,
   data,
 }: ContextualSectionProps<"NationalCurriculumInsightsOverviewSection">) => {
   const headingId = useId();
   const isKeyStage = data.route.kind === "subjectPhaseKeyStage";
+  const presentation = nationalCurriculumInsightsPresentation(data.route);
 
   return (
     <OakBox
@@ -142,15 +138,7 @@ export const NationalCurriculumInsightsOverview = ({
         $isKeyStage={isKeyStage}
         as="section"
         $mh="auto"
-        $background={overviewBackground(data)}
-        style={{
-          backgroundColor:
-            data.route.kind === "subjectPhase"
-              ? "#ebfbeb"
-              : data.route.kind === "subjectPhaseKeyStage"
-                ? "#e3e9fb"
-                : "#d7f1ef",
-        }}
+        $background={presentation.overviewBackground}
         $pa={["spacing-24", "spacing-40"]}
         $borderRadius="border-radius-l"
         aria-labelledby={headingId}
@@ -175,19 +163,16 @@ export const NationalCurriculumInsightsOverview = ({
             components={portableTextComponents}
           />
         </OverviewCopy>
-        <OverviewImage
-          $isKeyStage={isKeyStage}
-          aria-hidden={section.image.isPresentational || undefined}
-        >
+        <OverviewImage $isKeyStage={isKeyStage} aria-hidden="true">
           <OakImage
-            src={imageUrl(
-              section.image,
-              "/images/national-curriculum-insights/overview.png",
-            )}
-            alt={imageAlt(section.image)}
+            src={
+              presentation.illustration ??
+              "/images/national-curriculum-insights/overview.png"
+            }
+            alt=""
             $width="100%"
             $height="100%"
-            $objectFit="cover"
+            $objectFit="contain"
           />
         </OverviewImage>
       </OverviewPanel>
@@ -270,12 +255,12 @@ export const NationalCurriculumInsightsPhaseCards = ({
                   card.phase,
                 )}
               >
-                <JumpCardImage
-                  aria-hidden={card.image?.isPresentational || undefined}
-                >
+                <JumpCardImage aria-hidden="true">
                   <OakImage
-                    src={imageUrl(card.image)}
-                    alt={imageAlt(card.image)}
+                    src={nationalCurriculumInsightsPhaseIllustration(
+                      card.phase,
+                    )}
+                    alt=""
                     $width="100%"
                     $height="100%"
                     $objectFit="contain"
@@ -345,12 +330,12 @@ export const NationalCurriculumInsightsKeyStageCards = ({
                   nationalCurriculumInsightsKeyStageSlug(card.keyStage),
                 )}
               >
-                <JumpCardImage
-                  aria-hidden={card.image?.isPresentational || undefined}
-                >
+                <JumpCardImage aria-hidden="true">
                   <OakImage
-                    src={imageUrl(card.image)}
-                    alt={imageAlt(card.image)}
+                    src={nationalCurriculumInsightsKeyStageIllustration(
+                      card.keyStage,
+                    )}
+                    alt=""
                     $width="100%"
                     $height="100%"
                     $objectFit="contain"
@@ -394,13 +379,13 @@ const PromotionalHeadingFrame = styled(OakFlex)<{
 
 const PromotionalHeading = styled(OakFlex)<{
   $variant: "explorer" | "keyStage";
+  $accent: OakUiRoleToken;
 }>`
   box-sizing: border-box;
   width: ${({ $variant }) =>
     $variant === "keyStage" ? "max-content" : "100%"};
   min-height: 64px;
-  background: ${({ $variant }) =>
-    $variant === "keyStage" ? "#e3e9fb" : "#b8e5e2"};
+  background: ${({ $accent }) => parseColor($accent)};
   transform: rotate(-1.5deg);
 
   h2 {
@@ -416,8 +401,10 @@ const PromotionalHeading = styled(OakFlex)<{
 
 export const NationalCurriculumInsightsPromotionalHeading = ({
   section,
-}: SectionProps<"NationalCurriculumInsightsPromotionalHeadingSection">) => {
+  data,
+}: ContextualSectionProps<"NationalCurriculumInsightsPromotionalHeadingSection">) => {
   const variant = section.variant ?? "explorer";
+  const presentation = nationalCurriculumInsightsPresentation(data.route);
 
   return (
     <OakBox
@@ -432,6 +419,7 @@ export const NationalCurriculumInsightsPromotionalHeading = ({
       >
         <PromotionalHeading
           $variant={variant}
+          $accent={presentation.accent}
           $alignItems="center"
           $ph="spacing-8"
           $pv="spacing-4"
@@ -475,6 +463,12 @@ const HubSubjectItem = styled.li`
   > * {
     width: 100%;
     height: 100%;
+  }
+
+  a {
+    box-sizing: border-box;
+    width: 100%;
+    padding-inline: 8px;
   }
 `;
 
@@ -590,6 +584,7 @@ export const NationalCurriculumInsightsSubjectNavigation = ({
                       <HubSubjectItem key={`${phase}-${subject.slug}`}>
                         <OakSubjectIconButton
                           variant="vertical"
+                          innerWidth="100%"
                           element={Link}
                           phase={phase as Phase}
                           subjectIconName={normaliseSubjectIcon(subject)}
@@ -1062,9 +1057,13 @@ const NewsletterCopy = styled(OakFlex)`
 const NewsletterForm = styled(OakFlex)`
   width: 100%;
 
-  input,
+  input:not([type="checkbox"]),
   select {
     min-height: 64px;
+  }
+
+  input[type="checkbox"] {
+    border-radius: 0;
   }
 
   button {
@@ -1247,14 +1246,8 @@ export const NationalCurriculumInsightsNewsletter = ({
   );
 };
 
-const FaqSection = styled(OakBox)<{ $isHub: boolean }>`
+const FaqSection = styled(OakBox)`
   box-sizing: border-box;
-
-  @media (${getMediaQuery("desktop")}) {
-    height: ${({ $isHub }) => ($isHub ? "804px" : "541px")};
-    display: flex;
-    align-items: center;
-  }
 `;
 
 const FaqInner = styled(OakBox)`
@@ -1278,13 +1271,10 @@ const FaqAccordionList = styled(OakFlex)`
 
 export const NationalCurriculumInsightsFaq = ({
   section,
-  data,
-}: ContextualSectionProps<"NationalCurriculumInsightsFaqSection">) => (
+}: SectionProps<"NationalCurriculumInsightsFaqSection">) => (
   <FaqSection
-    $isHub={data.route.kind === "hub"}
     as="section"
     $background="bg-decorative2-very-subdued"
-    style={{ backgroundColor: "#e7f6f5" }}
     $ph={["spacing-20", "spacing-40"]}
     $pv={["spacing-48", "spacing-64"]}
     aria-labelledby="national-curriculum-insights-faq-heading"
@@ -1304,7 +1294,7 @@ export const NationalCurriculumInsightsFaq = ({
           <OakOutlineAccordion
             key={item.question}
             id={`national-curriculum-insights-faq-${index}`}
-            initialOpen={item.initiallyExpanded ?? false}
+            initialOpen={index === 0}
             header={
               <OakHeading tag="h3" $font="heading-6">
                 {item.question}

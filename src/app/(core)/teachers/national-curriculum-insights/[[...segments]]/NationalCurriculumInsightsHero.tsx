@@ -13,6 +13,7 @@ import {
 import styled from "styled-components";
 
 import type { NationalCurriculumInsightsRouteData } from "./getNationalCurriculumInsightsData";
+import { nationalCurriculumInsightsPresentation } from "./nationalCurriculumInsightsPresentation";
 
 import type { NationalCurriculumInsightsHeroSection } from "@/common-lib/cms-types/nationalCurriculumInsights";
 import {
@@ -188,18 +189,6 @@ const getHeroPageKind = (
   }
 };
 
-const heroBackground = (pageKind: HeroPageKind) => {
-  switch (pageKind) {
-    case "phase":
-      return "bg-decorative1-subdued" as const;
-    case "keyStage":
-      return "bg-decorative3-very-subdued" as const;
-    case "hub":
-    case "subject":
-      return "bg-decorative2-very-subdued" as const;
-  }
-};
-
 const optionalImageUrl = (
   image: NationalCurriculumInsightsHeroSection["authorImage"],
 ) => (image?.asset?.url ? getProxiedSanityAssetUrl(image.asset.url) : null);
@@ -285,18 +274,18 @@ const HubHeroImage = ({
     return null;
   }
 
-  const imageUrl = section.image.asset?.url
+  const imageUrl = section.image?.asset?.url
     ? getProxiedSanityAssetUrl(section.image.asset.url)
     : DEFAULT_HERO_IMAGE;
-  const imageAlt = section.image.isPresentational
+  const imageAlt = section.image?.isPresentational
     ? ""
-    : (section.image.altText ?? "");
+    : (section.image?.altText ?? "");
 
   return (
     <HeroImageContainer
       $order={[1, 1, 2]}
       $overflow="hidden"
-      aria-hidden={section.image.isPresentational ? true : undefined}
+      aria-hidden={section.image?.isPresentational ? true : undefined}
     >
       <OakImage
         src={imageUrl}
@@ -320,20 +309,13 @@ export const NationalCurriculumInsightsHero = ({
   const isHub = data.route.kind === "hub";
   const pageKind = getHeroPageKind(data);
   const breadcrumbs = heroBreadcrumbs(data);
+  const presentation = nationalCurriculumInsightsPresentation(data.route);
 
   return (
     <HeroSection
       $pageKind={pageKind}
       as="section"
-      $background={heroBackground(pageKind)}
-      style={{
-        backgroundColor:
-          pageKind === "phase"
-            ? "#dff9de"
-            : pageKind === "keyStage"
-              ? "#bdcdf5"
-              : "#e7f6f5",
-      }}
+      $background={presentation.heroBackground}
       $ph={["spacing-20", "spacing-40", "spacing-40"]}
       $pv={["spacing-40", "spacing-40", "spacing-64"]}
       data-testid="national-curriculum-insights-hero"

@@ -95,10 +95,10 @@ describe("National Curriculum Insights sections", () => {
             __typename: "NationalCurriculumInsightsOverviewSection",
             heading: "Curriculum overview",
             bodyPortableText: body,
-            image: contentImage,
           })}
         />
         <NationalCurriculumInsightsPromotionalHeading
+          data={data}
           section={moduleOf({
             __typename: "NationalCurriculumInsightsPromotionalHeadingSection",
             heading: "A clearer curriculum",
@@ -197,7 +197,6 @@ describe("National Curriculum Insights sections", () => {
           })}
         />
         <NationalCurriculumInsightsFaq
-          data={data}
           section={moduleOf({
             __typename: "NationalCurriculumInsightsFaqSection",
             heading: "Frequently asked questions",
@@ -205,12 +204,10 @@ describe("National Curriculum Insights sections", () => {
               {
                 question: "When will the curriculum change?",
                 answerPortableText: body,
-                initiallyExpanded: true,
               },
               {
                 question: "Where can I find support?",
                 answerPortableText: body,
-                initiallyExpanded: null,
               },
             ],
           })}
@@ -250,6 +247,14 @@ describe("National Curriculum Insights sections", () => {
     expect(
       screen.getByRole("heading", { name: "Frequently asked questions" }),
     ).toBeInTheDocument();
+    expect(
+      screen.getByRole("button", {
+        name: /When will the curriculum change\?/,
+      }),
+    ).toHaveAttribute("aria-expanded", "true");
+    expect(
+      screen.getByRole("button", { name: /Where can I find support\?/ }),
+    ).toHaveAttribute("aria-expanded", "false");
 
     fireEvent.change(screen.getByLabelText("Role"), {
       target: { value: "Teacher" },
@@ -278,13 +283,11 @@ describe("National Curriculum Insights sections", () => {
             {
               phase: "primary",
               heading: "Primary science",
-              image: null,
               linkLabel: "Explore Primary",
             },
             {
               phase: "secondary",
               heading: "Secondary science",
-              image: contentImage,
               linkLabel: "Explore Secondary",
             },
           ],
@@ -308,13 +311,11 @@ describe("National Curriculum Insights sections", () => {
             {
               keyStage: "KS1",
               heading: "Key stage 1 science",
-              image: contentImage,
               linkLabel: "Explore key stage 1",
             },
             {
               keyStage: "KS4",
               heading: "Key stage 4 science",
-              image: null,
               linkLabel: "Explore key stage 4",
             },
           ],
@@ -362,7 +363,6 @@ describe("National Curriculum Insights sections", () => {
             {
               keyStage: "KS1",
               heading: "Key stage 1 science",
-              image: null,
               linkLabel: "Explore key stage 1",
             },
           ],
@@ -380,7 +380,6 @@ describe("National Curriculum Insights sections", () => {
             {
               phase: "primary",
               heading: "Primary science",
-              image: null,
               linkLabel: "Explore Primary",
             },
           ],

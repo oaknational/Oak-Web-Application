@@ -1,4 +1,4 @@
-fragment NationalCurriculumInsightsModules on NationalCurriculumInsightsFaqSectionOrNationalCurriculumInsightsHeroSectionOrNationalCurriculumInsightsImageTextSectionOrNationalCurriculumInsightsKeyStageCardsSectionOrNationalCurriculumInsightsNewsletterSectionOrNationalCurriculumInsightsOverviewSectionOrNationalCurriculumInsightsPhaseCardsSectionOrNationalCurriculumInsightsPromotionalHeadingSectionOrNationalCurriculumInsightsQuoteSectionOrNationalCurriculumInsightsRichTextSectionOrNationalCurriculumInsightsSubjectNavigationSectionOrNationalCurriculumInsightsTableSectionOrNationalCurriculumInsightsVideoCardsSection {
+fragment NationalCurriculumInsightsModules on NationalCurriculumInsightsDownloadSectionOrNationalCurriculumInsightsFaqSectionOrNationalCurriculumInsightsHeroSectionOrNationalCurriculumInsightsImageTextSectionOrNationalCurriculumInsightsKeyStageCardsSectionOrNationalCurriculumInsightsNewsletterSectionOrNationalCurriculumInsightsOverviewSectionOrNationalCurriculumInsightsPhaseCardsSectionOrNationalCurriculumInsightsPhaseNavigationSectionOrNationalCurriculumInsightsPromotionalHeadingSectionOrNationalCurriculumInsightsQuoteSectionOrNationalCurriculumInsightsRichTextSectionOrNationalCurriculumInsightsSubjectNavigationSectionOrNationalCurriculumInsightsTableSectionOrNationalCurriculumInsightsVideoCardsSection {
   __typename
   ... on NationalCurriculumInsightsHeroSection {
     heading
@@ -27,28 +27,12 @@ fragment NationalCurriculumInsightsModules on NationalCurriculumInsightsFaqSecti
   ... on NationalCurriculumInsightsOverviewSection {
     heading
     bodyPortableText: bodyRaw
-    image {
-      altText
-      isPresentational
-      asset {
-        _id
-        url
-      }
-    }
   }
   ... on NationalCurriculumInsightsPhaseCardsSection {
     cards {
       phase
       heading
       linkLabel
-      image {
-        altText
-        isPresentational
-        asset {
-          _id
-          url
-        }
-      }
     }
   }
   ... on NationalCurriculumInsightsKeyStageCardsSection {
@@ -56,19 +40,24 @@ fragment NationalCurriculumInsightsModules on NationalCurriculumInsightsFaqSecti
       keyStage
       heading
       linkLabel
-      image {
-        altText
-        isPresentational
-        asset {
-          _id
-          url
-        }
-      }
     }
   }
   ... on NationalCurriculumInsightsPromotionalHeadingSection {
     heading
     variant
+  }
+  ... on NationalCurriculumInsightsPhaseNavigationSection {
+    overviewLabel
+    primaryLabel
+    secondaryLabel
+  }
+  ... on NationalCurriculumInsightsDownloadSection {
+    barHeading
+    barCtaLabel
+    detailsHeading
+    downloadsHeading
+    downloadsIntroduction
+    downloadButtonLabel
   }
   ... on NationalCurriculumInsightsSubjectNavigationSection {
     phases
@@ -97,7 +86,6 @@ fragment NationalCurriculumInsightsModules on NationalCurriculumInsightsFaqSecti
     items {
       question
       answerPortableText: answerRaw
-      initiallyExpanded
     }
   }
   ... on NationalCurriculumInsightsRichTextSection {

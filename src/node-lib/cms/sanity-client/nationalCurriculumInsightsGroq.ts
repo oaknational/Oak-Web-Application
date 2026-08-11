@@ -26,6 +26,7 @@ const modulesProjection = `modules[]{
     _type == "nationalCurriculumInsightsPhaseCardsSection" => "NationalCurriculumInsightsPhaseCardsSection",
     _type == "nationalCurriculumInsightsKeyStageCardsSection" => "NationalCurriculumInsightsKeyStageCardsSection",
     _type == "nationalCurriculumInsightsPromotionalHeadingSection" => "NationalCurriculumInsightsPromotionalHeadingSection",
+    _type == "nationalCurriculumInsightsPhaseNavigationSection" => "NationalCurriculumInsightsPhaseNavigationSection",
     _type == "nationalCurriculumInsightsSubjectNavigationSection" => "NationalCurriculumInsightsSubjectNavigationSection",
     _type == "nationalCurriculumInsightsNewsletterSection" => "NationalCurriculumInsightsNewsletterSection",
     _type == "nationalCurriculumInsightsFaqSection" => "NationalCurriculumInsightsFaqSection",
@@ -39,6 +40,9 @@ const modulesProjection = `modules[]{
   heading,
   headingStyle,
   variant,
+  overviewLabel,
+  primaryLabel,
+  secondaryLabel,
   phases,
   primaryHeading,
   secondaryHeading,
@@ -72,11 +76,16 @@ const modulesProjection = `modules[]{
   role,
   videoUrl,
   duration,
-  image ${imageProjection},
+  "image": select(
+    _type in [
+      "nationalCurriculumInsightsHeroSection",
+      "nationalCurriculumInsightsImageTextSection",
+      "nationalCurriculumInsightsQuoteSection"
+    ] => image ${imageProjection}
+  ),
   items[]{
     question,
-    "answerPortableText": answer,
-    initiallyExpanded
+    "answerPortableText": answer
   },
   cards[]{
     phase,
@@ -86,7 +95,9 @@ const modulesProjection = `modules[]{
     linkLabel,
     videoUrl,
     duration,
-    image ${imageProjection}
+    "image": select(
+      ^._type == "nationalCurriculumInsightsVideoCardsSection" => image ${imageProjection}
+    )
   },
   table {
     rows[]{cells}

@@ -2,6 +2,9 @@ import { tryGetAssetPath } from "@sanity/asset-utils";
 
 import getBrowserConfig from "../../browser-lib/getBrowserConfig";
 
+export const normaliseSanityAssetCDNHost = (host: string) =>
+  host.replace(/^https?:\/\//i, "").replace(/\/+$/, "");
+
 /**
  *
  * @param url
@@ -21,7 +24,11 @@ function getProxiedSanityAssetUrl(url: string | null | undefined) {
     return url;
   }
 
-  return `https://${getBrowserConfig("sanityAssetCDNHost")}/${assetPath}`;
+  const assetCDNHost = normaliseSanityAssetCDNHost(
+    getBrowserConfig("sanityAssetCDNHost"),
+  );
+
+  return `https://${assetCDNHost}/${assetPath}`;
 }
 
 export default getProxiedSanityAssetUrl;

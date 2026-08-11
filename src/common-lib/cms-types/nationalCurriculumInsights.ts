@@ -77,7 +77,7 @@ const nationalCurriculumInsightsHeroSectionSchema = z.object({
   __typename: z.literal("NationalCurriculumInsightsHeroSection"),
   heading: z.string().min(1),
   bodyPortableText: portableTextSchema,
-  image: imageSchema,
+  image: imageSchema.nullable().optional(),
   authorName: z.string().min(1).nullable().optional(),
   authorRole: z.string().min(1).nullable().optional(),
   authorImage: imageSchema.nullable().optional(),
@@ -93,13 +93,11 @@ const nationalCurriculumInsightsOverviewSectionSchema = z.object({
   __typename: z.literal("NationalCurriculumInsightsOverviewSection"),
   heading: z.string().min(1),
   bodyPortableText: portableTextSchema,
-  image: imageSchema,
 });
 
 const nationalCurriculumInsightsPhaseCardSchema = z.object({
   phase: nationalCurriculumInsightsPhaseSchema,
   heading: z.string().min(1),
-  image: imageSchema.nullable().optional(),
   linkLabel: z.string().min(1),
 });
 
@@ -111,7 +109,6 @@ const nationalCurriculumInsightsPhaseCardsSectionSchema = z.object({
 const nationalCurriculumInsightsKeyStageCardSchema = z.object({
   keyStage: nationalCurriculumInsightsKeyStageSchema,
   heading: z.string().min(1),
-  image: imageSchema.nullable().optional(),
   linkLabel: z.string().min(1),
 });
 
@@ -124,6 +121,13 @@ const nationalCurriculumInsightsPromotionalHeadingSectionSchema = z.object({
   __typename: z.literal("NationalCurriculumInsightsPromotionalHeadingSection"),
   heading: z.string().min(1),
   variant: z.enum(["explorer", "keyStage"]).nullable().optional(),
+});
+
+const nationalCurriculumInsightsPhaseNavigationSectionSchema = z.object({
+  __typename: z.literal("NationalCurriculumInsightsPhaseNavigationSection"),
+  overviewLabel: z.string().min(1),
+  primaryLabel: z.string().min(1),
+  secondaryLabel: z.string().min(1),
 });
 
 const nationalCurriculumInsightsSubjectNavigationSectionSchema = z.object({
@@ -153,7 +157,6 @@ const nationalCurriculumInsightsFaqSectionSchema = z.object({
       z.object({
         question: z.string().min(1),
         answerPortableText: portableTextSchema,
-        initiallyExpanded: z.boolean().nullable().optional(),
       }),
     )
     .min(1),
@@ -226,6 +229,7 @@ export const nationalCurriculumInsightsModuleSchema = z.discriminatedUnion(
     nationalCurriculumInsightsPhaseCardsSectionSchema,
     nationalCurriculumInsightsKeyStageCardsSectionSchema,
     nationalCurriculumInsightsPromotionalHeadingSectionSchema,
+    nationalCurriculumInsightsPhaseNavigationSectionSchema,
     nationalCurriculumInsightsSubjectNavigationSectionSchema,
     nationalCurriculumInsightsNewsletterSectionSchema,
     nationalCurriculumInsightsFaqSectionSchema,
