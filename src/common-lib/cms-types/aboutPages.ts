@@ -236,17 +236,19 @@ export type AboutWorkWithUsPage = z.infer<
 >;
 
 export const fileSchema = z.object({
-  extension: z.string(),
-  size: z.number(),
-  url: z.string(),
+  asset: z.object({
+    extension: z.string(),
+    size: z.number(),
+    url: z.string(),
+  }),
 });
 
 export const implementationGuidesSchema = z.object({
-  curriculumQuality: fileSchema.optional(),
-  whatsIncluded: fileSchema.optional(),
-  assessment: fileSchema.optional(),
-  commonQuestions: fileSchema.optional(),
-  equipmentList: fileSchema.optional(),
+  curriculumQuality: fileSchema.optional().nullable(),
+  whatsIncluded: fileSchema.optional().nullable(),
+  assessment: fileSchema.optional().nullable(),
+  commonQuestions: fileSchema.optional().nullable(),
+  equipmentList: fileSchema.optional().nullable(),
 });
 
 export type ImplementationGuides = z.infer<typeof implementationGuidesSchema>;

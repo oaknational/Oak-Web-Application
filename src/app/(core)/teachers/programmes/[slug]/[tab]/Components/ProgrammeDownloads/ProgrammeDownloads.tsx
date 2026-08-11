@@ -1,5 +1,6 @@
 "use client";
 
+import prettyBytes from "pretty-bytes";
 import {
   OakBox,
   OakDownloadCard,
@@ -77,15 +78,23 @@ export const ProgrammeDownloads = ({
   const isLoading = onboardingStatus === "loading";
 
   const availableDownloadTypes = useMemo(() => {
-    return DOWNLOAD_TYPE_LABELS.map(({ id }) => id).filter((id) => {
-      if (id === "nationalCurriculum") {
-        return doUnitsHaveNc(
-          flatUnitsFromYearData(curriculumUnitsFormattedData.yearData),
+    return DOWNLOAD_TYPE_LABELS.filter(({ id, group }) => {
+      if (group === "curriculum") {
+        if (id === "nationalCurriculum") {
+          return doUnitsHaveNc(
+            flatUnitsFromYearData(curriculumUnitsFormattedData.yearData),
+          );
+        }
+        return true;
+      }
+      if (group === "implementation-guide") {
+        return (
+          implementationGuides &&
+          implementationGuides[id as keyof ImplementationGuides]
         );
       }
-      return true;
-    });
-  }, [curriculumUnitsFormattedData]);
+    }).map(({ id }) => id);
+  }, [curriculumUnitsFormattedData, implementationGuides]);
 
   const curriculumDownloadsWithLabels = DOWNLOAD_TYPE_LABELS.filter(
     ({ id, group }) => {
@@ -95,9 +104,7 @@ export const ProgrammeDownloads = ({
   const implementationGuideDownloadsWithLabels = DOWNLOAD_TYPE_LABELS.filter(
     ({ id, group }) => {
       return (
-        group === "implementation-guide" &&
-        implementationGuides &&
-        implementationGuides[id as keyof ImplementationGuides] !== undefined
+        group === "implementation-guide" && availableDownloadTypes.includes(id)
       );
     },
   );
@@ -422,6 +429,13 @@ export const ProgrammeDownloads = ({
                                   render={({
                                     field: { value: fieldValue, onChange },
                                   }) => {
+                                    const implementationGuide =
+                                      implementationGuides?.[
+                                        download.id as keyof ImplementationGuides
+                                      ];
+                                    const fileSize =
+                                      implementationGuide?.asset.size;
+
                                     return (
                                       <OakDownloadCard
                                         key={download.id}
@@ -433,6 +447,11 @@ export const ProgrammeDownloads = ({
                                         checked={fieldValue.includes(
                                           download.id,
                                         )}
+                                        fileSize={
+                                          fileSize
+                                            ? prettyBytes(fileSize)
+                                            : undefined
+                                        }
                                         format={download.fileExt}
                                         iconName={download.icon}
                                         onChange={resourceCardOnChangeHandler(

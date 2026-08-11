@@ -245,7 +245,8 @@ const getSanityClient = () => ({
   implementationGuides: getSingleton(
     sanityGraphqlApi.implementationGuides,
     implementationGuidesSchema,
-    (result) => result?.allCurriculumInfoPageOverview?.[0],
+    (result) =>
+      result?.allCurriculumInfoPageOverview?.[0]?.implementationGuides ?? {},
   ),
   oaksImpactCaseStudyPage: getSingleton(
     sanityGraphqlApi.oaksImpactCaseStudyPage,

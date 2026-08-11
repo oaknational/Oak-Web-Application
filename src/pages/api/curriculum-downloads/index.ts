@@ -258,10 +258,6 @@ export default async function handler(
 
   const mvRefreshTimeParsed = Number.parseInt(mvRefreshTime);
   const actualMvRefreshTime = await getMvRefreshTime();
-  const implementationGuides = await CMSClient.implementationGuides({
-    subjectTitle: subjectSlug,
-    phaseSlug,
-  });
 
   // Note: Disable this check to allow 'new' documents
   if (state === "new") {
@@ -297,6 +293,25 @@ export default async function handler(
     res.setHeader("Netlify-Vary", "query").redirect(307, redirectUrl);
     return;
   }
+
+  const data = await getData({
+    subjectSlug,
+    phaseSlug,
+    ks4OptionSlug,
+    state,
+    tierSlug,
+    childSubjectSlug,
+  });
+
+  if (data.notFound) {
+    res.status(404).end();
+    return;
+  }
+
+  const implementationGuides = await CMSClient.implementationGuides({
+    subjectTitle: data.combinedCurriculumData.subjectTitle,
+    phaseSlug,
+  });
 
   const allHandlers = [
     {
@@ -345,8 +360,9 @@ export default async function handler(
       return {
         type: type,
         handler: async () => {
-          if (implementationGuides?.[type]?.url) {
-            const res = await fetch(implementationGuides[type].url);
+          console.log({ implementationGuides });
+          if (implementationGuides?.[type]?.asset?.url) {
+            const res = await fetch(implementationGuides[type].asset.url);
             return new Uint8Array(await res.arrayBuffer());
           } else {
             throw new Error(`Implementation guide for ${type} not found`);
@@ -373,79 +389,61 @@ export default async function handler(
     return types.includes(type);
   });
 
-  const data = await getData({
-    subjectSlug,
-    phaseSlug,
-    ks4OptionSlug,
-    state,
-    tierSlug,
-    childSubjectSlug,
+  const promises = handlers.map(async ({ handler, getFilename }) => {
+    const buffer = Buffer.from(
+      await handler(
+        data.combinedCurriculumData,
+        {
+          subjectSlug: data.subjectSlug,
+          phaseSlug: data.phaseSlug,
+          keyStageSlug: data.phaseSlug,
+          ks4OptionSlug: data.ks4OptionSlug,
+          tierSlug,
+          childSubjectSlug,
+        },
+        data.ks4Options,
+      ),
+    );
+
+    const filename = getFilename(data);
+
+    return { filename, buffer };
   });
 
-  // FIXME: Poor use of types here
-  if (data.notFound === false) {
-    const promises = handlers.map(async ({ handler, getFilename }) => {
-      const buffer = Buffer.from(
-        await handler(
-          data.combinedCurriculumData,
-          {
-            subjectSlug: data.subjectSlug,
-            phaseSlug: data.phaseSlug,
-            keyStageSlug: data.phaseSlug,
-            ks4OptionSlug: data.ks4OptionSlug,
-            tierSlug,
-            childSubjectSlug,
-          },
-          data.ks4Options,
-        ),
-      );
+  const files = await Promise.all(promises);
 
-      const filename = getFilename(data);
-
-      return { filename, buffer };
+  let outputBuffer: Buffer;
+  let outputFileName: string;
+  if (files.length > 1) {
+    outputBuffer = await zipFromFiles(files);
+    outputFileName = getFilename("zip", {
+      subjectTitle: data.combinedCurriculumData.subjectTitle,
+      phaseTitle: data.combinedCurriculumData.phaseTitle,
+      examboardTitle: data.combinedCurriculumData?.examboardTitle,
+      childSubjectSlug,
+      tierSlug,
+      prefix: "Curriculum downloads",
+      suffix: generateHash([...types, actualMvRefreshTime].join("|")).slice(
+        0,
+        8,
+      ),
     });
-
-    const files = await Promise.all(promises);
-
-    let outputBuffer: Buffer;
-    let outputFileName: string;
-    if (files.length > 1) {
-      outputBuffer = await zipFromFiles(files);
-      outputFileName = getFilename("zip", {
-        subjectTitle: data.combinedCurriculumData.subjectTitle,
-        phaseTitle: data.combinedCurriculumData.phaseTitle,
-        examboardTitle: data.combinedCurriculumData?.examboardTitle,
-        childSubjectSlug,
-        tierSlug,
-        prefix: "Curriculum downloads",
-        suffix: generateHash([...types, actualMvRefreshTime].join("|")).slice(
-          0,
-          8,
-        ),
-      });
-    } else if (files.length === 1 && files[0]) {
-      outputBuffer = files[0].buffer;
-      outputFileName = files[0].filename;
-    } else {
-      throw new Error("Invalid file list");
-    }
-
-    res
-      .setHeader("content-type", "application/msword")
-      .setHeader(
-        "Cache-Control",
-        `public, durable, s-maxage=${s_maxage_seconds}, stale-while-revalidate=${stale_while_revalidate_seconds}`,
-      )
-      .setHeader(
-        "Content-Disposition",
-        `attachment; filename="${outputFileName}`,
-      )
-      .setHeader("x-filename", `${outputFileName}`)
-      .status(200)
-      .send(Buffer.from(outputBuffer));
-    return;
+  } else if (files.length === 1 && files[0]) {
+    outputBuffer = files[0].buffer;
+    outputFileName = files[0].filename;
   } else {
-    res.status(404).end();
-    return;
+    throw new Error("Invalid file list");
   }
+
+  res
+    .setHeader("content-type", "application/msword")
+    .setHeader(
+      "Cache-Control",
+      `public, durable, s-maxage=${s_maxage_seconds}, stale-while-revalidate=${stale_while_revalidate_seconds}`,
+    )
+    .setHeader("Content-Disposition", `attachment; filename="${outputFileName}`)
+    .setHeader("x-filename", `${outputFileName}`)
+    .status(200)
+    .send(Buffer.from(outputBuffer));
+  return;
 }
