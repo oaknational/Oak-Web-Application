@@ -229,6 +229,7 @@ export const ProgrammeView = ({
         ks4Options={ks4Options}
         ks4OptionFilterDimensions={ks4OptionFilterDimensions}
         implementationGuides={implementationGuides}
+        featureFlags={featureFlags}
       />
     </>
   );
@@ -248,7 +249,11 @@ const TabContent = ({
   ks4Options,
   ks4OptionFilterDimensions,
   implementationGuides,
-}: { tabSlug: TabSlug } & UnitSequenceViewProps &
+  featureFlags,
+}: {
+  tabSlug: TabSlug;
+  featureFlags: Record<string, boolean>;
+} & UnitSequenceViewProps &
   Omit<ProgrammeOverviewProps, "curriculumCMSInfo"> & {
     curriculumCMSInfo: CurriculumOverviewSanityData | null;
     implementationGuides: ImplementationGuides | null;
@@ -284,6 +289,7 @@ const TabContent = ({
         curriculumInfo={curriculumInfo}
         curriculumUnitsFormattedData={curriculumUnitsFormattedData}
         implementationGuides={implementationGuides}
+        featureFlags={featureFlags}
       />
     );
   }

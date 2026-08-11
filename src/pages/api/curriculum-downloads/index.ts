@@ -17,14 +17,18 @@ import { logErrorMessage } from "@/utils/curriculum/testing";
 import { Ks4Option } from "@/node-lib/curriculum-api-2023/queries/curriculumPhaseOptions/curriculumPhaseOptions.schema";
 import { CombinedCurriculumData } from "@/utils/curriculum/types";
 import { generateHash } from "@/pages-helpers/curriculum/docx/docx";
+import { DOWNLOAD_TYPES } from "@/components/CurriculumComponents/CurriculumDownloadView/helper";
 
 const stale_while_revalidate_seconds = 60 * 3;
 const s_maxage_seconds = 60 * 60 * 24;
 
 export const curriculumDownloadQuerySchema = z.object({
-  types: z.preprocess((val) => {
-    return String(val).split(",");
-  }, z.array(z.string())),
+  types: z.preprocess(
+    (val) => {
+      return String(val).split(",");
+    },
+    z.array(z.enum(DOWNLOAD_TYPES)),
+  ),
   mvRefreshTime: z.string(),
   subjectSlug: z.string(),
   phaseSlug: z.string(),
@@ -241,8 +245,23 @@ export default async function handler(
     childSubjectSlug,
   } = curriculumDownloadQuerySchema.parse(req.query);
 
+  console.log({
+    types,
+    mvRefreshTime,
+    subjectSlug,
+    phaseSlug,
+    state,
+    ks4OptionSlug,
+    tierSlug,
+    childSubjectSlug,
+  });
+
   const mvRefreshTimeParsed = Number.parseInt(mvRefreshTime);
   const actualMvRefreshTime = await getMvRefreshTime();
+  const implementationGuides = await CMSClient.implementationGuides({
+    subjectTitle: subjectSlug,
+    phaseSlug,
+  });
 
   // Note: Disable this check to allow 'new' documents
   if (state === "new") {
@@ -251,7 +270,12 @@ export default async function handler(
   }
 
   // Check if we should redirect (new cache-hit)
-  if (mvRefreshTimeParsed !== actualMvRefreshTime) {
+  if (
+    (["curriculumPlans", "nationalCurriculum"] as const).some((type) =>
+      types.includes(type),
+    ) &&
+    mvRefreshTimeParsed !== actualMvRefreshTime
+  ) {
     const slugOb = omitBy(
       {
         types,
@@ -276,7 +300,7 @@ export default async function handler(
 
   const allHandlers = [
     {
-      type: "curriculum-plans",
+      type: "curriculumPlans",
       handler: docx,
       getFilename: (data: getDataReturn) => {
         if (data.notFound) {
@@ -293,7 +317,7 @@ export default async function handler(
       },
     },
     {
-      type: "national-curriculum",
+      type: "nationalCurriculum",
       handler: xlsxNationalCurriculum,
       getFilename: (data: getDataReturn) => {
         if (data.notFound) {
@@ -309,7 +333,41 @@ export default async function handler(
         });
       },
     },
-  ];
+    ...(
+      [
+        "curriculumQuality",
+        "whatsIncluded",
+        "assessment",
+        "commonQuestions",
+        "equipmentList",
+      ] as const
+    ).map((type) => {
+      return {
+        type: type,
+        handler: async () => {
+          if (implementationGuides?.[type]?.url) {
+            const res = await fetch(implementationGuides[type].url);
+            return new Uint8Array(await res.arrayBuffer());
+          } else {
+            throw new Error(`Implementation guide for ${type} not found`);
+          }
+        },
+        getFilename: (data: getDataReturn) => {
+          if (data.notFound) {
+            throw new Error("Data not found");
+          }
+          return getFilename("pdf", {
+            subjectTitle: data.combinedCurriculumData.subjectTitle,
+            phaseTitle: data.combinedCurriculumData.phaseTitle,
+            examboardTitle: data.combinedCurriculumData?.examboardTitle,
+            childSubjectSlug,
+            tierSlug,
+            prefix: type,
+          });
+        },
+      };
+    }),
+  ] as const;
 
   const handlers = allHandlers.filter(({ type }) => {
     return types.includes(type);

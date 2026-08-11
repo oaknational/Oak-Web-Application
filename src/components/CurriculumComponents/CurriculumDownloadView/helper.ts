@@ -39,8 +39,17 @@ export function runSchema<T extends Record<string, unknown>>(
   };
 }
 
+export type DownloadTypes =
+  | "curriculumPlans"
+  | "nationalCurriculum"
+  | "curriculumQuality"
+  | "whatsIncluded"
+  | "assessment"
+  | "commonQuestions"
+  | "equipmentList";
+
 export const DOWNLOAD_TYPE_LABELS: {
-  id: string;
+  id: DownloadTypes;
   label: string;
   group: string;
   disabled?: boolean;
@@ -49,7 +58,7 @@ export const DOWNLOAD_TYPE_LABELS: {
   fileExt: string;
 }[] = [
   {
-    id: "curriculum-plans",
+    id: "curriculumPlans",
     group: "curriculum",
     label: "Curriculum plan",
     subTitle: "Word (accessible)",
@@ -57,7 +66,7 @@ export const DOWNLOAD_TYPE_LABELS: {
     fileExt: "DOCX",
   },
   {
-    id: "national-curriculum",
+    id: "nationalCurriculum",
     group: "curriculum",
     label: "National curriculum",
     subTitle: "Excel (accessible)",
@@ -65,14 +74,14 @@ export const DOWNLOAD_TYPE_LABELS: {
     fileExt: "XLSX",
   },
   {
-    id: "curriculum-quality",
+    id: "curriculumQuality",
     group: "implementation-guide",
     label: "Curriculum quality",
     icon: "subject-computing",
     fileExt: "PDF",
   },
   {
-    id: "whats-included",
+    id: "whatsIncluded",
     group: "implementation-guide",
     label: "What's included",
     icon: "subject-computing",
@@ -86,14 +95,14 @@ export const DOWNLOAD_TYPE_LABELS: {
     fileExt: "PDF",
   },
   {
-    id: "common-questions",
+    id: "commonQuestions",
     group: "implementation-guide",
     label: "Common questions",
     icon: "subject-computing",
     fileExt: "PDF",
   },
   {
-    id: "equipment-list",
+    id: "equipmentList",
     group: "implementation-guide",
     label: "Equipment list",
     icon: "subject-computing",

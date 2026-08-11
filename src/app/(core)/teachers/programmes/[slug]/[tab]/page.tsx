@@ -297,8 +297,6 @@ const InnerProgrammePage = async (props: AppPageProps<ProgrammePageParams>) => {
   };
   const implementationGuides = await CMSClient.implementationGuides(opts);
 
-  console.log({ opts, implementationGuides });
-
   const results = {
     subjectPhaseSlug,
     curriculumSelectionSlugs: subjectPhaseKeystageSlugs,
