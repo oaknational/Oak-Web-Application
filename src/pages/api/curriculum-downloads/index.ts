@@ -245,17 +245,6 @@ export default async function handler(
     childSubjectSlug,
   } = curriculumDownloadQuerySchema.parse(req.query);
 
-  console.log({
-    types,
-    mvRefreshTime,
-    subjectSlug,
-    phaseSlug,
-    state,
-    ks4OptionSlug,
-    tierSlug,
-    childSubjectSlug,
-  });
-
   const mvRefreshTimeParsed = Number.parseInt(mvRefreshTime);
   const actualMvRefreshTime = await getMvRefreshTime();
 
@@ -360,7 +349,6 @@ export default async function handler(
       return {
         type: type,
         handler: async () => {
-          console.log({ implementationGuides });
           if (implementationGuides?.[type]?.asset?.url) {
             const res = await fetch(implementationGuides[type].asset.url);
             return new Uint8Array(await res.arrayBuffer());
