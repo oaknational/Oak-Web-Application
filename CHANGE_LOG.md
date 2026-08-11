@@ -1,3 +1,19 @@
+# [1.1156.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1155.0...v1.1156.0) (2026-08-11)
+
+
+### Bug Fixes
+
+* add aria-label to link ([68e40a8](https://github.com/oaknational/Oak-Web-Application/commit/68e40a8434a0e8771bef6a5092e20e3391c1220e))
+* failing tests/types with new feature-flag changes ([8f21c8a](https://github.com/oaknational/Oak-Web-Application/commit/8f21c8a93883a5d6b42bd585a5eeceb17099323e))
+* remove old code fixing build error ([7442297](https://github.com/oaknational/Oak-Web-Application/commit/7442297f3865fb441ec53fa081e767672f43076c))
+* remove title "Information" from inline banner ([a2ec3ce](https://github.com/oaknational/Oak-Web-Application/commit/a2ec3ceb295d6fa60f53e9f78c84963c80b9e830))
+* typo ([a28cf5a](https://github.com/oaknational/Oak-Web-Application/commit/a28cf5afe0ada871cb44ed59383377409461487c))
+
+
+### Features
+
+* added implementation-guide banner behind flag ([82d3063](https://github.com/oaknational/Oak-Web-Application/commit/82d3063400e2e5c96ce0e72e3854e5d6bc5f83fb))
+
 # [1.1155.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1154.0...v1.1155.0) (2026-08-11)
 
 
