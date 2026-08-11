@@ -1,26 +1,9 @@
-import type { GetServerSidePropsContext } from "next";
-
 import { isFeatureFlagEnabledServer } from "../server";
 
 import { getFeatureFlag } from "@/node-lib/posthog/getFeatureFlag";
 import { getPosthogIdFromCookie } from "@/node-lib/posthog/getPosthogId";
 jest.mock("@/node-lib/posthog/getFeatureFlag");
 jest.mock("@/node-lib/posthog/getPosthogId");
-
-const getAllCookiesMock = jest.fn();
-jest.mock("next/headers", () => ({
-  cookies: jest.fn(() => ({
-    getAll: (...args: []) => getAllCookiesMock(...args),
-  })),
-}));
-
-const mockContext = {
-  req: {
-    cookies: {
-      getAll: () => getAllCookiesMock(),
-    },
-  },
-} as unknown as GetServerSidePropsContext;
 
 async function expectFeatureFlagResult({
   posthogEnabled,
@@ -42,10 +25,7 @@ describe("isFeatureFlagEnabledServer", () => {
         forceFlag: "true",
       });
 
-      const result = await isFeatureFlagEnabledServer(
-        mockContext,
-        "oaks-impact",
-      );
+      const result = await isFeatureFlagEnabledServer({}, "oaks-impact");
 
       expect(result).toBe(true);
     });
@@ -56,10 +36,7 @@ describe("isFeatureFlagEnabledServer", () => {
         forceFlag: "false",
       });
 
-      const result = await isFeatureFlagEnabledServer(
-        mockContext,
-        "oaks-impact",
-      );
+      const result = await isFeatureFlagEnabledServer({}, "oaks-impact");
 
       expect(result).toBe(true);
     });
@@ -72,10 +49,7 @@ describe("isFeatureFlagEnabledServer", () => {
         forceFlag: "true",
       });
 
-      const result = await isFeatureFlagEnabledServer(
-        mockContext,
-        "oaks-impact",
-      );
+      const result = await isFeatureFlagEnabledServer({}, "oaks-impact");
 
       expect(result).toBe(true);
     });
@@ -86,10 +60,7 @@ describe("isFeatureFlagEnabledServer", () => {
         forceFlag: "false",
       });
 
-      const result = await isFeatureFlagEnabledServer(
-        mockContext,
-        "oaks-impact",
-      );
+      const result = await isFeatureFlagEnabledServer({}, "oaks-impact");
 
       expect(result).toBe(false);
     });

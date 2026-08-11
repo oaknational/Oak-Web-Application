@@ -62,7 +62,7 @@ const OaksImpact: NextPage<OaksImpactPageProps> = ({ topNav, pageData }) => {
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const isImpactPageEnabled = await isFeatureFlagEnabledServer(
-    context,
+    context.req.cookies,
     "oaks-impact",
   );
   if (!isImpactPageEnabled) {

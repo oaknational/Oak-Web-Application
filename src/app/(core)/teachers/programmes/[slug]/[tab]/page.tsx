@@ -1,7 +1,7 @@
 import { notFound, redirect, RedirectType } from "next/navigation";
 import { Metadata } from "next";
 import { cache } from "react";
-import { draftMode } from "next/headers";
+import { cookies, draftMode } from "next/headers";
 
 import { ProgrammePageProps, ProgrammeView } from "./Components/ProgrammeView";
 import { isTabSlug } from "./tabSchema";
@@ -12,6 +12,7 @@ import {
   getSubjectOverride,
 } from "./getProgrammeData";
 
+import { isFeatureFlagEnabledServer } from "@/utils/featureFlagChecks/server";
 import {
   createDownloadsData,
   formatCurriculumUnitsData,
@@ -153,6 +154,7 @@ export async function generateMetadata({
 }
 
 const InnerProgrammePage = async (props: AppPageProps<ProgrammePageParams>) => {
+  const cookieStore = await cookies();
   const originalSearchParams = await props.searchParams!;
   const searchParams = validateServerSearchParams(originalSearchParams);
   const { slug: subjectPhaseSlug, tab } = await props.params;
@@ -276,6 +278,13 @@ const InnerProgrammePage = async (props: AppPageProps<ProgrammePageParams>) => {
     examboardTitle: ks4Option?.title,
   };
 
+  const isImplementationGuidesEnabled = await isFeatureFlagEnabledServer(
+    Object.fromEntries(
+      cookieStore.getAll().map(({ name, value }) => [name, value]),
+    ),
+    "implementation-guides",
+  );
+
   const results: ProgrammePageProps = {
     subjectPhaseSlug,
     curriculumSelectionSlugs: subjectPhaseKeystageSlugs,
@@ -289,6 +298,9 @@ const InnerProgrammePage = async (props: AppPageProps<ProgrammePageParams>) => {
     curriculumDownloadsTabData,
     mvRefreshTime,
     initialFilter: resolvedFilter,
+    featureFlags: {
+      "implementation-guides": isImplementationGuidesEnabled,
+    },
     nonCurriculum: cachedProgrammeData.programmeUnitsData.nonCurriculum,
   };
 

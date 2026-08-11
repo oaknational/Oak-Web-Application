@@ -26,6 +26,7 @@ import {
   ProgrammeDownloadsProps,
   ProgrammeDownloads,
 } from "./ProgrammeDownloads/ProgrammeDownloads";
+import { ImplementationGuideCallout } from "./ImplementationGuideCallout";
 
 import {
   CurriculumDownloadsTierSubjectProps,
@@ -62,6 +63,7 @@ export type ProgrammePageProps = {
   ks4Options: Ks4Option[];
   ks4OptionFilterDimensions: Record<string, Ks4OptionFilterDimension>;
   initialFilter?: CurriculumFilters;
+  featureFlags: Record<string, boolean>;
 };
 
 export const ProgrammeView = ({
@@ -78,6 +80,7 @@ export const ProgrammeView = ({
   ks4Options,
   ks4OptionFilterDimensions,
   initialFilter,
+  featureFlags,
 }: ProgrammePageProps) => {
   const searchParams = useSearchParams();
 
@@ -195,6 +198,15 @@ export const ProgrammeView = ({
               }),
             }))}
           />
+          {["units", "curriculum-explainer"].includes(activeTab) &&
+            featureFlags["implementation-guides"] && (
+              <ImplementationGuideCallout
+                subject={curriculumSelectionSlugs.subjectSlug}
+                subjectTitle={subjectTitle}
+                phase={curriculumSelectionSlugs.phaseSlug}
+                phaseTitle={phaseTitle}
+              />
+            )}
         </OakMaxWidth>
       )}
       <TabContent
