@@ -18,6 +18,7 @@ import { resolveOakHref } from "@/common-lib/urls";
 import MyLibraryProgrammeCard from "@/components/TeacherComponents/MyLibraryProgrammeCard/MyLibraryProgrammeCard";
 import { getValidSubjectIconName } from "@/utils/getValidSubjectIconName";
 import useAnalytics from "@/context/Analytics/useAnalytics";
+import { useTeacherBrowseAnalyticsOptional } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
 
 export type CollectionData = Array<{
   subject: string;
@@ -41,6 +42,7 @@ type MyLibraryProps = {
 export default function MyLibrary(props: Readonly<MyLibraryProps>) {
   const { collectionData, isLoading } = props;
   const { track } = useAnalytics();
+  const trace = useTeacherBrowseAnalyticsOptional((store) => store.track);
   const collections = collectionData ?? [];
 
   const hasLoadedCollections = !isLoading && collectionData !== null;
@@ -103,21 +105,16 @@ export default function MyLibrary(props: Readonly<MyLibraryProps>) {
                     subject_categories: collection.subjectCategoryQuery,
                   },
                 })}
-                trackBrowseRefined={() =>
-                  track.browseRefined({
-                    platform: "owa",
-                    product: "teacher lesson resources",
-                    engagementIntent: "refine",
-                    componentType: "programme_card",
-                    eventVersion: "2.0.0",
-                    analyticsUseCase: "Teacher",
-                    filterType: "Subject filter",
-                    filterValue: collection.subject,
-                    activeFilters: [],
-                    googleLoginHint: null,
-                    clientEnvironment: null,
-                  })
-                }
+                trackBrowseRefined={() => {
+                  if (trace) {
+                    trace.programmeRefined({
+                      componentType: "programme_card",
+                      filterType: "Subject filter",
+                      filterValue: collection.subject,
+                      activeFilters: [],
+                    });
+                  }
+                }}
                 iconName={getValidSubjectIconName(collection.subjectSlug)}
                 savedUnits={collection.units.map((unit) => ({
                   ...unit,

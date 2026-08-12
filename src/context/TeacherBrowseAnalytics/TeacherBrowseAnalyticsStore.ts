@@ -18,6 +18,7 @@ import { reportAnalyticsError } from "./utils/reportAnalyticsError";
 
 import {
   AccessLevelValueType,
+  ActiveFilters,
   AnalyticsUseCaseValueType,
   ComponentType as AvoComponentType,
   ComponentType,
@@ -35,7 +36,7 @@ import {
   ResourceTypeValueType,
   TeachingMaterialTypeValueType,
 } from "@/browser-lib/avo/Avo";
-import { Thread, Unit, CurriculumFilters } from "@/utils/curriculum/types";
+import { Thread, Unit } from "@/utils/curriculum/types";
 import { buildUnitOverviewAccessedAnalytics } from "@/utils/curriculum/analytics";
 import { ResourceFormValues } from "@/components/TeacherComponents/types/downloadAndShare.types";
 import getFormattedDetailsForTracking, {
@@ -90,7 +91,7 @@ export type TeacherBrowseAnalyticsStore = {
     programmeAccessed: () => void;
     programmeRefined: (data: {
       componentType: ComponentTypeValueType;
-      activeFilters: CurriculumFilters;
+      activeFilters: ActiveFilters;
       filterType: FilterTypeValueType;
       filterValue: string;
     }) => void;

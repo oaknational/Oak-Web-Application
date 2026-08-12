@@ -10,14 +10,14 @@ const render = renderWithProviders();
 
 const mockTrackUnitAccessed = jest.fn();
 const mockTrackLessonAccessed = jest.fn();
-const mockTrackBrowseRefined = jest.fn();
+const mockTrackProgrammeRefined = jest.fn();
 jest.mock("@/context/Analytics/useAnalytics", () => ({
   __esModule: true,
   default: jest.fn().mockReturnValue({
     track: {
       unitAccessed: (...args: []) => mockTrackUnitAccessed(...args),
       lessonAccessed: (...args: []) => mockTrackLessonAccessed(...args),
-      browseRefined: (...args: []) => mockTrackBrowseRefined(...args),
+      programmeRefined: (...args: []) => mockTrackProgrammeRefined(...args),
     },
   }),
 }));
@@ -193,18 +193,24 @@ describe("MyLibrary", () => {
     }
     const user = userEvent.setup();
     await user.click(programmeLink);
-    expect(mockTrackBrowseRefined).toHaveBeenCalledWith({
+    expect(mockTrackProgrammeRefined).toHaveBeenCalledWith({
       analyticsUseCase: "Teacher",
-      componentType: "programme_card",
-      engagementIntent: "refine",
+      clientEnvironment: null,
       eventVersion: "2.0.0",
       platform: "owa",
+      componentType: "programme_card",
+      engagementIntent: "refine",
       product: "teacher lesson resources",
       filterValue: "Subject 1",
       filterType: "Subject filter",
-      activeFilters: [],
+      accessLevel: "unit",
       googleLoginHint: null,
-      clientEnvironment: null,
+      journeyId: "mockJourneyId",
+      navigationType: "narrow",
+      phase: "secondary",
+      activeFilters: [],
+      subjectSlug: "biology",
+      subjectTitle: "Biology",
     });
   });
 });
