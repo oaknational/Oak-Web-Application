@@ -37,7 +37,7 @@ jobs:
           node-version-file: .nvmrc
           cache: "pnpm"
 
-      - run: pnpm install --verbose
+      - run: pnpm install --ignore-scripts --verbose
 
       - name: Get Playwright version
         id: playwright-version
@@ -53,17 +53,18 @@ jobs:
           key: playwright-${{ runner.os }}-chromium-${{ steps.playwright-version.outputs.version }}
 
       - name: Install Playwright system dependencies
-        run: pnpm exec playwright install-deps chromium
+        run: ./node_modules/.bin/playwright install-deps chromium
 
       - name: Install Playwright browser
         if: steps.playwright-cache.outputs.cache-hit != 'true'
-        run: pnpm exec playwright install chromium
+        run: ./node_modules/.bin/playwright install chromium
 
       - name: Wait for Vercel deployment
         id: deployment
         uses: vercel/wait-for-deployment-action@0e2b0c5c5cce31f1648108aeec56467187aca037
         with:
           environment: ${{ github.ref == 'refs/heads/main' && 'production' || 'preview' }}
+          project-slug: oak-web-application-storybook
           require-deployment-id: false
           timeout: 1200
 
