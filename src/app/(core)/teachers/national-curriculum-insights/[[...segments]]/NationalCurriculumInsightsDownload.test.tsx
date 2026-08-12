@@ -46,7 +46,7 @@ describe("NationalCurriculumInsightsDownload", () => {
     const toggle = screen.getByRole("button", {
       name: /the national curriculum is changing/i,
     });
-    expect(toggle).toHaveStyle(`background: ${oakColorTokens["dark-aqua"]}`);
+    expect(toggle).toHaveStyle(`background: ${oakColorTokens["dark-aqua110"]}`);
     expect(toggle).toHaveAttribute("aria-expanded", "false");
     await user.click(toggle);
     expect(toggle).toHaveAttribute("aria-expanded", "true");

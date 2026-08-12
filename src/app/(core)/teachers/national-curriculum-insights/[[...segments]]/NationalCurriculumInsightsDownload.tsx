@@ -36,7 +36,7 @@ const HeaderButton = styled.button`
   min-height: 99px;
   padding: 19px 20px;
   border: 0;
-  background: ${parseColor("dark-aqua")};
+  background: ${parseColor("dark-aqua110")};
   color: ${parseColor("text-inverted")};
   font: inherit;
   cursor: pointer;
@@ -66,7 +66,7 @@ const HeaderIcon = styled.span`
   margin-right: 24px;
   border-radius: 50%;
   background: ${parseColor("bg-primary")};
-  color: ${parseColor("dark-aqua")};
+  color: ${parseColor("dark-aqua110")};
 `;
 
 const HeaderHeading = styled.span`
