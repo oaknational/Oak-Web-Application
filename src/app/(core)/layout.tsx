@@ -7,6 +7,7 @@ import OakError from "@/errors/OakError";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 import LayoutPreviewControls from "@/components/AppComponents/LayoutPreviewControls";
 import { SimulateErrorControls } from "@/app/components/ErrorHandling/SimulateErrorControls";
+import { TeacherBrowseAnalyticsStoreProvider } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
 
 // TD: [integrated journey] get revalidate from env somehow
 // revalidate in layout controls revalidation of child pages in route
@@ -26,7 +27,12 @@ export default async function CoreLayout({
         <TopNav {...topNavProps} />
         <SimulateErrorControls errorBoundaryLevel="root" />
         <main id="main">{children}</main>
-        <LayoutSiteFooter />
+        <TeacherBrowseAnalyticsStoreProvider
+          programmeState={null}
+          accessLevel={"homepage"}
+        >
+          <LayoutSiteFooter />
+        </TeacherBrowseAnalyticsStoreProvider>
         {isEnabled && <LayoutPreviewControls />}
       </>
     );

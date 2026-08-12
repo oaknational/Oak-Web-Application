@@ -16,7 +16,7 @@ import {
   OakMaxWidth,
   OakSvg,
   OakImage,
-  OakSecondaryLink,
+  OakLink,
 } from "@oaknational/oak-components";
 import styled from "styled-components";
 import Link from "next/link";
@@ -24,12 +24,12 @@ import Link from "next/link";
 import { aboutUsAccessed } from "@/browser-lib/avo/Avo";
 import { OAK_SOCIALS } from "@/components/SharedComponents/SocialButtons/SocialButtons";
 import SocialButtons from "@/components/SharedComponents/SocialButtons";
-import useAnalytics from "@/context/Analytics/useAnalytics";
 import { toSentenceCase } from "@/node-lib/curriculum-api-2023/helpers";
 import { buildAboutUsAnalytics } from "@/utils/analytics-builders";
 import { isFeatureFlagEnabledStatic } from "@/utils/featureFlagChecks/static";
 import { getCloudinaryImageUrl } from "@/utils/getCloudinaryImageUrl";
 import { resolveOakHref } from "@/common-lib/urls";
+import { useTeacherBrowseAnalyticsOptional } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
 
 const trackAboutUsFooter = () =>
   aboutUsAccessed(buildAboutUsAnalytics("about_us_footer"));
@@ -204,19 +204,20 @@ type LayoutFooterLinkProps = {
 );
 
 const FooterLink: FC<LayoutFooterLinkProps> = (props) => {
-  const { track } = useAnalytics();
   const { openSettings } = useCookieConsent();
+  const track = useTeacherBrowseAnalyticsOptional((store) => store.track);
 
   if (props.type === "consent-manager-toggle") {
     return (
-      <OakSecondaryLink element="button" onClick={openSettings}>
+      <OakLink variant="secondary" element="button" onClick={openSettings}>
         {props.text}
-      </OakSecondaryLink>
+      </OakLink>
     );
   }
 
   return (
-    <OakSecondaryLink
+    <OakLink
+      variant="secondary"
       href={props.href}
       element={Link}
       aria-label={props.ariaLabel ?? undefined}
@@ -229,20 +230,11 @@ const FooterLink: FC<LayoutFooterLinkProps> = (props) => {
           .map(toSentenceCase)
           .join(" ");
 
-        if (keystageDescriptions.safeParse(sentenceCaseText).success) {
-          track.browseRefinedAccessed({
-            platform: "owa",
-            product: "teacher lesson resources",
-            engagementIntent: "refine",
-            componentType: "footer_menu_link",
-            eventVersion: "2.0.0",
-            analyticsUseCase: "Teacher",
-            filterType: "Key stage filter",
-            filterValue: props.text,
-            activeFilters: [],
-            googleLoginHint: null,
-            clientEnvironment: null,
-          });
+        if (
+          track?.programmeAccessed &&
+          keystageDescriptions.safeParse(sentenceCaseText).success
+        ) {
+          track.programmeAccessed();
         }
 
         if (props.track) {
@@ -251,7 +243,7 @@ const FooterLink: FC<LayoutFooterLinkProps> = (props) => {
       }}
     >
       {props.text}
-    </OakSecondaryLink>
+    </OakLink>
   );
 };
 
