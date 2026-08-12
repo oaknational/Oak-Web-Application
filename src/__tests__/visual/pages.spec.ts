@@ -1,6 +1,6 @@
 import { test, expect } from "@playwright/test";
 
-const getDeploymentTestUrls = require("../../../common-lib/urls/getDeploymentTestUrls");
+const getDeploymentTestUrls = require("../../common-lib/urls/getDeploymentTestUrls");
 
 for (const path of getDeploymentTestUrls()) {
   test(path, { tag: "@visual" }, async ({ page }) => {

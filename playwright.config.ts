@@ -11,7 +11,8 @@ const shouldStartWebServer = !process.env.CI && !process.env.BASE_URL;
 const visualTestMatch = /visual\/.*\.spec\.ts/;
 
 export default defineConfig({
-  testDir: "./src/tests/e2e",
+  testDir: "./src/__tests__/",
+  testMatch: /.*\.spec\.ts$/,
   outputDir: "./test-results",
 
   /* Fail fast in CI if a test has a `.only` accidentally left in */
@@ -53,7 +54,7 @@ export default defineConfig({
     toHaveScreenshot: {
       maxDiffPixelRatio: 0.01,
       animations: "disabled",
-      stylePath: "./src/tests/visual/screenshot.css",
+      stylePath: "./src/__tests__/visual/screenshot.css",
     },
   },
 

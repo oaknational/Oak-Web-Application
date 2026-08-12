@@ -45,14 +45,14 @@ Before running Playwright tests locally, install browser binaries once per machi
 
 ### Location
 
-- E2E test files live under [src/tests/e2e](../src/tests/e2e/).
-- Current teacher flow tests live in [src/tests/e2e/teacher/lesson-page.spec.ts](../src/tests/e2e/teacher/lesson-page.spec.ts).
+- E2E test files live under [src/\_\_tests\_\_/e2e](../src/__tests__/e2e/).
+- Current teacher flow tests live in [src/\_\_tests\_\_/e2e/teacher/lesson-page.spec.ts](../src/__tests__/e2e/teacher/lesson-page.spec.ts).
 - Playwright config lives in [playwright.config.ts](../playwright.config.ts).
 
 ### Commands
 
 - `pnpm run test:e2e` runs all Playwright tests.
-- `pnpm run test:e2e -- src/tests/e2e/teacher/lesson-page.spec.ts` runs a single spec.
+- `pnpm run test:e2e -- src/\_\_tests\_\_/e2e/teacher/lesson-page.spec.ts` runs a single spec.
 - `pnpm run test:e2e:ci` runs Playwright with the HTML report enabled.
 
 ### Local Execution
@@ -69,7 +69,7 @@ Before running Playwright tests locally, install browser binaries once per machi
 ### Jest Separation
 
 - Unit tests run with Jest and E2E tests run with Playwright.
-- Jest ignores `src/tests/e2e/` so Playwright specs are not run during `pnpm run test:ci`.
+- Jest ignores `src/\_\_tests\_\_/e2e/` so Playwright specs are not run during `pnpm run test:ci`.
 
 ## Storybook
 
@@ -77,6 +77,7 @@ Before running Playwright tests locally, install browser binaries once per machi
 - Storybook test runner can be used to check that all stories compile without errors using:
   1. `pnpm exec playwright install`
   2. `pnpm run test:storybook`
+- These tests will also run in CI.
 
 ## Percy
 
