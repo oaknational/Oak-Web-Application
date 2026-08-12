@@ -1,4 +1,4 @@
-import { screen, waitFor } from "@testing-library/react";
+import { screen, waitFor, within } from "@testing-library/react";
 import { usePathname } from "next/navigation";
 import userEvent from "@testing-library/user-event";
 
@@ -189,6 +189,41 @@ describe("Programme Downloads", () => {
         name: "Higher",
       });
       expect(higherTierRadioButton).toBeInTheDocument();
+    });
+  });
+
+  describe("implementation guides", () => {
+    test("should show implementation guides when they are available (and enabled)", async () => {
+      const { findByRole, findAllByRole } = renderComponent({
+        curriculumDownloadsTabData: {
+          ...defaultProps.curriculumDownloadsTabData,
+        },
+        implementationGuides: {
+          curriculumQuality: {
+            asset: {
+              extension: "pdf",
+              size: 1000,
+              url: "https://example.com/whats-included.pdf",
+            },
+          },
+        },
+        featureFlags: {
+          "implementation-guides": true,
+        },
+      });
+
+      const buttonEl = await findByRole("button", {
+        name: /All resources selected/,
+      });
+      const user = userEvent.setup();
+
+      await user.click(buttonEl);
+
+      const region = (await findAllByRole("region"))[1]!;
+
+      expect(
+        await within(region).findByText("Curriculum quality"),
+      ).toBeInTheDocument();
     });
   });
 
