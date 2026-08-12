@@ -198,6 +198,7 @@ jest.mock("../../../../node-lib/cms", () => ({
   __esModule: true,
   default: {
     curriculumOverviewPage: async () => null,
+    implementationGuides: jest.fn().mockResolvedValue({}),
   },
 }));
 
