@@ -1,5 +1,3 @@
-import { GetServerSidePropsContext } from "next";
-
 import { FLAGS } from "./flags";
 import { isFeatureFlagEnabledStatic } from "./static";
 
@@ -14,7 +12,9 @@ import getBrowserConfig from "@/browser-lib/getBrowserConfig";
  * @returns a boolean indicating whether the feature flag is enabled
  */
 export async function isFeatureFlagEnabledServer(
-  context: GetServerSidePropsContext,
+  cookies: Partial<{
+    [key: string]: string;
+  }>,
   featureFlagKey: keyof typeof FLAGS,
 ): Promise<boolean> {
   if (isFeatureFlagEnabledStatic(featureFlagKey)) {
@@ -22,7 +22,7 @@ export async function isFeatureFlagEnabledServer(
   }
 
   const posthogUserId = getPosthogIdFromCookie(
-    context.req.cookies,
+    cookies,
     getBrowserConfig("posthogApiKey"),
   );
 

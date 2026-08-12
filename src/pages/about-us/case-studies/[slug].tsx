@@ -172,7 +172,7 @@ export const getServerSideProps: GetServerSideProps<
   URLParams
 > = async (context) => {
   const isImpactPageEnabled = await isFeatureFlagEnabledServer(
-    context,
+    context.req.cookies,
     "oaks-impact",
   );
   if (!isImpactPageEnabled) {
