@@ -7,7 +7,6 @@ import {
   OakIcon,
   OakJauntyAngleLabel,
   OakLink,
-  OakMultiSelect,
   OakP,
   OakTextInput,
   parseColor,
@@ -19,6 +18,7 @@ import type { NationalCurriculumInsightsRouteData } from "./getNationalCurriculu
 
 import type { NationalCurriculumInsightsModule } from "@/common-lib/cms-types/nationalCurriculumInsights";
 import { EDU_ROLES } from "@/browser-lib/hubspot/forms/getHubspotFormPayloads";
+import { MultiSelect } from "@/components/SharedComponents/MultiSelect";
 
 type DownloadSection = Extract<
   NationalCurriculumInsightsModule,
@@ -545,14 +545,19 @@ export const NationalCurriculumInsightsDownload = ({
               </OakHeading>
               <OakP $font="body-2">{section.downloadsIntroduction}</OakP>
               <Selector>
-                <OakMultiSelect
+                <MultiSelect
                   id={`${formId}-subjects`}
                   groups={groups}
                   selectedValues={selectedValues}
                   onChange={setSelectedValues}
                   placeholder="Select subjects"
+                  mobileTitle="Download subjects"
                   size="large"
                   mobileConfirmLabel="Confirm selection"
+                  selectedItemsLabel="Selected subjects"
+                  groupSelectLabel={(group) =>
+                    `All ${group.label.toLowerCase()} subjects`
+                  }
                   data-testid="curriculum-insights-subjects"
                 />
               </Selector>
