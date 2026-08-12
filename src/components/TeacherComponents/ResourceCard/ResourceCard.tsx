@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { OakIconName, OakDownloadCard } from "@oaknational/oak-components";
+import { OakIconName, OakResourceCard } from "@oaknational/oak-components";
 import styled from "styled-components";
 
 import type { DownloadResourceType } from "@/components/TeacherComponents/types/downloadAndShare.types";
@@ -77,7 +77,7 @@ const ResourceCard: FC<ResourceCardProps> = (props) => {
       checked={checked}
       useDownloadPageLayout={useDownloadPageLayout}
     >
-      <OakDownloadCard
+      <OakResourceCard
         id={id}
         data-testid="resourceCard"
         value={id}
@@ -89,7 +89,7 @@ const ResourceCard: FC<ResourceCardProps> = (props) => {
         onChange={onChange}
         onBlur={onBlur}
         isRadio={asRadio}
-        format={subtitle}
+        description={subtitle}
         isEditable={isEditable}
         iconName={iconName}
       />

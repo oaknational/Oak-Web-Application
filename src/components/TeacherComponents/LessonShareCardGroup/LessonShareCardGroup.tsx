@@ -1,6 +1,6 @@
 import { ChangeEvent, FC } from "react";
 import { Control, Controller } from "react-hook-form";
-import { OakDownloadCard, OakFlex, OakGrid } from "@oaknational/oak-components";
+import { OakResourceCard, OakFlex, OakGrid } from "@oaknational/oak-components";
 
 import ResourceCard, {
   getActivityDownloadCardAriaLabel,
@@ -98,8 +98,8 @@ const LessonShareCardGroup: FC<LessonShareCardGroupProps> = (props) => {
                 field: { value: fieldValue, onChange, name, onBlur },
               }) => {
                 return (
-                  <OakDownloadCard
-                    format={FULL_ONLINE_LESSON_FORMAT}
+                  <OakResourceCard
+                    description={FULL_ONLINE_LESSON_FORMAT}
                     id={"download-card-wrapping-long"}
                     data-testid="resourceCard"
                     value={"all"}

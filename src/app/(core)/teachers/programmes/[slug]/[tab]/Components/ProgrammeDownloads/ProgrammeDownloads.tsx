@@ -2,7 +2,7 @@
 
 import {
   OakBox,
-  OakDownloadCard,
+  OakResourceCard,
   OakFlex,
   OakGrid,
   OakGridArea,
@@ -331,7 +331,7 @@ export const ProgrammeDownloads = ({
                           field: { value: fieldValue, onChange },
                         }) => {
                           return (
-                            <OakDownloadCard
+                            <OakResourceCard
                               key={download.id}
                               id={download.id}
                               data-testid="resourceCard"
@@ -339,7 +339,7 @@ export const ProgrammeDownloads = ({
                               name="curriculum-download"
                               title={download.label}
                               checked={fieldValue.includes(download.id)}
-                              format={download.fileExt}
+                              description={download.fileExt}
                               isEditable={true}
                               iconName={download.icon}
                               onChange={resourceCardOnChangeHandler(
