@@ -2483,6 +2483,7 @@ export type MuxAssetData = {
   status?: Maybe<Scalars['String']['output']>;
   tracks?: Maybe<Array<Maybe<MuxTrack>>>;
   upload_id?: Maybe<Scalars['String']['output']>;
+  video_quality?: Maybe<Scalars['String']['output']>;
 };
 
 export type MuxAssetDataFilter = {
@@ -2503,6 +2504,7 @@ export type MuxAssetDataFilter = {
   static_renditions?: InputMaybe<MuxStaticRenditionsFilter>;
   status?: InputMaybe<StringFilter>;
   upload_id?: InputMaybe<StringFilter>;
+  video_quality?: InputMaybe<StringFilter>;
 };
 
 export type MuxAssetDataSorting = {
@@ -2523,6 +2525,7 @@ export type MuxAssetDataSorting = {
   static_renditions?: InputMaybe<MuxStaticRenditionsSorting>;
   status?: InputMaybe<SortOrder>;
   upload_id?: InputMaybe<SortOrder>;
+  video_quality?: InputMaybe<SortOrder>;
 };
 
 export type MuxPlaybackId = {
@@ -2553,9 +2556,15 @@ export type MuxStaticRenditionFile = {
   _type?: Maybe<Scalars['String']['output']>;
   bitrate?: Maybe<Scalars['Float']['output']>;
   ext?: Maybe<Scalars['String']['output']>;
-  filesize?: Maybe<Scalars['Float']['output']>;
+  filesize?: Maybe<Scalars['String']['output']>;
   height?: Maybe<Scalars['Float']['output']>;
+  id?: Maybe<Scalars['String']['output']>;
   name?: Maybe<Scalars['String']['output']>;
+  passthrough?: Maybe<Scalars['String']['output']>;
+  resolution?: Maybe<Scalars['String']['output']>;
+  resolution_tier?: Maybe<Scalars['String']['output']>;
+  status?: Maybe<Scalars['String']['output']>;
+  type?: Maybe<Scalars['String']['output']>;
   width?: Maybe<Scalars['Float']['output']>;
 };
 
@@ -2564,9 +2573,15 @@ export type MuxStaticRenditionFileFilter = {
   _type?: InputMaybe<StringFilter>;
   bitrate?: InputMaybe<FloatFilter>;
   ext?: InputMaybe<StringFilter>;
-  filesize?: InputMaybe<FloatFilter>;
+  filesize?: InputMaybe<StringFilter>;
   height?: InputMaybe<FloatFilter>;
+  id?: InputMaybe<StringFilter>;
   name?: InputMaybe<StringFilter>;
+  passthrough?: InputMaybe<StringFilter>;
+  resolution?: InputMaybe<StringFilter>;
+  resolution_tier?: InputMaybe<StringFilter>;
+  status?: InputMaybe<StringFilter>;
+  type?: InputMaybe<StringFilter>;
   width?: InputMaybe<FloatFilter>;
 };
 
@@ -2577,7 +2592,13 @@ export type MuxStaticRenditionFileSorting = {
   ext?: InputMaybe<SortOrder>;
   filesize?: InputMaybe<SortOrder>;
   height?: InputMaybe<SortOrder>;
+  id?: InputMaybe<SortOrder>;
   name?: InputMaybe<SortOrder>;
+  passthrough?: InputMaybe<SortOrder>;
+  resolution?: InputMaybe<SortOrder>;
+  resolution_tier?: InputMaybe<SortOrder>;
+  status?: InputMaybe<SortOrder>;
+  type?: InputMaybe<SortOrder>;
   width?: InputMaybe<SortOrder>;
 };
 
@@ -2607,9 +2628,14 @@ export type MuxTrack = {
   _type?: Maybe<Scalars['String']['output']>;
   duration?: Maybe<Scalars['Float']['output']>;
   id?: Maybe<Scalars['String']['output']>;
+  language_code?: Maybe<Scalars['String']['output']>;
   max_frame_rate?: Maybe<Scalars['Float']['output']>;
   max_height?: Maybe<Scalars['Float']['output']>;
   max_width?: Maybe<Scalars['Float']['output']>;
+  name?: Maybe<Scalars['String']['output']>;
+  status?: Maybe<Scalars['String']['output']>;
+  text_source?: Maybe<Scalars['String']['output']>;
+  text_type?: Maybe<Scalars['String']['output']>;
   type?: Maybe<Scalars['String']['output']>;
 };
 
@@ -2618,9 +2644,14 @@ export type MuxTrackFilter = {
   _type?: InputMaybe<StringFilter>;
   duration?: InputMaybe<FloatFilter>;
   id?: InputMaybe<StringFilter>;
+  language_code?: InputMaybe<StringFilter>;
   max_frame_rate?: InputMaybe<FloatFilter>;
   max_height?: InputMaybe<FloatFilter>;
   max_width?: InputMaybe<FloatFilter>;
+  name?: InputMaybe<StringFilter>;
+  status?: InputMaybe<StringFilter>;
+  text_source?: InputMaybe<StringFilter>;
+  text_type?: InputMaybe<StringFilter>;
   type?: InputMaybe<StringFilter>;
 };
 
@@ -2629,9 +2660,14 @@ export type MuxTrackSorting = {
   _type?: InputMaybe<SortOrder>;
   duration?: InputMaybe<SortOrder>;
   id?: InputMaybe<SortOrder>;
+  language_code?: InputMaybe<SortOrder>;
   max_frame_rate?: InputMaybe<SortOrder>;
   max_height?: InputMaybe<SortOrder>;
   max_width?: InputMaybe<SortOrder>;
+  name?: InputMaybe<SortOrder>;
+  status?: InputMaybe<SortOrder>;
+  text_source?: InputMaybe<SortOrder>;
+  text_type?: InputMaybe<SortOrder>;
   type?: InputMaybe<SortOrder>;
 };
 
@@ -2723,26 +2759,60 @@ export type NationalCurriculumInsightsAtAGlanceSorting = {
   _type?: InputMaybe<SortOrder>;
 };
 
+export type NationalCurriculumInsightsDownloadSection = {
+  __typename?: 'NationalCurriculumInsightsDownloadSection';
+  _key?: Maybe<Scalars['String']['output']>;
+  _type?: Maybe<Scalars['String']['output']>;
+  barCtaLabel?: Maybe<Scalars['String']['output']>;
+  barHeading?: Maybe<Scalars['String']['output']>;
+  detailsHeading?: Maybe<Scalars['String']['output']>;
+  /** The selected document count and file type are appended automatically. */
+  downloadButtonLabel?: Maybe<Scalars['String']['output']>;
+  downloadsHeading?: Maybe<Scalars['String']['output']>;
+  downloadsIntroduction?: Maybe<Scalars['String']['output']>;
+};
+
+export type NationalCurriculumInsightsDownloadSectionFilter = {
+  _key?: InputMaybe<StringFilter>;
+  _type?: InputMaybe<StringFilter>;
+  barCtaLabel?: InputMaybe<StringFilter>;
+  barHeading?: InputMaybe<StringFilter>;
+  detailsHeading?: InputMaybe<StringFilter>;
+  downloadButtonLabel?: InputMaybe<StringFilter>;
+  downloadsHeading?: InputMaybe<StringFilter>;
+  downloadsIntroduction?: InputMaybe<StringFilter>;
+};
+
+export type NationalCurriculumInsightsDownloadSectionOrNationalCurriculumInsightsFaqSectionOrNationalCurriculumInsightsHeroSectionOrNationalCurriculumInsightsImageTextSectionOrNationalCurriculumInsightsKeyStageCardsSectionOrNationalCurriculumInsightsNewsletterSectionOrNationalCurriculumInsightsOverviewSectionOrNationalCurriculumInsightsPhaseCardsSectionOrNationalCurriculumInsightsPhaseNavigationSectionOrNationalCurriculumInsightsPromotionalHeadingSectionOrNationalCurriculumInsightsQuoteSectionOrNationalCurriculumInsightsRichTextSectionOrNationalCurriculumInsightsSubjectNavigationSectionOrNationalCurriculumInsightsTableSectionOrNationalCurriculumInsightsVideoCardsSection = NationalCurriculumInsightsDownloadSection | NationalCurriculumInsightsFaqSection | NationalCurriculumInsightsHeroSection | NationalCurriculumInsightsImageTextSection | NationalCurriculumInsightsKeyStageCardsSection | NationalCurriculumInsightsNewsletterSection | NationalCurriculumInsightsOverviewSection | NationalCurriculumInsightsPhaseCardsSection | NationalCurriculumInsightsPhaseNavigationSection | NationalCurriculumInsightsPromotionalHeadingSection | NationalCurriculumInsightsQuoteSection | NationalCurriculumInsightsRichTextSection | NationalCurriculumInsightsSubjectNavigationSection | NationalCurriculumInsightsTableSection | NationalCurriculumInsightsVideoCardsSection;
+
+export type NationalCurriculumInsightsDownloadSectionSorting = {
+  _key?: InputMaybe<SortOrder>;
+  _type?: InputMaybe<SortOrder>;
+  barCtaLabel?: InputMaybe<SortOrder>;
+  barHeading?: InputMaybe<SortOrder>;
+  detailsHeading?: InputMaybe<SortOrder>;
+  downloadButtonLabel?: InputMaybe<SortOrder>;
+  downloadsHeading?: InputMaybe<SortOrder>;
+  downloadsIntroduction?: InputMaybe<SortOrder>;
+};
+
 export type NationalCurriculumInsightsFaqItem = {
   __typename?: 'NationalCurriculumInsightsFaqItem';
   _key?: Maybe<Scalars['String']['output']>;
   _type?: Maybe<Scalars['String']['output']>;
   answerRaw?: Maybe<Scalars['JSON']['output']>;
-  initiallyExpanded?: Maybe<Scalars['Boolean']['output']>;
   question?: Maybe<Scalars['String']['output']>;
 };
 
 export type NationalCurriculumInsightsFaqItemFilter = {
   _key?: InputMaybe<StringFilter>;
   _type?: InputMaybe<StringFilter>;
-  initiallyExpanded?: InputMaybe<BooleanFilter>;
   question?: InputMaybe<StringFilter>;
 };
 
 export type NationalCurriculumInsightsFaqItemSorting = {
   _key?: InputMaybe<SortOrder>;
   _type?: InputMaybe<SortOrder>;
-  initiallyExpanded?: InputMaybe<SortOrder>;
   question?: InputMaybe<SortOrder>;
 };
 
@@ -2759,8 +2829,6 @@ export type NationalCurriculumInsightsFaqSectionFilter = {
   _type?: InputMaybe<StringFilter>;
   heading?: InputMaybe<StringFilter>;
 };
-
-export type NationalCurriculumInsightsFaqSectionOrNationalCurriculumInsightsHeroSectionOrNationalCurriculumInsightsImageTextSectionOrNationalCurriculumInsightsKeyStageCardsSectionOrNationalCurriculumInsightsNewsletterSectionOrNationalCurriculumInsightsOverviewSectionOrNationalCurriculumInsightsPhaseCardsSectionOrNationalCurriculumInsightsPromotionalHeadingSectionOrNationalCurriculumInsightsQuoteSectionOrNationalCurriculumInsightsRichTextSectionOrNationalCurriculumInsightsSubjectNavigationSectionOrNationalCurriculumInsightsTableSectionOrNationalCurriculumInsightsVideoCardsSection = NationalCurriculumInsightsFaqSection | NationalCurriculumInsightsHeroSection | NationalCurriculumInsightsImageTextSection | NationalCurriculumInsightsKeyStageCardsSection | NationalCurriculumInsightsNewsletterSection | NationalCurriculumInsightsOverviewSection | NationalCurriculumInsightsPhaseCardsSection | NationalCurriculumInsightsPromotionalHeadingSection | NationalCurriculumInsightsQuoteSection | NationalCurriculumInsightsRichTextSection | NationalCurriculumInsightsSubjectNavigationSection | NationalCurriculumInsightsTableSection | NationalCurriculumInsightsVideoCardsSection;
 
 export type NationalCurriculumInsightsFaqSectionSorting = {
   _key?: InputMaybe<SortOrder>;
@@ -2779,6 +2847,8 @@ export type NationalCurriculumInsightsHeroSection = {
   bodyRaw?: Maybe<Scalars['JSON']['output']>;
   heading?: Maybe<Scalars['String']['output']>;
   image?: Maybe<ImageWithAltText>;
+  /** Optional heading for the publication or review note shown beside the byline. */
+  statusHeading?: Maybe<Scalars['String']['output']>;
   /** Optional publication or review message shown alongside the byline. */
   statusMessage?: Maybe<Scalars['String']['output']>;
 };
@@ -2791,6 +2861,7 @@ export type NationalCurriculumInsightsHeroSectionFilter = {
   authorRole?: InputMaybe<StringFilter>;
   heading?: InputMaybe<StringFilter>;
   image?: InputMaybe<ImageWithAltTextFilter>;
+  statusHeading?: InputMaybe<StringFilter>;
   statusMessage?: InputMaybe<StringFilter>;
 };
 
@@ -2802,6 +2873,7 @@ export type NationalCurriculumInsightsHeroSectionSorting = {
   authorRole?: InputMaybe<SortOrder>;
   heading?: InputMaybe<SortOrder>;
   image?: InputMaybe<ImageWithAltTextSorting>;
+  statusHeading?: InputMaybe<SortOrder>;
   statusMessage?: InputMaybe<SortOrder>;
 };
 
@@ -2818,7 +2890,7 @@ export type NationalCurriculumInsightsHub = Document & {
   _type?: Maybe<Scalars['String']['output']>;
   /** Date the document was last modified */
   _updatedAt?: Maybe<Scalars['DateTime']['output']>;
-  modules?: Maybe<Array<Maybe<NationalCurriculumInsightsFaqSectionOrNationalCurriculumInsightsHeroSectionOrNationalCurriculumInsightsImageTextSectionOrNationalCurriculumInsightsKeyStageCardsSectionOrNationalCurriculumInsightsNewsletterSectionOrNationalCurriculumInsightsOverviewSectionOrNationalCurriculumInsightsPhaseCardsSectionOrNationalCurriculumInsightsPromotionalHeadingSectionOrNationalCurriculumInsightsQuoteSectionOrNationalCurriculumInsightsRichTextSectionOrNationalCurriculumInsightsSubjectNavigationSectionOrNationalCurriculumInsightsTableSectionOrNationalCurriculumInsightsVideoCardsSection>>>;
+  modules?: Maybe<Array<Maybe<NationalCurriculumInsightsDownloadSectionOrNationalCurriculumInsightsFaqSectionOrNationalCurriculumInsightsHeroSectionOrNationalCurriculumInsightsImageTextSectionOrNationalCurriculumInsightsKeyStageCardsSectionOrNationalCurriculumInsightsNewsletterSectionOrNationalCurriculumInsightsOverviewSectionOrNationalCurriculumInsightsPhaseCardsSectionOrNationalCurriculumInsightsPhaseNavigationSectionOrNationalCurriculumInsightsPromotionalHeadingSectionOrNationalCurriculumInsightsQuoteSectionOrNationalCurriculumInsightsRichTextSectionOrNationalCurriculumInsightsSubjectNavigationSectionOrNationalCurriculumInsightsTableSectionOrNationalCurriculumInsightsVideoCardsSection>>>;
   seo?: Maybe<Seo>;
   subjects?: Maybe<Array<Maybe<NationalCurriculumInsightsSubject>>>;
   summary?: Maybe<Scalars['String']['output']>;
@@ -2891,7 +2963,6 @@ export type NationalCurriculumInsightsKeyStageCard = {
   _key?: Maybe<Scalars['String']['output']>;
   _type?: Maybe<Scalars['String']['output']>;
   heading?: Maybe<Scalars['String']['output']>;
-  image?: Maybe<ImageWithAltText>;
   keyStage?: Maybe<Scalars['String']['output']>;
   linkLabel?: Maybe<Scalars['String']['output']>;
 };
@@ -2900,7 +2971,6 @@ export type NationalCurriculumInsightsKeyStageCardFilter = {
   _key?: InputMaybe<StringFilter>;
   _type?: InputMaybe<StringFilter>;
   heading?: InputMaybe<StringFilter>;
-  image?: InputMaybe<ImageWithAltTextFilter>;
   keyStage?: InputMaybe<StringFilter>;
   linkLabel?: InputMaybe<StringFilter>;
 };
@@ -2909,7 +2979,6 @@ export type NationalCurriculumInsightsKeyStageCardSorting = {
   _key?: InputMaybe<SortOrder>;
   _type?: InputMaybe<SortOrder>;
   heading?: InputMaybe<SortOrder>;
-  image?: InputMaybe<ImageWithAltTextSorting>;
   keyStage?: InputMaybe<SortOrder>;
   linkLabel?: InputMaybe<SortOrder>;
 };
@@ -2946,7 +3015,7 @@ export type NationalCurriculumInsightsKeyStagePage = Document & {
   _updatedAt?: Maybe<Scalars['DateTime']['output']>;
   /** The URL segment is derived from this value, for example KS1 becomes key-stage-1. */
   keyStage?: Maybe<Scalars['String']['output']>;
-  modules?: Maybe<Array<Maybe<NationalCurriculumInsightsFaqSectionOrNationalCurriculumInsightsHeroSectionOrNationalCurriculumInsightsImageTextSectionOrNationalCurriculumInsightsKeyStageCardsSectionOrNationalCurriculumInsightsNewsletterSectionOrNationalCurriculumInsightsOverviewSectionOrNationalCurriculumInsightsPhaseCardsSectionOrNationalCurriculumInsightsPromotionalHeadingSectionOrNationalCurriculumInsightsQuoteSectionOrNationalCurriculumInsightsRichTextSectionOrNationalCurriculumInsightsSubjectNavigationSectionOrNationalCurriculumInsightsTableSectionOrNationalCurriculumInsightsVideoCardsSection>>>;
+  modules?: Maybe<Array<Maybe<NationalCurriculumInsightsDownloadSectionOrNationalCurriculumInsightsFaqSectionOrNationalCurriculumInsightsHeroSectionOrNationalCurriculumInsightsImageTextSectionOrNationalCurriculumInsightsKeyStageCardsSectionOrNationalCurriculumInsightsNewsletterSectionOrNationalCurriculumInsightsOverviewSectionOrNationalCurriculumInsightsPhaseCardsSectionOrNationalCurriculumInsightsPhaseNavigationSectionOrNationalCurriculumInsightsPromotionalHeadingSectionOrNationalCurriculumInsightsQuoteSectionOrNationalCurriculumInsightsRichTextSectionOrNationalCurriculumInsightsSubjectNavigationSectionOrNationalCurriculumInsightsTableSectionOrNationalCurriculumInsightsVideoCardsSection>>>;
   seo?: Maybe<Seo>;
   summary?: Maybe<Scalars['String']['output']>;
   /** Used in Studio and as a safe fallback. Visible headings should normally come from the ordered modules. */
@@ -3011,6 +3080,7 @@ export type NationalCurriculumInsightsNewsletterSection = {
   _key?: Maybe<Scalars['String']['output']>;
   _type?: Maybe<Scalars['String']['output']>;
   benefits?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
+  benefitsHeading?: Maybe<Scalars['String']['output']>;
   buttonLabel?: Maybe<Scalars['String']['output']>;
   /** Application-owned form identifier. The isolated preview renders the form locally and never submits it to a remote service. */
   formId?: Maybe<Scalars['String']['output']>;
@@ -3023,6 +3093,7 @@ export type NationalCurriculumInsightsNewsletterSection = {
 export type NationalCurriculumInsightsNewsletterSectionFilter = {
   _key?: InputMaybe<StringFilter>;
   _type?: InputMaybe<StringFilter>;
+  benefitsHeading?: InputMaybe<StringFilter>;
   buttonLabel?: InputMaybe<StringFilter>;
   formId?: InputMaybe<StringFilter>;
   heading?: InputMaybe<StringFilter>;
@@ -3033,6 +3104,7 @@ export type NationalCurriculumInsightsNewsletterSectionFilter = {
 export type NationalCurriculumInsightsNewsletterSectionSorting = {
   _key?: InputMaybe<SortOrder>;
   _type?: InputMaybe<SortOrder>;
+  benefitsHeading?: InputMaybe<SortOrder>;
   buttonLabel?: InputMaybe<SortOrder>;
   formId?: InputMaybe<SortOrder>;
   heading?: InputMaybe<SortOrder>;
@@ -3046,21 +3118,18 @@ export type NationalCurriculumInsightsOverviewSection = {
   _type?: Maybe<Scalars['String']['output']>;
   bodyRaw?: Maybe<Scalars['JSON']['output']>;
   heading?: Maybe<Scalars['String']['output']>;
-  image?: Maybe<ImageWithAltText>;
 };
 
 export type NationalCurriculumInsightsOverviewSectionFilter = {
   _key?: InputMaybe<StringFilter>;
   _type?: InputMaybe<StringFilter>;
   heading?: InputMaybe<StringFilter>;
-  image?: InputMaybe<ImageWithAltTextFilter>;
 };
 
 export type NationalCurriculumInsightsOverviewSectionSorting = {
   _key?: InputMaybe<SortOrder>;
   _type?: InputMaybe<SortOrder>;
   heading?: InputMaybe<SortOrder>;
-  image?: InputMaybe<ImageWithAltTextSorting>;
 };
 
 export type NationalCurriculumInsightsPage = Document & {
@@ -3077,7 +3146,7 @@ export type NationalCurriculumInsightsPage = Document & {
   /** Date the document was last modified */
   _updatedAt?: Maybe<Scalars['DateTime']['output']>;
   keyStages?: Maybe<Array<Maybe<NationalCurriculumInsightsKeyStagePageReference>>>;
-  modules?: Maybe<Array<Maybe<NationalCurriculumInsightsFaqSectionOrNationalCurriculumInsightsHeroSectionOrNationalCurriculumInsightsImageTextSectionOrNationalCurriculumInsightsKeyStageCardsSectionOrNationalCurriculumInsightsNewsletterSectionOrNationalCurriculumInsightsOverviewSectionOrNationalCurriculumInsightsPhaseCardsSectionOrNationalCurriculumInsightsPromotionalHeadingSectionOrNationalCurriculumInsightsQuoteSectionOrNationalCurriculumInsightsRichTextSectionOrNationalCurriculumInsightsSubjectNavigationSectionOrNationalCurriculumInsightsTableSectionOrNationalCurriculumInsightsVideoCardsSection>>>;
+  modules?: Maybe<Array<Maybe<NationalCurriculumInsightsDownloadSectionOrNationalCurriculumInsightsFaqSectionOrNationalCurriculumInsightsHeroSectionOrNationalCurriculumInsightsImageTextSectionOrNationalCurriculumInsightsKeyStageCardsSectionOrNationalCurriculumInsightsNewsletterSectionOrNationalCurriculumInsightsOverviewSectionOrNationalCurriculumInsightsPhaseCardsSectionOrNationalCurriculumInsightsPhaseNavigationSectionOrNationalCurriculumInsightsPromotionalHeadingSectionOrNationalCurriculumInsightsQuoteSectionOrNationalCurriculumInsightsRichTextSectionOrNationalCurriculumInsightsSubjectNavigationSectionOrNationalCurriculumInsightsTableSectionOrNationalCurriculumInsightsVideoCardsSection>>>;
   /** The subject phase that can reference this page. The subject itself is the Overview page and controls the URL. */
   pageType?: Maybe<Scalars['String']['output']>;
   seo?: Maybe<Seo>;
@@ -3119,7 +3188,6 @@ export type NationalCurriculumInsightsPhaseCard = {
   _key?: Maybe<Scalars['String']['output']>;
   _type?: Maybe<Scalars['String']['output']>;
   heading?: Maybe<Scalars['String']['output']>;
-  image?: Maybe<ImageWithAltText>;
   linkLabel?: Maybe<Scalars['String']['output']>;
   phase?: Maybe<Scalars['String']['output']>;
 };
@@ -3128,7 +3196,6 @@ export type NationalCurriculumInsightsPhaseCardFilter = {
   _key?: InputMaybe<StringFilter>;
   _type?: InputMaybe<StringFilter>;
   heading?: InputMaybe<StringFilter>;
-  image?: InputMaybe<ImageWithAltTextFilter>;
   linkLabel?: InputMaybe<StringFilter>;
   phase?: InputMaybe<StringFilter>;
 };
@@ -3137,7 +3204,6 @@ export type NationalCurriculumInsightsPhaseCardSorting = {
   _key?: InputMaybe<SortOrder>;
   _type?: InputMaybe<SortOrder>;
   heading?: InputMaybe<SortOrder>;
-  image?: InputMaybe<ImageWithAltTextSorting>;
   linkLabel?: InputMaybe<SortOrder>;
   phase?: InputMaybe<SortOrder>;
 };
@@ -3189,18 +3255,21 @@ export type NationalCurriculumInsightsPromotionalHeadingSection = {
   _key?: Maybe<Scalars['String']['output']>;
   _type?: Maybe<Scalars['String']['output']>;
   heading?: Maybe<Scalars['String']['output']>;
+  variant?: Maybe<Scalars['String']['output']>;
 };
 
 export type NationalCurriculumInsightsPromotionalHeadingSectionFilter = {
   _key?: InputMaybe<StringFilter>;
   _type?: InputMaybe<StringFilter>;
   heading?: InputMaybe<StringFilter>;
+  variant?: InputMaybe<StringFilter>;
 };
 
 export type NationalCurriculumInsightsPromotionalHeadingSectionSorting = {
   _key?: InputMaybe<SortOrder>;
   _type?: InputMaybe<SortOrder>;
   heading?: InputMaybe<SortOrder>;
+  variant?: InputMaybe<SortOrder>;
 };
 
 export type NationalCurriculumInsightsQuoteSection = {
@@ -3237,18 +3306,21 @@ export type NationalCurriculumInsightsRichTextSection = {
   _type?: Maybe<Scalars['String']['output']>;
   contentRaw?: Maybe<Scalars['JSON']['output']>;
   heading?: Maybe<Scalars['String']['output']>;
+  headingStyle?: Maybe<Scalars['String']['output']>;
 };
 
 export type NationalCurriculumInsightsRichTextSectionFilter = {
   _key?: InputMaybe<StringFilter>;
   _type?: InputMaybe<StringFilter>;
   heading?: InputMaybe<StringFilter>;
+  headingStyle?: InputMaybe<StringFilter>;
 };
 
 export type NationalCurriculumInsightsRichTextSectionSorting = {
   _key?: InputMaybe<SortOrder>;
   _type?: InputMaybe<SortOrder>;
   heading?: InputMaybe<SortOrder>;
+  headingStyle?: InputMaybe<SortOrder>;
 };
 
 export type NationalCurriculumInsightsSubject = Document & {
@@ -3265,7 +3337,7 @@ export type NationalCurriculumInsightsSubject = Document & {
   /** Date the document was last modified */
   _updatedAt?: Maybe<Scalars['DateTime']['output']>;
   curriculumSubjectSlugs?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
-  modules?: Maybe<Array<Maybe<NationalCurriculumInsightsFaqSectionOrNationalCurriculumInsightsHeroSectionOrNationalCurriculumInsightsImageTextSectionOrNationalCurriculumInsightsKeyStageCardsSectionOrNationalCurriculumInsightsNewsletterSectionOrNationalCurriculumInsightsOverviewSectionOrNationalCurriculumInsightsPhaseCardsSectionOrNationalCurriculumInsightsPromotionalHeadingSectionOrNationalCurriculumInsightsQuoteSectionOrNationalCurriculumInsightsRichTextSectionOrNationalCurriculumInsightsSubjectNavigationSectionOrNationalCurriculumInsightsTableSectionOrNationalCurriculumInsightsVideoCardsSection>>>;
+  modules?: Maybe<Array<Maybe<NationalCurriculumInsightsDownloadSectionOrNationalCurriculumInsightsFaqSectionOrNationalCurriculumInsightsHeroSectionOrNationalCurriculumInsightsImageTextSectionOrNationalCurriculumInsightsKeyStageCardsSectionOrNationalCurriculumInsightsNewsletterSectionOrNationalCurriculumInsightsOverviewSectionOrNationalCurriculumInsightsPhaseCardsSectionOrNationalCurriculumInsightsPhaseNavigationSectionOrNationalCurriculumInsightsPromotionalHeadingSectionOrNationalCurriculumInsightsQuoteSectionOrNationalCurriculumInsightsRichTextSectionOrNationalCurriculumInsightsSubjectNavigationSectionOrNationalCurriculumInsightsTableSectionOrNationalCurriculumInsightsVideoCardsSection>>>;
   seo?: Maybe<Seo>;
   slug?: Maybe<Slug>;
   summary?: Maybe<Scalars['String']['output']>;
@@ -6908,25 +6980,29 @@ export type WhoWeArePageTimelineSorting = {
   _type?: InputMaybe<SortOrder>;
 };
 
-type NationalCurriculumInsightsModules_NationalCurriculumInsightsFaqSection_Fragment = { __typename: 'NationalCurriculumInsightsFaqSection', heading?: string | null, items?: Array<{ __typename?: 'NationalCurriculumInsightsFaqItem', question?: string | null, initiallyExpanded?: boolean | null, answerPortableText?: any | null } | null> | null };
+type NationalCurriculumInsightsModules_NationalCurriculumInsightsDownloadSection_Fragment = { __typename: 'NationalCurriculumInsightsDownloadSection', barHeading?: string | null, barCtaLabel?: string | null, detailsHeading?: string | null, downloadsHeading?: string | null, downloadsIntroduction?: string | null, downloadButtonLabel?: string | null };
 
-type NationalCurriculumInsightsModules_NationalCurriculumInsightsHeroSection_Fragment = { __typename: 'NationalCurriculumInsightsHeroSection', heading?: string | null, authorName?: string | null, authorRole?: string | null, statusMessage?: string | null, bodyPortableText?: any | null, image?: { __typename?: 'ImageWithAltText', altText?: string | null, isPresentational?: boolean | null, asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null } | null, authorImage?: { __typename?: 'ImageWithAltText', altText?: string | null, isPresentational?: boolean | null, asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null } | null };
+type NationalCurriculumInsightsModules_NationalCurriculumInsightsFaqSection_Fragment = { __typename: 'NationalCurriculumInsightsFaqSection', heading?: string | null, items?: Array<{ __typename?: 'NationalCurriculumInsightsFaqItem', question?: string | null, answerPortableText?: any | null } | null> | null };
+
+type NationalCurriculumInsightsModules_NationalCurriculumInsightsHeroSection_Fragment = { __typename: 'NationalCurriculumInsightsHeroSection', heading?: string | null, authorName?: string | null, authorRole?: string | null, statusHeading?: string | null, statusMessage?: string | null, bodyPortableText?: any | null, image?: { __typename?: 'ImageWithAltText', altText?: string | null, isPresentational?: boolean | null, asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null } | null, authorImage?: { __typename?: 'ImageWithAltText', altText?: string | null, isPresentational?: boolean | null, asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null } | null };
 
 type NationalCurriculumInsightsModules_NationalCurriculumInsightsImageTextSection_Fragment = { __typename: 'NationalCurriculumInsightsImageTextSection', heading?: string | null, imagePosition?: string | null, background?: string | null, ctaLabel?: string | null, ctaHref?: string | null, bodyPortableText?: any | null, image?: { __typename?: 'ImageWithAltText', altText?: string | null, isPresentational?: boolean | null, asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null } | null };
 
-type NationalCurriculumInsightsModules_NationalCurriculumInsightsKeyStageCardsSection_Fragment = { __typename: 'NationalCurriculumInsightsKeyStageCardsSection', cards?: Array<{ __typename?: 'NationalCurriculumInsightsKeyStageCard', keyStage?: string | null, heading?: string | null, linkLabel?: string | null, image?: { __typename?: 'ImageWithAltText', altText?: string | null, isPresentational?: boolean | null, asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null } | null } | null> | null };
+type NationalCurriculumInsightsModules_NationalCurriculumInsightsKeyStageCardsSection_Fragment = { __typename: 'NationalCurriculumInsightsKeyStageCardsSection', cards?: Array<{ __typename?: 'NationalCurriculumInsightsKeyStageCard', keyStage?: string | null, heading?: string | null, linkLabel?: string | null } | null> | null };
 
-type NationalCurriculumInsightsModules_NationalCurriculumInsightsNewsletterSection_Fragment = { __typename: 'NationalCurriculumInsightsNewsletterSection', heading?: string | null, introduction?: string | null, benefits?: Array<string | null> | null, formId?: string | null, buttonLabel?: string | null, privacyPortableText?: any | null, illustration?: { __typename?: 'ImageWithAltText', altText?: string | null, isPresentational?: boolean | null, asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null } | null };
+type NationalCurriculumInsightsModules_NationalCurriculumInsightsNewsletterSection_Fragment = { __typename: 'NationalCurriculumInsightsNewsletterSection', heading?: string | null, introduction?: string | null, benefitsHeading?: string | null, benefits?: Array<string | null> | null, formId?: string | null, buttonLabel?: string | null, privacyPortableText?: any | null, illustration?: { __typename?: 'ImageWithAltText', altText?: string | null, isPresentational?: boolean | null, asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null } | null };
 
-type NationalCurriculumInsightsModules_NationalCurriculumInsightsOverviewSection_Fragment = { __typename: 'NationalCurriculumInsightsOverviewSection', heading?: string | null, bodyPortableText?: any | null, image?: { __typename?: 'ImageWithAltText', altText?: string | null, isPresentational?: boolean | null, asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null } | null };
+type NationalCurriculumInsightsModules_NationalCurriculumInsightsOverviewSection_Fragment = { __typename: 'NationalCurriculumInsightsOverviewSection', heading?: string | null, bodyPortableText?: any | null };
 
-type NationalCurriculumInsightsModules_NationalCurriculumInsightsPhaseCardsSection_Fragment = { __typename: 'NationalCurriculumInsightsPhaseCardsSection', cards?: Array<{ __typename?: 'NationalCurriculumInsightsPhaseCard', phase?: string | null, heading?: string | null, linkLabel?: string | null, image?: { __typename?: 'ImageWithAltText', altText?: string | null, isPresentational?: boolean | null, asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null } | null } | null> | null };
+type NationalCurriculumInsightsModules_NationalCurriculumInsightsPhaseCardsSection_Fragment = { __typename: 'NationalCurriculumInsightsPhaseCardsSection', cards?: Array<{ __typename?: 'NationalCurriculumInsightsPhaseCard', phase?: string | null, heading?: string | null, linkLabel?: string | null } | null> | null };
 
-type NationalCurriculumInsightsModules_NationalCurriculumInsightsPromotionalHeadingSection_Fragment = { __typename: 'NationalCurriculumInsightsPromotionalHeadingSection', heading?: string | null };
+type NationalCurriculumInsightsModules_NationalCurriculumInsightsPhaseNavigationSection_Fragment = { __typename: 'NationalCurriculumInsightsPhaseNavigationSection', overviewLabel?: string | null, primaryLabel?: string | null, secondaryLabel?: string | null };
+
+type NationalCurriculumInsightsModules_NationalCurriculumInsightsPromotionalHeadingSection_Fragment = { __typename: 'NationalCurriculumInsightsPromotionalHeadingSection', heading?: string | null, variant?: string | null };
 
 type NationalCurriculumInsightsModules_NationalCurriculumInsightsQuoteSection_Fragment = { __typename: 'NationalCurriculumInsightsQuoteSection', quote?: string | null, attribution?: string | null, role?: string | null, image?: { __typename?: 'ImageWithAltText', altText?: string | null, isPresentational?: boolean | null, asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null } | null };
 
-type NationalCurriculumInsightsModules_NationalCurriculumInsightsRichTextSection_Fragment = { __typename: 'NationalCurriculumInsightsRichTextSection', heading?: string | null, contentPortableText?: any | null };
+type NationalCurriculumInsightsModules_NationalCurriculumInsightsRichTextSection_Fragment = { __typename: 'NationalCurriculumInsightsRichTextSection', heading?: string | null, headingStyle?: string | null, contentPortableText?: any | null };
 
 type NationalCurriculumInsightsModules_NationalCurriculumInsightsSubjectNavigationSection_Fragment = { __typename: 'NationalCurriculumInsightsSubjectNavigationSection', phases?: Array<string | null> | null, primaryHeading?: string | null, secondaryHeading?: string | null };
 
@@ -6934,14 +7010,14 @@ type NationalCurriculumInsightsModules_NationalCurriculumInsightsTableSection_Fr
 
 type NationalCurriculumInsightsModules_NationalCurriculumInsightsVideoCardsSection_Fragment = { __typename: 'NationalCurriculumInsightsVideoCardsSection', heading?: string | null, introductionPortableText?: any | null, cards?: Array<{ __typename?: 'NationalCurriculumInsightsVideoCard', heading?: string | null, description?: string | null, videoUrl?: string | null, duration?: string | null, image?: { __typename?: 'ImageWithAltText', altText?: string | null, isPresentational?: boolean | null, asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null } | null } | null> | null };
 
-export type NationalCurriculumInsightsModulesFragment = NationalCurriculumInsightsModules_NationalCurriculumInsightsFaqSection_Fragment | NationalCurriculumInsightsModules_NationalCurriculumInsightsHeroSection_Fragment | NationalCurriculumInsightsModules_NationalCurriculumInsightsImageTextSection_Fragment | NationalCurriculumInsightsModules_NationalCurriculumInsightsKeyStageCardsSection_Fragment | NationalCurriculumInsightsModules_NationalCurriculumInsightsNewsletterSection_Fragment | NationalCurriculumInsightsModules_NationalCurriculumInsightsOverviewSection_Fragment | NationalCurriculumInsightsModules_NationalCurriculumInsightsPhaseCardsSection_Fragment | NationalCurriculumInsightsModules_NationalCurriculumInsightsPromotionalHeadingSection_Fragment | NationalCurriculumInsightsModules_NationalCurriculumInsightsQuoteSection_Fragment | NationalCurriculumInsightsModules_NationalCurriculumInsightsRichTextSection_Fragment | NationalCurriculumInsightsModules_NationalCurriculumInsightsSubjectNavigationSection_Fragment | NationalCurriculumInsightsModules_NationalCurriculumInsightsTableSection_Fragment | NationalCurriculumInsightsModules_NationalCurriculumInsightsVideoCardsSection_Fragment;
+export type NationalCurriculumInsightsModulesFragment = NationalCurriculumInsightsModules_NationalCurriculumInsightsDownloadSection_Fragment | NationalCurriculumInsightsModules_NationalCurriculumInsightsFaqSection_Fragment | NationalCurriculumInsightsModules_NationalCurriculumInsightsHeroSection_Fragment | NationalCurriculumInsightsModules_NationalCurriculumInsightsImageTextSection_Fragment | NationalCurriculumInsightsModules_NationalCurriculumInsightsKeyStageCardsSection_Fragment | NationalCurriculumInsightsModules_NationalCurriculumInsightsNewsletterSection_Fragment | NationalCurriculumInsightsModules_NationalCurriculumInsightsOverviewSection_Fragment | NationalCurriculumInsightsModules_NationalCurriculumInsightsPhaseCardsSection_Fragment | NationalCurriculumInsightsModules_NationalCurriculumInsightsPhaseNavigationSection_Fragment | NationalCurriculumInsightsModules_NationalCurriculumInsightsPromotionalHeadingSection_Fragment | NationalCurriculumInsightsModules_NationalCurriculumInsightsQuoteSection_Fragment | NationalCurriculumInsightsModules_NationalCurriculumInsightsRichTextSection_Fragment | NationalCurriculumInsightsModules_NationalCurriculumInsightsSubjectNavigationSection_Fragment | NationalCurriculumInsightsModules_NationalCurriculumInsightsTableSection_Fragment | NationalCurriculumInsightsModules_NationalCurriculumInsightsVideoCardsSection_Fragment;
 
 export type NationalCurriculumInsightsHubQueryVariables = Exact<{
   isDraftFilter?: InputMaybe<Sanity_DocumentFilter>;
 }>;
 
 
-export type NationalCurriculumInsightsHubQuery = { __typename?: 'RootQuery', allNationalCurriculumInsightsHub: Array<{ __typename?: 'NationalCurriculumInsightsHub', title?: string | null, summary?: string | null, id?: string | null, subjects?: Array<{ __typename?: 'NationalCurriculumInsightsSubject', title?: string | null, curriculumSubjectSlugs?: Array<string | null> | null, id?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null, tabs?: Array<{ __typename?: 'NationalCurriculumInsightsTab', kind?: string | null, label?: string | null, page?: { __typename?: 'NationalCurriculumInsightsPage', pageType?: string | null, title?: string | null, id?: string | null } | null } | null> | null } | null> | null, modules?: Array<{ __typename: 'NationalCurriculumInsightsFaqSection', heading?: string | null, items?: Array<{ __typename?: 'NationalCurriculumInsightsFaqItem', question?: string | null, initiallyExpanded?: boolean | null, answerPortableText?: any | null } | null> | null } | { __typename: 'NationalCurriculumInsightsHeroSection', heading?: string | null, authorName?: string | null, authorRole?: string | null, statusMessage?: string | null, bodyPortableText?: any | null, image?: { __typename?: 'ImageWithAltText', altText?: string | null, isPresentational?: boolean | null, asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null } | null, authorImage?: { __typename?: 'ImageWithAltText', altText?: string | null, isPresentational?: boolean | null, asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null } | null } | { __typename: 'NationalCurriculumInsightsImageTextSection', heading?: string | null, imagePosition?: string | null, background?: string | null, ctaLabel?: string | null, ctaHref?: string | null, bodyPortableText?: any | null, image?: { __typename?: 'ImageWithAltText', altText?: string | null, isPresentational?: boolean | null, asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null } | null } | { __typename: 'NationalCurriculumInsightsKeyStageCardsSection', cards?: Array<{ __typename?: 'NationalCurriculumInsightsKeyStageCard', keyStage?: string | null, heading?: string | null, linkLabel?: string | null, image?: { __typename?: 'ImageWithAltText', altText?: string | null, isPresentational?: boolean | null, asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null } | null } | null> | null } | { __typename: 'NationalCurriculumInsightsNewsletterSection', heading?: string | null, introduction?: string | null, benefits?: Array<string | null> | null, formId?: string | null, buttonLabel?: string | null, privacyPortableText?: any | null, illustration?: { __typename?: 'ImageWithAltText', altText?: string | null, isPresentational?: boolean | null, asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null } | null } | { __typename: 'NationalCurriculumInsightsOverviewSection', heading?: string | null, bodyPortableText?: any | null, image?: { __typename?: 'ImageWithAltText', altText?: string | null, isPresentational?: boolean | null, asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null } | null } | { __typename: 'NationalCurriculumInsightsPhaseCardsSection', cards?: Array<{ __typename?: 'NationalCurriculumInsightsPhaseCard', phase?: string | null, heading?: string | null, linkLabel?: string | null, image?: { __typename?: 'ImageWithAltText', altText?: string | null, isPresentational?: boolean | null, asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null } | null } | null> | null } | { __typename: 'NationalCurriculumInsightsPromotionalHeadingSection', heading?: string | null } | { __typename: 'NationalCurriculumInsightsQuoteSection', quote?: string | null, attribution?: string | null, role?: string | null, image?: { __typename?: 'ImageWithAltText', altText?: string | null, isPresentational?: boolean | null, asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null } | null } | { __typename: 'NationalCurriculumInsightsRichTextSection', heading?: string | null, contentPortableText?: any | null } | { __typename: 'NationalCurriculumInsightsSubjectNavigationSection', phases?: Array<string | null> | null, primaryHeading?: string | null, secondaryHeading?: string | null } | { __typename: 'NationalCurriculumInsightsTableSection', heading?: string | null, table?: { __typename?: 'Table', rows?: Array<{ __typename?: 'TableRow', cells?: Array<string | null> | null } | null> | null } | null } | { __typename: 'NationalCurriculumInsightsVideoCardsSection', heading?: string | null, introductionPortableText?: any | null, cards?: Array<{ __typename?: 'NationalCurriculumInsightsVideoCard', heading?: string | null, description?: string | null, videoUrl?: string | null, duration?: string | null, image?: { __typename?: 'ImageWithAltText', altText?: string | null, isPresentational?: boolean | null, asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null } | null } | null> | null } | null> | null }> };
+export type NationalCurriculumInsightsHubQuery = { __typename?: 'RootQuery', allNationalCurriculumInsightsHub: Array<{ __typename?: 'NationalCurriculumInsightsHub', title?: string | null, summary?: string | null, id?: string | null, subjects?: Array<{ __typename?: 'NationalCurriculumInsightsSubject', title?: string | null, curriculumSubjectSlugs?: Array<string | null> | null, id?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null, tabs?: Array<{ __typename?: 'NationalCurriculumInsightsTab', kind?: string | null, label?: string | null, page?: { __typename?: 'NationalCurriculumInsightsPage', pageType?: string | null, title?: string | null, id?: string | null } | null } | null> | null } | null> | null, modules?: Array<{ __typename: 'NationalCurriculumInsightsDownloadSection', barHeading?: string | null, barCtaLabel?: string | null, detailsHeading?: string | null, downloadsHeading?: string | null, downloadsIntroduction?: string | null, downloadButtonLabel?: string | null } | { __typename: 'NationalCurriculumInsightsFaqSection', heading?: string | null, items?: Array<{ __typename?: 'NationalCurriculumInsightsFaqItem', question?: string | null, answerPortableText?: any | null } | null> | null } | { __typename: 'NationalCurriculumInsightsHeroSection', heading?: string | null, authorName?: string | null, authorRole?: string | null, statusHeading?: string | null, statusMessage?: string | null, bodyPortableText?: any | null, image?: { __typename?: 'ImageWithAltText', altText?: string | null, isPresentational?: boolean | null, asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null } | null, authorImage?: { __typename?: 'ImageWithAltText', altText?: string | null, isPresentational?: boolean | null, asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null } | null } | { __typename: 'NationalCurriculumInsightsImageTextSection', heading?: string | null, imagePosition?: string | null, background?: string | null, ctaLabel?: string | null, ctaHref?: string | null, bodyPortableText?: any | null, image?: { __typename?: 'ImageWithAltText', altText?: string | null, isPresentational?: boolean | null, asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null } | null } | { __typename: 'NationalCurriculumInsightsKeyStageCardsSection', cards?: Array<{ __typename?: 'NationalCurriculumInsightsKeyStageCard', keyStage?: string | null, heading?: string | null, linkLabel?: string | null } | null> | null } | { __typename: 'NationalCurriculumInsightsNewsletterSection', heading?: string | null, introduction?: string | null, benefitsHeading?: string | null, benefits?: Array<string | null> | null, formId?: string | null, buttonLabel?: string | null, privacyPortableText?: any | null, illustration?: { __typename?: 'ImageWithAltText', altText?: string | null, isPresentational?: boolean | null, asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null } | null } | { __typename: 'NationalCurriculumInsightsOverviewSection', heading?: string | null, bodyPortableText?: any | null } | { __typename: 'NationalCurriculumInsightsPhaseCardsSection', cards?: Array<{ __typename?: 'NationalCurriculumInsightsPhaseCard', phase?: string | null, heading?: string | null, linkLabel?: string | null } | null> | null } | { __typename: 'NationalCurriculumInsightsPhaseNavigationSection', overviewLabel?: string | null, primaryLabel?: string | null, secondaryLabel?: string | null } | { __typename: 'NationalCurriculumInsightsPromotionalHeadingSection', heading?: string | null, variant?: string | null } | { __typename: 'NationalCurriculumInsightsQuoteSection', quote?: string | null, attribution?: string | null, role?: string | null, image?: { __typename?: 'ImageWithAltText', altText?: string | null, isPresentational?: boolean | null, asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null } | null } | { __typename: 'NationalCurriculumInsightsRichTextSection', heading?: string | null, headingStyle?: string | null, contentPortableText?: any | null } | { __typename: 'NationalCurriculumInsightsSubjectNavigationSection', phases?: Array<string | null> | null, primaryHeading?: string | null, secondaryHeading?: string | null } | { __typename: 'NationalCurriculumInsightsTableSection', heading?: string | null, table?: { __typename?: 'Table', rows?: Array<{ __typename?: 'TableRow', cells?: Array<string | null> | null } | null> | null } | null } | { __typename: 'NationalCurriculumInsightsVideoCardsSection', heading?: string | null, introductionPortableText?: any | null, cards?: Array<{ __typename?: 'NationalCurriculumInsightsVideoCard', heading?: string | null, description?: string | null, videoUrl?: string | null, duration?: string | null, image?: { __typename?: 'ImageWithAltText', altText?: string | null, isPresentational?: boolean | null, asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null } | null } | null> | null } | null> | null }> };
 
 export type NationalCurriculumInsightsSubjectBySlugQueryVariables = Exact<{
   subjectSlug?: InputMaybe<Scalars['String']['input']>;
@@ -6949,10 +7025,10 @@ export type NationalCurriculumInsightsSubjectBySlugQueryVariables = Exact<{
 }>;
 
 
-export type NationalCurriculumInsightsSubjectBySlugQuery = { __typename?: 'RootQuery', allNationalCurriculumInsightsSubject: Array<{ __typename?: 'NationalCurriculumInsightsSubject', title?: string | null, summary?: string | null, curriculumSubjectSlugs?: Array<string | null> | null, id?: string | null, modules?: Array<{ __typename: 'NationalCurriculumInsightsFaqSection', heading?: string | null, items?: Array<{ __typename?: 'NationalCurriculumInsightsFaqItem', question?: string | null, initiallyExpanded?: boolean | null, answerPortableText?: any | null } | null> | null } | { __typename: 'NationalCurriculumInsightsHeroSection', heading?: string | null, authorName?: string | null, authorRole?: string | null, statusMessage?: string | null, bodyPortableText?: any | null, image?: { __typename?: 'ImageWithAltText', altText?: string | null, isPresentational?: boolean | null, asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null } | null, authorImage?: { __typename?: 'ImageWithAltText', altText?: string | null, isPresentational?: boolean | null, asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null } | null } | { __typename: 'NationalCurriculumInsightsImageTextSection', heading?: string | null, imagePosition?: string | null, background?: string | null, ctaLabel?: string | null, ctaHref?: string | null, bodyPortableText?: any | null, image?: { __typename?: 'ImageWithAltText', altText?: string | null, isPresentational?: boolean | null, asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null } | null } | { __typename: 'NationalCurriculumInsightsKeyStageCardsSection', cards?: Array<{ __typename?: 'NationalCurriculumInsightsKeyStageCard', keyStage?: string | null, heading?: string | null, linkLabel?: string | null, image?: { __typename?: 'ImageWithAltText', altText?: string | null, isPresentational?: boolean | null, asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null } | null } | null> | null } | { __typename: 'NationalCurriculumInsightsNewsletterSection', heading?: string | null, introduction?: string | null, benefits?: Array<string | null> | null, formId?: string | null, buttonLabel?: string | null, privacyPortableText?: any | null, illustration?: { __typename?: 'ImageWithAltText', altText?: string | null, isPresentational?: boolean | null, asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null } | null } | { __typename: 'NationalCurriculumInsightsOverviewSection', heading?: string | null, bodyPortableText?: any | null, image?: { __typename?: 'ImageWithAltText', altText?: string | null, isPresentational?: boolean | null, asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null } | null } | { __typename: 'NationalCurriculumInsightsPhaseCardsSection', cards?: Array<{ __typename?: 'NationalCurriculumInsightsPhaseCard', phase?: string | null, heading?: string | null, linkLabel?: string | null, image?: { __typename?: 'ImageWithAltText', altText?: string | null, isPresentational?: boolean | null, asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null } | null } | null> | null } | { __typename: 'NationalCurriculumInsightsPromotionalHeadingSection', heading?: string | null } | { __typename: 'NationalCurriculumInsightsQuoteSection', quote?: string | null, attribution?: string | null, role?: string | null, image?: { __typename?: 'ImageWithAltText', altText?: string | null, isPresentational?: boolean | null, asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null } | null } | { __typename: 'NationalCurriculumInsightsRichTextSection', heading?: string | null, contentPortableText?: any | null } | { __typename: 'NationalCurriculumInsightsSubjectNavigationSection', phases?: Array<string | null> | null, primaryHeading?: string | null, secondaryHeading?: string | null } | { __typename: 'NationalCurriculumInsightsTableSection', heading?: string | null, table?: { __typename?: 'Table', rows?: Array<{ __typename?: 'TableRow', cells?: Array<string | null> | null } | null> | null } | null } | { __typename: 'NationalCurriculumInsightsVideoCardsSection', heading?: string | null, introductionPortableText?: any | null, cards?: Array<{ __typename?: 'NationalCurriculumInsightsVideoCard', heading?: string | null, description?: string | null, videoUrl?: string | null, duration?: string | null, image?: { __typename?: 'ImageWithAltText', altText?: string | null, isPresentational?: boolean | null, asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null } | null } | null> | null } | null> | null, slug?: { __typename?: 'Slug', current?: string | null } | null, tabs?: Array<{ __typename?: 'NationalCurriculumInsightsTab', kind?: string | null, label?: string | null, page?: { __typename?: 'NationalCurriculumInsightsPage', pageType?: string | null, title?: string | null, summary?: string | null, id?: string | null, keyStages?: Array<{ __typename?: 'NationalCurriculumInsightsKeyStagePageReference', keyStage?: string | null, label?: string | null, page?: { __typename?: 'NationalCurriculumInsightsKeyStagePage', keyStage?: string | null, title?: string | null, summary?: string | null, id?: string | null, modules?: Array<{ __typename: 'NationalCurriculumInsightsFaqSection', heading?: string | null, items?: Array<{ __typename?: 'NationalCurriculumInsightsFaqItem', question?: string | null, initiallyExpanded?: boolean | null, answerPortableText?: any | null } | null> | null } | { __typename: 'NationalCurriculumInsightsHeroSection', heading?: string | null, authorName?: string | null, authorRole?: string | null, statusMessage?: string | null, bodyPortableText?: any | null, image?: { __typename?: 'ImageWithAltText', altText?: string | null, isPresentational?: boolean | null, asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null } | null, authorImage?: { __typename?: 'ImageWithAltText', altText?: string | null, isPresentational?: boolean | null, asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null } | null } | { __typename: 'NationalCurriculumInsightsImageTextSection', heading?: string | null, imagePosition?: string | null, background?: string | null, ctaLabel?: string | null, ctaHref?: string | null, bodyPortableText?: any | null, image?: { __typename?: 'ImageWithAltText', altText?: string | null, isPresentational?: boolean | null, asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null } | null } | { __typename: 'NationalCurriculumInsightsKeyStageCardsSection', cards?: Array<{ __typename?: 'NationalCurriculumInsightsKeyStageCard', keyStage?: string | null, heading?: string | null, linkLabel?: string | null, image?: { __typename?: 'ImageWithAltText', altText?: string | null, isPresentational?: boolean | null, asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null } | null } | null> | null } | { __typename: 'NationalCurriculumInsightsNewsletterSection', heading?: string | null, introduction?: string | null, benefits?: Array<string | null> | null, formId?: string | null, buttonLabel?: string | null, privacyPortableText?: any | null, illustration?: { __typename?: 'ImageWithAltText', altText?: string | null, isPresentational?: boolean | null, asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null } | null } | { __typename: 'NationalCurriculumInsightsOverviewSection', heading?: string | null, bodyPortableText?: any | null, image?: { __typename?: 'ImageWithAltText', altText?: string | null, isPresentational?: boolean | null, asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null } | null } | { __typename: 'NationalCurriculumInsightsPhaseCardsSection', cards?: Array<{ __typename?: 'NationalCurriculumInsightsPhaseCard', phase?: string | null, heading?: string | null, linkLabel?: string | null, image?: { __typename?: 'ImageWithAltText', altText?: string | null, isPresentational?: boolean | null, asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null } | null } | null> | null } | { __typename: 'NationalCurriculumInsightsPromotionalHeadingSection', heading?: string | null } | { __typename: 'NationalCurriculumInsightsQuoteSection', quote?: string | null, attribution?: string | null, role?: string | null, image?: { __typename?: 'ImageWithAltText', altText?: string | null, isPresentational?: boolean | null, asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null } | null } | { __typename: 'NationalCurriculumInsightsRichTextSection', heading?: string | null, contentPortableText?: any | null } | { __typename: 'NationalCurriculumInsightsSubjectNavigationSection', phases?: Array<string | null> | null, primaryHeading?: string | null, secondaryHeading?: string | null } | { __typename: 'NationalCurriculumInsightsTableSection', heading?: string | null, table?: { __typename?: 'Table', rows?: Array<{ __typename?: 'TableRow', cells?: Array<string | null> | null } | null> | null } | null } | { __typename: 'NationalCurriculumInsightsVideoCardsSection', heading?: string | null, introductionPortableText?: any | null, cards?: Array<{ __typename?: 'NationalCurriculumInsightsVideoCard', heading?: string | null, description?: string | null, videoUrl?: string | null, duration?: string | null, image?: { __typename?: 'ImageWithAltText', altText?: string | null, isPresentational?: boolean | null, asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null } | null } | null> | null } | null> | null } | null } | null> | null, modules?: Array<{ __typename: 'NationalCurriculumInsightsFaqSection', heading?: string | null, items?: Array<{ __typename?: 'NationalCurriculumInsightsFaqItem', question?: string | null, initiallyExpanded?: boolean | null, answerPortableText?: any | null } | null> | null } | { __typename: 'NationalCurriculumInsightsHeroSection', heading?: string | null, authorName?: string | null, authorRole?: string | null, statusMessage?: string | null, bodyPortableText?: any | null, image?: { __typename?: 'ImageWithAltText', altText?: string | null, isPresentational?: boolean | null, asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null } | null, authorImage?: { __typename?: 'ImageWithAltText', altText?: string | null, isPresentational?: boolean | null, asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null } | null } | { __typename: 'NationalCurriculumInsightsImageTextSection', heading?: string | null, imagePosition?: string | null, background?: string | null, ctaLabel?: string | null, ctaHref?: string | null, bodyPortableText?: any | null, image?: { __typename?: 'ImageWithAltText', altText?: string | null, isPresentational?: boolean | null, asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null } | null } | { __typename: 'NationalCurriculumInsightsKeyStageCardsSection', cards?: Array<{ __typename?: 'NationalCurriculumInsightsKeyStageCard', keyStage?: string | null, heading?: string | null, linkLabel?: string | null, image?: { __typename?: 'ImageWithAltText', altText?: string | null, isPresentational?: boolean | null, asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null } | null } | null> | null } | { __typename: 'NationalCurriculumInsightsNewsletterSection', heading?: string | null, introduction?: string | null, benefits?: Array<string | null> | null, formId?: string | null, buttonLabel?: string | null, privacyPortableText?: any | null, illustration?: { __typename?: 'ImageWithAltText', altText?: string | null, isPresentational?: boolean | null, asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null } | null } | { __typename: 'NationalCurriculumInsightsOverviewSection', heading?: string | null, bodyPortableText?: any | null, image?: { __typename?: 'ImageWithAltText', altText?: string | null, isPresentational?: boolean | null, asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null } | null } | { __typename: 'NationalCurriculumInsightsPhaseCardsSection', cards?: Array<{ __typename?: 'NationalCurriculumInsightsPhaseCard', phase?: string | null, heading?: string | null, linkLabel?: string | null, image?: { __typename?: 'ImageWithAltText', altText?: string | null, isPresentational?: boolean | null, asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null } | null } | null> | null } | { __typename: 'NationalCurriculumInsightsPromotionalHeadingSection', heading?: string | null } | { __typename: 'NationalCurriculumInsightsQuoteSection', quote?: string | null, attribution?: string | null, role?: string | null, image?: { __typename?: 'ImageWithAltText', altText?: string | null, isPresentational?: boolean | null, asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null } | null } | { __typename: 'NationalCurriculumInsightsRichTextSection', heading?: string | null, contentPortableText?: any | null } | { __typename: 'NationalCurriculumInsightsSubjectNavigationSection', phases?: Array<string | null> | null, primaryHeading?: string | null, secondaryHeading?: string | null } | { __typename: 'NationalCurriculumInsightsTableSection', heading?: string | null, table?: { __typename?: 'Table', rows?: Array<{ __typename?: 'TableRow', cells?: Array<string | null> | null } | null> | null } | null } | { __typename: 'NationalCurriculumInsightsVideoCardsSection', heading?: string | null, introductionPortableText?: any | null, cards?: Array<{ __typename?: 'NationalCurriculumInsightsVideoCard', heading?: string | null, description?: string | null, videoUrl?: string | null, duration?: string | null, image?: { __typename?: 'ImageWithAltText', altText?: string | null, isPresentational?: boolean | null, asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null } | null } | null> | null } | null> | null } | null } | null> | null }> };
+export type NationalCurriculumInsightsSubjectBySlugQuery = { __typename?: 'RootQuery', allNationalCurriculumInsightsSubject: Array<{ __typename?: 'NationalCurriculumInsightsSubject', title?: string | null, summary?: string | null, curriculumSubjectSlugs?: Array<string | null> | null, id?: string | null, modules?: Array<{ __typename: 'NationalCurriculumInsightsDownloadSection', barHeading?: string | null, barCtaLabel?: string | null, detailsHeading?: string | null, downloadsHeading?: string | null, downloadsIntroduction?: string | null, downloadButtonLabel?: string | null } | { __typename: 'NationalCurriculumInsightsFaqSection', heading?: string | null, items?: Array<{ __typename?: 'NationalCurriculumInsightsFaqItem', question?: string | null, answerPortableText?: any | null } | null> | null } | { __typename: 'NationalCurriculumInsightsHeroSection', heading?: string | null, authorName?: string | null, authorRole?: string | null, statusHeading?: string | null, statusMessage?: string | null, bodyPortableText?: any | null, image?: { __typename?: 'ImageWithAltText', altText?: string | null, isPresentational?: boolean | null, asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null } | null, authorImage?: { __typename?: 'ImageWithAltText', altText?: string | null, isPresentational?: boolean | null, asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null } | null } | { __typename: 'NationalCurriculumInsightsImageTextSection', heading?: string | null, imagePosition?: string | null, background?: string | null, ctaLabel?: string | null, ctaHref?: string | null, bodyPortableText?: any | null, image?: { __typename?: 'ImageWithAltText', altText?: string | null, isPresentational?: boolean | null, asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null } | null } | { __typename: 'NationalCurriculumInsightsKeyStageCardsSection', cards?: Array<{ __typename?: 'NationalCurriculumInsightsKeyStageCard', keyStage?: string | null, heading?: string | null, linkLabel?: string | null } | null> | null } | { __typename: 'NationalCurriculumInsightsNewsletterSection', heading?: string | null, introduction?: string | null, benefitsHeading?: string | null, benefits?: Array<string | null> | null, formId?: string | null, buttonLabel?: string | null, privacyPortableText?: any | null, illustration?: { __typename?: 'ImageWithAltText', altText?: string | null, isPresentational?: boolean | null, asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null } | null } | { __typename: 'NationalCurriculumInsightsOverviewSection', heading?: string | null, bodyPortableText?: any | null } | { __typename: 'NationalCurriculumInsightsPhaseCardsSection', cards?: Array<{ __typename?: 'NationalCurriculumInsightsPhaseCard', phase?: string | null, heading?: string | null, linkLabel?: string | null } | null> | null } | { __typename: 'NationalCurriculumInsightsPhaseNavigationSection', overviewLabel?: string | null, primaryLabel?: string | null, secondaryLabel?: string | null } | { __typename: 'NationalCurriculumInsightsPromotionalHeadingSection', heading?: string | null, variant?: string | null } | { __typename: 'NationalCurriculumInsightsQuoteSection', quote?: string | null, attribution?: string | null, role?: string | null, image?: { __typename?: 'ImageWithAltText', altText?: string | null, isPresentational?: boolean | null, asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null } | null } | { __typename: 'NationalCurriculumInsightsRichTextSection', heading?: string | null, headingStyle?: string | null, contentPortableText?: any | null } | { __typename: 'NationalCurriculumInsightsSubjectNavigationSection', phases?: Array<string | null> | null, primaryHeading?: string | null, secondaryHeading?: string | null } | { __typename: 'NationalCurriculumInsightsTableSection', heading?: string | null, table?: { __typename?: 'Table', rows?: Array<{ __typename?: 'TableRow', cells?: Array<string | null> | null } | null> | null } | null } | { __typename: 'NationalCurriculumInsightsVideoCardsSection', heading?: string | null, introductionPortableText?: any | null, cards?: Array<{ __typename?: 'NationalCurriculumInsightsVideoCard', heading?: string | null, description?: string | null, videoUrl?: string | null, duration?: string | null, image?: { __typename?: 'ImageWithAltText', altText?: string | null, isPresentational?: boolean | null, asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null } | null } | null> | null } | null> | null, slug?: { __typename?: 'Slug', current?: string | null } | null, tabs?: Array<{ __typename?: 'NationalCurriculumInsightsTab', kind?: string | null, label?: string | null, page?: { __typename?: 'NationalCurriculumInsightsPage', pageType?: string | null, title?: string | null, summary?: string | null, id?: string | null, keyStages?: Array<{ __typename?: 'NationalCurriculumInsightsKeyStagePageReference', keyStage?: string | null, label?: string | null, page?: { __typename?: 'NationalCurriculumInsightsKeyStagePage', keyStage?: string | null, title?: string | null, summary?: string | null, id?: string | null, modules?: Array<{ __typename: 'NationalCurriculumInsightsDownloadSection', barHeading?: string | null, barCtaLabel?: string | null, detailsHeading?: string | null, downloadsHeading?: string | null, downloadsIntroduction?: string | null, downloadButtonLabel?: string | null } | { __typename: 'NationalCurriculumInsightsFaqSection', heading?: string | null, items?: Array<{ __typename?: 'NationalCurriculumInsightsFaqItem', question?: string | null, answerPortableText?: any | null } | null> | null } | { __typename: 'NationalCurriculumInsightsHeroSection', heading?: string | null, authorName?: string | null, authorRole?: string | null, statusHeading?: string | null, statusMessage?: string | null, bodyPortableText?: any | null, image?: { __typename?: 'ImageWithAltText', altText?: string | null, isPresentational?: boolean | null, asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null } | null, authorImage?: { __typename?: 'ImageWithAltText', altText?: string | null, isPresentational?: boolean | null, asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null } | null } | { __typename: 'NationalCurriculumInsightsImageTextSection', heading?: string | null, imagePosition?: string | null, background?: string | null, ctaLabel?: string | null, ctaHref?: string | null, bodyPortableText?: any | null, image?: { __typename?: 'ImageWithAltText', altText?: string | null, isPresentational?: boolean | null, asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null } | null } | { __typename: 'NationalCurriculumInsightsKeyStageCardsSection', cards?: Array<{ __typename?: 'NationalCurriculumInsightsKeyStageCard', keyStage?: string | null, heading?: string | null, linkLabel?: string | null } | null> | null } | { __typename: 'NationalCurriculumInsightsNewsletterSection', heading?: string | null, introduction?: string | null, benefitsHeading?: string | null, benefits?: Array<string | null> | null, formId?: string | null, buttonLabel?: string | null, privacyPortableText?: any | null, illustration?: { __typename?: 'ImageWithAltText', altText?: string | null, isPresentational?: boolean | null, asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null } | null } | { __typename: 'NationalCurriculumInsightsOverviewSection', heading?: string | null, bodyPortableText?: any | null } | { __typename: 'NationalCurriculumInsightsPhaseCardsSection', cards?: Array<{ __typename?: 'NationalCurriculumInsightsPhaseCard', phase?: string | null, heading?: string | null, linkLabel?: string | null } | null> | null } | { __typename: 'NationalCurriculumInsightsPhaseNavigationSection', overviewLabel?: string | null, primaryLabel?: string | null, secondaryLabel?: string | null } | { __typename: 'NationalCurriculumInsightsPromotionalHeadingSection', heading?: string | null, variant?: string | null } | { __typename: 'NationalCurriculumInsightsQuoteSection', quote?: string | null, attribution?: string | null, role?: string | null, image?: { __typename?: 'ImageWithAltText', altText?: string | null, isPresentational?: boolean | null, asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null } | null } | { __typename: 'NationalCurriculumInsightsRichTextSection', heading?: string | null, headingStyle?: string | null, contentPortableText?: any | null } | { __typename: 'NationalCurriculumInsightsSubjectNavigationSection', phases?: Array<string | null> | null, primaryHeading?: string | null, secondaryHeading?: string | null } | { __typename: 'NationalCurriculumInsightsTableSection', heading?: string | null, table?: { __typename?: 'Table', rows?: Array<{ __typename?: 'TableRow', cells?: Array<string | null> | null } | null> | null } | null } | { __typename: 'NationalCurriculumInsightsVideoCardsSection', heading?: string | null, introductionPortableText?: any | null, cards?: Array<{ __typename?: 'NationalCurriculumInsightsVideoCard', heading?: string | null, description?: string | null, videoUrl?: string | null, duration?: string | null, image?: { __typename?: 'ImageWithAltText', altText?: string | null, isPresentational?: boolean | null, asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null } | null } | null> | null } | null> | null } | null } | null> | null, modules?: Array<{ __typename: 'NationalCurriculumInsightsDownloadSection', barHeading?: string | null, barCtaLabel?: string | null, detailsHeading?: string | null, downloadsHeading?: string | null, downloadsIntroduction?: string | null, downloadButtonLabel?: string | null } | { __typename: 'NationalCurriculumInsightsFaqSection', heading?: string | null, items?: Array<{ __typename?: 'NationalCurriculumInsightsFaqItem', question?: string | null, answerPortableText?: any | null } | null> | null } | { __typename: 'NationalCurriculumInsightsHeroSection', heading?: string | null, authorName?: string | null, authorRole?: string | null, statusHeading?: string | null, statusMessage?: string | null, bodyPortableText?: any | null, image?: { __typename?: 'ImageWithAltText', altText?: string | null, isPresentational?: boolean | null, asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null } | null, authorImage?: { __typename?: 'ImageWithAltText', altText?: string | null, isPresentational?: boolean | null, asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null } | null } | { __typename: 'NationalCurriculumInsightsImageTextSection', heading?: string | null, imagePosition?: string | null, background?: string | null, ctaLabel?: string | null, ctaHref?: string | null, bodyPortableText?: any | null, image?: { __typename?: 'ImageWithAltText', altText?: string | null, isPresentational?: boolean | null, asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null } | null } | { __typename: 'NationalCurriculumInsightsKeyStageCardsSection', cards?: Array<{ __typename?: 'NationalCurriculumInsightsKeyStageCard', keyStage?: string | null, heading?: string | null, linkLabel?: string | null } | null> | null } | { __typename: 'NationalCurriculumInsightsNewsletterSection', heading?: string | null, introduction?: string | null, benefitsHeading?: string | null, benefits?: Array<string | null> | null, formId?: string | null, buttonLabel?: string | null, privacyPortableText?: any | null, illustration?: { __typename?: 'ImageWithAltText', altText?: string | null, isPresentational?: boolean | null, asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null } | null } | { __typename: 'NationalCurriculumInsightsOverviewSection', heading?: string | null, bodyPortableText?: any | null } | { __typename: 'NationalCurriculumInsightsPhaseCardsSection', cards?: Array<{ __typename?: 'NationalCurriculumInsightsPhaseCard', phase?: string | null, heading?: string | null, linkLabel?: string | null } | null> | null } | { __typename: 'NationalCurriculumInsightsPhaseNavigationSection', overviewLabel?: string | null, primaryLabel?: string | null, secondaryLabel?: string | null } | { __typename: 'NationalCurriculumInsightsPromotionalHeadingSection', heading?: string | null, variant?: string | null } | { __typename: 'NationalCurriculumInsightsQuoteSection', quote?: string | null, attribution?: string | null, role?: string | null, image?: { __typename?: 'ImageWithAltText', altText?: string | null, isPresentational?: boolean | null, asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null } | null } | { __typename: 'NationalCurriculumInsightsRichTextSection', heading?: string | null, headingStyle?: string | null, contentPortableText?: any | null } | { __typename: 'NationalCurriculumInsightsSubjectNavigationSection', phases?: Array<string | null> | null, primaryHeading?: string | null, secondaryHeading?: string | null } | { __typename: 'NationalCurriculumInsightsTableSection', heading?: string | null, table?: { __typename?: 'Table', rows?: Array<{ __typename?: 'TableRow', cells?: Array<string | null> | null } | null> | null } | null } | { __typename: 'NationalCurriculumInsightsVideoCardsSection', heading?: string | null, introductionPortableText?: any | null, cards?: Array<{ __typename?: 'NationalCurriculumInsightsVideoCard', heading?: string | null, description?: string | null, videoUrl?: string | null, duration?: string | null, image?: { __typename?: 'ImageWithAltText', altText?: string | null, isPresentational?: boolean | null, asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null } | null } | null> | null } | null> | null } | null } | null> | null }> };
 
 export const NationalCurriculumInsightsModulesFragmentDoc = gql`
-    fragment NationalCurriculumInsightsModules on NationalCurriculumInsightsFaqSectionOrNationalCurriculumInsightsHeroSectionOrNationalCurriculumInsightsImageTextSectionOrNationalCurriculumInsightsKeyStageCardsSectionOrNationalCurriculumInsightsNewsletterSectionOrNationalCurriculumInsightsOverviewSectionOrNationalCurriculumInsightsPhaseCardsSectionOrNationalCurriculumInsightsPromotionalHeadingSectionOrNationalCurriculumInsightsQuoteSectionOrNationalCurriculumInsightsRichTextSectionOrNationalCurriculumInsightsSubjectNavigationSectionOrNationalCurriculumInsightsTableSectionOrNationalCurriculumInsightsVideoCardsSection {
+    fragment NationalCurriculumInsightsModules on NationalCurriculumInsightsDownloadSectionOrNationalCurriculumInsightsFaqSectionOrNationalCurriculumInsightsHeroSectionOrNationalCurriculumInsightsImageTextSectionOrNationalCurriculumInsightsKeyStageCardsSectionOrNationalCurriculumInsightsNewsletterSectionOrNationalCurriculumInsightsOverviewSectionOrNationalCurriculumInsightsPhaseCardsSectionOrNationalCurriculumInsightsPhaseNavigationSectionOrNationalCurriculumInsightsPromotionalHeadingSectionOrNationalCurriculumInsightsQuoteSectionOrNationalCurriculumInsightsRichTextSectionOrNationalCurriculumInsightsSubjectNavigationSectionOrNationalCurriculumInsightsTableSectionOrNationalCurriculumInsightsVideoCardsSection {
   __typename
   ... on NationalCurriculumInsightsHeroSection {
     heading
@@ -6975,33 +7051,18 @@ export const NationalCurriculumInsightsModulesFragmentDoc = gql`
         url
       }
     }
+    statusHeading
     statusMessage
   }
   ... on NationalCurriculumInsightsOverviewSection {
     heading
     bodyPortableText: bodyRaw
-    image {
-      altText
-      isPresentational
-      asset {
-        _id
-        url
-      }
-    }
   }
   ... on NationalCurriculumInsightsPhaseCardsSection {
     cards {
       phase
       heading
       linkLabel
-      image {
-        altText
-        isPresentational
-        asset {
-          _id
-          url
-        }
-      }
     }
   }
   ... on NationalCurriculumInsightsKeyStageCardsSection {
@@ -7009,18 +7070,24 @@ export const NationalCurriculumInsightsModulesFragmentDoc = gql`
       keyStage
       heading
       linkLabel
-      image {
-        altText
-        isPresentational
-        asset {
-          _id
-          url
-        }
-      }
     }
   }
   ... on NationalCurriculumInsightsPromotionalHeadingSection {
     heading
+    variant
+  }
+  ... on NationalCurriculumInsightsPhaseNavigationSection {
+    overviewLabel
+    primaryLabel
+    secondaryLabel
+  }
+  ... on NationalCurriculumInsightsDownloadSection {
+    barHeading
+    barCtaLabel
+    detailsHeading
+    downloadsHeading
+    downloadsIntroduction
+    downloadButtonLabel
   }
   ... on NationalCurriculumInsightsSubjectNavigationSection {
     phases
@@ -7030,6 +7097,7 @@ export const NationalCurriculumInsightsModulesFragmentDoc = gql`
   ... on NationalCurriculumInsightsNewsletterSection {
     heading
     introduction
+    benefitsHeading
     benefits
     illustration {
       altText
@@ -7048,11 +7116,11 @@ export const NationalCurriculumInsightsModulesFragmentDoc = gql`
     items {
       question
       answerPortableText: answerRaw
-      initiallyExpanded
     }
   }
   ... on NationalCurriculumInsightsRichTextSection {
     heading
+    headingStyle
     contentPortableText: contentRaw
   }
   ... on NationalCurriculumInsightsImageTextSection {

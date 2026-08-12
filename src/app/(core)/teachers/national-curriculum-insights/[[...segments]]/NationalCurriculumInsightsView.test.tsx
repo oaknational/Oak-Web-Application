@@ -47,10 +47,26 @@ describe("NationalCurriculumInsightsView", () => {
     );
   });
 
-  it("renders subject tabs after the independently editable page hero", async () => {
-    const { container } = renderWithTheme(
-      <NationalCurriculumInsightsView data={await getData(["science"])} />,
+  it("does not render tab navigation unless the editor adds the module", async () => {
+    const data = await getData(["science"]);
+    if (!data.page) {
+      throw new Error("Expected the Science page fixture");
+    }
+
+    const { rerender } = renderWithTheme(
+      <NationalCurriculumInsightsView data={data} />,
     );
+    expect(
+      screen.queryByRole("navigation", { name: "Science insights" }),
+    ).not.toBeInTheDocument();
+
+    data.page.modules.push({
+      __typename: "NationalCurriculumInsightsPhaseNavigationSection",
+      overviewLabel: "changes overview",
+      primaryLabel: "Primary",
+      secondaryLabel: "Secondary",
+    });
+    rerender(<NationalCurriculumInsightsView data={data} />);
 
     const navigation = screen.getByRole("navigation", {
       name: "Science insights",
@@ -59,23 +75,11 @@ describe("NationalCurriculumInsightsView", () => {
       screen.getByRole("link", { name: "Science changes overview" }),
     );
     expect(
-      screen.getByRole("link", { name: "Science changes overview" }),
-    ).toHaveAttribute("href", "/teachers/national-curriculum-insights/science");
-    expect(
       screen.getByRole("link", { name: "Science Primary changes" }),
     ).toHaveAttribute(
       "href",
       "/teachers/national-curriculum-insights/science/primary",
     );
-    expect(
-      screen.getByRole("link", { name: "Science Secondary changes" }),
-    ).toHaveAttribute(
-      "href",
-      "/teachers/national-curriculum-insights/science/secondary",
-    );
-    expect(
-      navigation.compareDocumentPosition(container.querySelector("h1")!),
-    ).toBe(Node.DOCUMENT_POSITION_PRECEDING);
   });
 
   it("selects the Primary tab and renders Primary page content", async () => {
@@ -86,12 +90,7 @@ describe("NationalCurriculumInsightsView", () => {
     );
 
     expect(
-      screen.getByRole("link", {
-        name: "Primary Science changes overview",
-      }),
-    ).toHaveAttribute("aria-current", "page");
-    expect(
-      screen.queryByRole("link", { name: "Science changes overview" }),
+      screen.queryByRole("navigation", { name: "Science insights" }),
     ).not.toBeInTheDocument();
     expect(
       screen.getByRole("heading", {
@@ -114,24 +113,7 @@ describe("NationalCurriculumInsightsView", () => {
     );
 
     expect(
-      screen.getByRole("link", {
-        name: "Primary Science changes overview",
-      }),
-    ).toHaveAttribute(
-      "href",
-      "/teachers/national-curriculum-insights/science/primary",
-    );
-    expect(
-      screen.getByRole("link", { name: "Science Primary - KS1 changes" }),
-    ).toHaveAttribute("aria-current", "page");
-    expect(
-      screen.getByRole("link", { name: "Science Primary - KS2 changes" }),
-    ).toHaveAttribute(
-      "href",
-      "/teachers/national-curriculum-insights/science/primary/key-stage-2",
-    );
-    expect(
-      screen.queryByRole("link", { name: "Science Primary changes" }),
+      screen.queryByRole("navigation", { name: "Science insights" }),
     ).not.toBeInTheDocument();
     expect(
       screen.getByRole("heading", {
@@ -153,7 +135,6 @@ describe("NationalCurriculumInsightsView", () => {
           keyStage: "KS1",
           heading: "Changes to science in key stage 1",
           linkLabel: "Read insights",
-          image: null,
         },
       ],
     });
@@ -182,7 +163,12 @@ describe("NationalCurriculumInsightsView", () => {
         __typename: "NationalCurriculumInsightsImageTextSection",
         heading: "How the curriculum is changing",
         bodyPortableText: hero.bodyPortableText,
-        image: hero.image,
+        image: hero.image ?? {
+          altText: null,
+          asset: null,
+          hotspot: null,
+          isPresentational: true,
+        },
         imagePosition: "left",
         background: "turquoise",
         ctaLabel: "Read the update",
@@ -196,7 +182,12 @@ describe("NationalCurriculumInsightsView", () => {
           {
             heading: "A conversation about science",
             description: "Hear from curriculum experts.",
-            image: hero.image,
+            image: hero.image ?? {
+              altText: null,
+              asset: null,
+              hotspot: null,
+              isPresentational: true,
+            },
             videoUrl: "https://example.com/science-video",
             duration: "12 mins",
           },

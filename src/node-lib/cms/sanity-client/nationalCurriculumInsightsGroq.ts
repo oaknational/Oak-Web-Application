@@ -26,6 +26,7 @@ const modulesProjection = `modules[]{
     _type == "nationalCurriculumInsightsPhaseCardsSection" => "NationalCurriculumInsightsPhaseCardsSection",
     _type == "nationalCurriculumInsightsKeyStageCardsSection" => "NationalCurriculumInsightsKeyStageCardsSection",
     _type == "nationalCurriculumInsightsPromotionalHeadingSection" => "NationalCurriculumInsightsPromotionalHeadingSection",
+    _type == "nationalCurriculumInsightsPhaseNavigationSection" => "NationalCurriculumInsightsPhaseNavigationSection",
     _type == "nationalCurriculumInsightsSubjectNavigationSection" => "NationalCurriculumInsightsSubjectNavigationSection",
     _type == "nationalCurriculumInsightsNewsletterSection" => "NationalCurriculumInsightsNewsletterSection",
     _type == "nationalCurriculumInsightsFaqSection" => "NationalCurriculumInsightsFaqSection",
@@ -33,17 +34,30 @@ const modulesProjection = `modules[]{
     _type == "nationalCurriculumInsightsImageTextSection" => "NationalCurriculumInsightsImageTextSection",
     _type == "nationalCurriculumInsightsVideoCardsSection" => "NationalCurriculumInsightsVideoCardsSection",
     _type == "nationalCurriculumInsightsQuoteSection" => "NationalCurriculumInsightsQuoteSection",
-    _type == "nationalCurriculumInsightsTableSection" => "NationalCurriculumInsightsTableSection"
+    _type == "nationalCurriculumInsightsTableSection" => "NationalCurriculumInsightsTableSection",
+    _type == "nationalCurriculumInsightsDownloadSection" => "NationalCurriculumInsightsDownloadSection"
   ),
   heading,
+  headingStyle,
+  variant,
+  overviewLabel,
+  primaryLabel,
+  secondaryLabel,
   phases,
   primaryHeading,
   secondaryHeading,
   introduction,
+  benefitsHeading,
   benefits,
   "privacyPortableText": privacyText,
   formId,
   buttonLabel,
+  barHeading,
+  barCtaLabel,
+  detailsHeading,
+  downloadsHeading,
+  downloadsIntroduction,
+  downloadButtonLabel,
   illustration ${imageProjection},
   "bodyPortableText": body,
   "contentPortableText": content,
@@ -51,6 +65,7 @@ const modulesProjection = `modules[]{
   authorName,
   authorRole,
   authorImage ${imageProjection},
+  statusHeading,
   statusMessage,
   imagePosition,
   background,
@@ -61,11 +76,16 @@ const modulesProjection = `modules[]{
   role,
   videoUrl,
   duration,
-  image ${imageProjection},
+  "image": select(
+    _type in [
+      "nationalCurriculumInsightsHeroSection",
+      "nationalCurriculumInsightsImageTextSection",
+      "nationalCurriculumInsightsQuoteSection"
+    ] => image ${imageProjection}
+  ),
   items[]{
     question,
-    "answerPortableText": answer,
-    initiallyExpanded
+    "answerPortableText": answer
   },
   cards[]{
     phase,
@@ -75,7 +95,9 @@ const modulesProjection = `modules[]{
     linkLabel,
     videoUrl,
     duration,
-    image ${imageProjection}
+    "image": select(
+      ^._type == "nationalCurriculumInsightsVideoCardsSection" => image ${imageProjection}
+    )
   },
   table {
     rows[]{cells}

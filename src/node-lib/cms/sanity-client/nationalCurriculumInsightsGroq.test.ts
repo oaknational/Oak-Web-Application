@@ -19,6 +19,7 @@ const mockFetch = jest.fn();
 const moduleFixture = {
   __typename: "NationalCurriculumInsightsRichTextSection",
   heading: "Introduction",
+  headingStyle: "section",
   contentPortableText: [
     {
       _key: "block",

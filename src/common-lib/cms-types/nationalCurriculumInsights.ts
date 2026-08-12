@@ -77,10 +77,11 @@ const nationalCurriculumInsightsHeroSectionSchema = z.object({
   __typename: z.literal("NationalCurriculumInsightsHeroSection"),
   heading: z.string().min(1),
   bodyPortableText: portableTextSchema,
-  image: imageSchema,
+  image: imageSchema.nullable().optional(),
   authorName: z.string().min(1).nullable().optional(),
   authorRole: z.string().min(1).nullable().optional(),
   authorImage: imageSchema.nullable().optional(),
+  statusHeading: z.string().min(1).nullable().optional(),
   statusMessage: z.string().min(1).nullable().optional(),
 });
 
@@ -92,13 +93,11 @@ const nationalCurriculumInsightsOverviewSectionSchema = z.object({
   __typename: z.literal("NationalCurriculumInsightsOverviewSection"),
   heading: z.string().min(1),
   bodyPortableText: portableTextSchema,
-  image: imageSchema,
 });
 
 const nationalCurriculumInsightsPhaseCardSchema = z.object({
   phase: nationalCurriculumInsightsPhaseSchema,
   heading: z.string().min(1),
-  image: imageSchema.nullable().optional(),
   linkLabel: z.string().min(1),
 });
 
@@ -110,7 +109,6 @@ const nationalCurriculumInsightsPhaseCardsSectionSchema = z.object({
 const nationalCurriculumInsightsKeyStageCardSchema = z.object({
   keyStage: nationalCurriculumInsightsKeyStageSchema,
   heading: z.string().min(1),
-  image: imageSchema.nullable().optional(),
   linkLabel: z.string().min(1),
 });
 
@@ -122,6 +120,14 @@ const nationalCurriculumInsightsKeyStageCardsSectionSchema = z.object({
 const nationalCurriculumInsightsPromotionalHeadingSectionSchema = z.object({
   __typename: z.literal("NationalCurriculumInsightsPromotionalHeadingSection"),
   heading: z.string().min(1),
+  variant: z.enum(["explorer", "keyStage"]).nullable().optional(),
+});
+
+const nationalCurriculumInsightsPhaseNavigationSectionSchema = z.object({
+  __typename: z.literal("NationalCurriculumInsightsPhaseNavigationSection"),
+  overviewLabel: z.string().min(1),
+  primaryLabel: z.string().min(1),
+  secondaryLabel: z.string().min(1),
 });
 
 const nationalCurriculumInsightsSubjectNavigationSectionSchema = z.object({
@@ -135,6 +141,7 @@ const nationalCurriculumInsightsNewsletterSectionSchema = z.object({
   __typename: z.literal("NationalCurriculumInsightsNewsletterSection"),
   heading: z.string().min(1),
   introduction: z.string().min(1),
+  benefitsHeading: z.string().min(1).nullable().optional(),
   benefits: z.array(z.string().min(1)).min(1),
   illustration: imageSchema,
   privacyPortableText: portableTextSchema,
@@ -150,7 +157,6 @@ const nationalCurriculumInsightsFaqSectionSchema = z.object({
       z.object({
         question: z.string().min(1),
         answerPortableText: portableTextSchema,
-        initiallyExpanded: z.boolean().nullable().optional(),
       }),
     )
     .min(1),
@@ -159,6 +165,7 @@ const nationalCurriculumInsightsFaqSectionSchema = z.object({
 const nationalCurriculumInsightsRichTextSectionSchema = z.object({
   __typename: z.literal("NationalCurriculumInsightsRichTextSection"),
   heading: z.string().min(1),
+  headingStyle: z.enum(["section", "detail"]).default("section"),
   contentPortableText: portableTextSchema,
 });
 
@@ -204,6 +211,16 @@ const nationalCurriculumInsightsTableSectionSchema = z.object({
   table: nationalCurriculumInsightsTableSchema,
 });
 
+const nationalCurriculumInsightsDownloadSectionSchema = z.object({
+  __typename: z.literal("NationalCurriculumInsightsDownloadSection"),
+  barHeading: z.string().min(1),
+  barCtaLabel: z.string().min(1),
+  detailsHeading: z.string().min(1),
+  downloadsHeading: z.string().min(1),
+  downloadsIntroduction: z.string().min(1),
+  downloadButtonLabel: z.string().min(1),
+});
+
 export const nationalCurriculumInsightsModuleSchema = z.discriminatedUnion(
   "__typename",
   [
@@ -212,6 +229,7 @@ export const nationalCurriculumInsightsModuleSchema = z.discriminatedUnion(
     nationalCurriculumInsightsPhaseCardsSectionSchema,
     nationalCurriculumInsightsKeyStageCardsSectionSchema,
     nationalCurriculumInsightsPromotionalHeadingSectionSchema,
+    nationalCurriculumInsightsPhaseNavigationSectionSchema,
     nationalCurriculumInsightsSubjectNavigationSectionSchema,
     nationalCurriculumInsightsNewsletterSectionSchema,
     nationalCurriculumInsightsFaqSectionSchema,
@@ -220,6 +238,7 @@ export const nationalCurriculumInsightsModuleSchema = z.discriminatedUnion(
     nationalCurriculumInsightsVideoCardsSectionSchema,
     nationalCurriculumInsightsQuoteSectionSchema,
     nationalCurriculumInsightsTableSectionSchema,
+    nationalCurriculumInsightsDownloadSectionSchema,
   ],
 );
 

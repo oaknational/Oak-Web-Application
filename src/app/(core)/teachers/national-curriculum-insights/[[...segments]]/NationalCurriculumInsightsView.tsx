@@ -4,6 +4,7 @@ import { OakBox, OakHeading, OakP, OakTabs } from "@oaknational/oak-components";
 import styled from "styled-components";
 
 import { NationalCurriculumInsightsHero } from "./NationalCurriculumInsightsHero";
+import { NationalCurriculumInsightsDownload } from "./NationalCurriculumInsightsDownload";
 import {
   NationalCurriculumInsightsFaq,
   NationalCurriculumInsightsImageText,
@@ -55,7 +56,9 @@ const ModuleView = ({
     case "NationalCurriculumInsightsHeroSection":
       return <NationalCurriculumInsightsHero section={module} data={data} />;
     case "NationalCurriculumInsightsOverviewSection":
-      return <NationalCurriculumInsightsOverview section={module} />;
+      return (
+        <NationalCurriculumInsightsOverview section={module} data={data} />
+      );
     case "NationalCurriculumInsightsPhaseCardsSection":
       return (
         <NationalCurriculumInsightsPhaseCards section={module} data={data} />
@@ -65,7 +68,14 @@ const ModuleView = ({
         <NationalCurriculumInsightsKeyStageCards section={module} data={data} />
       );
     case "NationalCurriculumInsightsPromotionalHeadingSection":
-      return <NationalCurriculumInsightsPromotionalHeading section={module} />;
+      return (
+        <NationalCurriculumInsightsPromotionalHeading
+          section={module}
+          data={data}
+        />
+      );
+    case "NationalCurriculumInsightsPhaseNavigationSection":
+      return <InsightsTabs section={module} data={data} />;
     case "NationalCurriculumInsightsSubjectNavigationSection":
       return (
         <NationalCurriculumInsightsSubjectNavigation
@@ -76,7 +86,7 @@ const ModuleView = ({
     case "NationalCurriculumInsightsNewsletterSection":
       return <NationalCurriculumInsightsNewsletter section={module} />;
     case "NationalCurriculumInsightsFaqSection":
-      return <NationalCurriculumInsightsFaq section={module} data={data} />;
+      return <NationalCurriculumInsightsFaq section={module} />;
     case "NationalCurriculumInsightsRichTextSection":
       return <NationalCurriculumInsightsRichText section={module} />;
     case "NationalCurriculumInsightsImageTextSection":
@@ -87,6 +97,10 @@ const ModuleView = ({
       return <NationalCurriculumInsightsQuote section={module} />;
     case "NationalCurriculumInsightsTableSection":
       return <NationalCurriculumInsightsTable section={module} />;
+    case "NationalCurriculumInsightsDownloadSection":
+      return (
+        <NationalCurriculumInsightsDownload section={module} data={data} />
+      );
     default:
       return assertNever(module);
   }
@@ -162,7 +176,6 @@ const PageModuleList = ({
           <OakP>{data.page.summary}</OakP>
         </OakBox>
       )}
-      <InsightsTabs data={data} />
       {modules.map((module, index) => (
         <ModuleView
           key={`${module.__typename}-${index}`}
@@ -175,8 +188,13 @@ const PageModuleList = ({
 };
 
 const InsightsTabs = ({
+  section,
   data,
 }: {
+  section: Extract<
+    NationalCurriculumInsightsModule,
+    { __typename: "NationalCurriculumInsightsPhaseNavigationSection" }
+  >;
   data: NationalCurriculumInsightsRouteData;
 }) => {
   if (!data.subject || !data.activeTab) {
@@ -193,12 +211,14 @@ const InsightsTabs = ({
       {
         active: true,
         href: nationalCurriculumInsightsTabHref(data.subject.slug, "overview"),
-        label: `${data.subject.title} changes overview`,
+        label: `${data.subject.title} ${section.overviewLabel}`,
       },
-      ...data.subject.tabs.map(({ kind, label }) => ({
+      ...data.subject.tabs.map(({ kind }) => ({
         active: false,
         href: nationalCurriculumInsightsTabHref(data.subject!.slug, kind),
-        label: `${data.subject!.title} ${label} changes`,
+        label: `${data.subject!.title} ${
+          kind === "primary" ? section.primaryLabel : section.secondaryLabel
+        } changes`,
       })),
     ];
   } else if (phaseTab) {
@@ -209,7 +229,7 @@ const InsightsTabs = ({
           data.subject.slug,
           phaseTab.kind,
         ),
-        label: `${phaseTab.label} ${data.subject.title} changes overview`,
+        label: `${phaseTab.label} ${data.subject.title} ${section.overviewLabel}`,
       },
       ...phaseTab.page.keyStages.map(({ keyStage }) => ({
         active: data.activeKeyStage === keyStage,
