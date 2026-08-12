@@ -8,6 +8,8 @@ https://oak-web-application-website-git-test-lesq-2113playwright-setup.vercel.th
 const baseURL = process.env.BASE_URL ?? "http://localhost:3000";
 const shouldStartWebServer = !process.env.CI && !process.env.BASE_URL;
 
+const visualTestMatch = /visual\/.*\.spec\.ts/;
+
 export default defineConfig({
   testDir: "./src/tests/e2e",
   outputDir: "./test-results",
@@ -47,10 +49,37 @@ export default defineConfig({
     screenshot: "only-on-failure",
   },
 
+  expect: {
+    toHaveScreenshot: {
+      maxDiffPixelRatio: 0.01,
+      animations: "disabled",
+      stylePath: "./src/tests/visual/screenshot.css",
+    },
+  },
+
   projects: [
     {
       name: "chromium",
+      testIgnore: visualTestMatch,
       use: { ...devices["Desktop Chrome"] },
+    },
+    {
+      name: "visual-desktop",
+      testMatch: visualTestMatch,
+      timeout: 90_000,
+      use: { ...devices["Desktop Chrome"] },
+    },
+    {
+      name: "visual-mobile",
+      testMatch: visualTestMatch,
+      timeout: 90_000,
+      use: { ...devices["iPhone 14"] },
+    },
+    {
+      name: "visual-tablet",
+      testMatch: visualTestMatch,
+      timeout: 90_000,
+      use: { ...devices["iPad Pro 11"] },
     },
   ],
 
