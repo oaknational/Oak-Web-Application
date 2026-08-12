@@ -1,5 +1,6 @@
 import { fireEvent, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
+import { oakColorTokens } from "@oaknational/oak-components";
 
 import { NationalCurriculumInsightsDownload } from "./NationalCurriculumInsightsDownload";
 import {
@@ -45,6 +46,7 @@ describe("NationalCurriculumInsightsDownload", () => {
     const toggle = screen.getByRole("button", {
       name: /the national curriculum is changing/i,
     });
+    expect(toggle).toHaveStyle(`background: ${oakColorTokens["dark-aqua"]}`);
     expect(toggle).toHaveAttribute("aria-expanded", "false");
     await user.click(toggle);
     expect(toggle).toHaveAttribute("aria-expanded", "true");

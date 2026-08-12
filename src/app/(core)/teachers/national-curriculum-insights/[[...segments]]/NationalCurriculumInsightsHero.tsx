@@ -9,6 +9,7 @@ import {
   OakHeading,
   OakImage,
   OakP,
+  parseColor,
 } from "@oaknational/oak-components";
 import styled from "styled-components";
 
@@ -107,7 +108,7 @@ const AuthorImage = styled(OakBox)`
 const UpdateCard = styled(OakBox)`
   box-sizing: border-box;
   width: 100%;
-  border: 1px solid #7cd8d0;
+  border: 1px solid ${parseColor("border-decorative2-stronger")};
 
   @media (${getMediaQuery("desktop")}) {
     width: 408px;

@@ -206,13 +206,14 @@ const InsightsJumpCard = styled(Link)<{ $height: number }>`
   width: 100%;
   height: ${({ $height }) => $height}px;
   padding: 16px;
-  border: 1px solid #e4e4e4;
+  border: 1px solid ${parseColor("grey30")};
   border-radius: 8px;
-  background: #ffffff;
-  color: #222222;
+  background: ${parseColor("bg-primary")};
+  color: ${parseColor("text-primary")};
   text-decoration: none;
 
   &:hover {
+    /* No Oak theme token currently matches the design's #F7F7F7. */
     background: #f7f7f7;
   }
 `;
@@ -451,8 +452,8 @@ const SubjectNavigationMaxWidth = styled(OakBox)`
   }
 
   a {
-    background: #ffffff;
-    border-color: #e4e4e4;
+    background: ${parseColor("bg-primary")};
+    border-color: ${parseColor("grey30")};
   }
 `;
 
@@ -937,15 +938,15 @@ const InsightsTable = styled.table`
   min-width: 640px;
   border-spacing: 0;
   border-collapse: separate;
-  border: 1px solid #93e892;
+  border: 1px solid ${parseColor("border-decorative1-stronger")};
   border-radius: 8px;
   overflow: hidden;
 
   th,
   td {
     padding: 12px;
-    border-right: 1px solid #93e892;
-    border-bottom: 1px solid #93e892;
+    border-right: 1px solid ${parseColor("border-decorative1-stronger")};
+    border-bottom: 1px solid ${parseColor("border-decorative1-stronger")};
     text-align: left;
     vertical-align: top;
     font-size: 16px;
@@ -953,17 +954,17 @@ const InsightsTable = styled.table`
   }
 
   th {
-    background: #bef2bd;
+    background: ${parseColor("bg-decorative1-main")};
     font-weight: 700;
     line-height: 20px;
   }
 
   tbody tr:nth-child(odd) td {
-    background: #ffffff;
+    background: ${parseColor("bg-primary")};
   }
 
   tbody tr:nth-child(even) td {
-    background: #ebfbeb;
+    background: ${parseColor("bg-decorative1-very-subdued")};
   }
 
   tr:last-child td {
@@ -1082,10 +1083,10 @@ const NewsletterSelect = styled.select`
   width: 100%;
   min-height: 56px;
   padding: 12px 16px;
-  border: 2px solid #222222;
+  border: 2px solid ${parseColor("border-primary")};
   border-radius: 4px;
-  background: #ffffff;
-  color: #222222;
+  background: ${parseColor("bg-primary")};
+  color: ${parseColor("text-primary")};
   font: inherit;
 `;
 
@@ -1104,7 +1105,6 @@ export const NationalCurriculumInsightsNewsletter = ({
     <NewsletterSection
       as="section"
       $background="bg-decorative5-very-subdued"
-      style={{ backgroundColor: "#fff7cc" }}
       $ph={["spacing-20", "spacing-40"]}
       $pv={["spacing-48", "spacing-48"]}
       $borderRadius="border-radius-l"

@@ -10,6 +10,7 @@ import {
   OakMultiSelect,
   OakP,
   OakTextInput,
+  parseColor,
 } from "@oaknational/oak-components";
 import { ChangeEvent, FormEvent, useId, useMemo, useState } from "react";
 import styled from "styled-components";
@@ -26,7 +27,7 @@ type DownloadSection = Extract<
 
 const Section = styled.section`
   width: 100%;
-  background: #ffffff;
+  background: ${parseColor("bg-primary")};
 `;
 
 const HeaderButton = styled.button`
@@ -35,13 +36,13 @@ const HeaderButton = styled.button`
   min-height: 99px;
   padding: 19px 20px;
   border: 0;
-  background: #00746a;
-  color: #ffffff;
+  background: ${parseColor("dark-aqua")};
+  color: ${parseColor("text-inverted")};
   font: inherit;
   cursor: pointer;
 
   &:focus-visible {
-    outline: 4px solid #ffe555;
+    outline: 4px solid ${parseColor("border-decorative5")};
     outline-offset: -4px;
   }
 `;
@@ -64,8 +65,8 @@ const HeaderIcon = styled.span`
   flex: 0 0 44px;
   margin-right: 24px;
   border-radius: 50%;
-  background: #ffffff;
-  color: #00746a;
+  background: ${parseColor("bg-primary")};
+  color: ${parseColor("dark-aqua")};
 `;
 
 const HeaderHeading = styled.span`
@@ -81,7 +82,7 @@ const HeaderCta = styled.span`
   align-items: center;
   padding: 4px 8px;
   border-radius: 6px;
-  background: #0c5651;
+  background: ${parseColor("dark-aqua")};
   font-size: 14px;
   font-weight: 600;
   line-height: 20px;
@@ -113,7 +114,7 @@ const Toggle = styled.span<{ $expanded: boolean }>`
 
 const Expanded = styled.form`
   width: 100%;
-  background: #ffffff;
+  background: ${parseColor("bg-primary")};
 `;
 
 const Columns = styled.div`
@@ -132,7 +133,7 @@ const Column = styled.div`
   padding: 32px 20px 40px;
 
   & + & {
-    border-top: 1px solid #e4e4e4;
+    border-top: 1px solid ${parseColor("grey30")};
   }
 
   @media (${getMediaQuery("desktop")}) {
@@ -143,7 +144,7 @@ const Column = styled.div`
       padding-right: 0;
       padding-left: 64px;
       border-top: 0;
-      border-left: 1px solid #e4e4e4;
+      border-left: 1px solid ${parseColor("grey30")};
     }
   }
 `;
@@ -179,16 +180,16 @@ const NativeSelect = styled.select`
   width: 100%;
   min-height: 64px;
   padding: 12px 48px 12px 16px;
-  border: 2px solid #222222;
+  border: 2px solid ${parseColor("border-primary")};
   border-radius: 4px;
-  background: #ffffff;
-  color: #222222;
+  background: ${parseColor("bg-primary")};
+  color: ${parseColor("text-primary")};
   font: inherit;
   font-size: 16px;
   line-height: 24px;
 
   &:focus-visible {
-    outline: 4px solid #ffe555;
+    outline: 4px solid ${parseColor("border-decorative5")};
     outline-offset: 2px;
   }
 `;
@@ -208,7 +209,7 @@ const TermsBox = styled.div`
   align-items: center;
   padding: 8px;
   border-radius: 4px;
-  background: #e4e4e4;
+  background: ${parseColor("bg-neutral-stronger")};
 `;
 
 const ActionBar = styled.div`
@@ -216,8 +217,8 @@ const ActionBar = styled.div`
   max-width: 1280px;
   min-height: 80px;
   margin: 0 auto;
-  border-top: 1px solid #e4e4e4;
-  background: #ffffff;
+  border-top: 1px solid ${parseColor("grey30")};
+  background: ${parseColor("bg-primary")};
 
   @media (${getMediaQuery("desktop")}) {
     grid-template-columns: minmax(0, 53%) minmax(0, 47%);
@@ -232,7 +233,7 @@ const ActionCell = styled.div`
   @media (${getMediaQuery("desktop")}) {
     grid-column: 2;
     padding: 12px 0 12px 76px;
-    border-left: 1px solid #e4e4e4;
+    border-left: 1px solid ${parseColor("grey30")};
   }
 `;
 
@@ -243,10 +244,10 @@ const DownloadButton = styled.button`
   width: 100%;
   min-height: 48px;
   padding: 12px 16px;
-  border: 2px solid #222222;
+  border: 2px solid ${parseColor("border-primary")};
   border-radius: 4px;
-  background: #222222;
-  color: #ffffff;
+  background: ${parseColor("bg-btn-primary")};
+  color: ${parseColor("text-inverted")};
   font: inherit;
   font-size: 16px;
   font-weight: 600;
@@ -254,19 +255,20 @@ const DownloadButton = styled.button`
   cursor: pointer;
 
   &:disabled {
-    border-color: #808080;
-    background: #808080;
+    border-color: ${parseColor("border-neutral")};
+    background: ${parseColor("bg-btn-primary-disabled")};
     cursor: not-allowed;
   }
 
   &:focus-visible {
-    outline: 4px solid #ffe555;
+    outline: 4px solid ${parseColor("border-decorative5")};
     outline-offset: 2px;
   }
 `;
 
 const ErrorMessage = styled(OakP)`
   margin: 12px 0 0;
+  /* No Oak theme token currently matches the design's #B00020. */
   color: #b00020;
 `;
 
