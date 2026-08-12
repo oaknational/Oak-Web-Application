@@ -1,16 +1,16 @@
 import type { TrackFns } from "@/context/Analytics/AnalyticsProvider";
 import type { LessonSectionResults } from "@/context/PupilLessonProgress";
+import type { ClassroomAssignmentContext } from "@/browser-lib/google-classroom/classroomAssignmentContext";
 import type {
-  PupilAnalyticsProviderClassroomContext,
   PupilPathwayData,
   PupilVideoData,
-} from "@/components/PupilComponents/PupilAnalyticsProvider/PupilAnalyticsProvider";
+} from "@/context/PupilLessonAnalytics/pupilAnalyticsHelpers";
 import type { LessonContent } from "@/node-lib/curriculum-api-2023/queries/pupilLesson/pupilLesson.schema";
 import type { QuestionsArray } from "@/context/PupilLessonQuiz";
 
 export type AdditionalArgs = PupilPathwayData & {
   analyticsUseCase: "Pupil";
-  clientEnvironment: PupilAnalyticsProviderClassroomContext["clientEnvironment"];
+  clientEnvironment: ClassroomAssignmentContext["clientEnvironment"];
   classroomAssignmentId: string | null;
   courseId: string | null;
   itemId: string | null;
@@ -75,7 +75,7 @@ export type TrackContentGuidanceArgs = Omit<
 export type InitialisePupilLessonAnalyticsArgs = {
   track: TrackFns;
   pupilPathwayData: PupilPathwayData;
-  classroomAssignmentContext: PupilAnalyticsProviderClassroomContext;
+  classroomAssignmentContext: ClassroomAssignmentContext;
   lessonContent?: LessonContent;
 };
 

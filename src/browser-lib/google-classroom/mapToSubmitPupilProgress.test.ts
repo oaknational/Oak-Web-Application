@@ -1,7 +1,7 @@
 import { type ClassroomProgressContext } from "./classroomAssignmentContext";
 import { mapToSubmitPupilProgress } from "./mapToSubmitPupilProgress";
 
-import type { LessonSectionResults } from "@/components/PupilComponents/LessonEngineProvider";
+import type { LessonSectionResults } from "@/context/PupilLessonProgress";
 
 const mockContext: ClassroomProgressContext = {
   submissionId: "submission-123",

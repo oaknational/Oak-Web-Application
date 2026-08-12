@@ -1,14 +1,11 @@
 import type { Meta, StoryObj } from "@storybook/nextjs";
-import {
-  OakFlex,
-  OakThemeProvider,
-  oakDefaultTheme,
-} from "@oaknational/oak-components";
+import { OakFlex } from "@oaknational/oak-components";
 
 import { EYFSLessonGroupProvider } from "../EyfsLessonGroupProvider";
 
 import { EYFSLessonCard } from "./EyfsLessonCard";
 
+import NotificationsDecorator from "@/storybook-decorators/NotificationsDecorator";
 import { __setMockAuthState } from "@/storybook-mocks/clerk";
 import type { EYFSLesson } from "@/node-lib/curriculum-api-2023/queries/eyfs/eyfsSchema";
 
@@ -92,19 +89,18 @@ const meta: Meta<typeof EYFSLessonCard> = {
   component: EYFSLessonCard,
   title: "App/Teachers/Eyfs/EyfsLessonCard",
   decorators: [
+    NotificationsDecorator,
     (Story) => (
-      <OakThemeProvider theme={oakDefaultTheme}>
-        <EYFSLessonGroupProvider>
-          <OakFlex
-            $flexDirection="column"
-            $gap="spacing-24"
-            $pa="spacing-24"
-            $background="bg-neutral"
-          >
-            <Story />
-          </OakFlex>
-        </EYFSLessonGroupProvider>
-      </OakThemeProvider>
+      <EYFSLessonGroupProvider>
+        <OakFlex
+          $flexDirection="column"
+          $gap="spacing-24"
+          $pa="spacing-24"
+          $background="bg-neutral"
+        >
+          <Story />
+        </OakFlex>
+      </EYFSLessonGroupProvider>
     ),
   ],
 };

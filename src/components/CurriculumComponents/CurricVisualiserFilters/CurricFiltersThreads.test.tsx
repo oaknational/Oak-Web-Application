@@ -82,13 +82,17 @@ describe("CurricFiltersThreads", () => {
 
     act(() => elements[1]!.click());
     expect(onChangeFilters).toHaveBeenCalledWith({
-      subjectCategories: [],
-      childSubjects: [],
-      threads: ["thread1"],
-      tiers: [],
-      years: ["10", "11"],
-      pathways: [],
-      keystages: [],
+      newFilters: {
+        subjectCategories: [],
+        childSubjects: [],
+        threads: ["thread1"],
+        tiers: [],
+        years: ["10", "11"],
+        pathways: [],
+        keystages: [],
+      },
+      filterType: "Learning theme filter",
+      filterValue: "thread1",
     });
   });
 
@@ -115,13 +119,17 @@ describe("CurricFiltersThreads", () => {
 
     act(() => elements[0]!.click());
     expect(onChangeFilters).toHaveBeenCalledWith({
-      subjectCategories: [],
-      childSubjects: [],
-      threads: [],
-      tiers: [],
-      years: ["10", "11"],
-      pathways: [],
-      keystages: [],
+      newFilters: {
+        subjectCategories: [],
+        childSubjects: [],
+        threads: [],
+        tiers: [],
+        years: ["10", "11"],
+        pathways: [],
+        keystages: [],
+      },
+      filterType: "Learning theme filter",
+      filterValue: "",
     });
   });
 });

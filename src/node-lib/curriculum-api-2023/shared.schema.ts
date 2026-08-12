@@ -2,8 +2,14 @@ import { z } from "zod";
 import {
   actionsSchema,
   keystageSlugs,
+  pathwayDescriptions,
+  pathwaySlugs,
+  phaseSlugs,
   SyntheticUnitvariantsWithLessonIdsByKsCamel,
   syntheticUnitvariantsWithLessonIdsByKsSchema,
+  tierDescriptions,
+  tierSlugs,
+  years,
 } from "@oaknational/oak-curriculum-schema";
 import zodToCamelCase from "zod-to-camel-case";
 
@@ -187,9 +193,9 @@ export const baseLessonOverviewSchema = z.object({
   isLegacy: z.boolean(),
   lessonSlug: z.string(),
   lessonTitle: z.string(),
-  tierTitle: z.string().nullable().optional(),
-  tierSlug: z.string().nullable().optional(),
-  pathwayTitle: z.string().nullable().optional(),
+  tierTitle: tierDescriptions.nullable(),
+  tierSlug: tierSlugs.nullable(),
+  pathwayTitle: pathwayDescriptions.nullable(),
   contentGuidance: z
     .array(contentGuidanceSchemaCamelCase)
     .nullable()
@@ -297,9 +303,9 @@ export const baseLessonDownloadsSchema = z.object({
   isLegacy: z.boolean(),
   lessonSlug: z.string(),
   lessonTitle: z.string(),
-  phaseSlug: z.string(),
+  phaseSlug: phaseSlugs,
   subjectParent: z.string().nullable(),
-  pathwaySlug: z.string().nullable(),
+  pathwaySlug: pathwaySlugs.nullable(),
   downloads: lessonDownloadsListSchema,
   additionalFiles: lessonAdditionalFilesListSchema,
   expired: z.boolean().nullable(),
@@ -309,6 +315,7 @@ export const baseLessonDownloadsSchema = z.object({
   loginRequired: z.boolean().nullable(),
   actions: actionsSchemaCamel.nullish(),
   lessonReleaseDate: z.string().nullable(),
+  year: years,
 });
 
 export const lessonListItemSchema = z.object({

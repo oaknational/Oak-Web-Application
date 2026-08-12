@@ -1,1 +1,0 @@
-export * from "./PupilQuiz.view";

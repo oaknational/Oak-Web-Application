@@ -2,7 +2,7 @@ import type { MetadataRoute } from "next";
 
 import errorReporter from "@/common-lib/error-reporter";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
-import { buildTeachersSitemapEntries } from "@/pages-helpers/teacher/sitemap-pages/sitemap-pages-helper";
+import { buildTeachersSitemapEntries } from "@/pages-helpers/teacher/sitemap-pages/sitemapPagesHelper";
 
 export const revalidate = 7200;
 

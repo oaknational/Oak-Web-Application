@@ -446,6 +446,99 @@ describe("getUnitCounts", () => {
     expect(result.unitIndex).toBe(2);
   });
 
+  it("orders swimming units by yearOrder across years", () => {
+    // Both swimming units have unitOrder: 1 (first unit in their respective year),
+    // so sorting by unitOrder alone is insufficient (it would preserve input/API order). yearOrder must be the primary sort key.
+    const sequence: UnitSequence = [
+      {
+        unitSlug: "unit-1",
+        unitTitle: "Unit 1",
+        unitDescription: null,
+        unitOrder: 1,
+        nullUnitvariantId: 1,
+        yearOrder: 1,
+        year: "3",
+        actions: null,
+      },
+      // Intentionally placed before the Year 3 swimming unit despite being the later year
+      {
+        unitSlug: "swimming-year-4",
+        unitTitle: "Swimming Year 4",
+        unitDescription: null,
+        unitOrder: 1,
+        nullUnitvariantId: 3,
+        yearOrder: 2,
+        year: "4",
+        isSwimming: true,
+        actions: null,
+      },
+      {
+        unitSlug: "swimming-year-3",
+        unitTitle: "Swimming Year 3",
+        unitDescription: null,
+        unitOrder: 1,
+        nullUnitvariantId: 2,
+        yearOrder: 1,
+        year: "3",
+        isSwimming: true,
+        actions: null,
+      },
+    ];
+
+    const year3Result = getUnitCounts({
+      unitSequenceData: sequence,
+      nullUnitvariantId: 2,
+    });
+    expect(year3Result.unitIndex).toBe(1);
+    expect(year3Result.unitCount).toBe(2);
+
+    const year4Result = getUnitCounts({
+      unitSequenceData: sequence,
+      nullUnitvariantId: 3,
+    });
+    expect(year4Result.unitIndex).toBe(2);
+    expect(year4Result.unitCount).toBe(2);
+  });
+
+  it("orders swimming units by unitOrder when yearOrder is equal", () => {
+    const sequence: UnitSequence = [
+      {
+        unitSlug: "swimming-b",
+        unitTitle: "Swimming B",
+        unitDescription: null,
+        unitOrder: 2,
+        nullUnitvariantId: 2,
+        yearOrder: 1,
+        year: "3",
+        isSwimming: true,
+        actions: null,
+      },
+      {
+        unitSlug: "swimming-a",
+        unitTitle: "Swimming A",
+        unitDescription: null,
+        unitOrder: 1,
+        nullUnitvariantId: 1,
+        yearOrder: 1,
+        year: "3",
+        isSwimming: true,
+        actions: null,
+      },
+    ];
+
+    const resultA = getUnitCounts({
+      unitSequenceData: sequence,
+      nullUnitvariantId: 1,
+    });
+    expect(resultA.unitIndex).toBe(1);
+
+    const resultB = getUnitCounts({
+      unitSequenceData: sequence,
+      nullUnitvariantId: 2,
+    });
+    expect(resultB.unitIndex).toBe(2);
+  });
+
   it("filters to overlapping subject categories when subject category grouping is enabled", () => {
     const sequence: UnitSequence = [
       {

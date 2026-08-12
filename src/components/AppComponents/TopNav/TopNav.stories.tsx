@@ -1,27 +1,26 @@
 import type { Meta, StoryObj } from "@storybook/nextjs";
-import { oakDefaultTheme, OakThemeProvider } from "@oaknational/oak-components";
 
 import Component from "./TopNav";
 
 import { topNavFixture } from "@/node-lib/curriculum-api-2023/fixtures/topNav.fixture";
 import { OakNotificationsProvider } from "@/context/OakNotifications/OakNotificationsProvider";
+import SaveCountDecorator from "@/storybook-decorators/SaveCountDecorator";
 
-const meta: Meta<typeof Component> = {
+const meta = {
   component: Component,
-};
+  decorators: [SaveCountDecorator],
+} satisfies Meta<typeof Component>;
 
 export default meta;
-type Story = StoryObj<typeof Component>;
+type Story = StoryObj<typeof meta>;
 
 const { teachers, pupils } = topNavFixture;
 
 export const TopNav: Story = {
   render: (args) => (
-    <OakThemeProvider theme={oakDefaultTheme}>
-      <OakNotificationsProvider>
-        <Component {...args} />
-      </OakNotificationsProvider>
-    </OakThemeProvider>
+    <OakNotificationsProvider>
+      <Component {...args} />
+    </OakNotificationsProvider>
   ),
   args: {
     teachers,
@@ -31,11 +30,9 @@ export const TopNav: Story = {
 
 export const WithoutData: Story = {
   render: (args) => (
-    <OakThemeProvider theme={oakDefaultTheme}>
-      <OakNotificationsProvider>
-        <Component {...args} />
-      </OakNotificationsProvider>
-    </OakThemeProvider>
+    <OakNotificationsProvider>
+      <Component {...args} />
+    </OakNotificationsProvider>
   ),
   args: {
     teachers: null,

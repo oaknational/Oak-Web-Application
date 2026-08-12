@@ -5,7 +5,7 @@ import {
 
 import type { ClassroomProgressContext } from "./classroomAssignmentContext";
 
-import type { LessonSectionResults } from "@/components/PupilComponents/LessonEngineProvider";
+import type { LessonSectionResults } from "@/context/PupilLessonProgress";
 import type { QuestionState } from "@/components/PupilComponents/QuizUtils/questionTypes";
 
 type QuizSectionResult = NonNullable<
@@ -45,6 +45,11 @@ const mapQuizProgress = (quizResult: QuizSectionResult | undefined) => {
   };
 };
 
+/**
+ * Maps the pupil lesson progress store's section results into the payload the
+ * Google Classroom add-on expects, so pupil work is written back to the
+ * assignment submission.
+ */
 export function mapToSubmitPupilProgress(
   context: ClassroomProgressContext,
   sectionResults: LessonSectionResults,

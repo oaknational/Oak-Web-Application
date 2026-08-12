@@ -1,9 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/nextjs";
-import {
-  OakCodeRenderer,
-  OakThemeProvider,
-  oakDefaultTheme,
-} from "@oaknational/oak-components";
+import { OakCodeRenderer } from "@oaknational/oak-components";
 
 import { PupilLessonQuizCheckButton } from "../PupilLessonQuizCheckButton/PupilLessonQuizCheckButton";
 import { PupilLessonQuizNextButton } from "../PupilLessonQuizNextButton/PupilLessonQuizNextButton";
@@ -14,13 +10,6 @@ const meta = {
   title:
     "Components/PupilComponents/Views/PupilLessonQuiz/PupilLessonQuizBottomNav",
   component: PupilLessonQuizBottomNav,
-  decorators: [
-    (StoryComponent) => (
-      <OakThemeProvider theme={oakDefaultTheme}>
-        <StoryComponent />
-      </OakThemeProvider>
-    ),
-  ],
 } satisfies Meta<typeof PupilLessonQuizBottomNav>;
 
 export default meta;

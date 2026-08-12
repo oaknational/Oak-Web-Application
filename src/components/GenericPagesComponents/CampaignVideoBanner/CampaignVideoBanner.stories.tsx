@@ -1,6 +1,5 @@
 import React from "react";
 import { Meta, StoryObj } from "@storybook/nextjs";
-import { oakDefaultTheme, OakThemeProvider } from "@oaknational/oak-components";
 
 import { CampaignVideoBanner } from "./CampaignVideoBanner";
 
@@ -21,12 +20,10 @@ type Story = StoryObj<typeof CampaignVideoBanner>;
 
 export const Default: Story = {
   render: () => (
-    <OakThemeProvider theme={oakDefaultTheme}>
-      <CampaignVideoBanner
-        heading={headingPortableText()}
-        subheading={subheadingPortableText()}
-        video={mockVideoAsset()}
-      />
-    </OakThemeProvider>
+    <CampaignVideoBanner
+      heading={headingPortableText()}
+      subheading={subheadingPortableText()}
+      video={mockVideoAsset()}
+    />
   ),
 };

@@ -37,6 +37,6 @@ describe("RegistrationLayout", () => {
       </RegistrationLayout>,
     );
     const terms = screen.getByText("Terms");
-    expect(terms).toBeInTheDocument;
+    expect(terms).toBeInTheDocument();
   });
 });

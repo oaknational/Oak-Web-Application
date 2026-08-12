@@ -42,7 +42,7 @@ exports[`CurricTimetablingUnits snapshot (mode=debug) 1`] = `
                 class="sc-eldPxv iuXWKp"
                 data-testid="timetable-header-title"
               >
-                Your Transfiguration timetable
+                Your Maths timetable
               </h1>
               <div
                 class="sc-aXZVg jPvJsJ"
@@ -292,7 +292,7 @@ exports[`CurricTimetablingUnits snapshot (mode=debug) 1`] = `
             </div>
           </div>
           <div
-            class="sc-aXZVg sc-gEvEer sc-bVHCgj cUjhPB iDBIXi"
+            class="sc-aXZVg sc-gEvEer sc-hHOBiw cUjhPB iDBIXi"
             focusable="false"
           >
             <svg
@@ -590,7 +590,7 @@ exports[`CurricTimetablingUnits snapshot (mode=normal) 1`] = `
                 class="sc-eldPxv iuXWKp"
                 data-testid="timetable-header-title"
               >
-                Your Transfiguration timetable
+                Your Maths timetable
               </h1>
               <div
                 class="sc-aXZVg jPvJsJ"
@@ -840,7 +840,7 @@ exports[`CurricTimetablingUnits snapshot (mode=normal) 1`] = `
             </div>
           </div>
           <div
-            class="sc-aXZVg sc-gEvEer sc-bVHCgj cUjhPB iDBIXi"
+            class="sc-aXZVg sc-gEvEer sc-hHOBiw cUjhPB iDBIXi"
             focusable="false"
           >
             <svg
@@ -1026,14 +1026,14 @@ exports[`CurricTimetablingUnits snapshot (mode=normal) 1`] = `
                     </div>
                   </div>
                   <ol
-                    class="sc-f456e885-0 fOvJVL"
+                    class="sc-fcf808f-0 giFMkT"
                     role="list"
                   >
                     <li
-                      class="sc-f456e885-1 bqYjse"
+                      class="sc-fcf808f-1 crHfsW"
                     >
                       <div
-                        class="sc-aXZVg sc-hZDyAQ jJROoH bXvWdu"
+                        class="sc-aXZVg sc-hZDyAQ jJROoH cgXuAr"
                       >
                         <a
                           class="sc-a6022ff2-0 ejmuOd"
@@ -1093,10 +1093,10 @@ exports[`CurricTimetablingUnits snapshot (mode=normal) 1`] = `
                       </div>
                     </li>
                     <li
-                      class="sc-f456e885-1 bqYjse"
+                      class="sc-fcf808f-1 crHfsW"
                     >
                       <div
-                        class="sc-aXZVg sc-hZDyAQ jJROoH bXvWdu"
+                        class="sc-aXZVg sc-hZDyAQ jJROoH cgXuAr"
                       >
                         <a
                           class="sc-a6022ff2-0 ejmuOd"

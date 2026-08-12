@@ -2,6 +2,7 @@ import { screen } from "@testing-library/dom";
 import userEvent, {
   PointerEventsCheckLevel,
 } from "@testing-library/user-event";
+import { useRouter, useSearchParams } from "next/navigation";
 
 import RoleSelectionView from "./RoleSelection.view";
 
@@ -11,6 +12,10 @@ import * as onboardingActions from "@/components/TeacherComponents/OnboardingFor
 jest.mock("@/components/TeacherComponents/OnboardingForm/onboardingActions");
 
 describe("RoleSelection", () => {
+  beforeEach(() => {
+    (useRouter as jest.Mock).mockReturnValue({ push: jest.fn() });
+    (useSearchParams as jest.Mock).mockReturnValue(new URLSearchParams());
+  });
   it("renders a group of radio buttons in a form", () => {
     renderWithProviders()(<RoleSelectionView />);
 

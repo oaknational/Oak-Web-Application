@@ -216,18 +216,21 @@ function formatId(id: string) {
 }
 
 function outputStdout(refs: Record<string, string[]>) {
+  const total = Object.values(refs)
+    .map((files) => files.length)
+    .reduce((accumulator, currentValue) => accumulator + currentValue, 0);
   for (const [id, files] of Object.entries(refs)) {
     const importFiles = IMPORT_MAP.find((ref) => ref.id === id)!.files;
     const componentStr = chalk.green(`<${formatId(id)}/>`);
     const fileStr = chalk.blue(`./${importFiles[0]}`);
     const countStr = chalk.gray(`(${files.length} files)`);
-
     console.log(`${componentStr} — ${fileStr} ${countStr}`);
     for (const file of files) {
       console.log(` - ./${file}`);
     }
     console.log("");
   }
+  console.log(`${chalk.blue("total:")} ${total} files`);
 }
 
 async function findRefs(pattern: string) {

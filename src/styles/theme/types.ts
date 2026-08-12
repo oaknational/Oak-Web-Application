@@ -4,7 +4,6 @@ import { z } from "zod";
 import { CheckboxConfig } from "@/components/SharedComponents/Checkbox";
 import { SelectListBoxConfig } from "@/components/SharedComponents/ListBox/ListBox";
 import { VideoStyleConfig } from "@/components/SharedComponents/VideoPlayer/VideoPlayer";
-import { HeaderConfig } from "@/components/AppComponents/StyledHeader/StyledHeader";
 
 /**
  * Adds a finite list of pixel values which we're allowed to use throughout the
@@ -256,7 +255,6 @@ type ToggleStyleConfig = {
 };
 
 export type OakTheme = {
-  header: HeaderConfig;
   name: string;
   colors: Record<OakColorName, ColorValue>;
   contrastColors: Record<OakColorName, OakColorName>;

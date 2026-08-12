@@ -12,7 +12,7 @@ import WhoAreWeTimeline from "@/components/GenericPagesComponents/WhoAreWeTimeli
 import { WhoAreWeDesc } from "@/components/GenericPagesComponents/WhoAreWeDesc";
 import { AboutUsLayout } from "@/components/GenericPagesComponents/AboutUsLayout";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
-import Layout from "@/components/AppComponents/Layout";
+import Layout from "@/components/AppComponents/AppLayout";
 import { TopNavProps } from "@/components/AppComponents/TopNav/TopNav";
 import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
 

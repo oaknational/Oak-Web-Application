@@ -14,4 +14,21 @@ query teachersSitemap {
     unit_slug
     programme_slug
   }
+  programmeFilterUnits: published_mv_curriculum_sequence_b_13_0_21(
+    where: {
+      state: { _eq: "published" }
+      lessons: { _contains: [{ _state: "published" }] }
+    }
+  ) {
+    subject_slug
+    phase_slug
+    examboard_slug
+    pathway_slug
+    year
+    keystage_slug
+    subject_parent_slug
+    non_curriculum
+    actions
+    state
+  }
 }

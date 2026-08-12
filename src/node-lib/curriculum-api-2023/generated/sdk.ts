@@ -21732,7 +21732,7 @@ export type TeachersLessonOverviewQuery = { __typename?: 'query_root', browseDat
 export type TeachersSitemapQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type TeachersSitemapQuery = { __typename?: 'query_root', units: Array<{ __typename?: 'published_mv_synthetic_unitvariant_lessons_by_keystage_18_0_0', unit_slug?: string | null, programme_slug?: string | null }>, lessons: Array<{ __typename?: 'published_mv_synthetic_unitvariant_lessons_by_keystage_18_0_0', lesson_slug?: string | null, unit_slug?: string | null, programme_slug?: string | null }> };
+export type TeachersSitemapQuery = { __typename?: 'query_root', units: Array<{ __typename?: 'published_mv_synthetic_unitvariant_lessons_by_keystage_18_0_0', unit_slug?: string | null, programme_slug?: string | null }>, lessons: Array<{ __typename?: 'published_mv_synthetic_unitvariant_lessons_by_keystage_18_0_0', lesson_slug?: string | null, unit_slug?: string | null, programme_slug?: string | null }>, programmeFilterUnits: Array<{ __typename?: 'published_mv_curriculum_sequence_b_13_0_21', subject_slug?: string | null, phase_slug?: string | null, examboard_slug?: string | null, pathway_slug?: string | null, year?: string | null, keystage_slug?: string | null, subject_parent_slug?: string | null, non_curriculum?: boolean | null, actions?: any | null, state?: string | null }> };
 
 export type TeachersUnitOverviewQueryVariables = Exact<{
   programmeSlug: Scalars['String']['input'];
@@ -22627,6 +22627,20 @@ export const TeachersSitemapDocument = gql`
     lesson_slug
     unit_slug
     programme_slug
+  }
+  programmeFilterUnits: published_mv_curriculum_sequence_b_13_0_21(
+    where: {state: {_eq: "published"}, lessons: {_contains: [{_state: "published"}]}}
+  ) {
+    subject_slug
+    phase_slug
+    examboard_slug
+    pathway_slug
+    year
+    keystage_slug
+    subject_parent_slug
+    non_curriculum
+    actions
+    state
   }
 }
     `;

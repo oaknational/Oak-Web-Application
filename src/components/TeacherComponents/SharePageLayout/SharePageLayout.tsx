@@ -25,6 +25,10 @@ import { ResourcePageDetailsCompletedProps } from "@/components/TeacherComponent
 import { ResourcePageSchoolDetailsProps } from "@/components/TeacherComponents/ResourcePageSchoolDetails/ResourcePageSchoolDetails";
 import { getFormErrorMessages } from "@/components/TeacherComponents/helpers/downloadAndShareHelpers/getDownloadFormErrorMessage";
 import { SHARE_FORM_ERROR_IDS } from "@/components/TeacherComponents/helpers/downloadAndShareHelpers/shareDownloadFormErrorIds";
+import {
+  getValidationSummaryAnnouncement,
+  VALIDATION_SUMMARY_PREFIX,
+} from "@/components/TeacherComponents/helpers/downloadAndShareHelpers/validationSummaryText";
 import TermsAgreementForm from "@/components/TeacherComponents/TermsAgreementForm";
 import NoResourcesToShare from "@/components/TeacherComponents/NoResourcesToShare";
 import FieldError from "@/components/SharedComponents/FieldError";
@@ -35,6 +39,7 @@ export type SharePageLayoutProps = ResourcePageDetailsCompletedProps &
     header: string;
     errors: FieldErrors<ResourceFormValues>;
     cardGroup: React.ReactNode;
+    radioGroups: React.ReactNode;
     showLoading: boolean;
     showNoResources: boolean;
     schoolId?: string;
@@ -55,7 +60,9 @@ const SharePageLayout: FC<SharePageLayoutProps> = (props) => {
   const hasFormErrors = Object.keys(props.errors).length > 0;
   const validationErrorMessages = getFormErrorMessages(props.errors);
   const hasValidationSummary = validationErrorMessages.length > 0;
-  const validationSummaryAnnouncement = `To complete correct the following: ${validationErrorMessages.join(". ")}`;
+  const validationSummaryAnnouncement = getValidationSummaryAnnouncement(
+    validationErrorMessages,
+  );
   return (
     <OakBox $maxWidth={"spacing-960"} $mb={"spacing-48"}>
       <OakFlex
@@ -98,7 +105,15 @@ const SharePageLayout: FC<SharePageLayoutProps> = (props) => {
             <OakFlex
               $flexDirection="column"
               $gap="spacing-16"
-              $position={"sticky"}
+              $top={"spacing-56"}
+              $width={"100%"}
+            >
+              {props.radioGroups}
+            </OakFlex>
+
+            <OakFlex
+              $flexDirection="column"
+              $gap="spacing-16"
               $top={"spacing-56"}
               $width={"100%"}
             >
@@ -142,7 +157,7 @@ const SharePageLayout: FC<SharePageLayoutProps> = (props) => {
                         />
                         <OakFlex $flexDirection={"column"}>
                           <OakP $ml="spacing-4" $color={"text-error"}>
-                            To complete correct the following:
+                            {VALIDATION_SUMMARY_PREFIX}
                           </OakP>
                           <OakUL $mr="spacing-24">
                             {validationErrorMessages.map((err) => (

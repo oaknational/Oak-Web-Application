@@ -4,11 +4,16 @@ import { OakBox } from "@oaknational/oak-components";
 
 import Seo, { SeoProps } from "@/browser-lib/seo/Seo";
 import { usePupilStores } from "@/components/PupilComponents/Views/ViewHelpers";
+import { GoogleClassroomAnalyticsProvider } from "@/components/GoogleClassroom/useGoogleClassroomAnalytics";
+import { PupilClassroomAddOnAnalytics } from "@/components/GoogleClassroom/PupilClassroomAddOnAnalytics";
+import { PupilReadOnlyBanner } from "@/components/PupilComponents/PupilReadOnlyBanner/PupilReadOnlyBanner";
 import {
   LessonBrowseData,
   LessonContent,
 } from "@/node-lib/curriculum-api-2023/queries/pupilLesson/pupilLesson.schema";
 import { LessonShareVariant } from "@/pages-helpers/pupil";
+import { installPresentationRequestIframeGuard } from "@/utils/presentationRequestIframeGuard";
+import { isInIframe } from "@/utils/iframe";
 
 export type PupilLayoutProps = {
   children?: React.ReactNode;
@@ -26,15 +31,22 @@ export type PupilLayoutProps = {
 
 export const PupilLayout: FC<PupilLayoutProps> = (props) => {
   const { seoProps, children, pupilStores } = props;
+  // Neutralise the Presentation API in embedded pupil contexts (e.g. the
+  // Google Classroom add-on frame) before the video player initialises Cast.
+  if (isInIframe()) {
+    installPresentationRequestIframeGuard();
+  }
   usePupilStores(pupilStores);
 
   return (
-    <>
+    <GoogleClassroomAnalyticsProvider>
       <Head>
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Seo {...seoProps} />
+      <PupilClassroomAddOnAnalytics />
+      <PupilReadOnlyBanner />
       <OakBox $height={"100vh"}>{children}</OakBox>
-    </>
+    </GoogleClassroomAnalyticsProvider>
   );
 };

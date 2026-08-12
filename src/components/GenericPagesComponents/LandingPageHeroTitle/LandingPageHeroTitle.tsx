@@ -1,9 +1,13 @@
+import Link from "next/link";
 import { FC } from "react";
-import { OakFlex, OakHeading } from "@oaknational/oak-components";
+import {
+  OakFlex,
+  OakHeading,
+  OakTertiaryButton,
+} from "@oaknational/oak-components";
 
 import { CTA } from "@/common-lib/cms-types";
 import { getLinkHref } from "@/utils/portableText/resolveInternalHref";
-import ButtonAsLink from "@/components/SharedComponents/Button/ButtonAsLink";
 
 export const LandingPageHeroTitle: FC<{
   title: string;
@@ -38,14 +42,15 @@ export const LandingPageHeroTitle: FC<{
         </OakHeading>
       )}
       {cta && (
-        <ButtonAsLink
-          icon="arrow-right"
-          $iconPosition={"trailing"}
-          $mt={[48, 32]}
-          label={cta.label}
-          page={null}
+        <OakTertiaryButton
+          $mt={["spacing-48", "spacing-32"]}
+          element={Link}
+          iconName="arrow-right"
+          isTrailingIcon
           href={getLinkHref(cta)}
-        />
+        >
+          {cta.label}
+        </OakTertiaryButton>
       )}
     </OakFlex>
   );

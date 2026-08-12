@@ -2,7 +2,7 @@ import { ShareLinkConfig } from "./linkConfig";
 
 import { resolveOakHref } from "@/common-lib/urls";
 import getBrowserConfig from "@/browser-lib/getBrowserConfig";
-import { LessonSection } from "@/components/PupilComponents/LessonEngineProvider/LessonEngineProvider";
+import { LessonSection } from "@/components/PupilComponents/lessonSections";
 
 export type SharingMetadata = {
   link: string;

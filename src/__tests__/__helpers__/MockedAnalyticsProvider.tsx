@@ -26,6 +26,7 @@ const MockedAnalyticsProvider: FC<{
         track: noopTrack,
         identify: noop,
         alias: noop,
+        getSessionId: () => "mockSessionId",
         posthogDistinctId: testPosthogDistinctId,
       }}
     >

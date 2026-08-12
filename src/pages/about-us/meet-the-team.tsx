@@ -6,7 +6,6 @@ import {
   OakHeading,
   OakTypography,
 } from "@oaknational/oak-components";
-import styled from "styled-components";
 import { useMemo, useRef } from "react";
 
 import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
@@ -15,7 +14,7 @@ import getProxiedSanityAssetUrl from "@/common-lib/urls/getProxiedSanityAssetUrl
 import CMSClient from "@/node-lib/cms";
 import getPageProps from "@/node-lib/getPageProps";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
-import Layout from "@/components/AppComponents/Layout";
+import Layout from "@/components/AppComponents/AppLayout";
 import { TopNavProps } from "@/components/AppComponents/TopNav/TopNav";
 import {
   AboutSharedHeader,
@@ -34,10 +33,6 @@ const SECTION_TITLES = {
   documents: "Documents",
   governance: "Governance",
 };
-
-const UnstyledLi = styled.li`
-  list-style: none;
-`;
 
 export type AboutUsMeetTheTeamPageProps = {
   pageData: MeetTheTeamPage;
@@ -120,17 +115,17 @@ const AboutUsMeetTheTeam: NextPage<AboutUsMeetTheTeamPageProps> = ({
                 {leadershipTeamModified.map((member) => {
                   const slug = member.slug?.current ?? member.id;
                   return (
-                    <UnstyledLi key={member.id}>
-                      <OakCard
-                        heading={member.name}
-                        href={`/about-us/meet-the-team/${slug}?section=leadership`}
-                        cardWidth={"100%"}
-                        imageSrc={member.imageUrl}
-                        subCopy={member.role ?? ""}
-                        linkText="See bio"
-                        linkIconName="chevron-right"
-                      />
-                    </UnstyledLi>
+                    <OakCard
+                      key={member.id}
+                      as="li"
+                      heading={member.name}
+                      href={`/about-us/meet-the-team/${slug}?section=leadership`}
+                      cardWidth={"100%"}
+                      imageSrc={member.imageUrl}
+                      subCopy={member.role ?? ""}
+                      linkText="See bio"
+                      linkIconName="chevron-right"
+                    />
                   );
                 })}
               </MeetTheTeamContainer>
@@ -143,17 +138,17 @@ const AboutUsMeetTheTeam: NextPage<AboutUsMeetTheTeamPageProps> = ({
                 {boardMembersModified.map((member) => {
                   const slug = member.slug?.current ?? member.id;
                   return (
-                    <UnstyledLi key={member.id}>
-                      <OakCard
-                        heading={member.name}
-                        href={`/about-us/meet-the-team/${slug}?section=board`}
-                        cardWidth={"100%"}
-                        imageSrc={member.imageUrl}
-                        subCopy={member.role ?? ""}
-                        linkText="See bio"
-                        linkIconName="chevron-right"
-                      />
-                    </UnstyledLi>
+                    <OakCard
+                      as="li"
+                      key={member.id}
+                      heading={member.name}
+                      href={`/about-us/meet-the-team/${slug}?section=board`}
+                      cardWidth={"100%"}
+                      imageSrc={member.imageUrl}
+                      subCopy={member.role ?? ""}
+                      linkText="See bio"
+                      linkIconName="chevron-right"
+                    />
                   );
                 })}
               </MeetTheTeamContainer>
@@ -169,16 +164,16 @@ const AboutUsMeetTheTeam: NextPage<AboutUsMeetTheTeamPageProps> = ({
                       doc.file.asset.size,
                     );
                     return (
-                      <UnstyledLi key={doc.title}>
-                        <OakCard
-                          heading={doc.title}
-                          href={`${doc.file.asset.url}?dl`}
-                          cardWidth={"100%"}
-                          subCopy={`${doc.file.asset.extension.toUpperCase()}, ${fileSize}`}
-                          linkText="Download"
-                          linkIconName="download"
-                        />
-                      </UnstyledLi>
+                      <OakCard
+                        as="li"
+                        key={doc.title}
+                        heading={doc.title}
+                        href={`${doc.file.asset.url}?dl`}
+                        cardWidth={"100%"}
+                        subCopy={`${doc.file.asset.extension.toUpperCase()}, ${fileSize}`}
+                        linkText="Download"
+                        linkIconName="download"
+                      />
                     );
                   })}
                 </MeetTheTeamContainer>

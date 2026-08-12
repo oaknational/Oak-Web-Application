@@ -1,4 +1,4 @@
-import { LessonReviewSection } from "@/components/PupilComponents/LessonEngineProvider";
+import { LessonReviewSection } from "@/context/PupilLessonProgress";
 
 export const getHasQuizSections = (
   lessonReviewSections: Readonly<LessonReviewSection[]>,

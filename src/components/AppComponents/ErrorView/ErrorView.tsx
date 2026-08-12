@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { FC } from "react";
 import styled from "styled-components";
 import {
@@ -5,19 +6,15 @@ import {
   OakHeading,
   OakMaxWidth,
   OakFlex,
+  OakTertiaryButton,
 } from "@oaknational/oak-components";
 
 import { TopNavProps } from "../TopNav/TopNav";
 
 import { DEFAULT_SEO_PROPS } from "@/browser-lib/seo/Seo";
-import {
-  HeaderVariant,
-  FooterVariant,
-} from "@/components/AppComponents/Layout/Layout";
-import Layout from "@/components/AppComponents/Layout";
-import ButtonAsLink from "@/components/SharedComponents/Button/ButtonAsLink";
+import AppLayout from "@/components/AppComponents/AppLayout";
 import ButtonGroup from "@/components/SharedComponents/ButtonGroup";
-import Button from "@/components/SharedComponents/Button";
+import { resolveOakHref } from "@/common-lib/urls";
 
 const shadow =
   "-1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000";
@@ -32,18 +29,14 @@ const ErrorHeading = styled(OakHeading)`
 type ErrorViewProps = {
   onBackClick?: () => void;
   statusCode?: number;
-  headerVariant?: HeaderVariant;
-  footerVariant?: FooterVariant;
   topNav: TopNavProps;
 };
 const ErrorView: FC<ErrorViewProps> = (props) => {
-  const { onBackClick, statusCode, headerVariant, footerVariant, topNav } =
-    props;
+  const { onBackClick, statusCode, topNav } = props;
   return (
-    <Layout
+    <AppLayout
       seoProps={DEFAULT_SEO_PROPS}
-      headerVariant={headerVariant}
-      footerVariant={footerVariant}
+      appVariant={"client-error"}
       topNavProps={topNav}
     >
       <OakMaxWidth $alignItems={"flex-end"}>
@@ -77,30 +70,27 @@ const ErrorView: FC<ErrorViewProps> = (props) => {
           <OakP $mb="spacing-24">Let's get you back to browsing</OakP>
           <ButtonGroup>
             {onBackClick && (
-              <Button
+              <OakTertiaryButton
+                isTrailingIcon
                 onClick={onBackClick}
-                variant="minimal"
-                icon="arrow-left"
-                $iconPosition="trailing"
-                iconBackground={"blue"}
-                size="large"
-                label={"Go back"}
-              />
+                iconName="arrow-left"
+              >
+                Go back
+              </OakTertiaryButton>
             )}
-            <ButtonAsLink
+            <OakTertiaryButton
               data-testid="homeButton"
-              variant="minimal"
-              icon="home"
-              $iconPosition="trailing"
-              iconBackground={"blue"}
-              size="large"
-              label={"Home"}
-              page={"home"}
-            />
+              element={Link}
+              iconName="home"
+              isTrailingIcon
+              href={resolveOakHref({ page: "home" })}
+            >
+              Home
+            </OakTertiaryButton>
           </ButtonGroup>
         </OakFlex>
       </OakMaxWidth>
-    </Layout>
+    </AppLayout>
   );
 };
 

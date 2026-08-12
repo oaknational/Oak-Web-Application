@@ -1,4 +1,4 @@
-import { IntroResult } from "@/components/PupilComponents/LessonEngineProvider";
+import { IntroResult } from "@/context/PupilLessonProgress";
 
 export const getIntroWorksheetInitResult = ({
   worksheetDownloaded,

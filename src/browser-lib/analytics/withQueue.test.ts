@@ -75,6 +75,36 @@ describe("withQueue", () => {
     expect(service.queue).toEqual([]);
     expect(originalService.page).toHaveBeenCalled();
     expect(originalService.identify).toHaveBeenCalledWith(...identifyArgs);
-    expect(originalService.track).toHaveBeenCalledWith(...trackArgs);
+    expect(originalService.track).toHaveBeenCalledWith(...trackArgs, undefined);
+  });
+  test("flushes instantly and forwards options when sendInstantly is set", () => {
+    // long interval so we can prove the event is flushed without waiting for it
+    const service = withQueue(originalService, 100000);
+    (originalService.state as jest.Mock).mockImplementation(() => "enabled");
+
+    service.track("event-123", { foo: "bar" }, { sendInstantly: true });
+
+    expect(originalService.track).toHaveBeenCalledWith(
+      "event-123",
+      { foo: "bar" },
+      { sendInstantly: true },
+    );
+    expect(service.queue).toEqual([]);
+  });
+  test("does not flush instantly when consent is still pending", () => {
+    const service = withQueue(originalService, 100000);
+    (originalService.state as jest.Mock).mockImplementation(() => "pending");
+
+    service.track("event-123", { foo: "bar" }, { sendInstantly: true });
+
+    expect(originalService.track).not.toHaveBeenCalled();
+    expect(service.queue).toEqual([
+      {
+        type: "track",
+        eventName: "event-123",
+        props: { foo: "bar" },
+        options: { sendInstantly: true },
+      },
+    ]);
   });
 });

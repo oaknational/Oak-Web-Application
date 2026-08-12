@@ -4,7 +4,10 @@ import type { Tokens } from "@mux/mux-player";
 import MuxPlayerElement from "@mux/mux-player";
 import { OakP, OakFlex, OakUiRoleToken } from "@oaknational/oak-components";
 
-import useVideoTracking, { VideoTrackingGetState } from "./useVideoTracking";
+import useVideoTracking, {
+  VideoAnalyticsOverrides,
+  VideoTrackingGetState,
+} from "./useVideoTracking";
 import getTimeElapsed from "./getTimeElapsed";
 import getSubtitleTrack from "./getSubtitleTrack";
 import getDuration from "./getDuration";
@@ -20,7 +23,7 @@ import theme, { OakColorName } from "@/styles/theme";
 import errorReporter from "@/common-lib/error-reporter";
 import { VideoLocationValueType } from "@/browser-lib/avo/Avo";
 import OakError from "@/errors/OakError";
-import { PupilPathwayData } from "@/components/PupilComponents/PupilAnalyticsProvider/PupilAnalyticsProvider";
+import { PupilPathwayData } from "@/context/PupilLessonAnalytics/pupilAnalyticsHelpers";
 import { AnalyticsBrowseData } from "@/components/TeacherComponents/types/lesson.types";
 
 const INITIAL_DEBUG = false;
@@ -54,6 +57,11 @@ export type VideoPlayerProps = {
   autoFocusPlayButton?: boolean;
   /** When false, pauses playback */
   isActive?: boolean;
+  /** When false, suppresses the analytics event for reaching the end. */
+  shouldTrackEndAnalytics?: boolean;
+  omitBorder?: boolean;
+  /** Used to override the functions used to track analytics events  */
+  analyticsOverrides?: VideoAnalyticsOverrides;
 };
 
 export type VideoEventCallbackArgs = {
@@ -100,7 +108,10 @@ function focusPlayButton(el: MuxPlayerElement) {
   } as FocusOptions);
 }
 
-function VideoContainer({ children }: Readonly<{ children: React.ReactNode }>) {
+function VideoContainer({
+  omitBorder,
+  children,
+}: Readonly<{ omitBorder: boolean; children: React.ReactNode }>) {
   return (
     <OakFlex
       // NOTE: Hiding video contents because otherwise we get some percy
@@ -109,7 +120,7 @@ function VideoContainer({ children }: Readonly<{ children: React.ReactNode }>) {
       data-percy-hide="contents"
       $alignItems={"center"}
       $justifyContent={"center"}
-      $ba={"border-solid-l"}
+      $ba={omitBorder ? "border-none" : "border-solid-l"}
       $minWidth={"100%"}
       $borderColor={"border-primary"}
       style={{
@@ -140,6 +151,9 @@ const VideoPlayer: FC<VideoPlayerProps> = (props) => {
     muxAssetId,
     autoFocusPlayButton = false,
     isActive = true,
+    shouldTrackEndAnalytics = true,
+    omitBorder = false,
+    analyticsOverrides,
   } = props;
 
   const mediaElRef = useRef<MuxPlayerElement | null>(null);
@@ -187,6 +201,7 @@ const VideoPlayer: FC<VideoPlayerProps> = (props) => {
     pathwayData,
     cloudinaryUrl,
     muxAssetId,
+    analyticsOverrides,
   });
 
   const thumbnailToken = useSignedThumbnailToken({
@@ -287,7 +302,7 @@ const VideoPlayer: FC<VideoPlayerProps> = (props) => {
 
   if (videoToken.loading || thumbnailToken.loading || storyboardToken.loading) {
     return (
-      <VideoContainer>
+      <VideoContainer omitBorder={omitBorder}>
         <OakP $color={loadingTextColor} $textAlign="center">
           Loading...
         </OakP>
@@ -315,7 +330,7 @@ const VideoPlayer: FC<VideoPlayerProps> = (props) => {
   }
 
   return (
-    <VideoContainer>
+    <VideoContainer omitBorder={omitBorder}>
       <MuxPlayer
         key={reloadOnErrors.length}
         preload="metadata"
@@ -360,6 +375,7 @@ const VideoPlayer: FC<VideoPlayerProps> = (props) => {
             userEventCallback,
             playbackId,
             endTracked,
+            shouldTrackEndAnalytics,
             playingClassname: PLAYING_CLASSNAME,
           })
         }

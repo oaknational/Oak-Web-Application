@@ -17,13 +17,13 @@ import {
   Factors,
 } from "@/components/PupilComponents/BrowseFactorSelector";
 import { resolveOakHref } from "@/common-lib/urls";
-import AppLayout from "@/components/SharedComponents/AppLayout";
 import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
 import SignpostTeachersInlineBanner from "@/components/PupilComponents/SignpostTeachersInlineBanner/SignpostTeachersInlineBanner";
 import { FactorData } from "@/pages-helpers/pupil/options-pages/getAvailableProgrammeFactor";
 import { getFactorDataFromSlug } from "@/pages-helpers/pupil/options-pages/getFactorDataFromSlug";
 import useAnalytics from "@/context/Analytics/useAnalytics";
 import { TopNavProps } from "@/components/AppComponents/TopNav/TopNav";
+import AppLayout from "@/components/AppComponents/AppLayout";
 
 export type PupilViewsProgrammeListingProps = {
   programmes: PupilProgrammeListingData[];

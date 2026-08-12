@@ -1,11 +1,12 @@
+import { Platform } from "@/browser-lib/avo/Avo";
 import type { TrackFns } from "@/context/Analytics/AnalyticsProvider";
 import type { LessonSectionResults } from "@/context/PupilLessonProgress";
 import { usePupilLessonAnalyticsStore } from "@/context/PupilLessonAnalytics/usePupilLessonAnalyticsStore";
 import {
   getPupilPathwayData,
   getPupilVideoData,
-  type PupilAnalyticsProviderClassroomContext,
-} from "@/components/PupilComponents/PupilAnalyticsProvider/PupilAnalyticsProvider";
+} from "@/context/PupilLessonAnalytics/pupilAnalyticsHelpers";
+import type { ClassroomAssignmentContext } from "@/browser-lib/google-classroom/classroomAssignmentContext";
 import { lessonBrowseDataFixture } from "@/node-lib/curriculum-api-2023/fixtures/lessonBrowseData.fixture";
 import { lessonContentFixture } from "@/node-lib/curriculum-api-2023/fixtures/lessonContent.fixture";
 import { sectionResultsFixture } from "@/node-lib/curriculum-api-2023/fixtures/lessonSectionResults.fixture";
@@ -13,12 +14,15 @@ import { sectionResultsFixture } from "@/node-lib/curriculum-api-2023/fixtures/l
 const lessonContent = lessonContentFixture({});
 const pupilPathwayData = getPupilPathwayData(lessonBrowseDataFixture({}));
 
-const classroomAssignmentContext: PupilAnalyticsProviderClassroomContext = {
+const classroomAssignmentContext: ClassroomAssignmentContext = {
   clientEnvironment: "web-browser",
   classroomAssignmentId: "assignment-1",
   courseId: "course-1",
   itemId: "item-1",
   attachmentId: "attachment-1",
+  submissionId: null,
+  teacherLoginHint: null,
+  pupilLoginHint: null,
 };
 
 const expectedAdditionalArgs = {
@@ -68,7 +72,7 @@ const initialiseStore = ({
   includeLessonContent = true,
 }: {
   track?: jest.Mocked<TrackFns>;
-  assignmentContext?: PupilAnalyticsProviderClassroomContext;
+  assignmentContext?: ClassroomAssignmentContext;
   includeLessonContent?: boolean;
 } = {}) => {
   usePupilLessonAnalyticsStore.getState().initialisePupilLessonAnalytics({
@@ -99,6 +103,33 @@ describe("usePupilLessonAnalyticsStore", () => {
         track,
         additionalArgs: expectedAdditionalArgs,
         videoData: expectedVideoData,
+      }),
+    );
+  });
+
+  it("populates the Google Classroom context and platform on tracked events", () => {
+    const track = initialiseStore({
+      assignmentContext: {
+        clientEnvironment: "iframe",
+        classroomAssignmentId: "course-1:item-1",
+        courseId: "course-1",
+        itemId: "item-1",
+        attachmentId: "attachment-1",
+        submissionId: "submission-1",
+        teacherLoginHint: "teacher-hint",
+        pupilLoginHint: "pupil-hint",
+      },
+    });
+
+    expect(track.lessonAccessedPupilJourney).toHaveBeenCalledWith(
+      expect.objectContaining({
+        platform: Platform.GOOGLE_CLASSROOM,
+        submissionId: "submission-1",
+        teacherLoginHint: "teacher-hint",
+        pupilLoginHint: "pupil-hint",
+        courseId: "course-1",
+        itemId: "item-1",
+        attachmentId: "attachment-1",
       }),
     );
   });

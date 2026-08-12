@@ -29,8 +29,10 @@ const config = {
        * Metomic
        * Avo
        * Anything labelled with .pa11y-ignore (doesn't work if element has shadow-dom children for some reason)
+       * The lazy Mux player placeholder, which renders `aria-hidden=""` (an
+       *   invalid ARIA value under React 18) on a custom element we don't control.
        */
-      '#mtm-root-container, #mtm-frame-container, #avo-debugger, .pa11y-ignore, div[class^="PostHogSurvey"]',
+      '#mtm-root-container, #mtm-frame-container, #avo-debugger, .pa11y-ignore, div[class^="PostHogSurvey"], mux-player[data-mux-player-react-lazy-placeholder]',
     ignore: [
       // We have multiple instances of high-contrast text being detected as low-contrast
       // because of low-contrast text shadows.

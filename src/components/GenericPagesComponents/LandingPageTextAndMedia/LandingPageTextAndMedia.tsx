@@ -1,11 +1,11 @@
+import Link from "next/link";
 import { PortableTextComponents } from "@portabletext/react";
 import { FC } from "react";
-import { OakLI, OakFlex } from "@oaknational/oak-components";
+import { OakLI, OakFlex, OakTertiaryButton } from "@oaknational/oak-components";
 
 import { LandingPageOlOutline } from "@/components/GenericPagesComponents/LandingPageOlOutline";
 import { TextAndMedia } from "@/common-lib/cms-types";
 import { getLinkHref } from "@/utils/portableText/resolveInternalHref";
-import ButtonAsLink from "@/components/SharedComponents/Button/ButtonAsLink";
 import Card from "@/components/SharedComponents/Card";
 import CMSImage from "@/components/SharedComponents/CMSImage";
 import CMSVideo from "@/components/SharedComponents/CMSVideo";
@@ -81,14 +81,15 @@ export const LandingPageTextAndMedia: FC<TextAndMedia> = (props) => {
         />
         <div>
           {props.cta && (
-            <ButtonAsLink
-              icon="arrow-right"
-              $iconPosition={"trailing"}
-              $mt={[48, 32]}
-              label={props.cta.label}
-              page={null}
+            <OakTertiaryButton
+              $mt={["spacing-48", "spacing-32"]}
+              element={Link}
+              iconName="arrow-right"
+              isTrailingIcon
               href={getLinkHref(props.cta)}
-            />
+            >
+              {props.cta.label}
+            </OakTertiaryButton>
           )}
         </div>
       </OakFlex>

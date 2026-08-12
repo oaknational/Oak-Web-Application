@@ -6,23 +6,26 @@ import {
 } from "@oaknational/oak-components";
 import { useId } from "react";
 
-import { CurriculumFilters, Unit } from "@/utils/curriculum/types";
+import {
+  CurriculumFilters,
+  OnChangeCurriculumFilters,
+  Unit,
+} from "@/utils/curriculum/types";
 import { getValidSubjectIconName } from "@/utils/getValidSubjectIconName";
-import { getFilterData } from "@/utils/curriculum/filtering";
-import { scopeYearsToKeystageFilter } from "@/utils/curriculum/filtersUrl";
+import {
+  getFilterData,
+  scopeYearsToKeystageFilter,
+} from "@/utils/curriculum/filtering";
 import {
   byKeyStageSlug,
   presentAtKeyStageSlugs,
 } from "@/utils/curriculum/keystage";
 import { CurriculumUnitsFormattedData } from "@/pages-helpers/curriculum/docx/tab-helpers";
-import { ComponentTypeValueType } from "@/browser-lib/avo/Avo";
+import { FilterType } from "@/browser-lib/avo/Avo";
 
 export type CurricFiltersChildSubjectsProps = {
   filters: CurriculumFilters;
-  onChangeFilters: (
-    newFilters: CurriculumFilters,
-    source: ComponentTypeValueType,
-  ) => void;
+  onChangeFilters: OnChangeCurriculumFilters;
   data: CurriculumUnitsFormattedData<Unit>;
   // The context prop can be removed once the integrated journey is fully launched
   context: "curriculum-visualiser" | "integrated-journey";
@@ -49,7 +52,11 @@ export function CurricFiltersChildSubjects({
   );
 
   function setSingleInFilter(key: keyof CurriculumFilters, newValue: string) {
-    onChangeFilters({ ...filters, [key]: [newValue] }, "child_subject_button");
+    onChangeFilters({
+      newFilters: { ...filters, [key]: [newValue] },
+      filterType: FilterType.SUBJECT_FILTER,
+      filterValue: newValue,
+    });
   }
 
   return (

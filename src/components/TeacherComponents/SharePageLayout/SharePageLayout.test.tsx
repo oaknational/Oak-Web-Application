@@ -21,6 +21,7 @@ const props: PropsWithoutForm = {
   onEditClick: jest.fn(),
   setSchool: jest.fn(),
   cardGroup: <div>Cards</div>,
+  radioGroups: <div>Radio Groups</div>,
   cta: <button>CTA</button>,
   updatedAt: "2022-01-01T00:00:00Z",
   withHomeschool: true,
@@ -98,7 +99,7 @@ describe("Downloads/Share Layout", () => {
     expect(validationSummary).toHaveAttribute("role", "alert");
     expect(validationSummary).toHaveAttribute("aria-atomic", "true");
     expect(validationSummarySr).toHaveTextContent(
-      "To complete correct the following: select at least one resource to continue. accept terms and conditions to continue",
+      "To complete, correct the following: select at least one resource to continue. accept terms and conditions to continue",
     );
   });
 

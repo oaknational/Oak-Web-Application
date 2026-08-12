@@ -1,10 +1,12 @@
 import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 
-import {
-  SelectedArea,
-  siteAreas,
-} from "@/components/AppComponents/AppHeader/AppHeader";
+export const siteAreas = {
+  teachers: "TEACHERS",
+  pupils: "PUPILS",
+} as const;
+
+export type SelectedArea = (typeof siteAreas)[keyof typeof siteAreas];
 
 const useSelectedArea = () => {
   const pathname = usePathname();

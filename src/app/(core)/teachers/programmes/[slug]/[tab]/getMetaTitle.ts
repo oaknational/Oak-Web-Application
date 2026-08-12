@@ -5,7 +5,7 @@ export const getMetaTitle = (
   subjectPhaseData: NonNullable<
     Awaited<ReturnType<typeof getSubjectPhaseOptions>>
   >,
-  searchParams: PageSearchParms,
+  searchParams?: PageSearchParms,
 ) => {
   const { subjects, subjectPhaseKeystageSlugs } = subjectPhaseData;
 
@@ -25,28 +25,31 @@ export const getMetaTitle = (
     (ks4opt) => ks4opt.slug === subjectPhaseKeystageSlugs.ks4OptionSlug,
   );
 
-  const { threads, years, keystages, tiers } = searchParams;
-
   const phaseTitle = currentSubject.phases.find(
     (p) => p.slug === subjectPhaseKeystageSlugs.phaseSlug,
   )?.title;
   const phaseSubjectSegment = `${phaseTitle} ${currentSubject.title}`;
 
   const keystageSegment =
-    typeof keystages === "string" ? keystages.toUpperCase() : null;
+    typeof searchParams?.keystages === "string"
+      ? searchParams.keystages.toUpperCase()
+      : null;
 
   const getYearTitle = (year: string) =>
     year === "all-years" ? "All Years" : `Y${year}`;
-  const yearSegment = typeof years === "string" ? getYearTitle(years) : "";
+  const yearSegment =
+    typeof searchParams?.years === "string"
+      ? getYearTitle(searchParams.years)
+      : "";
 
   const threadTitle =
-    typeof threads === "string" && threads
-      ? threads.replaceAll("-", " ")
+    typeof searchParams?.threads === "string" && searchParams?.threads
+      ? searchParams.threads.replaceAll("-", " ")
       : undefined;
   const threadSegment = threadTitle ? ` - ${threadTitle}` : "";
   const tierSegment =
-    typeof tiers === "string"
-      ? ` ${tiers[0]?.toLocaleUpperCase() + tiers.slice(1)}`
+    typeof searchParams?.tiers === "string"
+      ? ` ${searchParams.tiers[0]?.toLocaleUpperCase() + searchParams.tiers.slice(1)}`
       : "";
   const examboardSegment = ks4Option ? ` ${ks4Option.title}` : "";
 

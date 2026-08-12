@@ -23,7 +23,7 @@ const headerTextStyles = {
 const linkFocusStyles = {
   borderRadius: "4px",
   outline: "none",
-  boxShadow: `0px 0px 0px 2px ${oakColorTokens.lemon}, 0px 0px 0px 5px ${oakColorTokens.grey60}`,
+  boxShadow: `0px 0px 0px 2px ${oakColorTokens.lemon}, 0px 0px 0px 5px ${oakColorTokens.grey60} !important`,
 };
 
 export const formAppearanceStyles = {

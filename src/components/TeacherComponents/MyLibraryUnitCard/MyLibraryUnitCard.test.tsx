@@ -3,6 +3,7 @@ import userEvent from "@testing-library/user-event";
 
 import MyLibraryUnitCard from "./MyLibraryUnitCard";
 
+import type { KeyStageTitleValueType } from "@/browser-lib/avo/Avo";
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 
 const render = renderWithProviders();
@@ -39,9 +40,10 @@ const mockUnit = {
   savedAt: "2023-10-01T12:00:00Z",
   href: "/saved-unit",
   lessonCount: 5,
-  onSave: jest.fn(),
-  isSaved: false,
-  isSaving: false,
+  keyStageTitle: "Key Stage 4" as KeyStageTitleValueType,
+  keyStageSlug: "key-stage-4",
+  subjectTitle: "English",
+  subjectSlug: "english",
   trackUnitAccessed: mockTrackUnitAccessed,
   trackLessonAccessed: mockTrackLessonAccessed,
 };
@@ -50,7 +52,11 @@ const mockUnit = {
 jest.mock("@oaknational/oak-components", () => ({
   ...jest.requireActual("@oaknational/oak-components"),
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  OakSecondaryLink: (props: any) => <a {...props} href="" />,
+  OakLink: ({ children, onClick }: any) => (
+    <a href="" onClick={onClick}>
+      {children}
+    </a>
+  ),
 }));
 
 const incompleteUnitLessons = generateLessons(2, "new");
@@ -71,24 +77,6 @@ describe("MyLibraryUnitCard", () => {
       name: /Save this unit: Saved Unit/i,
     });
     expect(saveButton).toBeInTheDocument();
-  });
-  it("calls onSave when save button is clicked", () => {
-    render(<MyLibraryUnitCard {...mockUnit} lessons={completeUnitLessons} />);
-    const saveButton = screen.getByRole("button", {
-      name: /Save this unit: Saved Unit/i,
-    });
-    saveButton.click();
-    expect(mockUnit.onSave).toHaveBeenCalled();
-  });
-  it("changes the save button when isSaved is true", () => {
-    render(
-      <MyLibraryUnitCard {...mockUnit} lessons={completeUnitLessons} isSaved />,
-    );
-    const saveButton = screen.getByRole("button", {
-      name: /Unsave this unit: Saved Unit/i,
-    });
-    expect(saveButton).toBeInTheDocument();
-    expect(saveButton).toHaveTextContent("Saved");
   });
 
   it("formats the save time correctly when saved on the same day", () => {
@@ -115,22 +103,14 @@ describe("MyLibraryUnitCard", () => {
   });
 
   it("renders incomplete unit lessons with correct font color", () => {
-    render(
-      <MyLibraryUnitCard
-        {...mockUnit}
-        lessons={incompleteUnitLessons}
-        isSaved
-      />,
-    );
+    render(<MyLibraryUnitCard {...mockUnit} lessons={incompleteUnitLessons} />);
 
     const lesson0 = screen.getByText(/Lesson 0/);
     const styles = getComputedStyle(lesson0);
     expect(styles.color).toBe("rgb(128, 128, 128)");
   });
   it("calls trackUnitAccessed when a unit is clicked", async () => {
-    render(
-      <MyLibraryUnitCard {...mockUnit} lessons={completeUnitLessons} isSaved />,
-    );
+    render(<MyLibraryUnitCard {...mockUnit} lessons={completeUnitLessons} />);
     const unitLink = screen
       .getByRole("heading", { name: "Saved Unit" })
       .closest("a");
@@ -142,9 +122,7 @@ describe("MyLibraryUnitCard", () => {
     expect(mockTrackUnitAccessed).toHaveBeenCalled();
   });
   it("calls trackLessonAccessed when a lesson is clicked", async () => {
-    render(
-      <MyLibraryUnitCard {...mockUnit} lessons={completeUnitLessons} isSaved />,
-    );
+    render(<MyLibraryUnitCard {...mockUnit} lessons={completeUnitLessons} />);
     const lessonLink = screen.getByText("Lesson 0");
     const user = userEvent.setup();
     await user.click(lessonLink);

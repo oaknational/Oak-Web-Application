@@ -11,7 +11,7 @@ const render = renderWithProvidersByName(["oakTheme"]);
 describe("PupilLessonVideoAdditionalFilesCard", () => {
   it("renders file content and handles downloads", async () => {
     const onDownload = jest.fn();
-    const user = userEvent.setup();
+    const user = userEvent.setup({ delay: null });
 
     render(
       <PupilLessonVideoAdditionalFilesCard

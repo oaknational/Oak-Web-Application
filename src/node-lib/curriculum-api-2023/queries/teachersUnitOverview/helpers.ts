@@ -183,7 +183,7 @@ export const getUnitCounts = ({
       // Exclude swimming units from all years.
       return u.year === currentUnit.year && u.isSwimming !== true;
     })
-    .sort((a, b) => a.unitOrder - b.unitOrder);
+    .sort((a, b) => a.yearOrder - b.yearOrder || a.unitOrder - b.unitOrder);
 
   return {
     unitCount: unitsForYear.length,

@@ -1,8 +1,9 @@
 import { notFound, redirect, RedirectType } from "next/navigation";
 import { Metadata } from "next";
 import { cache } from "react";
+import { cookies, draftMode } from "next/headers";
 
-import { ProgrammeView } from "./Components/ProgrammeView";
+import { ProgrammePageProps, ProgrammeView } from "./Components/ProgrammeView";
 import { isTabSlug } from "./tabSchema";
 import { getMetaTitle } from "./getMetaTitle";
 import {
@@ -11,9 +12,9 @@ import {
   getSubjectOverride,
 } from "./getProgrammeData";
 
+import { isFeatureFlagEnabledServer } from "@/utils/featureFlagChecks/server";
 import {
   createDownloadsData,
-  CurriculumUnitsTrackingData,
   formatCurriculumUnitsData,
 } from "@/pages-helpers/curriculum/docx/tab-helpers";
 import { getOpenGraphMetadata, getTwitterMetadata } from "@/app/metadata";
@@ -29,12 +30,14 @@ import withPageErrorHandling, {
 } from "@/hocs/withPageErrorHandling";
 import { resolveOakHref } from "@/common-lib/urls";
 import { getSubjectPhaseSlug } from "@/components/TeacherComponents/helpers/getSubjectPhaseSlug";
-import { resolveFilterFromSearchParams } from "@/utils/curriculum/filtersUrl";
+import { resolveFilterFromSearchParams } from "@/utils/curriculum/filtering";
 import { redirectProgrammeSlugIfNeeded } from "@/utils/integratedJourney/legacyProgrammeUnitsRedirect";
 import { cacheData } from "@/node-lib/cache";
 import CMSClient from "@/node-lib/cms";
 import { getMvRefreshTime } from "@/pages-helpers/curriculum/downloads/getMvRefreshTime";
 import { validateServerSearchParams } from "@/utils/validateProgrammePageSearchParams";
+import { TeacherBrowseAnalyticsStoreProvider } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
+import { getProgrammeStateForProgramme } from "@/context/TeacherBrowseAnalytics/utils/getProgrammeState";
 
 const reportError = errorReporter("programme-page::app");
 
@@ -51,6 +54,7 @@ export type ProgrammeCmsParams = {
   subjectTitle: string;
   phaseSlug: string;
   programmePageSlug: string;
+  isPreviewModeEnabled: boolean;
 };
 
 const getCachedProgrammeCms = cache(
@@ -60,17 +64,20 @@ const getCachedProgrammeCms = cache(
       subjectTitle,
       phaseSlug,
       programmePageSlug,
+      isPreviewModeEnabled,
     }: ProgrammeCmsParams) => {
       const [curriculumCMSInfo, subjectPhaseSanityData, mvRefreshTime] =
         await Promise.all([
           nonCurriculum
             ? null
             : CMSClient.curriculumOverviewPage({
-                previewMode: false,
+                previewMode: isPreviewModeEnabled,
                 subjectTitle,
                 phaseSlug,
               }),
-          CMSClient.programmePageBySlug(programmePageSlug),
+          CMSClient.programmePageBySlug(programmePageSlug, {
+            previewMode: isPreviewModeEnabled,
+          }),
           getMvRefreshTime(),
         ]);
 
@@ -105,8 +112,10 @@ export async function generateMetadata({
 
     const canonicalURL = new URL(
       resolveOakHref({
-        page: "unit-index",
-        programmeSlug: slug,
+        page: "teacher-programme",
+        subjectPhaseSlug: slug,
+        tab: "units",
+        query: pageSearchParams,
       }),
       getBrowserConfig("seoAppUrl"),
     ).toString();
@@ -145,6 +154,7 @@ export async function generateMetadata({
 }
 
 const InnerProgrammePage = async (props: AppPageProps<ProgrammePageParams>) => {
+  const cookieStore = await cookies();
   const originalSearchParams = await props.searchParams!;
   const searchParams = validateServerSearchParams(originalSearchParams);
   const { slug: subjectPhaseSlug, tab } = await props.params;
@@ -204,7 +214,7 @@ const InnerProgrammePage = async (props: AppPageProps<ProgrammePageParams>) => {
     return notFound();
   }
 
-  const { programmeUnitsData, curriculumUnitsData, examboardFilterDimensions } =
+  const { programmeUnitsData, curriculumUnitsData, ks4OptionFilterDimensions } =
     cachedProgrammeData;
 
   const curriculumPhaseOptions = {
@@ -212,6 +222,7 @@ const InnerProgrammePage = async (props: AppPageProps<ProgrammePageParams>) => {
     tab: "units" as const,
   };
 
+  const { isEnabled } = await draftMode();
   const { curriculumCMSInfo, subjectPhaseSanityData, mvRefreshTime } =
     await getCachedProgrammeCms({
       subjectPhaseSlug,
@@ -219,6 +230,7 @@ const InnerProgrammePage = async (props: AppPageProps<ProgrammePageParams>) => {
       subjectTitle: programmeUnitsData.subjectTitle,
       phaseSlug: subjectPhaseKeystageSlugs.phaseSlug,
       programmePageSlug: `${subjectPhaseKeystageSlugs.subjectSlug}-${subjectPhaseKeystageSlugs.phaseSlug}`,
+      isPreviewModeEnabled: isEnabled,
     });
 
   if (!curriculumCMSInfo && !programmeUnitsData.nonCurriculum) {
@@ -266,14 +278,14 @@ const InnerProgrammePage = async (props: AppPageProps<ProgrammePageParams>) => {
     examboardTitle: ks4Option?.title,
   };
 
-  // TD: [integrated journey] tracking
-  const curriculumUnitsTrackingData: CurriculumUnitsTrackingData = {
-    ...subjectPhaseKeystageSlugs,
-    subjectTitle: curriculumSelectionTitles.subjectTitle,
-    ks4OptionTitle: curriculumSelectionTitles.examboardTitle,
-  };
+  const isImplementationGuidesEnabled = await isFeatureFlagEnabledServer(
+    Object.fromEntries(
+      cookieStore.getAll().map(({ name, value }) => [name, value]),
+    ),
+    "implementation-guides",
+  );
 
-  const results = {
+  const results: ProgrammePageProps = {
     subjectPhaseSlug,
     curriculumSelectionSlugs: subjectPhaseKeystageSlugs,
     curriculumSelectionTitles,
@@ -282,15 +294,30 @@ const InnerProgrammePage = async (props: AppPageProps<ProgrammePageParams>) => {
     tabSlug: tab,
     curriculumCMSInfo,
     ks4Options,
-    examboardFilterDimensions,
-    trackingData: curriculumUnitsTrackingData,
-    curriculumInfo: cachedProgrammeData.programmeUnitsData,
+    ks4OptionFilterDimensions,
     curriculumDownloadsTabData,
     mvRefreshTime,
     initialFilter: resolvedFilter,
+    featureFlags: {
+      "implementation-guides": isImplementationGuidesEnabled,
+    },
+    nonCurriculum: cachedProgrammeData.programmeUnitsData.nonCurriculum,
   };
 
-  return <ProgrammeView {...results} />;
+  const programmeState = getProgrammeStateForProgramme({
+    programmeSlug: subjectPhaseSlug,
+    ...subjectPhaseKeystageSlugs,
+    ...curriculumSelectionTitles,
+  });
+
+  return (
+    <TeacherBrowseAnalyticsStoreProvider
+      programmeState={programmeState}
+      accessLevel="programme"
+    >
+      <ProgrammeView {...results} />
+    </TeacherBrowseAnalyticsStoreProvider>
+  );
 };
 
 const ProgrammePage = withPageErrorHandling(

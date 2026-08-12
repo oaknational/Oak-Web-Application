@@ -12,21 +12,21 @@ import {
   getPathwaySuffix,
   getYearGroupTitle,
 } from "@/utils/curriculum/formatting";
-import { CurriculumFilters } from "@/utils/curriculum/types";
+import {
+  CurriculumFilters,
+  OnChangeCurriculumFilters,
+} from "@/utils/curriculum/types";
 import type { CurriculumUnitsFormattedData } from "@/pages-helpers/curriculum/docx/tab-helpers";
 import { SubjectPhasePickerData } from "@/components/SharedComponents/SubjectPhasePicker/SubjectPhasePicker";
 import { getShouldDisplayCorePathway } from "@/utils/curriculum/pathways";
 import { CurriculumSelectionSlugs } from "@/utils/curriculum/slugs";
 import { keystageFromYear } from "@/utils/curriculum/keystage";
-import { ComponentTypeValueType } from "@/browser-lib/avo/Avo";
+import { FilterType } from "@/browser-lib/avo/Avo";
 import { getKeystageSlug } from "@/fixtures/curriculum/unit";
 
 export type CurricFiltersYearsProps = {
   filters: CurriculumFilters;
-  onChangeFilters: (
-    newFilters: CurriculumFilters,
-    source: ComponentTypeValueType,
-  ) => void;
+  onChangeFilters: OnChangeCurriculumFilters;
   data: CurriculumUnitsFormattedData;
   ks4Options: SubjectPhasePickerData["subjects"][number]["ks4_options"];
   slugs: CurriculumSelectionSlugs;
@@ -97,7 +97,9 @@ export function CurricFiltersYears(props: Readonly<CurricFiltersYearsProps>) {
   const { yearData } = data;
 
   const shouldDisplayCorePathway =
-    slugs.ks4OptionSlug !== "core" && getShouldDisplayCorePathway(ks4Options);
+    context !== "integrated-journey" &&
+    slugs.ks4OptionSlug !== "core" &&
+    getShouldDisplayCorePathway(ks4Options);
 
   const ksFilter = filters.keystages[0];
   const yearOptions = data.yearOptions
@@ -124,19 +126,21 @@ export function CurricFiltersYears(props: Readonly<CurricFiltersYearsProps>) {
 
   function addAllToFilter(target: YearOption) {
     if (target.year === "all") {
-      onChangeFilters(
-        { ...filters, years: data.yearOptions, pathways: [] },
-        "year_group_button",
-      );
+      onChangeFilters({
+        newFilters: { ...filters, years: data.yearOptions, pathways: [] },
+        filterType: FilterType.YEAR_FILTER,
+        filterValue: "all",
+      });
     } else {
-      onChangeFilters(
-        {
+      onChangeFilters({
+        newFilters: {
           ...filters,
           years: [target.year],
           pathways: target.queryString ? [target.queryString] : [],
         },
-        "year_group_button",
-      );
+        filterType: FilterType.YEAR_FILTER,
+        filterValue: target.year,
+      });
     }
   }
 

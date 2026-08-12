@@ -1,6 +1,5 @@
 import React from "react";
 import { Meta, StoryObj } from "@storybook/nextjs";
-import { oakDefaultTheme, OakThemeProvider } from "@oaknational/oak-components";
 
 import { CampaignPromoBanner } from "./CampaignPromoBanner";
 
@@ -22,27 +21,23 @@ type Story = StoryObj<typeof CampaignPromoBanner>;
 
 export const Default: Story = {
   render: () => (
-    <OakThemeProvider theme={oakDefaultTheme}>
-      <CampaignPromoBanner
-        heading={headingPortableText()}
-        subheading={subheadingPortableText()}
-        buttonCta={"buttonCtaText"}
-        media={mockImageAsset()}
-      />
-    </OakThemeProvider>
+    <CampaignPromoBanner
+      heading={headingPortableText()}
+      subheading={subheadingPortableText()}
+      buttonCta={"buttonCtaText"}
+      media={mockImageAsset()}
+    />
   ),
 };
 
 export const WithBodyText: Story = {
   render: () => (
-    <OakThemeProvider theme={oakDefaultTheme}>
-      <CampaignPromoBanner
-        heading={headingPortableText()}
-        subheading={subheadingPortableText()}
-        body={bodyPortableText()}
-        buttonCta={"buttonCtaText"}
-        media={mockImageAsset()}
-      />
-    </OakThemeProvider>
+    <CampaignPromoBanner
+      heading={headingPortableText()}
+      subheading={subheadingPortableText()}
+      body={bodyPortableText()}
+      buttonCta={"buttonCtaText"}
+      media={mockImageAsset()}
+    />
   ),
 };

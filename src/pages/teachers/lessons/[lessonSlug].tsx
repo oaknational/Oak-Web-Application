@@ -11,7 +11,7 @@ import {
   shouldSkipInitialBuild,
   getFallbackBlockingConfig,
 } from "@/node-lib/isr";
-import AppLayout from "@/components/SharedComponents/AppLayout";
+import AppLayout from "@/components/AppComponents/AppLayout";
 import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
 import { LessonAppearsIn } from "@/components/TeacherComponents/LessonAppearsIn";
 import { groupLessonPathways } from "@/components/TeacherComponents/helpers/lessonHelpers/lesson.helpers";
@@ -28,6 +28,9 @@ import {
   redirectToEyfsPage,
 } from "@/pages-helpers/shared/lesson-pages/eyfsRedirect";
 import { LessonOverview } from "@/components/TeacherViews/LessonOverview/LessonOverview.view";
+import { TeacherBrowseAnalyticsStoreProvider } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
+import { getProgrammeStateForLesson } from "@/context/TeacherBrowseAnalytics/utils/getProgrammeState";
+import { getProgrammePropsForCanonicalLesson } from "@/pages-helpers/teacher/getProgrammePropsForCanonicalLesson";
 
 type PageProps = {
   lesson: LessonOverviewPageData;
@@ -74,47 +77,56 @@ export default function LessonOverviewCanonicalPage({
   });
 
   const pathwayGroups = groupLessonPathways(lesson.pathways);
+
   return (
-    <AppLayout
-      topNavProps={topNav}
-      seoProps={{
-        ...getSeoProps({
-          title: `Lesson: ${lesson.lessonTitle}`,
-          description: "Overview of lesson",
-          canonicalURL: `${getBrowserConfig("seoAppUrl")}/teachers/lessons/${lesson.lessonSlug}`,
-        }),
-      }}
+    <TeacherBrowseAnalyticsStoreProvider
+      programmeState={getProgrammeStateForLesson({
+        ...lesson,
+        ...getProgrammePropsForCanonicalLesson(lesson),
+      })}
+      accessLevel="lesson"
     >
-      <LessonOverview
-        lesson={{
-          ...lesson,
-          isCanonical: true,
-          teacherShareButton: teacherNotesButton,
-          teacherShareButtonProps: TeacherNotesButtonProps,
-          teacherNoteHtml: teacherNoteHtml,
-          teacherNoteError: error,
+      <AppLayout
+        topNavProps={topNav}
+        seoProps={{
+          ...getSeoProps({
+            title: `Lesson: ${lesson.lessonTitle}`,
+            description: "Overview of lesson",
+            canonicalURL: `${getBrowserConfig("seoAppUrl")}/teachers/lessons/${lesson.lessonSlug}`,
+          }),
         }}
-        isBeta={false}
-      />
-      <OakFlex $background={"bg-decorative4-subdued"} $width={"100%"}>
-        <OakMaxWidth $pv="spacing-80">
-          <LessonAppearsIn {...pathwayGroups} />
-        </OakMaxWidth>
-      </OakFlex>
-      {teacherNote && isEditable && (
-        <TeacherNotesModal
-          isOpen={teacherNotesOpen}
-          onClose={() => {
-            setTeacherNotesOpen(false);
+      >
+        <LessonOverview
+          lesson={{
+            ...lesson,
+            isCanonical: true,
+            teacherShareButton: teacherNotesButton,
+            teacherShareButtonProps: TeacherNotesButtonProps,
+            teacherNoteHtml: teacherNoteHtml,
+            teacherNoteError: error,
           }}
-          teacherNote={teacherNote}
-          saveTeacherNote={saveTeacherNote}
-          sharingUrl={shareUrl}
-          error={error}
-          shareActivated={shareActivated}
+          isBeta={false}
         />
-      )}
-    </AppLayout>
+        <OakFlex $background={"bg-decorative4-subdued"} $width={"100%"}>
+          <OakMaxWidth $pv="spacing-80">
+            <LessonAppearsIn {...pathwayGroups} />
+          </OakMaxWidth>
+        </OakFlex>
+        {teacherNote && isEditable && (
+          <TeacherNotesModal
+            isOpen={teacherNotesOpen}
+            onClose={() => {
+              setTeacherNotesOpen(false);
+            }}
+            teacherNote={teacherNote}
+            saveTeacherNote={saveTeacherNote}
+            sharingUrl={shareUrl}
+            error={error}
+            shareActivated={shareActivated}
+          />
+        )}
+      </AppLayout>
+    </TeacherBrowseAnalyticsStoreProvider>
   );
 }
 

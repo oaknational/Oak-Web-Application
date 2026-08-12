@@ -6,7 +6,7 @@ import {
 } from "next";
 
 import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
-import AppLayout from "@/components/SharedComponents/AppLayout";
+import AppLayout from "@/components/AppComponents/AppLayout";
 import { LessonMedia } from "@/components/TeacherViews/LessonMedia/LessonMedia.view";
 import {
   getFallbackBlockingConfig,
@@ -23,6 +23,9 @@ import {
   isEyfsPathway,
   redirectToEyfsPage,
 } from "@/pages-helpers/shared/lesson-pages/eyfsRedirect";
+import { TeacherBrowseAnalyticsStoreProvider } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
+import { getProgrammeStateForLesson } from "@/context/TeacherBrowseAnalytics/utils/getProgrammeState";
+import { getProgrammePropsForCanonicalLesson } from "@/pages-helpers/teacher/getProgrammePropsForCanonicalLesson";
 
 export type CanonicalLessonMediaClipsPageProps = {
   curriculumData: CanonicalLessonMediaClips;
@@ -34,21 +37,31 @@ export const CanonicalLessonMediaClipsPage: NextPage<
 > = ({ curriculumData, topNav }) => {
   const { lessonTitle } = curriculumData;
 
+  const programmeProps = getProgrammePropsForCanonicalLesson(curriculumData);
+
   return (
-    <AppLayout
-      seoProps={{
-        ...getSeoProps({
-          title: `Lesson Media: ${lessonTitle}`,
-          description:
-            "Share online lesson activities with your students, such as videos, worksheets and quizzes.",
-        }),
-        noIndex: true,
-        noFollow: true,
-      }}
-      topNavProps={topNav}
+    <TeacherBrowseAnalyticsStoreProvider
+      accessLevel="lesson"
+      programmeState={getProgrammeStateForLesson({
+        ...curriculumData,
+        ...programmeProps,
+      })}
     >
-      <LessonMedia isCanonical={true} lesson={curriculumData} />
-    </AppLayout>
+      <AppLayout
+        seoProps={{
+          ...getSeoProps({
+            title: `Lesson Media: ${lessonTitle}`,
+            description:
+              "Share online lesson activities with your students, such as videos, worksheets and quizzes.",
+          }),
+          noIndex: true,
+          noFollow: true,
+        }}
+        topNavProps={topNav}
+      >
+        <LessonMedia isCanonical={true} lesson={curriculumData} />
+      </AppLayout>
+    </TeacherBrowseAnalyticsStoreProvider>
   );
 };
 

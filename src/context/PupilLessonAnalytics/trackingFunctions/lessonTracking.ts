@@ -4,10 +4,10 @@ import type {
   PupilLessonAnalyticsGet,
 } from "@/context/PupilLessonAnalytics/pupilLessonAnalytics.types";
 import type { TrackFns } from "@/context/Analytics/AnalyticsProvider";
-import type { PupilAnalyticsProviderClassroomContext } from "@/components/PupilComponents/PupilAnalyticsProvider/PupilAnalyticsProvider";
+import type { ClassroomAssignmentContext } from "@/browser-lib/google-classroom/classroomAssignmentContext";
 
 export const getCorePropertyArgs = (
-  clientEnvironment: PupilAnalyticsProviderClassroomContext["clientEnvironment"],
+  clientEnvironment: ClassroomAssignmentContext["clientEnvironment"],
 ) =>
   ({
     platform:

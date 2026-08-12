@@ -1,4 +1,5 @@
 import { create, StateCreator } from "zustand";
+import { subscribeWithSelector } from "zustand/middleware";
 import { createStore } from "zustand/vanilla";
 
 import { getDefaultLessonProgressState } from "./pupilLessonProgressHelpers";
@@ -13,6 +14,7 @@ export const createPupilLessonProgressState: StateCreator<
   PupilLessonProgressState
 > = (set) => ({
   ...getDefaultLessonProgressState(),
+  refreshReadOnly: async () => false,
   initialiseLessonProgress: ({
     lessonSlug,
     lessonReviewSections,
@@ -32,6 +34,14 @@ export const createPupilLessonProgressState: StateCreator<
   markLessonStarted: () =>
     set(() => ({
       lessonStarted: true,
+    })),
+  setReadOnly: (isReadOnly) =>
+    set(() => ({
+      isReadOnly,
+    })),
+  setRefreshReadOnly: (refreshReadOnly) =>
+    set(() => ({
+      refreshReadOnly,
     })),
   completeSection: (section) =>
     set((state) => completeSectionAction(state, section)),
@@ -53,7 +63,7 @@ export const createPupilLessonProgressState: StateCreator<
 });
 
 export const usePupilLessonProgress = create<PupilLessonProgressState>()(
-  createPupilLessonProgressState,
+  subscribeWithSelector(createPupilLessonProgressState),
 );
 
 export const createPupilLessonProgressStore = () =>

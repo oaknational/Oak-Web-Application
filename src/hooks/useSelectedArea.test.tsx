@@ -1,9 +1,7 @@
 import { usePathname } from "next/navigation";
 import { render } from "@testing-library/react";
 
-import useSelectedArea from "./useSelectedArea";
-
-import { siteAreas } from "@/components/AppComponents/AppHeader/AppHeader";
+import useSelectedArea, { siteAreas } from "./useSelectedArea";
 
 const Nav = () => {
   const selectedArea = useSelectedArea();

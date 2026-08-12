@@ -28,7 +28,7 @@ export const Testimonials = ({ testimonials }: TestimonialsProps) => {
         authorImageSrc={finalUrl}
         authorName={testimonial.quote.attribution}
         authorTitle={authorTitle}
-        color="transparent"
+        hasLeftBorder={false}
       />
     );
   });

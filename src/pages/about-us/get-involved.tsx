@@ -1,6 +1,6 @@
 import { GetStaticProps, GetStaticPropsResult, NextPage } from "next";
 
-import Layout from "@/components/AppComponents/Layout";
+import Layout from "@/components/AppComponents/AppLayout";
 import { AboutUsLayout } from "@/components/GenericPagesComponents/AboutUsLayout";
 import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
 import {

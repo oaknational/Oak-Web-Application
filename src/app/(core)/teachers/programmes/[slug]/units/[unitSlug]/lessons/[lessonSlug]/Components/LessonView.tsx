@@ -8,7 +8,6 @@ import {
   OakInlineBanner,
 } from "@oaknational/oak-components";
 import { Fragment, useState } from "react";
-import { useUser } from "@clerk/nextjs";
 import { useFeatureFlagEnabled } from "posthog-js/react";
 
 import { CurrentSectionIdProvider } from "./CurrentSectionIdProvider";
@@ -22,15 +21,8 @@ import type { TeachersLessonOverviewPageData } from "@/node-lib/curriculum-api-2
 import PreviousNextNav from "@/components/TeacherComponents/PreviousNextNav/PreviousNextNav";
 import { resolveOakHref } from "@/common-lib/urls";
 import { useComplexCopyright } from "@/hooks/useComplexCopyright";
-import {
-  DownloadResourceButtonNameValueType,
-  TeachingMaterialTypeValueType,
-} from "@/browser-lib/avo/Avo";
-import useAnalytics from "@/context/Analytics/useAnalytics";
-import { getAnalyticsBrowseData } from "@/components/TeacherComponents/helpers/getAnalyticsBrowseData";
 import SkipLink from "@/components/CurriculumComponents/OakComponentsKitchen/SkipLink";
 import { MathJaxProvider } from "@/browser-lib/mathjax/MathJaxProvider";
-import { TrackingCallbackProps } from "@/components/TeacherComponents/LessonOverviewMediaClips";
 import { hasLessonMathJax } from "@/components/TeacherViews/LessonOverview/hasLessonMathJax";
 import { getSideNavLinksFromResources } from "@/components/TeacherComponents/LessonOverviewSideNavAnchorLinks/LessonOverviewSideNavAnchorLinks";
 import ComplexCopyrightRestrictionBanner from "@/components/TeacherComponents/ComplexCopyrightRestrictionBanner/ComplexCopyrightRestrictionBanner";
@@ -49,116 +41,51 @@ export default function LessonView(
     loginRequired,
     geoRestricted,
     expired,
-    lessonReleaseDate,
     lessonTitle,
     keyStageTitle,
     keyStageSlug,
     subjectTitle,
     unitTitle,
     year,
-    yearGroupTitle,
-    examBoardTitle,
     examBoardSlug,
-    tierTitle,
-    pathwayTitle,
     phaseSlug,
     actions,
     subjectCategories,
     excludedFromTeachingMaterials,
   } = props;
 
+  const copyrightState = useComplexCopyright({
+    loginRequired,
+    geoRestricted,
+  });
   const {
     showSignedOutGeoRestricted,
     showSignedOutLoginRequired,
     showGeoBlocked,
     showSignedInNotOnboarded,
-  } = useComplexCopyright({
-    loginRequired,
-    geoRestricted,
-  });
-
+  } = copyrightState;
   const contentRestricted =
     showSignedOutGeoRestricted ||
     showSignedOutLoginRequired ||
     showGeoBlocked ||
     showSignedInNotOnboarded;
 
-  const { track } = useAnalytics();
-  const { isSignedIn } = useUser();
-  const copyrightState = useComplexCopyright({
-    loginRequired,
-    geoRestricted,
-  });
   const isMathJaxLesson = hasLessonMathJax(props, props.subjectSlug, false);
   const MathJaxLessonProvider = isMathJaxLesson ? MathJaxProvider : Fragment;
 
-  const browsePathwayData = getAnalyticsBrowseData({
-    keyStageSlug,
-    keyStageTitle,
-    subjectSlug,
-    subjectTitle,
-    unitSlug,
-    unitTitle,
-    year,
-    yearTitle: yearGroupTitle,
-    examBoardTitle,
-    tierTitle,
-    pathwayTitle,
-    lessonSlug,
-    lessonName: lessonTitle,
-    lessonReleaseDate,
-    isLegacy: false,
-  });
-
-  const trackDownloadResourceButtonClicked = ({
-    downloadResourceButtonName,
-  }: {
-    downloadResourceButtonName: DownloadResourceButtonNameValueType;
-  }) => {
-    track.lessonResourceDownloadStarted({
-      platform: "owa",
-      product: "teacher lesson resources",
-      engagementIntent: "use",
-      componentType: "lesson_download_button",
-      eventVersion: "2.0.0",
-      analyticsUseCase: "Teacher",
-      downloadResourceButtonName,
-      ...browsePathwayData,
-    });
-  };
-
-  const trackMediaClipsButtonClicked = ({
-    mediaClipsButtonName,
-    learningCycle,
-  }: TrackingCallbackProps) => {
-    track.lessonMediaClipsStarted({
-      platform: "owa",
-      product: "media clips",
-      engagementIntent: "use",
-      componentType: "go_to_media_clips_page_button",
-      eventVersion: "2.0.0",
-      analyticsUseCase: "Teacher",
-      mediaClipsButtonName,
-      learningCycle,
-      ...browsePathwayData,
-    });
-  };
-
-  const trackShare = () => {
-    track.lessonShareStarted(browsePathwayData);
-  };
-
   const lessonResources = getLessonResources({
-    browsePathwayData,
     data: props,
     copyrightState,
     isMathJaxLesson,
-    trackMediaClipsButtonClicked,
     contentRestricted,
   });
 
   const showPupilShare =
-    !contentRestricted && !expired && !actions?.disablePupilShare;
+    !loginRequired &&
+    !geoRestricted &&
+    !contentRestricted &&
+    !expired &&
+    !actions?.disablePupilShare;
 
   const isHeatwaveBannerEnabled =
     useFeatureFlagEnabled("heatwave-banner") ?? false;
@@ -206,11 +133,6 @@ export default function LessonView(
                     programmeSlug,
                     unitSlug,
                     showDownloadAll: true,
-                    onClickDownloadAll: () => {
-                      trackDownloadResourceButtonClicked({
-                        downloadResourceButtonName: "all",
-                      });
-                    },
                     geoRestricted,
                     loginRequired,
                     expired,
@@ -265,36 +187,11 @@ export default function LessonView(
                         subjectCategories,
                         actions,
                         subjectSlug,
-                        trackCreateWithAiButtonClicked: () =>
-                          track.createTeachingMaterialsInitiated({
-                            platform: "owa",
-                            product: "teacher lesson resources",
-                            engagementIntent: "use",
-                            componentType: "create_more_with_ai_button",
-                            eventVersion: "2.0.0",
-                            analyticsUseCase: "Teacher",
-                            isLoggedIn: isSignedIn ?? false,
-                          }),
-                        trackTeachingMaterialsSelected: (
-                          teachingMaterialType: TeachingMaterialTypeValueType,
-                        ) => {
-                          track.teachingMaterialsSelected({
-                            platform: "owa",
-                            product: "teacher lesson resources",
-                            engagementIntent: "use",
-                            componentType: "create_more_with_ai_dropdown",
-                            eventVersion: "2.0.0",
-                            analyticsUseCase: "Teacher",
-                            interactionId: "",
-                            teachingMaterialType: teachingMaterialType,
-                          });
-                        },
                       }
                 }
                 lessonSlug={lessonSlug}
                 unitSlug={unitSlug}
                 programmeSlug={programmeSlug}
-                onClickShare={trackShare}
               />
             </OakGridArea>
             <OakGridArea
@@ -316,8 +213,6 @@ export default function LessonView(
                     }}
                     resource={resource}
                     key={resource.resourceType}
-                    onDownloadButtonClick={trackDownloadResourceButtonClicked}
-                    onMediaClipsButtonClick={trackMediaClipsButtonClicked}
                   />
                 ))}
 

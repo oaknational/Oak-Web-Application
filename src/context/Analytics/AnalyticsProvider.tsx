@@ -36,10 +36,15 @@ export type EventProperties = Record<string, unknown>;
 export type EventFn = (
   eventName: EventName,
   properties: EventProperties,
+  options?: { sendInstantly?: boolean },
 ) => void;
 export type PageProperties = {
   path: string;
 };
+export type TrackFeatureFlagFunction = (properties: {
+  $feature_flag: string;
+  $feature_flag_response: string;
+}) => void;
 export type PageFn = (properties: PageProperties) => void;
 export type IdentifyProperties = { email?: string };
 export type IdentifyFn = (
@@ -75,6 +80,8 @@ export type AnalyticsContext = {
   track: TrackFns;
   identify: IdentifyFn;
   alias?: AliasFn;
+  trackFeatureFlag?: TrackFeatureFlagFunction;
+  getSessionId: () => string | undefined;
   posthogDistinctId: PosthogDistinctId | null;
 };
 
@@ -85,9 +92,11 @@ export type AnalyticsService<ServiceConfig> = {
   track: EventFn;
   page: PageFn;
   identify: IdentifyFn;
+  trackFeatureFlag?: TrackFeatureFlagFunction;
   alias?: AliasFn;
   optOut: () => void;
   optIn: () => void;
+  getSessionId?: () => string;
 };
 
 type AvoOptions = Parameters<typeof initAvo>[0];
@@ -234,6 +243,15 @@ const AnalyticsProvider: FC<AnalyticsProviderProps> = (props) => {
     },
     [posthog],
   );
+  const trackFeatureFlag: TrackFeatureFlagFunction = useCallback(
+    (properties) => {
+      posthog.trackFeatureFlag?.(properties);
+    },
+    [posthog],
+  );
+  const getSessionId = useCallback(() => {
+    return posthog.getSessionId?.();
+  }, [posthog]);
   /**
    * Event tracking
    * Object containing Track functions as defined in the Avo tracking plan.
@@ -254,10 +272,18 @@ const AnalyticsProvider: FC<AnalyticsProviderProps> = (props) => {
       track,
       identify,
       alias,
+      trackFeatureFlag,
+      getSessionId,
       posthogDistinctId,
     };
-  }, [track, identify, posthogDistinctId, alias]);
-
+  }, [
+    track,
+    identify,
+    posthogDistinctId,
+    alias,
+    trackFeatureFlag,
+    getSessionId,
+  ]);
   return (
     <analyticsContext.Provider value={analytics}>
       {children}

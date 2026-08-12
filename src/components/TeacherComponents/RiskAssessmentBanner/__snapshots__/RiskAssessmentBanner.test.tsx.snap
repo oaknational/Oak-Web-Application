@@ -1,0 +1,96 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`RiskAssessmentBanner renders the RiskAssessmentBanner component 1`] = `
+<body>
+  <div>
+    <div
+      class="sc-aXZVg sc-gEvEer jrtSrG hrIDCC"
+      data-testid="oak-inline-banner"
+    >
+      <div
+        class="sc-aXZVg sc-gEvEer eJkWdi iLxNYL"
+      >
+        <div
+          class="sc-aXZVg jPvJsJ"
+        >
+          <span
+            class="sc-aXZVg fjkwRj"
+            data-testid="inline-banner-icon"
+          >
+            <img
+              alt=""
+              class="sc-iGgWBj lcrpYX"
+              data-nimg="fill"
+              decoding="async"
+              loading="lazy"
+              src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1709052869/icons/Icon_Info_vsx3xi.svg"
+              style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+            />
+          </span>
+        </div>
+        <div
+          class="sc-aXZVg sc-gEvEer bwVgbu gsZhDY"
+        >
+          <div
+            class="sc-aXZVg iiOecC"
+            data-testid="inline-banner-message"
+          >
+            <div
+              class="sc-aXZVg jPvJsJ"
+              data-testid="risk-assessment-message"
+            >
+              Carry out a
+               
+              <a
+                class="sc-fHjqPf bwIJQB"
+                href="/legal/physical-activity-disclaimer"
+                target="_blank"
+              >
+                <span
+                  class="sc-eqUAAy iGfTGj"
+                >
+                  risk assessment
+                </span>
+              </a>
+               
+              for all practical PE lessons. Read
+               
+              <a
+                aria-label="Safe Practice: in PESSPA (opens in a new tab)"
+                class="sc-fHjqPf bwIJQB"
+                href="https://www.afpe.org.uk/page/Safe_Practice_in_PESSPA#"
+                target="_blank"
+              >
+                <span
+                  class="sc-eqUAAy iGfTGj"
+                >
+                  'Safe Practice: in PESSPA'
+                </span>
+                <div
+                  class="sc-aXZVg zBzRC"
+                >
+                  <span
+                    class="sc-aXZVg fjkwRj sc-fUnMCh esqnRZ"
+                  >
+                    <img
+                      alt=""
+                      class="sc-iGgWBj cMzyFO"
+                      data-nimg="fill"
+                      decoding="async"
+                      loading="lazy"
+                      src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1699953892/icons/hlxmejse3mcr4tqo6t8u.svg"
+                      style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                    />
+                  </span>
+                </div>
+              </a>
+               
+              for further support.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+`;

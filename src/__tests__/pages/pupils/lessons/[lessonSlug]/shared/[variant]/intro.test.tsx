@@ -1,5 +1,5 @@
 import "@testing-library/jest-dom";
-import { fireEvent } from "@testing-library/react";
+import { act, fireEvent } from "@testing-library/react";
 
 import PupilLessonIntroNewPage, {
   getStaticProps,
@@ -41,16 +41,19 @@ jest.mock("@/context/PupilLessonAnalytics/usePupilLessonAnalytics", () => ({
 }));
 
 const startWorksheet = jest.fn(() => Promise.resolve(true));
-jest.mock("@/components/PupilViews/PupilIntro/useWorksheetDownload", () => ({
-  useWorksheetDownload: () => ({
-    startDownload: startWorksheet,
-    isDownloading: false,
+jest.mock(
+  "@/components/PupilComponents/Views/ViewHelpers/Intro/useWorksheetDownload",
+  () => ({
+    useWorksheetDownload: () => ({
+      startDownload: startWorksheet,
+      isDownloading: false,
+    }),
   }),
-}));
+);
 
 const startFiles = jest.fn();
 jest.mock(
-  "@/components/PupilViews/PupilIntro/useAdditionalFilesDownload",
+  "@/components/PupilComponents/Views/ViewHelpers/Intro/useAdditionalFilesDownload",
   () => ({
     useAdditionalFilesDownload: () => ({
       startAdditionalFilesDownload: startFiles,
@@ -119,9 +122,11 @@ describe("intro page", () => {
     expect(useWorksheetInfoState).toHaveBeenCalled();
   });
 
-  it("completes the section and navigates on proceed", () => {
+  it("completes the section and navigates on proceed", async () => {
     const { getByTestId } = renderPage();
-    fireEvent.click(getByTestId("proceed-to-next-section"));
+    await act(async () => {
+      fireEvent.click(getByTestId("proceed-to-next-section"));
+    });
     expect(track.trackIntroCompleted).toHaveBeenCalledTimes(1);
     expect(
       usePupilLessonProgress.getState().sectionResults.intro?.isComplete,

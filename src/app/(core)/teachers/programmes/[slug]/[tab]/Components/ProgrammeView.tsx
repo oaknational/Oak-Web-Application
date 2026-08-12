@@ -12,7 +12,7 @@ import {
   tabSlugToName,
   isTabSlug,
 } from "../tabSchema";
-import type { ExamboardFilterDimension } from "../buildExamboardFilterDimensions";
+import type { Ks4OptionFilterDimension } from "../buildKs4OptionFilterDimensions";
 
 import { ProgrammeHeader } from "./ProgrammeHeader/ProgrammeHeader";
 import { buildProgrammeHeading } from "./ProgrammeHeader/buildProgrammeHeading";
@@ -21,51 +21,49 @@ import {
   UnitSequenceViewProps,
 } from "./UnitSequence/UnitSequenceView";
 import { SubjectHeroImageName } from "./ProgrammeHeader/getSubjectHeroImageUrl";
-import {
-  ProgrammeOverview,
-  ProgrammeOverviewProps,
-} from "./ProgrammeOverview/ProgrammeOverview";
+import { ProgrammeOverview } from "./ProgrammeOverview/ProgrammeOverview";
 import {
   ProgrammeDownloadsProps,
   ProgrammeDownloads,
 } from "./ProgrammeDownloads/ProgrammeDownloads";
+import { ImplementationGuideCallout } from "./ImplementationGuideCallout";
 
 import {
   CurriculumDownloadsTierSubjectProps,
   CurriculumUnitsFormattedData,
-  CurriculumUnitsTrackingData,
 } from "@/pages-helpers/curriculum/docx/tab-helpers";
-import { getDefaultFilter, useFilters } from "@/utils/curriculum/filteringApp";
+import { useFilters } from "@/hooks/useFilters";
 import {
   CurriculumSelectionSlugs,
   CurriculumSelectionTitles,
 } from "@/utils/curriculum/slugs";
-import { CurriculumFilters } from "@/utils/curriculum/types";
-import useAnalytics from "@/context/Analytics/useAnalytics";
-import { buildUnitSequenceRefinedAnalytics } from "@/utils/curriculum/analytics";
-import useAnalyticsPageProps from "@/hooks/useAnalyticsPageProps";
+import {
+  CurriculumFilters,
+  OnChangeCurriculumFilters,
+} from "@/utils/curriculum/types";
 import { ProgrammePageHeaderCMS } from "@/common-lib/cms-types/programmePage";
 import { CurriculumOverviewSanityData } from "@/common-lib/cms-types";
 import type { Ks4Option } from "@/node-lib/curriculum-api-2023/queries/curriculumPhaseOptions/curriculumPhaseOptions.schema";
 import { resolveOakHref } from "@/common-lib/urls";
-import { CurriculumOverviewMVData } from "@/node-lib/curriculum-api-2023";
 import { validateSearchParams } from "@/utils/validateProgrammePageSearchParams";
+import { getDefaultFilter } from "@/utils/curriculum/filtering";
+import { useTeacherBrowseAnalytics } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
 
-type ProgrammePageProps = {
+export type ProgrammePageProps = {
   subjectPhaseSlug: string;
   curriculumSelectionSlugs: CurriculumSelectionSlugs;
   curriculumSelectionTitles: CurriculumSelectionTitles;
   curriculumUnitsFormattedData: CurriculumUnitsFormattedData;
   subjectPhaseSanityData: ProgrammePageHeaderCMS | null;
   curriculumCMSInfo: CurriculumOverviewSanityData | null;
-  curriculumInfo: CurriculumOverviewMVData;
+  nonCurriculum: boolean;
   curriculumDownloadsTabData: CurriculumDownloadsTierSubjectProps;
   mvRefreshTime: number;
   tabSlug: TabSlug;
   ks4Options: Ks4Option[];
-  examboardFilterDimensions: Record<string, ExamboardFilterDimension>;
-  trackingData: CurriculumUnitsTrackingData;
+  ks4OptionFilterDimensions: Record<string, Ks4OptionFilterDimension>;
   initialFilter?: CurriculumFilters;
+  featureFlags: Record<string, boolean>;
 };
 
 export const ProgrammeView = ({
@@ -74,20 +72,19 @@ export const ProgrammeView = ({
   curriculumUnitsFormattedData,
   subjectPhaseSanityData,
   curriculumCMSInfo,
-  curriculumInfo,
+  nonCurriculum,
   curriculumDownloadsTabData,
   mvRefreshTime,
   tabSlug,
   subjectPhaseSlug,
   ks4Options,
-  examboardFilterDimensions,
-  trackingData,
+  ks4OptionFilterDimensions,
   initialFilter,
+  featureFlags,
 }: ProgrammePageProps) => {
   const searchParams = useSearchParams();
 
-  const { keystages: keystagesParam, years: yearsParam } =
-    validateSearchParams(searchParams);
+  const validatedParams = validateSearchParams(searchParams);
 
   const [activeTab, setActiveTab] = useState<TabSlug>(tabSlug);
 
@@ -101,25 +98,35 @@ export const ProgrammeView = ({
 
   const [filters, setFilters] = useFilters(defaultFilter, initialFilter);
 
-  const { track } = useAnalytics();
-  const { analyticsUseCase } = useAnalyticsPageProps();
+  const { programmeRefined } = useTeacherBrowseAnalytics(
+    (store) => store.track,
+  );
 
-  const onChangeFilters = (newFilters: CurriculumFilters) => {
+  const onChangeFilters: OnChangeCurriculumFilters = ({
+    newFilters,
+    filterType,
+    filterValue,
+  }) => {
     setFilters(newFilters);
 
-    const analyticsData = buildUnitSequenceRefinedAnalytics(
-      analyticsUseCase,
-      trackingData,
-      newFilters,
-    );
+    if (!filterType) {
+      return;
+    }
 
-    track.unitSequenceRefined(analyticsData);
+    programmeRefined({
+      componentType: "filter_link",
+      activeFilters: newFilters,
+      filterType,
+      filterValue,
+    });
   };
 
-  const schoolYear = filters.years.find((year) => yearsParam === year);
+  const schoolYear = filters.years.find(
+    (year) => validatedParams?.years === year,
+  );
 
   const selectedKeystageSlug = filters.keystages.find(
-    (ks) => keystagesParam === ks,
+    (ks) => validatedParams?.keystages === ks,
   );
 
   const heading = buildProgrammeHeading({
@@ -145,7 +152,9 @@ export const ProgrammeView = ({
   }, [pathname]);
 
   const preserveKeystagesParamInUrl = (url: string) => {
-    return keystagesParam ? `${url}?keystages=${keystagesParam}` : url;
+    return validatedParams?.keystages
+      ? `${url}?keystages=${validatedParams?.keystages}`
+      : url;
   };
 
   return (
@@ -157,7 +166,7 @@ export const ProgrammeView = ({
         summary={subjectPhaseSanityData?.bodyCopy}
         bullets={subjectPhaseSanityData?.bullets}
       />
-      {curriculumInfo.nonCurriculum ? null : (
+      {nonCurriculum ? null : (
         <OakMaxWidth
           as="nav"
           aria-label="Programme page tabs"
@@ -179,31 +188,41 @@ export const ProgrammeView = ({
             tabs={TAB_NAMES.map((tab) => ({
               label: tab,
               type: "link",
+              showPromo:
+                featureFlags["implementation-guides"] &&
+                tabNameToSlug[tab] === "download",
               href: resolveOakHref({
                 page: "teacher-programme",
                 subjectPhaseSlug,
                 tab: tabNameToSlug[tab],
                 query: {
-                  keystages: keystagesParam ?? undefined,
+                  keystages: validatedParams?.keystages,
                 },
               }),
             }))}
           />
+          {["units", "curriculum-explainer"].includes(activeTab) &&
+            featureFlags["implementation-guides"] && (
+              <ImplementationGuideCallout
+                subject={curriculumSelectionSlugs.subjectSlug}
+                subjectTitle={subjectTitle}
+                phase={curriculumSelectionSlugs.phaseSlug}
+                phaseTitle={phaseTitle}
+              />
+            )}
         </OakMaxWidth>
       )}
       <TabContent
         tabSlug={activeTab}
         curriculumSelectionSlugs={curriculumSelectionSlugs}
-        subjectTitle={curriculumSelectionTitles.subjectTitle}
         curriculumUnitsFormattedData={curriculumUnitsFormattedData}
         curriculumCMSInfo={curriculumCMSInfo}
         curriculumDownloadsTabData={curriculumDownloadsTabData}
-        curriculumInfo={curriculumInfo}
         mvRefreshTime={mvRefreshTime}
         filters={filters}
         setFilters={onChangeFilters}
         ks4Options={ks4Options}
-        examboardFilterDimensions={examboardFilterDimensions}
+        ks4OptionFilterDimensions={ks4OptionFilterDimensions}
       />
     </>
   );
@@ -212,18 +231,15 @@ export const ProgrammeView = ({
 const TabContent = ({
   tabSlug,
   curriculumSelectionSlugs,
-  subjectTitle,
   curriculumUnitsFormattedData,
   curriculumCMSInfo,
-  curriculumInfo,
   curriculumDownloadsTabData,
   mvRefreshTime,
   filters,
   setFilters,
   ks4Options,
-  examboardFilterDimensions,
-}: { tabSlug: TabSlug } & UnitSequenceViewProps &
-  Omit<ProgrammeOverviewProps, "curriculumCMSInfo"> & {
+  ks4OptionFilterDimensions,
+}: { tabSlug: TabSlug } & UnitSequenceViewProps & {
     curriculumCMSInfo: CurriculumOverviewSanityData | null;
   } & ProgrammeDownloadsProps) => {
   if (tabSlug === "units") {
@@ -234,27 +250,20 @@ const TabContent = ({
         filters={filters}
         setFilters={setFilters}
         ks4Options={ks4Options}
-        examboardFilterDimensions={examboardFilterDimensions}
+        ks4OptionFilterDimensions={ks4OptionFilterDimensions}
       />
     );
   } else if (tabSlug === "curriculum-explainer") {
     if (!curriculumCMSInfo) {
       notFound();
     }
-    return (
-      <ProgrammeOverview
-        subjectTitle={subjectTitle}
-        curriculumCMSInfo={curriculumCMSInfo}
-        curriculumSelectionSlugs={curriculumSelectionSlugs}
-      />
-    );
+    return <ProgrammeOverview curriculumCMSInfo={curriculumCMSInfo} />;
   } else if (tabSlug === "download") {
     return (
       <ProgrammeDownloads
         mvRefreshTime={mvRefreshTime}
         curriculumSelectionSlugs={curriculumSelectionSlugs}
         curriculumDownloadsTabData={curriculumDownloadsTabData}
-        curriculumInfo={curriculumInfo}
         curriculumUnitsFormattedData={curriculumUnitsFormattedData}
       />
     );

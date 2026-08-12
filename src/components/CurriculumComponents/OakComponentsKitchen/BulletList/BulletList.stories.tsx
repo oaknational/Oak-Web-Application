@@ -1,4 +1,3 @@
-import { OakThemeProvider, oakDefaultTheme } from "@oaknational/oak-components";
 import { Meta, StoryObj } from "@storybook/nextjs";
 
 import Component from ".";
@@ -13,7 +12,7 @@ type Story = StoryObj<typeof Component>;
 
 const TestComponent = () => {
   return (
-    <OakThemeProvider theme={oakDefaultTheme}>
+    <div>
       <div>
         <Component
           items={[{ text: "one" }, { text: "two" }, { text: "three" }]}
@@ -22,7 +21,7 @@ const TestComponent = () => {
       <div>
         <Component items={[{ text: "single" }]} />
       </div>
-    </OakThemeProvider>
+    </div>
   );
 };
 

@@ -2,17 +2,18 @@ import { screen } from "@testing-library/dom";
 import userEvent from "@testing-library/user-event";
 
 import UnitHeader, { UnitHeaderProps } from "./UnitHeader";
+import { useStickyUnitHeader } from "./useStickyUnitHeader";
 
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 import { setUseUserReturn } from "@/__tests__/__helpers__/mockClerk";
 import { mockLoggedIn } from "@/__tests__/__helpers__/mockUser";
 
 const track = {
-  unitDownloadInitiated: jest.fn(),
+  unitDownloaded: jest.fn(),
 };
 jest.mock("@/context/Analytics/useAnalytics", () => ({
   __esModule: true,
-  default: () => ({ track }),
+  default: () => ({ track, getSessionId: jest.fn() }),
 }));
 
 const setCurrentToastProps = jest.fn();
@@ -42,7 +43,16 @@ jest.mock(
   }),
 );
 
-const render = renderWithProviders();
+jest.mock("./useStickyUnitHeader", () => ({
+  useStickyUnitHeader: jest.fn(() => ({
+    sentinelRef: { current: null },
+    isStuck: false,
+  })),
+}));
+
+const renderUnitHeader = (props?: Partial<UnitHeaderProps>) => {
+  return renderWithProviders()(<UnitHeader {...defaultProps} {...props} />);
+};
 
 const defaultProps: UnitHeaderProps = {
   heading: "Unit 1 in maths",
@@ -52,14 +62,6 @@ const defaultProps: UnitHeaderProps = {
   subjectIcon: "subject-maths",
   programmeSlug: "maths-ks4-higher",
   subjectPhaseSlug: "maths-secondary",
-  trackingProps: {
-    unitName: "IT and the world of work",
-    unitSlug: "",
-    keyStageSlug: "",
-    keyStageTitle: "Key stage 4",
-    subjectSlug: "computer-science",
-    subjectTitle: "Computer science",
-  },
   downloadButtonState: {
     downloadError: false,
     setDownloadError: jest.fn(),
@@ -77,6 +79,8 @@ const mockAdjacentUnit = {
   title: "Adjacent unit",
 } as UnitHeaderProps["nextUnit"];
 
+const mockedUseStickyUnitHeader = jest.mocked(useStickyUnitHeader);
+
 describe("UnitHeader", () => {
   beforeEach(() => {
     setUseUserReturn(mockLoggedIn);
@@ -84,21 +88,17 @@ describe("UnitHeader", () => {
   });
 
   it("renders a heading", () => {
-    render(<UnitHeader {...defaultProps} />);
-
+    renderUnitHeader();
     const heading = screen.getByRole("heading", { name: defaultProps.heading });
     expect(heading).toBeInTheDocument();
   });
 
   it("renders previous and next unit links when adjacent units exist", () => {
-    render(
-      <UnitHeader
-        {...defaultProps}
-        phase="secondary"
-        prevUnit={mockAdjacentUnit}
-        nextUnit={mockAdjacentUnit}
-      />,
-    );
+    renderUnitHeader({
+      phase: "secondary",
+      prevUnit: mockAdjacentUnit,
+      nextUnit: mockAdjacentUnit,
+    });
 
     expect(
       screen.getByRole("link", { name: "Previous unit" }),
@@ -107,7 +107,7 @@ describe("UnitHeader", () => {
   });
 
   it("renders the download button when a download file id is provided", () => {
-    render(<UnitHeader {...defaultProps} unitDownloadFileId="unit-file-id" />);
+    renderUnitHeader({ unitDownloadFileId: "unit-file-id" });
 
     expect(
       screen.getByRole("button", { name: /Download/ }),
@@ -115,22 +115,19 @@ describe("UnitHeader", () => {
   });
 
   it("tracks the download and shows a toast when the download succeeds", async () => {
-    render(
-      <UnitHeader
-        {...defaultProps}
-        unitDownloadFileId="unit-file-id"
-        isGeorestrictedUnit={false}
-      />,
-    );
+    renderUnitHeader({
+      unitDownloadFileId: "unit-file-id",
+      isGeorestrictedUnit: false,
+    });
 
     const user = userEvent.setup();
     await user.click(screen.getByRole("button", { name: /Download/ }));
 
-    expect(track.unitDownloadInitiated).toHaveBeenCalledWith(
+    expect(track.unitDownloaded).toHaveBeenCalledWith(
       expect.objectContaining({
         platform: "owa",
         componentType: "unit_download_button",
-        unitName: "IT and the world of work",
+        unitName: "Cells",
       }),
     );
     expect(setCurrentToastProps).toHaveBeenCalledWith(
@@ -139,5 +136,32 @@ describe("UnitHeader", () => {
         variant: "success",
       }),
     );
+  });
+
+  describe("Sticky Nav Footer", () => {
+    it("renders unstuck by default", () => {
+      renderUnitHeader({ unitDownloadFileId: "unit-file-id" });
+
+      const footer = screen.getByTestId("unit-header-nav-footer");
+      expect(footer).toHaveAttribute("data-stuck", "false");
+      expect(
+        screen.queryByTestId("unit-header-nav-footer-placeholder"),
+      ).not.toBeInTheDocument();
+    });
+
+    it("renders stuck output when hook returns stuck", () => {
+      mockedUseStickyUnitHeader.mockReturnValueOnce({
+        sentinelRef: { current: null },
+        isStuck: true,
+      });
+
+      renderUnitHeader({ unitDownloadFileId: "unit-file-id" });
+
+      const footer = screen.getByTestId("unit-header-nav-footer");
+      expect(footer).toHaveAttribute("data-stuck", "true");
+      expect(
+        screen.getByTestId("unit-header-nav-footer-placeholder"),
+      ).toBeInTheDocument();
+    });
   });
 });

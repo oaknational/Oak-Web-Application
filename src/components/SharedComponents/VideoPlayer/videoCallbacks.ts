@@ -69,6 +69,7 @@ export const onTimeUpdate = ({
   userEventCallback,
   playbackId,
   endTracked,
+  shouldTrackEndAnalytics = true,
   playingClassname,
 }: {
   mediaElRef: React.RefObject<MuxPlayerElement>;
@@ -77,10 +78,13 @@ export const onTimeUpdate = ({
   userEventCallback: (args: VideoEventCallbackArgs) => void;
   playbackId: string;
   endTracked: string | null;
+  shouldTrackEndAnalytics?: boolean;
   playingClassname: string;
 }) => {
   if (getPercentageElapsed(mediaElRef) >= 90 && endTracked !== playbackId) {
-    trackOnEnd();
+    if (shouldTrackEndAnalytics) {
+      trackOnEnd();
+    }
     setEndTracked(playbackId);
     userEventCallback({
       event: "end",

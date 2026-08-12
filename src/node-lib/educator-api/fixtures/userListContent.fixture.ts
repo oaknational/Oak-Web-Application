@@ -30,6 +30,8 @@ const userListContentFixture = (
       keystage: "KS1",
       subject: "Maths",
       examboard: null,
+      examboardSlug: null,
+      phaseSlug: "primary",
       tier: null,
       subjectSlug: "maths",
       keystageSlug: "ks1",

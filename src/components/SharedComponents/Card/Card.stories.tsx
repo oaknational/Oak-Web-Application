@@ -5,7 +5,6 @@ import { OakP } from "@oaknational/oak-components";
 import Component from ".";
 
 import CardTitle from "@/components/SharedComponents/Card/CardComponents/CardTitle";
-import ButtonAsLink from "@/components/SharedComponents/Button/ButtonAsLink";
 
 export default {
   component: Component,
@@ -44,7 +43,6 @@ export const CardIconButton: StoryObj<typeof Component> = {
         <OakP $font={"body-2"} $mb={"spacing-24"} $color={"text-disabled"}>
           Short snappy description of what this card is about.
         </OakP>
-        <ButtonAsLink $mt={"auto"} label={"Label"} $fullWidth page="home" />
       </Component>
     </div>
   ),
@@ -70,13 +68,6 @@ export const CardLargeIconCentered: StoryObj<typeof Component> = {
         >
           Short snappy description of what this card is about.
         </OakP>
-        <ButtonAsLink
-          $mb={16}
-          $mt={"auto"}
-          label={"Label"}
-          $fullWidth
-          page={"home"}
-        />
       </Component>
     </div>
   ),

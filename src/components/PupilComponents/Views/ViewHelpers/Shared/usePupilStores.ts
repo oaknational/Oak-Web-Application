@@ -1,9 +1,12 @@
 import { useEffect, useMemo, useRef } from "react";
 
-import { getPupilPathwayData } from "@/components/PupilComponents/PupilAnalyticsProvider/PupilAnalyticsProvider";
+import { useClassroomAddonContext } from "@/components/PupilComponents/Views/ViewHelpers/Shared/useClassroomAddonContext";
+import { useClassroomProgressSync } from "@/components/PupilComponents/Views/ViewHelpers/Shared/useClassroomProgressSync";
 import { pickAvailableSectionsForLesson } from "@/components/PupilComponents/Views/ViewHelpers/Experience/pickAvailableSectionsForLesson";
+import { getPupilPathwayData } from "@/context/PupilLessonAnalytics/pupilAnalyticsHelpers";
 import { usePupilLessonAnalytics } from "@/context/PupilLessonAnalytics/usePupilLessonAnalytics";
 import { usePupilLessonProgress } from "@/context/PupilLessonProgress";
+import type { ClassroomAssignmentContext } from "@/browser-lib/google-classroom/classroomAssignmentContext";
 import {
   LessonBrowseData,
   LessonContent,
@@ -22,12 +25,16 @@ type UsePupilStoresParams = {
  * This hook sets up:
  * - `PupilLessonProgress` (review sections and progress state)
  * - `PupilLessonAnalytics` (pathway/context + lesson analytics payload data)
+ * - Google Classroom progress write-back (for add-on assignments)
  *
  * @param params Optional lesson payload used to initialise both stores.
  */
 export const usePupilStores = (params?: UsePupilStoresParams) => {
   const browseData = params?.browseData;
   const lessonContent = params?.lessonContent;
+
+  const classroom = useClassroomAddonContext();
+
   const availableSections = useMemo(
     () =>
       lessonContent
@@ -45,6 +52,10 @@ export const usePupilStores = (params?: UsePupilStoresParams) => {
   const initialiseLessonProgress = usePupilLessonProgress(
     (state) => state.initialiseLessonProgress,
   );
+  const setReadOnly = usePupilLessonProgress((state) => state.setReadOnly);
+  const setRefreshReadOnly = usePupilLessonProgress(
+    (state) => state.setRefreshReadOnly,
+  );
   const currentLessonSlug = usePupilLessonProgress((state) => state.lessonSlug);
   const { initialisePupilLessonAnalytics } = usePupilLessonAnalytics();
   const pathwayData = useMemo(
@@ -55,6 +66,7 @@ export const usePupilStores = (params?: UsePupilStoresParams) => {
 
   useEffect(() => {
     if (!browseData || !lessonContent) return;
+    if (!classroom.isReady) return;
     if (currentLessonSlug === browseData.lessonSlug) return;
     const initialiseKey = `${browseData.lessonSlug}:${availableSectionsKey}`;
     if (initialiseKeyRef.current === initialiseKey) return;
@@ -63,7 +75,8 @@ export const usePupilStores = (params?: UsePupilStoresParams) => {
     initialiseLessonProgress({
       lessonSlug: browseData.lessonSlug,
       lessonReviewSections: availableSections,
-      isReadOnly: false,
+      initialSectionResults: classroom.initialSectionResults,
+      isReadOnly: classroom.isReadOnly,
       isHydratingInitialProgress: false,
     });
   }, [
@@ -73,24 +86,69 @@ export const usePupilStores = (params?: UsePupilStoresParams) => {
     currentLessonSlug,
     lessonContent,
     initialiseLessonProgress,
+    classroom.isReady,
+    classroom.initialSectionResults,
+    classroom.isReadOnly,
   ]);
 
   useEffect(() => {
+    if (!classroom.isReady) return;
+    setReadOnly(classroom.isReadOnly);
+  }, [classroom.isReady, classroom.isReadOnly, setReadOnly]);
+
+  useEffect(() => {
+    setRefreshReadOnly(classroom.refreshReadOnly);
+  }, [classroom.refreshReadOnly, setRefreshReadOnly]);
+
+  useEffect(() => {
     if (!browseData || !lessonContent || !pathwayData) return;
-    const initialiseKey = browseData.lessonSlug;
+    if (!classroom.isReady) return;
+
+    const classroomAssignmentContext: ClassroomAssignmentContext = {
+      courseId: classroom.courseId,
+      itemId: classroom.itemId,
+      attachmentId: classroom.attachmentId,
+      submissionId: classroom.submissionId,
+      teacherLoginHint: classroom.teacherLoginHint,
+      pupilLoginHint: classroom.pupilLoginHint,
+      classroomAssignmentId: classroom.classroomAssignmentId,
+      clientEnvironment: classroom.clientEnvironment,
+    };
+
+    const initialiseKey = `${browseData.lessonSlug}:${JSON.stringify(
+      classroomAssignmentContext,
+    )}`;
     if (analyticsInitialiseKeyRef.current === initialiseKey) return;
     analyticsInitialiseKeyRef.current = initialiseKey;
 
     initialisePupilLessonAnalytics({
       pupilPathwayData: pathwayData,
-      classroomAssignmentContext: {
-        courseId: null,
-        itemId: null,
-        attachmentId: null,
-        clientEnvironment: "web-browser",
-        classroomAssignmentId: null,
-      },
+      classroomAssignmentContext,
       lessonContent,
     });
-  }, [browseData, initialisePupilLessonAnalytics, lessonContent, pathwayData]);
+  }, [
+    browseData,
+    initialisePupilLessonAnalytics,
+    lessonContent,
+    pathwayData,
+    classroom.isReady,
+    classroom.courseId,
+    classroom.itemId,
+    classroom.attachmentId,
+    classroom.submissionId,
+    classroom.teacherLoginHint,
+    classroom.pupilLoginHint,
+    classroom.classroomAssignmentId,
+    classroom.clientEnvironment,
+  ]);
+
+  useClassroomProgressSync({
+    courseId: classroom.courseId,
+    itemId: classroom.itemId,
+    attachmentId: classroom.attachmentId,
+    submissionId: classroom.submissionId,
+    pupilLoginHint: classroom.pupilLoginHint,
+    isReadOnly: classroom.isReadOnly,
+    isReady: classroom.isReady,
+  });
 };

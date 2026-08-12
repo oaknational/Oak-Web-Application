@@ -20,6 +20,14 @@ describe("getInteractiveQuestions", () => {
     expect(getInteractiveQuestions()).toEqual([]);
   });
 
+  it("returns an empty array when no questions are interactive", () => {
+    expect(getInteractiveQuestions([explanatoryTextQuestion])).toEqual([]);
+  });
+
+  it("returns all questions when they are all interactive", () => {
+    expect(getInteractiveQuestions(quizQuestions)).toEqual(quizQuestions);
+  });
+
   it("filters out explanatory text questions", () => {
     expect(
       getInteractiveQuestions([...quizQuestions, explanatoryTextQuestion]),

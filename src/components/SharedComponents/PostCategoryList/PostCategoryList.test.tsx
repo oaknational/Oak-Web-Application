@@ -2,8 +2,6 @@ import PostCategoryList from "./PostCategoryList";
 
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 
-const labelId = "test-label-id";
-
 jest.mock("@/context/Analytics/useAnalytics", () => ({
   __esModule: true,
   default: () => ({
@@ -15,7 +13,6 @@ describe("PostCategoryList", () => {
   test("should render links to lessons", () => {
     const { getByRole } = renderWithTheme(
       <PostCategoryList
-        labelledBy={labelId}
         page={"blog-index"}
         categories={[
           { title: "Oak Updates", slug: "oak-updates" },
@@ -35,7 +32,6 @@ describe("PostCategoryList", () => {
   test("should work with webinars", () => {
     const { getByRole } = renderWithTheme(
       <PostCategoryList
-        labelledBy={labelId}
         page={"webinar-index"}
         categories={[
           { title: "Oak Updates", slug: "oak-updates" },
@@ -56,7 +52,6 @@ describe("PostCategoryList", () => {
     const { getByRole } = renderWithTheme(
       <PostCategoryList
         page={"blog-index"}
-        labelledBy={labelId}
         categories={[
           { title: "Oak Updates", slug: "oak-updates" },
           { title: "Lesson Planning", slug: "lesson-planning" },
@@ -71,7 +66,6 @@ describe("PostCategoryList", () => {
     const { getByRole } = renderWithTheme(
       <PostCategoryList
         page={"blog-index"}
-        labelledBy={labelId}
         categories={[
           { title: "Oak Updates", slug: "oak-updates" },
           { title: "Lesson Planning", slug: "lesson-planning" },
@@ -86,7 +80,6 @@ describe("PostCategoryList", () => {
     const { getByRole } = renderWithTheme(
       <PostCategoryList
         page={"blog-index"}
-        labelledBy={labelId}
         categories={[
           { title: "Oak Updates", slug: "oak-updates" },
           { title: "Lesson Planning", slug: "lesson-planning" },
@@ -99,20 +92,16 @@ describe("PostCategoryList", () => {
   });
   test("nav element should have the correct accessible name", () => {
     const { getByRole } = renderWithTheme(
-      <>
-        <span id={labelId}>Test Categories</span>
-        <PostCategoryList
-          page={"blog-index"}
-          labelledBy={labelId}
-          categories={[
-            { title: "Oak Updates", slug: "oak-updates" },
-            { title: "Lesson Planning", slug: "lesson-planning" },
-          ]}
-          selectedCategorySlug="lesson-planning"
-        />
-      </>,
+      <PostCategoryList
+        page={"blog-index"}
+        categories={[
+          { title: "Oak Updates", slug: "oak-updates" },
+          { title: "Lesson Planning", slug: "lesson-planning" },
+        ]}
+        selectedCategorySlug="lesson-planning"
+      />,
     );
     const nav = getByRole("navigation");
-    expect(nav).toHaveAccessibleName("Test Categories");
+    expect(nav).toHaveAccessibleName("Categories");
   });
 });

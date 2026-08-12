@@ -1,5 +1,6 @@
 import { z } from "zod";
 import useSWRImmutable from "swr/immutable";
+import { useUser } from "@clerk/nextjs";
 
 import OakError from "@/errors/OakError";
 import errorReporter from "@/common-lib/error-reporter";
@@ -17,12 +18,13 @@ export const HUBSPOT_CONTACTS_ENDPOINT = `/api/hubspot/contacts`;
 const hubspotContactsFetcher = async (url: string) => {
   try {
     const response = await fetch(url);
-    if (!response.ok) {
-      throw new Error("Failed to fetch contact details");
-    }
 
     if (response.status === 204) {
       return null;
+    }
+
+    if (!response.ok) {
+      throw new Error("Failed to fetch contact details");
     }
 
     const result = contactDetails.parse(await response.json());
@@ -33,7 +35,7 @@ const hubspotContactsFetcher = async (url: string) => {
       err instanceof OakError
         ? err
         : new OakError({
-            code: "hubspot/unknown",
+            code: "hubspot/contacts",
             originalError: err,
           });
 
@@ -44,8 +46,10 @@ const hubspotContactsFetcher = async (url: string) => {
 };
 
 export const useFetchHubspotContactsSwr = () => {
+  const { isSignedIn } = useUser();
+
   const { data, isLoading } = useSWRImmutable(
-    HUBSPOT_CONTACTS_ENDPOINT,
+    isSignedIn ? HUBSPOT_CONTACTS_ENDPOINT : null,
     hubspotContactsFetcher,
   );
 

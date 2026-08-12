@@ -4,10 +4,12 @@ import userEvent from "@testing-library/user-event";
 import SuggestedFilters from "./SearchSuggestedFilters";
 
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
-import { convertSearchIntentToFilters } from "@/context/Search/search.helpers";
+import {
+  convertSearchIntentToFilters,
+  trackSearchModified,
+} from "@/app/(core)/teachers/search/helpers/index";
 import { SearchQuery, SetSearchQuery } from "@/context/Search/search.types";
 import { SearchIntent } from "@/common-lib/schemas/search-intent";
-import { trackSearchModified } from "@/components/TeacherViews/Search/helpers";
 
 function createSetQuery(initial: SearchQuery): {
   setQuery: SetSearchQuery;

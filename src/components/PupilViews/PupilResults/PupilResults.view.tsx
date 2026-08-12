@@ -6,12 +6,12 @@ import {
   OakQuizPrintableHeader,
 } from "@oaknational/oak-components";
 
-import { QuestionsArray } from "@/components/PupilComponents/LegacyQuiz/QuizEngineProvider";
+import { QuestionsArray } from "@/context/PupilLessonQuiz/pupilLessonQuizTypes";
 import { MathJaxWrap } from "@/browser-lib/mathjax/MathJaxWrap";
 import { LessonBrowseData } from "@/node-lib/curriculum-api-2023/queries/pupilLesson/pupilLesson.schema";
 import { CopyrightNotice } from "@/components/PupilComponents/CopyrightNotice";
 import { LessonAttemptCamelCase } from "@/node-lib/pupil-api/types";
-import { QuizQuestionResultsSection } from "@/components/PupilComponents/LegacyQuiz/QuizQuestionResultsSection";
+import { QuizQuestionResultsSection } from "@/components/PupilComponents/QuizQuestions/QuizQuestionResultsSection";
 
 type PupilViewsResultsProps = {
   attemptData: LessonAttemptCamelCase;

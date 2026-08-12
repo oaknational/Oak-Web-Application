@@ -1,6 +1,6 @@
 "use client";
 
-import { type ReactNode, useState } from "react";
+import { type ReactNode } from "react";
 import {
   OakBox,
   OakHandDrawnHR,
@@ -35,11 +35,11 @@ import {
 import { useHubspotSubmit } from "@/components/TeacherComponents/hooks/downloadAndShareHooks/useHubspotSubmit";
 import type { LessonShareData } from "@/node-lib/curriculum-api-2023/queries/lessonShare/lessonShare.schema";
 import { useOnboardingStatus } from "@/components/TeacherComponents/hooks/useOnboardingStatus";
-import { AssignToClassroomModal } from "@/components/TeacherComponents/AssignToClassroomModal/AssignToClassroomModal";
 import {
   isLessonSection,
   LessonSection,
 } from "@/components/PupilComponents/lessonSections";
+import LessonShareRadioGroup from "@/components/TeacherComponents/LessonShareRadioGroup/LessonShareRadioGroup";
 
 export type LessonShareProps = {
   breadcrumbsSlot?: ReactNode;
@@ -85,18 +85,6 @@ export function LessonShare(props: Readonly<LessonShareProps>) {
     lessonReleaseDate,
   } = lesson;
 
-  const exitQuizNumQuestions = (() => {
-    const exitQuizResource = shareableResources.find(
-      (r) => r.type === "exit-quiz",
-    );
-    const parsed = exitQuizResource
-      ? Number.parseInt(exitQuizResource.metadata ?? "", 10)
-      : Number.NaN;
-    return Number.isNaN(parsed) ? undefined : parsed;
-  })();
-
-  const [isClassroomModalOpen, setIsClassroomModalOpen] = useState(false);
-
   const { track } = useAnalytics();
   const { lessonShared } = track;
 
@@ -141,6 +129,7 @@ export function LessonShare(props: Readonly<LessonShareProps>) {
   };
 
   const selectedLessonSections = getSelectedLessonSections(selectedResources);
+  const selectedHideYearGroup = form.watch("hideYearGroup") === "hide";
 
   const onboardingStatus = useOnboardingStatus();
 
@@ -160,7 +149,7 @@ export function LessonShare(props: Readonly<LessonShareProps>) {
 
     const isEmailSupplied = data.email ? true : false;
 
-    lessonShared({
+    const lessonSharedProperties = {
       lessonName: lessonTitle,
       lessonSlug: lessonSlug,
       schoolUrn: schoolUrn,
@@ -180,10 +169,15 @@ export function LessonShare(props: Readonly<LessonShareProps>) {
           const activity = classroomActivityMap[resource];
           return activity ? [activity] : [];
         }),
+      yearGroupHidden: selectedHideYearGroup,
       audience: "Pupil",
       lessonReleaseCohort: isLegacy ? "2020-2023" : "2023-2026",
       lessonReleaseDate: lessonReleaseDate ?? "unpublished",
-    });
+    } satisfies Parameters<typeof lessonShared>[0] & {
+      yearGroupHidden: boolean;
+    };
+
+    lessonShared(lessonSharedProperties);
   };
 
   return (
@@ -252,32 +246,29 @@ export function LessonShare(props: Readonly<LessonShareProps>) {
               hideCheckboxes={true}
             />
           }
+          radioGroups={
+            <LessonShareRadioGroup
+              control={form.control}
+              name={"hideYearGroup"}
+              title={"Hide year group when sharing?"}
+              description={
+                "Hiding the year group when sharing can help pupils of different ages, abilities, or contexts engage with the material without worrying whether it's for their year."
+              }
+              icon={"hide"}
+              options={[
+                { value: "show", label: "Show year group" },
+                { value: "hide", label: "Hide year group" },
+              ]}
+            />
+          }
           cta={
-            <>
-              <LessonShareLinks
-                disabled={
-                  hasFormErrors ||
-                  expired ||
-                  (!form.formState.isValid && !localStorageDetails)
-                }
-                lessonSlug={lessonSlug}
-                selectedActivities={selectedLessonSections}
-                schoolUrn={schoolUrn}
-                onSubmit={onValidateAndSubmit}
-                onGoogleClassroomClick={() => setIsClassroomModalOpen(true)}
-              />
-              {programmeSlug && unitSlug && (
-                <AssignToClassroomModal
-                  isOpen={isClassroomModalOpen}
-                  onClose={() => setIsClassroomModalOpen(false)}
-                  lessonTitle={lessonTitle}
-                  lessonSlug={lessonSlug}
-                  programmeSlug={programmeSlug}
-                  unitSlug={unitSlug}
-                  exitQuizNumQuestions={exitQuizNumQuestions}
-                />
-              )}
-            </>
+            <LessonShareLinks
+              lessonSlug={lessonSlug}
+              selectedActivities={selectedLessonSections}
+              schoolUrn={schoolUrn}
+              onSubmit={onValidateAndSubmit}
+              selectedHideYearGroup={selectedHideYearGroup}
+            />
           }
         />
       </OakMaxWidth>

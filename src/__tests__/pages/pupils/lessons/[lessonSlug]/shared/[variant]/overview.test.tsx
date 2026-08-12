@@ -98,7 +98,14 @@ jest.mock(
 
 const render = renderWithProvidersByName(["oakTheme"]);
 
-const renderPage = (overrides: { backUrl?: string | null } = {}) =>
+const renderPage = (
+  overrides: {
+    backUrl?: string | null;
+    variant?: React.ComponentProps<
+      typeof PupilLessonOverviewNewPage
+    >["variant"];
+  } = {},
+) =>
   render(
     <PupilLessonOverviewNewPage
       browseData={lessonBrowseDataFixture({})}
@@ -108,7 +115,7 @@ const renderPage = (overrides: { backUrl?: string | null } = {}) =>
       worksheetInfo={null}
       hasAdditionalFiles={false}
       additionalFiles={null}
-      variant={null}
+      variant={overrides.variant ?? null}
       initialSection="overview"
       pageType="canonical"
     />,
@@ -224,6 +231,37 @@ describe("pages/pupils/lessons/[lessonSlug]/shared/[variant]/overview", () => {
       fireEvent.click(getByTestId("overlay-loaded"));
       fireEvent.click(getByTestId("overlay-close"));
       expect(getByTestId("proceed-to-next-section")).toBeInTheDocument();
+    });
+
+    it("shows the shared activities banner for a partial lesson variant", () => {
+      const { getAllByText } = renderPage({
+        variant: {
+          sections: ["overview", "intro", "starter-quiz"],
+          reviewSections: ["intro", "starter-quiz"],
+        },
+      });
+
+      expect(
+        getAllByText(
+          "You can only click on the activities your teacher has shared with you today.",
+        ).length,
+      ).toBeGreaterThan(0);
+    });
+
+    it("does not show the shared activities banner for a full lesson variant", () => {
+      const { queryByText } = renderPage({
+        variant: {
+          sections: ["overview", "intro", "starter-quiz", "video", "exit-quiz"],
+          reviewSections: ["intro", "starter-quiz", "video", "exit-quiz"],
+          hideYearGroup: true,
+        },
+      });
+
+      expect(
+        queryByText(
+          "You can only click on the activities your teacher has shared with you today.",
+        ),
+      ).not.toBeInTheDocument();
     });
   });
 

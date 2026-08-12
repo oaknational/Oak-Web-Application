@@ -7,7 +7,7 @@ import {
 import { FC } from "react";
 
 import { getBreakpoint } from "@/styles/utils/responsive";
-import { SelectedArea } from "@/components/AppComponents/AppHeader/AppHeader";
+import { SelectedArea } from "@/hooks/useSelectedArea";
 
 /**
  * This component displays either:

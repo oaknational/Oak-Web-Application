@@ -94,11 +94,73 @@ describe("UnitHeaderNavFooter", () => {
 
     expect(downloadButton).toHaveBeenCalledWith(true);
     expect(screen.getByText("Unit title")).toBeInTheDocument();
+    expect(screen.getByTestId("unit-header-nav-footer")).toHaveAttribute(
+      "data-stuck",
+      "true",
+    );
+    expect(
+      screen.getByTestId("unit-header-nav-footer-placeholder"),
+    ).toBeInTheDocument();
   });
   it("forwards the sentinel ref", () => {
     const sentinelRef = jest.fn();
     render(<UnitHeaderNavFooter {...defaultProps} sentinelRef={sentinelRef} />);
 
     expect(sentinelRef).toHaveBeenCalled();
+  });
+  it("adds and removes the resize fallback when ResizeObserver is unavailable", () => {
+    const originalResizeObserver = window.ResizeObserver;
+    const addEventListener = jest.spyOn(window, "addEventListener");
+    const removeEventListener = jest.spyOn(window, "removeEventListener");
+    Object.defineProperty(window, "ResizeObserver", {
+      configurable: true,
+      value: undefined,
+    });
+
+    const { unmount } = render(<UnitHeaderNavFooter {...defaultProps} />);
+
+    const resizeHandler = addEventListener.mock.calls.find(
+      ([eventName]) => eventName === "resize",
+    )?.[1];
+    expect(resizeHandler).toEqual(expect.any(Function));
+
+    unmount();
+    expect(removeEventListener).toHaveBeenCalledWith("resize", resizeHandler);
+
+    Object.defineProperty(window, "ResizeObserver", {
+      configurable: true,
+      value: originalResizeObserver,
+    });
+    addEventListener.mockRestore();
+    removeEventListener.mockRestore();
+  });
+
+  it("observes footer size changes and disconnects on unmount", () => {
+    const originalResizeObserver = window.ResizeObserver;
+    const resizeObserver = {
+      disconnect: jest.fn(),
+      observe: jest.fn(),
+      unobserve: jest.fn(),
+    };
+    const ResizeObserverMock = jest.fn(() => resizeObserver);
+    Object.defineProperty(window, "ResizeObserver", {
+      configurable: true,
+      value: ResizeObserverMock,
+    });
+
+    const { unmount } = render(<UnitHeaderNavFooter {...defaultProps} />);
+
+    expect(ResizeObserverMock).toHaveBeenCalledTimes(1);
+    expect(resizeObserver.observe).toHaveBeenCalledWith(
+      screen.getByTestId("unit-header-nav-footer"),
+    );
+
+    unmount();
+    expect(resizeObserver.disconnect).toHaveBeenCalledTimes(1);
+
+    Object.defineProperty(window, "ResizeObserver", {
+      configurable: true,
+      value: originalResizeObserver,
+    });
   });
 });

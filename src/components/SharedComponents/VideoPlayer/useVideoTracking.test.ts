@@ -27,6 +27,7 @@ const eventProps = {
   videoLocation: "webinar",
   videoPlaybackId: ["12mux67"],
   videoTitle: "Top video",
+  journeyId: null,
 };
 const getState: VideoTrackingGetState = () => ({
   duration: 234,
@@ -59,19 +60,25 @@ describe("useVideoTracking", () => {
       result.current.onPlay(true);
     });
 
-    expect(videoPlayed).toHaveBeenCalledWith(eventProps);
+    expect(videoPlayed).toHaveBeenCalledWith(
+      expect.objectContaining(eventProps),
+    );
   });
   test("calls track.videoPaused", () => {
     const { result } = renderHook(() => useVideoTracking({ getState }));
     act(() => {
       result.current.onPause();
     });
-    expect(videoPaused).toHaveBeenCalledWith(eventProps);
+    expect(videoPaused).toHaveBeenCalledWith(
+      expect.objectContaining(eventProps),
+    );
   });
   test("calls track.videoFinished", () => {
     const { result } = renderHook(() => useVideoTracking({ getState }));
     result.current.onEnd();
-    expect(videoFinished).toHaveBeenCalledWith(eventProps);
+    expect(videoFinished).toHaveBeenCalledWith(
+      expect.objectContaining(eventProps),
+    );
   });
   it("calls tracking with mux asset id and cloudinary url", () => {
     const { result } = renderHook(() =>

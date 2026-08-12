@@ -2,7 +2,7 @@ import { lessonContentFixture } from "@oaknational/oak-curriculum-schema";
 import { GetServerSidePropsContext } from "next";
 import { keysToCamelCase } from "zod-to-camel-case";
 
-import curriculumApi2023 from "@/node-lib/curriculum-api-2023/__mocks__/index";
+import curriculumApi2023 from "@/node-lib/curriculum-api-2023/__mocks__/curriculumApi2023Mock";
 import { lessonBrowseDataFixture } from "@/node-lib/curriculum-api-2023/fixtures/lessonBrowseData.fixture";
 import CanonicalResultsPage, {
   CanonicalResultsSharePageProps,

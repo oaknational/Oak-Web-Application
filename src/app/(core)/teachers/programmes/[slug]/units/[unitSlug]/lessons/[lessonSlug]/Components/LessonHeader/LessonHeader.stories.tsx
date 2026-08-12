@@ -1,14 +1,11 @@
 import React from "react";
-import { StoryObj, Meta } from "@storybook/react";
-import {
-  OakBreadcrumbs,
-  oakDefaultTheme,
-  OakThemeProvider,
-} from "@oaknational/oak-components";
+import { StoryObj, Meta } from "@storybook/nextjs";
+import { OakBreadcrumbs } from "@oaknational/oak-components";
 
 import LessonHeader from "./LessonHeader";
 
 import { getCloudinaryImageUrl } from "@/utils/getCloudinaryImageUrl";
+import TeacherBrowseAnalyticsDecorator from "@/storybook-decorators/TeacherBrowseAnalyticsDecorator";
 
 const meta: Meta<typeof LessonHeader> = {
   component: LessonHeader,
@@ -19,13 +16,7 @@ const meta: Meta<typeof LessonHeader> = {
       include: ["heading"],
     },
   },
-  decorators: [
-    (Story) => (
-      <OakThemeProvider theme={oakDefaultTheme}>
-        <Story />
-      </OakThemeProvider>
-    ),
-  ],
+  decorators: [TeacherBrowseAnalyticsDecorator],
 };
 
 export default meta;

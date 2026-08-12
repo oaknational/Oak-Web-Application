@@ -14,9 +14,6 @@ import {
   PreselectedDownloadType,
   PreselectedShareType,
 } from "@/components/TeacherComponents/types/downloadAndShare.types";
-import isSlugEYFS, {
-  EYFS_PROGRAMME_SLUG_REGEX,
-} from "@/utils/slugModifiers/isSlugEYFS";
 
 const reportError = errorReporter("urls.ts");
 
@@ -77,15 +74,6 @@ export type WebinarListingLinkProps = {
   categorySlug?: string | null;
   search?: {
     page?: string;
-  };
-};
-
-export type UnitListingLinkProps = {
-  page: "unit-index";
-  programmeSlug: string;
-  search?: {
-    ["learning-theme"]?: string | null;
-    ["category"]?: string | null;
   };
 };
 
@@ -240,6 +228,8 @@ type AboutUsMeetTheTeamBioLinkProps = {
 };
 type AboutUsGetInvolvedLinkProps = { page: "about-get-involved" };
 type AboutUsOaksCurriculaLinkProps = { page: "about-oaks-curricula" };
+type AboutUsOaksImpactLinkProps = { page: "about-oaks-impact" };
+type AboutUsCaseStudyLinkProps = { page: "about-case-study"; slug: string };
 
 type CareersLinkProps = { page: "careers" };
 type ContactUsLinkProps = { page: "contact" };
@@ -312,8 +302,10 @@ type ProgrammePageProps = {
     tiers?: string;
     years?: string;
     pathways?: string;
+    threads?: string;
     focus_ks4option?: string;
     open_filters_modal?: string;
+    subject_categories?: string;
   };
 };
 
@@ -372,7 +364,6 @@ export type OakLinkProps =
   | PupilYearListingLinkProps
   | LessonOverviewCanonicalLinkProps
   | UnitOverviewLinkProps
-  | UnitListingLinkProps
   | BlogListingLinkProps
   | BlogSingleLinkProps
   | CampaignSingleLinkProps
@@ -387,6 +378,8 @@ export type OakLinkProps =
   | AboutUsMeetTheTeamBioLinkProps
   | AboutUsGetInvolvedLinkProps
   | AboutUsOaksCurriculaLinkProps
+  | AboutUsOaksImpactLinkProps
+  | AboutUsCaseStudyLinkProps
   | CareersLinkProps
   | ContactUsLinkProps
   | HomeLinkProps
@@ -557,31 +550,6 @@ const postResolveHref =
     return `${path}?${queryString}`;
   };
 
-const unitIndexMatchHref = (href: string) => {
-  const pattern = "/teachers/programmes/:programmeSlug/units";
-  if (match(pattern)(href)) {
-    return match<UnitListingLinkProps>(pattern)(href);
-  }
-  return false;
-};
-
-const unitIndexResolveHref = (props: UnitListingLinkProps): string => {
-  if (isSlugEYFS(props.programmeSlug)) {
-    const eyfsSubjectSlug = EYFS_PROGRAMME_SLUG_REGEX.exec(props.programmeSlug)
-      ?.groups?.subject;
-    return `/teachers/eyfs/${encodeURIComponent(eyfsSubjectSlug || "maths")}`;
-  }
-  const path = `/teachers/programmes/${encodeURIComponent(props.programmeSlug)}/units`;
-  if (!props.search) {
-    return path;
-  }
-  const queryString = createQueryStringFromObject(props.search);
-  if (!queryString) {
-    return path;
-  }
-  return `${path}?${queryString}`;
-};
-
 export const OAK_PAGES: {
   [K in keyof OakPages]: OakPages[K] & { pageType: K };
 } = {
@@ -614,6 +582,18 @@ export const OAK_PAGES: {
     analyticsPageName: "About Us: Oak's curricula",
     configType: "internal",
     pageType: "about-oaks-curricula",
+  }),
+  "about-oaks-impact": createOakPageConfig({
+    pathPattern: "/about-us/oaks-impact",
+    analyticsPageName: "About Us: Oak's Impact",
+    configType: "internal",
+    pageType: "about-oaks-impact",
+  }),
+  "about-case-study": createOakPageConfig({
+    pathPattern: "/about-us/case-studies/:slug",
+    analyticsPageName: "About Us: Case Study",
+    configType: "internal",
+    pageType: "about-case-study",
   }),
   careers: createOakPageConfig({
     url: "https://app.beapplied.com/org/1574/oak-national-academy",
@@ -918,13 +898,6 @@ export const OAK_PAGES: {
     analyticsPageName: "Curriculum Unit Sequence",
     configType: "internal",
     pageType: "teacher-programme",
-  }),
-  "unit-index": createOakPageConfig({
-    analyticsPageName: "Unit Listing",
-    configType: "internal-custom-resolve",
-    pageType: "unit-index",
-    matchHref: unitIndexMatchHref,
-    resolveHref: unitIndexResolveHref,
   }),
   "classroom-sign-in": createOakPageConfig({
     pathPattern: "/classroom/sign-in",

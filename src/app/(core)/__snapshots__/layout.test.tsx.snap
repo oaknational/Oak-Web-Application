@@ -79,11 +79,6 @@ exports[`core layout renders correctly 1`] = `
               "title": "Who we are",
             },
             {
-              "href": "/about-us/meet-the-team",
-              "slug": "about-meet-the-team",
-              "title": "Meet the team",
-            },
-            {
               "href": "/about-us/oaks-curricula",
               "slug": "about-oaks-curricula",
               "title": "Oak's curricula",
@@ -92,6 +87,11 @@ exports[`core layout renders correctly 1`] = `
               "href": "/about-us/get-involved",
               "slug": "about-get-involved",
               "title": "Get involved",
+            },
+            {
+              "href": "/about-us/meet-the-team",
+              "slug": "about-meet-the-team",
+              "title": "Meet the team",
             },
             {
               "href": "/contact-us",
@@ -401,6 +401,9 @@ exports[`core layout renders correctly 1`] = `
       }
     }
   />
+  <SimulateErrorControls
+    errorBoundaryLevel="root"
+  />
   <main
     id="main"
   >
@@ -409,5 +412,6 @@ exports[`core layout renders correctly 1`] = `
     </styled.div>
   </main>
   <LayoutSiteFooter />
+  <LayoutPreviewControls />
 </React.Fragment>
 `;

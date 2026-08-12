@@ -1,6 +1,6 @@
 import { GetStaticProps, NextPage } from "next";
 
-import AppLayout from "@/components/SharedComponents/AppLayout";
+import AppLayout from "@/components/AppComponents/AppLayout";
 import getPageProps from "@/node-lib/getPageProps";
 import Banners from "@/components/SharedComponents/Banners";
 import { HomePageLowerView } from "@/components/GenericPagesViews/HomePageLower/HomePageLower.view";

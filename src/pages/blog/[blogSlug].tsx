@@ -8,7 +8,7 @@ import {
 import { uniqBy } from "lodash/fp";
 import { OakBox } from "@oaknational/oak-components";
 
-import Layout from "@/components/AppComponents/Layout";
+import Layout from "@/components/AppComponents/AppLayout";
 import CMSClient from "@/node-lib/cms";
 import { BlogPost } from "@/common-lib/cms-types";
 import {

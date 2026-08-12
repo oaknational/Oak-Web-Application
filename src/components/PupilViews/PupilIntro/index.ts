@@ -1,1 +1,1 @@
-export * from "./PupilIntro.view";
+export * from "./worksheetInfo";

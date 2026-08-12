@@ -1,4 +1,4 @@
-import { LessonSectionResults } from "@/components/PupilComponents/LessonEngineProvider";
+import { LessonSectionResults } from "@/context/PupilLessonProgress";
 
 export const sectionResultsFixture: LessonSectionResults = {
   intro: {

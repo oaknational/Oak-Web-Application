@@ -8,7 +8,7 @@ import {
 import { getTagsForUnitCard } from "./getTagsForUnitCard";
 import { getSavePropsForUnitCard } from "./getSavePropsForUnitCard";
 
-import { isHighlightedUnit } from "@/utils/curriculum/filteringApp";
+import { isHighlightedUnit } from "@/utils/curriculum/filtering";
 import {
   CurriculumFilters,
   Thread,
@@ -18,12 +18,10 @@ import {
 import { getSubjectCategoryMessage } from "@/utils/curriculum/formatting";
 import { resolveOakHref } from "@/common-lib/urls";
 import { createTeacherProgrammeSlug } from "@/utils/curriculum/slugs";
-import useAnalytics from "@/context/Analytics/useAnalytics";
-import useAnalyticsPageProps from "@/hooks/useAnalyticsPageProps";
-import { buildUnitOverviewAccessedAnalytics } from "@/utils/curriculum/analytics";
 import CardListing, {
   CardProps,
 } from "@/components/TeacherComponents/CardListing/CardListing";
+import { useTeacherBrowseAnalytics } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
 
 type ProgrammeUnitListProps = {
   units: Unit[];
@@ -39,20 +37,13 @@ export function ProgrammeUnitList({
   filters,
   selectedThread,
 }: Readonly<ProgrammeUnitListProps>) {
-  const { track } = useAnalytics();
-  const { analyticsUseCase } = useAnalyticsPageProps();
+  const { unitOverviewAccessed } = useTeacherBrowseAnalytics(
+    (store) => store.track,
+  );
   const isMobile = useMediaQuery("mobile");
 
   const onClick = (unit: Unit, isHighlighted: boolean) => {
-    track.unitOverviewAccessed(
-      buildUnitOverviewAccessedAnalytics({
-        unit,
-        isHighlighted,
-        componentType: "unit_info_button",
-        selectedThread,
-        analyticsUseCase,
-      }),
-    );
+    unitOverviewAccessed(unit, isHighlighted, selectedThread);
   };
 
   function getItems(unit: Unit, index: number, isMobile: boolean) {

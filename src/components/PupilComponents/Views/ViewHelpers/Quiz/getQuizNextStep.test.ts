@@ -30,4 +30,14 @@ describe("getQuizNextStep", () => {
       }),
     ).toEqual({ action: "go-review" });
   });
+
+  it("goes to review for read-only quizzes on the final question", () => {
+    expect(
+      getQuizNextStep({
+        currentQuestionIndex: 2,
+        numQuestions: 3,
+        isReadOnly: true,
+      }),
+    ).toEqual({ action: "go-review" });
+  });
 });

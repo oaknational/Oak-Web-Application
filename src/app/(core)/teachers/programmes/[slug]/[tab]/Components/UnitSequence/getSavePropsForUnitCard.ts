@@ -1,3 +1,4 @@
+import { KeystageSlug } from "@/node-lib/curriculum-api-2023/shared.schema";
 import { getKeyStageTitle } from "@/utils/curriculum/formatting";
 
 export const getSavePropsForUnitCard = ({
@@ -12,7 +13,7 @@ export const getSavePropsForUnitCard = ({
   slug: string;
   title: string;
   programmeSlug: string;
-  keystageSlug: string;
+  keystageSlug: KeystageSlug;
   subject: string;
   subjectSlug: string;
   isOptionalityUnit: boolean;

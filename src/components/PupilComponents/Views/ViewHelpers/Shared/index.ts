@@ -4,4 +4,6 @@ export * from "./getNewLessonSectionHref";
 export * from "./pickNextIncompleteSection";
 export * from "./pickProceedToNextSectionLabel";
 export * from "./pickSectionProgress";
+export * from "./useClassroomAddonContext";
+export * from "./useClassroomProgressSync";
 export * from "./usePupilStores";

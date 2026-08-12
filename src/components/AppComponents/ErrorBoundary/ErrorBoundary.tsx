@@ -8,13 +8,7 @@ import getBrowserConfig from "@/browser-lib/getBrowserConfig";
 import { defaultTopNavProps } from "@/pages/_error";
 
 const ClientErrorView: FC = () => {
-  return (
-    <ErrorView
-      headerVariant="client-error"
-      footerVariant="client-error"
-      topNav={defaultTopNavProps}
-    />
-  );
+  return <ErrorView topNav={defaultTopNavProps} />;
 };
 
 class NonBugsnagErrorBoundary extends Component<

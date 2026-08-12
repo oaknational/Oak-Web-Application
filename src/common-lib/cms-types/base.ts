@@ -2,6 +2,8 @@ import * as z from "zod";
 
 import { OmitKeepDiscriminated } from "../../utils/generics";
 
+import { portableTextSchema } from "./portableText";
+
 export const documentSchema = z.object({
   id: z.string(),
 });
@@ -48,9 +50,29 @@ export const imageSchema = z.object({
 
 export type Image = z.infer<typeof imageSchema>;
 
+export const imageWithAltTextAndDarkModeSchema = z.object({
+  altText: z.string().min(1).nullish(),
+  isPresentational: z.boolean().nullish(),
+  asset: imageAssetSchema.nullish(),
+  hotspot: z
+    .object({
+      x: z.number(),
+      y: z.number(),
+      width: z.number(),
+      height: z.number(),
+    })
+    .nullish(),
+  darkModeImage: z.object({ asset: imageAssetSchema.nullish() }),
+});
+
+export type ImageWithAltTextAndDarkMode = z.infer<
+  typeof imageWithAltTextAndDarkModeSchema
+>;
+
 export const videoSchema = z.object({
   title: z.string(),
   captions: z.array(z.string()).nullish(),
+  transcript: portableTextSchema.nullish(),
   video: z.object({
     asset: z.object({
       assetId: z.string(),

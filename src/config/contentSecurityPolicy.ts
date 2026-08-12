@@ -188,7 +188,7 @@ const cspBaseConfig: CspConfig = {
 
 // Construct CSP headers
 const mergeConfigs = (
-  fullConfig: CspConfig,
+  fullConfig: Partial<CspConfig>,
   partialConfig: Partial<CspConfig>,
 ): CspConfig => {
   const cspConfigKeys: CspConfigKey[] = Object.keys(
@@ -223,7 +223,10 @@ const cspConfig: CspConfig = [
   google,
   bugsnag,
   googleTranslate,
-].reduce(mergeConfigs, cspBaseConfig);
+].reduce(
+  (accumulator, currentValue) => mergeConfigs(accumulator, currentValue),
+  cspBaseConfig,
+) as CspConfig;
 
 // Reporting - PostHog CSP Dashboard
 const posthogApiKey = process.env.NEXT_PUBLIC_POSTHOG_API_KEY || "";

@@ -1,9 +1,10 @@
-import { FC, useId } from "react";
+import { FC } from "react";
 import { OakMaxWidth } from "@oaknational/oak-components";
 
 import { TopNavProps } from "../AppComponents/TopNav/TopNav";
 
 import PostCategoryList, {
+  CATEGORY_NAV_LABEL,
   PostCategoryPage,
 } from "@/components/SharedComponents/PostCategoryList/PostCategoryList";
 import { PostListJsonLd } from "@/browser-lib/seo/getJsonLd";
@@ -22,7 +23,7 @@ import {
   getBlogWebinarListBreadcrumbs,
 } from "@/components/SharedComponents/Breadcrumbs/getBreadcrumbs";
 import SummaryCard from "@/components/SharedComponents/Card/SummaryCard";
-import Layout from "@/components/AppComponents/Layout";
+import Layout from "@/components/AppComponents/AppLayout";
 import MobileFilters from "@/components/SharedComponents/MobileFilters";
 import {
   PostListingPageProps,
@@ -60,8 +61,6 @@ const PostListing: FC<PostListingProps> = ({
   page,
   topNav,
 }) => {
-  const triggerId = useId();
-
   const categoryHeading = categories.find(
     (cat) => cat.slug === categorySlug,
   )?.title;
@@ -94,9 +93,8 @@ const PostListing: FC<PostListingProps> = ({
           {...pageData}
           heading={categoryHeading || pageData.heading}
         />
-        <MobileFilters page={page} label={"Categories"}>
+        <MobileFilters page={page} label={CATEGORY_NAV_LABEL}>
           <PostCategoryList
-            labelledBy={triggerId}
             $pv={"spacing-24"}
             $ph={"spacing-16"}
             categories={categories}

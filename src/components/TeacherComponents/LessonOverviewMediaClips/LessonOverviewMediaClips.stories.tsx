@@ -1,10 +1,6 @@
 import { Meta, StoryObj } from "@storybook/nextjs";
 import { JSX, useRef } from "react";
-import {
-  OakMaxWidth,
-  OakThemeProvider,
-  oakDefaultTheme,
-} from "@oaknational/oak-components";
+import { OakMaxWidth } from "@oaknational/oak-components";
 
 import { LessonItemContainer } from "../LessonItemContainer";
 
@@ -14,9 +10,11 @@ import lessonMediaClipsFixtures, {
   additionalCycles,
 } from "@/node-lib/curriculum-api-2023/fixtures/lessonMediaClips.fixture";
 import { MediaClipListCamelCase } from "@/node-lib/curriculum-api-2023/queries/lessonMediaClips/lessonMediaClips.schema";
+import TeacherBrowseAnalyticsDecorator from "@/storybook-decorators/TeacherBrowseAnalyticsDecorator";
 
 const meta: Meta<typeof Component> = {
   component: Component,
+  decorators: [TeacherBrowseAnalyticsDecorator],
   argTypes: {
     learningCycleVideos: { ...lessonMediaClipsFixtures().mediaClips },
   },
@@ -37,26 +35,22 @@ const LessonOverviewMediaClipsComponent = (
   },
 ) => {
   return (
-    <OakThemeProvider theme={oakDefaultTheme}>
-      <OakMaxWidth>
-        <LessonItemContainer
-          title={"Demonstration videos"}
-          ref={useRef(null)}
-          anchorId="media-clips"
-          slugs={{
-            lessonSlug: "lesson-slug",
-            unitSlug: "unit-slug",
-            programmeSlug: "programme-slug",
-          }}
-          pageLinks={[
-            { anchorId: "media-clips", label: "Demonstration videos" },
-          ]}
-          displayMediaClipButton={true}
-        >
-          <Component {...args} />
-        </LessonItemContainer>
-      </OakMaxWidth>
-    </OakThemeProvider>
+    <OakMaxWidth>
+      <LessonItemContainer
+        title={"Demonstration videos"}
+        ref={useRef(null)}
+        anchorId="media-clips"
+        slugs={{
+          lessonSlug: "lesson-slug",
+          unitSlug: "unit-slug",
+          programmeSlug: "programme-slug",
+        }}
+        pageLinks={[{ anchorId: "media-clips", label: "Demonstration videos" }]}
+        displayMediaClipButton={true}
+      >
+        <Component {...args} />
+      </LessonItemContainer>
+    </OakMaxWidth>
   );
 };
 
