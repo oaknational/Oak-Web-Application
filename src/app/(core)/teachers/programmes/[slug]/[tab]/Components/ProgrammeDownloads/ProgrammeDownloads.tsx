@@ -82,10 +82,7 @@ export const ProgrammeDownloads = ({
         return true;
       }
       if (group === "implementation-guide") {
-        return (
-          implementationGuides &&
-          implementationGuides[id as keyof ImplementationGuides]
-        );
+        return implementationGuides?.[id as keyof ImplementationGuides];
       }
     }).map(({ id }) => id);
   }, [curriculumUnitsFormattedData, implementationGuides]);
