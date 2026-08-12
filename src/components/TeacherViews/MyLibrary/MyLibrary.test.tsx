@@ -177,7 +177,7 @@ describe("MyLibrary", () => {
     expect(mockSaveToggle).toHaveBeenCalledWith("unit-1");
   });
 
-  it("tracks browse refined with the correct arguments", async () => {
+  it("tracks programme refined with the correct arguments", async () => {
     render(
       <MyLibrary
         collectionData={generateMockCollectionData(1)}

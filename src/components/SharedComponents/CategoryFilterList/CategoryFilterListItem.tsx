@@ -1,8 +1,8 @@
-import { OakLI, OakSecondaryLink } from "@oaknational/oak-components";
+import { OakLI, OakLink } from "@oaknational/oak-components";
 
-import useAnalytics from "@/context/Analytics/useAnalytics";
 import type { LearningThemeSelectedTrackingProps } from "@/components/SharedComponents/CategoryFilterList";
 import { resolveOakHref, ResolveOakHrefProps } from "@/common-lib/urls";
+import { useTeacherBrowseAnalyticsOptional } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
 
 export type CategoryLinkProps = ResolveOakHrefProps;
 export interface Category<T extends CategoryLinkProps> {
@@ -22,7 +22,7 @@ const CategoryFilterListItem = <T extends CategoryLinkProps>(
   const { label, linkProps, isSelected, setSelected, trackingProps } = props;
   const arrowHidden = !isSelected;
 
-  const { track } = useAnalytics();
+  const track = useTeacherBrowseAnalyticsOptional((store) => store.track);
 
   const onClick = () => {
     setSelected(linkProps);
@@ -30,18 +30,11 @@ const CategoryFilterListItem = <T extends CategoryLinkProps>(
     if (trackingProps) {
       const { keyStageSlug, subjectSlug } = trackingProps;
 
-      track.browseRefined({
-        platform: "owa",
-        product: "teacher lesson resources",
-        engagementIntent: "refine",
+      track?.programmeRefined({
         componentType: "filter_link",
-        eventVersion: "2.0.0",
-        analyticsUseCase: "Teacher",
         filterType: "Learning theme filter",
         filterValue: label,
         activeFilters: { keyStage: [keyStageSlug], subject: [subjectSlug] },
-        googleLoginHint: null,
-        clientEnvironment: null,
       });
     }
   };
@@ -53,17 +46,18 @@ const CategoryFilterListItem = <T extends CategoryLinkProps>(
       $position="relative"
       $overflow="visible"
       $alignItems="center"
-      $color={!isSelected ? "text-primary" : "text-subdued"}
+      $color={isSelected ? "text-subdued" : "text-primary"}
       $mb="spacing-12"
     >
-      <OakSecondaryLink
+      <OakLink
+        variant="secondary"
         aria-current={isSelected ? true : undefined}
         href={resolveOakHref({ ...linkProps })}
         onClick={onClick}
         iconName={arrowHidden ? undefined : "arrow-right"}
       >
         {label}
-      </OakSecondaryLink>
+      </OakLink>
     </OakLI>
   );
 };
