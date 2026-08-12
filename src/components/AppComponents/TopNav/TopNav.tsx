@@ -16,6 +16,7 @@ import {
 } from "@/node-lib/curriculum-api-2023/queries/topNav/topNav.schema";
 import { useOakNotificationsContext } from "@/context/OakNotifications/useOakNotificationsContext";
 import useAnalytics from "@/context/Analytics/useAnalytics";
+import { TeacherBrowseAnalyticsStoreProvider } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
 
 export type TopNavProps = {
   teachers: TeachersSubNavData | null;
@@ -160,7 +161,12 @@ const TopNav = (props: TopNavProps) => {
                   setSelectedMenu(selectedMenu === menu ? undefined : menu);
                 }}
               />
-              <TeachersTopNavHamburger {...teachers} />
+              <TeacherBrowseAnalyticsStoreProvider
+                programmeState={null}
+                accessLevel={"homepage"}
+              >
+                <TeachersTopNavHamburger {...teachers} />
+              </TeacherBrowseAnalyticsStoreProvider>
             </>
           )}
           {activeArea === "PUPILS" && pupils && focusManager && (

@@ -19,7 +19,7 @@ import {
   TeachersSubNavData,
 } from "@/node-lib/curriculum-api-2023/queries/topNav/topNav.schema";
 import { resolveOakHref } from "@/common-lib/urls";
-import useAnalytics from "@/context/Analytics/useAnalytics";
+import { useTeacherBrowseAnalyticsOptional } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
 
 export function MainMenuContent(
   props: Readonly<TeachersSubNavData & { hamburgerMenu: HamburgerMenuHook }>,
@@ -81,7 +81,7 @@ function SubjectsSection(
   props: Readonly<TeachersBrowse & { hamburgerMenu: HamburgerMenuHook }>,
 ) {
   const { hamburgerMenu, ...browseData } = props;
-  const { track } = useAnalytics();
+  const track = useTeacherBrowseAnalyticsOptional((store) => store.track);
 
   const getSubjectsTitle = () =>
     browseData.phases.slug === "primary"
@@ -133,18 +133,11 @@ function SubjectsSection(
             })
           }
           track={() => {
-            track.browseRefined({
-              platform: "owa",
-              product: "teacher lesson resources",
-              engagementIntent: "refine",
+            track?.programmeRefined({
               componentType: "topnav-browse-button",
-              eventVersion: "2.0.0",
-              analyticsUseCase: "Teacher",
               filterType: "Phase filter",
               filterValue: browseData.phases.slug,
               activeFilters: {},
-              googleLoginHint: null,
-              clientEnvironment: null,
             });
           }}
         />
@@ -159,18 +152,11 @@ function SubjectsSection(
               })
             }
             track={() => {
-              track.browseRefined({
-                platform: "owa",
-                product: "teacher lesson resources",
-                engagementIntent: "refine",
+              track?.programmeRefined({
                 componentType: "topnav-browse-button",
-                eventVersion: "2.0.0",
-                analyticsUseCase: "Teacher",
                 filterType: "Phase filter",
                 filterValue: browseData.phases.slug,
                 activeFilters: {},
-                googleLoginHint: null,
-                clientEnvironment: null,
               });
             }}
           />

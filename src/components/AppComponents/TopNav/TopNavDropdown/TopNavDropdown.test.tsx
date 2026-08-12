@@ -15,12 +15,12 @@ import { getOakUiColor } from "@/__tests__/__helpers__/getOakUiColor";
 
 const render = renderWithProviders();
 
-const mockBrowseRefined = jest.fn();
+const mockProgrammeRefined = jest.fn();
 jest.mock("@/context/Analytics/useAnalytics", () => ({
   __esModule: true,
   default: () => ({
     track: {
-      browseRefined: (...args: []) => mockBrowseRefined(...args),
+      programmeRefined: (...args: []) => mockProgrammeRefined(...args),
     },
   }),
 }));
@@ -39,7 +39,7 @@ describe("TopNavDropdown", () => {
     beforeEach(() => {
       jest.clearAllMocks();
       onCloseMock.mockReset();
-      mockBrowseRefined.mockReset();
+      mockProgrammeRefined.mockReset();
       teachersFocusManager = new DropdownFocusManager(
         topNavFixture.teachers!,
         "teachers",
@@ -132,7 +132,7 @@ describe("TopNavDropdown", () => {
           name: "Key stage 4",
         });
         await user.click(keystageButton);
-        expect(mockBrowseRefined).toHaveBeenCalledWith(
+        expect(mockProgrammeRefined).toHaveBeenCalledWith(
           expect.objectContaining({
             filterType: "Key stage filter",
             filterValue: "ks4",
@@ -245,7 +245,7 @@ describe("TopNavDropdown", () => {
         englishButton.addEventListener("click", (e) => e.preventDefault());
         await user.click(englishButton);
 
-        expect(mockBrowseRefined).toHaveBeenCalledWith(
+        expect(mockProgrammeRefined).toHaveBeenCalledWith(
           expect.objectContaining({
             activeFilters: { keystages: ["ks1"] },
             filterType: "Subject filter",
@@ -499,7 +499,7 @@ describe("TopNavDropdown", () => {
     beforeEach(() => {
       jest.clearAllMocks();
       onCloseMock.mockReset();
-      mockBrowseRefined.mockReset();
+      mockProgrammeRefined.mockReset();
       pupilsFocusManager = new DropdownFocusManager(
         topNavFixture.pupils!,
         "pupils",
