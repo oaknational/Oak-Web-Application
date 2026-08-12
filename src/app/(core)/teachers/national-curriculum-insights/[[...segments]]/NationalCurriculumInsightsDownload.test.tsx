@@ -46,6 +46,11 @@ describe("NationalCurriculumInsightsDownload", () => {
     const toggle = screen.getByRole("button", {
       name: /the national curriculum is changing/i,
     });
+    const sectionElement = toggle.closest("section");
+    expect(sectionElement).toHaveStyle({
+      bottom: "0",
+      position: "fixed",
+    });
     expect(toggle).toHaveStyle(`background: ${oakColorTokens["dark-aqua110"]}`);
     expect(toggle).toHaveAttribute("aria-expanded", "false");
     await user.click(toggle);
@@ -80,5 +85,22 @@ describe("NationalCurriculumInsightsDownload", () => {
     expect(
       screen.getByRole("button", { name: "Download 2 insights (.ZIP)" }),
     ).toBeDisabled();
+  });
+
+  it("keeps the download module in normal flow away from the hub", async () => {
+    const data = await getData();
+    data.route = {
+      kind: "subject",
+      subjectSlug: "science",
+    };
+
+    renderWithTheme(
+      <NationalCurriculumInsightsDownload data={data} section={section} />,
+    );
+
+    const toggle = screen.getByRole("button", {
+      name: /the national curriculum is changing/i,
+    });
+    expect(toggle.closest("section")).not.toHaveStyle({ position: "fixed" });
   });
 });

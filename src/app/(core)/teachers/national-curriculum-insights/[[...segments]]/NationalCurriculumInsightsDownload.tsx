@@ -25,9 +25,24 @@ type DownloadSection = Extract<
   { __typename: "NationalCurriculumInsightsDownloadSection" }
 >;
 
-const Section = styled.section`
+const Section = styled.section<{ $sticky: boolean }>`
   width: 100%;
   background: ${parseColor("bg-primary")};
+
+  ${({ $sticky }) =>
+    $sticky
+      ? `
+        position: fixed;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        z-index: 20;
+        display: flex;
+        flex-direction: column-reverse;
+        max-height: 100dvh;
+        box-shadow: 0 -4px 16px rgb(0 0 0 / 16%);
+      `
+      : ""}
 `;
 
 const HeaderButton = styled.button`
@@ -112,9 +127,18 @@ const Toggle = styled.span<{ $expanded: boolean }>`
   }
 `;
 
-const Expanded = styled.form`
+const Expanded = styled.form<{ $sticky: boolean }>`
   width: 100%;
   background: ${parseColor("bg-primary")};
+
+  ${({ $sticky }) =>
+    $sticky
+      ? `
+        min-height: 0;
+        overflow-y: auto;
+        overscroll-behavior: contain;
+      `
+      : ""}
 `;
 
 const Columns = styled.div`
@@ -289,6 +313,7 @@ export const NationalCurriculumInsightsDownload = ({
   section: DownloadSection;
 }) => {
   const formId = useId().replace(/:/g, "");
+  const sticky = data.route.kind === "hub";
   const [expanded, setExpanded] = useState(false);
   const [selectedValues, setSelectedValues] = useState<string[]>([]);
   const [name, setName] = useState("");
@@ -374,7 +399,7 @@ export const NationalCurriculumInsightsDownload = ({
   };
 
   return (
-    <Section data-insights-module="downloads">
+    <Section data-insights-module="downloads" $sticky={sticky}>
       <HeaderButton
         type="button"
         aria-expanded={expanded}
@@ -396,7 +421,12 @@ export const NationalCurriculumInsightsDownload = ({
       </HeaderButton>
 
       {expanded ? (
-        <Expanded id={`${formId}-content`} onSubmit={submit} noValidate>
+        <Expanded
+          id={`${formId}-content`}
+          onSubmit={submit}
+          noValidate
+          $sticky={sticky}
+        >
           <Columns>
             <Column>
               <OakHeading tag="h2" $font="heading-6">
