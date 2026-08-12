@@ -1,3 +1,10 @@
+## [1.1157.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.1157.0...v1.1157.1) (2026-08-12)
+
+
+### Bug Fixes
+
+* changes to font sizes for <OaksImpactStats/> ([8c219c6](https://github.com/oaknational/Oak-Web-Application/commit/8c219c6383d490ef1e5328f183b19e05cf9f8e40))
+
 # [1.1157.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1156.0...v1.1157.0) (2026-08-11)
 
 
