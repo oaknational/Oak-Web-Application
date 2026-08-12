@@ -74,7 +74,6 @@ const useResourceFormSubmit = () => {
         tierSlug,
         childSubjectSlug,
       );
-      console.log({ downloadPath });
       await downloadFileFromUrl(downloadPath);
     }
   };
