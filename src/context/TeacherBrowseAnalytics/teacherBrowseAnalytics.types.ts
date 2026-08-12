@@ -125,7 +125,9 @@ export type VideoTrackingProperties = {
 // All Track Fns used in the teacher browse journey
 export type TeacherBrowseTrackFns = {
   // NAVIGATION
-  browseRefined: () => void;
+  programmeRefined: () => void;
+  unitRefined: () => void;
+  programmeAccessed: () => void;
 
   // PROGRAMMES (fka Curriculum Visualiser)
   curriculumExplainerExplored: () => void;

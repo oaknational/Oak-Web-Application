@@ -43,7 +43,8 @@ export const TeacherBrowseAnalyticsStoreProvider = ({
   children,
 }: TeacherBrowseAnalyticsStoreProviderProps) => {
   const { track, getSessionId } = useAnalytics();
-  const { subjectSlug, phaseSlug } = programmeState;
+  const subjectSlug = programmeState?.subjectSlug ?? "unknown";
+  const phaseSlug = programmeState?.phaseSlug ?? "unknown";
   const posthogConsent = useOakConsent().getConsent(ServicePolicyMap.POSTHOG);
   const hasConsent = posthogConsent === "granted";
 
@@ -82,6 +83,10 @@ export const TeacherBrowseAnalyticsStoreProvider = ({
     store.setState({ journeyId });
   }, [store, journeyId]);
 
+  useEffect(() => {
+    store.setState({ programmeState, accessLevel });
+  }, [store, programmeState, accessLevel]);
+
   return (
     <TeacherBrowseAnalyticsStoreContext.Provider value={store}>
       {children}
@@ -101,5 +106,19 @@ export const useTeacherBrowseAnalytics = <T,>(
     );
   }
 
+  return useStore(teacherBrowseAnalyticsStoreContext, selector);
+};
+
+export const useTeacherBrowseAnalyticsOptional = <T,>(
+  selector: (store: TeacherBrowseAnalyticsStore) => T,
+): T | undefined => {
+  const teacherBrowseAnalyticsStoreContext = useContext(
+    TeacherBrowseAnalyticsStoreContext,
+  );
+  if (!teacherBrowseAnalyticsStoreContext) {
+    return undefined;
+  }
+
+  // eslint-disable-next-line react-hooks/rules-of-hooks
   return useStore(teacherBrowseAnalyticsStoreContext, selector);
 };
