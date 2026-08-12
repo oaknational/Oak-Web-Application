@@ -42,7 +42,9 @@ type MyLibraryProps = {
 export default function MyLibrary(props: Readonly<MyLibraryProps>) {
   const { collectionData, isLoading } = props;
   const { track } = useAnalytics();
-  const trace = useTeacherBrowseAnalyticsOptional((store) => store.track);
+  const trackTeacherBrowse = useTeacherBrowseAnalyticsOptional(
+    (store) => store.track,
+  );
   const collections = collectionData ?? [];
 
   const hasLoadedCollections = !isLoading && collectionData !== null;
@@ -105,15 +107,13 @@ export default function MyLibrary(props: Readonly<MyLibraryProps>) {
                     subject_categories: collection.subjectCategoryQuery,
                   },
                 })}
-                trackBrowseRefined={() => {
-                  if (trace) {
-                    trace.programmeRefined({
-                      componentType: "programme_card",
-                      filterType: "Subject filter",
-                      filterValue: collection.subject,
-                      activeFilters: [],
-                    });
-                  }
+                trackProgrammeRefined={() => {
+                  trackTeacherBrowse?.programmeRefined({
+                    componentType: "programme_card",
+                    filterType: "Subject filter",
+                    filterValue: collection.subject,
+                    activeFilters: [],
+                  });
                 }}
                 iconName={getValidSubjectIconName(collection.subjectSlug)}
                 savedUnits={collection.units.map((unit) => ({

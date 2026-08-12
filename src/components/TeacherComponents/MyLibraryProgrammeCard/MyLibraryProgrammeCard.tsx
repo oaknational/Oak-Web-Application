@@ -53,7 +53,7 @@ interface MyLibraryProgrammeCardProps {
   anchorId: string;
   iconName: OakIconName;
   savedUnits: Array<MyLibraryUnitCardProps>;
-  trackBrowseRefined: () => void;
+  trackProgrammeRefined: () => void;
 }
 
 export default function MyLibraryProgrammeCard(
@@ -65,7 +65,7 @@ export default function MyLibraryProgrammeCard(
     programmeHref,
     iconName,
     anchorId,
-    trackBrowseRefined,
+    trackProgrammeRefined,
   } = props;
 
   const headingIdString = `programme-heading-${programmeTitle.replaceAll(" ", "-").toLowerCase()}`;
@@ -84,7 +84,7 @@ export default function MyLibraryProgrammeCard(
       <OakLink
         variant="secondary"
         href={programmeHref}
-        onClick={trackBrowseRefined}
+        onClick={trackProgrammeRefined}
       >
         <ProgrammeHeader
           headingIdString={headingIdString}
