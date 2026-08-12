@@ -48,6 +48,12 @@ export type DownloadTypes =
   | "commonQuestions"
   | "equipmentList";
 
+const implementationGuidePdfBase = {
+  group: "implementation-guide",
+  icon: "subject-computing",
+  fileExt: "PDF",
+} as const;
+
 export const DOWNLOAD_TYPE_LABELS: {
   id: DownloadTypes;
   label: string;
@@ -75,38 +81,28 @@ export const DOWNLOAD_TYPE_LABELS: {
   },
   {
     id: "curriculumQuality",
-    group: "implementation-guide",
     label: "Curriculum quality",
-    icon: "subject-computing",
-    fileExt: "PDF",
+    ...implementationGuidePdfBase,
   },
   {
     id: "whatsIncluded",
-    group: "implementation-guide",
     label: "What's included",
-    icon: "subject-computing",
-    fileExt: "PDF",
+    ...implementationGuidePdfBase,
   },
   {
     id: "assessment",
-    group: "implementation-guide",
     label: "Assessment",
-    icon: "subject-computing",
-    fileExt: "PDF",
+    ...implementationGuidePdfBase,
   },
   {
     id: "commonQuestions",
-    group: "implementation-guide",
     label: "Common questions",
-    icon: "subject-computing",
-    fileExt: "PDF",
+    ...implementationGuidePdfBase,
   },
   {
     id: "equipmentList",
-    group: "implementation-guide",
     label: "Equipment list",
-    icon: "subject-computing",
-    fileExt: "PDF",
+    ...implementationGuidePdfBase,
   },
 ] as const;
 
