@@ -3,7 +3,7 @@ import { getByTestId, waitFor } from "@testing-library/react";
 import { useRouter } from "next/router";
 import { renderToStaticMarkup } from "react-dom/server";
 
-import SubjectPhasePicker from "./SubjectPhasePicker";
+import SubjectPhasePicker, { CurrentSelection } from "./SubjectPhasePicker";
 
 import curriculumPhaseOptions from "@/browser-lib/fixtures/curriculumPhaseOptions";
 import {
@@ -68,12 +68,11 @@ describe("Component - subject phase picker", () => {
   });
 
   test("populates selection if supplied", () => {
-    const currentSelection = {
+    const currentSelection: CurrentSelection = {
       subject: {
         title: "English",
         slug: "english",
         phases: [],
-        cycle: "1",
         ks4_options: [{ title: "AQA", slug: "aqa" }],
         keystages: [
           { title: "KS1", slug: "ks1" },

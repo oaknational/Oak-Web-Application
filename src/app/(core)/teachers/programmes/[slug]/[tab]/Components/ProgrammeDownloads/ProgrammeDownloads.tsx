@@ -28,17 +28,12 @@ import { Controller, ControllerRenderProps } from "react-hook-form";
 
 import { DownloadSuccessHeader } from "../../../units/[unitSlug]/lessons/[lessonSlug]/Components/DownloadSuccessHeader/DownloadSuccessHeader";
 
-import {
-  handleSubjectTierSelectionAnalytics,
-  trackCurriculumDownload,
-} from "./tracking";
 import { ChildSubjectTierSelector } from "./ChildSubjectTierSelector/ChildSubjectTierSelector";
 
 import {
   CurriculumDownloadsTierSubjectProps,
   CurriculumUnitsFormattedData,
 } from "@/pages-helpers/curriculum/docx/tab-helpers";
-import { CurriculumOverviewMVData } from "@/node-lib/curriculum-api-2023";
 import { DOWNLOAD_TYPE_LABELS } from "@/components/CurriculumComponents/CurriculumDownloadView/helper";
 import { DownloadPageWithAccordionContent } from "@/components/TeacherComponents/DownloadPageWithAccordion/DownloadPageWithAccordion";
 import { useHubspotSubmit } from "@/components/TeacherComponents/hooks/downloadAndShareHooks/useHubspotSubmit";
@@ -46,16 +41,15 @@ import { useResourceFormState } from "@/components/TeacherComponents/hooks/downl
 import { useOnboardingStatus } from "@/components/TeacherComponents/hooks/useOnboardingStatus";
 import { DelayedLoadingSpinner } from "@/components/TeacherComponents/SharePageLayout/SharePageLayout";
 import { ResourceFormValues } from "@/components/TeacherComponents/types/downloadAndShare.types";
-import useAnalytics from "@/context/Analytics/useAnalytics";
 import { doUnitsHaveNc, flatUnitsFromYearData } from "@/utils/curriculum/units";
 import { CurriculumSelectionSlugs } from "@/utils/curriculum/slugs";
 import useResourceFormSubmit from "@/components/TeacherComponents/hooks/downloadAndShareHooks/useResourceFormSubmit";
 import downloadDebouncedSubmit from "@/components/TeacherComponents/helpers/downloadAndShareHelpers/downloadDebounceSubmit";
 import { ImplementationGuides } from "@/common-lib/cms-types";
+import { useTeacherBrowseAnalytics } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
 
 export type ProgrammeDownloadsProps = {
   mvRefreshTime: number;
-  curriculumInfo: CurriculumOverviewMVData;
   curriculumDownloadsTabData: CurriculumDownloadsTierSubjectProps;
   curriculumUnitsFormattedData: CurriculumUnitsFormattedData;
   curriculumSelectionSlugs: CurriculumSelectionSlugs;
@@ -68,11 +62,11 @@ export const ProgrammeDownloads = ({
   curriculumUnitsFormattedData,
   curriculumSelectionSlugs,
   mvRefreshTime,
-  curriculumInfo,
   implementationGuides,
   featureFlags,
 }: ProgrammeDownloadsProps) => {
-  const { track } = useAnalytics();
+  const { curriculumResourcesDownloadRefined, curriculumResourcesDownloaded } =
+    useTeacherBrowseAnalytics((store) => store.track);
   const { onHubspotSubmit } = useHubspotSubmit();
   const onboardingStatus = useOnboardingStatus();
   const isLoading = onboardingStatus === "loading";
@@ -206,13 +200,7 @@ export const ProgrammeDownloads = ({
     if (childSubjectSlug && childSubjectSlug.length > 0) {
       setChildSubjectSelected(childSubjectSlug);
     }
-    handleSubjectTierSelectionAnalytics({
-      tierSlug,
-      childSubjectSlug,
-      track,
-      subjectSlug: curriculumSelectionSlugs.subjectSlug,
-      subjectTitle: curriculumInfo.subjectTitle,
-    });
+    curriculumResourcesDownloadRefined({ tierSlug, childSubjectSlug });
   };
 
   const { onSubmit } = useResourceFormSubmit();
@@ -237,13 +225,14 @@ export const ProgrammeDownloads = ({
         setEmailInLocalStorage("");
       }
 
-      await trackCurriculumDownload(
-        data,
-        curriculumInfo.subjectTitle,
-        onHubspotSubmit,
-        track,
-        curriculumSelectionSlugs,
-      );
+      await onHubspotSubmit({
+        school: data.school,
+        schoolName: data.schoolName,
+        email: data.email,
+        terms: data.terms,
+        resources: ["docx"],
+      });
+      curriculumResourcesDownloaded(data);
 
       setIsDone(true);
     } catch {
