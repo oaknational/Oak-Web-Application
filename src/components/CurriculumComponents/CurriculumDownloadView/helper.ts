@@ -110,7 +110,7 @@ export const DOWNLOAD_TYPES = DOWNLOAD_TYPE_LABELS.map(({ id }) => id);
 
 export function assertValidDownloadType(val: string) {
   if (!DOWNLOAD_TYPES.includes(val as DownloadType)) {
-    throw new Error("Invalid ");
+    throw new Error(`Invalid type ${val}`);
   }
   return val as DownloadType;
 }
