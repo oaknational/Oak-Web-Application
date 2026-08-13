@@ -1,5 +1,5 @@
 /**
- * @jest-environment node
+ * @jest-environment jsdom
  */
 import { getProgrammeData, getSubjectPhaseOptions } from "./getProgrammeData";
 import ProgrammePageTabs, { generateMetadata } from "./page";
@@ -11,6 +11,8 @@ import { createUnit } from "@/fixtures/curriculum/unit";
 import { curriculumOverviewMVFixture } from "@/node-lib/curriculum-api-2023/fixtures/curriculumOverview.fixture";
 import curriculumPhaseOptionsFixture from "@/node-lib/curriculum-api-2023/fixtures/curriculumPhaseOptions.fixture";
 import { filterValidCurriculumPhaseOptions } from "@/pages-helpers/curriculum/docx/tab-helpers";
+import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
+import { isFeatureFlagEnabledServer } from "@/utils/featureFlagChecks/server";
 import { CurriculumSelectionSlugs } from "@/utils/curriculum/slugs";
 
 const defaultParams = new URLSearchParams("");
@@ -36,10 +38,17 @@ jest.mock("next/navigation", () => {
   };
 });
 
+jest.mock("@/utils/featureFlagChecks/server", () => ({
+  isFeatureFlagEnabledServer: jest.fn(() => false),
+}));
+
 jest.mock("next/headers", () => ({
   draftMode: jest.fn().mockResolvedValue({
     isEnabled: true,
   }),
+  cookies: jest.fn(() => ({
+    getAll: jest.fn(() => []),
+  })),
 }));
 
 jest.mock("@/node-lib/cms", () => ({
@@ -260,6 +269,59 @@ describe("Programme page tabs", () => {
     ).rejects.toEqual(new Error("NEXT_HTTP_ERROR_FALLBACK;404"));
 
     expect(CMSClient.curriculumOverviewPage).toHaveBeenCalled();
+  });
+
+  it("shows info banner if feature flag is enabled", async () => {
+    jest.mocked(getSubjectPhaseOptions).mockResolvedValue({
+      subjects: filterValidCurriculumPhaseOptions([
+        {
+          slug: "maths",
+          title: "Maths",
+          phases: [{ slug: "primary", title: "Primary" }],
+          ks4_options: [],
+        },
+      ]),
+      subjectPhaseKeystageSlugs: {
+        subjectSlug: "maths",
+        phaseSlug: "primary",
+        ks4OptionSlug: null,
+      },
+    });
+
+    jest.mocked(getProgrammeData).mockResolvedValue({
+      programmeUnitsData: curriculumOverviewMVFixture({
+        subjectTitle: "Maths",
+        nonCurriculum: false,
+      }),
+      curriculumUnitsData: {
+        units: [
+          createUnit({
+            slug: "test",
+            year: "5",
+            subject_slug: "maths",
+            phase_slug: "primary",
+          }),
+        ],
+      },
+      ks4OptionFilterDimensions: {},
+    });
+
+    (isFeatureFlagEnabledServer as jest.Mock).mockImplementation(
+      (_cookies, flag) => {
+        return flag === "implementation-guides" ? true : false;
+      },
+    );
+
+    const { container } = renderWithProviders()(
+      (await ProgrammePageTabs({
+        params: Promise.resolve({
+          slug: "maths",
+          tab: "units",
+        }),
+        searchParams: Promise.resolve({}),
+      })) as React.ReactElement,
+    );
+    expect(container).toHaveTextContent("Download our implementation toolkit.");
   });
 
   it("returns 404 page if params are invalid", async () => {

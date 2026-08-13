@@ -16,8 +16,10 @@ import { OaksImpactStats } from "@/components/GenericPagesComponents/OaksImpactS
 import CMSClient from "@/node-lib/cms";
 import { OaksImpactPage } from "@/common-lib/cms-types";
 import { OaksImpactSchoolQuotesSection } from "@/components/GenericPagesComponents/OaksImpactSchoolQuotesSection";
+import TrackScrolledTo from "@/components/SharedComponents/TrackScrolledTo";
 import { OaksImpactHeader } from "@/components/GenericPagesComponents/OaksImpactHeader";
 import { isFeatureFlagEnabledServer } from "@/utils/featureFlagChecks/server";
+import useTrackExitIntended from "@/hooks/useTrackExitIntended";
 
 export type OaksImpactPageProps = {
   topNav: TopNavProps;
@@ -25,6 +27,7 @@ export type OaksImpactPageProps = {
 };
 
 const OaksImpact: NextPage<OaksImpactPageProps> = ({ topNav, pageData }) => {
+  useTrackExitIntended();
   return (
     <Layout
       seoProps={getSeoProps({ title: "Oak's impact" })}
@@ -44,6 +47,7 @@ const OaksImpact: NextPage<OaksImpactPageProps> = ({ topNav, pageData }) => {
           caseStudies={pageData.caseStudiesSection.caseStudies}
         />
         <OaksImpactSchoolQuotesSection {...pageData.schoolQuotes} />
+        <TrackScrolledTo eventKey="support_you" />
         <SupportYou
           headingTag="h2"
           link={{
@@ -58,7 +62,7 @@ const OaksImpact: NextPage<OaksImpactPageProps> = ({ topNav, pageData }) => {
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const isImpactPageEnabled = await isFeatureFlagEnabledServer(
-    context,
+    context.req.cookies,
     "oaks-impact",
   );
   if (!isImpactPageEnabled) {
