@@ -1,4 +1,5 @@
 import { defineConfig, devices } from "@playwright/test";
+import type { ChromaticConfig } from "@chromatic-com/playwright";
 
 /**
  * In CI, BASE_URL is set to the Vercel preview/production deployment URL.
@@ -8,7 +9,7 @@ https://oak-web-application-website-git-test-lesq-2113playwright-setup.vercel.th
 const baseURL = process.env.BASE_URL ?? "http://localhost:3000";
 const shouldStartWebServer = !process.env.CI && !process.env.BASE_URL;
 
-export default defineConfig({
+export default defineConfig<ChromaticConfig>({
   testDir: "./src/tests/e2e",
   outputDir: "./test-results",
 
@@ -45,6 +46,7 @@ export default defineConfig({
 
     trace: "on-first-retry",
     screenshot: "only-on-failure",
+    disableAutoSnapshot: true,
   },
 
   projects: [

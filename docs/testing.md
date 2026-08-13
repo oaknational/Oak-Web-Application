@@ -54,6 +54,8 @@ Before running Playwright tests locally, install browser binaries once per machi
 - `pnpm run test:e2e` runs all Playwright tests.
 - `pnpm run test:e2e -- src/tests/e2e/teacher/lesson-page.spec.ts` runs a single spec.
 - `pnpm run test:e2e:ci` runs Playwright with the HTML report enabled.
+- `pnpm run test:e2e:visual` runs only tests tagged with `@visual`.
+- `pnpm run test:chromatic` runs visual specs and then uploads snapshots to Chromatic.
 
 ### Local Execution
 
@@ -65,6 +67,19 @@ Before running Playwright tests locally, install browser binaries once per machi
 - Playwright CI runs in the PR workflow [`.github/workflows/pr_playwright_preview_tests.yml`](../.github/workflows/pr_playwright_preview_tests.yml), which waits for the PR preview deployment and then runs tests against that URL.
 - The shared Playwright action caches Chromium binaries (keyed by OS, architecture, and Playwright version), installs required system dependencies, and uploads the HTML report artifact.
 - Retries are configured as `1` in CI and `0` locally.
+
+### Visual Snapshot Tests (Playwright + Chromatic)
+
+- Visual snapshot specs live alongside E2E tests and should be tagged with `@visual`.
+- Current example: [src/tests/e2e/teacher/lesson-page.visual.spec.ts](../src/tests/e2e/teacher/lesson-page.visual.spec.ts).
+- Use `takeSnapshot(page, name, testInfo)` from `@chromatic-com/playwright` inside those specs.
+- `playwright.config.ts` keeps `disableAutoSnapshot: true`, so snapshots are only captured where `takeSnapshot` is called.
+
+Required environment variables for Chromatic runs:
+
+- `CHROMATIC_PROJECT_TOKEN`
+- `BASE_URL` (target deployment URL)
+- `VERCEL_AUTOMATION_BYPASS_SECRET` (for protected Vercel previews)
 
 ### Jest Separation
 
@@ -80,7 +95,7 @@ Before running Playwright tests locally, install browser binaries once per machi
 
 ## Percy
 
-Visual regression testing of deployed apps.
+Visual regression testing of deployed apps via URL discovery (`percy.snapshot.list.js`) and deployment-event workflows.
 
 ### When They Run
 
