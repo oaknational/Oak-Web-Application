@@ -2,6 +2,7 @@
 
 import type { PortableTextComponents } from "@portabletext/react";
 import {
+  getBreakpoint,
   getMediaQuery,
   isValidIconName,
   OakBox,
@@ -47,6 +48,7 @@ type Page = NonNullable<NationalCurriculumInsightsRouteData["page"]>;
 type InsightSection = Page["modules"][number];
 type Subject = NationalCurriculumInsightsRouteData["hub"]["subjects"][number];
 type Phase = "primary" | "secondary";
+type OverviewPageKind = "hub" | "subject" | "phase" | "keyStage";
 
 type SectionProps<T extends InsightSection["__typename"]> = {
   section: Extract<InsightSection, { __typename: T }>;
@@ -58,6 +60,10 @@ type ContextualSectionProps<T extends InsightSection["__typename"]> =
   };
 
 const DEFAULT_IMAGE = "/images/national-curriculum-insights/hero.jpg";
+
+const insightsTabletMediaQuery = `(min-width: ${getBreakpoint(
+  "small",
+)}px) and (max-width: ${getBreakpoint("large")}px)`;
 
 const imageUrl = (
   image: { asset?: { url?: string | null } | null } | null | undefined,
@@ -98,6 +104,13 @@ const OverviewPanel = styled(SectionMaxWidth)<{ $isKeyStage: boolean }>`
     align-items: center;
     gap: ${({ $isKeyStage }) => ($isKeyStage ? "81px" : "40px")};
   }
+
+  @media ${insightsTabletMediaQuery} {
+    height: auto;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 40px;
+  }
 `;
 
 const OverviewCopy = styled(OakFlex)`
@@ -107,9 +120,30 @@ const OverviewCopy = styled(OakFlex)`
     width: 684px;
     flex: 0 0 684px;
   }
+
+  @media ${insightsTabletMediaQuery} {
+    display: contents;
+  }
 `;
 
-const OverviewImage = styled(OakBox)<{ $isKeyStage: boolean }>`
+const OverviewTitleGroup = styled(OakFlex)`
+  width: 100%;
+
+  @media ${insightsTabletMediaQuery} {
+    gap: 20px;
+  }
+`;
+
+const OverviewBody = styled(OakBox)`
+  @media ${insightsTabletMediaQuery} {
+    order: 3;
+  }
+`;
+
+const OverviewImage = styled(OakBox)<{
+  $isKeyStage: boolean;
+  $pageKind: OverviewPageKind;
+}>`
   width: 100%;
   aspect-ratio: 332 / 259;
   overflow: hidden;
@@ -119,7 +153,53 @@ const OverviewImage = styled(OakBox)<{ $isKeyStage: boolean }>`
     height: ${({ $isKeyStage }) => ($isKeyStage ? "312px" : "259px")};
     flex: ${({ $isKeyStage }) => ($isKeyStage ? "0 0 295px" : "0 0 332px")};
   }
+
+  @media ${insightsTabletMediaQuery} {
+    width: ${({ $pageKind }) => {
+      switch ($pageKind) {
+        case "subject":
+          return "403px";
+        case "phase":
+          return "clamp(382px, calc(19.434vw + 236.245px), 485px)";
+        case "keyStage":
+          return "295px";
+        case "hub":
+          return "403px";
+      }
+    }};
+    max-width: 100%;
+    height: auto;
+    aspect-ratio: ${({ $pageKind }) => {
+      switch ($pageKind) {
+        case "subject":
+        case "hub":
+          return "403 / 274";
+        case "phase":
+          return "485 / 318";
+        case "keyStage":
+          return "295 / 312";
+      }
+    }};
+    flex: 0 1 auto;
+    align-self: center;
+    order: 2;
+  }
 `;
+
+const overviewPageKind = (
+  data: NationalCurriculumInsightsRouteData,
+): OverviewPageKind => {
+  switch (data.route.kind) {
+    case "hub":
+      return "hub";
+    case "subject":
+      return "subject";
+    case "subjectPhase":
+      return "phase";
+    case "subjectPhaseKeyStage":
+      return "keyStage";
+  }
+};
 
 export const NationalCurriculumInsightsOverview = ({
   section,
@@ -127,6 +207,7 @@ export const NationalCurriculumInsightsOverview = ({
 }: ContextualSectionProps<"NationalCurriculumInsightsOverviewSection">) => {
   const headingId = useId();
   const isKeyStage = data.route.kind === "subjectPhaseKeyStage";
+  const pageKind = overviewPageKind(data);
   const presentation = nationalCurriculumInsightsPresentation(data.route);
 
   return (
@@ -148,22 +229,33 @@ export const NationalCurriculumInsightsOverview = ({
           $flexDirection="column"
           $gap={isKeyStage ? "spacing-40" : "spacing-20"}
         >
-          <OakP $font="body-2" $mv="spacing-0">
-            At a glance
-          </OakP>
-          <OakHeading
-            id={headingId}
-            tag="h2"
-            $font={["heading-4", "heading-3"]}
+          <OverviewTitleGroup
+            $flexDirection="column"
+            $gap={isKeyStage ? "spacing-40" : "spacing-20"}
           >
-            {section.heading}
-          </OakHeading>
-          <PortableTextWithDefaults
-            value={section.bodyPortableText}
-            components={portableTextComponents}
-          />
+            <OakP $font="body-2" $mv="spacing-0">
+              At a glance
+            </OakP>
+            <OakHeading
+              id={headingId}
+              tag="h2"
+              $font={["heading-4", "heading-4", "heading-3"]}
+            >
+              {section.heading}
+            </OakHeading>
+          </OverviewTitleGroup>
+          <OverviewBody>
+            <PortableTextWithDefaults
+              value={section.bodyPortableText}
+              components={portableTextComponents}
+            />
+          </OverviewBody>
         </OverviewCopy>
-        <OverviewImage $isKeyStage={isKeyStage} aria-hidden="true">
+        <OverviewImage
+          $isKeyStage={isKeyStage}
+          $pageKind={pageKind}
+          aria-hidden="true"
+        >
           <OakImage
             src={
               presentation.illustration ??

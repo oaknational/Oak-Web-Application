@@ -2,6 +2,7 @@
 
 import type { PortableTextComponents } from "@portabletext/react";
 import {
+  getBreakpoint,
   getMediaQuery,
   OakBox,
   OakBreadcrumbs,
@@ -11,7 +12,7 @@ import {
   OakP,
   parseColor,
 } from "@oaknational/oak-components";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
 import type { NationalCurriculumInsightsRouteData } from "./getNationalCurriculumInsightsData";
 import { nationalCurriculumInsightsPresentation } from "./nationalCurriculumInsightsPresentation";
@@ -28,6 +29,12 @@ import { PortableTextWithDefaults } from "@/components/SharedComponents/Portable
 const DEFAULT_HERO_IMAGE = "/images/national-curriculum-insights/hero.jpg";
 
 type HeroPageKind = "hub" | "subject" | "phase" | "keyStage";
+
+const insightsTabletMediaQuery = `(min-width: ${getBreakpoint(
+  "small",
+)}px) and (max-width: ${getBreakpoint("large")}px)`;
+
+const tabletGridEightColumns = "calc(66.6667% - 5.333px)";
 
 const heroSectionMinHeight = ({ $pageKind }: { $pageKind: HeroPageKind }) => {
   switch ($pageKind) {
@@ -48,6 +55,15 @@ const HeroSection = styled(OakBox)<{ $pageKind: HeroPageKind }>`
     display: flex;
     align-items: flex-start;
   }
+
+  @media ${insightsTabletMediaQuery} {
+    ${({ $pageKind }) =>
+      $pageKind !== "hub" &&
+      css`
+        height: auto;
+        display: block;
+      `}
+  }
 `;
 
 const HeroContent = styled(OakFlex)`
@@ -55,8 +71,18 @@ const HeroContent = styled(OakFlex)`
   max-width: 1221px;
 `;
 
-const HeroMain = styled(OakFlex)`
+const HeroMain = styled(OakFlex)<{ $pageKind: HeroPageKind }>`
   width: 100%;
+
+  @media ${insightsTabletMediaQuery} {
+    ${({ $pageKind }) =>
+      $pageKind !== "hub" &&
+      css`
+        flex-direction: column;
+        align-items: stretch;
+        gap: 24px;
+      `}
+  }
 `;
 
 const HeroTextColumn = styled(OakFlex)<{ $pageKind: HeroPageKind }>`
@@ -66,23 +92,50 @@ const HeroTextColumn = styled(OakFlex)<{ $pageKind: HeroPageKind }>`
     width: ${({ $pageKind }) => ($pageKind === "hub" ? "740px" : "786px")};
     flex-shrink: 0;
   }
+
+  @media ${insightsTabletMediaQuery} {
+    ${({ $pageKind }) =>
+      $pageKind !== "hub" &&
+      css`
+        width: ${tabletGridEightColumns};
+        flex-shrink: 1;
+      `}
+  }
 `;
 
-const HeroCopyColumn = styled(OakFlex)`
+const HeroCopyColumn = styled(OakFlex)<{ $pageKind: HeroPageKind }>`
   width: 100%;
 
   @media (${getMediaQuery("desktop")}) {
     width: 740px;
     flex-shrink: 0;
   }
+
+  @media ${insightsTabletMediaQuery} {
+    ${({ $pageKind }) =>
+      $pageKind !== "hub" &&
+      css`
+        width: 100%;
+        flex-shrink: 1;
+      `}
+  }
 `;
 
-const HeroCopy = styled(OakFlex)`
+const HeroCopy = styled(OakFlex)<{ $pageKind: HeroPageKind }>`
   width: 100%;
   max-width: 650px;
 
   @media (${getMediaQuery("desktop")}) {
     padding-bottom: 40px;
+  }
+
+  @media ${insightsTabletMediaQuery} {
+    ${({ $pageKind }) =>
+      $pageKind !== "hub" &&
+      css`
+        max-width: none;
+        padding-bottom: 0;
+      `}
   }
 `;
 
@@ -115,6 +168,13 @@ const UpdateCard = styled(OakBox)`
     flex: 0 0 408px;
     order: 2;
     margin-top: 36px;
+  }
+
+  @media ${insightsTabletMediaQuery} {
+    width: ${tabletGridEightColumns};
+    flex: 0 1 auto;
+    order: 2;
+    margin-top: 0;
   }
 `;
 
@@ -253,7 +313,7 @@ const HeroUpdateCard = ({
       $pa="spacing-16"
     >
       <OakFlex $flexDirection="column" $gap="spacing-4">
-        <OakP $font="heading-7" $mv="spacing-0">
+        <OakP $font="body-2-bold" $mv="spacing-0">
           {section.statusHeading ??
             "This page was last updated on July 7, 2026"}
         </OakP>
@@ -325,10 +385,13 @@ export const NationalCurriculumInsightsHero = ({
       <HeroContent
         $mh="auto"
         $flexDirection="column"
-        $gap={breadcrumbs ? "spacing-48" : "spacing-0"}
+        $gap={
+          breadcrumbs ? ["spacing-48", "spacing-20", "spacing-48"] : "spacing-0"
+        }
       >
         {breadcrumbs ? <OakBreadcrumbs breadcrumbs={breadcrumbs} /> : null}
         <HeroMain
+          $pageKind={pageKind}
           $alignItems={["stretch", "stretch", isHub ? "center" : "flex-start"]}
           $flexDirection={["column", "column", "row"]}
           $justifyContent="space-between"
@@ -336,15 +399,26 @@ export const NationalCurriculumInsightsHero = ({
         >
           <HeroTextColumn
             $pageKind={pageKind}
-            $order={[2, 2, 1]}
+            $order={isHub ? [2, 2, 1] : [2, 1, 1]}
             $flexDirection="column"
             $gap="spacing-0"
           >
-            <HeroCopyColumn $alignItems={["stretch", "stretch", "flex-start"]}>
-              <HeroCopy $flexDirection="column" $gap="spacing-24">
+            <HeroCopyColumn
+              $pageKind={pageKind}
+              $alignItems={["stretch", "stretch", "flex-start"]}
+            >
+              <HeroCopy
+                $pageKind={pageKind}
+                $flexDirection="column"
+                $gap="spacing-24"
+              >
                 <OakHeading
                   tag="h1"
-                  $font={["heading-4", "heading-4", "heading-1"]}
+                  $font={
+                    isHub
+                      ? ["heading-4", "heading-4", "heading-1"]
+                      : ["heading-4", "heading-1", "heading-1"]
+                  }
                 >
                   {section.heading}
                 </OakHeading>
