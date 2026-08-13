@@ -14,13 +14,12 @@ jest.mock("@/hooks/useMediaQuery.tsx", () => ({
 
 const render = renderWithProviders();
 
-const curriculumVisualiserAccessed = jest.fn();
+const programmeAccessed = jest.fn();
 jest.mock("@/context/Analytics/useAnalytics", () => ({
   __esModule: true,
   default: () => ({
     track: {
-      curriculumVisualiserAccessed: (...args: unknown[]) =>
-        curriculumVisualiserAccessed(...args),
+      programmeAccessed: (...args: unknown[]) => programmeAccessed(...args),
     },
   }),
 }));

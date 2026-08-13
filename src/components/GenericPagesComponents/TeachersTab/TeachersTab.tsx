@@ -14,6 +14,7 @@ import { getBreakpoint } from "@/styles/utils/responsive";
 import SubjectPhasePicker from "@/components/SharedComponents/SubjectPhasePicker";
 import { SubjectPhasePickerData } from "@/components/SharedComponents/SubjectPhasePicker/SubjectPhasePicker";
 import Illustration from "@/components/SharedComponents/Illustration";
+import { TeacherBrowseAnalyticsStoreProvider } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
 
 type TeacherTabProps = {
   readonly curriculumPhaseOptions: SubjectPhasePickerData;
@@ -118,10 +119,15 @@ function PhasePickerWithLegend({
       >
         Explore curriculum plans and teaching resources
       </OakHeading>
-      <SubjectPhasePicker
-        {...curriculumPhaseOptions}
-        id={"teachers-subject-picker-" + layout}
-      />
+      <TeacherBrowseAnalyticsStoreProvider
+        programmeState={null}
+        accessLevel={"homepage"}
+      >
+        <SubjectPhasePicker
+          {...curriculumPhaseOptions}
+          id={"teachers-subject-picker-" + layout}
+        />
+      </TeacherBrowseAnalyticsStoreProvider>
     </OakBox>
   );
 }

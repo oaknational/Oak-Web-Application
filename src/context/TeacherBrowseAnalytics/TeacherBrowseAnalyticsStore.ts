@@ -88,7 +88,12 @@ export type TeacherBrowseAnalyticsStore = {
     onwardContentSelected: (props: {
       onwardIntent: OnwardIntentValueType;
     }) => void;
-    programmeAccessed: () => void;
+    programmeAccessed: (props: {
+      componentType: ComponentTypeValueType;
+      activeFilters: ActiveFilters;
+      filterType: FilterTypeValueType;
+      filterValue: string;
+    }) => void;
     programmeRefined: (data: {
       componentType: ComponentTypeValueType;
       activeFilters: ActiveFilters;
