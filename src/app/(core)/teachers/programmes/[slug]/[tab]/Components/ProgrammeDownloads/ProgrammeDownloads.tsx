@@ -55,6 +55,12 @@ export type ProgrammeDownloadsProps = {
   curriculumSelectionSlugs: CurriculumSelectionSlugs;
   implementationGuides: ImplementationGuides | null;
   featureFlags: Record<string, boolean>;
+  fileSizes?: {
+    downloadId: string;
+    size: number;
+    tier: string | null;
+    childSubject: string | null;
+  }[];
 };
 
 export const ProgrammeDownloads = ({
@@ -64,6 +70,7 @@ export const ProgrammeDownloads = ({
   mvRefreshTime,
   implementationGuides,
   featureFlags,
+  fileSizes,
 }: ProgrammeDownloadsProps) => {
   const { curriculumResourcesDownloadRefined, curriculumResourcesDownloaded } =
     useTeacherBrowseAnalytics((store) => store.track);
@@ -352,48 +359,61 @@ export const ProgrammeDownloads = ({
                           $gap={"spacing-16"}
                           $flexDirection={["column", "column", "row"]}
                         >
-                          {curriculumDownloadsWithLabels.map((download) => (
-                            <Controller
-                              key={download.id}
-                              control={form.control}
-                              name="resources"
-                              defaultValue={[]}
-                              render={({
-                                field: { value: fieldValue, onChange },
-                              }) => {
-                                return (
-                                  <OakDownloadCard
-                                    key={download.id}
-                                    id={download.id}
-                                    data-testid="resourceCard"
-                                    value={download.id}
-                                    name="curriculum-download"
-                                    title={download.label}
-                                    checked={fieldValue.includes(download.id)}
-                                    format={
-                                      <OakFlex
-                                        $alignItems={"center"}
-                                        $gap={"spacing-8"}
-                                      >
-                                        ({download.fileExt})
-                                        <OakTagFunctional
-                                          $background={"bg-decorative2-main"}
-                                          label="Editable"
-                                          useSpan
-                                        />
-                                      </OakFlex>
-                                    }
-                                    iconName={download.icon}
-                                    onChange={resourceCardOnChangeHandler(
-                                      onChange,
-                                      fieldValue,
-                                      download.id,
-                                    )}
-                                  />
-                                );
-                              }}
-                            />
-                          ))}
+                          {curriculumDownloadsWithLabels.map((download) => {
+                            const fileSize = fileSizes?.find(
+                              (fileSize) =>
+                                fileSize.downloadId === download.id &&
+                                fileSize.tier === tierSelected &&
+                                fileSize.childSubject === childSubjectSelected,
+                            );
+                            return (
+                              <Controller
+                                key={download.id}
+                                control={form.control}
+                                name="resources"
+                                defaultValue={[]}
+                                render={({
+                                  field: { value: fieldValue, onChange },
+                                }) => {
+                                  return (
+                                    <OakDownloadCard
+                                      key={download.id}
+                                      id={download.id}
+                                      data-testid="resourceCard"
+                                      value={download.id}
+                                      name="curriculum-download"
+                                      title={download.label}
+                                      checked={fieldValue.includes(download.id)}
+                                      fileSize={
+                                        fileSize
+                                          ? prettyBytes(fileSize.size)
+                                          : "—"
+                                      }
+                                      format={
+                                        <OakFlex
+                                          $alignItems={"center"}
+                                          $gap={"spacing-8"}
+                                        >
+                                          ({download.fileExt})
+                                          <OakTagFunctional
+                                            $background={"bg-decorative2-main"}
+                                            label="Editable"
+                                            useSpan
+                                          />
+                                        </OakFlex>
+                                      }
+                                      iconName={download.icon}
+                                      onChange={resourceCardOnChangeHandler(
+                                        onChange,
+                                        fieldValue,
+                                        download.id,
+                                      )}
+                                    />
+                                  );
+                                }}
+                              />
+                            );
+                          })}
                         </OakFlex>
                       </OakFlex>
                     )}
