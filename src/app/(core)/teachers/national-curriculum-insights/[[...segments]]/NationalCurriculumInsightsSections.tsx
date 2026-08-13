@@ -553,6 +553,12 @@ const HubSubjectItem = styled.li`
   width: 225px;
   height: 225px;
 
+  @media (${getMediaQuery("mobile")}) {
+    width: calc(50% - 8px);
+    height: auto;
+    aspect-ratio: 1;
+  }
+
   > * {
     width: 100%;
     height: 100%;
