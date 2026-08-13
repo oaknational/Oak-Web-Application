@@ -106,9 +106,7 @@ export const assetSchema = z.object({
 
 export const attachmentSchema = z.object({
   title: z.string(),
-  file: z.object({
-    asset: assetSchema,
-  }),
+  file: assetSchema,
 });
 
 export const formSchema = z.object({
