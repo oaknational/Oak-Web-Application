@@ -234,7 +234,12 @@ const FooterLink: FC<LayoutFooterLinkProps> = (props) => {
           track?.programmeAccessed &&
           keystageDescriptions.safeParse(sentenceCaseText).success
         ) {
-          track.programmeAccessed();
+          track.programmeAccessed({
+            componentType: "footer_menu_link",
+            activeFilters: [],
+            filterType: "Key stage filter",
+            filterValue: props.text,
+          });
         }
 
         if (props.track) {
