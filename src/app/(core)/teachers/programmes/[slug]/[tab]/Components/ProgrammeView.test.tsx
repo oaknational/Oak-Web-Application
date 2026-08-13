@@ -129,6 +129,7 @@ const defaultProps = {
     ks4OptionTitle: "AQA",
   },
   featureFlags: {},
+  implementationGuides: {},
 };
 
 const lightweightUnitsProps = {

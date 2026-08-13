@@ -285,6 +285,12 @@ const InnerProgrammePage = async (props: AppPageProps<ProgrammePageParams>) => {
     "implementation-guides",
   );
 
+  const opts = {
+    subjectTitle: curriculumSelectionTitles.subjectTitle,
+    phaseSlug: subjectPhaseKeystageSlugs.phaseSlug,
+  };
+  const implementationGuides = await CMSClient.implementationGuides(opts);
+
   const results: ProgrammePageProps = {
     subjectPhaseSlug,
     curriculumSelectionSlugs: subjectPhaseKeystageSlugs,
@@ -301,6 +307,7 @@ const InnerProgrammePage = async (props: AppPageProps<ProgrammePageParams>) => {
     featureFlags: {
       "implementation-guides": isImplementationGuidesEnabled,
     },
+    implementationGuides,
     nonCurriculum: cachedProgrammeData.programmeUnitsData.nonCurriculum,
   };
 

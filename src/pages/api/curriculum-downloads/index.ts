@@ -17,14 +17,21 @@ import { logErrorMessage } from "@/utils/curriculum/testing";
 import { Ks4Option } from "@/node-lib/curriculum-api-2023/queries/curriculumPhaseOptions/curriculumPhaseOptions.schema";
 import { CombinedCurriculumData } from "@/utils/curriculum/types";
 import { generateHash } from "@/pages-helpers/curriculum/docx/docx";
+import {
+  DOWNLOAD_TYPE_LABELS,
+  DOWNLOAD_TYPES,
+} from "@/components/CurriculumComponents/CurriculumDownloadView/helper";
 
 const stale_while_revalidate_seconds = 60 * 3;
 const s_maxage_seconds = 60 * 60 * 24;
 
 export const curriculumDownloadQuerySchema = z.object({
-  types: z.preprocess((val) => {
-    return String(val).split(",");
-  }, z.array(z.string())),
+  types: z.preprocess(
+    (val) => {
+      return String(val).split(",");
+    },
+    z.array(z.enum(DOWNLOAD_TYPES)),
+  ),
   mvRefreshTime: z.string(),
   subjectSlug: z.string(),
   phaseSlug: z.string(),
@@ -251,7 +258,12 @@ export default async function handler(
   }
 
   // Check if we should redirect (new cache-hit)
-  if (mvRefreshTimeParsed !== actualMvRefreshTime) {
+  if (
+    (["curriculumPlans", "nationalCurriculum"] as const).some((type) =>
+      types.includes(type),
+    ) &&
+    mvRefreshTimeParsed !== actualMvRefreshTime
+  ) {
     const slugOb = omitBy(
       {
         types,
@@ -274,9 +286,28 @@ export default async function handler(
     return;
   }
 
+  const data = await getData({
+    subjectSlug,
+    phaseSlug,
+    ks4OptionSlug,
+    state,
+    tierSlug,
+    childSubjectSlug,
+  });
+
+  if (data.notFound) {
+    res.status(404).end();
+    return;
+  }
+
+  const implementationGuides = await CMSClient.implementationGuides({
+    subjectTitle: data.combinedCurriculumData.subjectTitle,
+    phaseSlug,
+  });
+
   const allHandlers = [
     {
-      type: "curriculum-plans",
+      type: "curriculumPlans",
       handler: docx,
       getFilename: (data: getDataReturn) => {
         if (data.notFound) {
@@ -293,7 +324,7 @@ export default async function handler(
       },
     },
     {
-      type: "national-curriculum",
+      type: "nationalCurriculum",
       handler: xlsxNationalCurriculum,
       getFilename: (data: getDataReturn) => {
         if (data.notFound) {
@@ -309,85 +340,102 @@ export default async function handler(
         });
       },
     },
-  ];
+    ...(
+      [
+        "curriculumQuality",
+        "whatsIncluded",
+        "assessment",
+        "commonQuestions",
+        "equipmentList",
+      ] as const
+    ).map((type) => {
+      return {
+        type: type,
+        handler: async () => {
+          if (implementationGuides?.[type]?.asset?.url) {
+            const res = await fetch(implementationGuides[type].asset.url);
+            return new Uint8Array(await res.arrayBuffer());
+          } else {
+            throw new Error(`Implementation guide for ${type} not found`);
+          }
+        },
+        getFilename: (data: getDataReturn) => {
+          if (data.notFound) {
+            throw new Error("Data not found");
+          }
+          return getFilename("pdf", {
+            subjectTitle: data.combinedCurriculumData.subjectTitle,
+            phaseTitle: data.combinedCurriculumData.phaseTitle,
+            examboardTitle: data.combinedCurriculumData?.examboardTitle,
+            childSubjectSlug,
+            tierSlug,
+            prefix:
+              DOWNLOAD_TYPE_LABELS.find(({ id }) => id === type)?.label ?? type,
+          });
+        },
+      };
+    }),
+  ] as const;
 
   const handlers = allHandlers.filter(({ type }) => {
     return types.includes(type);
   });
 
-  const data = await getData({
-    subjectSlug,
-    phaseSlug,
-    ks4OptionSlug,
-    state,
-    tierSlug,
-    childSubjectSlug,
+  const promises = handlers.map(async ({ handler, getFilename }) => {
+    const buffer = Buffer.from(
+      await handler(
+        data.combinedCurriculumData,
+        {
+          subjectSlug: data.subjectSlug,
+          phaseSlug: data.phaseSlug,
+          keyStageSlug: data.phaseSlug,
+          ks4OptionSlug: data.ks4OptionSlug,
+          tierSlug,
+          childSubjectSlug,
+        },
+        data.ks4Options,
+      ),
+    );
+
+    const filename = getFilename(data);
+
+    return { filename, buffer };
   });
 
-  // FIXME: Poor use of types here
-  if (data.notFound === false) {
-    const promises = handlers.map(async ({ handler, getFilename }) => {
-      const buffer = Buffer.from(
-        await handler(
-          data.combinedCurriculumData,
-          {
-            subjectSlug: data.subjectSlug,
-            phaseSlug: data.phaseSlug,
-            keyStageSlug: data.phaseSlug,
-            ks4OptionSlug: data.ks4OptionSlug,
-            tierSlug,
-            childSubjectSlug,
-          },
-          data.ks4Options,
-        ),
-      );
+  const files = await Promise.all(promises);
 
-      const filename = getFilename(data);
-
-      return { filename, buffer };
+  let outputBuffer: Buffer;
+  let outputFileName: string;
+  if (files.length > 1) {
+    outputBuffer = await zipFromFiles(files);
+    outputFileName = getFilename("zip", {
+      subjectTitle: data.combinedCurriculumData.subjectTitle,
+      phaseTitle: data.combinedCurriculumData.phaseTitle,
+      examboardTitle: data.combinedCurriculumData?.examboardTitle,
+      childSubjectSlug,
+      tierSlug,
+      prefix: "Curriculum downloads",
+      suffix: generateHash([...types, actualMvRefreshTime].join("|")).slice(
+        0,
+        8,
+      ),
     });
-
-    const files = await Promise.all(promises);
-
-    let outputBuffer: Buffer;
-    let outputFileName: string;
-    if (files.length > 1) {
-      outputBuffer = await zipFromFiles(files);
-      outputFileName = getFilename("zip", {
-        subjectTitle: data.combinedCurriculumData.subjectTitle,
-        phaseTitle: data.combinedCurriculumData.phaseTitle,
-        examboardTitle: data.combinedCurriculumData?.examboardTitle,
-        childSubjectSlug,
-        tierSlug,
-        prefix: "Curriculum downloads",
-        suffix: generateHash([...types, actualMvRefreshTime].join("|")).slice(
-          0,
-          8,
-        ),
-      });
-    } else if (files.length === 1 && files[0]) {
-      outputBuffer = files[0].buffer;
-      outputFileName = files[0].filename;
-    } else {
-      throw new Error("Invalid file list");
-    }
-
-    res
-      .setHeader("content-type", "application/msword")
-      .setHeader(
-        "Cache-Control",
-        `public, durable, s-maxage=${s_maxage_seconds}, stale-while-revalidate=${stale_while_revalidate_seconds}`,
-      )
-      .setHeader(
-        "Content-Disposition",
-        `attachment; filename="${outputFileName}`,
-      )
-      .setHeader("x-filename", `${outputFileName}`)
-      .status(200)
-      .send(Buffer.from(outputBuffer));
-    return;
+  } else if (files.length === 1 && files[0]) {
+    outputBuffer = files[0].buffer;
+    outputFileName = files[0].filename;
   } else {
-    res.status(404).end();
-    return;
+    throw new Error("Invalid file list");
   }
+
+  res
+    .setHeader("content-type", "application/msword")
+    .setHeader(
+      "Cache-Control",
+      `public, durable, s-maxage=${s_maxage_seconds}, stale-while-revalidate=${stale_while_revalidate_seconds}`,
+    )
+    .setHeader("Content-Disposition", `attachment; filename="${outputFileName}`)
+    .setHeader("x-filename", `${outputFileName}`)
+    .status(200)
+    .send(Buffer.from(outputBuffer));
+  return;
 }
