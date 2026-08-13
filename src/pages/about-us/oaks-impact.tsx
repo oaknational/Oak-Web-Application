@@ -4,37 +4,30 @@ import {
   NextPage,
 } from "next/dist/types";
 
-import getBrowserConfig from "@/browser-lib/getBrowserConfig";
 import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
 import Layout from "@/components/AppComponents/AppLayout";
 import { TopNavProps } from "@/components/AppComponents/TopNav/TopNav";
 import { AboutUsLayout } from "@/components/GenericPagesComponents/AboutUsLayout";
-import {
-  AboutSharedHeader,
-  AboutSharedHeaderImage,
-} from "@/components/GenericPagesComponents/AboutSharedHeader";
 import { OaksImpactCaseStudies } from "@/components/GenericPagesComponents/OaksImpactCaseStudies";
 import { SupportYou } from "@/components/GenericPagesComponents/SupportYou";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 import getPageProps from "@/node-lib/getPageProps";
-import { getFeatureFlag } from "@/node-lib/posthog/getFeatureFlag";
-import { getPosthogIdFromCookie } from "@/node-lib/posthog/getPosthogId";
 import { OaksImpactStats } from "@/components/GenericPagesComponents/OaksImpactStats";
 import CMSClient from "@/node-lib/cms";
 import { OaksImpactPage } from "@/common-lib/cms-types";
 import { OaksImpactSchoolQuotesSection } from "@/components/GenericPagesComponents/OaksImpactSchoolQuotesSection";
+import TrackScrolledTo from "@/components/SharedComponents/TrackScrolledTo";
+import { OaksImpactHeader } from "@/components/GenericPagesComponents/OaksImpactHeader";
+import { isFeatureFlagEnabledServer } from "@/utils/featureFlagChecks/server";
+import useTrackExitIntended from "@/hooks/useTrackExitIntended";
 
 export type OaksImpactPageProps = {
   topNav: TopNavProps;
   pageData: OaksImpactPage;
 };
 
-const placeholderImage = {
-  _id: "image-ef2a05d634b1ade34d33664c44fa36cb62e1aaba-3000x2001-jpg",
-  url: "https://sanity-asset-cdn.thenational.academy/images/cuvjke51/production/ef2a05d634b1ade34d33664c44fa36cb62e1aaba-3000x2001.jpg",
-};
-
 const OaksImpact: NextPage<OaksImpactPageProps> = ({ topNav, pageData }) => {
+  useTrackExitIntended();
   return (
     <Layout
       seoProps={getSeoProps({ title: "Oak's impact" })}
@@ -42,19 +35,19 @@ const OaksImpact: NextPage<OaksImpactPageProps> = ({ topNav, pageData }) => {
       topNavProps={topNav}
     >
       <AboutUsLayout>
-        <AboutSharedHeader
+        <OaksImpactHeader
           title="Oak's impact"
-          titleHighlight="bg-decorative2-main"
-          content={pageData.header.introText}
-        >
-          <AboutSharedHeaderImage imageUrl={placeholderImage.url} />
-        </AboutSharedHeader>
+          body={pageData.header.introText}
+          video={pageData.header.video}
+          videoDescription={pageData.header.videoDescription}
+        />
         <OaksImpactStats {...pageData.statsSection} />
         <OaksImpactCaseStudies
           title="Case studies"
           caseStudies={pageData.caseStudiesSection.caseStudies}
         />
         <OaksImpactSchoolQuotesSection {...pageData.schoolQuotes} />
+        <TrackScrolledTo eventKey="support_you" />
         <SupportYou
           headingTag="h2"
           link={{
@@ -68,20 +61,10 @@ const OaksImpact: NextPage<OaksImpactPageProps> = ({ topNav, pageData }) => {
 };
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
-  const posthogUserId = getPosthogIdFromCookie(
+  const isImpactPageEnabled = await isFeatureFlagEnabledServer(
     context.req.cookies,
-    getBrowserConfig("posthogApiKey"),
+    "oaks-impact",
   );
-
-  let isImpactPageEnabled: boolean = false;
-  if (posthogUserId) {
-    isImpactPageEnabled =
-      (await getFeatureFlag({
-        featureFlagKey: "oaks-impact",
-        posthogUserId,
-      })) === true;
-  }
-
   if (!isImpactPageEnabled) {
     return {
       notFound: true,

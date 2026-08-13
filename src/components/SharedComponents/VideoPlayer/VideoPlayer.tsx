@@ -4,7 +4,10 @@ import type { Tokens } from "@mux/mux-player";
 import MuxPlayerElement from "@mux/mux-player";
 import { OakP, OakFlex, OakUiRoleToken } from "@oaknational/oak-components";
 
-import useVideoTracking, { VideoTrackingGetState } from "./useVideoTracking";
+import useVideoTracking, {
+  VideoAnalyticsOverrides,
+  VideoTrackingGetState,
+} from "./useVideoTracking";
 import getTimeElapsed from "./getTimeElapsed";
 import getSubtitleTrack from "./getSubtitleTrack";
 import getDuration from "./getDuration";
@@ -57,6 +60,8 @@ export type VideoPlayerProps = {
   /** When false, suppresses the analytics event for reaching the end. */
   shouldTrackEndAnalytics?: boolean;
   omitBorder?: boolean;
+  /** Used to override the functions used to track analytics events  */
+  analyticsOverrides?: VideoAnalyticsOverrides;
 };
 
 export type VideoEventCallbackArgs = {
@@ -148,6 +153,7 @@ const VideoPlayer: FC<VideoPlayerProps> = (props) => {
     isActive = true,
     shouldTrackEndAnalytics = true,
     omitBorder = false,
+    analyticsOverrides,
   } = props;
 
   const mediaElRef = useRef<MuxPlayerElement | null>(null);
@@ -195,6 +201,7 @@ const VideoPlayer: FC<VideoPlayerProps> = (props) => {
     pathwayData,
     cloudinaryUrl,
     muxAssetId,
+    analyticsOverrides,
   });
 
   const thumbnailToken = useSignedThumbnailToken({

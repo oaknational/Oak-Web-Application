@@ -1,15 +1,11 @@
 import { CurriculumOverviewMVData } from "@/node-lib/curriculum-api-2023";
 import { CurriculumOverviewSanityData } from "@/common-lib/cms-types";
-import { CurriculumSelectionSlugs } from "@/utils/curriculum/slugs";
-import { CurriculumOverviewTabData } from "@/components/CurriculumComponents/OverviewTab/OverviewTab";
 
 export const curriculumOverviewTabFixture = (
-  partial?: Partial<CurriculumOverviewTabData>,
-): CurriculumOverviewTabData => {
+  partial?: Partial<{ curriculumCMSInfo: CurriculumOverviewSanityData }>,
+) => {
   return {
-    subjectTitle: curriculumOverviewMVFixture().subjectTitle,
     curriculumCMSInfo: curriculumOverviewCMSFixture(),
-    curriculumSelectionSlugs: curriculumOverviewSlugsFixture(),
     ...partial,
   };
 };
@@ -99,17 +95,6 @@ export const curriculumOverviewCMSFixture = (
     },
     curriculumPartnerOverviews: [],
     curriculumSeoTextRaw: null,
-    ...partial,
-  };
-};
-
-const curriculumOverviewSlugsFixture = (
-  partial?: Partial<CurriculumSelectionSlugs>,
-): CurriculumSelectionSlugs => {
-  return {
-    phaseSlug: "primary",
-    subjectSlug: "maths",
-    ks4OptionSlug: null,
     ...partial,
   };
 };

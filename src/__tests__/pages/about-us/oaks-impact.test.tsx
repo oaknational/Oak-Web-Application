@@ -6,6 +6,7 @@ import { topNavFixture } from "@/node-lib/curriculum-api-2023/fixtures/topNav.fi
 import OaksImpact, { getServerSideProps } from "@/pages/about-us/oaks-impact";
 import CMSClient from "@/node-lib/cms";
 import { OaksImpactPage } from "@/common-lib/cms-types/aboutPages";
+import { isFeatureFlagEnabledStatic } from "@/utils/featureFlagChecks/static";
 
 const mockGetFeatureFlag = jest.fn();
 
@@ -26,15 +27,14 @@ jest.mock("@/node-lib/curriculum-api-2023", () => ({
   },
 }));
 
+jest.mock("@/utils/featureFlagChecks/static", () => ({
+  isFeatureFlagEnabledStatic: jest.fn(),
+}));
+
 jest.mock("../../../node-lib/cms");
 
-beforeEach(() => {
-  jest.clearAllMocks();
-  jest.resetModules();
-  mockCMSClient.oaksImpactPage.mockResolvedValue(mockPageData);
-});
-
 const mockCMSClient = CMSClient as jest.MockedObject<typeof CMSClient>;
+const mockIsFeatureFlagEnabledStatic = jest.mocked(isFeatureFlagEnabledStatic);
 
 const mockPageData: OaksImpactPage = {
   header: {
@@ -67,6 +67,13 @@ const mockPageData: OaksImpactPage = {
     cards: [],
   },
 };
+
+beforeEach(() => {
+  jest.clearAllMocks();
+  jest.resetModules();
+  mockIsFeatureFlagEnabledStatic.mockReturnValue(false);
+  mockCMSClient.oaksImpactPage.mockResolvedValue(mockPageData);
+});
 
 describe("pages/about-us/oaks-impact.tsx", () => {
   it("renders title when feature flag is enabled", async () => {

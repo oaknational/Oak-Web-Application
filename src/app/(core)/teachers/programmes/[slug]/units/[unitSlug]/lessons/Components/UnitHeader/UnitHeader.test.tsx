@@ -7,12 +7,9 @@ import { useStickyUnitHeader } from "./useStickyUnitHeader";
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 import { setUseUserReturn } from "@/__tests__/__helpers__/mockClerk";
 import { mockLoggedIn } from "@/__tests__/__helpers__/mockUser";
-import teachersUnitOverviewFixture from "@/node-lib/curriculum-api-2023/fixtures/teachersUnitOverview.fixture";
-import { getProgrammeStateForUnit } from "@/context/TeacherBrowseAnalytics/utils/getProgrammeState";
-import { TeacherBrowseAnalyticsStoreProvider } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
 
 const track = {
-  unitDownloadInitiated: jest.fn(),
+  unitDownloaded: jest.fn(),
 };
 jest.mock("@/context/Analytics/useAnalytics", () => ({
   __esModule: true,
@@ -53,21 +50,8 @@ jest.mock("./useStickyUnitHeader", () => ({
   })),
 }));
 
-const render = renderWithProviders();
-
-const baseProps = teachersUnitOverviewFixture();
-const programmeState = getProgrammeStateForUnit(baseProps);
-
 const renderUnitHeader = (props?: Partial<UnitHeaderProps>) => {
-  return render(
-    <TeacherBrowseAnalyticsStoreProvider
-      programmeState={{
-        programmeState,
-      }}
-    >
-      <UnitHeader {...defaultProps} {...props} />
-    </TeacherBrowseAnalyticsStoreProvider>,
-  );
+  return renderWithProviders()(<UnitHeader {...defaultProps} {...props} />);
 };
 
 const defaultProps: UnitHeaderProps = {
@@ -139,7 +123,7 @@ describe("UnitHeader", () => {
     const user = userEvent.setup();
     await user.click(screen.getByRole("button", { name: /Download/ }));
 
-    expect(track.unitDownloadInitiated).toHaveBeenCalledWith(
+    expect(track.unitDownloaded).toHaveBeenCalledWith(
       expect.objectContaining({
         platform: "owa",
         componentType: "unit_download_button",

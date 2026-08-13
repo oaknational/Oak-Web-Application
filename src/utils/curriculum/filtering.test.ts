@@ -28,16 +28,19 @@ import { createTier } from "@/fixtures/curriculum/tier";
 import { createThread } from "@/fixtures/curriculum/thread";
 import { createFilter } from "@/fixtures/curriculum/filters";
 import { createYearData } from "@/fixtures/curriculum/yearData";
+import { ChildSubject } from "@/components/CurriculumComponents/CurricVisualiserFilters/CurricFiltersChildSubjects.fixtures";
 
 describe("filtering", () => {
   describe("getDefaultChildSubjectForYearGroup", () => {
     it("with data", () => {
-      const childSubjectPhysics = createChildSubject({
+      const childSubjectPhysics: ChildSubject = {
         subject_slug: "physics",
-      });
-      const childSubjectBiology = createChildSubject({
+        subject: "Physics",
+      };
+      const childSubjectBiology: ChildSubject = {
         subject_slug: "biology",
-      });
+        subject: "Biology",
+      };
 
       const input = {
         "7": {

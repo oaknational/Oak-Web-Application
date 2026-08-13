@@ -2,13 +2,13 @@ import { OakTertiaryButton } from "@oaknational/oak-components";
 import React, { FC } from "react";
 
 import { resolveOakHref } from "@/common-lib/urls";
+import { useTeacherBrowseAnalytics } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
 
 type LessonPlayAllButtonProps = {
   lessonSlug: string;
   programmeSlug: string | null;
   unitSlug: string | null;
   isCanonical?: boolean;
-  onTrackingCallback?: () => void;
 };
 
 const LessonPlayAllButton: FC<LessonPlayAllButtonProps> = ({
@@ -16,8 +16,11 @@ const LessonPlayAllButton: FC<LessonPlayAllButtonProps> = ({
   lessonSlug,
   programmeSlug,
   isCanonical,
-  onTrackingCallback,
 }) => {
+  const { lessonMediaClipsStarted } = useTeacherBrowseAnalytics(
+    (store) => store.track,
+  );
+
   return (
     <OakTertiaryButton
       element="a"
@@ -37,11 +40,12 @@ const LessonPlayAllButton: FC<LessonPlayAllButtonProps> = ({
       }
       isTrailingIcon
       iconName="arrow-right"
-      onClick={() => {
-        if (onTrackingCallback) {
-          onTrackingCallback();
-        }
-      }}
+      onClick={() =>
+        lessonMediaClipsStarted({
+          mediaClipsButtonName: "play all",
+          learningCycle: null,
+        })
+      }
     >
       Play all
     </OakTertiaryButton>

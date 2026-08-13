@@ -610,49 +610,64 @@ exports[`pages/about-us/oaks-impact.tsx renders title when feature flag is enabl
             class="sc-aXZVg bZTQLO"
           >
             <div
-              class="sc-aXZVg sc-gEvEer fjNszh hPyKbx"
+              class="sc-aXZVg sc-gEvEer sc-15447d59-0 jPvJsJ iDBIXi dpqfDS"
             >
               <div
-                class="sc-aXZVg sc-gEvEer jPvJsJ daEtut"
+                class="sc-aXZVg sc-gEvEer sc-15447d59-2 jPvJsJ fqICts fGNtyM"
               >
-                <h1
-                  class="sc-eldPxv kSQYKV"
+                <div
+                  class="sc-aXZVg sc-gEvEer fnKdFm gUPrwF"
                 >
-                  <span
-                    class="sc-eqUAAy ffxKII"
+                  <h1
+                    class="sc-eldPxv hJmOde"
                   >
                     Oak's impact
-                  </span>
-                </h1>
+                  </h1>
+                </div>
                 <p
-                  class="sc-ikkxIA fPezaI"
+                  class="sc-ikkxIA jAnQin"
                 >
                   Oaks Impact intro
                 </p>
               </div>
               <div
-                class="sc-aXZVg sc-2c4f354b-0 jPvJsJ bnaXAx"
+                class="sc-aXZVg sc-gEvEer jPvJsJ fVNIMq"
               >
-                <span
-                  class="sc-aXZVg iLOJBD"
+                <div
+                  class="sc-aXZVg sc-15447d59-1 jPvJsJ mEHOx"
                 >
-                  <img
-                    alt=""
-                    class="sc-iGgWBj dZvqhO"
-                    data-nimg="fill"
-                    decoding="async"
-                    loading="lazy"
-                    sizes="100vw"
-                    src="http://localhost/_next/image?url=https%3A%2F%2Fsanity-asset-cdn.thenational.academy%2Fimages%2Fcuvjke51%2Fproduction%2Fef2a05d634b1ade34d33664c44fa36cb62e1aaba-3000x2001.jpg&w=3840&q=75"
-                    srcset="/_next/image?url=https%3A%2F%2Fsanity-asset-cdn.thenational.academy%2Fimages%2Fcuvjke51%2Fproduction%2Fef2a05d634b1ade34d33664c44fa36cb62e1aaba-3000x2001.jpg&w=640&q=75 640w, /_next/image?url=https%3A%2F%2Fsanity-asset-cdn.thenational.academy%2Fimages%2Fcuvjke51%2Fproduction%2Fef2a05d634b1ade34d33664c44fa36cb62e1aaba-3000x2001.jpg&w=750&q=75 750w, /_next/image?url=https%3A%2F%2Fsanity-asset-cdn.thenational.academy%2Fimages%2Fcuvjke51%2Fproduction%2Fef2a05d634b1ade34d33664c44fa36cb62e1aaba-3000x2001.jpg&w=828&q=75 828w, /_next/image?url=https%3A%2F%2Fsanity-asset-cdn.thenational.academy%2Fimages%2Fcuvjke51%2Fproduction%2Fef2a05d634b1ade34d33664c44fa36cb62e1aaba-3000x2001.jpg&w=1080&q=75 1080w, /_next/image?url=https%3A%2F%2Fsanity-asset-cdn.thenational.academy%2Fimages%2Fcuvjke51%2Fproduction%2Fef2a05d634b1ade34d33664c44fa36cb62e1aaba-3000x2001.jpg&w=1200&q=75 1200w, /_next/image?url=https%3A%2F%2Fsanity-asset-cdn.thenational.academy%2Fimages%2Fcuvjke51%2Fproduction%2Fef2a05d634b1ade34d33664c44fa36cb62e1aaba-3000x2001.jpg&w=1920&q=75 1920w, /_next/image?url=https%3A%2F%2Fsanity-asset-cdn.thenational.academy%2Fimages%2Fcuvjke51%2Fproduction%2Fef2a05d634b1ade34d33664c44fa36cb62e1aaba-3000x2001.jpg&w=2048&q=75 2048w, /_next/image?url=https%3A%2F%2Fsanity-asset-cdn.thenational.academy%2Fimages%2Fcuvjke51%2Fproduction%2Fef2a05d634b1ade34d33664c44fa36cb62e1aaba-3000x2001.jpg&w=3840&q=75 3840w"
-                    style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
-                  />
-                </span>
+                  <div
+                    class="sc-aXZVg sc-gEvEer jPvJsJ daEtut"
+                  >
+                    <div
+                      class="sc-aXZVg sc-gEvEer dApLPd daEtut"
+                    >
+                      <div
+                        class="sc-aXZVg dLPTTd"
+                      >
+                        <div
+                          class="sc-aXZVg sc-gEvEer laLcvy jMLdOa"
+                          data-percy-hide="contents"
+                          style="box-sizing: content-box;"
+                        />
+                      </div>
+                    </div>
+                    <div
+                      class="sc-aXZVg sc-gEvEer jPvJsJ gWBhKY"
+                    >
+                      <p
+                        class="sc-ikkxIA bevdi"
+                      >
+                        Oaks Impact video description
+                      </p>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
           <div
-            class="sc-aXZVg sc-gEvEer joTwcV iDBIXi"
+            class="sc-aXZVg sc-gEvEer girWOx iDBIXi"
           >
             <div
               class="sc-aXZVg bZTQLO"
@@ -667,7 +682,7 @@ exports[`pages/about-us/oaks-impact.tsx renders title when feature flag is enabl
                     class="sc-aXZVg sc-gEvEer jPvJsJ daEtut"
                   >
                     <h2
-                      class="sc-eldPxv epUAyb"
+                      class="sc-eldPxv cIrFKd"
                     >
                       Oaks Impact stats heading
                     </h2>
@@ -726,6 +741,9 @@ exports[`pages/about-us/oaks-impact.tsx renders title when feature flag is enabl
               class="sc-aXZVg sc-tagGq icrVol jFIZYB"
             />
           </div>
+          <div
+            class="sc-aXZVg jPvJsJ"
+          />
           <div
             class="sc-aXZVg guaSoh"
           >
@@ -1091,7 +1109,7 @@ exports[`pages/about-us/oaks-impact.tsx renders title when feature flag is enabl
               class="sc-aXZVg bZTQLO"
             >
               <div
-                class="sc-aXZVg sc-gEvEer sc-f20d0454-0 jPvJsJ iDBIXi cxZSCY"
+                class="sc-aXZVg sc-gEvEer sc-ecfb8a2e-0 jPvJsJ iDBIXi eLBueB"
               >
                 <div
                   class="sc-aXZVg sc-gEvEer sc-d650a570-0 ePSBwI fUxOFh"
@@ -2370,7 +2388,7 @@ exports[`pages/about-us/oaks-impact.tsx renders title when feature flag is enabl
               </div>
             </div>
             <span
-              class="sc-aXZVg kvjdhA sc-3644c74a-0 cYwwNK"
+              class="sc-aXZVg kvjdhA sc-98540f6b-0 qLtgo"
               data-percy-hide="contents"
             >
               <img

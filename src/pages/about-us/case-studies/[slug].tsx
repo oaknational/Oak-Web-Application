@@ -10,19 +10,17 @@ import {
 import { format } from "date-fns";
 
 import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
-import getBrowserConfig from "@/browser-lib/getBrowserConfig";
-import { getFeatureFlag } from "@/node-lib/posthog/getFeatureFlag";
 import { OaksImpactCaseStudyPage } from "@/common-lib/cms-types/aboutPages";
 import CMSClient from "@/node-lib/cms";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 import Layout from "@/components/AppComponents/AppLayout";
 import { TopNavProps } from "@/components/AppComponents/TopNav/TopNav";
 import { OaksImpactCaseStudies } from "@/components/GenericPagesComponents/OaksImpactCaseStudies";
-import { getPosthogIdFromCookie } from "@/node-lib/posthog/getPosthogId";
 import { resolveOakHref } from "@/common-lib/urls";
 import { NewGutterMaxWidth } from "@/components/GenericPagesComponents/NewGutterMaxWidth";
 import { useOakNotificationsContext } from "@/context/OakNotifications/useOakNotificationsContext";
 import { OaksImpactCaseStudyHeader } from "@/components/GenericPagesComponents/OaksImpactCaseStudyHeader";
+import { isFeatureFlagEnabledServer } from "@/utils/featureFlagChecks/server";
 import { OaksImpactCaseStudyContentLayout } from "@/components/GenericPagesComponents/OaksImpactCaseStudyContentLayout";
 import VideoPlayer from "@/components/SharedComponents/VideoPlayer";
 
@@ -75,7 +73,7 @@ const AboutUsOaksImpactCaseStudy: NextPage<
                           href: resolveOakHref({ page: "home" }),
                           text: "Home",
                         },
-                        { href: "/about-us/oaks-impact", text: "Case studies" },
+                        { href: "/about-us/oaks-impact", text: "Oak's impact" },
                         { text: caseStudy.video.title },
                       ]}
                     />
@@ -121,10 +119,8 @@ const AboutUsOaksImpactCaseStudy: NextPage<
                   )
                 }
                 showTranscript={true}
-                transcript={[
-                  ...new Array(20).fill(true).map(() => "test transcript text"),
-                ]}
-                body={"Testing text"}
+                transcript={caseStudy.video.transcript ?? undefined}
+                body={caseStudy.textRaw ?? undefined}
               />
             </OakBox>
           </OaksImpactCaseStudyContentLayout>
@@ -175,20 +171,10 @@ export const getServerSideProps: GetServerSideProps<
   AboutUsOaksImpactCaseStudyPageProps,
   URLParams
 > = async (context) => {
-  const posthogUserId = getPosthogIdFromCookie(
+  const isImpactPageEnabled = await isFeatureFlagEnabledServer(
     context.req.cookies,
-    getBrowserConfig("posthogApiKey"),
+    "oaks-impact",
   );
-
-  let isImpactPageEnabled: boolean = false;
-  if (posthogUserId) {
-    isImpactPageEnabled =
-      (await getFeatureFlag({
-        featureFlagKey: "oaks-impact",
-        posthogUserId,
-      })) === true;
-  }
-
   if (!isImpactPageEnabled) {
     return {
       notFound: true,

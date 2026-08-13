@@ -121,8 +121,12 @@ describe("ProgrammeFiltersThreads", () => {
 
     act(() => radios[1]!.click());
     expect(onChangeFilters).toHaveBeenCalledWith({
-      ...defaultFilters,
-      threads: ["thread1"],
+      newFilters: {
+        ...defaultFilters,
+        threads: ["thread1"],
+      },
+      filterType: "Learning theme filter",
+      filterValue: "thread1",
     });
   });
 
@@ -140,8 +144,12 @@ describe("ProgrammeFiltersThreads", () => {
 
     act(() => radios[0]!.click());
     expect(onChangeFilters).toHaveBeenCalledWith({
-      ...defaultFilters,
-      threads: [],
+      newFilters: {
+        ...defaultFilters,
+        threads: [],
+      },
+      filterType: "Learning theme filter",
+      filterValue: "",
     });
   });
 });

@@ -8,7 +8,6 @@ import { DownloadSuccessView } from "./Components/DownloadSuccessView";
 import withPageErrorHandling, {
   AppPageProps,
 } from "@/hocs/withPageErrorHandling";
-import { getFeatureFlagValue } from "@/utils/featureFlags";
 import { TeacherBrowseAnalyticsStoreProvider } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
 import { getProgrammeStateForLesson } from "@/context/TeacherBrowseAnalytics/utils/getProgrammeState";
 
@@ -73,17 +72,14 @@ const InnerLessonDownloadsSuccessPage = async (
     return notFound();
   }
 
-  const variantKey = await getFeatureFlagValue(
-    "download-success-cta-experiment",
-    "string",
-  );
-  const ctaVariant = variantKey === "test" ? "test" : "control";
-
   const programmeState = getProgrammeStateForLesson(data);
 
   return (
-    <TeacherBrowseAnalyticsStoreProvider programmeState={{ programmeState }}>
-      <DownloadSuccessView lesson={data} ctaVariant={ctaVariant} />
+    <TeacherBrowseAnalyticsStoreProvider
+      programmeState={programmeState}
+      accessLevel="lesson"
+    >
+      <DownloadSuccessView lesson={data} />
     </TeacherBrowseAnalyticsStoreProvider>
   );
 };
