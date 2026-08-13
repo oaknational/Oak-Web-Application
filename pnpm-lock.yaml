@@ -334,6 +334,9 @@ importers:
       '@babel/core':
         specifier: ^7.28.3
         version: 7.28.3
+      '@chromatic-com/playwright':
+        specifier: ^0.14.11
+        version: 0.14.11(@playwright/test@1.61.1)(@testing-library/dom@10.2.0)(prettier@3.3.3)(react@18.3.1)
       '@commitlint/cli':
         specifier: ^19.8.1
         version: 19.8.1(@types/node@22.19.17)(typescript@5.9.3)
@@ -508,6 +511,9 @@ importers:
       chalk:
         specifier: ^5.6.2
         version: 5.6.2
+      chromatic:
+        specifier: ^18.1.0
+        version: 18.1.0(@chromatic-com/playwright@0.14.11(@playwright/test@1.61.1)(@testing-library/dom@10.2.0)(prettier@3.3.3)(react@18.3.1))
       chromedriver:
         specifier: ^130.0.4
         version: 130.0.4
@@ -1976,6 +1982,15 @@ packages:
   '@bugsnag/source-maps@2.3.2':
     resolution: {integrity: sha512-FGkGHWzX+W8T5FebBqGTBEPyfVJn4yr0o605mzt0gHVr1OO9i/JeceYZKSCHt116BmuBnwkckUKMH9ABUZ3kaw==}
     hasBin: true
+
+  '@chromatic-com/playwright@0.14.11':
+    resolution: {integrity: sha512-A17StBmfysCJvuE2H0nn00iFRrw7Rm09g2qpqvC3eCMl1U5q06CxSIHhLt5y5LqmscO0xQ+BhNrzxSmUVF6aTw==}
+    hasBin: true
+    peerDependencies:
+      '@playwright/test': ^1.0.0
+
+  '@chromaui/rrweb-snapshot@2.0.0-alpha.19-noAbsolute':
+    resolution: {integrity: sha512-FTsZCNv4dBR8q4UcazvxRw721r6xtsRKkC6Xo8NiEXDekA/JbVDHuWkPxxM0IvyX9Vo/yhCsYviXFrUqqeOaVQ==}
 
   '@clerk/backend@2.33.5':
     resolution: {integrity: sha512-YOzUYJfb1d4w+0rKKm+LnnNpkJGQ+NI/g7qmF3mgaSN9X9huteuwCZyufdsI7z2DDkwy/yGRgb9eUWV96t7xLg==}
@@ -3598,6 +3613,14 @@ packages:
 
   '@keyv/serialize@1.0.3':
     resolution: {integrity: sha512-qnEovoOp5Np2JDGonIDL6Ayihw0RhnRh6vxPuHo4RDn1UOzwEo4AeIfpL6UGIrsceWrCMiVPgwRjbHu4vYFc3g==}
+
+  '@lukeed/csprng@1.1.0':
+    resolution: {integrity: sha512-Z7C/xXCiGWsg0KuKsHTKJxbWhpI3Vs5GwLfOean7MGyVFGqdRgBbAjOCh6u4bbjPc/8MJ2pZmK/0DLdCbivLDA==}
+    engines: {node: '>=8'}
+
+  '@lukeed/uuid@2.0.1':
+    resolution: {integrity: sha512-qC72D4+CDdjGqJvkFMMEAtancHUQ7/d/tAiHf64z8MopFDmcrtbcJuerDtFceuAfQJ2pDSfCKCtbqoGBNnwg0w==}
+    engines: {node: '>=8'}
 
   '@mdn/browser-compat-data@5.7.6':
     resolution: {integrity: sha512-7xdrMX0Wk7grrTZQwAoy1GkvPMFoizStUoL+VmtUkAxegbCCec+3FKwOM6yc/uGU5+BEczQHXAlWiqvM8JeENg==}
@@ -5464,6 +5487,16 @@ packages:
 
   '@sec-ant/readable-stream@0.4.1':
     resolution: {integrity: sha512-831qok9r2t8AlxLko40y2ebgSDhenenCatLVeW/uBtnHPyhHOvG0C7TvfgecV+wHzIm5KUICgzmVpWS+IMEAeg==}
+
+  '@segment/analytics-core@1.7.0':
+    resolution: {integrity: sha512-0DHSriS/oAB/2bIgOMv3fFV9/ivp39ibdOTTf+dDOhf+vlciBv0+MHw47k/6PRobbuls27cKkKZAKc4DDC2+gw==}
+
+  '@segment/analytics-generic-utils@1.2.0':
+    resolution: {integrity: sha512-DfnW6mW3YQOLlDQQdR89k4EqfHb0g/3XvBXkovH1FstUN93eL1kfW9CsDcVQyH3bAC5ZsFyjA/o/1Q2j0QeoWw==}
+
+  '@segment/analytics-node@2.1.3':
+    resolution: {integrity: sha512-xwMkyXgr7xgPsP0w79nzCwRHYi9jzj9ps4Im7xWGK8AKKE4eox39tMZOdRtpDbvXQlrs9fh64ZC0w/yZZDM/9g==}
+    engines: {node: '>=18'}
 
   '@semantic-release/changelog@6.0.3':
     resolution: {integrity: sha512-dZuR5qByyfe3Y03TpmCvAxCyTnp7r5XwtHRf/8vD9EAn4ZWbavUX8adMtXYzE86EVh0gyLA7lm5yW4IV30XUag==}
@@ -7833,6 +7866,22 @@ packages:
   chownr@3.0.0:
     resolution: {integrity: sha512-+IxzY9BZOQd/XuYPRmrvEVjF/nqj5kgT4kEq7VofrDoM1MxoRjEWkrCC3EtLi59TVawxTAn+orJwFQcrqEN1+g==}
     engines: {node: '>=18'}
+
+  chromatic@18.1.0:
+    resolution: {integrity: sha512-I9av8lUc5CQRlYzwKpmOG9cwYvZ4AFmTvtHeNrzOMC1353F9xYw45CHpSNIsNKuOiqqmzci9esXQd5akl0fi6w==}
+    engines: {node: '>=22.0.0'}
+    hasBin: true
+    peerDependencies:
+      '@chromatic-com/cypress': ^0.*.* || ^1.0.0
+      '@chromatic-com/playwright': ^0.*.* || ^1.0.0
+      '@chromatic-com/vitest': ^0.*.* || ^1.0.0
+    peerDependenciesMeta:
+      '@chromatic-com/cypress':
+        optional: true
+      '@chromatic-com/playwright':
+        optional: true
+      '@chromatic-com/vitest':
+        optional: true
 
   chrome-trace-event@1.0.3:
     resolution: {integrity: sha512-p3KULyQg4S7NIHixdwbGX+nFHkoBiA4YQmyWtjb8XngSKV124nJmRysgAeujbUVb15vh+RvFUfCPqU7rXk+hZg==}
@@ -14174,6 +14223,15 @@ packages:
   storybook-css-modules-preset@1.1.1:
     resolution: {integrity: sha512-wyINPOtB/8SvU7J92ePAhciBk4xoHuwrcqDNyGnSwilwHjmtHwbeEgZ1//JALOTwMB10zwz3WPONRkWec9LdGw==}
 
+  storybook@10.2.13:
+    resolution: {integrity: sha512-heMfJjOfbHvL+wlCAwFZlSxcakyJ5yQDam6e9k2RRArB1veJhRnsjO6lO1hOXjJYrqxfHA/ldIugbBVlCDqfvQ==}
+    hasBin: true
+    peerDependencies:
+      prettier: ^2 || ^3
+    peerDependenciesMeta:
+      prettier:
+        optional: true
+
   storybook@10.4.6:
     resolution: {integrity: sha512-6wkA6LxfDSSilloITsrFOJfsnw0mDUP2h8Ls+lRt8oRsudtz2RWFhLv+Toiwg6NW7hUpdTDc2hzR7DztJid6+A==}
     hasBin: true
@@ -17957,6 +18015,24 @@ snapshots:
       glob: 7.2.3
       read-pkg-up: 7.0.1
 
+  '@chromatic-com/playwright@0.14.11(@playwright/test@1.61.1)(@testing-library/dom@10.2.0)(prettier@3.3.3)(react@18.3.1)':
+    dependencies:
+      '@chromaui/rrweb-snapshot': 2.0.0-alpha.19-noAbsolute
+      '@playwright/test': 1.61.1
+      '@segment/analytics-node': 2.1.3
+      storybook: 10.2.13(@testing-library/dom@10.2.0)(prettier@3.3.3)(react@18.3.1)
+    transitivePeerDependencies:
+      - '@testing-library/dom'
+      - bufferutil
+      - encoding
+      - prettier
+      - react
+      - utf-8-validate
+
+  '@chromaui/rrweb-snapshot@2.0.0-alpha.19-noAbsolute':
+    dependencies:
+      postcss: 8.5.9
+
   '@clerk/backend@2.33.5(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
       '@clerk/shared': 3.47.7(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
@@ -19864,6 +19940,12 @@ snapshots:
   '@keyv/serialize@1.0.3':
     dependencies:
       buffer: 6.0.3
+
+  '@lukeed/csprng@1.1.0': {}
+
+  '@lukeed/uuid@2.0.1':
+    dependencies:
+      '@lukeed/csprng': 1.1.0
 
   '@mdn/browser-compat-data@5.7.6': {}
 
@@ -22071,6 +22153,29 @@ snapshots:
   '@sanity/image-url@1.1.0': {}
 
   '@sec-ant/readable-stream@0.4.1': {}
+
+  '@segment/analytics-core@1.7.0':
+    dependencies:
+      '@lukeed/uuid': 2.0.1
+      '@segment/analytics-generic-utils': 1.2.0
+      dset: 3.1.4
+      tslib: 2.8.1
+
+  '@segment/analytics-generic-utils@1.2.0':
+    dependencies:
+      tslib: 2.8.1
+
+  '@segment/analytics-node@2.1.3':
+    dependencies:
+      '@lukeed/uuid': 2.0.1
+      '@segment/analytics-core': 1.7.0
+      '@segment/analytics-generic-utils': 1.2.0
+      buffer: 6.0.3
+      jose: 5.2.4
+      node-fetch: 2.7.0
+      tslib: 2.8.1
+    transitivePeerDependencies:
+      - encoding
 
   '@semantic-release/changelog@6.0.3(semantic-release@24.2.4(typescript@5.9.3))':
     dependencies:
@@ -25123,6 +25228,12 @@ snapshots:
       readdirp: 4.1.2
 
   chownr@3.0.0: {}
+
+  chromatic@18.1.0(@chromatic-com/playwright@0.14.11(@playwright/test@1.61.1)(@testing-library/dom@10.2.0)(prettier@3.3.3)(react@18.3.1)):
+    dependencies:
+      semver: 7.7.4
+    optionalDependencies:
+      '@chromatic-com/playwright': 0.14.11(@playwright/test@1.61.1)(@testing-library/dom@10.2.0)(prettier@3.3.3)(react@18.3.1)
 
   chrome-trace-event@1.0.3: {}
 
@@ -33254,6 +33365,28 @@ snapshots:
       internal-slot: 1.1.0
 
   storybook-css-modules-preset@1.1.1: {}
+
+  storybook@10.2.13(@testing-library/dom@10.2.0)(prettier@3.3.3)(react@18.3.1):
+    dependencies:
+      '@storybook/global': 5.0.0
+      '@storybook/icons': 2.1.0(react@18.3.1)
+      '@testing-library/jest-dom': 6.9.1
+      '@testing-library/user-event': 14.6.1(@testing-library/dom@10.2.0)
+      '@vitest/expect': 3.2.4
+      '@vitest/spy': 3.2.4
+      esbuild: 0.19.12
+      open: 10.2.0
+      recast: 0.23.11
+      semver: 7.7.4
+      use-sync-external-store: 1.6.0(react@18.3.1)
+      ws: 8.21.0
+    optionalDependencies:
+      prettier: 3.3.3
+    transitivePeerDependencies:
+      - '@testing-library/dom'
+      - bufferutil
+      - react
+      - utf-8-validate
 
   storybook@10.4.6(@emnapi/core@1.9.2)(@emnapi/runtime@1.9.2)(@testing-library/dom@10.2.0)(@types/react@18.2.79)(prettier@3.3.3)(react@18.3.1):
     dependencies:
