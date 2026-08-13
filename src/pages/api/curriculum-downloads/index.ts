@@ -17,7 +17,10 @@ import { logErrorMessage } from "@/utils/curriculum/testing";
 import { Ks4Option } from "@/node-lib/curriculum-api-2023/queries/curriculumPhaseOptions/curriculumPhaseOptions.schema";
 import { CombinedCurriculumData } from "@/utils/curriculum/types";
 import { generateHash } from "@/pages-helpers/curriculum/docx/docx";
-import { DOWNLOAD_TYPES } from "@/components/CurriculumComponents/CurriculumDownloadView/helper";
+import {
+  DOWNLOAD_TYPE_LABELS,
+  DOWNLOAD_TYPES,
+} from "@/components/CurriculumComponents/CurriculumDownloadView/helper";
 
 const stale_while_revalidate_seconds = 60 * 3;
 const s_maxage_seconds = 60 * 60 * 24;
@@ -366,7 +369,8 @@ export default async function handler(
             examboardTitle: data.combinedCurriculumData?.examboardTitle,
             childSubjectSlug,
             tierSlug,
-            prefix: type,
+            prefix:
+              DOWNLOAD_TYPE_LABELS.find(({ id }) => id === type)?.label ?? type,
           });
         },
       };
