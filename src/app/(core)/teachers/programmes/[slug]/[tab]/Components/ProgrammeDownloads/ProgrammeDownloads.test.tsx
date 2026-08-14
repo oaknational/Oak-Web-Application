@@ -339,7 +339,7 @@ describe("Programme Downloads", () => {
           keyStageTitle: null,
           platform: "owa",
           product: "curriculum resources",
-          resourceType: ["curriculum document"],
+          resourceType: ["curriculum plan"],
           schoolName: "Test school",
           schoolOption: "Selected school",
           schoolUrn: "123456",

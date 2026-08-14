@@ -1,6 +1,8 @@
 import { OakIconName } from "@oaknational/oak-components";
 import { ZodType } from "zod";
 
+import { ResourceType, ResourceTypeValueType } from "@/browser-lib/avo/Avo";
+
 export type School = {
   urn: string;
   la: string;
@@ -62,6 +64,7 @@ export const DOWNLOAD_TYPE_LABELS: {
   icon: OakIconName;
   subTitle?: string;
   fileExt: string;
+  avoResourceType: ResourceTypeValueType;
 }[] = [
   {
     id: "curriculumPlans",
@@ -70,6 +73,7 @@ export const DOWNLOAD_TYPE_LABELS: {
     subTitle: "Word (accessible)",
     icon: "curriculum-plan",
     fileExt: "DOCX",
+    avoResourceType: ResourceType.CURRICULUM_PLAN,
   },
   {
     id: "nationalCurriculum",
@@ -78,30 +82,36 @@ export const DOWNLOAD_TYPE_LABELS: {
     subTitle: "Excel (accessible)",
     icon: "spreadsheet",
     fileExt: "XLSX",
+    avoResourceType: ResourceType.CURRICULUM_DOCUMENT,
   },
   {
     id: "curriculumQuality",
     label: "Curriculum quality",
+    avoResourceType: ResourceType.CURRICULUM_QUALITY,
     ...implementationGuidePdfBase,
   },
   {
     id: "whatsIncluded",
     label: "What's included",
+    avoResourceType: ResourceType.WHATS_INCLUDED,
     ...implementationGuidePdfBase,
   },
   {
     id: "assessment",
     label: "Assessment",
+    avoResourceType: ResourceType.ASSESSMENT,
     ...implementationGuidePdfBase,
   },
   {
     id: "commonQuestions",
     label: "Common questions",
+    avoResourceType: ResourceType.COMMON_QUESTIONS,
     ...implementationGuidePdfBase,
   },
   {
     id: "equipmentList",
     label: "Equipment list",
+    avoResourceType: ResourceType.EQUIPMENT_LIST,
     ...implementationGuidePdfBase,
   },
 ] as const;
