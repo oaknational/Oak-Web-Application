@@ -108,6 +108,7 @@ const ResourceCard: FC<ResourceCardProps> = (props) => {
                 $pv={"spacing-4"}
                 label="Editable"
                 $background={"bg-decorative2-main"}
+                useSpan
               />
             )}
           </>

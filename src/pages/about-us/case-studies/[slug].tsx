@@ -20,7 +20,7 @@ import { resolveOakHref } from "@/common-lib/urls";
 import { NewGutterMaxWidth } from "@/components/GenericPagesComponents/NewGutterMaxWidth";
 import { useOakNotificationsContext } from "@/context/OakNotifications/useOakNotificationsContext";
 import { OaksImpactCaseStudyHeader } from "@/components/GenericPagesComponents/OaksImpactCaseStudyHeader";
-import { isFeatureFlagEnabled } from "@/utils/featureFlagServer";
+import { isFeatureFlagEnabledServer } from "@/utils/featureFlagChecks/server";
 import { OaksImpactCaseStudyContentLayout } from "@/components/GenericPagesComponents/OaksImpactCaseStudyContentLayout";
 import VideoPlayer from "@/components/SharedComponents/VideoPlayer";
 
@@ -73,7 +73,7 @@ const AboutUsOaksImpactCaseStudy: NextPage<
                           href: resolveOakHref({ page: "home" }),
                           text: "Home",
                         },
-                        { href: "/about-us/oaks-impact", text: "Case studies" },
+                        { href: "/about-us/oaks-impact", text: "Oak's impact" },
                         { text: caseStudy.video.title },
                       ]}
                     />
@@ -119,24 +119,7 @@ const AboutUsOaksImpactCaseStudy: NextPage<
                   )
                 }
                 showTranscript={true}
-                transcript={[
-                  ...new Array(20).fill(true).map((i, index) => {
-                    return {
-                      _key: `b9955be0a1c7${index}`,
-                      _type: "block",
-                      children: [
-                        {
-                          _type: "span",
-                          _key: `f44d2133da69${index}`,
-                          text: "Test text.",
-                          marks: [],
-                        },
-                      ],
-                      markDefs: [],
-                      style: "normal",
-                    };
-                  }),
-                ]}
+                transcript={caseStudy.video.transcript ?? undefined}
                 body={caseStudy.textRaw ?? undefined}
               />
             </OakBox>
@@ -188,8 +171,8 @@ export const getServerSideProps: GetServerSideProps<
   AboutUsOaksImpactCaseStudyPageProps,
   URLParams
 > = async (context) => {
-  const isImpactPageEnabled = await isFeatureFlagEnabled(
-    context,
+  const isImpactPageEnabled = await isFeatureFlagEnabledServer(
+    context.req.cookies,
     "oaks-impact",
   );
   if (!isImpactPageEnabled) {

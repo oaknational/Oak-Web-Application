@@ -13,8 +13,13 @@ import OaksCurricula, {
   getStaticProps,
 } from "@/pages/about-us/oaks-curricula";
 import CMSClient from "@/node-lib/cms";
+import { isFeatureFlagEnabledStatic } from "@/utils/featureFlagChecks/static";
 
 jest.mock("../../../node-lib/cms");
+jest.mock("@/utils/featureFlagChecks/static", () => ({
+  isFeatureFlagEnabledStatic: jest.fn(),
+}));
+const mockIsFeatureFlagEnabledStatic = jest.mocked(isFeatureFlagEnabledStatic);
 
 const mockPageData: OaksCurriculaPageProps["pageData"] = {
   header: {
@@ -75,6 +80,7 @@ describe("pages/about/oaks-curricula.tsx", () => {
   beforeEach(() => {
     jest.clearAllMocks();
     jest.resetModules();
+    mockIsFeatureFlagEnabledStatic.mockReturnValue(false);
     (CMSClient.oaksCurriculaPage as jest.Mock).mockResolvedValue(mockPageData);
   });
 
