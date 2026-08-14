@@ -17,7 +17,6 @@ import {
 import type { NationalCurriculumInsightsRoute } from "@/common-lib/urls/nationalCurriculumInsights";
 import CMSClient from "@/node-lib/cms";
 
-
 export type NationalCurriculumInsightsReader = Pick<
   typeof CMSClient,
   "nationalCurriculumInsightsHub" | "nationalCurriculumInsightsSubjectBySlug"
@@ -155,6 +154,7 @@ const createSubject = ({
     pageType: "overview",
     title,
     summary: `Independent overview content for ${title}.`,
+    illustration: null,
     modules: pageModules("overview", title),
     slug,
     curriculumSubjectSlugs,
@@ -203,6 +203,7 @@ const subjectSummary = (
   id: subject.id,
   title: subject.title,
   slug: subject.slug,
+  illustration: subject.illustration,
   curriculumSubjectSlugs: subject.curriculumSubjectSlugs,
   tabs: subject.tabs.map(({ kind, label, page }) => ({
     kind,

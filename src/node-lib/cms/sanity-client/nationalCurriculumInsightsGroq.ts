@@ -144,6 +144,7 @@ export const nationalCurriculumInsightsHubQuery = `
       "id": _id,
       title,
       slug,
+      illustration ${imageProjection},
       curriculumSubjectSlugs,
       tabs[]{
         kind,
@@ -165,6 +166,7 @@ export const nationalCurriculumInsightsSubjectBySlugQuery = `
     title,
     summary,
     slug,
+    illustration ${imageProjection},
     curriculumSubjectSlugs,
     tabs[]{
       kind,

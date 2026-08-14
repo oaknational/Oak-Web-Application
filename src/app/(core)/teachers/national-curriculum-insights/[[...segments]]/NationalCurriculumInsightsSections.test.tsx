@@ -83,6 +83,31 @@ const moduleOf = <T extends NationalCurriculumInsightsModule["__typename"]>(
 ) => module;
 
 describe("National Curriculum Insights sections", () => {
+  it("renders the subject illustration supplied by Sanity", async () => {
+    const data = await getData(["science"]);
+    if (!data.subject) {
+      throw new Error("Expected the Science subject");
+    }
+    data.subject.illustration = contentImage;
+
+    renderWithTheme(
+      <NationalCurriculumInsightsOverview
+        data={data}
+        section={moduleOf({
+          __typename: "NationalCurriculumInsightsOverviewSection",
+          heading: "Science overview",
+          bodyPortableText: portableText("science-overview", "Science copy."),
+        })}
+      />,
+    );
+
+    expect(
+      screen.getByRole("img", {
+        name: "A teacher discussing the curriculum",
+      }),
+    ).toHaveAttribute("src", expect.stringContaining("example-100x100.png"));
+  });
+
   it("renders the configurable editorial, media, table and form sections", async () => {
     const data = await getData();
     const body = portableText("section", "Editable section copy.");

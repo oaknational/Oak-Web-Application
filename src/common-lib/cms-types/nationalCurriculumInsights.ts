@@ -385,6 +385,7 @@ export const nationalCurriculumInsightsSubjectSchema = z.object({
   pageType: z.literal("overview"),
   title: z.string().min(1),
   summary: z.string().min(1),
+  illustration: imageSchema.nullish(),
   modules: z.array(nationalCurriculumInsightsModuleSchema).min(1),
   slug: slugSchema,
   curriculumSubjectSlugs: z.array(z.string().min(1)).min(1),
@@ -399,6 +400,7 @@ export const nationalCurriculumInsightsSubjectSchema = z.object({
 export const nationalCurriculumInsightsSubjectSummarySchema = z.object({
   title: z.string().min(1),
   slug: slugSchema,
+  illustration: imageSchema.nullish(),
   curriculumSubjectSlugs: z.array(z.string().min(1)).min(1),
   tabs: z
     .array(nationalCurriculumInsightsTabSummarySchema)

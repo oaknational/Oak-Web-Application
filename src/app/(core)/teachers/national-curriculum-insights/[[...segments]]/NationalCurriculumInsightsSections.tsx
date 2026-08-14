@@ -208,7 +208,19 @@ export const NationalCurriculumInsightsOverview = ({
   const headingId = useId();
   const isKeyStage = data.route.kind === "subjectPhaseKeyStage";
   const pageKind = overviewPageKind(data);
-  const presentation = nationalCurriculumInsightsPresentation(data.route);
+  const subjectIllustration =
+    data.route.kind === "subject" ? data.subject?.illustration : null;
+  const subjectIllustrationUrl = subjectIllustration?.asset?.url
+    ? getProxiedSanityAssetUrl(subjectIllustration.asset.url)
+    : null;
+  const presentation = nationalCurriculumInsightsPresentation(
+    data.route,
+    subjectIllustrationUrl,
+  );
+  const illustrationIsPresentational =
+    data.route.kind !== "subject" ||
+    !subjectIllustration?.asset?.url ||
+    subjectIllustration.isPresentational === true;
 
   return (
     <OakBox
@@ -254,14 +266,18 @@ export const NationalCurriculumInsightsOverview = ({
         <OverviewImage
           $isKeyStage={isKeyStage}
           $pageKind={pageKind}
-          aria-hidden="true"
+          aria-hidden={illustrationIsPresentational ? true : undefined}
         >
           <OakImage
             src={
               presentation.illustration ??
               "/images/national-curriculum-insights/overview.png"
             }
-            alt=""
+            alt={
+              illustrationIsPresentational
+                ? ""
+                : (subjectIllustration?.altText ?? "")
+            }
             $width="100%"
             $height="100%"
             $objectFit="contain"

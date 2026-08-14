@@ -168,6 +168,14 @@ query nationalCurriculumInsightsHub($isDraftFilter: Sanity_DocumentFilter) {
       slug {
         current
       }
+      illustration {
+        altText
+        isPresentational
+        asset {
+          _id
+          url
+        }
+      }
       curriculumSubjectSlugs
       tabs {
         kind

@@ -10,25 +10,6 @@ import type { NationalCurriculumInsightsRoute } from "@/common-lib/urls/national
 
 const illustrationRoot = "/images/national-curriculum-insights/illustrations";
 
-export const nationalCurriculumInsightsSubjectIllustrations = {
-  "art-and-design": `${illustrationRoot}/subjects/art-and-design.png`,
-  citizenship: `${illustrationRoot}/subjects/citizenship.png`,
-  computing: `${illustrationRoot}/subjects/computing.png`,
-  "cooking-and-nutrition": `${illustrationRoot}/subjects/cooking-and-nutrition.png`,
-  "design-and-technology": `${illustrationRoot}/subjects/design-and-technology.png`,
-  english: `${illustrationRoot}/subjects/english.png`,
-  french: `${illustrationRoot}/subjects/french.png`,
-  geography: `${illustrationRoot}/subjects/geography.png`,
-  german: `${illustrationRoot}/subjects/german.png`,
-  history: `${illustrationRoot}/subjects/history.png`,
-  maths: `${illustrationRoot}/subjects/maths.png`,
-  music: `${illustrationRoot}/subjects/music.png`,
-  "physical-education": `${illustrationRoot}/subjects/physical-education.png`,
-  rshe: `${illustrationRoot}/subjects/rshe.png`,
-  science: `${illustrationRoot}/subjects/science.png`,
-  spanish: `${illustrationRoot}/subjects/spanish.png`,
-} as const satisfies Record<string, string>;
-
 export const nationalCurriculumInsightsPhaseIllustrations = {
   primary: `${illustrationRoot}/phases/primary.svg`,
   secondary: `${illustrationRoot}/phases/secondary.svg`,
@@ -45,11 +26,8 @@ export const nationalCurriculumInsightsFallbackIllustration =
   "/images/national-curriculum-insights/overview.png";
 
 export const nationalCurriculumInsightsSubjectIllustration = (
-  subjectSlug: string,
-) =>
-  nationalCurriculumInsightsSubjectIllustrations[
-    subjectSlug as keyof typeof nationalCurriculumInsightsSubjectIllustrations
-  ] ?? nationalCurriculumInsightsFallbackIllustration;
+  illustrationUrl?: string | null,
+) => illustrationUrl ?? nationalCurriculumInsightsFallbackIllustration;
 
 export const nationalCurriculumInsightsPhaseIllustration = (
   phase: NationalCurriculumInsightsPhase,
@@ -76,6 +54,7 @@ const keyStageIllustrationFromSlug = (
 
 export const nationalCurriculumInsightsPresentation = (
   route: NationalCurriculumInsightsRoute,
+  subjectIllustrationUrl?: string | null,
 ): NationalCurriculumInsightsPresentation => {
   switch (route.kind) {
     case "hub":
@@ -93,7 +72,7 @@ export const nationalCurriculumInsightsPresentation = (
         overviewBackground: "bg-decorative2-subdued",
         accent: "bg-decorative2-main",
         illustration: nationalCurriculumInsightsSubjectIllustration(
-          route.subjectSlug,
+          subjectIllustrationUrl,
         ),
       };
     case "subjectPhase":

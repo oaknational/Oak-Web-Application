@@ -7,41 +7,19 @@ import {
   nationalCurriculumInsightsPhaseIllustrations,
   nationalCurriculumInsightsPresentation,
   nationalCurriculumInsightsSubjectIllustration,
-  nationalCurriculumInsightsSubjectIllustrations,
 } from "./nationalCurriculumInsightsPresentation";
 
 describe("nationalCurriculumInsightsPresentation", () => {
-  it("maps every configured subject to a dedicated illustration", () => {
-    expect(Object.keys(nationalCurriculumInsightsSubjectIllustrations)).toEqual(
-      [
-        "art-and-design",
-        "citizenship",
-        "computing",
-        "cooking-and-nutrition",
-        "design-and-technology",
-        "english",
-        "french",
-        "geography",
-        "german",
-        "history",
-        "maths",
-        "music",
-        "physical-education",
-        "rshe",
-        "science",
-        "spanish",
-      ],
-    );
-    expect(
-      new Set(Object.values(nationalCurriculumInsightsSubjectIllustrations))
-        .size,
-    ).toBe(16);
-  });
+  it("uses a Sanity subject illustration with a neutral fallback", () => {
+    const sanityImage =
+      "https://cdn.sanity.io/images/cuvjke51/feat-national-curriculum-insights/science.png";
 
-  it("uses a neutral fallback for an unknown subject", () => {
-    expect(
-      nationalCurriculumInsightsSubjectIllustration("future-subject"),
-    ).toBe(nationalCurriculumInsightsFallbackIllustration);
+    expect(nationalCurriculumInsightsSubjectIllustration(sanityImage)).toBe(
+      sanityImage,
+    );
+    expect(nationalCurriculumInsightsSubjectIllustration()).toBe(
+      nationalCurriculumInsightsFallbackIllustration,
+    );
   });
 
   it("maps phases and key stages to shared illustrations", () => {
@@ -58,7 +36,6 @@ describe("nationalCurriculumInsightsPresentation", () => {
 
   it("keeps every mapped illustration in the public bundle", () => {
     const illustrations = [
-      ...Object.values(nationalCurriculumInsightsSubjectIllustrations),
       ...Object.values(nationalCurriculumInsightsPhaseIllustrations),
       ...Object.values(nationalCurriculumInsightsKeyStageIllustrations),
       nationalCurriculumInsightsFallbackIllustration,
@@ -73,16 +50,19 @@ describe("nationalCurriculumInsightsPresentation", () => {
 
   it("returns the Figma hierarchy tokens and illustration", () => {
     expect(
-      nationalCurriculumInsightsPresentation({
-        kind: "subject",
-        subjectSlug: "science",
-      }),
+      nationalCurriculumInsightsPresentation(
+        {
+          kind: "subject",
+          subjectSlug: "science",
+        },
+        "https://cdn.sanity.io/images/cuvjke51/feat-national-curriculum-insights/science.png",
+      ),
     ).toMatchObject({
       heroBackground: "bg-decorative2-very-subdued",
       overviewBackground: "bg-decorative2-subdued",
       accent: "bg-decorative2-main",
       illustration:
-        "/images/national-curriculum-insights/illustrations/subjects/science.png",
+        "https://cdn.sanity.io/images/cuvjke51/feat-national-curriculum-insights/science.png",
     });
     expect(
       nationalCurriculumInsightsPresentation({

@@ -10,6 +10,14 @@ query nationalCurriculumInsightsSubjectBySlug(
     id: _id
     title
     summary
+    illustration {
+      altText
+      isPresentational
+      asset {
+        _id
+        url
+      }
+    }
     modules {
       ...NationalCurriculumInsightsModules
     }
