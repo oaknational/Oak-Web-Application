@@ -184,6 +184,14 @@ export const createTeacherBrowseAnalyticsStore = (
       createTeachingMaterialsInitiated: (data) => {
         const { avo, programmeState, journeyId } = get();
 
+        if (programmeState?.browseLevel !== "lesson") {
+          reportAnalyticsError({
+            event: "createTeachingMaterialsInitiated",
+            programmeState,
+          });
+          return;
+        }
+
         const lessonState = requireLessonState(
           "createTeachingMaterialsInitiated",
           programmeState,
@@ -290,6 +298,14 @@ export const createTeacherBrowseAnalyticsStore = (
       lessonMediaClipsStarted: (data) => {
         const { avo, programmeState, journeyId } = get();
 
+        if (programmeState?.browseLevel !== "lesson") {
+          reportAnalyticsError({
+            event: "lessonMediaClipsStarted",
+            programmeState,
+          });
+          return;
+        }
+
         const lessonState = requireLessonState(
           "lessonMediaClipsStarted",
           programmeState,
@@ -311,6 +327,14 @@ export const createTeacherBrowseAnalyticsStore = (
       },
       lessonResourceDownloadStarted: (data) => {
         const { avo, programmeState, journeyId } = get();
+
+        if (programmeState?.browseLevel !== "lesson") {
+          reportAnalyticsError({
+            event: "lessonResourceDownloadStarted",
+            programmeState,
+          });
+          return;
+        }
 
         const lessonState = requireLessonState(
           "lessonResourceDownloadStarted",
@@ -367,6 +391,14 @@ export const createTeacherBrowseAnalyticsStore = (
       lessonShareStarted: () => {
         const { avo, programmeState, journeyId } = get();
 
+        if (programmeState?.browseLevel !== "lesson") {
+          reportAnalyticsError({
+            event: "lessonShareStarted",
+            programmeState,
+          });
+          return;
+        }
+
         const lessonState = requireLessonState(
           "lessonShareStarted",
           programmeState,
@@ -385,6 +417,14 @@ export const createTeacherBrowseAnalyticsStore = (
       },
       mediaClipsPlaylistPlayed: (data) => {
         const { avo, programmeState, journeyId } = get();
+
+        if (programmeState?.browseLevel !== "lesson") {
+          reportAnalyticsError({
+            event: "mediaClipsPlaylistPlayed",
+            programmeState,
+          });
+          return;
+        }
 
         const lessonState = requireLessonState(
           "mediaClipsPlaylistPlayed",
@@ -407,6 +447,14 @@ export const createTeacherBrowseAnalyticsStore = (
       },
       onwardContentSelected: (data) => {
         const { avo, programmeState, journeyId, accessLevel } = get();
+
+        if (programmeState?.browseLevel !== "lesson") {
+          reportAnalyticsError({
+            event: "onwardContentSelected",
+            programmeState,
+          });
+          return;
+        }
 
         const lessonState = requireLessonState(
           "onwardContentSelected",
@@ -484,6 +532,14 @@ export const createTeacherBrowseAnalyticsStore = (
       teachingMaterialsSelected: (data) => {
         const { avo, programmeState, journeyId } = get();
 
+        if (programmeState?.browseLevel !== "lesson") {
+          reportAnalyticsError({
+            event: "teachingMaterialsSelected",
+            programmeState,
+          });
+          return;
+        }
+
         const lessonState = requireLessonState(
           "teachingMaterialsSelected",
           programmeState,
@@ -506,6 +562,14 @@ export const createTeacherBrowseAnalyticsStore = (
       unitDownloaded: () => {
         const { avo, programmeState, journeyId, accessLevel } = get();
 
+        if (programmeState?.browseLevel === "programme") {
+          reportAnalyticsError({
+            event: "unitDownloaded",
+            programmeState,
+          });
+          return;
+        }
+
         const unitState = requireUnitState("unitDownloaded", programmeState);
         if (!unitState) {
           return;
@@ -524,6 +588,14 @@ export const createTeacherBrowseAnalyticsStore = (
       },
       unitDownloadStarted: () => {
         const { avo, programmeState, journeyId, accessLevel } = get();
+
+        if (programmeState?.browseLevel === "programme") {
+          reportAnalyticsError({
+            event: "unitDownloadStarted",
+            programmeState,
+          });
+          return;
+        }
 
         const unitState = requireUnitState(
           "unitDownloadStarted",
@@ -591,6 +663,14 @@ export const createTeacherBrowseAnalyticsStore = (
       videoPlayed: (data) => {
         const { avo, programmeState, journeyId } = get();
 
+        if (programmeState?.browseLevel !== "lesson") {
+          reportAnalyticsError({
+            event: "videoPlayed",
+            programmeState,
+          });
+          return;
+        }
+
         const lessonState = requireLessonState("videoPlayed", programmeState);
         if (!lessonState) {
           return;
@@ -606,6 +686,14 @@ export const createTeacherBrowseAnalyticsStore = (
       },
       videoStarted: (data) => {
         const { avo, programmeState, journeyId } = get();
+
+        if (programmeState?.browseLevel !== "lesson") {
+          reportAnalyticsError({
+            event: "videoStarted",
+            programmeState,
+          });
+          return;
+        }
 
         const lessonState = requireLessonState("videoStarted", programmeState);
         if (!lessonState) {
@@ -623,6 +711,14 @@ export const createTeacherBrowseAnalyticsStore = (
       videoPaused: (data) => {
         const { avo, programmeState, journeyId } = get();
 
+        if (programmeState?.browseLevel !== "lesson") {
+          reportAnalyticsError({
+            event: "videoPaused",
+            programmeState,
+          });
+          return;
+        }
+
         const lessonState = requireLessonState("videoPaused", programmeState);
         if (!lessonState) {
           return;
@@ -638,6 +734,14 @@ export const createTeacherBrowseAnalyticsStore = (
       },
       videoFinished: (data) => {
         const { avo, programmeState, journeyId } = get();
+
+        if (programmeState?.browseLevel !== "lesson") {
+          reportAnalyticsError({
+            event: "videoFinished",
+            programmeState,
+          });
+          return;
+        }
 
         const lessonState = requireLessonState("videoFinished", programmeState);
         if (!lessonState) {
