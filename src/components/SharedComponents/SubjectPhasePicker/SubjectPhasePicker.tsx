@@ -1361,7 +1361,7 @@ const SubjectPhasePicker = ({
 
   const trackViewCurriculum = () => {
     if (selectedPhase && selectedSubject) {
-      track?.programmeAccessed({
+      track.programmeAccessed({
         componentType: "curriculum_visualiser_button",
         activeFilters: [],
         filterType: "Subject filter",

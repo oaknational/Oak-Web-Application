@@ -133,7 +133,7 @@ function SubjectsSection(
             })
           }
           track={() => {
-            track?.programmeRefined({
+            track.programmeRefined({
               componentType: "topnav-browse-button",
               filterType: "Phase filter",
               filterValue: browseData.phases.slug,
@@ -152,7 +152,7 @@ function SubjectsSection(
               })
             }
             track={() => {
-              track?.programmeRefined({
+              track.programmeRefined({
                 componentType: "topnav-browse-button",
                 filterType: "Phase filter",
                 filterValue: browseData.phases.slug,

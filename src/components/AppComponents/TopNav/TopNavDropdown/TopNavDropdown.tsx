@@ -149,7 +149,7 @@ const TeachersPhaseSection = ({
   };
 
   const onKeystageClick = (viewType: string) => {
-    track?.programmeRefined({
+    track.programmeRefined({
       componentType: "topnav-browse-button",
       filterType: viewType.includes("ks") ? "Key stage filter" : "Phase filter",
       filterValue: viewType,
@@ -458,7 +458,7 @@ const TopNavDropdown = (props: TopNavDropdownProps) => {
           }
           onClose={onClose}
           onClick={(subject, keystage) => {
-            track?.programmeRefined({
+            track.programmeRefined({
               componentType: "topnav-browse-button",
               filterType: "Subject filter",
               filterValue: subject.subjectSlug,

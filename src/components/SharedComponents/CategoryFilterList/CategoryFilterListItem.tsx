@@ -30,7 +30,7 @@ const CategoryFilterListItem = <T extends CategoryLinkProps>(
     if (trackingProps) {
       const { keyStageSlug, subjectSlug } = trackingProps;
 
-      track?.programmeRefined({
+      track.programmeRefined({
         componentType: "filter_link",
         filterType: "Learning theme filter",
         filterValue: label,

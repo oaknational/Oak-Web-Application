@@ -184,7 +184,7 @@ export function HamburgerMenuContent(
         >
           <TopNavSubjectButtons
             handleClick={(subject: SubjectsMenu, keystageSlug: string) => {
-              track?.programmeRefined({
+              track.programmeRefined({
                 componentType: "topnav-browse-button",
                 filterType: "Subject filter",
                 filterValue: subject.subjectSlug,
@@ -202,7 +202,7 @@ export function HamburgerMenuContent(
               `teachers-${phase}-${keystageData.slug}-${key}`
             }
             onExamBoardPanelOpen={(subject: SubjectsMenu) => {
-              track?.programmeRefined({
+              track.programmeRefined({
                 componentType: "topnav-browse-button",
                 filterType: "Subject filter",
                 filterValue: subject.subjectSlug,
@@ -241,7 +241,7 @@ export function HamburgerMenuContent(
                   })
                 }
                 track={() => {
-                  track?.programmeRefined({
+                  track.programmeRefined({
                     componentType: "topnav-browse-button",
                     filterType: "Key stage filter",
                     filterValue: child.slug,
@@ -267,7 +267,7 @@ export function HamburgerMenuContent(
           <TopNavSubjectButtons
             identifyingSlug={phase}
             handleClick={(subject: SubjectsMenu) => {
-              track?.programmeRefined({
+              track.programmeRefined({
                 componentType: "topnav-browse-button",
                 filterType: "Subject filter",
                 filterValue: subject.subjectSlug,
@@ -282,7 +282,7 @@ export function HamburgerMenuContent(
             getButtonId={(key) => `teachers-${phase}-${key}`}
             onExamboardPanelClose={handleCloseHamburger}
             onExamBoardPanelOpen={(subject: SubjectsMenu) => {
-              track?.programmeRefined({
+              track.programmeRefined({
                 componentType: "topnav-browse-button",
                 filterType: "Subject filter",
                 filterValue: subject.subjectSlug,
