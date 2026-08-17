@@ -343,15 +343,12 @@ describe("useResourceFormState", () => {
       (fetchHubspotContactDetails as jest.Mock).mockRejectedValue(
         new Error("Failed to fetch contact details"),
       );
-      expect(async () => {
-        const { result } = renderHook(() =>
-          useResourceFormState(downloadProps),
-        );
 
-        await waitFor(() => {
-          expect(result.current.hubspotLoaded).toBe(true);
-        });
-      }).toThrow;
+      const { result } = renderHook(() => useResourceFormState(downloadProps));
+
+      await waitFor(() => {
+        expect(result.current.hubspotLoaded).toBe(true);
+      });
     });
     test("should throw an error for invalid resource type", () => {
       console.error = jest.fn();
