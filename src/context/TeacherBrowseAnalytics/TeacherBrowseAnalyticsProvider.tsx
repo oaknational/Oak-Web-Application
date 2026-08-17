@@ -80,12 +80,8 @@ export const TeacherBrowseAnalyticsStoreProvider = ({
   );
 
   useEffect(() => {
-    store.setState({ journeyId });
-  }, [store, journeyId]);
-
-  useEffect(() => {
-    store.setState({ programmeState, accessLevel });
-  }, [store, programmeState, accessLevel]);
+    store.setState({ journeyId, programmeState, accessLevel });
+  }, [store, journeyId, programmeState, accessLevel]);
 
   return (
     <TeacherBrowseAnalyticsStoreContext.Provider value={store}>
