@@ -18,7 +18,7 @@ import { resolveOakHref } from "@/common-lib/urls";
 import MyLibraryProgrammeCard from "@/components/TeacherComponents/MyLibraryProgrammeCard/MyLibraryProgrammeCard";
 import { getValidSubjectIconName } from "@/utils/getValidSubjectIconName";
 import useAnalytics from "@/context/Analytics/useAnalytics";
-import { useTeacherBrowseAnalyticsOptional } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
+import { useTeacherBrowseAnalytics } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
 
 export type CollectionData = Array<{
   subject: string;
@@ -42,9 +42,7 @@ type MyLibraryProps = {
 export default function MyLibrary(props: Readonly<MyLibraryProps>) {
   const { collectionData, isLoading } = props;
   const { track } = useAnalytics();
-  const trackTeacherBrowse = useTeacherBrowseAnalyticsOptional(
-    (store) => store.track,
-  );
+  const trackTeacherBrowse = useTeacherBrowseAnalytics((store) => store.track);
   const collections = collectionData ?? [];
 
   const hasLoadedCollections = !isLoading && collectionData !== null;

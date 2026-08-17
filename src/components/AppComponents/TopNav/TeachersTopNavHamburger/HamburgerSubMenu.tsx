@@ -27,7 +27,7 @@ import {
   OakLinkPropsRequiringPageOnly,
   resolveOakHref,
 } from "@/common-lib/urls";
-import { useTeacherBrowseAnalyticsOptional } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
+import { useTeacherBrowseAnalytics } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
 
 const isEyfsKeystage = (keystage: KeystageSubjectsMenu) =>
   keystage.slug === "early-years-foundation-stage";
@@ -98,7 +98,7 @@ export function HamburgerMenuContent(
   props: Readonly<TeachersSubNavData & { hamburgerMenu: HamburgerMenuHook }>,
 ) {
   const { hamburgerMenu, ...navData } = props;
-  const track = useTeacherBrowseAnalyticsOptional((store) => store.track);
+  const track = useTeacherBrowseAnalytics((store) => store.track);
   const { submenuOpen, handleNav, handleCloseHamburger } = hamburgerMenu;
 
   if (!submenuOpen) return null;

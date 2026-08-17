@@ -108,30 +108,3 @@ export const useTeacherBrowseAnalytics = <T,>(
 
   return useStore(teacherBrowseAnalyticsStoreContext, selector);
 };
-
-export const useTeacherBrowseAnalyticsOptional = <T,>(
-  selector: (store: TeacherBrowseAnalyticsStore) => T,
-): T | undefined => {
-  const teacherBrowseAnalyticsStoreContext = useContext(
-    TeacherBrowseAnalyticsStoreContext,
-  );
-
-  // Stable fallback so we can call `useStore` unconditionally (Rules of Hooks).
-  const fallbackStore = useMemo(
-    () =>
-      createTeacherBrowseAnalyticsStore({
-        programmeState: null,
-        avo: {} as unknown as TeacherBrowseAnalyticsStore["avo"],
-        journeyId: null,
-        accessLevel: "homepage" as TeacherBrowseAnalyticsStore["accessLevel"],
-      }),
-    [],
-  );
-
-  return useStore(
-    teacherBrowseAnalyticsStoreContext ?? fallbackStore,
-    teacherBrowseAnalyticsStoreContext
-      ? selector
-      : () => undefined as T | undefined,
-  );
-};

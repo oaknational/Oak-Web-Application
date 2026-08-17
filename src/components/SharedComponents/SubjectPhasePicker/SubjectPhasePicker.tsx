@@ -39,7 +39,7 @@ import useMediaQuery from "@/hooks/useMediaQuery";
 import { resolveOakHref } from "@/common-lib/urls";
 import { MaybeVisuallyHidden } from "@/components/AppComponents/TopNav/TopNav";
 import { getSubjectPhaseSlug } from "@/components/TeacherComponents/helpers/getSubjectPhaseSlug";
-import { useTeacherBrowseAnalyticsOptional } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
+import { useTeacherBrowseAnalytics } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
 
 const TruncatedFlex = styled(OakFlex)`
   max-width: calc(100% - 1rem);
@@ -1220,7 +1220,7 @@ const SubjectPhasePicker = ({
   const schoolPhaseInputId = useId();
   const ks4OptionInputId = useId();
 
-  const track = useTeacherBrowseAnalyticsOptional((store) => store.track);
+  const track = useTeacherBrowseAnalytics((store) => store.track);
 
   const initialSubject = subjects.find(
     (option) => option.slug === currentSelection?.subject.slug,

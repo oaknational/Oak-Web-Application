@@ -35,7 +35,7 @@ import {
   isTeachersBrowseItem,
 } from "@/node-lib/curriculum-api-2023/queries/topNav/topNav.schema";
 import { KeystageSlug } from "@/node-lib/curriculum-api-2023/shared.schema";
-import { useTeacherBrowseAnalyticsOptional } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
+import { useTeacherBrowseAnalytics } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
 
 export type TopNavDropdownProps = {
   focusManager:
@@ -115,7 +115,7 @@ const TeachersPhaseSection = ({
   focusManager: DropdownFocusManager<TeachersSubNavData>;
   onClick: (subject: SubjectsMenu, keystage: string) => void;
 }) => {
-  const track = useTeacherBrowseAnalyticsOptional((store) => store.track);
+  const track = useTeacherBrowseAnalytics((store) => store.track);
   const keystageChildren = keystageData.children;
   const phaseSubjectChildren = phaseData.children;
   const hasKeystageChildren = keystageChildren.length > 0;
@@ -442,7 +442,7 @@ const PupilsSection = ({
 const TopNavDropdown = (props: TopNavDropdownProps) => {
   const { activeArea, selectedMenu, teachers, pupils, focusManager, onClose } =
     props;
-  const track = useTeacherBrowseAnalyticsOptional((store) => store.track);
+  const track = useTeacherBrowseAnalytics((store) => store.track);
 
   return (
     <OakFlex $pa={"spacing-40"}>

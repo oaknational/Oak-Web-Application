@@ -29,7 +29,7 @@ import { buildAboutUsAnalytics } from "@/utils/analytics-builders";
 import { isFeatureFlagEnabledStatic } from "@/utils/featureFlagChecks/static";
 import { getCloudinaryImageUrl } from "@/utils/getCloudinaryImageUrl";
 import { resolveOakHref } from "@/common-lib/urls";
-import { useTeacherBrowseAnalyticsOptional } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
+import { useTeacherBrowseAnalytics } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
 
 const trackAboutUsFooter = () =>
   aboutUsAccessed(buildAboutUsAnalytics("about_us_footer"));
@@ -205,7 +205,7 @@ type LayoutFooterLinkProps = {
 
 const FooterLink: FC<LayoutFooterLinkProps> = (props) => {
   const { openSettings } = useCookieConsent();
-  const track = useTeacherBrowseAnalyticsOptional((store) => store.track);
+  const track = useTeacherBrowseAnalytics((store) => store.track);
 
   if (props.type === "consent-manager-toggle") {
     return (

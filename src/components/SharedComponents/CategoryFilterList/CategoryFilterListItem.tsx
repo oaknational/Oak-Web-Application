@@ -2,7 +2,7 @@ import { OakLI, OakLink } from "@oaknational/oak-components";
 
 import type { LearningThemeSelectedTrackingProps } from "@/components/SharedComponents/CategoryFilterList";
 import { resolveOakHref, ResolveOakHrefProps } from "@/common-lib/urls";
-import { useTeacherBrowseAnalyticsOptional } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
+import { useTeacherBrowseAnalytics } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
 
 export type CategoryLinkProps = ResolveOakHrefProps;
 export interface Category<T extends CategoryLinkProps> {
@@ -22,7 +22,7 @@ const CategoryFilterListItem = <T extends CategoryLinkProps>(
   const { label, linkProps, isSelected, setSelected, trackingProps } = props;
   const arrowHidden = !isSelected;
 
-  const track = useTeacherBrowseAnalyticsOptional((store) => store.track);
+  const track = useTeacherBrowseAnalytics((store) => store.track);
 
   const onClick = () => {
     setSelected(linkProps);

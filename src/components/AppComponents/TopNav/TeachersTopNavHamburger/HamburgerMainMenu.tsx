@@ -19,7 +19,7 @@ import {
   TeachersSubNavData,
 } from "@/node-lib/curriculum-api-2023/queries/topNav/topNav.schema";
 import { resolveOakHref } from "@/common-lib/urls";
-import { useTeacherBrowseAnalyticsOptional } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
+import { useTeacherBrowseAnalytics } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
 
 export function MainMenuContent(
   props: Readonly<TeachersSubNavData & { hamburgerMenu: HamburgerMenuHook }>,
@@ -81,7 +81,7 @@ function SubjectsSection(
   props: Readonly<TeachersBrowse & { hamburgerMenu: HamburgerMenuHook }>,
 ) {
   const { hamburgerMenu, ...browseData } = props;
-  const track = useTeacherBrowseAnalyticsOptional((store) => store.track);
+  const track = useTeacherBrowseAnalytics((store) => store.track);
 
   const getSubjectsTitle = () =>
     browseData.phases.slug === "primary"
