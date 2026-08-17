@@ -144,7 +144,7 @@ describe("TeacherBrowseAnalyticsStore", () => {
     );
   });
 
-  test("unitRefined on programme-level state omits unit analytics and still tracks", () => {
+  test("unitRefined does not include unit analytics properties when accessLevel is programme", () => {
     const programmeState = getProgrammeStateForProgramme(
       teachersLessonOverviewFixture(),
     );
