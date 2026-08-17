@@ -11,7 +11,6 @@ import {
 import useLocalStorageForDownloads from "./useLocalStorageForDownloads";
 
 import errorReporter from "@/common-lib/error-reporter";
-import OakError from "@/errors/OakError";
 
 type HubspotSchool = {
   schoolId: string;
@@ -105,11 +104,7 @@ export const useSyncHubspotAndLocalStorage = ({
           setValue("school", school.schoolId);
         }
       } catch (err) {
-        const error = new OakError({
-          code: "hubspot/contacts",
-          originalError: err,
-        });
-        reportError(error);
+        reportError(err);
       } finally {
         if (!cancelled) {
           setHubspotLookupCompleted(true);
