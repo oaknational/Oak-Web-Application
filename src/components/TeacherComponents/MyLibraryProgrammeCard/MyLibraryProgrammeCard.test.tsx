@@ -67,7 +67,7 @@ describe("MyLibraryProgrammeCard", () => {
   it("renders a subject icon in the header", async () => {
     render(<MyLibraryProgrammeCard {...defaultProps} />);
 
-    const subjectIcon = await screen.getByTestId("subjectIcon");
+    const subjectIcon = screen.getByTestId("subjectIcon");
     expect(subjectIcon).toBeInTheDocument();
   });
 
