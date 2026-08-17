@@ -17,6 +17,9 @@ import {
   CurriculumSelectionSlugs,
   CurriculumSelectionTitles,
 } from "@/utils/curriculum/slugs";
+import { CurriculumFiltersProvider } from "@/context/CurriculumFilters";
+import { getDefaultFilter } from "@/utils/curriculum/filtering";
+import { CurriculumFilters } from "@/utils/curriculum/types";
 
 const subjectPhaseSlug = "science-secondary-aqa";
 
@@ -140,13 +143,25 @@ const lightweightUnitsProps = {
   ),
 };
 
-const renderProgrammeView = (props?: Partial<ProgrammePageProps>) => {
-  return renderWithProviders()(<ProgrammeView {...defaultProps} {...props} />);
+const renderProgrammeView = (
+  props?: Partial<ProgrammePageProps> & { initialFilter?: CurriculumFilters },
+) => {
+  const { initialFilter, ...viewProps } = props ?? {};
+  const mergedProps = { ...defaultProps, ...viewProps };
+
+  return renderWithProviders()(
+    <CurriculumFiltersProvider
+      defaultFilter={getDefaultFilter(mergedProps.curriculumUnitsFormattedData)}
+      initialFilter={initialFilter}
+    >
+      <ProgrammeView {...mergedProps} />
+    </CurriculumFiltersProvider>,
+  );
 };
 
 describe("ProgrammeView", () => {
   it("renders the programme header", () => {
-    renderWithProviders()(<ProgrammeView {...defaultProps} />);
+    renderProgrammeView();
     const heading = screen.getByRole("heading", {
       name: "Science secondary AQA",
     });
