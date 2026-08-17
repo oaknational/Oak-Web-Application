@@ -36,7 +36,6 @@ describe("getTeachersSubjectNavHref", () => {
         subject: {
           slug: "maths",
           pathwaySlug: null,
-          programmeSlug: "maths-foundation-early-years-foundation-stage-l",
         },
         keyStageSlug: "early-years-foundation-stage",
         phaseSlug: "primary",
@@ -53,7 +52,6 @@ describe("getTeachersSubjectNavHref", () => {
         subject: {
           slug: "history",
           pathwaySlug: null,
-          programmeSlug: "history-primary-ks2",
         },
         keyStageSlug: "ks2",
         phaseSlug: "primary",
@@ -70,7 +68,6 @@ describe("getTeachersSubjectNavHref", () => {
         subject: {
           slug: "history",
           pathwaySlug: null,
-          programmeSlug: "history-secondary-ks3",
         },
         keyStageSlug: "ks3",
         phaseSlug: "secondary",
@@ -87,7 +84,6 @@ describe("getTeachersSubjectNavHref", () => {
         subject: {
           slug: "citizenship",
           pathwaySlug: null,
-          programmeSlug: "citizenship-secondary-ks4-gcse",
         },
         keyStageSlug: "ks4",
         phaseSlug: "secondary",
@@ -104,7 +100,6 @@ describe("getTeachersSubjectNavHref", () => {
         subject: {
           slug: "design-technology",
           pathwaySlug: null,
-          programmeSlug: "design-technology-secondary-ks3",
         },
         keyStageSlug: "ks3",
         phaseSlug: "secondary",
@@ -121,7 +116,6 @@ describe("getTeachersSubjectNavHref", () => {
         subject: {
           slug: "citizenship",
           pathwaySlug: "core",
-          programmeSlug: "citizenship-secondary-ks4-core",
         },
         keyStageSlug: "ks4",
         phaseSlug: "secondary",

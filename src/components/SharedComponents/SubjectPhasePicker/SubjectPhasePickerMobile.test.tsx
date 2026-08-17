@@ -1,6 +1,8 @@
 import userEvent from "@testing-library/user-event";
 import { waitFor } from "@testing-library/react";
 
+import { CurrentSelection } from "./SubjectPhasePicker";
+
 import curriculumPhaseOptions from "@/browser-lib/fixtures/curriculumPhaseOptions";
 import SubjectPhasePicker from "@/components/SharedComponents/SubjectPhasePicker";
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
@@ -561,12 +563,11 @@ describe("Component - Mobile subject phase picker", () => {
     });
 
     test("populates lot picker with the correct subject and phase selections", () => {
-      const currentSelection = {
+      const currentSelection: CurrentSelection = {
         subject: {
           title: "English",
           slug: "english",
           phases: [],
-          cycle: "1",
           ks4_options: [{ title: "AQA", slug: "aqa" }],
           keystages: [
             { title: "KS1", slug: "ks1" },

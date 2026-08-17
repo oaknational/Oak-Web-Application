@@ -228,6 +228,8 @@ type AboutUsMeetTheTeamBioLinkProps = {
 };
 type AboutUsGetInvolvedLinkProps = { page: "about-get-involved" };
 type AboutUsOaksCurriculaLinkProps = { page: "about-oaks-curricula" };
+type AboutUsOaksImpactLinkProps = { page: "about-oaks-impact" };
+type AboutUsCaseStudyLinkProps = { page: "about-case-study"; slug: string };
 
 type CareersLinkProps = { page: "careers" };
 type ContactUsLinkProps = { page: "contact" };
@@ -376,6 +378,8 @@ export type OakLinkProps =
   | AboutUsMeetTheTeamBioLinkProps
   | AboutUsGetInvolvedLinkProps
   | AboutUsOaksCurriculaLinkProps
+  | AboutUsOaksImpactLinkProps
+  | AboutUsCaseStudyLinkProps
   | CareersLinkProps
   | ContactUsLinkProps
   | HomeLinkProps
@@ -578,6 +582,18 @@ export const OAK_PAGES: {
     analyticsPageName: "About Us: Oak's curricula",
     configType: "internal",
     pageType: "about-oaks-curricula",
+  }),
+  "about-oaks-impact": createOakPageConfig({
+    pathPattern: "/about-us/oaks-impact",
+    analyticsPageName: "About Us: Oak's Impact",
+    configType: "internal",
+    pageType: "about-oaks-impact",
+  }),
+  "about-case-study": createOakPageConfig({
+    pathPattern: "/about-us/case-studies/:slug",
+    analyticsPageName: "About Us: Case Study",
+    configType: "internal",
+    pageType: "about-case-study",
   }),
   careers: createOakPageConfig({
     url: "https://app.beapplied.com/org/1574/oak-national-academy",

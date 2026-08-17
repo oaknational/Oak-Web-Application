@@ -4,6 +4,7 @@ import {
   syntheticUnitvariantLessonsByKsSchema,
   LessonContentCamel as LessonContentCamelFull,
   SyntheticUnitvariantLessonsByKsCamel,
+  subjectSlugs,
 } from "@oaknational/oak-curriculum-schema";
 
 import {
@@ -61,7 +62,7 @@ export const lessonOverviewSchema = baseLessonOverviewSchema.extend({
   unitTitle: z.string(),
   keyStageSlug: z.string(),
   keyStageTitle: z.string(),
-  subjectSlug: z.string(),
+  subjectSlug: subjectSlugs,
   subjectTitle: z.string(),
   subjectParent: z.string().nullish(),
   yearTitle: z.string().nullish(),

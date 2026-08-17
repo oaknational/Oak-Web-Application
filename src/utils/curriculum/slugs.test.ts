@@ -181,7 +181,8 @@ describe("isValidSubjectPhaseSlug", () => {
   it("invalid to return false", () => {
     expect(
       isValidSubjectPhaseSlug(testCurriculumPhaseOptions, {
-        phaseSlug: "foo",
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        phaseSlug: "foo" as any,
         subjectSlug: "english",
         ks4OptionSlug: null,
       }),
@@ -307,7 +308,7 @@ describe("getKs4RedirectSlug", () => {
   it("return undefined if no match", () => {
     expect(
       getKs4RedirectSlug(testCurriculumPhaseOptions, {
-        subjectSlug: "test",
+        subjectSlug: "maths",
         phaseSlug: "secondary",
         ks4OptionSlug: null,
       }),
@@ -407,20 +408,20 @@ describe("createTeacherProgrammeSlug", () => {
       year: "10",
     });
     expect(createTeacherProgrammeSlug(unitData, "aqa", "foundation")).toEqual(
-      "transfiguration-secondary-ks4-foundation-aqa",
+      "maths-secondary-ks4-foundation-aqa",
     );
   });
   test("unit data for ks3 returns the correct programme slug", () => {
     const unitData = createUnit({ keystage_slug: "ks3", year: "9" });
     expect(createTeacherProgrammeSlug(unitData, "aqa")).toEqual(
-      "transfiguration-secondary-ks3",
+      "maths-secondary-ks3",
     );
   });
 
   test("unit data for ks3 returns the correct programme slug", () => {
     const unitData = createUnit({ keystage_slug: "ks3", year: "9" });
     expect(createTeacherProgrammeSlug(unitData, "aqa")).toEqual(
-      "transfiguration-secondary-ks3",
+      "maths-secondary-ks3",
     );
   });
 
@@ -442,7 +443,7 @@ describe("createTeacherProgrammeSlug", () => {
   test("core pathway excludes examboard from slug (PE)", () => {
     const unitData = createUnit({
       slug: "health-fitness-and-wellbeing",
-      subject: "Physical Education",
+      subject: "Physical education",
       subject_parent: null,
       subject_parent_slug: null,
       subject_slug: "physical-education",

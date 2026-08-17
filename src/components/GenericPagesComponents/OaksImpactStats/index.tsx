@@ -2,6 +2,7 @@ import {
   OakBox,
   OakFlex,
   OakHeading,
+  OakImage,
   OakSecondaryButton,
 } from "@oaknational/oak-components";
 import { Fragment } from "react";
@@ -10,16 +11,19 @@ import z from "zod";
 import { NewGutterMaxWidth } from "../NewGutterMaxWidth";
 
 import { oaksImpactPageStatsSectionSchema } from "@/common-lib/cms-types/aboutPages";
-import CMSImage from "@/components/SharedComponents/CMSImage/CMSImage";
 import { PortableTextWithDefaults } from "@/components/SharedComponents/PortableText";
 import { getLinkHref } from "@/utils/portableText/resolveInternalHref";
+import getProxiedSanityAssetUrl from "@/common-lib/urls/getProxiedSanityAssetUrl";
 
 export type OaksImpactStatsProps = z.infer<
   typeof oaksImpactPageStatsSectionSchema
 >;
 export function OaksImpactStats(props: Readonly<OaksImpactStatsProps>) {
   return (
-    <OakFlex $background={"bg-decorative2-main"} $pv={"spacing-80"}>
+    <OakFlex
+      $background={"bg-decorative2-main"}
+      $pv={["spacing-56", "spacing-80", "spacing-80"]}
+    >
       <NewGutterMaxWidth>
         <OakFlex
           $flexDirection={["column", "row", "row"]}
@@ -34,7 +38,7 @@ export function OaksImpactStats(props: Readonly<OaksImpactStatsProps>) {
               <OakHeading
                 tag={"h2"}
                 $color={"text-primary"}
-                $font={"heading-3"}
+                $font={["heading-5", "heading-3", "heading-3"]}
               >
                 {props.textBlock.title}
               </OakHeading>
@@ -77,6 +81,7 @@ export function OaksImpactStats(props: Readonly<OaksImpactStatsProps>) {
                       $flexDirection={["column", "row", "row"]}
                       $borderRadius={"border-radius-m2"}
                       $gap={["spacing-20", "spacing-20", "spacing-32"]}
+                      $alignItems={["flex-start", "center"]}
                     >
                       <OakBox
                         $minWidth="spacing-120"
@@ -84,7 +89,13 @@ export function OaksImpactStats(props: Readonly<OaksImpactStatsProps>) {
                         $width="spacing-120"
                         $height="spacing-120"
                       >
-                        <CMSImage image={item.icon} />
+                        <OakImage
+                          src={getProxiedSanityAssetUrl(
+                            item.icon.asset?.url ?? "",
+                          )}
+                          alt={item.icon.altText ?? ""}
+                          $aspectRatio={"1/1"}
+                        />
                       </OakBox>
                       <OakFlex
                         $flexDirection={"column"}
@@ -93,7 +104,11 @@ export function OaksImpactStats(props: Readonly<OaksImpactStatsProps>) {
                       >
                         <OakBox
                           $color={"text-primary"}
-                          $font={"heading-light-1"}
+                          $font={[
+                            "heading-light-3",
+                            "heading-light-3",
+                            "heading-light-1",
+                          ]}
                         >
                           {item.heading}
                         </OakBox>

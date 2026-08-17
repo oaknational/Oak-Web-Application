@@ -10,6 +10,7 @@ export const caseStudySchema = z.object({
   }),
   image: imageSchema,
   textRaw: portableTextSchema.nullish(),
+  publishedAt: z.string(),
 });
 
 export type CaseStudy = z.infer<typeof caseStudySchema>;

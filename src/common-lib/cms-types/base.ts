@@ -2,6 +2,8 @@ import * as z from "zod";
 
 import { OmitKeepDiscriminated } from "../../utils/generics";
 
+import { portableTextSchema } from "./portableText";
+
 export const documentSchema = z.object({
   id: z.string(),
 });
@@ -70,6 +72,7 @@ export type ImageWithAltTextAndDarkMode = z.infer<
 export const videoSchema = z.object({
   title: z.string(),
   captions: z.array(z.string()).nullish(),
+  transcript: portableTextSchema.nullish(),
   video: z.object({
     asset: z.object({
       assetId: z.string(),
