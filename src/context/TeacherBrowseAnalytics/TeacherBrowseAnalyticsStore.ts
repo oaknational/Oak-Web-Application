@@ -20,13 +20,11 @@ import {
   AccessLevelValueType,
   ActiveFilters,
   AnalyticsUseCaseValueType,
-  ComponentType as AvoComponentType,
   ComponentType,
   ComponentTypeValueType,
   DownloadResourceButtonNameValueType,
   EngagementIntent,
   EventVersionValueType,
-  FilterType,
   FilterTypeValueType,
   LearningTierValueType,
   MediaClipsButtonNameValueType,
@@ -110,7 +108,12 @@ export type TeacherBrowseAnalyticsStore = {
       isHighlighted: boolean,
       selectedThread: Thread | undefined,
     ) => void;
-    unitRefined: () => void;
+    unitRefined: (props: {
+      componentType: ComponentTypeValueType;
+      activeFilters: ActiveFilters;
+      filterType: FilterTypeValueType;
+      filterValue: string;
+    }) => void;
     videoPlayed: (props: VideoTrackingProperties) => void;
     videoStarted: (props: VideoTrackingProperties) => void;
     videoPaused: (props: VideoTrackingProperties) => void;
@@ -424,7 +427,12 @@ export const createTeacherBrowseAnalyticsStore = (
           navigationType: "narrow",
         });
       },
-      programmeAccessed: () => {
+      programmeAccessed: ({
+        componentType,
+        activeFilters,
+        filterType,
+        filterValue,
+      }) => {
         const { avo, programmeState, journeyId, accessLevel } = get();
 
         const analyticsProperties = programmeState
@@ -436,12 +444,12 @@ export const createTeacherBrowseAnalyticsStore = (
           ...analyticsProperties,
           journeyId,
           accessLevel,
-          engagementIntent: EngagementIntent.EXPLORE,
-          componentType: AvoComponentType.PAGE_VIEW,
+          engagementIntent: EngagementIntent.REFINE,
+          componentType,
           navigationType: "narrow",
-          filterType: FilterType.SUBJECT_FILTER,
-          filterValue: "",
-          activeFilters: {},
+          filterType,
+          filterValue,
+          activeFilters,
           googleLoginHint: null,
           clientEnvironment: null,
         });
@@ -552,7 +560,12 @@ export const createTeacherBrowseAnalyticsStore = (
 
         avo.unitOverviewAccessed(analyticsProperties);
       },
-      unitRefined: () => {
+      unitRefined: ({
+        componentType,
+        filterType,
+        filterValue,
+        activeFilters,
+      }) => {
         const { avo, programmeState, journeyId, accessLevel } = get();
 
         const analyticsProperties =
@@ -566,11 +579,11 @@ export const createTeacherBrowseAnalyticsStore = (
           journeyId,
           accessLevel,
           engagementIntent: EngagementIntent.REFINE,
-          componentType: AvoComponentType.UNIT_SEQUENCE_TAB,
+          componentType,
           navigationType: "narrow",
-          filterType: FilterType.CONTENT_TYPE_FILTER,
-          filterValue: "units",
-          activeFilters: {},
+          filterType,
+          filterValue,
+          activeFilters,
           googleLoginHint: null,
           clientEnvironment: null,
         });
