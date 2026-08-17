@@ -1,6 +1,5 @@
 "use client";
 import { FC } from "react";
-import { keystageDescriptions } from "@oaknational/oak-curriculum-schema";
 import {
   OakGrid,
   OakGridArea,
@@ -24,12 +23,10 @@ import Link from "next/link";
 import { aboutUsAccessed } from "@/browser-lib/avo/Avo";
 import { OAK_SOCIALS } from "@/components/SharedComponents/SocialButtons/SocialButtons";
 import SocialButtons from "@/components/SharedComponents/SocialButtons";
-import { toSentenceCase } from "@/node-lib/curriculum-api-2023/helpers";
 import { buildAboutUsAnalytics } from "@/utils/analytics-builders";
 import { isFeatureFlagEnabledStatic } from "@/utils/featureFlagChecks/static";
 import { getCloudinaryImageUrl } from "@/utils/getCloudinaryImageUrl";
 import { resolveOakHref } from "@/common-lib/urls";
-import { useTeacherBrowseAnalytics } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
 
 const trackAboutUsFooter = () =>
   aboutUsAccessed(buildAboutUsAnalytics("about_us_footer"));
@@ -205,7 +202,6 @@ type LayoutFooterLinkProps = {
 
 const FooterLink: FC<LayoutFooterLinkProps> = (props) => {
   const { openSettings } = useCookieConsent();
-  const track = useTeacherBrowseAnalytics((store) => store.track);
 
   if (props.type === "consent-manager-toggle") {
     return (
@@ -225,23 +221,6 @@ const FooterLink: FC<LayoutFooterLinkProps> = (props) => {
       isTrailingIcon
       target={props.icon === "external" ? "_blank" : undefined}
       onClick={() => {
-        const sentenceCaseText = props.text
-          .split(" ")
-          .map(toSentenceCase)
-          .join(" ");
-
-        if (
-          track?.programmeAccessed &&
-          keystageDescriptions.safeParse(sentenceCaseText).success
-        ) {
-          track.programmeAccessed({
-            componentType: "footer_menu_link",
-            activeFilters: [],
-            filterType: "Key stage filter",
-            filterValue: props.text,
-          });
-        }
-
         if (props.track) {
           props.track();
         }
