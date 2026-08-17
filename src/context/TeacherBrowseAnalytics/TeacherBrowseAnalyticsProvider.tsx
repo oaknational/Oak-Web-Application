@@ -134,4 +134,4 @@ export const useTeacherBrowseAnalyticsOptional = <T,>(
       ? selector
       : () => undefined as T | undefined,
   );
-}
+};
