@@ -138,12 +138,8 @@ export const useResourceFormState = (props: UseResourceFormStateProps) => {
     setSchoolUrn,
   } = useSyncHubspotAndLocalStorage({ setValue });
 
-  const resources = useMemo(() => getResourcesForType(props), [props]);
-  const additionalResources = useMemo(
-    () => getAdditionalResourcesForType(props),
-    [props],
-  );
-
+  const resources = getResourcesForType(props);
+  const additionalResources = getAdditionalResourcesForType(props);
   const initialResources = useMemo(
     () => getInitialResourceTypes(props.type, resources),
     [props.type, resources],
