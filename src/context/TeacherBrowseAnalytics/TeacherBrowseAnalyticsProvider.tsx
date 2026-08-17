@@ -115,10 +115,23 @@ export const useTeacherBrowseAnalyticsOptional = <T,>(
   const teacherBrowseAnalyticsStoreContext = useContext(
     TeacherBrowseAnalyticsStoreContext,
   );
-  if (!teacherBrowseAnalyticsStoreContext) {
-    return undefined;
-  }
 
-  // eslint-disable-next-line react-hooks/rules-of-hooks
-  return useStore(teacherBrowseAnalyticsStoreContext, selector);
-};
+  // Stable fallback so we can call `useStore` unconditionally (Rules of Hooks).
+  const fallbackStore = useMemo(
+    () =>
+      createTeacherBrowseAnalyticsStore({
+        programmeState: null,
+        avo: {} as unknown as TeacherBrowseAnalyticsStore["avo"],
+        journeyId: null,
+        accessLevel: "homepage" as TeacherBrowseAnalyticsStore["accessLevel"],
+      }),
+    [],
+  );
+
+  return useStore(
+    teacherBrowseAnalyticsStoreContext ?? fallbackStore,
+    teacherBrowseAnalyticsStoreContext
+      ? selector
+      : () => undefined as T | undefined,
+  );
+}
