@@ -366,6 +366,43 @@ describe("TopNavDropdown", () => {
           }),
         ).not.toBeInTheDocument();
       });
+      it("calls programmeRefined when clicking an exam board button", async () => {
+        const user = userEvent.setup();
+        render(
+          <TopNavDropdown
+            teachers={topNavFixture.teachers!}
+            pupils={topNavFixture.pupils!}
+            activeArea="TEACHERS"
+            selectedMenu="secondary"
+            focusManager={teachersFocusManager}
+            onClose={onCloseMock}
+          />,
+        );
+
+        const keystagesButton = await screen.findByRole("button", {
+          name: "Key stages",
+        });
+        await user.click(keystagesButton);
+
+        const ks4Button = await screen.findByRole("button", {
+          name: "Key stage 4",
+        });
+        await user.click(ks4Button);
+
+        const geographyButton = await screen.findByRole("button", {
+          name: "Geography",
+        });
+        geographyButton.addEventListener("click", (e) => e.preventDefault());
+        await user.click(geographyButton);
+
+        expect(mockProgrammeRefined).toHaveBeenCalledWith(
+          expect.objectContaining({
+            componentType: "topnav-browse-button",
+            filterType: "Key stage filter",
+            filterValue: "ks4",
+          }),
+        );
+      });
     });
     describe("phases section", () => {
       it("renders phase tabs with subjects", async () => {

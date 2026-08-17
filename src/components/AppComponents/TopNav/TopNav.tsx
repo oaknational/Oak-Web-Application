@@ -203,14 +203,19 @@ const TopNav = (props: TopNavProps) => {
               $bb="border-solid-s"
               $borderColor="border-neutral-lighter"
             >
-              <TopNavDropdown
-                focusManager={focusManager}
-                activeArea={activeArea}
-                selectedMenu={selectedMenu}
-                teachers={teachers}
-                pupils={pupils}
-                onClose={handleCloseDropdown}
-              />
+              <TeacherBrowseAnalyticsStoreProvider
+                programmeState={null}
+                accessLevel={"homepage"}
+              >
+                <TopNavDropdown
+                  focusManager={focusManager}
+                  activeArea={activeArea}
+                  selectedMenu={selectedMenu}
+                  teachers={teachers}
+                  pupils={pupils}
+                  onClose={handleCloseDropdown}
+                />
+              </TeacherBrowseAnalyticsStoreProvider>
             </OakFlex>
           </MaybeVisuallyHidden>
         )
