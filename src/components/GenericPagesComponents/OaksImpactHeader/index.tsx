@@ -121,7 +121,7 @@ export function OaksImpactHeader({
                 />
               }
               body={videoDescription}
-              transcript={["test", "test", "test"]}
+              transcript={video.transcript ?? undefined}
               showTranscript={true}
             />
           </VideoLayout>

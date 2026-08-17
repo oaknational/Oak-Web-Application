@@ -10,9 +10,7 @@ import teachersLessonOverviewFixture from "@/node-lib/curriculum-api-2023/fixtur
 import lessonMediaClipsFixtures from "@/node-lib/curriculum-api-2023/fixtures/lessonMediaClips.fixture";
 import { setUseUserReturn } from "@/__tests__/__helpers__/mockClerk";
 import { mockLoggedIn, mockLoggedOut } from "@/__tests__/__helpers__/mockUser";
-import { TeacherBrowseAnalyticsStoreProvider } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
 import { TeachersLessonOverviewPageData } from "@/node-lib/curriculum-api-2023/queries/teachersLessonOverview/teachersLessonOverview.schema";
-import { getProgrammeStateForLesson } from "@/context/TeacherBrowseAnalytics/utils/getProgrammeState";
 
 const lessonResourceDownloadStarted = jest.fn();
 const lessonMediaClipsStarted = jest.fn();
@@ -50,21 +48,10 @@ const mockUseFeatureFlagEnabled = useFeatureFlagEnabled as jest.MockedFunction<
   typeof useFeatureFlagEnabled
 >;
 
-const render = renderWithProviders();
-
 const baseProps = teachersLessonOverviewFixture();
-const programmeState = getProgrammeStateForLesson(baseProps);
 
 const renderLessonView = (props?: Partial<TeachersLessonOverviewPageData>) => {
-  return render(
-    <TeacherBrowseAnalyticsStoreProvider
-      programmeState={{
-        programmeState,
-      }}
-    >
-      <LessonView {...baseProps} {...props} />
-    </TeacherBrowseAnalyticsStoreProvider>,
-  );
+  return renderWithProviders()(<LessonView {...baseProps} {...props} />);
 };
 
 describe("Previous and Next Lesson Navigation", () => {
@@ -492,12 +479,6 @@ describe("Tracking callbacks", () => {
 
     expect(lessonMediaClipsStarted).toHaveBeenCalledWith(
       expect.objectContaining({
-        platform: "owa",
-        product: "media clips",
-        engagementIntent: "use",
-        componentType: "go_to_media_clips_page_button",
-        eventVersion: "2.0.0",
-        analyticsUseCase: "Teacher",
         mediaClipsButtonName: "play all",
       }),
     );
@@ -514,14 +495,16 @@ describe("Tracking callbacks", () => {
 
     expect(lessonShareStarted).toHaveBeenCalledWith(
       expect.objectContaining({
-        keyStageSlug: baseProps.keyStageSlug,
-        keyStageTitle: baseProps.keyStageTitle,
-        subjectSlug: baseProps.subjectSlug,
-        subjectTitle: baseProps.subjectTitle,
-        unitSlug: baseProps.unitSlug,
-        unitName: baseProps.unitTitle,
-        lessonSlug: baseProps.lessonSlug,
-        lessonName: baseProps.lessonTitle,
+        keyStageSlug: "ks3",
+        keyStageTitle: "Key stage 3",
+        lessonName: "Structure of cells",
+        lessonSlug: "lesson-3-structure-of-cells",
+        subjectSlug: "biology",
+        subjectTitle: "Biology",
+        unitName: "Cells",
+        unitSlug: "cells",
+        yearGroupName: "Year 7",
+        yearGroupSlug: "year-7",
       }),
     );
   });

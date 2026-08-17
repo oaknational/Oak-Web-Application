@@ -820,11 +820,11 @@ exports[`Teachers Page Page component renders 1`] = `
                             style="width: 50%;"
                           >
                             <div
-                              class="sc-aXZVg sc-hZDyAQ sc-42aa3e70-1 eAVyBL goHzHJ bcHUdy"
+                              class="sc-aXZVg sc-hZDyAQ sc-779bade6-1 eAVyBL goHzHJ jSpMVc"
                             >
                               <button
                                 aria-expanded="false"
-                                class="sc-42aa3e70-3 cOXQYL"
+                                class="sc-779bade6-3 iwnwDt"
                                 data-testid="subject-picker-button"
                                 title="Subject"
                               >
@@ -889,14 +889,14 @@ exports[`Teachers Page Page component renders 1`] = `
                               class="sc-aXZVg sc-gEvEer Clfe dbzvZO"
                             >
                               <div
-                                class="sc-aXZVg sc-hZDyAQ sc-42aa3e70-1 hWaSHT goHzHJ bcHUdy"
+                                class="sc-aXZVg sc-hZDyAQ sc-779bade6-1 hWaSHT goHzHJ jSpMVc"
                               >
                                 <div
                                   class="sc-aXZVg sc-gEvEer jPvJsJ inWRga"
                                 >
                                   <button
                                     aria-expanded="false"
-                                    class="sc-42aa3e70-3 cOXQYL"
+                                    class="sc-779bade6-3 iwnwDt"
                                     data-testid="phase-picker-button"
                                     title="Phase"
                                   >
@@ -1139,11 +1139,11 @@ exports[`Teachers Page Page component renders 1`] = `
                           style="width: 50%;"
                         >
                           <div
-                            class="sc-aXZVg sc-hZDyAQ sc-42aa3e70-1 eAVyBL goHzHJ bcHUdy"
+                            class="sc-aXZVg sc-hZDyAQ sc-779bade6-1 eAVyBL goHzHJ jSpMVc"
                           >
                             <button
                               aria-expanded="false"
-                              class="sc-42aa3e70-3 cOXQYL"
+                              class="sc-779bade6-3 iwnwDt"
                               data-testid="subject-picker-button"
                               title="Subject"
                             >
@@ -1208,14 +1208,14 @@ exports[`Teachers Page Page component renders 1`] = `
                             class="sc-aXZVg sc-gEvEer Clfe dbzvZO"
                           >
                             <div
-                              class="sc-aXZVg sc-hZDyAQ sc-42aa3e70-1 hWaSHT goHzHJ bcHUdy"
+                              class="sc-aXZVg sc-hZDyAQ sc-779bade6-1 hWaSHT goHzHJ jSpMVc"
                             >
                               <div
                                 class="sc-aXZVg sc-gEvEer jPvJsJ inWRga"
                               >
                                 <button
                                   aria-expanded="false"
-                                  class="sc-42aa3e70-3 cOXQYL"
+                                  class="sc-779bade6-3 iwnwDt"
                                   data-testid="phase-picker-button"
                                   title="Phase"
                                 >
@@ -1436,11 +1436,11 @@ exports[`Teachers Page Page component renders 1`] = `
                               style="width: 50%;"
                             >
                               <div
-                                class="sc-aXZVg sc-hZDyAQ sc-42aa3e70-1 eAVyBL goHzHJ bcHUdy"
+                                class="sc-aXZVg sc-hZDyAQ sc-779bade6-1 eAVyBL goHzHJ jSpMVc"
                               >
                                 <button
                                   aria-expanded="false"
-                                  class="sc-42aa3e70-3 cOXQYL"
+                                  class="sc-779bade6-3 iwnwDt"
                                   data-testid="subject-picker-button"
                                   title="Subject"
                                 >
@@ -1505,14 +1505,14 @@ exports[`Teachers Page Page component renders 1`] = `
                                 class="sc-aXZVg sc-gEvEer Clfe dbzvZO"
                               >
                                 <div
-                                  class="sc-aXZVg sc-hZDyAQ sc-42aa3e70-1 hWaSHT goHzHJ bcHUdy"
+                                  class="sc-aXZVg sc-hZDyAQ sc-779bade6-1 hWaSHT goHzHJ jSpMVc"
                                 >
                                   <div
                                     class="sc-aXZVg sc-gEvEer jPvJsJ inWRga"
                                   >
                                     <button
                                       aria-expanded="false"
-                                      class="sc-42aa3e70-3 cOXQYL"
+                                      class="sc-779bade6-3 iwnwDt"
                                       data-testid="phase-picker-button"
                                       title="Phase"
                                     >
@@ -3410,7 +3410,7 @@ exports[`Teachers Page Page component renders 1`] = `
                 </div>
               </div>
               <span
-                class="sc-aXZVg kvjdhA sc-3644c74a-0 cYwwNK"
+                class="sc-aXZVg kvjdhA sc-98540f6b-0 qLtgo"
                 data-percy-hide="contents"
               >
                 <img

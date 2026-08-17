@@ -273,6 +273,7 @@ describe("generateYearTitle", () => {
             createUnit({
               year: "11",
               subject_slug: "chemistry",
+              subject: "Chemistry",
               examboard: "AQA",
               tier: "Foundation",
             }),
@@ -305,6 +306,7 @@ describe("generateYearTitle", () => {
             createUnit({
               year: "11",
               subject_slug: "chemistry",
+              subject: "Chemistry",
               examboard: "AQA",
               tier: "Foundation",
             }),

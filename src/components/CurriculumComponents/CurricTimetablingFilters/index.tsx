@@ -11,13 +11,16 @@ import {
   CurricFiltersYears,
 } from "../CurricVisualiserFilters";
 
-import { CurriculumFilters } from "@/utils/curriculum/types";
+import {
+  CurriculumFilters,
+  OnChangeCurriculumFilters,
+} from "@/utils/curriculum/types";
 import { CurriculumUnitsFormattedData } from "@/pages-helpers/curriculum/docx/tab-helpers";
 import { CurriculumSelectionSlugs } from "@/utils/curriculum/slugs";
 
 export type CurricVisualiserFiltersProps = {
   filters: CurriculumFilters;
-  onChangeFilters: (newFilters: CurriculumFilters) => void;
+  onChangeFilters: OnChangeCurriculumFilters;
   data: CurriculumUnitsFormattedData;
   slugs: CurriculumSelectionSlugs;
 };

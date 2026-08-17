@@ -1,12 +1,17 @@
 import { getMetaTitle } from "./getMetaTitle";
 
+import { CurriculumPhaseOptions } from "@/node-lib/curriculum-api-2023";
+import { CurriculumSelectionSlugs } from "@/utils/curriculum/slugs";
+
 const mockKs4Options = [
   { slug: "aqa", title: "AQA" },
   { slug: "core", title: "Core" },
   { slug: "ocr", title: "OCR" },
 ];
 
-const getMockCurriculumPhaseOptions = (withKsOptions: boolean) => [
+const getMockCurriculumPhaseOptions = (
+  withKsOptions: boolean,
+): CurriculumPhaseOptions => [
   {
     slug: "maths",
     title: "Maths",
@@ -24,7 +29,9 @@ const getMockCurriculumPhaseOptions = (withKsOptions: boolean) => [
   },
 ];
 
-const getMockSubjectPhaseKeystageSlugs = (withKs4OptionSlug: boolean) => ({
+const getMockSubjectPhaseKeystageSlugs = (
+  withKs4OptionSlug: boolean,
+): CurriculumSelectionSlugs => ({
   phaseSlug: "secondary",
   subjectSlug: "maths",
   ks4OptionSlug: withKs4OptionSlug ? "aqa" : null,

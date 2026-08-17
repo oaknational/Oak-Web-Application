@@ -10,9 +10,11 @@ import lessonMediaClipsFixtures, {
   additionalCycles,
 } from "@/node-lib/curriculum-api-2023/fixtures/lessonMediaClips.fixture";
 import { MediaClipListCamelCase } from "@/node-lib/curriculum-api-2023/queries/lessonMediaClips/lessonMediaClips.schema";
+import TeacherBrowseAnalyticsDecorator from "@/storybook-decorators/TeacherBrowseAnalyticsDecorator";
 
 const meta: Meta<typeof Component> = {
   component: Component,
+  decorators: [TeacherBrowseAnalyticsDecorator],
   argTypes: {
     learningCycleVideos: { ...lessonMediaClipsFixtures().mediaClips },
   },

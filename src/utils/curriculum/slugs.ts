@@ -2,12 +2,14 @@ import {
   examboardSlugs,
   keystageSlugs,
   pathwaySlugs,
+  phaseDescriptions,
   phaseSlugs,
   subjectSlugs,
   tierSlugs,
   yearSlugs,
 } from "@oaknational/oak-curriculum-schema";
 import slugify from "slugify";
+import z from "zod";
 
 import { getSubjectPhaseSlug } from "@/components/TeacherComponents/helpers/getSubjectPhaseSlug";
 import { CurriculumUnitsTabData } from "@/node-lib/curriculum-api-2023";
@@ -115,14 +117,14 @@ export function parseProgrammeSlug(
 }
 
 export type CurriculumSelectionSlugs = {
-  phaseSlug: string;
-  subjectSlug: string;
+  phaseSlug: z.infer<typeof phaseSlugs>;
+  subjectSlug: z.infer<typeof subjectSlugs>;
   ks4OptionSlug: string | null;
   pathwaySlug?: string | null;
 };
 
 export type CurriculumSelectionTitles = {
-  phaseTitle: string;
+  phaseTitle: z.infer<typeof phaseDescriptions>;
   subjectTitle: string;
   examboardTitle: string | undefined;
 };
@@ -145,10 +147,17 @@ export const parseSubjectPhaseSlug = (
   if (!subjectSlug || !phaseSlug) {
     return;
   }
+
+  const subjectResult = subjectSlugs.safeParse(subjectSlug);
+  if (!subjectResult.success) return;
+
+  const phaseResult = phaseSlugs.safeParse(phaseSlug);
+  if (!phaseResult.success) return;
+
   return {
-    phaseSlug: phaseSlug,
-    subjectSlug: subjectSlug,
-    ks4OptionSlug: ks4OptionSlug,
+    subjectSlug: subjectResult.data,
+    phaseSlug: phaseResult.data,
+    ks4OptionSlug,
   };
 };
 
@@ -262,8 +271,8 @@ export function resolveTeacherProgrammeSubjectPhaseSlug(
     pathwaySlug = null,
     ks4OptionSlug = null,
   }: {
-    subjectSlug: string;
-    phaseSlug: string;
+    subjectSlug: z.infer<typeof subjectSlugs>;
+    phaseSlug: z.infer<typeof phaseSlugs>;
     pathwaySlug?: string | null;
     ks4OptionSlug?: string | null;
   },
