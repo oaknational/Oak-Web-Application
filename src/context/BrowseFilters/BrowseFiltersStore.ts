@@ -4,10 +4,10 @@ import { isEqual } from "lodash";
 import type { ReadonlyURLSearchParams } from "next/navigation";
 
 import {
-  createCurriculumFiltersUrlStorage,
   BrowseFiltersPersistedState,
   BROWSE_FILTERS_STORE_NAME,
   BROWSE_FILTERS_STORE_VERSION,
+  createBrowseFiltersUrlStorage,
 } from "./browseFiltersUrlStorage";
 
 import { CurriculumFilters } from "@/utils/curriculum/types";
@@ -16,19 +16,12 @@ import { mergeInFilterParams } from "@/context/BrowseFilters/filtering";
 export type BrowseFiltersStore = {
   filters: CurriculumFilters;
   /**
-   * The data-derived baseline for this programme. Values equal to it are
-   * omitted from the URL, and params absent from the URL fall back to it.
+   * The data-derived baseline for this programme
    */
   defaultFilter: CurriculumFilters;
-  /**
-   * Replaces the active filters. Prefer `useBrowseFilters` over calling this
-   * directly — it pairs the state change with the `programmeRefined` event.
-   */
   setFilters: (newFilters: CurriculumFilters) => void;
   /**
-   * Applies the URL to the store: params that are present win, params that are
-   * absent reset to `defaultFilter`. This is the URL -> store direction, and is
-   * what makes browser back/forward restore the right filters.
+   * Applies the URL to the store
    */
   syncFromSearchParams: (
     params: ReadonlyURLSearchParams | URLSearchParams | null,
@@ -37,25 +30,9 @@ export type BrowseFiltersStore = {
 
 export type CreateBrowseFiltersStoreOptions = {
   defaultFilter: CurriculumFilters;
-  /**
-   * Filters already resolved from the URL on the server, used to seed the store
-   * so the first client render matches the SSR output.
-   */
   initialFilter?: CurriculumFilters;
 };
 
-/**
- * A per-programme filters store, scoped by `BrowseFiltersProvider` rather
- * than being a module-level singleton, because `defaultFilter` is derived from
- * the programme's own unit data. A singleton would leak one programme's
- * selection into the next on client-side navigation.
- *
- * The store owns the store -> URL direction via the `persist` middleware.
- * The URL -> store direction is driven by the provider calling
- * `syncFromSearchParams`; `persist`'s own rehydration is skipped because it can
- * only layer params over existing state, and cannot reset a filter whose param
- * has been removed (e.g. by navigating back).
- */
 export const createBrowseFiltersStore = ({
   defaultFilter,
   initialFilter,
@@ -64,7 +41,7 @@ export const createBrowseFiltersStore = ({
   // it is being built for, so it reads back through this reference.
   const storeRef: { current?: StoreApi<BrowseFiltersStore> } = {};
 
-  const storage = createCurriculumFiltersUrlStorage(
+  const storage = createBrowseFiltersUrlStorage(
     () => storeRef.current?.getState().defaultFilter ?? defaultFilter,
   );
 
@@ -81,14 +58,14 @@ export const createBrowseFiltersStore = ({
               params,
             );
 
-            // Bail out when nothing changed so subscribers aren't woken by a
-            // new-but-equal object on every navigation.
+            // If nothing changed, don't trigger a re-render
             return isEqual(nextFilters, state.filters)
               ? state
               : { filters: nextFilters };
           }),
       }),
       {
+        // This is for persisting in local storage and migrating between versions, we don't need it yet but it's a mandatory field.
         name: BROWSE_FILTERS_STORE_NAME,
         version: BROWSE_FILTERS_STORE_VERSION,
         storage,

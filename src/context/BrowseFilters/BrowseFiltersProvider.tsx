@@ -37,12 +37,6 @@ export const BrowseFiltersProvider = ({
     createBrowseFiltersStore({ defaultFilter, initialFilter }),
   );
 
-  useLayoutEffect(() => {
-    if (store.getState().defaultFilter !== defaultFilter) {
-      store.setState({ defaultFilter });
-    }
-  }, [store, defaultFilter]);
-
   // Keeps the store in sync with back/forward navigation.
   useLayoutEffect(() => {
     store.getState().syncFromSearchParams(searchParams);
