@@ -2,7 +2,7 @@ import { ReactNode } from "react";
 import { act, renderHook } from "@testing-library/react";
 
 import { BrowseFiltersProvider } from "./BrowseFiltersProvider";
-import { useProgrammeFilters } from "./useProgrammeFilters";
+import { useBrowseFilters } from "./useBrowseFilters";
 
 import { createFilter } from "@/fixtures/curriculum/filters";
 import MockedTeacherBrowseAnalyticsProvider from "@/__tests__/__helpers__/MockedTeacherBrowseAnalyticsProvider";
@@ -38,14 +38,14 @@ const wrapper = ({ children }: { children: ReactNode }) => (
   </MockedTeacherBrowseAnalyticsProvider>
 );
 
-describe("useProgrammeFilters", () => {
+describe("useBrowseFilters", () => {
   beforeEach(() => {
     mockProgrammeRefined.mockClear();
     globalThis.history.replaceState(null, "", "/programme/units");
   });
 
   it("updates the filters", () => {
-    const { result } = renderHook(() => useProgrammeFilters(), { wrapper });
+    const { result } = renderHook(() => useBrowseFilters(), { wrapper });
 
     act(() => {
       result.current.onChangeFilters({
@@ -59,7 +59,7 @@ describe("useProgrammeFilters", () => {
   });
 
   it("fires programmeRefined with the filters that were just applied", () => {
-    const { result } = renderHook(() => useProgrammeFilters(), { wrapper });
+    const { result } = renderHook(() => useBrowseFilters(), { wrapper });
     const newFilters = createFilter({ years: ["7"], tiers: ["higher"] });
 
     act(() => {
@@ -82,7 +82,7 @@ describe("useProgrammeFilters", () => {
   });
 
   it("skips tracking when the change carries no filterType", () => {
-    const { result } = renderHook(() => useProgrammeFilters(), { wrapper });
+    const { result } = renderHook(() => useBrowseFilters(), { wrapper });
 
     act(() => {
       result.current.onChangeFilters({
@@ -95,7 +95,7 @@ describe("useProgrammeFilters", () => {
   });
 
   it("keeps a stable onChangeFilters across renders", () => {
-    const { result, rerender } = renderHook(() => useProgrammeFilters(), {
+    const { result, rerender } = renderHook(() => useBrowseFilters(), {
       wrapper,
     });
     const first = result.current.onChangeFilters;

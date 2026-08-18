@@ -21,7 +21,7 @@ export type BrowseFiltersStore = {
    */
   defaultFilter: CurriculumFilters;
   /**
-   * Replaces the active filters. Prefer `useProgrammeFilters` over calling this
+   * Replaces the active filters. Prefer `useBrowseFilters` over calling this
    * directly — it pairs the state change with the `programmeRefined` event.
    */
   setFilters: (newFilters: CurriculumFilters) => void;

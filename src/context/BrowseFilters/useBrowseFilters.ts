@@ -9,19 +9,7 @@ import {
 } from "@/utils/curriculum/types";
 import { useTeacherBrowseAnalytics } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
 
-/**
- * Composes the filters store with browse analytics.
- *
- * The filters store deliberately knows nothing about analytics: it is mounted
- * in places the `TeacherBrowseAnalyticsStoreProvider` isn't, and injecting the
- * tracking functions into it would make the analytics context a hard
- * requirement for rendering a filter. Pairing the two here — where both
- * providers are known to exist — keeps that dependency one-directional.
- *
- * This is the intended entry point for programme page filter interactions;
- * reaching for `setFilters` directly will silently drop the tracking event.
- */
-export const useProgrammeFilters = (): {
+export const useBrowseFilters = (): {
   filters: CurriculumFilters;
   onChangeFilters: OnChangeCurriculumFilters;
 } => {

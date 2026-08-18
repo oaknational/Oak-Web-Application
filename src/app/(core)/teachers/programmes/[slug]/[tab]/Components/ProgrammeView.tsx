@@ -41,7 +41,7 @@ import { CurriculumOverviewSanityData } from "@/common-lib/cms-types";
 import type { Ks4Option } from "@/node-lib/curriculum-api-2023/queries/curriculumPhaseOptions/curriculumPhaseOptions.schema";
 import { resolveOakHref } from "@/common-lib/urls";
 import { validateSearchParams } from "@/utils/validateProgrammePageSearchParams";
-import { useProgrammeFilters } from "@/context/BrowseFilters";
+import { useBrowseFilters } from "@/context/BrowseFilters";
 
 export type ProgrammePageProps = {
   subjectPhaseSlug: string;
@@ -84,7 +84,7 @@ export const ProgrammeView = ({
   const { subjectTitle, phaseTitle, examboardTitle } =
     curriculumSelectionTitles;
 
-  const { filters, onChangeFilters } = useProgrammeFilters();
+  const { filters, onChangeFilters } = useBrowseFilters();
 
   const schoolYear = filters.years.find(
     (year) => validatedParams?.years === year,
