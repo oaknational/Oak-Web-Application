@@ -1,4 +1,4 @@
-import { screen, waitFor, within } from "@testing-library/react";
+import { screen, waitFor, within, act } from "@testing-library/react";
 import { usePathname } from "next/navigation";
 import userEvent from "@testing-library/user-event";
 
@@ -173,7 +173,7 @@ describe("Programme Downloads", () => {
   });
 
   describe("Curriculum Downloads Tab: Secondary Maths", () => {
-    test("user can see the tier selector for secondary maths", async () => {
+    test("user can see the tier selector for secondary maths and nav forwards/backwards", async () => {
       renderComponent({
         curriculumDownloadsTabData: {
           ...defaultProps.curriculumDownloadsTabData,
@@ -189,6 +189,22 @@ describe("Programme Downloads", () => {
         name: "Higher",
       });
       expect(higherTierRadioButton).toBeInTheDocument();
+
+      const nextStepButton = screen.getByRole("button", { name: "Next step" });
+      act(() => {
+        nextStepButton.click();
+      });
+      const backButton = screen.getByRole("button", {
+        name: "Back to KS4 Options",
+      });
+      expect(backButton).toBeInTheDocument();
+
+      act(() => {
+        backButton.click();
+      });
+      expect(
+        screen.getByRole("button", { name: "Next step" }),
+      ).toBeInTheDocument();
     });
   });
 
