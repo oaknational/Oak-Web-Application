@@ -1,41 +1,112 @@
 import { getFileSizes } from "./getFileSize";
 
-import { getFileSize } from "@/pages/api/curriculum-downloads";
-
 jest.mock("@/pages/api/curriculum-downloads", () => {
   const originalModule = jest.requireActual("@/pages/api/curriculum-downloads");
   return {
     __esModule: true,
     ...originalModule,
-    getFileSize: jest.fn().mockResolvedValue(0),
+    getFileSize: jest.fn(async ({ childSubjectSlug, tierSlug }) => {
+      const childsubjectWeights = {
+        biology: 1000,
+        chemistry: 2000,
+        physics: 3000,
+      };
+      const tierWeights = {
+        foundation: 100,
+        higher: 200,
+      };
+      const childSubjectWeight = childSubjectSlug
+        ? (childsubjectWeights[
+            childSubjectSlug as keyof typeof childsubjectWeights
+          ] ?? 0)
+        : 0;
+      const tierWeight = tierSlug
+        ? (tierWeights[tierSlug as keyof typeof tierWeights] ?? 0)
+        : 0;
+      return childSubjectWeight + tierWeight;
+    }),
   };
 });
 
 describe("getFileSizes", () => {
   it("should return sizes", async () => {
-    (getFileSize as jest.MockedFn<typeof getFileSize>).mockImplementation(
-      async ({ childSubjectSlug, tierSlug }) => {
-        const childsubjectWeights = {
-          biology: 1000,
-          chemistry: 2000,
-          physics: 3000,
-        };
-        const tierWeights = {
-          foundation: 100,
-          higher: 200,
-        };
-        const childSubjectWeight = childSubjectSlug
-          ? (childsubjectWeights[
-              childSubjectSlug as keyof typeof childsubjectWeights
-            ] ?? 0)
-          : 0;
-        const tierWeight = tierSlug
-          ? (tierWeights[tierSlug as keyof typeof tierWeights] ?? 0)
-          : 0;
-        return childSubjectWeight + tierWeight;
+    const results = await getFileSizes(
+      {
+        subjectSlug: "science",
+        phaseSlug: "secondary",
+        ks4OptionSlug: null,
+      },
+      {
+        tiers: [],
+        child_subjects: [],
       },
     );
 
+    expect(results).toEqual([
+      {
+        downloadId: "curriculumPlans",
+        size: 0,
+        tier: null,
+        childSubject: null,
+      },
+      {
+        downloadId: "nationalCurriculum",
+        size: 0,
+        tier: null,
+        childSubject: null,
+      },
+    ]);
+  });
+  it("should return sizes (tier)", async () => {
+    const results = await getFileSizes(
+      {
+        subjectSlug: "science",
+        phaseSlug: "secondary",
+        ks4OptionSlug: null,
+      },
+      {
+        tiers: [
+          {
+            tier_slug: "foundation",
+            tier: "Foundation",
+          },
+          {
+            tier_slug: "higher",
+            tier: "Higher",
+          },
+        ],
+        child_subjects: [],
+      },
+    );
+
+    expect(results).toEqual([
+      {
+        downloadId: "curriculumPlans",
+        size: 100,
+        tier: "foundation",
+        childSubject: null,
+      },
+      {
+        downloadId: "curriculumPlans",
+        size: 200,
+        tier: "higher",
+        childSubject: null,
+      },
+      {
+        downloadId: "nationalCurriculum",
+        size: 100,
+        tier: "foundation",
+        childSubject: null,
+      },
+      {
+        downloadId: "nationalCurriculum",
+        size: 200,
+        tier: "higher",
+        childSubject: null,
+      },
+    ]);
+  });
+  it("should return sizes (childsubjects + tier)", async () => {
     const results = await getFileSizes(
       {
         subjectSlug: "science",
