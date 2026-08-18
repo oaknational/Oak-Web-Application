@@ -8,7 +8,7 @@ import {
 import { getTagsForUnitCard } from "./getTagsForUnitCard";
 import { getSavePropsForUnitCard } from "./getSavePropsForUnitCard";
 
-import { isHighlightedUnit } from "@/utils/curriculum/filtering";
+import { isHighlightedUnit } from "@/context/BrowseFilters/filtering";
 import {
   CurriculumFilters,
   Thread,

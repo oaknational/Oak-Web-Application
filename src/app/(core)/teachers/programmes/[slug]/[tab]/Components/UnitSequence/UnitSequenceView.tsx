@@ -19,7 +19,7 @@ import { CurriculumUnitsFormattedData } from "@/pages-helpers/curriculum/docx/ta
 import {
   getNumberOfSelectedUnits,
   highlightedUnitCount,
-} from "@/utils/curriculum/filtering";
+} from "@/context/BrowseFilters/filtering";
 import {
   CurriculumFilters,
   OnChangeCurriculumFilters,

@@ -1,22 +1,22 @@
 import {
-  childSubjectForFilter,
-  filteringFromYears,
-  filtersToQuery,
   getDefaultChildSubjectForYearGroup,
-  getDefaultFilter,
   getDefaultSubjectCategoriesForYearGroup,
   getDefaultTiersForYearGroup,
-  getFilterData,
-  getNumberOfSelectedUnits,
-  highlightedUnitCount,
   isHighlightedUnit,
-  mergeInFilterParams,
-  shouldDisplayFilter,
-  subjectCategoryForFilter,
+  getDefaultFilter,
+  getFilterData,
   scopeYearsToKeystageFilter,
+  shouldDisplayFilter,
+  filtersToQuery,
+  mergeInFilterParams,
+  highlightedUnitCount,
+  filteringFromYears,
+  subjectCategoryForFilter,
+  childSubjectForFilter,
+  getNumberOfSelectedUnits,
 } from "./filtering";
-import { CurriculumFilters, YearData, Unit } from "./types";
 
+import { CurriculumFilters, Unit, YearData } from "@/utils/curriculum/types";
 import { createUnit } from "@/fixtures/curriculum/unit";
 import {
   CurriculumUnitsFormattedData,

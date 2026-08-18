@@ -1,7 +1,10 @@
 import { PersistStorage, StorageValue } from "zustand/middleware";
 
 import { CurriculumFilters } from "@/utils/curriculum/types";
-import { FILTER_TO_QS, filtersToQuery } from "@/utils/curriculum/filtering";
+import {
+  FILTER_TO_QS,
+  filtersToQuery,
+} from "@/context/BrowseFilters/filtering";
 
 export const BROWSE_FILTERS_STORE_NAME = "curriculumFilters";
 export const BROWSE_FILTERS_STORE_VERSION = 0;

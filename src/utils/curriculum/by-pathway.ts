@@ -1,7 +1,8 @@
+import { filteringFromYears } from "../../context/BrowseFilters/filtering";
+
 import { CurriculumFilters, Pathway, Unit, YearData } from "./types";
 import { sortYears } from "./sorting";
 import { isVisibleUnit } from "./isVisibleUnit";
-import { filteringFromYears } from "./filtering";
 
 import { Ks4Option } from "@/node-lib/curriculum-api-2023/queries/curriculumPhaseOptions/curriculumPhaseOptions.schema";
 

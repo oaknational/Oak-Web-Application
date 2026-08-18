@@ -7,7 +7,7 @@ import {
   childSubjectForFilter,
   subjectCategoryForFilter,
   shouldDisplayFilter,
-} from "@/utils/curriculum/filtering";
+} from "@/context/BrowseFilters/filtering";
 import { CurriculumUnitsFormattedData } from "@/pages-helpers/curriculum/docx/tab-helpers";
 
 type SubjectTitleSelection = {
