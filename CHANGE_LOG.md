@@ -1,3 +1,10 @@
+# [1.1160.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1159.0...v1.1160.0) (2026-08-18)
+
+
+### Features
+
+* turn on oaks impact feature flag ([65187eb](https://github.com/oaknational/Oak-Web-Application/commit/65187eb726812da7daf70154885f47d17baa4bfb))
+
 # [1.1159.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1158.0...v1.1159.0) (2026-08-18)
 
 
