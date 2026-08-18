@@ -17,7 +17,7 @@ import {
   CurriculumSelectionSlugs,
   CurriculumSelectionTitles,
 } from "@/utils/curriculum/slugs";
-import { CurriculumFiltersProvider } from "@/context/CurriculumFilters";
+import { BrowseFiltersProvider } from "@/context/BrowseFilters";
 import { getDefaultFilter } from "@/utils/curriculum/filtering";
 import { CurriculumFilters } from "@/utils/curriculum/types";
 
@@ -150,12 +150,12 @@ const renderProgrammeView = (
   const mergedProps = { ...defaultProps, ...viewProps };
 
   return renderWithProviders()(
-    <CurriculumFiltersProvider
+    <BrowseFiltersProvider
       defaultFilter={getDefaultFilter(mergedProps.curriculumUnitsFormattedData)}
       initialFilter={initialFilter}
     >
       <ProgrammeView {...mergedProps} />
-    </CurriculumFiltersProvider>,
+    </BrowseFiltersProvider>,
   );
 };
 

@@ -5,15 +5,15 @@ import type { ReadonlyURLSearchParams } from "next/navigation";
 
 import {
   createCurriculumFiltersUrlStorage,
-  CurriculumFiltersPersistedState,
-  CURRICULUM_FILTERS_STORE_NAME,
-  CURRICULUM_FILTERS_STORE_VERSION,
-} from "./curriculumFiltersUrlStorage";
+  BrowseFiltersPersistedState,
+  BROWSE_FILTERS_STORE_NAME,
+  BROWSE_FILTERS_STORE_VERSION,
+} from "./browseFiltersUrlStorage";
 
 import { CurriculumFilters } from "@/utils/curriculum/types";
 import { mergeInFilterParams } from "@/utils/curriculum/filtering";
 
-export type CurriculumFiltersStore = {
+export type BrowseFiltersStore = {
   filters: CurriculumFilters;
   /**
    * The data-derived baseline for this programme. Values equal to it are
@@ -35,7 +35,7 @@ export type CurriculumFiltersStore = {
   ) => void;
 };
 
-export type CreateCurriculumFiltersStoreOptions = {
+export type CreateBrowseFiltersStoreOptions = {
   defaultFilter: CurriculumFilters;
   /**
    * Filters already resolved from the URL on the server, used to seed the store
@@ -45,7 +45,7 @@ export type CreateCurriculumFiltersStoreOptions = {
 };
 
 /**
- * A per-programme filters store, scoped by `CurriculumFiltersProvider` rather
+ * A per-programme filters store, scoped by `BrowseFiltersProvider` rather
  * than being a module-level singleton, because `defaultFilter` is derived from
  * the programme's own unit data. A singleton would leak one programme's
  * selection into the next on client-side navigation.
@@ -56,20 +56,20 @@ export type CreateCurriculumFiltersStoreOptions = {
  * only layer params over existing state, and cannot reset a filter whose param
  * has been removed (e.g. by navigating back).
  */
-export const createCurriculumFiltersStore = ({
+export const createBrowseFiltersStore = ({
   defaultFilter,
   initialFilter,
-}: CreateCurriculumFiltersStoreOptions) => {
+}: CreateBrowseFiltersStoreOptions) => {
   // The storage needs the *current* default filter, which lives in the store
   // it is being built for, so it reads back through this reference.
-  const storeRef: { current?: StoreApi<CurriculumFiltersStore> } = {};
+  const storeRef: { current?: StoreApi<BrowseFiltersStore> } = {};
 
   const storage = createCurriculumFiltersUrlStorage(
     () => storeRef.current?.getState().defaultFilter ?? defaultFilter,
   );
 
-  const store = createStore<CurriculumFiltersStore>()(
-    persist<CurriculumFiltersStore, [], [], CurriculumFiltersPersistedState>(
+  const store = createStore<BrowseFiltersStore>()(
+    persist<BrowseFiltersStore, [], [], BrowseFiltersPersistedState>(
       (set) => ({
         filters: initialFilter ?? defaultFilter,
         defaultFilter,
@@ -89,14 +89,14 @@ export const createCurriculumFiltersStore = ({
           }),
       }),
       {
-        name: CURRICULUM_FILTERS_STORE_NAME,
-        version: CURRICULUM_FILTERS_STORE_VERSION,
+        name: BROWSE_FILTERS_STORE_NAME,
+        version: BROWSE_FILTERS_STORE_VERSION,
         storage,
         skipHydration: true,
         partialize: (state) => ({ filters: state.filters }),
         merge: (persisted, current) => {
           const persistedFilters = (
-            persisted as CurriculumFiltersPersistedState | undefined
+            persisted as BrowseFiltersPersistedState | undefined
           )?.filters;
 
           if (!persistedFilters) {
@@ -119,6 +119,4 @@ export const createCurriculumFiltersStore = ({
   return store;
 };
 
-export type CurriculumFiltersStoreApi = ReturnType<
-  typeof createCurriculumFiltersStore
->;
+export type BrowseFiltersStoreApi = ReturnType<typeof createBrowseFiltersStore>;

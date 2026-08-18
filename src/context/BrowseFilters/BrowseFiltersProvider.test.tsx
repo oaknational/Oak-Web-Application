@@ -2,12 +2,19 @@ import { ReactNode } from "react";
 import { act, renderHook } from "@testing-library/react";
 
 import {
-  CurriculumFiltersProvider,
-  useCurriculumFilters,
-} from "./CurriculumFiltersProvider";
+  BrowseFiltersProvider,
+  useBrowseFiltersStore,
+} from "./BrowseFiltersProvider";
 
 import { createFilter } from "@/fixtures/curriculum/filters";
 import { CurriculumFilters } from "@/utils/curriculum/types";
+
+const useFilters = () => {
+  const filters = useBrowseFiltersStore((store) => store.filters);
+  const setFilters = useBrowseFiltersStore((store) => store.setFilters);
+
+  return { filters, setFilters };
+};
 
 let mockSearchParams = new URLSearchParams("");
 
@@ -32,18 +39,18 @@ const setUrl = (search: string) => {
 
 const renderFilters = (initialFilter?: CurriculumFilters) => {
   const wrapper = ({ children }: { children: ReactNode }) => (
-    <CurriculumFiltersProvider
+    <BrowseFiltersProvider
       defaultFilter={defaultFilter}
       initialFilter={initialFilter}
     >
       {children}
-    </CurriculumFiltersProvider>
+    </BrowseFiltersProvider>
   );
 
-  return renderHook(() => useCurriculumFilters(), { wrapper });
+  return renderHook(() => useFilters(), { wrapper });
 };
 
-describe("CurriculumFiltersProvider", () => {
+describe("BrowseFiltersProvider", () => {
   beforeEach(() => {
     setUrl("");
   });
@@ -51,7 +58,7 @@ describe("CurriculumFiltersProvider", () => {
   it("provides the default filter when the URL is bare", () => {
     const { result } = renderFilters();
 
-    expect(result.current[0]).toEqual(defaultFilter);
+    expect(result.current.filters).toEqual(defaultFilter);
   });
 
   it("applies the filters present in the URL on mount", () => {
@@ -59,8 +66,8 @@ describe("CurriculumFiltersProvider", () => {
 
     const { result } = renderFilters();
 
-    expect(result.current[0].tiers).toEqual(["higher"]);
-    expect(result.current[0].years).toEqual(["7", "8"]);
+    expect(result.current.filters.tiers).toEqual(["higher"]);
+    expect(result.current.filters.years).toEqual(["7", "8"]);
   });
 
   it("keeps the server-resolved filter when the URL agrees with it", () => {
@@ -70,17 +77,19 @@ describe("CurriculumFiltersProvider", () => {
       createFilter({ years: ["7", "8"], tiers: ["higher"] }),
     );
 
-    expect(result.current[0].tiers).toEqual(["higher"]);
+    expect(result.current.filters.tiers).toEqual(["higher"]);
   });
 
   it("writes filter changes to the URL in place", () => {
     const { result } = renderFilters();
 
     act(() => {
-      result.current[1](createFilter({ years: ["7"], tiers: ["higher"] }));
+      result.current.setFilters(
+        createFilter({ years: ["7"], tiers: ["higher"] }),
+      );
     });
 
-    expect(result.current[0].tiers).toEqual(["higher"]);
+    expect(result.current.filters.tiers).toEqual(["higher"]);
     expect(window.location.pathname).toBe("/programme/units");
     expect(new URLSearchParams(window.location.search).get("tiers")).toBe(
       "higher",
@@ -91,14 +100,14 @@ describe("CurriculumFiltersProvider", () => {
     setUrl("tiers=higher");
     const { result, rerender } = renderFilters();
 
-    expect(result.current[0].tiers).toEqual(["higher"]);
+    expect(result.current.filters.tiers).toEqual(["higher"]);
 
     act(() => {
       setUrl("");
     });
     rerender();
 
-    expect(result.current[0].tiers).toEqual(["foundation"]);
+    expect(result.current.filters.tiers).toEqual(["foundation"]);
   });
 
   it("throws a useful error when used outside the provider", () => {
@@ -106,8 +115,8 @@ describe("CurriculumFiltersProvider", () => {
       .spyOn(console, "error")
       .mockImplementation(() => undefined);
 
-    expect(() => renderHook(() => useCurriculumFilters())).toThrow(
-      "useCurriculumFiltersStore must be used within CurriculumFiltersProvider",
+    expect(() => renderHook(() => useFilters())).toThrow(
+      "useBrowseFiltersStore must be used within BrowseFiltersProvider",
     );
 
     consoleError.mockRestore();

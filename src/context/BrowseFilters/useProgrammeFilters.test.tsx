@@ -1,7 +1,7 @@
 import { ReactNode } from "react";
 import { act, renderHook } from "@testing-library/react";
 
-import { CurriculumFiltersProvider } from "./CurriculumFiltersProvider";
+import { BrowseFiltersProvider } from "./BrowseFiltersProvider";
 import { useProgrammeFilters } from "./useProgrammeFilters";
 
 import { createFilter } from "@/fixtures/curriculum/filters";
@@ -32,9 +32,9 @@ const defaultFilter = createFilter({
 
 const wrapper = ({ children }: { children: ReactNode }) => (
   <MockedTeacherBrowseAnalyticsProvider>
-    <CurriculumFiltersProvider defaultFilter={defaultFilter}>
+    <BrowseFiltersProvider defaultFilter={defaultFilter}>
       {children}
-    </CurriculumFiltersProvider>
+    </BrowseFiltersProvider>
   </MockedTeacherBrowseAnalyticsProvider>
 );
 

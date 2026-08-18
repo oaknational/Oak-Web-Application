@@ -34,7 +34,7 @@ import {
   getDefaultFilter,
   resolveFilterFromSearchParams,
 } from "@/utils/curriculum/filtering";
-import { CurriculumFiltersProvider } from "@/context/CurriculumFilters";
+import { BrowseFiltersProvider } from "@/context/BrowseFilters";
 import { redirectProgrammeSlugIfNeeded } from "@/utils/integratedJourney/legacyProgrammeUnitsRedirect";
 import { cacheData } from "@/node-lib/cache";
 import CMSClient from "@/node-lib/cms";
@@ -319,12 +319,12 @@ const InnerProgrammePage = async (props: AppPageProps<ProgrammePageParams>) => {
       programmeState={programmeState}
       accessLevel="programme"
     >
-      <CurriculumFiltersProvider
+      <BrowseFiltersProvider
         defaultFilter={defaultFilter}
         initialFilter={resolvedFilter}
       >
         <ProgrammeView {...results} />
-      </CurriculumFiltersProvider>
+      </BrowseFiltersProvider>
     </TeacherBrowseAnalyticsStoreProvider>
   );
 };

@@ -41,7 +41,7 @@ import { CurriculumOverviewSanityData } from "@/common-lib/cms-types";
 import type { Ks4Option } from "@/node-lib/curriculum-api-2023/queries/curriculumPhaseOptions/curriculumPhaseOptions.schema";
 import { resolveOakHref } from "@/common-lib/urls";
 import { validateSearchParams } from "@/utils/validateProgrammePageSearchParams";
-import { useProgrammeFilters } from "@/context/CurriculumFilters";
+import { useProgrammeFilters } from "@/context/BrowseFilters";
 
 export type ProgrammePageProps = {
   subjectPhaseSlug: string;

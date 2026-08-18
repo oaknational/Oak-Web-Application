@@ -2,7 +2,7 @@ import {
   createCurriculumFiltersUrlStorage,
   filtersFromSearchString,
   searchStringWithFilters,
-} from "./curriculumFiltersUrlStorage";
+} from "./browseFiltersUrlStorage";
 
 import { createFilter } from "@/fixtures/curriculum/filters";
 

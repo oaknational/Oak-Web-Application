@@ -3,13 +3,13 @@ import { PersistStorage, StorageValue } from "zustand/middleware";
 import { CurriculumFilters } from "@/utils/curriculum/types";
 import { FILTER_TO_QS, filtersToQuery } from "@/utils/curriculum/filtering";
 
-export const CURRICULUM_FILTERS_STORE_NAME = "curriculumFilters";
-export const CURRICULUM_FILTERS_STORE_VERSION = 0;
+export const BROWSE_FILTERS_STORE_NAME = "curriculumFilters";
+export const BROWSE_FILTERS_STORE_VERSION = 0;
 
 /**
  * The slice of the store that is mirrored into the URL.
  */
-export type CurriculumFiltersPersistedState = {
+export type BrowseFiltersPersistedState = {
   filters: Partial<CurriculumFilters>;
 };
 
@@ -81,9 +81,9 @@ const replaceSearch = (search: string) => {
  */
 export function createCurriculumFiltersUrlStorage(
   getDefaultFilter: () => CurriculumFilters,
-): PersistStorage<CurriculumFiltersPersistedState> {
+): PersistStorage<BrowseFiltersPersistedState> {
   return {
-    getItem: (): StorageValue<CurriculumFiltersPersistedState> | null => {
+    getItem: (): StorageValue<BrowseFiltersPersistedState> | null => {
       if (typeof window === "undefined") {
         return null;
       }
@@ -95,7 +95,7 @@ export function createCurriculumFiltersUrlStorage(
 
       return {
         state: { filters },
-        version: CURRICULUM_FILTERS_STORE_VERSION,
+        version: BROWSE_FILTERS_STORE_VERSION,
       };
     },
     setItem: (_name, value) => {

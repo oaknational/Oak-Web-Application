@@ -1,4 +1,4 @@
-import { createCurriculumFiltersStore } from "./CurriculumFiltersStore";
+import { createBrowseFiltersStore } from "./BrowseFiltersStore";
 
 import { createFilter } from "@/fixtures/curriculum/filters";
 
@@ -10,20 +10,20 @@ const defaultFilter = createFilter({
 const searchParam = (key: string) =>
   new URLSearchParams(window.location.search).get(key);
 
-describe("createCurriculumFiltersStore", () => {
+describe("createBrowseFiltersStore", () => {
   beforeEach(() => {
     globalThis.history.replaceState(null, "", "/programme/units");
   });
 
   it("seeds from defaultFilter when there is no server-resolved filter", () => {
-    const store = createCurriculumFiltersStore({ defaultFilter });
+    const store = createBrowseFiltersStore({ defaultFilter });
 
     expect(store.getState().filters).toEqual(defaultFilter);
   });
 
   it("seeds from initialFilter so the first client render matches SSR", () => {
     const initialFilter = createFilter({ years: ["7"], tiers: ["higher"] });
-    const store = createCurriculumFiltersStore({
+    const store = createBrowseFiltersStore({
       defaultFilter,
       initialFilter,
     });
@@ -33,7 +33,7 @@ describe("createCurriculumFiltersStore", () => {
 
   describe("setFilters", () => {
     it("updates the filters and mirrors them into the URL", () => {
-      const store = createCurriculumFiltersStore({ defaultFilter });
+      const store = createBrowseFiltersStore({ defaultFilter });
 
       store
         .getState()
@@ -45,7 +45,7 @@ describe("createCurriculumFiltersStore", () => {
     });
 
     it("omits values matching the default filter from the URL", () => {
-      const store = createCurriculumFiltersStore({ defaultFilter });
+      const store = createBrowseFiltersStore({ defaultFilter });
 
       store.getState().setFilters(defaultFilter);
 
@@ -53,7 +53,7 @@ describe("createCurriculumFiltersStore", () => {
     });
 
     it("writes against the latest defaultFilter", () => {
-      const store = createCurriculumFiltersStore({ defaultFilter });
+      const store = createBrowseFiltersStore({ defaultFilter });
       const nextDefault = createFilter({ years: ["9"], tiers: ["higher"] });
 
       store.setState({ defaultFilter: nextDefault });
@@ -65,7 +65,7 @@ describe("createCurriculumFiltersStore", () => {
 
   describe("syncFromSearchParams", () => {
     it("applies params present in the URL", () => {
-      const store = createCurriculumFiltersStore({ defaultFilter });
+      const store = createBrowseFiltersStore({ defaultFilter });
 
       store
         .getState()
@@ -75,7 +75,7 @@ describe("createCurriculumFiltersStore", () => {
     });
 
     it("resets filters whose param has gone, so back/forward restores state", () => {
-      const store = createCurriculumFiltersStore({
+      const store = createBrowseFiltersStore({
         defaultFilter,
         initialFilter: createFilter({ years: ["7", "8"], tiers: ["higher"] }),
       });
@@ -86,7 +86,7 @@ describe("createCurriculumFiltersStore", () => {
     });
 
     it("does not notify subscribers when nothing changed", () => {
-      const store = createCurriculumFiltersStore({ defaultFilter });
+      const store = createBrowseFiltersStore({ defaultFilter });
       const listener = jest.fn();
       store.subscribe(listener);
 
@@ -96,7 +96,7 @@ describe("createCurriculumFiltersStore", () => {
     });
 
     it("treats a null params object as 'no filters in the URL'", () => {
-      const store = createCurriculumFiltersStore({
+      const store = createBrowseFiltersStore({
         defaultFilter,
         initialFilter: createFilter({ years: ["7"], tiers: ["higher"] }),
       });
@@ -114,7 +114,7 @@ describe("createCurriculumFiltersStore", () => {
         "",
         "/programme/units?tiers=higher",
       );
-      const store = createCurriculumFiltersStore({ defaultFilter });
+      const store = createBrowseFiltersStore({ defaultFilter });
 
       await store.persist.rehydrate();
 
@@ -131,7 +131,7 @@ describe("createCurriculumFiltersStore", () => {
         "/programme/units?tiers=higher",
       );
 
-      const store = createCurriculumFiltersStore({
+      const store = createBrowseFiltersStore({
         defaultFilter,
         initialFilter: createFilter({ years: ["7", "8"], tiers: ["higher"] }),
       });

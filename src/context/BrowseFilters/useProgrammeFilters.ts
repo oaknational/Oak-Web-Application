@@ -1,7 +1,7 @@
 "use client";
 import { useCallback } from "react";
 
-import { useCurriculumFiltersStore } from "./CurriculumFiltersProvider";
+import { useBrowseFiltersStore } from "./BrowseFiltersProvider";
 
 import {
   CurriculumFilters,
@@ -25,8 +25,8 @@ export const useProgrammeFilters = (): {
   filters: CurriculumFilters;
   onChangeFilters: OnChangeCurriculumFilters;
 } => {
-  const filters = useCurriculumFiltersStore((store) => store.filters);
-  const setFilters = useCurriculumFiltersStore((store) => store.setFilters);
+  const filters = useBrowseFiltersStore((store) => store.filters);
+  const setFilters = useBrowseFiltersStore((store) => store.setFilters);
   const programmeRefined = useTeacherBrowseAnalytics(
     (store) => store.track.programmeRefined,
   );
