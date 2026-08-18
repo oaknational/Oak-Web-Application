@@ -243,6 +243,51 @@ describe("Programme Downloads", () => {
     });
   });
 
+  test("should show file sizes", async () => {
+    const { findByRole, findAllByRole } = renderComponent({
+      curriculumDownloadsTabData: {
+        ...defaultProps.curriculumDownloadsTabData,
+      },
+      implementationGuides: {
+        curriculumQuality: {
+          asset: {
+            extension: "pdf",
+            size: 1000,
+            url: "https://example.com/whats-included.pdf",
+          },
+        },
+      },
+      fileSizes: [
+        {
+          downloadId: "curriculumPlans",
+          size: 2000,
+          tier: null,
+          childSubject: null,
+        },
+      ],
+      featureFlags: {
+        "implementation-guides": true,
+      },
+    });
+
+    const buttonEl = await findByRole("button", {
+      name: /All resources selected/,
+    });
+    const user = userEvent.setup();
+
+    await user.click(buttonEl);
+
+    const region = (await findAllByRole("region"))[1]!;
+
+    const labelEls = region.querySelectorAll("label");
+    expect(labelEls).toHaveLength(2);
+
+    expect(labelEls[0]).toHaveTextContent(/Curriculum plan/);
+    expect(labelEls[0]).toHaveTextContent(/2 kB/);
+    expect(labelEls[1]).toHaveTextContent(/Curriculum quality/);
+    expect(labelEls[1]).toHaveTextContent(/1 kB/);
+  });
+
   describe("Curriculum Downloads Tab: Secondary Science", () => {
     test("user can see the tiers and child subject selector for secondary science", async () => {
       const { findByTestId } = renderComponent({
