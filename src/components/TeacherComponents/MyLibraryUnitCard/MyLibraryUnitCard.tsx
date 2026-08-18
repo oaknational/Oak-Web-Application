@@ -16,6 +16,7 @@ import { resolveOakHref } from "@/common-lib/urls";
 import useMediaQuery from "@/hooks/useMediaQuery";
 import { MyLibraryUnit } from "@/node-lib/educator-api/queries/getUserListContent/getUserListContent.types";
 import { KeyStageTitleValueType } from "@/browser-lib/avo/Avo";
+import { useTeacherBrowseAnalytics } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
 
 const StyledOL = styled.ol`
   list-style-type: none;
@@ -51,7 +52,9 @@ const UnitCardHeader = ({
 }: MyLibraryUnitCardProps & {
   saveButton?: ReactNode;
 }) => {
-  const { unitTitle, year, savedAt, optionalityTitle } = props;
+  const { unitTitle, year, yearSlug, savedAt, optionalityTitle } = props;
+
+  const track = useTeacherBrowseAnalytics((store) => store.track);
 
   const lastSavedText = getLastSavedText(savedAt);
   const mainTitle = optionalityTitle ?? unitTitle;
@@ -78,7 +81,13 @@ const UnitCardHeader = ({
             programmeSlug: props.programmeSlug,
             unitSlug: props.unitSlug,
           })}
-          onClick={props.trackUnitAccessed}
+          onClick={() =>
+            track.unitAccessed({
+              componentType: "unit_card",
+              yearGroupName: props.year,
+              yearGroupSlug: yearSlug,
+            })
+          }
         >
           <OakHeading
             tag="h3"
@@ -108,6 +117,7 @@ const UnitCardContent = ({
   saveButton?: ReactNode;
 } & MyLibraryUnitCardProps) => {
   const { unitSlug, programmeSlug, lessons } = props;
+  const track = useTeacherBrowseAnalytics((store) => store.track);
 
   return (
     <OakFlex>
@@ -137,7 +147,11 @@ const UnitCardContent = ({
                     key={lesson.slug}
                     $pb={"spacing-20"}
                     $font={"heading-light-7"}
-                    onClick={() => props.trackLessonAccessed(lesson.slug)}
+                    onClick={() =>
+                      track.lessonAccessed({
+                        componentType: "lesson_card",
+                      })
+                    }
                   >
                     <OakFlex>
                       <OakP
@@ -178,8 +192,7 @@ export type MyLibraryUnitCardProps = Omit<
   keyStageTitle: KeyStageTitleValueType;
   subjectTitle: string;
   subjectSlug: string;
-  trackUnitAccessed: () => void;
-  trackLessonAccessed: (lessonSlug: string) => void;
+  yearSlug: string;
 };
 
 export default function MyLibraryUnitCard(props: MyLibraryUnitCardProps) {

@@ -8,17 +8,10 @@ import {
 import MyLibraryHeader from "@/components/TeacherComponents/MyLibraryHeader/MyLibraryHeader";
 import NoSavedContent from "@/components/TeacherComponents/NoSavedContent/NoSavedContent";
 import { MyLibraryUnit } from "@/node-lib/educator-api/queries/getUserListContent/getUserListContent.types";
-import {
-  ExamBoardValueType,
-  KeyStageTitleValueType,
-  PathwayValueType,
-  TierNameValueType,
-} from "@/browser-lib/avo/Avo";
+import { KeyStageTitleValueType } from "@/browser-lib/avo/Avo";
 import { resolveOakHref } from "@/common-lib/urls";
 import MyLibraryProgrammeCard from "@/components/TeacherComponents/MyLibraryProgrammeCard/MyLibraryProgrammeCard";
 import { getValidSubjectIconName } from "@/utils/getValidSubjectIconName";
-import useAnalytics from "@/context/Analytics/useAnalytics";
-import { useTeacherBrowseAnalytics } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
 
 export type CollectionData = Array<{
   subject: string;
@@ -41,8 +34,6 @@ type MyLibraryProps = {
 
 export default function MyLibrary(props: Readonly<MyLibraryProps>) {
   const { collectionData, isLoading } = props;
-  const { track } = useAnalytics();
-  const trackTeacherBrowse = useTeacherBrowseAnalytics((store) => store.track);
   const collections = collectionData ?? [];
 
   const hasLoadedCollections = !isLoading && collectionData !== null;
@@ -105,14 +96,7 @@ export default function MyLibrary(props: Readonly<MyLibraryProps>) {
                     subject_categories: collection.subjectCategoryQuery,
                   },
                 })}
-                trackProgrammeRefined={() => {
-                  trackTeacherBrowse?.programmeRefined({
-                    componentType: "programme_card",
-                    filterType: "Subject filter",
-                    filterValue: collection.subject,
-                    activeFilters: [],
-                  });
-                }}
+                subject={collection.subject}
                 iconName={getValidSubjectIconName(collection.subjectSlug)}
                 savedUnits={collection.units.map((unit) => ({
                   ...unit,
@@ -121,50 +105,6 @@ export default function MyLibrary(props: Readonly<MyLibraryProps>) {
                   subjectTitle: collection.subject,
                   subjectSlug: collection.subjectSlug,
                   programmeSlug: collection.programmeSlug,
-                  trackUnitAccessed: () =>
-                    track.unitAccessed({
-                      platform: "owa",
-                      product: "teacher lesson resources",
-                      engagementIntent: "refine",
-                      componentType: "unit_card",
-                      eventVersion: "2.0.0",
-                      analyticsUseCase: "Teacher",
-                      unitName: unit.unitTitle,
-                      unitSlug: unit.unitSlug,
-                      subjectTitle: collection.subject,
-                      subjectSlug: collection.subjectSlug,
-                      keyStageTitle:
-                        collection.keystage as KeyStageTitleValueType,
-                      keyStageSlug: collection.keystageSlug,
-                      yearGroupName: unit.year,
-                      yearGroupSlug: unit.yearSlug,
-                      tierName: unit.tier as TierNameValueType,
-                      examBoard: unit.examboard as ExamBoardValueType,
-                      pathway: unit.pathway as PathwayValueType,
-                    }),
-                  trackLessonAccessed: (lessonSlug: string) =>
-                    track.lessonAccessed({
-                      platform: "owa",
-                      product: "teacher lesson resources",
-                      engagementIntent: "refine",
-                      componentType: "lesson_card",
-                      eventVersion: "2.0.0",
-                      analyticsUseCase: "Teacher",
-                      unitName: unit.unitTitle,
-                      unitSlug: unit.unitSlug,
-                      lessonName: lessonSlug,
-                      keyStageTitle:
-                        collection.keystage as KeyStageTitleValueType,
-                      keyStageSlug: collection.keystageSlug,
-                      yearGroupName: unit.year,
-                      yearGroupSlug: unit.yearSlug,
-                      tierName: unit.tier as TierNameValueType,
-                      examBoard: unit.examboard as ExamBoardValueType,
-                      pathway: unit.pathway as PathwayValueType,
-                      lessonSlug,
-                      lessonReleaseCohort: "2023-2026",
-                      lessonReleaseDate: "", // we don't have access to lesson content data here
-                    }),
                 }))}
               />
             ))}
