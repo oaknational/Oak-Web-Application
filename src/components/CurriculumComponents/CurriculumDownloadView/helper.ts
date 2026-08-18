@@ -42,7 +42,7 @@ export function runSchema<T extends Record<string, unknown>>(
 }
 
 export type DownloadTypes =
-  | "curriculumPlans"
+  | "curriculumPlan"
   | "nationalCurriculum"
   | "curriculumQuality"
   | "whatsIncluded"
@@ -67,7 +67,7 @@ export const DOWNLOAD_TYPE_LABELS: {
   avoResourceType: ResourceTypeValueType;
 }[] = [
   {
-    id: "curriculumPlans",
+    id: "curriculumPlan",
     group: "curriculum",
     label: "Curriculum plan",
     subTitle: "Word (accessible)",

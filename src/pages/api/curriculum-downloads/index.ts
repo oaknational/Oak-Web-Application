@@ -259,7 +259,7 @@ export default async function handler(
 
   // Check if we should redirect (new cache-hit)
   if (
-    (["curriculumPlans", "nationalCurriculum"] as const).some((type) =>
+    (["curriculumPlan", "nationalCurriculum"] as const).some((type) =>
       types.includes(type),
     ) &&
     mvRefreshTimeParsed !== actualMvRefreshTime
@@ -307,7 +307,7 @@ export default async function handler(
 
   const allHandlers = [
     {
-      type: "curriculumPlans",
+      type: "curriculumPlan",
       handler: docx,
       getFilename: (data: getDataReturn) => {
         if (data.notFound) {

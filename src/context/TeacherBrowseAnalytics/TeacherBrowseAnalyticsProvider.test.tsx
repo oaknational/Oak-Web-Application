@@ -353,7 +353,7 @@ describe("TeacherBrowseAnalyticsStoreProvider", () => {
       renderTrackingTest(programmeLevelState, "curriculumResourcesDownloaded", {
         school: "test-school",
         terms: true,
-        resources: ["nationalCurriculum", "curriculumPlans"],
+        resources: ["nationalCurriculum", "curriculumPlan"],
       });
 
       const trackBtn = screen.getByRole("button", { name: "Track" });
