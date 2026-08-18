@@ -56,6 +56,12 @@ export const McpDeveloperPanel = () => (
       // width and the whole page overflows horizontally on small screens.
       $minWidth="spacing-0"
       $width="100%"
+      // Because the block scrolls horizontally on narrow viewports, it has to
+      // be focusable for keyboard users to reach that scroll at all
+      // (WCAG 2.1.1), and named so the extra focus stop is announced.
+      tabIndex={0}
+      role="region"
+      aria-label={mcpDeveloper.configRegionLabel}
     >
       <StyledCodeBlock as="pre" $font="code-3" $color="text-inverted">
         {mcpDeveloper.config}

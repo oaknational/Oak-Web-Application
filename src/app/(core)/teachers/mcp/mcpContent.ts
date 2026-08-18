@@ -193,6 +193,7 @@ export const mcpDeveloper = {
   title: "Connect a product or MCP client",
   body: "Use the canonical Oak Curriculum MCP endpoint to search and retrieve structured curriculum information.",
   configLabel: "Add this to your MCP client configuration:",
+  configRegionLabel: "MCP client configuration",
   config: `{
   "mcpServers": {
     "oak-curriculum": {
