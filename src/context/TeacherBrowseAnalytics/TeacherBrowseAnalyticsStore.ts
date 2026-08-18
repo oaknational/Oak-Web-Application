@@ -57,6 +57,7 @@ export type TeacherBrowseAnalyticsStore = {
       tierSlug?: string | null;
       childSubjectSlug?: string | null;
     }) => void;
+    lessonAccessed: (props: { componentType: ComponentTypeValueType }) => void;
     lessonMediaClipsStarted: (data: {
       mediaClipsButtonName: MediaClipsButtonNameValueType;
       learningCycle: string | null;
@@ -100,6 +101,11 @@ export type TeacherBrowseAnalyticsStore = {
     }) => void;
     teachingMaterialsSelected: (props: {
       teachingMaterialType: TeachingMaterialTypeValueType;
+    }) => void;
+    unitAccessed: (props: {
+      componentType: ComponentTypeValueType;
+      yearGroupName: string;
+      yearGroupSlug: string;
     }) => void;
     unitDownloaded: () => void;
     unitDownloadStarted: () => void;
@@ -293,6 +299,34 @@ export const createTeacherBrowseAnalyticsStore = (
           schoolUrn: getSchoolUrn(data.school, schoolOption),
           keyStageSlug: null,
           keyStageTitle: null,
+        });
+      },
+      lessonAccessed: ({ componentType }) => {
+        const { avo, programmeState } = get();
+
+        if (programmeState?.browseLevel !== "lesson") {
+          reportAnalyticsError({
+            event: "lessonAccessed",
+            programmeState,
+          });
+          return;
+        }
+
+        const lessonState = requireLessonState(
+          "lessonAccessed",
+          programmeState,
+        );
+        if (!lessonState) {
+          return;
+        }
+
+        const analyticsProperties = getLessonAnalyticsProperties(lessonState);
+
+        avo.lessonAccessed({
+          ...coreProperties,
+          ...analyticsProperties,
+          engagementIntent: EngagementIntent.REFINE,
+          componentType,
         });
       },
       lessonMediaClipsStarted: (data) => {
@@ -557,6 +591,33 @@ export const createTeacherBrowseAnalyticsStore = (
           interactionId: "",
           engagementIntent: "use",
           componentType: "create_more_with_ai_dropdown",
+        });
+      },
+      unitAccessed: ({ componentType, yearGroupName, yearGroupSlug }) => {
+        const { avo, programmeState } = get();
+
+        if (programmeState?.browseLevel === "programme") {
+          reportAnalyticsError({
+            event: "unitAccessed",
+            programmeState,
+          });
+          return;
+        }
+
+        const unitState = requireUnitState("unitAccessed", programmeState);
+        if (!unitState) {
+          return;
+        }
+
+        const analyticsProps = getUnitAnalyticsProperties(unitState);
+
+        avo.unitAccessed({
+          engagementIntent: EngagementIntent.REFINE,
+          ...coreProperties,
+          ...analyticsProps,
+          componentType,
+          yearGroupName,
+          yearGroupSlug,
         });
       },
       unitDownloaded: () => {
