@@ -14,7 +14,7 @@ import {
 import {
   getFilterData,
   scopeYearsToKeystageFilter,
-} from "@/context/BrowseFilters/filtering";
+} from "@/utils/curriculum/filtering";
 import {
   byKeyStageSlug,
   presentAtKeyStageSlugs,

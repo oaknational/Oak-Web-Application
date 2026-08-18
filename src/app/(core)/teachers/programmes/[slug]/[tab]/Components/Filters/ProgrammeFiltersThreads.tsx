@@ -10,7 +10,7 @@ import {
   CurriculumFilters,
   OnChangeCurriculumFilters,
 } from "@/utils/curriculum/types";
-import { highlightedUnitCount } from "@/context/BrowseFilters/filtering";
+import { highlightedUnitCount } from "@/utils/curriculum/filtering";
 import { CurriculumUnitsFormattedData } from "@/pages-helpers/curriculum/docx/tab-helpers";
 import { FilterType } from "@/browser-lib/avo/Avo";
 import { pluralizeUnits } from "@/utils/curriculum/formatting";

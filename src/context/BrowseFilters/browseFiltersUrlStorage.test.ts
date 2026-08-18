@@ -50,6 +50,20 @@ describe("createBrowseFiltersUrlStorage", () => {
     expect(window.location.href).toBe("http://localhost/programme/units");
   });
 
+  it("preserves an existing hash when writing filters", () => {
+    globalThis.history.replaceState(null, "", "/programme/units#worksheet");
+
+    storage.setItem("curriculumFilters", {
+      state: { filters: createFilter({ years: ["7"], tiers: ["higher"] }) },
+      version: 0,
+    });
+
+    expect(window.location.hash).toBe("#worksheet");
+    expect(new URLSearchParams(window.location.search).get("tiers")).toBe(
+      "higher",
+    );
+  });
+
   it("removeItem strips filter params but keeps the rest", () => {
     globalThis.history.replaceState(
       null,
@@ -62,5 +76,17 @@ describe("createBrowseFiltersUrlStorage", () => {
     const params = new URLSearchParams(window.location.search);
     expect(params.get("tiers")).toBeNull();
     expect(params.get("utm_source")).toBe("newsletter");
+  });
+
+  it("removeItem preserves an existing hash", () => {
+    globalThis.history.replaceState(
+      null,
+      "",
+      "/programme/units?tiers=higher#worksheet",
+    );
+
+    storage.removeItem("curriculumFilters");
+
+    expect(window.location.hash).toBe("#worksheet");
   });
 });

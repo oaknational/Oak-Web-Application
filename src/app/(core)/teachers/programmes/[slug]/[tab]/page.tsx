@@ -33,7 +33,7 @@ import { getSubjectPhaseSlug } from "@/components/TeacherComponents/helpers/getS
 import {
   getDefaultFilter,
   resolveFilterFromSearchParams,
-} from "@/context/BrowseFilters/filtering";
+} from "@/utils/curriculum/filtering";
 import { BrowseFiltersProvider } from "@/context/BrowseFilters";
 import { redirectProgrammeSlugIfNeeded } from "@/utils/integratedJourney/legacyProgrammeUnitsRedirect";
 import { cacheData } from "@/node-lib/cache";

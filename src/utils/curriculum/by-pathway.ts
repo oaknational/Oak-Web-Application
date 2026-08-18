@@ -1,5 +1,4 @@
-import { filteringFromYears } from "../../context/BrowseFilters/filtering";
-
+import { filteringFromYears } from "./filtering";
 import { CurriculumFilters, Pathway, Unit, YearData } from "./types";
 import { sortYears } from "./sorting";
 import { isVisibleUnit } from "./isVisibleUnit";

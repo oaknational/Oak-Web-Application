@@ -18,7 +18,7 @@ import {
   CurriculumSelectionTitles,
 } from "@/utils/curriculum/slugs";
 import { BrowseFiltersProvider } from "@/context/BrowseFilters";
-import { getDefaultFilter } from "@/context/BrowseFilters/filtering";
+import { getDefaultFilter } from "@/utils/curriculum/filtering";
 import { CurriculumFilters } from "@/utils/curriculum/types";
 
 const subjectPhaseSlug = "science-secondary-aqa";

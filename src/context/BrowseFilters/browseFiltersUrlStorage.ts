@@ -5,7 +5,7 @@ import {
   FILTER_QS_KEYS,
   filtersFromSearchString,
   searchStringWithFilters,
-} from "@/context/BrowseFilters/filtering";
+} from "@/utils/curriculum/filtering";
 
 export const BROWSE_FILTERS_STORE_NAME = "curriculumFilters";
 export const BROWSE_FILTERS_STORE_VERSION = 0;
@@ -15,11 +15,11 @@ export type BrowseFiltersPersistedState = {
 };
 
 const replaceSearch = (search: string) => {
-  const url = search
+  const basePath = search
     ? `${window.location.pathname}?${search}`
     : window.location.pathname;
 
-  globalThis.history.replaceState(null, "", url);
+  globalThis.history.replaceState(null, "", basePath + window.location.hash);
 };
 
 export function createBrowseFiltersUrlStorage(

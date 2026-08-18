@@ -11,7 +11,7 @@ import {
 } from "./browseFiltersUrlStorage";
 
 import { CurriculumFilters } from "@/utils/curriculum/types";
-import { mergeInFilterParams } from "@/context/BrowseFilters/filtering";
+import { mergeInFilterParams } from "@/utils/curriculum/filtering";
 
 export type BrowseFiltersStore = {
   filters: CurriculumFilters;

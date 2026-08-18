@@ -1,12 +1,12 @@
 import { ReadonlyURLSearchParams } from "next/navigation";
 import { isEqual } from "lodash";
 
-import { findFirstMatchingFeatures } from "../../utils/curriculum/features";
+import { findFirstMatchingFeatures } from "./features";
 import {
   sortChildSubjects,
   sortSubjectCategoriesOnFeatures,
   sortTiers,
-} from "../../utils/curriculum/sorting";
+} from "./sorting";
 import {
   CurriculumFilters,
   KeyStageSlug,
@@ -16,13 +16,13 @@ import {
   Tier,
   Unit,
   YearData,
-} from "../../utils/curriculum/types";
-import { isVisibleUnit } from "../../utils/curriculum/isVisibleUnit";
+} from "./types";
+import { isVisibleUnit } from "./isVisibleUnit";
 import {
   byKeyStageSlug,
   keystageYearMappings,
   presentAtKeyStageSlugs,
-} from "../../utils/curriculum/keystage";
+} from "./keystage";
 
 import {
   CurriculumUnitsFormattedData,
