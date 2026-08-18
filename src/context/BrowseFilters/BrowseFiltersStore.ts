@@ -4,10 +4,10 @@ import { isEqual } from "lodash";
 import type { ReadonlyURLSearchParams } from "next/navigation";
 
 import {
-  createCurriculumFiltersUrlStorage,
   BrowseFiltersPersistedState,
   BROWSE_FILTERS_STORE_NAME,
   BROWSE_FILTERS_STORE_VERSION,
+  createBrowseFiltersUrlStorage,
 } from "./browseFiltersUrlStorage";
 
 import { CurriculumFilters } from "@/utils/curriculum/types";
@@ -64,7 +64,7 @@ export const createBrowseFiltersStore = ({
   // it is being built for, so it reads back through this reference.
   const storeRef: { current?: StoreApi<BrowseFiltersStore> } = {};
 
-  const storage = createCurriculumFiltersUrlStorage(
+  const storage = createBrowseFiltersUrlStorage(
     () => storeRef.current?.getState().defaultFilter ?? defaultFilter,
   );
 
@@ -81,8 +81,7 @@ export const createBrowseFiltersStore = ({
               params,
             );
 
-            // Bail out when nothing changed so subscribers aren't woken by a
-            // new-but-equal object on every navigation.
+            // If nothing changed, don't trigger a re-render
             return isEqual(nextFilters, state.filters)
               ? state
               : { filters: nextFilters };

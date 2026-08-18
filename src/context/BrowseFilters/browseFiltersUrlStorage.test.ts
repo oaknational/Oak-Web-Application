@@ -1,89 +1,13 @@
-import {
-  createCurriculumFiltersUrlStorage,
-  filtersFromSearchString,
-  searchStringWithFilters,
-} from "./browseFiltersUrlStorage";
+import { createBrowseFiltersUrlStorage } from "./browseFiltersUrlStorage";
 
 import { createFilter } from "@/fixtures/curriculum/filters";
 
-describe("filtersFromSearchString", () => {
-  it("reads the filter params it owns", () => {
-    expect(
-      filtersFromSearchString("?years=7,8&child_subjects=biology&tiers=higher"),
-    ).toEqual({
-      years: ["7", "8"],
-      childSubjects: ["biology"],
-      tiers: ["higher"],
-    });
-  });
-
-  it("omits params that are absent, rather than defaulting them", () => {
-    expect(filtersFromSearchString("?tiers=higher")).toEqual({
-      tiers: ["higher"],
-    });
-  });
-
-  it("ignores params that don't belong to the filters", () => {
-    expect(filtersFromSearchString("?utm_source=newsletter")).toEqual({});
-  });
-
-  it("ignores empty filter params", () => {
-    expect(filtersFromSearchString("?tiers=")).toEqual({});
-  });
-});
-
-describe("searchStringWithFilters", () => {
+describe("createBrowseFiltersUrlStorage", () => {
   const defaultFilter = createFilter({
     years: ["7", "8"],
     tiers: ["foundation"],
   });
-
-  it("writes filters that differ from the default", () => {
-    const search = searchStringWithFilters(
-      "",
-      createFilter({ years: ["7", "8"], tiers: ["higher"] }),
-      defaultFilter,
-    );
-
-    expect(new URLSearchParams(search).get("tiers")).toBe("higher");
-  });
-
-  it("omits filters that match the default, keeping shared URLs short", () => {
-    const search = searchStringWithFilters("", defaultFilter, defaultFilter);
-
-    expect(search).toBe("");
-  });
-
-  it("preserves params belonging to other features", () => {
-    const search = searchStringWithFilters(
-      "?utm_source=newsletter&focus_ks4_option=aqa",
-      createFilter({ years: ["7", "8"], tiers: ["higher"] }),
-      defaultFilter,
-    );
-    const params = new URLSearchParams(search);
-
-    expect(params.get("utm_source")).toBe("newsletter");
-    expect(params.get("focus_ks4_option")).toBe("aqa");
-    expect(params.get("tiers")).toBe("higher");
-  });
-
-  it("clears filter params that are no longer active", () => {
-    const search = searchStringWithFilters(
-      "?tiers=higher",
-      defaultFilter,
-      defaultFilter,
-    );
-
-    expect(new URLSearchParams(search).get("tiers")).toBeNull();
-  });
-});
-
-describe("createCurriculumFiltersUrlStorage", () => {
-  const defaultFilter = createFilter({
-    years: ["7", "8"],
-    tiers: ["foundation"],
-  });
-  const storage = createCurriculumFiltersUrlStorage(() => defaultFilter);
+  const storage = createBrowseFiltersUrlStorage(() => defaultFilter);
 
   beforeEach(() => {
     globalThis.history.replaceState(null, "", "/programme/units");
