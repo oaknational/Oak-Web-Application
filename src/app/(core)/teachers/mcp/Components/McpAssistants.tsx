@@ -15,7 +15,12 @@ import { McpRichText } from "./McpRichText";
 import {
   mcpAssistants,
   type McpAssistant,
+  type McpTextSegment,
 } from "@/app/(core)/teachers/mcp/mcpContent";
+
+/** Stable key for a run of segments — the copy itself is unique and fixed. */
+const segmentsKey = (segments: readonly McpTextSegment[]) =>
+  segments.map((segment) => segment.text).join("");
 
 const McpAssistantCard = ({
   assistant,
@@ -65,16 +70,15 @@ export const McpAssistants = () => (
       ))}
     </OakFlex>
     <OakOL $font="body-2">
-      {mcpAssistants.steps.map((step, index) => (
-        // Steps are ordered and fixed, so the index is a stable key here.
-        <OakLI key={index} $mb="spacing-8">
+      {mcpAssistants.steps.map((step) => (
+        <OakLI key={segmentsKey(step)} $mb="spacing-8">
           <McpRichText segments={step} />
         </OakLI>
       ))}
     </OakOL>
     <OakFlex $flexDirection="column" $gap="spacing-12">
-      {mcpAssistants.smallPrint.map((paragraph, index) => (
-        <OakP key={index} $font="body-3">
+      {mcpAssistants.smallPrint.map((paragraph) => (
+        <OakP key={segmentsKey(paragraph)} $font="body-3">
           <McpRichText segments={paragraph} boldFont="body-3-bold" />
         </OakP>
       ))}
