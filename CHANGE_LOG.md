@@ -1,3 +1,11 @@
+# [1.1159.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1158.0...v1.1159.0) (2026-08-18)
+
+
+### Features
+
+* add impact to deployment url ([9095a88](https://github.com/oaknational/Oak-Web-Application/commit/9095a8818a4db1f6f5a1d49b1320cf128996767d))
+* add to sitemaps ([35ca647](https://github.com/oaknational/Oak-Web-Application/commit/35ca6478dfeb5333522a1f2c1bcc59b18ed4ce99))
+
 # [1.1158.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1157.1...v1.1158.0) (2026-08-17)
 
 
