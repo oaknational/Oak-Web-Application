@@ -15,7 +15,6 @@ import { McpHero } from "./McpHero";
 import { McpSection } from "./McpSection";
 import { McpCapabilities } from "./McpCapabilities";
 import { McpAssistants } from "./McpAssistants";
-import { McpDeveloperPanel } from "./McpDeveloperPanel";
 import { McpVideoPlaceholder } from "./McpVideoPlaceholder";
 import { McpFeedbackPanel } from "./McpFeedbackPanel";
 import { McpExternalLink } from "./McpExternalLink";
@@ -58,24 +57,14 @@ export const McpView = () => (
         $ma="auto"
         $pt={["spacing-48", "spacing-64"]}
       >
-        <McpSection title={mcpIntro.title} id="introducing-oak-curriculum-mcp">
+        <McpSection title={mcpIntro.title} id="see-it-in-action">
           <McpVideoPlaceholder />
-          <OakP $font="body-2-bold">{mcpIntro.lead}</OakP>
           {mcpIntro.paragraphs.map((paragraph) => (
             <OakP key={paragraph} $font="body-2">
               {paragraph}
             </OakP>
           ))}
-          {mcpIntro.steps.map((step) => (
-            <McpSubsection
-              key={step.title}
-              title={step.title}
-              body={step.body}
-            />
-          ))}
-          <OakP $font="body-3" $color="text-subdued">
-            {mcpIntro.smallPrint}
-          </OakP>
+          <OakP $font="body-2-bold">{mcpIntro.smallPrint}</OakP>
         </McpSection>
 
         <McpCapabilities />
@@ -122,19 +111,20 @@ export const McpView = () => (
               </OakUL>
             </OakBox>
           ))}
-        </McpSection>
 
-        <McpSection title={mcpSupport.title} id="questions-or-problems">
-          <OakP $font="body-2">
-            {mcpSupport.bodyBefore}
-            <McpExternalLink href={mcpSupport.href}>
-              {mcpSupport.linkLabel}
-            </McpExternalLink>
-            {mcpSupport.bodyAfter}
-          </OakP>
+          <OakFlex $flexDirection="column" $gap="spacing-4">
+            <OakHeading tag="h3" $font="body-2-bold">
+              {mcpSupport.title}
+            </OakHeading>
+            <OakP $font="body-2">
+              {mcpSupport.bodyBefore}
+              <McpExternalLink href={mcpSupport.href}>
+                {mcpSupport.linkLabel}
+              </McpExternalLink>
+              {mcpSupport.bodyAfter}
+            </OakP>
+          </OakFlex>
         </McpSection>
-
-        <McpDeveloperPanel />
 
         <OakInlineBanner
           isOpen

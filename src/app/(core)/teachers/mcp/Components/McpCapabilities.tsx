@@ -14,6 +14,7 @@ import { mcpCapabilities } from "@/app/(core)/teachers/mcp/mcpContent";
 
 export const McpCapabilities = () => (
   <McpSection title={mcpCapabilities.title} id="what-can-you-do">
+    <OakP $font="body-2">{mcpCapabilities.body}</OakP>
     <OakUL $reset $display="flex" $flexDirection="column" $gap="spacing-24">
       {mcpCapabilities.items.map((capability) => (
         <OakLI key={capability.title}>

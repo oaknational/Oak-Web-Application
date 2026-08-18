@@ -42,6 +42,7 @@ export const McpHero = () => (
             />
           ))}
         </OakFlex>
+        <OakP $font="body-2-bold">{mcpHero.note}</OakP>
       </OakFlex>
       <OakImage
         src="/images/mcp/hero-using-ai.svg"

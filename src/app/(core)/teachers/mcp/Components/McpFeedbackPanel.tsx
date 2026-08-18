@@ -5,7 +5,6 @@ import {
   OakHeading,
   OakImage,
   OakP,
-  OakScreenReader,
   OakSecondaryButton,
 } from "@oaknational/oak-components";
 
@@ -36,16 +35,14 @@ export const McpFeedbackPanel = () => (
         </OakHeading>
         <OakP $font="body-2">{mcpFeedback.body}</OakP>
         <OakFlex>
+          {/* A mailto: link, so no new-tab target or announcement here. */}
           <OakSecondaryButton
             element="a"
             href={mcpFeedback.ctaHref}
-            target="_blank"
-            rel="noopener noreferrer"
-            iconName="external"
+            iconName="arrow-right"
             isTrailingIcon
           >
             {mcpFeedback.ctaLabel}
-            <OakScreenReader> (opens in a new tab)</OakScreenReader>
           </OakSecondaryButton>
         </OakFlex>
       </OakFlex>

@@ -12,7 +12,7 @@ export const McpVideoPlaceholder = () => (
   <OakBox
     $ba="border-solid-xl"
     $borderColor="border-primary"
-    $background="bg-neutral"
+    $background="bg-neutral-stronger"
     $minHeight={["spacing-240", "spacing-480"]}
     $width="100%"
     role="img"

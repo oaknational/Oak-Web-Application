@@ -3,12 +3,14 @@ import {
   OakFlex,
   OakHeading,
   OakImage,
+  OakLI,
+  OakOL,
   OakP,
 } from "@oaknational/oak-components";
 
 import { McpSection } from "./McpSection";
 import { McpTryButton } from "./McpTryButton";
-import { McpExternalLink } from "./McpExternalLink";
+import { McpRichText } from "./McpRichText";
 
 import {
   mcpAssistants,
@@ -47,9 +49,6 @@ const McpAssistantCard = ({
         href={assistant.ctaHref}
         logoSrc={assistant.logoSrc}
       />
-      <McpExternalLink href={assistant.guideHref}>
-        {assistant.guideLabel}
-      </McpExternalLink>
     </OakFlex>
   </OakFlex>
 );
@@ -63,6 +62,21 @@ export const McpAssistants = () => (
     >
       {mcpAssistants.items.map((assistant) => (
         <McpAssistantCard key={assistant.name} assistant={assistant} />
+      ))}
+    </OakFlex>
+    <OakOL $font="body-2">
+      {mcpAssistants.steps.map((step, index) => (
+        // Steps are ordered and fixed, so the index is a stable key here.
+        <OakLI key={index} $mb="spacing-8">
+          <McpRichText segments={step} />
+        </OakLI>
+      ))}
+    </OakOL>
+    <OakFlex $flexDirection="column" $gap="spacing-12">
+      {mcpAssistants.smallPrint.map((paragraph, index) => (
+        <OakP key={index} $font="body-3">
+          <McpRichText segments={paragraph} boldFont="body-3-bold" />
+        </OakP>
       ))}
     </OakFlex>
   </McpSection>

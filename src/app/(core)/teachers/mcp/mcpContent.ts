@@ -3,39 +3,35 @@ import type { OakIconName } from "@oaknational/oak-components";
 /**
  * Copy for the Oak Curriculum MCP landing page.
  *
- * The Figma source (🌳 Oak MCP v1) marks this content as
- * "placeholder/pending", so it is kept in one place to make review and
- * replacement straightforward. Nothing here is fetched from an API.
+ * Taken from the final Figma designs (🌳 Oak MCP v1, the "OWA OAK MCP landing
+ * page - thenational.academy/mcp >1280" frame). Kept in one place so copy
+ * review does not mean reading through components.
+ *
+ * Link targets are still placeholders, except the feedback CTA, which Figma
+ * annotates as mailto:support@thenational.academy.
  */
 
+/** A run of copy that may be emphasised, so bold phrases stay in this file. */
+export type McpTextSegment = {
+  text: string;
+  bold?: boolean;
+};
+
 export const mcpHero = {
-  title: "Bring the Oak curriculum into your AI assistant",
-  body: "Connect the AI assistant you already use to Oak’s free curriculum content, designed for schools in the UK. With Oak Curriculum MCP you can find relevant lessons and units, explore what pupils need to know, and get a grounded starting point for planning and questions.",
+  title: "Bring Oak’s curriculum into your AI assistant",
+  body: "Build on our free, subject expert-designed curriculum right inside the AI assistants you already use. Plan lessons, sequence a whole curriculum, and create resources, all grounded in our national curriculum-aligned content.",
+  note: "We’re starting with Claude, and working to bring Oak to more AI assistants soon.",
 } as const;
 
 export const mcpIntro = {
-  title: "Introducing Oak Curriculum MCP",
-  lead: "Oak curriculum, available where you already use AI.",
+  title: "See it in action",
   paragraphs: [
-    "Oak Curriculum MCP is a connection between Oak’s structured curriculum and compatible AI assistants.",
-    "When you ask a teaching question, the assistant can look up relevant Oak content instead of relying only on its general knowledge. Oak supplies curriculum information and source details; the assistant interprets your request and writes the response.",
-  ],
-  steps: [
-    {
-      title: "1. Connect Oak",
-      body: "Add Oak Curriculum to a supported AI assistant.",
-    },
-    {
-      title: "2. Ask naturally",
-      body: "Ask for a lesson, a unit, prior knowledge, curriculum progression or a starting point for questions.",
-    },
-    {
-      title: "3. Check and adapt",
-      body: "Open the Oak sources, review the response and shape it for your pupils and context.",
-    },
+    "Our curriculum is now available in Claude, with more AI assistants to follow.",
+    "With Oak connected, your AI assistant can plan lessons, sequence a whole curriculum, or map how a topic builds across year groups. And that’s just a start.",
+    "Everything is grounded in our national curriculum-aligned resources, written and quality-assured by subject experts, and free to use. You stay in control: you’re the expert, and you know what works for your pupils.",
   ],
   smallPrint:
-    "Oak does not charge for this service. Your AI provider’s account and plan rules may apply.",
+    "We don’t charge for this service, and all our curriculum plans and resources are free to access. Your AI provider’s account and plan rules may apply.",
 } as const;
 
 export type McpCapability = {
@@ -52,41 +48,41 @@ export type McpCapability = {
 
 export const mcpCapabilities: {
   title: string;
+  body: string;
   items: readonly McpCapability[];
 } = {
   title: "What can you do?",
+  body: "What you love about Oak, now in the AI assistant you already use. Here’s what that lets you do:",
   items: [
     {
       title: "Find lessons and resources",
-      body: "Search Oak’s fully sequenced curriculum by subject, topic, key stage, year or exam board.",
+      body: "Search our fully sequenced curriculum by subject, topic, key stage, year, or exam board.",
       iconName: "search",
-      background: "bg-decorative1-main",
+      background: "bg-decorative3-main",
+    },
+    {
+      title: "Explore curriculum progression",
+      body: "See where a concept is taught across our curriculum and builds across year groups and phases.",
+      iconName: "book-steps",
+      background: "bg-decorative2-main",
     },
     {
       title: "Check prior knowledge and misconceptions",
-      body: "Understand what pupils need to know first and the common misconceptions to anticipate.",
+      body: "Know what to teach first and the common errors to plan for, mapped across our curriculum.",
       iconName: "quiz",
       background: "bg-decorative4-main",
     },
     {
-      title: "Explore curriculum progression",
-      body: "See where a concept is taught and how it develops across year groups and phases.",
-      iconName: "curriculum-plan",
-      background: "bg-decorative3-main",
-    },
-    {
-      title: "Adapt content for your pupils and context",
-      body: "Ask your AI assistant to scaffold tasks or reflect a local context, then check and refine the result for your class.",
-      // Figma uses the "Lesson plan" glyph, but oak-components' `teacher-lesson`
-      // and `teacher-unit` assets are currently blank coloured circles.
-      iconName: "pencil",
+      title: "Adapt content for your pupils",
+      body: "Ask your AI assistant to suggest ways to scaffold a task or reflect your local context, and refine it for your class.",
+      iconName: "ai-additional-material",
       background: "bg-decorative5-subdued",
     },
     {
       title: "Create resources grounded in Oak",
-      body: "Use Oak’s key learning, vocabulary, quiz questions and misconceptions to create retrieval questions, quizzes or knowledge organisers.",
-      iconName: "additional-material",
-      background: "bg-decorative2-main",
+      body: "Bring it all together: build on our expert, national curriculum-aligned content to create retrieval questions, quizzes, knowledge organisers, and more.",
+      iconName: "logo",
+      background: "bg-decorative1-main",
     },
   ],
 } as const;
@@ -95,17 +91,17 @@ export type McpAssistant = {
   name: string;
   ctaLabel: string;
   ctaHref: string;
-  guideLabel: string;
-  guideHref: string;
   logoSrc: string;
   /** Tile colour behind the provider logo. */
-  background: "bg-decorative6-main" | "bg-inverted";
+  background: "bg-decorative6-main";
 };
 
 export const mcpAssistants: {
   title: string;
   body: string;
   items: readonly McpAssistant[];
+  steps: readonly (readonly McpTextSegment[])[];
+  smallPrint: readonly (readonly McpTextSegment[])[];
 } = {
   title: "Choose your AI assistant",
   body: "Start in the AI assistant you already use.",
@@ -114,41 +110,64 @@ export const mcpAssistants: {
       name: "Claude",
       ctaLabel: "Try in Claude",
       ctaHref: "https://claude.ai/",
-      guideLabel: "Claude setup guide",
-      guideHref: "https://support.thenational.academy/using-oak-mcp",
       logoSrc: "/images/mcp/claude-logo.png",
       background: "bg-decorative6-main",
     },
-    {
-      name: "ChatGPT",
-      ctaLabel: "Try in ChatGPT",
-      ctaHref: "https://chatgpt.com/",
-      guideLabel: "ChatGPT setup guide",
-      guideHref: "https://support.thenational.academy/using-oak-mcp",
-      logoSrc: "/images/mcp/chatgpt-logo.png",
-      background: "bg-inverted",
-    },
+  ],
+  steps: [
+    [
+      { text: "Click " },
+      { text: "Try in Claude", bold: true },
+      {
+        text: ". Claude opens in a new tab with a message ready to send. Click the orange arrow to send it, and an install card appears in the chat.",
+      },
+    ],
+    [
+      { text: "Tap " },
+      { text: "Install", bold: true },
+      { text: " on the card, then " },
+      { text: "authorise Oak", bold: true },
+      {
+        text: " when prompted. Claude is now ready to draw on the Oak curriculum.",
+      },
+    ],
+  ],
+  smallPrint: [
+    [
+      {
+        text: "If Claude opens with an empty message box, paste this in and send it: ",
+      },
+      {
+        text: "Install the Oak National Academy plugin and its connector.",
+        bold: true,
+      },
+    ],
+    [
+      {
+        text: "We’re starting with Claude, and working to bring Oak to more AI assistants soon.",
+      },
+    ],
   ],
 } as const;
 
 export const mcpResponsibleUse = {
   title: "Use it responsibly",
   intro: [
-    "Do not enter pupil names, personal information, safeguarding information or confidential school data into a third-party AI service.",
-    "Follow your school’s AI policy and review the terms and privacy information for the provider you use.",
+    "Don’t enter pupil names, personal information, safeguarding information or confidential school data into a third-party AI service.",
+    "Follow your school’s AI policy, and check the terms and privacy information for the assistant you use.",
   ],
   points: [
     {
       title: "Check the source",
-      body: "Open the linked Oak lesson or unit and confirm that it matches your intention.",
+      body: "Open the linked Oak lesson or unit and confirm it matches what you intended.",
     },
     {
       title: "Review the output",
-      body: "AI-generated responses can contain mistakes, miss context or combine information in an unhelpful way.",
+      body: "AI-generated responses can contain mistakes, miss context or combine information in unhelpful ways. Check the response before you rely on it or share it with pupils.",
     },
     {
       title: "Make it fit your pupils",
-      body: "Use your professional judgement to adapt the response for your pupils, curriculum and setting.",
+      body: "You are the expert and know your pupils best. As with all resources, check carefully that what you create is right for your pupils and context.",
     },
   ],
 } as const;
@@ -159,19 +178,19 @@ export const mcpHowItWorks = {
     {
       title: "Oak provides",
       items: [
-        "Structured UK curriculum content",
-        "Lessons, units and curriculum relationships",
-        "Key learning, prior knowledge and misconceptions where available",
+        "Our fully sequenced curriculum: lessons, units and resources across 17 subjects, from key stage 1 to 4",
+        "Keywords, common misconceptions, prior knowledge requirements, high-quality explanations, quiz questions, cross-phase topics and more",
+        "How lessons, units and concepts connect across the curriculum",
         "Source details and links",
-        "Tools that allow a compatible assistant to retrieve this information",
+        "Tools that let an AI assistant retrieve this information",
       ],
     },
     {
       title: "The AI provider",
       items: [
-        "Operates the chat or assistant",
-        "Interprets the teacher’s request",
-        "Decides when to call Oak’s tools and curriculum",
+        "Runs the chat or assistant",
+        "Interprets your request",
+        "Decides when to draw on Oak’s tools and curriculum",
         "Combines information into a response",
         "Applies its own account, privacy and usage terms",
       ],
@@ -179,43 +198,26 @@ export const mcpHowItWorks = {
   ],
 } as const;
 
+/**
+ * Sits inside "How it works" in the final design, so it is rendered as a
+ * subsection rather than its own top-level section.
+ */
 export const mcpSupport = {
   title: "Questions or problems?",
   bodyBefore:
-    "Find answers about accounts and cost, supported AI assistants, connecting Oak, privacy and data sharing, and what to do when something is not working in our ",
-  linkLabel: "Help and FAQs",
+    "Find answers about accounts and cost, supported AI assistants, connecting Oak, privacy and data sharing, and what to do when something isn’t working, in our ",
+  linkLabel: "Help centre",
   href: "https://support.thenational.academy/using-oak-mcp",
   bodyAfter: ".",
 } as const;
 
-export const mcpDeveloper = {
-  tagLabel: "For developers and organisations",
-  title: "Connect a product or MCP client",
-  body: "Use the canonical Oak Curriculum MCP endpoint to search and retrieve structured curriculum information.",
-  configLabel: "Add this to your MCP client configuration:",
-  configRegionLabel: "MCP client configuration",
-  config: `{
-  "mcpServers": {
-    "oak-curriculum": {
-      "type": "http",
-      "url": "https://curriculum-mcp-alpha.oaknational.dev/mcp"
-    }
-  }
-}`,
-  authBefore: "This server uses ",
-  authLinkLabel: "OAuth 2.1 authorisation",
-  authHref:
-    "https://curriculum-mcp-alpha.oaknational.dev/.well-known/oauth-protected-resource",
-  authAfter:
-    ". You will be prompted to log in. Access is currently for internal staff or by invitation.",
-} as const;
-
 export const mcpOutputWarning =
-  "Oak does not control outputs produced by a third-party assistant. Review generated outputs before relying on it or sharing it with pupils.";
+  "Outputs are AI-generated and not endorsed by Oak. Always check that what you create is right for your pupils and context.";
 
 export const mcpFeedback = {
   title: "Give feedback",
-  body: "Oak MCP is still in development, and we’re the first to admit it’s not perfect. It doesn’t yet have all the features you’ll want, and you may spot the odd glitch or mistake. We’re improving Oak MCP all the time, and your feedback helps us make it better for you and your pupils.",
+  body: "This is new, and still in development. We’re continually improving it, and your feedback helps us make it better for you and your pupils.",
   ctaLabel: "Share feedback",
-  ctaHref: "https://support.thenational.academy/using-oak-mcp",
+  // Figma annotates this button with "Should link to: support@thenational.academy".
+  ctaHref: "mailto:support@thenational.academy",
 } as const;

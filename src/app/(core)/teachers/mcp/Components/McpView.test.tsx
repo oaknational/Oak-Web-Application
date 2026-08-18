@@ -5,11 +5,13 @@ import { McpView } from "./McpView";
 import {
   mcpAssistants,
   mcpCapabilities,
-  mcpDeveloper,
   mcpFeedback,
   mcpHero,
   mcpHowItWorks,
+  mcpIntro,
   mcpOutputWarning,
+  mcpResponsibleUse,
+  mcpSupport,
 } from "@/app/(core)/teachers/mcp/mcpContent";
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 
@@ -33,13 +35,11 @@ describe("McpView", () => {
     );
 
     expect(headings).toEqual([
-      "Introducing Oak Curriculum MCP",
+      mcpIntro.title,
       mcpCapabilities.title,
       mcpAssistants.title,
-      "Use it responsibly",
+      mcpResponsibleUse.title,
       mcpHowItWorks.title,
-      "Questions or problems?",
-      mcpDeveloper.title,
       mcpFeedback.title,
     ]);
   });
@@ -57,18 +57,29 @@ describe("McpView", () => {
     });
   });
 
-  it("links each assistant to its setup guide", () => {
+  it("offers Claude as the only assistant, with a Try in Claude link", () => {
     const { getByRole } = render(<McpView />);
 
     const section = getByRole("region", { name: mcpAssistants.title });
+    const assistant = mcpAssistants.items[0];
 
-    mcpAssistants.items.forEach((assistant) => {
-      expect(
-        within(section).getByRole("link", {
-          name: new RegExp(assistant.guideLabel),
-        }),
-      ).toHaveAttribute("href", assistant.guideHref);
-    });
+    expect(mcpAssistants.items).toHaveLength(1);
+    expect(
+      within(section).getByRole("link", {
+        name: new RegExp(assistant!.ctaLabel),
+      }),
+    ).toHaveAttribute("href", assistant!.ctaHref);
+  });
+
+  it("lists the numbered steps for installing the connector", () => {
+    const { getByRole } = render(<McpView />);
+
+    const section = getByRole("region", { name: mcpAssistants.title });
+    const steps = within(section).getAllByRole("listitem");
+
+    expect(steps).toHaveLength(mcpAssistants.steps.length);
+    expect(steps[0]).toHaveTextContent("Try in Claude");
+    expect(steps[1]).toHaveTextContent("authorise Oak");
   });
 
   it("renders both 'Oak provides' and 'The AI provider' lists in full", () => {
@@ -86,18 +97,37 @@ describe("McpView", () => {
     });
   });
 
-  it("renders the MCP endpoint configuration", () => {
+  it("nests 'Questions or problems?' inside 'How it works'", () => {
     const { getByRole } = render(<McpView />);
 
-    const section = getByRole("region", { name: mcpDeveloper.title });
+    const section = getByRole("region", { name: mcpHowItWorks.title });
 
-    expect(section).toHaveTextContent("curriculum-mcp-alpha.oaknational.dev");
+    expect(
+      within(section).getByRole("heading", {
+        level: 3,
+        name: mcpSupport.title,
+      }),
+    ).toBeInTheDocument();
+    expect(
+      within(section).getByRole("link", {
+        name: new RegExp(mcpSupport.linkLabel),
+      }),
+    ).toHaveAttribute("href", mcpSupport.href);
   });
 
-  it("warns that Oak does not control third-party output", () => {
+  it("warns that Oak does not endorse third-party output", () => {
     const { getByText } = render(<McpView />);
 
     expect(getByText(mcpOutputWarning)).toBeInTheDocument();
+  });
+
+  it("points the feedback CTA at the support inbox", () => {
+    const { getByRole } = render(<McpView />);
+
+    const cta = getByRole("link", { name: mcpFeedback.ctaLabel });
+
+    expect(cta).toHaveAttribute("href", mcpFeedback.ctaHref);
+    expect(cta).not.toHaveAttribute("target", "_blank");
   });
 
   it("opens external links in a new tab safely", () => {
