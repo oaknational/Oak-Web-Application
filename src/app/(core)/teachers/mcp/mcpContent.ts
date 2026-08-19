@@ -1,4 +1,5 @@
 import type { OakIconName } from "@oaknational/oak-components";
+import type { PortableTextBlock } from "@portabletext/types";
 
 /**
  * Copy for the Oak Curriculum MCP landing page.
@@ -10,12 +11,6 @@ import type { OakIconName } from "@oaknational/oak-components";
  * Link targets are still placeholders, except the feedback CTA, which Figma
  * annotates as mailto:support@thenational.academy.
  */
-
-/** A run of copy that may be emphasised, so bold phrases stay in this file. */
-export type McpTextSegment = {
-  text: string;
-  bold?: boolean;
-};
 
 export const mcpHero = {
   title: "Bring Oak’s curriculum into your AI assistant",
@@ -95,6 +90,14 @@ export const mcpCapabilities: {
 export const mcpInstallPrompt =
   "Install the Oak National Academy plugin and its connector.";
 
+/** Portable text span. Emphasis uses the `strong` mark, as elsewhere in OWA. */
+const span = (key: string, text: string, marks: string[] = []) => ({
+  _type: "span" as const,
+  _key: key,
+  text,
+  marks,
+});
+
 export type McpAssistant = {
   name: string;
   ctaLabel: string;
@@ -108,8 +111,8 @@ export const mcpAssistants: {
   title: string;
   body: string;
   items: readonly McpAssistant[];
-  steps: readonly (readonly McpTextSegment[])[];
-  smallPrint: readonly (readonly McpTextSegment[])[];
+  steps: PortableTextBlock[];
+  smallPrint: PortableTextBlock[];
 } = {
   title: "Choose your AI assistant",
   body: "Start in the AI assistant you already use.",
@@ -125,37 +128,69 @@ export const mcpAssistants: {
     },
   ],
   steps: [
-    [
-      { text: "Click " },
-      { text: "Try in Claude", bold: true },
-      {
-        text: ". Claude opens in a new tab with a message ready to send. Click the orange arrow to send it, and an install card appears in the chat.",
-      },
-    ],
-    [
-      { text: "Tap " },
-      { text: "Install", bold: true },
-      { text: " on the card, then " },
-      { text: "authorise Oak", bold: true },
-      {
-        text: " when prompted. Claude is now ready to draw on the Oak curriculum.",
-      },
-    ],
+    {
+      _type: "block",
+      _key: "install-step-1",
+      style: "normal",
+      listItem: "number",
+      level: 1,
+      markDefs: [],
+      children: [
+        span("s1-a", "Click "),
+        span("s1-b", "Try in Claude", ["strong"]),
+        span(
+          "s1-c",
+          ". Claude opens in a new tab with a message ready to send. Click the orange arrow to send it, and an install card appears in the chat.",
+        ),
+      ],
+    },
+    {
+      _type: "block",
+      _key: "install-step-2",
+      style: "normal",
+      listItem: "number",
+      level: 1,
+      markDefs: [],
+      children: [
+        span("s2-a", "Tap "),
+        span("s2-b", "Install", ["strong"]),
+        span("s2-c", " on the card, then "),
+        span("s2-d", "authorise Oak", ["strong"]),
+        span(
+          "s2-e",
+          " when prompted. Claude is now ready to draw on the Oak curriculum.",
+        ),
+      ],
+    },
   ],
   smallPrint: [
-    [
-      {
-        text: "If Claude opens with an empty message box, paste this in and send it: ",
-      },
-      { text: mcpInstallPrompt, bold: true },
-    ],
-    [
-      {
-        text: "We’re starting with Claude, and working to bring Oak to more AI assistants soon.",
-      },
-    ],
+    {
+      _type: "block",
+      _key: "small-print-paste",
+      style: "normal",
+      markDefs: [],
+      children: [
+        span(
+          "sp1-a",
+          "If Claude opens with an empty message box, paste this in and send it: ",
+        ),
+        span("sp1-b", mcpInstallPrompt, ["strong"]),
+      ],
+    },
+    {
+      _type: "block",
+      _key: "small-print-more-assistants",
+      style: "normal",
+      markDefs: [],
+      children: [
+        span(
+          "sp2-a",
+          "We’re starting with Claude, and working to bring Oak to more AI assistants soon.",
+        ),
+      ],
+    },
   ],
-} as const;
+};
 
 export const mcpResponsibleUse = {
   title: "Use it responsibly",

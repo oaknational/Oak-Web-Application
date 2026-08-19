@@ -4,20 +4,18 @@ import {
   OakHeading,
   OakImage,
   OakLI,
-  OakOL,
   OakP,
 } from "@oaknational/oak-components";
 import styled from "styled-components";
 
 import { McpSection } from "./McpSection";
 import { McpTryButton } from "./McpTryButton";
-import { McpRichText } from "./McpRichText";
 
 import {
   mcpAssistants,
   type McpAssistant,
-  type McpTextSegment,
 } from "@/app/(core)/teachers/mcp/mcpContent";
+import { PortableTextWithDefaults } from "@/components/SharedComponents/PortableText";
 
 /**
  * The provider mark ships in Claude's coral (#d97757), which barely reads
@@ -36,10 +34,6 @@ const StyledWhiteMark = styled.div`
   display: flex;
   filter: brightness(0) invert(1);
 `;
-
-/** Stable key for a run of segments — the copy itself is unique and fixed. */
-const segmentsKey = (segments: readonly McpTextSegment[]) =>
-  segments.map((segment) => segment.text).join("");
 
 const McpAssistantCard = ({
   assistant,
@@ -90,19 +84,27 @@ export const McpAssistants = () => (
         <McpAssistantCard key={assistant.name} assistant={assistant} />
       ))}
     </OakFlex>
-    <OakOL $font="body-2">
-      {mcpAssistants.steps.map((step) => (
-        <OakLI key={segmentsKey(step)} $mb="spacing-8">
-          <McpRichText segments={step} />
-        </OakLI>
-      ))}
-    </OakOL>
+    <PortableTextWithDefaults
+      value={mcpAssistants.steps}
+      components={{
+        listItem: {
+          number: (props) => (
+            <OakLI $font="body-2" $mb="spacing-8">
+              {props.children}
+            </OakLI>
+          ),
+        },
+      }}
+    />
     <OakFlex $flexDirection="column" $gap="spacing-12">
-      {mcpAssistants.smallPrint.map((paragraph) => (
-        <OakP key={segmentsKey(paragraph)} $font="body-3">
-          <McpRichText segments={paragraph} boldFont="body-3-bold" />
-        </OakP>
-      ))}
+      <PortableTextWithDefaults
+        value={mcpAssistants.smallPrint}
+        components={{
+          block: {
+            normal: (props) => <OakP $font="body-3">{props.children}</OakP>,
+          },
+        }}
+      />
     </OakFlex>
   </McpSection>
 );
