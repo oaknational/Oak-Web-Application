@@ -8,10 +8,16 @@ import {
 import MyLibraryHeader from "@/components/TeacherComponents/MyLibraryHeader/MyLibraryHeader";
 import NoSavedContent from "@/components/TeacherComponents/NoSavedContent/NoSavedContent";
 import { MyLibraryUnit } from "@/node-lib/educator-api/queries/getUserListContent/getUserListContent.types";
-import { KeyStageTitleValueType } from "@/browser-lib/avo/Avo";
+import {
+  ExamBoardValueType,
+  KeyStageTitleValueType,
+  PathwayValueType,
+  TierNameValueType,
+} from "@/browser-lib/avo/Avo";
 import { resolveOakHref } from "@/common-lib/urls";
 import MyLibraryProgrammeCard from "@/components/TeacherComponents/MyLibraryProgrammeCard/MyLibraryProgrammeCard";
 import { getValidSubjectIconName } from "@/utils/getValidSubjectIconName";
+import { TeacherBrowseAnalyticsStoreProvider } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
 
 export type CollectionData = Array<{
   subject: string;
@@ -82,32 +88,41 @@ export default function MyLibrary(props: Readonly<MyLibraryProps>) {
             $gap={["spacing-24", "spacing-48"]}
             $ph={["spacing-16", "spacing-0"]}
           >
-            {collections.map((collection) => (
-              <MyLibraryProgrammeCard
-                key={collection.uniqueProgrammeKey}
-                programmeTitle={collection.programmeTitle}
-                anchorId={collection.uniqueProgrammeKey}
-                programmeHref={resolveOakHref({
-                  page: "teacher-programme",
-                  subjectPhaseSlug: collection.subjectPhaseSlug,
-                  tab: "units",
-                  query: {
-                    keystages: collection.keystageSlug,
-                    subject_categories: collection.subjectCategoryQuery,
-                  },
-                })}
-                subject={collection.subject}
-                iconName={getValidSubjectIconName(collection.subjectSlug)}
-                savedUnits={collection.units.map((unit) => ({
-                  ...unit,
-                  keyStageTitle: collection.keystage as KeyStageTitleValueType,
-                  keyStageSlug: collection.keystageSlug,
-                  subjectTitle: collection.subject,
-                  subjectSlug: collection.subjectSlug,
-                  programmeSlug: collection.programmeSlug,
-                }))}
-              />
-            ))}
+            <TeacherBrowseAnalyticsStoreProvider
+              programmeState={null}
+              accessLevel="my_library"
+            >
+              {collections.map((collection) => (
+                <MyLibraryProgrammeCard
+                  key={collection.uniqueProgrammeKey}
+                  programmeTitle={collection.programmeTitle}
+                  anchorId={collection.uniqueProgrammeKey}
+                  programmeHref={resolveOakHref({
+                    page: "teacher-programme",
+                    subjectPhaseSlug: collection.subjectPhaseSlug,
+                    tab: "units",
+                    query: {
+                      keystages: collection.keystageSlug,
+                      subject_categories: collection.subjectCategoryQuery,
+                    },
+                  })}
+                  subject={collection.subject}
+                  iconName={getValidSubjectIconName(collection.subjectSlug)}
+                  savedUnits={collection.units.map((unit) => ({
+                    ...unit,
+                    examBoard: unit.examboard as ExamBoardValueType,
+                    pathway: unit.pathway as PathwayValueType,
+                    keyStageTitle:
+                      collection.keystage as KeyStageTitleValueType,
+                    keyStageSlug: collection.keystageSlug,
+                    subjectTitle: collection.subject,
+                    subjectSlug: collection.subjectSlug,
+                    tierName: unit.tier as TierNameValueType,
+                    programmeSlug: collection.programmeSlug,
+                  }))}
+                />
+              ))}
+            </TeacherBrowseAnalyticsStoreProvider>
           </OakGridArea>
         </OakGrid>
       ) : null}

@@ -15,7 +15,12 @@ import { SaveUnitButton } from "../SaveUnitButton/SaveUnitButton";
 import { resolveOakHref } from "@/common-lib/urls";
 import useMediaQuery from "@/hooks/useMediaQuery";
 import { MyLibraryUnit } from "@/node-lib/educator-api/queries/getUserListContent/getUserListContent.types";
-import { KeyStageTitleValueType } from "@/browser-lib/avo/Avo";
+import {
+  ExamBoardValueType,
+  KeyStageTitleValueType,
+  PathwayValueType,
+  TierNameValueType,
+} from "@/browser-lib/avo/Avo";
 import { useTeacherBrowseAnalytics } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
 
 const StyledOL = styled.ol`
@@ -86,6 +91,15 @@ const UnitCardHeader = ({
               componentType: "unit_card",
               yearGroupName: props.year,
               yearGroupSlug: yearSlug,
+              keyStageTitle: props.keyStageTitle,
+              keyStageSlug: props.keyStageSlug,
+              subjectTitle: props.subjectTitle,
+              subjectSlug: props.subjectSlug,
+              unitName: props.unitTitle,
+              unitSlug: props.unitSlug,
+              tierName: props.tierName,
+              examBoard: props.examBoard,
+              pathway: props.pathway,
             })
           }
         >
@@ -150,6 +164,19 @@ const UnitCardContent = ({
                     onClick={() =>
                       track.lessonAccessed({
                         componentType: "lesson_card",
+                        unitName: props.unitTitle,
+                        unitSlug: props.unitSlug,
+                        lessonName: lesson.slug,
+                        lessonSlug: lesson.slug,
+                        keyStageTitle: props.keyStageTitle,
+                        keyStageSlug: props.keyStageSlug,
+                        examBoard: props.examBoard,
+                        pathway: props.pathway,
+                        lessonReleaseCohort: "2023-2026",
+                        lessonReleaseDate: "",
+                        tierName: props.tierName,
+                        yearGroupName: props.year,
+                        yearGroupSlug: props.yearSlug,
                       })
                     }
                   >
@@ -187,11 +214,14 @@ export type MyLibraryUnitCardProps = Omit<
   MyLibraryUnit,
   "yearOrder" | "unitOrder" | "yearSlug" | "pathway" | "examboard"
 > & {
+  examBoard: ExamBoardValueType;
   programmeSlug: string;
   keyStageSlug: string;
   keyStageTitle: KeyStageTitleValueType;
+  pathway: PathwayValueType | undefined;
   subjectTitle: string;
   subjectSlug: string;
+  tierName: TierNameValueType;
   yearSlug: string;
 };
 

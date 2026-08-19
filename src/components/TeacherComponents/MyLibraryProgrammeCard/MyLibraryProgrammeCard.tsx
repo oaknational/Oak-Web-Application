@@ -125,6 +125,9 @@ export default function MyLibraryProgrammeCard(
               keyStageTitle={unit.keyStageTitle}
               subjectTitle={unit.subjectTitle}
               subjectSlug={unit.subjectSlug}
+              examBoard={unit.examBoard}
+              pathway={unit.pathway}
+              tierName={unit.tierName}
             />
           </OakLI>
         ))}

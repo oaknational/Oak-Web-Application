@@ -16,6 +16,12 @@ import {
 } from "./utils/getAnalyticsProperties";
 import { reportAnalyticsError } from "./utils/reportAnalyticsError";
 
+import type {
+  ExamBoardValueType,
+  KeyStageTitleValueType,
+  PathwayValueType,
+  LessonReleaseCohortValueType,
+} from "@/browser-lib/avo/Avo";
 import {
   AccessLevelValueType,
   ActiveFilters,
@@ -33,6 +39,7 @@ import {
   ProductValueType,
   ResourceTypeValueType,
   TeachingMaterialTypeValueType,
+  TierNameValueType,
 } from "@/browser-lib/avo/Avo";
 import { Thread, Unit } from "@/utils/curriculum/types";
 import { buildUnitOverviewAccessedAnalytics } from "@/utils/curriculum/analytics";
@@ -57,7 +64,22 @@ export type TeacherBrowseAnalyticsStore = {
       tierSlug?: string | null;
       childSubjectSlug?: string | null;
     }) => void;
-    lessonAccessed: (props: { componentType: ComponentTypeValueType }) => void;
+    lessonAccessed: (props: {
+      componentType: ComponentTypeValueType;
+      unitName: string;
+      unitSlug: string;
+      lessonName: string;
+      lessonSlug: string;
+      keyStageTitle: KeyStageTitleValueType;
+      keyStageSlug: string;
+      tierName?: TierNameValueType | undefined;
+      examBoard: ExamBoardValueType;
+      pathway: PathwayValueType | undefined;
+      lessonReleaseCohort: LessonReleaseCohortValueType;
+      lessonReleaseDate: string;
+      yearGroupName: string;
+      yearGroupSlug: string;
+    }) => void;
     lessonMediaClipsStarted: (data: {
       mediaClipsButtonName: MediaClipsButtonNameValueType;
       learningCycle: string | null;
@@ -106,6 +128,15 @@ export type TeacherBrowseAnalyticsStore = {
       componentType: ComponentTypeValueType;
       yearGroupName: string;
       yearGroupSlug: string;
+      keyStageTitle: KeyStageTitleValueType;
+      keyStageSlug: string;
+      subjectTitle: string;
+      subjectSlug: string;
+      unitName: string;
+      unitSlug: string;
+      tierName?: TierNameValueType | undefined;
+      examBoard: ExamBoardValueType;
+      pathway: PathwayValueType | undefined;
     }) => void;
     unitDownloaded: () => void;
     unitDownloadStarted: () => void;
@@ -301,32 +332,51 @@ export const createTeacherBrowseAnalyticsStore = (
           keyStageTitle: null,
         });
       },
-      lessonAccessed: ({ componentType }) => {
+      lessonAccessed: ({
+        componentType,
+        lessonName,
+        lessonSlug,
+        unitName,
+        unitSlug,
+        keyStageTitle,
+        keyStageSlug,
+        tierName,
+        examBoard,
+        pathway,
+        lessonReleaseCohort,
+        lessonReleaseDate,
+        yearGroupName,
+        yearGroupSlug,
+      }) => {
         const { avo, programmeState } = get();
-
-        if (programmeState?.browseLevel !== "lesson") {
-          reportAnalyticsError({
-            event: "lessonAccessed",
-            programmeState,
-          });
-          return;
-        }
 
         const lessonState = requireLessonState(
           "lessonAccessed",
           programmeState,
         );
-        if (!lessonState) {
-          return;
-        }
 
-        const analyticsProperties = getLessonAnalyticsProperties(lessonState);
+        const analyticsProperties = lessonState
+          ? getLessonAnalyticsProperties(lessonState)
+          : {};
 
         avo.lessonAccessed({
           ...coreProperties,
           ...analyticsProperties,
           engagementIntent: EngagementIntent.REFINE,
           componentType,
+          lessonName,
+          lessonSlug,
+          unitName,
+          unitSlug,
+          keyStageTitle,
+          keyStageSlug,
+          tierName,
+          examBoard,
+          pathway,
+          lessonReleaseCohort,
+          lessonReleaseDate,
+          yearGroupName,
+          yearGroupSlug,
         });
       },
       lessonMediaClipsStarted: (data) => {
@@ -593,23 +643,27 @@ export const createTeacherBrowseAnalyticsStore = (
           componentType: "create_more_with_ai_dropdown",
         });
       },
-      unitAccessed: ({ componentType, yearGroupName, yearGroupSlug }) => {
+      unitAccessed: ({
+        componentType,
+        yearGroupName,
+        yearGroupSlug,
+        keyStageTitle,
+        keyStageSlug,
+        subjectTitle,
+        subjectSlug,
+        unitName,
+        unitSlug,
+        tierName,
+        examBoard,
+        pathway,
+      }) => {
         const { avo, programmeState } = get();
 
-        if (programmeState?.browseLevel === "programme") {
-          reportAnalyticsError({
-            event: "unitAccessed",
-            programmeState,
-          });
-          return;
-        }
-
         const unitState = requireUnitState("unitAccessed", programmeState);
-        if (!unitState) {
-          return;
-        }
 
-        const analyticsProps = getUnitAnalyticsProperties(unitState);
+        const analyticsProps = unitState
+          ? getUnitAnalyticsProperties(unitState)
+          : {};
 
         avo.unitAccessed({
           engagementIntent: EngagementIntent.REFINE,
@@ -618,6 +672,15 @@ export const createTeacherBrowseAnalyticsStore = (
           componentType,
           yearGroupName,
           yearGroupSlug,
+          keyStageTitle,
+          keyStageSlug,
+          subjectTitle,
+          subjectSlug,
+          unitName,
+          unitSlug,
+          tierName,
+          examBoard,
+          pathway,
         });
       },
       unitDownloaded: () => {
