@@ -12,10 +12,17 @@ import type { PortableTextBlock } from "@portabletext/types";
  * annotates as mailto:support@thenational.academy.
  */
 
+/**
+ * Appears twice — the hero caveat and the footnote under "Choose your AI
+ * assistant" — so it lives here to keep the two in step.
+ */
+export const mcpMoreAssistantsNote =
+  "We’re starting with Claude, and working to bring Oak to ChatGPT and more AI assistants soon.";
+
 export const mcpHero = {
   title: "Bring Oak’s curriculum into your AI assistant",
   body: "Build on our free, subject expert-designed curriculum right inside the AI assistants you already use. Plan lessons, sequence a whole curriculum, and create resources, all grounded in our national curriculum-aligned content.",
-  note: "We’re starting with Claude, and working to bring Oak to more AI assistants soon.",
+  note: mcpMoreAssistantsNote,
 } as const;
 
 export const mcpIntro = {
@@ -186,12 +193,7 @@ export const mcpAssistants: {
       _key: "small-print-more-assistants",
       style: "normal",
       markDefs: [],
-      children: [
-        span(
-          "sp2-a",
-          "We’re starting with Claude, and working to bring Oak to more AI assistants soon.",
-        ),
-      ],
+      children: [span("sp2-a", mcpMoreAssistantsNote)],
     },
   ],
 };
