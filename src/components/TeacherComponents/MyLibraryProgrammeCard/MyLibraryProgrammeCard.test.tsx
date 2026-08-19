@@ -62,7 +62,6 @@ const defaultProps = {
   iconName: "subject-english" as OakIconName,
   savedUnits: mockUnits,
   anchorId: "english-secondary-ks4",
-  trackProgrammeRefined: jest.fn(),
 };
 
 describe("MyLibraryProgrammeCard", () => {
