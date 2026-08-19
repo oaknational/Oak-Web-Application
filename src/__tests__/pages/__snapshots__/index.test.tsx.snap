@@ -772,7 +772,7 @@ exports[`Teachers Page Page component renders 1`] = `
                   class="sc-aXZVg sc-gEvEer bwVgbu daEtut"
                 >
                   <div
-                    class="sc-aXZVg sc-44b63992-0 bwVgbu GyHTG"
+                    class="sc-aXZVg sc-b4caafee-0 bwVgbu rzmOs"
                   >
                     <img
                       alt=""
@@ -820,11 +820,11 @@ exports[`Teachers Page Page component renders 1`] = `
                             style="width: 50%;"
                           >
                             <div
-                              class="sc-aXZVg sc-hZDyAQ sc-72c0b04b-1 eAVyBL goHzHJ gobpHn"
+                              class="sc-aXZVg sc-hZDyAQ sc-c435d711-1 eAVyBL goHzHJ kNJGDD"
                             >
                               <button
                                 aria-expanded="false"
-                                class="sc-72c0b04b-3 bGgxUG"
+                                class="sc-c435d711-3 gFIRgW"
                                 data-testid="subject-picker-button"
                                 title="Subject"
                               >
@@ -889,14 +889,14 @@ exports[`Teachers Page Page component renders 1`] = `
                               class="sc-aXZVg sc-gEvEer Clfe dbzvZO"
                             >
                               <div
-                                class="sc-aXZVg sc-hZDyAQ sc-72c0b04b-1 hWaSHT goHzHJ gobpHn"
+                                class="sc-aXZVg sc-hZDyAQ sc-c435d711-1 hWaSHT goHzHJ kNJGDD"
                               >
                                 <div
                                   class="sc-aXZVg sc-gEvEer jPvJsJ inWRga"
                                 >
                                   <button
                                     aria-expanded="false"
-                                    class="sc-72c0b04b-3 bGgxUG"
+                                    class="sc-c435d711-3 gFIRgW"
                                     data-testid="phase-picker-button"
                                     title="Phase"
                                   >
@@ -1090,7 +1090,7 @@ exports[`Teachers Page Page component renders 1`] = `
                   class="sc-aXZVg clLXha"
                 >
                   <div
-                    class="sc-aXZVg sc-44b63992-0 bwVgbu GyHTG"
+                    class="sc-aXZVg sc-b4caafee-0 bwVgbu rzmOs"
                   >
                     <img
                       alt=""
@@ -1139,11 +1139,11 @@ exports[`Teachers Page Page component renders 1`] = `
                           style="width: 50%;"
                         >
                           <div
-                            class="sc-aXZVg sc-hZDyAQ sc-72c0b04b-1 eAVyBL goHzHJ gobpHn"
+                            class="sc-aXZVg sc-hZDyAQ sc-c435d711-1 eAVyBL goHzHJ kNJGDD"
                           >
                             <button
                               aria-expanded="false"
-                              class="sc-72c0b04b-3 bGgxUG"
+                              class="sc-c435d711-3 gFIRgW"
                               data-testid="subject-picker-button"
                               title="Subject"
                             >
@@ -1208,14 +1208,14 @@ exports[`Teachers Page Page component renders 1`] = `
                             class="sc-aXZVg sc-gEvEer Clfe dbzvZO"
                           >
                             <div
-                              class="sc-aXZVg sc-hZDyAQ sc-72c0b04b-1 hWaSHT goHzHJ gobpHn"
+                              class="sc-aXZVg sc-hZDyAQ sc-c435d711-1 hWaSHT goHzHJ kNJGDD"
                             >
                               <div
                                 class="sc-aXZVg sc-gEvEer jPvJsJ inWRga"
                               >
                                 <button
                                   aria-expanded="false"
-                                  class="sc-72c0b04b-3 bGgxUG"
+                                  class="sc-c435d711-3 gFIRgW"
                                   data-testid="phase-picker-button"
                                   title="Phase"
                                 >
@@ -1436,11 +1436,11 @@ exports[`Teachers Page Page component renders 1`] = `
                               style="width: 50%;"
                             >
                               <div
-                                class="sc-aXZVg sc-hZDyAQ sc-72c0b04b-1 eAVyBL goHzHJ gobpHn"
+                                class="sc-aXZVg sc-hZDyAQ sc-c435d711-1 eAVyBL goHzHJ kNJGDD"
                               >
                                 <button
                                   aria-expanded="false"
-                                  class="sc-72c0b04b-3 bGgxUG"
+                                  class="sc-c435d711-3 gFIRgW"
                                   data-testid="subject-picker-button"
                                   title="Subject"
                                 >
@@ -1505,14 +1505,14 @@ exports[`Teachers Page Page component renders 1`] = `
                                 class="sc-aXZVg sc-gEvEer Clfe dbzvZO"
                               >
                                 <div
-                                  class="sc-aXZVg sc-hZDyAQ sc-72c0b04b-1 hWaSHT goHzHJ gobpHn"
+                                  class="sc-aXZVg sc-hZDyAQ sc-c435d711-1 hWaSHT goHzHJ kNJGDD"
                                 >
                                   <div
                                     class="sc-aXZVg sc-gEvEer jPvJsJ inWRga"
                                   >
                                     <button
                                       aria-expanded="false"
-                                      class="sc-72c0b04b-3 bGgxUG"
+                                      class="sc-c435d711-3 gFIRgW"
                                       data-testid="phase-picker-button"
                                       title="Phase"
                                     >
@@ -1587,7 +1587,7 @@ exports[`Teachers Page Page component renders 1`] = `
                   class="sc-aXZVg sc-gEvEer clLXha hrIDCC"
                 >
                   <div
-                    class="sc-aXZVg sc-44b63992-0 bwVgbu GyHTG"
+                    class="sc-aXZVg sc-b4caafee-0 bwVgbu rzmOs"
                   >
                     <img
                       alt=""
@@ -3434,7 +3434,7 @@ exports[`Teachers Page Page component renders 1`] = `
                 </div>
               </div>
               <span
-                class="sc-aXZVg kvjdhA sc-8af0c810-0 bOiGyb"
+                class="sc-aXZVg kvjdhA sc-f9d62eb6-0 fMbHos"
                 data-percy-hide="contents"
               >
                 <img
