@@ -8,7 +8,9 @@ export const McpExternalLink = ({
   href,
   children,
 }: Readonly<{ href: string; children: React.ReactNode }>) => (
-  <OakLink href={href} target="_blank" rel="noopener noreferrer">
+  // `noopener` is implied by every browser this repo supports; `noreferrer`
+  // stays until OWA sets a global Referrer-Policy.
+  <OakLink href={href} target="_blank" rel="noreferrer">
     {children}
     <OakScreenReader> (opens in a new tab)</OakScreenReader>
   </OakLink>

@@ -144,7 +144,7 @@ describe("McpView", () => {
     expect(cta).not.toHaveAttribute("target", "_blank");
   });
 
-  it("opens external links in a new tab safely", () => {
+  it("withholds the referrer on every link that opens a new tab", () => {
     const { getAllByRole } = render(<McpView />);
 
     const externalLinks = getAllByRole("link").filter(
@@ -153,7 +153,11 @@ describe("McpView", () => {
 
     expect(externalLinks.length).toBeGreaterThan(0);
     externalLinks.forEach((link) => {
-      expect(link).toHaveAttribute("rel", expect.stringContaining("noopener"));
+      // `noopener` is implied by every browser this repo supports.
+      expect(link).toHaveAttribute(
+        "rel",
+        expect.stringContaining("noreferrer"),
+      );
     });
   });
 });
