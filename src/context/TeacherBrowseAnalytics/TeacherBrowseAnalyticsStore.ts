@@ -72,7 +72,7 @@ export type TeacherBrowseAnalyticsStore = {
       lessonSlug: string;
       keyStageTitle: KeyStageTitleValueType;
       keyStageSlug: string;
-      tierName?: TierNameValueType | undefined;
+      tierName: TierNameValueType | undefined;
       examBoard: ExamBoardValueType;
       pathway: PathwayValueType | undefined;
       lessonReleaseCohort: LessonReleaseCohortValueType;
