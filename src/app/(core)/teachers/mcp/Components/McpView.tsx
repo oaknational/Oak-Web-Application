@@ -45,7 +45,12 @@ const McpSubsection = ({
 
 export const McpView = () => (
   <>
-    <OakMaxWidth $ph={["spacing-16", "spacing-24"]} $pb="spacing-64">
+    <OakMaxWidth
+      $ph={["spacing-16", "spacing-24"]}
+      // Figma offsets the hero 32px below the nav, at every breakpoint.
+      $pt="spacing-32"
+      $pb="spacing-64"
+    >
       <McpHero />
 
       <OakFlex
