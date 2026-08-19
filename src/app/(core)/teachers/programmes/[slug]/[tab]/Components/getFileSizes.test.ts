@@ -1,4 +1,4 @@
-import { getFileSizes } from "./getFileSize";
+import { getFileSizes } from "./getFileSizes";
 
 jest.mock("@/pages/api/curriculum-downloads", () => {
   const originalModule = jest.requireActual("@/pages/api/curriculum-downloads");

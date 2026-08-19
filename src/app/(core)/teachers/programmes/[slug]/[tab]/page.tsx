@@ -11,7 +11,7 @@ import {
   getProgrammeData,
   getSubjectOverride,
 } from "./getProgrammeData";
-import { getFileSizes } from "./Components/getFileSize";
+import { getFileSizes } from "./Components/getFileSizes";
 
 import { isFeatureFlagEnabledServer } from "@/utils/featureFlagChecks/server";
 import {
