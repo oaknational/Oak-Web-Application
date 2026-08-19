@@ -13,7 +13,10 @@ import teachersLessonOverviewFixture from "@/node-lib/curriculum-api-2023/fixtur
 import {
   ActiveFilters,
   ComponentType,
+  ExamBoardValueType,
   FilterType,
+  KeyStageTitleValueType,
+  LessonReleaseCohortValueType,
   VideoLocation,
 } from "@/browser-lib/avo/Avo";
 
@@ -26,7 +29,9 @@ const mockReportAnalyticsError = jest.mocked(reportAnalyticsError);
 
 const createAvoMock = () => {
   return {
+    lessonAccessed: jest.fn(),
     programmeAccessed: jest.fn(),
+    unitAccessed: jest.fn(),
     unitRefined: jest.fn(),
     videoPlayed: jest.fn(),
     videoStarted: jest.fn(),
@@ -170,6 +175,61 @@ describe("TeacherBrowseAnalyticsStore", () => {
       }),
     );
   });
+
+  test.each(["lessonAccessed", "unitAccessed"] as const)(
+    "%s tracks with lesson analytics properties",
+    (eventName) => {
+      const lessonState = getProgrammeStateForLesson(
+        teachersLessonOverviewFixture(),
+      );
+      const { store, avo } = buildStore({
+        programmeState: lessonState,
+        accessLevel: "lesson",
+      });
+
+      store.getState().track[eventName]({
+        componentType: ComponentType.UNIT_SEQUENCE_TAB,
+        unitName: "Cells",
+        unitSlug: "cells",
+        lessonReleaseCohort: "cohort-1" as LessonReleaseCohortValueType,
+        lessonReleaseDate: "2023-01-01",
+        lessonName: "Structure of cells",
+        lessonSlug: "lesson-3-structure-of-cells",
+        keyStageTitle: "Key Stage 4" as KeyStageTitleValueType,
+        keyStageSlug: "key-stage-4",
+        tierName: undefined,
+        examBoard: "aqa" as ExamBoardValueType,
+        pathway: undefined,
+        subjectTitle: "Biology",
+        subjectSlug: "biology",
+        yearGroupName: "Year 10",
+        yearGroupSlug: "year-10",
+      });
+
+      expect(avo[eventName]).toHaveBeenCalledWith(
+        expect.objectContaining({
+          analyticsUseCase: "Teacher",
+          componentType: ComponentType.UNIT_SEQUENCE_TAB,
+          engagementIntent: "refine",
+          eventVersion: "2.0.0",
+          examBoard: "aqa",
+          keyStageTitle: "Key Stage 4",
+          keyStageSlug: "key-stage-4",
+          subjectTitle: "Biology",
+          subjectSlug: "biology",
+          unitName: "Cells",
+          unitSlug: "cells",
+          tierName: undefined,
+          phase: "secondary",
+          platform: "owa",
+          product: "teacher lesson resources",
+          pathway: undefined,
+          yearGroupName: "Year 10",
+          yearGroupSlug: "year-10",
+        }),
+      );
+    },
+  );
 
   test.each(["programmeAccessed", "unitRefined"] as const)(
     "%s tracks with no passed programmeState",
