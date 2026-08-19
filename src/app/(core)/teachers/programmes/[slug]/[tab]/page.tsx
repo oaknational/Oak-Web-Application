@@ -11,6 +11,7 @@ import {
   getProgrammeData,
   getSubjectOverride,
 } from "./getProgrammeData";
+import { getFileSizes } from "./Components/getFileSizes";
 
 import { isFeatureFlagEnabledServer } from "@/utils/featureFlagChecks/server";
 import {
@@ -291,6 +292,11 @@ const InnerProgrammePage = async (props: AppPageProps<ProgrammePageParams>) => {
   };
   const implementationGuides = await CMSClient.implementationGuides(opts);
 
+  const fileSizes = await getFileSizes(
+    subjectPhaseKeystageSlugs,
+    curriculumDownloadsTabData,
+  );
+
   const results: ProgrammePageProps = {
     subjectPhaseSlug,
     curriculumSelectionSlugs: subjectPhaseKeystageSlugs,
@@ -304,6 +310,7 @@ const InnerProgrammePage = async (props: AppPageProps<ProgrammePageParams>) => {
     curriculumDownloadsTabData,
     mvRefreshTime,
     initialFilter: resolvedFilter,
+    fileSizes,
     featureFlags: {
       "implementation-guides": isImplementationGuidesEnabled,
     },

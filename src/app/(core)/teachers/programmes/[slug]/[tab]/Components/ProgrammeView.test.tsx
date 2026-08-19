@@ -130,6 +130,7 @@ const defaultProps = {
   },
   featureFlags: {},
   implementationGuides: {},
+  fileSizes: [],
 };
 
 const lightweightUnitsProps = {
