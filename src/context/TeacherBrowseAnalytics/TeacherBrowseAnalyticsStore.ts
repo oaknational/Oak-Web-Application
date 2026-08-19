@@ -28,7 +28,6 @@ import {
   OnwardIntentValueType,
   PlatformValueType,
   ProductValueType,
-  ResourceTypeValueType,
   TeachingMaterialTypeValueType,
 } from "@/browser-lib/avo/Avo";
 import { Thread, Unit, CurriculumFilters } from "@/utils/curriculum/types";
@@ -40,6 +39,7 @@ import getFormattedDetailsForTracking, {
   getSchoolUrn,
 } from "@/components/TeacherComponents/helpers/downloadAndShareHelpers/getFormattedDetailsForTracking";
 import { convertUnitSlugToTitle } from "@/app/(core)/teachers/search/helpers";
+import { DOWNLOAD_TYPE_LABELS } from "@/components/CurriculumComponents/CurriculumDownloadView/helper";
 
 export type TeacherBrowseAnalyticsStore = {
   programmeState: ProgrammeState;
@@ -334,6 +334,11 @@ export const createTeacherBrowseAnalyticsStore = (
 
         const schoolOption = getSchoolOption(data.school);
 
+        const avoResourceType = data.resources.map((resource) => {
+          return DOWNLOAD_TYPE_LABELS.find((label) => label.id === resource)!
+            .avoResourceType;
+        });
+
         avo.curriculumResourcesDownloaded({
           ...coreProperties,
           ...analyticsProperties,
@@ -342,7 +347,7 @@ export const createTeacherBrowseAnalyticsStore = (
           componentType: "download_button",
           product: "curriculum resources",
           emailSupplied: data.email != null,
-          resourceType: ["curriculum document"] as ResourceTypeValueType[],
+          resourceType: avoResourceType,
           schoolOption,
           schoolName: getSchoolName(data.school, schoolOption),
           schoolUrn: getSchoolUrn(data.school, schoolOption),

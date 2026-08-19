@@ -8,6 +8,7 @@ import {
 
 import { subjectTitleWithCase } from "@/utils/curriculum/formatting";
 import { resolveOakHref } from "@/common-lib/urls";
+import useAnalytics from "@/context/Analytics/useAnalytics";
 
 type ImplementationGuideCalloutProps = {
   subject: string;
@@ -26,6 +27,7 @@ export function ImplementationGuideCallout({
     tab: "download",
     subjectPhaseSlug: `${subject}-${phase}`,
   });
+  const { track } = useAnalytics();
 
   return (
     <OakGrid $pt={["spacing-24", "spacing-32", "spacing-32"]}>
@@ -43,6 +45,7 @@ export function ImplementationGuideCallout({
                 isTrailingIcon
                 variant="secondary"
                 aria-label="Download our implementation toolkit"
+                onClick={() => track.implementationToolkitBannerClicked()}
               >
                 Download
               </OakLink>

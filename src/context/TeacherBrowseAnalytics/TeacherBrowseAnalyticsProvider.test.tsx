@@ -353,7 +353,7 @@ describe("TeacherBrowseAnalyticsStoreProvider", () => {
       renderTrackingTest(programmeLevelState, "curriculumResourcesDownloaded", {
         school: "test-school",
         terms: true,
-        resources: ["curriculum-doc"],
+        resources: ["nationalCurriculum", "curriculumPlan"],
       });
 
       const trackBtn = screen.getByRole("button", { name: "Track" });
@@ -371,7 +371,7 @@ describe("TeacherBrowseAnalyticsStoreProvider", () => {
         phase: "secondary",
         platform: "owa",
         product: "curriculum resources",
-        resourceType: ["curriculum document"],
+        resourceType: ["curriculum document", "curriculum plan"],
         schoolName: "",
         schoolOption: "Selected school",
         schoolUrn: "",
