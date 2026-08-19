@@ -134,7 +134,7 @@ export type TeacherBrowseAnalyticsStore = {
       subjectSlug: string;
       unitName: string;
       unitSlug: string;
-      tierName?: TierNameValueType | undefined;
+      tierName: TierNameValueType | undefined;
       examBoard: ExamBoardValueType;
       pathway: PathwayValueType | undefined;
     }) => void;

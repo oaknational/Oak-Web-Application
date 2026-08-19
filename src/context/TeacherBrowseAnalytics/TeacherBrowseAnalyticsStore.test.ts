@@ -13,10 +13,14 @@ import teachersLessonOverviewFixture from "@/node-lib/curriculum-api-2023/fixtur
 import {
   ActiveFilters,
   ComponentType,
+  DownloadResourceButtonName,
   ExamBoardValueType,
   FilterType,
   KeyStageTitleValueType,
   LessonReleaseCohortValueType,
+  MediaClipsButtonName,
+  OnwardIntent,
+  TeachingMaterialType,
   VideoLocation,
 } from "@/browser-lib/avo/Avo";
 
@@ -29,9 +33,22 @@ const mockReportAnalyticsError = jest.mocked(reportAnalyticsError);
 
 const createAvoMock = () => {
   return {
+    createTeachingMaterialsInitiated: jest.fn(),
+    curriculumExplainerExplored: jest.fn(),
+    curriculumResourcesDownloadRefined: jest.fn(),
+    curriculumResourcesDownloaded: jest.fn(),
     lessonAccessed: jest.fn(),
+    lessonMediaClipsStarted: jest.fn(),
+    lessonResourceDownloadStarted: jest.fn(),
+    lessonResourcesDownloaded: jest.fn(),
+    lessonShareStarted: jest.fn(),
+    mediaClipsPlaylistPlayed: jest.fn(),
+    onwardContentSelected: jest.fn(),
     programmeAccessed: jest.fn(),
+    teachingMaterialsSelected: jest.fn(),
     unitAccessed: jest.fn(),
+    unitDownloaded: jest.fn(),
+    unitDownloadStarted: jest.fn(),
     unitRefined: jest.fn(),
     videoPlayed: jest.fn(),
     videoStarted: jest.fn(),
@@ -47,7 +64,8 @@ const buildStore = ({
   programmeState:
     | ReturnType<typeof getProgrammeStateForLesson>
     | ReturnType<typeof getProgrammeStateForUnit>
-    | ReturnType<typeof getProgrammeStateForProgramme>;
+    | ReturnType<typeof getProgrammeStateForProgramme>
+    | null;
   accessLevel: "lesson" | "unit" | "programme" | "homepage";
 }) => {
   const avo = createAvoMock();
@@ -60,6 +78,30 @@ const buildStore = ({
 
   return { store, avo };
 };
+
+const videoPayload = {
+  cloudinaryUrl: null,
+  muxAssetId: null,
+  durationSeconds: 42,
+  isCaptioned: true,
+  videoPlaybackId: ["playback-id-1"] as string[],
+  videoTitle: "Cells overview",
+  timeElapsedSeconds: 12,
+  isMuted: false,
+  videoLocation: VideoLocation.LESSON,
+} as const;
+
+const mediaClipsPlaylistPayload = {
+  learningCycle: null,
+  durationSeconds: 10,
+  isCaptioned: false,
+  videoPlaybackId: ["playback-id-1"],
+  videoTitle: "Cells overview",
+  timeElapsedSeconds: 1,
+  isMuted: false,
+  mediaClipsCount: 1,
+  mediaClipIndex: 0,
+} as const;
 
 describe("TeacherBrowseAnalyticsStore", () => {
   beforeEach(() => {
@@ -231,6 +273,74 @@ describe("TeacherBrowseAnalyticsStore", () => {
     },
   );
 
+  test("lessonResourcesDownloaded tracks with lesson analytics properties and formatted resource details", () => {
+    const lessonState = getProgrammeStateForLesson(
+      teachersLessonOverviewFixture(),
+    );
+    const { store, avo } = buildStore({
+      programmeState: lessonState,
+      accessLevel: "lesson",
+    });
+
+    store.getState().track.lessonResourcesDownloaded({
+      school: "123456-Test School",
+      email: "teacher@example.com",
+      terms: true,
+      resources: ["worksheet"],
+      selectedResources: ["worksheet", "presentation"],
+      onwardContent: ["next-lesson-slug"],
+      totalDownloadableResources: 5,
+    });
+
+    expect(avo.lessonResourcesDownloaded).toHaveBeenCalledWith(
+      expect.objectContaining({
+        analyticsUseCase: "Teacher",
+        platform: "owa",
+        product: "teacher lesson resources",
+        journeyId: "journey-1",
+        componentType: "lesson_download_button",
+        engagementIntent: "use",
+        subjectSlug: "biology",
+        subjectTitle: "Biology",
+        unitName: "Cells",
+        unitSlug: "cells",
+        lessonSlug: "lesson-3-structure-of-cells",
+        emailSupplied: true,
+        onwardContent: ["next-lesson-slug"],
+        resourceType: ["worksheet", "slide deck"],
+        totalDownloadableResources: 5,
+        schoolOption: "Selected school",
+        schoolName: "Test School",
+        schoolUrn: "123456",
+      }),
+    );
+  });
+
+  test("lessonResourcesDownloaded reports error and does not track outside lesson level", () => {
+    const unitState = getProgrammeStateForUnit(teachersUnitOverviewFixture());
+    const { store, avo } = buildStore({
+      programmeState: unitState,
+      accessLevel: "unit",
+    });
+
+    store.getState().track.lessonResourcesDownloaded({
+      school: "123456-Test School",
+      terms: true,
+      resources: ["worksheet"],
+      selectedResources: ["worksheet"],
+      onwardContent: [],
+      totalDownloadableResources: 1,
+    });
+
+    expect(mockReportAnalyticsError).toHaveBeenCalledWith(
+      expect.objectContaining({
+        event: "lessonResourcesDownloaded",
+        programmeState: unitState,
+      }),
+    );
+    expect(avo.lessonResourcesDownloaded).not.toHaveBeenCalled();
+  });
+
   test.each(["programmeAccessed", "unitRefined"] as const)(
     "%s tracks with no passed programmeState",
     (eventName) => {
@@ -276,18 +386,6 @@ describe("TeacherBrowseAnalyticsStore", () => {
       accessLevel: "lesson",
     });
 
-    const videoPayload = {
-      cloudinaryUrl: null,
-      muxAssetId: null,
-      durationSeconds: 42,
-      isCaptioned: true,
-      videoPlaybackId: ["playback-id-1"] as string[],
-      videoTitle: "Cells overview",
-      timeElapsedSeconds: 12,
-      isMuted: false,
-      videoLocation: VideoLocation.LESSON,
-    } as const;
-
     store.getState().track[eventName](videoPayload);
 
     expect(avo[eventName]).toHaveBeenCalledWith(
@@ -314,24 +412,114 @@ describe("TeacherBrowseAnalyticsStore", () => {
         accessLevel: "unit",
       });
 
-      const videoPayload = {
-        cloudinaryUrl: null,
-        muxAssetId: null,
-        durationSeconds: 42,
-        isCaptioned: true,
-        videoPlaybackId: ["playback-id-1"] as string[],
-        videoTitle: "Cells overview",
-        timeElapsedSeconds: 12,
-        isMuted: false,
-        videoLocation: VideoLocation.LESSON,
-      } as const;
-
       store.getState().track[eventName](videoPayload);
 
       expect(mockReportAnalyticsError).toHaveBeenCalledWith(
         expect.objectContaining({
           event: eventName,
           programmeState: unitState,
+        }),
+      );
+      expect(avo[eventName]).not.toHaveBeenCalled();
+    },
+  );
+
+  test.each([
+    ["createTeachingMaterialsInitiated", { isLoggedIn: true }],
+    [
+      "lessonMediaClipsStarted",
+      {
+        mediaClipsButtonName: MediaClipsButtonName.PLAY_ALL,
+        learningCycle: null,
+      },
+    ],
+    [
+      "lessonResourceDownloadStarted",
+      { downloadResourceButtonName: DownloadResourceButtonName.WORKSHEET },
+    ],
+    ["lessonShareStarted", undefined],
+    ["mediaClipsPlaylistPlayed", mediaClipsPlaylistPayload],
+    ["onwardContentSelected", { onwardIntent: OnwardIntent.VIEW_LESSON }],
+    [
+      "teachingMaterialsSelected",
+      { teachingMaterialType: TeachingMaterialType.EXIT_QUIZ },
+    ],
+  ] as const)(
+    "%s reports error and does not track outside lesson level",
+    (eventName, payload) => {
+      const unitState = getProgrammeStateForUnit(teachersUnitOverviewFixture());
+      const { store, avo } = buildStore({
+        programmeState: unitState,
+        accessLevel: "unit",
+      });
+
+      const trackFn = store.getState().track[eventName] as (
+        arg?: unknown,
+      ) => void;
+      trackFn(payload);
+
+      expect(mockReportAnalyticsError).toHaveBeenCalledWith(
+        expect.objectContaining({
+          event: eventName,
+          programmeState: unitState,
+        }),
+      );
+      expect(avo[eventName]).not.toHaveBeenCalled();
+    },
+  );
+
+  test.each([
+    ["videoPlayed", videoPayload],
+    ["videoStarted", videoPayload],
+    ["videoPaused", videoPayload],
+    ["videoFinished", videoPayload],
+    ["createTeachingMaterialsInitiated", { isLoggedIn: true }],
+    [
+      "lessonMediaClipsStarted",
+      {
+        mediaClipsButtonName: MediaClipsButtonName.PLAY_ALL,
+        learningCycle: null,
+      },
+    ],
+    [
+      "lessonResourceDownloadStarted",
+      { downloadResourceButtonName: DownloadResourceButtonName.WORKSHEET },
+    ],
+    ["lessonShareStarted", undefined],
+    ["mediaClipsPlaylistPlayed", mediaClipsPlaylistPayload],
+    ["onwardContentSelected", { onwardIntent: OnwardIntent.VIEW_LESSON }],
+    [
+      "teachingMaterialsSelected",
+      { teachingMaterialType: TeachingMaterialType.EXIT_QUIZ },
+    ],
+    ["unitDownloaded", undefined],
+    ["unitDownloadStarted", undefined],
+    ["curriculumExplainerExplored", undefined],
+    [
+      "curriculumResourcesDownloadRefined",
+      { tierSlug: "higher", childSubjectSlug: "biology" },
+    ],
+    [
+      "curriculumResourcesDownloaded",
+      { school: "123456-Test School", terms: true, resources: ["worksheet"] },
+    ],
+  ] as const)(
+    "%s reports error and does not track when programmeState is missing",
+    (eventName, payload) => {
+      const { store, avo } = buildStore({
+        programmeState: null,
+        accessLevel: "homepage",
+      });
+
+      const trackFn = store.getState().track[eventName] as (
+        arg?: unknown,
+      ) => void;
+      trackFn(payload);
+
+      expect(mockReportAnalyticsError).toHaveBeenCalledWith(
+        expect.objectContaining({
+          event: eventName,
+          programmeState: null,
         }),
       );
       expect(avo[eventName]).not.toHaveBeenCalled();
