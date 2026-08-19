@@ -1,7 +1,7 @@
 "use client";
 import {
   OakFlex,
-  OakImage,
+  OakIcon,
   OakScreenReader,
   OakSecondaryButton,
 } from "@oaknational/oak-components";
@@ -9,14 +9,15 @@ import {
 /**
  * "Try in <assistant>" call to action.
  *
- * The provider logo is decorative — the button already carries the provider
- * name in its label — so it is given an empty alt.
+ * Figma shows the provider's own mark here, but that is a third-party trademark
+ * and this repo is public and MIT licensed, so a neutral Oak icon stands in
+ * until Oak has permission and the mark can be served from Cloudinary. The
+ * button already names the provider, so the icon is decorative either way.
  */
 export const McpTryButton = ({
   label,
   href,
-  logoSrc,
-}: Readonly<{ label: string; href: string; logoSrc: string }>) => (
+}: Readonly<{ label: string; href: string }>) => (
   <OakSecondaryButton
     element="a"
     href={href}
@@ -24,14 +25,11 @@ export const McpTryButton = ({
     rel="noopener noreferrer"
   >
     <OakFlex $alignItems="center" $gap="spacing-4">
-      <OakImage
-        src={logoSrc}
+      <OakIcon
+        iconName="ai"
+        iconWidth="spacing-20"
+        iconHeight="spacing-20"
         alt=""
-        aria-hidden="true"
-        width={20}
-        height={20}
-        placeholder="empty"
-        $maxWidth="spacing-20"
       />
       {label}
       <OakScreenReader> (opens in a new tab)</OakScreenReader>

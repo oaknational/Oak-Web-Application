@@ -38,7 +38,6 @@ export const McpHero = () => (
               key={assistant.name}
               label={assistant.ctaLabel}
               href={assistant.ctaHref}
-              logoSrc={assistant.logoSrc}
             />
           ))}
         </OakFlex>

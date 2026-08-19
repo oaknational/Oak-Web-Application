@@ -98,12 +98,17 @@ const span = (key: string, text: string, marks: string[] = []) => ({
   marks,
 });
 
+/**
+ * The provider's own mark is deliberately absent: it is a third-party
+ * trademark, and this repo is public and MIT licensed, so it should not be
+ * committed here. A neutral Oak icon stands in until Oak has permission and
+ * the mark can be served from Cloudinary like other imagery.
+ */
 export type McpAssistant = {
   name: string;
   ctaLabel: string;
   ctaHref: string;
-  logoSrc: string;
-  /** Tile colour behind the provider logo. */
+  /** Tile colour behind the provider icon. */
   background: "bg-decorative6-main";
 };
 
@@ -123,7 +128,6 @@ export const mcpAssistants: {
       // `?q=` prefills the composer without sending, which is what the install
       // steps describe ("a message ready to send... click the orange arrow").
       ctaHref: `https://claude.ai/new?q=${encodeURIComponent(mcpInstallPrompt)}`,
-      logoSrc: "/images/mcp/claude-logo.png",
       background: "bg-decorative6-main",
     },
   ],
