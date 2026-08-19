@@ -4,24 +4,33 @@ import { CurricFiltersYears } from "./CurricFiltersYears";
 import { basicSetup } from "./CurricFiltersYears.fixtures";
 
 import { renderWithProvidersByName } from "@/__tests__/__helpers__/renderWithProviders";
+import { useBrowseFilters } from "@/context/BrowseFilters";
+
+jest.mock("@/context/BrowseFilters", () => ({
+  useBrowseFilters: jest.fn(),
+}));
+
+const mockUseBrowseFilters = jest.mocked(useBrowseFilters);
 
 const render = renderWithProvidersByName(["oakTheme"]);
 
 describe("CurricFiltersYears", () => {
   it("renders correctly (non-pathways)", () => {
+    mockUseBrowseFilters.mockReturnValue({
+      filters: {
+        childSubjects: [],
+        subjectCategories: [],
+        tiers: [],
+        years: ["10", "11"],
+        threads: [],
+        pathways: [],
+        keystages: [],
+      },
+      onChangeFilters: () => {},
+    });
     const { getAllByRole } = render(
       <CurricFiltersYears
         context="curriculum-visualiser"
-        filters={{
-          childSubjects: [],
-          subjectCategories: [],
-          tiers: [],
-          years: ["10", "11"],
-          threads: [],
-          pathways: [],
-          keystages: [],
-        }}
-        onChangeFilters={() => {}}
         data={basicSetup}
         ks4Options={[]}
         slugs={{
@@ -40,19 +49,21 @@ describe("CurricFiltersYears", () => {
   });
 
   it("renders correctly (pathways)", () => {
+    mockUseBrowseFilters.mockReturnValue({
+      filters: {
+        childSubjects: [],
+        subjectCategories: [],
+        tiers: [],
+        years: ["10", "11"],
+        threads: [],
+        pathways: [],
+        keystages: [],
+      },
+      onChangeFilters: () => {},
+    });
     const { getAllByRole } = render(
       <CurricFiltersYears
         context="curriculum-visualiser"
-        filters={{
-          childSubjects: [],
-          subjectCategories: [],
-          tiers: [],
-          years: ["10", "11"],
-          threads: [],
-          pathways: [],
-          keystages: [],
-        }}
-        onChangeFilters={() => {}}
         data={basicSetup}
         ks4Options={[
           { slug: "core", title: "Core" },
@@ -76,19 +87,21 @@ describe("CurricFiltersYears", () => {
   });
 
   it("renders correctly (pathways) on integrated journey without Core/GCSE duplication", () => {
+    mockUseBrowseFilters.mockReturnValue({
+      filters: {
+        childSubjects: [],
+        subjectCategories: [],
+        tiers: [],
+        years: ["10", "11"],
+        threads: [],
+        pathways: [],
+        keystages: [],
+      },
+      onChangeFilters: () => {},
+    });
     const { getAllByRole } = render(
       <CurricFiltersYears
         context="integrated-journey"
-        filters={{
-          childSubjects: [],
-          subjectCategories: [],
-          tiers: [],
-          years: ["10", "11"],
-          threads: [],
-          pathways: [],
-          keystages: [],
-        }}
-        onChangeFilters={() => {}}
         data={basicSetup}
         ks4Options={[
           { slug: "core", title: "Core" },
@@ -111,19 +124,21 @@ describe("CurricFiltersYears", () => {
 
   it("interacts correctly (non-pathway)", () => {
     const onChangeFilters = jest.fn();
+    mockUseBrowseFilters.mockReturnValue({
+      filters: {
+        childSubjects: [],
+        subjectCategories: [],
+        tiers: [],
+        years: ["10", "11"],
+        threads: [],
+        pathways: [],
+        keystages: [],
+      },
+      onChangeFilters,
+    });
     const { getAllByRole, rerender } = render(
       <CurricFiltersYears
         context="curriculum-visualiser"
-        filters={{
-          childSubjects: [],
-          subjectCategories: [],
-          tiers: [],
-          years: ["10", "11"],
-          threads: [],
-          pathways: [],
-          keystages: [],
-        }}
-        onChangeFilters={onChangeFilters}
         data={basicSetup}
         ks4Options={[]}
         slugs={{
@@ -170,19 +185,21 @@ describe("CurricFiltersYears", () => {
     });
 
     // Re-render because "all" will be selected by default
+    mockUseBrowseFilters.mockReturnValue({
+      filters: {
+        childSubjects: [],
+        subjectCategories: [],
+        tiers: [],
+        years: ["10"],
+        threads: [],
+        pathways: [],
+        keystages: [],
+      },
+      onChangeFilters,
+    });
     rerender(
       <CurricFiltersYears
         context="curriculum-visualiser"
-        filters={{
-          childSubjects: [],
-          subjectCategories: [],
-          tiers: [],
-          years: ["10"],
-          threads: [],
-          pathways: [],
-          keystages: [],
-        }}
-        onChangeFilters={onChangeFilters}
         data={basicSetup}
         ks4Options={[]}
         slugs={{
@@ -212,19 +229,21 @@ describe("CurricFiltersYears", () => {
 
   it("interacts correctly (pathway)", () => {
     const onChangeFilters = jest.fn();
+    mockUseBrowseFilters.mockReturnValue({
+      filters: {
+        childSubjects: [],
+        subjectCategories: [],
+        tiers: [],
+        years: ["10", "11"],
+        threads: [],
+        pathways: [],
+        keystages: [],
+      },
+      onChangeFilters,
+    });
     const { getAllByRole, rerender } = render(
       <CurricFiltersYears
         context="curriculum-visualiser"
-        filters={{
-          childSubjects: [],
-          subjectCategories: [],
-          tiers: [],
-          years: ["10", "11"],
-          threads: [],
-          pathways: [],
-          keystages: [],
-        }}
-        onChangeFilters={onChangeFilters}
         data={basicSetup}
         ks4Options={[
           { slug: "core", title: "Core" },
@@ -306,19 +325,21 @@ describe("CurricFiltersYears", () => {
     });
 
     // Re-render because "all" will be selected by default
+    mockUseBrowseFilters.mockReturnValue({
+      filters: {
+        childSubjects: [],
+        subjectCategories: [],
+        tiers: [],
+        years: ["10"],
+        threads: [],
+        pathways: [],
+        keystages: [],
+      },
+      onChangeFilters,
+    });
     rerender(
       <CurricFiltersYears
         context="curriculum-visualiser"
-        filters={{
-          childSubjects: [],
-          subjectCategories: [],
-          tiers: [],
-          years: ["10"],
-          threads: [],
-          pathways: [],
-          keystages: [],
-        }}
-        onChangeFilters={onChangeFilters}
         data={basicSetup}
         ks4Options={[]}
         slugs={{

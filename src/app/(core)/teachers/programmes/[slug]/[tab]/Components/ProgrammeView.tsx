@@ -84,7 +84,7 @@ export const ProgrammeView = ({
   const { subjectTitle, phaseTitle, examboardTitle } =
     curriculumSelectionTitles;
 
-  const { filters, onChangeFilters } = useBrowseFilters();
+  const { filters } = useBrowseFilters();
 
   const schoolYear = filters.years.find(
     (year) => validatedParams?.years === year,
@@ -184,8 +184,6 @@ export const ProgrammeView = ({
         curriculumCMSInfo={curriculumCMSInfo}
         curriculumDownloadsTabData={curriculumDownloadsTabData}
         mvRefreshTime={mvRefreshTime}
-        filters={filters}
-        setFilters={onChangeFilters}
         ks4Options={ks4Options}
         ks4OptionFilterDimensions={ks4OptionFilterDimensions}
       />
@@ -200,8 +198,6 @@ const TabContent = ({
   curriculumCMSInfo,
   curriculumDownloadsTabData,
   mvRefreshTime,
-  filters,
-  setFilters,
   ks4Options,
   ks4OptionFilterDimensions,
 }: { tabSlug: TabSlug } & UnitSequenceViewProps & {
@@ -212,8 +208,6 @@ const TabContent = ({
       <UnitSequenceView
         curriculumSelectionSlugs={curriculumSelectionSlugs}
         curriculumUnitsFormattedData={curriculumUnitsFormattedData}
-        filters={filters}
-        setFilters={setFilters}
         ks4Options={ks4Options}
         ks4OptionFilterDimensions={ks4OptionFilterDimensions}
       />

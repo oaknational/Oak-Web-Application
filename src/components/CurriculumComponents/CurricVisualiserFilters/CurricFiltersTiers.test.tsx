@@ -4,26 +4,32 @@ import { CurricFiltersTiers } from "./CurricFiltersTiers";
 import { ks4Setup, ks3and4Setup } from "./CurricFiltersTiers.fixtures";
 
 import { renderWithProvidersByName } from "@/__tests__/__helpers__/renderWithProviders";
+import { useBrowseFilters } from "@/context/BrowseFilters";
+
+jest.mock("@/context/BrowseFilters", () => ({
+  useBrowseFilters: jest.fn(),
+}));
+
+const mockUseBrowseFilters = jest.mocked(useBrowseFilters);
 
 const render = renderWithProvidersByName(["oakTheme"]);
 
 describe("CurricFiltersTiers", () => {
   it("renders correctly ks4", () => {
+    mockUseBrowseFilters.mockReturnValue({
+      filters: {
+        childSubjects: [],
+        subjectCategories: [],
+        tiers: [],
+        years: ["10", "11"],
+        threads: [],
+        pathways: [],
+        keystages: [],
+      },
+      onChangeFilters: () => {},
+    });
     const { getAllByRole, getByText } = render(
-      <CurricFiltersTiers
-        filters={{
-          childSubjects: [],
-          subjectCategories: [],
-          tiers: [],
-          years: ["10", "11"],
-          threads: [],
-          pathways: [],
-          keystages: [],
-        }}
-        onChangeFilters={() => {}}
-        data={ks4Setup}
-        context={"curriculum-visualiser"}
-      />,
+      <CurricFiltersTiers data={ks4Setup} context={"curriculum-visualiser"} />,
     );
 
     const elements = getAllByRole("radio") as HTMLInputElement[];
@@ -34,18 +40,20 @@ describe("CurricFiltersTiers", () => {
   });
 
   it("renders correctly ks3&4", () => {
+    mockUseBrowseFilters.mockReturnValue({
+      filters: {
+        childSubjects: [],
+        subjectCategories: [],
+        tiers: [],
+        years: ["7", "8", "9", "10", "11"],
+        threads: [],
+        pathways: [],
+        keystages: [],
+      },
+      onChangeFilters: () => {},
+    });
     const { getAllByRole, getByText } = render(
       <CurricFiltersTiers
-        filters={{
-          childSubjects: [],
-          subjectCategories: [],
-          tiers: [],
-          years: ["7", "8", "9", "10", "11"],
-          threads: [],
-          pathways: [],
-          keystages: [],
-        }}
-        onChangeFilters={() => {}}
         data={ks3and4Setup}
         context={"curriculum-visualiser"}
       />,
@@ -59,21 +67,20 @@ describe("CurricFiltersTiers", () => {
   });
 
   it("renders correctly", () => {
+    mockUseBrowseFilters.mockReturnValue({
+      filters: {
+        childSubjects: [],
+        subjectCategories: [],
+        tiers: [],
+        years: ["10", "11"],
+        threads: [],
+        pathways: [],
+        keystages: [],
+      },
+      onChangeFilters: () => {},
+    });
     const { getAllByRole } = render(
-      <CurricFiltersTiers
-        filters={{
-          childSubjects: [],
-          subjectCategories: [],
-          tiers: [],
-          years: ["10", "11"],
-          threads: [],
-          pathways: [],
-          keystages: [],
-        }}
-        onChangeFilters={() => {}}
-        data={ks4Setup}
-        context={"curriculum-visualiser"}
-      />,
+      <CurricFiltersTiers data={ks4Setup} context={"curriculum-visualiser"} />,
     );
 
     const elements = getAllByRole("radio") as HTMLInputElement[];
@@ -84,21 +91,20 @@ describe("CurricFiltersTiers", () => {
 
   it("interacts correctly", () => {
     const onChangeFilters = jest.fn();
+    mockUseBrowseFilters.mockReturnValue({
+      filters: {
+        childSubjects: [],
+        subjectCategories: [],
+        tiers: [],
+        years: ["10", "11"],
+        threads: [],
+        pathways: [],
+        keystages: [],
+      },
+      onChangeFilters,
+    });
     const { getAllByRole } = render(
-      <CurricFiltersTiers
-        filters={{
-          childSubjects: [],
-          subjectCategories: [],
-          tiers: [],
-          years: ["10", "11"],
-          threads: [],
-          pathways: [],
-          keystages: [],
-        }}
-        onChangeFilters={onChangeFilters}
-        data={ks4Setup}
-        context={"curriculum-visualiser"}
-      />,
+      <CurricFiltersTiers data={ks4Setup} context={"curriculum-visualiser"} />,
     );
 
     const elements = getAllByRole("radio") as HTMLInputElement[];

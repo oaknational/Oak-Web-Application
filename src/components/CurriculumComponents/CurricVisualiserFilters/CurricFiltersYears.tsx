@@ -12,10 +12,7 @@ import {
   getPathwaySuffix,
   getYearGroupTitle,
 } from "@/utils/curriculum/formatting";
-import {
-  CurriculumFilters,
-  OnChangeCurriculumFilters,
-} from "@/utils/curriculum/types";
+import { CurriculumFilters } from "@/utils/curriculum/types";
 import type { CurriculumUnitsFormattedData } from "@/pages-helpers/curriculum/docx/tab-helpers";
 import { SubjectPhasePickerData } from "@/components/SharedComponents/SubjectPhasePicker/SubjectPhasePicker";
 import { getShouldDisplayCorePathway } from "@/utils/curriculum/pathways";
@@ -23,10 +20,9 @@ import { CurriculumSelectionSlugs } from "@/utils/curriculum/slugs";
 import { keystageFromYear } from "@/utils/curriculum/keystage";
 import { FilterType } from "@/browser-lib/avo/Avo";
 import { getKeystageSlug } from "@/fixtures/curriculum/unit";
+import { useBrowseFilters } from "@/context/BrowseFilters";
 
 export type CurricFiltersYearsProps = {
-  filters: CurriculumFilters;
-  onChangeFilters: OnChangeCurriculumFilters;
   data: CurriculumUnitsFormattedData;
   ks4Options: SubjectPhasePickerData["subjects"][number]["ks4_options"];
   slugs: CurriculumSelectionSlugs;
@@ -92,7 +88,8 @@ const filterToIndex = (
 };
 
 export function CurricFiltersYears(props: Readonly<CurricFiltersYearsProps>) {
-  const { filters, onChangeFilters, data, ks4Options, slugs, context } = props;
+  const { data, ks4Options, slugs, context } = props;
+  const { filters, onChangeFilters } = useBrowseFilters();
   const id = useId();
   const { yearData } = data;
 

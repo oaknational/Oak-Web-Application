@@ -20,16 +20,11 @@ import {
   getNumberOfSelectedUnits,
   highlightedUnitCount,
 } from "@/utils/curriculum/filtering";
-import {
-  CurriculumFilters,
-  OnChangeCurriculumFilters,
-} from "@/utils/curriculum/types";
 import { CurriculumSelectionSlugs } from "@/utils/curriculum/slugs";
 import type { Ks4Option } from "@/node-lib/curriculum-api-2023/queries/curriculumPhaseOptions/curriculumPhaseOptions.schema";
+import { useBrowseFilters } from "@/context/BrowseFilters";
 
 export type UnitSequenceViewProps = {
-  filters: CurriculumFilters;
-  setFilters: OnChangeCurriculumFilters;
   curriculumSelectionSlugs: CurriculumSelectionSlugs;
   curriculumUnitsFormattedData: CurriculumUnitsFormattedData;
   ks4Options: Ks4Option[];
@@ -37,8 +32,6 @@ export type UnitSequenceViewProps = {
 };
 
 export const UnitSequenceView = ({
-  filters,
-  setFilters,
   curriculumSelectionSlugs,
   curriculumUnitsFormattedData,
   ks4Options,
@@ -46,6 +39,8 @@ export const UnitSequenceView = ({
 }: UnitSequenceViewProps) => {
   const { yearData, threadOptions } = curriculumUnitsFormattedData;
   const { ks4OptionSlug } = curriculumSelectionSlugs;
+
+  const { filters } = useBrowseFilters();
 
   const unitCount = getNumberOfSelectedUnits(yearData, filters);
 
@@ -90,8 +85,6 @@ export const UnitSequenceView = ({
             <OakBox $display={["block", "block", "none"]}>
               {shouldDisplayFilters && (
                 <ProgrammePageFiltersMobile
-                  filters={filters}
-                  onChangeFilters={setFilters}
                   data={curriculumUnitsFormattedData}
                   slugs={curriculumSelectionSlugs}
                   ks4Options={ks4Options}
@@ -106,8 +99,6 @@ export const UnitSequenceView = ({
               >
                 {shouldDisplayFilters && (
                   <ProgrammePageFiltersDesktop
-                    filters={filters}
-                    onChangeFilters={setFilters}
                     data={curriculumUnitsFormattedData}
                     slugs={curriculumSelectionSlugs}
                     ks4Options={ks4Options}
