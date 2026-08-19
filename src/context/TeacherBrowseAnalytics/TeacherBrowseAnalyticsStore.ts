@@ -350,10 +350,9 @@ export const createTeacherBrowseAnalyticsStore = (
       }) => {
         const { avo, programmeState } = get();
 
-        const lessonState = requireLessonState(
-          "lessonAccessed",
-          programmeState,
-        );
+        const lessonState = programmeState
+          ? requireLessonState("lessonAccessed", programmeState)
+          : null;
 
         const analyticsProperties = lessonState
           ? getLessonAnalyticsProperties(lessonState)
@@ -659,7 +658,9 @@ export const createTeacherBrowseAnalyticsStore = (
       }) => {
         const { avo, programmeState } = get();
 
-        const unitState = requireUnitState("unitAccessed", programmeState);
+        const unitState = programmeState
+          ? requireUnitState("unitAccessed", programmeState)
+          : null;
 
         const analyticsProps = unitState
           ? getUnitAnalyticsProperties(unitState)
