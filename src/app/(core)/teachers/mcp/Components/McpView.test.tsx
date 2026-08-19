@@ -8,6 +8,7 @@ import {
   mcpFeedback,
   mcpHero,
   mcpHowItWorks,
+  mcpInstallPrompt,
   mcpIntro,
   mcpOutputWarning,
   mcpResponsibleUse,
@@ -69,6 +70,19 @@ describe("McpView", () => {
         name: new RegExp(assistant!.ctaLabel),
       }),
     ).toHaveAttribute("href", assistant!.ctaHref);
+  });
+
+  it("prefills Claude's composer with the install prompt", () => {
+    const { getAllByRole } = render(<McpView />);
+
+    const tryLinks = getAllByRole("link", { name: /Try in Claude/ });
+
+    // The hero and the assistant card share one href.
+    expect(tryLinks.length).toBeGreaterThan(0);
+    tryLinks.forEach((link) => {
+      const href = link.getAttribute("href") ?? "";
+      expect(new URL(href).searchParams.get("q")).toBe(mcpInstallPrompt);
+    });
   });
 
   it("lists the numbered steps for installing the connector", () => {

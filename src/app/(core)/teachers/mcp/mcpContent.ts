@@ -87,6 +87,14 @@ export const mcpCapabilities: {
   ],
 } as const;
 
+/**
+ * The message the "Try in Claude" deep link drops into Claude's composer, and
+ * the same text the small print tells you to paste if it arrives empty. Both
+ * read from here so they cannot drift apart.
+ */
+export const mcpInstallPrompt =
+  "Install the Oak National Academy plugin and its connector.";
+
 export type McpAssistant = {
   name: string;
   ctaLabel: string;
@@ -109,7 +117,9 @@ export const mcpAssistants: {
     {
       name: "Claude",
       ctaLabel: "Try in Claude",
-      ctaHref: "https://claude.ai/",
+      // `?q=` prefills the composer without sending, which is what the install
+      // steps describe ("a message ready to send... click the orange arrow").
+      ctaHref: `https://claude.ai/new?q=${encodeURIComponent(mcpInstallPrompt)}`,
       logoSrc: "/images/mcp/claude-logo.png",
       background: "bg-decorative6-main",
     },
@@ -137,10 +147,7 @@ export const mcpAssistants: {
       {
         text: "If Claude opens with an empty message box, paste this in and send it: ",
       },
-      {
-        text: "Install the Oak National Academy plugin and its connector.",
-        bold: true,
-      },
+      { text: mcpInstallPrompt, bold: true },
     ],
     [
       {
