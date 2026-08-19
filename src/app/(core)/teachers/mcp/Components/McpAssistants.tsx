@@ -7,6 +7,7 @@ import {
   OakOL,
   OakP,
 } from "@oaknational/oak-components";
+import styled from "styled-components";
 
 import { McpSection } from "./McpSection";
 import { McpTryButton } from "./McpTryButton";
@@ -17,6 +18,24 @@ import {
   type McpAssistant,
   type McpTextSegment,
 } from "@/app/(core)/teachers/mcp/mcpContent";
+
+/**
+ * The provider mark ships in Claude's coral (#d97757), which barely reads
+ * against the orange tile behind it — Figma uses a white mark there.
+ *
+ * The asset is a flat, single-colour glyph on transparency, so flattening it to
+ * black and inverting gives an exact white silhouette with its edges intact.
+ * That beats shipping a second copy of the same mark, which would double the
+ * asset and leave two files to keep in step.
+ *
+ * The filter sits on a plain wrapper rather than on `styled(OakImage)`, because
+ * wrapping OakImage collapses it to 0x0 — it sizes itself through its own
+ * generated class.
+ */
+const StyledWhiteMark = styled.div`
+  display: flex;
+  filter: brightness(0) invert(1);
+`;
 
 /** Stable key for a run of segments — the copy itself is unique and fixed. */
 const segmentsKey = (segments: readonly McpTextSegment[]) =>
@@ -35,15 +54,17 @@ const McpAssistantCard = ({
       $width="spacing-100"
       $height="spacing-100"
     >
-      <OakImage
-        src={assistant.logoSrc}
-        alt=""
-        aria-hidden="true"
-        width={40}
-        height={40}
-        placeholder="empty"
-        $maxWidth="spacing-40"
-      />
+      <StyledWhiteMark>
+        <OakImage
+          src={assistant.logoSrc}
+          alt=""
+          aria-hidden="true"
+          width={40}
+          height={40}
+          placeholder="empty"
+          $maxWidth="spacing-40"
+        />
+      </StyledWhiteMark>
     </OakFlex>
     <OakFlex $flexDirection="column" $gap="spacing-16" $alignItems="flex-start">
       <OakHeading tag="h3" $font="heading-6">
