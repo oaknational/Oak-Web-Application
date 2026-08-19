@@ -200,7 +200,7 @@ describe("MyLibrary", () => {
       eventVersion: "2.0.0",
       platform: "owa",
       product: "teacher lesson resources",
-      filterValue: "Subject 1",
+      filterValue: "Programme 1 KS4",
       filterType: "Subject filter",
       activeFilters: [],
       accessLevel: "my_library",

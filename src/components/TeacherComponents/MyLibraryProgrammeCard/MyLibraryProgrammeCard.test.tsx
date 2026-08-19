@@ -8,7 +8,11 @@ import {
   completeUnitLessons,
   incompleteUnitLessons,
 } from "@/fixtures/teachers/myLibrary";
-import { KeyStageTitleValueType } from "@/browser-lib/avo/Avo";
+import {
+  ExamBoardValueType,
+  KeyStageTitleValueType,
+  TierNameValueType,
+} from "@/browser-lib/avo/Avo";
 
 const render = renderWithProviders();
 
@@ -27,8 +31,10 @@ const mockUnits = [
     keyStageSlug: "key-stage-4",
     subjectTitle: "English",
     subjectSlug: "english",
-    trackUnitAccessed: jest.fn(),
-    trackLessonAccessed: jest.fn(),
+    tierName: "Core" as TierNameValueType,
+    examBoard: "AQA" as ExamBoardValueType,
+    pathway: undefined,
+    yearSlug: "year-10",
   },
   {
     unitTitle: "Poetry Analysis",
@@ -42,8 +48,10 @@ const mockUnits = [
     keyStageSlug: "key-stage-3",
     subjectTitle: "English",
     subjectSlug: "english",
-    trackUnitAccessed: jest.fn(),
-    trackLessonAccessed: jest.fn(),
+    tierName: "Core" as TierNameValueType,
+    examBoard: "AQA" as ExamBoardValueType,
+    pathway: undefined,
+    yearSlug: "year-9",
   },
 ];
 

@@ -3,11 +3,15 @@ import { Meta, StoryObj } from "@storybook/nextjs";
 
 import MyLibraryUnitCard from "./MyLibraryUnitCard";
 
+import type { TierNameValueType } from "@/browser-lib/avo/Avo";
 import {
   completeUnitLessons,
   incompleteUnitLessons,
 } from "@/fixtures/teachers/myLibrary";
-import { KeyStageTitleValueType } from "@/browser-lib/avo/Avo";
+import {
+  KeyStageTitleValueType,
+  ExamBoardValueType,
+} from "@/browser-lib/avo/Avo";
 
 const unit = {
   unitTitle: "Fiction: Science Fiction Writing",
@@ -20,8 +24,10 @@ const unit = {
   keyStageSlug: "key-stage-4",
   subjectTitle: "English",
   subjectSlug: "english",
-  trackUnitAccessed: () => console.log("Track unit accessed"),
-  trackLessonAccessed: () => console.log("Track lesson accessed"),
+  tierName: "Core" as TierNameValueType,
+  examBoard: "AQA" as ExamBoardValueType,
+  pathway: undefined,
+  yearSlug: "year-10",
 };
 
 const meta: Meta<typeof MyLibraryUnitCard> = {

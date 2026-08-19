@@ -106,7 +106,6 @@ export default function MyLibrary(props: Readonly<MyLibraryProps>) {
                       subject_categories: collection.subjectCategoryQuery,
                     },
                   })}
-                  subject={collection.subject}
                   iconName={getValidSubjectIconName(collection.subjectSlug)}
                   savedUnits={collection.units.map((unit) => ({
                     ...unit,

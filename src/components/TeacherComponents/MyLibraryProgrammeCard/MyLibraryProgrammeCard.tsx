@@ -53,7 +53,6 @@ interface MyLibraryProgrammeCardProps {
   programmeTitle: string;
   programmeHref: string;
   anchorId: string;
-  subject: string;
   iconName: OakIconName;
   savedUnits: Array<MyLibraryUnitCardProps>;
 }
@@ -61,14 +60,8 @@ interface MyLibraryProgrammeCardProps {
 export default function MyLibraryProgrammeCard(
   props: Readonly<MyLibraryProgrammeCardProps>,
 ) {
-  const {
-    savedUnits,
-    programmeTitle,
-    programmeHref,
-    iconName,
-    anchorId,
-    subject,
-  } = props;
+  const { savedUnits, programmeTitle, programmeHref, iconName, anchorId } =
+    props;
 
   const headingIdString = `programme-heading-${programmeTitle.replaceAll(" ", "-").toLowerCase()}`;
   const track = useTeacherBrowseAnalytics((store) => store.track);
@@ -91,7 +84,7 @@ export default function MyLibraryProgrammeCard(
           track.programmeRefined({
             componentType: "programme_card",
             filterType: "Subject filter",
-            filterValue: subject,
+            filterValue: programmeTitle,
             activeFilters: [],
           });
         }}
