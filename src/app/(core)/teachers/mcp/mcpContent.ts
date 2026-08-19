@@ -88,7 +88,7 @@ export const mcpCapabilities: {
  * read from here so they cannot drift apart.
  */
 export const mcpInstallPrompt =
-  "Install the Oak National Academy plugin and its connector.";
+  "Install the Oak National Academy plugin and its connector, then give me some examples of what I can do with it!";
 
 /** Portable text span. Emphasis uses the `strong` mark, as elsewhere in OWA. */
 const span = (key: string, text: string, marks: string[] = []) => ({
