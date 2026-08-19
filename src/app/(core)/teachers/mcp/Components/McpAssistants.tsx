@@ -6,6 +6,7 @@ import {
   OakLI,
   OakP,
 } from "@oaknational/oak-components";
+import type { PortableTextComponents } from "@portabletext/react";
 
 import { McpSection } from "./McpSection";
 import { McpTryButton } from "./McpTryButton";
@@ -46,6 +47,26 @@ const McpAssistantCard = ({
   </OakFlex>
 );
 
+/**
+ * Portable text overrides, kept at module scope so they are not redefined on
+ * every render — and so they read as components rather than nested closures.
+ */
+const stepComponents: PortableTextComponents = {
+  listItem: {
+    number: ({ children }) => (
+      <OakLI $font="body-2" $mb="spacing-8">
+        {children}
+      </OakLI>
+    ),
+  },
+};
+
+const smallPrintComponents: PortableTextComponents = {
+  block: {
+    normal: ({ children }) => <OakP $font="body-3">{children}</OakP>,
+  },
+};
+
 export const McpAssistants = () => (
   <McpSection title={mcpAssistants.title} id="choose-your-ai-assistant">
     <OakP $font="body-2">{mcpAssistants.body}</OakP>
@@ -59,24 +80,12 @@ export const McpAssistants = () => (
     </OakFlex>
     <PortableTextWithDefaults
       value={mcpAssistants.steps}
-      components={{
-        listItem: {
-          number: (props) => (
-            <OakLI $font="body-2" $mb="spacing-8">
-              {props.children}
-            </OakLI>
-          ),
-        },
-      }}
+      components={stepComponents}
     />
     <OakFlex $flexDirection="column" $gap="spacing-12">
       <PortableTextWithDefaults
         value={mcpAssistants.smallPrint}
-        components={{
-          block: {
-            normal: (props) => <OakP $font="body-3">{props.children}</OakP>,
-          },
-        }}
+        components={smallPrintComponents}
       />
     </OakFlex>
   </McpSection>
