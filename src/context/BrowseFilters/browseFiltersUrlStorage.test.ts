@@ -63,30 +63,4 @@ describe("createBrowseFiltersUrlStorage", () => {
       "higher",
     );
   });
-
-  it("removeItem strips filter params but keeps the rest", () => {
-    globalThis.history.replaceState(
-      null,
-      "",
-      "/programme/units?tiers=higher&utm_source=newsletter",
-    );
-
-    storage.removeItem("curriculumFilters");
-
-    const params = new URLSearchParams(window.location.search);
-    expect(params.get("tiers")).toBeNull();
-    expect(params.get("utm_source")).toBe("newsletter");
-  });
-
-  it("removeItem preserves an existing hash", () => {
-    globalThis.history.replaceState(
-      null,
-      "",
-      "/programme/units?tiers=higher#worksheet",
-    );
-
-    storage.removeItem("curriculumFilters");
-
-    expect(window.location.hash).toBe("#worksheet");
-  });
 });

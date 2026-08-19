@@ -1,13 +1,6 @@
 "use client";
-import {
-  createContext,
-  ReactNode,
-  useContext,
-  useLayoutEffect,
-  useState,
-} from "react";
+import { createContext, ReactNode, useContext, useState } from "react";
 import { useStore } from "zustand";
-import { useSearchParams } from "next/navigation";
 
 import {
   createBrowseFiltersStore,
@@ -32,15 +25,9 @@ export const BrowseFiltersProvider = ({
   initialFilter,
   children,
 }: BrowseFiltersProviderProps) => {
-  const searchParams = useSearchParams();
   const [store] = useState(() =>
     createBrowseFiltersStore({ defaultFilter, initialFilter }),
   );
-
-  // Keeps the store in sync with back/forward navigation.
-  useLayoutEffect(() => {
-    store.getState().syncFromSearchParams(searchParams);
-  }, [store, searchParams]);
 
   return (
     <BrowseFiltersStoreContext.Provider value={store}>
