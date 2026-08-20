@@ -1,3 +1,5 @@
+import { createHash } from "node:crypto";
+
 import { expect, test } from "@playwright/test";
 
 /**
@@ -30,10 +32,19 @@ import { expect, test } from "@playwright/test";
  * uncorrectable; a generic one cannot. The ordinal is the carousel's running
  * order.
  */
-const CAROUSEL_IMAGE_PATHS = [
-  "/mcp/carousel/carousel_image_1.png",
-  "/mcp/carousel/carousel_image_2.png",
-  "/mcp/carousel/carousel_image_3.png",
+const CAROUSEL_IMAGES = [
+  {
+    path: "/mcp/carousel/carousel_image_1.png",
+    sha256: "06cbdbf1704e6960afb3ad6b43ddaa42c2c256689e60fe5061cca8c108ffa8a5",
+  },
+  {
+    path: "/mcp/carousel/carousel_image_2.png",
+    sha256: "a28e7c329cfa8714551055212157bbab3f2573ce174f4c11480efe21e0d8401c",
+  },
+  {
+    path: "/mcp/carousel/carousel_image_3.png",
+    sha256: "8bb07d1ebd9ace22377a8040771e91aef0dc4ade88ec6e3c215782d6556a1b80",
+  },
 ] as const;
 
 /**
@@ -47,7 +58,7 @@ const EXTERNAL_CONTRACT_NOTICE =
   "not a test edit.";
 
 test.describe("MCP submission carousel images", () => {
-  for (const path of CAROUSEL_IMAGE_PATHS) {
+  for (const { path, sha256 } of CAROUSEL_IMAGES) {
     test(`serves ${path} as a PNG at its exact published URL`, async ({
       request,
     }) => {
@@ -71,12 +82,23 @@ test.describe("MCP submission carousel images", () => {
         `${path} is served with the wrong content type. ${EXTERNAL_CONTRACT_NOTICE}`,
       ).toContain("image/png");
 
+      const body = await response.body();
+
       // A zero-length or placeholder body would satisfy both checks above
       // while rendering as a broken image in the listing.
       expect(
-        (await response.body()).byteLength,
+        body.byteLength,
         `${path} is served but empty. ${EXTERNAL_CONTRACT_NOTICE}`,
       ).toBeGreaterThan(0);
+
+      // The bytes, pinned per path. This is what catches the two failures the
+      // checks above cannot see: an image pipeline that re-compresses on
+      // ingest, and a permutation that serves image 3 at image 2's URL. Both
+      // leave every other assertion here green.
+      expect(
+        createHash("sha256").update(body).digest("hex"),
+        `${path} does not serve the expected bytes — it may have been re-exported, optimised on ingest, or swapped with another ordinal. ${EXTERNAL_CONTRACT_NOTICE}`,
+      ).toBe(sha256);
     });
   }
 });
