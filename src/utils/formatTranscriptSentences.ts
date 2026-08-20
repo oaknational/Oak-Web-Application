@@ -101,10 +101,12 @@ const getPreviousWord = (index: number, joined: string): string => {
 const getBoundaryEnd = (index: number, joined: string): number => {
   let end = index;
 
+  // Keep grouped punctuation together (e.g. "?!" or "...").
   while (end + 1 < joined.length && isPunctuation(joined[end + 1])) {
     end += 1;
   }
 
+  // Include any trailing closing quote/bracket with the same sentence.
   while (end + 1 < joined.length && isClosingQuoteOrBracket(joined[end + 1])) {
     end += 1;
   }
@@ -129,10 +131,12 @@ const isMidSentenceEllipsis = (
 
 const hasBoundaryAfter = (index: number, joined: string): boolean => {
   const nextChar = joined[index + 1];
+  // We only split when punctuation is followed by whitespace or end-of-text.
   return !nextChar || isWhitespace(nextChar);
 };
 
 const shouldKeepFullStop = (index: number, joined: string): boolean => {
+  // Common honorifics where the trailing dot is not a sentence boundary.
   const titles = new Set(["mr", "mrs", "ms", "mx", "dr", "prof", "rev"]);
 
   if (joined[index] !== ".") {
