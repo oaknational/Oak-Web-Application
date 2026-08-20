@@ -1,29 +1,40 @@
 export const formatSentences = (
   input: Array<string> | string,
 ): Array<string> => {
-  // The sentences retrieved may be split in the middle and put onto multiple lines, this roughly puts them back together
-  // with a crude hack to ignore full stops following Mr or Mrs
-  // also ignoring full stops before quotation, which has the undesired effect of grouping near quotes
   const joined = Array.isArray(input) ? input.join(" ") : input;
-  const titles = ["Mr.", "Mrs.", "Ms.", "Mx.", "Dr.", "Prof.", "Rev."];
   const sentences = [];
   let start = 0;
 
   for (let i = 0; i < joined.length; i++) {
     const char = joined[i];
 
-    if (char === "." || char === "?" || char === "!") {
-      // Check if this period belongs to a protected title
-      const snippet = joined.slice(Math.max(0, i - 4), i + 1);
-      const isTitle = titles.some((title) => snippet.endsWith(title));
-
-      if (!isTitle) {
-        // Include punctuation in the sentence
-        const sentence = joined.slice(start, i + 1).trim();
-        sentences.push(sentence);
-        start = i + 1;
-      }
+    if (!isSentencePunctuation(char)) {
+      continue;
     }
+
+    if (char === "." && shouldKeepFullStop(i, joined)) {
+      continue;
+    }
+
+    const end = getBoundaryEnd(i, joined);
+
+    // Ellipses are often pauses within a sentence, e.g. "... then"
+    if (isMidSentenceEllipsis(i, end, joined)) {
+      i = end;
+      continue;
+    }
+
+    if (!hasBoundaryAfter(end, joined)) {
+      continue;
+    }
+
+    const sentence = joined.slice(start, end + 1).trim();
+    if (sentence) {
+      sentences.push(sentence);
+    }
+
+    start = end + 1;
+    i = end;
   }
 
   // Add remaining text (if any)
@@ -33,4 +44,127 @@ export const formatSentences = (
   }
 
   return sentences;
+};
+
+// Rule helper functions
+
+const isWhitespace = (char: string | undefined): boolean => {
+  return /\s/.test(char ?? "");
+};
+
+const isAsciiLetter = (char: string | undefined): boolean => {
+  return /[A-Za-z]/.test(char ?? "");
+};
+
+const isDigit = (char: string | undefined): boolean => {
+  return /\d/.test(char ?? "");
+};
+
+const isSentencePunctuation = (
+  char: string | undefined,
+): char is "." | "?" | "!" => {
+  return char === "." || char === "?" || char === "!";
+};
+
+const isPunctuation = (char: string | undefined): boolean => {
+  return /[.!?]/.test(char ?? "");
+};
+
+const isClosingQuoteOrBracket = (char: string | undefined): boolean => {
+  return /["'”’)\]}]/.test(char ?? "");
+};
+
+const getNextNonSpaceChar = (index: number, joined: string): string | null => {
+  for (let i = index + 1; i < joined.length; i++) {
+    const currentChar = joined[i] ?? "";
+    if (!isWhitespace(currentChar)) {
+      return currentChar;
+    }
+  }
+  return null;
+};
+
+const getPreviousWord = (index: number, joined: string): string => {
+  let end = index - 1;
+  while (end >= 0 && isWhitespace(joined[end])) {
+    end -= 1;
+  }
+
+  let wordStart = end;
+  while (wordStart >= 0 && isAsciiLetter(joined[wordStart])) {
+    wordStart -= 1;
+  }
+
+  return joined.slice(wordStart + 1, end + 1);
+};
+
+const getBoundaryEnd = (index: number, joined: string): number => {
+  let end = index;
+
+  while (end + 1 < joined.length && isPunctuation(joined[end + 1])) {
+    end += 1;
+  }
+
+  while (end + 1 < joined.length && isClosingQuoteOrBracket(joined[end + 1])) {
+    end += 1;
+  }
+
+  return end;
+};
+
+const isMidSentenceEllipsis = (
+  startIndex: number,
+  endIndex: number,
+  joined: string,
+): boolean => {
+  const punctuationRun = joined.slice(startIndex, endIndex + 1);
+
+  if (!/^\.{3,}$/.test(punctuationRun)) {
+    return false;
+  }
+
+  const nextNonSpace = getNextNonSpaceChar(endIndex, joined);
+  return Boolean(nextNonSpace && /[a-z]/.test(nextNonSpace));
+};
+
+const hasBoundaryAfter = (index: number, joined: string): boolean => {
+  const nextChar = joined[index + 1];
+  return !nextChar || isWhitespace(nextChar);
+};
+
+const shouldKeepFullStop = (index: number, joined: string): boolean => {
+  const titles = new Set(["mr", "mrs", "ms", "mx", "dr", "prof", "rev"]);
+
+  if (joined[index] !== ".") {
+    return false;
+  }
+
+  const previous = joined[index - 1] ?? "";
+  const next = joined[index + 1] ?? "";
+
+  // Decimal numbers, e.g. 3.14
+  if (isDigit(previous) && isDigit(next)) {
+    return true;
+  }
+
+  const previousWord = getPreviousWord(index, joined);
+  if (titles.has(previousWord.toLowerCase())) {
+    return true;
+  }
+
+  // Initials, e.g. A. Smith or A. B.
+  if (/^[A-Za-z]$/.test(previousWord)) {
+    const nextNonSpace = getNextNonSpaceChar(index, joined);
+    if (nextNonSpace && /[A-Z]/.test(nextNonSpace)) {
+      return true;
+    }
+  }
+
+  // Acronyms/initialisms, e.g. U.S. or U.S.A.
+  const acronymTail = joined.slice(Math.max(0, index - 10), index + 1);
+  if (/(?:\b[A-Za-z]\.){2,}$/.test(acronymTail)) {
+    return true;
+  }
+
+  return false;
 };
