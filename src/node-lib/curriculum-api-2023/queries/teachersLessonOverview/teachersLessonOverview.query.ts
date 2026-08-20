@@ -243,7 +243,9 @@ export const transformedTeachersLessonOverviewData = (
     videoMuxPlaybackId: content.videoMuxPlaybackId,
     videoWithSignLanguageMuxPlaybackId:
       content.videoWithSignLanguageMuxPlaybackId,
-    transcriptSentences: formatSentences(content.transcriptSentences),
+    transcriptSentences: content.transcriptSentences
+      ? formatSentences(content.transcriptSentences)
+      : null,
     isWorksheetLandscape: Boolean(
       browseData.lessonData.deprecatedFields?.worksheetIsLandscape,
     ),
