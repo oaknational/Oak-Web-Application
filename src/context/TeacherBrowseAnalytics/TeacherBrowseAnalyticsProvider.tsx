@@ -43,7 +43,8 @@ export const TeacherBrowseAnalyticsStoreProvider = ({
   children,
 }: TeacherBrowseAnalyticsStoreProviderProps) => {
   const { track, getSessionId } = useAnalytics();
-  const { subjectSlug, phaseSlug } = programmeState;
+  const subjectSlug = programmeState?.subjectSlug ?? "unknown";
+  const phaseSlug = programmeState?.phaseSlug ?? "unknown";
   const posthogConsent = useOakConsent().getConsent(ServicePolicyMap.POSTHOG);
   const hasConsent = posthogConsent === "granted";
 
@@ -79,8 +80,8 @@ export const TeacherBrowseAnalyticsStoreProvider = ({
   );
 
   useEffect(() => {
-    store.setState({ journeyId });
-  }, [store, journeyId]);
+    store.setState({ journeyId, programmeState, accessLevel });
+  }, [store, journeyId, programmeState, accessLevel]);
 
   return (
     <TeacherBrowseAnalyticsStoreContext.Provider value={store}>

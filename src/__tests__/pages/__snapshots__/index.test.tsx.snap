@@ -820,11 +820,11 @@ exports[`Teachers Page Page component renders 1`] = `
                             style="width: 50%;"
                           >
                             <div
-                              class="sc-aXZVg sc-fTFjTM sc-779bade6-1 eAVyBL VBMEN jSpMVc"
+                              class="sc-aXZVg sc-fTFjTM sc-c435d711-1 eAVyBL VBMEN kNJGDD"
                             >
                               <button
                                 aria-expanded="false"
-                                class="sc-779bade6-3 iwnwDt"
+                                class="sc-c435d711-3 gFIRgW"
                                 data-testid="subject-picker-button"
                                 title="Subject"
                               >
@@ -889,14 +889,14 @@ exports[`Teachers Page Page component renders 1`] = `
                               class="sc-aXZVg sc-gEvEer Clfe dbzvZO"
                             >
                               <div
-                                class="sc-aXZVg sc-fTFjTM sc-779bade6-1 hWaSHT VBMEN jSpMVc"
+                                class="sc-aXZVg sc-fTFjTM sc-c435d711-1 hWaSHT VBMEN kNJGDD"
                               >
                                 <div
                                   class="sc-aXZVg sc-gEvEer jPvJsJ inWRga"
                                 >
                                   <button
                                     aria-expanded="false"
-                                    class="sc-779bade6-3 iwnwDt"
+                                    class="sc-c435d711-3 gFIRgW"
                                     data-testid="phase-picker-button"
                                     title="Phase"
                                   >
@@ -1139,11 +1139,11 @@ exports[`Teachers Page Page component renders 1`] = `
                           style="width: 50%;"
                         >
                           <div
-                            class="sc-aXZVg sc-fTFjTM sc-779bade6-1 eAVyBL VBMEN jSpMVc"
+                            class="sc-aXZVg sc-fTFjTM sc-c435d711-1 eAVyBL VBMEN kNJGDD"
                           >
                             <button
                               aria-expanded="false"
-                              class="sc-779bade6-3 iwnwDt"
+                              class="sc-c435d711-3 gFIRgW"
                               data-testid="subject-picker-button"
                               title="Subject"
                             >
@@ -1208,14 +1208,14 @@ exports[`Teachers Page Page component renders 1`] = `
                             class="sc-aXZVg sc-gEvEer Clfe dbzvZO"
                           >
                             <div
-                              class="sc-aXZVg sc-fTFjTM sc-779bade6-1 hWaSHT VBMEN jSpMVc"
+                              class="sc-aXZVg sc-fTFjTM sc-c435d711-1 hWaSHT VBMEN kNJGDD"
                             >
                               <div
                                 class="sc-aXZVg sc-gEvEer jPvJsJ inWRga"
                               >
                                 <button
                                   aria-expanded="false"
-                                  class="sc-779bade6-3 iwnwDt"
+                                  class="sc-c435d711-3 gFIRgW"
                                   data-testid="phase-picker-button"
                                   title="Phase"
                                 >
@@ -1436,11 +1436,11 @@ exports[`Teachers Page Page component renders 1`] = `
                               style="width: 50%;"
                             >
                               <div
-                                class="sc-aXZVg sc-fTFjTM sc-779bade6-1 eAVyBL VBMEN jSpMVc"
+                                class="sc-aXZVg sc-fTFjTM sc-c435d711-1 eAVyBL VBMEN kNJGDD"
                               >
                                 <button
                                   aria-expanded="false"
-                                  class="sc-779bade6-3 iwnwDt"
+                                  class="sc-c435d711-3 gFIRgW"
                                   data-testid="subject-picker-button"
                                   title="Subject"
                                 >
@@ -1505,14 +1505,14 @@ exports[`Teachers Page Page component renders 1`] = `
                                 class="sc-aXZVg sc-gEvEer Clfe dbzvZO"
                               >
                                 <div
-                                  class="sc-aXZVg sc-fTFjTM sc-779bade6-1 hWaSHT VBMEN jSpMVc"
+                                  class="sc-aXZVg sc-fTFjTM sc-c435d711-1 hWaSHT VBMEN kNJGDD"
                                 >
                                   <div
                                     class="sc-aXZVg sc-gEvEer jPvJsJ inWRga"
                                   >
                                     <button
                                       aria-expanded="false"
-                                      class="sc-779bade6-3 iwnwDt"
+                                      class="sc-c435d711-3 gFIRgW"
                                       data-testid="phase-picker-button"
                                       title="Phase"
                                     >
@@ -2779,8 +2779,9 @@ exports[`Teachers Page Page component renders 1`] = `
                           class="sc-fPXMVe jFJaNg"
                         >
                           <a
-                            class="sc-fHjqPf cTauop sc-iHmpnF"
+                            class="sc-fHjqPf cTauop"
                             href="/pupils/years"
+                            variant="secondary"
                           >
                             <span
                               class="sc-eqUAAy iGfTGj"
@@ -2813,8 +2814,9 @@ exports[`Teachers Page Page component renders 1`] = `
                           class="sc-fPXMVe jFJaNg"
                         >
                           <a
-                            class="sc-fHjqPf cTauop sc-iHmpnF"
+                            class="sc-fHjqPf cTauop"
                             href="/teachers/eyfs/maths"
+                            variant="secondary"
                           >
                             <span
                               class="sc-eqUAAy iGfTGj"
@@ -2827,8 +2829,9 @@ exports[`Teachers Page Page component renders 1`] = `
                           class="sc-fPXMVe jFJaNg"
                         >
                           <a
-                            class="sc-fHjqPf cTauop sc-iHmpnF"
+                            class="sc-fHjqPf cTauop"
                             href="/lesson-planning"
+                            variant="secondary"
                           >
                             <span
                               class="sc-eqUAAy iGfTGj"
@@ -2841,9 +2844,10 @@ exports[`Teachers Page Page component renders 1`] = `
                           class="sc-fPXMVe jFJaNg"
                         >
                           <a
-                            class="sc-fHjqPf cTauop sc-iHmpnF"
+                            class="sc-fHjqPf cTauop"
                             href="https://labs.thenational.academy"
                             target="_blank"
+                            variant="secondary"
                           >
                             <span
                               class="sc-eqUAAy iGfTGj"
@@ -2873,8 +2877,9 @@ exports[`Teachers Page Page component renders 1`] = `
                           class="sc-fPXMVe jFJaNg"
                         >
                           <a
-                            class="sc-fHjqPf cTauop sc-iHmpnF"
+                            class="sc-fHjqPf cTauop"
                             href="/blog"
+                            variant="secondary"
                           >
                             <span
                               class="sc-eqUAAy iGfTGj"
@@ -2908,8 +2913,9 @@ exports[`Teachers Page Page component renders 1`] = `
                           class="sc-fPXMVe jFJaNg"
                         >
                           <a
-                            class="sc-fHjqPf cTauop sc-iHmpnF"
+                            class="sc-fHjqPf cTauop"
                             href="/"
+                            variant="secondary"
                           >
                             <span
                               class="sc-eqUAAy iGfTGj"
@@ -2922,8 +2928,9 @@ exports[`Teachers Page Page component renders 1`] = `
                           class="sc-fPXMVe jFJaNg"
                         >
                           <a
-                            class="sc-fHjqPf cTauop sc-iHmpnF"
+                            class="sc-fHjqPf cTauop"
                             href="/about-us/who-we-are"
+                            variant="secondary"
                           >
                             <span
                               class="sc-eqUAAy iGfTGj"
@@ -2936,8 +2943,9 @@ exports[`Teachers Page Page component renders 1`] = `
                           class="sc-fPXMVe jFJaNg"
                         >
                           <a
-                            class="sc-fHjqPf cTauop sc-iHmpnF"
+                            class="sc-fHjqPf cTauop"
                             href="/about-us/oaks-curricula"
+                            variant="secondary"
                           >
                             <span
                               class="sc-eqUAAy iGfTGj"
@@ -2950,8 +2958,9 @@ exports[`Teachers Page Page component renders 1`] = `
                           class="sc-fPXMVe jFJaNg"
                         >
                           <a
-                            class="sc-fHjqPf cTauop sc-iHmpnF"
+                            class="sc-fHjqPf cTauop"
                             href="/about-us/get-involved"
+                            variant="secondary"
                           >
                             <span
                               class="sc-eqUAAy iGfTGj"
@@ -2964,8 +2973,9 @@ exports[`Teachers Page Page component renders 1`] = `
                           class="sc-fPXMVe jFJaNg"
                         >
                           <a
-                            class="sc-fHjqPf cTauop sc-iHmpnF"
+                            class="sc-fHjqPf cTauop"
                             href="/about-us/meet-the-team"
+                            variant="secondary"
                           >
                             <span
                               class="sc-eqUAAy iGfTGj"
@@ -2979,9 +2989,10 @@ exports[`Teachers Page Page component renders 1`] = `
                         >
                           <a
                             aria-label="Careers (opens in a new tab)"
-                            class="sc-fHjqPf cTauop sc-iHmpnF"
+                            class="sc-fHjqPf cTauop"
                             href="https://jobs.thenational.academy"
                             target="_blank"
+                            variant="secondary"
                           >
                             <span
                               class="sc-eqUAAy iGfTGj"
@@ -3011,8 +3022,9 @@ exports[`Teachers Page Page component renders 1`] = `
                           class="sc-fPXMVe jFJaNg"
                         >
                           <a
-                            class="sc-fHjqPf cTauop sc-iHmpnF"
+                            class="sc-fHjqPf cTauop"
                             href="/contact-us"
+                            variant="secondary"
                           >
                             <span
                               class="sc-eqUAAy iGfTGj"
@@ -3026,9 +3038,10 @@ exports[`Teachers Page Page component renders 1`] = `
                         >
                           <a
                             aria-label="Help (opens in a new tab)"
-                            class="sc-fHjqPf cTauop sc-iHmpnF"
+                            class="sc-fHjqPf cTauop"
                             href="https://support.thenational.academy"
                             target="_blank"
+                            variant="secondary"
                           >
                             <span
                               class="sc-eqUAAy iGfTGj"
@@ -3058,8 +3071,9 @@ exports[`Teachers Page Page component renders 1`] = `
                           class="sc-fPXMVe jFJaNg"
                         >
                           <a
-                            class="sc-fHjqPf cTauop sc-iHmpnF"
+                            class="sc-fHjqPf cTauop"
                             href="/webinars"
+                            variant="secondary"
                           >
                             <span
                               class="sc-eqUAAy iGfTGj"
@@ -3073,9 +3087,10 @@ exports[`Teachers Page Page component renders 1`] = `
                         >
                           <a
                             aria-label="Status (opens in a new tab)"
-                            class="sc-fHjqPf cTauop sc-iHmpnF"
+                            class="sc-fHjqPf cTauop"
                             href="https://status.thenational.academy"
                             target="_blank"
+                            variant="secondary"
                           >
                             <span
                               class="sc-eqUAAy iGfTGj"
@@ -3126,8 +3141,9 @@ exports[`Teachers Page Page component renders 1`] = `
                           class="sc-fPXMVe jFJaNg"
                         >
                           <a
-                            class="sc-fHjqPf cTauop sc-iHmpnF"
+                            class="sc-fHjqPf cTauop"
                             href="/legal/terms-and-conditions"
+                            variant="secondary"
                           >
                             <span
                               class="sc-eqUAAy iGfTGj"
@@ -3140,8 +3156,9 @@ exports[`Teachers Page Page component renders 1`] = `
                           class="sc-fPXMVe jFJaNg"
                         >
                           <a
-                            class="sc-fHjqPf cTauop sc-iHmpnF"
+                            class="sc-fHjqPf cTauop"
                             href="/legal/privacy-policy"
+                            variant="secondary"
                           >
                             <span
                               class="sc-eqUAAy iGfTGj"
@@ -3154,8 +3171,9 @@ exports[`Teachers Page Page component renders 1`] = `
                           class="sc-fPXMVe jFJaNg"
                         >
                           <a
-                            class="sc-fHjqPf cTauop sc-iHmpnF"
+                            class="sc-fHjqPf cTauop"
                             href="/legal/cookie-policy"
+                            variant="secondary"
                           >
                             <span
                               class="sc-eqUAAy iGfTGj"
@@ -3168,7 +3186,7 @@ exports[`Teachers Page Page component renders 1`] = `
                           class="sc-fPXMVe jFJaNg"
                         >
                           <button
-                            class="sc-fHjqPf cTauop sc-iHmpnF"
+                            class="sc-fHjqPf cTauop"
                           >
                             <span
                               class="sc-eqUAAy iGfTGj"
@@ -3181,8 +3199,9 @@ exports[`Teachers Page Page component renders 1`] = `
                           class="sc-fPXMVe jFJaNg"
                         >
                           <a
-                            class="sc-fHjqPf cTauop sc-iHmpnF"
+                            class="sc-fHjqPf cTauop"
                             href="/legal/copyright-notice"
+                            variant="secondary"
                           >
                             <span
                               class="sc-eqUAAy iGfTGj"
@@ -3195,8 +3214,9 @@ exports[`Teachers Page Page component renders 1`] = `
                           class="sc-fPXMVe jFJaNg"
                         >
                           <a
-                            class="sc-fHjqPf cTauop sc-iHmpnF"
+                            class="sc-fHjqPf cTauop"
                             href="/legal/accessibility-statement"
+                            variant="secondary"
                           >
                             <span
                               class="sc-eqUAAy iGfTGj"
@@ -3209,8 +3229,9 @@ exports[`Teachers Page Page component renders 1`] = `
                           class="sc-fPXMVe jFJaNg"
                         >
                           <a
-                            class="sc-fHjqPf cTauop sc-iHmpnF"
+                            class="sc-fHjqPf cTauop"
                             href="/legal/safeguarding-statement"
+                            variant="secondary"
                           >
                             <span
                               class="sc-eqUAAy iGfTGj"
@@ -3223,8 +3244,9 @@ exports[`Teachers Page Page component renders 1`] = `
                           class="sc-fPXMVe jFJaNg"
                         >
                           <a
-                            class="sc-fHjqPf cTauop sc-iHmpnF"
+                            class="sc-fHjqPf cTauop"
                             href="/legal/physical-activity-disclaimer"
+                            variant="secondary"
                           >
                             <span
                               class="sc-eqUAAy iGfTGj"
@@ -3237,8 +3259,9 @@ exports[`Teachers Page Page component renders 1`] = `
                           class="sc-fPXMVe jFJaNg"
                         >
                           <a
-                            class="sc-fHjqPf cTauop sc-iHmpnF"
+                            class="sc-fHjqPf cTauop"
                             href="/legal/complaints"
+                            variant="secondary"
                           >
                             <span
                               class="sc-eqUAAy iGfTGj"
@@ -3251,8 +3274,9 @@ exports[`Teachers Page Page component renders 1`] = `
                           class="sc-fPXMVe jFJaNg"
                         >
                           <a
-                            class="sc-fHjqPf cTauop sc-iHmpnF"
+                            class="sc-fHjqPf cTauop"
                             href="/legal/freedom-of-information-requests"
+                            variant="secondary"
                           >
                             <span
                               class="sc-eqUAAy iGfTGj"
@@ -3410,7 +3434,7 @@ exports[`Teachers Page Page component renders 1`] = `
                 </div>
               </div>
               <span
-                class="sc-aXZVg kvjdhA sc-98540f6b-0 qLtgo"
+                class="sc-aXZVg kvjdhA sc-f9d62eb6-0 fMbHos"
                 data-percy-hide="contents"
               >
                 <img

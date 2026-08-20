@@ -24,6 +24,7 @@ import PostSingleLayout from "@/components/SharedComponents/PostSingleLayout";
 import getPageProps from "@/node-lib/getPageProps";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 import { TopNavProps } from "@/components/AppComponents/TopNav/TopNav";
+import { TeacherBrowseAnalyticsStoreProvider } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
 
 export type SerializedBlog = Omit<BlogPost, "date"> & {
   date: string;
@@ -56,19 +57,24 @@ const BlogSinglePage: NextPage<BlogSinglePageProps> = (props) => {
       })}
       $background="bg-primary"
     >
-      <PostSingleLayout
-        content={props}
-        breadcrumbs={getBlogWebinarPostBreadcrumbs(
-          categories,
-          blog,
-          "blog",
-          "Blog",
-        )}
+      <TeacherBrowseAnalyticsStoreProvider
+        programmeState={null}
+        accessLevel="blogs_embedded_links"
       >
-        <OakBox $mt="spacing-48">
-          <BlogPortableText portableText={props.blog.contentPortableText} />
-        </OakBox>
-      </PostSingleLayout>
+        <PostSingleLayout
+          content={props}
+          breadcrumbs={getBlogWebinarPostBreadcrumbs(
+            categories,
+            blog,
+            "blog",
+            "Blog",
+          )}
+        >
+          <OakBox $mt="spacing-48">
+            <BlogPortableText portableText={props.blog.contentPortableText} />
+          </OakBox>
+        </PostSingleLayout>
+      </TeacherBrowseAnalyticsStoreProvider>
       <BlogJsonLd blog={props.blog} />
     </Layout>
   );

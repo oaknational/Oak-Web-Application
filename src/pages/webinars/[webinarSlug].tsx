@@ -26,6 +26,7 @@ import PostSingleLayout from "@/components/SharedComponents/PostSingleLayout";
 import getPageProps from "@/node-lib/getPageProps";
 import { TopNavProps } from "@/components/AppComponents/TopNav/TopNav";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
+import { TeacherBrowseAnalyticsStoreProvider } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
 
 export type SerializedWebinar = Omit<Webinar, "date"> & {
   date: string;
@@ -64,22 +65,27 @@ const WebinarSinglePage: NextPage<WebinarSinglePageProps> = (props) => {
       })}
       $background="bg-primary"
     >
-      <PostSingleLayout
-        content={props}
-        breadcrumbs={getBlogWebinarPostBreadcrumbs(
-          categories,
-          webinar,
-          "webinars",
-          "Webinars",
-        )}
+      <TeacherBrowseAnalyticsStoreProvider
+        programmeState={null}
+        accessLevel="blogs_embedded_links"
       >
-        <OakFlex $position={"relative"} $mt="spacing-56">
-          <WebinarVideo webinar={webinar} />
-        </OakFlex>
-        <OakBox $mt="spacing-48">
-          <BlogPortableText portableText={webinar.summaryPortableText} />
-        </OakBox>
-      </PostSingleLayout>
+        <PostSingleLayout
+          content={props}
+          breadcrumbs={getBlogWebinarPostBreadcrumbs(
+            categories,
+            webinar,
+            "webinars",
+            "Webinars",
+          )}
+        >
+          <OakFlex $position={"relative"} $mt="spacing-56">
+            <WebinarVideo webinar={webinar} />
+          </OakFlex>
+          <OakBox $mt="spacing-48">
+            <BlogPortableText portableText={webinar.summaryPortableText} />
+          </OakBox>
+        </PostSingleLayout>
+      </TeacherBrowseAnalyticsStoreProvider>
       <BlogJsonLd blog={props.webinar} />
     </Layout>
   );

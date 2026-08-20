@@ -10,14 +10,14 @@ const render = renderWithProviders();
 
 const mockTrackUnitAccessed = jest.fn();
 const mockTrackLessonAccessed = jest.fn();
-const mockTrackBrowseRefined = jest.fn();
+const mockTrackProgrammeRefined = jest.fn();
 jest.mock("@/context/Analytics/useAnalytics", () => ({
   __esModule: true,
   default: jest.fn().mockReturnValue({
     track: {
       unitAccessed: (...args: []) => mockTrackUnitAccessed(...args),
       lessonAccessed: (...args: []) => mockTrackLessonAccessed(...args),
-      browseRefined: (...args: []) => mockTrackBrowseRefined(...args),
+      programmeRefined: (...args: []) => mockTrackProgrammeRefined(...args),
     },
   }),
 }));
@@ -177,7 +177,7 @@ describe("MyLibrary", () => {
     expect(mockSaveToggle).toHaveBeenCalledWith("unit-1");
   });
 
-  it("tracks browse refined with the correct arguments", async () => {
+  it("tracks programme refined with the correct arguments", async () => {
     render(
       <MyLibrary
         collectionData={generateMockCollectionData(1)}
@@ -193,18 +193,21 @@ describe("MyLibrary", () => {
     }
     const user = userEvent.setup();
     await user.click(programmeLink);
-    expect(mockTrackBrowseRefined).toHaveBeenCalledWith({
+    expect(mockTrackProgrammeRefined).toHaveBeenCalledWith({
       analyticsUseCase: "Teacher",
       componentType: "programme_card",
       engagementIntent: "refine",
       eventVersion: "2.0.0",
       platform: "owa",
       product: "teacher lesson resources",
-      filterValue: "Subject 1",
+      filterValue: "Programme 1 KS4",
       filterType: "Subject filter",
       activeFilters: [],
+      accessLevel: "my_library",
       googleLoginHint: null,
       clientEnvironment: null,
+      journeyId: null,
+      navigationType: "narrow",
     });
   });
 });

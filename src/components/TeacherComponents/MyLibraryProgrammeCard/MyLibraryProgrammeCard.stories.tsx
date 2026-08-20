@@ -7,7 +7,12 @@ import {
   completeUnitLessons,
   incompleteUnitLessons,
 } from "@/fixtures/teachers/myLibrary";
-import { KeyStageTitleValueType } from "@/browser-lib/avo/Avo";
+import {
+  ExamBoardValueType,
+  KeyStageTitleValueType,
+  PathwayValueType,
+  TierNameValueType,
+} from "@/browser-lib/avo/Avo";
 
 const sampleUnits = [
   {
@@ -22,8 +27,10 @@ const sampleUnits = [
     keyStageSlug: "key-stage-4",
     subjectTitle: "English",
     subjectSlug: "english",
-    trackUnitAccessed: () => console.log("Track unit accessed 1"),
-    trackLessonAccessed: () => console.log("Track lesson accessed 1"),
+    examBoard: "AQA" as ExamBoardValueType,
+    pathway: undefined,
+    tierName: "Core" as TierNameValueType,
+    yearSlug: "year-10",
   },
   {
     unitTitle: "Writing for Different Audiences",
@@ -37,8 +44,10 @@ const sampleUnits = [
     keyStageSlug: "key-stage-4",
     subjectTitle: "English",
     subjectSlug: "english",
-    trackUnitAccessed: () => console.log("Track unit accessed 2"),
-    trackLessonAccessed: () => console.log("Track lesson accessed"),
+    examBoard: "AQA" as ExamBoardValueType,
+    pathway: undefined,
+    tierName: "Core" as TierNameValueType,
+    yearSlug: "year-9",
   },
   {
     unitTitle: "Poetry Analysis: Romanticism",
@@ -52,8 +61,10 @@ const sampleUnits = [
     keyStageSlug: "key-stage-4",
     subjectTitle: "English",
     subjectSlug: "english",
-    trackUnitAccessed: () => console.log("Track unit accessed 3"),
-    trackLessonAccessed: () => console.log("Track lesson accessed"),
+    examBoard: "AQA" as ExamBoardValueType,
+    pathway: "Pathway 1" as PathwayValueType,
+    tierName: "Core" as TierNameValueType,
+    yearSlug: "year-11",
   },
 ];
 

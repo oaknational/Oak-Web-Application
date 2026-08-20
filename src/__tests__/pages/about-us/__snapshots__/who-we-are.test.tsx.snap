@@ -6023,8 +6023,9 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                         class="c185"
                       >
                         <a
-                          class="c186 "
+                          class="c186"
                           href="/pupils/years"
+                          variant="secondary"
                         >
                           <span
                             class="c25"
@@ -6057,8 +6058,9 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                         class="c185"
                       >
                         <a
-                          class="c186 "
+                          class="c186"
                           href="/teachers/eyfs/maths"
+                          variant="secondary"
                         >
                           <span
                             class="c25"
@@ -6071,8 +6073,9 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                         class="c185"
                       >
                         <a
-                          class="c186 "
+                          class="c186"
                           href="/lesson-planning"
+                          variant="secondary"
                         >
                           <span
                             class="c25"
@@ -6085,9 +6088,10 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                         class="c185"
                       >
                         <a
-                          class="c186 "
+                          class="c186"
                           href="https://labs.thenational.academy"
                           target="_blank"
+                          variant="secondary"
                         >
                           <span
                             class="c25"
@@ -6117,8 +6121,9 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                         class="c185"
                       >
                         <a
-                          class="c186 "
+                          class="c186"
                           href="/blog"
+                          variant="secondary"
                         >
                           <span
                             class="c25"
@@ -6152,8 +6157,9 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                         class="c185"
                       >
                         <a
-                          class="c186 "
+                          class="c186"
                           href="/"
+                          variant="secondary"
                         >
                           <span
                             class="c25"
@@ -6166,8 +6172,9 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                         class="c185"
                       >
                         <a
-                          class="c186 "
+                          class="c186"
                           href="/about-us/who-we-are"
+                          variant="secondary"
                         >
                           <span
                             class="c25"
@@ -6180,8 +6187,9 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                         class="c185"
                       >
                         <a
-                          class="c186 "
+                          class="c186"
                           href="/about-us/oaks-curricula"
+                          variant="secondary"
                         >
                           <span
                             class="c25"
@@ -6194,8 +6202,9 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                         class="c185"
                       >
                         <a
-                          class="c186 "
+                          class="c186"
                           href="/about-us/get-involved"
+                          variant="secondary"
                         >
                           <span
                             class="c25"
@@ -6208,8 +6217,9 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                         class="c185"
                       >
                         <a
-                          class="c186 "
+                          class="c186"
                           href="/about-us/meet-the-team"
+                          variant="secondary"
                         >
                           <span
                             class="c25"
@@ -6223,9 +6233,10 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                       >
                         <a
                           aria-label="Careers (opens in a new tab)"
-                          class="c186 "
+                          class="c186"
                           href="https://jobs.thenational.academy"
                           target="_blank"
+                          variant="secondary"
                         >
                           <span
                             class="c25"
@@ -6255,8 +6266,9 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                         class="c185"
                       >
                         <a
-                          class="c186 "
+                          class="c186"
                           href="/contact-us"
+                          variant="secondary"
                         >
                           <span
                             class="c25"
@@ -6270,9 +6282,10 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                       >
                         <a
                           aria-label="Help (opens in a new tab)"
-                          class="c186 "
+                          class="c186"
                           href="https://support.thenational.academy"
                           target="_blank"
+                          variant="secondary"
                         >
                           <span
                             class="c25"
@@ -6302,8 +6315,9 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                         class="c185"
                       >
                         <a
-                          class="c186 "
+                          class="c186"
                           href="/webinars"
+                          variant="secondary"
                         >
                           <span
                             class="c25"
@@ -6317,9 +6331,10 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                       >
                         <a
                           aria-label="Status (opens in a new tab)"
-                          class="c186 "
+                          class="c186"
                           href="https://status.thenational.academy"
                           target="_blank"
+                          variant="secondary"
                         >
                           <span
                             class="c25"
@@ -6370,8 +6385,9 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                         class="c185"
                       >
                         <a
-                          class="c186 "
+                          class="c186"
                           href="/legal/terms-and-conditions"
+                          variant="secondary"
                         >
                           <span
                             class="c25"
@@ -6384,8 +6400,9 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                         class="c185"
                       >
                         <a
-                          class="c186 "
+                          class="c186"
                           href="/legal/privacy-policy"
+                          variant="secondary"
                         >
                           <span
                             class="c25"
@@ -6398,8 +6415,9 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                         class="c185"
                       >
                         <a
-                          class="c186 "
+                          class="c186"
                           href="/legal/cookie-policy"
+                          variant="secondary"
                         >
                           <span
                             class="c25"
@@ -6412,7 +6430,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                         class="c185"
                       >
                         <button
-                          class="c186 "
+                          class="c186"
                         >
                           <span
                             class="c25"
@@ -6425,8 +6443,9 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                         class="c185"
                       >
                         <a
-                          class="c186 "
+                          class="c186"
                           href="/legal/copyright-notice"
+                          variant="secondary"
                         >
                           <span
                             class="c25"
@@ -6439,8 +6458,9 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                         class="c185"
                       >
                         <a
-                          class="c186 "
+                          class="c186"
                           href="/legal/accessibility-statement"
+                          variant="secondary"
                         >
                           <span
                             class="c25"
@@ -6453,8 +6473,9 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                         class="c185"
                       >
                         <a
-                          class="c186 "
+                          class="c186"
                           href="/legal/safeguarding-statement"
+                          variant="secondary"
                         >
                           <span
                             class="c25"
@@ -6467,8 +6488,9 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                         class="c185"
                       >
                         <a
-                          class="c186 "
+                          class="c186"
                           href="/legal/physical-activity-disclaimer"
+                          variant="secondary"
                         >
                           <span
                             class="c25"
@@ -6481,8 +6503,9 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                         class="c185"
                       >
                         <a
-                          class="c186 "
+                          class="c186"
                           href="/legal/complaints"
+                          variant="secondary"
                         >
                           <span
                             class="c25"
@@ -6495,8 +6518,9 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                         class="c185"
                       >
                         <a
-                          class="c186 "
+                          class="c186"
                           href="/legal/freedom-of-information-requests"
+                          variant="secondary"
                         >
                           <span
                             class="c25"
