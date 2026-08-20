@@ -25,7 +25,7 @@ import OakError from "@/errors/OakError";
 import { Sdk } from "@/node-lib/curriculum-api-2023/sdk";
 import { mediaClipsRecordCamelSchema } from "@/node-lib/curriculum-api-2023/queries/lessonMediaClips/lessonMediaClips.schema";
 import { convertBytesToMegabytes } from "@/components/TeacherComponents/helpers/lessonHelpers/lesson.helpers";
-import { formatSentences } from "@/utils/handleTranscript";
+import { formatSentences } from "@/utils/formatTranscriptSentences";
 
 export type TeachersLessonUnitStaticLessonList = NonNullable<
   NonNullable<LessonUnitDataByKs["supplementaryData"]>["staticLessonList"]
