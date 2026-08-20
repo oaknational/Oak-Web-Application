@@ -283,9 +283,9 @@ describe("Programme Downloads", () => {
     expect(labelEls).toHaveLength(2);
 
     expect(labelEls[0]).toHaveTextContent(/Curriculum plan/);
-    expect(labelEls[0]).toHaveTextContent(/2 kB/);
+    expect(labelEls[0]).toHaveTextContent(/2 KB/);
     expect(labelEls[1]).toHaveTextContent(/Curriculum quality/);
-    expect(labelEls[1]).toHaveTextContent(/1 kB/);
+    expect(labelEls[1]).toHaveTextContent(/1 KB/);
   });
 
   describe("Curriculum Downloads Tab: Secondary Science", () => {
