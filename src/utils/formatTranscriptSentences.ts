@@ -2,7 +2,7 @@ export const formatSentences = (
   input: Array<string> | string,
 ): Array<string> => {
   const joined = Array.isArray(input) ? input.join(" ") : input;
-  const sentences = [];
+  const sentences: string[] = [];
   let start = 0;
 
   for (let i = 0, nextIndex = 1; i < joined.length; i = nextIndex) {
