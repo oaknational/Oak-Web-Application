@@ -1,5 +1,11 @@
 "use client";
-import { createContext, ReactNode, useContext, useState } from "react";
+import {
+  createContext,
+  ReactNode,
+  useContext,
+  useEffect,
+  useState,
+} from "react";
 import { useStore } from "zustand";
 
 import {
@@ -28,6 +34,12 @@ export const BrowseFiltersProvider = ({
   const [store] = useState(() =>
     createBrowseFiltersStore({ defaultFilter, initialFilter }),
   );
+
+  // Hydration is skipped on store creation
+  // apply the URL after mount so client-only navigations pick it up.
+  useEffect(() => {
+    store.persist.rehydrate();
+  }, [store]);
 
   return (
     <BrowseFiltersStoreContext.Provider value={store}>
