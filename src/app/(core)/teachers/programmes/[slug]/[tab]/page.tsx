@@ -39,6 +39,7 @@ import { getMvRefreshTime } from "@/pages-helpers/curriculum/downloads/getMvRefr
 import { validateServerSearchParams } from "@/utils/validateProgrammePageSearchParams";
 import { TeacherBrowseAnalyticsStoreProvider } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
 import { getProgrammeStateForProgramme } from "@/context/TeacherBrowseAnalytics/utils/getProgrammeState";
+import { getCookieFlags } from "@/hooks/useCookieFlag/getCookieFlags";
 
 const reportError = errorReporter("programme-page::app");
 
@@ -156,6 +157,7 @@ export async function generateMetadata({
 
 const InnerProgrammePage = async (props: AppPageProps<ProgrammePageParams>) => {
   const cookieStore = await cookies();
+  const activeFlags = await getCookieFlags();
   const originalSearchParams = await props.searchParams!;
   const searchParams = validateServerSearchParams(originalSearchParams);
   const { slug: subjectPhaseSlug, tab } = await props.params;
@@ -316,6 +318,7 @@ const InnerProgrammePage = async (props: AppPageProps<ProgrammePageParams>) => {
     },
     implementationGuides,
     nonCurriculum: cachedProgrammeData.programmeUnitsData.nonCurriculum,
+    activeFlags,
   };
 
   const programmeState = getProgrammeStateForProgramme({
