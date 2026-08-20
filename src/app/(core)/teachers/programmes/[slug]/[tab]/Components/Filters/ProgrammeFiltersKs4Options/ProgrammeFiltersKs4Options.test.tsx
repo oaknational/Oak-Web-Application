@@ -1,4 +1,5 @@
 import { act } from "@testing-library/react";
+import type { ReactElement } from "react";
 
 import { KS4OptionFocusProvider, KS4OptionFocusScope } from "../KS4OptionFocus";
 import { ProgrammePageFiltersModalProvider } from "../ProgrammePageFiltersModalProvider";
@@ -16,7 +17,11 @@ import { renderWithProvidersByName } from "@/__tests__/__helpers__/renderWithPro
 import { resolveOakHref } from "@/common-lib/urls";
 import { createFilter } from "@/fixtures/curriculum/filters";
 import type { Ks4Option } from "@/node-lib/curriculum-api-2023/queries/curriculumPhaseOptions/curriculumPhaseOptions.schema";
-import { CurriculumSelectionSlugs } from "@/utils/curriculum/slugs";
+import {
+  CurriculumFilters,
+  CurriculumSelectionSlugs,
+} from "@/utils/curriculum/types";
+import { BrowseFiltersProvider } from "@/context/BrowseFilters";
 
 const replaceMock = jest.fn();
 
@@ -28,7 +33,17 @@ jest.mock("next/navigation", () => ({
   useSearchParams: () => new URLSearchParams(""),
 }));
 
-const render = renderWithProvidersByName(["oakTheme", "theme"]);
+const render = renderWithProvidersByName([
+  "oakTheme",
+  "theme",
+  "analytics",
+  "teacherBrowseAnalytics",
+]);
+
+const renderKs4Options = (filters: CurriculumFilters, ui: ReactElement) =>
+  render(
+    <BrowseFiltersProvider defaultFilter={filters}>{ui}</BrowseFiltersProvider>,
+  );
 
 const citizenshipOptions: Ks4Option[] = [
   { slug: "core", title: "Core" },
@@ -365,9 +380,9 @@ describe("ProgrammeFiltersKs4Options", () => {
   });
 
   it("renders pathway options with GCSE before Core for citizenship", () => {
-    const { getAllByRole } = render(
+    const { getAllByRole } = renderKs4Options(
+      defaultFilters,
       <ProgrammeFiltersKs4Options
-        filters={defaultFilters}
         slugs={{
           subjectSlug: "citizenship",
           phaseSlug: "secondary",
@@ -386,9 +401,9 @@ describe("ProgrammeFiltersKs4Options", () => {
   });
 
   it("renders exam board options with the current board selected", () => {
-    const { getAllByRole } = render(
+    const { getAllByRole } = renderKs4Options(
+      defaultFilters,
       <ProgrammeFiltersKs4Options
-        filters={defaultFilters}
         slugs={defaultSlugs}
         ks4Options={examBoardOptions}
         ks4OptionFilterDimensions={ks4OptionFilterDimensions}
@@ -402,9 +417,9 @@ describe("ProgrammeFiltersKs4Options", () => {
   });
 
   it("renders pathway and exam board panels separately for computing", () => {
-    const { getAllByRole } = render(
+    const { getAllByRole } = renderKs4Options(
+      defaultFilters,
       <ProgrammeFiltersKs4Options
-        filters={defaultFilters}
         slugs={{
           subjectSlug: "computing",
           phaseSlug: "secondary",
@@ -425,9 +440,9 @@ describe("ProgrammeFiltersKs4Options", () => {
   });
 
   it("navigates from core to gcse using pathway slug", () => {
-    const { getAllByRole } = render(
+    const { getAllByRole } = renderKs4Options(
+      defaultFilters,
       <ProgrammeFiltersKs4Options
-        filters={defaultFilters}
         slugs={{
           subjectSlug: "citizenship",
           phaseSlug: "secondary",
@@ -457,9 +472,9 @@ describe("ProgrammeFiltersKs4Options", () => {
   });
 
   it("navigates to the selected exam board slug and preserves KS4 query params", () => {
-    const { getAllByRole } = render(
+    const { getAllByRole } = renderKs4Options(
+      defaultFilters,
       <ProgrammeFiltersKs4Options
-        filters={defaultFilters}
         slugs={defaultSlugs}
         ks4Options={examBoardOptions}
         ks4OptionFilterDimensions={ks4OptionFilterDimensions}
@@ -485,9 +500,9 @@ describe("ProgrammeFiltersKs4Options", () => {
   });
 
   it("navigates from core to exam board for computing", () => {
-    const { getAllByRole } = render(
+    const { getAllByRole } = renderKs4Options(
+      defaultFilters,
       <ProgrammeFiltersKs4Options
-        filters={defaultFilters}
         slugs={{
           subjectSlug: "computing",
           phaseSlug: "secondary",
@@ -517,9 +532,9 @@ describe("ProgrammeFiltersKs4Options", () => {
   });
 
   it("drops non-KS4 years from the preserved query params", () => {
-    const { getAllByRole } = render(
+    const { getAllByRole } = renderKs4Options(
+      createFilter({ keystages: ["ks4"], years: ["7", "10"] }),
       <ProgrammeFiltersKs4Options
-        filters={createFilter({ keystages: ["ks4"], years: ["7", "10"] })}
         slugs={defaultSlugs}
         ks4Options={examBoardOptions}
         ks4OptionFilterDimensions={ks4OptionFilterDimensions}
@@ -544,12 +559,12 @@ describe("ProgrammeFiltersKs4Options", () => {
   });
 
   it("navigates with open_filters_modal when inside modal scope", () => {
-    const { getAllByRole } = render(
+    const { getAllByRole } = renderKs4Options(
+      defaultFilters,
       <ProgrammePageFiltersModalProvider>
         <KS4OptionFocusProvider>
           <KS4OptionFocusScope variant="modal">
             <ProgrammeFiltersKs4Options
-              filters={defaultFilters}
               slugs={defaultSlugs}
               ks4Options={examBoardOptions}
               ks4OptionFilterDimensions={ks4OptionFilterDimensions}
@@ -579,9 +594,9 @@ describe("ProgrammeFiltersKs4Options", () => {
   });
 
   it("renders nothing when the visibility condition is not met", () => {
-    const { queryByRole } = render(
+    const { queryByRole } = renderKs4Options(
+      createFilter({ keystages: ["ks3"] }),
       <ProgrammeFiltersKs4Options
-        filters={createFilter({ keystages: ["ks3"] })}
         slugs={{ ...defaultSlugs, ks4OptionSlug: null }}
         ks4Options={examBoardOptions}
         ks4OptionFilterDimensions={ks4OptionFilterDimensions}
@@ -592,9 +607,9 @@ describe("ProgrammeFiltersKs4Options", () => {
   });
 
   it("renders nothing when filtered to ks3 on an exam board slug", () => {
-    const { queryByRole } = render(
+    const { queryByRole } = renderKs4Options(
+      createFilter({ keystages: ["ks3"] }),
       <ProgrammeFiltersKs4Options
-        filters={createFilter({ keystages: ["ks3"] })}
         slugs={defaultSlugs}
         ks4Options={examBoardOptions}
         ks4OptionFilterDimensions={ks4OptionFilterDimensions}
@@ -605,9 +620,9 @@ describe("ProgrammeFiltersKs4Options", () => {
   });
 
   it("renders nothing when filtered to a non-KS4 year on an exam board slug", () => {
-    const { queryByRole } = render(
+    const { queryByRole } = renderKs4Options(
+      createFilter({ years: ["7"] }),
       <ProgrammeFiltersKs4Options
-        filters={createFilter({ years: ["7"] })}
         slugs={defaultSlugs}
         ks4Options={examBoardOptions}
         ks4OptionFilterDimensions={ks4OptionFilterDimensions}
