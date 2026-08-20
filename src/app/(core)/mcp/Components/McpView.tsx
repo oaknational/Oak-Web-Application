@@ -25,7 +25,7 @@ import {
   mcpOutputWarning,
   mcpResponsibleUse,
   mcpSupport,
-} from "@/app/(core)/teachers/mcp/mcpContent";
+} from "@/app/(core)/mcp/mcpContent";
 
 /**
  * A titled block of body copy, e.g. "Check the source" followed by a

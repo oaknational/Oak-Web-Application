@@ -9,7 +9,7 @@ import {
 
 import { McpTryButton } from "./McpTryButton";
 
-import { mcpAssistants, mcpHero } from "@/app/(core)/teachers/mcp/mcpContent";
+import { mcpAssistants, mcpHero } from "@/app/(core)/mcp/mcpContent";
 
 export const McpHero = () => (
   <OakBox

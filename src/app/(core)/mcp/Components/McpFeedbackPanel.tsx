@@ -8,7 +8,7 @@ import {
   OakSecondaryButton,
 } from "@oaknational/oak-components";
 
-import { mcpFeedback } from "@/app/(core)/teachers/mcp/mcpContent";
+import { mcpFeedback } from "@/app/(core)/mcp/mcpContent";
 
 export const McpFeedbackPanel = () => (
   <OakBox
