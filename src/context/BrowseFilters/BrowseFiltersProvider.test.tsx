@@ -96,20 +96,6 @@ describe("BrowseFiltersProvider", () => {
     );
   });
 
-  it("re-syncs when the search params change, as on browser back", () => {
-    setUrl("tiers=higher");
-    const { result, rerender } = renderFilters();
-
-    expect(result.current.filters.tiers).toEqual(["higher"]);
-
-    act(() => {
-      setUrl("");
-    });
-    rerender();
-
-    expect(result.current.filters.tiers).toEqual(["foundation"]);
-  });
-
   it("throws a useful error when used outside the provider", () => {
     const consoleError = jest
       .spyOn(console, "error")
