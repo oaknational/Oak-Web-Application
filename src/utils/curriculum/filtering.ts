@@ -1,12 +1,12 @@
 import { ReadonlyURLSearchParams } from "next/navigation";
 import { isEqual } from "lodash";
 
-import { findFirstMatchingFeatures } from "./features";
+import { findFirstMatchingFeatures } from "../../utils/curriculum/features";
 import {
   sortChildSubjects,
   sortSubjectCategoriesOnFeatures,
   sortTiers,
-} from "./sorting";
+} from "../../utils/curriculum/sorting";
 import {
   CurriculumFilters,
   KeyStageSlug,
@@ -16,13 +16,13 @@ import {
   Tier,
   Unit,
   YearData,
-} from "./types";
-import { isVisibleUnit } from "./isVisibleUnit";
+} from "../../utils/curriculum/types";
+import { isVisibleUnit } from "../../utils/curriculum/isVisibleUnit";
 import {
   byKeyStageSlug,
   keystageYearMappings,
   presentAtKeyStageSlugs,
-} from "./keystage";
+} from "../../utils/curriculum/keystage";
 
 import {
   CurriculumUnitsFormattedData,
@@ -113,6 +113,9 @@ export const FILTER_TO_QS: Record<keyof CurriculumFilters, string> = {
   keystages: "keystages",
 };
 
+const FILTER_KEYS = Object.keys(FILTER_TO_QS) as (keyof CurriculumFilters)[];
+export const FILTER_QS_KEYS = Object.values(FILTER_TO_QS);
+
 export function filtersToQuery(
   filter: CurriculumFilters,
   defaultFilter: CurriculumFilters,
@@ -127,6 +130,49 @@ export function filtersToQuery(
     }
   }
   return out;
+}
+
+/**
+ * Reads the filters encoded in a query string, ignoring any params that don't
+ * belong to us. Only keys actually present in the URL are returned, so callers
+ * can layer them over defaults rather than replacing them outright.
+ */
+export function filtersFromSearchString(
+  search: string,
+): Partial<CurriculumFilters> {
+  const params = new URLSearchParams(search);
+  const filters: Partial<CurriculumFilters> = {};
+
+  for (const key of FILTER_KEYS) {
+    const value = params.get(FILTER_TO_QS[key]);
+    if (value) {
+      filters[key] = value.split(",");
+    }
+  }
+
+  return filters;
+}
+
+/**
+ * Writes `filters` into `search`, leaving every non-filter param untouched.
+ * Values matching the default filter are omitted so shared URLs stay short.
+ */
+export function searchStringWithFilters(
+  search: string,
+  filters: CurriculumFilters,
+  defaultFilter: CurriculumFilters,
+): string {
+  const params = new URLSearchParams(search);
+  const query = filtersToQuery(filters, defaultFilter);
+
+  for (const qsKey of FILTER_QS_KEYS) {
+    params.delete(qsKey);
+  }
+  for (const [qsKey, value] of Object.entries(query)) {
+    params.set(qsKey, value);
+  }
+
+  return params.toString();
 }
 
 export function mergeInFilterParams(

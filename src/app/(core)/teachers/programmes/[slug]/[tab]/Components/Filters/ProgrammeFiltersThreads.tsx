@@ -5,28 +5,22 @@ import {
 } from "@oaknational/oak-components";
 import { useId } from "react";
 
-import {
-  Thread,
-  CurriculumFilters,
-  OnChangeCurriculumFilters,
-} from "@/utils/curriculum/types";
+import { Thread } from "@/utils/curriculum/types";
 import { highlightedUnitCount } from "@/utils/curriculum/filtering";
 import { CurriculumUnitsFormattedData } from "@/pages-helpers/curriculum/docx/tab-helpers";
 import { FilterType } from "@/browser-lib/avo/Avo";
 import { pluralizeUnits } from "@/utils/curriculum/formatting";
+import { useBrowseFilters } from "@/context/BrowseFilters";
 
 export type ProgrammeFiltersThreadsProps = {
-  filters: CurriculumFilters;
-  onChangeFilters: OnChangeCurriculumFilters;
   data: CurriculumUnitsFormattedData;
 };
 
 export function ProgrammeFiltersThreads({
-  filters,
-  onChangeFilters,
   data,
 }: Readonly<ProgrammeFiltersThreadsProps>) {
   const id = useId();
+  const { filters, onChangeFilters } = useBrowseFilters();
   const { yearData, threadOptions } = data;
 
   function getDisplayValue(threadOption: Thread) {
