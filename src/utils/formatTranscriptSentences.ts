@@ -5,7 +5,8 @@ export const formatSentences = (
   const sentences = [];
   let start = 0;
 
-  for (let i = 0; i < joined.length; i++) {
+  for (let i = 0, nextIndex = 1; i < joined.length; i = nextIndex) {
+    nextIndex = i + 1;
     const char = joined[i];
 
     if (!isSentencePunctuation(char)) {
@@ -20,7 +21,7 @@ export const formatSentences = (
 
     // Ellipses are often pauses within a sentence, e.g. "... then"
     if (isMidSentenceEllipsis(i, end, joined)) {
-      i = end;
+      nextIndex = end + 1;
       continue;
     }
 
@@ -34,7 +35,7 @@ export const formatSentences = (
     }
 
     start = end + 1;
-    i = end;
+    nextIndex = end + 1;
   }
 
   // Add remaining text (if any)
