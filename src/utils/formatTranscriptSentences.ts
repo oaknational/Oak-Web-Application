@@ -48,6 +48,9 @@ export const formatSentences = (
 
 // Rule helper functions
 
+// Common honorifics where the trailing dot is not a sentence boundary.
+const titles = new Set(["mr", "mrs", "ms", "mx", "dr", "prof", "rev"]);
+
 const isWhitespace = (char: string | undefined): boolean => {
   return /\s/.test(char ?? "");
 };
@@ -64,10 +67,6 @@ const isSentencePunctuation = (
   char: string | undefined,
 ): char is "." | "?" | "!" => {
   return char === "." || char === "?" || char === "!";
-};
-
-const isPunctuation = (char: string | undefined): boolean => {
-  return /[.!?]/.test(char ?? "");
 };
 
 const isClosingQuoteOrBracket = (char: string | undefined): boolean => {
@@ -102,7 +101,7 @@ const getBoundaryEnd = (index: number, joined: string): number => {
   let end = index;
 
   // Keep grouped punctuation together (e.g. "?!" or "...").
-  while (end + 1 < joined.length && isPunctuation(joined[end + 1])) {
+  while (end + 1 < joined.length && isSentencePunctuation(joined[end + 1])) {
     end += 1;
   }
 
@@ -136,9 +135,6 @@ const hasBoundaryAfter = (index: number, joined: string): boolean => {
 };
 
 const shouldKeepFullStop = (index: number, joined: string): boolean => {
-  // Common honorifics where the trailing dot is not a sentence boundary.
-  const titles = new Set(["mr", "mrs", "ms", "mx", "dr", "prof", "rev"]);
-
   if (joined[index] !== ".") {
     return false;
   }
