@@ -63,6 +63,7 @@ Replace `{query}` with URL-encoded search terms. Example: `https://www.thenation
 ## AI Tools
 
 - [Oak AI Assistant (Aila)](https://www.thenational.academy/ai): Aila is a free AI-powered tool that helps teachers create bespoke lesson plans, worksheets, quizzes, and slide decks tailored to their specific classes, speeding up planning while maintaining quality
+- [Oak Curriculum MCP](https://www.thenational.academy/mcp): Public beta. Designed for teachers, this service connects your AI assistant to Oak's high quality, free, fully sequenced and openly licensed curriculum resources — thousands of lessons, units, and assets across subjects and key stages. Model Context Protocol endpoint (Streamable HTTP): https://mcp.thenational.academy/mcp — authorised with OAuth 2.1, signing in with an Oak account
 
 ## Sitemaps
 
@@ -72,6 +73,9 @@ Replace `{query}` with URL-encoded search terms. Example: `https://www.thenation
 ## API & Developers
 
 - [Oak Open API](https://open-api.thenational.academy/): Public API for accessing Oak's curriculum data programmatically
+- [Oak Open API machine-readable catalogue](https://open-api.thenational.academy/.well-known/api-catalog): RFC 9727 API catalogue listing the API's OpenAPI description, documentation, and bulk-export schema
+- [Oak Open API agent skill](https://open-api.thenational.academy/.well-known/agent-skills/index.json): Agent Skills discovery index for the Open API, for agents that consume skills directly
+- [Oak Open Curriculum Ecosystem Repository](https://github.com/oaknational/oak-open-curriculum-ecosystem): Source of the Oak Curriculum MCP server and the curriculum SDKs (MIT License)
 - [GitHub Organisation](https://github.com/oaknational): Oak's open source repositories including the web application, AI tools, and curriculum schemas
 - [Oak Web Application Repository](https://github.com/oaknational/Oak-Web-Application): Main website codebase (MIT License)
 - [Brand Guidelines](https://support.thenational.academy/using-the-oak-brand): Guidelines for using the Oak National Academy brand, logos, and trademarks
