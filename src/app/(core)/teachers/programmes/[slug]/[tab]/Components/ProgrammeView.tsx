@@ -218,6 +218,11 @@ export const ProgrammeView = ({
                 subjectTitle={subjectTitle}
                 phase={curriculumSelectionSlugs.phaseSlug}
                 phaseTitle={phaseTitle}
+                onClick={() =>
+                  curriculumResourcesAccessed({
+                    componentType: ComponentType.IMPLEMENTATION_GUIDE_CALLOUT,
+                  })
+                }
               />
             )}
         </OakMaxWidth>

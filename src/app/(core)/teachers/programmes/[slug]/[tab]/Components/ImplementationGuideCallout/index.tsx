@@ -7,29 +7,26 @@ import {
 } from "@oaknational/oak-components";
 
 import { resolveOakHref } from "@/common-lib/urls";
-import { useTeacherBrowseAnalytics } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
-import { ComponentType } from "@/browser-lib/avo/Avo";
 
 type ImplementationGuideCalloutProps = {
   subject: string;
   phase: string;
   subjectTitle: string;
   phaseTitle: string;
+  onClick: () => void;
 };
 export function ImplementationGuideCallout({
   subject,
   phase,
   subjectTitle,
   phaseTitle,
+  onClick,
 }: Readonly<ImplementationGuideCalloutProps>) {
   const linkHref = resolveOakHref({
     page: "teacher-programme",
     tab: "download",
     subjectPhaseSlug: `${subject}-${phase}`,
   });
-  const { curriculumResourcesAccessed } = useTeacherBrowseAnalytics(
-    (store) => store.track,
-  );
 
   return (
     <OakGrid $pt={["spacing-24", "spacing-32", "spacing-32"]}>
@@ -47,11 +44,7 @@ export function ImplementationGuideCallout({
                 isTrailingIcon
                 variant="secondary"
                 aria-label="Download our implementation toolkit"
-                onClick={() =>
-                  curriculumResourcesAccessed({
-                    componentType: ComponentType.IMPLEMENTATION_GUIDE_CALLOUT,
-                  })
-                }
+                onClick={onClick}
               >
                 Download
               </OakLink>
