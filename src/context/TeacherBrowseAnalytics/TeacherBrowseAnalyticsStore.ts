@@ -63,6 +63,9 @@ export type TeacherBrowseAnalyticsStore = {
       tierSlug?: string | null;
       childSubjectSlug?: string | null;
     }) => void;
+    curriculumResourcesAccessed: (data: {
+      componentType: ComponentTypeValueType;
+    }) => void;
     curriculumResourcesDownloaded: (data: ResourceFormValues) => void;
     unitOverviewAccessed: (
       unit: Unit,
@@ -324,6 +327,20 @@ export const createTeacherBrowseAnalyticsStore = (
           childSubjectSlug: childSubjectSlug || "",
           childSubjectName: convertUnitSlugToTitle(childSubjectSlug || ""),
           learningTier: capitalize(tierSlug || "") as LearningTierValueType,
+        });
+      },
+      curriculumResourcesAccessed: ({ componentType }) => {
+        const { avo, programmeState } = get();
+
+        const analyticsProperties =
+          getProgrammeAnalyticsProperties(programmeState);
+
+        avo.curriculumResourcesAccessed({
+          ...coreProperties,
+          ...analyticsProperties,
+          engagementIntent: "explore",
+          product: "curriculum resources",
+          componentType,
         });
       },
       curriculumResourcesDownloaded: (data: ResourceFormValues) => {

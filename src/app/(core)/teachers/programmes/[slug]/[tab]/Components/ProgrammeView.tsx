@@ -51,6 +51,7 @@ import { resolveOakHref } from "@/common-lib/urls";
 import { validateSearchParams } from "@/utils/validateProgrammePageSearchParams";
 import { getDefaultFilter } from "@/utils/curriculum/filtering";
 import { useTeacherBrowseAnalytics } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
+import { ComponentType } from "@/browser-lib/avo/Avo";
 
 export type ProgrammePageProps = {
   subjectPhaseSlug: string;
@@ -103,9 +104,8 @@ export const ProgrammeView = ({
 
   const [filters, setFilters] = useFilters(defaultFilter, initialFilter);
 
-  const { programmeRefined } = useTeacherBrowseAnalytics(
-    (store) => store.track,
-  );
+  const { programmeRefined, curriculumResourcesAccessed } =
+    useTeacherBrowseAnalytics((store) => store.track);
 
   const onChangeFilters: OnChangeCurriculumFilters = ({
     newFilters,
@@ -187,6 +187,11 @@ export const ProgrammeView = ({
               const tabSlug = tabNameToSlug[tabName];
               // Prevents a full page reload using client side nav
               event.preventDefault();
+              if (tabSlug === "download") {
+                curriculumResourcesAccessed({
+                  componentType: ComponentType.DOWNLOAD_TAB,
+                });
+              }
               const url = preserveKeystagesParamInUrl(tabSlug);
               globalThis.history.pushState(null, "", url);
             }}
