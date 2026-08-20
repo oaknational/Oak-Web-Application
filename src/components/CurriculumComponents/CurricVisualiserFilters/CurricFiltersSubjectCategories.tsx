@@ -7,7 +7,10 @@ import {
 import { useMemo, useId } from "react";
 
 import { getValidSubjectCategoryIconById } from "@/utils/getValidSubjectCategoryIconById";
-import { CurriculumFilters } from "@/utils/curriculum/types";
+import {
+  CurriculumFilters,
+  OnChangeCurriculumFilters,
+} from "@/utils/curriculum/types";
 import {
   getFilterData,
   scopeYearsToKeystageFilter,
@@ -19,9 +22,10 @@ import {
 import { CurriculumUnitsFormattedData } from "@/pages-helpers/curriculum/docx/tab-helpers";
 import { CurriculumSelectionSlugs } from "@/utils/curriculum/slugs";
 import { FilterType } from "@/browser-lib/avo/Avo";
-import { useBrowseFilters } from "@/context/BrowseFilters";
 
 export type CurricFiltersSubjectCategoriesProps = {
+  filters: CurriculumFilters;
+  onChangeFilters: OnChangeCurriculumFilters;
   data: CurriculumUnitsFormattedData;
   slugs: CurriculumSelectionSlugs;
   // The context prop can be removed once the integrated journey is fully launched
@@ -29,13 +33,14 @@ export type CurricFiltersSubjectCategoriesProps = {
 };
 
 export function CurricFiltersSubjectCategories({
+  filters,
+  onChangeFilters,
   data,
   slugs,
   context,
 }: Readonly<CurricFiltersSubjectCategoriesProps>) {
   const id = useId();
   const { yearData } = data;
-  const { filters, onChangeFilters } = useBrowseFilters();
 
   const effectiveYears = scopeYearsToKeystageFilter(filters);
 

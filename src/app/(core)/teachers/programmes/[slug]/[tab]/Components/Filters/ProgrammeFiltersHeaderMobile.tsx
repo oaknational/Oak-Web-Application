@@ -9,17 +9,23 @@ import {
 import { ProgrammePageFiltersProps } from "./ProgrammePageFiltersDesktop";
 
 import { CurricFiltersYears } from "@/components/CurriculumComponents/CurricVisualiserFilters/CurricFiltersYears";
+import {
+  CurriculumFilters,
+  OnChangeCurriculumFilters,
+} from "@/utils/curriculum/types";
 
 export type MobileFilterHeaderProps = ProgrammePageFiltersProps & {
+  filters: CurriculumFilters;
+  onChangeFilters: OnChangeCurriculumFilters;
   onOpenModal: () => void;
 };
 export default function ProgrammeFiltersHeaderMobile({
   onOpenModal,
   filters,
+  onChangeFilters,
   data,
   slugs,
   ks4Options,
-  onChangeFilters,
 }: Readonly<MobileFilterHeaderProps>) {
   return (
     <OakBox

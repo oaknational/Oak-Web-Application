@@ -3,9 +3,6 @@ import { Meta, StoryObj } from "@storybook/nextjs";
 import { CurricFiltersSubjectCategories as Component } from "./CurricFiltersSubjectCategories";
 import { ks4Setup } from "./CurricFiltersSubjectCategories.fixtures";
 
-import TeacherBrowseAnalyticsDecorator from "@/storybook-decorators/TeacherBrowseAnalyticsDecorator";
-import withBrowseFilters from "@/storybook-decorators/BrowseFiltersDecorator";
-
 const meta: Meta<typeof Component> = {
   component: Component,
   argTypes: {},
@@ -17,15 +14,7 @@ type Story = StoryObj<typeof Component>;
 export const CurricFiltersSubjectCategories: Story = {
   args: {
     data: ks4Setup,
-    slugs: {
-      phaseSlug: "primary",
-      subjectSlug: "maths",
-      ks4OptionSlug: null,
-    },
-  },
-  decorators: [
-    TeacherBrowseAnalyticsDecorator,
-    withBrowseFilters({
+    filters: {
       childSubjects: [],
       subjectCategories: [],
       tiers: [],
@@ -33,8 +22,14 @@ export const CurricFiltersSubjectCategories: Story = {
       threads: [],
       pathways: [],
       keystages: [],
-    }),
-  ],
+    },
+    slugs: {
+      phaseSlug: "primary",
+      subjectSlug: "maths",
+      ks4OptionSlug: null,
+    },
+    onChangeFilters: () => {},
+  },
   render: function Render(args) {
     return <Component {...args} />;
   },

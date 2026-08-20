@@ -74,7 +74,7 @@ export function ProgrammeFilters({
   ks4Options,
   ks4OptionFilterDimensions,
 }: Readonly<ProgrammeFiltersProps>) {
-  const { filters } = useBrowseFilters();
+  const { filters, onChangeFilters } = useBrowseFilters();
   return (
     <>
       {getDisplayedFilters(data, filters, slugs, ks4Options).map(
@@ -95,9 +95,15 @@ export function ProgrammeFilters({
             );
           }
 
+          if (key === "threads") {
+            return <ProgrammeFiltersThreads key={key} data={data} />;
+          }
+
           return (
             <FilterComponent
               key={key}
+              filters={filters}
+              onChangeFilters={onChangeFilters}
               data={data}
               slugs={slugs}
               ks4Options={ks4Options}

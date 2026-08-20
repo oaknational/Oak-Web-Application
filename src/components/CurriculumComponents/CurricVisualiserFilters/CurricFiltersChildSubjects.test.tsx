@@ -4,32 +4,23 @@ import { CurricFiltersChildSubjects } from "./CurricFiltersChildSubjects";
 import { ks4Setup, ks3and4Setup } from "./CurricFiltersChildSubjects.fixtures";
 
 import { renderWithProvidersByName } from "@/__tests__/__helpers__/renderWithProviders";
-import { useBrowseFilters } from "@/context/BrowseFilters";
-
-jest.mock("@/context/BrowseFilters", () => ({
-  useBrowseFilters: jest.fn(),
-}));
-
-const mockUseBrowseFilters = jest.mocked(useBrowseFilters);
 
 const render = renderWithProvidersByName(["oakTheme"]);
 
 describe("CurricFiltersChildSubjects", () => {
   it("renders correctly ks4 only", () => {
-    mockUseBrowseFilters.mockReturnValue({
-      filters: {
-        childSubjects: [],
-        subjectCategories: [],
-        tiers: [],
-        years: ["10", "11"],
-        threads: [],
-        pathways: [],
-        keystages: [],
-      },
-      onChangeFilters: () => {},
-    });
     const { getAllByRole, getByText } = render(
       <CurricFiltersChildSubjects
+        filters={{
+          childSubjects: [],
+          subjectCategories: [],
+          tiers: [],
+          years: ["10", "11"],
+          threads: [],
+          pathways: [],
+          keystages: [],
+        }}
+        onChangeFilters={() => {}}
         data={ks4Setup}
         context={"curriculum-visualiser"}
       />,
@@ -44,20 +35,18 @@ describe("CurricFiltersChildSubjects", () => {
   });
 
   it("renders correctly ks3 & ks4", () => {
-    mockUseBrowseFilters.mockReturnValue({
-      filters: {
-        childSubjects: [],
-        subjectCategories: [],
-        tiers: [],
-        years: ["7", "8", "9", "10", "11"],
-        threads: [],
-        keystages: [],
-        pathways: [],
-      },
-      onChangeFilters: () => {},
-    });
     const { getAllByRole, getByText } = render(
       <CurricFiltersChildSubjects
+        filters={{
+          childSubjects: [],
+          subjectCategories: [],
+          tiers: [],
+          years: ["7", "8", "9", "10", "11"],
+          threads: [],
+          keystages: [],
+          pathways: [],
+        }}
+        onChangeFilters={() => {}}
         data={ks3and4Setup}
         context={"curriculum-visualiser"}
       />,
@@ -73,20 +62,18 @@ describe("CurricFiltersChildSubjects", () => {
 
   it("interacts correctly", () => {
     const onChangeFilters = jest.fn();
-    mockUseBrowseFilters.mockReturnValue({
-      filters: {
-        childSubjects: [],
-        subjectCategories: [],
-        tiers: [],
-        years: ["10", "11"],
-        threads: [],
-        pathways: [],
-        keystages: [],
-      },
-      onChangeFilters,
-    });
     const { getAllByRole } = render(
       <CurricFiltersChildSubjects
+        filters={{
+          childSubjects: [],
+          subjectCategories: [],
+          tiers: [],
+          years: ["10", "11"],
+          threads: [],
+          pathways: [],
+          keystages: [],
+        }}
+        onChangeFilters={onChangeFilters}
         data={ks4Setup}
         context={"curriculum-visualiser"}
       />,

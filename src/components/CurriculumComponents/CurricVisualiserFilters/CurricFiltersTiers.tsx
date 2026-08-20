@@ -6,7 +6,10 @@ import {
 } from "@oaknational/oak-components";
 import { useId } from "react";
 
-import { CurriculumFilters } from "@/utils/curriculum/types";
+import {
+  CurriculumFilters,
+  OnChangeCurriculumFilters,
+} from "@/utils/curriculum/types";
 import {
   getFilterData,
   scopeYearsToKeystageFilter,
@@ -17,22 +20,23 @@ import {
 } from "@/utils/curriculum/keystage";
 import { CurriculumUnitsFormattedData } from "@/pages-helpers/curriculum/docx/tab-helpers";
 import { FilterType } from "@/browser-lib/avo/Avo";
-import { useBrowseFilters } from "@/context/BrowseFilters";
 
 export type CurricFiltersTiersProps = {
+  filters: CurriculumFilters;
+  onChangeFilters: OnChangeCurriculumFilters;
   data: CurriculumUnitsFormattedData;
   // The context prop can be removed once the integrated journey is fully launched
   context: "curriculum-visualiser" | "integrated-journey";
 };
 
 export function CurricFiltersTiers({
+  filters,
+  onChangeFilters,
   data,
   context,
 }: Readonly<CurricFiltersTiersProps>) {
   const id = useId();
   const { yearData } = data;
-
-  const { filters, onChangeFilters } = useBrowseFilters();
 
   const effectiveYears = scopeYearsToKeystageFilter(filters);
 
