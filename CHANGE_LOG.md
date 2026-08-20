@@ -1,3 +1,12 @@
+# [1.1161.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1160.0...v1.1161.0) (2026-08-20)
+
+
+### Features
+
+* bump oak components ([7fbb166](https://github.com/oaknational/Oak-Web-Application/commit/7fbb166a13918a2aea908ae11a6f7a3fdce13a31))
+* use new oakresourcecard comp with updated props ([19f62b7](https://github.com/oaknational/Oak-Web-Application/commit/19f62b7bb338acf05d1d4ef2540056b5816387cd))
+* use new oakresourcesaccordion comp with updated prop ([78e5928](https://github.com/oaknational/Oak-Web-Application/commit/78e5928954d367a20ee56c9756155303abe5866e))
+
 # [1.1160.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1159.0...v1.1160.0) (2026-08-18)
 
 
