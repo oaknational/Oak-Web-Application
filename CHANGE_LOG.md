@@ -1,3 +1,43 @@
+# [1.1161.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1160.0...v1.1161.0) (2026-08-20)
+
+
+### Features
+
+* bump oak components ([7fbb166](https://github.com/oaknational/Oak-Web-Application/commit/7fbb166a13918a2aea908ae11a6f7a3fdce13a31))
+* use new oakresourcecard comp with updated props ([19f62b7](https://github.com/oaknational/Oak-Web-Application/commit/19f62b7bb338acf05d1d4ef2540056b5816387cd))
+* use new oakresourcesaccordion comp with updated prop ([78e5928](https://github.com/oaknational/Oak-Web-Application/commit/78e5928954d367a20ee56c9756155303abe5866e))
+
+# [1.1160.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1159.0...v1.1160.0) (2026-08-18)
+
+
+### Features
+
+* turn on oaks impact feature flag ([65187eb](https://github.com/oaknational/Oak-Web-Application/commit/65187eb726812da7daf70154885f47d17baa4bfb))
+
+# [1.1159.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1158.0...v1.1159.0) (2026-08-18)
+
+
+### Features
+
+* add impact to deployment url ([9095a88](https://github.com/oaknational/Oak-Web-Application/commit/9095a8818a4db1f6f5a1d49b1320cf128996767d))
+* add to sitemaps ([35ca647](https://github.com/oaknational/Oak-Web-Application/commit/35ca6478dfeb5333522a1f2c1bcc59b18ed4ce99))
+
+# [1.1158.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1157.1...v1.1158.0) (2026-08-17)
+
+
+### Bug Fixes
+
+* accidental layout shift ([3bf3cae](https://github.com/oaknational/Oak-Web-Application/commit/3bf3cae6e7af282d6c752c79b710744ee56f03e8))
+* add optional dynamic flag to use in quiz order question mathjax ([525f4bd](https://github.com/oaknational/Oak-Web-Application/commit/525f4bd21bffafd83ec05744fe19566c437d9c38))
+* move mathjax wrap to feedback and individual q components ([47cdeda](https://github.com/oaknational/Oak-Web-Application/commit/47cdeda62eaf9a4095e755747983132df201211b))
+
+
+### Features
+
+* add additional error logging to mathjax provider ([d8d4bdd](https://github.com/oaknational/Oak-Web-Application/commit/d8d4bdd480f9e3d3cbdc186cc85293c5a78ea042))
+* remove dynamic flag on mathjax so we only typesett on first render ([543dee9](https://github.com/oaknational/Oak-Web-Application/commit/543dee9acda64eeda4045aa04b1024ac7b1c67b9))
+* set hideUntilTypeset property to first ([a7d5a62](https://github.com/oaknational/Oak-Web-Application/commit/a7d5a6249fa77e50b8f063f19252fc41bf95d617))
+
 ## [1.1157.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.1157.0...v1.1157.1) (2026-08-12)
 
 
