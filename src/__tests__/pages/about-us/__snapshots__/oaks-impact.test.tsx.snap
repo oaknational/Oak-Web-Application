@@ -884,7 +884,7 @@ exports[`pages/about-us/oaks-impact.tsx renders title when feature flag is enabl
                       class="sc-55af3af8-1 jFmwgk"
                     >
                       <li
-                        class="sc-aXZVg sc-hZDyAQ kBnJtM iMmmjC"
+                        class="sc-aXZVg sc-fTFjTM kBnJtM fvbgvK"
                       >
                         <a
                           href="/about-us/who-we-are"
@@ -937,7 +937,7 @@ exports[`pages/about-us/oaks-impact.tsx renders title when feature flag is enabl
                         </a>
                       </li>
                       <li
-                        class="sc-aXZVg sc-hZDyAQ kBnJtM iMmmjC"
+                        class="sc-aXZVg sc-fTFjTM kBnJtM fvbgvK"
                       >
                         <a
                           href="/about-us/oaks-curricula"
@@ -990,7 +990,7 @@ exports[`pages/about-us/oaks-impact.tsx renders title when feature flag is enabl
                         </a>
                       </li>
                       <li
-                        class="sc-aXZVg sc-hZDyAQ kBnJtM iMmmjC"
+                        class="sc-aXZVg sc-fTFjTM kBnJtM fvbgvK"
                       >
                         <a
                           href="/about-us/meet-the-team"
@@ -1043,7 +1043,7 @@ exports[`pages/about-us/oaks-impact.tsx renders title when feature flag is enabl
                         </a>
                       </li>
                       <li
-                        class="sc-aXZVg sc-hZDyAQ kBnJtM iMmmjC"
+                        class="sc-aXZVg sc-fTFjTM kBnJtM fvbgvK"
                       >
                         <a
                           href="/about-us/get-involved"
@@ -1731,7 +1731,7 @@ exports[`pages/about-us/oaks-impact.tsx renders title when feature flag is enabl
           id="site-footer"
         >
           <div
-            class="sc-aXZVg sc-gEvEer sc-kAkpmW leSQlB iqPJZh"
+            class="sc-aXZVg sc-gEvEer sc-brPLxw leSQlB iqPJZh"
           >
             <div
               class="sc-aXZVg sc-tagGq jPvJsJ fNndNZ"
