@@ -86,12 +86,13 @@ export default async function experimentMiddleware({
       });
       return response;
     } catch (error) {
-      // Fall back to the control route. Can't use errorReporter here - it pulls in
-      // @bugsnag/browser, which isn't compatible with the edge middleware runtime.
+      // Fall back to the control route. Avoid errorReporter here because it depends on
+      // browser-only modules that aren't compatible with the edge middleware runtime.
+      const errorMessage =
+        error instanceof Error ? error.message : String(error);
       console.error("[experimentMiddleware] posthog decide request failed", {
         featureFlag,
-        distinctId,
-        error,
+        error: errorMessage,
       });
     }
   }
