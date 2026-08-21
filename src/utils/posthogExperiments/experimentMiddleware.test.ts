@@ -5,12 +5,6 @@ import { getExperimentCookieKey } from "./cookieHelpers";
 
 import getServerConfig from "@/node-lib/getServerConfig";
 
-const mockReportError = jest.fn();
-jest.mock("@/common-lib/error-reporter", () => ({
-  __esModule: true,
-  default: jest.fn(() => mockReportError),
-}));
-
 const mockFetch = jest.spyOn(globalThis, "fetch") as jest.Mock;
 const mockJsonResponse = (data: unknown, status = 200) => {
   const statusText = status === 200 ? "OK" : "Error";
@@ -88,16 +82,22 @@ describe("experimentMiddleware", () => {
       "http://test-path/variant",
     );
   });
-  it("reports an error", async () => {
+  it("logs and falls back to control when posthog request fails", async () => {
     mockJsonResponse({}, 500);
+    const consoleErrorSpy = jest
+      .spyOn(console, "error")
+      .mockImplementation(() => undefined);
+
     const response = await experimentMiddleware({
       request: mockRequest,
       featureFlag,
     });
 
-    expect(mockReportError).toHaveBeenCalled();
+    expect(consoleErrorSpy).toHaveBeenCalled();
     expect(response).toBeDefined();
     expect(response.status).toBe(200);
+
+    consoleErrorSpy.mockRestore();
   });
   it("reads experiment group from cookie and does not make request to posthog", async () => {
     cookieStore[getExperimentCookieKey(featureFlag)] = { value: "test" };

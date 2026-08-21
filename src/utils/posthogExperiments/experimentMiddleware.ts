@@ -7,8 +7,6 @@ import {
 } from "./cookieHelpers";
 
 import getServerConfig from "@/node-lib/getServerConfig";
-import errorReporter from "@/common-lib/error-reporter";
-import OakError from "@/errors/OakError";
 
 const posthogApiKey = getServerConfig("posthogApiKey");
 
@@ -42,9 +40,10 @@ export default async function experimentMiddleware({
   );
 
   if (experimentCookieValue) {
+    console.log({ experimentCookieValue });
     // The user has already been placed into an experiment group so we direct them
     // to the appropriate variant based on their experiment cookie value
-    if (testGroupKeys.has(experimentCookieValue)) {
+    if (controlGroupKeys.has(experimentCookieValue)) {
       return NextResponse.rewrite(rewriteUrl);
     }
 
@@ -88,13 +87,13 @@ export default async function experimentMiddleware({
       });
       return response;
     } catch (error) {
-      // Report error and fallback to control route
-      errorReporter("posthog-experiment")(
-        new OakError({
-          code: "misc/network-error",
-          meta: { featureFlag, error, distinctId },
-        }),
-      );
+      // Fall back to the control route. Can't use errorReporter here - it pulls in
+      // @bugsnag/browser, which isn't compatible with the edge middleware runtime.
+      console.error("[experimentMiddleware] posthog decide request failed", {
+        featureFlag,
+        distinctId,
+        error,
+      });
     }
   }
 
