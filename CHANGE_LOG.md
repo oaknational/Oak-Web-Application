@@ -1,3 +1,10 @@
+# [1.1162.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1161.1...v1.1162.0) (2026-08-21)
+
+
+### Features
+
+* serve the MCP submission carousel images from OWA ([54b79d5](https://github.com/oaknational/Oak-Web-Application/commit/54b79d5bff5daf08ff15add463b02fba6b55a1d9))
+
 ## [1.1161.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.1161.0...v1.1161.1) (2026-08-20)
 
 
