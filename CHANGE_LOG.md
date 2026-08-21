@@ -1,3 +1,10 @@
+## [1.1161.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.1161.0...v1.1161.1) (2026-08-20)
+
+
+### Bug Fixes
+
+* type issues with oak-components ([dc3d053](https://github.com/oaknational/Oak-Web-Application/commit/dc3d053dceabf81f0f1cf2aa0cfa9ce4946ad583))
+
 # [1.1161.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1160.0...v1.1161.0) (2026-08-20)
 
 
