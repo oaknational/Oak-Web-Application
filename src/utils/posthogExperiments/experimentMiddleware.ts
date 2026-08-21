@@ -40,10 +40,9 @@ export default async function experimentMiddleware({
   );
 
   if (experimentCookieValue) {
-    console.log({ experimentCookieValue });
     // The user has already been placed into an experiment group so we direct them
     // to the appropriate variant based on their experiment cookie value
-    if (controlGroupKeys.has(experimentCookieValue)) {
+    if (testGroupKeys.has(experimentCookieValue)) {
       return NextResponse.rewrite(rewriteUrl);
     }
 

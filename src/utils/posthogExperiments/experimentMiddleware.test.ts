@@ -99,7 +99,7 @@ describe("experimentMiddleware", () => {
 
     consoleErrorSpy.mockRestore();
   });
-  it("reads experiment group from cookie and does not make request to posthog", async () => {
+  it("rewrites to the variant route from a cached 'test' cookie without calling posthog", async () => {
     cookieStore[getExperimentCookieKey(featureFlag)] = { value: "test" };
     const response = await experimentMiddleware({
       request: mockRequest,
@@ -108,8 +108,24 @@ describe("experimentMiddleware", () => {
 
     expect(response).toBeDefined();
     expect(response.status).toBe(200);
-
     expect(mockFetch).not.toHaveBeenCalled();
+
+    expect(response.headers.get("x-middleware-rewrite")).toEqual(
+      "http://test-path/variant",
+    );
+  });
+  it("serves the control route from a cached 'control' cookie without calling posthog", async () => {
+    cookieStore[getExperimentCookieKey(featureFlag)] = { value: "control" };
+    const response = await experimentMiddleware({
+      request: mockRequest,
+      featureFlag,
+    });
+
+    expect(response).toBeDefined();
+    expect(response.status).toBe(200);
+    expect(mockFetch).not.toHaveBeenCalled();
+
+    expect(response.headers.get("x-middleware-rewrite")).toBeNull();
   });
   it("does not set a cookie when consent is not granted", async () => {
     cookieStore["oak_consent"] = {
