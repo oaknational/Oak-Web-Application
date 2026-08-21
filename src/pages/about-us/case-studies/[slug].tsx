@@ -57,11 +57,7 @@ const AboutUsOaksImpactCaseStudy: NextPage<
       topNavProps={topNav}
     >
       <OakBox $zIndex={"neutral"} $color={"text-primary"}>
-        <OakBox
-          $gap="spacing-32"
-          $bb="border-solid-xxxl"
-          $borderColor="border-decorative2"
-        >
+        <OakBox $bb="border-solid-xxxl" $borderColor="border-decorative2">
           <NewGutterMaxWidth>
             <OakBox $mt="spacing-40" $mb="spacing-56">
               <OakGrid $cg="spacing-16">

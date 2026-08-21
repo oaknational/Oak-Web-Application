@@ -120,7 +120,7 @@ function VideoContainer({
       data-percy-hide="contents"
       $alignItems={"center"}
       $justifyContent={"center"}
-      $ba={omitBorder ? "border-none" : "border-solid-l"}
+      $ba={omitBorder ? "border-solid-none" : "border-solid-l"}
       $minWidth={"100%"}
       $borderColor={"border-primary"}
       style={{

@@ -54,7 +54,7 @@ export const OaksImpactCaseStudies = ({
                 $colStart={
                   caseStudies.length === 2
                     ? [1, index === 0 ? 3 : 7]
-                    : [1, undefined]
+                    : [1, null]
                 }
               >
                 <OakCard
