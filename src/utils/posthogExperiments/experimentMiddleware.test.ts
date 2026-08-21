@@ -5,12 +5,6 @@ import { getExperimentCookieKey } from "./cookieHelpers";
 
 import getServerConfig from "@/node-lib/getServerConfig";
 
-const mockReportError = jest.fn();
-jest.mock("@/common-lib/error-reporter", () => ({
-  __esModule: true,
-  default: jest.fn(() => mockReportError),
-}));
-
 const mockFetch = jest.spyOn(globalThis, "fetch") as jest.Mock;
 const mockJsonResponse = (data: unknown, status = 200) => {
   const statusText = status === 200 ? "OK" : "Error";
@@ -88,18 +82,24 @@ describe("experimentMiddleware", () => {
       "http://test-path/variant",
     );
   });
-  it("reports an error", async () => {
+  it("logs and falls back to control when posthog request fails", async () => {
     mockJsonResponse({}, 500);
+    const consoleErrorSpy = jest
+      .spyOn(console, "error")
+      .mockImplementation(() => undefined);
+
     const response = await experimentMiddleware({
       request: mockRequest,
       featureFlag,
     });
 
-    expect(mockReportError).toHaveBeenCalled();
+    expect(consoleErrorSpy).toHaveBeenCalled();
     expect(response).toBeDefined();
     expect(response.status).toBe(200);
+
+    consoleErrorSpy.mockRestore();
   });
-  it("reads experiment group from cookie and does not make request to posthog", async () => {
+  it("rewrites to the variant route from a cached 'test' cookie without calling posthog", async () => {
     cookieStore[getExperimentCookieKey(featureFlag)] = { value: "test" };
     const response = await experimentMiddleware({
       request: mockRequest,
@@ -108,8 +108,24 @@ describe("experimentMiddleware", () => {
 
     expect(response).toBeDefined();
     expect(response.status).toBe(200);
-
     expect(mockFetch).not.toHaveBeenCalled();
+
+    expect(response.headers.get("x-middleware-rewrite")).toEqual(
+      "http://test-path/variant",
+    );
+  });
+  it("serves the control route from a cached 'control' cookie without calling posthog", async () => {
+    cookieStore[getExperimentCookieKey(featureFlag)] = { value: "control" };
+    const response = await experimentMiddleware({
+      request: mockRequest,
+      featureFlag,
+    });
+
+    expect(response).toBeDefined();
+    expect(response.status).toBe(200);
+    expect(mockFetch).not.toHaveBeenCalled();
+
+    expect(response.headers.get("x-middleware-rewrite")).toBeNull();
   });
   it("does not set a cookie when consent is not granted", async () => {
     cookieStore["oak_consent"] = {

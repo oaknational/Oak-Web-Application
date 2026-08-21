@@ -26,6 +26,8 @@ type DownloadSuccessHeaderProps = {
   onBackClick?: () => void;
   backgroundColorLevel?: HeaderProps["backgroundColorLevel"];
   returnTo: "lesson" | "downloads";
+  /** Set by the caller based on the `download-success-header-compact` experiment */
+  showCompactHeader?: boolean;
 };
 
 export function DownloadSuccessHeader(
@@ -35,9 +37,11 @@ export function DownloadSuccessHeader(
   const { getConsent } = useOakConsent();
   const cookiesNotAccepted = getConsent(ServicePolicyMap.GLEAP) === "denied";
 
+  const { showCompactHeader } = props;
+
   return (
     <Header
-      layoutVariant="large"
+      layoutVariant={showCompactHeader ? "compact" : "large"}
       useSubduedBackground
       headerSlot={<BackLinkButton {...props} />}
       heading="Thanks for downloading!"
@@ -51,7 +55,11 @@ export function DownloadSuccessHeader(
         </OakFlex>
       }
       backgroundColorLevel={props.backgroundColorLevel}
-      heroImage={getCloudinaryImageUrl(DOWNLOAD_SUCCESS_IMG_URL)}
+      heroImage={
+        showCompactHeader
+          ? null
+          : getCloudinaryImageUrl(DOWNLOAD_SUCCESS_IMG_URL)
+      }
     />
   );
 }
