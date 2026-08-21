@@ -73,8 +73,7 @@ Replace `{query}` with URL-encoded search terms. Example: `https://www.thenation
 ## API & Developers
 
 - [Oak Open API](https://open-api.thenational.academy/): Public API for accessing Oak's curriculum data programmatically
-- [Oak Open API machine-readable catalogue](https://open-api.thenational.academy/.well-known/api-catalog): RFC 9727 API catalogue listing the API's OpenAPI description, documentation, and bulk-export schema
-- [Oak Open API agent skill](https://open-api.thenational.academy/.well-known/agent-skills/index.json): Agent Skills discovery index for the Open API, for agents that consume skills directly
+- [Oak Open API agent skill](https://open-api.thenational.academy/.well-known/agent-skills/oak-openapi/SKILL.md): Markdown skill an agent can read directly, covering the API's base URL, authentication, endpoints, common tasks, and bulk exports
 - [Oak Open Curriculum Ecosystem Repository](https://github.com/oaknational/oak-open-curriculum-ecosystem): Source of the Oak Curriculum MCP server and the curriculum SDKs (MIT License)
 - [GitHub Organisation](https://github.com/oaknational): Oak's open source repositories including the web application, AI tools, and curriculum schemas
 - [Oak Web Application Repository](https://github.com/oaknational/Oak-Web-Application): Main website codebase (MIT License)
@@ -127,3 +126,4 @@ Replace `{query}` with URL-encoded search terms. Example: `https://www.thenation
 - [Webinars](https://www.thenational.academy/webinars): Professional development webinars for teachers
 - [Security Policy](https://www.thenational.academy/legal/security-disclosure-policy): Security vulnerability disclosure policy
 - [Jobs at Oak](https://jobs.thenational.academy): Career opportunities at Oak National Academy
+- [Oak Open API machine-readable catalogue](https://open-api.thenational.academy/.well-known/api-catalog): RFC 9727 API catalogue listing the API's OpenAPI description, documentation, and bulk-export schema
