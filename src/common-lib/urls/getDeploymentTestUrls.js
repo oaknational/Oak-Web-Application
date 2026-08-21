@@ -33,6 +33,7 @@ function getDeploymentTestUrls() {
     "/lp/help-shape-oak",
     // "/lp/oak-calendar",
     "/teachers/search?term=equate&keyStages=ks4", // results with tier and examboard drop downs
+    "/mcp", // Oak Curriculum MCP landing page
 
     // Programme pages
     "/teachers/programmes/history-primary/units", // primary
