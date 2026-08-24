@@ -3,7 +3,7 @@
 // Commented out urls have pa11y errors to be fixed in this ticket - https://github.com/oaknational/Oak-Web-Application/issues/1693
 
 function getDeploymentTestUrls() {
-  return [
+  const urls = [
     // Error pages
     "/404",
     // "/500", // Removing as current issue with 500 responses on Netlify previews means this always fails.
@@ -43,6 +43,12 @@ function getDeploymentTestUrls() {
     "/teachers/programmes/science-secondary-aqa/units?child_subjects=chemistry&keystages=ks4", // with child subject
     "/teachers/programmes/history-primary/curriculum-explainer", // curriculum explainer
     "/teachers/programmes/history-primary/download", // download tab
+
+    // National Curriculum Insights pages
+    "/teachers/national-curriculum-insights",
+    "/teachers/national-curriculum-insights/science",
+    "/teachers/national-curriculum-insights/science/primary",
+    "/teachers/national-curriculum-insights/science/primary/key-stage-1",
 
     // Unit pages
     "/teachers/programmes/art-primary-ks1/units/reclaimed-materials-drawing-and-sculpture/lessons", // primary
@@ -84,6 +90,8 @@ function getDeploymentTestUrls() {
     // "/pupils/programmes/biology-secondary-year-11-foundation-edexcel/units/classification-in-modern-biology/lessons/electron-microscopy-and-the-size-and-scale-of-cells/video",
     "/pupils/programmes/maths-secondary-year-7/units/expressions-and-equations/lessons/simplifying-before-multiplying-with-multiple-expressions/exit-quiz",
   ];
+
+  return urls;
 }
 
 module.exports = getDeploymentTestUrls;
