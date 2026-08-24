@@ -18,6 +18,7 @@ import {
   createTeacherBrowseAnalyticsStore,
   TeacherBrowseAnalyticsStore,
 } from "./TeacherBrowseAnalyticsStore";
+import useJourneySlugsContext from "./utils/getJourneySlugsContext";
 
 import { ServicePolicyMap } from "@/browser-lib/cookie-consent/ServicePolicyMap";
 
@@ -43,8 +44,7 @@ export const TeacherBrowseAnalyticsStoreProvider = ({
   children,
 }: TeacherBrowseAnalyticsStoreProviderProps) => {
   const { track, getSessionId } = useAnalytics();
-  const subjectSlug = programmeState?.subjectSlug ?? "unknown";
-  const phaseSlug = programmeState?.phaseSlug ?? "unknown";
+  const { subjectSlug, phaseSlug } = useJourneySlugsContext();
   const posthogConsent = useOakConsent().getConsent(ServicePolicyMap.POSTHOG);
   const hasConsent = posthogConsent === "granted";
 
