@@ -285,7 +285,7 @@ describe("TeacherBrowseAnalyticsStoreProvider", () => {
           lessonReleaseCohort: "2023-2026",
           lessonReleaseDate: "2024-09-29T14:00:00.000Z",
           lessonSlug: "lesson-3-structure-of-cells",
-          navigationType: "narrow",
+          navigationType: "across",
           onwardIntent: "view-lesson",
           pathway: null,
           phase: "secondary",
