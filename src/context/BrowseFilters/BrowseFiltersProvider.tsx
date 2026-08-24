@@ -7,6 +7,7 @@ import {
   useState,
 } from "react";
 import { useStore } from "zustand";
+import { useSearchParams } from "next/navigation";
 
 import {
   createBrowseFiltersStore,
@@ -34,12 +35,19 @@ export const BrowseFiltersProvider = ({
   const [store] = useState(() =>
     createBrowseFiltersStore({ defaultFilter, initialFilter }),
   );
+  const searchParams = useSearchParams();
 
   // Hydration is skipped on store creation
-  // apply the URL after mount so client-only navigations pick it up.
+  // apply the initial URL after mount.
   useEffect(() => {
     store.persist.rehydrate();
   }, [store]);
+
+  // The provider can survive a client-side Link navigation, so re-apply the
+  // current URL whenever Next updates the search params.
+  useEffect(() => {
+    store.getState().syncFromSearchParams(searchParams);
+  }, [searchParams, store]);
 
   return (
     <BrowseFiltersStoreContext.Provider value={store}>
