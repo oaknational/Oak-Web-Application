@@ -11,8 +11,10 @@ import {
 import { useOakConsent } from "@oaknational/oak-consent-client";
 
 import {
+  CompactHeaderProps,
   Header,
   HeaderProps,
+  LargeHeaderProps,
 } from "@/components/TeacherComponents/Header/Header";
 import { getCloudinaryImageUrl } from "@/utils/getCloudinaryImageUrl";
 import { resolveOakHref } from "@/common-lib/urls";
@@ -37,11 +39,18 @@ export function DownloadSuccessHeader(
   const { getConsent } = useOakConsent();
   const cookiesNotAccepted = getConsent(ServicePolicyMap.GLEAP) === "denied";
 
-  const { showCompactHeader } = props;
+  const headerProps = props.showCompactHeader
+    ? ({
+        layoutVariant: "compact",
+      } satisfies Partial<CompactHeaderProps>)
+    : ({
+        layoutVariant: "large",
+        heroImage: getCloudinaryImageUrl(DOWNLOAD_SUCCESS_IMG_URL),
+      } satisfies Partial<LargeHeaderProps>);
 
   return (
     <Header
-      layoutVariant={showCompactHeader ? "compact" : "large"}
+      {...headerProps}
       useSubduedBackground
       headerSlot={<BackLinkButton {...props} />}
       heading="Thanks for downloading!"
@@ -55,11 +64,6 @@ export function DownloadSuccessHeader(
         </OakFlex>
       }
       backgroundColorLevel={props.backgroundColorLevel}
-      heroImage={
-        showCompactHeader
-          ? null
-          : getCloudinaryImageUrl(DOWNLOAD_SUCCESS_IMG_URL)
-      }
     />
   );
 }
