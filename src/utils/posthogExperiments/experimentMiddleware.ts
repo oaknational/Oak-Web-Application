@@ -116,6 +116,12 @@ const constructResponseForVariant = async ({
   rewriteUrl: URL;
 }) => {
   const variant = await getExperimentVariant({ distinctId, featureFlag });
+
+  if (!variant) {
+    // Decide request failed (or returned no variant) — don't set a cookie so we can retry later.
+    return NextResponse.next();
+  }
+
   const isTest = testGroupKeys.has(variant);
   const response = isTest
     ? NextResponse.rewrite(rewriteUrl)
