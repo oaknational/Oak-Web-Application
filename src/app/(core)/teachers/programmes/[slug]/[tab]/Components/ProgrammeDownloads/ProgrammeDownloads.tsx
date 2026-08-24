@@ -2,13 +2,12 @@
 
 import {
   OakBox,
-  OakDownloadCard,
+  OakResourceCard,
   OakFlex,
   OakGrid,
   OakGridArea,
   OakHeading,
   OakPrimaryButton,
-  OakTagFunctional,
   OakTertiaryInvertedButton,
   Subject,
   Tier,
@@ -332,7 +331,7 @@ export const ProgrammeDownloads = ({
                           field: { value: fieldValue, onChange },
                         }) => {
                           return (
-                            <OakDownloadCard
+                            <OakResourceCard
                               key={download.id}
                               id={download.id}
                               data-testid="resourceCard"
@@ -340,19 +339,8 @@ export const ProgrammeDownloads = ({
                               name="curriculum-download"
                               title={download.label}
                               checked={fieldValue.includes(download.id)}
-                              format={
-                                <OakFlex
-                                  $alignItems={"center"}
-                                  $gap={"spacing-8"}
-                                >
-                                  ({download.fileExt})
-                                  <OakTagFunctional
-                                    $background={"bg-decorative2-main"}
-                                    label="Editable"
-                                    useSpan
-                                  />
-                                </OakFlex>
-                              }
+                              description={download.fileExt}
+                              isEditable={true}
                               iconName={download.icon}
                               onChange={resourceCardOnChangeHandler(
                                 onChange,
