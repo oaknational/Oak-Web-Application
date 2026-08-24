@@ -226,7 +226,12 @@ const LessonList = ({
                   index={lesson.orderInUnit ?? undefined}
                   disabled={lesson.isUnpublished}
                   onClickLink={() =>
-                    onwardContentSelected({ onwardIntent: "view-lesson" })
+                    onwardContentSelected({
+                      onwardIntent: "view-lesson",
+                      lessonName: lesson.lessonTitle,
+                      lessonSlug: lesson.lessonSlug,
+                      lessonReleaseDate: lesson.lessonReleaseDate ?? "unknown",
+                    })
                   }
                 />
               </OakLI>

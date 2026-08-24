@@ -268,6 +268,9 @@ describe("TeacherBrowseAnalyticsStoreProvider", () => {
     it("calls onwardContentSelected with the correct props", () => {
       renderTrackingTest(lessonLevelState, "onwardContentSelected", {
         onwardIntent: "view-lesson",
+        lessonName: lessonLevelState.lesson.title,
+        lessonSlug: lessonLevelState.lesson.slug,
+        lessonReleaseDate: "2023-2026",
       });
 
       const trackBtn = screen.getByRole("button", { name: "Track" });
@@ -283,7 +286,7 @@ describe("TeacherBrowseAnalyticsStoreProvider", () => {
           keyStageTitle: "Key stage 3",
           lessonName: "Structure of cells",
           lessonReleaseCohort: "2023-2026",
-          lessonReleaseDate: "2024-09-29T14:00:00.000Z",
+          lessonReleaseDate: "2023-2026",
           lessonSlug: "lesson-3-structure-of-cells",
           navigationType: "across",
           onwardIntent: "view-lesson",
@@ -291,14 +294,11 @@ describe("TeacherBrowseAnalyticsStoreProvider", () => {
           phase: "secondary",
           platform: "owa",
           product: "teacher lesson resources",
-          releaseGroup: "2023",
           subjectSlug: "biology",
           subjectTitle: "Biology",
           tierName: null,
           unitName: "Cells",
           unitSlug: "cells",
-          yearGroupName: "Year 7",
-          yearGroupSlug: "year-7",
         }),
       );
     });
@@ -424,6 +424,9 @@ describe("TeacherBrowseAnalyticsStoreProvider", () => {
     it("handles invalid browse level for onwardContentSelected", () => {
       renderTrackingTest(programmeLevelState, "onwardContentSelected", {
         onwardIntent: "view-unit",
+        lessonName: lessonLevelState.lesson.title,
+        lessonSlug: lessonLevelState.lesson.slug,
+        lessonReleaseDate: "2023-2026",
       });
       const trackBtn = screen.getByRole("button", { name: "Track" });
       const result = trackBtn.click();
