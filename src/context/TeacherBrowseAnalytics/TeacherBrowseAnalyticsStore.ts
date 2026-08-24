@@ -247,7 +247,7 @@ export const createTeacherBrowseAnalyticsStore = (
           ...data,
           journeyId,
           accessLevel,
-          navigationType: "narrow",
+          navigationType: "across",
         });
       },
       unitOverviewAccessed: (unit, isHighlighted, selectedThread) => {
