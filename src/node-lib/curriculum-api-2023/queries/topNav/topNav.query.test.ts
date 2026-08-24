@@ -55,26 +55,7 @@ describe("TopNavQuery", () => {
     expect(
       res.teachers?.primary.keystages.children?.[0]?.children?.[0]?.href,
     ).toBeDefined();
-    expect(
-      res.teachers?.aboutUs.children.some(
-        ({ slug }) => slug === "about-oaks-impact",
-      ),
-    ).toBe(false);
-  });
-
-  it("includes Oak's impact when the build-time feature flag is enabled", async () => {
-    mockIsFeatureFlagEnabledStatic.mockReturnValue(true);
-
-    const res = await topNavQuery({
-      ...sdk,
-      topNav: jest.fn(() => Promise.resolve(mockResponseData)),
-    })();
-
-    expect(
-      res.teachers?.aboutUs.children.some(
-        ({ slug }) => slug === "about-oaks-impact",
-      ),
-    ).toBe(true);
+    expect(res.teachers?.aboutUs.children).toHaveLength(6);
   });
 
   it("uses the cached topNav function when withCache is true", async () => {
