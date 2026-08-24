@@ -48,7 +48,7 @@ export type HeaderProps = {
    */
   backgroundColorLevel?: 1 | 2 | 3 | 4 | 5 | 6;
   /**
-   * Whether to use the subdued vaiant of the background colour for the main background
+   * Whether to use the subdued variant of the background colour for the main background.
    */
   useSubduedBackground?: boolean;
 };
