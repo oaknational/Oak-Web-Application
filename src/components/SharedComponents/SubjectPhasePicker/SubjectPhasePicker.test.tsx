@@ -28,7 +28,7 @@ jest.mock(
   "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider",
   () => ({
     __esModule: true,
-    useTeacherBrowseAnalyticsOptional: (
+    useTeacherBrowseAnalytics: (
       selector: (store: {
         track: {
           programmeAccessed: (...args: unknown[]) => void;

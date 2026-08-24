@@ -646,7 +646,7 @@ exports[`pages/about-us/oaks-impact.tsx renders title when feature flag is enabl
                         class="sc-aXZVg dLPTTd"
                       >
                         <div
-                          class="sc-aXZVg sc-gEvEer laLcvy jMLdOa"
+                          class="sc-aXZVg sc-gEvEer kqqNVp jMLdOa"
                           data-percy-hide="contents"
                           style="box-sizing: content-box;"
                         />
@@ -884,7 +884,7 @@ exports[`pages/about-us/oaks-impact.tsx renders title when feature flag is enabl
                       class="sc-55af3af8-1 jFmwgk"
                     >
                       <li
-                        class="sc-aXZVg sc-hZDyAQ kBnJtM iMmmjC"
+                        class="sc-aXZVg sc-fTFjTM kBnJtM fvbgvK"
                       >
                         <a
                           href="/about-us/who-we-are"
@@ -937,7 +937,7 @@ exports[`pages/about-us/oaks-impact.tsx renders title when feature flag is enabl
                         </a>
                       </li>
                       <li
-                        class="sc-aXZVg sc-hZDyAQ kBnJtM iMmmjC"
+                        class="sc-aXZVg sc-fTFjTM kBnJtM fvbgvK"
                       >
                         <a
                           href="/about-us/oaks-curricula"
@@ -990,7 +990,7 @@ exports[`pages/about-us/oaks-impact.tsx renders title when feature flag is enabl
                         </a>
                       </li>
                       <li
-                        class="sc-aXZVg sc-hZDyAQ kBnJtM iMmmjC"
+                        class="sc-aXZVg sc-fTFjTM kBnJtM fvbgvK"
                       >
                         <a
                           href="/about-us/meet-the-team"
@@ -1043,7 +1043,7 @@ exports[`pages/about-us/oaks-impact.tsx renders title when feature flag is enabl
                         </a>
                       </li>
                       <li
-                        class="sc-aXZVg sc-hZDyAQ kBnJtM iMmmjC"
+                        class="sc-aXZVg sc-fTFjTM kBnJtM fvbgvK"
                       >
                         <a
                           href="/about-us/get-involved"
@@ -1731,7 +1731,7 @@ exports[`pages/about-us/oaks-impact.tsx renders title when feature flag is enabl
           id="site-footer"
         >
           <div
-            class="sc-aXZVg sc-gEvEer sc-kAkpmW leSQlB iqPJZh"
+            class="sc-aXZVg sc-gEvEer sc-brPLxw leSQlB iqPJZh"
           >
             <div
               class="sc-aXZVg sc-tagGq jPvJsJ fNndNZ"
@@ -2412,7 +2412,7 @@ exports[`pages/about-us/oaks-impact.tsx renders title when feature flag is enabl
               </div>
             </div>
             <span
-              class="sc-aXZVg kvjdhA sc-8af0c810-0 bOiGyb"
+              class="sc-aXZVg kvjdhA sc-f9d62eb6-0 fMbHos"
               data-percy-hide="contents"
             >
               <img

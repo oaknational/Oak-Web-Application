@@ -18,6 +18,7 @@ import {
   createTeacherBrowseAnalyticsStore,
   TeacherBrowseAnalyticsStore,
 } from "./TeacherBrowseAnalyticsStore";
+import useJourneySlugsContext from "./utils/getJourneySlugsContext";
 
 import { ServicePolicyMap } from "@/browser-lib/cookie-consent/ServicePolicyMap";
 
@@ -43,8 +44,7 @@ export const TeacherBrowseAnalyticsStoreProvider = ({
   children,
 }: TeacherBrowseAnalyticsStoreProviderProps) => {
   const { track, getSessionId } = useAnalytics();
-  const subjectSlug = programmeState?.subjectSlug ?? "unknown";
-  const phaseSlug = programmeState?.phaseSlug ?? "unknown";
+  const { subjectSlug, phaseSlug } = useJourneySlugsContext();
   const posthogConsent = useOakConsent().getConsent(ServicePolicyMap.POSTHOG);
   const hasConsent = posthogConsent === "granted";
 
@@ -80,12 +80,8 @@ export const TeacherBrowseAnalyticsStoreProvider = ({
   );
 
   useEffect(() => {
-    store.setState({ journeyId });
-  }, [store, journeyId]);
-
-  useEffect(() => {
-    store.setState({ programmeState, accessLevel });
-  }, [store, programmeState, accessLevel]);
+    store.setState({ journeyId, programmeState, accessLevel });
+  }, [store, journeyId, programmeState, accessLevel]);
 
   return (
     <TeacherBrowseAnalyticsStoreContext.Provider value={store}>
@@ -107,31 +103,4 @@ export const useTeacherBrowseAnalytics = <T,>(
   }
 
   return useStore(teacherBrowseAnalyticsStoreContext, selector);
-};
-
-export const useTeacherBrowseAnalyticsOptional = <T,>(
-  selector: (store: TeacherBrowseAnalyticsStore) => T,
-): T | undefined => {
-  const teacherBrowseAnalyticsStoreContext = useContext(
-    TeacherBrowseAnalyticsStoreContext,
-  );
-
-  // Stable fallback so we can call `useStore` unconditionally (Rules of Hooks).
-  const fallbackStore = useMemo(
-    () =>
-      createTeacherBrowseAnalyticsStore({
-        programmeState: null,
-        avo: {} as unknown as TeacherBrowseAnalyticsStore["avo"],
-        journeyId: null,
-        accessLevel: "homepage" as TeacherBrowseAnalyticsStore["accessLevel"],
-      }),
-    [],
-  );
-
-  return useStore(
-    teacherBrowseAnalyticsStoreContext ?? fallbackStore,
-    teacherBrowseAnalyticsStoreContext
-      ? selector
-      : () => undefined as T | undefined,
-  );
 };

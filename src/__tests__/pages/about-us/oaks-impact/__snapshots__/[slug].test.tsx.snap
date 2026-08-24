@@ -629,10 +629,10 @@ exports[`pages/about-us/oaks-impact/case-studies/[slug].tsx renders title when f
                         class="sc-aXZVg bAgOK"
                       >
                         <ul
-                          class="sc-gfoqjT etJvgZ"
+                          class="sc-sLsrZ kLvTXA"
                         >
                           <li
-                            class="sc-kbousE ehwdRw"
+                            class="sc-dBmzty eiiTPx"
                           >
                             <a
                               class="sc-fHjqPf cTauop"
@@ -651,7 +651,7 @@ exports[`pages/about-us/oaks-impact/case-studies/[slug].tsx renders title when f
                             </a>
                           </li>
                           <li
-                            class="sc-kbousE ehwdRw"
+                            class="sc-dBmzty eiiTPx"
                           >
                             <span
                               class="sc-aXZVg fgsIMT"
@@ -683,7 +683,7 @@ exports[`pages/about-us/oaks-impact/case-studies/[slug].tsx renders title when f
                             </a>
                           </li>
                           <li
-                            class="sc-kbousE ehwdRw"
+                            class="sc-dBmzty eiiTPx"
                           >
                             <span
                               class="sc-aXZVg fgsIMT"
@@ -709,11 +709,11 @@ exports[`pages/about-us/oaks-impact/case-studies/[slug].tsx renders title when f
                       </nav>
                     </div>
                     <div
-                      class="sc-aXZVg sc-gEvEer sc-hHOBiw dDGJCM iDBIXi"
+                      class="sc-aXZVg sc-gEvEer sc-gFVvzn dDGJCM iDBIXi"
                       focusable="false"
                     >
                       <svg
-                        class="sc-gFVvzn hkuBRJ"
+                        class="sc-kAkpmW bTMRfD"
                         height="100%"
                         preserveAspectRatio="none"
                         viewBox="0 0 866 8"
@@ -808,7 +808,7 @@ exports[`pages/about-us/oaks-impact/case-studies/[slug].tsx renders title when f
                           class="sc-aXZVg dLPTTd"
                         >
                           <div
-                            class="sc-aXZVg sc-gEvEer laLcvy jMLdOa"
+                            class="sc-aXZVg sc-gEvEer kqqNVp jMLdOa"
                             data-percy-hide="contents"
                             style="box-sizing: content-box;"
                           />
@@ -858,14 +858,14 @@ exports[`pages/about-us/oaks-impact/case-studies/[slug].tsx renders title when f
                     class="sc-aXZVg sc-gEvEer sc-esYiGF jPvJsJ iDBIXi jYNrWW"
                   >
                     <div
-                      class="sc-aXZVg sc-hZDyAQ gQdNNR dmBajW"
+                      class="sc-aXZVg sc-fTFjTM gQdNNR fPhXjy"
                     >
                       <a
-                        class="sc-aXZVg sc-gEvEer sc-eyvILC eyLmQc dXoawi cstkxg"
+                        class="sc-aXZVg sc-gEvEer sc-kbousE eyLmQc dXoawi iNGAcO"
                         href="/about-us/case-studies/test-slug-2"
                       >
                         <span
-                          class="sc-aXZVg kvjdhA sc-bpUBKd gXHgWu"
+                          class="sc-aXZVg kvjdhA sc-gfoqjT giDcXR"
                         >
                           <img
                             alt=""
@@ -880,7 +880,7 @@ exports[`pages/about-us/oaks-impact/case-studies/[slug].tsx renders title when f
                           />
                         </span>
                         <div
-                          class="sc-aXZVg sc-gEvEer sc-kYxDKI jPvJsJ jFNgPm"
+                          class="sc-aXZVg sc-gEvEer sc-eyvILC jPvJsJ jFNgPm"
                         >
                           <div
                             class="sc-aXZVg sc-gEvEer jPvJsJ fVNIMq"
@@ -925,14 +925,14 @@ exports[`pages/about-us/oaks-impact/case-studies/[slug].tsx renders title when f
                     class="sc-aXZVg sc-gEvEer sc-esYiGF jPvJsJ iDBIXi bGCzCa"
                   >
                     <div
-                      class="sc-aXZVg sc-hZDyAQ gQdNNR dmBajW"
+                      class="sc-aXZVg sc-fTFjTM gQdNNR fPhXjy"
                     >
                       <a
-                        class="sc-aXZVg sc-gEvEer sc-eyvILC eyLmQc dXoawi cstkxg"
+                        class="sc-aXZVg sc-gEvEer sc-kbousE eyLmQc dXoawi iNGAcO"
                         href="/about-us/case-studies/test-slug-3"
                       >
                         <span
-                          class="sc-aXZVg kvjdhA sc-bpUBKd gXHgWu"
+                          class="sc-aXZVg kvjdhA sc-gfoqjT giDcXR"
                         >
                           <img
                             alt=""
@@ -947,7 +947,7 @@ exports[`pages/about-us/oaks-impact/case-studies/[slug].tsx renders title when f
                           />
                         </span>
                         <div
-                          class="sc-aXZVg sc-gEvEer sc-kYxDKI jPvJsJ jFNgPm"
+                          class="sc-aXZVg sc-gEvEer sc-eyvILC jPvJsJ jFNgPm"
                         >
                           <div
                             class="sc-aXZVg sc-gEvEer jPvJsJ fVNIMq"
@@ -1025,7 +1025,7 @@ exports[`pages/about-us/oaks-impact/case-studies/[slug].tsx renders title when f
           id="site-footer"
         >
           <div
-            class="sc-aXZVg sc-gEvEer sc-kAkpmW leSQlB iqPJZh"
+            class="sc-aXZVg sc-gEvEer sc-brPLxw leSQlB iqPJZh"
           >
             <div
               class="sc-aXZVg sc-tagGq jPvJsJ fNndNZ"
@@ -1706,7 +1706,7 @@ exports[`pages/about-us/oaks-impact/case-studies/[slug].tsx renders title when f
               </div>
             </div>
             <span
-              class="sc-aXZVg kvjdhA sc-8af0c810-0 bOiGyb"
+              class="sc-aXZVg kvjdhA sc-f9d62eb6-0 fMbHos"
               data-percy-hide="contents"
             >
               <img

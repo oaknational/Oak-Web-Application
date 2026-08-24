@@ -27,7 +27,7 @@ import {
   OakLinkPropsRequiringPageOnly,
   resolveOakHref,
 } from "@/common-lib/urls";
-import { useTeacherBrowseAnalyticsOptional } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
+import { useTeacherBrowseAnalytics } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
 
 const isEyfsKeystage = (keystage: KeystageSubjectsMenu) =>
   keystage.slug === "early-years-foundation-stage";
@@ -98,7 +98,7 @@ export function HamburgerMenuContent(
   props: Readonly<TeachersSubNavData & { hamburgerMenu: HamburgerMenuHook }>,
 ) {
   const { hamburgerMenu, ...navData } = props;
-  const track = useTeacherBrowseAnalyticsOptional((store) => store.track);
+  const track = useTeacherBrowseAnalytics((store) => store.track);
   const { submenuOpen, handleNav, handleCloseHamburger } = hamburgerMenu;
 
   if (!submenuOpen) return null;
@@ -184,7 +184,7 @@ export function HamburgerMenuContent(
         >
           <TopNavSubjectButtons
             handleClick={(subject: SubjectsMenu, keystageSlug: string) => {
-              track?.programmeRefined({
+              track.programmeRefined({
                 componentType: "topnav-browse-button",
                 filterType: "Subject filter",
                 filterValue: subject.subjectSlug,
@@ -202,7 +202,7 @@ export function HamburgerMenuContent(
               `teachers-${phase}-${keystageData.slug}-${key}`
             }
             onExamBoardPanelOpen={(subject: SubjectsMenu) => {
-              track?.programmeRefined({
+              track.programmeRefined({
                 componentType: "topnav-browse-button",
                 filterType: "Subject filter",
                 filterValue: subject.subjectSlug,
@@ -241,7 +241,7 @@ export function HamburgerMenuContent(
                   })
                 }
                 track={() => {
-                  track?.programmeRefined({
+                  track.programmeRefined({
                     componentType: "topnav-browse-button",
                     filterType: "Key stage filter",
                     filterValue: child.slug,
@@ -267,7 +267,7 @@ export function HamburgerMenuContent(
           <TopNavSubjectButtons
             identifyingSlug={phase}
             handleClick={(subject: SubjectsMenu) => {
-              track?.programmeRefined({
+              track.programmeRefined({
                 componentType: "topnav-browse-button",
                 filterType: "Subject filter",
                 filterValue: subject.subjectSlug,
@@ -282,7 +282,7 @@ export function HamburgerMenuContent(
             getButtonId={(key) => `teachers-${phase}-${key}`}
             onExamboardPanelClose={handleCloseHamburger}
             onExamBoardPanelOpen={(subject: SubjectsMenu) => {
-              track?.programmeRefined({
+              track.programmeRefined({
                 componentType: "topnav-browse-button",
                 filterType: "Subject filter",
                 filterValue: subject.subjectSlug,

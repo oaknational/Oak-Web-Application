@@ -195,22 +195,19 @@ describe("MyLibrary", () => {
     await user.click(programmeLink);
     expect(mockTrackProgrammeRefined).toHaveBeenCalledWith({
       analyticsUseCase: "Teacher",
-      clientEnvironment: null,
-      eventVersion: "2.0.0",
-      platform: "owa",
       componentType: "programme_card",
       engagementIntent: "refine",
+      eventVersion: "2.0.0",
+      platform: "owa",
       product: "teacher lesson resources",
-      filterValue: "Subject 1",
+      filterValue: "Programme 1 KS4",
       filterType: "Subject filter",
-      accessLevel: "unit",
-      googleLoginHint: null,
-      journeyId: "mockJourneyId",
-      navigationType: "narrow",
-      phase: "secondary",
       activeFilters: [],
-      subjectSlug: "biology",
-      subjectTitle: "Biology",
+      accessLevel: "my_library",
+      googleLoginHint: null,
+      clientEnvironment: null,
+      journeyId: null,
+      navigationType: "narrow",
     });
   });
 });

@@ -32,6 +32,7 @@ import getPageProps from "@/node-lib/getPageProps";
 import { OaksCurriculaPage } from "@/common-lib/cms-types/aboutPages";
 import getProxiedSanityAssetUrl from "@/common-lib/urls/getProxiedSanityAssetUrl";
 import { SupportYou } from "@/components/GenericPagesComponents/SupportYou";
+import { TeacherBrowseAnalyticsStoreProvider } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
 
 export type OaksCurriculaPageProps = {
   pageData: OaksCurriculaPage;
@@ -173,7 +174,12 @@ export const OaksCurricula: NextPage<OaksCurriculaPageProps> = ({
                 >
                   See Oak's curricula in practice
                 </OakHeading>
-                <SubjectPhasePicker {...curriculumPhaseOptions} />
+                <TeacherBrowseAnalyticsStoreProvider
+                  programmeState={null}
+                  accessLevel={"homepage"}
+                >
+                  <SubjectPhasePicker {...curriculumPhaseOptions} />
+                </TeacherBrowseAnalyticsStoreProvider>
               </OakFlex>
             </OakFlex>
           </NewGutterMaxWidth>

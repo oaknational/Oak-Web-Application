@@ -13,6 +13,8 @@ import MyLibraryUnitCard, {
   MyLibraryUnitCardProps,
 } from "../MyLibraryUnitCard/MyLibraryUnitCard";
 
+import { useTeacherBrowseAnalytics } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
+
 const ProgrammeHeader = ({
   headingIdString,
   programmeTitle,
@@ -53,22 +55,16 @@ interface MyLibraryProgrammeCardProps {
   anchorId: string;
   iconName: OakIconName;
   savedUnits: Array<MyLibraryUnitCardProps>;
-  trackProgrammeRefined: () => void;
 }
 
 export default function MyLibraryProgrammeCard(
   props: Readonly<MyLibraryProgrammeCardProps>,
 ) {
-  const {
-    savedUnits,
-    programmeTitle,
-    programmeHref,
-    iconName,
-    anchorId,
-    trackProgrammeRefined,
-  } = props;
+  const { savedUnits, programmeTitle, programmeHref, iconName, anchorId } =
+    props;
 
   const headingIdString = `programme-heading-${programmeTitle.replaceAll(" ", "-").toLowerCase()}`;
+  const track = useTeacherBrowseAnalytics((store) => store.track);
 
   return (
     <OakFlex
@@ -84,7 +80,14 @@ export default function MyLibraryProgrammeCard(
       <OakLink
         variant="secondary"
         href={programmeHref}
-        onClick={trackProgrammeRefined}
+        onClick={() => {
+          track.programmeRefined({
+            componentType: "programme_card",
+            filterType: "Subject filter",
+            filterValue: programmeTitle,
+            activeFilters: [],
+          });
+        }}
       >
         <ProgrammeHeader
           headingIdString={headingIdString}
@@ -108,14 +111,16 @@ export default function MyLibraryProgrammeCard(
               unitSlug={unit.unitSlug}
               programmeSlug={unit.programmeSlug}
               year={unit.year}
+              yearSlug={unit.yearSlug}
               savedAt={unit.savedAt}
               lessons={unit.lessons}
               keyStageSlug={unit.keyStageSlug}
               keyStageTitle={unit.keyStageTitle}
               subjectTitle={unit.subjectTitle}
               subjectSlug={unit.subjectSlug}
-              trackUnitAccessed={unit.trackUnitAccessed}
-              trackLessonAccessed={unit.trackLessonAccessed}
+              examBoard={unit.examBoard}
+              pathway={unit.pathway}
+              tierName={unit.tierName}
             />
           </OakLI>
         ))}

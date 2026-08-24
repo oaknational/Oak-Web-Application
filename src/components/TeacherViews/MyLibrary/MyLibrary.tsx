@@ -17,8 +17,7 @@ import {
 import { resolveOakHref } from "@/common-lib/urls";
 import MyLibraryProgrammeCard from "@/components/TeacherComponents/MyLibraryProgrammeCard/MyLibraryProgrammeCard";
 import { getValidSubjectIconName } from "@/utils/getValidSubjectIconName";
-import useAnalytics from "@/context/Analytics/useAnalytics";
-import { useTeacherBrowseAnalyticsOptional } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
+import { TeacherBrowseAnalyticsStoreProvider } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
 
 export type CollectionData = Array<{
   subject: string;
@@ -41,10 +40,6 @@ type MyLibraryProps = {
 
 export default function MyLibrary(props: Readonly<MyLibraryProps>) {
   const { collectionData, isLoading } = props;
-  const { track } = useAnalytics();
-  const trackTeacherBrowse = useTeacherBrowseAnalyticsOptional(
-    (store) => store.track,
-  );
   const collections = collectionData ?? [];
 
   const hasLoadedCollections = !isLoading && collectionData !== null;
@@ -93,83 +88,40 @@ export default function MyLibrary(props: Readonly<MyLibraryProps>) {
             $gap={["spacing-24", "spacing-48"]}
             $ph={["spacing-16", "spacing-0"]}
           >
-            {collections.map((collection) => (
-              <MyLibraryProgrammeCard
-                key={collection.uniqueProgrammeKey}
-                programmeTitle={collection.programmeTitle}
-                anchorId={collection.uniqueProgrammeKey}
-                programmeHref={resolveOakHref({
-                  page: "teacher-programme",
-                  subjectPhaseSlug: collection.subjectPhaseSlug,
-                  tab: "units",
-                  query: {
-                    keystages: collection.keystageSlug,
-                    subject_categories: collection.subjectCategoryQuery,
-                  },
-                })}
-                trackProgrammeRefined={() => {
-                  trackTeacherBrowse?.programmeRefined({
-                    componentType: "programme_card",
-                    filterType: "Subject filter",
-                    filterValue: collection.subject,
-                    activeFilters: [],
-                  });
-                }}
-                iconName={getValidSubjectIconName(collection.subjectSlug)}
-                savedUnits={collection.units.map((unit) => ({
-                  ...unit,
-                  keyStageTitle: collection.keystage as KeyStageTitleValueType,
-                  keyStageSlug: collection.keystageSlug,
-                  subjectTitle: collection.subject,
-                  subjectSlug: collection.subjectSlug,
-                  programmeSlug: collection.programmeSlug,
-                  trackUnitAccessed: () =>
-                    track.unitAccessed({
-                      platform: "owa",
-                      product: "teacher lesson resources",
-                      engagementIntent: "refine",
-                      componentType: "unit_card",
-                      eventVersion: "2.0.0",
-                      analyticsUseCase: "Teacher",
-                      unitName: unit.unitTitle,
-                      unitSlug: unit.unitSlug,
-                      subjectTitle: collection.subject,
-                      subjectSlug: collection.subjectSlug,
-                      keyStageTitle:
-                        collection.keystage as KeyStageTitleValueType,
-                      keyStageSlug: collection.keystageSlug,
-                      yearGroupName: unit.year,
-                      yearGroupSlug: unit.yearSlug,
-                      tierName: unit.tier as TierNameValueType,
-                      examBoard: unit.examboard as ExamBoardValueType,
-                      pathway: unit.pathway as PathwayValueType,
-                    }),
-                  trackLessonAccessed: (lessonSlug: string) =>
-                    track.lessonAccessed({
-                      platform: "owa",
-                      product: "teacher lesson resources",
-                      engagementIntent: "refine",
-                      componentType: "lesson_card",
-                      eventVersion: "2.0.0",
-                      analyticsUseCase: "Teacher",
-                      unitName: unit.unitTitle,
-                      unitSlug: unit.unitSlug,
-                      lessonName: lessonSlug,
-                      keyStageTitle:
-                        collection.keystage as KeyStageTitleValueType,
-                      keyStageSlug: collection.keystageSlug,
-                      yearGroupName: unit.year,
-                      yearGroupSlug: unit.yearSlug,
-                      tierName: unit.tier as TierNameValueType,
-                      examBoard: unit.examboard as ExamBoardValueType,
-                      pathway: unit.pathway as PathwayValueType,
-                      lessonSlug,
-                      lessonReleaseCohort: "2023-2026",
-                      lessonReleaseDate: "", // we don't have access to lesson content data here
-                    }),
-                }))}
-              />
-            ))}
+            <TeacherBrowseAnalyticsStoreProvider
+              programmeState={null}
+              accessLevel="my_library"
+            >
+              {collections.map((collection) => (
+                <MyLibraryProgrammeCard
+                  key={collection.uniqueProgrammeKey}
+                  programmeTitle={collection.programmeTitle}
+                  anchorId={collection.uniqueProgrammeKey}
+                  programmeHref={resolveOakHref({
+                    page: "teacher-programme",
+                    subjectPhaseSlug: collection.subjectPhaseSlug,
+                    tab: "units",
+                    query: {
+                      keystages: collection.keystageSlug,
+                      subject_categories: collection.subjectCategoryQuery,
+                    },
+                  })}
+                  iconName={getValidSubjectIconName(collection.subjectSlug)}
+                  savedUnits={collection.units.map((unit) => ({
+                    ...unit,
+                    examBoard: unit.examboard as ExamBoardValueType,
+                    pathway: unit.pathway as PathwayValueType,
+                    keyStageTitle:
+                      collection.keystage as KeyStageTitleValueType,
+                    keyStageSlug: collection.keystageSlug,
+                    subjectTitle: collection.subject,
+                    subjectSlug: collection.subjectSlug,
+                    tierName: unit.tier as TierNameValueType,
+                    programmeSlug: collection.programmeSlug,
+                  }))}
+                />
+              ))}
+            </TeacherBrowseAnalyticsStoreProvider>
           </OakGridArea>
         </OakGrid>
       ) : null}

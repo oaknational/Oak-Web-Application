@@ -5,8 +5,6 @@ import CategoryFilterListItem, {
   CategoryLinkProps,
 } from "./CategoryFilterListItem";
 
-import { TeacherBrowseAnalyticsStoreProvider } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
-
 export type LearningThemeSelectedTrackingProps = {
   keyStageSlug: string;
   keyStageTitle: string;
@@ -35,26 +33,21 @@ const CategoryFilterList = <T extends CategoryLinkProps>(
   } = props;
 
   return (
-    <TeacherBrowseAnalyticsStoreProvider
-      programmeState={null}
-      accessLevel={"homepage"}
-    >
-      <nav aria-label={ariaLabel}>
-        <OakUL {...boxProps} $reset $mr={"spacing-32"}>
-          {categories.map((category) => {
-            return (
-              <CategoryFilterListItem
-                key={`CategoryFilterListItem-${category.label}`}
-                isSelected={getIsSelected(category.linkProps)}
-                setSelected={setSelected}
-                trackingProps={trackingProps}
-                {...category}
-              />
-            );
-          })}
-        </OakUL>
-      </nav>
-    </TeacherBrowseAnalyticsStoreProvider>
+    <nav aria-label={ariaLabel}>
+      <OakUL {...boxProps} $reset $mr={"spacing-32"}>
+        {categories.map((category) => {
+          return (
+            <CategoryFilterListItem
+              key={`CategoryFilterListItem-${category.label}`}
+              isSelected={getIsSelected(category.linkProps)}
+              setSelected={setSelected}
+              trackingProps={trackingProps}
+              {...category}
+            />
+          );
+        })}
+      </OakUL>
+    </nav>
   );
 };
 

@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { OakIconName, OakDownloadCard } from "@oaknational/oak-components";
+import { OakIconName, OakResourceCard } from "@oaknational/oak-components";
 import styled from "styled-components";
 
 import { CheckboxProps } from "@/components/SharedComponents/Checkbox/Checkbox";
@@ -66,7 +66,7 @@ const ResourceCard: FC<ResourceCardProps> = (props) => {
       checked={checked}
       useDownloadPageLayout={useDownloadPageLayout}
     >
-      <OakDownloadCard
+      <OakResourceCard
         id={id}
         data-testid="resourceCard"
         value={id}
@@ -79,7 +79,7 @@ const ResourceCard: FC<ResourceCardProps> = (props) => {
         onChange={onChange}
         onBlur={onBlur}
         isRadio={asRadio}
-        format={subtitle}
+        description={subtitle}
         iconName={iconName}
       />
     </CustomSizing>
