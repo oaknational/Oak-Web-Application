@@ -27,7 +27,6 @@ import SocialButtons from "@/components/SharedComponents/SocialButtons";
 import useAnalytics from "@/context/Analytics/useAnalytics";
 import { toSentenceCase } from "@/node-lib/curriculum-api-2023/helpers";
 import { buildAboutUsAnalytics } from "@/utils/analytics-builders";
-import { isFeatureFlagEnabledStatic } from "@/utils/featureFlagChecks/static";
 import { getCloudinaryImageUrl } from "@/utils/getCloudinaryImageUrl";
 import { resolveOakHref } from "@/common-lib/urls";
 
@@ -90,16 +89,12 @@ const footerSections: FooterSections = {
         href: resolveOakHref({ page: "about-oaks-curricula" }),
         track: trackAboutUsFooter,
       },
-      ...(isFeatureFlagEnabledStatic("oaks-impact")
-        ? [
-            {
-              text: "Oak's impact",
-              type: "link" as const,
-              href: resolveOakHref({ page: "about-oaks-impact" }),
-              track: trackAboutUsFooter,
-            },
-          ]
-        : []),
+      {
+        text: "Oak's impact",
+        type: "link" as const,
+        href: resolveOakHref({ page: "about-oaks-impact" }),
+        track: trackAboutUsFooter,
+      },
       {
         text: "Get involved",
         type: "link",
