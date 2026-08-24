@@ -5,7 +5,6 @@ import { topNavResponseSchema } from "./topNav.schema";
 import sdk from "@/node-lib/curriculum-api-2023/sdk";
 import { cacheData } from "@/node-lib/cache";
 import OakError from "@/errors/OakError";
-import { isFeatureFlagEnabledStatic } from "@/utils/featureFlagChecks/static";
 
 jest.mock("@/node-lib/curriculum-api-2023/sdk", () => {});
 
@@ -24,16 +23,9 @@ jest.mock("@/common-lib/error-reporter", () => ({
       mockErrorReporter(...args),
 }));
 
-jest.mock("@/utils/featureFlagChecks/static", () => ({
-  isFeatureFlagEnabledStatic: jest.fn(),
-}));
-
-const mockIsFeatureFlagEnabledStatic = jest.mocked(isFeatureFlagEnabledStatic);
-
 describe("TopNavQuery", () => {
   beforeEach(() => {
     mockCacheData.mockImplementation((fn) => fn);
-    mockIsFeatureFlagEnabledStatic.mockReturnValue(false);
   });
 
   it("parses mock response data including phase options", () => {
