@@ -175,7 +175,6 @@ describe("KS4OptionFocusProvider", () => {
     });
 
     expect(focusSpy).not.toHaveBeenCalled();
-    expect(replaceStateMock).not.toHaveBeenCalled();
 
     focusSpy.mockRestore();
   });

@@ -1,5 +1,5 @@
 import { ReactNode } from "react";
-import { act, renderHook } from "@testing-library/react";
+import { act, renderHook, waitFor } from "@testing-library/react";
 
 import {
   BrowseFiltersProvider,
@@ -68,6 +68,17 @@ describe("BrowseFiltersProvider", () => {
 
     expect(result.current.filters.tiers).toEqual(["higher"]);
     expect(result.current.filters.years).toEqual(["7", "8"]);
+  });
+
+  it("updates when the URL changes during client-side navigation", async () => {
+    const { result, rerender } = renderFilters();
+
+    setUrl("tiers=higher");
+    rerender();
+
+    await waitFor(() => {
+      expect(result.current.filters.tiers).toEqual(["higher"]);
+    });
   });
 
   it("keeps the server-resolved filter when the URL agrees with it", () => {
