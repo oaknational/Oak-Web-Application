@@ -2,7 +2,6 @@ import { useEffect } from "react";
 import {
   OakBox,
   OakLI,
-  OakIconName,
   OakFlex,
   OakHeading,
   OakSvg,
@@ -10,7 +9,6 @@ import {
   OakLeftAlignedButton,
   OakLIProps,
 } from "@oaknational/oak-components";
-import Link from "next/link";
 
 import { HamburgerMenuHook } from "./TeachersTopNavHamburger";
 
@@ -18,7 +16,6 @@ import {
   TeachersBrowse,
   TeachersSubNavData,
 } from "@/node-lib/curriculum-api-2023/queries/topNav/topNav.schema";
-import { resolveOakHref } from "@/common-lib/urls";
 import useAnalytics from "@/context/Analytics/useAnalytics";
 
 export function MainMenuContent(
@@ -63,15 +60,12 @@ export function MainMenuContent(
         }
         $pb="spacing-16"
       />
-      <MainMenuLink
-        onClick={hamburgerMenu.handleCloseHamburger}
-        href={resolveOakHref({
-          page: "labs",
-        })}
-        external={true}
-        title="AI Experiments"
-        iconName="external"
-        aria-label="AI Experiments (this will open in a new tab)"
+      <MainMenuButton
+        title={"AI experiments"}
+        onClick={() =>
+          hamburgerMenu.handleNav({ menu: "OakMenu", value: "AI experiments" })
+        }
+        $pb="spacing-16"
       />
     </OakUL>
   );
@@ -214,36 +208,5 @@ export function MainMenuButton({
         {title}
       </OakLeftAlignedButton>
     </OakLI>
-  );
-}
-
-function MainMenuLink({
-  href,
-  title,
-  iconName,
-  external,
-  onClick,
-}: {
-  readonly href: string;
-  readonly title: string;
-  readonly external?: boolean;
-  readonly iconName?: OakIconName;
-  readonly onClick: () => void;
-}) {
-  return (
-    <OakLeftAlignedButton
-      width={"100%"}
-      element={Link}
-      isTrailingIcon
-      iconName={iconName}
-      href={href}
-      target={external ? "_blank" : "_self"}
-      aria-label={
-        external ? `${title} (this will open in a new tab)` : undefined
-      }
-      onClick={onClick}
-    >
-      {title}
-    </OakLeftAlignedButton>
   );
 }

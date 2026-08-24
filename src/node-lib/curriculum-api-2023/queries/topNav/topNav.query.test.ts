@@ -77,6 +77,35 @@ describe("TopNavQuery", () => {
     ).toBe(true);
   });
 
+  it("returns AI experiments as a dropdown with the AI links", async () => {
+    const res = await topNavQuery({
+      ...sdk,
+      topNav: jest.fn(() => Promise.resolve(mockResponseData)),
+    })();
+
+    const aiExperiments = res.teachers?.aiExperiments;
+    expect(aiExperiments?.slug).toBe("aiExperiments");
+    expect(aiExperiments?.children).toEqual([
+      {
+        title: "Labs home",
+        slug: "labs",
+        href: "https://labs.thenational.academy",
+        external: true,
+      },
+      {
+        title: "Aila",
+        slug: "aila",
+        href: "https://labs.thenational.academy/aila",
+        external: true,
+      },
+      {
+        title: "Oak Curriculum MCP",
+        slug: "mcp",
+        href: "/mcp",
+      },
+    ]);
+  });
+
   it("uses the cached topNav function when withCache is true", async () => {
     const mockTopNav = jest.fn(() => Promise.resolve(mockResponseData));
     const mockCachedTopNav = jest.fn(() => Promise.resolve(mockResponseData));

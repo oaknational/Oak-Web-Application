@@ -316,10 +316,27 @@ export const topNavFixture: TopNavProps = {
       ],
     },
     aiExperiments: {
-      slug: "labs",
-      title: "Ai experiments",
-      href: "https://labs.thenational.academy",
-      external: true,
+      slug: "aiExperiments",
+      title: "AI experiments",
+      children: [
+        {
+          slug: "labs",
+          title: "Labs home",
+          href: "https://labs.thenational.academy",
+          external: true,
+        },
+        {
+          slug: "aila",
+          title: "Aila",
+          href: "https://labs.thenational.academy/aila",
+          external: true,
+        },
+        {
+          slug: "mcp",
+          title: "Oak Curriculum MCP",
+          href: "/mcp",
+        },
+      ],
     },
   },
   pupils: {

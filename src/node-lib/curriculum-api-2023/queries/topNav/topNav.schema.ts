@@ -32,7 +32,7 @@ export type TeachersSubNavData = {
   secondary: TeachersBrowse;
   guidance: NavDropDownButton;
   aboutUs: NavDropDownButton;
-  aiExperiments: NavLink;
+  aiExperiments: NavDropDownButton;
 };
 
 export type PupilsSubNavData = {
@@ -78,7 +78,10 @@ type PhaseState = {
   value: PhaseTitle;
 };
 type KeystageOptionsState = { menu: "KeystageOptions"; value: PhaseTitle };
-type OakState = { menu: "OakMenu"; value: "About us" | "Guidance" };
+type OakState = {
+  menu: "OakMenu";
+  value: "About us" | "Guidance" | "AI experiments";
+};
 type KS4OptionsState = { menu: "Ks4Options"; value: string };
 type MainMenuState = { menu: "MainMenu"; value: null };
 
@@ -229,7 +232,9 @@ export function isNavDropDownButtonItem(
 ): section is NavDropDownButton {
   return (
     "slug" in section &&
-    (section.slug === "guidance" || section.slug === "aboutUs")
+    (section.slug === "guidance" ||
+      section.slug === "aboutUs" ||
+      section.slug === "aiExperiments")
   );
 }
 

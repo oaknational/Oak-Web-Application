@@ -492,6 +492,48 @@ describe("TopNavDropdown", () => {
 
         expect(externalLink).toHaveAttribute("target", "_blank");
       });
+
+      it("renders the AI experiments section with its links", async () => {
+        render(
+          <TopNavDropdown
+            teachers={topNavFixture.teachers!}
+            pupils={topNavFixture.pupils!}
+            activeArea="TEACHERS"
+            selectedMenu="aiExperiments"
+            focusManager={teachersFocusManager}
+            onClose={onCloseMock}
+          />,
+        );
+
+        const heading = await screen.findByRole("heading", {
+          name: "AI experiments",
+        });
+        expect(heading).toBeInTheDocument();
+
+        const labsLink = await screen.findByRole("link", {
+          name: "Labs home (opens in a new tab)",
+        });
+        expect(labsLink).toHaveAttribute(
+          "href",
+          "https://labs.thenational.academy",
+        );
+        expect(labsLink).toHaveAttribute("target", "_blank");
+
+        const ailaLink = await screen.findByRole("link", {
+          name: "Aila (opens in a new tab)",
+        });
+        expect(ailaLink).toHaveAttribute(
+          "href",
+          "https://labs.thenational.academy/aila",
+        );
+        expect(ailaLink).toHaveAttribute("target", "_blank");
+
+        const mcpLink = await screen.findByRole("link", {
+          name: "Oak Curriculum MCP",
+        });
+        expect(mcpLink).toHaveAttribute("href", "/mcp");
+        expect(mcpLink).not.toHaveAttribute("target", "_blank");
+      });
     });
   });
 

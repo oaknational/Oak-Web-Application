@@ -97,19 +97,19 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c38 {
+.c37 {
   position: relative;
   max-width: 11.25rem;
   display: none;
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c39 {
+.c38 {
   display: none;
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c40 {
+.c39 {
   position: relative;
   height: -webkit-fit-content;
   height: -moz-fit-content;
@@ -130,17 +130,17 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
   letter-spacing: -0.005rem;
 }
 
-.c40:hover {
+.c39:hover {
   cursor: pointer;
 }
 
-.c44 {
+.c43 {
   top: 50%;
   right: 0.5rem;
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c45 {
+.c44 {
   position: relative;
   width: -webkit-max-content;
   width: -moz-max-content;
@@ -148,7 +148,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c51 {
+.c50 {
   position: relative;
   width: 2rem;
   min-width: 2rem;
@@ -159,7 +159,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c53 {
+.c52 {
   position: absolute;
   top: 0rem;
   width: 100%;
@@ -168,12 +168,12 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c56 {
+.c55 {
   display: block;
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c59 {
+.c58 {
   width: -webkit-fit-content;
   width: -moz-fit-content;
   width: fit-content;
@@ -193,7 +193,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
   letter-spacing: 0.0115rem;
 }
 
-.c61 {
+.c60 {
   position: relative;
   width: 1.5rem;
   min-width: 1.5rem;
@@ -203,12 +203,12 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c62 {
+.c61 {
   display: none;
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c65 {
+.c64 {
   display: block;
   font-family: --var(google-font),Lexend,sans-serif;
 }
@@ -732,7 +732,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
   gap: 0.25rem;
 }
 
-.c37 {
+.c36 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -744,7 +744,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
   gap: 1.5rem;
 }
 
-.c41 {
+.c40 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -755,14 +755,14 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
   align-items: center;
 }
 
-.c46 {
+.c45 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
 }
 
-.c50 {
+.c49 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -781,7 +781,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
   gap: 0rem;
 }
 
-.c52 {
+.c51 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -796,7 +796,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
   justify-content: center;
 }
 
-.c60 {
+.c59 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -1189,7 +1189,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
   text-align: left;
 }
 
-.c55 {
+.c54 {
   font-family: --var(google-font),Lexend,sans-serif;
   font-weight: 600;
   font-size: 1rem;
@@ -1367,7 +1367,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
   cursor: default;
 }
 
-.c48 {
+.c47 {
   background: none;
   color: inherit;
   border: none;
@@ -1381,12 +1381,12 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
   color: #222222;
 }
 
-.c48:disabled {
+.c47:disabled {
   pointer-events: none;
   cursor: default;
 }
 
-.c57 {
+.c56 {
   background: none;
   color: inherit;
   border: none;
@@ -1399,12 +1399,12 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c57:disabled {
+.c56:disabled {
   pointer-events: none;
   cursor: default;
 }
 
-.c63 {
+.c62 {
   background: none;
   color: inherit;
   border: none;
@@ -1434,12 +1434,12 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
   border-radius: 0.25rem;
 }
 
-.c63:disabled {
+.c62:disabled {
   pointer-events: none;
   cursor: default;
 }
 
-.c66 {
+.c65 {
   background: none;
   color: inherit;
   border: none;
@@ -1463,7 +1463,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
   border-style: none;
 }
 
-.c66:disabled {
+.c65:disabled {
   pointer-events: none;
   cursor: default;
 }
@@ -1529,15 +1529,15 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
   object-fit: contain;
 }
 
-.c36 {
-  -webkit-filter: invert(10%) sepia(1%) saturate(236%) hue-rotate(314deg) brightness(95%) contrast(91%);
-  filter: invert(10%) sepia(1%) saturate(236%) hue-rotate(314deg) brightness(95%) contrast(91%);
+.c53 {
+  -webkit-filter: invert(98%) sepia(98%) saturate(0%) hue-rotate(328deg) brightness(102%) contrast(102%);
+  filter: invert(98%) sepia(98%) saturate(0%) hue-rotate(328deg) brightness(102%) contrast(102%);
   object-fit: contain;
 }
 
-.c54 {
-  -webkit-filter: invert(98%) sepia(98%) saturate(0%) hue-rotate(328deg) brightness(102%) contrast(102%);
-  filter: invert(98%) sepia(98%) saturate(0%) hue-rotate(328deg) brightness(102%) contrast(102%);
+.c66 {
+  -webkit-filter: invert(10%) sepia(1%) saturate(236%) hue-rotate(314deg) brightness(95%) contrast(91%);
+  filter: invert(10%) sepia(1%) saturate(236%) hue-rotate(314deg) brightness(95%) contrast(91%);
   object-fit: contain;
 }
 
@@ -1685,13 +1685,13 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
   display: none;
 }
 
-.c64 {
+.c63 {
   position: relative;
   width: 100%;
   height: 100%;
 }
 
-.c64:hover {
+.c63:hover {
   -webkit-text-decoration: none;
   text-decoration: none;
   color: #ffffff;
@@ -1699,27 +1699,27 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
   border-color: #575757;
 }
 
-.c64:hover [data-state="selected"] {
+.c63:hover [data-state="selected"] {
   display: none;
 }
 
-.c64:active {
+.c63:active {
   background: #222222;
   border-color: #222222;
   color: #ffffff;
 }
 
-.c64:active [data-state="selected"] {
+.c63:active [data-state="selected"] {
   display: none;
 }
 
-.c64:disabled {
+.c63:disabled {
   background: #808080;
   border-color: #808080;
   color: #ffffff;
 }
 
-.c64:disabled [data-state="selected"] {
+.c63:disabled [data-state="selected"] {
   display: none;
 }
 
@@ -1773,46 +1773,46 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
   box-shadow: 0.125rem 0.125rem 0 rgba(255,229,85,100%);
 }
 
-.c49 {
+.c48 {
   display: inline-block;
   position: relative;
 }
 
-.c49:hover {
+.c48:hover {
   -webkit-text-decoration: underline;
   text-decoration: underline;
   color: #575757;
 }
 
-.c49:active {
+.c48:active {
   color: #222222;
 }
 
-.c49:disabled {
+.c48:disabled {
   color: #808080;
 }
 
-.c47 > :first-child:focus-visible .shadow {
+.c46 > :first-child:focus-visible .shadow {
   box-shadow: 0 0 0 0.125rem rgba(255,229,85,100%), 0 0 0 0.3rem rgba(87,87,87,100%);
 }
 
-.c47 > :first-child:hover .shadow {
+.c46 > :first-child:hover .shadow {
   box-shadow: 0.125rem 0.125rem 0 rgba(255,229,85,100%);
 }
 
-.c47 > :first-child:active .shadow {
+.c46 > :first-child:active .shadow {
   box-shadow: 0.125rem 0.125rem 0 rgba(255,229,85,100%), 0.25rem 0.25rem 0 rgba(87,87,87,100%);
 }
 
-.c47 > :first-child:disabled .icon-container {
+.c46 > :first-child:disabled .icon-container {
   background: #808080;
 }
 
-.c47 > :first-child:hover .icon-container {
+.c46 > :first-child:hover .icon-container {
   background: #575757;
 }
 
-.c47 > :first-child:active .icon-container {
+.c46 > :first-child:active .icon-container {
   background: #222222;
 }
 
@@ -2241,7 +2241,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
   filter: invert(54%) sepia(0%) saturate(38%) hue-rotate(176deg) brightness(92%) contrast(91%);
 }
 
-.c43 {
+.c42 {
   -webkit-appearance: none !important;
   -moz-appearance: none !important;
   appearance: none !important;
@@ -2257,44 +2257,44 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
   width: 100%;
 }
 
-.c43::-webkit-input-placeholder {
+.c42::-webkit-input-placeholder {
   color: #575757;
 }
 
-.c43::-moz-placeholder {
+.c42::-moz-placeholder {
   color: #575757;
 }
 
-.c43:-ms-input-placeholder {
+.c42:-ms-input-placeholder {
   color: #575757;
 }
 
-.c43::placeholder {
+.c42::placeholder {
   color: #575757;
 }
 
-.c43::-webkit-search-decoration,
-.c43::-webkit-search-cancel-button,
-.c43::-webkit-search-results-button,
-.c43::-webkit-search-results-decoration {
+.c42::-webkit-search-decoration,
+.c42::-webkit-search-cancel-button,
+.c42::-webkit-search-results-button,
+.c42::-webkit-search-results-decoration {
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
 }
 
-.c43:disabled {
+.c42:disabled {
   cursor: not-allowed;
 }
 
-.c42 {
+.c41 {
   background: #ffffff;
 }
 
-.c42:hover {
+.c41:hover {
   cursor: text;
 }
 
-.c42:focus-within {
+.c41:focus-within {
   border-color: #222222;
   background: #ffffff;
 }
@@ -2420,11 +2420,11 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
   box-shadow: 0.125rem 0.125rem 0 rgba(255,229,85,100%),0.25rem 0.25rem 0 rgba(87,87,87,100%);
 }
 
-.c58:hover .oak-save-count {
+.c57:hover .oak-save-count {
   background-color: #bef2bd;
 }
 
-.c58:focus-visible .oak-save-count {
+.c57:focus-visible .oak-save-count {
   box-shadow: 0 0 0 0.125rem rgba(255,229,85,100%), 0 0 0 0.3rem rgba(87,87,87,100%);
 }
 
@@ -2857,7 +2857,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
 }
 
 @media (min-width:750px) {
-  .c38 {
+  .c37 {
     display: -webkit-box;
     display: -webkit-flex;
     display: -ms-flexbox;
@@ -2866,19 +2866,19 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
 }
 
 @media (min-width:750px) {
-  .c39 {
+  .c38 {
     display: block;
   }
 }
 
 @media (min-width:750px) {
-  .c44 {
+  .c43 {
     position: absolute;
   }
 }
 
 @media (min-width:750px) {
-  .c44 {
+  .c43 {
     -webkit-transform: translateY(-50%);
     -ms-transform: translateY(-50%);
     transform: translateY(-50%);
@@ -2886,37 +2886,37 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
 }
 
 @media (min-width:750px) {
-  .c56 {
+  .c55 {
     display: none;
   }
 }
 
 @media (min-width:750px) {
-  .c59 {
+  .c58 {
     padding-left: 0.25rem;
   }
 }
 
 @media (min-width:750px) {
-  .c59 {
+  .c58 {
     padding-right: 0.5rem;
   }
 }
 
 @media (min-width:750px) {
-  .c62 {
+  .c61 {
     display: contents;
   }
 }
 
 @media (min-width:750px) {
-  .c65 {
+  .c64 {
     display: block;
   }
 }
 
 @media (min-width:1280px) {
-  .c65 {
+  .c64 {
     display: none;
   }
 }
@@ -3237,19 +3237,19 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
 }
 
 @media (min-width:750px) {
-  .c37 {
+  .c36 {
     gap: 1rem;
   }
 }
 
 @media (min-width:1280px) {
-  .c37 {
+  .c36 {
     gap: 1rem;
   }
 }
 
 @media (min-width:750px) {
-  .c60 {
+  .c59 {
     -webkit-box-pack: initial;
     -webkit-justify-content: initial;
     -ms-flex-pack: initial;
@@ -3948,13 +3948,13 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
 }
 
 @media (max-width:750px) {
-  .c43 {
+  .c42 {
     font-size: 16px;
   }
 }
 
 @media (hover:hover) {
-  .c42:hover:not(:focus-within) {
+  .c41:hover:not(:focus-within) {
     background: #f2f2f2;
     border-color: #808080;
   }
@@ -4642,12 +4642,12 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                     <div
                       class="c6 yellow-shadow"
                     />
-                    <a
-                      aria-label="Ai experiments (this will open in a new tab)"
+                    <button
+                      aria-expanded="false"
+                      aria-haspopup="true"
                       class="c32 c33 internal-button"
-                      href="https://labs.thenational.academy"
-                      id="teachers-labs"
-                      target="_blank"
+                      data-testid="teachers-aiExperiments"
+                      id="teachers-aiExperiments"
                     >
                       <div
                         class="c9 c34"
@@ -4655,46 +4655,33 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                         <span
                           class="c35"
                         >
-                          Ai experiments
-                        </span>
-                        <span
-                          class="c20"
-                        >
-                          <img
-                            alt=""
-                            class="c36"
-                            data-nimg="fill"
-                            decoding="async"
-                            loading="lazy"
-                            src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1699953892/icons/hlxmejse3mcr4tqo6t8u.svg"
-                            style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
-                          />
+                          AI experiments
                         </span>
                       </div>
-                    </a>
+                    </button>
                   </div>
                 </li>
               </ul>
             </div>
             <div
-              class="c9 c37"
+              class="c9 c36"
             >
               <form
                 action="/teachers/search"
-                class="c38"
+                class="c37"
                 method="get"
                 role="search"
               >
                 <div
-                  class="c39"
+                  class="c38"
                 >
                   <div
-                    class="c40 c41 c42"
+                    class="c39 c40 c41"
                   >
                     <input
                       aria-invalid="false"
                       aria-label="Lesson and unit search"
-                      class="c43"
+                      class="c42"
                       name="term"
                       placeholder="Search"
                       type="search"
@@ -4702,24 +4689,24 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                   </div>
                 </div>
                 <div
-                  class="c44"
+                  class="c43"
                 >
                   <div
-                    class="c45 c46 c47"
+                    class="c44 c45 c46"
                   >
                     <button
                       aria-label="Submit search"
-                      class="c48 c49"
+                      class="c47 c48"
                       type="submit"
                     >
                       <div
-                        class="c9 c50"
+                        class="c9 c49"
                       >
                         <div
-                          class="c51 c52 icon-container"
+                          class="c50 c51 icon-container"
                         >
                           <div
-                            class="c53 shadow"
+                            class="c52 shadow"
                           />
                           <span
                             class="c20"
@@ -4727,7 +4714,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                           >
                             <img
                               alt=""
-                              class="c54"
+                              class="c53"
                               data-nimg="fill"
                               decoding="async"
                               loading="lazy"
@@ -4737,7 +4724,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                           </span>
                         </div>
                         <span
-                          class="c55"
+                          class="c54"
                         />
                       </div>
                     </button>
@@ -4745,24 +4732,24 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                 </div>
               </form>
               <div
-                class="c56"
+                class="c55"
               >
                 <div
-                  class="c45 c46 c47"
+                  class="c44 c45 c46"
                 >
                   <a
                     aria-label="Search"
-                    class="c48 c49"
+                    class="c47 c48"
                     href="/teachers/search"
                   >
                     <div
-                      class="c9 c50"
+                      class="c9 c49"
                     >
                       <div
-                        class="c51 c52 icon-container"
+                        class="c50 c51 icon-container"
                       >
                         <div
-                          class="c53 shadow"
+                          class="c52 shadow"
                         />
                         <span
                           class="c20"
@@ -4770,7 +4757,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                         >
                           <img
                             alt=""
-                            class="c54"
+                            class="c53"
                             data-nimg="fill"
                             decoding="async"
                             loading="lazy"
@@ -4780,7 +4767,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                         </span>
                       </div>
                       <span
-                        class="c55"
+                        class="c54"
                       />
                     </div>
                   </a>
@@ -4788,14 +4775,14 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
               </div>
               <a
                 aria-label="My library"
-                class="c57 c58"
+                class="c56 c57"
                 href="/teachers/my-library"
               >
                 <div
-                  class="c59 c60 oak-save-count"
+                  class="c58 c59 oak-save-count"
                 >
                   <span
-                    class="c61"
+                    class="c60"
                     data-testid="bookmark-outlined"
                   >
                     <img
@@ -4809,7 +4796,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                     />
                   </span>
                   <div
-                    class="c62"
+                    class="c61"
                   >
                     My library
                   </div>
@@ -4825,7 +4812,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                   class="c6 yellow-shadow"
                 />
                 <button
-                  class="c63 c64 internal-button"
+                  class="c62 c63 internal-button"
                 >
                   <div
                     class="c9 c34"
@@ -4841,7 +4828,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
             </div>
           </div>
           <div
-            class="c65"
+            class="c64"
           >
             <div
               class="c4 c5"
@@ -4855,18 +4842,18 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
               <button
                 aria-expanded="false"
                 aria-label="Open navigation menu"
-                class="c66 c8 internal-button"
+                class="c65 c8 internal-button"
                 data-testid="top-nav-hamburger-button"
               >
                 <div
-                  class="c9 c50"
+                  class="c9 c49"
                 >
                   <span
                     class="c20"
                   >
                     <img
                       alt=""
-                      class="c36"
+                      class="c66"
                       data-nimg="fill"
                       decoding="async"
                       loading="lazy"
@@ -4947,7 +4934,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                   class="c9 c82"
                 >
                   <div
-                    class="c9 c46 c83"
+                    class="c9 c45 c83"
                   >
                     <h2
                       class="c84"
@@ -4956,7 +4943,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                     </h2>
                   </div>
                   <div
-                    class="c9 c46 c85"
+                    class="c9 c45 c85"
                   >
                     <div
                       class="c86 c87"
@@ -4977,7 +4964,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                     </div>
                   </div>
                   <div
-                    class="c9 c46 c90"
+                    class="c9 c45 c90"
                   >
                     <div
                       class="c9 c72"
@@ -5263,7 +5250,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                   class="c9 c106"
                 >
                   <div
-                    class="c107 c46"
+                    class="c107 c45"
                   >
                     <span
                       class="c88"
@@ -5355,7 +5342,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                             data-testid="who-we-are-explore-item"
                           >
                             <div
-                              class="c9 c46"
+                              class="c9 c45"
                             >
                               <span
                                 class="c123"
@@ -5377,7 +5364,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                               About Oak
                             </div>
                             <div
-                              class="c9 c46"
+                              class="c9 c45"
                             >
                               <span
                                 class="c77"
@@ -5408,7 +5395,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                             data-testid="who-we-are-explore-item"
                           >
                             <div
-                              class="c9 c46"
+                              class="c9 c45"
                             >
                               <span
                                 class="c123"
@@ -5430,7 +5417,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                               Oak's curricula
                             </div>
                             <div
-                              class="c9 c46"
+                              class="c9 c45"
                             >
                               <span
                                 class="c77"
@@ -5461,7 +5448,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                             data-testid="who-we-are-explore-item"
                           >
                             <div
-                              class="c9 c46"
+                              class="c9 c45"
                             >
                               <span
                                 class="c123"
@@ -5483,7 +5470,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                               Meet the team
                             </div>
                             <div
-                              class="c9 c46"
+                              class="c9 c45"
                             >
                               <span
                                 class="c77"
@@ -5514,7 +5501,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                             data-testid="who-we-are-explore-item"
                           >
                             <div
-                              class="c9 c46"
+                              class="c9 c45"
                             >
                               <span
                                 class="c123"
@@ -5536,7 +5523,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                               Get involved
                             </div>
                             <div
-                              class="c9 c46"
+                              class="c9 c45"
                             >
                               <span
                                 class="c77"
@@ -5569,7 +5556,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
               class="c69"
             >
               <div
-                class="c9 c46 c127"
+                class="c9 c45 c127"
               >
                 <div
                   class="c128 c1"
@@ -5578,7 +5565,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                     class="c9 c129"
                   >
                     <div
-                      class="c9 c46 c130"
+                      class="c9 c45 c130"
                     >
                       <div
                         class="c131 c132"
@@ -5623,7 +5610,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                       </p>
                     </div>
                     <div
-                      class="c136 c46 c130"
+                      class="c136 c45 c130"
                     >
                       <form
                         aria-describedby="react-use-id-test-result-newsletter-form-description"
@@ -6072,7 +6059,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                             />
                           </svg>
                           <div
-                            class="c156 c46"
+                            class="c156 c45"
                           >
                             <label
                               class="c144 c145 c146"
@@ -6093,7 +6080,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                             type="button"
                           >
                             <div
-                              class="c159 c41 c160"
+                              class="c159 c40 c160"
                             >
                               <span
                                 class="c161 c162"
@@ -6164,7 +6151,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
         class="c167"
       >
         <div
-          class="c168 c46"
+          class="c168 c45"
         >
           <svg
             aria-hidden="true"
@@ -6197,7 +6184,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
               class="c9 c129"
             >
               <div
-                class="c9 c46 c172"
+                class="c9 c45 c172"
               >
                 <div
                   class="c173 c81"
@@ -6326,7 +6313,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                 </div>
               </div>
               <div
-                class="c9 c46 c172"
+                class="c9 c45 c172"
               >
                 <div
                   class="c173 c81"
@@ -6544,7 +6531,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                 </div>
               </div>
               <div
-                class="c9 c46 c172"
+                class="c9 c45 c172"
               >
                 <div
                   class="c173 c81"
@@ -6704,13 +6691,13 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                 </div>
               </div>
               <div
-                class="c9 c46 c172"
+                class="c9 c45 c172"
               >
                 <div
                   class="c173 c183"
                 >
                   <div
-                    class="c39"
+                    class="c38"
                   >
                     <span
                       class="c184"
@@ -6730,18 +6717,18 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                     class="c185 c186"
                   >
                     <div
-                      class="c45 c46 c187 c188"
+                      class="c44 c45 c187 c188"
                     >
                       <a
                         aria-label="instagram for Oak National Academy"
-                        class="c48 c49"
+                        class="c47 c48"
                         href="https://instagram.com/oaknational"
                       >
                         <div
-                          class="c9 c50"
+                          class="c9 c49"
                         >
                           <div
-                            class="c189 c52 icon-container"
+                            class="c189 c51 icon-container"
                           >
                             <div
                               class="c190 shadow"
@@ -6752,7 +6739,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                             >
                               <img
                                 alt=""
-                                class="c36"
+                                class="c66"
                                 data-nimg="fill"
                                 decoding="async"
                                 loading="lazy"
@@ -6762,24 +6749,24 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                             </span>
                           </div>
                           <span
-                            class="c55"
+                            class="c54"
                           />
                         </div>
                       </a>
                     </div>
                     <div
-                      class="c45 c46 c187 c188"
+                      class="c44 c45 c187 c188"
                     >
                       <a
                         aria-label="facebook for Oak National Academy"
-                        class="c48 c49"
+                        class="c47 c48"
                         href="https://facebook.com/oaknationalacademy"
                       >
                         <div
-                          class="c9 c50"
+                          class="c9 c49"
                         >
                           <div
-                            class="c189 c52 icon-container"
+                            class="c189 c51 icon-container"
                           >
                             <div
                               class="c190 shadow"
@@ -6790,7 +6777,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                             >
                               <img
                                 alt=""
-                                class="c36"
+                                class="c66"
                                 data-nimg="fill"
                                 decoding="async"
                                 loading="lazy"
@@ -6800,24 +6787,24 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                             </span>
                           </div>
                           <span
-                            class="c55"
+                            class="c54"
                           />
                         </div>
                       </a>
                     </div>
                     <div
-                      class="c45 c46 c187 c188"
+                      class="c44 c45 c187 c188"
                     >
                       <a
                         aria-label="linkedIn for Oak National Academy"
-                        class="c48 c49"
+                        class="c47 c48"
                         href="https://www.linkedin.com/company/oak-national-academy"
                       >
                         <div
-                          class="c9 c50"
+                          class="c9 c49"
                         >
                           <div
-                            class="c189 c52 icon-container"
+                            class="c189 c51 icon-container"
                           >
                             <div
                               class="c190 shadow"
@@ -6828,7 +6815,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                             >
                               <img
                                 alt=""
-                                class="c36"
+                                class="c66"
                                 data-nimg="fill"
                                 decoding="async"
                                 loading="lazy"
@@ -6838,7 +6825,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                             </span>
                           </div>
                           <span
-                            class="c55"
+                            class="c54"
                           />
                         </div>
                       </a>
@@ -6870,18 +6857,18 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                 class="c194 c195"
               >
                 <div
-                  class="c45 c46 c187 c188"
+                  class="c44 c45 c187 c188"
                 >
                   <a
                     aria-label="instagram for Oak National Academy"
-                    class="c48 c49"
+                    class="c47 c48"
                     href="https://instagram.com/oaknational"
                   >
                     <div
-                      class="c9 c50"
+                      class="c9 c49"
                     >
                       <div
-                        class="c189 c52 icon-container"
+                        class="c189 c51 icon-container"
                       >
                         <div
                           class="c190 shadow"
@@ -6892,7 +6879,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                         >
                           <img
                             alt=""
-                            class="c36"
+                            class="c66"
                             data-nimg="fill"
                             decoding="async"
                             loading="lazy"
@@ -6902,24 +6889,24 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                         </span>
                       </div>
                       <span
-                        class="c55"
+                        class="c54"
                       />
                     </div>
                   </a>
                 </div>
                 <div
-                  class="c45 c46 c187 c188"
+                  class="c44 c45 c187 c188"
                 >
                   <a
                     aria-label="facebook for Oak National Academy"
-                    class="c48 c49"
+                    class="c47 c48"
                     href="https://facebook.com/oaknationalacademy"
                   >
                     <div
-                      class="c9 c50"
+                      class="c9 c49"
                     >
                       <div
-                        class="c189 c52 icon-container"
+                        class="c189 c51 icon-container"
                       >
                         <div
                           class="c190 shadow"
@@ -6930,7 +6917,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                         >
                           <img
                             alt=""
-                            class="c36"
+                            class="c66"
                             data-nimg="fill"
                             decoding="async"
                             loading="lazy"
@@ -6940,24 +6927,24 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                         </span>
                       </div>
                       <span
-                        class="c55"
+                        class="c54"
                       />
                     </div>
                   </a>
                 </div>
                 <div
-                  class="c45 c46 c187 c188"
+                  class="c44 c45 c187 c188"
                 >
                   <a
                     aria-label="linkedIn for Oak National Academy"
-                    class="c48 c49"
+                    class="c47 c48"
                     href="https://www.linkedin.com/company/oak-national-academy"
                   >
                     <div
-                      class="c9 c50"
+                      class="c9 c49"
                     >
                       <div
-                        class="c189 c52 icon-container"
+                        class="c189 c51 icon-container"
                       >
                         <div
                           class="c190 shadow"
@@ -6968,7 +6955,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                         >
                           <img
                             alt=""
-                            class="c36"
+                            class="c66"
                             data-nimg="fill"
                             decoding="async"
                             loading="lazy"
@@ -6978,14 +6965,14 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                         </span>
                       </div>
                       <span
-                        class="c55"
+                        class="c54"
                       />
                     </div>
                   </a>
                 </div>
               </div>
               <div
-                class="c56"
+                class="c55"
               >
                 <span
                   class="c184"
@@ -7079,7 +7066,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
             class="c9 c212"
           >
             <div
-              class="c213 c41"
+              class="c213 c40"
             >
               <button
                 class="c214"

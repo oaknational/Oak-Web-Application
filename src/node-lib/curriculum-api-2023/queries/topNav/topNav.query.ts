@@ -138,9 +138,26 @@ const topNavQuery = (sdk: Sdk) => {
       },
       aiExperiments: {
         title: "AI experiments",
-        slug: "labs",
-        href: resolveOakHref({ page: "labs" }),
-        external: true,
+        slug: "aiExperiments",
+        children: [
+          {
+            title: "Labs home",
+            slug: "labs",
+            href: resolveOakHref({ page: "labs" }),
+            external: true,
+          },
+          {
+            title: "Aila",
+            slug: "aila",
+            href: resolveOakHref({ page: "aila" }),
+            external: true,
+          },
+          {
+            title: "Oak Curriculum MCP",
+            slug: "mcp",
+            href: resolveOakHref({ page: "mcp" }),
+          },
+        ],
       },
     };
 

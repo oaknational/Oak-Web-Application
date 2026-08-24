@@ -321,7 +321,7 @@ describe("TeachersTopNavHamburger", () => {
     expect(getByText("Computer science")).toBeInTheDocument();
   });
 
-  it("should render an aria label for external links in the main nav", async () => {
+  it("should render the AI experiments submenu with its links", async () => {
     const { getByTestId, getByRole } = render(
       <TeachersTopNavHamburger {...mockTopNavProps} />,
     );
@@ -329,10 +329,32 @@ describe("TeachersTopNavHamburger", () => {
     const button = getByTestId("top-nav-hamburger-button");
     await user.click(button);
 
-    const aiExperimentsLink = getByRole("link", {
-      name: "AI Experiments (this will open in a new tab)",
+    const aiExperimentsButton = getByRole("button", {
+      name: "AI experiments",
     });
-    expect(aiExperimentsLink).toHaveTextContent("AI Experiments");
+    await user.click(aiExperimentsButton);
+
+    const labsLink = getByRole("link", {
+      name: "Labs home (this will open in a new tab)",
+    });
+    expect(labsLink).toHaveAttribute(
+      "href",
+      "https://labs.thenational.academy",
+    );
+    expect(labsLink).toHaveAttribute("target", "_blank");
+
+    const ailaLink = getByRole("link", {
+      name: "Aila (this will open in a new tab)",
+    });
+    expect(ailaLink).toHaveAttribute(
+      "href",
+      "https://labs.thenational.academy/aila",
+    );
+    expect(ailaLink).toHaveAttribute("target", "_blank");
+
+    const mcpLink = getByRole("link", { name: "Oak Curriculum MCP" });
+    expect(mcpLink).toHaveAttribute("href", "/mcp");
+    expect(mcpLink).toHaveAttribute("target", "_self");
   });
 
   it("renders the submenu correctly", async () => {
