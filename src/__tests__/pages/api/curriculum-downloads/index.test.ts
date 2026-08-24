@@ -257,24 +257,6 @@ describe("/api/curriculum-downloads", () => {
     });
   });
 
-  it("return 200 if correct cache slug", async () => {
-    curriculumSequenceMock.mockResolvedValue(mockSequenceData);
-    const { req, res } = createNextApiMocks({
-      query: {
-        types: ["curriculumPlans"],
-        mvRefreshTime: LAST_REFRESH_AS_TIME.toString(),
-        subjectSlug: "english",
-        phaseSlug: "secondary",
-        state: "published",
-        ks4OptionSlug: "aqa",
-      },
-    });
-    await handler(req, res);
-
-    expect(fetch).toHaveBeenCalledTimes(1);
-    expect(res._getStatusCode()).toBe(200);
-  });
-
   it("return 200 if correct cache slug (curriculumPlans)", async () => {
     curriculumSequenceMock.mockResolvedValue(mockSequenceData);
     const { req, res } = createNextApiMocks({
@@ -313,6 +295,25 @@ describe("/api/curriculum-downloads", () => {
     expect(res.getHeader("Content-Type")).toBe(
       "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
     );
+    expect(res._getStatusCode()).toBe(200);
+  });
+
+  it("return 200 if correct cache slug (zip)", async () => {
+    curriculumSequenceMock.mockResolvedValue(mockSequenceData);
+    const { req, res } = createNextApiMocks({
+      query: {
+        types: ["curriculumPlans", "nationalCurriculum"],
+        mvRefreshTime: LAST_REFRESH_AS_TIME.toString(),
+        subjectSlug: "english",
+        phaseSlug: "secondary",
+        state: "published",
+        ks4OptionSlug: "aqa",
+      },
+    });
+    await handler(req, res);
+
+    expect(fetch).toHaveBeenCalledTimes(1);
+    expect(res.getHeader("Content-Type")).toBe("application/zip");
     expect(res._getStatusCode()).toBe(200);
   });
 
