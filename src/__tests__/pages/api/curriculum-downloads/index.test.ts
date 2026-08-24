@@ -43,7 +43,12 @@ const refreshedMVTimeMock = jest.fn<
 });
 
 const mockSequenceData = {
-  units: [createUnit({ slug: "test" })],
+  units: [
+    createUnit({
+      slug: "test",
+      features: { national_curriculum_content: true },
+    }),
+  ],
 };
 
 const curriculumPhaseOptionsMock = jest.fn(async () => {
@@ -270,7 +275,7 @@ describe("/api/curriculum-downloads", () => {
     expect(res._getStatusCode()).toBe(200);
   });
 
-  it("return 200 if correct cache slug", async () => {
+  it("return 200 if correct cache slug (curriculumPlans)", async () => {
     curriculumSequenceMock.mockResolvedValue(mockSequenceData);
     const { req, res } = createNextApiMocks({
       query: {
@@ -284,7 +289,30 @@ describe("/api/curriculum-downloads", () => {
     });
     await handler(req, res);
 
+    expect(res.getHeader("Content-Type")).toBe(
+      "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+    );
     expect(fetch).toHaveBeenCalledTimes(1);
+    expect(res._getStatusCode()).toBe(200);
+  });
+
+  it("return 200 if correct cache slug (nationalCurriculum)", async () => {
+    curriculumSequenceMock.mockResolvedValue(mockSequenceData);
+    const { req, res } = createNextApiMocks({
+      query: {
+        types: ["nationalCurriculum"],
+        mvRefreshTime: LAST_REFRESH_AS_TIME.toString(),
+        subjectSlug: "english",
+        phaseSlug: "secondary",
+        state: "published",
+        ks4OptionSlug: "wjec",
+      },
+    });
+    await handler(req, res);
+
+    expect(res.getHeader("Content-Type")).toBe(
+      "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+    );
     expect(res._getStatusCode()).toBe(200);
   });
 
@@ -352,5 +380,6 @@ describe("/api/curriculum-downloads", () => {
 
     expect(fetch).toHaveBeenCalledTimes(1);
     expect(res._getStatusCode()).toBe(200);
+    expect(res.getHeader("Content-Type")).toBe("application/pdf");
   });
 });
