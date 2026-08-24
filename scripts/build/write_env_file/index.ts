@@ -318,8 +318,8 @@ async function main() {
   };
 
   if (
-    process.env.VERCEL_GIT_COMMIT_REF ===
-    "feat/national-curriculum-insights-preview"
+    process.env.VERCEL_PROJECT_ID === "prj_O8wE98fPoc0q67sQAkQhRP5Pgcxe" &&
+    process.env.VERCEL_GIT_COMMIT_REF === "feat/national-curriculum-insights"
   ) {
     const expectedSanityPreview = {
       projectId: "cuvjke51",
