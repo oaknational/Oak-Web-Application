@@ -88,16 +88,17 @@ describe("experimentMiddleware", () => {
       .spyOn(console, "error")
       .mockImplementation(() => undefined);
 
-    const response = await experimentMiddleware({
-      request: mockRequest,
-      featureFlag,
-    });
-
-    expect(consoleErrorSpy).toHaveBeenCalled();
-    expect(response).toBeDefined();
-    expect(response.status).toBe(200);
-
-    consoleErrorSpy.mockRestore();
+    try {
+      const response = await experimentMiddleware({
+        request: mockRequest,
+        featureFlag,
+      });
+      expect(consoleErrorSpy).toHaveBeenCalled();
+      expect(response).toBeDefined();
+      expect(response.status).toBe(200);
+    } finally {
+      consoleErrorSpy.mockRestore();
+    }
   });
   it("rewrites to the variant route from a cached 'test' cookie without calling posthog", async () => {
     cookieStore[getExperimentCookieKey(featureFlag)] = { value: "test" };
