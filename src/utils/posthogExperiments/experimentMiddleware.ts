@@ -55,47 +55,75 @@ export default async function experimentMiddleware({
   const distinctId = getDistinctIdFromCookie(request);
 
   if (distinctId) {
-    try {
-      const phRes = await fetch(
-        `${getServerConfig("posthogApiHost")}/decide?v=3`,
-        {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            api_key: posthogApiKey,
-            distinct_id: distinctId,
-          }),
-        },
-      );
-
-      if (phRes.status !== 200) {
-        throw new Error("Posthog fetch error");
-      }
-
-      const data = await phRes.json();
-      const variant = data?.featureFlags?.[featureFlag];
-
-      const isTest = testGroupKeys.has(variant);
-      const response = isTest
-        ? NextResponse.rewrite(rewriteUrl)
-        : NextResponse.next();
-
-      response.cookies.set(experimentCookie, isTest ? "test" : "control", {
-        maxAge: 60 * 60 * 24 * 30,
-        path: "/",
-      });
-      return response;
-    } catch (error) {
-      // Fall back to the control route. Avoid errorReporter here because it depends on
-      // browser-only modules that aren't compatible with the edge middleware runtime.
-      const errorMessage =
-        error instanceof Error ? error.message : String(error);
-      console.error("[experimentMiddleware] posthog decide request failed", {
-        featureFlag,
-        error: errorMessage,
-      });
-    }
+    return await constructResponseForVariant({
+      distinctId,
+      featureFlag,
+      experimentCookie,
+      rewriteUrl,
+    });
   }
 
   return NextResponse.next();
 }
+
+const getExperimentVariant = async ({
+  distinctId,
+  featureFlag,
+}: {
+  distinctId: string;
+  featureFlag: string;
+}) => {
+  try {
+    const phRes = await fetch(
+      `${getServerConfig("posthogApiHost")}/decide?v=3`,
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          api_key: posthogApiKey,
+          distinct_id: distinctId,
+        }),
+      },
+    );
+
+    if (phRes.status !== 200) {
+      throw new Error("Posthog fetch error");
+    }
+
+    const data = await phRes.json();
+    const variant = data?.featureFlags?.[featureFlag];
+    return variant;
+  } catch (error) {
+    // Fall back to the control route. Avoid errorReporter here because it depends on
+    // browser-only modules that aren't compatible with the edge middleware runtime.
+    const errorMessage = error instanceof Error ? error.message : String(error);
+    console.error("[experimentMiddleware] posthog decide request failed", {
+      featureFlag,
+      error: errorMessage,
+    });
+  }
+};
+
+const constructResponseForVariant = async ({
+  distinctId,
+  featureFlag,
+  experimentCookie,
+  rewriteUrl,
+}: {
+  distinctId: string;
+  featureFlag: string;
+  experimentCookie: string;
+  rewriteUrl: URL;
+}) => {
+  const variant = await getExperimentVariant({ distinctId, featureFlag });
+  const isTest = testGroupKeys.has(variant);
+  const response = isTest
+    ? NextResponse.rewrite(rewriteUrl)
+    : NextResponse.next();
+
+  response.cookies.set(experimentCookie, isTest ? "test" : "control", {
+    maxAge: 60 * 60 * 24 * 30,
+    path: "/",
+  });
+  return response;
+};
