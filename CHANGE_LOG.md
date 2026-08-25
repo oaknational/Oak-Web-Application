@@ -1,3 +1,21 @@
+# [1.1163.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1162.0...v1.1163.0) (2026-08-24)
+
+
+### Bug Fixes
+
+* handle edge case for users without husbpot details ([653e2a7](https://github.com/oaknational/Oak-Web-Application/commit/653e2a794d66aa13b71e1188f244b8ac9601061e))
+* only set hubspotLoaded when no school frm hubspot ([c4a65a1](https://github.com/oaknational/Oak-Web-Application/commit/c4a65a1240603497007b698a888097a1d9e97a34))
+* remove double wrapping oakError ([ab9bcb9](https://github.com/oaknational/Oak-Web-Application/commit/ab9bcb997d9d5646daebb2c7df3fe20a7f9d42c4))
+* remove invalid expect toThrow clause ([736b685](https://github.com/oaknational/Oak-Web-Application/commit/736b6854dd5868d9ff3a9cff4fcb2e55aff5fafb))
+* remove redundant undefined ([4d3de74](https://github.com/oaknational/Oak-Web-Application/commit/4d3de744b1aeaf7a21a0fc44195fd31ac392bd3a))
+* remove useless usememos ([fb627a7](https://github.com/oaknational/Oak-Web-Application/commit/fb627a7cb0bf6b16a6a51d9d8ada0b0976999207))
+* typo in var names ([c0b82ae](https://github.com/oaknational/Oak-Web-Application/commit/c0b82aeebb1666e56827d4de570f483420548367))
+
+
+### Features
+
+* report error when fetch to hubspot fails ([cfaebdb](https://github.com/oaknational/Oak-Web-Application/commit/cfaebdb4f7ca6ae79168e0ac8cd44d183cab4f99))
+
 # [1.1162.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1161.1...v1.1162.0) (2026-08-21)
 
 
