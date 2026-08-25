@@ -3,6 +3,7 @@
 import { OakMaxWidth, OakTabs } from "@oaknational/oak-components";
 import { useEffect, useMemo, useState } from "react";
 import { notFound, usePathname, useSearchParams } from "next/navigation";
+import dynamic from "next/dynamic";
 
 import {
   TabName,
@@ -21,11 +22,7 @@ import {
   UnitSequenceViewProps,
 } from "./UnitSequence/UnitSequenceView";
 import { SubjectHeroImageName } from "./ProgrammeHeader/getSubjectHeroImageUrl";
-import { ProgrammeOverview } from "./ProgrammeOverview/ProgrammeOverview";
-import {
-  ProgrammeDownloadsProps,
-  ProgrammeDownloads,
-} from "./ProgrammeDownloads/ProgrammeDownloads";
+import { ProgrammeDownloadsProps } from "./ProgrammeDownloads/ProgrammeDownloads";
 import { ImplementationGuideCallout } from "./ImplementationGuideCallout";
 
 import {
@@ -51,6 +48,18 @@ import { resolveOakHref } from "@/common-lib/urls";
 import { validateSearchParams } from "@/utils/validateProgrammePageSearchParams";
 import { getDefaultFilter } from "@/utils/curriculum/filtering";
 import { useTeacherBrowseAnalytics } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
+
+const ProgrammeOverview = dynamic(() =>
+  import("./ProgrammeOverview/ProgrammeOverview").then(
+    (mod) => mod.ProgrammeOverview,
+  ),
+);
+
+const ProgrammeDownloads = dynamic(() =>
+  import("./ProgrammeDownloads/ProgrammeDownloads").then(
+    (mod) => mod.ProgrammeDownloads,
+  ),
+);
 
 export type ProgrammePageProps = {
   subjectPhaseSlug: string;
