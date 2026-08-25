@@ -4,6 +4,7 @@ import {
   OakP,
   useMediaQuery,
 } from "@oaknational/oak-components";
+import { memo, useCallback } from "react";
 
 import { getTagsForUnitCard } from "./getTagsForUnitCard";
 import { getSavePropsForUnitCard } from "./getSavePropsForUnitCard";
@@ -30,6 +31,7 @@ type ProgrammeUnitListProps = {
   yearData: YearData;
   selectedThread?: Thread;
 };
+
 export function ProgrammeUnitList({
   units,
   yearData,
@@ -42,91 +44,12 @@ export function ProgrammeUnitList({
   );
   const isMobile = useMediaQuery("mobile");
 
-  const onClick = (unit: Unit, isHighlighted: boolean) => {
-    unitOverviewAccessed(unit, isHighlighted, selectedThread);
-  };
-
-  function getItems(unit: Unit, index: number, isMobile: boolean) {
-    const isHighlighted = isHighlightedUnit(unit, filters.threads);
-    const isOptionalityUnitCard = !!unit.unit_options.length;
-
-    const programmeSlug = createTeacherProgrammeSlug(
-      unit,
-      unit.examboard_slug,
-      unit.tier_slug,
-      unit.pathway_slug,
-    );
-
-    const getLayoutVariant = () => {
-      const useHorizontalLayout = isOptionalityUnitCard && !isMobile;
-      if (useHorizontalLayout) {
-        return "horizontal";
-      } else {
-        return "vertical";
-      }
-    };
-
-    const childCards = isOptionalityUnitCard
-      ? unit.unit_options.map(
-          (option) =>
-            ({
-              highlightColorVariant: isHighlighted ? "secondary" : undefined,
-              title: option.title,
-              saveProps: getSavePropsForUnitCard({
-                slug: option.slug ?? unit.slug,
-                title: option.title,
-                programmeSlug,
-                subject: unit.subject,
-                subjectSlug: unit.subject_slug,
-                keystageSlug: unit.keystage_slug,
-                isOptionalityUnit: false,
-              }),
-              href: resolveOakHref({
-                page: "unit-overview",
-                unitSlug: option.slug ?? unit.slug,
-                programmeSlug,
-              }),
-              showBorder: true,
-              onClickLink: () => onClick(unit, isHighlighted),
-              lessonCount: option.lessons.length,
-            }) satisfies CardProps,
-        )
-      : undefined;
-
-    return (
-      <OakGridArea
-        $colSpan={[12, isOptionalityUnitCard ? 12 : 4]}
-        $minHeight="spacing-180"
-        key={`${unit.slug}-${index}`}
-        as="li"
-      >
-        <CardListing
-          layoutVariant={getLayoutVariant()}
-          title={unit.title}
-          highlightColorVariant={isHighlighted ? "secondary" : undefined}
-          tags={getTagsForUnitCard(unit)}
-          href={resolveOakHref({
-            page: "unit-overview",
-            unitSlug: unit.slug,
-            programmeSlug,
-          })}
-          onClickLink={() => onClick(unit, isHighlighted)}
-          lessonCount={isOptionalityUnitCard ? undefined : unit.lessons?.length}
-          saveProps={getSavePropsForUnitCard({
-            slug: unit.slug,
-            title: unit.title,
-            programmeSlug,
-            subject: unit.subject,
-            subjectSlug: unit.subject_slug,
-            keystageSlug: unit.keystage_slug,
-            isOptionalityUnit: isOptionalityUnitCard,
-          })}
-          index={index + 1}
-          childCards={childCards}
-        />
-      </OakGridArea>
-    );
-  }
+  const onClick = useCallback(
+    (unit: Unit, isHighlighted: boolean) => {
+      unitOverviewAccessed(unit, isHighlighted, selectedThread);
+    },
+    [unitOverviewAccessed, selectedThread],
+  );
 
   if (units.length < 1) {
     return (
@@ -144,7 +67,105 @@ export function ProgrammeUnitList({
       $pa={"spacing-0"}
       $mv={"spacing-0"}
     >
-      {units.map((unit, index) => getItems(unit, index, isMobile))}
+      {units.map((unit, index) => (
+        <UnitCard
+          key={`${unit.slug}-${index}`}
+          unit={unit}
+          index={index}
+          isMobile={isMobile}
+          filters={filters}
+          onClick={onClick}
+        />
+      ))}
     </OakGrid>
   );
 }
+
+type UnitCardProps = {
+  unit: Unit;
+  index: number;
+  isMobile: boolean;
+  filters: CurriculumFilters;
+  onClick: (unit: Unit, isHighlighted: boolean) => void;
+};
+
+const UnitCard = memo(function UnitCard({
+  unit,
+  index,
+  isMobile,
+  filters,
+  onClick,
+}: Readonly<UnitCardProps>) {
+  const isHighlighted = isHighlightedUnit(unit, filters.threads);
+  const isOptionalityUnitCard = !!unit.unit_options.length;
+
+  const programmeSlug = createTeacherProgrammeSlug(
+    unit,
+    unit.examboard_slug,
+    unit.tier_slug,
+    unit.pathway_slug,
+  );
+
+  const layoutVariant =
+    isOptionalityUnitCard && !isMobile ? "horizontal" : "vertical";
+
+  const childCards = isOptionalityUnitCard
+    ? unit.unit_options.map(
+        (option) =>
+          ({
+            highlightColorVariant: isHighlighted ? "secondary" : undefined,
+            title: option.title,
+            saveProps: getSavePropsForUnitCard({
+              slug: option.slug ?? unit.slug,
+              title: option.title,
+              programmeSlug,
+              subject: unit.subject,
+              subjectSlug: unit.subject_slug,
+              keystageSlug: unit.keystage_slug,
+              isOptionalityUnit: false,
+            }),
+            href: resolveOakHref({
+              page: "unit-overview",
+              unitSlug: option.slug ?? unit.slug,
+              programmeSlug,
+            }),
+            showBorder: true,
+            onClickLink: () => onClick(unit, isHighlighted),
+            lessonCount: option.lessons.length,
+          }) satisfies CardProps,
+      )
+    : undefined;
+
+  return (
+    <OakGridArea
+      $colSpan={[12, isOptionalityUnitCard ? 12 : 4]}
+      $minHeight="spacing-180"
+      as="li"
+    >
+      <CardListing
+        layoutVariant={layoutVariant}
+        title={unit.title}
+        highlightColorVariant={isHighlighted ? "secondary" : undefined}
+        tags={getTagsForUnitCard(unit)}
+        href={resolveOakHref({
+          page: "unit-overview",
+          unitSlug: unit.slug,
+          programmeSlug,
+        })}
+        onClickLink={() => onClick(unit, isHighlighted)}
+        lessonCount={isOptionalityUnitCard ? undefined : unit.lessons?.length}
+        saveProps={getSavePropsForUnitCard({
+          slug: unit.slug,
+          title: unit.title,
+          programmeSlug,
+          subject: unit.subject,
+          subjectSlug: unit.subject_slug,
+          keystageSlug: unit.keystage_slug,
+          isOptionalityUnit: isOptionalityUnitCard,
+        })}
+        index={index + 1}
+        childCards={childCards}
+      />
+    </OakGridArea>
+  );
+});
