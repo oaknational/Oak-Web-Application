@@ -1,3 +1,18 @@
+# [1.1165.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1164.3...v1.1165.0) (2026-08-25)
+
+
+### Bug Fixes
+
+* decouple format sentences from google cloud fns ([4f1197c](https://github.com/oaknational/Oak-Web-Application/commit/4f1197cda21ef2888944bab51b834dcf440d082b))
+* padding on transcript container ([6a39ec4](https://github.com/oaknational/Oak-Web-Application/commit/6a39ec4396977f326d4f3b8387e18398dcc0db84))
+* remove type override for transcript and handle null case ([7c98613](https://github.com/oaknational/Oak-Web-Application/commit/7c98613b5df9b1a810d4aea2f085f1d4be5e948a))
+* use formatSentences to convert transcript ([cd56108](https://github.com/oaknational/Oak-Web-Application/commit/cd56108046876358475622a3ba719897256978ca))
+
+
+### Features
+
+* expand and make sentence formatting more robust ([405a3e7](https://github.com/oaknational/Oak-Web-Application/commit/405a3e733492bdef0a8401086931eb9c7e4f9edf))
+
 ## [1.1164.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.1164.2...v1.1164.3) (2026-08-25)
 
 
