@@ -1,6 +1,6 @@
 import { act } from "@testing-library/react";
 
-import { ProgrammeFiltersThreads } from "./ProgrammeFiltersThreads";
+import { BrowseFiltersThreads } from "./BrowseFiltersThreads";
 
 import { renderWithProvidersByName } from "@/__tests__/__helpers__/renderWithProviders";
 import { createThread } from "@/fixtures/curriculum/thread";
@@ -57,7 +57,7 @@ const unitsData: CurriculumUnitsFormattedData = {
 
 const defaultFilters = createFilter({ years: ["10", "11"] });
 
-describe("ProgrammeFiltersThreads", () => {
+describe("BrowseFiltersThreads", () => {
   it("renders the legend and all thread options", () => {
     mockUseBrowseFilters.mockReturnValue({
       filters: defaultFilters,
@@ -68,7 +68,7 @@ describe("ProgrammeFiltersThreads", () => {
       setThreadFilter: jest.fn(),
     });
     const { getAllByRole, getByText } = render(
-      <ProgrammeFiltersThreads data={unitsData} />,
+      <BrowseFiltersThreads data={unitsData} />,
     );
 
     expect(getByText("Highlight a thread")).toBeInTheDocument();
@@ -90,7 +90,7 @@ describe("ProgrammeFiltersThreads", () => {
       setYearFilter: jest.fn(),
       setThreadFilter: jest.fn(),
     });
-    const { getByRole } = render(<ProgrammeFiltersThreads data={unitsData} />);
+    const { getByRole } = render(<BrowseFiltersThreads data={unitsData} />);
 
     expect(
       getByRole("radio", { name: /None highlighted/i }),
@@ -107,7 +107,7 @@ describe("ProgrammeFiltersThreads", () => {
       setThreadFilter: jest.fn(),
     });
     const { getAllByRole, getByText } = render(
-      <ProgrammeFiltersThreads data={unitsData} />,
+      <BrowseFiltersThreads data={unitsData} />,
     );
 
     const radios = getAllByRole("radio") as HTMLInputElement[];
@@ -126,9 +126,7 @@ describe("ProgrammeFiltersThreads", () => {
       setYearFilter: jest.fn(),
       setThreadFilter,
     });
-    const { getAllByRole } = render(
-      <ProgrammeFiltersThreads data={unitsData} />,
-    );
+    const { getAllByRole } = render(<BrowseFiltersThreads data={unitsData} />);
 
     const radios = getAllByRole("radio") as HTMLInputElement[];
 
@@ -146,9 +144,7 @@ describe("ProgrammeFiltersThreads", () => {
       setYearFilter: jest.fn(),
       setThreadFilter,
     });
-    const { getAllByRole } = render(
-      <ProgrammeFiltersThreads data={unitsData} />,
-    );
+    const { getAllByRole } = render(<BrowseFiltersThreads data={unitsData} />);
 
     const radios = getAllByRole("radio") as HTMLInputElement[];
 

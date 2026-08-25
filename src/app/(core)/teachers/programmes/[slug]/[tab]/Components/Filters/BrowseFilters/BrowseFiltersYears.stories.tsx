@@ -1,7 +1,8 @@
 import { Meta, StoryObj } from "@storybook/nextjs";
 
+import { basicSetup } from "../../../../../../../../../components/CurriculumComponents/CurricVisualiserFilters/CurricFiltersYears.fixtures";
+
 import { BrowseFiltersYears as Component } from "./BrowseFiltersYears";
-import { basicSetup } from "./CurricFiltersYears.fixtures";
 
 import { BrowseFiltersProvider } from "@/context/BrowseFilters";
 

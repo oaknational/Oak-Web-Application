@@ -11,13 +11,13 @@ import { CurriculumUnitsFormattedData } from "@/pages-helpers/curriculum/docx/ta
 import { pluralizeUnits } from "@/utils/curriculum/formatting";
 import { useBrowseFilters } from "@/context/BrowseFilters";
 
-export type ProgrammeFiltersThreadsProps = {
+export type BrowseFiltersThreadsProps = {
   data: CurriculumUnitsFormattedData;
 };
 
-export function ProgrammeFiltersThreads({
+export function BrowseFiltersThreads({
   data,
-}: Readonly<ProgrammeFiltersThreadsProps>) {
+}: Readonly<BrowseFiltersThreadsProps>) {
   const id = useId();
   const { filters, setThreadFilter } = useBrowseFilters();
   const { yearData, threadOptions } = data;

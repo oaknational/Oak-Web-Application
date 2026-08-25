@@ -1,7 +1,8 @@
 import { act } from "@testing-library/react";
 
+import { ks4Setup } from "../../../../../../../../../components/CurriculumComponents/CurricVisualiserFilters/CurricFiltersChildSubjects.fixtures";
+
 import { BrowseFiltersChildSubjects } from "./BrowseFiltersChildSubjects";
-import { ks4Setup } from "./CurricFiltersChildSubjects.fixtures";
 
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 import { BrowseFiltersProvider } from "@/context/BrowseFilters";

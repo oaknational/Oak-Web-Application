@@ -2,7 +2,7 @@ import {
   ProgrammeFiltersKs4Options,
   shouldDisplayKs4OptionsFilter,
 } from "./ProgrammeFiltersKs4Options";
-import { ProgrammeFiltersThreads } from "./ProgrammeFiltersThreads";
+import { BrowseFiltersThreads } from "./BrowseFilters/BrowseFiltersThreads";
 import { ProgrammePageFiltersProps } from "./ProgrammePageFiltersDesktop";
 
 import { CurriculumUnitsFormattedData } from "@/pages-helpers/curriculum/docx/tab-helpers";
@@ -89,7 +89,7 @@ export function ProgrammeFilters({
                 />
               );
             case "threads":
-              return <ProgrammeFiltersThreads key={key} data={data} />;
+              return <BrowseFiltersThreads key={key} data={data} />;
             case "years":
               return <BrowseFiltersYears key={key} data={data} />;
             case "subjectCategories":

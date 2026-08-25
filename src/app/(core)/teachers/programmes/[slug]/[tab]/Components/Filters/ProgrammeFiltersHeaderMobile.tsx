@@ -8,7 +8,7 @@ import {
 
 import { ProgrammePageFiltersProps } from "./ProgrammePageFiltersDesktop";
 
-import { BrowseFiltersYears } from "@/components/CurriculumComponents/CurricVisualiserFilters/BrowseFiltersYears";
+import { BrowseFiltersYears } from "@/app/(core)/teachers/programmes/[slug]/[tab]/Components/Filters/BrowseFilters/BrowseFiltersYears";
 
 export type MobileFilterHeaderProps = ProgrammePageFiltersProps & {
   onOpenModal: () => void;
