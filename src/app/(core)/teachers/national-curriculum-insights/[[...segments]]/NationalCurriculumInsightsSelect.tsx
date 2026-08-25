@@ -71,6 +71,12 @@ const Menu = styled.div`
   background: ${parseColor("bg-primary")};
 `;
 
+const renderSelectOption = (option: NationalCurriculumInsightsSelectOption) => (
+  <Item key={option.value} textValue={option.label} aria-label={option.label}>
+    <Label>{option.label}</Label>
+  </Item>
+);
+
 export const NationalCurriculumInsightsSelect = ({
   id,
   label,
@@ -86,15 +92,7 @@ export const NationalCurriculumInsightsSelect = ({
   const triggerRef = useRef<HTMLButtonElement>(null);
   const selectProps = {
     "aria-label": label,
-    children: (option: NationalCurriculumInsightsSelectOption) => (
-      <Item
-        key={option.value}
-        textValue={option.label}
-        aria-label={option.label}
-      >
-        <Label>{option.label}</Label>
-      </Item>
-    ),
+    children: renderSelectOption,
     items: options,
     label,
     onSelectionChange: (key: React.Key) => onChange(String(key)),

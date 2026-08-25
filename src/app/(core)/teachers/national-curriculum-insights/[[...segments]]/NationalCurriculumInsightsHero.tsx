@@ -75,26 +75,55 @@ const HeroContent = styled(OakFlex)`
   max-width: 1221px;
 `;
 
+const heroMainTabletStyles = ({ $pageKind }: { $pageKind: HeroPageKind }) => {
+  if ($pageKind === "hub") {
+    return css`
+      flex-direction: row;
+      align-items: center;
+      gap: 24px;
+    `;
+  }
+
+  if ($pageKind !== "guidance") {
+    return css`
+      flex-direction: column;
+      align-items: stretch;
+      gap: 24px;
+    `;
+  }
+
+  return null;
+};
+
 const HeroMain = styled(OakFlex)<{ $pageKind: HeroPageKind }>`
   width: 100%;
 
   @media ${insightsTabletMediaQuery} {
-    ${({ $pageKind }) =>
-      $pageKind === "hub"
-        ? css`
-            flex-direction: row;
-            align-items: center;
-            gap: 24px;
-          `
-        : $pageKind !== "guidance"
-          ? css`
-              flex-direction: column;
-              align-items: stretch;
-              gap: 24px;
-            `
-          : null}
+    ${heroMainTabletStyles}
   }
 `;
+
+const heroTextColumnTabletStyles = ({
+  $pageKind,
+}: {
+  $pageKind: HeroPageKind;
+}) => {
+  if ($pageKind === "hub") {
+    return css`
+      width: calc(58.3333% - 12px);
+      flex-shrink: 1;
+    `;
+  }
+
+  if ($pageKind !== "guidance") {
+    return css`
+      width: ${tabletGridEightColumns};
+      flex-shrink: 1;
+    `;
+  }
+
+  return null;
+};
 
 const HeroTextColumn = styled(OakFlex)<{ $pageKind: HeroPageKind }>`
   width: 100%;
@@ -106,18 +135,7 @@ const HeroTextColumn = styled(OakFlex)<{ $pageKind: HeroPageKind }>`
   }
 
   @media ${insightsTabletMediaQuery} {
-    ${({ $pageKind }) =>
-      $pageKind === "hub"
-        ? css`
-            width: calc(58.3333% - 12px);
-            flex-shrink: 1;
-          `
-        : $pageKind !== "guidance"
-          ? css`
-              width: ${tabletGridEightColumns};
-              flex-shrink: 1;
-            `
-          : null}
+    ${heroTextColumnTabletStyles}
   }
 `;
 
@@ -406,6 +424,13 @@ export const NationalCurriculumInsightsHero = ({
   const pageKind = getHeroPageKind(data);
   const breadcrumbs = heroBreadcrumbs(data);
   const presentation = nationalCurriculumInsightsPresentation(data.route);
+  let heroTextOrder: [number, number, number] = [1, 1, 1];
+
+  if (isHub) {
+    heroTextOrder = [2, 1, 1];
+  } else if (hasEditorialImage) {
+    heroTextOrder = [2, 2, 1];
+  }
 
   return (
     <HeroSection
@@ -438,9 +463,7 @@ export const NationalCurriculumInsightsHero = ({
         >
           <HeroTextColumn
             $pageKind={pageKind}
-            $order={
-              isHub ? [2, 1, 1] : hasEditorialImage ? [2, 2, 1] : [1, 1, 1]
-            }
+            $order={heroTextOrder}
             $flexDirection="column"
             $gap="spacing-0"
           >
