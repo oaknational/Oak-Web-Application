@@ -15,7 +15,6 @@ import {
   presentAtKeyStageSlugs,
 } from "@/utils/curriculum/keystage";
 import { CurriculumUnitsFormattedData } from "@/pages-helpers/curriculum/docx/tab-helpers";
-import { FilterType } from "@/browser-lib/avo/Avo";
 import { useBrowseFilters } from "@/context/BrowseFilters";
 
 export type BrowseFiltersTiersProps = {
@@ -25,7 +24,7 @@ export type BrowseFiltersTiersProps = {
 export function BrowseFiltersTiers({
   data,
 }: Readonly<BrowseFiltersTiersProps>) {
-  const { filters, setSingleFilter } = useBrowseFilters();
+  const { filters, setTierFilter } = useBrowseFilters();
   const id = useId();
   const { yearData } = data;
 
@@ -46,9 +45,7 @@ export function BrowseFiltersTiers({
         <OakBox>
           <OakRadioGroup
             name={"tiers" + id}
-            onChange={(e) =>
-              setSingleFilter("tiers", e.target.value, FilterType.TIER_FILTER)
-            }
+            onChange={(e) => setTierFilter(e.target.value)}
             value={filters.tiers[0]}
             $flexDirection="row"
             $flexWrap="wrap"

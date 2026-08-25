@@ -33,46 +33,72 @@ export const useBrowseFilters = () => {
     [setFilters, programmeRefined],
   );
 
-  const setYearFilter = useCallback(
-    (year: string, allYears: string[]) => {
-      if (year === "all") {
-        onChangeFilters({
-          newFilters: { ...filters, years: allYears, pathways: [] },
-          filterType: FilterType.YEAR_FILTER,
-          filterValue: "all",
-        });
-      } else {
-        onChangeFilters({
-          newFilters: { ...filters, years: [year], pathways: [] },
-          filterType: FilterType.YEAR_FILTER,
-          filterValue: year,
-        });
-      }
+  const setSingleFilter = useCallback(
+    (
+      key: BrowseFiltersKey,
+      value: string | string[],
+      filterType: FilterTypeValueType,
+    ) => {
+      const filterValue = Array.isArray(value) ? "all" : value;
+      const getNewFilter = () => {
+        if (Array.isArray(value)) {
+          return value;
+        } else if (value) {
+          return [value];
+        }
+        return [];
+      };
+      onChangeFilters({
+        newFilters: { ...filters, [key]: getNewFilter() },
+        filterType,
+        filterValue: filterValue,
+      });
     },
     [filters, onChangeFilters],
   );
 
-  const setSingleFilter = useCallback(
-    (key: BrowseFiltersKey, value: string, filterType: FilterTypeValueType) => {
-      onChangeFilters({
-        newFilters: { ...filters, [key]: [value] },
-        filterType,
-        filterValue: value,
-      });
+  const setYearFilter = useCallback(
+    (year: string, allYears: string[]) => {
+      const filterValue = year === "all" ? allYears : year;
+      setSingleFilter("years", filterValue, FilterType.YEAR_FILTER);
     },
-    [filters, onChangeFilters],
+    [setSingleFilter],
   );
 
   const setThreadFilter = useCallback(
     (threadSlug: string) => {
-      const threads = threadSlug === "" ? [] : [threadSlug];
-      onChangeFilters({
-        newFilters: { ...filters, threads },
-        filterType: FilterType.LEARNING_THEME_FILTER,
-        filterValue: threadSlug,
-      });
+      setSingleFilter("threads", threadSlug, FilterType.LEARNING_THEME_FILTER);
     },
-    [filters, onChangeFilters],
+    [setSingleFilter],
+  );
+
+  const setChildSubjectFilter = useCallback(
+    (childSubjectSlug: string) => {
+      setSingleFilter(
+        "childSubjects",
+        childSubjectSlug,
+        FilterType.SUBJECT_FILTER,
+      );
+    },
+    [setSingleFilter],
+  );
+
+  const setSubjectCategoryFilter = useCallback(
+    (subjectCategory: string) => {
+      setSingleFilter(
+        "subjectCategories",
+        subjectCategory,
+        FilterType.SUBJECT_FILTER,
+      );
+    },
+    [setSingleFilter],
+  );
+
+  const setTierFilter = useCallback(
+    (tierSlug: string) => {
+      setSingleFilter("tiers", tierSlug, FilterType.TIER_FILTER);
+    },
+    [setSingleFilter],
   );
 
   return {
@@ -80,7 +106,9 @@ export const useBrowseFilters = () => {
     onChangeFilters,
     getFilter,
     setYearFilter,
-    setSingleFilter,
     setThreadFilter,
+    setChildSubjectFilter,
+    setSubjectCategoryFilter,
+    setTierFilter,
   };
 };

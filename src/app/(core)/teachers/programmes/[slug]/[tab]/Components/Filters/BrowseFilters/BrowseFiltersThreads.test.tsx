@@ -57,15 +57,21 @@ const unitsData: CurriculumUnitsFormattedData = {
 
 const defaultFilters = createFilter({ years: ["10", "11"] });
 
+const mockFns = {
+  getFilter: jest.fn(),
+  setYearFilter: jest.fn(),
+  setThreadFilter: jest.fn(),
+  setChildSubjectFilter: jest.fn(),
+  setSubjectCategoryFilter: jest.fn(),
+  setTierFilter: jest.fn(),
+};
+
 describe("BrowseFiltersThreads", () => {
   it("renders the legend and all thread options", () => {
     mockUseBrowseFilters.mockReturnValue({
       filters: defaultFilters,
       onChangeFilters: () => {},
-      getFilter: jest.fn(),
-      setSingleFilter: jest.fn(),
-      setYearFilter: jest.fn(),
-      setThreadFilter: jest.fn(),
+      ...mockFns,
     });
     const { getAllByRole, getByText } = render(
       <BrowseFiltersThreads data={unitsData} />,
@@ -85,10 +91,7 @@ describe("BrowseFiltersThreads", () => {
     mockUseBrowseFilters.mockReturnValue({
       filters: defaultFilters,
       onChangeFilters: () => {},
-      getFilter: jest.fn(),
-      setSingleFilter: jest.fn(),
-      setYearFilter: jest.fn(),
-      setThreadFilter: jest.fn(),
+      ...mockFns,
     });
     const { getByRole } = render(<BrowseFiltersThreads data={unitsData} />);
 
@@ -101,10 +104,7 @@ describe("BrowseFiltersThreads", () => {
     mockUseBrowseFilters.mockReturnValue({
       filters: { ...defaultFilters, threads: ["thread1"] },
       onChangeFilters: () => {},
-      getFilter: jest.fn(),
-      setSingleFilter: jest.fn(),
-      setYearFilter: jest.fn(),
-      setThreadFilter: jest.fn(),
+      ...mockFns,
     });
     const { getAllByRole, getByText } = render(
       <BrowseFiltersThreads data={unitsData} />,
@@ -117,38 +117,30 @@ describe("BrowseFiltersThreads", () => {
   });
 
   it("calls setThreadFilter when selecting a thread", () => {
-    const setThreadFilter = jest.fn();
     mockUseBrowseFilters.mockReturnValue({
       filters: defaultFilters,
       onChangeFilters: jest.fn(),
-      getFilter: jest.fn(),
-      setSingleFilter: jest.fn(),
-      setYearFilter: jest.fn(),
-      setThreadFilter,
+      ...mockFns,
     });
     const { getAllByRole } = render(<BrowseFiltersThreads data={unitsData} />);
 
     const radios = getAllByRole("radio") as HTMLInputElement[];
 
     act(() => radios[1]!.click());
-    expect(setThreadFilter).toHaveBeenCalledWith("thread1");
+    expect(mockFns.setThreadFilter).toHaveBeenCalledWith("thread1");
   });
 
   it("calls setThreadFilter with an empty value when selecting None", () => {
-    const setThreadFilter = jest.fn();
     mockUseBrowseFilters.mockReturnValue({
       filters: { ...defaultFilters, threads: ["thread1"] },
       onChangeFilters: jest.fn(),
-      getFilter: jest.fn(),
-      setSingleFilter: jest.fn(),
-      setYearFilter: jest.fn(),
-      setThreadFilter,
+      ...mockFns,
     });
     const { getAllByRole } = render(<BrowseFiltersThreads data={unitsData} />);
 
     const radios = getAllByRole("radio") as HTMLInputElement[];
 
     act(() => radios[0]!.click());
-    expect(setThreadFilter).toHaveBeenCalledWith("");
+    expect(mockFns.setThreadFilter).toHaveBeenCalledWith("");
   });
 });

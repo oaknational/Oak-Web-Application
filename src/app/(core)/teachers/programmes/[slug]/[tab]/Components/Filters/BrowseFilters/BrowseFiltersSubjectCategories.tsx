@@ -17,7 +17,6 @@ import {
 } from "@/utils/curriculum/keystage";
 import { CurriculumUnitsFormattedData } from "@/pages-helpers/curriculum/docx/tab-helpers";
 import { CurriculumSelectionSlugs } from "@/utils/curriculum/slugs";
-import { FilterType } from "@/browser-lib/avo/Avo";
 import { useBrowseFilters } from "@/context/BrowseFilters";
 
 export type BrowseFiltersSubjectCategoriesProps = {
@@ -29,7 +28,7 @@ export function BrowseFiltersSubjectCategories({
   data,
   slugs,
 }: Readonly<BrowseFiltersSubjectCategoriesProps>) {
-  const { filters, setSingleFilter } = useBrowseFilters();
+  const { filters, setSubjectCategoryFilter } = useBrowseFilters();
   const id = useId();
   const { yearData } = data;
 
@@ -59,13 +58,7 @@ export function BrowseFiltersSubjectCategories({
         <OakBox>
           <OakRadioGroup
             name={"subject-categories_" + id}
-            onChange={(e) =>
-              setSingleFilter(
-                "subjectCategories",
-                e.target.value,
-                FilterType.SUBJECT_FILTER,
-              )
-            }
+            onChange={(e) => setSubjectCategoryFilter(e.target.value)}
             value={subjectCategoryIdAsString}
             $flexDirection="row"
             $flexWrap="wrap"
