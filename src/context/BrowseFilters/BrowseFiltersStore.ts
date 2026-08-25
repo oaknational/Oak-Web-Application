@@ -9,7 +9,7 @@ import {
   BROWSE_FILTERS_STORE_VERSION,
   createBrowseFiltersUrlStorage,
 } from "./browseFiltersUrlStorage";
-import { BrowseFilters } from "./types";
+import { BrowseFilters, BrowseFiltersKey } from "./types";
 import { applySearchParamsToFilter } from "./utils/applySearchParamsToFilter";
 
 export type BrowseFiltersStore = {
@@ -19,6 +19,7 @@ export type BrowseFiltersStore = {
    */
   defaultFilter: BrowseFilters;
   setFilters: (newFilters: BrowseFilters) => void;
+  getFilter: <T extends BrowseFiltersKey>(key: T) => BrowseFilters[T];
   /**
    * Applies the URL to the store
    */
@@ -46,10 +47,13 @@ export const createBrowseFiltersStore = ({
 
   const store = createStore<BrowseFiltersStore>()(
     persist<BrowseFiltersStore, [], [], BrowseFiltersPersistedState>(
-      (set) => ({
+      (set, get) => ({
         filters: initialFilter ?? defaultFilter,
         defaultFilter,
         setFilters: (newFilters) => set({ filters: newFilters }),
+        getFilter: (key) => {
+          return get().filters[key];
+        },
         syncFromSearchParams: (params) =>
           set((state) => {
             const nextFilters = applySearchParamsToFilter(

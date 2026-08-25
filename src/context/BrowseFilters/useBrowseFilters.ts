@@ -2,24 +2,19 @@
 import { useCallback } from "react";
 
 import { useBrowseFiltersStore } from "./BrowseFiltersProvider";
+import { OnChangeBrowseFilters } from "./types";
 
-import {
-  CurriculumFilters,
-  OnChangeCurriculumFilters,
-} from "@/utils/curriculum/types";
 import { useTeacherBrowseAnalytics } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
 
-export const useBrowseFilters = (): {
-  filters: CurriculumFilters;
-  onChangeFilters: OnChangeCurriculumFilters;
-} => {
+export const useBrowseFilters = () => {
   const filters = useBrowseFiltersStore((store) => store.filters);
   const setFilters = useBrowseFiltersStore((store) => store.setFilters);
+  const getFilter = useBrowseFiltersStore((store) => store.getFilter);
   const programmeRefined = useTeacherBrowseAnalytics(
     (store) => store.track.programmeRefined,
   );
 
-  const onChangeFilters = useCallback<OnChangeCurriculumFilters>(
+  const onChangeFilters = useCallback<OnChangeBrowseFilters>(
     ({ newFilters, filterType, filterValue }) => {
       setFilters(newFilters);
 
@@ -37,5 +32,5 @@ export const useBrowseFilters = (): {
     [setFilters, programmeRefined],
   );
 
-  return { filters, onChangeFilters };
+  return { filters, onChangeFilters, getFilter };
 };

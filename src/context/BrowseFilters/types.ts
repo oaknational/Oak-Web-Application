@@ -5,6 +5,8 @@ import {
 } from "@oaknational/oak-curriculum-schema";
 import z from "zod";
 
+import { FilterTypeValueType } from "@/browser-lib/avo/Avo";
+
 export const filterValueSchemas = z.object({
   childSubjects: subjectSlugs.array(),
   subjectCategories: z.string().array(),
@@ -31,3 +33,18 @@ export const browseFilterQueryParamMap: Record<BrowseFiltersKey, string> = {
 export const browseFilterKeys = Object.keys(
   browseFilterQueryParamMap,
 ) as BrowseFiltersKey[];
+
+export type BrowseFilterChange = {
+  newFilters: BrowseFilters;
+} & (
+  | {
+      filterType: FilterTypeValueType;
+      filterValue: string;
+    }
+  | {
+      filterType?: undefined;
+      filterValue?: undefined;
+    }
+);
+
+export type OnChangeBrowseFilters = (change: BrowseFilterChange) => void;

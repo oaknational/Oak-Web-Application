@@ -3,8 +3,8 @@ import { act, renderHook } from "@testing-library/react";
 
 import { BrowseFiltersProvider } from "./BrowseFiltersProvider";
 import { useBrowseFilters } from "./useBrowseFilters";
+import { createFilter } from "./utils/fixtures";
 
-import { createFilter } from "@/fixtures/curriculum/filters";
 import MockedTeacherBrowseAnalyticsProvider from "@/__tests__/__helpers__/MockedTeacherBrowseAnalyticsProvider";
 
 const mockProgrammeRefined = jest.fn();

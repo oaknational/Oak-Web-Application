@@ -10,13 +10,13 @@ import { ProgrammePageFiltersProps } from "./ProgrammePageFiltersDesktop";
 
 import { CurricFiltersYears } from "@/components/CurriculumComponents/CurricVisualiserFilters/CurricFiltersYears";
 import {
-  CurriculumFilters,
-  OnChangeCurriculumFilters,
-} from "@/utils/curriculum/types";
+  BrowseFilters,
+  OnChangeBrowseFilters,
+} from "@/context/BrowseFilters/types";
 
 export type MobileFilterHeaderProps = ProgrammePageFiltersProps & {
-  filters: CurriculumFilters;
-  onChangeFilters: OnChangeCurriculumFilters;
+  filters: BrowseFilters;
+  onChangeFilters: OnChangeBrowseFilters;
   onOpenModal: () => void;
 };
 export default function ProgrammeFiltersHeaderMobile({

@@ -9,12 +9,12 @@ import { mockProgrammeFiltersData } from "../Filters/ProgrammeFilters.test";
 
 import { UnitSequenceView, UnitSequenceViewProps } from "./UnitSequenceView";
 
-import { createFilter } from "@/fixtures/curriculum/filters";
 import { createUnit } from "@/fixtures/curriculum/unit";
 import { createYearData } from "@/fixtures/curriculum/yearData";
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 import { BrowseFiltersProvider } from "@/context/BrowseFilters";
-import { CurriculumFilters } from "@/utils/curriculum/types";
+import { BrowseFilters } from "@/context/BrowseFilters/types";
+import { createFilter } from "@/context/BrowseFilters/utils/fixtures";
 
 const render = renderWithProviders();
 
@@ -25,7 +25,7 @@ jest
   .mocked(useSearchParams)
   .mockReturnValue(new URLSearchParams("") as ReadonlyURLSearchParams);
 
-const defaultFilters: CurriculumFilters = createFilter({
+const defaultFilters = createFilter({
   years: ["7", "10"],
 });
 
@@ -54,7 +54,7 @@ const noFiltersData: UnitSequenceViewProps["curriculumUnitsFormattedData"] = {
 
 const renderUnitSequenceView = (
   props: UnitSequenceViewProps = defaultProps,
-  filters: CurriculumFilters = defaultFilters,
+  filters: BrowseFilters = defaultFilters,
 ) =>
   render(
     <BrowseFiltersProvider defaultFilter={filters}>
