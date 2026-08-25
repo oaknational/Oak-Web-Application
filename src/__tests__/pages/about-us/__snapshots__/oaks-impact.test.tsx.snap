@@ -646,7 +646,7 @@ exports[`pages/about-us/oaks-impact.tsx renders title when feature flag is enabl
                         class="sc-aXZVg dLPTTd"
                       >
                         <div
-                          class="sc-aXZVg sc-gEvEer laLcvy jMLdOa"
+                          class="sc-aXZVg sc-gEvEer kqqNVp jMLdOa"
                           data-percy-hide="contents"
                           style="box-sizing: content-box;"
                         />
