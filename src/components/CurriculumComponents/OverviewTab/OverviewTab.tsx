@@ -89,7 +89,7 @@ const ExplainerStyles = styled("div")`
   }
   ul + h4,
   p + h4 {
-    margin-top: 1.5 em;
+    margin-top: 3.5rem;
   }
   ul + h5,
   p + h5 {
