@@ -7,6 +7,7 @@ import ProgrammeFiltersHeaderMobile from "./ProgrammeFiltersHeaderMobile";
 import { createUnit } from "@/fixtures/curriculum/unit";
 import { YearData } from "@/utils/curriculum/types";
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
+import { BrowseFiltersProvider } from "@/context/BrowseFilters";
 
 jest.mock("next/navigation");
 
@@ -72,16 +73,6 @@ const render = renderWithProviders();
 
 const defaultProps: ComponentProps<typeof ProgrammeFiltersHeaderMobile> = {
   onOpenModal: jest.fn(),
-  onChangeFilters: jest.fn(),
-  filters: {
-    years: ["7", "8"],
-    tiers: [],
-    childSubjects: [],
-    pathways: [],
-    subjectCategories: [],
-    threads: [],
-    keystages: [],
-  },
   data: {
     yearData: mockYearData,
     threadOptions: [],
@@ -102,7 +93,21 @@ describe("Mobile filters header", () => {
     mockScrollTo.mockClear();
   });
   test("displays year group buttons", async () => {
-    render(<ProgrammeFiltersHeaderMobile {...defaultProps} />);
+    render(
+      <BrowseFiltersProvider
+        defaultFilter={{
+          years: ["7", "8"],
+          tiers: [],
+          childSubjects: [],
+          pathways: [],
+          subjectCategories: [],
+          threads: [],
+          keystages: [],
+        }}
+      >
+        <ProgrammeFiltersHeaderMobile {...defaultProps} />
+      </BrowseFiltersProvider>,
+    );
 
     const yearButtons = await screen.findAllByTestId("year-radio");
     expect(yearButtons).toHaveLength(2);

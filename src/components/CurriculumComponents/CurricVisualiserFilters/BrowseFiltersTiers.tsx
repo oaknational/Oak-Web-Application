@@ -7,10 +7,6 @@ import {
 import { useId } from "react";
 
 import {
-  CurriculumFilters,
-  OnChangeCurriculumFilters,
-} from "@/utils/curriculum/types";
-import {
   getFilterData,
   scopeYearsToKeystageFilter,
 } from "@/utils/curriculum/filtering";
@@ -20,21 +16,16 @@ import {
 } from "@/utils/curriculum/keystage";
 import { CurriculumUnitsFormattedData } from "@/pages-helpers/curriculum/docx/tab-helpers";
 import { FilterType } from "@/browser-lib/avo/Avo";
+import { useBrowseFilters } from "@/context/BrowseFilters";
 
-export type CurricFiltersTiersProps = {
-  filters: CurriculumFilters;
-  onChangeFilters: OnChangeCurriculumFilters;
+export type BrowseFiltersTiersProps = {
   data: CurriculumUnitsFormattedData;
-  // The context prop can be removed once the integrated journey is fully launched
-  context: "curriculum-visualiser" | "integrated-journey";
 };
 
-export function CurricFiltersTiers({
-  filters,
-  onChangeFilters,
+export function BrowseFiltersTiers({
   data,
-  context,
-}: Readonly<CurricFiltersTiersProps>) {
+}: Readonly<BrowseFiltersTiersProps>) {
+  const { filters, setSingleFilter } = useBrowseFilters();
   const id = useId();
   const { yearData } = data;
 
@@ -49,21 +40,15 @@ export function CurricFiltersTiers({
     effectiveYears,
   );
 
-  function setSingleInFilter(key: keyof CurriculumFilters, newValue: string) {
-    onChangeFilters({
-      newFilters: { ...filters, [key]: [newValue] },
-      filterType: FilterType.TIER_FILTER,
-      filterValue: newValue,
-    });
-  }
-
   return (
     <>
       {tiers.length > 0 && (
         <OakBox>
           <OakRadioGroup
             name={"tiers" + id}
-            onChange={(e) => setSingleInFilter("tiers", e.target.value)}
+            onChange={(e) =>
+              setSingleFilter("tiers", e.target.value, FilterType.TIER_FILTER)
+            }
             value={filters.tiers[0]}
             $flexDirection="row"
             $flexWrap="wrap"
@@ -71,9 +56,7 @@ export function CurricFiltersTiers({
           >
             <OakP
               as="legend"
-              $font={
-                context === "curriculum-visualiser" ? "heading-6" : "heading-7"
-              }
+              $font="heading-7"
               $mt="spacing-0"
               $mb={["spacing-24", "spacing-16"]}
             >

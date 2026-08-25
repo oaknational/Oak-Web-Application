@@ -8,10 +8,6 @@ import { useMemo, useId } from "react";
 
 import { getValidSubjectCategoryIconById } from "@/utils/getValidSubjectCategoryIconById";
 import {
-  CurriculumFilters,
-  OnChangeCurriculumFilters,
-} from "@/utils/curriculum/types";
-import {
   getFilterData,
   scopeYearsToKeystageFilter,
 } from "@/utils/curriculum/filtering";
@@ -22,23 +18,18 @@ import {
 import { CurriculumUnitsFormattedData } from "@/pages-helpers/curriculum/docx/tab-helpers";
 import { CurriculumSelectionSlugs } from "@/utils/curriculum/slugs";
 import { FilterType } from "@/browser-lib/avo/Avo";
+import { useBrowseFilters } from "@/context/BrowseFilters";
 
-export type CurricFiltersSubjectCategoriesProps = {
-  filters: CurriculumFilters;
-  onChangeFilters: OnChangeCurriculumFilters;
+export type BrowseFiltersSubjectCategoriesProps = {
   data: CurriculumUnitsFormattedData;
   slugs: CurriculumSelectionSlugs;
-  // The context prop can be removed once the integrated journey is fully launched
-  context: "curriculum-visualiser" | "integrated-journey";
 };
 
-export function CurricFiltersSubjectCategories({
-  filters,
-  onChangeFilters,
+export function BrowseFiltersSubjectCategories({
   data,
   slugs,
-  context,
-}: Readonly<CurricFiltersSubjectCategoriesProps>) {
+}: Readonly<BrowseFiltersSubjectCategoriesProps>) {
+  const { filters, setSingleFilter } = useBrowseFilters();
   const id = useId();
   const { yearData } = data;
 
@@ -58,14 +49,6 @@ export function CurricFiltersSubjectCategories({
     effectiveYears,
   ).filter((ks) => !childSubjectsAt.includes(ks));
 
-  function setSingleInFilter(key: keyof CurriculumFilters, newValue: string) {
-    onChangeFilters({
-      newFilters: { ...filters, [key]: [newValue] },
-      filterType: FilterType.SUBJECT_FILTER,
-      filterValue: newValue,
-    });
-  }
-
   const subjectCategoryIdAsString = useMemo(() => {
     return String(filters.subjectCategories[0]);
   }, [filters.subjectCategories]);
@@ -77,22 +60,20 @@ export function CurricFiltersSubjectCategories({
           <OakRadioGroup
             name={"subject-categories_" + id}
             onChange={(e) =>
-              setSingleInFilter("subjectCategories", e.target.value)
+              setSingleFilter(
+                "subjectCategories",
+                e.target.value,
+                FilterType.SUBJECT_FILTER,
+              )
             }
             value={subjectCategoryIdAsString}
             $flexDirection="row"
             $flexWrap="wrap"
-            $gap={
-              context === "curriculum-visualiser" ? "spacing-8" : "spacing-12"
-            }
+            $gap="spacing-12"
           >
             <OakP
               as="legend"
-              $font={
-                context === "integrated-journey"
-                  ? "heading-7"
-                  : ["heading-7", "heading-6"]
-              }
+              $font="heading-7"
               $mt="spacing-0"
               $mb={["spacing-24", "spacing-16"]}
             >

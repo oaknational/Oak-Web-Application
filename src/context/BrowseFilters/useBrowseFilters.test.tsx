@@ -104,4 +104,73 @@ describe("useBrowseFilters", () => {
 
     expect(result.current.onChangeFilters).toBe(first);
   });
+
+  it("setYearFilter sets a single year and clears pathways", () => {
+    const { result } = renderHook(() => useBrowseFilters(), { wrapper });
+
+    act(() => {
+      result.current.onChangeFilters({
+        newFilters: createFilter({ years: ["7"], pathways: ["core"] }),
+      });
+    });
+
+    act(() => {
+      result.current.setYearFilter("9", ["7", "8", "9"]);
+    });
+
+    expect(result.current.filters.years).toEqual(["9"]);
+    expect(result.current.filters.pathways).toEqual([]);
+    expect(mockProgrammeRefined).toHaveBeenCalledWith(
+      expect.objectContaining({
+        filterType: "Year filter",
+        filterValue: "9",
+      }),
+    );
+  });
+
+  it("setYearFilter('all') sets all years and clears pathways", () => {
+    const { result } = renderHook(() => useBrowseFilters(), { wrapper });
+
+    act(() => {
+      result.current.setYearFilter("all", ["7", "8", "9"]);
+    });
+
+    expect(result.current.filters.years).toEqual(["7", "8", "9"]);
+    expect(result.current.filters.pathways).toEqual([]);
+    expect(mockProgrammeRefined).toHaveBeenCalledWith(
+      expect.objectContaining({
+        filterType: "Year filter",
+        filterValue: "all",
+      }),
+    );
+  });
+
+  it("setThreadFilter sets a single thread", () => {
+    const { result } = renderHook(() => useBrowseFilters(), { wrapper });
+
+    act(() => {
+      result.current.setThreadFilter("thread1");
+    });
+
+    expect(result.current.filters.threads).toEqual(["thread1"]);
+    expect(mockProgrammeRefined).toHaveBeenCalledWith(
+      expect.objectContaining({
+        filterType: "Learning theme filter",
+        filterValue: "thread1",
+      }),
+    );
+  });
+
+  it("setThreadFilter('') clears the thread", () => {
+    const { result } = renderHook(() => useBrowseFilters(), { wrapper });
+
+    act(() => {
+      result.current.setThreadFilter("thread1");
+    });
+    act(() => {
+      result.current.setThreadFilter("");
+    });
+
+    expect(result.current.filters.threads).toEqual([]);
+  });
 });

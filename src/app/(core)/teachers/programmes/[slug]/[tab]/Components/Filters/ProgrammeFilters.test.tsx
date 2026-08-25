@@ -6,13 +6,11 @@ import { ProgrammePageFiltersProps } from "./ProgrammePageFiltersDesktop";
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 import { createChildSubject } from "@/fixtures/curriculum/childSubject";
 import { createSubjectCategory } from "@/fixtures/curriculum/subjectCategories";
-import { createTier } from "@/fixtures/curriculum/tier";
-import { createThread } from "@/fixtures/curriculum/thread";
-import { createUnit } from "@/fixtures/curriculum/unit";
-import { createYearData } from "@/fixtures/curriculum/yearData";
-import { createFilter } from "@/fixtures/curriculum/filters";
 import { BrowseFiltersProvider } from "@/context/BrowseFilters";
-import { CurriculumFilters } from "@/utils/curriculum/types";
+import { BrowseFilters } from "@/context/BrowseFilters/types";
+import { createFilter } from "@/context/BrowseFilters/utils/fixtures";
+import { createYearData } from "@/fixtures/curriculum/yearData";
+import { createUnit } from "@/fixtures/curriculum/unit";
 
 /**
  * Year data spanning KS3 and KS4 so that all five filter groups can render:
@@ -50,15 +48,15 @@ export const mockProgrammeFiltersData: ProgrammePageFiltersProps["data"] = {
         createChildSubject({ subject_slug: "chemistry" }),
       ],
       tiers: [
-        createTier({ tier_slug: "foundation" }),
-        createTier({ tier_slug: "higher" }),
+        { tier_slug: "foundation", tier: "Foundation" },
+        { tier_slug: "higher", tier: "Higher" },
       ],
       keystage: "ks4",
     }),
   },
   threadOptions: [
-    createThread({ slug: "poetry", title: "Poetry" }),
-    createThread({ slug: "prose", title: "Prose" }),
+    { slug: "poetry", title: "Poetry", order: 1 },
+    { slug: "prose", title: "Prose", order: 2 },
   ],
   yearOptions: ["7", "8", "9", "10", "11"],
   keystages: ["ks3", "ks4"],
@@ -78,7 +76,7 @@ const defaultProps: ProgrammeFiltersProps = {
 };
 
 const renderProgrammeFilters = (
-  filters: CurriculumFilters,
+  filters: BrowseFilters,
   props: Partial<ProgrammeFiltersProps> = {},
 ) => {
   return render(

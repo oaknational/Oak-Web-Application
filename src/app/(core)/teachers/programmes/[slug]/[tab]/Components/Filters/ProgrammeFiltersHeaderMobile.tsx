@@ -8,24 +8,14 @@ import {
 
 import { ProgrammePageFiltersProps } from "./ProgrammePageFiltersDesktop";
 
-import { CurricFiltersYears } from "@/components/CurriculumComponents/CurricVisualiserFilters/CurricFiltersYears";
-import {
-  BrowseFilters,
-  OnChangeBrowseFilters,
-} from "@/context/BrowseFilters/types";
+import { BrowseFiltersYears } from "@/components/CurriculumComponents/CurricVisualiserFilters/BrowseFiltersYears";
 
 export type MobileFilterHeaderProps = ProgrammePageFiltersProps & {
-  filters: BrowseFilters;
-  onChangeFilters: OnChangeBrowseFilters;
   onOpenModal: () => void;
 };
 export default function ProgrammeFiltersHeaderMobile({
   onOpenModal,
-  filters,
-  onChangeFilters,
   data,
-  slugs,
-  ks4Options,
 }: Readonly<MobileFilterHeaderProps>) {
   return (
     <OakBox
@@ -48,15 +38,7 @@ export default function ProgrammeFiltersHeaderMobile({
           Filters
         </OakHeading>
 
-        <CurricFiltersYears
-          filters={filters}
-          onChangeFilters={onChangeFilters}
-          data={data}
-          ks4Options={ks4Options}
-          slugs={slugs}
-          context={"integrated-journey"}
-          onModalOpen={onOpenModal}
-        />
+        <BrowseFiltersYears data={data} onModalOpen={onOpenModal} />
         <OakBox $display={["block", "none", "none"]}>
           <OakTertiaryButton
             isTrailingIcon

@@ -6,11 +6,7 @@ import {
 } from "@oaknational/oak-components";
 import { useId } from "react";
 
-import {
-  CurriculumFilters,
-  OnChangeCurriculumFilters,
-  Unit,
-} from "@/utils/curriculum/types";
+import { Unit } from "@/utils/curriculum/types";
 import { getValidSubjectIconName } from "@/utils/getValidSubjectIconName";
 import {
   getFilterData,
@@ -22,21 +18,16 @@ import {
 } from "@/utils/curriculum/keystage";
 import { CurriculumUnitsFormattedData } from "@/pages-helpers/curriculum/docx/tab-helpers";
 import { FilterType } from "@/browser-lib/avo/Avo";
+import { useBrowseFilters } from "@/context/BrowseFilters";
 
-export type CurricFiltersChildSubjectsProps = {
-  filters: CurriculumFilters;
-  onChangeFilters: OnChangeCurriculumFilters;
+export type BrowseFiltersChildSubjectsProps = {
   data: CurriculumUnitsFormattedData<Unit>;
-  // The context prop can be removed once the integrated journey is fully launched
-  context: "curriculum-visualiser" | "integrated-journey";
 };
 
-export function CurricFiltersChildSubjects({
-  filters,
-  onChangeFilters,
+export function BrowseFiltersChildSubjects({
   data,
-  context,
-}: Readonly<CurricFiltersChildSubjectsProps>) {
+}: Readonly<BrowseFiltersChildSubjectsProps>) {
+  const { filters, setSingleFilter } = useBrowseFilters();
   const id = useId();
   const { yearData } = data;
 
@@ -51,20 +42,18 @@ export function CurricFiltersChildSubjects({
     effectiveYears,
   );
 
-  function setSingleInFilter(key: keyof CurriculumFilters, newValue: string) {
-    onChangeFilters({
-      newFilters: { ...filters, [key]: [newValue] },
-      filterType: FilterType.SUBJECT_FILTER,
-      filterValue: newValue,
-    });
-  }
-
   return (
     <OakBox>
       {childSubjects.length > 0 && (
         <OakRadioGroup
           name={"childSubjects_" + id}
-          onChange={(e) => setSingleInFilter("childSubjects", e.target.value)}
+          onChange={(e) =>
+            setSingleFilter(
+              "childSubjects",
+              e.target.value,
+              FilterType.SUBJECT_FILTER,
+            )
+          }
           value={String(filters.childSubjects[0]!)}
           $flexDirection="row"
           $flexWrap="wrap"
@@ -72,9 +61,7 @@ export function CurricFiltersChildSubjects({
         >
           <OakP
             as="legend"
-            $font={
-              context === "curriculum-visualiser" ? "heading-6" : "heading-7"
-            }
+            $font="heading-7"
             $mt="spacing-0"
             $mb={["spacing-24", "spacing-16"]}
           >
