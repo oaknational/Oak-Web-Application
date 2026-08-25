@@ -1,3 +1,20 @@
+## [1.1165.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.1165.0...v1.1165.1) (2026-08-25)
+
+
+### Bug Fixes
+
+* about us layout tests ([0035ac5](https://github.com/oaknational/Oak-Web-Application/commit/0035ac564d2710bb8fc9764915527419e1f404b6))
+* add example flag in flags const and use only this in tests to avoid future test changes ([454fefb](https://github.com/oaknational/Oak-Web-Application/commit/454fefb49eb07e4121e6ccc17b13994f9763262a))
+* case studies test ([ce6e6e7](https://github.com/oaknational/Oak-Web-Application/commit/ce6e6e77f52a048ae25898bc10ea38c8d263c0e9))
+* oaks-impact tests ([d8228ed](https://github.com/oaknational/Oak-Web-Application/commit/d8228ed5e274548939aea67cdebe3827fd12eb8a))
+* remove conditional addition of oaks impact in footer, nav and explore more nav ([4009afa](https://github.com/oaknational/Oak-Web-Application/commit/4009afa1f6c9f4996424f3b809112515abb6efcc))
+* remove feature flag mocking in tests ([6a8647e](https://github.com/oaknational/Oak-Web-Application/commit/6a8647e8edb3195c9227d60a8ae41ab26912f343))
+* remove oaks impact flag from FLAGS const in util ([a6b6102](https://github.com/oaknational/Oak-Web-Application/commit/a6b610242fb82a2a63e463fcc6022c2aa4ff7f5a))
+* snaps oaks impact ([fee659c](https://github.com/oaknational/Oak-Web-Application/commit/fee659c4e8a51b8f4d3bcb47564486c30d635588))
+* switch to static props in oaks-impact page ([2d8958d](https://github.com/oaknational/Oak-Web-Application/commit/2d8958da0cbe1048a5a8e4f63f8cf625175ed828))
+* top nav tests ([055a6b2](https://github.com/oaknational/Oak-Web-Application/commit/055a6b26587ff16ce7f9a17954b7e2642fbb5705))
+* use static props in case studies page ([0fb5b76](https://github.com/oaknational/Oak-Web-Application/commit/0fb5b76e3608add0dc8bc0f463e904d3b2bd242c))
+
 # [1.1165.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1164.3...v1.1165.0) (2026-08-25)
 
 
