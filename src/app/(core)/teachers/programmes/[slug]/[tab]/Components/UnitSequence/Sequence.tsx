@@ -42,13 +42,15 @@ export default function ProgrammeSequence({
 }: Readonly<ProgrammeSequenceProps>) {
   const shouldIncludeCore = ks4OptionSlug !== "core";
 
-  const unitsByYearSelector = applyFiltering(
-    filters,
-    groupUnitsByPathway({
-      modes: getModes(shouldIncludeCore, ks4Options, filters.pathways[0]),
-      yearData,
-    }),
-  );
+  const unitsByYearSelector = useMemo(() => {
+    return applyFiltering(
+      filters,
+      groupUnitsByPathway({
+        modes: getModes(shouldIncludeCore, ks4Options, filters.pathways[0]),
+        yearData,
+      }),
+    );
+  }, [filters, ks4Options, shouldIncludeCore, yearData]);
 
   const selectedThread = useMemo(() => {
     return threadOptions.find((thread) => thread.slug === filters.threads[0]);
