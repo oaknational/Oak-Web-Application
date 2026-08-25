@@ -320,6 +320,36 @@ describe("useResourceFormState", () => {
         }),
       );
     });
+    test("should set hubspotLoaded to true when onboarded user has no hubspot contact", async () => {
+      setUseUserReturn({
+        ...mockLoggedIn,
+        user: mockTeacherUserWithDownloadAccess,
+      });
+
+      (fetchHubspotContactDetails as jest.Mock).mockResolvedValue(null);
+
+      const { result } = renderHook(() => useResourceFormState(downloadProps));
+
+      await waitFor(() => {
+        expect(result.current.hubspotLoaded).toBe(true);
+      });
+    });
+    test("should set hubspotLoaded to true when hubspot fetch fails", async () => {
+      setUseUserReturn({
+        ...mockLoggedIn,
+        user: mockTeacherUserWithDownloadAccess,
+      });
+
+      (fetchHubspotContactDetails as jest.Mock).mockRejectedValue(
+        new Error("Failed to fetch contact details"),
+      );
+
+      const { result } = renderHook(() => useResourceFormState(downloadProps));
+
+      await waitFor(() => {
+        expect(result.current.hubspotLoaded).toBe(true);
+      });
+    });
     test("should throw an error for invalid resource type", () => {
       console.error = jest.fn();
       const invalidProps = {
