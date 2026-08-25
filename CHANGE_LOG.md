@@ -1,3 +1,10 @@
+## [1.1164.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.1164.1...v1.1164.2) (2026-08-25)
+
+
+### Bug Fixes
+
+* broken mobile styling of blogs and migrated to <OakBreadcrumbs/> ([c2a75c6](https://github.com/oaknational/Oak-Web-Application/commit/c2a75c6f3f95f3d130aa0f9b931bc792a047ec9d))
+
 ## [1.1164.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.1164.0...v1.1164.1) (2026-08-25)
 
 
