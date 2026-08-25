@@ -4,6 +4,7 @@ import {
   OakGridArea,
   OakHeading,
 } from "@oaknational/oak-components";
+import { useMemo } from "react";
 
 import { KS4OptionFocusProvider } from "../Filters/KS4OptionFocus";
 import { ProgrammePageFiltersModalProvider } from "../Filters/ProgrammePageFiltersModalProvider";
@@ -47,12 +48,14 @@ export const UnitSequenceView = ({
   const { yearData, threadOptions } = curriculumUnitsFormattedData;
   const { ks4OptionSlug } = curriculumSelectionSlugs;
 
-  const unitCount = getNumberOfSelectedUnits(yearData, filters);
+  const unitCount = useMemo(
+    () => getNumberOfSelectedUnits(yearData, filters),
+    [yearData, filters],
+  );
 
-  const highlightedUnits = highlightedUnitCount(
-    yearData,
-    filters,
-    filters.threads,
+  const highlightedUnits = useMemo(
+    () => highlightedUnitCount(yearData, filters, filters.threads),
+    [yearData, filters],
   );
 
   const shouldDisplayFilters = getDisplayedFilters(
