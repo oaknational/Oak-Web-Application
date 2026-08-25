@@ -13,6 +13,7 @@ import {
   OakBoxProps,
   OakGrid,
   OakGridArea,
+  OakVideo,
 } from "@oaknational/oak-components";
 import {
   PortableText,
@@ -27,6 +28,7 @@ import { CurriculumOverviewSanityData } from "@/common-lib/cms-types";
 import CMSImage from "@/components/SharedComponents/CMSImage";
 import CMSVideo from "@/components/SharedComponents/CMSVideo";
 import { basePortableTextComponents } from "@/components/SharedComponents/PortableText";
+import VideoPlayer from "@/components/SharedComponents/VideoPlayer";
 import { findContainingAnchor } from "@/utils/curriculum/dom";
 import { resolveOakHref } from "@/common-lib/urls";
 import { useTeacherBrowseAnalytics } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
@@ -300,7 +302,30 @@ const OverviewTab: FC<OverviewTabProps> = ({
                           ...basePortableTextComponents.block,
                           ...blockHeadingComponents,
                         } as PortableTextBlockComponent,
-                        types: {},
+                        types: {
+                          video: (props) => (
+                            <OakBox
+                              $mt={"spacing-24"}
+                              $mb={["spacing-48", "spacing-56"]}
+                            >
+                              <OakVideo
+                                videoSlot={
+                                  <VideoPlayer
+                                    playbackPolicy="public"
+                                    playbackId={
+                                      props.value.video.asset.playbackId
+                                    }
+                                    title={props.value.title}
+                                    isLegacy={true}
+                                    location="lesson"
+                                  />
+                                }
+                                showTranscript={true}
+                                transcript={props.value.transcript ?? undefined}
+                              />
+                            </OakBox>
+                          ),
+                        },
                         marks: {
                           strong: basePortableTextComponents.marks!.strong,
                           em: basePortableTextComponents.marks!.em,
