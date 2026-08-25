@@ -223,6 +223,7 @@ export const Header = (props: LargeHeaderProps | CompactHeaderProps) => {
               $objectFit="contain"
               placeholder="empty"
               unoptimized
+              priority
             />
           )}
         </OakGridArea>
