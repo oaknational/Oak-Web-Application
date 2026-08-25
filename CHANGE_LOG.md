@@ -1,3 +1,89 @@
+# [1.1163.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1162.0...v1.1163.0) (2026-08-24)
+
+
+### Bug Fixes
+
+* handle edge case for users without husbpot details ([653e2a7](https://github.com/oaknational/Oak-Web-Application/commit/653e2a794d66aa13b71e1188f244b8ac9601061e))
+* only set hubspotLoaded when no school frm hubspot ([c4a65a1](https://github.com/oaknational/Oak-Web-Application/commit/c4a65a1240603497007b698a888097a1d9e97a34))
+* remove double wrapping oakError ([ab9bcb9](https://github.com/oaknational/Oak-Web-Application/commit/ab9bcb997d9d5646daebb2c7df3fe20a7f9d42c4))
+* remove invalid expect toThrow clause ([736b685](https://github.com/oaknational/Oak-Web-Application/commit/736b6854dd5868d9ff3a9cff4fcb2e55aff5fafb))
+* remove redundant undefined ([4d3de74](https://github.com/oaknational/Oak-Web-Application/commit/4d3de744b1aeaf7a21a0fc44195fd31ac392bd3a))
+* remove useless usememos ([fb627a7](https://github.com/oaknational/Oak-Web-Application/commit/fb627a7cb0bf6b16a6a51d9d8ada0b0976999207))
+* typo in var names ([c0b82ae](https://github.com/oaknational/Oak-Web-Application/commit/c0b82aeebb1666e56827d4de570f483420548367))
+
+
+### Features
+
+* report error when fetch to hubspot fails ([cfaebdb](https://github.com/oaknational/Oak-Web-Application/commit/cfaebdb4f7ca6ae79168e0ac8cd44d183cab4f99))
+
+# [1.1162.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1161.1...v1.1162.0) (2026-08-21)
+
+
+### Features
+
+* serve the MCP submission carousel images from OWA ([54b79d5](https://github.com/oaknational/Oak-Web-Application/commit/54b79d5bff5daf08ff15add463b02fba6b55a1d9))
+
+## [1.1161.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.1161.0...v1.1161.1) (2026-08-20)
+
+
+### Bug Fixes
+
+* type issues with oak-components ([dc3d053](https://github.com/oaknational/Oak-Web-Application/commit/dc3d053dceabf81f0f1cf2aa0cfa9ce4946ad583))
+
+# [1.1161.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1160.0...v1.1161.0) (2026-08-20)
+
+
+### Features
+
+* bump oak components ([7fbb166](https://github.com/oaknational/Oak-Web-Application/commit/7fbb166a13918a2aea908ae11a6f7a3fdce13a31))
+* use new oakresourcecard comp with updated props ([19f62b7](https://github.com/oaknational/Oak-Web-Application/commit/19f62b7bb338acf05d1d4ef2540056b5816387cd))
+* use new oakresourcesaccordion comp with updated prop ([78e5928](https://github.com/oaknational/Oak-Web-Application/commit/78e5928954d367a20ee56c9756155303abe5866e))
+
+# [1.1160.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1159.0...v1.1160.0) (2026-08-18)
+
+
+### Features
+
+* turn on oaks impact feature flag ([65187eb](https://github.com/oaknational/Oak-Web-Application/commit/65187eb726812da7daf70154885f47d17baa4bfb))
+
+# [1.1159.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1158.0...v1.1159.0) (2026-08-18)
+
+
+### Features
+
+* add impact to deployment url ([9095a88](https://github.com/oaknational/Oak-Web-Application/commit/9095a8818a4db1f6f5a1d49b1320cf128996767d))
+* add to sitemaps ([35ca647](https://github.com/oaknational/Oak-Web-Application/commit/35ca6478dfeb5333522a1f2c1bcc59b18ed4ce99))
+
+# [1.1158.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1157.1...v1.1158.0) (2026-08-17)
+
+
+### Bug Fixes
+
+* accidental layout shift ([3bf3cae](https://github.com/oaknational/Oak-Web-Application/commit/3bf3cae6e7af282d6c752c79b710744ee56f03e8))
+* add optional dynamic flag to use in quiz order question mathjax ([525f4bd](https://github.com/oaknational/Oak-Web-Application/commit/525f4bd21bffafd83ec05744fe19566c437d9c38))
+* move mathjax wrap to feedback and individual q components ([47cdeda](https://github.com/oaknational/Oak-Web-Application/commit/47cdeda62eaf9a4095e755747983132df201211b))
+
+
+### Features
+
+* add additional error logging to mathjax provider ([d8d4bdd](https://github.com/oaknational/Oak-Web-Application/commit/d8d4bdd480f9e3d3cbdc186cc85293c5a78ea042))
+* remove dynamic flag on mathjax so we only typesett on first render ([543dee9](https://github.com/oaknational/Oak-Web-Application/commit/543dee9acda64eeda4045aa04b1024ac7b1c67b9))
+* set hideUntilTypeset property to first ([a7d5a62](https://github.com/oaknational/Oak-Web-Application/commit/a7d5a6249fa77e50b8f063f19252fc41bf95d617))
+
+## [1.1157.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.1157.0...v1.1157.1) (2026-08-12)
+
+
+### Bug Fixes
+
+* changes to font sizes for <OaksImpactStats/> ([8c219c6](https://github.com/oaknational/Oak-Web-Application/commit/8c219c6383d490ef1e5328f183b19e05cf9f8e40))
+
+# [1.1157.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1156.0...v1.1157.0) (2026-08-11)
+
+
+### Features
+
+* add "new" to download tab when implementation-guides enabled ([e107a1b](https://github.com/oaknational/Oak-Web-Application/commit/e107a1b0bedea3e2cbb1c3d1b572aa9cc01d4cc1))
+
 # [1.1156.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1155.0...v1.1156.0) (2026-08-11)
 
 

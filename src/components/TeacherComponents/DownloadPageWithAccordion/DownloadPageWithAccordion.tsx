@@ -9,7 +9,7 @@ import {
   OakLI,
   OakGrid,
   OakGridArea,
-  OakDownloadsAccordion,
+  OakResourcesAccordion,
 } from "@oaknational/oak-components";
 import {
   Control,
@@ -202,8 +202,8 @@ export const DownloadPageWithAccordionContent = (
       >
         {errors?.resources?.message}
       </FieldError>
-      <OakDownloadsAccordion
-        downloadsText={getAccordionText({
+      <OakResourcesAccordion
+        subheading={getAccordionText({
           lessonDownloads,
           additionalFiles,
           curriculumDownloads,
@@ -231,7 +231,7 @@ export const DownloadPageWithAccordionContent = (
             </OakBox>
           )}
         </OakBox>
-      </OakDownloadsAccordion>
+      </OakResourcesAccordion>
       {showNoResources ? (
         <NoResourcesToDownload />
       ) : (
