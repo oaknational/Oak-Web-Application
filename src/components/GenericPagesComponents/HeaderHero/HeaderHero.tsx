@@ -60,6 +60,7 @@ export const HeaderHero = (props: HeaderHeroProps) => {
       $width={"100%"}
       $background={"bg-decorative3-main"}
       $overflowX={"hidden"}
+      $ph={["spacing-16", "spacing-0", "spacing-0"]}
     >
       <OakMaxWidth>
         <OakFlex
