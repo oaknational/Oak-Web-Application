@@ -9,17 +9,16 @@ import {
   BROWSE_FILTERS_STORE_VERSION,
   createBrowseFiltersUrlStorage,
 } from "./browseFiltersUrlStorage";
-
-import { CurriculumFilters } from "@/utils/curriculum/types";
-import { mergeInFilterParams } from "@/utils/curriculum/filtering";
+import { BrowseFilters } from "./types";
+import { applySearchParamsToFilter } from "./utils/applySearchParamsToFilter";
 
 export type BrowseFiltersStore = {
-  filters: CurriculumFilters;
+  filters: BrowseFilters;
   /**
    * The data-derived baseline for this programme
    */
-  defaultFilter: CurriculumFilters;
-  setFilters: (newFilters: CurriculumFilters) => void;
+  defaultFilter: BrowseFilters;
+  setFilters: (newFilters: BrowseFilters) => void;
   /**
    * Applies the URL to the store
    */
@@ -29,8 +28,8 @@ export type BrowseFiltersStore = {
 };
 
 export type CreateBrowseFiltersStoreOptions = {
-  defaultFilter: CurriculumFilters;
-  initialFilter?: CurriculumFilters;
+  defaultFilter: BrowseFilters;
+  initialFilter?: BrowseFilters;
 };
 
 export const createBrowseFiltersStore = ({
@@ -53,7 +52,7 @@ export const createBrowseFiltersStore = ({
         setFilters: (newFilters) => set({ filters: newFilters }),
         syncFromSearchParams: (params) =>
           set((state) => {
-            const nextFilters = mergeInFilterParams(
+            const nextFilters = applySearchParamsToFilter(
               state.defaultFilter,
               params,
             );

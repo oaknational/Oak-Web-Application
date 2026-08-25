@@ -7,10 +7,7 @@ import {
   getFilterData,
   scopeYearsToKeystageFilter,
   shouldDisplayFilter,
-  filtersToQuery,
   mergeInFilterParams,
-  filtersFromSearchString,
-  searchStringWithFilters,
   highlightedUnitCount,
   filteringFromYears,
   subjectCategoryForFilter,
@@ -775,63 +772,6 @@ describe("shouldDisplayFilter", () => {
   });
 });
 
-describe("filtersToQuery", () => {
-  it("with default", () => {
-    const result = filtersToQuery(createFilter(), {
-      childSubjects: [],
-      subjectCategories: [],
-      tiers: [],
-      years: [],
-      threads: [],
-      pathways: [],
-      keystages: [],
-    });
-    expect(result).toEqual({});
-  });
-
-  it("with data", () => {
-    const childSubject1 = createChildSubject({
-      subject_slug: "child_subject_1",
-    });
-    const childSubject2 = createChildSubject({
-      subject_slug: "child_subject_2",
-    });
-    const subCat1 = createSubjectCategory({ id: 1 });
-    const subCat2 = createSubjectCategory({ id: 2 });
-    const tier1 = createTier({ tier_slug: "tier_1" });
-    const tier2 = createTier({ tier_slug: "tier_2" });
-    const thread1 = createThread({ slug: "thread_1" });
-    const thread2 = createThread({ slug: "thread_2" });
-
-    const result = filtersToQuery(
-      createFilter({
-        childSubjects: [childSubject1.subject_slug, childSubject2.subject_slug],
-        subjectCategories: [String(subCat1.id), String(subCat2.id)],
-        tiers: [tier1.tier_slug, tier2.tier_slug],
-        years: ["7", "8"],
-        threads: [thread1.slug, thread2.slug],
-      }),
-      {
-        childSubjects: [],
-        subjectCategories: [],
-        tiers: [],
-        years: [],
-        threads: [],
-        pathways: [],
-        keystages: [],
-      },
-    );
-
-    expect(result).toEqual({
-      child_subjects: "child_subject_1,child_subject_2",
-      subject_categories: "1,2",
-      threads: "thread_1,thread_2",
-      tiers: "tier_1,tier_2",
-      years: "7,8",
-    });
-  });
-});
-
 describe("mergeInFilterParams", () => {
   it("single value", () => {
     const filter: CurriculumFilters = {
@@ -887,78 +827,6 @@ describe("mergeInFilterParams", () => {
       pathways: [],
       keystages: [],
     });
-  });
-});
-
-describe("filtersFromSearchString", () => {
-  it("reads the filter params it owns", () => {
-    expect(
-      filtersFromSearchString("?years=7,8&child_subjects=biology&tiers=higher"),
-    ).toEqual({
-      years: ["7", "8"],
-      childSubjects: ["biology"],
-      tiers: ["higher"],
-    });
-  });
-
-  it("omits params that are absent, rather than defaulting them", () => {
-    expect(filtersFromSearchString("?tiers=higher")).toEqual({
-      tiers: ["higher"],
-    });
-  });
-
-  it("ignores params that don't belong to the filters", () => {
-    expect(filtersFromSearchString("?utm_source=newsletter")).toEqual({});
-  });
-
-  it("ignores empty filter params", () => {
-    expect(filtersFromSearchString("?tiers=")).toEqual({});
-  });
-});
-
-describe("searchStringWithFilters", () => {
-  const defaultFilter = createFilter({
-    years: ["7", "8"],
-    tiers: ["foundation"],
-  });
-
-  it("writes filters that differ from the default", () => {
-    const search = searchStringWithFilters(
-      "",
-      createFilter({ years: ["7", "8"], tiers: ["higher"] }),
-      defaultFilter,
-    );
-
-    expect(new URLSearchParams(search).get("tiers")).toBe("higher");
-  });
-
-  it("omits filters that match the default, keeping shared URLs short", () => {
-    const search = searchStringWithFilters("", defaultFilter, defaultFilter);
-
-    expect(search).toBe("");
-  });
-
-  it("preserves params belonging to other features", () => {
-    const search = searchStringWithFilters(
-      "?utm_source=newsletter&focus_ks4_option=aqa",
-      createFilter({ years: ["7", "8"], tiers: ["higher"] }),
-      defaultFilter,
-    );
-    const params = new URLSearchParams(search);
-
-    expect(params.get("utm_source")).toBe("newsletter");
-    expect(params.get("focus_ks4_option")).toBe("aqa");
-    expect(params.get("tiers")).toBe("higher");
-  });
-
-  it("clears filter params that are no longer active", () => {
-    const search = searchStringWithFilters(
-      "?tiers=higher",
-      defaultFilter,
-      defaultFilter,
-    );
-
-    expect(new URLSearchParams(search).get("tiers")).toBeNull();
   });
 });
 

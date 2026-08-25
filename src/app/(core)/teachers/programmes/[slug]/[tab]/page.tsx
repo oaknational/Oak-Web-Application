@@ -30,10 +30,7 @@ import withPageErrorHandling, {
 } from "@/hocs/withPageErrorHandling";
 import { resolveOakHref } from "@/common-lib/urls";
 import { getSubjectPhaseSlug } from "@/components/TeacherComponents/helpers/getSubjectPhaseSlug";
-import {
-  getDefaultFilter,
-  resolveFilterFromSearchParams,
-} from "@/utils/curriculum/filtering";
+import { getDefaultFilter } from "@/utils/curriculum/filtering";
 import { BrowseFiltersProvider } from "@/context/BrowseFilters";
 import { redirectProgrammeSlugIfNeeded } from "@/utils/integratedJourney/legacyProgrammeUnitsRedirect";
 import { cacheData } from "@/node-lib/cache";
@@ -42,6 +39,7 @@ import { getMvRefreshTime } from "@/pages-helpers/curriculum/downloads/getMvRefr
 import { validateServerSearchParams } from "@/utils/validateProgrammePageSearchParams";
 import { TeacherBrowseAnalyticsStoreProvider } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
 import { getProgrammeStateForProgramme } from "@/context/TeacherBrowseAnalytics/utils/getProgrammeState";
+import { resolveBrowseFilterFromSearchParams } from "@/context/BrowseFilters/utils";
 
 const reportError = errorReporter("programme-page::app");
 
@@ -255,7 +253,7 @@ const InnerProgrammePage = async (props: AppPageProps<ProgrammePageParams>) => {
 
   // Resolve filter server-side from URL search params
   const defaultFilter = getDefaultFilter(curriculumUnitsFormattedData);
-  const resolvedFilter = resolveFilterFromSearchParams(
+  const resolvedFilter = resolveBrowseFilterFromSearchParams(
     curriculumUnitsFormattedData,
     searchParams,
   );

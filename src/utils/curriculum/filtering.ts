@@ -1,5 +1,5 @@
 import { ReadonlyURLSearchParams } from "next/navigation";
-import { isEqual } from "lodash";
+import { subjectSlugs, tierSlugs } from "@oaknational/oak-curriculum-schema";
 
 import { findFirstMatchingFeatures } from "../../utils/curriculum/features";
 import {
@@ -28,6 +28,7 @@ import {
   CurriculumUnitsFormattedData,
   CurriculumUnitsYearData,
 } from "@/pages-helpers/curriculum/docx/tab-helpers";
+import { BrowseFilters } from "@/context/BrowseFilters/types";
 
 export function getDefaultChildSubjectForYearGroup(
   data: CurriculumUnitsYearData,
@@ -45,7 +46,10 @@ export function getDefaultChildSubjectForYearGroup(
     .toSorted(sortChildSubjects)
     .map((t) => t.subject_slug);
   if (childSubjects.length > 0) {
-    return [childSubjects[0]!];
+    const result = subjectSlugs.safeParse(childSubjects[0]);
+    if (result.success) {
+      return [result.data];
+    }
   }
   return [];
 }
@@ -86,12 +90,17 @@ export function getDefaultTiersForYearGroup(data: CurriculumUnitsYearData) {
   });
   const tiers = [...set].toSorted(sortTiers).map((t) => t.tier_slug);
   if (tiers.length > 0) {
-    return [tiers[0]!];
+    const result = tierSlugs.safeParse(tiers[0]);
+    if (result.success) {
+      return [result.data];
+    }
   }
   return [];
 }
 
-export function getDefaultFilter(data: CurriculumUnitsFormattedData) {
+export function getDefaultFilter(
+  data: CurriculumUnitsFormattedData,
+): BrowseFilters {
   return {
     childSubjects: getDefaultChildSubjectForYearGroup(data.yearData),
     subjectCategories: getDefaultSubjectCategoriesForYearGroup(data.yearData),
@@ -112,68 +121,6 @@ export const FILTER_TO_QS: Record<keyof CurriculumFilters, string> = {
   pathways: "pathways",
   keystages: "keystages",
 };
-
-const FILTER_KEYS = Object.keys(FILTER_TO_QS) as (keyof CurriculumFilters)[];
-export const FILTER_QS_KEYS = Object.values(FILTER_TO_QS);
-
-export function filtersToQuery(
-  filter: CurriculumFilters,
-  defaultFilter: CurriculumFilters,
-) {
-  const out: Record<string, string> = {};
-  for (const [keyUntyped, value] of Object.entries(filter)) {
-    const key = keyUntyped as keyof CurriculumFilters;
-    if (value.length > 0) {
-      if (!isEqual(defaultFilter[key], value)) {
-        out[FILTER_TO_QS[key]] = value.join(",");
-      }
-    }
-  }
-  return out;
-}
-
-/**
- * Reads the filters encoded in a query string, ignoring any params that don't
- * belong to us. Only keys actually present in the URL are returned, so callers
- * can layer them over defaults rather than replacing them outright.
- */
-export function filtersFromSearchString(
-  search: string,
-): Partial<CurriculumFilters> {
-  const params = new URLSearchParams(search);
-  const filters: Partial<CurriculumFilters> = {};
-
-  for (const key of FILTER_KEYS) {
-    const value = params.get(FILTER_TO_QS[key]);
-    if (value) {
-      filters[key] = value.split(",");
-    }
-  }
-
-  return filters;
-}
-
-/**
- * Writes `filters` into `search`, leaving every non-filter param untouched.
- * Values matching the default filter are omitted so shared URLs stay short.
- */
-export function searchStringWithFilters(
-  search: string,
-  filters: CurriculumFilters,
-  defaultFilter: CurriculumFilters,
-): string {
-  const params = new URLSearchParams(search);
-  const query = filtersToQuery(filters, defaultFilter);
-
-  for (const qsKey of FILTER_QS_KEYS) {
-    params.delete(qsKey);
-  }
-  for (const [qsKey, value] of Object.entries(query)) {
-    params.set(qsKey, value);
-  }
-
-  return params.toString();
-}
 
 export function mergeInFilterParams(
   filter: CurriculumFilters,
@@ -397,34 +344,4 @@ export function getNumberOfSelectedUnits(
   });
 
   return count;
-}
-
-type RawSearchParams = { [key: string]: string | string[] | undefined };
-
-/**
- * Resolves the filter from raw search params (server-side)
- * Converts PageSearchParms into a CurriculumFilters with URL params applied
- * Used in page.tsx to pre-resolve filters before SSR
- */
-export function resolveFilterFromSearchParams(
-  data: CurriculumUnitsFormattedData,
-  searchParams: RawSearchParams | undefined,
-): CurriculumFilters {
-  const defaultFilter = getDefaultFilter(data);
-  const params = new URLSearchParams();
-
-  if (searchParams) {
-    for (const [k, v] of Object.entries(searchParams)) {
-      if (v == null) continue;
-      if (Array.isArray(v)) {
-        v.forEach((item) => {
-          params.append(k, item);
-        });
-      } else {
-        params.append(k, v);
-      }
-    }
-  }
-
-  return mergeInFilterParams(defaultFilter, params);
 }
