@@ -66,6 +66,7 @@ jest.mock("@/node-lib/cms", () => ({
       curriculumSeoTextRaw: null,
     }),
     programmePageBySlug: jest.fn(),
+    implementationGuides: jest.fn().mockResolvedValue({}),
   },
 }));
 
