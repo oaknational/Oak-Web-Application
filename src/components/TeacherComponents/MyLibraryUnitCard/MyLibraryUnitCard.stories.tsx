@@ -1,4 +1,3 @@
-import React from "react";
 import { Meta, StoryObj } from "@storybook/nextjs";
 
 import MyLibraryUnitCard from "./MyLibraryUnitCard";
@@ -8,6 +7,8 @@ import {
   incompleteUnitLessons,
 } from "@/fixtures/teachers/myLibrary";
 import { KeyStageTitleValueType } from "@/browser-lib/avo/Avo";
+import SaveCountDecorator from "@/storybook-decorators/SaveCountDecorator";
+import NotificationsDecorator from "@/storybook-decorators/NotificationsDecorator";
 
 const unit = {
   unitTitle: "Fiction: Science Fiction Writing",
@@ -26,6 +27,7 @@ const unit = {
 
 const meta: Meta<typeof MyLibraryUnitCard> = {
   component: MyLibraryUnitCard,
+  decorators: [SaveCountDecorator, NotificationsDecorator],
   tags: ["autodocs"],
   args: {
     ...unit,
