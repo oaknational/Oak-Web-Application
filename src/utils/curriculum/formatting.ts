@@ -1,6 +1,5 @@
 import { PortableTextBlock } from "@portabletext/types";
 import { capitalize } from "lodash";
-import { format } from "date-fns";
 import { Actions } from "@oaknational/oak-curriculum-schema";
 
 import { CurriculumFilters, YearData } from "./types";
@@ -443,7 +442,7 @@ export function getFilename(
     childSubjectSlug,
     tierSlug,
     prefix,
-    suffix,
+    isWithinArchive,
   }: {
     subjectTitle: string;
     phaseTitle: string;
@@ -451,7 +450,7 @@ export function getFilename(
     childSubjectSlug?: string;
     tierSlug?: string;
     prefix: string;
-    suffix?: string;
+    isWithinArchive?: boolean;
   },
 ) {
   // Handle child subject formatting based on file type
@@ -459,39 +458,26 @@ export function getFilename(
     ? childSubjectSlug
         .split("-")
         .map((word) => capitalize(word))
-        .join(" ")
+        .join("-")
     : null;
 
-  let subjectParts: string[];
-
-  if (fileExt === "xlsx") {
-    // For xlsx files: Use child subject as replacement (e.g., "Physics" instead of "Science")
-    subjectParts = childSubjectTitle ? [childSubjectTitle] : [subjectTitle];
-  } else if (fileExt === "docx") {
-    // For docx files: Include both main subject and child subject (e.g., "Science - Biology")
-    subjectParts = childSubjectTitle
-      ? [subjectTitle, childSubjectTitle]
-      : [subjectTitle];
-  } else {
-    // Fallback to xlsx behaviour
-    subjectParts = childSubjectTitle ? [childSubjectTitle] : [subjectTitle];
-  }
-
+  const subjectParts = childSubjectTitle ? [childSubjectTitle] : [subjectTitle];
+  const slugify = (value: string) => {
+    return value.replaceAll(/[ ]+/g, "-");
+  };
   const pageTitle: string = [
-    prefix,
-    ...subjectParts,
-    phaseTitle,
-    examboardTitle,
-    capitalize(tierSlug),
-    format(
-      Date.now(),
-      // Note: dashes "-" rather than ":" because colon is invalid on windows
-      "dd-MM-yyyy",
-    ),
-    suffix,
+    slugify(prefix),
+    ...(isWithinArchive
+      ? []
+      : [
+          ...subjectParts.map(slugify),
+          phaseTitle,
+          examboardTitle,
+          capitalize(tierSlug),
+        ]),
   ]
     .filter(Boolean)
-    .join(" - ");
+    .join("-");
 
   return `${pageTitle}.${fileExt}`;
 }
