@@ -1,11 +1,11 @@
 import { BrowseFilters } from "../types";
 
 import { applySearchParamsToFilter } from "./applySearchParamsToFilter";
+import { getDefaultBrowseFilter } from "./getDefaultBrowseFilter";
 
 import { CurriculumUnitsFormattedData } from "@/pages-helpers/curriculum/docx/tab-helpers";
-import { getDefaultFilter } from "@/utils/curriculum/filtering";
 
-type RawSearchParams = { [key: string]: string | string[] | undefined };
+export type RawSearchParams = { [key: string]: string | string[] | undefined };
 
 /**
  * Resolves the filter from raw search params (server-side)
@@ -16,7 +16,7 @@ export function resolveBrowseFilterFromSearchParams(
   data: CurriculumUnitsFormattedData,
   searchParams: RawSearchParams | undefined,
 ): BrowseFilters {
-  const defaultFilter = getDefaultFilter(data);
+  const defaultFilter = getDefaultBrowseFilter(data);
   const params = new URLSearchParams();
 
   if (searchParams) {

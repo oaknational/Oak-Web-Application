@@ -28,7 +28,6 @@ import {
   CurriculumUnitsFormattedData,
   CurriculumUnitsYearData,
 } from "@/pages-helpers/curriculum/docx/tab-helpers";
-import { BrowseFilters } from "@/context/BrowseFilters/types";
 
 export function getDefaultChildSubjectForYearGroup(
   data: CurriculumUnitsYearData,
@@ -96,20 +95,6 @@ export function getDefaultTiersForYearGroup(data: CurriculumUnitsYearData) {
     }
   }
   return [];
-}
-
-export function getDefaultFilter(
-  data: CurriculumUnitsFormattedData,
-): BrowseFilters {
-  return {
-    childSubjects: getDefaultChildSubjectForYearGroup(data.yearData),
-    subjectCategories: getDefaultSubjectCategoriesForYearGroup(data.yearData),
-    tiers: getDefaultTiersForYearGroup(data.yearData),
-    years: data.yearOptions,
-    threads: [],
-    pathways: [],
-    keystages: [],
-  };
 }
 
 export const FILTER_TO_QS: Record<keyof CurriculumFilters, string> = {

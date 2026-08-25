@@ -18,8 +18,8 @@ import {
   CurriculumSelectionTitles,
 } from "@/utils/curriculum/slugs";
 import { BrowseFiltersProvider } from "@/context/BrowseFilters";
-import { getDefaultFilter } from "@/utils/curriculum/filtering";
-import { CurriculumFilters } from "@/utils/curriculum/types";
+import { getDefaultBrowseFilter } from "@/context/BrowseFilters/utils/getDefaultBrowseFilter";
+import { BrowseFilters } from "@/context/BrowseFilters/types";
 
 const subjectPhaseSlug = "science-secondary-aqa";
 
@@ -144,14 +144,16 @@ const lightweightUnitsProps = {
 };
 
 const renderProgrammeView = (
-  props?: Partial<ProgrammePageProps> & { initialFilter?: CurriculumFilters },
+  props?: Partial<ProgrammePageProps> & { initialFilter?: BrowseFilters },
 ) => {
   const { initialFilter, ...viewProps } = props ?? {};
   const mergedProps = { ...defaultProps, ...viewProps };
 
   return renderWithProviders()(
     <BrowseFiltersProvider
-      defaultFilter={getDefaultFilter(mergedProps.curriculumUnitsFormattedData)}
+      defaultFilter={getDefaultBrowseFilter(
+        mergedProps.curriculumUnitsFormattedData,
+      )}
       initialFilter={initialFilter}
     >
       <ProgrammeView {...mergedProps} />
@@ -335,7 +337,7 @@ describe("ProgrammeView", () => {
     });
 
     it("accepts initialFilter prop without error", () => {
-      const initialFilter = {
+      const initialFilter: BrowseFilters = {
         years: ["7"],
         tiers: ["foundation"],
         childSubjects: [],
@@ -352,7 +354,7 @@ describe("ProgrammeView", () => {
     });
 
     it("renders correctly with initialFilter for a single year", () => {
-      const initialFilter = {
+      const initialFilter: BrowseFilters = {
         years: ["7"],
         tiers: ["foundation"],
         childSubjects: [],
