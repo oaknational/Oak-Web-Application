@@ -13,13 +13,8 @@ import {
   portableTextFromString,
   mockImageAsset,
 } from "@/__tests__/__helpers__/cms";
-import { isFeatureFlagEnabledStatic } from "@/utils/featureFlagChecks/static";
 
 jest.mock("../../../node-lib/cms");
-jest.mock("@/utils/featureFlagChecks/static", () => ({
-  isFeatureFlagEnabledStatic: jest.fn(),
-}));
-const mockIsFeatureFlagEnabledStatic = jest.mocked(isFeatureFlagEnabledStatic);
 
 const mockTeamMember = {
   id: "test-id",
@@ -62,7 +57,6 @@ const mockPageData: AboutUsMeetTheTeamPageProps["pageData"] = {
 describe("pages/about/meet-the-team.tsx", () => {
   beforeEach(() => {
     jest.clearAllMocks();
-    mockIsFeatureFlagEnabledStatic.mockReturnValue(false);
     (CMSClient.meetTheTeamPage as jest.Mock).mockResolvedValue(mockPageData);
   });
 
