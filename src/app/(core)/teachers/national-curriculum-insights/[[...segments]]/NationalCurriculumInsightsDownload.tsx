@@ -15,6 +15,7 @@ import { ChangeEvent, FormEvent, useId, useMemo, useState } from "react";
 import styled from "styled-components";
 
 import type { NationalCurriculumInsightsRouteData } from "./getNationalCurriculumInsightsData";
+import { NationalCurriculumInsightsSelect } from "./NationalCurriculumInsightsSelect";
 
 import type { NationalCurriculumInsightsModule } from "@/common-lib/cms-types/nationalCurriculumInsights";
 import { EDU_ROLES } from "@/browser-lib/hubspot/forms/getHubspotFormPayloads";
@@ -38,7 +39,7 @@ const Section = styled.section<{ $sticky: boolean }>`
         left: 0;
         z-index: 20;
         display: flex;
-        flex-direction: column-reverse;
+        flex-direction: column;
         max-height: 100dvh;
         box-shadow: 0 -4px 16px rgb(0 0 0 / 16%);
       `
@@ -168,10 +169,6 @@ const Column = styled.div`
   min-width: 0;
   padding: 32px 20px 40px;
 
-  & + & {
-    border-top: 1px solid ${parseColor("grey30")};
-  }
-
   @media (${getMediaQuery("desktop")}) {
     min-height: 632px;
     padding: 24px 64px 0 0;
@@ -179,7 +176,6 @@ const Column = styled.div`
     & + & {
       padding-right: 0;
       padding-left: 64px;
-      border-top: 0;
     }
   }
 `;
@@ -204,35 +200,11 @@ const Field = styled.div`
   input {
     height: 60px;
   }
-
-  select {
-    min-height: 64px;
-  }
 `;
 
 const SelectField = styled(Field)`
-  &:focus-within label {
-    background: ${parseColor("blue")};
-    color: ${parseColor("text-inverted")};
-  }
-`;
-
-const NativeSelect = styled.select`
-  box-sizing: border-box;
-  width: 100%;
-  min-height: 64px;
-  padding: 12px 48px 12px 16px;
-  border: 2px solid ${parseColor("border-primary")};
-  border-radius: 4px;
-  background: ${parseColor("bg-primary")};
-  color: ${parseColor("text-primary")};
-  font: inherit;
-  font-size: 16px;
-  line-height: 24px;
-
-  &:focus-visible {
-    outline: 4px solid ${parseColor("blue")};
-    outline-offset: 2px;
+  button {
+    min-height: 64px;
   }
 `;
 
@@ -512,30 +484,18 @@ export const NationalCurriculumInsightsDownload = ({
                   />
                 </SchoolFields>
                 <SelectField>
-                  <OakJauntyAngleLabel
-                    as="label"
-                    htmlFor={`${formId}-role`}
-                    label="Role (required)"
-                    $background="bg-decorative5-main"
-                    $font="heading-7"
-                    $position="absolute"
-                    $top="-20px"
-                    $left="spacing-8"
-                    $zIndex="in-front"
-                  />
-                  <NativeSelect
+                  <NationalCurriculumInsightsSelect
                     id={`${formId}-role`}
                     name="role"
+                    label="Role (required)"
+                    placeholder="Select your role"
+                    options={EDU_ROLES.map((option) => ({
+                      label: option,
+                      value: option,
+                    }))}
                     value={role}
-                    onChange={(event) => setRole(event.target.value)}
-                  >
-                    <option value="">Select your role</option>
-                    {EDU_ROLES.map((option) => (
-                      <option key={option} value={option}>
-                        {option}
-                      </option>
-                    ))}
-                  </NativeSelect>
+                    onChange={setRole}
+                  />
                 </SelectField>
                 <Field>
                   <OakJauntyAngleLabel

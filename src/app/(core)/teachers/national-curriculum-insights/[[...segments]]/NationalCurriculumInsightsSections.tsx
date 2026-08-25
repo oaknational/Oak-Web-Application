@@ -8,12 +8,10 @@ import {
   OakBox,
   OakCard,
   OakCheckBox,
-  OakFieldError,
   OakFlex,
   OakHeading,
   OakIcon,
   OakImage,
-  OakJauntyAngleLabel,
   OakLink,
   OakOutlineAccordion,
   OakP,
@@ -29,6 +27,7 @@ import { FormEvent, useId, useState } from "react";
 import styled from "styled-components";
 
 import type { NationalCurriculumInsightsRouteData } from "./getNationalCurriculumInsightsData";
+import { NationalCurriculumInsightsSelect } from "./NationalCurriculumInsightsSelect";
 import {
   nationalCurriculumInsightsKeyStageIllustration,
   nationalCurriculumInsightsPhaseIllustration,
@@ -540,7 +539,7 @@ export const NationalCurriculumInsightsPromotionalHeading = ({
           $pv="spacing-4"
           $borderRadius="border-radius-m"
         >
-          <OakHeading tag="h2" $font={["heading-5", "heading-2"]}>
+          <OakHeading tag="h2" $font={["heading-5", "heading-3"]}>
             {section.heading}
           </OakHeading>
         </PromotionalHeading>
@@ -1252,28 +1251,8 @@ const NewsletterCopy = styled(OakFlex)`
 `;
 
 const NewsletterSelectField = styled(OakBox)`
-  &:focus-within label {
-    background: ${parseColor("blue")};
-    color: ${parseColor("text-inverted")};
-  }
-`;
-
-const NewsletterSelect = styled.select`
-  box-sizing: border-box;
-  width: 100%;
-  min-height: 64px;
-  padding: 12px 48px 12px 16px;
-  border: 2px solid ${parseColor("border-primary")};
-  border-radius: 4px;
-  background: ${parseColor("bg-primary")};
-  color: ${parseColor("text-primary")};
-  font: inherit;
-  font-size: 16px;
-  line-height: 24px;
-
-  &:focus-visible {
-    outline: 4px solid ${parseColor("blue")};
-    outline-offset: 2px;
+  button {
+    min-height: 64px;
   }
 `;
 
@@ -1434,36 +1413,19 @@ export const NationalCurriculumInsightsNewsletter = ({
               autocomplete="name"
             />
             <NewsletterSelectField $position="relative">
-              <OakJauntyAngleLabel
-                label="Role"
-                htmlFor="insights-newsletter-role"
-                as="label"
-                $font="heading-7"
-                $background="bg-decorative5-main"
-                $color="text-primary"
-                $position="absolute"
-                $top="-20px"
-                $left="5px"
-                $zIndex="in-front"
-                $borderRadius="border-radius-square"
-              />
-              <NewsletterSelect
+              <NationalCurriculumInsightsSelect
                 id="insights-newsletter-role"
                 name="role"
+                label="Role"
+                placeholder="Select your role"
+                options={EDU_ROLES.map((option) => ({
+                  label: option,
+                  value: option,
+                }))}
                 value={role}
-                onChange={(event) => setRole(event.target.value)}
-                aria-invalid={Boolean(fieldErrors.eduRole)}
-              >
-                <option value="">Select your role</option>
-                {EDU_ROLES.map((role) => (
-                  <option key={role} value={role}>
-                    {role}
-                  </option>
-                ))}
-              </NewsletterSelect>
-              {fieldErrors.eduRole && (
-                <OakFieldError>{fieldErrors.eduRole}</OakFieldError>
-              )}
+                onChange={setRole}
+                error={fieldErrors.eduRole}
+              />
             </NewsletterSelectField>
             <OakFlex $flexDirection="column" $gap="spacing-12">
               <OakInputWithLabel

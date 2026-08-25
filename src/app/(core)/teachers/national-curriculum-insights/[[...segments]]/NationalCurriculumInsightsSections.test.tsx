@@ -1,4 +1,5 @@
 import { fireEvent, screen, waitFor } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
 
 import { NationalCurriculumInsightsHero } from "./NationalCurriculumInsightsHero";
 import {
@@ -124,6 +125,7 @@ describe("National Curriculum Insights sections", () => {
   });
 
   it("renders the configurable editorial, media, table and form sections", async () => {
+    const user = userEvent.setup();
     const data = await getData();
     const body = portableText("section", "Editable section copy.");
 
@@ -299,9 +301,19 @@ describe("National Curriculum Insights sections", () => {
     fireEvent.change(screen.getByRole("textbox", { name: /Name/ }), {
       target: { value: "Jamie Maxwell" },
     });
-    fireEvent.change(screen.getByRole("combobox", { name: /Role/ }), {
-      target: { value: "Teacher/Subject Specialist" },
-    });
+    await user.click(
+      screen.getByRole("button", { name: /Role.*Select your role/ }),
+    );
+    const roleOption = screen
+      .getAllByTestId("listbox-option")
+      .find(
+        (option) =>
+          option.getAttribute("data-key") === "Teacher/Subject Specialist",
+      );
+    if (!roleOption) {
+      throw new Error("Expected the teacher role option");
+    }
+    await user.click(roleOption);
     fireEvent.change(screen.getByRole("textbox", { name: /Email/ }), {
       target: { value: "jamie@example.com" },
     });

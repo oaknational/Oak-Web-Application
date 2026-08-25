@@ -49,12 +49,21 @@ describe("NationalCurriculumInsightsDownload", () => {
     const sectionElement = toggle.closest("section");
     expect(sectionElement).toHaveStyle({
       bottom: "0",
+      flexDirection: "column",
       position: "fixed",
     });
     expect(toggle).toHaveStyle(`background: ${oakColorTokens["dark-aqua110"]}`);
+    expect(screen.getByText("Download free expert guidance.")).toHaveStyle({
+      fontWeight: "400",
+    });
     expect(toggle).toHaveAttribute("aria-expanded", "false");
     await user.click(toggle);
     expect(toggle).toHaveAttribute("aria-expanded", "true");
+    expect(
+      screen.getByRole("button", {
+        name: /Role \(required\).*Select your role/,
+      }),
+    ).toBeInTheDocument();
 
     const download = screen.getByRole("button", {
       name: "Download 0 insights (.DOCX)",
