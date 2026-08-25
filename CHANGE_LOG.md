@@ -1,3 +1,10 @@
+## [1.1164.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.1164.0...v1.1164.1) (2026-08-25)
+
+
+### Bug Fixes
+
+* kB -> KB ([f37c5f3](https://github.com/oaknational/Oak-Web-Application/commit/f37c5f38ccfe2042c70a5cdeba82a8ada0ce2780))
+
 # [1.1164.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1163.0...v1.1164.0) (2026-08-25)
 
 
