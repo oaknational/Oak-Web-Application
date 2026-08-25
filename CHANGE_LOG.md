@@ -1,3 +1,11 @@
+## [1.1164.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.1164.2...v1.1164.3) (2026-08-25)
+
+
+### Bug Fixes
+
+* broken stories with missing decorators ([5caf761](https://github.com/oaknational/Oak-Web-Application/commit/5caf76183cda04b696a4ec1d296644178d2338b1))
+* storybook mock requires realtive import path ([f42e022](https://github.com/oaknational/Oak-Web-Application/commit/f42e022094c9b1b6801bbd492e70c98b0ceddd0a))
+
 ## [1.1164.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.1164.1...v1.1164.2) (2026-08-25)
 
 
