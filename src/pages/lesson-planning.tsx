@@ -6,7 +6,6 @@ import {
   OakFlex,
   OakTertiaryOLNav,
   OakAnchorTarget,
-  OakHeaderHero,
   OakBox,
   OakLink,
 } from "@oaknational/oak-components";
@@ -29,6 +28,7 @@ import { SerializedPost } from "@/pages-helpers/home/getBlogPosts";
 import { TopNavProps } from "@/components/AppComponents/TopNav/TopNav";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 import { resolveOakHref } from "@/common-lib/urls";
+import { HeaderHero } from "@/components/GenericPagesComponents/HeaderHero/HeaderHero";
 
 export type PlanALessonProps = {
   pageData: PlanALessonPage;
@@ -58,7 +58,7 @@ const PlanALesson: NextPage<PlanALessonProps> = ({
       $background={"bg-primary"}
       topNavProps={topNav}
     >
-      <OakHeaderHero
+      <HeaderHero
         heroImageAlt={pageData.hero.image?.altText ?? ""}
         data-testid="header-hero"
         headingTitle={pageData.hero.heading}

@@ -1,0 +1,134 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`HeaderHero matches snapshot 1`] = `
+<div>
+  <div
+    class="sc-aXZVg jdNWBB"
+  >
+    <div
+      class="sc-aXZVg sc-gEvEer sc-brPLxw hjiwHg fUxOFh"
+    >
+      <div
+        class="sc-aXZVg sc-gEvEer ejCRMQ gBrwci"
+        data-testid="oak-header-component"
+      >
+        <div
+          class="sc-aXZVg sc-gEvEer eIUCsj iELugB"
+        >
+          <div
+            class="sc-aXZVg eDOGkS"
+          >
+            <a
+              class="sc-fHjqPf bwIJQB"
+              href="/home"
+            >
+              <span
+                class="sc-eqUAAy iGfTGj"
+              >
+                Home
+              </span>
+            </a>
+          </div>
+          <div
+            class="sc-aXZVg sc-gEvEer gkEWzd dqWtDG"
+          >
+            <h1
+              class="sc-eldPxv gOCRhV"
+            >
+              How to plan a lesson: a helpful guide for teachers
+            </h1>
+            <div
+              class="sc-aXZVg sc-gEvEer ddpWHI hvoolO"
+            >
+              <span
+                class="sc-aXZVg kvjdhA sc-1f16c3c4-0 ifCzXv"
+              >
+                <img
+                  alt="Author image"
+                  class="sc-iGgWBj dZvqhO"
+                  data-nimg="fill"
+                  decoding="async"
+                  loading="lazy"
+                  sizes="100vw"
+                  src="http://localhost/_next/image?url=https%3A%2F%2Fvia.placeholder.com%2F150&w=3840&q=75"
+                  srcset="/_next/image?url=https%3A%2F%2Fvia.placeholder.com%2F150&w=640&q=75 640w, /_next/image?url=https%3A%2F%2Fvia.placeholder.com%2F150&w=750&q=75 750w, /_next/image?url=https%3A%2F%2Fvia.placeholder.com%2F150&w=828&q=75 828w, /_next/image?url=https%3A%2F%2Fvia.placeholder.com%2F150&w=1080&q=75 1080w, /_next/image?url=https%3A%2F%2Fvia.placeholder.com%2F150&w=1200&q=75 1200w, /_next/image?url=https%3A%2F%2Fvia.placeholder.com%2F150&w=1920&q=75 1920w, /_next/image?url=https%3A%2F%2Fvia.placeholder.com%2F150&w=2048&q=75 2048w, /_next/image?url=https%3A%2F%2Fvia.placeholder.com%2F150&w=3840&q=75 3840w"
+                  style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                />
+              </span>
+              <div
+                class="sc-aXZVg jPvJsJ"
+              >
+                <p
+                  class="sc-ikkxIA lhCEEj"
+                >
+                  Rachel Storm
+                </p>
+                <p
+                  class="sc-ikkxIA blNuQe"
+                >
+                  Head of School Support
+                </p>
+              </div>
+            </div>
+            <p
+              class="sc-ikkxIA biLjkT"
+            >
+              Body 1 Our guide for teachers, whether you're in your ITT, an ECT or a teacher of many years experience looking for a fresh look on lesson planning, is place to dive into expertise from across the sector.
+            </p>
+          </div>
+        </div>
+        <div
+          class="sc-aXZVg sc-gEvEer hEPHkq jMLdOa"
+        >
+          <span
+            class="sc-aXZVg eXlcEm"
+          >
+            <img
+              alt="Hero image"
+              class="sc-iGgWBj dZvqhO"
+              data-nimg="fill"
+              decoding="async"
+              loading="lazy"
+              sizes="100vw"
+              src="http://localhost/_next/image?url=https%3A%2F%2FNEXT_PUBLIC_OAK_ASSETS_HOST%2FNEXT_PUBLIC_OAK_ASSETS_PATH%2Fv1698336490%2Fsample.jpg&w=3840&q=75"
+              srcset="/_next/image?url=https%3A%2F%2FNEXT_PUBLIC_OAK_ASSETS_HOST%2FNEXT_PUBLIC_OAK_ASSETS_PATH%2Fv1698336490%2Fsample.jpg&w=640&q=75 640w, /_next/image?url=https%3A%2F%2FNEXT_PUBLIC_OAK_ASSETS_HOST%2FNEXT_PUBLIC_OAK_ASSETS_PATH%2Fv1698336490%2Fsample.jpg&w=750&q=75 750w, /_next/image?url=https%3A%2F%2FNEXT_PUBLIC_OAK_ASSETS_HOST%2FNEXT_PUBLIC_OAK_ASSETS_PATH%2Fv1698336490%2Fsample.jpg&w=828&q=75 828w, /_next/image?url=https%3A%2F%2FNEXT_PUBLIC_OAK_ASSETS_HOST%2FNEXT_PUBLIC_OAK_ASSETS_PATH%2Fv1698336490%2Fsample.jpg&w=1080&q=75 1080w, /_next/image?url=https%3A%2F%2FNEXT_PUBLIC_OAK_ASSETS_HOST%2FNEXT_PUBLIC_OAK_ASSETS_PATH%2Fv1698336490%2Fsample.jpg&w=1200&q=75 1200w, /_next/image?url=https%3A%2F%2FNEXT_PUBLIC_OAK_ASSETS_HOST%2FNEXT_PUBLIC_OAK_ASSETS_PATH%2Fv1698336490%2Fsample.jpg&w=1920&q=75 1920w, /_next/image?url=https%3A%2F%2FNEXT_PUBLIC_OAK_ASSETS_HOST%2FNEXT_PUBLIC_OAK_ASSETS_PATH%2Fv1698336490%2Fsample.jpg&w=2048&q=75 2048w, /_next/image?url=https%3A%2F%2FNEXT_PUBLIC_OAK_ASSETS_HOST%2FNEXT_PUBLIC_OAK_ASSETS_PATH%2Fv1698336490%2Fsample.jpg&w=3840&q=75 3840w"
+              style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+            />
+          </span>
+          <div
+            class="sc-aXZVg sc-gEvEer iLUSrB iDBIXi"
+          >
+            <span
+              class="sc-aXZVg bJhzgE"
+            >
+              <img
+                alt="loopdown ui-graphic"
+                class="sc-iGgWBj cMzyFO"
+                data-nimg="fill"
+                decoding="async"
+                loading="lazy"
+                src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1699887218/ui-graphics/loopdown.svg"
+                style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+              />
+            </span>
+          </div>
+        </div>
+        <div
+          class="sc-aXZVg sc-gEvEer eVEEwM iXcHdt"
+        >
+          <a
+            class="sc-fHjqPf bwIJQB"
+            href="/home"
+          >
+            <span
+              class="sc-eqUAAy iGfTGj"
+            >
+              Home
+            </span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
