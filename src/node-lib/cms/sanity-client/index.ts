@@ -27,6 +27,7 @@ import {
   teamMemberSchema,
   oaksImpactPageSchema,
   oaksImpactCaseStudyPageSchema,
+  implementationGuidesSchema,
 } from "../../../common-lib/cms-types";
 import { webinarsListingPageSchema } from "../../../common-lib/cms-types/webinarsListingPage";
 import getProxiedSanityAssetUrl from "../../../common-lib/urls/getProxiedSanityAssetUrl";
@@ -240,6 +241,12 @@ const getSanityClient = () => ({
     sanityGraphqlApi.oaksImpactPage,
     oaksImpactPageSchema,
     (result) => result?.allNewAboutCorePageOaksImpact?.[0],
+  ),
+  implementationGuides: getSingleton(
+    sanityGraphqlApi.implementationGuides,
+    implementationGuidesSchema,
+    (result) =>
+      result?.allCurriculumInfoPageOverview?.[0]?.implementationGuides ?? {},
   ),
   oaksImpactCaseStudyPage: getSingleton(
     sanityGraphqlApi.oaksImpactCaseStudyPage,

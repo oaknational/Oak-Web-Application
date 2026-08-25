@@ -6,6 +6,7 @@ import {
   OakBox,
 } from "@oaknational/oak-components";
 
+import { subjectTitleWithCase } from "@/utils/curriculum/formatting";
 import { resolveOakHref } from "@/common-lib/urls";
 
 type ImplementationGuideCalloutProps = {
@@ -33,7 +34,7 @@ export function ImplementationGuideCallout({
           isOpen
           type="info"
           variant="regular"
-          message={`Leading your school's use of Oak's ${subjectTitle} ${phaseTitle} curriculum? Download our implementation toolkit.`}
+          message={`Leading your school's use of Oak's ${subjectTitleWithCase(subjectTitle)} ${phaseTitle.toLowerCase()} curriculum? Download our implementation toolkit.`}
           cta={
             <OakBox $whiteSpace="nowrap">
               <OakLink

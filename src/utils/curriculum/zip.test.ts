@@ -25,6 +25,6 @@ describe("zipFromFiles", () => {
     ]);
     expect(fileSpy).toHaveBeenCalledWith("foo", fooBuffer);
     expect(fileSpy).toHaveBeenCalledWith("bar", barBuffer);
-    expect(Buffer.isBuffer(output)).toBeTruthy();
+    expect(output).toBeInstanceOf(Uint8Array);
   });
 });

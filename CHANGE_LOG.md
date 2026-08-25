@@ -1,3 +1,32 @@
+## [1.1164.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.1164.0...v1.1164.1) (2026-08-25)
+
+
+### Bug Fixes
+
+* kB -> KB ([f37c5f3](https://github.com/oaknational/Oak-Web-Application/commit/f37c5f38ccfe2042c70a5cdeba82a8ada0ce2780))
+
+# [1.1164.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1163.0...v1.1164.0) (2026-08-25)
+
+
+### Bug Fixes
+
+* added pretty-bytes to transpilePackages in next config ([a6f5e28](https://github.com/oaknational/Oak-Web-Application/commit/a6f5e28946838ebc74bfed879d08a273c6d1ddaa))
+* correct case for subject/phase in inline banner ([f0ec913](https://github.com/oaknational/Oak-Web-Application/commit/f0ec913f013577ea4aebc0dd20eef47496a0a7e4))
+* file names for download to sentence case ([0986c78](https://github.com/oaknational/Oak-Web-Application/commit/0986c783eb6f3d008189bc7a31cdb5c76724de73))
+* only enable if "implementation-guides" present ([7037a8d](https://github.com/oaknational/Oak-Web-Application/commit/7037a8df98d5683cb2fc82205a48692dcb2a1759))
+* optional chain expression instead (sonarcloud) ([7c1b03b](https://github.com/oaknational/Oak-Web-Application/commit/7c1b03b4f7597af9111a3d9d6929eb196e401c60))
+* typo proper nesting of schemas ([e88cf83](https://github.com/oaknational/Oak-Web-Application/commit/e88cf83520cd745546136f0ec3b3a125ac56293f))
+* update invalid type from main and update assets (autogen) ([14ce9e5](https://github.com/oaknational/Oak-Web-Application/commit/14ce9e5614bb5d512953fcdd58230d934bd4323a))
+* updated error message ([38ca40d](https://github.com/oaknational/Oak-Web-Application/commit/38ca40dbc9ec50b463736712a3394334b0f5a158))
+
+
+### Features
+
+* add file sizes to generated download documents ([0e7e52d](https://github.com/oaknational/Oak-Web-Application/commit/0e7e52d148b9571d04aa34d89acb6f2fb21a5fed))
+* added download logic for implementation guides ([0405255](https://github.com/oaknational/Oak-Web-Application/commit/0405255087daaa9b5bc4aad6b81eb5a65fb60019))
+* further work rendering files from the CMS ([2357062](https://github.com/oaknational/Oak-Web-Application/commit/2357062bdf020b981d915b2cb097ffa7edd3f9eb))
+* render implementation guides from the CMS ([56b1849](https://github.com/oaknational/Oak-Web-Application/commit/56b18494eb1c1fd28f8b0cd932ce660138e9ddb0))
+
 # [1.1163.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1162.0...v1.1163.0) (2026-08-24)
 
 
