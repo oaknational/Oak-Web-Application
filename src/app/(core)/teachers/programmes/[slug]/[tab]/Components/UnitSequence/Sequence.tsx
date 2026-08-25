@@ -56,7 +56,10 @@ export default function ProgrammeSequence({
     return threadOptions.find((thread) => thread.slug === filters.threads[0]);
   }, [threadOptions, filters]);
 
-  const shouldDisplayCorePathway = getShouldDisplayCorePathway(ks4Options);
+  const shouldDisplayCorePathway = useMemo(
+    () => getShouldDisplayCorePathway(ks4Options),
+    [ks4Options],
+  );
 
   return (
     <OakBox id="content">
