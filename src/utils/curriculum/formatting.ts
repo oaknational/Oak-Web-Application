@@ -463,7 +463,7 @@ export function getFilename(
 
   const subjectParts = childSubjectTitle ? [childSubjectTitle] : [subjectTitle];
   const slugify = (value: string) => {
-    return value.replaceAll(/[ ]+/g, "-");
+    return value.replaceAll(" ", "-");
   };
   const pageTitle: string = [
     slugify(prefix),
