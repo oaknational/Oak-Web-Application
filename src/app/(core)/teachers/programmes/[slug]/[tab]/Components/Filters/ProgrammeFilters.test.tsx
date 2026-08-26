@@ -95,6 +95,7 @@ describe("Programme filters...", () => {
     renderProgrammeFilters(createFilter({ years: ["7", "10"] }));
 
     const filterLegendNames = [
+      "Key stages",
       "Year group",
       "Category (KS3)",
       "Exam subject (KS4)",
@@ -121,8 +122,9 @@ describe("Programme filters...", () => {
     );
 
     const filterLegends = screen.getAllByRole("group");
-    expect(filterLegends[0]).toHaveAccessibleName("Year group");
-    expect(filterLegends[1]).toHaveAccessibleName("Exam board (KS4)");
+    expect(filterLegends[0]).toHaveAccessibleName("Key stages");
+    expect(filterLegends[1]).toHaveAccessibleName("Year group");
+    expect(filterLegends[2]).toHaveAccessibleName("Exam board (KS4)");
   });
 
   test("it displays pathway before exam board for citizenship", () => {
@@ -154,8 +156,9 @@ describe("Programme filters...", () => {
     );
 
     const filterLegends = screen.getAllByRole("group");
-    expect(filterLegends[0]).toHaveAccessibleName("Year group");
-    expect(filterLegends[1]).toHaveAccessibleName("Pathway (KS4)");
-    expect(filterLegends[2]).toHaveAccessibleName("Exam subject (KS4)");
+    expect(filterLegends[0]).toHaveAccessibleName("Key stages");
+    expect(filterLegends[1]).toHaveAccessibleName("Year group");
+    expect(filterLegends[2]).toHaveAccessibleName("Pathway (KS4)");
+    expect(filterLegends[3]).toHaveAccessibleName("Exam subject (KS4)");
   });
 });
