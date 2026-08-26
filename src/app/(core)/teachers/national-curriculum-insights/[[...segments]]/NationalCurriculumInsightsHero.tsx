@@ -42,7 +42,7 @@ const heroSectionMinHeight = ({ $pageKind }: { $pageKind: HeroPageKind }) => {
     case "hub":
       return "439px";
     case "guidance":
-      return "622px";
+      return "480px";
     case "subject":
     case "phase":
     case "keyStage":
@@ -195,6 +195,18 @@ const HeroImageContainer = styled(OakFlex)<{ $sideBySideTablet: boolean }>`
   }
 `;
 
+const GuidanceHeroImageFrame = styled(OakBox)`
+  position: relative;
+  width: 100%;
+  height: 100%;
+
+  @media (${getMediaQuery("desktop")}) {
+    width: 416px;
+    height: 289px;
+    margin: auto;
+  }
+`;
+
 const AuthorImage = styled(OakBox)`
   position: relative;
   flex: 0 0 54px;
@@ -228,6 +240,16 @@ const heroPortableTextComponents: PortableTextComponents = {
   block: {
     normal: ({ children }) => (
       <OakP $font="body-2" $mv="spacing-0">
+        {children}
+      </OakP>
+    ),
+  },
+};
+
+const guidanceHeroPortableTextComponents: PortableTextComponents = {
+  block: {
+    normal: ({ children }) => (
+      <OakP $font="body-1" $mv="spacing-0">
         {children}
       </OakP>
     ),
@@ -375,10 +397,12 @@ const HeroUpdateCard = ({
 
 const HubHeroImage = ({
   hasEditorialImage,
+  isGuidance,
   sideBySideTablet,
   section,
 }: {
   hasEditorialImage: boolean;
+  isGuidance: boolean;
   sideBySideTablet: boolean;
   section: NationalCurriculumInsightsHeroSection;
 }) => {
@@ -400,14 +424,27 @@ const HubHeroImage = ({
       $overflow="hidden"
       aria-hidden={section.image?.isPresentational ? true : undefined}
     >
-      <OakImage
-        src={imageUrl}
-        alt={imageAlt}
-        $width="100%"
-        $height="100%"
-        $objectFit="cover"
-        priority
-      />
+      {isGuidance ? (
+        <GuidanceHeroImageFrame>
+          <OakImage
+            src={imageUrl}
+            alt={imageAlt}
+            $width="100%"
+            $height="100%"
+            $objectFit="contain"
+            priority
+          />
+        </GuidanceHeroImageFrame>
+      ) : (
+        <OakImage
+          src={imageUrl}
+          alt={imageAlt}
+          $width="100%"
+          $height="100%"
+          $objectFit="cover"
+          priority
+        />
+      )}
     </HeroImageContainer>
   );
 };
@@ -479,16 +516,22 @@ export const NationalCurriculumInsightsHero = ({
                 <OakHeading
                   tag="h1"
                   $font={
-                    hasEditorialImage
-                      ? ["heading-4", "heading-4", "heading-1"]
-                      : ["heading-4", "heading-1", "heading-1"]
+                    pageKind === "guidance"
+                      ? "heading-3"
+                      : hasEditorialImage
+                        ? ["heading-4", "heading-4", "heading-1"]
+                        : ["heading-4", "heading-1", "heading-1"]
                   }
                 >
                   {section.heading}
                 </OakHeading>
                 <PortableTextWithDefaults
                   value={section.bodyPortableText}
-                  components={heroPortableTextComponents}
+                  components={
+                    pageKind === "guidance"
+                      ? guidanceHeroPortableTextComponents
+                      : heroPortableTextComponents
+                  }
                 />
                 {section.ctaLabel && section.ctaHref ? (
                   <OakLink href={section.ctaHref} iconName="arrow-right">
@@ -502,6 +545,7 @@ export const NationalCurriculumInsightsHero = ({
           {hasEditorialImage ? (
             <HubHeroImage
               hasEditorialImage={hasEditorialImage}
+              isGuidance={pageKind === "guidance"}
               sideBySideTablet={isHub}
               section={section}
             />

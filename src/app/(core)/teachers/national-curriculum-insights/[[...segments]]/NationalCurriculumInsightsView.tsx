@@ -1,6 +1,12 @@
 "use client";
 
-import { OakBox, OakHeading, OakP, OakTabs } from "@oaknational/oak-components";
+import {
+  OakBox,
+  OakFlex,
+  OakHeading,
+  OakP,
+  OakTabs,
+} from "@oaknational/oak-components";
 import styled from "styled-components";
 
 import { NationalCurriculumInsightsHero } from "./NationalCurriculumInsightsHero";
@@ -85,13 +91,17 @@ const ModuleView = ({
         />
       );
     case "NationalCurriculumInsightsNewsletterSection":
-      return <NationalCurriculumInsightsNewsletter section={module} />;
+      return (
+        <NationalCurriculumInsightsNewsletter section={module} data={data} />
+      );
     case "NationalCurriculumInsightsFaqSection":
-      return <NationalCurriculumInsightsFaq section={module} />;
+      return <NationalCurriculumInsightsFaq section={module} data={data} />;
     case "NationalCurriculumInsightsRichTextSection":
       return <NationalCurriculumInsightsRichText section={module} />;
     case "NationalCurriculumInsightsImageTextSection":
-      return <NationalCurriculumInsightsImageText section={module} />;
+      return (
+        <NationalCurriculumInsightsImageText section={module} data={data} />
+      );
     case "NationalCurriculumInsightsGuidanceIntroSection":
       return <NationalCurriculumInsightsGuidanceIntro section={module} />;
     case "NationalCurriculumInsightsVideoCardsSection":
@@ -296,14 +306,14 @@ export const NationalCurriculumInsightsView = ({
 
   if (data.route.kind === "guidance" && data.page) {
     return (
-      <OakBox as="main">
+      <OakFlex as="main" $flexDirection="column" $gap="spacing-40">
         <ModuleList
           data={data}
           modules={data.page.modules}
           title={data.page.title}
           summary={data.page.summary}
         />
-      </OakBox>
+      </OakFlex>
     );
   }
 

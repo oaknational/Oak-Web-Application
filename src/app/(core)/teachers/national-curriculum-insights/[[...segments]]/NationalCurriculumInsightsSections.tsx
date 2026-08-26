@@ -6,17 +6,19 @@ import {
   getMediaQuery,
   isValidIconName,
   OakBox,
-  OakCard,
   OakCheckBox,
   OakFlex,
+  OakFocusIndicator,
   OakHeading,
   OakIcon,
   OakImage,
+  OakLI,
   OakLink,
   OakOutlineAccordion,
   OakP,
   OakPrimaryButton,
   OakQuote,
+  OakSpan,
   OakSubjectIconButton,
   OakTagFunctional,
   type OakUiRoleToken,
@@ -87,6 +89,19 @@ const portableTextComponents: PortableTextComponents = {
         {children}
       </OakP>
     ),
+  },
+};
+
+const guidancePortableTextComponents: PortableTextComponents = {
+  block: {
+    normal: ({ children }) => (
+      <OakP $font="body-1" $mv="spacing-0">
+        {children}
+      </OakP>
+    ),
+  },
+  listItem: {
+    bullet: ({ children }) => <OakLI $font="body-1">{children}</OakLI>,
   },
 };
 
@@ -770,10 +785,111 @@ const EditorialSection = styled(OakBox)`
   }
 `;
 
+const GuidanceExplainerSection = styled(OakBox)`
+  box-sizing: border-box;
+
+  @media (${getMediaQuery("desktop")}) {
+    height: 480px;
+    display: flex;
+    align-items: center;
+  }
+`;
+
+const GuidanceExplainerLayout = styled(OakBox)`
+  width: 100%;
+  max-width: 1218px;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 40px;
+
+  @media (${getMediaQuery("desktop")}) {
+    grid-template-columns: 684px minmax(0, 1fr);
+    grid-template-rows: auto auto;
+    column-gap: 40px;
+    row-gap: 40px;
+    align-items: center;
+  }
+`;
+
+const GuidanceExplainerHeading = styled(OakHeading)`
+  grid-column: 1;
+  grid-row: 1;
+`;
+
+const GuidanceExplainerImage = styled(OakBox)`
+  width: 269px;
+  max-width: 100%;
+  aspect-ratio: 332 / 259;
+  justify-self: center;
+  overflow: hidden;
+
+  @media (${getMediaQuery("desktop")}) {
+    width: 332px;
+    height: 259px;
+    grid-column: 2;
+    grid-row: 1 / span 2;
+  }
+`;
+
+const GuidanceExplainerBody = styled(OakBox)`
+  grid-column: 1;
+  grid-row: 3;
+
+  @media (${getMediaQuery("desktop")}) {
+    grid-row: 2;
+  }
+
+  ul {
+    margin: 0;
+    padding-left: 27px;
+  }
+
+  li + li {
+    margin-top: 12px;
+  }
+`;
+
 export const NationalCurriculumInsightsImageText = ({
   section,
-}: SectionProps<"NationalCurriculumInsightsImageTextSection">) => {
+  data,
+}: ContextualSectionProps<"NationalCurriculumInsightsImageTextSection">) => {
   const headingId = useId();
+
+  if (data.route.kind === "guidance") {
+    return (
+      <GuidanceExplainerSection
+        as="section"
+        $background="bg-decorative1-very-subdued"
+        $ph="spacing-40"
+        $pv="spacing-40"
+        aria-labelledby={headingId}
+        data-insights-module="guidance-benefits"
+      >
+        <GuidanceExplainerLayout $mh="auto">
+          <GuidanceExplainerHeading tag="h2" id={headingId} $font="heading-5">
+            {section.heading}
+          </GuidanceExplainerHeading>
+          <GuidanceExplainerImage
+            aria-hidden={section.image.isPresentational || undefined}
+          >
+            <OakImage
+              src={imageUrl(section.image)}
+              alt={imageAlt(section.image)}
+              $width="100%"
+              $height="100%"
+              $objectFit="contain"
+            />
+          </GuidanceExplainerImage>
+          <GuidanceExplainerBody>
+            <PortableTextWithDefaults
+              value={section.bodyPortableText}
+              components={guidancePortableTextComponents}
+            />
+          </GuidanceExplainerBody>
+        </GuidanceExplainerLayout>
+      </GuidanceExplainerSection>
+    );
+  }
 
   return (
     <EditorialSection
@@ -833,48 +949,114 @@ const GuidanceIntroImage = styled(OakBox)`
   width: 100%;
   aspect-ratio: 3 / 2;
   overflow: hidden;
+  border: 2px solid ${parseColor("border-primary")};
 
   @media (${getMediaQuery("desktop")}) {
-    width: 466px;
-    flex: 0 0 466px;
+    width: 363px;
+    height: 242px;
+    flex: 0 0 363px;
   }
 `;
 
-const GuidanceIntroCopy = styled(OakFlex)`
+const GuidanceIntroLayout = styled(OakBox)`
   width: 100%;
-  max-width: 650px;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  row-gap: 20px;
+
+  @media (${getMediaQuery("desktop")}) {
+    grid-template-columns: 363px 684px;
+    grid-template-rows: auto 1fr;
+    column-gap: 40px;
+    row-gap: 40px;
+    align-items: start;
+  }
+`;
+
+const GuidanceIntroHeading = styled(OakHeading)`
+  grid-column: 1;
+  grid-row: 1;
+
+  @media (${getMediaQuery("desktop")}) {
+    grid-column: 2;
+  }
+`;
+
+const GuidanceIntroDesktopHeading = styled.span`
+  display: none;
+
+  @media (${getMediaQuery("desktop")}) {
+    display: inline;
+  }
+`;
+
+const GuidanceIntroMobileHeading = styled.span`
+  @media (${getMediaQuery("desktop")}) {
+    display: none;
+  }
+`;
+
+const GuidanceIntroBody = styled(OakFlex)`
+  grid-column: 1;
+  grid-row: 3;
+
+  @media (${getMediaQuery("desktop")}) {
+    grid-column: 2;
+    grid-row: 2;
+  }
+`;
+
+const GuidanceIntroArtwork = styled(GuidanceIntroImage)`
+  grid-column: 1;
+  grid-row: 2;
+
+  @media (${getMediaQuery("desktop")}) {
+    grid-row: 1 / span 2;
+  }
+`;
+
+const GuidanceTaggedParagraph = styled(OakBox)`
+  > div:first-child {
+    float: left;
+    margin: 0 8px 0 0;
+  }
+
+  &::after {
+    display: table;
+    clear: both;
+    content: "";
+  }
 `;
 
 export const NationalCurriculumInsightsGuidanceIntro = ({
   section,
 }: SectionProps<"NationalCurriculumInsightsGuidanceIntroSection">) => {
   const headingId = useId();
+  const [leadBlock, ...remainingBlocks] = section.bodyPortableText;
+  const hasTaggedSecondParagraph = Boolean(
+    section.statusLabel && leadBlock && remainingBlocks.length > 0,
+  );
 
   return (
     <OakBox
       as="section"
       $background="bg-primary"
-      $ph={["spacing-20", "spacing-40"]}
-      $pv={["spacing-48", "spacing-64"]}
+      $ph={["spacing-24", "spacing-40"]}
+      $pv={["spacing-32", "spacing-40"]}
       aria-labelledby={headingId}
       data-insights-module="guidance-introduction"
     >
       <SectionMaxWidth $mh="auto">
-        <OakHeading
-          id={headingId}
-          tag="h2"
-          $font={["heading-4", "heading-3"]}
-          $mb={["spacing-32", "spacing-48"]}
-        >
-          {section.heading}
-        </OakHeading>
-        <OakFlex
-          $flexDirection={["column", "column", "row"]}
-          $alignItems="center"
-          $gap={["spacing-32", "spacing-64"]}
-        >
-          <GuidanceIntroImage
-            $borderRadius="border-radius-m2"
+        <GuidanceIntroLayout>
+          <GuidanceIntroHeading id={headingId} tag="h2" $font="heading-5">
+            <GuidanceIntroMobileHeading>
+              This term, you’ll find:
+            </GuidanceIntroMobileHeading>
+            <GuidanceIntroDesktopHeading>
+              {section.heading}
+            </GuidanceIntroDesktopHeading>
+          </GuidanceIntroHeading>
+          <GuidanceIntroArtwork
             aria-hidden={section.image.isPresentational || undefined}
           >
             <OakImage
@@ -884,156 +1066,293 @@ export const NationalCurriculumInsightsGuidanceIntro = ({
               $height="100%"
               $objectFit="cover"
             />
-          </GuidanceIntroImage>
-          <GuidanceIntroCopy $flexDirection="column" $gap="spacing-24">
-            <PortableTextWithDefaults
-              value={section.bodyPortableText}
-              components={portableTextComponents}
-            />
-            {section.statusLabel ? (
-              <OakTagFunctional
-                label={section.statusLabel}
-                $background="bg-decorative5-main"
-                $color="text-primary"
-                $alignSelf="flex-start"
-              />
-            ) : null}
-          </GuidanceIntroCopy>
-        </OakFlex>
+          </GuidanceIntroArtwork>
+          <GuidanceIntroBody $flexDirection="column" $gap="spacing-24">
+            {hasTaggedSecondParagraph ? (
+              <>
+                <PortableTextWithDefaults
+                  value={[leadBlock]}
+                  components={guidancePortableTextComponents}
+                />
+                <GuidanceTaggedParagraph>
+                  <OakTagFunctional
+                    label={section.statusLabel!}
+                    $background="bg-decorative5-main"
+                    $color="text-primary"
+                  />
+                  <PortableTextWithDefaults
+                    value={remainingBlocks}
+                    components={guidancePortableTextComponents}
+                  />
+                </GuidanceTaggedParagraph>
+              </>
+            ) : (
+              <>
+                <PortableTextWithDefaults
+                  value={section.bodyPortableText}
+                  components={guidancePortableTextComponents}
+                />
+                {section.statusLabel ? (
+                  <OakTagFunctional
+                    label={section.statusLabel}
+                    $background="bg-decorative5-main"
+                    $color="text-primary"
+                    $alignSelf="flex-start"
+                  />
+                ) : null}
+              </>
+            )}
+          </GuidanceIntroBody>
+        </GuidanceIntroLayout>
       </SectionMaxWidth>
     </OakBox>
   );
 };
 
-const VideoCardFrame = styled.div`
-  width: 100%;
-  max-width: 384px;
-`;
-
 const VideoCardList = styled.ul`
-  display: grid;
-  grid-template-columns: minmax(0, 384px);
-  justify-content: center;
-  gap: 32px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 64px;
   list-style: none;
   margin: 0;
   padding: 0;
 
   @media (${getMediaQuery("desktop")}) {
-    grid-template-columns: repeat(3, minmax(0, 384px));
+    gap: 40px;
   }
 `;
 
 const VideoCardItem = styled.li`
   width: 100%;
+  display: flex;
+  justify-content: center;
 `;
 
 const VideoCardsSection = styled(OakBox)`
+  box-sizing: border-box;
+`;
+
+const ConversationInner = styled(OakFlex)`
+  width: 100%;
+  max-width: 985px;
+`;
+
+const ConversationHeader = styled(OakFlex)`
+  width: 100%;
+
   @media (${getMediaQuery("desktop")}) {
-    min-height: 1343px;
-    display: flex;
-    align-items: center;
+    min-height: 212px;
   }
 `;
 
-const QuoteImage = styled(OakBox)`
+const ConversationHeaderArtwork = styled(OakBox)`
+  display: none;
+
+  @media (${getMediaQuery("desktop")}) {
+    display: block;
+    width: 250px;
+    height: 212px;
+    flex: 0 0 250px;
+  }
+`;
+
+const ConversationHeaderCopy = styled(OakFlex)`
   width: 100%;
-  height: 320px;
+
+  @media (${getMediaQuery("desktop")}) {
+    width: 690px;
+    flex: 0 0 690px;
+  }
+`;
+
+const ConversationCardFocus = styled(OakFocusIndicator)<{
+  $featured: boolean;
+}>`
+  width: 100%;
+  max-width: 342px;
+  border-radius: 6.645px;
+
+  @media (${getMediaQuery("desktop")}) {
+    max-width: ${({ $featured }) => ($featured ? "976px" : "985px")};
+    min-height: ${({ $featured }) => ($featured ? "301.582px" : "188.582px")};
+  }
+`;
+
+const ConversationCardLink = styled(OakFlex)<{ $featured: boolean }>`
+  box-sizing: border-box;
+  width: 100%;
+  min-height: 100%;
+  padding: 13.291px;
+  gap: 13.291px;
+  border-radius: 6.645px;
+  color: ${parseColor("text-primary")};
+  text-decoration: none;
+
+  &:hover h3,
+  &:hover span {
+    text-decoration: underline;
+  }
+
+  @media (${getMediaQuery("desktop")}) {
+    flex-direction: row;
+  }
+`;
+
+const ConversationCardImage = styled(OakBox)<{ $featured: boolean }>`
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  flex: 0 0 auto;
   overflow: hidden;
 
   @media (${getMediaQuery("desktop")}) {
-    width: 480px;
+    width: ${({ $featured }) => ($featured ? "491px" : "290px")};
+    height: ${({ $featured }) => ($featured ? "275px" : "163px")};
   }
 `;
 
-const QuoteSection = styled(OakBox)`
+const ConversationCardCopy = styled(OakFlex)`
+  width: 100%;
+  min-width: 0;
+`;
+
+const GuidanceQuoteSection = styled(OakBox)`
+  box-sizing: border-box;
+
   @media (${getMediaQuery("desktop")}) {
-    min-height: 596px;
+    height: 418px;
     display: flex;
     align-items: center;
   }
 `;
+
+const GuidanceQuoteCard = styled(OakBox)`
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 800px;
+`;
+
+const GuidanceConversationCard = ({
+  card,
+  episode,
+  featured,
+}: {
+  card: Extract<
+    InsightSection,
+    { __typename: "NationalCurriculumInsightsVideoCardsSection" }
+  >["cards"][number];
+  episode: number;
+  featured: boolean;
+}) => (
+  <ConversationCardFocus
+    $featured={featured}
+    $background="bg-primary"
+    hoverBackground="bg-btn-secondary-hover"
+    $borderRadius="border-radius-m2"
+  >
+    <ConversationCardLink
+      as="a"
+      href={card.videoUrl}
+      $featured={featured}
+      $flexDirection="column"
+    >
+      <ConversationCardImage
+        $featured={featured}
+        $borderRadius="border-radius-m2"
+      >
+        <OakImage
+          src={imageUrl(card.image)}
+          alt={imageAlt(card.image)}
+          $width="100%"
+          $height="100%"
+          $objectFit="cover"
+        />
+      </ConversationCardImage>
+      <ConversationCardCopy
+        $flexDirection="column"
+        $justifyContent="space-between"
+        $gap="spacing-20"
+      >
+        <OakFlex $flexDirection="column" $gap="spacing-12">
+          <OakHeading tag="h3" $font="heading-7">
+            {card.heading}
+          </OakHeading>
+          <OakP $font="body-3" $color="text-subdued" $mv="spacing-0">
+            {card.description}
+          </OakP>
+        </OakFlex>
+        <OakFlex
+          $alignItems="center"
+          $justifyContent="flex-end"
+          $gap="spacing-4"
+        >
+          <OakSpan $font="body-3">Watch episode {episode}</OakSpan>
+          <OakIcon
+            iconName="arrow-right"
+            alt=""
+            $width="spacing-20"
+            $height="spacing-20"
+          />
+        </OakFlex>
+      </ConversationCardCopy>
+    </ConversationCardLink>
+  </ConversationCardFocus>
+);
 
 export const NationalCurriculumInsightsVideoCards = ({
   section,
 }: SectionProps<"NationalCurriculumInsightsVideoCardsSection">) => {
   const headingId = useId();
-  const [featured, ...remaining] = section.cards;
 
   return (
     <VideoCardsSection
       as="section"
-      $background="bg-decorative1-very-subdued"
-      $ph={["spacing-20", "spacing-40"]}
-      $pv={["spacing-48", "spacing-64"]}
+      $background="bg-decorative5-very-subdued"
+      $ph={["spacing-16", "spacing-40"]}
+      $pv="spacing-80"
+      $borderRadius="border-radius-l"
       aria-labelledby={headingId}
+      data-insights-module="guidance-conversations"
     >
-      <SectionMaxWidth $mh="auto">
-        <OakFlex $flexDirection="column" $gap="spacing-32">
-          <OakFlex
-            $flexDirection={["column", "column", "row"]}
-            $alignItems="center"
-            $justifyContent="space-between"
-            $gap={["spacing-32", "spacing-64"]}
-          >
-            <OakFlex
-              $flexDirection="column"
-              $gap="spacing-24"
-              $maxWidth="spacing-480"
-            >
-              <OakHeading
-                tag="h2"
-                id={headingId}
-                $font={["heading-4", "heading-2"]}
-              >
-                {section.heading}
-              </OakHeading>
-              {section.introductionPortableText ? (
-                <PortableTextWithDefaults
-                  value={section.introductionPortableText}
-                  components={portableTextComponents}
-                />
-              ) : null}
-            </OakFlex>
-            {featured ? (
-              <VideoCardFrame>
-                <OakCard
-                  heading={featured.heading}
-                  headingLevel="h3"
-                  href={featured.videoUrl}
-                  imageSrc={imageUrl(featured.image)}
-                  imageAlt={imageAlt(featured.image)}
-                  aspectRatio="4/3"
-                  subCopy={featured.description}
-                  tagName={featured.duration ?? undefined}
-                  linkText="Watch episode"
-                  linkIconName="play"
-                />
-              </VideoCardFrame>
+      <ConversationInner $mh="auto" $flexDirection="column" $gap="spacing-64">
+        <ConversationHeader
+          $flexDirection={["column", "column", "row"]}
+          $alignItems="center"
+          $gap="spacing-40"
+        >
+          <ConversationHeaderArtwork aria-hidden>
+            <OakImage
+              src="/images/national-curriculum-insights/guidance/curriculum-conversations.png"
+              alt=""
+              $width="100%"
+              $height="100%"
+              $objectFit="contain"
+            />
+          </ConversationHeaderArtwork>
+          <ConversationHeaderCopy $flexDirection="column" $gap="spacing-20">
+            <OakHeading tag="h2" id={headingId} $font="heading-3">
+              {section.heading}
+            </OakHeading>
+            {section.introductionPortableText ? (
+              <PortableTextWithDefaults
+                value={section.introductionPortableText}
+                components={portableTextComponents}
+              />
             ) : null}
-          </OakFlex>
-          {remaining.length > 0 ? (
-            <VideoCardList>
-              {remaining.map((card) => (
-                <VideoCardItem key={`${card.heading}-${card.videoUrl}`}>
-                  <OakCard
-                    heading={card.heading}
-                    headingLevel="h3"
-                    href={card.videoUrl}
-                    imageSrc={imageUrl(card.image)}
-                    imageAlt={imageAlt(card.image)}
-                    aspectRatio="4/3"
-                    subCopy={card.description}
-                    tagName={card.duration ?? undefined}
-                    linkText="Watch episode"
-                    linkIconName="play"
-                  />
-                </VideoCardItem>
-              ))}
-            </VideoCardList>
-          ) : null}
-        </OakFlex>
-      </SectionMaxWidth>
+          </ConversationHeaderCopy>
+        </ConversationHeader>
+        <VideoCardList>
+          {section.cards.map((card, index) => (
+            <VideoCardItem key={`${card.heading}-${card.videoUrl}`}>
+              <GuidanceConversationCard
+                card={card}
+                episode={section.cards.length - index}
+                featured={index === 0}
+              />
+            </VideoCardItem>
+          ))}
+        </VideoCardList>
+      </ConversationInner>
     </VideoCardsSection>
   );
 };
@@ -1046,41 +1365,27 @@ export const NationalCurriculumInsightsQuote = ({
     : undefined;
 
   return (
-    <QuoteSection
+    <GuidanceQuoteSection
       as="section"
-      $ph={["spacing-20", "spacing-40"]}
-      $pv={["spacing-48", "spacing-64"]}
+      $ph={["spacing-16", "spacing-40"]}
+      $pv="spacing-40"
+      data-insights-module="guidance-testimonial"
     >
-      <SectionMaxWidth $mh="auto">
-        <OakFlex
-          $flexDirection={["column", "column", "row"]}
-          $alignItems="center"
-          $justifyContent="space-between"
-          $gap={["spacing-32", "spacing-64"]}
-        >
-          <OakBox $maxWidth="spacing-600">
-            <OakQuote
-              quote={section.quote}
-              authorName={section.attribution}
-              authorTitle={section.role ?? undefined}
-              color="text-primary"
-              hasLeftBorder={false}
-            />
-          </OakBox>
-          {authorImageSrc ? (
-            <QuoteImage $position="relative">
-              <OakImage
-                src={authorImageSrc}
-                alt={imageAlt(section.image)}
-                $width="100%"
-                $height="100%"
-                $objectFit="cover"
-              />
-            </QuoteImage>
-          ) : null}
-        </OakFlex>
-      </SectionMaxWidth>
-    </QuoteSection>
+      <GuidanceQuoteCard
+        $mh="auto"
+        $background="bg-decorative1-very-subdued"
+        $pa={["spacing-24", "spacing-48"]}
+      >
+        <OakQuote
+          quote={section.quote}
+          authorName={section.attribution}
+          authorTitle={section.role ?? undefined}
+          authorImageSrc={authorImageSrc}
+          color="text-primary"
+          hasLeftBorder
+        />
+      </GuidanceQuoteCard>
+    </GuidanceQuoteSection>
   );
 };
 
@@ -1243,21 +1548,49 @@ const NewsletterSection = styled(OakBox)`
   }
 `;
 
-const NewsletterInner = styled(OakBox)`
+const NewsletterInner = styled(OakBox)<{ $isGuidance: boolean }>`
   width: 100%;
-  max-width: 1058px;
+  max-width: ${({ $isGuidance }) => ($isGuidance ? "1151px" : "1058px")};
 
   @media (${getMediaQuery("desktop")}) {
-    transform: translateX(12px);
+    transform: ${({ $isGuidance }) =>
+      $isGuidance ? "none" : "translateX(12px)"};
   }
 `;
 
-const NewsletterCopy = styled(OakFlex)`
+const NewsletterLayout = styled(OakBox)`
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 20px;
+
+  @media (${getMediaQuery("desktop")}) {
+    grid-template-columns: 544px 475px;
+    grid-template-rows: auto 1fr;
+    column-gap: 39px;
+    row-gap: 16px;
+    justify-content: center;
+    align-items: start;
+  }
+`;
+
+const NewsletterLead = styled(OakFlex)`
   width: 100%;
+  grid-column: 1;
+  grid-row: 1;
 
   @media (${getMediaQuery("desktop")}) {
     width: 544px;
-    flex: 0 0 544px;
+  }
+`;
+
+const NewsletterDetails = styled(OakFlex)`
+  width: 100%;
+  grid-column: 1;
+  grid-row: 3;
+
+  @media (${getMediaQuery("desktop")}) {
+    width: 544px;
+    grid-row: 2;
   }
 `;
 
@@ -1269,6 +1602,8 @@ const NewsletterSelectField = styled(OakBox)`
 
 const NewsletterForm = styled(OakFlex)`
   width: 100%;
+  grid-column: 1;
+  grid-row: 2;
 
   input:not([type="checkbox"]),
   select {
@@ -1286,13 +1621,15 @@ const NewsletterForm = styled(OakFlex)`
 
   @media (${getMediaQuery("desktop")}) {
     width: 475px;
-    flex: 0 0 475px;
+    grid-column: 2;
+    grid-row: 1 / span 2;
   }
 `;
 
 export const NationalCurriculumInsightsNewsletter = ({
   section,
-}: SectionProps<"NationalCurriculumInsightsNewsletterSection">) => {
+  data,
+}: ContextualSectionProps<"NationalCurriculumInsightsNewsletterSection">) => {
   const [name, setName] = useState("");
   const [role, setRole] = useState("");
   const [school, setSchool] = useState("");
@@ -1303,6 +1640,7 @@ export const NationalCurriculumInsightsNewsletter = ({
   const [submitError, setSubmitError] = useState("");
   const [fieldErrors, setFieldErrors] = useState<Record<string, string>>({});
   const { onSubmit: submitNewsletter } = useNewsletterForm();
+  const isGuidance = data.route.kind === "guidance";
 
   const onSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -1353,21 +1691,16 @@ export const NationalCurriculumInsightsNewsletter = ({
   return (
     <NewsletterSection
       as="section"
-      $background="bg-decorative5-very-subdued"
+      $background={isGuidance ? "bg-primary" : "bg-decorative5-very-subdued"}
       $ph={["spacing-20", "spacing-40"]}
       $pv={["spacing-48", "spacing-48"]}
       $borderRadius="border-radius-l"
       aria-labelledby="national-curriculum-insights-newsletter-heading"
       data-insights-module="newsletter"
     >
-      <NewsletterInner $mh="auto">
-        <OakFlex
-          $flexDirection={["column", "column", "row"]}
-          $gap={["spacing-40", "spacing-40"]}
-          $alignItems="stretch"
-          $justifyContent="space-between"
-        >
-          <NewsletterCopy $flexDirection="column" $gap="spacing-16">
+      <NewsletterInner $mh="auto" $isGuidance={isGuidance}>
+        <NewsletterLayout>
+          <NewsletterLead $flexDirection="column" $gap="spacing-16">
             <OakFlex $alignItems="center" $gap="spacing-12">
               <OakImage
                 src={imageUrl(
@@ -1387,23 +1720,36 @@ export const NationalCurriculumInsightsNewsletter = ({
                 {section.heading}
               </OakHeading>
             </OakFlex>
-            <OakP $font="heading-7" $mv="spacing-0">
+            <OakP
+              $font={isGuidance ? "body-1-bold" : "heading-7"}
+              $mv="spacing-0"
+            >
               {section.introduction}
             </OakP>
-            <OakP $font="body-2" $mv="spacing-0">
+          </NewsletterLead>
+          <NewsletterDetails $flexDirection="column" $gap="spacing-16">
+            <OakP $font={isGuidance ? "body-1" : "body-2"} $mv="spacing-0">
               {section.benefitsHeading ?? "Sign up now for:"}
             </OakP>
             <NewsletterList as="ul" $flexDirection="column" $gap="spacing-16">
               {section.benefits.map((benefit) => (
                 <li key={benefit}>
-                  <OakP $font="body-2" $mv="spacing-0">
+                  <OakP
+                    $font={isGuidance ? "body-1" : "body-2"}
+                    $mv="spacing-0"
+                  >
                     {benefit}
                   </OakP>
                 </li>
               ))}
             </NewsletterList>
-            <PortableTextWithDefaults value={section.privacyPortableText} />
-          </NewsletterCopy>
+            <PortableTextWithDefaults
+              value={section.privacyPortableText}
+              components={
+                isGuidance ? guidancePortableTextComponents : undefined
+              }
+            />
+          </NewsletterDetails>
 
           <NewsletterForm
             as="form"
@@ -1500,7 +1846,7 @@ export const NationalCurriculumInsightsNewsletter = ({
               </OakP>
             ) : null}
           </NewsletterForm>
-        </OakFlex>
+        </NewsletterLayout>
       </NewsletterInner>
     </NewsletterSection>
   );
@@ -1531,12 +1877,17 @@ const FaqAccordionList = styled(OakFlex)`
 
 export const NationalCurriculumInsightsFaq = ({
   section,
-}: SectionProps<"NationalCurriculumInsightsFaqSection">) => (
+  data,
+}: ContextualSectionProps<"NationalCurriculumInsightsFaqSection">) => (
   <FaqSection
     as="section"
     $background="bg-decorative2-very-subdued"
     $ph={["spacing-20", "spacing-40"]}
-    $pv={["spacing-48", "spacing-64"]}
+    $pv={
+      data.route.kind === "guidance"
+        ? "spacing-40"
+        : ["spacing-48", "spacing-64"]
+    }
     aria-labelledby="national-curriculum-insights-faq-heading"
     data-insights-module="faq"
   >

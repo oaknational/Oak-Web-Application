@@ -147,6 +147,7 @@ describe("National Curriculum Insights sections", () => {
           })}
         />
         <NationalCurriculumInsightsImageText
+          data={data}
           section={moduleOf({
             __typename: "NationalCurriculumInsightsImageTextSection",
             heading: "What is changing",
@@ -159,6 +160,7 @@ describe("National Curriculum Insights sections", () => {
           })}
         />
         <NationalCurriculumInsightsImageText
+          data={data}
           section={moduleOf({
             __typename: "NationalCurriculumInsightsImageTextSection",
             heading: "How it helps",
@@ -239,6 +241,7 @@ describe("National Curriculum Insights sections", () => {
           })}
         />
         <NationalCurriculumInsightsFaq
+          data={data}
           section={moduleOf({
             __typename: "NationalCurriculumInsightsFaqSection",
             heading: "Frequently asked questions",
@@ -255,6 +258,7 @@ describe("National Curriculum Insights sections", () => {
           })}
         />
         <NationalCurriculumInsightsNewsletter
+          data={data}
           section={moduleOf({
             __typename: "NationalCurriculumInsightsNewsletterSection",
             heading: "Keep up to date",
@@ -353,7 +357,7 @@ describe("National Curriculum Insights sections", () => {
     );
 
     expect(
-      screen.getByRole("heading", { name: "Here, you’ll find:" }),
+      screen.getByRole("heading", { name: "This term, you’ll find:" }),
     ).toBeInTheDocument();
     expect(
       screen.getByText("Practical leadership guidance and curriculum updates."),
