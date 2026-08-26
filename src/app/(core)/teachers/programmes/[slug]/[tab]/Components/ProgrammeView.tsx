@@ -69,6 +69,7 @@ export type ProgrammePageProps = {
   initialFilter?: CurriculumFilters;
   featureFlags: Record<string, boolean>;
   implementationGuides: ImplementationGuides | null;
+  fileSizes: ProgrammeDownloadsProps["fileSizes"];
 };
 
 export const ProgrammeView = ({
@@ -87,6 +88,7 @@ export const ProgrammeView = ({
   initialFilter,
   featureFlags,
   implementationGuides,
+  fileSizes,
 }: ProgrammePageProps) => {
   const searchParams = useSearchParams();
 
@@ -240,6 +242,7 @@ export const ProgrammeView = ({
         ks4OptionFilterDimensions={ks4OptionFilterDimensions}
         implementationGuides={implementationGuides}
         featureFlags={featureFlags}
+        fileSizes={fileSizes}
       />
     </>
   );
@@ -258,6 +261,7 @@ const TabContent = ({
   ks4OptionFilterDimensions,
   implementationGuides,
   featureFlags,
+  fileSizes,
 }: {
   tabSlug: TabSlug;
   featureFlags: Record<string, boolean>;
@@ -290,6 +294,7 @@ const TabContent = ({
         curriculumUnitsFormattedData={curriculumUnitsFormattedData}
         implementationGuides={implementationGuides}
         featureFlags={featureFlags}
+        fileSizes={fileSizes}
       />
     );
   }

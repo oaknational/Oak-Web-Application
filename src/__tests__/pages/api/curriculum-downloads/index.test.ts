@@ -198,7 +198,15 @@ jest.mock("../../../../node-lib/cms", () => ({
   __esModule: true,
   default: {
     curriculumOverviewPage: async () => null,
-    implementationGuides: jest.fn().mockResolvedValue({}),
+    implementationGuides: jest.fn().mockResolvedValue({
+      curriculumQuality: {
+        asset: {
+          extension: "PDF",
+          size: 1000,
+          url: "http://localhost:3000/test.pdf",
+        },
+      },
+    }),
   },
 }));
 
@@ -327,5 +335,22 @@ describe("/api/curriculum-downloads", () => {
     await handler(req, res);
 
     expect(res._getStatusCode()).toBe(404);
+  });
+
+  test("sanity implementation toolkit documents", async () => {
+    curriculumSequenceMock.mockResolvedValue(mockSequenceData);
+    const { req, res } = createNextApiMocks({
+      query: {
+        types: ["curriculumQuality"],
+        mvRefreshTime: LAST_REFRESH_AS_TIME.toString(),
+        subjectSlug: "english",
+        phaseSlug: "secondary",
+        state: "published",
+      },
+    });
+    await handler(req, res);
+
+    expect(fetch).toHaveBeenCalledTimes(1);
+    expect(res._getStatusCode()).toBe(200);
   });
 });

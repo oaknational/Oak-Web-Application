@@ -8,7 +8,6 @@ import CoreLayout from "./layout";
 import { topNavFixture } from "@/node-lib/curriculum-api-2023/fixtures/topNav.fixture";
 import OakError from "@/errors/OakError";
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
-import { isFeatureFlagEnabledStatic } from "@/utils/featureFlagChecks/static";
 
 const mockTopNav = jest.fn().mockResolvedValue(topNavFixture);
 jest.mock("@/node-lib/curriculum-api-2023", () => ({
@@ -16,10 +15,6 @@ jest.mock("@/node-lib/curriculum-api-2023", () => ({
   default: {
     topNav: () => mockTopNav(),
   },
-}));
-
-jest.mock("@/utils/featureFlagChecks/static", () => ({
-  isFeatureFlagEnabledStatic: jest.fn(),
 }));
 
 // Unmock the mock created in jest setup to get access to the notFound function
@@ -31,13 +26,11 @@ jest.mock("next/headers", () => ({
   }),
 }));
 
-const mockIsFeatureFlagEnabledStatic = jest.mocked(isFeatureFlagEnabledStatic);
 const render = renderWithProviders();
 
 describe("core layout", () => {
   beforeEach(() => {
     jest.clearAllMocks();
-    mockIsFeatureFlagEnabledStatic.mockReturnValue(false);
   });
 
   it("renders correctly", async () => {
