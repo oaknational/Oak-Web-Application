@@ -9,6 +9,9 @@ import { FilterType, FilterTypeValueType } from "@/browser-lib/avo/Avo";
 
 export const useBrowseFilters = () => {
   const filters = useBrowseFiltersStore((store) => store.filters);
+  const yearsForKeystage = useBrowseFiltersStore(
+    (store) => store.yearsForKeystage,
+  );
   const setFilters = useBrowseFiltersStore((store) => store.setFilters);
   const getFilter = useBrowseFiltersStore((store) => store.getFilter);
   const programmeRefined = useTeacherBrowseAnalytics(
@@ -103,6 +106,7 @@ export const useBrowseFilters = () => {
 
   return {
     filters,
+    yearsForKeystage,
     onChangeFilters,
     getFilter,
     setYearFilter,

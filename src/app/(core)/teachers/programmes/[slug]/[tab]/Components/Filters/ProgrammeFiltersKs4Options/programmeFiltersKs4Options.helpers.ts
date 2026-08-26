@@ -1,15 +1,15 @@
 import type { Ks4OptionFilterDimension } from "../../../buildKs4OptionFilterDimensions";
 
 import { getSubjectPhaseSlug } from "@/components/TeacherComponents/helpers/getSubjectPhaseSlug";
+import { BrowseFilters } from "@/context/BrowseFilters/types";
+import { scopeYearsToKeystageFilter } from "@/context/BrowseFilters/utils/scopeYearsToKeystage";
 import type { Ks4Option } from "@/node-lib/curriculum-api-2023/queries/curriculumPhaseOptions/curriculumPhaseOptions.schema";
 import {
   isExamboardSlug,
   isPathwaySlug,
 } from "@/pages-helpers/pupil/options-pages/options-pages-helpers";
-import { scopeYearsToKeystageFilter } from "@/utils/curriculum/filtering";
 import { keystageYearMappings } from "@/utils/curriculum/keystage";
 import { CurriculumSelectionSlugs } from "@/utils/curriculum/slugs";
-import { CurriculumFilters } from "@/utils/curriculum/types";
 
 export type PartitionedKs4Options = {
   pathwayOptions: Ks4Option[];
@@ -34,7 +34,7 @@ export function partitionKs4Options(
 
 export function isInKs4FilterContext(
   slugs: CurriculumSelectionSlugs,
-  filters: CurriculumFilters,
+  filters: BrowseFilters,
 ): boolean {
   const effectiveYears = scopeYearsToKeystageFilter(filters);
   const hasKs4YearFilter = effectiveYears.some((year) =>
@@ -70,7 +70,7 @@ function toQueryParam(values: string[]): string | undefined {
 }
 
 export function getPreservedQuery(
-  filters: CurriculumFilters,
+  filters: BrowseFilters,
   destinationSlug: string,
   ks4OptionFilterDimensions?: Record<string, Ks4OptionFilterDimension>,
 ) {
@@ -121,7 +121,7 @@ export function getSubjectPhaseSlugForKs4Option(
 
 export function shouldDisplayPathwayFilter(
   slugs: CurriculumSelectionSlugs,
-  filters: CurriculumFilters,
+  filters: BrowseFilters,
   ks4Options: Ks4Option[],
 ): boolean {
   const { pathwayOptions } = partitionKs4Options(ks4Options);
@@ -131,7 +131,7 @@ export function shouldDisplayPathwayFilter(
 
 export function shouldDisplayExamBoardFilter(
   slugs: CurriculumSelectionSlugs,
-  filters: CurriculumFilters,
+  filters: BrowseFilters,
   ks4Options: Ks4Option[],
 ): boolean {
   const { examBoardOptions } = partitionKs4Options(ks4Options);
@@ -141,7 +141,7 @@ export function shouldDisplayExamBoardFilter(
 
 export function shouldDisplayKs4OptionsFilter(
   slugs: CurriculumSelectionSlugs,
-  filters: CurriculumFilters,
+  filters: BrowseFilters,
   ks4Options: Ks4Option[],
 ): boolean {
   return (

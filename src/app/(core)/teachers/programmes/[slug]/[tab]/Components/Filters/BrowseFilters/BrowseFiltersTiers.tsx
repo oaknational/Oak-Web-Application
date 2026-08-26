@@ -6,10 +6,7 @@ import {
 } from "@oaknational/oak-components";
 import { useId } from "react";
 
-import {
-  getFilterData,
-  scopeYearsToKeystageFilter,
-} from "@/utils/curriculum/filtering";
+import { getFilterData } from "@/utils/curriculum/filtering";
 import {
   byKeyStageSlug,
   presentAtKeyStageSlugs,
@@ -24,19 +21,17 @@ export type BrowseFiltersTiersProps = {
 export function BrowseFiltersTiers({
   data,
 }: Readonly<BrowseFiltersTiersProps>) {
-  const { filters, setTierFilter } = useBrowseFilters();
+  const { filters, setTierFilter, yearsForKeystage } = useBrowseFilters();
   const id = useId();
   const { yearData } = data;
 
-  const effectiveYears = scopeYearsToKeystageFilter(filters);
-
-  const { tiers } = getFilterData(data.yearData, effectiveYears);
+  const { tiers } = getFilterData(data.yearData, yearsForKeystage);
 
   const keyStageSlugData = byKeyStageSlug(yearData);
   const tiersAt = presentAtKeyStageSlugs(
     keyStageSlugData,
     "tiers",
-    effectiveYears,
+    yearsForKeystage,
   );
 
   return (

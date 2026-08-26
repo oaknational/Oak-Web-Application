@@ -7,10 +7,7 @@ import {
 import { useMemo, useId } from "react";
 
 import { getValidSubjectCategoryIconById } from "@/utils/getValidSubjectCategoryIconById";
-import {
-  getFilterData,
-  scopeYearsToKeystageFilter,
-} from "@/utils/curriculum/filtering";
+import { getFilterData } from "@/utils/curriculum/filtering";
 import {
   byKeyStageSlug,
   presentAtKeyStageSlugs,
@@ -28,24 +25,22 @@ export function BrowseFiltersSubjectCategories({
   data,
   slugs,
 }: Readonly<BrowseFiltersSubjectCategoriesProps>) {
-  const { filters, setSubjectCategoryFilter } = useBrowseFilters();
+  const { filters, setSubjectCategoryFilter, yearsForKeystage } =
+    useBrowseFilters();
   const id = useId();
-  const { yearData } = data;
 
-  const effectiveYears = scopeYearsToKeystageFilter(filters);
+  const { subjectCategories } = getFilterData(data.yearData, yearsForKeystage);
 
-  const { subjectCategories } = getFilterData(data.yearData, effectiveYears);
-
-  const keyStageSlugData = byKeyStageSlug(yearData);
+  const keyStageSlugData = byKeyStageSlug(data.yearData);
   const childSubjectsAt = presentAtKeyStageSlugs(
     keyStageSlugData,
     "childSubjects",
-    effectiveYears,
+    yearsForKeystage,
   );
   const subjectCategoriesAt = presentAtKeyStageSlugs(
     keyStageSlugData,
     "subjectCategories",
-    effectiveYears,
+    yearsForKeystage,
   ).filter((ks) => !childSubjectsAt.includes(ks));
 
   const subjectCategoryIdAsString = useMemo(() => {

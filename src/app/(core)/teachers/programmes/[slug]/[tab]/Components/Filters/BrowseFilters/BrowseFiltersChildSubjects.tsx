@@ -8,10 +8,7 @@ import { useId } from "react";
 
 import { Unit } from "@/utils/curriculum/types";
 import { getValidSubjectIconName } from "@/utils/getValidSubjectIconName";
-import {
-  getFilterData,
-  scopeYearsToKeystageFilter,
-} from "@/utils/curriculum/filtering";
+import { getFilterData } from "@/utils/curriculum/filtering";
 import {
   byKeyStageSlug,
   presentAtKeyStageSlugs,
@@ -26,19 +23,18 @@ export type BrowseFiltersChildSubjectsProps = {
 export function BrowseFiltersChildSubjects({
   data,
 }: Readonly<BrowseFiltersChildSubjectsProps>) {
-  const { filters, setChildSubjectFilter } = useBrowseFilters();
+  const { filters, setChildSubjectFilter, yearsForKeystage } =
+    useBrowseFilters();
   const id = useId();
   const { yearData } = data;
 
-  const effectiveYears = scopeYearsToKeystageFilter(filters);
-
-  const { childSubjects } = getFilterData(data.yearData, effectiveYears);
+  const { childSubjects } = getFilterData(data.yearData, yearsForKeystage);
 
   const keyStageSlugData = byKeyStageSlug(yearData);
   const childSubjectsAt = presentAtKeyStageSlugs(
     keyStageSlugData,
     "childSubjects",
-    effectiveYears,
+    yearsForKeystage,
   );
 
   return (

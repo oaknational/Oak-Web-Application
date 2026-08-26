@@ -11,6 +11,7 @@ import {
 } from "./browseFiltersUrlStorage";
 import { BrowseFilters, BrowseFiltersKey } from "./types";
 import { applySearchParamsToFilter } from "./utils/applySearchParamsToFilter";
+import { scopeYearsToKeystageFilter } from "./utils/scopeYearsToKeystage";
 
 export type BrowseFiltersStore = {
   filters: BrowseFilters;
@@ -18,6 +19,7 @@ export type BrowseFiltersStore = {
    * The data-derived baseline for this programme
    */
   defaultFilter: BrowseFilters;
+  yearsForKeystage: string[];
   setFilters: (newFilters: BrowseFilters) => void;
   getFilter: <T extends BrowseFiltersKey>(key: T) => BrowseFilters[T];
   /**
@@ -50,6 +52,9 @@ export const createBrowseFiltersStore = ({
       (set, get) => ({
         filters: initialFilter ?? defaultFilter,
         defaultFilter,
+        yearsForKeystage: scopeYearsToKeystageFilter(
+          initialFilter ?? defaultFilter,
+        ),
         setFilters: (newFilters) => set({ filters: newFilters }),
         getFilter: (key) => {
           return get().filters[key];
