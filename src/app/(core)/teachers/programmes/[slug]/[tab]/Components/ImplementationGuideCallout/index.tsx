@@ -14,12 +14,14 @@ type ImplementationGuideCalloutProps = {
   phase: string;
   subjectTitle: string;
   phaseTitle: string;
+  onClick: () => void;
 };
 export function ImplementationGuideCallout({
   subject,
   phase,
   subjectTitle,
   phaseTitle,
+  onClick,
 }: Readonly<ImplementationGuideCalloutProps>) {
   const linkHref = resolveOakHref({
     page: "teacher-programme",
@@ -43,6 +45,7 @@ export function ImplementationGuideCallout({
                 isTrailingIcon
                 variant="secondary"
                 aria-label="Download our implementation toolkit"
+                onClick={onClick}
               >
                 Download
               </OakLink>

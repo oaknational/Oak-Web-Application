@@ -271,7 +271,7 @@ export async function getFile({
 
   const allHandlers = [
     {
-      type: "curriculumPlans",
+      type: "curriculumPlan",
       handler: docx,
       getFilename: (data: getDataReturn) => {
         if (data.notFound) {
@@ -342,7 +342,9 @@ export async function getFile({
               examboardTitle: data.combinedCurriculumData?.examboardTitle,
               childSubjectSlug,
               tierSlug,
-              prefix: definition.label,
+              prefix:
+                DOWNLOAD_TYPE_LABELS.find(({ id }) => id === type)?.label ??
+                type,
               isWithinArchive: data.isWithinArchive,
             });
           },
@@ -445,7 +447,7 @@ export default async function handler(
 
   // Check if we should redirect (new cache-hit)
   if (
-    (["curriculumPlans", "nationalCurriculum"] as const).some((type) =>
+    (["curriculumPlan", "nationalCurriculum"] as const).some((type) =>
       types.includes(type),
     ) &&
     mvRefreshTimeParsed !== actualMvRefreshTime
