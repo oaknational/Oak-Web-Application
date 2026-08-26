@@ -259,7 +259,7 @@ describe("Programme Downloads", () => {
       },
       fileSizes: [
         {
-          downloadId: "curriculumPlans",
+          downloadId: "curriculumPlan",
           size: 2000,
           tier: null,
           childSubject: null,
