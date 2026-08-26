@@ -37,7 +37,6 @@ import {
   OnwardIntentValueType,
   PlatformValueType,
   ProductValueType,
-  ResourceTypeValueType,
   TeachingMaterialTypeValueType,
   TierNameValueType,
 } from "@/browser-lib/avo/Avo";
@@ -50,6 +49,7 @@ import getFormattedDetailsForTracking, {
   getSchoolUrn,
 } from "@/components/TeacherComponents/helpers/downloadAndShareHelpers/getFormattedDetailsForTracking";
 import { convertUnitSlugToTitle } from "@/app/(core)/teachers/search/helpers";
+import { DOWNLOAD_TYPE_LABELS } from "@/components/CurriculumComponents/CurriculumDownloadView/helper";
 
 export type TeacherBrowseAnalyticsStore = {
   programmeState: ProgrammeState | null;
@@ -79,6 +79,9 @@ export type TeacherBrowseAnalyticsStore = {
       lessonReleaseDate: string;
       yearGroupName: string;
       yearGroupSlug: string;
+    }) => void;
+    curriculumResourcesAccessed: (data: {
+      componentType: ComponentTypeValueType;
     }) => void;
     lessonMediaClipsStarted: (data: {
       mediaClipsButtonName: MediaClipsButtonNameValueType;
@@ -299,6 +302,29 @@ export const createTeacherBrowseAnalyticsStore = (
           learningTier: capitalize(tierSlug || "") as LearningTierValueType,
         });
       },
+      curriculumResourcesAccessed: ({ componentType }) => {
+        const { avo, programmeState } = get();
+
+        const requiredProgrammeState = requireProgrammeState(
+          "curriculumResourcesAccessed",
+          programmeState,
+        );
+        if (!requiredProgrammeState) {
+          return;
+        }
+
+        const analyticsProperties = getProgrammeAnalyticsProperties(
+          requiredProgrammeState,
+        );
+
+        avo.curriculumResourcesAccessed({
+          ...coreProperties,
+          ...analyticsProperties,
+          engagementIntent: "explore",
+          product: "curriculum resources",
+          componentType,
+        });
+      },
       curriculumResourcesDownloaded: (data: ResourceFormValues) => {
         const { avo, programmeState, journeyId } = get();
 
@@ -316,6 +342,11 @@ export const createTeacherBrowseAnalyticsStore = (
 
         const schoolOption = getSchoolOption(data.school);
 
+        const avoResourceType = data.resources.map((resource) => {
+          return DOWNLOAD_TYPE_LABELS.find((label) => label.id === resource)!
+            .avoResourceType;
+        });
+
         avo.curriculumResourcesDownloaded({
           ...coreProperties,
           ...analyticsProperties,
@@ -324,7 +355,7 @@ export const createTeacherBrowseAnalyticsStore = (
           componentType: "download_button",
           product: "curriculum resources",
           emailSupplied: data.email != null,
-          resourceType: ["curriculum document"] as ResourceTypeValueType[],
+          resourceType: avoResourceType,
           schoolOption,
           schoolName: getSchoolName(data.school, schoolOption),
           schoolUrn: getSchoolUrn(data.school, schoolOption),

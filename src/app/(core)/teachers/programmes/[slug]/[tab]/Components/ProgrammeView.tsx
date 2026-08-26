@@ -45,6 +45,8 @@ import type { Ks4Option } from "@/node-lib/curriculum-api-2023/queries/curriculu
 import { resolveOakHref } from "@/common-lib/urls";
 import { validateSearchParams } from "@/utils/validateProgrammePageSearchParams";
 import { useBrowseFilters } from "@/context/BrowseFilters";
+import { useTeacherBrowseAnalytics } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
+import { ComponentType } from "@/browser-lib/avo/Avo";
 
 export type ProgrammePageProps = {
   subjectPhaseSlug: string;
@@ -92,6 +94,9 @@ export const ProgrammeView = ({
     curriculumSelectionTitles;
 
   const { filters } = useBrowseFilters();
+  const { curriculumResourcesAccessed } = useTeacherBrowseAnalytics(
+    (store) => store.track,
+  );
 
   const schoolYear = filters.years.find(
     (year) => validatedParams?.years === year,
@@ -154,6 +159,11 @@ export const ProgrammeView = ({
               const tabSlug = tabNameToSlug[tabName];
               // Prevents a full page reload using client side nav
               event.preventDefault();
+              if (tabSlug === "download") {
+                curriculumResourcesAccessed({
+                  componentType: ComponentType.DOWNLOAD_TAB,
+                });
+              }
               const url = preserveKeystagesParamInUrl(tabSlug);
               globalThis.history.pushState(null, "", url);
             }}
@@ -180,6 +190,11 @@ export const ProgrammeView = ({
                 subjectTitle={subjectTitle}
                 phase={curriculumSelectionSlugs.phaseSlug}
                 phaseTitle={phaseTitle}
+                onClick={() =>
+                  curriculumResourcesAccessed({
+                    componentType: ComponentType.IMPLEMENTATION_GUIDE_CALLOUT,
+                  })
+                }
               />
             )}
         </OakMaxWidth>

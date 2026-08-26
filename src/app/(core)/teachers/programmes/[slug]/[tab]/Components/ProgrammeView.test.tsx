@@ -21,6 +21,18 @@ import { BrowseFiltersProvider } from "@/context/BrowseFilters";
 import { getDefaultFilter } from "@/utils/curriculum/filtering";
 import { CurriculumFilters } from "@/utils/curriculum/types";
 
+const curriculumResourcesAccessed = jest.fn();
+
+jest.mock("@/context/Analytics/useAnalytics", () => ({
+  __esModule: true,
+  default: () => ({
+    track: {
+      curriculumResourcesAccessed: (...args: []) =>
+        curriculumResourcesAccessed(...args),
+    },
+  }),
+}));
+
 const subjectPhaseSlug = "science-secondary-aqa";
 
 const pathnameSubscribers = new Set<() => void>();
@@ -374,6 +386,19 @@ describe("ProgrammeView", () => {
       renderProgrammeView();
       const heading = screen.getByRole("heading", { name: "Year 7 units" });
       expect(heading).toBeInTheDocument();
+    });
+
+    it("calls curriculumResourcesAccessed when the download tab is clicked", () => {
+      renderProgrammeView();
+      const downloadTabButton = screen.getByRole("link", {
+        name: "Download",
+      });
+      downloadTabButton.click();
+      expect(curriculumResourcesAccessed).toHaveBeenCalledWith(
+        expect.objectContaining({
+          componentType: "download_tab",
+        }),
+      );
     });
   });
 
