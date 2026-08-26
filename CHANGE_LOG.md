@@ -1,3 +1,10 @@
+## [1.1165.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.1165.1...v1.1165.2) (2026-08-26)
+
+
+### Bug Fixes
+
+* group all implementation guides into a single item in accordion text ([82cab8c](https://github.com/oaknational/Oak-Web-Application/commit/82cab8c96555db64059ac48ab7bc04060a4045dc))
+
 ## [1.1165.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.1165.0...v1.1165.1) (2026-08-25)
 
 

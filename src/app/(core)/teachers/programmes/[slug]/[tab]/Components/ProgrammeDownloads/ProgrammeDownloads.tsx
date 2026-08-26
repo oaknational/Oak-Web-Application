@@ -503,8 +503,8 @@ export const ProgrammeDownloads = ({
                 }
                 showRiskAssessmentBanner={false}
                 curriculumDownloads={[
-                  ...implementationGuideDownloadsWithLabels,
                   ...curriculumDownloadsWithLabels,
+                  ...implementationGuideDownloadsWithLabels,
                 ]}
               />
             )}
