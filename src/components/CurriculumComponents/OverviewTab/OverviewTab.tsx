@@ -84,8 +84,9 @@ const ExplainerStyles = styled("div")`
     margin-bottom: 1rem;
   }
   ul + h3,
-  p + h3 {
-    margin-top: 4.5rem;
+  p + h3,
+  div + h3 {
+    margin-top: 5rem;
   }
   ul + h4,
   p + h4 {
@@ -304,10 +305,7 @@ const OverviewTab: FC<OverviewTabProps> = ({
                         } as PortableTextBlockComponent,
                         types: {
                           video: (props) => (
-                            <OakBox
-                              $mt={"spacing-24"}
-                              $mb={["spacing-48", "spacing-56"]}
-                            >
+                            <OakBox $mt={"spacing-24"}>
                               <OakVideo
                                 videoSlot={
                                   <VideoPlayer
@@ -318,6 +316,7 @@ const OverviewTab: FC<OverviewTabProps> = ({
                                     title={props.value.title}
                                     isLegacy={true}
                                     location="lesson"
+                                    omitBorder={true}
                                   />
                                 }
                                 showTranscript={true}
