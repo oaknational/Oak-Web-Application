@@ -44,7 +44,7 @@ describe("getFileSizes", () => {
 
     expect(results).toEqual([
       {
-        downloadId: "curriculumPlans",
+        downloadId: "curriculumPlan",
         size: 0,
         tier: null,
         childSubject: null,
@@ -81,13 +81,13 @@ describe("getFileSizes", () => {
 
     expect(results).toEqual([
       {
-        downloadId: "curriculumPlans",
+        downloadId: "curriculumPlan",
         size: 100,
         tier: "foundation",
         childSubject: null,
       },
       {
-        downloadId: "curriculumPlans",
+        downloadId: "curriculumPlan",
         size: 200,
         tier: "higher",
         childSubject: null,
@@ -143,37 +143,37 @@ describe("getFileSizes", () => {
 
     expect(results).toEqual([
       {
-        downloadId: "curriculumPlans",
+        downloadId: "curriculumPlan",
         size: 1100,
         tier: "foundation",
         childSubject: "biology",
       },
       {
-        downloadId: "curriculumPlans",
+        downloadId: "curriculumPlan",
         size: 1200,
         tier: "higher",
         childSubject: "biology",
       },
       {
-        downloadId: "curriculumPlans",
+        downloadId: "curriculumPlan",
         size: 2100,
         tier: "foundation",
         childSubject: "chemistry",
       },
       {
-        downloadId: "curriculumPlans",
+        downloadId: "curriculumPlan",
         size: 2200,
         tier: "higher",
         childSubject: "chemistry",
       },
       {
-        downloadId: "curriculumPlans",
+        downloadId: "curriculumPlan",
         size: 3100,
         tier: "foundation",
         childSubject: "physics",
       },
       {
-        downloadId: "curriculumPlans",
+        downloadId: "curriculumPlan",
         size: 3200,
         tier: "higher",
         childSubject: "physics",
