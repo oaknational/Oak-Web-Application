@@ -59,7 +59,6 @@ const defaultFilters = createFilter({ years: ["10", "11"] });
 
 const mockFns = {
   yearsForKeystage: [],
-  getFilter: jest.fn(),
   setYearFilter: jest.fn(),
   setThreadFilter: jest.fn(),
   setChildSubjectFilter: jest.fn(),

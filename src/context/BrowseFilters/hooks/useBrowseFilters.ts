@@ -13,7 +13,6 @@ export const useBrowseFilters = () => {
     (store) => store.yearsForKeystage,
   );
   const setFilters = useBrowseFiltersStore((store) => store.setFilters);
-  const getFilter = useBrowseFiltersStore((store) => store.getFilter);
   const programmeRefined = useTeacherBrowseAnalytics(
     (store) => store.track.programmeRefined,
   );
@@ -108,7 +107,6 @@ export const useBrowseFilters = () => {
     filters,
     yearsForKeystage,
     onChangeFilters,
-    getFilter,
     setYearFilter,
     setThreadFilter,
     setChildSubjectFilter,

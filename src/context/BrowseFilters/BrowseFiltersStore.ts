@@ -9,7 +9,7 @@ import {
   BROWSE_FILTERS_STORE_VERSION,
   createBrowseFiltersUrlStorage,
 } from "./browseFiltersUrlStorage";
-import { BrowseFilters, BrowseFiltersKey } from "./types";
+import { BrowseFilters } from "./types";
 import { applySearchParamsToFilter } from "./utils/applySearchParamsToFilter";
 import { scopeYearsToKeystageFilter } from "./utils/scopeYearsToKeystageFilter";
 
@@ -21,7 +21,6 @@ export type BrowseFiltersStore = {
   defaultFilter: BrowseFilters;
   yearsForKeystage: string[];
   setFilters: (newFilters: BrowseFilters) => void;
-  getFilter: <T extends BrowseFiltersKey>(key: T) => BrowseFilters[T];
   /**
    * Applies the URL to the store
    */
@@ -49,7 +48,7 @@ export const createBrowseFiltersStore = ({
 
   const store = createStore<BrowseFiltersStore>()(
     persist<BrowseFiltersStore, [], [], BrowseFiltersPersistedState>(
-      (set, get) => ({
+      (set) => ({
         filters: initialFilter ?? defaultFilter,
         defaultFilter,
         yearsForKeystage: scopeYearsToKeystageFilter(
@@ -60,9 +59,6 @@ export const createBrowseFiltersStore = ({
             filters: newFilters,
             yearsForKeystage: scopeYearsToKeystageFilter(newFilters),
           }),
-        getFilter: (key) => {
-          return get().filters[key];
-        },
         syncFromSearchParams: (params) =>
           set((state) => {
             const nextFilters = applySearchParamsToFilter(
