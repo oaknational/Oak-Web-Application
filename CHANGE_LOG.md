@@ -1,3 +1,19 @@
+# [1.1166.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1165.2...v1.1166.0) (2026-08-26)
+
+
+### Bug Fixes
+
+* add missing prop to implementation callout tests ([900247e](https://github.com/oaknational/Oak-Web-Application/commit/900247e490c87d74d5e05aeafaf289670cf8cbd5))
+* teacher browse track function typing ([4d6e9cf](https://github.com/oaknational/Oak-Web-Application/commit/4d6e9cf6e5e3a7df29a4d129d5214b95d88b4a3f))
+* update file ids in tests ([a1d9c25](https://github.com/oaknational/Oak-Web-Application/commit/a1d9c25165c69c864fa9e187dc873fcebf1554ef))
+
+
+### Features
+
+* pass list of downloaded resources to avo ([15dd2fa](https://github.com/oaknational/Oak-Web-Application/commit/15dd2fac13d963a6273f0947c3ca1224a98a2bf6))
+* track clicking implementation toolkit banner ([f8192c9](https://github.com/oaknational/Oak-Web-Application/commit/f8192c9585577b5466282eedbd186412097ecb28))
+* use component type to track curriculum resources accessed ([4bd7207](https://github.com/oaknational/Oak-Web-Application/commit/4bd7207541038c3b37b4cc2be1a6d281e2d1675f))
+
 ## [1.1165.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.1165.1...v1.1165.2) (2026-08-26)
 
 
