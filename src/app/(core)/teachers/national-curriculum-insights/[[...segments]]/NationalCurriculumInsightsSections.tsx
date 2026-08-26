@@ -499,7 +499,9 @@ const PromotionalHeading = styled(OakFlex)<{
   width: ${({ $variant }) =>
     $variant === "keyStage" ? "max-content" : "100%"};
   min-height: 64px;
+  justify-content: center;
   background: ${({ $accent }) => parseColor($accent)};
+  text-align: center;
   transform: rotate(-1.5deg);
 
   h2 {
@@ -602,6 +604,15 @@ const HubSubjectList = styled.ul`
   padding: 0;
 `;
 
+const HubPhaseNavigation = styled.nav`
+  width: 100%;
+
+  @media (${getMediaQuery("desktop")}) {
+    max-width: 1189px;
+    margin-inline: auto;
+  }
+`;
+
 const normaliseSubjectIcon = (subject: Subject) => {
   const preferred = `subject-${subject.slug}`;
   if (isValidIconName(preferred)) {
@@ -676,7 +687,7 @@ export const NationalCurriculumInsightsSubjectNavigation = ({
       <SectionMaxWidth $mh="auto" data-insights-module="subject-catalogue">
         <OakFlex $flexDirection="column" $gap="spacing-40">
           {section.phases.map((phase) => (
-            <nav
+            <HubPhaseNavigation
               key={phase}
               aria-labelledby={`national-curriculum-insights-${phase}-subjects`}
             >
@@ -719,7 +730,7 @@ export const NationalCurriculumInsightsSubjectNavigation = ({
                     ))}
                 </HubSubjectList>
               </OakFlex>
-            </nav>
+            </HubPhaseNavigation>
           ))}
         </OakFlex>
       </SectionMaxWidth>

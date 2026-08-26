@@ -138,7 +138,7 @@ export const NationalCurriculumInsightsSelect = ({
         />
       </Trigger>
       {state.isOpen ? (
-        <Popover isOpen onClose={state.close}>
+        <Popover isOpen onClose={state.close} focusOn={false} isDismissable>
           <Menu>
             <ListBox {...menuProps} state={state} aria-labelledby={labelId} />
           </Menu>
