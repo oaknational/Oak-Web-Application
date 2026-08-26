@@ -233,7 +233,7 @@ export const ProgrammeDownloads = ({
         schoolName: data.schoolName,
         email: data.email,
         terms: data.terms,
-        resources: ["docx"],
+        resources: data.resources,
       });
       curriculumResourcesDownloaded(data);
 

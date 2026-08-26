@@ -385,7 +385,7 @@ describe("Programme Downloads", () => {
           schoolName: undefined,
           email: "test@example.com",
           terms: true,
-          resources: ["docx"],
+          resources: ["curriculumPlans"],
         }),
       );
 
