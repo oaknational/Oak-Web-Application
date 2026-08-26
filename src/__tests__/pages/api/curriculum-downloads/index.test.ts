@@ -266,7 +266,7 @@ describe("/api/curriculum-downloads", () => {
         subjectSlug: "english",
         phaseSlug: "secondary",
         state: "published",
-        ks4OptionSlug: "wjec",
+        ks4OptionSlug: "aqa",
       },
     });
     await handler(req, res);
@@ -287,7 +287,7 @@ describe("/api/curriculum-downloads", () => {
         subjectSlug: "english",
         phaseSlug: "secondary",
         state: "published",
-        ks4OptionSlug: "wjec",
+        ks4OptionSlug: "aqa",
       },
     });
     await handler(req, res);
