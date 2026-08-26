@@ -4026,8 +4026,9 @@ exports[`pages/about/meet-the-team/[slug].tsx renders 1`] = `
                         class="c109"
                       >
                         <a
-                          class="c73 "
+                          class="c73"
                           href="/about-us/oaks-impact"
+                          variant="secondary"
                         >
                           <span
                             class="c25"
@@ -4040,7 +4041,7 @@ exports[`pages/about/meet-the-team/[slug].tsx renders 1`] = `
                         class="c109"
                       >
                         <a
-                          class="c73 "
+                          class="c73"
                           href="/about-us/get-involved"
                           variant="secondary"
                         >

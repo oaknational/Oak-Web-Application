@@ -1230,8 +1230,9 @@ exports[`pages/about-us/oaks-impact/case-studies/[slug].tsx renders title 1`] = 
                         class="sc-fPXMVe jFJaNg"
                       >
                         <a
-                          class="sc-fHjqPf cTauop sc-iHmpnF"
+                          class="sc-fHjqPf cTauop"
                           href="/about-us/oaks-impact"
+                          variant="secondary"
                         >
                           <span
                             class="sc-eqUAAy iGfTGj"
@@ -1244,7 +1245,7 @@ exports[`pages/about-us/oaks-impact/case-studies/[slug].tsx renders title 1`] = 
                         class="sc-fPXMVe jFJaNg"
                       >
                         <a
-                          class="sc-fHjqPf cTauop sc-iHmpnF"
+                          class="sc-fHjqPf cTauop"
                           href="/about-us/get-involved"
                           variant="secondary"
                         >
@@ -1720,7 +1721,7 @@ exports[`pages/about-us/oaks-impact/case-studies/[slug].tsx renders title 1`] = 
               </div>
             </div>
             <span
-              class="sc-aXZVg kvjdhA sc-301d1c44-0 bUETwi"
+              class="sc-aXZVg kvjdhA sc-47b54219-0 hJhbMg"
               data-percy-hide="contents"
             >
               <img

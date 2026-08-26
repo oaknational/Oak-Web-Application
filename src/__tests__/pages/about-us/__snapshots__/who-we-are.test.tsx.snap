@@ -6255,8 +6255,9 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                         class="c185"
                       >
                         <a
-                          class="c186 "
+                          class="c186"
                           href="/about-us/oaks-impact"
+                          variant="secondary"
                         >
                           <span
                             class="c25"
@@ -6269,7 +6270,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                         class="c185"
                       >
                         <a
-                          class="c186 "
+                          class="c186"
                           href="/about-us/get-involved"
                           variant="secondary"
                         >

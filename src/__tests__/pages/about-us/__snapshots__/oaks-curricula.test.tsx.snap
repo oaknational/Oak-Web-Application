@@ -7109,8 +7109,9 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
                         class="c219"
                       >
                         <a
-                          class="c220 "
+                          class="c220"
                           href="/about-us/oaks-impact"
+                          variant="secondary"
                         >
                           <span
                             class="c25"
@@ -7123,7 +7124,7 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
                         class="c219"
                       >
                         <a
-                          class="c220 "
+                          class="c220"
                           href="/about-us/get-involved"
                           variant="secondary"
                         >

@@ -6449,8 +6449,9 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                         class="c177"
                       >
                         <a
-                          class="c178 "
+                          class="c178"
                           href="/about-us/oaks-impact"
+                          variant="secondary"
                         >
                           <span
                             class="c25"
@@ -6463,7 +6464,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                         class="c177"
                       >
                         <a
-                          class="c178 "
+                          class="c178"
                           href="/about-us/get-involved"
                           variant="secondary"
                         >
