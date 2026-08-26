@@ -13,7 +13,6 @@ import LayoutPreviewControls from "@/components/AppComponents/LayoutPreviewContr
 import LayoutClientErrorFooter from "@/components/AppComponents/LayoutClientErrorFooter";
 import { CTA } from "@/common-lib/cms-types";
 import { Breadcrumb } from "@/components/SharedComponents/Breadcrumbs";
-import { TeacherBrowseAnalyticsStoreProvider } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
 
 export type HeaderProps = {
   children?: React.ReactNode;
@@ -61,12 +60,7 @@ const AppLayout: FC<AppLayoutProps> = (props) => {
         {appVariant === "client-error" ? (
           <TopNavMinimal />
         ) : (
-          <TeacherBrowseAnalyticsStoreProvider
-            programmeState={null}
-            accessLevel="homepage"
-          >
-            <TopNav {...topNavProps} />
-          </TeacherBrowseAnalyticsStoreProvider>
+          <TopNav {...topNavProps} />
         )}
         <OakFlex
           $flexDirection="column"

@@ -26,6 +26,7 @@ import { NewGutterMaxWidth } from "@/components/GenericPagesComponents/NewGutter
 import { PortableTextWithDefaults } from "@/components/SharedComponents/PortableText";
 import { convertBytesToMegabytes } from "@/components/TeacherComponents/helpers/lessonHelpers/lesson.helpers";
 import MeetTheTeamNav from "@/components/GenericPagesComponents/MeetTheTeamNav";
+import { TeacherBrowseAnalyticsStoreProvider } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
 
 const SECTION_TITLES = {
   leadership: "Our leadership",
@@ -77,126 +78,133 @@ const AboutUsMeetTheTeam: NextPage<AboutUsMeetTheTeamPageProps> = ({
   }, []);
 
   return (
-    <Layout
-      seoProps={getSeoProps(seo ?? { title: "Meet the Team" })}
-      $background={"bg-primary"}
-      topNavProps={topNav}
+    <TeacherBrowseAnalyticsStoreProvider
+      programmeState={null}
+      accessLevel="homepage"
     >
-      <AboutUsLayout>
-        <AboutSharedHeader
-          title={"Meet the team"}
-          content={header.introText}
-          titleHighlight="bg-decorative5-main"
-        >
-          <AboutSharedHeaderImage
-            imageAlt={header.image?.altText ?? ""}
-            imageUrl={getProxiedSanityAssetUrl(header.image?.asset?.url) ?? ""}
-          />
-        </AboutSharedHeader>
-        <NewGutterMaxWidth>
-          <OakFlex
-            $gap={["spacing-0", "spacing-16", "spacing-16"]}
-            $pb={"spacing-80"}
+      <Layout
+        seoProps={getSeoProps(seo ?? { title: "Meet the Team" })}
+        $background={"bg-primary"}
+        topNavProps={topNav}
+      >
+        <AboutUsLayout>
+          <AboutSharedHeader
+            title={"Meet the team"}
+            content={header.introText}
+            titleHighlight="bg-decorative5-main"
           >
-            <OakBox $pb={"spacing-80"}>
-              <MeetTheTeamNav sectionRefs={sectionRefs} />
-            </OakBox>
+            <AboutSharedHeaderImage
+              imageAlt={header.image?.altText ?? ""}
+              imageUrl={
+                getProxiedSanityAssetUrl(header.image?.asset?.url) ?? ""
+              }
+            />
+          </AboutSharedHeader>
+          <NewGutterMaxWidth>
             <OakFlex
-              $flexGrow={1}
-              $flexDirection={"column"}
-              $gap={["spacing-32", "spacing-56", "spacing-56"]}
+              $gap={["spacing-0", "spacing-16", "spacing-16"]}
+              $pb={"spacing-80"}
             >
-              <MeetTheTeamContainer
-                ref={leadershipRef}
-                title={SECTION_TITLES.leadership}
-                text={ourLeadership.textRaw}
-                anchor="our-leadership"
+              <OakBox $pb={"spacing-80"}>
+                <MeetTheTeamNav sectionRefs={sectionRefs} />
+              </OakBox>
+              <OakFlex
+                $flexGrow={1}
+                $flexDirection={"column"}
+                $gap={["spacing-32", "spacing-56", "spacing-56"]}
               >
-                {leadershipTeamModified.map((member) => {
-                  const slug = member.slug?.current ?? member.id;
-                  return (
-                    <OakCard
-                      key={member.id}
-                      as="li"
-                      heading={member.name}
-                      href={`/about-us/meet-the-team/${slug}?section=leadership`}
-                      cardWidth={"100%"}
-                      imageSrc={member.imageUrl}
-                      subCopy={member.role ?? ""}
-                      linkText="See bio"
-                      linkIconName="chevron-right"
-                    />
-                  );
-                })}
-              </MeetTheTeamContainer>
-              <MeetTheTeamContainer
-                ref={boardRef}
-                title={SECTION_TITLES.board}
-                text={ourBoard.textRaw}
-                anchor="our-board"
-              >
-                {boardMembersModified.map((member) => {
-                  const slug = member.slug?.current ?? member.id;
-                  return (
-                    <OakCard
-                      as="li"
-                      key={member.id}
-                      heading={member.name}
-                      href={`/about-us/meet-the-team/${slug}?section=board`}
-                      cardWidth={"100%"}
-                      imageSrc={member.imageUrl}
-                      subCopy={member.role ?? ""}
-                      linkText="See bio"
-                      linkIconName="chevron-right"
-                    />
-                  );
-                })}
-              </MeetTheTeamContainer>
-              {documents2 && documents2.files.length > 0 && (
                 <MeetTheTeamContainer
-                  ref={documentsRef}
-                  title={SECTION_TITLES.documents}
-                  text={null}
-                  anchor="documents"
+                  ref={leadershipRef}
+                  title={SECTION_TITLES.leadership}
+                  text={ourLeadership.textRaw}
+                  anchor="our-leadership"
                 >
-                  {documents2.files.map((doc) => {
-                    const fileSize = convertBytesToMegabytes(
-                      doc.file.asset.size,
-                    );
+                  {leadershipTeamModified.map((member) => {
+                    const slug = member.slug?.current ?? member.id;
                     return (
                       <OakCard
+                        key={member.id}
                         as="li"
-                        key={doc.title}
-                        heading={doc.title}
-                        href={`${doc.file.asset.url}?dl`}
+                        heading={member.name}
+                        href={`/about-us/meet-the-team/${slug}?section=leadership`}
                         cardWidth={"100%"}
-                        subCopy={`${doc.file.asset.extension.toUpperCase()}, ${fileSize}`}
-                        linkText="Download"
-                        linkIconName="download"
+                        imageSrc={member.imageUrl}
+                        subCopy={member.role ?? ""}
+                        linkText="See bio"
+                        linkIconName="chevron-right"
                       />
                     );
                   })}
                 </MeetTheTeamContainer>
-              )}
-              <OakFlex $flexDirection={"column"} $gap={"spacing-16"}>
-                <OakHeading
-                  tag="h2"
-                  $font={["heading-5", "heading-3", "heading-3"]}
+                <MeetTheTeamContainer
+                  ref={boardRef}
+                  title={SECTION_TITLES.board}
+                  text={ourBoard.textRaw}
+                  anchor="our-board"
                 >
-                  {SECTION_TITLES.governance}
-                </OakHeading>
-                <OakTypography $font={["body-2", "body-1", "body-1"]}>
-                  <PortableTextWithDefaults
-                    value={governance2.textRaw}
-                    withoutDefaultComponents
-                  />
-                </OakTypography>
+                  {boardMembersModified.map((member) => {
+                    const slug = member.slug?.current ?? member.id;
+                    return (
+                      <OakCard
+                        as="li"
+                        key={member.id}
+                        heading={member.name}
+                        href={`/about-us/meet-the-team/${slug}?section=board`}
+                        cardWidth={"100%"}
+                        imageSrc={member.imageUrl}
+                        subCopy={member.role ?? ""}
+                        linkText="See bio"
+                        linkIconName="chevron-right"
+                      />
+                    );
+                  })}
+                </MeetTheTeamContainer>
+                {documents2 && documents2.files.length > 0 && (
+                  <MeetTheTeamContainer
+                    ref={documentsRef}
+                    title={SECTION_TITLES.documents}
+                    text={null}
+                    anchor="documents"
+                  >
+                    {documents2.files.map((doc) => {
+                      const fileSize = convertBytesToMegabytes(
+                        doc.file.asset.size,
+                      );
+                      return (
+                        <OakCard
+                          as="li"
+                          key={doc.title}
+                          heading={doc.title}
+                          href={`${doc.file.asset.url}?dl`}
+                          cardWidth={"100%"}
+                          subCopy={`${doc.file.asset.extension.toUpperCase()}, ${fileSize}`}
+                          linkText="Download"
+                          linkIconName="download"
+                        />
+                      );
+                    })}
+                  </MeetTheTeamContainer>
+                )}
+                <OakFlex $flexDirection={"column"} $gap={"spacing-16"}>
+                  <OakHeading
+                    tag="h2"
+                    $font={["heading-5", "heading-3", "heading-3"]}
+                  >
+                    {SECTION_TITLES.governance}
+                  </OakHeading>
+                  <OakTypography $font={["body-2", "body-1", "body-1"]}>
+                    <PortableTextWithDefaults
+                      value={governance2.textRaw}
+                      withoutDefaultComponents
+                    />
+                  </OakTypography>
+                </OakFlex>
               </OakFlex>
             </OakFlex>
-          </OakFlex>
-        </NewGutterMaxWidth>
-      </AboutUsLayout>
-    </Layout>
+          </NewGutterMaxWidth>
+        </AboutUsLayout>
+      </Layout>
+    </TeacherBrowseAnalyticsStoreProvider>
   );
 };
 

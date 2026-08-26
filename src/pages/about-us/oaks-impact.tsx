@@ -19,6 +19,7 @@ import { OaksImpactSchoolQuotesSection } from "@/components/GenericPagesComponen
 import TrackScrolledTo from "@/components/SharedComponents/TrackScrolledTo";
 import { OaksImpactHeader } from "@/components/GenericPagesComponents/OaksImpactHeader";
 import useTrackExitIntended from "@/hooks/useTrackExitIntended";
+import { TeacherBrowseAnalyticsStoreProvider } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
 
 export type OaksImpactPageProps = {
   topNav: TopNavProps;
@@ -28,34 +29,39 @@ export type OaksImpactPageProps = {
 const OaksImpact: NextPage<OaksImpactPageProps> = ({ topNav, pageData }) => {
   useTrackExitIntended();
   return (
-    <Layout
-      seoProps={getSeoProps({ title: "Oak's impact" })}
-      $background={"bg-primary"}
-      topNavProps={topNav}
+    <TeacherBrowseAnalyticsStoreProvider
+      programmeState={null}
+      accessLevel="homepage"
     >
-      <AboutUsLayout>
-        <OaksImpactHeader
-          title="Oak's impact"
-          body={pageData.header.introText}
-          video={pageData.header.video}
-          videoDescription={pageData.header.videoDescription}
-        />
-        <OaksImpactStats {...pageData.statsSection} />
-        <OaksImpactCaseStudies
-          title="Case studies"
-          caseStudies={pageData.caseStudiesSection.caseStudies}
-        />
-        <OaksImpactSchoolQuotesSection {...pageData.schoolQuotes} />
-        <TrackScrolledTo eventKey="support_you" />
-        <SupportYou
-          headingTag="h2"
-          link={{
-            text: "Get in touch with an expert",
-            href: "https://share.hsforms.com/2yBT-92_WT6CvX1b6L3Iw8Qbvumd",
-          }}
-        />
-      </AboutUsLayout>
-    </Layout>
+      <Layout
+        seoProps={getSeoProps({ title: "Oak's impact" })}
+        $background={"bg-primary"}
+        topNavProps={topNav}
+      >
+        <AboutUsLayout>
+          <OaksImpactHeader
+            title="Oak's impact"
+            body={pageData.header.introText}
+            video={pageData.header.video}
+            videoDescription={pageData.header.videoDescription}
+          />
+          <OaksImpactStats {...pageData.statsSection} />
+          <OaksImpactCaseStudies
+            title="Case studies"
+            caseStudies={pageData.caseStudiesSection.caseStudies}
+          />
+          <OaksImpactSchoolQuotesSection {...pageData.schoolQuotes} />
+          <TrackScrolledTo eventKey="support_you" />
+          <SupportYou
+            headingTag="h2"
+            link={{
+              text: "Get in touch with an expert",
+              href: "https://share.hsforms.com/2yBT-92_WT6CvX1b6L3Iw8Qbvumd",
+            }}
+          />
+        </AboutUsLayout>
+      </Layout>
+    </TeacherBrowseAnalyticsStoreProvider>
   );
 };
 
