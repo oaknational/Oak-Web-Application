@@ -468,7 +468,11 @@ export const ProgrammeDownloads = ({
                           )}
                         </OakGrid>
                         <OakFlex>
-                          <OakLink isTrailingIcon={true} iconName="send">
+                          <OakLink
+                            isTrailingIcon={true}
+                            iconName="send"
+                            href="https://share.hsforms.com/1fzfnNn2GTYaLK5bf87fiagbvumd"
+                          >
                             Request an accessible version
                           </OakLink>
                         </OakFlex>
