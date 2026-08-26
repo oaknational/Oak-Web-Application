@@ -385,7 +385,9 @@ export const ProgrammeDownloads = ({
                                       checked={fieldValue.includes(download.id)}
                                       fileSize={
                                         fileSize
-                                          ? prettyBytes(fileSize.size)
+                                          ? prettyBytes(
+                                              fileSize.size,
+                                            ).toUpperCase()
                                           : "—"
                                       }
                                       description={download.fileExt}
@@ -445,7 +447,9 @@ export const ProgrammeDownloads = ({
                                         )}
                                         fileSize={
                                           fileSize
-                                            ? prettyBytes(fileSize)
+                                            ? prettyBytes(
+                                                fileSize,
+                                              ).toUpperCase()
                                             : undefined
                                         }
                                         description={download.fileExt}
@@ -499,8 +503,8 @@ export const ProgrammeDownloads = ({
                 }
                 showRiskAssessmentBanner={false}
                 curriculumDownloads={[
-                  ...implementationGuideDownloadsWithLabels,
                   ...curriculumDownloadsWithLabels,
+                  ...implementationGuideDownloadsWithLabels,
                 ]}
               />
             )}

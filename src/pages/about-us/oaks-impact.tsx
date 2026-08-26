@@ -1,6 +1,6 @@
 import {
-  GetServerSideProps,
-  GetServerSidePropsResult,
+  GetStaticProps,
+  GetStaticPropsResult,
   NextPage,
 } from "next/dist/types";
 
@@ -18,7 +18,6 @@ import { OaksImpactPage } from "@/common-lib/cms-types";
 import { OaksImpactSchoolQuotesSection } from "@/components/GenericPagesComponents/OaksImpactSchoolQuotesSection";
 import TrackScrolledTo from "@/components/SharedComponents/TrackScrolledTo";
 import { OaksImpactHeader } from "@/components/GenericPagesComponents/OaksImpactHeader";
-import { isFeatureFlagEnabledServer } from "@/utils/featureFlagChecks/server";
 import useTrackExitIntended from "@/hooks/useTrackExitIntended";
 
 export type OaksImpactPageProps = {
@@ -60,39 +59,31 @@ const OaksImpact: NextPage<OaksImpactPageProps> = ({ topNav, pageData }) => {
   );
 };
 
-export const getServerSideProps: GetServerSideProps = async (context) => {
-  const isImpactPageEnabled = await isFeatureFlagEnabledServer(
-    context.req.cookies,
-    "oaks-impact",
-  );
-  if (!isImpactPageEnabled) {
-    return {
-      notFound: true,
-    };
-  }
-
+export const getStaticProps: GetStaticProps<OaksImpactPageProps> = async (
+  context,
+) => {
   return getPageProps({
-    page: "about-oaks-impact::getServerSideProps",
+    page: "about-oaks-impact::getStaticProps",
     context,
-    withIsr: false,
     getProps: async () => {
-      const topNav = await curriculumApi2023.topNav();
       const isPreviewMode = context.preview === true;
 
-      const pageData = await CMSClient.oaksImpactPage({
+      const oaksImpactPage = await CMSClient.oaksImpactPage({
         previewMode: isPreviewMode,
       });
 
-      if (!pageData) {
+      const topNav = await curriculumApi2023.topNav();
+
+      if (!oaksImpactPage) {
         return {
           notFound: true,
         };
       }
 
-      const results: GetServerSidePropsResult<OaksImpactPageProps> = {
+      const results: GetStaticPropsResult<OaksImpactPageProps> = {
         props: {
+          pageData: oaksImpactPage,
           topNav,
-          pageData,
         },
       };
       return results;

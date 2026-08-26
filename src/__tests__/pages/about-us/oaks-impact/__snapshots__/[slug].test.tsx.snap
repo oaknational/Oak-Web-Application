@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`pages/about-us/oaks-impact/case-studies/[slug].tsx renders title when feature flag is enabled 1`] = `
+exports[`pages/about-us/oaks-impact/case-studies/[slug].tsx renders title 1`] = `
 <div>
   <div
     data-overlay-container="true"
@@ -808,7 +808,7 @@ exports[`pages/about-us/oaks-impact/case-studies/[slug].tsx renders title when f
                           class="sc-aXZVg dLPTTd"
                         >
                           <div
-                            class="sc-aXZVg sc-gEvEer laLcvy jMLdOa"
+                            class="sc-aXZVg sc-gEvEer kqqNVp jMLdOa"
                             data-percy-hide="contents"
                             style="box-sizing: content-box;"
                           />
@@ -1215,6 +1215,20 @@ exports[`pages/about-us/oaks-impact/case-studies/[slug].tsx renders title when f
                             class="sc-eqUAAy iGfTGj"
                           >
                             Oak's curricula
+                          </span>
+                        </a>
+                      </li>
+                      <li
+                        class="sc-fPXMVe jFJaNg"
+                      >
+                        <a
+                          class="sc-fHjqPf cTauop sc-iHmpnF"
+                          href="/about-us/oaks-impact"
+                        >
+                          <span
+                            class="sc-eqUAAy iGfTGj"
+                          >
+                            Oak's impact
                           </span>
                         </a>
                       </li>
@@ -1682,7 +1696,7 @@ exports[`pages/about-us/oaks-impact/case-studies/[slug].tsx renders title when f
               </div>
             </div>
             <span
-              class="sc-aXZVg kvjdhA sc-98540f6b-0 qLtgo"
+              class="sc-aXZVg kvjdhA sc-301d1c44-0 bUETwi"
               data-percy-hide="contents"
             >
               <img
