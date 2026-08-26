@@ -314,7 +314,6 @@ const InnerProgrammePage = async (props: AppPageProps<ProgrammePageParams>) => {
     ks4OptionFilterDimensions,
     curriculumDownloadsTabData,
     mvRefreshTime,
-    initialFilter: resolvedFilter,
     fileSizes,
     featureFlags: {
       "implementation-guides": isImplementationGuidesEnabled,
