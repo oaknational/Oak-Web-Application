@@ -15,10 +15,7 @@ import {
   PupilsSubNavData,
 } from "@/node-lib/curriculum-api-2023/queries/topNav/topNav.schema";
 import { useOakNotificationsContext } from "@/context/OakNotifications/useOakNotificationsContext";
-import {
-  TeacherBrowseAnalyticsStoreProvider,
-  useTeacherBrowseAnalytics,
-} from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
+import { useTeacherBrowseAnalytics } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
 
 export type TopNavProps = {
   teachers: TeachersSubNavData | null;
@@ -161,12 +158,7 @@ const TopNav = (props: TopNavProps) => {
                   setSelectedMenu(selectedMenu === menu ? undefined : menu);
                 }}
               />
-              <TeacherBrowseAnalyticsStoreProvider
-                programmeState={null}
-                accessLevel={"homepage"}
-              >
-                <TeachersTopNavHamburger {...teachers} />
-              </TeacherBrowseAnalyticsStoreProvider>
+              <TeachersTopNavHamburger {...teachers} />
             </>
           )}
           {activeArea === "PUPILS" && pupils && focusManager && (
@@ -203,19 +195,14 @@ const TopNav = (props: TopNavProps) => {
               $bb="border-solid-s"
               $borderColor="border-neutral-lighter"
             >
-              <TeacherBrowseAnalyticsStoreProvider
-                programmeState={null}
-                accessLevel={"homepage"}
-              >
-                <TopNavDropdown
-                  focusManager={focusManager}
-                  activeArea={activeArea}
-                  selectedMenu={selectedMenu}
-                  teachers={teachers}
-                  pupils={pupils}
-                  onClose={handleCloseDropdown}
-                />
-              </TeacherBrowseAnalyticsStoreProvider>
+              <TopNavDropdown
+                focusManager={focusManager}
+                activeArea={activeArea}
+                selectedMenu={selectedMenu}
+                teachers={teachers}
+                pupils={pupils}
+                onClose={handleCloseDropdown}
+              />
             </OakFlex>
           </MaybeVisuallyHidden>
         )
