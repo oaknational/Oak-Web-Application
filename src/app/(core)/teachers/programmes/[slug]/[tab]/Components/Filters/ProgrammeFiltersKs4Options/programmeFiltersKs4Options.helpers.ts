@@ -2,7 +2,7 @@ import type { Ks4OptionFilterDimension } from "../../../buildKs4OptionFilterDime
 
 import { getSubjectPhaseSlug } from "@/components/TeacherComponents/helpers/getSubjectPhaseSlug";
 import { BrowseFilters } from "@/context/BrowseFilters/types";
-import { scopeYearsToKeystageFilter } from "@/context/BrowseFilters/utils/scopeYearsToKeystage";
+import { scopeYearsToKeystageFilter } from "@/context/BrowseFilters/utils";
 import type { Ks4Option } from "@/node-lib/curriculum-api-2023/queries/curriculumPhaseOptions/curriculumPhaseOptions.schema";
 import {
   isExamboardSlug,

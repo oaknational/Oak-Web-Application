@@ -14,7 +14,7 @@ import {
   type CurriculumSelectionSlugs,
 } from "@/utils/curriculum/slugs";
 import { filterValidCurriculumPhaseOptions } from "@/pages-helpers/curriculum/docx/tab-helpers";
-import { scopeYearsToKeystageFilter } from "@/context/BrowseFilters/utils/scopeYearsToKeystage";
+import { scopeYearsToKeystageFilter } from "@/context/BrowseFilters/utils";
 import { BrowseFilters } from "@/context/BrowseFilters/types";
 
 const PAGE_KEY = "programme-page-data";
