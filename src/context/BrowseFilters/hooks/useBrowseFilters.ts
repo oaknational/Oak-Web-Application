@@ -104,10 +104,15 @@ export const useBrowseFilters = () => {
   );
 
   const setKeystageFilter = useCallback(
-    (ks: string) => {
-      setSingleFilter("keystages", ks, FilterType.KEY_STAGE_FILTER);
+    (ks: string, allYears: string[]) => {
+      const filterValue = ks === "all" ? [] : [ks];
+      onChangeFilters({
+        newFilters: { ...filters, keystages: filterValue, years: allYears },
+        filterType: FilterType.KEY_STAGE_FILTER,
+        filterValue: ks,
+      });
     },
-    [setSingleFilter],
+    [onChangeFilters, filters],
   );
 
   return {

@@ -8,6 +8,7 @@ import { useId } from "react";
 
 import { CurriculumUnitsFormattedData } from "@/pages-helpers/curriculum/docx/tab-helpers";
 import { useBrowseFilters } from "@/context/BrowseFilters";
+import { getKeyStageTitle } from "@/utils/curriculum/formatting";
 
 export type BrowseFiltersKeystagesProps = {
   data: CurriculumUnitsFormattedData;
@@ -24,9 +25,11 @@ export function BrowseFiltersKeystages({
       {data.keystages.length > 1 && (
         <OakBox>
           <OakRadioGroup
-            name={"tiers" + id}
-            onChange={(e) => setKeystageFilter(e.target.value)}
-            value={filters.tiers[0]}
+            name={"keystages" + id}
+            onChange={(e) =>
+              setKeystageFilter(e.target.value, data.yearOptions)
+            }
+            value={filters.keystages[0] ?? "all"}
             $flexDirection="row"
             $flexWrap="wrap"
             $gap="spacing-8"
@@ -39,8 +42,13 @@ export function BrowseFiltersKeystages({
             >
               Key stages
             </OakP>
+            <OakRadioAsButton key="all" value="all" displayValue="All" />
             {data.keystages.map((ks) => (
-              <OakRadioAsButton key={ks} value={ks} displayValue={ks} />
+              <OakRadioAsButton
+                key={ks}
+                value={ks}
+                displayValue={getKeyStageTitle(ks)}
+              />
             ))}
           </OakRadioGroup>
         </OakBox>
