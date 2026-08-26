@@ -4,6 +4,7 @@ import {
 } from "./ProgrammeFiltersKs4Options";
 import { BrowseFiltersThreads } from "./BrowseFilters/BrowseFiltersThreads";
 import { ProgrammePageFiltersProps } from "./ProgrammePageFiltersDesktop";
+import { BrowseFiltersKeystages } from "./BrowseFilters/BrowseFiltersKeystages";
 
 import { CurriculumUnitsFormattedData } from "@/pages-helpers/curriculum/docx/tab-helpers";
 import {
@@ -27,6 +28,10 @@ export const useDisplayedFilters = (
     useKeyStagePresence(data);
 
   return [
+    {
+      key: "keystages",
+      shouldDisplayFilter: data.keystages.length > 1,
+    },
     {
       // only show year options when there is more than 1, because all content
       // will be in a year so a single year option is equivalent to 'all'
@@ -103,6 +108,8 @@ export function ProgrammeFilters({
               return <BrowseFiltersChildSubjects key={key} data={data} />;
             case "tiers":
               return <BrowseFiltersTiers key={key} data={data} />;
+            case "keystages":
+              return <BrowseFiltersKeystages key={key} data={data} />;
           }
         },
       )}

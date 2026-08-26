@@ -103,6 +103,13 @@ export const useBrowseFilters = () => {
     [setSingleFilter],
   );
 
+  const setKeystageFilter = useCallback(
+    (ks: string) => {
+      setSingleFilter("keystages", ks, FilterType.KEY_STAGE_FILTER);
+    },
+    [setSingleFilter],
+  );
+
   return {
     filters,
     yearsForKeystage,
@@ -112,5 +119,6 @@ export const useBrowseFilters = () => {
     setChildSubjectFilter,
     setSubjectCategoryFilter,
     setTierFilter,
+    setKeystageFilter,
   };
 };

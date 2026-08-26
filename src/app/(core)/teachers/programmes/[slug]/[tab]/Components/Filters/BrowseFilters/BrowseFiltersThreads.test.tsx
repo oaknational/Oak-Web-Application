@@ -64,6 +64,7 @@ const mockFns = {
   setChildSubjectFilter: jest.fn(),
   setSubjectCategoryFilter: jest.fn(),
   setTierFilter: jest.fn(),
+  setKeystageFilter: jest.fn(),
 };
 
 describe("BrowseFiltersThreads", () => {
