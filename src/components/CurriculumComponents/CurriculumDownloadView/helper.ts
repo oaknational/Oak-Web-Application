@@ -1,6 +1,8 @@
 import { OakIconName } from "@oaknational/oak-components";
 import { ZodType } from "zod";
 
+import { ResourceType, ResourceTypeValueType } from "@/browser-lib/avo/Avo";
+
 export type School = {
   urn: string;
   la: string;
@@ -40,7 +42,7 @@ export function runSchema<T extends Record<string, unknown>>(
 }
 
 export type DownloadTypes =
-  | "curriculumPlans"
+  | "curriculumPlan"
   | "nationalCurriculum"
   | "curriculumQuality"
   | "whatsIncluded"
@@ -62,14 +64,17 @@ export const DOWNLOAD_TYPE_LABELS: {
   icon: OakIconName;
   subTitle?: string;
   fileExt: string;
+  groupLabel?: string;
+  avoResourceType: ResourceTypeValueType;
 }[] = [
   {
-    id: "curriculumPlans",
+    id: "curriculumPlan",
     group: "curriculum",
     label: "Curriculum plan",
     subTitle: "Word (accessible)",
     icon: "curriculum-plan",
     fileExt: "DOCX",
+    avoResourceType: ResourceType.CURRICULUM_PLAN,
   },
   {
     id: "nationalCurriculum",
@@ -78,30 +83,41 @@ export const DOWNLOAD_TYPE_LABELS: {
     subTitle: "Excel (accessible)",
     icon: "spreadsheet",
     fileExt: "XLSX",
+    avoResourceType: ResourceType.CURRICULUM_DOCUMENT,
   },
   {
     id: "curriculumQuality",
     label: "Curriculum quality",
+    groupLabel: "implementation toolkit",
+    avoResourceType: ResourceType.CURRICULUM_QUALITY,
     ...implementationGuidePdfBase,
   },
   {
     id: "whatsIncluded",
     label: "What's included",
+    groupLabel: "implementation toolkit",
+    avoResourceType: ResourceType.WHATS_INCLUDED,
     ...implementationGuidePdfBase,
   },
   {
     id: "assessment",
     label: "Assessment",
+    groupLabel: "implementation toolkit",
+    avoResourceType: ResourceType.ASSESSMENT,
     ...implementationGuidePdfBase,
   },
   {
     id: "commonQuestions",
     label: "Common questions",
+    groupLabel: "implementation toolkit",
+    avoResourceType: ResourceType.COMMON_QUESTIONS,
     ...implementationGuidePdfBase,
   },
   {
     id: "equipmentList",
     label: "Equipment list",
+    groupLabel: "implementation toolkit",
+    avoResourceType: ResourceType.EQUIPMENT_LIST,
     ...implementationGuidePdfBase,
   },
 ] as const;

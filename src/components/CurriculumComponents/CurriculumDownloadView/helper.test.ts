@@ -62,8 +62,8 @@ describe("CurriculumDownloadView / helper", () => {
 
   describe("assertValidDownloadType", () => {
     test("valid", () => {
-      expect(assertValidDownloadType("curriculumPlans")).toEqual(
-        "curriculumPlans",
+      expect(assertValidDownloadType("curriculumPlan")).toEqual(
+        "curriculumPlan",
       );
     });
 
