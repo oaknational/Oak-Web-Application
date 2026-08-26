@@ -5227,6 +5227,59 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
                         class="c115 c116"
                       >
                         <a
+                          href="/about-us/oaks-impact"
+                          style="outline: none;"
+                        >
+                          <div
+                            class="c117 c118 c119"
+                            data-testid="who-we-are-explore-item"
+                          >
+                            <div
+                              class="c9 c46"
+                            >
+                              <span
+                                class="c120"
+                              >
+                                <img
+                                  alt=""
+                                  class="c21"
+                                  data-nimg="fill"
+                                  decoding="async"
+                                  loading="lazy"
+                                  src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1763393164/icons/data-illustration_ukwdxg.svg"
+                                  style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                                />
+                              </span>
+                            </div>
+                            <div
+                              class="c121 c122"
+                            >
+                              Oak's impact
+                            </div>
+                            <div
+                              class="c9 c46"
+                            >
+                              <span
+                                class="c123"
+                              >
+                                <img
+                                  alt=""
+                                  class="c21"
+                                  data-nimg="fill"
+                                  decoding="async"
+                                  loading="lazy"
+                                  src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1707149070/icons/fv0z57zerrioft52dd9n.svg"
+                                  style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                                />
+                              </span>
+                            </div>
+                          </div>
+                        </a>
+                      </li>
+                      <li
+                        class="c115 c116"
+                      >
+                        <a
                           href="/about-us/meet-the-team"
                           style="outline: none;"
                         >
@@ -6170,7 +6223,21 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
                         class="c175"
                       >
                         <a
-                          class="c176"
+                          class="c176 "
+                          href="/about-us/oaks-impact"
+                        >
+                          <span
+                            class="c25"
+                          >
+                            Oak's impact
+                          </span>
+                        </a>
+                      </li>
+                      <li
+                        class="c175"
+                      >
+                        <a
+                          class="c176 "
                           href="/about-us/get-involved"
                           variant="secondary"
                         >

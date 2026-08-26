@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`pages/about-us/oaks-impact/case-studies/[slug].tsx renders title when feature flag is enabled 1`] = `
+exports[`pages/about-us/oaks-impact/case-studies/[slug].tsx renders title 1`] = `
 <div>
   <div
     data-overlay-container="true"
@@ -1230,7 +1230,21 @@ exports[`pages/about-us/oaks-impact/case-studies/[slug].tsx renders title when f
                         class="sc-fPXMVe jFJaNg"
                       >
                         <a
-                          class="sc-fHjqPf cTauop"
+                          class="sc-fHjqPf cTauop sc-iHmpnF"
+                          href="/about-us/oaks-impact"
+                        >
+                          <span
+                            class="sc-eqUAAy iGfTGj"
+                          >
+                            Oak's impact
+                          </span>
+                        </a>
+                      </li>
+                      <li
+                        class="sc-fPXMVe jFJaNg"
+                      >
+                        <a
+                          class="sc-fHjqPf cTauop sc-iHmpnF"
                           href="/about-us/get-involved"
                           variant="secondary"
                         >
@@ -1706,7 +1720,7 @@ exports[`pages/about-us/oaks-impact/case-studies/[slug].tsx renders title when f
               </div>
             </div>
             <span
-              class="sc-aXZVg kvjdhA sc-f9d62eb6-0 fMbHos"
+              class="sc-aXZVg kvjdhA sc-301d1c44-0 bUETwi"
               data-percy-hide="contents"
             >
               <img

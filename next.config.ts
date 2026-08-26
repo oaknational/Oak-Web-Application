@@ -203,6 +203,7 @@ export default async (phase: NextConfig["phase"]): Promise<NextConfig> => {
       "@ooxml-tools/units",
       "@ooxml-tools/xml",
       "@oaknational/oak-components",
+      "pretty-bytes",
     ],
 
     webpack: function getWebpackConfig(

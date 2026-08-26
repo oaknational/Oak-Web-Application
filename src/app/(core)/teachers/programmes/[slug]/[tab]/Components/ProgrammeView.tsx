@@ -42,7 +42,10 @@ import {
   OnChangeCurriculumFilters,
 } from "@/utils/curriculum/types";
 import { ProgrammePageHeaderCMS } from "@/common-lib/cms-types/programmePage";
-import { CurriculumOverviewSanityData } from "@/common-lib/cms-types";
+import {
+  CurriculumOverviewSanityData,
+  ImplementationGuides,
+} from "@/common-lib/cms-types";
 import type { Ks4Option } from "@/node-lib/curriculum-api-2023/queries/curriculumPhaseOptions/curriculumPhaseOptions.schema";
 import { resolveOakHref } from "@/common-lib/urls";
 import { validateSearchParams } from "@/utils/validateProgrammePageSearchParams";
@@ -64,6 +67,8 @@ export type ProgrammePageProps = {
   ks4OptionFilterDimensions: Record<string, Ks4OptionFilterDimension>;
   initialFilter?: CurriculumFilters;
   featureFlags: Record<string, boolean>;
+  implementationGuides: ImplementationGuides | null;
+  fileSizes: ProgrammeDownloadsProps["fileSizes"];
 };
 
 export const ProgrammeView = ({
@@ -81,6 +86,8 @@ export const ProgrammeView = ({
   ks4OptionFilterDimensions,
   initialFilter,
   featureFlags,
+  implementationGuides,
+  fileSizes,
 }: ProgrammePageProps) => {
   const searchParams = useSearchParams();
 
@@ -223,6 +230,9 @@ export const ProgrammeView = ({
         setFilters={onChangeFilters}
         ks4Options={ks4Options}
         ks4OptionFilterDimensions={ks4OptionFilterDimensions}
+        implementationGuides={implementationGuides}
+        featureFlags={featureFlags}
+        fileSizes={fileSizes}
       />
     </>
   );
@@ -239,8 +249,15 @@ const TabContent = ({
   setFilters,
   ks4Options,
   ks4OptionFilterDimensions,
-}: { tabSlug: TabSlug } & UnitSequenceViewProps & {
+  implementationGuides,
+  featureFlags,
+  fileSizes,
+}: {
+  tabSlug: TabSlug;
+  featureFlags: Record<string, boolean>;
+} & UnitSequenceViewProps & {
     curriculumCMSInfo: CurriculumOverviewSanityData | null;
+    implementationGuides: ImplementationGuides | null;
   } & ProgrammeDownloadsProps) => {
   if (tabSlug === "units") {
     return (
@@ -265,6 +282,9 @@ const TabContent = ({
         curriculumSelectionSlugs={curriculumSelectionSlugs}
         curriculumDownloadsTabData={curriculumDownloadsTabData}
         curriculumUnitsFormattedData={curriculumUnitsFormattedData}
+        implementationGuides={implementationGuides}
+        featureFlags={featureFlags}
+        fileSizes={fileSizes}
       />
     );
   }

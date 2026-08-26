@@ -1,4 +1,3 @@
-import React from "react";
 import { Meta, StoryObj } from "@storybook/nextjs";
 
 import MyLibraryProgrammeCard from "./MyLibraryProgrammeCard";
@@ -13,6 +12,8 @@ import {
   PathwayValueType,
   TierNameValueType,
 } from "@/browser-lib/avo/Avo";
+import SaveCountDecorator from "@/storybook-decorators/SaveCountDecorator";
+import NotificationsDecorator from "@/storybook-decorators/NotificationsDecorator";
 
 const sampleUnits = [
   {
@@ -71,6 +72,7 @@ const sampleUnits = [
 const meta: Meta<typeof MyLibraryProgrammeCard> = {
   component: MyLibraryProgrammeCard,
   tags: ["autodocs"],
+  decorators: [SaveCountDecorator, NotificationsDecorator],
   args: {
     programmeTitle: "English Secondary KS4 (AQA)",
     programmeHref:
