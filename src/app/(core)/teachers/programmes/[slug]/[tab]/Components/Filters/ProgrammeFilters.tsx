@@ -12,22 +12,26 @@ import {
   BrowseFiltersChildSubjects,
   BrowseFiltersTiers,
 } from "@/components/CurriculumComponents/CurricVisualiserFilters";
-import { shouldDisplayFilter } from "@/utils/curriculum/filtering";
-import { CurriculumFilters } from "@/utils/curriculum/types";
 import type { Ks4Option } from "@/node-lib/curriculum-api-2023/queries/curriculumPhaseOptions/curriculumPhaseOptions.schema";
 import { CurriculumSelectionSlugs } from "@/utils/curriculum/slugs";
 import { useBrowseFilters } from "@/context/BrowseFilters";
+import { useKeyStagePresence } from "@/context/BrowseFilters/hooks/useKeyStagePresence";
 
-export const getDisplayedFilters = (
+export const useDisplayedFilters = (
   data: CurriculumUnitsFormattedData,
-  filters: CurriculumFilters,
   slugs: CurriculumSelectionSlugs,
   ks4Options: Ks4Option[],
 ) => {
+  const { filters } = useBrowseFilters();
+  const { childSubjectsAt, subjectCategoriesAt, tiersAt } =
+    useKeyStagePresence(data);
+
   return [
     {
+      // only show year options when there is more than 1, because all content
+      // will be in a year so a single year option is equivalent to 'all'
       key: "years",
-      shouldDisplayFilter: shouldDisplayFilter(data, filters, "years"),
+      shouldDisplayFilter: data.yearOptions.length > 1,
     },
     {
       key: "ks4Options",
@@ -39,23 +43,19 @@ export const getDisplayedFilters = (
     },
     {
       key: "subjectCategories",
-      shouldDisplayFilter: shouldDisplayFilter(
-        data,
-        filters,
-        "subjectCategories",
-      ),
+      shouldDisplayFilter: subjectCategoriesAt.length > 0,
     },
     {
       key: "childSubjects",
-      shouldDisplayFilter: shouldDisplayFilter(data, filters, "childSubjects"),
+      shouldDisplayFilter: childSubjectsAt.length > 0,
     },
     {
       key: "tiers",
-      shouldDisplayFilter: shouldDisplayFilter(data, filters, "tiers"),
+      shouldDisplayFilter: tiersAt.length > 0,
     },
     {
       key: "threads",
-      shouldDisplayFilter: shouldDisplayFilter(data, filters, "threads"),
+      shouldDisplayFilter: data.threadOptions.length > 0,
     },
   ] as const;
 };
@@ -68,10 +68,9 @@ export function ProgrammeFilters({
   ks4Options,
   ks4OptionFilterDimensions,
 }: Readonly<ProgrammeFiltersProps>) {
-  const { filters } = useBrowseFilters();
   return (
     <>
-      {getDisplayedFilters(data, filters, slugs, ks4Options).map(
+      {useDisplayedFilters(data, slugs, ks4Options).map(
         ({ key, shouldDisplayFilter }) => {
           if (!shouldDisplayFilter) {
             return null;

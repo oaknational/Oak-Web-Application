@@ -8,13 +8,10 @@ import { useMemo, useId } from "react";
 
 import { getValidSubjectCategoryIconById } from "@/utils/getValidSubjectCategoryIconById";
 import { getFilterData } from "@/utils/curriculum/filtering";
-import {
-  byKeyStageSlug,
-  presentAtKeyStageSlugs,
-} from "@/utils/curriculum/keystage";
 import { CurriculumUnitsFormattedData } from "@/pages-helpers/curriculum/docx/tab-helpers";
 import { CurriculumSelectionSlugs } from "@/utils/curriculum/slugs";
 import { useBrowseFilters } from "@/context/BrowseFilters";
+import { useKeyStagePresence } from "@/context/BrowseFilters/hooks/useKeyStagePresence";
 
 export type BrowseFiltersSubjectCategoriesProps = {
   data: CurriculumUnitsFormattedData;
@@ -31,17 +28,7 @@ export function BrowseFiltersSubjectCategories({
 
   const { subjectCategories } = getFilterData(data.yearData, yearsForKeystage);
 
-  const keyStageSlugData = byKeyStageSlug(data.yearData);
-  const childSubjectsAt = presentAtKeyStageSlugs(
-    keyStageSlugData,
-    "childSubjects",
-    yearsForKeystage,
-  );
-  const subjectCategoriesAt = presentAtKeyStageSlugs(
-    keyStageSlugData,
-    "subjectCategories",
-    yearsForKeystage,
-  ).filter((ks) => !childSubjectsAt.includes(ks));
+  const { subjectCategoriesAt } = useKeyStagePresence(data);
 
   const subjectCategoryIdAsString = useMemo(() => {
     return String(filters.subjectCategories[0]);

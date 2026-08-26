@@ -1,8 +1,8 @@
 "use client";
 import { useCallback } from "react";
 
-import { useBrowseFiltersStore } from "./BrowseFiltersProvider";
-import { BrowseFiltersKey, OnChangeBrowseFilters } from "./types";
+import { useBrowseFiltersStore } from "../BrowseFiltersProvider";
+import { BrowseFiltersKey, OnChangeBrowseFilters } from "../types";
 
 import { useTeacherBrowseAnalytics } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
 import { FilterType, FilterTypeValueType } from "@/browser-lib/avo/Avo";

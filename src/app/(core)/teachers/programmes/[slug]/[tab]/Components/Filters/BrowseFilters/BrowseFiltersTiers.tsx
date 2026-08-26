@@ -7,12 +7,9 @@ import {
 import { useId } from "react";
 
 import { getFilterData } from "@/utils/curriculum/filtering";
-import {
-  byKeyStageSlug,
-  presentAtKeyStageSlugs,
-} from "@/utils/curriculum/keystage";
 import { CurriculumUnitsFormattedData } from "@/pages-helpers/curriculum/docx/tab-helpers";
 import { useBrowseFilters } from "@/context/BrowseFilters";
+import { useKeyStagePresence } from "@/context/BrowseFilters/hooks/useKeyStagePresence";
 
 export type BrowseFiltersTiersProps = {
   data: CurriculumUnitsFormattedData;
@@ -23,16 +20,10 @@ export function BrowseFiltersTiers({
 }: Readonly<BrowseFiltersTiersProps>) {
   const { filters, setTierFilter, yearsForKeystage } = useBrowseFilters();
   const id = useId();
-  const { yearData } = data;
 
   const { tiers } = getFilterData(data.yearData, yearsForKeystage);
 
-  const keyStageSlugData = byKeyStageSlug(yearData);
-  const tiersAt = presentAtKeyStageSlugs(
-    keyStageSlugData,
-    "tiers",
-    yearsForKeystage,
-  );
+  const { tiersAt } = useKeyStagePresence(data);
 
   return (
     <>

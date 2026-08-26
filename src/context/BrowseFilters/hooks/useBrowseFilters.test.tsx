@@ -1,9 +1,10 @@
 import { ReactNode } from "react";
 import { act, renderHook } from "@testing-library/react";
 
-import { BrowseFiltersProvider } from "./BrowseFiltersProvider";
+import { BrowseFiltersProvider } from "../BrowseFiltersProvider";
+import { createFilter } from "../utils/fixtures";
+
 import { useBrowseFilters } from "./useBrowseFilters";
-import { createFilter } from "./utils/fixtures";
 
 import MockedTeacherBrowseAnalyticsProvider from "@/__tests__/__helpers__/MockedTeacherBrowseAnalyticsProvider";
 

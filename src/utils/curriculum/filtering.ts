@@ -239,49 +239,6 @@ export function scopeYearsToKeystageFilter(
   );
 }
 
-export function shouldDisplayFilter(
-  data: CurriculumUnitsFormattedData,
-  filters: CurriculumFilters,
-  key: "years" | "subjectCategories" | "childSubjects" | "tiers" | "threads",
-) {
-  const effectiveYears = scopeYearsToKeystageFilter(filters);
-  const keyStageSlugData = byKeyStageSlug(data.yearData);
-  const childSubjectsAt = presentAtKeyStageSlugs(
-    keyStageSlugData,
-    "childSubjects",
-    effectiveYears,
-  );
-
-  const subjectCategoriesAt = presentAtKeyStageSlugs(
-    keyStageSlugData,
-    "subjectCategories",
-    effectiveYears,
-  ).filter((ks) => !childSubjectsAt.includes(ks));
-
-  if (key === "years") {
-    // only show year options when there is more than 1, because all content will be in a year
-    // so a single year option is equivalent to the 'all' option
-    return data.yearOptions.length > 1;
-  }
-  if (key === "subjectCategories") {
-    return subjectCategoriesAt.length > 0;
-  }
-  if (key === "childSubjects") {
-    return childSubjectsAt.length > 0;
-  }
-  if (key === "tiers") {
-    const tiersAt = presentAtKeyStageSlugs(
-      keyStageSlugData,
-      "tiers",
-      effectiveYears,
-    );
-    return tiersAt.length > 0;
-  }
-  if (key === "threads") {
-    return data.threadOptions.length > 0;
-  }
-}
-
 export function subjectCategoryForFilter(
   data: CurriculumUnitsFormattedData,
   filter: CurriculumFilters,
@@ -307,6 +264,48 @@ export function childSubjectForFilter(
       return yearDataItem.childSubjects;
     })
     .find((childSubject) => childSubject.subject_slug === slug);
+}
+
+export function shouldDisplayFilter(
+  data: CurriculumUnitsFormattedData,
+  filters: CurriculumFilters,
+  key: "years" | "subjectCategories" | "childSubjects" | "tiers" | "threads",
+) {
+  if (key === "years") {
+    // only show year options when there is more than 1, because all content will be in a year
+    // so a single year option is equivalent to the 'all' option
+    return data.yearOptions.length > 1;
+  }
+  if (key === "threads") {
+    return data.threadOptions.length > 0;
+  }
+
+  const effectiveYears = scopeYearsToKeystageFilter(filters);
+  const keyStageSlugData = byKeyStageSlug(data.yearData);
+  const childSubjectsAt = presentAtKeyStageSlugs(
+    keyStageSlugData,
+    "childSubjects",
+    effectiveYears,
+  );
+
+  if (key === "childSubjects") {
+    return childSubjectsAt.length > 0;
+  }
+  if (key === "subjectCategories") {
+    const subjectCategoriesAt = presentAtKeyStageSlugs(
+      keyStageSlugData,
+      "subjectCategories",
+      effectiveYears,
+    ).filter((ks) => !childSubjectsAt.includes(ks));
+    return subjectCategoriesAt.length > 0;
+  }
+
+  const tiersAt = presentAtKeyStageSlugs(
+    keyStageSlugData,
+    "tiers",
+    effectiveYears,
+  );
+  return tiersAt.length > 0;
 }
 
 export function getNumberOfSelectedUnits(

@@ -9,12 +9,9 @@ import { useId } from "react";
 import { Unit } from "@/utils/curriculum/types";
 import { getValidSubjectIconName } from "@/utils/getValidSubjectIconName";
 import { getFilterData } from "@/utils/curriculum/filtering";
-import {
-  byKeyStageSlug,
-  presentAtKeyStageSlugs,
-} from "@/utils/curriculum/keystage";
 import { CurriculumUnitsFormattedData } from "@/pages-helpers/curriculum/docx/tab-helpers";
 import { useBrowseFilters } from "@/context/BrowseFilters";
+import { useKeyStagePresence } from "@/context/BrowseFilters/hooks/useKeyStagePresence";
 
 export type BrowseFiltersChildSubjectsProps = {
   data: CurriculumUnitsFormattedData<Unit>;
@@ -26,16 +23,10 @@ export function BrowseFiltersChildSubjects({
   const { filters, setChildSubjectFilter, yearsForKeystage } =
     useBrowseFilters();
   const id = useId();
-  const { yearData } = data;
 
   const { childSubjects } = getFilterData(data.yearData, yearsForKeystage);
 
-  const keyStageSlugData = byKeyStageSlug(yearData);
-  const childSubjectsAt = presentAtKeyStageSlugs(
-    keyStageSlugData,
-    "childSubjects",
-    yearsForKeystage,
-  );
+  const { childSubjectsAt } = useKeyStagePresence(data);
 
   return (
     <OakBox>
