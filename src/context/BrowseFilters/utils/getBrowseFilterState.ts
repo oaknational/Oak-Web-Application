@@ -15,7 +15,7 @@ export const getBrowseFilterState = ({
 }) => {
   const defaultFilter = getDefaultBrowseFilter(data);
   const resolvedFilter = resolveBrowseFilterFromSearchParams(
-    data,
+    defaultFilter,
     searchParams,
   );
 

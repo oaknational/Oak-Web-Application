@@ -55,7 +55,11 @@ export const createBrowseFiltersStore = ({
         yearsForKeystage: scopeYearsToKeystageFilter(
           initialFilter ?? defaultFilter,
         ),
-        setFilters: (newFilters) => set({ filters: newFilters }),
+        setFilters: (newFilters) =>
+          set({
+            filters: newFilters,
+            yearsForKeystage: scopeYearsToKeystageFilter(newFilters),
+          }),
         getFilter: (key) => {
           return get().filters[key];
         },
@@ -69,7 +73,10 @@ export const createBrowseFiltersStore = ({
             // If nothing changed, don't trigger a re-render
             return isEqual(nextFilters, state.filters)
               ? state
-              : { filters: nextFilters };
+              : {
+                  filters: nextFilters,
+                  yearsForKeystage: scopeYearsToKeystageFilter(nextFilters),
+                };
           }),
       }),
       {
@@ -90,9 +97,15 @@ export const createBrowseFiltersStore = ({
 
           // Layer over `defaultFilter` (not `current.filters`) so this matches
           // `syncFromSearchParams`: the URL is the source of truth.
+          const mergedFilters = {
+            ...current.defaultFilter,
+            ...persistedFilters,
+          };
+
           return {
             ...current,
-            filters: { ...current.defaultFilter, ...persistedFilters },
+            filters: mergedFilters,
+            yearsForKeystage: scopeYearsToKeystageFilter(mergedFilters),
           };
         },
       },

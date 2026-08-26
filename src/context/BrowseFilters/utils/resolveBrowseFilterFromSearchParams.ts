@@ -1,9 +1,6 @@
 import { BrowseFilters } from "../types";
 
 import { applySearchParamsToFilter } from "./applySearchParamsToFilter";
-import { getDefaultBrowseFilter } from "./getDefaultBrowseFilter";
-
-import { CurriculumUnitsFormattedData } from "@/pages-helpers/curriculum/docx/tab-helpers";
 
 export type RawSearchParams = { [key: string]: string | string[] | undefined };
 
@@ -13,10 +10,9 @@ export type RawSearchParams = { [key: string]: string | string[] | undefined };
  * Used in page.tsx to pre-resolve filters before SSR
  */
 export function resolveBrowseFilterFromSearchParams(
-  data: CurriculumUnitsFormattedData,
+  defaultFilter: BrowseFilters,
   searchParams: RawSearchParams | undefined,
 ): BrowseFilters {
-  const defaultFilter = getDefaultBrowseFilter(data);
   const params = new URLSearchParams();
 
   if (searchParams) {
