@@ -17,24 +17,24 @@ function MyLibraryPage({ topNav }: Readonly<{ topNav: TopNavProps }>) {
   const { collectionData, isLoading } = useMyLibrary();
 
   return (
-    <AppLayout
-      seoProps={{
-        ...getSeoProps({
-          title: "My library",
-          description: "Save units to your own personal library",
-        }),
-        noIndex: true,
-        noFollow: true,
-      }}
-      topNavProps={topNav}
+    <TeacherBrowseAnalyticsStoreProvider
+      programmeState={null}
+      accessLevel={"my_library"}
     >
-      <TeacherBrowseAnalyticsStoreProvider
-        programmeState={null}
-        accessLevel={"my_library"}
+      <AppLayout
+        seoProps={{
+          ...getSeoProps({
+            title: "My library",
+            description: "Save units to your own personal library",
+          }),
+          noIndex: true,
+          noFollow: true,
+        }}
+        topNavProps={topNav}
       >
         <MyLibrary collectionData={collectionData} isLoading={isLoading} />
-      </TeacherBrowseAnalyticsStoreProvider>
-    </AppLayout>
+      </AppLayout>
+    </TeacherBrowseAnalyticsStoreProvider>
   );
 }
 
