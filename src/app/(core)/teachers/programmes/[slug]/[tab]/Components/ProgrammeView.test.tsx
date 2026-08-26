@@ -167,7 +167,7 @@ describe("ProgrammeView", () => {
     const heading = screen.getByRole("heading", { name: "Year 7 units" });
     expect(heading).toBeInTheDocument();
   });
-  it("renders the correct tab content for overview", () => {
+  it("renders the correct tab content for overview", async () => {
     setMockedPathname(
       resolveOakHref({
         page: "teacher-programme",
@@ -176,10 +176,12 @@ describe("ProgrammeView", () => {
       }),
     );
     renderProgrammeView({ tabSlug: "curriculum-explainer" });
-    const heading = screen.getByRole("heading", { name: "Aims and purpose" });
+    const heading = await screen.findByRole("heading", {
+      name: "Aims and purpose",
+    });
     expect(heading).toBeInTheDocument();
   });
-  it("renders the correct tab content for download", () => {
+  it("renders the correct tab content for download", async () => {
     setMockedPathname(
       resolveOakHref({
         page: "teacher-programme",
@@ -188,7 +190,7 @@ describe("ProgrammeView", () => {
       }),
     );
     renderProgrammeView({ tabSlug: "download" });
-    const content = screen.getByText("Download curriculum resources");
+    const content = await screen.findByText("Download curriculum resources");
     expect(content).toBeInTheDocument();
   });
   it("navigates on tab click", async () => {
