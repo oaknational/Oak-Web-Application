@@ -5,14 +5,12 @@ import {
   OakTertiaryButton,
   OakP,
 } from "@oaknational/oak-components";
-import { isEqual } from "lodash";
 import { useId } from "react";
 
 import { getYearGroupTitle } from "@/utils/curriculum/formatting";
 import type { CurriculumUnitsFormattedData } from "@/pages-helpers/curriculum/docx/tab-helpers";
 import { getKeystageSlug } from "@/fixtures/curriculum/unit";
 import { useBrowseFilters } from "@/context/BrowseFilters";
-import { BrowseFilters } from "@/context/BrowseFilters/types";
 
 export type BrowseFiltersYearsProps = {
   data: CurriculumUnitsFormattedData;
@@ -43,20 +41,6 @@ export const getColorSchemeByYear = (year: string) => {
   }
 };
 
-const filterToIndex = (
-  filters: BrowseFilters,
-  yearOptions: YearOption[],
-  allYears: string[],
-) => {
-  if (isEqual(filters.years, allYears)) {
-    return 0;
-  }
-  const currentYear = filters.years[0]!;
-  return (
-    1 + yearOptions.findIndex((yearOption) => yearOption.year === currentYear)
-  );
-};
-
 export function BrowseFiltersYears(props: Readonly<BrowseFiltersYearsProps>) {
   const { data, onModalOpen } = props;
   const { filters, setYearFilter } = useBrowseFilters();
@@ -76,20 +60,12 @@ export function BrowseFiltersYears(props: Readonly<BrowseFiltersYearsProps>) {
     })
     .map<YearOption>((year) => ({ year }));
 
-  function updateYearFilterValue(value: string) {
-    const target =
-      value === "0" ? { year: "all" } : yearOptions[Number(value) - 1]!;
-    setYearFilter(target.year, data.yearOptions);
-  }
-
-  const index = filterToIndex(filters, yearOptions, data.yearOptions);
-
   return (
     <OakBox>
       <OakRadioGroup
         name={"year" + id}
-        onChange={(e) => updateYearFilterValue(e.target.value)}
-        value={String(index)}
+        onChange={(e) => setYearFilter(e.target.value, data.yearOptions)}
+        value={filters.years.length > 1 ? "all" : filters.years[0]}
         $gap="spacing-12"
         $flexDirection="row"
         $flexWrap="wrap"
@@ -100,14 +76,14 @@ export function BrowseFiltersYears(props: Readonly<BrowseFiltersYearsProps>) {
           Year group
         </OakP>
         <OakRadioAsButton
-          value={"0"}
+          value={"all"}
           displayValue="All"
           data-testid={"all-years-radio"}
         />
-        {yearOptions.map((yearOption, index) => (
+        {yearOptions.map((yearOption) => (
           <OakRadioAsButton
             key={yearOption.year}
-            value={String(index + 1)}
+            value={yearOption.year}
             displayValue={getYearGroupTitle(yearData, yearOption.year)}
             data-testid={"year-radio"}
             colorScheme={getColorSchemeByYear(yearOption.year)}

@@ -43,7 +43,7 @@ export function BrowseFiltersKeystages({
               Key stages
             </OakP>
             <OakRadioAsButton key="all" value="all" displayValue="All" />
-            {data.keystages.map((ks) => (
+            {data.keystages.toSorted().map((ks) => (
               <OakRadioAsButton
                 key={ks}
                 value={ks}
