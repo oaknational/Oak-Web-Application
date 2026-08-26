@@ -15,8 +15,10 @@ import {
   PupilsSubNavData,
 } from "@/node-lib/curriculum-api-2023/queries/topNav/topNav.schema";
 import { useOakNotificationsContext } from "@/context/OakNotifications/useOakNotificationsContext";
-import useAnalytics from "@/context/Analytics/useAnalytics";
-import { TeacherBrowseAnalyticsStoreProvider } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
+import {
+  TeacherBrowseAnalyticsStoreProvider,
+  useTeacherBrowseAnalytics,
+} from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
 
 export type TopNavProps = {
   teachers: TeachersSubNavData | null;
@@ -71,7 +73,7 @@ export const MaybeVisuallyHidden = ({
 
 const TopNav = (props: TopNavProps) => {
   const { teachers, pupils } = props;
-  const { track } = useAnalytics();
+  const track = useTeacherBrowseAnalytics((store) => store.track);
 
   const activeArea = useSelectedArea();
 
@@ -80,18 +82,16 @@ const TopNav = (props: TopNavProps) => {
     keyof TeachersSubNavData | keyof PupilsSubNavData | undefined
   >(undefined);
 
-  const trackBrowseAccessed = (menu: string) => {
+  const trackProgrammeAccessed = (menu: string) => {
     const menuIsOpening = selectedMenu === undefined || selectedMenu !== menu;
     const menuIsBrowseJourney = menu === "primary" || menu == "secondary";
 
     if (menuIsOpening && menuIsBrowseJourney) {
-      track.browseAccessed({
-        platform: "owa",
-        product: "teacher lesson resources",
-        engagementIntent: "explore",
+      track.programmeAccessed({
         componentType: "topnav-browse-button",
-        eventVersion: "2.0.0",
-        analyticsUseCase: "Teacher",
+        activeFilters: {},
+        filterType: "Phase filter",
+        filterValue: menu,
       });
     }
   };
@@ -157,7 +157,7 @@ const TopNav = (props: TopNavProps) => {
                 }
                 isMenuSelected={isMenuSelected}
                 onClick={(menu) => {
-                  trackBrowseAccessed(menu);
+                  trackProgrammeAccessed(menu);
                   setSelectedMenu(selectedMenu === menu ? undefined : menu);
                 }}
               />
