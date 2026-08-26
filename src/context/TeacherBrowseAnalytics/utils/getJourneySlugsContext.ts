@@ -9,11 +9,14 @@ export type JourneySlugs = {
 
 const useJourneySlugsContext = (): JourneySlugs => {
   const pathname = usePathname();
-  const subjectPhaseSegment = pathname
-    ?.split("/")
-    .find((segment) => segment.includes("-"));
-
-  const parsed = parseSubjectPhaseSlug(subjectPhaseSegment ?? "");
+  let parsed: ReturnType<typeof parseSubjectPhaseSlug> | undefined;
+  for (const segment of pathname?.split("/") ?? []) {
+    const result = parseSubjectPhaseSlug(segment);
+    if (result) {
+      parsed = result;
+      break;
+    }
+  }
 
   return {
     subjectSlug: parsed?.subjectSlug ?? "unknown",
