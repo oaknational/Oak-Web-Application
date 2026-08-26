@@ -1,4 +1,3 @@
-import { ReadonlyURLSearchParams } from "next/navigation";
 import { subjectSlugs, tierSlugs } from "@oaknational/oak-curriculum-schema";
 
 import { findFirstMatchingFeatures } from "../../utils/curriculum/features";
@@ -95,33 +94,6 @@ export function getDefaultTiersForYearGroup(data: CurriculumUnitsYearData) {
     }
   }
   return [];
-}
-
-export const FILTER_TO_QS: Record<keyof CurriculumFilters, string> = {
-  childSubjects: "child_subjects",
-  subjectCategories: "subject_categories",
-  tiers: "tiers",
-  years: "years",
-  threads: "threads",
-  pathways: "pathways",
-  keystages: "keystages",
-};
-
-export function mergeInFilterParams(
-  filter: CurriculumFilters,
-  params?: ReadonlyURLSearchParams | URLSearchParams | null,
-) {
-  const out = { ...filter };
-  if (params) {
-    for (const keyStr of Object.keys(filter)) {
-      const key = keyStr as keyof CurriculumFilters;
-      const paramsValue = params.get(FILTER_TO_QS[key]);
-      if (paramsValue && paramsValue !== "") {
-        out[key] = params.get(FILTER_TO_QS[key])!.split(",");
-      }
-    }
-  }
-  return out;
 }
 
 export function getFilterData(

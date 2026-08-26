@@ -6,7 +6,6 @@ import {
   getFilterData,
   scopeYearsToKeystageFilter,
   shouldDisplayFilter,
-  mergeInFilterParams,
   highlightedUnitCount,
   filteringFromYears,
   subjectCategoryForFilter,
@@ -14,7 +13,7 @@ import {
   getNumberOfSelectedUnits,
 } from "./filtering";
 
-import { CurriculumFilters, Unit, YearData } from "@/utils/curriculum/types";
+import { Unit, YearData } from "@/utils/curriculum/types";
 import { createUnit } from "@/fixtures/curriculum/unit";
 import {
   CurriculumUnitsFormattedData,
@@ -730,64 +729,6 @@ describe("shouldDisplayFilter", () => {
       expect(
         shouldDisplayFilter(englishSecondaryData, filters, "subjectCategories"),
       ).toEqual(false);
-    });
-  });
-});
-
-describe("mergeInFilterParams", () => {
-  it("single value", () => {
-    const filter: CurriculumFilters = {
-      childSubjects: [],
-      subjectCategories: [],
-      tiers: [],
-      years: [],
-      threads: [],
-      pathways: [],
-      keystages: [],
-    };
-
-    const result = mergeInFilterParams(
-      filter,
-      new URLSearchParams(
-        "?child_subjects=child_subject_1&subject_categories=1&tiers=tier_1&years=1&threads=thread1",
-      ),
-    );
-    expect(result).toEqual({
-      childSubjects: ["child_subject_1"],
-      subjectCategories: ["1"],
-      tiers: ["tier_1"],
-      years: ["1"],
-      threads: ["thread1"],
-      pathways: [],
-      keystages: [],
-    });
-  });
-
-  it("list of values", () => {
-    const filter: CurriculumFilters = {
-      childSubjects: [],
-      subjectCategories: [],
-      tiers: [],
-      years: [],
-      threads: [],
-      pathways: [],
-      keystages: [],
-    };
-
-    const result = mergeInFilterParams(
-      filter,
-      new URLSearchParams(
-        "?child_subjects=child_subject_1,child_subject_2&subject_categories=1,2&tiers=tier_1,tier_2&years=1,2&threads=thread1,thread2",
-      ),
-    );
-    expect(result).toEqual({
-      childSubjects: ["child_subject_1", "child_subject_2"],
-      subjectCategories: ["1", "2"],
-      tiers: ["tier_1", "tier_2"],
-      years: ["1", "2"],
-      threads: ["thread1", "thread2"],
-      pathways: [],
-      keystages: [],
     });
   });
 });

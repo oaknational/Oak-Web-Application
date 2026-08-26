@@ -2,12 +2,12 @@ import type { Ks4OptionFilterDimension } from "../../../buildKs4OptionFilterDime
 
 import { getSubjectPhaseSlug } from "@/components/TeacherComponents/helpers/getSubjectPhaseSlug";
 import { BrowseFilters } from "@/context/BrowseFilters/types";
-import { scopeYearsToKeystageFilter } from "@/context/BrowseFilters/utils";
 import type { Ks4Option } from "@/node-lib/curriculum-api-2023/queries/curriculumPhaseOptions/curriculumPhaseOptions.schema";
 import {
   isExamboardSlug,
   isPathwaySlug,
 } from "@/pages-helpers/pupil/options-pages/options-pages-helpers";
+import { scopeYearsToKeystageFilter } from "@/utils/curriculum/filtering";
 import { keystageYearMappings } from "@/utils/curriculum/keystage";
 import { CurriculumSelectionSlugs } from "@/utils/curriculum/slugs";
 

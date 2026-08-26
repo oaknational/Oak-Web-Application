@@ -5,4 +5,3 @@ export { getBrowseFilterState } from "./getBrowseFilterState";
 export { getDefaultBrowseFilter } from "./getDefaultBrowseFilter";
 export { getFiltersFromSearchString } from "./getFiltersFromSearchString";
 export { resolveBrowseFilterFromSearchParams } from "./resolveBrowseFilterFromSearchParams";
-export { scopeYearsToKeystageFilter } from "./scopeYearsToKeystageFilter";

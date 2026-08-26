@@ -11,7 +11,8 @@ import {
 } from "./browseFiltersUrlStorage";
 import { BrowseFilters } from "./types";
 import { applySearchParamsToFilter } from "./utils/applySearchParamsToFilter";
-import { scopeYearsToKeystageFilter } from "./utils/scopeYearsToKeystageFilter";
+
+import { scopeYearsToKeystageFilter } from "@/utils/curriculum/filtering";
 
 export type BrowseFiltersStore = {
   filters: BrowseFilters;
