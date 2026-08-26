@@ -1,9 +1,8 @@
 import { act } from "@testing-library/react";
 
-import { basicSetup } from "../../../../../../../../../components/CurriculumComponents/CurricVisualiserFilters/CurricFiltersYears.fixtures";
-
 import { BrowseFiltersYears } from "./BrowseFiltersYears";
 
+import { basicSetup } from "@/components/CurriculumComponents/CurricVisualiserFilters/CurricFiltersYears.fixtures";
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 import { BrowseFiltersProvider } from "@/context/BrowseFilters";
 import { BrowseFilters } from "@/context/BrowseFilters/types";
