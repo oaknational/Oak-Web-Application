@@ -1,0 +1,74 @@
+name: Storybook Test
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    types: [opened, synchronize, reopened, ready_for_review]
+
+permissions:
+  contents: read
+  deployments: read
+  statuses: read
+
+concurrency:
+  group: storybook-test-${{ github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
+jobs:
+  storybook-tests:
+    name: Storybook Tests
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+
+      - name: setup pnpm
+        uses: pnpm/action-setup@08c4be7e2e672a47d11bd04269e27e5f3e8529cb
+        with:
+          cache: true
+
+      - name: setup node
+        uses: actions/setup-node@v6
+        with:
+          node-version-file: .nvmrc
+          cache: "pnpm"
+
+      - run: pnpm install --ignore-scripts --verbose
+
+      - name: Get Playwright version
+        id: playwright-version
+        run: |
+          PLAYWRIGHT_VERSION="$(node -p "require('./node_modules/playwright/package.json').version")"
+          echo "version=${PLAYWRIGHT_VERSION}" >> "$GITHUB_OUTPUT"
+
+      - name: Cache Playwright browsers
+        uses: actions/cache@v4
+        id: playwright-cache
+        with:
+          path: ~/.cache/ms-playwright
+          key: playwright-${{ runner.os }}-chromium-${{ steps.playwright-version.outputs.version }}
+
+      - name: Install Playwright system dependencies
+        run: ./node_modules/.bin/playwright install-deps chromium
+
+      - name: Install Playwright browser
+        if: steps.playwright-cache.outputs.cache-hit != 'true'
+        run: ./node_modules/.bin/playwright install chromium
+
+      - name: Wait for Vercel deployment
+        id: deployment
+        uses: vercel/wait-for-deployment-action@0e2b0c5c5cce31f1648108aeec56467187aca037
+        with:
+          environment: ${{ github.ref == 'refs/heads/main' && 'production' || 'preview' }}
+          project-slug: oak-web-application-storybook
+          require-deployment-id: false
+          timeout: 1200
+
+      - name: Run Storybook tests
+        run: pnpm exec test-storybook --url "${{ steps.deployment.outputs.deployment-url }}"
+        env:
+          VERCEL_AUTOMATION_BYPASS_SECRET_STORYBOOK: ${{ secrets.VERCEL_AUTOMATION_BYPASS_SECRET_STORYBOOK }}

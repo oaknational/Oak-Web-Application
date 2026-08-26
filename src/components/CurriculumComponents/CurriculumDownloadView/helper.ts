@@ -62,6 +62,7 @@ export const DOWNLOAD_TYPE_LABELS: {
   icon: OakIconName;
   subTitle?: string;
   fileExt: string;
+  groupLabel?: string;
 }[] = [
   {
     id: "curriculumPlans",
@@ -82,26 +83,31 @@ export const DOWNLOAD_TYPE_LABELS: {
   {
     id: "curriculumQuality",
     label: "Curriculum quality",
+    groupLabel: "implementation toolkit",
     ...implementationGuidePdfBase,
   },
   {
     id: "whatsIncluded",
     label: "What's included",
+    groupLabel: "implementation toolkit",
     ...implementationGuidePdfBase,
   },
   {
     id: "assessment",
     label: "Assessment",
+    groupLabel: "implementation toolkit",
     ...implementationGuidePdfBase,
   },
   {
     id: "commonQuestions",
     label: "Common questions",
+    groupLabel: "implementation toolkit",
     ...implementationGuidePdfBase,
   },
   {
     id: "equipmentList",
     label: "Equipment list",
+    groupLabel: "implementation toolkit",
     ...implementationGuidePdfBase,
   },
 ] as const;

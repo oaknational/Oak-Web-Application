@@ -1,3 +1,86 @@
+## [1.1165.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.1165.1...v1.1165.2) (2026-08-26)
+
+
+### Bug Fixes
+
+* group all implementation guides into a single item in accordion text ([82cab8c](https://github.com/oaknational/Oak-Web-Application/commit/82cab8c96555db64059ac48ab7bc04060a4045dc))
+
+## [1.1165.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.1165.0...v1.1165.1) (2026-08-25)
+
+
+### Bug Fixes
+
+* about us layout tests ([0035ac5](https://github.com/oaknational/Oak-Web-Application/commit/0035ac564d2710bb8fc9764915527419e1f404b6))
+* add example flag in flags const and use only this in tests to avoid future test changes ([454fefb](https://github.com/oaknational/Oak-Web-Application/commit/454fefb49eb07e4121e6ccc17b13994f9763262a))
+* case studies test ([ce6e6e7](https://github.com/oaknational/Oak-Web-Application/commit/ce6e6e77f52a048ae25898bc10ea38c8d263c0e9))
+* oaks-impact tests ([d8228ed](https://github.com/oaknational/Oak-Web-Application/commit/d8228ed5e274548939aea67cdebe3827fd12eb8a))
+* remove conditional addition of oaks impact in footer, nav and explore more nav ([4009afa](https://github.com/oaknational/Oak-Web-Application/commit/4009afa1f6c9f4996424f3b809112515abb6efcc))
+* remove feature flag mocking in tests ([6a8647e](https://github.com/oaknational/Oak-Web-Application/commit/6a8647e8edb3195c9227d60a8ae41ab26912f343))
+* remove oaks impact flag from FLAGS const in util ([a6b6102](https://github.com/oaknational/Oak-Web-Application/commit/a6b610242fb82a2a63e463fcc6022c2aa4ff7f5a))
+* snaps oaks impact ([fee659c](https://github.com/oaknational/Oak-Web-Application/commit/fee659c4e8a51b8f4d3bcb47564486c30d635588))
+* switch to static props in oaks-impact page ([2d8958d](https://github.com/oaknational/Oak-Web-Application/commit/2d8958da0cbe1048a5a8e4f63f8cf625175ed828))
+* top nav tests ([055a6b2](https://github.com/oaknational/Oak-Web-Application/commit/055a6b26587ff16ce7f9a17954b7e2642fbb5705))
+* use static props in case studies page ([0fb5b76](https://github.com/oaknational/Oak-Web-Application/commit/0fb5b76e3608add0dc8bc0f463e904d3b2bd242c))
+
+# [1.1165.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1164.3...v1.1165.0) (2026-08-25)
+
+
+### Bug Fixes
+
+* decouple format sentences from google cloud fns ([4f1197c](https://github.com/oaknational/Oak-Web-Application/commit/4f1197cda21ef2888944bab51b834dcf440d082b))
+* padding on transcript container ([6a39ec4](https://github.com/oaknational/Oak-Web-Application/commit/6a39ec4396977f326d4f3b8387e18398dcc0db84))
+* remove type override for transcript and handle null case ([7c98613](https://github.com/oaknational/Oak-Web-Application/commit/7c98613b5df9b1a810d4aea2f085f1d4be5e948a))
+* use formatSentences to convert transcript ([cd56108](https://github.com/oaknational/Oak-Web-Application/commit/cd56108046876358475622a3ba719897256978ca))
+
+
+### Features
+
+* expand and make sentence formatting more robust ([405a3e7](https://github.com/oaknational/Oak-Web-Application/commit/405a3e733492bdef0a8401086931eb9c7e4f9edf))
+
+## [1.1164.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.1164.2...v1.1164.3) (2026-08-25)
+
+
+### Bug Fixes
+
+* broken stories with missing decorators ([5caf761](https://github.com/oaknational/Oak-Web-Application/commit/5caf76183cda04b696a4ec1d296644178d2338b1))
+* storybook mock requires realtive import path ([f42e022](https://github.com/oaknational/Oak-Web-Application/commit/f42e022094c9b1b6801bbd492e70c98b0ceddd0a))
+
+## [1.1164.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.1164.1...v1.1164.2) (2026-08-25)
+
+
+### Bug Fixes
+
+* broken mobile styling of blogs and migrated to <OakBreadcrumbs/> ([c2a75c6](https://github.com/oaknational/Oak-Web-Application/commit/c2a75c6f3f95f3d130aa0f9b931bc792a047ec9d))
+
+## [1.1164.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.1164.0...v1.1164.1) (2026-08-25)
+
+
+### Bug Fixes
+
+* kB -> KB ([f37c5f3](https://github.com/oaknational/Oak-Web-Application/commit/f37c5f38ccfe2042c70a5cdeba82a8ada0ce2780))
+
+# [1.1164.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1163.0...v1.1164.0) (2026-08-25)
+
+
+### Bug Fixes
+
+* added pretty-bytes to transpilePackages in next config ([a6f5e28](https://github.com/oaknational/Oak-Web-Application/commit/a6f5e28946838ebc74bfed879d08a273c6d1ddaa))
+* correct case for subject/phase in inline banner ([f0ec913](https://github.com/oaknational/Oak-Web-Application/commit/f0ec913f013577ea4aebc0dd20eef47496a0a7e4))
+* file names for download to sentence case ([0986c78](https://github.com/oaknational/Oak-Web-Application/commit/0986c783eb6f3d008189bc7a31cdb5c76724de73))
+* only enable if "implementation-guides" present ([7037a8d](https://github.com/oaknational/Oak-Web-Application/commit/7037a8df98d5683cb2fc82205a48692dcb2a1759))
+* optional chain expression instead (sonarcloud) ([7c1b03b](https://github.com/oaknational/Oak-Web-Application/commit/7c1b03b4f7597af9111a3d9d6929eb196e401c60))
+* typo proper nesting of schemas ([e88cf83](https://github.com/oaknational/Oak-Web-Application/commit/e88cf83520cd745546136f0ec3b3a125ac56293f))
+* update invalid type from main and update assets (autogen) ([14ce9e5](https://github.com/oaknational/Oak-Web-Application/commit/14ce9e5614bb5d512953fcdd58230d934bd4323a))
+* updated error message ([38ca40d](https://github.com/oaknational/Oak-Web-Application/commit/38ca40dbc9ec50b463736712a3394334b0f5a158))
+
+
+### Features
+
+* add file sizes to generated download documents ([0e7e52d](https://github.com/oaknational/Oak-Web-Application/commit/0e7e52d148b9571d04aa34d89acb6f2fb21a5fed))
+* added download logic for implementation guides ([0405255](https://github.com/oaknational/Oak-Web-Application/commit/0405255087daaa9b5bc4aad6b81eb5a65fb60019))
+* further work rendering files from the CMS ([2357062](https://github.com/oaknational/Oak-Web-Application/commit/2357062bdf020b981d915b2cb097ffa7edd3f9eb))
+* render implementation guides from the CMS ([56b1849](https://github.com/oaknational/Oak-Web-Application/commit/56b18494eb1c1fd28f8b0cd932ce660138e9ddb0))
+
 # [1.1163.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1162.0...v1.1163.0) (2026-08-24)
 
 
