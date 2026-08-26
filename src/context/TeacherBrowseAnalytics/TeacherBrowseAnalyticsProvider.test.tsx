@@ -27,6 +27,7 @@ const curriculumExplainerExplored = jest.fn();
 const lessonShareStarted = jest.fn();
 const programmeRefined = jest.fn();
 const curriculumResourcesDownloaded = jest.fn();
+const curriculumResourcesAccessed = jest.fn();
 const lessonMediaClipsStarted = jest.fn();
 
 jest.mock("@/context/Analytics/useAnalytics", () => ({
@@ -44,6 +45,8 @@ jest.mock("@/context/Analytics/useAnalytics", () => ({
       programmeRefined: (...args: []) => programmeRefined(...args),
       curriculumResourcesDownloaded: (...args: []) =>
         curriculumResourcesDownloaded(...args),
+      curriculumResourcesAccessed: (...args: []) =>
+        curriculumResourcesAccessed(...args),
       lessonMediaClipsStarted: (...args: []) =>
         lessonMediaClipsStarted(...args),
     },
@@ -453,6 +456,28 @@ describe("TeacherBrowseAnalyticsStoreProvider", () => {
 
       expect(lessonMediaClipsStarted).not.toHaveBeenCalled();
       expect(result).toBeUndefined();
+    });
+    it("calls curriculumResourcesAccessed with the correct props", () => {
+      renderTrackingTest(programmeLevelState, "curriculumResourcesAccessed", {
+        componentType: "download_tab",
+      });
+
+      const trackBtn = screen.getByRole("button", { name: "Track" });
+      trackBtn.click();
+
+      expect(curriculumResourcesAccessed).toHaveBeenCalledWith(
+        expect.objectContaining({
+          analyticsUseCase: "Teacher",
+          componentType: "download_tab",
+          engagementIntent: "explore",
+          eventVersion: "2.0.0",
+          phase: "secondary",
+          platform: "owa",
+          product: "curriculum resources",
+          subjectSlug: "biology",
+          subjectTitle: "Biology",
+        }),
+      );
     });
   });
 });
