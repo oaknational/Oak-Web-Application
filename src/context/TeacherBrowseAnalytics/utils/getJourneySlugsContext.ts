@@ -19,8 +19,8 @@ const useJourneySlugsContext = (): JourneySlugs => {
   }
 
   return {
-    subjectSlug: parsed?.subjectSlug ?? "unknown",
-    phaseSlug: parsed?.phaseSlug ?? "unknown",
+    subjectSlug: parsed?.subjectSlug ?? "null",
+    phaseSlug: parsed?.phaseSlug ?? "null",
   };
 };
 
