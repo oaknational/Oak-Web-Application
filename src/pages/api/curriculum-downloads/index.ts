@@ -352,9 +352,7 @@ export async function getFile({
               examboardTitle: data.combinedCurriculumData?.examboardTitle,
               childSubjectSlug,
               tierSlug,
-              prefix:
-                DOWNLOAD_TYPE_LABELS.find(({ id }) => id === type)?.label ??
-                type,
+              prefix: definition.label ?? type,
               isWithinArchive: data.isWithinArchive,
             });
           },
