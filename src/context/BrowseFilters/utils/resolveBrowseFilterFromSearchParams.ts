@@ -5,9 +5,9 @@ import { applySearchParamsToFilter } from "./applySearchParamsToFilter";
 export type RawSearchParams = { [key: string]: string | string[] | undefined };
 
 /**
- * Resolves the filter from raw search params (server-side)
- * Converts PageSearchParms into a CurriculumFilters with URL params applied
- * Used in page.tsx to pre-resolve filters before SSR
+ * Resolves the filter from raw search params (server-side).
+ * Converts PageSearchParams into a BrowseFilters with URL params applied.
+ * Used in page.tsx to pre-resolve filters before SSR.
  */
 export function resolveBrowseFilterFromSearchParams(
   defaultFilter: BrowseFilters,
