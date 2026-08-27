@@ -1077,8 +1077,10 @@ export const NationalCurriculumInsightsGuidanceIntro = ({
                 <GuidanceTaggedParagraph>
                   <OakTagFunctional
                     label={section.statusLabel!}
+                    iconName="rocket"
                     $background="bg-decorative5-main"
                     $color="text-primary"
+                    $gap="spacing-4"
                   />
                   <PortableTextWithDefaults
                     value={remainingBlocks}
@@ -1095,9 +1097,11 @@ export const NationalCurriculumInsightsGuidanceIntro = ({
                 {section.statusLabel ? (
                   <OakTagFunctional
                     label={section.statusLabel}
+                    iconName="rocket"
                     $background="bg-decorative5-main"
                     $color="text-primary"
                     $alignSelf="flex-start"
+                    $gap="spacing-4"
                   />
                 ) : null}
               </>

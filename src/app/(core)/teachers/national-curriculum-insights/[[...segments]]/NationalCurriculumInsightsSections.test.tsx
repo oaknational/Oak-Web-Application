@@ -341,7 +341,7 @@ describe("National Curriculum Insights sections", () => {
   });
 
   it("renders the guidance introduction with its image and status", () => {
-    renderWithTheme(
+    const { container } = renderWithTheme(
       <NationalCurriculumInsightsGuidanceIntro
         section={moduleOf({
           __typename: "NationalCurriculumInsightsGuidanceIntroSection",
@@ -363,10 +363,14 @@ describe("National Curriculum Insights sections", () => {
       screen.getByText("Practical leadership guidance and curriculum updates."),
     ).toBeInTheDocument();
     expect(screen.getByText("Coming soon")).toBeInTheDocument();
-    expect(screen.getByRole("img")).toHaveAttribute(
+    const images = container.querySelectorAll("img");
+    expect(images).toHaveLength(2);
+    expect(images[0]).toHaveAttribute(
       "alt",
       "A teacher discussing the curriculum",
     );
+    expect(images[1]).toHaveAttribute("alt", "");
+    expect(images[1]).toHaveAttribute("src", expect.stringContaining("icons"));
   });
 
   it("uses subject and phase context for navigation cards", async () => {
