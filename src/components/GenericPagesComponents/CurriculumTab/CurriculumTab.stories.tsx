@@ -4,9 +4,10 @@ import Component from "./CurriculumTab";
 
 import curriculumPhaseOptions from "@/browser-lib/fixtures/curriculumPhaseOptions";
 import AnalyticsDecorator from "@/storybook-decorators/AnalyticsDecorator";
+import TeacherBrowseAnalyticsDecorator from "@/storybook-decorators/TeacherBrowseAnalyticsDecorator";
 
 const meta = {
-  decorators: [AnalyticsDecorator],
+  decorators: [AnalyticsDecorator, TeacherBrowseAnalyticsDecorator],
   component: Component,
   argTypes: {},
   parameters: {

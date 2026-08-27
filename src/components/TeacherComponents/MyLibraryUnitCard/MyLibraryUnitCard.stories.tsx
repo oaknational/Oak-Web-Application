@@ -13,6 +13,7 @@ import {
 import { KeyStageTitleValueType } from "@/browser-lib/avo/Avo";
 import SaveCountDecorator from "@/storybook-decorators/SaveCountDecorator";
 import NotificationsDecorator from "@/storybook-decorators/NotificationsDecorator";
+import TeacherBrowseAnalyticsDecorator from "@/storybook-decorators/TeacherBrowseAnalyticsDecorator";
 
 const unit = {
   unitTitle: "Fiction: Science Fiction Writing",
@@ -33,7 +34,11 @@ const unit = {
 
 const meta: Meta<typeof MyLibraryUnitCard> = {
   component: MyLibraryUnitCard,
-  decorators: [SaveCountDecorator, NotificationsDecorator],
+  decorators: [
+    SaveCountDecorator,
+    NotificationsDecorator,
+    TeacherBrowseAnalyticsDecorator,
+  ],
   tags: ["autodocs"],
   args: {
     ...unit,

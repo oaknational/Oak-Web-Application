@@ -4,9 +4,11 @@ import { BrowseFiltersYears as Component } from "./BrowseFiltersYears";
 
 import { basicSetup } from "@/components/CurriculumComponents/CurricVisualiserFilters/CurricFiltersYears.fixtures";
 import { BrowseFiltersProvider } from "@/context/BrowseFilters";
+import TeacherBrowseAnalyticsDecorator from "@/storybook-decorators/TeacherBrowseAnalyticsDecorator";
 
 const meta: Meta<typeof Component> = {
   component: Component,
+  decorators: [TeacherBrowseAnalyticsDecorator],
   argTypes: {},
 };
 

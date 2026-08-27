@@ -5,10 +5,11 @@ import Component from "./TopNav";
 import { topNavFixture } from "@/node-lib/curriculum-api-2023/fixtures/topNav.fixture";
 import { OakNotificationsProvider } from "@/context/OakNotifications/OakNotificationsProvider";
 import SaveCountDecorator from "@/storybook-decorators/SaveCountDecorator";
+import TeacherBrowseAnalyticsDecorator from "@/storybook-decorators/TeacherBrowseAnalyticsDecorator";
 
 const meta = {
   component: Component,
-  decorators: [SaveCountDecorator],
+  decorators: [SaveCountDecorator, TeacherBrowseAnalyticsDecorator],
 } satisfies Meta<typeof Component>;
 
 export default meta;

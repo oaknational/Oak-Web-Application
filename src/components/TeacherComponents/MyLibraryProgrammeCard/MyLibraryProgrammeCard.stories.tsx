@@ -14,6 +14,7 @@ import {
 } from "@/browser-lib/avo/Avo";
 import SaveCountDecorator from "@/storybook-decorators/SaveCountDecorator";
 import NotificationsDecorator from "@/storybook-decorators/NotificationsDecorator";
+import TeacherBrowseAnalyticsDecorator from "@/storybook-decorators/TeacherBrowseAnalyticsDecorator";
 
 const sampleUnits = [
   {
@@ -72,7 +73,11 @@ const sampleUnits = [
 const meta: Meta<typeof MyLibraryProgrammeCard> = {
   component: MyLibraryProgrammeCard,
   tags: ["autodocs"],
-  decorators: [SaveCountDecorator, NotificationsDecorator],
+  decorators: [
+    SaveCountDecorator,
+    NotificationsDecorator,
+    TeacherBrowseAnalyticsDecorator,
+  ],
   args: {
     programmeTitle: "English Secondary KS4 (AQA)",
     programmeHref:
