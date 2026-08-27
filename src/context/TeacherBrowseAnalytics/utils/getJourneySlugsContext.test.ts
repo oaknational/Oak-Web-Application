@@ -27,8 +27,8 @@ describe("useJourneySlugsContext", () => {
     const { result } = renderHook(() => useJourneySlugsContext());
 
     expect(result.current).toEqual({
-      subjectSlug: "unknown",
-      phaseSlug: "unknown",
+      subjectSlug: "null",
+      phaseSlug: "null",
     });
   });
 
@@ -38,8 +38,8 @@ describe("useJourneySlugsContext", () => {
     const { result } = renderHook(() => useJourneySlugsContext());
 
     expect(result.current).toEqual({
-      subjectSlug: "unknown",
-      phaseSlug: "unknown",
+      subjectSlug: "null",
+      phaseSlug: "null",
     });
 
     mockUsePathname.mockReturnValue(undefined);
@@ -49,8 +49,8 @@ describe("useJourneySlugsContext", () => {
     );
 
     expect(resultUndefined.current).toEqual({
-      subjectSlug: "unknown",
-      phaseSlug: "unknown",
+      subjectSlug: "null",
+      phaseSlug: "null",
     });
   });
 });
