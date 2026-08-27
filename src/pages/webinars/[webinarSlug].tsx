@@ -51,23 +51,23 @@ const WebinarSinglePage: NextPage<WebinarSinglePageProps> = (props) => {
   }, [track, webinar]);
 
   return (
-    <Layout
-      topNavProps={topNav}
-      seoProps={getSeoProps({
-        ...props.webinar.seo,
-        title: webinar.seo?.title || webinar.title,
-        description: webinar.seo?.description,
-        imageUrl: getVideoThumbnail({
-          video: webinar.video.video.asset,
-          width: 1600,
-          height: 900,
-        }),
-      })}
-      $background="bg-primary"
+    <TeacherBrowseAnalyticsStoreProvider
+      programmeState={null}
+      accessLevel="blogs_embedded_links"
     >
-      <TeacherBrowseAnalyticsStoreProvider
-        programmeState={null}
-        accessLevel="blogs_embedded_links"
+      <Layout
+        topNavProps={topNav}
+        seoProps={getSeoProps({
+          ...props.webinar.seo,
+          title: webinar.seo?.title || webinar.title,
+          description: webinar.seo?.description,
+          imageUrl: getVideoThumbnail({
+            video: webinar.video.video.asset,
+            width: 1600,
+            height: 900,
+          }),
+        })}
+        $background="bg-primary"
       >
         <PostSingleLayout
           content={props}
@@ -85,9 +85,9 @@ const WebinarSinglePage: NextPage<WebinarSinglePageProps> = (props) => {
             <BlogPortableText portableText={webinar.summaryPortableText} />
           </OakBox>
         </PostSingleLayout>
-      </TeacherBrowseAnalyticsStoreProvider>
-      <BlogJsonLd blog={props.webinar} />
-    </Layout>
+        <BlogJsonLd blog={props.webinar} />
+      </Layout>
+    </TeacherBrowseAnalyticsStoreProvider>
   );
 };
 

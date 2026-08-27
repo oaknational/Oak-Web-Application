@@ -1,5 +1,9 @@
 import { FC } from "react";
-import { OakMaxWidth } from "@oaknational/oak-components";
+import {
+  OakMaxWidth,
+  OakBox,
+  OakBreadcrumbs,
+} from "@oaknational/oak-components";
 
 import { TopNavProps } from "../AppComponents/TopNav/TopNav";
 
@@ -33,7 +37,7 @@ import {
   WebinarListingPageProps,
   webinarToPostListItem,
 } from "@/components/GenericPagesViews/WebinarsIndex.view";
-import Breadcrumbs from "@/components/SharedComponents/Breadcrumbs/Breadcrumbs";
+import { TeacherBrowseAnalyticsStoreProvider } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
 
 type PostListingProps = {
   seo: SeoProps;
@@ -70,48 +74,55 @@ const PostListing: FC<PostListingProps> = ({
   );
 
   return (
-    <Layout
-      seoProps={getSeoProps(seo)}
-      $background="bg-primary"
-      topNavProps={topNav}
+    <TeacherBrowseAnalyticsStoreProvider
+      programmeState={null}
+      accessLevel="blogs_embedded_links"
     >
-      <OakMaxWidth $pt={"spacing-20"} $display={["none", "flex"]}>
-        <Breadcrumbs
-          breadcrumbs={getBlogWebinarListBreadcrumbs(
-            categories,
-            categorySlug,
-            variant.slug,
-            variant.title,
-          )}
-        />
-      </OakMaxWidth>
-      <OakMaxWidth
-        $mb={["spacing-56", "spacing-80"]}
-        $pt={["spacing-0", "spacing-24", "spacing-24"]}
+      <Layout
+        seoProps={getSeoProps(seo)}
+        $background="bg-primary"
+        topNavProps={topNav}
       >
-        <SummaryCard
-          {...pageData}
-          heading={categoryHeading || pageData.heading}
-        />
-        <MobileFilters page={page} label={CATEGORY_NAV_LABEL}>
-          <PostCategoryList
-            $pv={"spacing-24"}
-            $ph={"spacing-16"}
-            categories={categories}
-            selectedCategorySlug={categorySlug}
-            page={page}
+        <OakMaxWidth $pt={"spacing-20"} $display={["none", "flex"]}>
+          <OakBreadcrumbs
+            breadcrumbs={getBlogWebinarListBreadcrumbs(
+              categories,
+              categorySlug,
+              variant.slug,
+              variant.title,
+            )}
           />
-        </MobileFilters>
+        </OakMaxWidth>
+        <OakMaxWidth
+          $mb={["spacing-56", "spacing-80"]}
+          $pt={["spacing-0", "spacing-24", "spacing-24"]}
+        >
+          <OakBox $pa={["spacing-12", "spacing-0", "spacing-0"]}>
+            <SummaryCard
+              {...pageData}
+              heading={categoryHeading || pageData.heading}
+            />
+            <MobileFilters page={page} label={CATEGORY_NAV_LABEL}>
+              <PostCategoryList
+                $pv={"spacing-24"}
+                $ph={"spacing-16"}
+                categories={categories}
+                selectedCategorySlug={categorySlug}
+                page={page}
+              />
+            </MobileFilters>
+          </OakBox>
 
-        <PostListAndCategories
-          {...postsWithCategories}
-          blogs={postListItems}
-          page={page}
-          topNav={topNav}
-        />
-      </OakMaxWidth>
-      <PostListJsonLd blogs={posts} />
-    </Layout>
+          <PostListAndCategories
+            {...postsWithCategories}
+            blogs={postListItems}
+            page={page}
+            topNav={topNav}
+          />
+        </OakMaxWidth>
+        <PostListJsonLd blogs={posts} />
+      </Layout>
+    </TeacherBrowseAnalyticsStoreProvider>
   );
 };
 export default PostListing;

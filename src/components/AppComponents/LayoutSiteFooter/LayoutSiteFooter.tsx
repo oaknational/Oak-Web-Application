@@ -24,7 +24,6 @@ import { aboutUsAccessed } from "@/browser-lib/avo/Avo";
 import { OAK_SOCIALS } from "@/components/SharedComponents/SocialButtons/SocialButtons";
 import SocialButtons from "@/components/SharedComponents/SocialButtons";
 import { buildAboutUsAnalytics } from "@/utils/analytics-builders";
-import { isFeatureFlagEnabledStatic } from "@/utils/featureFlagChecks/static";
 import { getCloudinaryImageUrl } from "@/utils/getCloudinaryImageUrl";
 import { resolveOakHref } from "@/common-lib/urls";
 
@@ -87,16 +86,12 @@ const footerSections: FooterSections = {
         href: resolveOakHref({ page: "about-oaks-curricula" }),
         track: trackAboutUsFooter,
       },
-      ...(isFeatureFlagEnabledStatic("oaks-impact")
-        ? [
-            {
-              text: "Oak's impact",
-              type: "link" as const,
-              href: resolveOakHref({ page: "about-oaks-impact" }),
-              track: trackAboutUsFooter,
-            },
-          ]
-        : []),
+      {
+        text: "Oak's impact",
+        type: "link" as const,
+        href: resolveOakHref({ page: "about-oaks-impact" }),
+        track: trackAboutUsFooter,
+      },
       {
         text: "Get involved",
         type: "link",

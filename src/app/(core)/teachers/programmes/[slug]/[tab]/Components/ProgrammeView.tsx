@@ -37,11 +37,16 @@ import {
   CurriculumSelectionTitles,
 } from "@/utils/curriculum/slugs";
 import { ProgrammePageHeaderCMS } from "@/common-lib/cms-types/programmePage";
-import { CurriculumOverviewSanityData } from "@/common-lib/cms-types";
+import {
+  CurriculumOverviewSanityData,
+  ImplementationGuides,
+} from "@/common-lib/cms-types";
 import type { Ks4Option } from "@/node-lib/curriculum-api-2023/queries/curriculumPhaseOptions/curriculumPhaseOptions.schema";
 import { resolveOakHref } from "@/common-lib/urls";
 import { validateSearchParams } from "@/utils/validateProgrammePageSearchParams";
 import { useBrowseFilters } from "@/context/BrowseFilters";
+import { useTeacherBrowseAnalytics } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
+import { ComponentType } from "@/browser-lib/avo/Avo";
 
 export type ProgrammePageProps = {
   subjectPhaseSlug: string;
@@ -57,6 +62,8 @@ export type ProgrammePageProps = {
   ks4Options: Ks4Option[];
   ks4OptionFilterDimensions: Record<string, Ks4OptionFilterDimension>;
   featureFlags: Record<string, boolean>;
+  implementationGuides: ImplementationGuides | null;
+  fileSizes: ProgrammeDownloadsProps["fileSizes"];
 };
 
 export const ProgrammeView = ({
@@ -73,6 +80,8 @@ export const ProgrammeView = ({
   ks4Options,
   ks4OptionFilterDimensions,
   featureFlags,
+  implementationGuides,
+  fileSizes,
 }: ProgrammePageProps) => {
   const searchParams = useSearchParams();
 
@@ -85,6 +94,9 @@ export const ProgrammeView = ({
     curriculumSelectionTitles;
 
   const { filters } = useBrowseFilters();
+  const { curriculumResourcesAccessed } = useTeacherBrowseAnalytics(
+    (store) => store.track,
+  );
 
   const schoolYear = filters.years.find(
     (year) => validatedParams?.years === year,
@@ -147,6 +159,11 @@ export const ProgrammeView = ({
               const tabSlug = tabNameToSlug[tabName];
               // Prevents a full page reload using client side nav
               event.preventDefault();
+              if (tabSlug === "download") {
+                curriculumResourcesAccessed({
+                  componentType: ComponentType.DOWNLOAD_TAB,
+                });
+              }
               const url = preserveKeystagesParamInUrl(tabSlug);
               globalThis.history.pushState(null, "", url);
             }}
@@ -173,6 +190,11 @@ export const ProgrammeView = ({
                 subjectTitle={subjectTitle}
                 phase={curriculumSelectionSlugs.phaseSlug}
                 phaseTitle={phaseTitle}
+                onClick={() =>
+                  curriculumResourcesAccessed({
+                    componentType: ComponentType.IMPLEMENTATION_GUIDE_CALLOUT,
+                  })
+                }
               />
             )}
         </OakMaxWidth>
@@ -186,6 +208,9 @@ export const ProgrammeView = ({
         mvRefreshTime={mvRefreshTime}
         ks4Options={ks4Options}
         ks4OptionFilterDimensions={ks4OptionFilterDimensions}
+        implementationGuides={implementationGuides}
+        featureFlags={featureFlags}
+        fileSizes={fileSizes}
       />
     </>
   );
@@ -200,8 +225,15 @@ const TabContent = ({
   mvRefreshTime,
   ks4Options,
   ks4OptionFilterDimensions,
-}: { tabSlug: TabSlug } & UnitSequenceViewProps & {
+  implementationGuides,
+  featureFlags,
+  fileSizes,
+}: {
+  tabSlug: TabSlug;
+  featureFlags: Record<string, boolean>;
+} & UnitSequenceViewProps & {
     curriculumCMSInfo: CurriculumOverviewSanityData | null;
+    implementationGuides: ImplementationGuides | null;
   } & ProgrammeDownloadsProps) => {
   if (tabSlug === "units") {
     return (
@@ -224,6 +256,9 @@ const TabContent = ({
         curriculumSelectionSlugs={curriculumSelectionSlugs}
         curriculumDownloadsTabData={curriculumDownloadsTabData}
         curriculumUnitsFormattedData={curriculumUnitsFormattedData}
+        implementationGuides={implementationGuides}
+        featureFlags={featureFlags}
+        fileSizes={fileSizes}
       />
     );
   }

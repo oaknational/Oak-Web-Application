@@ -10,6 +10,7 @@ import { getStaticPaths as getStaticPathsTemplate } from "@/pages-helpers/get-st
 import AppLayout from "@/components/AppComponents/AppLayout";
 import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
 import { PupilViewsUnitListing } from "@/components/PupilViews/PupilUnitListing/PupilUnitListing.view";
+import { TeacherBrowseAnalyticsStoreProvider } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
 import { extractBaseSlug } from "@/pages-helpers/pupil";
 import { UseBackHrefProps } from "@/components/PupilViews/PupilUnitListing/useBackHref";
 import {
@@ -59,26 +60,31 @@ const PupilUnitListingPage = ({
   topNav,
 }: UnitListingPageProps) => {
   return (
-    <AppLayout
-      seoProps={{
-        ...getSeoProps({
-          title: `${subject}, ${phase}, ${yearDescription} - Unit listing`,
-          description: `Unit listing for ${subject}, ${phase}, ${yearDescription}`,
-        }),
-        noIndex: true,
-        noFollow: false,
-      }}
-      topNavProps={topNav}
+    <TeacherBrowseAnalyticsStoreProvider
+      programmeState={null}
+      accessLevel="homepage"
     >
-      <PupilViewsUnitListing
-        unitSections={unitSections}
-        phase={phase}
-        backHrefSlugs={backHrefSlugs}
-        subjectCategories={subjectCategories}
-        programmeFields={programmeFields}
-        relatedSubjects={relatedSubjects}
-      />
-    </AppLayout>
+      <AppLayout
+        seoProps={{
+          ...getSeoProps({
+            title: `${subject}, ${phase}, ${yearDescription} - Unit listing`,
+            description: `Unit listing for ${subject}, ${phase}, ${yearDescription}`,
+          }),
+          noIndex: true,
+          noFollow: false,
+        }}
+        topNavProps={topNav}
+      >
+        <PupilViewsUnitListing
+          unitSections={unitSections}
+          phase={phase}
+          backHrefSlugs={backHrefSlugs}
+          subjectCategories={subjectCategories}
+          programmeFields={programmeFields}
+          relatedSubjects={relatedSubjects}
+        />
+      </AppLayout>
+    </TeacherBrowseAnalyticsStoreProvider>
   );
 };
 

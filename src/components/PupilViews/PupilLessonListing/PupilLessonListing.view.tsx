@@ -23,6 +23,7 @@ import {
 } from "@/components/SharedComponents/TakedownBanner/TakedownBanner";
 import isSlugLegacy from "@/utils/slugModifiers/isSlugLegacy";
 import AppLayout from "@/components/AppComponents/AppLayout";
+import { TeacherBrowseAnalyticsStoreProvider } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
 
 export type PupilLessonListingViewProps = {
   unitData: LessonListingBrowseData[number]["unitData"];
@@ -129,8 +130,10 @@ export const PupilViewsLessonListing = (props: PupilLessonListingViewProps) => {
   );
 
   return (
-    <>
-      {" "}
+    <TeacherBrowseAnalyticsStoreProvider
+      programmeState={null}
+      accessLevel="homepage"
+    >
       <AppLayout
         seoProps={{
           ...getSeoProps({
@@ -177,6 +180,6 @@ export const PupilViewsLessonListing = (props: PupilLessonListingViewProps) => {
           <PupilRedirectedOverlay />
         </OakPupilJourneyLayout>
       </AppLayout>
-    </>
+    </TeacherBrowseAnalyticsStoreProvider>
   );
 };
