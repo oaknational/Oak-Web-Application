@@ -43,13 +43,15 @@ export function BrowseFiltersKeystages({
               Key stages
             </OakP>
             <OakRadioAsButton key="all" value="all" displayValue="All" />
-            {data.keystages.toSorted().map((ks) => (
-              <OakRadioAsButton
-                key={ks}
-                value={ks}
-                displayValue={getKeyStageTitle(ks)}
-              />
-            ))}
+            {data.keystages
+              .toSorted((a, b) => (a < b ? -1 : 1))
+              .map((ks) => (
+                <OakRadioAsButton
+                  key={ks}
+                  value={ks}
+                  displayValue={getKeyStageTitle(ks)}
+                />
+              ))}
           </OakRadioGroup>
         </OakBox>
       )}
