@@ -2,7 +2,6 @@ import { FC, ReactNode } from "react";
 import {
   OakFlex,
   OakBox,
-  OakHandDrawnHR,
   OakUiRoleToken,
   OakSmallTertiaryInvertedButton,
   OakSpan,
@@ -32,6 +31,8 @@ const PromoBanner: FC<PromoBannerProps> = ({
         $alignItems={"center"}
         $pv={"spacing-8"}
         $ph={["spacing-8", "spacing-12"]}
+        $bb={"border-solid-l"}
+        $borderColor={"border-primary"}
       >
         <OakFlex
           $alignItems={"center"}
@@ -59,9 +60,6 @@ const PromoBanner: FC<PromoBannerProps> = ({
           </OakSmallTertiaryInvertedButton>
         </OakFlex>
       </OakFlex>
-      <OakBox $background={background} $height={"spacing-4"}>
-        <OakHandDrawnHR hrColor={"bg-inverted"} $height={"spacing-4"} />
-      </OakBox>
     </OakBox>
   );
 };
