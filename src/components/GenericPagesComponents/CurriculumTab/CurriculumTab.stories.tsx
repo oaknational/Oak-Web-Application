@@ -5,9 +5,14 @@ import Component from "./CurriculumTab";
 import curriculumPhaseOptions from "@/browser-lib/fixtures/curriculumPhaseOptions";
 import AnalyticsDecorator from "@/storybook-decorators/AnalyticsDecorator";
 import TeacherBrowseAnalyticsDecorator from "@/storybook-decorators/TeacherBrowseAnalyticsDecorator";
+import CookieConsentDecorator from "@/storybook-decorators/CookieConsentDecorator";
 
 const meta = {
-  decorators: [AnalyticsDecorator, TeacherBrowseAnalyticsDecorator],
+  decorators: [
+    AnalyticsDecorator,
+    TeacherBrowseAnalyticsDecorator,
+    CookieConsentDecorator,
+  ],
   component: Component,
   argTypes: {},
   parameters: {
