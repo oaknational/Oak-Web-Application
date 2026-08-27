@@ -1028,6 +1028,11 @@ const GuidanceTaggedParagraph = styled(OakBox)`
   }
 `;
 
+const GuidanceStatusTag = styled(OakTagFunctional)`
+  min-width: 141px;
+  justify-content: center;
+`;
+
 export const NationalCurriculumInsightsGuidanceIntro = ({
   section,
 }: SectionProps<"NationalCurriculumInsightsGuidanceIntroSection">) => {
@@ -1075,11 +1080,13 @@ export const NationalCurriculumInsightsGuidanceIntro = ({
                   components={guidancePortableTextComponents}
                 />
                 <GuidanceTaggedParagraph>
-                  <OakTagFunctional
+                  <GuidanceStatusTag
                     label={section.statusLabel!}
                     iconName="rocket"
                     $background="bg-decorative5-main"
                     $color="text-primary"
+                    $borderRadius="border-radius-s"
+                    $font="heading-7"
                     $gap="spacing-4"
                   />
                   <PortableTextWithDefaults
@@ -1095,12 +1102,14 @@ export const NationalCurriculumInsightsGuidanceIntro = ({
                   components={guidancePortableTextComponents}
                 />
                 {section.statusLabel ? (
-                  <OakTagFunctional
+                  <GuidanceStatusTag
                     label={section.statusLabel}
                     iconName="rocket"
                     $background="bg-decorative5-main"
                     $color="text-primary"
                     $alignSelf="flex-start"
+                    $borderRadius="border-radius-s"
+                    $font="heading-7"
                     $gap="spacing-4"
                   />
                 ) : null}
