@@ -1,3 +1,17 @@
+## [1.1168.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.1168.0...v1.1168.1) (2026-08-27)
+
+
+### Bug Fixes
+
+* add analytics decorator to lesson list story ([82fea21](https://github.com/oaknational/Oak-Web-Application/commit/82fea2168b5e28609a9e8d35a36fa3e1ca843924))
+* added correct content-type for nc/curriculum downloads ([dd7538a](https://github.com/oaknational/Oak-Web-Application/commit/dd7538a82050ab3e9ea61ad79614b458f3fd1617))
+* added missing test for .zip download ([d38aa6d](https://github.com/oaknational/Oak-Web-Application/commit/d38aa6d231eb51103ec8a05929006d612e3a48c0))
+
+
+### Reverts
+
+* change made on wrong branch ([79689f0](https://github.com/oaknational/Oak-Web-Application/commit/79689f0335b31ecd2903e2333b57074e543c425d))
+
 # [1.1168.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1167.1...v1.1168.0) (2026-08-27)
 
 
