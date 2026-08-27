@@ -21,6 +21,7 @@ import {
 import useJourneySlugsContext from "./utils/getJourneySlugsContext";
 
 import { ServicePolicyMap } from "@/browser-lib/cookie-consent/ServicePolicyMap";
+import useSelectedArea from "@/hooks/useSelectedArea";
 
 export type TeacherBrowseAnalyticsStoreApi = ReturnType<
   typeof createTeacherBrowseAnalyticsStore
@@ -93,14 +94,19 @@ export const TeacherBrowseAnalyticsStoreProvider = ({
 export const useTeacherBrowseAnalytics = <T,>(
   selector: (store: TeacherBrowseAnalyticsStore) => T,
 ): T => {
+  const activeArea = useSelectedArea();
   const teacherBrowseAnalyticsStoreContext = useContext(
     TeacherBrowseAnalyticsStoreContext,
   );
-  if (!teacherBrowseAnalyticsStoreContext) {
+  if (activeArea === "TEACHERS" && !teacherBrowseAnalyticsStoreContext) {
     throw new Error(
       `useTeacherBrowseAnalyticsStore must be used within TeacherBrowseAnalyticsStoreProvider`,
     );
   }
 
-  return useStore(teacherBrowseAnalyticsStoreContext, selector);
+  // The provider should be there but if in a pupil area we don't want to throw an error
+  return useStore(
+    teacherBrowseAnalyticsStoreContext as TeacherBrowseAnalyticsStoreApi,
+    selector,
+  );
 };
