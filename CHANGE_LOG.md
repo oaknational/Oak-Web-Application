@@ -1,3 +1,10 @@
+## [1.1167.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.1167.0...v1.1167.1) (2026-08-27)
+
+
+### Bug Fixes
+
+* exclude implementation guides from download ([d9fa963](https://github.com/oaknational/Oak-Web-Application/commit/d9fa96372b723aff78e4468065d5f67e918fb61e))
+
 # [1.1167.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1166.0...v1.1167.0) (2026-08-26)
 
 

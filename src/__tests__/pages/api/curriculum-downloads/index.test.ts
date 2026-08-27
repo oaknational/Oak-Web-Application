@@ -337,20 +337,20 @@ describe("/api/curriculum-downloads", () => {
     expect(res._getStatusCode()).toBe(404);
   });
 
-  test("sanity implementation toolkit documents", async () => {
-    curriculumSequenceMock.mockResolvedValue(mockSequenceData);
-    const { req, res } = createNextApiMocks({
-      query: {
-        types: ["curriculumQuality"],
-        mvRefreshTime: LAST_REFRESH_AS_TIME.toString(),
-        subjectSlug: "english",
-        phaseSlug: "secondary",
-        state: "published",
-      },
-    });
-    await handler(req, res);
+  // test("sanity implementation toolkit documents", async () => {
+  //   curriculumSequenceMock.mockResolvedValue(mockSequenceData);
+  //   const { req, res } = createNextApiMocks({
+  //     query: {
+  //       types: ["curriculumQuality"],
+  //       mvRefreshTime: LAST_REFRESH_AS_TIME.toString(),
+  //       subjectSlug: "english",
+  //       phaseSlug: "secondary",
+  //       state: "published",
+  //     },
+  //   });
+  //   await handler(req, res);
 
-    expect(fetch).toHaveBeenCalledTimes(1);
-    expect(res._getStatusCode()).toBe(200);
-  });
+  //   expect(fetch).toHaveBeenCalledTimes(1);
+  //   expect(res._getStatusCode()).toBe(200);
+  // });
 });
