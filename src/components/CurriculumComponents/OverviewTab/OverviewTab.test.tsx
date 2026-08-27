@@ -155,4 +155,18 @@ describe("Component - Overview Tab", () => {
     expect(mockOnClickNavItem).toHaveBeenCalledWith("#header-heading-1");
     (Element.prototype.checkVisibility as jest.Mock).mockClear();
   });
+
+  test("does not render transcript button when no transcript is provided", async () => {
+    const fixture = curriculumOverviewTabFixture();
+    const videoBlock =
+      fixture.curriculumCMSInfo.curriculumExplainer.explainerRaw?.find(
+        (block) => block._type === "video",
+      );
+    videoBlock.transcript = undefined;
+
+    const { queryByText } = renderOverviewTab({
+      curriculumCMSInfo: fixture.curriculumCMSInfo,
+    });
+    expect(queryByText("Show transcript")).not.toBeInTheDocument();
+  });
 });

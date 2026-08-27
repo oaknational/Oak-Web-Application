@@ -800,6 +800,8 @@ export type BlockOrCodeOrCtaLinkOrImageOrNoticeOrTable = Block | Code | CtaLink 
 
 export type BlockOrImage = Block | Image;
 
+export type BlockOrVideo = Block | Video;
+
 export type BlogWebinarCategory = Document & {
   __typename?: 'BlogWebinarCategory';
   /** Date the document was created */
