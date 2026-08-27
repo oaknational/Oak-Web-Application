@@ -800,6 +800,8 @@ export type BlockOrCodeOrCtaLinkOrImageOrNoticeOrTable = Block | Code | CtaLink 
 
 export type BlockOrImage = Block | Image;
 
+export type BlockOrVideo = Block | Video;
+
 export type BlogWebinarCategory = Document & {
   __typename?: 'BlogWebinarCategory';
   /** Date the document was created */
@@ -1503,6 +1505,7 @@ export type CurriculumInfoPageOverview = Document & {
   curriculumPartnerOverviews?: Maybe<Array<Maybe<CurriculumPartnerOverview>>>;
   curriculumPartners?: Maybe<Array<Maybe<CurriculumPartner>>>;
   curriculumSeoTextRaw?: Maybe<Scalars['JSON']['output']>;
+  implementationGuides?: Maybe<ImplementationGuides>;
   partnerBio?: Maybe<Scalars['String']['output']>;
   phase?: Maybe<Scalars['String']['output']>;
   subject?: Maybe<Scalars['String']['output']>;
@@ -1523,6 +1526,7 @@ export type CurriculumInfoPageOverviewFilter = {
   _updatedAt?: InputMaybe<DatetimeFilter>;
   curriculumExplainer?: InputMaybe<CurriculumExplainerFilter>;
   curriculumPartner?: InputMaybe<CurriculumPartnerFilter>;
+  implementationGuides?: InputMaybe<ImplementationGuidesFilter>;
   partnerBio?: InputMaybe<StringFilter>;
   phase?: InputMaybe<StringFilter>;
   subject?: InputMaybe<StringFilter>;
@@ -1538,6 +1542,7 @@ export type CurriculumInfoPageOverviewSorting = {
   _rev?: InputMaybe<SortOrder>;
   _type?: InputMaybe<SortOrder>;
   _updatedAt?: InputMaybe<SortOrder>;
+  implementationGuides?: InputMaybe<ImplementationGuidesSorting>;
   partnerBio?: InputMaybe<SortOrder>;
   phase?: InputMaybe<SortOrder>;
   subject?: InputMaybe<SortOrder>;
@@ -2164,6 +2169,37 @@ export type ImageWithAltTextSorting = {
   hotspot?: InputMaybe<SanityImageHotspotSorting>;
   isPresentational?: InputMaybe<SortOrder>;
   media?: InputMaybe<GlobalDocumentReferenceSorting>;
+};
+
+export type ImplementationGuides = {
+  __typename?: 'ImplementationGuides';
+  _key?: Maybe<Scalars['String']['output']>;
+  _type?: Maybe<Scalars['String']['output']>;
+  assessment?: Maybe<File>;
+  commonQuestions?: Maybe<File>;
+  curriculumQuality?: Maybe<File>;
+  equipmentList?: Maybe<File>;
+  whatsIncluded?: Maybe<File>;
+};
+
+export type ImplementationGuidesFilter = {
+  _key?: InputMaybe<StringFilter>;
+  _type?: InputMaybe<StringFilter>;
+  assessment?: InputMaybe<FileFilter>;
+  commonQuestions?: InputMaybe<FileFilter>;
+  curriculumQuality?: InputMaybe<FileFilter>;
+  equipmentList?: InputMaybe<FileFilter>;
+  whatsIncluded?: InputMaybe<FileFilter>;
+};
+
+export type ImplementationGuidesSorting = {
+  _key?: InputMaybe<SortOrder>;
+  _type?: InputMaybe<SortOrder>;
+  assessment?: InputMaybe<FileSorting>;
+  commonQuestions?: InputMaybe<FileSorting>;
+  curriculumQuality?: InputMaybe<FileSorting>;
+  equipmentList?: InputMaybe<FileSorting>;
+  whatsIncluded?: InputMaybe<FileSorting>;
 };
 
 export type IntFilter = {
@@ -6252,6 +6288,8 @@ export type CurriculumOverviewQueryVariables = Exact<{
 
 export type CurriculumOverviewQuery = { __typename?: 'RootQuery', allCurriculumInfoPageOverview: Array<{ __typename?: 'CurriculumInfoPageOverview', subjectPrinciples?: Array<string | null> | null, partnerBio?: string | null, videoAuthor?: string | null, videoExplainer?: string | null, curriculumSeoTextRaw?: any | null, id?: string | null, curriculumExplainer?: { __typename?: 'CurriculumExplainer', explainerRaw?: any | null } | null, curriculumPartner?: { __typename?: 'CurriculumPartner', name?: string | null, image?: { __typename?: 'Image', asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null, hotspot?: { __typename?: 'SanityImageHotspot', x?: number | null, y?: number | null, width?: number | null, height?: number | null } | null } | null } | null, curriculumPartnerOverviews?: Array<{ __typename?: 'CurriculumPartnerOverview', partnerBio?: string | null, partnerBioPortableTextRaw?: any | null, curriculumPartner?: { __typename?: 'CurriculumPartner', name?: string | null, image?: { __typename?: 'Image', asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null, hotspot?: { __typename?: 'SanityImageHotspot', x?: number | null, y?: number | null, width?: number | null, height?: number | null } | null } | null } | null } | null> | null, video?: { __typename?: 'Video', title?: string | null, captions?: Array<string | null> | null, transcript?: any | null, video?: { __typename?: 'MuxVideo', asset?: { __typename?: 'MuxVideoAsset', assetId?: string | null, thumbTime?: number | null, playbackId?: string | null } | null } | null } | null }> };
 
+export type FileFragment = { __typename?: 'File', asset?: { __typename?: 'SanityFileAsset', extension?: string | null, size?: number | null, url?: string | null } | null };
+
 export type GetInvolvedPageQueryVariables = Exact<{
   isDraftFilter?: InputMaybe<Sanity_DocumentFilter>;
 }>;
@@ -6273,6 +6311,15 @@ export type ImageAssetFragment = { __typename?: 'SanityImageAsset', _id?: string
 export type ImageWithAltTextFragment = { __typename?: 'ImageWithAltText', altText?: string | null, isPresentational?: boolean | null, asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null, hotspot?: { __typename?: 'SanityImageHotspot', x?: number | null, y?: number | null, width?: number | null, height?: number | null } | null };
 
 export type ImageWithAltTextAndDarkModeFragment = { __typename?: 'ImageWithAltTextAndDarkMode', altText?: string | null, isPresentational?: boolean | null, asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null, darkModeImage?: { __typename?: 'Image', asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null } | null, hotspot?: { __typename?: 'SanityImageHotspot', x?: number | null, y?: number | null, width?: number | null, height?: number | null } | null };
+
+export type ImplementationGuidesQueryVariables = Exact<{
+  isDraftFilter?: InputMaybe<Sanity_DocumentFilter>;
+  subjectTitle?: InputMaybe<Scalars['String']['input']>;
+  phaseSlug?: InputMaybe<Scalars['String']['input']>;
+}>;
+
+
+export type ImplementationGuidesQuery = { __typename?: 'RootQuery', allCurriculumInfoPageOverview: Array<{ __typename?: 'CurriculumInfoPageOverview', id?: string | null, implementationGuides?: { __typename?: 'ImplementationGuides', curriculumQuality?: { __typename?: 'File', asset?: { __typename?: 'SanityFileAsset', extension?: string | null, size?: number | null, url?: string | null } | null } | null, whatsIncluded?: { __typename?: 'File', asset?: { __typename?: 'SanityFileAsset', extension?: string | null, size?: number | null, url?: string | null } | null } | null, assessment?: { __typename?: 'File', asset?: { __typename?: 'SanityFileAsset', extension?: string | null, size?: number | null, url?: string | null } | null } | null, commonQuestions?: { __typename?: 'File', asset?: { __typename?: 'SanityFileAsset', extension?: string | null, size?: number | null, url?: string | null } | null } | null, equipmentList?: { __typename?: 'File', asset?: { __typename?: 'SanityFileAsset', extension?: string | null, size?: number | null, url?: string | null } | null } | null } | null }> };
 
 type InternalLinkFields_AbTest_Fragment = { __typename?: 'AbTest', id?: string | null, contentType?: string | null };
 
@@ -6575,18 +6622,23 @@ export const BlogPreviewFieldsFragmentDoc = gql`
 }
     ${ImageFragmentDoc}
 ${ImageWithAltTextFragmentDoc}`;
+export const FileFragmentDoc = gql`
+    fragment File on File {
+  asset {
+    extension
+    size
+    url
+  }
+}
+    `;
 export const AttachmentFragmentDoc = gql`
     fragment Attachment on Attachment {
   title
   file {
-    asset {
-      extension
-      size
-      url
-    }
+    ...File
   }
 }
-    `;
+    ${FileFragmentDoc}`;
 export const InternalLinkFieldsFragmentDoc = gql`
     fragment InternalLinkFields on Document {
   id: _id
@@ -7421,6 +7473,34 @@ ${SeoFragmentDoc}
 ${TextAndMediaFragmentDoc}
 ${ImageWithAltTextFragmentDoc}
 ${VideoFragmentDoc}`;
+export const ImplementationGuidesDocument = gql`
+    query implementationGuides($isDraftFilter: Sanity_DocumentFilter, $subjectTitle: String, $phaseSlug: String) {
+  allCurriculumInfoPageOverview(
+    where: {_: $isDraftFilter, subject: {eq: $subjectTitle}, phase: {matches: $phaseSlug}}
+    sort: {_updatedAt: DESC}
+    limit: 1
+  ) {
+    id: _id
+    implementationGuides {
+      curriculumQuality {
+        ...File
+      }
+      whatsIncluded {
+        ...File
+      }
+      assessment {
+        ...File
+      }
+      commonQuestions {
+        ...File
+      }
+      equipmentList {
+        ...File
+      }
+    }
+  }
+}
+    ${FileFragmentDoc}`;
 export const LandingPageBySlugDocument = gql`
     query landingPageBySlug($slug: String, $isDraftFilter: Sanity_DocumentFilter) {
   allLandingPage(
@@ -7976,6 +8056,9 @@ export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = 
     },
     homepage(variables?: HomepageQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<HomepageQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<HomepageQuery>({ document: HomepageDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'homepage', 'query', variables);
+    },
+    implementationGuides(variables?: ImplementationGuidesQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<ImplementationGuidesQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<ImplementationGuidesQuery>({ document: ImplementationGuidesDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'implementationGuides', 'query', variables);
     },
     landingPageBySlug(variables?: LandingPageBySlugQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<LandingPageBySlugQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<LandingPageBySlugQuery>({ document: LandingPageBySlugDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'landingPageBySlug', 'query', variables);

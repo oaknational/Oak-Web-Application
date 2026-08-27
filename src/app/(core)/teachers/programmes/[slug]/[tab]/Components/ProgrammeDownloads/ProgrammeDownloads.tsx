@@ -1,5 +1,6 @@
 "use client";
 
+import prettyBytes from "pretty-bytes";
 import {
   OakBox,
   OakResourceCard,
@@ -7,7 +8,9 @@ import {
   OakGrid,
   OakGridArea,
   OakHeading,
+  OakLink,
   OakPrimaryButton,
+  OakPromoTag,
   OakTertiaryInvertedButton,
   Subject,
   Tier,
@@ -41,6 +44,7 @@ import { doUnitsHaveNc, flatUnitsFromYearData } from "@/utils/curriculum/units";
 import { CurriculumSelectionSlugs } from "@/utils/curriculum/slugs";
 import useResourceFormSubmit from "@/components/TeacherComponents/hooks/downloadAndShareHooks/useResourceFormSubmit";
 import downloadDebouncedSubmit from "@/components/TeacherComponents/helpers/downloadAndShareHelpers/downloadDebounceSubmit";
+import { ImplementationGuides } from "@/common-lib/cms-types";
 import { useTeacherBrowseAnalytics } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
 
 export type ProgrammeDownloadsProps = {
@@ -48,6 +52,14 @@ export type ProgrammeDownloadsProps = {
   curriculumDownloadsTabData: CurriculumDownloadsTierSubjectProps;
   curriculumUnitsFormattedData: CurriculumUnitsFormattedData;
   curriculumSelectionSlugs: CurriculumSelectionSlugs;
+  implementationGuides: ImplementationGuides | null;
+  featureFlags: Record<string, boolean>;
+  fileSizes?: {
+    downloadId: string;
+    size: number;
+    tier: string | null;
+    childSubject: string | null;
+  }[];
 };
 
 export const ProgrammeDownloads = ({
@@ -55,6 +67,9 @@ export const ProgrammeDownloads = ({
   curriculumUnitsFormattedData,
   curriculumSelectionSlugs,
   mvRefreshTime,
+  implementationGuides,
+  featureFlags,
+  fileSizes,
 }: ProgrammeDownloadsProps) => {
   const { curriculumResourcesDownloadRefined, curriculumResourcesDownloaded } =
     useTeacherBrowseAnalytics((store) => store.track);
@@ -63,18 +78,34 @@ export const ProgrammeDownloads = ({
   const isLoading = onboardingStatus === "loading";
 
   const availableDownloadTypes = useMemo(() => {
-    return DOWNLOAD_TYPE_LABELS.map(({ id }) => id).filter((id) => {
-      if (id === "national-curriculum") {
-        return doUnitsHaveNc(
-          flatUnitsFromYearData(curriculumUnitsFormattedData.yearData),
-        );
+    return DOWNLOAD_TYPE_LABELS.filter(({ id, group }) => {
+      if (group === "curriculum") {
+        if (id === "nationalCurriculum") {
+          return doUnitsHaveNc(
+            flatUnitsFromYearData(curriculumUnitsFormattedData.yearData),
+          );
+        }
+        return true;
       }
-      return true;
-    });
-  }, [curriculumUnitsFormattedData]);
+      if (group === "implementation-guide") {
+        return implementationGuides?.[id as keyof ImplementationGuides];
+      }
+    }).map(({ id }) => id);
+  }, [curriculumUnitsFormattedData, implementationGuides]);
 
-  const curriculumDownloadsWithLabels = DOWNLOAD_TYPE_LABELS.filter(({ id }) =>
-    availableDownloadTypes.includes(id),
+  const curriculumDownloadsWithLabels = DOWNLOAD_TYPE_LABELS.filter(
+    ({ id, group }) => {
+      return group === "curriculum" && availableDownloadTypes.includes(id);
+    },
+  );
+  const implementationGuideDownloadsWithLabels = DOWNLOAD_TYPE_LABELS.filter(
+    ({ id, group }) => {
+      return (
+        featureFlags["implementation-guides"] &&
+        group === "implementation-guide" &&
+        availableDownloadTypes.includes(id)
+      );
+    },
   );
 
   // Convert the data into OWA component format (using camelCase instead of snake_case for keys.)
@@ -317,41 +348,132 @@ export const ProgrammeDownloads = ({
                 validationSummaryKey={form.submitCount}
                 apiError={submitError}
                 cardGroup={
-                  <OakFlex
-                    $gap={"spacing-16"}
-                    $flexDirection={["column", "row"]}
-                  >
-                    {curriculumDownloadsWithLabels.map((download) => (
-                      <Controller
-                        key={download.id}
-                        control={form.control}
-                        name="resources"
-                        defaultValue={[]}
-                        render={({
-                          field: { value: fieldValue, onChange },
-                        }) => {
-                          return (
-                            <OakResourceCard
-                              key={download.id}
-                              id={download.id}
-                              data-testid="resourceCard"
-                              value={download.id}
-                              name="curriculum-download"
-                              title={download.label}
-                              checked={fieldValue.includes(download.id)}
-                              description={download.fileExt}
-                              isEditable={true}
-                              iconName={download.icon}
-                              onChange={resourceCardOnChangeHandler(
-                                onChange,
-                                fieldValue,
-                                download.id,
-                              )}
-                            />
-                          );
-                        }}
-                      />
-                    ))}
+                  <OakFlex $gap={"spacing-32"} $flexDirection={"column"}>
+                    {curriculumDownloadsWithLabels.length > 0 && (
+                      <OakFlex $gap={"spacing-16"} $flexDirection={["column"]}>
+                        {featureFlags["implementation-guides"] && (
+                          <OakFlex $gap="spacing-8">Curriculum</OakFlex>
+                        )}
+                        <OakFlex
+                          $gap={"spacing-16"}
+                          $flexDirection={["column", "column", "row"]}
+                        >
+                          {curriculumDownloadsWithLabels.map((download) => {
+                            const fileSize = fileSizes?.find(
+                              (fileSize) =>
+                                fileSize.downloadId === download.id &&
+                                fileSize.tier === tierSelected &&
+                                fileSize.childSubject === childSubjectSelected,
+                            );
+                            return (
+                              <Controller
+                                key={download.id}
+                                control={form.control}
+                                name="resources"
+                                defaultValue={[]}
+                                render={({
+                                  field: { value: fieldValue, onChange },
+                                }) => {
+                                  return (
+                                    <OakResourceCard
+                                      key={download.id}
+                                      id={download.id}
+                                      data-testid="resourceCard"
+                                      value={download.id}
+                                      name="curriculum-download"
+                                      title={download.label}
+                                      checked={fieldValue.includes(download.id)}
+                                      fileSize={
+                                        fileSize
+                                          ? prettyBytes(
+                                              fileSize.size,
+                                            ).toUpperCase()
+                                          : "—"
+                                      }
+                                      description={download.fileExt}
+                                      isEditable
+                                      iconName={download.icon}
+                                      onChange={resourceCardOnChangeHandler(
+                                        onChange,
+                                        fieldValue,
+                                        download.id,
+                                      )}
+                                    />
+                                  );
+                                }}
+                              />
+                            );
+                          })}
+                        </OakFlex>
+                      </OakFlex>
+                    )}
+                    {implementationGuideDownloadsWithLabels.length > 0 && (
+                      <OakFlex $gap={"spacing-16"} $flexDirection="column">
+                        <OakFlex $gap="spacing-8">
+                          Implementation toolkit
+                          <OakPromoTag />
+                        </OakFlex>
+                        <OakGrid $rg={"spacing-16"} $cg={"spacing-16"}>
+                          {implementationGuideDownloadsWithLabels.map(
+                            (download) => (
+                              <OakGridArea
+                                $colSpan={[12, 12, 6]}
+                                key={download.id}
+                              >
+                                <Controller
+                                  control={form.control}
+                                  name="resources"
+                                  defaultValue={[]}
+                                  render={({
+                                    field: { value: fieldValue, onChange },
+                                  }) => {
+                                    const implementationGuide =
+                                      implementationGuides?.[
+                                        download.id as keyof ImplementationGuides
+                                      ];
+                                    const fileSize =
+                                      implementationGuide?.asset.size;
+
+                                    return (
+                                      <OakResourceCard
+                                        key={download.id}
+                                        id={download.id}
+                                        data-testid="resourceCard"
+                                        value={download.id}
+                                        name="curriculum-download"
+                                        title={download.label}
+                                        checked={fieldValue.includes(
+                                          download.id,
+                                        )}
+                                        fileSize={
+                                          fileSize
+                                            ? prettyBytes(
+                                                fileSize,
+                                              ).toUpperCase()
+                                            : undefined
+                                        }
+                                        description={download.fileExt}
+                                        iconName={download.icon}
+                                        onChange={resourceCardOnChangeHandler(
+                                          onChange,
+                                          fieldValue,
+                                          download.id,
+                                        )}
+                                      />
+                                    );
+                                  }}
+                                />
+                              </OakGridArea>
+                            ),
+                          )}
+                        </OakGrid>
+                        <OakFlex>
+                          <OakLink isTrailingIcon={true} iconName="send">
+                            Request an accessible version
+                          </OakLink>
+                        </OakFlex>
+                      </OakFlex>
+                    )}
                   </OakFlex>
                 }
                 copyrightYear={new Date().getFullYear().toString()}
@@ -380,7 +502,10 @@ export const ProgrammeDownloads = ({
                   </OakPrimaryButton>
                 }
                 showRiskAssessmentBanner={false}
-                curriculumDownloads={curriculumDownloadsWithLabels}
+                curriculumDownloads={[
+                  ...curriculumDownloadsWithLabels,
+                  ...implementationGuideDownloadsWithLabels,
+                ]}
               />
             )}
           </OakGridArea>
