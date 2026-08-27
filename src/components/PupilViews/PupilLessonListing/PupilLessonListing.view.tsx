@@ -23,7 +23,6 @@ import {
 } from "@/components/SharedComponents/TakedownBanner/TakedownBanner";
 import isSlugLegacy from "@/utils/slugModifiers/isSlugLegacy";
 import AppLayout from "@/components/AppComponents/AppLayout";
-import { TeacherBrowseAnalyticsStoreProvider } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
 
 export type PupilLessonListingViewProps = {
   unitData: LessonListingBrowseData[number]["unitData"];
@@ -130,56 +129,51 @@ export const PupilViewsLessonListing = (props: PupilLessonListingViewProps) => {
   );
 
   return (
-    <TeacherBrowseAnalyticsStoreProvider
-      programmeState={null}
-      accessLevel="homepage"
+    <AppLayout
+      seoProps={{
+        ...getSeoProps({
+          title: `${subject}, ${phaseSlug}, ${yearDescription} - Lesson listing`,
+          description: `Lesson listing for ${subject}, ${phaseSlug}, ${yearDescription}`,
+        }),
+        noIndex: true,
+        noFollow: false,
+      }}
+      topNavProps={topNav}
     >
-      <AppLayout
-        seoProps={{
-          ...getSeoProps({
-            title: `${subject}, ${phaseSlug}, ${yearDescription} - Lesson listing`,
-            description: `Lesson listing for ${subject}, ${phaseSlug}, ${yearDescription}`,
-          }),
-          noIndex: true,
-          noFollow: false,
-        }}
-        topNavProps={topNav}
+      {" "}
+      <OakPupilJourneyLayout
+        sectionName={"lesson-listing"}
+        phase={phaseSlug}
+        topNavSlot={BacktoUnits}
       >
-        {" "}
-        <OakPupilJourneyLayout
-          sectionName={"lesson-listing"}
-          phase={phaseSlug}
-          topNavSlot={BacktoUnits}
-        >
-          <OakBox $mb={"spacing-56"}>
-            {" "}
-            <OakPupilJourneyList
-              titleSlot={LessonListingTitle}
-              phase={phaseSlug}
-              subheadingSlot={lessonCount}
-            >
-              {orderedCurriculumData.map((lesson, index) => {
-                return (
-                  <OakPupilJourneyListItem
-                    href={resolveOakHref({
-                      page: "pupil-lesson",
-                      lessonSlug: lesson.lessonSlug,
-                      programmeSlug: lesson.programmeSlug,
-                      unitSlug: lesson.unitSlug,
-                    })}
-                    index={index + 1}
-                    key={index}
-                    title={lesson.lessonData.title}
-                    unavailable={!!lesson.lessonData?.deprecatedFields?.expired}
-                    as={Link}
-                  />
-                );
-              })}
-            </OakPupilJourneyList>
-          </OakBox>
-          <PupilRedirectedOverlay />
-        </OakPupilJourneyLayout>
-      </AppLayout>
-    </TeacherBrowseAnalyticsStoreProvider>
+        <OakBox $mb={"spacing-56"}>
+          {" "}
+          <OakPupilJourneyList
+            titleSlot={LessonListingTitle}
+            phase={phaseSlug}
+            subheadingSlot={lessonCount}
+          >
+            {orderedCurriculumData.map((lesson, index) => {
+              return (
+                <OakPupilJourneyListItem
+                  href={resolveOakHref({
+                    page: "pupil-lesson",
+                    lessonSlug: lesson.lessonSlug,
+                    programmeSlug: lesson.programmeSlug,
+                    unitSlug: lesson.unitSlug,
+                  })}
+                  index={index + 1}
+                  key={index}
+                  title={lesson.lessonData.title}
+                  unavailable={!!lesson.lessonData?.deprecatedFields?.expired}
+                  as={Link}
+                />
+              );
+            })}
+          </OakPupilJourneyList>
+        </OakBox>
+        <PupilRedirectedOverlay />
+      </OakPupilJourneyLayout>
+    </AppLayout>
   );
 };

@@ -29,6 +29,7 @@ jest.mock("next/navigation", () => ({
     replace: replaceMock,
   }),
   useSearchParams: () => new URLSearchParams(""),
+  usePathname: () => "/teachers/programmes/english-secondary-ocr/units",
 }));
 
 const render = renderWithProvidersByName([

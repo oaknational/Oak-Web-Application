@@ -8,7 +8,6 @@ import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
 import AppLayout from "@/components/AppComponents/AppLayout";
 import { PupilViewsSubjectListing } from "@/components/PupilViews/PupilSubjectListing/PupilSubjectListing.view";
 import { TopNavProps } from "@/components/AppComponents/TopNav/TopNav";
-import { TeacherBrowseAnalyticsStoreProvider } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
 
 type SubjectListingPageProps = {
   curriculumData: PupilSubjectListingData[];
@@ -25,22 +24,17 @@ const PupilSubjectListing = (props: SubjectListingPageProps) => {
   const { yearDescription } = curriculumData[0].programmeFields;
 
   return (
-    <TeacherBrowseAnalyticsStoreProvider
-      programmeState={null}
-      accessLevel="homepage"
+    <AppLayout
+      topNavProps={topNav}
+      seoProps={{
+        ...getSeoProps({
+          title: `${yearDescription} - Subject listing`,
+          description: `Subject listing for ${yearDescription}`,
+        }),
+      }}
     >
-      <AppLayout
-        topNavProps={topNav}
-        seoProps={{
-          ...getSeoProps({
-            title: `${yearDescription} - Subject listing`,
-            description: `Subject listing for ${yearDescription}`,
-          }),
-        }}
-      >
-        <PupilViewsSubjectListing subjects={curriculumData} />
-      </AppLayout>
-    </TeacherBrowseAnalyticsStoreProvider>
+      <PupilViewsSubjectListing subjects={curriculumData} />
+    </AppLayout>
   );
 };
 

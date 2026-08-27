@@ -30,6 +30,7 @@ jest.mock("next/navigation", () => ({
     push: jest.fn(),
   }),
   useSearchParams: () => useSearchParamsMock(),
+  usePathname: () => "/teachers/programmes/english-secondary-ocr/units",
 }));
 
 Object.defineProperty(globalThis, "history", {
