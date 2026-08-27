@@ -406,7 +406,7 @@ export async function getFile({
       examboardTitle: data.combinedCurriculumData?.examboardTitle,
       childSubjectSlug,
       tierSlug,
-      prefix: "Curriculum downloads",
+      prefix: "Curriculum",
     });
   } else if (files.length === 1 && files[0]) {
     outputBuffer = files[0].buffer;
