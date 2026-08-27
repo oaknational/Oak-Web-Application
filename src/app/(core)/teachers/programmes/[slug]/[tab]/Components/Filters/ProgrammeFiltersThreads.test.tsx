@@ -7,6 +7,13 @@ import { createThread } from "@/fixtures/curriculum/thread";
 import { createUnit } from "@/fixtures/curriculum/unit";
 import { CurriculumUnitsFormattedData } from "@/pages-helpers/curriculum/docx/tab-helpers";
 import { CurriculumFilters } from "@/utils/curriculum/types";
+import { useBrowseFilters } from "@/context/BrowseFilters";
+
+jest.mock("@/context/BrowseFilters", () => ({
+  useBrowseFilters: jest.fn(),
+}));
+
+const mockUseBrowseFilters = jest.mocked(useBrowseFilters);
 
 const render = renderWithProvidersByName(["oakTheme", "theme"]);
 
@@ -60,12 +67,12 @@ const defaultFilters: CurriculumFilters = {
 
 describe("ProgrammeFiltersThreads", () => {
   it("renders the legend and all thread options", () => {
+    mockUseBrowseFilters.mockReturnValue({
+      filters: defaultFilters,
+      onChangeFilters: () => {},
+    });
     const { getAllByRole, getByText } = render(
-      <ProgrammeFiltersThreads
-        filters={defaultFilters}
-        onChangeFilters={() => {}}
-        data={unitsData}
-      />,
+      <ProgrammeFiltersThreads data={unitsData} />,
     );
 
     expect(getByText("Highlight a thread")).toBeInTheDocument();
@@ -79,13 +86,11 @@ describe("ProgrammeFiltersThreads", () => {
   });
 
   it("renders 'None highlighted' option", () => {
-    const { getByRole } = render(
-      <ProgrammeFiltersThreads
-        filters={defaultFilters}
-        onChangeFilters={() => {}}
-        data={unitsData}
-      />,
-    );
+    mockUseBrowseFilters.mockReturnValue({
+      filters: defaultFilters,
+      onChangeFilters: () => {},
+    });
+    const { getByRole } = render(<ProgrammeFiltersThreads data={unitsData} />);
 
     expect(
       getByRole("radio", { name: /None highlighted/i }),
@@ -93,12 +98,12 @@ describe("ProgrammeFiltersThreads", () => {
   });
 
   it("renders with selected thread and shows highlighted count", () => {
+    mockUseBrowseFilters.mockReturnValue({
+      filters: { ...defaultFilters, threads: ["thread1"] },
+      onChangeFilters: () => {},
+    });
     const { getAllByRole, getByText } = render(
-      <ProgrammeFiltersThreads
-        filters={{ ...defaultFilters, threads: ["thread1"] }}
-        onChangeFilters={() => {}}
-        data={unitsData}
-      />,
+      <ProgrammeFiltersThreads data={unitsData} />,
     );
 
     const radios = getAllByRole("radio") as HTMLInputElement[];
@@ -109,12 +114,12 @@ describe("ProgrammeFiltersThreads", () => {
 
   it("calls onChangeFilters when selecting a thread", () => {
     const onChangeFilters = jest.fn();
+    mockUseBrowseFilters.mockReturnValue({
+      filters: defaultFilters,
+      onChangeFilters,
+    });
     const { getAllByRole } = render(
-      <ProgrammeFiltersThreads
-        filters={defaultFilters}
-        onChangeFilters={onChangeFilters}
-        data={unitsData}
-      />,
+      <ProgrammeFiltersThreads data={unitsData} />,
     );
 
     const radios = getAllByRole("radio") as HTMLInputElement[];
@@ -132,12 +137,12 @@ describe("ProgrammeFiltersThreads", () => {
 
   it("calls onChangeFilters with empty threads when selecting None", () => {
     const onChangeFilters = jest.fn();
+    mockUseBrowseFilters.mockReturnValue({
+      filters: { ...defaultFilters, threads: ["thread1"] },
+      onChangeFilters,
+    });
     const { getAllByRole } = render(
-      <ProgrammeFiltersThreads
-        filters={{ ...defaultFilters, threads: ["thread1"] }}
-        onChangeFilters={onChangeFilters}
-        data={unitsData}
-      />,
+      <ProgrammeFiltersThreads data={unitsData} />,
     );
 
     const radios = getAllByRole("radio") as HTMLInputElement[];

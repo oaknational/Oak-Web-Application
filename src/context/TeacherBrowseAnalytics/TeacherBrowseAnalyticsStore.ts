@@ -83,7 +83,6 @@ export type TeacherBrowseAnalyticsStore = {
       yearGroupName: string;
       yearGroupSlug: string;
     }) => void;
-
     lessonMediaClipsStarted: (data: {
       mediaClipsButtonName: MediaClipsButtonNameValueType;
       learningCycle: string | null;
