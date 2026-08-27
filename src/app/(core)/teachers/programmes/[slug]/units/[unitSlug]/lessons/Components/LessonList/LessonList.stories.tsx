@@ -11,7 +11,6 @@ import SaveCountDecorator from "@/storybook-decorators/SaveCountDecorator";
 import lessonListingFixture, {
   lessonsWithUnpublishedContent,
 } from "@/node-lib/curriculum-api-2023/fixtures/lessonListing.fixture";
-import TeacherBrowseAnalyticsDecorator from "@/storybook-decorators/TeacherBrowseAnalyticsDecorator";
 
 const meta: Meta<typeof LessonList> = {
   component: LessonList,
@@ -25,7 +24,6 @@ const meta: Meta<typeof LessonList> = {
   decorators: [
     SaveCountDecorator,
     NotificationsDecorator,
-    TeacherBrowseAnalyticsDecorator,
     (Story) => (
       <ClerkProvider>
         <Story />
