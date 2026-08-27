@@ -472,6 +472,8 @@ export const ProgrammeDownloads = ({
                             isTrailingIcon={true}
                             iconName="send"
                             href="https://share.hsforms.com/1fzfnNn2GTYaLK5bf87fiagbvumd"
+                            rel="noreferrer"
+                            target="_blank"
                           >
                             Request an accessible version
                           </OakLink>
