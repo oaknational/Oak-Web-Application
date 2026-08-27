@@ -1,4 +1,8 @@
-import { browseFilterKeys, BrowseFilters } from "../types";
+import {
+  browseFilterKeys,
+  browseFilterQueryParamMap,
+  BrowseFilters,
+} from "../types";
 
 import { getApplicableBrowseFilters } from "./getApplicableBrowseFilters";
 
@@ -14,8 +18,8 @@ export function addFiltersToSearchString(
   const params = new URLSearchParams(search);
   const query = getApplicableBrowseFilters(filters, defaultFilter);
 
-  for (const qsKey of browseFilterKeys) {
-    params.delete(qsKey);
+  for (const key of browseFilterKeys) {
+    params.delete(browseFilterQueryParamMap[key]);
   }
   for (const [qsKey, value] of Object.entries(query)) {
     params.set(qsKey, value);
