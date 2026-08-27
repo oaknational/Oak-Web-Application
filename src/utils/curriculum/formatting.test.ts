@@ -751,7 +751,6 @@ describe("getFilename", () => {
     {
       outputs: {
         filename: "Curriculum-plan-English-Primary.docx",
-        archive: "Curriculum-plan-English-Primary.zip",
         archiveFilename: "Curriculum-plan.docx",
       },
       input: {
@@ -764,7 +763,6 @@ describe("getFilename", () => {
     {
       outputs: {
         filename: "Curriculum-plan-Maths-Secondary-Foundation.docx",
-        archive: "Curriculum-plan-Maths-Secondary-Foundation.zip",
         archiveFilename: "Curriculum-plan.docx",
       },
       input: {
@@ -777,7 +775,6 @@ describe("getFilename", () => {
     {
       outputs: {
         filename: "Curriculum-plan-Maths-Secondary-Higher.docx",
-        archive: "Curriculum-plan-Maths-Secondary-Higher.zip",
         archiveFilename: "Curriculum-plan.docx",
       },
       input: {
@@ -791,7 +788,6 @@ describe("getFilename", () => {
     {
       outputs: {
         filename: "Curriculum-plan-History-Secondary-AQA.docx",
-        archive: "Curriculum-plan-History-Secondary-AQA.zip",
         archiveFilename: "Curriculum-plan.docx",
       },
       input: {
@@ -805,14 +801,40 @@ describe("getFilename", () => {
     {
       outputs: {
         filename: "Curriculum-plan-Biology-Secondary-AQA.docx",
-        archive: "Curriculum-plan-Biology-Secondary-AQA.zip",
         archiveFilename: "Curriculum-plan.docx",
       },
       input: {
         subjectTitle: "Science",
         phaseTitle: "Secondary",
         examboardTitle: "AQA",
-        childSubjectSlug: "Biology",
+        childSubjectSlug: "biology",
+        prefix: "Curriculum plan",
+      },
+    },
+    // With exam board, child subject slug & tier
+    {
+      outputs: {
+        filename: "Curriculum-plan-Combined-Science-Secondary-AQA-Higher.docx",
+        archiveFilename: "Curriculum-plan.docx",
+      },
+      input: {
+        subjectTitle: "Science",
+        phaseTitle: "Secondary",
+        examboardTitle: "AQA",
+        childSubjectSlug: "combined-science",
+        tierSlug: "Higher",
+        prefix: "Curriculum plan",
+      },
+    },
+    // RSHE (PSHE)
+    {
+      outputs: {
+        filename: "Curriculum-plan-RSHE-(PSHE)-Primary.docx",
+        archiveFilename: "Curriculum-plan.docx",
+      },
+      input: {
+        subjectTitle: "RSHE (PSHE)",
+        phaseTitle: "Primary",
         prefix: "Curriculum plan",
       },
     },
@@ -821,14 +843,87 @@ describe("getFilename", () => {
       expect(getFilename("docx", input)).toEqual(outputs.filename);
     });
 
-    it(`./${outputs.archive} — .zip`, () => {
-      expect(getFilename("zip", input)).toEqual(outputs.archive);
-    });
-
-    it(`./${outputs.archive} — .docx within archive`, () => {
+    it(`./${outputs.archiveFilename} — .docx within archive`, () => {
       expect(getFilename("docx", { ...input, isWithinArchive: true })).toEqual(
         outputs.archiveFilename,
       );
+    });
+  }
+
+  for (const { input, outputs } of [
+    // Basic
+    {
+      outputs: {
+        archive: "Curriculum-English-Primary.zip",
+      },
+      input: {
+        subjectTitle: "English",
+        phaseTitle: "Primary",
+        prefix: "Curriculum",
+      },
+    },
+    // With tier
+    {
+      outputs: {
+        archive: "Curriculum-Maths-Secondary-Foundation.zip",
+      },
+      input: {
+        subjectTitle: "Maths",
+        phaseTitle: "Secondary",
+        tierSlug: "Foundation",
+        prefix: "Curriculum",
+      },
+    },
+    {
+      outputs: {
+        archive: "Curriculum-Maths-Secondary-Higher.zip",
+      },
+      input: {
+        subjectTitle: "Maths",
+        phaseTitle: "Secondary",
+        tierSlug: "Higher",
+        prefix: "Curriculum",
+      },
+    },
+    // With exam board
+    {
+      outputs: {
+        archive: "Curriculum-History-Secondary-AQA.zip",
+      },
+      input: {
+        subjectTitle: "History",
+        phaseTitle: "Secondary",
+        examboardTitle: "AQA",
+        prefix: "Curriculum",
+      },
+    },
+    // With exam board & child subject slug
+    {
+      outputs: {
+        archive: "Curriculum-Biology-Secondary-AQA.zip",
+      },
+      input: {
+        subjectTitle: "Science",
+        phaseTitle: "Secondary",
+        examboardTitle: "AQA",
+        childSubjectSlug: "biology",
+        prefix: "Curriculum",
+      },
+    },
+    // With exam board, child subject slug & tier
+    {
+      outputs: {
+        archive: "Curriculum-RSHE-(PSHE)-Primary.zip",
+      },
+      input: {
+        subjectTitle: "RSHE (PSHE)",
+        phaseTitle: "Primary",
+        prefix: "Curriculum",
+      },
+    },
+  ]) {
+    it(`./${outputs.archive} — .zip`, () => {
+      expect(getFilename("zip", input)).toEqual(outputs.archive);
     });
   }
 });
