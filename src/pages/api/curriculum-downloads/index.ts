@@ -18,6 +18,7 @@ import { Ks4Option } from "@/node-lib/curriculum-api-2023/queries/curriculumPhas
 import { CombinedCurriculumData } from "@/utils/curriculum/types";
 import { generateHash } from "@/pages-helpers/curriculum/docx/docx";
 import {
+  DOWNLOAD_TYPE_LABELS,
   DOWNLOAD_TYPES,
   DownloadTypes,
 } from "@/components/CurriculumComponents/CurriculumDownloadView/helper";
@@ -252,6 +253,11 @@ export async function getFile({
   childSubjectSlug?: string;
   mvRefreshTime?: number;
 }) {
+  // Temp to ensure no implementation guides are included before release
+  types = types.filter(
+    (type) => type === "curriculumPlan" || type === "nationalCurriculum",
+  );
+
   const data = await getData({
     subjectSlug,
     phaseSlug,
@@ -272,7 +278,7 @@ export async function getFile({
 
   const allHandlers = [
     {
-      type: "curriculumPlans",
+      type: "curriculumPlan",
       contentType:
         "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
       handler: docx,
@@ -343,7 +349,9 @@ export async function getFile({
               examboardTitle: data.combinedCurriculumData?.examboardTitle,
               childSubjectSlug,
               tierSlug,
-              prefix: type,
+              prefix:
+                DOWNLOAD_TYPE_LABELS.find(({ id }) => id === type)?.label ??
+                type,
             });
           },
         };
@@ -450,7 +458,7 @@ export default async function handler(
 
   // Check if we should redirect (new cache-hit)
   if (
-    (["curriculumPlans", "nationalCurriculum"] as const).some((type) =>
+    (["curriculumPlan", "nationalCurriculum"] as const).some((type) =>
       types.includes(type),
     ) &&
     mvRefreshTimeParsed !== actualMvRefreshTime

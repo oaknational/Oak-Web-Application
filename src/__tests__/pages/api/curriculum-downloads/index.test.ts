@@ -226,7 +226,7 @@ describe("/api/curriculum-downloads", () => {
   it("redirect if old cache slug", async () => {
     const { req, res } = createNextApiMocks({
       query: {
-        types: ["curriculumPlans"],
+        types: ["curriculumPlan"],
         mvRefreshTime: (LAST_REFRESH.getTime() - 1000).toString(),
         subjectSlug: "english",
         phaseSlug: "secondary",
@@ -243,7 +243,7 @@ describe("/api/curriculum-downloads", () => {
     it("error is invalid", async () => {
       const { req, res } = createNextApiMocks({
         query: {
-          types: ["curriculumPlans"],
+          types: ["curriculumPlan"],
           mvRefreshTime: LAST_REFRESH_AS_TIME.toString(),
           subjectSlug: "INVALID",
           phaseSlug: "INVALID",
@@ -261,7 +261,7 @@ describe("/api/curriculum-downloads", () => {
     curriculumSequenceMock.mockResolvedValue(mockSequenceData);
     const { req, res } = createNextApiMocks({
       query: {
-        types: ["curriculumPlans"],
+        types: ["curriculumPlan"],
         mvRefreshTime: LAST_REFRESH_AS_TIME.toString(),
         subjectSlug: "english",
         phaseSlug: "secondary",
@@ -302,7 +302,7 @@ describe("/api/curriculum-downloads", () => {
     curriculumSequenceMock.mockResolvedValue(mockSequenceData);
     const { req, res } = createNextApiMocks({
       query: {
-        types: ["curriculumPlans", "nationalCurriculum"],
+        types: ["curriculumPlan", "nationalCurriculum"],
         mvRefreshTime: LAST_REFRESH_AS_TIME.toString(),
         subjectSlug: "english",
         phaseSlug: "secondary",
@@ -321,7 +321,7 @@ describe("/api/curriculum-downloads", () => {
     curriculumSequenceMock.mockRejectedValue(new Error("Missing"));
     const { req, res } = createNextApiMocks({
       query: {
-        types: ["curriculumPlans"],
+        types: ["curriculumPlan"],
         mvRefreshTime: LAST_REFRESH_AS_TIME.toString(),
         subjectSlug: "english",
         phaseSlug: "secondary",
@@ -338,7 +338,7 @@ describe("/api/curriculum-downloads", () => {
     curriculumSequenceMock.mockRejectedValue(new Error("Missing"));
     const { req, res } = createNextApiMocks({
       query: {
-        types: ["curriculumPlans"],
+        types: ["curriculumPlan"],
         mvRefreshTime: LAST_REFRESH_AS_TIME.toString(),
         subjectSlug: "english",
         phaseSlug: "primary",
@@ -353,7 +353,7 @@ describe("/api/curriculum-downloads", () => {
   it("returns 404 if state is new", async () => {
     const { req, res } = createNextApiMocks({
       query: {
-        types: ["curriculumPlans"],
+        types: ["curriculumPlan"],
         mvRefreshTime: LAST_REFRESH_AS_TIME.toString(),
         subjectSlug: "english",
         phaseSlug: "secondary",
@@ -366,21 +366,21 @@ describe("/api/curriculum-downloads", () => {
     expect(res._getStatusCode()).toBe(404);
   });
 
-  test("sanity implementation toolkit documents", async () => {
-    curriculumSequenceMock.mockResolvedValue(mockSequenceData);
-    const { req, res } = createNextApiMocks({
-      query: {
-        types: ["curriculumQuality"],
-        mvRefreshTime: LAST_REFRESH_AS_TIME.toString(),
-        subjectSlug: "english",
-        phaseSlug: "secondary",
-        state: "published",
-      },
-    });
-    await handler(req, res);
+  // test("sanity implementation toolkit documents", async () => {
+  //   curriculumSequenceMock.mockResolvedValue(mockSequenceData);
+  //   const { req, res } = createNextApiMocks({
+  //     query: {
+  //       types: ["curriculumQuality"],
+  //       mvRefreshTime: LAST_REFRESH_AS_TIME.toString(),
+  //       subjectSlug: "english",
+  //       phaseSlug: "secondary",
+  //       state: "published",
+  //     },
+  //   });
+  //   await handler(req, res);
 
-    expect(fetch).toHaveBeenCalledTimes(1);
-    expect(res._getStatusCode()).toBe(200);
-    expect(res.getHeader("Content-Type")).toBe("application/pdf");
-  });
+  //   expect(fetch).toHaveBeenCalledTimes(1);
+  //   expect(res._getStatusCode()).toBe(200);
+  //  expect(res.getHeader("Content-Type")).toBe("application/pdf");
+  // });
 });

@@ -1,3 +1,52 @@
+# [1.1168.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1167.1...v1.1168.0) (2026-08-27)
+
+
+### Bug Fixes
+
+* open in new tab/window ([93f5099](https://github.com/oaknational/Oak-Web-Application/commit/93f5099bd0d32227dd7454ad10e94bf463afad31))
+
+
+### Features
+
+* hook up "Request an accessible version" link ([6356124](https://github.com/oaknational/Oak-Web-Application/commit/6356124446998d5b9432092a4f5f3d2912391267))
+
+## [1.1167.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.1167.0...v1.1167.1) (2026-08-27)
+
+
+### Bug Fixes
+
+* exclude implementation guides from download ([d9fa963](https://github.com/oaknational/Oak-Web-Application/commit/d9fa96372b723aff78e4468065d5f67e918fb61e))
+
+# [1.1167.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1166.0...v1.1167.0) (2026-08-26)
+
+
+### Bug Fixes
+
+* explainer section spacing and video border ([487f8c5](https://github.com/oaknational/Oak-Web-Application/commit/487f8c58cfd32b8195b6eb4daab0a5b34b72dbea))
+
+
+### Features
+
+* render video in explainer portable text ([4c21015](https://github.com/oaknational/Oak-Web-Application/commit/4c2101512b547e7df09514d1b0f0caf57168d397))
+* update gql types ([2e808b3](https://github.com/oaknational/Oak-Web-Application/commit/2e808b35878f849b710456bb896a7ed7286e17ae))
+* update spacing ([3cc5315](https://github.com/oaknational/Oak-Web-Application/commit/3cc5315ee398a90748ae5702cddb510c6f8ee4f6))
+
+# [1.1166.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1165.2...v1.1166.0) (2026-08-26)
+
+
+### Bug Fixes
+
+* add missing prop to implementation callout tests ([900247e](https://github.com/oaknational/Oak-Web-Application/commit/900247e490c87d74d5e05aeafaf289670cf8cbd5))
+* teacher browse track function typing ([4d6e9cf](https://github.com/oaknational/Oak-Web-Application/commit/4d6e9cf6e5e3a7df29a4d129d5214b95d88b4a3f))
+* update file ids in tests ([a1d9c25](https://github.com/oaknational/Oak-Web-Application/commit/a1d9c25165c69c864fa9e187dc873fcebf1554ef))
+
+
+### Features
+
+* pass list of downloaded resources to avo ([15dd2fa](https://github.com/oaknational/Oak-Web-Application/commit/15dd2fac13d963a6273f0947c3ca1224a98a2bf6))
+* track clicking implementation toolkit banner ([f8192c9](https://github.com/oaknational/Oak-Web-Application/commit/f8192c9585577b5466282eedbd186412097ecb28))
+* use component type to track curriculum resources accessed ([4bd7207](https://github.com/oaknational/Oak-Web-Application/commit/4bd7207541038c3b37b4cc2be1a6d281e2d1675f))
+
 ## [1.1165.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.1165.1...v1.1165.2) (2026-08-26)
 
 
