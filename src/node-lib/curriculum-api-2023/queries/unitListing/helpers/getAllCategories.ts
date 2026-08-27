@@ -54,19 +54,24 @@ export const getAllCategories = (
   return categories.sort((a, b) => a.label.localeCompare(b.label));
 };
 
+const applySlugToUnit = (
+  categories: SubjectCategory[],
+  unit: GroupedUnitsSchema[number][number],
+) => {
+  const newUnit = { ...unit };
+  if (newUnit.subjectCategories) {
+    newUnit.subjectCategories = newUnit.subjectCategories.map((sc) => {
+      const category = categories.find((c) => c.label === sc.label);
+      return { ...sc, slug: category?.slug };
+    });
+  }
+  return newUnit;
+};
+
 export const applySlugsToUnitCategories = (
   categories: SubjectCategory[],
   units: GroupedUnitsSchema,
 ) =>
   units.map((groupedUnits) =>
-    groupedUnits.map((unit) => {
-      const newUnit = { ...unit };
-      if (newUnit.subjectCategories) {
-        newUnit.subjectCategories = newUnit.subjectCategories.map((sc) => {
-          const category = categories.find((c) => c.label === sc.label);
-          return { ...sc, slug: category?.slug };
-        });
-      }
-      return newUnit;
-    }),
+    groupedUnits.map((unit) => applySlugToUnit(categories, unit)),
   );
