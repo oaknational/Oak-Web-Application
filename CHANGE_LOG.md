@@ -1,3 +1,17 @@
+# [1.1167.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1166.0...v1.1167.0) (2026-08-26)
+
+
+### Bug Fixes
+
+* explainer section spacing and video border ([487f8c5](https://github.com/oaknational/Oak-Web-Application/commit/487f8c58cfd32b8195b6eb4daab0a5b34b72dbea))
+
+
+### Features
+
+* render video in explainer portable text ([4c21015](https://github.com/oaknational/Oak-Web-Application/commit/4c2101512b547e7df09514d1b0f0caf57168d397))
+* update gql types ([2e808b3](https://github.com/oaknational/Oak-Web-Application/commit/2e808b35878f849b710456bb896a7ed7286e17ae))
+* update spacing ([3cc5315](https://github.com/oaknational/Oak-Web-Application/commit/3cc5315ee398a90748ae5702cddb510c6f8ee4f6))
+
 # [1.1166.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1165.2...v1.1166.0) (2026-08-26)
 
 
