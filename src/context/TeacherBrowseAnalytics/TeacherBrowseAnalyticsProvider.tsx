@@ -22,6 +22,7 @@ import useJourneySlugsContext from "./utils/getJourneySlugsContext";
 
 import { ServicePolicyMap } from "@/browser-lib/cookie-consent/ServicePolicyMap";
 import useSelectedArea from "@/hooks/useSelectedArea";
+import type { TrackFns } from "@/context/Analytics/AnalyticsProvider";
 
 export type TeacherBrowseAnalyticsStoreApi = ReturnType<
   typeof createTeacherBrowseAnalyticsStore
@@ -98,15 +99,29 @@ export const useTeacherBrowseAnalytics = <T,>(
   const teacherBrowseAnalyticsStoreContext = useContext(
     TeacherBrowseAnalyticsStoreContext,
   );
+
+  // Hooks must run unconditionally, so a store is always needed here. In the
+  // pupils area there is no provider, so lazily create an inert one to satisfy
+  // useStore without throwing or tracking anything.
+  const [fallbackStore] = useState(() =>
+    createTeacherBrowseAnalyticsStore({
+      programmeState: null,
+      avo: new Proxy({} as TrackFns, { get: () => () => undefined }),
+      journeyId: null,
+      accessLevel: "homepage",
+    }),
+  );
+
   if (activeArea === "TEACHERS" && !teacherBrowseAnalyticsStoreContext) {
     throw new Error(
       `useTeacherBrowseAnalyticsStore must be used within TeacherBrowseAnalyticsStoreProvider`,
     );
   }
 
-  // The provider should be there but if in a pupil area we don't want to throw an error
   return useStore(
-    teacherBrowseAnalyticsStoreContext as TeacherBrowseAnalyticsStoreApi,
+    activeArea === "PUPILS"
+      ? fallbackStore
+      : (teacherBrowseAnalyticsStoreContext as TeacherBrowseAnalyticsStoreApi),
     selector,
   );
 };
