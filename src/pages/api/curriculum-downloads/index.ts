@@ -253,6 +253,11 @@ export async function getFile({
   childSubjectSlug?: string;
   mvRefreshTime?: number;
 }) {
+  // Temp to ensure no implementation guides are included before release
+  types = types.filter(
+    (type) => type === "curriculumPlan" || type === "nationalCurriculum",
+  );
+
   const data = await getData({
     subjectSlug,
     phaseSlug,
