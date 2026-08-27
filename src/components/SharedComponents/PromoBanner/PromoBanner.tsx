@@ -31,7 +31,7 @@ const PromoBanner: FC<PromoBannerProps> = ({
         $alignItems={"center"}
         $pv={"spacing-8"}
         $ph={["spacing-8", "spacing-12"]}
-        $bb={"border-solid-l"}
+        $bb={"border-solid-m"}
         $borderColor={"border-primary"}
       >
         <OakFlex

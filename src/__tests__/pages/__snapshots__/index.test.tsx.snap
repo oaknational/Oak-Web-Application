@@ -609,7 +609,7 @@ exports[`Teachers Page Page component renders 1`] = `
             role="banner"
           >
             <div
-              class="sc-aXZVg sc-gEvEer NHnkw jMLdOa"
+              class="sc-aXZVg sc-gEvEer eHqUtn jMLdOa"
             >
               <div
                 class="sc-aXZVg sc-gEvEer fSjzPB cACqPs"
@@ -617,7 +617,15 @@ exports[`Teachers Page Page component renders 1`] = `
                 <div
                   class="sc-aXZVg sc-gEvEer uyUcC jVmVJV"
                 >
-                  Oak is now used in 72% of schools
+                  <p
+                    class="sc-ikkxIA fqNJfa"
+                  >
+                    Oak is now used in 
+                    <strong>
+                      72%
+                    </strong>
+                     of schools
+                  </p>
                 </div>
                 <div
                   class="sc-aXZVg sc-gEvEer sc-jEACwC hCgIGG iDBIXi eitCDZ"
