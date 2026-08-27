@@ -1,3 +1,16 @@
+# [1.1169.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1168.1...v1.1169.0) (2026-08-27)
+
+
+### Bug Fixes
+
+* border thickness and stat bold ([1381693](https://github.com/oaknational/Oak-Web-Application/commit/138169338700c503d22b6b036ab542226165b8df))
+
+
+### Features
+
+* remove hand drawn border from promo banner ([15b385d](https://github.com/oaknational/Oak-Web-Application/commit/15b385d39d40c93a23e3911b274f409a3633dc49))
+* replace myth busting with oaks impact banner ([8393d8b](https://github.com/oaknational/Oak-Web-Application/commit/8393d8b07c27bf7d7d019ebdcccb44592b01cc06))
+
 ## [1.1168.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.1168.0...v1.1168.1) (2026-08-27)
 
 
