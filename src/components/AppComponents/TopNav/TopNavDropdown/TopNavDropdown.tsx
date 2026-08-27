@@ -369,7 +369,7 @@ const TeachersLinksSection = ({
                     ? `${link.title} (opens in a new tab)`
                     : undefined
                 }
-                width={"spacing-160"}
+                width={"max-content"}
                 id={buttonId}
                 onClick={onClose}
                 onKeyDown={(e) => focusManager.handleTabKeyDown(e, buttonId)}

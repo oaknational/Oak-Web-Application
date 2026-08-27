@@ -34,19 +34,16 @@ describe("SubNav (Teachers)", () => {
     jest.clearAllMocks();
   });
 
-  it("renders Ai experiments link as a link element with external icon", () => {
+  it("renders AI experiments as a button", () => {
     render(<SubNav {...defaultProps} />);
 
-    const aiExperimentsLink = screen.getByRole("link", {
-      name: "Ai experiments (this will open in a new tab)",
+    const aiExperimentsButton = screen.getByRole("button", {
+      name: "AI experiments",
     });
 
-    expect(aiExperimentsLink).toBeInTheDocument();
-    expect(aiExperimentsLink).toHaveAttribute(
-      "href",
-      "https://labs.thenational.academy",
-    );
-    expect(aiExperimentsLink).toHaveAttribute("target", "_blank");
+    expect(aiExperimentsButton).toBeInTheDocument();
+    expect(aiExperimentsButton).not.toHaveAttribute("href");
+    expect(aiExperimentsButton).toHaveAttribute("aria-haspopup", "true");
   });
 
   it("renders Primary as a button", () => {
