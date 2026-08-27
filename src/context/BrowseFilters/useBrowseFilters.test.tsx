@@ -23,6 +23,7 @@ const mockSearchParams = new URLSearchParams("");
 jest.mock("next/navigation", () => ({
   __esModule: true,
   useSearchParams: () => mockSearchParams,
+  usePathname: () => "/teachers",
 }));
 
 const defaultFilter = createFilter({
