@@ -59,6 +59,9 @@ export type TeacherBrowseAnalyticsStore = {
   track: {
     createTeachingMaterialsInitiated: (props: { isLoggedIn: boolean }) => void;
     curriculumExplainerExplored: () => void;
+    curriculumResourcesAccessed: (data: {
+      componentType: ComponentTypeValueType;
+    }) => void;
     curriculumResourcesDownloaded: (data: ResourceFormValues) => void;
     curriculumResourcesDownloadRefined: (data: {
       tierSlug?: string | null;
@@ -79,9 +82,6 @@ export type TeacherBrowseAnalyticsStore = {
       lessonReleaseDate: string;
       yearGroupName: string;
       yearGroupSlug: string;
-    }) => void;
-    curriculumResourcesAccessed: (data: {
-      componentType: ComponentTypeValueType;
     }) => void;
     lessonMediaClipsStarted: (data: {
       mediaClipsButtonName: MediaClipsButtonNameValueType;
@@ -274,34 +274,6 @@ export const createTeacherBrowseAnalyticsStore = (
           product: "curriculum resources",
         });
       },
-      curriculumResourcesDownloadRefined: (data) => {
-        const { avo, programmeState, journeyId } = get();
-        const { tierSlug, childSubjectSlug } = data;
-
-        const requiredProgrammeState = requireProgrammeState(
-          "curriculumResourcesDownloadRefined",
-          programmeState,
-        );
-        if (!requiredProgrammeState) {
-          return;
-        }
-
-        const analyticsProperties = getProgrammeAnalyticsProperties(
-          requiredProgrammeState,
-        );
-
-        avo.curriculumResourcesDownloadRefined({
-          ...coreProperties,
-          ...analyticsProperties,
-          journeyId,
-          engagementIntent: "refine",
-          componentType: "download_tab",
-          product: "curriculum resources",
-          childSubjectSlug: childSubjectSlug || "",
-          childSubjectName: convertUnitSlugToTitle(childSubjectSlug || ""),
-          learningTier: capitalize(tierSlug || "") as LearningTierValueType,
-        });
-      },
       curriculumResourcesAccessed: ({ componentType }) => {
         const { avo, programmeState } = get();
 
@@ -361,6 +333,34 @@ export const createTeacherBrowseAnalyticsStore = (
           schoolUrn: getSchoolUrn(data.school, schoolOption),
           keyStageSlug: null,
           keyStageTitle: null,
+        });
+      },
+      curriculumResourcesDownloadRefined: (data) => {
+        const { avo, programmeState, journeyId } = get();
+        const { tierSlug, childSubjectSlug } = data;
+
+        const requiredProgrammeState = requireProgrammeState(
+          "curriculumResourcesDownloadRefined",
+          programmeState,
+        );
+        if (!requiredProgrammeState) {
+          return;
+        }
+
+        const analyticsProperties = getProgrammeAnalyticsProperties(
+          requiredProgrammeState,
+        );
+
+        avo.curriculumResourcesDownloadRefined({
+          ...coreProperties,
+          ...analyticsProperties,
+          journeyId,
+          engagementIntent: "refine",
+          componentType: "download_tab",
+          product: "curriculum resources",
+          childSubjectSlug: childSubjectSlug || "",
+          childSubjectName: convertUnitSlugToTitle(childSubjectSlug || ""),
+          learningTier: capitalize(tierSlug || "") as LearningTierValueType,
         });
       },
       lessonAccessed: ({
@@ -439,6 +439,37 @@ export const createTeacherBrowseAnalyticsStore = (
           componentType: "go_to_media_clips_page_button",
         });
       },
+      lessonResourcesDownloaded: (data) => {
+        const { avo, programmeState, journeyId } = get();
+
+        const lessonState = requireLessonState(
+          "lessonResourcesDownloaded",
+          programmeState,
+        );
+        if (!lessonState) {
+          return;
+        }
+
+        const analyticsProperties = getLessonAnalyticsProperties(lessonState);
+
+        const formattedSchool = getFormattedDetailsForTracking({
+          school: data.school,
+          selectedResources: data.selectedResources,
+        });
+
+        avo.lessonResourcesDownloaded({
+          ...coreProperties,
+          ...analyticsProperties,
+          ...formattedSchool,
+          journeyId,
+          componentType: "lesson_download_button",
+          engagementIntent: "use",
+          emailSupplied: !!data.email,
+          onwardContent: data.onwardContent,
+          resourceType: formattedSchool.selectedResourcesForTracking,
+          totalDownloadableResources: data.totalDownloadableResources,
+        });
+      },
       lessonResourceDownloadStarted: (data) => {
         const { avo, programmeState, journeyId } = get();
 
@@ -469,37 +500,6 @@ export const createTeacherBrowseAnalyticsStore = (
           journeyId,
           ...coreProperties,
           ...analyticsProperties,
-        });
-      },
-      lessonResourcesDownloaded: (data) => {
-        const { avo, programmeState, journeyId } = get();
-
-        const lessonState = requireLessonState(
-          "lessonResourcesDownloaded",
-          programmeState,
-        );
-        if (!lessonState) {
-          return;
-        }
-
-        const analyticsProperties = getLessonAnalyticsProperties(lessonState);
-
-        const formattedSchool = getFormattedDetailsForTracking({
-          school: data.school,
-          selectedResources: data.selectedResources,
-        });
-
-        avo.lessonResourcesDownloaded({
-          ...coreProperties,
-          ...analyticsProperties,
-          ...formattedSchool,
-          journeyId,
-          componentType: "lesson_download_button",
-          engagementIntent: "use",
-          emailSupplied: !!data.email,
-          onwardContent: data.onwardContent,
-          resourceType: formattedSchool.selectedResourcesForTracking,
-          totalDownloadableResources: data.totalDownloadableResources,
         });
       },
       lessonShareStarted: () => {

@@ -24,6 +24,7 @@ import { getFactorDataFromSlug } from "@/pages-helpers/pupil/options-pages/getFa
 import useAnalytics from "@/context/Analytics/useAnalytics";
 import { TopNavProps } from "@/components/AppComponents/TopNav/TopNav";
 import AppLayout from "@/components/AppComponents/AppLayout";
+import { TeacherBrowseAnalyticsStoreProvider } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
 
 export type PupilViewsProgrammeListingProps = {
   programmes: PupilProgrammeListingData[];
@@ -260,45 +261,50 @@ export const PupilViewsProgrammeListing = ({
   );
 
   return (
-    <AppLayout
-      seoProps={{
-        ...getSeoProps({
-          title: `${subjectDescription}, ${phaseSlug}, ${yearDescriptions} - Programme listing`,
-          description: `Programme listing for ${subjectDescription}, ${phaseSlug}, ${yearDescriptions}`,
-        }),
-        noIndex: true,
-        noFollow: false,
-      }}
-      topNavProps={topNav}
+    <TeacherBrowseAnalyticsStoreProvider
+      programmeState={null}
+      accessLevel="homepage"
     >
-      {" "}
-      <OakPupilJourneyLayout
-        sectionName={"tier-listing"}
-        phase={phaseSlug}
-        topNavSlot={topNavSlot()}
+      <AppLayout
+        seoProps={{
+          ...getSeoProps({
+            title: `${subjectDescription}, ${phaseSlug}, ${yearDescriptions} - Programme listing`,
+            description: `Programme listing for ${subjectDescription}, ${phaseSlug}, ${yearDescriptions}`,
+          }),
+          noIndex: true,
+          noFollow: false,
+        }}
+        topNavProps={topNav}
       >
-        <OakBox $mb={"spacing-32"}>
+        {" "}
+        <OakPupilJourneyLayout
+          sectionName={"tier-listing"}
+          phase={phaseSlug}
+          topNavSlot={topNavSlot()}
+        >
           <OakBox $mb={"spacing-32"}>
-            <OakPupilJourneyProgrammeOptions
-              optionTitleSlot={optionTitleSlot}
-              phase={phaseSlug}
-              titleSlot={
-                <OakPupilJourneyHeader
-                  iconBackground={phaseSlug}
-                  iconName={
-                    isValidIconName(iconSlug) ? iconSlug : "question-mark"
-                  }
-                  title={subjectDescription}
-                  breadcrumbs={breadcrumbs}
-                />
-              }
-            >
-              <BrowseOptions />
-            </OakPupilJourneyProgrammeOptions>
+            <OakBox $mb={"spacing-32"}>
+              <OakPupilJourneyProgrammeOptions
+                optionTitleSlot={optionTitleSlot}
+                phase={phaseSlug}
+                titleSlot={
+                  <OakPupilJourneyHeader
+                    iconBackground={phaseSlug}
+                    iconName={
+                      isValidIconName(iconSlug) ? iconSlug : "question-mark"
+                    }
+                    title={subjectDescription}
+                    breadcrumbs={breadcrumbs}
+                  />
+                }
+              >
+                <BrowseOptions />
+              </OakPupilJourneyProgrammeOptions>
+            </OakBox>
+            <SignpostTeachersInlineBanner onClose={setFocusAfterClose} />
           </OakBox>
-          <SignpostTeachersInlineBanner onClose={setFocusAfterClose} />
-        </OakBox>
-      </OakPupilJourneyLayout>
-    </AppLayout>
+        </OakPupilJourneyLayout>
+      </AppLayout>
+    </TeacherBrowseAnalyticsStoreProvider>
   );
 };
