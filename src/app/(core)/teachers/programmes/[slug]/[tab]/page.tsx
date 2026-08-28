@@ -34,7 +34,7 @@ import { resolveOakHref } from "@/common-lib/urls";
 import { getSubjectPhaseSlug } from "@/components/TeacherComponents/helpers/getSubjectPhaseSlug";
 import { resolveFilterFromSearchParams } from "@/utils/curriculum/filtering";
 import { redirectProgrammeSlugIfNeeded } from "@/utils/integratedJourney/legacyProgrammeUnitsRedirect";
-import { cacheData } from "@/node-lib/cache";
+import { cacheData, CURRICULUM_API_CACHE_TAG } from "@/node-lib/cache";
 import CMSClient from "@/node-lib/cms";
 import { getMvRefreshTime } from "@/pages-helpers/curriculum/downloads/getMvRefreshTime";
 import { validateServerSearchParams } from "@/utils/validateProgrammePageSearchParams";
@@ -90,6 +90,15 @@ const getCachedProgrammeCms = cache(
       };
     },
     ["programme-cms"],
+  ),
+);
+
+const getCachedImplementationGuides = cache(
+  cacheData(
+    (opts: { subjectTitle: string; phaseSlug: string }) =>
+      CMSClient.implementationGuides(opts),
+    ["programme-implementation-guides"],
+    { tags: [CURRICULUM_API_CACHE_TAG] },
   ),
 );
 
@@ -284,7 +293,7 @@ const InnerProgrammePage = async (props: AppPageProps<ProgrammePageParams>) => {
       ),
       "implementation-guides",
     ),
-    CMSClient.implementationGuides(opts),
+    getCachedImplementationGuides(opts),
     getCachedFileSizes(subjectPhaseKeystageSlugs, curriculumDownloadsTabData),
   ]);
 
