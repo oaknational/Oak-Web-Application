@@ -462,11 +462,25 @@ export const NationalCurriculumInsightsHero = ({
   const breadcrumbs = heroBreadcrumbs(data);
   const presentation = nationalCurriculumInsightsPresentation(data.route);
   let heroTextOrder: [number, number, number] = [1, 1, 1];
+  let heroHeadingFont:
+    | "heading-3"
+    | ["heading-4", "heading-4", "heading-1"]
+    | ["heading-4", "heading-1", "heading-1"] = [
+    "heading-4",
+    "heading-1",
+    "heading-1",
+  ];
 
   if (isHub) {
     heroTextOrder = [2, 1, 1];
   } else if (hasEditorialImage) {
     heroTextOrder = [2, 2, 1];
+  }
+
+  if (pageKind === "guidance") {
+    heroHeadingFont = "heading-3";
+  } else if (hasEditorialImage) {
+    heroHeadingFont = ["heading-4", "heading-4", "heading-1"];
   }
 
   return (
@@ -513,16 +527,7 @@ export const NationalCurriculumInsightsHero = ({
                 $flexDirection="column"
                 $gap="spacing-24"
               >
-                <OakHeading
-                  tag="h1"
-                  $font={
-                    pageKind === "guidance"
-                      ? "heading-3"
-                      : hasEditorialImage
-                        ? ["heading-4", "heading-4", "heading-1"]
-                        : ["heading-4", "heading-1", "heading-1"]
-                  }
-                >
+                <OakHeading tag="h1" $font={heroHeadingFont}>
                   {section.heading}
                 </OakHeading>
                 <PortableTextWithDefaults
