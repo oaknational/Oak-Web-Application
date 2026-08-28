@@ -8,7 +8,6 @@ import { useId } from "react";
 
 import { CurriculumUnitsFormattedData } from "@/pages-helpers/curriculum/docx/tab-helpers";
 import { useBrowseFilters } from "@/context/BrowseFilters";
-import { getKeyStageTitle } from "@/utils/curriculum/formatting";
 
 export type BrowseFiltersKeystagesProps = {
   data: CurriculumUnitsFormattedData;
@@ -49,7 +48,7 @@ export function BrowseFiltersKeystages({
                 <OakRadioAsButton
                   key={ks}
                   value={ks}
-                  displayValue={getKeyStageTitle(ks)}
+                  displayValue={ks.toUpperCase()}
                 />
               ))}
           </OakRadioGroup>
