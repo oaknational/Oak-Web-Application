@@ -506,7 +506,7 @@ const PromotionalHeadingFrame = styled(OakFlex)`
 
 export const NationalCurriculumInsightsPromotionalHeading = ({
   section,
-}: ContextualSectionProps<"NationalCurriculumInsightsPromotionalHeadingSection">) => {
+}: SectionProps<"NationalCurriculumInsightsPromotionalHeadingSection">) => {
   return (
     <OakBox
       $ph={["spacing-20", "spacing-40"]}

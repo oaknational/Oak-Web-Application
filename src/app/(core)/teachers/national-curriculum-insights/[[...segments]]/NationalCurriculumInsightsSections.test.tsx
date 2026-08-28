@@ -208,7 +208,6 @@ describe("National Curriculum Insights sections", () => {
           })}
         />
         <NationalCurriculumInsightsPromotionalHeading
-          data={data}
           section={moduleOf({
             __typename: "NationalCurriculumInsightsPromotionalHeadingSection",
             heading: "A clearer curriculum",

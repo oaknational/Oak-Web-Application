@@ -75,12 +75,7 @@ const ModuleView = ({
         <NationalCurriculumInsightsKeyStageCards section={module} data={data} />
       );
     case "NationalCurriculumInsightsPromotionalHeadingSection":
-      return (
-        <NationalCurriculumInsightsPromotionalHeading
-          section={module}
-          data={data}
-        />
-      );
+      return <NationalCurriculumInsightsPromotionalHeading section={module} />;
     case "NationalCurriculumInsightsPhaseNavigationSection":
       return <InsightsTabs section={module} data={data} />;
     case "NationalCurriculumInsightsSubjectNavigationSection":
