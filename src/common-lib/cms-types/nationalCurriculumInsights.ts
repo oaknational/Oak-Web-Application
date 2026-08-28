@@ -1,6 +1,6 @@
 import * as z from "zod";
 
-import { documentSchema, imageSchema, slugSchema } from "./base";
+import { documentSchema, imageSchema, slugSchema, videoSchema } from "./base";
 import { portableTextSchema } from "./portableText";
 
 export const nationalCurriculumInsightsPhaseSchema = z.enum([
@@ -190,22 +190,39 @@ const nationalCurriculumInsightsGuidanceIntroSectionSchema = z.object({
   statusLabel: z.string().min(1).nullable().optional(),
 });
 
-const nationalCurriculumInsightsVideoCardsSectionSchema = z.object({
-  __typename: z.literal("NationalCurriculumInsightsVideoCardsSection"),
-  heading: z.string().min(1),
-  introductionPortableText: portableTextSchema.nullable().optional(),
-  cards: z
-    .array(
-      z.object({
-        heading: z.string().min(1),
-        description: z.string().min(1),
-        image: imageSchema,
-        videoUrl: z.url(),
-        duration: z.string().min(1).nullable().optional(),
-      }),
-    )
-    .min(1),
-});
+const nationalCurriculumInsightsVideoCardsSectionSchema = z
+  .object({
+    __typename: z.literal("NationalCurriculumInsightsVideoCardsSection"),
+    heading: z.string().min(1),
+    introductionPortableText: portableTextSchema.nullable().optional(),
+    posts: z
+      .array(
+        z.object({
+          id: z.string().min(1),
+          title: z.string().min(1),
+          summary: z.string().min(1),
+          slug: z.string().min(1),
+          image: imageSchema,
+          video: videoSchema.nullable().optional(),
+        }),
+      )
+      .optional(),
+    cards: z
+      .array(
+        z.object({
+          heading: z.string().min(1),
+          description: z.string().min(1),
+          image: imageSchema,
+          videoUrl: z.url(),
+          duration: z.string().min(1).nullable().optional(),
+        }),
+      )
+      .optional(),
+  })
+  .refine(
+    ({ posts, cards }) => Boolean(posts?.length || cards?.length),
+    "A video cards section must contain at least one blog post or legacy card",
+  );
 
 const nationalCurriculumInsightsQuoteSectionSchema = z.object({
   __typename: z.literal("NationalCurriculumInsightsQuoteSection"),

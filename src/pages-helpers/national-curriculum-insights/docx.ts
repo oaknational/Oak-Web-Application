@@ -126,12 +126,21 @@ const moduleXml = (module: NationalCurriculumInsightsModule): string => {
         )
         .join("")}`;
     case "NationalCurriculumInsightsVideoCardsSection":
-      return `${paragraph(module.heading, "Heading2")}${portableTextParagraphs(module.introductionPortableText)}${module.cards
-        .map(
-          (card) =>
-            `${paragraph(card.heading, "Heading3")}${paragraph(card.description)}`,
-        )
-        .join("")}`;
+      return `${paragraph(module.heading, "Heading2")}${portableTextParagraphs(module.introductionPortableText)}${
+        module.posts?.length
+          ? module.posts
+              .map(
+                (post) =>
+                  `${paragraph(post.title, "Heading3")}${paragraph(post.summary)}`,
+              )
+              .join("")
+          : (module.cards ?? [])
+              .map(
+                (card) =>
+                  `${paragraph(card.heading, "Heading3")}${paragraph(card.description)}`,
+              )
+              .join("")
+      }`;
     case "NationalCurriculumInsightsQuoteSection": {
       const quotedText = `“${module.quote}”`;
       const role = module.role ? `, ${module.role}` : "";

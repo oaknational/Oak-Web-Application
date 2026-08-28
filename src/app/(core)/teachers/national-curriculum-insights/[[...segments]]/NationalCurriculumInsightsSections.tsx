@@ -12,6 +12,7 @@ import {
   OakHeading,
   OakIcon,
   OakImage,
+  OakInformativeModal,
   OakLI,
   OakLink,
   OakOutlineAccordion,
@@ -48,6 +49,7 @@ import { getSchema as getCampaignNewsletterSchema } from "@/components/GenericPa
 import getProxiedSanityAssetUrl from "@/common-lib/urls/getProxiedSanityAssetUrl";
 import { PortableTextWithDefaults } from "@/components/SharedComponents/PortableText";
 import { OakInputWithLabel } from "@/components/SharedComponents/OakInputWithLabel/OakInputWithLabel";
+import CMSVideo from "@/components/SharedComponents/CMSVideo";
 
 type Page = NonNullable<NationalCurriculumInsightsRouteData["page"]>;
 type InsightSection = Page["modules"][number];
@@ -1208,6 +1210,11 @@ const ConversationCardLink = styled(OakFlex)<{ $featured: boolean }>`
   border-radius: 6.645px;
   color: ${parseColor("text-primary")};
   text-decoration: none;
+  border: 0;
+  background: transparent;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
 
   &:hover h3,
   &:hover span {
@@ -1257,10 +1264,12 @@ const GuidanceConversationCard = ({
   episode,
   featured,
 }: {
-  card: Extract<
-    InsightSection,
-    { __typename: "NationalCurriculumInsightsVideoCardsSection" }
-  >["cards"][number];
+  card: NonNullable<
+    Extract<
+      InsightSection,
+      { __typename: "NationalCurriculumInsightsVideoCardsSection" }
+    >["cards"]
+  >[number];
   episode: number;
   featured: boolean;
 }) => (
@@ -1319,10 +1328,126 @@ const GuidanceConversationCard = ({
   </ConversationCardFocus>
 );
 
+const GuidanceBlogPostCard = ({
+  post,
+  episode,
+  featured,
+}: {
+  post: NonNullable<
+    Extract<
+      InsightSection,
+      { __typename: "NationalCurriculumInsightsVideoCardsSection" }
+    >["posts"]
+  >[number];
+  episode: number;
+  featured: boolean;
+}) => {
+  const [isOpen, setIsOpen] = useState(false);
+  const cardContent = (
+    <>
+      <ConversationCardImage
+        $featured={featured}
+        $borderRadius="border-radius-m2"
+      >
+        <OakImage
+          src={imageUrl(post.image)}
+          alt={imageAlt(post.image)}
+          $width="100%"
+          $height="100%"
+          $objectFit="cover"
+        />
+      </ConversationCardImage>
+      <ConversationCardCopy
+        $flexDirection="column"
+        $justifyContent="space-between"
+        $gap="spacing-20"
+      >
+        <OakFlex $flexDirection="column" $gap="spacing-12">
+          <OakHeading tag="h3" $font="heading-7">
+            {post.title}
+          </OakHeading>
+          <OakP $font="body-3" $color="text-subdued" $mv="spacing-0">
+            {post.summary}
+          </OakP>
+        </OakFlex>
+        <OakFlex
+          $alignItems="center"
+          $justifyContent="flex-end"
+          $gap="spacing-4"
+        >
+          <OakSpan $font="body-3">Watch episode {episode}</OakSpan>
+          <OakIcon
+            iconName="arrow-right"
+            alt=""
+            $width="spacing-20"
+            $height="spacing-20"
+          />
+        </OakFlex>
+      </ConversationCardCopy>
+    </>
+  );
+
+  return (
+    <>
+      <ConversationCardFocus
+        $featured={featured}
+        $background="bg-primary"
+        hoverBackground="bg-btn-secondary-hover"
+        $borderRadius="border-radius-m2"
+      >
+        {post.video ? (
+          <ConversationCardLink
+            as="button"
+            type="button"
+            aria-label={`Play ${post.title}`}
+            onClick={() => setIsOpen(true)}
+            $featured={featured}
+            $flexDirection="column"
+          >
+            {cardContent}
+          </ConversationCardLink>
+        ) : (
+          <ConversationCardLink
+            as="a"
+            href={`/blog/${post.slug}`}
+            $featured={featured}
+            $flexDirection="column"
+          >
+            {cardContent}
+          </ConversationCardLink>
+        )}
+      </ConversationCardFocus>
+      {post.video ? (
+        <OakInformativeModal
+          isOpen={isOpen}
+          onClose={() => setIsOpen(false)}
+          closeOnBackgroundClick
+        >
+          <OakFlex
+            $flexDirection="column"
+            $gap="spacing-24"
+            $pa={["spacing-16", "spacing-32"]}
+            $maxWidth="all-spacing-960"
+          >
+            <OakHeading tag="h2" $font="heading-5">
+              {post.title}
+            </OakHeading>
+            <CMSVideo video={post.video} location="blog" autoFocusPlayButton />
+            <OakLink href={`/blog/${post.slug}`}>Read the full article</OakLink>
+          </OakFlex>
+        </OakInformativeModal>
+      ) : null}
+    </>
+  );
+};
+
 export const NationalCurriculumInsightsVideoCards = ({
   section,
 }: SectionProps<"NationalCurriculumInsightsVideoCardsSection">) => {
   const headingId = useId();
+  const posts = section.posts ?? [];
+  const legacyCards = posts.length > 0 ? [] : (section.cards ?? []);
+  const itemCount = posts.length || legacyCards.length;
 
   return (
     <VideoCardsSection
@@ -1362,11 +1487,20 @@ export const NationalCurriculumInsightsVideoCards = ({
           </ConversationHeaderCopy>
         </ConversationHeader>
         <VideoCardList>
-          {section.cards.map((card, index) => (
+          {posts.map((post, index) => (
+            <VideoCardItem key={post.id}>
+              <GuidanceBlogPostCard
+                post={post}
+                episode={itemCount - index}
+                featured={index === 0}
+              />
+            </VideoCardItem>
+          ))}
+          {legacyCards.map((card, index) => (
             <VideoCardItem key={`${card.heading}-${card.videoUrl}`}>
               <GuidanceConversationCard
                 card={card}
-                episode={section.cards.length - index}
+                episode={itemCount - index}
                 featured={index === 0}
               />
             </VideoCardItem>

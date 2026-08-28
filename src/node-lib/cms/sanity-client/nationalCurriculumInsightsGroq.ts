@@ -104,6 +104,25 @@ const modulesProjection = `modules[]{
       ^._type == "nationalCurriculumInsightsVideoCardsSection" => image ${imageProjection}
     )
   },
+  "posts": posts[]->{
+    "id": _id,
+    title,
+    summary,
+    "slug": slug.current,
+    "image": mainImage ${imageProjection},
+    "video": content[_type == "reference" && @->_type == "video"][0]->{
+      title,
+      captions,
+      transcript,
+      video {
+        asset->{
+          assetId,
+          playbackId,
+          thumbTime
+        }
+      }
+    }
+  },
   table {
     rows[]{cells}
   }

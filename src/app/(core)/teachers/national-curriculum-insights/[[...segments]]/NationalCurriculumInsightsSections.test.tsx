@@ -34,6 +34,13 @@ jest.mock("@/components/GenericPagesComponents/NewsletterForm", () => ({
   useNewsletterForm: jest.fn(),
 }));
 
+jest.mock("@/components/SharedComponents/CMSVideo", () => ({
+  __esModule: true,
+  default: ({ video }: { video: { title: string } }) => (
+    <div data-testid="cms-video">{video.title}</div>
+  ),
+}));
+
 const submitNewsletter = jest.fn();
 
 beforeEach(() => {
@@ -99,6 +106,64 @@ const moduleOf = <T extends NationalCurriculumInsightsModule["__typename"]>(
 ) => module;
 
 describe("National Curriculum Insights sections", () => {
+  it("renders referenced blog content and opens its video without navigating", async () => {
+    const user = userEvent.setup();
+
+    renderWithTheme(
+      <NationalCurriculumInsightsVideoCards
+        section={moduleOf({
+          __typename: "NationalCurriculumInsightsVideoCardsSection",
+          heading: "Curriculum conversations",
+          introductionPortableText: null,
+          posts: [
+            {
+              id: "episode-3",
+              title: "Bennie Kara on inclusive curriculum leadership",
+              summary: "Explore strong leadership for an inclusive curriculum.",
+              slug: "curriculum-conversations-episode-3",
+              image: contentImage,
+              video: {
+                title: "Bennie Kara on inclusive curriculum leadership",
+                captions: null,
+                transcript: null,
+                video: {
+                  asset: {
+                    assetId: "mux-asset",
+                    playbackId: "mux-playback",
+                    thumbTime: null,
+                  },
+                },
+              },
+            },
+          ],
+          cards: [
+            {
+              heading: "Legacy content",
+              description: "This should not render when posts are selected.",
+              image: contentImage,
+              videoUrl: "https://example.com/legacy",
+              duration: null,
+            },
+          ],
+        })}
+      />,
+    );
+
+    expect(screen.queryByText("Legacy content")).not.toBeInTheDocument();
+    await user.click(
+      screen.getByRole("button", {
+        name: "Play Bennie Kara on inclusive curriculum leadership",
+      }),
+    );
+
+    expect(screen.getByTestId("cms-video")).toHaveTextContent(
+      "Bennie Kara on inclusive curriculum leadership",
+    );
+    expect(
+      screen.getByRole("link", { name: "Read the full article" }),
+    ).toHaveAttribute("href", "/blog/curriculum-conversations-episode-3");
+  });
+
   it("renders the subject illustration supplied by Sanity", async () => {
     const data = await getData(["science"]);
     if (!data.subject) {
