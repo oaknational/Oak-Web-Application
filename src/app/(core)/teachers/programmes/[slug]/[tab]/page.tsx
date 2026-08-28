@@ -10,8 +10,8 @@ import {
   getSubjectPhaseOptions,
   getProgrammeData,
   getSubjectOverride,
+  getCachedFileSizes,
 } from "./getProgrammeData";
-import { getFileSizes } from "./Components/getFileSizes";
 
 import LayoutPreviewControls from "@/components/AppComponents/LayoutPreviewControls";
 import { isFeatureFlagEnabledServer } from "@/utils/featureFlagChecks/server";
@@ -225,28 +225,6 @@ const InnerProgrammePage = async (props: AppPageProps<ProgrammePageParams>) => {
   };
 
   const { isEnabled } = await draftMode();
-  const { curriculumCMSInfo, subjectPhaseSanityData, mvRefreshTime } =
-    await getCachedProgrammeCms({
-      subjectPhaseSlug,
-      nonCurriculum: programmeUnitsData.nonCurriculum,
-      subjectTitle: programmeUnitsData.subjectTitle,
-      phaseSlug: subjectPhaseKeystageSlugs.phaseSlug,
-      programmePageSlug: `${subjectPhaseKeystageSlugs.subjectSlug}-${subjectPhaseKeystageSlugs.phaseSlug}`,
-      isPreviewModeEnabled: isEnabled,
-    });
-
-  if (!curriculumCMSInfo && !programmeUnitsData.nonCurriculum) {
-    return notFound();
-  }
-
-  if (!subjectPhaseSanityData) {
-    reportError(
-      new OakError({
-        code: "cms/missing-programme-page-data",
-        meta: { subjectPhaseSlug },
-      }),
-    );
-  }
 
   const curriculumUnitsFormattedData =
     formatCurriculumUnitsData(curriculumUnitsData);
@@ -280,23 +258,48 @@ const InnerProgrammePage = async (props: AppPageProps<ProgrammePageParams>) => {
     examboardTitle: ks4Option?.title,
   };
 
-  const isImplementationGuidesEnabled = await isFeatureFlagEnabledServer(
-    Object.fromEntries(
-      cookieStore.getAll().map(({ name, value }) => [name, value]),
-    ),
-    "implementation-guides",
-  );
-
   const opts = {
     subjectTitle: curriculumSelectionTitles.subjectTitle,
     phaseSlug: subjectPhaseKeystageSlugs.phaseSlug,
   };
-  const implementationGuides = await CMSClient.implementationGuides(opts);
 
-  const fileSizes = await getFileSizes(
-    subjectPhaseKeystageSlugs,
-    curriculumDownloadsTabData,
-  );
+  // None of these depend on each other's results, so run them concurrently instead of as a waterfall
+  const [
+    { curriculumCMSInfo, subjectPhaseSanityData, mvRefreshTime },
+    isImplementationGuidesEnabled,
+    implementationGuides,
+    fileSizes,
+  ] = await Promise.all([
+    getCachedProgrammeCms({
+      subjectPhaseSlug,
+      nonCurriculum: programmeUnitsData.nonCurriculum,
+      subjectTitle: programmeUnitsData.subjectTitle,
+      phaseSlug: subjectPhaseKeystageSlugs.phaseSlug,
+      programmePageSlug: `${subjectPhaseKeystageSlugs.subjectSlug}-${subjectPhaseKeystageSlugs.phaseSlug}`,
+      isPreviewModeEnabled: isEnabled,
+    }),
+    isFeatureFlagEnabledServer(
+      Object.fromEntries(
+        cookieStore.getAll().map(({ name, value }) => [name, value]),
+      ),
+      "implementation-guides",
+    ),
+    CMSClient.implementationGuides(opts),
+    getCachedFileSizes(subjectPhaseKeystageSlugs, curriculumDownloadsTabData),
+  ]);
+
+  if (!curriculumCMSInfo && !programmeUnitsData.nonCurriculum) {
+    return notFound();
+  }
+
+  if (!subjectPhaseSanityData) {
+    reportError(
+      new OakError({
+        code: "cms/missing-programme-page-data",
+        meta: { subjectPhaseSlug },
+      }),
+    );
+  }
 
   const results: ProgrammePageProps = {
     subjectPhaseSlug,
