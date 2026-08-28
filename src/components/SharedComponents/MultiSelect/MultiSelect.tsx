@@ -1,6 +1,7 @@
 import { useEffect, useId, useMemo, useRef, useState } from "react";
 import styled, { css } from "styled-components";
 import {
+  getMediaQuery,
   OakCheckBox,
   OakIcon,
   OakP,
@@ -30,6 +31,7 @@ export type MultiSelectProps = {
   id?: string;
   groupSelectLabel?: (group: MultiSelectGroup) => string;
   mobileConfirmLabel?: string;
+  hideMobileHeader?: boolean;
   mobileTitle?: string;
   onChange: (values: string[]) => void;
   onMobileClose?: () => void;
@@ -52,9 +54,14 @@ const Root = styled.div`
 const DesktopView = styled.div`
   display: none;
 
-  @media (min-width: 750px) {
+  @media (${getMediaQuery("desktop")}) {
     display: block;
   }
+`;
+
+const TriggerAnchor = styled.div`
+  position: relative;
+  width: 100%;
 `;
 
 const Trigger = styled.button<{ $size: "standard" | "large" }>`
@@ -149,20 +156,21 @@ const GroupHeading = styled(OakP)`
 const ChipGroups = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 16px;
-  margin-top: 16px;
+  gap: 32px;
+  margin-top: 40px;
 `;
 
 const ChipGroup = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 16px;
 `;
 
 const ChipList = styled.ul`
   display: flex;
   flex-wrap: wrap;
-  gap: 8px;
+  column-gap: 8px;
+  row-gap: 16px;
   margin: 0;
   padding: 0;
   list-style: none;
@@ -200,7 +208,7 @@ const MobileView = styled.div`
   width: 100%;
   background: ${parseColor("bg-primary")};
 
-  @media (min-width: 750px) {
+  @media (${getMediaQuery("desktop")}) {
     display: none;
   }
 `;
@@ -304,6 +312,7 @@ export const MultiSelect = ({
   groups,
   id: idProp,
   groupSelectLabel = (group) => `All ${group.label.toLowerCase()} options`,
+  hideMobileHeader = false,
   mobileConfirmLabel = "Confirm selection",
   mobileTitle,
   onChange,
@@ -457,33 +466,35 @@ export const MultiSelect = ({
   return (
     <Root ref={rootRef} data-testid={dataTestId}>
       <DesktopView>
-        <Trigger
-          ref={triggerRef}
-          id={id}
-          type="button"
-          $size={size}
-          data-testid={dataTestId ? `${dataTestId}-trigger` : undefined}
-          aria-controls={panelId}
-          aria-expanded={isOpen}
-          disabled={disabled}
-          onClick={() => setIsOpen((open) => !open)}
-        >
-          <span>{placeholder}</span>
-          <OakIcon
-            iconName={isOpen ? "chevron-up" : "chevron-down"}
-            $color={disabled ? "icon-disabled" : "icon-primary"}
-          />
-        </Trigger>
-        {isOpen ? (
-          <DropdownPanel
-            id={panelId}
-            $direction={dropdownDirection}
-            aria-label={placeholder}
-            data-testid={dataTestId ? `${dataTestId}-panel` : undefined}
+        <TriggerAnchor>
+          <Trigger
+            ref={triggerRef}
+            id={id}
+            type="button"
+            $size={size}
+            data-testid={dataTestId ? `${dataTestId}-trigger` : undefined}
+            aria-controls={panelId}
+            aria-expanded={isOpen}
+            disabled={disabled}
+            onClick={() => setIsOpen((open) => !open)}
           >
-            {renderOptions()}
-          </DropdownPanel>
-        ) : null}
+            <span>{placeholder}</span>
+            <OakIcon
+              iconName={isOpen ? "chevron-up" : "chevron-down"}
+              $color={disabled ? "icon-disabled" : "icon-primary"}
+            />
+          </Trigger>
+          {isOpen ? (
+            <DropdownPanel
+              id={panelId}
+              $direction={dropdownDirection}
+              aria-label={placeholder}
+              data-testid={dataTestId ? `${dataTestId}-panel` : undefined}
+            >
+              {renderOptions()}
+            </DropdownPanel>
+          ) : null}
+        </TriggerAnchor>
         {selectedGroups.length > 0 ? (
           <ChipGroups aria-label={selectedItemsLabel}>
             {selectedGroups.map((group) => (
@@ -525,20 +536,22 @@ export const MultiSelect = ({
       </DesktopView>
 
       <MobileView>
-        <MobileHeader>
-          <OakP $font="heading-7" $mv="spacing-0">
-            {effectiveMobileTitle}
-          </OakP>
-          {onMobileClose ? (
-            <IconButton
-              type="button"
-              aria-label={`Close ${effectiveMobileTitle}`}
-              onClick={onMobileClose}
-            >
-              <OakIcon iconName="cross" />
-            </IconButton>
-          ) : null}
-        </MobileHeader>
+        {!hideMobileHeader ? (
+          <MobileHeader>
+            <OakP $font="heading-7" $mv="spacing-0">
+              {effectiveMobileTitle}
+            </OakP>
+            {onMobileClose ? (
+              <IconButton
+                type="button"
+                aria-label={`Close ${effectiveMobileTitle}`}
+                onClick={onMobileClose}
+              >
+                <OakIcon iconName="cross" />
+              </IconButton>
+            ) : null}
+          </MobileHeader>
+        ) : null}
         <MobileOptions>{renderOptions(true)}</MobileOptions>
         <MobileConfirm>
           <ConfirmButton

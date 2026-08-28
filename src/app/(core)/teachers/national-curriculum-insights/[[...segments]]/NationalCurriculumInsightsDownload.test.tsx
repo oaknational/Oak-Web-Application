@@ -1,6 +1,5 @@
 import { fireEvent, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import { oakColorTokens } from "@oaknational/oak-components";
 
 import { NationalCurriculumInsightsDownload } from "./NationalCurriculumInsightsDownload";
 import {
@@ -52,7 +51,8 @@ describe("NationalCurriculumInsightsDownload", () => {
       flexDirection: "column",
       position: "fixed",
     });
-    expect(toggle).toHaveStyle(`background: ${oakColorTokens["dark-aqua110"]}`);
+    expect(toggle).toHaveStyle("background: #b0e2de");
+    expect(toggle).toHaveStyle("color: #222222");
     expect(screen.getByText("Download free expert guidance.")).toHaveStyle({
       fontWeight: "400",
     });
@@ -70,9 +70,7 @@ describe("NationalCurriculumInsightsDownload", () => {
     });
     expect(download).toBeDisabled();
 
-    await user.click(
-      screen.getByTestId("curriculum-insights-subjects-trigger"),
-    );
+    await user.click(screen.getByRole("button", { name: "Select subjects" }));
     const scienceOptions = screen.getAllByRole("checkbox", { name: "Science" });
     const primary = scienceOptions.find(({ id }) =>
       id.includes("science:primary"),
@@ -86,11 +84,18 @@ describe("NationalCurriculumInsightsDownload", () => {
       );
     }
     fireEvent.click(primary);
+    await user.click(
+      screen.getByTestId("curriculum-insights-subjects-mobile-confirm"),
+    );
     expect(
       screen.getByRole("button", { name: "Download 1 insight (.DOCX)" }),
     ).toBeDisabled();
 
+    await user.click(screen.getByRole("button", { name: "1 selected" }));
     fireEvent.click(secondary);
+    await user.click(
+      screen.getByTestId("curriculum-insights-subjects-mobile-confirm"),
+    );
     expect(
       screen.getByRole("button", { name: "Download 2 insights (.ZIP)" }),
     ).toBeDisabled();

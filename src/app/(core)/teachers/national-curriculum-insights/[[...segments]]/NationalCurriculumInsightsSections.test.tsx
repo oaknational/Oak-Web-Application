@@ -150,6 +150,8 @@ describe("National Curriculum Insights sections", () => {
     );
 
     expect(screen.queryByText("Legacy content")).not.toBeInTheDocument();
+    expect(screen.queryByTestId("cms-video")).not.toBeInTheDocument();
+    expect(screen.queryByRole("dialog")).not.toBeInTheDocument();
     await user.click(
       screen.getByRole("button", {
         name: "Play Bennie Kara on inclusive curriculum leadership",
@@ -159,9 +161,10 @@ describe("National Curriculum Insights sections", () => {
     expect(screen.getByTestId("cms-video")).toHaveTextContent(
       "Bennie Kara on inclusive curriculum leadership",
     );
-    expect(
-      screen.getByRole("link", { name: "Read the full article" }),
-    ).toHaveAttribute("href", "/blog/curriculum-conversations-episode-3");
+    expect(screen.getByTestId("guidance-inline-video")).toContainElement(
+      screen.getByTestId("cms-video"),
+    );
+    expect(screen.queryByRole("dialog")).not.toBeInTheDocument();
   });
 
   it("renders the subject illustration supplied by Sanity", async () => {

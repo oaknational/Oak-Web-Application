@@ -12,7 +12,6 @@ import {
   OakHeading,
   OakIcon,
   OakImage,
-  OakInformativeModal,
   OakLI,
   OakLink,
   OakOutlineAccordion,
@@ -22,7 +21,6 @@ import {
   OakSpan,
   OakSubjectIconButton,
   OakTagFunctional,
-  type OakUiRoleToken,
   parseColor,
 } from "@oaknational/oak-components";
 import Link from "next/link";
@@ -498,70 +496,30 @@ export const NationalCurriculumInsightsKeyStageCards = ({
   );
 };
 
-const PromotionalHeadingFrame = styled(OakFlex)<{
-  $variant: "explorer" | "keyStage";
-}>`
+const PromotionalHeadingFrame = styled(OakFlex)`
   box-sizing: border-box;
   width: 100%;
-  max-width: ${({ $variant }) =>
-    $variant === "keyStage" ? "956px" : "1106px"};
-  height: ${({ $variant }) => ($variant === "keyStage" ? "72px" : "93px")};
-`;
-
-const PromotionalHeading = styled(OakFlex)<{
-  $variant: "explorer" | "keyStage";
-  $accent: OakUiRoleToken;
-}>`
-  box-sizing: border-box;
-  width: ${({ $variant }) =>
-    $variant === "keyStage" ? "max-content" : "100%"};
-  min-height: 64px;
+  max-width: 1106px;
   justify-content: center;
-  background: ${({ $accent }) => parseColor($accent)};
   text-align: center;
-  transform: rotate(-1.5deg);
-
-  h2 {
-    letter-spacing: -0.96px;
-  }
-
-  @media (${getMediaQuery("desktop")}) {
-    h2 {
-      white-space: nowrap;
-    }
-  }
 `;
 
 export const NationalCurriculumInsightsPromotionalHeading = ({
   section,
-  data,
 }: ContextualSectionProps<"NationalCurriculumInsightsPromotionalHeadingSection">) => {
-  const variant = section.variant ?? "explorer";
-  const presentation = nationalCurriculumInsightsPresentation(data.route);
-
   return (
     <OakBox
       $ph={["spacing-20", "spacing-40"]}
       $pv={["spacing-32", "spacing-48"]}
     >
       <PromotionalHeadingFrame
-        $variant={variant}
         $mh="auto"
         $alignItems="center"
         data-insights-module="promotional-heading"
       >
-        <PromotionalHeading
-          $variant={variant}
-          $accent={presentation.accent}
-          $alignItems="center"
-          $ph="spacing-8"
-          $pv="spacing-4"
-          $borderRadius="border-radius-m"
-        >
-          <OakHeading tag="h2" $font={["heading-5", "heading-3"]}>
-            {section.heading}
-          </OakHeading>
-        </PromotionalHeading>
+        <OakHeading tag="h2" $font={["heading-5", "heading-4"]}>
+          {section.heading}
+        </OakHeading>
       </PromotionalHeadingFrame>
     </OakBox>
   );
@@ -1227,6 +1185,7 @@ const ConversationCardLink = styled(OakFlex)<{ $featured: boolean }>`
 `;
 
 const ConversationCardImage = styled(OakBox)<{ $featured: boolean }>`
+  position: relative;
   width: 100%;
   aspect-ratio: 16 / 9;
   flex: 0 0 auto;
@@ -1235,6 +1194,43 @@ const ConversationCardImage = styled(OakBox)<{ $featured: boolean }>`
   @media (${getMediaQuery("desktop")}) {
     width: ${({ $featured }) => ($featured ? "491px" : "290px")};
     height: ${({ $featured }) => ($featured ? "275px" : "163px")};
+  }
+`;
+
+const ThumbnailPlayButton = styled.button`
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: 1;
+  display: inline-flex;
+  width: 64px;
+  height: 64px;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  border: 2px solid ${parseColor("border-primary")};
+  border-radius: 50%;
+  background: ${parseColor("bg-btn-primary")};
+  color: ${parseColor("icon-inverted")};
+  cursor: pointer;
+  transform: translate(-50%, -50%);
+
+  &:hover {
+    background: ${parseColor("bg-btn-primary-hover")};
+  }
+
+  &:focus-visible {
+    outline: 4px solid ${parseColor("border-decorative5")};
+    outline-offset: 2px;
+  }
+`;
+
+const InlineVideo = styled.div`
+  width: 100%;
+  height: 100%;
+
+  > div {
+    height: 100%;
   }
 `;
 
@@ -1342,20 +1338,50 @@ const GuidanceBlogPostCard = ({
   episode: number;
   featured: boolean;
 }) => {
-  const [isOpen, setIsOpen] = useState(false);
+  const [isPlaying, setIsPlaying] = useState(false);
   const cardContent = (
     <>
       <ConversationCardImage
         $featured={featured}
         $borderRadius="border-radius-m2"
       >
-        <OakImage
-          src={imageUrl(post.image)}
-          alt={imageAlt(post.image)}
-          $width="100%"
-          $height="100%"
-          $objectFit="cover"
-        />
+        {post.video && isPlaying ? (
+          <InlineVideo data-testid="guidance-inline-video">
+            <CMSVideo
+              video={post.video}
+              location="blog"
+              hideCaptions
+              omitBorder
+              autoPlay
+              autoFocusPlayButton
+            />
+          </InlineVideo>
+        ) : (
+          <>
+            <OakImage
+              src={imageUrl(post.image)}
+              alt={imageAlt(post.image)}
+              $width="100%"
+              $height="100%"
+              $objectFit="cover"
+            />
+            {post.video ? (
+              <ThumbnailPlayButton
+                type="button"
+                aria-label={`Play ${post.title}`}
+                onClick={() => setIsPlaying(true)}
+              >
+                <OakIcon
+                  iconName="play"
+                  alt=""
+                  $color="icon-inverted"
+                  $width="spacing-32"
+                  $height="spacing-32"
+                />
+              </ThumbnailPlayButton>
+            ) : null}
+          </>
+        )}
       </ConversationCardImage>
       <ConversationCardCopy
         $flexDirection="column"
@@ -1388,56 +1414,21 @@ const GuidanceBlogPostCard = ({
   );
 
   return (
-    <>
-      <ConversationCardFocus
+    <ConversationCardFocus
+      $featured={featured}
+      $background="bg-primary"
+      hoverBackground="bg-btn-secondary-hover"
+      $borderRadius="border-radius-m2"
+    >
+      <ConversationCardLink
+        as={post.video ? "div" : "a"}
+        href={post.video ? undefined : `/blog/${post.slug}`}
         $featured={featured}
-        $background="bg-primary"
-        hoverBackground="bg-btn-secondary-hover"
-        $borderRadius="border-radius-m2"
+        $flexDirection="column"
       >
-        {post.video ? (
-          <ConversationCardLink
-            as="button"
-            type="button"
-            aria-label={`Play ${post.title}`}
-            onClick={() => setIsOpen(true)}
-            $featured={featured}
-            $flexDirection="column"
-          >
-            {cardContent}
-          </ConversationCardLink>
-        ) : (
-          <ConversationCardLink
-            as="a"
-            href={`/blog/${post.slug}`}
-            $featured={featured}
-            $flexDirection="column"
-          >
-            {cardContent}
-          </ConversationCardLink>
-        )}
-      </ConversationCardFocus>
-      {post.video ? (
-        <OakInformativeModal
-          isOpen={isOpen}
-          onClose={() => setIsOpen(false)}
-          closeOnBackgroundClick
-        >
-          <OakFlex
-            $flexDirection="column"
-            $gap="spacing-24"
-            $pa={["spacing-16", "spacing-32"]}
-            $maxWidth="all-spacing-960"
-          >
-            <OakHeading tag="h2" $font="heading-5">
-              {post.title}
-            </OakHeading>
-            <CMSVideo video={post.video} location="blog" autoFocusPlayButton />
-            <OakLink href={`/blog/${post.slug}`}>Read the full article</OakLink>
-          </OakFlex>
-        </OakInformativeModal>
-      ) : null}
-    </>
+        {cardContent}
+      </ConversationCardLink>
+    </ConversationCardFocus>
   );
 };
 

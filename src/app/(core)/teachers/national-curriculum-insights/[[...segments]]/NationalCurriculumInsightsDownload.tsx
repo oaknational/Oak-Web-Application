@@ -11,7 +11,15 @@ import {
   OakTextInput,
   parseColor,
 } from "@oaknational/oak-components";
-import { ChangeEvent, FormEvent, useId, useMemo, useState } from "react";
+import {
+  ChangeEvent,
+  FormEvent,
+  useEffect,
+  useId,
+  useMemo,
+  useRef,
+  useState,
+} from "react";
 import styled from "styled-components";
 
 import type { NationalCurriculumInsightsRouteData } from "./getNationalCurriculumInsightsData";
@@ -49,17 +57,23 @@ const Section = styled.section<{ $sticky: boolean }>`
 const HeaderButton = styled.button`
   display: block;
   width: 100%;
-  min-height: 99px;
-  padding: 19px 20px;
+  min-height: 64px;
+  padding: 10px 20px;
   border: 0;
-  background: ${parseColor("dark-aqua110")};
-  color: ${parseColor("text-inverted")};
+  border-top: 2px solid ${parseColor("border-decorative2-stronger")};
+  background: ${parseColor("bg-decorative2-main")};
+  color: ${parseColor("text-primary")};
   font: inherit;
   cursor: pointer;
 
   &:focus-visible {
     outline: 4px solid ${parseColor("border-decorative5")};
     outline-offset: -4px;
+  }
+
+  @media (${getMediaQuery("desktop")}) {
+    min-height: 100px;
+    padding: 19px 20px;
   }
 `;
 
@@ -68,44 +82,67 @@ const HeaderInner = styled.span`
   align-items: center;
   width: 100%;
   max-width: 1280px;
-  min-height: 60px;
+  min-height: 40px;
   margin: 0 auto;
+
+  @media (${getMediaQuery("desktop")}) {
+    min-height: 60px;
+    padding: 0 97px;
+    box-sizing: border-box;
+  }
 `;
 
-const HeaderIcon = styled.span`
+const HeaderIcon = styled.span<{ $expanded: boolean }>`
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 44px;
-  height: 44px;
-  flex: 0 0 44px;
-  margin-right: 24px;
+  width: 60px;
+  height: 60px;
+  flex: 0 0 60px;
+  margin-right: 16px;
   border-radius: 50%;
   background: ${parseColor("bg-primary")};
-  color: ${parseColor("dark-aqua110")};
+  color: ${parseColor("icon-primary")};
+
+  @media (max-width: 1279px) {
+    display: ${({ $expanded }) => ($expanded ? "none" : "inline-flex")};
+    width: 40px;
+    height: 40px;
+    flex-basis: 40px;
+  }
 `;
 
-const HeaderHeading = styled.span`
+const HeaderHeading = styled.span<{ $expanded: boolean }>`
   font-size: 16px;
   font-weight: 600;
   line-height: 20px;
   text-align: left;
+
+  @media (max-width: 1279px) {
+    display: ${({ $expanded }) => ($expanded ? "none" : "inline")};
+  }
 `;
 
-const HeaderCta = styled.span`
+const HeaderCta = styled.span<{ $expanded: boolean }>`
   display: none;
   min-height: 28px;
   align-items: center;
   padding: 4px 8px;
   border-radius: 6px;
-  background: ${parseColor("dark-aqua")};
-  font-size: 14px;
+  background: ${parseColor("bg-btn-primary")};
+  color: ${parseColor("text-inverted")};
+  font-size: 16px;
   font-weight: 400;
   line-height: 20px;
   letter-spacing: -0.5px;
   margin-left: 16px;
 
-  @media (${getMediaQuery("tablet")}), (${getMediaQuery("desktop")}) {
+  @media (max-width: 1279px) {
+    display: ${({ $expanded }) => ($expanded ? "inline-flex" : "none")};
+    margin-left: 0;
+  }
+
+  @media (${getMediaQuery("desktop")}) {
     display: inline-flex;
   }
 `;
@@ -125,6 +162,41 @@ const Toggle = styled.span<{ $expanded: boolean }>`
     border-bottom: 2px solid currentColor;
     content: "";
     transform: rotate(${({ $expanded }) => ($expanded ? "45deg" : "225deg")});
+  }
+
+  @media (max-width: 1279px) {
+    display: ${({ $expanded }) => ($expanded ? "none" : "inline-flex")};
+  }
+`;
+
+const MobileClose = styled.span<{ $expanded: boolean }>`
+  position: relative;
+  display: ${({ $expanded }) => ($expanded ? "inline-flex" : "none")};
+  width: 40px;
+  height: 40px;
+  margin-left: auto;
+  align-items: center;
+  justify-content: center;
+
+  &::before,
+  &::after {
+    position: absolute;
+    width: 24px;
+    height: 2px;
+    background: currentColor;
+    content: "";
+  }
+
+  &::before {
+    transform: rotate(45deg);
+  }
+
+  &::after {
+    transform: rotate(-45deg);
+  }
+
+  @media (${getMediaQuery("desktop")}) {
+    display: none;
   }
 `;
 
@@ -164,12 +236,18 @@ const Columns = styled.div`
   }
 `;
 
-const Column = styled.div`
+const Column = styled.div<{
+  $activeMobileStage: "details" | "subjects";
+  $mobileStage: "details" | "subjects";
+}>`
   box-sizing: border-box;
   min-width: 0;
   padding: 32px 20px 40px;
+  display: ${({ $activeMobileStage, $mobileStage }) =>
+    $activeMobileStage === $mobileStage ? "block" : "none"};
 
   @media (${getMediaQuery("desktop")}) {
+    display: block;
     min-height: 632px;
     padding: 24px 64px 0 0;
 
@@ -177,6 +255,70 @@ const Column = styled.div`
       padding-right: 0;
       padding-left: 64px;
     }
+  }
+`;
+
+const MobileSubjectButton = styled.button`
+  display: flex;
+  width: 100%;
+  min-height: 64px;
+  margin-top: 32px;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px;
+  border: 2px solid ${parseColor("border-primary")};
+  border-radius: 4px;
+  background: ${parseColor("bg-primary")};
+  color: ${parseColor("text-primary")};
+  font: inherit;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 20px;
+  cursor: pointer;
+
+  &:focus-visible {
+    outline: 4px solid ${parseColor("border-decorative5")};
+    outline-offset: 2px;
+  }
+
+  @media (${getMediaQuery("desktop")}) {
+    display: none;
+  }
+`;
+
+const MobileBackButton = styled.button`
+  display: inline-flex;
+  min-height: 48px;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 0;
+  border: 0;
+  background: transparent;
+  color: ${parseColor("text-primary")};
+  font: inherit;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+
+  @media (${getMediaQuery("desktop")}) {
+    display: none;
+  }
+`;
+
+const DesktopDownloadsHeader = styled.div`
+  display: none;
+
+  @media (${getMediaQuery("desktop")}) {
+    display: block;
+  }
+`;
+
+const MobileDownloadsHeader = styled.div`
+  display: block;
+  margin-top: 16px;
+
+  @media (${getMediaQuery("desktop")}) {
+    display: none;
   }
 `;
 
@@ -226,12 +368,17 @@ const TermsBox = styled.div`
   background: ${parseColor("bg-neutral-stronger")};
 `;
 
-const ActionBar = styled.div`
+const ActionBar = styled.div<{ $activeMobileStage: "details" | "subjects" }>`
   display: grid;
   max-width: 1280px;
   min-height: 80px;
   margin: 0 auto;
   background: ${parseColor("bg-primary")};
+
+  @media (max-width: 1279px) {
+    display: ${({ $activeMobileStage }) =>
+      $activeMobileStage === "details" ? "grid" : "none"};
+  }
 
   @media (${getMediaQuery("desktop")}) {
     grid-template-columns: minmax(0, 53%) minmax(0, 47%);
@@ -300,8 +447,12 @@ export const NationalCurriculumInsightsDownload = ({
   section: DownloadSection;
 }) => {
   const formId = useId().replace(/:/g, "");
+  const expandedRef = useRef<HTMLFormElement>(null);
   const sticky = data.route.kind === "hub";
   const [expanded, setExpanded] = useState(false);
+  const [mobileStage, setMobileStage] = useState<"details" | "subjects">(
+    "details",
+  );
   const [selectedValues, setSelectedValues] = useState<string[]>([]);
   const [name, setName] = useState("");
   const [school, setSchool] = useState("");
@@ -311,6 +462,11 @@ export const NationalCurriculumInsightsDownload = ({
   const [acceptedTerms, setAcceptedTerms] = useState(false);
   const [downloading, setDownloading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    if (!expanded) return;
+    expandedRef.current?.scrollTo?.({ top: 0 });
+  }, [expanded, mobileStage]);
 
   const groups = useMemo(
     () =>
@@ -391,31 +547,38 @@ export const NationalCurriculumInsightsDownload = ({
         type="button"
         aria-expanded={expanded}
         aria-controls={`${formId}-content`}
-        onClick={() => setExpanded((value) => !value)}
+        onClick={() => {
+          setExpanded((value) => !value);
+          setMobileStage("details");
+        }}
       >
         <HeaderInner>
-          <HeaderIcon aria-hidden="true">
+          <HeaderIcon $expanded={expanded} aria-hidden="true">
             <OakIcon
               iconName="worksheet"
               $width="spacing-32"
               $height="spacing-32"
             />
           </HeaderIcon>
-          <HeaderHeading>{section.barHeading}</HeaderHeading>
-          <HeaderCta>{section.barCtaLabel}</HeaderCta>
+          <HeaderHeading $expanded={expanded}>
+            {section.barHeading}
+          </HeaderHeading>
+          <HeaderCta $expanded={expanded}>{section.barCtaLabel}</HeaderCta>
           <Toggle $expanded={expanded} aria-hidden="true" />
+          <MobileClose $expanded={expanded} aria-hidden="true" />
         </HeaderInner>
       </HeaderButton>
 
       {expanded ? (
         <Expanded
+          ref={expandedRef}
           id={`${formId}-content`}
           onSubmit={submit}
           noValidate
           $sticky={sticky}
         >
           <Columns>
-            <Column>
+            <Column $activeMobileStage={mobileStage} $mobileStage="details">
               <OakHeading tag="h2" $font="heading-6">
                 {section.detailsHeading}
               </OakHeading>
@@ -542,13 +705,38 @@ export const NationalCurriculumInsightsDownload = ({
                   />
                 </TermsBox>
               </Fields>
+              <MobileSubjectButton
+                type="button"
+                onClick={() => setMobileStage("subjects")}
+              >
+                <span>
+                  {selectedValues.length > 0
+                    ? `${selectedValues.length} selected`
+                    : "Select subjects"}
+                </span>
+                <OakIcon iconName="arrow-right" />
+              </MobileSubjectButton>
             </Column>
 
-            <Column>
-              <OakHeading tag="h2" $font="heading-6">
-                {section.downloadsHeading}
-              </OakHeading>
-              <OakP $font="body-2">{section.downloadsIntroduction}</OakP>
+            <Column $activeMobileStage={mobileStage} $mobileStage="subjects">
+              <MobileBackButton
+                type="button"
+                onClick={() => setMobileStage("details")}
+              >
+                <OakIcon iconName="arrow-left" />
+                Back
+              </MobileBackButton>
+              <MobileDownloadsHeader>
+                <OakHeading tag="h2" $font="heading-6">
+                  Select subjects
+                </OakHeading>
+              </MobileDownloadsHeader>
+              <DesktopDownloadsHeader>
+                <OakHeading tag="h2" $font="heading-6">
+                  {section.downloadsHeading}
+                </OakHeading>
+                <OakP $font="body-2">{section.downloadsIntroduction}</OakP>
+              </DesktopDownloadsHeader>
               <Selector>
                 <MultiSelect
                   id={`${formId}-subjects`}
@@ -557,8 +745,10 @@ export const NationalCurriculumInsightsDownload = ({
                   onChange={setSelectedValues}
                   placeholder="Select subjects"
                   mobileTitle="Download subjects"
+                  hideMobileHeader
                   size="large"
                   mobileConfirmLabel="Confirm selection"
+                  onMobileConfirm={() => setMobileStage("details")}
                   selectedItemsLabel="Selected subjects"
                   groupSelectLabel={(group) =>
                     `All ${group.label.toLowerCase()} subjects`
@@ -568,7 +758,7 @@ export const NationalCurriculumInsightsDownload = ({
               </Selector>
             </Column>
           </Columns>
-          <ActionBar>
+          <ActionBar $activeMobileStage={mobileStage}>
             <ActionCell>
               <div style={{ width: "100%" }}>
                 <DownloadButton type="submit" disabled={!canDownload}>
