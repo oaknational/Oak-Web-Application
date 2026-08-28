@@ -13,6 +13,7 @@ import {
 } from "./getProgrammeData";
 import { getFileSizes } from "./Components/getFileSizes";
 
+import LayoutPreviewControls from "@/components/AppComponents/LayoutPreviewControls";
 import { isFeatureFlagEnabledServer } from "@/utils/featureFlagChecks/server";
 import {
   createDownloadsData,
@@ -330,6 +331,7 @@ const InnerProgrammePage = async (props: AppPageProps<ProgrammePageParams>) => {
       accessLevel="programme"
     >
       <ProgrammeView {...results} />
+      {isEnabled && <LayoutPreviewControls />}
     </TeacherBrowseAnalyticsStoreProvider>
   );
 };
