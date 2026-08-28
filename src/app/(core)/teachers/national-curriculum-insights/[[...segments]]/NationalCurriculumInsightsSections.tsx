@@ -1028,9 +1028,13 @@ const GuidanceTaggedParagraph = styled(OakBox)`
   }
 `;
 
-const GuidanceStatusTag = styled(OakTagFunctional)`
-  min-width: 141px;
-  justify-content: center;
+const GuidanceStatusTag = styled(OakBox)`
+  width: fit-content;
+
+  > div {
+    width: 141px;
+    justify-content: center;
+  }
 `;
 
 export const NationalCurriculumInsightsGuidanceIntro = ({
@@ -1080,15 +1084,17 @@ export const NationalCurriculumInsightsGuidanceIntro = ({
                   components={guidancePortableTextComponents}
                 />
                 <GuidanceTaggedParagraph>
-                  <GuidanceStatusTag
-                    label={section.statusLabel!}
-                    iconName="rocket"
-                    $background="bg-decorative5-main"
-                    $color="text-primary"
-                    $borderRadius="border-radius-s"
-                    $font="heading-7"
-                    $gap="spacing-4"
-                  />
+                  <GuidanceStatusTag>
+                    <OakTagFunctional
+                      label={section.statusLabel!}
+                      iconName="rocket"
+                      $background="bg-decorative5-main"
+                      $color="text-primary"
+                      $borderRadius="border-radius-s"
+                      $font="heading-7"
+                      $gap="spacing-4"
+                    />
+                  </GuidanceStatusTag>
                   <PortableTextWithDefaults
                     value={remainingBlocks}
                     components={guidancePortableTextComponents}
@@ -1102,16 +1108,17 @@ export const NationalCurriculumInsightsGuidanceIntro = ({
                   components={guidancePortableTextComponents}
                 />
                 {section.statusLabel ? (
-                  <GuidanceStatusTag
-                    label={section.statusLabel}
-                    iconName="rocket"
-                    $background="bg-decorative5-main"
-                    $color="text-primary"
-                    $alignSelf="flex-start"
-                    $borderRadius="border-radius-s"
-                    $font="heading-7"
-                    $gap="spacing-4"
-                  />
+                  <GuidanceStatusTag $alignSelf="flex-start">
+                    <OakTagFunctional
+                      label={section.statusLabel}
+                      iconName="rocket"
+                      $background="bg-decorative5-main"
+                      $color="text-primary"
+                      $borderRadius="border-radius-s"
+                      $font="heading-7"
+                      $gap="spacing-4"
+                    />
+                  </GuidanceStatusTag>
                 ) : null}
               </>
             )}
