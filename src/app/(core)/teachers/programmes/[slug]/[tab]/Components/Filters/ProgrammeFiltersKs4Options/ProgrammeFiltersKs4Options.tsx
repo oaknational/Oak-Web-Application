@@ -125,6 +125,7 @@ function Ks4OptionRadioGroup({
   const id = useId();
   const router = useRouter();
   const sortedOptions = sortKs4OptionsForDisplay(options);
+  const optionsString = sortedOptions.map((option) => option.slug).join(",");
 
   // Prefetch every option's destination so switching KS4 option doesn't wait on a fresh RSC fetch.
   useEffect(() => {
@@ -134,7 +135,7 @@ function Ks4OptionRadioGroup({
       }
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [sortedOptions.map((option) => option.slug).join(","), selectedSlug]);
+  }, [getHref, router, selectedSlug, optionsString]);
 
   return (
     <OakBox>
