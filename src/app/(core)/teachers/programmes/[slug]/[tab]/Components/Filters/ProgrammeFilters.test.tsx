@@ -64,6 +64,13 @@ export const mockProgrammeFiltersData: ProgrammePageFiltersProps["data"] = {
 
 const render = renderWithProviders();
 
+jest.mock("next/navigation", () => ({
+  usePathname: jest.fn(() => "/"),
+  useRouter: () => ({
+    prefetch: jest.fn(),
+  }),
+}));
+
 const defaultProps: ProgrammePageFiltersProps = {
   onChangeFilters: jest.fn(),
   filters: createFilter({ years: ["7", "10"] }),
