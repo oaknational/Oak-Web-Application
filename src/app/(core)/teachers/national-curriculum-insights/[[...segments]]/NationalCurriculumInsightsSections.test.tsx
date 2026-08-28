@@ -370,9 +370,11 @@ describe("National Curriculum Insights sections", () => {
     fireEvent.change(screen.getByRole("textbox", { name: /Name/ }), {
       target: { value: "Jamie Maxwell" },
     });
-    await user.click(
-      screen.getByRole("button", { name: /Role.*Select your role/ }),
-    );
+    const roleTrigger = screen.getByRole("button", {
+      name: /Role.*Select your role/,
+    });
+    expect(roleTrigger).not.toHaveAttribute("aria-describedby");
+    await user.click(roleTrigger);
     const roleOption = screen
       .getAllByTestId("listbox-option")
       .find(

@@ -89,6 +89,7 @@ export const NationalCurriculumInsightsSelect = ({
 }: NationalCurriculumInsightsSelectProps) => {
   const generatedId = useId();
   const labelId = `${generatedId}-label`;
+  const errorId = `${id}-error`;
   const triggerRef = useRef<HTMLButtonElement>(null);
   const selectProps = {
     "aria-label": label,
@@ -125,6 +126,7 @@ export const NationalCurriculumInsightsSelect = ({
         ref={triggerRef}
         name={name}
         aria-labelledby={`${labelId} ${id}-value`}
+        aria-describedby={error ? errorId : undefined}
         aria-invalid={Boolean(error)}
       >
         <OakSpan id={`${id}-value`} $font="body-2">
@@ -144,7 +146,11 @@ export const NationalCurriculumInsightsSelect = ({
           </Menu>
         </Popover>
       ) : null}
-      {error ? <OakFieldError>{error}</OakFieldError> : null}
+      {error ? (
+        <div id={errorId}>
+          <OakFieldError>{error}</OakFieldError>
+        </div>
+      ) : null}
     </Container>
   );
 };
