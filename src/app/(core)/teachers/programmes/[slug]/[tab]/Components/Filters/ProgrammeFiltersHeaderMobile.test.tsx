@@ -92,7 +92,7 @@ describe("Mobile filters header", () => {
   beforeEach(() => {
     mockScrollTo.mockClear();
   });
-  test("displays year group buttons", async () => {
+  test("displays all filters button", async () => {
     render(
       <BrowseFiltersProvider
         defaultFilter={{
@@ -109,7 +109,7 @@ describe("Mobile filters header", () => {
       </BrowseFiltersProvider>,
     );
 
-    const yearButtons = await screen.findAllByTestId("year-radio");
-    expect(yearButtons).toHaveLength(2);
+    const allFiltersBtn = screen.getByText("All filters");
+    expect(allFiltersBtn).toBeInTheDocument();
   });
 });

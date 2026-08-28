@@ -65,15 +65,15 @@ const renderUnitSequenceView = (
 describe("UnitSequenceView", () => {
   it("renders filters when expected", () => {
     renderUnitSequenceView();
-    const yearLegend = screen.getByRole("group", { name: "Year group" });
-    expect(yearLegend).toBeInTheDocument();
+    const allFiltersBtn = screen.getByText("All filters");
+    expect(allFiltersBtn).toBeInTheDocument();
   });
   it("does not render filters when none should display", () => {
     renderUnitSequenceView({
       ...defaultProps,
       curriculumUnitsFormattedData: noFiltersData,
     });
-    const yearLegend = screen.queryByRole("group", { name: "Year group" });
-    expect(yearLegend).not.toBeInTheDocument();
+    const allFiltersBtn = screen.queryByText("All filters");
+    expect(allFiltersBtn).not.toBeInTheDocument();
   });
 });

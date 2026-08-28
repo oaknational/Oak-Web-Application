@@ -2,20 +2,16 @@ import React from "react";
 import {
   OakBox,
   OakFlex,
-  OakHeading,
   OakTertiaryButton,
 } from "@oaknational/oak-components";
 
 import { ProgrammePageFiltersProps } from "./ProgrammePageFiltersDesktop";
-
-import { BrowseFiltersYears } from "@/app/(core)/teachers/programmes/[slug]/[tab]/Components/Filters/BrowseFilters/BrowseFiltersYears";
 
 export type MobileFilterHeaderProps = ProgrammePageFiltersProps & {
   onOpenModal: () => void;
 };
 export default function ProgrammeFiltersHeaderMobile({
   onOpenModal,
-  data,
 }: Readonly<MobileFilterHeaderProps>) {
   return (
     <OakBox
@@ -34,12 +30,7 @@ export default function ProgrammeFiltersHeaderMobile({
         // Container to return focus to on filter modal close
         id="mobile-filters-header-container"
       >
-        <OakHeading tag="h2" $font={"heading-7"} $mb={"spacing-8"}>
-          Filters
-        </OakHeading>
-
-        <BrowseFiltersYears data={data} onModalOpen={onOpenModal} />
-        <OakBox $display={["block", "none", "none"]}>
+        <OakBox $display={["block", "block", "none"]}>
           <OakTertiaryButton
             isTrailingIcon
             iconName="filter"
