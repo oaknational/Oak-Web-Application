@@ -1,0 +1,9 @@
+overwrite: true
+schema: ${SANITY_GRAPHQL_URL}
+documents: "src/node-lib/sanity-graphql/queries/nationalCurriculumInsights*.gql"
+generates:
+  src/node-lib/sanity-graphql/generated/nationalCurriculumInsights.ts:
+    plugins:
+      - "typescript"
+      - "typescript-operations"
+      - "typescript-graphql-request"

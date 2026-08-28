@@ -317,6 +317,36 @@ async function main() {
       secretsFromNetwork.GOOGLE_CLASSROOM_SESSION_SECRET,
   };
 
+  if (
+    process.env.VERCEL_PROJECT_ID === "prj_O8wE98fPoc0q67sQAkQhRP5Pgcxe" &&
+    process.env.VERCEL_GIT_COMMIT_REF === "feat/national-curriculum-insights"
+  ) {
+    const expectedSanityPreview = {
+      projectId: "cuvjke51",
+      dataset: "feat-national-curriculum-insights",
+      datasetTag: "default",
+      useCDN: "false",
+    };
+
+    const actualSanityPreview = {
+      projectId: String(env.NEXT_PUBLIC_SANITY_PROJECT_ID),
+      dataset: String(env.NEXT_PUBLIC_SANITY_DATASET),
+      datasetTag: String(env.SANITY_DATASET_TAG),
+      useCDN: String(env.SANITY_USE_CDN),
+    };
+
+    for (const [key, expected] of Object.entries(expectedSanityPreview)) {
+      if (
+        actualSanityPreview[key as keyof typeof actualSanityPreview] !==
+        expected
+      ) {
+        throw new Error(
+          `The National Curriculum Insights preview has an unexpected Sanity ${key} setting`,
+        );
+      }
+    }
+  }
+
   const serializedEnv = Object.entries(env).reduce((acc, [key, value]) => {
     return `${acc}${key}=${value}\n`;
   }, "");
