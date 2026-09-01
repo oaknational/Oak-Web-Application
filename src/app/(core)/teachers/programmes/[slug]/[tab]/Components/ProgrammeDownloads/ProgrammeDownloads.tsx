@@ -88,10 +88,13 @@ export const ProgrammeDownloads = ({
         return true;
       }
       if (group === "implementation-guide") {
-        return implementationGuides?.[id as keyof ImplementationGuides];
+        return (
+          implementationGuides?.[id as keyof ImplementationGuides] &&
+          featureFlags["implementation-guides"]
+        );
       }
     }).map(({ id }) => id);
-  }, [curriculumUnitsFormattedData, implementationGuides]);
+  }, [curriculumUnitsFormattedData, implementationGuides, featureFlags]);
 
   const curriculumDownloadsWithLabels = DOWNLOAD_TYPE_LABELS.filter(
     ({ id, group }) => {
@@ -101,9 +104,7 @@ export const ProgrammeDownloads = ({
   const implementationGuideDownloadsWithLabels = DOWNLOAD_TYPE_LABELS.filter(
     ({ id, group }) => {
       return (
-        featureFlags["implementation-guides"] &&
-        group === "implementation-guide" &&
-        availableDownloadTypes.includes(id)
+        group === "implementation-guide" && availableDownloadTypes.includes(id)
       );
     },
   );
@@ -235,7 +236,10 @@ export const ProgrammeDownloads = ({
         terms: data.terms,
         resources: ["docx"],
       });
-      curriculumResourcesDownloaded(data);
+      curriculumResourcesDownloaded({
+        ...data,
+        resources: availableDownloadTypes,
+      });
 
       setIsDone(true);
     } catch {
