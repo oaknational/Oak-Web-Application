@@ -27,6 +27,7 @@ jest.mock("next/navigation", () => ({
   __esModule: true,
   useRouter: () => ({
     replace: replaceMock,
+    prefetch: jest.fn(),
   }),
   useSearchParams: () => new URLSearchParams(""),
   usePathname: () => "/teachers/programmes/english-secondary-ocr/units",
