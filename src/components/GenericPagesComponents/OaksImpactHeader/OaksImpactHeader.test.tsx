@@ -10,7 +10,7 @@ describe("OaksImpactHeader", () => {
     const { baseElement, getByRole } = render(
       <MockedAnalyticsProvider>
         <OaksImpactHeader
-          videoDescription={"TEST_VIDEO_DESCRIPTION"}
+          mediaDescription={"TEST_VIDEO_DESCRIPTION"}
           video={{
             video: {
               asset: {

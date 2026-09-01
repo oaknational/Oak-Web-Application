@@ -43,7 +43,7 @@ const OaksImpact: NextPage<OaksImpactPageProps> = ({ topNav, pageData }) => {
             title="Oak's impact"
             body={pageData.header.introText}
             video={pageData.header.video}
-            videoDescription={pageData.header.videoDescription}
+            mediaDescription={pageData.header.videoDescription}
           />
           <OaksImpactStats {...pageData.statsSection} />
           <OaksImpactCaseStudies
