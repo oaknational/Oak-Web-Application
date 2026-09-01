@@ -1,0 +1,606 @@
+{
+  "pageType": "guidance",
+  "title": "Practical guidance for curriculum change",
+  "summary": "Practical guidance to help school leaders prepare for national curriculum change.",
+  "modules": [
+    {
+      "__typename": "NationalCurriculumInsightsHeroSection",
+      "heading": "Practical guidance for curriculum change",
+      "bodyPortableText": [
+        {
+          "_key": "guidance-hero-body-1",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "guidance-hero-body-1-span",
+              "_type": "span",
+              "marks": [],
+              "text": "Get clear subject insights, expert analysis and practical guidance to help you prepare for the refreshed national curriculum."
+            }
+          ],
+          "markDefs": [],
+          "style": "normal"
+        },
+        {
+          "_key": "guidance-hero-body-2",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "guidance-hero-body-2-span-1",
+              "_type": "span",
+              "marks": [],
+              "text": "For now, keep using our free, subject expert-designed "
+            },
+            {
+              "_key": "guidance-hero-body-2-span-2",
+              "_type": "span",
+              "marks": ["oak-home"],
+              "text": "curriculum plans and teaching resources"
+            },
+            {
+              "_key": "guidance-hero-body-2-span-3",
+              "_type": "span",
+              "marks": [],
+              "text": ", covering all national curriculum subjects from KS1 - 4. They already have a strong focus on lots of the areas the review recommends."
+            }
+          ],
+          "markDefs": [
+            {
+              "_key": "oak-home",
+              "_type": "link",
+              "href": "https://www.thenational.academy/"
+            }
+          ],
+          "style": "normal"
+        }
+      ],
+      "image": {
+        "altText": "Colleagues working together to plan curriculum change",
+        "isPresentational": false,
+        "asset": {
+          "_id": "image-62f7eb8c5ef749456ba5706d27e950d5641f9d31-2289x1594-png",
+          "url": "https://cdn.sanity.io/images/cuvjke51/feat-national-curriculum-insights/62f7eb8c5ef749456ba5706d27e950d5641f9d31-2289x1594.png"
+        },
+        "hotspot": null
+      },
+      "authorName": null,
+      "authorRole": null,
+      "authorImage": null,
+      "statusHeading": null,
+      "statusMessage": null,
+      "ctaLabel": null,
+      "ctaHref": null
+    },
+    {
+      "__typename": "NationalCurriculumInsightsGuidanceIntroSection",
+      "heading": "Here, you’ll find:",
+      "image": {
+        "altText": "A teacher preparing curriculum plans",
+        "isPresentational": false,
+        "asset": {
+          "_id": "image-648a287a23ac1c03e389698c4125da89bb9be8c2-3000x2001-jpg",
+          "url": "https://cdn.sanity.io/images/cuvjke51/feat-national-curriculum-insights/648a287a23ac1c03e389698c4125da89bb9be8c2-3000x2001.jpg"
+        },
+        "hotspot": null
+      },
+      "bodyPortableText": [
+        {
+          "_key": "guidance-intro-body-1",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "guidance-intro-body-1-span-1",
+              "_type": "span",
+              "marks": [],
+              "text": "Practical leadership guidance in our Curriculum Conversations roundtables. "
+            },
+            {
+              "_key": "guidance-intro-body-1-span-2",
+              "_type": "span",
+              "marks": ["latest-episode"],
+              "text": "Watch the latest episode"
+            },
+            {
+              "_key": "guidance-intro-body-1-span-3",
+              "_type": "span",
+              "marks": [],
+              "text": ", and "
+            },
+            {
+              "_key": "guidance-intro-body-1-span-4",
+              "_type": "span",
+              "marks": ["questions"],
+              "text": "share your questions"
+            },
+            {
+              "_key": "guidance-intro-body-1-span-5",
+              "_type": "span",
+              "marks": [],
+              "text": " for future episodes."
+            }
+          ],
+          "markDefs": [
+            {
+              "_key": "latest-episode",
+              "_type": "link",
+              "href": "https://www.youtube.com/@OakNationalAcademy"
+            },
+            {
+              "_key": "questions",
+              "_type": "link",
+              "href": "https://share.hsforms.com/2MlBwaR1ASGGMmtjhwdDGQQbvumd"
+            }
+          ],
+          "style": "normal"
+        },
+        {
+          "_key": "guidance-intro-body-2",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "guidance-intro-body-2-span",
+              "_type": "span",
+              "marks": [],
+              "text": "Your guide to the proposed national curriculum changes, subject by subject, with a clear breakdown of what is changing and what is staying the same."
+            }
+          ],
+          "markDefs": [],
+          "style": "normal"
+        }
+      ],
+      "statusLabel": "Coming soon"
+    },
+    {
+      "__typename": "NationalCurriculumInsightsImageTextSection",
+      "heading": "As the refreshed national curriculum develops, you’ll get:",
+      "bodyPortableText": [
+        {
+          "_key": "guidance-explainer-1",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "guidance-explainer-1-span",
+              "_type": "span",
+              "marks": [],
+              "text": "Updated curriculum sequences aligned with the refreshed national curriculum and GCSE specifications."
+            }
+          ],
+          "level": 1,
+          "listItem": "bullet",
+          "markDefs": [],
+          "style": "normal"
+        },
+        {
+          "_key": "guidance-explainer-2",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "guidance-explainer-2-span",
+              "_type": "span",
+              "marks": [],
+              "text": "Carefully sequenced, adaptable teaching resources including slides, worksheets, quizzes, key vocabulary and videos."
+            }
+          ],
+          "level": 1,
+          "listItem": "bullet",
+          "markDefs": [],
+          "style": "normal"
+        },
+        {
+          "_key": "guidance-explainer-3",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "guidance-explainer-3-span",
+              "_type": "span",
+              "marks": [],
+              "text": "A fully digital and easily navigable example model of the DfE’s refreshed national curriculum."
+            }
+          ],
+          "level": 1,
+          "listItem": "bullet",
+          "markDefs": [],
+          "style": "normal"
+        },
+        {
+          "_key": "guidance-explainer-4",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "guidance-explainer-4-span",
+              "_type": "span",
+              "marks": [],
+              "text": "AI tools you can trust that make it quick and easy to adapt your curriculum and lessons to your context."
+            }
+          ],
+          "level": 1,
+          "listItem": "bullet",
+          "markDefs": [],
+          "style": "normal"
+        },
+        {
+          "_key": "guidance-explainer-5",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "guidance-explainer-5-span",
+              "_type": "span",
+              "marks": [],
+              "text": "Free, adaptable and open-licensed resources, to provide support across the sector."
+            }
+          ],
+          "level": 1,
+          "listItem": "bullet",
+          "markDefs": [],
+          "style": "normal"
+        }
+      ],
+      "image": {
+        "altText": "An illustration representing curriculum planning and resources",
+        "isPresentational": false,
+        "asset": {
+          "_id": "image-96af3d15e4488bc498ead83aa83a815229709f43-513x400-png",
+          "url": "https://cdn.sanity.io/images/cuvjke51/feat-national-curriculum-insights/96af3d15e4488bc498ead83aa83a815229709f43-513x400.png"
+        },
+        "hotspot": null
+      },
+      "imagePosition": "right",
+      "background": "white",
+      "ctaLabel": null,
+      "ctaHref": null
+    },
+    {
+      "__typename": "NationalCurriculumInsightsNewsletterSection",
+      "heading": "Don’t miss a thing",
+      "introduction": "Sign up and you won't be going it alone:",
+      "benefitsHeading": "Sign up now for:",
+      "benefits": [
+        "Get practical leadership guidance from curriculum experts and school leaders in your inbox",
+        "Receive subject-by-subject help to implement the changes, as they happen",
+        "Be the first to hear when new and up-to-date sequences and resources land"
+      ],
+      "illustration": {
+        "altText": null,
+        "isPresentational": true,
+        "asset": {
+          "_id": "image-8494adbdbbeec9e529cdada1a499fe4e88a1d5ac-60x50-svg",
+          "url": "https://cdn.sanity.io/images/cuvjke51/feat-national-curriculum-insights/8494adbdbbeec9e529cdada1a499fe4e88a1d5ac-60x50.svg"
+        },
+        "hotspot": null
+      },
+      "privacyPortableText": [
+        {
+          "_key": "guidance-newsletter-privacy",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "guidance-newsletter-privacy-span-1",
+              "_type": "span",
+              "marks": [],
+              "text": "You can unsubscribe at any time. Our "
+            },
+            {
+              "_key": "guidance-newsletter-privacy-span-2",
+              "_type": "span",
+              "marks": ["privacy-policy"],
+              "text": "privacy policy"
+            },
+            {
+              "_key": "guidance-newsletter-privacy-span-3",
+              "_type": "span",
+              "marks": [],
+              "text": " explains how we handle your personal data."
+            }
+          ],
+          "markDefs": [
+            {
+              "_key": "privacy-policy",
+              "_type": "link",
+              "href": "https://www.thenational.academy/legal/privacy-policy"
+            }
+          ],
+          "style": "normal"
+        }
+      ],
+      "formId": "national-curriculum-guidance",
+      "buttonLabel": "Sign up now"
+    },
+    {
+      "__typename": "NationalCurriculumInsightsVideoCardsSection",
+      "heading": "Curriculum Conversations: Watch practical guidance for curriculum change",
+      "introductionPortableText": [
+        {
+          "_key": "guidance-conversations-intro",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "guidance-conversations-intro-span",
+              "_type": "span",
+              "marks": [],
+              "text": "Education experts and school leaders share how they’re approaching the changes, with practical tips you can apply straight away."
+            }
+          ],
+          "markDefs": [],
+          "style": "normal"
+        }
+      ],
+      "posts": [
+        {
+          "id": "43b04a84-546e-45e7-b08d-b5d102f06571",
+          "title": "Curriculum Conversations (Episode 3): Bennie Kara on inclusive curriculum leadership",
+          "summary": "Watch our 20-minute conversation with Bennie Kara to explore what strong leadership for an inclusive curriculum looks like - and what it means for pupils to feel a sense of belonging in what they learn.",
+          "slug": "curriculum-conversations-episode-3-bennie-kara-on-inclusive-curriculum-leadership",
+          "image": {
+            "altText": null,
+            "isPresentational": true,
+            "asset": {
+              "_id": "image-96ae4d3f5934f1ab88a74b6fd6d1a3ce0a4f6d3d-5334x3417-png",
+              "url": "https://cdn.sanity.io/images/cuvjke51/feat-national-curriculum-insights/96ae4d3f5934f1ab88a74b6fd6d1a3ce0a4f6d3d-5334x3417.png"
+            },
+            "hotspot": null
+          },
+          "video": {
+            "title": "Bennie Kara on inclusive curriculum leadership",
+            "captions": null,
+            "transcript": null,
+            "video": {
+              "asset": {
+                "assetId": "Vzcqhlmahx00RrqzD008qfSm4ds48aZIKGkKbd2Ghk013Q",
+                "playbackId": "Ez02TzXH7PdZmYwSTcLpDHjl8QaBmV4WV2jNNIdIRn5A",
+                "thumbTime": null
+              }
+            }
+          }
+        },
+        {
+          "id": "cbd83fd5-d43f-4a64-b66b-d193c2eb3682",
+          "title": "Curriculum Conversations (Episode 2): Cassie Buchanan on leading curriculum change",
+          "summary": "Why does the curriculum review matter, and what could it unlock for pupils and teachers over the next decade? Hear directly from a member of the national review panel in this 20-minute conversation with Cassie Buchanan.",
+          "slug": "curriculum-conversations-episode-2-cassie-buchanan-on-leading-curriculum-change",
+          "image": {
+            "altText": null,
+            "isPresentational": true,
+            "asset": {
+              "_id": "image-881e68c276864fac702bbfedcabfc1e5202b3796-5334x3417-png",
+              "url": "https://cdn.sanity.io/images/cuvjke51/feat-national-curriculum-insights/881e68c276864fac702bbfedcabfc1e5202b3796-5334x3417.png"
+            },
+            "hotspot": null
+          },
+          "video": {
+            "title": "Curriculum Conversations (Episode 2): Cassie Buchanan on leading curriculum change",
+            "captions": null,
+            "transcript": null,
+            "video": {
+              "asset": {
+                "assetId": "f00uylddMfHOmmWNLlZ5VwRmJyn01awx9OglB0231qkfUQ",
+                "playbackId": "QbnkoFd1vnfHy1nK9S2vgrPVda01l02RPjd00YeT2I5R7A",
+                "thumbTime": null
+              }
+            }
+          }
+        },
+        {
+          "id": "9f87bc46-9510-4521-8a83-725d9a9ed475",
+          "title": "Curriculum Conversations (Episode 1): What you need to know now about the national curriculum changes",
+          "summary": "Watch our 20-minute Curriculum Conversations roundtable discussion with Cassie Buchanan, Bennie Kara and Emma McCrea to make sense of the upcoming changes to the national curriculum and feel confident about next steps.",
+          "slug": "curriculum-conversations-episode-1-what-you-need-to-know-now-about-the-national-curriculum",
+          "image": {
+            "altText": null,
+            "isPresentational": true,
+            "asset": {
+              "_id": "image-07ce36c8cc20656a52ee756af5a3663a50025b23-6813x4546-png",
+              "url": "https://cdn.sanity.io/images/cuvjke51/feat-national-curriculum-insights/07ce36c8cc20656a52ee756af5a3663a50025b23-6813x4546.png"
+            },
+            "hotspot": null
+          },
+          "video": {
+            "title": "Curriculum Conversations (Episode 1): What you need to know now about the national curriculum changes",
+            "captions": null,
+            "transcript": null,
+            "video": {
+              "asset": {
+                "assetId": "qz01Mxzh97waWG9f1ukSZPBwPlRkOimEuOIjSwPM4f01s",
+                "playbackId": "VywDtbvTR26D2lAotRiJKp8VTorwBe900QCTzphPLw00I",
+                "thumbTime": 60
+              }
+            }
+          }
+        }
+      ],
+      "cards": [
+        {
+          "heading": "How do you implement curriculum change well?",
+          "description": "Becks Boomer-Clark (CEO, Lift Schools) and Tilly Browne (CEO, Reach Schools) discuss the practical steps that lead to successful curriculum change implementation.",
+          "image": {
+            "altText": "Preview for How do you implement curriculum change well?",
+            "isPresentational": false,
+            "asset": {
+              "_id": "image-b4fe0b33fef105d9a8fd401409b2fc0e0919f525-491x275-png",
+              "url": "https://cdn.sanity.io/images/cuvjke51/feat-national-curriculum-insights/b4fe0b33fef105d9a8fd401409b2fc0e0919f525-491x275.png"
+            },
+            "hotspot": null
+          },
+          "videoUrl": "https://www.youtube.com/@OakNationalAcademy",
+          "duration": null
+        },
+        {
+          "heading": "What should leaders be doing before the refreshed curriculum arrives?",
+          "description": "Becks Boomer-Clark (CEO, Lift Schools) and Tilly Browne (co-Headteacher, Reach Schools) discuss what leaders should - and shouldn't - be focusing on during this interim period of curriculum uncertainty.",
+          "image": {
+            "altText": "Preview for What should leaders be doing before the refreshed curriculum arrives?",
+            "isPresentational": false,
+            "asset": {
+              "_id": "image-cfeee42d007e8a00beedfdcb6690d81044fe887d-290x162-png",
+              "url": "https://cdn.sanity.io/images/cuvjke51/feat-national-curriculum-insights/cfeee42d007e8a00beedfdcb6690d81044fe887d-290x162.png"
+            },
+            "hotspot": null
+          },
+          "videoUrl": "https://www.youtube.com/@OakNationalAcademy",
+          "duration": null
+        },
+        {
+          "heading": "Bennie Kara on inclusive curriculum leadership",
+          "description": "Bennie Kara, author and a leading national voice on diversity, belonging and curriculum inclusion, explores what strong leadership for an inclusive curriculum looks like - and what it means for pupils to feel a sense of belonging in what they learn.",
+          "image": {
+            "altText": "Preview for Bennie Kara on inclusive curriculum leadership",
+            "isPresentational": false,
+            "asset": {
+              "_id": "image-95d8c1de3149a70761d5f6f5de3977b98fff35e8-290x163-png",
+              "url": "https://cdn.sanity.io/images/cuvjke51/feat-national-curriculum-insights/95d8c1de3149a70761d5f6f5de3977b98fff35e8-290x163.png"
+            },
+            "hotspot": null
+          },
+          "videoUrl": "https://www.youtube.com/@OakNationalAcademy",
+          "duration": null
+        },
+        {
+          "heading": "Cassie Buchanan on leading curriculum change",
+          "description": "Cassie Buchanan was part of the review panel and is also CEO of Charter Schools Education Trust. She shares early reflections from the review process, alongside practical perspectives on what meaningful change could look like in schools.",
+          "image": {
+            "altText": "Preview for Cassie Buchanan on leading curriculum change",
+            "isPresentational": false,
+            "asset": {
+              "_id": "image-e7a45f32bc44c01b90399c46ccf74b720653c9c5-290x163-png",
+              "url": "https://cdn.sanity.io/images/cuvjke51/feat-national-curriculum-insights/e7a45f32bc44c01b90399c46ccf74b720653c9c5-290x163.png"
+            },
+            "hotspot": null
+          },
+          "videoUrl": "https://www.youtube.com/@OakNationalAcademy",
+          "duration": null
+        },
+        {
+          "heading": "What you need to know now about the national curriculum changes",
+          "description": "What should school leaders be focusing on right now as the curriculum evolves? Cassie Buchanan (CEO of Charter Schools Education Trust and member of the review panel) and Bennie Kara (author and leading voice on diversity) share insight into the big themes emerging and practical leadership guidance on next steps.",
+          "image": {
+            "altText": "Preview for What you need to know now about the national curriculum changes",
+            "isPresentational": false,
+            "asset": {
+              "_id": "image-99d68c7ad4017c4b3d7af2a90da554a2bdd0fafe-290x163-png",
+              "url": "https://cdn.sanity.io/images/cuvjke51/feat-national-curriculum-insights/99d68c7ad4017c4b3d7af2a90da554a2bdd0fafe-290x163.png"
+            },
+            "hotspot": null
+          },
+          "videoUrl": "https://www.youtube.com/@OakNationalAcademy",
+          "duration": null
+        }
+      ]
+    },
+    {
+      "__typename": "NationalCurriculumInsightsQuoteSection",
+      "quote": "Now that our National Curriculum review is complete, I’m excited to see how we can build on schools’ strong foundations and bring newly refreshed curricula to life in classrooms.\n\nTeachers must be supported to adopt our recommendations, so that they’re empowered to embrace them. I’m delighted that Oak will be championing this crucial work.",
+      "attribution": "Professor Becky Francis CBE",
+      "role": "Chair of the Curriculum and Assessment Review",
+      "image": {
+        "altText": "Professor Becky Francis CBE",
+        "isPresentational": false,
+        "asset": {
+          "_id": "image-45c9cbbbc5c8b055155fcee8abb40ed8ef92571e-1220x819-png",
+          "url": "https://cdn.sanity.io/images/cuvjke51/feat-national-curriculum-insights/45c9cbbbc5c8b055155fcee8abb40ed8ef92571e-1220x819.png"
+        },
+        "hotspot": null
+      }
+    },
+    {
+      "__typename": "NationalCurriculumInsightsFaqSection",
+      "heading": "Frequently Asked Questions",
+      "items": [
+        {
+          "question": "Do I need to rewrite my curriculum now?",
+          "answerPortableText": [
+            {
+              "_key": "guidance-faq-1-answer",
+              "_type": "block",
+              "children": [
+                {
+                  "_key": "guidance-faq-1-answer-span",
+                  "_type": "span",
+                  "marks": [],
+                  "text": "No. Keep using your current curriculum while the refreshed national curriculum is finalised. We will update this guidance as the detail is confirmed."
+                }
+              ],
+              "markDefs": [],
+              "style": "normal"
+            }
+          ]
+        },
+        {
+          "question": "Should I teach the draft curriculum?",
+          "answerPortableText": [
+            {
+              "_key": "guidance-faq-2-answer",
+              "_type": "block",
+              "children": [
+                {
+                  "_key": "guidance-faq-2-answer-span",
+                  "_type": "span",
+                  "marks": [],
+                  "text": "No. The draft proposals are not statutory. Schools should continue to teach the current national curriculum until the final version takes effect."
+                }
+              ],
+              "markDefs": [],
+              "style": "normal"
+            }
+          ]
+        },
+        {
+          "question": "When will Oak resources change?",
+          "answerPortableText": [
+            {
+              "_key": "guidance-faq-3-answer",
+              "_type": "block",
+              "children": [
+                {
+                  "_key": "guidance-faq-3-answer-span",
+                  "_type": "span",
+                  "marks": [],
+                  "text": "We will update our curriculum sequences and resources when the refreshed national curriculum is confirmed, giving schools clear notice and practical support."
+                }
+              ],
+              "markDefs": [],
+              "style": "normal"
+            }
+          ]
+        },
+        {
+          "question": "Will assessment change?",
+          "answerPortableText": [
+            {
+              "_key": "guidance-faq-4-answer",
+              "_type": "block",
+              "children": [
+                {
+                  "_key": "guidance-faq-4-answer-span",
+                  "_type": "span",
+                  "marks": [],
+                  "text": "Assessment arrangements will be updated separately by the responsible bodies. We will link to confirmed guidance when it is available."
+                }
+              ],
+              "markDefs": [],
+              "style": "normal"
+            }
+          ]
+        },
+        {
+          "question": "When does this become statutory?",
+          "answerPortableText": [
+            {
+              "_key": "guidance-faq-5-answer",
+              "_type": "block",
+              "children": [
+                {
+                  "_key": "guidance-faq-5-answer-span",
+                  "_type": "span",
+                  "marks": [],
+                  "text": "The Department for Education will confirm the statutory timetable. We will keep this page updated with the latest information."
+                }
+              ],
+              "markDefs": [],
+              "style": "normal"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "id": "nationalCurriculumInsightsGuidancePage"
+}

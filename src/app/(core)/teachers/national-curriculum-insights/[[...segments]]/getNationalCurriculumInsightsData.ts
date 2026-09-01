@@ -1,3 +1,4 @@
+import guidancePreviewSnapshot from "./nationalCurriculumInsightsGuidancePreviewSnapshot.json";
 import previewSnapshot from "./nationalCurriculumInsightsPreviewSnapshot.json";
 
 import {
@@ -311,13 +312,15 @@ const localNationalCurriculumInsightsReader: NationalCurriculumInsightsReader =
 const localPreviewHub = nationalCurriculumInsightsHubSchema.parse(
   previewSnapshot.hub,
 );
+const localPreviewGuidancePage =
+  nationalCurriculumInsightsGuidancePageSchema.parse(guidancePreviewSnapshot);
 const localPreviewSubjects = previewSnapshot.subjects.map((subject) =>
   nationalCurriculumInsightsSubjectSchema.parse(subject),
 );
 
 const localPreviewSnapshotReader: NationalCurriculumInsightsReader = {
   nationalCurriculumInsightsHub: async () => localPreviewHub,
-  nationalCurriculumInsightsGuidancePage: async () => localGuidancePage,
+  nationalCurriculumInsightsGuidancePage: async () => localPreviewGuidancePage,
   nationalCurriculumInsightsSubjectBySlug: async (subjectSlug) =>
     localPreviewSubjects.find(({ slug }) => slug === subjectSlug) ?? null,
 };

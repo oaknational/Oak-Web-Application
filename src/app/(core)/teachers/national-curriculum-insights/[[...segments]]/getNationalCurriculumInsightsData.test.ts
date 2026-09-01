@@ -216,10 +216,11 @@ describe("getNationalCurriculumInsightsReader", () => {
     process.env.NATIONAL_CURRICULUM_INSIGHTS_LOCAL_FIXTURES = "true";
     process.env.NATIONAL_CURRICULUM_INSIGHTS_LOCAL_PREVIEW_RUNTIME = "true";
 
-    const hub =
-      await getNationalCurriculumInsightsReader().nationalCurriculumInsightsHub(
-        { previewMode: false },
-      );
+    const reader = getNationalCurriculumInsightsReader();
+    const [hub, guidance] = await Promise.all([
+      reader.nationalCurriculumInsightsHub({ previewMode: false }),
+      reader.nationalCurriculumInsightsGuidancePage({ previewMode: false }),
+    ]);
 
     expect(hub?.subjects).toHaveLength(16);
     expect(hub?.modules.map(({ __typename }) => __typename)).toEqual([
@@ -230,6 +231,10 @@ describe("getNationalCurriculumInsightsReader", () => {
       "NationalCurriculumInsightsNewsletterSection",
       "NationalCurriculumInsightsFaqSection",
     ]);
+    expect(guidance?.modules).toHaveLength(7);
+    expect(JSON.stringify(guidance)).toContain(
+      "62f7eb8c5ef749456ba5706d27e950d5641f9d31-2289x1594.png",
+    );
   });
 
   it("rejects preview content outside development or the dedicated runtime", () => {
