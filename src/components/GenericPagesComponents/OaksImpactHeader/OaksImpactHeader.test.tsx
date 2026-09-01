@@ -6,7 +6,7 @@ import { renderWithProvidersByName } from "@/__tests__/__helpers__/renderWithPro
 const render = renderWithProvidersByName(["oakTheme"]);
 
 describe("OaksImpactHeader", () => {
-  it("renders correctly", () => {
+  it("renders video variant correctly", () => {
     const { baseElement, getByRole } = render(
       <MockedAnalyticsProvider>
         <OaksImpactHeader
@@ -30,5 +30,21 @@ describe("OaksImpactHeader", () => {
     expect(getByRole("heading")).toHaveTextContent("TEST_TITLE");
     expect(baseElement).toHaveTextContent("TEST_BODY");
     expect(baseElement).toHaveTextContent("TEST_VIDEO_DESCRIPTION");
+  });
+
+  it("renders image variant correctly", () => {
+    const { baseElement, getByRole } = render(
+      <MockedAnalyticsProvider>
+        <OaksImpactHeader
+          image={"http://example.com/image.svg"}
+          imageAlt={"TEST_IMAGE_ALT"}
+          title={"TEST_TITLE"}
+          body={"TEST_BODY"}
+        />
+      </MockedAnalyticsProvider>,
+    );
+    expect(baseElement).toMatchSnapshot();
+    expect(getByRole("heading")).toHaveTextContent("TEST_TITLE");
+    expect(baseElement).toHaveTextContent("TEST_BODY");
   });
 });
