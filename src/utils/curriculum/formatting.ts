@@ -434,7 +434,7 @@ export function getSubjectCategoryMessage(
 }
 
 function slugify(value: string) {
-  return value.replaceAll(" ", "-").replaceAll(/\(|\)/g, "");
+  return value.replaceAll(" ", "-").replaceAll(/[)(]/g, "");
 }
 
 export function getFilename(
