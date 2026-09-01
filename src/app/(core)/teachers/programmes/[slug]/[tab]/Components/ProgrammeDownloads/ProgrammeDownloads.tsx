@@ -385,7 +385,9 @@ export const ProgrammeDownloads = ({
                                       checked={fieldValue.includes(download.id)}
                                       fileSize={
                                         fileSize
-                                          ? prettyBytes(fileSize.size)
+                                          ? prettyBytes(
+                                              fileSize.size,
+                                            ).toUpperCase()
                                           : "—"
                                       }
                                       description={download.fileExt}
@@ -445,7 +447,9 @@ export const ProgrammeDownloads = ({
                                         )}
                                         fileSize={
                                           fileSize
-                                            ? prettyBytes(fileSize)
+                                            ? prettyBytes(
+                                                fileSize,
+                                              ).toUpperCase()
                                             : undefined
                                         }
                                         description={download.fileExt}
@@ -464,7 +468,13 @@ export const ProgrammeDownloads = ({
                           )}
                         </OakGrid>
                         <OakFlex>
-                          <OakLink isTrailingIcon={true} iconName="send">
+                          <OakLink
+                            isTrailingIcon={true}
+                            iconName="send"
+                            href="https://share.hsforms.com/1fzfnNn2GTYaLK5bf87fiagbvumd"
+                            rel="noreferrer"
+                            target="_blank"
+                          >
                             Request an accessible version
                           </OakLink>
                         </OakFlex>
@@ -499,8 +509,8 @@ export const ProgrammeDownloads = ({
                 }
                 showRiskAssessmentBanner={false}
                 curriculumDownloads={[
-                  ...implementationGuideDownloadsWithLabels,
                   ...curriculumDownloadsWithLabels,
+                  ...implementationGuideDownloadsWithLabels,
                 ]}
               />
             )}

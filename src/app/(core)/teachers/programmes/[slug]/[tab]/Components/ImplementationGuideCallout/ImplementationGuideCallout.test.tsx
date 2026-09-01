@@ -13,6 +13,7 @@ describe("ImplementationGuideCallout", () => {
         phase="ks1"
         subjectTitle="Maths"
         phaseTitle="Primary"
+        onClick={() => {}}
       />,
     );
 
@@ -31,6 +32,7 @@ describe("ImplementationGuideCallout", () => {
         phase="ks3"
         subjectTitle="English"
         phaseTitle="Secondary"
+        onClick={() => {}}
       />,
     );
 
@@ -49,6 +51,7 @@ describe("ImplementationGuideCallout", () => {
         phase="ks2"
         subjectTitle="RSHE (PSHE)"
         phaseTitle="Primary"
+        onClick={() => {}}
       />,
     );
 

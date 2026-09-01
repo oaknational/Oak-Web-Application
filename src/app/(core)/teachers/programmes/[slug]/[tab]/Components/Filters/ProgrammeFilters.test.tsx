@@ -1,6 +1,6 @@
 import { screen } from "@testing-library/dom";
 
-import { ProgrammeFilters } from "./ProgrammeFilters";
+import { ProgrammeFilters, ProgrammeFiltersProps } from "./ProgrammeFilters";
 import { ProgrammePageFiltersProps } from "./ProgrammePageFiltersDesktop";
 
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
@@ -11,6 +11,8 @@ import { createThread } from "@/fixtures/curriculum/thread";
 import { createUnit } from "@/fixtures/curriculum/unit";
 import { createYearData } from "@/fixtures/curriculum/yearData";
 import { createFilter } from "@/fixtures/curriculum/filters";
+import { BrowseFiltersProvider } from "@/context/BrowseFilters";
+import { CurriculumFilters } from "@/utils/curriculum/types";
 
 /**
  * Year data spanning KS3 and KS4 so that all five filter groups can render:
@@ -64,9 +66,15 @@ export const mockProgrammeFiltersData: ProgrammePageFiltersProps["data"] = {
 
 const render = renderWithProviders();
 
+jest.mock("next/navigation", () => ({
+  usePathname: jest.fn(() => "/"),
+  useSearchParams: jest.fn(),
+  useRouter: () => ({
+    prefetch: jest.fn(),
+  }),
+}));
+
 const defaultProps: ProgrammePageFiltersProps = {
-  onChangeFilters: jest.fn(),
-  filters: createFilter({ years: ["7", "10"] }),
   data: mockProgrammeFiltersData,
   slugs: {
     subjectSlug: "english",
@@ -77,13 +85,24 @@ const defaultProps: ProgrammePageFiltersProps = {
   ks4OptionFilterDimensions: {},
 };
 
+const renderProgrammeFilters = (
+  filters: CurriculumFilters,
+  props: Partial<ProgrammeFiltersProps> = {},
+) => {
+  return render(
+    <BrowseFiltersProvider defaultFilter={filters}>
+      <ProgrammeFilters {...defaultProps} {...props} />
+    </BrowseFiltersProvider>,
+  );
+};
+
 const examBoardKs4Options: ProgrammePageFiltersProps["ks4Options"] = [
   { slug: "aqa", title: "AQA" },
   { slug: "edexcel", title: "Edexcel" },
 ];
 describe("Programme filters...", () => {
   test("it displays the filters in the correct order", () => {
-    render(<ProgrammeFilters {...defaultProps} />);
+    renderProgrammeFilters(createFilter({ years: ["7", "10"] }));
 
     const filterLegendNames = [
       "Year group",
@@ -99,17 +118,16 @@ describe("Programme filters...", () => {
   });
 
   test("it displays the exam board filter after year group when in KS4 context", () => {
-    render(
-      <ProgrammeFilters
-        {...defaultProps}
-        filters={createFilter({ years: ["10"], keystages: ["ks4"] })}
-        slugs={{
+    renderProgrammeFilters(
+      createFilter({ years: ["10"], keystages: ["ks4"] }),
+      {
+        slugs: {
           subjectSlug: "english",
           phaseSlug: "secondary",
           ks4OptionSlug: "aqa",
-        }}
-        ks4Options={examBoardKs4Options}
-      />,
+        },
+        ks4Options: examBoardKs4Options,
+      },
     );
 
     const filterLegends = screen.getAllByRole("group");
@@ -118,20 +136,19 @@ describe("Programme filters...", () => {
   });
 
   test("it displays pathway before exam board for citizenship", () => {
-    render(
-      <ProgrammeFilters
-        {...defaultProps}
-        filters={createFilter({ years: ["10"], keystages: ["ks4"] })}
-        slugs={{
+    renderProgrammeFilters(
+      createFilter({ years: ["10"], keystages: ["ks4"] }),
+      {
+        slugs: {
           subjectSlug: "citizenship",
           phaseSlug: "secondary",
           ks4OptionSlug: "core",
-        }}
-        ks4Options={[
+        },
+        ks4Options: [
           { slug: "core", title: "Core" },
           { slug: "gcse", title: "GCSE" },
-        ]}
-        ks4OptionFilterDimensions={{
+        ],
+        ks4OptionFilterDimensions: {
           core: {
             tierSlugs: [],
             pathwaySlugs: ["core"],
@@ -142,8 +159,8 @@ describe("Programme filters...", () => {
             pathwaySlugs: ["gcse"],
             childSubjectSlugs: [],
           },
-        }}
-      />,
+        },
+      },
     );
 
     const filterLegends = screen.getAllByRole("group");

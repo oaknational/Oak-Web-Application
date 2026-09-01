@@ -16,6 +16,7 @@ import { shouldDisplayFilter } from "@/utils/curriculum/filtering";
 import { CurriculumFilters } from "@/utils/curriculum/types";
 import type { Ks4Option } from "@/node-lib/curriculum-api-2023/queries/curriculumPhaseOptions/curriculumPhaseOptions.schema";
 import { CurriculumSelectionSlugs } from "@/utils/curriculum/slugs";
+import { useBrowseFilters } from "@/context/BrowseFilters";
 
 export const getDisplayedFilters = (
   data: CurriculumUnitsFormattedData,
@@ -68,13 +69,12 @@ export const getDisplayedFilters = (
 export type ProgrammeFiltersProps = ProgrammePageFiltersProps;
 
 export function ProgrammeFilters({
-  filters,
-  onChangeFilters,
   data,
   slugs,
   ks4Options,
   ks4OptionFilterDimensions,
 }: Readonly<ProgrammeFiltersProps>) {
+  const { filters, onChangeFilters } = useBrowseFilters();
   return (
     <>
       {getDisplayedFilters(data, filters, slugs, ks4Options).map(
@@ -87,14 +87,16 @@ export function ProgrammeFilters({
             return (
               <ProgrammeFiltersKs4Options
                 key={key}
-                filters={filters}
-                onChangeFilters={onChangeFilters}
                 data={data}
                 slugs={slugs}
                 ks4Options={ks4Options}
                 ks4OptionFilterDimensions={ks4OptionFilterDimensions}
               />
             );
+          }
+
+          if (key === "threads") {
+            return <ProgrammeFiltersThreads key={key} data={data} />;
           }
 
           return (

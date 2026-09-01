@@ -27,6 +27,7 @@ const curriculumExplainerExplored = jest.fn();
 const lessonShareStarted = jest.fn();
 const programmeRefined = jest.fn();
 const curriculumResourcesDownloaded = jest.fn();
+const curriculumResourcesAccessed = jest.fn();
 const lessonMediaClipsStarted = jest.fn();
 
 jest.mock("@/context/Analytics/useAnalytics", () => ({
@@ -44,6 +45,8 @@ jest.mock("@/context/Analytics/useAnalytics", () => ({
       programmeRefined: (...args: []) => programmeRefined(...args),
       curriculumResourcesDownloaded: (...args: []) =>
         curriculumResourcesDownloaded(...args),
+      curriculumResourcesAccessed: (...args: []) =>
+        curriculumResourcesAccessed(...args),
       lessonMediaClipsStarted: (...args: []) =>
         lessonMediaClipsStarted(...args),
     },
@@ -74,6 +77,15 @@ jest.mock("@/common-lib/error-reporter", () => ({
     () =>
     (...args: []) =>
       reportError(...args),
+}));
+
+// journeyId is now derived from the URL, not programmeState
+const mockUsePathname = jest.fn(
+  () =>
+    "/teachers/programmes/biology-secondary/units/cells/lessons/lesson-3-structure-of-cells",
+);
+jest.mock("next/navigation", () => ({
+  usePathname: () => mockUsePathname(),
 }));
 
 const programmeState = getProgrammeStateForLesson(
@@ -109,9 +121,7 @@ describe("TeacherBrowseAnalyticsStoreProvider", () => {
     renderProvider();
 
     expect(getConsent).toHaveBeenCalledWith(ServicePolicyMap.POSTHOG);
-    expect(journeyId()).toBe(
-      `session-1:${programmeState.phaseSlug}-${programmeState.subjectSlug}`,
-    );
+    expect(journeyId()).toBe("session-1:secondary-biology");
     expect(reportError).not.toHaveBeenCalled();
   });
 
@@ -162,9 +172,7 @@ describe("TeacherBrowseAnalyticsStoreProvider", () => {
       </TeacherBrowseAnalyticsStoreProvider>,
     );
 
-    expect(journeyId()).toBe(
-      `session-1:${programmeState.phaseSlug}-${programmeState.subjectSlug}`,
-    );
+    expect(journeyId()).toBe("session-1:secondary-biology");
     expect(reportError).not.toHaveBeenCalled();
   });
   describe("tracking", () => {
@@ -268,6 +276,9 @@ describe("TeacherBrowseAnalyticsStoreProvider", () => {
     it("calls onwardContentSelected with the correct props", () => {
       renderTrackingTest(lessonLevelState, "onwardContentSelected", {
         onwardIntent: "view-lesson",
+        lessonName: lessonLevelState.lesson.title,
+        lessonSlug: lessonLevelState.lesson.slug,
+        lessonReleaseDate: "2023-2026",
       });
 
       const trackBtn = screen.getByRole("button", { name: "Track" });
@@ -283,22 +294,19 @@ describe("TeacherBrowseAnalyticsStoreProvider", () => {
           keyStageTitle: "Key stage 3",
           lessonName: "Structure of cells",
           lessonReleaseCohort: "2023-2026",
-          lessonReleaseDate: "2024-09-29T14:00:00.000Z",
+          lessonReleaseDate: "2023-2026",
           lessonSlug: "lesson-3-structure-of-cells",
-          navigationType: "narrow",
+          navigationType: "across",
           onwardIntent: "view-lesson",
           pathway: null,
           phase: "secondary",
           platform: "owa",
           product: "teacher lesson resources",
-          releaseGroup: "2023",
           subjectSlug: "biology",
           subjectTitle: "Biology",
           tierName: null,
           unitName: "Cells",
           unitSlug: "cells",
-          yearGroupName: "Year 7",
-          yearGroupSlug: "year-7",
         }),
       );
     });
@@ -353,7 +361,7 @@ describe("TeacherBrowseAnalyticsStoreProvider", () => {
       renderTrackingTest(programmeLevelState, "curriculumResourcesDownloaded", {
         school: "test-school",
         terms: true,
-        resources: ["curriculum-doc"],
+        resources: ["nationalCurriculum", "curriculumPlan"],
       });
 
       const trackBtn = screen.getByRole("button", { name: "Track" });
@@ -371,7 +379,7 @@ describe("TeacherBrowseAnalyticsStoreProvider", () => {
         phase: "secondary",
         platform: "owa",
         product: "curriculum resources",
-        resourceType: ["curriculum document"],
+        resourceType: ["curriculum document", "curriculum plan"],
         schoolName: "",
         schoolOption: "Selected school",
         schoolUrn: "",
@@ -424,6 +432,9 @@ describe("TeacherBrowseAnalyticsStoreProvider", () => {
     it("handles invalid browse level for onwardContentSelected", () => {
       renderTrackingTest(programmeLevelState, "onwardContentSelected", {
         onwardIntent: "view-unit",
+        lessonName: lessonLevelState.lesson.title,
+        lessonSlug: lessonLevelState.lesson.slug,
+        lessonReleaseDate: "2023-2026",
       });
       const trackBtn = screen.getByRole("button", { name: "Track" });
       const result = trackBtn.click();
@@ -453,6 +464,28 @@ describe("TeacherBrowseAnalyticsStoreProvider", () => {
 
       expect(lessonMediaClipsStarted).not.toHaveBeenCalled();
       expect(result).toBeUndefined();
+    });
+    it("calls curriculumResourcesAccessed with the correct props", () => {
+      renderTrackingTest(programmeLevelState, "curriculumResourcesAccessed", {
+        componentType: "download_tab",
+      });
+
+      const trackBtn = screen.getByRole("button", { name: "Track" });
+      trackBtn.click();
+
+      expect(curriculumResourcesAccessed).toHaveBeenCalledWith(
+        expect.objectContaining({
+          analyticsUseCase: "Teacher",
+          componentType: "download_tab",
+          engagementIntent: "explore",
+          eventVersion: "2.0.0",
+          phase: "secondary",
+          platform: "owa",
+          product: "curriculum resources",
+          subjectSlug: "biology",
+          subjectTitle: "Biology",
+        }),
+      );
     });
   });
 });

@@ -17,6 +17,7 @@ type ImplementationGuideCalloutProps = {
   subjectTitle: string;
   phaseTitle: string;
   activeFlags: string[];
+  onClick: () => void;
 };
 export function ImplementationGuideCallout({
   subject,
@@ -24,6 +25,7 @@ export function ImplementationGuideCallout({
   subjectTitle,
   phaseTitle,
   activeFlags,
+  onClick,
 }: Readonly<ImplementationGuideCalloutProps>) {
   const [bannerDismissed, setBannerDismissed] = useCookieFlag(
     "toolkit-modal-dismissed",
@@ -60,6 +62,7 @@ export function ImplementationGuideCallout({
                 isTrailingIcon
                 variant="secondary"
                 aria-label="Download our implementation toolkit"
+                onClick={onClick}
               >
                 Download
               </OakLink>

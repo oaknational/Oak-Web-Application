@@ -1,6 +1,5 @@
 import { screen, waitFor } from "@testing-library/dom";
 import userEvent from "@testing-library/user-event";
-import { usePathname, useSearchParams } from "next/navigation";
 
 import { KS4OptionFocusProvider } from "./KS4OptionFocus";
 import {
@@ -13,17 +12,20 @@ import { ProgrammePageFiltersModalProvider } from "./ProgrammePageFiltersModalPr
 
 import { createUnit } from "@/fixtures/curriculum/unit";
 import { createFilter } from "@/fixtures/curriculum/filters";
-import { YearData } from "@/utils/curriculum/types";
+import { CurriculumFilters, YearData } from "@/utils/curriculum/types";
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
-
-jest.mock("next/navigation");
+import { BrowseFiltersProvider } from "@/context/BrowseFilters";
 
 const useSearchParamsMock = jest.fn();
 const replaceStateMock = jest.fn();
 
-(usePathname as jest.Mock).mockReturnValue("/");
-
-jest.mocked(useSearchParams).mockImplementation(() => useSearchParamsMock());
+jest.mock("next/navigation", () => ({
+  usePathname: jest.fn(() => "/"),
+  useSearchParams: () => useSearchParamsMock(),
+  useRouter: () => ({
+    prefetch: jest.fn(),
+  }),
+}));
 
 Object.defineProperty(globalThis, "history", {
   value: {
@@ -108,16 +110,17 @@ const mockYearData: YearData = {
   },
 };
 
+const defaultFilters: CurriculumFilters = {
+  years: ["7", "8"],
+  tiers: [],
+  childSubjects: [],
+  pathways: [],
+  subjectCategories: ["category-1", "category-2"],
+  threads: [],
+  keystages: [],
+};
+
 const defaultProps: ProgrammePageFiltersProps = {
-  filters: {
-    years: ["7", "8"],
-    tiers: [],
-    childSubjects: [],
-    pathways: [],
-    subjectCategories: ["category-1", "category-2"],
-    threads: [],
-    keystages: [],
-  },
   data: {
     yearData: mockYearData,
     threadOptions: [],
@@ -131,12 +134,15 @@ const defaultProps: ProgrammePageFiltersProps = {
   },
   ks4Options: [],
   ks4OptionFilterDimensions: {},
-  onChangeFilters: jest.fn(),
 };
+
+const ks4ExamBoardFilters = createFilter({
+  keystages: ["ks4"],
+  years: ["10"],
+});
 
 const ks4ExamBoardProps: ProgrammePageFiltersProps = {
   ...defaultProps,
-  filters: createFilter({ keystages: ["ks4"], years: ["10"] }),
   data: {
     ...defaultProps.data,
     yearOptions: ["7", "8", "10"],
@@ -163,13 +169,18 @@ const ks4ExamBoardProps: ProgrammePageFiltersProps = {
 
 const render = renderWithProviders();
 
-function renderMobile(props: ProgrammePageFiltersProps = defaultProps) {
+function renderMobile(
+  props: ProgrammePageFiltersProps = defaultProps,
+  filters: CurriculumFilters = defaultFilters,
+) {
   return render(
-    <ProgrammePageFiltersModalProvider>
-      <KS4OptionFocusProvider>
-        <ProgrammePageFiltersMobile {...props} />
-      </KS4OptionFocusProvider>
-    </ProgrammePageFiltersModalProvider>,
+    <BrowseFiltersProvider defaultFilter={filters}>
+      <ProgrammePageFiltersModalProvider>
+        <KS4OptionFocusProvider>
+          <ProgrammePageFiltersMobile {...props} />
+        </KS4OptionFocusProvider>
+      </ProgrammePageFiltersModalProvider>
+    </BrowseFiltersProvider>,
   );
 }
 
@@ -220,7 +231,7 @@ describe("ProgrammePageFiltersMobile", () => {
       ),
     );
 
-    renderMobile(ks4ExamBoardProps);
+    renderMobile(ks4ExamBoardProps, ks4ExamBoardFilters);
 
     expect(
       screen.getByRole("heading", { name: "Filters", level: 1 }),
@@ -236,7 +247,7 @@ describe("ProgrammePageFiltersMobile", () => {
 
     const focusSpy = jest.spyOn(HTMLInputElement.prototype, "focus");
 
-    renderMobile(ks4ExamBoardProps);
+    renderMobile(ks4ExamBoardProps, ks4ExamBoardFilters);
 
     await waitFor(() => {
       const ocrRadio = screen.getByDisplayValue("ocr");

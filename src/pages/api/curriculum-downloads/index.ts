@@ -18,6 +18,7 @@ import { Ks4Option } from "@/node-lib/curriculum-api-2023/queries/curriculumPhas
 import { CombinedCurriculumData } from "@/utils/curriculum/types";
 import { generateHash } from "@/pages-helpers/curriculum/docx/docx";
 import {
+  DOWNLOAD_TYPE_LABELS,
   DOWNLOAD_TYPES,
   DownloadTypes,
 } from "@/components/CurriculumComponents/CurriculumDownloadView/helper";
@@ -252,6 +253,11 @@ export async function getFile({
   childSubjectSlug?: string;
   mvRefreshTime?: number;
 }) {
+  // Temp to ensure no implementation guides are included before release
+  types = types.filter(
+    (type) => type === "curriculumPlan" || type === "nationalCurriculum",
+  );
+
   const data = await getData({
     subjectSlug,
     phaseSlug,
@@ -272,7 +278,9 @@ export async function getFile({
 
   const allHandlers = [
     {
-      type: "curriculumPlans",
+      type: "curriculumPlan",
+      contentType:
+        "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
       handler: docx,
       getFilename: (data: getDataReturn) => {
         if (data.notFound) {
@@ -290,6 +298,8 @@ export async function getFile({
     },
     {
       type: "nationalCurriculum",
+      contentType:
+        "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
       handler: xlsxNationalCurriculum,
       getFilename: (data: getDataReturn) => {
         if (data.notFound) {
@@ -320,6 +330,7 @@ export async function getFile({
       .map((type) => {
         return {
           type: type,
+          contentType: "application/pdf",
           handler: async () => {
             if (implementationGuides?.[type]?.asset?.url) {
               const res = await fetch(implementationGuides[type].asset.url);
@@ -338,7 +349,9 @@ export async function getFile({
               examboardTitle: data.combinedCurriculumData?.examboardTitle,
               childSubjectSlug,
               tierSlug,
-              prefix: type,
+              prefix:
+                DOWNLOAD_TYPE_LABELS.find(({ id }) => id === type)?.label ??
+                type,
             });
           },
         };
@@ -349,33 +362,37 @@ export async function getFile({
     return types.includes(type);
   });
 
-  const promises = handlers.map(async ({ handler, getFilename }) => {
-    const arrayBuffer = Buffer.from(
-      await handler(
-        data.combinedCurriculumData,
-        {
-          subjectSlug: data.subjectSlug,
-          phaseSlug: data.phaseSlug,
-          keyStageSlug: data.phaseSlug,
-          ks4OptionSlug: data.ks4OptionSlug,
-          tierSlug,
-          childSubjectSlug,
-        },
-        data.ks4Options,
-      ),
-    );
+  const promises = handlers.map(
+    async ({ handler, getFilename, contentType }) => {
+      const arrayBuffer = Buffer.from(
+        await handler(
+          data.combinedCurriculumData,
+          {
+            subjectSlug: data.subjectSlug,
+            phaseSlug: data.phaseSlug,
+            keyStageSlug: data.phaseSlug,
+            ks4OptionSlug: data.ks4OptionSlug,
+            tierSlug,
+            childSubjectSlug,
+          },
+          data.ks4Options,
+        ),
+      );
 
-    const filename = getFilename(data);
+      const filename = getFilename(data);
 
-    return { filename, buffer: arrayBuffer };
-  });
+      return { filename, buffer: arrayBuffer, contentType };
+    },
+  );
 
   const files = await Promise.all(promises);
 
   let outputBuffer: Uint8Array;
   let outputFileName: string;
+  let contentType: string;
   if (files.length > 1) {
     outputBuffer = await zipFromFiles(files);
+    contentType = "application/zip";
     outputFileName = getFilename("zip", {
       subjectTitle: data.combinedCurriculumData.subjectTitle,
       phaseTitle: data.combinedCurriculumData.phaseTitle,
@@ -388,6 +405,7 @@ export async function getFile({
   } else if (files.length === 1 && files[0]) {
     outputBuffer = files[0].buffer;
     outputFileName = files[0].filename;
+    contentType = files[0].contentType;
   } else {
     throw new Error("Invalid file list");
   }
@@ -396,6 +414,7 @@ export async function getFile({
     buffer: outputBuffer,
     filename: outputFileName,
     size: outputBuffer.length,
+    contentType,
   };
 }
 
@@ -439,7 +458,7 @@ export default async function handler(
 
   // Check if we should redirect (new cache-hit)
   if (
-    (["curriculumPlans", "nationalCurriculum"] as const).some((type) =>
+    (["curriculumPlan", "nationalCurriculum"] as const).some((type) =>
       types.includes(type),
     ) &&
     mvRefreshTimeParsed !== actualMvRefreshTime
@@ -483,7 +502,7 @@ export default async function handler(
   }
 
   res
-    .setHeader("content-type", "application/msword")
+    .setHeader("content-type", fileData.contentType)
     .setHeader(
       "Cache-Control",
       `public, durable, s-maxage=${s_maxage_seconds}, stale-while-revalidate=${stale_while_revalidate_seconds}`,

@@ -259,7 +259,7 @@ describe("Programme Downloads", () => {
       },
       fileSizes: [
         {
-          downloadId: "curriculumPlans",
+          downloadId: "curriculumPlan",
           size: 2000,
           tier: null,
           childSubject: null,
@@ -283,9 +283,9 @@ describe("Programme Downloads", () => {
     expect(labelEls).toHaveLength(2);
 
     expect(labelEls[0]).toHaveTextContent(/Curriculum plan/);
-    expect(labelEls[0]).toHaveTextContent(/2 kB/);
+    expect(labelEls[0]).toHaveTextContent(/2 KB/);
     expect(labelEls[1]).toHaveTextContent(/Curriculum quality/);
-    expect(labelEls[1]).toHaveTextContent(/1 kB/);
+    expect(labelEls[1]).toHaveTextContent(/1 KB/);
   });
 
   describe("Curriculum Downloads Tab: Secondary Science", () => {
@@ -400,7 +400,7 @@ describe("Programme Downloads", () => {
           keyStageTitle: null,
           platform: "owa",
           product: "curriculum resources",
-          resourceType: ["curriculum document"],
+          resourceType: ["curriculum plan"],
           schoolName: "Test school",
           schoolOption: "Selected school",
           schoolUrn: "123456",
@@ -430,7 +430,7 @@ describe("Downloads tab: unit tests", () => {
       childSubjectSlug,
     } = data;
     const url = createCurriculumDownloadsUrl(
-      ["curriculumPlans"],
+      ["curriculumPlan"],
       "published",
       mvRefreshTime,
       subjectSlug,
@@ -440,13 +440,13 @@ describe("Downloads tab: unit tests", () => {
       childSubjectSlug,
     );
     expect(url).toEqual(
-      `/api/curriculum-downloads/?types=curriculumPlans&mvRefreshTime=1721314874829&subjectSlug=science&phaseSlug=secondary&state=published&ks4OptionSlug=aqa&tierSlug=foundation&childSubjectSlug=combined-science`,
+      `/api/curriculum-downloads/?types=curriculumPlan&mvRefreshTime=1721314874829&subjectSlug=science&phaseSlug=secondary&state=published&ks4OptionSlug=aqa&tierSlug=foundation&childSubjectSlug=combined-science`,
     );
   });
 
   test("URL is created properly: English primary", async () => {
     const url = createCurriculumDownloadsUrl(
-      ["curriculumPlans"],
+      ["curriculumPlan"],
       "published",
       mvRefreshTime,
       "english",
@@ -456,7 +456,7 @@ describe("Downloads tab: unit tests", () => {
       null,
     );
     expect(url).toEqual(
-      `/api/curriculum-downloads/?types=curriculumPlans&mvRefreshTime=1721314874829&subjectSlug=english&phaseSlug=primary&state=published`,
+      `/api/curriculum-downloads/?types=curriculumPlan&mvRefreshTime=1721314874829&subjectSlug=english&phaseSlug=primary&state=published`,
     );
   });
 });
