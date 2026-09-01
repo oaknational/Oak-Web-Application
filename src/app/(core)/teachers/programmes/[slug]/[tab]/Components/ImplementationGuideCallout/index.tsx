@@ -9,7 +9,7 @@ import {
 import { subjectTitleWithCase } from "@/utils/curriculum/formatting";
 import { resolveOakHref } from "@/common-lib/urls";
 import { useCookieFlag } from "@/hooks/useCookieFlag/useCookieFlag";
-import { cookieFlags } from "@/config/flags";
+import { cookieFlagNames } from "@/config/cookieFlagNames";
 
 type ImplementationGuideCalloutProps = {
   subject: string;
@@ -30,7 +30,7 @@ export function ImplementationGuideCallout({
   const [bannerDismissed, setBannerDismissed] = useCookieFlag(
     "toolkit-modal-dismissed",
     {
-      flags: cookieFlags,
+      flags: cookieFlagNames,
       activeFlags,
     },
   );
