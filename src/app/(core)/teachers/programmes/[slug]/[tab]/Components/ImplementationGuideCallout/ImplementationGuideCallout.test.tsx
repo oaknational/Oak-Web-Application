@@ -14,6 +14,7 @@ describe("ImplementationGuideCallout", () => {
         subjectTitle="Maths"
         phaseTitle="Primary"
         onClick={() => {}}
+        activeFlags={[]}
       />,
     );
 
@@ -33,6 +34,7 @@ describe("ImplementationGuideCallout", () => {
         subjectTitle="English"
         phaseTitle="Secondary"
         onClick={() => {}}
+        activeFlags={[]}
       />,
     );
 
@@ -52,6 +54,7 @@ describe("ImplementationGuideCallout", () => {
         subjectTitle="RSHE (PSHE)"
         phaseTitle="Primary"
         onClick={() => {}}
+        activeFlags={[]}
       />,
     );
 
