@@ -99,6 +99,53 @@ const examBoardKs4Options: ProgrammePageFiltersProps["ks4Options"] = [
   { slug: "edexcel", title: "Edexcel" },
 ];
 describe("Programme filters...", () => {
+  test("does not display filters when there is no meaningful choice to make", () => {
+    renderProgrammeFilters(createFilter({ years: ["7"] }), {
+      data: {
+        yearData: {
+          "7": createYearData({
+            units: [createUnit({ year: "7" })],
+            keystage: "ks3",
+          }),
+        },
+        threadOptions: [],
+        yearOptions: ["7"],
+        keystages: ["ks3"],
+      },
+    });
+
+    expect(screen.queryByRole("group")).not.toBeInTheDocument();
+  });
+
+  test("does not display KS4-only filters when KS3 is selected", () => {
+    renderProgrammeFilters(createFilter({ years: ["7"], keystages: ["ks3"] }), {
+      slugs: {
+        subjectSlug: "english",
+        phaseSlug: "secondary",
+        ks4OptionSlug: "aqa",
+      },
+      ks4Options: examBoardKs4Options,
+    });
+
+    expect(
+      screen.queryByRole("group", { name: "Exam board (KS4)" }),
+    ).not.toBeInTheDocument();
+    expect(
+      screen.queryByRole("group", { name: "Exam subject (KS4)" }),
+    ).not.toBeInTheDocument();
+    expect(
+      screen.queryByRole("group", { name: "Learning tier (KS4)" }),
+    ).not.toBeInTheDocument();
+  });
+
+  test("does not display the KS3 category filter when KS4 is selected", () => {
+    renderProgrammeFilters(createFilter({ years: ["10"], keystages: ["ks4"] }));
+
+    expect(
+      screen.queryByRole("group", { name: "Category (KS3)" }),
+    ).not.toBeInTheDocument();
+  });
+
   test("it displays the filters in the correct order", () => {
     renderProgrammeFilters(createFilter({ years: ["7", "10"] }));
 
