@@ -19,6 +19,7 @@ import { renderWithProvidersByName } from "@/__tests__/__helpers__/renderWithPro
 import { createFilter } from "@/fixtures/curriculum/filters";
 import type { Ks4Option } from "@/node-lib/curriculum-api-2023/queries/curriculumPhaseOptions/curriculumPhaseOptions.schema";
 import { CurriculumSelectionSlugs } from "@/utils/curriculum/slugs";
+import { BrowseFiltersProvider } from "@/context/BrowseFilters";
 
 const useSearchParamsMock = jest.fn();
 const replaceStateMock = jest.fn();
@@ -30,6 +31,7 @@ jest.mock("next/navigation", () => ({
     prefetch: jest.fn(),
   }),
   useSearchParams: () => useSearchParamsMock(),
+  usePathname: () => "/teachers/programmes/english-secondary-ocr/units",
 }));
 
 Object.defineProperty(globalThis, "history", {
@@ -46,7 +48,12 @@ Object.defineProperty(globalThis, "location", {
   writable: true,
 });
 
-const render = renderWithProvidersByName(["oakTheme", "theme"]);
+const render = renderWithProvidersByName([
+  "oakTheme",
+  "theme",
+  "analytics",
+  "teacherBrowseAnalytics",
+]);
 
 const examBoardOptions: Ks4Option[] = [
   { slug: "aqa", title: "AQA" },
@@ -75,9 +82,11 @@ const ks4OptionFilterDimensions = {
 
 function renderWithProviders(ui: ReactElement) {
   return render(
-    <ProgrammePageFiltersModalProvider>
-      <KS4OptionFocusProvider>{ui}</KS4OptionFocusProvider>
-    </ProgrammePageFiltersModalProvider>,
+    <BrowseFiltersProvider defaultFilter={defaultFilters}>
+      <ProgrammePageFiltersModalProvider>
+        <KS4OptionFocusProvider>{ui}</KS4OptionFocusProvider>
+      </ProgrammePageFiltersModalProvider>
+    </BrowseFiltersProvider>,
   );
 }
 
@@ -90,7 +99,6 @@ function renderWithFocusScope(
   return renderWithProviders(
     <KS4OptionFocusScope variant={variant}>
       <ProgrammeFiltersKs4Options
-        filters={defaultFilters}
         slugs={defaultSlugs}
         ks4Options={examBoardOptions}
         ks4OptionFilterDimensions={ks4OptionFilterDimensions}
@@ -169,7 +177,6 @@ describe("KS4OptionFocusProvider", () => {
     });
 
     expect(focusSpy).not.toHaveBeenCalled();
-    expect(replaceStateMock).not.toHaveBeenCalled();
 
     focusSpy.mockRestore();
   });
@@ -192,7 +199,6 @@ describe("KS4OptionFocusProvider", () => {
           {isOpen && (
             <KS4OptionFocusScope variant="modal">
               <ProgrammeFiltersKs4Options
-                filters={defaultFilters}
                 slugs={defaultSlugs}
                 ks4Options={examBoardOptions}
                 ks4OptionFilterDimensions={ks4OptionFilterDimensions}

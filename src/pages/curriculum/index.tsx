@@ -12,6 +12,7 @@ import {
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 import { filterValidCurriculumPhaseOptions } from "@/pages-helpers/curriculum/docx/tab-helpers";
 import { SubjectPhasePickerData } from "@/components/SharedComponents/SubjectPhasePicker/SubjectPhasePicker";
+import { TeacherBrowseAnalyticsStoreProvider } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
 
 const fetchSubjectPhasePickerData: () => Promise<SubjectPhasePickerData> =
   async () => {
@@ -29,27 +30,32 @@ const Curriculum: NextPage<
   const intro = props.pageData?.intro;
 
   return (
-    <AppLayout
-      seoProps={{
-        title:
-          "Free curriculum plans aligned with National Curriculum  | Oak National Academy",
-        description:
-          "Discover our free curriculum plans across subjects from KS1 to KS4, all high-quality, fully-sequenced and aligned with the national curriculum.",
-      }}
-      $background={"bg-primary"}
-      topNavProps={props.topNav}
+    <TeacherBrowseAnalyticsStoreProvider
+      programmeState={null}
+      accessLevel="homepage"
     >
-      <Banners />
-      <CurriculumTab
-        aria-current="page"
-        curriculumPhaseOptions={props.curriculumPhaseOptions}
-      />
-      <HomePageLowerView
-        posts={props.posts}
-        testimonials={testimonials}
-        introVideo={intro}
-      />
-    </AppLayout>
+      <AppLayout
+        seoProps={{
+          title:
+            "Free curriculum plans aligned with National Curriculum  | Oak National Academy",
+          description:
+            "Discover our free curriculum plans across subjects from KS1 to KS4, all high-quality, fully-sequenced and aligned with the national curriculum.",
+        }}
+        $background={"bg-primary"}
+        topNavProps={props.topNav}
+      >
+        <Banners />
+        <CurriculumTab
+          aria-current="page"
+          curriculumPhaseOptions={props.curriculumPhaseOptions}
+        />
+        <HomePageLowerView
+          posts={props.posts}
+          testimonials={testimonials}
+          introVideo={intro}
+        />
+      </AppLayout>
+    </TeacherBrowseAnalyticsStoreProvider>
   );
 };
 

@@ -14,6 +14,8 @@ import { createFilter } from "@/fixtures/curriculum/filters";
 import { createUnit } from "@/fixtures/curriculum/unit";
 import { createYearData } from "@/fixtures/curriculum/yearData";
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
+import { BrowseFiltersProvider } from "@/context/BrowseFilters";
+import { CurriculumFilters } from "@/utils/curriculum/types";
 
 const render = renderWithProviders();
 
@@ -32,9 +34,11 @@ jest
   .mocked(useSearchParams)
   .mockReturnValue(new URLSearchParams("") as ReadonlyURLSearchParams);
 
+const defaultFilters: CurriculumFilters = createFilter({
+  years: ["7", "10"],
+});
+
 const defaultProps: UnitSequenceViewProps = {
-  filters: createFilter({ years: ["7", "10"] }),
-  setFilters: jest.fn(),
   curriculumSelectionSlugs: {
     phaseSlug: "primary",
     subjectSlug: "maths",
@@ -57,19 +61,27 @@ const noFiltersData: UnitSequenceViewProps["curriculumUnitsFormattedData"] = {
   keystages: ["ks3"],
 };
 
+const renderUnitSequenceView = (
+  props: UnitSequenceViewProps = defaultProps,
+  filters: CurriculumFilters = defaultFilters,
+) =>
+  render(
+    <BrowseFiltersProvider defaultFilter={filters}>
+      <UnitSequenceView {...props} />
+    </BrowseFiltersProvider>,
+  );
+
 describe("UnitSequenceView", () => {
   it("renders filters when expected", () => {
-    render(<UnitSequenceView {...defaultProps} />);
+    renderUnitSequenceView();
     const yearLegend = screen.getByRole("group", { name: "Year group" });
     expect(yearLegend).toBeInTheDocument();
   });
   it("does not render filters when none should display", () => {
-    render(
-      <UnitSequenceView
-        {...defaultProps}
-        curriculumUnitsFormattedData={noFiltersData}
-      />,
-    );
+    renderUnitSequenceView({
+      ...defaultProps,
+      curriculumUnitsFormattedData: noFiltersData,
+    });
     const yearLegend = screen.queryByRole("group", { name: "Year group" });
     expect(yearLegend).not.toBeInTheDocument();
   });
