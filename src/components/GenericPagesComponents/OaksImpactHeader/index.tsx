@@ -89,6 +89,7 @@ export type OaksImpactHeaderProps = {
   image?: string;
   video?: Video;
   mediaDescription?: string;
+  href?: string;
   backButton?: boolean;
 };
 
@@ -98,13 +99,18 @@ export function OaksImpactHeader({
   image,
   title,
   body,
+  href,
   backButton = false,
 }: Readonly<OaksImpactHeaderProps>) {
   return (
     <NewGutterMaxWidth>
       <Layout>
-        {backButton ? (
-          <OakTertiaryInvertedButton element="a" href="/" iconName="arrow-left">
+        {backButton && href ? (
+          <OakTertiaryInvertedButton
+            element="a"
+            href={href}
+            iconName="arrow-left"
+          >
             Back to lesson{" "}
           </OakTertiaryInvertedButton>
         ) : null}
