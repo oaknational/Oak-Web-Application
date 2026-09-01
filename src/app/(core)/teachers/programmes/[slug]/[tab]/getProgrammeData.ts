@@ -2,6 +2,7 @@ import {
   buildKs4OptionFilterDimensions,
   type Ks4OptionFilterDimension,
 } from "./buildKs4OptionFilterDimensions";
+import { getFileSizes } from "./Components/getFileSizes";
 
 import curriculumApi2023, {
   CurriculumPhaseOptions,
@@ -18,6 +19,14 @@ import { BrowseFilters } from "@/context/BrowseFilters/types";
 import { scopeYearsToKeystageFilter } from "@/utils/curriculum/filtering";
 
 const PAGE_KEY = "programme-page-data";
+
+export const getCachedFileSizes = cacheData(
+  getFileSizes,
+  [PAGE_KEY, "file-sizes"],
+  {
+    tags: [PAGE_KEY, CURRICULUM_API_CACHE_TAG],
+  },
+);
 
 const getCachedCurriculumPhaseOptions = cacheData(
   async () =>

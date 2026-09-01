@@ -1,6 +1,5 @@
 import { screen, waitFor } from "@testing-library/dom";
 import userEvent from "@testing-library/user-event";
-import { usePathname, useSearchParams } from "next/navigation";
 
 import { KS4OptionFocusProvider } from "./KS4OptionFocus";
 import {
@@ -18,14 +17,16 @@ import { BrowseFiltersProvider } from "@/context/BrowseFilters";
 import { BrowseFilters } from "@/context/BrowseFilters/types";
 import { createFilter } from "@/context/BrowseFilters/utils/fixtures";
 
-jest.mock("next/navigation");
-
 const useSearchParamsMock = jest.fn();
 const replaceStateMock = jest.fn();
 
-(usePathname as jest.Mock).mockReturnValue("/");
-
-jest.mocked(useSearchParams).mockImplementation(() => useSearchParamsMock());
+jest.mock("next/navigation", () => ({
+  usePathname: jest.fn(() => "/"),
+  useSearchParams: () => useSearchParamsMock(),
+  useRouter: () => ({
+    prefetch: jest.fn(),
+  }),
+}));
 
 Object.defineProperty(globalThis, "history", {
   value: {

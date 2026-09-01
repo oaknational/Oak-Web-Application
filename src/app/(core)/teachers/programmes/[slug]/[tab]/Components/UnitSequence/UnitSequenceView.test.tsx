@@ -2,6 +2,7 @@ import { screen } from "@testing-library/dom";
 import {
   ReadonlyURLSearchParams,
   usePathname,
+  useRouter,
   useSearchParams,
 } from "next/navigation";
 
@@ -20,6 +21,14 @@ const render = renderWithProviders();
 
 jest.mock("next/navigation");
 
+jest.mocked(useRouter).mockReturnValue({
+  prefetch: jest.fn(),
+  back: jest.fn(),
+  push: jest.fn(),
+  replace: jest.fn(),
+  forward: jest.fn(),
+  refresh: jest.fn(),
+});
 jest.mocked(usePathname).mockReturnValue("/");
 jest
   .mocked(useSearchParams)

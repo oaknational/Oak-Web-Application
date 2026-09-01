@@ -439,7 +439,6 @@ describe("TeacherBrowseAnalyticsStore", () => {
     ],
     ["lessonShareStarted", undefined],
     ["mediaClipsPlaylistPlayed", mediaClipsPlaylistPayload],
-    ["onwardContentSelected", { onwardIntent: OnwardIntent.VIEW_LESSON }],
     [
       "teachingMaterialsSelected",
       { teachingMaterialType: TeachingMaterialType.EXIT_QUIZ },

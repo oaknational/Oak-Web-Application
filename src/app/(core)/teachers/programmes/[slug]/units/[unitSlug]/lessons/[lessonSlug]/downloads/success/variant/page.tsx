@@ -1,9 +1,8 @@
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
 
-import { getCachedUnitData } from "../../../getCachedUnitData";
-
-import { DownloadSuccessView } from "./Components/DownloadSuccessView";
+import { getCachedUnitData } from "../../../../getCachedUnitData";
+import { DownloadSuccessView } from "../Components/DownloadSuccessView";
 
 import withPageErrorHandling, {
   AppPageProps,
@@ -63,7 +62,8 @@ export async function generateMetadata(
   }
 }
 
-const InnerLessonDownloadsSuccessPage = async (
+// `variant` route for the `download-success-header-compact` A/B experiment - see src/middleware.ts
+const InnerLessonDownloadsSuccessVariantPage = async (
   props: AppPageProps<LessonDownloadsSuccessPageParams>,
 ) => {
   const { slug: programmeSlug, unitSlug, lessonSlug } = await props.params;
@@ -79,14 +79,14 @@ const InnerLessonDownloadsSuccessPage = async (
       programmeState={programmeState}
       accessLevel="lesson"
     >
-      <DownloadSuccessView lesson={data} />
+      <DownloadSuccessView lesson={data} showCompactHeader />
     </TeacherBrowseAnalyticsStoreProvider>
   );
 };
 
-const LessonDownloadsSuccessPage = withPageErrorHandling(
-  InnerLessonDownloadsSuccessPage,
-  "lesson-downloads-success-page::app",
+const LessonDownloadsSuccessVariantPage = withPageErrorHandling(
+  InnerLessonDownloadsSuccessVariantPage,
+  "lesson-downloads-success-variant-page::app",
 );
 
-export default LessonDownloadsSuccessPage;
+export default LessonDownloadsSuccessVariantPage;

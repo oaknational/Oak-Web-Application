@@ -64,7 +64,15 @@ export const mockProgrammeFiltersData: ProgrammePageFiltersProps["data"] = {
 
 const render = renderWithProviders();
 
-const defaultProps: ProgrammeFiltersProps = {
+jest.mock("next/navigation", () => ({
+  usePathname: jest.fn(() => "/"),
+  useSearchParams: jest.fn(),
+  useRouter: () => ({
+    prefetch: jest.fn(),
+  }),
+}));
+
+const defaultProps: ProgrammePageFiltersProps = {
   data: mockProgrammeFiltersData,
   slugs: {
     subjectSlug: "english",
