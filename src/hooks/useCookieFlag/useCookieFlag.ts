@@ -37,26 +37,23 @@ export function useCookieFlag(
   const key = deriveKey(rawKey);
 
   // Cleanup any cookies that are not in the flags list.
-  const fn = useCallback(async () => {
+  const cleanupOldCookieFlags = useCallback(async () => {
     if (cookieStore && isClient) {
       const currentCookies = await (cookieStore instanceof CookieStore
         ? cookieStore.getAll()
         : cookieStore.getAll(""));
 
       for (const { name } of currentCookies) {
-        if (
-          name?.startsWith(PREFIX) &&
-          !flags.includes(name.replace(PREFIX + "-", ""))
-        ) {
+        if (name?.startsWith(PREFIX) && !flags.includes(rawKey)) {
           cookieStore.delete(name);
         }
       }
     }
-  }, [cookieStore, flags]);
+  }, [rawKey, cookieStore, flags]);
 
   useEffect(() => {
-    fn();
-  }, [fn]);
+    cleanupOldCookieFlags();
+  }, [cleanupOldCookieFlags]);
 
   useEffect(() => {
     const update = async () => {
