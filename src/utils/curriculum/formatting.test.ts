@@ -829,7 +829,7 @@ describe("getFilename", () => {
     // RSHE (PSHE)
     {
       outputs: {
-        filename: "Curriculum-plan-RSHE-(PSHE)-Primary.docx",
+        filename: "Curriculum-plan-RSHE-PSHE-Primary.docx",
         archiveFilename: "Curriculum-plan.docx",
       },
       input: {
@@ -913,7 +913,7 @@ describe("getFilename", () => {
     // With exam board, child subject slug & tier
     {
       outputs: {
-        archive: "Curriculum-RSHE-(PSHE)-Primary.zip",
+        archive: "Curriculum-RSHE-PSHE-Primary.zip",
       },
       input: {
         subjectTitle: "RSHE (PSHE)",

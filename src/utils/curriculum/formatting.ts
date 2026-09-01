@@ -433,6 +433,10 @@ export function getSubjectCategoryMessage(
   return null;
 }
 
+function slugify(value: string) {
+  return value.replaceAll(" ", "-").replaceAll(/\(|\)/g, "");
+}
+
 export function getFilename(
   fileExt: string,
   {
@@ -462,9 +466,6 @@ export function getFilename(
     : null;
 
   const subjectParts = childSubjectTitle ? [childSubjectTitle] : [subjectTitle];
-  const slugify = (value: string) => {
-    return value.replaceAll(" ", "-");
-  };
   const pageTitle: string = [
     slugify(prefix),
     ...(isWithinArchive
