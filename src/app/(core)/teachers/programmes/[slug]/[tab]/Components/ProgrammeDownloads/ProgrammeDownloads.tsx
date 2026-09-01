@@ -291,6 +291,7 @@ export const ProgrammeDownloads = ({
       $borderColor="border-error"
       $width={"100%"}
       role="region"
+      $color="text-primary"
     >
       {subjectTierSelectionVisible === true ? (
         <OakGrid>
