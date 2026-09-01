@@ -7,7 +7,7 @@ import {
   OakRadioGroup,
 } from "@oaknational/oak-components";
 import { useRouter } from "next/navigation";
-import { useId } from "react";
+import { useEffect, useId } from "react";
 
 import type { Ks4OptionFilterDimension } from "../../../buildKs4OptionFilterDimensions";
 import { useGetKs4OptionFocusNavigationQuery } from "../KS4OptionFocus/KS4OptionFocusScope";
@@ -54,27 +54,25 @@ export function ProgrammeFiltersKs4Options({
     return null;
   }
 
-  function onKs4OptionChange(selectedSlug: string) {
+  function buildKs4OptionHref(selectedSlug: string) {
     const subjectPhaseSlug = getSubjectPhaseSlugForKs4Option(
       slugs,
       selectedSlug,
     );
 
-    router.replace(
-      resolveOakHref({
-        page: "teacher-programme",
-        subjectPhaseSlug,
-        tab: "units",
-        query: {
-          ...getPreservedQuery(
-            filters,
-            selectedSlug,
-            ks4OptionFilterDimensions,
-          ),
-          ...getKs4OptionFocusNavigationQuery(selectedSlug),
-        },
-      }),
-    );
+    return resolveOakHref({
+      page: "teacher-programme",
+      subjectPhaseSlug,
+      tab: "units",
+      query: {
+        ...getPreservedQuery(filters, selectedSlug, ks4OptionFilterDimensions),
+        ...getKs4OptionFocusNavigationQuery(selectedSlug),
+      },
+    });
+  }
+
+  function onKs4OptionChange(selectedSlug: string) {
+    router.replace(buildKs4OptionHref(selectedSlug));
   }
 
   const selectedSlug = slugs.ks4OptionSlug ?? "";
@@ -88,6 +86,7 @@ export function ProgrammeFiltersKs4Options({
           options={pathwayOptions}
           selectedSlug={selectedSlug}
           onSelect={onKs4OptionChange}
+          getHref={buildKs4OptionHref}
         />
       )}
       {showExamBoard && (
@@ -97,6 +96,7 @@ export function ProgrammeFiltersKs4Options({
           options={examBoardOptions}
           selectedSlug={selectedSlug}
           onSelect={onKs4OptionChange}
+          getHref={buildKs4OptionHref}
         />
       )}
     </>
@@ -109,6 +109,7 @@ type Ks4OptionRadioGroupProps = {
   options: Ks4Option[];
   selectedSlug: string;
   onSelect: (slug: string) => void;
+  getHref: (slug: string) => string;
 };
 
 function Ks4OptionRadioGroup({
@@ -117,9 +118,22 @@ function Ks4OptionRadioGroup({
   options,
   selectedSlug,
   onSelect,
+  getHref,
 }: Readonly<Ks4OptionRadioGroupProps>) {
   const id = useId();
+  const router = useRouter();
   const sortedOptions = sortKs4OptionsForDisplay(options);
+  const optionsString = sortedOptions.map((option) => option.slug).join(",");
+
+  // Prefetch every option's destination so switching KS4 option doesn't wait on a fresh RSC fetch.
+  useEffect(() => {
+    sortedOptions.forEach((option) => {
+      if (option.slug !== selectedSlug) {
+        router.prefetch(getHref(option.slug));
+      }
+    });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [getHref, router, selectedSlug, optionsString]);
 
   return (
     <OakBox>
