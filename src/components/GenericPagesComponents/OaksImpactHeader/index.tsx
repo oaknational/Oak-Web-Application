@@ -87,6 +87,7 @@ export type OaksImpactHeaderProps = {
   title: string;
   body: string;
   image?: string;
+  imageAlt?: string;
   video?: Video;
   mediaDescription?: string;
   href?: string;
@@ -98,6 +99,7 @@ export function OaksImpactHeader({
   mediaDescription,
   video,
   image,
+  imageAlt,
   title,
   body,
   href,
@@ -164,10 +166,10 @@ export function OaksImpactHeader({
                   showTranscript={true}
                 />
               )}
-              {image && mediaDescription && (
+              {image && imageAlt && (
                 <OakImage
                   src={image}
-                  alt={mediaDescription}
+                  alt={imageAlt}
                   $aspectRatio={"16/9"}
                   $objectFit={"cover"}
                   $ba={"border-solid-l"}

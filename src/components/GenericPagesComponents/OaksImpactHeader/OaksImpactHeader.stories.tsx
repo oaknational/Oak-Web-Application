@@ -33,7 +33,7 @@ export const Default: Story = {
 
 export const Photo: Story = {
   args: {
-    mediaDescription: "The thinking behind Oak lessons",
+    imageAlt: "The thinking behind Oak lessons",
     image:
       "https://sanity-asset-cdn.thenational.academy/images/cuvjke51/production/b81ee19a35baa3192360a210fda34cc9b21f4fd6-5824x3264.jpg",
     title: "The thinking behind Oak lessons",
