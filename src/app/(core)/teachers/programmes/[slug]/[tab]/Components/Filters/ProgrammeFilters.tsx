@@ -5,14 +5,12 @@ import {
 import { BrowseFiltersThreads } from "./BrowseFilters/BrowseFiltersThreads";
 import { ProgrammePageFiltersProps } from "./ProgrammePageFiltersDesktop";
 import { BrowseFiltersKeystages } from "./BrowseFilters/BrowseFiltersKeystages";
+import { BrowseFiltersChildSubjects } from "./BrowseFilters/BrowseFiltersChildSubjects";
+import { BrowseFiltersSubjectCategories } from "./BrowseFilters/BrowseFiltersSubjectCategories";
+import { BrowseFiltersTiers } from "./BrowseFilters/BrowseFiltersTiers";
+import { BrowseFiltersYears } from "./BrowseFilters/BrowseFiltersYears";
 
 import { CurriculumUnitsFormattedData } from "@/pages-helpers/curriculum/docx/tab-helpers";
-import {
-  BrowseFiltersYears,
-  BrowseFiltersSubjectCategories,
-  BrowseFiltersChildSubjects,
-  BrowseFiltersTiers,
-} from "@/components/CurriculumComponents/CurricVisualiserFilters";
 import type { Ks4Option } from "@/node-lib/curriculum-api-2023/queries/curriculumPhaseOptions/curriculumPhaseOptions.schema";
 import { CurriculumSelectionSlugs } from "@/utils/curriculum/slugs";
 import { useBrowseFilters } from "@/context/BrowseFilters";
