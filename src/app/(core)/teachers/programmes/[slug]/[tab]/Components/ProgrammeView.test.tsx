@@ -146,6 +146,7 @@ const defaultProps = {
   featureFlags: {},
   implementationGuides: {},
   fileSizes: [],
+  activeFlags: [],
 };
 
 const lightweightUnitsProps = {
