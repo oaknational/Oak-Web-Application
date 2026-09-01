@@ -910,7 +910,7 @@ describe("getFilename", () => {
         prefix: "Curriculum",
       },
     },
-    // With exam board, child subject slug & tier
+    // Subject/phase only
     {
       outputs: {
         archive: "Curriculum-RSHE-PSHE-Primary.zip",
