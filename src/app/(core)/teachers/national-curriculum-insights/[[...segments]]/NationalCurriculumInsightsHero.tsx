@@ -61,12 +61,15 @@ const HeroSection = styled(OakBox)<{ $pageKind: HeroPageKind }>`
 
   @media ${insightsTabletMediaQuery} {
     ${({ $pageKind }) =>
-      $pageKind !== "hub" &&
-      $pageKind !== "guidance" &&
-      css`
-        height: auto;
-        display: block;
-      `}
+      $pageKind === "guidance"
+        ? css`
+            padding-block: 64px;
+          `
+        : $pageKind !== "hub" &&
+          css`
+            height: auto;
+            display: block;
+          `}
   }
 `;
 
@@ -76,7 +79,16 @@ const HeroContent = styled(OakFlex)`
 `;
 
 const heroMainTabletStyles = ({ $pageKind }: { $pageKind: HeroPageKind }) => {
-  if ($pageKind === "hub" || $pageKind === "guidance") {
+  if ($pageKind === "guidance") {
+    return css`
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0;
+    `;
+  }
+
+  if ($pageKind === "hub") {
     return css`
       flex-direction: row;
       align-items: center;
@@ -104,7 +116,14 @@ const heroTextColumnTabletStyles = ({
 }: {
   $pageKind: HeroPageKind;
 }) => {
-  if ($pageKind === "hub" || $pageKind === "guidance") {
+  if ($pageKind === "guidance") {
+    return css`
+      width: clamp(360px, calc(70.566vw - 169.245px), 734px);
+      flex-shrink: 0;
+    `;
+  }
+
+  if ($pageKind === "hub") {
     return css`
       width: calc(58.3333% - 12px);
       flex-shrink: 1;
@@ -141,11 +160,16 @@ const HeroCopyColumn = styled(OakFlex)<{ $pageKind: HeroPageKind }>`
 
   @media ${insightsTabletMediaQuery} {
     ${({ $pageKind }) =>
-      $pageKind !== "hub" &&
-      css`
-        width: 100%;
-        flex-shrink: 1;
-      `}
+      $pageKind === "guidance"
+        ? css`
+            width: clamp(360px, calc(43.208vw + 35.94px), 589px);
+            flex-shrink: 0;
+          `
+        : $pageKind !== "hub" &&
+          css`
+            width: 100%;
+            flex-shrink: 1;
+          `}
   }
 `;
 
@@ -159,25 +183,65 @@ const HeroCopy = styled(OakFlex)<{ $pageKind: HeroPageKind }>`
 
   @media ${insightsTabletMediaQuery} {
     ${({ $pageKind }) =>
-      $pageKind !== "hub" &&
+      $pageKind === "guidance"
+        ? css`
+            max-width: clamp(360px, calc(43.208vw + 35.94px), 589px);
+            padding-bottom: 40px;
+
+            p {
+              max-width: clamp(322px, calc(50.377vw - 55.83px), 589px);
+            }
+          `
+        : $pageKind !== "hub" &&
+          css`
+            max-width: none;
+            padding-bottom: 0;
+          `}
+  }
+
+  @media (${getMediaQuery("mobile")}) {
+    ${({ $pageKind }) =>
+      $pageKind === "guidance" &&
       css`
         max-width: none;
-        padding-bottom: 0;
+
+        p {
+          max-width: none;
+        }
       `}
   }
 `;
 
-const HeroImageContainer = styled(OakFlex)<{ $sideBySideTablet: boolean }>`
+const HeroImageContainer = styled(OakFlex)<{
+  $pageKind: HeroPageKind;
+  $sideBySideTablet: boolean;
+}>`
   width: 100%;
   aspect-ratio: 3 / 2;
 
-  @media ${insightsTabletMediaQuery} {
-    ${({ $sideBySideTablet }) =>
-      $sideBySideTablet &&
+  @media (${getMediaQuery("mobile")}) {
+    ${({ $pageKind }) =>
+      $pageKind === "guidance" &&
       css`
-        width: calc(41.6667% - 12px);
-        flex: 0 0 calc(41.6667% - 12px);
+        width: clamp(318px, calc(32.35vw + 196.7px), 439px);
+        max-width: 100%;
+        aspect-ratio: 439 / 305;
+        align-self: center;
       `}
+  }
+
+  @media ${insightsTabletMediaQuery} {
+    ${({ $pageKind, $sideBySideTablet }) =>
+      $pageKind === "guidance"
+        ? css`
+            width: clamp(294px, calc(32.453vw + 50.6px), 466px);
+            flex: 0 0 clamp(294px, calc(32.453vw + 50.6px), 466px);
+          `
+        : $sideBySideTablet &&
+          css`
+            width: calc(41.6667% - 12px);
+            flex: 0 0 calc(41.6667% - 12px);
+          `}
   }
 
   @media (${getMediaQuery("desktop")}) {
@@ -196,6 +260,18 @@ const GuidanceHeroImageFrame = styled(OakBox)`
     width: 416px;
     height: 289px;
     margin: auto;
+  }
+`;
+
+const GuidanceMobileHeroHeading = styled.span`
+  @media (min-width: ${getBreakpoint("small")}px) {
+    display: none;
+  }
+`;
+
+const GuidanceDefaultHeroHeading = styled.span`
+  @media (${getMediaQuery("mobile")}) {
+    display: none;
   }
 `;
 
@@ -411,6 +487,7 @@ const HubHeroImage = ({
 
   return (
     <HeroImageContainer
+      $pageKind={isGuidance ? "guidance" : "hub"}
       $sideBySideTablet={sideBySideTablet}
       $order={[1, 2, 2]}
       $overflow="hidden"
@@ -457,7 +534,8 @@ export const NationalCurriculumInsightsHero = ({
   let heroHeadingFont:
     | "heading-3"
     | ["heading-4", "heading-4", "heading-1"]
-    | ["heading-4", "heading-1", "heading-1"] = [
+    | ["heading-4", "heading-1", "heading-1"]
+    | ["heading-4", "heading-3", "heading-3"] = [
     "heading-4",
     "heading-1",
     "heading-1",
@@ -470,7 +548,7 @@ export const NationalCurriculumInsightsHero = ({
   }
 
   if (pageKind === "guidance") {
-    heroHeadingFont = "heading-3";
+    heroHeadingFont = ["heading-4", "heading-3", "heading-3"];
   } else if (hasEditorialImage) {
     heroHeadingFont = ["heading-4", "heading-4", "heading-1"];
   }
@@ -520,7 +598,18 @@ export const NationalCurriculumInsightsHero = ({
                 $gap="spacing-24"
               >
                 <OakHeading tag="h1" $font={heroHeadingFont}>
-                  {section.heading}
+                  {pageKind === "guidance" ? (
+                    <>
+                      <GuidanceMobileHeroHeading>
+                        Changes to the national curriculum
+                      </GuidanceMobileHeroHeading>
+                      <GuidanceDefaultHeroHeading>
+                        {section.heading}
+                      </GuidanceDefaultHeroHeading>
+                    </>
+                  ) : (
+                    section.heading
+                  )}
                 </OakHeading>
                 <PortableTextWithDefaults
                   value={section.bodyPortableText}

@@ -70,6 +70,10 @@ const insightsTabletMediaQuery = `(min-width: ${getBreakpoint(
   "small",
 )}px) and (max-width: ${getBreakpoint("large")}px)`;
 
+const insightsWideDesktopMediaQuery = `(min-width: ${
+  getBreakpoint("large") + 1
+}px)`;
+
 const imageUrl = (
   image: { asset?: { url?: string | null } | null } | null | undefined,
   fallback = DEFAULT_IMAGE,
@@ -753,6 +757,11 @@ const GuidanceExplainerSection = styled(OakBox)`
     display: flex;
     align-items: center;
   }
+
+  @media ${insightsTabletMediaQuery} {
+    height: auto;
+    display: block;
+  }
 `;
 
 const GuidanceExplainerLayout = styled(OakBox)`
@@ -769,6 +778,14 @@ const GuidanceExplainerLayout = styled(OakBox)`
     row-gap: 40px;
     align-items: center;
   }
+
+  @media ${insightsTabletMediaQuery} {
+    width: clamp(670px, calc(58.302vw + 232.736px), 979px);
+    max-width: 100%;
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: auto auto auto;
+    gap: 40px;
+  }
 `;
 
 const GuidanceExplainerHeading = styled(OakHeading)`
@@ -783,11 +800,22 @@ const GuidanceExplainerImage = styled(OakBox)`
   justify-self: center;
   overflow: hidden;
 
+  @media (min-width: 376px) and (max-width: ${getBreakpoint("small") - 1}px) {
+    width: clamp(269px, calc(62.032vw + 35.76px), 501px);
+  }
+
   @media (${getMediaQuery("desktop")}) {
     width: 332px;
     height: 259px;
     grid-column: 2;
     grid-row: 1 / span 2;
+  }
+
+  @media ${insightsTabletMediaQuery} {
+    width: 332px;
+    height: 259px;
+    grid-column: 1;
+    grid-row: 2;
   }
 `;
 
@@ -797,6 +825,11 @@ const GuidanceExplainerBody = styled(OakBox)`
 
   @media (${getMediaQuery("desktop")}) {
     grid-row: 2;
+  }
+
+  @media ${insightsTabletMediaQuery} {
+    grid-column: 1;
+    grid-row: 3;
   }
 
   ul {
@@ -916,6 +949,12 @@ const GuidanceIntroImage = styled(OakBox)`
     height: 242px;
     flex: 0 0 363px;
   }
+
+  @media ${insightsTabletMediaQuery} {
+    width: clamp(291px, calc(13.585vw + 189.113px), 363px);
+    height: auto;
+    flex: 0 0 auto;
+  }
 `;
 
 const GuidanceIntroLayout = styled(OakBox)`
@@ -931,6 +970,19 @@ const GuidanceIntroLayout = styled(OakBox)`
     row-gap: 40px;
     align-items: start;
   }
+
+  @media ${insightsTabletMediaQuery} {
+    width: clamp(675px, calc(51.887vw + 285.849px), 950px);
+    max-width: 100%;
+    grid-template-columns:
+      clamp(291px, calc(13.585vw + 189.113px), 363px)
+      minmax(0, 1fr);
+    grid-template-rows: auto 1fr;
+    column-gap: 40px;
+    row-gap: clamp(20px, calc(3.774vw - 8.302px), 40px);
+    align-items: start;
+    margin-inline: auto;
+  }
 `;
 
 const GuidanceIntroHeading = styled(OakHeading)`
@@ -940,18 +992,23 @@ const GuidanceIntroHeading = styled(OakHeading)`
   @media (${getMediaQuery("desktop")}) {
     grid-column: 2;
   }
+
+  @media ${insightsTabletMediaQuery} {
+    grid-column: 2;
+    grid-row: 1;
+  }
 `;
 
 const GuidanceIntroDesktopHeading = styled.span`
   display: none;
 
-  @media (${getMediaQuery("desktop")}) {
+  @media ${insightsWideDesktopMediaQuery} {
     display: inline;
   }
 `;
 
 const GuidanceIntroMobileHeading = styled.span`
-  @media (${getMediaQuery("desktop")}) {
+  @media ${insightsWideDesktopMediaQuery} {
     display: none;
   }
 `;
@@ -964,6 +1021,11 @@ const GuidanceIntroBody = styled(OakFlex)`
     grid-column: 2;
     grid-row: 2;
   }
+
+  @media ${insightsTabletMediaQuery} {
+    grid-column: 2;
+    grid-row: 2;
+  }
 `;
 
 const GuidanceIntroArtwork = styled(GuidanceIntroImage)`
@@ -971,6 +1033,11 @@ const GuidanceIntroArtwork = styled(GuidanceIntroImage)`
   grid-row: 2;
 
   @media (${getMediaQuery("desktop")}) {
+    grid-row: 1 / span 2;
+  }
+
+  @media ${insightsTabletMediaQuery} {
+    grid-column: 1;
     grid-row: 1 / span 2;
   }
 `;
@@ -1014,7 +1081,7 @@ export const NationalCurriculumInsightsGuidanceIntro = ({
       as="section"
       $background="bg-primary"
       $ph={["spacing-24", "spacing-40"]}
-      $pv={["spacing-32", "spacing-40"]}
+      $pv={["spacing-32", "spacing-32", "spacing-40"]}
       aria-labelledby={headingId}
       data-insights-module="guidance-introduction"
     >
@@ -1138,6 +1205,10 @@ const ConversationHeaderArtwork = styled(OakBox)`
     height: 212px;
     flex: 0 0 250px;
   }
+
+  @media ${insightsTabletMediaQuery} {
+    display: none;
+  }
 `;
 
 const ConversationHeaderCopy = styled(OakFlex)`
@@ -1146,6 +1217,11 @@ const ConversationHeaderCopy = styled(OakFlex)`
   @media (${getMediaQuery("desktop")}) {
     width: 690px;
     flex: 0 0 690px;
+  }
+
+  @media ${insightsTabletMediaQuery} {
+    width: 100%;
+    flex: 0 1 auto;
   }
 `;
 
@@ -1278,6 +1354,10 @@ const BlogPostTitleLink = styled(Link)`
 
 const GuidanceQuoteSection = styled(OakBox)`
   box-sizing: border-box;
+
+  @media (${getMediaQuery("mobile")}) {
+    display: none;
+  }
 
   @media (${getMediaQuery("desktop")}) {
     height: 418px;
@@ -1729,6 +1809,12 @@ const NewsletterSection = styled(OakBox)`
     display: flex;
     align-items: center;
   }
+
+  @media ${insightsTabletMediaQuery} {
+    height: auto;
+    display: block;
+    padding-block: 40px;
+  }
 `;
 
 const NewsletterInner = styled(OakBox)<{ $isGuidance: boolean }>`
@@ -1754,6 +1840,13 @@ const NewsletterLayout = styled(OakBox)`
     justify-content: center;
     align-items: start;
   }
+
+  @media ${insightsTabletMediaQuery} {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: auto auto auto;
+    row-gap: 16px;
+    justify-content: stretch;
+  }
 `;
 
 const NewsletterLead = styled(OakFlex)`
@@ -1763,6 +1856,12 @@ const NewsletterLead = styled(OakFlex)`
 
   @media (${getMediaQuery("desktop")}) {
     width: 544px;
+  }
+
+  @media ${insightsTabletMediaQuery} {
+    width: clamp(666px, calc(38.679vw + 375.906px), 871px);
+    max-width: 100%;
+    justify-self: center;
   }
 `;
 
@@ -1774,6 +1873,14 @@ const NewsletterDetails = styled(OakFlex)`
   @media (${getMediaQuery("desktop")}) {
     width: 544px;
     grid-row: 2;
+  }
+
+  @media ${insightsTabletMediaQuery} {
+    width: clamp(666px, calc(28.113vw + 455.151px), 815px);
+    max-width: 100%;
+    grid-column: 1;
+    grid-row: 2;
+    justify-self: center;
   }
 `;
 
@@ -1806,6 +1913,14 @@ const NewsletterForm = styled(OakFlex)`
     width: 475px;
     grid-column: 2;
     grid-row: 1 / span 2;
+  }
+
+  @media ${insightsTabletMediaQuery} {
+    width: min(100%, 686px);
+    grid-column: 1;
+    grid-row: 3;
+    justify-self: center;
+    margin-top: 32px;
   }
 `;
 
