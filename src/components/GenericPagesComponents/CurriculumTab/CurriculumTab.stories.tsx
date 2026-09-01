@@ -10,8 +10,8 @@ import CookieConsentDecorator from "@/storybook-decorators/CookieConsentDecorato
 const meta = {
   decorators: [
     AnalyticsDecorator,
-    TeacherBrowseAnalyticsDecorator,
     CookieConsentDecorator,
+    TeacherBrowseAnalyticsDecorator,
   ],
   component: Component,
   argTypes: {},

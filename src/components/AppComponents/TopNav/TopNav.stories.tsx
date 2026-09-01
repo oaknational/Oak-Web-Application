@@ -2,10 +2,10 @@ import type { Meta, StoryObj } from "@storybook/nextjs";
 
 import Component from "./TopNav";
 
+import TeacherBrowseAnalyticsDecorator from "@/storybook-decorators/TeacherBrowseAnalyticsDecorator";
 import { topNavFixture } from "@/node-lib/curriculum-api-2023/fixtures/topNav.fixture";
 import { OakNotificationsProvider } from "@/context/OakNotifications/OakNotificationsProvider";
 import SaveCountDecorator from "@/storybook-decorators/SaveCountDecorator";
-import TeacherBrowseAnalyticsDecorator from "@/storybook-decorators/TeacherBrowseAnalyticsDecorator";
 
 const meta = {
   component: Component,

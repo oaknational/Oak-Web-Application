@@ -12,10 +12,10 @@ const meta = {
   component: MyLibrary,
   tags: ["autodocs"],
   decorators: [
+    CookieConsentDecorator,
     SaveCountDecorator,
     NotificationsDecorator,
     TeacherBrowseAnalyticsDecorator,
-    CookieConsentDecorator,
   ],
   argTypes: {
     isLoading: {

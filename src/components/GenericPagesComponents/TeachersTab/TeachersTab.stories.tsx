@@ -3,8 +3,8 @@ import { StoryFn, Meta } from "@storybook/nextjs";
 import Component from "./TeachersTab";
 
 import AnalyticsDecorator from "@/storybook-decorators/AnalyticsDecorator";
-import curriculumPhaseOptions from "@/browser-lib/fixtures/curriculumPhaseOptions";
 import TeacherBrowseAnalyticsDecorator from "@/storybook-decorators/TeacherBrowseAnalyticsDecorator";
+import curriculumPhaseOptions from "@/browser-lib/fixtures/curriculumPhaseOptions";
 
 export default {
   decorators: [AnalyticsDecorator, TeacherBrowseAnalyticsDecorator],

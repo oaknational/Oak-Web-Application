@@ -7,7 +7,7 @@ import CookieConsentDecorator from "@/storybook-decorators/CookieConsentDecorato
 
 const meta: Meta<typeof Component> = {
   component: Component,
-  decorators: [TeacherBrowseAnalyticsDecorator, CookieConsentDecorator],
+  decorators: [CookieConsentDecorator, TeacherBrowseAnalyticsDecorator],
 };
 
 export default meta;
