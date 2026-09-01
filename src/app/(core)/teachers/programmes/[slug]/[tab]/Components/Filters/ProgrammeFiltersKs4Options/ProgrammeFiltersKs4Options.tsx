@@ -24,24 +24,22 @@ import { resolveOakHref } from "@/common-lib/urls";
 import type { Ks4Option } from "@/node-lib/curriculum-api-2023/queries/curriculumPhaseOptions/curriculumPhaseOptions.schema";
 import { sortKs4OptionsForDisplay } from "@/utils/curriculum/sorting";
 import { CurriculumSelectionSlugs } from "@/utils/curriculum/slugs";
-import { CurriculumFilters } from "@/utils/curriculum/types";
+import { useBrowseFilters } from "@/context/BrowseFilters";
 
 export type ProgrammeFiltersKs4OptionsProps = {
-  filters: CurriculumFilters;
   slugs: CurriculumSelectionSlugs;
   ks4Options: Ks4Option[];
   ks4OptionFilterDimensions: Record<string, Ks4OptionFilterDimension>;
-  onChangeFilters?: unknown;
   data?: unknown;
 };
 
 export function ProgrammeFiltersKs4Options({
-  filters,
   slugs,
   ks4Options,
   ks4OptionFilterDimensions,
 }: Readonly<ProgrammeFiltersKs4OptionsProps>) {
   const router = useRouter();
+  const { filters } = useBrowseFilters();
   const getKs4OptionFocusNavigationQuery =
     useGetKs4OptionFocusNavigationQuery();
   const { pathwayOptions, examBoardOptions } = partitionKs4Options(ks4Options);
