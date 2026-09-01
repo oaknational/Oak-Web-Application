@@ -990,10 +990,13 @@ const GuidanceTaggedParagraph = styled(OakBox)`
 
 const GuidanceStatusTag = styled(OakBox)`
   width: fit-content;
+  white-space: nowrap;
 
   > div {
-    width: 141px;
+    width: max-content;
+    min-width: 141px;
     justify-content: center;
+    white-space: nowrap;
   }
 `;
 
@@ -1149,9 +1152,14 @@ const ConversationHeaderCopy = styled(OakFlex)`
 const ConversationCardFocus = styled(OakFocusIndicator)<{
   $featured: boolean;
 }>`
+  position: relative;
   width: 100%;
   max-width: 342px;
   border-radius: 6.645px;
+
+  @media ${insightsTabletMediaQuery} {
+    max-width: 100%;
+  }
 
   @media (${getMediaQuery("desktop")}) {
     max-width: ${({ $featured }) => ($featured ? "976px" : "985px")};
@@ -1201,7 +1209,7 @@ const ThumbnailPlayButton = styled.button`
   position: absolute;
   top: 50%;
   left: 50%;
-  z-index: 1;
+  z-index: 3;
   display: inline-flex;
   width: 64px;
   height: 64px;
@@ -1226,6 +1234,8 @@ const ThumbnailPlayButton = styled.button`
 `;
 
 const InlineVideo = styled.div`
+  position: relative;
+  z-index: 2;
   width: 100%;
   height: 100%;
 
@@ -1237,6 +1247,33 @@ const InlineVideo = styled.div`
 const ConversationCardCopy = styled(OakFlex)`
   width: 100%;
   min-width: 0;
+`;
+
+const BlogPostTitleLink = styled(Link)`
+  color: inherit;
+  text-decoration: none;
+
+  &::after {
+    position: absolute;
+    z-index: 1;
+    inset: 0;
+    border-radius: 6.645px;
+    content: "";
+  }
+
+  &:hover,
+  &:focus-visible {
+    text-decoration: underline;
+  }
+
+  &:focus-visible {
+    outline: none;
+  }
+
+  &:focus-visible::after {
+    outline: 4px solid ${parseColor("border-decorative5")};
+    outline-offset: 2px;
+  }
 `;
 
 const GuidanceQuoteSection = styled(OakBox)`
@@ -1390,7 +1427,9 @@ const GuidanceBlogPostCard = ({
       >
         <OakFlex $flexDirection="column" $gap="spacing-12">
           <OakHeading tag="h3" $font="heading-7">
-            {post.title}
+            <BlogPostTitleLink href={`/blog/${post.slug}`}>
+              {post.title}
+            </BlogPostTitleLink>
           </OakHeading>
           <OakP $font="body-3" $color="text-subdued" $mv="spacing-0">
             {post.summary}
@@ -1421,8 +1460,7 @@ const GuidanceBlogPostCard = ({
       $borderRadius="border-radius-m2"
     >
       <ConversationCardLink
-        as={post.video ? "div" : "a"}
-        href={post.video ? undefined : `/blog/${post.slug}`}
+        as="div"
         $featured={featured}
         $flexDirection="column"
       >
@@ -1458,7 +1496,7 @@ export const NationalCurriculumInsightsVideoCards = ({
         >
           <ConversationHeaderArtwork aria-hidden>
             <OakImage
-              src="/images/national-curriculum-insights/guidance/curriculum-conversations.png"
+              src="https://cdn.sanity.io/images/cuvjke51/production/24687686f2d49e24e16432073efee65db0eda2cd-1296x1098.svg"
               alt=""
               $width="100%"
               $height="100%"
@@ -2011,6 +2049,13 @@ const FaqHeading = styled(OakHeading)`
 `;
 
 const FaqAccordionList = styled(OakFlex)`
+  text-align: left;
+
+  p,
+  li {
+    text-align: left;
+  }
+
   /*
    * OakOutlineAccordion draws a rule above and below every item. Keep one rule
    * at each join when several accordions are presented as a single list.

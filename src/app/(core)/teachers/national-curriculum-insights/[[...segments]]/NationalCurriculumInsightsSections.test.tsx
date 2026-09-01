@@ -152,6 +152,11 @@ describe("National Curriculum Insights sections", () => {
     expect(screen.queryByText("Legacy content")).not.toBeInTheDocument();
     expect(screen.queryByTestId("cms-video")).not.toBeInTheDocument();
     expect(screen.queryByRole("dialog")).not.toBeInTheDocument();
+    expect(
+      screen.getByRole("link", {
+        name: "Bennie Kara on inclusive curriculum leadership",
+      }),
+    ).toHaveAttribute("href", "/blog/curriculum-conversations-episode-3");
     await user.click(
       screen.getByRole("button", {
         name: "Play Bennie Kara on inclusive curriculum leadership",

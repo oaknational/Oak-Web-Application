@@ -76,7 +76,7 @@ const HeroContent = styled(OakFlex)`
 `;
 
 const heroMainTabletStyles = ({ $pageKind }: { $pageKind: HeroPageKind }) => {
-  if ($pageKind === "hub") {
+  if ($pageKind === "hub" || $pageKind === "guidance") {
     return css`
       flex-direction: row;
       align-items: center;
@@ -84,15 +84,11 @@ const heroMainTabletStyles = ({ $pageKind }: { $pageKind: HeroPageKind }) => {
     `;
   }
 
-  if ($pageKind !== "guidance") {
-    return css`
-      flex-direction: column;
-      align-items: stretch;
-      gap: 24px;
-    `;
-  }
-
-  return null;
+  return css`
+    flex-direction: column;
+    align-items: stretch;
+    gap: 24px;
+  `;
 };
 
 const HeroMain = styled(OakFlex)<{ $pageKind: HeroPageKind }>`
@@ -108,21 +104,17 @@ const heroTextColumnTabletStyles = ({
 }: {
   $pageKind: HeroPageKind;
 }) => {
-  if ($pageKind === "hub") {
+  if ($pageKind === "hub" || $pageKind === "guidance") {
     return css`
       width: calc(58.3333% - 12px);
       flex-shrink: 1;
     `;
   }
 
-  if ($pageKind !== "guidance") {
-    return css`
-      width: ${tabletGridEightColumns};
-      flex-shrink: 1;
-    `;
-  }
-
-  return null;
+  return css`
+    width: ${tabletGridEightColumns};
+    flex-shrink: 1;
+  `;
 };
 
 const HeroTextColumn = styled(OakFlex)<{ $pageKind: HeroPageKind }>`
@@ -551,7 +543,7 @@ export const NationalCurriculumInsightsHero = ({
             <HubHeroImage
               hasEditorialImage={hasEditorialImage}
               isGuidance={pageKind === "guidance"}
-              sideBySideTablet={isHub}
+              sideBySideTablet={isHub || pageKind === "guidance"}
               section={section}
             />
           ) : (
