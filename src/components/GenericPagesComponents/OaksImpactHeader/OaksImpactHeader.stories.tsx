@@ -38,5 +38,9 @@ export const Photo: Story = {
       "https://sanity-asset-cdn.thenational.academy/images/cuvjke51/production/b81ee19a35baa3192360a210fda34cc9b21f4fd6-5824x3264.jpg",
     title: "The thinking behind Oak lessons",
     body: "See how our lessons are designed to support learning - and make the most of them in your classroom.",
+    backButton: true,
+    backButtonLabel: "Back to lesson",
+    href: "/",
   },
+  render: (args) => <Component {...args} />,
 };
