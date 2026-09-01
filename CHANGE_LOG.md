@@ -1,3 +1,24 @@
+# [1.1171.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1170.0...v1.1171.0) (2026-09-01)
+
+
+### Bug Fixes
+
+* add analytics decorator to lesson list story ([6b5f9db](https://github.com/oaknational/Oak-Web-Application/commit/6b5f9db0f13bc19d55e8df39564b77fb3737b664))
+* add force-static to lesson share page ([b1d63c4](https://github.com/oaknational/Oak-Web-Application/commit/b1d63c4009d8400c2f9a5856189679e7605f9e18))
+* dont set experiment cookie on request failure ([78a75c4](https://github.com/oaknational/Oak-Web-Application/commit/78a75c44a6290839dc20f8d5e72b0df43567406d))
+* reinstate force-static on download success page ([3de57e8](https://github.com/oaknational/Oak-Web-Application/commit/3de57e8282869ce711eb702174c72e11e674c3ae))
+* send required value to trackFeatureFlag to link event to experiment ([6a2d717](https://github.com/oaknational/Oak-Web-Application/commit/6a2d7178bd20ee57a6da70307b45478c425b5902))
+* use target lesson data for onwardContentSelected instead of current ([d2991fd](https://github.com/oaknational/Oak-Web-Application/commit/d2991fd0ab3db76845179c10b00a3cc999dc9214))
+* wrap test in try to restore mocked console error ([ffc60dd](https://github.com/oaknational/Oak-Web-Application/commit/ffc60dda66cb99f455f2ece9cbd92c19f8e42ef0))
+
+
+### Features
+
+* add download success variant page ([64c094c](https://github.com/oaknational/Oak-Web-Application/commit/64c094c0b2597df7040219c453b76b8b795c6ba9))
+* do not use bugsnag in edge functions ([2f67e74](https://github.com/oaknational/Oak-Web-Application/commit/2f67e741cc57dfd608cb8c7d8ec119d7a3d0b2f8))
+* do not use bugsnag in edge functions ([4fb44f5](https://github.com/oaknational/Oak-Web-Application/commit/4fb44f542d142d16b1d3b2a47dd23a4b8e90e338))
+* fire onwardContentSelected to lesson list links ([da435da](https://github.com/oaknational/Oak-Web-Application/commit/da435da1cde837493402f6950d7f8d28458112b4))
+
 # [1.1170.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1169.0...v1.1170.0) (2026-09-01)
 
 
