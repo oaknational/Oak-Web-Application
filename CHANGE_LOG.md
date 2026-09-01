@@ -1,3 +1,49 @@
+# [1.1169.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1168.1...v1.1169.0) (2026-08-27)
+
+
+### Bug Fixes
+
+* border thickness and stat bold ([1381693](https://github.com/oaknational/Oak-Web-Application/commit/138169338700c503d22b6b036ab542226165b8df))
+
+
+### Features
+
+* remove hand drawn border from promo banner ([15b385d](https://github.com/oaknational/Oak-Web-Application/commit/15b385d39d40c93a23e3911b274f409a3633dc49))
+* replace myth busting with oaks impact banner ([8393d8b](https://github.com/oaknational/Oak-Web-Application/commit/8393d8b07c27bf7d7d019ebdcccb44592b01cc06))
+
+## [1.1168.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.1168.0...v1.1168.1) (2026-08-27)
+
+
+### Bug Fixes
+
+* add analytics decorator to lesson list story ([82fea21](https://github.com/oaknational/Oak-Web-Application/commit/82fea2168b5e28609a9e8d35a36fa3e1ca843924))
+* added correct content-type for nc/curriculum downloads ([dd7538a](https://github.com/oaknational/Oak-Web-Application/commit/dd7538a82050ab3e9ea61ad79614b458f3fd1617))
+* added missing test for .zip download ([d38aa6d](https://github.com/oaknational/Oak-Web-Application/commit/d38aa6d231eb51103ec8a05929006d612e3a48c0))
+
+
+### Reverts
+
+* change made on wrong branch ([79689f0](https://github.com/oaknational/Oak-Web-Application/commit/79689f0335b31ecd2903e2333b57074e543c425d))
+
+# [1.1168.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1167.1...v1.1168.0) (2026-08-27)
+
+
+### Bug Fixes
+
+* open in new tab/window ([93f5099](https://github.com/oaknational/Oak-Web-Application/commit/93f5099bd0d32227dd7454ad10e94bf463afad31))
+
+
+### Features
+
+* hook up "Request an accessible version" link ([6356124](https://github.com/oaknational/Oak-Web-Application/commit/6356124446998d5b9432092a4f5f3d2912391267))
+
+## [1.1167.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.1167.0...v1.1167.1) (2026-08-27)
+
+
+### Bug Fixes
+
+* exclude implementation guides from download ([d9fa963](https://github.com/oaknational/Oak-Web-Application/commit/d9fa96372b723aff78e4468065d5f67e918fb61e))
+
 # [1.1167.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1166.0...v1.1167.0) (2026-08-26)
 
 
