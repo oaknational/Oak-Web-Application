@@ -1,3 +1,5 @@
+import { OakVideo } from "@oaknational/oak-components";
+
 import UpcomingWebinarWall, {
   useUpcomingWebinarWall,
 } from "../UpcomingWebinarWall";
@@ -8,8 +10,8 @@ import WebinarRegistration, {
 } from "@/components/GenericPagesComponents/WebinarRegistration";
 import isUpcomingWebinar from "@/utils/isUpcomingWebinar";
 import BoxBorders from "@/components/SharedComponents/SpriteSheet/BrushSvgs/BoxBorders";
-import CMSVideo from "@/components/SharedComponents/CMSVideo";
 import AspectRatio from "@/components/SharedComponents/AspectRatio";
+import VideoPlayer from "@/components/SharedComponents/VideoPlayer";
 
 type WebinarVideoProps = {
   webinar: SerializedWebinar;
@@ -55,7 +57,22 @@ const WebinarVideo = (props: WebinarVideoProps) => {
         </>
       );
     case "unlocked":
-      return <CMSVideo video={webinar.video} location="webinar" />;
+      return (
+        <OakVideo
+          videoSlot={
+            <VideoPlayer
+              playbackPolicy="public"
+              thumbnailTime={webinar.video.video.asset.thumbTime}
+              playbackId={webinar.video.video.asset.playbackId}
+              title={webinar.video.title}
+              location="webinar"
+              omitBorder={true}
+            />
+          }
+          showTranscript={true}
+          transcript={webinar.video.transcript ?? undefined}
+        />
+      );
     case "locked":
       return <WebinarRegistration {...webinarRegistrationProps} />;
   }

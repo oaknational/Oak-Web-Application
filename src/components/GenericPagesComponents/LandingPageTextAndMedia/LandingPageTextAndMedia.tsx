@@ -1,16 +1,21 @@
 import Link from "next/link";
 import { PortableTextComponents } from "@portabletext/react";
 import { FC } from "react";
-import { OakLI, OakFlex, OakTertiaryButton } from "@oaknational/oak-components";
+import {
+  OakLI,
+  OakFlex,
+  OakTertiaryButton,
+  OakVideo,
+} from "@oaknational/oak-components";
 
 import { LandingPageOlOutline } from "@/components/GenericPagesComponents/LandingPageOlOutline";
 import { TextAndMedia } from "@/common-lib/cms-types";
 import { getLinkHref } from "@/utils/portableText/resolveInternalHref";
 import Card from "@/components/SharedComponents/Card";
 import CMSImage from "@/components/SharedComponents/CMSImage";
-import CMSVideo from "@/components/SharedComponents/CMSVideo";
 import BrushBorders from "@/components/SharedComponents/SpriteSheet/BrushSvgs/BrushBorders";
 import { PortableTextWithDefaults } from "@/components/SharedComponents/PortableText";
+import VideoPlayer from "@/components/SharedComponents/VideoPlayer";
 
 const landingPortableTextComponent: PortableTextComponents = {
   list: {
@@ -66,7 +71,19 @@ export const LandingPageTextAndMedia: FC<TextAndMedia> = (props) => {
         )}
         {props.mediaType == "video" && (
           <OakFlex $alignItems={"center"} $ph="spacing-20">
-            <CMSVideo video={props.video} location="marketing" />
+            <OakVideo
+              videoSlot={
+                <VideoPlayer
+                  playbackPolicy="public"
+                  playbackId={props.video.video.asset.playbackId}
+                  title={props.video.title}
+                  location="marketing"
+                  omitBorder={true}
+                />
+              }
+              showTranscript={true}
+              transcript={props.video.transcript ?? undefined}
+            />
           </OakFlex>
         )}
       </OakFlex>

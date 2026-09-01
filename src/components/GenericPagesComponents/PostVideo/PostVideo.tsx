@@ -1,8 +1,8 @@
 import { PortableTextComponentProps } from "@portabletext/react";
-import { OakBox, OakFlex } from "@oaknational/oak-components";
+import { OakBox, OakVideo } from "@oaknational/oak-components";
 
 import { Video } from "@/common-lib/cms-types";
-import CMSVideo from "@/components/SharedComponents/CMSVideo";
+import VideoPlayer from "@/components/SharedComponents/VideoPlayer";
 
 const PostVideo = (props: PortableTextComponentProps<Video>) => {
   if (!props.value) {
@@ -10,12 +10,19 @@ const PostVideo = (props: PortableTextComponentProps<Video>) => {
   }
 
   return (
-    <OakBox>
-      {props.value && (
-        <OakFlex $position={"relative"} $mt="spacing-56">
-          <CMSVideo video={props.value} location="blog" />
-        </OakFlex>
-      )}
+    <OakBox $mt={"spacing-56"}>
+      <OakVideo
+        videoSlot={
+          <VideoPlayer
+            playbackPolicy="public"
+            playbackId={props.value.video.asset.playbackId}
+            title={props.value.title}
+            location="blog"
+          />
+        }
+        showTranscript={true}
+        transcript={props.value.transcript ?? undefined}
+      />
     </OakBox>
   );
 };
