@@ -1,2 +1,2 @@
 export { useCookieFlag } from "./useCookieFlag";
-export { getCookieFlags } from "./getCookieFlags";
+export { getActiveCookieFlags } from "./getActiveCookieFlags";

@@ -1,6 +1,6 @@
 import { cookies } from "next/headers";
 
-export async function getCookieFlags() {
+export async function getActiveCookieFlags() {
   const cookieStore = await cookies();
   return cookieStore
     .getAll()
