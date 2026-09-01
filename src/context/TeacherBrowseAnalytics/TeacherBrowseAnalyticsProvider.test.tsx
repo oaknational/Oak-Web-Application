@@ -79,6 +79,15 @@ jest.mock("@/common-lib/error-reporter", () => ({
       reportError(...args),
 }));
 
+// journeyId is now derived from the URL, not programmeState
+const mockUsePathname = jest.fn(
+  () =>
+    "/teachers/programmes/biology-secondary/units/cells/lessons/lesson-3-structure-of-cells",
+);
+jest.mock("next/navigation", () => ({
+  usePathname: () => mockUsePathname(),
+}));
+
 const programmeState = getProgrammeStateForLesson(
   teachersLessonOverviewFixture(),
 );
@@ -112,9 +121,7 @@ describe("TeacherBrowseAnalyticsStoreProvider", () => {
     renderProvider();
 
     expect(getConsent).toHaveBeenCalledWith(ServicePolicyMap.POSTHOG);
-    expect(journeyId()).toBe(
-      `session-1:${programmeState.phaseSlug}-${programmeState.subjectSlug}`,
-    );
+    expect(journeyId()).toBe("session-1:secondary-biology");
     expect(reportError).not.toHaveBeenCalled();
   });
 
@@ -165,9 +172,7 @@ describe("TeacherBrowseAnalyticsStoreProvider", () => {
       </TeacherBrowseAnalyticsStoreProvider>,
     );
 
-    expect(journeyId()).toBe(
-      `session-1:${programmeState.phaseSlug}-${programmeState.subjectSlug}`,
-    );
+    expect(journeyId()).toBe("session-1:secondary-biology");
     expect(reportError).not.toHaveBeenCalled();
   });
   describe("tracking", () => {
