@@ -110,6 +110,9 @@ export type TeacherBrowseAnalyticsStore = {
       mediaClipIndex: number;
     }) => void;
     onwardContentSelected: (props: {
+      lessonSlug: string;
+      lessonName: string;
+      lessonReleaseDate: string;
       onwardIntent: OnwardIntentValueType;
     }) => void;
     programmeAccessed: (props: {
@@ -562,7 +565,7 @@ export const createTeacherBrowseAnalyticsStore = (
       onwardContentSelected: (data) => {
         const { avo, programmeState, journeyId, accessLevel } = get();
 
-        if (programmeState?.browseLevel !== "lesson") {
+        if (!programmeState || programmeState?.browseLevel === "programme") {
           reportAnalyticsError({
             event: "onwardContentSelected",
             programmeState,
@@ -570,15 +573,7 @@ export const createTeacherBrowseAnalyticsStore = (
           return;
         }
 
-        const lessonState = requireLessonState(
-          "onwardContentSelected",
-          programmeState,
-        );
-        if (!lessonState) {
-          return;
-        }
-
-        const analyticsProperties = getLessonAnalyticsProperties(lessonState);
+        const analyticsProperties = getUnitAnalyticsProperties(programmeState);
 
         avo.onwardContentSelected({
           ...coreProperties,
@@ -586,7 +581,8 @@ export const createTeacherBrowseAnalyticsStore = (
           ...data,
           journeyId,
           accessLevel,
-          navigationType: "narrow",
+          navigationType: "across",
+          lessonReleaseCohort: "2023-2026",
         });
       },
       programmeAccessed: ({
