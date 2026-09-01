@@ -1,3 +1,17 @@
+# [1.1172.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1171.0...v1.1172.0) (2026-09-01)
+
+
+### Bug Fixes
+
+* include getHref and router in hook deps ([9108dc6](https://github.com/oaknational/Oak-Web-Application/commit/9108dc63144a0b8535b3d76251a7a5d420dd3b1b))
+* move draftMode out of root layout so we don't force dynamic render ([4c81098](https://github.com/oaknational/Oak-Web-Application/commit/4c81098f4db6debc202f52f7016eb13bf138d034))
+* prefetch ks4 options to reduce loading ([7b0b41a](https://github.com/oaknational/Oak-Web-Application/commit/7b0b41a520bcd897dbe5cb77fa6a332744c2c51d))
+
+
+### Features
+
+* add stale time option to next config ([78d4d39](https://github.com/oaknational/Oak-Web-Application/commit/78d4d39d8ea5fa44fadca42de933317aa869b603))
+
 # [1.1171.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1170.0...v1.1171.0) (2026-09-01)
 
 
