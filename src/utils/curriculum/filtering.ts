@@ -27,6 +27,7 @@ import {
   CurriculumUnitsFormattedData,
   CurriculumUnitsYearData,
 } from "@/pages-helpers/curriculum/docx/tab-helpers";
+import { BrowseFilters } from "@/context/BrowseFilters/types";
 
 export function getDefaultChildSubjectForYearGroup(
   data: CurriculumUnitsYearData,
@@ -240,7 +241,7 @@ export function childSubjectForFilter(
 
 export function shouldDisplayFilter(
   data: CurriculumUnitsFormattedData,
-  filters: CurriculumFilters,
+  filters: BrowseFilters,
   key: "years" | "subjectCategories" | "childSubjects" | "tiers" | "threads",
 ) {
   if (key === "years") {

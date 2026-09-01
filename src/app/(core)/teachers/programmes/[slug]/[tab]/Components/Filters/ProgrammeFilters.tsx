@@ -13,8 +13,8 @@ import { BrowseFiltersYears } from "./BrowseFilters/BrowseFiltersYears";
 import { CurriculumUnitsFormattedData } from "@/pages-helpers/curriculum/docx/tab-helpers";
 import type { Ks4Option } from "@/node-lib/curriculum-api-2023/queries/curriculumPhaseOptions/curriculumPhaseOptions.schema";
 import { CurriculumSelectionSlugs } from "@/utils/curriculum/slugs";
+import { shouldDisplayFilter } from "@/utils/curriculum/filtering";
 import { useBrowseFilters } from "@/context/BrowseFilters";
-import { useKeyStagePresence } from "@/context/BrowseFilters/hooks/useKeyStagePresence";
 
 export const useDisplayedFilters = (
   data: CurriculumUnitsFormattedData,
@@ -22,8 +22,6 @@ export const useDisplayedFilters = (
   ks4Options: Ks4Option[],
 ) => {
   const { filters } = useBrowseFilters();
-  const { childSubjectsAt, subjectCategoriesAt, tiersAt } =
-    useKeyStagePresence(data);
 
   return [
     {
@@ -34,7 +32,7 @@ export const useDisplayedFilters = (
       // only show year options when there is more than 1, because all content
       // will be in a year so a single year option is equivalent to 'all'
       key: "years",
-      shouldDisplayFilter: data.yearOptions.length > 1,
+      shouldDisplayFilter: shouldDisplayFilter(data, filters, "years"),
     },
     {
       key: "ks4Options",
@@ -46,19 +44,23 @@ export const useDisplayedFilters = (
     },
     {
       key: "subjectCategories",
-      shouldDisplayFilter: subjectCategoriesAt.length > 0,
+      shouldDisplayFilter: shouldDisplayFilter(
+        data,
+        filters,
+        "subjectCategories",
+      ),
     },
     {
       key: "childSubjects",
-      shouldDisplayFilter: childSubjectsAt.length > 0,
+      shouldDisplayFilter: shouldDisplayFilter(data, filters, "childSubjects"),
     },
     {
       key: "tiers",
-      shouldDisplayFilter: tiersAt.length > 0,
+      shouldDisplayFilter: shouldDisplayFilter(data, filters, "tiers"),
     },
     {
       key: "threads",
-      shouldDisplayFilter: data.threadOptions.length > 0,
+      shouldDisplayFilter: shouldDisplayFilter(data, filters, "threads"),
     },
   ] as const;
 };
