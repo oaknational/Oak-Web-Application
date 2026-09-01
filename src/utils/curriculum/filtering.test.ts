@@ -26,6 +26,7 @@ import { createThread } from "@/fixtures/curriculum/thread";
 import { createFilter } from "@/fixtures/curriculum/filters";
 import { createYearData } from "@/fixtures/curriculum/yearData";
 import { ChildSubject } from "@/components/CurriculumComponents/CurricVisualiserFilters/CurricFiltersChildSubjects.fixtures";
+import { createFilter as createBrowseFilter } from "@/context/BrowseFilters/utils/fixtures";
 
 describe("filtering", () => {
   describe("getDefaultChildSubjectForYearGroup", () => {
@@ -400,7 +401,7 @@ describe("shouldDisplayFilter", () => {
 
       const result = shouldDisplayFilter(
         data,
-        createFilter({ years: ["7", "8"] }),
+        createBrowseFilter({ years: ["7", "8"] }),
         "years",
       );
       expect(result).toEqual(true);
@@ -415,7 +416,7 @@ describe("shouldDisplayFilter", () => {
       };
       const result = shouldDisplayFilter(
         data,
-        createFilter({ years: [] }),
+        createBrowseFilter({ years: [] }),
         "years",
       );
       expect(result).toEqual(false);
@@ -442,7 +443,7 @@ describe("shouldDisplayFilter", () => {
 
       const result = shouldDisplayFilter(
         data,
-        createFilter({ years: ["7", "8"] }),
+        createBrowseFilter({ years: ["7", "8"] }),
         "subjectCategories",
       );
       expect(result).toEqual(true);
@@ -464,7 +465,7 @@ describe("shouldDisplayFilter", () => {
       };
       const result = shouldDisplayFilter(
         data,
-        createFilter({ years: ["7", "8"] }),
+        createBrowseFilter({ years: ["7", "8"] }),
         "subjectCategories",
       );
       expect(result).toEqual(false);
@@ -491,7 +492,7 @@ describe("shouldDisplayFilter", () => {
 
       const result = shouldDisplayFilter(
         data,
-        createFilter({ years: ["7", "8"] }),
+        createBrowseFilter({ years: ["7", "8"] }),
         "childSubjects",
       );
       expect(result).toEqual(true);
@@ -513,7 +514,7 @@ describe("shouldDisplayFilter", () => {
       };
       const result = shouldDisplayFilter(
         data,
-        createFilter({ years: ["7", "8"] }),
+        createBrowseFilter({ years: ["7", "8"] }),
         "childSubjects",
       );
       expect(result).toEqual(false);
@@ -540,7 +541,7 @@ describe("shouldDisplayFilter", () => {
 
       const result = shouldDisplayFilter(
         data,
-        createFilter({ years: ["7", "8"] }),
+        createBrowseFilter({ years: ["7", "8"] }),
         "tiers",
       );
       expect(result).toEqual(true);
@@ -562,7 +563,7 @@ describe("shouldDisplayFilter", () => {
       };
       const result = shouldDisplayFilter(
         data,
-        createFilter({ years: ["7", "8"] }),
+        createBrowseFilter({ years: ["7", "8"] }),
         "tiers",
       );
       expect(result).toEqual(false);
@@ -590,7 +591,7 @@ describe("shouldDisplayFilter", () => {
 
       const result = shouldDisplayFilter(
         data,
-        createFilter({ years: ["7", "8"] }),
+        createBrowseFilter({ years: ["7", "8"] }),
         "threads",
       );
       expect(result).toEqual(true);
@@ -612,7 +613,7 @@ describe("shouldDisplayFilter", () => {
       };
       const result = shouldDisplayFilter(
         data,
-        createFilter({ years: ["7", "8"] }),
+        createBrowseFilter({ years: ["7", "8"] }),
         "threads",
       );
       expect(result).toEqual(false);
@@ -669,7 +670,7 @@ describe("shouldDisplayFilter", () => {
     };
 
     it("Science KS3 view: shows subject categories, hides child subjects and tiers", () => {
-      const filters = createFilter({
+      const filters = createBrowseFilter({
         years: ["7", "8", "9", "10", "11"],
         keystages: ["ks3"],
       });
@@ -685,7 +686,7 @@ describe("shouldDisplayFilter", () => {
     });
 
     it("Science KS4 view: shows child subjects and tiers, hides subject categories", () => {
-      const filters = createFilter({
+      const filters = createBrowseFilter({
         years: ["7", "8", "9", "10", "11"],
         keystages: ["ks4"],
       });
@@ -722,7 +723,7 @@ describe("shouldDisplayFilter", () => {
         keystages: [],
       };
 
-      const filters = createFilter({
+      const filters = createBrowseFilter({
         years: ["7", "8", "9", "10", "11"],
         keystages: ["ks3"],
       });
