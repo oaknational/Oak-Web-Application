@@ -117,7 +117,6 @@ const AboutUsOaksImpactCaseStudy: NextPage<
                       thumbnailTime={caseStudy.video.video.asset.thumbTime}
                       playbackId={caseStudy.video.video.asset.playbackId}
                       title={caseStudy.video.title}
-                      isLegacy={true}
                       location="marketing"
                       omitBorder={true}
                     />
