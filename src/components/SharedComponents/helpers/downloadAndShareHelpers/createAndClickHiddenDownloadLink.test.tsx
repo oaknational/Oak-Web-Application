@@ -5,6 +5,15 @@ import createAndClickHiddenDownloadLink, {
   getDownloadLink,
 } from "./createAndClickHiddenDownloadLink";
 
+var mockReportError = jest.fn();
+jest.mock("../../../../common-lib/error-reporter", () => ({
+  __esModule: true,
+  default:
+    () =>
+    (...args: any[]) =>
+      mockReportError(...args),
+}));
+
 describe("hideAndClickDownloadLink()", () => {
   it("hides the link", () => {
     const link = createLink();
@@ -53,6 +62,10 @@ describe("createAndClickHiddenDownloadLink()", () => {
     windowOpenSpy.mockRestore();
   });
 
+  beforeEach(() => {
+    mockReportError.mockClear();
+  });
+
   it("opens download in a new tab when inside an iframe", () => {
     Object.defineProperty(window, "top", {
       value: {}, // different object from window.self
@@ -76,6 +89,29 @@ describe("createAndClickHiddenDownloadLink()", () => {
     expect(windowOpenSpy).not.toHaveBeenCalled();
     expect(appendSpy).toHaveBeenCalled();
     appendSpy.mockRestore();
+  });
+
+  it("reports when removing the previous link fails and still creates a new link", () => {
+    const removeError = new Error("remove failed");
+    const existingLink = document.getElementById("resource-download-link");
+    existingLink?.remove();
+    const previousLink = document.createElement("a");
+    previousLink.id = "resource-download-link";
+    document.body.appendChild(previousLink);
+    const removeSpy = jest
+      .spyOn(previousLink, "remove")
+      .mockImplementation(() => {
+        throw removeError;
+      });
+
+    const link = createLink();
+
+    expect(link).toBeInstanceOf(HTMLAnchorElement);
+    expect(link.id).toBe("resource-download-link");
+    expect(mockReportError).toHaveBeenCalledWith(removeError);
+
+    removeSpy.mockRestore();
+    previousLink.parentNode?.removeChild(previousLink);
   });
 });
 
