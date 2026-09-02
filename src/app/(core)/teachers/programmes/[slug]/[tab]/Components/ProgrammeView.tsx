@@ -1,7 +1,7 @@
 "use client";
 
 import { OakMaxWidth, OakTabs } from "@oaknational/oak-components";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 import { notFound, usePathname, useSearchParams } from "next/navigation";
 
 import {
@@ -32,22 +32,21 @@ import {
   CurriculumDownloadsTierSubjectProps,
   CurriculumUnitsFormattedData,
 } from "@/pages-helpers/curriculum/docx/tab-helpers";
-import { useFilters } from "@/hooks/useFilters";
 import {
   CurriculumSelectionSlugs,
   CurriculumSelectionTitles,
 } from "@/utils/curriculum/slugs";
-import {
-  CurriculumFilters,
-  OnChangeCurriculumFilters,
-} from "@/utils/curriculum/types";
 import { ProgrammePageHeaderCMS } from "@/common-lib/cms-types/programmePage";
-import { CurriculumOverviewSanityData } from "@/common-lib/cms-types";
+import {
+  CurriculumOverviewSanityData,
+  ImplementationGuides,
+} from "@/common-lib/cms-types";
 import type { Ks4Option } from "@/node-lib/curriculum-api-2023/queries/curriculumPhaseOptions/curriculumPhaseOptions.schema";
 import { resolveOakHref } from "@/common-lib/urls";
 import { validateSearchParams } from "@/utils/validateProgrammePageSearchParams";
-import { getDefaultFilter } from "@/utils/curriculum/filtering";
+import { useBrowseFilters } from "@/context/BrowseFilters";
 import { useTeacherBrowseAnalytics } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
+import { ComponentType } from "@/browser-lib/avo/Avo";
 
 export type ProgrammePageProps = {
   subjectPhaseSlug: string;
@@ -62,8 +61,9 @@ export type ProgrammePageProps = {
   tabSlug: TabSlug;
   ks4Options: Ks4Option[];
   ks4OptionFilterDimensions: Record<string, Ks4OptionFilterDimension>;
-  initialFilter?: CurriculumFilters;
   featureFlags: Record<string, boolean>;
+  implementationGuides: ImplementationGuides | null;
+  fileSizes: ProgrammeDownloadsProps["fileSizes"];
 };
 
 export const ProgrammeView = ({
@@ -79,8 +79,9 @@ export const ProgrammeView = ({
   subjectPhaseSlug,
   ks4Options,
   ks4OptionFilterDimensions,
-  initialFilter,
   featureFlags,
+  implementationGuides,
+  fileSizes,
 }: ProgrammePageProps) => {
   const searchParams = useSearchParams();
 
@@ -92,34 +93,10 @@ export const ProgrammeView = ({
   const { subjectTitle, phaseTitle, examboardTitle } =
     curriculumSelectionTitles;
 
-  const defaultFilter = useMemo(() => {
-    return getDefaultFilter(curriculumUnitsFormattedData);
-  }, [curriculumUnitsFormattedData]);
-
-  const [filters, setFilters] = useFilters(defaultFilter, initialFilter);
-
-  const { programmeRefined } = useTeacherBrowseAnalytics(
+  const { filters } = useBrowseFilters();
+  const { curriculumResourcesAccessed } = useTeacherBrowseAnalytics(
     (store) => store.track,
   );
-
-  const onChangeFilters: OnChangeCurriculumFilters = ({
-    newFilters,
-    filterType,
-    filterValue,
-  }) => {
-    setFilters(newFilters);
-
-    if (!filterType) {
-      return;
-    }
-
-    programmeRefined({
-      componentType: "filter_link",
-      activeFilters: newFilters,
-      filterType,
-      filterValue,
-    });
-  };
 
   const schoolYear = filters.years.find(
     (year) => validatedParams?.years === year,
@@ -182,6 +159,11 @@ export const ProgrammeView = ({
               const tabSlug = tabNameToSlug[tabName];
               // Prevents a full page reload using client side nav
               event.preventDefault();
+              if (tabSlug === "download") {
+                curriculumResourcesAccessed({
+                  componentType: ComponentType.DOWNLOAD_TAB,
+                });
+              }
               const url = preserveKeystagesParamInUrl(tabSlug);
               globalThis.history.pushState(null, "", url);
             }}
@@ -208,6 +190,11 @@ export const ProgrammeView = ({
                 subjectTitle={subjectTitle}
                 phase={curriculumSelectionSlugs.phaseSlug}
                 phaseTitle={phaseTitle}
+                onClick={() =>
+                  curriculumResourcesAccessed({
+                    componentType: ComponentType.IMPLEMENTATION_GUIDE_CALLOUT,
+                  })
+                }
               />
             )}
         </OakMaxWidth>
@@ -219,10 +206,11 @@ export const ProgrammeView = ({
         curriculumCMSInfo={curriculumCMSInfo}
         curriculumDownloadsTabData={curriculumDownloadsTabData}
         mvRefreshTime={mvRefreshTime}
-        filters={filters}
-        setFilters={onChangeFilters}
         ks4Options={ks4Options}
         ks4OptionFilterDimensions={ks4OptionFilterDimensions}
+        implementationGuides={implementationGuides}
+        featureFlags={featureFlags}
+        fileSizes={fileSizes}
       />
     </>
   );
@@ -235,20 +223,23 @@ const TabContent = ({
   curriculumCMSInfo,
   curriculumDownloadsTabData,
   mvRefreshTime,
-  filters,
-  setFilters,
   ks4Options,
   ks4OptionFilterDimensions,
-}: { tabSlug: TabSlug } & UnitSequenceViewProps & {
+  implementationGuides,
+  featureFlags,
+  fileSizes,
+}: {
+  tabSlug: TabSlug;
+  featureFlags: Record<string, boolean>;
+} & UnitSequenceViewProps & {
     curriculumCMSInfo: CurriculumOverviewSanityData | null;
+    implementationGuides: ImplementationGuides | null;
   } & ProgrammeDownloadsProps) => {
   if (tabSlug === "units") {
     return (
       <UnitSequenceView
         curriculumSelectionSlugs={curriculumSelectionSlugs}
         curriculumUnitsFormattedData={curriculumUnitsFormattedData}
-        filters={filters}
-        setFilters={setFilters}
         ks4Options={ks4Options}
         ks4OptionFilterDimensions={ks4OptionFilterDimensions}
       />
@@ -265,6 +256,9 @@ const TabContent = ({
         curriculumSelectionSlugs={curriculumSelectionSlugs}
         curriculumDownloadsTabData={curriculumDownloadsTabData}
         curriculumUnitsFormattedData={curriculumUnitsFormattedData}
+        implementationGuides={implementationGuides}
+        featureFlags={featureFlags}
+        fileSizes={fileSizes}
       />
     );
   }

@@ -4,10 +4,11 @@ import { OakFlex } from "@oaknational/oak-components";
 import Component from "./SubjectPhasePicker";
 
 import AnalyticsDecorator from "@/storybook-decorators/AnalyticsDecorator";
+import TeacherBrowseAnalyticsDecorator from "@/storybook-decorators/TeacherBrowseAnalyticsDecorator";
 import curriculumPhaseOptions from "@/browser-lib/fixtures/curriculumPhaseOptions";
 
 const meta: Meta<typeof Component> = {
-  decorators: [AnalyticsDecorator],
+  decorators: [AnalyticsDecorator, TeacherBrowseAnalyticsDecorator],
   component: Component,
   argTypes: {},
   parameters: {

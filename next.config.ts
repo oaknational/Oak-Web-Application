@@ -203,6 +203,7 @@ export default async (phase: NextConfig["phase"]): Promise<NextConfig> => {
       "@ooxml-tools/units",
       "@ooxml-tools/xml",
       "@oaknational/oak-components",
+      "pretty-bytes",
     ],
 
     webpack: function getWebpackConfig(
@@ -372,6 +373,13 @@ export default async (phase: NextConfig["phase"]): Promise<NextConfig> => {
           "owa-vercel.thenational.academy",
           "www.thenational.academy",
         ],
+      },
+      // Dynamic routes (e.g. programme pages, which read cookies()/draftMode()) default to a
+      // 0s client router cache, so prefetched RSC payloads are discarded before they can be used.
+      // https://nextjs.org/docs/app/api-reference/config/next-config-js/staleTimes
+      staleTimes: {
+        dynamic: 30,
+        static: 300,
       },
     },
     // Need this so static URLs and dynamic URLs match.

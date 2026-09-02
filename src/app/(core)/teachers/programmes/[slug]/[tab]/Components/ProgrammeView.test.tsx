@@ -17,6 +17,21 @@ import {
   CurriculumSelectionSlugs,
   CurriculumSelectionTitles,
 } from "@/utils/curriculum/slugs";
+import { BrowseFiltersProvider } from "@/context/BrowseFilters";
+import { getDefaultBrowseFilter } from "@/context/BrowseFilters/utils/getDefaultBrowseFilter";
+import { BrowseFilters } from "@/context/BrowseFilters/types";
+
+const curriculumResourcesAccessed = jest.fn();
+
+jest.mock("@/context/Analytics/useAnalytics", () => ({
+  __esModule: true,
+  default: () => ({
+    track: {
+      curriculumResourcesAccessed: (...args: []) =>
+        curriculumResourcesAccessed(...args),
+    },
+  }),
+}));
 
 const subjectPhaseSlug = "science-secondary-aqa";
 
@@ -129,6 +144,8 @@ const defaultProps = {
     ks4OptionTitle: "AQA",
   },
   featureFlags: {},
+  implementationGuides: {},
+  fileSizes: [],
 };
 
 const lightweightUnitsProps = {
@@ -140,13 +157,27 @@ const lightweightUnitsProps = {
   ),
 };
 
-const renderProgrammeView = (props?: Partial<ProgrammePageProps>) => {
-  return renderWithProviders()(<ProgrammeView {...defaultProps} {...props} />);
+const renderProgrammeView = (
+  props?: Partial<ProgrammePageProps> & { initialFilter?: BrowseFilters },
+) => {
+  const { initialFilter, ...viewProps } = props ?? {};
+  const mergedProps = { ...defaultProps, ...viewProps };
+
+  return renderWithProviders()(
+    <BrowseFiltersProvider
+      defaultFilter={getDefaultBrowseFilter(
+        mergedProps.curriculumUnitsFormattedData,
+      )}
+      initialFilter={initialFilter}
+    >
+      <ProgrammeView {...mergedProps} />
+    </BrowseFiltersProvider>,
+  );
 };
 
 describe("ProgrammeView", () => {
   it("renders the programme header", () => {
-    renderWithProviders()(<ProgrammeView {...defaultProps} />);
+    renderProgrammeView();
     const heading = screen.getByRole("heading", {
       name: "Science secondary AQA",
     });
@@ -320,7 +351,7 @@ describe("ProgrammeView", () => {
     });
 
     it("accepts initialFilter prop without error", () => {
-      const initialFilter = {
+      const initialFilter: BrowseFilters = {
         years: ["7"],
         tiers: ["foundation"],
         childSubjects: [],
@@ -337,7 +368,7 @@ describe("ProgrammeView", () => {
     });
 
     it("renders correctly with initialFilter for a single year", () => {
-      const initialFilter = {
+      const initialFilter: BrowseFilters = {
         years: ["7"],
         tiers: ["foundation"],
         childSubjects: [],
@@ -357,6 +388,19 @@ describe("ProgrammeView", () => {
       renderProgrammeView();
       const heading = screen.getByRole("heading", { name: "Year 7 units" });
       expect(heading).toBeInTheDocument();
+    });
+
+    it("calls curriculumResourcesAccessed when the download tab is clicked", () => {
+      renderProgrammeView();
+      const downloadTabButton = screen.getByRole("link", {
+        name: "Download",
+      });
+      downloadTabButton.click();
+      expect(curriculumResourcesAccessed).toHaveBeenCalledWith(
+        expect.objectContaining({
+          componentType: "download_tab",
+        }),
+      );
     });
   });
 
