@@ -3,7 +3,6 @@ import type { Meta, StoryObj } from "@storybook/react";
 import { TeachWithOakDescription } from "./TeachWithOakDescription";
 
 const meta = {
-  title: "Components/TeachWithOakDescription",
   component: TeachWithOakDescription,
 } satisfies Meta<typeof TeachWithOakDescription>;
 export default meta;
