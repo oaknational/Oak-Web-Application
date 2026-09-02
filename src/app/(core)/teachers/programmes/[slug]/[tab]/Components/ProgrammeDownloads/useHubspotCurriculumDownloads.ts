@@ -34,7 +34,7 @@ export const useHubspotCurriculumDownloads = () => {
         data: {
           ...data,
           ...utmParams,
-          oakUserId: posthogDistinctId ? posthogDistinctId : undefined,
+          oakUserId: posthogDistinctId ?? undefined,
           schoolName: school,
           phaseSlug: data.phaseSlug,
           subjectSlug: data.subjectSlug,
