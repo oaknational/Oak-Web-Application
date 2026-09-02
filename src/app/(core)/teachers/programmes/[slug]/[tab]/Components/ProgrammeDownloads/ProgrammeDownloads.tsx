@@ -236,10 +236,7 @@ export const ProgrammeDownloads = ({
         terms: data.terms,
         resources: ["docx"],
       });
-      curriculumResourcesDownloaded({
-        ...data,
-        resources: availableDownloadTypes,
-      });
+      curriculumResourcesDownloaded(data);
 
       setIsDone(true);
     } catch {
