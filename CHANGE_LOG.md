@@ -1,3 +1,10 @@
+# [1.1173.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1172.0...v1.1173.0) (2026-09-01)
+
+
+### Features
+
+* change border colour to border-neutral-stronger ([77fa3db](https://github.com/oaknational/Oak-Web-Application/commit/77fa3dba884276e53e9ef38e0a6d985d601ef983))
+
 # [1.1172.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1171.0...v1.1172.0) (2026-09-01)
 
 
