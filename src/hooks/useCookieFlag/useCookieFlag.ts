@@ -35,6 +35,9 @@ export function useCookieFlag(
   }: Opts,
 ): [boolean, SetValue<boolean>] {
   const key = deriveKey(rawKey);
+  const [currentValue, setValueLocal] = useState(() => {
+    return activeFlags.includes(key);
+  });
 
   // Cleanup any cookies that are not in the flags list.
   const cleanupOldCookieFlags = useCallback(async () => {
@@ -80,10 +83,6 @@ export function useCookieFlag(
       channel.removeEventListener("message", hdl);
     };
   }, [cookieStore, key]);
-
-  const [currentValue, setValueLocal] = useState(() => {
-    return activeFlags.includes(key);
-  });
 
   const setValue = useCallback(
     async (value: SetStateAction<boolean>) => {
