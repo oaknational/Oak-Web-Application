@@ -29,24 +29,49 @@ import type {
 } from "@/common-lib/cms-types/nationalCurriculumInsights";
 import { parseNationalCurriculumInsightsRoute } from "@/common-lib/urls/nationalCurriculumInsights";
 import { useNewsletterForm } from "@/components/GenericPagesComponents/NewsletterForm";
+import useAnalytics from "@/context/Analytics/useAnalytics";
 
 jest.mock("@/components/GenericPagesComponents/NewsletterForm", () => ({
   useNewsletterForm: jest.fn(),
 }));
 
+jest.mock("@/context/Analytics/useAnalytics", () => ({
+  __esModule: true,
+  default: jest.fn(),
+}));
+
 jest.mock("@/components/SharedComponents/CMSVideo", () => ({
   __esModule: true,
-  default: ({ video }: { video: { title: string } }) => (
-    <div data-testid="cms-video">{video.title}</div>
+  default: ({
+    video,
+    location,
+    autoPlay,
+  }: {
+    video: { title: string };
+    location: string;
+    autoPlay?: boolean;
+  }) => (
+    <div
+      data-testid="cms-video"
+      data-location={location}
+      data-autoplay={String(Boolean(autoPlay))}
+    >
+      {video.title}
+    </div>
   ),
 }));
 
 const submitNewsletter = jest.fn();
+const newsletterSignUpCompleted = jest.fn();
 
 beforeEach(() => {
   jest.clearAllMocks();
+  submitNewsletter.mockResolvedValue(undefined);
   (useNewsletterForm as jest.Mock).mockReturnValue({
     onSubmit: submitNewsletter,
+  });
+  (useAnalytics as jest.Mock).mockReturnValue({
+    track: { newsletterSignUpCompleted },
   });
 });
 
@@ -168,6 +193,14 @@ describe("National Curriculum Insights sections", () => {
     );
     expect(screen.getByTestId("guidance-inline-video")).toContainElement(
       screen.getByTestId("cms-video"),
+    );
+    expect(screen.getByTestId("cms-video")).toHaveAttribute(
+      "data-location",
+      "blog",
+    );
+    expect(screen.getByTestId("cms-video")).toHaveAttribute(
+      "data-autoplay",
+      "true",
     );
     expect(screen.queryByRole("dialog")).not.toBeInTheDocument();
   });
@@ -413,9 +446,62 @@ describe("National Curriculum Insights sections", () => {
         schoolName: "",
       });
     });
+    expect(newsletterSignUpCompleted).toHaveBeenCalledTimes(1);
     expect(screen.getByRole("status")).toHaveTextContent(
       "Thanks, that's been received",
     );
+  });
+
+  it("does not track a completed newsletter signup when HubSpot rejects it", async () => {
+    const user = userEvent.setup();
+    const data = await getData();
+    submitNewsletter.mockRejectedValueOnce(new Error("HubSpot unavailable"));
+
+    renderWithTheme(
+      <NationalCurriculumInsightsNewsletter
+        data={data}
+        section={moduleOf({
+          __typename: "NationalCurriculumInsightsNewsletterSection",
+          heading: "Keep up to date",
+          introduction: "Get curriculum updates by email.",
+          benefits: ["New guidance"],
+          illustration: contentImage,
+          privacyPortableText: portableText(
+            "newsletter-privacy",
+            "Read our privacy policy.",
+          ),
+          formId: "curriculum-updates",
+          buttonLabel: "Join the mailing list",
+        })}
+      />,
+    );
+
+    await user.type(screen.getByRole("textbox", { name: /Name/ }), "Jamie");
+    await user.click(
+      screen.getByRole("button", { name: /Role.*Select your role/ }),
+    );
+    const roleOption = screen
+      .getAllByTestId("listbox-option")
+      .find(
+        (option) =>
+          option.getAttribute("data-key") === "Teacher/Subject Specialist",
+      );
+    if (!roleOption) {
+      throw new Error("Expected the teacher role option");
+    }
+    await user.click(roleOption);
+    await user.type(
+      screen.getByRole("textbox", { name: /Email/ }),
+      "jamie@example.com",
+    );
+    await user.click(
+      screen.getByRole("button", { name: "Join the mailing list" }),
+    );
+
+    expect(await screen.findByRole("alert")).toHaveTextContent(
+      "We couldn't submit the form. Please try again.",
+    );
+    expect(newsletterSignUpCompleted).not.toHaveBeenCalled();
   });
 
   it("renders the guidance introduction with its image and status", () => {

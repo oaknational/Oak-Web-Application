@@ -49,6 +49,7 @@ import { OakInputWithLabel } from "@/components/SharedComponents/OakInputWithLab
 import CMSVideo from "@/components/SharedComponents/CMSVideo";
 import ResourcePageSchoolPicker from "@/components/TeacherComponents/ResourcePageSchoolPicker";
 import useSchoolPicker from "@/components/TeacherComponents/ResourcePageSchoolPicker/useSchoolPicker";
+import useAnalytics from "@/context/Analytics/useAnalytics";
 
 type Page = NonNullable<NationalCurriculumInsightsRouteData["page"]>;
 type InsightSection = Page["modules"][number];
@@ -1973,6 +1974,7 @@ export const NationalCurriculumInsightsNewsletter = ({
   const [submitError, setSubmitError] = useState("");
   const [fieldErrors, setFieldErrors] = useState<Record<string, string>>({});
   const { onSubmit: submitNewsletter } = useNewsletterForm();
+  const { track } = useAnalytics();
   const isGuidance = data.route.kind === "guidance";
   const {
     schools,
@@ -2019,6 +2021,7 @@ export const NationalCurriculumInsightsNewsletter = ({
         eduRole: role,
         schoolName: schoolNotListed ? "notListed" : schoolPickerInputValue,
       });
+      track.newsletterSignUpCompleted();
       setSuccessMessage("Thanks, that's been received");
     } catch {
       setSubmitError("We couldn't submit the form. Please try again.");
