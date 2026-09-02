@@ -103,7 +103,7 @@ const LearningCycle = ({
         iconName={iconName}
         $width={["spacing-72", "spacing-100"]}
         $height={["spacing-72", "spacing-100"]}
-       />
+      />
       <OakHeading $font={["heading-light-4", "heading-light-3"]} tag="h3">
         {label}
       </OakHeading>
