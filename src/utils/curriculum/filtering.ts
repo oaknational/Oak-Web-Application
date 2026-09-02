@@ -1,5 +1,4 @@
-import { ReadonlyURLSearchParams } from "next/navigation";
-import { isEqual } from "lodash";
+import { subjectSlugs, tierSlugs } from "@oaknational/oak-curriculum-schema";
 
 import { findFirstMatchingFeatures } from "../../utils/curriculum/features";
 import {
@@ -28,6 +27,7 @@ import {
   CurriculumUnitsFormattedData,
   CurriculumUnitsYearData,
 } from "@/pages-helpers/curriculum/docx/tab-helpers";
+import { BrowseFilters } from "@/context/BrowseFilters/types";
 
 export function getDefaultChildSubjectForYearGroup(
   data: CurriculumUnitsYearData,
@@ -45,7 +45,10 @@ export function getDefaultChildSubjectForYearGroup(
     .toSorted(sortChildSubjects)
     .map((t) => t.subject_slug);
   if (childSubjects.length > 0) {
-    return [childSubjects[0]!];
+    const result = subjectSlugs.safeParse(childSubjects[0]);
+    if (result.success) {
+      return [result.data];
+    }
   }
   return [];
 }
@@ -86,110 +89,12 @@ export function getDefaultTiersForYearGroup(data: CurriculumUnitsYearData) {
   });
   const tiers = [...set].toSorted(sortTiers).map((t) => t.tier_slug);
   if (tiers.length > 0) {
-    return [tiers[0]!];
+    const result = tierSlugs.safeParse(tiers[0]);
+    if (result.success) {
+      return [result.data];
+    }
   }
   return [];
-}
-
-export function getDefaultFilter(data: CurriculumUnitsFormattedData) {
-  return {
-    childSubjects: getDefaultChildSubjectForYearGroup(data.yearData),
-    subjectCategories: getDefaultSubjectCategoriesForYearGroup(data.yearData),
-    tiers: getDefaultTiersForYearGroup(data.yearData),
-    years: data.yearOptions,
-    threads: [],
-    pathways: [],
-    keystages: [],
-  };
-}
-
-export const FILTER_TO_QS: Record<keyof CurriculumFilters, string> = {
-  childSubjects: "child_subjects",
-  subjectCategories: "subject_categories",
-  tiers: "tiers",
-  years: "years",
-  threads: "threads",
-  pathways: "pathways",
-  keystages: "keystages",
-};
-
-const FILTER_KEYS = Object.keys(FILTER_TO_QS) as (keyof CurriculumFilters)[];
-export const FILTER_QS_KEYS = Object.values(FILTER_TO_QS);
-
-export function filtersToQuery(
-  filter: CurriculumFilters,
-  defaultFilter: CurriculumFilters,
-) {
-  const out: Record<string, string> = {};
-  for (const [keyUntyped, value] of Object.entries(filter)) {
-    const key = keyUntyped as keyof CurriculumFilters;
-    if (value.length > 0) {
-      if (!isEqual(defaultFilter[key], value)) {
-        out[FILTER_TO_QS[key]] = value.join(",");
-      }
-    }
-  }
-  return out;
-}
-
-/**
- * Reads the filters encoded in a query string, ignoring any params that don't
- * belong to us. Only keys actually present in the URL are returned, so callers
- * can layer them over defaults rather than replacing them outright.
- */
-export function filtersFromSearchString(
-  search: string,
-): Partial<CurriculumFilters> {
-  const params = new URLSearchParams(search);
-  const filters: Partial<CurriculumFilters> = {};
-
-  for (const key of FILTER_KEYS) {
-    const value = params.get(FILTER_TO_QS[key]);
-    if (value) {
-      filters[key] = value.split(",");
-    }
-  }
-
-  return filters;
-}
-
-/**
- * Writes `filters` into `search`, leaving every non-filter param untouched.
- * Values matching the default filter are omitted so shared URLs stay short.
- */
-export function searchStringWithFilters(
-  search: string,
-  filters: CurriculumFilters,
-  defaultFilter: CurriculumFilters,
-): string {
-  const params = new URLSearchParams(search);
-  const query = filtersToQuery(filters, defaultFilter);
-
-  for (const qsKey of FILTER_QS_KEYS) {
-    params.delete(qsKey);
-  }
-  for (const [qsKey, value] of Object.entries(query)) {
-    params.set(qsKey, value);
-  }
-
-  return params.toString();
-}
-
-export function mergeInFilterParams(
-  filter: CurriculumFilters,
-  params?: ReadonlyURLSearchParams | URLSearchParams | null,
-) {
-  const out = { ...filter };
-  if (params) {
-    for (const keyStr of Object.keys(filter)) {
-      const key = keyStr as keyof CurriculumFilters;
-      const paramsValue = params.get(FILTER_TO_QS[key]);
-      if (paramsValue && paramsValue !== "") {
-        out[key] = params.get(FILTER_TO_QS[key])!.split(",");
-      }
-    }
-  }
-  return out;
 }
 
 export function getFilterData(
@@ -307,49 +212,6 @@ export function scopeYearsToKeystageFilter(
   );
 }
 
-export function shouldDisplayFilter(
-  data: CurriculumUnitsFormattedData,
-  filters: CurriculumFilters,
-  key: "years" | "subjectCategories" | "childSubjects" | "tiers" | "threads",
-) {
-  const effectiveYears = scopeYearsToKeystageFilter(filters);
-  const keyStageSlugData = byKeyStageSlug(data.yearData);
-  const childSubjectsAt = presentAtKeyStageSlugs(
-    keyStageSlugData,
-    "childSubjects",
-    effectiveYears,
-  );
-
-  const subjectCategoriesAt = presentAtKeyStageSlugs(
-    keyStageSlugData,
-    "subjectCategories",
-    effectiveYears,
-  ).filter((ks) => !childSubjectsAt.includes(ks));
-
-  if (key === "years") {
-    // only show year options when there is more than 1, because all content will be in a year
-    // so a single year option is equivalent to the 'all' option
-    return data.yearOptions.length > 1;
-  }
-  if (key === "subjectCategories") {
-    return subjectCategoriesAt.length > 0;
-  }
-  if (key === "childSubjects") {
-    return childSubjectsAt.length > 0;
-  }
-  if (key === "tiers") {
-    const tiersAt = presentAtKeyStageSlugs(
-      keyStageSlugData,
-      "tiers",
-      effectiveYears,
-    );
-    return tiersAt.length > 0;
-  }
-  if (key === "threads") {
-    return data.threadOptions.length > 0;
-  }
-}
-
 export function subjectCategoryForFilter(
   data: CurriculumUnitsFormattedData,
   filter: CurriculumFilters,
@@ -377,6 +239,48 @@ export function childSubjectForFilter(
     .find((childSubject) => childSubject.subject_slug === slug);
 }
 
+export function shouldDisplayFilter(
+  data: CurriculumUnitsFormattedData,
+  filters: BrowseFilters,
+  key: "years" | "subjectCategories" | "childSubjects" | "tiers" | "threads",
+) {
+  if (key === "years") {
+    // only show year options when there is more than 1, because all content will be in a year
+    // so a single year option is equivalent to the 'all' option
+    return data.yearOptions.length > 1;
+  }
+  if (key === "threads") {
+    return data.threadOptions.length > 0;
+  }
+
+  const effectiveYears = scopeYearsToKeystageFilter(filters);
+  const keyStageSlugData = byKeyStageSlug(data.yearData);
+  const childSubjectsAt = presentAtKeyStageSlugs(
+    keyStageSlugData,
+    "childSubjects",
+    effectiveYears,
+  );
+
+  if (key === "childSubjects") {
+    return childSubjectsAt.length > 0;
+  }
+  if (key === "subjectCategories") {
+    const subjectCategoriesAt = presentAtKeyStageSlugs(
+      keyStageSlugData,
+      "subjectCategories",
+      effectiveYears,
+    ).filter((ks) => !childSubjectsAt.includes(ks));
+    return subjectCategoriesAt.length > 0;
+  }
+
+  const tiersAt = presentAtKeyStageSlugs(
+    keyStageSlugData,
+    "tiers",
+    effectiveYears,
+  );
+  return tiersAt.length > 0;
+}
+
 export function getNumberOfSelectedUnits(
   yearData: YearData,
   filters: CurriculumFilters,
@@ -397,34 +301,4 @@ export function getNumberOfSelectedUnits(
   });
 
   return count;
-}
-
-type RawSearchParams = { [key: string]: string | string[] | undefined };
-
-/**
- * Resolves the filter from raw search params (server-side)
- * Converts PageSearchParms into a CurriculumFilters with URL params applied
- * Used in page.tsx to pre-resolve filters before SSR
- */
-export function resolveFilterFromSearchParams(
-  data: CurriculumUnitsFormattedData,
-  searchParams: RawSearchParams | undefined,
-): CurriculumFilters {
-  const defaultFilter = getDefaultFilter(data);
-  const params = new URLSearchParams();
-
-  if (searchParams) {
-    for (const [k, v] of Object.entries(searchParams)) {
-      if (v == null) continue;
-      if (Array.isArray(v)) {
-        v.forEach((item) => {
-          params.append(k, item);
-        });
-      } else {
-        params.append(k, v);
-      }
-    }
-  }
-
-  return mergeInFilterParams(defaultFilter, params);
 }
