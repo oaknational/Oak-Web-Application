@@ -94,6 +94,25 @@ describe("useHubspotCurriculumDownloads", () => {
     expect(response).toBe("ok");
   });
 
+  it("should use the school id as school name for homeschool or notListed", async () => {
+    const { result } = renderHook(() => useHubspotCurriculumDownloads());
+    await result.current.onHubspotSubmit({
+      ...data,
+      school: "notListed",
+      schoolName: "Sample school",
+    });
+
+    expect(mockHubspotSubmitForm).toHaveBeenCalledWith(
+      expect.objectContaining({
+        payload: expect.objectContaining({
+          fields: expect.arrayContaining([
+            { name: "contact_school_name", value: "notListed" },
+          ]),
+        }),
+      }),
+    );
+  });
+
   it("should report an Oak Error when the source is generic", async () => {
     mockHubspotSubmitForm.mockRejectedValueOnce(new Error("test error"));
     const { result } = renderHook(() => useHubspotCurriculumDownloads());
