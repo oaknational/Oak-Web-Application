@@ -35,7 +35,7 @@ export function useCookieFlag(
   }: Opts,
 ): [boolean, SetValue<boolean>] {
   const key = deriveKey(rawKey);
-  const [currentValueLocal, setValueLocal] = useState(() => {
+  const [currentValueLocal, setCurrentValueLocal] = useState(() => {
     return activeFlags.includes(key);
   });
 
@@ -66,7 +66,7 @@ export function useCookieFlag(
           : cookieStore.getAll(""));
         for (const { name, value } of currentCookies) {
           if (name === key) {
-            setValueLocal(value === "1");
+            setCurrentValueLocal(value === "1");
           }
         }
       }
@@ -96,7 +96,7 @@ export function useCookieFlag(
         await cookieStore.delete(key);
       }
       channel.postMessage({ type: COOKIE_STORAGE_EVENT });
-      setValueLocal(newValue);
+      setCurrentValueLocal(newValue);
     },
     [cookieStore, currentValueLocal, key],
   );
