@@ -91,7 +91,14 @@ export function useCookieFlag(
         typeof value === "function" ? value(currentValueLocal) : value;
 
       if (newValue) {
-        await cookieStore.set(key, "1");
+        // @ts-expect-error: an invalid type for cookieStore.set, but we know it works with this object format
+        await cookieStore.set({
+          name: key,
+          value: "1",
+          // Default to 400 days, this will eventually expire, so it's not permanent.
+          // We should add code to reset the cookie expiration on load
+          maxAge: 60 * 60 * 24 * 400,
+        });
       } else {
         await cookieStore.delete(key);
       }
