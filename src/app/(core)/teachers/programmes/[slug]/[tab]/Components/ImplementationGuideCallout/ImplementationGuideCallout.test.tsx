@@ -64,4 +64,24 @@ describe("ImplementationGuideCallout", () => {
     );
     expect(message).toBeInTheDocument();
   });
+
+  test("disabled when flag active", () => {
+    // Render the component with test props
+    const { queryByText } = renderWithProviders()(
+      <ImplementationGuideCallout
+        subject="rshe-pshe"
+        phase="ks2"
+        subjectTitle="RSHE (PSHE)"
+        phaseTitle="Primary"
+        onClick={() => {}}
+        activeFlags={["oak-flag-toolkit-modal-dismissed"]}
+      />,
+    );
+
+    // Check if the message is rendered correctly
+    const message = queryByText(
+      "Leading your school's use of Oak's RSHE (PSHE) primary curriculum? Download our implementation toolkit.",
+    );
+    expect(message).not.toBeInTheDocument();
+  });
 });
