@@ -1,3 +1,16 @@
+# [1.1175.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1174.0...v1.1175.0) (2026-09-02)
+
+
+### Bug Fixes
+
+* remove expectJsdomOptionError() as no longer required fixed in oak-components ([c6938be](https://github.com/oaknational/Oak-Web-Application/commit/c6938beff29a28cae9ed8a7c4cf163f3742a532f))
+* updated snapshots for changes to <OakInlineBanner/> ([9940c79](https://github.com/oaknational/Oak-Web-Application/commit/9940c793dd90a08db974d109b0cd55c05b3aa648))
+
+
+### Features
+
+* bump @oaknational/oak-components to ^3.12.3 ([0b0c187](https://github.com/oaknational/Oak-Web-Application/commit/0b0c1871589512b022715e45cfacc99aef2d51e0))
+
 # [1.1174.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1173.0...v1.1174.0) (2026-09-02)
 
 
