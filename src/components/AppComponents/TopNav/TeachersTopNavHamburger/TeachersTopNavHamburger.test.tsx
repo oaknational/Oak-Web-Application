@@ -11,7 +11,7 @@ const mockTopNavProps = topNavFixture.teachers!;
 
 const render = renderWithProviders();
 
-const mockBrowseRefined = jest.fn();
+const mockProgrammeRefined = jest.fn();
 const mockPush = jest.fn();
 
 jest.mock("next/navigation", () => ({
@@ -23,7 +23,7 @@ jest.mock("@/context/Analytics/useAnalytics", () => ({
   __esModule: true,
   default: () => ({
     track: {
-      browseRefined: (...args: []) => mockBrowseRefined(...args),
+      programmeRefined: (...args: []) => mockProgrammeRefined(...args),
     },
   }),
 }));
@@ -202,7 +202,7 @@ describe("TeachersTopNavHamburger", () => {
     const englishButton = getByRole("link", { name: /English/i });
     await user.click(englishButton);
 
-    expect(mockBrowseRefined).toHaveBeenLastCalledWith(
+    expect(mockProgrammeRefined).toHaveBeenLastCalledWith(
       expect.objectContaining({
         filterType: "Subject filter",
         filterValue: "english",
@@ -229,7 +229,7 @@ describe("TeachersTopNavHamburger", () => {
     });
     await user.click(computerScienceButton);
 
-    expect(mockBrowseRefined).toHaveBeenCalledWith(
+    expect(mockProgrammeRefined).toHaveBeenCalledWith(
       expect.objectContaining({
         filterType: "Subject filter",
         filterValue: "computer-science",
@@ -251,7 +251,7 @@ describe("TeachersTopNavHamburger", () => {
       keystageLabel: "Key stage 1",
     });
 
-    expect(mockBrowseRefined).toHaveBeenCalledWith(
+    expect(mockProgrammeRefined).toHaveBeenCalledWith(
       expect.objectContaining({
         filterType: "Key stage filter",
         filterValue: "ks1",
@@ -272,7 +272,7 @@ describe("TeachersTopNavHamburger", () => {
     });
     await user.click(secondarySubjectsButton);
 
-    expect(mockBrowseRefined).toHaveBeenCalledWith(
+    expect(mockProgrammeRefined).toHaveBeenCalledWith(
       expect.objectContaining({
         filterType: "Phase filter",
         filterValue: "secondary",

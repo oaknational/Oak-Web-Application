@@ -32,6 +32,7 @@ import { useOakNotificationsContext } from "@/context/OakNotifications/useOakNot
 import { OaksImpactCaseStudyHeader } from "@/components/GenericPagesComponents/OaksImpactCaseStudyHeader";
 import { OaksImpactCaseStudyContentLayout } from "@/components/GenericPagesComponents/OaksImpactCaseStudyContentLayout";
 import VideoPlayer from "@/components/SharedComponents/VideoPlayer";
+import { TeacherBrowseAnalyticsStoreProvider } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
 
 export type AboutUsOaksImpactCaseStudyPageProps = {
   pageData: {
@@ -60,82 +61,90 @@ const AboutUsOaksImpactCaseStudy: NextPage<
   };
 
   return (
-    <Layout
-      seoProps={getSeoProps({ title: caseStudy.video.title })}
-      $background={"bg-primary"}
-      topNavProps={topNav}
+    <TeacherBrowseAnalyticsStoreProvider
+      programmeState={null}
+      accessLevel="homepage"
     >
-      <OakBox $zIndex={"neutral"} $color={"text-primary"}>
-        <OakBox $bb="border-solid-xxxl" $borderColor="border-decorative2">
-          <NewGutterMaxWidth>
-            <OakBox $mt="spacing-40" $mb="spacing-56">
-              <OakGrid $cg="spacing-16">
-                <OakGridArea $rowStart={1} $colSpan={12}>
-                  <OakBox $pb="spacing-20">
-                    <OakBreadcrumbs
-                      breadcrumbs={[
-                        {
-                          href: resolveOakHref({ page: "home" }),
-                          text: "Home",
-                        },
-                        { href: "/about-us/oaks-impact", text: "Oak's impact" },
-                        { text: caseStudy.video.title },
-                      ]}
+      <Layout
+        seoProps={getSeoProps({ title: caseStudy.video.title })}
+        $background={"bg-primary"}
+        topNavProps={topNav}
+      >
+        <OakBox $zIndex={"neutral"} $color={"text-primary"}>
+          <OakBox $bb="border-solid-xxxl" $borderColor="border-decorative2">
+            <NewGutterMaxWidth>
+              <OakBox $mt="spacing-40" $mb="spacing-56">
+                <OakGrid $cg="spacing-16">
+                  <OakGridArea $rowStart={1} $colSpan={12}>
+                    <OakBox $pb="spacing-20">
+                      <OakBreadcrumbs
+                        breadcrumbs={[
+                          {
+                            href: resolveOakHref({ page: "home" }),
+                            text: "Home",
+                          },
+                          {
+                            href: "/about-us/oaks-impact",
+                            text: "Oak's impact",
+                          },
+                          { text: caseStudy.video.title },
+                        ]}
+                      />
+                    </OakBox>
+                    <OakHandDrawnHR
+                      hrColor={"bg-neutral-stronger"}
+                      $height={"spacing-4"}
                     />
-                  </OakBox>
-                  <OakHandDrawnHR
-                    hrColor={"bg-neutral-stronger"}
-                    $height={"spacing-4"}
-                  />
-                </OakGridArea>
-                <OakGridArea
-                  $rowStart={2}
-                  $colStart={[0, 0, 3]}
-                  $colSpan={[12, 12, 8]}
-                >
-                  <OaksImpactCaseStudyHeader
-                    title={caseStudy.video.title}
-                    publishedDate={format(
-                      new Date(caseStudy.publishedAt),
-                      "d MMMM y",
-                    )}
-                    onCopyLink={onCopyLink}
-                  />
-                </OakGridArea>
-              </OakGrid>
-            </OakBox>
-          </NewGutterMaxWidth>
-        </OakBox>
-        <NewGutterMaxWidth>
-          <OaksImpactCaseStudyContentLayout>
-            <OakBox $pv="spacing-100" $position={"relative"}>
-              <OakVideo
-                videoSlot={
-                  caseStudy.video.video.asset && (
-                    <VideoPlayer
-                      playbackPolicy="public"
-                      thumbnailTime={caseStudy.video.video.asset.thumbTime}
-                      playbackId={caseStudy.video.video.asset.playbackId}
+                  </OakGridArea>
+                  <OakGridArea
+                    $rowStart={2}
+                    $colStart={[0, 0, 3]}
+                    $colSpan={[12, 12, 8]}
+                  >
+                    <OaksImpactCaseStudyHeader
                       title={caseStudy.video.title}
-                      location="marketing"
-                      omitBorder={true}
+                      publishedDate={format(
+                        new Date(caseStudy.publishedAt),
+                        "d MMMM y",
+                      )}
+                      onCopyLink={onCopyLink}
                     />
-                  )
-                }
-                showTranscript={true}
-                transcript={caseStudy.video.transcript ?? undefined}
-                body={caseStudy.textRaw ?? undefined}
-              />
-            </OakBox>
-          </OaksImpactCaseStudyContentLayout>
-        </NewGutterMaxWidth>
+                  </OakGridArea>
+                </OakGrid>
+              </OakBox>
+            </NewGutterMaxWidth>
+          </OakBox>
+          <NewGutterMaxWidth>
+            <OaksImpactCaseStudyContentLayout>
+              <OakBox $pv="spacing-100" $position={"relative"}>
+                <OakVideo
+                  videoSlot={
+                    caseStudy.video.video.asset && (
+                      <VideoPlayer
+                        playbackPolicy="public"
+                        thumbnailTime={caseStudy.video.video.asset.thumbTime}
+                        playbackId={caseStudy.video.video.asset.playbackId}
+                        title={caseStudy.video.title}
+                        location="marketing"
+                        omitBorder={true}
+                      />
+                    )
+                  }
+                  showTranscript={true}
+                  transcript={caseStudy.video.transcript ?? undefined}
+                  body={caseStudy.textRaw ?? undefined}
+                />
+              </OakBox>
+            </OaksImpactCaseStudyContentLayout>
+          </NewGutterMaxWidth>
 
-        <OaksImpactCaseStudies
-          title="Explore more case studies"
-          caseStudies={otherCaseStudies}
-        />
-      </OakBox>
-    </Layout>
+          <OaksImpactCaseStudies
+            title="Explore more case studies"
+            caseStudies={otherCaseStudies}
+          />
+        </OakBox>
+      </Layout>
+    </TeacherBrowseAnalyticsStoreProvider>
   );
 };
 

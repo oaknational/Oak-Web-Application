@@ -88,10 +88,13 @@ export const ProgrammeDownloads = ({
         return true;
       }
       if (group === "implementation-guide") {
-        return implementationGuides?.[id as keyof ImplementationGuides];
+        return (
+          implementationGuides?.[id as keyof ImplementationGuides] &&
+          featureFlags["implementation-guides"]
+        );
       }
     }).map(({ id }) => id);
-  }, [curriculumUnitsFormattedData, implementationGuides]);
+  }, [curriculumUnitsFormattedData, implementationGuides, featureFlags]);
 
   const curriculumDownloadsWithLabels = DOWNLOAD_TYPE_LABELS.filter(
     ({ id, group }) => {
@@ -101,9 +104,7 @@ export const ProgrammeDownloads = ({
   const implementationGuideDownloadsWithLabels = DOWNLOAD_TYPE_LABELS.filter(
     ({ id, group }) => {
       return (
-        featureFlags["implementation-guides"] &&
-        group === "implementation-guide" &&
-        availableDownloadTypes.includes(id)
+        group === "implementation-guide" && availableDownloadTypes.includes(id)
       );
     },
   );
@@ -291,6 +292,7 @@ export const ProgrammeDownloads = ({
       $borderColor="border-error"
       $width={"100%"}
       role="region"
+      $color="text-primary"
     >
       {subjectTierSelectionVisible === true ? (
         <OakGrid>
@@ -409,7 +411,7 @@ export const ProgrammeDownloads = ({
                     )}
                     {implementationGuideDownloadsWithLabels.length > 0 && (
                       <OakFlex $gap={"spacing-16"} $flexDirection="column">
-                        <OakFlex $gap="spacing-8">
+                        <OakFlex $gap="spacing-8" $alignItems="center">
                           Implementation toolkit
                           <OakPromoTag />
                         </OakFlex>
@@ -468,7 +470,13 @@ export const ProgrammeDownloads = ({
                           )}
                         </OakGrid>
                         <OakFlex>
-                          <OakLink isTrailingIcon={true} iconName="send">
+                          <OakLink
+                            isTrailingIcon={true}
+                            iconName="send"
+                            href="https://share.hsforms.com/1fzfnNn2GTYaLK5bf87fiagbvumd"
+                            rel="noreferrer"
+                            target="_blank"
+                          >
                             Request an accessible version
                           </OakLink>
                         </OakFlex>

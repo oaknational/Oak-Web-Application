@@ -746,494 +746,184 @@ describe("truncatePortableTextBlock", () => {
 });
 
 describe("getFilename", () => {
-  beforeEach(() => {
-    jest.spyOn(Date, "now").mockReturnValue(new Date("2025-06-10").getTime());
-  });
-
-  afterEach(() => {
-    jest.restoreAllMocks();
-  });
-
-  describe("NC alignment xlsx files", () => {
-    describe("Individual filename parameters and edge cases", () => {
-      it("should generate filename with only phase", () => {
-        const result = getFilename("xlsx", {
-          subjectTitle: "Mathematics",
-          phaseTitle: "Secondary",
-          prefix: "NC alignment",
-        });
-        expect(result).toBe(
-          "NC alignment - Mathematics - Secondary - 10-06-2025.xlsx",
-        );
-      });
-
-      it("should generate filename with phase and examboard", () => {
-        const result = getFilename("xlsx", {
-          subjectTitle: "English",
-          phaseTitle: "Secondary",
-          examboardTitle: "AQA",
-          prefix: "NC alignment",
-        });
-        expect(result).toBe(
-          "NC alignment - English - Secondary - AQA - 10-06-2025.xlsx",
-        );
-      });
-
-      it("should generate filename with phase and tier", () => {
-        const result = getFilename("xlsx", {
-          subjectTitle: "Mathematics",
-          phaseTitle: "Secondary",
-          tierSlug: "higher",
-          prefix: "NC alignment",
-        });
-        expect(result).toBe(
-          "NC alignment - Mathematics - Secondary - Higher - 10-06-2025.xlsx",
-        );
-      });
-
-      it("should generate filename with phase, examboard and tier", () => {
-        const result = getFilename("xlsx", {
-          subjectTitle: "Computing",
-          phaseTitle: "Secondary",
-          examboardTitle: "Edexcel",
-          tierSlug: "foundation",
-          prefix: "NC alignment",
-        });
-        expect(result).toBe(
-          "NC alignment - Computing - Secondary - Edexcel - Foundation - 10-06-2025.xlsx",
-        );
-      });
-
-      it("should handle undefined tier slug", () => {
-        const result = getFilename("xlsx", {
-          subjectTitle: "History",
-          phaseTitle: "Secondary",
-          examboardTitle: "AQA",
-          tierSlug: undefined,
-          prefix: "NC alignment",
-        });
-        expect(result).toBe(
-          "NC alignment - History - Secondary - AQA - 10-06-2025.xlsx",
-        );
-      });
-
-      it("should capitalise tier slug correctly", () => {
-        const result = getFilename("xlsx", {
-          subjectTitle: "Design and Technology",
-          phaseTitle: "Secondary",
-          tierSlug: "higher",
-          prefix: "NC alignment",
-        });
-        expect(result).toBe(
-          "NC alignment - Design and Technology - Secondary - Higher - 10-06-2025.xlsx",
-        );
-      });
-
-      it("should use child subject instead of main subject when available for NC alignment", () => {
-        const result = getFilename("xlsx", {
-          subjectTitle: "Science",
-          phaseTitle: "Secondary",
-          childSubjectSlug: "physics",
-          examboardTitle: "Edexcel",
-          tierSlug: "foundation",
-          prefix: "NC alignment",
-        });
-        expect(result).toBe(
-          "NC alignment - Physics - Secondary - Edexcel - Foundation - 10-06-2025.xlsx",
-        );
-      });
-
-      it("should use child subject with examboard and tier", () => {
-        const result = getFilename("xlsx", {
-          subjectTitle: "Science",
-          phaseTitle: "Secondary",
-          childSubjectSlug: "biology",
-          examboardTitle: "AQA",
-          tierSlug: "higher",
-          prefix: "NC alignment",
-        });
-        expect(result).toBe(
-          "NC alignment - Biology - Secondary - AQA - Higher - 10-06-2025.xlsx",
-        );
-      });
-
-      it("should handle empty strings by filtering them out", () => {
-        const result = getFilename("docx", {
-          subjectTitle: "Art",
-          phaseTitle: "Primary",
-          examboardTitle: "",
-          tierSlug: "",
-          prefix: "Curriculum plan",
-        });
-        expect(result).toBe(
-          "Curriculum plan - Art - Primary - 10-06-2025.docx",
-        );
-      });
-
-      it("should handle undefined child subject slug", () => {
-        const result = getFilename("xlsx", {
-          subjectTitle: "Mathematics",
-          phaseTitle: "Secondary",
-          childSubjectSlug: undefined,
-          examboardTitle: "AQA",
-          prefix: "NC alignment",
-        });
-        expect(result).toBe(
-          "NC alignment - Mathematics - Secondary - AQA - 10-06-2025.xlsx",
-        );
-      });
-
-      it("should format date consistently", () => {
-        // Test with a different date to ensure formatting is correct
-        jest
-          .spyOn(Date, "now")
-          .mockReturnValue(new Date("2025-12-25").getTime());
-
-        const result = getFilename("xlsx", {
-          subjectTitle: "Computing",
-          phaseTitle: "Secondary",
-          prefix: "NC alignment",
-        });
-        expect(result).toBe(
-          "NC alignment - Computing - Secondary - 25-12-2025.xlsx",
-        );
-      });
-    });
-
-    it("should generate NC alignment filename for Primary English", () => {
-      const result = getFilename("xlsx", {
-        subjectTitle: "English",
-        phaseTitle: "Primary",
-        prefix: "NC alignment",
-      });
-      expect(result).toBe("NC alignment - English - Primary - 10-06-2025.xlsx");
-    });
-
-    it("should generate NC alignment filename for Primary Science", () => {
-      const result = getFilename("xlsx", {
-        subjectTitle: "Science",
-        phaseTitle: "Primary",
-        prefix: "NC alignment",
-      });
-      expect(result).toBe("NC alignment - Science - Primary - 10-06-2025.xlsx");
-    });
-
-    it("should generate NC alignment filename for Secondary Science - Biology", () => {
-      const result = getFilename("xlsx", {
-        subjectTitle: "Science",
-        phaseTitle: "Secondary",
-        childSubjectSlug: "biology",
-        examboardTitle: "AQA",
-        tierSlug: "higher",
-        prefix: "NC alignment",
-      });
-      expect(result).toBe(
-        "NC alignment - Biology - Secondary - AQA - Higher - 10-06-2025.xlsx",
-      );
-    });
-
-    it("should generate NC alignment filename for Secondary Science - Chemistry", () => {
-      const result = getFilename("xlsx", {
-        subjectTitle: "Science",
-        phaseTitle: "Secondary",
-        childSubjectSlug: "chemistry",
-        examboardTitle: "Edexcel",
-        tierSlug: "foundation",
-        prefix: "NC alignment",
-      });
-      expect(result).toBe(
-        "NC alignment - Chemistry - Secondary - Edexcel - Foundation - 10-06-2025.xlsx",
-      );
-    });
-
-    it("should generate NC alignment filename for Secondary Science - Physics", () => {
-      const result = getFilename("xlsx", {
-        subjectTitle: "Science",
-        phaseTitle: "Secondary",
-        childSubjectSlug: "physics",
-        examboardTitle: "Edexcel",
-        tierSlug: "foundation",
-        prefix: "NC alignment",
-      });
-      expect(result).toBe(
-        "NC alignment - Physics - Secondary - Edexcel - Foundation - 10-06-2025.xlsx",
-      );
-    });
-
-    it("should generate NC alignment filename for Secondary Science - Combined Science", () => {
-      const result = getFilename("xlsx", {
-        subjectTitle: "Science",
-        phaseTitle: "Secondary",
-        childSubjectSlug: "combined-science",
-        examboardTitle: "OCR",
-        tierSlug: "foundation",
-        prefix: "NC alignment",
-      });
-      expect(result).toBe(
-        "NC alignment - Combined Science - Secondary - OCR - Foundation - 10-06-2025.xlsx",
-      );
-    });
-
-    it("should generate correct filename for Secondary Maths (no exam board)", () => {
-      const result = getFilename("xlsx", {
-        subjectTitle: "Mathematics",
-        phaseTitle: "Secondary",
-        tierSlug: "higher",
-        prefix: "NC alignment",
-      });
-      expect(result).toBe(
-        "NC alignment - Mathematics - Secondary - Higher - 10-06-2025.xlsx",
-      );
-    });
-  });
-
-  describe("Curriculum plan docx files", () => {
-    describe("Individual filename parameters and edge cases", () => {
-      it("should generate filename with only phase", () => {
-        const result = getFilename("docx", {
-          subjectTitle: "Mathematics",
-          phaseTitle: "Secondary",
-          prefix: "Curriculum plan",
-        });
-        expect(result).toBe(
-          "Curriculum plan - Mathematics - Secondary - 10-06-2025.docx",
-        );
-      });
-
-      it("should generate filename with phase and examboard", () => {
-        const result = getFilename("docx", {
-          subjectTitle: "English",
-          phaseTitle: "Secondary",
-          examboardTitle: "AQA",
-          prefix: "Curriculum plan",
-        });
-        expect(result).toBe(
-          "Curriculum plan - English - Secondary - AQA - 10-06-2025.docx",
-        );
-      });
-
-      it("should generate filename with phase and tier", () => {
-        const result = getFilename("docx", {
-          subjectTitle: "Mathematics",
-          phaseTitle: "Secondary",
-          tierSlug: "higher",
-          prefix: "Curriculum plan",
-        });
-        expect(result).toBe(
-          "Curriculum plan - Mathematics - Secondary - Higher - 10-06-2025.docx",
-        );
-      });
-
-      it("should generate filename with phase, examboard and tier", () => {
-        const result = getFilename("docx", {
-          subjectTitle: "Computing",
-          phaseTitle: "Secondary",
-          examboardTitle: "Edexcel",
-          tierSlug: "foundation",
-          prefix: "Curriculum plan",
-        });
-        expect(result).toBe(
-          "Curriculum plan - Computing - Secondary - Edexcel - Foundation - 10-06-2025.docx",
-        );
-      });
-
-      it("should handle undefined tier slug", () => {
-        const result = getFilename("docx", {
-          subjectTitle: "History",
-          phaseTitle: "Secondary",
-          examboardTitle: "AQA",
-          tierSlug: undefined,
-          prefix: "Curriculum plan",
-        });
-        expect(result).toBe(
-          "Curriculum plan - History - Secondary - AQA - 10-06-2025.docx",
-        );
-      });
-
-      it("should capitalise tier slug correctly", () => {
-        const result = getFilename("docx", {
-          subjectTitle: "Design and Technology",
-          phaseTitle: "Secondary",
-          tierSlug: "higher",
-          prefix: "Curriculum plan",
-        });
-        expect(result).toBe(
-          "Curriculum plan - Design and Technology - Secondary - Higher - 10-06-2025.docx",
-        );
-      });
-
-      it("should use main subject and child subject when available for Curriculum plan", () => {
-        const result = getFilename("docx", {
-          subjectTitle: "Science",
-          phaseTitle: "Secondary",
-          childSubjectSlug: "physics",
-          examboardTitle: "Edexcel",
-          tierSlug: "foundation",
-          prefix: "Curriculum plan",
-        });
-        expect(result).toBe(
-          "Curriculum plan - Science - Physics - Secondary - Edexcel - Foundation - 10-06-2025.docx",
-        );
-      });
-
-      it("should handle empty strings by filtering them out", () => {
-        const result = getFilename("docx", {
-          subjectTitle: "Art",
-          phaseTitle: "Primary",
-          examboardTitle: "",
-          tierSlug: "",
-          prefix: "Curriculum plan",
-        });
-        expect(result).toBe(
-          "Curriculum plan - Art - Primary - 10-06-2025.docx",
-        );
-      });
-
-      it("should handle undefined child subject slug", () => {
-        const result = getFilename("docx", {
-          subjectTitle: "Mathematics",
-          phaseTitle: "Secondary",
-          childSubjectSlug: undefined,
-          examboardTitle: "AQA",
-          prefix: "Curriculum plan",
-        });
-        expect(result).toBe(
-          "Curriculum plan - Mathematics - Secondary - AQA - 10-06-2025.docx",
-        );
-      });
-
-      it("should format date consistently", () => {
-        // Test with a different date to ensure formatting is correct
-        jest
-          .spyOn(Date, "now")
-          .mockReturnValue(new Date("2025-12-25").getTime());
-
-        const result = getFilename("docx", {
-          subjectTitle: "English",
-          phaseTitle: "Secondary",
-          prefix: "Curriculum plan",
-        });
-        expect(result).toBe(
-          "Curriculum plan - English - Secondary - 25-12-2025.docx",
-        );
-      });
-    });
-
-    it("should generate Curriculum plan filename for Primary English", () => {
-      const result = getFilename("docx", {
+  for (const { input, outputs } of [
+    // Basic
+    {
+      outputs: {
+        filename: "Curriculum-plan-English-Primary.docx",
+        archiveFilename: "Curriculum-plan.docx",
+      },
+      input: {
         subjectTitle: "English",
         phaseTitle: "Primary",
         prefix: "Curriculum plan",
-      });
-      expect(result).toBe(
-        "Curriculum plan - English - Primary - 10-06-2025.docx",
-      );
-    });
-
-    it("should generate Curriculum plan filename for Primary Science", () => {
-      const result = getFilename("docx", {
+      },
+    },
+    // With tier
+    {
+      outputs: {
+        filename: "Curriculum-plan-Maths-Secondary-Foundation.docx",
+        archiveFilename: "Curriculum-plan.docx",
+      },
+      input: {
+        subjectTitle: "Maths",
+        phaseTitle: "Secondary",
+        tierSlug: "Foundation",
+        prefix: "Curriculum plan",
+      },
+    },
+    {
+      outputs: {
+        filename: "Curriculum-plan-Maths-Secondary-Higher.docx",
+        archiveFilename: "Curriculum-plan.docx",
+      },
+      input: {
+        subjectTitle: "Maths",
+        phaseTitle: "Secondary",
+        tierSlug: "Higher",
+        prefix: "Curriculum plan",
+      },
+    },
+    // With exam board
+    {
+      outputs: {
+        filename: "Curriculum-plan-History-Secondary-AQA.docx",
+        archiveFilename: "Curriculum-plan.docx",
+      },
+      input: {
+        subjectTitle: "History",
+        phaseTitle: "Secondary",
+        examboardTitle: "AQA",
+        prefix: "Curriculum plan",
+      },
+    },
+    // With exam board & child subject slug
+    {
+      outputs: {
+        filename: "Curriculum-plan-Biology-Secondary-AQA.docx",
+        archiveFilename: "Curriculum-plan.docx",
+      },
+      input: {
         subjectTitle: "Science",
+        phaseTitle: "Secondary",
+        examboardTitle: "AQA",
+        childSubjectSlug: "biology",
+        prefix: "Curriculum plan",
+      },
+    },
+    // With exam board, child subject slug & tier
+    {
+      outputs: {
+        filename: "Curriculum-plan-Combined-Science-Secondary-AQA-Higher.docx",
+        archiveFilename: "Curriculum-plan.docx",
+      },
+      input: {
+        subjectTitle: "Science",
+        phaseTitle: "Secondary",
+        examboardTitle: "AQA",
+        childSubjectSlug: "combined-science",
+        tierSlug: "Higher",
+        prefix: "Curriculum plan",
+      },
+    },
+    // RSHE (PSHE)
+    {
+      outputs: {
+        filename: "Curriculum-plan-RSHE-PSHE-Primary.docx",
+        archiveFilename: "Curriculum-plan.docx",
+      },
+      input: {
+        subjectTitle: "RSHE (PSHE)",
         phaseTitle: "Primary",
         prefix: "Curriculum plan",
-      });
-      expect(result).toBe(
-        "Curriculum plan - Science - Primary - 10-06-2025.docx",
-      );
+      },
+    },
+  ]) {
+    it(`./${outputs.filename} — .docx`, () => {
+      expect(getFilename("docx", input)).toEqual(outputs.filename);
     });
 
-    it("should generate Curriculum plan filename for Secondary Science – Biology", () => {
-      const result = getFilename("docx", {
-        subjectTitle: "Science",
+    it(`./${outputs.archiveFilename} — .docx within archive`, () => {
+      expect(getFilename("docx", { ...input, isWithinArchive: true })).toEqual(
+        outputs.archiveFilename,
+      );
+    });
+  }
+
+  for (const { input, outputs } of [
+    // Basic
+    {
+      outputs: {
+        archive: "Curriculum-English-Primary.zip",
+      },
+      input: {
+        subjectTitle: "English",
+        phaseTitle: "Primary",
+        prefix: "Curriculum",
+      },
+    },
+    // With tier
+    {
+      outputs: {
+        archive: "Curriculum-Maths-Secondary-Foundation.zip",
+      },
+      input: {
+        subjectTitle: "Maths",
         phaseTitle: "Secondary",
-        childSubjectSlug: "biology",
+        tierSlug: "Foundation",
+        prefix: "Curriculum",
+      },
+    },
+    {
+      outputs: {
+        archive: "Curriculum-Maths-Secondary-Higher.zip",
+      },
+      input: {
+        subjectTitle: "Maths",
+        phaseTitle: "Secondary",
+        tierSlug: "Higher",
+        prefix: "Curriculum",
+      },
+    },
+    // With exam board
+    {
+      outputs: {
+        archive: "Curriculum-History-Secondary-AQA.zip",
+      },
+      input: {
+        subjectTitle: "History",
+        phaseTitle: "Secondary",
         examboardTitle: "AQA",
-        tierSlug: "higher",
-        prefix: "Curriculum plan",
-      });
-      expect(result).toBe(
-        "Curriculum plan - Science - Biology - Secondary - AQA - Higher - 10-06-2025.docx",
-      );
-    });
-
-    it("should generate Curriculum plan filename for Secondary Science – Chemistry", () => {
-      const result = getFilename("docx", {
+        prefix: "Curriculum",
+      },
+    },
+    // With exam board & child subject slug
+    {
+      outputs: {
+        archive: "Curriculum-Biology-Secondary-AQA.zip",
+      },
+      input: {
         subjectTitle: "Science",
         phaseTitle: "Secondary",
-        childSubjectSlug: "chemistry",
-        examboardTitle: "Edexcel",
-        tierSlug: "foundation",
-        prefix: "Curriculum plan",
-      });
-      expect(result).toBe(
-        "Curriculum plan - Science - Chemistry - Secondary - Edexcel - Foundation - 10-06-2025.docx",
-      );
+        examboardTitle: "AQA",
+        childSubjectSlug: "biology",
+        prefix: "Curriculum",
+      },
+    },
+    // Subject/phase only
+    {
+      outputs: {
+        archive: "Curriculum-RSHE-PSHE-Primary.zip",
+      },
+      input: {
+        subjectTitle: "RSHE (PSHE)",
+        phaseTitle: "Primary",
+        prefix: "Curriculum",
+      },
+    },
+  ]) {
+    it(`./${outputs.archive} — .zip`, () => {
+      expect(getFilename("zip", input)).toEqual(outputs.archive);
     });
-
-    it("should generate Curriculum plan filename for Secondary Science – Physics", () => {
-      const result = getFilename("docx", {
-        subjectTitle: "Science",
-        phaseTitle: "Secondary",
-        childSubjectSlug: "physics",
-        examboardTitle: "Edexcel",
-        tierSlug: "foundation",
-        prefix: "Curriculum plan",
-      });
-      expect(result).toBe(
-        "Curriculum plan - Science - Physics - Secondary - Edexcel - Foundation - 10-06-2025.docx",
-      );
-    });
-
-    it("should generate Curriculum plan filename for Secondary Science – Combined Science", () => {
-      const result = getFilename("docx", {
-        subjectTitle: "Science",
-        phaseTitle: "Secondary",
-        childSubjectSlug: "combined-science",
-        examboardTitle: "OCR",
-        tierSlug: "foundation",
-        prefix: "Curriculum plan",
-      });
-      expect(result).toBe(
-        "Curriculum plan - Science - Combined Science - Secondary - OCR - Foundation - 10-06-2025.docx",
-      );
-    });
-
-    it("should generate correct filename for Secondary Maths (no exam board)", () => {
-      const result = getFilename("docx", {
-        subjectTitle: "Mathematics",
-        phaseTitle: "Secondary",
-        tierSlug: "higher",
-        prefix: "Curriculum plan",
-      });
-      expect(result).toBe(
-        "Curriculum plan - Mathematics - Secondary - Higher - 10-06-2025.docx",
-      );
-    });
-  });
-
-  describe("Combined zip files", () => {
-    it("without suffix", () => {
-      const result = getFilename("zip", {
-        subjectTitle: "Mathematics",
-        phaseTitle: "Secondary",
-        tierSlug: "higher",
-        prefix: "Curriculum documents",
-      });
-      expect(result).toBe(
-        "Curriculum documents - Mathematics - Secondary - Higher - 10-06-2025.zip",
-      );
-    });
-
-    it("with suffix", () => {
-      const result = getFilename("zip", {
-        subjectTitle: "Mathematics",
-        phaseTitle: "Secondary",
-        tierSlug: "higher",
-        prefix: "Curriculum documents",
-        suffix: "00000000",
-      });
-      expect(result).toBe(
-        "Curriculum documents - Mathematics - Secondary - Higher - 10-06-2025 - 00000000.zip",
-      );
-    });
-  });
+  }
 });
