@@ -1,3 +1,23 @@
+# [1.1174.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1173.0...v1.1174.0) (2026-09-02)
+
+
+### Bug Fixes
+
+* exporting filters from wrong file ([14d5fdb](https://github.com/oaknational/Oak-Web-Application/commit/14d5fdbc4afa02d12d30a2bdf5877e359f133678))
+* invalid subject slug in mock data ([2d5eda8](https://github.com/oaknational/Oak-Web-Application/commit/2d5eda8e3b3fa3c1a4498aba90bdc3b8e0b8d017))
+* more missing decorators in stories ([086363c](https://github.com/oaknational/Oak-Web-Application/commit/086363c5bb275ef6040ecdf41da7e2c7d13d6ead))
+* recompute yearsForKeystage when params change ([438e96e](https://github.com/oaknational/Oak-Web-Application/commit/438e96e0ee479e0ae1a2808974c413097519e3bb))
+* use mapped key name to delete url params ([5ced895](https://github.com/oaknational/Oak-Web-Application/commit/5ced895b839b9c5b1ed6401bd3f908b123a1071a))
+* use slug for ks button display value ([b207aac](https://github.com/oaknational/Oak-Web-Application/commit/b207aaced112ad7041f428b39174aa989e4d3a93))
+
+
+### Features
+
+* add keystage filters to programme page ([7d2eaf0](https://github.com/oaknational/Oak-Web-Application/commit/7d2eaf07248b5c9d3227870bc9d4008790d20d2b))
+* add logic to keystage filters ([ef19267](https://github.com/oaknational/Oak-Web-Application/commit/ef19267119ee4a4746feea07ac6dee5caa49f7d6))
+* create fns in useBrowseFilters to update each filter ([8cee9c6](https://github.com/oaknational/Oak-Web-Application/commit/8cee9c631d8a0884d94866724a7f114c439a563c))
+* remove years filters on mobile ([5d0f605](https://github.com/oaknational/Oak-Web-Application/commit/5d0f605b069c3b53a64aa84abff49d8276e1df87))
+
 # [1.1173.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1172.0...v1.1173.0) (2026-09-01)
 
 
