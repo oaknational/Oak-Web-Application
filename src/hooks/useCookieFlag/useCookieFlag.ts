@@ -35,7 +35,7 @@ export function useCookieFlag(
   }: Opts,
 ): [boolean, SetValue<boolean>] {
   const key = deriveKey(rawKey);
-  const [currentValue, setValueLocal] = useState(() => {
+  const [currentValueLocal, setValueLocal] = useState(() => {
     return activeFlags.includes(key);
   });
 
@@ -88,7 +88,7 @@ export function useCookieFlag(
     async (value: SetStateAction<boolean>) => {
       if (!cookieStore) throw new Error("cookieStore is not available");
       const newValue =
-        typeof value === "function" ? value(currentValue) : value;
+        typeof value === "function" ? value(currentValueLocal) : value;
 
       if (newValue) {
         await cookieStore.set(key, "1");
@@ -98,8 +98,8 @@ export function useCookieFlag(
       channel.postMessage({ type: COOKIE_STORAGE_EVENT });
       setValueLocal(newValue);
     },
-    [cookieStore, currentValue, key],
+    [cookieStore, currentValueLocal, key],
   );
 
-  return [currentValue, setValue];
+  return [currentValueLocal, setValue];
 }
