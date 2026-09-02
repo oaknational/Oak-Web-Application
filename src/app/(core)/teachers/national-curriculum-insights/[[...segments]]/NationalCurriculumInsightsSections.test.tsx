@@ -437,14 +437,36 @@ describe("National Curriculum Insights sections", () => {
       screen.getByText("Practical leadership guidance and curriculum updates."),
     ).toBeInTheDocument();
     expect(screen.getByText("Coming soon")).toBeInTheDocument();
+    expect(screen.getByTestId("guidance-status-clock")).toBeInTheDocument();
     const images = container.querySelectorAll("img");
-    expect(images).toHaveLength(2);
+    expect(images).toHaveLength(1);
     expect(images[0]).toHaveAttribute(
       "alt",
       "A teacher discussing the curriculum",
     );
-    expect(images[1]).toHaveAttribute("alt", "");
-    expect(images[1]).toHaveAttribute("src", expect.stringContaining("icons"));
+  });
+
+  it("uses the approved Becky Francis portrait for the guidance testimonial", () => {
+    const { container } = renderWithTheme(
+      <NationalCurriculumInsightsQuote
+        section={moduleOf({
+          __typename: "NationalCurriculumInsightsQuoteSection",
+          quote: "Teachers must be supported to adopt our recommendations.",
+          attribution: "Professor Becky Francis CBE",
+          role: "Chair of the Curriculum and Assessment Review",
+          image: contentImage,
+        })}
+      />,
+    );
+
+    const portrait = container.querySelector(
+      '[data-insights-module="guidance-testimonial"] img',
+    );
+    expect(portrait).toHaveAttribute(
+      "src",
+      expect.stringContaining("0cbe985b5819001d8cbc0c6e72bbb0f90259f167"),
+    );
+    expect(portrait).toHaveAttribute("alt", "");
   });
 
   it("uses subject and phase context for navigation cards", async () => {

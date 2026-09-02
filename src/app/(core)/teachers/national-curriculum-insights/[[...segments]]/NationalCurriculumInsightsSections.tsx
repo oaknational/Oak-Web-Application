@@ -20,7 +20,6 @@ import {
   OakQuote,
   OakSpan,
   OakSubjectIconButton,
-  OakTagFunctional,
   parseColor,
 } from "@oaknational/oak-components";
 import Link from "next/link";
@@ -65,6 +64,9 @@ type ContextualSectionProps<T extends InsightSection["__typename"]> =
   };
 
 const DEFAULT_IMAGE = "/images/national-curriculum-insights/hero.jpg";
+const GUIDANCE_TESTIMONIAL_IMAGE_URL = getProxiedSanityAssetUrl(
+  "https://cdn.sanity.io/images/cuvjke51/feat-national-curriculum-insights/0cbe985b5819001d8cbc0c6e72bbb0f90259f167-54x54.png",
+);
 
 const insightsTabletMediaQuery = `(min-width: ${getBreakpoint(
   "small",
@@ -753,13 +755,13 @@ const GuidanceExplainerSection = styled(OakBox)`
   box-sizing: border-box;
 
   @media (${getMediaQuery("desktop")}) {
-    height: 480px;
+    min-height: 480px;
     display: flex;
     align-items: center;
   }
 
   @media ${insightsTabletMediaQuery} {
-    height: auto;
+    min-height: auto;
     display: block;
   }
 `;
@@ -854,7 +856,7 @@ export const NationalCurriculumInsightsImageText = ({
         as="section"
         $background="bg-decorative1-very-subdued"
         $ph="spacing-40"
-        $pv="spacing-40"
+        $pv={["spacing-48", "spacing-64"]}
         aria-labelledby={headingId}
         data-insights-module="guidance-benefits"
       >
@@ -1067,6 +1069,43 @@ const GuidanceStatusTag = styled(OakBox)`
   }
 `;
 
+const GuidanceClockIcon = () => (
+  <svg
+    aria-hidden="true"
+    data-testid="guidance-status-clock"
+    focusable="false"
+    viewBox="0 0 24 24"
+    width="16"
+    height="16"
+    fill="none"
+  >
+    <circle cx="12" cy="12" r="8.5" stroke="currentColor" strokeWidth="2" />
+    <path
+      d="M12 7.5V12l3 2"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+  </svg>
+);
+
+const GuidanceStatusLabel = ({ label }: { label: string }) => (
+  <OakFlex
+    $alignItems="center"
+    $justifyContent="center"
+    $gap="spacing-4"
+    $background="bg-decorative5-main"
+    $color="text-primary"
+    $borderRadius="border-radius-s"
+    $ph="spacing-8"
+    $pv="spacing-4"
+  >
+    <GuidanceClockIcon />
+    <OakSpan $font="heading-7">{label}</OakSpan>
+  </OakFlex>
+);
+
 export const NationalCurriculumInsightsGuidanceIntro = ({
   section,
 }: SectionProps<"NationalCurriculumInsightsGuidanceIntroSection">) => {
@@ -1115,15 +1154,7 @@ export const NationalCurriculumInsightsGuidanceIntro = ({
                 />
                 <GuidanceTaggedParagraph>
                   <GuidanceStatusTag>
-                    <OakTagFunctional
-                      label={section.statusLabel!}
-                      iconName="rocket"
-                      $background="bg-decorative5-main"
-                      $color="text-primary"
-                      $borderRadius="border-radius-s"
-                      $font="heading-7"
-                      $gap="spacing-4"
-                    />
+                    <GuidanceStatusLabel label={section.statusLabel!} />
                   </GuidanceStatusTag>
                   <PortableTextWithDefaults
                     value={remainingBlocks}
@@ -1139,15 +1170,7 @@ export const NationalCurriculumInsightsGuidanceIntro = ({
                 />
                 {section.statusLabel ? (
                   <GuidanceStatusTag $alignSelf="flex-start">
-                    <OakTagFunctional
-                      label={section.statusLabel}
-                      iconName="rocket"
-                      $background="bg-decorative5-main"
-                      $color="text-primary"
-                      $borderRadius="border-radius-s"
-                      $font="heading-7"
-                      $gap="spacing-4"
-                    />
+                    <GuidanceStatusLabel label={section.statusLabel} />
                   </GuidanceStatusTag>
                 ) : null}
               </>
@@ -1370,6 +1393,13 @@ const GuidanceQuoteCard = styled(OakBox)`
   box-sizing: border-box;
   width: 100%;
   max-width: 800px;
+
+  img {
+    width: 54px;
+    height: 54px;
+    border-radius: 50%;
+    object-fit: cover;
+  }
 `;
 
 const GuidanceConversationCard = ({
@@ -1623,9 +1653,14 @@ export const NationalCurriculumInsightsVideoCards = ({
 export const NationalCurriculumInsightsQuote = ({
   section,
 }: SectionProps<"NationalCurriculumInsightsQuoteSection">) => {
-  const authorImageSrc = section.image?.asset?.url
-    ? getProxiedSanityAssetUrl(section.image.asset.url)
-    : undefined;
+  const isBeckyFrancisTestimonial = section.attribution
+    .toLocaleLowerCase("en-GB")
+    .includes("becky francis");
+  const authorImageSrc = isBeckyFrancisTestimonial
+    ? GUIDANCE_TESTIMONIAL_IMAGE_URL
+    : section.image?.asset?.url
+      ? getProxiedSanityAssetUrl(section.image.asset.url)
+      : undefined;
 
   return (
     <GuidanceQuoteSection
@@ -1644,7 +1679,7 @@ export const NationalCurriculumInsightsQuote = ({
           authorName={section.attribution}
           authorTitle={section.role ?? undefined}
           authorImageSrc={authorImageSrc}
-          color="text-primary"
+          color="bg-inverted-semi-transparent"
           hasLeftBorder
         />
       </GuidanceQuoteCard>
