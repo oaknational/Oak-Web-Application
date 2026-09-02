@@ -6,11 +6,11 @@ import { renderWithProvidersByName } from "@/__tests__/__helpers__/renderWithPro
 const render = renderWithProvidersByName(["oakTheme"]);
 
 describe("OaksImpactHeader", () => {
-  it("renders video variant correctly", () => {
+  it("renders correctly", () => {
     const { baseElement, getByRole } = render(
       <MockedAnalyticsProvider>
         <OaksImpactHeader
-          mediaDescription={"TEST_VIDEO_DESCRIPTION"}
+          videoDescription={"TEST_VIDEO_DESCRIPTION"}
           video={{
             video: {
               asset: {
@@ -30,21 +30,5 @@ describe("OaksImpactHeader", () => {
     expect(getByRole("heading")).toHaveTextContent("TEST_TITLE");
     expect(baseElement).toHaveTextContent("TEST_BODY");
     expect(baseElement).toHaveTextContent("TEST_VIDEO_DESCRIPTION");
-  });
-
-  it("renders image variant correctly", () => {
-    const { baseElement, getByRole } = render(
-      <MockedAnalyticsProvider>
-        <OaksImpactHeader
-          image={"http://example.com/image.svg"}
-          imageAlt={"TEST_IMAGE_ALT"}
-          title={"TEST_TITLE"}
-          body={"TEST_BODY"}
-        />
-      </MockedAnalyticsProvider>,
-    );
-    expect(baseElement).toMatchSnapshot();
-    expect(getByRole("heading")).toHaveTextContent("TEST_TITLE");
-    expect(baseElement).toHaveTextContent("TEST_BODY");
   });
 });
