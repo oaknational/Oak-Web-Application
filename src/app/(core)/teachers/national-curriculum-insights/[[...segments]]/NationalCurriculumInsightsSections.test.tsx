@@ -377,6 +377,10 @@ describe("National Curriculum Insights sections", () => {
     fireEvent.change(screen.getByRole("textbox", { name: /Name/ }), {
       target: { value: "Jamie Maxwell" },
     });
+    expect(screen.getByTestId("search-combobox-input")).toHaveAttribute(
+      "placeholder",
+      "Type your school or organisation",
+    );
     const roleTrigger = screen.getByRole("button", {
       name: /Role.*Select your role/,
     });

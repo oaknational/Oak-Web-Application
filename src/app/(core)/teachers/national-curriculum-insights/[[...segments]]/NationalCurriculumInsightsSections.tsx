@@ -47,6 +47,8 @@ import getProxiedSanityAssetUrl from "@/common-lib/urls/getProxiedSanityAssetUrl
 import { PortableTextWithDefaults } from "@/components/SharedComponents/PortableText";
 import { OakInputWithLabel } from "@/components/SharedComponents/OakInputWithLabel/OakInputWithLabel";
 import CMSVideo from "@/components/SharedComponents/CMSVideo";
+import ResourcePageSchoolPicker from "@/components/TeacherComponents/ResourcePageSchoolPicker";
+import useSchoolPicker from "@/components/TeacherComponents/ResourcePageSchoolPicker/useSchoolPicker";
 
 type Page = NonNullable<NationalCurriculumInsightsRouteData["page"]>;
 type InsightSection = Page["modules"][number];
@@ -1965,7 +1967,6 @@ export const NationalCurriculumInsightsNewsletter = ({
 }: ContextualSectionProps<"NationalCurriculumInsightsNewsletterSection">) => {
   const [name, setName] = useState("");
   const [role, setRole] = useState("");
-  const [school, setSchool] = useState("");
   const [schoolNotListed, setSchoolNotListed] = useState(false);
   const [email, setEmail] = useState("");
   const [submitting, setSubmitting] = useState(false);
@@ -1974,6 +1975,12 @@ export const NationalCurriculumInsightsNewsletter = ({
   const [fieldErrors, setFieldErrors] = useState<Record<string, string>>({});
   const { onSubmit: submitNewsletter } = useNewsletterForm();
   const isGuidance = data.route.kind === "guidance";
+  const {
+    schools,
+    schoolPickerInputValue,
+    setSchoolPickerInputValue,
+    setSelectedSchool,
+  } = useSchoolPicker({ withHomeschool: false });
 
   const onSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -1986,7 +1993,7 @@ export const NationalCurriculumInsightsNewsletter = ({
     }).safeParse({
       name,
       email,
-      schoolOrg: school,
+      schoolOrg: schoolPickerInputValue,
       schoolNotListed,
       eduRole: role,
     });
@@ -2011,7 +2018,7 @@ export const NationalCurriculumInsightsNewsletter = ({
         email,
         userRole: "",
         eduRole: role,
-        schoolName: schoolNotListed ? "notListed" : school,
+        schoolName: schoolNotListed ? "notListed" : schoolPickerInputValue,
       });
       setSuccessMessage("Thanks, that's been received");
     } catch {
@@ -2118,15 +2125,19 @@ export const NationalCurriculumInsightsNewsletter = ({
               />
             </NewsletterSelectField>
             <OakFlex $flexDirection="column" $gap="spacing-12">
-              <OakInputWithLabel
+              <ResourcePageSchoolPicker
+                hasError={false}
+                schools={schools}
                 label="School or organisation"
-                id="insights-newsletter-school"
-                name="school"
+                schoolPickerInputValue={schoolPickerInputValue}
+                setSchoolPickerInputValue={(value) => {
+                  setSchoolNotListed(false);
+                  setSchoolPickerInputValue(value);
+                }}
+                setSelectedSchool={setSelectedSchool}
                 required={false}
-                defaultValue={school}
-                onChange={(event) => setSchool(event.target.value)}
+                withHomeschool={false}
                 placeholder="Type your school or organisation"
-                autocomplete="organization"
               />
               <OakCheckBox
                 id="insights-newsletter-school-not-listed"
@@ -2134,7 +2145,14 @@ export const NationalCurriculumInsightsNewsletter = ({
                 value="not-listed"
                 displayValue="My school isn't listed"
                 checked={schoolNotListed}
-                onChange={(event) => setSchoolNotListed(event.target.checked)}
+                onChange={(event) => {
+                  const isChecked = event.target.checked;
+                  setSchoolNotListed(isChecked);
+                  if (isChecked) {
+                    setSelectedSchool(undefined);
+                    setSchoolPickerInputValue("");
+                  }
+                }}
               />
             </OakFlex>
             <OakInputWithLabel
