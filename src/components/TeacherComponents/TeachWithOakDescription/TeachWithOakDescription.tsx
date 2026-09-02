@@ -8,6 +8,7 @@ import {
   OakIconName,
   OakMaxWidth,
   OakP,
+  OakUL,
 } from "@oaknational/oak-components";
 
 export const TeachWithOakDescription = () => {
@@ -57,28 +58,37 @@ export const TeachWithOakDescription = () => {
               </OakP>
             </OakFlex>
           </OakGridArea>
-          <OakGridArea
-            $flexDirection="column"
-            $gap={["spacing-4", "spacing-12"]}
-            $colStart={[1, 7]}
-            $colSpan={[12, 6]}
-            $rowStart={[2, 1]}
-          >
-            <LearningCycle label="Explanation" iconName="lc-explanation" />
-            <With />
-            <LearningCycle
-              label="Check for understanding"
-              iconName="lc-check-for-understanding"
-            />
-            <OakIcon
-              iconName="arrow-down"
-              iconHeight="spacing-80"
-              iconWidth="spacing-80"
-              $mv={["spacing-8", "spacing-0"]}
-            />
-            <LearningCycle label="Practice" iconName="lc-practice" />
-            <With />
-            <LearningCycle label="Feedback" iconName="lc-feedback" />
+          <OakGridArea $colStart={[1, 7]} $colSpan={[12, 6]} $rowStart={[2, 1]}>
+            <OakUL
+              $reset
+              $gap={["spacing-4", "spacing-12"]}
+              $display={"flex"}
+              $flexDirection="column"
+            >
+              <LearningCycle
+                label="Explanation"
+                iconName="lc-explanation"
+                connector={<With />}
+              />
+              <LearningCycle
+                label="Check for understanding"
+                iconName="lc-check-for-understanding"
+                connector={
+                  <OakIcon
+                    iconName="arrow-down"
+                    iconHeight="spacing-80"
+                    iconWidth="spacing-80"
+                    $mv={"spacing-12"}
+                  />
+                }
+              />
+              <LearningCycle
+                label="Practice"
+                iconName="lc-practice"
+                connector={<With />}
+              />
+              <LearningCycle label="Feedback" iconName="lc-feedback" />
+            </OakUL>
           </OakGridArea>
         </OakGrid>
       </OakMaxWidth>
@@ -87,26 +97,31 @@ export const TeachWithOakDescription = () => {
 };
 
 const LearningCycle = ({
+  connector,
   iconName,
   label,
 }: {
+  connector?: React.ReactNode;
   iconName: OakIconName;
   label: string;
 }) => {
   return (
-    <OakFlex
-      $alignItems="center"
-      $gap={["spacing-20", "spacing-32"]}
-      $flexWrap={["wrap", "wrap", "nowrap"]}
-    >
-      <OakIcon
-        iconName={iconName}
-        $width={["spacing-72", "spacing-100"]}
-        $height={["spacing-72", "spacing-100"]}
-      />
-      <OakHeading $font={["heading-light-4", "heading-light-3"]} tag="h3">
-        {label}
-      </OakHeading>
+    <OakFlex $flexDirection="column" $gap={["spacing-4", "spacing-12"]} as="li">
+      <OakFlex
+        $alignItems="center"
+        $gap={["spacing-20", "spacing-32"]}
+        $flexWrap={["wrap", "wrap", "nowrap"]}
+      >
+        <OakIcon
+          iconName={iconName}
+          $width={["spacing-72", "spacing-100"]}
+          $height={["spacing-72", "spacing-100"]}
+        />
+        <OakHeading $font={["heading-light-4", "heading-light-3"]} tag="h3">
+          {label}
+        </OakHeading>
+      </OakFlex>
+      {connector}
     </OakFlex>
   );
 };

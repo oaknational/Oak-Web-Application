@@ -41,6 +41,8 @@ describe("TeachWithOakDescription", () => {
       "Practice",
       "Feedback",
     ]);
+
+    expect(getAllByRole("listitem")).toHaveLength(4);
   });
 
   it("renders a 'With' connector between paired learning cycle stages", () => {
