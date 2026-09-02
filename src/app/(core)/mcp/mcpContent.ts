@@ -28,7 +28,7 @@ export const mcpHero = {
 export const mcpIntro = {
   title: "See it in action",
   paragraphs: [
-    "Our curriculum is now available in Claude, with more AI assistants to follow.",
+    "Our curriculum is now available in Claude, with ChatGPT and more assistants to follow.",
     "With Oak connected, your AI assistant can plan lessons, sequence a whole curriculum, or map how a topic builds across year groups. And that’s just a start.",
     "Everything is grounded in our national curriculum-aligned resources, written and quality-assured by subject experts, and free to use. You stay in control: you’re the expert, and you know what works for your pupils.",
   ],
@@ -95,7 +95,7 @@ export const mcpCapabilities: {
  * read from here so they cannot drift apart.
  */
 export const mcpInstallPrompt =
-  "Install the Oak National Academy plugin and its connector, then give me some examples of what I can do with it!";
+  "Browse the plugins directory, install the Oak National Academy plugin, then give me some examples of what I can do with it!";
 
 /** Portable text span. Emphasis uses the `strong` mark, as elsewhere in OWA. */
 const span = (key: string, text: string, marks: string[] = []) => ({

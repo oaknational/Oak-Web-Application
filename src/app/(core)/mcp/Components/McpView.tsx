@@ -15,7 +15,6 @@ import { McpHero } from "./McpHero";
 import { McpSection } from "./McpSection";
 import { McpCapabilities } from "./McpCapabilities";
 import { McpAssistants } from "./McpAssistants";
-import { McpVideoPlaceholder } from "./McpVideoPlaceholder";
 import { McpFeedbackPanel } from "./McpFeedbackPanel";
 import { McpExternalLink } from "./McpExternalLink";
 
@@ -63,7 +62,6 @@ export const McpView = () => (
         $pt={["spacing-48", "spacing-64"]}
       >
         <McpSection title={mcpIntro.title} id="see-it-in-action">
-          <McpVideoPlaceholder />
           {mcpIntro.paragraphs.map((paragraph) => (
             <OakP key={paragraph} $font="body-2">
               {paragraph}
