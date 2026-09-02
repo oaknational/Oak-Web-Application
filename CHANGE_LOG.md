@@ -1,3 +1,60 @@
+# [1.1176.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1175.0...v1.1176.0) (2026-09-02)
+
+
+### Bug Fixes
+
+* added code to enable implementation code via feature-flag ([2850d9e](https://github.com/oaknational/Oak-Web-Application/commit/2850d9e4d343374e3b5e53c0ef7aa19ea75d07e4))
+* filename prefix changed "Curriculum downloads" -> "Curriculum" ([1cc25b4](https://github.com/oaknational/Oak-Web-Application/commit/1cc25b44262e36844fc4dc052f2d96ba9ff8e528))
+* only try and download files that are in availableDownloadTypes ([0b2857b](https://github.com/oaknational/Oak-Web-Application/commit/0b2857b13c7235d1ef3dd3a47ec62af2c74fc166))
+* remove incorrect change to avo ([7f718ac](https://github.com/oaknational/Oak-Web-Application/commit/7f718acc5d1c6347c76f71ab24c6bee0a656b5d6))
+* sonarcloud issue with regexp ([c973dfd](https://github.com/oaknational/Oak-Web-Application/commit/c973dfd4b264eabebe84bed6bb22e71299b0a7c6))
+* strip brackets from programme download filenames ([8ed2a77](https://github.com/oaknational/Oak-Web-Application/commit/8ed2a778963e24fb84a1bd63b284cef47473aa4a))
+
+
+### Features
+
+* simplify programme download filenames ([e43eaa5](https://github.com/oaknational/Oak-Web-Application/commit/e43eaa59fd2c3d27947acacff806d2a2054adbd8))
+
+# [1.1175.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1174.0...v1.1175.0) (2026-09-02)
+
+
+### Bug Fixes
+
+* remove expectJsdomOptionError() as no longer required fixed in oak-components ([c6938be](https://github.com/oaknational/Oak-Web-Application/commit/c6938beff29a28cae9ed8a7c4cf163f3742a532f))
+* updated snapshots for changes to <OakInlineBanner/> ([9940c79](https://github.com/oaknational/Oak-Web-Application/commit/9940c793dd90a08db974d109b0cd55c05b3aa648))
+
+
+### Features
+
+* bump @oaknational/oak-components to ^3.12.3 ([0b0c187](https://github.com/oaknational/Oak-Web-Application/commit/0b0c1871589512b022715e45cfacc99aef2d51e0))
+
+# [1.1174.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1173.0...v1.1174.0) (2026-09-02)
+
+
+### Bug Fixes
+
+* exporting filters from wrong file ([14d5fdb](https://github.com/oaknational/Oak-Web-Application/commit/14d5fdbc4afa02d12d30a2bdf5877e359f133678))
+* invalid subject slug in mock data ([2d5eda8](https://github.com/oaknational/Oak-Web-Application/commit/2d5eda8e3b3fa3c1a4498aba90bdc3b8e0b8d017))
+* more missing decorators in stories ([086363c](https://github.com/oaknational/Oak-Web-Application/commit/086363c5bb275ef6040ecdf41da7e2c7d13d6ead))
+* recompute yearsForKeystage when params change ([438e96e](https://github.com/oaknational/Oak-Web-Application/commit/438e96e0ee479e0ae1a2808974c413097519e3bb))
+* use mapped key name to delete url params ([5ced895](https://github.com/oaknational/Oak-Web-Application/commit/5ced895b839b9c5b1ed6401bd3f908b123a1071a))
+* use slug for ks button display value ([b207aac](https://github.com/oaknational/Oak-Web-Application/commit/b207aaced112ad7041f428b39174aa989e4d3a93))
+
+
+### Features
+
+* add keystage filters to programme page ([7d2eaf0](https://github.com/oaknational/Oak-Web-Application/commit/7d2eaf07248b5c9d3227870bc9d4008790d20d2b))
+* add logic to keystage filters ([ef19267](https://github.com/oaknational/Oak-Web-Application/commit/ef19267119ee4a4746feea07ac6dee5caa49f7d6))
+* create fns in useBrowseFilters to update each filter ([8cee9c6](https://github.com/oaknational/Oak-Web-Application/commit/8cee9c631d8a0884d94866724a7f114c439a563c))
+* remove years filters on mobile ([5d0f605](https://github.com/oaknational/Oak-Web-Application/commit/5d0f605b069c3b53a64aa84abff49d8276e1df87))
+
+# [1.1173.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1172.0...v1.1173.0) (2026-09-01)
+
+
+### Features
+
+* change border colour to border-neutral-stronger ([77fa3db](https://github.com/oaknational/Oak-Web-Application/commit/77fa3dba884276e53e9ef38e0a6d985d601ef983))
+
 # [1.1172.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1171.0...v1.1172.0) (2026-09-01)
 
 
