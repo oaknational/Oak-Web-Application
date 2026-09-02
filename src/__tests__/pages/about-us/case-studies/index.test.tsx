@@ -1,3 +1,5 @@
+import { GetServerSidePropsContext } from "next/types";
+
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 import { topNavFixture } from "@/node-lib/curriculum-api-2023/fixtures/topNav.fixture";
 import OaksCaseStudyList, {
@@ -38,7 +40,7 @@ describe("pages/about-us/case-studies/index.tsx", () => {
         req: {
           cookies: {},
         },
-      });
+      } as GetServerSidePropsContext);
 
       expect(propsResult).toMatchObject({
         props: {
