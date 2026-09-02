@@ -65,10 +65,10 @@ importers:
         version: 3.10.2(@types/react-dom@18.3.0)(@types/react@18.2.79)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@oaknational/google-classroom-addon':
         specifier: ^1.33.0
-        version: 1.33.0(418e1f4d66d3356225558ac2a350a949)
+        version: 1.33.0(41b3512e1688fdb60773b55c5097142d)
       '@oaknational/oak-components':
-        specifier: ^3.9.0
-        version: 3.9.0(@portabletext/react@4.0.3(react@18.3.1))(@tiptap/core@2.14.0(@tiptap/pm@2.14.0))(@tiptap/pm@2.14.0)(@types/react@18.2.79)(next-cloudinary@6.16.0(next@15.5.19(@babel/core@7.28.3)(@opentelemetry/api@1.9.1)(@playwright/test@1.61.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.75.0))(react@18.3.1))(next@15.5.19(@babel/core@7.28.3)(@opentelemetry/api@1.9.1)(@playwright/test@1.61.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.75.0))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(styled-components@5.3.11(@babel/core@7.28.3)(react-dom@18.3.1(react@18.3.1))(react-is@19.2.8)(react@18.3.1))
+        specifier: ^3.13.0
+        version: 3.13.0(@portabletext/react@4.0.3(react@18.3.1))(@tiptap/core@2.14.0(@tiptap/pm@2.14.0))(@tiptap/pm@2.14.0)(@types/react@18.2.79)(next-cloudinary@6.16.0(next@15.5.19(@babel/core@7.28.3)(@opentelemetry/api@1.9.1)(@playwright/test@1.61.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.75.0))(react@18.3.1))(next@15.5.19(@babel/core@7.28.3)(@opentelemetry/api@1.9.1)(@playwright/test@1.61.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.75.0))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(styled-components@5.3.11(@babel/core@7.28.3)(react-dom@18.3.1(react@18.3.1))(react-is@19.2.8)(react@18.3.1))
       '@oaknational/oak-consent-client':
         specifier: 2.4.0
         version: 2.4.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(zod@4.3.6)
@@ -3803,8 +3803,8 @@ packages:
       zod: '>=3.25.76'
       zustand: '>=5.0.9'
 
-  '@oaknational/oak-components@3.9.0':
-    resolution: {integrity: sha512-OI2BPZ7aaneHuF5C+VQ6AUBqEtpVD5wzGOvdbU4Aiwaaqz5W4OK2SRnHrnsbjbRrxkkgOWuzo10EGW63nkw1Ug==}
+  '@oaknational/oak-components@3.13.0':
+    resolution: {integrity: sha512-xGmkB3zMbRHxJYY8Stzw5BDM/saftAMp/GpzsRlv/Auf70sHrpI8LBeIjpZL+XRdRAb92Y4WabIRAYhbW0wTVw==}
     engines: {node: '24', pnpm: '>=11'}
     peerDependencies:
       '@portabletext/react': '>=4.0.1'
@@ -9122,6 +9122,7 @@ packages:
   eslint@9.39.2:
     resolution: {integrity: sha512-LEyamqS7W5HB3ujJyvi0HQK/dtVINZvd5mAAp9eT5S/ujByGjiZLCzPcHVzuXbpJDJF/cxwHlfceVUDZ2lnSTw==}
     engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
+    deprecated: This version is no longer supported. Please see https://eslint.org/version-support for other options.
     hasBin: true
     peerDependencies:
       jiti: '*'
@@ -20105,11 +20106,11 @@ snapshots:
   '@npmcli/redact@4.0.0':
     optional: true
 
-  '@oaknational/google-classroom-addon@1.33.0(418e1f4d66d3356225558ac2a350a949)':
+  '@oaknational/google-classroom-addon@1.33.0(41b3512e1688fdb60773b55c5097142d)':
     dependencies:
       '@google-cloud/firestore': 7.11.6
       '@googleapis/classroom': 4.9.0
-      '@oaknational/oak-components': 3.9.0(@portabletext/react@4.0.3(react@18.3.1))(@tiptap/core@2.14.0(@tiptap/pm@2.14.0))(@tiptap/pm@2.14.0)(@types/react@18.2.79)(next-cloudinary@6.16.0(next@15.5.19(@babel/core@7.28.3)(@opentelemetry/api@1.9.1)(@playwright/test@1.61.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.75.0))(react@18.3.1))(next@15.5.19(@babel/core@7.28.3)(@opentelemetry/api@1.9.1)(@playwright/test@1.61.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.75.0))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(styled-components@5.3.11(@babel/core@7.28.3)(react-dom@18.3.1(react@18.3.1))(react-is@19.2.8)(react@18.3.1))
+      '@oaknational/oak-components': 3.13.0(@portabletext/react@4.0.3(react@18.3.1))(@tiptap/core@2.14.0(@tiptap/pm@2.14.0))(@tiptap/pm@2.14.0)(@types/react@18.2.79)(next-cloudinary@6.16.0(next@15.5.19(@babel/core@7.28.3)(@opentelemetry/api@1.9.1)(@playwright/test@1.61.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.75.0))(react@18.3.1))(next@15.5.19(@babel/core@7.28.3)(@opentelemetry/api@1.9.1)(@playwright/test@1.61.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.75.0))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(styled-components@5.3.11(@babel/core@7.28.3)(react-dom@18.3.1(react@18.3.1))(react-is@19.2.8)(react@18.3.1))
       google-auth-library: 9.15.1
       iron-session: 8.0.4
       lodash: 4.18.1
@@ -20119,7 +20120,7 @@ snapshots:
       zod: 4.3.6
       zustand: 5.0.12(@types/react@18.2.79)(react@18.3.1)(use-sync-external-store@1.6.0(react@18.3.1))
 
-  '@oaknational/oak-components@3.9.0(@portabletext/react@4.0.3(react@18.3.1))(@tiptap/core@2.14.0(@tiptap/pm@2.14.0))(@tiptap/pm@2.14.0)(@types/react@18.2.79)(next-cloudinary@6.16.0(next@15.5.19(@babel/core@7.28.3)(@opentelemetry/api@1.9.1)(@playwright/test@1.61.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.75.0))(react@18.3.1))(next@15.5.19(@babel/core@7.28.3)(@opentelemetry/api@1.9.1)(@playwright/test@1.61.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.75.0))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(styled-components@5.3.11(@babel/core@7.28.3)(react-dom@18.3.1(react@18.3.1))(react-is@19.2.8)(react@18.3.1))':
+  '@oaknational/oak-components@3.13.0(@portabletext/react@4.0.3(react@18.3.1))(@tiptap/core@2.14.0(@tiptap/pm@2.14.0))(@tiptap/pm@2.14.0)(@types/react@18.2.79)(next-cloudinary@6.16.0(next@15.5.19(@babel/core@7.28.3)(@opentelemetry/api@1.9.1)(@playwright/test@1.61.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.75.0))(react@18.3.1))(next@15.5.19(@babel/core@7.28.3)(@opentelemetry/api@1.9.1)(@playwright/test@1.61.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.75.0))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(styled-components@5.3.11(@babel/core@7.28.3)(react-dom@18.3.1(react@18.3.1))(react-is@19.2.8)(react@18.3.1))':
     dependencies:
       '@dnd-kit/core': 6.3.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@dnd-kit/sortable': 10.0.0(@dnd-kit/core@6.3.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react@18.3.1)
@@ -32246,7 +32247,7 @@ snapshots:
   react-remove-scroll-bar@2.3.6(@types/react@18.2.79)(react@18.3.1):
     dependencies:
       react: 18.3.1
-      react-style-singleton: 2.2.1(@types/react@18.2.79)(react@18.3.1)
+      react-style-singleton: 2.2.3(@types/react@18.2.79)(react@18.3.1)
       tslib: 2.8.1
     optionalDependencies:
       '@types/react': 18.2.79
