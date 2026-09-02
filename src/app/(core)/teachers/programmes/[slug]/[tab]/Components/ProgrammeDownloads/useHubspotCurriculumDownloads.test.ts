@@ -10,14 +10,6 @@ jest.mock("@/browser-lib/hubspot/forms", () => ({
   hubspotSubmitForm: (props: unknown) => mockHubspotSubmitForm(props),
 }));
 
-jest.mock("@/browser-lib/getBrowserConfig", () => ({
-  __esModule: true,
-  default: (key: string) =>
-    key === "hubspotCurriculumDownloadsFormId"
-      ? "curriculum-downloads-form-id"
-      : "",
-}));
-
 jest.mock("@/hooks/useUtmParams", () => ({
   __esModule: true,
   default: () => ({ utm_source: "les_twitz" }),
@@ -75,7 +67,7 @@ describe("useHubspotCurriculumDownloads", () => {
     const response = await result.current.onHubspotSubmit(data);
 
     expect(mockHubspotSubmitForm).toHaveBeenCalledWith({
-      hubspotFormId: "curriculum-downloads-form-id",
+      hubspotFormId: "NEXT_PUBLIC_HUBSPOT_CURRICULUM_DOWNLOADS_FORM_ID",
       payload: {
         fields: [
           { name: "contact_school_name", value: "Sample school" },
