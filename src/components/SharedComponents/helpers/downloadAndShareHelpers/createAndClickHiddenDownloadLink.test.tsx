@@ -5,12 +5,12 @@ import createAndClickHiddenDownloadLink, {
   getDownloadLink,
 } from "./createAndClickHiddenDownloadLink";
 
-var mockReportError = jest.fn();
+const mockReportError = jest.fn();
 jest.mock("../../../../common-lib/error-reporter", () => ({
   __esModule: true,
   default:
     () =>
-    (...args: any[]) =>
+    (...args: unknown[]) =>
       mockReportError(...args),
 }));
 
