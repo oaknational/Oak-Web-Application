@@ -1,15 +1,18 @@
 import { isInIframe } from "@/utils/iframe";
+import errorReporter from "@/common-lib/error-reporter";
 
 const downloadLinkId = "resource-download-link";
 export const getDownloadLink = () => {
   const link = document.getElementById(downloadLinkId);
   return link;
 };
-
+const reportError = errorReporter("createAndClickHiddenDownloadLink");
 export const createLink = () => {
   const previousLink = getDownloadLink();
-  if (previousLink) {
-    previousLink.remove();
+  try {
+    previousLink?.remove();
+  } catch (error) {
+    reportError(error);
   }
   const a = document.createElement("a");
   a.setAttribute("id", downloadLinkId);
