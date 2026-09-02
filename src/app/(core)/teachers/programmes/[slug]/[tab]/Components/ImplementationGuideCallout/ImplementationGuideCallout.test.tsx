@@ -78,7 +78,6 @@ describe("ImplementationGuideCallout", () => {
       />,
     );
 
-    // Check if the message is rendered correctly
     const message = queryByText(
       "Leading your school's use of Oak's RSHE (PSHE) primary curriculum? Download our implementation toolkit.",
     );
