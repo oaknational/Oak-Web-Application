@@ -1,15 +1,23 @@
 # useCookieFlag
 We want a way to set flags for a user on the server & client. This is for things like when a popup is dismissed
 
-Aims
+Aims:
 
  - Store as little as possible as the cookies get set on each request
  - Simple react like API
  - Get method on server and client
+ - Cleans up old flags no longer in use
 
 
 ## Usage
-Usage simular to a useState hook
+You can get the `activeFlags` with a server side function
+
+```ts
+import {useCookieFlag} from "@/hooks/useCookieFlag/getActiveCookieFlags";
+const activeFlags = await getActiveCookieFlags()
+```
+
+Passing `activeFlags` and a list of currently enabled flags to a useState like hook
 
 ```tsx
 import {useCookieFlag} from "@/hooks/useCookieFlag";
