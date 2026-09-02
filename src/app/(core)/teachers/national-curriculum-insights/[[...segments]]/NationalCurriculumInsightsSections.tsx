@@ -1255,12 +1255,7 @@ const ConversationCardFocus = styled(OakFocusIndicator)<{
 }>`
   position: relative;
   width: 100%;
-  max-width: 342px;
   border-radius: 6.645px;
-
-  @media ${insightsTabletMediaQuery} {
-    max-width: 100%;
-  }
 
   @media (${getMediaQuery("desktop")}) {
     max-width: ${({ $featured }) => ($featured ? "976px" : "985px")};
