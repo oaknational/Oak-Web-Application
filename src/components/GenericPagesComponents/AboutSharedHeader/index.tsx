@@ -65,13 +65,16 @@ export function BackgroundHeaderLoop() {
   );
 }
 
+type AboutSharedHeaderImageProps = {
+  imageUrl: string;
+  imageAlt?: string;
+} & Omit<React.ComponentProps<typeof OakImage>, "alt" | "src">;
+
 export function AboutSharedHeaderImage({
   imageAlt,
   imageUrl,
-}: Readonly<{
-  imageAlt?: string;
-  imageUrl: string;
-}>) {
+  ...imageProps
+}: Readonly<AboutSharedHeaderImageProps>) {
   return (
     <OakImage
       alt={imageAlt ?? ""}
@@ -79,6 +82,7 @@ export function AboutSharedHeaderImage({
       $objectFit={"contain"}
       $height={"100%"}
       $width={"spacing-360"}
+      {...imageProps}
     />
   );
 }

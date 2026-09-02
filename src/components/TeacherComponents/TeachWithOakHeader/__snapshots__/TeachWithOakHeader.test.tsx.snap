@@ -1,0 +1,205 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TeachWithOakHeader renders correctly 1`] = `
+<body>
+  <div>
+    <div
+      data-overlay-container="true"
+    >
+      <div
+        class="sc-aXZVg bZTQLO"
+      >
+        <div
+          class="sc-aXZVg sc-gEvEer sc-1c285c78-0 jPvJsJ iDBIXi bQPXlg"
+        >
+          <div
+            class="sc-aXZVg sc-gEvEer sc-jlZhew hCgIGG iDBIXi aPmvC"
+          >
+            <a
+              class="sc-dcJsrY sc-dAlyuH dAja-dp eGtIkY"
+              href="/"
+            >
+              <div
+                class="sc-aXZVg sc-gEvEer jPvJsJ gghMxj"
+              >
+                <div
+                  class="sc-aXZVg sc-gEvEer kJHaEW jMLdOa icon-container"
+                >
+                  <div
+                    class="sc-aXZVg focDaC shadow"
+                  />
+                  <span
+                    class="sc-aXZVg jJQFnr"
+                    data-icon-for="button"
+                  >
+                    <img
+                      alt=""
+                      class="sc-iGgWBj lcrpYX"
+                      data-nimg="fill"
+                      decoding="async"
+                      loading="lazy"
+                      src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1707149179/icons/ejrm9dpgpzb7ddbo8z2i.svg"
+                      style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                    />
+                  </span>
+                </div>
+                <span
+                  class="sc-eqUAAy bngpZa"
+                >
+                  Back to lesson
+                </span>
+              </div>
+            </a>
+          </div>
+          <div
+            class="sc-1c285c78-1 hWfBOK"
+          >
+            <div
+              class="sc-aXZVg bZTQLO"
+            >
+              <div
+                class="sc-aXZVg sc-gEvEer fjNszh hPyKbx"
+              >
+                <div
+                  class="sc-aXZVg sc-gEvEer jPvJsJ daEtut"
+                >
+                  <h1
+                    class="sc-eldPxv kSQYKV"
+                  >
+                    <span
+                      class="sc-eqUAAy buaVGR"
+                    >
+                      The thinking behind Oak lessons
+                    </span>
+                  </h1>
+                  <p
+                    class="sc-ikkxIA fPezaI"
+                  >
+                    See how our lessons are designed to support learning - and make the most of them in your classroom.
+                  </p>
+                </div>
+                <div
+                  class="sc-aXZVg sc-2c4f354b-0 jPvJsJ bnaXAx"
+                />
+              </div>
+            </div>
+            <span
+              class="sc-aXZVg kQNEcu"
+            >
+              <img
+                alt="Teach with Oak Image"
+                class="sc-iGgWBj dZvqhO"
+                data-nimg="fill"
+                decoding="async"
+                loading="lazy"
+                sizes="100vw"
+                src="http://localhost/_next/image?url=https%3A%2F%2Fsanity-asset-cdn.thenational.academy%2Fimages%2Fcuvjke51%2Fproduction%2Fb81ee19a35baa3192360a210fda34cc9b21f4fd6-5824x3264.jpg&w=3840&q=75"
+                srcset="/_next/image?url=https%3A%2F%2Fsanity-asset-cdn.thenational.academy%2Fimages%2Fcuvjke51%2Fproduction%2Fb81ee19a35baa3192360a210fda34cc9b21f4fd6-5824x3264.jpg&w=640&q=75 640w, /_next/image?url=https%3A%2F%2Fsanity-asset-cdn.thenational.academy%2Fimages%2Fcuvjke51%2Fproduction%2Fb81ee19a35baa3192360a210fda34cc9b21f4fd6-5824x3264.jpg&w=750&q=75 750w, /_next/image?url=https%3A%2F%2Fsanity-asset-cdn.thenational.academy%2Fimages%2Fcuvjke51%2Fproduction%2Fb81ee19a35baa3192360a210fda34cc9b21f4fd6-5824x3264.jpg&w=828&q=75 828w, /_next/image?url=https%3A%2F%2Fsanity-asset-cdn.thenational.academy%2Fimages%2Fcuvjke51%2Fproduction%2Fb81ee19a35baa3192360a210fda34cc9b21f4fd6-5824x3264.jpg&w=1080&q=75 1080w, /_next/image?url=https%3A%2F%2Fsanity-asset-cdn.thenational.academy%2Fimages%2Fcuvjke51%2Fproduction%2Fb81ee19a35baa3192360a210fda34cc9b21f4fd6-5824x3264.jpg&w=1200&q=75 1200w, /_next/image?url=https%3A%2F%2Fsanity-asset-cdn.thenational.academy%2Fimages%2Fcuvjke51%2Fproduction%2Fb81ee19a35baa3192360a210fda34cc9b21f4fd6-5824x3264.jpg&w=1920&q=75 1920w, /_next/image?url=https%3A%2F%2Fsanity-asset-cdn.thenational.academy%2Fimages%2Fcuvjke51%2Fproduction%2Fb81ee19a35baa3192360a210fda34cc9b21f4fd6-5824x3264.jpg&w=2048&q=75 2048w, /_next/image?url=https%3A%2F%2Fsanity-asset-cdn.thenational.academy%2Fimages%2Fcuvjke51%2Fproduction%2Fb81ee19a35baa3192360a210fda34cc9b21f4fd6-5824x3264.jpg&w=3840&q=75 3840w"
+                style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+              />
+            </span>
+          </div>
+        </div>
+      </div>
+      <div
+        aria-live="polite"
+        class="sc-aXZVg sc-gEvEer sc-372e3d03-0 huaWfm hpzNYH fYWdOt"
+      />
+    </div>
+    <div
+      class="sc-aXZVg ehCqNw"
+    >
+      <div
+        class="sc-aXZVg hdJUDP"
+        data-testid="cookie-banner"
+      >
+        <div
+          class="sc-aXZVg hKtyTC"
+        >
+          <div
+            class="sc-aXZVg sc-gEvEer gfKbxO hPCrxg"
+          >
+            <div
+              class="sc-aXZVg bURnqS"
+            >
+              <strong
+                class="sc-eqUAAy jPKsIw"
+              >
+                This site uses cookies to store information on your computer.
+              </strong>
+               
+              Some of these cookies are essential, while others help us to improve your experience by providing insights into how the site is being used.
+            </div>
+            <div
+              class="sc-aXZVg sc-gEvEer jPvJsJ buEORy"
+            >
+              <div
+                class="sc-aXZVg sc-gEvEer eapQdf uEMma"
+              >
+                <button
+                  class="sc-fHjqPf kaaNKh"
+                  data-testid="cookie-banner-reject"
+                  type="button"
+                >
+                  <span
+                    class="sc-eqUAAy iGfTGj"
+                  >
+                    Reject non-essential cookies
+                  </span>
+                </button>
+              </div>
+              <div
+                class="sc-aXZVg sc-kpDqfm bhFzn cvxBYX"
+              >
+                <div
+                  class="sc-aXZVg kpXzs grey-shadow"
+                />
+                <div
+                  class="sc-aXZVg kpXzs yellow-shadow"
+                />
+                <button
+                  class="sc-dcJsrY sc-jXbUNg bALQkH khQbhv internal-button"
+                >
+                  <div
+                    class="sc-aXZVg sc-gEvEer jPvJsJ krHAKs"
+                  >
+                    <span
+                      class="sc-eqUAAy edqVpV"
+                    >
+                      Cookie settings
+                    </span>
+                  </div>
+                </button>
+              </div>
+              <div
+                class="sc-aXZVg sc-kpDqfm bhFzn cvxBYX"
+              >
+                <div
+                  class="sc-aXZVg kpXzs grey-shadow"
+                />
+                <div
+                  class="sc-aXZVg kpXzs yellow-shadow"
+                />
+                <button
+                  class="sc-dcJsrY sc-jXbUNg cLXsQH dglRoS internal-button"
+                  data-testid="cookie-banner-accept"
+                >
+                  <div
+                    class="sc-aXZVg sc-gEvEer jPvJsJ krHAKs"
+                  >
+                    <span
+                      class="sc-eqUAAy edqVpV"
+                    >
+                      Accept all cookies
+                    </span>
+                  </div>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+`;
