@@ -1,10 +1,11 @@
 import { ReactNode } from "react";
 import { act, renderHook } from "@testing-library/react";
 
-import { BrowseFiltersProvider } from "./BrowseFiltersProvider";
+import { BrowseFiltersProvider } from "../BrowseFiltersProvider";
+import { createFilter } from "../utils/fixtures";
+
 import { useBrowseFilters } from "./useBrowseFilters";
 
-import { createFilter } from "@/fixtures/curriculum/filters";
 import MockedTeacherBrowseAnalyticsProvider from "@/__tests__/__helpers__/MockedTeacherBrowseAnalyticsProvider";
 
 const mockProgrammeRefined = jest.fn();
@@ -104,5 +105,51 @@ describe("useBrowseFilters", () => {
     rerender();
 
     expect(result.current.onChangeFilters).toBe(first);
+  });
+
+  it("setYearFilter('all') sets all years and clears pathways", () => {
+    const { result } = renderHook(() => useBrowseFilters(), { wrapper });
+
+    act(() => {
+      result.current.setYearFilter("all", ["7", "8", "9"]);
+    });
+
+    expect(result.current.filters.years).toEqual(["7", "8", "9"]);
+    expect(result.current.filters.pathways).toEqual([]);
+    expect(mockProgrammeRefined).toHaveBeenCalledWith(
+      expect.objectContaining({
+        filterType: "Year filter",
+        filterValue: "all",
+      }),
+    );
+  });
+
+  it("setThreadFilter sets a single thread", () => {
+    const { result } = renderHook(() => useBrowseFilters(), { wrapper });
+
+    act(() => {
+      result.current.setThreadFilter("thread1");
+    });
+
+    expect(result.current.filters.threads).toEqual(["thread1"]);
+    expect(mockProgrammeRefined).toHaveBeenCalledWith(
+      expect.objectContaining({
+        filterType: "Learning theme filter",
+        filterValue: "thread1",
+      }),
+    );
+  });
+
+  it("setThreadFilter('') clears the thread", () => {
+    const { result } = renderHook(() => useBrowseFilters(), { wrapper });
+
+    act(() => {
+      result.current.setThreadFilter("thread1");
+    });
+    act(() => {
+      result.current.setThreadFilter("");
+    });
+
+    expect(result.current.filters.threads).toEqual([]);
   });
 });

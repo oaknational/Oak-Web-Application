@@ -15,11 +15,11 @@ import { ProgrammeFiltersKs4Options } from ".";
 
 import { renderWithProvidersByName } from "@/__tests__/__helpers__/renderWithProviders";
 import { resolveOakHref } from "@/common-lib/urls";
-import { createFilter } from "@/fixtures/curriculum/filters";
 import type { Ks4Option } from "@/node-lib/curriculum-api-2023/queries/curriculumPhaseOptions/curriculumPhaseOptions.schema";
-import { CurriculumFilters } from "@/utils/curriculum/types";
 import { CurriculumSelectionSlugs } from "@/utils/curriculum/slugs";
 import { BrowseFiltersProvider } from "@/context/BrowseFilters";
+import { BrowseFilters } from "@/context/BrowseFilters/types";
+import { createFilter } from "@/context/BrowseFilters/utils/fixtures";
 
 const replaceMock = jest.fn();
 
@@ -40,7 +40,7 @@ const render = renderWithProvidersByName([
   "teacherBrowseAnalytics",
 ]);
 
-const renderKs4Options = (filters: CurriculumFilters, ui: ReactElement) =>
+const renderKs4Options = (filters: BrowseFilters, ui: ReactElement) =>
   render(
     <BrowseFiltersProvider defaultFilter={filters}>{ui}</BrowseFiltersProvider>,
   );
