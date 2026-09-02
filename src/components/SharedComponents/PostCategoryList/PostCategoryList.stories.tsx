@@ -2,8 +2,12 @@ import { Meta, StoryObj } from "@storybook/nextjs";
 
 import Component from ".";
 
+import TeacherBrowseAnalyticsDecorator from "@/storybook-decorators/TeacherBrowseAnalyticsDecorator";
+import CookieConsentDecorator from "@/storybook-decorators/CookieConsentDecorator";
+
 const meta: Meta<typeof Component> = {
   component: Component,
+  decorators: [CookieConsentDecorator, TeacherBrowseAnalyticsDecorator],
 };
 
 export default meta;

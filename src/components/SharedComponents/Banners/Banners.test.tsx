@@ -13,10 +13,10 @@ describe("Banners", () => {
   beforeEach(() => {
     jest.resetAllMocks();
   });
-  test("shows mythbusting banner", async () => {
+  test("shows oaks impact banner", async () => {
     mockFeatureFlagEnabled.mockReturnValue(true);
     const { container } = render(<Banners />);
-    expect(container).toHaveTextContent("Learn why");
+    expect(container).toHaveTextContent("Oak is now used in 72% of schools");
     expect(container).toMatchSnapshot();
   });
 });
