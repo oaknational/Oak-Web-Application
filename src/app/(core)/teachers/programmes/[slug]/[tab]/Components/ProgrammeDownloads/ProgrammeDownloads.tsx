@@ -291,6 +291,7 @@ export const ProgrammeDownloads = ({
       $borderColor="border-error"
       $width={"100%"}
       role="region"
+      $color="text-primary"
     >
       {subjectTierSelectionVisible === true ? (
         <OakGrid>
@@ -409,7 +410,7 @@ export const ProgrammeDownloads = ({
                     )}
                     {implementationGuideDownloadsWithLabels.length > 0 && (
                       <OakFlex $gap={"spacing-16"} $flexDirection="column">
-                        <OakFlex $gap="spacing-8">
+                        <OakFlex $gap="spacing-8" $alignItems="center">
                           Implementation toolkit
                           <OakPromoTag />
                         </OakFlex>
