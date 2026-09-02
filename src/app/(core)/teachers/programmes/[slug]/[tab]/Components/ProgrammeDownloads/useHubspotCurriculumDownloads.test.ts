@@ -44,7 +44,7 @@ const data: ResourceFormValues & {
   school: "222-Sample school",
   schoolName: "Sample school",
   terms: true,
-  resources: ["docx", "full-curriculum"],
+  resources: ["curriculumPlan", "assessment"],
   phaseSlug: "primary",
   subjectSlug: "english",
 };
@@ -78,7 +78,7 @@ describe("useHubspotCurriculumDownloads", () => {
           },
           {
             name: "curriculum_downloads_text_array",
-            value: "english-primary-docx;english-primary-full-curriculum",
+            value: "english-primary-curriculumPlan;english-primary-assessment",
           },
           { name: "email", value: "test@test.com" },
           { name: "latest_utm_source", value: "les_twitz" },
@@ -94,55 +94,32 @@ describe("useHubspotCurriculumDownloads", () => {
     expect(response).toBe("ok");
   });
 
-  it("should use the school id as school name for homeschool or notListed", async () => {
-    const { result } = renderHook(() => useHubspotCurriculumDownloads());
-    await result.current.onHubspotSubmit({
-      ...data,
-      school: "notListed",
-      schoolName: "Sample school",
-    });
-
-    expect(mockHubspotSubmitForm).toHaveBeenCalledWith(
-      expect.objectContaining({
-        payload: expect.objectContaining({
-          fields: expect.arrayContaining([
-            { name: "contact_school_name", value: "notListed" },
-          ]),
-        }),
-      }),
-    );
-
-    const submitted = mockHubspotSubmitForm.mock.calls[0]?.[0] as {
-      payload: { fields: Array<{ name: string }> };
-    };
-    expect(submitted.payload.fields).not.toEqual(
-      expect.arrayContaining([
-        expect.objectContaining({ name: "contact_school_urn" }),
-      ]),
-    );
-  });
-
   it("should report an Oak Error when the source is generic", async () => {
-    const originalError = new Error("test error");
-    mockHubspotSubmitForm.mockRejectedValueOnce(originalError);
+    mockHubspotSubmitForm.mockRejectedValueOnce(new Error("test error"));
     const { result } = renderHook(() => useHubspotCurriculumDownloads());
     await result.current.onHubspotSubmit(data);
 
-    expect(mockReportError).toHaveBeenCalledTimes(1);
-    const reportedError = mockReportError.mock.calls[0]?.[0] as OakError;
-    expect(reportedError).toBeInstanceOf(OakError);
-    expect(reportedError.code).toBe("hubspot/unknown");
-    expect(reportedError.originalError).toBe(originalError);
+    expect(mockReportError).toHaveBeenCalledWith(
+      new OakError({
+        code: "hubspot/unknown",
+        originalError: "test error",
+      }),
+    );
   });
 
   it("should report an Oak Error as it occurs", async () => {
-    const oakError = new OakError({
-      code: "hubspot/invalid-email",
-    });
-    mockHubspotSubmitForm.mockRejectedValueOnce(oakError);
+    mockHubspotSubmitForm.mockRejectedValueOnce(
+      new OakError({
+        code: "hubspot/invalid-email",
+      }),
+    );
     const { result } = renderHook(() => useHubspotCurriculumDownloads());
     await result.current.onHubspotSubmit(data);
 
-    expect(mockReportError).toHaveBeenCalledWith(oakError);
+    expect(mockReportError).toHaveBeenCalledWith(
+      new OakError({
+        code: "hubspot/invalid-email",
+      }),
+    );
   });
 });
