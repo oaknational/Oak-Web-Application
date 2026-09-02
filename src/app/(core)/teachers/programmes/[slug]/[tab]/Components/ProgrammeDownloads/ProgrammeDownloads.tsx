@@ -28,6 +28,7 @@ import { Controller, ControllerRenderProps } from "react-hook-form";
 import { DownloadSuccessHeader } from "../../../units/[unitSlug]/lessons/[lessonSlug]/Components/DownloadSuccessHeader/DownloadSuccessHeader";
 
 import { ChildSubjectTierSelector } from "./ChildSubjectTierSelector/ChildSubjectTierSelector";
+import { useHubspotCurriculumDownloads } from "./useHubspotCurriculumDownloads";
 
 import {
   CurriculumDownloadsTierSubjectProps,
@@ -35,7 +36,6 @@ import {
 } from "@/pages-helpers/curriculum/docx/tab-helpers";
 import { DOWNLOAD_TYPE_LABELS } from "@/components/CurriculumComponents/CurriculumDownloadView/helper";
 import { DownloadPageWithAccordionContent } from "@/components/TeacherComponents/DownloadPageWithAccordion/DownloadPageWithAccordion";
-import { useHubspotSubmit } from "@/components/TeacherComponents/hooks/downloadAndShareHooks/useHubspotSubmit";
 import { useResourceFormState } from "@/components/TeacherComponents/hooks/downloadAndShareHooks/useResourceFormState";
 import { useOnboardingStatus } from "@/components/TeacherComponents/hooks/useOnboardingStatus";
 import { DelayedLoadingSpinner } from "@/components/TeacherComponents/SharePageLayout/SharePageLayout";
@@ -73,7 +73,7 @@ export const ProgrammeDownloads = ({
 }: ProgrammeDownloadsProps) => {
   const { curriculumResourcesDownloadRefined, curriculumResourcesDownloaded } =
     useTeacherBrowseAnalytics((store) => store.track);
-  const { onHubspotSubmit } = useHubspotSubmit();
+  const { onHubspotSubmit } = useHubspotCurriculumDownloads();
   const onboardingStatus = useOnboardingStatus();
   const isLoading = onboardingStatus === "loading";
 
@@ -233,7 +233,9 @@ export const ProgrammeDownloads = ({
         schoolName: data.schoolName,
         email: data.email,
         terms: data.terms,
-        resources: ["docx"],
+        resources: data.resources,
+        phaseSlug: curriculumSelectionSlugs.phaseSlug,
+        subjectSlug: curriculumSelectionSlugs.subjectSlug,
       });
       curriculumResourcesDownloaded(data);
 
