@@ -31,10 +31,11 @@ const getMockCurriculumPhaseOptions = (
 
 const getMockSubjectPhaseKeystageSlugs = (
   withKs4OptionSlug: boolean,
+  ks4OptionSlug = "aqa",
 ): CurriculumSelectionSlugs => ({
   phaseSlug: "secondary",
   subjectSlug: "maths",
-  ks4OptionSlug: withKs4OptionSlug ? "aqa" : null,
+  ks4OptionSlug: withKs4OptionSlug ? ks4OptionSlug : null,
 });
 
 describe("getMetaTitle", () => {
@@ -84,7 +85,7 @@ describe("getMetaTitle", () => {
         {},
       );
       expect(result.title).toEqual(
-        "Free Secondary Maths AQA Lesson & Curriculum Resources",
+        "Free Secondary Maths GCSE AQA Lesson & Curriculum Resources",
       );
     });
     it("returns a title with subject, phase, examboard and tier", () => {
@@ -96,7 +97,22 @@ describe("getMetaTitle", () => {
         { tiers: "foundation" },
       );
       expect(result.title).toEqual(
-        "Free Secondary Maths Foundation AQA Lesson & Curriculum Resources",
+        "Free Secondary Maths Foundation GCSE AQA Lesson & Curriculum Resources",
+      );
+    });
+    it("does not add GCSE for the core ks4 option", () => {
+      const result = getMetaTitle(
+        {
+          subjects: getMockCurriculumPhaseOptions(true),
+          subjectPhaseKeystageSlugs: getMockSubjectPhaseKeystageSlugs(
+            true,
+            "core",
+          ),
+        },
+        {},
+      );
+      expect(result.title).toEqual(
+        "Free Secondary Maths Core Lesson & Curriculum Resources",
       );
     });
   });
@@ -123,7 +139,7 @@ describe("getMetaTitle", () => {
         { keystages: "ks4" },
       );
       expect(result.title).toEqual(
-        "Free KS4 Maths AQA Lesson & Curriculum Resources",
+        "Free KS4 Maths GCSE AQA Lesson & Curriculum Resources",
       );
     });
     it("returns a title with keystage and tier", () => {
@@ -147,7 +163,22 @@ describe("getMetaTitle", () => {
         { tiers: "foundation", keystages: "ks4" },
       );
       expect(result.title).toEqual(
-        "Free KS4 Maths Foundation AQA Lesson & Curriculum Resources",
+        "Free KS4 Maths Foundation GCSE AQA Lesson & Curriculum Resources",
+      );
+    });
+    it("does not add GCSE for the core ks4 option", () => {
+      const result = getMetaTitle(
+        {
+          subjects: getMockCurriculumPhaseOptions(true),
+          subjectPhaseKeystageSlugs: getMockSubjectPhaseKeystageSlugs(
+            true,
+            "core",
+          ),
+        },
+        { keystages: "ks4" },
+      );
+      expect(result.title).toEqual(
+        "Free KS4 Maths Core Lesson & Curriculum Resources",
       );
     });
   });
@@ -174,7 +205,7 @@ describe("getMetaTitle", () => {
         { years: "11" },
       );
       expect(result.title).toEqual(
-        "Free Y11 Maths AQA Lesson & Curriculum Resources",
+        "Free Y11 Maths GCSE AQA Lesson & Curriculum Resources",
       );
     });
     it("returns a title with year and tier", () => {
@@ -198,7 +229,7 @@ describe("getMetaTitle", () => {
         { years: "7", tiers: "foundation" },
       );
       expect(result.title).toEqual(
-        "Free Y7 Maths Foundation AQA Lesson & Curriculum Resources",
+        "Free Y7 Maths Foundation GCSE AQA Lesson & Curriculum Resources",
       );
     });
     it("returns a title with year and thread", () => {
@@ -210,7 +241,22 @@ describe("getMetaTitle", () => {
         { years: "7", tiers: "foundation", threads: "thread-1" },
       );
       expect(result.title).toEqual(
-        "Free Y7 Maths Foundation AQA - thread 1 Lesson & Curriculum Resources",
+        "Free Y7 Maths Foundation GCSE AQA - thread 1 Lesson & Curriculum Resources",
+      );
+    });
+    it("does not add GCSE for the core ks4 option", () => {
+      const result = getMetaTitle(
+        {
+          subjects: getMockCurriculumPhaseOptions(true),
+          subjectPhaseKeystageSlugs: getMockSubjectPhaseKeystageSlugs(
+            true,
+            "core",
+          ),
+        },
+        { years: "11" },
+      );
+      expect(result.title).toEqual(
+        "Free Y11 Maths Core Lesson & Curriculum Resources",
       );
     });
   });

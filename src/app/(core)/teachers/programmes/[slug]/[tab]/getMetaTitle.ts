@@ -24,6 +24,7 @@ export const getMetaTitle = (
   const ks4Option = ks4Options.find(
     (ks4opt) => ks4opt.slug === subjectPhaseKeystageSlugs.ks4OptionSlug,
   );
+  const isGcseOption = ks4Option && ks4Option.slug !== "core";
 
   const phaseTitle = currentSubject.phases.find(
     (p) => p.slug === subjectPhaseKeystageSlugs.phaseSlug,
@@ -51,7 +52,9 @@ export const getMetaTitle = (
     typeof searchParams?.tiers === "string"
       ? ` ${searchParams.tiers[0]?.toLocaleUpperCase() + searchParams.tiers.slice(1)}`
       : "";
-  const examboardSegment = ks4Option ? ` ${ks4Option.title}` : "";
+
+  const gcseSegment = isGcseOption ? "GCSE " : "";
+  const examboardSegment = ks4Option ? ` ${gcseSegment}${ks4Option.title}` : "";
 
   let title = `Free ${phaseSubjectSegment}${tierSegment}${examboardSegment}${threadSegment} Lesson & Curriculum Resources`;
 
