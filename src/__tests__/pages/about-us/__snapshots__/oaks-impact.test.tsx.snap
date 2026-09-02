@@ -610,60 +610,56 @@ exports[`pages/about-us/oaks-impact.tsx renders title 1`] = `
             class="sc-aXZVg bZTQLO"
           >
             <div
-              class="sc-aXZVg sc-gEvEer sc-f161aa6f-0 jPvJsJ iDBIXi hGfQiZ"
+              class="sc-aXZVg sc-gEvEer sc-111ef18-0 jPvJsJ iDBIXi hvvbC"
             >
               <div
-                class="sc-aXZVg sc-gEvEer sc-f161aa6f-1 jPvJsJ iDBIXi eeCRvp"
+                class="sc-aXZVg sc-gEvEer sc-111ef18-2 jPvJsJ fqICts cZlrtk"
               >
                 <div
-                  class="sc-aXZVg sc-gEvEer sc-f161aa6f-3 jPvJsJ fqICts eGIUtW"
+                  class="sc-aXZVg sc-gEvEer fnKdFm gUPrwF"
                 >
-                  <div
-                    class="sc-aXZVg sc-gEvEer fnKdFm gUPrwF"
+                  <h1
+                    class="sc-eldPxv hJmOde"
                   >
-                    <h1
-                      class="sc-eldPxv hJmOde"
-                    >
-                      Oak's impact
-                    </h1>
-                  </div>
-                  <p
-                    class="sc-ikkxIA jAnQin"
-                  >
-                    Oaks Impact intro
-                  </p>
+                    Oak's impact
+                  </h1>
                 </div>
+                <p
+                  class="sc-ikkxIA jAnQin"
+                >
+                  Oaks Impact intro
+                </p>
+              </div>
+              <div
+                class="sc-aXZVg sc-gEvEer jPvJsJ fVNIMq"
+              >
                 <div
-                  class="sc-aXZVg sc-gEvEer jPvJsJ fVNIMq"
+                  class="sc-aXZVg sc-111ef18-1 jPvJsJ gMCzDZ"
                 >
                   <div
-                    class="sc-aXZVg sc-f161aa6f-2 jPvJsJ hltwRd"
+                    class="sc-aXZVg sc-gEvEer jPvJsJ daEtut"
                   >
                     <div
-                      class="sc-aXZVg sc-gEvEer jPvJsJ daEtut"
+                      class="sc-aXZVg sc-gEvEer dApLPd daEtut"
                     >
                       <div
-                        class="sc-aXZVg sc-gEvEer dApLPd daEtut"
+                        class="sc-aXZVg dLPTTd"
                       >
                         <div
-                          class="sc-aXZVg dLPTTd"
-                        >
-                          <div
-                            class="sc-aXZVg sc-gEvEer kqqNVp jMLdOa"
-                            data-percy-hide="contents"
-                            style="box-sizing: content-box;"
-                          />
-                        </div>
+                          class="sc-aXZVg sc-gEvEer kqqNVp jMLdOa"
+                          data-percy-hide="contents"
+                          style="box-sizing: content-box;"
+                        />
                       </div>
-                      <div
-                        class="sc-aXZVg sc-gEvEer jPvJsJ gWBhKY"
+                    </div>
+                    <div
+                      class="sc-aXZVg sc-gEvEer jPvJsJ gWBhKY"
+                    >
+                      <p
+                        class="sc-ikkxIA bevdi"
                       >
-                        <p
-                          class="sc-ikkxIA bevdi"
-                        >
-                          Oaks Impact video description
-                        </p>
-                      </div>
+                        Oaks Impact video description
+                      </p>
                     </div>
                   </div>
                 </div>

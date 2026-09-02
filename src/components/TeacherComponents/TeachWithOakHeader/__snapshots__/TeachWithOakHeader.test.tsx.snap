@@ -10,94 +10,91 @@ exports[`TeachWithOakHeader renders correctly 1`] = `
         class="sc-aXZVg bZTQLO"
       >
         <div
-          class="sc-aXZVg sc-gEvEer sc-1c285c78-0 jPvJsJ iDBIXi bQPXlg"
+          class="sc-aXZVg sc-gEvEer sc-jlZhew hCgIGG iDBIXi aPmvC"
         >
-          <div
-            class="sc-aXZVg sc-gEvEer sc-jlZhew hCgIGG iDBIXi aPmvC"
-          >
-            <a
-              class="sc-dcJsrY sc-dAlyuH dAja-dp eGtIkY"
-              href="/"
-            >
-              <div
-                class="sc-aXZVg sc-gEvEer jPvJsJ gghMxj"
-              >
-                <div
-                  class="sc-aXZVg sc-gEvEer kJHaEW jMLdOa icon-container"
-                >
-                  <div
-                    class="sc-aXZVg focDaC shadow"
-                  />
-                  <span
-                    class="sc-aXZVg jJQFnr"
-                    data-icon-for="button"
-                  >
-                    <img
-                      alt=""
-                      class="sc-iGgWBj lcrpYX"
-                      data-nimg="fill"
-                      decoding="async"
-                      loading="lazy"
-                      src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1707149179/icons/ejrm9dpgpzb7ddbo8z2i.svg"
-                      style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
-                    />
-                  </span>
-                </div>
-                <span
-                  class="sc-eqUAAy bngpZa"
-                >
-                  Back to lesson
-                </span>
-              </div>
-            </a>
-          </div>
-          <div
-            class="sc-1c285c78-1 hWfBOK"
+          <a
+            class="sc-dcJsrY sc-dAlyuH dAja-dp eGtIkY"
+            href="/"
           >
             <div
-              class="sc-aXZVg bZTQLO"
+              class="sc-aXZVg sc-gEvEer jPvJsJ gghMxj"
             >
               <div
-                class="sc-aXZVg sc-gEvEer fjNszh hPyKbx"
+                class="sc-aXZVg sc-gEvEer kJHaEW jMLdOa icon-container"
               >
                 <div
-                  class="sc-aXZVg sc-gEvEer jPvJsJ daEtut"
-                >
-                  <h1
-                    class="sc-eldPxv kSQYKV"
-                  >
-                    <span
-                      class="sc-eqUAAy buaVGR"
-                    >
-                      The thinking behind Oak lessons
-                    </span>
-                  </h1>
-                  <p
-                    class="sc-ikkxIA fPezaI"
-                  >
-                    See how our lessons are designed to support learning - and make the most of them in your classroom.
-                  </p>
-                </div>
-                <div
-                  class="sc-aXZVg sc-2c4f354b-0 jPvJsJ bnaXAx"
+                  class="sc-aXZVg focDaC shadow"
                 />
+                <span
+                  class="sc-aXZVg jJQFnr"
+                  data-icon-for="button"
+                >
+                  <img
+                    alt=""
+                    class="sc-iGgWBj lcrpYX"
+                    data-nimg="fill"
+                    decoding="async"
+                    loading="lazy"
+                    src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1707149179/icons/ejrm9dpgpzb7ddbo8z2i.svg"
+                    style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                  />
+                </span>
               </div>
+              <span
+                class="sc-eqUAAy bngpZa"
+              >
+                Back to lesson
+              </span>
             </div>
-            <span
-              class="sc-aXZVg kQNEcu"
+          </a>
+        </div>
+      </div>
+      <div
+        class="sc-8fa28901-0 GiMuj"
+      >
+        <div
+          class="sc-aXZVg bZTQLO"
+        >
+          <div
+            class="sc-aXZVg sc-gEvEer fjNszh hPyKbx"
+          >
+            <div
+              class="sc-aXZVg sc-gEvEer jPvJsJ daEtut"
             >
-              <img
-                alt="Teach with Oak Image"
-                class="sc-iGgWBj dZvqhO"
-                data-nimg="fill"
-                decoding="async"
-                loading="lazy"
-                sizes="100vw"
-                src="http://localhost/_next/image?url=https%3A%2F%2Fsanity-asset-cdn.thenational.academy%2Fimages%2Fcuvjke51%2Fproduction%2Fb81ee19a35baa3192360a210fda34cc9b21f4fd6-5824x3264.jpg&w=3840&q=75"
-                srcset="/_next/image?url=https%3A%2F%2Fsanity-asset-cdn.thenational.academy%2Fimages%2Fcuvjke51%2Fproduction%2Fb81ee19a35baa3192360a210fda34cc9b21f4fd6-5824x3264.jpg&w=640&q=75 640w, /_next/image?url=https%3A%2F%2Fsanity-asset-cdn.thenational.academy%2Fimages%2Fcuvjke51%2Fproduction%2Fb81ee19a35baa3192360a210fda34cc9b21f4fd6-5824x3264.jpg&w=750&q=75 750w, /_next/image?url=https%3A%2F%2Fsanity-asset-cdn.thenational.academy%2Fimages%2Fcuvjke51%2Fproduction%2Fb81ee19a35baa3192360a210fda34cc9b21f4fd6-5824x3264.jpg&w=828&q=75 828w, /_next/image?url=https%3A%2F%2Fsanity-asset-cdn.thenational.academy%2Fimages%2Fcuvjke51%2Fproduction%2Fb81ee19a35baa3192360a210fda34cc9b21f4fd6-5824x3264.jpg&w=1080&q=75 1080w, /_next/image?url=https%3A%2F%2Fsanity-asset-cdn.thenational.academy%2Fimages%2Fcuvjke51%2Fproduction%2Fb81ee19a35baa3192360a210fda34cc9b21f4fd6-5824x3264.jpg&w=1200&q=75 1200w, /_next/image?url=https%3A%2F%2Fsanity-asset-cdn.thenational.academy%2Fimages%2Fcuvjke51%2Fproduction%2Fb81ee19a35baa3192360a210fda34cc9b21f4fd6-5824x3264.jpg&w=1920&q=75 1920w, /_next/image?url=https%3A%2F%2Fsanity-asset-cdn.thenational.academy%2Fimages%2Fcuvjke51%2Fproduction%2Fb81ee19a35baa3192360a210fda34cc9b21f4fd6-5824x3264.jpg&w=2048&q=75 2048w, /_next/image?url=https%3A%2F%2Fsanity-asset-cdn.thenational.academy%2Fimages%2Fcuvjke51%2Fproduction%2Fb81ee19a35baa3192360a210fda34cc9b21f4fd6-5824x3264.jpg&w=3840&q=75 3840w"
-                style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
-              />
-            </span>
+              <h1
+                class="sc-eldPxv kSQYKV"
+              >
+                <span
+                  class="sc-eqUAAy buaVGR"
+                >
+                  The thinking behind Oak lessons
+                </span>
+              </h1>
+              <p
+                class="sc-ikkxIA fPezaI"
+              >
+                See how our lessons are designed to support learning - and make the most of them in your classroom.
+              </p>
+            </div>
+            <div
+              class="sc-aXZVg sc-b793ad41-0 jPvJsJ ciZKPV"
+            >
+              <span
+                class="sc-aXZVg iLOJBD sc-8fa28901-1 hSRFNH"
+              >
+                <img
+                  alt="Teach with Oak Image"
+                  class="sc-iGgWBj dZvqhO"
+                  data-nimg="fill"
+                  decoding="async"
+                  loading="lazy"
+                  sizes="100vw"
+                  src="http://localhost/_next/image?url=https%3A%2F%2Fsanity-asset-cdn.thenational.academy%2Fimages%2Fcuvjke51%2Fproduction%2Fb81ee19a35baa3192360a210fda34cc9b21f4fd6-5824x3264.jpg&w=3840&q=75"
+                  srcset="/_next/image?url=https%3A%2F%2Fsanity-asset-cdn.thenational.academy%2Fimages%2Fcuvjke51%2Fproduction%2Fb81ee19a35baa3192360a210fda34cc9b21f4fd6-5824x3264.jpg&w=640&q=75 640w, /_next/image?url=https%3A%2F%2Fsanity-asset-cdn.thenational.academy%2Fimages%2Fcuvjke51%2Fproduction%2Fb81ee19a35baa3192360a210fda34cc9b21f4fd6-5824x3264.jpg&w=750&q=75 750w, /_next/image?url=https%3A%2F%2Fsanity-asset-cdn.thenational.academy%2Fimages%2Fcuvjke51%2Fproduction%2Fb81ee19a35baa3192360a210fda34cc9b21f4fd6-5824x3264.jpg&w=828&q=75 828w, /_next/image?url=https%3A%2F%2Fsanity-asset-cdn.thenational.academy%2Fimages%2Fcuvjke51%2Fproduction%2Fb81ee19a35baa3192360a210fda34cc9b21f4fd6-5824x3264.jpg&w=1080&q=75 1080w, /_next/image?url=https%3A%2F%2Fsanity-asset-cdn.thenational.academy%2Fimages%2Fcuvjke51%2Fproduction%2Fb81ee19a35baa3192360a210fda34cc9b21f4fd6-5824x3264.jpg&w=1200&q=75 1200w, /_next/image?url=https%3A%2F%2Fsanity-asset-cdn.thenational.academy%2Fimages%2Fcuvjke51%2Fproduction%2Fb81ee19a35baa3192360a210fda34cc9b21f4fd6-5824x3264.jpg&w=1920&q=75 1920w, /_next/image?url=https%3A%2F%2Fsanity-asset-cdn.thenational.academy%2Fimages%2Fcuvjke51%2Fproduction%2Fb81ee19a35baa3192360a210fda34cc9b21f4fd6-5824x3264.jpg&w=2048&q=75 2048w, /_next/image?url=https%3A%2F%2Fsanity-asset-cdn.thenational.academy%2Fimages%2Fcuvjke51%2Fproduction%2Fb81ee19a35baa3192360a210fda34cc9b21f4fd6-5824x3264.jpg&w=3840&q=75 3840w"
+                  style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                />
+              </span>
+            </div>
           </div>
         </div>
       </div>

@@ -1,124 +1,62 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`OaksImpactHeader renders image variant correctly 1`] = `
+exports[`OaksImpactHeader renders correctly 1`] = `
 <body>
   <div>
     <div
       class="sc-aXZVg bZTQLO"
     >
       <div
-        class="sc-aXZVg sc-gEvEer sc-f161aa6f-0 jPvJsJ iDBIXi hGfQiZ"
+        class="sc-aXZVg sc-gEvEer sc-111ef18-0 jPvJsJ iDBIXi hvvbC"
       >
         <div
-          class="sc-aXZVg sc-gEvEer sc-f161aa6f-1 jPvJsJ iDBIXi eeCRvp"
+          class="sc-aXZVg sc-gEvEer sc-111ef18-2 jPvJsJ fqICts cZlrtk"
         >
           <div
-            class="sc-aXZVg sc-gEvEer sc-f161aa6f-3 jPvJsJ fqICts eGIUtW"
+            class="sc-aXZVg sc-gEvEer fnKdFm gUPrwF"
           >
-            <div
-              class="sc-aXZVg sc-gEvEer fnKdFm gUPrwF"
+            <h1
+              class="sc-eldPxv hJmOde"
             >
-              <h1
-                class="sc-eldPxv hJmOde"
-              >
-                TEST_TITLE
-              </h1>
-            </div>
-            <p
-              class="sc-ikkxIA jAnQin"
-            >
-              TEST_BODY
-            </p>
+              TEST_TITLE
+            </h1>
           </div>
-          <div
-            class="sc-aXZVg sc-gEvEer jPvJsJ fVNIMq"
+          <p
+            class="sc-ikkxIA jAnQin"
           >
-            <div
-              class="sc-aXZVg sc-f161aa6f-2 jPvJsJ hltwRd"
-            >
-              <span
-                class="sc-aXZVg cACaCX"
-              >
-                <img
-                  alt="TEST_IMAGE_ALT"
-                  class="sc-iGgWBj fygrEH"
-                  data-nimg="fill"
-                  decoding="async"
-                  loading="lazy"
-                  src="http://example.com/image.svg"
-                  style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
-                />
-              </span>
-            </div>
-          </div>
+            TEST_BODY
+          </p>
         </div>
-      </div>
-    </div>
-  </div>
-</body>
-`;
-
-exports[`OaksImpactHeader renders video variant correctly 1`] = `
-<body>
-  <div>
-    <div
-      class="sc-aXZVg bZTQLO"
-    >
-      <div
-        class="sc-aXZVg sc-gEvEer sc-f161aa6f-0 jPvJsJ iDBIXi hGfQiZ"
-      >
         <div
-          class="sc-aXZVg sc-gEvEer sc-f161aa6f-1 jPvJsJ iDBIXi eeCRvp"
+          class="sc-aXZVg sc-gEvEer jPvJsJ fVNIMq"
         >
           <div
-            class="sc-aXZVg sc-gEvEer sc-f161aa6f-3 jPvJsJ fqICts eGIUtW"
+            class="sc-aXZVg sc-111ef18-1 jPvJsJ gMCzDZ"
           >
             <div
-              class="sc-aXZVg sc-gEvEer fnKdFm gUPrwF"
-            >
-              <h1
-                class="sc-eldPxv hJmOde"
-              >
-                TEST_TITLE
-              </h1>
-            </div>
-            <p
-              class="sc-ikkxIA jAnQin"
-            >
-              TEST_BODY
-            </p>
-          </div>
-          <div
-            class="sc-aXZVg sc-gEvEer jPvJsJ fVNIMq"
-          >
-            <div
-              class="sc-aXZVg sc-f161aa6f-2 jPvJsJ hltwRd"
+              class="sc-aXZVg sc-gEvEer jPvJsJ daEtut"
             >
               <div
-                class="sc-aXZVg sc-gEvEer jPvJsJ daEtut"
+                class="sc-aXZVg sc-gEvEer dApLPd daEtut"
               >
                 <div
-                  class="sc-aXZVg sc-gEvEer dApLPd daEtut"
+                  class="sc-aXZVg dLPTTd"
                 >
                   <div
-                    class="sc-aXZVg dLPTTd"
-                  >
-                    <div
-                      class="sc-aXZVg sc-gEvEer kqqNVp jMLdOa"
-                      data-percy-hide="contents"
-                      style="box-sizing: content-box;"
-                    />
-                  </div>
+                    class="sc-aXZVg sc-gEvEer kqqNVp jMLdOa"
+                    data-percy-hide="contents"
+                    style="box-sizing: content-box;"
+                  />
                 </div>
-                <div
-                  class="sc-aXZVg sc-gEvEer jPvJsJ gWBhKY"
+              </div>
+              <div
+                class="sc-aXZVg sc-gEvEer jPvJsJ gWBhKY"
+              >
+                <p
+                  class="sc-ikkxIA bevdi"
                 >
-                  <p
-                    class="sc-ikkxIA bevdi"
-                  >
-                    TEST_VIDEO_DESCRIPTION
-                  </p>
-                </div>
+                  TEST_VIDEO_DESCRIPTION
+                </p>
               </div>
             </div>
           </div>
