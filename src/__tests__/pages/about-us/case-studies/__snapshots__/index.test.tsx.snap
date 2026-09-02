@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`pages/about-us/case-studies/index.tsx renders title 1`] = `
+exports[`pages/about-us/case-studies/index.tsx renders content 1`] = `
 <div>
   <div
     data-overlay-container="true"
@@ -603,7 +603,142 @@ exports[`pages/about-us/case-studies/index.tsx renders title 1`] = `
         class="sc-aXZVg sc-gEvEer bwVgbu fUxOFh"
         id="main"
       >
-        TODO: Case Study list page
+        <div
+          class="sc-aXZVg iebDQK"
+        >
+          <div
+            class="sc-aXZVg bZTQLO"
+          >
+            <div
+              class="sc-aXZVg sc-gEvEer guaSoh jIBBQP"
+            >
+              <div
+                class="sc-aXZVg sc-gEvEer epcFtP fVNIMq"
+              >
+                <div
+                  class="sc-aXZVg sc-fTFjTM iETyDq fPhXjy"
+                >
+                  <a
+                    class="sc-aXZVg sc-gEvEer sc-kbousE eyLmQc dXoawi fzgqkD"
+                    href="/about-us/case-studies/Test-1"
+                  >
+                    <span
+                      class="sc-aXZVg kvjdhA sc-gfoqjT giDcXR"
+                    >
+                      <img
+                        alt=""
+                        class="sc-iGgWBj dZvqhO"
+                        data-nimg="fill"
+                        decoding="async"
+                        loading="lazy"
+                        sizes="100vw"
+                        src="http://localhost/_next/image?url=http%3A%2F%2Flocalhost%2FTest-1&w=3840&q=75"
+                        srcset="/_next/image?url=http%3A%2F%2Flocalhost%2FTest-1&w=640&q=75 640w, /_next/image?url=http%3A%2F%2Flocalhost%2FTest-1&w=750&q=75 750w, /_next/image?url=http%3A%2F%2Flocalhost%2FTest-1&w=828&q=75 828w, /_next/image?url=http%3A%2F%2Flocalhost%2FTest-1&w=1080&q=75 1080w, /_next/image?url=http%3A%2F%2Flocalhost%2FTest-1&w=1200&q=75 1200w, /_next/image?url=http%3A%2F%2Flocalhost%2FTest-1&w=1920&q=75 1920w, /_next/image?url=http%3A%2F%2Flocalhost%2FTest-1&w=2048&q=75 2048w, /_next/image?url=http%3A%2F%2Flocalhost%2FTest-1&w=3840&q=75 3840w"
+                        style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                      />
+                    </span>
+                    <div
+                      class="sc-aXZVg sc-gEvEer sc-eyvILC jPvJsJ jFNgPm"
+                    >
+                      <div
+                        class="sc-aXZVg sc-gEvEer jPvJsJ fVNIMq"
+                      >
+                        <h3
+                          class="sc-eldPxv ibGcSM"
+                        >
+                          Test 1
+                        </h3>
+                      </div>
+                      <div
+                        class="sc-aXZVg sc-gEvEer jPvJsJ bRjxks"
+                      />
+                    </div>
+                  </a>
+                </div>
+                <div
+                  class="sc-aXZVg sc-fTFjTM iETyDq fPhXjy"
+                >
+                  <a
+                    class="sc-aXZVg sc-gEvEer sc-kbousE eyLmQc dXoawi fzgqkD"
+                    href="/about-us/case-studies/Test-2"
+                  >
+                    <span
+                      class="sc-aXZVg kvjdhA sc-gfoqjT giDcXR"
+                    >
+                      <img
+                        alt=""
+                        class="sc-iGgWBj dZvqhO"
+                        data-nimg="fill"
+                        decoding="async"
+                        loading="lazy"
+                        sizes="100vw"
+                        src="http://localhost/_next/image?url=http%3A%2F%2Flocalhost%2FTest-2&w=3840&q=75"
+                        srcset="/_next/image?url=http%3A%2F%2Flocalhost%2FTest-2&w=640&q=75 640w, /_next/image?url=http%3A%2F%2Flocalhost%2FTest-2&w=750&q=75 750w, /_next/image?url=http%3A%2F%2Flocalhost%2FTest-2&w=828&q=75 828w, /_next/image?url=http%3A%2F%2Flocalhost%2FTest-2&w=1080&q=75 1080w, /_next/image?url=http%3A%2F%2Flocalhost%2FTest-2&w=1200&q=75 1200w, /_next/image?url=http%3A%2F%2Flocalhost%2FTest-2&w=1920&q=75 1920w, /_next/image?url=http%3A%2F%2Flocalhost%2FTest-2&w=2048&q=75 2048w, /_next/image?url=http%3A%2F%2Flocalhost%2FTest-2&w=3840&q=75 3840w"
+                        style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                      />
+                    </span>
+                    <div
+                      class="sc-aXZVg sc-gEvEer sc-eyvILC jPvJsJ jFNgPm"
+                    >
+                      <div
+                        class="sc-aXZVg sc-gEvEer jPvJsJ fVNIMq"
+                      >
+                        <h3
+                          class="sc-eldPxv ibGcSM"
+                        >
+                          Test 2
+                        </h3>
+                      </div>
+                      <div
+                        class="sc-aXZVg sc-gEvEer jPvJsJ bRjxks"
+                      />
+                    </div>
+                  </a>
+                </div>
+                <div
+                  class="sc-aXZVg sc-fTFjTM iETyDq fPhXjy"
+                >
+                  <a
+                    class="sc-aXZVg sc-gEvEer sc-kbousE eyLmQc dXoawi fzgqkD"
+                    href="/about-us/case-studies/Test-3"
+                  >
+                    <span
+                      class="sc-aXZVg kvjdhA sc-gfoqjT giDcXR"
+                    >
+                      <img
+                        alt=""
+                        class="sc-iGgWBj dZvqhO"
+                        data-nimg="fill"
+                        decoding="async"
+                        loading="lazy"
+                        sizes="100vw"
+                        src="http://localhost/_next/image?url=http%3A%2F%2Flocalhost%2FTest-3&w=3840&q=75"
+                        srcset="/_next/image?url=http%3A%2F%2Flocalhost%2FTest-3&w=640&q=75 640w, /_next/image?url=http%3A%2F%2Flocalhost%2FTest-3&w=750&q=75 750w, /_next/image?url=http%3A%2F%2Flocalhost%2FTest-3&w=828&q=75 828w, /_next/image?url=http%3A%2F%2Flocalhost%2FTest-3&w=1080&q=75 1080w, /_next/image?url=http%3A%2F%2Flocalhost%2FTest-3&w=1200&q=75 1200w, /_next/image?url=http%3A%2F%2Flocalhost%2FTest-3&w=1920&q=75 1920w, /_next/image?url=http%3A%2F%2Flocalhost%2FTest-3&w=2048&q=75 2048w, /_next/image?url=http%3A%2F%2Flocalhost%2FTest-3&w=3840&q=75 3840w"
+                        style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                      />
+                    </span>
+                    <div
+                      class="sc-aXZVg sc-gEvEer sc-eyvILC jPvJsJ jFNgPm"
+                    >
+                      <div
+                        class="sc-aXZVg sc-gEvEer jPvJsJ fVNIMq"
+                      >
+                        <h3
+                          class="sc-eldPxv ibGcSM"
+                        >
+                          Test 3
+                        </h3>
+                      </div>
+                      <div
+                        class="sc-aXZVg sc-gEvEer jPvJsJ bRjxks"
+                      />
+                    </div>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </main>
       <footer
         class="sc-aXZVg gSjcjC"
