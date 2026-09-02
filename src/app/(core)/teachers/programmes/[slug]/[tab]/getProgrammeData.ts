@@ -15,7 +15,7 @@ import {
   type CurriculumSelectionSlugs,
 } from "@/utils/curriculum/slugs";
 import { filterValidCurriculumPhaseOptions } from "@/pages-helpers/curriculum/docx/tab-helpers";
-import { CurriculumFilters } from "@/utils/curriculum/types";
+import { BrowseFilters } from "@/context/BrowseFilters/types";
 import { scopeYearsToKeystageFilter } from "@/utils/curriculum/filtering";
 
 const PAGE_KEY = "programme-page-data";
@@ -180,7 +180,7 @@ export async function getProgrammeData(
 
 export const getSubjectOverride = (
   units: CurriculumUnitsTabData["units"],
-  resolvedFilter: CurriculumFilters,
+  resolvedFilter: BrowseFilters,
 ) => {
   const overrides: string[] = [];
   units.forEach((unit) => {

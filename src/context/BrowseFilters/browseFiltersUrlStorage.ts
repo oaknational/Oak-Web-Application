@@ -1,16 +1,13 @@
 import { PersistStorage, StorageValue } from "zustand/middleware";
 
-import { CurriculumFilters } from "@/utils/curriculum/types";
-import {
-  filtersFromSearchString,
-  searchStringWithFilters,
-} from "@/utils/curriculum/filtering";
+import { BrowseFilters } from "./types";
+import { addFiltersToSearchString, getFiltersFromSearchString } from "./utils";
 
-export const BROWSE_FILTERS_STORE_NAME = "curriculumFilters";
+export const BROWSE_FILTERS_STORE_NAME = "BrowseFilters";
 export const BROWSE_FILTERS_STORE_VERSION = 0;
 
 export type BrowseFiltersPersistedState = {
-  filters: Partial<CurriculumFilters>;
+  filters: Partial<BrowseFilters>;
 };
 
 const replaceSearch = (search: string) => {
@@ -26,7 +23,7 @@ function readFiltersFromUrl(): StorageValue<BrowseFiltersPersistedState> | null 
     return null;
   }
 
-  const filters = filtersFromSearchString(window.location.search);
+  const filters = getFiltersFromSearchString(window.location.search);
   if (Object.keys(filters).length === 0) {
     return null;
   }
@@ -38,15 +35,15 @@ function readFiltersFromUrl(): StorageValue<BrowseFiltersPersistedState> | null 
 }
 
 function writeFiltersToUrl(
-  filters: CurriculumFilters,
-  defaultFilter: CurriculumFilters,
+  filters: BrowseFilters,
+  defaultFilter: BrowseFilters,
 ) {
   if (typeof window === "undefined") {
     return;
   }
 
   replaceSearch(
-    searchStringWithFilters(window.location.search, filters, defaultFilter),
+    addFiltersToSearchString(window.location.search, filters, defaultFilter),
   );
 }
 
@@ -58,13 +55,13 @@ function writeFiltersToUrl(
  * `readFiltersFromUrl`/`writeFiltersToUrl` above.
  */
 export function createBrowseFiltersUrlStorage(
-  getDefaultFilter: () => CurriculumFilters,
+  getDefaultFilter: () => BrowseFilters,
 ): PersistStorage<BrowseFiltersPersistedState> {
   return {
     getItem: readFiltersFromUrl,
     setItem: (_name, value) =>
       writeFiltersToUrl(
-        value.state.filters as CurriculumFilters,
+        value.state.filters as BrowseFilters,
         getDefaultFilter(),
       ),
     // No-op: use `setFilters(defaultFilter)` for an actual "reset filters" action.

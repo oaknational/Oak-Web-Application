@@ -16,10 +16,10 @@ import {
 import { KS4OptionFocusProvider, KS4OptionFocusScope } from "./index";
 
 import { renderWithProvidersByName } from "@/__tests__/__helpers__/renderWithProviders";
-import { createFilter } from "@/fixtures/curriculum/filters";
 import type { Ks4Option } from "@/node-lib/curriculum-api-2023/queries/curriculumPhaseOptions/curriculumPhaseOptions.schema";
 import { CurriculumSelectionSlugs } from "@/utils/curriculum/slugs";
 import { BrowseFiltersProvider } from "@/context/BrowseFilters";
+import { createFilter } from "@/context/BrowseFilters/utils/fixtures";
 
 const useSearchParamsMock = jest.fn();
 const replaceStateMock = jest.fn();
