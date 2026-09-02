@@ -5,6 +5,7 @@ import { topNavFixture } from "@/node-lib/curriculum-api-2023/fixtures/topNav.fi
 import OaksCaseStudyList, {
   getServerSideProps,
 } from "@/pages/about-us/case-studies/index";
+import { isFeatureFlagEnabledServer } from "@/utils/featureFlagChecks/server";
 
 const mockShouldSkipInitialBuild = false;
 
@@ -25,6 +26,10 @@ jest.mock("@/node-lib/isr", () => ({
 
 jest.mock("@/node-lib/cms");
 
+jest.mock("@/utils/featureFlagChecks/server", () => ({
+  isFeatureFlagEnabledServer: jest.fn(() => false),
+}));
+
 describe("pages/about-us/case-studies/index.tsx", () => {
   it("renders title", async () => {
     const { container } = renderWithProviders()(
@@ -35,7 +40,13 @@ describe("pages/about-us/case-studies/index.tsx", () => {
   });
 
   describe("getServerSideProps", () => {
-    it("returns props data", async () => {
+    it("returns data when enabled", async () => {
+      (isFeatureFlagEnabledServer as jest.Mock).mockImplementation(
+        (_cookies, flag) => {
+          return flag === "case-studies-v2" ? true : false;
+        },
+      );
+
       const propsResult = await getServerSideProps({
         req: {
           cookies: {},
@@ -46,6 +57,20 @@ describe("pages/about-us/case-studies/index.tsx", () => {
         props: {
           topNav: topNavFixture,
         },
+      });
+    });
+
+    it("returns not-found when not enabled", async () => {
+      (isFeatureFlagEnabledServer as jest.Mock).mockImplementation(() => false);
+
+      const propsResult = await getServerSideProps({
+        req: {
+          cookies: {},
+        },
+      } as GetServerSidePropsContext);
+
+      expect(propsResult).toMatchObject({
+        notFound: true,
       });
     });
   });
