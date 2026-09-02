@@ -65,7 +65,7 @@ describe("ImplementationGuideCallout", () => {
     expect(message).toBeInTheDocument();
   });
 
-  test("disabled when flag active", () => {
+  test("disabled when flag present", () => {
     // Render the component with test props
     const { queryByText } = renderWithProviders()(
       <ImplementationGuideCallout
