@@ -65,7 +65,7 @@ describe("ImplementationGuideCallout", () => {
     expect(message).toBeInTheDocument();
   });
 
-  test("disabled when flag present", () => {
+  test("inline banner hidden when cookie-flag 'oak-flag-toolkit-modal-dismissed' present", () => {
     // Render the component with test props
     const { queryByText } = renderWithProviders()(
       <ImplementationGuideCallout
