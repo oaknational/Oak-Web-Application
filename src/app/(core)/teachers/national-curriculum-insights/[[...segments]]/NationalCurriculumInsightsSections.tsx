@@ -1283,7 +1283,7 @@ const ConversationCardLink = styled(OakFlex)<{ $featured: boolean }>`
     text-decoration: underline;
   }
 
-  @media (${getMediaQuery("desktop")}) {
+  @media ${insightsTabletMediaQuery} {
     flex-direction: row;
   }
 `;
@@ -1294,6 +1294,10 @@ const ConversationCardImage = styled(OakBox)<{ $featured: boolean }>`
   aspect-ratio: 16 / 9;
   flex: 0 0 auto;
   overflow: hidden;
+
+  @media ${insightsTabletMediaQuery} {
+    width: 40%;
+  }
 
   @media (${getMediaQuery("desktop")}) {
     width: ${({ $featured }) => ($featured ? "491px" : "290px")};
