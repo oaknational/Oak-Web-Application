@@ -58,7 +58,7 @@
     "test:components": "jest -c ./jest.components.config.cjs ./src/components",
     "test:storybook": "concurrently -k -s second -n \"SB,TEST\" \"STORYBOOK_TEST=true storybook dev -p 6006 --quiet --no-open\" \"wait-on http://localhost:6006 && STORYBOOK_TEST=true test-storybook\"",
     "test:e2e": "playwright test",
-    "test:e2e:ci": "playwright test",
+    "test:e2e:ci": "playwright test --project=e2e-desktop",
     "test:e2e:visual": "playwright test --grep @visual",
     "use-local-components": "$npm_execpath remove @oaknational/oak-components && yalc add @oaknational/oak-components",
     "remove-local-components": "yalc remove @oaknational/oak-components && $npm_execpath install @oaknational/oak-components",

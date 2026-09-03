@@ -62,7 +62,7 @@ export default defineConfig<ChromaticConfig>({
 
   projects: [
     {
-      name: "chromium",
+      name: "e2e-desktop",
       testIgnore: visualTestMatch,
       use: { ...devices["Desktop Chrome"] },
     },
