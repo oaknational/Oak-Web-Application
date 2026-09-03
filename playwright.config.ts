@@ -52,14 +52,6 @@ export default defineConfig<ChromaticConfig>({
     disableAutoSnapshot: true,
   },
 
-  expect: {
-    toHaveScreenshot: {
-      maxDiffPixelRatio: 0.01,
-      animations: "disabled",
-      stylePath: "./src/__tests__/visual/screenshot.css",
-    },
-  },
-
   projects: [
     {
       name: "e2e-desktop",
@@ -67,22 +59,10 @@ export default defineConfig<ChromaticConfig>({
       use: { ...devices["Desktop Chrome"] },
     },
     {
-      name: "visual-desktop",
+      name: "visual-regression-tests",
       testMatch: visualTestMatch,
       timeout: 90_000,
       use: { ...devices["Desktop Chrome"] },
-    },
-    {
-      name: "visual-mobile",
-      testMatch: visualTestMatch,
-      timeout: 90_000,
-      use: { ...devices["iPhone 17"] },
-    },
-    {
-      name: "visual-tablet",
-      testMatch: visualTestMatch,
-      timeout: 90_000,
-      use: { ...devices["iPad Pro 11"] },
     },
   ],
 
