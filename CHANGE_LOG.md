@@ -1,3 +1,10 @@
+## [1.1180.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.1180.2...v1.1180.3) (2026-09-03)
+
+
+### Bug Fixes
+
+* overview tab spacing ([92cd064](https://github.com/oaknational/Oak-Web-Application/commit/92cd06442c86342d1504b95a2a47bed510acc009))
+
 ## [1.1180.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.1180.1...v1.1180.2) (2026-09-03)
 
 
