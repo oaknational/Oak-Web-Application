@@ -5,6 +5,8 @@ import "@testing-library/jest-dom";
 import "whatwg-fetch";
 import bugsnag from "@bugsnag/js";
 import { installMockIntersectionObserver } from "@oaknational/oak-components";
+import "./src/__tests__/__helpers__/mockBroadcastChannel";
+import "./src/__tests__/__helpers__/mockCookieStore";
 
 // Override this with `TEST_ALLOW_LOGGING=1` if you want logs locally
 if (process.env.TEST_ALLOW_LOGGING !== "1") {
