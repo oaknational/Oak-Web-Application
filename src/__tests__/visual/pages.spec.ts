@@ -18,6 +18,6 @@ for (const entry of getDeploymentTestUrls()) {
 
     await page.locator("#__next:not(:has([data-testid='loading']))").waitFor();
 
-    await takeSnapshot(page, testInfo); // To be used in conjunction with Chromatic for comparison
+    await takeSnapshot(page, testInfo.project.name, testInfo); // To be used in conjunction with Chromatic for comparison
   });
 }
