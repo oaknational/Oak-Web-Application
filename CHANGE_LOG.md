@@ -1,3 +1,10 @@
+## [1.1178.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.1178.0...v1.1178.1) (2026-09-03)
+
+
+### Bug Fixes
+
+* added fix for comp-sci implementation guides ([86d060e](https://github.com/oaknational/Oak-Web-Application/commit/86d060e4b2afe3d65873dbb62bb526fae05174d7))
+
 # [1.1178.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1177.0...v1.1178.0) (2026-09-03)
 
 
