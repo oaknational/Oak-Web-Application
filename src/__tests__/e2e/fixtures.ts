@@ -1,5 +1,5 @@
-export { test as base, expect, type Page } from "@playwright/test";
-
+import { test as base, type Page } from "@playwright/test";
+export { expect } from "@playwright/test";
 // This lesson path is going to be used for the initial implementation.
 const lessonPath =
   "/teachers/programmes/science-secondary-ks3/units/cells/lessons/the-common-processes-of-all-living-organisms";
