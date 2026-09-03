@@ -1,3 +1,10 @@
+# [1.1180.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1179.0...v1.1180.0) (2026-09-03)
+
+
+### Features
+
+* enable implementation guides for all users ([27e476e](https://github.com/oaknational/Oak-Web-Application/commit/27e476edcaa78b537b20f1e4492c90504a26a5a4))
+
 # [1.1179.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1178.1...v1.1179.0) (2026-09-03)
 
 
