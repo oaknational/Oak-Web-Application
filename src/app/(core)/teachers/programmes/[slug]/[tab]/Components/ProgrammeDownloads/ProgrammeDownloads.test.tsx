@@ -59,14 +59,11 @@ jest.mock("@/context/Analytics/useAnalytics", () => ({
 }));
 
 const onHubspotSubmit = jest.fn();
-jest.mock(
-  "@/components/TeacherComponents/hooks/downloadAndShareHooks/useHubspotSubmit",
-  () => ({
-    useHubspotSubmit: () => ({
-      onHubspotSubmit: (...args: unknown[]) => onHubspotSubmit(...args),
-    }),
+jest.mock("./useHubspotCurriculumDownloads", () => ({
+  useHubspotCurriculumDownloads: () => ({
+    onHubspotSubmit: (...args: unknown[]) => onHubspotSubmit(...args),
   }),
-);
+}));
 
 jest.mock(
   "@/components/TeacherComponents/hooks/downloadAndShareHooks/useResourceFormSubmit",
@@ -385,7 +382,9 @@ describe("Programme Downloads", () => {
           schoolName: undefined,
           email: "test@example.com",
           terms: true,
-          resources: ["docx"],
+          resources: ["curriculumPlan"],
+          phaseSlug: "secondary",
+          subjectSlug: "english",
         }),
       );
 
