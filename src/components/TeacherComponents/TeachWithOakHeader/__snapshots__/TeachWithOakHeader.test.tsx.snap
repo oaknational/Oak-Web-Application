@@ -50,13 +50,13 @@ exports[`TeachWithOakHeader renders correctly 1`] = `
         </div>
       </div>
       <div
-        class="sc-aXZVg sc-gEvEer sc-fe179c18-0 jPvJsJ iDBIXi jrlaTz"
+        class="sc-aXZVg sc-gEvEer sc-2f9bc179-0 jPvJsJ iDBIXi gsvoXe"
       >
         <div
           class="sc-aXZVg bZTQLO"
         >
           <div
-            class="sc-aXZVg sc-gEvEer fjNszh pPrcD"
+            class="sc-aXZVg sc-gEvEer sc-14a4a65c-1 fjNszh djSIXq kwyAeK"
           >
             <div
               class="sc-aXZVg sc-gEvEer jPvJsJ daEtut"
@@ -77,10 +77,10 @@ exports[`TeachWithOakHeader renders correctly 1`] = `
               </p>
             </div>
             <div
-              class="sc-aXZVg sc-a11171f4-0 jPvJsJ bESNEq"
+              class="sc-aXZVg sc-14a4a65c-0 jPvJsJ jOtCbe"
             >
               <span
-                class="sc-aXZVg iLOJBD sc-fe179c18-1 eXBVcE"
+                class="sc-aXZVg iLOJBD sc-2f9bc179-1 cOlkLu"
               >
                 <img
                   alt="Teach with Oak Image"

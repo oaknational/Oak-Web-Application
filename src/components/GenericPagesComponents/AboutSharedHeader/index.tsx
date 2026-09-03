@@ -18,12 +18,19 @@ import { PortableTextJSON } from "@/common-lib/cms-types";
 import { OwaImageProps } from "@/components/SharedComponents/OwaImage";
 
 const IllustrationPanel = styled(OakBox)<{ $showImageOverflow: boolean }>`
-  height: 410px;
+  height: ${({ $showImageOverflow }) =>
+    $showImageOverflow ? "auto" : "410px"};
   width: auto;
-
   @media (max-width: 920px) {
     display: ${({ $showImageOverflow }) =>
       $showImageOverflow ? "block" : "none"};
+  }
+`;
+
+const HeaderLayout = styled(OakFlex)<{ $showImageOverflow: boolean }>`
+  @media (max-width: 750px) {
+    flex-direction: ${({ $showImageOverflow }) =>
+      $showImageOverflow ? "column" : "row"};
   }
 `;
 
@@ -117,10 +124,8 @@ export function AboutSharedHeader({
 }: Readonly<AboutSharedHeaderProps>) {
   return (
     <NewGutterMaxWidth>
-      <OakFlex
-        $flexDirection={
-          showImageOverflow ? ["column", "row", "row", "row"] : ["row"]
-        }
+      <HeaderLayout
+        $showImageOverflow={showImageOverflow}
         $alignItems="center"
         $justifyContent="space-between"
         $pt={["spacing-56", "spacing-72"]}
@@ -158,7 +163,7 @@ export function AboutSharedHeader({
         <IllustrationPanel $showImageOverflow={showImageOverflow}>
           {children}
         </IllustrationPanel>
-      </OakFlex>
+      </HeaderLayout>
     </NewGutterMaxWidth>
   );
 }

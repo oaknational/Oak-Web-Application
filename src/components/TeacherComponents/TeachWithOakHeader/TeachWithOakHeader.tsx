@@ -1,6 +1,7 @@
 import {
   OakTertiaryInvertedButton,
   OakFlex,
+  parseSpacing,
   parseBorder,
   parseColor,
 } from "@oaknational/oak-components";
@@ -19,11 +20,13 @@ const HeaderLayout = styled(OakFlex)`
 `;
 
 const StyledAboutSharedHeaderImage = styled(AboutSharedHeaderImage)`
-  width: 100%;
-  height: 100%;
-  aspect-ratio: 160/98;
-  box-sizing: border-box;
-  border: ${parseBorder("border-solid-xxl")} ${parseColor("border-primary")};
+  width: ${parseSpacing("100%")};
+  height: ${parseSpacing("100%")};
+
+  img {
+    position: relative !important;
+    border: ${parseBorder("border-solid-xxl")} ${parseColor("border-primary")};
+  }
 `;
 
 type TeachWithOakHeaderProps = {
