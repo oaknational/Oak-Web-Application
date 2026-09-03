@@ -1,17 +1,22 @@
 import { test, TestInfo } from "@playwright/test";
 import { takeSnapshot } from "@chromatic-com/playwright";
 
-const getDeploymentTestUrls = require("../../common-lib/urls/getDeploymentTestUrls");
+const getDeploymentTestUrls: () => (
+  | string
+  | { url: string; timeout: number }
+)[] = require("../../common-lib/urls/getDeploymentTestUrls");
 
-for (const path of getDeploymentTestUrls()) {
+for (let path of getDeploymentTestUrls()) {
+  let timeout = 60_000;
   if (typeof path === "object" && path !== null) {
-    continue;
+    path = path.url;
+    timeout = path.timeout;
   }
 
   test(path, { tag: "@visual" }, async ({ page }, testInfo: TestInfo) => {
     await page.goto(path, {
       waitUntil: "domcontentloaded",
-      timeout: 60_000,
+      timeout,
     });
 
     await page.locator("#__next:not(:has([data-testid='loading']))").waitFor();
