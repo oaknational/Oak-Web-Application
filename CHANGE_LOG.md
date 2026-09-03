@@ -1,3 +1,20 @@
+# [1.1176.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1175.0...v1.1176.0) (2026-09-02)
+
+
+### Bug Fixes
+
+* added code to enable implementation code via feature-flag ([2850d9e](https://github.com/oaknational/Oak-Web-Application/commit/2850d9e4d343374e3b5e53c0ef7aa19ea75d07e4))
+* filename prefix changed "Curriculum downloads" -> "Curriculum" ([1cc25b4](https://github.com/oaknational/Oak-Web-Application/commit/1cc25b44262e36844fc4dc052f2d96ba9ff8e528))
+* only try and download files that are in availableDownloadTypes ([0b2857b](https://github.com/oaknational/Oak-Web-Application/commit/0b2857b13c7235d1ef3dd3a47ec62af2c74fc166))
+* remove incorrect change to avo ([7f718ac](https://github.com/oaknational/Oak-Web-Application/commit/7f718acc5d1c6347c76f71ab24c6bee0a656b5d6))
+* sonarcloud issue with regexp ([c973dfd](https://github.com/oaknational/Oak-Web-Application/commit/c973dfd4b264eabebe84bed6bb22e71299b0a7c6))
+* strip brackets from programme download filenames ([8ed2a77](https://github.com/oaknational/Oak-Web-Application/commit/8ed2a778963e24fb84a1bd63b284cef47473aa4a))
+
+
+### Features
+
+* simplify programme download filenames ([e43eaa5](https://github.com/oaknational/Oak-Web-Application/commit/e43eaa59fd2c3d27947acacff806d2a2054adbd8))
+
 # [1.1175.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1174.0...v1.1175.0) (2026-09-02)
 
 
