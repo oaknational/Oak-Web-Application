@@ -158,7 +158,7 @@ describe("generateMetadata", () => {
     });
 
     expect(result.title).toEqual(
-      "Geometry GCSE KS4 | Y11 Maths Foundation AQA | Lesson Resources",
+      "Geometry GCSE | KS4 | Y11 Maths Foundation AQA | Lesson Resources",
     );
   });
 });

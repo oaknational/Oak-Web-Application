@@ -140,13 +140,13 @@ describe("generateMetadata", () => {
     });
 
     expect(result.title).toBe(
-      "Introduction to Geometry KS2 | Y4 Maths Higher Edexcel | Lesson Resources",
+      "Introduction to Geometry GCSE | KS2 | Y4 Maths Higher Edexcel | Lesson Resources",
     );
     expect(result.openGraph?.title).toBe(
-      "Introduction to Geometry KS2 | Y4 Maths Higher Edexcel | Lesson Resources",
+      "Introduction to Geometry GCSE | KS2 | Y4 Maths Higher Edexcel | Lesson Resources",
     );
     expect(result.twitter?.title).toBe(
-      "Introduction to Geometry KS2 | Y4 Maths Higher Edexcel | Lesson Resources",
+      "Introduction to Geometry GCSE | KS2 | Y4 Maths Higher Edexcel | Lesson Resources",
     );
     expect(result.description).toBe(
       "View lesson content and choose resources to download or share",

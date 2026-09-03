@@ -27,7 +27,7 @@ export async function generateMetadata(
 
     const tierSegment = tierTitle ? ` ${tierTitle}` : "";
     const examboardSegment = examBoardTitle ? ` ${examBoardTitle}` : "";
-    const gcseSegment = examboardSegment ? "GCSE " : "";
+    const gcseSegment = examboardSegment ? "GCSE | " : "";
 
     const title = `${unitTitle} ${gcseSegment}${keyStageSlug.toUpperCase()} | Y${year} ${subjectTitle}${tierSegment}${examboardSegment} | Lesson Resources`;
     const description = `Free lessons and teaching resources about ${unitTitle.toLowerCase()}`;
