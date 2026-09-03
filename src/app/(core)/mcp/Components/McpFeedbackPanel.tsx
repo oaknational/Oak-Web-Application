@@ -13,6 +13,9 @@ import { mcpFeedback } from "@/app/(core)/mcp/mcpContent";
 export const McpFeedbackPanel = () => (
   <OakBox
     $background="bg-decorative3-very-subdued"
+    // This band sits outside the OakMaxWidth above, so it needs the text
+    // colour token in its own right. See the note there.
+    $color="text-primary"
     $pv={["spacing-32", "spacing-64"]}
     $ph={["spacing-16", "spacing-32"]}
   >

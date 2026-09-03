@@ -45,6 +45,15 @@ const McpSubsection = ({
 export const McpView = () => (
   <>
     <OakMaxWidth
+      // One max width at every viewport, rather than OakMaxWidth's default
+      // ["spacing-480", "spacing-1280"] step, which clamps the whole page to
+      // 480px below the 750px breakpoint. Matches the newer pages, e.g.
+      // UnitSequenceView and ProgrammeDownloads.
+      $maxWidth="spacing-1280"
+      // Nothing sets a body colour in the app router — src/styles/oak.styles.ts
+      // has no `color` rule — so text here would otherwise inherit the browser
+      // default #000000 instead of the token's #222222.
+      $color="text-primary"
       $ph={["spacing-16", "spacing-24"]}
       // Figma offsets the hero 32px below the nav, at every breakpoint.
       $pt="spacing-32"
