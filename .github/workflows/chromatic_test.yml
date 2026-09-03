@@ -22,7 +22,7 @@ jobs:
         uses: actions/checkout@v7
         with:
           fetch-depth: 0
-          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          ref: ${{ github.event.pull_request.head.ref || github.ref }}
 
       - name: Setup pnpm
         uses: pnpm/action-setup@08c4be7e2e672a47d11bd04269e27e5f3e8529cb
@@ -67,8 +67,8 @@ jobs:
           require-deployment-id: false
           timeout: 1200
 
-      - name: Run Playwright e2e tests
-        run: pnpm run test:e2e:ci
+      - name: Run Playwright visual tests
+        run: pnpm run test:visual
         env:
           BASE_URL: ${{ steps.deployment.outputs.deployment-url }}
           VERCEL_AUTOMATION_BYPASS_SECRET: ${{ secrets.VERCEL_AUTOMATION_BYPASS_SECRET }}
