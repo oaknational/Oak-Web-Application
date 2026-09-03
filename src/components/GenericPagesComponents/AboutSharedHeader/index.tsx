@@ -15,6 +15,7 @@ import { PortableTextReactComponents } from "@portabletext/react";
 import { NewGutterMaxWidth } from "@/components/GenericPagesComponents/NewGutterMaxWidth";
 import { PortableTextWithDefaults } from "@/components/SharedComponents/PortableText";
 import { PortableTextJSON } from "@/common-lib/cms-types";
+import { OwaImageProps } from "@/components/SharedComponents/OwaImage";
 
 const IllustrationPanel = styled(OakBox)<{ $showImageOverflow: boolean }>`
   height: 410px;
@@ -69,7 +70,7 @@ export function BackgroundHeaderLoop() {
 type AboutSharedHeaderImageProps = {
   imageUrl: string;
   imageAlt?: string;
-} & Omit<React.ComponentProps<typeof OakImage>, "alt" | "src">;
+} & Omit<OwaImageProps, "src" | "alt">;
 
 export function AboutSharedHeaderImage({
   imageAlt,
@@ -117,11 +118,18 @@ export function AboutSharedHeader({
   return (
     <NewGutterMaxWidth>
       <OakFlex
+        $flexDirection={
+          showImageOverflow ? ["column", "row", "row", "row"] : ["row"]
+        }
         $alignItems="center"
         $justifyContent="space-between"
         $pt={["spacing-56", "spacing-72"]}
         $pb={["spacing-56", "spacing-72"]}
-        $gap={["spacing-0", "spacing-48", "spacing-240"]}
+        $gap={
+          showImageOverflow
+            ? ["spacing-16"]
+            : ["spacing-0", "spacing-48", "spacing-240"]
+        }
         $overflow={"hidden"}
       >
         <OakFlex $flexDirection={"column"} $gap={"spacing-24"}>

@@ -1,5 +1,6 @@
 import {
   OakTertiaryInvertedButton,
+  OakFlex,
   parseBorder,
   parseColor,
 } from "@oaknational/oak-components";
@@ -12,14 +13,14 @@ import {
 import { NewGutterMaxWidth } from "@/components/GenericPagesComponents/NewGutterMaxWidth";
 import { getCloudinaryImageUrl } from "@/utils/getCloudinaryImageUrl";
 
-const HeaderLayout = styled.div`
+const HeaderLayout = styled(OakFlex)`
   display: flex;
   flex-direction: row;
 `;
 
 const StyledAboutSharedHeaderImage = styled(AboutSharedHeaderImage)`
-  width: 632px;
-  height: auto !important;
+  width: 100%;
+  height: 100%;
   aspect-ratio: 160/98;
   box-sizing: border-box;
   border: ${parseBorder("border-solid-xxl")} ${parseColor("border-primary")};
