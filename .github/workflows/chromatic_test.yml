@@ -45,14 +45,14 @@ jobs:
         id: playwright-cache
         with:
           path: ~/.cache/ms-playwright
-          key: playwright-${{ runner.os }}-chromium-${{ steps.playwright-version.outputs.version }}
+          key: playwright-${{ runner.os }}-chromium-webkit-${{ steps.playwright-version.outputs.version }}
 
       - name: Install Playwright system dependencies
-        run: ./node_modules/.bin/playwright install-deps chromium
+        run: ./node_modules/.bin/playwright install-deps chromium webkit
 
       - name: Install Playwright browser
         if: steps.playwright-cache.outputs.cache-hit != 'true'
-        run: ./node_modules/.bin/playwright install chromium
+        run: ./node_modules/.bin/playwright install chromium webkit
 
       - name: Wait for Vercel deployment
         id: deployment
@@ -64,7 +64,7 @@ jobs:
           timeout: 1200
 
       - name: Run Playwright visual tests
-        run: pnpm run test:e2e:visual -- -t ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
+        run: pnpm run test:chromatic -t ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
         env:
           BASE_URL: ${{ steps.deployment.outputs.deployment-url }}
           VERCEL_AUTOMATION_BYPASS_SECRET: ${{ secrets.VERCEL_AUTOMATION_BYPASS_SECRET }}
