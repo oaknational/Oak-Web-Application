@@ -1,6 +1,5 @@
 import {
   OakTertiaryInvertedButton,
-  parseSpacing,
   parseBorder,
   parseColor,
 } from "@oaknational/oak-components";
@@ -15,11 +14,11 @@ import { NewGutterMaxWidth } from "@/components/GenericPagesComponents/NewGutter
 const HeaderLayout = styled.div`
   display: flex;
   flex-direction: row;
-  gap: ${parseSpacing("spacing-16")};
 `;
 
 const StyledAboutSharedHeaderImage = styled(AboutSharedHeaderImage)`
   border: ${parseBorder("border-solid-xxl")} ${parseColor("border-primary")};
+  width: 632px;
 `;
 
 type TeachWithOakHeaderProps = {
@@ -46,6 +45,7 @@ export function TeachWithOakHeader({
           content={
             "See how our lessons are designed to support learning - and make the most of them in your classroom."
           }
+          showImageOverflow={true}
         >
           <StyledAboutSharedHeaderImage
             imageUrl={

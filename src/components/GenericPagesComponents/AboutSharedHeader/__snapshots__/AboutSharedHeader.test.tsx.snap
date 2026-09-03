@@ -28,7 +28,7 @@ exports[`AboutSharedHeader renders correctly 1`] = `
           </p>
         </div>
         <div
-          class="sc-aXZVg sc-b793ad41-0 jPvJsJ ciZKPV"
+          class="sc-aXZVg sc-6d3e1bdf-0 jPvJsJ jMmtXg"
         >
           <span
             class="sc-aXZVg kvjdhA"
@@ -78,10 +78,10 @@ exports[`AboutSharedHeader renders correctly with loop illustration 1`] = `
           </p>
         </div>
         <div
-          class="sc-aXZVg sc-b793ad41-0 jPvJsJ ciZKPV"
+          class="sc-aXZVg sc-6d3e1bdf-0 jPvJsJ jMmtXg"
         >
           <span
-            class="sc-aXZVg fjkwRj sc-b793ad41-1 kBbMGn"
+            class="sc-aXZVg fjkwRj sc-6d3e1bdf-1 kPzUcF"
             data-testid="about-shared-loop"
           >
             <img

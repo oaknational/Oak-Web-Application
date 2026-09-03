@@ -16,12 +16,13 @@ import { NewGutterMaxWidth } from "@/components/GenericPagesComponents/NewGutter
 import { PortableTextWithDefaults } from "@/components/SharedComponents/PortableText";
 import { PortableTextJSON } from "@/common-lib/cms-types";
 
-const IllustrationPanel = styled(OakBox)`
+const IllustrationPanel = styled(OakBox)<{ $showImageOverflow: boolean }>`
   height: 410px;
   width: auto;
 
   @media (max-width: 920px) {
-    display: none;
+    display: ${({ $showImageOverflow }) =>
+      $showImageOverflow ? "block" : "none"};
   }
 `;
 
@@ -104,12 +105,14 @@ export type AboutSharedHeaderProps = {
   content: PortableTextJSON | string;
   children?: ReactNode;
   titleHighlight?: OakUiRoleToken;
+  showImageOverflow?: boolean;
 };
 export function AboutSharedHeader({
   title,
   content,
   children,
   titleHighlight,
+  showImageOverflow = false,
 }: Readonly<AboutSharedHeaderProps>) {
   return (
     <NewGutterMaxWidth>
@@ -144,7 +147,9 @@ export function AboutSharedHeader({
             />
           )}
         </OakFlex>
-        <IllustrationPanel>{children}</IllustrationPanel>
+        <IllustrationPanel $showImageOverflow={showImageOverflow}>
+          {children}
+        </IllustrationPanel>
       </OakFlex>
     </NewGutterMaxWidth>
   );
