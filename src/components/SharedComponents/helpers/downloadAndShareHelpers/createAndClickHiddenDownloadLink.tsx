@@ -21,8 +21,7 @@ export const hideAndClickDownloadLink = (url: string, a: HTMLAnchorElement) => {
   });
   document.body.appendChild(a);
   a.click();
-  // We need to remove the link immediately after clicking
-  // <body> is React-owned under the app router, so leaving a foreign node in it  can cause issues
+  // <body> is React-owned under the app router, so leaving a foreign node in it can cause issues
   a.remove();
 };
 
