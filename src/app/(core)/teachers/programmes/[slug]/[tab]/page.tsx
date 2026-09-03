@@ -10,8 +10,10 @@ import {
   getSubjectPhaseOptions,
   getProgrammeData,
   getSubjectOverride,
+  getCachedFileSizes,
 } from "./getProgrammeData";
 
+import LayoutPreviewControls from "@/components/AppComponents/LayoutPreviewControls";
 import { isFeatureFlagEnabledServer } from "@/utils/featureFlagChecks/server";
 import {
   createDownloadsData,
@@ -30,14 +32,16 @@ import withPageErrorHandling, {
 } from "@/hocs/withPageErrorHandling";
 import { resolveOakHref } from "@/common-lib/urls";
 import { getSubjectPhaseSlug } from "@/components/TeacherComponents/helpers/getSubjectPhaseSlug";
-import { resolveFilterFromSearchParams } from "@/utils/curriculum/filtering";
+import { BrowseFiltersProvider } from "@/context/BrowseFilters";
 import { redirectProgrammeSlugIfNeeded } from "@/utils/integratedJourney/legacyProgrammeUnitsRedirect";
-import { cacheData } from "@/node-lib/cache";
+import { cacheData, CURRICULUM_API_CACHE_TAG } from "@/node-lib/cache";
 import CMSClient from "@/node-lib/cms";
 import { getMvRefreshTime } from "@/pages-helpers/curriculum/downloads/getMvRefreshTime";
 import { validateServerSearchParams } from "@/utils/validateProgrammePageSearchParams";
 import { TeacherBrowseAnalyticsStoreProvider } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
 import { getProgrammeStateForProgramme } from "@/context/TeacherBrowseAnalytics/utils/getProgrammeState";
+import { getActiveCookieFlags } from "@/hooks/useCookieFlag/getActiveCookieFlags";
+import { getBrowseFilterState } from "@/context/BrowseFilters/utils/getBrowseFilterState";
 
 const reportError = errorReporter("programme-page::app");
 
@@ -88,6 +92,15 @@ const getCachedProgrammeCms = cache(
       };
     },
     ["programme-cms"],
+  ),
+);
+
+const getCachedImplementationGuides = cache(
+  cacheData(
+    (opts: { subjectTitle: string; phaseSlug: string }) =>
+      CMSClient.implementationGuides(opts),
+    ["programme-implementation-guides"],
+    { tags: [CURRICULUM_API_CACHE_TAG] },
   ),
 );
 
@@ -155,6 +168,7 @@ export async function generateMetadata({
 
 const InnerProgrammePage = async (props: AppPageProps<ProgrammePageParams>) => {
   const cookieStore = await cookies();
+  const activeFlags = await getActiveCookieFlags();
   const originalSearchParams = await props.searchParams!;
   const searchParams = validateServerSearchParams(originalSearchParams);
   const { slug: subjectPhaseSlug, tab } = await props.params;
@@ -223,37 +237,15 @@ const InnerProgrammePage = async (props: AppPageProps<ProgrammePageParams>) => {
   };
 
   const { isEnabled } = await draftMode();
-  const { curriculumCMSInfo, subjectPhaseSanityData, mvRefreshTime } =
-    await getCachedProgrammeCms({
-      subjectPhaseSlug,
-      nonCurriculum: programmeUnitsData.nonCurriculum,
-      subjectTitle: programmeUnitsData.subjectTitle,
-      phaseSlug: subjectPhaseKeystageSlugs.phaseSlug,
-      programmePageSlug: `${subjectPhaseKeystageSlugs.subjectSlug}-${subjectPhaseKeystageSlugs.phaseSlug}`,
-      isPreviewModeEnabled: isEnabled,
-    });
-
-  if (!curriculumCMSInfo && !programmeUnitsData.nonCurriculum) {
-    return notFound();
-  }
-
-  if (!subjectPhaseSanityData) {
-    reportError(
-      new OakError({
-        code: "cms/missing-programme-page-data",
-        meta: { subjectPhaseSlug },
-      }),
-    );
-  }
 
   const curriculumUnitsFormattedData =
     formatCurriculumUnitsData(curriculumUnitsData);
 
   // Resolve filter server-side from URL search params
-  const resolvedFilter = resolveFilterFromSearchParams(
-    curriculumUnitsFormattedData,
+  const { defaultFilter, resolvedFilter } = getBrowseFilterState({
+    data: curriculumUnitsFormattedData,
     searchParams,
-  );
+  });
 
   // All KS4 options for subject phase
   const ks4Options =
@@ -278,12 +270,48 @@ const InnerProgrammePage = async (props: AppPageProps<ProgrammePageParams>) => {
     examboardTitle: ks4Option?.title,
   };
 
-  const isImplementationGuidesEnabled = await isFeatureFlagEnabledServer(
-    Object.fromEntries(
-      cookieStore.getAll().map(({ name, value }) => [name, value]),
+  const opts = {
+    subjectTitle: curriculumSelectionTitles.subjectTitle,
+    phaseSlug: subjectPhaseKeystageSlugs.phaseSlug,
+  };
+
+  // None of these depend on each other's results, so run them concurrently instead of as a waterfall
+  const [
+    { curriculumCMSInfo, subjectPhaseSanityData, mvRefreshTime },
+    isImplementationGuidesEnabled,
+    implementationGuides,
+    fileSizes,
+  ] = await Promise.all([
+    getCachedProgrammeCms({
+      subjectPhaseSlug,
+      nonCurriculum: programmeUnitsData.nonCurriculum,
+      subjectTitle: programmeUnitsData.subjectTitle,
+      phaseSlug: subjectPhaseKeystageSlugs.phaseSlug,
+      programmePageSlug: `${subjectPhaseKeystageSlugs.subjectSlug}-${subjectPhaseKeystageSlugs.phaseSlug}`,
+      isPreviewModeEnabled: isEnabled,
+    }),
+    isFeatureFlagEnabledServer(
+      Object.fromEntries(
+        cookieStore.getAll().map(({ name, value }) => [name, value]),
+      ),
+      "implementation-guides",
     ),
-    "implementation-guides",
-  );
+    getCachedImplementationGuides(opts),
+    getCachedFileSizes(subjectPhaseKeystageSlugs, curriculumDownloadsTabData),
+  ]);
+
+  if (!curriculumCMSInfo && !programmeUnitsData.nonCurriculum) {
+    return notFound();
+  }
+
+  if (!subjectPhaseSanityData) {
+    reportError(
+      new OakError({
+        code: "cms/missing-programme-page-data",
+        meta: { subjectPhaseSlug },
+      }),
+    );
+  }
 
   const results: ProgrammePageProps = {
     subjectPhaseSlug,
@@ -297,11 +325,13 @@ const InnerProgrammePage = async (props: AppPageProps<ProgrammePageParams>) => {
     ks4OptionFilterDimensions,
     curriculumDownloadsTabData,
     mvRefreshTime,
-    initialFilter: resolvedFilter,
+    fileSizes,
     featureFlags: {
       "implementation-guides": isImplementationGuidesEnabled,
     },
+    implementationGuides,
     nonCurriculum: cachedProgrammeData.programmeUnitsData.nonCurriculum,
+    activeFlags,
   };
 
   const programmeState = getProgrammeStateForProgramme({
@@ -315,7 +345,13 @@ const InnerProgrammePage = async (props: AppPageProps<ProgrammePageParams>) => {
       programmeState={programmeState}
       accessLevel="programme"
     >
-      <ProgrammeView {...results} />
+      <BrowseFiltersProvider
+        defaultFilter={defaultFilter}
+        initialFilter={resolvedFilter}
+      >
+        <ProgrammeView {...results} />
+        {isEnabled && <LayoutPreviewControls />}
+      </BrowseFiltersProvider>
     </TeacherBrowseAnalyticsStoreProvider>
   );
 };

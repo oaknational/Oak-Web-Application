@@ -18,8 +18,11 @@ import {
   createTeacherBrowseAnalyticsStore,
   TeacherBrowseAnalyticsStore,
 } from "./TeacherBrowseAnalyticsStore";
+import useJourneySlugsContext from "./utils/getJourneySlugsContext";
 
 import { ServicePolicyMap } from "@/browser-lib/cookie-consent/ServicePolicyMap";
+import useSelectedArea from "@/hooks/useSelectedArea";
+import type { TrackFns } from "@/context/Analytics/AnalyticsProvider";
 
 export type TeacherBrowseAnalyticsStoreApi = ReturnType<
   typeof createTeacherBrowseAnalyticsStore
@@ -43,7 +46,7 @@ export const TeacherBrowseAnalyticsStoreProvider = ({
   children,
 }: TeacherBrowseAnalyticsStoreProviderProps) => {
   const { track, getSessionId } = useAnalytics();
-  const { subjectSlug, phaseSlug } = programmeState;
+  const { subjectSlug, phaseSlug } = useJourneySlugsContext();
   const posthogConsent = useOakConsent().getConsent(ServicePolicyMap.POSTHOG);
   const hasConsent = posthogConsent === "granted";
 
@@ -79,8 +82,8 @@ export const TeacherBrowseAnalyticsStoreProvider = ({
   );
 
   useEffect(() => {
-    store.setState({ journeyId });
-  }, [store, journeyId]);
+    store.setState({ journeyId, programmeState, accessLevel });
+  }, [store, journeyId, programmeState, accessLevel]);
 
   return (
     <TeacherBrowseAnalyticsStoreContext.Provider value={store}>
@@ -92,14 +95,33 @@ export const TeacherBrowseAnalyticsStoreProvider = ({
 export const useTeacherBrowseAnalytics = <T,>(
   selector: (store: TeacherBrowseAnalyticsStore) => T,
 ): T => {
+  const activeArea = useSelectedArea();
   const teacherBrowseAnalyticsStoreContext = useContext(
     TeacherBrowseAnalyticsStoreContext,
   );
-  if (!teacherBrowseAnalyticsStoreContext) {
+
+  // Hooks must run unconditionally, so a store is always needed here. In the
+  // pupils area there is no provider, so lazily create an inert one to satisfy
+  // useStore without throwing or tracking anything.
+  const [fallbackStore] = useState(() =>
+    createTeacherBrowseAnalyticsStore({
+      programmeState: null,
+      avo: new Proxy({} as TrackFns, { get: () => () => undefined }),
+      journeyId: null,
+      accessLevel: "homepage",
+    }),
+  );
+
+  if (activeArea === "TEACHERS" && !teacherBrowseAnalyticsStoreContext) {
     throw new Error(
       `useTeacherBrowseAnalyticsStore must be used within TeacherBrowseAnalyticsStoreProvider`,
     );
   }
 
-  return useStore(teacherBrowseAnalyticsStoreContext, selector);
+  return useStore(
+    activeArea === "PUPILS"
+      ? fallbackStore
+      : (teacherBrowseAnalyticsStoreContext as TeacherBrowseAnalyticsStoreApi),
+    selector,
+  );
 };
