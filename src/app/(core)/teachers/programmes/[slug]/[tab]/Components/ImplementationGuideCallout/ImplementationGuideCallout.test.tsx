@@ -14,6 +14,7 @@ describe("ImplementationGuideCallout", () => {
         subjectTitle="Maths"
         phaseTitle="Primary"
         onClick={() => {}}
+        activeFlags={[]}
       />,
     );
 
@@ -33,6 +34,7 @@ describe("ImplementationGuideCallout", () => {
         subjectTitle="English"
         phaseTitle="Secondary"
         onClick={() => {}}
+        activeFlags={[]}
       />,
     );
 
@@ -52,6 +54,7 @@ describe("ImplementationGuideCallout", () => {
         subjectTitle="RSHE (PSHE)"
         phaseTitle="Primary"
         onClick={() => {}}
+        activeFlags={[]}
       />,
     );
 
@@ -60,5 +63,24 @@ describe("ImplementationGuideCallout", () => {
       "Leading your school's use of Oak's RSHE (PSHE) primary curriculum? Download our implementation toolkit.",
     );
     expect(message).toBeInTheDocument();
+  });
+
+  test("inline banner hidden when cookie-flag 'oak-flag-toolkit-modal-dismissed' present", () => {
+    // Render the component with test props
+    const { queryByText } = renderWithProviders()(
+      <ImplementationGuideCallout
+        subject="rshe-pshe"
+        phase="ks2"
+        subjectTitle="RSHE (PSHE)"
+        phaseTitle="Primary"
+        onClick={() => {}}
+        activeFlags={["oak-flag-toolkit-modal-dismissed"]}
+      />,
+    );
+
+    const message = queryByText(
+      "Leading your school's use of Oak's RSHE (PSHE) primary curriculum? Download our implementation toolkit.",
+    );
+    expect(message).not.toBeInTheDocument();
   });
 });
