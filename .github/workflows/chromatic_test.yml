@@ -34,11 +34,37 @@ jobs:
       - name: Install dependencies
         run: pnpm install --ignore-scripts --verbose
 
-      - name: Run Chromatic
-        uses: chromaui/action@latest
+      - name: Get Playwright version
+        id: playwright-version
+        run: |
+          PLAYWRIGHT_VERSION="$(node -p "require('./node_modules/playwright/package.json').version")"
+          echo "version=${PLAYWRIGHT_VERSION}" >> "$GITHUB_OUTPUT"
+
+      - name: Cache Playwright browsers
+        uses: actions/cache@v4
+        id: playwright-cache
         with:
-          playwright: true
-          projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
+          path: ~/.cache/ms-playwright
+          key: playwright-${{ runner.os }}-chromium-${{ steps.playwright-version.outputs.version }}
+
+      - name: Install Playwright system dependencies
+        run: ./node_modules/.bin/playwright install-deps chromium
+
+      - name: Install Playwright browser
+        if: steps.playwright-cache.outputs.cache-hit != 'true'
+        run: ./node_modules/.bin/playwright install chromium
+
+      - name: Wait for Vercel deployment
+        id: deployment
+        uses: vercel/wait-for-deployment-action@0e2b0c5c5cce31f1648108aeec56467187aca037
+        with:
+          environment: ${{ github.ref == 'refs/heads/main' && 'production' || 'preview' }}
+          project-slug: oak-web-application-website
+          require-deployment-id: false
+          timeout: 1200
+
+      - name: Run Playwright visual tests
+        run: pnpm run test:e2e:visual -- -t ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
         env:
           BASE_URL: ${{ steps.deployment.outputs.deployment-url }}
           VERCEL_AUTOMATION_BYPASS_SECRET: ${{ secrets.VERCEL_AUTOMATION_BYPASS_SECRET }}
