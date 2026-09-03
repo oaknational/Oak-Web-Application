@@ -21,10 +21,11 @@ const HeaderLayout = styled(OakFlex)`
 
 const StyledAboutSharedHeaderImage = styled(AboutSharedHeaderImage)`
   width: ${parseSpacing("100%")};
-  height: ${parseSpacing("100%")};
 
   img {
     position: relative !important;
+    width: ${parseSpacing("100%")} !important;
+    height: auto !important;
     border: ${parseBorder("border-solid-xxl")} ${parseColor("border-primary")};
   }
 `;
@@ -56,6 +57,7 @@ export function TeachWithOakHeader({
           content={
             "See how our lessons are designed to support learning - and make the most of them in your classroom."
           }
+          titleHighlight={"bg-decorative2-main"}
           showImageOverflow={true}
         >
           <StyledAboutSharedHeaderImage

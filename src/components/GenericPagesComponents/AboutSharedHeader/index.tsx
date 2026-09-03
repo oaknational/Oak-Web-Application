@@ -21,10 +21,18 @@ const IllustrationPanel = styled(OakBox)<{ $showImageOverflow: boolean }>`
   height: ${({ $showImageOverflow }) =>
     $showImageOverflow ? "auto" : "410px"};
   width: auto;
+  flex: ${({ $showImageOverflow }) =>
+    $showImageOverflow ? "1 1 0" : "0 1 auto"};
   @media (max-width: 920px) {
     display: ${({ $showImageOverflow }) =>
       $showImageOverflow ? "block" : "none"};
   }
+`;
+
+const TextLayout = styled(OakFlex)<{ $showImageOverflow: boolean }>`
+  flex: ${({ $showImageOverflow }) =>
+    $showImageOverflow ? "1 1 0" : "0 1 auto"};
+  min-width: 0;
 `;
 
 const HeaderLayout = styled(OakFlex)<{ $showImageOverflow: boolean }>`
@@ -137,7 +145,11 @@ export function AboutSharedHeader({
         }
         $overflow={"hidden"}
       >
-        <OakFlex $flexDirection={"column"} $gap={"spacing-24"}>
+        <TextLayout
+          $showImageOverflow={showImageOverflow}
+          $flexDirection={"column"}
+          $gap={"spacing-24"}
+        >
           <OakHeading tag="h1" $font={["heading-4", "heading-2", "heading-2"]}>
             <OakSpan
               $background={titleHighlight ?? "bg-decorative1-main"}
@@ -159,7 +171,7 @@ export function AboutSharedHeader({
               components={portableTextComponents}
             />
           )}
-        </OakFlex>
+        </TextLayout>
         <IllustrationPanel $showImageOverflow={showImageOverflow}>
           {children}
         </IllustrationPanel>
