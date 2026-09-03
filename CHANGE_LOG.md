@@ -1,3 +1,10 @@
+## [1.1180.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.1180.1...v1.1180.2) (2026-09-03)
+
+
+### Bug Fixes
+
+* promo tag overflow on tabs ([780ca6d](https://github.com/oaknational/Oak-Web-Application/commit/780ca6db2584f6d1cb313e6ace07e4facc357104))
+
 ## [1.1180.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.1180.0...v1.1180.1) (2026-09-03)
 
 
