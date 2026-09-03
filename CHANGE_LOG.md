@@ -1,3 +1,16 @@
+# [1.1178.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1177.0...v1.1178.0) (2026-09-03)
+
+
+### Bug Fixes
+
+* added maxAge to useCookieFlag() ([00763ce](https://github.com/oaknational/Oak-Web-Application/commit/00763ce67f91cdc879bbdccaba43ee770f4e9762))
+* added missing prop to defaultProps ([b8d87b5](https://github.com/oaknational/Oak-Web-Application/commit/b8d87b518cd6efc3e2082af91b2c460955ec2128))
+
+
+### Features
+
+* added useCookieFlag() to store flags ([4f6a875](https://github.com/oaknational/Oak-Web-Application/commit/4f6a875ebd4cd7741696e7a9f610af88948d32a7))
+
 # [1.1177.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1176.0...v1.1177.0) (2026-09-03)
 
 

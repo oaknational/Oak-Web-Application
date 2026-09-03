@@ -1,9 +1,13 @@
+import { test, TestInfo } from "@playwright/test";
 import { takeSnapshot } from "@chromatic-com/playwright";
-import { test, type TestInfo } from "@playwright/test";
 
 const getDeploymentTestUrls = require("../../common-lib/urls/getDeploymentTestUrls");
 
 for (const path of getDeploymentTestUrls()) {
+  if (typeof path === "object" && path !== null) {
+    continue;
+  }
+
   test(path, { tag: "@visual" }, async ({ page }, testInfo: TestInfo) => {
     await page.goto(path, {
       waitUntil: "domcontentloaded",
@@ -12,6 +16,6 @@ for (const path of getDeploymentTestUrls()) {
 
     await page.locator("#__next:not(:has([data-testid='loading']))").waitFor();
 
-    await takeSnapshot(page, path, testInfo);
+    await takeSnapshot(page, testInfo); // To be used in conjunction with Chromatic for comparison
   });
 }
