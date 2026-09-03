@@ -1,14 +1,8 @@
 import { Client as HubspotClient } from "@hubspot/api-client";
 import { NextApiRequest, NextApiResponse } from "next";
-import { z } from "zod";
 import { getAuth, clerkClient } from "@clerk/nextjs/server";
 
 import getServerConfig from "@/node-lib/getServerConfig";
-
-export const contactResponseSchema = z.object({
-  schoolName: z.string(),
-  schoolId: z.string(),
-});
 
 export function createHandler(hubspotClient: HubspotClient) {
   return async function handler(req: NextApiRequest, res: NextApiResponse) {

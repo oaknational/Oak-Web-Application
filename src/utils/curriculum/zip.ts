@@ -14,5 +14,5 @@ export async function zipFromFiles(files: OutputFile[]) {
     zip.file(filename, buffer);
   }
   const uArray = await zip.generateAsync({ type: "uint8array" });
-  return Buffer.from(uArray);
+  return new Uint8Array(uArray);
 }
