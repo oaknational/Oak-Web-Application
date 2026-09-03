@@ -1,17 +1,20 @@
 import { getSubjectPhaseOptions } from "./getProgrammeData";
 import { PageSearchParms } from "./page";
 
+import { CurriculumPhaseOption } from "@/node-lib/curriculum-api-2023";
+import { CurriculumSelectionSlugs } from "@/utils/curriculum/slugs";
+
+type SubjectPhaseData = NonNullable<
+  Awaited<ReturnType<typeof getSubjectPhaseOptions>>
+>;
+
 export const getMetaTitle = (
-  subjectPhaseData: NonNullable<
-    Awaited<ReturnType<typeof getSubjectPhaseOptions>>
-  >,
+  subjectPhaseData: SubjectPhaseData,
   searchParams?: PageSearchParms,
 ) => {
-  const { subjects, subjectPhaseKeystageSlugs } = subjectPhaseData;
+  const { subjectPhaseKeystageSlugs } = subjectPhaseData;
 
-  const currentSubject = subjects.find(
-    (s) => s.slug === subjectPhaseKeystageSlugs.subjectSlug,
-  );
+  const currentSubject = getCurrentSubject(subjectPhaseData);
 
   if (!currentSubject) {
     return {
@@ -20,11 +23,10 @@ export const getMetaTitle = (
     };
   }
 
-  const ks4Options = currentSubject?.ks4_options ?? [];
-  const ks4Option = ks4Options.find(
-    (ks4opt) => ks4opt.slug === subjectPhaseKeystageSlugs.ks4OptionSlug,
-  );
-  const isGcseOption = ks4Option && ks4Option.slug !== "core";
+  const { examboardSegment, isGcseOption } = getKs4Option({
+    currentSubject,
+    subjectPhaseKeystageSlugs,
+  });
 
   const phaseTitle = currentSubject.phases.find(
     (p) => p.slug === subjectPhaseKeystageSlugs.phaseSlug,
@@ -36,8 +38,6 @@ export const getMetaTitle = (
       ? searchParams.keystages.toUpperCase()
       : null;
 
-  const getYearTitle = (year: string) =>
-    year === "all-years" ? "All Years" : `Y${year}`;
   const yearSegment =
     typeof searchParams?.years === "string"
       ? getYearTitle(searchParams.years)
@@ -52,8 +52,6 @@ export const getMetaTitle = (
     typeof searchParams?.tiers === "string"
       ? ` ${searchParams.tiers[0]?.toLocaleUpperCase() + searchParams.tiers.slice(1)}`
       : "";
-
-  const examboardSegment = ks4Option ? ` ${ks4Option.title}` : "";
 
   let title = `Free ${phaseSubjectSegment}${tierSegment}${examboardSegment}${threadSegment} Lesson & Curriculum Resources`;
 
@@ -74,3 +72,28 @@ export const getMetaTitle = (
 
   return { title, description };
 };
+
+const getCurrentSubject = (subjectPhaseData: SubjectPhaseData) => {
+  const { subjects, subjectPhaseKeystageSlugs } = subjectPhaseData;
+
+  return subjects.find((s) => s.slug === subjectPhaseKeystageSlugs.subjectSlug);
+};
+
+const getKs4Option = ({
+  currentSubject,
+  subjectPhaseKeystageSlugs,
+}: {
+  currentSubject: CurriculumPhaseOption;
+  subjectPhaseKeystageSlugs: CurriculumSelectionSlugs;
+}) => {
+  const ks4Options = currentSubject?.ks4_options ?? [];
+  const ks4Option = ks4Options.find(
+    (ks4opt) => ks4opt.slug === subjectPhaseKeystageSlugs.ks4OptionSlug,
+  );
+  const isGcseOption = ks4Option && ks4Option.slug !== "core";
+  const examboardSegment = ks4Option ? ` ${ks4Option.title}` : "";
+  return { isGcseOption, examboardSegment };
+};
+
+const getYearTitle = (year: string) =>
+  year === "all-years" ? "All Years" : `Y${year}`;
