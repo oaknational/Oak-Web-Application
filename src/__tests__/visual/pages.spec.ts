@@ -1,9 +1,10 @@
-import { test, expect } from "@playwright/test";
+import { takeSnapshot } from "@chromatic-com/playwright";
+import { test, type TestInfo } from "@playwright/test";
 
 const getDeploymentTestUrls = require("../../common-lib/urls/getDeploymentTestUrls");
 
 for (const path of getDeploymentTestUrls()) {
-  test(path, { tag: "@visual" }, async ({ page }) => {
+  test(path, { tag: "@visual" }, async ({ page }, testInfo: TestInfo) => {
     await page.goto(path, {
       waitUntil: "domcontentloaded",
       timeout: 60_000,
@@ -11,8 +12,6 @@ for (const path of getDeploymentTestUrls()) {
 
     await page.locator("#__next:not(:has([data-testid='loading']))").waitFor();
 
-    await expect(page).toHaveScreenshot(`${path.replace("/", "-")}.png`, {
-      fullPage: true,
-    });
+    await takeSnapshot(page, path, testInfo);
   });
 }

@@ -1,4 +1,5 @@
 import { defineConfig, devices } from "@playwright/test";
+import type { ChromaticConfig } from "@chromatic-com/playwright";
 
 /**
  * In CI, BASE_URL is set to the Vercel preview/production deployment URL.
@@ -10,7 +11,7 @@ const shouldStartWebServer = !process.env.CI && !process.env.BASE_URL;
 
 const visualTestMatch = /visual\/.*\.spec\.ts/;
 
-export default defineConfig({
+export default defineConfig<ChromaticConfig>({
   testDir: "./src/__tests__/",
   testMatch: /.*\.spec\.ts$/,
   outputDir: "./test-results",
@@ -48,6 +49,7 @@ export default defineConfig({
 
     trace: "on-first-retry",
     screenshot: "only-on-failure",
+    disableAutoSnapshot: true,
   },
 
   expect: {
