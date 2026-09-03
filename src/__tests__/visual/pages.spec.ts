@@ -6,12 +6,9 @@ const getDeploymentTestUrls: () => (
   | { url: string; timeout: number }
 )[] = require("../../common-lib/urls/getDeploymentTestUrls");
 
-for (let path of getDeploymentTestUrls()) {
-  let timeout = 60_000;
-  if (typeof path === "object" && path !== null) {
-    path = path.url;
-    timeout = path.timeout;
-  }
+for (const entry of getDeploymentTestUrls()) {
+  const path = typeof entry === "string" ? entry : entry.url;
+  const timeout = typeof entry === "string" ? 60_000 : entry.timeout;
 
   test(path, { tag: "@visual" }, async ({ page }, testInfo: TestInfo) => {
     await page.goto(path, {
