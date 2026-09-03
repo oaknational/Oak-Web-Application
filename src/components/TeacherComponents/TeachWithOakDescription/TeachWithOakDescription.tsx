@@ -8,6 +8,7 @@ import {
   OakIconName,
   OakMaxWidth,
   OakP,
+  OakScreenReader,
   OakUL,
 } from "@oaknational/oak-components";
 
@@ -74,12 +75,15 @@ export const TeachWithOakDescription = () => {
                 label="Check for understanding"
                 iconName="lc-check-for-understanding"
                 connector={
-                  <OakIcon
-                    iconName="arrow-down"
-                    iconHeight="spacing-80"
-                    iconWidth="spacing-80"
-                    $mv={"spacing-12"}
-                  />
+                  <>
+                    <OakIcon
+                      iconName="arrow-down"
+                      iconHeight="spacing-80"
+                      iconWidth="spacing-80"
+                      $mv={"spacing-12"}
+                    />
+                    <OakScreenReader>Followed by</OakScreenReader>
+                  </>
                 }
               />
               <LearningCycle
