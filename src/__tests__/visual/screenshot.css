@@ -1,8 +1,3 @@
 #mtm-root-container {
   display: none !important;
 }
-
-/* This is only temp while percy is still in use, will be replaced by data-chromatic="ignore" */
-*[data-percy-hide="contents"] > * {
-  visibility: hidden;
-}
