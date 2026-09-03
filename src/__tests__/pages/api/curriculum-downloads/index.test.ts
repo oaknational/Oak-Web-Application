@@ -3,6 +3,7 @@ import { createNextApiMocks } from "../../../__helpers__/createNextApiMocks";
 
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 import { createUnit } from "@/fixtures/curriculum/unit";
+import { isFeatureFlagEnabledServer } from "@/utils/featureFlagChecks/server";
 
 const fetch = jest.spyOn(global, "fetch") as jest.Mock;
 
@@ -41,9 +42,17 @@ const refreshedMVTimeMock = jest.fn<
     ],
   };
 });
+jest.mock("@/utils/featureFlagChecks/server", () => ({
+  isFeatureFlagEnabledServer: jest.fn(() => false),
+}));
 
 const mockSequenceData = {
-  units: [createUnit({ slug: "test" })],
+  units: [
+    createUnit({
+      slug: "test",
+      features: { national_curriculum_content: true },
+    }),
+  ],
 };
 
 const curriculumPhaseOptionsMock = jest.fn(async () => {
@@ -198,6 +207,15 @@ jest.mock("../../../../node-lib/cms", () => ({
   __esModule: true,
   default: {
     curriculumOverviewPage: async () => null,
+    implementationGuides: jest.fn().mockResolvedValue({
+      curriculumQuality: {
+        asset: {
+          extension: "PDF",
+          size: 1000,
+          url: "http://localhost:3000/test.pdf",
+        },
+      },
+    }),
   },
 }));
 
@@ -212,7 +230,7 @@ describe("/api/curriculum-downloads", () => {
   it("redirect if old cache slug", async () => {
     const { req, res } = createNextApiMocks({
       query: {
-        types: ["curriculum-plans"],
+        types: ["curriculumPlan"],
         mvRefreshTime: (LAST_REFRESH.getTime() - 1000).toString(),
         subjectSlug: "english",
         phaseSlug: "secondary",
@@ -229,7 +247,7 @@ describe("/api/curriculum-downloads", () => {
     it("error is invalid", async () => {
       const { req, res } = createNextApiMocks({
         query: {
-          types: ["curriculum-plans"],
+          types: ["curriculumPlan"],
           mvRefreshTime: LAST_REFRESH_AS_TIME.toString(),
           subjectSlug: "INVALID",
           phaseSlug: "INVALID",
@@ -243,11 +261,52 @@ describe("/api/curriculum-downloads", () => {
     });
   });
 
-  it("return 200 if correct cache slug", async () => {
+  it("return 200 if correct cache slug (curriculumPlans)", async () => {
     curriculumSequenceMock.mockResolvedValue(mockSequenceData);
     const { req, res } = createNextApiMocks({
       query: {
-        types: ["curriculum-plans"],
+        types: ["curriculumPlan"],
+        mvRefreshTime: LAST_REFRESH_AS_TIME.toString(),
+        subjectSlug: "english",
+        phaseSlug: "secondary",
+        state: "published",
+        ks4OptionSlug: "aqa",
+      },
+    });
+    await handler(req, res);
+
+    expect(res.getHeader("Content-Type")).toBe(
+      "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+    );
+    expect(fetch).toHaveBeenCalledTimes(1);
+    expect(res._getStatusCode()).toBe(200);
+  });
+
+  it("return 200 if correct cache slug (nationalCurriculum)", async () => {
+    curriculumSequenceMock.mockResolvedValue(mockSequenceData);
+    const { req, res } = createNextApiMocks({
+      query: {
+        types: ["nationalCurriculum"],
+        mvRefreshTime: LAST_REFRESH_AS_TIME.toString(),
+        subjectSlug: "english",
+        phaseSlug: "secondary",
+        state: "published",
+        ks4OptionSlug: "aqa",
+      },
+    });
+    await handler(req, res);
+
+    expect(res.getHeader("Content-Type")).toBe(
+      "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+    );
+    expect(res._getStatusCode()).toBe(200);
+  });
+
+  it("return 200 if correct cache slug (zip)", async () => {
+    curriculumSequenceMock.mockResolvedValue(mockSequenceData);
+    const { req, res } = createNextApiMocks({
+      query: {
+        types: ["curriculumPlan", "nationalCurriculum"],
         mvRefreshTime: LAST_REFRESH_AS_TIME.toString(),
         subjectSlug: "english",
         phaseSlug: "secondary",
@@ -258,24 +317,7 @@ describe("/api/curriculum-downloads", () => {
     await handler(req, res);
 
     expect(fetch).toHaveBeenCalledTimes(1);
-    expect(res._getStatusCode()).toBe(200);
-  });
-
-  it("return 200 if correct cache slug", async () => {
-    curriculumSequenceMock.mockResolvedValue(mockSequenceData);
-    const { req, res } = createNextApiMocks({
-      query: {
-        types: ["curriculum-plans"],
-        mvRefreshTime: LAST_REFRESH_AS_TIME.toString(),
-        subjectSlug: "english",
-        phaseSlug: "secondary",
-        state: "published",
-        ks4OptionSlug: "wjec",
-      },
-    });
-    await handler(req, res);
-
-    expect(fetch).toHaveBeenCalledTimes(1);
+    expect(res.getHeader("Content-Type")).toBe("application/zip");
     expect(res._getStatusCode()).toBe(200);
   });
 
@@ -283,7 +325,7 @@ describe("/api/curriculum-downloads", () => {
     curriculumSequenceMock.mockRejectedValue(new Error("Missing"));
     const { req, res } = createNextApiMocks({
       query: {
-        types: ["curriculum-plans"],
+        types: ["curriculumPlan"],
         mvRefreshTime: LAST_REFRESH_AS_TIME.toString(),
         subjectSlug: "english",
         phaseSlug: "secondary",
@@ -300,7 +342,7 @@ describe("/api/curriculum-downloads", () => {
     curriculumSequenceMock.mockRejectedValue(new Error("Missing"));
     const { req, res } = createNextApiMocks({
       query: {
-        types: ["curriculum-plans"],
+        types: ["curriculumPlan"],
         mvRefreshTime: LAST_REFRESH_AS_TIME.toString(),
         subjectSlug: "english",
         phaseSlug: "primary",
@@ -315,7 +357,7 @@ describe("/api/curriculum-downloads", () => {
   it("returns 404 if state is new", async () => {
     const { req, res } = createNextApiMocks({
       query: {
-        types: ["curriculum-plans"],
+        types: ["curriculumPlan"],
         mvRefreshTime: LAST_REFRESH_AS_TIME.toString(),
         subjectSlug: "english",
         phaseSlug: "secondary",
@@ -326,5 +368,29 @@ describe("/api/curriculum-downloads", () => {
     await handler(req, res);
 
     expect(res._getStatusCode()).toBe(404);
+  });
+
+  test("sanity implementation toolkit documents", async () => {
+    (isFeatureFlagEnabledServer as jest.Mock).mockImplementation(
+      (_cookies, flag) => {
+        return flag === "implementation-guides" ? true : false;
+      },
+    );
+
+    curriculumSequenceMock.mockResolvedValue(mockSequenceData);
+    const { req, res } = createNextApiMocks({
+      query: {
+        types: ["curriculumQuality"],
+        mvRefreshTime: LAST_REFRESH_AS_TIME.toString(),
+        subjectSlug: "english",
+        phaseSlug: "secondary",
+        state: "published",
+      },
+    });
+    await handler(req, res);
+
+    expect(fetch).toHaveBeenCalledTimes(1);
+    expect(res._getStatusCode()).toBe(200);
+    expect(res.getHeader("Content-Type")).toBe("application/pdf");
   });
 });

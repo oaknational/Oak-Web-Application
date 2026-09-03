@@ -3,7 +3,7 @@ import { act } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { useSyncExternalStore } from "react";
 
-import { ProgrammeView } from "./ProgrammeView";
+import { ProgrammePageProps, ProgrammeView } from "./ProgrammeView";
 
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 import { resolveOakHref } from "@/common-lib/urls";
@@ -13,6 +13,25 @@ import {
   curriculumOverviewCMSFixture,
   curriculumOverviewMVFixture,
 } from "@/node-lib/curriculum-api-2023/fixtures/curriculumOverview.fixture";
+import {
+  CurriculumSelectionSlugs,
+  CurriculumSelectionTitles,
+} from "@/utils/curriculum/slugs";
+import { BrowseFiltersProvider } from "@/context/BrowseFilters";
+import { getDefaultBrowseFilter } from "@/context/BrowseFilters/utils/getDefaultBrowseFilter";
+import { BrowseFilters } from "@/context/BrowseFilters/types";
+
+const curriculumResourcesAccessed = jest.fn();
+
+jest.mock("@/context/Analytics/useAnalytics", () => ({
+  __esModule: true,
+  default: () => ({
+    track: {
+      curriculumResourcesAccessed: (...args: []) =>
+        curriculumResourcesAccessed(...args),
+    },
+  }),
+}));
 
 const subjectPhaseSlug = "science-secondary-aqa";
 
@@ -96,12 +115,12 @@ const defaultProps = {
     phaseSlug: "secondary",
     subjectSlug: "science",
     ks4OptionSlug: "aqa",
-  },
+  } as CurriculumSelectionSlugs,
   curriculumSelectionTitles: {
     subjectTitle: "Science",
     phaseTitle: "Secondary",
     examboardTitle: "AQA",
-  },
+  } as CurriculumSelectionTitles,
   subjectPhaseSlug,
   ks4Options: [],
   ks4OptionFilterDimensions: {},
@@ -113,7 +132,7 @@ const defaultProps = {
     child_subjects: [],
   },
   mvRefreshTime: 0,
-  curriculumInfo: curriculumOverviewMVFixture(),
+  nonCurriculum: curriculumOverviewMVFixture().nonCurriculum,
   curriculumCMSInfo: curriculumOverviewCMSFixture(),
   subjectPhaseSanityData: null,
   tabSlug: "units" as const,
@@ -124,9 +143,10 @@ const defaultProps = {
     subjectTitle: "Science",
     ks4OptionTitle: "AQA",
   },
+  featureFlags: {},
+  implementationGuides: {},
+  fileSizes: [],
 };
-
-const render = renderWithProviders();
 
 const lightweightUnitsProps = {
   ...defaultProps,
@@ -137,16 +157,34 @@ const lightweightUnitsProps = {
   ),
 };
 
+const renderProgrammeView = (
+  props?: Partial<ProgrammePageProps> & { initialFilter?: BrowseFilters },
+) => {
+  const { initialFilter, ...viewProps } = props ?? {};
+  const mergedProps = { ...defaultProps, ...viewProps };
+
+  return renderWithProviders()(
+    <BrowseFiltersProvider
+      defaultFilter={getDefaultBrowseFilter(
+        mergedProps.curriculumUnitsFormattedData,
+      )}
+      initialFilter={initialFilter}
+    >
+      <ProgrammeView {...mergedProps} />
+    </BrowseFiltersProvider>,
+  );
+};
+
 describe("ProgrammeView", () => {
   it("renders the programme header", () => {
-    render(<ProgrammeView {...defaultProps} />);
+    renderProgrammeView();
     const heading = screen.getByRole("heading", {
       name: "Science secondary AQA",
     });
     expect(heading).toBeInTheDocument();
   });
   it("highlights the correct tab", () => {
-    render(<ProgrammeView {...lightweightUnitsProps} />);
+    renderProgrammeView({ ...lightweightUnitsProps });
     const unitsTab = screen.getByRole("link", { name: "Unit sequence" });
     expect(unitsTab).toHaveStyle("background: #bef2bd");
 
@@ -154,7 +192,7 @@ describe("ProgrammeView", () => {
     expect(overviewTab).toHaveStyle("background: #222222");
   });
   it("renders the correct tab content for units", () => {
-    render(<ProgrammeView {...defaultProps} />);
+    renderProgrammeView();
     const heading = screen.getByRole("heading", { name: "Year 7 units" });
     expect(heading).toBeInTheDocument();
   });
@@ -166,7 +204,7 @@ describe("ProgrammeView", () => {
         tab: "curriculum-explainer",
       }),
     );
-    render(<ProgrammeView {...defaultProps} tabSlug="curriculum-explainer" />);
+    renderProgrammeView({ tabSlug: "curriculum-explainer" });
     const heading = screen.getByRole("heading", { name: "Aims and purpose" });
     expect(heading).toBeInTheDocument();
   });
@@ -178,12 +216,12 @@ describe("ProgrammeView", () => {
         tab: "download",
       }),
     );
-    render(<ProgrammeView {...defaultProps} tabSlug="download" />);
+    renderProgrammeView({ tabSlug: "download" });
     const content = screen.getByText("Download curriculum resources");
     expect(content).toBeInTheDocument();
   });
   it("navigates on tab click", async () => {
-    render(<ProgrammeView {...lightweightUnitsProps} />);
+    renderProgrammeView({ ...lightweightUnitsProps });
     const overviewTabButton = screen.getByRole("link", { name: "Explainer" });
     const user = userEvent.setup({ delay: null });
     await user.click(overviewTabButton);
@@ -194,7 +232,7 @@ describe("ProgrammeView", () => {
     useSearchParamsMock.mockReturnValue({
       get: (key: string) => (key === "keystages" ? "ks4" : null),
     });
-    render(<ProgrammeView {...lightweightUnitsProps} />);
+    renderProgrammeView({ ...lightweightUnitsProps });
     const overviewTabButton = screen.getByRole("link", { name: "Explainer" });
 
     const user = userEvent.setup({ delay: null });
@@ -215,12 +253,12 @@ describe("ProgrammeView", () => {
         phaseSlug: "primary",
         subjectSlug: "english",
         ks4OptionSlug: null,
-      },
+      } satisfies CurriculumSelectionSlugs,
       curriculumSelectionTitles: {
         subjectTitle: "English",
         phaseTitle: "Primary",
         examboardTitle: undefined,
-      },
+      } satisfies CurriculumSelectionTitles,
       curriculumUnitsFormattedData: formatCurriculumUnitsData(
         curriculumUnitsTabFixture({
           units: [
@@ -256,8 +294,7 @@ describe("ProgrammeView", () => {
         }),
       ),
     };
-
-    render(<ProgrammeView {...englishProps} />);
+    renderProgrammeView({ ...englishProps });
     const heading = screen.getByRole("heading", {
       name: "English: Reading, writing & oracy primary",
     });
@@ -283,23 +320,21 @@ describe("ProgrammeView", () => {
   describe("non-curriculum subjects", () => {
     const nonCurriculumProps = {
       ...defaultProps,
-      curriculumInfo: curriculumOverviewMVFixture({ nonCurriculum: true }),
+      nonCurriculum: true,
       curriculumCMSInfo: null,
     };
 
     it("does not render tabs", () => {
-      render(<ProgrammeView {...nonCurriculumProps} />);
+      renderProgrammeView({ ...nonCurriculumProps });
       expect(screen.queryByTestId("programme-tabs")).not.toBeInTheDocument();
     });
 
     it("calls notFound when the overview tab is active", () => {
       expect(() =>
-        render(
-          <ProgrammeView
-            {...nonCurriculumProps}
-            tabSlug="curriculum-explainer"
-          />,
-        ),
+        renderProgrammeView({
+          ...nonCurriculumProps,
+          tabSlug: "curriculum-explainer",
+        }),
       ).toThrow("NEXT_HTTP_ERROR_FALLBACK;404");
     });
   });
@@ -316,7 +351,7 @@ describe("ProgrammeView", () => {
     });
 
     it("accepts initialFilter prop without error", () => {
-      const initialFilter = {
+      const initialFilter: BrowseFilters = {
         years: ["7"],
         tiers: ["foundation"],
         childSubjects: [],
@@ -325,8 +360,7 @@ describe("ProgrammeView", () => {
         pathways: [],
         keystages: [],
       };
-
-      render(<ProgrammeView {...defaultProps} initialFilter={initialFilter} />);
+      renderProgrammeView({ initialFilter });
       const heading = screen.getByRole("heading", {
         name: "Science secondary AQA",
       });
@@ -334,7 +368,7 @@ describe("ProgrammeView", () => {
     });
 
     it("renders correctly with initialFilter for a single year", () => {
-      const initialFilter = {
+      const initialFilter: BrowseFilters = {
         years: ["7"],
         tiers: ["foundation"],
         childSubjects: [],
@@ -344,16 +378,29 @@ describe("ProgrammeView", () => {
         keystages: [],
       };
 
-      render(<ProgrammeView {...defaultProps} initialFilter={initialFilter} />);
+      renderProgrammeView({ initialFilter });
       // The heading should reflect the single year selection
       const heading = screen.getByRole("heading", { name: "Year 7 units" });
       expect(heading).toBeInTheDocument();
     });
 
     it("gracefully falls back when initialFilter is not provided", () => {
-      render(<ProgrammeView {...defaultProps} />);
+      renderProgrammeView();
       const heading = screen.getByRole("heading", { name: "Year 7 units" });
       expect(heading).toBeInTheDocument();
+    });
+
+    it("calls curriculumResourcesAccessed when the download tab is clicked", () => {
+      renderProgrammeView();
+      const downloadTabButton = screen.getByRole("link", {
+        name: "Download",
+      });
+      downloadTabButton.click();
+      expect(curriculumResourcesAccessed).toHaveBeenCalledWith(
+        expect.objectContaining({
+          componentType: "download_tab",
+        }),
+      );
     });
   });
 
@@ -372,7 +419,7 @@ describe("ProgrammeView", () => {
       useSearchParamsMock.mockReturnValue({
         get: (key: string) => (key === "years" ? "invalid" : null),
       });
-      render(<ProgrammeView {...defaultProps} />);
+      renderProgrammeView();
       const heading = screen.getByRole("heading", {
         name: "Science secondary AQA",
       });
@@ -383,7 +430,7 @@ describe("ProgrammeView", () => {
       useSearchParamsMock.mockReturnValue({
         get: (key: string) => (key === "keystages" ? "invalid" : null),
       });
-      render(<ProgrammeView {...defaultProps} />);
+      renderProgrammeView();
       const heading = screen.getByRole("heading", {
         name: "Science secondary AQA",
       });

@@ -1,6 +1,6 @@
 import {
-  GetServerSideProps,
-  GetServerSidePropsResult,
+  GetStaticProps,
+  GetStaticPropsResult,
   NextPage,
 } from "next/dist/types";
 
@@ -16,8 +16,10 @@ import { OaksImpactStats } from "@/components/GenericPagesComponents/OaksImpactS
 import CMSClient from "@/node-lib/cms";
 import { OaksImpactPage } from "@/common-lib/cms-types";
 import { OaksImpactSchoolQuotesSection } from "@/components/GenericPagesComponents/OaksImpactSchoolQuotesSection";
+import TrackScrolledTo from "@/components/SharedComponents/TrackScrolledTo";
 import { OaksImpactHeader } from "@/components/GenericPagesComponents/OaksImpactHeader";
-import { isFeatureFlagEnabled } from "@/utils/featureFlagServer";
+import useTrackExitIntended from "@/hooks/useTrackExitIntended";
+import { TeacherBrowseAnalyticsStoreProvider } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
 
 export type OaksImpactPageProps = {
   topNav: TopNavProps;
@@ -25,70 +27,69 @@ export type OaksImpactPageProps = {
 };
 
 const OaksImpact: NextPage<OaksImpactPageProps> = ({ topNav, pageData }) => {
+  useTrackExitIntended();
   return (
-    <Layout
-      seoProps={getSeoProps({ title: "Oak's impact" })}
-      $background={"bg-primary"}
-      topNavProps={topNav}
+    <TeacherBrowseAnalyticsStoreProvider
+      programmeState={null}
+      accessLevel="homepage"
     >
-      <AboutUsLayout>
-        <OaksImpactHeader
-          title="Oak's impact"
-          body={pageData.header.introText}
-          video={pageData.header.video}
-          videoDescription={pageData.header.videoDescription}
-        />
-        <OaksImpactStats {...pageData.statsSection} />
-        <OaksImpactCaseStudies
-          title="Case studies"
-          caseStudies={pageData.caseStudiesSection.caseStudies}
-        />
-        <OaksImpactSchoolQuotesSection {...pageData.schoolQuotes} />
-        <SupportYou
-          headingTag="h2"
-          link={{
-            text: "Get in touch with an expert",
-            href: "https://share.hsforms.com/2yBT-92_WT6CvX1b6L3Iw8Qbvumd",
-          }}
-        />
-      </AboutUsLayout>
-    </Layout>
+      <Layout
+        seoProps={getSeoProps({ title: "Oak's impact" })}
+        $background={"bg-primary"}
+        topNavProps={topNav}
+      >
+        <AboutUsLayout>
+          <OaksImpactHeader
+            title="Oak's impact"
+            body={pageData.header.introText}
+            video={pageData.header.video}
+            videoDescription={pageData.header.videoDescription}
+          />
+          <OaksImpactStats {...pageData.statsSection} />
+          <OaksImpactCaseStudies
+            title="Case studies"
+            caseStudies={pageData.caseStudiesSection.caseStudies}
+          />
+          <OaksImpactSchoolQuotesSection {...pageData.schoolQuotes} />
+          <TrackScrolledTo eventKey="support_you" />
+          <SupportYou
+            headingTag="h2"
+            link={{
+              text: "Get in touch with an expert",
+              href: "https://share.hsforms.com/2yBT-92_WT6CvX1b6L3Iw8Qbvumd",
+            }}
+          />
+        </AboutUsLayout>
+      </Layout>
+    </TeacherBrowseAnalyticsStoreProvider>
   );
 };
 
-export const getServerSideProps: GetServerSideProps = async (context) => {
-  const isImpactPageEnabled = await isFeatureFlagEnabled(
-    context,
-    "oaks-impact",
-  );
-  if (!isImpactPageEnabled) {
-    return {
-      notFound: true,
-    };
-  }
-
+export const getStaticProps: GetStaticProps<OaksImpactPageProps> = async (
+  context,
+) => {
   return getPageProps({
-    page: "about-oaks-impact::getServerSideProps",
+    page: "about-oaks-impact::getStaticProps",
     context,
-    withIsr: false,
     getProps: async () => {
-      const topNav = await curriculumApi2023.topNav();
       const isPreviewMode = context.preview === true;
 
-      const pageData = await CMSClient.oaksImpactPage({
+      const oaksImpactPage = await CMSClient.oaksImpactPage({
         previewMode: isPreviewMode,
       });
 
-      if (!pageData) {
+      const topNav = await curriculumApi2023.topNav();
+
+      if (!oaksImpactPage) {
         return {
           notFound: true,
         };
       }
 
-      const results: GetServerSidePropsResult<OaksImpactPageProps> = {
+      const results: GetStaticPropsResult<OaksImpactPageProps> = {
         props: {
+          pageData: oaksImpactPage,
           topNav,
-          pageData,
         },
       };
       return results;

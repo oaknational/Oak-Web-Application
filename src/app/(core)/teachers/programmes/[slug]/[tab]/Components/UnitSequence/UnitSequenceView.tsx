@@ -9,7 +9,7 @@ import { KS4OptionFocusProvider } from "../Filters/KS4OptionFocus";
 import { ProgrammePageFiltersModalProvider } from "../Filters/ProgrammePageFiltersModalProvider";
 import ProgrammePageFiltersDesktop from "../Filters/ProgrammePageFiltersDesktop";
 import ProgrammePageFiltersMobile from "../Filters/ProgrammePageFiltersMobile";
-import { getDisplayedFilters } from "../Filters/ProgrammeFilters";
+import { useDisplayedFilters } from "../Filters/ProgrammeFilters";
 import type { Ks4OptionFilterDimension } from "../../buildKs4OptionFilterDimensions";
 
 import ProgrammeSequence from "./Sequence";
@@ -20,13 +20,11 @@ import {
   getNumberOfSelectedUnits,
   highlightedUnitCount,
 } from "@/utils/curriculum/filtering";
-import { CurriculumFilters } from "@/utils/curriculum/types";
 import { CurriculumSelectionSlugs } from "@/utils/curriculum/slugs";
 import type { Ks4Option } from "@/node-lib/curriculum-api-2023/queries/curriculumPhaseOptions/curriculumPhaseOptions.schema";
+import { useBrowseFilters } from "@/context/BrowseFilters";
 
 export type UnitSequenceViewProps = {
-  filters: CurriculumFilters;
-  setFilters: (newFilters: CurriculumFilters) => void;
   curriculumSelectionSlugs: CurriculumSelectionSlugs;
   curriculumUnitsFormattedData: CurriculumUnitsFormattedData;
   ks4Options: Ks4Option[];
@@ -34,8 +32,6 @@ export type UnitSequenceViewProps = {
 };
 
 export const UnitSequenceView = ({
-  filters,
-  setFilters,
   curriculumSelectionSlugs,
   curriculumUnitsFormattedData,
   ks4Options,
@@ -43,6 +39,8 @@ export const UnitSequenceView = ({
 }: UnitSequenceViewProps) => {
   const { yearData, threadOptions } = curriculumUnitsFormattedData;
   const { ks4OptionSlug } = curriculumSelectionSlugs;
+
+  const { filters } = useBrowseFilters();
 
   const unitCount = getNumberOfSelectedUnits(yearData, filters);
 
@@ -52,9 +50,8 @@ export const UnitSequenceView = ({
     filters.threads,
   );
 
-  const shouldDisplayFilters = getDisplayedFilters(
+  const shouldDisplayFilters = useDisplayedFilters(
     curriculumUnitsFormattedData,
-    filters,
     curriculumSelectionSlugs,
     ks4Options,
   ).some((filter) => filter.shouldDisplayFilter);
@@ -87,8 +84,6 @@ export const UnitSequenceView = ({
             <OakBox $display={["block", "block", "none"]}>
               {shouldDisplayFilters && (
                 <ProgrammePageFiltersMobile
-                  filters={filters}
-                  onChangeFilters={setFilters}
                   data={curriculumUnitsFormattedData}
                   slugs={curriculumSelectionSlugs}
                   ks4Options={ks4Options}
@@ -103,8 +98,6 @@ export const UnitSequenceView = ({
               >
                 {shouldDisplayFilters && (
                   <ProgrammePageFiltersDesktop
-                    filters={filters}
-                    onChangeFilters={setFilters}
                     data={curriculumUnitsFormattedData}
                     slugs={curriculumSelectionSlugs}
                     ks4Options={ks4Options}
