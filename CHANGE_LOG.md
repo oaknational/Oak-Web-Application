@@ -1,3 +1,18 @@
+## [1.1180.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.1180.0...v1.1180.1) (2026-09-03)
+
+
+### Bug Fixes
+
+* bump oak-components from v3.13.0 to v3.14.1 ([266d3dc](https://github.com/oaknational/Oak-Web-Application/commit/266d3dc85cb0ae0d842ce1e17c230d6af1c3e4f7))
+* snaps ([6192ba3](https://github.com/oaknational/Oak-Web-Application/commit/6192ba395cdcc3892ac345507901053a510aaae1))
+
+# [1.1180.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1179.0...v1.1180.0) (2026-09-03)
+
+
+### Features
+
+* enable implementation guides for all users ([27e476e](https://github.com/oaknational/Oak-Web-Application/commit/27e476edcaa78b537b20f1e4492c90504a26a5a4))
+
 # [1.1179.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1178.1...v1.1179.0) (2026-09-03)
 
 
