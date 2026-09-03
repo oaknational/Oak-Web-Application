@@ -7601,6 +7601,7 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
             </div>
             <span
               class="c153 c233"
+              data-chromatic="ignore"
               data-percy-hide="contents"
             >
               <img

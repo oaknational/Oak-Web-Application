@@ -6747,6 +6747,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
             </div>
             <span
               class="c82 c199"
+              data-chromatic="ignore"
               data-percy-hide="contents"
             >
               <img
