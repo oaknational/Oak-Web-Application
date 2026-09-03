@@ -1,3 +1,12 @@
+# [1.1177.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1176.0...v1.1177.0) (2026-09-03)
+
+
+### Features
+
+* add TeachWithOakDescription component ([cbb8dba](https://github.com/oaknational/Oak-Web-Application/commit/cbb8dba86f3e11a0d178f3a5303a92ccc5ae2299))
+* add visually hidden text on diagram ([32f7d16](https://github.com/oaknational/Oak-Web-Application/commit/32f7d16b79f905b0a05034f92dc13a50d1b6d4d5))
+* use a list for the learning cycles ([92354f0](https://github.com/oaknational/Oak-Web-Application/commit/92354f0fe919f6e4a5dc4270ab5f72742682b668))
+
 # [1.1176.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1175.0...v1.1176.0) (2026-09-02)
 
 
