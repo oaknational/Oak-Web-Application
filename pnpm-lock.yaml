@@ -65,10 +65,10 @@ importers:
         version: 3.10.2(@types/react-dom@18.3.0)(@types/react@18.2.79)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@oaknational/google-classroom-addon':
         specifier: ^1.33.0
-        version: 1.33.0(1c46c78ffeed89ac55c60660bc97d3f5)
+        version: 1.33.0(6d3b526a5c4633d13e0327ee29c34681)
       '@oaknational/oak-components':
-        specifier: ^3.14.1
-        version: 3.14.1(@portabletext/react@4.0.3(react@18.3.1))(@tiptap/core@2.14.0(@tiptap/pm@2.14.0))(@tiptap/pm@2.14.0)(@types/react@18.2.79)(next-cloudinary@6.16.0(next@15.5.19(@babel/core@7.28.3)(@opentelemetry/api@1.9.1)(@playwright/test@1.61.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.75.0))(react@18.3.1))(next@15.5.19(@babel/core@7.28.3)(@opentelemetry/api@1.9.1)(@playwright/test@1.61.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.75.0))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(styled-components@5.3.11(@babel/core@7.28.3)(react-dom@18.3.1(react@18.3.1))(react-is@19.2.8)(react@18.3.1))
+        specifier: ^3.14.2
+        version: 3.14.2(@portabletext/react@4.0.3(react@18.3.1))(@tiptap/core@2.14.0(@tiptap/pm@2.14.0))(@tiptap/pm@2.14.0)(@types/react@18.2.79)(next-cloudinary@6.16.0(next@15.5.19(@babel/core@7.28.3)(@opentelemetry/api@1.9.1)(@playwright/test@1.61.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.75.0))(react@18.3.1))(next@15.5.19(@babel/core@7.28.3)(@opentelemetry/api@1.9.1)(@playwright/test@1.61.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.75.0))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(styled-components@5.3.11(@babel/core@7.28.3)(react-dom@18.3.1(react@18.3.1))(react-is@19.2.8)(react@18.3.1))
       '@oaknational/oak-consent-client':
         specifier: 2.4.0
         version: 2.4.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(zod@4.3.6)
@@ -3803,8 +3803,8 @@ packages:
       zod: '>=3.25.76'
       zustand: '>=5.0.9'
 
-  '@oaknational/oak-components@3.14.1':
-    resolution: {integrity: sha512-OtaOo7/BM7rN8RYFdU5f0b6t3CtQCteXpKFtwNt54D8rRMxjYTHnwJjPcpqVtBEwFAK5eSlsrFp/rW9XB19H0g==}
+  '@oaknational/oak-components@3.14.2':
+    resolution: {integrity: sha512-621lxrU5wFe72ljysLQBLg5pC3l1gJbjfYA9+aI500GK0e839ia6FKuARNTKImVXpKnkqIBoFESgwFkWslQCkw==}
     engines: {node: '24', pnpm: '>=11'}
     peerDependencies:
       '@portabletext/react': '>=4.0.1'
@@ -20106,11 +20106,11 @@ snapshots:
   '@npmcli/redact@4.0.0':
     optional: true
 
-  '@oaknational/google-classroom-addon@1.33.0(1c46c78ffeed89ac55c60660bc97d3f5)':
+  '@oaknational/google-classroom-addon@1.33.0(6d3b526a5c4633d13e0327ee29c34681)':
     dependencies:
       '@google-cloud/firestore': 7.11.6
       '@googleapis/classroom': 4.9.0
-      '@oaknational/oak-components': 3.14.1(@portabletext/react@4.0.3(react@18.3.1))(@tiptap/core@2.14.0(@tiptap/pm@2.14.0))(@tiptap/pm@2.14.0)(@types/react@18.2.79)(next-cloudinary@6.16.0(next@15.5.19(@babel/core@7.28.3)(@opentelemetry/api@1.9.1)(@playwright/test@1.61.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.75.0))(react@18.3.1))(next@15.5.19(@babel/core@7.28.3)(@opentelemetry/api@1.9.1)(@playwright/test@1.61.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.75.0))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(styled-components@5.3.11(@babel/core@7.28.3)(react-dom@18.3.1(react@18.3.1))(react-is@19.2.8)(react@18.3.1))
+      '@oaknational/oak-components': 3.14.2(@portabletext/react@4.0.3(react@18.3.1))(@tiptap/core@2.14.0(@tiptap/pm@2.14.0))(@tiptap/pm@2.14.0)(@types/react@18.2.79)(next-cloudinary@6.16.0(next@15.5.19(@babel/core@7.28.3)(@opentelemetry/api@1.9.1)(@playwright/test@1.61.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.75.0))(react@18.3.1))(next@15.5.19(@babel/core@7.28.3)(@opentelemetry/api@1.9.1)(@playwright/test@1.61.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.75.0))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(styled-components@5.3.11(@babel/core@7.28.3)(react-dom@18.3.1(react@18.3.1))(react-is@19.2.8)(react@18.3.1))
       google-auth-library: 9.15.1
       iron-session: 8.0.4
       lodash: 4.18.1
@@ -20120,7 +20120,7 @@ snapshots:
       zod: 4.3.6
       zustand: 5.0.12(@types/react@18.2.79)(react@18.3.1)(use-sync-external-store@1.6.0(react@18.3.1))
 
-  '@oaknational/oak-components@3.14.1(@portabletext/react@4.0.3(react@18.3.1))(@tiptap/core@2.14.0(@tiptap/pm@2.14.0))(@tiptap/pm@2.14.0)(@types/react@18.2.79)(next-cloudinary@6.16.0(next@15.5.19(@babel/core@7.28.3)(@opentelemetry/api@1.9.1)(@playwright/test@1.61.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.75.0))(react@18.3.1))(next@15.5.19(@babel/core@7.28.3)(@opentelemetry/api@1.9.1)(@playwright/test@1.61.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.75.0))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(styled-components@5.3.11(@babel/core@7.28.3)(react-dom@18.3.1(react@18.3.1))(react-is@19.2.8)(react@18.3.1))':
+  '@oaknational/oak-components@3.14.2(@portabletext/react@4.0.3(react@18.3.1))(@tiptap/core@2.14.0(@tiptap/pm@2.14.0))(@tiptap/pm@2.14.0)(@types/react@18.2.79)(next-cloudinary@6.16.0(next@15.5.19(@babel/core@7.28.3)(@opentelemetry/api@1.9.1)(@playwright/test@1.61.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.75.0))(react@18.3.1))(next@15.5.19(@babel/core@7.28.3)(@opentelemetry/api@1.9.1)(@playwright/test@1.61.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.75.0))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(styled-components@5.3.11(@babel/core@7.28.3)(react-dom@18.3.1(react@18.3.1))(react-is@19.2.8)(react@18.3.1))':
     dependencies:
       '@dnd-kit/core': 6.3.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@dnd-kit/sortable': 10.0.0(@dnd-kit/core@6.3.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react@18.3.1)
