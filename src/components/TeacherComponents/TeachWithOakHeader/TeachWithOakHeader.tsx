@@ -10,6 +10,7 @@ import {
   AboutSharedHeaderImage,
 } from "@/components/GenericPagesComponents/AboutSharedHeader";
 import { NewGutterMaxWidth } from "@/components/GenericPagesComponents/NewGutterMaxWidth";
+import { getCloudinaryImageUrl } from "@/utils/getCloudinaryImageUrl";
 
 const HeaderLayout = styled.div`
   display: flex;
@@ -17,8 +18,11 @@ const HeaderLayout = styled.div`
 `;
 
 const StyledAboutSharedHeaderImage = styled(AboutSharedHeaderImage)`
-  border: ${parseBorder("border-solid-xxl")} ${parseColor("border-primary")};
   width: 632px;
+  height: auto !important;
+  aspect-ratio: 160/98;
+  box-sizing: border-box;
+  border: ${parseBorder("border-solid-xxl")} ${parseColor("border-primary")};
 `;
 
 type TeachWithOakHeaderProps = {
@@ -28,6 +32,9 @@ type TeachWithOakHeaderProps = {
 export function TeachWithOakHeader({
   href,
 }: Readonly<TeachWithOakHeaderProps>) {
+  const imageUrl = getCloudinaryImageUrl(
+    "v1734018546/OWA/illustrations/hero-aila_wgpmas.jpg",
+  );
   return (
     <>
       <NewGutterMaxWidth>
@@ -48,9 +55,7 @@ export function TeachWithOakHeader({
           showImageOverflow={true}
         >
           <StyledAboutSharedHeaderImage
-            imageUrl={
-              "https://sanity-asset-cdn.thenational.academy/images/cuvjke51/production/b81ee19a35baa3192360a210fda34cc9b21f4fd6-5824x3264.jpg"
-            }
+            imageUrl={imageUrl}
             imageAlt={"Teach with Oak Image"}
           />
         </AboutSharedHeader>

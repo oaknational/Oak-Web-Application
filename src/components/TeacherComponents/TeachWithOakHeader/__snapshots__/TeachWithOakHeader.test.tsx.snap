@@ -50,7 +50,7 @@ exports[`TeachWithOakHeader renders correctly 1`] = `
         </div>
       </div>
       <div
-        class="sc-2aaaa3d9-0 fNtxUp"
+        class="sc-28051234-0 gxrJGW"
       >
         <div
           class="sc-aXZVg bZTQLO"
@@ -80,7 +80,7 @@ exports[`TeachWithOakHeader renders correctly 1`] = `
               class="sc-aXZVg sc-6d3e1bdf-0 jPvJsJ elPTOz"
             >
               <span
-                class="sc-aXZVg iLOJBD sc-2aaaa3d9-1 dpcOza"
+                class="sc-aXZVg iLOJBD sc-28051234-1 beHAQu"
               >
                 <img
                   alt="Teach with Oak Image"
@@ -89,8 +89,8 @@ exports[`TeachWithOakHeader renders correctly 1`] = `
                   decoding="async"
                   loading="lazy"
                   sizes="100vw"
-                  src="http://localhost/_next/image?url=https%3A%2F%2Fsanity-asset-cdn.thenational.academy%2Fimages%2Fcuvjke51%2Fproduction%2Fb81ee19a35baa3192360a210fda34cc9b21f4fd6-5824x3264.jpg&w=3840&q=75"
-                  srcset="/_next/image?url=https%3A%2F%2Fsanity-asset-cdn.thenational.academy%2Fimages%2Fcuvjke51%2Fproduction%2Fb81ee19a35baa3192360a210fda34cc9b21f4fd6-5824x3264.jpg&w=640&q=75 640w, /_next/image?url=https%3A%2F%2Fsanity-asset-cdn.thenational.academy%2Fimages%2Fcuvjke51%2Fproduction%2Fb81ee19a35baa3192360a210fda34cc9b21f4fd6-5824x3264.jpg&w=750&q=75 750w, /_next/image?url=https%3A%2F%2Fsanity-asset-cdn.thenational.academy%2Fimages%2Fcuvjke51%2Fproduction%2Fb81ee19a35baa3192360a210fda34cc9b21f4fd6-5824x3264.jpg&w=828&q=75 828w, /_next/image?url=https%3A%2F%2Fsanity-asset-cdn.thenational.academy%2Fimages%2Fcuvjke51%2Fproduction%2Fb81ee19a35baa3192360a210fda34cc9b21f4fd6-5824x3264.jpg&w=1080&q=75 1080w, /_next/image?url=https%3A%2F%2Fsanity-asset-cdn.thenational.academy%2Fimages%2Fcuvjke51%2Fproduction%2Fb81ee19a35baa3192360a210fda34cc9b21f4fd6-5824x3264.jpg&w=1200&q=75 1200w, /_next/image?url=https%3A%2F%2Fsanity-asset-cdn.thenational.academy%2Fimages%2Fcuvjke51%2Fproduction%2Fb81ee19a35baa3192360a210fda34cc9b21f4fd6-5824x3264.jpg&w=1920&q=75 1920w, /_next/image?url=https%3A%2F%2Fsanity-asset-cdn.thenational.academy%2Fimages%2Fcuvjke51%2Fproduction%2Fb81ee19a35baa3192360a210fda34cc9b21f4fd6-5824x3264.jpg&w=2048&q=75 2048w, /_next/image?url=https%3A%2F%2Fsanity-asset-cdn.thenational.academy%2Fimages%2Fcuvjke51%2Fproduction%2Fb81ee19a35baa3192360a210fda34cc9b21f4fd6-5824x3264.jpg&w=3840&q=75 3840w"
+                  src="http://localhost/_next/image?url=https%3A%2F%2FNEXT_PUBLIC_OAK_ASSETS_HOST%2FNEXT_PUBLIC_OAK_ASSETS_PATH%2Fv1734018546%2FOWA%2Fillustrations%2Fhero-aila_wgpmas.jpg&w=3840&q=75"
+                  srcset="/_next/image?url=https%3A%2F%2FNEXT_PUBLIC_OAK_ASSETS_HOST%2FNEXT_PUBLIC_OAK_ASSETS_PATH%2Fv1734018546%2FOWA%2Fillustrations%2Fhero-aila_wgpmas.jpg&w=640&q=75 640w, /_next/image?url=https%3A%2F%2FNEXT_PUBLIC_OAK_ASSETS_HOST%2FNEXT_PUBLIC_OAK_ASSETS_PATH%2Fv1734018546%2FOWA%2Fillustrations%2Fhero-aila_wgpmas.jpg&w=750&q=75 750w, /_next/image?url=https%3A%2F%2FNEXT_PUBLIC_OAK_ASSETS_HOST%2FNEXT_PUBLIC_OAK_ASSETS_PATH%2Fv1734018546%2FOWA%2Fillustrations%2Fhero-aila_wgpmas.jpg&w=828&q=75 828w, /_next/image?url=https%3A%2F%2FNEXT_PUBLIC_OAK_ASSETS_HOST%2FNEXT_PUBLIC_OAK_ASSETS_PATH%2Fv1734018546%2FOWA%2Fillustrations%2Fhero-aila_wgpmas.jpg&w=1080&q=75 1080w, /_next/image?url=https%3A%2F%2FNEXT_PUBLIC_OAK_ASSETS_HOST%2FNEXT_PUBLIC_OAK_ASSETS_PATH%2Fv1734018546%2FOWA%2Fillustrations%2Fhero-aila_wgpmas.jpg&w=1200&q=75 1200w, /_next/image?url=https%3A%2F%2FNEXT_PUBLIC_OAK_ASSETS_HOST%2FNEXT_PUBLIC_OAK_ASSETS_PATH%2Fv1734018546%2FOWA%2Fillustrations%2Fhero-aila_wgpmas.jpg&w=1920&q=75 1920w, /_next/image?url=https%3A%2F%2FNEXT_PUBLIC_OAK_ASSETS_HOST%2FNEXT_PUBLIC_OAK_ASSETS_PATH%2Fv1734018546%2FOWA%2Fillustrations%2Fhero-aila_wgpmas.jpg&w=2048&q=75 2048w, /_next/image?url=https%3A%2F%2FNEXT_PUBLIC_OAK_ASSETS_HOST%2FNEXT_PUBLIC_OAK_ASSETS_PATH%2Fv1734018546%2FOWA%2Fillustrations%2Fhero-aila_wgpmas.jpg&w=3840&q=75 3840w"
                   style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
                 />
               </span>
