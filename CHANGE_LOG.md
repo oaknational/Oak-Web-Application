@@ -1,3 +1,18 @@
+# [1.1179.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1178.1...v1.1179.0) (2026-09-03)
+
+
+### Bug Fixes
+
+* add env var to env test and remove test browser setup ([9986cdd](https://github.com/oaknational/Oak-Web-Application/commit/9986cdd71522e1466ecb8f2df7c37040312be01e))
+* add homeschool test into hook ([236b1bc](https://github.com/oaknational/Oak-Web-Application/commit/236b1bc5451be95fccda891012cf9adb790c827d))
+* unnecessary ternary ([51fea17](https://github.com/oaknational/Oak-Web-Application/commit/51fea175a93d01b36ee55bca5d0f0f6f3474e4e8))
+
+
+### Features
+
+* add hubspot curriculum downloads form id to env vars ([8b01d39](https://github.com/oaknational/Oak-Web-Application/commit/8b01d39f12b240511a04daf4f98e16e72767b57a))
+* use hubspot curriculum downloads ([76de720](https://github.com/oaknational/Oak-Web-Application/commit/76de7205c484265ff2167656e23348861239c59e))
+
 ## [1.1178.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.1178.0...v1.1178.1) (2026-09-03)
 
 
