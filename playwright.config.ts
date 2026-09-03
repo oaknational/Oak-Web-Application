@@ -24,7 +24,7 @@ export default defineConfig<ChromaticConfig>({
   timeout: 30_000,
 
   /* Single worker in CI to avoid overwhelming a preview deployment */
-  workers: process.env.CI ? 1 : undefined,
+  workers: process.env.CI ? 2 : undefined,
 
   reporter: process.env.CI
     ? [

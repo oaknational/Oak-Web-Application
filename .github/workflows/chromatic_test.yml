@@ -15,7 +15,7 @@ concurrency:
 
 jobs:
   chromatic:
-    name: Run Chromatic
+    name: Chromatic
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
@@ -68,7 +68,9 @@ jobs:
           timeout: 1200
 
       - name: Run Playwright visual tests
+        id: playwright-visual
         run: pnpm run test:visual
+        continue-on-error: true
         env:
           BASE_URL: ${{ steps.deployment.outputs.deployment-url }}
           VERCEL_AUTOMATION_BYPASS_SECRET: ${{ secrets.VERCEL_AUTOMATION_BYPASS_SECRET }}
@@ -83,3 +85,7 @@ jobs:
           CHROMATIC_BRANCH: ${{ github.event.pull_request.head.ref || github.ref_name }}
           CHROMATIC_SHA: ${{ github.event.pull_request.head.sha || github.sha }}
           CHROMATIC_SLUG: ${{ github.repository }}
+
+      - name: Fail if visual tests failed
+        if: steps.playwright-visual.outcome == 'failure'
+        run: exit 1
