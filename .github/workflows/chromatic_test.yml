@@ -67,8 +67,19 @@ jobs:
           require-deployment-id: false
           timeout: 1200
 
-      - name: Run Playwright visual tests
-        run: pnpm run test:chromatic -t ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
+      - name: Run Playwright e2e tests
+        run: pnpm run test:e2e:ci
         env:
           BASE_URL: ${{ steps.deployment.outputs.deployment-url }}
           VERCEL_AUTOMATION_BYPASS_SECRET: ${{ secrets.VERCEL_AUTOMATION_BYPASS_SECRET }}
+
+      - name: Run Chromatic
+        uses: chromaui/action@latest
+        with:
+          playwright: true
+          projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
+        env:
+          CHROMATIC_ARCHIVE_LOCATION: ./test-results
+          CHROMATIC_BRANCH: ${{ github.event.pull_request.head.ref || github.ref_name }}
+          CHROMATIC_SHA: ${{ github.event.pull_request.head.sha || github.sha }}
+          CHROMATIC_SLUG: ${{ github.repository }}

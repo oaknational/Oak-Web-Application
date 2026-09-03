@@ -1,5 +1,5 @@
-import { test, TestInfo } from "@playwright/test";
-import { takeSnapshot } from "@chromatic-com/playwright";
+import { TestInfo } from "@playwright/test";
+import { test, takeSnapshot } from "@chromatic-com/playwright";
 
 const getDeploymentTestUrls: () => (
   | string

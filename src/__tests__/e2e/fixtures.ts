@@ -1,6 +1,4 @@
-import { type Page } from "@playwright/test";
-import { test as base } from "@chromatic-com/playwright";
-export { expect } from "@playwright/test";
+export { test as base, expect, type Page } from "@playwright/test";
 
 // This lesson path is going to be used for the initial implementation.
 const lessonPath =
