@@ -10,7 +10,8 @@ const baseURL = process.env.BASE_URL ?? "http://localhost:3000";
 const shouldStartWebServer = !process.env.CI && !process.env.BASE_URL;
 
 export default defineConfig<ChromaticConfig>({
-  testDir: "./src/tests/e2e",
+  testDir: "./src/__tests__/",
+  testMatch: /.*\.spec\.ts$/,
   outputDir: "./test-results",
 
   /* Fail fast in CI if a test has a `.only` accidentally left in */
