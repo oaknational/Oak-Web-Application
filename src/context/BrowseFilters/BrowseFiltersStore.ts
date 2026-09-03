@@ -9,17 +9,19 @@ import {
   BROWSE_FILTERS_STORE_VERSION,
   createBrowseFiltersUrlStorage,
 } from "./browseFiltersUrlStorage";
+import { BrowseFilters } from "./types";
+import { applySearchParamsToFilter } from "./utils/applySearchParamsToFilter";
 
-import { CurriculumFilters } from "@/utils/curriculum/types";
-import { mergeInFilterParams } from "@/utils/curriculum/filtering";
+import { scopeYearsToKeystageFilter } from "@/utils/curriculum/filtering";
 
 export type BrowseFiltersStore = {
-  filters: CurriculumFilters;
+  filters: BrowseFilters;
   /**
    * The data-derived baseline for this programme
    */
-  defaultFilter: CurriculumFilters;
-  setFilters: (newFilters: CurriculumFilters) => void;
+  defaultFilter: BrowseFilters;
+  yearsForKeystage: string[];
+  setFilters: (newFilters: BrowseFilters) => void;
   /**
    * Applies the URL to the store
    */
@@ -29,8 +31,8 @@ export type BrowseFiltersStore = {
 };
 
 export type CreateBrowseFiltersStoreOptions = {
-  defaultFilter: CurriculumFilters;
-  initialFilter?: CurriculumFilters;
+  defaultFilter: BrowseFilters;
+  initialFilter?: BrowseFilters;
 };
 
 export const createBrowseFiltersStore = ({
@@ -50,10 +52,17 @@ export const createBrowseFiltersStore = ({
       (set) => ({
         filters: initialFilter ?? defaultFilter,
         defaultFilter,
-        setFilters: (newFilters) => set({ filters: newFilters }),
+        yearsForKeystage: scopeYearsToKeystageFilter(
+          initialFilter ?? defaultFilter,
+        ),
+        setFilters: (newFilters) =>
+          set({
+            filters: newFilters,
+            yearsForKeystage: scopeYearsToKeystageFilter(newFilters),
+          }),
         syncFromSearchParams: (params) =>
           set((state) => {
-            const nextFilters = mergeInFilterParams(
+            const nextFilters = applySearchParamsToFilter(
               state.defaultFilter,
               params,
             );
@@ -61,7 +70,10 @@ export const createBrowseFiltersStore = ({
             // If nothing changed, don't trigger a re-render
             return isEqual(nextFilters, state.filters)
               ? state
-              : { filters: nextFilters };
+              : {
+                  filters: nextFilters,
+                  yearsForKeystage: scopeYearsToKeystageFilter(nextFilters),
+                };
           }),
       }),
       {
@@ -82,9 +94,15 @@ export const createBrowseFiltersStore = ({
 
           // Layer over `defaultFilter` (not `current.filters`) so this matches
           // `syncFromSearchParams`: the URL is the source of truth.
+          const mergedFilters = {
+            ...current.defaultFilter,
+            ...persistedFilters,
+          };
+
           return {
             ...current,
-            filters: { ...current.defaultFilter, ...persistedFilters },
+            filters: mergedFilters,
+            yearsForKeystage: scopeYearsToKeystageFilter(mergedFilters),
           };
         },
       },

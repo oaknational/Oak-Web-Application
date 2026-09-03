@@ -8,19 +8,18 @@ import { useId } from "react";
 import { Thread } from "@/utils/curriculum/types";
 import { highlightedUnitCount } from "@/utils/curriculum/filtering";
 import { CurriculumUnitsFormattedData } from "@/pages-helpers/curriculum/docx/tab-helpers";
-import { FilterType } from "@/browser-lib/avo/Avo";
 import { pluralizeUnits } from "@/utils/curriculum/formatting";
 import { useBrowseFilters } from "@/context/BrowseFilters";
 
-export type ProgrammeFiltersThreadsProps = {
+export type BrowseFiltersThreadsProps = {
   data: CurriculumUnitsFormattedData;
 };
 
-export function ProgrammeFiltersThreads({
+export function BrowseFiltersThreads({
   data,
-}: Readonly<ProgrammeFiltersThreadsProps>) {
+}: Readonly<BrowseFiltersThreadsProps>) {
   const id = useId();
-  const { filters, onChangeFilters } = useBrowseFilters();
+  const { filters, setThreadFilter } = useBrowseFilters();
   const { yearData, threadOptions } = data;
 
   function getDisplayValue(threadOption: Thread) {
@@ -47,14 +46,7 @@ export function ProgrammeFiltersThreads({
   return (
     <OakRadioGroup
       name={`threads-${id}`}
-      onChange={(e) => {
-        const threads = e.target.value.trim() === "" ? [] : [e.target.value];
-        onChangeFilters({
-          newFilters: { ...filters, threads },
-          filterType: FilterType.LEARNING_THEME_FILTER,
-          filterValue: e.target.value.trim(),
-        });
-      }}
+      onChange={(e) => setThreadFilter(e.target.value.trim())}
       value={filters.threads.at(0) ?? ""}
       $gap="spacing-12"
     >

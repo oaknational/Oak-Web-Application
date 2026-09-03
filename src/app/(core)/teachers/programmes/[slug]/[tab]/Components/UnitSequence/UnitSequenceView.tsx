@@ -9,7 +9,7 @@ import { KS4OptionFocusProvider } from "../Filters/KS4OptionFocus";
 import { ProgrammePageFiltersModalProvider } from "../Filters/ProgrammePageFiltersModalProvider";
 import ProgrammePageFiltersDesktop from "../Filters/ProgrammePageFiltersDesktop";
 import ProgrammePageFiltersMobile from "../Filters/ProgrammePageFiltersMobile";
-import { getDisplayedFilters } from "../Filters/ProgrammeFilters";
+import { useDisplayedFilters } from "../Filters/ProgrammeFilters";
 import type { Ks4OptionFilterDimension } from "../../buildKs4OptionFilterDimensions";
 
 import ProgrammeSequence from "./Sequence";
@@ -50,9 +50,8 @@ export const UnitSequenceView = ({
     filters.threads,
   );
 
-  const shouldDisplayFilters = getDisplayedFilters(
+  const shouldDisplayFilters = useDisplayedFilters(
     curriculumUnitsFormattedData,
-    filters,
     curriculumSelectionSlugs,
     ks4Options,
   ).some((filter) => filter.shouldDisplayFilter);
