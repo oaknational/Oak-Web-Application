@@ -74,7 +74,7 @@ export default defineConfig({
       name: "visual-mobile",
       testMatch: visualTestMatch,
       timeout: 90_000,
-      use: { ...devices["iPhone 14"] },
+      use: { ...devices["iPhone 17"] },
     },
     {
       name: "visual-tablet",
