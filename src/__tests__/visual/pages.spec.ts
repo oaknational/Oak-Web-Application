@@ -16,11 +16,3 @@ for (const path of getDeploymentTestUrls()) {
     });
   });
 }
-
-/*
- * TODOs:
- * - Add either data-chromatic="ignore" or .chromatic-ignore class to videos and other elements we want to ignore, see data-percy-hide="contents"
- * - Set chromatic config to include disableAutoSnapshot: true if wan
- * - Configure desired browsers and viewports in playwright.config.ts projects
- * - Configure to test storybook stories too if desired
- */
