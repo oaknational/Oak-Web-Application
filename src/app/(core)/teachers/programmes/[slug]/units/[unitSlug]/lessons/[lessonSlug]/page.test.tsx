@@ -3,7 +3,7 @@
  */
 import LessonPage, { generateMetadata } from "./page";
 
-import { TeachersLessonOverviewPageData } from "@/node-lib/curriculum-api-2023/queries/teachersLessonOverview/teachersLessonOverview.schema";
+import teachersLessonOverviewFixture from "@/node-lib/curriculum-api-2023/fixtures/teachersLessonOverview.fixture";
 
 jest.mock("next/navigation", () => ({
   __esModule: true,
@@ -31,42 +31,6 @@ jest.mock("@/common-lib/error-reporter", () => ({
       mockErrorReporter(...args),
 }));
 
-const lessonOverviewFixture: Partial<TeachersLessonOverviewPageData> = {
-  programmeSlug: "maths-primary-ks2",
-  unitSlug: "geometry-abc123",
-  unitTitle: "Geometry",
-  lessonSlug: "intro-to-geometry-abc123",
-  lessonTitle: "Introduction to Geometry",
-  subjectSlug: "maths",
-  subjectTitle: "Maths",
-  subjectParent: null,
-  yearGroupTitle: "Year 4",
-  year: "4",
-  keyStageSlug: "ks2",
-  keyStageTitle: "Key Stage 2",
-  tierSlug: null,
-  tierTitle: null,
-  examBoardSlug: null,
-  examBoardTitle: null,
-  pupilLessonOutcome: "I can identify basic shapes",
-  keyLearningPoints: [
-    { keyLearningPoint: "Identify 2D shapes" },
-    { keyLearningPoint: "Name properties of shapes" },
-  ],
-  lessonKeywords: [
-    { keyword: "Polygon", description: "A 2D shape with straight sides" },
-  ],
-  downloads: [],
-  updatedAt: "2024-01-01",
-  additionalFiles: null,
-  lessonMediaClips: null,
-  lessonReleaseDate: null,
-  loginRequired: false,
-  geoRestricted: false,
-  excludedFromTeachingMaterials: false,
-  subjectCategories: null,
-};
-
 const defaultParams = {
   slug: "maths-primary-ks2",
   unitSlug: "geometry-abc123",
@@ -75,7 +39,7 @@ const defaultParams = {
 
 describe("LessonPage", () => {
   beforeEach(() => {
-    mockLessonOverview.mockResolvedValue(lessonOverviewFixture);
+    mockLessonOverview.mockResolvedValue(teachersLessonOverviewFixture());
   });
 
   it("renders 404 when data is not found", async () => {
@@ -105,7 +69,7 @@ describe("generateMetadata", () => {
   });
 
   it("generates metadata with correct title and description", async () => {
-    mockLessonOverview.mockResolvedValue(lessonOverviewFixture);
+    mockLessonOverview.mockResolvedValue(teachersLessonOverviewFixture());
 
     const result = await generateMetadata({
       params: Promise.resolve(defaultParams),
@@ -113,26 +77,31 @@ describe("generateMetadata", () => {
     });
 
     expect(result.title).toBe(
-      "Introduction to Geometry KS2 | Y4 Maths | Lesson Resources",
+      "Structure of cells KS3 | Y7 Biology | Lesson Resources",
     );
     expect(result.description).toBe(
       "View lesson content and choose resources to download or share",
     );
     expect(result.openGraph?.title).toBe(
-      "Introduction to Geometry KS2 | Y4 Maths | Lesson Resources",
+      "Structure of cells KS3 | Y7 Biology | Lesson Resources",
     );
     expect(result.twitter?.title).toBe(
-      "Introduction to Geometry KS2 | Y4 Maths | Lesson Resources",
+      "Structure of cells KS3 | Y7 Biology | Lesson Resources",
     );
   });
 
   it("includes tier and exam board correctly in title when present", async () => {
-    const fixtureWithTierAndExamBoard = {
-      ...lessonOverviewFixture,
-      tierTitle: "Higher",
-      examBoardTitle: "Edexcel",
-    };
-    mockLessonOverview.mockResolvedValue(fixtureWithTierAndExamBoard);
+    mockLessonOverview.mockResolvedValue(
+      teachersLessonOverviewFixture({
+        tierTitle: "Higher",
+        examBoardTitle: "Edexcel",
+        pathwayTitle: "GCSE",
+        keyStageTitle: "Key Stage 4",
+        yearGroupTitle: "Year 11",
+        year: "11",
+        keyStageSlug: "ks4",
+      }),
+    );
 
     const result = await generateMetadata({
       params: Promise.resolve(defaultParams),
@@ -140,13 +109,13 @@ describe("generateMetadata", () => {
     });
 
     expect(result.title).toBe(
-      "Introduction to Geometry GCSE | KS2 | Y4 Maths Higher Edexcel | Lesson Resources",
+      "Structure of cells GCSE | KS4 | Y11 Biology Higher Edexcel | Lesson Resources",
     );
     expect(result.openGraph?.title).toBe(
-      "Introduction to Geometry GCSE | KS2 | Y4 Maths Higher Edexcel | Lesson Resources",
+      "Structure of cells GCSE | KS4 | Y11 Biology Higher Edexcel | Lesson Resources",
     );
     expect(result.twitter?.title).toBe(
-      "Introduction to Geometry GCSE | KS2 | Y4 Maths Higher Edexcel | Lesson Resources",
+      "Structure of cells GCSE | KS4 | Y11 Biology Higher Edexcel | Lesson Resources",
     );
     expect(result.description).toBe(
       "View lesson content and choose resources to download or share",

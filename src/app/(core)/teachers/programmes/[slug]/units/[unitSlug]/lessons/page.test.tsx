@@ -3,7 +3,7 @@
  */
 import UnitPage, { generateMetadata } from "./page";
 
-import { TeachersUnitOverviewData } from "@/node-lib/curriculum-api-2023/queries/teachersUnitOverview/teachersUnitOverview.schema";
+import teachersUnitOverviewFixture from "@/node-lib/curriculum-api-2023/fixtures/teachersUnitOverview.fixture";
 
 jest.mock("next/navigation", () => ({
   __esModule: true,
@@ -35,70 +35,16 @@ jest.mock("@/common-lib/error-reporter", () => ({
       mockErrorReporter(...args),
 }));
 
-const unitOverviewFixture: TeachersUnitOverviewData = {
-  programmeSlug: "maths-primary-ks2",
-  unitSlug: "geometry-abc123",
-  unitvariantId: 1,
-  unitTitle: "Geometry",
-  unitDescription: null,
-  unitIndex: 1,
-  unitCount: 1,
-  subjectSlug: "maths",
-  subjectTitle: "Maths",
-  parentSubject: null,
-  yearGroupTitle: "Year 4",
-  yearSlug: "year-4",
-  year: "4",
-  keyStageSlug: "ks2",
-  keyStageTitle: "Key Stage 2",
-  tierSlug: null,
-  tierTitle: null,
-  examBoardSlug: null,
-  examBoardTitle: null,
-  pathwaySlug: null,
-  pathwayTitle: null,
-  pathwayDisplayOrder: null,
-  phaseSlug: "primary",
-  phaseTitle: "Primary",
-  lessons: [],
-  actions: null,
-  containsGeorestrictedLessons: false,
-  containsLoginRequiredLessons: false,
-  nextUnit: null,
-  prevUnit: null,
-  subjectOptionToggles: [],
-  tierOptionToggles: [],
-  threads: ["Thread 1", "Thread 2", "Thread 3"],
-  whyThisWhyNow: "why this why now",
-  priorKnowledgeRequirements: ["Requirement 1"],
-  subjectCategories: null,
-};
-
-const ks4UnitOverviewFixture: TeachersUnitOverviewData = {
-  ...unitOverviewFixture,
-  phaseSlug: "secondary",
-  phaseTitle: "Secondary",
-  keyStageSlug: "ks4",
-  keyStageTitle: "Key Stage 4",
-  year: "11",
-  yearSlug: "year-11",
-  yearGroupTitle: "Year 11",
-  examBoardSlug: "aqa",
-  examBoardTitle: "AQA",
-  tierSlug: "foundation",
-  tierTitle: "Foundation",
-};
-
 const defaultParams = {
-  slug: "maths-primary-ks2",
-  unitSlug: "geometry-abc123",
+  slug: "biology-primary-ks3",
+  unitSlug: "cells",
 };
 
 describe("UnitPage", () => {
   beforeEach(() => {
-    mockTeachersUnitOverview.mockResolvedValue(unitOverviewFixture);
+    mockTeachersUnitOverview.mockResolvedValue(teachersUnitOverviewFixture());
     mockUnitProgramme.mockResolvedValue([
-      { programme_slug: "maths-primary-ks2", programmeFields: {} },
+      { programme_slug: "biology-primary-ks3", programmeFields: {} },
     ]);
   });
   it("renders 404 when data is not found", async () => {
@@ -128,26 +74,34 @@ describe("generateMetadata", () => {
   });
 
   it("generates metadata with correct title and description", async () => {
-    mockTeachersUnitOverview.mockResolvedValue(unitOverviewFixture);
+    mockTeachersUnitOverview.mockResolvedValue(teachersUnitOverviewFixture());
 
     const result = await generateMetadata({
       params: Promise.resolve(defaultParams),
       searchParams: Promise.resolve({}),
     });
 
-    expect(result.title).toBe("Geometry KS2 | Y4 Maths | Lesson Resources");
+    expect(result.title).toBe("Cells KS3 | Y7 Biology | Lesson Resources");
     expect(result.description).toBe(
-      "Free lessons and teaching resources about geometry",
+      "Free lessons and teaching resources about cells",
     );
     expect(result.openGraph?.title).toBe(
-      "Geometry KS2 | Y4 Maths | Lesson Resources",
+      "Cells KS3 | Y7 Biology | Lesson Resources",
     );
     expect(result.twitter?.title).toBe(
-      "Geometry KS2 | Y4 Maths | Lesson Resources",
+      "Cells KS3 | Y7 Biology | Lesson Resources",
     );
   });
   it("generates metadata with ks4 options", async () => {
-    mockTeachersUnitOverview.mockResolvedValue(ks4UnitOverviewFixture);
+    mockTeachersUnitOverview.mockResolvedValue(
+      teachersUnitOverviewFixture({
+        tierTitle: "Higher",
+        examBoardTitle: "Edexcel",
+        pathwayTitle: "GCSE",
+        year: "11",
+        keyStageSlug: "ks4",
+      }),
+    );
 
     const result = await generateMetadata({
       params: Promise.resolve({
@@ -158,7 +112,7 @@ describe("generateMetadata", () => {
     });
 
     expect(result.title).toEqual(
-      "Geometry GCSE | KS4 | Y11 Maths Foundation AQA | Lesson Resources",
+      "Cells GCSE | KS4 | Y11 Biology Higher Edexcel | Lesson Resources",
     );
   });
 });
