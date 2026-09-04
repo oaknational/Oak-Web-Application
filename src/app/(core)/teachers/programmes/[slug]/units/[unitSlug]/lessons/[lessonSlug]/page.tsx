@@ -55,11 +55,13 @@ export async function generateMetadata(
       subjectTitle,
       tierTitle,
       examBoardTitle,
+      pathwayTitle,
     } = data;
-
     const tierSegment = tierTitle ? ` ${tierTitle}` : "";
     const examboardSegment = examBoardTitle ? ` ${examBoardTitle}` : "";
-    const title = `${lessonTitle} ${keyStageSlug.toUpperCase()} | Y${year} ${subjectTitle}${tierSegment}${examboardSegment} | Lesson Resources`;
+    const gcseSegment = pathwayTitle === "GCSE" ? "GCSE | " : "";
+
+    const title = `${lessonTitle} ${gcseSegment}${keyStageSlug.toUpperCase()} | Y${year} ${subjectTitle}${tierSegment}${examboardSegment} | Lesson Resources`;
 
     const description =
       "View lesson content and choose resources to download or share";
