@@ -76,6 +76,7 @@ export const LandingPageTextAndMedia: FC<TextAndMedia> = (props) => {
                 <VideoPlayer
                   playbackPolicy="public"
                   playbackId={props.video.video.asset.playbackId}
+                  thumbnailTime={props.video.video.asset.thumbTime}
                   title={props.video.title}
                   location="marketing"
                   omitBorder={true}

@@ -106,6 +106,7 @@ export const HomePageLowerView = (props: HomePageLowerViewProps) => {
                       <VideoPlayer
                         playbackPolicy="public"
                         playbackId={introVideo.video.video.asset.playbackId}
+                        thumbnailTime={introVideo.video.video.asset.thumbTime}
                         title={introVideo.title}
                         location="marketing"
                         omitBorder={true}

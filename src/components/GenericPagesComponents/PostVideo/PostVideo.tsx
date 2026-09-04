@@ -16,6 +16,7 @@ const PostVideo = (props: PortableTextComponentProps<Video>) => {
           <VideoPlayer
             playbackPolicy="public"
             playbackId={props.value.video.asset.playbackId}
+            thumbnailTime={props.value.video.asset.thumbTime}
             title={props.value.title}
             location="blog"
             omitBorder={true}
