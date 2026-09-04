@@ -18,6 +18,7 @@ const PostVideo = (props: PortableTextComponentProps<Video>) => {
             playbackId={props.value.video.asset.playbackId}
             title={props.value.title}
             location="blog"
+            omitBorder={true}
           />
         }
         showTranscript={true}
