@@ -15,13 +15,30 @@ import { PortableTextReactComponents } from "@portabletext/react";
 import { NewGutterMaxWidth } from "@/components/GenericPagesComponents/NewGutterMaxWidth";
 import { PortableTextWithDefaults } from "@/components/SharedComponents/PortableText";
 import { PortableTextJSON } from "@/common-lib/cms-types";
+import { OwaImageProps } from "@/components/SharedComponents/OwaImage";
 
-const IllustrationPanel = styled(OakBox)`
-  height: 410px;
+const IllustrationPanel = styled(OakBox)<{ $showImageOverflow: boolean }>`
+  height: ${({ $showImageOverflow }) =>
+    $showImageOverflow ? "auto" : "410px"};
   width: auto;
-
+  flex: ${({ $showImageOverflow }) =>
+    $showImageOverflow ? "1 1 0" : "0 1 auto"};
   @media (max-width: 920px) {
-    display: none;
+    display: ${({ $showImageOverflow }) =>
+      $showImageOverflow ? "block" : "none"};
+  }
+`;
+
+const TextLayout = styled(OakFlex)<{ $showImageOverflow: boolean }>`
+  flex: ${({ $showImageOverflow }) =>
+    $showImageOverflow ? "1 1 0" : "0 1 auto"};
+  min-width: 0;
+`;
+
+const HeaderLayout = styled(OakFlex)<{ $showImageOverflow: boolean }>`
+  @media (max-width: 750px) {
+    flex-direction: ${({ $showImageOverflow }) =>
+      $showImageOverflow ? "column" : "row"};
   }
 `;
 
@@ -65,13 +82,16 @@ export function BackgroundHeaderLoop() {
   );
 }
 
+type AboutSharedHeaderImageProps = {
+  imageUrl: string;
+  imageAlt?: string;
+} & Omit<OwaImageProps, "src" | "alt">;
+
 export function AboutSharedHeaderImage({
   imageAlt,
   imageUrl,
-}: Readonly<{
-  imageAlt?: string;
-  imageUrl: string;
-}>) {
+  ...imageProps
+}: Readonly<AboutSharedHeaderImageProps>) {
   return (
     <OakImage
       alt={imageAlt ?? ""}
@@ -79,6 +99,7 @@ export function AboutSharedHeaderImage({
       $objectFit={"contain"}
       $height={"100%"}
       $width={"spacing-360"}
+      {...imageProps}
     />
   );
 }
@@ -100,24 +121,35 @@ export type AboutSharedHeaderProps = {
   content: PortableTextJSON | string;
   children?: ReactNode;
   titleHighlight?: OakUiRoleToken;
+  showImageOverflow?: boolean;
 };
 export function AboutSharedHeader({
   title,
   content,
   children,
   titleHighlight,
+  showImageOverflow = false,
 }: Readonly<AboutSharedHeaderProps>) {
   return (
     <NewGutterMaxWidth>
-      <OakFlex
+      <HeaderLayout
+        $showImageOverflow={showImageOverflow}
         $alignItems="center"
         $justifyContent="space-between"
         $pt={["spacing-56", "spacing-72"]}
         $pb={["spacing-56", "spacing-72"]}
-        $gap={["spacing-0", "spacing-48", "spacing-240"]}
+        $gap={
+          showImageOverflow
+            ? ["spacing-16"]
+            : ["spacing-0", "spacing-48", "spacing-240"]
+        }
         $overflow={"hidden"}
       >
-        <OakFlex $flexDirection={"column"} $gap={"spacing-24"}>
+        <TextLayout
+          $showImageOverflow={showImageOverflow}
+          $flexDirection={"column"}
+          $gap={"spacing-24"}
+        >
           <OakHeading tag="h1" $font={["heading-4", "heading-2", "heading-2"]}>
             <OakSpan
               $background={titleHighlight ?? "bg-decorative1-main"}
@@ -139,9 +171,11 @@ export function AboutSharedHeader({
               components={portableTextComponents}
             />
           )}
-        </OakFlex>
-        <IllustrationPanel>{children}</IllustrationPanel>
-      </OakFlex>
+        </TextLayout>
+        <IllustrationPanel $showImageOverflow={showImageOverflow}>
+          {children}
+        </IllustrationPanel>
+      </HeaderLayout>
     </NewGutterMaxWidth>
   );
 }
