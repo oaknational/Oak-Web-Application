@@ -55,11 +55,11 @@ export async function generateMetadata(
       subjectTitle,
       tierTitle,
       examBoardTitle,
+      pathwayTitle,
     } = data;
-
     const tierSegment = tierTitle ? ` ${tierTitle}` : "";
     const examboardSegment = examBoardTitle ? ` ${examBoardTitle}` : "";
-    const gcseSegment = examboardSegment ? "GCSE | " : "";
+    const gcseSegment = pathwayTitle === "GCSE" ? "GCSE | " : "";
 
     const title = `${lessonTitle} ${gcseSegment}${keyStageSlug.toUpperCase()} | Y${year} ${subjectTitle}${tierSegment}${examboardSegment} | Lesson Resources`;
 
