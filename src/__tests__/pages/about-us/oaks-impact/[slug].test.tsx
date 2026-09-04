@@ -11,6 +11,7 @@ import {
 } from "@/common-lib/cms-types/aboutPages";
 import { portableTextFromString } from "@/__tests__/__helpers__/cms";
 import { getFallbackBlockingConfig } from "@/node-lib/isr";
+import { mockPortableTextBlocks } from "@/fixtures/curriculum/programmeSequenceYearData.fixtures";
 
 let mockShouldSkipInitialBuild = false;
 
@@ -56,7 +57,7 @@ function caseStudyFixture(slug: string) {
           thumbTime: null,
         },
       },
-      captions: ["Test captions"],
+      transcript: [mockPortableTextBlocks[0]],
     },
     publishedAt: "2023-01-01",
   };
@@ -84,7 +85,7 @@ const mockImpactPageData: OaksImpactPage = {
           thumbTime: null,
         },
       },
-      captions: ["Oaks Impact captions"],
+      transcript: [mockPortableTextBlocks[0]],
     },
     videoDescription: "Oaks Impact video description",
   },
