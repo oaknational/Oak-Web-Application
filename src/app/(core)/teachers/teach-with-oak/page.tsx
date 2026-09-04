@@ -10,12 +10,11 @@ import withPageErrorHandling from "@/hocs/withPageErrorHandling";
 import { TeacherBrowseAnalyticsStoreProvider } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
 import { getFeatureFlagValue } from "@/utils/featureFlags";
 
-
 export const metadata: Metadata = {
-  title: "Search for Free Teaching Resources",
-  description: "Search for Free Teaching Resources",
+  title: "",
+  description: "",
   robots: {
-    index: false,
+    index: true,
     follow: true,
   },
 };
@@ -27,7 +26,10 @@ const teachWithOakParams = z.object({
 const InnerTeachWithOakPage = async (props: {
   searchParams?: Promise<PageSearchParms>;
 }) => {
-  const isEnabled = await getFeatureFlagValue("teach-with-oak-page", "boolean");
+  const isEnabled = await getFeatureFlagValue(
+    "teachers-teach-with-oak",
+    "string",
+  );
 
   if (!isEnabled) {
     return notFound();
