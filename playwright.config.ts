@@ -9,6 +9,8 @@ https://oak-web-application-website-git-test-lesq-2113playwright-setup.vercel.th
 const baseURL = process.env.BASE_URL ?? "http://localhost:3000";
 const shouldStartWebServer = !process.env.CI && !process.env.BASE_URL;
 
+const visualTestMatch = /visual\/.*\.spec\.ts/;
+
 export default defineConfig<ChromaticConfig>({
   testDir: "./src/__tests__/",
   testMatch: /.*\.spec\.ts$/,
@@ -21,8 +23,8 @@ export default defineConfig<ChromaticConfig>({
   retries: process.env.CI ? 1 : 0,
   timeout: 30_000,
 
-  /* Single worker in CI to avoid overwhelming a preview deployment */
-  workers: process.env.CI ? 1 : undefined,
+  /* Only 2 workers in CI to avoid overwhelming a preview deployment */
+  workers: process.env.CI ? 2 : undefined,
 
   reporter: process.env.CI
     ? [
@@ -52,8 +54,16 @@ export default defineConfig<ChromaticConfig>({
 
   projects: [
     {
-      name: "chromium",
+      name: "e2e-desktop",
+      testIgnore: visualTestMatch,
       use: { ...devices["Desktop Chrome"] },
+    },
+    {
+      name: "visual-regression-tests",
+      testMatch: visualTestMatch,
+      timeout: 90_000,
+      use: { ...devices["Desktop Chrome"] },
+      fullyParallel: true,
     },
   ],
 

@@ -118,6 +118,7 @@ function VideoContainer({
       // snapshots loaded and some pending load depending on the timing
       // (race condition)
       data-percy-hide="contents"
+      data-chromatic="ignore"
       $alignItems={"center"}
       $justifyContent={"center"}
       $ba={omitBorder ? "border-solid-none" : "border-solid-l"}

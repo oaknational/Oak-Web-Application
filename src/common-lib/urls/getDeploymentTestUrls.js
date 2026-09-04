@@ -52,6 +52,7 @@ function getDeploymentTestUrls() {
     "/teachers/programmes/music-secondary-ks4-edexcel/units/intro-to-pop-music/lessons", // copyright content
 
     // Lesson pages
+    // "/teachers/programmes/art-primary-ks1/units/reclaimed-materials-drawing-and-sculpture/lessons", //primary
     "/teachers/programmes/english-secondary-ks3/units/victorian-childhood-non-fiction-reading-and-writing/lessons/victorian-childhood-preparing-an-argument",
     "/teachers/programmes/combined-science-secondary-ks4-higher-aqa/units/measuring-waves/lessons/oscilloscope",
     "/teachers/programmes/physical-education-primary-ks2/units/invasion-games-principles-of-attack-and-defence-through-ball-games/lessons/passing-and-receiving-skills", // practical PE lesson
