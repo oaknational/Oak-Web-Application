@@ -318,7 +318,7 @@ const OverviewTab: FC<OverviewTabProps> = ({
                                   />
                                 }
                                 showTranscript={true}
-                                transcript={props.value.transcript ?? undefined}
+                                transcript={props.value.transcript}
                               />
                             </OakBox>
                           ),
@@ -359,7 +359,7 @@ const OverviewTab: FC<OverviewTabProps> = ({
                     />
                   }
                   showTranscript={true}
-                  transcript={video.transcript ?? undefined}
+                  transcript={video.transcript}
                 />
               </OakGridArea>
               <OakGridArea

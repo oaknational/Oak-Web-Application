@@ -131,7 +131,7 @@ const AboutUsOaksImpactCaseStudy: NextPage<
                     )
                   }
                   showTranscript={true}
-                  transcript={caseStudy.video.transcript ?? undefined}
+                  transcript={caseStudy.video.transcript}
                   body={caseStudy.textRaw ?? undefined}
                 />
               </OakBox>

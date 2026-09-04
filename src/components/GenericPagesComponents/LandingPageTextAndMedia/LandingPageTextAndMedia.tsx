@@ -82,7 +82,7 @@ export const LandingPageTextAndMedia: FC<TextAndMedia> = (props) => {
                 />
               }
               showTranscript={true}
-              transcript={props.video.transcript ?? undefined}
+              transcript={props.video.transcript}
             />
           </OakFlex>
         )}

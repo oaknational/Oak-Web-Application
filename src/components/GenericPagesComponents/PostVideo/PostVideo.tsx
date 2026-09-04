@@ -21,7 +21,7 @@ const PostVideo = (props: PortableTextComponentProps<Video>) => {
           />
         }
         showTranscript={true}
-        transcript={props.value.transcript ?? undefined}
+        transcript={props.value.transcript}
       />
     </OakBox>
   );

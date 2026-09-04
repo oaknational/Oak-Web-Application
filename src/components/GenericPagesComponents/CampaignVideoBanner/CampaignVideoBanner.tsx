@@ -46,7 +46,7 @@ export function CampaignVideoBanner({
               />
             }
             showTranscript={true}
-            transcript={video.transcript ?? undefined}
+            transcript={video.transcript}
           />
         )}
       </OakGridArea>

@@ -70,7 +70,7 @@ const WebinarVideo = (props: WebinarVideoProps) => {
             />
           }
           showTranscript={true}
-          transcript={webinar.video.transcript ?? undefined}
+          transcript={webinar.video.transcript}
         />
       );
     case "locked":
