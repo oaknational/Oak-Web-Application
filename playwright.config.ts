@@ -23,7 +23,7 @@ export default defineConfig<ChromaticConfig>({
   retries: process.env.CI ? 1 : 0,
   timeout: 30_000,
 
-  /* Single worker in CI to avoid overwhelming a preview deployment */
+  /* Only 2 workers in CI to avoid overwhelming a preview deployment */
   workers: process.env.CI ? 2 : undefined,
 
   reporter: process.env.CI
@@ -63,6 +63,7 @@ export default defineConfig<ChromaticConfig>({
       testMatch: visualTestMatch,
       timeout: 90_000,
       use: { ...devices["Desktop Chrome"] },
+      fullyParallel: true,
     },
   ],
 

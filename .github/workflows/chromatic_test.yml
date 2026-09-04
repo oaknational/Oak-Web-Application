@@ -79,6 +79,7 @@ jobs:
         uses: chromaui/action@2a0b63f30233c48591844a46d451b9cf68128186
         with:
           playwright: true
+          # onlyChanged: true
           projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
         env:
           CHROMATIC_ARCHIVE_LOCATION: ./test-results
