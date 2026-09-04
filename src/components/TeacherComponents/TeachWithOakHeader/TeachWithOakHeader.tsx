@@ -4,6 +4,7 @@ import {
   parseSpacing,
   parseBorder,
   parseColor,
+  OakBox,
 } from "@oaknational/oak-components";
 import styled from "styled-components";
 
@@ -31,7 +32,7 @@ const StyledAboutSharedHeaderImage = styled(AboutSharedHeaderImage)`
 `;
 
 type TeachWithOakHeaderProps = {
-  href: string;
+  href?: string;
 };
 
 export function TeachWithOakHeader({
@@ -41,16 +42,21 @@ export function TeachWithOakHeader({
     "v1734018546/OWA/illustrations/hero-aila_wgpmas.jpg",
   );
   return (
-    <>
-      <NewGutterMaxWidth>
-        <OakTertiaryInvertedButton
-          element="a"
-          href={href}
-          iconName="arrow-left"
-        >
-          Back to lesson
-        </OakTertiaryInvertedButton>
-      </NewGutterMaxWidth>
+    <OakBox
+      $mt={["spacing-56", "spacing-80", "spacing-56"]}
+      $mb={["spacing-56", "spacing-80", "spacing-72"]}
+    >
+      {href && (
+        <NewGutterMaxWidth>
+          <OakTertiaryInvertedButton
+            element="a"
+            href={href}
+            iconName="arrow-left"
+          >
+            Back to lesson
+          </OakTertiaryInvertedButton>
+        </NewGutterMaxWidth>
+      )}
       <HeaderLayout>
         <AboutSharedHeader
           title={"The thinking behind Oak lessons"}
@@ -66,6 +72,6 @@ export function TeachWithOakHeader({
           />
         </AboutSharedHeader>
       </HeaderLayout>
-    </>
+    </OakBox>
   );
 }
