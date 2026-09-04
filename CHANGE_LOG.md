@@ -1,3 +1,76 @@
+## [1.1180.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.1180.2...v1.1180.3) (2026-09-03)
+
+
+### Bug Fixes
+
+* overview tab spacing ([92cd064](https://github.com/oaknational/Oak-Web-Application/commit/92cd06442c86342d1504b95a2a47bed510acc009))
+
+## [1.1180.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.1180.1...v1.1180.2) (2026-09-03)
+
+
+### Bug Fixes
+
+* promo tag overflow on tabs ([780ca6d](https://github.com/oaknational/Oak-Web-Application/commit/780ca6db2584f6d1cb313e6ace07e4facc357104))
+
+## [1.1180.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.1180.0...v1.1180.1) (2026-09-03)
+
+
+### Bug Fixes
+
+* bump oak-components from v3.13.0 to v3.14.1 ([266d3dc](https://github.com/oaknational/Oak-Web-Application/commit/266d3dc85cb0ae0d842ce1e17c230d6af1c3e4f7))
+* snaps ([6192ba3](https://github.com/oaknational/Oak-Web-Application/commit/6192ba395cdcc3892ac345507901053a510aaae1))
+
+# [1.1180.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1179.0...v1.1180.0) (2026-09-03)
+
+
+### Features
+
+* enable implementation guides for all users ([27e476e](https://github.com/oaknational/Oak-Web-Application/commit/27e476edcaa78b537b20f1e4492c90504a26a5a4))
+
+# [1.1179.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1178.1...v1.1179.0) (2026-09-03)
+
+
+### Bug Fixes
+
+* add env var to env test and remove test browser setup ([9986cdd](https://github.com/oaknational/Oak-Web-Application/commit/9986cdd71522e1466ecb8f2df7c37040312be01e))
+* add homeschool test into hook ([236b1bc](https://github.com/oaknational/Oak-Web-Application/commit/236b1bc5451be95fccda891012cf9adb790c827d))
+* unnecessary ternary ([51fea17](https://github.com/oaknational/Oak-Web-Application/commit/51fea175a93d01b36ee55bca5d0f0f6f3474e4e8))
+
+
+### Features
+
+* add hubspot curriculum downloads form id to env vars ([8b01d39](https://github.com/oaknational/Oak-Web-Application/commit/8b01d39f12b240511a04daf4f98e16e72767b57a))
+* use hubspot curriculum downloads ([76de720](https://github.com/oaknational/Oak-Web-Application/commit/76de7205c484265ff2167656e23348861239c59e))
+
+## [1.1178.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.1178.0...v1.1178.1) (2026-09-03)
+
+
+### Bug Fixes
+
+* added fix for comp-sci implementation guides ([86d060e](https://github.com/oaknational/Oak-Web-Application/commit/86d060e4b2afe3d65873dbb62bb526fae05174d7))
+
+# [1.1178.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1177.0...v1.1178.0) (2026-09-03)
+
+
+### Bug Fixes
+
+* added maxAge to useCookieFlag() ([00763ce](https://github.com/oaknational/Oak-Web-Application/commit/00763ce67f91cdc879bbdccaba43ee770f4e9762))
+* added missing prop to defaultProps ([b8d87b5](https://github.com/oaknational/Oak-Web-Application/commit/b8d87b518cd6efc3e2082af91b2c460955ec2128))
+
+
+### Features
+
+* added useCookieFlag() to store flags ([4f6a875](https://github.com/oaknational/Oak-Web-Application/commit/4f6a875ebd4cd7741696e7a9f610af88948d32a7))
+
+# [1.1177.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1176.0...v1.1177.0) (2026-09-03)
+
+
+### Features
+
+* add TeachWithOakDescription component ([cbb8dba](https://github.com/oaknational/Oak-Web-Application/commit/cbb8dba86f3e11a0d178f3a5303a92ccc5ae2299))
+* add visually hidden text on diagram ([32f7d16](https://github.com/oaknational/Oak-Web-Application/commit/32f7d16b79f905b0a05034f92dc13a50d1b6d4d5))
+* use a list for the learning cycles ([92354f0](https://github.com/oaknational/Oak-Web-Application/commit/92354f0fe919f6e4a5dc4270ab5f72742682b668))
+
 # [1.1176.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1175.0...v1.1176.0) (2026-09-02)
 
 
