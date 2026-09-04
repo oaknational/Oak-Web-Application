@@ -38,7 +38,6 @@ export const McpFeedbackPanel = () => (
         </OakHeading>
         <OakP $font="body-2">{mcpFeedback.body}</OakP>
         <OakFlex>
-          {/* A mailto: link, so no new-tab target or announcement here. */}
           <OakSecondaryButton
             element="a"
             href={mcpFeedback.ctaHref}

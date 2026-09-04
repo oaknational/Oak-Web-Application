@@ -18,15 +18,7 @@ export const McpTryButton = ({
   label,
   href,
 }: Readonly<{ label: string; href: string }>) => (
-  <OakSecondaryButton
-    element="a"
-    href={href}
-    target="_blank"
-    // `noopener` is implied by every browser this repo supports, so only
-    // `noreferrer` is worth stating. It stays local until OWA sets a global
-    // Referrer-Policy, which it currently does not.
-    rel="noreferrer"
-  >
+  <OakSecondaryButton element="a" href={href} target="_blank" rel="noreferrer">
     <OakFlex $alignItems="center" $gap="spacing-4">
       <OakIcon
         iconName="ai"

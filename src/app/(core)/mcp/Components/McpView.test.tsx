@@ -66,6 +66,9 @@ describe("McpView", () => {
 
     expect(mcpAssistants.items).toHaveLength(1);
     expect(
+      within(section).getByRole("heading", { name: "Claude" }),
+    ).toBeInTheDocument();
+    expect(
       within(section).getByRole("link", {
         name: new RegExp(assistant!.ctaLabel),
       }),
@@ -153,7 +156,6 @@ describe("McpView", () => {
 
     expect(externalLinks.length).toBeGreaterThan(0);
     externalLinks.forEach((link) => {
-      // `noopener` is implied by every browser this repo supports.
       expect(link).toHaveAttribute(
         "rel",
         expect.stringContaining("noreferrer"),
