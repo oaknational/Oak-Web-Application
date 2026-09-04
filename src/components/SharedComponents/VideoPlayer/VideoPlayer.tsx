@@ -12,7 +12,6 @@ import getTimeElapsed from "./getTimeElapsed";
 import getSubtitleTrack from "./getSubtitleTrack";
 import getDuration from "./getDuration";
 import {
-  PlaybackPolicy,
   useSignedVideoToken,
   useSignedThumbnailToken,
   useSignedStoryboardToken,
@@ -38,14 +37,12 @@ export type VideoStyleConfig = {
   };
 };
 
-export type VideoPlayerProps = {
+type VideoPlayerBaseProps = {
   playbackId: string;
-  playbackPolicy: PlaybackPolicy;
   initialStartTime?: number;
   thumbnailTime?: number | null;
   title: string;
   location: VideoLocationValueType;
-  isLegacy: boolean;
   userEventCallback?: (event: VideoEventCallbackArgs) => void;
   pathwayData?: PupilPathwayData | AnalyticsBrowseData;
   isAudioClip?: boolean;
@@ -63,6 +60,19 @@ export type VideoPlayerProps = {
   /** Used to override the functions used to track analytics events  */
   analyticsOverrides?: VideoAnalyticsOverrides;
 };
+
+type SignedVideoPlayerProps = VideoPlayerBaseProps & {
+  playbackPolicy: "signed";
+  /** Refers to whether legacy signing tokens are required or not for signed videos */
+  isLegacy: boolean;
+};
+type PublicVideoPlayerProps = VideoPlayerBaseProps & {
+  playbackPolicy: "public";
+  /** Signed tokens are not required for public videos */
+  isLegacy?: never;
+};
+
+export type VideoPlayerProps = SignedVideoPlayerProps | PublicVideoPlayerProps;
 
 export type VideoEventCallbackArgs = {
   event: "play" | "playing" | "pause" | "end";
@@ -141,7 +151,6 @@ const VideoPlayer: FC<VideoPlayerProps> = (props) => {
     location,
     playbackId,
     playbackPolicy,
-    isLegacy,
     userEventCallback = () => {},
     pathwayData,
     isAudioClip,
@@ -155,6 +164,8 @@ const VideoPlayer: FC<VideoPlayerProps> = (props) => {
     omitBorder = false,
     analyticsOverrides,
   } = props;
+
+  const isLegacy = playbackPolicy === "signed" ? props.isLegacy : false;
 
   const mediaElRef = useRef<MuxPlayerElement | null>(null);
   const [endTracked, setEndTracked] = useState<string | null>(null);

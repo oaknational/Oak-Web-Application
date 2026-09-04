@@ -610,10 +610,10 @@ exports[`pages/about-us/oaks-impact.tsx renders title 1`] = `
             class="sc-aXZVg bZTQLO"
           >
             <div
-              class="sc-aXZVg sc-gEvEer sc-15447d59-0 jPvJsJ iDBIXi dpqfDS"
+              class="sc-aXZVg sc-gEvEer sc-444db1cb-0 jPvJsJ iDBIXi foolWP"
             >
               <div
-                class="sc-aXZVg sc-gEvEer sc-15447d59-2 jPvJsJ fqICts fGNtyM"
+                class="sc-aXZVg sc-gEvEer sc-444db1cb-2 jPvJsJ fqICts goziIh"
               >
                 <div
                   class="sc-aXZVg sc-gEvEer fnKdFm gUPrwF"
@@ -634,7 +634,7 @@ exports[`pages/about-us/oaks-impact.tsx renders title 1`] = `
                 class="sc-aXZVg sc-gEvEer jPvJsJ fVNIMq"
               >
                 <div
-                  class="sc-aXZVg sc-15447d59-1 jPvJsJ mEHOx"
+                  class="sc-aXZVg sc-444db1cb-1 jPvJsJ degaUg"
                 >
                   <div
                     class="sc-aXZVg sc-gEvEer jPvJsJ daEtut"
@@ -660,6 +660,115 @@ exports[`pages/about-us/oaks-impact.tsx renders title 1`] = `
                       >
                         Oaks Impact video description
                       </p>
+                    </div>
+                    <div
+                      class="sc-aXZVg sc-gEvEer jswmVI ljLRpA"
+                    >
+                      <div
+                        class="sc-aXZVg sc-gEvEer jPvJsJ iDBIXi"
+                      >
+                        <div
+                          class="sc-aXZVg sc-kpDqfm bhFzn cvxBYX"
+                        >
+                          <div
+                            class="sc-aXZVg kpXzs grey-shadow"
+                          />
+                          <div
+                            class="sc-aXZVg kpXzs yellow-shadow"
+                          />
+                          <button
+                            aria-controls=":r0:"
+                            aria-expanded="false"
+                            class="sc-dcJsrY sc-jXbUNg hkWkDf eTptGn internal-button"
+                          >
+                            <div
+                              class="sc-aXZVg sc-gEvEer jPvJsJ kejpBe"
+                            >
+                              <span
+                                class="sc-eqUAAy kJIzWq"
+                              >
+                                Show
+                                 transcript
+                              </span>
+                              <span
+                                class="sc-aXZVg jJQFnr"
+                              >
+                                <img
+                                  alt=""
+                                  class="sc-iGgWBj lcrpYX"
+                                  data-nimg="fill"
+                                  decoding="async"
+                                  loading="lazy"
+                                  src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1699953557/icons/botfld6brychmttwtv6u.svg"
+                                  style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                                />
+                              </span>
+                            </div>
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                    <div
+                      class="sc-aXZVg sc-gEvEer cODBSt dKwsfm"
+                    >
+                      <div
+                        class="sc-aXZVg sc-gEvEer jPvJsJ iDBIXi"
+                      >
+                        <div
+                          class="sc-aXZVg sc-kpDqfm bhFzn cvxBYX"
+                        >
+                          <div
+                            class="sc-aXZVg kpXzs grey-shadow"
+                          />
+                          <div
+                            class="sc-aXZVg kpXzs yellow-shadow"
+                          />
+                          <button
+                            aria-controls=":r0:"
+                            aria-expanded="false"
+                            class="sc-dcJsrY sc-jXbUNg hkWkDf eTptGn internal-button"
+                          >
+                            <div
+                              class="sc-aXZVg sc-gEvEer jPvJsJ kejpBe"
+                            >
+                              <span
+                                class="sc-eqUAAy kJIzWq"
+                              >
+                                Show
+                                 transcript
+                              </span>
+                              <span
+                                class="sc-aXZVg jJQFnr"
+                              >
+                                <img
+                                  alt=""
+                                  class="sc-iGgWBj lcrpYX"
+                                  data-nimg="fill"
+                                  decoding="async"
+                                  loading="lazy"
+                                  src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1699953557/icons/botfld6brychmttwtv6u.svg"
+                                  style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                                />
+                              </span>
+                            </div>
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                    <div
+                      class="sc-aXZVg sc-gEvEer TfzCi jLfsQU"
+                      data-testid="oak-video-transcript-container"
+                      id=":r0:"
+                    >
+                      <div
+                        class="sc-aXZVg sc-gEvEer hkAEUL gWBhKY"
+                      >
+                        <p
+                          class="sc-ikkxIA jUPyul"
+                        >
+                          Use this KS3 and KS4 Eduqas English curriculum plan to support sequenced teaching in reading, writing and speaking. Aligned to the Eduqas GCSE specification, this curriculum helps pupils develop fluency in analysis and communication through a wide range of texts and topics.
+                        </p>
+                      </div>
                     </div>
                   </div>
                 </div>
