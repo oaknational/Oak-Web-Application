@@ -29,19 +29,6 @@ const IllustrationPanel = styled(OakBox)<{ $showImageOverflow: boolean }>`
   }
 `;
 
-const TextLayout = styled(OakFlex)<{ $showImageOverflow: boolean }>`
-  flex: ${({ $showImageOverflow }) =>
-    $showImageOverflow ? "1 1 0" : "0 1 auto"};
-  min-width: 0;
-`;
-
-const HeaderLayout = styled(OakFlex)<{ $showImageOverflow: boolean }>`
-  @media (max-width: 750px) {
-    flex-direction: ${({ $showImageOverflow }) =>
-      $showImageOverflow ? "column" : "row"};
-  }
-`;
-
 const StyledBackgroundLoop = styled(OakIcon)`
   height: 125%;
   filter: invert(70%) sepia(24%) saturate(580%) hue-rotate(188deg)
@@ -132,8 +119,9 @@ export function AboutSharedHeader({
 }: Readonly<AboutSharedHeaderProps>) {
   return (
     <NewGutterMaxWidth>
-      <HeaderLayout
-        $showImageOverflow={showImageOverflow}
+      <OakFlex
+        $minWidth="spacing-0"
+        $flexBasis={[showImageOverflow ? 0 : "auto", "auto"]}
         $alignItems="center"
         $justifyContent="space-between"
         $pt={["spacing-56", "spacing-72"]}
@@ -145,8 +133,11 @@ export function AboutSharedHeader({
         }
         $overflow={"hidden"}
       >
-        <TextLayout
-          $showImageOverflow={showImageOverflow}
+        <OakFlex
+          $minWidth="spacing-0"
+          $flexGrow={showImageOverflow ? 1 : 0}
+          $flexShrink={1}
+          $flexBasis={showImageOverflow ? "spacing-0" : "auto"}
           $flexDirection={"column"}
           $gap={"spacing-24"}
         >
@@ -154,6 +145,10 @@ export function AboutSharedHeader({
             <OakSpan
               $background={titleHighlight ?? "bg-decorative1-main"}
               $ph={"spacing-4"}
+              style={{
+                lineHeight: 1.25,
+                boxDecorationBreak: "clone",
+              }}
             >
               {title}
             </OakSpan>
@@ -171,11 +166,15 @@ export function AboutSharedHeader({
               components={portableTextComponents}
             />
           )}
-        </TextLayout>
-        <IllustrationPanel $showImageOverflow={showImageOverflow}>
+        </OakFlex>
+        <IllustrationPanel
+          $showImageOverflow={showImageOverflow}
+          $position="relative"
+          $zIndex={0}
+        >
           {children}
         </IllustrationPanel>
-      </HeaderLayout>
+      </OakFlex>
     </NewGutterMaxWidth>
   );
 }
