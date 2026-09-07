@@ -50,7 +50,7 @@ describe("TopNavDropdown", () => {
       });
     });
     describe("keystages sections", () => {
-      it("renders keystage menu", async () => {
+      it("renders primary keystage menu", async () => {
         render(
           <TopNavDropdown
             teachers={topNavFixture.teachers!}
@@ -88,7 +88,7 @@ describe("TopNavDropdown", () => {
         expect(primaryButton).not.toHaveAttribute("aria-controls");
       });
 
-      it("renders keystage menu", async () => {
+      it("renders secondary keystage menu", async () => {
         render(
           <TopNavDropdown
             teachers={topNavFixture.teachers!}
