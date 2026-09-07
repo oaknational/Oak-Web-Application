@@ -572,9 +572,46 @@ describe("National Curriculum Insights sections", () => {
     );
     expect(portrait).toHaveAttribute(
       "src",
-      expect.stringContaining("0cbe985b5819001d8cbc0c6e72bbb0f90259f167"),
+      expect.stringContaining(encodeURIComponent("guidance/becky-francis.png")),
     );
     expect(portrait).toHaveAttribute("alt", "");
+  });
+
+  it("replaces the low-resolution benefits artwork without overriding editor-selected images", async () => {
+    const data = await getData(["guidance"]);
+    const section = moduleOf({
+      __typename: "NationalCurriculumInsightsImageTextSection",
+      heading: "Curriculum resources",
+      bodyPortableText: portableText("benefits", "Resources for your school."),
+      image: {
+        ...contentImage,
+        asset: {
+          ...contentImage.asset,
+          url: "https://cdn.sanity.io/images/cuvjke51/feat-national-curriculum-insights/96af3d15e4488bc498ead83aa83a815229709f43-513x400.png",
+        },
+      },
+      imagePosition: "right",
+      background: "turquoise",
+    });
+    const { rerender } = renderWithTheme(
+      <NationalCurriculumInsightsImageText data={data} section={section} />,
+    );
+    expect(screen.getByAltText(contentImage.altText)).toHaveAttribute(
+      "src",
+      expect.stringContaining(
+        encodeURIComponent("guidance/curriculum-resources.png"),
+      ),
+    );
+    rerender(
+      <NationalCurriculumInsightsImageText
+        data={data}
+        section={{ ...section, image: contentImage }}
+      />,
+    );
+    expect(screen.getByAltText(contentImage.altText)).toHaveAttribute(
+      "src",
+      expect.stringContaining("example-100x100.png"),
+    );
   });
 
   it("uses subject and phase context for navigation cards", async () => {

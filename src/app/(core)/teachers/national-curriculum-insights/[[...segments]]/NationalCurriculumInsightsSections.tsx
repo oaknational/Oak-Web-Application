@@ -72,9 +72,12 @@ type ContextualSectionProps<T extends InsightSection["__typename"]> =
   };
 
 const DEFAULT_IMAGE = "/images/national-curriculum-insights/hero.jpg";
-const GUIDANCE_TESTIMONIAL_IMAGE_URL = getProxiedSanityAssetUrl(
-  "https://cdn.sanity.io/images/cuvjke51/feat-national-curriculum-insights/0cbe985b5819001d8cbc0c6e72bbb0f90259f167-54x54.png",
-);
+const GUIDANCE_TESTIMONIAL_IMAGE_URL =
+  "/images/national-curriculum-insights/guidance/becky-francis.png";
+const GUIDANCE_BENEFITS_IMAGE_URL =
+  "/images/national-curriculum-insights/guidance/curriculum-resources.png";
+const LEGACY_GUIDANCE_BENEFITS_IMAGE =
+  "96af3d15e4488bc498ead83aa83a815229709f43-513x400";
 
 const insightsTabletMediaQuery = `(min-width: ${getBreakpoint(
   "small",
@@ -801,18 +804,25 @@ const GuidanceExplainerLayout = styled(OakBox)`
 const GuidanceExplainerHeading = styled(OakHeading)`
   grid-column: 1;
   grid-row: 1;
+  letter-spacing: -0.02em;
 
   @media ${insightsWideDesktopMediaQuery} {
     grid-column: 1 / -1;
+    width: 727px;
+    max-width: 100%;
   }
 `;
 
-const GuidanceExplainerImage = styled(OakBox)`
+const GuidanceExplainerImage = styled(OakBox)<{ $mirror?: boolean }>`
   width: 269px;
   max-width: 100%;
   aspect-ratio: 332 / 259;
   justify-self: center;
   overflow: hidden;
+
+  img {
+    transform: ${({ $mirror }) => ($mirror ? "scaleX(-1)" : "none")};
+  }
 
   @media (min-width: 376px) and (max-width: ${getBreakpoint("small") - 1}px) {
     width: clamp(269px, calc(62.032vw + 35.76px), 501px);
@@ -826,7 +836,8 @@ const GuidanceExplainerImage = styled(OakBox)`
   }
 
   @media ${insightsWideDesktopMediaQuery} {
-    grid-row: 2;
+    grid-row: 1 / span 2;
+    justify-self: start;
   }
 
   @media ${insightsTabletMediaQuery} {
@@ -867,12 +878,15 @@ export const NationalCurriculumInsightsImageText = ({
   const headingId = useId();
 
   if (data.route.kind === "guidance") {
+    const usesApprovedBenefitsImage = section.image.asset?.url?.includes(
+      LEGACY_GUIDANCE_BENEFITS_IMAGE,
+    );
     return (
       <GuidanceExplainerSection
         as="section"
         $background="bg-decorative1-very-subdued"
         $ph="spacing-40"
-        $pv={["spacing-48", "spacing-64"]}
+        $pv={["spacing-48", "spacing-64", "spacing-40"]}
         aria-labelledby={headingId}
         data-insights-module="guidance-benefits"
       >
@@ -882,9 +896,14 @@ export const NationalCurriculumInsightsImageText = ({
           </GuidanceExplainerHeading>
           <GuidanceExplainerImage
             aria-hidden={section.image.isPresentational || undefined}
+            $mirror={usesApprovedBenefitsImage}
           >
             <OakImage
-              src={imageUrl(section.image)}
+              src={
+                usesApprovedBenefitsImage
+                  ? GUIDANCE_BENEFITS_IMAGE_URL
+                  : imageUrl(section.image)
+              }
               alt={imageAlt(section.image)}
               $width="100%"
               $height="100%"
