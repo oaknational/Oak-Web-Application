@@ -2,7 +2,7 @@ import { Metadata } from "next";
 import z from "zod";
 import { notFound } from "next/navigation";
 
-import { PageSearchParms } from "../programmes/[slug]/[tab]/page";
+import type { PageSearchParms } from "../programmes/[slug]/[tab]/page";
 
 import { TeachWithOakView } from "./components/TeachWithOakView";
 
