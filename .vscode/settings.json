@@ -24,8 +24,5 @@
     "Testrunner",
     "webvtt",
     "yalc"
-  ],
-  "deno.enable": true,
-  "deno.enablePaths": [],
-  "deno.unstable": true
+  ]
 }
