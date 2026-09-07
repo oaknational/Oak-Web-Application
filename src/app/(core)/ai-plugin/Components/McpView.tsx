@@ -45,14 +45,9 @@ const McpSubsection = ({
 export const McpView = () => (
   <>
     <OakMaxWidth
-      // One max width at every viewport, rather than OakMaxWidth's default
-      // ["spacing-480", "spacing-1280"] step, which clamps the whole page to
-      // 480px below the 750px breakpoint. Matches the newer pages, e.g.
-      // UnitSequenceView and ProgrammeDownloads.
       $maxWidth="spacing-1280"
       $color="text-primary"
       $ph={["spacing-16", "spacing-24"]}
-      // Figma offsets the hero 32px below the nav, at every breakpoint.
       $pt="spacing-32"
       $pb="spacing-64"
     >
