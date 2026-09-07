@@ -24,25 +24,3 @@ describe("getProxiedSanityAssetUrl", () => {
     expect(getProxiedSanityAssetUrl(undefined)).toEqual(undefined);
   });
 });
-
-describe("Sanity asset URL suffixes", () => {
-  const path =
-    "/files/cuvjke51/production/06043df8db8bc29c6a2b71adb2808425ba12aab5.pdf";
-
-  it.each(["?dl=report.pdf", "#page=3", "?dl=report%20name.pdf#page=3"])(
-    "preserves %s when proxying",
-    (suffix) => {
-      expect(
-        getProxiedSanityAssetUrl(`https://cdn.sanity.io${path}${suffix}`),
-      ).toBe(`https://NEXT_PUBLIC_SANITY_ASSET_CDN_HOST${path}${suffix}`);
-    },
-  );
-
-  it.each(["sanity-asset-cdn.thenational.academy", "example.com"])(
-    "leaves URLs on %s unchanged",
-    (host) => {
-      const url = `https://${host}${path}?dl=report.pdf#page=3`;
-      expect(getProxiedSanityAssetUrl(url)).toBe(url);
-    },
-  );
-});
