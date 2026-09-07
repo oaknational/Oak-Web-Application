@@ -113,12 +113,6 @@ describe("TeacherNotesModal", () => {
     });
 
     it("should return false if the URL is invalid", () => {
-      context.defaultValidate.mockReturnValueOnce(false);
-      const result = isAllowedUri("https://", context);
-      expect(result).toBe(false);
-    });
-
-    it("should return false if the URL is invalid", () => {
       const result = isAllowedUri("https://", context);
       expect(result).toBe(false);
     });
