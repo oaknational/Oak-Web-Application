@@ -136,7 +136,7 @@ describe("getMetaTitle", () => {
         { tiers: "foundation", keystages: "ks4" },
       );
       expect(result.title).toEqual(
-        "Free KS4 Maths Foundation Lesson & Curriculum Resources",
+        "Free GCSE KS4 Maths Foundation Lesson & Curriculum Resources",
       );
     });
     it("returns a title with keystage, examboard and tier", () => {

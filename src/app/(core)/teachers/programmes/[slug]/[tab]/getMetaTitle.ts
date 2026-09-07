@@ -57,14 +57,16 @@ export const getMetaTitle = (
 
   if (keystageSegment) {
     const isGcseKeystage = searchParams?.keystages === "ks4";
-    const gcseSegment = isGcseOption && isGcseKeystage ? "GCSE " : "";
+    const gcseSegment =
+      (isGcseOption || !!tierSegment) && isGcseKeystage ? "GCSE " : "";
     title = `Free ${gcseSegment}${keystageSegment} ${currentSubject.title}${tierSegment}${examboardSegment} Lesson & Curriculum Resources`;
   }
 
   if (yearSegment) {
     const isGcseYear =
       searchParams?.years === "10" || searchParams?.years === "11";
-    const gcseSegment = isGcseOption && isGcseYear ? "GCSE " : "";
+    const gcseSegment =
+      (isGcseOption || !!tierSegment) && isGcseYear ? "GCSE " : "";
     title = `Free ${gcseSegment}${yearSegment} ${currentSubject.title}${tierSegment}${examboardSegment}${threadSegment} Lesson & Curriculum Resources`;
   }
 

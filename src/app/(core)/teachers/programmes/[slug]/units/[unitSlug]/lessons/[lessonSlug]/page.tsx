@@ -59,7 +59,8 @@ export async function generateMetadata(
     } = data;
     const tierSegment = tierTitle ? ` ${tierTitle}` : "";
     const examboardSegment = examBoardTitle ? ` ${examBoardTitle}` : "";
-    const gcseSegment = pathwayTitle === "GCSE" ? "GCSE | " : "";
+    const gcseSegment =
+      pathwayTitle === "GCSE" || !!tierSegment ? "GCSE | " : "";
 
     const title = `${lessonTitle} ${gcseSegment}${keyStageSlug.toUpperCase()} | Y${year} ${subjectTitle}${tierSegment}${examboardSegment} | Lesson Resources`;
 
