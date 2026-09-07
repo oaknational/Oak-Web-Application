@@ -102,12 +102,7 @@ describe("TermsAgreementForm (School, email and terms form within the teacher an
     const detailsCompletedComponent = getByTestId("termsCheckbox");
     expect(detailsCompletedComponent).toBeInTheDocument();
   });
-  it("Shows ResourcePageTermsAndConditionsCheckbox component", async () => {
-    // Render the component with required props
-    const { getByTestId } = render(<Wrapper />);
-    const detailsCompletedComponent = getByTestId("termsCheckbox");
-    expect(detailsCompletedComponent).toBeInTheDocument();
-  });
+
   it("does not show heading and copyright notice when useDownloadPageLayout is true", async () => {
     const { queryByText } = render(<Wrapper useDownloadPageLayout />);
     const heading = queryByText("Your details");
