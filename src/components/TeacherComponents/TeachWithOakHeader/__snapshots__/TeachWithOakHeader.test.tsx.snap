@@ -59,16 +59,17 @@ exports[`TeachWithOakHeader renders correctly 1`] = `
             class="sc-aXZVg bZTQLO"
           >
             <div
-              class="sc-aXZVg sc-gEvEer sc-daae8912-2 fjNszh djSIXq bkIMYD"
+              class="sc-aXZVg sc-gEvEer gHbcIj bzMUbf"
             >
               <div
-                class="sc-aXZVg sc-gEvEer sc-daae8912-1 jPvJsJ daEtut iZOKsC"
+                class="sc-aXZVg sc-gEvEer kJbZjn kYSywO"
               >
                 <h1
                   class="sc-eldPxv kSQYKV"
                 >
                   <span
                     class="sc-eqUAAy ffxKII"
+                    style="line-height: 1.25; box-decoration-break: clone;"
                   >
                     The thinking behind Oak lessons
                   </span>
@@ -80,7 +81,7 @@ exports[`TeachWithOakHeader renders correctly 1`] = `
                 </p>
               </div>
               <div
-                class="sc-aXZVg sc-daae8912-0 jPvJsJ dehhmV"
+                class="sc-aXZVg sc-1a56d404-0 QBMYh hzyvYt"
               >
                 <span
                   class="sc-aXZVg iLOJBD sc-5ce3e7c8-1 exIaJo"

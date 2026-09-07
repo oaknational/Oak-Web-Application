@@ -7,16 +7,17 @@ exports[`AboutSharedHeader renders correctly 1`] = `
       class="sc-aXZVg bZTQLO"
     >
       <div
-        class="sc-aXZVg sc-gEvEer sc-daae8912-2 fjNszh hPyKbx bdqpkH"
+        class="sc-aXZVg sc-gEvEer gHbcIj yPqtn"
       >
         <div
-          class="sc-aXZVg sc-gEvEer sc-daae8912-1 jPvJsJ daEtut dYzeKk"
+          class="sc-aXZVg sc-gEvEer kJbZjn hNxFkS"
         >
           <h1
             class="sc-eldPxv kSQYKV"
           >
             <span
               class="sc-eqUAAy buaVGR"
+              style="line-height: 1.25; box-decoration-break: clone;"
             >
               TESTING_TITLE
             </span>
@@ -28,7 +29,7 @@ exports[`AboutSharedHeader renders correctly 1`] = `
           </p>
         </div>
         <div
-          class="sc-aXZVg sc-daae8912-0 jPvJsJ liIVMy"
+          class="sc-aXZVg sc-1a56d404-0 QBMYh inwGSu"
         >
           <span
             class="sc-aXZVg kvjdhA"
@@ -57,16 +58,17 @@ exports[`AboutSharedHeader renders correctly with loop illustration 1`] = `
       class="sc-aXZVg bZTQLO"
     >
       <div
-        class="sc-aXZVg sc-gEvEer sc-daae8912-2 fjNszh hPyKbx bdqpkH"
+        class="sc-aXZVg sc-gEvEer gHbcIj yPqtn"
       >
         <div
-          class="sc-aXZVg sc-gEvEer sc-daae8912-1 jPvJsJ daEtut dYzeKk"
+          class="sc-aXZVg sc-gEvEer kJbZjn hNxFkS"
         >
           <h1
             class="sc-eldPxv kSQYKV"
           >
             <span
               class="sc-eqUAAy buaVGR"
+              style="line-height: 1.25; box-decoration-break: clone;"
             >
               TESTING_TITLE
             </span>
@@ -78,10 +80,10 @@ exports[`AboutSharedHeader renders correctly with loop illustration 1`] = `
           </p>
         </div>
         <div
-          class="sc-aXZVg sc-daae8912-0 jPvJsJ liIVMy"
+          class="sc-aXZVg sc-1a56d404-0 QBMYh inwGSu"
         >
           <span
-            class="sc-aXZVg fjkwRj sc-daae8912-3 gZJTOd"
+            class="sc-aXZVg fjkwRj sc-1a56d404-1 izGPzr"
             data-testid="about-shared-loop"
           >
             <img
