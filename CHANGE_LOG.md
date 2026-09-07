@@ -1,3 +1,10 @@
+## [1.1180.4](https://github.com/oaknational/Oak-Web-Application/compare/v1.1180.3...v1.1180.4) (2026-09-07)
+
+
+### Bug Fixes
+
+* **cms:** proxy external Sanity asset links ([35abc31](https://github.com/oaknational/Oak-Web-Application/commit/35abc31fd8331428e759822e17a6a695176a3d50))
+
 ## [1.1180.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.1180.2...v1.1180.3) (2026-09-03)
 
 
