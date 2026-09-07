@@ -147,11 +147,6 @@ describe("TeacherNotesModal", () => {
       const result = shouldAutoLink("https://");
       expect(result).toBe(false);
     });
-
-    it("should return false if the URL is invalid", () => {
-      const result = shouldAutoLink("https://");
-      expect(result).toBe(false);
-    });
   });
 
   it("should populate the editor with the html from the teacher note when the onCreate event callback is triggered", async () => {
