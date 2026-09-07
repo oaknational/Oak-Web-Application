@@ -133,12 +133,12 @@ describe("TeacherNotesModal", () => {
   });
 
   describe("shouldAutoLink", () => {
-    it("should return true if the URL is valid", () => {
+    it("should return true if the URL is valid (with protocol)", () => {
       const result = shouldAutoLink("https://example.com");
       expect(result).toBe(true);
     });
 
-    it("should return true if the URL is valid", () => {
+    it("should return true if the URL is valid (no protocol)", () => {
       const result = shouldAutoLink("example.com");
       expect(result).toBe(true);
     });
