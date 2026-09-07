@@ -6,6 +6,7 @@ import {
   SubjectName,
 } from "../../../../[tab]/Components/ProgrammeHeader/getSubjectHeroImageUrl";
 import { Breadcrumbs } from "../Components/Breadcrumbs/Breadcrumbs";
+import { getLessonResourcesMetaTitle } from "../getLessonResourcesMetaTitle";
 
 import LessonView from "./Components/LessonView";
 import LessonHeader from "./Components/LessonHeader/LessonHeader";
@@ -57,12 +58,16 @@ export async function generateMetadata(
       examBoardTitle,
       pathwayTitle,
     } = data;
-    const tierSegment = tierTitle ? ` ${tierTitle}` : "";
-    const examboardSegment = examBoardTitle ? ` ${examBoardTitle}` : "";
-    const gcseSegment =
-      pathwayTitle === "GCSE" || !!tierSegment ? "GCSE | " : "";
 
-    const title = `${lessonTitle} ${gcseSegment}${keyStageSlug.toUpperCase()} | Y${year} ${subjectTitle}${tierSegment}${examboardSegment} | Lesson Resources`;
+    const title = getLessonResourcesMetaTitle({
+      contentTitle: lessonTitle,
+      keyStageSlug,
+      year,
+      subjectTitle,
+      tierTitle,
+      examBoardTitle,
+      pathwayTitle,
+    });
 
     const description =
       "View lesson content and choose resources to download or share";
