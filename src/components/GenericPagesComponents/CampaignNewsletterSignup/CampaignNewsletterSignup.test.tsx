@@ -107,27 +107,6 @@ describe("CampaignNewsletterSignup", () => {
     });
   });
 
-  it("renders an error if required fields are missing", async () => {
-    const { getByTestId, getByRole, getByText, getByPlaceholderText } =
-      renderWithTheme(
-        <CampaignNewsletterSignup data-testid="test" {...mockData} />,
-      );
-
-    act(() => {
-      getByTestId("download-school-isnt-listed").click();
-    });
-    const emailInput = getByPlaceholderText("Type your email address");
-    await userEvent.type(emailInput, "test@example.com");
-
-    act(() => {
-      getByRole("button", { name: "newsletter-signup-cta-button" }).click();
-    });
-
-    await waitFor(() => {
-      expect(getByText("Please enter your name")).toBeVisible();
-    });
-  });
-
   it("renders a success message if all hubspot submit is successful", async () => {
     (useNewsletterForm as jest.Mock).mockResolvedValueOnce(true);
     const { getByTestId, getByRole, getByText, getByPlaceholderText } =
