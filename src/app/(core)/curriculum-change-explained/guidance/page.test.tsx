@@ -23,13 +23,11 @@ jest.mock(
 describe("curriculum change guidance route", () => {
   beforeEach(() => {
     jest.clearAllMocks();
-    jest
-      .mocked(draftMode)
-      .mockResolvedValue({
-        isEnabled: false,
-        enable: jest.fn(),
-        disable: jest.fn(),
-      });
+    jest.mocked(draftMode).mockResolvedValue({
+      isEnabled: false,
+      enable: jest.fn(),
+      disable: jest.fn(),
+    });
   });
   it("uses the independent guidance route and canonical URL", async () => {
     jest
@@ -49,13 +47,11 @@ describe("curriculum change guidance route", () => {
     await expect(CurriculumChangeGuidancePage()).rejects.toThrow("404");
   });
   it("does not index authenticated draft previews", async () => {
-    jest
-      .mocked(draftMode)
-      .mockResolvedValue({
-        isEnabled: true,
-        enable: jest.fn(),
-        disable: jest.fn(),
-      });
+    jest.mocked(draftMode).mockResolvedValue({
+      isEnabled: true,
+      enable: jest.fn(),
+      disable: jest.fn(),
+    });
     expect((await generateMetadata()).robots).toEqual({
       index: false,
       follow: false,
