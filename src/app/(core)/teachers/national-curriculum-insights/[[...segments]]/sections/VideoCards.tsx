@@ -387,8 +387,10 @@ export const NationalCurriculumInsightsVideoCards = ({
 }: SectionProps<"NationalCurriculumInsightsVideoCardsSection">) => {
   const headingId = useId();
   const posts = section.posts ?? [];
-  const legacyCards = posts.length > 0 ? [] : (section.cards ?? []);
+  const legacyCards = section.posts === undefined ? (section.cards ?? []) : [];
   const itemCount = posts.length || legacyCards.length;
+
+  if (itemCount === 0) return null;
 
   return (
     <VideoCardsSection

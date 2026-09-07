@@ -86,6 +86,11 @@ export const NationalCurriculumInsightsPhaseCards = ({
     return null;
   }
 
+  const cards = section.cards.filter(({ phase }) =>
+    data.subject?.tabs.some(({ kind }) => kind === phase),
+  );
+  if (cards.length === 0) return null;
+
   return (
     <OakBox
       $ph={["spacing-20", "spacing-40"]}
@@ -93,7 +98,7 @@ export const NationalCurriculumInsightsPhaseCards = ({
     >
       <SectionMaxWidth $mh="auto">
         <PhaseCardList data-insights-module="phase-cards">
-          {section.cards.map((card) => (
+          {cards.map((card) => (
             <PhaseCardItem key={`${card.phase}-${card.heading}`}>
               <InsightsJumpCard
                 $height={240}

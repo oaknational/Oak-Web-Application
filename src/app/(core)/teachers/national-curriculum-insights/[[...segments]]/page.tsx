@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { draftMode } from "next/headers";
-import { notFound } from "next/navigation";
+import { notFound, permanentRedirect } from "next/navigation";
 
 import { getNationalCurriculumInsightsRouteData } from "./getNationalCurriculumInsightsData";
 import { NationalCurriculumInsightsView } from "./NationalCurriculumInsightsView";
@@ -41,8 +41,10 @@ export const generateMetadata = async ({
 
 const NationalCurriculumInsightsPage = async ({
   params,
+  searchParams,
 }: {
   params: Promise<{ segments?: string[] }>;
+  searchParams?: Promise<Record<string, string | string[] | undefined>>;
 }) => {
   const { segments } = await params;
   const route = parseNationalCurriculumInsightsRoute(segments);
@@ -56,6 +58,22 @@ const NationalCurriculumInsightsPage = async ({
   });
   if (!data) {
     return notFound();
+  }
+
+  if (route.kind === "guidance") {
+    const query = new URLSearchParams();
+    for (const [key, value] of Object.entries((await searchParams) ?? {})) {
+      for (const item of Array.isArray(value)
+        ? value
+        : value === undefined
+          ? []
+          : [value]) {
+        query.append(key, item);
+      }
+    }
+    permanentRedirect(
+      `${nationalCurriculumInsightsRouteHref(route)}${query.size ? `?${query}` : ""}`,
+    );
   }
 
   return <NationalCurriculumInsightsView data={data} />;

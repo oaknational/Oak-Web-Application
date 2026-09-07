@@ -13,12 +13,16 @@ jest.mock("next/navigation", () => ({
   notFound: jest.fn(() => {
     throw new Error("NEXT_HTTP_ERROR_FALLBACK;404");
   }),
+  permanentRedirect: jest.fn((url: string) => {
+    throw new Error(`REDIRECT:${url}`);
+  }),
 }));
 jest.mock("next/headers", () => ({ draftMode: jest.fn() }));
 jest.mock("@/node-lib/cms", () => ({
   __esModule: true,
   default: {
     nationalCurriculumInsightsHub: jest.fn(),
+    nationalCurriculumInsightsGuidancePage: jest.fn(),
     nationalCurriculumInsightsSubjectBySlug: jest.fn(),
   },
 }));
@@ -42,6 +46,25 @@ describe("National Curriculum Insights page", () => {
     jest
       .mocked(CMSClient.nationalCurriculumInsightsSubjectBySlug)
       .mockResolvedValue(science as never);
+  });
+
+  it("redirects the previous guidance URL without losing tracking parameters", async () => {
+    jest
+      .mocked(CMSClient.nationalCurriculumInsightsGuidancePage)
+      .mockResolvedValue(
+        await localNationalCurriculumInsightsFixtures.reader.nationalCurriculumInsightsGuidancePage(),
+      );
+    await expect(
+      NationalCurriculumInsightsPage({
+        params: Promise.resolve({ segments: ["guidance"] }),
+        searchParams: Promise.resolve({
+          utm_source: "newsletter",
+          tag: ["one", "two"],
+        }),
+      }),
+    ).rejects.toThrow(
+      "REDIRECT:/curriculum-change-explained/guidance?utm_source=newsletter&tag=one&tag=two",
+    );
   });
 
   it("renders the subject overview at the subject root", async () => {

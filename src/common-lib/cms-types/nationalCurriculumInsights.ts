@@ -223,7 +223,7 @@ const nationalCurriculumInsightsVideoCardsSectionSchema = z
       .optional(),
   })
   .refine(
-    ({ posts, cards }) => Boolean(posts?.length || cards?.length),
+    ({ posts, cards }) => Array.isArray(posts) || Boolean(cards?.length),
     "A video cards section must contain at least one blog post or legacy card",
   );
 
@@ -422,7 +422,6 @@ export const nationalCurriculumInsightsSubjectSchema = z.object({
   curriculumSubjectSlugs: z.array(z.string().min(1)).min(1),
   tabs: z
     .array(nationalCurriculumInsightsTabSchema)
-    .min(1)
     .max(2)
     .superRefine(refineSubjectTabs),
   ...documentSchema.shape,
@@ -435,7 +434,6 @@ export const nationalCurriculumInsightsSubjectSummarySchema = z.object({
   curriculumSubjectSlugs: z.array(z.string().min(1)).min(1),
   tabs: z
     .array(nationalCurriculumInsightsTabSummarySchema)
-    .min(1)
     .max(2)
     .superRefine(refineSubjectTabs),
   ...documentSchema.shape,
@@ -445,7 +443,7 @@ export const nationalCurriculumInsightsHubSchema = z
   .object({
     title: z.string().min(1),
     summary: z.string().min(1),
-    subjects: z.array(nationalCurriculumInsightsSubjectSummarySchema).min(1),
+    subjects: z.array(nationalCurriculumInsightsSubjectSummarySchema),
     modules: z.array(nationalCurriculumInsightsModuleSchema).min(1),
     ...documentSchema.shape,
   })

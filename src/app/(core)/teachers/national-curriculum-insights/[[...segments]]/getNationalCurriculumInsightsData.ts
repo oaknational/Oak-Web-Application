@@ -21,7 +21,7 @@ export type NationalCurriculumInsightsReader = Pick<
 type SubjectSummary = NationalCurriculumInsightsHub["subjects"][number];
 
 export type NationalCurriculumInsightsRouteData = {
-  hub: NationalCurriculumInsightsHub;
+  hub: NationalCurriculumInsightsHub | null;
   route: NationalCurriculumInsightsRoute;
   subjects: SubjectSummary[];
   subject: NationalCurriculumInsightsSubject | null;
@@ -85,23 +85,6 @@ export const getNationalCurriculumInsightsRouteData = async (
     reader?: NationalCurriculumInsightsReader;
   },
 ): Promise<NationalCurriculumInsightsRouteData | null> => {
-  const hub = await reader.nationalCurriculumInsightsHub({ previewMode });
-  if (!hub) {
-    return null;
-  }
-
-  if (route.kind === "hub") {
-    return {
-      hub,
-      route,
-      subjects: hub.subjects,
-      subject: null,
-      page: null,
-      activeTab: null,
-      activeKeyStage: null,
-    };
-  }
-
   if (route.kind === "guidance") {
     const page = await reader.nationalCurriculumInsightsGuidancePage({
       previewMode,
@@ -110,12 +93,36 @@ export const getNationalCurriculumInsightsRouteData = async (
       return null;
     }
 
+    const needsCatalogue = page.modules.some(
+      ({ __typename }) =>
+        __typename === "NationalCurriculumInsightsSubjectNavigationSection" ||
+        __typename === "NationalCurriculumInsightsDownloadSection",
+    );
+    const hub = needsCatalogue
+      ? await reader.nationalCurriculumInsightsHub({ previewMode })
+      : null;
+
+    return {
+      hub,
+      route,
+      subjects: hub?.subjects ?? [],
+      subject: null,
+      page,
+      activeTab: null,
+      activeKeyStage: null,
+    };
+  }
+
+  const hub = await reader.nationalCurriculumInsightsHub({ previewMode });
+  if (!hub) return null;
+
+  if (route.kind === "hub") {
     return {
       hub,
       route,
       subjects: hub.subjects,
       subject: null,
-      page,
+      page: null,
       activeTab: null,
       activeKeyStage: null,
     };

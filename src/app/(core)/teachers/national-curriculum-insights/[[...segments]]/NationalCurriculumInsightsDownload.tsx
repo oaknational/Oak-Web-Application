@@ -482,7 +482,7 @@ export const NationalCurriculumInsightsDownload = ({
             phase === "primary"
               ? ("bg-decorative4-main" as const)
               : ("bg-decorative3-main" as const),
-          options: data.hub.subjects
+          options: data.subjects
             .filter(({ tabs }) => tabs.some(({ kind }) => kind === phase))
             .map(({ slug, title }) => ({
               label: title,
@@ -490,7 +490,7 @@ export const NationalCurriculumInsightsDownload = ({
             })),
         }))
         .filter(({ options }) => options.length > 0),
-    [data.hub.subjects],
+    [data.subjects],
   );
 
   const detailsComplete =

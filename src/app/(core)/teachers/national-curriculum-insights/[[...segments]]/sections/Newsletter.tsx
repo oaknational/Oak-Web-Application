@@ -245,6 +245,7 @@ export const NationalCurriculumInsightsNewsletter = ({
   return (
     <NewsletterSection
       as="section"
+      id="sign-up"
       $background={isGuidance ? "bg-primary" : "bg-decorative5-very-subdued"}
       $ph={["spacing-20", "spacing-40"]}
       $pv={["spacing-48", "spacing-48"]}

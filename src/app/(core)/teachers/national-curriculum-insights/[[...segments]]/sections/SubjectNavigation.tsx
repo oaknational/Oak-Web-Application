@@ -21,7 +21,7 @@ import {
   nationalCurriculumInsightsSubjectPhaseHref,
 } from "@/common-lib/urls/nationalCurriculumInsights";
 
-type Subject = NationalCurriculumInsightsRouteData["hub"]["subjects"][number];
+type Subject = NationalCurriculumInsightsRouteData["subjects"][number];
 
 type Phase = "primary" | "secondary";
 
@@ -102,12 +102,14 @@ export const NationalCurriculumInsightsSubjectNavigation = ({
   section,
   data,
 }: ContextualSectionProps<"NationalCurriculumInsightsSubjectNavigationSection">) => {
+  if (data.subjects.length === 0) return null;
+
   if (data.route.kind !== "hub") {
     const phase =
       data.activeTab && data.activeTab !== "overview"
         ? data.activeTab
         : undefined;
-    const subjects = data.hub.subjects.filter(
+    const subjects = data.subjects.filter(
       (subject) => !phase || subject.tabs.some(({ kind }) => kind === phase),
     );
 
@@ -161,52 +163,58 @@ export const NationalCurriculumInsightsSubjectNavigation = ({
     >
       <SectionMaxWidth $mh="auto" data-insights-module="subject-catalogue">
         <OakFlex $flexDirection="column" $gap="spacing-40">
-          {section.phases.map((phase) => (
-            <HubPhaseNavigation
-              key={phase}
-              aria-labelledby={`national-curriculum-insights-${phase}-subjects`}
-            >
-              <OakFlex
-                $flexDirection="column"
-                $gap="spacing-16"
-                $alignItems={["center", "center", "stretch"]}
+          {section.phases
+            .filter((phase) =>
+              data.subjects.some(({ tabs }) =>
+                tabs.some(({ kind }) => kind === phase),
+              ),
+            )
+            .map((phase) => (
+              <HubPhaseNavigation
+                key={phase}
+                aria-labelledby={`national-curriculum-insights-${phase}-subjects`}
               >
-                <OakHeading
-                  tag="h3"
-                  id={`national-curriculum-insights-${phase}-subjects`}
-                  $font="heading-5"
-                  $textAlign={["center", "center", "left"]}
+                <OakFlex
+                  $flexDirection="column"
+                  $gap="spacing-16"
+                  $alignItems={["center", "center", "stretch"]}
                 >
-                  {phase === "primary"
-                    ? section.primaryHeading
-                    : section.secondaryHeading}
-                </OakHeading>
-                <HubSubjectList>
-                  {data.hub.subjects
-                    .filter((subject) =>
-                      subject.tabs.some(({ kind }) => kind === phase),
-                    )
-                    .map((subject) => (
-                      <HubSubjectItem key={`${phase}-${subject.slug}`}>
-                        <OakSubjectIconButton
-                          variant="vertical"
-                          innerWidth="100%"
-                          element={Link}
-                          phase={phase as Phase}
-                          subjectIconName={normaliseSubjectIcon(subject)}
-                          href={nationalCurriculumInsightsSubjectPhaseHref(
-                            subject.slug,
-                            phase,
-                          )}
-                        >
-                          {subject.title}
-                        </OakSubjectIconButton>
-                      </HubSubjectItem>
-                    ))}
-                </HubSubjectList>
-              </OakFlex>
-            </HubPhaseNavigation>
-          ))}
+                  <OakHeading
+                    tag="h3"
+                    id={`national-curriculum-insights-${phase}-subjects`}
+                    $font="heading-5"
+                    $textAlign={["center", "center", "left"]}
+                  >
+                    {phase === "primary"
+                      ? section.primaryHeading
+                      : section.secondaryHeading}
+                  </OakHeading>
+                  <HubSubjectList>
+                    {data.subjects
+                      .filter((subject) =>
+                        subject.tabs.some(({ kind }) => kind === phase),
+                      )
+                      .map((subject) => (
+                        <HubSubjectItem key={`${phase}-${subject.slug}`}>
+                          <OakSubjectIconButton
+                            variant="vertical"
+                            innerWidth="100%"
+                            element={Link}
+                            phase={phase as Phase}
+                            subjectIconName={normaliseSubjectIcon(subject)}
+                            href={nationalCurriculumInsightsSubjectPhaseHref(
+                              subject.slug,
+                              phase,
+                            )}
+                          >
+                            {subject.title}
+                          </OakSubjectIconButton>
+                        </HubSubjectItem>
+                      ))}
+                  </HubSubjectList>
+                </OakFlex>
+              </HubPhaseNavigation>
+            ))}
         </OakFlex>
       </SectionMaxWidth>
     </OakBox>

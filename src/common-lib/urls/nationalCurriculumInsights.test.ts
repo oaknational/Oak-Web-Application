@@ -15,7 +15,7 @@ describe("National Curriculum Insights URLs", () => {
       "/teachers/national-curriculum-insights",
     );
     expect(nationalCurriculumInsightsGuidanceHref()).toBe(
-      "/teachers/national-curriculum-insights/guidance",
+      "/curriculum-change-explained/guidance",
     );
     expect(nationalCurriculumInsightsSubjectHref("science")).toBe(
       "/teachers/national-curriculum-insights/science",
@@ -78,7 +78,7 @@ describe("National Curriculum Insights URLs", () => {
       "/teachers/national-curriculum-insights",
     );
     expect(nationalCurriculumInsightsRouteHref({ kind: "guidance" })).toBe(
-      "/teachers/national-curriculum-insights/guidance",
+      "/curriculum-change-explained/guidance",
     );
     expect(
       nationalCurriculumInsightsRouteHref({

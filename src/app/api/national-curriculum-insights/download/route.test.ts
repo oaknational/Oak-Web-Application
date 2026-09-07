@@ -43,10 +43,11 @@ jest.mock("@/utils/curriculum/zip", () => ({
 const hub = {
   subjects: [
     {
+      id: "subject-science",
       slug: "science",
       tabs: [{ kind: "primary" }, { kind: "secondary" }],
     },
-    { slug: "maths", tabs: [{ kind: "primary" }] },
+    { id: "subject-maths", slug: "maths", tabs: [{ kind: "primary" }] },
   ],
 };
 
@@ -74,6 +75,8 @@ describe("national curriculum insights downloads", () => {
     jest.clearAllMocks();
     mockHub.mockResolvedValue(hub);
     mockSubjectBySlug.mockImplementation(async (slug: string) => ({
+      id: `subject-${slug}`,
+      tabs: hub.subjects.find((subject) => subject.slug === slug)!.tabs,
       slug: { current: slug },
       title: slug === "science" ? "Science" : "Maths",
     }));
@@ -193,6 +196,21 @@ describe("national curriculum insights downloads", () => {
     });
     expect(mockReportError).not.toHaveBeenCalled();
   });
+
+  it.each([
+    { id: "subject-science", tabs: [] },
+    { id: "another-subject", tabs: [{ kind: "primary" }] },
+  ])(
+    "rejects a phase unpublished since the catalogue was read or a mismatched subject",
+    async (subject) => {
+      mockSubjectBySlug.mockResolvedValue(subject);
+      const response = await POST(
+        postRequest([{ subjectSlug: "science", phase: "primary" }]),
+      );
+      expect(response.status).toBe(400);
+      expect(mockGenerateDocx).not.toHaveBeenCalled();
+    },
+  );
 
   it.each(["catalogue", "document", "archive"])(
     "reports unexpected %s failures without exposing diagnostics",

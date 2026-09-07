@@ -46,6 +46,7 @@ function getDeploymentTestUrls() {
 
     // National Curriculum Insights pages
     "/teachers/national-curriculum-insights",
+    "/curriculum-change-explained/guidance",
     "/teachers/national-curriculum-insights/science",
     "/teachers/national-curriculum-insights/science/primary",
     "/teachers/national-curriculum-insights/science/primary/key-stage-1",

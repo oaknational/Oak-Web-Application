@@ -106,6 +106,7 @@ const ModuleView = ({
     case "NationalCurriculumInsightsTableSection":
       return <NationalCurriculumInsightsTable section={module} />;
     case "NationalCurriculumInsightsDownloadSection":
+      if (!data.subjects.some(({ tabs }) => tabs.length > 0)) return null;
       return (
         <NationalCurriculumInsightsDownload section={module} data={data} />
       );
@@ -286,7 +287,7 @@ export const NationalCurriculumInsightsView = ({
 }: {
   data: NationalCurriculumInsightsRouteData;
 }) => {
-  if (data.route.kind === "hub") {
+  if (data.route.kind === "hub" && data.hub) {
     return (
       <OakBox as="main" $color="text-primary">
         <ModuleList

@@ -79,7 +79,12 @@ const createDownload = async (selections: unknown) => {
 
         const subject =
           await reader.nationalCurriculumInsightsSubjectBySlug(subjectSlug);
-        if (!subject) {
+        if (
+          !subject ||
+          subject.id.replace(/^drafts\./, "") !==
+            catalogueSubject.id.replace(/^drafts\./, "") ||
+          !subject.tabs.some(({ kind }) => kind === phase)
+        ) {
           throw new UnavailableSelectionError(
             "The requested subject is unavailable.",
           );

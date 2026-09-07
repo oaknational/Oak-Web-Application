@@ -328,7 +328,12 @@ const guidanceHeroPortableTextComponents: PortableTextComponents = {
 const heroBreadcrumbs = (data: NationalCurriculumInsightsRouteData) => {
   const route = data.route;
 
-  if (route.kind === "hub" || route.kind === "guidance" || !data.subject) {
+  if (
+    route.kind === "hub" ||
+    route.kind === "guidance" ||
+    !data.subject ||
+    !data.hub
+  ) {
     return null;
   }
 

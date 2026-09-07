@@ -91,7 +91,7 @@ export const nationalCurriculumInsightsHubHref = () =>
   nationalCurriculumInsightsPath;
 
 export const nationalCurriculumInsightsGuidanceHref = () =>
-  `${nationalCurriculumInsightsPath}/guidance`;
+  "/curriculum-change-explained/guidance";
 
 export const nationalCurriculumInsightsSubjectHref = (subjectSlug: string) =>
   `${nationalCurriculumInsightsPath}/${encodeURIComponent(

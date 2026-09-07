@@ -96,7 +96,13 @@ const modulesProjection = `modules[]{
   mirrorImage,
   background,
   ctaLabel,
-  ctaHref,
+  "ctaHref": select(
+    (ctaHref match "/curriculum-change-explained/guidance*" || ctaHref match "/teachers/national-curriculum-insights/guidance*") &&
+      !defined(*[_type == "nationalCurriculumInsightsGuidancePage" && _id in ["nationalCurriculumInsightsGuidancePage", "drafts.nationalCurriculumInsightsGuidancePage"]][0]._id) => null,
+    ctaHref == "/teachers/national-curriculum-insights" &&
+      !defined(*[_type == "nationalCurriculumInsightsHub" && _id in ["nationalCurriculumInsightsHub", "drafts.nationalCurriculumInsightsHub"]][0]._id) => null,
+    ctaHref
+  ),
   statusLabel,
   quote,
   attribution,
@@ -127,7 +133,7 @@ const modulesProjection = `modules[]{
       ^._type == "nationalCurriculumInsightsVideoCardsSection" => image ${imageProjection}
     )
   },
-  "posts": posts[]->{
+  "posts": posts[defined(@->_id)]->{
     "id": _id,
     title,
     summary,
@@ -171,7 +177,7 @@ const pageProjection = `{
   pageType,
   title,
   summary,
-  "keyStages": coalesce(keyStages[]{
+  "keyStages": coalesce(keyStages[defined(page->_id)]{
     keyStage,
     label,
     "page": page->${keyStagePageProjection}
@@ -187,18 +193,18 @@ export const nationalCurriculumInsightsHubQuery = `
     "id": _id,
     title,
     summary,
-    "subjects": subjects[]->{
+    "subjects": coalesce(subjects[defined(@->_id)]->{
       "id": _id,
       title,
       slug,
       illustration ${imageProjection},
       curriculumSubjectSlugs,
-      tabs[]{
+      "tabs": coalesce(tabs[defined(page->_id)]{
         kind,
         label,
         "page": page->${pageSummaryProjection}
-      }
-    },
+      }, [])
+    }, []),
     ${modulesProjection}
   }
 `;
@@ -215,11 +221,11 @@ export const nationalCurriculumInsightsSubjectBySlugQuery = `
     slug,
     illustration ${imageProjection},
     curriculumSubjectSlugs,
-    tabs[]{
+    "tabs": coalesce(tabs[defined(page->_id)]{
       kind,
       label,
       "page": page->${pageProjection}
-    },
+    }, []),
     ${modulesProjection}
   }
 `;

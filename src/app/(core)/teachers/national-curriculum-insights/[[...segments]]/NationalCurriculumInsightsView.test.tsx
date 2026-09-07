@@ -161,6 +161,7 @@ describe("NationalCurriculumInsightsView", () => {
 
   it("renders the editorial, video and quote modules", async () => {
     const data = await getData();
+    if (!data.hub) throw new Error("Expected the hub fixture");
     const hero = data.hub.modules.find(
       (module) => module.__typename === "NationalCurriculumInsightsHeroSection",
     );

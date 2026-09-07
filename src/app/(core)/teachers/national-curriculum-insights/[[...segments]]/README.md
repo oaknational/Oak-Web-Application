@@ -3,7 +3,7 @@
 The route mirrors the independently editable Sanity hierarchy:
 
 - `/teachers/national-curriculum-insights` reads the hub document and its own ordered `modules`.
-- `/teachers/national-curriculum-insights/guidance` reads the separate guidance document.
+- `/curriculum-change-explained/guidance` reads the separate guidance document, whether or not the hub is published. The previous guidance URL redirects here.
 - `/teachers/national-curriculum-insights/<subject>` reads the subject itself as its Overview page.
 - `/teachers/national-curriculum-insights/<subject>/primary` and `/secondary` read the corresponding referenced page when the subject has that tab.
 - `/teachers/national-curriculum-insights/<subject>/<phase>/key-stage-1` reads a key-stage page referenced by that phase. Only configured key stages resolve.
