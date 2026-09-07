@@ -34,9 +34,7 @@
             {
               "_key": "guidance-hero-body-2-span-2",
               "_type": "span",
-              "marks": [
-                "oak-home"
-              ],
+              "marks": ["oak-home"],
               "text": "curriculum plans and teaching resources"
             },
             {
@@ -100,9 +98,7 @@
             {
               "_key": "guidance-intro-body-1-span-2",
               "_type": "span",
-              "marks": [
-                "latest-episode"
-              ],
+              "marks": ["latest-episode"],
               "text": "Watch the latest episode"
             },
             {
@@ -114,9 +110,7 @@
             {
               "_key": "guidance-intro-body-1-span-4",
               "_type": "span",
-              "marks": [
-                "questions"
-              ],
+              "marks": ["questions"],
               "text": "share your questions"
             },
             {
@@ -153,9 +147,7 @@
             {
               "_key": "f23692cd0a56",
               "_type": "span",
-              "marks": [
-                "2dadef407a62"
-              ],
+              "marks": ["2dadef407a62"],
               "text": "national curriculum changes"
             },
             {
@@ -316,9 +308,7 @@
             {
               "_key": "guidance-newsletter-privacy-span-2",
               "_type": "span",
-              "marks": [
-                "privacy-policy"
-              ],
+              "marks": ["privacy-policy"],
               "text": "privacy policy"
             },
             {
@@ -619,9 +609,7 @@
                 {
                   "_key": "a881617d7431",
                   "_type": "span",
-                  "marks": [
-                    "em"
-                  ],
+                  "marks": ["em"],
                   "text": " "
                 },
                 {
