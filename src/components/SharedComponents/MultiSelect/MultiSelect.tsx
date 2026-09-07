@@ -2,6 +2,8 @@ import { useEffect, useId, useMemo, useRef, useState } from "react";
 import styled, { css } from "styled-components";
 import {
   getMediaQuery,
+  OakBox,
+  OakFlex,
   OakCheckBox,
   OakIcon,
   OakP,
@@ -46,10 +48,7 @@ export type MultiSelectProps = {
   "data-testid"?: string;
 };
 
-const Root = styled.div`
-  position: relative;
-  width: 100%;
-`;
+const Root = styled(OakBox).attrs({ $position: "relative", $width: "100%" })``;
 
 const DesktopView = styled.div`
   display: none;
@@ -59,10 +58,10 @@ const DesktopView = styled.div`
   }
 `;
 
-const TriggerAnchor = styled.div`
-  position: relative;
-  width: 100%;
-`;
+const TriggerAnchor = styled(OakBox).attrs({
+  $position: "relative",
+  $width: "100%",
+})``;
 
 const Trigger = styled.button<{ $size: "standard" | "large" }>`
   box-sizing: border-box;
@@ -139,11 +138,10 @@ const OptionsFieldset = styled.fieldset`
   border: 0;
 `;
 
-const CheckboxStack = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-
+const CheckboxStack = styled(OakFlex).attrs({
+  $flexDirection: "column",
+  $gap: "spacing-16",
+})`
   label {
     min-height: 28px;
   }
@@ -153,18 +151,16 @@ const GroupHeading = styled(OakP)`
   margin: 20px 0 16px;
 `;
 
-const ChipGroups = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 32px;
-  margin-top: 40px;
-`;
+const ChipGroups = styled(OakFlex).attrs({
+  $flexDirection: "column",
+  $gap: "spacing-32",
+  $mt: "spacing-40",
+})``;
 
-const ChipGroup = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-`;
+const ChipGroup = styled(OakFlex).attrs({
+  $flexDirection: "column",
+  $gap: "spacing-16",
+})``;
 
 const ChipList = styled.ul`
   display: flex;

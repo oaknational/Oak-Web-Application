@@ -1,7 +1,7 @@
+import { localNationalCurriculumInsightsFixtures } from "./__fixtures__/nationalCurriculumInsights";
 import {
   getNationalCurriculumInsightsReader,
   getNationalCurriculumInsightsRouteData,
-  localNationalCurriculumInsightsFixtures,
   type NationalCurriculumInsightsReader,
 } from "./getNationalCurriculumInsightsData";
 

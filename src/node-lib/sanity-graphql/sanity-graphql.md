@@ -39,19 +39,11 @@ Don't forget to revert your local changes to the `getSdk` call when you're done
 
 ### National Curriculum Insights schema
 
-The National Curriculum Insights operations use the GraphQL endpoint supplied
-through `SANITY_GRAPHQL_URL`. The contract keeps the hub, subject catalogue,
-subject tabs and tab pages as distinct records. Every Overview, Primary,
-Secondary and key-stage page has its own ordered module list, matching the
-frontend URL hierarchy. Regenerate its typed SDK with:
-
-```
-pnpm run gql-codegen:sanity:national-curriculum-insights
-```
-
-Point `SANITY_GRAPHQL_URL` at the corresponding feature dataset and tag before
-running code generation, then verify the operation field names against that
-GraphQL explorer before merging a production change.
+National Curriculum Insights uses GROQ in
+`../cms/sanity-client/nationalCurriculumInsightsGroq.ts`, with runtime Zod
+contracts in `common-lib/cms-types/nationalCurriculumInsights.ts`. It does not
+use a separate generated GraphQL SDK. The rest of the site's GraphQL operations
+and code-generation process are unchanged.
 
 ## Writing queries
 

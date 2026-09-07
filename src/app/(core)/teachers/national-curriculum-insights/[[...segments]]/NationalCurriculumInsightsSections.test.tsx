@@ -1,6 +1,7 @@
 import { fireEvent, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 
+import { localNationalCurriculumInsightsFixtures } from "./__fixtures__/nationalCurriculumInsights";
 import { NationalCurriculumInsightsHero } from "./NationalCurriculumInsightsHero";
 import {
   INSIGHTS_NEWSLETTER_FORM_ID,
@@ -21,10 +22,7 @@ import {
   NationalCurriculumInsightsTable,
   NationalCurriculumInsightsVideoCards,
 } from "./NationalCurriculumInsightsSections";
-import {
-  getNationalCurriculumInsightsRouteData,
-  localNationalCurriculumInsightsFixtures,
-} from "./getNationalCurriculumInsightsData";
+import { getNationalCurriculumInsightsRouteData } from "./getNationalCurriculumInsightsData";
 
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 import type {
@@ -532,6 +530,7 @@ describe("National Curriculum Insights sections", () => {
             "guidance-intro",
             "Practical leadership guidance and curriculum updates.",
           ),
+          mobileHeading: "This term, you’ll find:",
           image: contentImage,
           statusLabel: "Coming soon",
         })}
@@ -554,7 +553,7 @@ describe("National Curriculum Insights sections", () => {
     );
   });
 
-  it("uses the approved Becky Francis portrait for the guidance testimonial", () => {
+  it("uses the CMS portrait without overriding it based on the author's name", () => {
     const { container } = renderWithTheme(
       <NationalCurriculumInsightsQuote
         section={moduleOf({
@@ -572,12 +571,12 @@ describe("National Curriculum Insights sections", () => {
     );
     expect(portrait).toHaveAttribute(
       "src",
-      expect.stringContaining(encodeURIComponent("guidance/becky-francis.png")),
+      expect.stringContaining("example-100x100.png"),
     );
     expect(portrait).toHaveAttribute("alt", "");
   });
 
-  it("replaces the low-resolution benefits artwork without overriding editor-selected images", async () => {
+  it("uses the CMS benefits artwork and mirror setting without overriding editor-selected images", async () => {
     const data = await getData(["guidance"]);
     const section = moduleOf({
       __typename: "NationalCurriculumInsightsImageTextSection",
@@ -591,6 +590,7 @@ describe("National Curriculum Insights sections", () => {
         },
       },
       imagePosition: "right",
+      mirrorImage: true,
       background: "turquoise",
     });
     const { rerender } = renderWithTheme(
@@ -599,7 +599,7 @@ describe("National Curriculum Insights sections", () => {
     expect(screen.getByAltText(contentImage.altText)).toHaveAttribute(
       "src",
       expect.stringContaining(
-        encodeURIComponent("guidance/curriculum-resources.png"),
+        "96af3d15e4488bc498ead83aa83a815229709f43-513x400.png",
       ),
     );
     rerender(

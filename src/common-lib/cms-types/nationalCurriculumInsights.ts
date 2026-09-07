@@ -177,6 +177,7 @@ const nationalCurriculumInsightsImageTextSectionSchema = z.object({
   bodyPortableText: portableTextSchema,
   image: imageSchema,
   imagePosition: z.enum(["left", "right"]),
+  mirrorImage: z.boolean().nullable().optional(),
   background: z.enum(["white", "turquoise", "yellow"]),
   ctaLabel: z.string().min(1).nullable().optional(),
   ctaHref: z.string().min(1).nullable().optional(),
@@ -185,6 +186,7 @@ const nationalCurriculumInsightsImageTextSectionSchema = z.object({
 const nationalCurriculumInsightsGuidanceIntroSectionSchema = z.object({
   __typename: z.literal("NationalCurriculumInsightsGuidanceIntroSection"),
   heading: z.string().min(1),
+  mobileHeading: z.string().nullable().optional(),
   image: imageSchema,
   bodyPortableText: portableTextSchema,
   statusLabel: z.string().min(1).nullable().optional(),
@@ -194,6 +196,7 @@ const nationalCurriculumInsightsVideoCardsSectionSchema = z
   .object({
     __typename: z.literal("NationalCurriculumInsightsVideoCardsSection"),
     heading: z.string().min(1),
+    illustration: imageSchema.nullable().optional(),
     introductionPortableText: portableTextSchema.nullable().optional(),
     posts: z
       .array(

@@ -17,6 +17,8 @@ import styled, { css } from "styled-components";
 
 import type { NationalCurriculumInsightsRouteData } from "./getNationalCurriculumInsightsData";
 import { nationalCurriculumInsightsPresentation } from "./nationalCurriculumInsightsPresentation";
+import { insightsAssetUrl } from "./nationalCurriculumInsightsAssets";
+import { NationalCurriculumInsightsPortableText as PortableTextWithDefaults } from "./NationalCurriculumInsightsPortableText";
 
 import type { NationalCurriculumInsightsHeroSection } from "@/common-lib/cms-types/nationalCurriculumInsights";
 import {
@@ -25,9 +27,8 @@ import {
   nationalCurriculumInsightsSubjectPhaseHref,
 } from "@/common-lib/urls/nationalCurriculumInsights";
 import getProxiedSanityAssetUrl from "@/common-lib/urls/getProxiedSanityAssetUrl";
-import { PortableTextWithDefaults } from "@/components/SharedComponents/PortableText";
 
-const DEFAULT_HERO_IMAGE = "/images/national-curriculum-insights/hero.jpg";
+const DEFAULT_HERO_IMAGE = insightsAssetUrl("hero");
 
 type HeroPageKind = "hub" | "guidance" | "subject" | "phase" | "keyStage";
 
@@ -530,28 +531,21 @@ export const NationalCurriculumInsightsHero = ({
   const pageKind = getHeroPageKind(data);
   const breadcrumbs = heroBreadcrumbs(data);
   const presentation = nationalCurriculumInsightsPresentation(data.route);
-  let heroTextOrder: [number, number, number] = [1, 1, 1];
-  let heroHeadingFont:
-    | "heading-3"
-    | ["heading-4", "heading-4", "heading-1"]
-    | ["heading-4", "heading-1", "heading-1"]
-    | ["heading-4", "heading-3", "heading-3"] = [
+  const heroTextOrder: [number, number, number] = isHub
+    ? [2, 1, 1]
+    : hasEditorialImage
+      ? [2, 2, 1]
+      : [1, 1, 1];
+  const heroHeadingFont: [
     "heading-4",
-    "heading-1",
-    "heading-1",
-  ];
-
-  if (isHub) {
-    heroTextOrder = [2, 1, 1];
-  } else if (hasEditorialImage) {
-    heroTextOrder = [2, 2, 1];
-  }
-
-  if (pageKind === "guidance") {
-    heroHeadingFont = ["heading-4", "heading-3", "heading-3"];
-  } else if (hasEditorialImage) {
-    heroHeadingFont = ["heading-4", "heading-4", "heading-1"];
-  }
+    "heading-1" | "heading-3" | "heading-4",
+    "heading-1" | "heading-3",
+  ] =
+    pageKind === "guidance"
+      ? ["heading-4", "heading-3", "heading-3"]
+      : hasEditorialImage
+        ? ["heading-4", "heading-4", "heading-1"]
+        : ["heading-4", "heading-1", "heading-1"];
 
   return (
     <HeroSection

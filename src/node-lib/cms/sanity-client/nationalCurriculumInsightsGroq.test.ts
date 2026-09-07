@@ -5,6 +5,8 @@ import {
   getNationalCurriculumInsightsSubjectBySlug,
   nationalCurriculumInsightsHubQuery,
   nationalCurriculumInsightsSubjectBySlugQuery,
+  nationalCurriculumInsightsGuidancePageQuery,
+  insightsPortableTextProjection,
 } from "./nationalCurriculumInsightsGroq";
 
 jest.mock("@sanity/client", () => ({
@@ -88,6 +90,28 @@ const hubFixture = {
 };
 
 describe("nationalCurriculumInsightsGroq", () => {
+  it.each([
+    nationalCurriculumInsightsHubQuery,
+    nationalCurriculumInsightsGuidancePageQuery,
+    nationalCurriculumInsightsSubjectBySlugQuery,
+  ])("resolves internal links in every module's rich text", (query) => {
+    for (const field of [
+      "body",
+      "content",
+      "introduction",
+      "privacyText",
+      "answer",
+      "transcript",
+    ]) {
+      expect(query).toContain(`${field}${insightsPortableTextProjection}`);
+    }
+    expect(insightsPortableTextProjection).toContain(
+      '"reference": reference->{',
+    );
+    expect(insightsPortableTextProjection).toContain('"contentType": _type');
+    expect(insightsPortableTextProjection).toContain('"slug": slug.current');
+  });
+
   beforeEach(() => {
     jest.clearAllMocks();
     mockCreateClient.mockReturnValue({ fetch: mockFetch } as never);

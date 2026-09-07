@@ -5,7 +5,7 @@ import {
   nationalCurriculumInsightsDownloadFilename,
 } from "./docx";
 
-import previewSnapshot from "@/app/(core)/teachers/national-curriculum-insights/[[...segments]]/nationalCurriculumInsightsPreviewSnapshot.json";
+import previewSnapshot from "@/app/(core)/teachers/national-curriculum-insights/[[...segments]]/__fixtures__/nationalCurriculumInsightsPreviewSnapshot.json";
 import { nationalCurriculumInsightsSubjectSchema } from "@/common-lib/cms-types/nationalCurriculumInsights";
 import { zipFromFiles } from "@/utils/curriculum/zip";
 

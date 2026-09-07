@@ -2,6 +2,8 @@
 
 import {
   getMediaQuery,
+  OakBox,
+  OakFlex,
   OakCheckBox,
   OakHeading,
   OakIcon,
@@ -28,6 +30,10 @@ import { NationalCurriculumInsightsSelect } from "./NationalCurriculumInsightsSe
 import type { NationalCurriculumInsightsModule } from "@/common-lib/cms-types/nationalCurriculumInsights";
 import { EDU_ROLES } from "@/browser-lib/hubspot/forms/getHubspotFormPayloads";
 import { MultiSelect } from "@/components/SharedComponents/MultiSelect";
+import errorReporter from "@/common-lib/error-reporter";
+import OakError from "@/errors/OakError";
+
+const reportError = errorReporter("NationalCurriculumInsightsDownload");
 
 type DownloadSection = Extract<
   NationalCurriculumInsightsModule,
@@ -322,23 +328,18 @@ const MobileDownloadsHeader = styled.div`
   }
 `;
 
-const Fields = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 32px;
-  margin-top: 32px;
-`;
+const Fields = styled(OakFlex).attrs({
+  $flexDirection: "column",
+  $gap: "spacing-32",
+  $mt: "spacing-32",
+})``;
 
-const SchoolFields = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-`;
+const SchoolFields = styled(OakFlex).attrs({
+  $flexDirection: "column",
+  $gap: "spacing-16",
+})``;
 
-const Field = styled.div`
-  position: relative;
-  width: 100%;
-
+const Field = styled(OakBox).attrs({ $position: "relative", $width: "100%" })`
   input {
     height: 60px;
   }
@@ -350,10 +351,10 @@ const SelectField = styled(Field)`
   }
 `;
 
-const Selector = styled.div`
-  width: 100%;
-  margin-top: 24px;
-`;
+const Selector = styled(OakBox).attrs({
+  $width: "100%",
+  $mt: "spacing-24",
+})``;
 
 const Notice = styled(OakP)`
   max-width: 620px;
@@ -396,6 +397,8 @@ const ActionCell = styled.div`
   }
 `;
 
+// This compact action shares the multiselect's typography and disabled treatment;
+// the library primary button has different sizing, weight and disabled text.
 const DownloadButton = styled.button`
   display: flex;
   align-items: center;
@@ -448,6 +451,7 @@ export const NationalCurriculumInsightsDownload = ({
 }) => {
   const formId = useId().replace(/:/g, "");
   const expandedRef = useRef<HTMLFormElement>(null);
+  const downloadInFlight = useRef(false);
   const sticky = data.route.kind === "hub";
   const [expanded, setExpanded] = useState(false);
   const [mobileStage, setMobileStage] = useState<"details" | "subjects">(
@@ -503,8 +507,9 @@ export const NationalCurriculumInsightsDownload = ({
 
   const submit = async (event: FormEvent) => {
     event.preventDefault();
-    if (!canDownload) return;
+    if (!canDownload || downloadInFlight.current) return;
 
+    downloadInFlight.current = true;
     setDownloading(true);
     setError(null);
     try {
@@ -526,17 +531,29 @@ export const NationalCurriculumInsightsDownload = ({
       const anchor = document.createElement("a");
       anchor.href = url;
       anchor.download = responseFilename(response);
-      document.body.appendChild(anchor);
-      anchor.click();
-      anchor.remove();
-      URL.revokeObjectURL(url);
+      try {
+        document.body.appendChild(anchor);
+        anchor.click();
+      } finally {
+        anchor.remove();
+        URL.revokeObjectURL(url);
+      }
     } catch (downloadError) {
+      if (downloadError instanceof TypeError) {
+        reportError(
+          new OakError({
+            code: "downloads/failed-to-fetch",
+            originalError: downloadError,
+          }),
+        );
+      }
       setError(
         downloadError instanceof Error
           ? downloadError.message
           : "The download could not be made.",
       );
     } finally {
+      downloadInFlight.current = false;
       setDownloading(false);
     }
   };

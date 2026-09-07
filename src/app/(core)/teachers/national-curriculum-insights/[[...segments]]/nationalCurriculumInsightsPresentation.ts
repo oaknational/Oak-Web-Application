@@ -1,5 +1,7 @@
 import type { OakUiRoleToken } from "@oaknational/oak-components";
 
+import { insightsAssetUrl } from "./nationalCurriculumInsightsAssets";
+
 import {
   nationalCurriculumInsightsKeyStageFromSlug,
   type NationalCurriculumInsightsKeyStage,
@@ -8,22 +10,20 @@ import {
 } from "@/common-lib/cms-types/nationalCurriculumInsights";
 import type { NationalCurriculumInsightsRoute } from "@/common-lib/urls/nationalCurriculumInsights";
 
-const illustrationRoot = "/images/national-curriculum-insights/illustrations";
-
 export const nationalCurriculumInsightsPhaseIllustrations = {
-  primary: `${illustrationRoot}/phases/primary.svg`,
-  secondary: `${illustrationRoot}/phases/secondary.svg`,
+  primary: insightsAssetUrl("primary"),
+  secondary: insightsAssetUrl("secondary"),
 } as const satisfies Record<NationalCurriculumInsightsPhase, string>;
 
 export const nationalCurriculumInsightsKeyStageIllustrations = {
-  KS1: `${illustrationRoot}/key-stages/key-stage-1.png`,
-  KS2: `${illustrationRoot}/key-stages/key-stage-2.png`,
-  KS3: `${illustrationRoot}/key-stages/key-stage-3.png`,
-  KS4: `${illustrationRoot}/key-stages/key-stage-4.png`,
+  KS1: insightsAssetUrl("keyStage1"),
+  KS2: insightsAssetUrl("keyStage2"),
+  KS3: insightsAssetUrl("keyStage3"),
+  KS4: insightsAssetUrl("keyStage4"),
 } as const satisfies Record<NationalCurriculumInsightsKeyStage, string>;
 
 export const nationalCurriculumInsightsFallbackIllustration =
-  "/images/national-curriculum-insights/overview.png";
+  insightsAssetUrl("overview");
 
 export const nationalCurriculumInsightsSubjectIllustration = (
   illustrationUrl?: string | null,

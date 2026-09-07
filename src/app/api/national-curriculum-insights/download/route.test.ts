@@ -4,6 +4,15 @@ const mockHub = jest.fn();
 const mockSubjectBySlug = jest.fn();
 const mockGenerateDocx = jest.fn();
 const mockZipFromFiles = jest.fn();
+const mockReportError = jest.fn();
+
+jest.mock("@/common-lib/error-reporter", () => ({
+  __esModule: true,
+  default:
+    () =>
+    (...args: unknown[]) =>
+      mockReportError(...args),
+}));
 
 jest.mock(
   "@/app/(core)/teachers/national-curriculum-insights/[[...segments]]/getNationalCurriculumInsightsData",
@@ -182,5 +191,38 @@ describe("national curriculum insights downloads", () => {
     await expect(response.json()).resolves.toEqual({
       error: "The requested subject is unavailable.",
     });
+    expect(mockReportError).not.toHaveBeenCalled();
   });
+
+  it.each(["catalogue", "document", "archive"])(
+    "reports unexpected %s failures without exposing diagnostics",
+    async (stage) => {
+      const error = new Error("Private diagnostic details");
+      const failingOperation = {
+        catalogue: mockHub,
+        document: mockGenerateDocx,
+        archive: mockZipFromFiles,
+      }[stage]!;
+      failingOperation.mockRejectedValueOnce(error);
+
+      const response = await POST(
+        postRequest([
+          { subjectSlug: "science", phase: "primary" },
+          { subjectSlug: "maths", phase: "primary" },
+        ]),
+      );
+
+      expect(response.status).toBe(500);
+      expect(response.headers.get("cache-control")).toBe("no-store");
+      await expect(response.json()).resolves.toEqual({
+        error: "The download could not be made. Please try again.",
+      });
+      expect(mockReportError).toHaveBeenCalledWith(
+        expect.objectContaining({
+          code: "downloads/generation-failed",
+          originalError: error,
+        }),
+      );
+    },
+  );
 });

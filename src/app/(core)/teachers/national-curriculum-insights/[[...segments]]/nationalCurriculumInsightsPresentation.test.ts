@@ -1,6 +1,4 @@
-import { existsSync } from "node:fs";
-import { join } from "node:path";
-
+import { insightsAssetUrl } from "./nationalCurriculumInsightsAssets";
 import {
   nationalCurriculumInsightsFallbackIllustration,
   nationalCurriculumInsightsKeyStageIllustrations,
@@ -24,17 +22,15 @@ describe("nationalCurriculumInsightsPresentation", () => {
 
   it("maps phases and key stages to shared illustrations", () => {
     expect(nationalCurriculumInsightsPhaseIllustrations).toEqual({
-      primary:
-        "/images/national-curriculum-insights/illustrations/phases/primary.svg",
-      secondary:
-        "/images/national-curriculum-insights/illustrations/phases/secondary.svg",
+      primary: insightsAssetUrl("primary"),
+      secondary: insightsAssetUrl("secondary"),
     });
     expect(
       Object.keys(nationalCurriculumInsightsKeyStageIllustrations),
     ).toEqual(["KS1", "KS2", "KS3", "KS4"]);
   });
 
-  it("keeps every mapped illustration in the public bundle", () => {
+  it("serves every mapped illustration from the configured asset CDN", () => {
     const illustrations = [
       ...Object.values(nationalCurriculumInsightsPhaseIllustrations),
       ...Object.values(nationalCurriculumInsightsKeyStageIllustrations),
@@ -42,8 +38,8 @@ describe("nationalCurriculumInsightsPresentation", () => {
     ];
 
     illustrations.forEach((illustration) => {
-      expect(existsSync(join(process.cwd(), "public", illustration))).toBe(
-        true,
+      expect(illustration).toMatch(
+        /^https:\/\/[^/]+\/images\/[^/]+\/[^/]+\/[^/]+\.(png|svg)$/,
       );
     });
   });
@@ -74,8 +70,7 @@ describe("nationalCurriculumInsightsPresentation", () => {
       heroBackground: "bg-decorative1-subdued",
       overviewBackground: "bg-decorative1-very-subdued",
       accent: "bg-decorative1-main",
-      illustration:
-        "/images/national-curriculum-insights/illustrations/phases/primary.svg",
+      illustration: insightsAssetUrl("primary"),
     });
     expect(
       nationalCurriculumInsightsPresentation({
@@ -88,8 +83,7 @@ describe("nationalCurriculumInsightsPresentation", () => {
       heroBackground: "bg-decorative3-subdued",
       overviewBackground: "bg-decorative3-very-subdued",
       accent: "border-decorative3-stronger",
-      illustration:
-        "/images/national-curriculum-insights/illustrations/key-stages/key-stage-4.png",
+      illustration: insightsAssetUrl("keyStage4"),
     });
   });
 });

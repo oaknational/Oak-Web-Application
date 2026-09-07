@@ -34,7 +34,9 @@
             {
               "_key": "guidance-hero-body-2-span-2",
               "_type": "span",
-              "marks": ["oak-home"],
+              "marks": [
+                "oak-home"
+              ],
               "text": "curriculum plans and teaching resources"
             },
             {
@@ -74,8 +76,9 @@
     {
       "__typename": "NationalCurriculumInsightsGuidanceIntroSection",
       "heading": "Here, you’ll find:",
+      "mobileHeading": "This term, you’ll find:",
       "image": {
-        "altText": "A teacher preparing curriculum plans",
+        "altText": "A teacher using a laptop",
         "isPresentational": false,
         "asset": {
           "_id": "image-648a287a23ac1c03e389698c4125da89bb9be8c2-3000x2001-jpg",
@@ -97,7 +100,9 @@
             {
               "_key": "guidance-intro-body-1-span-2",
               "_type": "span",
-              "marks": ["latest-episode"],
+              "marks": [
+                "latest-episode"
+              ],
               "text": "Watch the latest episode"
             },
             {
@@ -109,7 +114,9 @@
             {
               "_key": "guidance-intro-body-1-span-4",
               "_type": "span",
-              "marks": ["questions"],
+              "marks": [
+                "questions"
+              ],
               "text": "share your questions"
             },
             {
@@ -141,10 +148,36 @@
               "_key": "guidance-intro-body-2-span",
               "_type": "span",
               "marks": [],
-              "text": "Your guide to the proposed national curriculum changes, subject by subject, with a clear breakdown of what is changing and what is staying the same."
+              "text": "Your guide to the proposed "
+            },
+            {
+              "_key": "f23692cd0a56",
+              "_type": "span",
+              "marks": [
+                "2dadef407a62"
+              ],
+              "text": "national curriculum changes"
+            },
+            {
+              "_key": "40947ac57303",
+              "_type": "span",
+              "marks": [],
+              "text": ", subject by subject, with a clear breakdown of what is changing and what is staying the same."
             }
           ],
-          "markDefs": [],
+          "markDefs": [
+            {
+              "_key": "2dadef407a62",
+              "_type": "internalLink",
+              "reference": {
+                "contentType": "newsPost",
+                "file": null,
+                "id": "9aa1fb8b-c555-4956-84b5-7ab853592f34",
+                "slug": "curriculum-change-is-coming-here-are-your-top-questions-answered",
+                "title": "National curriculum changes are coming. Here are your top questions answered."
+              }
+            }
+          ],
           "style": "normal"
         }
       ],
@@ -239,12 +272,13 @@
         "altText": "An illustration representing curriculum planning and resources",
         "isPresentational": false,
         "asset": {
-          "_id": "image-96af3d15e4488bc498ead83aa83a815229709f43-513x400-png",
-          "url": "https://cdn.sanity.io/images/cuvjke51/feat-national-curriculum-insights/96af3d15e4488bc498ead83aa83a815229709f43-513x400.png"
+          "_id": "image-f53e28eb44998bf331c2316e8af81f0ca9700d59-1080x842-png",
+          "url": "https://cdn.sanity.io/images/cuvjke51/feat-national-curriculum-insights/f53e28eb44998bf331c2316e8af81f0ca9700d59-1080x842.png"
         },
         "hotspot": null
       },
       "imagePosition": "right",
+      "mirrorImage": true,
       "background": "white",
       "ctaLabel": null,
       "ctaHref": null
@@ -282,7 +316,9 @@
             {
               "_key": "guidance-newsletter-privacy-span-2",
               "_type": "span",
-              "marks": ["privacy-policy"],
+              "marks": [
+                "privacy-policy"
+              ],
               "text": "privacy policy"
             },
             {
@@ -308,6 +344,15 @@
     {
       "__typename": "NationalCurriculumInsightsVideoCardsSection",
       "heading": "Curriculum Conversations: Watch practical guidance for curriculum change",
+      "illustration": {
+        "altText": null,
+        "isPresentational": true,
+        "asset": {
+          "_id": "image-95bccf08a75f1daf4426616e30e83b9a302c5f3e-1296x1098-svg",
+          "url": "https://cdn.sanity.io/images/cuvjke51/feat-national-curriculum-insights/95bccf08a75f1daf4426616e30e83b9a302c5f3e-1296x1098.svg"
+        },
+        "hotspot": null
+      },
       "introductionPortableText": [
         {
           "_key": "guidance-conversations-intro",
@@ -325,6 +370,60 @@
         }
       ],
       "posts": [
+        {
+          "id": "curriculum-conversations-episode-5-how-do-you-implement-curriculum-change-well",
+          "title": "How do you implement curriculum change well?",
+          "summary": "Becks Boomer-Clark (CEO, Lift Schools) and Tilly Browne (CEO, Reach Schools) discuss the practical steps that lead to successful curriculum change implementation.",
+          "slug": "curriculum-conversations-episode-5-how-do-you-implement-curriculum-change-well",
+          "image": {
+            "altText": "Preview for How do you implement curriculum change well?",
+            "isPresentational": false,
+            "asset": {
+              "_id": "image-b4fe0b33fef105d9a8fd401409b2fc0e0919f525-491x275-png",
+              "url": "https://cdn.sanity.io/images/cuvjke51/feat-national-curriculum-insights/b4fe0b33fef105d9a8fd401409b2fc0e0919f525-491x275.png"
+            },
+            "hotspot": null
+          },
+          "video": {
+            "title": "Curriculum Conversations (Episode 1): What you need to know now about the national curriculum changes",
+            "captions": null,
+            "transcript": null,
+            "video": {
+              "asset": {
+                "assetId": "qz01Mxzh97waWG9f1ukSZPBwPlRkOimEuOIjSwPM4f01s",
+                "playbackId": "VywDtbvTR26D2lAotRiJKp8VTorwBe900QCTzphPLw00I",
+                "thumbTime": 60
+              }
+            }
+          }
+        },
+        {
+          "id": "curriculum-conversations-episode-4-what-should-leaders-be-doing-before-the-refreshed-curriculum-arrives",
+          "title": "What should leaders be doing before the refreshed curriculum arrives?",
+          "summary": "Becks Boomer-Clark (CEO, Lift Schools) and Tilly Browne (co-Headteacher, Reach Schools) discuss what leaders should - and shouldn't - be focusing on during this interim period of curriculum uncertainty.",
+          "slug": "curriculum-conversations-episode-4-what-should-leaders-be-doing-before-the-refreshed-curriculum-arrives",
+          "image": {
+            "altText": "Preview for What should leaders be doing before the refreshed curriculum arrives?",
+            "isPresentational": false,
+            "asset": {
+              "_id": "image-cfeee42d007e8a00beedfdcb6690d81044fe887d-290x162-png",
+              "url": "https://cdn.sanity.io/images/cuvjke51/feat-national-curriculum-insights/cfeee42d007e8a00beedfdcb6690d81044fe887d-290x162.png"
+            },
+            "hotspot": null
+          },
+          "video": {
+            "title": "Curriculum Conversations (Episode 1): What you need to know now about the national curriculum changes",
+            "captions": null,
+            "transcript": null,
+            "video": {
+              "asset": {
+                "assetId": "qz01Mxzh97waWG9f1ukSZPBwPlRkOimEuOIjSwPM4f01s",
+                "playbackId": "VywDtbvTR26D2lAotRiJKp8VTorwBe900QCTzphPLw00I",
+                "thumbTime": 60
+              }
+            }
+          }
+        },
         {
           "id": "43b04a84-546e-45e7-b08d-b5d102f06571",
           "title": "Curriculum Conversations (Episode 3): Bennie Kara on inclusive curriculum leadership",
@@ -491,11 +590,11 @@
       "attribution": "Professor Becky Francis CBE",
       "role": "Chair of the Curriculum and Assessment Review",
       "image": {
-        "altText": "Professor Becky Francis CBE",
-        "isPresentational": false,
+        "altText": null,
+        "isPresentational": true,
         "asset": {
-          "_id": "image-45c9cbbbc5c8b055155fcee8abb40ed8ef92571e-1220x819-png",
-          "url": "https://cdn.sanity.io/images/cuvjke51/feat-national-curriculum-insights/45c9cbbbc5c8b055155fcee8abb40ed8ef92571e-1220x819.png"
+          "_id": "image-72187f2ff55b784194819d8d54dd5d2663334354-447x447-jpg",
+          "url": "https://cdn.sanity.io/images/cuvjke51/feat-national-curriculum-insights/72187f2ff55b784194819d8d54dd5d2663334354-447x447.jpg"
         },
         "hotspot": null
       }
@@ -515,7 +614,21 @@
                   "_key": "guidance-faq-1-answer-span",
                   "_type": "span",
                   "marks": [],
-                  "text": "No. Keep using your current curriculum while the refreshed national curriculum is finalised. We will update this guidance as the detail is confirmed."
+                  "text": "No."
+                },
+                {
+                  "_key": "a881617d7431",
+                  "_type": "span",
+                  "marks": [
+                    "em"
+                  ],
+                  "text": " "
+                },
+                {
+                  "_key": "5aefdfafe524",
+                  "_type": "span",
+                  "marks": [],
+                  "text": "Keep using your current curriculum while the refreshed national curriculum is finalised. We will update this guidance as the detail is confirmed."
                 }
               ],
               "markDefs": [],

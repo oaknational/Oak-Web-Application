@@ -1,0 +1,84 @@
+"use client";
+
+import type { PortableTextComponents } from "@portabletext/react";
+import {
+  getBreakpoint,
+  OakBox,
+  OakFlex,
+  OakLI,
+  OakP,
+} from "@oaknational/oak-components";
+import styled from "styled-components";
+
+import type { NationalCurriculumInsightsRouteData } from "../getNationalCurriculumInsightsData";
+import { insightsAssetUrl } from "../nationalCurriculumInsightsAssets";
+
+import getProxiedSanityAssetUrl from "@/common-lib/urls/getProxiedSanityAssetUrl";
+
+export type Page = NonNullable<NationalCurriculumInsightsRouteData["page"]>;
+
+export type InsightSection = Page["modules"][number];
+
+export type SectionProps<T extends InsightSection["__typename"]> = {
+  section: Extract<InsightSection, { __typename: T }>;
+};
+
+export type ContextualSectionProps<T extends InsightSection["__typename"]> =
+  SectionProps<T> & {
+    data: NationalCurriculumInsightsRouteData;
+  };
+
+export const DEFAULT_IMAGE = insightsAssetUrl("hero");
+
+export const insightsTabletMediaQuery = `(min-width: ${getBreakpoint(
+  "small",
+)}px) and (max-width: ${getBreakpoint("large")}px)`;
+
+export const insightsWideDesktopMediaQuery = `(min-width: ${
+  getBreakpoint("large") + 1
+}px)`;
+
+export const imageUrl = (
+  image: { asset?: { url?: string | null } | null } | null | undefined,
+  fallback = DEFAULT_IMAGE,
+) => (image?.asset?.url ? getProxiedSanityAssetUrl(image.asset.url) : fallback);
+
+export const imageAlt = (
+  image:
+    | { altText?: string | null; isPresentational?: boolean | null }
+    | null
+    | undefined,
+) => (image?.isPresentational ? "" : (image?.altText ?? ""));
+
+export const portableTextComponents: PortableTextComponents = {
+  block: {
+    normal: ({ children }) => (
+      <OakP $font="body-2" $mv="spacing-0">
+        {children}
+      </OakP>
+    ),
+  },
+};
+
+export const guidancePortableTextComponents: PortableTextComponents = {
+  block: {
+    normal: ({ children }) => (
+      <OakP $font="body-1" $mv="spacing-0">
+        {children}
+      </OakP>
+    ),
+  },
+  listItem: {
+    bullet: ({ children }) => <OakLI $font="body-1">{children}</OakLI>,
+  },
+};
+
+export const SectionMaxWidth = styled(OakBox)`
+  width: 100%;
+  max-width: 1221px;
+`;
+
+export const InsightsContentMaxWidth = styled(OakFlex)`
+  width: 100%;
+  max-width: 956px;
+`;

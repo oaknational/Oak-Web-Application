@@ -195,10 +195,7 @@
         "introductionPortableText": null,
         "items": null,
         "overviewLabel": null,
-        "phases": [
-          "primary",
-          "secondary"
-        ],
+        "phases": ["primary", "secondary"],
         "primaryHeading": "Primary",
         "primaryLabel": null,
         "privacyPortableText": null,
@@ -431,9 +428,7 @@
     ],
     "subjects": [
       {
-        "curriculumSubjectSlugs": [
-          "art"
-        ],
+        "curriculumSubjectSlugs": ["art"],
         "id": "nationalCurriculumInsightsSubject-art-and-design",
         "illustration": {
           "altText": null,
@@ -471,9 +466,7 @@
         "title": "Art & Design"
       },
       {
-        "curriculumSubjectSlugs": [
-          "citizenship"
-        ],
+        "curriculumSubjectSlugs": ["citizenship"],
         "id": "nationalCurriculumInsightsSubject-citizenship",
         "illustration": {
           "altText": null,
@@ -502,9 +495,7 @@
         "title": "Citizenship"
       },
       {
-        "curriculumSubjectSlugs": [
-          "computing"
-        ],
+        "curriculumSubjectSlugs": ["computing"],
         "id": "nationalCurriculumInsightsSubject-computing",
         "illustration": {
           "altText": null,
@@ -542,9 +533,7 @@
         "title": "Computing"
       },
       {
-        "curriculumSubjectSlugs": [
-          "cooking-nutrition"
-        ],
+        "curriculumSubjectSlugs": ["cooking-nutrition"],
         "id": "nationalCurriculumInsightsSubject-cooking-and-nutrition",
         "illustration": {
           "altText": null,
@@ -573,9 +562,7 @@
         "title": "Cooking & nutrition"
       },
       {
-        "curriculumSubjectSlugs": [
-          "design-technology"
-        ],
+        "curriculumSubjectSlugs": ["design-technology"],
         "id": "nationalCurriculumInsightsSubject-design-and-technology",
         "illustration": {
           "altText": null,
@@ -613,9 +600,7 @@
         "title": "Design & Technology"
       },
       {
-        "curriculumSubjectSlugs": [
-          "english"
-        ],
+        "curriculumSubjectSlugs": ["english"],
         "id": "nationalCurriculumInsightsSubject-english",
         "illustration": {
           "altText": null,
@@ -653,9 +638,7 @@
         "title": "English"
       },
       {
-        "curriculumSubjectSlugs": [
-          "french"
-        ],
+        "curriculumSubjectSlugs": ["french"],
         "id": "nationalCurriculumInsightsSubject-french",
         "illustration": {
           "altText": null,
@@ -693,9 +676,7 @@
         "title": "French"
       },
       {
-        "curriculumSubjectSlugs": [
-          "geography"
-        ],
+        "curriculumSubjectSlugs": ["geography"],
         "id": "nationalCurriculumInsightsSubject-geography",
         "illustration": {
           "altText": null,
@@ -733,9 +714,7 @@
         "title": "Geography"
       },
       {
-        "curriculumSubjectSlugs": [
-          "german"
-        ],
+        "curriculumSubjectSlugs": ["german"],
         "id": "nationalCurriculumInsightsSubject-german",
         "illustration": {
           "altText": null,
@@ -764,9 +743,7 @@
         "title": "German"
       },
       {
-        "curriculumSubjectSlugs": [
-          "history"
-        ],
+        "curriculumSubjectSlugs": ["history"],
         "id": "nationalCurriculumInsightsSubject-history",
         "illustration": {
           "altText": null,
@@ -804,9 +781,7 @@
         "title": "History"
       },
       {
-        "curriculumSubjectSlugs": [
-          "maths"
-        ],
+        "curriculumSubjectSlugs": ["maths"],
         "id": "nationalCurriculumInsightsSubject-maths",
         "illustration": {
           "altText": null,
@@ -844,9 +819,7 @@
         "title": "Maths"
       },
       {
-        "curriculumSubjectSlugs": [
-          "music"
-        ],
+        "curriculumSubjectSlugs": ["music"],
         "id": "nationalCurriculumInsightsSubject-music",
         "illustration": {
           "altText": null,
@@ -884,9 +857,7 @@
         "title": "Music"
       },
       {
-        "curriculumSubjectSlugs": [
-          "physical-education"
-        ],
+        "curriculumSubjectSlugs": ["physical-education"],
         "id": "nationalCurriculumInsightsSubject-physical-education",
         "illustration": {
           "altText": null,
@@ -924,9 +895,7 @@
         "title": "Physical Education"
       },
       {
-        "curriculumSubjectSlugs": [
-          "rshe-pshe"
-        ],
+        "curriculumSubjectSlugs": ["rshe-pshe"],
         "id": "nationalCurriculumInsightsSubject-rshe",
         "illustration": {
           "altText": null,
@@ -964,11 +933,7 @@
         "title": "RSHE"
       },
       {
-        "curriculumSubjectSlugs": [
-          "biology",
-          "chemistry",
-          "physics"
-        ],
+        "curriculumSubjectSlugs": ["biology", "chemistry", "physics"],
         "id": "nationalCurriculumInsightsSubject-science",
         "illustration": {
           "altText": null,
@@ -1006,9 +971,7 @@
         "title": "Science"
       },
       {
-        "curriculumSubjectSlugs": [
-          "spanish"
-        ],
+        "curriculumSubjectSlugs": ["spanish"],
         "id": "nationalCurriculumInsightsSubject-spanish",
         "illustration": {
           "altText": null,
@@ -1051,9 +1014,7 @@
   },
   "subjects": [
     {
-      "curriculumSubjectSlugs": [
-        "art"
-      ],
+      "curriculumSubjectSlugs": ["art"],
       "id": "nationalCurriculumInsightsSubject-art-and-design",
       "illustration": {
         "altText": null,
@@ -1493,9 +1454,7 @@
       "title": "Art & Design"
     },
     {
-      "curriculumSubjectSlugs": [
-        "citizenship"
-      ],
+      "curriculumSubjectSlugs": ["citizenship"],
       "id": "nationalCurriculumInsightsSubject-citizenship",
       "illustration": {
         "altText": null,
@@ -1792,9 +1751,7 @@
       "title": "Citizenship"
     },
     {
-      "curriculumSubjectSlugs": [
-        "computing"
-      ],
+      "curriculumSubjectSlugs": ["computing"],
       "id": "nationalCurriculumInsightsSubject-computing",
       "illustration": {
         "altText": null,
@@ -2234,9 +2191,7 @@
       "title": "Computing"
     },
     {
-      "curriculumSubjectSlugs": [
-        "cooking-nutrition"
-      ],
+      "curriculumSubjectSlugs": ["cooking-nutrition"],
       "id": "nationalCurriculumInsightsSubject-cooking-and-nutrition",
       "illustration": {
         "altText": null,
@@ -2533,9 +2488,7 @@
       "title": "Cooking & nutrition"
     },
     {
-      "curriculumSubjectSlugs": [
-        "design-technology"
-      ],
+      "curriculumSubjectSlugs": ["design-technology"],
       "id": "nationalCurriculumInsightsSubject-design-and-technology",
       "illustration": {
         "altText": null,
@@ -2975,9 +2928,7 @@
       "title": "Design & Technology"
     },
     {
-      "curriculumSubjectSlugs": [
-        "english"
-      ],
+      "curriculumSubjectSlugs": ["english"],
       "id": "nationalCurriculumInsightsSubject-english",
       "illustration": {
         "altText": null,
@@ -3417,9 +3368,7 @@
       "title": "English"
     },
     {
-      "curriculumSubjectSlugs": [
-        "french"
-      ],
+      "curriculumSubjectSlugs": ["french"],
       "id": "nationalCurriculumInsightsSubject-french",
       "illustration": {
         "altText": null,
@@ -3859,9 +3808,7 @@
       "title": "French"
     },
     {
-      "curriculumSubjectSlugs": [
-        "geography"
-      ],
+      "curriculumSubjectSlugs": ["geography"],
       "id": "nationalCurriculumInsightsSubject-geography",
       "illustration": {
         "altText": null,
@@ -4301,9 +4248,7 @@
       "title": "Geography"
     },
     {
-      "curriculumSubjectSlugs": [
-        "german"
-      ],
+      "curriculumSubjectSlugs": ["german"],
       "id": "nationalCurriculumInsightsSubject-german",
       "illustration": {
         "altText": null,
@@ -4600,9 +4545,7 @@
       "title": "German"
     },
     {
-      "curriculumSubjectSlugs": [
-        "history"
-      ],
+      "curriculumSubjectSlugs": ["history"],
       "id": "nationalCurriculumInsightsSubject-history",
       "illustration": {
         "altText": null,
@@ -5042,9 +4985,7 @@
       "title": "History"
     },
     {
-      "curriculumSubjectSlugs": [
-        "maths"
-      ],
+      "curriculumSubjectSlugs": ["maths"],
       "id": "nationalCurriculumInsightsSubject-maths",
       "illustration": {
         "altText": null,
@@ -5484,9 +5425,7 @@
       "title": "Maths"
     },
     {
-      "curriculumSubjectSlugs": [
-        "music"
-      ],
+      "curriculumSubjectSlugs": ["music"],
       "id": "nationalCurriculumInsightsSubject-music",
       "illustration": {
         "altText": null,
@@ -5926,9 +5865,7 @@
       "title": "Music"
     },
     {
-      "curriculumSubjectSlugs": [
-        "physical-education"
-      ],
+      "curriculumSubjectSlugs": ["physical-education"],
       "id": "nationalCurriculumInsightsSubject-physical-education",
       "illustration": {
         "altText": null,
@@ -6368,9 +6305,7 @@
       "title": "Physical Education"
     },
     {
-      "curriculumSubjectSlugs": [
-        "rshe-pshe"
-      ],
+      "curriculumSubjectSlugs": ["rshe-pshe"],
       "id": "nationalCurriculumInsightsSubject-rshe",
       "illustration": {
         "altText": null,
@@ -6810,11 +6745,7 @@
       "title": "RSHE"
     },
     {
-      "curriculumSubjectSlugs": [
-        "biology",
-        "chemistry",
-        "physics"
-      ],
+      "curriculumSubjectSlugs": ["biology", "chemistry", "physics"],
       "id": "nationalCurriculumInsightsSubject-science",
       "illustration": {
         "altText": null,
@@ -7115,9 +7046,7 @@
           "introductionPortableText": null,
           "items": null,
           "overviewLabel": null,
-          "phases": [
-            "primary"
-          ],
+          "phases": ["primary"],
           "primaryHeading": "Explore Primary curriculum changes",
           "primaryLabel": null,
           "privacyPortableText": null,
@@ -8138,10 +8067,7 @@
                       "table": {
                         "rows": [
                           {
-                            "cells": [
-                              "What has changed?",
-                              "Why it matters?"
-                            ]
+                            "cells": ["What has changed?", "Why it matters?"]
                           },
                           {
                             "cells": [
@@ -8348,9 +8274,7 @@
                       "introductionPortableText": null,
                       "items": null,
                       "overviewLabel": null,
-                      "phases": [
-                        "primary"
-                      ],
+                      "phases": ["primary"],
                       "primaryHeading": "Explore Primary curriculum changes",
                       "primaryLabel": null,
                       "privacyPortableText": null,
@@ -9289,10 +9213,7 @@
                       "table": {
                         "rows": [
                           {
-                            "cells": [
-                              "What has changed?",
-                              "Why it matters?"
-                            ]
+                            "cells": ["What has changed?", "Why it matters?"]
                           },
                           {
                             "cells": [
@@ -9499,9 +9420,7 @@
                       "introductionPortableText": null,
                       "items": null,
                       "overviewLabel": null,
-                      "phases": [
-                        "primary"
-                      ],
+                      "phases": ["primary"],
                       "primaryHeading": "Explore Primary curriculum changes",
                       "primaryLabel": null,
                       "privacyPortableText": null,
@@ -9954,9 +9873,7 @@
                 "introductionPortableText": null,
                 "items": null,
                 "overviewLabel": null,
-                "phases": [
-                  "primary"
-                ],
+                "phases": ["primary"],
                 "primaryHeading": "Explore Primary curriculum changes",
                 "primaryLabel": null,
                 "privacyPortableText": null,
@@ -10975,10 +10892,7 @@
                       "table": {
                         "rows": [
                           {
-                            "cells": [
-                              "What has changed?",
-                              "Why it matters?"
-                            ]
+                            "cells": ["What has changed?", "Why it matters?"]
                           },
                           {
                             "cells": [
@@ -11185,9 +11099,7 @@
                       "introductionPortableText": null,
                       "items": null,
                       "overviewLabel": null,
-                      "phases": [
-                        "primary"
-                      ],
+                      "phases": ["primary"],
                       "primaryHeading": "Explore Primary curriculum changes",
                       "primaryLabel": null,
                       "privacyPortableText": null,
@@ -12126,10 +12038,7 @@
                       "table": {
                         "rows": [
                           {
-                            "cells": [
-                              "What has changed?",
-                              "Why it matters?"
-                            ]
+                            "cells": ["What has changed?", "Why it matters?"]
                           },
                           {
                             "cells": [
@@ -12336,9 +12245,7 @@
                       "introductionPortableText": null,
                       "items": null,
                       "overviewLabel": null,
-                      "phases": [
-                        "primary"
-                      ],
+                      "phases": ["primary"],
                       "primaryHeading": "Explore Primary curriculum changes",
                       "primaryLabel": null,
                       "privacyPortableText": null,
@@ -12777,9 +12684,7 @@
                 "introductionPortableText": null,
                 "items": null,
                 "overviewLabel": null,
-                "phases": [
-                  "primary"
-                ],
+                "phases": ["primary"],
                 "primaryHeading": "Explore Primary curriculum changes",
                 "primaryLabel": null,
                 "privacyPortableText": null,
@@ -13019,9 +12924,7 @@
       "title": "Science"
     },
     {
-      "curriculumSubjectSlugs": [
-        "spanish"
-      ],
+      "curriculumSubjectSlugs": ["spanish"],
       "id": "nationalCurriculumInsightsSubject-spanish",
       "illustration": {
         "altText": null,

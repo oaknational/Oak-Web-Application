@@ -11,6 +11,12 @@ import {
   nationalCurriculumInsightsDownloadFilename,
 } from "@/pages-helpers/national-curriculum-insights/docx";
 import { zipFromFiles } from "@/utils/curriculum/zip";
+import OakError from "@/errors/OakError";
+import errorReporter from "@/common-lib/error-reporter";
+
+const reportError = errorReporter("national-curriculum-insights/download");
+
+class UnavailableSelectionError extends Error {}
 
 const requestSchema = z.object({
   selections: z
@@ -66,13 +72,17 @@ const createDownload = async (selections: unknown) => {
           ({ slug }) => slug === subjectSlug,
         );
         if (!catalogueSubject?.tabs.some(({ kind }) => kind === phase)) {
-          throw new Error("The requested subject and phase are not published.");
+          throw new UnavailableSelectionError(
+            "The requested subject and phase are not published.",
+          );
         }
 
         const subject =
           await reader.nationalCurriculumInsightsSubjectBySlug(subjectSlug);
         if (!subject) {
-          throw new Error("The requested subject is unavailable.");
+          throw new UnavailableSelectionError(
+            "The requested subject is unavailable.",
+          );
         }
 
         return {
@@ -106,12 +116,16 @@ const createDownload = async (selections: unknown) => {
       },
     });
   } catch (error) {
-    return jsonError(
-      error instanceof Error
-        ? error.message
-        : "The download could not be made.",
-      400,
+    if (error instanceof UnavailableSelectionError) {
+      return jsonError(error.message, 400);
+    }
+    await reportError(
+      new OakError({
+        code: "downloads/generation-failed",
+        originalError: error,
+      }),
     );
+    return jsonError("The download could not be made. Please try again.", 500);
   }
 };
 

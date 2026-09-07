@@ -1,10 +1,11 @@
 /**
  * @jest-environment node
  */
+
 import { draftMode } from "next/headers";
 
+import { localNationalCurriculumInsightsFixtures } from "./__fixtures__/nationalCurriculumInsights";
 import NationalCurriculumInsightsPage from "./page";
-import { localNationalCurriculumInsightsFixtures } from "./getNationalCurriculumInsightsData";
 
 import CMSClient from "@/node-lib/cms";
 

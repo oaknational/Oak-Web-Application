@@ -21,6 +21,27 @@ const imageProjection = `{
   hotspot
 }`;
 
+// Match the resolved reference shape used by Oak's shared Portable Text renderer.
+// Resolving in GROQ keeps linked documents in the same published/draft perspective
+// as the page, rather than making a separate published-only GraphQL request.
+export const insightsPortableTextProjection = `[]{
+  ...,
+  _type == "block" => {
+    "markDefs": markDefs[]{
+      ...,
+      _type == "internalLink" => {
+        "reference": reference->{
+          "id": _id,
+          "contentType": _type,
+          "slug": slug.current,
+          title,
+          file { asset->{ extension, size, url } }
+        }
+      }
+    }
+  }
+}`;
+
 const modulesProjection = `modules[]{
   "__typename": select(
     _type == "nationalCurriculumInsightsHeroSection" => "NationalCurriculumInsightsHeroSection",
@@ -41,6 +62,7 @@ const modulesProjection = `modules[]{
     _type == "nationalCurriculumInsightsDownloadSection" => "NationalCurriculumInsightsDownloadSection"
   ),
   heading,
+  mobileHeading,
   headingStyle,
   variant,
   overviewLabel,
@@ -52,7 +74,7 @@ const modulesProjection = `modules[]{
   introduction,
   benefitsHeading,
   benefits,
-  "privacyPortableText": privacyText,
+  "privacyPortableText": privacyText${insightsPortableTextProjection},
   formId,
   buttonLabel,
   barHeading,
@@ -62,15 +84,16 @@ const modulesProjection = `modules[]{
   downloadsIntroduction,
   downloadButtonLabel,
   illustration ${imageProjection},
-  "bodyPortableText": body,
-  "contentPortableText": content,
-  "introductionPortableText": introduction,
+  "bodyPortableText": body${insightsPortableTextProjection},
+  "contentPortableText": content${insightsPortableTextProjection},
+  "introductionPortableText": introduction${insightsPortableTextProjection},
   authorName,
   authorRole,
   authorImage ${imageProjection},
   statusHeading,
   statusMessage,
   imagePosition,
+  mirrorImage,
   background,
   ctaLabel,
   ctaHref,
@@ -90,7 +113,7 @@ const modulesProjection = `modules[]{
   ),
   items[]{
     question,
-    "answerPortableText": answer
+    "answerPortableText": answer${insightsPortableTextProjection}
   },
   cards[]{
     phase,
@@ -113,7 +136,7 @@ const modulesProjection = `modules[]{
     "video": content[_type == "reference" && @->_type == "video"][0]->{
       title,
       captions,
-      transcript,
+      "transcript": transcript${insightsPortableTextProjection},
       video {
         asset->{
           assetId,
