@@ -55,17 +55,17 @@ export const getMetaTitle = (
 
   let title = `Free ${phaseSubjectSegment}${tierSegment}${examboardSegment}${threadSegment} Lesson & Curriculum Resources`;
 
+  if (keystageSegment) {
+    const isGcseKeystage = searchParams?.keystages === "ks4";
+    const gcseSegment = isGcseOption && isGcseKeystage ? "GCSE " : "";
+    title = `Free ${gcseSegment}${keystageSegment} ${currentSubject.title}${tierSegment}${examboardSegment} Lesson & Curriculum Resources`;
+  }
+
   if (yearSegment) {
     const isGcseYear =
       searchParams?.years === "10" || searchParams?.years === "11";
     const gcseSegment = isGcseOption && isGcseYear ? "GCSE " : "";
     title = `Free ${gcseSegment}${yearSegment} ${currentSubject.title}${tierSegment}${examboardSegment}${threadSegment} Lesson & Curriculum Resources`;
-  }
-
-  if (keystageSegment) {
-    const isGcseKeystage = searchParams?.keystages === "ks4";
-    const gcseSegment = isGcseOption && isGcseKeystage ? "GCSE " : "";
-    title = `Free ${gcseSegment}${keystageSegment} ${currentSubject.title}${tierSegment}${examboardSegment} Lesson & Curriculum Resources`;
   }
 
   const description = `Get fully sequenced teaching resources and lesson plans for ${phaseTitle} ${currentSubject.title}`;
