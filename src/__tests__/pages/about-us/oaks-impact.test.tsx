@@ -5,6 +5,7 @@ import { topNavFixture } from "@/node-lib/curriculum-api-2023/fixtures/topNav.fi
 import OaksImpact, { getStaticProps } from "@/pages/about-us/oaks-impact";
 import CMSClient from "@/node-lib/cms";
 import { OaksImpactPage } from "@/common-lib/cms-types/aboutPages";
+import { mockPortableTextBlocks } from "@/fixtures/curriculum/programmeSequenceYearData.fixtures";
 
 jest.mock("@/node-lib/curriculum-api-2023", () => ({
   __esModule: true,
@@ -29,7 +30,7 @@ const mockPageData: OaksImpactPage = {
           thumbTime: null,
         },
       },
-      captions: ["Oaks Impact captions"],
+      transcript: [mockPortableTextBlocks[0]],
     },
     videoDescription: "Oaks Impact video description",
   },

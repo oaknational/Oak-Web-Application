@@ -115,13 +115,12 @@ export function OaksImpactHeader({
                   thumbnailTime={video.video.asset.thumbTime}
                   playbackId={video.video.asset.playbackId}
                   title={video.title}
-                  isLegacy={false}
                   location="marketing"
                   omitBorder={true}
                 />
               }
               body={videoDescription}
-              transcript={video.transcript ?? undefined}
+              transcript={video.transcript}
               showTranscript={true}
             />
           </VideoLayout>

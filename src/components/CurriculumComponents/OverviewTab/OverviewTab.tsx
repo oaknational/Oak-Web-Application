@@ -26,7 +26,6 @@ import slugify from "slugify";
 import ScreenReaderOnly from "@/components/SharedComponents/ScreenReaderOnly";
 import { CurriculumOverviewSanityData } from "@/common-lib/cms-types";
 import CMSImage from "@/components/SharedComponents/CMSImage";
-import CMSVideo from "@/components/SharedComponents/CMSVideo";
 import { basePortableTextComponents } from "@/components/SharedComponents/PortableText";
 import VideoPlayer from "@/components/SharedComponents/VideoPlayer";
 import { findContainingAnchor } from "@/utils/curriculum/dom";
@@ -314,13 +313,12 @@ const OverviewTab: FC<OverviewTabProps> = ({
                                       props.value.video.asset.playbackId
                                     }
                                     title={props.value.title}
-                                    isLegacy={true}
                                     location="lesson"
                                     omitBorder={true}
                                   />
                                 }
                                 showTranscript={true}
-                                transcript={props.value.transcript ?? undefined}
+                                transcript={props.value.transcript}
                               />
                             </OakBox>
                           ),
@@ -349,7 +347,20 @@ const OverviewTab: FC<OverviewTabProps> = ({
                 $justifyContent="center"
                 $order={[1, 0]}
               >
-                <CMSVideo video={video} location="lesson" />
+                <OakVideo
+                  videoSlot={
+                    <VideoPlayer
+                      playbackPolicy="public"
+                      thumbnailTime={video.video.asset.thumbTime}
+                      playbackId={video.video.asset.playbackId}
+                      title={video.title}
+                      location="lesson"
+                      omitBorder={true}
+                    />
+                  }
+                  showTranscript={true}
+                  transcript={video.transcript}
+                />
               </OakGridArea>
               <OakGridArea
                 $colSpan={[12, 6, 4]}

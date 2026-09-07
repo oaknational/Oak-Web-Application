@@ -7,6 +7,7 @@ import {
   OakMaxWidth,
   OakP,
   OakSecondaryButton,
+  OakVideo,
 } from "@oaknational/oak-components";
 
 import { aboutUsAccessed } from "@/browser-lib/avo/Avo";
@@ -21,12 +22,12 @@ import { webinarToPostListItem } from "@/components/GenericPagesViews/WebinarsIn
 import useAnalytics from "@/context/Analytics/useAnalytics";
 import { Testimonials } from "@/components/GenericPagesComponents/Testimonials";
 import { HomePage } from "@/common-lib/cms-types";
-import CMSVideo from "@/components/SharedComponents/CMSVideo";
 import { CampaignPromoBanner } from "@/components/GenericPagesComponents/CampaignPromoBanner/CampaignPromoBanner";
 import { campaignTextStyles } from "@/pages/campaigns/[campaignSlug]";
 import { CampaignPromoBannerType } from "@/common-lib/cms-types/campaignPage";
 import { resolveOakHref } from "@/common-lib/urls";
 import { buildAboutUsAnalytics } from "@/utils/analytics-builders";
+import VideoPlayer from "@/components/SharedComponents/VideoPlayer/VideoPlayer";
 
 export const postToPostListItem = (post: SerializedPost): PostListItemProps => {
   return post.type === "blog-post"
@@ -99,10 +100,18 @@ export const HomePageLowerView = (props: HomePageLowerViewProps) => {
                       About Oak
                     </OakSecondaryButton>
                   </OakFlex>
-                  <CMSVideo
-                    hideCaptions={true}
-                    video={introVideo.video}
-                    location="marketing"
+                  <OakVideo
+                    showTranscript={false}
+                    videoSlot={
+                      <VideoPlayer
+                        playbackPolicy="public"
+                        playbackId={introVideo.video.video.asset.playbackId}
+                        thumbnailTime={introVideo.video.video.asset.thumbTime}
+                        title={introVideo.title}
+                        location="marketing"
+                        omitBorder={true}
+                      />
+                    }
                   />
                 </OakFlex>
               </OakGridArea>

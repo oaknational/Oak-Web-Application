@@ -1,10 +1,15 @@
-import { OakBox, OakGrid, OakGridArea } from "@oaknational/oak-components";
+import {
+  OakBox,
+  OakGrid,
+  OakGridArea,
+  OakVideo,
+} from "@oaknational/oak-components";
 import { PortableTextBlock, PortableTextComponents } from "@portabletext/react";
 
 import { PortableTextWithDefaults } from "../../SharedComponents/PortableText";
 
 import { Video } from "@/common-lib/cms-types";
-import CMSVideo from "@/components/SharedComponents/CMSVideo";
+import VideoPlayer from "@/components/SharedComponents/VideoPlayer";
 
 export function CampaignVideoBanner({
   textStyles,
@@ -28,7 +33,22 @@ export function CampaignVideoBanner({
         $rowStart={0}
         $mb={["spacing-24", "spacing-48"]}
       >
-        {video && <CMSVideo video={video} location="marketing" />}
+        {video && (
+          <OakVideo
+            videoSlot={
+              <VideoPlayer
+                playbackPolicy="public"
+                thumbnailTime={video.video.asset.thumbTime}
+                playbackId={video.video.asset.playbackId}
+                title={video.title}
+                location="marketing"
+                omitBorder={true}
+              />
+            }
+            showTranscript={true}
+            transcript={video.transcript}
+          />
+        )}
       </OakGridArea>
       <OakGridArea
         $colSpan={[12, 4, 4]}

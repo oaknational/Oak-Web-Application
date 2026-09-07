@@ -91,7 +91,6 @@ const PromoBannerWithVideo = ({
           playbackPolicy={"public"}
           title={"Oak Promo Video"}
           location={"marketing"}
-          isLegacy={false}
           thumbnailTime={30.8}
         />
         {textUnderVideo && <OakP $font={"body-3-bold"}>{textUnderVideo}</OakP>}
