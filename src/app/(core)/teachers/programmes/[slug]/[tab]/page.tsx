@@ -97,8 +97,9 @@ const getCachedProgrammeCms = cache(
 
 const getCachedImplementationGuides = cache(
   cacheData(
-    (opts: { subjectTitle: string; phaseSlug: string }) =>
-      CMSClient.implementationGuides(opts),
+    async (opts: { subjectTitle: string; phaseSlug: string }) => {
+      return CMSClient.implementationGuides(opts);
+    },
     ["programme-implementation-guides"],
     { tags: [CURRICULUM_API_CACHE_TAG] },
   ),
@@ -270,11 +271,6 @@ const InnerProgrammePage = async (props: AppPageProps<ProgrammePageParams>) => {
     examboardTitle: ks4Option?.title,
   };
 
-  const opts = {
-    subjectTitle: curriculumSelectionTitles.subjectTitle,
-    phaseSlug: subjectPhaseKeystageSlugs.phaseSlug,
-  };
-
   // None of these depend on each other's results, so run them concurrently instead of as a waterfall
   const [
     { curriculumCMSInfo, subjectPhaseSanityData, mvRefreshTime },
@@ -296,7 +292,10 @@ const InnerProgrammePage = async (props: AppPageProps<ProgrammePageParams>) => {
       ),
       "implementation-guides",
     ),
-    getCachedImplementationGuides(opts),
+    getCachedImplementationGuides({
+      subjectTitle: programmeUnitsData.subjectTitle,
+      phaseSlug: subjectPhaseKeystageSlugs.phaseSlug,
+    }),
     getCachedFileSizes(subjectPhaseKeystageSlugs, curriculumDownloadsTabData),
   ]);
 
