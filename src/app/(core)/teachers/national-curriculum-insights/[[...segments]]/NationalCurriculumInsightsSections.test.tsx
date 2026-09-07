@@ -3,6 +3,10 @@ import userEvent from "@testing-library/user-event";
 
 import { NationalCurriculumInsightsHero } from "./NationalCurriculumInsightsHero";
 import {
+  INSIGHTS_NEWSLETTER_FORM_ID,
+  INSIGHTS_NEWSLETTER_PORTAL_ID,
+} from "./nationalCurriculumInsightsNewsletter";
+import {
   NationalCurriculumInsightsFaq,
   NationalCurriculumInsightsGuidanceIntro,
   NationalCurriculumInsightsImageText,
@@ -406,6 +410,18 @@ describe("National Curriculum Insights sections", () => {
     expect(
       screen.getByRole("button", { name: /Where can I find support\?/ }),
     ).toHaveAttribute("aria-expanded", "false");
+    expect(
+      screen.getByRole("heading", { name: "When will the curriculum change?" }),
+    ).toHaveStyle({ textAlign: "left" });
+
+    const announcement = screen.getByRole("status");
+    expect(announcement).toBeEmptyDOMElement();
+    expect(announcement).toHaveAttribute("aria-live", "polite");
+    expect(announcement).toHaveAttribute("aria-atomic", "true");
+    expect(useNewsletterForm).toHaveBeenCalledWith({
+      hubspotNewsletterFormId: INSIGHTS_NEWSLETTER_FORM_ID,
+      hubspotPortalId: INSIGHTS_NEWSLETTER_PORTAL_ID,
+    });
 
     fireEvent.change(screen.getByRole("textbox", { name: /Name/ }), {
       target: { value: "Jamie Maxwell" },
@@ -442,11 +458,12 @@ describe("National Curriculum Insights sections", () => {
         name: "Jamie Maxwell",
         email: "jamie@example.com",
         userRole: "",
-        eduRole: "Teacher/Subject Specialist",
+        eduRole: "Subject Specialist",
         schoolName: "",
       });
     });
     expect(newsletterSignUpCompleted).toHaveBeenCalledTimes(1);
+    expect(screen.getByRole("status")).toBe(announcement);
     expect(screen.getByRole("status")).toHaveTextContent(
       "Thanks, that's been received",
     );
@@ -502,6 +519,7 @@ describe("National Curriculum Insights sections", () => {
       "We couldn't submit the form. Please try again.",
     );
     expect(newsletterSignUpCompleted).not.toHaveBeenCalled();
+    expect(screen.getByRole("status")).toBeEmptyDOMElement();
   });
 
   it("renders the guidance introduction with its image and status", () => {

@@ -27,6 +27,18 @@ const getData = async (segments?: string[]) => {
 };
 
 describe("NationalCurriculumInsightsView", () => {
+  it.each([
+    { segments: [] },
+    { segments: ["guidance"] },
+    { segments: ["science"] },
+    { segments: ["science", "primary"] },
+  ])("uses the primary text token for $segments", async ({ segments }) => {
+    renderWithTheme(
+      <NationalCurriculumInsightsView data={await getData(segments)} />,
+    );
+    expect(screen.getByRole("main")).toHaveStyle({ color: "#222222" });
+  });
+
   it("renders the independently editable hub modules", async () => {
     renderWithTheme(<NationalCurriculumInsightsView data={await getData()} />);
 

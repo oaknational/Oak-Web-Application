@@ -29,6 +29,11 @@ import styled from "styled-components";
 import type { NationalCurriculumInsightsRouteData } from "./getNationalCurriculumInsightsData";
 import { NationalCurriculumInsightsSelect } from "./NationalCurriculumInsightsSelect";
 import {
+  INSIGHTS_NEWSLETTER_FORM_ID,
+  INSIGHTS_NEWSLETTER_PORTAL_ID,
+  insightsNewsletterRoleValue,
+} from "./nationalCurriculumInsightsNewsletter";
+import {
   nationalCurriculumInsightsKeyStageIllustration,
   nationalCurriculumInsightsPhaseIllustration,
   nationalCurriculumInsightsPresentation,
@@ -796,6 +801,10 @@ const GuidanceExplainerLayout = styled(OakBox)`
 const GuidanceExplainerHeading = styled(OakHeading)`
   grid-column: 1;
   grid-row: 1;
+
+  @media ${insightsWideDesktopMediaQuery} {
+    grid-column: 1 / -1;
+  }
 `;
 
 const GuidanceExplainerImage = styled(OakBox)`
@@ -814,6 +823,10 @@ const GuidanceExplainerImage = styled(OakBox)`
     height: 259px;
     grid-column: 2;
     grid-row: 1 / span 2;
+  }
+
+  @media ${insightsWideDesktopMediaQuery} {
+    grid-row: 2;
   }
 
   @media ${insightsTabletMediaQuery} {
@@ -1251,20 +1264,17 @@ const ConversationHeaderCopy = styled(OakFlex)`
   }
 `;
 
-const ConversationCardFocus = styled(OakFocusIndicator)<{
-  $featured: boolean;
-}>`
+const ConversationCardFocus = styled(OakFocusIndicator)`
   position: relative;
   width: 100%;
   border-radius: 6.645px;
 
   @media (${getMediaQuery("desktop")}) {
-    max-width: ${({ $featured }) => ($featured ? "976px" : "985px")};
-    min-height: ${({ $featured }) => ($featured ? "301.582px" : "188.582px")};
+    max-width: 985px;
   }
 `;
 
-const ConversationCardLink = styled(OakFlex)<{ $featured: boolean }>`
+const ConversationCardLink = styled(OakFlex)`
   box-sizing: border-box;
   width: 100%;
   min-height: 100%;
@@ -1284,16 +1294,17 @@ const ConversationCardLink = styled(OakFlex)<{ $featured: boolean }>`
     text-decoration: underline;
   }
 
-  @media ${insightsTabletMediaQuery} {
+  @media (min-width: ${getBreakpoint("small")}px) {
     flex-direction: row;
   }
 `;
 
-const ConversationCardImage = styled(OakBox)<{ $featured: boolean }>`
+const ConversationCardImage = styled(OakBox)`
   position: relative;
   width: 100%;
   aspect-ratio: 16 / 9;
   flex: 0 0 auto;
+  align-self: flex-start;
   overflow: hidden;
 
   @media ${insightsTabletMediaQuery} {
@@ -1301,8 +1312,8 @@ const ConversationCardImage = styled(OakBox)<{ $featured: boolean }>`
   }
 
   @media (${getMediaQuery("desktop")}) {
-    width: ${({ $featured }) => ($featured ? "491px" : "290px")};
-    height: ${({ $featured }) => ($featured ? "275px" : "163px")};
+    width: 290px;
+    height: auto;
   }
 `;
 
@@ -1407,7 +1418,6 @@ const GuidanceQuoteCard = styled(OakBox)`
 const GuidanceConversationCard = ({
   card,
   episode,
-  featured,
 }: {
   card: NonNullable<
     Extract<
@@ -1416,24 +1426,14 @@ const GuidanceConversationCard = ({
     >["cards"]
   >[number];
   episode: number;
-  featured: boolean;
 }) => (
   <ConversationCardFocus
-    $featured={featured}
     $background="bg-primary"
     hoverBackground="bg-btn-secondary-hover"
     $borderRadius="border-radius-m2"
   >
-    <ConversationCardLink
-      as="a"
-      href={card.videoUrl}
-      $featured={featured}
-      $flexDirection="column"
-    >
-      <ConversationCardImage
-        $featured={featured}
-        $borderRadius="border-radius-m2"
-      >
+    <ConversationCardLink as="a" href={card.videoUrl} $flexDirection="column">
+      <ConversationCardImage $borderRadius="border-radius-m2">
         <OakImage
           src={imageUrl(card.image)}
           alt={imageAlt(card.image)}
@@ -1476,7 +1476,6 @@ const GuidanceConversationCard = ({
 const GuidanceBlogPostCard = ({
   post,
   episode,
-  featured,
 }: {
   post: NonNullable<
     Extract<
@@ -1485,15 +1484,11 @@ const GuidanceBlogPostCard = ({
     >["posts"]
   >[number];
   episode: number;
-  featured: boolean;
 }) => {
   const [isPlaying, setIsPlaying] = useState(false);
   const cardContent = (
     <>
-      <ConversationCardImage
-        $featured={featured}
-        $borderRadius="border-radius-m2"
-      >
+      <ConversationCardImage $borderRadius="border-radius-m2">
         {post.video && isPlaying ? (
           <InlineVideo data-testid="guidance-inline-video">
             <CMSVideo
@@ -1566,16 +1561,11 @@ const GuidanceBlogPostCard = ({
 
   return (
     <ConversationCardFocus
-      $featured={featured}
       $background="bg-primary"
       hoverBackground="bg-btn-secondary-hover"
       $borderRadius="border-radius-m2"
     >
-      <ConversationCardLink
-        as="div"
-        $featured={featured}
-        $flexDirection="column"
-      >
+      <ConversationCardLink as="div" $flexDirection="column">
         {cardContent}
       </ConversationCardLink>
     </ConversationCardFocus>
@@ -1630,11 +1620,7 @@ export const NationalCurriculumInsightsVideoCards = ({
         <VideoCardList>
           {posts.map((post, index) => (
             <VideoCardItem key={post.id}>
-              <GuidanceBlogPostCard
-                post={post}
-                episode={itemCount - index}
-                featured={index === 0}
-              />
+              <GuidanceBlogPostCard post={post} episode={itemCount - index} />
             </VideoCardItem>
           ))}
           {legacyCards.map((card, index) => (
@@ -1642,7 +1628,6 @@ export const NationalCurriculumInsightsVideoCards = ({
               <GuidanceConversationCard
                 card={card}
                 episode={itemCount - index}
-                featured={index === 0}
               />
             </VideoCardItem>
           ))}
@@ -1932,6 +1917,10 @@ const NewsletterForm = styled(OakFlex)`
   grid-column: 1;
   grid-row: 2;
 
+  @media (${getMediaQuery("mobile")}) {
+    margin-top: 24px;
+  }
+
   input:not([type="checkbox"]),
   select {
     min-height: 64px;
@@ -1973,7 +1962,10 @@ export const NationalCurriculumInsightsNewsletter = ({
   const [successMessage, setSuccessMessage] = useState("");
   const [submitError, setSubmitError] = useState("");
   const [fieldErrors, setFieldErrors] = useState<Record<string, string>>({});
-  const { onSubmit: submitNewsletter } = useNewsletterForm();
+  const { onSubmit: submitNewsletter } = useNewsletterForm({
+    hubspotNewsletterFormId: INSIGHTS_NEWSLETTER_FORM_ID,
+    hubspotPortalId: INSIGHTS_NEWSLETTER_PORTAL_ID,
+  });
   const { track } = useAnalytics();
   const isGuidance = data.route.kind === "guidance";
   const {
@@ -2018,7 +2010,7 @@ export const NationalCurriculumInsightsNewsletter = ({
         name,
         email,
         userRole: "",
-        eduRole: role,
+        eduRole: insightsNewsletterRoleValue(role),
         schoolName: schoolNotListed ? "notListed" : schoolPickerInputValue,
       });
       track.newsletterSignUpCompleted();
@@ -2188,16 +2180,16 @@ export const NationalCurriculumInsightsNewsletter = ({
                 {submitError}
               </OakP>
             ) : null}
-            {successMessage ? (
-              <OakP
-                role="status"
-                aria-live="polite"
-                $font="body-3"
-                $mv="spacing-0"
-              >
-                {successMessage}
-              </OakP>
-            ) : null}
+            <OakP
+              role="status"
+              aria-live="polite"
+              aria-atomic="true"
+              $font="body-3"
+              $mv="spacing-0"
+              $position={successMessage ? "static" : "absolute"}
+            >
+              {successMessage}
+            </OakP>
           </NewsletterForm>
         </NewsletterLayout>
       </NewsletterInner>
@@ -2267,7 +2259,7 @@ export const NationalCurriculumInsightsFaq = ({
             id={`national-curriculum-insights-faq-${index}`}
             initialOpen={index === 0}
             header={
-              <OakHeading tag="h3" $font="heading-6">
+              <OakHeading tag="h3" $font="heading-6" $textAlign="left">
                 {item.question}
               </OakHeading>
             }
