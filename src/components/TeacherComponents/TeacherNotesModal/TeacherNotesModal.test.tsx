@@ -102,12 +102,12 @@ describe("TeacherNotesModal", () => {
       expect(result).toBe(false);
     });
 
-    it("should return true if the protocol is allowed", () => {
+    it("should return true if the https protocol is allowed", () => {
       const result = isAllowedUri("https://example.com", context);
       expect(result).toBe(true);
     });
 
-    it("should return true if the protocol is allowed", () => {
+    it("should return true if the http protocol is allowed", () => {
       const result = isAllowedUri("http://example.com", context);
       expect(result).toBe(true);
     });
