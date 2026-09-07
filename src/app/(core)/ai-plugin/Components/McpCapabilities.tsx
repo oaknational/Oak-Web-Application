@@ -10,7 +10,7 @@ import {
 
 import { McpSection } from "./McpSection";
 
-import { mcpCapabilities } from "@/app/(core)/mcp/mcpContent";
+import { mcpCapabilities } from "@/app/(core)/ai-plugin/mcpContent";
 
 export const McpCapabilities = () => (
   <McpSection title={mcpCapabilities.title} id="what-can-you-do">

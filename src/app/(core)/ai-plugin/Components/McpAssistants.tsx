@@ -11,7 +11,10 @@ import type { PortableTextComponents } from "@portabletext/react";
 import { McpSection } from "./McpSection";
 import { McpTryButton } from "./McpTryButton";
 
-import { mcpAssistants, type McpAssistant } from "@/app/(core)/mcp/mcpContent";
+import {
+  mcpAssistants,
+  type McpAssistant,
+} from "@/app/(core)/ai-plugin/mcpContent";
 import { PortableTextWithDefaults } from "@/components/SharedComponents/PortableText";
 
 const McpAssistantCard = ({

@@ -13,7 +13,7 @@ import {
   mcpOutputWarning,
   mcpResponsibleUse,
   mcpSupport,
-} from "@/app/(core)/mcp/mcpContent";
+} from "@/app/(core)/ai-plugin/mcpContent";
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 
 const render = renderWithProviders();
