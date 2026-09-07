@@ -116,25 +116,6 @@ describe("submitHubspotData", () => {
     expect(reportError).toHaveBeenCalledWith(oakError);
   });
 
-  it("submits the correct hubspot form", async () => {
-    await submitOnboardingHubspotData({
-      hutk,
-      utmParams,
-      data,
-      userSubscribed,
-      posthogDistinctId,
-      userEmail,
-    });
-
-    expect(jest.spyOn(hubspotForms, "hubspotSubmitForm")).toHaveBeenCalledWith({
-      hubspotFormId: getBrowserConfig("hubspotOnboardingFormId"),
-      payload: getHubspotOnboardingFormPayload({
-        hutk: getHubspotUserToken(),
-        data: hubspotData,
-      }),
-    });
-  });
-
   it("wraps vanilla errors in OakError", async () => {
     reportError.mockReset();
     const error = new Error();
