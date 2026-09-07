@@ -35,45 +35,8 @@ export type NationalCurriculumInsightsRouteData = {
   activeKeyStage: NationalCurriculumInsightsKeyStage | null;
 };
 
-// Load local preview content only after the explicit runtime guards below pass.
-const localPreviewReader: NationalCurriculumInsightsReader = {
-  nationalCurriculumInsightsHub: async (...args) =>
-    (
-      await import("./__fixtures__/previewReader")
-    ).localPreviewSnapshotReader.nationalCurriculumInsightsHub(...args),
-  nationalCurriculumInsightsGuidancePage: async (...args) =>
-    (
-      await import("./__fixtures__/previewReader")
-    ).localPreviewSnapshotReader.nationalCurriculumInsightsGuidancePage(
-      ...args,
-    ),
-  nationalCurriculumInsightsSubjectBySlug: async (...args) =>
-    (
-      await import("./__fixtures__/previewReader")
-    ).localPreviewSnapshotReader.nationalCurriculumInsightsSubjectBySlug(
-      ...args,
-    ),
-};
-
 export const getNationalCurriculumInsightsReader =
-  (): NationalCurriculumInsightsReader => {
-    const localPreviewRequested =
-      process.env.NATIONAL_CURRICULUM_INSIGHTS_LOCAL_FIXTURES === "true";
-    const isLocalPreviewRuntime =
-      process.env.NATIONAL_CURRICULUM_INSIGHTS_LOCAL_PREVIEW_RUNTIME === "true";
-
-    if (!localPreviewRequested) {
-      return CMSClient;
-    }
-
-    if (process.env.NODE_ENV !== "development" && !isLocalPreviewRuntime) {
-      throw new Error(
-        "National Curriculum Insights preview content is only available in development or the dedicated local preview runtime",
-      );
-    }
-
-    return localPreviewReader;
-  };
+  (): NationalCurriculumInsightsReader => CMSClient;
 
 export const getNationalCurriculumInsightsRouteData = async (
   route: NationalCurriculumInsightsRoute,

@@ -20,8 +20,8 @@ The reader uses GROQ, with queries in `nationalCurriculumInsightsGroq.ts` and ru
 
 Subject illustrations and editorial images are editable in Sanity. Guidance modules also own the short heading, image mirroring and optional video heading illustration. Fixed phase/key-stage artwork and fallback asset IDs live in `nationalCurriculumInsightsAssets.ts`; their URLs use the configured Sanity project and dataset.
 
-## Local fixtures
+## Test fixtures
 
-`__fixtures__/` contains synthetic test content and optional local preview snapshots. Tests import these explicitly. The live reader never falls back to them when CMS requests fail.
+`__fixtures__/` contains small synthetic fixtures imported explicitly by tests. Runtime content always comes from the configured CMS client; it never falls back to fixture data when CMS requests fail.
 
-To use the snapshots locally, set `NATIONAL_CURRICULUM_INSIGHTS_LOCAL_FIXTURES=true` in development. A non-development local preview additionally requires `NATIONAL_CURRICULUM_INSIGHTS_LOCAL_PREVIEW_RUNTIME=true`. Both must remain unset for deployed Oak environments. The fixture reader is loaded only after those checks pass.
+For local development, configure the same isolated Sanity dataset as the feature preview using the project's existing environment configuration. Dataset exports and local preview tools should remain outside the repository.

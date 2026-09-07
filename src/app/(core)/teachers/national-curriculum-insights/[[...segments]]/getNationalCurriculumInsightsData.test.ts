@@ -6,6 +6,7 @@ import {
 } from "./getNationalCurriculumInsightsData";
 
 import { parseNationalCurriculumInsightsRoute } from "@/common-lib/urls/nationalCurriculumInsights";
+import CMSClient from "@/node-lib/cms";
 
 jest.mock("@/node-lib/cms", () => ({
   __esModule: true,
@@ -284,57 +285,7 @@ describe("getNationalCurriculumInsightsRouteData", () => {
 });
 
 describe("getNationalCurriculumInsightsReader", () => {
-  const originalFixtures =
-    process.env.NATIONAL_CURRICULUM_INSIGHTS_LOCAL_FIXTURES;
-  const originalRuntime =
-    process.env.NATIONAL_CURRICULUM_INSIGHTS_LOCAL_PREVIEW_RUNTIME;
-
-  afterEach(() => {
-    if (originalFixtures === undefined) {
-      delete process.env.NATIONAL_CURRICULUM_INSIGHTS_LOCAL_FIXTURES;
-    } else {
-      process.env.NATIONAL_CURRICULUM_INSIGHTS_LOCAL_FIXTURES =
-        originalFixtures;
-    }
-    if (originalRuntime === undefined) {
-      delete process.env.NATIONAL_CURRICULUM_INSIGHTS_LOCAL_PREVIEW_RUNTIME;
-    } else {
-      process.env.NATIONAL_CURRICULUM_INSIGHTS_LOCAL_PREVIEW_RUNTIME =
-        originalRuntime;
-    }
-  });
-
-  it("uses the exported feature-dataset snapshot in the local preview runtime", async () => {
-    process.env.NATIONAL_CURRICULUM_INSIGHTS_LOCAL_FIXTURES = "true";
-    process.env.NATIONAL_CURRICULUM_INSIGHTS_LOCAL_PREVIEW_RUNTIME = "true";
-
-    const reader = getNationalCurriculumInsightsReader();
-    const [hub, guidance] = await Promise.all([
-      reader.nationalCurriculumInsightsHub({ previewMode: false }),
-      reader.nationalCurriculumInsightsGuidancePage({ previewMode: false }),
-    ]);
-
-    expect(hub?.subjects).toHaveLength(16);
-    expect(hub?.modules.map(({ __typename }) => __typename)).toEqual([
-      "NationalCurriculumInsightsHeroSection",
-      "NationalCurriculumInsightsDownloadSection",
-      "NationalCurriculumInsightsPromotionalHeadingSection",
-      "NationalCurriculumInsightsSubjectNavigationSection",
-      "NationalCurriculumInsightsNewsletterSection",
-      "NationalCurriculumInsightsFaqSection",
-    ]);
-    expect(guidance?.modules).toHaveLength(7);
-    expect(JSON.stringify(guidance)).toContain(
-      "62f7eb8c5ef749456ba5706d27e950d5641f9d31-2289x1594.png",
-    );
-  });
-
-  it("rejects preview content outside development or the dedicated runtime", () => {
-    process.env.NATIONAL_CURRICULUM_INSIGHTS_LOCAL_FIXTURES = "true";
-    delete process.env.NATIONAL_CURRICULUM_INSIGHTS_LOCAL_PREVIEW_RUNTIME;
-
-    expect(() => getNationalCurriculumInsightsReader()).toThrow(
-      "dedicated local preview runtime",
-    );
+  it("uses the configured CMS client", () => {
+    expect(getNationalCurriculumInsightsReader()).toBe(CMSClient);
   });
 });
