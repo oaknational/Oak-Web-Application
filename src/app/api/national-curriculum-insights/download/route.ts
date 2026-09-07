@@ -80,8 +80,7 @@ const createDownload = async (selections: unknown) => {
         const subject =
           await reader.nationalCurriculumInsightsSubjectBySlug(subjectSlug);
         if (
-          !subject ||
-          subject.id.replace(/^drafts\./, "") !==
+          subject?.id.replace(/^drafts\./, "") !==
             catalogueSubject.id.replace(/^drafts\./, "") ||
           !subject.tabs.some(({ kind }) => kind === phase)
         ) {

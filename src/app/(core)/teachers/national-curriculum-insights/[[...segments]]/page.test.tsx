@@ -48,23 +48,57 @@ describe("National Curriculum Insights page", () => {
       .mockResolvedValue(science as never);
   });
 
-  it("redirects the previous guidance URL without losing tracking parameters", async () => {
+  it.each<{
+    searchParams?: Record<string, string | string[] | undefined>;
+    suffix: string;
+  }>([
+    { suffix: "" },
+    { searchParams: {}, suffix: "" },
+    {
+      searchParams: { utm_source: "newsletter", tag: ["one", "two"] },
+      suffix: "?utm_source=newsletter&tag=one&tag=two",
+    },
+    {
+      searchParams: {
+        missing: undefined,
+        tags: [],
+        q: "",
+        topic: "science & maths",
+      },
+      suffix: "?q=&topic=science+%26+maths",
+    },
+  ])(
+    "preserves query parameters in the guidance redirect: $suffix",
+    async ({ searchParams, suffix }) => {
+      jest
+        .mocked(CMSClient.nationalCurriculumInsightsGuidancePage)
+        .mockResolvedValue(
+          await localNationalCurriculumInsightsFixtures.reader.nationalCurriculumInsightsGuidancePage(),
+        );
+      await expect(
+        NationalCurriculumInsightsPage({
+          params: Promise.resolve({ segments: ["guidance"] }),
+          searchParams: searchParams
+            ? Promise.resolve(searchParams)
+            : undefined,
+        }),
+      ).rejects.toThrow(
+        `REDIRECT:/curriculum-change-explained/guidance${suffix}`,
+      );
+    },
+  );
+
+  it("keeps unpublished guidance unavailable at its previous URL", async () => {
     jest
       .mocked(CMSClient.nationalCurriculumInsightsGuidancePage)
-      .mockResolvedValue(
-        await localNationalCurriculumInsightsFixtures.reader.nationalCurriculumInsightsGuidancePage(),
-      );
+      .mockResolvedValue(null);
+
     await expect(
       NationalCurriculumInsightsPage({
         params: Promise.resolve({ segments: ["guidance"] }),
-        searchParams: Promise.resolve({
-          utm_source: "newsletter",
-          tag: ["one", "two"],
-        }),
+        searchParams: Promise.resolve({ utm_source: "newsletter" }),
       }),
-    ).rejects.toThrow(
-      "REDIRECT:/curriculum-change-explained/guidance?utm_source=newsletter&tag=one&tag=two",
-    );
+    ).rejects.toThrow("NEXT_HTTP_ERROR_FALLBACK;404");
   });
 
   it("renders the subject overview at the subject root", async () => {

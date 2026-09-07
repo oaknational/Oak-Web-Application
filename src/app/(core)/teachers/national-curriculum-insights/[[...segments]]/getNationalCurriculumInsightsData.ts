@@ -38,6 +38,38 @@ export type NationalCurriculumInsightsRouteData = {
 export const getNationalCurriculumInsightsReader =
   (): NationalCurriculumInsightsReader => CMSClient;
 
+const getGuidanceRouteData = async (
+  route: Extract<NationalCurriculumInsightsRoute, { kind: "guidance" }>,
+  reader: NationalCurriculumInsightsReader,
+  previewMode: boolean,
+): Promise<NationalCurriculumInsightsRouteData | null> => {
+  const page = await reader.nationalCurriculumInsightsGuidancePage({
+    previewMode,
+  });
+  if (!page) {
+    return null;
+  }
+
+  const needsCatalogue = page.modules.some(
+    ({ __typename }) =>
+      __typename === "NationalCurriculumInsightsSubjectNavigationSection" ||
+      __typename === "NationalCurriculumInsightsDownloadSection",
+  );
+  const hub = needsCatalogue
+    ? await reader.nationalCurriculumInsightsHub({ previewMode })
+    : null;
+
+  return {
+    hub,
+    route,
+    subjects: hub?.subjects ?? [],
+    subject: null,
+    page,
+    activeTab: null,
+    activeKeyStage: null,
+  };
+};
+
 export const getNationalCurriculumInsightsRouteData = async (
   route: NationalCurriculumInsightsRoute,
   {
@@ -49,31 +81,7 @@ export const getNationalCurriculumInsightsRouteData = async (
   },
 ): Promise<NationalCurriculumInsightsRouteData | null> => {
   if (route.kind === "guidance") {
-    const page = await reader.nationalCurriculumInsightsGuidancePage({
-      previewMode,
-    });
-    if (!page) {
-      return null;
-    }
-
-    const needsCatalogue = page.modules.some(
-      ({ __typename }) =>
-        __typename === "NationalCurriculumInsightsSubjectNavigationSection" ||
-        __typename === "NationalCurriculumInsightsDownloadSection",
-    );
-    const hub = needsCatalogue
-      ? await reader.nationalCurriculumInsightsHub({ previewMode })
-      : null;
-
-    return {
-      hub,
-      route,
-      subjects: hub?.subjects ?? [],
-      subject: null,
-      page,
-      activeTab: null,
-      activeKeyStage: null,
-    };
+    return getGuidanceRouteData(route, reader, previewMode);
   }
 
   const hub = await reader.nationalCurriculumInsightsHub({ previewMode });

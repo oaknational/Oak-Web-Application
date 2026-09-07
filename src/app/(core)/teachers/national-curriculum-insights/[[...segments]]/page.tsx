@@ -6,6 +6,7 @@ import { getNationalCurriculumInsightsRouteData } from "./getNationalCurriculumI
 import { NationalCurriculumInsightsView } from "./NationalCurriculumInsightsView";
 
 import {
+  nationalCurriculumInsightsGuidanceHref,
   nationalCurriculumInsightsRouteHref,
   parseNationalCurriculumInsightsRoute,
 } from "@/common-lib/urls/nationalCurriculumInsights";
@@ -17,6 +18,24 @@ const robots: Metadata["robots"] = {
     index: false,
     follow: false,
   },
+};
+
+type SearchParams = Record<string, string | string[] | undefined>;
+
+const getGuidanceRedirectHref = (searchParams: SearchParams = {}) => {
+  const query = new URLSearchParams();
+  for (const [key, value] of Object.entries(searchParams)) {
+    if (value === undefined) {
+      continue;
+    }
+    const values = Array.isArray(value) ? value : [value];
+    for (const item of values) {
+      query.append(key, item);
+    }
+  }
+
+  const href = nationalCurriculumInsightsGuidanceHref();
+  return query.size ? `${href}?${query}` : href;
 };
 
 export const generateMetadata = async ({
@@ -44,7 +63,7 @@ const NationalCurriculumInsightsPage = async ({
   searchParams,
 }: {
   params: Promise<{ segments?: string[] }>;
-  searchParams?: Promise<Record<string, string | string[] | undefined>>;
+  searchParams?: Promise<SearchParams>;
 }) => {
   const { segments } = await params;
   const route = parseNationalCurriculumInsightsRoute(segments);
@@ -61,19 +80,7 @@ const NationalCurriculumInsightsPage = async ({
   }
 
   if (route.kind === "guidance") {
-    const query = new URLSearchParams();
-    for (const [key, value] of Object.entries((await searchParams) ?? {})) {
-      for (const item of Array.isArray(value)
-        ? value
-        : value === undefined
-          ? []
-          : [value]) {
-        query.append(key, item);
-      }
-    }
-    permanentRedirect(
-      `${nationalCurriculumInsightsRouteHref(route)}${query.size ? `?${query}` : ""}`,
-    );
+    permanentRedirect(getGuidanceRedirectHref(await searchParams));
   }
 
   return <NationalCurriculumInsightsView data={data} />;

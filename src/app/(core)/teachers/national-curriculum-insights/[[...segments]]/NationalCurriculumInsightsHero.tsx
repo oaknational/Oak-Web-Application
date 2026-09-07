@@ -394,6 +394,34 @@ const getHeroPageKind = (
   }
 };
 
+const getHeroResponsiveProps = (
+  pageKind: HeroPageKind,
+): {
+  textOrder: [number, number, number];
+  headingFont: [
+    "heading-4",
+    "heading-1" | "heading-3" | "heading-4",
+    "heading-1" | "heading-3",
+  ];
+} => {
+  if (pageKind === "hub") {
+    return {
+      textOrder: [2, 1, 1],
+      headingFont: ["heading-4", "heading-4", "heading-1"],
+    };
+  }
+  if (pageKind === "guidance") {
+    return {
+      textOrder: [2, 2, 1],
+      headingFont: ["heading-4", "heading-3", "heading-3"],
+    };
+  }
+  return {
+    textOrder: [1, 1, 1],
+    headingFont: ["heading-4", "heading-1", "heading-1"],
+  };
+};
+
 const optionalImageUrl = (
   image: NationalCurriculumInsightsHeroSection["authorImage"],
 ) => (image?.asset?.url ? getProxiedSanityAssetUrl(image.asset.url) : null);
@@ -536,21 +564,7 @@ export const NationalCurriculumInsightsHero = ({
   const pageKind = getHeroPageKind(data);
   const breadcrumbs = heroBreadcrumbs(data);
   const presentation = nationalCurriculumInsightsPresentation(data.route);
-  const heroTextOrder: [number, number, number] = isHub
-    ? [2, 1, 1]
-    : hasEditorialImage
-      ? [2, 2, 1]
-      : [1, 1, 1];
-  const heroHeadingFont: [
-    "heading-4",
-    "heading-1" | "heading-3" | "heading-4",
-    "heading-1" | "heading-3",
-  ] =
-    pageKind === "guidance"
-      ? ["heading-4", "heading-3", "heading-3"]
-      : hasEditorialImage
-        ? ["heading-4", "heading-4", "heading-1"]
-        : ["heading-4", "heading-1", "heading-1"];
+  const { textOrder, headingFont } = getHeroResponsiveProps(pageKind);
 
   return (
     <HeroSection
@@ -583,7 +597,7 @@ export const NationalCurriculumInsightsHero = ({
         >
           <HeroTextColumn
             $pageKind={pageKind}
-            $order={heroTextOrder}
+            $order={textOrder}
             $flexDirection="column"
             $gap="spacing-0"
           >
@@ -596,7 +610,7 @@ export const NationalCurriculumInsightsHero = ({
                 $flexDirection="column"
                 $gap="spacing-24"
               >
-                <OakHeading tag="h1" $font={heroHeadingFont}>
+                <OakHeading tag="h1" $font={headingFont}>
                   {pageKind === "guidance" ? (
                     <>
                       <GuidanceMobileHeroHeading>
