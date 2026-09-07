@@ -523,9 +523,10 @@ export default async (phase: NextConfig["phase"]): Promise<NextConfig> => {
       //
       // REMOVAL CONDITION: delete this once the three image URLs on the
       // Anthropic listing have been updated to /ai-plugin/carousel and the old
-      // URLs are confirmed no longer fetched. That is an owner action in the
-      // submission portal (the listing is editable after submission; only the
-      // slug is not), never a code change alone. MCP-686.
+      // URLs are confirmed no longer fetched. That listing edit is an owner
+      // action in the submission portal (editable after submission; only the
+      // slug is permanent) and has no PR of its own — MCP-689. The deletion
+      // itself is MCP-690, blocked by it.
       const carouselCompatRewrites = [
         {
           source: "/mcp/carousel/:file",

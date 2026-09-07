@@ -24,7 +24,7 @@ import { join } from "node:path";
  * runs inside the required unit-test gate. Keep both: this one blocks the
  * merge, that one proves the URL actually serves.
  *
- * MCP-686: the files moved on disk to `public/ai-plugin/carousel`, and the
+ * MCP-688: the files moved on disk to `public/ai-plugin/carousel`, and the
  * published `/mcp/carousel` URLs Anthropic holds are kept alive by a REWRITE in
  * `next.config.ts` — same bytes, same status, no redirect. This test follows the
  * bytes to their new location; the URL contract stays pinned as a literal in the

@@ -17,7 +17,7 @@ import { expect, test, type APIRequestContext } from "@playwright/test";
  * listing that Oak never sees, with all of CI still green. This spec is the
  * only thing standing between that tidy-up and the broken listing.
  *
- * MCP-686. The bytes moved on disk to `public/ai-plugin/carousel`, and the
+ * MCP-688. The bytes moved on disk to `public/ai-plugin/carousel`, and the
  * published `/mcp/carousel` URLs are kept serving from there by a REWRITE in
  * `next.config.ts` — deliberately not a redirect, which would be a different
  * contract. Both URLs are asserted here, in separate tables, each spelling its
@@ -62,7 +62,7 @@ const ANTHROPIC_HELD_CAROUSEL_URLS = [
 ] as const;
 
 /**
- * The canonical paths the bytes are published at since MCP-686, spelled out as
+ * The canonical paths the bytes are published at since MCP-688, spelled out as
  * literals under the same rules as the table above: whole paths, never composed,
  * never enumerated from disk.
  *
@@ -98,7 +98,7 @@ const EXTERNAL_CONTRACT_NOTICE =
   "This path is a PUBLISHED URL that Anthropic stores in the Oak MCP directory listing. " +
   "Do NOT change this expected path to match the code. If the asset has genuinely moved, " +
   "the listing itself must be updated with Anthropic first, and that is an owner decision, " +
-  "not a test edit. Since MCP-686 this URL is served by a rewrite in `next.config.ts` from " +
+  "not a test edit. Since MCP-688 this URL is served by a rewrite in `next.config.ts` from " +
   "`/ai-plugin/carousel`, so if it has stopped serving, that rewrite is what to repair.";
 
 /**
