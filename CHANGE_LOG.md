@@ -1,3 +1,16 @@
+# [1.1181.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1180.4...v1.1181.0) (2026-09-07)
+
+
+### Bug Fixes
+
+* **mcp:** apply product feedback to the landing page copy and flow ([b390edc](https://github.com/oaknational/Oak-Web-Application/commit/b390edc28924948f79de7b0f1f2534d53ddbdc47))
+* **mcp:** use the text-primary token and a single 1280 max width ([dfaf784](https://github.com/oaknational/Oak-Web-Application/commit/dfaf7846438c0da8a4e9f05eca4ec693ea5a1d8a)), closes [#000000](https://github.com/oaknational/Oak-Web-Application/issues/000000) [#000000](https://github.com/oaknational/Oak-Web-Application/issues/000000) [#000](https://github.com/oaknational/Oak-Web-Application/issues/000) [#222222](https://github.com/oaknational/Oak-Web-Application/issues/222222)
+
+
+### Features
+
+* **mcp:** add the Oak Curriculum MCP landing page at /mcp ([21d9fd9](https://github.com/oaknational/Oak-Web-Application/commit/21d9fd9d4e2c06a35ae587c9bd6ee909b60a6f54)), closes [#4443](https://github.com/oaknational/Oak-Web-Application/issues/4443) [#4443](https://github.com/oaknational/Oak-Web-Application/issues/4443)
+
 ## [1.1180.4](https://github.com/oaknational/Oak-Web-Application/compare/v1.1180.3...v1.1180.4) (2026-09-07)
 
 
