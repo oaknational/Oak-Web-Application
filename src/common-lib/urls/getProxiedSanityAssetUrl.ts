@@ -21,7 +21,10 @@ function getProxiedSanityAssetUrl(url: string | null | undefined) {
     return url;
   }
 
-  return `https://${getBrowserConfig("sanityAssetCDNHost")}/${assetPath}`;
+  // Asset path extraction removes query parameters and fragments.
+  const suffix = url?.match(/[?#].*$/)?.[0] ?? "";
+
+  return `https://${getBrowserConfig("sanityAssetCDNHost")}/${assetPath}${suffix}`;
 }
 
 export default getProxiedSanityAssetUrl;

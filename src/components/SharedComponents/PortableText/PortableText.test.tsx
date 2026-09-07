@@ -42,6 +42,25 @@ describe("PortableText", () => {
   });
 
   describe("PTExternalLink", () => {
+    it("proxies Sanity PDF links and preserves download parameters and page fragments", () => {
+      const { getByRole } = renderWithTheme(
+        <PTExternalLink
+          children={["Impact report"]}
+          text="Impact report"
+          markType="link"
+          value={{
+            _type: "link",
+            href: "https://cdn.sanity.io/files/cuvjke51/production/06043df8db8bc29c6a2b71adb2808425ba12aab5.pdf?dl=report.pdf#page=3",
+          }}
+          renderNode={() => undefined}
+        />,
+      );
+      expect(getByRole("link", { name: "Impact report" })).toHaveAttribute(
+        "href",
+        "https://NEXT_PUBLIC_SANITY_ASSET_CDN_HOST/files/cuvjke51/production/06043df8db8bc29c6a2b71adb2808425ba12aab5.pdf?dl=report.pdf#page=3",
+      );
+    });
+
     it("renders a link to the provided external href", () => {
       const { getByRole } = renderWithTheme(
         <PTExternalLink
