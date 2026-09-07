@@ -82,19 +82,8 @@ export function getAppVersion(isProductionBuild: boolean): string {
     // Vercel or Netlify, parse the release commit message or log.
     let infoMessage;
     const vercelCommitMessage = process.env.VERCEL_GIT_COMMIT_MESSAGE;
-    const netlifyCommitRef = process.env.COMMIT_REF;
     if (vercelCommitMessage) {
       infoMessage = vercelCommitMessage;
-    } else if (netlifyCommitRef) {
-      const commitRegex = /^([a-zA-Z0-9]){8,}$/;
-      if (!commitRegex.test(netlifyCommitRef)) {
-        throw new TypeError(`Invalid exec input: ${netlifyCommitRef}`);
-      }
-      const netlifyCommitLog = execSync(
-        `git show --no-patch --oneline ${netlifyCommitRef}`,
-        { encoding: "utf8" },
-      );
-      infoMessage = netlifyCommitLog;
     } else {
       throw new Error("Could not determine build environment");
     }

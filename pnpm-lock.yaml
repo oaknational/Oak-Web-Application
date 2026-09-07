@@ -373,9 +373,6 @@ importers:
       '@jest/globals':
         specifier: ^29.7.0
         version: 29.7.0
-      '@netlify/edge-functions':
-        specifier: ^2.12.0
-        version: 2.12.0
       '@next/bundle-analyzer':
         specifier: ^15.5.2
         version: 15.5.2
@@ -3681,9 +3678,6 @@ packages:
     peerDependencies:
       '@emnapi/core': ^1.7.1
       '@emnapi/runtime': ^1.7.1
-
-  '@netlify/edge-functions@2.12.0':
-    resolution: {integrity: sha512-6EWKqCQvOWyM6CHOofvDglX8qkBL2xcMF2T0h7kzZRrdBvHMRgxTk6BmPlBGt8z4LubSQo6vDAb46MYNJ7ZyaA==}
 
   '@next/bundle-analyzer@15.5.2':
     resolution: {integrity: sha512-UWOFpy/NK5iSeIP0mgdq4VqGB4/z37uq5v5dEtvzmY/BlaPO6m4EtFUaH6RVI0w2wG5sh0TG86i/cA5wcaJtgg==}
@@ -20019,8 +20013,6 @@ snapshots:
       '@emnapi/runtime': 1.9.2
       '@tybys/wasm-util': 0.10.3
     optional: true
-
-  '@netlify/edge-functions@2.12.0': {}
 
   '@next/bundle-analyzer@15.5.2':
     dependencies:
