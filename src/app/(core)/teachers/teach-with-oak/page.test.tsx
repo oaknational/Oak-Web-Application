@@ -55,7 +55,7 @@ describe("Teach with Oak page", () => {
 
   test("passes a valid return link to the view", async () => {
     const { getByTestId } = await renderPage({
-      returnTo: "/teachers/lessons/example",
+      returnTo: "https://thenational.academy/teachers/lessons/example",
     });
 
     expect(getByTestId("teach-with-oak-view")).toHaveTextContent(
@@ -66,6 +66,14 @@ describe("Teach with Oak page", () => {
   test("does not pass an invalid return link to the view", async () => {
     const { getByTestId } = await renderPage({
       returnTo: ["/teachers/lessons/example"],
+    });
+
+    expect(getByTestId("teach-with-oak-view")).toBeEmptyDOMElement();
+  });
+
+  test("does not pass a return link from an invalid hostname to the view", async () => {
+    const { getByTestId } = await renderPage({
+      returnTo: "https://google.com",
     });
 
     expect(getByTestId("teach-with-oak-view")).toBeEmptyDOMElement();
