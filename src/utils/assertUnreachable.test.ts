@@ -13,14 +13,16 @@ describe("assertUnreachable", () => {
      */
     const switchable = "foo" as "foo" | "bar";
 
-    switch (switchable) {
-      case "foo":
-        // case "bar":
-        break;
-      default:
-        // @ts-expect-error - this should be a type error when the switch is exhaustive
-        assertUnreachable(switchable);
-    }
+    expect(() => {
+      switch (switchable) {
+        case "foo":
+          // case "bar":
+          break;
+        default:
+          // @ts-expect-error - this should be a type error when the switch is exhaustive
+          assertUnreachable(switchable);
+      }
+    }).not.toThrow();
   });
 
   it("throws an error when called", () => {

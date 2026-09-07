@@ -150,6 +150,32 @@ export const getHubspotDownloadsFormPayload = (props: {
   return payload;
 };
 
+export type CurriculumDownloadsFormData = {
+  phaseSlug: string;
+  subjectSlug: string;
+  resources: string[];
+} & DownloadsHubspotFormData;
+
+export const getHubspotCurriculumDownloadsFormPayload = (props: {
+  data: CurriculumDownloadsFormData;
+  hutk?: string;
+}): HubspotPayload => {
+  const { hutk, data } = props;
+  const { phaseSlug, subjectSlug, resources } = data;
+
+  const curriculumDownloadsTextArray = resources.map(
+    (resource) => `${subjectSlug}-${phaseSlug}-${resource}`,
+  );
+
+  const snakeCaseData = {
+    ...getDownloadsSnakeCaseData(data),
+    curriculum_downloads_text_array: curriculumDownloadsTextArray.join(";"),
+    curriculum_downloads_subject_phase_array: `${subjectSlug}-${phaseSlug}`,
+  };
+  const payload = getPayload(snakeCaseData, hutk);
+  return payload;
+};
+
 const onboardingUKTeacherPropsSchema = z.object({
   school: z.string(),
   schoolName: z.string().optional(),

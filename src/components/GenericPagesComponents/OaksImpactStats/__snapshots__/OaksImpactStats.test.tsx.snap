@@ -27,7 +27,7 @@ exports[`OaksImpactStats renders correctly 1`] = `
                 class="sc-aXZVg iSruHh"
               >
                 <p
-                  class="sc-ikkxIA sc-94fdfbc9-0 cFDVg ghkYMu"
+                  class="sc-ikkxIA sc-82983132-0 cFDVg lcICdz"
                 >
                   Our latest independent evaluation shows just how valuable this support has already become for teachers and school leaders.
                 </p>
@@ -111,7 +111,7 @@ exports[`OaksImpactStats renders correctly 1`] = `
                     class="sc-aXZVg jMhfMS"
                   >
                     <p
-                      class="sc-ikkxIA sc-94fdfbc9-0 cFDVg ghkYMu"
+                      class="sc-ikkxIA sc-82983132-0 cFDVg lcICdz"
                     >
                       Between January and July 2025 alone, almost 200,000 teachers used Oak, with over 54,000 using it every week – a 53% rise on the previous year.
                     </p>
@@ -153,7 +153,7 @@ exports[`OaksImpactStats renders correctly 1`] = `
                     class="sc-aXZVg jMhfMS"
                   >
                     <p
-                      class="sc-ikkxIA sc-94fdfbc9-0 cFDVg ghkYMu"
+                      class="sc-ikkxIA sc-82983132-0 cFDVg lcICdz"
                     >
                       85% of Oak users say it has a positive impact on their workload. Two thirds (67%) report an overall workload reduction, saving a median four hours per week.
                     </p>
@@ -195,7 +195,7 @@ exports[`OaksImpactStats renders correctly 1`] = `
                     class="sc-aXZVg jMhfMS"
                   >
                     <p
-                      class="sc-ikkxIA sc-94fdfbc9-0 cFDVg ghkYMu"
+                      class="sc-ikkxIA sc-82983132-0 cFDVg lcICdz"
                     >
                       92% of Oak users see themselves staying in a teaching role in the next two years compared to 77% of non-users, indicating higher retention could be linked to Oak usage.
                     </p>
