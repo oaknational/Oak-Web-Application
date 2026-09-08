@@ -41,7 +41,7 @@ describe("getFeatureFlagValue", () => {
     ]);
     (getFeatureFlag as jest.Mock).mockResolvedValue(true);
     const result = await getFeatureFlagValue("foo", "string");
-    expect(result).toEqual(undefined);
+    expect(result).toBeUndefined();
   });
 
   test("boolean assertion with valid type", async () => {
@@ -73,6 +73,6 @@ describe("getFeatureFlagValue", () => {
     ]);
     (getFeatureFlag as jest.Mock).mockResolvedValue("test");
     const result = await getFeatureFlagValue("foo", "boolean");
-    expect(result).toEqual(undefined);
+    expect(result).toBeUndefined();
   });
 });

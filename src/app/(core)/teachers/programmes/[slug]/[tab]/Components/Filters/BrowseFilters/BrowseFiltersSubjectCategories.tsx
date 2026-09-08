@@ -7,64 +7,28 @@ import {
 import { useMemo, useId } from "react";
 
 import { getValidSubjectCategoryIconById } from "@/utils/getValidSubjectCategoryIconById";
-import {
-  CurriculumFilters,
-  OnChangeCurriculumFilters,
-} from "@/utils/curriculum/types";
-import {
-  getFilterData,
-  scopeYearsToKeystageFilter,
-} from "@/utils/curriculum/filtering";
-import {
-  byKeyStageSlug,
-  presentAtKeyStageSlugs,
-} from "@/utils/curriculum/keystage";
+import { getFilterData } from "@/utils/curriculum/filtering";
 import { CurriculumUnitsFormattedData } from "@/pages-helpers/curriculum/docx/tab-helpers";
 import { CurriculumSelectionSlugs } from "@/utils/curriculum/slugs";
-import { FilterType } from "@/browser-lib/avo/Avo";
+import { useBrowseFilters } from "@/context/BrowseFilters";
+import { useKeyStagePresence } from "@/context/BrowseFilters/hooks/useKeyStagePresence";
 
-export type CurricFiltersSubjectCategoriesProps = {
-  filters: CurriculumFilters;
-  onChangeFilters: OnChangeCurriculumFilters;
+export type BrowseFiltersSubjectCategoriesProps = {
   data: CurriculumUnitsFormattedData;
   slugs: CurriculumSelectionSlugs;
-  // The context prop can be removed once the integrated journey is fully launched
-  context: "curriculum-visualiser" | "integrated-journey";
 };
 
-export function CurricFiltersSubjectCategories({
-  filters,
-  onChangeFilters,
+export function BrowseFiltersSubjectCategories({
   data,
   slugs,
-  context,
-}: Readonly<CurricFiltersSubjectCategoriesProps>) {
+}: Readonly<BrowseFiltersSubjectCategoriesProps>) {
+  const { filters, setSubjectCategoryFilter, yearsForKeystage } =
+    useBrowseFilters();
   const id = useId();
-  const { yearData } = data;
 
-  const effectiveYears = scopeYearsToKeystageFilter(filters);
+  const { subjectCategories } = getFilterData(data.yearData, yearsForKeystage);
 
-  const { subjectCategories } = getFilterData(data.yearData, effectiveYears);
-
-  const keyStageSlugData = byKeyStageSlug(yearData);
-  const childSubjectsAt = presentAtKeyStageSlugs(
-    keyStageSlugData,
-    "childSubjects",
-    effectiveYears,
-  );
-  const subjectCategoriesAt = presentAtKeyStageSlugs(
-    keyStageSlugData,
-    "subjectCategories",
-    effectiveYears,
-  ).filter((ks) => !childSubjectsAt.includes(ks));
-
-  function setSingleInFilter(key: keyof CurriculumFilters, newValue: string) {
-    onChangeFilters({
-      newFilters: { ...filters, [key]: [newValue] },
-      filterType: FilterType.SUBJECT_FILTER,
-      filterValue: newValue,
-    });
-  }
+  const { subjectCategoriesAt } = useKeyStagePresence(data);
 
   const subjectCategoryIdAsString = useMemo(() => {
     return String(filters.subjectCategories[0]);
@@ -76,23 +40,15 @@ export function CurricFiltersSubjectCategories({
         <OakBox>
           <OakRadioGroup
             name={"subject-categories_" + id}
-            onChange={(e) =>
-              setSingleInFilter("subjectCategories", e.target.value)
-            }
+            onChange={(e) => setSubjectCategoryFilter(e.target.value)}
             value={subjectCategoryIdAsString}
             $flexDirection="row"
             $flexWrap="wrap"
-            $gap={
-              context === "curriculum-visualiser" ? "spacing-8" : "spacing-12"
-            }
+            $gap="spacing-12"
           >
             <OakP
               as="legend"
-              $font={
-                context === "integrated-journey"
-                  ? "heading-7"
-                  : ["heading-7", "heading-6"]
-              }
+              $font="heading-7"
               $mt="spacing-0"
               $mb={["spacing-24", "spacing-16"]}
             >

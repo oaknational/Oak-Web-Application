@@ -103,6 +103,7 @@ jest.mock("./getProgrammeData", () => ({
   getProgrammeData: jest.fn(),
   getSubjectPhaseOptions: jest.fn(),
   getSubjectOverride: jest.fn(),
+  getCachedFileSizes: jest.fn().mockResolvedValue([]),
 }));
 
 const mockErrorReporter = jest.fn();

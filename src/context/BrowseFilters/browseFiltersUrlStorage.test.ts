@@ -1,6 +1,5 @@
 import { createBrowseFiltersUrlStorage } from "./browseFiltersUrlStorage";
-
-import { createFilter } from "@/fixtures/curriculum/filters";
+import { createFilter } from "./utils/fixtures";
 
 describe("createBrowseFiltersUrlStorage", () => {
   const defaultFilter = createFilter({

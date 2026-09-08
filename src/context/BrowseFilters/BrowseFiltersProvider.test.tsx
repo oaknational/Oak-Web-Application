@@ -5,9 +5,8 @@ import {
   BrowseFiltersProvider,
   useBrowseFiltersStore,
 } from "./BrowseFiltersProvider";
-
-import { createFilter } from "@/fixtures/curriculum/filters";
-import { CurriculumFilters } from "@/utils/curriculum/types";
+import { BrowseFilters } from "./types";
+import { createFilter } from "./utils/fixtures";
 
 const useFilters = () => {
   const filters = useBrowseFiltersStore((store) => store.filters);
@@ -37,7 +36,7 @@ const setUrl = (search: string) => {
   mockSearchParams = new URLSearchParams(search);
 };
 
-const renderFilters = (initialFilter?: CurriculumFilters) => {
+const renderFilters = (initialFilter?: BrowseFilters) => {
   const wrapper = ({ children }: { children: ReactNode }) => (
     <BrowseFiltersProvider
       defaultFilter={defaultFilter}

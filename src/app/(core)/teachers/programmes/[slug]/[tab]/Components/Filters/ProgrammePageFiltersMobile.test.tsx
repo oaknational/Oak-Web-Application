@@ -1,6 +1,5 @@
 import { screen, waitFor } from "@testing-library/dom";
 import userEvent from "@testing-library/user-event";
-import { usePathname, useSearchParams } from "next/navigation";
 
 import { KS4OptionFocusProvider } from "./KS4OptionFocus";
 import {
@@ -12,19 +11,22 @@ import { ProgrammePageFiltersProps } from "./ProgrammePageFiltersDesktop";
 import { ProgrammePageFiltersModalProvider } from "./ProgrammePageFiltersModalProvider";
 
 import { createUnit } from "@/fixtures/curriculum/unit";
-import { createFilter } from "@/fixtures/curriculum/filters";
-import { CurriculumFilters, YearData } from "@/utils/curriculum/types";
+import { YearData } from "@/utils/curriculum/types";
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 import { BrowseFiltersProvider } from "@/context/BrowseFilters";
-
-jest.mock("next/navigation");
+import { BrowseFilters } from "@/context/BrowseFilters/types";
+import { createFilter } from "@/context/BrowseFilters/utils/fixtures";
 
 const useSearchParamsMock = jest.fn();
 const replaceStateMock = jest.fn();
 
-(usePathname as jest.Mock).mockReturnValue("/");
-
-jest.mocked(useSearchParams).mockImplementation(() => useSearchParamsMock());
+jest.mock("next/navigation", () => ({
+  usePathname: jest.fn(() => "/"),
+  useSearchParams: () => useSearchParamsMock(),
+  useRouter: () => ({
+    prefetch: jest.fn(),
+  }),
+}));
 
 Object.defineProperty(globalThis, "history", {
   value: {
@@ -109,15 +111,10 @@ const mockYearData: YearData = {
   },
 };
 
-const defaultFilters: CurriculumFilters = {
+const defaultFilters = createFilter({
   years: ["7", "8"],
-  tiers: [],
-  childSubjects: [],
-  pathways: [],
   subjectCategories: ["category-1", "category-2"],
-  threads: [],
-  keystages: [],
-};
+});
 
 const defaultProps: ProgrammePageFiltersProps = {
   data: {
@@ -170,7 +167,7 @@ const render = renderWithProviders();
 
 function renderMobile(
   props: ProgrammePageFiltersProps = defaultProps,
-  filters: CurriculumFilters = defaultFilters,
+  filters: BrowseFilters = defaultFilters,
 ) {
   return render(
     <BrowseFiltersProvider defaultFilter={filters}>

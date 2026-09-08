@@ -1,6 +1,5 @@
 import { createBrowseFiltersStore } from "./BrowseFiltersStore";
-
-import { createFilter } from "@/fixtures/curriculum/filters";
+import { createFilter } from "./utils/fixtures";
 
 const defaultFilter = createFilter({
   years: ["7", "8"],

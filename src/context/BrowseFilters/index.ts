@@ -4,7 +4,7 @@ export {
   useBrowseFiltersStore,
 } from "./BrowseFiltersProvider";
 export type { BrowseFiltersProviderProps } from "./BrowseFiltersProvider";
-export { useBrowseFilters } from "./useBrowseFilters";
+export { useBrowseFilters } from "./hooks/useBrowseFilters";
 export {
   createBrowseFiltersStore,
   type BrowseFiltersStore,

@@ -1,13 +1,13 @@
 import { act } from "@testing-library/react";
 
-import { ProgrammeFiltersThreads } from "./ProgrammeFiltersThreads";
+import { BrowseFiltersThreads } from "./BrowseFiltersThreads";
 
 import { renderWithProvidersByName } from "@/__tests__/__helpers__/renderWithProviders";
 import { createThread } from "@/fixtures/curriculum/thread";
 import { createUnit } from "@/fixtures/curriculum/unit";
 import { CurriculumUnitsFormattedData } from "@/pages-helpers/curriculum/docx/tab-helpers";
-import { CurriculumFilters } from "@/utils/curriculum/types";
 import { useBrowseFilters } from "@/context/BrowseFilters";
+import { createFilter } from "@/context/BrowseFilters/utils/fixtures";
 
 jest.mock("@/context/BrowseFilters", () => ({
   useBrowseFilters: jest.fn(),
@@ -55,24 +55,27 @@ const unitsData: CurriculumUnitsFormattedData = {
   keystages: ["ks4"],
 };
 
-const defaultFilters: CurriculumFilters = {
-  years: ["10", "11"],
-  tiers: [],
-  childSubjects: [],
-  pathways: [],
-  subjectCategories: [],
-  threads: [],
-  keystages: [],
+const defaultFilters = createFilter({ years: ["10", "11"] });
+
+const mockFns = {
+  yearsForKeystage: [],
+  setYearFilter: jest.fn(),
+  setThreadFilter: jest.fn(),
+  setChildSubjectFilter: jest.fn(),
+  setSubjectCategoryFilter: jest.fn(),
+  setTierFilter: jest.fn(),
+  setKeystageFilter: jest.fn(),
 };
 
-describe("ProgrammeFiltersThreads", () => {
+describe("BrowseFiltersThreads", () => {
   it("renders the legend and all thread options", () => {
     mockUseBrowseFilters.mockReturnValue({
       filters: defaultFilters,
       onChangeFilters: () => {},
+      ...mockFns,
     });
     const { getAllByRole, getByText } = render(
-      <ProgrammeFiltersThreads data={unitsData} />,
+      <BrowseFiltersThreads data={unitsData} />,
     );
 
     expect(getByText("Highlight a thread")).toBeInTheDocument();
@@ -89,8 +92,9 @@ describe("ProgrammeFiltersThreads", () => {
     mockUseBrowseFilters.mockReturnValue({
       filters: defaultFilters,
       onChangeFilters: () => {},
+      ...mockFns,
     });
-    const { getByRole } = render(<ProgrammeFiltersThreads data={unitsData} />);
+    const { getByRole } = render(<BrowseFiltersThreads data={unitsData} />);
 
     expect(
       getByRole("radio", { name: /None highlighted/i }),
@@ -101,9 +105,10 @@ describe("ProgrammeFiltersThreads", () => {
     mockUseBrowseFilters.mockReturnValue({
       filters: { ...defaultFilters, threads: ["thread1"] },
       onChangeFilters: () => {},
+      ...mockFns,
     });
     const { getAllByRole, getByText } = render(
-      <ProgrammeFiltersThreads data={unitsData} />,
+      <BrowseFiltersThreads data={unitsData} />,
     );
 
     const radios = getAllByRole("radio") as HTMLInputElement[];
@@ -112,49 +117,31 @@ describe("ProgrammeFiltersThreads", () => {
     expect(getByText(/1 unit highlighted/)).toBeInTheDocument();
   });
 
-  it("calls onChangeFilters when selecting a thread", () => {
-    const onChangeFilters = jest.fn();
+  it("calls setThreadFilter when selecting a thread", () => {
     mockUseBrowseFilters.mockReturnValue({
       filters: defaultFilters,
-      onChangeFilters,
+      onChangeFilters: jest.fn(),
+      ...mockFns,
     });
-    const { getAllByRole } = render(
-      <ProgrammeFiltersThreads data={unitsData} />,
-    );
+    const { getAllByRole } = render(<BrowseFiltersThreads data={unitsData} />);
 
     const radios = getAllByRole("radio") as HTMLInputElement[];
 
     act(() => radios[1]!.click());
-    expect(onChangeFilters).toHaveBeenCalledWith({
-      newFilters: {
-        ...defaultFilters,
-        threads: ["thread1"],
-      },
-      filterType: "Learning theme filter",
-      filterValue: "thread1",
-    });
+    expect(mockFns.setThreadFilter).toHaveBeenCalledWith("thread1");
   });
 
-  it("calls onChangeFilters with empty threads when selecting None", () => {
-    const onChangeFilters = jest.fn();
+  it("calls setThreadFilter with an empty value when selecting None", () => {
     mockUseBrowseFilters.mockReturnValue({
       filters: { ...defaultFilters, threads: ["thread1"] },
-      onChangeFilters,
+      onChangeFilters: jest.fn(),
+      ...mockFns,
     });
-    const { getAllByRole } = render(
-      <ProgrammeFiltersThreads data={unitsData} />,
-    );
+    const { getAllByRole } = render(<BrowseFiltersThreads data={unitsData} />);
 
     const radios = getAllByRole("radio") as HTMLInputElement[];
 
     act(() => radios[0]!.click());
-    expect(onChangeFilters).toHaveBeenCalledWith({
-      newFilters: {
-        ...defaultFilters,
-        threads: [],
-      },
-      filterType: "Learning theme filter",
-      filterValue: "",
-    });
+    expect(mockFns.setThreadFilter).toHaveBeenCalledWith("");
   });
 });

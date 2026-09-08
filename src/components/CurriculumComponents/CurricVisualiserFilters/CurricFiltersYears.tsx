@@ -2,7 +2,6 @@ import {
   OakRadioGroup,
   OakRadioAsButton,
   OakBox,
-  OakTertiaryButton,
   OakP,
 } from "@oaknational/oak-components";
 import { isEqual } from "lodash";
@@ -30,38 +29,9 @@ export type CurricFiltersYearsProps = {
   data: CurriculumUnitsFormattedData;
   ks4Options: SubjectPhasePickerData["subjects"][number]["ks4_options"];
   slugs: CurriculumSelectionSlugs;
-} & (
-  | {
-      // The context prop can be removed once the integrated journey is fully launched
-      context: "integrated-journey";
-      onModalOpen?: () => void;
-    }
-  | { context: "curriculum-visualiser" }
-);
+};
 
 type YearOption = { year: string; pathway?: string; queryString?: string };
-
-export const getColorSchemeByYear = (year: string) => {
-  switch (year) {
-    case "1":
-    case "7":
-      return "decorative3";
-    case "3":
-    case "9":
-      return "decorative2";
-    case "4":
-    case "10":
-      return "decorative4";
-    case "5":
-    case "11":
-      return "decorative5";
-    case "6":
-      return "decorative6";
-    default:
-      // year 2, 8 and 'all years'
-      return "decorative1";
-  }
-};
 
 const filterToIndex = (
   filters: CurriculumFilters,
@@ -92,14 +62,12 @@ const filterToIndex = (
 };
 
 export function CurricFiltersYears(props: Readonly<CurricFiltersYearsProps>) {
-  const { filters, onChangeFilters, data, ks4Options, slugs, context } = props;
+  const { filters, onChangeFilters, data, ks4Options, slugs } = props;
   const id = useId();
   const { yearData } = data;
 
   const shouldDisplayCorePathway =
-    context !== "integrated-journey" &&
-    slugs.ks4OptionSlug !== "core" &&
-    getShouldDisplayCorePathway(ks4Options);
+    slugs.ks4OptionSlug !== "core" && getShouldDisplayCorePathway(ks4Options);
 
   const ksFilter = filters.keystages[0];
   const yearOptions = data.yearOptions
@@ -180,19 +148,13 @@ export function CurricFiltersYears(props: Readonly<CurricFiltersYearsProps>) {
           )
         }
         value={String(index)}
-        $gap={context === "curriculum-visualiser" ? "spacing-8" : "spacing-12"}
+        $gap="spacing-8"
         $flexDirection="row"
         $flexWrap="wrap"
         data-testid="year-group-filter-desktop"
         $alignItems="center"
       >
-        <OakP
-          $font={
-            context === "curriculum-visualiser" ? "heading-6" : "heading-7"
-          }
-          $mb="spacing-16"
-          as="legend"
-        >
+        <OakP $font="heading-6" $mb="spacing-16" as="legend">
           Year group
         </OakP>
         <OakRadioAsButton
@@ -218,27 +180,9 @@ export function CurricFiltersYears(props: Readonly<CurricFiltersYearsProps>) {
                 pathwaySuffixStr,
               )}
               data-testid={"year-radio"}
-              colorScheme={
-                context === "integrated-journey"
-                  ? getColorSchemeByYear(yearOption.year)
-                  : undefined
-              }
             />
           );
         })}
-        {/* Tablet view, integrated journey only */}
-        {context === "integrated-journey" && props.onModalOpen && (
-          <OakBox $display={["none", "block", "none"]}>
-            <OakTertiaryButton
-              isTrailingIcon
-              iconName="filter"
-              onClick={props.onModalOpen}
-              data-testid="tablet-all-filters"
-            >
-              All filters
-            </OakTertiaryButton>
-          </OakBox>
-        )}
       </OakRadioGroup>
     </OakBox>
   );

@@ -81,8 +81,6 @@ export default function ProgrammePageFiltersMobile({
 
       <ProgrammeFiltersHeaderMobile
         onOpenModal={handleMobileThreadModal}
-        filters={filters}
-        onChangeFilters={onChangeFilters}
         data={data}
         slugs={slugs}
         ks4Options={ks4Options}

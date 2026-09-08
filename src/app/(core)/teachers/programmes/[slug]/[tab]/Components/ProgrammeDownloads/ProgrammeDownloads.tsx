@@ -28,6 +28,7 @@ import { Controller, ControllerRenderProps } from "react-hook-form";
 import { DownloadSuccessHeader } from "../../../units/[unitSlug]/lessons/[lessonSlug]/Components/DownloadSuccessHeader/DownloadSuccessHeader";
 
 import { ChildSubjectTierSelector } from "./ChildSubjectTierSelector/ChildSubjectTierSelector";
+import { useHubspotCurriculumDownloads } from "./useHubspotCurriculumDownloads";
 
 import {
   CurriculumDownloadsTierSubjectProps,
@@ -35,7 +36,6 @@ import {
 } from "@/pages-helpers/curriculum/docx/tab-helpers";
 import { DOWNLOAD_TYPE_LABELS } from "@/components/CurriculumComponents/CurriculumDownloadView/helper";
 import { DownloadPageWithAccordionContent } from "@/components/TeacherComponents/DownloadPageWithAccordion/DownloadPageWithAccordion";
-import { useHubspotSubmit } from "@/components/TeacherComponents/hooks/downloadAndShareHooks/useHubspotSubmit";
 import { useResourceFormState } from "@/components/TeacherComponents/hooks/downloadAndShareHooks/useResourceFormState";
 import { useOnboardingStatus } from "@/components/TeacherComponents/hooks/useOnboardingStatus";
 import { DelayedLoadingSpinner } from "@/components/TeacherComponents/SharePageLayout/SharePageLayout";
@@ -73,7 +73,7 @@ export const ProgrammeDownloads = ({
 }: ProgrammeDownloadsProps) => {
   const { curriculumResourcesDownloadRefined, curriculumResourcesDownloaded } =
     useTeacherBrowseAnalytics((store) => store.track);
-  const { onHubspotSubmit } = useHubspotSubmit();
+  const { onHubspotSubmit } = useHubspotCurriculumDownloads();
   const onboardingStatus = useOnboardingStatus();
   const isLoading = onboardingStatus === "loading";
 
@@ -88,10 +88,13 @@ export const ProgrammeDownloads = ({
         return true;
       }
       if (group === "implementation-guide") {
-        return implementationGuides?.[id as keyof ImplementationGuides];
+        return (
+          implementationGuides?.[id as keyof ImplementationGuides] &&
+          featureFlags["implementation-guides"]
+        );
       }
     }).map(({ id }) => id);
-  }, [curriculumUnitsFormattedData, implementationGuides]);
+  }, [curriculumUnitsFormattedData, implementationGuides, featureFlags]);
 
   const curriculumDownloadsWithLabels = DOWNLOAD_TYPE_LABELS.filter(
     ({ id, group }) => {
@@ -101,9 +104,7 @@ export const ProgrammeDownloads = ({
   const implementationGuideDownloadsWithLabels = DOWNLOAD_TYPE_LABELS.filter(
     ({ id, group }) => {
       return (
-        featureFlags["implementation-guides"] &&
-        group === "implementation-guide" &&
-        availableDownloadTypes.includes(id)
+        group === "implementation-guide" && availableDownloadTypes.includes(id)
       );
     },
   );
@@ -233,7 +234,9 @@ export const ProgrammeDownloads = ({
         schoolName: data.schoolName,
         email: data.email,
         terms: data.terms,
-        resources: ["docx"],
+        resources: data.resources,
+        phaseSlug: curriculumSelectionSlugs.phaseSlug,
+        subjectSlug: curriculumSelectionSlugs.subjectSlug,
       });
       curriculumResourcesDownloaded(data);
 
@@ -291,6 +294,7 @@ export const ProgrammeDownloads = ({
       $borderColor="border-error"
       $width={"100%"}
       role="region"
+      $color="text-primary"
     >
       {subjectTierSelectionVisible === true ? (
         <OakGrid>
@@ -409,7 +413,7 @@ export const ProgrammeDownloads = ({
                     )}
                     {implementationGuideDownloadsWithLabels.length > 0 && (
                       <OakFlex $gap={"spacing-16"} $flexDirection="column">
-                        <OakFlex $gap="spacing-8">
+                        <OakFlex $gap="spacing-8" $alignItems="center">
                           Implementation toolkit
                           <OakPromoTag />
                         </OakFlex>

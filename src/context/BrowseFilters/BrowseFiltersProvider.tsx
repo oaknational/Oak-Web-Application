@@ -14,16 +14,15 @@ import {
   BrowseFiltersStore,
   BrowseFiltersStoreApi,
 } from "./BrowseFiltersStore";
-
-import { CurriculumFilters } from "@/utils/curriculum/types";
+import { BrowseFilters } from "./types";
 
 export const BrowseFiltersStoreContext = createContext<
   BrowseFiltersStoreApi | undefined
 >(undefined);
 
 export type BrowseFiltersProviderProps = {
-  defaultFilter: CurriculumFilters;
-  initialFilter?: CurriculumFilters;
+  defaultFilter: BrowseFilters;
+  initialFilter?: BrowseFilters;
   children: ReactNode;
 };
 

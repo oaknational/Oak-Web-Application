@@ -104,7 +104,7 @@ describe("MyLibrary", () => {
         pathway: undefined,
         platform: "owa",
         product: "teacher lesson resources",
-        subjectSlug: "subject-1",
+        subjectSlug: "maths",
         subjectTitle: "Subject 1",
         tierName: "Foundation",
         unitName: "Unit 1: Topic",
