@@ -1,3 +1,5 @@
+import { cache } from "react";
+
 import {
   type NationalCurriculumInsightsHub,
   type NationalCurriculumInsightsGuidancePage,
@@ -35,8 +37,31 @@ export type NationalCurriculumInsightsRouteData = {
   activeKeyStage: NationalCurriculumInsightsKeyStage | null;
 };
 
+// Memoise within a server render only. Keeping primitive arguments separates
+// published and draft reads without retaining content across requests.
+const getHub = cache((previewMode: boolean) =>
+  CMSClient.nationalCurriculumInsightsHub({ previewMode }),
+);
+const getGuidancePage = cache((previewMode: boolean) =>
+  CMSClient.nationalCurriculumInsightsGuidancePage({ previewMode }),
+);
+const getSubject = cache((slug: string, previewMode: boolean) =>
+  CMSClient.nationalCurriculumInsightsSubjectBySlug(slug, { previewMode }),
+);
+
+const reader: NationalCurriculumInsightsReader = {
+  nationalCurriculumInsightsHub: ({ previewMode = false } = {}) =>
+    getHub(previewMode),
+  nationalCurriculumInsightsGuidancePage: ({ previewMode = false } = {}) =>
+    getGuidancePage(previewMode),
+  nationalCurriculumInsightsSubjectBySlug: (
+    slug,
+    { previewMode = false } = {},
+  ) => getSubject(slug, previewMode),
+};
+
 export const getNationalCurriculumInsightsReader =
-  (): NationalCurriculumInsightsReader => CMSClient;
+  (): NationalCurriculumInsightsReader => reader;
 
 const getGuidanceRouteData = async (
   route: Extract<NationalCurriculumInsightsRoute, { kind: "guidance" }>,

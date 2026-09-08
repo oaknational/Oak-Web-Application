@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import { draftMode } from "next/headers";
 import { notFound, permanentRedirect } from "next/navigation";
 
-import { getNationalCurriculumInsightsRouteData } from "./getNationalCurriculumInsightsData";
-import { NationalCurriculumInsightsView } from "./NationalCurriculumInsightsView";
+import { getNationalCurriculumInsightsRouteData } from "./helpers/getRouteData";
+import { NationalCurriculumInsightsView } from "./components/View";
 
 import {
   nationalCurriculumInsightsGuidanceHref,

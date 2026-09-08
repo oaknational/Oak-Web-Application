@@ -15,10 +15,11 @@ import {
 } from "@oaknational/oak-components";
 import styled, { css } from "styled-components";
 
-import type { NationalCurriculumInsightsRouteData } from "./getNationalCurriculumInsightsData";
-import { nationalCurriculumInsightsPresentation } from "./nationalCurriculumInsightsPresentation";
-import { insightsAssetUrl } from "./nationalCurriculumInsightsAssets";
-import { NationalCurriculumInsightsPortableText as PortableTextWithDefaults } from "./NationalCurriculumInsightsPortableText";
+import type { NationalCurriculumInsightsRouteData } from "../helpers/getRouteData";
+import { nationalCurriculumInsightsPresentation } from "../helpers/presentation";
+import { insightsAssetUrl } from "../helpers/assets";
+
+import { NationalCurriculumInsightsPortableText as PortableTextWithDefaults } from "./PortableText";
 
 import type { NationalCurriculumInsightsHeroSection } from "@/common-lib/cms-types/nationalCurriculumInsights";
 import {

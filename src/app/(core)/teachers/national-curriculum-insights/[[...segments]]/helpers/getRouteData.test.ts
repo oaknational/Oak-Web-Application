@@ -1,9 +1,10 @@
-import { localNationalCurriculumInsightsFixtures } from "./__fixtures__/nationalCurriculumInsights";
+import { localNationalCurriculumInsightsFixtures } from "../__fixtures__/nationalCurriculumInsights";
+
 import {
   getNationalCurriculumInsightsReader,
   getNationalCurriculumInsightsRouteData,
   type NationalCurriculumInsightsReader,
-} from "./getNationalCurriculumInsightsData";
+} from "./getRouteData";
 
 import { parseNationalCurriculumInsightsRoute } from "@/common-lib/urls/nationalCurriculumInsights";
 import type { NationalCurriculumInsightsModule } from "@/common-lib/cms-types/nationalCurriculumInsights";
@@ -358,7 +359,48 @@ describe("getNationalCurriculumInsightsRouteData", () => {
 });
 
 describe("getNationalCurriculumInsightsReader", () => {
-  it("uses the configured CMS client", () => {
-    expect(getNationalCurriculumInsightsReader()).toBe(CMSClient);
+  it("keeps a stable reader", () => {
+    expect(getNationalCurriculumInsightsReader()).toBe(
+      getNationalCurriculumInsightsReader(),
+    );
+  });
+
+  it.each([false, true])(
+    "passes preview mode %s through to every configured CMS reader",
+    async (previewMode) => {
+      const reader = getNationalCurriculumInsightsReader();
+      await reader.nationalCurriculumInsightsHub({ previewMode });
+      await reader.nationalCurriculumInsightsGuidancePage({ previewMode });
+      await reader.nationalCurriculumInsightsSubjectBySlug("science", {
+        previewMode,
+      });
+
+      expect(CMSClient.nationalCurriculumInsightsHub).toHaveBeenLastCalledWith({
+        previewMode,
+      });
+      expect(
+        CMSClient.nationalCurriculumInsightsGuidancePage,
+      ).toHaveBeenLastCalledWith({ previewMode });
+      expect(
+        CMSClient.nationalCurriculumInsightsSubjectBySlug,
+      ).toHaveBeenLastCalledWith("science", { previewMode });
+    },
+  );
+
+  it("defaults to published content", async () => {
+    const reader = getNationalCurriculumInsightsReader();
+    await reader.nationalCurriculumInsightsHub();
+    await reader.nationalCurriculumInsightsGuidancePage();
+    await reader.nationalCurriculumInsightsSubjectBySlug("science");
+
+    expect(CMSClient.nationalCurriculumInsightsHub).toHaveBeenLastCalledWith({
+      previewMode: false,
+    });
+    expect(
+      CMSClient.nationalCurriculumInsightsGuidancePage,
+    ).toHaveBeenLastCalledWith({ previewMode: false });
+    expect(
+      CMSClient.nationalCurriculumInsightsSubjectBySlug,
+    ).toHaveBeenLastCalledWith("science", { previewMode: false });
   });
 });

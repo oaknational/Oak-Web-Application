@@ -1,11 +1,11 @@
-import { insightsAssetUrl } from "./nationalCurriculumInsightsAssets";
+import { insightsAssetUrl } from "./assets";
 import {
   nationalCurriculumInsightsFallbackIllustration,
   nationalCurriculumInsightsKeyStageIllustrations,
   nationalCurriculumInsightsPhaseIllustrations,
   nationalCurriculumInsightsPresentation,
   nationalCurriculumInsightsSubjectIllustration,
-} from "./nationalCurriculumInsightsPresentation";
+} from "./presentation";
 
 describe("nationalCurriculumInsightsPresentation", () => {
   it("uses a Sanity subject illustration with a neutral fallback", () => {

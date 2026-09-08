@@ -13,25 +13,20 @@ import {
   OakTextInput,
   parseColor,
 } from "@oaknational/oak-components";
-import {
-  ChangeEvent,
-  FormEvent,
-  useEffect,
-  useId,
-  useMemo,
-  useRef,
-  useState,
-} from "react";
+import { useEffect, useId, useMemo, useRef, useState } from "react";
+import { Controller, useForm } from "react-hook-form";
 import styled from "styled-components";
 
-import type { NationalCurriculumInsightsRouteData } from "./getNationalCurriculumInsightsData";
-import { NationalCurriculumInsightsSelect } from "./NationalCurriculumInsightsSelect";
+import type { NationalCurriculumInsightsRouteData } from "../helpers/getRouteData";
+
+import { NationalCurriculumInsightsSelect } from "./Select";
 
 import type { NationalCurriculumInsightsModule } from "@/common-lib/cms-types/nationalCurriculumInsights";
 import { EDU_ROLES } from "@/browser-lib/hubspot/forms/getHubspotFormPayloads";
 import { MultiSelect } from "@/components/SharedComponents/MultiSelect";
 import errorReporter from "@/common-lib/error-reporter";
 import OakError from "@/errors/OakError";
+import createAndClickHiddenDownloadLink from "@/components/SharedComponents/helpers/downloadAndShareHelpers/createAndClickHiddenDownloadLink";
 
 const reportError = errorReporter("NationalCurriculumInsightsDownload");
 
@@ -39,6 +34,16 @@ type DownloadSection = Extract<
   NationalCurriculumInsightsModule,
   { __typename: "NationalCurriculumInsightsDownloadSection" }
 >;
+
+type DownloadFormValues = {
+  name: string;
+  school: string;
+  schoolNotListed: boolean;
+  role: string;
+  email: string;
+  acceptedTerms: boolean;
+  selectedValues: string[];
+};
 
 const Section = styled.section<{ $sticky: boolean }>`
   width: 100%;
@@ -311,34 +316,6 @@ const MobileBackButton = styled.button`
   }
 `;
 
-const DesktopDownloadsHeader = styled.div`
-  display: none;
-
-  @media (${getMediaQuery("desktop")}) {
-    display: block;
-  }
-`;
-
-const MobileDownloadsHeader = styled.div`
-  display: block;
-  margin-top: 16px;
-
-  @media (${getMediaQuery("desktop")}) {
-    display: none;
-  }
-`;
-
-const Fields = styled(OakFlex).attrs({
-  $flexDirection: "column",
-  $gap: "spacing-32",
-  $mt: "spacing-32",
-})``;
-
-const SchoolFields = styled(OakFlex).attrs({
-  $flexDirection: "column",
-  $gap: "spacing-16",
-})``;
-
 const Field = styled(OakBox).attrs({ $position: "relative", $width: "100%" })`
   input {
     height: 60px;
@@ -349,15 +326,6 @@ const SelectField = styled(Field)`
   button {
     min-height: 64px;
   }
-`;
-
-const Selector = styled(OakBox).attrs({
-  $width: "100%",
-  $mt: "spacing-24",
-})``;
-
-const Notice = styled(OakP)`
-  max-width: 620px;
 `;
 
 const TermsBox = styled.div`
@@ -457,13 +425,20 @@ export const NationalCurriculumInsightsDownload = ({
   const [mobileStage, setMobileStage] = useState<"details" | "subjects">(
     "details",
   );
-  const [selectedValues, setSelectedValues] = useState<string[]>([]);
-  const [name, setName] = useState("");
-  const [school, setSchool] = useState("");
-  const [schoolNotListed, setSchoolNotListed] = useState(false);
-  const [role, setRole] = useState("");
-  const [email, setEmail] = useState("");
-  const [acceptedTerms, setAcceptedTerms] = useState(false);
+  const { control, watch, handleSubmit } = useForm<DownloadFormValues>({
+    defaultValues: {
+      name: "",
+      school: "",
+      schoolNotListed: false,
+      role: "",
+      email: "",
+      acceptedTerms: false,
+      selectedValues: [],
+    },
+    shouldUnregister: false,
+  });
+  const { name, school, schoolNotListed, role, acceptedTerms, selectedValues } =
+    watch();
   const [downloading, setDownloading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
@@ -505,8 +480,7 @@ export const NationalCurriculumInsightsDownload = ({
     selectedValues.length === 1 ? "insight" : "insights"
   } (${multiple ? ".ZIP" : ".DOCX"})`;
 
-  const submit = async (event: FormEvent) => {
-    event.preventDefault();
+  const submit = async () => {
     if (!canDownload || downloadInFlight.current) return;
 
     downloadInFlight.current = true;
@@ -528,14 +502,13 @@ export const NationalCurriculumInsightsDownload = ({
       }
 
       const url = URL.createObjectURL(await response.blob());
-      const anchor = document.createElement("a");
-      anchor.href = url;
-      anchor.download = responseFilename(response);
       try {
-        document.body.appendChild(anchor);
-        anchor.click();
+        createAndClickHiddenDownloadLink(url, {
+          filename: responseFilename(response),
+          removeAfterClick: true,
+          openInNewTabWhenEmbedded: false,
+        });
       } finally {
-        anchor.remove();
         URL.revokeObjectURL(url);
       }
     } catch (downloadError) {
@@ -590,7 +563,7 @@ export const NationalCurriculumInsightsDownload = ({
         <Expanded
           ref={expandedRef}
           id={`${formId}-content`}
-          onSubmit={submit}
+          onSubmit={handleSubmit(submit)}
           noValidate
           $sticky={sticky}
         >
@@ -599,7 +572,11 @@ export const NationalCurriculumInsightsDownload = ({
               <OakHeading tag="h2" $font="heading-6">
                 {section.detailsHeading}
               </OakHeading>
-              <Fields>
+              <OakFlex
+                $flexDirection="column"
+                $gap="spacing-32"
+                $mt="spacing-32"
+              >
                 <Field>
                   <OakJauntyAngleLabel
                     as="label"
@@ -612,20 +589,25 @@ export const NationalCurriculumInsightsDownload = ({
                     $left="spacing-8"
                     $zIndex="in-front"
                   />
-                  <OakTextInput
-                    id={`${formId}-name`}
+                  <Controller
+                    control={control}
                     name="name"
-                    value={name}
-                    onChange={(event: ChangeEvent<HTMLInputElement>) =>
-                      setName(event.target.value)
-                    }
-                    placeholder="Type your name"
-                    autoComplete="name"
-                    wrapperWidth="100%"
-                    $height="spacing-64"
+                    render={({ field }) => (
+                      <OakTextInput
+                        name={field.name}
+                        value={field.value}
+                        onChange={field.onChange}
+                        onBlur={field.onBlur}
+                        id={`${formId}-name`}
+                        placeholder="Type your name"
+                        autoComplete="name"
+                        wrapperWidth="100%"
+                        $height="spacing-64"
+                      />
+                    )}
                   />
                 </Field>
-                <SchoolFields>
+                <OakFlex $flexDirection="column" $gap="spacing-16">
                   <Field>
                     <OakJauntyAngleLabel
                       as="label"
@@ -638,43 +620,60 @@ export const NationalCurriculumInsightsDownload = ({
                       $left="spacing-8"
                       $zIndex="in-front"
                     />
-                    <OakTextInput
-                      id={`${formId}-school`}
+                    <Controller
+                      control={control}
                       name="school"
-                      value={school}
-                      onChange={(event: ChangeEvent<HTMLInputElement>) =>
-                        setSchool(event.target.value)
-                      }
-                      placeholder="Type school name, postcode, or ‘homeschool’"
-                      disabled={schoolNotListed}
-                      autoComplete="organization"
-                      wrapperWidth="100%"
-                      $height="spacing-64"
+                      render={({ field }) => (
+                        <OakTextInput
+                          name={field.name}
+                          value={field.value}
+                          onChange={field.onChange}
+                          onBlur={field.onBlur}
+                          id={`${formId}-school`}
+                          placeholder="Type school name, postcode, or ‘homeschool’"
+                          disabled={schoolNotListed}
+                          autoComplete="organization"
+                          wrapperWidth="100%"
+                          $height="spacing-64"
+                        />
+                      )}
                     />
                   </Field>
-                  <OakCheckBox
-                    id={`${formId}-school-not-listed`}
-                    name="school-not-listed"
-                    value="school-not-listed"
-                    displayValue="My school isn't listed"
-                    checked={schoolNotListed}
-                    onChange={(event) =>
-                      setSchoolNotListed(event.target.checked)
-                    }
+                  <Controller
+                    control={control}
+                    name="schoolNotListed"
+                    render={({ field }) => (
+                      <OakCheckBox
+                        id={`${formId}-school-not-listed`}
+                        name="school-not-listed"
+                        value="school-not-listed"
+                        displayValue="My school isn't listed"
+                        checked={field.value}
+                        onChange={(event) =>
+                          field.onChange(event.target.checked)
+                        }
+                      />
+                    )}
                   />
-                </SchoolFields>
+                </OakFlex>
                 <SelectField>
-                  <NationalCurriculumInsightsSelect
-                    id={`${formId}-role`}
+                  <Controller
+                    control={control}
                     name="role"
-                    label="Role (required)"
-                    placeholder="Select your role"
-                    options={EDU_ROLES.map((option) => ({
-                      label: option,
-                      value: option,
-                    }))}
-                    value={role}
-                    onChange={setRole}
+                    render={({ field }) => (
+                      <NationalCurriculumInsightsSelect
+                        id={`${formId}-role`}
+                        name={field.name}
+                        label="Role (required)"
+                        placeholder="Select your role"
+                        options={EDU_ROLES.map((option) => ({
+                          label: option,
+                          value: option,
+                        }))}
+                        value={field.value}
+                        onChange={field.onChange}
+                      />
+                    )}
                   />
                 </SelectField>
                 <Field>
@@ -689,39 +688,52 @@ export const NationalCurriculumInsightsDownload = ({
                     $left="spacing-8"
                     $zIndex="in-front"
                   />
-                  <OakTextInput
-                    id={`${formId}-email`}
+                  <Controller
+                    control={control}
                     name="email"
-                    type="email"
-                    value={email}
-                    onChange={(event: ChangeEvent<HTMLInputElement>) =>
-                      setEmail(event.target.value)
-                    }
-                    placeholder="Enter email address here"
-                    autoComplete="email"
-                    wrapperWidth="100%"
-                    $height="spacing-64"
+                    render={({ field }) => (
+                      <OakTextInput
+                        name={field.name}
+                        value={field.value}
+                        onChange={field.onChange}
+                        onBlur={field.onBlur}
+                        id={`${formId}-email`}
+                        type="email"
+                        placeholder="Enter email address here"
+                        autoComplete="email"
+                        wrapperWidth="100%"
+                        $height="spacing-64"
+                      />
+                    )}
                   />
                 </Field>
-                <Notice $font="body-3" $mv="spacing-0">
+                <OakP $maxWidth="620px" $font="body-3" $mv="spacing-0">
                   Join over 200k teachers and get free resources and other
                   helpful content by email. Unsubscribe at any time. Read our{" "}
                   <OakLink href="/legal/privacy-policy" target="_blank">
                     privacy policy
                   </OakLink>
                   .
-                </Notice>
+                </OakP>
                 <TermsBox>
-                  <OakCheckBox
-                    id={`${formId}-terms`}
-                    name="terms"
-                    value="terms"
-                    displayValue="I accept the terms and conditions (required)"
-                    checked={acceptedTerms}
-                    onChange={(event) => setAcceptedTerms(event.target.checked)}
+                  <Controller
+                    control={control}
+                    name="acceptedTerms"
+                    render={({ field }) => (
+                      <OakCheckBox
+                        id={`${formId}-terms`}
+                        name="terms"
+                        value="terms"
+                        displayValue="I accept the terms and conditions (required)"
+                        checked={field.value}
+                        onChange={(event) =>
+                          field.onChange(event.target.checked)
+                        }
+                      />
+                    )}
                   />
                 </TermsBox>
-              </Fields>
+              </OakFlex>
               <MobileSubjectButton
                 type="button"
                 onClick={() => setMobileStage("subjects")}
@@ -743,41 +755,47 @@ export const NationalCurriculumInsightsDownload = ({
                 <OakIcon iconName="arrow-left" />
                 Back
               </MobileBackButton>
-              <MobileDownloadsHeader>
+              <OakBox $display={["block", "block", "none"]} $mt="spacing-16">
                 <OakHeading tag="h2" $font="heading-6">
                   Select subjects
                 </OakHeading>
-              </MobileDownloadsHeader>
-              <DesktopDownloadsHeader>
+              </OakBox>
+              <OakBox $display={["none", "none", "block"]}>
                 <OakHeading tag="h2" $font="heading-6">
                   {section.downloadsHeading}
                 </OakHeading>
                 <OakP $font="body-2">{section.downloadsIntroduction}</OakP>
-              </DesktopDownloadsHeader>
-              <Selector>
-                <MultiSelect
-                  id={`${formId}-subjects`}
-                  groups={groups}
-                  selectedValues={selectedValues}
-                  onChange={setSelectedValues}
-                  placeholder="Select subjects"
-                  mobileTitle="Download subjects"
-                  hideMobileHeader
-                  size="large"
-                  mobileConfirmLabel="Confirm selection"
-                  onMobileConfirm={() => setMobileStage("details")}
-                  selectedItemsLabel="Selected subjects"
-                  groupSelectLabel={(group) =>
-                    `All ${group.label.toLowerCase()} subjects`
-                  }
-                  data-testid="curriculum-insights-subjects"
+              </OakBox>
+              <OakBox $width="100%" $mt="spacing-24">
+                <Controller
+                  control={control}
+                  name="selectedValues"
+                  render={({ field }) => (
+                    <MultiSelect
+                      id={`${formId}-subjects`}
+                      groups={groups}
+                      selectedValues={field.value}
+                      onChange={field.onChange}
+                      placeholder="Select subjects"
+                      mobileTitle="Download subjects"
+                      hideMobileHeader
+                      size="large"
+                      mobileConfirmLabel="Confirm selection"
+                      onMobileConfirm={() => setMobileStage("details")}
+                      selectedItemsLabel="Selected subjects"
+                      groupSelectLabel={(group) =>
+                        `All ${group.label.toLowerCase()} subjects`
+                      }
+                      data-testid="curriculum-insights-subjects"
+                    />
+                  )}
                 />
-              </Selector>
+              </OakBox>
             </Column>
           </Columns>
           <ActionBar $activeMobileStage={mobileStage}>
             <ActionCell>
-              <div style={{ width: "100%" }}>
+              <OakBox $width="100%">
                 <DownloadButton type="submit" disabled={!canDownload}>
                   {downloading ? "Preparing download…" : buttonLabel}
                 </DownloadButton>
@@ -786,7 +804,7 @@ export const NationalCurriculumInsightsDownload = ({
                     {error}
                   </ErrorMessage>
                 ) : null}
-              </div>
+              </OakBox>
             </ActionCell>
           </ActionBar>
         </Expanded>

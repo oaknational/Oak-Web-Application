@@ -1,4 +1,4 @@
-import type { NationalCurriculumInsightsReader } from "../getNationalCurriculumInsightsData";
+import type { NationalCurriculumInsightsReader } from "../helpers/getRouteData";
 
 import {
   nationalCurriculumInsightsGuidancePageSchema,

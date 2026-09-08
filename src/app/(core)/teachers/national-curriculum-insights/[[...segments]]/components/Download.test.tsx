@@ -1,9 +1,10 @@
 import { fireEvent, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 
-import { localNationalCurriculumInsightsFixtures } from "./__fixtures__/nationalCurriculumInsights";
-import { NationalCurriculumInsightsDownload } from "./NationalCurriculumInsightsDownload";
-import { getNationalCurriculumInsightsRouteData } from "./getNationalCurriculumInsightsData";
+import { localNationalCurriculumInsightsFixtures } from "../__fixtures__/nationalCurriculumInsights";
+import { getNationalCurriculumInsightsRouteData } from "../helpers/getRouteData";
+
+import { NationalCurriculumInsightsDownload } from "./Download";
 
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 import { parseNationalCurriculumInsightsRoute } from "@/common-lib/urls/nationalCurriculumInsights";
@@ -217,6 +218,61 @@ describe("Insights download submission", () => {
     ok: true,
     headers: new Headers({ "x-filename": filename }),
     blob: async () => new Blob(["download"]),
+  });
+
+  it("retains details, consent and selections when the panel is reopened", async () => {
+    const { user } = await readyForm();
+    await user.type(
+      screen.getByRole("textbox", { name: "Email (Optional)" }),
+      "teacher@example.com",
+    );
+    const toggle = screen.getByRole("button", {
+      name: /the national curriculum is changing/i,
+    });
+
+    await user.click(toggle);
+    expect(
+      screen.queryByRole("textbox", { name: "Name (required)" }),
+    ).not.toBeInTheDocument();
+    await user.click(toggle);
+
+    expect(
+      screen.getByRole("textbox", { name: "Name (required)" }),
+    ).toHaveValue("Jamie");
+    expect(
+      screen.getByRole("textbox", { name: "Email (Optional)" }),
+    ).toHaveValue("teacher@example.com");
+    expect(
+      screen.getByRole("textbox", { name: "School (required)" }),
+    ).toBeDisabled();
+    expect(
+      screen.getByRole("checkbox", { name: "My school isn't listed" }),
+    ).toBeChecked();
+    expect(
+      screen.getByRole("checkbox", {
+        name: "I accept the terms and conditions (required)",
+      }),
+    ).toBeChecked();
+    expect(
+      screen.getByRole("button", { name: /Role \(required\).*Headteacher/ }),
+    ).toBeInTheDocument();
+    expect(
+      screen.getByRole("button", { name: "Download 1 insight (.DOCX)" }),
+    ).toBeEnabled();
+    expect(mockFetch).not.toHaveBeenCalled();
+  });
+
+  it("does not download when a required detail is only whitespace", async () => {
+    const { user, download } = await readyForm();
+    const name = screen.getByRole("textbox", { name: "Name (required)" });
+    await user.clear(name);
+    await user.type(name, "   ");
+    expect(download).toBeDisabled();
+    const form = download.closest("form");
+    if (!form) throw new Error("Expected the download form");
+    fireEvent.submit(form);
+    await waitFor(() => expect(download).toBeDisabled());
+    expect(mockFetch).not.toHaveBeenCalled();
   });
 
   it.each([false, true])(

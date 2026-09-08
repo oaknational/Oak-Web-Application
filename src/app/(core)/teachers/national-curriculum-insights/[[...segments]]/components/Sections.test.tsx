@@ -1,12 +1,14 @@
 import { fireEvent, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 
-import { localNationalCurriculumInsightsFixtures } from "./__fixtures__/nationalCurriculumInsights";
-import { NationalCurriculumInsightsHero } from "./NationalCurriculumInsightsHero";
+import { localNationalCurriculumInsightsFixtures } from "../__fixtures__/nationalCurriculumInsights";
 import {
   INSIGHTS_NEWSLETTER_FORM_ID,
   INSIGHTS_NEWSLETTER_PORTAL_ID,
-} from "./nationalCurriculumInsightsNewsletter";
+} from "../helpers/newsletter";
+import { getNationalCurriculumInsightsRouteData } from "../helpers/getRouteData";
+
+import { NationalCurriculumInsightsHero } from "./Hero";
 import {
   NationalCurriculumInsightsFaq,
   NationalCurriculumInsightsGuidanceIntro,
@@ -21,8 +23,7 @@ import {
   NationalCurriculumInsightsSubjectNavigation,
   NationalCurriculumInsightsTable,
   NationalCurriculumInsightsVideoCards,
-} from "./NationalCurriculumInsightsSections";
-import { getNationalCurriculumInsightsRouteData } from "./getNationalCurriculumInsightsData";
+} from "./Sections";
 
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 import type {

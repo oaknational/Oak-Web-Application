@@ -16,12 +16,14 @@ Published requests use the Sanity `published` perspective and Next draft mode us
 
 The reader uses GROQ, with queries in `nationalCurriculumInsightsGroq.ts` and runtime contracts in `common-lib/cms-types/nationalCurriculumInsights.ts`. Internal links are resolved in the same query and perspective as their page. Unavailable link targets leave the link text visible without exposing a draft URL.
 
-`NationalCurriculumInsightsSections.tsx` exports the modules from `sections/`. Each module owns its layout; `sections/shared.tsx` contains shared presentation helpers. The optional navigation module renders route-derived tabs only when included in the CMS module list.
+Route components live in `components/`, with editable page modules in `components/sections/`. `components/Sections.tsx` exports those modules. `components/sections/shared.tsx` contains shared presentation helpers. The optional navigation module renders route-derived tabs only when included in the CMS module list.
 
-Subject illustrations and editorial images are editable in Sanity. Guidance modules also own the short heading, image mirroring and optional video heading illustration. Fixed phase/key-stage artwork and fallback asset IDs live in `nationalCurriculumInsightsAssets.ts`; their URLs use the configured Sanity project and dataset.
+Subject illustrations and editorial images are editable in Sanity. Guidance modules also own the short heading, image mirroring and optional video heading illustration. Fixed phase/key-stage artwork and fallback asset IDs live in `helpers/assets.ts`; their URLs use the configured Sanity project and dataset. Route resolution, hierarchy presentation and newsletter configuration also live in `helpers/`.
+
+The default reader memoises CMS reads within a server render using React `cache`, keyed by slug and preview mode. It does not retain content between requests, so publishing and draft edits remain visible on the next request.
 
 ## Test fixtures
 
-`__fixtures__/` contains small synthetic fixtures imported explicitly by tests. Runtime content always comes from the configured CMS client; it never falls back to fixture data when CMS requests fail.
+`__fixtures__/` contains small synthetic fixtures imported explicitly by tests and Storybook stories. Runtime content always comes from the configured CMS client; it never falls back to fixture data when CMS requests fail.
 
 For local development, configure the same isolated Sanity dataset as the feature preview using the project's existing environment configuration. Dataset exports and local preview tools should remain outside the repository.

@@ -12,14 +12,14 @@ import {
 import { FormEvent, useState } from "react";
 import styled from "styled-components";
 
-import { insightsAssetUrl } from "../nationalCurriculumInsightsAssets";
-import { NationalCurriculumInsightsSelect } from "../NationalCurriculumInsightsSelect";
+import { insightsAssetUrl } from "../../helpers/assets";
+import { NationalCurriculumInsightsSelect } from "../Select";
 import {
   INSIGHTS_NEWSLETTER_FORM_ID,
   INSIGHTS_NEWSLETTER_PORTAL_ID,
   insightsNewsletterRoleValue,
-} from "../nationalCurriculumInsightsNewsletter";
-import { NationalCurriculumInsightsPortableText as PortableTextWithDefaults } from "../NationalCurriculumInsightsPortableText";
+} from "../../helpers/newsletter";
+import { NationalCurriculumInsightsPortableText as PortableTextWithDefaults } from "../PortableText";
 
 import {
   ContextualSectionProps,

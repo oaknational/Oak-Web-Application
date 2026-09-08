@@ -10,8 +10,8 @@ import {
 } from "@oaknational/oak-components";
 import styled from "styled-components";
 
-import type { NationalCurriculumInsightsRouteData } from "../getNationalCurriculumInsightsData";
-import { insightsAssetUrl } from "../nationalCurriculumInsightsAssets";
+import type { NationalCurriculumInsightsRouteData } from "../../helpers/getRouteData";
+import { insightsAssetUrl } from "../../helpers/assets";
 
 import getProxiedSanityAssetUrl from "@/common-lib/urls/getProxiedSanityAssetUrl";
 

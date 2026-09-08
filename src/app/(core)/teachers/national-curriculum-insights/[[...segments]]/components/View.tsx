@@ -9,8 +9,10 @@ import {
 } from "@oaknational/oak-components";
 import styled from "styled-components";
 
-import { NationalCurriculumInsightsHero } from "./NationalCurriculumInsightsHero";
-import { NationalCurriculumInsightsDownload } from "./NationalCurriculumInsightsDownload";
+import type { NationalCurriculumInsightsRouteData } from "../helpers/getRouteData";
+
+import { NationalCurriculumInsightsHero } from "./Hero";
+import { NationalCurriculumInsightsDownload } from "./Download";
 import {
   NationalCurriculumInsightsFaq,
   NationalCurriculumInsightsGuidanceIntro,
@@ -25,8 +27,7 @@ import {
   NationalCurriculumInsightsSubjectNavigation,
   NationalCurriculumInsightsTable,
   NationalCurriculumInsightsVideoCards,
-} from "./NationalCurriculumInsightsSections";
-import type { NationalCurriculumInsightsRouteData } from "./getNationalCurriculumInsightsData";
+} from "./Sections";
 
 import type { NationalCurriculumInsightsModule } from "@/common-lib/cms-types/nationalCurriculumInsights";
 import { nationalCurriculumInsightsKeyStageSlug } from "@/common-lib/cms-types/nationalCurriculumInsights";

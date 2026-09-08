@@ -16,10 +16,14 @@ export const createLink = () => {
   return a;
 };
 
-export const hideAndClickDownloadLink = (url: string, a: HTMLAnchorElement) => {
+export const hideAndClickDownloadLink = (
+  url: string,
+  a: HTMLAnchorElement,
+  filename = "download.zip",
+) => {
   a.style.display = "none";
   a.href = encodeURI(url);
-  a.setAttribute("download", "download.zip");
+  a.setAttribute("download", filename);
   a.addEventListener("click", () => {
     // Allows verification that the link has been clicked, used in the teacher lesson download journey
     a.setAttribute("clicked", "true");
@@ -28,13 +32,30 @@ export const hideAndClickDownloadLink = (url: string, a: HTMLAnchorElement) => {
   a.click();
 };
 
-const createAndClickHiddenDownloadLink = (url: string) => {
-  if (isInIframe()) {
+type DownloadLinkOptions = {
+  filename?: string;
+  removeAfterClick?: boolean;
+  openInNewTabWhenEmbedded?: boolean;
+};
+
+const createAndClickHiddenDownloadLink = (
+  url: string,
+  {
+    filename = "download.zip",
+    removeAfterClick = false,
+    openInNewTabWhenEmbedded = true,
+  }: DownloadLinkOptions = {},
+) => {
+  if (openInNewTabWhenEmbedded && isInIframe()) {
     globalThis.open(encodeURI(url), "_blank");
     return;
   }
   const link = createLink();
-  hideAndClickDownloadLink(url, link);
+  try {
+    hideAndClickDownloadLink(url, link, filename);
+  } finally {
+    if (removeAfterClick) link.remove();
+  }
 };
 
 export const waitForLinkCallback = (callback: () => void) => {

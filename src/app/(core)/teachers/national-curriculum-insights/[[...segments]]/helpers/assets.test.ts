@@ -1,7 +1,4 @@
-import {
-  insightsAssetIds,
-  insightsAssetUrl,
-} from "./nationalCurriculumInsightsAssets";
+import { insightsAssetIds, insightsAssetUrl } from "./assets";
 
 import getBrowserConfig from "@/browser-lib/getBrowserConfig";
 

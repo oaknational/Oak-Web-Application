@@ -4,15 +4,15 @@ import {
   getMediaQuery,
   OakBox,
   OakFlex,
+  OakGrid,
   OakHeading,
   OakImage,
   OakSpan,
-  parseColor,
 } from "@oaknational/oak-components";
 import { useId } from "react";
 import styled from "styled-components";
 
-import { NationalCurriculumInsightsPortableText as PortableTextWithDefaults } from "../NationalCurriculumInsightsPortableText";
+import { NationalCurriculumInsightsPortableText as PortableTextWithDefaults } from "../PortableText";
 
 import {
   SectionProps,
@@ -25,11 +25,6 @@ import {
 } from "./shared";
 
 const GuidanceIntroImage = styled(OakBox)`
-  width: 100%;
-  aspect-ratio: 3 / 2;
-  overflow: hidden;
-  border: 2px solid ${parseColor("border-primary")};
-
   @media (${getMediaQuery("desktop")}) {
     width: 363px;
     height: 242px;
@@ -43,17 +38,8 @@ const GuidanceIntroImage = styled(OakBox)`
   }
 `;
 
-const GuidanceIntroLayout = styled(OakBox)`
-  width: 100%;
-  display: grid;
-  grid-template-columns: minmax(0, 1fr);
-  row-gap: 20px;
-
+const GuidanceIntroLayout = styled(OakGrid)`
   @media (${getMediaQuery("desktop")}) {
-    grid-template-columns: 363px 684px;
-    grid-template-rows: auto 1fr;
-    column-gap: 40px;
-    row-gap: 40px;
     align-items: start;
   }
 
@@ -64,7 +50,6 @@ const GuidanceIntroLayout = styled(OakBox)`
       clamp(291px, calc(13.585vw + 189.113px), 363px)
       minmax(0, 1fr);
     grid-template-rows: auto 1fr;
-    column-gap: 40px;
     row-gap: clamp(20px, calc(3.774vw - 8.302px), 40px);
     align-items: start;
     margin-inline: auto;
@@ -209,7 +194,12 @@ export const NationalCurriculumInsightsGuidanceIntro = ({
       data-insights-module="guidance-introduction"
     >
       <SectionMaxWidth $mh="auto">
-        <GuidanceIntroLayout>
+        <GuidanceIntroLayout
+          $gridTemplateColumns={["minmax(0, 1fr)", null, "363px 684px"]}
+          $gridTemplateRows={[null, "auto 1fr"]}
+          $cg={[null, "spacing-40"]}
+          $rg={["spacing-20", null, "spacing-40"]}
+        >
           <GuidanceIntroHeading id={headingId} tag="h2" $font="heading-5">
             <GuidanceIntroMobileHeading>
               This term, you’ll find:
@@ -219,6 +209,11 @@ export const NationalCurriculumInsightsGuidanceIntro = ({
             </GuidanceIntroDesktopHeading>
           </GuidanceIntroHeading>
           <GuidanceIntroArtwork
+            $width="100%"
+            $aspectRatio="3 / 2"
+            $overflow="hidden"
+            $ba="border-solid-m"
+            $borderColor="border-primary"
             aria-hidden={section.image.isPresentational || undefined}
           >
             <OakImage

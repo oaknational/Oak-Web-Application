@@ -15,7 +15,7 @@ jest.mock("@/common-lib/error-reporter", () => ({
 }));
 
 jest.mock(
-  "@/app/(core)/teachers/national-curriculum-insights/[[...segments]]/getNationalCurriculumInsightsData",
+  "@/app/(core)/teachers/national-curriculum-insights/[[...segments]]/helpers/getRouteData",
   () => ({
     getNationalCurriculumInsightsReader: () => ({
       nationalCurriculumInsightsHub: mockHub,

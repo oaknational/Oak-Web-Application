@@ -4,7 +4,7 @@ import { OakBox, OakFlex, OakHeading } from "@oaknational/oak-components";
 import { useId } from "react";
 import styled from "styled-components";
 
-import { NationalCurriculumInsightsPortableText as PortableTextWithDefaults } from "../NationalCurriculumInsightsPortableText";
+import { NationalCurriculumInsightsPortableText as PortableTextWithDefaults } from "../PortableText";
 
 import { SectionProps, InsightsContentMaxWidth } from "./shared";
 

@@ -3,7 +3,7 @@ import { draftMode } from "next/headers";
 
 import CurriculumChangeGuidancePage, { generateMetadata } from "./page";
 
-import { getNationalCurriculumInsightsRouteData } from "@/app/(core)/teachers/national-curriculum-insights/[[...segments]]/getNationalCurriculumInsightsData";
+import { getNationalCurriculumInsightsRouteData } from "@/app/(core)/teachers/national-curriculum-insights/[[...segments]]/helpers/getRouteData";
 
 jest.mock("next/headers", () => ({ draftMode: jest.fn() }));
 jest.mock("next/navigation", () => ({
@@ -12,11 +12,11 @@ jest.mock("next/navigation", () => ({
   },
 }));
 jest.mock(
-  "@/app/(core)/teachers/national-curriculum-insights/[[...segments]]/getNationalCurriculumInsightsData",
+  "@/app/(core)/teachers/national-curriculum-insights/[[...segments]]/helpers/getRouteData",
   () => ({ getNationalCurriculumInsightsRouteData: jest.fn() }),
 );
 jest.mock(
-  "@/app/(core)/teachers/national-curriculum-insights/[[...segments]]/NationalCurriculumInsightsView",
+  "@/app/(core)/teachers/national-curriculum-insights/[[...segments]]/components/View",
   () => ({ NationalCurriculumInsightsView: () => null }),
 );
 

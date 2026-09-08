@@ -8,26 +8,11 @@ import {
 } from "@oaknational/oak-components";
 import styled from "styled-components";
 
-import { NationalCurriculumInsightsPortableText as PortableTextWithDefaults } from "../NationalCurriculumInsightsPortableText";
+import { NationalCurriculumInsightsPortableText as PortableTextWithDefaults } from "../PortableText";
 
 import { ContextualSectionProps } from "./shared";
 
-const FaqSection = styled(OakBox)`
-  box-sizing: border-box;
-`;
-
-const FaqInner = styled(OakBox)`
-  width: 100%;
-  max-width: 956px;
-`;
-
-const FaqHeading = styled(OakHeading)`
-  max-width: 632px;
-`;
-
 const FaqAccordionList = styled(OakFlex)`
-  text-align: left;
-
   p,
   li {
     text-align: left;
@@ -46,8 +31,9 @@ export const NationalCurriculumInsightsFaq = ({
   section,
   data,
 }: ContextualSectionProps<"NationalCurriculumInsightsFaqSection">) => (
-  <FaqSection
+  <OakBox
     as="section"
+    $boxSizing="border-box"
     $background="bg-decorative2-very-subdued"
     $ph={["spacing-20", "spacing-40"]}
     $pv={
@@ -58,16 +44,17 @@ export const NationalCurriculumInsightsFaq = ({
     aria-labelledby="national-curriculum-insights-faq-heading"
     data-insights-module="faq"
   >
-    <FaqInner $mh="auto">
-      <FaqHeading
+    <OakBox $width="100%" $maxWidth="956px" $mh="auto">
+      <OakHeading
+        $maxWidth="632px"
         tag="h2"
         id="national-curriculum-insights-faq-heading"
         $font="heading-4"
         $mb="spacing-32"
       >
         {section.heading}
-      </FaqHeading>
-      <FaqAccordionList $flexDirection="column">
+      </OakHeading>
+      <FaqAccordionList $flexDirection="column" $textAlign="left">
         {section.items.map((item, index) => (
           <OakOutlineAccordion
             key={item.question}
@@ -84,6 +71,6 @@ export const NationalCurriculumInsightsFaq = ({
           </OakOutlineAccordion>
         ))}
       </FaqAccordionList>
-    </FaqInner>
-  </FaqSection>
+    </OakBox>
+  </OakBox>
 );

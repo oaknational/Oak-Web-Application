@@ -1,7 +1,7 @@
 import {
   INSIGHTS_NEWSLETTER_FORM_ID,
   insightsNewsletterRoleValue,
-} from "./nationalCurriculumInsightsNewsletter";
+} from "./newsletter";
 
 import {
   EDU_ROLES,

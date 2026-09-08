@@ -12,7 +12,7 @@ import {
 import Link from "next/link";
 import styled from "styled-components";
 
-import type { NationalCurriculumInsightsRouteData } from "../getNationalCurriculumInsightsData";
+import type { NationalCurriculumInsightsRouteData } from "../../helpers/getRouteData";
 
 import { ContextualSectionProps, SectionMaxWidth } from "./shared";
 

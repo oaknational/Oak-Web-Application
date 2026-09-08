@@ -1,9 +1,9 @@
 "use client";
 
 import {
-  getMediaQuery,
   OakBox,
   OakFlex,
+  OakGrid,
   OakHeading,
   OakIcon,
   OakImage,
@@ -16,7 +16,7 @@ import styled from "styled-components";
 import {
   nationalCurriculumInsightsKeyStageIllustration,
   nationalCurriculumInsightsPhaseIllustration,
-} from "../nationalCurriculumInsightsPresentation";
+} from "../../helpers/presentation";
 
 import { ContextualSectionProps, SectionMaxWidth } from "./shared";
 
@@ -26,22 +26,10 @@ import {
   nationalCurriculumInsightsSubjectPhaseKeyStageHref,
 } from "@/common-lib/urls/nationalCurriculumInsights";
 
-const PhaseCardList = styled.ul`
-  display: grid;
-  grid-template-columns: minmax(0, 1fr);
+const PhaseCardList = styled(OakGrid)`
   justify-content: center;
   gap: 17px;
   list-style: none;
-  margin: 0;
-  padding: 0;
-
-  @media (${getMediaQuery("desktop")}) {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-`;
-
-const PhaseCardItem = styled.li`
-  width: 100%;
 `;
 
 const InsightsJumpCard = styled(Link)<{ $height: number }>`
@@ -65,16 +53,7 @@ const InsightsJumpCard = styled(Link)<{ $height: number }>`
 `;
 
 const JumpCardImage = styled(OakBox)`
-  width: 72px;
-  height: 72px;
   flex: 0 0 72px;
-  overflow: hidden;
-`;
-
-const JumpCardCopy = styled(OakFlex)`
-  flex: 1;
-  align-self: stretch;
-  justify-content: center;
 `;
 
 export const NationalCurriculumInsightsPhaseCards = ({
@@ -97,9 +76,19 @@ export const NationalCurriculumInsightsPhaseCards = ({
       $pv={["spacing-32", "spacing-48"]}
     >
       <SectionMaxWidth $mh="auto">
-        <PhaseCardList data-insights-module="phase-cards">
+        <PhaseCardList
+          as="ul"
+          $gridTemplateColumns={[
+            "minmax(0, 1fr)",
+            null,
+            "repeat(2, minmax(0, 1fr))",
+          ]}
+          $ma="spacing-0"
+          $pa="spacing-0"
+          data-insights-module="phase-cards"
+        >
           {cards.map((card) => (
-            <PhaseCardItem key={`${card.phase}-${card.heading}`}>
+            <OakBox as="li" $width="100%" key={`${card.phase}-${card.heading}`}>
               <InsightsJumpCard
                 $height={240}
                 href={nationalCurriculumInsightsSubjectPhaseHref(
@@ -107,7 +96,12 @@ export const NationalCurriculumInsightsPhaseCards = ({
                   card.phase,
                 )}
               >
-                <JumpCardImage aria-hidden="true">
+                <JumpCardImage
+                  $width="spacing-72"
+                  $height="spacing-72"
+                  $overflow="hidden"
+                  aria-hidden="true"
+                >
                   <OakImage
                     src={nationalCurriculumInsightsPhaseIllustration(
                       card.phase,
@@ -118,7 +112,11 @@ export const NationalCurriculumInsightsPhaseCards = ({
                     $objectFit="contain"
                   />
                 </JumpCardImage>
-                <JumpCardCopy
+                <OakFlex
+                  $flexGrow={1}
+                  $flexShrink={1}
+                  $flexBasis="0%"
+                  $alignSelf="stretch"
                   $flexDirection="column"
                   $justifyContent="center"
                   $gap="spacing-4"
@@ -129,14 +127,14 @@ export const NationalCurriculumInsightsPhaseCards = ({
                   <OakP $font="body-2" $color="text-subdued" $mv="spacing-0">
                     {card.linkLabel}
                   </OakP>
-                </JumpCardCopy>
+                </OakFlex>
                 <OakIcon
                   iconName="arrow-right"
                   $width="spacing-32"
                   $height="spacing-32"
                 />
               </InsightsJumpCard>
-            </PhaseCardItem>
+            </OakBox>
           ))}
         </PhaseCardList>
       </SectionMaxWidth>
@@ -171,9 +169,23 @@ export const NationalCurriculumInsightsKeyStageCards = ({
       $pv={["spacing-32", "spacing-48"]}
     >
       <SectionMaxWidth $mh="auto">
-        <PhaseCardList data-insights-module="key-stage-cards">
+        <PhaseCardList
+          as="ul"
+          $gridTemplateColumns={[
+            "minmax(0, 1fr)",
+            null,
+            "repeat(2, minmax(0, 1fr))",
+          ]}
+          $ma="spacing-0"
+          $pa="spacing-0"
+          data-insights-module="key-stage-cards"
+        >
           {cards.map((card) => (
-            <PhaseCardItem key={`${card.keyStage}-${card.heading}`}>
+            <OakBox
+              as="li"
+              $width="100%"
+              key={`${card.keyStage}-${card.heading}`}
+            >
               <InsightsJumpCard
                 $height={246}
                 href={nationalCurriculumInsightsSubjectPhaseKeyStageHref(
@@ -182,7 +194,12 @@ export const NationalCurriculumInsightsKeyStageCards = ({
                   nationalCurriculumInsightsKeyStageSlug(card.keyStage),
                 )}
               >
-                <JumpCardImage aria-hidden="true">
+                <JumpCardImage
+                  $width="spacing-72"
+                  $height="spacing-72"
+                  $overflow="hidden"
+                  aria-hidden="true"
+                >
                   <OakImage
                     src={nationalCurriculumInsightsKeyStageIllustration(
                       card.keyStage,
@@ -193,7 +210,11 @@ export const NationalCurriculumInsightsKeyStageCards = ({
                     $objectFit="contain"
                   />
                 </JumpCardImage>
-                <JumpCardCopy
+                <OakFlex
+                  $flexGrow={1}
+                  $flexShrink={1}
+                  $flexBasis="0%"
+                  $alignSelf="stretch"
                   $flexDirection="column"
                   $justifyContent="center"
                   $gap="spacing-4"
@@ -204,14 +225,14 @@ export const NationalCurriculumInsightsKeyStageCards = ({
                   <OakP $font="body-2" $color="text-subdued" $mv="spacing-0">
                     {card.linkLabel}
                   </OakP>
-                </JumpCardCopy>
+                </OakFlex>
                 <OakIcon
                   iconName="arrow-right"
                   $width="spacing-32"
                   $height="spacing-32"
                 />
               </InsightsJumpCard>
-            </PhaseCardItem>
+            </OakBox>
           ))}
         </PhaseCardList>
       </SectionMaxWidth>

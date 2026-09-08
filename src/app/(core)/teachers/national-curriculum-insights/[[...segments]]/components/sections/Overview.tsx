@@ -11,10 +11,10 @@ import {
 import { useId } from "react";
 import styled from "styled-components";
 
-import { insightsAssetUrl } from "../nationalCurriculumInsightsAssets";
-import type { NationalCurriculumInsightsRouteData } from "../getNationalCurriculumInsightsData";
-import { nationalCurriculumInsightsPresentation } from "../nationalCurriculumInsightsPresentation";
-import { NationalCurriculumInsightsPortableText as PortableTextWithDefaults } from "../NationalCurriculumInsightsPortableText";
+import { insightsAssetUrl } from "../../helpers/assets";
+import type { NationalCurriculumInsightsRouteData } from "../../helpers/getRouteData";
+import { nationalCurriculumInsightsPresentation } from "../../helpers/presentation";
+import { NationalCurriculumInsightsPortableText as PortableTextWithDefaults } from "../PortableText";
 
 import {
   ContextualSectionProps,

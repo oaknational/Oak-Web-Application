@@ -1,6 +1,6 @@
 import type { OakUiRoleToken } from "@oaknational/oak-components";
 
-import { insightsAssetUrl } from "./nationalCurriculumInsightsAssets";
+import { insightsAssetUrl } from "./assets";
 
 import {
   nationalCurriculumInsightsKeyStageFromSlug,

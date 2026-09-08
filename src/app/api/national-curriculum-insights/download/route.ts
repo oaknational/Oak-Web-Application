@@ -1,7 +1,7 @@
 import { format } from "date-fns";
 import * as z from "zod";
 
-import { getNationalCurriculumInsightsReader } from "@/app/(core)/teachers/national-curriculum-insights/[[...segments]]/getNationalCurriculumInsightsData";
+import { getNationalCurriculumInsightsReader } from "@/app/(core)/teachers/national-curriculum-insights/[[...segments]]/helpers/getRouteData";
 import {
   nationalCurriculumInsightsPhaseSchema,
   type NationalCurriculumInsightsPhase,

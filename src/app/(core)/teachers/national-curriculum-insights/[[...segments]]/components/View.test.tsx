@@ -1,8 +1,9 @@
 import { screen, within } from "@testing-library/react";
 
-import { localNationalCurriculumInsightsFixtures } from "./__fixtures__/nationalCurriculumInsights";
-import { NationalCurriculumInsightsView } from "./NationalCurriculumInsightsView";
-import { getNationalCurriculumInsightsRouteData } from "./getNationalCurriculumInsightsData";
+import { localNationalCurriculumInsightsFixtures } from "../__fixtures__/nationalCurriculumInsights";
+import { getNationalCurriculumInsightsRouteData } from "../helpers/getRouteData";
+
+import { NationalCurriculumInsightsView } from "./View";
 
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 import { parseNationalCurriculumInsightsRoute } from "@/common-lib/urls/nationalCurriculumInsights";

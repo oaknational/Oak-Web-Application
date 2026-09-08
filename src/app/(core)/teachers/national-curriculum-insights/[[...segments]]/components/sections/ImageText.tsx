@@ -5,6 +5,7 @@ import {
   getMediaQuery,
   OakBox,
   OakFlex,
+  OakGrid,
   OakHeading,
   OakImage,
   OakLink,
@@ -12,7 +13,7 @@ import {
 import { useId } from "react";
 import styled from "styled-components";
 
-import { NationalCurriculumInsightsPortableText as PortableTextWithDefaults } from "../NationalCurriculumInsightsPortableText";
+import { NationalCurriculumInsightsPortableText as PortableTextWithDefaults } from "../PortableText";
 
 import {
   ContextualSectionProps,
@@ -25,44 +26,14 @@ import {
   SectionMaxWidth,
 } from "./shared";
 
-const EditorialImage = styled(OakBox)`
-  width: 100%;
-  aspect-ratio: 16 / 10;
-  overflow: hidden;
-
-  @media (${getMediaQuery("desktop")}) {
-    width: 50%;
-  }
-`;
-
-const EditorialCopy = styled(OakFlex)`
-  width: 100%;
-
-  @media (${getMediaQuery("desktop")}) {
-    width: 50%;
-  }
-`;
-
 const editorialBackground = {
   white: "bg-primary",
   turquoise: "bg-decorative2-subdued",
   yellow: "bg-decorative5-very-subdued",
 } as const;
 
-const EditorialSection = styled(OakBox)`
-  @media (${getMediaQuery("desktop")}) {
-    min-height: 452px;
-    display: flex;
-    align-items: center;
-  }
-`;
-
 const GuidanceExplainerSection = styled(OakBox)`
-  box-sizing: border-box;
-
   @media (${getMediaQuery("desktop")}) {
-    min-height: 480px;
-    display: flex;
     align-items: center;
   }
 
@@ -72,18 +43,8 @@ const GuidanceExplainerSection = styled(OakBox)`
   }
 `;
 
-const GuidanceExplainerLayout = styled(OakBox)`
-  width: 100%;
-  max-width: 1218px;
-  display: grid;
-  grid-template-columns: minmax(0, 1fr);
-  gap: 40px;
-
+const GuidanceExplainerLayout = styled(OakGrid)`
   @media (${getMediaQuery("desktop")}) {
-    grid-template-columns: 684px minmax(0, 1fr);
-    grid-template-rows: auto auto;
-    column-gap: 40px;
-    row-gap: 40px;
     align-items: center;
   }
 
@@ -92,7 +53,6 @@ const GuidanceExplainerLayout = styled(OakBox)`
     max-width: 100%;
     grid-template-columns: minmax(0, 1fr);
     grid-template-rows: auto auto auto;
-    gap: 40px;
   }
 `;
 
@@ -109,11 +69,7 @@ const GuidanceExplainerHeading = styled(OakHeading)`
 `;
 
 const GuidanceExplainerImage = styled(OakBox)<{ $mirror?: boolean }>`
-  width: 269px;
-  max-width: 100%;
-  aspect-ratio: 332 / 259;
   justify-self: center;
-  overflow: hidden;
 
   img {
     transform: ${({ $mirror }) => ($mirror ? "scaleX(-1)" : "none")};
@@ -176,17 +132,35 @@ export const NationalCurriculumInsightsImageText = ({
     return (
       <GuidanceExplainerSection
         as="section"
+        $boxSizing="border-box"
+        $display={["block", "block", "flex"]}
+        $minHeight={[null, null, "spacing-480"]}
         $background="bg-decorative1-very-subdued"
         $ph="spacing-40"
         $pv={["spacing-48", "spacing-64", "spacing-40"]}
         aria-labelledby={headingId}
         data-insights-module="guidance-benefits"
       >
-        <GuidanceExplainerLayout $mh="auto">
+        <GuidanceExplainerLayout
+          $mh="auto"
+          $maxWidth="1218px"
+          $gridTemplateColumns={[
+            "minmax(0, 1fr)",
+            null,
+            "684px minmax(0, 1fr)",
+          ]}
+          $gridTemplateRows={[null, null, "auto auto"]}
+          $cg="spacing-40"
+          $rg="spacing-40"
+        >
           <GuidanceExplainerHeading tag="h2" id={headingId} $font="heading-5">
             {section.heading}
           </GuidanceExplainerHeading>
           <GuidanceExplainerImage
+            $width="269px"
+            $maxWidth="100%"
+            $aspectRatio="332 / 259"
+            $overflow="hidden"
             aria-hidden={section.image.isPresentational || undefined}
             $mirror={section.mirrorImage ?? false}
           >
@@ -210,8 +184,11 @@ export const NationalCurriculumInsightsImageText = ({
   }
 
   return (
-    <EditorialSection
+    <OakFlex
       as="section"
+      $display={["block", "block", "flex"]}
+      $minHeight={[null, null, "452px"]}
+      $alignItems="center"
       $background={editorialBackground[section.background]}
       $ph={["spacing-20", "spacing-40"]}
       $pv={["spacing-48", "spacing-64"]}
@@ -227,7 +204,10 @@ export const NationalCurriculumInsightsImageText = ({
           $alignItems="center"
           $gap={["spacing-32", "spacing-64"]}
         >
-          <EditorialImage
+          <OakBox
+            $width={["100%", "100%", "50%"]}
+            $aspectRatio="16 / 10"
+            $overflow="hidden"
             $borderRadius="border-radius-m2"
             aria-hidden={section.image.isPresentational || undefined}
           >
@@ -238,8 +218,12 @@ export const NationalCurriculumInsightsImageText = ({
               $height="100%"
               $objectFit="cover"
             />
-          </EditorialImage>
-          <EditorialCopy $flexDirection="column" $gap="spacing-24">
+          </OakBox>
+          <OakFlex
+            $width={["100%", "100%", "50%"]}
+            $flexDirection="column"
+            $gap="spacing-24"
+          >
             <OakHeading
               tag="h2"
               id={headingId}
@@ -256,9 +240,9 @@ export const NationalCurriculumInsightsImageText = ({
                 {section.ctaLabel}
               </OakLink>
             ) : null}
-          </EditorialCopy>
+          </OakFlex>
         </OakFlex>
       </SectionMaxWidth>
-    </EditorialSection>
+    </OakFlex>
   );
 };

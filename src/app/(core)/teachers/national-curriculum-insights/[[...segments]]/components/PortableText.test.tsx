@@ -1,6 +1,6 @@
 import { screen } from "@testing-library/react";
 
-import { NationalCurriculumInsightsPortableText } from "./NationalCurriculumInsightsPortableText";
+import { NationalCurriculumInsightsPortableText } from "./PortableText";
 
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 import errorReporter from "@/common-lib/error-reporter";
