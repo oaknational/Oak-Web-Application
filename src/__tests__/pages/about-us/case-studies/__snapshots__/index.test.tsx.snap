@@ -607,6 +607,55 @@ exports[`pages/about-us/case-studies/index.tsx renders content 1`] = `
           class="sc-aXZVg iebDQK"
         >
           <div
+            class="sc-aXZVg diJnZN"
+          >
+            <div
+              class="sc-aXZVg bZTQLO"
+            >
+              <div
+                class="sc-aXZVg sc-gEvEer fjNszh hPyKbx"
+              >
+                <div
+                  class="sc-aXZVg sc-gEvEer jPvJsJ daEtut"
+                >
+                  <h1
+                    class="sc-eldPxv kSQYKV"
+                  >
+                    <span
+                      class="sc-eqUAAy AfXps"
+                    >
+                      Case studies
+                    </span>
+                  </h1>
+                  <p
+                    class="sc-ikkxIA fPezaI"
+                  >
+                    Explore how schools and trusts are using Oak to tackle their biggest challenges
+                  </p>
+                </div>
+                <div
+                  class="sc-aXZVg sc-c5bbc7dd-0 jPvJsJ fXYulI"
+                >
+                  <span
+                    class="sc-aXZVg kSyyew"
+                  >
+                    <img
+                      alt=""
+                      class="sc-iGgWBj dZvqhO"
+                      data-nimg="fill"
+                      decoding="async"
+                      loading="lazy"
+                      sizes="100vw"
+                      src="http://localhost/_next/image?url=https%3A%2F%2FNEXT_PUBLIC_OAK_ASSETS_HOST%2FNEXT_PUBLIC_OAK_ASSETS_PATH%2Fv1788884308%2F647625e5e86caf2c5f0c1e48b25ea1ab6c77c4c8_vzw6ax.png&w=3840&q=75"
+                      srcset="/_next/image?url=https%3A%2F%2FNEXT_PUBLIC_OAK_ASSETS_HOST%2FNEXT_PUBLIC_OAK_ASSETS_PATH%2Fv1788884308%2F647625e5e86caf2c5f0c1e48b25ea1ab6c77c4c8_vzw6ax.png&w=640&q=75 640w, /_next/image?url=https%3A%2F%2FNEXT_PUBLIC_OAK_ASSETS_HOST%2FNEXT_PUBLIC_OAK_ASSETS_PATH%2Fv1788884308%2F647625e5e86caf2c5f0c1e48b25ea1ab6c77c4c8_vzw6ax.png&w=750&q=75 750w, /_next/image?url=https%3A%2F%2FNEXT_PUBLIC_OAK_ASSETS_HOST%2FNEXT_PUBLIC_OAK_ASSETS_PATH%2Fv1788884308%2F647625e5e86caf2c5f0c1e48b25ea1ab6c77c4c8_vzw6ax.png&w=828&q=75 828w, /_next/image?url=https%3A%2F%2FNEXT_PUBLIC_OAK_ASSETS_HOST%2FNEXT_PUBLIC_OAK_ASSETS_PATH%2Fv1788884308%2F647625e5e86caf2c5f0c1e48b25ea1ab6c77c4c8_vzw6ax.png&w=1080&q=75 1080w, /_next/image?url=https%3A%2F%2FNEXT_PUBLIC_OAK_ASSETS_HOST%2FNEXT_PUBLIC_OAK_ASSETS_PATH%2Fv1788884308%2F647625e5e86caf2c5f0c1e48b25ea1ab6c77c4c8_vzw6ax.png&w=1200&q=75 1200w, /_next/image?url=https%3A%2F%2FNEXT_PUBLIC_OAK_ASSETS_HOST%2FNEXT_PUBLIC_OAK_ASSETS_PATH%2Fv1788884308%2F647625e5e86caf2c5f0c1e48b25ea1ab6c77c4c8_vzw6ax.png&w=1920&q=75 1920w, /_next/image?url=https%3A%2F%2FNEXT_PUBLIC_OAK_ASSETS_HOST%2FNEXT_PUBLIC_OAK_ASSETS_PATH%2Fv1788884308%2F647625e5e86caf2c5f0c1e48b25ea1ab6c77c4c8_vzw6ax.png&w=2048&q=75 2048w, /_next/image?url=https%3A%2F%2FNEXT_PUBLIC_OAK_ASSETS_HOST%2FNEXT_PUBLIC_OAK_ASSETS_PATH%2Fv1788884308%2F647625e5e86caf2c5f0c1e48b25ea1ab6c77c4c8_vzw6ax.png&w=3840&q=75 3840w"
+                      style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                    />
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div
             class="sc-aXZVg bZTQLO"
           >
             <div
