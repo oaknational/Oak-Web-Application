@@ -147,6 +147,7 @@ export function AboutSharedHeader({
               $ph={"spacing-4"}
               style={{
                 lineHeight: 1.25,
+                WebkitBoxDecorationBreak: "clone",
                 boxDecorationBreak: "clone",
               }}
             >
