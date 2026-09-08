@@ -5,7 +5,7 @@ import { TeachWithOakHeader as Component } from "./TeachWithOakHeader";
 const meta = {
   component: Component,
   tags: ["autodocs"],
-  title: "Components/TeacherComponents/TeachWithOakHeader",
+  title: "App/TeachWithOak/TeachWithOakHeader",
   argTypes: {},
 } satisfies Meta<typeof Component>;
 

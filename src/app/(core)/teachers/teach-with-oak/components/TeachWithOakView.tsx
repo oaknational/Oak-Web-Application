@@ -1,12 +1,13 @@
 "use client";
 
+import { TeachWithOakDescription } from "./TeachWithOakDescription/TeachWithOakDescription";
+import { TeachWithOakHeader } from "./TeachWithOakHeader/TeachWithOakHeader";
+
 import { resolveOakHref } from "@/common-lib/urls";
 import {
   ExploreItem,
   WhoAreWeExplore,
 } from "@/components/GenericPagesComponents/WhoAreWeExplore";
-import { TeachWithOakDescription } from "@/components/TeacherComponents/TeachWithOakDescription/TeachWithOakDescription";
-import { TeachWithOakHeader } from "@/components/TeacherComponents/TeachWithOakHeader/TeachWithOakHeader";
 
 export const TeachWithOakView = ({
   backToLessonLink,
