@@ -27,7 +27,8 @@ module.exports = {
   testPathIgnorePatterns: [
     "(\\.|/)(fixtures?)\\.[jt]sx?$",
     "src/__tests__/__helpers__/*",
-    "src/tests/e2e/",
+    "src/__tests__/e2e/",
+    "src/__tests__/visual/",
     ".storybook/storybook.*.test.js$",
     ".netlify/*",
     ".yalc/*",
