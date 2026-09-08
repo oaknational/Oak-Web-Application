@@ -1,3 +1,16 @@
+# [1.1183.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1182.0...v1.1183.0) (2026-09-08)
+
+
+### Bug Fixes
+
+* lint error ([8c87791](https://github.com/oaknational/Oak-Web-Application/commit/8c877916c77d58ccee773a861d5ad9fe39a65de2))
+* remove link after clicking ([a3f8014](https://github.com/oaknational/Oak-Web-Application/commit/a3f80144db6e362a9d314f023356b53814b0ea4f))
+
+
+### Features
+
+* wrap link removal in a try catch and report error ([852509a](https://github.com/oaknational/Oak-Web-Application/commit/852509a1646bca093432296409d28c45bc48376f))
+
 # [1.1182.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1181.1...v1.1182.0) (2026-09-08)
 
 
