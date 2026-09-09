@@ -1,5 +1,6 @@
 "use client";
 
+import { ShortReads } from "./ShortReads/ShortReads";
 import { TeachWithOakDescription } from "./TeachWithOakDescription/TeachWithOakDescription";
 import { TeachWithOakHeader } from "./TeachWithOakHeader/TeachWithOakHeader";
 
@@ -18,6 +19,7 @@ export const TeachWithOakView = ({
     <>
       <TeachWithOakHeader href={backToLessonLink} />
       <TeachWithOakDescription />
+      <ShortReads />
       <WhoAreWeExplore
         title={"Explore more guidance from Oak"}
         items={exploreItems}
