@@ -10,7 +10,6 @@ import {
   OakSmallTertiaryInvertedButton,
   parseSpacing,
 } from "@oaknational/oak-components";
-import { ReactNode } from "react";
 import styled from "styled-components";
 
 import LessonOverviewPresentation from "@/components/TeacherComponents/LessonOverviewPresentation";
@@ -25,29 +24,7 @@ export const ShortReads = () => {
         $ph={["spacing-20", "spacing-40"]}
         $gap="spacing-56"
       >
-        <Header
-          title={
-            <OakHeading $font={["heading-4", "heading-3"]} tag="h2">
-              Short read guides
-            </OakHeading>
-          }
-          description={
-            <OakP>
-              Download the four short reads below to see the thinking behind
-              each, how they work together and how you might adapt and build on
-              them for your pupils.
-            </OakP>
-          }
-          downloadButton={
-            <OakPrimaryButton
-              iconName="download"
-              isTrailingIcon
-              aria-label="Opens in a new tab"
-            >
-              Download all guides
-            </OakPrimaryButton>
-          }
-        />
+        <ShortReadsHeader />
         <ShortReadSection
           title="Explanation at oak"
           description="This short guide explores Oak’s approach to explanation and the
@@ -79,38 +56,39 @@ export const ShortReads = () => {
   );
 };
 
-type HeaderProps = {
-  title: ReactNode;
-  description: ReactNode;
-  downloadButton: ReactNode;
-};
-
-const Header = ({ title, description, downloadButton }: HeaderProps) => {
+const ShortReadsHeader = () => {
   return (
-    <OakGrid $rg="spacing-8">
+    <OakGrid>
       <OakGridArea $colSpan={[12, 12, 8]} $order={1}>
-        {title}
+        <OakHeading $font={["heading-4", "heading-3"]} tag="h2">
+          Short read guides
+        </OakHeading>
       </OakGridArea>
       <OakGridArea
         $colSpan={[12, 12, 4]}
         $colStart={[1, 1, 9]}
         $alignItems={["flex-start", "flex-start", "flex-end"]}
         $order={[3, 3, 1]}
-        $pt={["spacing-0", "spacing-24", "spacing-0"]}
       >
-        {downloadButton}
+        <OakBox $pt="spacing-24">
+          <OakPrimaryButton
+            iconName="download"
+            isTrailingIcon
+            aria-label="Opens in a new tab"
+          >
+            Download all guides
+          </OakPrimaryButton>
+        </OakBox>
       </OakGridArea>
       <OakGridArea $colSpan={[12, 12, 8]} $order={[2, 2, 1]}>
-        {description}
+        <OakP>
+          Download the four short reads below to see the thinking behind each,
+          how they work together and how you might adapt and build on them for
+          your pupils.
+        </OakP>
       </OakGridArea>
     </OakGrid>
   );
-};
-
-type ShortReadHeaderProps = {
-  title: string;
-  description: string;
-  shortReadType: string;
 };
 
 const ShortReadDownloadButton = styled(OakSmallTertiaryInvertedButton)`
@@ -124,26 +102,40 @@ const ShortReadSection = ({
   description,
   shortReadType,
   assetUrl,
-}: ShortReadHeaderProps & { assetUrl: string }) => {
+}: {
+  title: string;
+  description: string;
+  shortReadType: string;
+  assetUrl: string;
+}) => {
   return (
     <OakFlex $flexDirection="column" $gap="spacing-24">
-      <Header
-        title={
+      <OakGrid $rg="spacing-8">
+        <OakGridArea $colSpan={[12, 12, 8]} $order={1}>
           <OakHeading $font={["heading-5", "heading-4"]} tag="h3">
             {title}
           </OakHeading>
-        }
-        downloadButton={
-          <ShortReadDownloadButton
-            iconName="download"
-            isTrailingIcon
-            aria-label="Opens in a new tab"
-          >
-            {`Download ${shortReadType} guide (PDF)`}
-          </ShortReadDownloadButton>
-        }
-        description={<OakP>{description}</OakP>}
-      />
+        </OakGridArea>
+        <OakGridArea
+          $colSpan={[12, 12, 4]}
+          $colStart={[1, 1, 9]}
+          $alignItems={["flex-start", "flex-start", "flex-end"]}
+          $order={[2, 3, 1]}
+        >
+          <OakBox $pt="spacing-16">
+            <ShortReadDownloadButton
+              iconName="download"
+              isTrailingIcon
+              aria-label="Opens in a new tab"
+            >
+              {`Download ${shortReadType} guide (PDF)`}
+            </ShortReadDownloadButton>
+          </OakBox>
+        </OakGridArea>
+        <OakGridArea $colSpan={[12, 12, 8]} $order={[3, 2, 1]}>
+          <OakP>{description}</OakP>
+        </OakGridArea>
+      </OakGrid>
       <LessonOverviewPresentation asset={assetUrl} title={title} isWorksheet />
     </OakFlex>
   );
