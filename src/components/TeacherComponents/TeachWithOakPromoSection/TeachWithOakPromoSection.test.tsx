@@ -2,9 +2,9 @@ import { screen } from "@testing-library/react";
 
 import { TeachWithOakPromoSection } from "./TeachWithOakPromoSection";
 
-import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
+import { renderWithProvidersByName } from "@/__tests__/__helpers__/renderWithProviders";
 
-const render = renderWithProviders();
+const render = renderWithProvidersByName(["oakTheme"]);
 
 describe("TeachWithOakPromoSection", () => {
   it("renders correctly", () => {

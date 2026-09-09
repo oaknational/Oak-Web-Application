@@ -3,162 +3,60 @@
 exports[`TeachWithOakPromoSection renders correctly 1`] = `
 <div>
   <div
-    data-overlay-container="true"
+    class="sc-aXZVg sc-778d9aeb-0 geRGAW hclmKG"
   >
     <div
-      class="sc-aXZVg sc-91982fef-0 geRGAW crCQtX"
+      class="sc-aXZVg sc-fTFjTM iETyDq fPhXjy"
     >
-      <div
-        class="sc-aXZVg sc-fTFjTM iETyDq fPhXjy"
-      >
-        <a
-          class="sc-aXZVg sc-gEvEer sc-kbousE eyLmQc dXoawi iNGAcO"
-          href="/teachers/teach-with-oak"
-        >
-          <div
-            class="sc-aXZVg sc-gEvEer sc-eyvILC jPvJsJ jFNgPm"
-          >
-            <div
-              class="sc-aXZVg sc-gEvEer jPvJsJ fVNIMq"
-            >
-              <h3
-                class="sc-eldPxv ibGcSM"
-              >
-                Ever wondered why our lessons are structured this way?
-              </h3>
-              <p
-                class="sc-ikkxIA gOgHZF"
-              >
-                See how explanation, checks for understanding, practice and feedback work together to support pupils' learning.
-              </p>
-            </div>
-            <div
-              class="sc-aXZVg sc-gEvEer jPvJsJ bRjxks"
-            >
-              <div
-                class="sc-aXZVg sc-gEvEer jPvJsJ uEMma"
-              >
-                <span
-                  class="sc-eqUAAy dECBeo"
-                >
-                  See the thinking
-                </span>
-                <span
-                  class="sc-aXZVg jJQFnr"
-                >
-                  <img
-                    alt=""
-                    class="sc-iGgWBj cMzyFO"
-                    data-nimg="fill"
-                    decoding="async"
-                    loading="lazy"
-                    src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1707149070/icons/fv0z57zerrioft52dd9n.svg"
-                    style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
-                  />
-                </span>
-              </div>
-            </div>
-          </div>
-        </a>
-      </div>
-    </div>
-    <div
-      aria-live="polite"
-      class="sc-aXZVg sc-gEvEer sc-372e3d03-0 huaWfm hpzNYH fYWdOt"
-    />
-  </div>
-  <div
-    class="sc-aXZVg ehCqNw"
-  >
-    <div
-      class="sc-aXZVg hdJUDP"
-      data-testid="cookie-banner"
-    >
-      <div
-        class="sc-aXZVg hKtyTC"
+      <a
+        class="sc-aXZVg sc-gEvEer sc-kbousE eyLmQc dXoawi iNGAcO"
+        href="/teachers/teach-with-oak"
       >
         <div
-          class="sc-aXZVg sc-gEvEer gfKbxO hPCrxg"
+          class="sc-aXZVg sc-gEvEer sc-eyvILC jPvJsJ jFNgPm"
         >
           <div
-            class="sc-aXZVg bURnqS"
+            class="sc-aXZVg sc-gEvEer jPvJsJ fVNIMq"
           >
-            <strong
-              class="sc-eqUAAy jPKsIw"
+            <h3
+              class="sc-eldPxv ibGcSM"
             >
-              This site uses cookies to store information on your computer.
-            </strong>
-             
-            Some of these cookies are essential, while others help us to improve your experience by providing insights into how the site is being used.
+              Ever wondered why our lessons are structured this way?
+            </h3>
+            <p
+              class="sc-ikkxIA gOgHZF"
+            >
+              See how explanation, checks for understanding, practice and feedback work together to support pupils' learning.
+            </p>
           </div>
           <div
-            class="sc-aXZVg sc-gEvEer jPvJsJ buEORy"
+            class="sc-aXZVg sc-gEvEer jPvJsJ bRjxks"
           >
             <div
-              class="sc-aXZVg sc-gEvEer eapQdf uEMma"
+              class="sc-aXZVg sc-gEvEer jPvJsJ uEMma"
             >
-              <button
-                class="sc-fHjqPf kaaNKh"
-                data-testid="cookie-banner-reject"
-                type="button"
+              <span
+                class="sc-eqUAAy dECBeo"
               >
-                <span
-                  class="sc-eqUAAy iGfTGj"
-                >
-                  Reject non-essential cookies
-                </span>
-              </button>
-            </div>
-            <div
-              class="sc-aXZVg sc-kpDqfm bhFzn cvxBYX"
-            >
-              <div
-                class="sc-aXZVg kpXzs grey-shadow"
-              />
-              <div
-                class="sc-aXZVg kpXzs yellow-shadow"
-              />
-              <button
-                class="sc-dcJsrY sc-jXbUNg bALQkH khQbhv internal-button"
+                See the thinking
+              </span>
+              <span
+                class="sc-aXZVg jJQFnr"
               >
-                <div
-                  class="sc-aXZVg sc-gEvEer jPvJsJ krHAKs"
-                >
-                  <span
-                    class="sc-eqUAAy edqVpV"
-                  >
-                    Cookie settings
-                  </span>
-                </div>
-              </button>
-            </div>
-            <div
-              class="sc-aXZVg sc-kpDqfm bhFzn cvxBYX"
-            >
-              <div
-                class="sc-aXZVg kpXzs grey-shadow"
-              />
-              <div
-                class="sc-aXZVg kpXzs yellow-shadow"
-              />
-              <button
-                class="sc-dcJsrY sc-jXbUNg cLXsQH dglRoS internal-button"
-                data-testid="cookie-banner-accept"
-              >
-                <div
-                  class="sc-aXZVg sc-gEvEer jPvJsJ krHAKs"
-                >
-                  <span
-                    class="sc-eqUAAy edqVpV"
-                  >
-                    Accept all cookies
-                  </span>
-                </div>
-              </button>
+                <img
+                  alt=""
+                  class="sc-iGgWBj cMzyFO"
+                  data-nimg="fill"
+                  decoding="async"
+                  loading="lazy"
+                  src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1707149070/icons/fv0z57zerrioft52dd9n.svg"
+                  style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                />
+              </span>
             </div>
           </div>
         </div>
-      </div>
+      </a>
     </div>
   </div>
 </div>
