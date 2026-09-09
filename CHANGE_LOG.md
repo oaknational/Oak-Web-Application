@@ -1,3 +1,72 @@
+## [1.1184.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.1184.1...v1.1184.2) (2026-09-09)
+
+
+### Bug Fixes
+
+* correct the spacing in the promo banner on the homepage ([a454a01](https://github.com/oaknational/Oak-Web-Application/commit/a454a014206b0c791663accf5d53178d10c1833d))
+
+## [1.1184.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.1184.0...v1.1184.1) (2026-09-08)
+
+# [1.1184.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1183.0...v1.1184.0) (2026-09-08)
+
+
+### Bug Fixes
+
+* fix text spacing on safari ([9f1a205](https://github.com/oaknational/Oak-Web-Application/commit/9f1a2058657c5ac651828defe34e91b8230bb268))
+* rename to fix broken story ([92a770f](https://github.com/oaknational/Oak-Web-Application/commit/92a770f46910dc42f1bbfab0569bb3d3210dd89b))
+
+
+### Features
+
+* add forgotten href ([5ecb6b0](https://github.com/oaknational/Oak-Web-Application/commit/5ecb6b06be269b398c598ca6d99f891f4a881274))
+* add image alt property ([64dd175](https://github.com/oaknational/Oak-Web-Application/commit/64dd175b7c749665416073e08e9c87bd290b333d))
+* add property for back button label ([d1cd8c3](https://github.com/oaknational/Oak-Web-Application/commit/d1cd8c3ac340ea1956c3f05fc25d103946fd0b43))
+* add teach with oak header component ([097b140](https://github.com/oaknational/Oak-Web-Application/commit/097b14027cac6a25ab133c0a63923706c6acffad))
+* amend flex direction for collapsing image, fix some types and spacing ([dc36f51](https://github.com/oaknational/Oak-Web-Application/commit/dc36f51c2d8df4e6e713b14e4cca098141fb0847))
+* amend placeholder width and show on collapse ([d124f57](https://github.com/oaknational/Oak-Web-Application/commit/d124f5738f485d4b29441f8b18a4cd144eebf890))
+* change placeholder image to use cloudinary ([0a7539c](https://github.com/oaknational/Oak-Web-Application/commit/0a7539cd984512804ac625a087bd5d6107fb6742))
+* keep even width ([3fec0ca](https://github.com/oaknational/Oak-Web-Application/commit/3fec0caa17ab4b765a25bcb56ee33eecd195f981))
+* make oaks impact header re-usable ([e51c237](https://github.com/oaknational/Oak-Web-Application/commit/e51c2374453d7923cea183414097826dbdb478c8))
+* remove changes to oaks impact header ([72f11b7](https://github.com/oaknational/Oak-Web-Application/commit/72f11b77fd69d9c4fa23141abe6b59f522d6ba6d))
+* remove styled and fix overlap ([e99992d](https://github.com/oaknational/Oak-Web-Application/commit/e99992d9502d70f1a4102ea289af05c0b0b79ea5))
+* update storybook with photo story for header ([6622b4c](https://github.com/oaknational/Oak-Web-Application/commit/6622b4ce3c3e7c194a6c9e0d3927f43094604d0c))
+* workaround image border and spacing ([59eb9e6](https://github.com/oaknational/Oak-Web-Application/commit/59eb9e6e04d95d01bd81d29dfa3c7f96b5614679))
+
+# [1.1183.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1182.0...v1.1183.0) (2026-09-08)
+
+
+### Bug Fixes
+
+* lint error ([8c87791](https://github.com/oaknational/Oak-Web-Application/commit/8c877916c77d58ccee773a861d5ad9fe39a65de2))
+* remove link after clicking ([a3f8014](https://github.com/oaknational/Oak-Web-Application/commit/a3f80144db6e362a9d314f023356b53814b0ea4f))
+
+
+### Features
+
+* wrap link removal in a try catch and report error ([852509a](https://github.com/oaknational/Oak-Web-Application/commit/852509a1646bca093432296409d28c45bc48376f))
+
+# [1.1182.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1181.1...v1.1182.0) (2026-09-08)
+
+
+### Bug Fixes
+
+* include GCSE on programmes with tier only ([08ffdd8](https://github.com/oaknational/Oak-Web-Application/commit/08ffdd81afcb1b165366d35bcaf8e2d847ed44ce))
+
+
+### Features
+
+* add gcse to lesson page meta titles ([a240fc1](https://github.com/oaknational/Oak-Web-Application/commit/a240fc1b15315626b15e8d0f7feb983836f2663b))
+* add gcse to unit page meta title ([b04261b](https://github.com/oaknational/Oak-Web-Application/commit/b04261b97698ea60d0094a776788b7ccfb318a34))
+* update programme page meta titles to include GCSE ([313527f](https://github.com/oaknational/Oak-Web-Application/commit/313527f3b27f04e098b79dfec721e4cc286aa6ae))
+* use pathway to determine gcseSegment on unit and lesson pages ([f8d85dc](https://github.com/oaknational/Oak-Web-Application/commit/f8d85dcfc4570e1601b677890a6612152d1ec2d4))
+
+## [1.1181.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.1181.0...v1.1181.1) (2026-09-07)
+
+
+### Bug Fixes
+
+* add missing assertion ([c87df55](https://github.com/oaknational/Oak-Web-Application/commit/c87df55c31e8198ce0238022c0b654e1d5f0913d))
+
 # [1.1181.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1180.4...v1.1181.0) (2026-09-07)
 
 
