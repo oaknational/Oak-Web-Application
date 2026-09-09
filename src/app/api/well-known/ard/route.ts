@@ -29,15 +29,26 @@
 const ARD_CONTENT_TYPE = "application/ai-catalog+json";
 
 /**
- * The MCP server card, inline.
+ * The MCP server description, inline.
  *
- * `data` rather than `url` because Oak's MCP server publishes no server card
- * document — measured 2026-09-09, every conventional path 404s. Spec §4.3
- * allows exactly one of `url` or `data`, so inlining the card is the honest
- * option; a `url` would point at a document that does not exist.
+ * There is deliberately NO server card URL here. Measured 2026-09-09:
+ *
+ * - The MCP working group's own discovery document lists all three
+ *   `.well-known` server-card paths under "Alternatives considered … not
+ *   recommended", so publishing one there would adopt a rejected placement.
+ * - The reserved location is `<streamable-http-url>/server-card`. Oak does not
+ *   serve it: `https://mcp.thenational.academy/mcp/server-card` answers 406
+ *   `{"error":"Accept header must include text/event-stream"}` for every Accept
+ *   header including `*\/*`, which is the streamable-HTTP transport catching
+ *   the path — not a card route.
+ *
+ * So the entry names the MCP endpoint itself, carried inline via `data`. Spec
+ * §4.3 allows exactly one of `url` or `data`, and `data` is the only one that
+ * can name the endpoint truthfully: a `url` of the same media type would have
+ * to dereference to a card document, and no such document exists.
  *
  * Field set mirrors the live cards published by github.com and huggingface.co.
- * `$schema` is deliberately omitted: both live cards point at
+ * `$schema` is omitted because both of those point at
  * `static.modelcontextprotocol.io/schemas/v1/server-card.schema.json`, which
  * returns 404. `version` is omitted because this server does not publish one,
  * and inventing it would be fabricated metadata.
@@ -94,10 +105,16 @@ const ardManifest = {
     {
       identifier: "urn:air:thenational.academy:api:curriculum",
       displayName: "Oak Curriculum Open API",
-      type: "application/vnd.oai.openapi+json",
-      url: "https://open-api.thenational.academy/api/v0/swagger.json",
+      // The RFC 9727 catalogue hosted BY the API, not the copy on www.
+      // Measured 2026-09-09, the two disagree: this one carries both
+      // `/api/v0` and `/api/bulk`, while www's lists only the v0 host. The
+      // drift is tracked as MCP-721 and is not fixed here. Pointing at the
+      // catalogue rather than a single OpenAPI document also means this entry
+      // stays true as Oak's API surface grows.
+      type: 'application/linkset+json; profile="https://www.rfc-editor.org/info/rfc9727"',
+      url: "https://open-api.thenational.academy/.well-known/api-catalog",
       description:
-        "OpenAPI description of Oak's public curriculum REST API — programmes, units, lessons and their downloadable teaching resources, published under the Open Government Licence.",
+        "Catalogue of Oak's public curriculum REST API — the versioned lesson and unit endpoints and the bulk download surface, with their OpenAPI descriptions, documentation and playground. Curriculum content is published under the Open Government Licence.",
       tags: ["oak", "curriculum", "education", "api", "openapi"],
       representativeQueries: [
         "what lessons does Oak have for year 5 maths",

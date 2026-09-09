@@ -56,13 +56,14 @@ describe("/.well-known/ard.json", () => {
 
     expect(mcp).toBeDefined();
     expect(mcp.type).toBe("application/mcp-server-card+json");
-    // Inline because the MCP server publishes no server card document. A `url`
-    // here would point at a 404.
+    // Inline, and deliberately carrying no server card URL: the `.well-known`
+    // card paths are a rejected placement, and the reserved
+    // `<streamable-http-url>/server-card` location is not served by Oak.
     expect(mcp.url).toBeUndefined();
     expect(mcp.data.remotes[0].url).toBe("https://mcp.thenational.academy/mcp");
   });
 
-  it("advertises the curriculum API by its OpenAPI document, not its base URL", async () => {
+  it("advertises the curriculum API by the catalogue the API itself hosts", async () => {
     const response = GET();
     const body = await response.json();
 
@@ -72,11 +73,14 @@ describe("/.well-known/ard.json", () => {
     );
 
     expect(api).toBeDefined();
-    expect(api.type).toBe("application/vnd.oai.openapi+json");
-    // `url` must dereference to a document of the declared type. The API's
-    // base URL serves HTML, so pointing there would misdescribe the artifact.
+    expect(api.type).toContain("application/linkset+json");
+
+    // Pinned to the API-hosted catalogue, not www's copy. Measured 2026-09-09
+    // the two disagree — this one carries `/api/bulk`, www's does not — so
+    // swapping the host here would silently narrow what Oak advertises.
+    // MCP-721 tracks the drift.
     expect(api.url).toBe(
-      "https://open-api.thenational.academy/api/v0/swagger.json",
+      "https://open-api.thenational.academy/.well-known/api-catalog",
     );
   });
 });
