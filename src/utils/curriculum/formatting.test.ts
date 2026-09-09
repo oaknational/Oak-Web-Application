@@ -558,8 +558,8 @@ describe("getPhaseFromCategory", () => {
 describe("getPathwaySuffix", () => {
   it("should display nothing for non-ks4 years", () => {
     for (let year = 1; year < 10; year++) {
-      expect(getPathwaySuffix(`${year}`, "core")).toEqual(undefined);
-      expect(getPathwaySuffix(`${year}`, "non_core")).toEqual(undefined);
+      expect(getPathwaySuffix(`${year}`, "core")).toBeUndefined();
+      expect(getPathwaySuffix(`${year}`, "non_core")).toBeUndefined();
     }
   });
   it("should display nothing for non-ks4 years", () => {
