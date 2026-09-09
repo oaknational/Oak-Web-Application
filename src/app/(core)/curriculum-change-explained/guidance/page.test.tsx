@@ -1,7 +1,10 @@
 /** @jest-environment node */
 import { draftMode } from "next/headers";
 
-import CurriculumChangeGuidancePage, { generateMetadata } from "./page";
+import CurriculumChangeGuidancePage, {
+  dynamic,
+  generateMetadata,
+} from "./page";
 
 import { getNationalCurriculumInsightsRouteData } from "@/app/(core)/teachers/national-curriculum-insights/[[...segments]]/helpers/getRouteData";
 
@@ -21,6 +24,10 @@ jest.mock(
 );
 
 describe("curriculum change guidance route", () => {
+  it("renders at request time without a loading page", () => {
+    expect(dynamic).toBe("force-dynamic");
+  });
+
   beforeEach(() => {
     jest.clearAllMocks();
     jest.mocked(draftMode).mockResolvedValue({

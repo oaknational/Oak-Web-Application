@@ -6,6 +6,8 @@ import { getNationalCurriculumInsightsRouteData } from "@/app/(core)/teachers/na
 import { NationalCurriculumInsightsView } from "@/app/(core)/teachers/national-curriculum-insights/[[...segments]]/components/View";
 import { nationalCurriculumInsightsGuidanceHref } from "@/common-lib/urls/nationalCurriculumInsights";
 
+export const dynamic = "force-dynamic";
+
 export const generateMetadata = async (): Promise<Metadata> => {
   const { isEnabled: previewMode } = await draftMode();
   return {
