@@ -15,43 +15,90 @@ let input = '';
 process.stdin.on('data', (d) => (input += d));
 process.stdin.on('end', () => {
   const data = JSON.parse(input);
-  const vulns = data.vulnerabilities || {};
+  const sevOrder = { critical: 0, high: 1, moderate: 2, low: 3, info: 4 };
+  const fixOrder = { 'auto-fixable': 0, 'breaking fix': 1, 'no fix': 2 };
+  const worseFix = (a, b) => (fixOrder[a] <= fixOrder[b] ? b : a);
+  const worseSev = (a, b) => ((sevOrder[a] ?? 5) <= (sevOrder[b] ?? 5) ? a : b);
 
-  if (Object.keys(vulns).length === 0) {
+  let rows;
+
+  if (data.vulnerabilities) {
+    // npm v7+ shape: { vulnerabilities: { <pkg>: { severity, fixAvailable, via, range } } }
+    rows = Object.entries(data.vulnerabilities).map(([name, info]) => {
+      let fixType;
+      if (info.fixAvailable === true) {
+        fixType = 'auto-fixable';
+      } else if (info.fixAvailable && typeof info.fixAvailable === 'object') {
+        fixType = info.fixAvailable.isSemVerMajor ? 'breaking fix' : 'auto-fixable';
+      } else {
+        fixType = 'no fix';
+      }
+
+      const via = Array.isArray(info.via)
+        ? info.via.map((v) => (typeof v === 'string' ? v : v.title || v.url || 'unknown')).join(', ')
+        : String(info.via);
+
+      return {
+        name,
+        severity: info.severity || 'info',
+        fixType,
+        via: via.length > 50 ? via.slice(0, 47) + '...' : via,
+        range: info.range || '',
+      };
+    });
+  } else if (data.advisories) {
+    // pnpm / npm v6 shape: { advisories: { <id>: { module_name, severity, title, vulnerable_versions, patched_versions, findings } } }
+    const major = (v) => parseInt(String(v).match(/\d+/)?.[0] ?? 'NaN', 10);
+    const majorsIn = (range) => [...String(range).matchAll(/\d+\.\d+\.\d+/g)].map((m) => major(m[0]));
+
+    const fixTypeOf = (adv) => {
+      if (!adv.patched_versions || adv.patched_versions === '<0.0.0') return 'no fix';
+      const patchedMajors = majorsIn(adv.patched_versions);
+      const installedMajors = (adv.findings || []).map((f) => major(f.version));
+      if (installedMajors.length === 0) return patchedMajors.length ? 'auto-fixable' : 'no fix';
+      const allNonBreaking = installedMajors.every((m) => patchedMajors.includes(m));
+      return allNonBreaking ? 'auto-fixable' : 'breaking fix';
+    };
+
+    const groups = new Map();
+    for (const adv of Object.values(data.advisories)) {
+      const key = adv.module_name;
+      const fixType = fixTypeOf(adv);
+      if (!groups.has(key)) {
+        groups.set(key, {
+          name: key,
+          severity: adv.severity || 'info',
+          fixType,
+          titles: new Set([adv.title]),
+          ranges: new Set([adv.vulnerable_versions]),
+        });
+      } else {
+        const g = groups.get(key);
+        g.severity = worseSev(g.severity, adv.severity || 'info');
+        g.fixType = worseFix(g.fixType, fixType);
+        g.titles.add(adv.title);
+        g.ranges.add(adv.vulnerable_versions);
+      }
+    }
+
+    rows = [...groups.values()].map((g) => {
+      const via = [...g.titles].join(', ');
+      return {
+        name: g.name,
+        severity: g.severity,
+        fixType: g.fixType,
+        via: via.length > 50 ? via.slice(0, 47) + '...' : via,
+        range: [...g.ranges].join(', '),
+      };
+    });
+  } else {
+    rows = [];
+  }
+
+  if (rows.length === 0) {
     console.log('✅ No vulnerabilities found.');
     process.exit(0);
   }
-
-  const sevOrder = { critical: 0, high: 1, moderate: 2, low: 3, info: 4 };
-
-  const rows = Object.entries(vulns).map(([name, info]) => {
-    let fixType;
-    if (info.fixAvailable === true) {
-      fixType = 'auto-fixable';
-    } else if (info.fixAvailable && typeof info.fixAvailable === 'object') {
-      if (info.fixAvailable.isSemVerMajor) {
-        fixType = 'breaking fix';
-      } else {
-        fixType = 'auto-fixable';
-      }
-    } else {
-      fixType = 'no fix';
-    }
-
-    const via = Array.isArray(info.via)
-      ? info.via.map((v) => (typeof v === 'string' ? v : v.title || v.url || 'unknown')).join(', ')
-      : String(info.via);
-
-    return {
-      name,
-      severity: info.severity || 'info',
-      fixType,
-      via: via.length > 50 ? via.slice(0, 47) + '...' : via,
-      range: info.range || '',
-    };
-  });
-
-  const fixOrder = { 'auto-fixable': 0, 'breaking fix': 1, 'no fix': 2 };
 
   rows.sort((a, b) => {
     const fixDiff = fixOrder[a.fixType] - fixOrder[b.fixType];
