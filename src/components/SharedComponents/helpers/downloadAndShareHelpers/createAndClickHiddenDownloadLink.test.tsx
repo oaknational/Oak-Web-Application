@@ -96,7 +96,7 @@ describe("createAndClickHiddenDownloadLink()", () => {
       });
 
       expect(click).toHaveBeenCalledTimes(1);
-      expect(getDownloadLink()).toBeNull();
+      expect(document.getElementById("resource-download-link")).toBeNull();
       click.mockRestore();
     },
   );
@@ -115,7 +115,7 @@ describe("createAndClickHiddenDownloadLink()", () => {
 
     expect(windowOpenSpy).not.toHaveBeenCalled();
     expect(click).toHaveBeenCalledTimes(1);
-    expect(getDownloadLink()).toBeNull();
+    expect(document.getElementById("resource-download-link")).toBeNull();
     click.mockRestore();
   });
 
@@ -132,7 +132,7 @@ describe("createAndClickHiddenDownloadLink()", () => {
         openInNewTabWhenEmbedded: false,
       }),
     ).toThrow("Download failed");
-    expect(getDownloadLink()).toBeNull();
+    expect(document.getElementById("resource-download-link")).toBeNull();
     click.mockRestore();
   });
 });

@@ -42,10 +42,10 @@ export const Hub: Story = {
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
     const first = canvas.getByRole("button", {
-      name: "What does this page cover?",
+      name: /^What does this page cover\?/,
     });
     const second = canvas.getByRole("button", {
-      name: "Can I download the guidance?",
+      name: /^Can I download the guidance\?/,
     });
     await expect(first).toHaveAttribute("aria-expanded", "true");
     await expect(second).toHaveAttribute("aria-expanded", "false");
