@@ -1,3 +1,17 @@
+# [1.1185.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1184.3...v1.1185.0) (2026-09-09)
+
+
+### Features
+
+* make downloads accordion open by default ([f7675cc](https://github.com/oaknational/Oak-Web-Application/commit/f7675ccfa61ac7859025e9e6d5614da14769eef5))
+
+## [1.1184.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.1184.2...v1.1184.3) (2026-09-09)
+
+
+### Bug Fixes
+
+* sonarcloud lodash isArray(...) to Array.isArray(...) ([2110a72](https://github.com/oaknational/Oak-Web-Application/commit/2110a72b60bcbfffc8050ea205fef244f751f930))
+
 ## [1.1184.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.1184.1...v1.1184.2) (2026-09-09)
 
 

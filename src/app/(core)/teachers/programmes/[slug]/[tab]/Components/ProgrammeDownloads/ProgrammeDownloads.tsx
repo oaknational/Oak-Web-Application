@@ -351,6 +351,7 @@ export const ProgrammeDownloads = ({
                 triggerForm={form.trigger}
                 validationSummaryKey={form.submitCount}
                 apiError={submitError}
+                initialOpen={true}
                 cardGroup={
                   <OakFlex $gap={"spacing-32"} $flexDirection={"column"}>
                     {curriculumDownloadsWithLabels.length > 0 && (
