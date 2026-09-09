@@ -1,4 +1,3 @@
-import { execSync } from "child_process";
 import { existsSync, readFileSync } from "node:fs";
 
 /**
