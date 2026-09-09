@@ -1784,7 +1784,7 @@ exports[`pages/about-us/oaks-impact.tsx renders title 1`] = `
           id="site-footer"
         >
           <div
-            class="sc-aXZVg sc-gEvEer sc-brPLxw leSQlB iqPJZh"
+            class="sc-aXZVg sc-gEvEer sc-brPLxw eVqnXU iqPJZh"
           >
             <div
               class="sc-aXZVg sc-tagGq jPvJsJ fNndNZ"
@@ -2480,7 +2480,7 @@ exports[`pages/about-us/oaks-impact.tsx renders title 1`] = `
               </div>
             </div>
             <span
-              class="sc-aXZVg kvjdhA sc-47b54219-0 hJhbMg"
+              class="sc-aXZVg kvjdhA sc-38d94766-0 cySckz"
               data-percy-hide="contents"
             >
               <img
@@ -2660,19 +2660,6 @@ exports[`pages/about-us/oaks-impact.tsx renders title 1`] = `
             decoding="async"
             loading="lazy"
             src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1734537015/OWA/ui-graphics/looping-line-3_b8dque.svg"
-            style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
-          />
-        </span>
-        <span
-          class="sc-aXZVg dtaJPf"
-        >
-          <img
-            alt=""
-            class="sc-iGgWBj Ozuza"
-            data-nimg="fill"
-            decoding="async"
-            loading="lazy"
-            src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1734537039/OWA/ui-graphics/looping-line-4_xtjj4r.svg"
             style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
           />
         </span>
