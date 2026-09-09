@@ -3,9 +3,10 @@
 import type { PortableTextComponents } from "@portabletext/react";
 import {
   getBreakpoint,
-  OakBox,
   OakFlex,
+  OakFlexProps,
   OakLI,
+  OakMaxWidth,
   OakP,
 } from "@oaknational/oak-components";
 import styled from "styled-components";
@@ -61,6 +62,19 @@ export const portableTextComponents: PortableTextComponents = {
 };
 
 export const guidancePortableTextComponents: PortableTextComponents = {
+  list: {
+    bullet: ({ children }) => (
+      <OakFlex
+        as="ul"
+        $flexDirection="column"
+        $gap="spacing-12"
+        $ma="spacing-0"
+        $pl="spacing-24"
+      >
+        {children}
+      </OakFlex>
+    ),
+  },
   block: {
     normal: ({ children }) => (
       <OakP $font="body-1" $mv="spacing-0">
@@ -73,12 +87,11 @@ export const guidancePortableTextComponents: PortableTextComponents = {
   },
 };
 
-export const SectionMaxWidth = styled(OakBox)`
-  width: 100%;
-  max-width: 1221px;
-`;
+export const SectionMaxWidth = styled(OakMaxWidth).attrs({
+  $maxWidth: "spacing-1280",
+  $ph: ["spacing-0", "spacing-0", "spacing-32"],
+})``;
 
-export const InsightsContentMaxWidth = styled(OakFlex)`
-  width: 100%;
-  max-width: 956px;
-`;
+export const InsightsContentMaxWidth = (props: OakFlexProps) => (
+  <OakFlex $width="100%" $maxWidth="spacing-960" {...props} />
+);

@@ -32,3 +32,5 @@ overrides:
   "@xmldom/xmldom": ">=0.8.13"
   "@grpc/grpc-js": ">=1.13.5"
   js-cookie: ">=3.0.8"
+patchedDependencies:
+  '@oaknational/oak-components@3.9.0': patches/@oaknational__oak-components@3.9.0.patch

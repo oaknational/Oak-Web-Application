@@ -1,0 +1,26 @@
+diff --git a/dist/npm/cjs/index.js b/dist/npm/cjs/index.js
+index e7a03eebf3c1cf4900786485d588d9e500e51de1..2f928ab9a5bb75d4b32bbaeccee20971983d3d0e 100644
+--- a/dist/npm/cjs/index.js
++++ b/dist/npm/cjs/index.js
+@@ -3058,8 +3058,6 @@ function OakSelect(_a) {
+     }
+     return (React__default.default.createElement(StyledWrapper, { "$display": $display, "$position": "relative", "$alignItems": "center", "$gap": "spacing-16" },
+         React__default.default.createElement(NativeSelect, { key: props.value, "$pa": "spacing-16", "$background": finalBackgroundColor, "$borderColor": finalBorderColor, "$pr": "spacing-56", "$focusRingDropShadows": focusRingDropShadows, "$ba": "border-solid-m", disabled: !!props.disabled, "$borderRadius": "border-radius-s", "$hoverBackground": hoverBackground, "$disabledBackgroundColor": disabledBackgroundColor, "$readOnlyBorderColor": finalReadOnlyBorderColor, "$disabledColor": disabledColor, "$readOnlyColor": readOnlyColor, "$color": color, "$disabled": !!props.disabled, "$readOnly": !!props.readOnly, id: id, name: name, onChange: onChange, value: props.value },
+-            React__default.default.createElement("button", null,
+-                React__default.default.createElement("selectedcontent", null)),
+             children),
+         React__default.default.createElement(IconUp, { "$position": "absolute", "$top": "spacing-0", "$bottom": "spacing-0", "$right": "spacing-12", "$pointerEvents": "none", "$alignContent": "center" },
+             React__default.default.createElement(OakIcon, { iconName: "chevron-up" })),
+diff --git a/dist/npm/es/components/form-elements/OakSelect/OakSelect.js b/dist/npm/es/components/form-elements/OakSelect/OakSelect.js
+index 84384efd5d891f4b2b1a456db8f284f9869f4c5c..910918c4be572702faa58b58a88dc985ed79fc4b 100644
+--- a/dist/npm/es/components/form-elements/OakSelect/OakSelect.js
++++ b/dist/npm/es/components/form-elements/OakSelect/OakSelect.js
+@@ -31,8 +31,6 @@ function OakSelect(_a) {
+     }
+     return (React.createElement(StyledWrapper, { "$display": $display, "$position": "relative", "$alignItems": "center", "$gap": "spacing-16" },
+         React.createElement(NativeSelect, { key: props.value, "$pa": "spacing-16", "$background": finalBackgroundColor, "$borderColor": finalBorderColor, "$pr": "spacing-56", "$focusRingDropShadows": focusRingDropShadows, "$ba": "border-solid-m", disabled: !!props.disabled, "$borderRadius": "border-radius-s", "$hoverBackground": hoverBackground, "$disabledBackgroundColor": disabledBackgroundColor, "$readOnlyBorderColor": finalReadOnlyBorderColor, "$disabledColor": disabledColor, "$readOnlyColor": readOnlyColor, "$color": color, "$disabled": !!props.disabled, "$readOnly": !!props.readOnly, id: id, name: name, onChange: onChange, value: props.value },
+-            React.createElement("button", null,
+-                React.createElement("selectedcontent", null)),
+             children),
+         React.createElement(IconUp, { "$position": "absolute", "$top": "spacing-0", "$bottom": "spacing-0", "$right": "spacing-12", "$pointerEvents": "none", "$alignContent": "center" },
+             React.createElement(OakIcon, { iconName: "chevron-up" })),

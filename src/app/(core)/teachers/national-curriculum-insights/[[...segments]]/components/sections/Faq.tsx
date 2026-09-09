@@ -6,26 +6,10 @@ import {
   OakHeading,
   OakOutlineAccordion,
 } from "@oaknational/oak-components";
-import styled from "styled-components";
 
 import { NationalCurriculumInsightsPortableText as PortableTextWithDefaults } from "../PortableText";
 
 import { ContextualSectionProps } from "./shared";
-
-const FaqAccordionList = styled(OakFlex)`
-  p,
-  li {
-    text-align: left;
-  }
-
-  /*
-   * OakOutlineAccordion draws a rule above and below every item. Keep one rule
-   * at each join when several accordions are presented as a single list.
-   */
-  > :not(:first-child) > :first-child {
-    display: none;
-  }
-`;
 
 export const NationalCurriculumInsightsFaq = ({
   section,
@@ -44,9 +28,9 @@ export const NationalCurriculumInsightsFaq = ({
     aria-labelledby="national-curriculum-insights-faq-heading"
     data-insights-module="faq"
   >
-    <OakBox $width="100%" $maxWidth="956px" $mh="auto">
+    <OakBox $width="100%" $maxWidth="spacing-960" $mh="auto">
       <OakHeading
-        $maxWidth="632px"
+        $maxWidth="spacing-640"
         tag="h2"
         id="national-curriculum-insights-faq-heading"
         $font="heading-4"
@@ -54,7 +38,7 @@ export const NationalCurriculumInsightsFaq = ({
       >
         {section.heading}
       </OakHeading>
-      <FaqAccordionList $flexDirection="column" $textAlign="left">
+      <OakFlex $flexDirection="column" $textAlign="left" $gap="spacing-16">
         {section.items.map((item, index) => (
           <OakOutlineAccordion
             key={item.question}
@@ -70,7 +54,7 @@ export const NationalCurriculumInsightsFaq = ({
             <PortableTextWithDefaults value={item.answerPortableText} />
           </OakOutlineAccordion>
         ))}
-      </FaqAccordionList>
+      </OakFlex>
     </OakBox>
   </OakBox>
 );

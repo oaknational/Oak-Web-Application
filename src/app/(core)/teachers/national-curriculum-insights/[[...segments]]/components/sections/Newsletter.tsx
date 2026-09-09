@@ -126,12 +126,6 @@ const NewsletterDetails = styled(OakFlex)`
   }
 `;
 
-const NewsletterSelectField = styled(OakBox)`
-  button {
-    min-height: 64px;
-  }
-`;
-
 const NewsletterForm = styled(OakFlex)`
   width: 100%;
   grid-column: 1;
@@ -141,18 +135,8 @@ const NewsletterForm = styled(OakFlex)`
     margin-top: 24px;
   }
 
-  input:not([type="checkbox"]),
-  select {
-    min-height: 64px;
-  }
-
   input[type="checkbox"] {
     border-radius: 0;
-  }
-
-  button {
-    height: 48px;
-    min-height: 48px;
   }
 
   @media (${getMediaQuery("desktop")}) {
@@ -324,7 +308,7 @@ export const NationalCurriculumInsightsNewsletter = ({
               placeholder="Type your name"
               autocomplete="name"
             />
-            <NewsletterSelectField $position="relative">
+            <OakBox $position="relative">
               <NationalCurriculumInsightsSelect
                 id="insights-newsletter-role"
                 name="role"
@@ -338,7 +322,7 @@ export const NationalCurriculumInsightsNewsletter = ({
                 onChange={setRole}
                 error={fieldErrors.eduRole}
               />
-            </NewsletterSelectField>
+            </OakBox>
             <OakFlex $flexDirection="column" $gap="spacing-12">
               <ResourcePageSchoolPicker
                 hasError={false}

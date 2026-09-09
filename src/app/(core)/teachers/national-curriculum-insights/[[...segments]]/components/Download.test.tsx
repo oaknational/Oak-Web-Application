@@ -9,6 +9,7 @@ import { NationalCurriculumInsightsDownload } from "./Download";
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 import { parseNationalCurriculumInsightsRoute } from "@/common-lib/urls/nationalCurriculumInsights";
 
+
 const mockReportError = jest.fn();
 jest.mock("@/common-lib/error-reporter", () => ({
   __esModule: true,
@@ -55,9 +56,9 @@ describe("NationalCurriculumInsightsDownload", () => {
     });
     const sectionElement = toggle.closest("section");
     expect(sectionElement).toHaveStyle({
-      bottom: "0",
-      flexDirection: "column",
       position: "fixed",
+      inset: "auto 0 0",
+      "flex-direction": "column",
     });
     expect(toggle).toHaveStyle("background: #b0e2de");
     expect(toggle).toHaveStyle("color: #222222");
@@ -68,8 +69,8 @@ describe("NationalCurriculumInsightsDownload", () => {
     await user.click(toggle);
     expect(toggle).toHaveAttribute("aria-expanded", "true");
     expect(
-      screen.getByRole("button", {
-        name: /Role \(required\).*Select your role/,
+      screen.getByRole("combobox", {
+        name: "Role (required)",
       }),
     ).toBeInTheDocument();
 
@@ -177,16 +178,10 @@ describe("Insights download submission", () => {
     expect(
       screen.getByRole("textbox", { name: "School (required)" }),
     ).toBeDisabled();
-    await user.click(
-      screen.getByRole("button", {
-        name: /Role \(required\).*Select your role/,
-      }),
+    await user.selectOptions(
+      screen.getByRole("combobox", { name: "Role (required)" }),
+      "Headteacher",
     );
-    const headteacher = screen
-      .getAllByTestId("listbox-option")
-      .find((option) => option.getAttribute("data-key") === "Headteacher");
-    if (!headteacher) throw new Error("Expected the headteacher role");
-    await user.click(headteacher);
     await user.click(
       screen.getByRole("checkbox", {
         name: "I accept the terms and conditions (required)",
@@ -254,8 +249,8 @@ describe("Insights download submission", () => {
       }),
     ).toBeChecked();
     expect(
-      screen.getByRole("button", { name: /Role \(required\).*Headteacher/ }),
-    ).toBeInTheDocument();
+      screen.getByRole("combobox", { name: "Role (required)" }),
+    ).toHaveValue("Headteacher");
     expect(
       screen.getByRole("button", { name: "Download 1 insight (.DOCX)" }),
     ).toBeEnabled();

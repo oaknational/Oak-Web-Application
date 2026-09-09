@@ -8,9 +8,11 @@ import {
   OakIcon,
   OakImage,
   OakP,
-  parseColor,
+  OakAllSpacingToken,
+  OakFocusIndicator,
 } from "@oaknational/oak-components";
 import Link from "next/link";
+import type { ReactNode } from "react";
 import styled from "styled-components";
 
 import {
@@ -26,35 +28,43 @@ import {
   nationalCurriculumInsightsSubjectPhaseKeyStageHref,
 } from "@/common-lib/urls/nationalCurriculumInsights";
 
-const PhaseCardList = styled(OakGrid)`
-  justify-content: center;
-  gap: 17px;
+const JumpCardList = styled(OakGrid)`
   list-style: none;
 `;
 
-const InsightsJumpCard = styled(Link)<{ $height: number }>`
-  box-sizing: border-box;
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  width: 100%;
-  height: ${({ $height }) => $height}px;
-  padding: 16px;
-  border: 1px solid ${parseColor("grey30")};
-  border-radius: 8px;
-  background: ${parseColor("bg-primary")};
-  color: ${parseColor("text-primary")};
-  text-decoration: none;
-
-  &:hover {
-    /* No Oak theme token currently matches the design's #F7F7F7. */
-    background: #f7f7f7;
-  }
-`;
-
-const JumpCardImage = styled(OakBox)`
-  flex: 0 0 72px;
-`;
+const InsightsJumpCard = ({
+  minHeight,
+  href,
+  children,
+}: {
+  minHeight: OakAllSpacingToken;
+  href: string;
+  children: ReactNode;
+}) => (
+  <OakFocusIndicator
+    $width="100%"
+    $background="bg-primary"
+    $borderRadius="border-radius-m2"
+    hoverBackground="bg-neutral"
+  >
+    <OakFlex
+      as={Link}
+      href={href}
+      $alignItems="center"
+      $gap="spacing-16"
+      $width="100%"
+      $minHeight={minHeight}
+      $pa="spacing-16"
+      $ba="border-solid-s"
+      $borderColor="border-neutral-lighter"
+      $borderRadius="border-radius-m2"
+      $color="text-primary"
+      $textDecoration="none"
+    >
+      {children}
+    </OakFlex>
+  </OakFocusIndicator>
+);
 
 export const NationalCurriculumInsightsPhaseCards = ({
   section,
@@ -76,7 +86,9 @@ export const NationalCurriculumInsightsPhaseCards = ({
       $pv={["spacing-32", "spacing-48"]}
     >
       <SectionMaxWidth $mh="auto">
-        <PhaseCardList
+        <JumpCardList
+          $cg="spacing-16"
+          $rg="spacing-16"
           as="ul"
           $gridTemplateColumns={[
             "minmax(0, 1fr)",
@@ -90,13 +102,14 @@ export const NationalCurriculumInsightsPhaseCards = ({
           {cards.map((card) => (
             <OakBox as="li" $width="100%" key={`${card.phase}-${card.heading}`}>
               <InsightsJumpCard
-                $height={240}
+                minHeight="spacing-240"
                 href={nationalCurriculumInsightsSubjectPhaseHref(
                   subjectSlug,
                   card.phase,
                 )}
               >
-                <JumpCardImage
+                <OakBox
+                  $flexShrink={0}
                   $width="spacing-72"
                   $height="spacing-72"
                   $overflow="hidden"
@@ -111,7 +124,7 @@ export const NationalCurriculumInsightsPhaseCards = ({
                     $height="100%"
                     $objectFit="contain"
                   />
-                </JumpCardImage>
+                </OakBox>
                 <OakFlex
                   $flexGrow={1}
                   $flexShrink={1}
@@ -136,7 +149,7 @@ export const NationalCurriculumInsightsPhaseCards = ({
               </InsightsJumpCard>
             </OakBox>
           ))}
-        </PhaseCardList>
+        </JumpCardList>
       </SectionMaxWidth>
     </OakBox>
   );
@@ -169,7 +182,9 @@ export const NationalCurriculumInsightsKeyStageCards = ({
       $pv={["spacing-32", "spacing-48"]}
     >
       <SectionMaxWidth $mh="auto">
-        <PhaseCardList
+        <JumpCardList
+          $cg="spacing-16"
+          $rg="spacing-16"
           as="ul"
           $gridTemplateColumns={[
             "minmax(0, 1fr)",
@@ -187,14 +202,15 @@ export const NationalCurriculumInsightsKeyStageCards = ({
               key={`${card.keyStage}-${card.heading}`}
             >
               <InsightsJumpCard
-                $height={246}
+                minHeight="spacing-240"
                 href={nationalCurriculumInsightsSubjectPhaseKeyStageHref(
                   data.subject!.slug,
                   phase,
                   nationalCurriculumInsightsKeyStageSlug(card.keyStage),
                 )}
               >
-                <JumpCardImage
+                <OakBox
+                  $flexShrink={0}
                   $width="spacing-72"
                   $height="spacing-72"
                   $overflow="hidden"
@@ -209,7 +225,7 @@ export const NationalCurriculumInsightsKeyStageCards = ({
                     $height="100%"
                     $objectFit="contain"
                   />
-                </JumpCardImage>
+                </OakBox>
                 <OakFlex
                   $flexGrow={1}
                   $flexShrink={1}
@@ -234,7 +250,7 @@ export const NationalCurriculumInsightsKeyStageCards = ({
               </InsightsJumpCard>
             </OakBox>
           ))}
-        </PhaseCardList>
+        </JumpCardList>
       </SectionMaxWidth>
     </OakBox>
   );

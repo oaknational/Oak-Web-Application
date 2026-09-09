@@ -1,13 +1,14 @@
 "use client";
 
 import {
-  getMediaQuery,
   OakBox,
   OakFlex,
   OakGrid,
+  OakGridArea,
   OakHeading,
   OakImage,
-  OakSpan,
+  OakTagFunctional,
+  parseSpacing,
 } from "@oaknational/oak-components";
 import { useId } from "react";
 import styled from "styled-components";
@@ -16,162 +17,46 @@ import { NationalCurriculumInsightsPortableText as PortableTextWithDefaults } fr
 
 import {
   SectionProps,
-  insightsTabletMediaQuery,
-  insightsWideDesktopMediaQuery,
   imageUrl,
   imageAlt,
   guidancePortableTextComponents,
   SectionMaxWidth,
 } from "./shared";
 
-const GuidanceIntroImage = styled(OakBox)`
-  @media (${getMediaQuery("desktop")}) {
-    width: 363px;
-    height: 242px;
-    flex: 0 0 363px;
-  }
+// Let the paragraph wrap naturally around the inline status tag.
+const GuidanceTaggedParagraph = styled.div`
+  display: flow-root;
 
-  @media ${insightsTabletMediaQuery} {
-    width: clamp(291px, calc(13.585vw + 189.113px), 363px);
-    height: auto;
-    flex: 0 0 auto;
-  }
-`;
-
-const GuidanceIntroLayout = styled(OakGrid)`
-  @media (${getMediaQuery("desktop")}) {
-    align-items: start;
-  }
-
-  @media ${insightsTabletMediaQuery} {
-    width: clamp(675px, calc(51.887vw + 285.849px), 950px);
-    max-width: 100%;
-    grid-template-columns:
-      clamp(291px, calc(13.585vw + 189.113px), 363px)
-      minmax(0, 1fr);
-    grid-template-rows: auto 1fr;
-    row-gap: clamp(20px, calc(3.774vw - 8.302px), 40px);
-    align-items: start;
-    margin-inline: auto;
-  }
-`;
-
-const GuidanceIntroHeading = styled(OakHeading)`
-  grid-column: 1;
-  grid-row: 1;
-
-  @media (${getMediaQuery("desktop")}) {
-    grid-column: 2;
-  }
-
-  @media ${insightsTabletMediaQuery} {
-    grid-column: 2;
-    grid-row: 1;
-  }
-`;
-
-const GuidanceIntroDesktopHeading = styled.span`
-  display: none;
-
-  @media ${insightsWideDesktopMediaQuery} {
-    display: inline;
-  }
-`;
-
-const GuidanceIntroMobileHeading = styled.span`
-  @media ${insightsWideDesktopMediaQuery} {
-    display: none;
-  }
-`;
-
-const GuidanceIntroBody = styled(OakFlex)`
-  grid-column: 1;
-  grid-row: 3;
-
-  @media (${getMediaQuery("desktop")}) {
-    grid-column: 2;
-    grid-row: 2;
-  }
-
-  @media ${insightsTabletMediaQuery} {
-    grid-column: 2;
-    grid-row: 2;
-  }
-`;
-
-const GuidanceIntroArtwork = styled(GuidanceIntroImage)`
-  grid-column: 1;
-  grid-row: 2;
-
-  @media (${getMediaQuery("desktop")}) {
-    grid-row: 1 / span 2;
-  }
-
-  @media ${insightsTabletMediaQuery} {
-    grid-column: 1;
-    grid-row: 1 / span 2;
-  }
-`;
-
-const GuidanceTaggedParagraph = styled(OakBox)`
-  > div:first-child {
+  > :first-child {
     float: left;
-    margin: 0 8px 0 0;
-  }
-
-  &::after {
-    display: table;
-    clear: both;
-    content: "";
+    margin-right: ${parseSpacing("spacing-8")};
   }
 `;
-
-const GuidanceStatusTag = styled(OakBox)`
-  width: fit-content;
-  white-space: nowrap;
-
-  > div {
-    width: max-content;
-    min-width: 141px;
-    justify-content: center;
-    white-space: nowrap;
-  }
-`;
-
-const GuidanceClockIcon = () => (
-  <svg
-    aria-hidden="true"
-    data-testid="guidance-status-clock"
-    focusable="false"
-    viewBox="0 0 24 24"
-    width="16"
-    height="16"
-    fill="none"
-  >
-    <circle cx="12" cy="12" r="8.5" stroke="currentColor" strokeWidth="2" />
-    <path
-      d="M12 7.5V12l3 2"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    />
-  </svg>
-);
 
 const GuidanceStatusLabel = ({ label }: { label: string }) => (
   <OakFlex
+    $display="inline-flex"
     $alignItems="center"
-    $justifyContent="center"
-    $gap="spacing-4"
+    $alignSelf="flex-start"
     $background="bg-decorative5-main"
-    $color="text-primary"
     $borderRadius="border-radius-s"
-    $ph="spacing-8"
-    $pv="spacing-4"
+    $whiteSpace="nowrap"
   >
-    <GuidanceClockIcon />
-    <OakSpan $font="heading-7">{label}</OakSpan>
+    <OakImage
+      src="/images/national-curriculum-insights/clock.svg"
+      alt=""
+      $width="spacing-16"
+      $height="spacing-16"
+      $ml="spacing-8"
+      unoptimized
+      data-testid="guidance-status-clock"
+    />
+    <OakTagFunctional
+      label={label}
+      $pl="spacing-4"
+      $font="heading-7"
+      $color="text-primary"
+    />
   </OakFlex>
 );
 
@@ -194,68 +79,78 @@ export const NationalCurriculumInsightsGuidanceIntro = ({
       data-insights-module="guidance-introduction"
     >
       <SectionMaxWidth $mh="auto">
-        <GuidanceIntroLayout
-          $gridTemplateColumns={["minmax(0, 1fr)", null, "363px 684px"]}
-          $gridTemplateRows={[null, "auto 1fr"]}
-          $cg={[null, "spacing-40"]}
-          $rg={["spacing-20", null, "spacing-40"]}
+        <OakGrid
+          $cg={["spacing-0", "spacing-32", "spacing-40"]}
+          $rg={["spacing-20", "spacing-20", "spacing-40"]}
         >
-          <GuidanceIntroHeading id={headingId} tag="h2" $font="heading-5">
-            <GuidanceIntroMobileHeading>
-              This term, you’ll find:
-            </GuidanceIntroMobileHeading>
-            <GuidanceIntroDesktopHeading>
-              {section.heading}
-            </GuidanceIntroDesktopHeading>
-          </GuidanceIntroHeading>
-          <GuidanceIntroArtwork
-            $width="100%"
-            $aspectRatio="3 / 2"
-            $overflow="hidden"
-            $ba="border-solid-m"
-            $borderColor="border-primary"
-            aria-hidden={section.image.isPresentational || undefined}
+          <OakGridArea $colSpan={[12, 7]} $colStart={[1, 6, 5]} $rowStart={1}>
+            <OakHeading id={headingId} tag="h2" $font="heading-5">
+              <OakBox as="span" $display={["inline", "inline", "none"]}>
+                This term, you’ll find:
+              </OakBox>
+              <OakBox as="span" $display={["none", "none", "inline"]}>
+                {section.heading}
+              </OakBox>
+            </OakHeading>
+          </OakGridArea>
+          <OakGridArea
+            $colSpan={[12, 5, 4]}
+            $colStart={1}
+            $rowStart={[2, 1]}
+            $rowSpan={[1, 2]}
           >
-            <OakImage
-              src={imageUrl(section.image)}
-              alt={imageAlt(section.image)}
+            <OakBox
               $width="100%"
-              $height="100%"
-              $objectFit="cover"
-            />
-          </GuidanceIntroArtwork>
-          <GuidanceIntroBody $flexDirection="column" $gap="spacing-24">
-            {hasTaggedSecondParagraph ? (
-              <>
-                <PortableTextWithDefaults
-                  value={[leadBlock]}
-                  components={guidancePortableTextComponents}
-                />
-                <GuidanceTaggedParagraph>
-                  <GuidanceStatusTag>
-                    <GuidanceStatusLabel label={section.statusLabel!} />
-                  </GuidanceStatusTag>
+              $maxWidth={["100%", "spacing-360"]}
+              $aspectRatio="3 / 2"
+              $overflow="hidden"
+              $ba="border-solid-m"
+              $borderColor="border-primary"
+              aria-hidden={section.image.isPresentational || undefined}
+            >
+              <OakImage
+                src={imageUrl(section.image)}
+                alt={imageAlt(section.image)}
+                $width="100%"
+                $height="100%"
+                $objectFit="cover"
+              />
+            </OakBox>
+          </OakGridArea>
+          <OakGridArea
+            $colSpan={[12, 7]}
+            $colStart={[1, 6, 5]}
+            $rowStart={[3, 2]}
+          >
+            <OakFlex $flexDirection="column" $gap="spacing-24">
+              {hasTaggedSecondParagraph ? (
+                <>
                   <PortableTextWithDefaults
-                    value={remainingBlocks}
+                    value={[leadBlock]}
                     components={guidancePortableTextComponents}
                   />
-                </GuidanceTaggedParagraph>
-              </>
-            ) : (
-              <>
-                <PortableTextWithDefaults
-                  value={section.bodyPortableText}
-                  components={guidancePortableTextComponents}
-                />
-                {section.statusLabel ? (
-                  <GuidanceStatusTag $alignSelf="flex-start">
+                  <GuidanceTaggedParagraph>
+                    <GuidanceStatusLabel label={section.statusLabel!} />
+                    <PortableTextWithDefaults
+                      value={remainingBlocks}
+                      components={guidancePortableTextComponents}
+                    />
+                  </GuidanceTaggedParagraph>
+                </>
+              ) : (
+                <>
+                  <PortableTextWithDefaults
+                    value={section.bodyPortableText}
+                    components={guidancePortableTextComponents}
+                  />
+                  {section.statusLabel ? (
                     <GuidanceStatusLabel label={section.statusLabel} />
-                  </GuidanceStatusTag>
-                ) : null}
-              </>
-            )}
-          </GuidanceIntroBody>
-        </GuidanceIntroLayout>
+                  ) : null}
+                </>
+              )}
+            </OakFlex>
+          </OakGridArea>
+        </OakGrid>
       </SectionMaxWidth>
     </OakBox>
   );

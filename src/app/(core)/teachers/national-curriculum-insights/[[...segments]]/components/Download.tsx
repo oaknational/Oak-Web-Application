@@ -1,17 +1,22 @@
 "use client";
 
 import {
-  getMediaQuery,
   OakBox,
   OakFlex,
   OakCheckBox,
+  OakFieldError,
+  OakFocusIndicator,
+  OakGrid,
+  OakGridArea,
+  OakPrimaryButton,
+  OakSecondaryButton,
+  OakTertiaryButton,
   OakHeading,
   OakIcon,
   OakJauntyAngleLabel,
   OakLink,
   OakP,
   OakTextInput,
-  parseColor,
 } from "@oaknational/oak-components";
 import { useEffect, useId, useMemo, useRef, useState } from "react";
 import { Controller, useForm } from "react-hook-form";
@@ -45,361 +50,23 @@ type DownloadFormValues = {
   selectedValues: string[];
 };
 
-const Section = styled.section<{ $sticky: boolean }>`
-  width: 100%;
-  background: ${parseColor("bg-primary")};
-
+const Section = styled(OakFlex)<{ $sticky: boolean }>`
   ${({ $sticky }) =>
     $sticky
-      ? `
-        position: fixed;
-        right: 0;
-        bottom: 0;
-        left: 0;
-        z-index: 20;
-        display: flex;
-        flex-direction: column;
-        max-height: 100dvh;
-        box-shadow: 0 -4px 16px rgb(0 0 0 / 16%);
-      `
+      ? "position: fixed; inset: auto 0 0; z-index: 20; max-height: 100dvh;"
       : ""}
 `;
 
-const HeaderButton = styled.button`
-  display: block;
-  width: 100%;
-  min-height: 64px;
-  padding: 10px 20px;
-  border: 0;
-  border-top: 2px solid ${parseColor("border-decorative2-stronger")};
-  background: ${parseColor("bg-decorative2-main")};
-  color: ${parseColor("text-primary")};
+const HeaderButton = styled(OakBox)`
   font: inherit;
   cursor: pointer;
-
-  &:focus-visible {
-    outline: 4px solid ${parseColor("border-decorative5")};
-    outline-offset: -4px;
-  }
-
-  @media (${getMediaQuery("desktop")}) {
-    min-height: 100px;
-    padding: 19px 20px;
-  }
 `;
 
-const HeaderInner = styled.span`
-  display: flex;
-  align-items: center;
-  width: 100%;
-  max-width: 1280px;
-  min-height: 40px;
-  margin: 0 auto;
-
-  @media (${getMediaQuery("desktop")}) {
-    min-height: 60px;
-    padding: 0 97px;
-    box-sizing: border-box;
-  }
-`;
-
-const HeaderIcon = styled.span<{ $expanded: boolean }>`
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 60px;
-  height: 60px;
-  flex: 0 0 60px;
-  margin-right: 16px;
-  border-radius: 50%;
-  background: ${parseColor("bg-primary")};
-  color: ${parseColor("icon-primary")};
-
-  @media (max-width: 1279px) {
-    display: ${({ $expanded }) => ($expanded ? "none" : "inline-flex")};
-    width: 40px;
-    height: 40px;
-    flex-basis: 40px;
-  }
-`;
-
-const HeaderHeading = styled.span<{ $expanded: boolean }>`
-  font-size: 16px;
-  font-weight: 600;
-  line-height: 20px;
-  text-align: left;
-
-  @media (max-width: 1279px) {
-    display: ${({ $expanded }) => ($expanded ? "none" : "inline")};
-  }
-`;
-
-const HeaderCta = styled.span<{ $expanded: boolean }>`
-  display: none;
-  min-height: 28px;
-  align-items: center;
-  padding: 4px 8px;
-  border-radius: 6px;
-  background: ${parseColor("bg-btn-primary")};
-  color: ${parseColor("text-inverted")};
-  font-size: 16px;
-  font-weight: 400;
-  line-height: 20px;
-  letter-spacing: -0.5px;
-  margin-left: 16px;
-
-  @media (max-width: 1279px) {
-    display: ${({ $expanded }) => ($expanded ? "inline-flex" : "none")};
-    margin-left: 0;
-  }
-
-  @media (${getMediaQuery("desktop")}) {
-    display: inline-flex;
-  }
-`;
-
-const Toggle = styled.span<{ $expanded: boolean }>`
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 24px;
-  min-height: 32px;
-  margin-left: auto;
-
-  &::before {
-    width: 9px;
-    height: 9px;
-    border-right: 2px solid currentColor;
-    border-bottom: 2px solid currentColor;
-    content: "";
-    transform: rotate(${({ $expanded }) => ($expanded ? "45deg" : "225deg")});
-  }
-
-  @media (max-width: 1279px) {
-    display: ${({ $expanded }) => ($expanded ? "none" : "inline-flex")};
-  }
-`;
-
-const MobileClose = styled.span<{ $expanded: boolean }>`
-  position: relative;
-  display: ${({ $expanded }) => ($expanded ? "inline-flex" : "none")};
-  width: 40px;
-  height: 40px;
-  margin-left: auto;
-  align-items: center;
-  justify-content: center;
-
-  &::before,
-  &::after {
-    position: absolute;
-    width: 24px;
-    height: 2px;
-    background: currentColor;
-    content: "";
-  }
-
-  &::before {
-    transform: rotate(45deg);
-  }
-
-  &::after {
-    transform: rotate(-45deg);
-  }
-
-  @media (${getMediaQuery("desktop")}) {
-    display: none;
-  }
-`;
-
-const Expanded = styled.form<{ $sticky: boolean }>`
-  width: 100%;
-  background: ${parseColor("bg-primary")};
-
+const Expanded = styled(OakBox)<{ $sticky: boolean }>`
   ${({ $sticky }) =>
     $sticky
-      ? `
-        min-height: 0;
-        overflow-y: auto;
-        overscroll-behavior: contain;
-      `
+      ? "min-height: 0; overflow-y: auto; overscroll-behavior: contain;"
       : ""}
-`;
-
-const Columns = styled.div`
-  position: relative;
-  display: grid;
-  max-width: 1280px;
-  margin: 0 auto;
-
-  @media (${getMediaQuery("desktop")}) {
-    grid-template-columns: minmax(0, 53%) minmax(0, 47%);
-
-    &::after {
-      position: absolute;
-      top: 24px;
-      bottom: 24px;
-      left: 53%;
-      width: 1px;
-      background: ${parseColor("grey30")};
-      content: "";
-      pointer-events: none;
-    }
-  }
-`;
-
-const Column = styled.div<{
-  $activeMobileStage: "details" | "subjects";
-  $mobileStage: "details" | "subjects";
-}>`
-  box-sizing: border-box;
-  min-width: 0;
-  padding: 32px 20px 40px;
-  display: ${({ $activeMobileStage, $mobileStage }) =>
-    $activeMobileStage === $mobileStage ? "block" : "none"};
-
-  @media (${getMediaQuery("desktop")}) {
-    display: block;
-    min-height: 632px;
-    padding: 24px 64px 0 0;
-
-    & + & {
-      padding-right: 0;
-      padding-left: 64px;
-    }
-  }
-`;
-
-const MobileSubjectButton = styled.button`
-  display: flex;
-  width: 100%;
-  min-height: 64px;
-  margin-top: 32px;
-  align-items: center;
-  justify-content: space-between;
-  padding: 16px;
-  border: 2px solid ${parseColor("border-primary")};
-  border-radius: 4px;
-  background: ${parseColor("bg-primary")};
-  color: ${parseColor("text-primary")};
-  font: inherit;
-  font-size: 16px;
-  font-weight: 600;
-  line-height: 20px;
-  cursor: pointer;
-
-  &:focus-visible {
-    outline: 4px solid ${parseColor("border-decorative5")};
-    outline-offset: 2px;
-  }
-
-  @media (${getMediaQuery("desktop")}) {
-    display: none;
-  }
-`;
-
-const MobileBackButton = styled.button`
-  display: inline-flex;
-  min-height: 48px;
-  align-items: center;
-  gap: 8px;
-  padding: 8px 0;
-  border: 0;
-  background: transparent;
-  color: ${parseColor("text-primary")};
-  font: inherit;
-  font-size: 16px;
-  font-weight: 600;
-  cursor: pointer;
-
-  @media (${getMediaQuery("desktop")}) {
-    display: none;
-  }
-`;
-
-const Field = styled(OakBox).attrs({ $position: "relative", $width: "100%" })`
-  input {
-    height: 60px;
-  }
-`;
-
-const SelectField = styled(Field)`
-  button {
-    min-height: 64px;
-  }
-`;
-
-const TermsBox = styled.div`
-  display: flex;
-  min-height: 56px;
-  align-items: center;
-  padding: 8px;
-  border-radius: 4px;
-  background: ${parseColor("bg-neutral-stronger")};
-`;
-
-const ActionBar = styled.div<{ $activeMobileStage: "details" | "subjects" }>`
-  display: grid;
-  max-width: 1280px;
-  min-height: 80px;
-  margin: 0 auto;
-  background: ${parseColor("bg-primary")};
-
-  @media (max-width: 1279px) {
-    display: ${({ $activeMobileStage }) =>
-      $activeMobileStage === "details" ? "grid" : "none"};
-  }
-
-  @media (${getMediaQuery("desktop")}) {
-    grid-template-columns: minmax(0, 53%) minmax(0, 47%);
-  }
-`;
-
-const ActionCell = styled.div`
-  display: flex;
-  align-items: center;
-  padding: 12px 20px;
-
-  @media (${getMediaQuery("desktop")}) {
-    grid-column: 2;
-    padding: 12px 0 12px 64px;
-  }
-`;
-
-// This compact action shares the multiselect's typography and disabled treatment;
-// the library primary button has different sizing, weight and disabled text.
-const DownloadButton = styled.button`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  min-height: 48px;
-  padding: 12px 16px;
-  border: 2px solid ${parseColor("border-primary")};
-  border-radius: 4px;
-  background: ${parseColor("bg-btn-primary")};
-  color: ${parseColor("text-inverted")};
-  font: inherit;
-  font-size: 16px;
-  font-weight: 600;
-  line-height: 20px;
-  cursor: pointer;
-
-  &:disabled {
-    border-color: ${parseColor("border-neutral")};
-    background: ${parseColor("bg-btn-primary-disabled")};
-    cursor: not-allowed;
-  }
-
-  &:focus-visible {
-    outline: 4px solid ${parseColor("border-decorative5")};
-    outline-offset: 2px;
-  }
-`;
-
-const ErrorMessage = styled(OakP)`
-  margin: 12px 0 0;
-  /* No Oak theme token currently matches the design's #B00020. */
-  color: #b00020;
 `;
 
 const responseFilename = (response: Response) => {
@@ -532,43 +199,145 @@ export const NationalCurriculumInsightsDownload = ({
   };
 
   return (
-    <Section data-insights-module="downloads" $sticky={sticky}>
-      <HeaderButton
-        type="button"
-        aria-expanded={expanded}
-        aria-controls={`${formId}-content`}
-        onClick={() => {
-          setExpanded((value) => !value);
-          setMobileStage("details");
-        }}
-      >
-        <HeaderInner>
-          <HeaderIcon $expanded={expanded} aria-hidden="true">
+    <Section
+      as="section"
+      data-insights-module="downloads"
+      $sticky={sticky}
+      $width="100%"
+      $flexDirection="column"
+      $background="bg-primary"
+      $dropShadow={sticky ? "drop-shadow-centred-standard" : undefined}
+    >
+      <OakFocusIndicator $width="100%">
+        <HeaderButton
+          as="button"
+          $display="block"
+          $width="100%"
+          $minHeight={["spacing-64", "spacing-64", "spacing-100"]}
+          $ph="spacing-20"
+          $pv={["spacing-12", "spacing-12", "spacing-20"]}
+          $ba="border-solid-none"
+          $bt="border-solid-m"
+          $borderColor="border-decorative2-stronger"
+          $background="bg-decorative2-main"
+          $color="text-primary"
+          type="button"
+          aria-label={`${section.barHeading} ${section.barCtaLabel}`}
+          aria-expanded={expanded}
+          aria-controls={`${formId}-content`}
+          onClick={() => {
+            setExpanded((value) => !value);
+            setMobileStage("details");
+          }}
+        >
+          <OakFlex
+            as="span"
+            $alignItems="center"
+            $width="100%"
+            $maxWidth="spacing-1280"
+            $minHeight={["spacing-40", "spacing-40", "spacing-56"]}
+            $mh="auto"
+            $ph={["spacing-0", "spacing-0", "spacing-92"]}
+          >
+            <OakFlex
+              as="span"
+              $display={[
+                expanded ? "none" : "inline-flex",
+                null,
+                "inline-flex",
+              ]}
+              $alignItems="center"
+              $justifyContent="center"
+              $width={["spacing-40", "spacing-40", "spacing-56"]}
+              $height={["spacing-40", "spacing-40", "spacing-56"]}
+              $flexShrink={0}
+              $mr="spacing-16"
+              $borderRadius="border-radius-circle"
+              $background="bg-primary"
+              aria-hidden="true"
+            >
+              <OakIcon
+                iconName="worksheet"
+                $width="spacing-32"
+                $height="spacing-32"
+              />
+            </OakFlex>
+            <OakBox
+              as="span"
+              $display={[expanded ? "none" : "inline", null, "inline"]}
+              $font="heading-7"
+              $textAlign="left"
+            >
+              {section.barHeading}
+            </OakBox>
+            <OakBox
+              as="span"
+              $display={[
+                expanded ? "inline-flex" : "none",
+                null,
+                "inline-flex",
+              ]}
+              $background="bg-btn-primary"
+              $color="text-inverted"
+              $font="heading-light-7"
+              $pa="spacing-4"
+              $ph="spacing-8"
+              $borderRadius="border-radius-m"
+              $ml={["spacing-0", "spacing-0", "spacing-16"]}
+            >
+              {section.barCtaLabel}
+            </OakBox>
             <OakIcon
-              iconName="worksheet"
+              iconName={expanded ? "chevron-down" : "chevron-up"}
+              $display={[
+                expanded ? "none" : "inline-flex",
+                null,
+                "inline-flex",
+              ]}
+              $ml="auto"
+              $width="spacing-24"
+              $height="spacing-24"
+              aria-hidden="true"
+            />
+            <OakIcon
+              iconName="cross"
+              $display={[expanded ? "block" : "none", null, "none"]}
+              $ml="auto"
               $width="spacing-32"
               $height="spacing-32"
+              aria-hidden="true"
             />
-          </HeaderIcon>
-          <HeaderHeading $expanded={expanded}>
-            {section.barHeading}
-          </HeaderHeading>
-          <HeaderCta $expanded={expanded}>{section.barCtaLabel}</HeaderCta>
-          <Toggle $expanded={expanded} aria-hidden="true" />
-          <MobileClose $expanded={expanded} aria-hidden="true" />
-        </HeaderInner>
-      </HeaderButton>
+          </OakFlex>
+        </HeaderButton>
+      </OakFocusIndicator>
 
       {expanded ? (
         <Expanded
+          as="form"
+          $width="100%"
+          $background="bg-primary"
           ref={expandedRef}
           id={`${formId}-content`}
           onSubmit={handleSubmit(submit)}
           noValidate
           $sticky={sticky}
         >
-          <Columns>
-            <Column $activeMobileStage={mobileStage} $mobileStage="details">
+          <OakGrid
+            $maxWidth="spacing-1280"
+            $mh="auto"
+            $ph={["spacing-20", "spacing-20", "spacing-32"]}
+          >
+            <OakGridArea
+              $colSpan={[12, 12, 6]}
+              $display={[
+                mobileStage === "details" ? "block" : "none",
+                null,
+                "block",
+              ]}
+              $pt={["spacing-32", "spacing-32", "spacing-24"]}
+              $pb="spacing-40"
+              $pr={["spacing-0", "spacing-0", "spacing-64"]}
+            >
               <OakHeading tag="h2" $font="heading-6">
                 {section.detailsHeading}
               </OakHeading>
@@ -577,7 +346,7 @@ export const NationalCurriculumInsightsDownload = ({
                 $gap="spacing-32"
                 $mt="spacing-32"
               >
-                <Field>
+                <OakBox $position="relative" $width="100%">
                   <OakJauntyAngleLabel
                     as="label"
                     htmlFor={`${formId}-name`}
@@ -606,9 +375,9 @@ export const NationalCurriculumInsightsDownload = ({
                       />
                     )}
                   />
-                </Field>
+                </OakBox>
                 <OakFlex $flexDirection="column" $gap="spacing-16">
-                  <Field>
+                  <OakBox $position="relative" $width="100%">
                     <OakJauntyAngleLabel
                       as="label"
                       htmlFor={`${formId}-school`}
@@ -638,7 +407,7 @@ export const NationalCurriculumInsightsDownload = ({
                         />
                       )}
                     />
-                  </Field>
+                  </OakBox>
                   <Controller
                     control={control}
                     name="schoolNotListed"
@@ -656,7 +425,7 @@ export const NationalCurriculumInsightsDownload = ({
                     )}
                   />
                 </OakFlex>
-                <SelectField>
+                <OakBox $width="100%">
                   <Controller
                     control={control}
                     name="role"
@@ -675,8 +444,8 @@ export const NationalCurriculumInsightsDownload = ({
                       />
                     )}
                   />
-                </SelectField>
-                <Field>
+                </OakBox>
+                <OakBox $position="relative" $width="100%">
                   <OakJauntyAngleLabel
                     as="label"
                     htmlFor={`${formId}-email`}
@@ -706,8 +475,8 @@ export const NationalCurriculumInsightsDownload = ({
                       />
                     )}
                   />
-                </Field>
-                <OakP $maxWidth="620px" $font="body-3" $mv="spacing-0">
+                </OakBox>
+                <OakP $maxWidth="spacing-640" $font="body-3" $mv="spacing-0">
                   Join over 200k teachers and get free resources and other
                   helpful content by email. Unsubscribe at any time. Read our{" "}
                   <OakLink href="/legal/privacy-policy" target="_blank">
@@ -715,7 +484,13 @@ export const NationalCurriculumInsightsDownload = ({
                   </OakLink>
                   .
                 </OakP>
-                <TermsBox>
+                <OakFlex
+                  $minHeight="spacing-56"
+                  $alignItems="center"
+                  $pa="spacing-8"
+                  $borderRadius="border-radius-s"
+                  $background="bg-neutral-stronger"
+                >
                   <Controller
                     control={control}
                     name="acceptedTerms"
@@ -732,29 +507,47 @@ export const NationalCurriculumInsightsDownload = ({
                       />
                     )}
                   />
-                </TermsBox>
+                </OakFlex>
               </OakFlex>
-              <MobileSubjectButton
-                type="button"
-                onClick={() => setMobileStage("subjects")}
-              >
-                <span>
-                  {selectedValues.length > 0
-                    ? `${selectedValues.length} selected`
-                    : "Select subjects"}
-                </span>
-                <OakIcon iconName="arrow-right" />
-              </MobileSubjectButton>
-            </Column>
+              <OakBox $display={["block", "block", "none"]} $mt="spacing-32">
+                <OakSecondaryButton
+                  width="100%"
+                  iconName="arrow-right"
+                  isTrailingIcon
+                  type="button"
+                  onClick={() => setMobileStage("subjects")}
+                >
+                  <span>
+                    {selectedValues.length > 0
+                      ? `${selectedValues.length} selected`
+                      : "Select subjects"}
+                  </span>
+                </OakSecondaryButton>
+              </OakBox>
+            </OakGridArea>
 
-            <Column $activeMobileStage={mobileStage} $mobileStage="subjects">
-              <MobileBackButton
-                type="button"
-                onClick={() => setMobileStage("details")}
-              >
-                <OakIcon iconName="arrow-left" />
-                Back
-              </MobileBackButton>
+            <OakGridArea
+              $colSpan={[12, 12, 6]}
+              $display={[
+                mobileStage === "subjects" ? "block" : "none",
+                null,
+                "block",
+              ]}
+              $pt={["spacing-32", "spacing-32", "spacing-24"]}
+              $pb="spacing-40"
+              $pl={["spacing-0", "spacing-0", "spacing-64"]}
+              $bl={["border-solid-none", "border-solid-none", "border-solid-s"]}
+              $borderColor={[null, null, "border-neutral-lighter"]}
+            >
+              <OakBox $display={["block", "block", "none"]}>
+                <OakTertiaryButton
+                  iconName="arrow-left"
+                  type="button"
+                  onClick={() => setMobileStage("details")}
+                >
+                  Back
+                </OakTertiaryButton>
+              </OakBox>
               <OakBox $display={["block", "block", "none"]} $mt="spacing-16">
                 <OakHeading tag="h2" $font="heading-6">
                   Select subjects
@@ -791,22 +584,44 @@ export const NationalCurriculumInsightsDownload = ({
                   )}
                 />
               </OakBox>
-            </Column>
-          </Columns>
-          <ActionBar $activeMobileStage={mobileStage}>
-            <ActionCell>
-              <OakBox $width="100%">
-                <DownloadButton type="submit" disabled={!canDownload}>
-                  {downloading ? "Preparing download…" : buttonLabel}
-                </DownloadButton>
-                {error ? (
-                  <ErrorMessage role="alert" $font="body-3">
-                    {error}
-                  </ErrorMessage>
-                ) : null}
-              </OakBox>
-            </ActionCell>
-          </ActionBar>
+            </OakGridArea>
+          </OakGrid>
+          <OakBox
+            $display={[
+              mobileStage === "details" ? "grid" : "none",
+              null,
+              "grid",
+            ]}
+          >
+            <OakGrid
+              $maxWidth="spacing-1280"
+              $mh="auto"
+              $ph={["spacing-20", "spacing-20", "spacing-32"]}
+              $pv="spacing-12"
+            >
+              <OakGridArea
+                $colSpan={[12, 12, 6]}
+                $colStart={[1, 1, 7]}
+                $pl={["spacing-0", "spacing-0", "spacing-64"]}
+              >
+                <OakBox $width="100%">
+                  <OakPrimaryButton
+                    type="submit"
+                    width="100%"
+                    textAlign="center"
+                    disabled={!canDownload}
+                  >
+                    {downloading ? "Preparing download…" : buttonLabel}
+                  </OakPrimaryButton>
+                  {error ? (
+                    <OakBox role="alert" $mt="spacing-12">
+                      <OakFieldError>{error}</OakFieldError>
+                    </OakBox>
+                  ) : null}
+                </OakBox>
+              </OakGridArea>
+            </OakGrid>
+          </OakBox>
         </Expanded>
       ) : null}
     </Section>

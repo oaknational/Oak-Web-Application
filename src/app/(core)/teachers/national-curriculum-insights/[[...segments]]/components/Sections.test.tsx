@@ -429,21 +429,8 @@ describe("National Curriculum Insights sections", () => {
       "placeholder",
       "Type your school or organisation",
     );
-    const roleTrigger = screen.getByRole("button", {
-      name: /Role.*Select your role/,
-    });
-    expect(roleTrigger).not.toHaveAttribute("aria-describedby");
-    await user.click(roleTrigger);
-    const roleOption = screen
-      .getAllByTestId("listbox-option")
-      .find(
-        (option) =>
-          option.getAttribute("data-key") === "Teacher/Subject Specialist",
-      );
-    if (!roleOption) {
-      throw new Error("Expected the teacher role option");
-    }
-    await user.click(roleOption);
+    const roleSelect = screen.getByRole("combobox", { name: "Role" });
+    await user.selectOptions(roleSelect, "Teacher/Subject Specialist");
     fireEvent.change(screen.getByRole("textbox", { name: /Email/ }), {
       target: { value: "jamie@example.com" },
     });
@@ -493,19 +480,10 @@ describe("National Curriculum Insights sections", () => {
     );
 
     await user.type(screen.getByRole("textbox", { name: /Name/ }), "Jamie");
-    await user.click(
-      screen.getByRole("button", { name: /Role.*Select your role/ }),
+    await user.selectOptions(
+      screen.getByRole("combobox", { name: "Role" }),
+      "Teacher/Subject Specialist",
     );
-    const roleOption = screen
-      .getAllByTestId("listbox-option")
-      .find(
-        (option) =>
-          option.getAttribute("data-key") === "Teacher/Subject Specialist",
-      );
-    if (!roleOption) {
-      throw new Error("Expected the teacher role option");
-    }
-    await user.click(roleOption);
     await user.type(
       screen.getByRole("textbox", { name: /Email/ }),
       "jamie@example.com",
@@ -547,11 +525,13 @@ describe("National Curriculum Insights sections", () => {
     expect(screen.getByText("Coming soon")).toBeInTheDocument();
     expect(screen.getByTestId("guidance-status-clock")).toBeInTheDocument();
     const images = container.querySelectorAll("img");
-    expect(images).toHaveLength(1);
-    expect(images[0]).toHaveAttribute(
-      "alt",
-      "A teacher discussing the curriculum",
-    );
+    expect(images).toHaveLength(2);
+    expect(
+      screen.getByRole("img", { name: "A teacher discussing the curriculum" }),
+    ).toBeInTheDocument();
+    expect(
+      screen.getByTestId("guidance-status-clock").querySelector("img"),
+    ).toHaveAttribute("alt", "");
   });
 
   it("uses the CMS portrait without overriding it based on the author's name", () => {
