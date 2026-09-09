@@ -63,7 +63,7 @@ Replace `{query}` with URL-encoded search terms. Example: `https://www.thenation
 ## AI Tools
 
 - [Oak AI Assistant (Aila)](https://www.thenational.academy/ai): Aila is a free AI-powered tool that helps teachers create bespoke lesson plans, worksheets, quizzes, and slide decks tailored to their specific classes, speeding up planning while maintaining quality
-- [Oak Curriculum MCP](https://www.thenational.academy/mcp): Public beta. Designed for teachers, this service connects your AI assistant to Oak's high quality, free, fully sequenced and openly licensed curriculum resources — thousands of lessons, units, and assets across subjects and key stages. Model Context Protocol endpoint (Streamable HTTP): https://mcp.thenational.academy/mcp — authorised with OAuth 2.1, signing in with an Oak account
+- [Oak Curriculum MCP](https://www.thenational.academy/ai-plugin): Public beta. Designed for teachers, this service connects your AI assistant to Oak's high quality, free, fully sequenced and openly licensed curriculum resources — thousands of lessons, units, and assets across subjects and key stages. Model Context Protocol endpoint (Streamable HTTP): https://mcp.thenational.academy/mcp — authorised with OAuth 2.1, signing in with an Oak account
 
 ## Sitemaps
 
