@@ -26,7 +26,7 @@ The pieces:
   determinism contract: the same lesson data must always produce byte-identical
   output, so nothing in it reads the clock, the locale or the environment, and no
   collection is re-ordered.
-- [src/app/api/teachers/lessons/\[lessonSlug\]/markdown/route.ts](../src/app/api/teachers/lessons/[lessonSlug]/markdown/route.ts)
+- [src/app/api/teachers/lessons/\[lessonSlug\]/markdown/route.ts](../src/app/api/teachers/lessons/%5BlessonSlug%5D/markdown/route.ts)
   is the route handler. It looks the lesson up through
   `curriculumApi2023.lessonOverview`, the same call the lesson page's
   `getStaticProps` makes.
