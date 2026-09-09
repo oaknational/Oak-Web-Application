@@ -25,11 +25,29 @@ import { allowNotFoundError } from "@/pages-helpers/shared/lesson-pages/allowNot
 const MARKDOWN_CONTENT_TYPE = "text/markdown; charset=utf-8";
 
 /**
- * Mirrors the lesson page's own revalidation window (the page responds with
- * `x-nextjs-stale-time: 300`) so the two representations do not drift far
- * apart, and allows a long stale window because lesson content changes rarely.
+ * Cache directives, stated separately for each layer that has one.
+ *
+ * The shared-cache window mirrors the lesson page's own revalidation window
+ * (the page responds with `x-nextjs-stale-time: 300`) so the two
+ * representations do not drift far apart, with a long stale window because
+ * lesson content changes rarely.
+ *
+ * `CDN-Cache-Control` is not redundant with `Cache-Control` here. Vercel strips
+ * `s-maxage` and `stale-while-revalidate` from `Cache-Control` before sending
+ * the response on, so a downstream CDN — and `www` has Cloudflare in front of
+ * Vercel — would otherwise receive a bare `public` with no freshness lifetime
+ * and fall back to its own heuristics. Measured on a preview deployment before
+ * this header was added: the response reached the client as
+ * `cache-control: public`.
+ *
+ * The browser directive deliberately matches the lesson page's own
+ * (`public, max-age=0, must-revalidate`) so the two representations behave
+ * consistently in a client cache.
  */
-const CACHE_CONTROL = "public, s-maxage=300, stale-while-revalidate=86400";
+const CACHE_CONTROL = {
+  browser: "public, max-age=0, must-revalidate",
+  shared: "public, s-maxage=300, stale-while-revalidate=86400",
+} as const;
 
 export async function GET(
   _request: Request,
@@ -57,7 +75,9 @@ export async function GET(
     status: 200,
     headers: {
       "Content-Type": MARKDOWN_CONTENT_TYPE,
-      "Cache-Control": CACHE_CONTROL,
+      "Cache-Control": CACHE_CONTROL.browser,
+      "CDN-Cache-Control": CACHE_CONTROL.shared,
+      "Vercel-CDN-Cache-Control": CACHE_CONTROL.shared,
     },
   });
 }

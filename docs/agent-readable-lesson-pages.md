@@ -139,6 +139,21 @@ A distinct `.md` URL has none of this exposure. A different URL is a different
 cache key at every layer, needs no `Vary`, and cannot mix representations even if
 every cache in the chain ignores `Vary` entirely.
 
+### Why the markdown route sets three cache headers
+
+Measured on a preview deployment: a route handler setting only
+`Cache-Control: public, s-maxage=300, stale-while-revalidate=86400` reached the
+client as **`cache-control: public`** — Vercel strips `s-maxage` and
+`stale-while-revalidate` from `Cache-Control` before forwarding, and documents
+that it does. Vercel's own cache honoured the directive (`x-vercel-cache` went
+`MISS` then `HIT` with `age: 35`), but Cloudflare would have received a bare
+`public` with no freshness lifetime and fallen back to its own heuristics.
+
+So the handler states each layer's directive explicitly: `Cache-Control` for the
+browser (`max-age=0, must-revalidate`, matching the lesson page),
+`CDN-Cache-Control` for downstream CDNs — the one Cloudflare actually sees — and
+`Vercel-CDN-Cache-Control` for Vercel's own cache.
+
 ### Why the rewrite cannot affect HTML caching
 
 The rewrite source requires the literal `.md` suffix and constrains the slug to

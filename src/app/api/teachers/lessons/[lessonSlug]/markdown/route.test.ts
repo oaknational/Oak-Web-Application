@@ -65,14 +65,24 @@ describe("/teachers/lessons/[lessonSlug].md", () => {
     expect(body).toContain("# Photosynthesis");
   });
 
-  it("sets a shared-cache lifetime so the CDN can serve it", async () => {
+  it("states a cache directive for every layer that has one", async () => {
     lessonOverview.mockResolvedValue(lessonOverviewFixture());
 
     const response = await GET(request, {
       params: Promise.resolve({ lessonSlug: "photosynthesis" }),
     });
 
+    // Browsers revalidate, matching the lesson page's own posture.
     expect(response.headers.get("Cache-Control")).toBe(
+      "public, max-age=0, must-revalidate",
+    );
+    // Shared caches get an explicit lifetime. `CDN-Cache-Control` is the one a
+    // downstream CDN sees, because Vercel strips `s-maxage` from
+    // `Cache-Control` before forwarding the response.
+    expect(response.headers.get("CDN-Cache-Control")).toBe(
+      "public, s-maxage=300, stale-while-revalidate=86400",
+    );
+    expect(response.headers.get("Vercel-CDN-Cache-Control")).toBe(
       "public, s-maxage=300, stale-while-revalidate=86400",
     );
   });
