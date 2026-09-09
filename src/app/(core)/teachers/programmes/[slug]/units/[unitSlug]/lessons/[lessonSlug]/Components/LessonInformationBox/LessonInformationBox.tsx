@@ -32,6 +32,7 @@ const LessonInformationBox = (props: LessonInformationBoxProps) => {
   return (
     <OakFlex
       $flexDirection={"column"}
+      $pa={"spacing-24"}
       $gap={"spacing-32"}
       $background={"bg-neutral"}
       $borderRadius={"border-radius-l"}
