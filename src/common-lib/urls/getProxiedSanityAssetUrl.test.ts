@@ -21,6 +21,6 @@ describe("getProxiedSanityAssetUrl", () => {
     expect(getProxiedSanityAssetUrl(null)).toEqual(null);
   });
   test("should return undefined if undefined passed", () => {
-    expect(getProxiedSanityAssetUrl(undefined)).toEqual(undefined);
+    expect(getProxiedSanityAssetUrl(undefined)).toBeUndefined();
   });
 });

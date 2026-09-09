@@ -1,24 +1,10 @@
 import { screen } from "@testing-library/dom";
-import { GetServerSidePropsContext } from "next";
 
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 import { topNavFixture } from "@/node-lib/curriculum-api-2023/fixtures/topNav.fixture";
-import OaksImpact, { getServerSideProps } from "@/pages/about-us/oaks-impact";
+import OaksImpact, { getStaticProps } from "@/pages/about-us/oaks-impact";
 import CMSClient from "@/node-lib/cms";
 import { OaksImpactPage } from "@/common-lib/cms-types/aboutPages";
-import { isFeatureFlagEnabledStatic } from "@/utils/featureFlagChecks/static";
-
-const mockGetFeatureFlag = jest.fn();
-
-jest.mock("@/node-lib/posthog/getFeatureFlag", () => ({
-  __esModule: true,
-  getFeatureFlag: () => mockGetFeatureFlag(),
-}));
-
-jest.mock("@/node-lib/posthog/getPosthogId", () => ({
-  __esModule: true,
-  getPosthogIdFromCookie: jest.fn().mockReturnValue("test-id"),
-}));
 
 jest.mock("@/node-lib/curriculum-api-2023", () => ({
   __esModule: true,
@@ -27,14 +13,9 @@ jest.mock("@/node-lib/curriculum-api-2023", () => ({
   },
 }));
 
-jest.mock("@/utils/featureFlagChecks/static", () => ({
-  isFeatureFlagEnabledStatic: jest.fn(),
-}));
-
 jest.mock("../../../node-lib/cms");
 
 const mockCMSClient = CMSClient as jest.MockedObject<typeof CMSClient>;
-const mockIsFeatureFlagEnabledStatic = jest.mocked(isFeatureFlagEnabledStatic);
 
 const mockPageData: OaksImpactPage = {
   header: {
@@ -71,14 +52,11 @@ const mockPageData: OaksImpactPage = {
 beforeEach(() => {
   jest.clearAllMocks();
   jest.resetModules();
-  mockIsFeatureFlagEnabledStatic.mockReturnValue(false);
   mockCMSClient.oaksImpactPage.mockResolvedValue(mockPageData);
 });
 
 describe("pages/about-us/oaks-impact.tsx", () => {
-  it("renders title when feature flag is enabled", async () => {
-    mockGetFeatureFlag.mockResolvedValue(true);
-
+  it("renders title", async () => {
     const { container } = renderWithProviders()(
       <OaksImpact pageData={mockPageData} topNav={topNavFixture} />,
     );
@@ -89,13 +67,9 @@ describe("pages/about-us/oaks-impact.tsx", () => {
     expect(container).toMatchSnapshot();
   });
 
-  describe("getServerSideProps", () => {
-    it("should return props data when feature flag is enabled", async () => {
-      mockGetFeatureFlag.mockResolvedValue(true);
-
-      const propsResult = await getServerSideProps({
-        req: { cookies: {} },
-      } as GetServerSidePropsContext);
+  describe("getStaticProps", () => {
+    it("should return props data", async () => {
+      const propsResult = await getStaticProps({});
 
       expect(propsResult).toMatchObject({
         props: {
@@ -104,24 +78,10 @@ describe("pages/about-us/oaks-impact.tsx", () => {
       });
     });
 
-    it("should return not found when feature flag is disabled", async () => {
-      mockGetFeatureFlag.mockResolvedValue(false);
-
-      const propsResult = await getServerSideProps({
-        req: { cookies: {} },
-      } as GetServerSidePropsContext);
-
-      expect(propsResult).toMatchObject({
-        notFound: true,
-      });
-    });
-
     it("should return notFound when CMS returns null", async () => {
       mockCMSClient.oaksImpactPage.mockResolvedValueOnce(null);
 
-      const propsResult = await getServerSideProps({
-        req: { cookies: {} },
-      } as GetServerSidePropsContext);
+      const propsResult = await getStaticProps({});
 
       expect(propsResult).toMatchObject({
         notFound: true,

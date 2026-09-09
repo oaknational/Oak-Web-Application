@@ -96,15 +96,17 @@ export const blogWebinarCategorySchema = z.object({
 
 export type BlogWebinarCategory = z.infer<typeof blogWebinarCategorySchema>;
 
+export const assetSchema = z.object({
+  asset: z.object({
+    extension: z.string(),
+    size: z.number(),
+    url: z.string(),
+  }),
+});
+
 export const attachmentSchema = z.object({
   title: z.string(),
-  file: z.object({
-    asset: z.object({
-      extension: z.string(),
-      size: z.number(),
-      url: z.string(),
-    }),
-  }),
+  file: assetSchema,
 });
 
 export const formSchema = z.object({

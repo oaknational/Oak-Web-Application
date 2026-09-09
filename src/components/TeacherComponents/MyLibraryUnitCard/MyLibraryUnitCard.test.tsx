@@ -3,14 +3,30 @@ import userEvent from "@testing-library/user-event";
 
 import MyLibraryUnitCard from "./MyLibraryUnitCard";
 
-import type { KeyStageTitleValueType } from "@/browser-lib/avo/Avo";
+import type {
+  ExamBoardValueType,
+  KeyStageTitleValueType,
+  PathwayValueType,
+  TierNameValueType,
+} from "@/browser-lib/avo/Avo";
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 
 const render = renderWithProviders();
 
+const mockTrackUnitAccessed = jest.fn();
+const mockTrackLessonAccessed = jest.fn();
 jest.mock("@/hooks/useMediaQuery", () => ({
   __esModule: true,
   default: jest.fn().mockReturnValue(false),
+}));
+jest.mock("@/context/Analytics/useAnalytics", () => ({
+  __esModule: true,
+  default: jest.fn().mockReturnValue({
+    track: {
+      unitAccessed: (...args: []) => mockTrackUnitAccessed(...args),
+      lessonAccessed: (...args: []) => mockTrackLessonAccessed(...args),
+    },
+  }),
 }));
 
 const generateLessons = (
@@ -28,15 +44,15 @@ const generateLessons = (
     };
   });
 };
-const mockTrackUnitAccessed = jest.fn();
-const mockTrackLessonAccessed = jest.fn();
 const completeUnitLessons = generateLessons(5, "published");
 const mockUnit = {
   index: 1,
+  examBoard: "AQA" as ExamBoardValueType,
   unitTitle: "Saved Unit",
   unitSlug: "saved-unit",
   programmeSlug: "english-secondary-ks4-aqa",
   year: "Year 10",
+  yearSlug: "year-10",
   savedAt: "2023-10-01T12:00:00Z",
   href: "/saved-unit",
   lessonCount: 5,
@@ -44,8 +60,8 @@ const mockUnit = {
   keyStageSlug: "key-stage-4",
   subjectTitle: "English",
   subjectSlug: "english",
-  trackUnitAccessed: mockTrackUnitAccessed,
-  trackLessonAccessed: mockTrackLessonAccessed,
+  pathway: "pathway-1" as PathwayValueType,
+  tierName: "Foundation" as TierNameValueType,
 };
 
 // Mock secondary link so it doesn't attempt to navigate on click
@@ -126,6 +142,30 @@ describe("MyLibraryUnitCard", () => {
     const lessonLink = screen.getByText("Lesson 0");
     const user = userEvent.setup();
     await user.click(lessonLink);
-    expect(mockTrackLessonAccessed).toHaveBeenCalledWith("lesson-0-published");
+    expect(mockTrackLessonAccessed).toHaveBeenCalledWith({
+      analyticsUseCase: "Teacher",
+      componentType: "lesson_card",
+      engagementIntent: "refine",
+      eventVersion: "2.0.0",
+      unitName: mockUnit.unitTitle,
+      unitSlug: mockUnit.unitSlug,
+      lessonName: "lesson-0-published",
+      lessonSlug: "lesson-0-published",
+      keyStageTitle: mockUnit.keyStageTitle,
+      keyStageSlug: mockUnit.keyStageSlug,
+      examBoard: mockUnit.examBoard,
+      pathway: mockUnit.pathway,
+      phase: "secondary",
+      platform: "owa",
+      product: "teacher lesson resources",
+      releaseGroup: "2023",
+      subjectSlug: "biology", // fallsback to default programme state values
+      subjectTitle: "Biology",
+      lessonReleaseCohort: "2023-2026",
+      lessonReleaseDate: "",
+      tierName: mockUnit.tierName,
+      yearGroupName: mockUnit.year,
+      yearGroupSlug: mockUnit.yearSlug,
+    });
   });
 });

@@ -12,7 +12,7 @@ async function expectFeatureFlagResult({
   posthogEnabled: boolean;
   forceFlag: "true" | "false";
 }) {
-  process.env.NEXT_PUBLIC_FORCE_FEATURE_FLAG_OAKS_IMPACT = forceFlag;
+  process.env.NEXT_PUBLIC_FORCE_FEATURE_FLAG_EXAMPLE_FEATURE = forceFlag;
   (getPosthogIdFromCookie as jest.Mock).mockReturnValue("1111");
   (getFeatureFlag as jest.Mock).mockResolvedValue(posthogEnabled);
 }
@@ -25,7 +25,7 @@ describe("isFeatureFlagEnabledServer", () => {
         forceFlag: "true",
       });
 
-      const result = await isFeatureFlagEnabledServer({}, "oaks-impact");
+      const result = await isFeatureFlagEnabledServer({}, "example-feature");
 
       expect(result).toBe(true);
     });
@@ -36,7 +36,7 @@ describe("isFeatureFlagEnabledServer", () => {
         forceFlag: "false",
       });
 
-      const result = await isFeatureFlagEnabledServer({}, "oaks-impact");
+      const result = await isFeatureFlagEnabledServer({}, "example-feature");
 
       expect(result).toBe(true);
     });
@@ -49,7 +49,7 @@ describe("isFeatureFlagEnabledServer", () => {
         forceFlag: "true",
       });
 
-      const result = await isFeatureFlagEnabledServer({}, "oaks-impact");
+      const result = await isFeatureFlagEnabledServer({}, "example-feature");
 
       expect(result).toBe(true);
     });
@@ -60,7 +60,7 @@ describe("isFeatureFlagEnabledServer", () => {
         forceFlag: "false",
       });
 
-      const result = await isFeatureFlagEnabledServer({}, "oaks-impact");
+      const result = await isFeatureFlagEnabledServer({}, "example-feature");
 
       expect(result).toBe(false);
     });

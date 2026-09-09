@@ -32,6 +32,7 @@ import getPageProps from "@/node-lib/getPageProps";
 import { OaksCurriculaPage } from "@/common-lib/cms-types/aboutPages";
 import getProxiedSanityAssetUrl from "@/common-lib/urls/getProxiedSanityAssetUrl";
 import { SupportYou } from "@/components/GenericPagesComponents/SupportYou";
+import { TeacherBrowseAnalyticsStoreProvider } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
 
 export type OaksCurriculaPageProps = {
   pageData: OaksCurriculaPage;
@@ -107,130 +108,136 @@ export const OaksCurricula: NextPage<OaksCurriculaPageProps> = ({
   }));
 
   return (
-    <Layout
-      seoProps={getSeoProps(pageData.seo ?? { title: "Oak's Curricula" })}
-      $background={"bg-primary"}
-      topNavProps={topNav}
+    <TeacherBrowseAnalyticsStoreProvider
+      programmeState={null}
+      accessLevel={"homepage"}
     >
-      <AboutUsLayout>
-        <AboutSharedHeader
-          title={"Oak's curricula"}
-          content={pageData.header.introText}
-          titleHighlight="bg-decorative4-main"
-        >
-          {headerImageUrl && (
-            <AboutSharedHeaderImage
-              imageAlt={headerImageAlt}
-              imageUrl={headerImageUrl}
-            />
-          )}
-        </AboutSharedHeader>
-        <OakBox $background={"bg-decorative4-very-subdued"}>
-          <NewGutterMaxWidth>
-            <OakFlex
-              $flexDirection={"column"}
-              $gap={"spacing-56"}
-              $pv={["spacing-56", "spacing-80"]}
-            >
-              <OakFlex
-                as="ul"
-                $flexDirection={["column", "row"]}
-                $pa={"spacing-0"}
-                $ma={"spacing-0"}
-                $gap={"spacing-16"}
-                $alignItems="stretch"
-              >
-                {curriculaCardsInfo.map((cardInfo) => (
-                  <UnstyledLi key={cardInfo.iconName}>
-                    <CurricInfoCard
-                      iconName={cardInfo.iconName}
-                      background="bg-primary"
-                      iconHeight={"spacing-92"}
-                      iconWidth={cardInfo.iconWidth}
-                      borderColor="border-decorative4"
-                    >
-                      {cardInfo.text}
-                    </CurricInfoCard>
-                  </UnstyledLi>
-                ))}
-              </OakFlex>
-              <GuidingPrinciples
-                $background="bg-primary"
-                accentColor="border-decorative4"
-                text={pageData.guidingPrinciples.textRaw}
-                imageUrl={guidingPrinciplesImageUrl}
-                imageAlt={guidingPrinciplesImageAlt}
-                principles={pageData.guidingPrinciples.principles}
+      <Layout
+        seoProps={getSeoProps(pageData.seo ?? { title: "Oak's Curricula" })}
+        $background={"bg-primary"}
+        topNavProps={topNav}
+      >
+        <AboutUsLayout>
+          <AboutSharedHeader
+            title={"Oak's curricula"}
+            content={pageData.header.introText}
+            titleHighlight="bg-decorative4-main"
+          >
+            {headerImageUrl && (
+              <AboutSharedHeaderImage
+                imageAlt={headerImageAlt}
+                imageUrl={headerImageUrl}
               />
-              <OakFlex
-                $flexDirection="column"
-                $maxWidth={"spacing-640"}
-                $gap={["spacing-8", "spacing-12", "spacing-12"]}
-              >
-                <OakHeading
-                  tag="h2"
-                  $font={["heading-5", "heading-4", "heading-4"]}
-                >
-                  See Oak's curricula in practice
-                </OakHeading>
-                <SubjectPhasePicker {...curriculumPhaseOptions} />
-              </OakFlex>
-            </OakFlex>
-          </NewGutterMaxWidth>
-        </OakBox>
-        {(currentPartnerItems.length > 0 || legacyPartnerItems.length > 0) && (
-          <NewGutterMaxWidth>
-            <OakFlex
-              $flexDirection={"column"}
-              $pt={"spacing-80"}
-              $gap={"spacing-56"}
-            >
+            )}
+          </AboutSharedHeader>
+          <OakBox $background={"bg-decorative4-very-subdued"}>
+            <NewGutterMaxWidth>
               <OakFlex
                 $flexDirection={"column"}
-                $gap={"spacing-8"}
-                $maxWidth={"spacing-960"}
+                $gap={"spacing-56"}
+                $pv={["spacing-56", "spacing-80"]}
               >
-                <OakHeading
-                  tag="h2"
-                  $font={["heading-4", "heading-3", "heading-3"]}
+                <OakFlex
+                  as="ul"
+                  $flexDirection={["column", "row"]}
+                  $pa={"spacing-0"}
+                  $ma={"spacing-0"}
+                  $gap={"spacing-16"}
+                  $alignItems="stretch"
                 >
-                  Curriculum partners
-                </OakHeading>
-                <PortableTextWithDefaults
-                  value={pageData.curriculumPartners.textRaw}
-                  components={{
-                    block: {
-                      normal: OakPStyled,
-                    },
-                  }}
+                  {curriculaCardsInfo.map((cardInfo) => (
+                    <UnstyledLi key={cardInfo.iconName}>
+                      <CurricInfoCard
+                        iconName={cardInfo.iconName}
+                        background="bg-primary"
+                        iconHeight={"spacing-92"}
+                        iconWidth={cardInfo.iconWidth}
+                        borderColor="border-decorative4"
+                      >
+                        {cardInfo.text}
+                      </CurricInfoCard>
+                    </UnstyledLi>
+                  ))}
+                </OakFlex>
+                <GuidingPrinciples
+                  $background="bg-primary"
+                  accentColor="border-decorative4"
+                  text={pageData.guidingPrinciples.textRaw}
+                  imageUrl={guidingPrinciplesImageUrl}
+                  imageAlt={guidingPrinciplesImageAlt}
+                  principles={pageData.guidingPrinciples.principles}
                 />
+                <OakFlex
+                  $flexDirection="column"
+                  $maxWidth={"spacing-640"}
+                  $gap={["spacing-8", "spacing-12", "spacing-12"]}
+                >
+                  <OakHeading
+                    tag="h2"
+                    $font={["heading-5", "heading-4", "heading-4"]}
+                  >
+                    See Oak's curricula in practice
+                  </OakHeading>
+                  <SubjectPhasePicker {...curriculumPhaseOptions} />
+                </OakFlex>
               </OakFlex>
-              {currentPartnerItems.length > 0 && (
-                <CurriculumPartners
-                  title="Current"
-                  text={pageData.curriculumPartners.current.textRaw}
-                  items={currentPartnerItems}
-                />
-              )}
-              {legacyPartnerItems.length > 0 && (
-                <CurriculumPartners
-                  title="Legacy"
-                  text={pageData.curriculumPartners.legacy.textRaw}
-                  items={legacyPartnerItems}
-                  size={"sm"}
-                />
-              )}
-            </OakFlex>
-          </NewGutterMaxWidth>
-        )}
-        <SupportYou
-          link={{
-            text: "Get in touch with an expert",
-            href: "https://share.hsforms.com/2yBT-92_WT6CvX1b6L3Iw8Qbvumd",
-          }}
-        />
-      </AboutUsLayout>
-    </Layout>
+            </NewGutterMaxWidth>
+          </OakBox>
+          {(currentPartnerItems.length > 0 ||
+            legacyPartnerItems.length > 0) && (
+            <NewGutterMaxWidth>
+              <OakFlex
+                $flexDirection={"column"}
+                $pt={"spacing-80"}
+                $gap={"spacing-56"}
+              >
+                <OakFlex
+                  $flexDirection={"column"}
+                  $gap={"spacing-8"}
+                  $maxWidth={"spacing-960"}
+                >
+                  <OakHeading
+                    tag="h2"
+                    $font={["heading-4", "heading-3", "heading-3"]}
+                  >
+                    Curriculum partners
+                  </OakHeading>
+                  <PortableTextWithDefaults
+                    value={pageData.curriculumPartners.textRaw}
+                    components={{
+                      block: {
+                        normal: OakPStyled,
+                      },
+                    }}
+                  />
+                </OakFlex>
+                {currentPartnerItems.length > 0 && (
+                  <CurriculumPartners
+                    title="Current"
+                    text={pageData.curriculumPartners.current.textRaw}
+                    items={currentPartnerItems}
+                  />
+                )}
+                {legacyPartnerItems.length > 0 && (
+                  <CurriculumPartners
+                    title="Legacy"
+                    text={pageData.curriculumPartners.legacy.textRaw}
+                    items={legacyPartnerItems}
+                    size={"sm"}
+                  />
+                )}
+              </OakFlex>
+            </NewGutterMaxWidth>
+          )}
+          <SupportYou
+            link={{
+              text: "Get in touch with an expert",
+              href: "https://share.hsforms.com/2yBT-92_WT6CvX1b6L3Iw8Qbvumd",
+            }}
+          />
+        </AboutUsLayout>
+      </Layout>
+    </TeacherBrowseAnalyticsStoreProvider>
   );
 };
 

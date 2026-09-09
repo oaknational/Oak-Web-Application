@@ -17,6 +17,7 @@ import getPageProps from "@/node-lib/getPageProps";
 import { TopNavProps } from "@/components/AppComponents/TopNav/TopNav";
 import { SubjectPhasePickerData } from "@/components/SharedComponents/SubjectPhasePicker/SubjectPhasePicker";
 import { filterValidCurriculumPhaseOptions } from "@/pages-helpers/curriculum/docx/tab-helpers";
+import { TeacherBrowseAnalyticsStoreProvider } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
 
 export type HomePageProps = BlogPostProps & {
   curriculumPhaseOptions: SubjectPhasePickerData;
@@ -47,27 +48,32 @@ const HomePage: NextPage<HomePageProps> = (props) => {
   const campaignPromoBanner = pageData.campaignPromoBanner;
 
   return (
-    <AppLayout
-      seoProps={{
-        title: "Free, time-saving teacher resources | Oak National Academy",
-        description:
-          "Explore our free, time-saving teacher resources from Oak National Academy. Browse and download worksheets, quizzes and slides from KS1 to KS4. ",
-      }}
-      $background={"bg-primary"}
-      topNavProps={topNav}
+    <TeacherBrowseAnalyticsStoreProvider
+      programmeState={null}
+      accessLevel="homepage"
     >
-      <Banners />
-      <TeachersTab
-        curriculumPhaseOptions={curriculumPhaseOptions}
-        aria-current="page"
-      />
-      <HomePageLowerView
-        campaignPromoBanner={campaignPromoBanner}
-        posts={posts}
-        testimonials={testimonials}
-        introVideo={intro}
-      />
-    </AppLayout>
+      <AppLayout
+        seoProps={{
+          title: "Free, time-saving teacher resources | Oak National Academy",
+          description:
+            "Explore our free, time-saving teacher resources from Oak National Academy. Browse and download worksheets, quizzes and slides from KS1 to KS4. ",
+        }}
+        $background={"bg-primary"}
+        topNavProps={topNav}
+      >
+        <Banners />
+        <TeachersTab
+          curriculumPhaseOptions={curriculumPhaseOptions}
+          aria-current="page"
+        />
+        <HomePageLowerView
+          campaignPromoBanner={campaignPromoBanner}
+          posts={posts}
+          testimonials={testimonials}
+          introVideo={intro}
+        />
+      </AppLayout>
+    </TeacherBrowseAnalyticsStoreProvider>
   );
 };
 

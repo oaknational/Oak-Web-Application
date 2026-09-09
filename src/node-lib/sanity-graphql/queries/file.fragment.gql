@@ -1,0 +1,7 @@
+fragment File on File {
+    asset {
+      extension
+      size
+      url
+    }
+}

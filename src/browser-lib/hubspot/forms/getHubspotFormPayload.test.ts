@@ -1,4 +1,5 @@
 import {
+  getHubspotCurriculumDownloadsFormPayload,
   getHubspotDownloadsFormPayload,
   getHubspotNewsletterPayload,
   getHubspotOnboardingFormPayload,
@@ -190,6 +191,55 @@ describe("getHubspotDownloadFormPayload()", () => {
     ).toEqual({
       fields: [
         { name: "contact_school_name", value: "school_name value" },
+        { name: "email", value: "email value" },
+        { name: "latest_utm_campaign", value: "a campaign" },
+        { name: "latest_utm_content", value: "some content" },
+        { name: "latest_utm_medium", value: "some medium" },
+        { name: "latest_utm_source", value: "a source" },
+        { name: "latest_utm_term", value: "term" },
+        { name: "oak_user_id", value: "oak_user_id value" },
+      ],
+      context: {
+        hutk: "hubspotutk value 123",
+        pageUri: "http://localhost/",
+        pageName: "",
+      },
+    });
+  });
+});
+describe("getHubspotCurriculumDownloadsFormPayload()", () => {
+  test("primary form payload is correct", () => {
+    expect(
+      getHubspotCurriculumDownloadsFormPayload({
+        hutk: "hubspotutk value 123",
+        data: {
+          email: "email value",
+          schoolName: "school_name value",
+          school: "school_id value",
+          oakUserId: "oak_user_id value",
+          utm_campaign: "a campaign",
+          utm_content: "some content",
+          utm_medium: "some medium",
+          utm_source: "a source",
+          utm_term: "term",
+          phaseSlug: "primary",
+          subjectSlug: "science",
+          resources: ["curriculumPlan", "commonQuestions"],
+        },
+      }),
+    ).toEqual({
+      fields: [
+        { name: "contact_school_name", value: "school_name value" },
+        { name: "contact_school_urn", value: "school_id value" },
+        {
+          name: "curriculum_downloads_subject_phase_array",
+          value: "science-primary",
+        },
+        {
+          name: "curriculum_downloads_text_array",
+          value:
+            "science-primary-curriculumPlan;science-primary-commonQuestions",
+        },
         { name: "email", value: "email value" },
         { name: "latest_utm_campaign", value: "a campaign" },
         { name: "latest_utm_content", value: "some content" },

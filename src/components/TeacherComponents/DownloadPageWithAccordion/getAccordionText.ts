@@ -39,7 +39,7 @@ export const getAccordionText = ({
 
   if (curriculumDownloads) {
     for (const download of curriculumDownloads) {
-      resources.push(download.label);
+      resources.push(download.groupLabel ?? download.label);
     }
   }
 

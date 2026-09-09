@@ -1,6 +1,8 @@
 import PostCategoryList from "./PostCategoryList";
 
-import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
+import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
+
+const render = renderWithProviders();
 
 jest.mock("@/context/Analytics/useAnalytics", () => ({
   __esModule: true,
@@ -11,7 +13,7 @@ jest.mock("@/context/Analytics/useAnalytics", () => ({
 
 describe("PostCategoryList", () => {
   test("should render links to lessons", () => {
-    const { getByRole } = renderWithTheme(
+    const { getByRole } = render(
       <PostCategoryList
         page={"blog-index"}
         categories={[
@@ -30,7 +32,7 @@ describe("PostCategoryList", () => {
     );
   });
   test("should work with webinars", () => {
-    const { getByRole } = renderWithTheme(
+    const { getByRole } = render(
       <PostCategoryList
         page={"webinar-index"}
         categories={[
@@ -49,7 +51,7 @@ describe("PostCategoryList", () => {
     );
   });
   test("current link should be signposted with aria-current=true", () => {
-    const { getByRole } = renderWithTheme(
+    const { getByRole } = render(
       <PostCategoryList
         page={"blog-index"}
         categories={[
@@ -63,7 +65,7 @@ describe("PostCategoryList", () => {
     expect(currentLink).toHaveAccessibleName("Lesson Planning");
   });
   test("selectedCategorySlug null should mean All is current", () => {
-    const { getByRole } = renderWithTheme(
+    const { getByRole } = render(
       <PostCategoryList
         page={"blog-index"}
         categories={[
@@ -77,7 +79,7 @@ describe("PostCategoryList", () => {
     expect(currentLink).toHaveAccessibleName("All");
   });
   test("non current links should not be signposted with aria-current", () => {
-    const { getByRole } = renderWithTheme(
+    const { getByRole } = render(
       <PostCategoryList
         page={"blog-index"}
         categories={[
@@ -91,7 +93,7 @@ describe("PostCategoryList", () => {
     expect(nonCurrentLink).not.toHaveAttribute("aria-current");
   });
   test("nav element should have the correct accessible name", () => {
-    const { getByRole } = renderWithTheme(
+    const { getByRole } = render(
       <PostCategoryList
         page={"blog-index"}
         categories={[

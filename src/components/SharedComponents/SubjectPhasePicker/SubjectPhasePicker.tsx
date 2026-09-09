@@ -31,16 +31,15 @@ import type {
   CurriculumPhaseOptions,
   CurriculumPhaseOption,
 } from "@/node-lib/curriculum-api-2023";
-import useAnalytics from "@/context/Analytics/useAnalytics";
 import { getPhaseText } from "@/utils/curriculum/formatting";
 import { getValidSubjectIconName } from "@/utils/getValidSubjectIconName";
 import FocusWrap from "@/components/CurriculumComponents/OakComponentsKitchen/FocusWrap";
 import { CurriculumModalCloseButton } from "@/components/CurriculumComponents/CurriculumModalCloseButton/CurriculumModalCloseButton";
 import useMediaQuery from "@/hooks/useMediaQuery";
-import { PhaseValueType } from "@/browser-lib/avo/Avo";
 import { resolveOakHref } from "@/common-lib/urls";
 import { MaybeVisuallyHidden } from "@/components/AppComponents/TopNav/TopNav";
 import { getSubjectPhaseSlug } from "@/components/TeacherComponents/helpers/getSubjectPhaseSlug";
+import { useTeacherBrowseAnalytics } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
 
 const TruncatedFlex = styled(OakFlex)`
   max-width: calc(100% - 1rem);
@@ -1221,7 +1220,7 @@ const SubjectPhasePicker = ({
   const schoolPhaseInputId = useId();
   const ks4OptionInputId = useId();
 
-  const { track } = useAnalytics();
+  const track = useTeacherBrowseAnalytics((store) => store.track);
 
   const initialSubject = subjects.find(
     (option) => option.slug === currentSelection?.subject.slug,
@@ -1362,16 +1361,11 @@ const SubjectPhasePicker = ({
 
   const trackViewCurriculum = () => {
     if (selectedPhase && selectedSubject) {
-      track.curriculumVisualiserAccessed({
-        subjectTitle: selectedSubject.title,
-        subjectSlug: selectedSubject.slug,
-        platform: "owa",
-        product: "curriculum visualiser",
-        engagementIntent: "use",
+      track.programmeAccessed({
         componentType: "curriculum_visualiser_button",
-        eventVersion: "2.0.0",
-        analyticsUseCase: "Teacher",
-        phase: selectedPhase.slug as PhaseValueType,
+        activeFilters: [],
+        filterType: "Subject filter",
+        filterValue: selectedSubject.slug,
       });
     }
   };

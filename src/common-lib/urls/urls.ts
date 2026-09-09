@@ -330,6 +330,8 @@ type EyfsPageLinkProps = {
   subjectSlug: string;
 };
 
+type TeachWithOakLinkProps = { page: "teach-with-oak" };
+
 type OnlyPageRequired<T> = T extends { page: string }
   ? { page: T["page"] } extends T
     ? T
@@ -406,7 +408,8 @@ export type OakLinkProps =
   | ClassroomPupilSignInLinkProps
   | EyfsPageLinkProps
   | GuideToOakLinkProps
-  | FontHelpLinkProps;
+  | FontHelpLinkProps
+  | TeachWithOakLinkProps;
 
 export type ExternalPageName =
   | "[external] Careers"
@@ -953,6 +956,12 @@ export const OAK_PAGES: {
     analyticsPageName: "Unit Listing",
     configType: "internal",
     pageType: "eyfs-page",
+  }),
+  "teach-with-oak": createOakPageConfig({
+    pathPattern: "/teachers/teach-with-oak",
+    analyticsPageName: "Teach With Oak",
+    configType: "internal",
+    pageType: "teach-with-oak",
   }),
 };
 

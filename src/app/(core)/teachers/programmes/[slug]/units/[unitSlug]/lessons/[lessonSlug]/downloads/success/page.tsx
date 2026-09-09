@@ -17,7 +17,7 @@ type LessonDownloadsSuccessPageParams = {
   lessonSlug: string;
 };
 
-export const dynamic = "force-dynamic";
+export const dynamic = "force-static";
 
 const getSuccessData = async (
   programmeSlug: string,

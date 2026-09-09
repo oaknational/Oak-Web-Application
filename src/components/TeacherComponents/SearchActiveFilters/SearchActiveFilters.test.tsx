@@ -32,7 +32,7 @@ describe("SearchActiveFilters", () => {
     );
     const button = getByRole("button", { name: `Remove ${ks} filter` });
     expect(button).toBeInTheDocument();
-    userEvent.click(button);
+    await userEvent.click(button);
     await waitFor(() => {
       expect(searchFilterModifiedMock).toHaveBeenLastCalledWith({
         analyticsUseCase: "Teacher",
@@ -82,7 +82,7 @@ describe("SearchActiveFilters", () => {
     );
     const button = getByRole("button", { name: `Remove ${subject} filter` });
     expect(button).toBeInTheDocument();
-    userEvent.click(button);
+    await userEvent.click(button);
     await waitFor(() => {
       expect(searchFilterModifiedMock).toHaveBeenLastCalledWith({
         analyticsUseCase: "Teacher",
@@ -136,7 +136,7 @@ describe("SearchActiveFilters", () => {
       name: `Remove ${ContentType} filter`,
     });
     expect(button).toBeInTheDocument();
-    userEvent.click(button);
+    await userEvent.click(button);
     await waitFor(() => {
       expect(searchFilterModifiedMock).toHaveBeenCalledWith({
         analyticsUseCase: "Teacher",
@@ -193,7 +193,7 @@ describe("SearchActiveFilters", () => {
     });
     expect(button).toBeInTheDocument();
 
-    userEvent.click(button);
+    await userEvent.click(button);
     await waitFor(() => {
       expect(searchFilterModifiedMock).toHaveBeenCalledWith({
         analyticsUseCase: "Teacher",

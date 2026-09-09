@@ -16,17 +16,16 @@ import { useProgrammePageFiltersModal } from "./ProgrammePageFiltersModalProvide
 
 import { usePrevious } from "@/hooks/usePrevious";
 import { CloseAction } from "@/components/CurriculumComponents/OakComponentsKitchen/OakModalNew/Content";
+import { useBrowseFilters } from "@/context/BrowseFilters";
 
 export default function ProgrammePageFiltersMobile({
-  filters,
-  onChangeFilters,
   data,
   slugs,
   ks4Options,
   ks4OptionFilterDimensions,
 }: Readonly<ProgrammePageFiltersProps>) {
   const { isOpen, setIsOpen } = useProgrammePageFiltersModal();
-
+  const { filters, onChangeFilters } = useBrowseFilters();
   const [initialFilterState, setInitialFilterState] = useState(() => {
     return filters;
   });
@@ -74,8 +73,6 @@ export default function ProgrammePageFiltersMobile({
       >
         <ModalContent
           data={data}
-          filters={filters}
-          onChangeFilters={onChangeFilters}
           slugs={slugs}
           ks4Options={ks4Options}
           ks4OptionFilterDimensions={ks4OptionFilterDimensions}
@@ -84,8 +81,6 @@ export default function ProgrammePageFiltersMobile({
 
       <ProgrammeFiltersHeaderMobile
         onOpenModal={handleMobileThreadModal}
-        filters={filters}
-        onChangeFilters={onChangeFilters}
         data={data}
         slugs={slugs}
         ks4Options={ks4Options}
@@ -104,8 +99,6 @@ function getDomContainer() {
 }
 
 const ModalContent = ({
-  filters,
-  onChangeFilters,
   data,
   slugs,
   ks4Options,
@@ -129,8 +122,6 @@ const ModalContent = ({
       >
         <KS4OptionFocusScope variant="modal">
           <ProgrammeFilters
-            filters={filters}
-            onChangeFilters={onChangeFilters}
             data={data}
             slugs={slugs}
             ks4Options={ks4Options}

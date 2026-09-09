@@ -1,6 +1,7 @@
 import * as z from "zod";
 
 import {
+  assetSchema,
   attachmentSchema,
   imageSchema,
   imageWithAltTextAndDarkModeSchema,
@@ -234,3 +235,13 @@ export const aboutWorkWithUsPageSchema = getInvolvedPageWorkWithUsSchema;
 export type AboutWorkWithUsPage = z.infer<
   typeof getInvolvedPageWorkWithUsSchema
 >;
+
+export const implementationGuidesSchema = z.object({
+  curriculumQuality: assetSchema.optional().nullable(),
+  whatsIncluded: assetSchema.optional().nullable(),
+  assessment: assetSchema.optional().nullable(),
+  commonQuestions: assetSchema.optional().nullable(),
+  equipmentList: assetSchema.optional().nullable(),
+});
+
+export type ImplementationGuides = z.infer<typeof implementationGuidesSchema>;

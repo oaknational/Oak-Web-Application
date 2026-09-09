@@ -19,8 +19,11 @@ import {
   PhaseValueType,
   LessonReleaseCohortValueType,
   VideoLocationValueType,
+  ComponentTypeValueType,
+  ActiveFilters,
 } from "@/browser-lib/avo/Avo";
 import { ResourceFormValues } from "@/components/TeacherComponents/types/downloadAndShare.types";
+import { Thread, Unit } from "@/utils/curriculum/types";
 
 // Core programme properties used at all browse levels
 export type CoreProgrammeState = {
@@ -125,23 +128,47 @@ export type VideoTrackingProperties = {
 // All Track Fns used in the teacher browse journey
 export type TeacherBrowseTrackFns = {
   // NAVIGATION
-  browseRefined: () => void;
+  programmeRefined: (props: {
+    componentType: ComponentTypeValueType;
+    activeFilters: ActiveFilters;
+    filterType: FilterTypeValueType;
+    filterValue: string;
+  }) => void;
+  unitRefined: (props: {
+    componentType: ComponentTypeValueType;
+    activeFilters: ActiveFilters;
+    filterType: FilterTypeValueType;
+    filterValue: string;
+  }) => void;
+  programmeAccessed: (props: {
+    componentType: ComponentTypeValueType;
+    activeFilters: ActiveFilters;
+    filterType: FilterTypeValueType;
+    filterValue: string;
+  }) => void;
 
   // PROGRAMMES (fka Curriculum Visualiser)
   curriculumExplainerExplored: () => void;
   curriculumResourcesDownloaded: (data: ResourceFormValues) => void;
+  curriculumResourcesAccessed: () => void;
   curriculumResourcesDownloadRefined: (data: {
     tierSlug?: string | null;
     childSubjectSlug?: string | null;
   }) => void;
 
   //UNITS
-  unitAccessed: () => void;
-  unitDownloaded: () => void;
-  unitOverviewAccessed: (props: {
-    unitHighlighted: boolean;
-    selectedThread?: { slug: string; title: string }; // TD add filters to state
+  unitAccessed: (props: {
+    componentType: ComponentTypeValueType;
+    yearGroupName: string;
+    yearGroupSlug: string;
   }) => void;
+  unitDownloaded: () => void;
+  unitDownloadStarted: () => void;
+  unitOverviewAccessed: (
+    unit: Unit,
+    isHighlighted: boolean,
+    selectedThread: Thread | undefined,
+  ) => void;
   unitSequenceRefined: (props: {
     selectedThread?: { slug: string; title: string }; // TD add filters to state
     subjectCategory?: string; // TD add filters to state
@@ -149,7 +176,14 @@ export type TeacherBrowseTrackFns = {
   }) => void;
 
   // LESSONS
-  lessonAccessed: () => void;
+  lessonAccessed: (props: { componentType: ComponentTypeValueType }) => void;
+  lessonResourcesDownloaded: (
+    props: ResourceFormValues & {
+      selectedResources: string[];
+      onwardContent: string[];
+      totalDownloadableResources: number;
+    },
+  ) => void;
   lessonResourceDownloadStarted: (
     downloadResourceButtonName: DownloadResourceButtonNameValueType,
   ) => void;
@@ -158,7 +192,7 @@ export type TeacherBrowseTrackFns = {
     learningCycle?: string | null;
   }) => void;
   mediaClipsPlaylistPlayed: (props: {
-    learningCycle: string;
+    learningCycle: string | null;
     durationSeconds: number;
     isCaptioned: boolean;
     videoPlaybackId: string[];

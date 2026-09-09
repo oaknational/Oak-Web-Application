@@ -14,7 +14,6 @@ export const TranscriptViewer: FC<TranscriptViewerProps> = ({
       role="article"
       aria-label="The video transcript"
       $width={["100%"]}
-      $maxHeight={["spacing-360", "spacing-640", "spacing-640"]}
       $overflow={"clip"}
       $background="bg-neutral-stronger"
       $ph="spacing-16"

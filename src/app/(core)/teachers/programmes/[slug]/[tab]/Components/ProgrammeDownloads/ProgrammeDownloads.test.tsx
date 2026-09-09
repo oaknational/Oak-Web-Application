@@ -1,4 +1,4 @@
-import { screen, waitFor } from "@testing-library/react";
+import { screen, waitFor, within, act } from "@testing-library/react";
 import { usePathname } from "next/navigation";
 import userEvent from "@testing-library/user-event";
 
@@ -12,7 +12,6 @@ import { parseSubjectPhaseSlug } from "@/utils/curriculum/slugs";
 import { createCurriculumDownloadsUrl } from "@/utils/curriculum/urls";
 import { createYearData } from "@/fixtures/curriculum/yearData";
 import { createUnit } from "@/fixtures/curriculum/unit";
-import { CurriculumOverviewMVData } from "@/node-lib/curriculum-api-2023";
 
 jest.mock("next/navigation");
 
@@ -60,14 +59,11 @@ jest.mock("@/context/Analytics/useAnalytics", () => ({
 }));
 
 const onHubspotSubmit = jest.fn();
-jest.mock(
-  "@/components/TeacherComponents/hooks/downloadAndShareHooks/useHubspotSubmit",
-  () => ({
-    useHubspotSubmit: () => ({
-      onHubspotSubmit: (...args: unknown[]) => onHubspotSubmit(...args),
-    }),
+jest.mock("./useHubspotCurriculumDownloads", () => ({
+  useHubspotCurriculumDownloads: () => ({
+    onHubspotSubmit: (...args: unknown[]) => onHubspotSubmit(...args),
   }),
-);
+}));
 
 jest.mock(
   "@/components/TeacherComponents/hooks/downloadAndShareHooks/useResourceFormSubmit",
@@ -158,7 +154,9 @@ const defaultProps = {
     phaseTitle: "Secondary",
     examboardTitle: null,
     nonCurriculum: false,
-  } satisfies CurriculumOverviewMVData,
+  },
+  implementationGuides: {},
+  featureFlags: {},
 };
 const renderComponent = (overrides: Partial<ProgrammeDownloadsProps>) => {
   return renderWithProviders()(
@@ -172,7 +170,7 @@ describe("Programme Downloads", () => {
   });
 
   describe("Curriculum Downloads Tab: Secondary Maths", () => {
-    test("user can see the tier selector for secondary maths", async () => {
+    test("user can see the tier selector for secondary maths and nav forwards/backwards", async () => {
       renderComponent({
         curriculumDownloadsTabData: {
           ...defaultProps.curriculumDownloadsTabData,
@@ -188,7 +186,89 @@ describe("Programme Downloads", () => {
         name: "Higher",
       });
       expect(higherTierRadioButton).toBeInTheDocument();
+
+      const nextStepButton = screen.getByRole("button", { name: "Next step" });
+      act(() => {
+        nextStepButton.click();
+      });
+      const backButton = screen.getByRole("button", {
+        name: "Back to KS4 Options",
+      });
+      expect(backButton).toBeInTheDocument();
+
+      act(() => {
+        backButton.click();
+      });
+      expect(
+        screen.getByRole("button", { name: "Next step" }),
+      ).toBeInTheDocument();
     });
+  });
+
+  describe("implementation guides", () => {
+    test("should show implementation guides when they are available (and enabled)", async () => {
+      const { findAllByRole } = renderComponent({
+        curriculumDownloadsTabData: {
+          ...defaultProps.curriculumDownloadsTabData,
+        },
+        implementationGuides: {
+          curriculumQuality: {
+            asset: {
+              extension: "pdf",
+              size: 1000,
+              url: "https://example.com/whats-included.pdf",
+            },
+          },
+        },
+        featureFlags: {
+          "implementation-guides": true,
+        },
+      });
+
+      const region = (await findAllByRole("region"))[1]!;
+
+      expect(
+        await within(region).findByText("Curriculum quality"),
+      ).toBeInTheDocument();
+    });
+  });
+
+  test("should show file sizes", async () => {
+    const { findAllByRole } = renderComponent({
+      curriculumDownloadsTabData: {
+        ...defaultProps.curriculumDownloadsTabData,
+      },
+      implementationGuides: {
+        curriculumQuality: {
+          asset: {
+            extension: "pdf",
+            size: 1000,
+            url: "https://example.com/whats-included.pdf",
+          },
+        },
+      },
+      fileSizes: [
+        {
+          downloadId: "curriculumPlan",
+          size: 2000,
+          tier: null,
+          childSubject: null,
+        },
+      ],
+      featureFlags: {
+        "implementation-guides": true,
+      },
+    });
+
+    const region = (await findAllByRole("region"))[1]!;
+
+    const labelEls = region.querySelectorAll("label");
+    expect(labelEls).toHaveLength(2);
+
+    expect(labelEls[0]).toHaveTextContent(/Curriculum plan/);
+    expect(labelEls[0]).toHaveTextContent(/2 KB/);
+    expect(labelEls[1]).toHaveTextContent(/Curriculum quality/);
+    expect(labelEls[1]).toHaveTextContent(/1 KB/);
   });
 
   describe("Curriculum Downloads Tab: Secondary Science", () => {
@@ -288,7 +368,9 @@ describe("Programme Downloads", () => {
           schoolName: undefined,
           email: "test@example.com",
           terms: true,
-          resources: ["docx"],
+          resources: ["curriculumPlan"],
+          phaseSlug: "secondary",
+          subjectSlug: "english",
         }),
       );
 
@@ -303,7 +385,7 @@ describe("Programme Downloads", () => {
           keyStageTitle: null,
           platform: "owa",
           product: "curriculum resources",
-          resourceType: ["curriculum document"],
+          resourceType: ["curriculum plan"],
           schoolName: "Test school",
           schoolOption: "Selected school",
           schoolUrn: "123456",
@@ -333,7 +415,7 @@ describe("Downloads tab: unit tests", () => {
       childSubjectSlug,
     } = data;
     const url = createCurriculumDownloadsUrl(
-      ["curriculum-plans"],
+      ["curriculumPlan"],
       "published",
       mvRefreshTime,
       subjectSlug,
@@ -343,13 +425,13 @@ describe("Downloads tab: unit tests", () => {
       childSubjectSlug,
     );
     expect(url).toEqual(
-      `/api/curriculum-downloads/?types=curriculum-plans&mvRefreshTime=1721314874829&subjectSlug=science&phaseSlug=secondary&state=published&ks4OptionSlug=aqa&tierSlug=foundation&childSubjectSlug=combined-science`,
+      `/api/curriculum-downloads/?types=curriculumPlan&mvRefreshTime=1721314874829&subjectSlug=science&phaseSlug=secondary&state=published&ks4OptionSlug=aqa&tierSlug=foundation&childSubjectSlug=combined-science`,
     );
   });
 
   test("URL is created properly: English primary", async () => {
     const url = createCurriculumDownloadsUrl(
-      ["curriculum-plans"],
+      ["curriculumPlan"],
       "published",
       mvRefreshTime,
       "english",
@@ -359,7 +441,7 @@ describe("Downloads tab: unit tests", () => {
       null,
     );
     expect(url).toEqual(
-      `/api/curriculum-downloads/?types=curriculum-plans&mvRefreshTime=1721314874829&subjectSlug=english&phaseSlug=primary&state=published`,
+      `/api/curriculum-downloads/?types=curriculumPlan&mvRefreshTime=1721314874829&subjectSlug=english&phaseSlug=primary&state=published`,
     );
   });
 });

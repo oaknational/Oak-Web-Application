@@ -28,6 +28,7 @@ describe("useCaptureFeatureFlag", () => {
     expect(mockTrackFeatureFlag).toHaveBeenCalledWith({
       $feature_flag: "test-flag",
       $feature_flag_response: "control",
+      "$feature_flag/test-flag": "control",
     });
   });
   it("does not call trackFeatureFlag when no cookie is present", () => {

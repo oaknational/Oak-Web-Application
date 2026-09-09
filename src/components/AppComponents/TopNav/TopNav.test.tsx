@@ -45,12 +45,12 @@ jest.mock("next/link", () => {
   };
 });
 
-const mockBrowseAccessed = jest.fn();
+const mockProgrammeAccessed = jest.fn();
 jest.mock("@/context/Analytics/useAnalytics", () => ({
   __esModule: true,
   default: () => ({
     track: {
-      browseAccessed: (...args: []) => mockBrowseAccessed(...args),
+      programmeAccessed: (...args: []) => mockProgrammeAccessed(...args),
     },
   }),
 }));
@@ -59,7 +59,7 @@ const mockProps = topNavFixture;
 
 describe("TopNav", () => {
   beforeEach(() => {
-    mockBrowseAccessed.mockReset();
+    mockProgrammeAccessed.mockReset();
     mockSelectedArea.mockReturnValue("TEACHERS");
   });
   it("renders links for pupils and teachers", async () => {
@@ -179,7 +179,7 @@ describe("TopNav", () => {
     const primaryButton = await screen.findByText("Primary");
     const user = userEvent.setup();
     await user.click(primaryButton);
-    expect(mockBrowseAccessed).toHaveBeenCalled();
+    expect(mockProgrammeAccessed).toHaveBeenCalled();
   });
   it("does not track browse accessed when a subnav button is closing a menu", async () => {
     render(<TopNav {...mockProps} />);
@@ -187,7 +187,7 @@ describe("TopNav", () => {
     const user = userEvent.setup();
     await user.click(primaryButton);
     await user.click(primaryButton);
-    expect(mockBrowseAccessed).toHaveBeenCalledTimes(1);
+    expect(mockProgrammeAccessed).toHaveBeenCalledTimes(1);
   });
   it("does not track when a subnav button is clicked in the pupils area", async () => {
     mockSelectedArea.mockReturnValue("PUPILS");
@@ -195,14 +195,14 @@ describe("TopNav", () => {
     const primaryButton = await screen.findByText("Primary");
     const user = userEvent.setup();
     await user.click(primaryButton);
-    expect(mockBrowseAccessed).not.toHaveBeenCalled();
+    expect(mockProgrammeAccessed).not.toHaveBeenCalled();
   });
   it("does not track browse accessed for non-browse menu buttons", async () => {
     render(<TopNav {...mockProps} />);
     const guidanceButton = await screen.findByText("Guidance");
     const user = userEvent.setup();
     await user.click(guidanceButton);
-    expect(mockBrowseAccessed).not.toHaveBeenCalled();
+    expect(mockProgrammeAccessed).not.toHaveBeenCalled();
   });
 });
 const subnavLabels = [
