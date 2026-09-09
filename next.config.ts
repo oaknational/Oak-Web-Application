@@ -134,6 +134,24 @@ export default async (phase: NextConfig["phase"]): Promise<NextConfig> => {
         ],
       },
       {
+        // Advertise the markdown representation of a lesson from the lesson
+        // page itself, so a consumer can discover it without guessing (RFC 8288
+        // Link header, `alternate` relation).
+        //
+        // The slug pattern deliberately excludes a dot so this does not also
+        // match the `.md` URL and advertise `<slug>.md.md`. This adds a
+        // response header only — no `Cache-Control` and no `Vary` change — so
+        // the lesson page's caching behaviour is unaffected.
+        source: "/teachers/lessons/:lessonSlug([a-z0-9-]+)",
+        headers: [
+          {
+            key: "Link",
+            value:
+              '</teachers/lessons/:lessonSlug.md>; rel="alternate"; type="text/markdown"',
+          },
+        ],
+      },
+      {
         source: "/api/pupil/:path*",
         headers: [
           {
@@ -514,6 +532,16 @@ export default async (phase: NextConfig["phase"]): Promise<NextConfig> => {
           destination: "/api/well-known/api-catalog",
         },
       ];
+      // Serve the markdown representation of a lesson at the lesson URL plus a
+      // `.md` suffix. The source requires that literal suffix, so it cannot
+      // match the lesson page's own URL — HTML requests, and the prerender
+      // cache serving them, are untouched.
+      const lessonMarkdownRewrites = [
+        {
+          source: "/teachers/lessons/:lessonSlug([a-z0-9-]+).md",
+          destination: "/api/teachers/lessons/:lessonSlug/markdown",
+        },
+      ];
       // The MCP submission carousel images now live under /ai-plugin/carousel,
       // but Anthropic's directory listing stores the old /mcp/carousel URLs and
       // refetches them itself, indefinitely. This is a REWRITE, not a redirect,
@@ -553,6 +581,7 @@ export default async (phase: NextConfig["phase"]): Promise<NextConfig> => {
           : [];
       return [
         ...wellKnownRewrites,
+        ...lessonMarkdownRewrites,
         ...carouselCompatRewrites,
         ...developmentRewrites,
       ];
