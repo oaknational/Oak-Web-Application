@@ -72,18 +72,26 @@ of what sits in front of the app.
 response carries `server: cloudflare`, `cf-ray` and `cf-cache-status` alongside
 `x-vercel-cache` and `x-vercel-id`.
 
-A teacher lesson page is an App Router prerender:
+A teacher lesson page is served from Vercel's CDN as a prerender. Measured
+against production on 2026-09-09, on the canonical lesson URL this feature
+actually targets:
 
 ```text
-x-matched-path: /teachers/programmes/[slug]/units/[unitSlug]/lessons/[lessonSlug]
-x-nextjs-prerender: 1
-x-nextjs-stale-time: 300
+$ curl -sSD - -o /dev/null https://www.thenational.academy/teachers/lessons/create-a-history-map
 cache-control: public, max-age=0, must-revalidate
-vary: rsc, next-router-state-tree, next-router-prefetch, next-router-segment-prefetch
 vary: accept-encoding
+x-matched-path: /teachers/lessons/[lessonSlug]
+x-vercel-cache: MISS            (HIT once warm)
+server: cloudflare
+cf-cache-status: EXPIRED
 ```
 
-Three things follow, and each was measured rather than inferred.
+Note what is **not** there: no `x-nextjs-prerender`, no `x-nextjs-stale-time`,
+and no `rsc` in `Vary`. Those headers do appear on the programme-scoped lesson
+route (`/teachers/programmes/[slug]/units/[unitSlug]/lessons/[lessonSlug]`), so
+measurements taken there do not describe this route.
+
+Four things follow, each measured rather than inferred.
 
 **Cloudflare does store lesson HTML.** Two successive requests for the same
 lesson returned the same `x-vercel-id` with different `cf-ray` values, and
@@ -91,53 +99,126 @@ lesson returned the same `x-vercel-id` with different `cf-ray` values, and
 across two separate client requests means the second body came out of
 Cloudflare's store, not out of a fresh Vercel render.
 
-**Header-based content negotiation already runs on this route in production.**
-Next.js negotiates the RSC flight payload against the `RSC` request header, and
-`vary: rsc` is on every response. Requesting a lesson with `RSC: 1` returns
-`content-type: text/x-component`; requesting it without returns
-`text/html; charset=utf-8`.
+**`Accept: text/markdown` on the lesson URL returns HTML today**, with
+`content-type: text/html; charset=utf-8`; the `.md` suffix returned `404` before
+this change. That is the gap AR-A5 names.
 
-**It does not currently mix the two.** On a virgin Cloudflare cache key, an
-`RSC: 1` request followed immediately by a plain browser request for the same key
-returned `text/x-component` then `text/html; charset=utf-8`. Cloudflare did not
-serve the stored flight payload to the browser.
+**Vercel's CDN does not key on `Accept` on this route.** Vercel's documentation
+says it does — "Vercel's CDN already includes the `Accept` and `Accept-Encoding`
+headers as part of the cache key by default"
+([CDN Cache](https://vercel.com/docs/caching/cdn-cache)) — but that is not what
+this path does. On a query string never requested before, three successive
+requests sending `Accept: text/markdown`, then `Accept: text/html`, then
+`Accept: application/x-nonsense` all returned `x-vercel-cache: HIT` carrying the
+**same `x-vercel-id`**: one stored entry answered all three. Vercel's own
+cache-key documentation is the consistent half — the base key it lists is method,
+URL (query strings ignored for static files), host, deployment and scheme, with
+no `Accept`
+([Purging the cache](https://vercel.com/docs/caching/cdn-cache/purge)).
+
+Two control probes establish that this instrument can see what it claims to see.
+A path with no cached entry reports `x-vercel-cache: MISS`, so a `HIT` is a real
+observation and not a default. And header-keyed variants of this very URL _do_
+get their own entries with their own `x-vercel-id` — see the next point. The
+`Accept` result is therefore a refutation, not a blind spot.
+
+**Next.js negotiates on this route already, and does it with a distinct path
+rather than with `Vary`.** Requesting a lesson with `RSC: 1` returns
+`x-matched-path: /teachers/lessons/[lessonSlug].rsc` and
+`content-type: application/json`; requesting it without returns
+`x-matched-path: /teachers/lessons/[lessonSlug]` and `text/html`. They are two
+cache entries with two `x-vercel-id`s, and the HTML entry's `Vary` does not even
+mention `rsc` — only the `.rsc` variant carries
+`vary: rsc, next-router-state-tree, …`. So the framework in front of this app,
+faced with exactly this problem, separated its representations **by path**, not
+by a `Vary`-keyed variant of one object.
 
 ### The part that matters
 
-That last result is reassuring but it is **not** evidence that Cloudflare honours
-`Vary`. The mechanism is `cache-control: public, max-age=0, must-revalidate`:
-Cloudflare is never permitted to satisfy a request from its own store without
-revalidating with the origin, and the origin routes each request by its headers.
-The protection is incidental to how Next.js sets `Cache-Control` on a prerender,
-not something the negotiation design chose.
+The two layers in front of the app both fail to key on `Accept` today, and
+neither failure is fixed from inside this repository.
 
-The two layers behave differently, and the difference is the whole reason for the
-implementation order:
-
-- **Vercel's CDN already includes `Accept` in the cache key by default.** Its
-  documentation states: "Vercel's CDN already includes the `Accept` and
-  `Accept-Encoding` headers as part of the cache key by default. You don't need
-  to explicitly include these headers in your `Vary` header."
-  ([Vercel CDN Cache](https://vercel.com/docs/caching/cdn-cache)) So the Vercel
-  layer needs no change to negotiate safely on `Accept`.
-- **Cloudflare, by default, keys only on `Vary: Accept-Encoding`.** Since
-  2026-07-02, Cache Rules support the origin `Vary` header on all plans, with a
-  per-header `normalize` / `passthrough` / `bypass` action
+- **Vercel** is documented to include `Accept` in the cache key by default, and
+  measurably does not do so for this prerendered route (above). Cache keys are
+  not configurable ("Cache keys are not configurable" —
+  [Purging the cache](https://vercel.com/docs/caching/cdn-cache/purge)), so this
+  is not something a repository change can set.
+- **Cloudflare's default cache key contains no `Accept` header at all.** It is
+  the full URL plus `Origin` and a short list of `x-…` override headers
+  ([Cache keys](https://developers.cloudflare.com/cache/how-to/cache-keys/)).
+  `Accept-Encoding` is not varied on either — Cloudflare _overrides_ it toward
+  the origin based on the zone's enabled compression. Honouring an origin `Vary`
+  requires a Cache Rule carrying a `vary` object; omit that object and "this
+  Cache Rules Vary setting is turned off"
   ([Vary](https://developers.cloudflare.com/cache/concepts/vary/),
-  [changelog](https://developers.cloudflare.com/changelog/post/2026-07-02-vary-for-cache-rules/)).
-  That is a zone configuration change, made in the Cloudflare dashboard or
-  Rulesets API — it does not live in this repository.
+  [Cache Rules settings](https://developers.cloudflare.com/cache/how-to/cache-rules/settings/)).
+  It is available on all plans since 2026-07-02
+  ([changelog](https://developers.cloudflare.com/changelog/post/2026-07-02-vary-for-cache-rules/)),
+  and it is a zone configuration change made in the dashboard or the Rulesets
+  API — it does not live in this repository.
 
-So `Vary: Accept` **can** be made safe on the prerendered path. It is not safe to
-rely on today, because the only thing standing between a markdown response and a
-browser is a `Cache-Control` directive that no one chose deliberately for this
-purpose. Any future Cache Rule that gives lesson HTML an Edge TTL — a perfectly
-ordinary performance change — would let Cloudflare answer from its own store, and
-at that moment a negotiated lesson URL starts serving markdown to browsers.
+Representations do not currently mix, and it is worth being precise about why,
+because the reason is not `Vary`. On a virgin cache key an `RSC: 1` request
+followed by a plain browser request returned JSON then HTML correctly — but that
+is the distinct-path mechanism above, not `Vary`. For `Accept` there is no
+distinct path, and the only thing standing between a markdown response and a
+browser would be `cache-control: public, max-age=0, must-revalidate` forcing
+Cloudflare to revalidate with the origin on every request. That directive is how
+Next.js happens to set `Cache-Control` on a prerender. Nobody chose it to protect
+a negotiation, and any ordinary future Cache Rule giving lesson HTML an Edge TTL
+— a perfectly reasonable performance change — would remove it and start serving
+markdown to browsers.
+
+So `Vary: Accept` on the lesson URL **cannot be made safe from this repository
+today**. That is the finding, and it is what decided the implementation.
 
 A distinct `.md` URL has none of this exposure. A different URL is a different
 cache key at every layer, needs no `Vary`, and cannot mix representations even if
-every cache in the chain ignores `Vary` entirely.
+every cache in the chain ignores `Vary` entirely. It is also the mechanism
+Next.js reached for on this same route for its own flight payload, which is a
+reasonable precedent to follow rather than argue with.
+
+### Cloudflare's `Markdown for Agents` does the negotiation half, at the zone
+
+[MCP-632](https://linear.app/oaknational/issue/MCP-632/markdown-negotiation) is
+written against Cloudflare's
+[Markdown for Agents](https://developers.cloudflare.com/fundamentals/reference/markdown-for-agents/),
+and it deserves stating plainly that this feature exists and that it is not this
+change. It is a zone toggle — `AI Crawl Control` in the dashboard, or `PATCH
+/zones/{zone}/settings/content_converter` with `{"value": "on"}` — after which
+Cloudflare answers `Accept: text/markdown` by fetching the origin's HTML and
+converting it at the edge, adding `Accept` to `Vary` itself. It is available on
+Pro, Business and Enterprise plans, converts HTML only, and caps the origin
+response at 2 MB.
+
+So the negotiation half of the ticket is reachable without any application code,
+and the two approaches are complementary rather than competing:
+
+- **What the zone toggle gives**: `Accept` negotiation on every page of the site
+  — curriculum pages, unit pages, everything — for no engineering cost, and one
+  round trip on the canonical URL.
+- **What it cannot give**: control over _what_ the markdown says. It converts the
+  rendered page, so the output carries the page's navigation, cards, accordions
+  and download affordances, changes shape whenever the markup changes, and offers
+  no place to make the editorial decisions this document records — withholding
+  quiz answers, withholding restricted-lesson bodies, linking rather than
+  inlining the transcript. It also drops `ETag` and `Last-Modified`, so
+  conditional requests stop working on the converted response.
+- **The caching question does not disappear.** The feature's documentation says
+  the converted response carries `Vary: Accept` "so that caches store separate
+  variants for Markdown and HTML", but Cloudflare's own `Vary` documentation is
+  clear that an origin `Vary` enters Cloudflare's cache key only when a Cache
+  Rule carries a `vary` object. Whether enabling `Markdown for Agents`
+  configures that for its own zone is not documented either way. On today's
+  lesson pages the `must-revalidate` directive would mask the difference, which
+  is the same accidental protection described above — so this needs measuring on
+  the zone before anyone relies on it.
+
+Enabling it is an infrastructure and plan decision for the zone owner, not a
+repository change, and it is worth a deliberate ruling rather than being left
+implicit. The recommendation from this lane: enable it for breadth, and keep the
+data-generated `.md` representation for the lesson pages, where what the document
+says has been decided on purpose.
 
 ### Why the markdown route sets three cache headers
 
@@ -175,9 +256,21 @@ behaviour is untouched.
 Negotiation becomes a thin layer on top of the handler that already exists. Two
 steps, in this order.
 
-**1. Configure Cloudflare.** Add a Cache Rule for the lesson page paths with the
-`Vary` setting covering `Accept`. Until this exists, do not proceed — this is the
-step that makes the cache key correct rather than accidentally correct.
+**1. Make both cache layers key on the representation, and prove it.** Two
+prerequisites, and neither is satisfied by writing code here.
+
+- Add a Cloudflare Cache Rule for the lesson page paths carrying a `vary` object
+  covering `Accept`. Until this exists, do not proceed — this is the step that
+  makes the cache key correct rather than accidentally correct.
+- Establish what Vercel does, because it is measurably _not_ keying on `Accept`
+  on this route despite documenting that it does. The `has`-conditioned rewrite
+  below produces a distinct `x-matched-path`, and distinct matched paths do get
+  their own Vercel cache entries — that is how the `.rsc` variant works. Whether
+  that holds for a `has`-header rewrite against a prerendered route is
+  **unmeasured**. Measure it on a preview deployment first, using the same
+  method as above: warm one representation on a virgin cache key, then request
+  the other and compare `x-vercel-id`. A shared `x-vercel-id` means the two
+  representations share one entry, and negotiation must not ship.
 
 **2. Add a conditional rewrite** in [next.config.ts](../next.config.ts), routing
 markdown-preferring requests on the lesson URL to the same handler:

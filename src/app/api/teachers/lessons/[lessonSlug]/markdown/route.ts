@@ -8,11 +8,15 @@
  * This is a distinct URL rather than `Accept: text/markdown` negotiation on the
  * lesson page. Negotiation is the better end state — one round trip, and the
  * canonical URL stays canonical — but it requires every cache in front of the
- * app to key on `Accept`, and the Cloudflare zone in front of `www` does not
- * yet do so. A distinct URL is a distinct cache key at every layer, so it needs
- * no `Vary` and cannot mix representations. See
- * `docs/agent-readable-lesson-pages.md` for the measurements and the plan to
- * add negotiation on top of this handler.
+ * app to key on `Accept`, and measured against production neither layer does:
+ * Cloudflare's default cache key carries no `Accept` header, and Vercel's CDN
+ * served one stored entry for three different `Accept` values on this route
+ * despite documenting that `Accept` is in its key by default. A distinct URL is
+ * a distinct cache key at every layer, so it needs no `Vary` and cannot mix
+ * representations — which is also how Next.js separates its own flight payload
+ * on this route, at `/teachers/lessons/[lessonSlug].rsc`. See
+ * `docs/agent-readable-lesson-pages.md` for the measurements, the control
+ * probes behind them, and the plan to add negotiation on top of this handler.
  *
  * Deliberately no `Vary` header: this URL always returns markdown regardless of
  * what the request asked for, so listing `Accept` in `Vary` would be false.
