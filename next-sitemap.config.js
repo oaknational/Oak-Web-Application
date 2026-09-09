@@ -34,6 +34,47 @@ const additionalAboutUsPaths = [
   "/about-us/get-involved",
 ];
 
+/**
+ * Oak's Content Signals declaration, published inside the `User-agent: *`
+ * group of the generated robots.txt.
+ *
+ * Value authorised by MG, 2026-09-09. See `docs/content-signals.md` — the
+ * estate position is NOT yet settled: `open-api.thenational.academy` currently
+ * declares the opposite for `ai-train` and `ai-input`.
+ *
+ * - Content Signals policy: https://contentsignals.org/
+ * - IETF draft: draft-romm-aipref-contentsignals
+ */
+const CONTENT_SIGNAL = "Content-Signal: ai-train=no, search=yes, ai-input=no";
+
+/** The generated group header the directive has to sit inside. */
+const USER_AGENT_GROUP = "User-agent: *\n";
+
+/**
+ * Insert the Content-Signal directive into the `User-agent: *` group.
+ *
+ * next-sitemap's robots builder emits only Allow, Disallow and Crawl-delay per
+ * policy, so there is no config key for an arbitrary directive and this hook is
+ * the supported way in.
+ *
+ * Throwing rather than returning the input unchanged is deliberate. A silent
+ * no-op would publish a robots.txt with no declaration at all, and the build,
+ * the deploy and every check downstream would still be green.
+ */
+const addContentSignal = async (_config, robotsTxt) => {
+  if (!robotsTxt.includes(USER_AGENT_GROUP)) {
+    throw new Error(
+      "next-sitemap did not emit a 'User-agent: *' group, so the Content-Signal " +
+        "directive has nowhere to go. Check robotsTxtOptions.policies.",
+    );
+  }
+
+  return robotsTxt.replace(
+    USER_AGENT_GROUP,
+    `${USER_AGENT_GROUP}${CONTENT_SIGNAL}\n`,
+  );
+};
+
 // https://github.com/iamvishnusankar/next-sitemap#readme
 /** @type {import('next-sitemap').IConfig} */
 module.exports = {
@@ -52,6 +93,7 @@ module.exports = {
     additionalSitemaps: shouldSkipInitialBuild
       ? serversideSitemapUrls
       : undefined,
+    transformRobotsTxt: addContentSignal,
     policies: [
       {
         userAgent: "*",
