@@ -64,6 +64,7 @@ type DownloadPageWithAccordionProps = ResourcePageDetailsCompletedProps &
     curriculumDownloads?: DownloadTypeLabel[];
     additionalFiles?: LessonDownloadsPageData["additionalFiles"];
     validationSummaryKey?: number;
+    initialOpen?: boolean;
   };
 
 export type DownloadWrapperProps = {
@@ -153,6 +154,7 @@ export const DownloadPageWithAccordionContent = (
     | "cta"
     | "apiError"
     | "validationSummaryKey"
+    | "initialOpen"
   >,
 ) => {
   const {
@@ -184,6 +186,7 @@ export const DownloadPageWithAccordionContent = (
     cta,
     apiError,
     validationSummaryKey,
+    initialOpen,
   } = props;
 
   const hasFormErrors = Object.keys(errors).length > 0;
@@ -211,7 +214,7 @@ export const DownloadPageWithAccordionContent = (
         handleToggleSelectAll={handleToggleSelectAll}
         selectAllChecked={selectAllChecked}
         id="downloads-accordion"
-        initialOpen={!selectAllChecked}
+        initialOpen={initialOpen ?? !selectAllChecked}
       >
         <OakBox $pa={"spacing-0"} $ba={"border-solid-none"} as={"fieldset"}>
           <OakBox
