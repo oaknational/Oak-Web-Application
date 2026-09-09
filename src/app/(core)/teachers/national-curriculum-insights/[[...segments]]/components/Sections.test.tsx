@@ -134,6 +134,64 @@ const moduleOf = <T extends NationalCurriculumInsightsModule["__typename"]>(
 ) => module;
 
 describe("National Curriculum Insights sections", () => {
+  it.each([undefined, ["guidance"], ["science", "primary"]])(
+    "keeps joined FAQ rows independently expandable on route %j",
+    async (segments) => {
+      const user = userEvent.setup();
+      const data = await getData(segments);
+
+      renderWithTheme(
+        <NationalCurriculumInsightsFaq
+          data={data}
+          section={moduleOf({
+            __typename: "NationalCurriculumInsightsFaqSection",
+            heading: "Frequently asked questions",
+            items: [
+              {
+                question: "When will the curriculum change?",
+                answerPortableText: portableText("timing", "The timetable."),
+              },
+              {
+                question: "Where can I find support?",
+                answerPortableText: portableText("support", "Our guidance."),
+              },
+            ],
+          })}
+        />,
+      );
+
+      const list = screen.getByRole("heading", {
+        name: "Frequently asked questions",
+      }).nextElementSibling;
+      expect(list).toHaveStyle({ gap: "0rem" });
+      expect(screen.getAllByTestId("faq-divider")).toHaveLength(3);
+
+      const [firstQuestion, secondQuestion] = screen.getAllByRole("button");
+      expect(firstQuestion).toHaveAttribute("aria-expanded", "true");
+      expect(secondQuestion).toHaveAttribute("aria-expanded", "false");
+      expect(screen.getByText("The timetable.")).toBeVisible();
+      expect(screen.getByText("Our guidance.")).not.toBeVisible();
+
+      await user.click(secondQuestion!);
+      expect(firstQuestion).toHaveAttribute("aria-expanded", "true");
+      expect(secondQuestion).toHaveAttribute("aria-expanded", "true");
+      expect(screen.getByText("Our guidance.")).toBeVisible();
+      expect(
+        screen.getByRole("heading", { name: "Where can I find support?" }),
+      ).toHaveStyle({ textAlign: "left" });
+
+      await user.keyboard("{Enter}");
+      expect(secondQuestion).toHaveAttribute("aria-expanded", "false");
+      expect(firstQuestion).toHaveAttribute("aria-expanded", "true");
+
+      await user.click(firstQuestion!);
+      expect(firstQuestion).toHaveAttribute("aria-expanded", "false");
+      expect(screen.getByText("The timetable.")).not.toBeVisible();
+      await user.keyboard(" ");
+      expect(firstQuestion).toHaveAttribute("aria-expanded", "true");
+    },
+  );
+
   it("renders referenced blog content and opens its video without navigating", async () => {
     const user = userEvent.setup();
 

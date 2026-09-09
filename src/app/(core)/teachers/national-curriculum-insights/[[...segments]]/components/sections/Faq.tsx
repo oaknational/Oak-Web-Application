@@ -1,10 +1,11 @@
 "use client";
 
 import {
+  OakBasicAccordion,
   OakBox,
   OakFlex,
+  OakHandDrawnHR,
   OakHeading,
-  OakOutlineAccordion,
 } from "@oaknational/oak-components";
 
 import { NationalCurriculumInsightsPortableText as PortableTextWithDefaults } from "../PortableText";
@@ -38,21 +39,37 @@ export const NationalCurriculumInsightsFaq = ({
       >
         {section.heading}
       </OakHeading>
-      <OakFlex $flexDirection="column" $textAlign="left" $gap="spacing-16">
+      <OakFlex $flexDirection="column" $textAlign="left" $gap="spacing-0">
         {section.items.map((item, index) => (
-          <OakOutlineAccordion
-            key={item.question}
-            id={`national-curriculum-insights-faq-${index}`}
-            initialOpen={index === 0}
-            header={
-              <OakHeading tag="h3" $font="heading-6" $textAlign="left">
-                {item.question}
-              </OakHeading>
-            }
-            $pv="spacing-12"
-          >
-            <PortableTextWithDefaults value={item.answerPortableText} />
-          </OakOutlineAccordion>
+          <OakBox key={item.question} $position="relative">
+            {index === 0 && (
+              <OakHandDrawnHR
+                $height="spacing-2"
+                $width="100%"
+                aria-hidden="true"
+                data-testid="faq-divider"
+              />
+            )}
+            <OakBasicAccordion
+              id={`national-curriculum-insights-faq-${index}`}
+              initialOpen={index === 0}
+              header={
+                <OakHeading tag="h3" $font="heading-6" $textAlign="left">
+                  {item.question}
+                </OakHeading>
+              }
+            >
+              <PortableTextWithDefaults value={item.answerPortableText} />
+            </OakBasicAccordion>
+            <OakBox $position="absolute" $bottom="spacing-2" $width="100%">
+              <OakHandDrawnHR
+                $height="spacing-2"
+                $width="100%"
+                aria-hidden="true"
+                data-testid="faq-divider"
+              />
+            </OakBox>
+          </OakBox>
         ))}
       </OakFlex>
     </OakBox>
