@@ -2,10 +2,12 @@
 
 import type { ComponentProps } from "react";
 import { OakFlex } from "@oaknational/oak-components";
+import { useFeatureFlagEnabled } from "posthog-js/react";
 
 import { useCurrentSectionId } from "./CurrentSectionIdProvider";
 
 import LessonOverviewSideNavAnchorLinks from "@/components/TeacherComponents/LessonOverviewSideNavAnchorLinks";
+import { TeachWithOakPromoSection } from "@/components/TeacherComponents/TeachWithOakPromoSection/TeachWithOakPromoSection";
 
 type LessonOverviewSideNavProps = Omit<
   ComponentProps<typeof LessonOverviewSideNavAnchorLinks>,
@@ -16,6 +18,8 @@ export default function LessonOverviewSideNav(
   props: Readonly<LessonOverviewSideNavProps>,
 ) {
   const currentSectionId = useCurrentSectionId();
+
+  const isEnabled = useFeatureFlagEnabled("teachers-teach-with-oak");
 
   return (
     <OakFlex
@@ -33,6 +37,7 @@ export default function LessonOverviewSideNav(
         {...props}
         currentSectionId={currentSectionId}
       />
+      {isEnabled && <TeachWithOakPromoSection />}
     </OakFlex>
   );
 }
