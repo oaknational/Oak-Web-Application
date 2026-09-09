@@ -28,6 +28,17 @@ const Field = ({ error }: { error?: string }) => {
 };
 
 describe("Insights Oak select", () => {
+  it("renders only options inside the select to preserve valid hydration markup", () => {
+    renderWithTheme(<Field />);
+    const select = screen.getByRole("combobox", { name: "Your role" });
+
+    expect(Array.from(select.children, (child) => child.tagName)).toEqual([
+      "OPTION",
+      "OPTION",
+      "OPTION",
+    ]);
+  });
+
   it("uses a labelled native select with supplied option values", async () => {
     const user = userEvent.setup();
     renderWithTheme(<Field />);
