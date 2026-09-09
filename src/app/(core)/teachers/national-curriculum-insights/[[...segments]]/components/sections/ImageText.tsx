@@ -56,7 +56,7 @@ export const NationalCurriculumInsightsImageText = ({
             </OakGridArea>
             <OakGridArea
               $colSpan={[12, 12, 4]}
-              $colStart={[1, 1, 9]}
+              $colStart={[1, 1, 8]}
               $rowStart={[2, 2, 1]}
               $rowSpan={[1, 1, 2]}
               $alignItems="center"
