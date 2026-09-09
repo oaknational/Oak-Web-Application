@@ -73,23 +73,29 @@ function yamlValue(value: string): string {
 function markdownText(value: string): string {
   return (
     value
-      .replace(/\s+/g, " ")
-      .trim()
+      // Only whitespace that would end the block is collapsed, along with
+      // runs of ordinary spaces. A non-breaking or narrow space is text the
+      // curriculum holds — French punctuation spacing uses one — so `\s` is
+      // deliberately not used here, and nor is `trim`.
+      .replace(/[ \r\n\t\f\v\u2028\u2029]+/g, " ")
+      .replace(/^ | $/g, "")
       // Backslash first: escaping it afterwards would escape the backslashes
       // the steps below add.
-      .replace(/\\/g, "\\\\")
+      .replace(/\\/g, String.raw`\\`)
       // Emphasis, code spans, links and images, raw HTML, entity references,
       // strikethrough and table cells.
-      .replace(/[*_`[\]<>&~|]/g, "\\$&")
+      .replace(/[*_`[\]<>&~|]/g, String.raw`\$&`)
       // Block markers, which bite only where the value begins a line — a
       // heading, a bullet, or a setext underline. Each needs the delimiter
       // that follows it, so `#tag` and `-ish` are left alone.
-      .replace(/^(#{1,6}|[-+])(?=\s|$)/, "\\$&")
-      .replace(/^(-+|=+)$/, "\\$&")
+      .replace(/^(#{1,6}|[-+])(?=\s|$)/, String.raw`\$&`)
+      // A run of dashes, spaced or not, is a thematic break, and a lone "="
+      // underlines the line above it.
+      .replace(/^([-=])(?=[-= ]*$)/, String.raw`\$&`)
       // A leading number opens an ordered list. The digits cannot be escaped,
       // so the delimiter after them is — and only when it really is one, which
       // leaves a decimal such as "0.25" as it was written.
-      .replace(/^(\d{1,9})([.)])(?=\s|$)/, "$1\\$2")
+      .replace(/^(\d{1,9})([.)])(?=\s|$)/, String.raw`$1\$2`)
   );
 }
 
@@ -150,7 +156,11 @@ function quizSection(
 }
 
 export function lessonToMarkdown(lesson: LessonOverviewPageData): string {
-  const canonicalUrl = `${CANONICAL_ORIGIN}/teachers/lessons/${lesson.lessonSlug}`;
+  // The slug lands in a link destination, which ends at the first space or
+  // bracket, so it is encoded rather than escaped.
+  const canonicalUrl = `${CANONICAL_ORIGIN}/teachers/lessons/${encodeURIComponent(
+    lesson.lessonSlug,
+  )}`;
 
   // Frontmatter carries the identity and the handling flags. A consumer that
   // only reads the frontmatter must still learn that a lesson is restricted,

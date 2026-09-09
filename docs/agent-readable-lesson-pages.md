@@ -355,7 +355,13 @@ rendered as the text it is. Carrying emphasis and MathJax through faithfully
 needs the curriculum data to say where they are; that is separate work.
 
 Frontmatter values take a different quoter, `JSON.stringify`, because a
-double-quoted YAML scalar uses JSON's escaping rules.
+double-quoted YAML scalar uses JSON's escaping rules. The lesson slug takes a
+third treatment, `encodeURIComponent`, because it lands in a link destination
+rather than in text, and a destination ends at the first space or bracket.
+
+Whitespace collapsing is limited to line breaks and runs of ordinary spaces. A
+non-breaking or narrow space is content — French punctuation spacing uses one —
+so `\s` is deliberately not used.
 
 ### Deliberate omissions
 

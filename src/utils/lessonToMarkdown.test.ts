@@ -438,4 +438,48 @@ describe("lessonToMarkdown()", () => {
       "- Files live under C:\\Users\\pupil, not *here*",
     );
   });
+
+  it.each(["-- --", "--- ---", "----- -", "---", "- - -"])(
+    "keeps %j as text rather than letting it become a horizontal rule",
+    (value) => {
+      // A thematic break is three or more dashes with any spacing between
+      // them, so a dash run has to be escaped whether or not it is contiguous.
+      // The lesson outcome is the one value emitted on a bare line, which is
+      // where a thematic break can form.
+      const markdown = lessonToMarkdown(
+        lessonOverviewFixture({ pupilLessonOutcome: value }),
+      );
+
+      const line = bodyOf(markdown)
+        .split("\n")
+        .find((l) => deEscape(l) === value);
+
+      expect(line).toBeDefined();
+      expect(line).not.toBe(value);
+    },
+  );
+
+  it("keeps a non-breaking space, which is text and not layout", () => {
+    // French punctuation spacing uses U+202F, and the curriculum holds it. Only
+    // whitespace that would end the block needs collapsing.
+    const markdown = lessonToMarkdown(
+      lessonOverviewFixture({
+        keyLearningPoints: [{ keyLearningPoint: "Qu'est-ce que c'est\u202F?" }],
+      }),
+    );
+
+    expect(markdown).toContain("- Qu'est-ce que c'est\u202F?");
+  });
+
+  it("encodes the lesson slug into the link, which is a URL and not text", () => {
+    // The slug's only contract is z.string(), and a markdown link destination
+    // ends at the first space or bracket.
+    const markdown = lessonToMarkdown(
+      lessonOverviewFixture({ lessonSlug: "a (b) c" }),
+    );
+
+    expect(markdown).toContain(
+      "[View this lesson on Oak National Academy](https://www.thenational.academy/teachers/lessons/a%20(b)%20c)",
+    );
+  });
 });
