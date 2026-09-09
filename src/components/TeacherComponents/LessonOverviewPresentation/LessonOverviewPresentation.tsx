@@ -38,6 +38,18 @@ interface LessonOverviewPresentationProps {
   isAdditionalMaterial?: boolean;
 }
 
+const getSlidesId = (asset: string | null) => {
+  if (asset) {
+    const split = asset.split("/");
+    if (split.length > 1) {
+      return split[5];
+    } else if (split.length === 1) {
+      return split;
+    }
+  }
+  return null;
+};
+
 const LessonOverviewPresentation: FC<LessonOverviewPresentationProps> = ({
   asset,
   title,
@@ -45,7 +57,7 @@ const LessonOverviewPresentation: FC<LessonOverviewPresentationProps> = ({
   isWorksheet,
   isAdditionalMaterial,
 }) => {
-  const [slidesId] = useState(asset ? asset.split("/")?.[5] : null);
+  const [slidesId] = useState(getSlidesId(asset));
   const isWorksheetPortrait = !isWorksheetLandscape && isWorksheet;
   const srcUrl =
     isAdditionalMaterial && asset
