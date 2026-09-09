@@ -1,3 +1,41 @@
+# [1.1186.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1185.0...v1.1186.0) (2026-09-09)
+
+
+### Bug Fixes
+
+* make href optional in TwO header ([ae38eee](https://github.com/oaknational/Oak-Web-Application/commit/ae38eeed487de2c70b23ca74baace35d24c86a12))
+* use type import ([ec3e70e](https://github.com/oaknational/Oak-Web-Application/commit/ec3e70ea41131a9d0b89812a5ee3acf24eeb3e42))
+
+
+### Features
+
+* add explore link section ([20662fb](https://github.com/oaknational/Oak-Web-Application/commit/20662fbd7cfbd540d92ff9ab81af97d754f72829))
+* add teach with oak config to urls ([f02bb55](https://github.com/oaknational/Oak-Web-Application/commit/f02bb5508d5e06cc64c32498946b0af3480eaaf4))
+* add TwO page ([09c2a51](https://github.com/oaknational/Oak-Web-Application/commit/09c2a517acef8b4f323d38e1149aa32259748e4e))
+* ensure returnTo param is a valid url ([2ae04b2](https://github.com/oaknational/Oak-Web-Application/commit/2ae04b2b5e977cba3b6af093db29f5dd5f2d55a4))
+* use teach with oak avo branch ([7b9bfca](https://github.com/oaknational/Oak-Web-Application/commit/7b9bfca9794ca2b4472ce23898919d9a34269273))
+
+# [1.1185.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1184.3...v1.1185.0) (2026-09-09)
+
+
+### Features
+
+* make downloads accordion open by default ([f7675cc](https://github.com/oaknational/Oak-Web-Application/commit/f7675ccfa61ac7859025e9e6d5614da14769eef5))
+
+## [1.1184.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.1184.2...v1.1184.3) (2026-09-09)
+
+
+### Bug Fixes
+
+* sonarcloud lodash isArray(...) to Array.isArray(...) ([2110a72](https://github.com/oaknational/Oak-Web-Application/commit/2110a72b60bcbfffc8050ea205fef244f751f930))
+
+## [1.1184.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.1184.1...v1.1184.2) (2026-09-09)
+
+
+### Bug Fixes
+
+* correct the spacing in the promo banner on the homepage ([a454a01](https://github.com/oaknational/Oak-Web-Application/commit/a454a014206b0c791663accf5d53178d10c1833d))
+
 ## [1.1184.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.1184.0...v1.1184.1) (2026-09-08)
 
 # [1.1184.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1183.0...v1.1184.0) (2026-09-08)

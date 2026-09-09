@@ -1,5 +1,4 @@
 import { Fragment, useEffect, useMemo, useState } from "react";
-import { isArray } from "lodash";
 import styled from "styled-components";
 import {
   OakBox,
@@ -123,7 +122,7 @@ export const QuizMatchQuestion = ({
 
   if (questionState.feedback) {
     invariant(
-      isArray(questionState.feedback),
+      Array.isArray(questionState.feedback),
       "question feedback is not an array",
     );
 
