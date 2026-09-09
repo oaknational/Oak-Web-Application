@@ -237,14 +237,37 @@ browser (`max-age=0, must-revalidate`, matching the lesson page),
 
 ### Why the rewrite cannot affect HTML caching
 
-The rewrite source requires the literal `.md` suffix and constrains the slug to
-`[a-z0-9-]+`, so it matches the markdown URL and nothing else:
+`rewrites()` here returns a plain array, and Next.js applies those "after
+checking the filesystem (pages and `/public` files) and before dynamic routes"
+([rewrites](https://nextjs.org/docs/app/api-reference/config/next-config-js/rewrites)).
+The lesson page is a _dynamic_ route, so **route precedence does not protect it**
+— this rewrite is evaluated first, and the `source` pattern is the only thing
+keeping it off the HTML URL. Anyone loosening that pattern is removing the only
+guard, so it is worth stating what the pattern actually compiles to.
 
-| Request path                             | Rewrite source matches? |
-| ---------------------------------------- | ----------------------- |
-| `/teachers/lessons/photosynthesis`       | no                      |
-| `/teachers/lessons/photosynthesis.md`    | yes                     |
-| `/teachers/lessons/photosynthesis/media` | no                      |
+Compiled with the `path-to-regexp` that ships inside the installed Next, the
+source `/teachers/lessons/:lessonSlug([a-z0-9-]+).md` becomes:
+
+```text
+^\/teachers\/lessons(?:\/([a-z0-9-]+))\.md[\/#\?]?$
+```
+
+The literal dot is escaped by the compiler (`\.md`), so it cannot act as a regex
+wildcard — which matters, because an unescaped dot would have made the pattern
+match any lesson whose slug ends in `md` and rewritten it to the wrong slug.
+Checked explicitly:
+
+| Request path                             | Rewrite source matches?     |
+| ---------------------------------------- | --------------------------- |
+| `/teachers/lessons/photosynthesis`       | no                          |
+| `/teachers/lessons/photosynthesis.md`    | yes (slug `photosynthesis`) |
+| `/teachers/lessons/photosynthesis/media` | no                          |
+| `/teachers/lessons/introduction-to-amd`  | no                          |
+| `/teachers/lessons/what-is-a-cmd`        | no                          |
+| `/teachers/lessons/nnmd`                 | no                          |
+
+The last three are the cases an unescaped dot would have caught, and they are the
+regression test to re-run if the pattern is ever edited.
 
 The `Link` header's source excludes a dot for the mirror-image reason, so the
 `.md` response does not advertise `<slug>.md.md`. It adds a response header only:
