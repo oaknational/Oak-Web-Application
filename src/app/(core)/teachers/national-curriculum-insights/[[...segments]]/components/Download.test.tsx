@@ -9,7 +9,6 @@ import { NationalCurriculumInsightsDownload } from "./Download";
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 import { parseNationalCurriculumInsightsRoute } from "@/common-lib/urls/nationalCurriculumInsights";
 
-
 const mockReportError = jest.fn();
 jest.mock("@/common-lib/error-reporter", () => ({
   __esModule: true,
