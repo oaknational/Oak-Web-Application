@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`pages/about-us/case-studies/index.tsx renders title 1`] = `
+exports[`pages/about-us/case-studies/index.tsx renders content 1`] = `
 <div>
   <div
     data-overlay-container="true"
@@ -603,7 +603,203 @@ exports[`pages/about-us/case-studies/index.tsx renders title 1`] = `
         class="sc-aXZVg sc-gEvEer bwVgbu fUxOFh"
         id="main"
       >
-        TODO: Case Study list page
+        <div
+          class="sc-aXZVg iebDQK"
+        >
+          <div
+            class="sc-aXZVg diJnZN"
+          >
+            <div
+              class="sc-aXZVg bZTQLO"
+            >
+              <div
+                class="sc-aXZVg sc-gEvEer fjNszh hPyKbx"
+              >
+                <div
+                  class="sc-aXZVg sc-gEvEer jPvJsJ daEtut"
+                >
+                  <h1
+                    class="sc-eldPxv kSQYKV"
+                  >
+                    <span
+                      class="sc-eqUAAy AfXps"
+                    >
+                      Case studies
+                    </span>
+                  </h1>
+                  <p
+                    class="sc-ikkxIA fPezaI"
+                  >
+                    Explore how schools and trusts are using Oak to tackle their biggest challenges
+                  </p>
+                </div>
+                <div
+                  class="sc-aXZVg sc-92f05ab6-0 jPvJsJ dsUbtv"
+                >
+                  <span
+                    class="sc-aXZVg kSyyew"
+                  >
+                    <img
+                      alt=""
+                      class="sc-iGgWBj dZvqhO"
+                      data-nimg="fill"
+                      decoding="async"
+                      loading="lazy"
+                      sizes="100vw"
+                      src="http://localhost/_next/image?url=https%3A%2F%2FNEXT_PUBLIC_OAK_ASSETS_HOST%2FNEXT_PUBLIC_OAK_ASSETS_PATH%2Fv1788884308%2F647625e5e86caf2c5f0c1e48b25ea1ab6c77c4c8_vzw6ax.png&w=3840&q=75"
+                      srcset="/_next/image?url=https%3A%2F%2FNEXT_PUBLIC_OAK_ASSETS_HOST%2FNEXT_PUBLIC_OAK_ASSETS_PATH%2Fv1788884308%2F647625e5e86caf2c5f0c1e48b25ea1ab6c77c4c8_vzw6ax.png&w=640&q=75 640w, /_next/image?url=https%3A%2F%2FNEXT_PUBLIC_OAK_ASSETS_HOST%2FNEXT_PUBLIC_OAK_ASSETS_PATH%2Fv1788884308%2F647625e5e86caf2c5f0c1e48b25ea1ab6c77c4c8_vzw6ax.png&w=750&q=75 750w, /_next/image?url=https%3A%2F%2FNEXT_PUBLIC_OAK_ASSETS_HOST%2FNEXT_PUBLIC_OAK_ASSETS_PATH%2Fv1788884308%2F647625e5e86caf2c5f0c1e48b25ea1ab6c77c4c8_vzw6ax.png&w=828&q=75 828w, /_next/image?url=https%3A%2F%2FNEXT_PUBLIC_OAK_ASSETS_HOST%2FNEXT_PUBLIC_OAK_ASSETS_PATH%2Fv1788884308%2F647625e5e86caf2c5f0c1e48b25ea1ab6c77c4c8_vzw6ax.png&w=1080&q=75 1080w, /_next/image?url=https%3A%2F%2FNEXT_PUBLIC_OAK_ASSETS_HOST%2FNEXT_PUBLIC_OAK_ASSETS_PATH%2Fv1788884308%2F647625e5e86caf2c5f0c1e48b25ea1ab6c77c4c8_vzw6ax.png&w=1200&q=75 1200w, /_next/image?url=https%3A%2F%2FNEXT_PUBLIC_OAK_ASSETS_HOST%2FNEXT_PUBLIC_OAK_ASSETS_PATH%2Fv1788884308%2F647625e5e86caf2c5f0c1e48b25ea1ab6c77c4c8_vzw6ax.png&w=1920&q=75 1920w, /_next/image?url=https%3A%2F%2FNEXT_PUBLIC_OAK_ASSETS_HOST%2FNEXT_PUBLIC_OAK_ASSETS_PATH%2Fv1788884308%2F647625e5e86caf2c5f0c1e48b25ea1ab6c77c4c8_vzw6ax.png&w=2048&q=75 2048w, /_next/image?url=https%3A%2F%2FNEXT_PUBLIC_OAK_ASSETS_HOST%2FNEXT_PUBLIC_OAK_ASSETS_PATH%2Fv1788884308%2F647625e5e86caf2c5f0c1e48b25ea1ab6c77c4c8_vzw6ax.png&w=3840&q=75 3840w"
+                      style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                    />
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div
+            class="sc-aXZVg bZTQLO"
+          >
+            <div
+              class="sc-aXZVg sc-gEvEer guaSoh jIBBQP"
+            >
+              <div
+                class="sc-aXZVg sc-gEvEer epcFtP fVNIMq"
+              >
+                <div
+                  class="sc-aXZVg sc-fTFjTM iETyDq fPhXjy"
+                >
+                  <a
+                    class="sc-aXZVg sc-gEvEer sc-kbousE eyLmQc dXoawi fzgqkD"
+                    href="/about-us/case-studies/Test-1"
+                  >
+                    <div
+                      class="sc-aXZVg gZoCWt"
+                    >
+                      <span
+                        class="sc-aXZVg kvjdhA sc-gfoqjT giDcXR"
+                      >
+                        <img
+                          alt=""
+                          class="sc-iGgWBj dZvqhO"
+                          data-nimg="fill"
+                          decoding="async"
+                          loading="lazy"
+                          sizes="100vw"
+                          src="http://localhost/_next/image?url=http%3A%2F%2Flocalhost%2FTest-1&w=3840&q=75"
+                          srcset="/_next/image?url=http%3A%2F%2Flocalhost%2FTest-1&w=640&q=75 640w, /_next/image?url=http%3A%2F%2Flocalhost%2FTest-1&w=750&q=75 750w, /_next/image?url=http%3A%2F%2Flocalhost%2FTest-1&w=828&q=75 828w, /_next/image?url=http%3A%2F%2Flocalhost%2FTest-1&w=1080&q=75 1080w, /_next/image?url=http%3A%2F%2Flocalhost%2FTest-1&w=1200&q=75 1200w, /_next/image?url=http%3A%2F%2Flocalhost%2FTest-1&w=1920&q=75 1920w, /_next/image?url=http%3A%2F%2Flocalhost%2FTest-1&w=2048&q=75 2048w, /_next/image?url=http%3A%2F%2Flocalhost%2FTest-1&w=3840&q=75 3840w"
+                          style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                        />
+                      </span>
+                    </div>
+                    <div
+                      class="sc-aXZVg sc-gEvEer sc-eyvILC jPvJsJ jFNgPm"
+                    >
+                      <div
+                        class="sc-aXZVg sc-gEvEer jPvJsJ fVNIMq"
+                      >
+                        <h3
+                          class="sc-eldPxv ibGcSM"
+                        >
+                          Test 1
+                        </h3>
+                      </div>
+                      <div
+                        class="sc-aXZVg sc-gEvEer jPvJsJ bRjxks"
+                      />
+                    </div>
+                  </a>
+                </div>
+                <div
+                  class="sc-aXZVg sc-fTFjTM iETyDq fPhXjy"
+                >
+                  <a
+                    class="sc-aXZVg sc-gEvEer sc-kbousE eyLmQc dXoawi fzgqkD"
+                    href="/about-us/case-studies/Test-2"
+                  >
+                    <div
+                      class="sc-aXZVg gZoCWt"
+                    >
+                      <span
+                        class="sc-aXZVg kvjdhA sc-gfoqjT giDcXR"
+                      >
+                        <img
+                          alt=""
+                          class="sc-iGgWBj dZvqhO"
+                          data-nimg="fill"
+                          decoding="async"
+                          loading="lazy"
+                          sizes="100vw"
+                          src="http://localhost/_next/image?url=http%3A%2F%2Flocalhost%2FTest-2&w=3840&q=75"
+                          srcset="/_next/image?url=http%3A%2F%2Flocalhost%2FTest-2&w=640&q=75 640w, /_next/image?url=http%3A%2F%2Flocalhost%2FTest-2&w=750&q=75 750w, /_next/image?url=http%3A%2F%2Flocalhost%2FTest-2&w=828&q=75 828w, /_next/image?url=http%3A%2F%2Flocalhost%2FTest-2&w=1080&q=75 1080w, /_next/image?url=http%3A%2F%2Flocalhost%2FTest-2&w=1200&q=75 1200w, /_next/image?url=http%3A%2F%2Flocalhost%2FTest-2&w=1920&q=75 1920w, /_next/image?url=http%3A%2F%2Flocalhost%2FTest-2&w=2048&q=75 2048w, /_next/image?url=http%3A%2F%2Flocalhost%2FTest-2&w=3840&q=75 3840w"
+                          style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                        />
+                      </span>
+                    </div>
+                    <div
+                      class="sc-aXZVg sc-gEvEer sc-eyvILC jPvJsJ jFNgPm"
+                    >
+                      <div
+                        class="sc-aXZVg sc-gEvEer jPvJsJ fVNIMq"
+                      >
+                        <h3
+                          class="sc-eldPxv ibGcSM"
+                        >
+                          Test 2
+                        </h3>
+                      </div>
+                      <div
+                        class="sc-aXZVg sc-gEvEer jPvJsJ bRjxks"
+                      />
+                    </div>
+                  </a>
+                </div>
+                <div
+                  class="sc-aXZVg sc-fTFjTM iETyDq fPhXjy"
+                >
+                  <a
+                    class="sc-aXZVg sc-gEvEer sc-kbousE eyLmQc dXoawi fzgqkD"
+                    href="/about-us/case-studies/Test-3"
+                  >
+                    <div
+                      class="sc-aXZVg gZoCWt"
+                    >
+                      <span
+                        class="sc-aXZVg kvjdhA sc-gfoqjT giDcXR"
+                      >
+                        <img
+                          alt=""
+                          class="sc-iGgWBj dZvqhO"
+                          data-nimg="fill"
+                          decoding="async"
+                          loading="lazy"
+                          sizes="100vw"
+                          src="http://localhost/_next/image?url=http%3A%2F%2Flocalhost%2FTest-3&w=3840&q=75"
+                          srcset="/_next/image?url=http%3A%2F%2Flocalhost%2FTest-3&w=640&q=75 640w, /_next/image?url=http%3A%2F%2Flocalhost%2FTest-3&w=750&q=75 750w, /_next/image?url=http%3A%2F%2Flocalhost%2FTest-3&w=828&q=75 828w, /_next/image?url=http%3A%2F%2Flocalhost%2FTest-3&w=1080&q=75 1080w, /_next/image?url=http%3A%2F%2Flocalhost%2FTest-3&w=1200&q=75 1200w, /_next/image?url=http%3A%2F%2Flocalhost%2FTest-3&w=1920&q=75 1920w, /_next/image?url=http%3A%2F%2Flocalhost%2FTest-3&w=2048&q=75 2048w, /_next/image?url=http%3A%2F%2Flocalhost%2FTest-3&w=3840&q=75 3840w"
+                          style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                        />
+                      </span>
+                    </div>
+                    <div
+                      class="sc-aXZVg sc-gEvEer sc-eyvILC jPvJsJ jFNgPm"
+                    >
+                      <div
+                        class="sc-aXZVg sc-gEvEer jPvJsJ fVNIMq"
+                      >
+                        <h3
+                          class="sc-eldPxv ibGcSM"
+                        >
+                          Test 3
+                        </h3>
+                      </div>
+                      <div
+                        class="sc-aXZVg sc-gEvEer jPvJsJ bRjxks"
+                      />
+                    </div>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </main>
       <footer
         class="sc-aXZVg gSjcjC"

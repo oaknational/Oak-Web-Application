@@ -100,48 +100,59 @@ export type AboutSharedHeaderProps = {
   content: PortableTextJSON | string;
   children?: ReactNode;
   titleHighlight?: OakUiRoleToken;
+  $background?: OakUiRoleToken;
 };
 export function AboutSharedHeader({
   title,
   content,
   children,
   titleHighlight,
+  $background,
 }: Readonly<AboutSharedHeaderProps>) {
   return (
-    <NewGutterMaxWidth>
-      <OakFlex
-        $alignItems="center"
-        $justifyContent="space-between"
-        $pt={["spacing-56", "spacing-72"]}
-        $pb={["spacing-56", "spacing-72"]}
-        $gap={["spacing-0", "spacing-48", "spacing-240"]}
-        $overflow={"hidden"}
-      >
-        <OakFlex $flexDirection={"column"} $gap={"spacing-24"}>
-          <OakHeading tag="h1" $font={["heading-4", "heading-2", "heading-2"]}>
-            <OakSpan
-              $background={titleHighlight ?? "bg-decorative1-main"}
-              $ph={"spacing-4"}
+    <OakBox $background={$background}>
+      <NewGutterMaxWidth>
+        <OakFlex
+          $alignItems="center"
+          $justifyContent="space-between"
+          $pt={["spacing-56", "spacing-72"]}
+          $pb={["spacing-56", "spacing-72"]}
+          $gap={["spacing-0", "spacing-48", "spacing-240"]}
+          $overflow={"hidden"}
+        >
+          <OakFlex $flexDirection={"column"} $gap={"spacing-24"}>
+            <OakHeading
+              tag="h1"
+              $font={["heading-4", "heading-2", "heading-2"]}
             >
-              {title}
-            </OakSpan>
-          </OakHeading>
-          {typeof content === "string" ? (
-            <OakP
-              $font={["heading-light-5", "heading-light-3", "heading-light-3"]}
-            >
-              {content}
-            </OakP>
-          ) : (
-            <PortableTextWithDefaults
-              value={content}
-              withoutDefaultComponents={true}
-              components={portableTextComponents}
-            />
-          )}
+              <OakSpan
+                $background={titleHighlight ?? "bg-decorative1-main"}
+                $ph={"spacing-4"}
+              >
+                {title}
+              </OakSpan>
+            </OakHeading>
+            {typeof content === "string" ? (
+              <OakP
+                $font={[
+                  "heading-light-5",
+                  "heading-light-3",
+                  "heading-light-3",
+                ]}
+              >
+                {content}
+              </OakP>
+            ) : (
+              <PortableTextWithDefaults
+                value={content}
+                withoutDefaultComponents={true}
+                components={portableTextComponents}
+              />
+            )}
+          </OakFlex>
+          <IllustrationPanel>{children}</IllustrationPanel>
         </OakFlex>
-        <IllustrationPanel>{children}</IllustrationPanel>
-      </OakFlex>
-    </NewGutterMaxWidth>
+      </NewGutterMaxWidth>
+    </OakBox>
   );
 }

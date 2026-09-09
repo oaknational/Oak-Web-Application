@@ -4,45 +4,49 @@ exports[`AboutSharedHeader renders correctly 1`] = `
 <body>
   <div>
     <div
-      class="sc-aXZVg bZTQLO"
+      class="sc-aXZVg jPvJsJ"
     >
       <div
-        class="sc-aXZVg sc-gEvEer fjNszh hPyKbx"
+        class="sc-aXZVg bZTQLO"
       >
         <div
-          class="sc-aXZVg sc-gEvEer jPvJsJ daEtut"
+          class="sc-aXZVg sc-gEvEer fjNszh hPyKbx"
         >
-          <h1
-            class="sc-eldPxv kSQYKV"
+          <div
+            class="sc-aXZVg sc-gEvEer jPvJsJ daEtut"
+          >
+            <h1
+              class="sc-eldPxv kSQYKV"
+            >
+              <span
+                class="sc-eqUAAy buaVGR"
+              >
+                TESTING_TITLE
+              </span>
+            </h1>
+            <p
+              class="sc-ikkxIA fPezaI"
+            >
+              TESTING_CONTENT
+            </p>
+          </div>
+          <div
+            class="sc-aXZVg sc-92f05ab6-0 jPvJsJ dsUbtv"
           >
             <span
-              class="sc-eqUAAy buaVGR"
+              class="sc-aXZVg kvjdhA"
             >
-              TESTING_TITLE
+              <img
+                alt="Oak logo"
+                class="sc-iGgWBj dZvqhO"
+                data-nimg="fill"
+                decoding="async"
+                loading="lazy"
+                src="http://example.com/image.svg"
+                style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+              />
             </span>
-          </h1>
-          <p
-            class="sc-ikkxIA fPezaI"
-          >
-            TESTING_CONTENT
-          </p>
-        </div>
-        <div
-          class="sc-aXZVg sc-2c4f354b-0 jPvJsJ bnaXAx"
-        >
-          <span
-            class="sc-aXZVg kvjdhA"
-          >
-            <img
-              alt="Oak logo"
-              class="sc-iGgWBj dZvqhO"
-              data-nimg="fill"
-              decoding="async"
-              loading="lazy"
-              src="http://example.com/image.svg"
-              style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
-            />
-          </span>
+          </div>
         </div>
       </div>
     </div>
@@ -54,46 +58,50 @@ exports[`AboutSharedHeader renders correctly with loop illustration 1`] = `
 <body>
   <div>
     <div
-      class="sc-aXZVg bZTQLO"
+      class="sc-aXZVg jPvJsJ"
     >
       <div
-        class="sc-aXZVg sc-gEvEer fjNszh hPyKbx"
+        class="sc-aXZVg bZTQLO"
       >
         <div
-          class="sc-aXZVg sc-gEvEer jPvJsJ daEtut"
+          class="sc-aXZVg sc-gEvEer fjNszh hPyKbx"
         >
-          <h1
-            class="sc-eldPxv kSQYKV"
+          <div
+            class="sc-aXZVg sc-gEvEer jPvJsJ daEtut"
+          >
+            <h1
+              class="sc-eldPxv kSQYKV"
+            >
+              <span
+                class="sc-eqUAAy buaVGR"
+              >
+                TESTING_TITLE
+              </span>
+            </h1>
+            <p
+              class="sc-ikkxIA fPezaI"
+            >
+              TESTING_CONTENT
+            </p>
+          </div>
+          <div
+            class="sc-aXZVg sc-92f05ab6-0 jPvJsJ dsUbtv"
           >
             <span
-              class="sc-eqUAAy buaVGR"
+              class="sc-aXZVg fjkwRj sc-92f05ab6-1 kbrnCV"
+              data-testid="about-shared-loop"
             >
-              TESTING_TITLE
+              <img
+                alt=""
+                class="sc-iGgWBj cMzyFO"
+                data-nimg="fill"
+                decoding="async"
+                loading="lazy"
+                src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1740665310/OWA/ui-graphics/looping-line-5_vdknco.svg"
+                style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+              />
             </span>
-          </h1>
-          <p
-            class="sc-ikkxIA fPezaI"
-          >
-            TESTING_CONTENT
-          </p>
-        </div>
-        <div
-          class="sc-aXZVg sc-2c4f354b-0 jPvJsJ bnaXAx"
-        >
-          <span
-            class="sc-aXZVg fjkwRj sc-2c4f354b-1 kfUPWX"
-            data-testid="about-shared-loop"
-          >
-            <img
-              alt=""
-              class="sc-iGgWBj cMzyFO"
-              data-nimg="fill"
-              decoding="async"
-              loading="lazy"
-              src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1740665310/OWA/ui-graphics/looping-line-5_vdknco.svg"
-              style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
-            />
-          </span>
+          </div>
         </div>
       </div>
     </div>
