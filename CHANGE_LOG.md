@@ -1,3 +1,10 @@
+## [1.1184.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.1184.1...v1.1184.2) (2026-09-09)
+
+
+### Bug Fixes
+
+* correct the spacing in the promo banner on the homepage ([a454a01](https://github.com/oaknational/Oak-Web-Application/commit/a454a014206b0c791663accf5d53178d10c1833d))
+
 ## [1.1184.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.1184.0...v1.1184.1) (2026-09-08)
 
 # [1.1184.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1183.0...v1.1184.0) (2026-09-08)
