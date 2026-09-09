@@ -26,7 +26,7 @@ export const ShortReads = () => {
       >
         <ShortReadsHeader />
         <ShortReadSection
-          title="Explanation at oak"
+          title="Explanation at Oak"
           description="This short guide explores Oak’s approach to explanation and the
               thinking behind our design, helping you deepen your understanding
               and support your teaching."
@@ -34,19 +34,19 @@ export const ShortReads = () => {
           shortReadType="explanation"
         />
         <ShortReadSection
-          title="Check for understanding (CfU) at oak"
+          title="Check for understanding (CfU) at Oak"
           description="This short guide explores Oak’s approach to CfUs and the thinking behind our design, helping you deepen your understanding and support your teaching."
           assetUrl={"1sugE2rWoa2D-JxHEQggg4FTniW8rHvazP1QtC-GtPho"}
           shortReadType="CfU"
         />
         <ShortReadSection
-          title="Practice at oak"
+          title="Practice at Oak"
           description="This short guide explores Oak’s approach to practice and the thinking behind our design, helping you deepen your understanding and support your teaching. "
           assetUrl={"16NK_tAod38xtV86IFnaaA0SRF6I5SohwGzb4cyKPXk8"}
           shortReadType="practice"
         />
         <ShortReadSection
-          title="Feedback at oak"
+          title="Feedback at Oak"
           description="This short guide explores Oak’s approach to feedback and the thinking behind our design, helping you deepen your understanding and support your teaching.  "
           assetUrl={"1PR4NgNWtKLmKFWWmSlssAP7M_MtVoTpahc6MBH8lAgg"}
           shortReadType="feedback"

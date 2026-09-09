@@ -57,4 +57,29 @@ describe("TeachWithOakView", () => {
       screen.getByRole("link", { name: "Back to lesson" }),
     ).toHaveAttribute("href", "/teachers/lessons/example");
   });
+
+  it("renders a short read guides section", () => {
+    render(<TeachWithOakView />);
+
+    const shortReadsHeader = screen.getByRole("heading", {
+      level: 2,
+      name: "Short read guides",
+    });
+    expect(shortReadsHeader).toBeInTheDocument();
+  });
+
+  it.each([
+    "Explanation",
+    "Check for understanding (CfU)",
+    "Feedback",
+    "Practice",
+  ])("renders a section for each learning cycle", (learningCycle) => {
+    render(<TeachWithOakView />);
+
+    const sectionHeading = screen.getByRole("heading", {
+      level: 3,
+      name: `${learningCycle} at Oak`,
+    });
+    expect(sectionHeading).toBeInTheDocument();
+  });
 });
