@@ -1,0 +1,36 @@
+import {
+  OakBox,
+  OakCard,
+  parseBorderRadius,
+  parseColor,
+} from "@oaknational/oak-components";
+import styled from "styled-components";
+
+const CardWrapper = styled(OakBox)`
+  > div {
+    border-radius: ${parseBorderRadius("border-radius-l")};
+    background-color: ${parseColor("bg-decorative2-subdued")} !important;
+  }
+  p {
+    color: ${parseColor("text-subdued")};
+  }
+`;
+
+export const TeachWithOakPromoSection = () => {
+  return (
+    <CardWrapper
+      $border={"border-l"}
+      $display={"flex"}
+      $maxWidth={"13rem"}
+      $mt={"spacing-24"}
+    >
+      <OakCard
+        heading="Ever wondered why our lessons are structured this way?"
+        headingLevel="h3"
+        href="/teachers/teach-with-oak"
+        subCopy="See how explanation, checks for understanding, practice and feedback work together to support pupils' learning."
+        linkText="See the thinking"
+      />
+    </CardWrapper>
+  );
+};
