@@ -19,7 +19,7 @@ export default function LessonOverviewSideNav(
 ) {
   const currentSectionId = useCurrentSectionId();
 
-  const isEnabled = useFeatureFlagEnabled("teachers-teach-with-oak");
+  const isEnabled = useFeatureFlagEnabled("teachers-teach-with-oak") ?? false;
 
   return (
     <OakFlex
