@@ -330,6 +330,33 @@ Sections: lesson outcome, content guidance, key learning points, lesson outline,
 keywords, common misconceptions, teacher tips, equipment and resources, starter
 quiz, exit quiz, video and transcript link, downloads available, copyright.
 
+### Curriculum values are escaped
+
+Every value from the curriculum database is escaped as inline markdown text
+before it enters the document, and any newline inside a value is collapsed to a
+space. Curriculum content is authored for the lesson page, not for markdown, and
+sampling 3,589 values from 50 production lessons found real content that changes
+the document's structure when it is interpolated raw:
+
+- KS3 computing quiz stems that are bare HTML tags — `<p>`, `<div>`, and
+  `<link rel="stylesheet" href="styles.css">`, which markdown passes through as
+  raw HTML, so the question renders as nothing at all
+- French and Spanish sound-symbol lessons, whose keywords are written in
+  brackets — `[e]`, `[rr]`, `[qui]`
+- a PE stem that begins `1. `, which opens a nested ordered list
+- a Python stem carrying a fenced code block, whose blank line ends the list item
+  and whose fence swallows the following `## Exit quiz` heading
+
+Escaping is uniform rather than per-field. Some of this content was authored as
+markdown — a few stems use `**bold**`, and science content writes formulae as
+`$$NO_2$$` — but nothing in the data marks which values those are, and guessing
+which to trust is what leaves the document open to the rest. So every value is
+rendered as the text it is. Carrying emphasis and MathJax through faithfully
+needs the curriculum data to say where they are; that is separate work.
+
+Frontmatter values take a different quoter, `JSON.stringify`, because a
+double-quoted YAML scalar uses JSON's escaping rules.
+
 ### Deliberate omissions
 
 **Quiz correct answers, feedback and hints are omitted.** They are present in the

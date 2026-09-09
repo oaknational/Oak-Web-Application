@@ -41,15 +41,69 @@ function yamlValue(value: string): string {
 }
 
 /**
+ * Escapes a curriculum value so it reaches the reader as the text the
+ * curriculum holds rather than as markdown syntax.
+ *
+ * Curriculum content is authored for the lesson page, not for a markdown
+ * document, and it really does carry markdown's metacharacters. KS3 computing
+ * quiz stems include bare HTML tags such as
+ * `<link rel="stylesheet" href="styles.css">`, which markdown reads as raw
+ * HTML and renders as nothing at all. French and Spanish sound-symbol lessons
+ * write their keywords in brackets — `[e]`, `[rr]`, `[qui]`. One PE stem
+ * begins `1. `, which opens a nested list, and a Python stem carries a fenced
+ * code block whose blank line ends the list item it sits in.
+ *
+ * Two things happen here. Whitespace collapses first, because every value is
+ * emitted on a single line and a raw newline would end the list item or
+ * paragraph around it. Then the characters that open an inline construct are
+ * backslash-escaped, along with the block markers that matter only at the
+ * start of a line — which is where these values sit.
+ *
+ * Escaping is uniform rather than per-field on purpose. Some of this content
+ * was authored as markdown — a few quiz stems use `**bold**`, and science
+ * content writes formulae as `$$NO_2$$` — but nothing in the data marks which
+ * values those are, and guessing is what leaves the document open to the rest.
+ * So every value is treated as text and rendered as the text it is; carrying
+ * emphasis or MathJax through faithfully needs the curriculum data to say
+ * where they are, which is a separate piece of work.
+ *
+ * Both steps are pure string transformations, so the determinism contract
+ * above still holds.
+ */
+function markdownText(value: string): string {
+  return (
+    value
+      .replace(/\s+/g, " ")
+      .trim()
+      // Backslash first: escaping it afterwards would escape the backslashes
+      // the steps below add.
+      .replace(/\\/g, "\\\\")
+      // Emphasis, code spans, links and images, raw HTML, entity references,
+      // strikethrough and table cells.
+      .replace(/[*_`[\]<>&~|]/g, "\\$&")
+      // Block markers, which bite only where the value begins a line — a
+      // heading, a bullet, or a setext underline. Each needs the delimiter
+      // that follows it, so `#tag` and `-ish` are left alone.
+      .replace(/^(#{1,6}|[-+])(?=\s|$)/, "\\$&")
+      .replace(/^(-+|=+)$/, "\\$&")
+      // A leading number opens an ordered list. The digits cannot be escaped,
+      // so the delimiter after them is — and only when it really is one, which
+      // leaves a decimal such as "0.25" as it was written.
+      .replace(/^(\d{1,9})([.)])(?=\s|$)/, "$1\\$2")
+  );
+}
+
+/**
  * Renders a quiz question stem or answer part. Image parts carry no alt text in
  * the curriculum data, so they are rendered as a labelled placeholder rather
  * than as a markdown image with an empty alt attribute.
  */
 function renderStem(parts: StemObject[]): string {
-  return parts
-    .map((part) => (isStemTextObject(part) ? part.text : "[image]"))
-    .join(" ")
-    .trim();
+  return markdownText(
+    parts
+      .map((part) => (isStemTextObject(part) ? part.text : "[image]"))
+      .join(" "),
+  );
 }
 
 /** Collapses the transcript field, which may be a string or a sentence array. */
@@ -150,7 +204,7 @@ export function lessonToMarkdown(lesson: LessonOverviewPageData): string {
       ...frontmatter,
       "---",
       "",
-      `# ${lesson.lessonTitle}`,
+      `# ${markdownText(lesson.lessonTitle)}`,
       "",
       "This lesson's materials are restricted, so they are not included in this",
       "markdown representation. Open the lesson page to see what is available.",
@@ -163,13 +217,17 @@ export function lessonToMarkdown(lesson: LessonOverviewPageData): string {
   const sections: Section[] = [
     {
       heading: "Lesson outcome",
-      lines: lesson.pupilLessonOutcome ? [lesson.pupilLessonOutcome] : [],
+      lines: lesson.pupilLessonOutcome
+        ? [markdownText(lesson.pupilLessonOutcome)]
+        : [],
     },
     {
       heading: "Content guidance",
       lines: (lesson.contentGuidance ?? []).map(
         (guidance) =>
-          `- **${guidance.contentGuidanceLabel}** — ${guidance.contentGuidanceDescription}`,
+          `- **${markdownText(guidance.contentGuidanceLabel)}** — ${markdownText(
+            guidance.contentGuidanceDescription,
+          )}`,
       ),
     },
     {
@@ -177,37 +235,45 @@ export function lessonToMarkdown(lesson: LessonOverviewPageData): string {
       lines: (lesson.keyLearningPoints ?? [])
         .map((point) => point.keyLearningPoint)
         .filter((point): point is string => Boolean(point))
-        .map((point) => `- ${point}`),
+        .map((point) => `- ${markdownText(point)}`),
     },
     {
       heading: "Lesson outline",
       lines: (lesson.lessonOutline ?? []).map(
-        (item, index) => `${index + 1}. ${item.lessonOutline}`,
+        (item, index) => `${index + 1}. ${markdownText(item.lessonOutline)}`,
       ),
     },
     {
       heading: "Keywords",
       lines: (lesson.lessonKeywords ?? [])
         .filter((entry) => entry.keyword.trim())
-        .map((entry) => `- **${entry.keyword}** — ${entry.description}`),
+        .map(
+          (entry) =>
+            `- **${markdownText(entry.keyword)}** — ${markdownText(entry.description)}`,
+        ),
     },
     {
       heading: "Common misconceptions",
       lines: (lesson.misconceptionsAndCommonMistakes ?? [])
         .filter((entry) => entry.misconception.trim())
-        .map((entry) => `- **${entry.misconception}** — ${entry.response}`),
+        .map(
+          (entry) =>
+            `- **${markdownText(entry.misconception)}** — ${markdownText(
+              entry.response,
+            )}`,
+        ),
     },
     {
       heading: "Teacher tips",
       lines: (lesson.teacherTips ?? [])
         .filter((entry) => entry.teacherTip.trim())
-        .map((entry) => `- ${entry.teacherTip}`),
+        .map((entry) => `- ${markdownText(entry.teacherTip)}`),
     },
     {
       heading: "Equipment and resources",
       lines: (lesson.lessonEquipmentAndResources ?? [])
         .filter((entry) => entry.equipment.trim())
-        .map((entry) => `- ${entry.equipment}`),
+        .map((entry) => `- ${markdownText(entry.equipment)}`),
     },
     quizSection("Starter quiz", lesson.starterQuiz),
     quizSection("Exit quiz", lesson.exitQuiz),
@@ -234,7 +300,7 @@ export function lessonToMarkdown(lesson: LessonOverviewPageData): string {
   }
 
   const copyrightLines = (lesson.legacyCopyrightContent ?? []).map(
-    (entry) => `- ${entry.copyrightInfo}`,
+    (entry) => `- ${markdownText(entry.copyrightInfo)}`,
   );
   if (copyrightLines.length > 0) {
     sections.push({ heading: "Copyright", lines: copyrightLines });
@@ -249,7 +315,7 @@ export function lessonToMarkdown(lesson: LessonOverviewPageData): string {
     ...frontmatter,
     "---",
     "",
-    `# ${lesson.lessonTitle}`,
+    `# ${markdownText(lesson.lessonTitle)}`,
     "",
     ...body.flatMap((section) => [section, ""]),
     `[View this lesson on Oak National Academy](${canonicalUrl})`,
