@@ -52,6 +52,13 @@ Link: </teachers/lessons/photosynthesis.md>; rel="alternate"; type="text/markdow
 This follows the pattern already used for the RFC 9727 API catalog, which is
 advertised from the homepage with `Link: </.well-known/api-catalog>; rel="api-catalog"`.
 
+The rewrite is doing real work here, not just prettifying a URL. `robots.txt`
+carries `Disallow: /api`, so a well-behaved crawler would skip the handler's own
+`/api/teachers/lessons/…/markdown` path. The public `.md` URL is not under
+`/api`, so it stays crawlable; the rewrite is server-side and invisible to
+clients. Publishing the `/api` path as the consumer-facing URL would have made
+the representation undiscoverable to exactly the consumers it is for.
+
 ## Why a distinct URL and not `Accept` negotiation
 
 `Accept: text/markdown` negotiation on the lesson URL is the better end state.
