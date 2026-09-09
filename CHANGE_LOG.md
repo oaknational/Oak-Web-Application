@@ -1,3 +1,10 @@
+# [1.1185.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1184.3...v1.1185.0) (2026-09-09)
+
+
+### Features
+
+* make downloads accordion open by default ([f7675cc](https://github.com/oaknational/Oak-Web-Application/commit/f7675ccfa61ac7859025e9e6d5614da14769eef5))
+
 ## [1.1184.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.1184.2...v1.1184.3) (2026-09-09)
 
 
