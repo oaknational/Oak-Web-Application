@@ -86,6 +86,7 @@ export const AboutUsOaksImpactCaseStudyList: NextPage<
                       key={item.href}
                       aspectRatio="4/3"
                       cardOrientation={["column", "row", "row"]}
+                      showImage={[false, true, true]}
                       {...item}
                     />
                   );
