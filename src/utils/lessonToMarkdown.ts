@@ -30,9 +30,14 @@ const CANONICAL_ORIGIN = "https://www.thenational.academy";
  * Quotes a value for YAML frontmatter. Always double-quotes rather than
  * guessing when quoting is required, so a title containing `:`, `#` or a
  * leading `-` can never break the frontmatter block.
+ *
+ * YAML 1.2 is a superset of JSON and a double-quoted YAML scalar uses JSON's
+ * escaping rules, so `JSON.stringify` is exactly the right quoter here. It also
+ * escapes newlines and control characters, which a hand-rolled quote-and-
+ * backslash replacement would let through into the frontmatter block.
  */
 function yamlValue(value: string): string {
-  return `"${value.replaceAll("\\", "\\\\").replaceAll('"', '\\"')}"`;
+  return JSON.stringify(value);
 }
 
 /**

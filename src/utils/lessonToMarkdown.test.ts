@@ -56,6 +56,20 @@ describe("lessonToMarkdown()", () => {
     );
   });
 
+  it("escapes a newline in a frontmatter value rather than breaking the block", () => {
+    const markdown = lessonToMarkdown(
+      lessonOverviewFixture({ lessonTitle: "Line one\nline two" }),
+    );
+
+    // The frontmatter block must stay exactly two `---` lines: a raw newline
+    // here would end it early and turn the rest into body text.
+    const frontmatter = markdown.split("---")[1];
+
+    expect(markdown).toContain('title: "Line one\\nline two"');
+    expect(frontmatter).not.toContain("line two\n");
+    expect(markdown.split("\n").filter((l) => l === "---")).toHaveLength(2);
+  });
+
   it("renders the lesson's teaching content as markdown sections", () => {
     const markdown = lessonToMarkdown(
       lessonOverviewFixture({
