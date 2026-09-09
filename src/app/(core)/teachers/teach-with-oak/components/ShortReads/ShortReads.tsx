@@ -8,8 +8,10 @@ import {
   OakP,
   OakPrimaryButton,
   OakSmallTertiaryInvertedButton,
+  parseSpacing,
 } from "@oaknational/oak-components";
 import { ReactNode } from "react";
+import styled from "styled-components";
 
 import LessonOverviewPresentation from "@/components/TeacherComponents/LessonOverviewPresentation";
 
@@ -37,7 +39,11 @@ export const ShortReads = () => {
             </OakP>
           }
           downloadButton={
-            <OakPrimaryButton iconName="download" isTrailingIcon>
+            <OakPrimaryButton
+              iconName="download"
+              isTrailingIcon
+              aria-label="Opens in a new tab"
+            >
               Download all guides
             </OakPrimaryButton>
           }
@@ -47,25 +53,25 @@ export const ShortReads = () => {
           description="This short guide explores Oak’s approach to explanation and the
               thinking behind our design, helping you deepen your understanding
               and support your teaching."
-          assetUrl={shortReadIds.explanation}
+          assetUrl={"1aBgV77ao7mmpRqO3m1fRvPl-958biNw0G8Rzh3ON68I"}
           shortReadType="explanation"
         />
         <ShortReadSection
           title="Check for understanding (CfU) at oak"
           description="This short guide explores Oak’s approach to CfUs and the thinking behind our design, helping you deepen your understanding and support your teaching."
-          assetUrl={shortReadIds.checkForUnderstanding}
+          assetUrl={"1sugE2rWoa2D-JxHEQggg4FTniW8rHvazP1QtC-GtPho"}
           shortReadType="CfU"
         />
         <ShortReadSection
           title="Practice at oak"
           description="This short guide explores Oak’s approach to practice and the thinking behind our design, helping you deepen your understanding and support your teaching. "
-          assetUrl={shortReadIds.practice}
+          assetUrl={"16NK_tAod38xtV86IFnaaA0SRF6I5SohwGzb4cyKPXk8"}
           shortReadType="practice"
         />
         <ShortReadSection
           title="Feedback at oak"
           description="This short guide explores Oak’s approach to feedback and the thinking behind our design, helping you deepen your understanding and support your teaching.  "
-          assetUrl={shortReadIds.feedback}
+          assetUrl={"1PR4NgNWtKLmKFWWmSlssAP7M_MtVoTpahc6MBH8lAgg"}
           shortReadType="feedback"
         />
       </OakMaxWidth>
@@ -90,6 +96,7 @@ const Header = ({ title, description, downloadButton }: HeaderProps) => {
         $colStart={[1, 1, 9]}
         $alignItems={["flex-start", "flex-start", "flex-end"]}
         $order={[3, 3, 1]}
+        $pt={["spacing-0", "spacing-24", "spacing-0"]}
       >
         {downloadButton}
       </OakGridArea>
@@ -106,47 +113,38 @@ type ShortReadHeaderProps = {
   shortReadType: string;
 };
 
-const ShortReadHeader = ({
+const ShortReadDownloadButton = styled(OakSmallTertiaryInvertedButton)`
+  div {
+    padding-left: ${parseSpacing("spacing-0")};
+  }
+`;
+
+const ShortReadSection = ({
   title,
   description,
   shortReadType,
-}: ShortReadHeaderProps) => {
-  return (
-    <Header
-      title={
-        <OakHeading $font={["heading-5", "heading-4"]} tag="h3">
-          {title}
-        </OakHeading>
-      }
-      downloadButton={
-        <OakSmallTertiaryInvertedButton iconName="download" isTrailingIcon>
-          {`Download ${shortReadType} guide (PDF)`}
-        </OakSmallTertiaryInvertedButton>
-      }
-      description={<OakP>{description}</OakP>}
-    />
-  );
-};
-
-const ShortReadSection = (
-  props: ShortReadHeaderProps & { assetUrl: string },
-) => {
+  assetUrl,
+}: ShortReadHeaderProps & { assetUrl: string }) => {
   return (
     <OakFlex $flexDirection="column" $gap="spacing-24">
-      <ShortReadHeader {...props} />
-      <LessonOverviewPresentation
-        asset={props.assetUrl}
-        title={props.title}
-        isWorksheet
+      <Header
+        title={
+          <OakHeading $font={["heading-5", "heading-4"]} tag="h3">
+            {title}
+          </OakHeading>
+        }
+        downloadButton={
+          <ShortReadDownloadButton
+            iconName="download"
+            isTrailingIcon
+            aria-label="Opens in a new tab"
+          >
+            {`Download ${shortReadType} guide (PDF)`}
+          </ShortReadDownloadButton>
+        }
+        description={<OakP>{description}</OakP>}
       />
+      <LessonOverviewPresentation asset={assetUrl} title={title} isWorksheet />
     </OakFlex>
   );
-};
-
-// Not finalised, check before final release
-const shortReadIds = {
-  explanation: "1aBgV77ao7mmpRqO3m1fRvPl-958biNw0G8Rzh3ON68I",
-  checkForUnderstanding: "1sugE2rWoa2D-JxHEQggg4FTniW8rHvazP1QtC-GtPho",
-  practice: "16NK_tAod38xtV86IFnaaA0SRF6I5SohwGzb4cyKPXk8",
-  feedback: "1PR4NgNWtKLmKFWWmSlssAP7M_MtVoTpahc6MBH8lAgg",
 };
