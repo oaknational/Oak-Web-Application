@@ -19,6 +19,22 @@ describe("OaksImpactCaseStudies", () => {
     expect(baseElement).toHaveTextContent("TEST_DATE");
   });
 
+  it("renders correctly with summary", () => {
+    const { baseElement, getByRole } = render(
+      <OaksImpactCaseStudyHeader
+        title="TEST_TITLE"
+        publishedDate="TEST_DATE"
+        summary="TEST_SUMMARY"
+        onCopyLink={() => {}}
+      />,
+    );
+
+    expect(baseElement).toMatchSnapshot();
+    expect(getByRole("heading", { name: "TEST_TITLE" })).toBeInTheDocument();
+    expect(getByRole("paragraph")).toHaveTextContent("TEST_SUMMARY");
+    expect(baseElement).toHaveTextContent("TEST_DATE");
+  });
+
   it("calls onCopyLink when copy link clicked", () => {
     const onCopyLink = jest.fn();
     const { getByRole } = render(

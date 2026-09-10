@@ -21,3 +21,15 @@ export const Default: Story = {
   },
   render: (args) => <Component {...args} />,
 };
+
+export const WithSummary: Story = {
+  args: {
+    title: "Testing",
+    tag: "Optional tag",
+    publishedDate: "14 July 2026",
+    summary:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut et massa mi. Aliquam in hendrerit urna. Pellentesque sit amet sapien fringilla, mattis ligula consectetur, ultrices mauris. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut et massa mi. Aliquam in hendrerit urna. Ut et massa mi. Aliquam in hendrerit urna. Pellentesque sit amet sapien fringilla, mattis ligula consectetur, ultrices mauris.",
+    onCopyLink: () => {},
+  },
+  render: (args) => <Component {...args} />,
+};

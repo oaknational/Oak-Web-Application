@@ -291,7 +291,8 @@ const LayoutSiteFooter: FC = () => {
           $pt={["spacing-16", "spacing-80"]}
           $justifyContent={"center"}
           $flexDirection={"column"}
-          $ph={"spacing-16"}
+          $ph={["spacing-20", "spacing-40", "spacing-40"]}
+          $maxWidth="spacing-1280"
           $ma={"auto"}
           $width={"100%"}
         >
@@ -386,21 +387,6 @@ const LayoutSiteFooter: FC = () => {
           "translate(25%, 25%) scale(0.7) rotate(-10deg)",
           "translate(25%, 15%) rotate(-10deg)",
         ]}
-        $position={"absolute"}
-        $left={"spacing-0"}
-        $right={"spacing-0"}
-        $top={"spacing-0"}
-        $bottom={"spacing-0"}
-        $width={"100%"}
-        $height={"100%"}
-      />
-      <OakIcon
-        iconName="looping-line-4"
-        $colorFilter={"bg-decorative4-subdued"}
-        $zIndex={"behind"}
-        $display={["block", "none"]}
-        $objectFit={"fill"}
-        $transform={"translate(0%, 32%)"}
         $position={"absolute"}
         $left={"spacing-0"}
         $right={"spacing-0"}
