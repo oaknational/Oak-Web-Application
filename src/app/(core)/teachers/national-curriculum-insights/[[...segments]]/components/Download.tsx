@@ -78,6 +78,153 @@ const responseFilename = (response: Response) => {
   return filename?.[1] ?? "Curriculum insights";
 };
 
+const DownloadHeader = ({
+  formId,
+  section,
+  expanded,
+  onToggle,
+}: {
+  formId: string;
+  section: DownloadSection;
+  expanded: boolean;
+  onToggle: () => void;
+}) => (
+  <OakFocusIndicator $width="100%">
+    <HeaderButton
+      as="button"
+      $display="block"
+      $width="100%"
+      $minHeight={["spacing-64", "spacing-64", "spacing-100"]}
+      $ph="spacing-20"
+      $pv={["spacing-12", "spacing-12", "spacing-20"]}
+      $ba="border-solid-none"
+      $bt="border-solid-m"
+      $borderColor="border-decorative2-stronger"
+      $background="bg-decorative2-main"
+      $color="text-primary"
+      type="button"
+      aria-label={`${section.barHeading} ${section.barCtaLabel}`}
+      aria-expanded={expanded}
+      aria-controls={`${formId}-content`}
+      onClick={onToggle}
+    >
+      <OakFlex
+        as="span"
+        $alignItems="center"
+        $width="100%"
+        $maxWidth="spacing-1280"
+        $minHeight={["spacing-40", "spacing-40", "spacing-56"]}
+        $mh="auto"
+        $ph={["spacing-0", "spacing-0", "spacing-92"]}
+      >
+        <OakFlex
+          as="span"
+          $display={[expanded ? "none" : "inline-flex", null, "inline-flex"]}
+          $alignItems="center"
+          $justifyContent="center"
+          $width={["spacing-40", "spacing-40", "spacing-56"]}
+          $height={["spacing-40", "spacing-40", "spacing-56"]}
+          $flexShrink={0}
+          $mr="spacing-16"
+          $borderRadius="border-radius-circle"
+          $background="bg-primary"
+          aria-hidden="true"
+        >
+          <OakIcon
+            iconName="worksheet"
+            $width="spacing-32"
+            $height="spacing-32"
+          />
+        </OakFlex>
+        <OakBox
+          as="span"
+          $display={[expanded ? "none" : "inline", null, "inline"]}
+          $font="heading-7"
+          $textAlign="left"
+        >
+          {section.barHeading}
+        </OakBox>
+        <OakBox
+          as="span"
+          $display={[expanded ? "inline-flex" : "none", null, "inline-flex"]}
+          $background="bg-btn-primary"
+          $color="text-inverted"
+          $font="heading-light-7"
+          $pa="spacing-4"
+          $ph="spacing-8"
+          $borderRadius="border-radius-m"
+          $ml={["spacing-0", "spacing-0", "spacing-16"]}
+        >
+          {section.barCtaLabel}
+        </OakBox>
+        <OakIcon
+          iconName={expanded ? "chevron-down" : "chevron-up"}
+          $display={[expanded ? "none" : "inline-flex", null, "inline-flex"]}
+          $ml="auto"
+          $width="spacing-24"
+          $height="spacing-24"
+          aria-hidden="true"
+        />
+        <OakIcon
+          iconName="cross"
+          $display={[expanded ? "block" : "none", null, "none"]}
+          $ml="auto"
+          $width="spacing-32"
+          $height="spacing-32"
+          aria-hidden="true"
+        />
+      </OakFlex>
+    </HeaderButton>
+  </OakFocusIndicator>
+);
+
+const DownloadActions = ({
+  mobileStage,
+  canDownload,
+  downloading,
+  buttonLabel,
+  error,
+}: {
+  mobileStage: "details" | "subjects";
+  canDownload: boolean;
+  downloading: boolean;
+  buttonLabel: string;
+  error: string | null;
+}) => (
+  <OakBox
+    $display={[mobileStage === "details" ? "grid" : "none", null, "grid"]}
+  >
+    <OakGrid
+      $maxWidth="spacing-1280"
+      $mh="auto"
+      $ph={["spacing-20", "spacing-20", "spacing-32"]}
+      $pv="spacing-12"
+    >
+      <OakGridArea
+        $colSpan={[12, 12, 6]}
+        $colStart={[1, 1, 7]}
+        $pl={["spacing-0", "spacing-0", "spacing-64"]}
+      >
+        <OakBox $width="100%">
+          <OakPrimaryButton
+            type="submit"
+            width="100%"
+            textAlign="center"
+            disabled={!canDownload}
+          >
+            {downloading ? "Preparing download…" : buttonLabel}
+          </OakPrimaryButton>
+          {error ? (
+            <OakBox role="alert" $mt="spacing-12">
+              <OakFieldError>{error}</OakFieldError>
+            </OakBox>
+          ) : null}
+        </OakBox>
+      </OakGridArea>
+    </OakGrid>
+  </OakBox>
+);
+
 export const NationalCurriculumInsightsDownload = ({
   data,
   section,
@@ -209,108 +356,15 @@ export const NationalCurriculumInsightsDownload = ({
       $background="bg-primary"
       $dropShadow={sticky ? "drop-shadow-centred-standard" : undefined}
     >
-      <OakFocusIndicator $width="100%">
-        <HeaderButton
-          as="button"
-          $display="block"
-          $width="100%"
-          $minHeight={["spacing-64", "spacing-64", "spacing-100"]}
-          $ph="spacing-20"
-          $pv={["spacing-12", "spacing-12", "spacing-20"]}
-          $ba="border-solid-none"
-          $bt="border-solid-m"
-          $borderColor="border-decorative2-stronger"
-          $background="bg-decorative2-main"
-          $color="text-primary"
-          type="button"
-          aria-label={`${section.barHeading} ${section.barCtaLabel}`}
-          aria-expanded={expanded}
-          aria-controls={`${formId}-content`}
-          onClick={() => {
-            setExpanded((value) => !value);
-            setMobileStage("details");
-          }}
-        >
-          <OakFlex
-            as="span"
-            $alignItems="center"
-            $width="100%"
-            $maxWidth="spacing-1280"
-            $minHeight={["spacing-40", "spacing-40", "spacing-56"]}
-            $mh="auto"
-            $ph={["spacing-0", "spacing-0", "spacing-92"]}
-          >
-            <OakFlex
-              as="span"
-              $display={[
-                expanded ? "none" : "inline-flex",
-                null,
-                "inline-flex",
-              ]}
-              $alignItems="center"
-              $justifyContent="center"
-              $width={["spacing-40", "spacing-40", "spacing-56"]}
-              $height={["spacing-40", "spacing-40", "spacing-56"]}
-              $flexShrink={0}
-              $mr="spacing-16"
-              $borderRadius="border-radius-circle"
-              $background="bg-primary"
-              aria-hidden="true"
-            >
-              <OakIcon
-                iconName="worksheet"
-                $width="spacing-32"
-                $height="spacing-32"
-              />
-            </OakFlex>
-            <OakBox
-              as="span"
-              $display={[expanded ? "none" : "inline", null, "inline"]}
-              $font="heading-7"
-              $textAlign="left"
-            >
-              {section.barHeading}
-            </OakBox>
-            <OakBox
-              as="span"
-              $display={[
-                expanded ? "inline-flex" : "none",
-                null,
-                "inline-flex",
-              ]}
-              $background="bg-btn-primary"
-              $color="text-inverted"
-              $font="heading-light-7"
-              $pa="spacing-4"
-              $ph="spacing-8"
-              $borderRadius="border-radius-m"
-              $ml={["spacing-0", "spacing-0", "spacing-16"]}
-            >
-              {section.barCtaLabel}
-            </OakBox>
-            <OakIcon
-              iconName={expanded ? "chevron-down" : "chevron-up"}
-              $display={[
-                expanded ? "none" : "inline-flex",
-                null,
-                "inline-flex",
-              ]}
-              $ml="auto"
-              $width="spacing-24"
-              $height="spacing-24"
-              aria-hidden="true"
-            />
-            <OakIcon
-              iconName="cross"
-              $display={[expanded ? "block" : "none", null, "none"]}
-              $ml="auto"
-              $width="spacing-32"
-              $height="spacing-32"
-              aria-hidden="true"
-            />
-          </OakFlex>
-        </HeaderButton>
-      </OakFocusIndicator>
+      <DownloadHeader
+        formId={formId}
+        section={section}
+        expanded={expanded}
+        onToggle={() => {
+          setExpanded((value) => !value);
+          setMobileStage("details");
+        }}
+      />
 
       {expanded ? (
         <Expanded
@@ -587,42 +641,13 @@ export const NationalCurriculumInsightsDownload = ({
               </OakBox>
             </OakGridArea>
           </OakGrid>
-          <OakBox
-            $display={[
-              mobileStage === "details" ? "grid" : "none",
-              null,
-              "grid",
-            ]}
-          >
-            <OakGrid
-              $maxWidth="spacing-1280"
-              $mh="auto"
-              $ph={["spacing-20", "spacing-20", "spacing-32"]}
-              $pv="spacing-12"
-            >
-              <OakGridArea
-                $colSpan={[12, 12, 6]}
-                $colStart={[1, 1, 7]}
-                $pl={["spacing-0", "spacing-0", "spacing-64"]}
-              >
-                <OakBox $width="100%">
-                  <OakPrimaryButton
-                    type="submit"
-                    width="100%"
-                    textAlign="center"
-                    disabled={!canDownload}
-                  >
-                    {downloading ? "Preparing download…" : buttonLabel}
-                  </OakPrimaryButton>
-                  {error ? (
-                    <OakBox role="alert" $mt="spacing-12">
-                      <OakFieldError>{error}</OakFieldError>
-                    </OakBox>
-                  ) : null}
-                </OakBox>
-              </OakGridArea>
-            </OakGrid>
-          </OakBox>
+          <DownloadActions
+            mobileStage={mobileStage}
+            canDownload={canDownload}
+            downloading={downloading}
+            buttonLabel={buttonLabel}
+            error={error}
+          />
         </Expanded>
       ) : null}
     </Section>
