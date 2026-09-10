@@ -97,39 +97,51 @@ describe("Content-Security-Policy Header", () => {
       jest.resetModules();
     });
 
-    it("includes upgrade-insecure-requests outside development", async () => {
+    it.each([
+      {
+        description: "upgrade-insecure-requests outside development",
+        expected: "upgrade-insecure-requests;",
+      },
+      {
+        description: "Google Classroom as a frame ancestor",
+        expected:
+          "frame-ancestors 'self' https://classroom.google.com *.google.com/;",
+      },
+      {
+        description: "the configured PostHog host",
+        expected: "https://eu.i.posthog.com",
+      },
+      {
+        description: "the production Clerk frontend",
+        expected: "https://clerk.thenational.academy",
+      },
+      {
+        description: "same-origin connections",
+        expected: "connect-src 'self'",
+      },
+    ])("includes $description", async ({ expected }) => {
       const { cspHeader } = await import("./contentSecurityPolicy");
 
-      expect(cspHeader).toContain("upgrade-insecure-requests;");
+      expect(cspHeader).toContain(expected);
     });
 
-    it("should exclude development-specific rules ('localhost', 'unsafe-eval')", async () => {
+    it.each([
+      {
+        description: "the 'unsafe-eval' development rule",
+        excluded: "'unsafe-eval'",
+      },
+      {
+        description: "the localhost development rule",
+        excluded: "http://localhost:*",
+      },
+      {
+        description: "scripts from arbitrary HTTP or HTTPS origins",
+        excluded: "script-src 'self' 'unsafe-inline' https: http:",
+      },
+    ])("does not include $description", async ({ excluded }) => {
       const { cspHeader } = await import("./contentSecurityPolicy");
 
-      expect(cspHeader).not.toContain("'unsafe-eval'");
-      expect(cspHeader).not.toContain("http://localhost:*");
-    });
-
-    it("includes Google Classroom in the generated frame-ancestors policy", async () => {
-      const { cspHeader } = await import("./contentSecurityPolicy");
-
-      expect(cspHeader).toContain(
-        "frame-ancestors 'self' https://classroom.google.com *.google.com/;",
-      );
-    });
-
-    it("does not allow scripts from arbitrary HTTP or HTTPS origins", async () => {
-      const { cspHeader } = await import("./contentSecurityPolicy");
-
-      expect(cspHeader).not.toContain(
-        "script-src 'self' 'unsafe-inline' https: http:",
-      );
-    });
-
-    it("allows the configured PostHog host to load its scripts", async () => {
-      const { cspHeader } = await import("./contentSecurityPolicy");
-
-      expect(cspHeader).toContain("https://eu.i.posthog.com");
+      expect(cspHeader).not.toContain(excluded);
     });
 
     it("allows a configured PostHog host for scripts and connections", async () => {
@@ -158,18 +170,6 @@ describe("Content-Security-Policy Header", () => {
       expect(scriptSrc).toContain("https://*.hs-analytics.net");
       expect(scriptSrc).toContain("https://*.hs-banner.com");
       expect(scriptSrc).toContain("https://*.hscollectedforms.net");
-    });
-
-    it("allows the production Clerk frontend to load its scripts", async () => {
-      const { cspHeader } = await import("./contentSecurityPolicy");
-
-      expect(cspHeader).toContain("https://clerk.thenational.academy");
-    });
-
-    it("allows same-origin connections", async () => {
-      const { cspHeader } = await import("./contentSecurityPolicy");
-
-      expect(cspHeader).toContain("connect-src 'self'");
     });
 
     it("should correctly merge all production-required directives", async () => {
