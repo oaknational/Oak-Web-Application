@@ -481,7 +481,7 @@ consumers, and populating it requires a separate fetch from the captions bucket.
 **The video and transcript link is emitted only when the lesson has media
 clips.** `/teachers/lessons/<slug>/media` 404s when a lesson has no clips — see
 the `!curriculumData.mediaClips` guard in
-[media.tsx](../src/pages/teachers/lessons/[lessonSlug]/media.tsx) — and a lesson
+[media.tsx](<../src/pages/teachers/lessons/[lessonSlug]/media.tsx>) — and a lesson
 can carry a transcript without carrying any clips.
 `adverbial-complex-sentences` is one: `hasMediaClips: false`, a populated
 `transcriptSentences`, and `/media` 404 on production. So the condition is
