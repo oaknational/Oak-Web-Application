@@ -37,11 +37,13 @@ describe("TeachWithOakView", () => {
       screen.getByRole("heading", { name: "Explore more guidance from Oak" }),
     ).toBeInTheDocument();
 
-    ["Plan a lesson", "Blogs", "Webinars", "Help"].forEach((linkName) => {
-      expect(screen.getByRole("link", { name: linkName })).toHaveAttribute(
-        "href",
-      );
-    });
+    ["Plan a lesson", "Blogs", "Webinars", "Help, opens in a new tab"].forEach(
+      (linkName) => {
+        expect(screen.getByRole("link", { name: linkName })).toHaveAttribute(
+          "href",
+        );
+      },
+    );
   });
 
   it("renders a return link only when one is supplied", () => {
@@ -56,5 +58,30 @@ describe("TeachWithOakView", () => {
     expect(
       screen.getByRole("link", { name: "Back to lesson" }),
     ).toHaveAttribute("href", "/teachers/lessons/example");
+  });
+
+  it("renders a short read guides section", () => {
+    render(<TeachWithOakView />);
+
+    const shortReadsHeader = screen.getByRole("heading", {
+      level: 2,
+      name: "Short read guides",
+    });
+    expect(shortReadsHeader).toBeInTheDocument();
+  });
+
+  it.each([
+    "Explanation",
+    "Check for understanding (CfU)",
+    "Feedback",
+    "Practice",
+  ])("renders a section for each learning cycle", (learningCycle) => {
+    render(<TeachWithOakView />);
+
+    const sectionHeading = screen.getByRole("heading", {
+      level: 3,
+      name: `${learningCycle} at Oak`,
+    });
+    expect(sectionHeading).toBeInTheDocument();
   });
 });
