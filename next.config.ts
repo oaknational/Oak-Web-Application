@@ -131,8 +131,6 @@ export default async (phase: NextConfig["phase"]): Promise<NextConfig> => {
             key: "Link",
             value: [
               '</.well-known/api-catalog>; rel="api-catalog"',
-              // ARD spec v0.91 §5.1 discovery mechanisms. Both relations are
-              // emitted for the same reason both paths are served.
               '</.well-known/ard.json>; rel="ard"',
               '</.well-known/ai-catalog.json>; rel="ai-catalog"',
             ].join(", "),
@@ -519,12 +517,8 @@ export default async (phase: NextConfig["phase"]): Promise<NextConfig> => {
           source: "/.well-known/api-catalog",
           destination: "/api/well-known/api-catalog",
         },
-        // The ARD manifest, served at BOTH the spec path and its predecessor.
-        // Spec v0.91 §5.1 requires only `ard.json`, but measured 2026-09-09
-        // every reference publisher (github.com, huggingface.co,
-        // developers.cloudflare.com) serves `ai-catalog.json` alone. Serving
-        // both makes Oak findable by consumers written against either
-        // revision. See src/app/api/well-known/ard/route.ts.
+        // Both the ARD path and its predecessor: deployed consumers still use
+        // the older one, so removing either loses reach. docs/agent-discovery.md.
         {
           source: "/.well-known/ard.json",
           destination: "/api/well-known/ard",

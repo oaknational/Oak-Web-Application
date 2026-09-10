@@ -1,25 +1,12 @@
 import { expect, test } from "@playwright/test";
 
 /**
- * The ARD manifest must be served, and reachable, at both published paths.
+ * MCP-715. Guards the rewrite, not the handler: unit tests cover the handler,
+ * but it can be healthy while the rewrite is missing, and then the only URLs
+ * anyone fetches return 404. Nothing on the site links these paths, so no
+ * other check would notice.
  *
- * MCP-715. The manifest is produced by an App Router route handler and mapped
- * onto `/.well-known/` by rewrites in `next.config.ts`, because the App Router
- * will not route a folder beginning with a dot. That indirection is what this
- * spec guards: the handler can be healthy while the rewrite is missing, and
- * then the only URLs anyone actually fetches return 404.
- *
- * Nothing in the site links to these paths as a user would follow them, so no
- * other check here would notice.
- */
-
-/**
- * Both paths, spelled out.
- *
- * `ard.json` is what ARD v0.91 §5.1 requires a conformant consumer to fetch.
- * `ai-catalog.json` is its predecessor, and measured 2026-09-09 it is the only
- * path every reference publisher actually serves. Dropping either is a
- * deliberate change to who can discover Oak, not a tidy-up.
+ * See `docs/agent-discovery.md`.
  */
 const MANIFEST_PATHS = [
   "/.well-known/ard.json",
@@ -34,9 +21,8 @@ const EXPECTED_IDENTIFIERS = [
 test.describe("ARD manifest", () => {
   for (const path of MANIFEST_PATHS) {
     test(`serves the manifest at ${path}`, async ({ request }) => {
-      // `maxRedirects: 0` because the paths are a published contract. A
-      // redirect would still resolve in a browser while a consumer that does
-      // not follow hops got nothing.
+      // A redirect resolves in a browser but not for a consumer that does not
+      // follow hops, so a 3xx here must fail.
       const response = await request.get(path, { maxRedirects: 0 });
 
       expect(
@@ -57,9 +43,7 @@ test.describe("ARD manifest", () => {
 
       const body = await response.json();
 
-      // Asserted positively and per entry. Checking only that `entries` is a
-      // non-empty array would pass against a manifest that had silently lost
-      // one of the two resources.
+      // Per entry: a non-empty-array check would pass with one resource lost.
       const identifiers = body.entries.map(
         (entry: { identifier: string }) => entry.identifier,
       );
@@ -75,9 +59,7 @@ test.describe("ARD manifest", () => {
   test("advertises the manifest from the document head", async ({ page }) => {
     await page.goto("/", { waitUntil: "domcontentloaded" });
 
-    // ARD §5.1 makes `rel="ard"` a discovery mechanism a conformant consumer
-    // must honour, so an agent that never fetches `/.well-known/` still finds
-    // the manifest from any page.
+    // An agent that never fetches `/.well-known/` still finds the manifest.
     await expect(page.locator('head link[rel="ard"]')).toHaveAttribute(
       "href",
       "/.well-known/ard.json",

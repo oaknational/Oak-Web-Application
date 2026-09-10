@@ -1,57 +1,20 @@
 /**
- * Agentic Resource Discovery (ARD) manifest.
+ * Agentic Resource Discovery manifest, served at `/.well-known/ard.json` and
+ * `/.well-known/ai-catalog.json` via rewrites in `next.config.ts`.
  *
- * Advertises Oak's agent-usable resources so a discovery agent can find them
- * from the apex domain without being told where to look.
+ * Why both paths, why the MCP entry has no card URL, and why the API entry
+ * points at a catalogue: `docs/agent-discovery.md`.
  *
- * Served at `/.well-known/ard.json` AND `/.well-known/ai-catalog.json` via
- * rewrites in `next.config.ts` (App Router does not route folders that start
- * with a dot).
- *
- * - ARD specification v0.91 (status: Proposal, 2026-08-26)
- *   https://agenticresourcediscovery.org/spec/
- * - Entry schema and the official conformance CLI
- *   https://github.com/ards-project/ard-spec
- */
-
-/**
- * Both paths are served deliberately.
- *
- * Spec §5.1 says a publisher need only serve `ard.json`, and that consumers
- * MUST fetch it. Measured 2026-09-09, though, every publisher the spec cites as
- * a reference is on the predecessor path ONLY — github.com, huggingface.co and
- * developers.cloudflare.com all return 200 for `ai-catalog.json` and 404/401
- * for `ard.json`. The spec is the newer thing; deployed consumers are not.
- *
- * Serving both costs one rewrite and makes Oak findable by consumers written
- * against either revision. Do not "simplify" this to one path.
+ * - Spec v0.91: https://agenticresourcediscovery.org/spec/
+ * - Schema and conformance CLI: https://github.com/ards-project/ard-spec
  */
 const ARD_CONTENT_TYPE = "application/ai-catalog+json";
 
 /**
- * The MCP server description, inline.
- *
- * There is deliberately NO server card URL here. Measured 2026-09-09:
- *
- * - The MCP working group's own discovery document lists all three
- *   `.well-known` server-card paths under "Alternatives considered … not
- *   recommended", so publishing one there would adopt a rejected placement.
- * - The reserved location is `<streamable-http-url>/server-card`. Oak does not
- *   serve it: `https://mcp.thenational.academy/mcp/server-card` answers 406
- *   `{"error":"Accept header must include text/event-stream"}` for every Accept
- *   header including `*\/*`, which is the streamable-HTTP transport catching
- *   the path — not a card route.
- *
- * So the entry names the MCP endpoint itself, carried inline via `data`. Spec
- * §4.3 allows exactly one of `url` or `data`, and `data` is the only one that
- * can name the endpoint truthfully: a `url` of the same media type would have
- * to dereference to a card document, and no such document exists.
- *
- * Field set mirrors the live cards published by github.com and huggingface.co.
- * `$schema` is omitted because both of those point at
- * `static.modelcontextprotocol.io/schemas/v1/server-card.schema.json`, which
- * returns 404. `version` is omitted because this server does not publish one,
- * and inventing it would be fabricated metadata.
+ * Inline rather than a `url`: Oak serves no server card document, and the
+ * `.well-known` card paths are a placement the MCP working group rejected.
+ * `$schema` and `version` are omitted deliberately — see
+ * `docs/agent-discovery.md`.
  */
 const mcpServerCard = {
   name: "thenational.academy/mcp",
@@ -68,16 +31,12 @@ const mcpServerCard = {
 } as const;
 
 /**
- * The manifest served at both paths.
+ * ARD requires only `entries`; `specVersion` and `host` are transport-defined
+ * members it ignores, emitted because every reference publisher emits them.
  *
- * `specVersion` and `host` are transport-defined members that ARD ignores
- * (§5.1); they are included because all three reference publishers emit them.
- * ARD itself requires only `entries`.
- *
- * Each entry carries `identifier`, `displayName` and `type` (MUST, §4.2),
- * exactly one of `url`/`data` (§4.3), and 2-5 `representativeQueries` (SHOULD,
- * §4.2) — the queries are the signal a registry builds its semantic index
- * from, and an entry without them cannot be found by search.
+ * Each entry needs `identifier`, `displayName`, `type`, exactly one of
+ * `url`/`data`, and 2-5 `representativeQueries` — the queries are what a
+ * registry indexes on, so an entry without them cannot be found by search.
  */
 const ardManifest = {
   specVersion: "1.0",
@@ -105,12 +64,8 @@ const ardManifest = {
     {
       identifier: "urn:air:thenational.academy:api:curriculum",
       displayName: "Oak Curriculum Open API",
-      // The RFC 9727 catalogue hosted BY the API, not the copy on www.
-      // Measured 2026-09-09, the two disagree: this one carries both
-      // `/api/v0` and `/api/bulk`, while www's lists only the v0 host. The
-      // drift is tracked as MCP-721 and is not fixed here. Pointing at the
-      // catalogue rather than a single OpenAPI document also means this entry
-      // stays true as Oak's API surface grows.
+      // The catalogue hosted BY the API, not the copy on www: the two disagree
+      // and only this one carries `/api/bulk`. MCP-721.
       type: 'application/linkset+json; profile="https://www.rfc-editor.org/info/rfc9727"',
       url: "https://open-api.thenational.academy/.well-known/api-catalog",
       description:
@@ -132,7 +87,6 @@ export function GET() {
       "Content-Type": ARD_CONTENT_TYPE,
       // Discovery agents fetch this cross-origin from a browser context.
       "Access-Control-Allow-Origin": "*",
-      // The manifest changes rarely; allow shared caches to hold it for an hour.
       "Cache-Control": "public, max-age=3600",
     },
   });
