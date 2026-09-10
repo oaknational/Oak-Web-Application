@@ -62,6 +62,16 @@ const renderLessonView = (props?: Partial<TeachersLessonOverviewPageData>) => {
   return renderWithProviders()(<LessonView {...baseProps} {...props} />);
 };
 
+const resizeWindow = (width: number, height: number) => {
+  globalThis.innerWidth = width;
+  globalThis.innerHeight = height;
+  globalThis.dispatchEvent(new Event("resize"));
+};
+
+afterEach(() => {
+  resizeWindow(1280, 800);
+});
+
 describe("Previous and Next Lesson Navigation", () => {
   it("renders previous and next lesson links when adjacent lessons exist", () => {
     renderLessonView({
@@ -548,6 +558,7 @@ describe("LessonOverviewSideNav TeachWithOakPromoSection", () => {
 
   it("renders TeachWithOakPromoSection on mobile", () => {
     mockUseFeatureFlagVariantKey.mockReturnValue("promo-section");
+    resizeWindow(390, 844);
     renderLessonView();
 
     expect(

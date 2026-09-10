@@ -1,18 +1,9 @@
 import { screen } from "@testing-library/react";
-import { useFeatureFlagEnabled } from "posthog-js/react";
 
 import LessonOverviewSideNav from "./LessonOverviewSideNav";
 import { CurrentSectionIdProvider } from "./CurrentSectionIdProvider";
 
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
-
-jest.mock("posthog-js/react", () => ({
-  useFeatureFlagEnabled: jest.fn(),
-}));
-
-const mockUseFeatureFlagEnabled = useFeatureFlagEnabled as jest.MockedFunction<
-  typeof useFeatureFlagEnabled
->;
 
 const render = renderWithProviders();
 
@@ -42,13 +33,7 @@ const defaultProps = {
 };
 
 describe("LessonOverviewSideNav", () => {
-  beforeEach(() => {
-    jest.clearAllMocks();
-  });
-
   it("renders side navigation anchor links correctly", () => {
-    mockUseFeatureFlagEnabled.mockReturnValue(false);
-
     render(
       <CurrentSectionIdProvider>
         <LessonOverviewSideNav {...defaultProps} />
@@ -64,12 +49,10 @@ describe("LessonOverviewSideNav", () => {
     expect(screen.getByText("Slides")).toBeInTheDocument();
   });
 
-  it("does not render TeachWithOakPromoSection when feature flag is disabled", () => {
-    mockUseFeatureFlagEnabled.mockReturnValue(false);
-
+  it("does not render TeachWithOakPromoSection when showPromoSection is false", () => {
     render(
       <CurrentSectionIdProvider>
-        <LessonOverviewSideNav {...defaultProps} />
+        <LessonOverviewSideNav {...defaultProps} showPromoSection={false} />
       </CurrentSectionIdProvider>,
     );
 
@@ -80,9 +63,7 @@ describe("LessonOverviewSideNav", () => {
     ).not.toBeInTheDocument();
   });
 
-  it("renders TeachWithOakPromoSection when feature flag is enabled", () => {
-    mockUseFeatureFlagEnabled.mockReturnValue(true);
-
+  it("renders TeachWithOakPromoSection when showPromoSection is true", () => {
     render(
       <CurrentSectionIdProvider>
         <LessonOverviewSideNav {...defaultProps} showPromoSection />
