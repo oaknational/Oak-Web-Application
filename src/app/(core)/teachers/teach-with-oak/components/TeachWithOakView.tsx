@@ -60,5 +60,6 @@ const exploreItems: ExploreItem[] = [
       page: "help",
     }),
     componentType: "about_oak",
+    external: true,
   },
 ];
