@@ -142,6 +142,7 @@ const AboutUsOaksImpactCaseStudy: NextPage<
           <OaksImpactCaseStudies
             title="Explore more case studies"
             caseStudies={otherCaseStudies}
+            showViewAllLink={false}
           />
         </OakBox>
       </Layout>

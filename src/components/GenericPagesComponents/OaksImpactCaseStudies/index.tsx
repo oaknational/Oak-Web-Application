@@ -5,6 +5,7 @@ import {
   OakGrid,
   OakGridArea,
   OakHeading,
+  OakLink,
 } from "@oaknational/oak-components";
 
 import { CaseStudyCard } from "@/common-lib/cms-types/caseStudy";
@@ -15,11 +16,13 @@ import { resolveOakHref } from "@/common-lib/urls";
 export type OaksImpactCaseStudiesProps = {
   title: string;
   caseStudies: CaseStudyCard[];
+  showViewAllLink?: boolean;
 };
 
 export const OaksImpactCaseStudies = ({
   title,
   caseStudies,
+  showViewAllLink,
 }: OaksImpactCaseStudiesProps) => {
   return (
     <OakBox $background={"bg-decorative2-subdued"}>
@@ -34,9 +37,27 @@ export const OaksImpactCaseStudies = ({
               $colSpan={caseStudies.length === 2 ? [12, 8, 8] : [12]}
               $colStart={caseStudies.length === 2 ? [1, 3, 3] : [1]}
             >
-              <OakHeading tag={"h2"} $font={["heading-5", "heading-3"]}>
-                {title}
-              </OakHeading>
+              <OakFlex
+                $flexDirection={["column", "row", "row"]}
+                $alignItems={["flex-start", "center", "center"]}
+                $gap={["spacing-12", "spacing-48", "spacing-48"]}
+              >
+                <OakFlex $flexGrow={1}>
+                  <OakHeading tag={"h2"} $font={["heading-5", "heading-3"]}>
+                    {title}
+                  </OakHeading>
+                </OakFlex>
+                {showViewAllLink && (
+                  <OakLink
+                    variant="secondary"
+                    iconName="chevron-right"
+                    isTrailingIcon={true}
+                    href={"/"}
+                  >
+                    View all case studies
+                  </OakLink>
+                )}
+              </OakFlex>
             </OakGridArea>
           </OakGrid>
           <OakGrid

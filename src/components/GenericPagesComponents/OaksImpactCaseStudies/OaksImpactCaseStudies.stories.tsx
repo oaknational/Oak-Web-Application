@@ -16,7 +16,7 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   args: {
-    title: "Explore more case studies",
+    title: "Case studies",
     caseStudies: oaksImpactCaseStudiesFixture,
   },
   render: (args) => <Component {...args} />,

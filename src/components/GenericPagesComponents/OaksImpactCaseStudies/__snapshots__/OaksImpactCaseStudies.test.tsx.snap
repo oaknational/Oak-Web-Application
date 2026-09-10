@@ -18,11 +18,19 @@ exports[`OaksImpactCaseStudies renders correctly when 2 case studies are provide
             <div
               class="sc-aXZVg sc-gEvEer sc-esYiGF jPvJsJ iDBIXi cSXJqk"
             >
-              <h2
-                class="sc-eldPxv dGkyUI"
+              <div
+                class="sc-aXZVg sc-gEvEer jPvJsJ bIrEfD"
               >
-                Case studies
-              </h2>
+                <div
+                  class="sc-aXZVg sc-gEvEer jPvJsJ fXHtRp"
+                >
+                  <h2
+                    class="sc-eldPxv dGkyUI"
+                  >
+                    Case studies
+                  </h2>
+                </div>
+              </div>
             </div>
           </div>
           <ul
@@ -188,11 +196,19 @@ exports[`OaksImpactCaseStudies renders correctly when 3 case studies are provide
             <div
               class="sc-aXZVg sc-gEvEer sc-esYiGF jPvJsJ iDBIXi bdQReA"
             >
-              <h2
-                class="sc-eldPxv dGkyUI"
+              <div
+                class="sc-aXZVg sc-gEvEer jPvJsJ bIrEfD"
               >
-                Case studies
-              </h2>
+                <div
+                  class="sc-aXZVg sc-gEvEer jPvJsJ fXHtRp"
+                >
+                  <h2
+                    class="sc-eldPxv dGkyUI"
+                  >
+                    Case studies
+                  </h2>
+                </div>
+              </div>
             </div>
           </div>
           <ul

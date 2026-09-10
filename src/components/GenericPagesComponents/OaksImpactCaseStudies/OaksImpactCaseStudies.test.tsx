@@ -69,4 +69,31 @@ describe("OaksImpactCaseStudies", () => {
       queryByRole("link", { name: /case study 4 watch the video/i }),
     ).not.toBeInTheDocument();
   });
+
+  it("doesn't renders view all link when not enabled", () => {
+    const { queryByRole } = render(
+      <OaksImpactCaseStudies
+        title={"Case studies"}
+        caseStudies={oaksImpactCaseStudiesFixture}
+      />,
+    );
+
+    expect(
+      queryByRole("link", { name: /View all case studies/i }),
+    ).not.toBeInTheDocument();
+  });
+
+  it("renders view all link when enabled", () => {
+    const { getByRole } = render(
+      <OaksImpactCaseStudies
+        title={"Case studies"}
+        caseStudies={oaksImpactCaseStudiesFixture}
+        showViewAllLink={true}
+      />,
+    );
+
+    expect(
+      getByRole("link", { name: /View all case studies/i }),
+    ).toBeInTheDocument();
+  });
 });
