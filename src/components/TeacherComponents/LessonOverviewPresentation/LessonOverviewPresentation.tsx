@@ -44,7 +44,7 @@ const getSlidesId = (asset: string | null) => {
     if (split.length > 1) {
       return split[5];
     } else if (split.length === 1) {
-      return split;
+      return split[0];
     }
   }
   return null;
