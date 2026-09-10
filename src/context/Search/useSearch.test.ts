@@ -139,7 +139,6 @@ describe("useSearch()", () => {
   });
   test("results should be returned in the correct form", async () => {
     fetch.mockImplementation(goodFetchMockImplementation);
-
     const { result } = renderUseSearch("?term=test-term");
 
     await waitFor(() =>
@@ -172,7 +171,7 @@ describe("useSearch()", () => {
       }),
     );
   });
-  test("results should be returned in the correct form", async () => {
+  test("results should be correct size", async () => {
     fetch.mockImplementation(goodFetchMockImplementation);
     const { result } = renderUseSearch("?term=test-term");
     await waitFor(() => {

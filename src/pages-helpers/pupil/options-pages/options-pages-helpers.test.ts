@@ -50,7 +50,7 @@ describe("options-pages-helpers", () => {
   });
 
   describe("getPupilOptionData", () => {
-    it("should throw an error if the params are incorrect", async () => {
+    it("should throw an error if the params are incorrect (undefined)", async () => {
       expect.assertions(2);
       try {
         await getPupilOptionData({ params: undefined });
@@ -61,7 +61,7 @@ describe("options-pages-helpers", () => {
         });
       }
     });
-    it("should throw an error if the params are incorrect", async () => {
+    it("should throw an error if the params are incorrect (empty object)", async () => {
       expect.assertions(2);
       try {
         // @ts-expect-error - Testing incorrect params
