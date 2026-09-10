@@ -188,18 +188,16 @@ export function lessonToMarkdown(lesson: LessonOverviewPageData): string {
     `licence: ${yamlValue("https://www.thenational.academy/legal/terms-and-conditions")}`,
   );
 
-  // `loginRequired` and `geoRestricted` mark lessons whose materials Oak
-  // licenses from third parties. This representation deliberately withholds the
-  // body for those lessons and points at the page instead.
-  //
-  // That is STRICTER than the HTML page, which ships the full lesson payload —
-  // quiz answers and transcript included — to anonymous visitors inside
-  // `__NEXT_DATA__` and restricts only the download and share affordances. The
-  // asymmetry is intentional: the fact that the data is already reachable by
-  // reading the page's embedded JSON is not a decision to publish it as
-  // plain text at a guessable, cacheable URL. Relaxing this is a decision for a
-  // content owner, not a default.
-  if (lesson.loginRequired || lesson.geoRestricted) {
+  // Three flags withhold the body: two third-party licensing flags plus
+  // `excludedFromTeachingMaterials`, Oak's own not-for-reuse signal. This is
+  // deliberately stricter than the lesson page, which ships the full payload in
+  // `__NEXT_DATA__` — see docs/agent-readable-lesson-pages.md, "Deliberate
+  // omissions", before relaxing it.
+  if (
+    lesson.loginRequired ||
+    lesson.geoRestricted ||
+    lesson.excludedFromTeachingMaterials
+  ) {
     return [
       "---",
       ...frontmatter,
@@ -207,8 +205,10 @@ export function lessonToMarkdown(lesson: LessonOverviewPageData): string {
       "",
       `# ${markdownText(lesson.lessonTitle)}`,
       "",
-      "This lesson's materials are restricted, so they are not included in this",
-      "markdown representation. Open the lesson page to see what is available.",
+      "This lesson's materials are restricted or excluded from reuse, so they",
+      "are not included in this markdown representation. The frontmatter above",
+      "records which restriction applies. Open the lesson page to see what is",
+      "available.",
       "",
       `[View this lesson on Oak National Academy](${canonicalUrl})`,
       "",

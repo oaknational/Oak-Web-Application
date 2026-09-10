@@ -296,7 +296,7 @@ redirects to `<new>.md` rather than dropping a markdown consumer into an HTML
 page it did not ask for. A destination that is not a bare canonical lesson path
 is passed through unchanged.
 
-Note that `canonicalLessonRedirectQuery` *throws* `curriculum-api/not-found`
+Note that `canonicalLessonRedirectQuery` _throws_ `curriculum-api/not-found`
 when the table holds no row, rather than returning nothing, so the call is
 wrapped in `allowNotFoundError` exactly as the lesson lookup is: no redirect row
 is the ordinary case for a slug that never existed, and only a different failure
@@ -438,10 +438,31 @@ answer keys as separate `*-quiz-answers` downloads; emitting them here would
 publish an answer key for every lesson as plain text at a URL a pupil can guess
 from the lesson URL.
 
-**Restricted lessons get frontmatter and a pointer, not a body.**
-`loginRequired` and `geoRestricted` mark lessons whose materials Oak licenses
-from third parties, so the representation withholds the body for those and links
-the page instead.
+**Restricted and excluded lessons get frontmatter and a pointer, not a body.**
+Three flags withhold the body. `loginRequired` and `geoRestricted` mark lessons
+whose materials Oak licenses from third parties.
+`excludedFromTeachingMaterials` marks a broader class — read
+[isExcluded.ts](../src/node-lib/curriculum-api-2023/helpers/teachingMaterialsAi/isExcluded.ts),
+which ORs four inputs:
+
+- a non-empty restricted or highly-restricted works list for the lesson;
+- membership of the restricted-lesson list (`isRestrictedLessonId`);
+- legacy content (`isLegacy`);
+- content guidance for one of four sensitive themes — depiction or discussion of
+  sexual violence, sexual content, mental health issues, or serious crime
+  ([hasRestrictedContentGuidence.ts](../src/node-lib/curriculum-api-2023/helpers/teachingMaterialsAi/hasRestrictedContentGuidence.ts)).
+
+Serving a full body for those lessons and marking it
+`excluded-from-teaching-materials: true` in the frontmatter would leave the
+safeguarding decision to the consumer: the flag is advisory, the body is not, and
+a crawler that never reads frontmatter would have the whole lesson. The flag is
+exactly the signal Oak already uses to keep this content out of generated
+teaching materials, so publishing it as plain text at a guessable, cacheable URL
+behind that same flag is backwards. It is therefore treated like the other
+withheld classes rather than served behind a flag.
+
+The frontmatter still carries the full identity and every handling flag, so a
+consumer can always tell which lesson this is and which restriction applies.
 
 This is deliberately **stricter than the lesson page**, and that asymmetry is
 worth stating plainly. The page's `getStaticProps` returns the entire lesson
@@ -470,11 +491,14 @@ was taken pending a ruling:
    control — it is a judgement about practical exposure.
 2. Should restricted (`loginRequired` / `geoRestricted`) lessons have a markdown
    body at all, given the page already ships one in `__NEXT_DATA__`?
-3. `excludedFromTeachingMaterials` marks lessons excluded from AI
-   teaching-materials reuse. It is currently surfaced as a frontmatter flag for
-   consumers to honour, and is **not** used to withhold content. If it is meant
-   to mean "do not re-serve this lesson in machine-readable form", it should
-   gate this route instead.
+3. `excludedFromTeachingMaterials` now withholds the body, alongside
+   `loginRequired` and `geoRestricted` — see the omission above for what the
+   flag actually covers and why. The conservative reading was taken
+   deliberately: the flag is Oak's own signal that this content is not for
+   reuse, and honouring it here costs a machine-readable body for a minority of
+   lessons while getting it wrong publishes restricted, legacy and
+   sensitive-theme lessons as plain text at a guessable URL. A content owner can
+   overturn it; that reverts to a frontmatter-flag-only posture.
 
 ## Scope
 

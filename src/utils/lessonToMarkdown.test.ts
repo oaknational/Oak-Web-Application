@@ -201,6 +201,69 @@ describe("lessonToMarkdown()", () => {
     expect(markdown).not.toContain("## Starter quiz");
   });
 
+  /**
+   * `excludedFromTeachingMaterials` is the OR of four inputs — a restricted or
+   * highly-restricted works list, the restricted-lesson list, legacy content,
+   * and content guidance for sexual violence, sexual content, mental health
+   * issues or serious crime. Serving a full body for those lessons and marking
+   * it advisory in the frontmatter would leave the safeguarding decision to the
+   * consumer, so the body is withheld like the other restricted classes.
+   */
+  it("withholds the body for a lesson excluded from teaching materials", () => {
+    const markdown = lessonToMarkdown(
+      lessonOverviewFixture({
+        loginRequired: false,
+        geoRestricted: false,
+        excludedFromTeachingMaterials: true,
+      }),
+    );
+
+    expect(markdown).toContain("excluded-from-teaching-materials: true");
+    expect(markdown).not.toContain("## Key learning points");
+    expect(markdown).not.toContain("## Starter quiz");
+    expect(markdown).not.toContain("## Exit quiz");
+    expect(markdown).not.toContain("## Lesson outline");
+    expect(markdown).not.toContain("## Keywords");
+    expect(markdown).not.toContain("## Content guidance");
+    expect(markdown).not.toContain("## Downloads available");
+  });
+
+  it("still identifies an excluded lesson and says why the body is absent", () => {
+    const markdown = lessonToMarkdown(
+      lessonOverviewFixture({
+        lessonSlug: "photosynthesis",
+        lessonTitle: "Photosynthesis",
+        excludedFromTeachingMaterials: true,
+      }),
+    );
+
+    // Identity and every handling flag survive, so a consumer can tell which
+    // lesson this is and which restriction applies.
+    expect(markdown).toContain('title: "Photosynthesis"');
+    expect(markdown).toContain('lesson-slug: "photosynthesis"');
+    expect(markdown).toContain("excluded-from-teaching-materials: true");
+    expect(markdown).toContain("login-required: false");
+    expect(markdown).toContain("geo-restricted: false");
+    expect(markdown).toContain("# Photosynthesis");
+    expect(markdown).toContain("excluded from reuse");
+    expect(markdown).toContain(
+      "[View this lesson on Oak National Academy](https://www.thenational.academy/teachers/lessons/photosynthesis)",
+    );
+  });
+
+  it("serves the body for a lesson with none of the three restrictions", () => {
+    const markdown = lessonToMarkdown(
+      lessonOverviewFixture({
+        loginRequired: false,
+        geoRestricted: false,
+        excludedFromTeachingMaterials: false,
+      }),
+    );
+
+    expect(markdown).toContain("## Key learning points");
+    expect(markdown).toContain("## Starter quiz");
+  });
+
   it("links the video and transcript rather than inlining them", () => {
     const markdown = lessonToMarkdown(
       lessonOverviewFixture({
