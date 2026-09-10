@@ -472,7 +472,7 @@ describe("isExamboardSlug", () => {
 
 describe("getSubjectOveride", () => {
   test("override", () => {
-    expect(getSubjectOveride("english", "10", "aqa")).toEqual(undefined);
+    expect(getSubjectOveride("english", "10", "aqa")).toBeUndefined();
   });
 
   test("non-override", () => {

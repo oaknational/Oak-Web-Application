@@ -1,6 +1,7 @@
 import { Metadata } from "next";
 
 import { getCachedUnitData } from "./getCachedUnitData";
+import { getLessonResourcesMetaTitle } from "./getLessonResourcesMetaTitle";
 
 import { getOpenGraphMetadata, getTwitterMetadata } from "@/app/metadata";
 import { AppPageProps } from "@/hocs/withPageErrorHandling";
@@ -23,12 +24,18 @@ export async function generateMetadata(
       subjectTitle,
       examBoardTitle,
       tierTitle,
+      pathwayTitle,
     } = data;
 
-    const tierSegment = tierTitle ? ` ${tierTitle}` : "";
-    const examboardSegment = examBoardTitle ? ` ${examBoardTitle}` : "";
-
-    const title = `${unitTitle} ${keyStageSlug.toUpperCase()} | Y${year} ${subjectTitle}${tierSegment}${examboardSegment} | Lesson Resources`;
+    const title = getLessonResourcesMetaTitle({
+      contentTitle: unitTitle,
+      keyStageSlug,
+      year,
+      subjectTitle,
+      tierTitle,
+      examBoardTitle,
+      pathwayTitle,
+    });
     const description = `Free lessons and teaching resources about ${unitTitle.toLowerCase()}`;
 
     return {

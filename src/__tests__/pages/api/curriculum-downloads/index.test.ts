@@ -3,6 +3,7 @@ import { createNextApiMocks } from "../../../__helpers__/createNextApiMocks";
 
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 import { createUnit } from "@/fixtures/curriculum/unit";
+import { isFeatureFlagEnabledServer } from "@/utils/featureFlagChecks/server";
 
 const fetch = jest.spyOn(global, "fetch") as jest.Mock;
 
@@ -41,6 +42,9 @@ const refreshedMVTimeMock = jest.fn<
     ],
   };
 });
+jest.mock("@/utils/featureFlagChecks/server", () => ({
+  isFeatureFlagEnabledServer: jest.fn(() => false),
+}));
 
 const mockSequenceData = {
   units: [
@@ -366,21 +370,27 @@ describe("/api/curriculum-downloads", () => {
     expect(res._getStatusCode()).toBe(404);
   });
 
-  // test("sanity implementation toolkit documents", async () => {
-  //   curriculumSequenceMock.mockResolvedValue(mockSequenceData);
-  //   const { req, res } = createNextApiMocks({
-  //     query: {
-  //       types: ["curriculumQuality"],
-  //       mvRefreshTime: LAST_REFRESH_AS_TIME.toString(),
-  //       subjectSlug: "english",
-  //       phaseSlug: "secondary",
-  //       state: "published",
-  //     },
-  //   });
-  //   await handler(req, res);
+  test("sanity implementation toolkit documents", async () => {
+    (isFeatureFlagEnabledServer as jest.Mock).mockImplementation(
+      (_cookies, flag) => {
+        return flag === "implementation-guides" ? true : false;
+      },
+    );
 
-  //   expect(fetch).toHaveBeenCalledTimes(1);
-  //   expect(res._getStatusCode()).toBe(200);
-  //  expect(res.getHeader("Content-Type")).toBe("application/pdf");
-  // });
+    curriculumSequenceMock.mockResolvedValue(mockSequenceData);
+    const { req, res } = createNextApiMocks({
+      query: {
+        types: ["curriculumQuality"],
+        mvRefreshTime: LAST_REFRESH_AS_TIME.toString(),
+        subjectSlug: "english",
+        phaseSlug: "secondary",
+        state: "published",
+      },
+    });
+    await handler(req, res);
+
+    expect(fetch).toHaveBeenCalledTimes(1);
+    expect(res._getStatusCode()).toBe(200);
+    expect(res.getHeader("Content-Type")).toBe("application/pdf");
+  });
 });
