@@ -1,3 +1,10 @@
+# [1.1188.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1187.0...v1.1188.0) (2026-09-10)
+
+
+### Features
+
+* update blog pagination from 4 to 10 per page ([bcf16a6](https://github.com/oaknational/Oak-Web-Application/commit/bcf16a6ff061433c9d397bcc6445adae7981aa5a))
+
 # [1.1187.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1186.0...v1.1187.0) (2026-09-10)
 
 
