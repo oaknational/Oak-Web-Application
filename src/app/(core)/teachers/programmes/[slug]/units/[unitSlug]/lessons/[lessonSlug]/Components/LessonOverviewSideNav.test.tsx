@@ -85,7 +85,7 @@ describe("LessonOverviewSideNav", () => {
 
     render(
       <CurrentSectionIdProvider>
-        <LessonOverviewSideNav {...defaultProps} />
+        <LessonOverviewSideNav {...defaultProps} showPromoSection />
       </CurrentSectionIdProvider>,
     );
 

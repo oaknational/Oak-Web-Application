@@ -2,7 +2,6 @@
 
 import type { ComponentProps } from "react";
 import { OakFlex } from "@oaknational/oak-components";
-import { useFeatureFlagEnabled } from "posthog-js/react";
 
 import { useCurrentSectionId } from "./CurrentSectionIdProvider";
 
@@ -12,14 +11,15 @@ import { TeachWithOakPromoSection } from "@/components/TeacherComponents/TeachWi
 type LessonOverviewSideNavProps = Omit<
   ComponentProps<typeof LessonOverviewSideNavAnchorLinks>,
   "currentSectionId"
->;
+> & {
+  showPromoSection?: boolean;
+};
 
 export default function LessonOverviewSideNav(
   props: Readonly<LessonOverviewSideNavProps>,
 ) {
   const currentSectionId = useCurrentSectionId();
-
-  const isEnabled = useFeatureFlagEnabled("teachers-teach-with-oak") ?? false;
+  const { showPromoSection, ...linkProps } = props;
 
   return (
     <OakFlex
@@ -34,10 +34,10 @@ export default function LessonOverviewSideNav(
       $width="100%"
     >
       <LessonOverviewSideNavAnchorLinks
-        {...props}
+        {...linkProps}
         currentSectionId={currentSectionId}
       />
-      {isEnabled && <TeachWithOakPromoSection />}
+      {showPromoSection && <TeachWithOakPromoSection />}
     </OakFlex>
   );
 }

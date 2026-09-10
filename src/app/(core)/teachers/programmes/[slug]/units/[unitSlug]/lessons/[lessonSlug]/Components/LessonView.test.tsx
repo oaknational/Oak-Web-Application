@@ -1,6 +1,9 @@
 import { screen, act } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import { useFeatureFlagEnabled } from "posthog-js/react";
+import {
+  useFeatureFlagEnabled,
+  useFeatureFlagVariantKey,
+} from "posthog-js/react";
 
 import LessonView from "./LessonView";
 
@@ -42,11 +45,16 @@ jest.mock(
 
 jest.mock("posthog-js/react", () => ({
   useFeatureFlagEnabled: jest.fn(),
+  useFeatureFlagVariantKey: jest.fn(),
 }));
 
 const mockUseFeatureFlagEnabled = useFeatureFlagEnabled as jest.MockedFunction<
   typeof useFeatureFlagEnabled
 >;
+const mockUseFeatureFlagVariantKey =
+  useFeatureFlagVariantKey as jest.MockedFunction<
+    typeof useFeatureFlagVariantKey
+  >;
 
 const baseProps = teachersLessonOverviewFixture();
 
@@ -523,5 +531,40 @@ describe("Tracking callbacks", () => {
     const glossaryLink = screen.getByRole("menuitem", { name: "Glossary" });
     await user.click(glossaryLink);
     expect(mockTeachingMaterialsSelected).toHaveBeenCalled();
+  });
+});
+describe("LessonOverviewSideNav TeachWithOakPromoSection", () => {
+  it("renders TeachWithOakPromoSection when feature flag is enabled", () => {
+    mockUseFeatureFlagVariantKey.mockReturnValue("promo-section");
+    renderLessonView();
+
+    expect(
+      screen.getByText(
+        "Ever wondered why our lessons are structured this way?",
+      ),
+    ).toBeInTheDocument();
+    expect(screen.getByText("See the thinking")).toBeInTheDocument();
+  });
+
+  it("does not render TeachWithOakPromoSection when feature flag is disabled", () => {
+    mockUseFeatureFlagVariantKey.mockReturnValue(undefined);
+    renderLessonView();
+
+    expect(
+      screen.queryByText(
+        "Ever wondered why our lessons are structured this way?",
+      ),
+    ).not.toBeInTheDocument();
+  });
+
+  it("does not render TeachWithOakPromoSection for practical PE lessons", () => {
+    mockUseFeatureFlagVariantKey.mockReturnValue("promo-section");
+    renderLessonView({ actions: { isPePractical: true } });
+
+    expect(
+      screen.queryByText(
+        "Ever wondered why our lessons are structured this way?",
+      ),
+    ).not.toBeInTheDocument();
   });
 });

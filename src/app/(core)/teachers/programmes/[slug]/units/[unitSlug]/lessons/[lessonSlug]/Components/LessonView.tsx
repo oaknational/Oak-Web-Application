@@ -8,7 +8,10 @@ import {
   OakInlineBanner,
 } from "@oaknational/oak-components";
 import { Fragment, useState } from "react";
-import { useFeatureFlagEnabled } from "posthog-js/react";
+import {
+  useFeatureFlagEnabled,
+  useFeatureFlagVariantKey,
+} from "posthog-js/react";
 
 import { CurrentSectionIdProvider } from "./CurrentSectionIdProvider";
 import LessonOverviewSideNav from "./LessonOverviewSideNav";
@@ -89,6 +92,9 @@ export default function LessonView(
 
   const isHeatwaveBannerEnabled =
     useFeatureFlagEnabled("heatwave-banner") ?? false;
+  const isPromoSectionEnabled =
+    useFeatureFlagVariantKey("teachers-teach-with-oak") === "promo-section" &&
+    !actions?.isPePractical;
   const [heatwaveBannerDismissed, setHeatwaveBannerDismissed] = useState(false);
   const showHeatwaveBanner =
     isHeatwaveBannerEnabled && showPupilShare && !heatwaveBannerDismissed;
@@ -128,6 +134,7 @@ export default function LessonView(
                 <LessonOverviewSideNav
                   links={getSideNavLinksFromResources(lessonResources)}
                   contentRestricted={contentRestricted}
+                  showPromoSection={isPromoSectionEnabled}
                   downloadAllButtonProps={{
                     lessonSlug,
                     programmeSlug,
