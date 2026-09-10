@@ -98,14 +98,32 @@ describe("/teachers/lessons/[lessonSlug].md", () => {
     );
   });
 
-  it("does not send Vary, because this URL always returns markdown", async () => {
+  /**
+   * The claim that this URL sends no `Vary` is NOT asserted here.
+   *
+   * Reading `Vary` back off the `Response` this handler builds proves nothing:
+   * the handler contains no code that could set it, so the assertion holds by
+   * construction and would still hold if a `Vary` rule appeared in
+   * `next.config.ts` tomorrow. The header rules are the other half of what a
+   * client receives on this URL, so that is where the claim can fail — see
+   * `src/__tests__/lesson-markdown-headers.test.ts`.
+   *
+   * What IS a real property of the handler is the exact set of headers it
+   * chooses to send, so that is what this pins.
+   */
+  it("sends exactly the headers it means to, and nothing else", async () => {
     lessonOverview.mockResolvedValue(lessonOverviewFixture());
 
     const response = await GET(request, {
       params: Promise.resolve({ lessonSlug: "photosynthesis" }),
     });
 
-    expect(response.headers.get("Vary")).toBeNull();
+    expect([...response.headers.keys()].sort()).toEqual([
+      "cache-control",
+      "cdn-cache-control",
+      "content-type",
+      "vercel-cdn-cache-control",
+    ]);
   });
 
   it("responds 404 when the curriculum API has no such lesson and no redirect exists", async () => {
