@@ -19,9 +19,6 @@ export const metadata: Metadata = {
   },
 };
 
-// Remove once feature flag is removed from page
-export const dynamic = "force-dynamic";
-
 const teachWithOakParams = z.object({
   returnTo: z.url({ hostname: /^thenational\.academy$/ }),
 });
