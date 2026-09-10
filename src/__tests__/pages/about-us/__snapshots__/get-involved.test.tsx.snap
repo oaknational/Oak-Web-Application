@@ -839,6 +839,9 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
   -webkit-align-items: center;
   -webkit-box-align: center;
   -ms-flex-align: center;
@@ -3302,6 +3305,14 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
 
 @media (min-width:1280px) {
 
+}
+
+@media (min-width:750px) {
+  .c71 {
+    -webkit-flex-direction: row;
+    -ms-flex-direction: row;
+    flex-direction: row;
+  }
 }
 
 @media (min-width:750px) {
