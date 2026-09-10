@@ -59,7 +59,7 @@ export const ShortReads = () => {
 
 const ShortReadsHeader = () => {
   return (
-    <OakGrid>
+    <OakGrid $rg={["spacing-16", "spacing-16", "spacing-8"]}>
       <OakGridArea $colSpan={[12, 12, 8]} $order={1}>
         <OakHeading $font={["heading-4", "heading-3"]} tag="h2">
           Short read guides
@@ -71,7 +71,7 @@ const ShortReadsHeader = () => {
         $alignItems={["flex-start", "flex-start", "flex-end"]}
         $order={[3, 3, 1]}
       >
-        <OakBox $pt="spacing-24">
+        <OakBox $pt={["spacing-8", "spacing-8", "spacing-0"]}>
           <OakPrimaryButton
             iconName="download"
             isTrailingIcon
