@@ -12,13 +12,10 @@ jest.mock("posthog-js/react", () => ({
   useFeatureFlagEnabled: () => false,
 }));
 
-const browseRefined = jest.fn();
-
 jest.mock("@/context/Analytics/useAnalytics", () => ({
   __esModule: true,
   default: () => ({
     track: {
-      browseRefinedAccessed: (...args: unknown[]) => browseRefined(...args),
       searchJourneyInitiated: () => jest.fn(),
     },
   }),

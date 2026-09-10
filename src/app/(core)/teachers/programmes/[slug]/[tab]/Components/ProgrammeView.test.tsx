@@ -17,6 +17,9 @@ import {
   CurriculumSelectionSlugs,
   CurriculumSelectionTitles,
 } from "@/utils/curriculum/slugs";
+import { BrowseFiltersProvider } from "@/context/BrowseFilters";
+import { getDefaultBrowseFilter } from "@/context/BrowseFilters/utils/getDefaultBrowseFilter";
+import { BrowseFilters } from "@/context/BrowseFilters/types";
 
 const curriculumResourcesAccessed = jest.fn();
 
@@ -143,6 +146,7 @@ const defaultProps = {
   featureFlags: {},
   implementationGuides: {},
   fileSizes: [],
+  activeFlags: [],
 };
 
 const lightweightUnitsProps = {
@@ -154,13 +158,27 @@ const lightweightUnitsProps = {
   ),
 };
 
-const renderProgrammeView = (props?: Partial<ProgrammePageProps>) => {
-  return renderWithProviders()(<ProgrammeView {...defaultProps} {...props} />);
+const renderProgrammeView = (
+  props?: Partial<ProgrammePageProps> & { initialFilter?: BrowseFilters },
+) => {
+  const { initialFilter, ...viewProps } = props ?? {};
+  const mergedProps = { ...defaultProps, ...viewProps };
+
+  return renderWithProviders()(
+    <BrowseFiltersProvider
+      defaultFilter={getDefaultBrowseFilter(
+        mergedProps.curriculumUnitsFormattedData,
+      )}
+      initialFilter={initialFilter}
+    >
+      <ProgrammeView {...mergedProps} />
+    </BrowseFiltersProvider>,
+  );
 };
 
 describe("ProgrammeView", () => {
   it("renders the programme header", () => {
-    renderWithProviders()(<ProgrammeView {...defaultProps} />);
+    renderProgrammeView();
     const heading = screen.getByRole("heading", {
       name: "Science secondary AQA",
     });
@@ -334,7 +352,7 @@ describe("ProgrammeView", () => {
     });
 
     it("accepts initialFilter prop without error", () => {
-      const initialFilter = {
+      const initialFilter: BrowseFilters = {
         years: ["7"],
         tiers: ["foundation"],
         childSubjects: [],
@@ -351,7 +369,7 @@ describe("ProgrammeView", () => {
     });
 
     it("renders correctly with initialFilter for a single year", () => {
-      const initialFilter = {
+      const initialFilter: BrowseFilters = {
         years: ["7"],
         tiers: ["foundation"],
         childSubjects: [],

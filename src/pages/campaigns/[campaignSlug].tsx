@@ -28,6 +28,7 @@ import {
 } from "@/node-lib/isr";
 import { TopNavProps } from "@/components/AppComponents/TopNav/TopNav";
 import AppLayout from "@/components/AppComponents/AppLayout";
+import { TeacherBrowseAnalyticsStoreProvider } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
 
 export type CampaignSinglePageProps = {
   campaign: CampaignPage;
@@ -90,75 +91,80 @@ export const campaignTextStyles: PortableTextComponents = {
 };
 const CampaignSinglePage: NextPage<CampaignSinglePageProps> = (props) => {
   return (
-    <AppLayout
-      topNavProps={props.topNav}
-      seoProps={{
-        ...getSeoProps({
-          ...props.campaign.seo,
-          title: props.campaign.seo?.title || props.campaign.title,
-          description: props.campaign.seo?.description,
-        }),
-      }}
+    <TeacherBrowseAnalyticsStoreProvider
+      programmeState={null}
+      accessLevel="homepage"
     >
-      <OakFlex
-        $alignItems="center"
-        $flexDirection="column"
-        $width="100%"
-        $pv={"spacing-32"}
-        $ph={["spacing-20", "spacing-20", "spacing-56"]}
+      <AppLayout
+        topNavProps={props.topNav}
+        seoProps={{
+          ...getSeoProps({
+            ...props.campaign.seo,
+            title: props.campaign.seo?.title || props.campaign.title,
+            description: props.campaign.seo?.description,
+          }),
+        }}
       >
-        <CampaignPageHeader campaignHeader={props.campaign.header} />
-        {props.campaign.content.map((section: CampaignContentType) => {
-          if (section.type === "CampaignIntro") {
-            return (
-              <CampaignPageIntro
-                textStyles={campaignTextStyles}
-                heading={section.headingPortableTextWithPromo}
-                body={section.bodyPortableTextWithPromo}
-                key={section.type}
-              />
-            );
-          }
-          if (section.type === "NewsletterSignUp") {
-            return (
-              <CampaignNewsletterSignup
-                textStyles={campaignTextStyles}
-                {...section}
-                key={section.type}
-              />
-            );
-          }
-          if (section.type === "CampaignPromoBanner") {
-            const media = section.media[0];
-            if (media)
+        <OakFlex
+          $alignItems="center"
+          $flexDirection="column"
+          $width="100%"
+          $pv={"spacing-32"}
+          $ph={["spacing-20", "spacing-20", "spacing-56"]}
+        >
+          <CampaignPageHeader campaignHeader={props.campaign.header} />
+          {props.campaign.content.map((section: CampaignContentType) => {
+            if (section.type === "CampaignIntro") {
               return (
-                <CampaignPromoBanner
+                <CampaignPageIntro
                   textStyles={campaignTextStyles}
                   heading={section.headingPortableTextWithPromo}
                   body={section.bodyPortableTextWithPromo}
-                  media={media}
                   key={section.type}
-                  buttonCta={section.buttonCta}
-                  buttonUrl={section.buttonUrl}
-                />
-              );
-          }
-          if (section.type === "CampaignVideoBanner") {
-            if (section.video) {
-              return (
-                <CampaignVideoBanner
-                  key={section.type}
-                  textStyles={campaignTextStyles}
-                  heading={section.headingPortableTextWithPromo}
-                  subheading={section.subheadingPortableTextWithPromo}
-                  video={section.video}
                 />
               );
             }
-          }
-        })}
-      </OakFlex>
-    </AppLayout>
+            if (section.type === "NewsletterSignUp") {
+              return (
+                <CampaignNewsletterSignup
+                  textStyles={campaignTextStyles}
+                  {...section}
+                  key={section.type}
+                />
+              );
+            }
+            if (section.type === "CampaignPromoBanner") {
+              const media = section.media[0];
+              if (media)
+                return (
+                  <CampaignPromoBanner
+                    textStyles={campaignTextStyles}
+                    heading={section.headingPortableTextWithPromo}
+                    body={section.bodyPortableTextWithPromo}
+                    media={media}
+                    key={section.type}
+                    buttonCta={section.buttonCta}
+                    buttonUrl={section.buttonUrl}
+                  />
+                );
+            }
+            if (section.type === "CampaignVideoBanner") {
+              if (section.video) {
+                return (
+                  <CampaignVideoBanner
+                    key={section.type}
+                    textStyles={campaignTextStyles}
+                    heading={section.headingPortableTextWithPromo}
+                    subheading={section.subheadingPortableTextWithPromo}
+                    video={section.video}
+                  />
+                );
+              }
+            }
+          })}
+        </OakFlex>
+      </AppLayout>
+    </TeacherBrowseAnalyticsStoreProvider>
   );
 };
 

@@ -18,6 +18,7 @@ import { resolveOakHref } from "@/common-lib/urls";
 import type { LessonListSchema } from "@/node-lib/curriculum-api-2023/shared.schema";
 import { getUnitDownloadFileId } from "@/utils/getUnitDownloadFileId";
 import { useTeacherBrowseAnalytics } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
+import { useCaptureFeatureFlag } from "@/utils/posthogExperiments/useCaptureFeatureFlag";
 
 type DownloadSuccessViewLesson = {
   lessonTitle: string;
@@ -33,11 +34,16 @@ type DownloadSuccessViewLesson = {
 
 export type DownloadSuccessViewProps = {
   lesson: DownloadSuccessViewLesson;
+  /** Enabled on the `variant` route, disabled on the control route */
+  showCompactHeader?: boolean;
 };
 
 export function DownloadSuccessView({
   lesson,
+  showCompactHeader = false,
 }: Readonly<DownloadSuccessViewProps>) {
+  useCaptureFeatureFlag("download-success-header-compact");
+
   const {
     lessonSlug,
     programmeSlug,
@@ -45,6 +51,8 @@ export function DownloadSuccessView({
     unitTitle,
     lessons,
     unitvariantId,
+    lessonTitle,
+    lessonReleaseDate,
   } = lesson;
 
   const { unitDownloaded, onwardContentSelected } = useTeacherBrowseAnalytics(
@@ -75,10 +83,14 @@ export function DownloadSuccessView({
         onBackClick={() =>
           onwardContentSelected({
             onwardIntent: "view-lesson",
+            lessonName: lessonTitle,
+            lessonSlug,
+            lessonReleaseDate,
           })
         }
         backgroundColorLevel={1}
         returnTo="lesson"
+        showCompactHeader={showCompactHeader}
       />
       <OakBox $ph={["spacing-20", "spacing-40"]}>
         <OakGrid

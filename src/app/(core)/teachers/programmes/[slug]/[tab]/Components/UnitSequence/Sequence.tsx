@@ -40,15 +40,17 @@ export default function ProgrammeSequence({
   ks4OptionSlug,
   ks4Options,
 }: Readonly<ProgrammeSequenceProps>) {
-  const shouldIncludeCore = ks4OptionSlug !== "core";
-
-  const unitsByYearSelector = applyFiltering(
-    filters,
-    groupUnitsByPathway({
+  const unitsByPathway = useMemo(() => {
+    const shouldIncludeCore = ks4OptionSlug !== "core";
+    return groupUnitsByPathway({
       modes: getModes(shouldIncludeCore, ks4Options, filters.pathways[0]),
       yearData,
-    }),
-  );
+    });
+  }, [ks4OptionSlug, ks4Options, filters.pathways, yearData]);
+
+  const unitsByYearSelector = useMemo(() => {
+    return applyFiltering(filters, unitsByPathway);
+  }, [filters, unitsByPathway]);
 
   const selectedThread = useMemo(() => {
     return threadOptions.find((thread) => thread.slug === filters.threads[0]);

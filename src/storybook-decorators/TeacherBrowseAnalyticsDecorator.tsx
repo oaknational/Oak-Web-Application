@@ -36,13 +36,17 @@ const state: TeacherBrowseAnalyticsStore = {
       console.log("teachingMaterialsSelected fired"),
     unitDownloadStarted: () => console.log("unitDownloadStarted fired"),
     unitOverviewAccessed: () => console.log("unitOverviewAccessed fired"),
+    programmeAccessed: () => console.log("programmeAccessed fired"),
     programmeRefined: () => console.log("programmeRefined fired"),
+    unitRefined: () => console.log("unitRefined fired"),
     videoPlayed: () => console.log("videoPlayed fired"),
     videoStarted: () => console.log("videoStarted fired"),
     videoPaused: () => console.log("videoPaused fired"),
     videoFinished: () => console.log("videoFinished fired"),
     lessonResourcesDownloaded: () =>
       console.log("lessonResourcesDownloaded fired"),
+    lessonAccessed: () => console.log("lessonAccessed fired"),
+    unitAccessed: () => console.log("unitAccessed fired"),
   },
 };
 

@@ -23,16 +23,26 @@ jest.mock("next/router", () => ({
 
 const render = renderWithProvidersByName(["oakTheme", "theme"]);
 
-const curriculumVisualiserAccessed = jest.fn();
-jest.mock("@/context/Analytics/useAnalytics", () => ({
-  __esModule: true,
-  default: () => ({
-    track: {
-      curriculumVisualiserAccessed: (...args: unknown[]) =>
-        curriculumVisualiserAccessed(...args),
-    },
+const mockProgrammeAccessed = jest.fn();
+jest.mock(
+  "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider",
+  () => ({
+    __esModule: true,
+    useTeacherBrowseAnalytics: (
+      selector: (store: {
+        track: {
+          programmeAccessed: (...args: unknown[]) => void;
+        };
+      }) => unknown,
+    ) =>
+      selector({
+        track: {
+          programmeAccessed: (...args: unknown[]) =>
+            mockProgrammeAccessed(...args),
+        },
+      }),
   }),
-}));
+);
 
 describe("Component - subject phase picker", () => {
   beforeEach(() => {
@@ -219,7 +229,7 @@ describe("Component - subject phase picker", () => {
     expect(queryByText("Select an option for KS4")).toBeTruthy();
   });
 
-  test("calls tracking.curriculumVisualiserAccessed once, with correct props", async () => {
+  test("calls programmeAccessed once, with correct props", async () => {
     const pushMock = jest.fn();
     (useRouter as jest.Mock).mockReturnValue({
       push: async (...args: []) => pushMock(...args),
@@ -247,18 +257,15 @@ describe("Component - subject phase picker", () => {
       pathname: "/teachers/programmes/english-primary/units",
     });
 
-    expect(curriculumVisualiserAccessed).toHaveBeenCalledTimes(1);
-    expect(curriculumVisualiserAccessed).toHaveBeenCalledWith({
-      subjectTitle: "English",
-      subjectSlug: "english",
-      platform: "owa",
-      product: "curriculum visualiser",
-      engagementIntent: "use",
-      componentType: "curriculum_visualiser_button",
-      eventVersion: "2.0.0",
-      analyticsUseCase: "Teacher",
-      phase: "primary",
-    });
+    expect(mockProgrammeAccessed).toHaveBeenCalledTimes(1);
+    expect(mockProgrammeAccessed).toHaveBeenCalledWith(
+      expect.objectContaining({
+        componentType: "curriculum_visualiser_button",
+        activeFilters: [],
+        filterType: "Subject filter",
+        filterValue: "english",
+      }),
+    );
   });
 
   test("preserve tab when chaging the lot picker", async () => {

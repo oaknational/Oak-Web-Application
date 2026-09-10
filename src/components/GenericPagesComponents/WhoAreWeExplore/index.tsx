@@ -3,9 +3,9 @@ import {
   OakHeading,
   OakBox,
   OakIcon,
-  OakIconProps,
   OakFocusIndicator,
   parseSpacing,
+  OakIconName,
 } from "@oaknational/oak-components";
 import Link from "next/link";
 import { useId } from "react";
@@ -43,14 +43,16 @@ const CustomUlAsGrid = styled.ul<{ $size: number }>`
   }
 `;
 
+export type ExploreItem = {
+  iconName: OakIconName;
+  title: string;
+  href: string;
+  componentType: ComponentTypeValueType;
+};
+
 export type WhoAreWeExploreProps = {
   title: string;
-  items: {
-    iconName: OakIconProps["iconName"];
-    title: string;
-    href: string;
-    componentType: ComponentTypeValueType;
-  }[];
+  items: ExploreItem[];
 };
 export function WhoAreWeExplore({
   title,

@@ -5,11 +5,18 @@ import MyLibrary from "./MyLibrary";
 import { generateMockCollectionData } from "@/fixtures/teachers/myLibrary/collectionData";
 import SaveCountDecorator from "@/storybook-decorators/SaveCountDecorator";
 import NotificationsDecorator from "@/storybook-decorators/NotificationsDecorator";
+import TeacherBrowseAnalyticsDecorator from "@/storybook-decorators/TeacherBrowseAnalyticsDecorator";
+import CookieConsentDecorator from "@/storybook-decorators/CookieConsentDecorator";
 
 const meta = {
   component: MyLibrary,
   tags: ["autodocs"],
-  decorators: [SaveCountDecorator, NotificationsDecorator],
+  decorators: [
+    CookieConsentDecorator,
+    SaveCountDecorator,
+    NotificationsDecorator,
+    TeacherBrowseAnalyticsDecorator,
+  ],
   argTypes: {
     isLoading: {
       control: {
