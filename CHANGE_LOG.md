@@ -1,3 +1,15 @@
+# [1.1189.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1188.1...v1.1189.0) (2026-09-10)
+
+
+### Bug Fixes
+
+* add force-dynamic to teach with oak page ([a63f816](https://github.com/oaknational/Oak-Web-Application/commit/a63f8165a916144721ff68fa340a3b2243738497))
+
+
+### Features
+
+* update withPageErrorHandling to rethrow all nextjs errors ([b26ce04](https://github.com/oaknational/Oak-Web-Application/commit/b26ce0470044af4005c4e13232a230966e66cdf9))
+
 ## [1.1188.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.1188.0...v1.1188.1) (2026-09-10)
 
 
