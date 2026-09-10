@@ -116,16 +116,17 @@ export default function LessonView(
               <OakGridArea
                 $colSpan={[12, 4]}
                 $colStart={1}
-                $rowStart={[2, 1, 2]}
+                $rowStart={[1, 1, 2]}
                 $rowSpan={[1, 2, 1]}
                 $position="relative"
-                $display={["none", "block"]}
+                $display={"block"}
               >
                 <OakBox
-                  $position="absolute"
+                  $position={["static", "absolute"]}
                   $zIndex="in-front"
                   $top="spacing-0"
                   $left="spacing-0"
+                  $display={["none", "block"]}
                 >
                   <SkipLink href="#lesson-content">
                     Skip to lesson content
@@ -150,7 +151,7 @@ export default function LessonView(
             <OakGridArea
               $colSpan={[12, 8, 12]}
               $colStart={[1, 5, 1]}
-              $rowStart={1}
+              $rowStart={[2, 1, 1]}
             >
               <ComplexCopyrightRestrictionBanner
                 isGeorestricted={geoRestricted}
@@ -204,7 +205,7 @@ export default function LessonView(
             <OakGridArea
               $colSpan={[12, 8]}
               $colStart={[1, 5]}
-              $rowStart={2}
+              $rowStart={[3, 2]}
               id="lesson-content"
             >
               <OakFlex
@@ -253,7 +254,7 @@ export default function LessonView(
               <OakGridArea
                 $colSpan={12}
                 $colStart={1}
-                $rowStart={3}
+                $rowStart={4}
                 $mb={"spacing-48"}
               >
                 <PreviousNextNav

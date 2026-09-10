@@ -34,7 +34,7 @@ export default function LessonOverviewSideNav(
       $width="100%"
     >
       <OakBox
-        display={["block", "none"]}
+        $display={["none", "block"]}
         data-test-id="mobile-teach-with-oak-promo"
       >
         <LessonOverviewSideNavAnchorLinks
