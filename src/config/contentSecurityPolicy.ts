@@ -48,7 +48,7 @@ const mux: Partial<CspConfig> = {
 
 const clerk: Partial<CspConfig> = {
   connectSrc: ["*.clerk.accounts.dev", "clerk-telemetry.com"],
-  scriptSrc: ["*.clerk.accounts.dev"],
+  scriptSrc: ["*.clerk.accounts.dev", "https://clerk.thenational.academy"],
 };
 
 const avo: Partial<CspConfig> = {
@@ -58,10 +58,7 @@ const avo: Partial<CspConfig> = {
 
 const posthog: Partial<CspConfig> = {
   connectSrc: ["https://eu.i.posthog.com", "*.posthog.com"],
-  scriptSrc: [
-    "https://*.posthog.com",
-    "https://ph-eu-api.thenational.academy",
-  ],
+  scriptSrc: ["https://*.posthog.com", "https://ph-eu-api.thenational.academy"],
 };
 
 const cloudinary: Partial<CspConfig> = {
@@ -160,8 +157,6 @@ const cspBaseConfig: CspConfig = {
   frameSrc: ["'self'", "*.thenational.academy/"],
   workerSrc: ["'self'", "blob:", "*.thenational.academy/"],
   childSrc: ["blob:"],
-  // upgradeInsecureRequests: false,
-  // when we change from report only we can uncomment this
   upgradeInsecureRequests: !isDevelopment,
 };
 
