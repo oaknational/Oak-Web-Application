@@ -18,7 +18,12 @@ const CardWrapper = styled(OakBox)`
 
 export const TeachWithOakPromoSection = () => {
   return (
-    <CardWrapper $display={"flex"} $maxWidth={"13rem"} $mt={"spacing-24"}>
+    <CardWrapper
+      $display={"flex"}
+      $maxWidth={["100%", "13rem"]}
+      $mt={"spacing-24"}
+      $mb={["spacing-24", "spacing-56"]}
+    >
       <OakCard
         heading="Ever wondered why our lessons are structured this way?"
         headingLevel="h3"

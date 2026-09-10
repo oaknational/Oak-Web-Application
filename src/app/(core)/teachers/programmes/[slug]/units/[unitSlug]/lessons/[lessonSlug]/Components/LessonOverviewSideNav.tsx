@@ -1,7 +1,7 @@
 "use client";
 
 import type { ComponentProps } from "react";
-import { OakFlex } from "@oaknational/oak-components";
+import { OakBox, OakFlex } from "@oaknational/oak-components";
 
 import { useCurrentSectionId } from "./CurrentSectionIdProvider";
 
@@ -33,10 +33,15 @@ export default function LessonOverviewSideNav(
       $top="spacing-56"
       $width="100%"
     >
-      <LessonOverviewSideNavAnchorLinks
-        {...linkProps}
-        currentSectionId={currentSectionId}
-      />
+      <OakBox
+        display={["block", "none"]}
+        data-test-id="mobile-teach-with-oak-promo"
+      >
+        <LessonOverviewSideNavAnchorLinks
+          {...linkProps}
+          currentSectionId={currentSectionId}
+        />
+      </OakBox>
       {showPromoSection && <TeachWithOakPromoSection />}
     </OakFlex>
   );

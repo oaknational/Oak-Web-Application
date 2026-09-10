@@ -546,6 +546,17 @@ describe("LessonOverviewSideNav TeachWithOakPromoSection", () => {
     expect(screen.getByText("See the thinking")).toBeInTheDocument();
   });
 
+  it("renders TeachWithOakPromoSection on mobile", () => {
+    mockUseFeatureFlagVariantKey.mockReturnValue("promo-section");
+    renderLessonView();
+
+    expect(
+      screen.getByText(
+        "Ever wondered why our lessons are structured this way?",
+      ),
+    ).toBeInTheDocument();
+  });
+
   it("does not render TeachWithOakPromoSection when feature flag is disabled", () => {
     mockUseFeatureFlagVariantKey.mockReturnValue(undefined);
     renderLessonView();
