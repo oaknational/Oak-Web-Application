@@ -25,6 +25,7 @@
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 import { lessonToMarkdown } from "@/utils/lessonToMarkdown";
 import { allowNotFoundError } from "@/pages-helpers/shared/lesson-pages/allowNotFoundError";
+import { getRedirect } from "@/pages-helpers/shared/lesson-pages/getRedirects";
 
 const MARKDOWN_CONTENT_TYPE = "text/markdown; charset=utf-8";
 
@@ -65,10 +66,51 @@ const MARKDOWN_CONTENT_TYPE = "text/markdown; charset=utf-8";
  * The browser directive deliberately matches the lesson page's own
  * (`public, max-age=0, must-revalidate`, measured above) so the two
  * representations behave consistently in a client cache.
+ *
+ * **The miss window is separate, and short.** `<slug>.md` is trivially
+ * enumerable — anyone can append `.md` to any slug they can invent — so a
+ * response that sets no cache headers at all puts every miss through to the
+ * curriculum API. Sixty seconds of shared caching blunts that, and it carries
+ * no `stale-while-revalidate` deliberately: a "not found" must never be served
+ * from a stale entry once it has stopped being true, so a newly published
+ * lesson cannot sit behind a cached 404 for longer than that minute. The
+ * redirect responses take the same window for the same reason.
  */
 const CACHE_CONTROL = {
   browser: "public, max-age=0, must-revalidate",
   shared: "public, s-maxage=300, stale-while-revalidate=86400",
+  sharedTransient: "public, s-maxage=60",
+} as const;
+
+/** A canonical lesson path with no suffix, as the redirect table emits it. */
+const CANONICAL_LESSON_PATH = /^\/teachers\/lessons\/[^/?#]+$/;
+
+/**
+ * Points a redirect destination at the markdown representation rather than the
+ * HTML one, so `<old>.md` lands on `<new>.md` instead of dropping a markdown
+ * consumer into a page it did not ask for.
+ *
+ * A destination that is not a bare canonical lesson path is passed through
+ * untouched — a correct redirect to the page beats a URL assembled from a shape
+ * this function does not recognise.
+ */
+function toMarkdownDestination(destination: string): string {
+  const suffixStart = destination.search(/[?#]/);
+  const path =
+    suffixStart === -1 ? destination : destination.slice(0, suffixStart);
+  const suffix = suffixStart === -1 ? "" : destination.slice(suffixStart);
+
+  return CANONICAL_LESSON_PATH.test(path) ? `${path}.md${suffix}` : destination;
+}
+
+/**
+ * The transient-cache headers shared by the miss responses: a 404 and a
+ * redirect are both answers to a URL anyone can enumerate.
+ */
+const TRANSIENT_CACHE_HEADERS = {
+  "Cache-Control": CACHE_CONTROL.browser,
+  "CDN-Cache-Control": CACHE_CONTROL.sharedTransient,
+  "Vercel-CDN-Cache-Control": CACHE_CONTROL.sharedTransient,
 } as const;
 
 export async function GET(
@@ -87,9 +129,51 @@ export async function GET(
   }
 
   if (!lesson) {
+    // Consult the canonical redirect table before giving up, exactly as the
+    // lesson page and the media page both do. Without this step a renamed slug
+    // redirects on the HTML URL and 404s on the `.md` one.
+    let redirect;
+    try {
+      redirect = await getRedirect({
+        isCanonical: true,
+        context: { lessonSlug },
+        isTeacher: true,
+        isLesson: true,
+      });
+    } catch (error) {
+      // `canonicalLessonRedirectQuery` THROWS `curriculum-api/not-found` when
+      // the table holds no row for this path, rather than returning nothing —
+      // which is the ordinary case for a slug that never existed. Anything else
+      // is a real failure and is rethrown.
+      allowNotFoundError(error);
+    }
+
+    if (redirect) {
+      // `getRedirect` returns Next's `Redirect`, whose two members carry the
+      // status either as a code or as a permanence flag. Both are handled, so
+      // this does not depend on which shape the redirect table produced.
+      const status =
+        "statusCode" in redirect
+          ? redirect.statusCode
+          : redirect.permanent
+            ? 308
+            : 307;
+
+      return new Response(null, {
+        status,
+        headers: {
+          Location: toMarkdownDestination(redirect.destination),
+          ...TRANSIENT_CACHE_HEADERS,
+        },
+      });
+    }
+
     return new Response("Lesson not found\n", {
       status: 404,
-      headers: { "Content-Type": "text/plain; charset=utf-8" },
+      headers: {
+        "Content-Type": "text/plain; charset=utf-8",
+        ...TRANSIENT_CACHE_HEADERS,
+      },
     });
   }
 

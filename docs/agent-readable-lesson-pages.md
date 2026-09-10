@@ -276,6 +276,32 @@ how rarely lesson content changes, with a long `stale-while-revalidate` on top s
 a shared cache serves while it revalidates. Nothing about it is derived from the
 lesson page, and a future change to `staleTimes.static` has no bearing on it.
 
+### Why the not-found and redirect responses cache differently
+
+`<slug>.md` is trivially enumerable — anyone can append `.md` to any slug they
+can invent — so a 404 that sets no cache headers puts every miss through to the
+curriculum API. The miss responses therefore carry `s-maxage=60` and,
+deliberately, **no `stale-while-revalidate`**: a "not found" must never be served
+from a stale entry after it has stopped being true, so a newly published lesson
+cannot sit behind a cached 404 for more than a minute. The redirect responses
+take the same window for the same reason.
+
+### Why the route follows the canonical redirect table
+
+The lesson page and the media page both consult
+`canonicalLessonRedirectQuery` (via `getRedirect`) before returning `notFound`,
+so a renamed lesson keeps working on its old slug. This route now does the same
+step, and points the `Location` at the markdown representation — `<old>.md`
+redirects to `<new>.md` rather than dropping a markdown consumer into an HTML
+page it did not ask for. A destination that is not a bare canonical lesson path
+is passed through unchanged.
+
+Note that `canonicalLessonRedirectQuery` *throws* `curriculum-api/not-found`
+when the table holds no row, rather than returning nothing, so the call is
+wrapped in `allowNotFoundError` exactly as the lesson lookup is: no redirect row
+is the ordinary case for a slug that never existed, and only a different failure
+propagates.
+
 ### Why the rewrite cannot affect HTML caching
 
 `rewrites()` here returns a plain array, and Next.js applies those "after
