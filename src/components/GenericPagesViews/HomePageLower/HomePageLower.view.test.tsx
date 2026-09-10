@@ -171,6 +171,14 @@ describe("HomePageLowerView", () => {
       />,
     );
 
-    expect(getByRole("link", { name: /Oak's impact/i })).toBeInTheDocument();
+    const impctButtonLink = getByRole("link", { name: /Oak's impact/i });
+    expect(impctButtonLink).toBeInTheDocument();
+    fireEvent.click(impctButtonLink);
+
+    expect(aboutUsAccessed).toHaveBeenCalledWith(
+      expect.objectContaining({
+        componentType: "oaks_impact",
+      }),
+    );
   });
 });
