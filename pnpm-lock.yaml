@@ -243,9 +243,6 @@ importers:
       posthog-node:
         specifier: ^4.10.1
         version: 4.10.1
-      pretty-bytes:
-        specifier: ^7.1.1
-        version: 7.1.1
       querystring-es3:
         specifier: ^0.2.1
         version: 0.2.1
@@ -373,9 +370,6 @@ importers:
       '@jest/globals':
         specifier: ^29.7.0
         version: 29.7.0
-      '@netlify/edge-functions':
-        specifier: ^2.12.0
-        version: 2.12.0
       '@next/bundle-analyzer':
         specifier: ^15.5.2
         version: 15.5.2
@@ -3681,9 +3675,6 @@ packages:
     peerDependencies:
       '@emnapi/core': ^1.7.1
       '@emnapi/runtime': ^1.7.1
-
-  '@netlify/edge-functions@2.12.0':
-    resolution: {integrity: sha512-6EWKqCQvOWyM6CHOofvDglX8qkBL2xcMF2T0h7kzZRrdBvHMRgxTk6BmPlBGt8z4LubSQo6vDAb46MYNJ7ZyaA==}
 
   '@next/bundle-analyzer@15.5.2':
     resolution: {integrity: sha512-UWOFpy/NK5iSeIP0mgdq4VqGB4/z37uq5v5dEtvzmY/BlaPO6m4EtFUaH6RVI0w2wG5sh0TG86i/cA5wcaJtgg==}
@@ -13035,10 +13026,6 @@ packages:
     engines: {node: '>=14'}
     hasBin: true
 
-  pretty-bytes@7.1.1:
-    resolution: {integrity: sha512-X+vn9z8nOFZQlxOLmfJ0iKDdMD7jYTsTW12OAlCpdoE3Igik6L37pugIZi+N3usuyp5McfgKPWi12q3zvHLeGQ==}
-    engines: {node: '>=20'}
-
   pretty-error@4.0.0:
     resolution: {integrity: sha512-AoJ5YMAcXKYxKhuJGdcvse+Voc6v1RgnsR3nWcYU7q4t6z0Q6T86sv5Zq8VIRbOWWFpvdGE83LtdSMNd+6Y0xw==}
 
@@ -20019,8 +20006,6 @@ snapshots:
       '@emnapi/runtime': 1.9.2
       '@tybys/wasm-util': 0.10.3
     optional: true
-
-  '@netlify/edge-functions@2.12.0': {}
 
   '@next/bundle-analyzer@15.5.2':
     dependencies:
@@ -31730,8 +31715,6 @@ snapshots:
   prettier@3.3.3: {}
 
   prettier@3.8.3: {}
-
-  pretty-bytes@7.1.1: {}
 
   pretty-error@4.0.0:
     dependencies:
