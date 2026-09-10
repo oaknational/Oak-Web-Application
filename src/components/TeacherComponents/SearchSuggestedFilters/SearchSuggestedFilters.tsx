@@ -15,7 +15,7 @@ import {
 import {
   getFilterType,
   TrackSearchModifiedProps,
-} from "@/components/TeacherViews/Search/helpers";
+} from "@/app/(core)/teachers/search/helpers/index";
 
 export type SuggestedFiltersProps = {
   setQuery: SetSearchQuery;

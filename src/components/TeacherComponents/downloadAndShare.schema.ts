@@ -3,7 +3,6 @@ import { z } from "zod";
 export const preselectedResourceBaseType = z.union([
   z.literal("exit quiz"),
   z.literal("starter quiz"),
-  z.literal("worksheet"),
   z.literal("all"),
 ]);
 
@@ -48,9 +47,8 @@ export const resourceFormValuesSchema = z.object({
   terms: z.literal(true, {
     error: () => "Accept terms and conditions to continue",
   }),
-  resources: z
-    .array(z.string(), {
-      error: () => "Select at least one lesson resource to continue",
-    })
-    .min(1),
+  resources: z.array(z.string()).min(1, {
+    error: () => "Select at least one resource to continue",
+  }),
+  hideYearGroup: z.union([z.literal("show"), z.literal("hide")]).optional(),
 });

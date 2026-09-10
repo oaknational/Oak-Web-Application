@@ -21,6 +21,9 @@ const lessonOverviewFixture = (
     subjectTitle: "English",
     yearTitle: "Year 3",
     year: "3",
+    pathwayTitle: null,
+    tierSlug: null,
+    tierTitle: null,
     additionalMaterialUrl:
       "https://docs.google.com/document/d/1p2UbFuK3HmRH4yzs1QRgTi-Vh--l0PmhblLoa52rV7U/edit?usp=drivesdk",
     misconceptionsAndCommonMistakes: [{ response: "", misconception: "" }],

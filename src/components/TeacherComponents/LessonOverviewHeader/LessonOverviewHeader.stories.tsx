@@ -5,6 +5,7 @@ import { LessonOverviewHeaderProps } from "./LessonOverviewHeader";
 import Component from ".";
 
 import AnalyticsDecorator from "@/storybook-decorators/AnalyticsDecorator";
+import TeacherBrowseAnalyticsDecorator from "@/storybook-decorators/TeacherBrowseAnalyticsDecorator";
 
 const props = {
   breadcrumbs: [
@@ -16,21 +17,22 @@ const props = {
     },
     {
       oakLinkProps: {
-        page: "subject-index",
-        keyStageSlug: "ks1",
+        page: "home",
       },
       label: "Key Stage 1",
     },
     {
       oakLinkProps: {
-        page: "unit-index",
-        programmeSlug: "history-primary-ks1",
+        page: "teacher-programme",
+        subjectPhaseSlug: "history-primary",
+        tab: "units",
+        query: { keystages: "ks1" },
       },
       label: "History",
     },
     {
       oakLinkProps: {
-        page: "lesson-index",
+        page: "unit-overview",
         programmeSlug: "history-primary-ks1",
         unitSlug:
           "unit-title-toys-and-games-what-can-toys-tell-us-about-the-past",
@@ -124,7 +126,7 @@ const props = {
 };
 
 const meta: Meta<typeof Component> = {
-  decorators: [AnalyticsDecorator],
+  decorators: [AnalyticsDecorator, TeacherBrowseAnalyticsDecorator],
   component: Component,
 };
 

@@ -2,6 +2,7 @@ import { screen } from "@testing-library/dom";
 import userEvent, {
   PointerEventsCheckLevel,
 } from "@testing-library/user-event";
+import { useRouter, useSearchParams } from "next/navigation";
 
 import OnboardingView from "./Onboarding.view";
 
@@ -12,6 +13,10 @@ jest.mock("posthog-js/react", () => ({
   useFeatureFlagEnabled: () => false,
 }));
 describe("Onboarding view", () => {
+  beforeEach(() => {
+    (useRouter as jest.Mock).mockReturnValue({ push: jest.fn() });
+    (useSearchParams as jest.Mock).mockReturnValue(new URLSearchParams());
+  });
   it("renders a Continue button", async () => {
     renderWithProviders()(<OnboardingView />);
     const continueButton = await screen.findByRole("button", {

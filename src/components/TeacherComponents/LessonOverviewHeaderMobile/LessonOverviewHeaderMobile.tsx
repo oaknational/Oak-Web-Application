@@ -15,7 +15,6 @@ import { LessonOverviewHeaderProps } from "@/components/TeacherComponents/Lesson
 import SubjectIconBrushBorders from "@/components/TeacherComponents/SubjectIconBrushBorders";
 import ComplexCopyrightRestrictionBanner from "@/components/TeacherComponents/ComplexCopyrightRestrictionBanner/ComplexCopyrightRestrictionBanner";
 import LessonMetadata from "@/components/SharedComponents/LessonMetadata";
-import { resolveOakHref } from "@/common-lib/urls";
 
 export const LessonOverviewHeaderMobile: FC<
   LessonOverviewHeaderProps & { shareButtons: React.ReactNode }
@@ -60,11 +59,7 @@ export const LessonOverviewHeaderMobile: FC<
           <>
             <OakTertiaryButton
               element="a"
-              href={
-                "href" in previousBreadcrumb.oakLinkProps
-                  ? previousBreadcrumb.oakLinkProps.href
-                  : resolveOakHref(previousBreadcrumb.oakLinkProps)
-              }
+              href={previousBreadcrumb.href}
               iconName="arrow-left"
             >
               View unit

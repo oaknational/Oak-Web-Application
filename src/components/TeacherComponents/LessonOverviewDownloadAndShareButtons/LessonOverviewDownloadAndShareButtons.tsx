@@ -3,7 +3,7 @@ import { OakUL, OakLI } from "@oaknational/oak-components";
 
 import { LessonOverviewCreateWithAiDropdown } from "../LessonOverviewCreateWithAiDropdown";
 
-import { LessonOverviewHeaderDownloadAllButton } from "@/components/TeacherComponents/LessonOverviewHeaderDownloadAllButton";
+import { LessonOverviewDownloadAllButton } from "@/components/TeacherComponents/LessonOverviewDownloadAllButton";
 import { LessonOverviewHeaderProps } from "@/components/TeacherComponents/LessonOverviewHeader";
 
 interface LessonOverviewDownloadAndShareButtonsProps
@@ -22,7 +22,7 @@ export const LessonOverviewDownloadAndShareButtons: FC<
     $gap={["spacing-24", "spacing-16"]}
   >
     <OakLI $listStyle={"none"}>
-      <LessonOverviewHeaderDownloadAllButton {...props} />
+      <LessonOverviewDownloadAllButton {...props} />
     </OakLI>
     {shareButtons}
     {!excludedFromTeachingMaterials && (

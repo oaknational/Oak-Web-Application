@@ -7,17 +7,32 @@ import {
   mockLoggedIn,
   mockLoggedOut,
   mockTeacherUserWithDownloadAccess,
-  mockUserWithDownloadAccessNotOnboarded,
   mockUserWithoutDownloadAccess,
 } from "@/__tests__/__helpers__/mockUser";
 import lessonDownloadsFixture from "@/node-lib/curriculum-api-2023/fixtures/lessonDownloads.fixture";
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
+import { resolveOakHref } from "@/common-lib/urls";
 
 const render = renderWithProviders();
+
+const mockReplace = jest.fn();
+
+jest.mock("next/navigation", () => ({
+  ...jest.requireActual("next/navigation"),
+  useRouter: jest.fn(() => ({
+    replace: mockReplace,
+  })),
+}));
+
+beforeEach(() => {
+  mockReplace.mockClear();
+});
 
 const lesson = lessonDownloadsFixture({
   lessonTitle: "The meaning of time",
 });
+
+const breadcrumbsSlot = <></>;
 
 const restrictedLesson = lessonDownloadsFixture({
   lessonTitle: "The meaning of time",
@@ -30,7 +45,9 @@ describe("Hiding 'Your details", () => {
     setUseUserReturn(mockLoggedOut);
   });
   it("should show details section when not logged in", async () => {
-    render(<LessonDownloads lesson={lesson} isCanonical={false} />);
+    render(
+      <LessonDownloads lesson={lesson} breadcrumbsSlot={breadcrumbsSlot} />,
+    );
 
     const schoolSelection = screen.getByLabelText("School (required)");
 
@@ -42,23 +59,12 @@ describe("Hiding 'Your details", () => {
       user: mockTeacherUserWithDownloadAccess,
     });
     const result = render(
-      <LessonDownloads lesson={lesson} isCanonical={false} />,
+      <LessonDownloads lesson={lesson} breadcrumbsSlot={breadcrumbsSlot} />,
     );
 
     expect(
       result.queryByLabelText("School (required)"),
     ).not.toBeInTheDocument();
-  });
-  it("should show details with logged in but not fully onboarded ", () => {
-    setUseUserReturn({
-      ...mockLoggedIn,
-      user: mockUserWithDownloadAccessNotOnboarded,
-    });
-    render(<LessonDownloads lesson={lesson} isCanonical={false} />);
-
-    const schoolSelection = screen.getByLabelText("School (required)");
-
-    expect(schoolSelection).toBeInTheDocument();
   });
 
   it("should show LoginRequired button and hide download button & form when not logged and geo restricted", () => {
@@ -66,7 +72,7 @@ describe("Hiding 'Your details", () => {
     const { queryByText, getByRole, queryByRole } = render(
       <LessonDownloads
         lesson={{ ...lesson, geoRestricted: true, loginRequired: false }}
-        isCanonical={false}
+        breadcrumbsSlot={breadcrumbsSlot}
       />,
     );
 
@@ -89,7 +95,7 @@ describe("Hiding 'Your details", () => {
     const { queryByText, getByRole, queryByRole } = render(
       <LessonDownloads
         lesson={{ ...lesson, geoRestricted: false, loginRequired: true }}
-        isCanonical={false}
+        breadcrumbsSlot={breadcrumbsSlot}
       />,
     );
 
@@ -112,7 +118,7 @@ describe("Hiding 'Your details", () => {
     const { queryByText, getByRole, queryByRole } = render(
       <LessonDownloads
         lesson={{ ...lesson, geoRestricted: true, loginRequired: true }}
-        isCanonical={false}
+        breadcrumbsSlot={breadcrumbsSlot}
       />,
     );
     const yourDetailsHeading = queryByText("Your details");
@@ -134,7 +140,10 @@ describe("Hiding 'Your details", () => {
       user: mockTeacherUserWithDownloadAccess,
     });
     const { queryByRole } = render(
-      <LessonDownloads lesson={restrictedLesson} isCanonical={false} />,
+      <LessonDownloads
+        lesson={restrictedLesson}
+        breadcrumbsSlot={breadcrumbsSlot}
+      />,
     );
 
     const loginRequiredButton = queryByRole("button", {
@@ -147,7 +156,10 @@ describe("Hiding 'Your details", () => {
   it("should show LessonDownloadRegionBlocked instead of copyright banner when logged in but not region authorised", () => {
     setUseUserReturn({ ...mockLoggedIn, user: mockUserWithoutDownloadAccess });
     const { queryByRole, getByText, queryByTestId } = render(
-      <LessonDownloads lesson={restrictedLesson} isCanonical={false} />,
+      <LessonDownloads
+        lesson={restrictedLesson}
+        breadcrumbsSlot={breadcrumbsSlot}
+      />,
     );
 
     const downloadButton = queryByRole("button", {
@@ -170,11 +182,31 @@ describe("Hiding 'Your details", () => {
 describe("With downloads page experiment feature flag", () => {
   it("should render the downloads accordion when with-accordion variant is active", () => {
     const { queryByText } = render(
-      <LessonDownloads lesson={lesson} isCanonical={false} />,
+      <LessonDownloads lesson={lesson} breadcrumbsSlot={breadcrumbsSlot} />,
     );
 
     const downloadsAccordion = queryByText("All resources selected");
 
     expect(downloadsAccordion).toBeInTheDocument();
+  });
+});
+
+describe("Download success redirect", () => {
+  it("renders the standard downloads page before redirecting", () => {
+    const { getByText, queryByText } = render(
+      <LessonDownloads
+        lesson={lesson}
+        breadcrumbsSlot={breadcrumbsSlot}
+        successRedirect={resolveOakHref({
+          page: "lesson-downloads-success",
+          programmeSlug: "maths-primary",
+          unitSlug: "u",
+          lessonSlug: "l",
+        })}
+      />,
+    );
+
+    expect(getByText("All resources selected")).toBeInTheDocument();
+    expect(queryByText(/Thanks for downloading/i)).not.toBeInTheDocument();
   });
 });

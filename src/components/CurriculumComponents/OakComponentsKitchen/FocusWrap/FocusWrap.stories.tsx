@@ -1,4 +1,3 @@
-import { OakThemeProvider, oakDefaultTheme } from "@oaknational/oak-components";
 import { Meta, StoryObj } from "@storybook/nextjs";
 import { useRef } from "react";
 
@@ -24,13 +23,11 @@ const TestComponent = () => {
     startRef.current?.focus();
   };
   return (
-    <OakThemeProvider theme={oakDefaultTheme}>
-      <Component onWrapStart={onWrapStart} onWrapEnd={onWrapEnd}>
-        <button ref={startRef}>one</button>
-        <button>two</button>
-        <button ref={endRef}>three</button>
-      </Component>
-    </OakThemeProvider>
+    <Component onWrapStart={onWrapStart} onWrapEnd={onWrapEnd}>
+      <button ref={startRef}>one</button>
+      <button>two</button>
+      <button ref={endRef}>three</button>
+    </Component>
   );
 };
 

@@ -2,7 +2,6 @@ import {
   OakGrid,
   OakGridArea,
   OakHeading,
-  OakHeadingTag,
   OakSpan,
   OakFlex,
 } from "@oaknational/oak-components";
@@ -10,10 +9,8 @@ import {
 import { LessonAppearsInPathwayCard } from "@/components/TeacherComponents/LessonAppearsInPathwayCard";
 import { TagFunctional } from "@/components/SharedComponents/TagFunctional";
 import { TagColor } from "@/components/SharedComponents/TagFunctional/TagFunctional";
-import { getNextHeadingTag } from "@/components/SharedComponents/Typography";
 
 type LessonAppearsInProps = {
-  headingTag: OakHeadingTag;
   subjects: {
     subjectTitle: string;
     subjectSlug: string;
@@ -36,13 +33,11 @@ type LessonAppearsInProps = {
 };
 
 export function LessonAppearsIn(props: Readonly<LessonAppearsInProps>) {
-  const { headingTag, subjects } = props;
-  const unitHeadingTag = getNextHeadingTag(headingTag);
-  const examBoardHeadingTag = getNextHeadingTag(unitHeadingTag);
+  const { subjects } = props;
 
   return (
     <OakFlex $flexDirection={["column"]}>
-      <OakHeading $font={"heading-5"} tag={headingTag}>
+      <OakHeading $font={"heading-5"} tag={"h2"}>
         Lesson appears in
       </OakHeading>
       {subjects.map(({ subjectTitle, subjectSlug, units }) => {
@@ -53,7 +48,7 @@ export function LessonAppearsIn(props: Readonly<LessonAppearsInProps>) {
               $flexDirection={["column"]}
               $mt="spacing-48"
             >
-              <OakHeading tag={unitHeadingTag} $mb="spacing-16">
+              <OakHeading tag={"h3"} $mb="spacing-16">
                 <OakFlex $flexDirection={["row"]} $alignItems="baseline">
                   <TagFunctional text="Unit" color="grey" $mr="spacing-12" />
                   <OakSpan $font="heading-light-6">
@@ -75,7 +70,7 @@ export function LessonAppearsIn(props: Readonly<LessonAppearsInProps>) {
                       <LessonAppearsInPathwayCard
                         {...examBoard}
                         unitSlug={unitSlug}
-                        headingTag={examBoardHeadingTag}
+                        headingTag={"h3"}
                         examBoardTagColor={tagColor}
                       />
                     </OakGridArea>

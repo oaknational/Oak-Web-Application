@@ -45,8 +45,8 @@ export type LessonItemTitle =
 
 export type Slugs = {
   lessonSlug: string;
-  unitSlug: string | null;
-  programmeSlug: string | null;
+  unitSlug: string;
+  programmeSlug: string;
 };
 
 export interface LessonItemContainerProps {
@@ -59,19 +59,21 @@ export interface LessonItemContainerProps {
   displayMediaClipButton?: boolean;
   slugs?: Slugs;
   onDownloadButtonClick?: () => void;
-  onPlayALLMediaClipButtonClick?: () => void;
   isFinalElement?: boolean;
-  isSpecialist: boolean;
-  pageLinks: ReturnType<typeof getPageLinksForLesson>;
   isCanonical?: boolean;
+  pageLinks: ReturnType<typeof getPageLinksForLesson>;
   subheader?: React.ReactNode;
 }
 
-const getPreselectedDownloadFromTitle = (title: DownloadableLessonTitles) => {
+export const getPreselectedDownloadFromTitle = (
+  title: DownloadableLessonTitles,
+) => {
   return containerTitleToPreselectMap[title]?.downloadType;
 };
 
-const getPreselectedQueryFromTitle = (title: DownloadableLessonTitles) => {
+export const getPreselectedQueryFromTitle = (
+  title: DownloadableLessonTitles,
+) => {
   return containerTitleToPreselectMap[title]?.shareType;
 };
 
@@ -91,7 +93,6 @@ export const LessonItemContainer = forwardRef<
     shareable,
     pageLinks,
     isCanonical,
-    onPlayALLMediaClipButtonClick: onPlayAllMediaClipButtonClick,
     subheader,
   } = props;
   const preselectedDownload = getPreselectedDownloadFromTitle(
@@ -139,11 +140,7 @@ export const LessonItemContainer = forwardRef<
             </OakHeading>
           )}
           {displayMediaClipButton && slugs && (
-            <LessonPlayAllButton
-              {...slugs}
-              isCanonical={isCanonical}
-              onTrackingCallback={onPlayAllMediaClipButtonClick}
-            />
+            <LessonPlayAllButton {...slugs} isCanonical={isCanonical} />
           )}
           {downloadable && slugs && (
             <LessonItemContainerLink
@@ -151,7 +148,6 @@ export const LessonItemContainer = forwardRef<
               resourceTitle={lowerCaseTitle}
               onClick={onDownloadButtonClick}
               preselected={preselectedDownload}
-              isSpecialist={props.isSpecialist}
               {...slugs}
             />
           )}
@@ -161,7 +157,6 @@ export const LessonItemContainer = forwardRef<
               resourceTitle={lowerCaseTitle}
               onClick={onDownloadButtonClick}
               preselected={preselectedShare}
-              isSpecialist={props.isSpecialist}
               {...slugs}
             />
           )}

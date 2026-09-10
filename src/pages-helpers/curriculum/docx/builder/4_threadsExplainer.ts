@@ -18,9 +18,8 @@ import {
 } from "../docx";
 import { createThreadOptions } from "../tab-helpers";
 
-import { createCurriculumSlug } from "./helper";
-
 import { CombinedCurriculumData } from "@/utils/curriculum/types";
+import { getSubjectPhaseSlug } from "@/components/TeacherComponents/helpers/getSubjectPhaseSlug";
 
 export default async function generate(
   zip: JSZipCached,
@@ -29,9 +28,7 @@ export default async function generate(
   const threads = createThreadOptions(data.units);
 
   const links = await insertLinks(zip, {
-    onlineCurriculum: `https://www.thenational.academy/teachers/curriculum/${createCurriculumSlug(
-      slugs,
-    )}/units`,
+    onlineCurriculum: `https://www.thenational.academy/teachers/programmes/${getSubjectPhaseSlug({ subject: slugs.subjectSlug, phaseSlug: slugs.phaseSlug!, examBoardSlug: slugs.ks4OptionSlug })}/units`,
   });
   const images = await insertImages(zip, {
     curriculumScreenshot: join(

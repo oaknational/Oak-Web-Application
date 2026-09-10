@@ -273,6 +273,7 @@ describe("generateYearTitle", () => {
             createUnit({
               year: "11",
               subject_slug: "chemistry",
+              subject: "Chemistry",
               examboard: "AQA",
               tier: "Foundation",
             }),
@@ -305,6 +306,7 @@ describe("generateYearTitle", () => {
             createUnit({
               year: "11",
               subject_slug: "chemistry",
+              subject: "Chemistry",
               examboard: "AQA",
               tier: "Foundation",
             }),
@@ -470,7 +472,7 @@ describe("isExamboardSlug", () => {
 
 describe("getSubjectOveride", () => {
   test("override", () => {
-    expect(getSubjectOveride("english", "10", "aqa")).toEqual(undefined);
+    expect(getSubjectOveride("english", "10", "aqa")).toBeUndefined();
   });
 
   test("non-override", () => {

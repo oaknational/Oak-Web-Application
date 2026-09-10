@@ -7,7 +7,7 @@ import { UnitListingBrowseData } from "@/node-lib/curriculum-api-2023/queries/pu
 import getPageProps from "@/node-lib/getPageProps";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 import { getStaticPaths as getStaticPathsTemplate } from "@/pages-helpers/get-static-paths";
-import AppLayout from "@/components/SharedComponents/AppLayout";
+import AppLayout from "@/components/AppComponents/AppLayout";
 import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
 import { PupilViewsUnitListing } from "@/components/PupilViews/PupilUnitListing/PupilUnitListing.view";
 import { extractBaseSlug } from "@/pages-helpers/pupil";

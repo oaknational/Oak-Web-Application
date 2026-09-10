@@ -13,7 +13,6 @@ import {
 import { Breadcrumb } from "../../components/SharedComponents/Breadcrumbs/Breadcrumbs";
 import { getVideoThumbnail } from "../../components/SharedComponents/VideoPlayer/getVideoThumbnail";
 import { resolveOakHref } from "../../common-lib/urls";
-import { getOwaLinkHref } from "../../components/SharedComponents/OwaLink/OwaLink";
 import getBrowserConfig from "../getBrowserConfig";
 
 import {
@@ -62,7 +61,7 @@ export const BreadcrumbJsonLd: FC<BreadcrumbProps> = (props) => {
   const breadcrumbsForJsonLd = props.itemListElements.map((i, index) => ({
     position: index + 1,
     name: i.label,
-    item: getOwaLinkHref(i.oakLinkProps),
+    item: i.href,
   }));
 
   return BreadcrumbsJsonLdNextSeo({

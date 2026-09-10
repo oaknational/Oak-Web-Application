@@ -14,7 +14,7 @@ export type LearningThemeSelectedTrackingProps = {
 
 export interface CategoryFilterListProps<T extends CategoryLinkProps>
   extends OakBoxProps {
-  labelledBy: string;
+  ariaLabel: string;
   categories: Category<T>[];
   getIsSelected: (category: T) => boolean;
   setSelected: (category: T) => void;
@@ -24,8 +24,8 @@ const CategoryFilterList = <T extends CategoryLinkProps>(
   props: CategoryFilterListProps<T>,
 ) => {
   const {
+    ariaLabel,
     categories,
-    labelledBy,
     getIsSelected,
     setSelected,
     themeTrackingProps: trackingProps,
@@ -33,7 +33,7 @@ const CategoryFilterList = <T extends CategoryLinkProps>(
   } = props;
 
   return (
-    <nav aria-labelledby={labelledBy}>
+    <nav aria-label={ariaLabel}>
       <OakUL {...boxProps} $reset $mr={"spacing-32"}>
         {categories.map((category) => {
           return (

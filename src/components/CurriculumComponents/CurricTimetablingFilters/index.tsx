@@ -11,13 +11,16 @@ import {
   CurricFiltersYears,
 } from "../CurricVisualiserFilters";
 
-import { CurriculumFilters } from "@/utils/curriculum/types";
+import {
+  CurriculumFilters,
+  OnChangeCurriculumFilters,
+} from "@/utils/curriculum/types";
 import { CurriculumUnitsFormattedData } from "@/pages-helpers/curriculum/docx/tab-helpers";
 import { CurriculumSelectionSlugs } from "@/utils/curriculum/slugs";
 
 export type CurricVisualiserFiltersProps = {
   filters: CurriculumFilters;
-  onChangeFilters: (newFilters: CurriculumFilters) => void;
+  onChangeFilters: OnChangeCurriculumFilters;
   data: CurriculumUnitsFormattedData;
   slugs: CurriculumSelectionSlugs;
 };
@@ -40,7 +43,6 @@ export default function CurricTimetablingFilters({
         data={data}
         ks4Options={null}
         slugs={slugs}
-        context="curriculum-visualiser"
       />
       <OakBox $mt={"spacing-32"}>
         <OakSecondaryButton>Add next year</OakSecondaryButton>

@@ -132,6 +132,30 @@ const subjectAvailableTeachingMaterialTypes: Record<
     ],
   },
 
+  // Digital literacy - no comprehension for any key stage
+  "digital-literacy": {
+    ks1: [
+      "additional-glossary",
+      "additional-starter-quiz",
+      "additional-exit-quiz",
+    ],
+    ks2: [
+      "additional-glossary",
+      "additional-starter-quiz",
+      "additional-exit-quiz",
+    ],
+    ks3: [
+      "additional-glossary",
+      "additional-starter-quiz",
+      "additional-exit-quiz",
+    ],
+    ks4: [
+      "additional-glossary",
+      "additional-starter-quiz",
+      "additional-exit-quiz",
+    ],
+  },
+
   // Modern Foreign Languages (Spanish/French/German) - starter/exit quizzes only
   spanish: {
     ks2: ["additional-starter-quiz", "additional-exit-quiz"],

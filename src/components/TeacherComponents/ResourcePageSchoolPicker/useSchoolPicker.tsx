@@ -8,25 +8,44 @@ import OakError from "@/errors/OakError";
 
 const reportError = errorReporter("SchoolPicker");
 
-export const fetcher = (queryUrl: string) =>
-  fetch(queryUrl).then((res) => {
-    if (res.ok) {
-      return res.json();
-    } else {
-      const error = new OakError({
+export const fetcher = async (queryUrl: string) => {
+  try {
+    const res = await fetch(queryUrl);
+    if (!res.ok) {
+      if (res.status === 400) {
+        return [];
+      } else {
+        // Don't report bad request errors due to invalid input characters ie. 400 response
+        throw new Error(
+          new OakError({
+            code: "school-picker/fetch-suggestions",
+            meta: {
+              queryUrl,
+              status: res.status,
+              statusText: res.statusText,
+              json: await res.json(),
+            },
+          }),
+        );
+      }
+    }
+    return res.json();
+  } catch (err) {
+    let oakError = err;
+    if (!(err instanceof OakError)) {
+      oakError = new OakError({
         code: "school-picker/fetch-suggestions",
+        originalError: err,
         meta: {
-          status: res.status,
-          statusText: res.statusText,
           queryUrl,
-          json: res.json(),
         },
       });
-
-      reportError(error);
-      throw error;
     }
-  });
+
+    reportError(oakError);
+    throw oakError;
+  }
+};
 
 export const HOMESCHOOL_URN = "homeschool";
 
@@ -46,15 +65,16 @@ export default function useSchoolPicker(props: {
   const [selectedSchool, setSelectedSchool] = useState<Key | undefined>();
 
   const queryUrl = `https://school-picker.thenational.academy/${schoolPickerInputValue}`;
+  const shouldFetchSchools = schoolPickerInputValue.length > 2;
 
-  const { data, error } = useSWR(queryUrl, fetcher);
+  const { data, error } = useSWR(shouldFetchSchools ? queryUrl : null, fetcher);
 
   const schoolsWithHomeschool = props.withHomeschool
     ? data?.concat([{ name: "Homeschool", urn: HOMESCHOOL_URN }])
     : data;
 
   const schoolsToReturn =
-    schoolPickerInputValue.length > 2 && data ? schoolsWithHomeschool : [];
+    shouldFetchSchools && data ? schoolsWithHomeschool : [];
 
   return {
     schools: schoolsToReturn,

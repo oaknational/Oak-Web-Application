@@ -1,14 +1,18 @@
-import { Meta } from "@storybook/nextjs";
+import { Meta, StoryObj } from "@storybook/nextjs";
 
 import { TagFunctional as Component } from "./TagFunctional";
 
-export default {
+const meta = {
   component: Component,
-  argTypes: {},
-} as Meta<typeof Component>;
+} satisfies Meta<typeof Component>;
 
-export const TagFunctional = {
+export default meta;
+
+type Story = StoryObj<typeof meta>;
+export const Default: Story = {
   args: {
     text: "AQA",
+    color: "mint",
   },
+  render: (args) => <Component {...args} />,
 };

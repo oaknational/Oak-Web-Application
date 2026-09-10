@@ -1,10 +1,15 @@
+import Link from "next/link";
 import type { PortableTextComponentProps } from "@portabletext/react";
-import { OakHeading, OakFlex, OakBox } from "@oaknational/oak-components";
+import {
+  OakHeading,
+  OakFlex,
+  OakBox,
+  OakTertiaryButton,
+} from "@oaknational/oak-components";
 
 import { PortableTextJSON, TextAndMedia } from "@/common-lib/cms-types";
 import { OmitKeepDiscriminated } from "@/utils/generics";
 import { getLinkHref } from "@/utils/portableText/resolveInternalHref";
-import ButtonAsLink from "@/components/SharedComponents/Button/ButtonAsLink";
 import CMSImage from "@/components/SharedComponents/CMSImage";
 import VideoPlayer from "@/components/SharedComponents/VideoPlayer";
 import { PortableTextWithDefaults } from "@/components/SharedComponents/PortableText";
@@ -44,13 +49,13 @@ const PostTextAndMedia = (
           <PortableTextWithDefaults value={params.body} />
         </OakBox>
         {params.cta && (
-          <ButtonAsLink
-            $mt={24}
-            label={params.cta.label}
-            page={null}
+          <OakTertiaryButton
+            $mt={"spacing-24"}
+            element={Link}
             href={getLinkHref(params.cta)}
-            background={"blue"}
-          />
+          >
+            {params.cta.label}
+          </OakTertiaryButton>
         )}
       </div>
       {params.mediaType === "image" && params.image && (

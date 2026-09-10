@@ -63,6 +63,18 @@ jest.mock("@/components/HooksAndUtils/sanityImageBuilder", () => ({
   getImageDimensions: jest.fn().mockReturnValue({ width: 800, height: 600 }),
 }));
 
+jest.mock("@/context/Analytics/useAnalytics", () => ({
+  __esModule: true,
+  default: () => ({
+    track: {
+      videoPlayed: jest.fn(),
+      videoStarted: jest.fn(),
+      videoFinished: jest.fn(),
+      videoPaused: jest.fn(),
+    },
+  }),
+}));
+
 const render = renderWithProviders();
 
 describe("Campaign page", () => {
@@ -114,8 +126,7 @@ describe("Campaign page", () => {
     const header = screen.getByTestId("campaign-header");
     expect(header).toBeInTheDocument();
     expect(header).toHaveTextContent("Test Campaign Header");
-    const keystageButton = screen.getByText("KS1");
-    expect(keystageButton).toBeInTheDocument();
+
     const searchInput = screen.getByPlaceholderText(
       "Search by keyword or topic",
     );

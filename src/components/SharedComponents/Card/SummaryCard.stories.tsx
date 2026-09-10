@@ -31,5 +31,12 @@ export const SummaryCardCustomImageContainer = {
     imageContainerProps: {
       $minHeight: 160,
     },
+    summaryCardImage: {
+      alt: "Image of a summary card",
+      asset: {
+        _ref: "image-abc123-800x600-jpg",
+        _type: "reference",
+      },
+    },
   },
 };

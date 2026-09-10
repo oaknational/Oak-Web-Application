@@ -28,8 +28,10 @@ jest.mock("@/node-lib/educator-api", () => ({
                 keystage_slug: "ks2",
                 tier: null,
                 examboard: null,
+                examboard_slug: null,
                 subject: "Maths",
                 subject_slug: "maths",
+                phase_slug: "primary",
                 unit_order: 1,
                 year_order: 1,
                 lessons: [
@@ -84,8 +86,10 @@ describe("api/educator-api/getSavedContentLists", () => {
         keystageSlug: "ks2",
         subject: "Maths",
         subjectSlug: "maths",
+        phaseSlug: "primary",
         tier: null,
         examboard: null,
+        examboardSlug: null,
         subjectCategory: null,
         units: [
           {

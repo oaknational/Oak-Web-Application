@@ -1,11 +1,11 @@
-import { screen } from "@testing-library/dom";
+import { fireEvent, screen } from "@testing-library/dom";
 import userEvent from "@testing-library/user-event";
 
 import SchoolSelectionView from "./SchoolSelection.view";
 
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 
-const fetch = jest.spyOn(global, "fetch") as jest.Mock;
+const fetch = jest.spyOn(globalThis, "fetch") as jest.Mock;
 fetch.mockResolvedValue(
   new Response(
     JSON.stringify([
@@ -45,13 +45,6 @@ describe("Onboarding view", () => {
     });
     expect(continueButton).toBeInTheDocument();
   });
-  it("renders contact us text", async () => {
-    renderWithProviders()(<SchoolSelectionView />);
-    const contactUs = await screen.findByText("Contact us", { exact: false });
-
-    expect(contactUs).toBeInTheDocument();
-    expect(contactUs.closest("a")).toHaveAttribute("href", "/contact-us");
-  });
 
   it("clears the input when a school is not completed", async () => {
     renderWithProviders()(<SchoolSelectionView />);
@@ -68,8 +61,8 @@ describe("Onboarding view", () => {
     it("renders ManualEntrySchoolDetails component when Enter manually button clicked", async () => {
       renderWithProviders()(<SchoolSelectionView />);
 
-      expect(await screen.queryByText("School name")).toBeNull();
-      expect(await screen.queryByText("School address")).toBeNull();
+      expect(screen.queryByText("School name")).toBeNull();
+      expect(screen.queryByText("School address")).toBeNull();
 
       const manualButton = await screen.findByRole("button", {
         name: "Enter manually",
@@ -85,7 +78,7 @@ describe("Onboarding view", () => {
       ).toBeInTheDocument();
     });
 
-    it("shows error message when school name is empty", async () => {
+    it("does not show school name error before clicking Continue", async () => {
       renderWithProviders()(<SchoolSelectionView />);
       const user = userEvent.setup();
 
@@ -97,10 +90,9 @@ describe("Onboarding view", () => {
       await user.type(inputBox, "  ");
       await user.tab();
 
-      const schoolNameError = await screen.findByText("Enter school name");
-      expect(schoolNameError).toBeInTheDocument();
+      expect(screen.queryByText("Enter school name")).not.toBeInTheDocument();
     });
-    it("shows error message when school address is empty", async () => {
+    it("does not show school address error before clicking Continue", async () => {
       renderWithProviders()(<SchoolSelectionView />);
       const user = userEvent.setup();
 
@@ -114,10 +106,33 @@ describe("Onboarding view", () => {
       await user.type(inputBox, "  ");
       await user.tab();
 
+      expect(
+        screen.queryByText("Enter school address"),
+      ).not.toBeInTheDocument();
+    });
+
+    it("shows manual entry errors after clicking Continue", async () => {
+      renderWithProviders()(<SchoolSelectionView />);
+
+      const manualButton = await screen.findByRole("button", {
+        name: "Enter manually",
+      });
+      await userEvent.click(manualButton);
+
+      const continueButton = await screen.findByRole("button", {
+        name: "Continue",
+      });
+      const form = continueButton.closest("form");
+      expect(form).not.toBeNull();
+      fireEvent.submit(form!);
+
       const schoolAddressError = await screen.findByText(
         "Enter school address",
       );
       expect(schoolAddressError).toBeInTheDocument();
+
+      const schoolNameError = await screen.findByText("Enter school name");
+      expect(schoolNameError).toBeInTheDocument();
     });
   });
 });

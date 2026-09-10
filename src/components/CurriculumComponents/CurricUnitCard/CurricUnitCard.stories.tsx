@@ -1,10 +1,7 @@
-import { OakThemeProvider, oakDefaultTheme } from "@oaknational/oak-components";
 import { Meta, StoryObj } from "@storybook/nextjs";
 
-import { CurricLessonWarning } from "../CurricLessonWarning";
-
 import Component from "./CurricUnitCard";
-import { unitWithOptions, unitWithoutOptions } from "./CurricUnitCard.fixtures";
+import { unitWithOptions } from "./CurricUnitCard.fixtures";
 
 const meta: Meta<typeof Component> = {
   component: Component,
@@ -22,11 +19,7 @@ export const CurricUnitCard: Story = {
     href: "#",
   },
   render: function Render(args) {
-    return (
-      <OakThemeProvider theme={oakDefaultTheme}>
-        <Component {...args} />
-      </OakThemeProvider>
-    );
+    return <Component {...args} />;
   },
 };
 
@@ -38,28 +31,6 @@ export const CurricUnitCardHighlighted: Story = {
     href: "#",
   },
   render: function Render(args) {
-    return (
-      <OakThemeProvider theme={oakDefaultTheme}>
-        <Component {...args} />
-      </OakThemeProvider>
-    );
-  },
-};
-
-export const CurricUnitCardAdditionalSlot: Story = {
-  args: {
-    unit: unitWithoutOptions,
-    index: 10,
-    href: "#",
-  },
-  render: function Render(args) {
-    return (
-      <OakThemeProvider theme={oakDefaultTheme}>
-        <Component
-          {...args}
-          additional={<CurricLessonWarning count={8} total={10} />}
-        />
-      </OakThemeProvider>
-    );
+    return <Component {...args} />;
   },
 };

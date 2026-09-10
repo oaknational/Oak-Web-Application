@@ -1,17 +1,13 @@
 import { Meta, StoryObj } from "@storybook/nextjs";
-import { OakThemeProvider, oakDefaultTheme } from "@oaknational/oak-components";
 
 import Component from ".";
 
+import TeacherBrowseAnalyticsDecorator from "@/storybook-decorators/TeacherBrowseAnalyticsDecorator";
+import CookieConsentDecorator from "@/storybook-decorators/CookieConsentDecorator";
+
 const meta: Meta<typeof Component> = {
-  decorators: [
-    (Story) => (
-      <OakThemeProvider theme={oakDefaultTheme}>
-        <Story />
-      </OakThemeProvider>
-    ),
-  ],
   component: Component,
+  decorators: [CookieConsentDecorator, TeacherBrowseAnalyticsDecorator],
 };
 
 export default meta;

@@ -35,8 +35,8 @@ export type TrackingProgrammeData = {
     | "lesson_listing_save_button"
     | "unit_listing_save_button"
     | "my-library-save-button";
-  keyStageTitle: KeyStageTitleValueType | undefined;
-  keyStageSlug: string | undefined;
+  keyStageTitle: KeyStageTitleValueType;
+  keyStageSlug: string;
   subjectTitle: string;
   subjectSlug: string;
 };

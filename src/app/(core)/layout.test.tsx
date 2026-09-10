@@ -23,6 +23,10 @@ jest.unmock("next/navigation");
 const render = renderWithProviders();
 
 describe("core layout", () => {
+  beforeEach(() => {
+    jest.clearAllMocks();
+  });
+
   it("renders correctly", async () => {
     const result = await CoreLayout({ children: <OakBox>children</OakBox> });
 
@@ -32,7 +36,7 @@ describe("core layout", () => {
     mockTopNav.mockRejectedValueOnce(
       new OakError({ code: "curriculum-api/not-found" }),
     );
-    expect(async () =>
+    await expect(async () =>
       render(
         await CoreLayout({
           children: <OakBox>children</OakBox>,

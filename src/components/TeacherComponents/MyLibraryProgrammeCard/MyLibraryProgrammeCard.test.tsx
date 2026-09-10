@@ -1,5 +1,4 @@
 import { screen } from "@testing-library/react";
-import userEvent from "@testing-library/user-event";
 import { OakIconName } from "@oaknational/oak-components";
 
 import MyLibraryProgrammeCard from "./MyLibraryProgrammeCard";
@@ -9,6 +8,11 @@ import {
   completeUnitLessons,
   incompleteUnitLessons,
 } from "@/fixtures/teachers/myLibrary";
+import {
+  ExamBoardValueType,
+  KeyStageTitleValueType,
+  TierNameValueType,
+} from "@/browser-lib/avo/Avo";
 
 const render = renderWithProviders();
 
@@ -23,11 +27,14 @@ const mockUnits = [
     savedAt: "2023-05-01T09:00:00Z",
     href: "/teachers/programmes/english-secondary-ks4/units/fiction-short-stories",
     lessons: completeUnitLessons,
-    onSave: jest.fn(),
-    isSaved: true,
-    isSaving: false,
-    trackUnitAccessed: jest.fn(),
-    trackLessonAccessed: jest.fn(),
+    keyStageTitle: "Key Stage 4" as KeyStageTitleValueType,
+    keyStageSlug: "key-stage-4",
+    subjectTitle: "English",
+    subjectSlug: "english",
+    tierName: "Core" as TierNameValueType,
+    examBoard: "AQA" as ExamBoardValueType,
+    pathway: undefined,
+    yearSlug: "year-10",
   },
   {
     unitTitle: "Poetry Analysis",
@@ -37,11 +44,14 @@ const mockUnits = [
     savedAt: "2023-04-15T14:30:00Z",
     href: "/teachers/programmes/english-secondary-ks4/units/poetry-analysis",
     lessons: incompleteUnitLessons,
-    onSave: jest.fn(),
-    isSaved: false,
-    isSaving: false,
-    trackUnitAccessed: jest.fn(),
-    trackLessonAccessed: jest.fn(),
+    keyStageTitle: "Key Stage 3" as KeyStageTitleValueType,
+    keyStageSlug: "key-stage-3",
+    subjectTitle: "English",
+    subjectSlug: "english",
+    tierName: "Core" as TierNameValueType,
+    examBoard: "AQA" as ExamBoardValueType,
+    pathway: undefined,
+    yearSlug: "year-9",
   },
 ];
 
@@ -52,7 +62,6 @@ const defaultProps = {
   iconName: "subject-english" as OakIconName,
   savedUnits: mockUnits,
   anchorId: "english-secondary-ks4",
-  trackBrowseRefined: jest.fn(),
 };
 
 describe("MyLibraryProgrammeCard", () => {
@@ -65,7 +74,7 @@ describe("MyLibraryProgrammeCard", () => {
   it("renders a subject icon in the header", async () => {
     render(<MyLibraryProgrammeCard {...defaultProps} />);
 
-    const subjectIcon = await screen.getByTestId("subjectIcon");
+    const subjectIcon = screen.getByTestId("subjectIcon");
     expect(subjectIcon).toBeInTheDocument();
   });
 
@@ -91,18 +100,5 @@ describe("MyLibraryProgrammeCard", () => {
     // Check unit details
     expect(screen.getByText(/Year 10/)).toBeInTheDocument();
     expect(screen.getByText(/Year 9/)).toBeInTheDocument();
-  });
-
-  it("passes onSave callbacks to unit cards", async () => {
-    render(<MyLibraryProgrammeCard {...defaultProps} />);
-
-    // Click the save button for the second unit
-    const saveButton = screen.getByRole("button", {
-      name: /Save this unit: Poetry Analysis/i,
-    });
-    await userEvent.click(saveButton);
-
-    // Check callback was called
-    expect(mockUnits[1]?.onSave).toHaveBeenCalledTimes(1);
   });
 });

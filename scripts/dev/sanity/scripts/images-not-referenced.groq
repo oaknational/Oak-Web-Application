@@ -1,0 +1,3 @@
+*[_type == "image" && !defined(*[references(^._id)][0])] {
+  ...
+}

@@ -13,7 +13,7 @@ describe("HomePageBanner", () => {
       </div>
     ),
     ctaText: "See curriculum plans",
-    page: "curriculum-landing-page",
+    page: "about-oaks-curricula",
   };
 
   const render = renderWithProviders();
@@ -32,7 +32,7 @@ describe("HomePageBanner", () => {
 
     const link = getByRole("link");
 
-    expect(link).toHaveAttribute("href", "/teachers/curriculum");
+    expect(link).toHaveAttribute("href", "/about-us/oaks-curricula");
     expect(link).toHaveAttribute("title", "See curriculum plans");
     expect(getByText("See curriculum plans")).toBeInTheDocument();
   });

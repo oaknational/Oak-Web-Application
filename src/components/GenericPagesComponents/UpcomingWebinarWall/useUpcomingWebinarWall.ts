@@ -12,9 +12,6 @@ const useUpcomingWebinarWall = (
       hour: "2-digit",
       minute: "2-digit",
     })} (UK time)`,
-    buttonOnClick: () => {
-      // tracking
-    },
     buttonHref: getBrowserConfig("webinarSignUpUrl"),
     buttonText: "Save my place",
     buttonSuffixA11y: "on the webinar",

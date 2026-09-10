@@ -14,7 +14,6 @@ import Link from "next/link";
 
 import { resolveOakHref } from "@/common-lib/urls";
 import { LessonListingBrowseData } from "@/node-lib/curriculum-api-2023/queries/pupilLessonListing/pupilLessonListing.schema";
-import AppLayout from "@/components/SharedComponents/AppLayout";
 import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
 import { PupilRedirectedOverlay } from "@/components/PupilComponents/PupilRedirectedOverlay/PupilRedirectedOverlay";
 import { TopNavProps } from "@/components/AppComponents/TopNav/TopNav";
@@ -23,6 +22,7 @@ import {
   TakedownBanner,
 } from "@/components/SharedComponents/TakedownBanner/TakedownBanner";
 import isSlugLegacy from "@/utils/slugModifiers/isSlugLegacy";
+import AppLayout from "@/components/AppComponents/AppLayout";
 
 export type PupilLessonListingViewProps = {
   unitData: LessonListingBrowseData[number]["unitData"];
@@ -129,54 +129,51 @@ export const PupilViewsLessonListing = (props: PupilLessonListingViewProps) => {
   );
 
   return (
-    <>
+    <AppLayout
+      seoProps={{
+        ...getSeoProps({
+          title: `${subject}, ${phaseSlug}, ${yearDescription} - Lesson listing`,
+          description: `Lesson listing for ${subject}, ${phaseSlug}, ${yearDescription}`,
+        }),
+        noIndex: true,
+        noFollow: false,
+      }}
+      topNavProps={topNav}
+    >
       {" "}
-      <AppLayout
-        seoProps={{
-          ...getSeoProps({
-            title: `${subject}, ${phaseSlug}, ${yearDescription} - Lesson listing`,
-            description: `Lesson listing for ${subject}, ${phaseSlug}, ${yearDescription}`,
-          }),
-          noIndex: true,
-          noFollow: false,
-        }}
-        topNavProps={topNav}
+      <OakPupilJourneyLayout
+        sectionName={"lesson-listing"}
+        phase={phaseSlug}
+        topNavSlot={BacktoUnits}
       >
-        {" "}
-        <OakPupilJourneyLayout
-          sectionName={"lesson-listing"}
-          phase={phaseSlug}
-          topNavSlot={BacktoUnits}
-        >
-          <OakBox $mb={"spacing-56"}>
-            {" "}
-            <OakPupilJourneyList
-              titleSlot={LessonListingTitle}
-              phase={phaseSlug}
-              subheadingSlot={lessonCount}
-            >
-              {orderedCurriculumData.map((lesson, index) => {
-                return (
-                  <OakPupilJourneyListItem
-                    href={resolveOakHref({
-                      page: "pupil-lesson",
-                      lessonSlug: lesson.lessonSlug,
-                      programmeSlug: lesson.programmeSlug,
-                      unitSlug: lesson.unitSlug,
-                    })}
-                    index={index + 1}
-                    key={index}
-                    title={lesson.lessonData.title}
-                    unavailable={!!lesson.lessonData?.deprecatedFields?.expired}
-                    as={Link}
-                  />
-                );
-              })}
-            </OakPupilJourneyList>
-          </OakBox>
-          <PupilRedirectedOverlay />
-        </OakPupilJourneyLayout>
-      </AppLayout>
-    </>
+        <OakBox $mb={"spacing-56"}>
+          {" "}
+          <OakPupilJourneyList
+            titleSlot={LessonListingTitle}
+            phase={phaseSlug}
+            subheadingSlot={lessonCount}
+          >
+            {orderedCurriculumData.map((lesson, index) => {
+              return (
+                <OakPupilJourneyListItem
+                  href={resolveOakHref({
+                    page: "pupil-lesson",
+                    lessonSlug: lesson.lessonSlug,
+                    programmeSlug: lesson.programmeSlug,
+                    unitSlug: lesson.unitSlug,
+                  })}
+                  index={index + 1}
+                  key={index}
+                  title={lesson.lessonData.title}
+                  unavailable={!!lesson.lessonData?.deprecatedFields?.expired}
+                  as={Link}
+                />
+              );
+            })}
+          </OakPupilJourneyList>
+        </OakBox>
+        <PupilRedirectedOverlay />
+      </OakPupilJourneyLayout>
+    </AppLayout>
   );
 };

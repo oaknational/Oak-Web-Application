@@ -1,15 +1,14 @@
-import { FC } from "react";
 import styled from "styled-components";
+import { FC } from "react";
+import { OakFlex, OakFlexProps } from "@oaknational/oak-components";
 
-import Flex, { FlexProps } from "@/components/SharedComponents/Flex.deprecated";
-
-const Group = styled(Flex)`
+const Group = styled(OakFlex)`
   & > *:not(:last-child) {
     margin-right: 12px;
   }
 `;
 
-export type ButtonGroupProps = FlexProps;
+export type ButtonGroupProps = OakFlexProps;
 const ButtonGroup: FC<ButtonGroupProps> = (props) => {
   /**
    * @todo run time check that all children are Button or IconButton components

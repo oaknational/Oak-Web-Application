@@ -4,13 +4,14 @@ import {
   OakFlex,
   OakHeading,
   OakTypography,
+  OakSecondaryLink,
 } from "@oaknational/oak-components";
 import { FC } from "react";
 
-import OwaLink from "@/components/SharedComponents/OwaLink";
 import PostList, {
   PostListProps,
 } from "@/components/SharedComponents/PostList";
+import { resolveOakHref } from "@/common-lib/urls";
 
 export type BlogAndWebinarListProps = {
   blogListPosts: PostListProps;
@@ -53,11 +54,19 @@ const BlogAndWebinarList: FC<BlogAndWebinarListProps> = ({
           {title}
         </OakHeading>
         <OakFlex $flexDirection={"row"}>
-          <OakTypography $mr={"spacing-16"} $font={"heading-7"}>
-            <OwaLink page={"webinar-index"}>All webinars</OwaLink>
+          <OakTypography
+            $mr={"spacing-16"}
+            $font={"heading-7"}
+            $textWrap={"nowrap"}
+          >
+            <OakSecondaryLink href={resolveOakHref({ page: "webinar-index" })}>
+              All webinars
+            </OakSecondaryLink>
           </OakTypography>
-          <OakTypography $font={"heading-7"}>
-            <OwaLink page={"blog-index"}>All blogs</OwaLink>
+          <OakTypography $font={"heading-7"} $textWrap={"nowrap"}>
+            <OakSecondaryLink href={resolveOakHref({ page: "blog-index" })}>
+              All blogs
+            </OakSecondaryLink>
           </OakTypography>
         </OakFlex>
       </OakFlex>

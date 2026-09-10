@@ -45,7 +45,6 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>((props, ref) => {
     labelSuffixA11y,
     shouldHideLabel,
     icon,
-    subjectIcon,
     "aria-label": ariaLabel,
     htmlButtonProps = {},
     iconBackground,
@@ -81,7 +80,6 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>((props, ref) => {
         label={label}
         labelSuffixA11y={labelSuffixA11y}
         icon={icon}
-        subjectIcon={subjectIcon}
         $iconPosition={$iconPosition}
         iconBackground={iconBackground}
         shouldHideLabel={shouldHideLabel}

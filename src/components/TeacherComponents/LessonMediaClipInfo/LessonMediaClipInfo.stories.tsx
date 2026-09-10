@@ -1,14 +1,12 @@
 import type { Meta, StoryObj } from "@storybook/nextjs";
-import {
-  OakP,
-  OakThemeProvider,
-  oakDefaultTheme,
-} from "@oaknational/oak-components";
+import { OakP } from "@oaknational/oak-components";
 
 import {
   LessonMediaClipInfo,
   LessonMediaClipInfoProps,
 } from "./LessonMediaClipInfo";
+
+import NotificationsDecorator from "@/storybook-decorators/NotificationsDecorator";
 
 const props: LessonMediaClipInfoProps = {
   clipTitle: "How it is done",
@@ -26,6 +24,7 @@ const props: LessonMediaClipInfoProps = {
 
 const meta: Meta<typeof LessonMediaClipInfo> = {
   component: LessonMediaClipInfo,
+  decorators: [NotificationsDecorator],
 };
 
 export default meta;
@@ -33,10 +32,6 @@ export default meta;
 type Story = StoryObj<typeof LessonMediaClipInfo>;
 
 export const Standard: Story = {
-  render: ({ ...args }) => (
-    <OakThemeProvider theme={oakDefaultTheme}>
-      <LessonMediaClipInfo {...args} />
-    </OakThemeProvider>
-  ),
+  render: ({ ...args }) => <LessonMediaClipInfo {...args} />,
   args: { ...props },
 };

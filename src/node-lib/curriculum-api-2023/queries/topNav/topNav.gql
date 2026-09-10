@@ -7,4 +7,13 @@ query topNav @cached(ttl: 600) {
     features
     actions
   }
+  phaseOptions: published_mv_curriculum_phase_options_0_4(
+    where: { non_curriculum: { _eq: false } }
+  ) {
+    title
+    slug
+    phases
+    keystages
+    ks4_options
+  }
 }

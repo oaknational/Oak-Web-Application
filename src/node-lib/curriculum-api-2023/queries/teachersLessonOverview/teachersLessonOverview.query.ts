@@ -6,7 +6,6 @@ import {
   LessonUnitDataByKs,
   lessonUnitDataByKsSchema,
 } from "../../shared.schema";
-import { toSentenceCase } from "../../helpers";
 import { applyGenericOverridesAndExceptions } from "../../helpers/overridesAndExceptions";
 import { getCorrectYear } from "../../helpers/getCorrectYear";
 import { isExcludedFromTeachingMaterials } from "../../helpers/teachingMaterialsAi/isExcluded";
@@ -25,7 +24,8 @@ import errorReporter from "@/common-lib/error-reporter";
 import OakError from "@/errors/OakError";
 import { Sdk } from "@/node-lib/curriculum-api-2023/sdk";
 import { mediaClipsRecordCamelSchema } from "@/node-lib/curriculum-api-2023/queries/lessonMediaClips/lessonMediaClips.schema";
-import { convertBytesToMegabytes } from "@/components/TeacherComponents/helpers/lessonHelpers/lesson.helpers";
+import { formatBytes } from "@/utils/formatBytes";
+import { formatSentences } from "@/utils/formatTranscriptSentences";
 
 export type TeachersLessonUnitStaticLessonList = NonNullable<
   NonNullable<LessonUnitDataByKs["supplementaryData"]>["staticLessonList"]
@@ -161,7 +161,7 @@ export const getAdditionalFiles = (
     const name = af.mediaObject.displayName;
     const type = af.mediaObject.url.split(".").pop() ?? "";
     const size = af.mediaObject.bytes;
-    const sizeString = convertBytesToMegabytes(size);
+    const sizeString = formatBytes(size);
     return `${name} ${sizeString} (${type.toUpperCase()})`;
   });
 };
@@ -201,13 +201,14 @@ export const transformedTeachersLessonOverviewData = (
     unitSlug: browseData.unitSlug,
     unitTitle,
     keyStageSlug: browseData.programmeFields.keystageSlug,
-    keyStageTitle: toSentenceCase(
-      browseData.programmeFields.keystageDescription,
-    ),
+    keyStageTitle: browseData.programmeFields.keystageDescription,
     subjectSlug: browseData.programmeFields.subjectSlug,
     subjectTitle: browseData.programmeFields.subject,
     subjectParent: browseData.programmeFields.subjectParent ?? null,
-    yearTitle: browseData.programmeFields.yearDescription,
+    phaseSlug: browseData.programmeFields.phaseSlug,
+    phaseTitle: browseData.programmeFields.phaseDescription,
+    pathwaySlug: browseData.programmeFields.pathwaySlug,
+    yearGroupTitle: browseData.programmeFields.yearDescription,
     year: browseData.programmeFields.year,
     examBoardTitle: browseData.programmeFields.examboard,
     examBoardSlug: browseData.programmeFields.examboardSlug,
@@ -242,7 +243,9 @@ export const transformedTeachersLessonOverviewData = (
     videoMuxPlaybackId: content.videoMuxPlaybackId,
     videoWithSignLanguageMuxPlaybackId:
       content.videoWithSignLanguageMuxPlaybackId,
-    transcriptSentences: content.transcriptSentences,
+    transcriptSentences: content.transcriptSentences
+      ? formatSentences(content.transcriptSentences)
+      : null,
     isWorksheetLandscape: Boolean(
       browseData.lessonData.deprecatedFields?.worksheetIsLandscape,
     ),

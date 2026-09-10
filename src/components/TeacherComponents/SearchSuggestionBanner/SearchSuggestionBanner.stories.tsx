@@ -1,5 +1,4 @@
 import { Meta, StoryObj } from "@storybook/nextjs";
-import { oakDefaultTheme, OakThemeProvider } from "@oaknational/oak-components";
 
 import { SearchSuggestionBanner as Component } from "./SearchSuggestionBanner";
 
@@ -28,9 +27,5 @@ export const Default: Story = {
   args: {
     intent: searchIntentWithDirectSubjectAndKeystageMatch,
   },
-  render: (args) => (
-    <OakThemeProvider theme={oakDefaultTheme}>
-      <Component {...args} />
-    </OakThemeProvider>
-  ),
+  render: (args) => <Component {...args} />,
 };

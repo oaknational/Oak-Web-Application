@@ -14,7 +14,11 @@ import {
 } from "@oaknational/oak-components";
 import Link from "next/link";
 
-import { PupilsSubNavData } from "@/node-lib/curriculum-api-2023/queries/topNav/topNav.schema";
+import {
+  PhaseSlug,
+  PhaseTitle,
+  PupilsSubNavData,
+} from "@/node-lib/curriculum-api-2023/queries/topNav/topNav.schema";
 import { resolveOakHref } from "@/common-lib/urls";
 
 export function PupilsTopNavHamburger(props: Readonly<PupilsSubNavData>) {
@@ -38,7 +42,7 @@ export function PupilsTopNavHamburger(props: Readonly<PupilsSubNavData>) {
         iconName="hamburger"
         aria-label="Open navigation menu"
         aria-expanded={isOpen}
-        aria-controls="pupils-top-nav-hamburger"
+        aria-controls={isOpen ? "pupils-top-nav-hamburger" : undefined}
         onClick={() => handleOpen()}
       >
         Menu
@@ -90,8 +94,8 @@ function MainMenuContent(
 
 function YearSection(
   props: Readonly<{
-    title: "Primary" | "Secondary";
-    slug: "primary" | "secondary";
+    title: PhaseTitle;
+    slug: PhaseSlug;
     children: Array<{ title: string; slug: string }>;
     onClick: () => void;
   }>,

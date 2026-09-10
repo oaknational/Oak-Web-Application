@@ -1,3 +1,5 @@
+import supportedBrowsersRegexp from "./supportedBrowsersRegexp";
+
 const IGNORED_FILE_PATTERNS = [
   // Testing
   /OAK_TEST_ERROR_STACKTRACE_FILE/i,
@@ -20,11 +22,19 @@ const IGNORED_MESSAGE_PATTERNS = [
 ];
 
 /**
- * Test if a user agent matches any in a list of regex patterns.
+ * Test if a user agent should be ignored for error reporting.
  */
 const matchesUserAgent = (ua: string) => {
   const userAgentsToMatch = [/Detectify/i, /Percy/i];
-  return userAgentsToMatch.some((regex) => regex.test(ua));
+  if (userAgentsToMatch.some((regex) => regex.test(ua))) {
+    return true;
+  }
+
+  if (!supportedBrowsersRegexp.test(ua)) {
+    return true;
+  }
+
+  return false;
 };
 
 const matchesIgnoredErrorBugsnag = (error: {

@@ -1,0 +1,292 @@
+"use client";
+
+import {
+  OakBox,
+  OakFlex,
+  OakGrid,
+  OakGridArea,
+  OakInlineBanner,
+} from "@oaknational/oak-components";
+import { Fragment, useState } from "react";
+import { useFeatureFlagEnabled } from "posthog-js/react";
+
+import { CurrentSectionIdProvider } from "./CurrentSectionIdProvider";
+import LessonOverviewSideNav from "./LessonOverviewSideNav";
+import { getLessonResources } from "./getLessonResources";
+import { LessonItem } from "./LessonItem";
+import LessonActionsBar from "./LessonActionsBar/LessonActionsBar";
+import { LessonSeoHelper } from "./LessonSeoHelper/LessonSeoHelper";
+
+import type { TeachersLessonOverviewPageData } from "@/node-lib/curriculum-api-2023/queries/teachersLessonOverview/teachersLessonOverview.schema";
+import PreviousNextNav from "@/components/TeacherComponents/PreviousNextNav/PreviousNextNav";
+import { resolveOakHref } from "@/common-lib/urls";
+import { useComplexCopyright } from "@/hooks/useComplexCopyright";
+import SkipLink from "@/components/CurriculumComponents/OakComponentsKitchen/SkipLink";
+import { MathJaxProvider } from "@/browser-lib/mathjax/MathJaxProvider";
+import { hasLessonMathJax } from "@/components/TeacherViews/LessonOverview/hasLessonMathJax";
+import { getSideNavLinksFromResources } from "@/components/TeacherComponents/LessonOverviewSideNavAnchorLinks/LessonOverviewSideNavAnchorLinks";
+import ComplexCopyrightRestrictionBanner from "@/components/TeacherComponents/ComplexCopyrightRestrictionBanner/ComplexCopyrightRestrictionBanner";
+import { RestrictedContentPrompt } from "@/components/TeacherComponents/RestrictedContentPrompt/RestrictedContentPrompt";
+
+export default function LessonView(
+  props: Readonly<TeachersLessonOverviewPageData>,
+) {
+  const {
+    programmeSlug,
+    unitSlug,
+    lessonSlug,
+    subjectSlug,
+    previousLesson,
+    nextLesson,
+    loginRequired,
+    geoRestricted,
+    expired,
+    lessonTitle,
+    keyStageTitle,
+    keyStageSlug,
+    subjectTitle,
+    unitTitle,
+    year,
+    examBoardSlug,
+    phaseSlug,
+    actions,
+    subjectCategories,
+    excludedFromTeachingMaterials,
+  } = props;
+
+  const copyrightState = useComplexCopyright({
+    loginRequired,
+    geoRestricted,
+  });
+  const {
+    showSignedOutGeoRestricted,
+    showSignedOutLoginRequired,
+    showGeoBlocked,
+    showSignedInNotOnboarded,
+  } = copyrightState;
+  const contentRestricted =
+    showSignedOutGeoRestricted ||
+    showSignedOutLoginRequired ||
+    showGeoBlocked ||
+    showSignedInNotOnboarded;
+
+  const isMathJaxLesson = hasLessonMathJax(props, props.subjectSlug, false);
+  const MathJaxLessonProvider = isMathJaxLesson ? MathJaxProvider : Fragment;
+
+  const lessonResources = getLessonResources({
+    data: props,
+    copyrightState,
+    isMathJaxLesson,
+    contentRestricted,
+  });
+
+  const showPupilShare =
+    !loginRequired &&
+    !geoRestricted &&
+    !contentRestricted &&
+    !expired &&
+    !actions?.disablePupilShare;
+
+  const isHeatwaveBannerEnabled =
+    useFeatureFlagEnabled("heatwave-banner") ?? false;
+  const [heatwaveBannerDismissed, setHeatwaveBannerDismissed] = useState(false);
+  const showHeatwaveBanner =
+    isHeatwaveBannerEnabled && showPupilShare && !heatwaveBannerDismissed;
+
+  return (
+    <MathJaxLessonProvider>
+      <CurrentSectionIdProvider>
+        <OakBox $ph={["spacing-20", "spacing-40"]}>
+          <OakGrid
+            $cg="spacing-16"
+            $rg="spacing-32"
+            $mb={["spacing-0", "spacing-48"]}
+            $mh="auto"
+            $mt={["spacing-48", "spacing-56"]}
+            $width={"100%"}
+            $maxWidth={"spacing-1280"}
+          >
+            {!contentRestricted && (
+              <OakGridArea
+                $colSpan={[12, 4]}
+                $colStart={1}
+                $rowStart={[2, 1, 2]}
+                $rowSpan={[1, 2, 1]}
+                $position="relative"
+                $display={["none", "block"]}
+              >
+                <OakBox
+                  $position="absolute"
+                  $zIndex="in-front"
+                  $top="spacing-0"
+                  $left="spacing-0"
+                >
+                  <SkipLink href="#lesson-content">
+                    Skip to lesson content
+                  </SkipLink>
+                </OakBox>
+                <LessonOverviewSideNav
+                  links={getSideNavLinksFromResources(lessonResources)}
+                  contentRestricted={contentRestricted}
+                  downloadAllButtonProps={{
+                    lessonSlug,
+                    programmeSlug,
+                    unitSlug,
+                    showDownloadAll: true,
+                    geoRestricted,
+                    loginRequired,
+                    expired,
+                  }}
+                />
+              </OakGridArea>
+            )}
+            <OakGridArea
+              $colSpan={[12, 8, 12]}
+              $colStart={[1, 5, 1]}
+              $rowStart={1}
+            >
+              <ComplexCopyrightRestrictionBanner
+                isGeorestricted={geoRestricted}
+                isLoginRequired={loginRequired}
+                lessonName={lessonTitle}
+                lessonSlug={lessonSlug}
+                unitName={unitTitle}
+                unitSlug={unitSlug}
+                isLessonLegacy={false}
+                componentType="lesson_overview"
+              />
+              {showHeatwaveBanner && (
+                <OakInlineBanner
+                  type="info"
+                  icon="info"
+                  title="Disruption this week due to hot weather? Set this lesson as remote work"
+                  message={
+                    <>
+                      Click the {"\u2018"}
+                      <strong>Share lesson with pupils</strong>
+                      {"\u2019"} button below to share directly, or via
+                      Microsoft Teams or Google Classroom
+                    </>
+                  }
+                  canDismiss
+                  onDismiss={() => setHeatwaveBannerDismissed(true)}
+                  isOpen={true}
+                  $maxWidth="fit-content"
+                  $mb="spacing-16"
+                />
+              )}
+              <LessonActionsBar
+                showPupilShare={showPupilShare}
+                createWithAiProps={
+                  contentRestricted || excludedFromTeachingMaterials
+                    ? undefined
+                    : {
+                        lessonSlug,
+                        programmeSlug,
+                        keyStageSlug,
+                        subjectCategories,
+                        actions,
+                        subjectSlug,
+                      }
+                }
+                lessonSlug={lessonSlug}
+                unitSlug={unitSlug}
+                programmeSlug={programmeSlug}
+              />
+            </OakGridArea>
+            <OakGridArea
+              $colSpan={[12, 8]}
+              $colStart={[1, 5]}
+              $rowStart={2}
+              id="lesson-content"
+            >
+              <OakFlex
+                $flexDirection={"column"}
+                $gap={["spacing-56", "spacing-80"]}
+              >
+                {lessonResources.map((resource) => (
+                  <LessonItem
+                    slugs={{
+                      lessonSlug,
+                      unitSlug,
+                      programmeSlug,
+                    }}
+                    resource={resource}
+                    key={resource.resourceType}
+                  />
+                ))}
+
+                {!contentRestricted && (
+                  <LessonSeoHelper
+                    loginRequired={loginRequired}
+                    geoRestricted={geoRestricted}
+                    lessonSlug={lessonSlug}
+                    year={year}
+                    programmeSlug={programmeSlug}
+                    unitSlug={unitSlug}
+                    subject={subjectTitle}
+                    phaseSlug={phaseSlug}
+                    unit={unitTitle}
+                    keystage={keyStageTitle}
+                    examBoardSlug={examBoardSlug}
+                    subjectSlug={subjectSlug}
+                    disablePupilLink={
+                      geoRestricted ||
+                      loginRequired ||
+                      actions?.disablePupilShare
+                    }
+                    lesson={lessonTitle}
+                    keystageSlug={keyStageSlug}
+                  />
+                )}
+              </OakFlex>
+            </OakGridArea>
+
+            {!contentRestricted && (
+              <OakGridArea
+                $colSpan={12}
+                $colStart={1}
+                $rowStart={3}
+                $mb={"spacing-48"}
+              >
+                <PreviousNextNav
+                  backgroundColorLevel={1}
+                  navItemType="lesson"
+                  previous={
+                    previousLesson
+                      ? {
+                          href: resolveOakHref({
+                            page: "lesson-overview",
+                            programmeSlug,
+                            unitSlug,
+                            lessonSlug: previousLesson.lessonSlug,
+                          }),
+                          title: previousLesson.lessonTitle,
+                          index: previousLesson.lessonIndex,
+                        }
+                      : undefined
+                  }
+                  next={
+                    nextLesson
+                      ? {
+                          href: resolveOakHref({
+                            page: "lesson-overview",
+                            programmeSlug,
+                            unitSlug,
+                            lessonSlug: nextLesson.lessonSlug,
+                          }),
+                          title: nextLesson.lessonTitle,
+                          index: nextLesson.lessonIndex,
+                        }
+                      : undefined
+                  }
+                />
+              </OakGridArea>
+            )}
+          </OakGrid>
+        </OakBox>
+        {contentRestricted && !showGeoBlocked && <RestrictedContentPrompt />}
+      </CurrentSectionIdProvider>
+    </MathJaxLessonProvider>
+  );
+}

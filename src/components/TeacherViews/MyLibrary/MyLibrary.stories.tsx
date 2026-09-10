@@ -1,14 +1,22 @@
-import React from "react";
 import { Meta, StoryObj } from "@storybook/nextjs";
-import { oakDefaultTheme, OakThemeProvider } from "@oaknational/oak-components";
 
 import MyLibrary from "./MyLibrary";
 
 import { generateMockCollectionData } from "@/fixtures/teachers/myLibrary/collectionData";
+import SaveCountDecorator from "@/storybook-decorators/SaveCountDecorator";
+import NotificationsDecorator from "@/storybook-decorators/NotificationsDecorator";
+import TeacherBrowseAnalyticsDecorator from "@/storybook-decorators/TeacherBrowseAnalyticsDecorator";
+import CookieConsentDecorator from "@/storybook-decorators/CookieConsentDecorator";
 
-const meta: Meta<typeof MyLibrary> = {
+const meta = {
   component: MyLibrary,
   tags: ["autodocs"],
+  decorators: [
+    CookieConsentDecorator,
+    SaveCountDecorator,
+    NotificationsDecorator,
+    TeacherBrowseAnalyticsDecorator,
+  ],
   argTypes: {
     isLoading: {
       control: {
@@ -27,21 +35,15 @@ const meta: Meta<typeof MyLibrary> = {
       },
     },
   },
-};
+} satisfies Meta<typeof MyLibrary>;
 export default meta;
 
-type Story = StoryObj<typeof MyLibrary>;
+type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
-  render: (args) => (
-    <OakThemeProvider theme={oakDefaultTheme}>
-      <MyLibrary {...args} />
-    </OakThemeProvider>
-  ),
+  render: (args) => <MyLibrary {...args} />,
   args: {
     collectionData: generateMockCollectionData(1),
     isLoading: false,
-    onSaveToggle: () => {},
-    isUnitSaved: () => false,
   },
 };

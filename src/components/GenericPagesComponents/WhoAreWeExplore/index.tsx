@@ -3,9 +3,9 @@ import {
   OakHeading,
   OakBox,
   OakIcon,
-  OakIconProps,
   OakFocusIndicator,
   parseSpacing,
+  OakIconName,
 } from "@oaknational/oak-components";
 import Link from "next/link";
 import { useId } from "react";
@@ -27,12 +27,7 @@ const HoverableCard = styled(OakFlex)`
   }
 `;
 
-const UnstyledLi = styled.li`
-  padding: 0;
-  margin: 0;
-`;
-
-const CustomUlAsGrid = styled.ul`
+const CustomUlAsGrid = styled.ul<{ $size: number }>`
   margin: 0;
   padding: 0;
   list-style: none;
@@ -40,21 +35,24 @@ const CustomUlAsGrid = styled.ul`
   row-gap: ${() => parseSpacing("spacing-16")};
   column-gap: ${() => parseSpacing("spacing-16")};
   grid-auto-rows: 1fr;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: ${({ $size }) =>
+    `repeat(${$size === 3 ? 3 : 2}, 1fr)`};
 
   @media (max-width: 800px) {
     grid-template-columns: repeat(1, 1fr);
   }
 `;
 
+export type ExploreItem = {
+  iconName: OakIconName;
+  title: string;
+  href: string;
+  componentType: ComponentTypeValueType;
+};
+
 export type WhoAreWeExploreProps = {
   title: string;
-  items: {
-    iconName: OakIconProps["iconName"];
-    title: string;
-    href: string;
-    componentType: ComponentTypeValueType;
-  }[];
+  items: ExploreItem[];
 };
 export function WhoAreWeExplore({
   title,
@@ -95,42 +93,44 @@ export function WhoAreWeExplore({
             {title}
           </OakHeading>
           <nav aria-labelledby={headingId}>
-            <CustomUlAsGrid>
+            <CustomUlAsGrid $size={items.length}>
               {items.map(({ title, iconName, href, componentType }) => {
                 return (
-                  <UnstyledLi key={title}>
-                    <OakFocusIndicator $borderRadius={"border-radius-m2"}>
-                      <Link
-                        style={{ outline: "none" }}
-                        href={href}
-                        onClick={() => handleClick(componentType)}
+                  <OakFocusIndicator
+                    as="li"
+                    key={title}
+                    $borderRadius={"border-radius-m2"}
+                  >
+                    <Link
+                      style={{ outline: "none" }}
+                      href={href}
+                      onClick={() => handleClick(componentType)}
+                    >
+                      <HoverableCard
+                        data-testid="who-we-are-explore-item"
+                        $flexDirection={"row"}
+                        $pa={"spacing-16"}
+                        $background={"bg-primary"}
+                        $gap={"spacing-16"}
+                        $alignItems={"center"}
+                        $borderRadius={"border-radius-m2"}
                       >
-                        <HoverableCard
-                          data-testid="who-we-are-explore-item"
-                          $flexDirection={"row"}
-                          $pa={"spacing-16"}
-                          $background={"bg-primary"}
-                          $gap={"spacing-16"}
-                          $alignItems={"center"}
-                          $borderRadius={"border-radius-m2"}
-                        >
-                          <OakFlex>
-                            <OakIcon
-                              iconName={iconName}
-                              $width={"spacing-56"}
-                              $height={"spacing-56"}
-                            />
-                          </OakFlex>
-                          <OakFlex $flexGrow={1} $font={"body-1-bold"}>
-                            {title}
-                          </OakFlex>
-                          <OakFlex>
-                            <OakIcon iconName="arrow-right" />
-                          </OakFlex>
-                        </HoverableCard>
-                      </Link>
-                    </OakFocusIndicator>
-                  </UnstyledLi>
+                        <OakFlex>
+                          <OakIcon
+                            iconName={iconName}
+                            $width={"spacing-56"}
+                            $height={"spacing-56"}
+                          />
+                        </OakFlex>
+                        <OakFlex $flexGrow={1} $font={"body-1-bold"}>
+                          {title}
+                        </OakFlex>
+                        <OakFlex>
+                          <OakIcon iconName="arrow-right" />
+                        </OakFlex>
+                      </HoverableCard>
+                    </Link>
+                  </OakFocusIndicator>
                 );
               })}
             </CustomUlAsGrid>

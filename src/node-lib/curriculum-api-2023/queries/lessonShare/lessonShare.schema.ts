@@ -2,8 +2,8 @@ import { z } from "zod";
 import { lessonContentSchema } from "@oaknational/oak-curriculum-schema";
 
 import {
-  lessonPathwaySchema,
   lessonShareResourceSchema,
+  lessonShareResourceTypeSchema,
 } from "../../shared.schema";
 
 export const rawLessonShareSchema = z.object({
@@ -21,7 +21,6 @@ export const rawLessonShareSchema = z.object({
 export type RawLessonShareSchema = z.infer<typeof rawLessonShareSchema>;
 
 const baseLessonShareSchema = z.object({
-  isSpecialist: z.literal(false),
   lessonSlug: z.string(),
   lessonTitle: z.string(),
   shareableResources: z.array(lessonShareResourceSchema),
@@ -40,21 +39,24 @@ export const baseLessonBrowseSchema = z.object({
   unitTitle: z.string(),
   subjectSlug: z.string(),
   subjectTitle: z.string(),
+  subjectParent: z.string().nullable(),
+  phaseSlug: z.string(),
+  phaseTitle: z.string().nullish(),
   examBoardSlug: z.string().nullish(),
   examBoardTitle: z.string().nullish(),
   tierSlug: z.string().nullish(),
   tierTitle: z.string().nullish(),
+  pathwaySlug: z.string().nullable(),
+  pathwayTitle: z.string().nullish(),
+  yearGroupTitle: z.string().nullish(),
 });
 
 export const lessonShareSchema = baseLessonShareSchema.extend({
   ...baseLessonBrowseSchema.shape,
 });
 
-export const canonicalLessonShareSchema = baseLessonShareSchema.extend({
-  pathways: z.array(lessonPathwaySchema),
-});
-
-export type LessonShareCanonical = z.infer<typeof canonicalLessonShareSchema>;
-
 export type LessonShareData = z.infer<typeof lessonShareSchema>;
+export type LessonShareResourceDataType = z.infer<
+  typeof lessonShareResourceTypeSchema
+>;
 export type LessonShareResourceData = z.infer<typeof lessonShareResourceSchema>;

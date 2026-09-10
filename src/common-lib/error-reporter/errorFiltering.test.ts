@@ -4,22 +4,50 @@ import {
   matchesUserAgent,
 } from "@/common-lib/error-reporter/errorFiltering";
 
+const mockSupportedBrowsersTest = jest.fn();
+
+jest.mock("./supportedBrowsersRegexp", () => ({
+  __esModule: true,
+  default: {
+    test: (ua: string) => mockSupportedBrowsersTest(ua),
+  },
+}));
+
 describe("common-lib/error-reporter/errorFiltering", () => {
+  beforeEach(() => {
+    mockSupportedBrowsersTest.mockReset();
+    mockSupportedBrowsersTest.mockReturnValue(true);
+  });
+
   describe("matchesUserAgent", () => {
-    it("returns false for standard browser user agent", () => {
+    it("returns false for a supported browser user agent", () => {
+      expect(
+        matchesUserAgent(
+          "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36",
+        ),
+      ).toBe(false);
+      expect(mockSupportedBrowsersTest).toHaveBeenCalled();
+    });
+
+    it("returns true for unsupported browser user agents", () => {
+      mockSupportedBrowsersTest.mockReturnValue(false);
+
       expect(
         matchesUserAgent(
           "Mozilla/5.0 (Macintosh; Intel Mac OS X 11_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/93.0.4619.141 Safari/537.36",
         ),
-      ).toBe(false);
+      ).toBe(true);
     });
 
-    it("returns true for Detectify user agent", () => {
+    it("returns true for Detectify user agent before browserslist check", () => {
+      mockSupportedBrowsersTest.mockReturnValue(true);
+
       expect(
         matchesUserAgent(
           "Mozilla/5.0 (Macintosh; Intel Mac OS X 11_4) Detectify AppleWebKit/537.36",
         ),
       ).toBe(true);
+      expect(mockSupportedBrowsersTest).not.toHaveBeenCalled();
     });
 
     it("returns true for Percy user agent", () => {

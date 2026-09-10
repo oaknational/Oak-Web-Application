@@ -29,8 +29,10 @@ const config = {
        * Metomic
        * Avo
        * Anything labelled with .pa11y-ignore (doesn't work if element has shadow-dom children for some reason)
+       * The lazy Mux player placeholder, which renders `aria-hidden=""` (an
+       *   invalid ARIA value under React 18) on a custom element we don't control.
        */
-      '#mtm-root-container, #mtm-frame-container, #avo-debugger, .pa11y-ignore, div[class^="PostHogSurvey"]',
+      '#mtm-root-container, #mtm-frame-container, #avo-debugger, .pa11y-ignore, div[class^="PostHogSurvey"], mux-player[data-mux-player-react-lazy-placeholder]',
     ignore: [
       // We have multiple instances of high-contrast text being detected as low-contrast
       // because of low-contrast text shadows.
@@ -47,10 +49,15 @@ const config = {
     headers: {
       "x-vercel-protection-bypass": vercelAutomationBypass,
     },
-    concurrency: 10,
+    concurrency: 5,
     // If running pa11y locally fails, comment out the following section
     chromeLaunchConfig: {
       executablePath: "/usr/bin/google-chrome",
+      args: [
+        // Aims to prevent flakiness with "Failed to run" errors (GH Issue: https://github.com/pa11y/pa11y-ci/issues/198)
+        // Pa11y CI recommends this flag for Docker containers: https://github.com/pa11y/pa11y-ci/blob/main/README.md#docker
+        "--no-sandbox",
+      ],
     },
   },
   urls: [],

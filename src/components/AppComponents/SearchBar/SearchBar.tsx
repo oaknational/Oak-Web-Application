@@ -23,6 +23,7 @@ const SearchBar = () => {
             name="term"
             aria-label="Lesson and unit search"
             $pr="spacing-32"
+            borderColor="border-neutral-stronger"
           />
         </OakBox>
         <OakBox
@@ -42,6 +43,7 @@ const SearchBar = () => {
       <OakBox $display={["block", "none"]}>
         <OakTertiaryButton
           element={Link}
+          aria-label="Search"
           href={resolveOakHref({ page: "search" })}
           iconName="search"
         />

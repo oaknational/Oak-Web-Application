@@ -19,12 +19,7 @@ const serversideSitemapPaths = [
   "/blog/categories/sitemap.xml",
   "/webinars/sitemap.xml",
   "/webinars/categories/sitemap.xml",
-  "/teachers/curriculum/sitemap.xml",
-  "/teachers/key-stages/sitemap.xml",
   "/teachers/sitemap.xml",
-  "/teachers/sitemap-1.xml",
-  "/pupils/sitemap.xml",
-  "/pupils/sitemap-1.xml",
 ];
 const serversideSitemapUrls = serversideSitemapPaths.map(
   (sitemapPath) => new URL(path.join(sitemapBaseUrl, sitemapPath)).href,
@@ -34,6 +29,7 @@ const serversideSitemapUrls = serversideSitemapPaths.map(
 const additionalAboutUsPaths = [
   "/about-us/who-we-are",
   "/about-us/oaks-curricula",
+  "/about-us/oaks-impact",
   "/about-us/meet-the-team",
   "/about-us/get-involved",
 ];
@@ -59,6 +55,7 @@ module.exports = {
     policies: [
       {
         userAgent: "*",
+        disallow: ["/api", "/_next/image"],
         // Note, there is a Cloudflare rule redirecting all /beta paths to a 404 page.
       },
     ],

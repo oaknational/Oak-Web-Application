@@ -1,6 +1,6 @@
-import ButtonAsLink, {
-  ButtonAsLinkProps,
-} from "@/components/SharedComponents/Button/ButtonAsLink";
+import { OakSmallTertiaryInvertedButton } from "@oaknational/oak-components";
+import Link from "next/link";
+
 import {
   PreselectedDownloadType,
   PreselectedShareType,
@@ -8,12 +8,9 @@ import {
   isPreselectedShareType,
 } from "@/components/TeacherComponents/types/downloadAndShare.types";
 import {
-  LessonDownloadsCanonicalLinkProps,
   LessonDownloadsLinkProps,
-  LessonShareCanonicalLinkProps,
   LessonShareLinkProps,
-  SpecialistLessonDownloadsLinkProps,
-  SpecialistLessonShareLinkProps,
+  resolveOakHref,
 } from "@/common-lib/urls";
 
 export function LessonItemContainerLink({
@@ -24,108 +21,52 @@ export function LessonItemContainerLink({
   programmeSlug,
   preselected,
   page,
-  isSpecialist,
 }: Readonly<{
   page: "share" | "download";
   resourceTitle: string;
   onClick?: () => void;
   lessonSlug: string;
-  unitSlug: string | null;
-  programmeSlug: string | null;
+  unitSlug: string;
+  programmeSlug: string;
   preselected: PreselectedDownloadType | PreselectedShareType | null;
-  isSpecialist: boolean;
 }>) {
-  const buttonProps: Pick<
-    ButtonAsLinkProps,
-    | "variant"
-    | "iconBackground"
-    | "icon"
-    | "$iconPosition"
-    | "label"
-    | "onClick"
-  > = {
-    variant: "minimal",
-    iconBackground: "black",
-    icon: "arrow-right",
-    $iconPosition: "trailing",
-    onClick,
-    label: page === "share" ? "Share with pupils" : `Download ${resourceTitle}`,
-  };
+  const label =
+    page === "share" ? "Share with pupils" : `Download ${resourceTitle}`;
 
-  const shareLinkProps:
-    | LessonShareLinkProps
-    | LessonShareCanonicalLinkProps
-    | SpecialistLessonShareLinkProps =
-    isSpecialist && programmeSlug && unitSlug
+  const linkProps: LessonShareLinkProps | LessonDownloadsLinkProps =
+    page === "share"
       ? {
-          page: "specialist-lesson-share",
+          page: "lesson-share",
           lessonSlug,
           unitSlug,
           programmeSlug,
-          query: isPreselectedShareType(preselected)
-            ? { preselected }
-            : undefined,
+          ...(isPreselectedShareType(preselected)
+            ? { query: { preselected } }
+            : {}),
         }
-      : programmeSlug && unitSlug
-        ? {
-            page: "lesson-share",
-            lessonSlug,
-            unitSlug,
-            programmeSlug,
-            query: isPreselectedShareType(preselected)
-              ? { preselected }
-              : undefined,
-          }
-        : {
-            page: "lesson-share-canonical",
-            lessonSlug,
-            query: isPreselectedShareType(preselected)
-              ? { preselected }
-              : undefined,
-          };
-
-  const downloadLinkProps:
-    | LessonDownloadsLinkProps
-    | LessonDownloadsCanonicalLinkProps
-    | SpecialistLessonDownloadsLinkProps =
-    isSpecialist && programmeSlug && unitSlug
-      ? {
-          page: "specialist-lesson-downloads",
+      : {
+          page: "lesson-downloads",
           lessonSlug,
           unitSlug,
           programmeSlug,
-          downloads: "downloads",
-          query: isPreselectedDownloadType(preselected)
-            ? { preselected }
-            : undefined,
-        }
-      : programmeSlug && unitSlug
-        ? {
-            page: "lesson-downloads",
-            lessonSlug,
-            unitSlug,
-            programmeSlug,
-            downloads: "downloads",
-            query: isPreselectedDownloadType(preselected)
-              ? { preselected }
-              : undefined,
-          }
-        : {
-            page: "lesson-downloads-canonical",
-            downloads: "downloads",
-            lessonSlug,
-            query: isPreselectedDownloadType(preselected)
-              ? { preselected }
-              : undefined,
-          };
-  const linkProps = page === "share" ? shareLinkProps : downloadLinkProps;
+          ...(isPreselectedDownloadType(preselected)
+            ? { query: { preselected } }
+            : {}),
+        };
+
+  const href = resolveOakHref(linkProps);
 
   return (
-    <ButtonAsLink
-      {...buttonProps}
+    <OakSmallTertiaryInvertedButton
+      element={Link}
+      href={href}
+      iconName="download"
+      isTrailingIcon
       data-testid="download-button"
       rel="nofollow"
-      {...linkProps}
-    />
+      onClick={onClick}
+    >
+      {label}
+    </OakSmallTertiaryInvertedButton>
   );
 }

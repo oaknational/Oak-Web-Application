@@ -7,6 +7,8 @@ import {
 } from "@oaknational/google-classroom-addon/types";
 import { AuthCookieKeys } from "@oaknational/google-classroom-addon/ui";
 
+import { ScopeInsufficientError } from "./errors";
+
 const getOakGCAuthHeaders = async (
   isPupil?: boolean,
 ): Promise<Headers | undefined> => {
@@ -50,7 +52,6 @@ const sendRequest = async <returnType, payload = undefined>(
     } catch {
       throw new Error(`API request failed: ${res.status} ${res.statusText}`);
     }
-    // If is an OakGoogleClassroomException, throw as is
     if (
       errorData &&
       typeof errorData === "object" &&
@@ -59,6 +60,9 @@ const sendRequest = async <returnType, payload = undefined>(
       "name" in errorData &&
       errorData.name === "OakGoogleClassroomException"
     ) {
+      if (errorData.code === "insufficient_scope") {
+        throw new ScopeInsufficientError();
+      }
       throw errorData;
     }
     // catch other errors
@@ -271,9 +275,15 @@ const getPostSubmissionState = async (
   }
 };
 
+const hasTeacherCookies = async (): Promise<boolean> => {
+  const headers = await getOakGCAuthHeaders();
+  return headers !== undefined;
+};
+
 export default {
   getGoogleSignInUrl,
   verifySession,
+  hasTeacherCookies,
   createAttachment,
   getAddOnContext,
   submitPupilProgress,

@@ -1,0 +1,135 @@
+import {
+  OakBox,
+  OakGrid,
+  OakGridArea,
+  OakHeading,
+} from "@oaknational/oak-components";
+
+import { KS4OptionFocusProvider } from "../Filters/KS4OptionFocus";
+import { ProgrammePageFiltersModalProvider } from "../Filters/ProgrammePageFiltersModalProvider";
+import ProgrammePageFiltersDesktop from "../Filters/ProgrammePageFiltersDesktop";
+import ProgrammePageFiltersMobile from "../Filters/ProgrammePageFiltersMobile";
+import { useDisplayedFilters } from "../Filters/ProgrammeFilters";
+import type { Ks4OptionFilterDimension } from "../../buildKs4OptionFilterDimensions";
+
+import ProgrammeSequence from "./Sequence";
+
+import ScreenReaderOnly from "@/components/SharedComponents/ScreenReaderOnly";
+import { CurriculumUnitsFormattedData } from "@/pages-helpers/curriculum/docx/tab-helpers";
+import {
+  getNumberOfSelectedUnits,
+  highlightedUnitCount,
+} from "@/utils/curriculum/filtering";
+import { CurriculumSelectionSlugs } from "@/utils/curriculum/slugs";
+import type { Ks4Option } from "@/node-lib/curriculum-api-2023/queries/curriculumPhaseOptions/curriculumPhaseOptions.schema";
+import { useBrowseFilters } from "@/context/BrowseFilters";
+
+export type UnitSequenceViewProps = {
+  curriculumSelectionSlugs: CurriculumSelectionSlugs;
+  curriculumUnitsFormattedData: CurriculumUnitsFormattedData;
+  ks4Options: Ks4Option[];
+  ks4OptionFilterDimensions: Record<string, Ks4OptionFilterDimension>;
+};
+
+export const UnitSequenceView = ({
+  curriculumSelectionSlugs,
+  curriculumUnitsFormattedData,
+  ks4Options,
+  ks4OptionFilterDimensions,
+}: UnitSequenceViewProps) => {
+  const { yearData, threadOptions } = curriculumUnitsFormattedData;
+  const { ks4OptionSlug } = curriculumSelectionSlugs;
+
+  const { filters } = useBrowseFilters();
+
+  const unitCount = getNumberOfSelectedUnits(yearData, filters);
+
+  const highlightedUnits = highlightedUnitCount(
+    yearData,
+    filters,
+    filters.threads,
+  );
+
+  const shouldDisplayFilters = useDisplayedFilters(
+    curriculumUnitsFormattedData,
+    curriculumSelectionSlugs,
+    ks4Options,
+  ).some((filter) => filter.shouldDisplayFilter);
+
+  return (
+    <OakBox $ph={["spacing-20", "spacing-40"]}>
+      <OakBox
+        id="programme-units"
+        aria-labelledby="programme-unit-sequence-heading"
+        tabIndex={-1}
+        $mh={"auto"}
+        $width={"100%"}
+        $maxWidth={"spacing-1280"}
+        $color="text-primary"
+        as="section"
+      >
+        <ScreenReaderOnly>
+          <OakHeading
+            id="programme-unit-sequence-heading"
+            tag="h2"
+            $mb="spacing-24"
+            $ml={["spacing-16", "spacing-0"]}
+            $font={["heading-5", "heading-4"]}
+          >
+            Unit sequence
+          </OakHeading>
+        </ScreenReaderOnly>
+        <ProgrammePageFiltersModalProvider>
+          <KS4OptionFocusProvider>
+            <OakBox $display={["block", "block", "none"]}>
+              {shouldDisplayFilters && (
+                <ProgrammePageFiltersMobile
+                  data={curriculumUnitsFormattedData}
+                  slugs={curriculumSelectionSlugs}
+                  ks4Options={ks4Options}
+                  ks4OptionFilterDimensions={ks4OptionFilterDimensions}
+                />
+              )}
+            </OakBox>
+            <OakGrid $cg={"spacing-16"}>
+              <OakGridArea
+                $colSpan={[12, 12, 3]}
+                $display={["none", "none", "block"]}
+              >
+                {shouldDisplayFilters && (
+                  <ProgrammePageFiltersDesktop
+                    data={curriculumUnitsFormattedData}
+                    slugs={curriculumSelectionSlugs}
+                    ks4Options={ks4Options}
+                    ks4OptionFilterDimensions={ks4OptionFilterDimensions}
+                  />
+                )}
+              </OakGridArea>
+              <OakGridArea $colSpan={[12, 12, 9]}>
+                <ProgrammeSequence
+                  filters={filters}
+                  ks4OptionSlug={ks4OptionSlug}
+                  ks4Options={ks4Options}
+                  yearData={yearData}
+                  threadOptions={threadOptions}
+                />
+              </OakGridArea>
+            </OakGrid>
+          </KS4OptionFocusProvider>
+        </ProgrammePageFiltersModalProvider>
+        <ScreenReaderOnly aria-live="polite" aria-atomic="true">
+          <p>
+            {unitCount} {unitCount === 1 ? "unit" : "units"} shown,
+          </p>
+          {filters.threads[0] && (
+            <p>
+              {highlightedUnits}
+              {highlightedUnits === 1 ? "unit" : "units"}
+              highlighted
+            </p>
+          )}
+        </ScreenReaderOnly>
+      </OakBox>
+    </OakBox>
+  );
+};

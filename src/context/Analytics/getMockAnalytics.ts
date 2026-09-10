@@ -32,5 +32,8 @@ export function getMockAnalytics(): AnalyticsContext {
         console.log("Mock alias called");
       }
     },
+    getSessionId: () => {
+      return "mockSessionId";
+    },
   };
 }

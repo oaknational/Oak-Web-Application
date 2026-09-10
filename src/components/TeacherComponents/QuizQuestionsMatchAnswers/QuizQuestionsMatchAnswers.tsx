@@ -49,31 +49,23 @@ export const QuizQuestionsMatchAnswers = ({
                 $width={"spacing-24"}
                 $height={"spacing-24"}
               />
-              <OakFlex
-                $flexWrap={"wrap"}
-                $width={["100%", "100%", "max-content"]}
-              >
-                <OakP
-                  $whiteSpace={"nowrap"}
-                  $font={["body-2-bold", "body-1-bold"]}
-                  aria-hidden
-                >
-                  <OakCodeRenderer
-                    string={removeMarkdown(matchOption.text)}
-                    $font="code-3"
-                    $mt={"spacing-0"}
-                  />
+              <OakFlex $flexWrap={"wrap"} $width={["100%", "100%"]}>
+                <OakP aria-hidden>
+                  <OakSpan $font={["body-2-bold", "body-1-bold"]}>
+                    <OakCodeRenderer
+                      string={removeMarkdown(matchOption.text)}
+                      $font="code-3"
+                      $mt={"spacing-0"}
+                    />
+                  </OakSpan>
                   <OakSpan>{" -"}&nbsp;</OakSpan>
-                </OakP>
-                <OakP
-                  $whiteSpace={["break-spaces", "nowrap"]}
-                  $font={["body-2", "body-1"]}
-                >
-                  <OakCodeRenderer
-                    string={removeMarkdown(correctChoice.text)}
-                    $font="code-3"
-                    $mt={"spacing-0"}
-                  />
+                  <OakSpan $font={["body-2", "body-1"]}>
+                    <OakCodeRenderer
+                      string={removeMarkdown(correctChoice.text)}
+                      $font="code-3"
+                      $mt={"spacing-0"}
+                    />
+                  </OakSpan>
                 </OakP>
               </OakFlex>
             </OakFlex>

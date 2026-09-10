@@ -15,33 +15,32 @@ import ButtonLabel from "@/components/SharedComponents/Button/ButtonLabel";
 import { IconFocusUnderline } from "@/components/SharedComponents/Button/IconFocusUnderline";
 import Icon, { IconName } from "@/components/SharedComponents/Icon.deprecated";
 import ButtonBorders from "@/components/SharedComponents/SpriteSheet/BrushSvgs/ButtonBorders";
-import Svg from "@/components/SharedComponents/Svg";
-import SubjectIcon from "@/components/SharedComponents/SubjectIcon";
+import { LegacySvg } from "@/components/SharedComponents/Svg";
 import ScreenReaderOnly from "@/components/SharedComponents/ScreenReaderOnly";
 import getColorByName from "@/styles/themeHelpers/getColorByName";
 import { OakColorName } from "@/styles/theme";
 import { FontVariant } from "@/styles/utils/typography";
 import { ResponsiveValues } from "@/styles/utils/responsive";
 
-export const ButtonFocusUnderline = styled(Svg)<{
+export const ButtonFocusUnderline = styled(LegacySvg)<{
   $color: OakColorName;
 }>`
   color: ${(props) => getColorByName(props.$color)};
   position: absolute;
 `;
-export const ButtonMinimalFocusUnderline = styled(Svg)<{
+export const ButtonMinimalFocusUnderline = styled(LegacySvg)<{
   $color: OakColorName;
 }>`
   color: ${(props) => getColorByName(props.$color)};
   position: absolute;
 `;
-export const ButtonStyledAsLinkFocusUnderline = styled(Svg)<{
+export const ButtonStyledAsLinkFocusUnderline = styled(LegacySvg)<{
   $color: OakColorName;
 }>`
   color: ${(props) => getColorByName(props.$color)};
   position: absolute;
 `;
-const BrushUnderline = styled(Svg)`
+const BrushUnderline = styled(LegacySvg)`
   position: absolute;
   mask-position: center;
   height: 8px;
@@ -58,7 +57,6 @@ export type ButtonInnerProps = {
   label: string;
   labelSuffixA11y?: string;
   icon?: IconName;
-  subjectIcon?: string;
   iconBackground?: OakColorName;
   $iconPosition: IconPosition;
   shouldHideLabel?: boolean[];
@@ -79,7 +77,6 @@ export type ButtonInnerProps = {
 
 const ButtonInner: FC<ButtonInnerProps> = (props) => {
   let { icon } = props;
-  const { subjectIcon } = props;
   const {
     $iconPosition,
     iconBackground,
@@ -152,22 +149,6 @@ const ButtonInner: FC<ButtonInnerProps> = (props) => {
           {(variant === "minimal" || variant === "minimalNav") && (
             <IconFocusUnderline $color={underlineColor} />
           )}
-        </OakFlex>
-      )}
-      {subjectIcon && (
-        <OakFlex
-          $display={"inline-flex"}
-          $position="relative"
-          $alignItems="center"
-          $color={currentColor}
-          // $ml={-8}
-        >
-          <SubjectIcon
-            subjectSlug={subjectIcon}
-            $maxHeight={40}
-            $maxWidth={40}
-            $height={iconSize}
-          />
         </OakFlex>
       )}
       <OakBox $position={"relative"} $minWidth={"spacing-0"}>

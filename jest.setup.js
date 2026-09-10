@@ -5,6 +5,8 @@ import "@testing-library/jest-dom";
 import "whatwg-fetch";
 import bugsnag from "@bugsnag/js";
 import { installMockIntersectionObserver } from "@oaknational/oak-components";
+import "./src/__tests__/__helpers__/mockBroadcastChannel";
+import "./src/__tests__/__helpers__/mockCookieStore";
 
 // Override this with `TEST_ALLOW_LOGGING=1` if you want logs locally
 if (process.env.TEST_ALLOW_LOGGING !== "1") {
@@ -32,9 +34,19 @@ global.SubmitEvent =
 jest.mock("react", () => ({
   ...jest.requireActual("react"),
   useId: () => "react-use-id-test-result",
+  // Jest does not load the RSC server build; passthrough cache for getCached* helpers.
+  cache: (fn) => fn,
 }));
 
 jest.mock("next/dist/client/router", () => require("next-router-mock"));
+
+jest.mock("next/cache", () => {
+  const actual = jest.requireActual("next/cache");
+  return {
+    ...actual,
+    unstable_cache: (fn) => fn,
+  };
+});
 
 jest.mock("@bugsnag/js", () => ({
   __esModule: true,
@@ -73,7 +85,9 @@ jest.mock("./src/components/AppComponents/ErrorBoundary/ErrorBoundary", () => {
 });
 
 jest.mock("./src/node-lib/curriculum-api-2023", () =>
-  jest.requireActual("./src/node-lib/curriculum-api-2023/__mocks__"),
+  jest.requireActual(
+    "./src/node-lib/curriculum-api-2023/__mocks__/curriculumApi2023Mock",
+  ),
 );
 
 jest.mock("posthog-js", () => ({

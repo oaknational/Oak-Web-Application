@@ -17,7 +17,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 10,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks3",
+      keystage_slug: "ks3" as const,
       lessons: [
         {
           slug: "what-forces-do",
@@ -72,8 +72,8 @@ const curriculumUnitsTabFixture = (
       ],
       order: 1,
       slug: "forces",
-      subject: "Science",
-      subject_slug: "science",
+      subject: "Science" as const,
+      subject_slug: "science" as const,
       subject_parent: null,
       subject_parent_slug: null,
       tier: null,
@@ -115,7 +115,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 8,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks3",
+      keystage_slug: "ks3" as const,
       lessons: [
         {
           slug: "interdependence-within-ecosystems",
@@ -160,8 +160,8 @@ const curriculumUnitsTabFixture = (
       ],
       order: 1,
       slug: "biodiversity",
-      subject: "Science",
-      subject_slug: "science",
+      subject: "Science" as const,
+      subject_slug: "science" as const,
       subject_parent: null,
       subject_parent_slug: null,
       tier: null,
@@ -204,7 +204,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 4,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks3",
+      keystage_slug: "ks3" as const,
       lessons: [
         {
           slug: "plant-nutrition",
@@ -230,8 +230,8 @@ const curriculumUnitsTabFixture = (
       ],
       order: 1,
       slug: "plant-nutrition-and-photosynthesis",
-      subject: "Science",
-      subject_slug: "science",
+      subject: "Science" as const,
+      subject_slug: "science" as const,
       subject_parent: null,
       subject_parent_slug: null,
       tier: null,
@@ -274,7 +274,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 9,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "cells",
@@ -319,10 +319,10 @@ const curriculumUnitsTabFixture = (
       ],
       order: 1,
       slug: "eukaryotic-and-prokaryotic-cells",
-      subject: "Biology",
-      subject_slug: "biology",
-      subject_parent: "Science",
-      subject_parent_slug: "science",
+      subject: "Biology" as const,
+      subject_slug: "biology" as const,
+      subject_parent: "Science" as const,
+      subject_parent_slug: "science" as const,
       tier: "Foundation",
       tier_slug: "foundation",
       subjectcategories: [],
@@ -357,7 +357,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 9,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "cells",
@@ -402,10 +402,10 @@ const curriculumUnitsTabFixture = (
       ],
       order: 1,
       slug: "eukaryotic-and-prokaryotic-cells",
-      subject: "Biology",
-      subject_slug: "biology",
-      subject_parent: "Science",
-      subject_parent_slug: "science",
+      subject: "Biology" as const,
+      subject_slug: "biology" as const,
+      subject_parent: "Science" as const,
+      subject_parent_slug: "science" as const,
       tier: "Higher",
       tier_slug: "higher",
       subjectcategories: [],
@@ -440,7 +440,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 18,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "atomic-structure-very-small-electron-mass",
@@ -485,10 +485,10 @@ const curriculumUnitsTabFixture = (
       ],
       order: 1,
       slug: "atomic-structure-and-the-periodic-table",
-      subject: "Chemistry",
-      subject_slug: "chemistry",
-      subject_parent: "Science",
-      subject_parent_slug: "science",
+      subject: "Chemistry" as const,
+      subject_slug: "chemistry" as const,
+      subject_parent: "Science" as const,
+      subject_parent_slug: "science" as const,
       tier: null,
       tier_slug: null,
       subjectcategories: [],
@@ -527,7 +527,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 18,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "atomic-structure-very-small-electron-mass",
@@ -572,10 +572,10 @@ const curriculumUnitsTabFixture = (
       ],
       order: 1,
       slug: "atomic-structure-and-the-periodic-table",
-      subject: "Combined science",
-      subject_slug: "combined-science",
-      subject_parent: "Science",
-      subject_parent_slug: "science",
+      subject: "Combined science" as const,
+      subject_slug: "combined-science" as const,
+      subject_parent: "Science" as const,
+      subject_parent_slug: "science" as const,
       tier: null,
       tier_slug: null,
       subjectcategories: [],
@@ -614,7 +614,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 15,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "calculating-density",
@@ -679,10 +679,10 @@ const curriculumUnitsTabFixture = (
       ],
       order: 1,
       slug: "particle-explanations-of-density-and-pressure",
-      subject: "Physics",
-      subject_slug: "physics",
-      subject_parent: "Science",
-      subject_parent_slug: "science",
+      subject: "Physics" as const,
+      subject_slug: "physics" as const,
+      subject_parent: "Science" as const,
+      subject_parent_slug: "science" as const,
       tier: "Higher",
       tier_slug: "higher",
       subjectcategories: [],
@@ -716,7 +716,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 15,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "calculating-density",
@@ -781,10 +781,10 @@ const curriculumUnitsTabFixture = (
       ],
       order: 1,
       slug: "particle-explanations-of-density-and-pressure",
-      subject: "Physics",
-      subject_slug: "physics",
-      subject_parent: "Science",
-      subject_parent_slug: "science",
+      subject: "Physics" as const,
+      subject_slug: "physics" as const,
+      subject_parent: "Science" as const,
+      subject_parent_slug: "science" as const,
       tier: "Foundation",
       tier_slug: "foundation",
       subjectcategories: [],
@@ -818,7 +818,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 8,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "defences-of-the-human-body-against-pathogens-and-the-human-immune-system",
@@ -844,10 +844,10 @@ const curriculumUnitsTabFixture = (
       ],
       order: 1,
       slug: "defences-against-pathogens-the-human-immune-system-and-vaccination",
-      subject: "Biology",
-      subject_slug: "biology",
-      subject_parent: "Science",
-      subject_parent_slug: "science",
+      subject: "Biology" as const,
+      subject_slug: "biology" as const,
+      subject_parent: "Science" as const,
+      subject_parent_slug: "science" as const,
       tier: "Higher",
       tier_slug: "higher",
 
@@ -883,7 +883,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 8,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "defences-of-the-human-body-against-pathogens",
@@ -913,10 +913,10 @@ const curriculumUnitsTabFixture = (
       ],
       order: 1,
       slug: "defences-against-pathogens-the-human-immune-system-and-vaccination",
-      subject: "Biology",
-      subject_slug: "biology",
-      subject_parent: "Science",
-      subject_parent_slug: "science",
+      subject: "Biology" as const,
+      subject_slug: "biology" as const,
+      subject_parent: "Science" as const,
+      subject_parent_slug: "science" as const,
       tier: "Foundation",
       tier_slug: "foundation",
 
@@ -952,7 +952,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 15,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "earths-resources",
@@ -1032,10 +1032,10 @@ const curriculumUnitsTabFixture = (
       ],
       order: 1,
       slug: "using-earths-resources",
-      subject: "Chemistry",
-      subject_slug: "chemistry",
-      subject_parent: "Science",
-      subject_parent_slug: "science",
+      subject: "Chemistry" as const,
+      subject_slug: "chemistry" as const,
+      subject_parent: "Science" as const,
+      subject_parent_slug: "science" as const,
       tier: "Higher",
       tier_slug: "higher",
 
@@ -1076,7 +1076,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 15,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "earths-resources",
@@ -1146,10 +1146,10 @@ const curriculumUnitsTabFixture = (
       ],
       order: 1,
       slug: "using-earths-resources",
-      subject: "Chemistry",
-      subject_slug: "chemistry",
-      subject_parent: "Science",
-      subject_parent_slug: "science",
+      subject: "Chemistry" as const,
+      subject_slug: "chemistry" as const,
+      subject_parent: "Science" as const,
+      subject_parent_slug: "science" as const,
       tier: "Foundation",
       tier_slug: "foundation",
 
@@ -1190,7 +1190,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 8,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "defences-of-the-human-body-against-pathogens-and-the-human-immune-system",
@@ -1211,10 +1211,10 @@ const curriculumUnitsTabFixture = (
       ],
       order: 1,
       slug: "defences-against-pathogens-the-human-immune-system-and-vaccination",
-      subject: "Combined science",
-      subject_slug: "combined-science",
-      subject_parent: "Science",
-      subject_parent_slug: "science",
+      subject: "Combined science" as const,
+      subject_slug: "combined-science" as const,
+      subject_parent: "Science" as const,
+      subject_parent_slug: "science" as const,
       tier: "Higher",
       tier_slug: "higher",
 
@@ -1250,7 +1250,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 8,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "defences-of-the-human-body-against-pathogens",
@@ -1275,10 +1275,10 @@ const curriculumUnitsTabFixture = (
       ],
       order: 1,
       slug: "defences-against-pathogens-the-human-immune-system-and-vaccination",
-      subject: "Combined science",
-      subject_slug: "combined-science",
-      subject_parent: "Science",
-      subject_parent_slug: "science",
+      subject: "Combined science" as const,
+      subject_slug: "combined-science" as const,
+      subject_parent: "Science" as const,
+      subject_parent_slug: "science" as const,
       tier: "Foundation",
       tier_slug: "foundation",
 
@@ -1314,7 +1314,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 19,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "resultant-forces",
@@ -1375,10 +1375,10 @@ const curriculumUnitsTabFixture = (
       ],
       order: 1,
       slug: "forces-make-things-change",
-      subject: "Physics",
-      subject_slug: "physics",
-      subject_parent: "Science",
-      subject_parent_slug: "science",
+      subject: "Physics" as const,
+      subject_slug: "physics" as const,
+      subject_parent: "Science" as const,
+      subject_parent_slug: "science" as const,
       tier: "Foundation",
       tier_slug: "foundation",
 
@@ -1413,7 +1413,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 19,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "resultant-forces-in-two-dimensions",
@@ -1485,10 +1485,10 @@ const curriculumUnitsTabFixture = (
       ],
       order: 1,
       slug: "forces-make-things-change",
-      subject: "Physics",
-      subject_slug: "physics",
-      subject_parent: "Science",
-      subject_parent_slug: "science",
+      subject: "Physics" as const,
+      subject_slug: "physics" as const,
+      subject_parent: "Science" as const,
+      subject_parent_slug: "science" as const,
       tier: "Higher",
       tier_slug: "higher",
 
@@ -1524,7 +1524,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 7,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks3",
+      keystage_slug: "ks3" as const,
       lessons: [
         {
           slug: "solid-and-liquid-states",
@@ -1564,8 +1564,8 @@ const curriculumUnitsTabFixture = (
       ],
       order: 2,
       slug: "solid-liquid-gas-states-and-changes-of-state",
-      subject: "Science",
-      subject_slug: "science",
+      subject: "Science" as const,
+      subject_slug: "science" as const,
       subject_parent: null,
       subject_parent_slug: null,
       tier: null,
@@ -1608,7 +1608,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 10,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks3",
+      keystage_slug: "ks3" as const,
       lessons: [
         {
           slug: "characteristics-of-chemical-reactions",
@@ -1663,8 +1663,8 @@ const curriculumUnitsTabFixture = (
       ],
       order: 2,
       slug: "understanding-chemical-reactions",
-      subject: "Science",
-      subject_slug: "science",
+      subject: "Science" as const,
+      subject_slug: "science" as const,
       subject_parent: null,
       subject_parent_slug: null,
       tier: null,
@@ -1707,7 +1707,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 10,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks3",
+      keystage_slug: "ks3" as const,
       lessons: [
         {
           slug: "composite-materials",
@@ -1762,8 +1762,8 @@ const curriculumUnitsTabFixture = (
       ],
       order: 2,
       slug: "materials",
-      subject: "Science",
-      subject_slug: "science",
+      subject: "Science" as const,
+      subject_slug: "science" as const,
       subject_parent: null,
       subject_parent_slug: null,
       tier: null,
@@ -1806,7 +1806,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 11,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "the-genome",
@@ -1831,10 +1831,10 @@ const curriculumUnitsTabFixture = (
       ],
       order: 2,
       slug: "dna-and-the-genome",
-      subject: "Biology",
-      subject_slug: "biology",
-      subject_parent: "Science",
-      subject_parent_slug: "science",
+      subject: "Biology" as const,
+      subject_slug: "biology" as const,
+      subject_parent: "Science" as const,
+      subject_parent_slug: "science" as const,
       tier: "Foundation",
       tier_slug: "foundation",
 
@@ -1869,7 +1869,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 11,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "the-genome",
@@ -1915,10 +1915,10 @@ const curriculumUnitsTabFixture = (
       ],
       order: 2,
       slug: "dna-and-the-genome",
-      subject: "Biology",
-      subject_slug: "biology",
-      subject_parent: "Science",
-      subject_parent_slug: "science",
+      subject: "Biology" as const,
+      subject_slug: "biology" as const,
+      subject_parent: "Science" as const,
+      subject_parent_slug: "science" as const,
       tier: "Higher",
       tier_slug: "higher",
 
@@ -1953,7 +1953,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 20,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "why-chemical-reactions-happen",
@@ -2049,10 +2049,10 @@ const curriculumUnitsTabFixture = (
       ],
       order: 2,
       slug: "structure-and-bonding",
-      subject: "Chemistry",
-      subject_slug: "chemistry",
-      subject_parent: "Science",
-      subject_parent_slug: "science",
+      subject: "Chemistry" as const,
+      subject_slug: "chemistry" as const,
+      subject_parent: "Science" as const,
+      subject_parent_slug: "science" as const,
       tier: "Foundation",
       tier_slug: "foundation",
 
@@ -2092,7 +2092,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 20,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "why-chemical-reactions-happen",
@@ -2198,10 +2198,10 @@ const curriculumUnitsTabFixture = (
       ],
       order: 2,
       slug: "structure-and-bonding",
-      subject: "Chemistry",
-      subject_slug: "chemistry",
-      subject_parent: "Science",
-      subject_parent_slug: "science",
+      subject: "Chemistry" as const,
+      subject_slug: "chemistry" as const,
+      subject_parent: "Science" as const,
+      subject_parent_slug: "science" as const,
       tier: "Higher",
       tier_slug: "higher",
 
@@ -2241,7 +2241,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 9,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "cells",
@@ -2286,10 +2286,10 @@ const curriculumUnitsTabFixture = (
       ],
       order: 2,
       slug: "eukaryotic-and-prokaryotic-cells",
-      subject: "Combined science",
-      subject_slug: "combined-science",
-      subject_parent: "Science",
-      subject_parent_slug: "science",
+      subject: "Combined science" as const,
+      subject_slug: "combined-science" as const,
+      subject_parent: "Science" as const,
+      subject_parent_slug: "science" as const,
       tier: "Higher",
       tier_slug: "higher",
 
@@ -2325,7 +2325,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 9,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "cells",
@@ -2370,10 +2370,10 @@ const curriculumUnitsTabFixture = (
       ],
       order: 2,
       slug: "eukaryotic-and-prokaryotic-cells",
-      subject: "Combined science",
-      subject_slug: "combined-science",
-      subject_parent: "Science",
-      subject_parent_slug: "science",
+      subject: "Combined science" as const,
+      subject_slug: "combined-science" as const,
+      subject_parent: "Science" as const,
+      subject_parent_slug: "science" as const,
       tier: "Foundation",
       tier_slug: "foundation",
 
@@ -2409,7 +2409,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 42,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "different-speeds-vs-t",
@@ -2479,10 +2479,10 @@ const curriculumUnitsTabFixture = (
       ],
       order: 2,
       slug: "measuring-and-calculating-motion",
-      subject: "Physics",
-      subject_slug: "physics",
-      subject_parent: "Science",
-      subject_parent_slug: "science",
+      subject: "Physics" as const,
+      subject_slug: "physics" as const,
+      subject_parent: "Science" as const,
+      subject_parent_slug: "science" as const,
       tier: "Higher",
       tier_slug: "higher",
 
@@ -2517,7 +2517,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 42,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "different-speeds-vs-t",
@@ -2582,10 +2582,10 @@ const curriculumUnitsTabFixture = (
       ],
       order: 2,
       slug: "measuring-and-calculating-motion",
-      subject: "Physics",
-      subject_slug: "physics",
-      subject_parent: "Science",
-      subject_parent_slug: "science",
+      subject: "Physics" as const,
+      subject_slug: "physics" as const,
+      subject_parent: "Science" as const,
+      subject_parent_slug: "science" as const,
       tier: "Foundation",
       tier_slug: "foundation",
 
@@ -2620,7 +2620,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 5,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "aerobic-cellular-respiration-in-humans-and-other-organisms",
@@ -2641,10 +2641,10 @@ const curriculumUnitsTabFixture = (
       ],
       order: 2,
       slug: "aerobic-and-anaerobic-cellular-respiration",
-      subject: "Biology",
-      subject_slug: "biology",
-      subject_parent: "Science",
-      subject_parent_slug: "science",
+      subject: "Biology" as const,
+      subject_slug: "biology" as const,
+      subject_parent: "Science" as const,
+      subject_parent_slug: "science" as const,
       tier: null,
       tier_slug: null,
 
@@ -2680,7 +2680,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 5,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "properties-of-group-0-elements",
@@ -2710,10 +2710,10 @@ const curriculumUnitsTabFixture = (
       ],
       order: 2,
       slug: "groups-of-the-periodic-table",
-      subject: "Chemistry",
-      subject_slug: "chemistry",
-      subject_parent: "Science",
-      subject_parent_slug: "science",
+      subject: "Chemistry" as const,
+      subject_slug: "chemistry" as const,
+      subject_parent: "Science" as const,
+      subject_parent_slug: "science" as const,
       tier: "Higher",
       tier_slug: "higher",
 
@@ -2753,7 +2753,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 5,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "properties-of-group-0-elements",
@@ -2778,10 +2778,10 @@ const curriculumUnitsTabFixture = (
       ],
       order: 2,
       slug: "groups-of-the-periodic-table",
-      subject: "Chemistry",
-      subject_slug: "chemistry",
-      subject_parent: "Science",
-      subject_parent_slug: "science",
+      subject: "Chemistry" as const,
+      subject_slug: "chemistry" as const,
+      subject_parent: "Science" as const,
+      subject_parent_slug: "science" as const,
       tier: "Foundation",
       tier_slug: "foundation",
 
@@ -2821,7 +2821,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 14,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "the-rate-of-a-chemical-reaction",
@@ -2897,10 +2897,10 @@ const curriculumUnitsTabFixture = (
       ],
       order: 2,
       slug: "rate-of-reaction",
-      subject: "Combined science",
-      subject_slug: "combined-science",
-      subject_parent: "Science",
-      subject_parent_slug: "science",
+      subject: "Combined science" as const,
+      subject_slug: "combined-science" as const,
+      subject_parent: "Science" as const,
+      subject_parent_slug: "science" as const,
       tier: null,
       tier_slug: null,
 
@@ -2940,7 +2940,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 20,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "background-radiation",
@@ -3015,10 +3015,10 @@ const curriculumUnitsTabFixture = (
       ],
       order: 2,
       slug: "nuclear-physics",
-      subject: "Physics",
-      subject_slug: "physics",
-      subject_parent: "Science",
-      subject_parent_slug: "science",
+      subject: "Physics" as const,
+      subject_slug: "physics" as const,
+      subject_parent: "Science" as const,
+      subject_parent_slug: "science" as const,
       tier: "Foundation",
       tier_slug: "foundation",
 
@@ -3053,7 +3053,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 20,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "background-radiation",
@@ -3129,10 +3129,10 @@ const curriculumUnitsTabFixture = (
       ],
       order: 2,
       slug: "nuclear-physics",
-      subject: "Physics",
-      subject_slug: "physics",
-      subject_parent: "Science",
-      subject_parent_slug: "science",
+      subject: "Physics" as const,
+      subject_slug: "physics" as const,
+      subject_parent: "Science" as const,
+      subject_parent_slug: "science" as const,
       tier: "Higher",
       tier_slug: "higher",
 
@@ -3167,7 +3167,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 6,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks3",
+      keystage_slug: "ks3" as const,
       lessons: [
         {
           slug: "the-common-processes-of-all-living-organisms",
@@ -3207,8 +3207,8 @@ const curriculumUnitsTabFixture = (
       ],
       order: 3,
       slug: "cells",
-      subject: "Science",
-      subject_slug: "science",
+      subject: "Science" as const,
+      subject_slug: "science" as const,
       subject_parent: null,
       subject_parent_slug: null,
       tier: null,
@@ -3252,7 +3252,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 10,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks3",
+      keystage_slug: "ks3" as const,
       lessons: [
         {
           slug: "calculating-speed",
@@ -3307,8 +3307,8 @@ const curriculumUnitsTabFixture = (
       ],
       order: 3,
       slug: "moving-by-force",
-      subject: "Science",
-      subject_slug: "science",
+      subject: "Science" as const,
+      subject_slug: "science" as const,
       subject_parent: null,
       subject_parent_slug: null,
       tier: null,
@@ -3352,7 +3352,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 10,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks3",
+      keystage_slug: "ks3" as const,
       lessons: [
         {
           slug: "gravitational-force-and-weight",
@@ -3407,8 +3407,8 @@ const curriculumUnitsTabFixture = (
       ],
       order: 3,
       slug: "hidden-forces",
-      subject: "Science",
-      subject_slug: "science",
+      subject: "Science" as const,
+      subject_slug: "science" as const,
       subject_parent: null,
       subject_parent_slug: null,
       tier: null,
@@ -3452,7 +3452,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 14,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "diseases",
@@ -3498,10 +3498,10 @@ const curriculumUnitsTabFixture = (
       ],
       order: 3,
       slug: "health-and-disease",
-      subject: "Biology",
-      subject_slug: "biology",
-      subject_parent: "Science",
-      subject_parent_slug: "science",
+      subject: "Biology" as const,
+      subject_slug: "biology" as const,
+      subject_parent: "Science" as const,
+      subject_parent_slug: "science" as const,
       tier: null,
       tier_slug: null,
 
@@ -3536,7 +3536,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 7,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "the-particle-model",
@@ -3576,10 +3576,10 @@ const curriculumUnitsTabFixture = (
       ],
       order: 3,
       slug: "states-of-matter",
-      subject: "Chemistry",
-      subject_slug: "chemistry",
-      subject_parent: "Science",
-      subject_parent_slug: "science",
+      subject: "Chemistry" as const,
+      subject_slug: "chemistry" as const,
+      subject_parent: "Science" as const,
+      subject_parent_slug: "science" as const,
       tier: "Higher",
       tier_slug: "higher",
 
@@ -3619,7 +3619,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 7,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "the-particle-model",
@@ -3654,10 +3654,10 @@ const curriculumUnitsTabFixture = (
       ],
       order: 3,
       slug: "states-of-matter",
-      subject: "Chemistry",
-      subject_slug: "chemistry",
-      subject_parent: "Science",
-      subject_parent_slug: "science",
+      subject: "Chemistry" as const,
+      subject_slug: "chemistry" as const,
+      subject_parent: "Science" as const,
+      subject_parent_slug: "science" as const,
       tier: "Foundation",
       tier_slug: "foundation",
 
@@ -3697,7 +3697,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 15,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "calculating-density",
@@ -3757,10 +3757,10 @@ const curriculumUnitsTabFixture = (
       ],
       order: 3,
       slug: "particle-explanations-of-density-and-pressure",
-      subject: "Combined science",
-      subject_slug: "combined-science",
-      subject_parent: "Science",
-      subject_parent_slug: "science",
+      subject: "Combined science" as const,
+      subject_slug: "combined-science" as const,
+      subject_parent: "Science" as const,
+      subject_parent_slug: "science" as const,
       tier: "Higher",
       tier_slug: "higher",
 
@@ -3795,7 +3795,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 15,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "calculating-density",
@@ -3855,10 +3855,10 @@ const curriculumUnitsTabFixture = (
       ],
       order: 3,
       slug: "particle-explanations-of-density-and-pressure",
-      subject: "Combined science",
-      subject_slug: "combined-science",
-      subject_parent: "Science",
-      subject_parent_slug: "science",
+      subject: "Combined science" as const,
+      subject_slug: "combined-science" as const,
+      subject_parent: "Science" as const,
+      subject_parent_slug: "science" as const,
       tier: "Foundation",
       tier_slug: "foundation",
 
@@ -3893,7 +3893,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 15,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "rules-for-electric-charge",
@@ -3948,10 +3948,10 @@ const curriculumUnitsTabFixture = (
       ],
       order: 3,
       slug: "electric-fields-and-circuit-calculations",
-      subject: "Physics",
-      subject_slug: "physics",
-      subject_parent: "Science",
-      subject_parent_slug: "science",
+      subject: "Physics" as const,
+      subject_slug: "physics" as const,
+      subject_parent: "Science" as const,
+      subject_parent_slug: "science" as const,
       tier: "Foundation",
       tier_slug: "foundation",
 
@@ -3986,7 +3986,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 15,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "rules-for-electric-charge",
@@ -4042,10 +4042,10 @@ const curriculumUnitsTabFixture = (
       ],
       order: 3,
       slug: "electric-fields-and-circuit-calculations",
-      subject: "Physics",
-      subject_slug: "physics",
-      subject_parent: "Science",
-      subject_parent_slug: "science",
+      subject: "Physics" as const,
+      subject_slug: "physics" as const,
+      subject_parent: "Science" as const,
+      subject_parent_slug: "science" as const,
       tier: "Higher",
       tier_slug: "higher",
 
@@ -4079,7 +4079,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 9,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "trophic-levels-and-pyramids-of-biomass",
@@ -4124,10 +4124,10 @@ const curriculumUnitsTabFixture = (
       ],
       order: 3,
       slug: "biomass-transfer-food-security-and-biodiversity",
-      subject: "Biology",
-      subject_slug: "biology",
-      subject_parent: "Science",
-      subject_parent_slug: "science",
+      subject: "Biology" as const,
+      subject_slug: "biology" as const,
+      subject_parent: "Science" as const,
+      subject_parent_slug: "science" as const,
       tier: "Foundation",
       tier_slug: "foundation",
 
@@ -4162,7 +4162,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 9,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "trophic-levels-and-pyramids-of-biomass",
@@ -4213,10 +4213,10 @@ const curriculumUnitsTabFixture = (
       ],
       order: 3,
       slug: "biomass-transfer-food-security-and-biodiversity",
-      subject: "Biology",
-      subject_slug: "biology",
-      subject_parent: "Science",
-      subject_parent_slug: "science",
+      subject: "Biology" as const,
+      subject_slug: "biology" as const,
+      subject_parent: "Science" as const,
+      subject_parent_slug: "science" as const,
       tier: "Higher",
       tier_slug: "higher",
 
@@ -4252,7 +4252,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 11,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "earths-atmosphere-approximate-values",
@@ -4307,10 +4307,10 @@ const curriculumUnitsTabFixture = (
       ],
       order: 3,
       slug: "atmosphere-and-changing-climate",
-      subject: "Chemistry",
-      subject_slug: "chemistry",
-      subject_parent: "Science",
-      subject_parent_slug: "science",
+      subject: "Chemistry" as const,
+      subject_slug: "chemistry" as const,
+      subject_parent: "Science" as const,
+      subject_parent_slug: "science" as const,
       tier: null,
       tier_slug: null,
 
@@ -4346,7 +4346,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 5,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "aerobic-cellular-respiration-in-humans-and-other-organisms",
@@ -4367,10 +4367,10 @@ const curriculumUnitsTabFixture = (
       ],
       order: 3,
       slug: "aerobic-and-anaerobic-cellular-respiration",
-      subject: "Combined science",
-      subject_slug: "combined-science",
-      subject_parent: "Science",
-      subject_parent_slug: "science",
+      subject: "Combined science" as const,
+      subject_slug: "combined-science" as const,
+      subject_parent: "Science" as const,
+      subject_parent_slug: "science" as const,
       tier: null,
       tier_slug: null,
 
@@ -4405,7 +4405,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 15,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "magnetic-fields-2",
@@ -4445,10 +4445,10 @@ const curriculumUnitsTabFixture = (
       ],
       order: 3,
       slug: "electromagnetism",
-      subject: "Physics",
-      subject_slug: "physics",
-      subject_parent: "Science",
-      subject_parent_slug: "science",
+      subject: "Physics" as const,
+      subject_slug: "physics" as const,
+      subject_parent: "Science" as const,
+      subject_parent_slug: "science" as const,
       tier: "Foundation",
       tier_slug: "foundation",
 
@@ -4482,7 +4482,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 15,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "the-motor-effect",
@@ -4532,10 +4532,10 @@ const curriculumUnitsTabFixture = (
       ],
       order: 3,
       slug: "electromagnetism",
-      subject: "Physics",
-      subject_slug: "physics",
-      subject_parent: "Science",
-      subject_parent_slug: "science",
+      subject: "Physics" as const,
+      subject_slug: "physics" as const,
+      subject_parent: "Science" as const,
+      subject_parent_slug: "science" as const,
       tier: "Higher",
       tier_slug: "higher",
 
@@ -4570,7 +4570,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 10,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks3",
+      keystage_slug: "ks3" as const,
       lessons: [
         {
           slug: "the-spinning-earth",
@@ -4625,8 +4625,8 @@ const curriculumUnitsTabFixture = (
       ],
       order: 4,
       slug: "solar-system-and-beyond",
-      subject: "Science",
-      subject_slug: "science",
+      subject: "Science" as const,
+      subject_slug: "science" as const,
       subject_parent: null,
       subject_parent_slug: null,
       tier: null,
@@ -4669,7 +4669,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 4,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks3",
+      keystage_slug: "ks3" as const,
       lessons: [
         {
           slug: "classification-and-species",
@@ -4694,8 +4694,8 @@ const curriculumUnitsTabFixture = (
       ],
       order: 4,
       slug: "species-and-classification-differences-between-species",
-      subject: "Science",
-      subject_slug: "science",
+      subject: "Science" as const,
+      subject_slug: "science" as const,
       subject_parent: null,
       subject_parent_slug: null,
       tier: null,
@@ -4740,7 +4740,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 8,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks3",
+      keystage_slug: "ks3" as const,
       lessons: [
         {
           slug: "fossils-show-that-species-change-over-time",
@@ -4785,8 +4785,8 @@ const curriculumUnitsTabFixture = (
       ],
       order: 4,
       slug: "adaptations-competition-natural-selection-and-evolution",
-      subject: "Science",
-      subject_slug: "science",
+      subject: "Science" as const,
+      subject_slug: "science" as const,
       subject_parent: null,
       subject_parent_slug: null,
       tier: null,
@@ -4830,7 +4830,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 9,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "biological-molecules",
@@ -4878,10 +4878,10 @@ const curriculumUnitsTabFixture = (
       ],
       order: 4,
       slug: "biological-molecules-and-enzymes",
-      subject: "Biology",
-      subject_slug: "biology",
-      subject_parent: "Science",
-      subject_parent_slug: "science",
+      subject: "Biology" as const,
+      subject_slug: "biology" as const,
+      subject_parent: "Science" as const,
+      subject_parent_slug: "science" as const,
       tier: null,
       tier_slug: null,
 
@@ -4917,7 +4917,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 20,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "separating-mixtures-including-formulations",
@@ -5012,10 +5012,10 @@ const curriculumUnitsTabFixture = (
       ],
       order: 4,
       slug: "separating-substances",
-      subject: "Chemistry",
-      subject_slug: "chemistry",
-      subject_parent: "Science",
-      subject_parent_slug: "science",
+      subject: "Chemistry" as const,
+      subject_slug: "chemistry" as const,
+      subject_parent: "Science" as const,
+      subject_parent_slug: "science" as const,
       tier: null,
       tier_slug: null,
 
@@ -5055,7 +5055,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 11,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "the-genome",
@@ -5075,10 +5075,10 @@ const curriculumUnitsTabFixture = (
       ],
       order: 4,
       slug: "dna-and-the-genome",
-      subject: "Combined science",
-      subject_slug: "combined-science",
-      subject_parent: "Science",
-      subject_parent_slug: "science",
+      subject: "Combined science" as const,
+      subject_slug: "combined-science" as const,
+      subject_parent: "Science" as const,
+      subject_parent_slug: "science" as const,
       tier: "Foundation",
       tier_slug: "foundation",
 
@@ -5113,7 +5113,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 11,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "the-genome",
@@ -5133,10 +5133,10 @@ const curriculumUnitsTabFixture = (
       ],
       order: 4,
       slug: "dna-and-the-genome",
-      subject: "Combined science",
-      subject_slug: "combined-science",
-      subject_parent: "Science",
-      subject_parent_slug: "science",
+      subject: "Combined science" as const,
+      subject_slug: "combined-science" as const,
+      subject_parent: "Science" as const,
+      subject_parent_slug: "science" as const,
       tier: "Higher",
       tier_slug: "higher",
 
@@ -5171,7 +5171,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 13,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "transverse-waves",
@@ -5236,10 +5236,10 @@ const curriculumUnitsTabFixture = (
       ],
       order: 4,
       slug: "measuring-waves",
-      subject: "Physics",
-      subject_slug: "physics",
-      subject_parent: "Science",
-      subject_parent_slug: "science",
+      subject: "Physics" as const,
+      subject_slug: "physics" as const,
+      subject_parent: "Science" as const,
+      subject_parent_slug: "science" as const,
       tier: "Higher",
       tier_slug: "higher",
 
@@ -5274,7 +5274,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 13,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "transverse-waves",
@@ -5329,10 +5329,10 @@ const curriculumUnitsTabFixture = (
       ],
       order: 4,
       slug: "measuring-waves",
-      subject: "Physics",
-      subject_slug: "physics",
-      subject_parent: "Science",
-      subject_parent_slug: "science",
+      subject: "Physics" as const,
+      subject_slug: "physics" as const,
+      subject_parent: "Science" as const,
+      subject_parent_slug: "science" as const,
       tier: "Foundation",
       tier_slug: "foundation",
 
@@ -5368,7 +5368,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 12,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "a-model-of-diffusion-through-a-selectively-permeable-cell-membrane",
@@ -5416,10 +5416,10 @@ const curriculumUnitsTabFixture = (
       ],
       order: 4,
       slug: "transport-and-exchange-surfaces-in-plants",
-      subject: "Biology",
-      subject_slug: "biology",
-      subject_parent: "Science",
-      subject_parent_slug: "science",
+      subject: "Biology" as const,
+      subject_slug: "biology" as const,
+      subject_parent: "Science" as const,
+      subject_parent_slug: "science" as const,
       tier: null,
       tier_slug: null,
 
@@ -5454,7 +5454,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 15,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "transition-metals",
@@ -5535,10 +5535,10 @@ const curriculumUnitsTabFixture = (
       ],
       order: 4,
       slug: "industrial-chemistry",
-      subject: "Chemistry",
-      subject_slug: "chemistry",
-      subject_parent: "Science",
-      subject_parent_slug: "science",
+      subject: "Chemistry" as const,
+      subject_slug: "chemistry" as const,
+      subject_parent: "Science" as const,
+      subject_parent_slug: "science" as const,
       tier: "Higher",
       tier_slug: "higher",
 
@@ -5577,7 +5577,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 15,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "transition-metals",
@@ -5653,10 +5653,10 @@ const curriculumUnitsTabFixture = (
       ],
       order: 4,
       slug: "industrial-chemistry",
-      subject: "Chemistry",
-      subject_slug: "chemistry",
-      subject_parent: "Science",
-      subject_parent_slug: "science",
+      subject: "Chemistry" as const,
+      subject_slug: "chemistry" as const,
+      subject_parent: "Science" as const,
+      subject_parent_slug: "science" as const,
       tier: "Foundation",
       tier_slug: "foundation",
 
@@ -5696,7 +5696,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 19,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "resultant-forces-in-two-dimensions",
@@ -5742,10 +5742,10 @@ const curriculumUnitsTabFixture = (
       ],
       order: 4,
       slug: "forces-make-things-change",
-      subject: "Combined science",
-      subject_slug: "combined-science",
-      subject_parent: "Science",
-      subject_parent_slug: "science",
+      subject: "Combined science" as const,
+      subject_slug: "combined-science" as const,
+      subject_parent: "Science" as const,
+      subject_parent_slug: "science" as const,
       tier: "Higher",
       tier_slug: "higher",
 
@@ -5780,7 +5780,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 19,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "resultant-forces",
@@ -5825,10 +5825,10 @@ const curriculumUnitsTabFixture = (
       ],
       order: 4,
       slug: "forces-make-things-change",
-      subject: "Combined science",
-      subject_slug: "combined-science",
-      subject_parent: "Science",
-      subject_parent_slug: "science",
+      subject: "Combined science" as const,
+      subject_slug: "combined-science" as const,
+      subject_parent: "Science" as const,
+      subject_parent_slug: "science" as const,
       tier: "Foundation",
       tier_slug: "foundation",
 
@@ -5863,7 +5863,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 20,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "reflection-of-light",
@@ -5949,10 +5949,10 @@ const curriculumUnitsTabFixture = (
       ],
       order: 4,
       slug: "electromagnetic-waves",
-      subject: "Physics",
-      subject_slug: "physics",
-      subject_parent: "Science",
-      subject_parent_slug: "science",
+      subject: "Physics" as const,
+      subject_slug: "physics" as const,
+      subject_parent: "Science" as const,
+      subject_parent_slug: "science" as const,
       tier: "Foundation",
       tier_slug: "foundation",
 
@@ -5987,7 +5987,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 20,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "reflection-of-light",
@@ -6078,10 +6078,10 @@ const curriculumUnitsTabFixture = (
       ],
       order: 4,
       slug: "electromagnetic-waves",
-      subject: "Physics",
-      subject_slug: "physics",
-      subject_parent: "Science",
-      subject_parent_slug: "science",
+      subject: "Physics" as const,
+      subject_slug: "physics" as const,
+      subject_parent: "Science" as const,
+      subject_parent_slug: "science" as const,
       tier: "Higher",
       tier_slug: "higher",
 
@@ -6117,7 +6117,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 11,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks3",
+      keystage_slug: "ks3" as const,
       lessons: [
         {
           slug: "pure-substances",
@@ -6177,8 +6177,8 @@ const curriculumUnitsTabFixture = (
       ],
       order: 5,
       slug: "solutions",
-      subject: "Science",
-      subject_slug: "science",
+      subject: "Science" as const,
+      subject_slug: "science" as const,
       subject_parent: null,
       subject_parent_slug: null,
       tier: null,
@@ -6223,7 +6223,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 5,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks3",
+      keystage_slug: "ks3" as const,
       lessons: [
         {
           slug: "reproduction-and-variation",
@@ -6253,8 +6253,8 @@ const curriculumUnitsTabFixture = (
       ],
       order: 5,
       slug: "variation-differences-within-species",
-      subject: "Science",
-      subject_slug: "science",
+      subject: "Science" as const,
+      subject_slug: "science" as const,
       subject_parent: null,
       subject_parent_slug: null,
       tier: null,
@@ -6298,7 +6298,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 10,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks3",
+      keystage_slug: "ks3" as const,
       lessons: [
         {
           slug: "physical-weathering-and-erosion",
@@ -6353,8 +6353,8 @@ const curriculumUnitsTabFixture = (
       ],
       order: 5,
       slug: "carbon-cycle-and-climate-change",
-      subject: "Science",
-      subject_slug: "science",
+      subject: "Science" as const,
+      subject_slug: "science" as const,
       subject_parent: null,
       subject_parent_slug: null,
       tier: null,
@@ -6399,7 +6399,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 8,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "the-human-circulatory-system",
@@ -6446,10 +6446,10 @@ const curriculumUnitsTabFixture = (
       ],
       order: 5,
       slug: "transport-and-exchange-surfaces-in-humans",
-      subject: "Biology",
-      subject_slug: "biology",
-      subject_parent: "Science",
-      subject_parent_slug: "science",
+      subject: "Biology" as const,
+      subject_slug: "biology" as const,
+      subject_parent: "Science" as const,
+      subject_parent_slug: "science" as const,
       tier: null,
       tier_slug: null,
 
@@ -6485,7 +6485,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 18,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "three-types-of-chemical-reaction",
@@ -6565,10 +6565,10 @@ const curriculumUnitsTabFixture = (
       ],
       order: 5,
       slug: "calculations-involving-masses",
-      subject: "Chemistry",
-      subject_slug: "chemistry",
-      subject_parent: "Science",
-      subject_parent_slug: "science",
+      subject: "Chemistry" as const,
+      subject_slug: "chemistry" as const,
+      subject_parent: "Science" as const,
+      subject_parent_slug: "science" as const,
       tier: "Higher",
       tier_slug: "higher",
 
@@ -6603,7 +6603,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 18,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "three-types-of-chemical-reaction",
@@ -6633,10 +6633,10 @@ const curriculumUnitsTabFixture = (
       ],
       order: 5,
       slug: "calculations-involving-masses",
-      subject: "Chemistry",
-      subject_slug: "chemistry",
-      subject_parent: "Science",
-      subject_parent_slug: "science",
+      subject: "Chemistry" as const,
+      subject_slug: "chemistry" as const,
+      subject_parent: "Science" as const,
+      subject_parent_slug: "science" as const,
       tier: "Foundation",
       tier_slug: "foundation",
 
@@ -6671,7 +6671,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 7,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "the-particle-model",
@@ -6711,10 +6711,10 @@ const curriculumUnitsTabFixture = (
       ],
       order: 5,
       slug: "states-of-matter",
-      subject: "Combined science",
-      subject_slug: "combined-science",
-      subject_parent: "Science",
-      subject_parent_slug: "science",
+      subject: "Combined science" as const,
+      subject_slug: "combined-science" as const,
+      subject_parent: "Science" as const,
+      subject_parent_slug: "science" as const,
       tier: "Higher",
       tier_slug: "higher",
 
@@ -6754,7 +6754,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 7,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "the-particle-model",
@@ -6789,10 +6789,10 @@ const curriculumUnitsTabFixture = (
       ],
       order: 5,
       slug: "states-of-matter",
-      subject: "Combined science",
-      subject_slug: "combined-science",
-      subject_parent: "Science",
-      subject_parent_slug: "science",
+      subject: "Combined science" as const,
+      subject_slug: "combined-science" as const,
+      subject_parent: "Science" as const,
+      subject_parent_slug: "science" as const,
       tier: "Foundation",
       tier_slug: "foundation",
 
@@ -6832,7 +6832,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 42,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "work-done-calculations-w-equals-f-s",
@@ -6884,10 +6884,10 @@ const curriculumUnitsTabFixture = (
       ],
       order: 5,
       slug: "energy-of-moving-objects",
-      subject: "Physics",
-      subject_slug: "physics",
-      subject_parent: "Science",
-      subject_parent_slug: "science",
+      subject: "Physics" as const,
+      subject_slug: "physics" as const,
+      subject_parent: "Science" as const,
+      subject_parent_slug: "science" as const,
       tier: "Higher",
       tier_slug: "higher",
 
@@ -6922,7 +6922,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 42,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "work-done-w-equals-f-s",
@@ -6973,10 +6973,10 @@ const curriculumUnitsTabFixture = (
       ],
       order: 5,
       slug: "energy-of-moving-objects",
-      subject: "Physics",
-      subject_slug: "physics",
-      subject_parent: "Science",
-      subject_parent_slug: "science",
+      subject: "Physics" as const,
+      subject_slug: "physics" as const,
+      subject_parent: "Science" as const,
+      subject_parent_slug: "science" as const,
       tier: "Foundation",
       tier_slug: "foundation",
 
@@ -7011,7 +7011,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 6,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "hormones",
@@ -7042,10 +7042,10 @@ const curriculumUnitsTabFixture = (
       ],
       order: 5,
       slug: "hormones-and-human-reproduction",
-      subject: "Biology",
-      subject_slug: "biology",
-      subject_parent: "Science",
-      subject_parent_slug: "science",
+      subject: "Biology" as const,
+      subject_slug: "biology" as const,
+      subject_parent: "Science" as const,
+      subject_parent_slug: "science" as const,
       tier: "Higher",
       tier_slug: "higher",
 
@@ -7080,7 +7080,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 6,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "hormones",
@@ -7100,10 +7100,10 @@ const curriculumUnitsTabFixture = (
       ],
       order: 5,
       slug: "hormones-and-human-reproduction",
-      subject: "Biology",
-      subject_slug: "biology",
-      subject_parent: "Science",
-      subject_parent_slug: "science",
+      subject: "Biology" as const,
+      subject_slug: "biology" as const,
+      subject_parent: "Science" as const,
+      subject_parent_slug: "science" as const,
       tier: "Foundation",
       tier_slug: "foundation",
 
@@ -7137,7 +7137,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 7,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "chemical-tests-cations",
@@ -7177,10 +7177,10 @@ const curriculumUnitsTabFixture = (
       ],
       order: 5,
       slug: "chemical-analysis",
-      subject: "Chemistry",
-      subject_slug: "chemistry",
-      subject_parent: "Science",
-      subject_parent_slug: "science",
+      subject: "Chemistry" as const,
+      subject_slug: "chemistry" as const,
+      subject_parent: "Science" as const,
+      subject_parent_slug: "science" as const,
       tier: "Higher",
       tier_slug: "higher",
 
@@ -7219,7 +7219,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 7,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "chemical-tests-cations",
@@ -7254,10 +7254,10 @@ const curriculumUnitsTabFixture = (
       ],
       order: 5,
       slug: "chemical-analysis",
-      subject: "Chemistry",
-      subject_slug: "chemistry",
-      subject_parent: "Science",
-      subject_parent_slug: "science",
+      subject: "Chemistry" as const,
+      subject_slug: "chemistry" as const,
+      subject_parent: "Science" as const,
+      subject_parent_slug: "science" as const,
       tier: "Foundation",
       tier_slug: "foundation",
 
@@ -7296,7 +7296,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 9,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "deforestation-and-habitat-destruction",
@@ -7316,10 +7316,10 @@ const curriculumUnitsTabFixture = (
       ],
       order: 5,
       slug: "biomass-transfer-food-security-and-biodiversity",
-      subject: "Combined science",
-      subject_slug: "combined-science",
-      subject_parent: "Science",
-      subject_parent_slug: "science",
+      subject: "Combined science" as const,
+      subject_slug: "combined-science" as const,
+      subject_parent: "Science" as const,
+      subject_parent_slug: "science" as const,
       tier: "Foundation",
       tier_slug: "foundation",
 
@@ -7354,7 +7354,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 9,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "deforestation-and-habitat-destruction",
@@ -7374,10 +7374,10 @@ const curriculumUnitsTabFixture = (
       ],
       order: 5,
       slug: "biomass-transfer-food-security-and-biodiversity",
-      subject: "Combined science",
-      subject_slug: "combined-science",
-      subject_parent: "Science",
-      subject_parent_slug: "science",
+      subject: "Combined science" as const,
+      subject_slug: "combined-science" as const,
+      subject_parent: "Science" as const,
+      subject_parent_slug: "science" as const,
       tier: "Higher",
       tier_slug: "higher",
 
@@ -7412,7 +7412,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 15,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "danger-from-electric-shock",
@@ -7483,10 +7483,10 @@ const curriculumUnitsTabFixture = (
       ],
       order: 5,
       slug: "mains-electricity",
-      subject: "Physics",
-      subject_slug: "physics",
-      subject_parent: "Science",
-      subject_parent_slug: "science",
+      subject: "Physics" as const,
+      subject_slug: "physics" as const,
+      subject_parent: "Science" as const,
+      subject_parent_slug: "science" as const,
       tier: "Higher",
       tier_slug: "higher",
 
@@ -7520,7 +7520,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 15,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "danger-from-electric-shock",
@@ -7580,10 +7580,10 @@ const curriculumUnitsTabFixture = (
       ],
       order: 5,
       slug: "mains-electricity",
-      subject: "Physics",
-      subject_slug: "physics",
-      subject_parent: "Science",
-      subject_parent_slug: "science",
+      subject: "Physics" as const,
+      subject_slug: "physics" as const,
+      subject_parent: "Science" as const,
+      subject_parent_slug: "science" as const,
       tier: "Foundation",
       tier_slug: "foundation",
 
@@ -7618,7 +7618,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 9,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks3",
+      keystage_slug: "ks3" as const,
       lessons: [
         {
           slug: "food-chains",
@@ -7668,8 +7668,8 @@ const curriculumUnitsTabFixture = (
       ],
       order: 6,
       slug: "ecosystems",
-      subject: "Science",
-      subject_slug: "science",
+      subject: "Science" as const,
+      subject_slug: "science" as const,
       subject_parent: null,
       subject_parent_slug: null,
       tier: null,
@@ -7713,7 +7713,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 10,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks3",
+      keystage_slug: "ks3" as const,
       lessons: [
         {
           slug: "inside-rock",
@@ -7768,8 +7768,8 @@ const curriculumUnitsTabFixture = (
       ],
       order: 6,
       slug: "earths-resources",
-      subject: "Science",
-      subject_slug: "science",
+      subject: "Science" as const,
+      subject_slug: "science" as const,
       subject_parent: null,
       subject_parent_slug: null,
       tier: null,
@@ -7813,7 +7813,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 10,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks3",
+      keystage_slug: "ks3" as const,
       lessons: [
         {
           slug: "water-waves",
@@ -7868,8 +7868,8 @@ const curriculumUnitsTabFixture = (
       ],
       order: 6,
       slug: "waves",
-      subject: "Science",
-      subject_slug: "science",
+      subject: "Science" as const,
+      subject_slug: "science" as const,
       subject_parent: null,
       subject_parent_slug: null,
       tier: null,
@@ -7913,7 +7913,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 10,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "the-human-nervous-system",
@@ -7958,10 +7958,10 @@ const curriculumUnitsTabFixture = (
       ],
       order: 6,
       slug: "coordination-and-control-the-human-nervous-system",
-      subject: "Biology",
-      subject_slug: "biology",
-      subject_parent: "Science",
-      subject_parent_slug: "science",
+      subject: "Biology" as const,
+      subject_slug: "biology" as const,
+      subject_parent: "Science" as const,
+      subject_parent_slug: "science" as const,
       tier: "Higher",
       tier_slug: "higher",
 
@@ -7998,7 +7998,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 10,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "the-human-nervous-system",
@@ -8043,10 +8043,10 @@ const curriculumUnitsTabFixture = (
       ],
       order: 6,
       slug: "coordination-and-control-the-human-nervous-system",
-      subject: "Biology",
-      subject_slug: "biology",
-      subject_parent: "Science",
-      subject_parent_slug: "science",
+      subject: "Biology" as const,
+      subject_slug: "biology" as const,
+      subject_parent: "Science" as const,
+      subject_parent_slug: "science" as const,
       tier: "Foundation",
       tier_slug: "foundation",
 
@@ -8082,7 +8082,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 23,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "describing-salts",
@@ -8174,10 +8174,10 @@ const curriculumUnitsTabFixture = (
       ],
       order: 6,
       slug: "making-salts",
-      subject: "Chemistry",
-      subject_slug: "chemistry",
-      subject_parent: "Science",
-      subject_parent_slug: "science",
+      subject: "Chemistry" as const,
+      subject_slug: "chemistry" as const,
+      subject_parent: "Science" as const,
+      subject_parent_slug: "science" as const,
       tier: "Foundation",
       tier_slug: "foundation",
 
@@ -8212,7 +8212,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 23,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "describing-salts",
@@ -8334,10 +8334,10 @@ const curriculumUnitsTabFixture = (
       ],
       order: 6,
       slug: "making-salts",
-      subject: "Chemistry",
-      subject_slug: "chemistry",
-      subject_parent: "Science",
-      subject_parent_slug: "science",
+      subject: "Chemistry" as const,
+      subject_slug: "chemistry" as const,
+      subject_parent: "Science" as const,
+      subject_parent_slug: "science" as const,
       tier: "Higher",
       tier_slug: "higher",
 
@@ -8373,7 +8373,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 14,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "diseases",
@@ -8419,10 +8419,10 @@ const curriculumUnitsTabFixture = (
       ],
       order: 6,
       slug: "health-and-disease",
-      subject: "Combined science",
-      subject_slug: "combined-science",
-      subject_parent: "Science",
-      subject_parent_slug: "science",
+      subject: "Combined science" as const,
+      subject_slug: "combined-science" as const,
+      subject_parent: "Science" as const,
+      subject_parent_slug: "science" as const,
       tier: null,
       tier_slug: null,
 
@@ -8458,7 +8458,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 14,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "thermal-conduction-in-metals-and-non-metals",
@@ -8524,10 +8524,10 @@ const curriculumUnitsTabFixture = (
       ],
       order: 6,
       slug: "energy-of-moving-particles",
-      subject: "Physics",
-      subject_slug: "physics",
-      subject_parent: "Science",
-      subject_parent_slug: "science",
+      subject: "Physics" as const,
+      subject_slug: "physics" as const,
+      subject_parent: "Science" as const,
+      subject_parent_slug: "science" as const,
       tier: "Higher",
       tier_slug: "higher",
 
@@ -8563,7 +8563,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 14,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "thermal-conduction-in-metals-and-non-metals",
@@ -8628,10 +8628,10 @@ const curriculumUnitsTabFixture = (
       ],
       order: 6,
       slug: "energy-of-moving-particles",
-      subject: "Physics",
-      subject_slug: "physics",
-      subject_parent: "Science",
-      subject_parent_slug: "science",
+      subject: "Physics" as const,
+      subject_slug: "physics" as const,
+      subject_parent: "Science" as const,
+      subject_parent_slug: "science" as const,
       tier: "Foundation",
       tier_slug: "foundation",
 
@@ -8666,7 +8666,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 6,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "plant-hormones",
@@ -8703,10 +8703,10 @@ const curriculumUnitsTabFixture = (
       ],
       order: 6,
       slug: "plant-growth-and-development",
-      subject: "Biology",
-      subject_slug: "biology",
-      subject_parent: "Science",
-      subject_parent_slug: "science",
+      subject: "Biology" as const,
+      subject_slug: "biology" as const,
+      subject_parent: "Science" as const,
+      subject_parent_slug: "science" as const,
       tier: "Higher",
       tier_slug: "higher",
 
@@ -8741,7 +8741,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 6,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "plant-hormones",
@@ -8772,10 +8772,10 @@ const curriculumUnitsTabFixture = (
       ],
       order: 6,
       slug: "plant-growth-and-development",
-      subject: "Biology",
-      subject_slug: "biology",
-      subject_parent: "Science",
-      subject_parent_slug: "science",
+      subject: "Biology" as const,
+      subject_slug: "biology" as const,
+      subject_parent: "Science" as const,
+      subject_parent_slug: "science" as const,
       tier: "Foundation",
       tier_slug: "foundation",
 
@@ -8809,7 +8809,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 10,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "alkenes",
@@ -8849,10 +8849,10 @@ const curriculumUnitsTabFixture = (
       ],
       order: 6,
       slug: "organic-chemistry",
-      subject: "Chemistry",
-      subject_slug: "chemistry",
-      subject_parent: "Science",
-      subject_parent_slug: "science",
+      subject: "Chemistry" as const,
+      subject_slug: "chemistry" as const,
+      subject_parent: "Science" as const,
+      subject_parent_slug: "science" as const,
       tier: "Foundation",
       tier_slug: "foundation",
 
@@ -8891,7 +8891,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 10,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "alkenes",
@@ -8941,10 +8941,10 @@ const curriculumUnitsTabFixture = (
       ],
       order: 6,
       slug: "organic-chemistry",
-      subject: "Chemistry",
-      subject_slug: "chemistry",
-      subject_parent: "Science",
-      subject_parent_slug: "science",
+      subject: "Chemistry" as const,
+      subject_slug: "chemistry" as const,
+      subject_parent: "Science" as const,
+      subject_parent_slug: "science" as const,
       tier: "Higher",
       tier_slug: "higher",
 
@@ -8984,7 +8984,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 15,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "earths-resources",
@@ -9064,10 +9064,10 @@ const curriculumUnitsTabFixture = (
       ],
       order: 6,
       slug: "using-earths-resources",
-      subject: "Combined science",
-      subject_slug: "combined-science",
-      subject_parent: "Science",
-      subject_parent_slug: "science",
+      subject: "Combined science" as const,
+      subject_slug: "combined-science" as const,
+      subject_parent: "Science" as const,
+      subject_parent_slug: "science" as const,
       tier: "Higher",
       tier_slug: "higher",
 
@@ -9108,7 +9108,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 15,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "earths-resources",
@@ -9178,10 +9178,10 @@ const curriculumUnitsTabFixture = (
       ],
       order: 6,
       slug: "using-earths-resources",
-      subject: "Combined science",
-      subject_slug: "combined-science",
-      subject_parent: "Science",
-      subject_parent_slug: "science",
+      subject: "Combined science" as const,
+      subject_slug: "combined-science" as const,
+      subject_parent: "Science" as const,
+      subject_parent_slug: "science" as const,
       tier: "Foundation",
       tier_slug: "foundation",
 
@@ -9221,7 +9221,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 10,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "gravity-in-the-solar-system",
@@ -9262,10 +9262,10 @@ const curriculumUnitsTabFixture = (
       ],
       order: 6,
       slug: "gravity-in-space",
-      subject: "Physics",
-      subject_slug: "physics",
-      subject_parent: "Science",
-      subject_parent_slug: "science",
+      subject: "Physics" as const,
+      subject_slug: "physics" as const,
+      subject_parent: "Science" as const,
+      subject_parent_slug: "science" as const,
       tier: "Higher",
       tier_slug: "higher",
 
@@ -9299,7 +9299,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 10,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "gravity-in-the-solar-system",
@@ -9339,10 +9339,10 @@ const curriculumUnitsTabFixture = (
       ],
       order: 6,
       slug: "gravity-in-space",
-      subject: "Physics",
-      subject_slug: "physics",
-      subject_parent: "Science",
-      subject_parent_slug: "science",
+      subject: "Physics" as const,
+      subject_slug: "physics" as const,
+      subject_parent: "Science" as const,
+      subject_parent_slug: "science" as const,
       tier: "Foundation",
       tier_slug: "foundation",
 
@@ -9377,7 +9377,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 10,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks3",
+      keystage_slug: "ks3" as const,
       lessons: [
         {
           slug: "sound-vibrations",
@@ -9432,8 +9432,8 @@ const curriculumUnitsTabFixture = (
       ],
       order: 7,
       slug: "sound-light-and-vision",
-      subject: "Science",
-      subject_slug: "science",
+      subject: "Science" as const,
+      subject_slug: "science" as const,
       subject_parent: null,
       subject_parent_slug: null,
       tier: null,
@@ -9476,7 +9476,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 10,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks3",
+      keystage_slug: "ks3" as const,
       lessons: [
         {
           slug: "static-electricity",
@@ -9531,8 +9531,8 @@ const curriculumUnitsTabFixture = (
       ],
       order: 7,
       slug: "series-circuits",
-      subject: "Science",
-      subject_slug: "science",
+      subject: "Science" as const,
+      subject_slug: "science" as const,
       subject_parent: null,
       subject_parent_slug: null,
       tier: null,
@@ -9575,7 +9575,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 9,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks3",
+      keystage_slug: "ks3" as const,
       lessons: [
         {
           slug: "differences-between-infectious-and-non-infectious-disease",
@@ -9625,8 +9625,8 @@ const curriculumUnitsTabFixture = (
       ],
       order: 7,
       slug: "disease-and-drugs",
-      subject: "Science",
-      subject_slug: "science",
+      subject: "Science" as const,
+      subject_slug: "science" as const,
       subject_parent: null,
       subject_parent_slug: null,
       tier: null,
@@ -9670,7 +9670,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 6,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "the-human-endocrine-system",
@@ -9696,10 +9696,10 @@ const curriculumUnitsTabFixture = (
       ],
       order: 7,
       slug: "coordination-and-control-hormones-and-the-human-endocrine-system",
-      subject: "Biology",
-      subject_slug: "biology",
-      subject_parent: "Science",
-      subject_parent_slug: "science",
+      subject: "Biology" as const,
+      subject_slug: "biology" as const,
+      subject_parent: "Science" as const,
+      subject_parent_slug: "science" as const,
       tier: "Higher",
       tier_slug: "higher",
 
@@ -9737,7 +9737,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 6,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "the-human-endocrine-system",
@@ -9763,10 +9763,10 @@ const curriculumUnitsTabFixture = (
       ],
       order: 7,
       slug: "coordination-and-control-hormones-and-the-human-endocrine-system",
-      subject: "Biology",
-      subject_slug: "biology",
-      subject_parent: "Science",
-      subject_parent_slug: "science",
+      subject: "Biology" as const,
+      subject_slug: "biology" as const,
+      subject_parent: "Science" as const,
+      subject_parent_slug: "science" as const,
       tier: "Foundation",
       tier_slug: "foundation",
 
@@ -9803,7 +9803,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 10,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "bonding-to-carbon-atoms",
@@ -9858,10 +9858,10 @@ const curriculumUnitsTabFixture = (
       ],
       order: 7,
       slug: "chemistry-of-carbon",
-      subject: "Chemistry",
-      subject_slug: "chemistry",
-      subject_parent: "Science",
-      subject_parent_slug: "science",
+      subject: "Chemistry" as const,
+      subject_slug: "chemistry" as const,
+      subject_parent: "Science" as const,
+      subject_parent_slug: "science" as const,
       tier: "Foundation",
       tier_slug: "foundation",
 
@@ -9901,7 +9901,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 10,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "bonding-to-carbon-atoms",
@@ -9956,10 +9956,10 @@ const curriculumUnitsTabFixture = (
       ],
       order: 7,
       slug: "chemistry-of-carbon",
-      subject: "Chemistry",
-      subject_slug: "chemistry",
-      subject_parent: "Science",
-      subject_parent_slug: "science",
+      subject: "Chemistry" as const,
+      subject_slug: "chemistry" as const,
+      subject_parent: "Science" as const,
+      subject_parent_slug: "science" as const,
       tier: "Higher",
       tier_slug: "higher",
 
@@ -9999,7 +9999,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 14,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "measuring-the-resistance-of-a-filament-bulb-practical",
@@ -10064,10 +10064,10 @@ const curriculumUnitsTabFixture = (
       ],
       order: 7,
       slug: "circuit-components",
-      subject: "Physics",
-      subject_slug: "physics",
-      subject_parent: "Science",
-      subject_parent_slug: "science",
+      subject: "Physics" as const,
+      subject_slug: "physics" as const,
+      subject_parent: "Science" as const,
+      subject_parent_slug: "science" as const,
       tier: "Higher",
       tier_slug: "higher",
 
@@ -10102,7 +10102,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 14,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "measuring-the-resistance-of-a-filament-bulb-practical",
@@ -10167,10 +10167,10 @@ const curriculumUnitsTabFixture = (
       ],
       order: 7,
       slug: "circuit-components",
-      subject: "Physics",
-      subject_slug: "physics",
-      subject_parent: "Science",
-      subject_parent_slug: "science",
+      subject: "Physics" as const,
+      subject_slug: "physics" as const,
+      subject_parent: "Science" as const,
+      subject_parent_slug: "science" as const,
       tier: "Foundation",
       tier_slug: "foundation",
 
@@ -10206,7 +10206,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 13,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "the-effect-of-sugar-concentration-on-mass-of-plant-tissue-plan",
@@ -10258,10 +10258,10 @@ const curriculumUnitsTabFixture = (
       ],
       order: 7,
       slug: "coordination-and-control-maintaining-a-constant-internal-environment",
-      subject: "Biology",
-      subject_slug: "biology",
-      subject_parent: "Science",
-      subject_parent_slug: "science",
+      subject: "Biology" as const,
+      subject_slug: "biology" as const,
+      subject_parent: "Science" as const,
+      subject_parent_slug: "science" as const,
       tier: "Higher",
       tier_slug: "higher",
 
@@ -10299,7 +10299,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 13,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "the-effect-of-sugar-concentration-on-mass-of-plant-tissue-plan",
@@ -10344,10 +10344,10 @@ const curriculumUnitsTabFixture = (
       ],
       order: 7,
       slug: "coordination-and-control-maintaining-a-constant-internal-environment",
-      subject: "Biology",
-      subject_slug: "biology",
-      subject_parent: "Science",
-      subject_parent_slug: "science",
+      subject: "Biology" as const,
+      subject_slug: "biology" as const,
+      subject_parent: "Science" as const,
+      subject_parent_slug: "science" as const,
       tier: "Foundation",
       tier_slug: "foundation",
 
@@ -10383,7 +10383,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 14,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "principles-of-electrolysis",
@@ -10460,10 +10460,10 @@ const curriculumUnitsTabFixture = (
       ],
       order: 7,
       slug: "electrolysis",
-      subject: "Chemistry",
-      subject_slug: "chemistry",
-      subject_parent: "Science",
-      subject_parent_slug: "science",
+      subject: "Chemistry" as const,
+      subject_slug: "chemistry" as const,
+      subject_parent: "Science" as const,
+      subject_parent_slug: "science" as const,
       tier: "Higher",
       tier_slug: "higher",
 
@@ -10497,7 +10497,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 14,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "principles-of-electrolysis",
@@ -10564,10 +10564,10 @@ const curriculumUnitsTabFixture = (
       ],
       order: 7,
       slug: "electrolysis",
-      subject: "Chemistry",
-      subject_slug: "chemistry",
-      subject_parent: "Science",
-      subject_parent_slug: "science",
+      subject: "Chemistry" as const,
+      subject_slug: "chemistry" as const,
+      subject_parent: "Science" as const,
+      subject_parent_slug: "science" as const,
       tier: "Foundation",
       tier_slug: "foundation",
 
@@ -10603,7 +10603,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 12,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "a-model-of-diffusion-through-a-selectively-permeable-cell-membrane",
@@ -10651,10 +10651,10 @@ const curriculumUnitsTabFixture = (
       ],
       order: 7,
       slug: "transport-and-exchange-surfaces-in-plants",
-      subject: "Combined science",
-      subject_slug: "combined-science",
-      subject_parent: "Science",
-      subject_parent_slug: "science",
+      subject: "Combined science" as const,
+      subject_slug: "combined-science" as const,
+      subject_parent: "Science" as const,
+      subject_parent_slug: "science" as const,
       tier: null,
       tier_slug: null,
 
@@ -10690,7 +10690,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 7,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks3",
+      keystage_slug: "ks3" as const,
       lessons: [
         {
           slug: "heredity",
@@ -10730,8 +10730,8 @@ const curriculumUnitsTabFixture = (
       ],
       order: 8,
       slug: "heredity-and-dna",
-      subject: "Science",
-      subject_slug: "science",
+      subject: "Science" as const,
+      subject_slug: "science" as const,
       subject_parent: null,
       subject_parent_slug: null,
       tier: null,
@@ -10774,7 +10774,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 8,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks3",
+      keystage_slug: "ks3" as const,
       lessons: [
         {
           slug: "reproduction-and-inheritance",
@@ -10819,8 +10819,8 @@ const curriculumUnitsTabFixture = (
       ],
       order: 8,
       slug: "reproduction-in-humans",
-      subject: "Science",
-      subject_slug: "science",
+      subject: "Science" as const,
+      subject_slug: "science" as const,
       subject_parent: null,
       subject_parent_slug: null,
       tier: null,
@@ -10863,7 +10863,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 7,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks3",
+      keystage_slug: "ks3" as const,
       lessons: [
         {
           slug: "groups-of-elements-in-the-periodic-table",
@@ -10903,8 +10903,8 @@ const curriculumUnitsTabFixture = (
       ],
       order: 8,
       slug: "patterns-in-the-periodic-table",
-      subject: "Science",
-      subject_slug: "science",
+      subject: "Science" as const,
+      subject_slug: "science" as const,
       subject_parent: null,
       subject_parent_slug: null,
       tier: null,
@@ -10954,7 +10954,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 6,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "producers-consumers-and-photosynthesis",
@@ -10980,10 +10980,10 @@ const curriculumUnitsTabFixture = (
       ],
       order: 8,
       slug: "photosynthesis-requirements-and-products",
-      subject: "Biology",
-      subject_slug: "biology",
-      subject_parent: "Science",
-      subject_parent_slug: "science",
+      subject: "Biology" as const,
+      subject_slug: "biology" as const,
+      subject_parent: "Science" as const,
+      subject_parent_slug: "science" as const,
       tier: "Higher",
       tier_slug: "higher",
 
@@ -11021,7 +11021,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 6,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "producers-consumers-and-photosynthesis",
@@ -11046,10 +11046,10 @@ const curriculumUnitsTabFixture = (
       ],
       order: 8,
       slug: "photosynthesis-requirements-and-products",
-      subject: "Biology",
-      subject_slug: "biology",
-      subject_parent: "Science",
-      subject_parent_slug: "science",
+      subject: "Biology" as const,
+      subject_slug: "biology" as const,
+      subject_parent: "Science" as const,
+      subject_parent_slug: "science" as const,
       tier: "Foundation",
       tier_slug: "foundation",
 
@@ -11085,7 +11085,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 6,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "energy-changes-in-reactions",
@@ -11120,10 +11120,10 @@ const curriculumUnitsTabFixture = (
       ],
       order: 8,
       slug: "energy-changes-in-reactions",
-      subject: "Chemistry",
-      subject_slug: "chemistry",
-      subject_parent: "Science",
-      subject_parent_slug: "science",
+      subject: "Chemistry" as const,
+      subject_slug: "chemistry" as const,
+      subject_parent: "Science" as const,
+      subject_parent_slug: "science" as const,
       tier: "Higher",
       tier_slug: "higher",
 
@@ -11163,7 +11163,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 6,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "energy-changes-in-reactions",
@@ -11193,10 +11193,10 @@ const curriculumUnitsTabFixture = (
       ],
       order: 8,
       slug: "energy-changes-in-reactions",
-      subject: "Chemistry",
-      subject_slug: "chemistry",
-      subject_parent: "Science",
-      subject_parent_slug: "science",
+      subject: "Chemistry" as const,
+      subject_slug: "chemistry" as const,
+      subject_parent: "Science" as const,
+      subject_parent_slug: "science" as const,
       tier: "Foundation",
       tier_slug: "foundation",
 
@@ -11236,7 +11236,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 9,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "biological-molecules",
@@ -11284,10 +11284,10 @@ const curriculumUnitsTabFixture = (
       ],
       order: 8,
       slug: "biological-molecules-and-enzymes",
-      subject: "Combined science",
-      subject_slug: "combined-science",
-      subject_parent: "Science",
-      subject_parent_slug: "science",
+      subject: "Combined science" as const,
+      subject_slug: "combined-science" as const,
+      subject_parent: "Science" as const,
+      subject_parent_slug: "science" as const,
       tier: null,
       tier_slug: null,
 
@@ -11323,7 +11323,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 13,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "the-inputs-and-outputs-of-photosynthesis-including-the-role-of-chlorophyll",
@@ -11379,10 +11379,10 @@ const curriculumUnitsTabFixture = (
       ],
       order: 8,
       slug: "photosynthesis-factors-affecting-the-rate",
-      subject: "Biology",
-      subject_slug: "biology",
-      subject_parent: "Science",
-      subject_parent_slug: "science",
+      subject: "Biology" as const,
+      subject_slug: "biology" as const,
+      subject_parent: "Science" as const,
+      subject_parent_slug: "science" as const,
       tier: "Higher",
       tier_slug: "higher",
 
@@ -11418,7 +11418,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 13,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "the-inputs-and-outputs-of-photosynthesis",
@@ -11469,10 +11469,10 @@ const curriculumUnitsTabFixture = (
       ],
       order: 8,
       slug: "photosynthesis-factors-affecting-the-rate",
-      subject: "Biology",
-      subject_slug: "biology",
-      subject_parent: "Science",
-      subject_parent_slug: "science",
+      subject: "Biology" as const,
+      subject_slug: "biology" as const,
+      subject_parent: "Science" as const,
+      subject_parent_slug: "science" as const,
       tier: "Foundation",
       tier_slug: "foundation",
 
@@ -11508,7 +11508,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 20,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "background-radiation",
@@ -11579,10 +11579,10 @@ const curriculumUnitsTabFixture = (
       ],
       order: 8,
       slug: "nuclear-physics",
-      subject: "Combined science",
-      subject_slug: "combined-science",
-      subject_parent: "Science",
-      subject_parent_slug: "science",
+      subject: "Combined science" as const,
+      subject_slug: "combined-science" as const,
+      subject_parent: "Science" as const,
+      subject_parent_slug: "science" as const,
       tier: "Higher",
       tier_slug: "higher",
 
@@ -11617,7 +11617,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 20,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "background-radiation",
@@ -11687,10 +11687,10 @@ const curriculumUnitsTabFixture = (
       ],
       order: 8,
       slug: "nuclear-physics",
-      subject: "Combined science",
-      subject_slug: "combined-science",
-      subject_parent: "Science",
-      subject_parent_slug: "science",
+      subject: "Combined science" as const,
+      subject_slug: "combined-science" as const,
+      subject_parent: "Science" as const,
+      subject_parent_slug: "science" as const,
       tier: "Foundation",
       tier_slug: "foundation",
 
@@ -11726,7 +11726,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 7,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks3",
+      keystage_slug: "ks3" as const,
       lessons: [
         {
           slug: "separating-an-insoluble-solid-from-a-liquid",
@@ -11766,8 +11766,8 @@ const curriculumUnitsTabFixture = (
       ],
       order: 9,
       slug: "separation-techniques",
-      subject: "Science",
-      subject_slug: "science",
+      subject: "Science" as const,
+      subject_slug: "science" as const,
       subject_parent: null,
       subject_parent_slug: null,
       tier: null,
@@ -11810,7 +11810,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 10,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks3",
+      keystage_slug: "ks3" as const,
       lessons: [
         {
           slug: "exothermic-and-endothermic-chemical-reactions",
@@ -11865,8 +11865,8 @@ const curriculumUnitsTabFixture = (
       ],
       order: 9,
       slug: "fuels-and-energetics",
-      subject: "Science",
-      subject_slug: "science",
+      subject: "Science" as const,
+      subject_slug: "science" as const,
       subject_parent: null,
       subject_parent_slug: null,
       tier: null,
@@ -11909,7 +11909,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 10,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks3",
+      keystage_slug: "ks3" as const,
       lessons: [
         {
           slug: "electrical-resistance",
@@ -11964,8 +11964,8 @@ const curriculumUnitsTabFixture = (
       ],
       order: 9,
       slug: "resistance-and-parallel-circuits",
-      subject: "Science",
-      subject_slug: "science",
+      subject: "Science" as const,
+      subject_slug: "science" as const,
       subject_parent: null,
       subject_parent_slug: null,
       tier: null,
@@ -12008,7 +12008,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 8,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "dna-chromosomes-and-genes",
@@ -12053,10 +12053,10 @@ const curriculumUnitsTabFixture = (
       ],
       order: 9,
       slug: "inheritance-genotype-and-phenotype",
-      subject: "Biology",
-      subject_slug: "biology",
-      subject_parent: "Science",
-      subject_parent_slug: "science",
+      subject: "Biology" as const,
+      subject_slug: "biology" as const,
+      subject_parent: "Science" as const,
+      subject_parent_slug: "science" as const,
       tier: "Foundation",
       tier_slug: "foundation",
 
@@ -12091,7 +12091,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 8,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "dna-chromosomes-and-genes",
@@ -12136,10 +12136,10 @@ const curriculumUnitsTabFixture = (
       ],
       order: 9,
       slug: "inheritance-genotype-and-phenotype",
-      subject: "Biology",
-      subject_slug: "biology",
-      subject_parent: "Science",
-      subject_parent_slug: "science",
+      subject: "Biology" as const,
+      subject_slug: "biology" as const,
+      subject_parent: "Science" as const,
+      subject_parent_slug: "science" as const,
       tier: "Higher",
       tier_slug: "higher",
 
@@ -12174,7 +12174,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 14,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "the-rate-of-a-chemical-reaction",
@@ -12250,10 +12250,10 @@ const curriculumUnitsTabFixture = (
       ],
       order: 9,
       slug: "rate-of-reaction",
-      subject: "Chemistry",
-      subject_slug: "chemistry",
-      subject_parent: "Science",
-      subject_parent_slug: "science",
+      subject: "Chemistry" as const,
+      subject_slug: "chemistry" as const,
+      subject_parent: "Science" as const,
+      subject_parent_slug: "science" as const,
       tier: null,
       tier_slug: null,
 
@@ -12293,7 +12293,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 20,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "why-chemical-reactions-happen",
@@ -12389,10 +12389,10 @@ const curriculumUnitsTabFixture = (
       ],
       order: 9,
       slug: "structure-and-bonding",
-      subject: "Combined science",
-      subject_slug: "combined-science",
-      subject_parent: "Science",
-      subject_parent_slug: "science",
+      subject: "Combined science" as const,
+      subject_slug: "combined-science" as const,
+      subject_parent: "Science" as const,
+      subject_parent_slug: "science" as const,
       tier: "Foundation",
       tier_slug: "foundation",
 
@@ -12432,7 +12432,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 20,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "why-chemical-reactions-happen",
@@ -12533,10 +12533,10 @@ const curriculumUnitsTabFixture = (
       ],
       order: 9,
       slug: "structure-and-bonding",
-      subject: "Combined science",
-      subject_slug: "combined-science",
-      subject_parent: "Science",
-      subject_parent_slug: "science",
+      subject: "Combined science" as const,
+      subject_slug: "combined-science" as const,
+      subject_parent: "Science" as const,
+      subject_parent_slug: "science" as const,
       tier: "Higher",
       tier_slug: "higher",
 
@@ -12576,7 +12576,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 7,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "antibiotics",
@@ -12602,10 +12602,10 @@ const curriculumUnitsTabFixture = (
       ],
       order: 9,
       slug: "drugs-and-new-treatments-for-disease",
-      subject: "Biology",
-      subject_slug: "biology",
-      subject_parent: "Science",
-      subject_parent_slug: "science",
+      subject: "Biology" as const,
+      subject_slug: "biology" as const,
+      subject_parent: "Science" as const,
+      subject_parent_slug: "science" as const,
       tier: "Higher",
       tier_slug: "higher",
 
@@ -12640,7 +12640,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 7,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "antibiotics",
@@ -12665,10 +12665,10 @@ const curriculumUnitsTabFixture = (
       ],
       order: 9,
       slug: "drugs-and-new-treatments-for-disease",
-      subject: "Biology",
-      subject_slug: "biology",
-      subject_parent: "Science",
-      subject_parent_slug: "science",
+      subject: "Biology" as const,
+      subject_slug: "biology" as const,
+      subject_parent: "Science" as const,
+      subject_parent_slug: "science" as const,
       tier: "Foundation",
       tier_slug: "foundation",
 
@@ -12703,7 +12703,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 6,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "hormones",
@@ -12734,10 +12734,10 @@ const curriculumUnitsTabFixture = (
       ],
       order: 9,
       slug: "hormones-and-human-reproduction",
-      subject: "Combined science",
-      subject_slug: "combined-science",
-      subject_parent: "Science",
-      subject_parent_slug: "science",
+      subject: "Combined science" as const,
+      subject_slug: "combined-science" as const,
+      subject_parent: "Science" as const,
+      subject_parent_slug: "science" as const,
       tier: "Higher",
       tier_slug: "higher",
 
@@ -12772,7 +12772,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 6,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "hormones",
@@ -12792,10 +12792,10 @@ const curriculumUnitsTabFixture = (
       ],
       order: 9,
       slug: "hormones-and-human-reproduction",
-      subject: "Combined science",
-      subject_slug: "combined-science",
-      subject_parent: "Science",
-      subject_parent_slug: "science",
+      subject: "Combined science" as const,
+      subject_slug: "combined-science" as const,
+      subject_parent: "Science" as const,
+      subject_parent_slug: "science" as const,
       tier: "Foundation",
       tier_slug: "foundation",
 
@@ -12830,7 +12830,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 4,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks3",
+      keystage_slug: "ks3" as const,
       lessons: [
         {
           slug: "the-human-skeleton",
@@ -12855,8 +12855,8 @@ const curriculumUnitsTabFixture = (
       ],
       order: 10,
       slug: "human-skeleton-and-muscles",
-      subject: "Science",
-      subject_slug: "science",
+      subject: "Science" as const,
+      subject_slug: "science" as const,
       subject_parent: null,
       subject_parent_slug: null,
       tier: null,
@@ -12900,7 +12900,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 10,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks3",
+      keystage_slug: "ks3" as const,
       lessons: [
         {
           slug: "making-colour",
@@ -12955,8 +12955,8 @@ const curriculumUnitsTabFixture = (
       ],
       order: 10,
       slug: "making-images",
-      subject: "Science",
-      subject_slug: "science",
+      subject: "Science" as const,
+      subject_slug: "science" as const,
       subject_parent: null,
       subject_parent_slug: null,
       tier: null,
@@ -12999,7 +12999,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 8,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks3",
+      keystage_slug: "ks3" as const,
       lessons: [
         {
           slug: "flower-structure",
@@ -13044,8 +13044,8 @@ const curriculumUnitsTabFixture = (
       ],
       order: 10,
       slug: "reproduction-in-plants",
-      subject: "Science",
-      subject_slug: "science",
+      subject: "Science" as const,
+      subject_slug: "science" as const,
       subject_parent: null,
       subject_parent_slug: null,
       tier: null,
@@ -13088,7 +13088,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 7,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "growth-in-multicellular-organisms",
@@ -13118,10 +13118,10 @@ const curriculumUnitsTabFixture = (
       ],
       order: 10,
       slug: "cell-division-mitosis-and-meiosis",
-      subject: "Biology",
-      subject_slug: "biology",
-      subject_parent: "Science",
-      subject_parent_slug: "science",
+      subject: "Biology" as const,
+      subject_slug: "biology" as const,
+      subject_parent: "Science" as const,
+      subject_parent_slug: "science" as const,
       tier: "Foundation",
       tier_slug: "foundation",
 
@@ -13156,7 +13156,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 7,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "growth-in-multicellular-organisms",
@@ -13186,10 +13186,10 @@ const curriculumUnitsTabFixture = (
       ],
       order: 10,
       slug: "cell-division-mitosis-and-meiosis",
-      subject: "Biology",
-      subject_slug: "biology",
-      subject_parent: "Science",
-      subject_parent_slug: "science",
+      subject: "Biology" as const,
+      subject_slug: "biology" as const,
+      subject_parent: "Science" as const,
+      subject_parent_slug: "science" as const,
       tier: "Higher",
       tier_slug: "higher",
 
@@ -13225,7 +13225,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 8,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "the-human-circulatory-system",
@@ -13272,10 +13272,10 @@ const curriculumUnitsTabFixture = (
       ],
       order: 10,
       slug: "transport-and-exchange-surfaces-in-humans",
-      subject: "Combined science",
-      subject_slug: "combined-science",
-      subject_parent: "Science",
-      subject_parent_slug: "science",
+      subject: "Combined science" as const,
+      subject_slug: "combined-science" as const,
+      subject_parent: "Science" as const,
+      subject_parent_slug: "science" as const,
       tier: null,
       tier_slug: null,
 
@@ -13312,7 +13312,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 8,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "genetic-variation",
@@ -13358,10 +13358,10 @@ const curriculumUnitsTabFixture = (
       ],
       order: 10,
       slug: "variation-and-natural-selection-at-the-genetic-level",
-      subject: "Biology",
-      subject_slug: "biology",
-      subject_parent: "Science",
-      subject_parent_slug: "science",
+      subject: "Biology" as const,
+      subject_slug: "biology" as const,
+      subject_parent: "Science" as const,
+      subject_parent_slug: "science" as const,
       tier: "Higher",
       tier_slug: "higher",
 
@@ -13398,7 +13398,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 8,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "genetic-variation",
@@ -13444,10 +13444,10 @@ const curriculumUnitsTabFixture = (
       ],
       order: 10,
       slug: "variation-and-natural-selection-at-the-genetic-level",
-      subject: "Biology",
-      subject_slug: "biology",
-      subject_parent: "Science",
-      subject_parent_slug: "science",
+      subject: "Biology" as const,
+      subject_slug: "biology" as const,
+      subject_parent: "Science" as const,
+      subject_parent_slug: "science" as const,
       tier: "Foundation",
       tier_slug: "foundation",
 
@@ -13483,7 +13483,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 5,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "properties-of-group-0-elements",
@@ -13513,10 +13513,10 @@ const curriculumUnitsTabFixture = (
       ],
       order: 10,
       slug: "groups-of-the-periodic-table",
-      subject: "Combined science",
-      subject_slug: "combined-science",
-      subject_parent: "Science",
-      subject_parent_slug: "science",
+      subject: "Combined science" as const,
+      subject_slug: "combined-science" as const,
+      subject_parent: "Science" as const,
+      subject_parent_slug: "science" as const,
       tier: "Higher",
       tier_slug: "higher",
 
@@ -13556,7 +13556,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 5,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "properties-of-group-0-elements",
@@ -13581,10 +13581,10 @@ const curriculumUnitsTabFixture = (
       ],
       order: 10,
       slug: "groups-of-the-periodic-table",
-      subject: "Combined science",
-      subject_slug: "combined-science",
-      subject_parent: "Science",
-      subject_parent_slug: "science",
+      subject: "Combined science" as const,
+      subject_slug: "combined-science" as const,
+      subject_parent: "Science" as const,
+      subject_parent_slug: "science" as const,
       tier: "Foundation",
       tier_slug: "foundation",
 
@@ -13626,7 +13626,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 10,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks3",
+      keystage_slug: "ks3" as const,
       lessons: [
         {
           slug: "measuring-temperature",
@@ -13681,8 +13681,8 @@ const curriculumUnitsTabFixture = (
       ],
       order: 11,
       slug: "heating-and-cooling",
-      subject: "Science",
-      subject_slug: "science",
+      subject: "Science" as const,
+      subject_slug: "science" as const,
       subject_parent: null,
       subject_parent_slug: null,
       tier: null,
@@ -13725,7 +13725,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 9,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks3",
+      keystage_slug: "ks3" as const,
       lessons: [
         {
           slug: "good-and-ill-health",
@@ -13775,8 +13775,8 @@ const curriculumUnitsTabFixture = (
       ],
       order: 11,
       slug: "diet-and-exercise",
-      subject: "Science",
-      subject_slug: "science",
+      subject: "Science" as const,
+      subject_slug: "science" as const,
       subject_parent: null,
       subject_parent_slug: null,
       tier: null,
@@ -13819,7 +13819,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 6,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "specialised-cells-in-multicellular-organisms",
@@ -13855,10 +13855,10 @@ const curriculumUnitsTabFixture = (
       ],
       order: 11,
       slug: "stem-cells-and-differentiation",
-      subject: "Biology",
-      subject_slug: "biology",
-      subject_parent: "Science",
-      subject_parent_slug: "science",
+      subject: "Biology" as const,
+      subject_slug: "biology" as const,
+      subject_parent: "Science" as const,
+      subject_parent_slug: "science" as const,
       tier: null,
       tier_slug: null,
 
@@ -13893,7 +13893,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 15,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "rules-for-electric-charge",
@@ -13943,10 +13943,10 @@ const curriculumUnitsTabFixture = (
       ],
       order: 11,
       slug: "electric-fields-and-circuit-calculations",
-      subject: "Combined science",
-      subject_slug: "combined-science",
-      subject_parent: "Science",
-      subject_parent_slug: "science",
+      subject: "Combined science" as const,
+      subject_slug: "combined-science" as const,
+      subject_parent: "Science" as const,
+      subject_parent_slug: "science" as const,
       tier: "Foundation",
       tier_slug: "foundation",
 
@@ -13981,7 +13981,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 15,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "rules-for-electric-charge",
@@ -14032,10 +14032,10 @@ const curriculumUnitsTabFixture = (
       ],
       order: 11,
       slug: "electric-fields-and-circuit-calculations",
-      subject: "Combined science",
-      subject_slug: "combined-science",
-      subject_parent: "Science",
-      subject_parent_slug: "science",
+      subject: "Combined science" as const,
+      subject_slug: "combined-science" as const,
+      subject_parent: "Science" as const,
+      subject_parent_slug: "science" as const,
       tier: "Higher",
       tier_slug: "higher",
 
@@ -14070,7 +14070,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 5,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "classifying-organisms-as-eukaryotic-or-prokaryotic",
@@ -14096,10 +14096,10 @@ const curriculumUnitsTabFixture = (
       ],
       order: 11,
       slug: "classification-in-modern-biology",
-      subject: "Biology",
-      subject_slug: "biology",
-      subject_parent: "Science",
-      subject_parent_slug: "science",
+      subject: "Biology" as const,
+      subject_slug: "biology" as const,
+      subject_parent: "Science" as const,
+      subject_parent_slug: "science" as const,
       tier: "Foundation",
       tier_slug: "foundation",
 
@@ -14135,7 +14135,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 5,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "classifying-organisms-as-eukaryotic-or-prokaryotic",
@@ -14162,10 +14162,10 @@ const curriculumUnitsTabFixture = (
       ],
       order: 11,
       slug: "classification-in-modern-biology",
-      subject: "Biology",
-      subject_slug: "biology",
-      subject_parent: "Science",
-      subject_parent_slug: "science",
+      subject: "Biology" as const,
+      subject_slug: "biology" as const,
+      subject_parent: "Science" as const,
+      subject_parent_slug: "science" as const,
       tier: "Higher",
       tier_slug: "higher",
 
@@ -14202,7 +14202,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 13,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "the-effect-of-sugar-concentration-on-mass-of-plant-tissue-plan",
@@ -14231,10 +14231,10 @@ const curriculumUnitsTabFixture = (
       ],
       order: 11,
       slug: "coordination-and-control-maintaining-a-constant-internal-environment",
-      subject: "Combined science",
-      subject_slug: "combined-science",
-      subject_parent: "Science",
-      subject_parent_slug: "science",
+      subject: "Combined science" as const,
+      subject_slug: "combined-science" as const,
+      subject_parent: "Science" as const,
+      subject_parent_slug: "science" as const,
       tier: null,
       tier_slug: null,
 
@@ -14271,7 +14271,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 4,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks3",
+      keystage_slug: "ks3" as const,
       lessons: [
         {
           slug: "diffusion-moving-particles",
@@ -14297,8 +14297,8 @@ const curriculumUnitsTabFixture = (
       ],
       order: 12,
       slug: "diffusion",
-      subject: "Science",
-      subject_slug: "science",
+      subject: "Science" as const,
+      subject_slug: "science" as const,
       subject_parent: null,
       subject_parent_slug: null,
       tier: null,
@@ -14342,7 +14342,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 10,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks3",
+      keystage_slug: "ks3" as const,
       lessons: [
         {
           slug: "identifying-acids",
@@ -14397,8 +14397,8 @@ const curriculumUnitsTabFixture = (
       ],
       order: 12,
       slug: "acids-and-bases",
-      subject: "Science",
-      subject_slug: "science",
+      subject: "Science" as const,
+      subject_slug: "science" as const,
       subject_parent: null,
       subject_parent_slug: null,
       tier: null,
@@ -14443,7 +14443,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 8,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "the-fossil-record-provides-evidence-for-evolution",
@@ -14489,10 +14489,10 @@ const curriculumUnitsTabFixture = (
       ],
       order: 12,
       slug: "fossil-evidence-selective-breeding-and-explaining-evolution",
-      subject: "Biology",
-      subject_slug: "biology",
-      subject_parent: "Science",
-      subject_parent_slug: "science",
+      subject: "Biology" as const,
+      subject_slug: "biology" as const,
+      subject_parent: "Science" as const,
+      subject_parent_slug: "science" as const,
       tier: "Foundation",
       tier_slug: "foundation",
 
@@ -14530,7 +14530,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 8,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "the-fossil-record-provides-evidence-for-evolution",
@@ -14576,10 +14576,10 @@ const curriculumUnitsTabFixture = (
       ],
       order: 12,
       slug: "fossil-evidence-selective-breeding-and-explaining-evolution",
-      subject: "Biology",
-      subject_slug: "biology",
-      subject_parent: "Science",
-      subject_parent_slug: "science",
+      subject: "Biology" as const,
+      subject_slug: "biology" as const,
+      subject_parent: "Science" as const,
+      subject_parent_slug: "science" as const,
       tier: "Higher",
       tier_slug: "higher",
 
@@ -14616,7 +14616,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 10,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "the-human-nervous-system",
@@ -14651,10 +14651,10 @@ const curriculumUnitsTabFixture = (
       ],
       order: 12,
       slug: "coordination-and-control-the-human-nervous-system",
-      subject: "Combined science",
-      subject_slug: "combined-science",
-      subject_parent: "Science",
-      subject_parent_slug: "science",
+      subject: "Combined science" as const,
+      subject_slug: "combined-science" as const,
+      subject_parent: "Science" as const,
+      subject_parent_slug: "science" as const,
       tier: null,
       tier_slug: null,
 
@@ -14689,7 +14689,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 6,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "genetic-testing-for-healthcare",
@@ -14720,10 +14720,10 @@ const curriculumUnitsTabFixture = (
       ],
       order: 12,
       slug: "gene-technology",
-      subject: "Biology",
-      subject_slug: "biology",
-      subject_parent: "Science",
-      subject_parent_slug: "science",
+      subject: "Biology" as const,
+      subject_slug: "biology" as const,
+      subject_parent: "Science" as const,
+      subject_parent_slug: "science" as const,
       tier: "Higher",
       tier_slug: "higher",
 
@@ -14757,7 +14757,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 6,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "genetic-testing-for-healthcare",
@@ -14788,10 +14788,10 @@ const curriculumUnitsTabFixture = (
       ],
       order: 12,
       slug: "gene-technology",
-      subject: "Biology",
-      subject_slug: "biology",
-      subject_parent: "Science",
-      subject_parent_slug: "science",
+      subject: "Biology" as const,
+      subject_slug: "biology" as const,
+      subject_parent: "Science" as const,
+      subject_parent_slug: "science" as const,
       tier: "Foundation",
       tier_slug: "foundation",
 
@@ -14825,7 +14825,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 15,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "magnetic-fields-2",
@@ -14865,10 +14865,10 @@ const curriculumUnitsTabFixture = (
       ],
       order: 12,
       slug: "electromagnetism",
-      subject: "Combined science",
-      subject_slug: "combined-science",
-      subject_parent: "Science",
-      subject_parent_slug: "science",
+      subject: "Combined science" as const,
+      subject_slug: "combined-science" as const,
+      subject_parent: "Science" as const,
+      subject_parent_slug: "science" as const,
       tier: "Foundation",
       tier_slug: "foundation",
 
@@ -14902,7 +14902,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 15,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "the-motor-effect",
@@ -14942,10 +14942,10 @@ const curriculumUnitsTabFixture = (
       ],
       order: 12,
       slug: "electromagnetism",
-      subject: "Combined science",
-      subject_slug: "combined-science",
-      subject_parent: "Science",
-      subject_parent_slug: "science",
+      subject: "Combined science" as const,
+      subject_slug: "combined-science" as const,
+      subject_parent: "Science" as const,
+      subject_parent_slug: "science" as const,
       tier: "Higher",
       tier_slug: "higher",
 
@@ -14980,7 +14980,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 5,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks3",
+      keystage_slug: "ks3" as const,
       lessons: [
         {
           slug: "the-parts-of-the-human-digestive-system",
@@ -15010,8 +15010,8 @@ const curriculumUnitsTabFixture = (
       ],
       order: 13,
       slug: "human-digestive-system",
-      subject: "Science",
-      subject_slug: "science",
+      subject: "Science" as const,
+      subject_slug: "science" as const,
       subject_parent: null,
       subject_parent_slug: null,
       tier: null,
@@ -15055,7 +15055,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 10,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks3",
+      keystage_slug: "ks3" as const,
       lessons: [
         {
           slug: "magnetic-poles",
@@ -15110,8 +15110,8 @@ const curriculumUnitsTabFixture = (
       ],
       order: 13,
       slug: "magnets-and-electromagnets",
-      subject: "Science",
-      subject_slug: "science",
+      subject: "Science" as const,
+      subject_slug: "science" as const,
       subject_parent: null,
       subject_parent_slug: null,
       tier: null,
@@ -15155,7 +15155,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 10,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "components-of-an-ecosystem",
@@ -15211,10 +15211,10 @@ const curriculumUnitsTabFixture = (
       ],
       order: 13,
       slug: "living-organisms-and-their-environments",
-      subject: "Biology",
-      subject_slug: "biology",
-      subject_parent: "Science",
-      subject_parent_slug: "science",
+      subject: "Biology" as const,
+      subject_slug: "biology" as const,
+      subject_parent: "Science" as const,
+      subject_parent_slug: "science" as const,
       tier: "Higher",
       tier_slug: "higher",
 
@@ -15251,7 +15251,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 10,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "components-of-an-ecosystem",
@@ -15307,10 +15307,10 @@ const curriculumUnitsTabFixture = (
       ],
       order: 13,
       slug: "living-organisms-and-their-environments",
-      subject: "Biology",
-      subject_slug: "biology",
-      subject_parent: "Science",
-      subject_parent_slug: "science",
+      subject: "Biology" as const,
+      subject_slug: "biology" as const,
+      subject_parent: "Science" as const,
+      subject_parent_slug: "science" as const,
       tier: "Foundation",
       tier_slug: "foundation",
 
@@ -15346,7 +15346,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 20,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "separating-mixtures-including-formulations",
@@ -15441,10 +15441,10 @@ const curriculumUnitsTabFixture = (
       ],
       order: 13,
       slug: "separating-substances",
-      subject: "Combined science",
-      subject_slug: "combined-science",
-      subject_parent: "Science",
-      subject_parent_slug: "science",
+      subject: "Combined science" as const,
+      subject_slug: "combined-science" as const,
+      subject_parent: "Science" as const,
+      subject_parent_slug: "science" as const,
       tier: null,
       tier_slug: null,
 
@@ -15484,7 +15484,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 13,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "the-inputs-and-outputs-of-photosynthesis-including-the-role-of-chlorophyll",
@@ -15540,10 +15540,10 @@ const curriculumUnitsTabFixture = (
       ],
       order: 13,
       slug: "photosynthesis-factors-affecting-the-rate",
-      subject: "Combined science",
-      subject_slug: "combined-science",
-      subject_parent: "Science",
-      subject_parent_slug: "science",
+      subject: "Combined science" as const,
+      subject_slug: "combined-science" as const,
+      subject_parent: "Science" as const,
+      subject_parent_slug: "science" as const,
       tier: "Higher",
       tier_slug: "higher",
 
@@ -15579,7 +15579,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 13,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "the-inputs-and-outputs-of-photosynthesis",
@@ -15630,10 +15630,10 @@ const curriculumUnitsTabFixture = (
       ],
       order: 13,
       slug: "photosynthesis-factors-affecting-the-rate",
-      subject: "Combined science",
-      subject_slug: "combined-science",
-      subject_parent: "Science",
-      subject_parent_slug: "science",
+      subject: "Combined science" as const,
+      subject_slug: "combined-science" as const,
+      subject_parent: "Science" as const,
+      subject_parent_slug: "science" as const,
       tier: "Foundation",
       tier_slug: "foundation",
 
@@ -15669,7 +15669,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 10,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks3",
+      keystage_slug: "ks3" as const,
       lessons: [
         {
           slug: "atoms-and-elements",
@@ -15724,8 +15724,8 @@ const curriculumUnitsTabFixture = (
       ],
       order: 14,
       slug: "atoms-elements-and-compounds",
-      subject: "Science",
-      subject_slug: "science",
+      subject: "Science" as const,
+      subject_slug: "science" as const,
       subject_parent: null,
       subject_parent_slug: null,
       tier: null,
@@ -15768,7 +15768,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 8,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks3",
+      keystage_slug: "ks3" as const,
       lessons: [
         {
           slug: "breathing-respiration-and-gas-exchange",
@@ -15814,8 +15814,8 @@ const curriculumUnitsTabFixture = (
       ],
       order: 14,
       slug: "breathing-and-respiration",
-      subject: "Science",
-      subject_slug: "science",
+      subject: "Science" as const,
+      subject_slug: "science" as const,
       subject_parent: null,
       subject_parent_slug: null,
       tier: null,
@@ -15860,7 +15860,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 6,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "the-human-endocrine-system",
@@ -15886,10 +15886,10 @@ const curriculumUnitsTabFixture = (
       ],
       order: 14,
       slug: "coordination-and-control-hormones-and-the-human-endocrine-system",
-      subject: "Combined science",
-      subject_slug: "combined-science",
-      subject_parent: "Science",
-      subject_parent_slug: "science",
+      subject: "Combined science" as const,
+      subject_slug: "combined-science" as const,
+      subject_parent: "Science" as const,
+      subject_parent_slug: "science" as const,
       tier: "Higher",
       tier_slug: "higher",
 
@@ -15927,7 +15927,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 6,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "the-human-endocrine-system",
@@ -15953,10 +15953,10 @@ const curriculumUnitsTabFixture = (
       ],
       order: 14,
       slug: "coordination-and-control-hormones-and-the-human-endocrine-system",
-      subject: "Combined science",
-      subject_slug: "combined-science",
-      subject_parent: "Science",
-      subject_parent_slug: "science",
+      subject: "Combined science" as const,
+      subject_slug: "combined-science" as const,
+      subject_parent: "Science" as const,
+      subject_parent_slug: "science" as const,
       tier: "Foundation",
       tier_slug: "foundation",
 
@@ -15993,7 +15993,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 11,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "earths-atmosphere-approximate-values",
@@ -16048,10 +16048,10 @@ const curriculumUnitsTabFixture = (
       ],
       order: 14,
       slug: "atmosphere-and-changing-climate",
-      subject: "Combined science",
-      subject_slug: "combined-science",
-      subject_parent: "Science",
-      subject_parent_slug: "science",
+      subject: "Combined science" as const,
+      subject_slug: "combined-science" as const,
+      subject_parent: "Science" as const,
+      subject_parent_slug: "science" as const,
       tier: null,
       tier_slug: null,
 
@@ -16087,7 +16087,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 13,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "transverse-waves",
@@ -16152,10 +16152,10 @@ const curriculumUnitsTabFixture = (
       ],
       order: 15,
       slug: "measuring-waves",
-      subject: "Combined science",
-      subject_slug: "combined-science",
-      subject_parent: "Science",
-      subject_parent_slug: "science",
+      subject: "Combined science" as const,
+      subject_slug: "combined-science" as const,
+      subject_parent: "Science" as const,
+      subject_parent_slug: "science" as const,
       tier: "Higher",
       tier_slug: "higher",
 
@@ -16190,7 +16190,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 13,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "transverse-waves",
@@ -16245,10 +16245,10 @@ const curriculumUnitsTabFixture = (
       ],
       order: 15,
       slug: "measuring-waves",
-      subject: "Combined science",
-      subject_slug: "combined-science",
-      subject_parent: "Science",
-      subject_parent_slug: "science",
+      subject: "Combined science" as const,
+      subject_slug: "combined-science" as const,
+      subject_parent: "Science" as const,
+      subject_parent_slug: "science" as const,
       tier: "Foundation",
       tier_slug: "foundation",
 
@@ -16283,7 +16283,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 7,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "antibiotics",
@@ -16303,10 +16303,10 @@ const curriculumUnitsTabFixture = (
       ],
       order: 15,
       slug: "drugs-and-new-treatments-for-disease",
-      subject: "Combined science",
-      subject_slug: "combined-science",
-      subject_parent: "Science",
-      subject_parent_slug: "science",
+      subject: "Combined science" as const,
+      subject_slug: "combined-science" as const,
+      subject_parent: "Science" as const,
+      subject_parent_slug: "science" as const,
       tier: "Higher",
       tier_slug: "higher",
 
@@ -16341,7 +16341,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 7,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "antibiotics",
@@ -16361,10 +16361,10 @@ const curriculumUnitsTabFixture = (
       ],
       order: 15,
       slug: "drugs-and-new-treatments-for-disease",
-      subject: "Combined science",
-      subject_slug: "combined-science",
-      subject_parent: "Science",
-      subject_parent_slug: "science",
+      subject: "Combined science" as const,
+      subject_slug: "combined-science" as const,
+      subject_parent: "Science" as const,
+      subject_parent_slug: "science" as const,
       tier: "Foundation",
       tier_slug: "foundation",
 
@@ -16401,7 +16401,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 6,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "producers-consumers-and-photosynthesis",
@@ -16427,10 +16427,10 @@ const curriculumUnitsTabFixture = (
       ],
       order: 16,
       slug: "photosynthesis-requirements-and-products",
-      subject: "Combined science",
-      subject_slug: "combined-science",
-      subject_parent: "Science",
-      subject_parent_slug: "science",
+      subject: "Combined science" as const,
+      subject_slug: "combined-science" as const,
+      subject_parent: "Science" as const,
+      subject_parent_slug: "science" as const,
       tier: "Higher",
       tier_slug: "higher",
 
@@ -16468,7 +16468,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 6,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "producers-consumers-and-photosynthesis",
@@ -16493,10 +16493,10 @@ const curriculumUnitsTabFixture = (
       ],
       order: 16,
       slug: "photosynthesis-requirements-and-products",
-      subject: "Combined science",
-      subject_slug: "combined-science",
-      subject_parent: "Science",
-      subject_parent_slug: "science",
+      subject: "Combined science" as const,
+      subject_slug: "combined-science" as const,
+      subject_parent: "Science" as const,
+      subject_parent_slug: "science" as const,
       tier: "Foundation",
       tier_slug: "foundation",
 
@@ -16532,7 +16532,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 20,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "reflection-of-light",
@@ -16598,10 +16598,10 @@ const curriculumUnitsTabFixture = (
       ],
       order: 16,
       slug: "electromagnetic-waves",
-      subject: "Combined science",
-      subject_slug: "combined-science",
-      subject_parent: "Science",
-      subject_parent_slug: "science",
+      subject: "Combined science" as const,
+      subject_slug: "combined-science" as const,
+      subject_parent: "Science" as const,
+      subject_parent_slug: "science" as const,
       tier: "Foundation",
       tier_slug: "foundation",
 
@@ -16636,7 +16636,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 20,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "reflection-of-light",
@@ -16707,10 +16707,10 @@ const curriculumUnitsTabFixture = (
       ],
       order: 16,
       slug: "electromagnetic-waves",
-      subject: "Combined science",
-      subject_slug: "combined-science",
-      subject_parent: "Science",
-      subject_parent_slug: "science",
+      subject: "Combined science" as const,
+      subject_slug: "combined-science" as const,
+      subject_parent: "Science" as const,
+      subject_parent_slug: "science" as const,
       tier: "Higher",
       tier_slug: "higher",
 
@@ -16745,7 +16745,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 18,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "three-types-of-chemical-reaction",
@@ -16820,10 +16820,10 @@ const curriculumUnitsTabFixture = (
       ],
       order: 17,
       slug: "calculations-involving-masses",
-      subject: "Combined science",
-      subject_slug: "combined-science",
-      subject_parent: "Science",
-      subject_parent_slug: "science",
+      subject: "Combined science" as const,
+      subject_slug: "combined-science" as const,
+      subject_parent: "Science" as const,
+      subject_parent_slug: "science" as const,
       tier: "Higher",
       tier_slug: "higher",
 
@@ -16858,7 +16858,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 18,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "three-types-of-chemical-reaction",
@@ -16888,10 +16888,10 @@ const curriculumUnitsTabFixture = (
       ],
       order: 17,
       slug: "calculations-involving-masses",
-      subject: "Combined science",
-      subject_slug: "combined-science",
-      subject_parent: "Science",
-      subject_parent_slug: "science",
+      subject: "Combined science" as const,
+      subject_slug: "combined-science" as const,
+      subject_parent: "Science" as const,
+      subject_parent_slug: "science" as const,
       tier: "Foundation",
       tier_slug: "foundation",
 
@@ -16927,7 +16927,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 8,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "genetic-variation",
@@ -16967,10 +16967,10 @@ const curriculumUnitsTabFixture = (
       ],
       order: 17,
       slug: "variation-and-natural-selection-at-the-genetic-level",
-      subject: "Combined science",
-      subject_slug: "combined-science",
-      subject_parent: "Science",
-      subject_parent_slug: "science",
+      subject: "Combined science" as const,
+      subject_slug: "combined-science" as const,
+      subject_parent: "Science" as const,
+      subject_parent_slug: "science" as const,
       tier: "Foundation",
       tier_slug: "foundation",
 
@@ -17007,7 +17007,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 8,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "genetic-variation",
@@ -17047,10 +17047,10 @@ const curriculumUnitsTabFixture = (
       ],
       order: 17,
       slug: "variation-and-natural-selection-at-the-genetic-level",
-      subject: "Combined science",
-      subject_slug: "combined-science",
-      subject_parent: "Science",
-      subject_parent_slug: "science",
+      subject: "Combined science" as const,
+      subject_slug: "combined-science" as const,
+      subject_parent: "Science" as const,
+      subject_parent_slug: "science" as const,
       tier: "Higher",
       tier_slug: "higher",
 
@@ -17086,7 +17086,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 8,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "dna-chromosomes-and-genes",
@@ -17126,10 +17126,10 @@ const curriculumUnitsTabFixture = (
       ],
       order: 18,
       slug: "inheritance-genotype-and-phenotype",
-      subject: "Combined science",
-      subject_slug: "combined-science",
-      subject_parent: "Science",
-      subject_parent_slug: "science",
+      subject: "Combined science" as const,
+      subject_slug: "combined-science" as const,
+      subject_parent: "Science" as const,
+      subject_parent_slug: "science" as const,
       tier: "Foundation",
       tier_slug: "foundation",
 
@@ -17164,7 +17164,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 8,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "dna-chromosomes-and-genes",
@@ -17204,10 +17204,10 @@ const curriculumUnitsTabFixture = (
       ],
       order: 18,
       slug: "inheritance-genotype-and-phenotype",
-      subject: "Combined science",
-      subject_slug: "combined-science",
-      subject_parent: "Science",
-      subject_parent_slug: "science",
+      subject: "Combined science" as const,
+      subject_slug: "combined-science" as const,
+      subject_parent: "Science" as const,
+      subject_parent_slug: "science" as const,
       tier: "Higher",
       tier_slug: "higher",
 
@@ -17241,7 +17241,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 15,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "introduction-to-reversible-chemical-reactions",
@@ -17266,10 +17266,10 @@ const curriculumUnitsTabFixture = (
       ],
       order: 18,
       slug: "industrial-chemistry",
-      subject: "Combined science",
-      subject_slug: "combined-science",
-      subject_parent: "Science",
-      subject_parent_slug: "science",
+      subject: "Combined science" as const,
+      subject_slug: "combined-science" as const,
+      subject_parent: "Science" as const,
+      subject_parent_slug: "science" as const,
       tier: "Foundation",
       tier_slug: "foundation",
 
@@ -17308,7 +17308,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 15,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "introduction-to-reversible-chemical-reactions",
@@ -17338,10 +17338,10 @@ const curriculumUnitsTabFixture = (
       ],
       order: 18,
       slug: "industrial-chemistry",
-      subject: "Combined science",
-      subject_slug: "combined-science",
-      subject_parent: "Science",
-      subject_parent_slug: "science",
+      subject: "Combined science" as const,
+      subject_slug: "combined-science" as const,
+      subject_parent: "Science" as const,
+      subject_parent_slug: "science" as const,
       tier: "Higher",
       tier_slug: "higher",
 
@@ -17381,7 +17381,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 42,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "work-done-w-equals-f-s",
@@ -17432,10 +17432,10 @@ const curriculumUnitsTabFixture = (
       ],
       order: 19,
       slug: "energy-of-moving-objects",
-      subject: "Combined science",
-      subject_slug: "combined-science",
-      subject_parent: "Science",
-      subject_parent_slug: "science",
+      subject: "Combined science" as const,
+      subject_slug: "combined-science" as const,
+      subject_parent: "Science" as const,
+      subject_parent_slug: "science" as const,
       tier: "Foundation",
       tier_slug: "foundation",
 
@@ -17470,7 +17470,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 42,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "work-done-calculations-w-equals-f-s",
@@ -17522,10 +17522,10 @@ const curriculumUnitsTabFixture = (
       ],
       order: 19,
       slug: "energy-of-moving-objects",
-      subject: "Combined science",
-      subject_slug: "combined-science",
-      subject_parent: "Science",
-      subject_parent_slug: "science",
+      subject: "Combined science" as const,
+      subject_slug: "combined-science" as const,
+      subject_parent: "Science" as const,
+      subject_parent_slug: "science" as const,
       tier: "Higher",
       tier_slug: "higher",
 
@@ -17560,7 +17560,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 5,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "classifying-organisms-as-eukaryotic-or-prokaryotic",
@@ -17587,10 +17587,10 @@ const curriculumUnitsTabFixture = (
       ],
       order: 19,
       slug: "classification-in-modern-biology",
-      subject: "Combined science",
-      subject_slug: "combined-science",
-      subject_parent: "Science",
-      subject_parent_slug: "science",
+      subject: "Combined science" as const,
+      subject_slug: "combined-science" as const,
+      subject_parent: "Science" as const,
+      subject_parent_slug: "science" as const,
       tier: "Higher",
       tier_slug: "higher",
 
@@ -17626,7 +17626,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 5,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "classifying-organisms-as-eukaryotic-or-prokaryotic",
@@ -17652,10 +17652,10 @@ const curriculumUnitsTabFixture = (
       ],
       order: 19,
       slug: "classification-in-modern-biology",
-      subject: "Combined science",
-      subject_slug: "combined-science",
-      subject_parent: "Science",
-      subject_parent_slug: "science",
+      subject: "Combined science" as const,
+      subject_slug: "combined-science" as const,
+      subject_parent: "Science" as const,
+      subject_parent_slug: "science" as const,
       tier: "Foundation",
       tier_slug: "foundation",
 
@@ -17691,7 +17691,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 7,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "growth-in-multicellular-organisms",
@@ -17721,10 +17721,10 @@ const curriculumUnitsTabFixture = (
       ],
       order: 20,
       slug: "cell-division-mitosis-and-meiosis",
-      subject: "Combined science",
-      subject_slug: "combined-science",
-      subject_parent: "Science",
-      subject_parent_slug: "science",
+      subject: "Combined science" as const,
+      subject_slug: "combined-science" as const,
+      subject_parent: "Science" as const,
+      subject_parent_slug: "science" as const,
       tier: "Higher",
       tier_slug: "higher",
 
@@ -17759,7 +17759,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 7,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "growth-in-multicellular-organisms",
@@ -17789,10 +17789,10 @@ const curriculumUnitsTabFixture = (
       ],
       order: 20,
       slug: "cell-division-mitosis-and-meiosis",
-      subject: "Combined science",
-      subject_slug: "combined-science",
-      subject_parent: "Science",
-      subject_parent_slug: "science",
+      subject: "Combined science" as const,
+      subject_slug: "combined-science" as const,
+      subject_parent: "Science" as const,
+      subject_parent_slug: "science" as const,
       tier: "Foundation",
       tier_slug: "foundation",
 
@@ -17826,7 +17826,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 15,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "danger-from-electric-shock",
@@ -17886,10 +17886,10 @@ const curriculumUnitsTabFixture = (
       ],
       order: 20,
       slug: "mains-electricity",
-      subject: "Combined science",
-      subject_slug: "combined-science",
-      subject_parent: "Science",
-      subject_parent_slug: "science",
+      subject: "Combined science" as const,
+      subject_slug: "combined-science" as const,
+      subject_parent: "Science" as const,
+      subject_parent_slug: "science" as const,
       tier: "Foundation",
       tier_slug: "foundation",
 
@@ -17923,7 +17923,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 15,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "danger-from-electric-shock",
@@ -17984,10 +17984,10 @@ const curriculumUnitsTabFixture = (
       ],
       order: 20,
       slug: "mains-electricity",
-      subject: "Combined science",
-      subject_slug: "combined-science",
-      subject_parent: "Science",
-      subject_parent_slug: "science",
+      subject: "Combined science" as const,
+      subject_slug: "combined-science" as const,
+      subject_parent: "Science" as const,
+      subject_parent_slug: "science" as const,
       tier: "Higher",
       tier_slug: "higher",
 
@@ -18022,7 +18022,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 23,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "describing-salts",
@@ -18104,10 +18104,10 @@ const curriculumUnitsTabFixture = (
       ],
       order: 21,
       slug: "making-salts",
-      subject: "Combined science",
-      subject_slug: "combined-science",
-      subject_parent: "Science",
-      subject_parent_slug: "science",
+      subject: "Combined science" as const,
+      subject_slug: "combined-science" as const,
+      subject_parent: "Science" as const,
+      subject_parent_slug: "science" as const,
       tier: "Foundation",
       tier_slug: "foundation",
 
@@ -18142,7 +18142,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 23,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "describing-salts",
@@ -18244,10 +18244,10 @@ const curriculumUnitsTabFixture = (
       ],
       order: 21,
       slug: "making-salts",
-      subject: "Combined science",
-      subject_slug: "combined-science",
-      subject_parent: "Science",
-      subject_parent_slug: "science",
+      subject: "Combined science" as const,
+      subject_slug: "combined-science" as const,
+      subject_parent: "Science" as const,
+      subject_parent_slug: "science" as const,
       tier: "Higher",
       tier_slug: "higher",
 
@@ -18281,7 +18281,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 6,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "genetic-testing-for-healthcare",
@@ -18312,10 +18312,10 @@ const curriculumUnitsTabFixture = (
       ],
       order: 21,
       slug: "gene-technology",
-      subject: "Combined science",
-      subject_slug: "combined-science",
-      subject_parent: "Science",
-      subject_parent_slug: "science",
+      subject: "Combined science" as const,
+      subject_slug: "combined-science" as const,
+      subject_parent: "Science" as const,
+      subject_parent_slug: "science" as const,
       tier: "Higher",
       tier_slug: "higher",
 
@@ -18349,7 +18349,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 6,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "genetic-testing-for-healthcare",
@@ -18380,10 +18380,10 @@ const curriculumUnitsTabFixture = (
       ],
       order: 21,
       slug: "gene-technology",
-      subject: "Combined science",
-      subject_slug: "combined-science",
-      subject_parent: "Science",
-      subject_parent_slug: "science",
+      subject: "Combined science" as const,
+      subject_slug: "combined-science" as const,
+      subject_parent: "Science" as const,
+      subject_parent_slug: "science" as const,
       tier: "Foundation",
       tier_slug: "foundation",
 
@@ -18418,7 +18418,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 6,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "specialised-cells-in-multicellular-organisms",
@@ -18454,10 +18454,10 @@ const curriculumUnitsTabFixture = (
       ],
       order: 22,
       slug: "stem-cells-and-differentiation",
-      subject: "Combined science",
-      subject_slug: "combined-science",
-      subject_parent: "Science",
-      subject_parent_slug: "science",
+      subject: "Combined science" as const,
+      subject_slug: "combined-science" as const,
+      subject_parent: "Science" as const,
+      subject_parent_slug: "science" as const,
       tier: null,
       tier_slug: null,
 
@@ -18491,7 +18491,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 14,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "principles-of-electrolysis",
@@ -18558,10 +18558,10 @@ const curriculumUnitsTabFixture = (
       ],
       order: 22,
       slug: "electrolysis",
-      subject: "Combined science",
-      subject_slug: "combined-science",
-      subject_parent: "Science",
-      subject_parent_slug: "science",
+      subject: "Combined science" as const,
+      subject_slug: "combined-science" as const,
+      subject_parent: "Science" as const,
+      subject_parent_slug: "science" as const,
       tier: "Higher",
       tier_slug: "higher",
 
@@ -18595,7 +18595,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 14,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "principles-of-electrolysis",
@@ -18652,10 +18652,10 @@ const curriculumUnitsTabFixture = (
       ],
       order: 22,
       slug: "electrolysis",
-      subject: "Combined science",
-      subject_slug: "combined-science",
-      subject_parent: "Science",
-      subject_parent_slug: "science",
+      subject: "Combined science" as const,
+      subject_slug: "combined-science" as const,
+      subject_parent: "Science" as const,
+      subject_parent_slug: "science" as const,
       tier: "Foundation",
       tier_slug: "foundation",
 
@@ -18691,7 +18691,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 14,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "thermal-conduction-in-metals-and-non-metals",
@@ -18756,10 +18756,10 @@ const curriculumUnitsTabFixture = (
       ],
       order: 23,
       slug: "energy-of-moving-particles",
-      subject: "Combined science",
-      subject_slug: "combined-science",
-      subject_parent: "Science",
-      subject_parent_slug: "science",
+      subject: "Combined science" as const,
+      subject_slug: "combined-science" as const,
+      subject_parent: "Science" as const,
+      subject_parent_slug: "science" as const,
       tier: "Foundation",
       tier_slug: "foundation",
 
@@ -18795,7 +18795,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 14,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "thermal-conduction-in-metals-and-non-metals",
@@ -18861,10 +18861,10 @@ const curriculumUnitsTabFixture = (
       ],
       order: 23,
       slug: "energy-of-moving-particles",
-      subject: "Combined science",
-      subject_slug: "combined-science",
-      subject_parent: "Science",
-      subject_parent_slug: "science",
+      subject: "Combined science" as const,
+      subject_slug: "combined-science" as const,
+      subject_parent: "Science" as const,
+      subject_parent_slug: "science" as const,
       tier: "Higher",
       tier_slug: "higher",
 
@@ -18901,7 +18901,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 8,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "the-fossil-record-provides-evidence-for-evolution",
@@ -18941,10 +18941,10 @@ const curriculumUnitsTabFixture = (
       ],
       order: 24,
       slug: "fossil-evidence-selective-breeding-and-explaining-evolution",
-      subject: "Combined science",
-      subject_slug: "combined-science",
-      subject_parent: "Science",
-      subject_parent_slug: "science",
+      subject: "Combined science" as const,
+      subject_slug: "combined-science" as const,
+      subject_parent: "Science" as const,
+      subject_parent_slug: "science" as const,
       tier: "Higher",
       tier_slug: "higher",
 
@@ -18982,7 +18982,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 8,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "the-fossil-record-provides-evidence-for-evolution",
@@ -19022,10 +19022,10 @@ const curriculumUnitsTabFixture = (
       ],
       order: 24,
       slug: "fossil-evidence-selective-breeding-and-explaining-evolution",
-      subject: "Combined science",
-      subject_slug: "combined-science",
-      subject_parent: "Science",
-      subject_parent_slug: "science",
+      subject: "Combined science" as const,
+      subject_slug: "combined-science" as const,
+      subject_parent: "Science" as const,
+      subject_parent_slug: "science" as const,
       tier: "Foundation",
       tier_slug: "foundation",
 
@@ -19061,7 +19061,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 10,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "bonding-to-carbon-atoms",
@@ -19106,10 +19106,10 @@ const curriculumUnitsTabFixture = (
       ],
       order: 25,
       slug: "chemistry-of-carbon",
-      subject: "Combined science",
-      subject_slug: "combined-science",
-      subject_parent: "Science",
-      subject_parent_slug: "science",
+      subject: "Combined science" as const,
+      subject_slug: "combined-science" as const,
+      subject_parent: "Science" as const,
+      subject_parent_slug: "science" as const,
       tier: "Foundation",
       tier_slug: "foundation",
 
@@ -19149,7 +19149,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 10,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "bonding-to-carbon-atoms",
@@ -19194,10 +19194,10 @@ const curriculumUnitsTabFixture = (
       ],
       order: 25,
       slug: "chemistry-of-carbon",
-      subject: "Combined science",
-      subject_slug: "combined-science",
-      subject_parent: "Science",
-      subject_parent_slug: "science",
+      subject: "Combined science" as const,
+      subject_slug: "combined-science" as const,
+      subject_parent: "Science" as const,
+      subject_parent_slug: "science" as const,
       tier: "Higher",
       tier_slug: "higher",
 
@@ -19238,7 +19238,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 10,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "components-of-an-ecosystem",
@@ -19284,10 +19284,10 @@ const curriculumUnitsTabFixture = (
       ],
       order: 26,
       slug: "living-organisms-and-their-environments",
-      subject: "Combined science",
-      subject_slug: "combined-science",
-      subject_parent: "Science",
-      subject_parent_slug: "science",
+      subject: "Combined science" as const,
+      subject_slug: "combined-science" as const,
+      subject_parent: "Science" as const,
+      subject_parent_slug: "science" as const,
       tier: "Foundation",
       tier_slug: "foundation",
 
@@ -19324,7 +19324,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 10,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "components-of-an-ecosystem",
@@ -19370,10 +19370,10 @@ const curriculumUnitsTabFixture = (
       ],
       order: 26,
       slug: "living-organisms-and-their-environments",
-      subject: "Combined science",
-      subject_slug: "combined-science",
-      subject_parent: "Science",
-      subject_parent_slug: "science",
+      subject: "Combined science" as const,
+      subject_slug: "combined-science" as const,
+      subject_parent: "Science" as const,
+      subject_parent_slug: "science" as const,
       tier: "Higher",
       tier_slug: "higher",
 
@@ -19409,7 +19409,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 14,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "measuring-the-resistance-of-a-filament-bulb-practical",
@@ -19474,10 +19474,10 @@ const curriculumUnitsTabFixture = (
       ],
       order: 27,
       slug: "circuit-components",
-      subject: "Combined science",
-      subject_slug: "combined-science",
-      subject_parent: "Science",
-      subject_parent_slug: "science",
+      subject: "Combined science" as const,
+      subject_slug: "combined-science" as const,
+      subject_parent: "Science" as const,
+      subject_parent_slug: "science" as const,
       tier: "Foundation",
       tier_slug: "foundation",
 
@@ -19512,7 +19512,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 14,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "measuring-the-resistance-of-a-filament-bulb-practical",
@@ -19577,10 +19577,10 @@ const curriculumUnitsTabFixture = (
       ],
       order: 27,
       slug: "circuit-components",
-      subject: "Combined science",
-      subject_slug: "combined-science",
-      subject_parent: "Science",
-      subject_parent_slug: "science",
+      subject: "Combined science" as const,
+      subject_slug: "combined-science" as const,
+      subject_parent: "Science" as const,
+      subject_parent_slug: "science" as const,
       tier: "Higher",
       tier_slug: "higher",
 
@@ -19615,7 +19615,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 6,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "energy-changes-in-reactions",
@@ -19645,10 +19645,10 @@ const curriculumUnitsTabFixture = (
       ],
       order: 28,
       slug: "energy-changes-in-reactions",
-      subject: "Combined science",
-      subject_slug: "combined-science",
-      subject_parent: "Science",
-      subject_parent_slug: "science",
+      subject: "Combined science" as const,
+      subject_slug: "combined-science" as const,
+      subject_parent: "Science" as const,
+      subject_parent_slug: "science" as const,
       tier: "Foundation",
       tier_slug: "foundation",
 
@@ -19688,7 +19688,7 @@ const curriculumUnitsTabFixture = (
       planned_number_of_lessons: 6,
       phase: "Secondary",
       phase_slug: "secondary",
-      keystage_slug: "ks4",
+      keystage_slug: "ks4" as const,
       lessons: [
         {
           slug: "energy-changes-in-reactions",
@@ -19723,10 +19723,10 @@ const curriculumUnitsTabFixture = (
       ],
       order: 28,
       slug: "energy-changes-in-reactions",
-      subject: "Combined science",
-      subject_slug: "combined-science",
-      subject_parent: "Science",
-      subject_parent_slug: "science",
+      subject: "Combined science" as const,
+      subject_slug: "combined-science" as const,
+      subject_parent: "Science" as const,
+      subject_parent_slug: "science" as const,
       tier: "Higher",
       tier_slug: "higher",
 

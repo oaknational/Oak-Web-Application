@@ -1,18 +1,10 @@
 import { Meta, StoryObj } from "@storybook/nextjs";
-import { OakThemeProvider, oakDefaultTheme } from "@oaknational/oak-components";
 
 import { TakedownBanner } from "./TakedownBanner";
 
 const meta: Meta<typeof TakedownBanner> = {
   component: TakedownBanner,
   tags: ["autodocs"],
-  decorators: [
-    (Story) => (
-      <OakThemeProvider theme={oakDefaultTheme}>
-        <Story />
-      </OakThemeProvider>
-    ),
-  ],
 };
 export default meta;
 type Story = StoryObj<typeof TakedownBanner>;

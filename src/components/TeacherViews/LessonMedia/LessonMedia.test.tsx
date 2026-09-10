@@ -6,12 +6,13 @@ import { LessonMedia } from "./LessonMedia.view";
 
 import { resolveOakHref } from "@/common-lib/urls";
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
-import lessonMediaClipsFixtures from "@/node-lib/curriculum-api-2023/fixtures/lessonMediaClips.fixture";
+import lessonMediaClipsFixtures, {
+  lessonMediaClipsCanonicalFixture,
+} from "@/node-lib/curriculum-api-2023/fixtures/lessonMediaClips.fixture";
 import { VideoPlayerProps } from "@/components/SharedComponents/VideoPlayer/VideoPlayer";
 import { MediaClipListCamelCase } from "@/node-lib/curriculum-api-2023/queries/lessonMediaClips/lessonMediaClips.schema";
 import { setUseUserReturn } from "@/__tests__/__helpers__/mockClerk";
 import {
-  mockLoggedIn,
   mockLoggedOut,
   mockGeorestrictedUser,
 } from "@/__tests__/__helpers__/mockUser";
@@ -101,6 +102,19 @@ describe("LessonMedia view", () => {
     }),
   );
 
+  it("does not render breadcrumbs on the canonical page", () => {
+    const { queryByRole } = render(
+      <LessonMedia
+        lesson={lessonMediaClipsCanonicalFixture()}
+        isCanonical={true}
+      />,
+    );
+
+    expect(
+      queryByRole("navigation", { name: "Breadcrumb" }),
+    ).not.toBeInTheDocument();
+  });
+
   it("renders 'Back to lesson' button with correct link", () => {
     const { getByTestId } = render(
       <LessonMedia lesson={lesson} isCanonical={false} />,
@@ -129,7 +143,7 @@ describe("LessonMedia view", () => {
     const mediaClipListItems = within(mediaClipList!).getAllByRole("listitem");
 
     expect(mediaClipList).toBeInTheDocument();
-    expect(mediaClipListItems.length).toEqual(3);
+    expect(mediaClipListItems).toHaveLength(3);
   });
 
   it("calls window.history.replaceState with correct parameters when video is clicked", async () => {
@@ -317,48 +331,5 @@ describe("LessonMedia view", () => {
       accessBlockType: "Geo-restriction",
       accessBlockDetails: {},
     });
-  });
-
-  it("passes pathwayData to VideoPlayer for video event tracking", () => {
-    setUseUserReturn(mockLoggedIn);
-    render(<LessonMedia lesson={lesson} isCanonical={false} />);
-
-    expect(mockVideoPlayerProps).toHaveBeenCalledWith(
-      expect.objectContaining({
-        pathwayData: expect.objectContaining({
-          keyStageSlug: "ks4",
-          keyStageTitle: "Key stage 4",
-          subjectSlug: "physical-education",
-          subjectTitle: "Physical Education",
-          unitSlug: "running-and-jumping",
-          unitName: "Running and jumping",
-          lessonSlug: "running-as-a-team",
-          lessonName: "Running as a team",
-          releaseGroup: "2023",
-          phase: "secondary",
-          lessonReleaseCohort: "2023-2026",
-          lessonReleaseDate: "2025-09-29T14:00:00.000Z",
-        }),
-      }),
-    );
-  });
-
-  it("passes legacy pathwayData to VideoPlayer when lessonCohort is legacy", () => {
-    setUseUserReturn(mockLoggedIn);
-    const legacyLesson = {
-      ...lesson,
-      lessonCohort: "2020-2023",
-    };
-    render(<LessonMedia lesson={legacyLesson} isCanonical={false} />);
-
-    expect(mockVideoPlayerProps).toHaveBeenCalledWith(
-      expect.objectContaining({
-        pathwayData: expect.objectContaining({
-          releaseGroup: "legacy",
-          lessonReleaseCohort: "2020-2023",
-        }),
-        isLegacy: true,
-      }),
-    );
   });
 });

@@ -1,49 +1,47 @@
-import { FC, ReactNode, useId } from "react";
+import { FC, ReactNode } from "react";
 import {
   OakGrid,
   OakGridArea,
   OakHeading,
   OakIcon,
   OakMaxWidth,
+  OakBreadcrumbs,
+  OakBreadcrumb,
+  OakBreadcrumbWithoutHref,
 } from "@oaknational/oak-components";
 
 import PostCategoryList from "@/components/SharedComponents/PostCategoryList";
-import { PostCategoryPage } from "@/components/SharedComponents/PostCategoryList/PostCategoryList";
-import usePostCategoryList from "@/components/SharedComponents/PostCategoryList/usePostCategoryList";
+import {
+  CATEGORY_NAV_LABEL,
+  PostCategoryPage,
+} from "@/components/SharedComponents/PostCategoryList/PostCategoryList";
 import BlogHeader from "@/components/SharedComponents/PostHeader/PostHeader";
 import { WebinarSinglePageProps } from "@/pages/webinars/[webinarSlug]";
 import { BlogSinglePageProps } from "@/pages/blog/[blogSlug]";
-import theme from "@/styles/theme";
 import MobileFilters from "@/components/SharedComponents/MobileFilters";
-import Breadcrumbs, {
-  Breadcrumb,
-} from "@/components/SharedComponents/Breadcrumbs/Breadcrumbs";
 
 type PostSingleLayoutProps = {
   children?: ReactNode;
   content: BlogSinglePageProps | WebinarSinglePageProps;
-  breadcrumbs: Breadcrumb[];
+  breadcrumbs: [...OakBreadcrumb[], OakBreadcrumbWithoutHref];
 };
 
 const PostSingleLayout: FC<PostSingleLayoutProps> = (props) => {
   const { content, children, breadcrumbs } = props;
   const { categories } = content;
-  const triggerId = useId();
   const post = "blog" in content ? content.blog : content.webinar;
   const page: PostCategoryPage =
     "blog" in content ? "blog-index" : "webinar-index";
 
-  const HEADER_HEIGHT = theme.header.height;
-
-  const postCategoriesListProps = usePostCategoryList();
-
   return (
     <OakMaxWidth>
-      <OakGrid $ph={["spacing-12", "spacing-0"]}>
-        <OakGridArea $colSpan={[12, 0]}>
-          <MobileFilters page={page} withBackButton label={"Categories"}>
+      <OakGrid $ph={["spacing-12", "spacing-0"]} $pb="spacing-24">
+        <OakGridArea
+          $colSpan={[12, 0]}
+          $mt={["spacing-24", "spacing-0", "spacing-0"]}
+        >
+          <MobileFilters page={page} withBackButton label={CATEGORY_NAV_LABEL}>
             <PostCategoryList
-              labelledBy={triggerId}
               $pv={"spacing-24"}
               $ph={"spacing-16"}
               categories={categories}
@@ -58,7 +56,7 @@ const PostSingleLayout: FC<PostSingleLayoutProps> = (props) => {
           $mv={"spacing-16"}
           $gap={"spacing-24"}
         >
-          <Breadcrumbs breadcrumbs={breadcrumbs} />
+          <OakBreadcrumbs breadcrumbs={breadcrumbs} />
           <OakIcon
             iconName="header-underline"
             $colorFilter="bg-interactive-element2"
@@ -72,18 +70,13 @@ const PostSingleLayout: FC<PostSingleLayoutProps> = (props) => {
           $colSpan={[12, 3]}
           $mt={["spacing-48", "spacing-12"]}
           $display={["none", "block"]}
+          $top={[null, "spacing-72"]}
           $position={[null, "sticky"]}
-          $top={[null, HEADER_HEIGHT]}
         >
-          <OakHeading
-            tag="h3"
-            $font="body-3"
-            id={postCategoriesListProps.labelId}
-          >
-            Categories
+          <OakHeading tag="h3" $font="body-3">
+            {CATEGORY_NAV_LABEL}
           </OakHeading>
           <PostCategoryList
-            labelledBy={postCategoriesListProps.labelId}
             $mt={"spacing-16"}
             categories={categories}
             page={page}

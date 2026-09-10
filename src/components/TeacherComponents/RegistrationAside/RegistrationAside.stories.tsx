@@ -1,5 +1,4 @@
 import { Meta, StoryObj } from "@storybook/nextjs";
-import { oakDefaultTheme, OakThemeProvider } from "@oaknational/oak-components";
 
 import Component from "./RegistrationAside";
 
@@ -16,10 +15,6 @@ export const RegistrationAside: Story = {
     useNew: false,
   },
   render: () => {
-    return (
-      <OakThemeProvider theme={oakDefaultTheme}>
-        <Component />
-      </OakThemeProvider>
-    );
+    return <Component />;
   },
 };

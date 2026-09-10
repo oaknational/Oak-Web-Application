@@ -1,7 +1,5 @@
 "use client";
 import { FC } from "react";
-import { usePathname } from "next/navigation";
-import { keystageDescriptions } from "@oaknational/oak-curriculum-schema";
 import {
   OakGrid,
   OakGridArea,
@@ -17,17 +15,14 @@ import {
   OakMaxWidth,
   OakSvg,
   OakImage,
-  OakSecondaryLink,
+  OakLink,
 } from "@oaknational/oak-components";
 import styled from "styled-components";
 import Link from "next/link";
 
 import { aboutUsAccessed } from "@/browser-lib/avo/Avo";
 import { OAK_SOCIALS } from "@/components/SharedComponents/SocialButtons/SocialButtons";
-import LayoutSiteFooterSignpost from "@/components/AppComponents/LayoutSiteFooterSignpost";
 import SocialButtons from "@/components/SharedComponents/SocialButtons";
-import useAnalytics from "@/context/Analytics/useAnalytics";
-import { toSentenceCase } from "@/node-lib/curriculum-api-2023/helpers";
 import { buildAboutUsAnalytics } from "@/utils/analytics-builders";
 import { getCloudinaryImageUrl } from "@/utils/getCloudinaryImageUrl";
 import { resolveOakHref } from "@/common-lib/urls";
@@ -58,34 +53,20 @@ const footerSections: FooterSections = {
         }),
       },
       {
-        text: "Specialist",
-        type: "link",
-        href: "/teachers/specialist/subjects",
-      },
-      {
-        text: "Key stage 1",
-        type: "link",
-        href: resolveOakHref({ page: "subject-index", keyStageSlug: "ks1" }),
-      },
-      {
-        text: "Key stage 2",
-        type: "link",
-        href: resolveOakHref({ page: "subject-index", keyStageSlug: "ks2" }),
-      },
-      {
-        text: "Key stage 3",
-        type: "link",
-        href: resolveOakHref({ page: "subject-index", keyStageSlug: "ks3" }),
-      },
-      {
-        text: "Key stage 4",
-        type: "link",
-        href: resolveOakHref({ page: "subject-index", keyStageSlug: "ks4" }),
-      },
-      {
         text: "Plan a lesson",
         type: "link",
         href: resolveOakHref({ page: "lesson-planning" }),
+      },
+      {
+        text: "Aila, Oak’s AI lesson assistant",
+        type: "link",
+        icon: "external",
+        href: resolveOakHref({ page: "labs" }),
+      },
+      {
+        text: "Blog",
+        type: "link",
+        href: resolveOakHref({ page: "blog-index" }),
       },
     ],
   },
@@ -103,6 +84,12 @@ const footerSections: FooterSections = {
         text: "Oak's curricula",
         type: "link",
         href: resolveOakHref({ page: "about-oaks-curricula" }),
+        track: trackAboutUsFooter,
+      },
+      {
+        text: "Oak's impact",
+        type: "link" as const,
+        href: resolveOakHref({ page: "about-oaks-impact" }),
         track: trackAboutUsFooter,
       },
       {
@@ -135,11 +122,6 @@ const footerSections: FooterSections = {
         href: resolveOakHref({ page: "help" }),
         icon: "external",
         ariaLabel: "Help (opens in a new tab)",
-      },
-      {
-        text: "Blog",
-        type: "link",
-        href: resolveOakHref({ page: "blog-index" }),
       },
       {
         text: "Webinars",
@@ -214,19 +196,19 @@ type LayoutFooterLinkProps = {
 );
 
 const FooterLink: FC<LayoutFooterLinkProps> = (props) => {
-  const { track } = useAnalytics();
   const { openSettings } = useCookieConsent();
 
   if (props.type === "consent-manager-toggle") {
     return (
-      <OakSecondaryLink element="button" onClick={openSettings}>
+      <OakLink variant="secondary" element="button" onClick={openSettings}>
         {props.text}
-      </OakSecondaryLink>
+      </OakLink>
     );
   }
 
   return (
-    <OakSecondaryLink
+    <OakLink
+      variant="secondary"
       href={props.href}
       element={Link}
       aria-label={props.ariaLabel ?? undefined}
@@ -234,34 +216,13 @@ const FooterLink: FC<LayoutFooterLinkProps> = (props) => {
       isTrailingIcon
       target={props.icon === "external" ? "_blank" : undefined}
       onClick={() => {
-        const sentenceCaseText = props.text
-          .split(" ")
-          .map(toSentenceCase)
-          .join(" ");
-
-        if (keystageDescriptions.safeParse(sentenceCaseText).success) {
-          track.browseRefinedAccessed({
-            platform: "owa",
-            product: "teacher lesson resources",
-            engagementIntent: "refine",
-            componentType: "footer_menu_link",
-            eventVersion: "2.0.0",
-            analyticsUseCase: "Teacher",
-            filterType: "Key stage filter",
-            filterValue: props.text,
-            activeFilters: [],
-            googleLoginHint: null,
-            clientEnvironment: null,
-          });
-        }
-
         if (props.track) {
           props.track();
         }
       }}
     >
       {props.text}
-    </OakSecondaryLink>
+    </OakLink>
   );
 };
 
@@ -307,8 +268,6 @@ export type FooterSections = Record<
 
 const LayoutSiteFooter: FC = () => {
   const sections = footerSections;
-  const pathname = usePathname();
-  const displaySignpost = pathname?.startsWith("/beta");
 
   return (
     <OakBox
@@ -336,15 +295,6 @@ const LayoutSiteFooter: FC = () => {
           $ma={"auto"}
           $width={"100%"}
         >
-          {displaySignpost && (
-            <OakFlex
-              $wordWrap={"initial"}
-              $mb={["spacing-16", "spacing-56"]}
-              $maxWidth={["spacing-480", "spacing-640", "spacing-640"]}
-            >
-              <LayoutSiteFooterSignpost />
-            </OakFlex>
-          )}
           <OakGrid>
             <OakGridArea $colSpan={[12, 3]}>
               <FooterSectionLinks {...sections.pupils} />

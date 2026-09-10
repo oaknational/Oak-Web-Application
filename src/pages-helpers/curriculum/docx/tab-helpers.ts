@@ -281,7 +281,7 @@ export function createUnitsListingByYear(
   }
 
   for (const year of Object.keys(yearData)) {
-    yearData[year]!.units = yearData[year]!.units.toSorted(sortUnits);
+    yearData[year]!.units = [...yearData[year]!.units].sort(sortUnits);
   }
 
   return yearData;

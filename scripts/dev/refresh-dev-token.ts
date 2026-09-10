@@ -11,9 +11,9 @@
  *      (One-time setup per OAuth app.)
  *
  * Usage:
- *   npx tsx scripts/dev/refresh-dev-token.ts
+ *   pnpx tsx scripts/dev/refresh-dev-token.ts
  *   — or —
- *   npm run dev:gclassroom:refresh-token
+ *   pnpm run dev:gclassroom:refresh-token
  */
 
 import * as fs from "node:fs";

@@ -4,7 +4,7 @@ import {
 } from "@oaknational/oak-curriculum-schema";
 
 import {
-  getNeighbourUnits,
+  getAdjacentUnits,
   getPackagedUnit,
   getProgrammeToggles,
   getTransformedLessons,
@@ -44,6 +44,7 @@ describe("getTransformedUnit", () => {
       ]),
       containsGeorestrictedLessons: false,
       containsLoginRequiredLessons: false,
+      nonCurriculum: false,
       unitSequenceData: unitSequenceFixture,
       unitsInOtherProgrammes: unitsInOtherProgrammesFixture,
       threads: threadsFixture,
@@ -75,6 +76,7 @@ describe("getTransformedUnit", () => {
       programmeSlug: "programme-slug",
       subjectSlug: "maths",
       subjectTitle: "Maths",
+      subjectCategories: [],
       parentSubject: "Maths",
       tierSlug: null,
       tierTitle: null,
@@ -84,7 +86,7 @@ describe("getTransformedUnit", () => {
       unitIndex: 1,
       unitCount: 4,
       unitvariantId: 1,
-      yearTitle: "Year 1",
+      yearGroupTitle: "Year 1",
       yearSlug: "year-1",
       year: "1",
       pathwaySlug: null,
@@ -98,6 +100,7 @@ describe("getTransformedUnit", () => {
       priorKnowledgeRequirements: ["prior", "knowledge", "requirements"],
       containsGeorestrictedLessons: false,
       containsLoginRequiredLessons: false,
+      nonCurriculum: false,
       nextUnit: {
         slug: "unit-2",
         title: "Unit 2",
@@ -124,6 +127,7 @@ describe("getTransformedUnit", () => {
       ]),
       containsGeorestrictedLessons: false,
       containsLoginRequiredLessons: false,
+      nonCurriculum: false,
       unitSequenceData: unitSequenceFixture,
       unitsInOtherProgrammes: unitsInOtherProgrammesFixture,
       threads: threadsFixture,
@@ -133,6 +137,7 @@ describe("getTransformedUnit", () => {
       examBoardTitle: null,
       keyStageSlug: "ks1",
       keyStageTitle: "Key Stage 1",
+      subjectCategories: [],
       lessons: [
         {
           description: "lesson-description",
@@ -163,7 +168,7 @@ describe("getTransformedUnit", () => {
       unitIndex: 1,
       unitCount: 4,
       unitvariantId: 1,
-      yearTitle: "Year 1",
+      yearGroupTitle: "Year 1",
       yearSlug: "year-1",
       year: "1",
       pathwaySlug: null,
@@ -174,6 +179,7 @@ describe("getTransformedUnit", () => {
       actions: { isPePractical: false },
       containsGeorestrictedLessons: false,
       containsLoginRequiredLessons: false,
+      nonCurriculum: false,
       threads: ["Thread 1", "Thread 2", "Thread 3"],
       whyThisWhyNow: "why this why now",
       priorKnowledgeRequirements: ["prior", "knowledge", "requirements"],
@@ -197,6 +203,7 @@ describe("getTransformedUnit", () => {
       ]),
       containsGeorestrictedLessons: false,
       containsLoginRequiredLessons: false,
+      nonCurriculum: false,
       unitSequenceData: sequence,
       unitsInOtherProgrammes: unitsInOtherProgrammesFixture,
       threads: threadsFixture,
@@ -212,6 +219,7 @@ describe("getTransformedUnit", () => {
       ]),
       containsGeorestrictedLessons: false,
       containsLoginRequiredLessons: false,
+      nonCurriculum: false,
       unitSequenceData: [
         ...unitSequenceFixture,
         {
@@ -222,6 +230,7 @@ describe("getTransformedUnit", () => {
           nullUnitvariantId: 20,
           yearOrder: 2,
           year: "7",
+          actions: null,
         },
         {
           unitSlug: "unit-21",
@@ -231,6 +240,7 @@ describe("getTransformedUnit", () => {
           nullUnitvariantId: 21,
           yearOrder: 2,
           year: "7",
+          actions: null,
         },
       ],
       unitsInOtherProgrammes: unitsInOtherProgrammesFixture,
@@ -262,6 +272,7 @@ describe("getUnitCounts", () => {
         nullUnitvariantId: 20,
         yearOrder: 2,
         year: "7",
+        actions: null,
       },
       {
         unitSlug: "unit-21",
@@ -271,6 +282,7 @@ describe("getUnitCounts", () => {
         nullUnitvariantId: 21,
         yearOrder: 2,
         year: "7",
+        actions: null,
       },
     ];
     const result = getUnitCounts({
@@ -291,6 +303,7 @@ describe("getUnitCounts", () => {
         nullUnitvariantId: 1,
         yearOrder: 1,
         year: "7",
+        actions: null,
       },
       {
         unitSlug: "unit-2-core",
@@ -300,6 +313,7 @@ describe("getUnitCounts", () => {
         nullUnitvariantId: 2,
         yearOrder: 1,
         year: "7",
+        actions: null,
       },
       {
         unitSlug: "unit-2-optionality",
@@ -310,6 +324,7 @@ describe("getUnitCounts", () => {
         nullUnitvariantId: 2,
         yearOrder: 1,
         year: "7",
+        actions: null,
       },
       {
         unitSlug: "unit-3-core",
@@ -319,6 +334,7 @@ describe("getUnitCounts", () => {
         nullUnitvariantId: 3,
         yearOrder: 1,
         year: "7",
+        actions: null,
       },
     ];
 
@@ -341,6 +357,7 @@ describe("getUnitCounts", () => {
         nullUnitvariantId: 1,
         yearOrder: 1,
         year: "7",
+        actions: null,
       },
       {
         unitSlug: "swimming-and-water-safety-1",
@@ -350,6 +367,7 @@ describe("getUnitCounts", () => {
         nullUnitvariantId: 2,
         yearOrder: 1,
         year: "7",
+        actions: null,
         isSwimming: true,
       },
       {
@@ -360,6 +378,7 @@ describe("getUnitCounts", () => {
         nullUnitvariantId: 3,
         yearOrder: 1,
         year: "7",
+        actions: null,
       },
     ];
 
@@ -382,6 +401,7 @@ describe("getUnitCounts", () => {
         nullUnitvariantId: 1,
         yearOrder: 1,
         year: "7",
+        actions: null,
       },
       {
         unitSlug: "swimming-and-water-safety-1",
@@ -391,6 +411,7 @@ describe("getUnitCounts", () => {
         nullUnitvariantId: 2,
         yearOrder: 1,
         year: "7",
+        actions: null,
         isSwimming: true,
       },
       {
@@ -401,6 +422,7 @@ describe("getUnitCounts", () => {
         nullUnitvariantId: 4,
         yearOrder: 1,
         year: "7",
+        actions: null,
         isSwimming: true,
       },
       {
@@ -411,6 +433,7 @@ describe("getUnitCounts", () => {
         nullUnitvariantId: 3,
         yearOrder: 1,
         year: "7",
+        actions: null,
       },
     ];
 
@@ -422,9 +445,206 @@ describe("getUnitCounts", () => {
     expect(result.unitCount).toBe(2);
     expect(result.unitIndex).toBe(2);
   });
+
+  it("orders swimming units by yearOrder across years", () => {
+    // Both swimming units have unitOrder: 1 (first unit in their respective year),
+    // so sorting by unitOrder alone is insufficient (it would preserve input/API order). yearOrder must be the primary sort key.
+    const sequence: UnitSequence = [
+      {
+        unitSlug: "unit-1",
+        unitTitle: "Unit 1",
+        unitDescription: null,
+        unitOrder: 1,
+        nullUnitvariantId: 1,
+        yearOrder: 1,
+        year: "3",
+        actions: null,
+      },
+      // Intentionally placed before the Year 3 swimming unit despite being the later year
+      {
+        unitSlug: "swimming-year-4",
+        unitTitle: "Swimming Year 4",
+        unitDescription: null,
+        unitOrder: 1,
+        nullUnitvariantId: 3,
+        yearOrder: 2,
+        year: "4",
+        isSwimming: true,
+        actions: null,
+      },
+      {
+        unitSlug: "swimming-year-3",
+        unitTitle: "Swimming Year 3",
+        unitDescription: null,
+        unitOrder: 1,
+        nullUnitvariantId: 2,
+        yearOrder: 1,
+        year: "3",
+        isSwimming: true,
+        actions: null,
+      },
+    ];
+
+    const year3Result = getUnitCounts({
+      unitSequenceData: sequence,
+      nullUnitvariantId: 2,
+    });
+    expect(year3Result.unitIndex).toBe(1);
+    expect(year3Result.unitCount).toBe(2);
+
+    const year4Result = getUnitCounts({
+      unitSequenceData: sequence,
+      nullUnitvariantId: 3,
+    });
+    expect(year4Result.unitIndex).toBe(2);
+    expect(year4Result.unitCount).toBe(2);
+  });
+
+  it("orders swimming units by unitOrder when yearOrder is equal", () => {
+    const sequence: UnitSequence = [
+      {
+        unitSlug: "swimming-b",
+        unitTitle: "Swimming B",
+        unitDescription: null,
+        unitOrder: 2,
+        nullUnitvariantId: 2,
+        yearOrder: 1,
+        year: "3",
+        isSwimming: true,
+        actions: null,
+      },
+      {
+        unitSlug: "swimming-a",
+        unitTitle: "Swimming A",
+        unitDescription: null,
+        unitOrder: 1,
+        nullUnitvariantId: 1,
+        yearOrder: 1,
+        year: "3",
+        isSwimming: true,
+        actions: null,
+      },
+    ];
+
+    const resultA = getUnitCounts({
+      unitSequenceData: sequence,
+      nullUnitvariantId: 1,
+    });
+    expect(resultA.unitIndex).toBe(1);
+
+    const resultB = getUnitCounts({
+      unitSequenceData: sequence,
+      nullUnitvariantId: 2,
+    });
+    expect(resultB.unitIndex).toBe(2);
+  });
+
+  it("filters to overlapping subject categories when subject category grouping is enabled", () => {
+    const sequence: UnitSequence = [
+      {
+        unitSlug: "grammar-1",
+        unitTitle: "Grammar 1",
+        unitDescription: null,
+        unitOrder: 1,
+        nullUnitvariantId: 1,
+        yearOrder: 1,
+        year: "7",
+        subjectCategories: ["Grammar"],
+        actions: {
+          subject_category_actions: {
+            group_by_subjectcategory: true,
+            all_disabled: false,
+            default_category_id: 1,
+          },
+        },
+      },
+      {
+        unitSlug: "grammar-2",
+        unitTitle: "Grammar 2",
+        unitDescription: null,
+        unitOrder: 2,
+        nullUnitvariantId: 2,
+        yearOrder: 1,
+        year: "7",
+        subjectCategories: ["Grammar"],
+        actions: null,
+      },
+      {
+        unitSlug: "writing-1",
+        unitTitle: "Writing 1",
+        unitDescription: null,
+        unitOrder: 3,
+        nullUnitvariantId: 3,
+        yearOrder: 1,
+        year: "7",
+        subjectCategories: ["Writing"],
+        actions: null,
+      },
+    ];
+
+    const result = getUnitCounts({
+      unitSequenceData: sequence,
+      nullUnitvariantId: 1,
+    });
+
+    expect(result.unitCount).toBe(2);
+    expect(result.unitIndex).toBe(1);
+  });
+
+  it("does not filter by subject category when grouping is disabled", () => {
+    const sequence: UnitSequence = [
+      {
+        unitSlug: "grammar-1",
+        unitTitle: "Grammar 1",
+        unitDescription: null,
+        unitOrder: 1,
+        nullUnitvariantId: 1,
+        yearOrder: 1,
+        year: "7",
+        subjectCategories: ["Grammar"],
+        actions: {
+          subject_category_actions: {
+            group_by_subjectcategory: false,
+            all_disabled: false,
+            default_category_id: 1,
+          },
+        },
+      },
+      {
+        unitSlug: "grammar-2",
+        unitTitle: "Grammar 2",
+        unitDescription: null,
+        unitOrder: 2,
+        nullUnitvariantId: 2,
+        yearOrder: 1,
+        year: "7",
+        subjectCategories: ["Grammar"],
+        actions: null,
+      },
+      {
+        unitSlug: "writing-1",
+        unitTitle: "Writing 1",
+        unitDescription: null,
+        unitOrder: 3,
+        nullUnitvariantId: 3,
+        yearOrder: 1,
+        year: "7",
+        subjectCategories: ["Writing"],
+        actions: null,
+      },
+    ];
+
+    const result = getUnitCounts({
+      unitSequenceData: sequence,
+      nullUnitvariantId: 1,
+    });
+
+    expect(result.unitCount).toBe(3);
+    expect(result.unitIndex).toBe(1);
+  });
 });
 
-describe("getNeighbourUnits", () => {
+describe("getAdjacentUnits", () => {
   it("gets the previous unit", () => {
     const transformedLessons = getPackagedUnit({
       packagedUnitData: { ...mockPackagedUnitData, nullUnitvariantId: 3 },
@@ -433,6 +653,7 @@ describe("getNeighbourUnits", () => {
       ]),
       containsGeorestrictedLessons: false,
       containsLoginRequiredLessons: false,
+      nonCurriculum: false,
       unitSequenceData: unitSequenceFixture,
       unitsInOtherProgrammes: unitsInOtherProgrammesFixture,
       threads: threadsFixture,
@@ -451,6 +672,7 @@ describe("getNeighbourUnits", () => {
       ]),
       containsGeorestrictedLessons: false,
       containsLoginRequiredLessons: false,
+      nonCurriculum: false,
       unitSequenceData: unitSequenceFixture.concat({
         unitSlug: "unit-slug",
         unitTitle: "Null Title",
@@ -460,6 +682,7 @@ describe("getNeighbourUnits", () => {
         nullUnitvariantId: 5,
         yearOrder: 1,
         year: "7",
+        actions: null,
       }),
       unitsInOtherProgrammes: unitsInOtherProgrammesFixture,
       threads: threadsFixture,
@@ -471,7 +694,7 @@ describe("getNeighbourUnits", () => {
     });
   });
   it("gets the previous optionality unit", () => {
-    const result = getNeighbourUnits({
+    const result = getAdjacentUnits({
       unitSequenceData: [
         ...unitSequenceFixture,
         {
@@ -483,6 +706,7 @@ describe("getNeighbourUnits", () => {
           nullUnitvariantId: 5,
           yearOrder: 1,
           year: "7",
+          actions: null,
         },
         {
           unitSlug: "unit-slug",
@@ -492,6 +716,7 @@ describe("getNeighbourUnits", () => {
           nullUnitvariantId: 6,
           yearOrder: 1,
           year: "7",
+          actions: null,
         },
       ],
       nullUnitvariantId: 6,
@@ -503,7 +728,7 @@ describe("getNeighbourUnits", () => {
     });
   });
   it("gets the next unit when order is non sequential", () => {
-    const result = getNeighbourUnits({
+    const result = getAdjacentUnits({
       unitSequenceData: [
         ...unitSequenceFixture,
         {
@@ -514,6 +739,7 @@ describe("getNeighbourUnits", () => {
           nullUnitvariantId: 6,
           yearOrder: 1,
           year: "7",
+          actions: null,
         },
       ],
       nullUnitvariantId: 4,
@@ -525,7 +751,7 @@ describe("getNeighbourUnits", () => {
     });
   });
   it("gets the previous unit when the order is non sequential", () => {
-    const result = getNeighbourUnits({
+    const result = getAdjacentUnits({
       unitSequenceData: [
         {
           unitOrder: 2,
@@ -535,6 +761,7 @@ describe("getNeighbourUnits", () => {
           nullUnitvariantId: 2,
           yearOrder: 1,
           year: "7",
+          actions: null,
         },
         {
           unitOrder: 5,
@@ -544,6 +771,7 @@ describe("getNeighbourUnits", () => {
           nullUnitvariantId: 5,
           yearOrder: 1,
           year: "7",
+          actions: null,
         },
         {
           unitOrder: 6,
@@ -553,6 +781,7 @@ describe("getNeighbourUnits", () => {
           nullUnitvariantId: 6,
           yearOrder: 1,
           year: "7",
+          actions: null,
         },
       ],
       nullUnitvariantId: 5,
@@ -560,7 +789,7 @@ describe("getNeighbourUnits", () => {
     expect(result.prevUnit).toEqual({ slug: "prev-slug", title: "Prev unit" });
   });
   it("gets the next unit from the correct year", () => {
-    const result = getNeighbourUnits({
+    const result = getAdjacentUnits({
       unitSequenceData: [
         {
           unitSlug: "unit-1",
@@ -570,6 +799,7 @@ describe("getNeighbourUnits", () => {
           yearOrder: 1,
           unitOrder: 1,
           year: "7",
+          actions: null,
         },
         {
           unitSlug: "unit-10",
@@ -579,6 +809,7 @@ describe("getNeighbourUnits", () => {
           yearOrder: 2,
           unitOrder: 2,
           year: "7",
+          actions: null,
         },
         {
           unitSlug: "unit-2",
@@ -588,6 +819,7 @@ describe("getNeighbourUnits", () => {
           yearOrder: 1,
           unitOrder: 2,
           year: "7",
+          actions: null,
         },
       ],
       nullUnitvariantId: 1,
@@ -598,7 +830,7 @@ describe("getNeighbourUnits", () => {
     });
   });
   it("gets the previous unit from the correct year", () => {
-    const result = getNeighbourUnits({
+    const result = getAdjacentUnits({
       unitSequenceData: [
         {
           unitSlug: "unit-2",
@@ -608,6 +840,7 @@ describe("getNeighbourUnits", () => {
           yearOrder: 2,
           unitOrder: 2,
           year: "7",
+          actions: null,
         },
         {
           unitSlug: "unit-20",
@@ -617,6 +850,7 @@ describe("getNeighbourUnits", () => {
           yearOrder: 1,
           unitOrder: 2,
           year: "7",
+          actions: null,
         },
         {
           unitSlug: "unit-3",
@@ -626,6 +860,7 @@ describe("getNeighbourUnits", () => {
           yearOrder: 2,
           unitOrder: 2,
           year: "7",
+          actions: null,
         },
       ],
       nullUnitvariantId: 3,
@@ -637,7 +872,7 @@ describe("getNeighbourUnits", () => {
   });
 
   it("gets swimming neighbours only for swimming units", () => {
-    const result = getNeighbourUnits({
+    const result = getAdjacentUnits({
       unitSequenceData: [
         {
           unitSlug: "unit-1",
@@ -647,6 +882,7 @@ describe("getNeighbourUnits", () => {
           yearOrder: 1,
           unitOrder: 1,
           year: "1",
+          actions: null,
         },
         {
           unitSlug: "swimming-1",
@@ -657,6 +893,7 @@ describe("getNeighbourUnits", () => {
           unitOrder: 2,
           year: "1",
           isSwimming: true,
+          actions: null,
         },
         {
           unitSlug: "unit-2",
@@ -666,6 +903,7 @@ describe("getNeighbourUnits", () => {
           yearOrder: 1,
           unitOrder: 3,
           year: "1",
+          actions: null,
         },
         {
           unitSlug: "swimming-2",
@@ -676,6 +914,7 @@ describe("getNeighbourUnits", () => {
           unitOrder: 1,
           year: "2",
           isSwimming: true,
+          actions: null,
         },
         {
           unitSlug: "unit-3",
@@ -685,6 +924,7 @@ describe("getNeighbourUnits", () => {
           yearOrder: 2,
           unitOrder: 2,
           year: "2",
+          actions: null,
         },
         {
           unitSlug: "swimming-3",
@@ -695,6 +935,7 @@ describe("getNeighbourUnits", () => {
           unitOrder: 1,
           year: "3",
           isSwimming: true,
+          actions: null,
         },
       ],
       nullUnitvariantId: 4,
@@ -711,7 +952,7 @@ describe("getNeighbourUnits", () => {
   });
 
   it("returns no previous unit for the first swimming unit", () => {
-    const result = getNeighbourUnits({
+    const result = getAdjacentUnits({
       unitSequenceData: [
         {
           unitSlug: "swimming-1",
@@ -722,6 +963,7 @@ describe("getNeighbourUnits", () => {
           unitOrder: 1,
           year: "1",
           isSwimming: true,
+          actions: null,
         },
         {
           unitSlug: "unit-2",
@@ -731,6 +973,7 @@ describe("getNeighbourUnits", () => {
           yearOrder: 1,
           unitOrder: 2,
           year: "1",
+          actions: null,
         },
         {
           unitSlug: "swimming-2",
@@ -741,6 +984,7 @@ describe("getNeighbourUnits", () => {
           unitOrder: 1,
           year: "2",
           isSwimming: true,
+          actions: null,
         },
       ],
       nullUnitvariantId: 1,
@@ -754,7 +998,7 @@ describe("getNeighbourUnits", () => {
   });
 
   it("returns no next unit for the last swimming unit", () => {
-    const result = getNeighbourUnits({
+    const result = getAdjacentUnits({
       unitSequenceData: [
         {
           unitSlug: "swimming-1",
@@ -765,6 +1009,7 @@ describe("getNeighbourUnits", () => {
           unitOrder: 1,
           year: "1",
           isSwimming: true,
+          actions: null,
         },
         {
           unitSlug: "unit-2",
@@ -774,6 +1019,7 @@ describe("getNeighbourUnits", () => {
           yearOrder: 2,
           unitOrder: 1,
           year: "2",
+          actions: null,
         },
         {
           unitSlug: "swimming-2",
@@ -784,6 +1030,7 @@ describe("getNeighbourUnits", () => {
           unitOrder: 1,
           year: "3",
           isSwimming: true,
+          actions: null,
         },
       ],
       nullUnitvariantId: 3,
@@ -794,6 +1041,98 @@ describe("getNeighbourUnits", () => {
       title: "Swimming 1",
     });
     expect(result.nextUnit).toBeNull();
+  });
+
+  it("gets adjacent units within the same subject category", () => {
+    const result = getAdjacentUnits({
+      unitSequenceData: [
+        {
+          unitSlug: "grammar-1",
+          unitTitle: "Grammar 1",
+          unitDescription: null,
+          nullUnitvariantId: 2,
+          yearOrder: 1,
+          unitOrder: 2,
+          year: "1",
+          subjectCategories: ["Grammar"],
+          actions: {
+            subject_category_actions: {
+              group_by_subjectcategory: true,
+              all_disabled: false,
+              default_category_id: 1,
+            },
+          },
+        },
+        {
+          unitSlug: "writing-2",
+          unitTitle: "Writing 2",
+          unitDescription: null,
+          nullUnitvariantId: 3,
+          yearOrder: 1,
+          unitOrder: 3,
+          year: "1",
+          actions: null,
+          subjectCategories: ["Writing"],
+        },
+        {
+          unitSlug: "grammar-2",
+          unitTitle: "Grammar 2",
+          unitDescription: null,
+          nullUnitvariantId: 4,
+          yearOrder: 2,
+          unitOrder: 1,
+          year: "2",
+          subjectCategories: ["Grammar"],
+          actions: {
+            subject_category_actions: {
+              group_by_subjectcategory: true,
+              all_disabled: false,
+              default_category_id: 1,
+            },
+          },
+        },
+        {
+          unitSlug: "language-3",
+          unitTitle: "Language 3",
+          unitDescription: null,
+          nullUnitvariantId: 5,
+          yearOrder: 2,
+          unitOrder: 2,
+          year: "2",
+          actions: null,
+          subjectCategories: ["Language"],
+        },
+        {
+          unitSlug: "grammar-3",
+          unitTitle: "Grammar 3",
+          unitDescription: null,
+          nullUnitvariantId: 6,
+          yearOrder: 3,
+          unitOrder: 1,
+          year: "3",
+          isSwimming: false,
+          subjectCategories: ["Grammar"],
+          actions: {
+            subject_category_actions: {
+              group_by_subjectcategory: true,
+              all_disabled: false,
+              default_category_id: 1,
+            },
+          },
+        },
+      ],
+      nullUnitvariantId: 4,
+    });
+
+    expect(result.nextUnit).toEqual({
+      slug: "grammar-3",
+      title: "Grammar 3",
+    });
+
+    expect(result.prevUnit).toEqual({
+      slug: "grammar-1",
+      title: "Grammar 1",
+    });
   });
 });
 
@@ -855,6 +1194,7 @@ describe("isPePractical", () => {
       ],
       containsGeorestrictedLessons: false,
       containsLoginRequiredLessons: false,
+      nonCurriculum: false,
       unitSequenceData: unitSequenceFixture,
       unitsInOtherProgrammes: unitsInOtherProgrammesFixture,
       threads: threadsFixture,
@@ -871,6 +1211,7 @@ describe("isPePractical", () => {
       ],
       containsGeorestrictedLessons: false,
       containsLoginRequiredLessons: false,
+      nonCurriculum: false,
       unitSequenceData: unitSequenceFixture,
       unitsInOtherProgrammes: unitsInOtherProgrammesFixture,
       threads: threadsFixture,
@@ -894,6 +1235,7 @@ describe("isPePractical", () => {
       ],
       containsGeorestrictedLessons: false,
       containsLoginRequiredLessons: false,
+      nonCurriculum: false,
       unitSequenceData: unitSequenceFixture,
       unitsInOtherProgrammes: unitsInOtherProgrammesFixture,
       threads: threadsFixture,
@@ -1141,6 +1483,40 @@ describe("getProgrammeToggles", () => {
         subjectSlug: "biology",
       },
     ]);
+  });
+
+  it("does not include options from other pathways", () => {
+    const allProgrammes = [
+      {
+        programme_slug: "citizenship-secondary-ks4-core",
+        programme_fields: programmeFieldsFixture({
+          overrides: {
+            subject: "Citizenship",
+            keystage_slug: "ks4",
+            subject_slug: "citizenship",
+            examboard_slug: "aqa",
+            pathway_slug: "core",
+          },
+        }),
+      },
+      {
+        programme_slug: "citizenship-secondary-ks4-gcse",
+        programme_fields: programmeFieldsFixture({
+          overrides: {
+            subject: "Citizenship",
+            keystage_slug: "ks4",
+            subject_slug: "citizenship",
+            examboard_slug: "aqa",
+            pathway_slug: "gcse",
+          },
+        }),
+      },
+    ];
+    const result = getProgrammeToggles(
+      "citizenship-secondary-ks4-gcse",
+      allProgrammes,
+    );
+    expect(result.subjectOptionToggles).toEqual([]);
   });
 
   it("sorts subject toggles", () => {

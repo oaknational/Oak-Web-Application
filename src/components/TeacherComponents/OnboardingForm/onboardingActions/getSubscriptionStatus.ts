@@ -30,7 +30,7 @@ export async function getSubscriptionStatus(
       throw err;
     }
     throw new OakError({
-      code: "hubspot/unknown",
+      code: "hubspot/subscription",
       originalError: err,
     });
   }

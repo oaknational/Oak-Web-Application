@@ -15,17 +15,17 @@ import {
 
 import CMSClient from "@/node-lib/cms";
 import { ContactPage } from "@/common-lib/cms-types";
-import Layout from "@/components/AppComponents/Layout";
+import Layout from "@/components/AppComponents/AppLayout";
 import Card from "@/components/SharedComponents/Card";
 import { useNewsletterForm } from "@/components/GenericPagesComponents/NewsletterForm";
 import SummaryCard from "@/components/SharedComponents/Card/SummaryCard";
 import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
-import BrushBorders from "@/components/SharedComponents/SpriteSheet/BrushSvgs/BrushBorders";
 import NewsletterFormWrap from "@/components/GenericPagesComponents/NewsletterFormWrap";
 import getPageProps from "@/node-lib/getPageProps";
 import { PortableTextWithDefaults } from "@/components/SharedComponents/PortableText";
 import { TopNavProps } from "@/components/AppComponents/TopNav/TopNav";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
+import { TeacherBrowseAnalyticsStoreProvider } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
 
 export type ContactPageProps = {
   pageData: ContactPage;
@@ -77,52 +77,57 @@ const ContactUs: NextPage<ContactPageProps> = ({ pageData, topNav }) => {
   const newsletterFormProps = useNewsletterForm();
 
   return (
-    <Layout
-      seoProps={getSeoProps(pageData.seo)}
-      $background={"bg-primary"}
-      topNavProps={topNav}
+    <TeacherBrowseAnalyticsStoreProvider
+      programmeState={null}
+      accessLevel="homepage"
     >
-      <OakMaxWidth
-        $pt={["spacing-72", "spacing-80"]}
-        $pb={["spacing-64", "spacing-80"]}
+      <Layout
+        seoProps={getSeoProps(pageData.seo)}
+        $background={"bg-primary"}
+        topNavProps={topNav}
       >
-        <SummaryCard {...pageData} />
-        <Card
-          $justifyContent={"space-between"}
-          $background={"pink50"}
-          $ph={[16, 24]}
-          $pv={[24]}
-          $mt={[72, 80]}
-          $font={["body-2", "body-1"]}
+        <OakMaxWidth
+          $pt={["spacing-72", "spacing-80"]}
+          $pb={["spacing-64", "spacing-80"]}
         >
-          <BrushBorders hideOnMobileH color={"pink50"} />
-          <OakFlex
-            $alignItems={["flex-start", "center"]}
-            $flexDirection={["column", "row"]}
+          <SummaryCard {...pageData} />
+          <Card
+            $borderRadius={"border-radius-l"}
+            $justifyContent={"space-between"}
+            $background={"bg-decorative4-subdued"}
+            $ph={["spacing-16", "spacing-24"]}
+            $pv={["spacing-24"]}
+            $mt={["spacing-72", "spacing-80"]}
+            $font={["body-2", "body-1"]}
           >
-            <OakBox $maxWidth={"spacing-640"}>
-              <PortableTextWithDefaults
-                components={portableTextComponents}
-                value={pageData.bodyPortableText}
-                onMissingComponent={logMissingPortableTextComponents}
+            <OakFlex
+              $alignItems={["flex-start", "center"]}
+              $flexDirection={["column", "row"]}
+            >
+              <OakBox $maxWidth={"spacing-640"}>
+                <PortableTextWithDefaults
+                  components={portableTextComponents}
+                  value={pageData.bodyPortableText}
+                  onMissingComponent={logMissingPortableTextComponents}
+                />
+              </OakBox>
+              <NewsletterFormWrap
+                {...newsletterFormProps}
+                containerProps={{
+                  $display: ["none", "flex"],
+                  $minWidth: "spacing-360",
+                  $ml: "spacing-56",
+                }}
               />
-            </OakBox>
-            <NewsletterFormWrap
-              {...newsletterFormProps}
-              containerProps={{
-                $display: ["none", "flex"],
-                $minWidth: 360,
-                $ml: 64,
-              }}
-            />
-          </OakFlex>
-        </Card>
-        <NewsletterFormWrap
-          {...newsletterFormProps}
-          containerProps={{ $display: ["flex", "none"], $mt: 32 }}
-        />
-      </OakMaxWidth>
-    </Layout>
+            </OakFlex>
+          </Card>
+          <NewsletterFormWrap
+            {...newsletterFormProps}
+            containerProps={{ $display: ["flex", "none"], $mt: "spacing-32" }}
+          />
+        </OakMaxWidth>
+      </Layout>
+    </TeacherBrowseAnalyticsStoreProvider>
   );
 };
 

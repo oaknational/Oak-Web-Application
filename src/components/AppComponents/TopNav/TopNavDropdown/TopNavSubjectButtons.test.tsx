@@ -1,90 +1,294 @@
-import { getSubjectLinkHref } from "./TopNavSubjectButtons";
+import userEvent from "@testing-library/user-event";
+import { screen } from "@testing-library/react";
+import { useRouter } from "next/navigation";
 
-describe("TopNavSubjectButtons - Link Generation", () => {
-  describe("getSubjectLinkHref", () => {
-    describe("EYFS subjects", () => {
-      it("should generate EYFS route for single word EYFS programmes", () => {
-        const href = getSubjectLinkHref({
-          programmeCount: 1,
-          subjectSlug: "maths",
-          programmeSlug: "maths-foundation-early-years-foundation-stage-l",
-          keyStageSlug: "early-years-foundation-stage",
-        });
+import TopNavSubjectButtons from "./TopNavSubjectButtons";
 
-        expect(href).toBe("/teachers/eyfs/maths");
-      });
+import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 
-      it("should generate EYFS route for multi-word EYFS programmes", () => {
-        const href = getSubjectLinkHref({
-          programmeCount: 1,
-          subjectSlug: "communication-and-language",
-          programmeSlug:
-            "communication-and-language-foundation-early-years-foundation-stage-l",
-          keyStageSlug: "early-years-foundation-stage",
-        });
+jest.mock("next/navigation", () => ({
+  useRouter: jest.fn(),
+  usePathname: jest.fn(),
+  useSearchParams: jest.fn(),
+}));
 
-        expect(href).toBe("/teachers/eyfs/communication-and-language");
-      });
+const render = renderWithProviders();
+
+describe("TopNavSubjectButtons", () => {
+  const getButtonId = (key: string) => `test-id-${key}`;
+
+  beforeEach(() => {
+    (useRouter as jest.Mock).mockReturnValue({
+      push: jest.fn(),
+    });
+  });
+
+  const subjects = [
+    {
+      title: "Geography",
+      slug: "geography",
+      subjectSlug: "geography",
+      href: "/teachers/programmes/geography-secondary/units?keystages=ks4",
+      nonCurriculum: false,
+      programmeSlug: "geography-secondary-ks4",
+      programmeCount: 3,
+      children: [],
+    },
+    {
+      title: "History",
+      slug: "history",
+      subjectSlug: "history",
+      href: "/teachers/programmes/history-secondary-edexcel/units?keystages=ks4",
+      nonCurriculum: false,
+      programmeSlug: "history-secondary-ks4",
+      programmeCount: 1,
+      children: [],
+    },
+  ];
+
+  it("calls handleClick when a subject without exam boards is clicked", async () => {
+    const mockRouterPush = jest.fn();
+    (useRouter as jest.Mock).mockReturnValue({
+      push: mockRouterPush,
+    });
+    const handleSubjectClick = jest.fn();
+    const user = userEvent.setup();
+
+    render(
+      <TopNavSubjectButtons
+        selectedMenu="secondary"
+        subjects={subjects}
+        selectedSubject={null}
+        identifyingSlug="ks4"
+        handleClick={handleSubjectClick}
+        onExamBoardPanelOpen={jest.fn()}
+        onExamboardPanelClose={jest.fn}
+        getButtonId={getButtonId}
+        phase="secondary"
+      />,
+    );
+
+    const historyButton = screen.getByRole("link", { name: "History" });
+    historyButton.addEventListener("click", (e) => e.preventDefault());
+    await user.click(historyButton);
+
+    expect(handleSubjectClick).toHaveBeenCalledWith(
+      subjects.find((s) => s.subjectSlug === "history"),
+      "ks4",
+    );
+  });
+
+  it("prevents default and calls onExamBoardPanelOpen when clicking KS4 subject with exam boards", async () => {
+    const handleSubjectClick = jest.fn();
+    const onExamBoardPanelOpen = jest.fn();
+    const user = userEvent.setup();
+
+    const subjectsWithBoards = [
+      {
+        title: "Biology",
+        slug: "biology",
+        subjectSlug: "biology",
+        href: "/teachers/programmes/biology-secondary-aqa/units?keystages=ks4",
+        nonCurriculum: false,
+        programmeSlug: "biology-secondary-ks4",
+        programmeCount: 3,
+        children: [
+          {
+            title: "AQA",
+            slug: "aqa",
+            href: "/teachers/programmes/biology-secondary-aqa/units?keystages=ks4",
+            programmeFactors: {
+              tier: null,
+              examboard: { slug: "aqa", title: "AQA" },
+            },
+          },
+        ],
+      },
+    ];
+
+    render(
+      <TopNavSubjectButtons
+        selectedMenu="secondary"
+        subjects={subjectsWithBoards}
+        selectedSubject={null}
+        identifyingSlug="ks4"
+        handleClick={handleSubjectClick}
+        onExamBoardPanelOpen={onExamBoardPanelOpen}
+        onExamboardPanelClose={jest.fn}
+        getButtonId={getButtonId}
+        phase="secondary"
+      />,
+    );
+
+    const biologyButton = screen.getByRole("button", { name: "Biology" });
+    await user.click(biologyButton);
+
+    expect(onExamBoardPanelOpen).toHaveBeenCalledWith(subjectsWithBoards[0]);
+    expect(handleSubjectClick).not.toHaveBeenCalled();
+  });
+
+  it("uses href from nav data on subject links", () => {
+    const [geography] = subjects;
+
+    render(
+      <TopNavSubjectButtons
+        selectedMenu="secondary"
+        subjects={[geography!]}
+        selectedSubject={null}
+        identifyingSlug="ks4"
+        handleClick={jest.fn()}
+        onExamBoardPanelOpen={jest.fn()}
+        phase="secondary"
+        onExamboardPanelClose={jest.fn}
+        getButtonId={getButtonId}
+      />,
+    );
+
+    expect(screen.getByRole("link", { name: "Geography" })).toHaveAttribute(
+      "href",
+      geography!.href,
+    );
+  });
+
+  describe("TopNavSubjectButtons accessibility", () => {
+    const subjects = [
+      {
+        title: "Geography",
+        slug: "geography",
+        subjectSlug: "geography",
+        href: "/teachers/programmes/geography-secondary/units?keystages=ks4",
+        nonCurriculum: false,
+        programmeSlug: "geography-secondary-ks4",
+        programmeCount: 3,
+        children: [
+          {
+            title: "AQA",
+            slug: "geography-secondary-ks4-aqa",
+            href: "/teachers/programmes/geography-secondary-aqa/units?keystages=ks4",
+            programmeFactors: {
+              tier: null,
+              examboard: { slug: "aqa", title: "AQA" },
+            },
+          },
+          {
+            title: "Edexcel",
+            slug: "geography-secondary-ks4-edexcel",
+            href: "/teachers/programmes/geography-secondary-edexcel/units?keystages=ks4",
+            programmeFactors: {
+              tier: null,
+              examboard: { slug: "edexcel", title: "Edexcel" },
+            },
+          },
+        ],
+      },
+      {
+        title: "History",
+        slug: "history",
+        subjectSlug: "history",
+        href: "/teachers/programmes/history-secondary-edexcel/units?keystages=ks4",
+        nonCurriculum: false,
+        programmeSlug: "history-secondary-ks4",
+        programmeCount: 1,
+        children: null,
+      },
+      {
+        title: "Maths",
+        slug: "maths",
+        subjectSlug: "maths",
+        href: "/teachers/programmes/maths-secondary/units?keystages=ks4",
+        nonCurriculum: false,
+        programmeSlug: "maths-secondary-ks4",
+        programmeCount: 2,
+        children: null,
+      },
+    ];
+
+    it("renders subject buttons with correct roles and ids", () => {
+      render(
+        <TopNavSubjectButtons
+          selectedMenu="secondary"
+          subjects={subjects}
+          selectedSubject={null}
+          identifyingSlug="ks4"
+          handleClick={jest.fn()}
+          onExamBoardPanelOpen={jest.fn()}
+          onExamboardPanelClose={jest.fn}
+          getButtonId={getButtonId}
+          phase="secondary"
+        />,
+      );
+
+      expect(
+        screen.getByRole("button", { name: "Geography" }),
+      ).toBeInTheDocument();
+      expect(screen.getByRole("link", { name: "History" })).toBeInTheDocument();
+      expect(screen.getByRole("link", { name: "Maths" })).toBeInTheDocument();
     });
 
-    describe("non-EYFS subjects with multiple programmes", () => {
-      it("should link to programme-index when programmeCount > 1", () => {
-        const href = getSubjectLinkHref({
-          programmeCount: 2,
-          subjectSlug: "maths",
-          programmeSlug: "maths-primary-ks1",
-          keyStageSlug: "ks1",
-        });
+    it("calls onExamBoardPanelOpen when Enter is pressed on KS4 subject with exam boards", async () => {
+      const onExamBoardPanelOpen = jest.fn();
+      const user = userEvent.setup();
 
-        expect(href).toBe("/teachers/key-stages/ks1/subjects/maths/programmes");
-      });
+      render(
+        <TopNavSubjectButtons
+          selectedMenu="secondary"
+          subjects={subjects}
+          selectedSubject={null}
+          identifyingSlug="ks4"
+          handleClick={jest.fn()}
+          onExamBoardPanelOpen={onExamBoardPanelOpen}
+          onExamboardPanelClose={jest.fn}
+          getButtonId={getButtonId}
+          phase="secondary"
+        />,
+      );
 
-      it("should link to programme-index for secondary subject with multiple programmes", () => {
-        const href = getSubjectLinkHref({
-          programmeCount: 3,
-          subjectSlug: "science",
-          programmeSlug: "science-secondary-ks4",
-          keyStageSlug: "ks4",
-        });
+      const geographyButton = screen.getByRole("button", { name: "Geography" });
+      geographyButton.focus();
 
-        expect(href).toBe(
-          "/teachers/key-stages/ks4/subjects/science/programmes",
-        );
-      });
+      await user.keyboard("{Enter}");
+
+      expect(onExamBoardPanelOpen).toHaveBeenCalledWith(subjects[0]);
     });
 
-    describe("non-EYFS subjects with single programme", () => {
-      it("should link to unit-index when programmeCount is 1", () => {
-        const href = getSubjectLinkHref({
-          programmeCount: 1,
-          subjectSlug: "history",
-          programmeSlug: "history-primary-ks2",
-          keyStageSlug: "ks2",
-        });
+    it("does not call onExamBoardPanelOpen for subjects without exam boards", async () => {
+      const onExamBoardPanelOpen = jest.fn();
+      const user = userEvent.setup();
 
-        expect(href).toBe("/teachers/programmes/history-primary-ks2/units");
-      });
-
-      it("should link to unit-index for secondary subject with single programme", () => {
-        const href = getSubjectLinkHref({
-          programmeCount: 1,
-          subjectSlug: "geography",
-          programmeSlug: "geography-secondary-ks3",
-          keyStageSlug: "ks3",
-        });
-
-        expect(href).toBe("/teachers/programmes/geography-secondary-ks3/units");
-      });
-
-      it("should link to unit-index when keyStageSlug is not provided", () => {
-        const href = getSubjectLinkHref({
-          programmeCount: 1,
+      const subjectsWithoutBoards = [
+        {
+          title: "English",
+          slug: "english",
           subjectSlug: "english",
-          programmeSlug: "english-primary-ks1",
-        });
+          href: "/teachers/programmes/english-secondary-aqa/units?keystages=ks4",
+          nonCurriculum: false,
+          programmeSlug: "english-secondary-ks4",
+          programmeCount: 1,
+          children: [],
+        },
+      ];
 
-        expect(href).toBe("/teachers/programmes/english-primary-ks1/units");
-      });
+      render(
+        <TopNavSubjectButtons
+          selectedMenu="secondary"
+          subjects={subjectsWithoutBoards}
+          selectedSubject={null}
+          identifyingSlug="ks4"
+          handleClick={jest.fn()}
+          onExamBoardPanelOpen={onExamBoardPanelOpen}
+          onExamboardPanelClose={jest.fn}
+          getButtonId={getButtonId}
+          phase="secondary"
+        />,
+      );
+
+      const englishButton = screen.getByRole("link", { name: "English" });
+      englishButton.addEventListener("click", (e) => e.preventDefault());
+      englishButton.focus();
+
+      await user.keyboard("{Enter}");
+
+      expect(onExamBoardPanelOpen).not.toHaveBeenCalled();
     });
   });
 });

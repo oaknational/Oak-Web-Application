@@ -3,7 +3,11 @@ import { OakIconName } from "@oaknational/oak-components";
 import { SharingMetadata } from "./getSharingMetadata";
 
 export type ShareLinkConfig = {
-  name: "Email" | "Google Classroom" | "Microsoft Teams" | "Copy link";
+  name:
+    | "Email"
+    | "Share via Google Classroom"
+    | "Share via Microsoft Teams"
+    | "Copy link";
   network?: "email" | "google-classroom" | "microsoft-teams";
   medium: "social" | "email" | "lms" | "copy-link";
   avoMedium: "microsoft-teams" | "google-classroom" | "email" | "copy-link";
@@ -35,7 +39,7 @@ export const shareLinkConfig: Record<
     avoMedium: "email",
   },
   googleClassroom: {
-    name: "Google Classroom",
+    name: "Share via Google Classroom",
     network: "google-classroom",
     icon: "google-classroom",
     url: ({ urlEncodedLink }) => {
@@ -45,7 +49,7 @@ export const shareLinkConfig: Record<
     avoMedium: "google-classroom",
   },
   microsoftTeams: {
-    name: "Microsoft Teams",
+    name: "Share via Microsoft Teams",
     network: "microsoft-teams",
     icon: "microsoft-teams",
     url: ({ urlEncodedLink, urlEncodedPageTitle }) => {

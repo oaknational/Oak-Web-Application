@@ -1,6 +1,7 @@
 import { GetStaticPropsContext, PreviewData } from "next";
 import { omit } from "lodash";
 import { MockOakConsentClient } from "@oaknational/oak-consent-client";
+import { screen } from "@testing-library/dom";
 
 import LessonOverviewCanonicalPage, {
   URLParams,
@@ -14,7 +15,10 @@ import curriculumApi2023, {
   CurriculumApi,
 } from "@/node-lib/curriculum-api-2023";
 import OakError from "@/errors/OakError";
-import { LessonOverviewCanonical } from "@/node-lib/curriculum-api-2023/queries/lessonOverview/lessonOverview.schema";
+import {
+  LessonOverviewCanonical,
+  LessonOverviewPageData,
+} from "@/node-lib/curriculum-api-2023/queries/lessonOverview/lessonOverview.schema";
 import { useTeacherNotes } from "@/pages-helpers/teacher/share/useTeacherNotes";
 import { topNavFixture } from "@/node-lib/curriculum-api-2023/fixtures/topNav.fixture";
 
@@ -86,6 +90,16 @@ const lesson = lessonOverviewFixture({
   excludedFromTeachingMaterials: true,
 });
 
+const renderLesson = (props?: Partial<{ lesson: LessonOverviewPageData }>) => {
+  return render(
+    <LessonOverviewCanonicalPage
+      topNav={topNavFixture}
+      lesson={lesson}
+      {...props}
+    />,
+  );
+};
+
 describe("Lesson Overview Canonical Page", () => {
   beforeAll(() => {
     console.error = jest.fn();
@@ -97,26 +111,16 @@ describe("Lesson Overview Canonical Page", () => {
     });
 
     it("Renders title from the props", async () => {
-      const result = render(
-        <LessonOverviewCanonicalPage
-          topNav={topNavFixture}
-          lesson={{ ...lesson, pathways: [] }}
-          isSpecialist={false}
-        />,
-      );
+      const result = renderLesson();
 
       expect(result.getByRole("heading", { level: 1 })).toHaveTextContent(
         lesson.lessonTitle,
       );
     });
     it("Renders the lesson overview when no lessonReleaseDate", async () => {
-      const result = render(
-        <LessonOverviewCanonicalPage
-          topNav={topNavFixture}
-          lesson={{ ...lesson, lessonReleaseDate: null, pathways: [] }}
-          isSpecialist={false}
-        />,
-      );
+      const result = renderLesson({
+        lesson: { ...lesson, lessonReleaseDate: null, pathways: [] },
+      });
 
       expect(result.getByRole("heading", { level: 1 })).toHaveTextContent(
         lesson.lessonTitle,
@@ -132,14 +136,9 @@ describe("Lesson Overview Canonical Page", () => {
         error: undefined,
       });
 
-      const { getAllByText } = render(
-        <LessonOverviewCanonicalPage
-          topNav={topNavFixture}
-          lesson={{ ...lesson, pathways: [] }}
-          isSpecialist={false}
-        />,
-      );
-      expect(getAllByText("Add teacher note and share")).toHaveLength(2);
+      renderLesson();
+
+      expect(screen.getAllByText("Add teacher note and share")).toHaveLength(2);
     });
   });
 
@@ -149,12 +148,6 @@ describe("Lesson Overview Canonical Page", () => {
     });
 
     it("Should fetch the correct data", async () => {
-      (
-        curriculumApi2023.specialistLessonOverviewCanonical as jest.Mock
-      ).mockRejectedValueOnce(
-        new OakError({ code: "curriculum-api/not-found" }),
-      );
-
       const propsResult = (await getStaticProps({
         params: {
           lessonSlug:
@@ -162,7 +155,7 @@ describe("Lesson Overview Canonical Page", () => {
         },
         query: {},
       } as GetStaticPropsContext<URLParams, PreviewData>)) as {
-        props: { lesson: LessonOverviewCanonical; isSpecialist: false };
+        props: { lesson: LessonOverviewCanonical };
       };
 
       expect(propsResult.props.lesson.lessonSlug).toEqual(
@@ -187,12 +180,6 @@ describe("Lesson Overview Canonical Page", () => {
         (curriculumApi2023 as CurriculumApi).canonicalLessonRedirectQuery =
           jest.fn();
       }
-
-      (
-        curriculumApi2023.specialistLessonOverviewCanonical as jest.Mock
-      ).mockRejectedValueOnce(
-        new OakError({ code: "curriculum-api/not-found" }),
-      );
 
       (curriculumApi2023.lessonOverview as jest.Mock).mockRejectedValueOnce(
         new OakError({ code: "curriculum-api/not-found" }),
@@ -245,11 +232,6 @@ describe("Lesson Overview Canonical Page", () => {
         (curriculumApi2023 as CurriculumApi).canonicalLessonRedirectQuery =
           jest.fn();
       }
-      (
-        curriculumApi2023.specialistLessonOverviewCanonical as jest.Mock
-      ).mockRejectedValueOnce(
-        new OakError({ code: "curriculum-api/not-found" }),
-      );
       (curriculumApi2023.lessonOverview as jest.Mock).mockRejectedValueOnce(
         new OakError({ code: "curriculum-api/not-found" }),
       );
@@ -270,11 +252,6 @@ describe("Lesson Overview Canonical Page", () => {
     });
 
     it("should redirect to the EYFS page when lesson pathway is EYFS", async () => {
-      jest
-        .mocked(curriculumApi2023.specialistLessonOverviewCanonical)
-        .mockRejectedValueOnce(
-          new OakError({ code: "curriculum-api/not-found" }),
-        );
       jest.mocked(curriculumApi2023.lessonOverview).mockResolvedValueOnce(
         lessonOverviewFixture({
           pathways: [

@@ -17,6 +17,7 @@ const lessonDetailProps = {
   keyWords: [{ keyword: "keyword", description: "description" }],
   teacherTips: [{ teacherTip: "test teacher tip" }],
   equipmentAndResources: [{ equipment: "equipment" }],
+  learningOutcome: "pupil learning outcome",
   contentGuidance: [
     {
       contentGuidanceLabel: "content guidance",
@@ -35,15 +36,18 @@ const lessonDetailProps = {
     programmeSlug: "programme-slug",
   },
   loginRequired: false,
-  geoRestricted: false,
+  georestricted: false,
   year: "year 7",
   subject: "maths",
   keystage: "ks3",
+  keystageSlug: "ks3",
+  phaseSlug: "secondary",
   unit: "maths",
   lesson: "Lesson title",
   examBoardSlug: null,
   subjectSlug: "maths",
   subjectParent: null,
+  useIntegratedJourneyLayout: false,
 };
 
 describe("LessonOverviewDetails component", () => {
@@ -181,6 +185,20 @@ describe("LessonOverviewDetails component", () => {
       />,
     );
 
+    const componentTitle = queryByText("Teacher tips");
+    expect(componentTitle).not.toBeInTheDocument();
+  });
+
+  it("shout not render TeacherTips when passed empty strings", () => {
+    const { queryByText } = renderWithTheme(
+      <LessonOverviewDetails
+        {...lessonDetailProps}
+        teacherTips={[{ teacherTip: "" }]}
+        isMathJaxLesson={false}
+        updatedAt="2024-01-01T00:00:00Z"
+        hasVocabAndTranscripts={false}
+      />,
+    );
     const componentTitle = queryByText("Teacher tips");
     expect(componentTitle).not.toBeInTheDocument();
   });

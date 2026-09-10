@@ -6,16 +6,13 @@ import {
 } from "next";
 
 import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
-import AppLayout from "@/components/SharedComponents/AppLayout";
+import AppLayout from "@/components/AppComponents/AppLayout";
 import { LessonMedia } from "@/components/TeacherViews/LessonMedia/LessonMedia.view";
 import {
   getFallbackBlockingConfig,
   shouldSkipInitialBuild,
 } from "@/node-lib/isr";
-import {
-  CanonicalLessonMediaClips,
-  MediaClipListCamelCase,
-} from "@/node-lib/curriculum-api-2023/queries/lessonMediaClips/lessonMediaClips.schema";
+import { CanonicalLessonMediaClips } from "@/node-lib/curriculum-api-2023/queries/lessonMediaClips/lessonMediaClips.schema";
 import getPageProps from "@/node-lib/getPageProps";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 import { populateMediaClipsWithTranscripts } from "@/utils/handleTranscript";
@@ -26,6 +23,9 @@ import {
   isEyfsPathway,
   redirectToEyfsPage,
 } from "@/pages-helpers/shared/lesson-pages/eyfsRedirect";
+import { TeacherBrowseAnalyticsStoreProvider } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
+import { getProgrammeStateForLesson } from "@/context/TeacherBrowseAnalytics/utils/getProgrammeState";
+import { getProgrammePropsForCanonicalLesson } from "@/pages-helpers/teacher/getProgrammePropsForCanonicalLesson";
 
 export type CanonicalLessonMediaClipsPageProps = {
   curriculumData: CanonicalLessonMediaClips;
@@ -37,21 +37,31 @@ export const CanonicalLessonMediaClipsPage: NextPage<
 > = ({ curriculumData, topNav }) => {
   const { lessonTitle } = curriculumData;
 
+  const programmeProps = getProgrammePropsForCanonicalLesson(curriculumData);
+
   return (
-    <AppLayout
-      seoProps={{
-        ...getSeoProps({
-          title: `Lesson Media: ${lessonTitle}`,
-          description:
-            "Share online lesson activities with your students, such as videos, worksheets and quizzes.",
-        }),
-        noIndex: true,
-        noFollow: true,
-      }}
-      topNavProps={topNav}
+    <TeacherBrowseAnalyticsStoreProvider
+      accessLevel="lesson"
+      programmeState={getProgrammeStateForLesson({
+        ...curriculumData,
+        ...programmeProps,
+      })}
     >
-      <LessonMedia isCanonical={true} lesson={curriculumData} />
-    </AppLayout>
+      <AppLayout
+        seoProps={{
+          ...getSeoProps({
+            title: `Lesson Media: ${lessonTitle}`,
+            description:
+              "Share online lesson activities with your students, such as videos, worksheets and quizzes.",
+          }),
+          noIndex: true,
+          noFollow: true,
+        }}
+        topNavProps={topNav}
+      >
+        <LessonMedia isCanonical={true} lesson={curriculumData} />
+      </AppLayout>
+    </TeacherBrowseAnalyticsStoreProvider>
   );
 };
 
@@ -108,19 +118,18 @@ export const getStaticProps: GetStaticProps<
         return { redirect: redirectToEyfsPage(curriculumData.pathways[0]) };
       }
 
-      const mediaClipsWithTranscripts = curriculumData.mediaClips
-        ? await populateMediaClipsWithTranscripts(curriculumData.mediaClips)
-        : [];
+      const mediaClipsWithTranscripts = await populateMediaClipsWithTranscripts(
+        curriculumData.mediaClips,
+      );
 
-      if (mediaClipsWithTranscripts) {
-        curriculumData.mediaClips =
-          mediaClipsWithTranscripts as MediaClipListCamelCase;
-      }
       const topNav = await curriculumApi2023.topNav();
       const results: GetStaticPropsResult<CanonicalLessonMediaClipsPageProps> =
         {
           props: {
-            curriculumData,
+            curriculumData: {
+              ...curriculumData,
+              mediaClips: mediaClipsWithTranscripts,
+            },
             topNav,
           },
         };

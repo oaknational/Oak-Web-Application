@@ -7,7 +7,7 @@ import noop from "../__tests__/__helpers__/noop";
 
 const { NavigatedFrom, initAvo, ...trackingFns } = Avo;
 type TrackingFns = typeof trackingFns;
-const noopTrackingFns = Object.entries(trackingFns).reduce(
+export const noopTrackingFns = Object.entries(trackingFns).reduce(
   (acc, [key, value]) => {
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
@@ -20,6 +20,7 @@ export default function AnalyticsDecorator(Story: StoryFn) {
   const value = {
     identify: noop,
     alias: noop,
+    getSessionId: () => "mockSessionId",
     posthogDistinctId: testPosthogDistinctId,
     track: {
       ...noopTrackingFns,

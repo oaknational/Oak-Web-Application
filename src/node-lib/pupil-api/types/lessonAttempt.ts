@@ -72,12 +72,11 @@ export const quizResultSchema = z
   })
   .optional();
 
+export const quizResultSchemaCamelCase = zodToCamelCase(quizResultSchema, {
+  bidirectional: true,
+});
+export type QuizResultCamelCase = z.infer<typeof quizResultSchemaCamelCase>;
 export type QuizResult = z.infer<typeof quizResultSchema>;
-export type QuizResultCamelCase = {
-  grade?: number;
-  numQuestions?: number;
-  questionResults?: QuestionResultCamelCase[];
-};
 
 export const lessonAttemptSchema = z.object({
   attempt_id: z.nanoid({
@@ -117,38 +116,17 @@ export const lessonAttemptSchema = z.object({
   }),
 });
 
-export type LessonAttempt = z.infer<typeof lessonAttemptSchema>;
+export const lessonAttemptSchemaCamelCase = zodToCamelCase(
+  lessonAttemptSchema,
+  {
+    bidirectional: true,
+  },
+);
+export type LessonAttemptCamelCase = z.infer<
+  typeof lessonAttemptSchemaCamelCase
+>;
 
-export type LessonAttemptCamelCase = {
-  attemptId: string;
-  createdAt: string;
-  lessonData: {
-    title: string;
-    slug: string;
-  };
-  browseData: {
-    subject: string;
-    yearDescription: string;
-  };
-  sectionResults: {
-    intro?: {
-      worksheetDownloaded?: boolean;
-      worksheetAvailable?: boolean;
-      isComplete?: boolean;
-    };
-    "starter-quiz": QuizResultCamelCase;
-    video?: {
-      isComplete?: boolean;
-      played?: boolean;
-      duration?: number;
-      timeElapsed?: number;
-      muted?: boolean;
-      signedOpened?: boolean;
-      transcriptOpened?: boolean;
-    };
-    "exit-quiz": QuizResultCamelCase;
-  };
-};
+export type LessonAttempt = z.infer<typeof lessonAttemptSchema>;
 
 export const createLessonAttemptPayloadSchema = lessonAttemptSchema.pick({
   attempt_id: true,

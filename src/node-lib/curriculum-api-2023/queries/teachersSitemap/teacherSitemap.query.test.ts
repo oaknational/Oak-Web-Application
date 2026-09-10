@@ -16,19 +16,33 @@ describe("teacher sitemap query", () => {
     })();
     expect(res).toEqual(teachersSitemapDataFixtureCamelCase);
   });
+
+  test("preserves actions on programme filter units", async () => {
+    const res = await teacherSitemap({
+      ...sdk,
+      teachersSitemap: jest.fn(() =>
+        Promise.resolve(teachersSitemapDataFixture),
+      ),
+    })();
+
+    const ruleOfLaw = res.programmeFilterUnits.find(
+      (unit) => unit.subjectSlug === "rule-of-law",
+    );
+
+    expect(ruleOfLaw?.actions).toEqual({
+      programme_field_overrides: { year_slug: "all-years" },
+    });
+  });
+
   test("throws a not found error if no teacher sitemap is found", async () => {
     await expect(async () => {
       await teacherSitemap({
         ...sdk,
         teachersSitemap: jest.fn(() =>
           Promise.resolve({
-            keyStages: [],
-            programmes: [],
             units: [],
             lessons: [],
-            specialistProgrammes: [],
-            specialistUnits: [],
-            specialistLessons: [],
+            programmeFilterUnits: [],
           }),
         ),
       })();
@@ -43,10 +57,10 @@ describe("teacher sitemap query", () => {
         teachersSitemap: jest.fn(() =>
           Promise.resolve({
             ...teachersSitemapDataFixture,
-            keyStages: [{ lesson: "" }],
+            units: [{ programme_slug: "programme-1" }],
           }),
         ),
       })();
-    }).rejects.toThrow(`slug`);
+    }).rejects.toThrow(`unit_slug`);
   });
 });

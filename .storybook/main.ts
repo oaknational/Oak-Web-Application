@@ -1,32 +1,23 @@
-import path from "path";
+// This file has been automatically migrated to valid ESM format by Storybook.
+import { fileURLToPath } from "node:url";
+import path, { dirname } from "path";
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 export default {
-  env: (config) => ({
-    ...config,
-    NEXT_PUBLIC_CLIENT_APP_BASE_URL: "http://localhost:3000",
-    NEXT_PUBLIC_APP_VERSION: "123",
-    NEXT_PUBLIC_RELEASE_STAGE: "test",
-    NEXT_PUBLIC_SEARCH_API_URL: "NEXT_PUBLIC_SEARCH_API_URL",
-    NEXT_PUBLIC_GRAPHQL_API_URL: "NEXT_PUBLIC_GRAPHQL_API_URL",
-    NEXT_PUBLIC_BUGSNAG_API_KEY: "NEXT_PUBLIC_BUGSNAG_API_KEY",
-    NEXT_PUBLIC_HUBSPOT_PORTAL_ID: "NEXT_PUBLIC_HUBSPOT_PORTAL_ID",
-    NEXT_PUBLIC_HUBSPOT_FALLBACK_FORM_ID:
-      "NEXT_PUBLIC_HUBSPOT_FALLBACK_FORM_ID",
-    NEXT_PUBLIC_HUBSPOT_NEWSLETTER_FORM_ID:
-      "NEXT_PUBLIC_HUBSPOT_NEWSLETTER_FORM_ID",
-    NEXT_PUBLIC_HUBSPOT_SCRIPT_DOMAIN: "NEXT_PUBLIC_HUBSPOT_SCRIPT_DOMAIN",
-    NEXT_PUBLIC_POSTHOG_API_HOST: "NEXT_PUBLIC_POSTHOG_API_HOST",
-    NEXT_PUBLIC_POSTHOG_API_KEY: "NEXT_PUBLIC_POSTHOG_API_KEY",
-    NEXT_PUBLIC_SANITY_PROJECT_ID: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID,
-    NEXT_PUBLIC_SANITY_DATASET: process.env.NEXT_PUBLIC_SANITY_DATASET,
-    NEXT_PUBLIC_SANITY_ASSET_CDN_HOST:
-      process.env.NEXT_PUBLIC_SANITY_ASSET_CDN_HOST,
-    NEXT_PUBLIC_GLEAP_API_KEY: "NEXT_PUBLIC_GLEAP_API_KEY",
-    NEXT_PUBLIC_GLEAP_API_URL: "NEXT_PUBLIC_GLEAP_API_URL",
-    NEXT_PUBLIC_GLEAP_FRAME_URL: "NEXT_PUBLIC_GLEAP_FRAME_URL",
-    NEXT_PUBLIC_OAK_ASSETS_HOST: process.env.NEXT_PUBLIC_OAK_ASSETS_HOST,
-    NEXT_PUBLIC_OAK_ASSETS_PATH: process.env.NEXT_PUBLIC_OAK_ASSETS_PATH,
-  }),
+  env: (config) => {
+    const nextPublicEnv = Object.fromEntries(
+      Object.entries(process.env).filter(([key]) =>
+        key.startsWith("NEXT_PUBLIC_"),
+      ),
+    );
+    return {
+      // As of Storybook v9.1.17 - 9.1.20 these env vars are exposed in source files, DO NOT use sensitive data/API keys
+      ...config,
+      ...nextPublicEnv,
+    };
+  },
 
   stories: [
     "../src/components/introduction.mdx",
@@ -38,13 +29,14 @@ export default {
     "storybook-css-modules-preset",
     "@storybook/addon-a11y",
     "@storybook/addon-docs",
+    "@storybook/addon-themes",
   ],
 
   framework: {
     name: "@storybook/nextjs",
     options: {
       builder: {
-        lazyCompilation: true,
+        lazyCompilation: !process.env.STORYBOOK_TEST,
       },
     },
   },
@@ -58,7 +50,10 @@ export default {
   webpackFinal: async (config) => {
     config.resolve.alias = {
       ...config.resolve.alias,
-      "@clerk/nextjs": path.resolve(__dirname, "./mocks/clerk.tsx"),
+      "@clerk/nextjs": path.resolve(
+        __dirname,
+        "../src/storybook-mocks/clerk.tsx",
+      ),
     };
 
     config.module.rules = [
@@ -83,6 +78,11 @@ export default {
       {
         test: /\.svg$/i,
         use: ["@svgr/webpack"],
+      },
+      {
+        test: /\.mjs$/,
+        include: /node_modules/,
+        type: "javascript/auto",
       },
     ];
 

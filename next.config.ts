@@ -122,6 +122,18 @@ export default async (phase: NextConfig["phase"]): Promise<NextConfig> => {
   const nextConfig: NextConfig = {
     headers: async () => [
       {
+        // Advertise the RFC 9727 API catalog from the homepage so discovery
+        // agents can find it without guessing (RFC 8288 Link header,
+        // RFC 9727 section 3).
+        source: "/",
+        headers: [
+          {
+            key: "Link",
+            value: '</.well-known/api-catalog>; rel="api-catalog"',
+          },
+        ],
+      },
+      {
         source: "/api/pupil/:path*",
         headers: [
           {
@@ -166,10 +178,10 @@ export default async (phase: NextConfig["phase"]): Promise<NextConfig> => {
             key: "Content-Security-Policy",
             value: cspHeader.replaceAll(/\n/g, ""),
           },
-          // {
-          //   key: "Content-Security-Policy",
-          //   value: "frame-ancestors 'self' https://classroom.google.com;",
-          // },
+          {
+            key: "Content-Security-Policy",
+            value: "frame-ancestors 'self' https://classroom.google.com;",
+          },
           // {
           //   key: "x-vercel-set-bypass-cookie",
           //   value: "samesitenone",
@@ -187,7 +199,11 @@ export default async (phase: NextConfig["phase"]): Promise<NextConfig> => {
     },
 
     // See <https://github.com/vercel/next.js/issues/40183#issuecomment-3063588870>
-    transpilePackages: ["@ooxml-tools/units", "@ooxml-tools/xml"],
+    transpilePackages: [
+      "@ooxml-tools/units",
+      "@ooxml-tools/xml",
+      "@oaknational/oak-components",
+    ],
 
     webpack: function getWebpackConfig(
       config: WebpackConfig,
@@ -357,6 +373,13 @@ export default async (phase: NextConfig["phase"]): Promise<NextConfig> => {
           "www.thenational.academy",
         ],
       },
+      // Dynamic routes (e.g. programme pages, which read cookies()/draftMode()) default to a
+      // 0s client router cache, so prefetched RSC payloads are discarded before they can be used.
+      // https://nextjs.org/docs/app/api-reference/config/next-config-js/staleTimes
+      staleTimes: {
+        dynamic: 30,
+        static: 300,
+      },
     },
     // Need this so static URLs and dynamic URLs match.
     trailingSlash: false,
@@ -373,6 +396,11 @@ export default async (phase: NextConfig["phase"]): Promise<NextConfig> => {
           permanent: true,
         },
         {
+          source: "/pupils/lessons/:lessonSlug/shared/:variant",
+          destination: "/pupils/lessons/:lessonSlug/shared/:variant/overview",
+          permanent: true,
+        },
+        {
           source: "/pupils/beta/previews/lessons/:lessonSlug",
           destination: "/pupils/beta/previews/lessons/:lessonSlug/overview",
           permanent: true,
@@ -385,8 +413,13 @@ export default async (phase: NextConfig["phase"]): Promise<NextConfig> => {
           permanent: true,
         },
         {
-          source: "/pupils/l/:redirectFrom/lessons/:lessonSlug",
-          destination: "/pupils/l/:redirectFrom/lessons/:lessonSlug/overview",
+          source: "/pupils",
+          destination: "/pupils/years",
+          permanent: true,
+        },
+        {
+          source: "/ai",
+          destination: "https://labs.thenational.academy/",
           permanent: true,
         },
       ];
@@ -428,26 +461,100 @@ export default async (phase: NextConfig["phase"]): Promise<NextConfig> => {
         },
       ];
 
-      return [...pupilsRedirects, ...aboutUsRedirects, ...eyfsRedirects];
+      const integratedJourneyRedirects = [
+        {
+          source: "/teachers/curriculum",
+          destination: "/about-us/oaks-curricula",
+          permanent: true,
+        },
+        {
+          source: "/teachers/curriculum/:subjectPhaseSlug/units/:unitSlug",
+          destination:
+            "/teachers/programmes/:subjectPhaseSlug/units/:unitSlug/lessons",
+          permanent: true,
+        },
+        {
+          source: "/teachers/curriculum/:subjectPhaseSlug/units",
+          destination: "/teachers/programmes/:subjectPhaseSlug/units",
+          permanent: true,
+        },
+
+        {
+          source: "/teachers/curriculum/:subjectPhaseSlug/overview",
+          destination:
+            "/teachers/programmes/:subjectPhaseSlug/curriculum-explainer",
+          permanent: true,
+        },
+        {
+          source: "/teachers/curriculum/:subjectPhaseSlug/downloads",
+          destination: "/teachers/programmes/:subjectPhaseSlug/download",
+          permanent: true,
+        },
+        {
+          source: "/teachers/key-stages/:keyStageSlug/subjects/:path*",
+          destination: "/",
+          permanent: true,
+        },
+      ];
+
+      return [
+        ...pupilsRedirects,
+        ...aboutUsRedirects,
+        ...eyfsRedirects,
+        ...integratedJourneyRedirects,
+      ];
     },
     async rewrites() {
+      // Serve the RFC 9727 API catalog from /.well-known/ — the App Router does
+      // not route folders that start with a dot, so the handler lives under /api.
+      const wellKnownRewrites = [
+        {
+          source: "/.well-known/api-catalog",
+          destination: "/api/well-known/api-catalog",
+        },
+      ];
+      // The MCP submission carousel images now live under /ai-plugin/carousel,
+      // but Anthropic's directory listing stores the old /mcp/carousel URLs and
+      // refetches them itself, indefinitely. This is a REWRITE, not a redirect,
+      // so those stored URLs keep returning 200 with the same bytes and no
+      // redirect — which is what src/tests/e2e/mcp/carousel-assets.spec.ts
+      // asserts on Oak's behalf.
+      //
+      // REMOVAL CONDITION: delete this once the three image URLs on the
+      // Anthropic listing have been updated to /ai-plugin/carousel and the old
+      // URLs are confirmed no longer fetched. That listing edit is an owner
+      // action in the submission portal (editable after submission; only the
+      // slug is permanent) and has no PR of its own — MCP-689. The deletion
+      // itself is MCP-690, blocked by it.
+      const carouselCompatRewrites = [
+        {
+          source: "/mcp/carousel/:file",
+          destination: "/ai-plugin/carousel/:file",
+        },
+      ];
       // Reverse proxy posthog in development to avoid localhost CORS issues in Chrome https://posthog.com/docs/advanced/proxy/nextjs
-      return releaseStage === "development"
-        ? [
-            {
-              source: "/ingest/static/:path*",
-              destination: "https://eu-assets.i.posthog.com/static/:path*",
-            },
-            {
-              source: "/ingest/:path*",
-              destination: "https://eu.i.posthog.com/:path*",
-            },
-            {
-              source: "/ingest/decide",
-              destination: "https://eu.i.posthog.com/decide",
-            },
-          ]
-        : [];
+      const developmentRewrites =
+        releaseStage === "development"
+          ? [
+              {
+                source: "/ingest/static/:path*",
+                destination: "https://eu-assets.i.posthog.com/static/:path*",
+              },
+              {
+                source: "/ingest/:path*",
+                destination: "https://eu.i.posthog.com/:path*",
+              },
+              {
+                source: "/ingest/decide",
+                destination: "https://eu.i.posthog.com/decide",
+              },
+            ]
+          : [];
+      return [
+        ...wellKnownRewrites,
+        ...carouselCompatRewrites,
+        ...developmentRewrites,
+      ];
     },
     // Required for the posthog reverse proxy, but interferes with static URL redirections so we don't want this applied on production
     skipTrailingSlashRedirect: releaseStage === "development",
@@ -489,6 +596,11 @@ export default async (phase: NextConfig["phase"]): Promise<NextConfig> => {
     // Write new values.
     writeFileSync(envFileName, newEnv);
     console.log(`Wrote "${baseUrlEnv}" to .env file for sitemap generation.`);
+
+    // Also set on the config and process env. Writing .env.local alone is too late
+    // for the current build: Next loads env files before next.config runs. App
+    // Router sitemaps prerender during `next build` and need SITEMAP_BASE_URL then.
+    process.env.SITEMAP_BASE_URL = baseUrl;
   } catch (err) {
     console.error("Could not write SITEMAP_BASE_URL to env file", err);
 
@@ -510,9 +622,6 @@ if (process.env.NEXT_PUBLIC_SENTRY_ENABLED === "true") {
     sourcemaps: {
       disable: true,
     },
-
-    // Hides source maps from generated client bundles
-    hideSourceMaps: true,
 
     // Automatically tree-shake Sentry logger statements to reduce bundle size
     disableLogger: true,

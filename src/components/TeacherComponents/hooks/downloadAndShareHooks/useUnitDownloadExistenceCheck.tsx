@@ -12,6 +12,7 @@ const useUnitDownloadExistenceCheck = (unitProgrammeSlug: string) => {
   const [fileSize, setFileSize] = useState<string | undefined>(undefined);
 
   useEffect(() => {
+    // PUPIL-1750: Keep "check-files" existence checks client-side only (SSR/ISR attempts were rolled back).
     (async () => {
       if (hasCheckedFiles) {
         return;

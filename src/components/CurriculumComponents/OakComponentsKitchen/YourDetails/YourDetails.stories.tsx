@@ -1,4 +1,3 @@
-import { OakThemeProvider, oakDefaultTheme } from "@oaknational/oak-components";
 import { Meta, StoryObj } from "@storybook/nextjs";
 import { useArgs } from "storybook/preview-api";
 
@@ -39,10 +38,6 @@ export const YourDetails: Story = {
   },
   render: function Render(args) {
     const [, updateArgs] = useArgs();
-    return (
-      <OakThemeProvider theme={oakDefaultTheme}>
-        <Component {...args} onChange={updateArgs} />
-      </OakThemeProvider>
-    );
+    return <Component {...args} onChange={updateArgs} />;
   },
 };

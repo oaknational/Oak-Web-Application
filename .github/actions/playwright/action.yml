@@ -1,0 +1,61 @@
+name: "Playwright"
+description: "Run Playwright E2E tests and upload the HTML report"
+
+inputs:
+  base_url:
+    description: "The URL for Playwright to run against"
+    required: true
+  branch_name:
+    description: "[optional] Branch name for report artifact naming"
+    required: false
+    default: ""
+  vercel_bypass_secret:
+    description: "[optional] Vercel automation bypass secret for protected preview deployments"
+    required: false
+    default: ""
+
+runs:
+  using: "composite"
+  steps:
+    - name: Get installed Playwright version
+      id: playwright-version
+      shell: bash
+      run: echo "version=$(./node_modules/.bin/playwright --version | awk '{print $2}')" >> "$GITHUB_OUTPUT"
+
+    - name: Cache Playwright browser
+      id: playwright-cache
+      uses: actions/cache@v4
+      with:
+        path: ~/.cache/ms-playwright
+        key: playwright-${{ runner.os }}-${{ runner.arch }}-chromium-${{ steps.playwright-version.outputs.version }}
+
+    - name: Install Playwright system dependencies
+      shell: bash
+      run: ./node_modules/.bin/playwright install-deps chromium
+
+    - name: Install Playwright browser
+      if: steps.playwright-cache.outputs.cache-hit != 'true'
+      shell: bash
+      run: ./node_modules/.bin/playwright install chromium
+
+    - name: Run Playwright tests
+      shell: bash
+      run: pnpm run test:e2e:ci
+      env:
+        BASE_URL: ${{ inputs.base_url }}
+        VERCEL_AUTOMATION_BYPASS_SECRET: ${{ inputs.vercel_bypass_secret }}
+
+    - name: Build safe artifact suffix
+      if: ${{ inputs.branch_name != '' }}
+      shell: bash
+      run: |
+        safe_branch_name="$(printf '%s' "${{ inputs.branch_name }}" | tr '/\\:*?"<>|' '-')"
+        echo "PLAYWRIGHT_ARTIFACT_SUFFIX=-${safe_branch_name}" >> "$GITHUB_ENV"
+
+    - name: Upload Playwright report
+      if: ${{ always() }}
+      uses: actions/upload-artifact@v5
+      with:
+        name: playwright-report${{ env.PLAYWRIGHT_ARTIFACT_SUFFIX }}
+        path: playwright-report/
+        retention-days: 14

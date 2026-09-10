@@ -20,6 +20,7 @@ type QueueItem =
       type: "track";
       eventName: EventName;
       props: EventProperties;
+      options?: { sendInstantly?: boolean };
     }
   | {
       type: "page";
@@ -42,8 +43,14 @@ const withQueue = <T>(
     queue.length = 0;
   };
 
-  const track: EventFn = (eventName, props) => {
-    queueEvent({ type: "track", eventName, props });
+  const track: EventFn = (eventName, props, options) => {
+    queueEvent({ type: "track", eventName, props, options });
+    // Instant events (e.g. those fired immediately before a navigation) can't
+    // wait for the next interval tick or the request may be cancelled before it
+    // leaves the browser. Flush now, while still respecting consent state.
+    if (options?.sendInstantly) {
+      conditionallyProcessQueue();
+    }
   };
   const identify: IdentifyFn = (userId, props) => {
     queueEvent({ type: "identify", userId, props });
@@ -58,7 +65,7 @@ const withQueue = <T>(
         service.identify(item.userId, item.props);
         break;
       case "track":
-        service.track(item.eventName, item.props);
+        service.track(item.eventName, item.props, item.options);
         break;
       case "page":
         service.page(item.props);

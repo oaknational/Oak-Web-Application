@@ -11,7 +11,6 @@ describe("CurricFiltersYears", () => {
   it("renders correctly (non-pathways)", () => {
     const { getAllByRole } = render(
       <CurricFiltersYears
-        context="curriculum-visualiser"
         filters={{
           childSubjects: [],
           subjectCategories: [],
@@ -42,7 +41,6 @@ describe("CurricFiltersYears", () => {
   it("renders correctly (pathways)", () => {
     const { getAllByRole } = render(
       <CurricFiltersYears
-        context="curriculum-visualiser"
         filters={{
           childSubjects: [],
           subjectCategories: [],
@@ -79,7 +77,6 @@ describe("CurricFiltersYears", () => {
     const onChangeFilters = jest.fn();
     const { getAllByRole, rerender } = render(
       <CurricFiltersYears
-        context="curriculum-visualiser"
         filters={{
           childSubjects: [],
           subjectCategories: [],
@@ -101,12 +98,12 @@ describe("CurricFiltersYears", () => {
     );
 
     const elements = getAllByRole("radio") as HTMLInputElement[];
-    expect(elements.length).toEqual(3);
+    expect(elements).toHaveLength(3);
 
     // 10
     act(() => elements[1]!.click());
-    expect(onChangeFilters).toHaveBeenCalledWith(
-      {
+    expect(onChangeFilters).toHaveBeenCalledWith({
+      newFilters: {
         subjectCategories: [],
         childSubjects: [],
         threads: [],
@@ -115,13 +112,14 @@ describe("CurricFiltersYears", () => {
         pathways: [],
         keystages: [],
       },
-      "year_group_button",
-    );
+      filterType: "Year filter",
+      filterValue: "10",
+    });
 
     // 11
     act(() => elements[2]!.click());
-    expect(onChangeFilters).toHaveBeenCalledWith(
-      {
+    expect(onChangeFilters).toHaveBeenCalledWith({
+      newFilters: {
         subjectCategories: [],
         childSubjects: [],
         threads: [],
@@ -130,13 +128,13 @@ describe("CurricFiltersYears", () => {
         pathways: [],
         keystages: [],
       },
-      "year_group_button",
-    );
+      filterType: "Year filter",
+      filterValue: "11",
+    });
 
     // Re-render because "all" will be selected by default
     rerender(
       <CurricFiltersYears
-        context="curriculum-visualiser"
         filters={{
           childSubjects: [],
           subjectCategories: [],
@@ -159,8 +157,8 @@ describe("CurricFiltersYears", () => {
 
     // All
     act(() => elements[0]!.click());
-    expect(onChangeFilters).toHaveBeenCalledWith(
-      {
+    expect(onChangeFilters).toHaveBeenCalledWith({
+      newFilters: {
         subjectCategories: [],
         childSubjects: [],
         threads: [],
@@ -169,15 +167,15 @@ describe("CurricFiltersYears", () => {
         pathways: [],
         keystages: [],
       },
-      "year_group_button",
-    );
+      filterType: "Year filter",
+      filterValue: "all",
+    });
   });
 
   it("interacts correctly (pathway)", () => {
     const onChangeFilters = jest.fn();
     const { getAllByRole, rerender } = render(
       <CurricFiltersYears
-        context="curriculum-visualiser"
         filters={{
           childSubjects: [],
           subjectCategories: [],
@@ -202,12 +200,12 @@ describe("CurricFiltersYears", () => {
     );
 
     const elements = getAllByRole("radio") as HTMLInputElement[];
-    expect(elements.length).toEqual(5);
+    expect(elements).toHaveLength(5);
 
     // 10-core
     act(() => elements[1]!.click());
-    expect(onChangeFilters).toHaveBeenCalledWith(
-      {
+    expect(onChangeFilters).toHaveBeenCalledWith({
+      newFilters: {
         subjectCategories: [],
         childSubjects: [],
         threads: [],
@@ -216,13 +214,14 @@ describe("CurricFiltersYears", () => {
         pathways: ["core"],
         keystages: [],
       },
-      "year_group_button",
-    );
+      filterType: "Year filter",
+      filterValue: "10",
+    });
 
     // 11-core
     act(() => elements[2]!.click());
-    expect(onChangeFilters).toHaveBeenCalledWith(
-      {
+    expect(onChangeFilters).toHaveBeenCalledWith({
+      newFilters: {
         subjectCategories: [],
         childSubjects: [],
         threads: [],
@@ -231,13 +230,14 @@ describe("CurricFiltersYears", () => {
         pathways: ["core"],
         keystages: [],
       },
-      "year_group_button",
-    );
+      filterType: "Year filter",
+      filterValue: "11",
+    });
 
     // 10-gcse
     act(() => elements[3]!.click());
-    expect(onChangeFilters).toHaveBeenCalledWith(
-      {
+    expect(onChangeFilters).toHaveBeenCalledWith({
+      newFilters: {
         subjectCategories: [],
         childSubjects: [],
         threads: [],
@@ -246,13 +246,14 @@ describe("CurricFiltersYears", () => {
         pathways: ["non_core"],
         keystages: [],
       },
-      "year_group_button",
-    );
+      filterType: "Year filter",
+      filterValue: "10",
+    });
 
     // 11-gcse
     act(() => elements[4]!.click());
-    expect(onChangeFilters).toHaveBeenCalledWith(
-      {
+    expect(onChangeFilters).toHaveBeenCalledWith({
+      newFilters: {
         subjectCategories: [],
         childSubjects: [],
         threads: [],
@@ -261,13 +262,13 @@ describe("CurricFiltersYears", () => {
         pathways: ["non_core"],
         keystages: [],
       },
-      "year_group_button",
-    );
+      filterType: "Year filter",
+      filterValue: "11",
+    });
 
     // Re-render because "all" will be selected by default
     rerender(
       <CurricFiltersYears
-        context="curriculum-visualiser"
         filters={{
           childSubjects: [],
           subjectCategories: [],
@@ -290,8 +291,8 @@ describe("CurricFiltersYears", () => {
 
     // All
     act(() => elements[0]!.click());
-    expect(onChangeFilters).toHaveBeenCalledWith(
-      {
+    expect(onChangeFilters).toHaveBeenCalledWith({
+      newFilters: {
         subjectCategories: [],
         childSubjects: [],
         threads: [],
@@ -300,7 +301,8 @@ describe("CurricFiltersYears", () => {
         pathways: [],
         keystages: [],
       },
-      "year_group_button",
-    );
+      filterType: "Year filter",
+      filterValue: "all",
+    });
   });
 });

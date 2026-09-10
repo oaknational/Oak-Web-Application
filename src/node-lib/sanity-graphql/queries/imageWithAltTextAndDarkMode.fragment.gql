@@ -1,0 +1,18 @@
+fragment ImageWithAltTextAndDarkMode on ImageWithAltTextAndDarkMode {
+  altText
+  isPresentational
+  asset {
+    ...ImageAsset
+  }
+  darkModeImage {
+    asset {
+      ...ImageAsset
+    }
+  }
+  hotspot {
+    x
+    y
+    width
+    height
+  }
+}

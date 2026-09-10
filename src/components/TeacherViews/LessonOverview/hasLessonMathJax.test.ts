@@ -1,15 +1,16 @@
-import { LessonOverviewProps } from "./LessonOverview.view";
 import { containsMathJax, hasLessonMathJax } from "./hasLessonMathJax";
 
+import { LessonOverviewPageData } from "@/node-lib/curriculum-api-2023/queries/lessonOverview/lessonOverview.schema";
 import lessonMediaClipsFixtures from "@/node-lib/curriculum-api-2023/fixtures/lessonMediaClips.fixture";
 
 describe("hasLessonMathJax", () => {
-  const basicLesson: LessonOverviewProps["lesson"] = {
+  const basicLesson: LessonOverviewPageData = {
     isLegacy: false,
     lessonSlug: "example-slug",
     lessonTitle: "Example Lesson Title",
     tierTitle: null,
     tierSlug: null,
+    pathwayTitle: null,
     contentGuidance: [],
     misconceptionsAndCommonMistakes: [],
     teacherTips: [],
@@ -30,12 +31,10 @@ describe("hasLessonMathJax", () => {
     videoTitle: null,
     lessonCohort: null,
     downloads: [],
-    isSpecialist: false,
-    isCanonical: false,
     keyStageTitle: "Example Key Stage Title",
     keyStageSlug: "example-key-stage-slug",
     subjectTitle: "Example Subject Title",
-    subjectSlug: "example-subject-slug",
+    subjectSlug: "maths",
     unitTitle: "Example Unit Title",
     unitSlug: "example-unit-slug",
     programmeSlug: "example-programme-slug",
@@ -51,6 +50,7 @@ describe("hasLessonMathJax", () => {
     loginRequired: false,
     geoRestricted: false,
     excludedFromTeachingMaterials: false,
+    pathways: [],
   };
 
   it("detects MathJax in keyLearningPoints", () => {
@@ -82,7 +82,7 @@ describe("hasLessonMathJax", () => {
   });
 
   it("detects MathJax in multiple-choice quiz answers", () => {
-    const lessonWithMathJaxInMCQuiz: LessonOverviewProps["lesson"] = {
+    const lessonWithMathJaxInMCQuiz: LessonOverviewPageData = {
       ...basicLesson,
       exitQuiz: [
         {
@@ -117,7 +117,7 @@ describe("hasLessonMathJax", () => {
   });
 
   it("detects MathJax in match quiz answers", () => {
-    const lessonWithMathJaxInMatchQuiz: LessonOverviewProps["lesson"] = {
+    const lessonWithMathJaxInMatchQuiz: LessonOverviewPageData = {
       ...basicLesson,
       starterQuiz: [
         {
@@ -149,7 +149,7 @@ describe("hasLessonMathJax", () => {
     );
   });
   it("detects MathJax in match quiz answers", () => {
-    const lessonWithMathJaxInMatchQuiz: LessonOverviewProps["lesson"] = {
+    const lessonWithMathJaxInMatchQuiz: LessonOverviewPageData = {
       ...basicLesson,
       starterQuiz: [
         {
@@ -182,7 +182,7 @@ describe("hasLessonMathJax", () => {
   });
 
   it("detects MathJax in order quiz answers", () => {
-    const lessonWithMathJaxInOrderQuiz: LessonOverviewProps["lesson"] = {
+    const lessonWithMathJaxInOrderQuiz: LessonOverviewPageData = {
       ...basicLesson,
       exitQuiz: [
         {
@@ -217,7 +217,7 @@ describe("hasLessonMathJax", () => {
   });
 
   it("detects MathJax in short-answer quiz answers", () => {
-    const lessonWithMathJaxInShortAnswerQuiz: LessonOverviewProps["lesson"] = {
+    const lessonWithMathJaxInShortAnswerQuiz: LessonOverviewPageData = {
       ...basicLesson,
       starterQuiz: [
         {
@@ -248,7 +248,7 @@ describe("hasLessonMathJax", () => {
   });
 
   it("detects MathJax in exitQuiz questions and answers", () => {
-    const lessonWithMathJaxInExitQuiz: LessonOverviewProps["lesson"] = {
+    const lessonWithMathJaxInExitQuiz: LessonOverviewPageData = {
       ...basicLesson,
       exitQuiz: [
         {
@@ -278,7 +278,7 @@ describe("hasLessonMathJax", () => {
   });
 
   it("detects MathJax in starterQuiz questions", () => {
-    const lessonWithMathJaxInStarterQuiz: LessonOverviewProps["lesson"] = {
+    const lessonWithMathJaxInStarterQuiz: LessonOverviewPageData = {
       ...basicLesson,
       starterQuiz: [
         {

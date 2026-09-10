@@ -10,7 +10,6 @@ import {
 } from "@oaknational/oak-components";
 
 import { aboutUsAccessed } from "@/browser-lib/avo/Avo";
-import Flex from "@/components/SharedComponents/Flex.deprecated";
 import BlogAndWebinarList from "@/components/GenericPagesComponents/BlogAndWebinarList";
 import NewsletterFormWrap from "@/components/GenericPagesComponents/NewsletterFormWrap";
 import usePostList from "@/components/SharedComponents/PostList/usePostList";
@@ -79,7 +78,7 @@ export const HomePageLowerView = (props: HomePageLowerViewProps) => {
                   <OakFlex $gap={"spacing-16"} $flexDirection={"column"}>
                     <OakBox>
                       <OakHeading
-                        tag="h1"
+                        tag="h2"
                         $font={["heading-5", "heading-5", "heading-4"]}
                       >
                         {introVideo?.title}
@@ -148,9 +147,9 @@ export const HomePageLowerView = (props: HomePageLowerViewProps) => {
           $mb={"spacing-80"}
           $ph={"spacing-16"}
         >
-          <Flex $maxWidth={["100%", 870]}>
+          <OakFlex $maxWidth={["100%", "spacing-960"]}>
             <NewsletterFormWrap desktopColSpan={6} {...newsletterFormProps} />
-          </Flex>
+          </OakFlex>
         </OakMaxWidth>
       </OakFlex>
     </>

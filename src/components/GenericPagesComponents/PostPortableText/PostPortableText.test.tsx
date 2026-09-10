@@ -224,7 +224,7 @@ describe("components/PostPortableText", () => {
 
       const footnote = getAllByRole("listitem")[0];
 
-      const footnote2 = getByText("And the second, with a link");
+      const footnote2 = getByText("And the second, with a link").closest("a");
 
       const firstFootnoteBacklink = within(footnote as HTMLElement).getByRole(
         "doc-backlink",

@@ -17,7 +17,7 @@ import {
 import { toSentenceCase } from "@/node-lib/curriculum-api-2023/helpers";
 import TagPromotional from "@/components/SharedComponents/TagPromotional";
 import { getValidSubjectIconName } from "@/utils/getValidSubjectIconName";
-import { TrackSearchModifiedProps } from "@/components/TeacherViews/Search/helpers";
+import { TrackSearchModifiedProps } from "@/app/(core)/teachers/search/helpers/index";
 import { FilterTypeValueType } from "@/browser-lib/avo/Avo";
 
 type SearchFiltersProps = UseSearchFiltersReturnType & {
@@ -59,7 +59,7 @@ const renderFilterSection = (
               filter.slug
             }:mobile:${isMobileFilter}`}
             value={`${title} filter`}
-            {...filter}
+            checked={filter.checked}
             icon={hasIcon ? getValidSubjectIconName(filter.slug) : undefined}
             onChange={() => {
               trackSeachModified({

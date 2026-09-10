@@ -22,6 +22,19 @@ describe("getAvoBridge (browser)", () => {
     expect(posthog.track).toHaveBeenCalledWith(
       testEventName,
       testEventProperties,
+      { sendInstantly: false },
+    );
+  });
+
+  test("logEvent sends instantly for User Onboarding Completed", () => {
+    const posthog = getMockPosthog();
+    const avoBridge = getAvoBridge({ posthog });
+    avoBridge.logEvent("User Onboarding Completed", testEventProperties);
+
+    expect(posthog.track).toHaveBeenCalledWith(
+      "User Onboarding Completed",
+      testEventProperties,
+      { sendInstantly: true },
     );
   });
 

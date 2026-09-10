@@ -2,12 +2,13 @@ import { FC, ReactNode } from "react";
 import {
   OakFlex,
   OakBox,
-  OakHandDrawnHR,
   OakUiRoleToken,
+  OakSmallTertiaryInvertedButton,
+  OakSpan,
 } from "@oaknational/oak-components";
+import Link from "next/link";
 
-import ButtonAsLink from "@/components/SharedComponents/Button/ButtonAsLink";
-import { ResolveOakHrefProps } from "@/common-lib/urls";
+import { ResolveOakHrefProps, resolveOakHref } from "@/common-lib/urls";
 
 export type PromoBannerProps = {
   background: OakUiRoleToken;
@@ -21,6 +22,7 @@ const PromoBanner: FC<PromoBannerProps> = ({
   ctaText,
   ...linkProps
 }) => {
+  const href = resolveOakHref(linkProps);
   return (
     <OakBox role="banner">
       <OakFlex
@@ -29,11 +31,13 @@ const PromoBanner: FC<PromoBannerProps> = ({
         $alignItems={"center"}
         $pv={"spacing-8"}
         $ph={["spacing-8", "spacing-12"]}
+        $bb={"border-solid-m"}
+        $borderColor={"border-primary"}
       >
         <OakFlex
           $alignItems={"center"}
           $flexWrap={"wrap"}
-          $gap={["spacing-4", "spacing-40"]}
+          $gap={["spacing-12", "spacing-32"]}
           $flexDirection={["column", "row"]}
           $justifyContent={"center"}
           $pv={"spacing-0"}
@@ -45,21 +49,17 @@ const PromoBanner: FC<PromoBannerProps> = ({
           >
             {message}
           </OakFlex>
-          <ButtonAsLink
-            $ml={[20, 0]}
-            {...linkProps}
-            label={ctaText}
-            variant={"buttonStyledAsLink"}
-            icon={"chevron-right"}
-            $iconPosition={"trailing"}
-            iconBackground="transparent"
-            $mh={0}
-          />
+          <OakSmallTertiaryInvertedButton
+            element={Link}
+            href={href}
+            title={ctaText}
+            iconName="chevron-right"
+            isTrailingIcon={true}
+          >
+            <OakSpan $font={"heading-7"}>{ctaText}</OakSpan>
+          </OakSmallTertiaryInvertedButton>
         </OakFlex>
       </OakFlex>
-      <OakBox $background={background} $height={"spacing-4"}>
-        <OakHandDrawnHR hrColor={"bg-inverted"} $height={"spacing-4"} />
-      </OakBox>
     </OakBox>
   );
 };

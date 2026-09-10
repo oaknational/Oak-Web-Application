@@ -1,10 +1,11 @@
-import { notFound } from "next/navigation";
+import { notFound, unstable_rethrow } from "next/navigation";
 
 import errorReporter, {
   initialiseBugsnag,
   initialiseSentry,
 } from "../common-lib/error-reporter";
 import OakError from "../errors/OakError";
+import type { PageSearchParms } from "../app/(core)/teachers/programmes/[slug]/[tab]/page";
 
 import getBrowserConfig from "@/browser-lib/getBrowserConfig";
 
@@ -17,7 +18,7 @@ if (getBrowserConfig("sentryEnabled") === "true") {
 type PageParams = Record<string, string>;
 export type AppPageProps<T extends PageParams> = {
   params: Promise<T>;
-  searchParams?: Promise<{ [key: string]: string | string[] | undefined }>;
+  searchParams?: Promise<PageSearchParms>;
 };
 
 /**
@@ -45,23 +46,15 @@ function withPageErrorHandling<T extends PageParams>(
         }
       }
 
-      // Next.js redirect() and notFound() functions throw an error and are handled in nextjs internals, we don't want to report these
-      const shouldReport = !(
-        error instanceof Error &&
-        (error.message === "NEXT_REDIRECT" ||
-          error.message === "NEXT_HTTP_ERROR_FALLBACK;404")
-      );
+      // Rethrow Next.js internal control-flow signals (redirect, notFound, forbidden,
+      // dynamic API bailouts, PPR postpone, etc.) untouched before doing any async work,
+      // otherwise Next.js can't detect them and the build fails instead of handling them.
+      unstable_rethrow(error);
 
-      if (shouldReport) {
-        /**
-         * Report error to error reporting service
-         */
-        const { params, searchParams } = props;
-        await errorReporter(page)(error, {
-          ...(await params),
-          ...(await searchParams),
-        });
-      }
+      const { params } = props;
+      await errorReporter(page)(error, {
+        ...(await params),
+      });
 
       /**
        * Rethrow error so that NextJS can handle it

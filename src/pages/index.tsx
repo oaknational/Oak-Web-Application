@@ -7,20 +7,20 @@ import {
   getBlogPosts,
   SerializedPost,
 } from "@/pages-helpers/home/getBlogPosts";
-import AppLayout from "@/components/SharedComponents/AppLayout";
+import AppLayout from "@/components/AppComponents/AppLayout";
 import TeachersTab from "@/components/GenericPagesComponents/TeachersTab";
-import HomePageTabImageNav from "@/components/GenericPagesComponents/HomePageTabImageNav";
 import Banners from "@/components/SharedComponents/Banners";
 import { HomePageLowerView } from "@/components/GenericPagesViews/HomePageLower/HomePageLower.view";
-import curriculumApi2023, {
-  KeyStagesData,
-} from "@/node-lib/curriculum-api-2023";
+import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 import { HomePage as CmsHomePage } from "@/common-lib/cms-types";
 import getPageProps from "@/node-lib/getPageProps";
 import { TopNavProps } from "@/components/AppComponents/TopNav/TopNav";
+import { SubjectPhasePickerData } from "@/components/SharedComponents/SubjectPhasePicker/SubjectPhasePicker";
+import { filterValidCurriculumPhaseOptions } from "@/pages-helpers/curriculum/docx/tab-helpers";
+import { TeacherBrowseAnalyticsStoreProvider } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
 
 export type HomePageProps = BlogPostProps & {
-  curriculumData: KeyStagesData;
+  curriculumPhaseOptions: SubjectPhasePickerData;
   pageData: CmsHomePage;
   posts: SerializedPost[];
   topNav: TopNavProps;
@@ -41,34 +41,50 @@ const HomePage: NextPage<HomePageProps> = (props) => {
     }
   }, [router]);
 
-  const { curriculumData, posts, pageData, topNav } = props;
+  const { posts, pageData, topNav, curriculumPhaseOptions } = props;
 
   const testimonials = pageData?.testimonials;
   const intro = pageData?.intro;
   const campaignPromoBanner = pageData.campaignPromoBanner;
 
   return (
-    <AppLayout
-      seoProps={{
-        title: "Free, time-saving teacher resources | Oak National Academy",
-        description:
-          "Explore our free, time-saving teacher resources from Oak National Academy. Browse and download worksheets, quizzes and slides from KS1 to KS4. ",
-      }}
-      $background={"bg-primary"}
-      topNavProps={topNav}
+    <TeacherBrowseAnalyticsStoreProvider
+      programmeState={null}
+      accessLevel="homepage"
     >
-      <Banners />
-      <HomePageTabImageNav current={"teachers"} />
-      <TeachersTab keyStages={curriculumData.keyStages} aria-current="page" />
-      <HomePageLowerView
-        campaignPromoBanner={campaignPromoBanner}
-        posts={posts}
-        testimonials={testimonials}
-        introVideo={intro}
-      />
-    </AppLayout>
+      <AppLayout
+        seoProps={{
+          title: "Free, time-saving teacher resources | Oak National Academy",
+          description:
+            "Explore our free, time-saving teacher resources from Oak National Academy. Browse and download worksheets, quizzes and slides from KS1 to KS4. ",
+        }}
+        $background={"bg-primary"}
+        topNavProps={topNav}
+      >
+        <Banners />
+        <TeachersTab
+          curriculumPhaseOptions={curriculumPhaseOptions}
+          aria-current="page"
+        />
+        <HomePageLowerView
+          campaignPromoBanner={campaignPromoBanner}
+          posts={posts}
+          testimonials={testimonials}
+          introVideo={intro}
+        />
+      </AppLayout>
+    </TeacherBrowseAnalyticsStoreProvider>
   );
 };
+
+const fetchSubjectPhasePickerData: () => Promise<SubjectPhasePickerData> =
+  async () => {
+    const subjects = await curriculumApi2023.curriculumPhaseOptions();
+    return {
+      subjects: filterValidCurriculumPhaseOptions(subjects),
+      tab: "units",
+    };
+  };
 
 export const getStaticProps: GetStaticProps<HomePageProps> = async (
   context,
@@ -88,14 +104,14 @@ export const getStaticProps: GetStaticProps<HomePageProps> = async (
         };
       }
 
-      const curriculumData = await curriculumApi2023.keyStages();
+      const curriculumPhaseOptions = await fetchSubjectPhasePickerData();
 
       const topNav = await curriculumApi2023.topNav();
 
       const results: GetStaticPropsResult<HomePageProps> = {
         props: {
           pageData,
-          curriculumData,
+          curriculumPhaseOptions,
           posts,
           topNav,
         },

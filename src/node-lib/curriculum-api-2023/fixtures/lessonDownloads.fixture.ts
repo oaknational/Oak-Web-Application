@@ -1,5 +1,4 @@
 import { LessonDownloadsPageData } from "../queries/lessonDownloads/lessonDownloads.schema";
-import { LessonDownloadsCanonical } from "../queries/lessonDownloads/lessonDownloadsCanonical.schema";
 
 const lessonDownloadsFixtures = (
   partial?: Partial<LessonDownloadsPageData>,
@@ -7,19 +6,26 @@ const lessonDownloadsFixtures = (
   return {
     expired: false,
     isLegacy: false,
-    isSpecialist: false,
     lessonCohort: "2023-2024",
     lessonSlug: "transverse-waves",
     lessonTitle: "Transverse waves",
     programmeSlug: "combined-science-secondary-ks4-foundation-edexcel",
     keyStageSlug: "ks4",
-    keyStageTitle: "Key stage 4",
+    keyStageTitle: "Key Stage 4",
+    phaseSlug: "secondary",
     subjectSlug: "combined-science",
     subjectTitle: "Combined Science",
+    subjectParent: null,
+    phaseTitle: "Secondary",
+    pathwaySlug: null,
+    pathwayTitle: null,
     unitSlug: "measuring-waves",
     unitTitle: "Measuring waves",
     tierSlug: "foundation",
     tierTitle: "Foundation",
+    yearGroupSlug: "year-10",
+    yearGroupTitle: "Year 10",
+    year: "10",
     examBoardSlug: "edexcel",
     examBoardTitle: "Edexcel",
     nextLessons: [
@@ -48,30 +54,12 @@ const lessonDownloadsFixtures = (
       },
     ],
     additionalFiles: [],
+    legacyCopyrightContent: null,
     updatedAt: "2025-09-29T14:00:00.000Z",
     geoRestricted: false,
     loginRequired: false,
+    actions: undefined,
     lessonReleaseDate: "2025-09-29T14:00:00.000Z",
-    ...partial,
-  };
-};
-
-export const lessonDownloadsCanonicalFixture = (
-  partial?: Partial<LessonDownloadsCanonical>,
-): LessonDownloadsCanonical => {
-  return {
-    ...lessonDownloadsFixtures(),
-    pathways: [
-      {
-        programmeSlug: "combined-science-secondary-ks4-foundation-edexcel",
-        unitSlug: "measuring-waves",
-        unitTitle: "Measuring waves",
-        keyStageSlug: "ks4",
-        keyStageTitle: "Key stage 4",
-        subjectSlug: "combined-science",
-        subjectTitle: "Combined Science",
-      },
-    ],
     ...partial,
   };
 };

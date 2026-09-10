@@ -5,7 +5,13 @@ import type {
   PortableTextBlock,
   PortableTextMarkDefinition,
 } from "@portabletext/types";
-import { OakBox, OakLI, OakOL, OakSpan } from "@oaknational/oak-components";
+import {
+  OakBox,
+  OakLI,
+  OakLink,
+  OakOL,
+  OakSpan,
+} from "@oaknational/oak-components";
 
 import AnchorTarget from "@/components/SharedComponents/AnchorTarget";
 
@@ -62,7 +68,12 @@ export const PostFootnoteAnnotation = (props: PostFootnoteAnnotationProps) => {
     <OakSpan>
       {props.children}
 
-      <OakBox as="sup" $position="relative">
+      <OakBox
+        as="sup"
+        $position="relative"
+        $textDecoration={"underline"}
+        $color={"text-link-active"}
+      >
         <AnchorTarget id={footnoteBackLinkAnchor(footnote.markKey)} />
 
         <a
@@ -80,17 +91,6 @@ export const PostFootnoteAnnotation = (props: PostFootnoteAnnotationProps) => {
 type PostFootnotesSectionProps = {
   footnotes: Footnote[];
 };
-
-/**
- * Using a styled link instead of OakLink here as we don't want
- * any of the OakLink functionality, and OakLink appears to mangle
- * in-page anchor links by prepending the whole path to the href
- */
-const FootnoteLink = styled.a`
-  display: inline;
-  text-decoration: underline;
-  color: ${(props) => props.theme.colors.navy};
-`;
 
 const StyledLabel = styled.span`
   word-wrap: break-word;
@@ -112,17 +112,17 @@ export const PostFootnotesSection: FC<PostFootnotesSectionProps> = ({
           return (
             <OakLI id={footnoteCitationAnchor(markKey)} key={markKey}>
               {source ? (
-                <FootnoteLink href={source}>{label}</FootnoteLink>
+                <OakLink href={source}>{label}</OakLink>
               ) : (
                 <StyledLabel>{label}</StyledLabel>
               )}{" "}
-              <FootnoteLink
+              <OakLink
                 href={`#${footnoteBackLinkAnchor(markKey)}`}
                 aria-label={`Back to reference ${index}`}
                 role="doc-backlink"
               >
                 ↩
-              </FootnoteLink>
+              </OakLink>
             </OakLI>
           );
         })}

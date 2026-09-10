@@ -13,18 +13,19 @@ import {
   WebinarListingLinkProps,
   resolveOakHref,
 } from "@/common-lib/urls";
+import { TeacherBrowseAnalyticsStoreProvider } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
 
 export type PostCategoryPage = "blog-index" | "webinar-index";
 
+export const CATEGORY_NAV_LABEL = "Categories";
+
 export type PostCategoryListProps = OakBoxProps & {
-  labelledBy: string;
   categories: { slug: string; title: string }[];
   selectedCategorySlug?: string | null;
   page: PostCategoryPage;
 };
 const PostCategoryList: FC<PostCategoryListProps> = (props) => {
-  const { categories, selectedCategorySlug, labelledBy, page, ...boxProps } =
-    props;
+  const { categories, selectedCategorySlug, page, ...boxProps } = props;
   const { getIsSelected, setSelected } = useCategoryFilterList({
     selectedKey: selectedCategorySlug,
     getKey: (linkProps: BlogListingLinkProps | WebinarListingLinkProps) =>
@@ -33,32 +34,37 @@ const PostCategoryList: FC<PostCategoryListProps> = (props) => {
 
   return (
     <OakBox {...boxProps}>
-      <CategoryFilterList
-        labelledBy={labelledBy}
-        getIsSelected={getIsSelected}
-        setSelected={setSelected}
-        categories={[
-          { label: "All", linkProps: { page } },
-          ...categories.map(({ title, slug }) => ({
-            label: title,
-            linkProps: { page, categorySlug: slug },
-          })),
-        ]}
-      />
-      <OakFlex $mt="spacing-32" $height="spacing-32" $font={"heading-7"}>
-        <OakTertiaryButton
-          element={"a"}
-          href={
-            page === "webinar-index"
-              ? resolveOakHref({ page: "blog-index" })
-              : resolveOakHref({ page: "webinar-index" })
-          }
-          iconName={"arrow-right"}
-          isTrailingIcon
-        >
-          {`Switch to ${page === "blog-index" ? "webinars" : "blogs"}`}
-        </OakTertiaryButton>
-      </OakFlex>
+      <TeacherBrowseAnalyticsStoreProvider
+        programmeState={null}
+        accessLevel="blogs_embedded_links"
+      >
+        <CategoryFilterList
+          ariaLabel={CATEGORY_NAV_LABEL}
+          getIsSelected={getIsSelected}
+          setSelected={setSelected}
+          categories={[
+            { label: "All", linkProps: { page } },
+            ...categories.map(({ title, slug }) => ({
+              label: title,
+              linkProps: { page, categorySlug: slug },
+            })),
+          ]}
+        />
+        <OakFlex $mt="spacing-32" $height="spacing-32" $font={"heading-7"}>
+          <OakTertiaryButton
+            element={"a"}
+            href={
+              page === "webinar-index"
+                ? resolveOakHref({ page: "blog-index" })
+                : resolveOakHref({ page: "webinar-index" })
+            }
+            iconName={"arrow-right"}
+            isTrailingIcon
+          >
+            {`Switch to ${page === "blog-index" ? "webinars" : "blogs"}`}
+          </OakTertiaryButton>
+        </OakFlex>
+      </TeacherBrowseAnalyticsStoreProvider>
     </OakBox>
   );
 };

@@ -1,0 +1,12 @@
+{
+  "build": {
+    "dockerfile": "./Dockerfile"
+  },
+  "customizations": {},
+  "appPort": [3000, 6006],
+  "remoteUser": "node",
+  "mounts": [
+    "source=${localWorkspaceFolderBasename}-node_modules,target=${containerWorkspaceFolder}/node_modules,type=volume"
+  ],
+  "postCreateCommand": "sudo chown node node_modules"
+}

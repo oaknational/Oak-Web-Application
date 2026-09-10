@@ -106,7 +106,7 @@ describe("Testimonials", () => {
         authorImageSrc: "https://example.com/image.jpg",
         authorName: "John Doe",
         authorTitle: "Teacher, Oak School",
-        color: "transparent",
+        hasLeftBorder: false,
       },
       {},
     );
@@ -121,7 +121,7 @@ describe("Testimonials", () => {
         authorImageSrc: undefined,
         authorName: "Jane Smith",
         authorTitle: "Principal, Oak Academy",
-        color: "transparent",
+        hasLeftBorder: false,
       },
       {},
     );

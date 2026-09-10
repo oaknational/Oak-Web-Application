@@ -1,7 +1,12 @@
-import { useRouter } from "next/router";
+import { useRouter as useCompatRouter } from "next/compat/router";
 import { useCallback, useEffect, useMemo, useState } from "react";
+import { useSearchParams } from "next/navigation";
 
-import { getFilterForQuery, isFilterItem } from "./search.helpers";
+import {
+  getFilterForQuery,
+  isFilterItem,
+} from "../../app/(core)/teachers/search/helpers";
+
 import {
   ContentType,
   KeyStage,
@@ -20,6 +25,11 @@ type UseSearchQueryReturnType = {
   setQuery: SetSearchQuery;
 };
 
+type SearchNavigationAdapter = {
+  searchParams: URLSearchParams | null;
+  push: (url: string) => void;
+};
+
 const useSearchQuery = ({
   allKeyStages,
   allYearGroups,
@@ -27,6 +37,7 @@ const useSearchQuery = ({
   allContentTypes,
   allExamBoards,
   legacy,
+  navigation,
 }: {
   allKeyStages?: KeyStage[];
   allYearGroups?: SearchPageData["yearGroups"];
@@ -34,25 +45,25 @@ const useSearchQuery = ({
   allContentTypes?: ContentType[];
   allExamBoards?: SearchPageData["examBoards"];
   legacy?: { slug: string; title: string }[];
+  navigation?: SearchNavigationAdapter;
 }): UseSearchQueryReturnType => {
-  const {
-    query: {
-      term = "",
-      keyStages = "",
-      yearGroups = "",
-      subjects = "",
-      contentTypes = "",
-      examBoards = "",
-      curriculum = "",
-    },
-    push,
-  } = useRouter();
+  const router = useCompatRouter();
+  const appSearchParams = useSearchParams();
+  const searchParams = navigation?.searchParams ?? appSearchParams;
 
   const isFilterItemCallback = useCallback(isFilterItem, []);
 
   const getFilterForQueryCallback = useCallback(getFilterForQuery, [
     isFilterItemCallback,
   ]);
+
+  const term = searchParams?.get("term") ?? "";
+  const keyStages = searchParams?.get("keyStages") ?? "";
+  const yearGroups = searchParams?.get("yearGroups") ?? "";
+  const subjects = searchParams?.get("subjects") ?? "";
+  const contentTypes = searchParams?.get("contentTypes") ?? "";
+  const examBoards = searchParams?.get("examBoards") ?? "";
+  const curriculum = searchParams?.get("curriculum") ?? "";
 
   const termString = term?.toString() || "";
   const query = useMemo(() => {
@@ -102,7 +113,15 @@ const useSearchQuery = ({
       page: "search",
       query: newQuery,
     });
-    push(url, undefined, { shallow: true });
+
+    if (navigation?.push) {
+      navigation.push(url);
+      return;
+    }
+
+    if (router) {
+      void router.push(url);
+    }
   });
 
   return { query, setQuery };
@@ -125,6 +144,7 @@ type UseSearchProps = {
   allContentTypes?: ContentType[];
   allExamBoards?: SearchPageData["examBoards"];
   legacy?: { slug: string; title: string }[];
+  navigation?: SearchNavigationAdapter;
 };
 const useSearch = (props: UseSearchProps): UseSearchReturnType => {
   const {
@@ -134,6 +154,7 @@ const useSearch = (props: UseSearchProps): UseSearchReturnType => {
     allContentTypes,
     allExamBoards,
     legacy,
+    navigation,
   } = props;
   const { query, setQuery } = useSearchQuery({
     allKeyStages,
@@ -142,6 +163,7 @@ const useSearch = (props: UseSearchProps): UseSearchReturnType => {
     allContentTypes,
     allExamBoards,
     legacy,
+    navigation,
   });
   const [searchStartTime, setSearchStartTime] = useState<null | number>(null);
 

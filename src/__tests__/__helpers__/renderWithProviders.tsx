@@ -29,11 +29,14 @@ import { MenuProvider } from "../../context/Menu";
 import { ToastProvider } from "../../context/Toast";
 
 import MockedAnalyticsProvider from "./MockedAnalyticsProvider";
+import MockedTeacherBrowseAnalyticsProvider from "./MockedTeacherBrowseAnalyticsProvider";
 
 import theme, { OakTheme } from "@/styles/theme";
 import CookieConsentProvider from "@/browser-lib/cookie-consent/CookieConsentProvider";
 import { OakNotificationsProvider } from "@/context/OakNotifications/OakNotificationsProvider";
 import { SaveCountProvider } from "@/context/SaveCount/SaveCountProvider";
+import { ProgrammeState } from "@/context/TeacherBrowseAnalytics/teacherBrowseAnalytics.types";
+import { AccessLevelValueType } from "@/browser-lib/avo/Avo";
 
 export type ProviderProps = {
   children?: React.ReactNode;
@@ -51,6 +54,10 @@ type ProviderPropsByName = {
   menu: Record<string, never>;
   oakNotifications: Record<string, never>;
   saveCount: Record<string, never>;
+  teacherBrowseAnalytics: {
+    programmeState?: ProgrammeState;
+    accessLevel?: AccessLevelValueType;
+  };
 };
 
 export type ProviderPartialProps = {
@@ -77,6 +84,7 @@ const providersByName: {
   menu: [MenuProvider],
   oakNotifications: [OakNotificationsProvider],
   saveCount: [SaveCountProvider],
+  teacherBrowseAnalytics: [MockedTeacherBrowseAnalyticsProvider],
 } as const;
 
 type ProviderName = keyof ProviderPropsByName;

@@ -28,7 +28,7 @@ const useLessonDownloadExistenceCheck = (
   } = props;
 
   useEffect(() => {
-    // check if lesson download resources exist and if not update the state
+    // PUPIL-1750: Keep "check-files" existence checks client-side only (SSR/ISR attempts were rolled back).
     const resourceTypesAsString = resourcesToCheck.join(",");
     const additionalFilesIdsAsString = additionalFilesIdsToCheck?.join(",");
 

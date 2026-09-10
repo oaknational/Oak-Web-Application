@@ -13,28 +13,20 @@ import curriculumDownloadsQuery from "./queries/curriculumDownloads/curriculumDo
 import curriculumOverviewSchema from "./queries/curriculumOverview/curriculumOverview.schema";
 import searchPageQuery from "./queries/searchPage/searchPage.query";
 import lessonShareQuery from "./queries/lessonShare/lessonShare.query";
-import specialistSubjectListingQuery from "./queries/specialistSubjectListing/specialistSubjectListing.query";
 import { pupilLessonQuery } from "./queries/pupilLesson/pupilLesson.query";
 import { pupilPreviewLessonQuery } from "./queries/pupilPreviewLesson/pupilPreviewLesson.query";
 import { pupilLessonListingQuery } from "./queries/pupilLessonListing/pupilLessonListing.query";
 import { pupilProgrammeListingQuery } from "./queries/pupilProgrammeListing/pupilProgrammeListing.query";
-import specialistUnitListingQuery from "./queries/specialistUnitListing/specialistUnitListing.query";
-import specialistProgrammeListingQuery from "./queries/specialistProgrammeListing/specialistProgrammeListing.query";
-import specialistLessonListingQuery from "./queries/specialistLessonListing/specialistLessonListing.query";
-import { specialistLessonDownloadQuery } from "./queries/specialistLessonDownload/specialistLessonDownload.query";
-import { specialistLessonShareQuery } from "./queries/specialistLessonShare/specialistLessonShare.query";
-import specialistLessonOverview from "./queries/specialistLessonOverview/specialistLessonOverview.query";
-import specialistLessonOverviewCanonical from "./queries/specialistLessonOverviewCanonical/specialistLessonOverviewCanonical.query";
 import { pupilUnitListingQuery } from "./queries/pupilUnitListing/pupilUnitListing.query";
 import { pupilSubjectListingQuery } from "./queries/pupilSubjectListing/pupilSubjectListing.query";
 import teachersSitemap from "./queries/teachersSitemap/teacherSitemap.query";
 import pupilsSitemap from "./queries/pupilsSitemap/pupilsSitemap.query";
 import refreshedMVTimeQuery from "./queries/refreshedMVTime/refreshedMvTime.query";
 import teacherPreviewLessonQuery from "./queries/teacherPreviewLesson/teacherPreviewLesson.query";
-import teachersPreviewLessonDownloadQuery from "./queries/teacherPreviewLessonDownload/teacherPreviewLessonDownload.query";
 import teachersPreviewUnitListingQuery from "./queries/teacherPreviewUnitListing/teacherPreviewUnitListing.query";
 import teachersPreviewLessonListingQuery from "./queries/teacherPreviewLessonListing/teacherPreviewLessonListing.query";
 import curriculumSequenceQuery from "./queries/curriculumSequence/curriculumSequence.query";
+import curriculumSequenceSlugsQuery from "./queries/curriculumSequenceSlugs/curriculumSequenceSlugs.query";
 import { lessonMediaClipsQuery } from "./queries/lessonMediaClips/lessonMediaClips.query";
 import { betaLessonMediaClipsQuery } from "./queries/lessonBetaMediaClips/lessonBetaMediaClips.query";
 import curriculumPhaseOptionsQuery from "./queries/curriculumPhaseOptions/curriculumPhaseOptions.query";
@@ -49,6 +41,7 @@ import { pupilBrowseLessonRedirectQuery } from "./queries/pupilBrowseLessonRedir
 import topNavQuery from "./queries/topNav/topNav.query";
 import eyfsPageQuery from "./queries/eyfs/eyfsPage.query";
 import teachersUnitOverviewQuery from "./queries/teachersUnitOverview/teachersUnitOverview.query";
+import teachersUnitProgrammeQuery from "./queries/teachersUnitOverview/teachersUnitProgramme.query";
 
 export const keyStageSchema = z.object({
   slug: z.string(),
@@ -121,6 +114,7 @@ export const getFirstResultOrNull =
 const curriculumApi2023 = {
   curriculumOverview: curriculumOverviewQuery(sdk),
   curriculumSequence: curriculumSequenceQuery(sdk),
+  curriculumSequenceSlugs: curriculumSequenceSlugsQuery(sdk),
   curriculumDownloads: curriculumDownloadsQuery(),
   lessonListing: lessonListingQuery(sdk),
   lessonDownloads: lessonDownloadsQuery(sdk),
@@ -155,24 +149,15 @@ const curriculumApi2023 = {
     return keyStagesData.parse(keyStages);
   },
   teacherPreviewLesson: teacherPreviewLessonQuery(sdk),
-  teachersPreviewLessonDownload: teachersPreviewLessonDownloadQuery(sdk),
   teachersPreviewUnitListing: teachersPreviewUnitListingQuery(sdk),
   teacherPreviewLessonListing: teachersPreviewLessonListingQuery(sdk),
   betaLessonMediaClipsQuery: betaLessonMediaClipsQuery(sdk),
-  specialistLessonOverview: specialistLessonOverview(sdk),
-  specialistLessonOverviewCanonical: specialistLessonOverviewCanonical(sdk),
-
-  specialistSubjectListing: specialistSubjectListingQuery(sdk),
-  specialistUnitListing: specialistUnitListingQuery(sdk),
-  specialistProgrammeListing: specialistProgrammeListingQuery(sdk),
-  specialistLessonListing: specialistLessonListingQuery(sdk),
-  specialistLessonDownloads: specialistLessonDownloadQuery(sdk),
-  specialistLessonShare: specialistLessonShareQuery(sdk),
   teachersSitemap: teachersSitemap(sdk),
 
   topNav: topNavQuery(sdk),
   eyfsPage: eyfsPageQuery(sdk),
   teachersUnitOverview: teachersUnitOverviewQuery(sdk),
+  teachersUnitProgramme: teachersUnitProgrammeQuery(sdk),
 };
 
 export type CurriculumApi = typeof curriculumApi2023;

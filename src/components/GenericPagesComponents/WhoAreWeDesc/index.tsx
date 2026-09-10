@@ -6,16 +6,17 @@ import {
   OakBox,
   OakP,
   OakBoxProps,
+  OakImage,
 } from "@oaknational/oak-components";
 import { useMemo } from "react";
 import styled from "styled-components";
 import { PortableTextBlockComponent } from "@portabletext/react";
 
 import { ImageWithAltText } from "@/node-lib/sanity-graphql/generated/sdk";
-import CMSImage from "@/components/SharedComponents/CMSImage";
 import { NewGutterMaxWidth } from "@/components/GenericPagesComponents/NewGutterMaxWidth";
 import { PortableTextJSON } from "@/common-lib/cms-types";
 import { PortableTextWithDefaults } from "@/components/SharedComponents/PortableText";
+import getProxiedSanityAssetUrl from "@/common-lib/urls/getProxiedSanityAssetUrl";
 
 const OakPStyled: PortableTextBlockComponent = (props) => {
   return <OakP $font={["body-2", "body-1"]}>{props.children}</OakP>;
@@ -88,9 +89,10 @@ export function WhoAreWeDesc({ title, items }: Readonly<WhoAreWeDescProps>) {
                     $pa={"spacing-24"}
                   >
                     {image.asset?.url && (
-                      <CMSImage
+                      <OakImage
                         $objectFit={"contain"}
-                        image={image}
+                        src={getProxiedSanityAssetUrl(image.asset?.url)}
+                        alt={image.altText ?? ""}
                         $height={"100%"}
                       />
                     )}

@@ -96,6 +96,8 @@ async function main() {
     NEXT_PUBLIC_HUBSPOT_PORTAL_ID: oakConfig.hubspot.portalId,
     NEXT_PUBLIC_HUBSPOT_NEWSLETTER_FORM_ID: oakConfig.hubspot.newsletterFormId,
     NEXT_PUBLIC_HUBSPOT_DOWNLOADS_FORM_ID: oakConfig.hubspot.downloadsFormId,
+    NEXT_PUBLIC_HUBSPOT_CURRICULUM_DOWNLOADS_FORM_ID:
+      oakConfig.hubspot.curriculumDownloadsFormId,
     NEXT_PUBLIC_HUBSPOT_ONBOARDING_FORM_ID: oakConfig.hubspot.onboardingFormId,
     NEXT_PUBLIC_HUBSPOT_FALLBACK_FORM_ID: oakConfig.hubspot.fallbackFormId,
     HUBSPOT_GOOGLE_CLASSROOM_FORM_ID:
@@ -140,6 +142,9 @@ async function main() {
     CURRICULUM_API_2023_AUTH_KEY:
       process.env.CURRICULUM_API_2023_AUTH_KEY ||
       secretsFromNetwork.CURRICULUM_API_2023_AUTH_KEY,
+    CURRICULUM_API_AUTH_KEY_V2:
+      process.env.CURRICULUM_API_AUTH_KEY_V2 ||
+      secretsFromNetwork.CURRICULUM_API_AUTH_KEY_V2,
     NEXT_PUBLIC_VERCEL_API_URL:
       process.env.NEXT_PUBLIC_VERCEL_API_URL || oakConfig.oak.vercelApiUrl,
     NEXT_PUBLIC_DOWNLOAD_API_URL:

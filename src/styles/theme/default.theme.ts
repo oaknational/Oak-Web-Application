@@ -182,11 +182,6 @@ const theme: OakTheme = {
       text: "black",
     },
   },
-  header: {
-    height: "spacing-72",
-    background: "mint50",
-    color: "black",
-  },
   checkbox: {
     default: {
       color: "black",

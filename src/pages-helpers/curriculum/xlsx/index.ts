@@ -17,6 +17,7 @@ import {
   CurriculumUnitsTabData,
 } from "@/node-lib/curriculum-api-2023";
 import { CombinedCurriculumData } from "@/utils/curriculum/types";
+import { createTeacherProgrammeSlug } from "@/utils/curriculum/slugs";
 
 export type FormattedData = CurriculumUnitsFormattedData<
   CombinedCurriculumData["units"][number]
@@ -47,7 +48,12 @@ async function buildNationalCurriculum(
         <Relationship
           Id="rId${1000 + linksXml.length}"
           Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/hyperlink"
-          Target="https://www.thenational.academy/teachers/curriculum/${unit.subject_slug}-${unit.phase_slug}/units/${unit.slug}"
+          Target="https://www.thenational.academy/teachers/programmes/${createTeacherProgrammeSlug(
+            unit,
+            unit.examboard_slug,
+            unit.tier_slug,
+            unit.pathway_slug,
+          )}/units/${unit.slug}/lessons"
           TargetMode="External"
         />
       `);
@@ -57,7 +63,12 @@ async function buildNationalCurriculum(
           <Relationship
             Id="rId${1000 + linksXml.length}"
             Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/hyperlink"
-            Target="https://www.thenational.academy/teachers/curriculum/${unit.subject_slug}-${unit.phase_slug}/units/${unitOption.slug!}"
+            Target="https://www.thenational.academy/teachers/programmes/${createTeacherProgrammeSlug(
+              unit,
+              unit.examboard_slug,
+              unit.tier_slug,
+              unit.pathway_slug,
+            )}/units/${unitOption.slug!}/lessons"
             TargetMode="External"
           />
         `);

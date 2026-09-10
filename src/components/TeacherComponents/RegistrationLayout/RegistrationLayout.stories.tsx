@@ -1,10 +1,5 @@
 import { Meta, StoryObj } from "@storybook/nextjs";
-import {
-  OakBox,
-  oakDefaultTheme,
-  OakP,
-  OakThemeProvider,
-} from "@oaknational/oak-components";
+import { OakBox, OakP } from "@oaknational/oak-components";
 
 import RegistrationAside from "../RegistrationAside/RegistrationAside";
 
@@ -33,10 +28,6 @@ export const RegistrationLayout: Story = {
     ),
   },
   render: (args) => {
-    return (
-      <OakThemeProvider theme={oakDefaultTheme}>
-        <Component {...args} />
-      </OakThemeProvider>
-    );
+    return <Component {...args} />;
   },
 };

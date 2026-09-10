@@ -3,13 +3,14 @@ import { CollectionData } from "@/components/TeacherViews/MyLibrary/MyLibrary";
 export const generateMockCollectionData = (count: number): CollectionData => {
   return Array.from({ length: count }, (_, index) => ({
     subject: `Subject ${index + 1}`,
-    subjectSlug: `subject-${index + 1}`,
+    subjectSlug: `maths`,
     subheading: index % 2 === 0 ? `AQA foundation` : `Edexcel higher`,
     keystage: "KS4",
     keystageSlug: "ks4",
+    subjectPhaseSlug: `maths-secondary`,
     programmeTitle:
       index === 3 ? "Programme: subcategory KS4" : `Programme ${index + 1} KS4`,
-    searchQuery: null,
+    subjectCategoryQuery: undefined,
     uniqueProgrammeKey: `programme-${index + 1}`,
     units: [
       {

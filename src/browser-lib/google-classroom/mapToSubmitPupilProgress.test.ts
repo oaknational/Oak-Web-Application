@@ -1,7 +1,7 @@
 import { type ClassroomProgressContext } from "./classroomAssignmentContext";
 import { mapToSubmitPupilProgress } from "./mapToSubmitPupilProgress";
 
-import type { LessonSectionResults } from "@/components/PupilComponents/LessonEngineProvider";
+import type { LessonSectionResults } from "@/context/PupilLessonProgress";
 
 const mockContext: ClassroomProgressContext = {
   submissionId: "submission-123",
@@ -236,23 +236,6 @@ describe("mapToSubmitPupilProgress", () => {
     const qr = result.starterQuiz?.questionResults?.[0];
 
     expect(qr?.correctAnswer).toEqual(["first"]);
-  });
-
-  it("should default missing quiz metrics to keep submission valid", () => {
-    const sectionResults = {
-      "starter-quiz": {
-        isComplete: true,
-      },
-    } as unknown as LessonSectionResults;
-
-    const result = mapToSubmitPupilProgress(mockContext, sectionResults);
-
-    expect(result.starterQuiz).toEqual({
-      grade: 0,
-      numQuestions: 0,
-      isComplete: true,
-      questionResults: undefined,
-    });
   });
 
   it("should include intro progress when present", () => {

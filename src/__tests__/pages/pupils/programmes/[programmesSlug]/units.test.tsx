@@ -5,7 +5,7 @@ import { keysToCamelCase } from "zod-to-camel-case";
 import PupilUnitListingPage, {
   getStaticProps,
 } from "@/pages/pupils/programmes/[programmeSlug]/units";
-import * as curriculumApi2023 from "@/node-lib/curriculum-api-2023/__mocks__/index";
+import * as curriculumApi2023 from "@/node-lib/curriculum-api-2023/__mocks__/curriculumApi2023Mock";
 import { unitBrowseDataFixture } from "@/node-lib/curriculum-api-2023/fixtures/unitBrowseData.fixture";
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 

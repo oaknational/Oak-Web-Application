@@ -1,3 +1,6 @@
+"use client";
+
+import { type ReactNode } from "react";
 import {
   OakBox,
   OakHandDrawnHR,
@@ -9,20 +12,11 @@ import {
   getLessonOverviewBreadCrumb,
   getBreadcrumbsForLessonPathway,
   getLessonShareBreadCrumb,
-  getBreadcrumbsForSpecialistLessonPathway,
-  getBreadCrumbForSpecialistShare,
-  getCommonPathway,
-  lessonIsSpecialist,
 } from "@/components/TeacherComponents/helpers/lessonHelpers/lesson.helpers";
-import {
-  LessonPathway,
-  SpecialistLessonPathway,
-} from "@/components/TeacherComponents/types/lesson.types";
+import { LessonPathway } from "@/components/TeacherComponents/types/lesson.types";
 import SharePageLayout from "@/components/TeacherComponents/SharePageLayout";
 import LessonShareCardGroup from "@/components/TeacherComponents/LessonShareCardGroup";
 import LessonShareLinks from "@/components/TeacherComponents/LessonShareLinks";
-import { getHrefForSocialSharing } from "@/components/TeacherComponents/LessonShareLinks/getHrefForSocialSharing";
-import { shareLinkConfig } from "@/components/TeacherComponents/LessonShareLinks/linkConfig";
 import { useResourceFormState } from "@/components/TeacherComponents/hooks/downloadAndShareHooks/useResourceFormState";
 import useResourceFormSubmit from "@/components/TeacherComponents/hooks/downloadAndShareHooks/useResourceFormSubmit";
 import {
@@ -39,80 +33,57 @@ import {
   getSchoolOption,
 } from "@/components/TeacherComponents/helpers/downloadAndShareHelpers/getFormattedDetailsForTracking";
 import { useHubspotSubmit } from "@/components/TeacherComponents/hooks/downloadAndShareHooks/useHubspotSubmit";
-import { LessonShareData } from "@/node-lib/curriculum-api-2023/queries/lessonShare/lessonShare.schema";
-import { SpecialistLessonShareData } from "@/node-lib/curriculum-api-2023/queries/specialistLessonShare/specialistLessonShare.schema";
+import type { LessonShareData } from "@/node-lib/curriculum-api-2023/queries/lessonShare/lessonShare.schema";
 import { useOnboardingStatus } from "@/components/TeacherComponents/hooks/useOnboardingStatus";
+import {
+  isLessonSection,
+  LessonSection,
+} from "@/components/PupilComponents/lessonSections";
+import LessonShareRadioGroup from "@/components/TeacherComponents/LessonShareRadioGroup/LessonShareRadioGroup";
 
-export type LessonShareProps =
-  | {
-      isCanonical: true;
-      lesson: {
-        isSpecialist: false;
-        expired: boolean | null;
-        isLegacy: boolean;
-        lessonTitle: string;
-        lessonSlug: string;
-        shareableResources: LessonShareData["shareableResources"];
-        pathways: LessonPathway[];
-        lessonReleaseDate: string | null;
-      };
-    }
-  | {
-      isCanonical: false;
-      lesson: LessonPathway & {
-        isSpecialist: false;
-        developmentStageTitle?: string | null;
-        expired: boolean | null;
-        isLegacy: boolean;
-        lessonTitle: string;
-        lessonSlug: string;
-        shareableResources: LessonShareData["shareableResources"];
-        lessonReleaseDate: string | null;
-      };
-    }
-  | {
-      isCanonical: false;
-      lesson: SpecialistLessonShareData;
-    };
+export type LessonShareProps = {
+  breadcrumbsSlot?: ReactNode;
+  lesson: LessonPathway & {
+    developmentStageTitle?: string | null;
+    expired: boolean | null;
+    isLegacy: boolean;
+    lessonTitle: string;
+    lessonSlug: string;
+    shareableResources: LessonShareData["shareableResources"];
+    lessonReleaseDate: string | null;
+  };
+};
 
 const classroomActivityMap: Partial<
   Record<ResourceType, ResourceTypesValueType>
 > = {
-  "intro-quiz-questions": "starter-quiz",
-  "exit-quiz-questions": "exit-quiz",
-  "worksheet-pdf": "worksheet",
+  "starter-quiz": "starter-quiz",
+  "exit-quiz": "exit-quiz",
   video: "video",
 };
 
-export function LessonShare(props: LessonShareProps) {
-  const { isCanonical, lesson } = props;
+const getSelectedLessonSections = (resources: string[]): LessonSection[] => {
+  return resources.filter(isLessonSection);
+};
+
+const isClassroomActivityResource = (
+  resource: string,
+): resource is keyof typeof classroomActivityMap => {
+  return Object.hasOwn(classroomActivityMap, resource);
+};
+
+export function LessonShare(props: Readonly<LessonShareProps>) {
+  const { lesson } = props;
   const {
     lessonTitle,
     lessonSlug,
+    programmeSlug,
+    unitSlug,
     shareableResources,
     isLegacy,
     expired,
-    isSpecialist,
     lessonReleaseDate,
   } = lesson;
-
-  const commonPathway =
-    lessonIsSpecialist(lesson) && !props.isCanonical
-      ? {
-          lessonSlug,
-          lessonTitle,
-          unitSlug: props.lesson.unitSlug,
-          programmeSlug: props.lesson.programmeSlug,
-          unitTitle: props.lesson.unitTitle,
-          subjectTitle: props.lesson.subjectTitle,
-          subjectSlug: props.lesson.subjectSlug,
-          developmentStageTitle: props.lesson.developmentStageTitle,
-          disabled: false,
-        }
-      : getCommonPathway(
-          props.isCanonical ? props.lesson.pathways : [props.lesson],
-        );
-  const { programmeSlug, unitSlug } = commonPathway;
 
   const { track } = useAnalytics();
   const { lessonShared } = track;
@@ -137,18 +108,39 @@ export function LessonShare(props: LessonShareProps) {
     shareResources: shareableResources,
     type: "share",
   });
+
+  const onValidateAndSubmit = (shareMedium: ShareMediumValueType) => {
+    const isValid =
+      !hasFormErrors &&
+      !expired &&
+      (form.formState.isValid || localStorageDetails);
+    const resources = form.getValues("resources");
+
+    void form.handleSubmit((data) => {
+      onFormSubmit(
+        {
+          ...data,
+          resources,
+        },
+        shareMedium,
+      );
+    })(); // https://github.com/orgs/react-hook-form/discussions/8622
+    return isValid;
+  };
+
+  const selectedLessonSections = getSelectedLessonSections(selectedResources);
+  const selectedHideYearGroup = form.watch("hideYearGroup") === "hide";
+
   const onboardingStatus = useOnboardingStatus();
 
-  const { onSubmit } = useResourceFormSubmit({
-    type: "share",
-  });
+  const { onSubmit } = useResourceFormSubmit();
   const { onHubspotSubmit } = useHubspotSubmit();
 
   const onFormSubmit = async (
     data: ResourceFormValues,
     shareMedium: ShareMediumValueType,
   ): Promise<void> => {
-    await onSubmit(data, props.lesson.lessonSlug);
+    await onSubmit({ data, slug: props.lesson.lessonSlug, type: "share" });
     await onHubspotSubmit(data);
 
     if (editDetailsClicked && !data.email) {
@@ -157,7 +149,7 @@ export function LessonShare(props: LessonShareProps) {
 
     const isEmailSupplied = data.email ? true : false;
 
-    lessonShared({
+    const lessonSharedProperties = {
       lessonName: lessonTitle,
       lessonSlug: lessonSlug,
       schoolUrn: schoolUrn,
@@ -172,50 +164,48 @@ export function LessonShare(props: LessonShareProps) {
       eventVersion: "2.0.0",
       analyticsUseCase: "Teacher",
       resourceTypes: selectedResources
-        .map((r) => classroomActivityMap[r])
-        .filter((r) => r !== undefined),
+        .filter(isClassroomActivityResource)
+        .flatMap((resource) => {
+          const activity = classroomActivityMap[resource];
+          return activity ? [activity] : [];
+        }),
+      yearGroupHidden: selectedHideYearGroup,
       audience: "Pupil",
       lessonReleaseCohort: isLegacy ? "2020-2023" : "2023-2026",
       lessonReleaseDate: lessonReleaseDate ?? "unpublished",
-    });
+    } satisfies Parameters<typeof lessonShared>[0] & {
+      yearGroupHidden: boolean;
+    };
+
+    lessonShared(lessonSharedProperties);
   };
 
   return (
     <OakBox $ph={["spacing-16", null]} $background={"bg-neutral"}>
       <OakMaxWidth $maxWidth={["spacing-480", "spacing-960", "spacing-1280"]}>
         <OakBox $mb={"spacing-32"} $mt={"spacing-24"}>
-          <Breadcrumbs
-            breadcrumbs={
-              !isSpecialist
-                ? [
-                    ...getBreadcrumbsForLessonPathway(commonPathway),
-                    getLessonOverviewBreadCrumb({
-                      lessonTitle,
-                      lessonSlug,
-                      programmeSlug,
-                      unitSlug,
-                      isCanonical,
-                    }),
-                    getLessonShareBreadCrumb({
-                      lessonSlug,
-                      programmeSlug,
-                      unitSlug,
-                      disabled: true,
-                    }),
-                  ]
-                : [
-                    ...getBreadcrumbsForSpecialistLessonPathway(
-                      commonPathway as SpecialistLessonPathway,
-                    ),
-                    ...getBreadCrumbForSpecialistShare({
-                      lessonSlug,
-                      programmeSlug,
-                      unitSlug,
-                      disabled: true,
-                    }),
-                  ]
-            }
-          />
+          {props.breadcrumbsSlot ? (
+            props.breadcrumbsSlot
+          ) : (
+            <Breadcrumbs
+              breadcrumbs={[
+                ...getBreadcrumbsForLessonPathway(lesson),
+                getLessonOverviewBreadCrumb({
+                  lessonTitle,
+                  lessonSlug,
+                  programmeSlug,
+                  unitSlug,
+                  isCanonical: false,
+                }),
+                getLessonShareBreadCrumb({
+                  lessonSlug,
+                  programmeSlug,
+                  unitSlug,
+                  disabled: true,
+                }),
+              ]}
+            />
+          )}
           <OakHandDrawnHR
             hrColor={"text-subdued"}
             $height={"spacing-4"}
@@ -225,6 +215,7 @@ export function LessonShare(props: LessonShareProps) {
         </OakBox>
         <SharePageLayout
           errors={form.errors}
+          validationSummaryKey={form.submitCount}
           header="Share your lesson"
           showNoResources={!hasResources || Boolean(expired)}
           showLoading={isLocalStorageLoading}
@@ -253,30 +244,30 @@ export function LessonShare(props: LessonShareProps) {
               triggerForm={form.trigger}
               shareableResources={expired ? [] : shareableResources}
               hideCheckboxes={true}
-              shareLink={getHrefForSocialSharing({
-                lessonSlug: lessonSlug,
-                selectedActivities: selectedResources,
-                schoolUrn: schoolUrn,
-                linkConfig: shareLinkConfig.copy,
-              })}
+            />
+          }
+          radioGroups={
+            <LessonShareRadioGroup
+              control={form.control}
+              name={"hideYearGroup"}
+              title={"Hide year group when sharing?"}
+              description={
+                "Hiding the year group when sharing can help pupils of different ages, abilities, or contexts engage with the material without worrying whether it's for their year."
+              }
+              icon={"hide"}
+              options={[
+                { value: "show", label: "Show year group" },
+                { value: "hide", label: "Hide year group" },
+              ]}
             />
           }
           cta={
             <LessonShareLinks
-              disabled={
-                hasFormErrors ||
-                expired ||
-                (!form.formState.isValid && !localStorageDetails)
-              }
               lessonSlug={lessonSlug}
-              selectedActivities={selectedResources}
+              selectedActivities={selectedLessonSections}
               schoolUrn={schoolUrn}
-              onSubmit={
-                (shareMedium: ShareMediumValueType) =>
-                  void form.handleSubmit((data) => {
-                    onFormSubmit(data, shareMedium);
-                  })() // https://github.com/orgs/react-hook-form/discussions/8622
-              }
+              onSubmit={onValidateAndSubmit}
+              selectedHideYearGroup={selectedHideYearGroup}
             />
           }
         />

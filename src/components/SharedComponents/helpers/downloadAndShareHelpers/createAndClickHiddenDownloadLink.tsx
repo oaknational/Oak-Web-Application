@@ -1,7 +1,13 @@
 import { isInIframe } from "@/utils/iframe";
 
+const downloadLinkId = "resource-download-link";
+
+let downloadLinkClicked = false;
+
 export const createLink = () => {
+  downloadLinkClicked = false;
   const a = document.createElement("a");
+  a.setAttribute("id", downloadLinkId);
   return a;
 };
 
@@ -9,8 +15,14 @@ export const hideAndClickDownloadLink = (url: string, a: HTMLAnchorElement) => {
   a.style.display = "none";
   a.href = encodeURI(url);
   a.setAttribute("download", "download.zip");
+  a.addEventListener("click", () => {
+    // Allows verification that the link has been clicked, used in the teacher lesson download journey
+    downloadLinkClicked = true;
+  });
   document.body.appendChild(a);
   a.click();
+  // <body> is React-owned under the app router, so leaving a foreign node in it can cause issues
+  a.remove();
 };
 
 const createAndClickHiddenDownloadLink = (url: string) => {
@@ -20,6 +32,23 @@ const createAndClickHiddenDownloadLink = (url: string) => {
   }
   const link = createLink();
   hideAndClickDownloadLink(url, link);
+};
+
+export const waitForLinkCallback = (callback: () => void) => {
+  // Ensure the download link has been clicked before initiating the callback fn
+  let retryCount = 0;
+  const pollForLink = () => {
+    if (downloadLinkClicked) {
+      // Safari needs additional time to actually initiate the download
+      // after the click event fires, before the page can navigate
+      setTimeout(callback, 1000);
+    } else if (retryCount < 9) {
+      retryCount++;
+      setTimeout(pollForLink, 100);
+    }
+  };
+
+  setTimeout(pollForLink, 100);
 };
 
 export default createAndClickHiddenDownloadLink;

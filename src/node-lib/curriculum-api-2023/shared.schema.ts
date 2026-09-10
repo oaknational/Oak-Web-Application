@@ -2,8 +2,14 @@ import { z } from "zod";
 import {
   actionsSchema,
   keystageSlugs,
+  pathwayDescriptions,
+  pathwaySlugs,
+  phaseSlugs,
   SyntheticUnitvariantsWithLessonIdsByKsCamel,
   syntheticUnitvariantsWithLessonIdsByKsSchema,
+  tierDescriptions,
+  tierSlugs,
+  years,
 } from "@oaknational/oak-curriculum-schema";
 import zodToCamelCase from "zod-to-camel-case";
 
@@ -137,6 +143,7 @@ export const lessonPathwaySchema = z.object({
   keyStageTitle: z.string(),
   subjectSlug: z.string(),
   subjectTitle: z.string(),
+  phaseTitle: z.string().nullish(),
   lessonCohort: z.string().nullish(),
   examBoardSlug: z.string().nullish(),
   examBoardTitle: z.string().nullish(),
@@ -186,9 +193,9 @@ export const baseLessonOverviewSchema = z.object({
   isLegacy: z.boolean(),
   lessonSlug: z.string(),
   lessonTitle: z.string(),
-  tierTitle: z.string().nullable().optional(),
-  tierSlug: z.string().nullable().optional(),
-  pathwayTitle: z.string().nullable().optional(),
+  tierTitle: tierDescriptions.nullable(),
+  tierSlug: tierSlugs.nullable(),
+  pathwayTitle: pathwayDescriptions.nullable(),
   contentGuidance: z
     .array(contentGuidanceSchemaCamelCase)
     .nullable()
@@ -296,16 +303,19 @@ export const baseLessonDownloadsSchema = z.object({
   isLegacy: z.boolean(),
   lessonSlug: z.string(),
   lessonTitle: z.string(),
+  phaseSlug: phaseSlugs,
+  subjectParent: z.string().nullable(),
+  pathwaySlug: pathwaySlugs.nullable(),
   downloads: lessonDownloadsListSchema,
   additionalFiles: lessonAdditionalFilesListSchema,
   expired: z.boolean().nullable(),
-  isSpecialist: z.literal(false),
   legacyCopyrightContent: legacyCopyrightContentSchema,
   updatedAt: z.string(),
   geoRestricted: z.boolean().nullable(),
   loginRequired: z.boolean().nullable(),
   actions: actionsSchemaCamel.nullish(),
   lessonReleaseDate: z.string().nullable(),
+  year: years,
 });
 
 export const lessonListItemSchema = z.object({
@@ -363,14 +373,14 @@ export const legacyAssetObjectSchema = z
   })
   .nullish();
 
+export const lessonShareResourceTypeSchema = z.enum([
+  "starter-quiz",
+  "exit-quiz",
+  "video",
+]);
 export const lessonShareResourceSchema = z.object({
   exists: z.boolean().nullable(),
-  type: z.enum([
-    "intro-quiz-questions",
-    "exit-quiz-questions",
-    "worksheet-pdf",
-    "video",
-  ]),
+  type: lessonShareResourceTypeSchema,
   label: z.string(),
   metadata: z.string().nullable(),
 });

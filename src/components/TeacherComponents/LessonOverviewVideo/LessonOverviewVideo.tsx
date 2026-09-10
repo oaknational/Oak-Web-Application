@@ -1,11 +1,13 @@
 import { FC, useState } from "react";
-import { OakP, OakFlex } from "@oaknational/oak-components";
+import {
+  OakP,
+  OakFlex,
+  OakSmallPrimaryInvertedButton,
+} from "@oaknational/oak-components";
 
-import { AnalyticsBrowseData } from "../types/lesson.types";
-
-import Button, { ButtonProps } from "@/components/SharedComponents/Button";
 import VideoPlayer from "@/components/SharedComponents/VideoPlayer";
 import TranscriptViewer from "@/components/TeacherComponents/TranscriptViewer";
+import { useTeacherBrowseAnalytics } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
 
 export interface LessonOverviewVideoProps {
   video: string | null;
@@ -13,7 +15,6 @@ export interface LessonOverviewVideoProps {
   title: string;
   transcriptSentences?: string[] | string | null;
   isLegacy: boolean;
-  browsePathwayData: AnalyticsBrowseData;
 }
 
 export const LessonOverviewVideo: FC<LessonOverviewVideoProps> = ({
@@ -22,7 +23,6 @@ export const LessonOverviewVideo: FC<LessonOverviewVideoProps> = ({
   title,
   transcriptSentences,
   isLegacy,
-  browsePathwayData,
 }) => {
   const [signLanguageOn, setSignLanguageOn] = useState(false);
   const [transcriptOn, setTranscriptOn] = useState(false);
@@ -35,12 +35,8 @@ export const LessonOverviewVideo: FC<LessonOverviewVideoProps> = ({
     setTranscriptOn(!transcriptOn);
   };
 
-  const buttonParams: Partial<ButtonProps> = {
-    variant: "minimal",
-    background: "white",
-    iconBackground: "blue",
-    $iconPosition: "trailing",
-  };
+  const { videoPlayed, videoFinished, videoPaused, videoStarted } =
+    useTeacherBrowseAnalytics((state) => state.track);
 
   return (
     <OakFlex $flexDirection={"column"} $gap={["spacing-24"]}>
@@ -54,7 +50,12 @@ export const LessonOverviewVideo: FC<LessonOverviewVideoProps> = ({
           location={"lesson"}
           isLegacy={isLegacy}
           defaultHiddenCaptions={signLanguageOn}
-          pathwayData={browsePathwayData}
+          analyticsOverrides={{
+            videoPlayed,
+            videoFinished,
+            videoPaused,
+            videoStarted,
+          }}
         />
       )}
       <OakFlex
@@ -63,26 +64,25 @@ export const LessonOverviewVideo: FC<LessonOverviewVideoProps> = ({
         $gap={["spacing-16", "spacing-0"]}
       >
         {hasCaptions && (
-          <Button
-            label={transcriptOn ? "Hide transcript" : "Show transcript"}
-            icon={transcriptOn ? "chevron-up" : "chevron-down"}
+          <OakSmallPrimaryInvertedButton
+            iconName={transcriptOn ? "chevron-up" : "chevron-down"}
             onClick={toggleTranscript}
-            {...buttonParams}
+            isTrailingIcon
             aria-controls="transcript-viewer"
             aria-expanded={transcriptOn}
-          />
+          >
+            {transcriptOn ? "Hide transcript" : "Show transcript"}
+          </OakSmallPrimaryInvertedButton>
         )}
         <OakFlex $flexGrow={[0, 1]} $justifyContent={["center", "end"]}>
           {signLanguageVideo && (
-            <Button
-              label={
-                signLanguageOn ? "Hide sign language" : "Show sign language"
-              }
-              icon={"sign-language"}
+            <OakSmallPrimaryInvertedButton
+              iconName="sign-language"
               onClick={toggleSignLanguage}
-              background={signLanguageOn ? "blue" : "white"}
-              {...buttonParams}
-            />
+              isTrailingIcon
+            >
+              {signLanguageOn ? "Hide sign language" : "Show sign language"}
+            </OakSmallPrimaryInvertedButton>
           )}
         </OakFlex>
         {!hasCaptions && !signLanguageVideo && (

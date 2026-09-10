@@ -3,7 +3,7 @@ import { render } from "@testing-library/react";
 import PupilLessonListingPage, {
   getStaticProps,
 } from "@/pages/pupils/programmes/[programmeSlug]/units/[unitSlug]/lessons";
-import * as curriculumApi2023 from "@/node-lib/curriculum-api-2023/__mocks__/index";
+import * as curriculumApi2023 from "@/node-lib/curriculum-api-2023/__mocks__/curriculumApi2023Mock";
 import { lessonBrowseDataByKsFixture } from "@/node-lib/curriculum-api-2023/fixtures/lessonBrowseDataByKs.fixture";
 import { lessonBrowseDataFixture } from "@/node-lib/curriculum-api-2023/fixtures/lessonBrowseData.fixture";
 import { PupilViewsLessonListing } from "@/components/PupilViews/PupilLessonListing/PupilLessonListing.view";
@@ -156,7 +156,7 @@ describe("pages/pupils/programmes/[programmeSlug]/units/[unitSlug]/lessons/[less
       expect.assertions(2);
 
       // Ensure that 2 calls have been made
-      expect(calls.length).toEqual(2);
+      expect(calls).toHaveLength(2);
 
       // we expect the second call to be the correct one
       expect(calls[1][0]).toEqual(

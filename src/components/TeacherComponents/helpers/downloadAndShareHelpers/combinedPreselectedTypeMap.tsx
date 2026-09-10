@@ -4,15 +4,14 @@ export const combinedPreselectedTypeMap: CombinedPreselectedTypeMap = {
   "slide deck": { downloadType: ["presentation"] },
   "starter quiz": {
     downloadType: ["intro-quiz-questions", "intro-quiz-answers"],
-    shareType: ["intro-quiz-questions"],
+    shareType: ["starter-quiz"],
   },
   "exit quiz": {
     downloadType: ["exit-quiz-questions", "exit-quiz-answers"],
-    shareType: ["exit-quiz-questions"],
+    shareType: ["exit-quiz"],
   },
   worksheet: {
     downloadType: ["worksheet-pdf", "worksheet-pptx"],
-    shareType: ["worksheet-pdf"],
   },
   "additional material": {
     downloadType: ["supplementary-pdf", "supplementary-docx"],

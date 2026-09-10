@@ -4,6 +4,8 @@ import LayoutSiteFooter from "@/components/AppComponents/LayoutSiteFooter";
 import TopNav from "@/components/AppComponents/TopNav/TopNav";
 import OakError from "@/errors/OakError";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
+import { SimulateErrorControls } from "@/app/components/ErrorHandling/SimulateErrorControls";
+import { TeacherBrowseAnalyticsStoreProvider } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
 
 // TD: [integrated journey] get revalidate from env somehow
 // revalidate in layout controls revalidation of child pages in route
@@ -15,11 +17,17 @@ export default async function CoreLayout({
   children: React.ReactNode;
 }>) {
   try {
-    const topNavProps = await curriculumApi2023.topNav();
+    const topNavProps = await curriculumApi2023.topNav({ withCache: true });
 
     return (
       <>
-        <TopNav {...topNavProps} />
+        <TeacherBrowseAnalyticsStoreProvider
+          programmeState={null}
+          accessLevel="homepage"
+        >
+          <TopNav {...topNavProps} />
+        </TeacherBrowseAnalyticsStoreProvider>
+        <SimulateErrorControls errorBoundaryLevel="root" />
         <main id="main">{children}</main>
         <LayoutSiteFooter />
       </>
@@ -30,7 +38,6 @@ export default async function CoreLayout({
         return notFound();
       }
     }
-    // TD: [integrated journey] error reporting
     throw error;
   }
 }

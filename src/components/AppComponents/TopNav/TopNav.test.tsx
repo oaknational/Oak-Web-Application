@@ -45,12 +45,12 @@ jest.mock("next/link", () => {
   };
 });
 
-const mockBrowseAccessed = jest.fn();
+const mockProgrammeAccessed = jest.fn();
 jest.mock("@/context/Analytics/useAnalytics", () => ({
   __esModule: true,
   default: () => ({
     track: {
-      browseAccessed: (...args: []) => mockBrowseAccessed(...args),
+      programmeAccessed: (...args: []) => mockProgrammeAccessed(...args),
     },
   }),
 }));
@@ -59,7 +59,8 @@ const mockProps = topNavFixture;
 
 describe("TopNav", () => {
   beforeEach(() => {
-    mockBrowseAccessed.mockReset();
+    mockProgrammeAccessed.mockReset();
+    mockSelectedArea.mockReturnValue("TEACHERS");
   });
   it("renders links for pupils and teachers", async () => {
     render(<TopNav {...mockProps} />);
@@ -87,7 +88,7 @@ describe("TopNav", () => {
     expect(teachersSubnav).toBeInTheDocument();
   });
   it("renders the correct subnav for pupils", async () => {
-    mockSelectedArea.mockReturnValueOnce("PUPILS");
+    mockSelectedArea.mockReturnValue("PUPILS");
     render(<TopNav {...mockProps} />);
 
     const teachersLink = await screen.findByRole("link", {
@@ -178,7 +179,7 @@ describe("TopNav", () => {
     const primaryButton = await screen.findByText("Primary");
     const user = userEvent.setup();
     await user.click(primaryButton);
-    expect(mockBrowseAccessed).toHaveBeenCalled();
+    expect(mockProgrammeAccessed).toHaveBeenCalled();
   });
   it("does not track browse accessed when a subnav button is closing a menu", async () => {
     render(<TopNav {...mockProps} />);
@@ -186,30 +187,29 @@ describe("TopNav", () => {
     const user = userEvent.setup();
     await user.click(primaryButton);
     await user.click(primaryButton);
-    expect(mockBrowseAccessed).toHaveBeenCalledTimes(1);
+    expect(mockProgrammeAccessed).toHaveBeenCalledTimes(1);
   });
   it("does not track when a subnav button is clicked in the pupils area", async () => {
-    mockSelectedArea.mockReturnValueOnce("PUPILS");
+    mockSelectedArea.mockReturnValue("PUPILS");
     render(<TopNav {...mockProps} />);
     const primaryButton = await screen.findByText("Primary");
     const user = userEvent.setup();
     await user.click(primaryButton);
-    expect(mockBrowseAccessed).not.toHaveBeenCalled();
+    expect(mockProgrammeAccessed).not.toHaveBeenCalled();
   });
   it("does not track browse accessed for non-browse menu buttons", async () => {
     render(<TopNav {...mockProps} />);
     const guidanceButton = await screen.findByText("Guidance");
     const user = userEvent.setup();
     await user.click(guidanceButton);
-    expect(mockBrowseAccessed).not.toHaveBeenCalled();
+    expect(mockProgrammeAccessed).not.toHaveBeenCalled();
   });
 });
 const subnavLabels = [
   { label: "Primary", element: "button" },
   { label: "Secondary", element: "button" },
-  { label: "Curriculum", element: "link" },
-  { label: "About us", element: "button" },
   { label: "Guidance", element: "button" },
+  { label: "About us", element: "button" },
   { label: "Ai experiments (this will open in a new tab)", element: "link" },
 ];
 
@@ -217,6 +217,7 @@ describe("TopNav accessibility", () => {
   beforeEach(() => {
     mockSelectedArea.mockReturnValue("TEACHERS");
   });
+
   it("Tabs through navbar in correct order", async () => {
     const user = userEvent.setup();
     render(<TopNav {...mockProps} />);
@@ -268,6 +269,8 @@ describe("TopNav accessibility", () => {
     expect(secondaryButton).toHaveFocus();
     await user.keyboard("{Enter}");
 
+    const keystagesButton = screen.getByText("Key stages").closest("div");
+    await user.click(keystagesButton!);
     const dropdownItem1 = screen.getByText("Key stage 3").closest("button");
 
     expect(dropdownItem1).toBeInTheDocument();
@@ -282,8 +285,8 @@ describe("TopNav accessibility", () => {
     const secondaryButton = await screen.findByRole("button", {
       name: "Secondary",
     });
-    const curriculumButton = await screen.findByRole("link", {
-      name: "Curriculum",
+    const guidanceButton = await screen.findByRole("button", {
+      name: "Guidance",
     });
 
     // tab to secondary button and open the submenu, should not focus primary dropdown items as they are not open
@@ -291,25 +294,26 @@ describe("TopNav accessibility", () => {
     expect(secondaryButton).toHaveFocus();
     await user.keyboard("{Enter}");
 
+    const keystagesButton = screen.getByText("Key stages").closest("div");
+    await user.click(keystagesButton!);
     const dropdownItem2 = screen.getByText("Key stage 4").closest("button");
-    const allSubjectsLink = screen.getByText(/All KS3 subjects/).closest("a");
-
     const subjectButton1 = screen.getByText("History").closest("a");
+    const subjectButton2 = screen.getByText("Geography").closest("a");
 
     expect(subjectButton1).toBeInTheDocument();
-    expect(allSubjectsLink).toBeInTheDocument();
+    expect(subjectButton2).toBeInTheDocument();
 
     // in the test environment the default event handler for tab does not tab to this point so we have to manually call the focus manager handler to move focus to the next item
-    allSubjectsLink?.focus();
+    subjectButton2?.focus();
 
-    expect(allSubjectsLink).toHaveFocus();
+    expect(subjectButton2).toHaveFocus();
     // return to the second dropdown item when tabbing from the last subject button
     await user.tab();
     expect(dropdownItem2).toHaveFocus();
 
     // return to the next nav item after tabbing from the last dropdown item
     await user.tab();
-    expect(curriculumButton).toHaveFocus();
+    expect(guidanceButton).toHaveFocus();
   });
 
   it("ArrowRight and ArrowLeft navigate Teachers subnav buttons", async () => {
@@ -324,7 +328,6 @@ describe("TopNav accessibility", () => {
     const [
       primaryButton,
       secondaryButton,
-      curriculumButton,
       guidanceButton,
       aboutUsButton,
       aiExperimentsButton,
@@ -336,8 +339,6 @@ describe("TopNav accessibility", () => {
 
     await user.keyboard("{ArrowRight}");
     expect(secondaryButton).toHaveFocus();
-    await user.keyboard("{ArrowRight}");
-    expect(curriculumButton).toHaveFocus();
     await user.keyboard("{ArrowRight}");
     expect(guidanceButton).toHaveFocus();
     await user.keyboard("{ArrowRight}");
@@ -366,6 +367,8 @@ describe("TopNav accessibility", () => {
     await user.tab();
     expect(secondaryButton).toHaveFocus();
     await user.keyboard("{Enter}");
+    const keystagesButton = screen.getByText("Key stages").closest("div");
+    await user.click(keystagesButton!);
     const dropdownItem1 = screen.getByText("Key stage 3").closest("button");
     const dropdownItem2 = screen.getByText("Key stage 4").closest("button");
 
@@ -398,6 +401,8 @@ describe("TopNav accessibility", () => {
     expect(secondaryButton).toHaveFocus();
     await user.keyboard("{Enter}");
 
+    const keystagesButton = screen.getByText("Key stages").closest("div");
+    await user.click(keystagesButton!);
     const dropdownItem1 = screen.getByText("Key stage 3").closest("button");
     const subjectButton1 = screen.getByText("History").closest("a");
 

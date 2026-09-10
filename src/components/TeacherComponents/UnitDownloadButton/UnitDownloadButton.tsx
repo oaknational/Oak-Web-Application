@@ -1,10 +1,13 @@
 import { SignInButton, useAuth, useUser } from "@clerk/nextjs";
-import React, { Dispatch, SetStateAction, useState } from "react";
+import React, { Dispatch, ReactNode, SetStateAction, useState } from "react";
 import { usePathname } from "next/navigation";
 import {
   OakFlex,
   OakLoadingSpinner,
   OakPrimaryButton,
+  OakPrimaryButtonProps,
+  OakSmallPrimaryButton,
+  OakSpan,
   OakTagFunctional,
   useMediaQuery,
 } from "@oaknational/oak-components";
@@ -14,55 +17,55 @@ import useUnitDownloadExistenceCheck from "../hooks/downloadAndShareHooks/useUni
 import createAndClickHiddenDownloadLink from "@/components/SharedComponents/helpers/downloadAndShareHelpers/createAndClickHiddenDownloadLink";
 import { createUnitDownloadLink } from "@/components/SharedComponents/helpers/downloadAndShareHelpers/createDownloadLink";
 import { resolveOakHref } from "@/common-lib/urls";
+import { useTeacherBrowseAnalytics } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
+
+const getLabel = ({
+  isStuck,
+  isDesktop,
+  isMobile,
+  longTextOnMobile,
+  longerText,
+}: {
+  isStuck: boolean | undefined;
+  isDesktop: boolean;
+  isMobile: boolean;
+  longTextOnMobile?: boolean;
+  longerText: string;
+}) => {
+  const label = "Download";
+  // Long text shows when stuck, on desktop, or - only where the caller opts in
+  // via longTextOnMobile (e.g. the full-width unit header button) - on mobile.
+  // This leaves tablet as the only breakpoint showing the short label.
+  if (isStuck || isDesktop || (longTextOnMobile && isMobile)) {
+    return label + " " + longerText;
+  }
+  return label;
+};
 
 // Used when a user is signed in but not onboarded
 const UnitDownloadOnboardButton = ({
   href,
   showNewTag,
+  size,
+  ariaLabel,
+  fullWidthOnMobile,
+  onClick,
 }: {
   href: string;
   showNewTag: boolean;
-}) => (
-  <OakPrimaryButton
-    width="fit-content"
-    ph={["spacing-8", "spacing-20"]}
-    pv={["spacing-4", "spacing-12"]}
-    element="a"
-    href={href}
-  >
-    <OakFlex $alignItems="center" $gap="spacing-12">
-      {showNewTag && (
-        <OakTagFunctional
-          label="New"
-          $background="bg-decorative1-main"
-          $color="text-primary"
-          $pv={"spacing-0"}
-        />
-      )}
-      Sign up to download
-    </OakFlex>
-  </OakPrimaryButton>
-);
-
-// Used when a user is not signed in
-const UnitDownloadSignInButton = ({
-  redirectUrl,
-  showNewTag,
-  isDesktop,
-}: {
-  redirectUrl: string;
-  showNewTag: boolean;
-  isDesktop: boolean;
-}) => (
-  <SignInButton
-    forceRedirectUrl={redirectUrl}
-    signUpForceRedirectUrl={redirectUrl}
-  >
-    <OakPrimaryButton
-      iconName={"download"}
-      isTrailingIcon
-      ph={["spacing-8", "spacing-20"]}
-      pv={["spacing-4", "spacing-12"]}
+  onClick: () => void;
+  size?: "small";
+  ariaLabel?: string;
+  fullWidthOnMobile?: boolean;
+}) => {
+  return (
+    <ButtonForSize
+      size={size}
+      fullWidthOnMobile={fullWidthOnMobile}
+      onClick={onClick}
+      element="a"
+      href={href}
+      aria-label={ariaLabel}
     >
       <OakFlex $alignItems="center" $gap="spacing-12">
         {showNewTag && (
@@ -73,11 +76,76 @@ const UnitDownloadSignInButton = ({
             $pv={"spacing-0"}
           />
         )}
-        Download {isDesktop && " complete unit"}
+        Sign up to download
       </OakFlex>
-    </OakPrimaryButton>
-  </SignInButton>
-);
+    </ButtonForSize>
+  );
+};
+
+// Used when a user is not signed in
+const UnitDownloadSignInButton = ({
+  redirectUrl,
+  showNewTag,
+  isDesktop,
+  isMobile,
+  longTextOnMobile,
+  fullWidthOnMobile,
+  size,
+  buttonLabel,
+  ariaLabel,
+  isStuck,
+  onClick,
+}: {
+  redirectUrl: string;
+  showNewTag: boolean;
+  isDesktop: boolean;
+  isMobile: boolean;
+  onClick: () => void;
+  longTextOnMobile?: boolean;
+  fullWidthOnMobile?: boolean;
+  size?: "small";
+  buttonLabel?: ReactNode;
+  ariaLabel?: string;
+  isStuck?: boolean;
+}) => {
+  const signInButtonLabel =
+    buttonLabel ??
+    getLabel({
+      isStuck,
+      isDesktop,
+      isMobile,
+      longTextOnMobile,
+      longerText: "complete unit",
+    });
+
+  return (
+    <SignInButton
+      forceRedirectUrl={redirectUrl}
+      signUpForceRedirectUrl={redirectUrl}
+    >
+      <ButtonForSize
+        size={size}
+        fullWidthOnMobile={fullWidthOnMobile}
+        iconName={"download"}
+        isTrailingIcon
+        onClick={onClick}
+        aria-label={ariaLabel}
+      >
+        <OakFlex $alignItems="center" $gap="spacing-12">
+          {showNewTag && (
+            <OakTagFunctional
+              label="New"
+              $background="bg-decorative1-main"
+              $color="text-primary"
+              $pv={"spacing-0"}
+            />
+          )}
+          {signInButtonLabel}
+        </OakFlex>
+      </ButtonForSize>
+    </SignInButton>
+  );
+};
 
 // Used when the user is signed in and onboarded
 const DownloadButton = ({
@@ -86,23 +154,47 @@ const DownloadButton = ({
   fileSize,
   disabled,
   isDesktop,
+  isMobile,
+  longTextOnMobile,
+  fullWidthOnMobile,
+  size,
+  buttonLabel,
+  ariaLabel,
+  isStuck,
 }: {
   onUnitDownloadClick: () => void;
   downloadInProgress: boolean;
   fileSize: string | undefined;
   disabled: boolean;
   isDesktop: boolean;
+  isMobile: boolean;
+  longTextOnMobile?: boolean;
+  fullWidthOnMobile?: boolean;
+  isStuck?: boolean;
+  size?: "small";
+  buttonLabel?: ReactNode;
+  ariaLabel?: string;
 }) => {
-  const zipSizeText = isDesktop ? ` (.zip ${fileSize})` : "";
-  const downloadButtonText = "Download" + zipSizeText;
+  const zipSizeText = getLabel({
+    isStuck,
+    isDesktop,
+    isMobile,
+    longTextOnMobile,
+    longerText: `(.zip ${fileSize})`,
+  });
+  const downloadButtonText: ReactNode = (
+    <OakSpan>{buttonLabel ?? zipSizeText}</OakSpan>
+  );
+
   return (
-    <OakPrimaryButton
+    <ButtonForSize
+      size={size}
+      fullWidthOnMobile={fullWidthOnMobile}
       iconName="download"
       isTrailingIcon
       onClick={onUnitDownloadClick}
       disabled={downloadInProgress || disabled}
-      ph={["spacing-8", "spacing-20"]}
-      pv={["spacing-4", "spacing-12"]}
+      aria-label={ariaLabel}
     >
       <OakFlex $gap="spacing-12">
         {downloadInProgress && (
@@ -110,7 +202,36 @@ const DownloadButton = ({
         )}
         {downloadInProgress ? "Downloading..." : downloadButtonText}
       </OakFlex>
-    </OakPrimaryButton>
+    </ButtonForSize>
+  );
+};
+
+const ButtonForSize = ({
+  size,
+  fullWidthOnMobile,
+  ...props
+}: React.ComponentProps<typeof OakPrimaryButton> & {
+  size?: "small";
+  fullWidthOnMobile?: boolean;
+}) => {
+  const ButtonComponent =
+    size === "small" ? OakSmallPrimaryButton : OakPrimaryButton;
+
+  // Without an explicit size, we set some responsive padding
+  const defaultPaddingProps: OakPrimaryButtonProps =
+    size === undefined
+      ? {
+          ph: ["spacing-8", "spacing-20"],
+          pv: ["spacing-4", "spacing-12"],
+        }
+      : {};
+
+  return (
+    <ButtonComponent
+      {...defaultPaddingProps}
+      {...props}
+      width={fullWidthOnMobile ? ["100%", "auto"] : "auto"}
+    />
   );
 };
 
@@ -142,6 +263,12 @@ export type UnitDownloadButtonProps = {
   downloadInProgress: boolean;
   showNewTag: boolean;
   geoRestricted: boolean;
+  size?: "small";
+  buttonLabel?: ReactNode;
+  ariaLabel?: string;
+  isStuck?: boolean;
+  longTextOnMobile?: boolean;
+  fullWidthOnMobile?: boolean;
 };
 
 /**
@@ -157,6 +284,10 @@ export default function UnitDownloadButton(props: UnitDownloadButtonProps) {
   const auth = useAuth();
   const pathname = usePathname();
   const isDesktop = useMediaQuery("desktop");
+  const isMobile = useMediaQuery("mobile");
+  const { unitDownloadStarted } = useTeacherBrowseAnalytics(
+    (store) => store.track,
+  );
 
   const {
     onDownloadSuccess,
@@ -165,6 +296,9 @@ export default function UnitDownloadButton(props: UnitDownloadButtonProps) {
     setShowDownloadMessage,
     setShowIncompleteMessage,
     downloadInProgress,
+    isStuck,
+    longTextOnMobile,
+    fullWidthOnMobile,
   } = props;
 
   const { exists, fileSize, hasCheckedFiles } =
@@ -212,21 +346,40 @@ export default function UnitDownloadButton(props: UnitDownloadButtonProps) {
         page: "onboarding",
         query: { returnTo: pathname ?? "" },
       })}
+      onClick={unitDownloadStarted}
       showNewTag={props.showNewTag}
+      size={props.size}
+      ariaLabel={props.ariaLabel}
+      fullWidthOnMobile={fullWidthOnMobile}
     />
   ) : showSignInButton ? (
     <UnitDownloadSignInButton
+      isStuck={isStuck}
       redirectUrl={`/onboarding?returnTo=${pathname}`}
+      onClick={unitDownloadStarted}
       showNewTag={props.showNewTag}
       isDesktop={isDesktop}
+      isMobile={isMobile}
+      longTextOnMobile={longTextOnMobile}
+      fullWidthOnMobile={fullWidthOnMobile}
+      size={props.size}
+      buttonLabel={props.buttonLabel}
+      ariaLabel={props.ariaLabel}
     />
   ) : showDownloadButton ? (
     <DownloadButton
+      isStuck={isStuck}
       disabled={Boolean(isGeoBlocked)}
       onUnitDownloadClick={onUnitDownloadClick}
       downloadInProgress={downloadInProgress}
       fileSize={fileSize}
       isDesktop={isDesktop}
+      isMobile={isMobile}
+      longTextOnMobile={longTextOnMobile}
+      fullWidthOnMobile={fullWidthOnMobile}
+      size={props.size}
+      buttonLabel={props.buttonLabel}
+      ariaLabel={props.ariaLabel}
     />
   ) : null;
 }

@@ -3,7 +3,7 @@ import sdk from "../../sdk";
 import curriculumOverviewQuery from "./curriculumOverview.query";
 describe("curriculum overview query", () => {
   test("throws params incorrect error if slugs are blank", async () => {
-    expect(async () => {
+    await expect(async () => {
       await curriculumOverviewQuery(sdk)({
         subjectSlug: "",
         phaseSlug: "",

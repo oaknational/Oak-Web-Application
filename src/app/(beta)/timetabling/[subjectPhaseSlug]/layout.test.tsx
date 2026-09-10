@@ -19,7 +19,7 @@ describe("/timetabling/layout.tsx", () => {
 
   test("when disabled", async () => {
     (getFeatureFlagValue as jest.Mock).mockResolvedValue(false);
-    expect(async () => {
+    await expect(async () => {
       return await Page({
         children: <div>TESTING</div>,
       });

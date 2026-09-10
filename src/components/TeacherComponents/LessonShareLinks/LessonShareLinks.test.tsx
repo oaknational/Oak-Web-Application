@@ -1,9 +1,19 @@
 import { screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 
-import LessonShareLinks from "./LessonShareLinks";
+import LessonShareLinks, {
+  SHARE_WITH_PUPILS_HEADING_ID,
+} from "./LessonShareLinks";
 
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
+
+const onSubmitMock = jest.fn(() => true);
+
+Object.assign(navigator, {
+  clipboard: {
+    writeText: jest.fn(),
+  },
+});
 
 describe("LessonShareLinks", () => {
   beforeEach(() => {
@@ -12,23 +22,30 @@ describe("LessonShareLinks", () => {
   it("should render", () => {
     renderWithProviders()(
       <LessonShareLinks
-        disabled={false}
         lessonSlug="test-slug"
-        selectedActivities={["exit-quiz-questions"]}
-        onSubmit={jest.fn}
+        selectedActivities={["exit-quiz"]}
+        onSubmit={onSubmitMock}
       />,
     );
     const shareHeader = screen.getByRole("heading");
     expect(shareHeader).toBeInTheDocument();
-    expect(shareHeader).toHaveTextContent("Share options:");
+    expect(shareHeader).toHaveTextContent("Share with pupils");
+    const shareGroup = screen.getByRole("group", { name: "Share with pupils" });
+    expect(shareGroup).toBeInTheDocument();
+    expect(shareGroup).toHaveAttribute(
+      "aria-labelledby",
+      SHARE_WITH_PUPILS_HEADING_ID,
+    );
+    expect(
+      document.getElementById(SHARE_WITH_PUPILS_HEADING_ID),
+    ).toHaveTextContent("Share with pupils");
   });
   it("should update copy link button", async () => {
     renderWithProviders()(
       <LessonShareLinks
-        disabled={false}
         lessonSlug="test-slug"
-        selectedActivities={["exit-quiz-questions"]}
-        onSubmit={jest.fn}
+        selectedActivities={["exit-quiz"]}
+        onSubmit={onSubmitMock}
       />,
     );
     const copyLinkButton = screen.getByRole("button", {
@@ -42,10 +59,9 @@ describe("LessonShareLinks", () => {
   it("should render oak toast", async () => {
     renderWithProviders()(
       <LessonShareLinks
-        disabled={false}
         lessonSlug="test-slug"
-        selectedActivities={["exit-quiz-questions"]}
-        onSubmit={jest.fn}
+        selectedActivities={["exit-quiz"]}
+        onSubmit={onSubmitMock}
       />,
     );
     const copyLinkButton = screen.getByRole("button", {
@@ -60,9 +76,8 @@ describe("LessonShareLinks", () => {
     const onSubmit = jest.fn();
     renderWithProviders()(
       <LessonShareLinks
-        disabled={false}
         lessonSlug="test-slug"
-        selectedActivities={["exit-quiz-questions"]}
+        selectedActivities={["exit-quiz"]}
         onSubmit={onSubmit}
       />,
     );
@@ -79,20 +94,19 @@ describe("LessonShareLinks", () => {
     const onSubmit = jest.fn();
     const { getByRole } = renderWithProviders()(
       <LessonShareLinks
-        disabled={false}
         lessonSlug="test-slug"
-        selectedActivities={["exit-quiz-questions"]}
+        selectedActivities={["exit-quiz"]}
         onSubmit={onSubmit}
       />,
     );
 
-    const copyLinkButton = getByRole("link", {
-      name: "Share to Google Classroom",
+    const googleClassroomLink = getByRole("button", {
+      name: "Share via Google Classroom",
     });
 
-    expect(copyLinkButton).toBeInTheDocument();
+    expect(googleClassroomLink).toBeInTheDocument();
     const user = userEvent.setup();
-    await user.click(copyLinkButton);
+    await user.click(googleClassroomLink);
     expect(onSubmit).toHaveBeenCalledWith("google-classroom");
   });
 });

@@ -1,5 +1,5 @@
 import { screen } from "@testing-library/react";
-import { useForm } from "react-hook-form";
+import { useForm, FieldErrors } from "react-hook-form";
 
 import ResourcePageLayoutB, { SharePageLayoutProps } from "./SharePageLayout";
 
@@ -21,6 +21,7 @@ const props: PropsWithoutForm = {
   onEditClick: jest.fn(),
   setSchool: jest.fn(),
   cardGroup: <div>Cards</div>,
+  radioGroups: <div>Radio Groups</div>,
   cta: <button>CTA</button>,
   updatedAt: "2022-01-01T00:00:00Z",
   withHomeschool: true,
@@ -71,13 +72,97 @@ describe("Downloads/Share Layout", () => {
     expect(apiErrorAfterRerender).toBeInTheDocument();
   });
 
-  it("shows copyright when no terms are linked", () => {
-    const { getByTestId } = renderWithTheme(
-      <ComponentWrapper {...props} showTermsAgreement={false} />,
+  it("exposes validation summary as an alert for assistive technology", () => {
+    renderWithTheme(
+      <ComponentWrapper
+        {...props}
+        errors={
+          {
+            resources: {
+              type: "custom",
+              message: "select at least one resource to continue",
+            },
+            terms: {
+              type: "custom",
+              message: "accept terms and conditions to continue",
+            },
+          } satisfies FieldErrors<ResourceFormValues>
+        }
+        validationSummaryKey={1}
+      />,
     );
 
-    const copyright = getByTestId("copyright-container");
-    expect(copyright).toBeInTheDocument();
+    const validationSummary = screen.getByTestId("share-validation-summary");
+    const validationSummarySr = screen.getByTestId(
+      "share-validation-summary-sr",
+    );
+    expect(validationSummary).toHaveAttribute("role", "alert");
+    expect(validationSummary).toHaveAttribute("aria-atomic", "true");
+    expect(validationSummarySr).toHaveTextContent(
+      "To complete, correct the following: select at least one resource to continue. accept terms and conditions to continue",
+    );
+  });
+
+  it("remounts validation summary when validationSummaryKey changes", () => {
+    const validationErrors = {
+      resources: {
+        type: "custom",
+        message: "select at least one resource to continue",
+      },
+    } satisfies FieldErrors<ResourceFormValues>;
+
+    const { rerender } = renderWithTheme(
+      <ComponentWrapper
+        {...props}
+        errors={validationErrors}
+        validationSummaryKey={1}
+      />,
+    );
+
+    const firstValidationSummary = screen.getByTestId(
+      "share-validation-summary",
+    );
+
+    rerender(
+      <ComponentWrapper
+        {...props}
+        errors={validationErrors}
+        validationSummaryKey={2}
+      />,
+    );
+
+    expect(screen.getByTestId("share-validation-summary")).not.toBe(
+      firstValidationSummary,
+    );
+  });
+
+  it("does not render validation summary when errors have no summary messages", () => {
+    renderWithTheme(
+      <ComponentWrapper
+        {...props}
+        errors={
+          {
+            schoolName: {
+              type: "custom",
+              message: "enter a school name",
+            },
+          } satisfies FieldErrors<ResourceFormValues>
+        }
+      />,
+    );
+
+    expect(
+      screen.queryByTestId("share-validation-summary"),
+    ).not.toBeInTheDocument();
+  });
+
+  it("hides the decorative separator from assistive technology", () => {
+    renderWithTheme(<ComponentWrapper {...props} />);
+
+    expect(screen.getByTestId("share-decorative-separator")).toHaveAttribute(
+      "aria-hidden",
+      "true",
+    );
   });
 
   it("shows loading spinner", () => {

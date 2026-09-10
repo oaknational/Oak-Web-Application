@@ -1,61 +1,94 @@
 "use client";
 import { useCallback, useEffect, useMemo, useState } from "react";
 
-import TabLink from "./TabLink/TabLink";
 import SubNav from "./SubNav/SubNav";
 import TopNavDropdown from "./TopNavDropdown/TopNavDropdown";
 import { TeachersTopNavHamburger } from "./TeachersTopNavHamburger/TeachersTopNavHamburger";
 import { PupilsTopNavHamburger } from "./PupilsTopNavHamburger/PupilsTopNavHamburger";
 import { DropdownFocusManager } from "./DropdownFocusManager/DropdownFocusManager";
+import TopNavMinimal from "./TopNavMinimal";
 
-import {
-  OakBox,
-  OakFlex,
-  OakIcon,
-  OakImage,
-  OakLink,
-} from "@/styles/oakThemeApp";
-import { getCloudinaryImageUrl } from "@/utils/getCloudinaryImageUrl";
-import { resolveOakHref } from "@/common-lib/urls";
-import useMediaQuery from "@/hooks/useMediaQuery";
+import { OakFlex } from "@/styles/oakThemeApp";
 import useSelectedArea from "@/hooks/useSelectedArea";
-import SkipLink from "@/components/CurriculumComponents/OakComponentsKitchen/SkipLink";
 import {
   TeachersSubNavData,
   PupilsSubNavData,
 } from "@/node-lib/curriculum-api-2023/queries/topNav/topNav.schema";
 import { useOakNotificationsContext } from "@/context/OakNotifications/useOakNotificationsContext";
-import useAnalytics from "@/context/Analytics/useAnalytics";
+import { useTeacherBrowseAnalytics } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
 
 export type TopNavProps = {
   teachers: TeachersSubNavData | null;
   pupils: PupilsSubNavData | null;
 };
 
+const visuallyHiddenStyle = {
+  border: 0,
+  clip: "rect(0 0 0 0)",
+  height: "1px",
+  margin: "-1px",
+  overflow: "hidden",
+  padding: 0,
+  position: "absolute" as const,
+  width: "1px",
+  whiteSpace: "nowrap" as const,
+};
+
+/**
+ * Wrapper component which visually hides children unless a shouldDisplay condition is met until the client intialises
+ * This allows elements to be added to the dom on the server while still being hidden until needed
+ */
+export const MaybeVisuallyHidden = ({
+  shouldDisplay,
+  hiddenElementId,
+  children,
+}: {
+  shouldDisplay: boolean;
+  children?: React.ReactNode;
+  hiddenElementId: string;
+}) => {
+  // Fully remove the visually hidden elements from the page when the client initialises to prevent issues with focus and screen readers
+  const [afterInitialRender, setAfterInitialRender] = useState(false);
+
+  useEffect(() => {
+    setAfterInitialRender(true);
+  }, []);
+
+  if (shouldDisplay) {
+    return children;
+  } else {
+    return afterInitialRender ? null : (
+      <span
+        id={`visually-hidden-${hiddenElementId}`}
+        style={visuallyHiddenStyle}
+      >
+        {children}
+      </span>
+    );
+  }
+};
+
 const TopNav = (props: TopNavProps) => {
   const { teachers, pupils } = props;
-  const { track } = useAnalytics();
+  const track = useTeacherBrowseAnalytics((store) => store.track);
 
   const activeArea = useSelectedArea();
-  const isMobile = useMediaQuery("mobile");
 
   // TD: [integrated journey] potentially extract into a menu store
   const [selectedMenu, setSelectedMenu] = useState<
     keyof TeachersSubNavData | keyof PupilsSubNavData | undefined
   >(undefined);
 
-  const trackBrowseAccessed = (menu: string) => {
+  const trackProgrammeAccessed = (menu: string) => {
     const menuIsOpening = selectedMenu === undefined || selectedMenu !== menu;
     const menuIsBrowseJourney = menu === "primary" || menu == "secondary";
 
     if (menuIsOpening && menuIsBrowseJourney) {
-      track.browseAccessed({
-        platform: "owa",
-        product: "teacher lesson resources",
-        engagementIntent: "explore",
+      track.programmeAccessed({
         componentType: "topnav-browse-button",
-        eventVersion: "2.0.0",
-        analyticsUseCase: "Teacher",
+        activeFilters: {},
+        filterType: "Phase filter",
+        filterValue: menu,
       });
     }
   };
@@ -107,142 +140,74 @@ const TopNav = (props: TopNavProps) => {
   }, [teachers, pupils, activeArea, setCurrentBannerProps]);
 
   return (
-    <OakBox
-      as="header"
-      $position="relative"
-      data-testid="app-topnav"
-      onKeyDown={(event) =>
-        focusManager?.handleEscapeKey({
-          event,
-          elementId: document.activeElement?.id || "",
-        })
+    <TopNavMinimal
+      focusManager={focusManager}
+      subnavSlot={
+        <>
+          {activeArea === "TEACHERS" && teachers && focusManager && (
+            <>
+              <SubNav
+                {...teachers}
+                area="teachers"
+                focusManager={
+                  focusManager as DropdownFocusManager<TeachersSubNavData>
+                }
+                isMenuSelected={isMenuSelected}
+                onClick={(menu) => {
+                  trackProgrammeAccessed(menu);
+                  setSelectedMenu(selectedMenu === menu ? undefined : menu);
+                }}
+              />
+              <TeachersTopNavHamburger {...teachers} />
+            </>
+          )}
+          {activeArea === "PUPILS" && pupils && focusManager && (
+            <>
+              <SubNav
+                {...pupils}
+                area="pupils"
+                focusManager={
+                  focusManager as DropdownFocusManager<PupilsSubNavData>
+                }
+                isMenuSelected={isMenuSelected}
+                onClick={(menu) => {
+                  setSelectedMenu(selectedMenu === menu ? undefined : menu);
+                }}
+              />
+              <PupilsTopNavHamburger {...pupils} />
+            </>
+          )}
+        </>
       }
-    >
-      <OakBox
-        $position={"absolute"}
-        $zIndex={"in-front"}
-        $top={"spacing-160"} // TD: [integrated journey] adjust position when dropdown is open
-        $left={"spacing-24"}
-      >
-        <SkipLink href={"#main"}>Skip to content</SkipLink>
-      </OakBox>
-      <OakFlex
-        $background={"bg-btn-primary"}
-        $ph={["spacing-20", "spacing-40"]}
-        $pb={"spacing-0"}
-        $pt={"spacing-16"}
-        $justifyContent={["center", "left"]}
-        $gap={"spacing-16"}
-      >
-        <TabLink
-          isSelected={activeArea === "TEACHERS"}
-          href={resolveOakHref({ page: "teachers-home-page" })}
-          aria-current={activeArea === "TEACHERS"}
-        >
-          Teachers
-        </TabLink>
-        <TabLink
-          isSelected={activeArea === "PUPILS"}
-          href={resolveOakHref({ page: "pupil-year-index" })}
-          iconOverride={
-            <OakIcon
-              iconName="pencil"
-              $width={"spacing-24"}
-              $height={"spacing-24"}
-            />
-          }
-          isTrailingIcon
-          aria-current={activeArea === "PUPILS"}
-        >
-          Pupils
-        </TabLink>
-      </OakFlex>
-      <OakFlex
-        $background={"bg-primary"}
-        $pv={["spacing-16", "spacing-20"]}
-        $ph={["spacing-20", "spacing-40"]}
-        $bb={"border-solid-s"}
-        $borderColor={"border-neutral-lighter"}
-        $alignItems={"center"}
-        $gap={"spacing-24"}
-        $maxHeight={"spacing-80"}
-        as={"nav"}
-      >
-        <OakLink
-          href={resolveOakHref({
-            page: activeArea === "PUPILS" ? "pupil-year-index" : "home",
-          })}
-          aria-label="Home"
-        >
-          <OakImage
-            src={getCloudinaryImageUrl(
-              isMobile
-                ? "v1711468346/logo-mark.svg"
-                : "v1765468420/OakLogoWithText.svg",
-            )}
-            alt=""
-            $height={["spacing-40", "spacing-48"]}
-            $width={["spacing-32", "spacing-100"]}
-            $pa={"spacing-0"}
-          />
-        </OakLink>
-        {activeArea === "TEACHERS" && teachers && (
-          <>
-            <SubNav
-              {...teachers}
-              area="teachers"
-              focusManager={
-                focusManager as DropdownFocusManager<TeachersSubNavData>
-              }
-              isMenuSelected={isMenuSelected}
-              onClick={(menu) => {
-                trackBrowseAccessed(menu);
-                setSelectedMenu(selectedMenu === menu ? undefined : menu);
-              }}
-            />
-            <TeachersTopNavHamburger {...teachers} />
-          </>
-        )}
-        {activeArea === "PUPILS" && pupils && (
-          <>
-            <SubNav
-              {...pupils}
-              area="pupils"
-              focusManager={
-                focusManager as DropdownFocusManager<PupilsSubNavData>
-              }
-              isMenuSelected={isMenuSelected}
-              onClick={(menu) => {
-                setSelectedMenu(selectedMenu === menu ? undefined : menu);
-              }}
-            />
-            <PupilsTopNavHamburger {...pupils} />
-          </>
-        )}
-      </OakFlex>
-      {selectedMenu &&
-        ((activeArea === "TEACHERS" && teachers) ||
-          (activeArea === "PUPILS" && pupils)) && (
-          <OakFlex
-            $display={["none", "none", "flex"]}
-            $width={"100%"}
-            $flexDirection={"column"}
-            $background={"bg-primary"}
-            data-testid="topnav-dropdown-container"
-            $bb="border-solid-s"
-            $borderColor="border-neutral-lighter"
+      menuSlot={
+        teachers &&
+        pupils && (
+          <MaybeVisuallyHidden
+            hiddenElementId="top-nav-dropdown"
+            shouldDisplay={!!selectedMenu}
           >
-            <TopNavDropdown
-              focusManager={focusManager!}
-              activeArea={activeArea}
-              selectedMenu={selectedMenu}
-              teachers={teachers!}
-              pupils={pupils!}
-              onClose={handleCloseDropdown}
-            />
-          </OakFlex>
-        )}
-    </OakBox>
+            <OakFlex
+              $display={["none", "none", "flex"]}
+              $width={"100%"}
+              $flexDirection={"column"}
+              $background={"bg-primary"}
+              data-testid="topnav-dropdown-container"
+              $bb="border-solid-s"
+              $borderColor="border-neutral-lighter"
+            >
+              <TopNavDropdown
+                focusManager={focusManager}
+                activeArea={activeArea}
+                selectedMenu={selectedMenu}
+                teachers={teachers}
+                pupils={pupils}
+                onClose={handleCloseDropdown}
+              />
+            </OakFlex>
+          </MaybeVisuallyHidden>
+        )
+      }
+    />
   );
 };
 

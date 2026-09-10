@@ -4,6 +4,11 @@ import {
   syntheticUnitvariantLessonsByKsSchema,
   LessonContentCamel as LessonContentCamelFull,
   SyntheticUnitvariantLessonsByKsCamel,
+  programmeFieldsSchema,
+  subjectSlugs,
+  subjects,
+  keystageSlugs,
+  keystageDescriptions,
 } from "@oaknational/oak-curriculum-schema";
 
 import { baseLessonOverviewSchema } from "@/node-lib/curriculum-api-2023/shared.schema";
@@ -25,11 +30,10 @@ type TeachersLessonContentCamel = Omit<
 
 export type TeachersLessonOverviewContent = Omit<
   TeachersLessonContentCamel,
-  "starterQuiz" | "exitQuiz" | "transcriptSentences"
+  "starterQuiz" | "exitQuiz"
 > & {
   starterQuiz: QuizQuestion[];
   exitQuiz: QuizQuestion[];
-  transcriptSentences: string | string[];
 };
 
 export const teachersLessonOverviewDownloads = z.array(
@@ -77,15 +81,18 @@ export const teachersLessonOverviewSchema =
     programmeSlug: z.string(),
     unitSlug: z.string(),
     unitTitle: z.string(),
-    keyStageSlug: z.string(),
-    keyStageTitle: z.string(),
-    subjectSlug: z.string(),
-    subjectTitle: z.string(),
-    subjectParent: z.string().nullable(),
-    yearTitle: z.string(),
-    year: z.string(),
-    examBoardTitle: z.string().nullable(),
-    examBoardSlug: z.string().nullable(),
+    keyStageSlug: keystageSlugs,
+    keyStageTitle: keystageDescriptions,
+    subjectSlug: subjectSlugs,
+    subjectTitle: subjects,
+    subjectParent: programmeFieldsSchema.shape.subject_parent,
+    phaseSlug: programmeFieldsSchema.shape.phase_slug,
+    phaseTitle: programmeFieldsSchema.shape.phase_description,
+    pathwaySlug: programmeFieldsSchema.shape.pathway_slug,
+    yearGroupTitle: programmeFieldsSchema.shape.year_description,
+    year: programmeFieldsSchema.shape.year,
+    examBoardTitle: programmeFieldsSchema.shape.examboard,
+    examBoardSlug: programmeFieldsSchema.shape.examboard_slug,
     downloads: teachersLessonOverviewDownloads,
     updatedAt: z.string(),
     additionalFiles: z.array(z.string()).nullable(),
@@ -110,6 +117,7 @@ export default teachersLessonOverviewSchema;
 export const teachersLessonBrowseDataByKsSchema =
   syntheticUnitvariantLessonsByKsSchema.omit({
     null_unitvariant_id: true,
+    unitvariant_id: true,
     is_legacy: true,
   });
 

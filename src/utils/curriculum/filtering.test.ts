@@ -1,30 +1,19 @@
-import { useSearchParams } from "next/navigation";
-import { act, renderHook } from "@testing-library/react";
-
 import {
-  buildTextDescribingFilter,
-  childSubjectForFilter,
-  diffFilters,
-  filteringFromYears,
-  filtersToQuery,
   getDefaultChildSubjectForYearGroup,
-  getDefaultFilter,
   getDefaultSubjectCategoriesForYearGroup,
   getDefaultTiersForYearGroup,
-  getFilterData,
-  getNumberOfFiltersApplied,
-  getNumberOfSelectedUnits,
-  highlightedUnitCount,
   isHighlightedUnit,
-  mergeInFilterParams,
+  getFilterData,
+  scopeYearsToKeystageFilter,
   shouldDisplayFilter,
+  highlightedUnitCount,
+  filteringFromYears,
   subjectCategoryForFilter,
-  threadForFilter,
-  tierForFilter,
-  useFilters,
+  childSubjectForFilter,
+  getNumberOfSelectedUnits,
 } from "./filtering";
-import { CurriculumFilters, YearData, Unit } from "./types";
 
+import { Unit, YearData } from "@/utils/curriculum/types";
 import { createUnit } from "@/fixtures/curriculum/unit";
 import {
   CurriculumUnitsFormattedData,
@@ -36,27 +25,20 @@ import { createTier } from "@/fixtures/curriculum/tier";
 import { createThread } from "@/fixtures/curriculum/thread";
 import { createFilter } from "@/fixtures/curriculum/filters";
 import { createYearData } from "@/fixtures/curriculum/yearData";
-
-const replaceMock = jest.fn();
-jest.mock("next/router", () => ({
-  useRouter: () => ({
-    replace: (...args: []) => replaceMock(...args),
-  }),
-}));
-
-jest.mock("next/navigation", () => ({
-  useSearchParams: jest.fn(),
-}));
+import { ChildSubject } from "@/components/CurriculumComponents/CurricVisualiserFilters/CurricFiltersChildSubjects.fixtures";
+import { createFilter as createBrowseFilter } from "@/context/BrowseFilters/utils/fixtures";
 
 describe("filtering", () => {
   describe("getDefaultChildSubjectForYearGroup", () => {
     it("with data", () => {
-      const childSubjectPhysics = createChildSubject({
+      const childSubjectPhysics: ChildSubject = {
         subject_slug: "physics",
-      });
-      const childSubjectBiology = createChildSubject({
+        subject: "Physics",
+      };
+      const childSubjectBiology: ChildSubject = {
         subject_slug: "biology",
-      });
+        subject: "Biology",
+      };
 
       const input = {
         "7": {
@@ -268,45 +250,6 @@ describe("filtering", () => {
     expect(isHighlightedUnit(unit, [])).toBeFalsy();
     expect(isHighlightedUnit(unit, null)).toBeFalsy();
   });
-
-  describe("getDefaultFilter", () => {
-    it("with data", () => {
-      const out = getDefaultFilter({
-        yearData: {
-          "7": {
-            units: [] as Unit[],
-            tiers: [{ tier_slug: "foundation", tier: "Foundation" }],
-            childSubjects: [{ subject: "Physics", subject_slug: "physics" }],
-            subjectCategories: [
-              createSubjectCategory({ id: 2, slug: "sub-cat-2" }),
-            ],
-          } as CurriculumUnitsYearData[number],
-          "8": {
-            units: [] as Unit[],
-            tiers: [{ tier_slug: "higher", tier: "Higher" }],
-            childSubjects: [{ subject: "Biology", subject_slug: "biology" }],
-            subjectCategories: [
-              createSubjectCategory({ id: 1, slug: "sub-cat-1" }),
-            ],
-          } as CurriculumUnitsYearData[number],
-        },
-        threadOptions: [],
-        yearOptions: ["7", "8"],
-        keystages: [],
-      });
-      expect(out).toEqual({
-        childSubjects: ["biology"],
-        subjectCategories: ["sub-cat-1"],
-        threads: [],
-        tiers: ["foundation"],
-        years: ["7", "8"],
-        pathways: [],
-        keystages: [],
-      });
-    });
-
-    it("without data", () => {});
-  });
 });
 
 test("getFilterData", () => {
@@ -407,59 +350,35 @@ test("getFilterData", () => {
   });
 });
 
-describe("diffFilters", () => {
-  it("no filters applied", () => {
-    const dfltFilter: CurriculumFilters = {
-      childSubjects: [],
-      subjectCategories: [],
-      tiers: [],
-      years: [],
-      threads: [],
-      pathways: [],
-      keystages: [],
-    };
-    expect(diffFilters(dfltFilter, dfltFilter)).toEqual({
-      childSubjects: [],
-      subjectCategories: [],
-      tiers: [],
-      years: [],
-      threads: [],
-      pathways: [],
+describe("scopeYearsToKeystageFilter", () => {
+  it("returns all years when no keystage filter is active", () => {
+    const filters = createFilter({
+      years: ["7", "8", "9", "10", "11"],
       keystages: [],
     });
+    expect(scopeYearsToKeystageFilter(filters)).toEqual([
+      "7",
+      "8",
+      "9",
+      "10",
+      "11",
+    ]);
   });
 
-  it("with filters applied", () => {
-    const subCat = createSubjectCategory({ id: 2 });
-    const tierHigher = createTier({ tier_slug: "higher" });
-    const thread = createThread({ slug: "thread2" });
-    const dfltFilter: CurriculumFilters = {
-      childSubjects: [],
-      subjectCategories: [],
-      tiers: [],
-      years: [],
-      threads: [],
-      pathways: [],
-      keystages: [],
-    };
-    const filter: CurriculumFilters = {
-      childSubjects: [],
-      subjectCategories: [String(subCat.id)],
-      tiers: [tierHigher.tier_slug],
-      years: [],
-      threads: [thread.slug],
-      pathways: [],
-      keystages: [],
-    };
-    expect(diffFilters(dfltFilter, filter)).toEqual({
-      childSubjects: [],
-      subjectCategories: [String(subCat.id)],
-      tiers: [tierHigher.tier_slug],
-      years: [],
-      threads: [thread.slug],
-      pathways: [],
-      keystages: [],
+  it("narrows to KS4 years when keystage filter is ks4 and all years selected", () => {
+    const filters = createFilter({
+      years: ["7", "8", "9", "10", "11"],
+      keystages: ["ks4"],
     });
+    expect(scopeYearsToKeystageFilter(filters)).toEqual(["10", "11"]);
+  });
+
+  it("returns selected year only when a single year is selected", () => {
+    const filters = createFilter({
+      years: ["10"],
+      keystages: ["ks4"],
+    });
+    expect(scopeYearsToKeystageFilter(filters)).toEqual(["10"]);
   });
 });
 
@@ -482,7 +401,7 @@ describe("shouldDisplayFilter", () => {
 
       const result = shouldDisplayFilter(
         data,
-        createFilter({ years: ["7", "8"] }),
+        createBrowseFilter({ years: ["7", "8"] }),
         "years",
       );
       expect(result).toEqual(true);
@@ -497,7 +416,7 @@ describe("shouldDisplayFilter", () => {
       };
       const result = shouldDisplayFilter(
         data,
-        createFilter({ years: [] }),
+        createBrowseFilter({ years: [] }),
         "years",
       );
       expect(result).toEqual(false);
@@ -524,7 +443,7 @@ describe("shouldDisplayFilter", () => {
 
       const result = shouldDisplayFilter(
         data,
-        createFilter({ years: ["7", "8"] }),
+        createBrowseFilter({ years: ["7", "8"] }),
         "subjectCategories",
       );
       expect(result).toEqual(true);
@@ -546,7 +465,7 @@ describe("shouldDisplayFilter", () => {
       };
       const result = shouldDisplayFilter(
         data,
-        createFilter({ years: ["7", "8"] }),
+        createBrowseFilter({ years: ["7", "8"] }),
         "subjectCategories",
       );
       expect(result).toEqual(false);
@@ -573,7 +492,7 @@ describe("shouldDisplayFilter", () => {
 
       const result = shouldDisplayFilter(
         data,
-        createFilter({ years: ["7", "8"] }),
+        createBrowseFilter({ years: ["7", "8"] }),
         "childSubjects",
       );
       expect(result).toEqual(true);
@@ -595,7 +514,7 @@ describe("shouldDisplayFilter", () => {
       };
       const result = shouldDisplayFilter(
         data,
-        createFilter({ years: ["7", "8"] }),
+        createBrowseFilter({ years: ["7", "8"] }),
         "childSubjects",
       );
       expect(result).toEqual(false);
@@ -622,7 +541,7 @@ describe("shouldDisplayFilter", () => {
 
       const result = shouldDisplayFilter(
         data,
-        createFilter({ years: ["7", "8"] }),
+        createBrowseFilter({ years: ["7", "8"] }),
         "tiers",
       );
       expect(result).toEqual(true);
@@ -644,7 +563,7 @@ describe("shouldDisplayFilter", () => {
       };
       const result = shouldDisplayFilter(
         data,
-        createFilter({ years: ["7", "8"] }),
+        createBrowseFilter({ years: ["7", "8"] }),
         "tiers",
       );
       expect(result).toEqual(false);
@@ -672,7 +591,7 @@ describe("shouldDisplayFilter", () => {
 
       const result = shouldDisplayFilter(
         data,
-        createFilter({ years: ["7", "8"] }),
+        createBrowseFilter({ years: ["7", "8"] }),
         "threads",
       );
       expect(result).toEqual(true);
@@ -694,236 +613,123 @@ describe("shouldDisplayFilter", () => {
       };
       const result = shouldDisplayFilter(
         data,
-        createFilter({ years: ["7", "8"] }),
+        createBrowseFilter({ years: ["7", "8"] }),
         "threads",
       );
       expect(result).toEqual(false);
     });
   });
-});
 
-describe("getNumberOfFiltersApplied", () => {
-  it("no filters applied", () => {
-    const dfltFilter: CurriculumFilters = {
-      childSubjects: [],
-      subjectCategories: [],
-      tiers: [],
-      years: [],
-      threads: [],
-      pathways: [],
-      keystages: [],
-    };
-    expect(getNumberOfFiltersApplied(dfltFilter, dfltFilter)).toEqual(0);
-  });
-
-  it("with filters applied", () => {
-    const subCat = createSubjectCategory({ id: 2 });
-    const tierHigher = createTier({ tier_slug: "higher" });
-    const thread = createThread({ slug: "thread2" });
-    const dfltFilter: CurriculumFilters = {
-      childSubjects: [],
-      subjectCategories: [],
-      tiers: [],
-      years: [],
-      threads: [],
-      pathways: [],
-      keystages: [],
-    };
-    const filter: CurriculumFilters = {
-      childSubjects: [],
-      subjectCategories: [String(subCat.id)],
-      tiers: [tierHigher.tier_slug],
-      years: [],
-      threads: [thread.slug],
-      pathways: [],
-      keystages: [],
-    };
-    expect(getNumberOfFiltersApplied(dfltFilter, filter)).toEqual(3);
-  });
-});
-
-describe("filtersToQuery", () => {
-  it("with default", () => {
-    const result = filtersToQuery(createFilter(), {
-      childSubjects: [],
-      subjectCategories: [],
-      tiers: [],
-      years: [],
-      threads: [],
-      pathways: [],
-      keystages: [],
-    });
-    expect(result).toEqual({});
-  });
-
-  it("with data", () => {
-    const childSubject1 = createChildSubject({
-      subject_slug: "child_subject_1",
-    });
-    const childSubject2 = createChildSubject({
-      subject_slug: "child_subject_2",
-    });
-    const subCat1 = createSubjectCategory({ id: 1 });
-    const subCat2 = createSubjectCategory({ id: 2 });
-    const tier1 = createTier({ tier_slug: "tier_1" });
-    const tier2 = createTier({ tier_slug: "tier_2" });
-    const thread1 = createThread({ slug: "thread_1" });
-    const thread2 = createThread({ slug: "thread_2" });
-
-    const result = filtersToQuery(
-      createFilter({
-        childSubjects: [childSubject1.subject_slug, childSubject2.subject_slug],
-        subjectCategories: [String(subCat1.id), String(subCat2.id)],
-        tiers: [tier1.tier_slug, tier2.tier_slug],
-        years: ["7", "8"],
-        threads: [thread1.slug, thread2.slug],
-      }),
-      {
-        childSubjects: [],
-        subjectCategories: [],
-        tiers: [],
-        years: [],
-        threads: [],
-        pathways: [],
-        keystages: [],
+  // Science secondary: KS3 has subject categories, KS4 has child subjects (exam
+  // subjects). When a keystage filter is active the sidebar should only show
+  // filters relevant to that keystage.
+  describe("keystage scoping", () => {
+    const scienceSecondaryData: CurriculumUnitsFormattedData = {
+      yearData: {
+        // KS3 years: subject categories, no child subjects
+        "7": createYearData({
+          units: [createUnit({ slug: "y7" })],
+          subjectCategories: [createSubjectCategory({ id: 1 })],
+        }),
+        "8": createYearData({
+          units: [createUnit({ slug: "y8" })],
+          subjectCategories: [createSubjectCategory({ id: 1 })],
+        }),
+        "9": createYearData({
+          units: [createUnit({ slug: "y9" })],
+          subjectCategories: [createSubjectCategory({ id: 1 })],
+        }),
+        // KS4 years: child subjects (>1 required for byKeyStageSlug to expose
+        // them), no meaningful categories (stripped by byKeyStageSlug)
+        "10": createYearData({
+          units: [createUnit({ slug: "y10" })],
+          childSubjects: [
+            createChildSubject({ subject_slug: "physics" }),
+            createChildSubject({ subject_slug: "biology" }),
+          ],
+          tiers: [
+            createTier({ tier_slug: "foundation" }),
+            createTier({ tier_slug: "higher" }),
+          ],
+        }),
+        "11": createYearData({
+          units: [createUnit({ slug: "y11" })],
+          childSubjects: [
+            createChildSubject({ subject_slug: "physics" }),
+            createChildSubject({ subject_slug: "biology" }),
+          ],
+          tiers: [
+            createTier({ tier_slug: "foundation" }),
+            createTier({ tier_slug: "higher" }),
+          ],
+        }),
       },
-    );
-
-    expect(result).toEqual({
-      child_subjects: "child_subject_1,child_subject_2",
-      subject_categories: "1,2",
-      threads: "thread_1,thread_2",
-      tiers: "tier_1,tier_2",
-      years: "7,8",
-    });
-  });
-});
-
-describe("mergeInFilterParams", () => {
-  it("single value", () => {
-    const filter: CurriculumFilters = {
-      childSubjects: [],
-      subjectCategories: [],
-      tiers: [],
-      years: [],
-      threads: [],
-      pathways: [],
+      threadOptions: [],
+      yearOptions: ["7", "8", "9", "10", "11"],
       keystages: [],
     };
 
-    const result = mergeInFilterParams(
-      filter,
-      new URLSearchParams(
-        "?child_subjects=child_subject_1&subject_categories=1&tiers=tier_1&years=1&threads=thread1",
-      ),
-    );
-    expect(result).toEqual({
-      childSubjects: ["child_subject_1"],
-      subjectCategories: ["1"],
-      tiers: ["tier_1"],
-      years: ["1"],
-      threads: ["thread1"],
-      pathways: [],
-      keystages: [],
-    });
-  });
-
-  it("list of values", () => {
-    const filter: CurriculumFilters = {
-      childSubjects: [],
-      subjectCategories: [],
-      tiers: [],
-      years: [],
-      threads: [],
-      pathways: [],
-      keystages: [],
-    };
-
-    const result = mergeInFilterParams(
-      filter,
-      new URLSearchParams(
-        "?child_subjects=child_subject_1,child_subject_2&subject_categories=1,2&tiers=tier_1,tier_2&years=1,2&threads=thread1,thread2",
-      ),
-    );
-    expect(result).toEqual({
-      childSubjects: ["child_subject_1", "child_subject_2"],
-      subjectCategories: ["1", "2"],
-      tiers: ["tier_1", "tier_2"],
-      years: ["1", "2"],
-      threads: ["thread1", "thread2"],
-      pathways: [],
-      keystages: [],
-    });
-  });
-});
-
-describe("useFilters", () => {
-  describe("without routing", () => {
-    it("initial state", () => {
-      const defaultFilter = createFilter();
-      const { result } = renderHook(() => {
-        return useFilters(defaultFilter);
+    it("Science KS3 view: shows subject categories, hides child subjects and tiers", () => {
+      const filters = createBrowseFilter({
+        years: ["7", "8", "9", "10", "11"],
+        keystages: ["ks3"],
       });
-      const [filters] = result.current;
-      expect(filters).toEqual(defaultFilter);
+      expect(
+        shouldDisplayFilter(scienceSecondaryData, filters, "subjectCategories"),
+      ).toEqual(true);
+      expect(
+        shouldDisplayFilter(scienceSecondaryData, filters, "childSubjects"),
+      ).toEqual(false);
+      expect(
+        shouldDisplayFilter(scienceSecondaryData, filters, "tiers"),
+      ).toEqual(false);
     });
 
-    it("updating state", () => {
-      const defaultFilter = createFilter();
-      const updateFilterValue = createFilter({});
-      const { result, rerender } = renderHook(() => {
-        return useFilters(defaultFilter);
+    it("Science KS4 view: shows child subjects and tiers, hides subject categories", () => {
+      const filters = createBrowseFilter({
+        years: ["7", "8", "9", "10", "11"],
+        keystages: ["ks4"],
       });
-
-      const [, setFilters] = result.current;
-      act(() => {
-        setFilters(updateFilterValue);
-      });
-      rerender();
-      const [filters] = result.current;
-      expect(filters).toEqual(updateFilterValue);
-    });
-  });
-
-  describe("with routing", () => {
-    it("initial state", () => {
-      (useSearchParams as jest.Mock).mockReturnValue(
-        new URLSearchParams("?tiers=foundation"),
-      );
-
-      const defaultFilter = createFilter();
-      const { result } = renderHook(() => {
-        return useFilters(defaultFilter);
-      });
-      const [filters] = result.current;
-      expect(filters).toEqual({
-        ...defaultFilter,
-        tiers: ["foundation"],
-      });
+      expect(
+        shouldDisplayFilter(scienceSecondaryData, filters, "subjectCategories"),
+      ).toEqual(false);
+      expect(
+        shouldDisplayFilter(scienceSecondaryData, filters, "childSubjects"),
+      ).toEqual(true);
+      expect(
+        shouldDisplayFilter(scienceSecondaryData, filters, "tiers"),
+      ).toEqual(true);
     });
 
-    it("updating state", () => {
-      const defaultFilter = createFilter();
-      const updateFilterValue = createFilter({
-        tiers: ["foundation"],
-      });
-      const { result, rerender } = renderHook(() => {
-        return useFilters(defaultFilter);
-      });
+    // English secondary: KS3 units have no categories; KS4 has categories.
+    // Without keystage scoping, the KS4 categories would bleed into a KS3 view.
+    it("English KS3 view: hides subject categories when KS3 has none (no bleed from KS4)", () => {
+      const englishSecondaryData: CurriculumUnitsFormattedData = {
+        yearData: {
+          "7": createYearData({ units: [createUnit({ slug: "y7" })] }),
+          "8": createYearData({ units: [createUnit({ slug: "y8" })] }),
+          "9": createYearData({ units: [createUnit({ slug: "y9" })] }),
+          "10": createYearData({
+            units: [createUnit({ slug: "y10" })],
+            subjectCategories: [createSubjectCategory({ id: 2 })],
+          }),
+          "11": createYearData({
+            units: [createUnit({ slug: "y11" })],
+            subjectCategories: [createSubjectCategory({ id: 2 })],
+          }),
+        },
+        threadOptions: [],
+        yearOptions: ["7", "8", "9", "10", "11"],
+        keystages: [],
+      };
 
-      const [, setFilters] = result.current;
-      act(() => {
-        setFilters(updateFilterValue);
+      const filters = createBrowseFilter({
+        years: ["7", "8", "9", "10", "11"],
+        keystages: ["ks3"],
       });
-      expect(replaceMock).toHaveBeenCalledWith(
-        "/?tiers=foundation",
-        undefined,
-        { scroll: false, shallow: true },
-      );
-
-      rerender();
-      const [filters] = result.current;
-      expect(filters).toEqual(updateFilterValue);
+      expect(
+        shouldDisplayFilter(englishSecondaryData, filters, "subjectCategories"),
+      ).toEqual(false);
     });
   });
 });
@@ -957,6 +763,36 @@ describe("highlightedUnitCount", () => {
       thread3.slug,
     ]);
     expect(result).toEqual(2);
+  });
+
+  it("excludes units outside the active keystage", () => {
+    // ks3 = years 7,8,9 — ks4 = years 10,11
+    const ks3Thread = createThread({ slug: "ks3-thread" });
+    const mixedYearData = {
+      // year 7 is in ks3
+      "7": createYearData({
+        units: [
+          createUnit({ threads: [ks3Thread] }),
+          createUnit({ threads: [ks3Thread] }),
+        ],
+      }),
+      // year 10 is in ks4
+      "10": createYearData({
+        units: [createUnit({ threads: [ks3Thread] })],
+      }),
+    };
+    // filters.years covers all years; keystages restricts to ks4 only
+    const ks4Filters = createFilter({
+      years: ["7", "10"],
+      keystages: ["ks4"],
+      threads: [ks3Thread.slug],
+    });
+
+    const result = highlightedUnitCount(mixedYearData, ks4Filters, [
+      ks3Thread.slug,
+    ]);
+    // Only the 1 unit in year 10 (ks4) should be counted, not the 2 in year 7
+    expect(result).toEqual(1);
   });
 });
 
@@ -1087,183 +923,6 @@ describe("subjectCategoryFor*", () => {
       }),
     );
     expect(result).toEqual(childSubject2);
-  });
-  it("tierForFilter", () => {
-    const result = tierForFilter(
-      data,
-      createFilter({
-        tiers: [tier2.tier_slug],
-      }),
-    );
-    expect(result).toEqual(tier2);
-  });
-  it("threadForFilter", () => {
-    const result = threadForFilter(
-      data,
-      createFilter({
-        threads: [thread2.slug],
-      }),
-    );
-    expect(result).toEqual(thread2);
-  });
-});
-
-describe("buildTextDescribingFilter", () => {
-  const subCat1 = createSubjectCategory({ id: 1, title: "SubjectCategory1" });
-  const childSubject1 = createChildSubject({ subject_slug: "ChildSubject1" });
-  const tier1 = createTier({ tier_slug: "tier1" });
-  const thread1 = createThread({ slug: "thread1" });
-  const year7Data: CurriculumUnitsFormattedData = {
-    yearData: {
-      "7": {
-        units: [],
-        childSubjects: [childSubject1],
-        subjectCategories: [subCat1],
-        tiers: [tier1],
-        pathways: [],
-        isSwimming: false,
-        groupAs: null,
-        nationalCurriculum: [],
-        keystage: "ks3",
-      },
-    },
-    yearOptions: ["7"],
-    threadOptions: [thread1],
-    keystages: [],
-  };
-
-  const year11Data: CurriculumUnitsFormattedData = {
-    yearData: {
-      "11": {
-        units: [],
-        childSubjects: [],
-        subjectCategories: [subCat1],
-        tiers: [tier1],
-        pathways: [],
-        isSwimming: false,
-        groupAs: null,
-        nationalCurriculum: [],
-        keystage: "ks4",
-      },
-    },
-    yearOptions: ["7"],
-    threadOptions: [thread1],
-    keystages: [],
-  };
-
-  const year11DataWithChildSubject: CurriculumUnitsFormattedData = {
-    yearData: {
-      "11": {
-        units: [],
-        childSubjects: [childSubject1],
-        subjectCategories: [],
-        tiers: [tier1],
-        pathways: [],
-        isSwimming: false,
-        groupAs: null,
-        nationalCurriculum: [],
-        keystage: "ks4",
-      },
-    },
-    yearOptions: ["7"],
-    threadOptions: [thread1],
-    keystages: [],
-  };
-
-  const primaryData: CurriculumUnitsFormattedData = {
-    yearData: {
-      "1": {
-        units: [],
-        childSubjects: [],
-        subjectCategories: [subCat1],
-        tiers: [tier1],
-        pathways: [],
-        isSwimming: false,
-        groupAs: null,
-        nationalCurriculum: [],
-        keystage: "ks1",
-      },
-      "6": {
-        units: [],
-        childSubjects: [],
-        subjectCategories: [subCat1],
-        tiers: [tier1],
-        pathways: [],
-        isSwimming: false,
-        groupAs: null,
-        nationalCurriculum: [],
-        keystage: "ks2",
-      },
-    },
-    yearOptions: ["7"],
-    threadOptions: [thread1],
-    keystages: [],
-  };
-
-  it("subjectCategory (KS3)", () => {
-    const result = buildTextDescribingFilter(
-      year7Data,
-      createFilter({ subjectCategories: [String(subCat1.slug)] }),
-    );
-    expect(result).toEqual(["SubjectCategory1 (KS3)"]);
-  });
-
-  it("subjectCategory (KS4)", () => {
-    const result = buildTextDescribingFilter(
-      year11Data,
-      createFilter({ subjectCategories: [String(subCat1.slug)] }),
-    );
-    expect(result).toEqual(["SubjectCategory1 (KS4)"]);
-  });
-
-  it("subjectCategory (KS1 & KS2)", () => {
-    const result = buildTextDescribingFilter(
-      primaryData,
-      createFilter({ subjectCategories: [String(subCat1.slug)] }),
-    );
-    expect(result).toEqual(["SubjectCategory1"]);
-  });
-
-  it("childSubject", () => {
-    const result = buildTextDescribingFilter(
-      year11DataWithChildSubject,
-      createFilter({ childSubjects: [childSubject1.subject_slug] }),
-    );
-    expect(result).toEqual(["ChildSubject1 (KS4)"]);
-  });
-
-  it("tier", () => {
-    const result = buildTextDescribingFilter(
-      year11Data,
-      createFilter({ tiers: [tier1.tier_slug] }),
-    );
-    expect(result).toEqual(["Tier1 (KS4)"]);
-  });
-
-  it("thread", () => {
-    const result = buildTextDescribingFilter(
-      year7Data,
-      createFilter({ threads: [thread1.slug] }),
-    );
-    expect(result).toEqual(["Thread1"]);
-  });
-
-  it("all", () => {
-    const result = buildTextDescribingFilter(
-      year7Data,
-      createFilter({
-        subjectCategories: [String(subCat1.slug)],
-        childSubjects: [childSubject1.subject_slug],
-        tiers: [tier1.tier_slug],
-        threads: [thread1.slug],
-      }),
-    );
-    expect(result).toEqual([
-      "SubjectCategory1 (KS3)",
-      "ChildSubject1 (KS3)",
-      "Tier1 (KS3)",
-      "Thread1",
-    ]);
   });
 });
 

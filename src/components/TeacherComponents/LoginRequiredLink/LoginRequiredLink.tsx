@@ -5,8 +5,8 @@ import {
   OakLinkProps,
   OakSecondaryLink,
 } from "@oaknational/oak-components";
-import { useRouter } from "next/router";
 import { useMemo } from "react";
+import { usePathname } from "next/navigation";
 
 import { resolveOakHref } from "@/common-lib/urls";
 import { useComplexCopyright } from "@/hooks/useComplexCopyright";
@@ -64,7 +64,7 @@ const LoginRequiredLink = (props: LoginRequiredLinkProps) => {
     variant = "primary",
     ...overrideProps
   } = props;
-  const router = useRouter();
+  const pathName = usePathname();
   const {
     showSignedInNotOnboarded,
     showSignedOutGeoRestricted,
@@ -106,8 +106,7 @@ const LoginRequiredLink = (props: LoginRequiredLinkProps) => {
       return (
         <LinkVariant
           href={
-            resolveOakHref({ page: "onboarding" }) +
-            `?returnTo=${router.asPath}`
+            resolveOakHref({ page: "onboarding" }) + `?returnTo=${pathName}`
           }
           {...overrideProps}
         >
@@ -116,9 +115,7 @@ const LoginRequiredLink = (props: LoginRequiredLinkProps) => {
       );
     case "signup":
       return (
-        <SignUpButton
-          forceRedirectUrl={`/onboarding?returnTo=${router.asPath}`}
-        >
+        <SignUpButton forceRedirectUrl={`/onboarding?returnTo=${pathName}`}>
           <LinkVariant {...overrideProps} href={"#"}>
             {signUpProps?.name ?? "Sign up"}
           </LinkVariant>

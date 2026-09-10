@@ -1,5 +1,7 @@
-import { useState, useRef, useEffect, useMemo } from "react";
-import { useRouter } from "next/router";
+"use client";
+
+import { useState, useRef, useEffect, useMemo, type ReactNode } from "react";
+import { useSearchParams } from "next/navigation";
 import {
   OakTertiaryButton,
   OakTertiaryInvertedButton,
@@ -27,7 +29,6 @@ import {
   sortMediaClipsByOrder,
 } from "@/components/TeacherComponents/helpers/lessonHelpers/lesson.helpers";
 import { LessonPathway } from "@/components/TeacherComponents/types/lesson.types";
-import { getAnalyticsBrowseData } from "@/components/TeacherComponents/helpers/getAnalyticsBrowseData";
 import { LessonMediaClipInfo } from "@/components/TeacherComponents/LessonMediaClipInfo";
 import { LessonMediaAttributions } from "@/components/TeacherComponents/LessonMediaAttributions/LessonMediaAttributions";
 import type {
@@ -42,13 +43,10 @@ import {
   createLearningCycleVideosTitleMap,
 } from "@/components/TeacherComponents/helpers/lessonMediaHelpers/lessonMedia.helpers";
 import { RestrictedContentPrompt } from "@/components/TeacherComponents/RestrictedContentPrompt/RestrictedContentPrompt";
-import {
-  KeyStageTitleValueType,
-  PathwayValueType,
-} from "@/browser-lib/avo/Avo";
 import { useComplexCopyright } from "@/hooks/useComplexCopyright";
 import { LEGACY_COHORT } from "@/config/cohort";
 import useAnalytics from "@/context/Analytics/useAnalytics";
+import { useTeacherBrowseAnalytics } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
 
 type BaseLessonMedia = {
   lessonTitle: string;
@@ -68,6 +66,10 @@ type CanonicalLesson = BaseLessonMedia & {
 
 type NonCanonicalLesson = BaseLessonMedia & LessonPathway;
 
+type LessonMediaCommonProps = {
+  breadcrumbsSlot?: ReactNode;
+};
+
 type LessonMediaProps =
   | {
       isCanonical: true;
@@ -78,8 +80,10 @@ type LessonMediaProps =
       lesson: NonCanonicalLesson;
     };
 
-export const LessonMedia = (props: LessonMediaProps) => {
-  const { isCanonical, lesson } = props;
+export const LessonMedia = (
+  props: LessonMediaProps & LessonMediaCommonProps,
+) => {
+  const { isCanonical, lesson, breadcrumbsSlot } = props;
   const {
     lessonTitle,
     lessonSlug,
@@ -93,6 +97,13 @@ export const LessonMedia = (props: LessonMediaProps) => {
   } = lesson;
 
   const { track } = useAnalytics();
+  const {
+    mediaClipsPlaylistPlayed,
+    videoFinished,
+    videoPaused,
+    videoStarted,
+    videoPlayed,
+  } = useTeacherBrowseAnalytics((store) => store.track);
   const {
     showSignedOutLoginRequired,
     showSignedOutGeoRestricted,
@@ -121,35 +132,14 @@ export const LessonMedia = (props: LessonMediaProps) => {
     unitSlug,
     subjectTitle,
     yearTitle,
-    keyStageSlug,
     unitTitle,
-    pathwayTitle,
-    examBoardTitle,
-    tierTitle,
     lessonCohort,
   } = commonPathway;
 
   const isLegacy = lessonCohort === LEGACY_COHORT;
-  const pathwayData = getAnalyticsBrowseData({
-    keyStageSlug,
-    keyStageTitle,
-    subjectSlug,
-    subjectTitle,
-    unitSlug,
-    unitTitle,
-    year: commonPathway.year,
-    yearTitle,
-    examBoardTitle,
-    tierTitle,
-    pathwayTitle,
-    lessonSlug,
-    lessonName: lessonTitle,
-    lessonReleaseDate,
-    isLegacy,
-  });
 
-  const router = useRouter();
-  const { query } = router;
+  const searchParams = useSearchParams();
+  const videoQueryParam = searchParams?.get("video") ?? null;
 
   // construct list of all clips in one array
 
@@ -184,7 +174,7 @@ export const LessonMedia = (props: LessonMediaProps) => {
   }, [mediaClips]);
 
   const [currentClip, setCurrentClip] = useState(
-    getInitialCurrentClip(listOfAllClips, query.video),
+    getInitialCurrentClip(listOfAllClips, videoQueryParam ?? undefined),
   );
   const [currentIndex, setCurrentIndex] = useState(
     currentClip ? listOfAllClips.indexOf(currentClip) : 0,
@@ -241,8 +231,10 @@ export const LessonMedia = (props: LessonMediaProps) => {
   ]);
 
   useEffect(() => {
-    setCurrentClip(getInitialCurrentClip(listOfAllClips, query.video));
-  }, [listOfAllClips, query.video]);
+    setCurrentClip(
+      getInitialCurrentClip(listOfAllClips, videoQueryParam ?? undefined),
+    );
+  }, [listOfAllClips, videoQueryParam]);
 
   const handleVideoChange = (clip: MediaClip & { learningCycle: string }) => {
     goToTheNextClip(String(clip.mediaId));
@@ -263,72 +255,15 @@ export const LessonMedia = (props: LessonMediaProps) => {
     }
   };
 
-  const trackMediaClipsPlaylistPlayed = ({
-    learningCycle,
-    durationSeconds,
-    isCaptioned,
-    videoPlaybackId,
-    videoTitle,
-    timeElapsedSeconds,
-    isMuted,
-    mediaClipsCount,
-    mediaClipIndex,
-  }: {
-    learningCycle?: string | null;
-    durationSeconds: number;
-    isCaptioned: boolean;
-    videoPlaybackId: string[];
-    videoTitle: string;
-    timeElapsedSeconds: number;
-    isMuted: boolean;
-    mediaClipsCount: number;
-    mediaClipIndex: number;
-  }) => {
-    track.mediaClipsPlaylistPlayed({
-      platform: "owa",
-      product: "media clips",
-      engagementIntent: "use",
-      componentType: "media_clips_played",
-      eventVersion: "2.0.0",
-      analyticsUseCase: "Teacher",
-      keyStageSlug,
-      keyStageTitle: keyStageTitle as KeyStageTitleValueType,
-      subjectSlug,
-      subjectTitle,
-      unitSlug,
-      unitName: unitTitle,
-      lessonSlug,
-      lessonName: lessonTitle,
-      pathway: pathwayTitle as PathwayValueType,
-      tierName: null,
-      yearGroupName: null,
-      yearGroupSlug: null,
-      examBoard: null,
-      learningCycle,
-      releaseGroup: "2023",
-      phase: null,
-      durationSeconds, // int
-      isCaptioned, // bool
-      videoPlaybackId, // list of string
-      videoTitle, // string
-      timeElapsedSeconds, // int
-      isMuted, // bool
-      videoLocation: "media clips", // nulla
-      mediaClipsCount, // int
-      mediaClipIndex,
-      lessonReleaseCohort: "2023-2026",
-      lessonReleaseDate: lessonReleaseDate ?? "unreleased",
-    });
-  };
-
   const onMediaClipClick = (clipSlug: string) => {
     const clickedMediaClip = listOfAllClips.find(
       (clip) => clip.mediaId === clipSlug,
     );
     clickedMediaClip && handleVideoChange(clickedMediaClip);
     videoPlayerWrapper.current?.focus();
-    trackMediaClipsPlaylistPlayed({
-      learningCycle: clickedMediaClip?.learningCycle,
+
+    mediaClipsPlaylistPlayed({
+      learningCycle: clickedMediaClip?.learningCycle ?? null,
       durationSeconds: clickedMediaClip?.videoObject?.duration ?? 0,
       isCaptioned: false,
       videoPlaybackId: [
@@ -359,7 +294,12 @@ export const LessonMedia = (props: LessonMediaProps) => {
       defaultHiddenCaptions={isPEPractical}
       cloudinaryUrl={currentClip.mediaObject.url}
       muxAssetId={currentClip.videoObject?.muxAssetId}
-      pathwayData={pathwayData}
+      analyticsOverrides={{
+        videoFinished,
+        videoPaused,
+        videoPlayed,
+        videoStarted,
+      }}
     />
   );
 
@@ -471,25 +411,28 @@ export const LessonMedia = (props: LessonMediaProps) => {
   return (
     <OakMaxWidth $pb={"spacing-80"} $ph={"spacing-12"}>
       <OakBox $mb={"spacing-32"} $mt={"spacing-24"} data-testid="media-view">
-        <Breadcrumbs
-          breadcrumbs={[
-            ...getBreadcrumbsForLessonPathway(commonPathway),
-            getLessonOverviewBreadCrumb({
-              lessonTitle,
-              lessonSlug,
-              programmeSlug,
-              unitSlug,
-              isCanonical,
-            }),
-            getLessonMediaBreadCrumb({
-              lessonSlug,
-              programmeSlug,
-              unitSlug,
-              subjectSlug,
-              disabled: true,
-            }),
-          ]}
-        />
+        {breadcrumbsSlot ??
+          (isCanonical ? null : (
+            <Breadcrumbs
+              breadcrumbs={[
+                ...getBreadcrumbsForLessonPathway(commonPathway),
+                getLessonOverviewBreadCrumb({
+                  lessonTitle,
+                  lessonSlug,
+                  programmeSlug,
+                  unitSlug,
+                  isCanonical,
+                }),
+                getLessonMediaBreadCrumb({
+                  lessonSlug,
+                  programmeSlug,
+                  unitSlug,
+                  subjectSlug,
+                  disabled: true,
+                }),
+              ]}
+            />
+          ))}
       </OakBox>
       <OakBox $mb={"spacing-24"}>
         {programmeSlug && unitSlug && !isCanonical && (

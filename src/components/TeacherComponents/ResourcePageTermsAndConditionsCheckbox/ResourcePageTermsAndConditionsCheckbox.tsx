@@ -1,12 +1,23 @@
-import { FC } from "react";
-import { OakBox } from "@oaknational/oak-components";
+import { ChangeEventHandler, FC, FocusEventHandler } from "react";
+import {
+  OakBox,
+  OakCheckBox,
+  OakLink,
+  OakLabel,
+  OakFlex,
+} from "@oaknational/oak-components";
 
 import BrushBorders from "@/components/SharedComponents/SpriteSheet/BrushSvgs/BrushBorders";
-import Checkbox from "@/components/SharedComponents/Checkbox";
 import FieldError from "@/components/SharedComponents/FieldError";
-import { CheckboxProps } from "@/components/SharedComponents/Checkbox/Checkbox";
+import { SHARE_FORM_ERROR_IDS } from "@/components/TeacherComponents/helpers/downloadAndShareHelpers/shareDownloadFormErrorIds";
+import { resolveOakHref } from "@/common-lib/urls/urls";
 
-export type ResourcePageTermsAndConditionsCheckboxProps = CheckboxProps & {
+export type ResourcePageTermsAndConditionsCheckboxProps = {
+  id: string;
+  name: string;
+  checked: boolean;
+  onChange: ChangeEventHandler<HTMLInputElement>;
+  onBlur?: FocusEventHandler<HTMLInputElement>;
   errorMessage?: string;
 };
 
@@ -16,32 +27,53 @@ const ResourcePageTermsAndConditionsCheckbox: FC<
   <>
     {errorMessage && (
       <OakBox $mb="spacing-16">
-        <FieldError ariaLive="polite" id={"terms-error"} withoutMarginBottom>
+        <FieldError
+          ariaLive="polite"
+          id={SHARE_FORM_ERROR_IDS.terms}
+          withoutMarginBottom
+        >
           {errorMessage}
         </FieldError>
       </OakBox>
     )}
-    <OakBox
+    <OakFlex
       $position={"relative"}
       $background={"bg-neutral-stronger"}
       $pv="spacing-8"
       $ph="spacing-8"
       $mb="spacing-24"
       data-testid="termsCheckbox"
+      $gap={"spacing-12"}
     >
-      <BrushBorders hideOnMobileH hideOnMobileV color={"grey30"} />
-      <Checkbox
-        labelText={"I accept terms and conditions (required)"}
+      <BrushBorders hideOnMobileH hideOnMobileV color={"bg-neutral-stronger"} />
+      <OakCheckBox
+        value="terms-and-conditions"
+        displayValue={""}
         checked={checked}
         onChange={onChange}
-        $mb={0}
-        required
-        error={errorMessage}
-        hasError={Boolean(errorMessage)}
-        variant="withLabel"
+        uncheckedBorderColor={errorMessage ? "border-error" : undefined}
+        data-testid="termsCheckboxInput"
+        aria-describedby={errorMessage ? SHARE_FORM_ERROR_IDS.terms : undefined}
         {...props}
       />
-    </OakBox>
+      <OakLabel htmlFor={props.id} data-testid="termsCheckboxLabel">
+        I accept the{" "}
+        <OakLink
+          href={resolveOakHref({
+            page: "legal",
+            legalSlug: "terms-and-conditions",
+          })}
+          target={"_blank"}
+          aria-label="Oak's terms & conditions (opens in a new tab)"
+          iconName="external"
+          isTrailingIcon
+          data-testid="external-link-icon"
+        >
+          Oak's terms & conditions
+        </OakLink>{" "}
+        (required)
+      </OakLabel>
+    </OakFlex>
   </>
 );
 

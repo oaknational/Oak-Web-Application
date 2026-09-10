@@ -3,7 +3,6 @@ import { keysToCamelCase } from "zod-to-camel-case";
 
 import {
   getCaptionsFromFile,
-  formatSentences,
   removeWebVttCharacters,
   populateLessonWithTranscript,
   populateMediaClipsWithTranscripts,
@@ -25,31 +24,10 @@ describe("removeWebVttCharacters ", () => {
     expect(result[0]).toBe("Heathcliff");
     expect(result[1]).toBe("It's me.");
   });
-});
 
-describe("formatSentences", () => {
-  const sentences = [
-    "Hello, Mr. 'Perfectly fine',",
-    "How's your heart after breaking mine?",
-    "Mr. 'Always at the right place at the right time,' baby.",
-    "Hello Mr. 'Casually cruel'",
-    "Mr. 'Everything revolves around you'.",
-    "I've been Ms. 'Misery' since your goodbye. And you're Mr. 'Perfectly fine'.",
-  ];
-  it("doesn't split sentences on a full stop after Mr or Ms", () => {
-    const result = formatSentences(sentences);
-    expect(result[0]).toBe(
-      "Hello, Mr. 'Perfectly fine', How's your heart after breaking mine?",
-    );
-  });
-
-  it("splits sentences based on full stops", () => {
-    const result = formatSentences(sentences);
-    expect(result[3]).toBe("I've been Ms. 'Misery' since your goodbye.");
-  });
-  it("creates the expected number of sentences", () => {
-    const result = formatSentences(sentences);
-    expect(result).toHaveLength(5);
+  it("returns an empty array when no first sentence is provided", () => {
+    const result = removeWebVttCharacters([]);
+    expect(result).toEqual([]);
   });
 });
 
@@ -219,20 +197,14 @@ describe("populateMediaClipsWithTranscripts", () => {
     ) as MediaClipListCamelCase;
     const result = await populateMediaClipsWithTranscripts(mediaClips);
 
-    if (result && result["intro"] && result["intro"][0]) {
-      expect(result["intro"][0].transcriptSentences).toEqual([
-        "sentence 3 sentence 4",
-      ]);
-    }
-    if (result && result["intro"] && result["intro"][1]) {
-      expect(result["intro"][1].transcriptSentences).toEqual([
-        "sentence 5 sentence 6",
-      ]);
-    }
-    if (result && result["cycle2"] && result["cycle2"][0]) {
-      expect(result["cycle2"][0].transcriptSentences).toEqual([
-        "sentence 7 sentence 8",
-      ]);
-    }
+    expect(result["intro"]![0]!.transcriptSentences).toEqual([
+      "sentence 3 sentence 4",
+    ]);
+    expect(result["intro"]![1]!.transcriptSentences).toEqual([
+      "sentence 5 sentence 6",
+    ]);
+    expect(result["cycle2"]![0]!.transcriptSentences).toEqual([
+      "sentence 7 sentence 8",
+    ]);
   });
 });

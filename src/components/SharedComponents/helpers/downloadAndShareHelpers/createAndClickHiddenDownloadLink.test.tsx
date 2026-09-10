@@ -1,6 +1,7 @@
 import createAndClickHiddenDownloadLink, {
   hideAndClickDownloadLink,
   createLink,
+  waitForLinkCallback,
 } from "./createAndClickHiddenDownloadLink";
 
 describe("hideAndClickDownloadLink()", () => {
@@ -32,6 +33,16 @@ describe("hideAndClickDownloadLink()", () => {
     hideAndClickDownloadLink("testUrl", link);
 
     expect(link.click).toHaveBeenCalledTimes(1);
+  });
+
+  it("does not leave the link in the document", () => {
+    const link = createLink();
+    link.click = jest.fn();
+
+    hideAndClickDownloadLink("testUrl", link);
+
+    expect(link.isConnected).toBe(false);
+    expect(document.getElementById("resource-download-link")).toBeNull();
   });
 });
 
@@ -74,5 +85,28 @@ describe("createAndClickHiddenDownloadLink()", () => {
     expect(windowOpenSpy).not.toHaveBeenCalled();
     expect(appendSpy).toHaveBeenCalled();
     appendSpy.mockRestore();
+  });
+});
+
+const mockCallback = jest.fn();
+jest.useFakeTimers();
+const setTimeoutMock = jest.spyOn(globalThis, "setTimeout");
+
+describe("waitForLinkCallback", () => {
+  beforeEach(() => {
+    // resets the "clicked" state held by the module
+    createLink();
+  });
+  test("runs a maximum number of times", () => {
+    waitForLinkCallback(mockCallback);
+    jest.runAllTimers();
+    expect(setTimeoutMock).toHaveBeenCalledTimes(10);
+    expect(mockCallback).not.toHaveBeenCalled();
+  });
+  test("it calls the callback", () => {
+    createAndClickHiddenDownloadLink("testUrl");
+    waitForLinkCallback(mockCallback);
+    jest.runAllTimers();
+    expect(mockCallback).toHaveBeenCalled();
   });
 });

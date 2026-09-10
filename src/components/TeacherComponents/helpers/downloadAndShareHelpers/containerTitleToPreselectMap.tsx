@@ -20,7 +20,7 @@ export const containerTitleToPreselectMap: Omit<
     downloadType: "additional material",
     shareType: null,
   },
-  Worksheet: { downloadType: "worksheet", shareType: "worksheet" },
+  Worksheet: { downloadType: "worksheet", shareType: null },
   Transcript: { downloadType: null, shareType: null },
   "Lesson video": { downloadType: null, shareType: "video" },
 };

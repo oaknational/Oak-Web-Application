@@ -9,7 +9,7 @@ import { uniqBy } from "lodash/fp";
 import { OakBox, OakFlex } from "@oaknational/oak-components";
 
 import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
-import Layout from "@/components/AppComponents/Layout";
+import Layout from "@/components/AppComponents/AppLayout";
 import CMSClient from "@/node-lib/cms";
 import { TeamMemberPreview, Webinar } from "@/common-lib/cms-types";
 import { getBlogWebinarPostBreadcrumbs } from "@/components/SharedComponents/Breadcrumbs/getBreadcrumbs";
@@ -26,6 +26,7 @@ import PostSingleLayout from "@/components/SharedComponents/PostSingleLayout";
 import getPageProps from "@/node-lib/getPageProps";
 import { TopNavProps } from "@/components/AppComponents/TopNav/TopNav";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
+import { TeacherBrowseAnalyticsStoreProvider } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
 
 export type SerializedWebinar = Omit<Webinar, "date"> & {
   date: string;
@@ -50,38 +51,43 @@ const WebinarSinglePage: NextPage<WebinarSinglePageProps> = (props) => {
   }, [track, webinar]);
 
   return (
-    <Layout
-      topNavProps={topNav}
-      seoProps={getSeoProps({
-        ...props.webinar.seo,
-        title: webinar.seo?.title || webinar.title,
-        description: webinar.seo?.description,
-        imageUrl: getVideoThumbnail({
-          video: webinar.video.video.asset,
-          width: 1600,
-          height: 900,
-        }),
-      })}
-      $background="bg-primary"
+    <TeacherBrowseAnalyticsStoreProvider
+      programmeState={null}
+      accessLevel="blogs_embedded_links"
     >
-      <PostSingleLayout
-        content={props}
-        breadcrumbs={getBlogWebinarPostBreadcrumbs(
-          categories,
-          webinar,
-          "webinars",
-          "Webinars",
-        )}
+      <Layout
+        topNavProps={topNav}
+        seoProps={getSeoProps({
+          ...props.webinar.seo,
+          title: webinar.seo?.title || webinar.title,
+          description: webinar.seo?.description,
+          imageUrl: getVideoThumbnail({
+            video: webinar.video.video.asset,
+            width: 1600,
+            height: 900,
+          }),
+        })}
+        $background="bg-primary"
       >
-        <OakFlex $position={"relative"} $mt="spacing-56">
-          <WebinarVideo webinar={webinar} />
-        </OakFlex>
-        <OakBox $mt="spacing-48">
-          <BlogPortableText portableText={webinar.summaryPortableText} />
-        </OakBox>
-      </PostSingleLayout>
-      <BlogJsonLd blog={props.webinar} />
-    </Layout>
+        <PostSingleLayout
+          content={props}
+          breadcrumbs={getBlogWebinarPostBreadcrumbs(
+            categories,
+            webinar,
+            "webinars",
+            "Webinars",
+          )}
+        >
+          <OakFlex $position={"relative"} $mt="spacing-56">
+            <WebinarVideo webinar={webinar} />
+          </OakFlex>
+          <OakBox $mt="spacing-48">
+            <BlogPortableText portableText={webinar.summaryPortableText} />
+          </OakBox>
+        </PostSingleLayout>
+        <BlogJsonLd blog={props.webinar} />
+      </Layout>
+    </TeacherBrowseAnalyticsStoreProvider>
   );
 };
 

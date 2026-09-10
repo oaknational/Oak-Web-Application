@@ -5,7 +5,7 @@ import { PupilSubjectListingData } from "@/node-lib/curriculum-api-2023/queries/
 import getPageProps from "@/node-lib/getPageProps";
 import { getStaticPaths as getStaticPathsTemplate } from "@/pages-helpers/get-static-paths";
 import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
-import AppLayout from "@/components/SharedComponents/AppLayout";
+import AppLayout from "@/components/AppComponents/AppLayout";
 import { PupilViewsSubjectListing } from "@/components/PupilViews/PupilSubjectListing/PupilSubjectListing.view";
 import { TopNavProps } from "@/components/AppComponents/TopNav/TopNav";
 

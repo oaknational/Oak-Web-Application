@@ -1,4 +1,3 @@
-import { OakThemeProvider, oakDefaultTheme } from "@oaknational/oak-components";
 import { Meta, StoryObj } from "@storybook/nextjs";
 
 import { STATES } from "./seeds";
@@ -19,28 +18,26 @@ export const Autocomplete: Story = {
   },
   render: function Render(args) {
     return (
-      <OakThemeProvider theme={oakDefaultTheme}>
-        <Component
-          inputProps={{
-            label: "Pick a state",
-            id: "states",
-            error: undefined,
-          }}
-          onChange={(value) => console.log({ value })}
-          value={args.value}
-        >
-          {STATES.map((state) => {
-            const key = state.toLocaleLowerCase();
-            const textValue = state;
+      <Component
+        inputProps={{
+          label: "Pick a state",
+          id: "states",
+          error: undefined,
+        }}
+        onChange={(value) => console.log({ value })}
+        value={args.value}
+      >
+        {STATES.map((state) => {
+          const key = state.toLocaleLowerCase();
+          const textValue = state;
 
-            return (
-              <AutocompleteItem key={key} textValue={textValue}>
-                <div>🇺🇸 {textValue}</div>
-              </AutocompleteItem>
-            );
-          })}
-        </Component>
-      </OakThemeProvider>
+          return (
+            <AutocompleteItem key={key} textValue={textValue}>
+              <div>🇺🇸 {textValue}</div>
+            </AutocompleteItem>
+          );
+        })}
+      </Component>
     );
   },
 };

@@ -12,6 +12,7 @@ import {
   LessonShareResourceData,
 } from "@/node-lib/curriculum-api-2023/queries/lessonShare/lessonShare.schema";
 import { LessonDownloadsPageData } from "@/node-lib/curriculum-api-2023/queries/lessonDownloads/lessonDownloads.schema";
+import { DownloadType } from "@/components/CurriculumComponents/CurriculumDownloadView/helper";
 
 // Resource types
 
@@ -21,7 +22,8 @@ export type Resources =
 
 export type ResourceType =
   | LessonShareResourceData["type"]
-  | DownloadResourceType;
+  | DownloadResourceType
+  | DownloadType;
 
 export type DownloadResourceType =
   LessonDownloadsPageData["downloads"][number]["type"];

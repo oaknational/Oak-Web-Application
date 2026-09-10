@@ -3,8 +3,8 @@ import JSZip from "jszip";
 import { zipFromFiles } from "./zip";
 
 describe("zipFromFiles", () => {
-  test("zipFromFiles() with no files should error", () => {
-    expect(zipFromFiles([])).rejects.toEqual(
+  test("zipFromFiles() with no files should error", async () => {
+    await expect(zipFromFiles([])).rejects.toEqual(
       new Error("Must provide at least one file"),
     );
   });
@@ -25,6 +25,6 @@ describe("zipFromFiles", () => {
     ]);
     expect(fileSpy).toHaveBeenCalledWith("foo", fooBuffer);
     expect(fileSpy).toHaveBeenCalledWith("bar", barBuffer);
-    expect(Buffer.isBuffer(output)).toBeTruthy();
+    expect(output).toBeInstanceOf(Uint8Array);
   });
 });

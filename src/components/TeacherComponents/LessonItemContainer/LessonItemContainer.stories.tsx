@@ -7,13 +7,13 @@ import {
 } from "./LessonItemContainer";
 
 import lessonOverviewFixture from "@/node-lib/curriculum-api-2023/fixtures/lessonOverview.fixture";
+import TeacherBrowseAnalyticsDecorator from "@/storybook-decorators/TeacherBrowseAnalyticsDecorator";
 
 const { lessonSlug, unitSlug, programmeSlug } = lessonOverviewFixture();
 
 const props: LessonItemContainerProps = {
   title: "Slide deck",
   downloadable: true,
-  isSpecialist: false,
   slugs: { lessonSlug, unitSlug, programmeSlug },
   anchorId: "slide-deck",
   pageLinks: [],
@@ -21,6 +21,7 @@ const props: LessonItemContainerProps = {
 
 const meta: Meta<typeof LessonItemContainer> = {
   component: LessonItemContainer,
+  decorators: [TeacherBrowseAnalyticsDecorator],
 };
 
 export default meta;

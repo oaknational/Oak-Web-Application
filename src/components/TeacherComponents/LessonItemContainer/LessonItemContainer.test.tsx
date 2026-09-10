@@ -6,6 +6,7 @@ import { LessonItemContainer } from "./LessonItemContainer";
 
 import Card from "@/components/SharedComponents/Card";
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
+import MockedTeacherBrowseAnalyticsProvider from "@/__tests__/__helpers__/MockedTeacherBrowseAnalyticsProvider";
 import lessonOverviewFixture from "@/node-lib/curriculum-api-2023/fixtures/lessonOverview.fixture";
 import { LessonOverviewPageData } from "@/node-lib/curriculum-api-2023/queries/lessonOverview/lessonOverview.schema";
 import {
@@ -45,10 +46,13 @@ describe("LessonItemContainer", () => {
       <LessonItemContainer
         title={"Slide deck"}
         anchorId={"slide-deck"}
-        isSpecialist={false}
         pageLinks={[]}
       >
-        <Card $background={"white"} $ba={3} $borderColor={"grey30"}>
+        <Card
+          $background={"bg-primary"}
+          $ba={"border-solid-l"}
+          $borderColor={"bg-neutral-stronger"}
+        >
           Inner content
         </Card>
       </LessonItemContainer>,
@@ -61,10 +65,13 @@ describe("LessonItemContainer", () => {
       <LessonItemContainer
         title={"Slide deck"}
         anchorId="slide-deck"
-        isSpecialist={false}
         pageLinks={[]}
       >
-        <Card $background={"white"} $ba={3} $borderColor={"grey30"}>
+        <Card
+          $background={"bg-primary"}
+          $ba={"border-solid-l"}
+          $borderColor={"bg-neutral-stronger"}
+        >
           Inner content
         </Card>
       </LessonItemContainer>,
@@ -78,11 +85,14 @@ describe("LessonItemContainer", () => {
         title={"Slide deck"}
         downloadable={true}
         anchorId={"slide-deck"}
-        isSpecialist={false}
         slugs={lessonOverview}
         pageLinks={[]}
       >
-        <Card $background={"white"} $ba={3} $borderColor={"grey30"}>
+        <Card
+          $background={"bg-primary"}
+          $ba={"border-solid-l"}
+          $borderColor={"bg-neutral-stronger"}
+        >
           Inner content
         </Card>
       </LessonItemContainer>,
@@ -94,12 +104,15 @@ describe("LessonItemContainer", () => {
       <LessonItemContainer
         title={"Slide deck"}
         downloadable={true}
-        isSpecialist={false}
         displayMediaClipButton={false}
         anchorId="slide-deck"
         pageLinks={[]}
       >
-        <Card $background={"white"} $ba={3} $borderColor={"grey30"}>
+        <Card
+          $background={"bg-primary"}
+          $ba={"border-solid-l"}
+          $borderColor={"bg-neutral-stronger"}
+        >
           Inner content
         </Card>
       </LessonItemContainer>,
@@ -112,12 +125,15 @@ describe("LessonItemContainer", () => {
       <LessonItemContainer
         title={"Slide deck"}
         downloadable={true}
-        isSpecialist={false}
         anchorId="slide-deck"
         isFinalElement={true}
         pageLinks={[]}
       >
-        <Card $background={"white"} $ba={3} $borderColor={"grey30"}>
+        <Card
+          $background={"bg-primary"}
+          $ba={"border-solid-l"}
+          $borderColor={"bg-neutral-stronger"}
+        >
           Inner content
         </Card>
       </LessonItemContainer>,
@@ -130,12 +146,15 @@ describe("LessonItemContainer", () => {
       <LessonItemContainer
         title={"Slide deck"}
         downloadable={true}
-        isSpecialist={false}
         anchorId="slide-deck"
         isFinalElement={false}
         pageLinks={[]}
       >
-        <Card $background={"white"} $ba={3} $borderColor={"grey30"}>
+        <Card
+          $background={"bg-primary"}
+          $ba={"border-solid-l"}
+          $borderColor={"bg-neutral-stronger"}
+        >
           Inner content
         </Card>
       </LessonItemContainer>,
@@ -152,12 +171,15 @@ describe("LessonItemContainer", () => {
         downloadable={true}
         slugs={lessonOverview}
         title={"Lesson video"}
-        isSpecialist={false}
         anchorId={"video"}
         onDownloadButtonClick={onDownloadButtonClick}
         pageLinks={[]}
       >
-        <Card $background={"white"} $ba={3} $borderColor={"grey30"}>
+        <Card
+          $background={"bg-primary"}
+          $ba={"border-solid-l"}
+          $borderColor={"bg-neutral-stronger"}
+        >
           Grid box
         </Card>
       </LessonItemContainer>,
@@ -167,7 +189,7 @@ describe("LessonItemContainer", () => {
 
     await user.click(downloadLinkButton);
     expect(mockLinkClick).toHaveBeenCalledWith(
-      "http://localhost/teachers/programmes/english-primary-ks2/units/grammar-1-simple-compound-and-adverbial-complex-sentences/lessons/lesson-4-in-grammar-1-simple-compound-and-adverbial-complex-sentences/downloads?",
+      "http://localhost/teachers/programmes/english-primary-ks2/units/grammar-1-simple-compound-and-adverbial-complex-sentences/lessons/lesson-4-in-grammar-1-simple-compound-and-adverbial-complex-sentences/downloads",
     );
     expect(onDownloadButtonClick).toHaveBeenCalledTimes(1);
   });
@@ -177,12 +199,15 @@ describe("LessonItemContainer", () => {
       <LessonItemContainer
         title={"Worksheet"}
         downloadable={true}
-        isSpecialist={false}
         anchorId="worksheet"
         slugs={lessonOverview}
         pageLinks={[]}
       >
-        <Card $background={"white"} $ba={3} $borderColor={"grey30"}>
+        <Card
+          $background={"bg-primary"}
+          $ba={"border-solid-l"}
+          $borderColor={"bg-neutral-stronger"}
+        >
           Grid box
         </Card>
       </LessonItemContainer>,
@@ -201,7 +226,6 @@ describe("LessonItemContainer", () => {
         <LessonItemContainer
           title={"Slide deck"}
           downloadable={true}
-          isSpecialist={false}
           anchorId="slide-deck"
           slugs={lessonOverview}
           pageLinks={[
@@ -209,14 +233,17 @@ describe("LessonItemContainer", () => {
             { anchorId: "video", label: "Video" },
           ]}
         >
-          <Card $background={"white"} $ba={3} $borderColor={"grey30"}>
+          <Card
+            $background={"bg-primary"}
+            $ba={"border-solid-l"}
+            $borderColor={"bg-neutral-stronger"}
+          >
             Grid box
           </Card>
         </LessonItemContainer>
         <LessonItemContainer
           title={"Lesson video"}
           downloadable={true}
-          isSpecialist={false}
           anchorId="video"
           slugs={lessonOverview}
           pageLinks={[
@@ -224,7 +251,11 @@ describe("LessonItemContainer", () => {
             { anchorId: "video", label: "Video" },
           ]}
         >
-          <Card $background={"white"} $ba={3} $borderColor={"grey30"}>
+          <Card
+            $background={"bg-primary"}
+            $ba={"border-solid-l"}
+            $borderColor={"bg-neutral-stronger"}
+          >
             Grid box
           </Card>
         </LessonItemContainer>
@@ -252,19 +283,24 @@ describe("LessonItemContainer", () => {
   });
   it("renders the play all button when displayMediaClip is true and curriculum data is provided", () => {
     const { getAllByRole } = renderWithTheme(
-      <LessonItemContainer
-        title={"Demonstration videos"}
-        downloadable={false}
-        anchorId={"media-clips"}
-        displayMediaClipButton={true}
-        isSpecialist={false}
-        slugs={lessonOverview}
-        pageLinks={[]}
-      >
-        <Card $background={"white"} $ba={3} $borderColor={"grey30"}>
-          Inner content
-        </Card>
-      </LessonItemContainer>,
+      <MockedTeacherBrowseAnalyticsProvider>
+        <LessonItemContainer
+          title={"Demonstration videos"}
+          downloadable={false}
+          anchorId={"media-clips"}
+          displayMediaClipButton={true}
+          slugs={lessonOverview}
+          pageLinks={[]}
+        >
+          <Card
+            $background={"bg-primary"}
+            $ba={"border-solid-l"}
+            $borderColor={"bg-neutral-stronger"}
+          >
+            Inner content
+          </Card>
+        </LessonItemContainer>
+      </MockedTeacherBrowseAnalyticsProvider>,
     );
     expect(getAllByRole("link")).toHaveLength(1);
   });

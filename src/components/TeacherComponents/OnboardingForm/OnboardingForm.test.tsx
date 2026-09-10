@@ -4,7 +4,7 @@ import { renderHook } from "@testing-library/react";
 import userEvent, {
   PointerEventsCheckLevel,
 } from "@testing-library/user-event";
-import mockRouter from "next-router-mock";
+import { useRouter, useSearchParams } from "next/navigation";
 import fetchMock from "jest-fetch-mock";
 
 import OnboardingForm from "./OnboardingForm";
@@ -43,6 +43,8 @@ jest.mock("@clerk/nextjs");
 
 type OnboardingFormState = DefaultValues<OnboardingFormProps>;
 
+const mockPush = jest.fn();
+
 describe("Onboarding form", () => {
   beforeAll(() => {
     fetchMock.enableMocks();
@@ -52,6 +54,9 @@ describe("Onboarding form", () => {
   });
   beforeEach(() => {
     setUseUserReturn(mockLoggedIn);
+    mockPush.mockClear();
+    (useRouter as jest.Mock).mockReturnValue({ push: mockPush });
+    (useSearchParams as jest.Mock).mockReturnValue(new URLSearchParams());
   });
 
   it("should render the onboarding form with fieldset and legend", async () => {
@@ -97,12 +102,16 @@ describe("Onboarding form", () => {
   ])(
     "redirects to %p when the user %s",
     async (pathname, __, worksInSchool) => {
-      mockRouter.setCurrentUrl("/onboarding?returnTo=/home");
+      (useSearchParams as jest.Mock).mockReturnValue(
+        new URLSearchParams("returnTo=/home"),
+      );
 
       await submitForm({ worksInSchool });
 
-      expect(mockRouter.route).toEqual(pathname);
-      expect(mockRouter.query.returnTo).toEqual("/home");
+      expect(mockPush).toHaveBeenCalledWith(expect.stringContaining(pathname));
+      expect(mockPush).toHaveBeenCalledWith(
+        expect.stringContaining("returnTo=%2Fhome"),
+      );
     },
   );
 
@@ -116,7 +125,9 @@ describe("Onboarding form", () => {
     ["of role selection", { role: "teacher-trainer" }, { isTeacher: false }],
   ])("on submit %s", (__, formState, onboardingPayload) => {
     beforeEach(() => {
-      mockRouter.setCurrentUrl("/onboarding?returnTo=/downloads");
+      (useSearchParams as jest.Mock).mockReturnValue(
+        new URLSearchParams("returnTo=/downloads"),
+      );
     });
 
     afterEach(() => {
@@ -153,7 +164,9 @@ describe("Onboarding form", () => {
       await submitForm(formState);
 
       await waitFor(() => {
-        expect(mockRouter.asPath).toEqual("/downloads");
+        expect(mockPush).toHaveBeenCalledWith(
+          expect.stringContaining("/downloads"),
+        );
       });
     });
 

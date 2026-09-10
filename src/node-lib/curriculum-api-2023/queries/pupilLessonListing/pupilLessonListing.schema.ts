@@ -8,6 +8,7 @@ import {
 export const lessonBrowseDataSchema = z.array(
   syntheticUnitvariantLessonsSchema.omit({
     null_unitvariant_id: true,
+    unitvariant_id: true,
   }),
 );
 

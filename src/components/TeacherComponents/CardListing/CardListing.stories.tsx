@@ -1,10 +1,5 @@
 import { Meta, StoryObj } from "@storybook/nextjs";
-import {
-  oakDefaultTheme,
-  OakFlex,
-  OakThemeProvider,
-  OakTypography,
-} from "@oaknational/oak-components";
+import { OakFlex, OakTypography } from "@oaknational/oak-components";
 import { ClerkProvider } from "@clerk/nextjs";
 
 import CardListing from "./CardListing";
@@ -19,9 +14,7 @@ const meta: Meta<typeof CardListing> = {
     NotificationsDecorator,
     (Story) => (
       <ClerkProvider>
-        <OakThemeProvider theme={oakDefaultTheme}>
-          <Story />
-        </OakThemeProvider>
+        <Story />
       </ClerkProvider>
     ),
   ],
@@ -35,7 +28,6 @@ const meta: Meta<typeof CardListing> = {
 export default meta;
 
 const defaultArgs = {
-  isHighlighted: false,
   index: 10,
   subcopy: "Ullamcorper auctor volutpat",
   tags: [
@@ -93,7 +85,7 @@ export const Customisable: Story = {
         "title",
         "subcopy",
         "lessonCount",
-        "isHighlighted",
+        "highlightColorVariant",
         "tags",
         "disabled",
         "saveProps",
@@ -150,7 +142,11 @@ export const Vertical: Story = {
         <OakTypography $font={"heading-5"} $height={"spacing-64"}>
           Highlighted
         </OakTypography>
-        <CardListing {...args} layoutVariant="vertical" isHighlighted={true} />
+        <CardListing
+          {...args}
+          layoutVariant="vertical"
+          highlightColorVariant="secondary"
+        />
       </OakFlex>
       <OakFlex
         $flexDirection={"column"}
@@ -234,7 +230,7 @@ export const Horizontal: Story = {
         <CardListing
           {...args}
           layoutVariant="horizontal"
-          isHighlighted={true}
+          highlightColorVariant="secondary"
         />
       </OakFlex>
       <OakFlex $flexDirection={"column"} $gap={"spacing-16"}>
@@ -272,7 +268,6 @@ export const Horizontal: Story = {
   args: defaultArgs,
 };
 const cardProps = {
-  isHighlighted: false,
   lessonCount: 10,
   title:
     "Ullamcorper auctor volutpat turpis dictumst aliquam et et dui mattis ullamcorper.",
@@ -323,7 +318,11 @@ export const Optionality: Story = {
           {...args}
           childCards={[
             { ...cardProps, title: "Optionality 1" },
-            { ...cardProps, title: "Optionality 2", isHighlighted: true },
+            {
+              ...cardProps,
+              title: "Optionality 2",
+              highlightColorVariant: "secondary",
+            },
             { ...cardProps, title: "Optionality 3" },
           ]}
         />

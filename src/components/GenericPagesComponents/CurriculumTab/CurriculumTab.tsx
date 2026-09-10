@@ -5,10 +5,10 @@ import {
   OakUL,
   OakTypography,
   OakFlex,
-  OakSecondaryLink,
   OakMaxWidth,
   OakBox,
   OakIcon,
+  OakLink,
 } from "@oaknational/oak-components";
 
 import Illustration from "@/components/SharedComponents/Illustration";
@@ -16,6 +16,7 @@ import SubjectPhasePicker from "@/components/SharedComponents/SubjectPhasePicker
 import { resolveOakHref } from "@/common-lib/urls";
 import { SubjectPhasePickerData } from "@/components/SharedComponents/SubjectPhasePicker/SubjectPhasePicker";
 import useAnalytics from "@/context/Analytics/useAnalytics";
+import { TeacherBrowseAnalyticsStoreProvider } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
 
 type CurriculumDownloadTabProps = {
   curriculumPhaseOptions: SubjectPhasePickerData;
@@ -90,8 +91,9 @@ const CurriculumTab: FC<CurriculumDownloadTabProps> = ({
             </OakFlex>
 
             <OakFlex $gap="spacing-24" $flexWrap={"wrap"} $pb="spacing-24">
-              <OakSecondaryLink
-                href={resolveOakHref({ page: "curriculum-landing-page" })}
+              <OakLink
+                variant="secondary"
+                href={resolveOakHref({ page: "about-oaks-curricula" })}
                 onClick={() => {
                   track.curriculumLandingPageAccessed({
                     platform: "owa",
@@ -112,16 +114,23 @@ const CurriculumTab: FC<CurriculumDownloadTabProps> = ({
                 >
                   Our curriculum planning approach
                 </OakTypography>
-              </OakSecondaryLink>
+              </OakLink>
             </OakFlex>
             <OakBox
               $display={["none", "none", "block"]}
               $maxWidth={"spacing-640"}
             >
-              <SubjectPhasePicker {...curriculumPhaseOptions} />
+              <TeacherBrowseAnalyticsStoreProvider
+                programmeState={null}
+                accessLevel={"homepage"}
+              >
+                <SubjectPhasePicker
+                  {...curriculumPhaseOptions}
+                  id="choose-curriculum-label-large"
+                />
+              </TeacherBrowseAnalyticsStoreProvider>
             </OakBox>
           </OakFlex>
-          {/* @todo replace with OakFlex - work out $flex prop */}
           <OakFlex
             $flexDirection={"row"}
             $justifyContent={"flex-end"}
@@ -150,7 +159,15 @@ const CurriculumTab: FC<CurriculumDownloadTabProps> = ({
           $maxWidth={"spacing-960"}
           $pt={"spacing-24"}
         >
-          <SubjectPhasePicker {...curriculumPhaseOptions} />
+          <TeacherBrowseAnalyticsStoreProvider
+            programmeState={null}
+            accessLevel={"homepage"}
+          >
+            <SubjectPhasePicker
+              {...curriculumPhaseOptions}
+              id="choose-curriculum-label-small"
+            />
+          </TeacherBrowseAnalyticsStoreProvider>
         </OakBox>
       </OakMaxWidth>
     </OakBox>

@@ -9,7 +9,6 @@ describe("DropdownFocusManager", () => {
     const manager = new DropdownFocusManager(
       mockData,
       "teachers",
-
       () => undefined,
     );
 
@@ -17,7 +16,6 @@ describe("DropdownFocusManager", () => {
     // Top-level keys
     expect(focusMap.has("teachers-primary")).toBe(true);
     expect(focusMap.has("teachers-secondary")).toBe(true);
-    expect(focusMap.has("teachers-curriculum-landing-page")).toBe(true);
     expect(focusMap.has("teachers-aboutUs")).toBe(true);
     expect(focusMap.has("teachers-guidance")).toBe(true);
   });
@@ -26,24 +24,30 @@ describe("DropdownFocusManager", () => {
     const manager = new DropdownFocusManager(
       mockData,
       "teachers",
-
       () => undefined,
     );
 
     const focusMap = manager.getFocusMap();
+    const primaryNode = focusMap.get("teachers-primary");
+    expect(primaryNode?.children).toEqual([
+      "teachers-primary-primary",
+      "teachers-primary-keystages",
+    ]);
+
     // Check a keystage node
-    const ks1Node = focusMap.get("teachers-primary-ks1");
+    const ks1Node = focusMap.get("teachers-primary-keystages-ks1");
     expect(ks1Node).toBeDefined();
     expect(ks1Node?.children).toEqual([
-      "teachers-primary-ks1-english",
-      "teachers-primary-ks1-maths",
-      "teachers-primary-ks1-financial-education",
-      "teachers-primary-ks1-all-keystages-button",
+      "teachers-primary-keystages-ks1-english",
+      "teachers-primary-keystages-ks1-maths",
+      "teachers-primary-keystages-ks1-financial-education",
     ]);
     // Check a subject node
-    const englishNode = focusMap.get("teachers-primary-ks1-english");
+    const englishNode = focusMap.get("teachers-primary-keystages-ks1-english");
     expect(englishNode).toBeDefined();
-    expect(englishNode?.parent?.parentId).toBe("teachers-primary-ks1");
+    expect(englishNode?.parent?.parentId).toBe(
+      "teachers-primary-keystages-ks1",
+    );
     expect(englishNode?.children).toEqual([]);
   });
 
@@ -51,24 +55,18 @@ describe("DropdownFocusManager", () => {
     const manager = new DropdownFocusManager(
       mockData,
       "teachers",
-
       () => undefined,
     );
 
     const focusMap = manager.getFocusMap();
     // First child in ks1
-    const englishNode = focusMap.get("teachers-primary-ks1-english");
+    const englishNode = focusMap.get("teachers-primary-keystages-ks1-english");
     expect(englishNode?.isFirstChild).toBe(true);
     // Last child in ks1
     const financialNode = focusMap.get(
-      "teachers-primary-ks1-financial-education",
+      "teachers-primary-keystages-ks1-financial-education",
     );
-    expect(financialNode?.isLastChild).toBe(false); // Only all-keystages is marked as last
-    // All keystages button
-    const allKeystagesNode = focusMap.get(
-      "teachers-primary-ks1-all-keystages-button",
-    );
-    expect(allKeystagesNode?.isLastChild).toBe(true);
+    expect(financialNode?.isLastChild).toBe(true);
   });
 
   it("should build focusMap for aboutUs and guidance sections", () => {
@@ -87,6 +85,39 @@ describe("DropdownFocusManager", () => {
     expect(focusMap.has("teachers-guidance-blog-index")).toBe(true);
   });
 
+  it("should include static exam board leaves in the focus map", () => {
+    const manager = new DropdownFocusManager(
+      mockData,
+      "teachers",
+      () => undefined,
+    );
+
+    const focusMap = manager.getFocusMap();
+    const geographyNode = focusMap.get(
+      "teachers-secondary-keystages-ks4-geography",
+    );
+
+    expect(geographyNode).toBeDefined();
+    expect(geographyNode?.children.length).toBeGreaterThan(0);
+  });
+
+  it("should include keystages directly in teacher phase node children", () => {
+    const manager = new DropdownFocusManager(
+      mockData,
+      "teachers",
+      () => undefined,
+    );
+
+    const focusMap = manager.getFocusMap();
+    const secondaryNode = focusMap.get("teachers-secondary");
+
+    expect(secondaryNode).toBeDefined();
+    expect(secondaryNode?.children).toEqual([
+      "teachers-secondary-secondary",
+      "teachers-secondary-keystages",
+    ]);
+  });
+
   describe("focusFirstChild behavior", () => {
     let manager: DropdownFocusManager<typeof mockData>;
     let event: React.KeyboardEvent<HTMLDivElement>;
@@ -102,7 +133,7 @@ describe("DropdownFocusManager", () => {
     });
 
     it("should focus the first child if it exists in the DOM", () => {
-      const firstChildId = "teachers-primary-ks1-english";
+      const firstChildId = "teachers-primary-keystages-ks1-english";
       const focusMock = jest.fn();
       const elementMock = { focus: focusMock };
       jest.spyOn(document, "getElementById").mockImplementation((id) => {
@@ -111,7 +142,9 @@ describe("DropdownFocusManager", () => {
           : null) as unknown as HTMLElement;
       });
 
-      const ks1Node = manager.getFocusMap().get("teachers-primary-ks1")!;
+      const ks1Node = manager
+        .getFocusMap()
+        .get("teachers-primary-keystages-ks1")!;
       // @ts-expect-error: access private for test
       manager.handleTab(ks1Node, event);
       expect(event.preventDefault).toHaveBeenCalled();
@@ -121,7 +154,9 @@ describe("DropdownFocusManager", () => {
     it("should not focus if the first child is not in the DOM", () => {
       jest.spyOn(document, "getElementById").mockReturnValue(null);
 
-      const ks1Node = manager.getFocusMap().get("teachers-primary-ks1")!;
+      const ks1Node = manager
+        .getFocusMap()
+        .get("teachers-primary-keystages-ks1")!;
       // @ts-expect-error: access private for test
       manager.handleTab(ks1Node, event);
       expect(event.preventDefault).not.toHaveBeenCalled();
@@ -142,8 +177,7 @@ describe("DropdownFocusManager", () => {
     });
 
     it("should focus parent's sibling when tabbing on last child using handleTab", () => {
-      // Setup: teachers-primary-ks1-all-keystages-button is last child, its parent is teachers-primary-ks1
-      const siblingId = "teachers-primary-ks2";
+      const siblingId = "teachers-primary-keystages-ks2";
       const focusMock = jest.fn();
       const elementMock = { focus: focusMock };
       jest.spyOn(document, "getElementById").mockImplementation((id) => {
@@ -154,7 +188,7 @@ describe("DropdownFocusManager", () => {
 
       const node = manager
         .getFocusMap()
-        .get("teachers-primary-ks1-all-keystages-button")!;
+        .get("teachers-primary-keystages-ks1-financial-education");
       // @ts-expect-error: access private for test
       manager.handleTab(node, event);
       expect(event.preventDefault).toHaveBeenCalled();
@@ -162,14 +196,16 @@ describe("DropdownFocusManager", () => {
     });
 
     it("should focus parent when shift-tabbing on first child using handleShiftTab", () => {
-      const parentId = "teachers-primary-ks1";
+      const parentId = "teachers-primary-keystages-ks1";
       const focusMock = jest.fn();
       const elementMock = { focus: focusMock };
       jest.spyOn(document, "getElementById").mockImplementation((id) => {
         return (id === parentId ? elementMock : null) as unknown as HTMLElement;
       });
 
-      const node = manager.getFocusMap().get("teachers-primary-ks1-english")!;
+      const node = manager
+        .getFocusMap()
+        .get("teachers-primary-keystages-ks1-english")!;
       // @ts-expect-error: access private for test
       manager.handleShiftTab(event, node);
       expect(event.preventDefault).toHaveBeenCalled();

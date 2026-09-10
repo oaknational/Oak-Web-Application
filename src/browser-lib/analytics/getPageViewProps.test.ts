@@ -45,17 +45,17 @@ describe("getPageViewProps()", () => {
   });
   it("Unit listing", () => {
     expect(getPageViewProps("/teachers/programmes/ks2-maths/units")).toEqual({
-      pageName: "Unit Listing",
+      pageName: "Curriculum Unit Sequence",
       analyticsUseCase: "Teacher",
     });
   });
   it("Unit listing with query", () => {
     expect(
       getPageViewProps(
-        "/teachers/programmes/primary-ks2-maths/units?learning-theme=circls",
+        "/teachers/programmes/primary-ks2-maths/units?learning-theme=circles",
       ),
     ).toEqual({
-      pageName: "Unit Listing",
+      pageName: "Curriculum Unit Sequence",
       analyticsUseCase: "Teacher",
     });
   });
@@ -105,12 +105,6 @@ describe("getPageViewProps()", () => {
     expect(getPageViewProps("/lp/lp-slug-from-sanity-123")).toEqual({
       pageName: "Landing Page",
       analyticsUseCase: null,
-    });
-  });
-  it("Subject listing", () => {
-    expect(getPageViewProps("/teachers/key-stages/ks2/subjects")).toEqual({
-      pageName: "Subject Listing",
-      analyticsUseCase: "Teacher",
     });
   });
   it("About us: Who we are", () => {

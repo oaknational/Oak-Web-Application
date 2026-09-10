@@ -1,9 +1,5 @@
 import { Meta, StoryObj } from "@storybook/nextjs";
-import {
-  OakBox,
-  oakDefaultTheme,
-  OakThemeProvider,
-} from "@oaknational/oak-components";
+import { OakBox } from "@oaknational/oak-components";
 
 import { MeetTheTeamContainer as Component } from ".";
 
@@ -12,13 +8,6 @@ const meta: Meta<typeof Component> = {
   tags: ["autodocs"],
   title: "Components/GenericPagesComponents/MeetTheTeamContainer",
   argTypes: {},
-  decorators: [
-    (Story) => (
-      <OakThemeProvider theme={oakDefaultTheme}>
-        <Story />
-      </OakThemeProvider>
-    ),
-  ],
 };
 
 export default meta;

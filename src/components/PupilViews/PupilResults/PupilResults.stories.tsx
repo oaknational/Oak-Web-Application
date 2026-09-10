@@ -1,5 +1,4 @@
 import type { Meta, StoryObj } from "@storybook/nextjs";
-import { OakThemeProvider, oakDefaultTheme } from "@oaknational/oak-components";
 
 import { PupilViewsResults } from "./PupilResults.view";
 
@@ -14,14 +13,6 @@ import { LessonAttemptCamelCase } from "@/node-lib/pupil-api/types";
 
 const meta = {
   component: PupilViewsResults,
-  decorators: [
-    (StoryComponent) => (
-      <OakThemeProvider theme={oakDefaultTheme}>
-        <StoryComponent />
-      </OakThemeProvider>
-    ),
-  ],
-
   argTypes: {},
   parameters: {
     controls: {},

@@ -2,7 +2,6 @@ import {
   OakHeading,
   OakIcon,
   OakIconName,
-  OakSecondaryLink,
   OakLI,
   OakAnchorTarget,
   OakBox,
@@ -13,6 +12,8 @@ import {
 import MyLibraryUnitCard, {
   MyLibraryUnitCardProps,
 } from "../MyLibraryUnitCard/MyLibraryUnitCard";
+
+import { useTeacherBrowseAnalytics } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
 
 const ProgrammeHeader = ({
   headingIdString,
@@ -54,22 +55,16 @@ interface MyLibraryProgrammeCardProps {
   anchorId: string;
   iconName: OakIconName;
   savedUnits: Array<MyLibraryUnitCardProps>;
-  trackBrowseRefined: () => void;
 }
 
 export default function MyLibraryProgrammeCard(
   props: Readonly<MyLibraryProgrammeCardProps>,
 ) {
-  const {
-    savedUnits,
-    programmeTitle,
-    programmeHref,
-    iconName,
-    anchorId,
-    trackBrowseRefined,
-  } = props;
+  const { savedUnits, programmeTitle, programmeHref, iconName, anchorId } =
+    props;
 
-  const headingIdString = `programme-heading-${programmeTitle.split(" ").join("-").toLowerCase()}`;
+  const headingIdString = `programme-heading-${programmeTitle.replaceAll(" ", "-").toLowerCase()}`;
+  const track = useTeacherBrowseAnalytics((store) => store.track);
 
   return (
     <OakFlex
@@ -82,13 +77,24 @@ export default function MyLibraryProgrammeCard(
       $position="relative"
     >
       <OakAnchorTarget id={anchorId} />
-      <OakSecondaryLink href={programmeHref} onClick={trackBrowseRefined}>
+      <OakLink
+        variant="secondary"
+        href={programmeHref}
+        onClick={() => {
+          track.programmeRefined({
+            componentType: "programme_card",
+            filterType: "Subject filter",
+            filterValue: programmeTitle,
+            activeFilters: [],
+          });
+        }}
+      >
         <ProgrammeHeader
           headingIdString={headingIdString}
           iconName={iconName}
           programmeTitle={programmeTitle}
         />
-      </OakSecondaryLink>
+      </OakLink>
       <OakFlex
         as="ul"
         $gap="spacing-32"
@@ -105,13 +111,16 @@ export default function MyLibraryProgrammeCard(
               unitSlug={unit.unitSlug}
               programmeSlug={unit.programmeSlug}
               year={unit.year}
+              yearSlug={unit.yearSlug}
               savedAt={unit.savedAt}
               lessons={unit.lessons}
-              onSave={unit.onSave}
-              isSaved={unit.isSaved}
-              isSaving={unit.isSaving}
-              trackUnitAccessed={unit.trackUnitAccessed}
-              trackLessonAccessed={unit.trackLessonAccessed}
+              keyStageSlug={unit.keyStageSlug}
+              keyStageTitle={unit.keyStageTitle}
+              subjectTitle={unit.subjectTitle}
+              subjectSlug={unit.subjectSlug}
+              examBoard={unit.examBoard}
+              pathway={unit.pathway}
+              tierName={unit.tierName}
             />
           </OakLI>
         ))}

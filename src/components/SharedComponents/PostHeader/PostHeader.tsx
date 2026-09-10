@@ -1,19 +1,21 @@
 import { FC } from "react";
 import {
+  OakBox,
   OakHeading,
   OakSpan,
   OakP,
   OakFlex,
+  OakLink,
 } from "@oaknational/oak-components";
+
+import CMSImage from "../CMSImage";
 
 import { PostCategoryPage } from "@/components/SharedComponents/PostCategoryList/PostCategoryList";
 import { SerializedWebinar } from "@/pages/webinars/[webinarSlug]";
 import { SerializedBlog } from "@/pages/blog/[blogSlug]";
 import formatDate from "@/utils/formatDate";
-import AvatarImage from "@/components/SharedComponents/AvatarImage";
-import Box from "@/components/SharedComponents/Box";
 import CopyLinkButton from "@/components/SharedComponents/Button/CopyLinkButton";
-import OwaLink from "@/components/SharedComponents/OwaLink";
+import { resolveOakHref } from "@/common-lib/urls";
 
 type PostHeaderProps = {
   post: SerializedBlog | SerializedWebinar;
@@ -29,10 +31,17 @@ const PostHeader: FC<PostHeaderProps> = ({ post, page }) => {
         $justifyContent="space-between"
         $flexDirection={["column", "row"]}
       >
-        <OakHeading tag={"h2"} $color="text-link-active" $font={["heading-7"]}>
-          <OwaLink page={page} categorySlug={post.category.slug}>
+        <OakHeading
+          tag={"h2"}
+          $color="text-link-active"
+          $font={["heading-7"]}
+          $textWrap={"nowrap"}
+        >
+          <OakLink
+            href={resolveOakHref({ page, categorySlug: post.category.slug })}
+          >
             {post.category.title}
-          </OwaLink>
+          </OakLink>
         </OakHeading>
         <OakSpan $font={"body-3"} $mt={["spacing-8", "spacing-0"]}>
           {formattedDate}
@@ -53,8 +62,26 @@ const PostHeader: FC<PostHeaderProps> = ({ post, page }) => {
       >
         {author && (
           <OakFlex $alignItems={"center"}>
-            {author.image && <AvatarImage image={author.image} $mr={12} />}
-            <Box $mr={[0, 40]}>
+            {author.image && (
+              <OakFlex
+                $overflow={"hidden"}
+                $width={"spacing-56"}
+                $height={"spacing-56"}
+                $position={"relative"}
+                $borderRadius="border-radius-circle"
+                $justifyContent={"center"}
+                $alignItems={"center"}
+                $mr={"spacing-12"}
+              >
+                <CMSImage
+                  image={author.image}
+                  $objectFit={"cover"}
+                  width={56}
+                  height={56}
+                />
+              </OakFlex>
+            )}
+            <OakBox $mr={["spacing-0", "spacing-32"]}>
               <OakHeading tag="h2" $font={"heading-7"}>
                 {author.name}
               </OakHeading>
@@ -63,7 +90,7 @@ const PostHeader: FC<PostHeaderProps> = ({ post, page }) => {
                   {author.role}
                 </OakP>
               )}
-            </Box>
+            </OakBox>
           </OakFlex>
         )}
         <CopyLinkButton />

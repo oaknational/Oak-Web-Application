@@ -1,11 +1,16 @@
 import userEvent from "@testing-library/user-event";
 import { getByTestId, waitFor } from "@testing-library/react";
 import { useRouter } from "next/router";
+import { renderToStaticMarkup } from "react-dom/server";
 
-import SubjectPhasePicker from "./SubjectPhasePicker";
+import SubjectPhasePicker, { CurrentSelection } from "./SubjectPhasePicker";
 
 import curriculumPhaseOptions from "@/browser-lib/fixtures/curriculumPhaseOptions";
-import { renderWithProvidersByName } from "@/__tests__/__helpers__/renderWithProviders";
+import {
+  allProviders,
+  getMockedProviders,
+  renderWithProvidersByName,
+} from "@/__tests__/__helpers__/renderWithProviders";
 
 jest.mock("@/hooks/useMediaQuery.tsx", () => ({
   __esModule: true,
@@ -18,28 +23,66 @@ jest.mock("next/router", () => ({
 
 const render = renderWithProvidersByName(["oakTheme", "theme"]);
 
-const curriculumVisualiserAccessed = jest.fn();
-jest.mock("@/context/Analytics/useAnalytics", () => ({
-  __esModule: true,
-  default: () => ({
-    track: {
-      curriculumVisualiserAccessed: (...args: unknown[]) =>
-        curriculumVisualiserAccessed(...args),
-    },
+const mockProgrammeAccessed = jest.fn();
+jest.mock(
+  "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider",
+  () => ({
+    __esModule: true,
+    useTeacherBrowseAnalytics: (
+      selector: (store: {
+        track: {
+          programmeAccessed: (...args: unknown[]) => void;
+        };
+      }) => unknown,
+    ) =>
+      selector({
+        track: {
+          programmeAccessed: (...args: unknown[]) =>
+            mockProgrammeAccessed(...args),
+        },
+      }),
   }),
-}));
+);
 
 describe("Component - subject phase picker", () => {
   beforeEach(() => {
     jest.clearAllMocks();
   });
+
+  test("renders subject phase picker SEO links in HTML before hydration", () => {
+    const Providers = getMockedProviders({
+      oakTheme: allProviders.oakTheme,
+      theme: allProviders.theme,
+    });
+
+    const html = renderToStaticMarkup(
+      <Providers>
+        <SubjectPhasePicker {...curriculumPhaseOptions} />
+      </Providers>,
+    );
+
+    expect(html).toContain('data-testid="visually-hidden-link"');
+    expect(html).toContain("/teachers/programmes/");
+  });
+
+  test("removes subject phase picker SEO links after hydration", async () => {
+    const { queryByTestId } = render(
+      <SubjectPhasePicker {...curriculumPhaseOptions} />,
+    );
+
+    await waitFor(() => {
+      expect(
+        queryByTestId("visually-hidden-subject-phase-picker"),
+      ).not.toBeInTheDocument();
+    });
+  });
+
   test("populates selection if supplied", () => {
-    const currentSelection = {
+    const currentSelection: CurrentSelection = {
       subject: {
         title: "English",
         slug: "english",
         phases: [],
-        cycle: "1",
         ks4_options: [{ title: "AQA", slug: "aqa" }],
         keystages: [
           { title: "KS1", slug: "ks1" },
@@ -63,12 +106,13 @@ describe("Component - subject phase picker", () => {
   });
 
   test("user can see subjects when they click the control", async () => {
-    const { getByTitle, findAllByTitle } = render(
+    const { getByTestId, findAllByTitle, findByTestId } = render(
       <SubjectPhasePicker {...curriculumPhaseOptions} />,
     );
-    const control = getByTitle("Subject");
+    const control = getByTestId("subject-picker-button");
     expect(control).toBeTruthy();
     await userEvent.click(control);
+    await findByTestId("subject-picker-heading");
     const buttons = await findAllByTitle("English");
     expect(buttons).toHaveLength(1);
   });
@@ -185,7 +229,7 @@ describe("Component - subject phase picker", () => {
     expect(queryByText("Select an option for KS4")).toBeTruthy();
   });
 
-  test("calls tracking.curriculumVisualiserAccessed once, with correct props", async () => {
+  test("calls programmeAccessed once, with correct props", async () => {
     const pushMock = jest.fn();
     (useRouter as jest.Mock).mockReturnValue({
       push: async (...args: []) => pushMock(...args),
@@ -210,21 +254,18 @@ describe("Component - subject phase picker", () => {
     await userEvent.click(viewButton);
 
     expect(pushMock).toHaveBeenCalledWith({
-      pathname: "/teachers/curriculum/english-primary/units",
+      pathname: "/teachers/programmes/english-primary/units",
     });
 
-    expect(curriculumVisualiserAccessed).toHaveBeenCalledTimes(1);
-    expect(curriculumVisualiserAccessed).toHaveBeenCalledWith({
-      subjectTitle: "English",
-      subjectSlug: "english",
-      platform: "owa",
-      product: "curriculum visualiser",
-      engagementIntent: "use",
-      componentType: "curriculum_visualiser_button",
-      eventVersion: "2.0.0",
-      analyticsUseCase: "Teacher",
-      phase: "primary",
-    });
+    expect(mockProgrammeAccessed).toHaveBeenCalledTimes(1);
+    expect(mockProgrammeAccessed).toHaveBeenCalledWith(
+      expect.objectContaining({
+        componentType: "curriculum_visualiser_button",
+        activeFilters: [],
+        filterType: "Subject filter",
+        filterValue: "english",
+      }),
+    );
   });
 
   test("preserve tab when chaging the lot picker", async () => {
@@ -251,7 +292,7 @@ describe("Component - subject phase picker", () => {
 
     await userEvent.click(viewButton);
     expect(pushMock).toHaveBeenCalledWith({
-      pathname: "/teachers/curriculum/english-primary/units",
+      pathname: "/teachers/programmes/english-primary/units",
     });
 
     rerender(<SubjectPhasePicker {...curriculumPhaseOptions} tab="overview" />);
@@ -259,20 +300,8 @@ describe("Component - subject phase picker", () => {
     pushMock.mockReset();
     await userEvent.click(viewButton);
     expect(pushMock).toHaveBeenCalledWith({
-      pathname: "/teachers/curriculum/english-primary/overview",
+      pathname: "/teachers/programmes/english-primary/units",
     });
-  });
-
-  test("User can navigate to previous curriculum plans", async () => {
-    const { getByTestId, getByTitle } = render(
-      <SubjectPhasePicker {...curriculumPhaseOptions} />,
-    );
-    await userEvent.click(getByTitle("Subject"));
-    const link = getByTestId("subject-picker-previous-plans-link");
-    expect(link).toHaveAttribute(
-      "href",
-      "/teachers/curriculum/previous-downloads",
-    );
   });
 
   describe("Pathways are shown correctly", () => {
@@ -410,7 +439,7 @@ describe("Component - subject phase picker", () => {
         throw new Error("Could not find button");
       }
 
-      const tabCount = curriculumPhaseOptions.subjects.length + 3;
+      const tabCount = curriculumPhaseOptions.subjects.length + 2;
       for (let i = 0; i < tabCount; i++) {
         await userEvent.tab();
       }

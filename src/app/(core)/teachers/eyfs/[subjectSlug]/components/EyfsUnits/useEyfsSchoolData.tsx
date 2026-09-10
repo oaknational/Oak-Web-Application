@@ -16,11 +16,14 @@ const getSchoolFromHubspot = (
 export const useEyfsSchoolData = () => {
   const { schoolFromLocalStorage, setSchoolInLocalStorage } =
     useLocalStorageForDownloads();
+
   const { hubspotContact } = useFetchHubspotContactsSwr();
+
   useEffect(() => {
     const school = getSchoolFromHubspot(hubspotContact);
     if (school) setSchoolInLocalStorage(school);
   }, [hubspotContact, setSchoolInLocalStorage]);
+
   // Prefer hubspot data, but fallback to local storage if already primed
   return getSchoolFromHubspot(hubspotContact) ?? schoolFromLocalStorage;
 };

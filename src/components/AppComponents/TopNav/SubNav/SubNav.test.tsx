@@ -14,7 +14,7 @@ import {
 const render = renderWithProviders();
 
 describe("SubNav (Teachers)", () => {
-  const mockFocusManager = new DropdownFocusManager(
+  const mockFocusManager = new DropdownFocusManager<TeachersSubNavData>(
     topNavFixture.teachers!,
     "teachers",
     () => undefined,
@@ -34,13 +34,19 @@ describe("SubNav (Teachers)", () => {
     jest.clearAllMocks();
   });
 
-  it("renders the Curriculum link as a link element with correct href", () => {
+  it("renders Ai experiments link as a link element with external icon", () => {
     render(<SubNav {...defaultProps} />);
 
-    const curriculumLink = screen.getByRole("link", { name: "Curriculum" });
+    const aiExperimentsLink = screen.getByRole("link", {
+      name: "Ai experiments (this will open in a new tab)",
+    });
 
-    expect(curriculumLink).toBeInTheDocument();
-    expect(curriculumLink).toHaveAttribute("href", "/teachers/curriculum");
+    expect(aiExperimentsLink).toBeInTheDocument();
+    expect(aiExperimentsLink).toHaveAttribute(
+      "href",
+      "https://labs.thenational.academy",
+    );
+    expect(aiExperimentsLink).toHaveAttribute("target", "_blank");
   });
 
   it("renders Primary as a button", () => {
@@ -81,7 +87,7 @@ describe("SubNav (Teachers)", () => {
 });
 
 describe("SubNav (Pupils)", () => {
-  const mockFocusManager = new DropdownFocusManager(
+  const mockFocusManager = new DropdownFocusManager<PupilsSubNavData>(
     topNavFixture.pupils!,
     "pupils",
     () => undefined,

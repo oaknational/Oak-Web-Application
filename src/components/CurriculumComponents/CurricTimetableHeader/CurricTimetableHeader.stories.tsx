@@ -1,11 +1,4 @@
 import { Meta, StoryObj } from "@storybook/nextjs";
-import {
-  OakBox,
-  oakDefaultTheme,
-  OakThemeProvider,
-} from "@oaknational/oak-components";
-
-import { CurricShowSteps } from "../CurricShowSteps";
 
 import { CurricTimetableHeader as Component } from ".";
 
@@ -33,13 +26,6 @@ const meta: Meta<typeof Component> = {
       include: ["titleSlot", "additionalSlot", "illustrationSlug"],
     },
   },
-  decorators: [
-    (Story) => (
-      <OakThemeProvider theme={oakDefaultTheme}>
-        <Story />
-      </OakThemeProvider>
-    ),
-  ],
   render: (args) => <Component {...args} />,
 };
 
@@ -51,17 +37,5 @@ export const Default: Story = {
     titleSlot: "Year 1 maths",
     illustrationSlug: "magic-carpet",
     additionalSlot: "Additional content goes here...",
-  },
-};
-
-export const WithSteps: Story = {
-  args: {
-    titleSlot: "Year 1 history",
-    illustrationSlug: "magic-carpet",
-    additionalSlot: (
-      <OakBox $maxWidth={"spacing-360"}>
-        <CurricShowSteps numberOfSteps={4} currentStepIndex={1} />
-      </OakBox>
-    ),
   },
 };

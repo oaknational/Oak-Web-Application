@@ -7,24 +7,30 @@ import {
 import { LessonOverviewHeaderProps } from "@/components/TeacherComponents/LessonOverviewHeader";
 import { resolveOakHref } from "@/common-lib/urls";
 import { invariant } from "@/utils/invariant";
+import { useTeacherBrowseAnalytics } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
+
+export type LessonOverviewHeaderShareAllButtonProps = Omit<
+  LessonOverviewHeaderProps,
+  "isCanonical"
+> & {
+  variant?: "primary" | "dropdown";
+};
 
 export const LessonOverviewHeaderShareAllButton: FC<
-  LessonOverviewHeaderProps & {
-    variant?: "primary" | "dropdown";
-  }
+  LessonOverviewHeaderShareAllButtonProps
 > = (props) => {
   const {
     lessonSlug,
     unitSlug,
     programmeSlug,
     isShareable,
-    onClickShareAll,
-    isSpecialist,
-    isCanonical,
     geoRestricted,
     loginRequired,
     variant = "primary",
   } = props;
+  const { lessonShareStarted } = useTeacherBrowseAnalytics(
+    (store) => store.track,
+  );
 
   if (geoRestricted || loginRequired) return null;
 
@@ -36,26 +42,8 @@ export const LessonOverviewHeaderShareAllButton: FC<
   const preselected = "all";
 
   const href = (() => {
-    if (isCanonical) {
-      return resolveOakHref({
-        page: "lesson-share-canonical",
-        lessonSlug,
-        query: { preselected },
-      });
-    }
-
     invariant(typeof unitSlug === "string", "unitSlug is required");
     invariant(typeof programmeSlug === "string", "programmeSlug is required");
-
-    if (isSpecialist) {
-      return resolveOakHref({
-        page: "specialist-lesson-share",
-        lessonSlug,
-        unitSlug,
-        programmeSlug,
-        query: { preselected },
-      });
-    }
 
     return resolveOakHref({
       page: "lesson-share",
@@ -84,7 +72,7 @@ export const LessonOverviewHeaderShareAllButton: FC<
       rel="nofollow"
       element="a"
       href={href}
-      onClick={onClickShareAll}
+      onClick={() => lessonShareStarted()}
       data-testid="share-all-button"
       iconName="arrow-right"
       isTrailingIcon

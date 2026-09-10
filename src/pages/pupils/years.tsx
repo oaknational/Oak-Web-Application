@@ -14,7 +14,7 @@ import { GetStaticProps } from "next";
 import Link from "next/link";
 
 import { resolveOakHref } from "@/common-lib/urls";
-import AppLayout from "@/components/SharedComponents/AppLayout";
+import AppLayout from "@/components/AppComponents/AppLayout";
 import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
 import useAnalytics from "@/context/Analytics/useAnalytics";
 import { TopNavProps } from "@/components/AppComponents/TopNav/TopNav";

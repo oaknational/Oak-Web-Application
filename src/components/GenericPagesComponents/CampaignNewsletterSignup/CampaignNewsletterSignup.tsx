@@ -13,7 +13,7 @@ import {
   OakOption,
 } from "@oaknational/oak-components";
 import { PortableTextReactComponents } from "@portabletext/react";
-import z, { ZodSchema } from "zod";
+import z, { ZodType } from "zod";
 
 import {
   newsletterSignupFormSubmitSchema,
@@ -40,7 +40,7 @@ type NewsletterSignUpData = Partial<{
   schools: School[];
   schoolId?: string;
   schoolName?: string;
-  email?: string;
+  email: string;
   schoolNotListed?: boolean;
   name: string;
   schoolOrg?: string;
@@ -104,7 +104,7 @@ export function getSchema({
   freeSchoolInput?: boolean | null;
   enableRole?: boolean | null;
 }) {
-  let schema: ZodSchema = newsletterSignupFormSubmitSchema;
+  let schema: ZodType = newsletterSignupFormSubmitSchema;
   if (freeSchoolInput) {
     schema = partialNewsletterSchema;
   }
@@ -131,12 +131,12 @@ const CampaignNewsletterSignup: FC<CampaignNewsletterSignupProps> = ({
   const [data, setData] = useState<NewsletterSignUpData>(() => ({
     schoolId: undefined,
     schoolName: undefined,
-    email: undefined,
+    email: "",
     schoolNotListed: false,
     schools: [],
-    name: undefined,
-    schoolOrg: undefined,
-    eduRole: undefined,
+    name: "",
+    schoolOrg: "",
+    eduRole: "",
   }));
 
   const onChange = (partial: Partial<NewsletterSignUpData>) => {
@@ -183,11 +183,12 @@ const CampaignNewsletterSignup: FC<CampaignNewsletterSignupProps> = ({
         setData({
           schoolId: undefined,
           schoolName: undefined,
-          email: undefined,
+          email: "",
           schoolNotListed: false,
           schools: [],
-          name: undefined,
-          schoolOrg: undefined,
+          name: "",
+          schoolOrg: "",
+          eduRole: "",
         });
       } catch (error) {
         if (error instanceof OakError) {

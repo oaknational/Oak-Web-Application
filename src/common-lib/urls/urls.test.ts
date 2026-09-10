@@ -73,40 +73,10 @@ describe("urls.ts", () => {
       };
       expect(resolveOakHref(props)).toBe("/webinars?page=6");
     });
-    it("Unit listing", () => {
-      const props: ResolveOakHrefProps = {
-        page: "unit-index",
-        programmeSlug: "primary-ks2-maths",
-      };
-      expect(resolveOakHref(props)).toBe(
-        "/teachers/programmes/primary-ks2-maths/units",
-      );
-    });
-    it("Programme listing", () => {
-      const props: ResolveOakHrefProps = {
-        page: "programme-index",
-        keyStageSlug: "ks2",
-        subjectSlug: "maths",
-      };
-      expect(resolveOakHref(props)).toBe(
-        "/teachers/key-stages/ks2/subjects/maths/programmes",
-      );
-    });
-    it("Unit listing with query", () => {
+    it("Unit overview", () => {
       expect(
         resolveOakHref({
-          page: "unit-index",
-          programmeSlug: "primary-ks2-maths",
-          search: { "learning-theme": "circls" },
-        }),
-      ).toBe(
-        "/teachers/programmes/primary-ks2-maths/units?learning-theme=circls",
-      );
-    });
-    it("Lesson listing", () => {
-      expect(
-        resolveOakHref({
-          page: "lesson-index",
+          page: "unit-overview",
           programmeSlug: "primary-ks2-maths",
           unitSlug: "geometry-349",
         }),
@@ -126,16 +96,16 @@ describe("urls.ts", () => {
         "/teachers/programmes/primary-ks2-maths/units/geometry-349/lessons/semi-circles-48",
       );
     });
-    it("Integrated lesson overview", () => {
+    it("Unit overview with query", () => {
       expect(
         resolveOakHref({
-          page: "integrated-lesson-overview",
-          programmeSlug: "maths-secondary-year-10-aqa",
-          unitSlug: "algebra-123",
-          lessonSlug: "solving-equations-456",
+          page: "unit-overview",
+          programmeSlug: "primary-ks2-maths",
+          unitSlug: "geometry-349",
+          query: { subject_category: "fiction" },
         }),
       ).toBe(
-        "/programmes/maths-secondary-year-10-aqa/units/algebra-123/lessons/solving-equations-456",
+        "/teachers/programmes/primary-ks2-maths/units/geometry-349/lessons?subject_category=fiction",
       );
     });
     it("Lesson downloads", () => {
@@ -145,7 +115,6 @@ describe("urls.ts", () => {
           programmeSlug: "primary-ks2-maths",
           unitSlug: "geometry-349",
           lessonSlug: "semi-circles-48",
-          downloads: "downloads",
         }),
       ).toBe(
         "/teachers/programmes/primary-ks2-maths/units/geometry-349/lessons/semi-circles-48/downloads",
@@ -161,6 +130,30 @@ describe("urls.ts", () => {
         }),
       ).toBe(
         "/teachers/programmes/primary-ks2-maths/units/geometry-360/lessons/semi-circles-52/media",
+      );
+    });
+    it("Lesson downloads success", () => {
+      expect(
+        resolveOakHref({
+          page: "lesson-downloads-success",
+          programmeSlug: "maths-secondary-year-10-aqa",
+          unitSlug: "algebra-123",
+          lessonSlug: "solving-equations-456",
+        }),
+      ).toBe(
+        "/teachers/programmes/maths-secondary-year-10-aqa/units/algebra-123/lessons/solving-equations-456/downloads/success",
+      );
+    });
+    it("Lesson share", () => {
+      expect(
+        resolveOakHref({
+          page: "lesson-share",
+          programmeSlug: "maths-secondary-year-10-aqa",
+          unitSlug: "algebra-123",
+          lessonSlug: "solving-equations-456",
+        }),
+      ).toBe(
+        "/teachers/programmes/maths-secondary-year-10-aqa/units/algebra-123/lessons/solving-equations-456/share",
       );
     });
     it("Search", () => {
@@ -185,14 +178,6 @@ describe("urls.ts", () => {
           lpSlug: "lp-slug-123",
         }),
       ).toBe("/lp/lp-slug-123");
-    });
-    it("Subject listing", () => {
-      expect(
-        resolveOakHref({
-          page: "subject-index",
-          keyStageSlug: "ks2",
-        }),
-      ).toBe("/teachers/key-stages/ks2/subjects");
     });
     it("About us: Who we are", () => {
       expect(resolveOakHref({ page: "about-who-we-are" })).toBe(
@@ -321,24 +306,6 @@ describe("urls.ts", () => {
         subjectSlug: "maths",
       };
       expect(resolveOakHref(props)).toBe("/teachers/eyfs/maths");
-    });
-
-    it("subject-index with EYFS keyStageSlug redirects to /teachers/eyfs/maths", () => {
-      expect(
-        resolveOakHref({
-          page: "subject-index",
-          keyStageSlug: "early-years-foundation-stage",
-        }),
-      ).toBe("/teachers/eyfs/maths");
-    });
-
-    it("subject-index with non-EYFS keyStageSlug resolves normally", () => {
-      expect(
-        resolveOakHref({
-          page: "subject-index",
-          keyStageSlug: "ks1",
-        }),
-      ).toBe("/teachers/key-stages/ks1/subjects");
     });
   });
 });

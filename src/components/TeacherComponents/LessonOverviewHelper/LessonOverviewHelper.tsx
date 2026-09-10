@@ -69,7 +69,7 @@ const LessonOverviewHelper: FC<LessonOverviewHelperProps> = ({
           </OakBox>
         </OakGridArea>
       </OakGrid>
-      <BrushBorders color="aqua50" />
+      <BrushBorders color="bg-decorative2-subdued" />
     </OakBox>
   );
 };

@@ -1,8 +1,11 @@
+import {
+  OakBreadcrumb,
+  OakBreadcrumbWithoutHref,
+} from "@oaknational/oak-components";
+
 import { BlogWebinarCategory } from "../../../common-lib/cms-types";
 import { SerializedWebinar } from "../../../pages/webinars/[webinarSlug]";
 import { SerializedBlog } from "../../../pages/blog/[blogSlug]";
-
-import { Breadcrumb } from ".";
 
 /*
  *
@@ -19,15 +22,13 @@ export const getBlogWebinarListBreadcrumbs = (
   categories: BlogWebinarCategory[],
   currentCategorySlug: string | null,
   page: CrumbPageVariant,
-  label: string,
-): Breadcrumb[] => [
-  { label, oakLinkProps: { href: `/${page}`, page: null } },
+  text: string,
+): [...OakBreadcrumb[], OakBreadcrumbWithoutHref] => [
+  { text, href: `/${page}` },
   {
-    label:
+    text:
       categories.find((cat) => cat.slug === currentCategorySlug)?.title ||
       "All",
-    oakLinkProps: { href: currentCategorySlug || `/${page}`, page: null },
-    disabled: true,
   },
 ];
 
@@ -35,23 +36,18 @@ export const getBlogWebinarPostBreadcrumbs = (
   categories: BlogWebinarCategory[],
   blog: SerializedBlog | SerializedWebinar,
   page: CrumbPageVariant,
-  label: string,
-): Breadcrumb[] => {
-  const { title, slug, category } = blog;
+  text: string,
+): [...OakBreadcrumb[], OakBreadcrumbWithoutHref] => {
+  const { title, category } = blog;
   return [
-    { label, oakLinkProps: { href: `/${page}`, page: null } },
+    { text, href: `/${page}` },
     {
-      label:
+      text:
         categories.find((cat) => cat.slug === category.slug)?.title || "All",
-      oakLinkProps: {
-        href: `/${page}/categories/${category.slug}`,
-        page: null,
-      },
+      href: `/${page}/categories/${category.slug}`,
     },
     {
-      label: title,
-      oakLinkProps: { href: slug, page: null },
-      disabled: true,
+      text: title,
     },
   ];
 };

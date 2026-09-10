@@ -13,11 +13,7 @@ import { Breadcrumb } from "@/components/SharedComponents/Breadcrumbs";
 import { LessonHeaderWrapper } from "@/components/TeacherComponents/LessonHeaderWrapper";
 import { LessonOverviewHeaderMobile } from "@/components/TeacherComponents/LessonOverviewHeaderMobile";
 import { LessonOverviewHeaderDesktop } from "@/components/TeacherComponents/LessonOverviewHeaderDesktop";
-import {
-  AnalyticsUseCaseValueType,
-  TeachingMaterialTypeValueType,
-} from "@/browser-lib/avo/Avo";
-import { TrackFns } from "@/context/Analytics/AnalyticsProvider";
+import { AnalyticsUseCaseValueType } from "@/browser-lib/avo/Avo";
 import { TeacherNotesButtonProps } from "@/pages-helpers/teacher/useLesson/useLesson";
 
 /**
@@ -31,19 +27,18 @@ export type LessonOverviewHeaderProps = {
   yearTitle?: string | null;
   examBoardTitle?: string | null;
   tierTitle?: string | null;
-  unitSlug: string | null;
+  unitSlug: string;
   keyStageSlug?: string | null;
   keyStageTitle?: string | null;
   unitTitle: string | null;
   subjectTitle: string | null;
-  programmeSlug: string | null;
+  programmeSlug: string;
   // lesson base props
   lessonTitle: string;
   expired?: boolean | null;
   lessonSlug: string;
   lessonDescription?: string;
   phonicsOutcome?: string | null;
-  isSpecialist: boolean;
   isCanonical: boolean;
   orderInUnit?: number | null;
   unitTotalLessonCount?: number | null;
@@ -57,11 +52,8 @@ export type LessonOverviewHeaderProps = {
   isNew: boolean;
   isShareable: boolean;
   subjectIconBackgroundColor: OakUiRoleToken;
-  track: TrackFns;
   analyticsUseCase: AnalyticsUseCaseValueType;
   pupilLessonOutcome?: string | null;
-  onClickDownloadAll: () => void;
-  onClickShareAll: () => void;
   showDownloadAll: boolean;
   showShare: boolean;
   contentRestricted: boolean;
@@ -70,10 +62,6 @@ export type LessonOverviewHeaderProps = {
   teacherShareButtonProps?: TeacherNotesButtonProps;
   // AI
   excludedFromTeachingMaterials?: boolean;
-  trackTeachingMaterialsSelected?: (
-    teachingMaterialType: TeachingMaterialTypeValueType,
-  ) => void;
-  trackCreateWithAiButtonClicked?: () => void;
   subjectCategories?: Array<string | number | null> | null;
   actions?: ActionsCamel | null;
 };

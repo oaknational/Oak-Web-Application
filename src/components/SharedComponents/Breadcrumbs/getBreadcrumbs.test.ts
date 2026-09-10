@@ -29,13 +29,11 @@ describe("getBlogBreadcrumbs", () => {
     );
     const expectedCrumbs = [
       {
-        label: "Blog",
-        oakLinkProps: { href: "/blog", page: null },
+        text: "Blog",
+        href: "/blog",
       },
       {
-        label: "Research and insights",
-        oakLinkProps: { href: "research-and-insights", page: null },
-        disabled: true,
+        text: "Research and insights",
       },
     ];
 
@@ -51,13 +49,11 @@ describe("getBlogBreadcrumbs", () => {
     );
     const expectedCrumbs = [
       {
-        label: "Webinars",
-        oakLinkProps: { href: "/webinars", page: null },
+        text: "Webinars",
+        href: "/webinars",
       },
       {
-        label: "All",
-        oakLinkProps: { href: "/webinars", page: null },
-        disabled: true,
+        text: "All",
       },
     ];
 

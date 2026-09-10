@@ -1,6 +1,7 @@
 fragment Video on Video {
   title
   captions: fieldForCaptionsDoNotUse
+  transcript: transcriptRaw
   video {
     asset {
       assetId

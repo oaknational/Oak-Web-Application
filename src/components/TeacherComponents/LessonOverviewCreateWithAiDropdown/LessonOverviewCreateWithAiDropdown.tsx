@@ -7,6 +7,7 @@ import {
   OakSmallSecondaryButtonWithDropdown,
   OakTagFunctional,
 } from "@oaknational/oak-components";
+import { useUser } from "@clerk/nextjs";
 
 import { LessonOverviewHeaderProps } from "../LessonOverviewHeader";
 
@@ -17,6 +18,7 @@ import {
 
 import { resolveOakHref } from "@/common-lib/urls";
 import { TeachingMaterialTypeValueType } from "@/browser-lib/avo/Avo";
+import { useTeacherBrowseAnalytics } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
 
 const teachingMaterials: Array<{
   docType: TeachingMaterialType;
@@ -50,16 +52,27 @@ const teachingMaterials: Array<{
   },
 ];
 
+export type LessonOverviewCreateWithAiProps = Pick<
+  LessonOverviewHeaderProps,
+  | "lessonSlug"
+  | "programmeSlug"
+  | "keyStageSlug"
+  | "subjectCategories"
+  | "actions"
+  | "subjectSlug"
+>;
+
 export const LessonOverviewCreateWithAiDropdown = ({
   lessonSlug,
   programmeSlug,
   keyStageSlug,
   subjectCategories,
   actions,
-  trackCreateWithAiButtonClicked,
-  trackTeachingMaterialsSelected,
   subjectSlug,
-}: LessonOverviewHeaderProps) => {
+}: LessonOverviewCreateWithAiProps) => {
+  const { isSignedIn } = useUser();
+  const { createTeachingMaterialsInitiated, teachingMaterialsSelected } =
+    useTeacherBrowseAnalytics((store) => store.track);
   const availableTeachingMaterialsPerSubject = getAvailableTeachingMaterials(
     subjectSlug,
     keyStageSlug,
@@ -73,7 +86,9 @@ export const LessonOverviewCreateWithAiDropdown = ({
   return (
     <OakSmallSecondaryButtonWithDropdown
       primaryActionText="Create more with AI"
-      onPrimaryAction={trackCreateWithAiButtonClicked}
+      onPrimaryAction={() =>
+        createTeachingMaterialsInitiated({ isLoggedIn: isSignedIn ?? false })
+      }
       leadingButtonIcon={
         <OakTagFunctional
           $borderRadius={"border-radius-s"}
@@ -106,7 +121,9 @@ export const LessonOverviewCreateWithAiDropdown = ({
             },
           })}
           onClick={() =>
-            trackTeachingMaterialsSelected?.(material.trackingName)
+            teachingMaterialsSelected({
+              teachingMaterialType: material.trackingName,
+            })
           }
         >
           {material.label}

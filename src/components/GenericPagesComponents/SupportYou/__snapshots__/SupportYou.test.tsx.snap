@@ -1,0 +1,108 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SupportYou renders correctly 1`] = `
+<body>
+  <div>
+    <div
+      class="sc-aXZVg guaSoh"
+    >
+      <div
+        class="sc-aXZVg bZTQLO"
+      >
+        <div
+          class="sc-aXZVg sc-tagGq jPvJsJ ktvIBS"
+        >
+          <div
+            class="sc-aXZVg sc-gEvEer sc-esYiGF jPvJsJ iDBIXi guxPwy"
+          >
+            <div
+              class="sc-aXZVg sc-gEvEer jPvJsJ fQjiFG"
+            >
+              <div
+                class="sc-aXZVg sc-gEvEer jPvJsJ daEtut"
+              >
+                <h2
+                  class="sc-eldPxv kLaSLy"
+                >
+                  Discover how Oak can support you
+                </h2>
+                <p
+                  class="sc-ikkxIA raLvq"
+                >
+                  To explore the impact Oak’s curricula could have in your school or trust, fill out the form below and one of our experts will be in touch shortly.
+                </p>
+              </div>
+              <div
+                class="sc-aXZVg sc-gEvEer jPvJsJ bktafW"
+              >
+                <div
+                  class="sc-aXZVg sc-kpDqfm bhFzn cvxBYX"
+                >
+                  <div
+                    class="sc-aXZVg kpXzs grey-shadow"
+                  />
+                  <div
+                    class="sc-aXZVg kpXzs yellow-shadow"
+                  />
+                  <a
+                    aria-label="Get in touch with an expert (opens in new tab)"
+                    class="sc-dcJsrY sc-jXbUNg cLXsQH dglRoS internal-button"
+                    href="https://share.hsforms.com/2yBT-92_WT6CvX1b6L3Iw8Qbvumd"
+                    target="_blank"
+                  >
+                    <div
+                      class="sc-aXZVg sc-gEvEer jPvJsJ krHAKs"
+                    >
+                      <span
+                        class="sc-eqUAAy edqVpV"
+                      >
+                        Get in touch with an expert
+                      </span>
+                      <span
+                        class="sc-aXZVg jJQFnr"
+                      >
+                        <img
+                          alt=""
+                          class="sc-iGgWBj bOyFfb"
+                          data-nimg="fill"
+                          decoding="async"
+                          loading="lazy"
+                          src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1699953892/icons/hlxmejse3mcr4tqo6t8u.svg"
+                          style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                        />
+                      </span>
+                    </div>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div
+            class="sc-aXZVg sc-gEvEer sc-esYiGF jPvJsJ iDBIXi hkWRSL"
+          >
+            <div
+              class="sc-aXZVg sc-gEvEer bbXyUw fXHtRp"
+            >
+              <span
+                class="sc-aXZVg kvjdhA"
+              >
+                <img
+                  alt=""
+                  class="sc-iGgWBj dZvqhO"
+                  data-nimg="fill"
+                  decoding="async"
+                  loading="lazy"
+                  sizes="100vw"
+                  src="http://localhost/_next/image?url=https%3A%2F%2FNEXT_PUBLIC_SANITY_ASSET_CDN_HOST%2Fimages%2Fcuvjke51%2Fproduction%2Ff5112552f3d0d37304f71c7cd63fc18be513a17c-632x454.png&w=3840&q=75"
+                  srcset="/_next/image?url=https%3A%2F%2FNEXT_PUBLIC_SANITY_ASSET_CDN_HOST%2Fimages%2Fcuvjke51%2Fproduction%2Ff5112552f3d0d37304f71c7cd63fc18be513a17c-632x454.png&w=640&q=75 640w, /_next/image?url=https%3A%2F%2FNEXT_PUBLIC_SANITY_ASSET_CDN_HOST%2Fimages%2Fcuvjke51%2Fproduction%2Ff5112552f3d0d37304f71c7cd63fc18be513a17c-632x454.png&w=750&q=75 750w, /_next/image?url=https%3A%2F%2FNEXT_PUBLIC_SANITY_ASSET_CDN_HOST%2Fimages%2Fcuvjke51%2Fproduction%2Ff5112552f3d0d37304f71c7cd63fc18be513a17c-632x454.png&w=828&q=75 828w, /_next/image?url=https%3A%2F%2FNEXT_PUBLIC_SANITY_ASSET_CDN_HOST%2Fimages%2Fcuvjke51%2Fproduction%2Ff5112552f3d0d37304f71c7cd63fc18be513a17c-632x454.png&w=1080&q=75 1080w, /_next/image?url=https%3A%2F%2FNEXT_PUBLIC_SANITY_ASSET_CDN_HOST%2Fimages%2Fcuvjke51%2Fproduction%2Ff5112552f3d0d37304f71c7cd63fc18be513a17c-632x454.png&w=1200&q=75 1200w, /_next/image?url=https%3A%2F%2FNEXT_PUBLIC_SANITY_ASSET_CDN_HOST%2Fimages%2Fcuvjke51%2Fproduction%2Ff5112552f3d0d37304f71c7cd63fc18be513a17c-632x454.png&w=1920&q=75 1920w, /_next/image?url=https%3A%2F%2FNEXT_PUBLIC_SANITY_ASSET_CDN_HOST%2Fimages%2Fcuvjke51%2Fproduction%2Ff5112552f3d0d37304f71c7cd63fc18be513a17c-632x454.png&w=2048&q=75 2048w, /_next/image?url=https%3A%2F%2FNEXT_PUBLIC_SANITY_ASSET_CDN_HOST%2Fimages%2Fcuvjke51%2Fproduction%2Ff5112552f3d0d37304f71c7cd63fc18be513a17c-632x454.png&w=3840&q=75 3840w"
+                  style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                />
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+`;

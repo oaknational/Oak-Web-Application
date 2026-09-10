@@ -2,11 +2,14 @@ import { programmeFieldsFixture } from "@oaknational/oak-curriculum-schema";
 
 import { TopNavResponse } from "./topNav.schema";
 
+import curriculumPhaseOptionsFixture from "@/node-lib/curriculum-api-2023/fixtures/curriculumPhaseOptions.fixture";
+
 export const mockResponseData: TopNavResponse = {
   programmes: [
     {
       programme_fields: programmeFieldsFixture({
         overrides: {
+          subject_parent: null,
           keystage: "KS1",
           keystage_slug: "ks1",
           phase_slug: "primary",
@@ -22,6 +25,7 @@ export const mockResponseData: TopNavResponse = {
     {
       programme_fields: programmeFieldsFixture({
         overrides: {
+          subject_parent: null,
           keystage: "KS1",
           keystage_slug: "ks1",
           phase_slug: "primary",
@@ -37,6 +41,7 @@ export const mockResponseData: TopNavResponse = {
     {
       programme_fields: programmeFieldsFixture({
         overrides: {
+          subject_parent: null,
           keystage: "KS1",
           keystage_slug: "ks1",
           phase_slug: "primary",
@@ -51,6 +56,7 @@ export const mockResponseData: TopNavResponse = {
     {
       programme_fields: programmeFieldsFixture({
         overrides: {
+          subject_parent: null,
           keystage: "KS2",
           keystage_slug: "ks2",
           phase_slug: "primary",
@@ -65,6 +71,7 @@ export const mockResponseData: TopNavResponse = {
     {
       programme_fields: programmeFieldsFixture({
         overrides: {
+          subject_parent: null,
           keystage: "KS3",
           keystage_slug: "ks3",
           phase_slug: "secondary",
@@ -79,6 +86,7 @@ export const mockResponseData: TopNavResponse = {
     {
       programme_fields: programmeFieldsFixture({
         overrides: {
+          subject_parent: null,
           keystage: "KS1",
           keystage_slug: "ks1",
           phase_slug: "primary",
@@ -93,6 +101,7 @@ export const mockResponseData: TopNavResponse = {
     {
       programme_fields: programmeFieldsFixture({
         overrides: {
+          subject_parent: null,
           keystage: "KS2",
           keystage_slug: "ks2",
           phase_slug: "primary",
@@ -107,6 +116,7 @@ export const mockResponseData: TopNavResponse = {
     {
       programme_fields: programmeFieldsFixture({
         overrides: {
+          subject_parent: null,
           keystage: "KS3",
           keystage_slug: "ks3",
           phase_slug: "secondary",
@@ -121,6 +131,7 @@ export const mockResponseData: TopNavResponse = {
     {
       programme_fields: programmeFieldsFixture({
         overrides: {
+          subject_parent: null,
           keystage: "KS4",
           keystage_slug: "ks4",
           phase_slug: "secondary",
@@ -137,6 +148,7 @@ export const mockResponseData: TopNavResponse = {
     {
       programme_fields: programmeFieldsFixture({
         overrides: {
+          subject_parent: null,
           keystage: "KS4",
           keystage_slug: "ks4",
           phase_slug: "secondary",
@@ -159,6 +171,7 @@ export const mockResponseData: TopNavResponse = {
     {
       programme_fields: programmeFieldsFixture({
         overrides: {
+          subject_parent: null,
           keystage: "KS4",
           keystage_slug: "ks4",
           phase_slug: "secondary",
@@ -182,6 +195,7 @@ export const mockResponseData: TopNavResponse = {
     {
       programme_fields: programmeFieldsFixture({
         overrides: {
+          subject_parent: null,
           keystage: "EYFS",
           keystage_slug: "early-years-foundation-stage",
           phase_slug: "foundation",
@@ -196,6 +210,7 @@ export const mockResponseData: TopNavResponse = {
     {
       programme_fields: programmeFieldsFixture({
         overrides: {
+          subject_parent: null,
           keystage: "KS4",
           keystage_slug: "ks4",
           phase_slug: "secondary",
@@ -203,6 +218,7 @@ export const mockResponseData: TopNavResponse = {
           subject_slug: "maths",
           tier: "higher",
           tier_slug: "higher",
+          tier_description: "Higher",
         },
       }),
       features: {},
@@ -212,6 +228,7 @@ export const mockResponseData: TopNavResponse = {
     {
       programme_fields: programmeFieldsFixture({
         overrides: {
+          subject_parent: null,
           keystage: "KS4",
           keystage_slug: "ks4",
           phase_slug: "secondary",
@@ -219,6 +236,7 @@ export const mockResponseData: TopNavResponse = {
           subject_slug: "maths",
           tier: "foundation",
           tier_slug: "foundation",
+          tier_description: "Foundation",
         },
       }),
       features: {},
@@ -228,6 +246,7 @@ export const mockResponseData: TopNavResponse = {
     {
       programme_fields: programmeFieldsFixture({
         overrides: {
+          subject_parent: null,
           keystage: "KS4",
           keystage_slug: "ks4",
           phase_slug: "secondary",
@@ -246,6 +265,7 @@ export const mockResponseData: TopNavResponse = {
     {
       programme_fields: programmeFieldsFixture({
         overrides: {
+          subject_parent: null,
           keystage: "KS4",
           keystage_slug: "ks4",
           phase_slug: "secondary",
@@ -264,6 +284,7 @@ export const mockResponseData: TopNavResponse = {
     {
       programme_fields: programmeFieldsFixture({
         overrides: {
+          subject_parent: null,
           keystage: "KS4",
           keystage_slug: "ks4",
           phase_slug: "secondary",
@@ -282,6 +303,7 @@ export const mockResponseData: TopNavResponse = {
     {
       programme_fields: programmeFieldsFixture({
         overrides: {
+          subject_parent: null,
           keystage: "KS4",
           keystage_slug: "ks4",
           phase_slug: "secondary",
@@ -295,6 +317,7 @@ export const mockResponseData: TopNavResponse = {
       programme_slug: "religious-education-secondary-ks4-l",
     },
   ],
+  phaseOptions: curriculumPhaseOptionsFixture(),
 };
 
 export const mockResponseByYears: TopNavResponse = {
@@ -302,6 +325,7 @@ export const mockResponseByYears: TopNavResponse = {
     {
       programme_fields: programmeFieldsFixture({
         overrides: {
+          subject_parent: null,
           year_slug: "year-1",
           year_description: "Year 1",
           phase_slug: "primary",
@@ -314,6 +338,7 @@ export const mockResponseByYears: TopNavResponse = {
     {
       programme_fields: programmeFieldsFixture({
         overrides: {
+          subject_parent: null,
           year_slug: "year-2",
           year_description: "Year 2",
           phase_slug: "primary",
@@ -326,6 +351,7 @@ export const mockResponseByYears: TopNavResponse = {
     {
       programme_fields: programmeFieldsFixture({
         overrides: {
+          subject_parent: null,
           year_slug: "year-3",
           year_description: "Year 3",
           phase_slug: "primary",
@@ -338,6 +364,7 @@ export const mockResponseByYears: TopNavResponse = {
     {
       programme_fields: programmeFieldsFixture({
         overrides: {
+          subject_parent: null,
           year_slug: "year-4",
           year_description: "Year 4",
           phase_slug: "primary",
@@ -350,6 +377,7 @@ export const mockResponseByYears: TopNavResponse = {
     {
       programme_fields: programmeFieldsFixture({
         overrides: {
+          subject_parent: null,
           year_slug: "year-5",
           year_description: "Year 5",
           phase_slug: "primary",
@@ -362,6 +390,7 @@ export const mockResponseByYears: TopNavResponse = {
     {
       programme_fields: programmeFieldsFixture({
         overrides: {
+          subject_parent: null,
           year_slug: "year-6",
           year_description: "Year 6",
           phase_slug: "primary",
@@ -374,6 +403,7 @@ export const mockResponseByYears: TopNavResponse = {
     {
       programme_fields: programmeFieldsFixture({
         overrides: {
+          subject_parent: null,
           year_slug: "year-7",
           year_description: "Year 7",
           phase_slug: "secondary",
@@ -386,6 +416,7 @@ export const mockResponseByYears: TopNavResponse = {
     {
       programme_fields: programmeFieldsFixture({
         overrides: {
+          subject_parent: null,
           year_slug: "year-8",
           year_description: "Year 8",
           phase_slug: "secondary",
@@ -398,6 +429,7 @@ export const mockResponseByYears: TopNavResponse = {
     {
       programme_fields: programmeFieldsFixture({
         overrides: {
+          subject_parent: null,
           year_slug: "year-9",
           year_description: "Year 9",
           phase_slug: "secondary",
@@ -410,6 +442,7 @@ export const mockResponseByYears: TopNavResponse = {
     {
       programme_fields: programmeFieldsFixture({
         overrides: {
+          subject_parent: null,
           year_slug: "year-10",
           year_description: "Year 10",
           phase_slug: "secondary",
@@ -422,6 +455,7 @@ export const mockResponseByYears: TopNavResponse = {
     {
       programme_fields: programmeFieldsFixture({
         overrides: {
+          subject_parent: null,
           year_slug: "year-11",
           year_description: "Year 11",
           phase_slug: "secondary",
@@ -432,4 +466,5 @@ export const mockResponseByYears: TopNavResponse = {
       programme_slug: "art-primary-ks4",
     },
   ],
+  phaseOptions: curriculumPhaseOptionsFixture(),
 };

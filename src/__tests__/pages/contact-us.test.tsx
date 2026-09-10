@@ -102,7 +102,7 @@ describe("pages/contact-us.tsx", () => {
     it("unhandled errors are rethrown (not swallowed)", async () => {
       // eslint-disable-next-line
       // @ts-ignore
-      expect(getStaticProps()).rejects.toThrow("properties of undefined");
+      await expect(getStaticProps()).rejects.toThrow("properties of undefined");
     });
   });
 });

@@ -1,168 +1,153 @@
 import {
   OakLI,
-  OakPrimaryInvertedButton,
   OakSubjectIconButton,
   OakUL,
 } from "@oaknational/oak-components";
 import Link from "next/link";
+import React from "react";
 
 import { DropdownFocusManager } from "../DropdownFocusManager/DropdownFocusManager";
+import { MaybeVisuallyHidden } from "../TopNav";
+import { getKs4OptionButtonId } from "../DropdownFocusManager/helpers";
 
-import { resolveOakHref } from "@/common-lib/urls";
+import { TopNavDropdownProps } from "./TopNavDropdown";
+import { TopNavKS4Buttons } from "./TopNavKS4Buttons";
+
 import { getValidSubjectIconName } from "@/utils/getValidSubjectIconName";
 import {
-  TeachersSubNavData,
   TeachersSubNavData as TeachersData,
+  SubjectsMenu,
+  PhaseSlug,
 } from "@/node-lib/curriculum-api-2023/queries/topNav/topNav.schema";
-
-export const getSubjectLinkHref = ({
-  programmeCount,
-  subjectSlug,
-  programmeSlug,
-  keyStageSlug,
-}: {
-  programmeCount: number;
-  subjectSlug: string;
-  programmeSlug: string | null;
-  keyStageSlug?: string;
-}): string => {
-  return programmeCount > 1 && keyStageSlug
-    ? // If there are multiple programmes, link to the programme listing page
-      resolveOakHref({
-        page: "programme-index",
-        subjectSlug,
-        keyStageSlug,
-      })
-    : // If there is only one programme, link to the unit listing page for that programme
-      resolveOakHref({
-        page: "unit-index",
-        programmeSlug: programmeSlug!,
-      });
-};
+import { KeystageSlug } from "@/node-lib/curriculum-api-2023/shared.schema";
 
 const TopNavSubjectButtons = ({
   selectedMenu,
   subjects,
-  nonCurriculumSubjects,
-  keyStageSlug,
-  keyStageTitle,
+  selectedSubject,
   handleClick,
   focusManager,
+  phase,
+  identifyingSlug,
+  onExamBoardPanelOpen,
+  onExamboardPanelClose,
+  getButtonId,
 }: {
-  selectedMenu: keyof TeachersSubNavData;
-  subjects: TeachersSubNavData[
-    | "primary"
-    | "secondary"]["children"][number]["children"];
-  nonCurriculumSubjects?: TeachersSubNavData[
-    | "primary"
-    | "secondary"]["children"][number]["children"];
-  keyStageSlug: string;
-  keyStageTitle: string;
-  handleClick: (subject: string, keystage: string) => void;
+  selectedMenu?: TopNavDropdownProps["selectedMenu"];
+  phase: PhaseSlug;
+  subjects: SubjectsMenu[] | null;
+  selectedSubject: SubjectsMenu | null;
+  identifyingSlug: KeystageSlug | PhaseSlug;
+  handleClick: (subject: SubjectsMenu, keystage: string) => void;
   focusManager?: DropdownFocusManager<TeachersData>;
+  onExamBoardPanelOpen: (subject: SubjectsMenu) => void;
+  onExamboardPanelClose: () => void;
+  getButtonId: (key: string) => string | null | undefined;
 }) => {
+  const handleSubjectClick = (
+    e: React.MouseEvent<HTMLButtonElement>,
+    subject: SubjectsMenu,
+  ) => {
+    if (subject.children && subject.children.length > 0) {
+      e.preventDefault();
+      onExamBoardPanelOpen?.(subject);
+      return;
+    }
+    handleClick(subject, identifyingSlug);
+  };
+
   return (
-    <OakUL
-      $display={"flex"}
-      $flexGrow={1}
-      $flexWrap={"wrap"}
-      $gap={"spacing-16"}
-      $reset
-      id={`topnav-teachers-${keyStageSlug}-subjects`}
-    >
-      {(subjects &&
-        subjects.length > 0 &&
-        subjects.map((subject) => {
-          const { programmeCount, slug, programmeSlug } = subject;
-          const buttonId = focusManager?.createId(
-            `teachers-${selectedMenu}-${keyStageSlug}`,
-            slug,
-          );
+    <>
+      <OakUL
+        $display={"flex"}
+        $flexGrow={1}
+        $flexWrap={"wrap"}
+        $alignContent={"baseline"}
+        $gap={"spacing-16"}
+        $reset
+        id={`topnav-teachers-${identifyingSlug}-subjects`}
+      >
+        {subjects &&
+          subjects.length > 0 &&
+          subjects.map((subject) => {
+            const {
+              slug: key,
+              title,
+              children,
+              nonCurriculum,
+              href,
+              subjectSlug,
+            } = subject;
 
-          return (
-            <OakLI key={subject.title}>
-              <OakSubjectIconButton
-                variant={"horizontal"}
-                element={Link}
-                subjectIconName={getValidSubjectIconName(slug)}
-                href={getSubjectLinkHref({
-                  programmeCount,
-                  subjectSlug: slug,
-                  programmeSlug,
-                  keyStageSlug,
-                })}
-                onClick={() => handleClick(slug, keyStageSlug)}
-                onKeyDown={(e) =>
-                  buttonId && focusManager?.handleKeyDown(e, buttonId)
-                }
-                phase={selectedMenu as "primary" | "secondary"}
-                id={buttonId}
-              >
-                {subject.title}
-              </OakSubjectIconButton>
-            </OakLI>
-          );
-        })) ??
-        null}
-      {nonCurriculumSubjects &&
-        nonCurriculumSubjects.length > 0 &&
-        nonCurriculumSubjects.map((subject) => {
-          const { programmeCount, slug, programmeSlug } = subject;
-          const buttonId = focusManager?.createId(
-            `teachers-${selectedMenu}-${keyStageSlug}`,
-            slug,
-          );
+            const buttonId = getButtonId(key);
 
-          return (
-            <OakLI key={subject.slug}>
-              <OakSubjectIconButton
-                variant={"horizontal"}
-                key={subject.slug}
-                element={Link}
-                subjectIconName={getValidSubjectIconName(subject.slug)}
-                href={getSubjectLinkHref({
-                  programmeCount,
+            if (!buttonId) return null;
+
+            return (
+              <OakLI key={title}>
+                <OakSubjectIconButton
+                  variant={"horizontal"}
+                  element={children?.length ? "button" : Link}
+                  data-testid={`topnav-subject-button-${key}`}
+                  subjectIconName={getValidSubjectIconName(subjectSlug)}
+                  selected={selectedSubject?.title === title}
+                  onClick={(e: React.MouseEvent<HTMLButtonElement>) =>
+                    handleSubjectClick(e, subject)
+                  }
+                  href={href}
+                  onKeyDown={(e: React.KeyboardEvent<HTMLButtonElement>) => {
+                    if (e.key === "Enter" && children?.length) {
+                      e.preventDefault();
+                      onExamBoardPanelOpen?.(subject);
+                      return;
+                    }
+                    if (buttonId) {
+                      focusManager?.handleTabKeyDown(e, buttonId);
+                    }
+                  }}
+                  phase={
+                    nonCurriculum
+                      ? "non-curriculum"
+                      : (selectedMenu as "primary" | "secondary")
+                  }
+                  id={buttonId}
+                  aria-disabled={selectedMenu !== phase}
+                >
+                  {title}
+                </OakSubjectIconButton>
+              </OakLI>
+            );
+          })}
+      </OakUL>
+      {subjects?.map((subject) => {
+        if (!subject.children || subject.children.length === 0) return null;
+
+        return (
+          <MaybeVisuallyHidden
+            shouldDisplay={selectedSubject === subject}
+            hiddenElementId={`teachers-examboards-${subject.slug}`}
+            key={subject.slug}
+          >
+            <TopNavKS4Buttons
+              ks4Options={subject.children}
+              subject={subject}
+              focusManager={focusManager}
+              onClick={handleClick}
+              onExamboardPanelClose={onExamboardPanelClose}
+              getButtonId={(slug) =>
+                getKs4OptionButtonId({
+                  focusManager,
+                  slug,
                   subjectSlug: subject.slug,
-                  programmeSlug,
-                  keyStageSlug,
-                })}
-                onClick={() => handleClick(subject.slug, keyStageSlug)}
-                onKeyDown={(e) =>
-                  buttonId && focusManager?.handleKeyDown(e, buttonId)
-                }
-                phase={"non-curriculum"}
-                id={buttonId}
-              >
-                {subject.title}
-              </OakSubjectIconButton>
-            </OakLI>
-          );
-        })}
-      <OakLI>
-        <OakPrimaryInvertedButton
-          id={focusManager?.createId(
-            `teachers-${selectedMenu}-${keyStageSlug}`,
-            "all-keystages-button",
-          )}
-          element={Link}
-          iconName="arrow-right"
-          isTrailingIcon
-          onClick={() => handleClick("all", keyStageSlug)}
-          onKeyDown={(e) =>
-            focusManager?.handleKeyDown(
-              e,
-              focusManager.createId(
-                `teachers-${selectedMenu}-${keyStageSlug}`,
-                "all-keystages-button",
-              ),
-            )
-          }
-          href={resolveOakHref({ page: "subject-index", keyStageSlug })}
-        >
-          All {keyStageTitle} subjects
-        </OakPrimaryInvertedButton>
-      </OakLI>
-    </OakUL>
+                  identifyingSlug,
+                  phase: "secondary",
+                })
+              }
+            />
+          </MaybeVisuallyHidden>
+        );
+      })}
+    </>
   );
 };
 

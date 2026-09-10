@@ -1,14 +1,16 @@
-import { encode } from "querystring";
-
-import Router, { useRouter } from "next/router";
+import {
+  useRouter as useAppRouter,
+  usePathname,
+  useSearchParams,
+} from "next/navigation";
+import { useRouter as useCompatRouter } from "next/compat/router";
 import { RefObject, useMemo, useRef } from "react";
-import { resolveHref } from "next/dist/client/resolve-href";
 
 export type PaginationProps = {
   currentPage: number;
   totalPages: number;
-  prevPageUrlObject?: Parameters<typeof resolveHref>[1];
-  nextPageUrlObject?: Parameters<typeof resolveHref>[1];
+  prevPageUrlObject?: { pathname: string; query?: Record<string, string> };
+  nextPageUrlObject?: { pathname: string; query?: Record<string, string> };
   firstItemRef?: RefObject<HTMLAnchorElement> | null;
   paginationTitle?: string;
   prevHref: string;
@@ -21,70 +23,108 @@ export type PaginationProps = {
 
 type Items<T> = { items: T[] };
 
+export type PaginationNavigationAdapter = {
+  route: string;
+  searchParams: URLSearchParams | null;
+  push: (url: string) => void;
+};
+
 export type UsePaginationProps = {
   totalResults: number;
   pageSize: number;
+  navigation?: PaginationNavigationAdapter;
+};
+
+const toHref = (pathname: string, params: URLSearchParams) => {
+  const queryString = params.toString();
+  return queryString ? `${pathname}?${queryString}` : pathname;
+};
+
+const toUrlObject = (pathname: string, params: URLSearchParams) => {
+  const query = Object.fromEntries(params);
+  return Object.keys(query).length > 0 ? { pathname, query } : { pathname };
 };
 
 const usePagination = <T>(
   props: UsePaginationProps & Items<T>,
 ): { currentPageItems: T[] } & UsePaginationProps & PaginationProps => {
-  const { pageSize, totalResults, items } = props;
+  const { pageSize, totalResults, items, navigation } = props;
   const totalPages = Math.ceil(totalResults / pageSize);
-  const router = useRouter();
-  const { page: pageRaw } = router.query;
-  const pageString = (Array.isArray(pageRaw) ? pageRaw[0] : pageRaw) || "";
-  const pageNumber = Math.max(
-    Math.min(Number.parseInt(pageString), totalPages),
-    1,
-  );
-  const currentPage = isNaN(pageNumber) ? 1 : pageNumber;
 
-  const nextPageParams = new URLSearchParams(encode(router.query));
-  nextPageParams.set("page", (currentPage + 1).toString());
+  const appRouter = useAppRouter();
+  const compatRouter = useCompatRouter();
+  const pathname = usePathname();
+  const appSearchParams = useSearchParams();
+  const route = navigation?.route ?? pathname ?? "/";
+  const searchParams =
+    navigation?.searchParams ?? appSearchParams ?? new URLSearchParams();
 
-  const prevPageParams = new URLSearchParams(encode(router.query));
-  prevPageParams.set("page", (currentPage - 1).toString());
+  const pageRaw = searchParams.get("page") ?? "";
+  const parsedPage = Number.parseInt(pageRaw, 10);
+  const currentPage = Number.isNaN(parsedPage)
+    ? 1
+    : Math.max(1, Math.min(parsedPage, totalPages));
 
-  const isLastPage = currentPage === totalPages;
   const isFirstPage = currentPage === 1;
-
-  const pathname = router.pathname;
-  const { ...currentQuery } = router.query;
+  const isLastPage = currentPage === totalPages;
 
   const currentPageItems = useMemo(() => {
-    const firstPageIndex = (currentPage - 1) * pageSize;
-    const lastPageIndex = firstPageIndex + pageSize;
-    return items.slice(firstPageIndex, lastPageIndex);
+    const first = (currentPage - 1) * pageSize;
+    const last = first + pageSize;
+    return items.slice(first, last);
   }, [currentPage, items, pageSize]);
 
   const firstItemRef = useRef<HTMLAnchorElement | null>(null);
   const paginationTitle =
     totalPages > 1 ? ` | Page ${currentPage} of ${totalPages}` : "";
-  const nextPageUrlObject = isLastPage
-    ? { pathname: router.asPath }
-    : { pathname: pathname, query: Object.fromEntries(nextPageParams) };
-  const prevPageUrlObject = isFirstPage
-    ? { pathname: router.asPath }
-    : { pathname: pathname, query: Object.fromEntries(prevPageParams) };
-  const [, prevHref = ""] = resolveHref(Router, prevPageUrlObject || "", true);
-  const [, nextHref = ""] = resolveHref(Router, nextPageUrlObject || "", true);
 
-  const paginationRoute = router.asPath?.split("?")[0] ?? router.asPath;
+  const baseParams = new URLSearchParams(searchParams);
+
+  const prevParams = new URLSearchParams(searchParams);
+  if (currentPage - 1 <= 1) {
+    prevParams.delete("page");
+  } else {
+    prevParams.set("page", String(currentPage - 1));
+  }
+
+  const nextParams = new URLSearchParams(searchParams);
+  nextParams.set("page", String(currentPage + 1));
+
+  const prevHref = isFirstPage
+    ? toHref(route, baseParams)
+    : toHref(route, prevParams);
+  const nextHref = isLastPage
+    ? toHref(route, baseParams)
+    : toHref(route, nextParams);
+
+  const prevPageUrlObject = isFirstPage
+    ? toUrlObject(route, baseParams)
+    : toUrlObject(route, prevParams);
+
+  const nextPageUrlObject = isLastPage
+    ? toUrlObject(route, baseParams)
+    : toUrlObject(route, nextParams);
+
   const onPageChange = (page: number) => {
-    router
-      .push(
-        {
-          pathname: router.pathname,
-          query: { ...currentQuery, page },
-        },
-        undefined,
-        { shallow: true, scroll: false },
-      )
-      .then(() => {
-        window.scrollTo({ top: 0, behavior: "smooth" });
-        firstItemRef.current?.focus();
-      });
+    const bounded = Math.max(1, Math.min(page, totalPages));
+    const params = new URLSearchParams(searchParams);
+
+    if (bounded <= 1) {
+      params.delete("page");
+    } else {
+      params.set("page", String(bounded));
+    }
+
+    if (navigation?.push) {
+      navigation.push(toHref(route, params));
+    } else if (compatRouter) {
+      compatRouter.push(toHref(route, params));
+    } else {
+      appRouter.push(toHref(route, params));
+    }
+
+    window.scrollTo({ top: 0, behavior: "smooth" });
+    firstItemRef.current?.focus();
   };
 
   return {
@@ -95,17 +135,13 @@ const usePagination = <T>(
     totalPages,
     totalResults,
     firstItemRef,
-    nextPageUrlObject: isLastPage
-      ? { pathname: router.asPath }
-      : { pathname: pathname, query: Object.fromEntries(nextPageParams) },
-    prevPageUrlObject: isFirstPage
-      ? { pathname: router.asPath }
-      : { pathname: pathname, query: Object.fromEntries(prevPageParams) },
+    nextPageUrlObject,
+    prevPageUrlObject,
     prevHref,
     nextHref,
     isFirstPage,
     isLastPage,
-    paginationRoute,
+    paginationRoute: route,
     onPageChange,
   };
 };

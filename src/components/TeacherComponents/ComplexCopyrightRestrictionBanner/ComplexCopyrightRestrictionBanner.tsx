@@ -1,16 +1,15 @@
-import { useEffect } from "react";
+import { ComponentProps, useEffect } from "react";
 import { SignUpButton } from "@clerk/nextjs";
 import {
-  OakFlex,
   OakLink,
-  OakIcon,
   OakP,
   OakSecondaryLink,
   OakSpan,
-  OakHeading,
+  OakInlineBanner,
+  OakSmallTertiaryInvertedButton,
 } from "@oaknational/oak-components";
-import { useRouter } from "next/router";
-import styled from "styled-components";
+import { usePathname, useSearchParams } from "next/navigation";
+import Link from "next/link";
 
 import { resolveOakHref } from "@/common-lib/urls";
 import { ComponentTypeValueType } from "@/browser-lib/avo/Avo";
@@ -22,62 +21,59 @@ import {
 } from "@/utils/copyrightLinks";
 import { useComplexCopyright } from "@/hooks/useComplexCopyright";
 
-export type ComplexCopyrightRestrictionBannerProps = {
-  isGeorestricted?: boolean;
-  isLoginRequired?: boolean;
-  componentType?: ComponentTypeValueType;
-  unitName?: string | null;
-  unitSlug?: string | null;
-  lessonName?: string | null;
-  lessonSlug?: string | null;
-  lessonReleaseDate?: string | null;
-  isLessonLegacy?: boolean;
-};
+type InnerCopyrightBannerProps = Omit<
+  ComponentProps<typeof OakInlineBanner>,
+  "message" | "isOpen"
+>;
 
-const StyledFlex = styled(OakFlex)`
-  max-width: 80%;
-
-  @media (max-width: 1280px) {
-    max-width: 70%;
-  }
-  @media (max-width: 750px) {
-    max-width: 100%;
-  }
-`;
+export type ComplexCopyrightRestrictionBannerProps =
+  InnerCopyrightBannerProps & {
+    isGeorestricted?: boolean;
+    isLoginRequired?: boolean;
+    componentType?: ComponentTypeValueType;
+    unitName?: string | null;
+    unitSlug?: string | null;
+    lessonName?: string | null;
+    lessonSlug?: string | null;
+    lessonReleaseDate?: string | null;
+    isLessonLegacy?: boolean;
+  };
 
 const SignedOutCopyrightBanner = ({
   showOnboardingLink,
   isGeorestricted,
   isUnit,
-}: {
+  ...rest
+}: InnerCopyrightBannerProps & {
   showOnboardingLink: boolean;
   isGeorestricted: boolean;
   isUnit: boolean;
 }) => {
-  const router = useRouter();
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
+  const returnTo =
+    pathname && searchParams ? pathname + "?" + searchParams.toString() : "";
 
   return (
-    <OakFlex
-      $background={"bg-neutral"}
-      $ba={"border-solid-s"}
-      $borderColor={"border-neutral-lighter"}
-      $borderRadius={"border-radius-l"}
-      $justifyContent={"space-between"}
-      $alignItems={["flex-end", "center"]}
-      $gap={"spacing-24"}
-      $pa={"spacing-16"}
+    <OakInlineBanner
+      isOpen
+      type="neutral"
+      icon="copyright"
       $maxWidth={"spacing-960"}
-      $flexDirection={["column", "row"]}
       data-testid="copyright-banner-signed-out"
-    >
-      <StyledFlex
-        $justifyContent={"space-between"}
-        $alignItems={["flex-start", "center"]}
-        $gap={"spacing-12"}
-      >
-        <OakIcon iconName={"copyright"} />
-        <OakP $font={"heading-light-7"} $color={"text-primary"}>
-          <OakSpan $font={"heading-7"} $color={"text-primary"}>
+      cta={
+        <OakSmallTertiaryInvertedButton
+          element={Link}
+          href={COPYRIGHT_SUPPORT_LINK}
+          isTrailingIcon
+          iconName={"external"}
+        >
+          Copyrights help
+        </OakSmallTertiaryInvertedButton>
+      }
+      message={
+        <OakP $font={"body-3"} $color={"text-primary"}>
+          <OakSpan $font={"body-3-bold"} $color={"text-primary"}>
             Copyrighted materials:{" "}
           </OakSpan>
           to view and download resources from this {isUnit ? "unit" : "lesson"},
@@ -87,15 +83,13 @@ const SignedOutCopyrightBanner = ({
               data-testid="copyright-banner-onboarding-link"
               href={resolveOakHref({
                 page: "onboarding",
-                query: { returnTo: router.asPath },
+                query: { returnTo },
               })}
             >
               complete sign up.
             </OakSecondaryLink>
           ) : (
-            <SignUpButton
-              forceRedirectUrl={`/onboarding?returnTo=${router.asPath}`}
-            >
+            <SignUpButton forceRedirectUrl={`/onboarding?returnTo=${returnTo}`}>
               <OakSecondaryLink
                 data-testid="copyright-banner-signin-link"
                 element="button"
@@ -105,54 +99,41 @@ const SignedOutCopyrightBanner = ({
             </SignUpButton>
           )}
         </OakP>
-      </StyledFlex>
-      <OakSecondaryLink
-        href={COPYRIGHT_SUPPORT_LINK}
-        isTrailingIcon
-        iconName={"external"}
-      >
-        <OakSpan $font={"heading-light-7"} $color={"text-primary"}>
-          Copyrights help
-        </OakSpan>
-      </OakSecondaryLink>
-    </OakFlex>
+      }
+      {...rest}
+    />
   );
 };
 
-const SignedInGeorestrictedBanner = ({ isUnit }: { isUnit: boolean }) => (
-  <OakFlex
-    $background={"bg-decorative3-very-subdued"}
-    $ba={"border-solid-s"}
-    $borderColor={"border-decorative3-stronger"}
-    $borderRadius={"border-radius-l"}
-    $flexDirection={"column"}
-    $justifyContent={"space-between"}
-    $alignItems={"flex-start"}
-    $gap={"spacing-16"}
-    $pa={"spacing-24"}
+const SignedInGeorestrictedBanner = ({
+  isUnit,
+  ...rest
+}: InnerCopyrightBannerProps & {
+  isUnit: boolean;
+}) => (
+  <OakInlineBanner
+    type="info"
     $maxWidth={"spacing-960"}
     data-testid="copyright-banner-signed-in"
-  >
-    <OakHeading
-      tag="h2"
-      $font={["heading-7", "heading-5"]}
-      $color={"text-primary"}
-    >
-      Sorry but
-      {isUnit
-        ? " this unit can only be downloaded if you are located "
-        : " this lesson is only available "}
-      in the UK.
-    </OakHeading>
-    <OakP $font={["body-2", "body-1"]} $color={"text-primary"}>
-      Some of our content is restricted to the UK due to copyright. You can{" "}
-      <OakLink href={COPYRIGHT_SUPPORT_LINK}>
-        read more about copyrights
-      </OakLink>{" "}
-      or if you believe this is an error and you’re based in the UK, please{" "}
-      <OakLink href={COPYRIGHT_CONTACT_US_LINK}>contact us.</OakLink>
-    </OakP>
-  </OakFlex>
+    isOpen
+    icon="globe"
+    title={`Sorry but ${
+      isUnit
+        ? "this unit can only be downloaded if you are located"
+        : "this lesson is only available"
+    } in the UK.`}
+    message={
+      <OakP $font={"body-2"} $color={"text-primary"}>
+        Some of our content is restricted to the UK due to copyright. You can{" "}
+        <OakLink href={COPYRIGHT_SUPPORT_LINK}>
+          read more about copyrights
+        </OakLink>{" "}
+        or if you believe this is an error and you’re based in the UK, please{" "}
+        <OakLink href={COPYRIGHT_CONTACT_US_LINK}>contact us.</OakLink>
+      </OakP>
+    }
+    {...rest}
+  />
 );
 
 const ComplexCopyrightRestrictionBanner = (
@@ -168,6 +149,7 @@ const ComplexCopyrightRestrictionBanner = (
     lessonSlug,
     lessonReleaseDate,
     isLessonLegacy,
+    ...rest
   } = props;
 
   const {
@@ -225,12 +207,13 @@ const ComplexCopyrightRestrictionBanner = (
     showSignedInNotOnboarded;
 
   return showGeoBlocked ? (
-    <SignedInGeorestrictedBanner isUnit={isUnit} />
+    <SignedInGeorestrictedBanner isUnit={isUnit} {...rest} />
   ) : showSignedOutCopyrightBanner ? (
     <SignedOutCopyrightBanner
       showOnboardingLink={showSignedInNotOnboarded}
       isGeorestricted={isGeorestricted ?? false}
       isUnit={isUnit}
+      {...rest}
     />
   ) : null;
 };

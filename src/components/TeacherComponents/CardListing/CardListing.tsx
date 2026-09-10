@@ -4,8 +4,10 @@ import { ReactNode } from "react";
 import { SaveUnitButton } from "../SaveUnitButton/SaveUnitButton";
 
 import {
-  getCardListingDefaultTextColour,
   getCardListingLinkProps,
+  getCardListingTextColour,
+  getCardListingBackgroundColour,
+  type HighlightColorVariant,
 } from "./helpers";
 import {
   CardListingStyledLink,
@@ -21,7 +23,8 @@ import {
 import { TrackingProgrammeData } from "@/node-lib/educator-api/helpers/saveUnits/utils";
 
 export type CardProps = {
-  isHighlighted: boolean;
+  /** Ignored on parent CardListing when `childCards` is present; use on child cards instead. */
+  highlightColorVariant?: HighlightColorVariant;
   title: string;
   lessonCount?: number;
   href: string;
@@ -46,16 +49,19 @@ export type CardListingProps = CardProps & {
 };
 
 const CardListing = (props: CardListingProps) => {
-  const { layoutVariant, isHighlighted, childCards, showBorder } = props;
+  const { layoutVariant, highlightColorVariant, childCards, showBorder } =
+    props;
 
   const hasChildCards = (childCards?.length ?? 0) > 0;
+
+  const backgroundColor = hasChildCards
+    ? "bg-primary"
+    : getCardListingBackgroundColour(highlightColorVariant);
 
   return (
     <CardListingStyledFlex
       $borderRadius={"border-radius-m2"}
-      $background={
-        isHighlighted && !hasChildCards ? "bg-inverted" : "bg-primary"
-      }
+      $background={backgroundColor}
       $pa={"spacing-20"}
       $gap={"spacing-20"}
       $flexDirection={layoutVariant === "horizontal" ? "row" : "column"}
@@ -73,7 +79,7 @@ const CardListing = (props: CardListingProps) => {
 const CardListingRenderLayout = (props: CardListingProps) => {
   const {
     layoutVariant,
-    isHighlighted,
+    highlightColorVariant,
     disabled,
     saveProps,
     href,
@@ -86,9 +92,9 @@ const CardListingRenderLayout = (props: CardListingProps) => {
   const showSave = saveProps !== undefined;
   const showFooter = (lessonCount !== undefined || showSave) && !hasChildCards;
 
-  const defaultTextColour = getCardListingDefaultTextColour({
+  const defaultTextColour = getCardListingTextColour({
+    highlightColorVariant,
     disabled,
-    isHighlighted,
     hasChildCards,
   });
 
@@ -150,7 +156,9 @@ const CardListingRenderLayout = (props: CardListingProps) => {
             <CardListingLessonCount {...props} />
             {showSave && (
               <SaveUnitButton
-                buttonVariant={isHighlighted ? "inverted" : "default"}
+                buttonVariant={
+                  highlightColorVariant === "secondary" ? "inverted" : "default"
+                }
                 disabled={disabled}
                 {...saveProps}
               />
@@ -193,7 +201,9 @@ const CardListingRenderLayout = (props: CardListingProps) => {
             <CardListingLessonCount {...props} />
             {showSave && (
               <SaveUnitButton
-                buttonVariant={isHighlighted ? "inverted" : "default"}
+                buttonVariant={
+                  highlightColorVariant === "secondary" ? "inverted" : "default"
+                }
                 disabled={disabled}
                 {...saveProps}
               />

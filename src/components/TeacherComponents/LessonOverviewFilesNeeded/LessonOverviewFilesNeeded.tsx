@@ -36,7 +36,6 @@ const LessonOverviewFilesNeeded: FC<LessonOverviewFilesNeededProps> = ({
           lessonSlug: lessonSlug,
           programmeSlug: programmeSlug,
           unitSlug: unitSlug,
-          downloads: "downloads",
           query: {
             preselected: "additional files",
           },
@@ -89,7 +88,7 @@ const LessonOverviewFilesNeeded: FC<LessonOverviewFilesNeededProps> = ({
           }}
         />
       </OakFlex>
-      <BrushBorders color="aqua50" />
+      <BrushBorders color="bg-decorative2-subdued" />
     </OakBox>
   );
 };

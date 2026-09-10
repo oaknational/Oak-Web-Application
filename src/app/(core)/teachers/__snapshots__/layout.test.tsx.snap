@@ -1,0 +1,12 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`core layout renders correctly 1`] = `
+<React.Fragment>
+  <SimulateErrorControls
+    errorBoundaryLevel="core"
+  />
+  <styled.div>
+    children
+  </styled.div>
+</React.Fragment>
+`;

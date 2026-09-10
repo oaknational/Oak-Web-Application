@@ -1,10 +1,13 @@
+import Link from "next/link";
 import { FC } from "react";
-import { OakHeading } from "@oaknational/oak-components";
+import {
+  OakFlex,
+  OakHeading,
+  OakTertiaryButton,
+} from "@oaknational/oak-components";
 
 import { CTA } from "@/common-lib/cms-types";
 import { getLinkHref } from "@/utils/portableText/resolveInternalHref";
-import ButtonAsLink from "@/components/SharedComponents/Button/ButtonAsLink";
-import Flex from "@/components/SharedComponents/Flex.deprecated";
 
 export const LandingPageHeroTitle: FC<{
   title: string;
@@ -13,12 +16,12 @@ export const LandingPageHeroTitle: FC<{
   leftAlign?: boolean;
 }> = ({ cta, heading, title, leftAlign }) => {
   return (
-    <Flex
-      $maxWidth={840}
-      $mb={[92]}
+    <OakFlex
+      $maxWidth={"spacing-960"}
+      $mb={"spacing-80"}
       $flexDirection={"column"}
       $alignItems={["flex-start", leftAlign ? "flex-start" : "center"]}
-      $ph={16}
+      $ph={"spacing-16"}
     >
       <OakHeading
         $mb={["spacing-8"]}
@@ -39,16 +42,17 @@ export const LandingPageHeroTitle: FC<{
         </OakHeading>
       )}
       {cta && (
-        <ButtonAsLink
-          icon="arrow-right"
-          $iconPosition={"trailing"}
-          $mt={[48, 32]}
-          label={cta.label}
-          page={null}
+        <OakTertiaryButton
+          $mt={["spacing-48", "spacing-32"]}
+          element={Link}
+          iconName="arrow-right"
+          isTrailingIcon
           href={getLinkHref(cta)}
-        />
+        >
+          {cta.label}
+        </OakTertiaryButton>
       )}
-    </Flex>
+    </OakFlex>
   );
 };
 

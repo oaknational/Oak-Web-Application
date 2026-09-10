@@ -9,6 +9,12 @@ import getBrowserConfig from "@/browser-lib/getBrowserConfig";
 const DOWNLOADS_API_URL = getBrowserConfig("downloadApiUrl");
 
 /**
+ * PUPIL-1750: Keep downloads API "check-files" calls client-side only.
+ * Calling these during SSR / ISR (including revalidate) has repeatedly been rolled back
+ * due to high-volume failures/noise and unreliable upstream behaviour under revalidation load.
+ */
+
+/**
  * Expected response schema
  */
 export const lessonDataSchema = z.object({

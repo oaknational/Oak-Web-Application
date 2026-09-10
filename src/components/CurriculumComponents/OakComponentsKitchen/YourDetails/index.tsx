@@ -206,8 +206,6 @@ export default function YourDetails({
               target="_blank"
               iconName="external"
               isTrailingIcon
-              iconHeight="spacing-20"
-              iconWidth="spacing-20"
             >
               privacy policy
             </OakLink>

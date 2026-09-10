@@ -3,6 +3,7 @@ import { screen } from "@testing-library/dom";
 import CardListing from "./CardListing";
 
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
+import { getOakUiColor } from "@/__tests__/__helpers__/getOakUiColor";
 
 const render = renderWithProviders();
 
@@ -10,7 +11,6 @@ const defaultProps = {
   index: 158,
   title: "Card title",
   layoutVariant: "horizontal" as const,
-  isHighlighted: false,
   href: "testUrl",
 };
 
@@ -28,7 +28,6 @@ const saveProps = {
 };
 
 const childCardProps = {
-  isHighlighted: false,
   href: "testUrl",
   lessonCount: 10,
   saveProps,
@@ -110,21 +109,29 @@ describe("CardListing", () => {
   });
   it("renders correctly in a highlighted state", () => {
     const { rerender } = render(
-      <CardListing {...defaultProps} isHighlighted saveProps={saveProps} />,
+      <CardListing
+        {...defaultProps}
+        highlightColorVariant="secondary"
+        saveProps={saveProps}
+      />,
     );
 
     const card = screen.getByTestId("card-listing-container");
-    expect(card).toHaveStyle({ background: "#222222" });
+    expect(card).toHaveStyle({ background: getOakUiColor("bg-inverted") });
 
     const saveButton = screen.getByRole("button", {
       name: "Save this unit: Unit title",
     });
-    expect(saveButton).toHaveStyle({ background: "#222222" });
+    expect(saveButton).toHaveStyle({
+      background: getOakUiColor("bg-inverted"),
+    });
 
     rerender(<CardListing {...defaultProps} saveProps={saveProps} />);
 
     const rerenderedCard = screen.getByTestId("card-listing-container");
-    expect(rerenderedCard).toHaveStyle({ background: "#ffffff" });
+    expect(rerenderedCard).toHaveStyle({
+      background: getOakUiColor("bg-primary"),
+    });
 
     const rerenderedSaveButton = screen.getByRole("button", {
       name: "Save this unit: Unit title",
@@ -175,5 +182,70 @@ describe("CardListing", () => {
     );
     const links = screen.getAllByRole("link");
     links.forEach((link) => expect(link).not.toHaveTextContent("Card title"));
+  });
+  it("renders tertiary highlight type in horizontal layout", () => {
+    render(<CardListing {...defaultProps} highlightColorVariant="tertiary" />);
+
+    const card = screen.getByTestId("card-listing-container");
+    expect(card).toBeInTheDocument();
+    const title = screen.getByText("Card title");
+    expect(title).toBeInTheDocument();
+  });
+  it("renders save button with inverted variant in secondary highlight", () => {
+    render(
+      <CardListing
+        {...defaultProps}
+        layoutVariant="vertical"
+        highlightColorVariant="secondary"
+        saveProps={saveProps}
+      />,
+    );
+
+    const saveButton = screen.getByRole("button", {
+      name: "Save this unit: Unit title",
+    });
+    expect(saveButton).toBeInTheDocument();
+  });
+  it("renders highlighted child cards when highlightColorVariant is set on children", () => {
+    render(
+      <CardListing
+        {...defaultProps}
+        childCards={[
+          {
+            ...childCardProps,
+            title: "Optionality 1",
+            highlightColorVariant: "secondary",
+          },
+          {
+            ...childCardProps,
+            title: "Optionality 2",
+            highlightColorVariant: "secondary",
+          },
+        ]}
+      />,
+    );
+
+    const cards = screen.getAllByTestId("card-listing-container");
+    expect(cards).toHaveLength(3);
+    expect(cards[0]).toHaveStyle({ background: getOakUiColor("bg-primary") });
+    expect(cards[1]).toHaveStyle({ background: getOakUiColor("bg-inverted") });
+    expect(cards[2]).toHaveStyle({ background: getOakUiColor("bg-inverted") });
+  });
+  it("renders unhighlighted child cards when highlightColorVariant is not set on children", () => {
+    render(
+      <CardListing
+        {...defaultProps}
+        childCards={[
+          { ...childCardProps, title: "Optionality 1" },
+          { ...childCardProps, title: "Optionality 2" },
+        ]}
+      />,
+    );
+
+    const cards = screen.getAllByTestId("card-listing-container");
+    expect(cards).toHaveLength(3);
+    expect(cards[0]).toHaveStyle({ background: getOakUiColor("bg-primary") });
+    expect(cards[1]).toHaveStyle({ background: getOakUiColor("bg-primary") });
+    expect(cards[2]).toHaveStyle({ background: getOakUiColor("bg-primary") });
   });
 });

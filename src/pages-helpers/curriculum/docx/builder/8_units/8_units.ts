@@ -16,7 +16,6 @@ import {
   JSZipCached,
 } from "../../docx";
 import {
-  createCurriculumSlug,
   generateGridCols,
   groupUnitsBySubjectCategory,
   sortYearPathways,
@@ -37,6 +36,7 @@ import {
   UnitsByPathway,
 } from "@/utils/curriculum/by-pathway";
 import { Ks4Option } from "@/node-lib/curriculum-api-2023/queries/curriculumPhaseOptions/curriculumPhaseOptions.schema";
+import { getSubjectPhaseSlug } from "@/components/TeacherComponents/helpers/getSubjectPhaseSlug";
 
 export function generateGroupedUnits(
   data: CurriculumUnitsFormattedData<CombinedCurriculumData["units"][number]>,
@@ -386,8 +386,12 @@ async function buildYear(
   });
 
   const links = await insertLinks(zip, {
-    interactiveSequence: `https://www.thenational.academy/teachers/curriculum/${createCurriculumSlug(
-      slugs,
+    interactiveSequence: `https://www.thenational.academy/teachers/programmes/${getSubjectPhaseSlug(
+      {
+        subject: slugs.subjectSlug,
+        phaseSlug: slugs.phaseSlug!,
+        examBoardSlug: slugs.ks4OptionSlug,
+      },
     )}/units`,
   });
 

@@ -4,9 +4,7 @@ import { checkIfResourceHasLegacyCopyright } from "../downloadAndShareHelpers/do
 
 import {
   LessonBase,
-  LessonOverviewAll,
   LessonPathway,
-  SpecialistLessonPathway,
 } from "@/components/TeacherComponents/types/lesson.types";
 import truthy from "@/utils/truthy";
 import { Breadcrumb } from "@/components/SharedComponents/Breadcrumbs";
@@ -17,9 +15,12 @@ import {
   StemImageObject,
 } from "@/node-lib/curriculum-api-2023/shared.schema";
 import type { MediaClip } from "@/node-lib/curriculum-api-2023/queries/lessonMediaClips/lessonMediaClips.schema";
-import removeLegacySlugSuffix from "@/utils/slugModifiers/removeLegacySlugSuffix";
 import { LessonItemTitle } from "@/components/TeacherComponents/LessonItemContainer";
-import { SpecialistLessonOverviewData } from "@/node-lib/curriculum-api-2023/queries/specialistLessonOverview/specialistLessonOverview.schema";
+import { resolveOakHref } from "@/common-lib/urls";
+import {
+  getTeacherSubjectPhaseSlug,
+  parseProgrammeSlug,
+} from "@/utils/curriculum/slugs";
 
 /**
  * Returns the intersection different pathways.
@@ -61,38 +62,6 @@ export const getCommonPathway = (
     { ...nullPathway },
   );
 };
-export const lessonIsSpecialist = (
-  u: unknown,
-): u is SpecialistLessonOverviewData => {
-  return (
-    typeof u === "object" &&
-    (u as { isSpecialist: boolean })?.isSpecialist === true
-  );
-};
-export const getPathway = (
-  lesson: LessonOverviewAll,
-): SpecialistLessonPathway | ShallowNullable<LessonPathway> => {
-  if (lessonIsSpecialist(lesson)) {
-    return {
-      lessonSlug: lesson.lessonSlug,
-      lessonTitle: lesson.lessonTitle,
-      unitSlug: lesson.unitSlug,
-      programmeSlug: lesson.programmeSlug,
-      unitTitle: lesson.unitTitle,
-      subjectTitle: lesson.subjectTitle,
-      subjectSlug: lesson.subjectSlug,
-      developmentStageTitle: lesson.developmentStageTitle,
-      disabled: true,
-      keyStageSlug: null,
-      keyStageTitle: null,
-      pathwayTitle: null,
-      yearTitle: null,
-      year: null,
-    } as SpecialistLessonPathway;
-  } else {
-    return getCommonPathway(lesson.isCanonical ? lesson.pathways : [lesson]);
-  }
-};
 
 export const getLessonOverviewBreadCrumb = ({
   lessonSlug,
@@ -111,21 +80,21 @@ export const getLessonOverviewBreadCrumb = ({
 }): Breadcrumb => {
   if (programmeSlug && unitSlug && !isCanonical) {
     return {
-      oakLinkProps: {
+      href: resolveOakHref({
         page: "lesson-overview",
         programmeSlug,
         unitSlug,
         lessonSlug,
-      },
+      }),
       label: lessonTitle,
       disabled,
     };
   } else {
     return {
-      oakLinkProps: {
+      href: resolveOakHref({
         page: "lesson-overview-canonical",
         lessonSlug,
-      },
+      }),
       label: lessonTitle,
       disabled,
     };
@@ -145,23 +114,22 @@ export const getLessonDownloadsBreadCrumb = ({
 }): Breadcrumb => {
   if (programmeSlug && unitSlug) {
     return {
-      oakLinkProps: {
+      href: resolveOakHref({
         page: "lesson-downloads",
         programmeSlug,
         unitSlug,
         lessonSlug,
-        downloads: "downloads",
-      },
+      }),
       label: "Downloads",
       disabled,
     };
   } else {
     return {
-      oakLinkProps: {
+      href: resolveOakHref({
         page: "lesson-downloads-canonical",
         lessonSlug,
         downloads: "downloads",
-      },
+      }),
       label: "Downloads",
       disabled,
     };
@@ -183,21 +151,21 @@ export const getLessonMediaBreadCrumb = ({
   const mediaClipLabel = getMediaClipLabel(subjectSlug);
   if (programmeSlug && unitSlug) {
     return {
-      oakLinkProps: {
+      href: resolveOakHref({
         page: "lesson-media",
         programmeSlug,
         unitSlug,
         lessonSlug,
-      },
+      }),
       label: mediaClipLabel,
       disabled,
     };
   } else {
     return {
-      oakLinkProps: {
+      href: resolveOakHref({
         page: "lesson-media-canonical",
         lessonSlug,
-      },
+      }),
       label: mediaClipLabel,
       disabled,
     };
@@ -210,154 +178,20 @@ export const getLessonShareBreadCrumb = ({
   disabled,
 }: {
   lessonSlug: string;
-  programmeSlug: string | null;
-  unitSlug: string | null;
+  programmeSlug: string;
+  unitSlug: string;
   disabled?: boolean;
 }): Breadcrumb => {
-  if (programmeSlug && unitSlug) {
-    return {
-      oakLinkProps: {
-        page: "lesson-share",
-        programmeSlug,
-        unitSlug,
-        lessonSlug,
-      },
-      label: "Share",
-      disabled,
-    };
-  } else {
-    return {
-      oakLinkProps: {
-        page: "lesson-share-canonical",
-        lessonSlug,
-      },
-      label: "Share",
-      disabled,
-    };
-  }
-};
-
-export const getBreadCrumbForSpecialistDownload = ({
-  lessonSlug,
-  programmeSlug,
-  unitSlug,
-  disabled,
-}: {
-  lessonSlug: string;
-  programmeSlug: string | null;
-  unitSlug: string | null;
-  disabled?: boolean;
-}): Breadcrumb[] => {
-  const nullableBreadcrumbs: (Breadcrumb | null)[] = [
-    programmeSlug && unitSlug
-      ? {
-          oakLinkProps: {
-            page: "specialist-lesson-downloads",
-            programmeSlug,
-            unitSlug,
-            lessonSlug,
-            downloads: "downloads",
-          },
-          label: "Downloads",
-          disabled,
-        }
-      : null,
-  ];
-  return nullableBreadcrumbs.filter(truthy);
-};
-
-export const getBreadCrumbForSpecialistShare = ({
-  lessonSlug,
-  programmeSlug,
-  unitSlug,
-  disabled,
-}: {
-  lessonSlug: string;
-  programmeSlug: string | null;
-  unitSlug: string | null;
-  disabled?: boolean;
-}): Breadcrumb[] => {
-  const nullableBreadcrumbs: (Breadcrumb | null)[] = [
-    programmeSlug && unitSlug
-      ? {
-          oakLinkProps: {
-            page: "specialist-lesson-share",
-            programmeSlug,
-            unitSlug,
-            lessonSlug,
-          },
-          label: "Share",
-          disabled,
-        }
-      : null,
-  ];
-  return nullableBreadcrumbs.filter(truthy);
-};
-
-export const getBreadcrumbsForSpecialistLessonPathway = (
-  lesson: SpecialistLessonPathway | null,
-): Breadcrumb[] | [] => {
-  if (!lesson) return [];
-  const {
-    programmeSlug,
-    subjectTitle,
-    subjectSlug,
-    developmentStageTitle,
-    unitSlug,
-    unitTitle,
+  return {
+    href: resolveOakHref({
+      page: "lesson-share",
+      programmeSlug,
+      unitSlug,
+      lessonSlug,
+    }),
+    label: "Share",
     disabled,
-    lessonSlug,
-    lessonTitle,
-  } = lesson;
-  const nullableBreadcrumbs: (Breadcrumb | null)[] = [
-    {
-      oakLinkProps: {
-        page: "home",
-      },
-      label: "Home",
-    },
-    {
-      oakLinkProps: {
-        page: "specialist-subject-index",
-      },
-      label: "Specialist and therapies",
-    },
-    subjectSlug && subjectTitle && programmeSlug
-      ? {
-          oakLinkProps: {
-            page: "specialist-unit-index",
-            programmeSlug: programmeSlug,
-          },
-          label:
-            developmentStageTitle !== ""
-              ? `${subjectTitle} - ${developmentStageTitle}`
-              : `${subjectTitle}`,
-        }
-      : null,
-    programmeSlug && unitSlug && unitTitle
-      ? {
-          oakLinkProps: {
-            page: "specialist-lesson-index",
-            programmeSlug,
-            unitSlug,
-          },
-          label: unitTitle,
-        }
-      : null,
-    programmeSlug && unitSlug && lessonSlug
-      ? {
-          oakLinkProps: {
-            page: "specialist-lesson-overview",
-            programmeSlug,
-            unitSlug,
-            lessonSlug,
-          },
-          label: lessonTitle,
-          disabled,
-        }
-      : null,
-  ];
-  return nullableBreadcrumbs.filter(truthy);
+  };
 };
 
 export const getBreadcrumbsForLessonPathway = (
@@ -371,45 +205,54 @@ export const getBreadcrumbsForLessonPathway = (
     unitSlug,
     unitTitle,
   } = lesson;
+  const parsed = parseProgrammeSlug(programmeSlug ?? "");
 
-  let programmeSlugForMathsUnits = programmeSlug;
-
-  if (subjectTitle === "Maths" && programmeSlug) {
-    programmeSlugForMathsUnits = removeLegacySlugSuffix(programmeSlug);
-  }
+  const subjectPhaseSlug = parsed
+    ? getTeacherSubjectPhaseSlug({
+        subjectSlug: parsed.subjectSlug,
+        phaseSlug: parsed.phaseSlug,
+        examboardSlug: parsed.examboardSlug,
+        pathwaySlug: parsed.pathwaySlug,
+      })
+    : null;
 
   const nullableBreadcrumbs: (Breadcrumb | null)[] = [
     {
-      oakLinkProps: {
+      href: resolveOakHref({
         page: "home",
-      },
+      }),
       label: "Home",
     },
     keyStageSlug && keyStageTitle
       ? {
-          oakLinkProps: {
-            page: "subject-index",
-            keyStageSlug,
-          },
+          href: resolveOakHref({
+            page: "home",
+          }),
           label: keyStageTitle,
         }
       : null,
-    subjectTitle && programmeSlug && programmeSlugForMathsUnits
+    subjectTitle && programmeSlug && subjectPhaseSlug
       ? {
-          oakLinkProps: {
-            page: "unit-index",
-            programmeSlug: programmeSlugForMathsUnits,
-          },
+          href: resolveOakHref({
+            page: "teacher-programme",
+            subjectPhaseSlug: subjectPhaseSlug,
+            tab: "units",
+            query: {
+              keystages: parsed?.keystageSlug ?? undefined,
+              years: parsed?.yearSlug?.replace(/^year-/, ""),
+              tiers: parsed?.tierSlug ?? undefined,
+            },
+          }),
           label: subjectTitle,
         }
       : null,
     unitTitle && programmeSlug && unitSlug
       ? {
-          oakLinkProps: {
-            page: "lesson-index",
+          href: resolveOakHref({
+            page: "unit-overview",
             programmeSlug,
             unitSlug,
-          },
+          }),
           label: unitTitle,
         }
       : null,
@@ -431,7 +274,11 @@ export type GetPageLinksForLessonProps = Pick<
   | "hasMediaClips"
 >;
 
-export type LessonPageLinkAnchorId =
+/**
+ * Identifies the type of lesson resource.
+ * Used for business logic, downloads, and tracking.
+ */
+export type LessonResourceType =
   | "lesson-guide"
   | "slide-deck"
   | "lesson-details"
@@ -439,14 +286,21 @@ export type LessonPageLinkAnchorId =
   | "worksheet"
   | "starter-quiz"
   | "exit-quiz"
-  | "quiz"
   | "additional-material"
   | "media-clips";
+
+/**
+ * Anchor IDs for navigation within the lesson page.
+ * Includes LessonResourceType plus the special "quiz" anchor
+ * which is used when both quizzes are grouped together.
+ */
+export type LessonPageLinkAnchorId = LessonResourceType | "quiz";
 
 export const getPageLinksWithSubheadingsForLesson = (
   lesson: GetPageLinksForLessonProps,
   copyrightContent: LegacyCopyrightContent,
   mediaClipsLabel?: string,
+  isContentRestricted?: boolean,
 ): {
   label: string;
   anchorId: LessonPageLinkAnchorId;
@@ -536,6 +390,10 @@ export const getPageLinksWithSubheadingsForLesson = (
     },
   ];
 
+  if (isContentRestricted) {
+    return PAGE_LINKS.filter((p) => p.anchorId === "lesson-details");
+  }
+
   return PAGE_LINKS.filter((pageLink) => pageLink.condition(lesson)).map(
     (lesson) => pick(lesson, ["label", "anchorId", "subheading"]),
   );
@@ -609,7 +467,7 @@ export const createAttributionObject = (
     const attributions: Attribution[] = questions.reduce(
       (acc: Attribution[], question, index) => {
         const questionNumber = `Q${index + 1}`;
-        if (question && question.questionStem) {
+        if (question?.questionStem) {
           const { questionStem } = question;
           const imageStems = questionStem.filter(
             (stem) =>
@@ -631,7 +489,7 @@ export const createAttributionObject = (
           }) as Attribution[];
           acc.push(...mappedAttributions);
         }
-        if (question && question.answers) {
+        if (question?.answers) {
           const { answers } = question;
           if (answers["multiple-choice"]) {
             const { "multiple-choice": multipleChoice } = answers;
@@ -640,8 +498,7 @@ export const createAttributionObject = (
                 if (
                   stem.type === "image" &&
                   !Array.isArray(stem.imageObject.metadata) &&
-                  stem.imageObject.metadata &&
-                  stem.imageObject.metadata.attribution
+                  stem.imageObject.metadata?.attribution
                 ) {
                   acc.push({
                     questionNumber: `${questionNumber} image ${index + 1}`,
@@ -683,15 +540,3 @@ export const sortMediaClipsByOrder = (a: MediaClip, b: MediaClip) => {
   }
   return 0;
 };
-
-export function convertBytesToMegabytes(bytes: number): string {
-  if (!+bytes) return "0 B";
-
-  const k = 1024;
-  const decimals = 2;
-  const sizes = ["B", "KB", "MB", "GB"];
-
-  const i = Math.floor(Math.log(bytes) / Math.log(k));
-
-  return `${Number.parseFloat((bytes / Math.pow(k, i)).toFixed(decimals))} ${sizes[i]}`;
-}
