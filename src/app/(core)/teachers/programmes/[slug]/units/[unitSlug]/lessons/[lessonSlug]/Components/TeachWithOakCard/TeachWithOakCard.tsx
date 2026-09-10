@@ -13,6 +13,8 @@ export function MaybeTeachWithOakCard() {
 
   return (
     <OakCard
+      $background={"bg-decorative2-main"}
+      $btr={"border-radius-square"}
       aspectRatio="1/1"
       heading="Ever wondered why our lessons are structured this way?"
       subCopy="See how explanation, checks for understanding, practice and feedback work together to support pupils' learning."
@@ -20,6 +22,7 @@ export function MaybeTeachWithOakCard() {
       linkIconName="arrow-right"
       linkText="See the thinking behind Oak lessons"
       imageBackgroundColor="bg-decorative2-very-subdued"
+      hoverBackground="bg-decorative2-main"
       imageSrc={getCloudinaryImageUrl(
         "v1788962879/teacher-journey/Teachwithoak_image_gukwk3.svg",
       )}
