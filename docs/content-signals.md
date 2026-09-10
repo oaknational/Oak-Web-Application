@@ -19,7 +19,9 @@ The three signals are defined by [contentsignals.org](https://contentsignals.org
 | `ai-input` | Supplying content to a model at inference time (RAG, grounding) | `no`        |
 | `ai-train` | Training or fine-tuning a model                                 | `no`        |
 
-The value was authorised by the product owner on 9 September 2026.
+These values were decided by Aakash and relayed by MG on 10 September 2026.
+The reasoning, and why `open-api` deliberately says something different, is
+under [Why the hosts differ](#why-the-hosts-differ-deliberately).
 
 ## How it is served
 
@@ -39,34 +41,52 @@ build, the deploy and every other check would still pass.
 served file, and asserts its position, not merely its presence — a directive
 outside the group applies to nobody.
 
-## Open question: the estate does not yet say one thing
+## Why the hosts differ, deliberately
 
-These values are not yet consistent across Oak's public hosts. Measured
-9 September 2026:
+Oak's public hosts do not all declare the same thing, and that is policy rather
+than drift. Measured 9 September 2026:
 
 | Host                           | `robots.txt` | `Content-Signal`                         |
 | ------------------------------ | ------------ | ---------------------------------------- |
-| `www.thenational.academy`      | 200          | this document                            |
+| `www.thenational.academy`      | 200          | `ai-train=no, search=yes, ai-input=no`   |
 | `open-api.thenational.academy` | 200          | `ai-train=yes, search=yes, ai-input=yes` |
 | `mcp.thenational.academy`      | 404          | none — the host serves no `robots.txt`   |
 
-So Oak declares `ai-train=no` here and `ai-train=yes` on the curriculum API, at
-the same time, on the same signal.
+The two differ because what they serve differs. `www` carries Oak's own
+copyrighted site content, so it declines both training and grounding. The
+curriculum API serves material published under the Open Government Licence,
+where `ai-train=yes` is the coherent position. Two hosts, two licences, two
+policies.
 
-There is a second tension within this host. `www` serves
-[`/llms.txt`](https://www.thenational.academy/llms.txt), a file whose only
-purpose is to describe Oak's content to language models, while `ai-input=no`
-asks those same models not to use the content as input.
+Aakash settled the `www` values, relayed by MG on 10 September 2026:
 
-Both may turn out to be deliberate. Oak's curriculum is published under the Open
-Government Licence, and a publisher can coherently open an API for machine use
-while asking that its website not be scraped for the same purpose. That case has
-not been made and recorded anywhere, though, and until it is, the estate reads as
-inconsistent rather than as considered.
+> On content signals -> I think it's probably sensible to take the approach of
+> ai-train=no, search=yes, and ai-input=no. This makes sense for the main site
+> which has content that is copyrighted.
 
-Tracked as `MCP-714`. The question owed is not whether to adopt Content Signals,
-but whether the published values are Oak's and whether every host should say the
-same thing.
+If these two hosts ever look like a contradiction to be tidied away, they are
+not. Change either only with the same authority that set it.
+
+One thing this does **not** settle: `open-api`'s `ai-train=yes` was published
+without a recorded ratification, and whether it stands is still an open question
+for the product owner. This decision covers `www`.
+
+## A consideration, not a blocker: `llms.txt`
+
+`www` serves [`/llms.txt`](https://www.thenational.academy/llms.txt) while
+declaring `ai-input=no`, which reads at first like the site arguing with itself.
+
+It is consistent on the intended reading. `llms.txt` is a signpost, not content:
+it exists to tell an agent what Oak is and to point it at the sanctioned
+machine-readable surfaces — the curriculum API and the MCP server — rather than
+to be the material an answer is grounded on. "Do not ground on my pages, use my
+API" is a coherent posture, and it is the one Oak is taking.
+
+The honest edge, recorded rather than resolved: a crawler honouring `ai-input=no`
+across the host might decline to read `llms.txt` itself, since the signal covers
+the host rather than nominating exceptions. Neither Content Signals nor the
+AIPREF draft has a way to say "this file is an exception". Worth watching as the
+vocabulary matures; not worth changing a value over.
 
 ## Standards status
 

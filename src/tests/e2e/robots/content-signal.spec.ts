@@ -18,14 +18,14 @@ import { expect, test } from "@playwright/test";
  * The exact directive, spelled out rather than imported from the config.
  *
  * Deliberate: a test that read the value from the source it guards would follow
- * an accidental edit and stay green. The value is owner-authorised, so a change
- * to it should make this spec go red and require a human to re-authorise.
+ * an accidental edit and stay green. The values are a ruled position, so a
+ * change to them should make this spec go red and require a human to re-decide.
  */
 const EXPECTED_DIRECTIVE =
   "Content-Signal: ai-train=no, search=yes, ai-input=no";
 
 const AUTHORISATION_NOTICE =
-  "This value was authorised by the product owner (MG, 2026-09-09). Do NOT edit this " +
+  "These values were decided by Aakash and relayed by MG on 2026-09-10. Do NOT edit this " +
   "expectation to match the served file. If the served value has changed, either the " +
   "injection in `next-sitemap.config.js` has broken, or someone has changed a published " +
   "declaration about AI training rights — both need a human, not a test edit.";

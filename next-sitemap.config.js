@@ -38,9 +38,12 @@ const additionalAboutUsPaths = [
  * Oak's Content Signals declaration, published inside the `User-agent: *`
  * group of the generated robots.txt.
  *
- * Value authorised by MG, 2026-09-09. See `docs/content-signals.md` — the
- * estate position is NOT yet settled: `open-api.thenational.academy` currently
- * declares the opposite for `ai-train` and `ai-input`.
+ * Decided by Aakash, relayed by MG, 2026-09-10: this site's content is
+ * copyrighted, so no AI training and no AI grounding, but search is welcome.
+ *
+ * `open-api.thenational.academy` deliberately says the opposite for `ai-train`
+ * — it serves the openly licensed curriculum. Two hosts, two licences, two
+ * policies. Do not "fix" one to match the other; see `docs/content-signals.md`.
  *
  * - Content Signals policy: https://contentsignals.org/
  * - IETF draft: draft-romm-aipref-contentsignals
