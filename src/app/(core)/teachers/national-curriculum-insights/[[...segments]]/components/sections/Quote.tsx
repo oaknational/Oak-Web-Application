@@ -1,6 +1,11 @@
 "use client";
 
-import { getMediaQuery, OakBox, OakQuote } from "@oaknational/oak-components";
+import {
+  getMediaQuery,
+  OakBox,
+  OakQuote,
+  parseSpacing,
+} from "@oaknational/oak-components";
 import styled from "styled-components";
 
 import { SectionProps } from "./shared";
@@ -24,7 +29,7 @@ const GuidanceQuoteSection = styled(OakBox)`
 const GuidanceQuoteCard = styled(OakBox)`
   box-sizing: border-box;
   width: 100%;
-  max-width: 800px;
+  max-width: ${parseSpacing("spacing-800")};
 
   img {
     width: 54px;

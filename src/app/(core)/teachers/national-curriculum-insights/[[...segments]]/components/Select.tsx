@@ -6,6 +6,7 @@ import {
   OakJauntyAngleLabel,
   OakOption,
   OakSelect,
+  parseSpacing,
 } from "@oaknational/oak-components";
 
 export type NationalCurriculumInsightsSelectOption = {
@@ -50,7 +51,7 @@ export const NationalCurriculumInsightsSelect = ({
       $color={error ? "text-inverted" : "text-primary"}
       $font="heading-7"
       $position="absolute"
-      $top="-20px"
+      $top={`-${parseSpacing("spacing-20")}`}
       $left="spacing-8"
       $zIndex="in-front"
       $borderRadius="border-radius-square"

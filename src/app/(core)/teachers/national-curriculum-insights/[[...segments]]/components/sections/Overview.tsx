@@ -7,6 +7,7 @@ import {
   OakHeading,
   OakImage,
   OakP,
+  parseSpacing,
 } from "@oaknational/oak-components";
 import { useId } from "react";
 import styled from "styled-components";
@@ -31,20 +32,21 @@ const OverviewPanel = styled(SectionMaxWidth)<{ $isKeyStage: boolean }>`
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
-  gap: 24px;
+  gap: ${parseSpacing("spacing-24")};
 
   @media (${getMediaQuery("desktop")}) {
     height: auto;
     flex-direction: row;
     align-items: flex-start;
-    gap: ${({ $isKeyStage }) => ($isKeyStage ? "81px" : "40px")};
+    gap: ${({ $isKeyStage }) =>
+      $isKeyStage ? "81px" : parseSpacing("spacing-40")};
   }
 
   @media ${insightsTabletMediaQuery} {
     height: auto;
     flex-direction: column;
     align-items: stretch;
-    gap: 40px;
+    gap: ${parseSpacing("spacing-40")};
   }
 `;
 
@@ -65,7 +67,7 @@ const OverviewTitleGroup = styled(OakFlex)`
   width: 100%;
 
   @media ${insightsTabletMediaQuery} {
-    gap: 20px;
+    gap: ${parseSpacing("spacing-20")};
   }
 `;
 

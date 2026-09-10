@@ -12,6 +12,7 @@ import {
   OakP,
   OakSpan,
   parseColor,
+  parseSpacing,
 } from "@oaknational/oak-components";
 import Link from "next/link";
 import { useId, useState } from "react";
@@ -34,13 +35,13 @@ const VideoCardList = styled.ul`
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 64px;
+  gap: ${parseSpacing("spacing-64")};
   list-style: none;
   margin: 0;
   padding: 0;
 
   @media (${getMediaQuery("desktop")}) {
-    gap: 40px;
+    gap: ${parseSpacing("spacing-40")};
   }
 `;
 
@@ -160,8 +161,8 @@ const ThumbnailPlayButton = styled.button`
   left: 50%;
   z-index: 3;
   display: inline-flex;
-  width: 64px;
-  height: 64px;
+  width: ${parseSpacing("spacing-64")};
+  height: ${parseSpacing("spacing-64")};
   align-items: center;
   justify-content: center;
   padding: 0;
@@ -178,7 +179,7 @@ const ThumbnailPlayButton = styled.button`
 
   &:focus-visible {
     outline: 4px solid ${parseColor("border-decorative5")};
-    outline-offset: 2px;
+    outline-offset: ${parseSpacing("spacing-2")};
   }
 `;
 
@@ -221,7 +222,7 @@ const BlogPostTitleLink = styled(Link)`
 
   &:focus-visible::after {
     outline: 4px solid ${parseColor("border-decorative5")};
-    outline-offset: 2px;
+    outline-offset: ${parseSpacing("spacing-2")};
   }
 `;
 

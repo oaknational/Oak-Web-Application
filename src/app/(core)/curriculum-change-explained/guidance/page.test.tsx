@@ -24,10 +24,6 @@ jest.mock(
 );
 
 describe("curriculum change guidance route", () => {
-  it("renders at request time without a loading page", () => {
-    expect(dynamic).toBe("force-dynamic");
-  });
-
   beforeEach(() => {
     jest.clearAllMocks();
     jest.mocked(draftMode).mockResolvedValue({
@@ -36,6 +32,11 @@ describe("curriculum change guidance route", () => {
       disable: jest.fn(),
     });
   });
+
+  it("renders at request time without a loading page", () => {
+    expect(dynamic).toBe("force-dynamic");
+  });
+
   it("uses the independent guidance route and canonical URL", async () => {
     jest
       .mocked(getNationalCurriculumInsightsRouteData)

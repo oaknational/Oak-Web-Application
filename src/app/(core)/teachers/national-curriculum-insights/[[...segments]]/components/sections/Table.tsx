@@ -1,6 +1,6 @@
 "use client";
 
-import { OakBox, parseColor } from "@oaknational/oak-components";
+import { OakBox, parseColor, parseSpacing } from "@oaknational/oak-components";
 import styled from "styled-components";
 
 import { SectionProps, InsightsContentMaxWidth } from "./shared";
@@ -13,7 +13,7 @@ const TableScroll = styled(OakBox)`
 
 const InsightsTable = styled.table`
   width: 100%;
-  min-width: 640px;
+  min-width: ${parseSpacing("spacing-640")};
   border-spacing: 0;
   border-collapse: separate;
   border: 1px solid ${parseColor("border-decorative1-stronger")};
@@ -22,7 +22,7 @@ const InsightsTable = styled.table`
 
   th,
   td {
-    padding: 12px;
+    padding: ${parseSpacing("spacing-12")};
     border-right: 1px solid ${parseColor("border-decorative1-stronger")};
     border-bottom: 1px solid ${parseColor("border-decorative1-stronger")};
     text-align: left;

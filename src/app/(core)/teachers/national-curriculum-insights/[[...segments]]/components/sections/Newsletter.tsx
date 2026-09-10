@@ -8,6 +8,7 @@ import {
   OakImage,
   OakP,
   OakPrimaryButton,
+  parseSpacing,
 } from "@oaknational/oak-components";
 import { FormEvent, useState } from "react";
 import styled from "styled-components";
@@ -40,7 +41,7 @@ import useAnalytics from "@/context/Analytics/useAnalytics";
 const NewsletterList = styled(OakFlex)`
   list-style: disc;
   margin: 0;
-  padding-left: 24px;
+  padding-left: ${parseSpacing("spacing-24")};
 `;
 
 const NewsletterSection = styled(OakBox)`
@@ -55,7 +56,7 @@ const NewsletterSection = styled(OakBox)`
   @media ${insightsTabletMediaQuery} {
     height: auto;
     display: block;
-    padding-block: 40px;
+    padding-block: ${parseSpacing("spacing-40")};
   }
 `;
 
@@ -65,20 +66,20 @@ const NewsletterInner = styled(OakBox)<{ $isGuidance: boolean }>`
 
   @media (${getMediaQuery("desktop")}) {
     transform: ${({ $isGuidance }) =>
-      $isGuidance ? "none" : "translateX(12px)"};
+      $isGuidance ? "none" : `translateX(${parseSpacing("spacing-12")})`};
   }
 `;
 
 const NewsletterLayout = styled(OakBox)`
   display: grid;
   grid-template-columns: minmax(0, 1fr);
-  gap: 20px;
+  gap: ${parseSpacing("spacing-20")};
 
   @media (${getMediaQuery("desktop")}) {
     grid-template-columns: 544px 475px;
     grid-template-rows: auto 1fr;
     column-gap: 39px;
-    row-gap: 16px;
+    row-gap: ${parseSpacing("spacing-16")};
     justify-content: center;
     align-items: start;
   }
@@ -86,7 +87,7 @@ const NewsletterLayout = styled(OakBox)`
   @media ${insightsTabletMediaQuery} {
     grid-template-columns: minmax(0, 1fr);
     grid-template-rows: auto auto auto;
-    row-gap: 16px;
+    row-gap: ${parseSpacing("spacing-16")};
     justify-content: stretch;
   }
 `;
@@ -132,7 +133,7 @@ const NewsletterForm = styled(OakFlex)`
   grid-row: 2;
 
   @media (${getMediaQuery("mobile")}) {
-    margin-top: 24px;
+    margin-top: ${parseSpacing("spacing-24")};
   }
 
   input[type="checkbox"] {
@@ -150,7 +151,7 @@ const NewsletterForm = styled(OakFlex)`
     grid-column: 1;
     grid-row: 3;
     justify-self: center;
-    margin-top: 32px;
+    margin-top: ${parseSpacing("spacing-32")};
   }
 `;
 

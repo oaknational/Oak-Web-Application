@@ -17,6 +17,7 @@ import {
   OakLink,
   OakP,
   OakTextInput,
+  parseSpacing,
 } from "@oaknational/oak-components";
 import { useEffect, useId, useMemo, useRef, useState } from "react";
 import { Controller, useForm } from "react-hook-form";
@@ -354,7 +355,7 @@ export const NationalCurriculumInsightsDownload = ({
                     $background="bg-decorative5-main"
                     $font="heading-7"
                     $position="absolute"
-                    $top="-20px"
+                    $top={`-${parseSpacing("spacing-20")}`}
                     $left="spacing-8"
                     $zIndex="in-front"
                   />
@@ -385,7 +386,7 @@ export const NationalCurriculumInsightsDownload = ({
                       $background="bg-decorative5-main"
                       $font="heading-7"
                       $position="absolute"
-                      $top="-20px"
+                      $top={`-${parseSpacing("spacing-20")}`}
                       $left="spacing-8"
                       $zIndex="in-front"
                     />
@@ -453,7 +454,7 @@ export const NationalCurriculumInsightsDownload = ({
                     $background="bg-decorative5-main"
                     $font="heading-7"
                     $position="absolute"
-                    $top="-20px"
+                    $top={`-${parseSpacing("spacing-20")}`}
                     $left="spacing-8"
                     $zIndex="in-front"
                   />

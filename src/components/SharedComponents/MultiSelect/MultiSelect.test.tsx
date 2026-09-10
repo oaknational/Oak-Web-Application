@@ -47,6 +47,19 @@ const ControlledMultiSelect = ({
 };
 
 describe("MultiSelect", () => {
+  it.each([
+    ["standard", "3rem", "0.75rem 1rem"],
+    ["large", "4rem", "1rem"],
+  ] as const)("preserves %s control spacing", (size, minHeight, padding) => {
+    renderWithTheme(<ControlledMultiSelect size={size} />);
+
+    expect(screen.getByTestId("multi-select-trigger")).toHaveStyle({
+      gap: "0.5rem",
+      minHeight,
+      padding,
+    });
+  });
+
   it("opens the desktop selector and keeps checkbox and tag state in sync", () => {
     const onChange = jest.fn();
     renderWithTheme(<ControlledMultiSelect onChange={onChange} />);

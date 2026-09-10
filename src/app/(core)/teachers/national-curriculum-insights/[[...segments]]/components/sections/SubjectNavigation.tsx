@@ -8,6 +8,7 @@ import {
   OakHeading,
   OakSubjectIconButton,
   parseColor,
+  parseSpacing,
 } from "@oaknational/oak-components";
 import Link from "next/link";
 import styled from "styled-components";
@@ -52,7 +53,7 @@ const HubSubjectItem = styled.li`
   height: 225px;
 
   @media (${getMediaQuery("mobile")}) {
-    width: calc(50% - 8px);
+    width: calc(50% - ${parseSpacing("spacing-8")});
     height: auto;
     aspect-ratio: 1;
   }
@@ -65,7 +66,7 @@ const HubSubjectItem = styled.li`
   a {
     box-sizing: border-box;
     width: 100%;
-    padding-inline: 8px;
+    padding-inline: ${parseSpacing("spacing-8")};
   }
 `;
 
@@ -73,7 +74,7 @@ const HubSubjectList = styled.ul`
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 16px;
+  gap: ${parseSpacing("spacing-16")};
   list-style: none;
   margin: 0;
   padding: 0;

@@ -10,6 +10,7 @@ import {
   type OakUiRoleToken,
   parseColor,
   parseDropShadow,
+  parseSpacing,
 } from "@oaknational/oak-components";
 
 export type MultiSelectOption = {
@@ -68,10 +69,16 @@ const Trigger = styled.button<{ $size: "standard" | "large" }>`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 8px;
+  gap: ${parseSpacing("spacing-8")};
   width: 100%;
-  min-height: ${({ $size }) => ($size === "large" ? "64px" : "48px")};
-  padding: ${({ $size }) => ($size === "large" ? "16px" : "12px 16px")};
+  min-height: ${({ $size }) =>
+    $size === "large"
+      ? parseSpacing("spacing-64")
+      : parseSpacing("spacing-48")};
+  padding: ${({ $size }) =>
+    $size === "large"
+      ? parseSpacing("spacing-16")
+      : `${parseSpacing("spacing-12")} ${parseSpacing("spacing-16")}`};
   border: 2px solid ${parseColor("border-primary")};
   border-radius: 4px;
   background: ${parseColor("bg-primary")};
@@ -120,14 +127,14 @@ const DropdownPanel = styled.div<{ $direction: "down" | "up" }>`
   border: 4px solid ${parseColor("border-primary")};
   border-radius: 4px;
   background: ${parseColor("bg-primary")};
-  padding: 12px;
+  padding: ${parseSpacing("spacing-12")};
   ${({ $direction }) =>
     $direction === "up"
       ? css`
-          bottom: calc(100% + 4px);
+          bottom: calc(100% + ${parseSpacing("spacing-4")});
         `
       : css`
-          top: calc(100% + 4px);
+          top: calc(100% + ${parseSpacing("spacing-4")});
         `}
 `;
 
@@ -148,7 +155,7 @@ const CheckboxStack = styled(OakFlex).attrs({
 `;
 
 const GroupHeading = styled(OakP)`
-  margin: 20px 0 16px;
+  margin: ${parseSpacing("spacing-20")} 0 ${parseSpacing("spacing-16")};
 `;
 
 const ChipGroups = styled(OakFlex).attrs({
@@ -165,8 +172,8 @@ const ChipGroup = styled(OakFlex).attrs({
 const ChipList = styled.ul`
   display: flex;
   flex-wrap: wrap;
-  column-gap: 8px;
-  row-gap: 16px;
+  column-gap: ${parseSpacing("spacing-8")};
+  row-gap: ${parseSpacing("spacing-16")};
   margin: 0;
   padding: 0;
   list-style: none;
@@ -175,9 +182,9 @@ const ChipList = styled.ul`
 const ChipButton = styled.button<{ $background: OakUiRoleToken }>`
   display: inline-flex;
   align-items: center;
-  gap: 8px;
+  gap: ${parseSpacing("spacing-8")};
   min-height: 28px;
-  padding: 4px 8px;
+  padding: ${parseSpacing("spacing-4")} ${parseSpacing("spacing-8")};
   border: 0;
   border-radius: 6px;
   background: ${({ $background }) => parseColor($background)};
@@ -213,8 +220,8 @@ const MobileHeader = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  min-height: 64px;
-  padding: 12px 16px;
+  min-height: ${parseSpacing("spacing-64")};
+  padding: ${parseSpacing("spacing-12")} ${parseSpacing("spacing-16")};
   background: ${parseColor("bg-decorative5-subdued")};
 `;
 
@@ -222,8 +229,8 @@ const IconButton = styled.button`
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 40px;
-  height: 40px;
+  width: ${parseSpacing("spacing-40")};
+  height: ${parseSpacing("spacing-40")};
   padding: 0;
   border: 0;
   border-radius: 4px;
@@ -239,7 +246,7 @@ const IconButton = styled.button`
 `;
 
 const MobileOptions = styled.div`
-  padding: 20px 16px 96px;
+  padding: ${parseSpacing("spacing-20")} ${parseSpacing("spacing-16")} 96px;
 `;
 
 const MobileConfirm = styled.div`
@@ -247,8 +254,8 @@ const MobileConfirm = styled.div`
   bottom: 0;
   display: flex;
   align-items: center;
-  min-height: 72px;
-  padding: 12px 16px;
+  min-height: ${parseSpacing("spacing-72")};
+  padding: ${parseSpacing("spacing-12")} ${parseSpacing("spacing-16")};
   border-top: 1px solid ${parseColor("border-neutral-lighter")};
   background: ${parseColor("bg-primary")};
 `;
@@ -257,10 +264,10 @@ const ConfirmButton = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 8px;
+  gap: ${parseSpacing("spacing-8")};
   width: 100%;
-  min-height: 48px;
-  padding: 12px 16px;
+  min-height: ${parseSpacing("spacing-48")};
+  padding: ${parseSpacing("spacing-12")} ${parseSpacing("spacing-16")};
   border: 2px solid ${parseColor("border-primary")};
   border-radius: 4px;
   background: ${parseColor("bg-btn-primary")};

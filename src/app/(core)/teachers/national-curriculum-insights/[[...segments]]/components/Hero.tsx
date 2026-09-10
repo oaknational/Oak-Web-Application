@@ -12,6 +12,7 @@ import {
   OakLink,
   OakP,
   parseColor,
+  parseSpacing,
 } from "@oaknational/oak-components";
 import styled, { css } from "styled-components";
 
@@ -44,7 +45,7 @@ const heroSectionMinHeight = ({ $pageKind }: { $pageKind: HeroPageKind }) => {
     case "hub":
       return "439px";
     case "guidance":
-      return "480px";
+      return parseSpacing("spacing-480");
     case "subject":
     case "phase":
     case "keyStage":
@@ -65,7 +66,7 @@ const HeroSection = styled(OakBox)<{ $pageKind: HeroPageKind }>`
     ${({ $pageKind }) =>
       $pageKind === "guidance"
         ? css`
-            padding-block: 64px;
+            padding-block: ${parseSpacing("spacing-64")};
           `
         : $pageKind !== "hub" &&
           css`
@@ -94,14 +95,14 @@ const heroMainTabletStyles = ({ $pageKind }: { $pageKind: HeroPageKind }) => {
     return css`
       flex-direction: row;
       align-items: center;
-      gap: 24px;
+      gap: ${parseSpacing("spacing-24")};
     `;
   }
 
   return css`
     flex-direction: column;
     align-items: stretch;
-    gap: 24px;
+    gap: ${parseSpacing("spacing-24")};
   `;
 };
 
@@ -120,14 +121,18 @@ const heroTextColumnTabletStyles = ({
 }) => {
   if ($pageKind === "guidance") {
     return css`
-      width: clamp(360px, calc(70.566vw - 169.245px), 734px);
+      width: clamp(
+        ${parseSpacing("spacing-360")},
+        calc(70.566vw - 169.245px),
+        734px
+      );
       flex-shrink: 0;
     `;
   }
 
   if ($pageKind === "hub") {
     return css`
-      width: calc(58.3333% - 12px);
+      width: calc(58.3333% - ${parseSpacing("spacing-12")});
       flex-shrink: 1;
     `;
   }
@@ -164,7 +169,11 @@ const HeroCopyColumn = styled(OakFlex)<{ $pageKind: HeroPageKind }>`
     ${({ $pageKind }) =>
       $pageKind === "guidance"
         ? css`
-            width: clamp(360px, calc(43.208vw + 35.94px), 589px);
+            width: clamp(
+              ${parseSpacing("spacing-360")},
+              calc(43.208vw + 35.94px),
+              589px
+            );
             flex-shrink: 0;
           `
         : $pageKind !== "hub" &&
@@ -180,15 +189,19 @@ const HeroCopy = styled(OakFlex)<{ $pageKind: HeroPageKind }>`
   max-width: 650px;
 
   @media (${getMediaQuery("desktop")}) {
-    padding-bottom: 40px;
+    padding-bottom: ${parseSpacing("spacing-40")};
   }
 
   @media ${insightsTabletMediaQuery} {
     ${({ $pageKind }) =>
       $pageKind === "guidance"
         ? css`
-            max-width: clamp(360px, calc(43.208vw + 35.94px), 589px);
-            padding-bottom: 40px;
+            max-width: clamp(
+              ${parseSpacing("spacing-360")},
+              calc(43.208vw + 35.94px),
+              589px
+            );
+            padding-bottom: ${parseSpacing("spacing-40")};
 
             p {
               max-width: clamp(322px, calc(50.377vw - 55.83px), 589px);
@@ -241,8 +254,8 @@ const HeroImageContainer = styled(OakFlex)<{
           `
         : $sideBySideTablet &&
           css`
-            width: calc(41.6667% - 12px);
-            flex: 0 0 calc(41.6667% - 12px);
+            width: calc(41.6667% - ${parseSpacing("spacing-12")});
+            flex: 0 0 calc(41.6667% - ${parseSpacing("spacing-12")});
           `}
   }
 

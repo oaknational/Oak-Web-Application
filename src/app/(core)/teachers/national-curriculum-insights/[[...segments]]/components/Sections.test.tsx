@@ -285,6 +285,10 @@ describe("National Curriculum Insights sections", () => {
     );
 
     expect(
+      screen.getByRole("region", { name: "Science overview" }),
+    ).toHaveStyle({ gap: "1.5rem" });
+
+    expect(
       screen.getByRole("img", {
         name: "A teacher discussing the curriculum",
       }),
