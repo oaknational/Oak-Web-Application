@@ -38,28 +38,22 @@ const additionalAboutUsPaths = [
  * Oak's Content Signals declaration, published inside the `User-agent: *`
  * group of the generated robots.txt.
  *
- * Value authorised by MG, 2026-09-09. See `docs/content-signals.md` — the
- * estate position is NOT yet settled: `open-api.thenational.academy` currently
- * declares the opposite for `ai-train` and `ai-input`.
+ * Values, reasoning, and why `open-api` deliberately differs:
+ * `docs/content-signals.md`.
  *
  * - Content Signals policy: https://contentsignals.org/
  * - IETF draft: draft-romm-aipref-contentsignals
  */
 const CONTENT_SIGNAL = "Content-Signal: ai-train=no, search=yes, ai-input=no";
 
-/** The generated group header the directive has to sit inside. */
 const USER_AGENT_GROUP = "User-agent: *\n";
 
 /**
- * Insert the Content-Signal directive into the `User-agent: *` group.
+ * next-sitemap's robots builder emits only Allow, Disallow and Crawl-delay, so
+ * this hook is the only supported way to add a directive.
  *
- * next-sitemap's robots builder emits only Allow, Disallow and Crawl-delay per
- * policy, so there is no config key for an arbitrary directive and this hook is
- * the supported way in.
- *
- * Throwing rather than returning the input unchanged is deliberate. A silent
- * no-op would publish a robots.txt with no declaration at all, and the build,
- * the deploy and every check downstream would still be green.
+ * It throws rather than passing the input through: a silent no-op would ship a
+ * robots.txt with no declaration and leave every check green.
  */
 const addContentSignal = async (_config, robotsTxt) => {
   if (!robotsTxt.includes(USER_AGENT_GROUP)) {
