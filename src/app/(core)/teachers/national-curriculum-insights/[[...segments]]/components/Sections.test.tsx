@@ -590,6 +590,12 @@ describe("National Curriculum Insights sections", () => {
     expect(
       screen.getByTestId("guidance-status-clock").querySelector("img"),
     ).toHaveAttribute("alt", "");
+    expect(
+      screen.getByTestId("guidance-status-clock").querySelector("img"),
+    ).toHaveAttribute(
+      "src",
+      expect.stringContaining("/v1789035961/icons/clock.svg"),
+    );
   });
 
   it("uses the CMS portrait without overriding it based on the author's name", () => {

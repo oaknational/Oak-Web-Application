@@ -6,6 +6,7 @@ import {
   OakGrid,
   OakGridArea,
   OakHeading,
+  OakIcon,
   OakImage,
   OakTagFunctional,
   parseSpacing,
@@ -42,13 +43,11 @@ const GuidanceStatusLabel = ({ label }: { label: string }) => (
     $borderRadius="border-radius-s"
     $whiteSpace="nowrap"
   >
-    <OakImage
-      src="/images/national-curriculum-insights/clock.svg"
-      alt=""
+    <OakIcon
+      iconName="clock"
       $width="spacing-16"
       $height="spacing-16"
       $ml="spacing-8"
-      unoptimized
       data-testid="guidance-status-clock"
     />
     <OakTagFunctional

@@ -12,6 +12,8 @@ import {
 } from "@/common-lib/cms-types/nationalCurriculumInsights";
 import type { NationalCurriculumInsightsRoute } from "@/common-lib/urls/nationalCurriculumInsights";
 import CMSClient from "@/node-lib/cms";
+import { cacheData } from "@/node-lib/cache";
+import getServerConfig from "@/node-lib/getServerConfig";
 
 export type NationalCurriculumInsightsReader = Pick<
   typeof CMSClient,
@@ -37,16 +39,52 @@ export type NationalCurriculumInsightsRouteData = {
   activeKeyStage: NationalCurriculumInsightsKeyStage | null;
 };
 
-// Memoise within a server render only. Keeping primitive arguments separates
-// published and draft reads without retaining content across requests.
+const cacheKeyParts = [
+  "national-curriculum-insights",
+  getServerConfig("sanityProjectId"),
+  getServerConfig("sanityDataset"),
+];
+const cacheOptions = {
+  revalidate: getServerConfig("sanityRevalidateSeconds"),
+};
+
+const getPublishedHub = cacheData(
+  () => CMSClient.nationalCurriculumInsightsHub({ previewMode: false }),
+  [...cacheKeyParts, "hub"],
+  cacheOptions,
+);
+const getPublishedGuidancePage = cacheData(
+  () =>
+    CMSClient.nationalCurriculumInsightsGuidancePage({ previewMode: false }),
+  [...cacheKeyParts, "guidance"],
+  cacheOptions,
+);
+const getPublishedSubject = cacheData(
+  (slug: string) =>
+    CMSClient.nationalCurriculumInsightsSubjectBySlug(slug, {
+      previewMode: false,
+    }),
+  [...cacheKeyParts, "subject"],
+  cacheOptions,
+);
+
+// Draft reads are deduplicated within a render, but never cached across requests.
 const getHub = cache((previewMode: boolean) =>
-  CMSClient.nationalCurriculumInsightsHub({ previewMode }),
+  previewMode
+    ? CMSClient.nationalCurriculumInsightsHub({ previewMode: true })
+    : getPublishedHub(),
 );
 const getGuidancePage = cache((previewMode: boolean) =>
-  CMSClient.nationalCurriculumInsightsGuidancePage({ previewMode }),
+  previewMode
+    ? CMSClient.nationalCurriculumInsightsGuidancePage({ previewMode: true })
+    : getPublishedGuidancePage(),
 );
 const getSubject = cache((slug: string, previewMode: boolean) =>
-  CMSClient.nationalCurriculumInsightsSubjectBySlug(slug, { previewMode }),
+  previewMode
+    ? CMSClient.nationalCurriculumInsightsSubjectBySlug(slug, {
+        previewMode: true,
+      })
+    : getPublishedSubject(slug),
 );
 
 const reader: NationalCurriculumInsightsReader = {

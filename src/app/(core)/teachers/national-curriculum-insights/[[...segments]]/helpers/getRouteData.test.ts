@@ -9,6 +9,12 @@ import {
 import { parseNationalCurriculumInsightsRoute } from "@/common-lib/urls/nationalCurriculumInsights";
 import type { NationalCurriculumInsightsModule } from "@/common-lib/cms-types/nationalCurriculumInsights";
 import CMSClient from "@/node-lib/cms";
+import { cacheData } from "@/node-lib/cache";
+import getServerConfig from "@/node-lib/getServerConfig";
+
+jest.mock("@/node-lib/cache", () => ({
+  cacheData: jest.fn((fn) => jest.fn(fn)),
+}));
 
 jest.mock("@/node-lib/cms", () => ({
   __esModule: true,
@@ -359,6 +365,64 @@ describe("getNationalCurriculumInsightsRouteData", () => {
 });
 
 describe("getNationalCurriculumInsightsReader", () => {
+  const cachedReaders = jest
+    .mocked(cacheData)
+    .mock.results.map(({ value }) => value);
+
+  it("scopes published caches by page, project and dataset with the CMS refresh interval", () => {
+    for (const page of ["hub", "guidance", "subject"]) {
+      expect(cacheData).toHaveBeenCalledWith(
+        expect.any(Function),
+        [
+          "national-curriculum-insights",
+          getServerConfig("sanityProjectId"),
+          getServerConfig("sanityDataset"),
+          page,
+        ],
+        { revalidate: getServerConfig("sanityRevalidateSeconds") },
+      );
+    }
+  });
+
+  it("uses persistent caches for published reads and keys subjects by slug", async () => {
+    cachedReaders.forEach((cachedReader) => cachedReader.mockClear());
+    const reader = getNationalCurriculumInsightsReader();
+
+    await reader.nationalCurriculumInsightsHub();
+    await reader.nationalCurriculumInsightsGuidancePage();
+    await reader.nationalCurriculumInsightsSubjectBySlug("science");
+    await reader.nationalCurriculumInsightsSubjectBySlug("maths");
+
+    expect(cachedReaders[0]).toHaveBeenCalledTimes(1);
+    expect(cachedReaders[1]).toHaveBeenCalledTimes(1);
+    expect(cachedReaders[2]).toHaveBeenNthCalledWith(1, "science");
+    expect(cachedReaders[2]).toHaveBeenNthCalledWith(2, "maths");
+  });
+
+  it("bypasses every persistent cache for draft reads", async () => {
+    cachedReaders.forEach((cachedReader) => cachedReader.mockClear());
+    const reader = getNationalCurriculumInsightsReader();
+
+    await reader.nationalCurriculumInsightsHub({ previewMode: true });
+    await reader.nationalCurriculumInsightsGuidancePage({ previewMode: true });
+    await reader.nationalCurriculumInsightsSubjectBySlug("science", {
+      previewMode: true,
+    });
+
+    cachedReaders.forEach((cachedReader) =>
+      expect(cachedReader).not.toHaveBeenCalled(),
+    );
+    expect(CMSClient.nationalCurriculumInsightsHub).toHaveBeenLastCalledWith({
+      previewMode: true,
+    });
+    expect(
+      CMSClient.nationalCurriculumInsightsGuidancePage,
+    ).toHaveBeenLastCalledWith({ previewMode: true });
+    expect(
+      CMSClient.nationalCurriculumInsightsSubjectBySlug,
+    ).toHaveBeenLastCalledWith("science", { previewMode: true });
+  });
+
   it("keeps a stable reader", () => {
     expect(getNationalCurriculumInsightsReader()).toBe(
       getNationalCurriculumInsightsReader(),
