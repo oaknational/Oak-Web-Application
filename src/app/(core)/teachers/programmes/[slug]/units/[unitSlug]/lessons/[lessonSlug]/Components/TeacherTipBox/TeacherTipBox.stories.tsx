@@ -8,7 +8,7 @@ const meta = {
   tags: ["autodocs"],
   parameters: {
     controls: {
-      include: ["tips", "showTeachWithOakCard"],
+      include: ["tips"],
     },
   },
   argTypes: {

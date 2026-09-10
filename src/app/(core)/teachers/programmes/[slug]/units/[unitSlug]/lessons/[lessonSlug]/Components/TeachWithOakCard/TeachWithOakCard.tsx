@@ -3,13 +3,37 @@ import { useFeatureFlagVariantKey } from "posthog-js/react";
 
 import { resolveOakHref } from "@/common-lib/urls";
 import { getCloudinaryImageUrl } from "@/utils/getCloudinaryImageUrl";
+import { useTeacherBrowseAnalytics } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
+import { getLessonSlugFromProgrammeState } from "@/context/TeacherBrowseAnalytics/utils/getLessonSlugFromProgrammeState";
 
 /** Renders nothing unless the `teachers-teach-with-oak` flag is on the `teacher-tip` variant. */
 export function MaybeTeachWithOakCard() {
   const shouldShowCard =
     useFeatureFlagVariantKey("teachers-teach-with-oak") === "teacher-tip";
 
-  if (!shouldShowCard) return null;
+  const programmeState = useTeacherBrowseAnalytics((s) => s.programmeState);
+  const lessonSlug = getLessonSlugFromProgrammeState(programmeState);
+
+  if (
+    !shouldShowCard ||
+    programmeState?.browseLevel !== "lesson" ||
+    !lessonSlug
+  )
+    return null;
+
+  const lessonHref = resolveOakHref({
+    page: "lesson-overview",
+    lessonSlug,
+    programmeSlug: programmeState.programmeSlug,
+    unitSlug: programmeState.unit.slug,
+  });
+
+  const href = resolveOakHref({
+    page: "teach-with-oak",
+    query: {
+      returnTo: lessonHref,
+    },
+  });
 
   return (
     <OakCard
@@ -18,7 +42,7 @@ export function MaybeTeachWithOakCard() {
       aspectRatio="1/1"
       heading="Ever wondered why our lessons are structured this way?"
       subCopy="See how explanation, checks for understanding, practice and feedback work together to support pupils' learning."
-      href={resolveOakHref({ page: "teach-with-oak" })}
+      href={href}
       linkIconName="arrow-right"
       linkText="See the thinking behind Oak lessons"
       imageBackgroundColor="bg-decorative2-very-subdued"
