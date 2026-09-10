@@ -1,3 +1,34 @@
+# [1.1188.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1187.0...v1.1188.0) (2026-09-10)
+
+
+### Features
+
+* update blog pagination from 4 to 10 per page ([bcf16a6](https://github.com/oaknational/Oak-Web-Application/commit/bcf16a6ff061433c9d397bcc6445adae7981aa5a))
+
+# [1.1187.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1186.0...v1.1187.0) (2026-09-10)
+
+
+### Features
+
+* refactor convertBytesToMegabytes -> formatBytes ([79e61f8](https://github.com/oaknational/Oak-Web-Application/commit/79e61f83ab1fc69a4cd2463bc8d2f6638fa130ad))
+
+# [1.1186.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1185.0...v1.1186.0) (2026-09-09)
+
+
+### Bug Fixes
+
+* make href optional in TwO header ([ae38eee](https://github.com/oaknational/Oak-Web-Application/commit/ae38eeed487de2c70b23ca74baace35d24c86a12))
+* use type import ([ec3e70e](https://github.com/oaknational/Oak-Web-Application/commit/ec3e70ea41131a9d0b89812a5ee3acf24eeb3e42))
+
+
+### Features
+
+* add explore link section ([20662fb](https://github.com/oaknational/Oak-Web-Application/commit/20662fbd7cfbd540d92ff9ab81af97d754f72829))
+* add teach with oak config to urls ([f02bb55](https://github.com/oaknational/Oak-Web-Application/commit/f02bb5508d5e06cc64c32498946b0af3480eaaf4))
+* add TwO page ([09c2a51](https://github.com/oaknational/Oak-Web-Application/commit/09c2a517acef8b4f323d38e1149aa32259748e4e))
+* ensure returnTo param is a valid url ([2ae04b2](https://github.com/oaknational/Oak-Web-Application/commit/2ae04b2b5e977cba3b6af093db29f5dd5f2d55a4))
+* use teach with oak avo branch ([7b9bfca](https://github.com/oaknational/Oak-Web-Application/commit/7b9bfca9794ca2b4472ce23898919d9a34269273))
+
 # [1.1185.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1184.3...v1.1185.0) (2026-09-09)
 
 
