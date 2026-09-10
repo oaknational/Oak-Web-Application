@@ -1,3 +1,15 @@
+# [1.1190.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1189.1...v1.1190.0) (2026-09-10)
+
+
+### Bug Fixes
+
+* point the llms.txt MCP entry at the live /ai-plugin page ([dc6f05b](https://github.com/oaknational/Oak-Web-Application/commit/dc6f05b5087a4f3ab33b50dc65ff1276adfef9fe))
+
+
+### Features
+
+* describe the Oak Curriculum MCP in llms.txt ([17a4580](https://github.com/oaknational/Oak-Web-Application/commit/17a45801fbcbd64c1fde1ce1fa2ed84ea487694d))
+
 ## [1.1189.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.1189.0...v1.1189.1) (2026-09-10)
 
 
