@@ -19,7 +19,7 @@ export const metadata: Metadata = {
   },
 };
 
-const teachWithOakParams = z.object({
+export const teachWithOakParams = z.object({
   returnTo: z.url({ hostname: /^thenational\.academy$/ }),
 });
 
