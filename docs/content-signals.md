@@ -44,13 +44,13 @@ outside the group applies to nobody.
 ## Why the hosts differ, deliberately
 
 Oak's public hosts do not all declare the same thing, and that is policy rather
-than drift. Measured 9 September 2026:
+than drift. Other hosts measured 9 September 2026:
 
-| Host                           | `robots.txt` | `Content-Signal`                         |
-| ------------------------------ | ------------ | ---------------------------------------- |
-| `www.thenational.academy`      | 200          | `ai-train=no, search=yes, ai-input=no`   |
-| `open-api.thenational.academy` | 200          | `ai-train=yes, search=yes, ai-input=yes` |
-| `mcp.thenational.academy`      | 404          | none — the host serves no `robots.txt`   |
+| Host                           | `robots.txt` | `Content-Signal`                                                   |
+| ------------------------------ | ------------ | ------------------------------------------------------------------ |
+| `www.thenational.academy`      | 200          | `ai-train=no, search=yes, ai-input=no` — introduced by this change |
+| `open-api.thenational.academy` | 200          | `ai-train=yes, search=yes, ai-input=yes`                           |
+| `mcp.thenational.academy`      | 404          | none — the host serves no `robots.txt`                             |
 
 The two differ because what they serve differs. `www` carries Oak's own
 copyrighted site content, so it declines both training and grounding. The
