@@ -1,3 +1,5 @@
+import { PupilLessonDataError } from "./PupilLessonDataError";
+
 import { PupilLayout } from "@/components/PupilComponents/PupilLayout/PupilLayout";
 import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
 import { ViewAllLessonsButton } from "@/components/PupilComponents/ViewAllLessonsButton/ViewAllLessonsButton";
@@ -133,6 +135,15 @@ const OverviewContent = ({
  */
 const OverviewPageContent = (props: PupilLessonPageProps) => {
   const { browseData, lessonContent, backUrl, variant } = props;
+
+  if (!browseData || !lessonContent) {
+    return (
+      <PupilLessonDataError
+        missingBrowseData={!browseData}
+        missingLessonContent={!lessonContent}
+      />
+    );
+  }
 
   return (
     <PupilLayout
