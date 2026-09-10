@@ -29,16 +29,13 @@ import {
 import type { OakConfig } from "./scripts/build/fetch_config/config_types";
 import fetchConfig from "./scripts/build/fetch_config";
 
-import {
-  cspHeader,
-  reportingEndpointsHeader,
-} from "@/config/contentSecurityPolicy";
+import { getCspHeaders } from "@/config/cspHeaders";
 
 const withBundleAnalyzer = buildWithBundleAnalyzer({
   enabled: process.env.ANALYSE_BUNDLE === "on",
 });
 
-const __dirname = fileURLToPath(new URL(".", import.meta.url));
+const configDirectory = fileURLToPath(new URL(".", import.meta.url));
 
 // https://nextjs.org/docs/api-reference/next.config.js/introduction
 export default async (phase: NextConfig["phase"]): Promise<NextConfig> => {
@@ -170,18 +167,7 @@ export default async (phase: NextConfig["phase"]): Promise<NextConfig> => {
       {
         source: "/(.*)",
         headers: [
-          {
-            key: "Reporting-Endpoints",
-            value: reportingEndpointsHeader,
-          },
-          {
-            key: "Content-Security-Policy-Report-Only",
-            value: cspHeader.replaceAll(/\n/g, ""),
-          },
-          {
-            key: "Content-Security-Policy",
-            value: "frame-ancestors 'self' https://classroom.google.com;",
-          },
+          ...getCspHeaders(),
           // {
           //   key: "x-vercel-set-bypass-cookie",
           //   value: "samesitenone",
@@ -288,8 +274,8 @@ export default async (phase: NextConfig["phase"]): Promise<NextConfig> => {
         new CopyPlugin({
           patterns: [
             {
-              from: join(__dirname, "node_modules/mathjax/es5"),
-              to: join(__dirname, "public/mathjax"),
+              from: join(configDirectory, "node_modules/mathjax/es5"),
+              to: join(configDirectory, "public/mathjax"),
             },
           ],
         }),
