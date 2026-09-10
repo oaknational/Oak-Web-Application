@@ -7,32 +7,20 @@ import type { LessonOverviewPageData } from "@/node-lib/curriculum-api-2023/quer
 /**
  * Serialises a teacher lesson overview into a deterministic markdown document.
  *
- * "Deterministic" is the contract, not a nice-to-have: the same lesson data
- * must always produce byte-identical markdown. Nothing here may read the clock,
- * the locale, the environment or a random source, and no collection is
- * re-ordered — every list keeps the order the curriculum API returned it in, so
- * the output is stable across requests, regions and deployments.
+ * "Deterministic" is the contract: the same lesson data must always produce
+ * byte-identical markdown, so nothing here may read the clock, the locale, the
+ * environment or a random source, and no collection is re-ordered.
  *
- * The representation is generated from the curriculum data rather than
- * converted from the rendered HTML. Conversion would inherit the page's
- * presentational structure (nav, cards, accordions, download affordances) and
- * would change shape whenever the page's markup changed; generating from the
- * data means the markdown tracks the curriculum, which is what a consumer
- * actually wants.
- *
- * @see docs/agent-readable-lesson-pages.md for the design and the open
- *   editorial questions about what this document should and should not carry.
+ * @see docs/agent-readable-lesson-pages.md for why the document is generated
+ *   from the curriculum data rather than converted from the rendered page, what
+ *   it contains, and the open editorial questions.
  */
 
 const CANONICAL_ORIGIN = "https://www.thenational.academy";
 
 /**
- * Quotes a value for YAML frontmatter. Always double-quotes rather than
- * guessing when quoting is required, so a title containing `:`, `#` or a
- * leading `-` can never break the frontmatter block.
- *
- * YAML 1.2 is a superset of JSON and a double-quoted YAML scalar uses JSON's
- * escaping rules, so `JSON.stringify` is exactly the right quoter here. It also
+ * Quotes a value for YAML frontmatter. A double-quoted YAML scalar uses JSON's
+ * escaping rules, so `JSON.stringify` is exactly the right quoter — it also
  * escapes newlines and control characters, which a hand-rolled quote-and-
  * backslash replacement would let through into the frontmatter block.
  */
@@ -44,31 +32,14 @@ function yamlValue(value: string): string {
  * Escapes a curriculum value so it reaches the reader as the text the
  * curriculum holds rather than as markdown syntax.
  *
- * Curriculum content is authored for the lesson page, not for a markdown
- * document, and it really does carry markdown's metacharacters. KS3 computing
- * quiz stems include bare HTML tags such as
- * `<link rel="stylesheet" href="styles.css">`, which markdown reads as raw
- * HTML and renders as nothing at all. French and Spanish sound-symbol lessons
- * write their keywords in brackets — `[e]`, `[rr]`, `[qui]`. One PE stem
- * begins `1. `, which opens a nested list, and a Python stem carries a fenced
- * code block whose blank line ends the list item it sits in.
+ * Whitespace collapses first, because every value is emitted on a single line
+ * and a raw newline would end the list item or paragraph around it. Escaping is
+ * uniform rather than per-field: nothing in the data marks which values were
+ * authored as markdown, and guessing is what leaves the document open to the
+ * rest.
  *
- * Two things happen here. Whitespace collapses first, because every value is
- * emitted on a single line and a raw newline would end the list item or
- * paragraph around it. Then the characters that open an inline construct are
- * backslash-escaped, along with the block markers that matter only at the
- * start of a line — which is where these values sit.
- *
- * Escaping is uniform rather than per-field on purpose. Some of this content
- * was authored as markdown — a few quiz stems use `**bold**`, and science
- * content writes formulae as `$$NO_2$$` — but nothing in the data marks which
- * values those are, and guessing is what leaves the document open to the rest.
- * So every value is treated as text and rendered as the text it is; carrying
- * emphasis or MathJax through faithfully needs the curriculum data to say
- * where they are, which is a separate piece of work.
- *
- * Both steps are pure string transformations, so the determinism contract
- * above still holds.
+ * @see docs/agent-readable-lesson-pages.md, "Curriculum values are escaped",
+ *   for the production content that made each step necessary.
  */
 function markdownText(value: string): string {
   return (
@@ -120,15 +91,11 @@ function renderStem(parts: StemObject[]): string {
 type Section = { heading: string; lines: string[] };
 
 /**
- * Renders a quiz as its question stems only.
+ * Renders a quiz as its question stems only. Correct answers, feedback and
+ * hints are present in the page data and are deliberately omitted — Oak
+ * distributes answer keys as separately gated `*-quiz-answers` downloads.
  *
- * Correct answers, feedback and hints are all present in the page data
- * (`answerIsCorrect`, `correctChoice`, `correctOrder`) and are deliberately
- * omitted. Oak distributes answer keys as separate, separately gated
- * `*-quiz-answers` downloads; emitting them here would publish an answer key
- * for every lesson as plain text at a URL a pupil can guess from the lesson
- * URL. That is an editorial decision rather than an engineering one, so the
- * conservative option is taken until a content owner rules otherwise.
+ * @see docs/agent-readable-lesson-pages.md, "Deliberate omissions".
  */
 function quizSection(
   heading: string,
@@ -280,22 +247,10 @@ export function lessonToMarkdown(lesson: LessonOverviewPageData): string {
     quizSection("Exit quiz", lesson.exitQuiz),
   ];
 
-  // Conditioned on media clips alone, because `hasMediaClips` is precisely what
-  // decides whether `/media` exists: that page 404s when the lesson has no
-  // clips (`if (!curriculumData || !curriculumData.mediaClips)` in
-  // `src/pages/teachers/lessons/[lessonSlug]/media.tsx`). A transcript is NOT
-  // that condition — a lesson can carry one without any clips, and
-  // `adverbial-complex-sentences` is such a lesson: `hasMediaClips: false`, a
-  // populated `transcriptSentences`, and `/media` 404 on production. Linking on
-  // transcript presence sent consumers to that 404.
-  //
-  // The lesson's own transcript stays reachable through the canonical link at
-  // the foot of this document, which is where the lesson page renders it.
-  //
-  // The clip transcripts are linked rather than inlined. Inlining would
-  // multiply the size of this document for a minority of consumers, and the
-  // video and its clips have their own page; the link keeps the representation
-  // bounded.
+  // Conditioned on clips alone: `/media` 404s when a lesson has none, and a
+  // lesson can carry a transcript without any clips. The clip transcripts are
+  // linked rather than inlined to keep the document bounded; the lesson's own
+  // transcript stays reachable through the canonical link at the foot.
   if (lesson.hasMediaClips) {
     sections.push({
       heading: "Video and transcript",

@@ -2,25 +2,12 @@
  * Markdown representation of a teacher lesson overview.
  *
  * Served at `/teachers/lessons/<lessonSlug>.md` via a rewrite in
- * `next.config.ts`, and advertised from the lesson page itself with an
- * RFC 8288 `Link: …; rel="alternate"; type="text/markdown"` header.
+ * `next.config.ts`, and advertised from the lesson page with an RFC 8288
+ * `Link: …; rel="alternate"; type="text/markdown"` header.
  *
- * This is a distinct URL rather than `Accept: text/markdown` negotiation on the
- * lesson page. Negotiation is the better end state — one round trip, and the
- * canonical URL stays canonical — but it requires every cache in front of the
- * app to key on `Accept`, and measured against production neither layer does:
- * Cloudflare's default cache key carries no `Accept` header, and Vercel's CDN
- * served one stored entry for three different `Accept` values on this route
- * despite documenting that `Accept` is in its key by default. A distinct URL is
- * a distinct cache key at every layer, so it needs no `Vary` and cannot mix
- * representations — which is also how Next.js separates its own flight payload
- * on this route, at `/teachers/lessons/[lessonSlug].rsc`. See
- * `docs/agent-readable-lesson-pages.md` for the measurements, the control
- * probes behind them, and the plan to add negotiation on top of this handler.
- *
- * Deliberately no `Vary` header: this URL always returns markdown regardless of
- * what the request asked for, so listing `Accept` in `Vary` would be false.
- * `Vary: Accept` belongs on the negotiated lesson page, not here.
+ * @see docs/agent-readable-lesson-pages.md — why this is a distinct URL rather
+ *   than `Accept` negotiation, why it deliberately sends no `Vary`, and the
+ *   cache measurements behind the directives below.
  */
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 import { lessonToMarkdown } from "@/utils/lessonToMarkdown";
@@ -30,51 +17,15 @@ import { getRedirect } from "@/pages-helpers/shared/lesson-pages/getRedirects";
 const MARKDOWN_CONTENT_TYPE = "text/markdown; charset=utf-8";
 
 /**
- * Cache directives, stated separately for each layer that has one.
+ * Cache directives, stated once per layer. `CDN-Cache-Control` is not redundant:
+ * Vercel strips `s-maxage` and `stale-while-revalidate` from `Cache-Control`
+ * before forwarding, so a downstream CDN would otherwise see a bare `public`.
  *
- * **Where the 300 comes from.** It is a deliberate five-minute shared-cache
- * window for this handler, and not a number inherited from the lesson page. It
- * is worth stating that explicitly, because the obvious-looking provenance is
- * wrong: the canonical lesson URL emits no `x-nextjs-stale-time` at all.
- * Measured against production on 2026-09-10,
- * `/teachers/lessons/adverbial-complex-sentences` answered
- * `cache-control: public, max-age=0, must-revalidate` with no `x-nextjs-…`
- * header of any kind — it is a Pages Router route
- * (`src/pages/teachers/lessons/[lessonSlug].tsx`), and its own regeneration
- * window is the ISR `revalidate` fed from `SANITY_REVALIDATE_SECONDS`, which
- * never appears in a response header. The route that *does* answer
- * `x-nextjs-stale-time: 300` is the App Router programme-scoped lesson route
- * (`/teachers/programmes/[slug]/units/[unitSlug]/lessons/[lessonSlug]`), where
- * the 300 is this app's own `experimental.staleTimes.static` from
- * `next.config.ts` — a CLIENT router-cache prefetch lifetime, not a
- * shared-cache revalidation window, and not a setting the Pages Router lesson
- * page is subject to. `docs/agent-readable-lesson-pages.md` already records the
- * same measurement.
+ * `sharedTransient` carries no `stale-while-revalidate` on purpose — a "not
+ * found" must never be served stale once it has stopped being true.
  *
- * So five minutes is chosen here on its own merits: short relative to how
- * rarely lesson content changes, with a long stale window on top so a shared
- * cache can serve while it revalidates.
- *
- * `CDN-Cache-Control` is not redundant with `Cache-Control` here. Vercel strips
- * `s-maxage` and `stale-while-revalidate` from `Cache-Control` before sending
- * the response on, so a downstream CDN — and `www` has Cloudflare in front of
- * Vercel — would otherwise receive a bare `public` with no freshness lifetime
- * and fall back to its own heuristics. Measured on a preview deployment before
- * this header was added: the response reached the client as
- * `cache-control: public`.
- *
- * The browser directive deliberately matches the lesson page's own
- * (`public, max-age=0, must-revalidate`, measured above) so the two
- * representations behave consistently in a client cache.
- *
- * **The miss window is separate, and short.** `<slug>.md` is trivially
- * enumerable — anyone can append `.md` to any slug they can invent — so a
- * response that sets no cache headers at all puts every miss through to the
- * curriculum API. Sixty seconds of shared caching blunts that, and it carries
- * no `stale-while-revalidate` deliberately: a "not found" must never be served
- * from a stale entry once it has stopped being true, so a newly published
- * lesson cannot sit behind a cached 404 for longer than that minute. The
- * redirect responses take the same window for the same reason.
+ * @see docs/agent-readable-lesson-pages.md for the measurements, and for where
+ *   the 300 does and does not come from.
  */
 const CACHE_CONTROL = {
   browser: "public, max-age=0, must-revalidate",
@@ -130,8 +81,7 @@ export async function GET(
 
   if (!lesson) {
     // Consult the canonical redirect table before giving up, exactly as the
-    // lesson page and the media page both do. Without this step a renamed slug
-    // redirects on the HTML URL and 404s on the `.md` one.
+    // lesson page and the media page both do.
     let redirect;
     try {
       redirect = await getRedirect({
@@ -141,17 +91,15 @@ export async function GET(
         isLesson: true,
       });
     } catch (error) {
-      // `canonicalLessonRedirectQuery` THROWS `curriculum-api/not-found` when
-      // the table holds no row for this path, rather than returning nothing —
-      // which is the ordinary case for a slug that never existed. Anything else
-      // is a real failure and is rethrown.
+      // `canonicalLessonRedirectQuery` throws `curriculum-api/not-found` when
+      // the table holds no row, rather than returning nothing — the ordinary
+      // case for a slug that never existed.
       allowNotFoundError(error);
     }
 
     if (redirect) {
-      // `getRedirect` returns Next's `Redirect`, whose two members carry the
-      // status either as a code or as a permanence flag. Both are handled, so
-      // this does not depend on which shape the redirect table produced.
+      // Next's `Redirect` carries the status either as a code or as a
+      // permanence flag, so both members are handled.
       const status =
         "statusCode" in redirect
           ? redirect.statusCode

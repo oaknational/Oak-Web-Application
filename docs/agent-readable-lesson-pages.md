@@ -478,6 +478,18 @@ decision to republish it as plain text at a cacheable URL.
 a disclosure one: inlining would multiply the document size for a minority of
 consumers, and populating it requires a separate fetch from the captions bucket.
 
+**The video and transcript link is emitted only when the lesson has media
+clips.** `/teachers/lessons/<slug>/media` 404s when a lesson has no clips — see
+the `!curriculumData.mediaClips` guard in
+[media.tsx](../src/pages/teachers/lessons/[lessonSlug]/media.tsx) — and a lesson
+can carry a transcript without carrying any clips.
+`adverbial-complex-sentences` is one: `hasMediaClips: false`, a populated
+`transcriptSentences`, and `/media` 404 on production. So the condition is
+`hasMediaClips`, not transcript presence; conditioning on the transcript sent
+consumers to a 404. The lesson's own transcript stays reachable through the
+canonical link at the foot of the document, which is where the lesson page
+renders it.
+
 **Media clip asset URLs and Mux playback identifiers are omitted.** They are
 asset locators rather than lesson content.
 
