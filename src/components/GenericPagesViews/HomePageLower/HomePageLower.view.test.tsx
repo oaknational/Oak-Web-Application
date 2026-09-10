@@ -161,4 +161,16 @@ describe("HomePageLowerView", () => {
       }),
     );
   });
+
+  it("should include Oak's impact when testimonials & introVideo present", () => {
+    const { getByRole } = render(
+      <HomePageLowerView
+        posts={mockPosts}
+        testimonials={mockTestimonials}
+        introVideo={mockIntroVideo}
+      />,
+    );
+
+    expect(getByRole("link", { name: /Oak's impact/i })).toBeInTheDocument();
+  });
 });
