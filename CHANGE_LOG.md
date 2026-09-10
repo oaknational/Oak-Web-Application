@@ -1,3 +1,10 @@
+## [1.1189.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.1189.0...v1.1189.1) (2026-09-10)
+
+
+### Bug Fixes
+
+* added back in Content-Security-Policy with `frame-ancestors` ([4f07139](https://github.com/oaknational/Oak-Web-Application/commit/4f0713976d0c12b1b6000eac04d8b134a44ecf40))
+
 # [1.1189.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1188.1...v1.1189.0) (2026-09-10)
 
 
