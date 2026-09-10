@@ -112,15 +112,6 @@ function renderStem(parts: StemObject[]): string {
   );
 }
 
-/** Collapses the transcript field, which may be a string or a sentence array. */
-function hasTranscript(
-  transcriptSentences: LessonOverviewPageData["transcriptSentences"],
-): boolean {
-  return Array.isArray(transcriptSentences)
-    ? transcriptSentences.length > 0
-    : Boolean(transcriptSentences);
-}
-
 /**
  * A markdown section: a heading plus its lines. Sections with no lines are
  * dropped entirely, so a lesson without misconceptions has no empty
@@ -289,10 +280,23 @@ export function lessonToMarkdown(lesson: LessonOverviewPageData): string {
     quizSection("Exit quiz", lesson.exitQuiz),
   ];
 
-  if (hasTranscript(lesson.transcriptSentences) || lesson.hasMediaClips) {
-    // The transcript is linked rather than inlined. Inlining would multiply the
-    // size of this document for a minority of consumers, and the video and its
-    // clips have their own page; the link keeps the representation bounded.
+  // Conditioned on media clips alone, because `hasMediaClips` is precisely what
+  // decides whether `/media` exists: that page 404s when the lesson has no
+  // clips (`if (!curriculumData || !curriculumData.mediaClips)` in
+  // `src/pages/teachers/lessons/[lessonSlug]/media.tsx`). A transcript is NOT
+  // that condition — a lesson can carry one without any clips, and
+  // `adverbial-complex-sentences` is such a lesson: `hasMediaClips: false`, a
+  // populated `transcriptSentences`, and `/media` 404 on production. Linking on
+  // transcript presence sent consumers to that 404.
+  //
+  // The lesson's own transcript stays reachable through the canonical link at
+  // the foot of this document, which is where the lesson page renders it.
+  //
+  // The clip transcripts are linked rather than inlined. Inlining would
+  // multiply the size of this document for a minority of consumers, and the
+  // video and its clips have their own page; the link keeps the representation
+  // bounded.
+  if (lesson.hasMediaClips) {
     sections.push({
       heading: "Video and transcript",
       lines: [`- [Lesson video and transcript](${canonicalUrl}/media)`],

@@ -153,9 +153,11 @@ describe("lessonToMarkdown()", () => {
     // Assert against the quiz sections specifically. Some answer text is also
     // legitimate keyword-description text elsewhere in the document, so a
     // whole-document search would fail for the wrong reason.
+    // Anchored on the canonical link that closes every document, so the slice
+    // does not depend on which optional sections a lesson happens to have.
     const quizzes = markdown
       .split("## Starter quiz")[1]
-      ?.split("## Video and transcript")[0];
+      ?.split("[View this lesson on Oak National Academy]")[0];
 
     expect(quizzes).toBeDefined();
     expect(quizzes).toContain("What is a main clause? _(multiple-choice)_");
@@ -202,6 +204,7 @@ describe("lessonToMarkdown()", () => {
   it("links the video and transcript rather than inlining them", () => {
     const markdown = lessonToMarkdown(
       lessonOverviewFixture({
+        hasMediaClips: true,
         transcriptSentences: ["this is a sentence", "and another"],
       }),
     );
@@ -209,6 +212,37 @@ describe("lessonToMarkdown()", () => {
     expect(markdown).toContain("## Video and transcript");
     expect(markdown).toContain("/media)");
     expect(markdown).not.toContain("this is a sentence");
+  });
+
+  /**
+   * `/media` exists only for a lesson with media clips — the page 404s on
+   * `!curriculumData.mediaClips`. A transcript is not that condition:
+   * `adverbial-complex-sentences` carries `hasMediaClips: false` with a
+   * populated `transcriptSentences`, and `/media` 404s for it on production.
+   * So the link must follow the clips, not the transcript.
+   */
+  it("does not link /media for a lesson with a transcript but no media clips", () => {
+    const markdown = lessonToMarkdown(
+      lessonOverviewFixture({
+        hasMediaClips: false,
+        transcriptSentences: ["this is a sentence", "and another"],
+      }),
+    );
+
+    expect(markdown).not.toContain("## Video and transcript");
+    expect(markdown).not.toContain("/media)");
+  });
+
+  it("links /media for a lesson with clips but no transcript", () => {
+    const markdown = lessonToMarkdown(
+      lessonOverviewFixture({
+        hasMediaClips: true,
+        transcriptSentences: [],
+      }),
+    );
+
+    expect(markdown).toContain("## Video and transcript");
+    expect(markdown).toContain("/media)");
   });
 
   it("lists the downloads that exist and not the ones that do not", () => {
