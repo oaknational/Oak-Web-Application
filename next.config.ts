@@ -196,10 +196,10 @@ export default async (phase: NextConfig["phase"]): Promise<NextConfig> => {
             key: "Content-Security-Policy-Report-Only",
             value: cspHeader.replaceAll(/\n/g, ""),
           },
-          // {
-          //   key: "Content-Security-Policy",
-          //   value: "frame-ancestors 'self' https://classroom.google.com;",
-          // },
+          {
+            key: "Content-Security-Policy",
+            value: "frame-ancestors 'self' https://classroom.google.com;",
+          },
           // {
           //   key: "x-vercel-set-bypass-cookie",
           //   value: "samesitenone",

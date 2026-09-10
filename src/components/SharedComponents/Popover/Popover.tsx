@@ -11,6 +11,7 @@ interface PopoverProps {
   isOpen?: boolean;
   onClose?: () => void;
   focusOn?: boolean;
+  isDismissable?: boolean;
 }
 
 const Wrapper = styled.div`
@@ -23,7 +24,14 @@ const Wrapper = styled.div`
 
 export function Popover(props: Readonly<PopoverProps>) {
   const ref = React.useRef<HTMLDivElement>(null);
-  const { popoverRef = ref, isOpen, onClose, children, focusOn = true } = props;
+  const {
+    popoverRef = ref,
+    isOpen,
+    onClose,
+    children,
+    focusOn = true,
+    isDismissable = false,
+  } = props;
 
   // Handle events that should cause the popup to close,
   // e.g. blur, clicking outside, or pressing the escape key.
@@ -32,7 +40,7 @@ export function Popover(props: Readonly<PopoverProps>) {
       isOpen,
       onClose,
       shouldCloseOnBlur: true,
-      isDismissable: false,
+      isDismissable,
     },
     popoverRef,
   );
