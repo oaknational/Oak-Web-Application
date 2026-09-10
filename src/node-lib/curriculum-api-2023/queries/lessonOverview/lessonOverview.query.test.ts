@@ -528,7 +528,7 @@ describe("lessonOverview()", () => {
     it("should return an array of additional files if provided", () => {
       expect(getAdditionalFiles(_additionalFilesFixture)).toEqual([
         "File 1 1000 B (PDF)",
-        "File 2 1.95 KB (PDF)",
+        "File 2 2 KB (PDF)",
       ]);
     });
   });

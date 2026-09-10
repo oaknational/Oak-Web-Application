@@ -1,6 +1,6 @@
 import { OakFlex, OakLI, OakSpan } from "@oaknational/oak-components";
 
-import { convertBytesToMegabytes } from "@/components/TeacherComponents/helpers/lessonHelpers/lesson.helpers";
+import { formatBytes } from "@/utils/formatBytes";
 
 export type PupilLessonIntroAdditionalFileItemProps = {
   displayName: string;
@@ -19,7 +19,7 @@ export const PupilLessonIntroAdditionalFileItem = ({
     <OakLI $listStyle="none">
       <OakFlex $flexDirection="column">
         <OakSpan>{displayName}</OakSpan>
-        <OakSpan>{`${convertBytesToMegabytes(bytes)} (${extension?.toUpperCase()})`}</OakSpan>
+        <OakSpan>{`${formatBytes(bytes)} (${extension?.toUpperCase()})`}</OakSpan>
       </OakFlex>
     </OakLI>
   );
