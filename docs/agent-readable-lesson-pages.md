@@ -373,10 +373,18 @@ markdown-preferring requests on the lesson URL to the same handler:
 }
 ```
 
-The negotiated response must then carry `Vary: Accept`. Note that the dedicated
-`.md` route deliberately does **not** send `Vary`, because it returns markdown
-whatever the request asked for — listing `Accept` there would be false.
-`Vary: Accept` belongs on the negotiated lesson URL, and only there.
+The negotiated response must then carry `Vary: Accept`. Note that neither the
+handler nor any header rule adds `Vary` to the dedicated `.md` route, because it
+returns markdown whatever the request asked for — listing `Accept` there would be
+false. `Vary: Accept` belongs on the negotiated lesson URL, and only there.
+
+The `.md` response is not `Vary`-free on the wire, and it is worth being exact
+about that. Measured on the preview deployment, it carries
+`vary: rsc, next-router-state-tree, next-router-prefetch, next-router-segment-prefetch`
+from Next's App Router and `vary: accept-encoding` from compression. Neither is
+set by this feature and neither lists `Accept`, so the distinct-URL argument
+above is unaffected — but "this URL sends no `Vary`" would be the wrong way to
+state it.
 
 Both representations should stay available afterwards. The `.md` URL is useful in
 its own right: it can be linked, pasted and crawled, and it does not depend on a

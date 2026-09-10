@@ -25,7 +25,9 @@ import { pathToRegexp } from "path-to-regexp";
  * code that could set it, so the assertion holds by construction and would
  * still hold if a `Vary` rule were added in `next.config.ts` tomorrow. The
  * header rules ARE the other half of what a client receives on this URL, so
- * that is where the claim "this URL sends no `Vary`" can actually fail.
+ * that is where the claim "nothing here sets `Vary`" can actually fail. Next
+ * and compression add their own `Vary` values on the wire; neither lists
+ * `Accept`, and neither is set by this feature.
  *
  * Everything is read out of the real `next.config.ts`, so these tests cannot
  * pass against a config that no longer says what they assert.
@@ -190,11 +192,10 @@ describe("the lesson markdown header rules", () => {
     });
 
     /**
-     * The route handler documents that this URL sends no `Vary`: it always
-     * returns markdown whatever the request asked for, so listing `Accept`
-     * would be false. The handler cannot break that on its own — it sets no
-     * such header — but a header rule in `next.config.ts` can, and this is the
-     * assertion that would fail if one did.
+     * This URL returns markdown whatever the request asked for, so listing
+     * `Accept` in `Vary` would be false. The handler cannot break that on its
+     * own — it sets no such header — but a header rule in `next.config.ts` can,
+     * and this is the assertion that would fail if one did.
      */
     it("is set by no header rule that reaches the .md URL", () => {
       const varyKeys = rulesReaching(LESSON_MARKDOWN_PATH)

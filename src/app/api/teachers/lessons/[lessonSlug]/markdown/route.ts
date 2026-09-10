@@ -6,7 +6,7 @@
  * `Link: …; rel="alternate"; type="text/markdown"` header.
  *
  * @see docs/agent-readable-lesson-pages.md — why this is a distinct URL rather
- *   than `Accept` negotiation, why it deliberately sends no `Vary`, and the
+ *   than `Accept` negotiation, why nothing here sets `Vary: Accept`, and the
  *   cache measurements behind the directives below.
  */
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
