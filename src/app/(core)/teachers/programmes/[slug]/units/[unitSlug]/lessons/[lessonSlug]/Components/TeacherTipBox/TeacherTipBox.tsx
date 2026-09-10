@@ -1,5 +1,7 @@
 import { OakFlex, OakHeading, OakP } from "@oaknational/oak-components";
 
+import { MaybeTeachWithOakCard } from "../TeachWithOakCard/TeachWithOakCard";
+
 type TeacherTipBoxProps = {
   tips: string[];
 };
@@ -25,6 +27,7 @@ const TeacherTipBox = (props: TeacherTipBoxProps) => {
           </OakP>
         ))}
       </OakFlex>
+      <MaybeTeachWithOakCard />
     </OakFlex>
   );
 };
