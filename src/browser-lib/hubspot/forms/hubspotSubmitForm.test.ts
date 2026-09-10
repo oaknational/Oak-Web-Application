@@ -92,6 +92,28 @@ describe("hubspotSubmitForm", () => {
     jest.clearAllMocks();
   });
   describe("succeeds", () => {
+    it("uses a per-form portal override without changing the global destination", async () => {
+      const overrideEndpoint = `https://hubspot-forms.thenational.academy/submissions/v3/integration/submit/campaign-portal/${hubspotFormId}`;
+      global.fetch = getFakeFetch([
+        buildMatcher(overrideEndpoint, {
+          status: 200,
+          inlineMessage: "Campaign received",
+        }),
+        primaryFormSuccess,
+      ]).asFetch;
+
+      await expect(
+        hubspotSubmitForm({
+          hubspotFormId,
+          hubspotPortalId: "campaign-portal",
+          payload,
+        }),
+      ).resolves.toBe("Campaign received");
+      await expect(hubspotSubmitForm({ hubspotFormId, payload })).resolves.toBe(
+        "Thanks that worked the first time",
+      );
+    });
+
     it("should fetch the correct url with the correct payload", async () => {
       global.fetch = getFakeFetch(primaryFormSuccess).asFetch;
 
