@@ -207,7 +207,7 @@ describe("Programme Downloads", () => {
 
   describe("implementation guides", () => {
     test("should show implementation guides when they are available (and enabled)", async () => {
-      const { findByRole, findAllByRole } = renderComponent({
+      const { findAllByRole } = renderComponent({
         curriculumDownloadsTabData: {
           ...defaultProps.curriculumDownloadsTabData,
         },
@@ -225,13 +225,6 @@ describe("Programme Downloads", () => {
         },
       });
 
-      const buttonEl = await findByRole("button", {
-        name: /All resources selected/,
-      });
-      const user = userEvent.setup();
-
-      await user.click(buttonEl);
-
       const region = (await findAllByRole("region"))[1]!;
 
       expect(
@@ -241,7 +234,7 @@ describe("Programme Downloads", () => {
   });
 
   test("should show file sizes", async () => {
-    const { findByRole, findAllByRole } = renderComponent({
+    const { findAllByRole } = renderComponent({
       curriculumDownloadsTabData: {
         ...defaultProps.curriculumDownloadsTabData,
       },
@@ -249,7 +242,7 @@ describe("Programme Downloads", () => {
         curriculumQuality: {
           asset: {
             extension: "pdf",
-            size: 1000,
+            size: 1024,
             url: "https://example.com/whats-included.pdf",
           },
         },
@@ -257,7 +250,7 @@ describe("Programme Downloads", () => {
       fileSizes: [
         {
           downloadId: "curriculumPlan",
-          size: 2000,
+          size: 2048,
           tier: null,
           childSubject: null,
         },
@@ -266,13 +259,6 @@ describe("Programme Downloads", () => {
         "implementation-guides": true,
       },
     });
-
-    const buttonEl = await findByRole("button", {
-      name: /All resources selected/,
-    });
-    const user = userEvent.setup();
-
-    await user.click(buttonEl);
 
     const region = (await findAllByRole("region"))[1]!;
 
