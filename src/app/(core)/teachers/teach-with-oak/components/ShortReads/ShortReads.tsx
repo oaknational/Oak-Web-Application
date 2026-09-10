@@ -30,25 +30,25 @@ export const ShortReads = () => {
           description="This short guide explores Oak’s approach to explanation and the
               thinking behind our design, helping you deepen your understanding
               and support your teaching."
-          assetUrl={"1aBgV77ao7mmpRqO3m1fRvPl-958biNw0G8Rzh3ON68I"}
+          assetUrl={"1Wc5TYGrmX3z6pvJWORXVyg_Hlu8NsfMTL6xoTb_UbFM"}
           shortReadType="explanation"
         />
         <ShortReadSection
           title="Check for understanding (CfU) at Oak"
           description="This short guide explores Oak’s approach to CfUs and the thinking behind our design, helping you deepen your understanding and support your teaching."
-          assetUrl={"1sugE2rWoa2D-JxHEQggg4FTniW8rHvazP1QtC-GtPho"}
+          assetUrl={"1Wc5TYGrmX3z6pvJWORXVyg_Hlu8NsfMTL6xoTb_UbFM"}
           shortReadType="CfU"
         />
         <ShortReadSection
           title="Practice at Oak"
           description="This short guide explores Oak’s approach to practice and the thinking behind our design, helping you deepen your understanding and support your teaching. "
-          assetUrl={"16NK_tAod38xtV86IFnaaA0SRF6I5SohwGzb4cyKPXk8"}
+          assetUrl={"1Wc5TYGrmX3z6pvJWORXVyg_Hlu8NsfMTL6xoTb_UbFM"}
           shortReadType="practice"
         />
         <ShortReadSection
           title="Feedback at Oak"
           description="This short guide explores Oak’s approach to feedback and the thinking behind our design, helping you deepen your understanding and support your teaching.  "
-          assetUrl={"1PR4NgNWtKLmKFWWmSlssAP7M_MtVoTpahc6MBH8lAgg"}
+          assetUrl={"1Wc5TYGrmX3z6pvJWORXVyg_Hlu8NsfMTL6xoTb_UbFM"}
           shortReadType="feedback"
         />
       </OakMaxWidth>
