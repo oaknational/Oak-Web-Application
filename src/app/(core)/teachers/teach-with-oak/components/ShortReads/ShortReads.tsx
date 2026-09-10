@@ -75,7 +75,7 @@ const ShortReadsHeader = () => {
           <OakPrimaryButton
             iconName="download"
             isTrailingIcon
-            aria-label="Opens in a new tab"
+            aria-label={"Download all guides, opens in a new tab"}
           >
             Download all guides
           </OakPrimaryButton>
@@ -129,7 +129,7 @@ const ShortReadSection = ({
             <ShortReadDownloadButton
               iconName="download"
               isTrailingIcon
-              aria-label="Opens in a new tab"
+              aria-label={`Download ${shortReadType} guide (PDF), opens in a new tab`}
             >
               {`Download ${shortReadType} guide (PDF)`}
             </ShortReadDownloadButton>
