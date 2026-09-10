@@ -48,15 +48,23 @@ process.stdin.on('end', () => {
     });
   } else if (data.advisories) {
     // pnpm / npm v6 shape: { advisories: { <id>: { module_name, severity, title, vulnerable_versions, patched_versions, findings } } }
-    const major = (v) => parseInt(String(v).match(/\d+/)?.[0] ?? 'NaN', 10);
-    const majorsIn = (range) => [...String(range).matchAll(/\d+\.\d+\.\d+/g)].map((m) => major(m[0]));
+    // The version segment a breaking change lands in: normally the major, but for
+    // a 0.x release it is the minor — 0.19 -> 0.24 breaks even though major stays 0.
+    const compatKey = (v) => {
+      const parts = String(v).replace(/^v/, '').split(/[.-]/);
+      const major = parseInt(parts[0], 10) || 0;
+      const minor = parseInt(parts[1], 10) || 0;
+      return major === 0 ? '0.' + minor : String(major);
+    };
+    const compatKeysIn = (range) =>
+      [...String(range).matchAll(/\d+\.\d+\.\d+/g)].map((m) => compatKey(m[0]));
 
     const fixTypeOf = (adv) => {
       if (!adv.patched_versions || adv.patched_versions === '<0.0.0') return 'no fix';
-      const patchedMajors = majorsIn(adv.patched_versions);
-      const installedMajors = (adv.findings || []).map((f) => major(f.version));
-      if (installedMajors.length === 0) return patchedMajors.length ? 'auto-fixable' : 'no fix';
-      const allNonBreaking = installedMajors.every((m) => patchedMajors.includes(m));
+      const patchedKeys = compatKeysIn(adv.patched_versions);
+      const installedKeys = (adv.findings || []).map((f) => compatKey(f.version));
+      if (installedKeys.length === 0) return patchedKeys.length ? 'auto-fixable' : 'no fix';
+      const allNonBreaking = installedKeys.every((k) => patchedKeys.includes(k));
       return allNonBreaking ? 'auto-fixable' : 'breaking fix';
     };
 
