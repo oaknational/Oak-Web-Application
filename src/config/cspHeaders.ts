@@ -1,7 +1,4 @@
-import {
-  cspHeader,
-  reportingEndpointsHeader,
-} from "./contentSecurityPolicy";
+import { cspHeader, reportingEndpointsHeader } from "./contentSecurityPolicy";
 
 export const getCspHeaders = () => [
   ...(reportingEndpointsHeader
