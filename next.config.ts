@@ -514,6 +514,25 @@ export default async (phase: NextConfig["phase"]): Promise<NextConfig> => {
           destination: "/api/well-known/api-catalog",
         },
       ];
+      // The MCP submission carousel images now live under /ai-plugin/carousel,
+      // but Anthropic's directory listing stores the old /mcp/carousel URLs and
+      // refetches them itself, indefinitely. This is a REWRITE, not a redirect,
+      // so those stored URLs keep returning 200 with the same bytes and no
+      // redirect — which is what src/tests/e2e/mcp/carousel-assets.spec.ts
+      // asserts on Oak's behalf.
+      //
+      // REMOVAL CONDITION: delete this once the three image URLs on the
+      // Anthropic listing have been updated to /ai-plugin/carousel and the old
+      // URLs are confirmed no longer fetched. That listing edit is an owner
+      // action in the submission portal (editable after submission; only the
+      // slug is permanent) and has no PR of its own — MCP-689. The deletion
+      // itself is MCP-690, blocked by it.
+      const carouselCompatRewrites = [
+        {
+          source: "/mcp/carousel/:file",
+          destination: "/ai-plugin/carousel/:file",
+        },
+      ];
       // Reverse proxy posthog in development to avoid localhost CORS issues in Chrome https://posthog.com/docs/advanced/proxy/nextjs
       const developmentRewrites =
         releaseStage === "development"
@@ -532,7 +551,11 @@ export default async (phase: NextConfig["phase"]): Promise<NextConfig> => {
               },
             ]
           : [];
-      return [...wellKnownRewrites, ...developmentRewrites];
+      return [
+        ...wellKnownRewrites,
+        ...carouselCompatRewrites,
+        ...developmentRewrites,
+      ];
     },
     // Required for the posthog reverse proxy, but interferes with static URL redirections so we don't want this applied on production
     skipTrailingSlashRedirect: releaseStage === "development",
