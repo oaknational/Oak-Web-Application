@@ -26,6 +26,8 @@ const releaseStage = getReleaseStage(
     process.env.CONTEXT,
 );
 const isDevelopment: boolean = releaseStage?.includes("dev");
+const posthogApiHost =
+  process.env.NEXT_PUBLIC_POSTHOG_API_HOST || "https://eu.i.posthog.com";
 
 // Rules
 const mux: Partial<CspConfig> = {
@@ -57,8 +59,8 @@ const avo: Partial<CspConfig> = {
 };
 
 const posthog: Partial<CspConfig> = {
-  connectSrc: ["https://eu.i.posthog.com", "*.posthog.com"],
-  scriptSrc: ["https://*.posthog.com", "https://ph-eu-api.thenational.academy"],
+  connectSrc: [posthogApiHost, "*.posthog.com"],
+  scriptSrc: ["https://*.posthog.com", posthogApiHost],
 };
 
 const cloudinary: Partial<CspConfig> = {
@@ -204,8 +206,6 @@ const cspConfig: CspConfig = [
 
 // Reporting - PostHog CSP Dashboard
 const posthogApiKey = process.env.NEXT_PUBLIC_POSTHOG_API_KEY || "";
-const posthogApiHost =
-  process.env.NEXT_PUBLIC_POSTHOG_API_HOST || "https://eu.i.posthog.com";
 
 const posthogReportUri = posthogApiKey
   ? `${posthogApiHost}/report/?token=${posthogApiKey}`

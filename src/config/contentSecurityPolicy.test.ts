@@ -6,7 +6,7 @@ jest.mock("../../scripts/build/build_config_helpers", () => ({
 
 const prodCspHeaderFixture = `
     default-src 'self';
-    script-src 'self' 'unsafe-inline' https://vercel.live https://vercel.com https://*.posthog.com https://ph-eu-api.thenational.academy *.clerk.accounts.dev https://clerk.thenational.academy https://cdn.mux.com https://mux.com https://*.mux.com https://stream.mux.com https://*.gleap.io/ https://translate.google.com/ https://translate.googleapis.com/ https://www.gstatic.com/ https://*.google.com/;
+    script-src 'self' 'unsafe-inline' https://vercel.live https://vercel.com https://*.posthog.com https://eu.i.posthog.com *.clerk.accounts.dev https://clerk.thenational.academy https://cdn.mux.com https://mux.com https://*.mux.com https://stream.mux.com https://*.gleap.io/ https://translate.google.com/ https://translate.googleapis.com/ https://www.gstatic.com/ https://*.google.com/;
     style-src 'self' 'unsafe-inline' https://vercel.live/ https://*.mux.com;
     img-src 'self' blob: data: https: *.thenational.academy/ thenational.academy/;
     font-src 'self' gstatic-fonts.thenational.academy/ fonts.gstatic.com/ data: https://vercel.live/ https://assets.vercel.com;
@@ -26,7 +26,7 @@ const prodCspHeaderFixture = `
 
 const devCspHeaderFixture = `
     default-src 'self';
-    script-src 'self' 'unsafe-inline' 'unsafe-eval' http://localhost:* https://localhost:* https://vercel.live https://vercel.com https://*.posthog.com https://ph-eu-api.thenational.academy *.clerk.accounts.dev https://clerk.thenational.academy https://cdn.mux.com https://mux.com https://*.mux.com https://stream.mux.com https://*.gleap.io/ https://translate.google.com/ https://translate.googleapis.com/ https://www.gstatic.com/ https://*.google.com/;
+    script-src 'self' 'unsafe-inline' 'unsafe-eval' http://localhost:* https://localhost:* https://vercel.live https://vercel.com https://*.posthog.com https://eu.i.posthog.com *.clerk.accounts.dev https://clerk.thenational.academy https://cdn.mux.com https://mux.com https://*.mux.com https://stream.mux.com https://*.gleap.io/ https://translate.google.com/ https://translate.googleapis.com/ https://www.gstatic.com/ https://*.google.com/;
     style-src 'self' 'unsafe-inline' https://vercel.live/ https://*.mux.com;
     img-src 'self' blob: data: https: *.thenational.academy/ thenational.academy/;
     font-src 'self' gstatic-fonts.thenational.academy/ fonts.gstatic.com/ data: https://vercel.live/ https://assets.vercel.com;
@@ -116,10 +116,24 @@ describe("Content-Security-Policy Header", () => {
       );
     });
 
-    it("allows the configured PostHog proxy to load its scripts", async () => {
+    it("allows the configured PostHog host to load its scripts", async () => {
       const { cspHeader } = await import("./contentSecurityPolicy");
 
-      expect(cspHeader).toContain("https://ph-eu-api.thenational.academy");
+      expect(cspHeader).toContain("https://eu.i.posthog.com");
+    });
+
+    it("allows a configured PostHog host for scripts and connections", async () => {
+      process.env.NEXT_PUBLIC_POSTHOG_API_HOST =
+        "https://custom.posthog-proxy.example";
+
+      const { cspHeader } = await import("./contentSecurityPolicy");
+
+      expect(cspHeader).toContain(
+        "script-src 'self' 'unsafe-inline' https://vercel.live https://vercel.com https://*.posthog.com https://custom.posthog-proxy.example",
+      );
+      expect(cspHeader).toContain(
+        "connect-src 'self' *.thenational.academy thenational.academy https://vercel.live/ https://vercel.com *.pusher.com *.pusherapp.com *.hubspot.com *.hsforms.com *.cloudinary.com/ https://custom.posthog-proxy.example",
+      );
     });
 
     it("allows the production Clerk frontend to load its scripts", async () => {
