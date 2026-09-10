@@ -156,7 +156,7 @@ describe("pages/pupils/programmes/[programmeSlug]/units/[unitSlug]/lessons/[less
       expect.assertions(2);
 
       // Ensure that 2 calls have been made
-      expect(calls.length).toEqual(2);
+      expect(calls).toHaveLength(2);
 
       // we expect the second call to be the correct one
       expect(calls[1][0]).toEqual(
