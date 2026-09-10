@@ -6,34 +6,35 @@ jest.mock("../../scripts/build/build_config_helpers", () => ({
 
 const prodCspHeaderFixture = `
     default-src 'self';
-    script-src 'self' 'unsafe-inline' https: http: https://vercel.live https://vercel.com https://*.posthog.com *.clerk.accounts.dev https://cdn.mux.com https://mux.com https://*.mux.com https://stream.mux.com https://*.gleap.io/ https://translate.google.com/ https://translate.googleapis.com/ https://www.gstatic.com/ https://*.google.com/;
+    script-src 'self' 'unsafe-inline' https://vercel.live https://vercel.com https://*.posthog.com https://ph-eu-api.thenational.academy *.clerk.accounts.dev https://cdn.mux.com https://mux.com https://*.mux.com https://stream.mux.com https://*.gleap.io/ https://translate.google.com/ https://translate.googleapis.com/ https://www.gstatic.com/ https://*.google.com/;
     style-src 'self' 'unsafe-inline' https://vercel.live/ https://*.mux.com;
-    img-src 'self' blob: data: https: *.thenational.academy/ thenational.academy/ https://vercel.live/ https://vercel.com *.pusher.com/ data: blob: https://*.hubspot.com/ https://*.hsforms.com/ https://track.hubspot.com/ https://res.cloudinary.com/ https://res.cloudinary.com https://oaknationalacademy-res.cloudinary.com/ https://oaknationalacademy-res.cloudinary.com https://*.cloudinary.com/ https://*.cloudinary.com https://res.cloudinary.com/oak-web-application/ https://img.clerk.com/ https://*.mux.com/ https://stream.mux.com/ https://*.gleap.io/ https://translate.googleusercontent.com https://ssl.gstatic.com;
+    img-src 'self' blob: data: https: *.thenational.academy/ thenational.academy/;
     font-src 'self' gstatic-fonts.thenational.academy/ fonts.gstatic.com/ data: https://vercel.live/ https://assets.vercel.com;
     object-src 'self' *.google.com;
     base-uri 'self';
     form-action 'self';
-    frame-ancestors 'self' *.google.com/;
-    connect-src *.thenational.academy thenational.academy https://vercel.live/ https://vercel.com *.pusher.com *.pusherapp.com *.hubspot.com *.hsforms.com *.cloudinary.com/ https://eu.i.posthog.com *.posthog.com https://api.avo.app/ *.clerk.accounts.dev clerk-telemetry.com https://mux.com https://*.mux.com https://stream.mux.com https://inferred.litix.io *.gleap.io wss://*.gleap.io *.google.com *.bugsnag.smartbear.com *.bugsnag.com;
+    frame-ancestors 'self' https://classroom.google.com *.google.com/;
+    connect-src 'self' *.thenational.academy thenational.academy https://vercel.live/ https://vercel.com *.pusher.com *.pusherapp.com *.hubspot.com *.hsforms.com *.cloudinary.com/ https://eu.i.posthog.com *.posthog.com https://api.avo.app/ *.clerk.accounts.dev clerk-telemetry.com https://mux.com https://*.mux.com https://stream.mux.com https://inferred.litix.io *.gleap.io wss://*.gleap.io *.google.com *.bugsnag.smartbear.com *.bugsnag.com;
     media-src 'self' blob: *.thenational.academy/ https://res.cloudinary.com/ https://oaknationalacademy-res.cloudinary.com/ https://*.cloudinary.com/ https://*.mux.com/ https://stream.mux.com/ https://*.gleap.io/ https://ssl.gstatic.com;
     frame-src 'self' *.thenational.academy/ https://vercel.live/ https://vercel.com https://challenges.cloudflare.com https://www.avo.app/ https://stream.mux.com https://*.mux.com https://*.gleap.io/ *.google.com/;
     worker-src 'self' blob: *.thenational.academy/;
     child-src blob:;
     report-uri https://eu.i.posthog.com/report/?token=test-api-key&sample_rate=0.05&v=1;
     report-to posthog;
+    upgrade-insecure-requests;
 `;
 
 const devCspHeaderFixture = `
     default-src 'self';
-    script-src 'self' 'unsafe-inline' https: http: 'unsafe-eval' http://localhost:* https://localhost:* https://vercel.live https://vercel.com https://*.posthog.com *.clerk.accounts.dev https://cdn.mux.com https://mux.com https://*.mux.com https://stream.mux.com https://*.gleap.io/ https://translate.google.com/ https://translate.googleapis.com/ https://www.gstatic.com/ https://*.google.com/;
+    script-src 'self' 'unsafe-inline' 'unsafe-eval' http://localhost:* https://localhost:* https://vercel.live https://vercel.com https://*.posthog.com https://ph-eu-api.thenational.academy *.clerk.accounts.dev https://cdn.mux.com https://mux.com https://*.mux.com https://stream.mux.com https://*.gleap.io/ https://translate.google.com/ https://translate.googleapis.com/ https://www.gstatic.com/ https://*.google.com/;
     style-src 'self' 'unsafe-inline' https://vercel.live/ https://*.mux.com;
-    img-src 'self' blob: data: https: *.thenational.academy/ thenational.academy/ https://vercel.live/ https://vercel.com *.pusher.com/ data: blob: https://*.hubspot.com/ https://*.hsforms.com/ https://track.hubspot.com/ https://res.cloudinary.com/ https://res.cloudinary.com https://oaknationalacademy-res.cloudinary.com/ https://oaknationalacademy-res.cloudinary.com https://*.cloudinary.com/ https://*.cloudinary.com https://res.cloudinary.com/oak-web-application/ https://img.clerk.com/ https://*.mux.com/ https://stream.mux.com/ https://*.gleap.io/ https://translate.googleusercontent.com https://ssl.gstatic.com;
+    img-src 'self' blob: data: https: *.thenational.academy/ thenational.academy/;
     font-src 'self' gstatic-fonts.thenational.academy/ fonts.gstatic.com/ data: https://vercel.live/ https://assets.vercel.com;
     object-src 'self' *.google.com;
     base-uri 'self';
     form-action 'self';
-    frame-ancestors 'self' http://localhost:* https://localhost:* *.google.com/;
-    connect-src *.thenational.academy thenational.academy http://localhost:* https://localhost:* wss://localhost:* ws://localhost:* https://vercel.live/ https://vercel.com *.pusher.com *.pusherapp.com *.hubspot.com *.hsforms.com *.cloudinary.com/ https://eu.i.posthog.com *.posthog.com https://api.avo.app/ *.clerk.accounts.dev clerk-telemetry.com https://mux.com https://*.mux.com https://stream.mux.com https://inferred.litix.io *.gleap.io wss://*.gleap.io *.google.com *.bugsnag.smartbear.com *.bugsnag.com;
+    frame-ancestors 'self' https://classroom.google.com http://localhost:* https://localhost:* *.google.com/;
+    connect-src 'self' *.thenational.academy thenational.academy http://localhost:* https://localhost:* wss://localhost:* ws://localhost:* https://vercel.live/ https://vercel.com *.pusher.com *.pusherapp.com *.hubspot.com *.hsforms.com *.cloudinary.com/ https://eu.i.posthog.com *.posthog.com https://api.avo.app/ *.clerk.accounts.dev clerk-telemetry.com https://mux.com https://*.mux.com https://stream.mux.com https://inferred.litix.io *.gleap.io wss://*.gleap.io *.google.com *.bugsnag.smartbear.com *.bugsnag.com;
     media-src 'self' blob: *.thenational.academy/ https://res.cloudinary.com/ https://oaknationalacademy-res.cloudinary.com/ https://*.cloudinary.com/ https://*.mux.com/ https://stream.mux.com/ https://*.gleap.io/ https://ssl.gstatic.com;
     frame-src 'self' *.thenational.academy/ https://vercel.live/ https://vercel.com https://challenges.cloudflare.com https://www.avo.app/ https://stream.mux.com https://*.mux.com https://*.gleap.io/ *.google.com/;
     worker-src 'self' blob: *.thenational.academy/;
@@ -41,6 +42,8 @@ const devCspHeaderFixture = `
     report-uri https://eu.i.posthog.com/report/?token=test-api-key;
     report-to posthog;
 `;
+
+const normaliseCsp = (value: string) => value.replaceAll(/\s+/g, " ").trim();
 
 describe("Content-Security-Policy Header", () => {
   describe("when isDevelopment = true", () => {
@@ -57,7 +60,7 @@ describe("Content-Security-Policy Header", () => {
     it("should include development-specific 'localhost' and 'unsafe-eval' rules", async () => {
       const { cspHeader } = await import("./contentSecurityPolicy");
 
-      expect(cspHeader).toContain(devCspHeaderFixture);
+      expect(normaliseCsp(cspHeader)).toBe(normaliseCsp(devCspHeaderFixture));
     });
 
     it("should NOT include 'upgrade-insecure-requests' when in development", async () => {
@@ -69,7 +72,7 @@ describe("Content-Security-Policy Header", () => {
     it("should correctly merge all development directives", async () => {
       const { cspHeader } = await import("./contentSecurityPolicy");
 
-      expect(cspHeader).toContain(devCspHeaderFixture);
+      expect(normaliseCsp(cspHeader)).toBe(normaliseCsp(devCspHeaderFixture));
     });
   });
 
@@ -84,12 +87,11 @@ describe("Content-Security-Policy Header", () => {
       jest.resetModules();
     });
 
-    // Can uncomment this when we change from report only CSP
-    // it("should include 'upgrade-insecure-requests' when not in development", async () => {
-    //   const { cspHeader } = await import("./contentSecurityPolicy");
-    //
-    //   expect(cspHeader).toContain("upgrade-insecure-requests;");
-    // });
+    it("includes upgrade-insecure-requests outside development", async () => {
+      const { cspHeader } = await import("./contentSecurityPolicy");
+
+      expect(cspHeader).toContain("upgrade-insecure-requests;");
+    });
 
     it("should exclude development-specific rules ('localhost', 'unsafe-eval')", async () => {
       const { cspHeader } = await import("./contentSecurityPolicy");
@@ -98,10 +100,38 @@ describe("Content-Security-Policy Header", () => {
       expect(cspHeader).not.toContain("http://localhost:*");
     });
 
+    it("includes Google Classroom in the generated frame-ancestors policy", async () => {
+      const { cspHeader } = await import("./contentSecurityPolicy");
+
+      expect(cspHeader).toContain(
+        "frame-ancestors 'self' https://classroom.google.com *.google.com/;",
+      );
+    });
+
+    it("does not allow scripts from arbitrary HTTP or HTTPS origins", async () => {
+      const { cspHeader } = await import("./contentSecurityPolicy");
+
+      expect(cspHeader).not.toContain(
+        "script-src 'self' 'unsafe-inline' https: http:",
+      );
+    });
+
+    it("allows the configured PostHog proxy to load its scripts", async () => {
+      const { cspHeader } = await import("./contentSecurityPolicy");
+
+      expect(cspHeader).toContain("https://ph-eu-api.thenational.academy");
+    });
+
+    it("allows same-origin connections", async () => {
+      const { cspHeader } = await import("./contentSecurityPolicy");
+
+      expect(cspHeader).toContain("connect-src 'self'");
+    });
+
     it("should correctly merge all production-required directives", async () => {
       const { cspHeader } = await import("./contentSecurityPolicy");
 
-      expect(cspHeader).toContain(prodCspHeaderFixture);
+      expect(normaliseCsp(cspHeader)).toBe(normaliseCsp(prodCspHeaderFixture));
     });
   });
 
@@ -210,8 +240,20 @@ describe("Content-Security-Policy Header", () => {
         );
 
         expect(reportingEndpointsHeader).toBe(
-          'posthog="https://eu.i.posthog.com/report/?token=test-api-key"',
+          'posthog="https://eu.i.posthog.com/report/?token=test-api-key&sample_rate=0.05&v=1"',
         );
+      });
+
+      it("omits reporting directives when no PostHog API key is configured", async () => {
+        delete process.env.NEXT_PUBLIC_POSTHOG_API_KEY;
+
+        const { cspHeader, reportingEndpointsHeader } = await import(
+          "./contentSecurityPolicy"
+        );
+
+        expect(cspHeader).not.toContain("report-uri");
+        expect(cspHeader).not.toContain("report-to");
+        expect(reportingEndpointsHeader).toBeUndefined();
       });
     });
 

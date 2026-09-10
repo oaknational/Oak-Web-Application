@@ -41,7 +41,6 @@ const mux: Partial<CspConfig> = {
     "https://stream.mux.com",
     "https://inferred.litix.io",
   ],
-  imgSrc: ["https://*.mux.com/", "https://stream.mux.com/"],
   styleSrc: ["https://*.mux.com"],
   mediaSrc: ["https://*.mux.com/", "https://stream.mux.com/"],
   frameSrc: ["https://stream.mux.com", "https://*.mux.com"],
@@ -49,7 +48,6 @@ const mux: Partial<CspConfig> = {
 
 const clerk: Partial<CspConfig> = {
   connectSrc: ["*.clerk.accounts.dev", "clerk-telemetry.com"],
-  imgSrc: ["https://img.clerk.com/"],
   scriptSrc: ["*.clerk.accounts.dev"],
 };
 
@@ -60,19 +58,13 @@ const avo: Partial<CspConfig> = {
 
 const posthog: Partial<CspConfig> = {
   connectSrc: ["https://eu.i.posthog.com", "*.posthog.com"],
-  scriptSrc: ["https://*.posthog.com"],
+  scriptSrc: [
+    "https://*.posthog.com",
+    "https://ph-eu-api.thenational.academy",
+  ],
 };
 
 const cloudinary: Partial<CspConfig> = {
-  imgSrc: [
-    "https://res.cloudinary.com/",
-    "https://res.cloudinary.com",
-    "https://oaknationalacademy-res.cloudinary.com/",
-    "https://oaknationalacademy-res.cloudinary.com",
-    "https://*.cloudinary.com/",
-    "https://*.cloudinary.com",
-    "https://res.cloudinary.com/oak-web-application/",
-  ],
   mediaSrc: [
     "https://res.cloudinary.com/",
     "https://oaknationalacademy-res.cloudinary.com/",
@@ -83,11 +75,6 @@ const cloudinary: Partial<CspConfig> = {
 
 const hubspot: Partial<CspConfig> = {
   connectSrc: ["*.hubspot.com", "*.hsforms.com"],
-  imgSrc: [
-    "https://*.hubspot.com/",
-    "https://*.hsforms.com/",
-    "https://track.hubspot.com/",
-  ],
 };
 
 const cloudflare: Partial<CspConfig> = {
@@ -102,13 +89,6 @@ const vercel: Partial<CspConfig> = {
     "*.pusher.com",
     "*.pusherapp.com",
   ],
-  imgSrc: [
-    "https://vercel.live/",
-    "https://vercel.com",
-    "*.pusher.com/",
-    "data:",
-    "blob:",
-  ],
   frameSrc: ["https://vercel.live/", "https://vercel.com"],
   styleSrc: ["https://vercel.live/"],
   fontSrc: ["https://vercel.live/", "https://assets.vercel.com"],
@@ -116,7 +96,6 @@ const vercel: Partial<CspConfig> = {
 
 const gleap: Partial<CspConfig> = {
   connectSrc: ["*.gleap.io", "wss://*.gleap.io"],
-  imgSrc: ["https://*.gleap.io/"],
   frameSrc: ["https://*.gleap.io/"],
   scriptSrc: ["https://*.gleap.io/"],
   mediaSrc: ["https://*.gleap.io/"],
@@ -135,10 +114,6 @@ const googleTranslate: Partial<CspConfig> = {
     "https://translate.googleapis.com/",
     "https://www.gstatic.com/",
     "https://*.google.com/",
-  ],
-  imgSrc: [
-    "https://translate.googleusercontent.com",
-    "https://ssl.gstatic.com",
   ],
   mediaSrc: ["https://ssl.gstatic.com"],
 };
@@ -160,7 +135,7 @@ const localhost: Partial<CspConfig> = {
 
 const cspBaseConfig: CspConfig = {
   defaultSrc: ["'self'"],
-  scriptSrc: ["'self'", "'unsafe-inline'", "https:", "http:"],
+  scriptSrc: ["'self'", "'unsafe-inline'"],
   styleSrc: ["'self'", "'unsafe-inline'"],
   imgSrc: [
     "'self'",
@@ -179,8 +154,8 @@ const cspBaseConfig: CspConfig = {
   objectSrc: ["'self'"],
   baseUri: ["'self'"],
   formAction: ["'self'"],
-  frameAncestors: ["'self'"],
-  connectSrc: ["*.thenational.academy", "thenational.academy"],
+  frameAncestors: ["'self'", "https://classroom.google.com"],
+  connectSrc: ["'self'", "*.thenational.academy", "thenational.academy"],
   mediaSrc: ["'self'", "blob:", "*.thenational.academy/"],
   frameSrc: ["'self'", "*.thenational.academy/"],
   workerSrc: ["'self'", "blob:", "*.thenational.academy/"],
@@ -252,7 +227,15 @@ export const getReportUri = (
     : `${posthogReportUri}&sample_rate=${sampleRate.toString()}&v=${version}`;
 };
 
-export const reportingEndpointsHeader = `posthog="${posthogReportUri}"`;
+export const reportingEndpointsHeader = posthogReportUri
+  ? `posthog="${getReportUri(posthogReportUri, 0.05, "1")}"`
+  : undefined;
+
+const reportingDirectives = posthogReportUri
+  ? `
+    report-uri ${getReportUri(posthogReportUri, 0.05, "1")};
+    report-to posthog;`
+  : "";
 
 export const cspHeader = `
     default-src ${cspConfig.defaultSrc.join(" ")};
@@ -269,7 +252,6 @@ export const cspHeader = `
     frame-src ${cspConfig.frameSrc.join(" ")};
     worker-src ${cspConfig.workerSrc.join(" ")};
     child-src ${cspConfig.childSrc.join(" ")};
-    report-uri ${getReportUri(posthogReportUri, 0.05, "1")};
-    report-to posthog;
+    ${reportingDirectives}
     ${cspConfig.upgradeInsecureRequests ? "upgrade-insecure-requests;" : ""}
 `;
