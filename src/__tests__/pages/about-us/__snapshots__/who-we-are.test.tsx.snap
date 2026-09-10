@@ -5214,6 +5214,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                         <a
                           href="/about-us/who-we-are"
                           style="outline: none;"
+                          target="_self"
                         >
                           <div
                             class="c131 c132 c133"
@@ -5267,6 +5268,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                         <a
                           href="/about-us/oaks-curricula"
                           style="outline: none;"
+                          target="_self"
                         >
                           <div
                             class="c131 c132 c133"
@@ -5320,6 +5322,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                         <a
                           href="/about-us/oaks-impact"
                           style="outline: none;"
+                          target="_self"
                         >
                           <div
                             class="c131 c132 c133"
@@ -5373,6 +5376,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                         <a
                           href="/about-us/meet-the-team"
                           style="outline: none;"
+                          target="_self"
                         >
                           <div
                             class="c131 c132 c133"
@@ -5426,6 +5430,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                         <a
                           href="/about-us/get-involved"
                           style="outline: none;"
+                          target="_self"
                         >
                           <div
                             class="c131 c132 c133"

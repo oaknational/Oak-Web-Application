@@ -36,7 +36,7 @@ exports[`WhoAreWeExplore renders correctly with 3 items 1`] = `
             aria-labelledby="react-use-id-test-result"
           >
             <ul
-              class="sc-a0e1794d-1 BMYYl"
+              class="sc-b6ad35da-1 fsdcsY"
             >
               <li
                 class="sc-aXZVg sc-fTFjTM kBnJtM fvbgvK"
@@ -44,9 +44,10 @@ exports[`WhoAreWeExplore renders correctly with 3 items 1`] = `
                 <a
                   href="#item_one"
                   style="outline: none;"
+                  target="_self"
                 >
                   <div
-                    class="sc-aXZVg sc-gEvEer sc-a0e1794d-0 jtqxcT egjftS kKiZEW"
+                    class="sc-aXZVg sc-gEvEer sc-b6ad35da-0 jtqxcT egjftS bIxobD"
                     data-testid="who-we-are-explore-item"
                   >
                     <div
@@ -97,9 +98,10 @@ exports[`WhoAreWeExplore renders correctly with 3 items 1`] = `
                 <a
                   href="#item_two"
                   style="outline: none;"
+                  target="_self"
                 >
                   <div
-                    class="sc-aXZVg sc-gEvEer sc-a0e1794d-0 jtqxcT egjftS kKiZEW"
+                    class="sc-aXZVg sc-gEvEer sc-b6ad35da-0 jtqxcT egjftS bIxobD"
                     data-testid="who-we-are-explore-item"
                   >
                     <div
@@ -150,9 +152,10 @@ exports[`WhoAreWeExplore renders correctly with 3 items 1`] = `
                 <a
                   href="#item_three"
                   style="outline: none;"
+                  target="_self"
                 >
                   <div
-                    class="sc-aXZVg sc-gEvEer sc-a0e1794d-0 jtqxcT egjftS kKiZEW"
+                    class="sc-aXZVg sc-gEvEer sc-b6ad35da-0 jtqxcT egjftS bIxobD"
                     data-testid="who-we-are-explore-item"
                   >
                     <div
@@ -242,7 +245,7 @@ exports[`WhoAreWeExplore renders correctly with 4 items 1`] = `
             aria-labelledby="react-use-id-test-result"
           >
             <ul
-              class="sc-a0e1794d-1 hoxNzU"
+              class="sc-b6ad35da-1 dvSJId"
             >
               <li
                 class="sc-aXZVg sc-fTFjTM kBnJtM fvbgvK"
@@ -250,9 +253,10 @@ exports[`WhoAreWeExplore renders correctly with 4 items 1`] = `
                 <a
                   href="#item_one"
                   style="outline: none;"
+                  target="_self"
                 >
                   <div
-                    class="sc-aXZVg sc-gEvEer sc-a0e1794d-0 jtqxcT egjftS kKiZEW"
+                    class="sc-aXZVg sc-gEvEer sc-b6ad35da-0 jtqxcT egjftS bIxobD"
                     data-testid="who-we-are-explore-item"
                   >
                     <div
@@ -303,9 +307,10 @@ exports[`WhoAreWeExplore renders correctly with 4 items 1`] = `
                 <a
                   href="#item_two"
                   style="outline: none;"
+                  target="_self"
                 >
                   <div
-                    class="sc-aXZVg sc-gEvEer sc-a0e1794d-0 jtqxcT egjftS kKiZEW"
+                    class="sc-aXZVg sc-gEvEer sc-b6ad35da-0 jtqxcT egjftS bIxobD"
                     data-testid="who-we-are-explore-item"
                   >
                     <div
@@ -356,9 +361,10 @@ exports[`WhoAreWeExplore renders correctly with 4 items 1`] = `
                 <a
                   href="#item_three"
                   style="outline: none;"
+                  target="_self"
                 >
                   <div
-                    class="sc-aXZVg sc-gEvEer sc-a0e1794d-0 jtqxcT egjftS kKiZEW"
+                    class="sc-aXZVg sc-gEvEer sc-b6ad35da-0 jtqxcT egjftS bIxobD"
                     data-testid="who-we-are-explore-item"
                   >
                     <div
@@ -409,9 +415,10 @@ exports[`WhoAreWeExplore renders correctly with 4 items 1`] = `
                 <a
                   href="#item_four"
                   style="outline: none;"
+                  target="_self"
                 >
                   <div
-                    class="sc-aXZVg sc-gEvEer sc-a0e1794d-0 jtqxcT egjftS kKiZEW"
+                    class="sc-aXZVg sc-gEvEer sc-b6ad35da-0 jtqxcT egjftS bIxobD"
                     data-testid="who-we-are-explore-item"
                   >
                     <div
