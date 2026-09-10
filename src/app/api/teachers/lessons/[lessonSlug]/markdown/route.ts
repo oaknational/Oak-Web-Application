@@ -31,10 +31,28 @@ const MARKDOWN_CONTENT_TYPE = "text/markdown; charset=utf-8";
 /**
  * Cache directives, stated separately for each layer that has one.
  *
- * The shared-cache window mirrors the lesson page's own revalidation window
- * (the page responds with `x-nextjs-stale-time: 300`) so the two
- * representations do not drift far apart, with a long stale window because
- * lesson content changes rarely.
+ * **Where the 300 comes from.** It is a deliberate five-minute shared-cache
+ * window for this handler, and not a number inherited from the lesson page. It
+ * is worth stating that explicitly, because the obvious-looking provenance is
+ * wrong: the canonical lesson URL emits no `x-nextjs-stale-time` at all.
+ * Measured against production on 2026-09-10,
+ * `/teachers/lessons/adverbial-complex-sentences` answered
+ * `cache-control: public, max-age=0, must-revalidate` with no `x-nextjs-…`
+ * header of any kind — it is a Pages Router route
+ * (`src/pages/teachers/lessons/[lessonSlug].tsx`), and its own regeneration
+ * window is the ISR `revalidate` fed from `SANITY_REVALIDATE_SECONDS`, which
+ * never appears in a response header. The route that *does* answer
+ * `x-nextjs-stale-time: 300` is the App Router programme-scoped lesson route
+ * (`/teachers/programmes/[slug]/units/[unitSlug]/lessons/[lessonSlug]`), where
+ * the 300 is this app's own `experimental.staleTimes.static` from
+ * `next.config.ts` — a CLIENT router-cache prefetch lifetime, not a
+ * shared-cache revalidation window, and not a setting the Pages Router lesson
+ * page is subject to. `docs/agent-readable-lesson-pages.md` already records the
+ * same measurement.
+ *
+ * So five minutes is chosen here on its own merits: short relative to how
+ * rarely lesson content changes, with a long stale window on top so a shared
+ * cache can serve while it revalidates.
  *
  * `CDN-Cache-Control` is not redundant with `Cache-Control` here. Vercel strips
  * `s-maxage` and `stale-while-revalidate` from `Cache-Control` before sending
@@ -45,8 +63,8 @@ const MARKDOWN_CONTENT_TYPE = "text/markdown; charset=utf-8";
  * `cache-control: public`.
  *
  * The browser directive deliberately matches the lesson page's own
- * (`public, max-age=0, must-revalidate`) so the two representations behave
- * consistently in a client cache.
+ * (`public, max-age=0, must-revalidate`, measured above) so the two
+ * representations behave consistently in a client cache.
  */
 const CACHE_CONTROL = {
   browser: "public, max-age=0, must-revalidate",

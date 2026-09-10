@@ -235,6 +235,47 @@ browser (`max-age=0, must-revalidate`, matching the lesson page),
 `CDN-Cache-Control` for downstream CDNs — the one Cloudflare actually sees — and
 `Vercel-CDN-Cache-Control` for Vercel's own cache.
 
+### Where the 300 comes from, and where it does not
+
+Five minutes is a choice made for this handler, not a number inherited from the
+lesson page, and it is worth recording because the obvious-looking provenance is
+wrong.
+
+The canonical lesson URL emits **no `x-nextjs-stale-time`**, which is the same
+finding as the measurement above. Re-measured 2026-09-10:
+
+```text
+$ curl -sSD - -o /dev/null https://www.thenational.academy/teachers/lessons/adverbial-complex-sentences
+cache-control: public, max-age=0, must-revalidate
+x-matched-path: /teachers/lessons/[lessonSlug]
+(no x-nextjs-prerender, no x-nextjs-stale-time)
+```
+
+It is a **Pages Router** route (`src/pages/teachers/lessons/[lessonSlug].tsx`),
+and its own regeneration window is the ISR `revalidate` that
+`decorateWithIsr` sets from `SANITY_REVALIDATE_SECONDS` — a value that never
+appears in a response header, so it cannot be read off the wire at all.
+
+The route that does answer `x-nextjs-stale-time: 300` is the **App Router**
+programme-scoped lesson route:
+
+```text
+$ curl -sSD - -o /dev/null https://www.thenational.academy/teachers/programmes/english-primary-year-5/units/complex-sentences/lessons/adverbial-complex-sentences
+x-matched-path: /teachers/programmes/[slug]/units/[unitSlug]/lessons/[lessonSlug]
+x-nextjs-prerender: 1
+x-nextjs-stale-time: 300
+```
+
+and that 300 is this repository's own `experimental.staleTimes.static` in
+`next.config.ts`. It is a **client** router-cache prefetch lifetime — how long a
+prefetched RSC payload stays usable in the browser — not a shared-cache
+revalidation window, and the Pages Router lesson page is not subject to it.
+
+So the handler's `s-maxage=300` stands on its own reasoning: short relative to
+how rarely lesson content changes, with a long `stale-while-revalidate` on top so
+a shared cache serves while it revalidates. Nothing about it is derived from the
+lesson page, and a future change to `staleTimes.static` has no bearing on it.
+
 ### Why the rewrite cannot affect HTML caching
 
 `rewrites()` here returns a plain array, and Next.js applies those "after
