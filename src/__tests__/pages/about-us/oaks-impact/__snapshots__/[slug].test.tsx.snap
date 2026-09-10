@@ -735,47 +735,51 @@ exports[`pages/about-us/oaks-impact/case-studies/[slug].tsx renders title 1`] = 
                     class="sc-aXZVg sc-gEvEer sc-esYiGF jPvJsJ iDBIXi jua-DQf"
                   >
                     <div
-                      class="sc-aXZVg sc-gEvEer xdoGL gSlSXH"
+                      class="sc-aXZVg sc-gEvEer jPvJsJ bdgYlo"
                     >
-                      <h1
-                        class="sc-eldPxv cTFVAh"
-                      >
-                        Test Video
-                      </h1>
                       <div
-                        class="sc-aXZVg sc-gEvEer jPvJsJ feoULz"
+                        class="sc-aXZVg sc-gEvEer xdoGL gSlSXH"
                       >
-                        <div
-                          class="sc-aXZVg sc-gEvEer jEgKDG fXHtRp"
+                        <h1
+                          class="sc-eldPxv cTFVAh"
                         >
-                          1 January 2023
-                        </div>
-                        <button
-                          class="sc-fHjqPf cTauop"
+                          Test Video
+                        </h1>
+                        <div
+                          class="sc-aXZVg sc-gEvEer jPvJsJ feoULz"
                         >
                           <div
-                            class="sc-aXZVg bsftYB"
+                            class="sc-aXZVg sc-gEvEer jEgKDG fXHtRp"
                           >
-                            <span
-                              class="sc-aXZVg fjkwRj sc-fUnMCh esqnRZ"
-                            >
-                              <img
-                                alt=""
-                                class="sc-iGgWBj cMzyFO"
-                                data-nimg="fill"
-                                decoding="async"
-                                loading="lazy"
-                                src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1727861316/icons/Icon_Copy_qxgynv.svg"
-                                style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
-                              />
-                            </span>
+                            1 January 2023
                           </div>
-                          <span
-                            class="sc-eqUAAy iGfTGj"
+                          <button
+                            class="sc-fHjqPf cTauop"
                           >
-                            Copy link
-                          </span>
-                        </button>
+                            <div
+                              class="sc-aXZVg bsftYB"
+                            >
+                              <span
+                                class="sc-aXZVg fjkwRj sc-fUnMCh esqnRZ"
+                              >
+                                <img
+                                  alt=""
+                                  class="sc-iGgWBj cMzyFO"
+                                  data-nimg="fill"
+                                  decoding="async"
+                                  loading="lazy"
+                                  src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1727861316/icons/Icon_Copy_qxgynv.svg"
+                                  style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                                />
+                              </span>
+                            </div>
+                            <span
+                              class="sc-eqUAAy iGfTGj"
+                            >
+                              Copy link
+                            </span>
+                          </button>
+                        </div>
                       </div>
                     </div>
                   </div>
