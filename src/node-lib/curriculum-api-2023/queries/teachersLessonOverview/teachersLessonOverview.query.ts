@@ -24,7 +24,7 @@ import errorReporter from "@/common-lib/error-reporter";
 import OakError from "@/errors/OakError";
 import { Sdk } from "@/node-lib/curriculum-api-2023/sdk";
 import { mediaClipsRecordCamelSchema } from "@/node-lib/curriculum-api-2023/queries/lessonMediaClips/lessonMediaClips.schema";
-import { convertBytesToMegabytes } from "@/components/TeacherComponents/helpers/lessonHelpers/lesson.helpers";
+import { formatBytes } from "@/utils/formatBytes";
 import { formatSentences } from "@/utils/formatTranscriptSentences";
 
 export type TeachersLessonUnitStaticLessonList = NonNullable<
@@ -161,7 +161,7 @@ export const getAdditionalFiles = (
     const name = af.mediaObject.displayName;
     const type = af.mediaObject.url.split(".").pop() ?? "";
     const size = af.mediaObject.bytes;
-    const sizeString = convertBytesToMegabytes(size);
+    const sizeString = formatBytes(size);
     return `${name} ${sizeString} (${type.toUpperCase()})`;
   });
 };

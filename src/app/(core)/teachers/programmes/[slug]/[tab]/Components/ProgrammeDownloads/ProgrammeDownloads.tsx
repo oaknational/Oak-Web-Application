@@ -1,6 +1,5 @@
 "use client";
 
-import prettyBytes from "pretty-bytes";
 import {
   OakBox,
   OakResourceCard,
@@ -46,6 +45,7 @@ import useResourceFormSubmit from "@/components/TeacherComponents/hooks/download
 import downloadDebouncedSubmit from "@/components/TeacherComponents/helpers/downloadAndShareHelpers/downloadDebounceSubmit";
 import { ImplementationGuides } from "@/common-lib/cms-types";
 import { useTeacherBrowseAnalytics } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
+import { formatBytes } from "@/utils/formatBytes";
 
 export type ProgrammeDownloadsProps = {
   mvRefreshTime: number;
@@ -390,9 +390,7 @@ export const ProgrammeDownloads = ({
                                       checked={fieldValue.includes(download.id)}
                                       fileSize={
                                         fileSize
-                                          ? prettyBytes(
-                                              fileSize.size,
-                                            ).toUpperCase()
+                                          ? formatBytes(fileSize.size)
                                           : "—"
                                       }
                                       description={download.fileExt}
@@ -452,9 +450,7 @@ export const ProgrammeDownloads = ({
                                         )}
                                         fileSize={
                                           fileSize
-                                            ? prettyBytes(
-                                                fileSize,
-                                              ).toUpperCase()
+                                            ? formatBytes(fileSize)
                                             : undefined
                                         }
                                         description={download.fileExt}

@@ -30,7 +30,7 @@ import OakError from "@/errors/OakError";
 import { Sdk } from "@/node-lib/curriculum-api-2023/sdk";
 import { InputMaybe } from "@/node-lib/sanity-graphql/generated/sdk";
 import { mediaClipsRecordCamelSchema } from "@/node-lib/curriculum-api-2023/queries/lessonMediaClips/lessonMediaClips.schema";
-import { convertBytesToMegabytes } from "@/components/TeacherComponents/helpers/lessonHelpers/lesson.helpers";
+import { formatBytes } from "@/utils/formatBytes";
 
 export const getDownloadsArray = (content: {
   hasSlideDeckAssetObject: boolean;
@@ -153,7 +153,7 @@ export const getAdditionalFiles = (
     const name = af.mediaObject.displayName;
     const type = af.mediaObject.url.split(".").pop() ?? "";
     const size = af.mediaObject.bytes;
-    const sizeString = convertBytesToMegabytes(size);
+    const sizeString = formatBytes(size);
     return `${name} ${sizeString} (${type.toUpperCase()})`;
   });
 };
