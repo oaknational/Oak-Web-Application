@@ -32,6 +32,7 @@ export const ShortReads = () => {
               and support your teaching."
           assetUrl={"1Wc5TYGrmX3z6pvJWORXVyg_Hlu8NsfMTL6xoTb_UbFM"}
           shortReadType="explanation"
+          isInitiallyVisible
         />
         <ShortReadSection
           title="Check for understanding (CfU) at Oak"
@@ -102,11 +103,13 @@ const ShortReadSection = ({
   description,
   shortReadType,
   assetUrl,
+  isInitiallyVisible = false,
 }: {
   title: string;
   description: string;
   shortReadType: string;
   assetUrl: string;
+  isInitiallyVisible?: boolean;
 }) => {
   return (
     <OakFlex $flexDirection="column" $gap="spacing-24">
@@ -136,7 +139,12 @@ const ShortReadSection = ({
           <OakP>{description}</OakP>
         </OakGridArea>
       </OakGrid>
-      <LessonOverviewPresentation asset={assetUrl} title={title} isWorksheet />
+      <LessonOverviewPresentation
+        asset={assetUrl}
+        title={title}
+        isWorksheet
+        loading={isInitiallyVisible ? "eager" : "lazy"}
+      />
     </OakFlex>
   );
 };

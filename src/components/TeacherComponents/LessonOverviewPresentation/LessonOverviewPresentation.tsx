@@ -36,6 +36,7 @@ interface LessonOverviewPresentationProps {
   isWorksheetLandscape?: boolean | null;
   isWorksheet: boolean;
   isAdditionalMaterial?: boolean;
+  loading?: "eager" | "lazy";
 }
 
 const getSlidesId = (asset: string | null) => {
@@ -56,6 +57,7 @@ const LessonOverviewPresentation: FC<LessonOverviewPresentationProps> = ({
   isWorksheetLandscape,
   isWorksheet,
   isAdditionalMaterial,
+  loading = "eager",
 }) => {
   const [slidesId] = useState(getSlidesId(asset));
   const isWorksheetPortrait = !isWorksheetLandscape && isWorksheet;
@@ -93,7 +95,7 @@ const LessonOverviewPresentation: FC<LessonOverviewPresentationProps> = ({
               // Keep the embedded player out of the tab order to avoid keyboard traps.
               tabIndex={-1}
               aria-hidden="true"
-              loading="eager"
+              loading={loading}
             />
           </FocusTarget>
         </OakFocusIndicator>
