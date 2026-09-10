@@ -37,11 +37,13 @@ describe("TeachWithOakView", () => {
       screen.getByRole("heading", { name: "Explore more guidance from Oak" }),
     ).toBeInTheDocument();
 
-    ["Plan a lesson", "Blogs", "Webinars", "Help"].forEach((linkName) => {
-      expect(screen.getByRole("link", { name: linkName })).toHaveAttribute(
-        "href",
-      );
-    });
+    ["Plan a lesson", "Blogs", "Webinars", "Help, opens in a new tab"].forEach(
+      (linkName) => {
+        expect(screen.getByRole("link", { name: linkName })).toHaveAttribute(
+          "href",
+        );
+      },
+    );
   });
 
   it("renders a return link only when one is supplied", () => {

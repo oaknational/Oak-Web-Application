@@ -108,6 +108,9 @@ export function WhoAreWeExplore({
                         href={href}
                         onClick={() => handleClick(componentType)}
                         target={external ? "_blank" : "_self"}
+                        aria-label={
+                          external ? `${title}, opens in a new tab` : undefined
+                        }
                       >
                         <HoverableCard
                           data-testid="who-we-are-explore-item"
