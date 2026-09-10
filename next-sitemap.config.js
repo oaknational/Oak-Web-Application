@@ -34,6 +34,41 @@ const additionalAboutUsPaths = [
   "/about-us/get-involved",
 ];
 
+/**
+ * Oak's Content Signals declaration, published inside the `User-agent: *`
+ * group of the generated robots.txt.
+ *
+ * Values, reasoning, and why `open-api` deliberately differs:
+ * `docs/content-signals.md`.
+ *
+ * - Content Signals policy: https://contentsignals.org/
+ * - IETF draft: draft-romm-aipref-contentsignals
+ */
+const CONTENT_SIGNAL = "Content-Signal: ai-train=no, search=yes, ai-input=no";
+
+const USER_AGENT_GROUP = "User-agent: *\n";
+
+/**
+ * next-sitemap's robots builder emits only Allow, Disallow and Crawl-delay, so
+ * this hook is the only supported way to add a directive.
+ *
+ * It throws rather than passing the input through: a silent no-op would ship a
+ * robots.txt with no declaration and leave every check green.
+ */
+const addContentSignal = async (_config, robotsTxt) => {
+  if (!robotsTxt.includes(USER_AGENT_GROUP)) {
+    throw new Error(
+      "next-sitemap did not emit a 'User-agent: *' group, so the Content-Signal " +
+        "directive has nowhere to go. Check robotsTxtOptions.policies.",
+    );
+  }
+
+  return robotsTxt.replace(
+    USER_AGENT_GROUP,
+    `${USER_AGENT_GROUP}${CONTENT_SIGNAL}\n`,
+  );
+};
+
 // https://github.com/iamvishnusankar/next-sitemap#readme
 /** @type {import('next-sitemap').IConfig} */
 module.exports = {
@@ -52,6 +87,7 @@ module.exports = {
     additionalSitemaps: shouldSkipInitialBuild
       ? serversideSitemapUrls
       : undefined,
+    transformRobotsTxt: addContentSignal,
     policies: [
       {
         userAgent: "*",
