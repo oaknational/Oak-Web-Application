@@ -107,6 +107,7 @@ export function WhoAreWeExplore({
                         style={{ outline: "none" }}
                         href={href}
                         onClick={() => handleClick(componentType)}
+                        target={external ? "_blank" : "_self"}
                       >
                         <HoverableCard
                           data-testid="who-we-are-explore-item"
