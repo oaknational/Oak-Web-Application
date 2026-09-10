@@ -504,7 +504,7 @@ exports[`pages/about-us/oaks-impact/case-studies/[slug].tsx renders title 1`] = 
               </div>
               <a
                 aria-label="My library"
-                class="sc-dcJsrY sc-dGCmGc fIyhTG kNXJqf"
+                class="sc-dcJsrY sc-bJBgwP fIyhTG gGlhYE"
                 href="/teachers/my-library"
               >
                 <div
@@ -629,10 +629,10 @@ exports[`pages/about-us/oaks-impact/case-studies/[slug].tsx renders title 1`] = 
                         class="sc-aXZVg bAgOK"
                       >
                         <ul
-                          class="sc-sLsrZ kLvTXA"
+                          class="sc-kbousE cXosHl"
                         >
                           <li
-                            class="sc-dBmzty eiiTPx"
+                            class="sc-sLsrZ fixSpx"
                           >
                             <a
                               class="sc-fHjqPf cTauop"
@@ -651,7 +651,7 @@ exports[`pages/about-us/oaks-impact/case-studies/[slug].tsx renders title 1`] = 
                             </a>
                           </li>
                           <li
-                            class="sc-dBmzty eiiTPx"
+                            class="sc-sLsrZ fixSpx"
                           >
                             <span
                               class="sc-aXZVg fgsIMT"
@@ -683,7 +683,7 @@ exports[`pages/about-us/oaks-impact/case-studies/[slug].tsx renders title 1`] = 
                             </a>
                           </li>
                           <li
-                            class="sc-dBmzty eiiTPx"
+                            class="sc-sLsrZ fixSpx"
                           >
                             <span
                               class="sc-aXZVg fgsIMT"
@@ -709,11 +709,11 @@ exports[`pages/about-us/oaks-impact/case-studies/[slug].tsx renders title 1`] = 
                       </nav>
                     </div>
                     <div
-                      class="sc-aXZVg sc-gEvEer sc-gFVvzn dDGJCM iDBIXi"
+                      class="sc-aXZVg sc-gEvEer sc-kAkpmW dDGJCM iDBIXi"
                       focusable="false"
                     >
                       <svg
-                        class="sc-kAkpmW bTMRfD"
+                        class="sc-cmaqmh eWtmH"
                         height="100%"
                         preserveAspectRatio="none"
                         viewBox="0 0 866 8"
@@ -858,29 +858,33 @@ exports[`pages/about-us/oaks-impact/case-studies/[slug].tsx renders title 1`] = 
                     class="sc-aXZVg sc-gEvEer sc-esYiGF jPvJsJ iDBIXi jYNrWW"
                   >
                     <div
-                      class="sc-aXZVg sc-fTFjTM gQdNNR fPhXjy"
+                      class="sc-aXZVg sc-hZDyAQ bDPsaI jsPgDH"
                     >
                       <a
-                        class="sc-aXZVg sc-gEvEer sc-kbousE eyLmQc dXoawi iNGAcO"
+                        class="sc-aXZVg sc-gEvEer sc-gfoqjT eKeEyp dXoawi jZpnCG"
                         href="/about-us/case-studies/test-slug-2"
                       >
-                        <span
-                          class="sc-aXZVg kvjdhA sc-gfoqjT giDcXR"
-                        >
-                          <img
-                            alt=""
-                            class="sc-iGgWBj dZvqhO"
-                            data-nimg="fill"
-                            decoding="async"
-                            loading="lazy"
-                            sizes="100vw"
-                            src="http://localhost/_next/image?url=https%3A%2F%2Fexample.com%2Ftest-image.jpg&w=3840&q=75"
-                            srcset="/_next/image?url=https%3A%2F%2Fexample.com%2Ftest-image.jpg&w=640&q=75 640w, /_next/image?url=https%3A%2F%2Fexample.com%2Ftest-image.jpg&w=750&q=75 750w, /_next/image?url=https%3A%2F%2Fexample.com%2Ftest-image.jpg&w=828&q=75 828w, /_next/image?url=https%3A%2F%2Fexample.com%2Ftest-image.jpg&w=1080&q=75 1080w, /_next/image?url=https%3A%2F%2Fexample.com%2Ftest-image.jpg&w=1200&q=75 1200w, /_next/image?url=https%3A%2F%2Fexample.com%2Ftest-image.jpg&w=1920&q=75 1920w, /_next/image?url=https%3A%2F%2Fexample.com%2Ftest-image.jpg&w=2048&q=75 2048w, /_next/image?url=https%3A%2F%2Fexample.com%2Ftest-image.jpg&w=3840&q=75 3840w"
-                            style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
-                          />
-                        </span>
                         <div
-                          class="sc-aXZVg sc-gEvEer sc-eyvILC jPvJsJ jFNgPm"
+                          class="sc-aXZVg jPvJsJ"
+                        >
+                          <span
+                            class="sc-aXZVg kvjdhA sc-eyvILC fiYQGY"
+                          >
+                            <img
+                              alt=""
+                              class="sc-iGgWBj dZvqhO"
+                              data-nimg="fill"
+                              decoding="async"
+                              loading="lazy"
+                              sizes="100vw"
+                              src="http://localhost/_next/image?url=https%3A%2F%2Fexample.com%2Ftest-image.jpg&w=3840&q=75"
+                              srcset="/_next/image?url=https%3A%2F%2Fexample.com%2Ftest-image.jpg&w=640&q=75 640w, /_next/image?url=https%3A%2F%2Fexample.com%2Ftest-image.jpg&w=750&q=75 750w, /_next/image?url=https%3A%2F%2Fexample.com%2Ftest-image.jpg&w=828&q=75 828w, /_next/image?url=https%3A%2F%2Fexample.com%2Ftest-image.jpg&w=1080&q=75 1080w, /_next/image?url=https%3A%2F%2Fexample.com%2Ftest-image.jpg&w=1200&q=75 1200w, /_next/image?url=https%3A%2F%2Fexample.com%2Ftest-image.jpg&w=1920&q=75 1920w, /_next/image?url=https%3A%2F%2Fexample.com%2Ftest-image.jpg&w=2048&q=75 2048w, /_next/image?url=https%3A%2F%2Fexample.com%2Ftest-image.jpg&w=3840&q=75 3840w"
+                              style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                            />
+                          </span>
+                        </div>
+                        <div
+                          class="sc-aXZVg sc-gEvEer sc-bpUBKd jPvJsJ jFNgPm"
                         >
                           <div
                             class="sc-aXZVg sc-gEvEer jPvJsJ fVNIMq"
@@ -925,29 +929,33 @@ exports[`pages/about-us/oaks-impact/case-studies/[slug].tsx renders title 1`] = 
                     class="sc-aXZVg sc-gEvEer sc-esYiGF jPvJsJ iDBIXi bGCzCa"
                   >
                     <div
-                      class="sc-aXZVg sc-fTFjTM gQdNNR fPhXjy"
+                      class="sc-aXZVg sc-hZDyAQ bDPsaI jsPgDH"
                     >
                       <a
-                        class="sc-aXZVg sc-gEvEer sc-kbousE eyLmQc dXoawi iNGAcO"
+                        class="sc-aXZVg sc-gEvEer sc-gfoqjT eKeEyp dXoawi jZpnCG"
                         href="/about-us/case-studies/test-slug-3"
                       >
-                        <span
-                          class="sc-aXZVg kvjdhA sc-gfoqjT giDcXR"
-                        >
-                          <img
-                            alt=""
-                            class="sc-iGgWBj dZvqhO"
-                            data-nimg="fill"
-                            decoding="async"
-                            loading="lazy"
-                            sizes="100vw"
-                            src="http://localhost/_next/image?url=https%3A%2F%2Fexample.com%2Ftest-image.jpg&w=3840&q=75"
-                            srcset="/_next/image?url=https%3A%2F%2Fexample.com%2Ftest-image.jpg&w=640&q=75 640w, /_next/image?url=https%3A%2F%2Fexample.com%2Ftest-image.jpg&w=750&q=75 750w, /_next/image?url=https%3A%2F%2Fexample.com%2Ftest-image.jpg&w=828&q=75 828w, /_next/image?url=https%3A%2F%2Fexample.com%2Ftest-image.jpg&w=1080&q=75 1080w, /_next/image?url=https%3A%2F%2Fexample.com%2Ftest-image.jpg&w=1200&q=75 1200w, /_next/image?url=https%3A%2F%2Fexample.com%2Ftest-image.jpg&w=1920&q=75 1920w, /_next/image?url=https%3A%2F%2Fexample.com%2Ftest-image.jpg&w=2048&q=75 2048w, /_next/image?url=https%3A%2F%2Fexample.com%2Ftest-image.jpg&w=3840&q=75 3840w"
-                            style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
-                          />
-                        </span>
                         <div
-                          class="sc-aXZVg sc-gEvEer sc-eyvILC jPvJsJ jFNgPm"
+                          class="sc-aXZVg jPvJsJ"
+                        >
+                          <span
+                            class="sc-aXZVg kvjdhA sc-eyvILC fiYQGY"
+                          >
+                            <img
+                              alt=""
+                              class="sc-iGgWBj dZvqhO"
+                              data-nimg="fill"
+                              decoding="async"
+                              loading="lazy"
+                              sizes="100vw"
+                              src="http://localhost/_next/image?url=https%3A%2F%2Fexample.com%2Ftest-image.jpg&w=3840&q=75"
+                              srcset="/_next/image?url=https%3A%2F%2Fexample.com%2Ftest-image.jpg&w=640&q=75 640w, /_next/image?url=https%3A%2F%2Fexample.com%2Ftest-image.jpg&w=750&q=75 750w, /_next/image?url=https%3A%2F%2Fexample.com%2Ftest-image.jpg&w=828&q=75 828w, /_next/image?url=https%3A%2F%2Fexample.com%2Ftest-image.jpg&w=1080&q=75 1080w, /_next/image?url=https%3A%2F%2Fexample.com%2Ftest-image.jpg&w=1200&q=75 1200w, /_next/image?url=https%3A%2F%2Fexample.com%2Ftest-image.jpg&w=1920&q=75 1920w, /_next/image?url=https%3A%2F%2Fexample.com%2Ftest-image.jpg&w=2048&q=75 2048w, /_next/image?url=https%3A%2F%2Fexample.com%2Ftest-image.jpg&w=3840&q=75 3840w"
+                              style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                            />
+                          </span>
+                        </div>
+                        <div
+                          class="sc-aXZVg sc-gEvEer sc-bpUBKd jPvJsJ jFNgPm"
                         >
                           <div
                             class="sc-aXZVg sc-gEvEer jPvJsJ fVNIMq"
@@ -1025,7 +1033,7 @@ exports[`pages/about-us/oaks-impact/case-studies/[slug].tsx renders title 1`] = 
           id="site-footer"
         >
           <div
-            class="sc-aXZVg sc-gEvEer sc-brPLxw leSQlB iqPJZh"
+            class="sc-aXZVg sc-gEvEer sc-gFVvzn leSQlB iqPJZh"
           >
             <div
               class="sc-aXZVg sc-tagGq jPvJsJ fNndNZ"

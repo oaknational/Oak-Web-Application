@@ -2,10 +2,15 @@ import { screen } from "@testing-library/dom";
 
 import TeacherTipBox from "./TeacherTipBox";
 
-import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
+import { renderWithProvidersByName } from "@/__tests__/__helpers__/renderWithProviders";
 import { getOakUiColor } from "@/__tests__/__helpers__/getOakUiColor";
 
-const render = renderWithTheme;
+const render = renderWithProvidersByName([
+  "theme",
+  "oakTheme",
+  "analytics",
+  "teacherBrowseAnalytics",
+]);
 
 describe("TeacherTipBox", () => {
   it("renders teacher tip", () => {
