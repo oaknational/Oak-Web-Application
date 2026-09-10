@@ -28,6 +28,7 @@ const releaseStage = getReleaseStage(
 const isDevelopment: boolean = releaseStage?.includes("dev");
 const posthogApiHost =
   process.env.NEXT_PUBLIC_POSTHOG_API_HOST || "https://eu.i.posthog.com";
+const hubspotScriptDomain = process.env.NEXT_PUBLIC_HUBSPOT_SCRIPT_DOMAIN;
 
 // Rules
 const mux: Partial<CspConfig> = {
@@ -72,8 +73,26 @@ const cloudinary: Partial<CspConfig> = {
   connectSrc: ["*.cloudinary.com/"],
 };
 
+// The tracking code loader at `hubspotScriptDomain` pulls in a further chain of
+// HubSpot scripts (analytics, cookie banner, collected forms), each from its own
+// domain. The region prefix varies by portal, hence the wildcards.
+// @see https://community.hubspot.com/t5/HubSpot-Ideas/A-guide-to-Content-Security-Policy-CSP-settings/idi-p/314328
 const hubspot: Partial<CspConfig> = {
-  connectSrc: ["*.hubspot.com", "*.hsforms.com"],
+  connectSrc: [
+    "*.hubspot.com",
+    "*.hsforms.com",
+    "*.hubapi.com",
+    "*.hs-banner.com",
+    "*.hscollectedforms.net",
+  ],
+  scriptSrc: [
+    ...(hubspotScriptDomain ? [`https://${hubspotScriptDomain}`] : []),
+    "https://*.hs-scripts.com",
+    "https://*.hs-analytics.net",
+    "https://*.hs-banner.com",
+    "https://*.hscollectedforms.net",
+    "https://*.hubspot.com",
+  ],
 };
 
 const cloudflare: Partial<CspConfig> = {

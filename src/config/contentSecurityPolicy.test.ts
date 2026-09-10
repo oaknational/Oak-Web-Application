@@ -6,7 +6,7 @@ jest.mock("../../scripts/build/build_config_helpers", () => ({
 
 const prodCspHeaderFixture = `
     default-src 'self';
-    script-src 'self' 'unsafe-inline' https://vercel.live https://vercel.com https://*.posthog.com https://eu.i.posthog.com *.clerk.accounts.dev https://clerk.thenational.academy https://cdn.mux.com https://mux.com https://*.mux.com https://stream.mux.com https://*.gleap.io/ https://translate.google.com/ https://translate.googleapis.com/ https://www.gstatic.com/ https://*.google.com/;
+    script-src 'self' 'unsafe-inline' https://vercel.live https://vercel.com https://js-eu1.hs-scripts.com https://*.hs-scripts.com https://*.hs-analytics.net https://*.hs-banner.com https://*.hscollectedforms.net https://*.hubspot.com https://*.posthog.com https://eu.i.posthog.com *.clerk.accounts.dev https://clerk.thenational.academy https://cdn.mux.com https://mux.com https://*.mux.com https://stream.mux.com https://*.gleap.io/ https://translate.google.com/ https://translate.googleapis.com/ https://www.gstatic.com/ https://*.google.com/;
     style-src 'self' 'unsafe-inline' https://vercel.live/ https://*.mux.com;
     img-src 'self' blob: data: https: *.thenational.academy/ thenational.academy/;
     font-src 'self' gstatic-fonts.thenational.academy/ fonts.gstatic.com/ data: https://vercel.live/ https://assets.vercel.com;
@@ -14,7 +14,7 @@ const prodCspHeaderFixture = `
     base-uri 'self';
     form-action 'self';
     frame-ancestors 'self' https://classroom.google.com *.google.com/;
-    connect-src 'self' *.thenational.academy thenational.academy https://vercel.live/ https://vercel.com *.pusher.com *.pusherapp.com *.hubspot.com *.hsforms.com *.cloudinary.com/ https://eu.i.posthog.com *.posthog.com https://api.avo.app/ *.clerk.accounts.dev clerk-telemetry.com https://mux.com https://*.mux.com https://stream.mux.com https://inferred.litix.io *.gleap.io wss://*.gleap.io *.google.com *.bugsnag.smartbear.com *.bugsnag.com;
+    connect-src 'self' *.thenational.academy thenational.academy https://vercel.live/ https://vercel.com *.pusher.com *.pusherapp.com *.hubspot.com *.hsforms.com *.hubapi.com *.hs-banner.com *.hscollectedforms.net *.cloudinary.com/ https://eu.i.posthog.com *.posthog.com https://api.avo.app/ *.clerk.accounts.dev clerk-telemetry.com https://mux.com https://*.mux.com https://stream.mux.com https://inferred.litix.io *.gleap.io wss://*.gleap.io *.google.com *.bugsnag.smartbear.com *.bugsnag.com;
     media-src 'self' blob: *.thenational.academy/ https://res.cloudinary.com/ https://oaknationalacademy-res.cloudinary.com/ https://*.cloudinary.com/ https://*.mux.com/ https://stream.mux.com/ https://*.gleap.io/ https://ssl.gstatic.com;
     frame-src 'self' *.thenational.academy/ https://vercel.live/ https://vercel.com https://challenges.cloudflare.com https://www.avo.app/ https://stream.mux.com https://*.mux.com https://*.gleap.io/ *.google.com/;
     worker-src 'self' blob: *.thenational.academy/;
@@ -26,7 +26,7 @@ const prodCspHeaderFixture = `
 
 const devCspHeaderFixture = `
     default-src 'self';
-    script-src 'self' 'unsafe-inline' 'unsafe-eval' http://localhost:* https://localhost:* https://vercel.live https://vercel.com https://*.posthog.com https://eu.i.posthog.com *.clerk.accounts.dev https://clerk.thenational.academy https://cdn.mux.com https://mux.com https://*.mux.com https://stream.mux.com https://*.gleap.io/ https://translate.google.com/ https://translate.googleapis.com/ https://www.gstatic.com/ https://*.google.com/;
+    script-src 'self' 'unsafe-inline' 'unsafe-eval' http://localhost:* https://localhost:* https://vercel.live https://vercel.com https://js-eu1.hs-scripts.com https://*.hs-scripts.com https://*.hs-analytics.net https://*.hs-banner.com https://*.hscollectedforms.net https://*.hubspot.com https://*.posthog.com https://eu.i.posthog.com *.clerk.accounts.dev https://clerk.thenational.academy https://cdn.mux.com https://mux.com https://*.mux.com https://stream.mux.com https://*.gleap.io/ https://translate.google.com/ https://translate.googleapis.com/ https://www.gstatic.com/ https://*.google.com/;
     style-src 'self' 'unsafe-inline' https://vercel.live/ https://*.mux.com;
     img-src 'self' blob: data: https: *.thenational.academy/ thenational.academy/;
     font-src 'self' gstatic-fonts.thenational.academy/ fonts.gstatic.com/ data: https://vercel.live/ https://assets.vercel.com;
@@ -34,7 +34,7 @@ const devCspHeaderFixture = `
     base-uri 'self';
     form-action 'self';
     frame-ancestors 'self' https://classroom.google.com http://localhost:* https://localhost:* *.google.com/;
-    connect-src 'self' *.thenational.academy thenational.academy http://localhost:* https://localhost:* wss://localhost:* ws://localhost:* https://vercel.live/ https://vercel.com *.pusher.com *.pusherapp.com *.hubspot.com *.hsforms.com *.cloudinary.com/ https://eu.i.posthog.com *.posthog.com https://api.avo.app/ *.clerk.accounts.dev clerk-telemetry.com https://mux.com https://*.mux.com https://stream.mux.com https://inferred.litix.io *.gleap.io wss://*.gleap.io *.google.com *.bugsnag.smartbear.com *.bugsnag.com;
+    connect-src 'self' *.thenational.academy thenational.academy http://localhost:* https://localhost:* wss://localhost:* ws://localhost:* https://vercel.live/ https://vercel.com *.pusher.com *.pusherapp.com *.hubspot.com *.hsforms.com *.hubapi.com *.hs-banner.com *.hscollectedforms.net *.cloudinary.com/ https://eu.i.posthog.com *.posthog.com https://api.avo.app/ *.clerk.accounts.dev clerk-telemetry.com https://mux.com https://*.mux.com https://stream.mux.com https://inferred.litix.io *.gleap.io wss://*.gleap.io *.google.com *.bugsnag.smartbear.com *.bugsnag.com;
     media-src 'self' blob: *.thenational.academy/ https://res.cloudinary.com/ https://oaknationalacademy-res.cloudinary.com/ https://*.cloudinary.com/ https://*.mux.com/ https://stream.mux.com/ https://*.gleap.io/ https://ssl.gstatic.com;
     frame-src 'self' *.thenational.academy/ https://vercel.live/ https://vercel.com https://challenges.cloudflare.com https://www.avo.app/ https://stream.mux.com https://*.mux.com https://*.gleap.io/ *.google.com/;
     worker-src 'self' blob: *.thenational.academy/;
@@ -45,12 +45,21 @@ const devCspHeaderFixture = `
 
 const normaliseCsp = (value: string) => value.replaceAll(/\s+/g, " ").trim();
 
+/** Pull a single directive out of a policy, so a test can assert on its sources
+ * without pinning every other source in the directive. */
+const getDirective = (cspHeader: string, name: string) =>
+  normaliseCsp(cspHeader)
+    .split(";")
+    .map((directive) => directive.trim())
+    .find((directive) => directive.startsWith(`${name} `));
+
 describe("Content-Security-Policy Header", () => {
   describe("when isDevelopment = true", () => {
     beforeEach(() => {
       mockGetReleaseStage.mockReturnValue(["dev"]);
       process.env.NEXT_PUBLIC_POSTHOG_API_KEY = "test-api-key";
       process.env.NEXT_PUBLIC_POSTHOG_API_HOST = "https://eu.i.posthog.com";
+      process.env.NEXT_PUBLIC_HUBSPOT_SCRIPT_DOMAIN = "js-eu1.hs-scripts.com";
     });
 
     afterEach(() => {
@@ -81,6 +90,7 @@ describe("Content-Security-Policy Header", () => {
       mockGetReleaseStage.mockReturnValue(["production"]);
       process.env.NEXT_PUBLIC_POSTHOG_API_KEY = "test-api-key";
       process.env.NEXT_PUBLIC_POSTHOG_API_HOST = "https://eu.i.posthog.com";
+      process.env.NEXT_PUBLIC_HUBSPOT_SCRIPT_DOMAIN = "js-eu1.hs-scripts.com";
     });
 
     afterEach(() => {
@@ -128,12 +138,26 @@ describe("Content-Security-Policy Header", () => {
 
       const { cspHeader } = await import("./contentSecurityPolicy");
 
-      expect(cspHeader).toContain(
-        "script-src 'self' 'unsafe-inline' https://vercel.live https://vercel.com https://*.posthog.com https://custom.posthog-proxy.example",
+      expect(getDirective(cspHeader, "script-src")).toContain(
+        "https://custom.posthog-proxy.example",
       );
-      expect(cspHeader).toContain(
-        "connect-src 'self' *.thenational.academy thenational.academy https://vercel.live/ https://vercel.com *.pusher.com *.pusherapp.com *.hubspot.com *.hsforms.com *.cloudinary.com/ https://custom.posthog-proxy.example",
+      expect(getDirective(cspHeader, "connect-src")).toContain(
+        "https://custom.posthog-proxy.example",
       );
+    });
+
+    it("allows the configured HubSpot tracking code and the scripts it loads", async () => {
+      process.env.NEXT_PUBLIC_HUBSPOT_SCRIPT_DOMAIN = "js-eu2.hs-scripts.com";
+
+      const { cspHeader } = await import("./contentSecurityPolicy");
+      const scriptSrc = getDirective(cspHeader, "script-src");
+
+      // The loader itself, from config...
+      expect(scriptSrc).toContain("https://js-eu2.hs-scripts.com");
+      // ...and the chain of scripts the loader goes on to pull in.
+      expect(scriptSrc).toContain("https://*.hs-analytics.net");
+      expect(scriptSrc).toContain("https://*.hs-banner.com");
+      expect(scriptSrc).toContain("https://*.hscollectedforms.net");
     });
 
     it("allows the production Clerk frontend to load its scripts", async () => {
