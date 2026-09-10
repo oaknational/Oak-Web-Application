@@ -1,16 +1,7 @@
-import {
-  OakBox,
-  OakCard,
-  parseBorderRadius,
-  parseColor,
-} from "@oaknational/oak-components";
+import { OakBox, OakCard, parseColor } from "@oaknational/oak-components";
 import styled from "styled-components";
 
 const CardWrapper = styled(OakBox)`
-  > div {
-    border-radius: ${parseBorderRadius("border-radius-l")};
-    background-color: ${parseColor("bg-decorative2-subdued")} !important;
-  }
   p {
     color: ${parseColor("text-subdued")};
   }
@@ -30,6 +21,9 @@ export const TeachWithOakPromoSection = () => {
         href="/teachers/teach-with-oak"
         subCopy="See how explanation, checks for understanding, practice and feedback work together to support pupils' learning."
         linkText="See the thinking"
+        $background={"bg-decorative2-subdued"}
+        $borderRadius={"border-radius-l"}
+        hoverBackground={"bg-decorative2-subdued"}
       />
     </CardWrapper>
   );
