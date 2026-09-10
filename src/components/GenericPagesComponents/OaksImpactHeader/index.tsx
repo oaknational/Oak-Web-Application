@@ -70,6 +70,7 @@ export type OaksImpactHeaderProps = {
   video: Video;
   videoDescription: string;
 };
+
 export function OaksImpactHeader({
   videoDescription,
   video,

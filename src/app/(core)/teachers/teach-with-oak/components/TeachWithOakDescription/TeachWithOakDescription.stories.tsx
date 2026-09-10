@@ -3,6 +3,8 @@ import type { Meta, StoryObj } from "@storybook/nextjs";
 import { TeachWithOakDescription } from "./TeachWithOakDescription";
 
 const meta = {
+  tags: ["autodocs"],
+  title: "App/TeachWithOak/TeachWithOakDescription",
   component: TeachWithOakDescription,
 } satisfies Meta<typeof TeachWithOakDescription>;
 export default meta;
