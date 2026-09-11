@@ -11,7 +11,7 @@ describe("TeachWithOakPromoSection", () => {
     const { container, getByText } = render(<TeachWithOakPromoSection />);
     expect(container).toMatchSnapshot();
     const heading = screen.getByRole("heading", {
-      level: 3,
+      level: 2,
       name: "Ever wondered why our lessons are structured this way?",
     });
 

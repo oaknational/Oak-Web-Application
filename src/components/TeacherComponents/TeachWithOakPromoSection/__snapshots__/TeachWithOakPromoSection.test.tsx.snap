@@ -3,7 +3,7 @@
 exports[`TeachWithOakPromoSection renders correctly 1`] = `
 <div>
   <div
-    class="sc-aXZVg sc-21f2df7e-0 cLPSCG cbCXSC"
+    class="sc-aXZVg iksOSM"
   >
     <div
       class="sc-aXZVg sc-fTFjTM eIUCsj eDCqa-D"
@@ -18,13 +18,13 @@ exports[`TeachWithOakPromoSection renders correctly 1`] = `
           <div
             class="sc-aXZVg sc-gEvEer jPvJsJ fVNIMq"
           >
-            <h3
+            <h2
               class="sc-eldPxv ibGcSM"
             >
               Ever wondered why our lessons are structured this way?
-            </h3>
+            </h2>
             <p
-              class="sc-ikkxIA gOgHZF"
+              class="sc-ikkxIA cKYkIH"
             >
               See how explanation, checks for understanding, practice and feedback work together to support pupils' learning.
             </p>
