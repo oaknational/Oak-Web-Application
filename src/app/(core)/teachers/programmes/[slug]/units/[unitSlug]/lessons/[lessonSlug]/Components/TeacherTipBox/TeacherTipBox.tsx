@@ -2,12 +2,29 @@ import { OakFlex, OakHeading, OakP } from "@oaknational/oak-components";
 
 import { MaybeTeachWithOakCard } from "../TeachWithOakCard/TeachWithOakCard";
 
+import { resolveOakHref } from "@/common-lib/urls";
+import { useTeacherBrowseAnalytics } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
+import { getLessonSlugFromProgrammeState } from "@/context/TeacherBrowseAnalytics/utils/getLessonSlugFromProgrammeState";
+
 type TeacherTipBoxProps = {
   tips: string[];
 };
 
 const TeacherTipBox = (props: TeacherTipBoxProps) => {
   const { tips } = props;
+
+  const programmeState = useTeacherBrowseAnalytics((s) => s.programmeState);
+  const lessonSlug = getLessonSlugFromProgrammeState(programmeState);
+
+  const lessonHref =
+    programmeState?.browseLevel === "lesson" && lessonSlug
+      ? resolveOakHref({
+          page: "lesson-overview",
+          lessonSlug,
+          programmeSlug: programmeState.programmeSlug,
+          unitSlug: programmeState.unit.slug,
+        })
+      : undefined;
 
   return (
     <OakFlex
@@ -27,7 +44,7 @@ const TeacherTipBox = (props: TeacherTipBoxProps) => {
           </OakP>
         ))}
       </OakFlex>
-      <MaybeTeachWithOakCard />
+      {lessonHref && <MaybeTeachWithOakCard returnTo={lessonHref} />}
     </OakFlex>
   );
 };

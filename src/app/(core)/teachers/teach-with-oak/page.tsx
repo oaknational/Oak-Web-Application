@@ -9,8 +9,6 @@ import { TeachWithOakView } from "./components/TeachWithOakView";
 import withPageErrorHandling from "@/hocs/withPageErrorHandling";
 import { TeacherBrowseAnalyticsStoreProvider } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
 import { getFeatureFlagValue } from "@/utils/featureFlags";
-import getAppBaseUrl from "@/common-lib/urls/getAppBaseUrl";
-import toSafeRedirect from "@/common-lib/urls/toSafeRedirect";
 
 export const metadata: Metadata = {
   title: "",
@@ -22,7 +20,8 @@ export const metadata: Metadata = {
 };
 
 const teachWithOakParams = z.object({
-  returnTo: z.string(),
+  // Path on this site only - rejecting a leading `//` rules out protocol-relative redirects
+  returnTo: z.string().regex(/^\/(?!\/)/),
 });
 
 const InnerTeachWithOakPage = async (props: {
@@ -44,7 +43,7 @@ const InnerTeachWithOakPage = async (props: {
       const parsedParams = teachWithOakParams.safeParse(query);
       if (parsedParams.success) {
         const { returnTo } = parsedParams.data;
-        return toSafeRedirect(returnTo, getAppBaseUrl());
+        return returnTo;
       }
     }
   };

@@ -1,37 +1,23 @@
 import { OakCard } from "@oaknational/oak-components";
-// import { useFeatureFlagVariantKey } from "posthog-js/react";
+import { useFeatureFlagVariantKey } from "posthog-js/react";
 
 import { resolveOakHref } from "@/common-lib/urls";
-import getAppBaseUrl from "@/common-lib/urls/getAppBaseUrl";
 import { getCloudinaryImageUrl } from "@/utils/getCloudinaryImageUrl";
-import { useTeacherBrowseAnalytics } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
-import { getLessonSlugFromProgrammeState } from "@/context/TeacherBrowseAnalytics/utils/getLessonSlugFromProgrammeState";
+
+type MaybeTeachWithOakCardProps = {
+  /** Path to send the teacher back to from the Teach with Oak page */
+  returnTo: string;
+};
 
 /** Renders nothing unless the `teachers-teach-with-oak` flag is on the `teacher-tip` variant. */
-export function MaybeTeachWithOakCard() {
-  // const shouldShowCard =
-  //   useFeatureFlagVariantKey("teachers-teach-with-oak") === "teacher-tip";
-  const shouldShowCard = true;
+export function MaybeTeachWithOakCard({
+  returnTo,
+}: Readonly<MaybeTeachWithOakCardProps>) {
+  const shouldShowCard =
+    useFeatureFlagVariantKey("teachers-teach-with-oak") === "teacher-tip";
 
-  const programmeState = useTeacherBrowseAnalytics((s) => s.programmeState);
-  const lessonSlug = getLessonSlugFromProgrammeState(programmeState);
+  if (!shouldShowCard) return null;
 
-  if (
-    !shouldShowCard ||
-    programmeState?.browseLevel !== "lesson" ||
-    !lessonSlug
-  )
-    return null;
-
-  const lessonHref = resolveOakHref({
-    page: "lesson-overview",
-    lessonSlug,
-    programmeSlug: programmeState.programmeSlug,
-    unitSlug: programmeState.unit.slug,
-  });
-
-  const returnTo = new URL(lessonHref, getAppBaseUrl()).toString();
-  console.log({ returnTo });
   const href = resolveOakHref({
     page: "teach-with-oak",
     query: {
