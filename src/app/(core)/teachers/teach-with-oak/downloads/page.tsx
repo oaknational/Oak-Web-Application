@@ -1,10 +1,10 @@
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { OakFlex } from "@oaknational/oak-components";
 
 import withPageErrorHandling from "@/hocs/withPageErrorHandling";
 import { TeacherBrowseAnalyticsStoreProvider } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
 import { getFeatureFlagValue } from "@/utils/featureFlags";
+import { TeachWithOakDownloadView } from "./TeachWithOakDownloadView";
 
 export const metadata: Metadata = {
   title: "",
@@ -30,7 +30,7 @@ const InnerTeachWithOakDownloadPage = async () => {
       programmeState={null}
       accessLevel="teach_with_oak"
     >
-      <OakFlex />
+      <TeachWithOakDownloadView />
     </TeacherBrowseAnalyticsStoreProvider>
   );
 };
