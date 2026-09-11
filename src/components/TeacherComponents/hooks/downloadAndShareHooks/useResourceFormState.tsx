@@ -138,27 +138,46 @@ const getCurriculumFormSelection = (
   initialSelectedResources: curriculumResources,
 });
 
-const getResourceFormSelection = (
-  props: UseResourceFormStateProps,
-): ResourceFormSelection => {
-  switch (props.type) {
-    case "share":
-      return getShareFormSelection(props.shareResources);
-    case "download":
-      return getLessonDownloadFormSelection(
-        props.downloadResources,
-        props.additionalFilesResources,
-      );
-    case "curriculum":
-      return getCurriculumFormSelection(props.curriculumResources);
-  }
-};
-
 export const useResourceFormState = (props: UseResourceFormStateProps) => {
-  const resourceFormSelection = useMemo(
-    () => getResourceFormSelection(props),
-    [props],
-  );
+  const resourceType = props.type;
+  const shareResources =
+    props.type === "share" ? props.shareResources : undefined;
+  const downloadResources =
+    props.type === "download" ? props.downloadResources : undefined;
+  const additionalFilesResources =
+    props.type === "download" ? props.additionalFilesResources : undefined;
+  const curriculumResources =
+    props.type === "curriculum" ? props.curriculumResources : undefined;
+
+  const resourceFormSelection = useMemo(() => {
+    switch (resourceType) {
+      case "share": {
+        if (!shareResources) throw new Error("Invalid resource type");
+        return getShareFormSelection(shareResources);
+      }
+      case "download": {
+        if (!downloadResources || !additionalFilesResources) {
+          throw new Error("Invalid resource type");
+        }
+        return getLessonDownloadFormSelection(
+          downloadResources,
+          additionalFilesResources,
+        );
+      }
+      case "curriculum": {
+        if (!curriculumResources) throw new Error("Invalid resource type");
+        return getCurriculumFormSelection(curriculumResources);
+      }
+      default:
+        throw new Error("Invalid resource type");
+    }
+  }, [
+    resourceType,
+    shareResources,
+    downloadResources,
+    additionalFilesResources,
+    curriculumResources,
+  ]);
   const { initialResources, initialAdditionalFiles, initialSelectedResources } =
     resourceFormSelection;
 
@@ -263,20 +282,25 @@ export const useResourceFormState = (props: UseResourceFormStateProps) => {
 
   useEffect(() => {
     if (router && !router.isReady) return;
-    if (props.type === "curriculum") return;
+    if (resourceType === "curriculum") return;
 
     const getAllAvailableResources = () =>
       initialResources.concat((initialAdditionalFiles || []) as ResourceType[]);
 
     const value = searchParams?.get("preselected") ?? null;
-    const preselected =
-      props.type === "share"
-        ? getSharePreselectedResources(value)
-        : getDownloadPreselectedResources(
-            value,
-            props.downloadResources,
-            props.additionalFilesResources,
-          );
+    let preselected: ResourceType[] | "all" | undefined;
+    if (resourceType === "share") {
+      preselected = getSharePreselectedResources(value);
+    } else {
+      if (!downloadResources || !additionalFilesResources) {
+        throw new Error("Invalid resource type");
+      }
+      preselected = getDownloadPreselectedResources(
+        value,
+        downloadResources,
+        additionalFilesResources,
+      );
+    }
 
     if (preselected === "all") {
       setSelectAllChecked(true);
@@ -288,7 +312,9 @@ export const useResourceFormState = (props: UseResourceFormStateProps) => {
 
     setValue("resources", preselected);
   }, [
-    props,
+    resourceType,
+    downloadResources,
+    additionalFilesResources,
     router,
     router?.isReady,
     searchParams,
