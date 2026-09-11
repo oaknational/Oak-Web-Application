@@ -28,6 +28,12 @@ import { LessonShareData } from "@/node-lib/curriculum-api-2023/queries/lessonSh
 import { LessonDownloadsPageData } from "@/node-lib/curriculum-api-2023/queries/lessonDownloads/lessonDownloads.schema";
 import { DownloadType } from "@/components/CurriculumComponents/CurriculumDownloadView/helper";
 
+export type TeachWithOakShortReads =
+  | "explanation"
+  | "feedback"
+  | "practice"
+  | "checkForUnderstanding";
+
 export type UseResourceFormStateProps =
   | { shareResources: LessonShareData["shareableResources"]; type: "share" }
   | {
@@ -35,7 +41,10 @@ export type UseResourceFormStateProps =
       additionalFilesResources: LessonDownloadsPageData["additionalFiles"];
       type: "download";
     }
-  | { curriculumResources: DownloadType[]; type: "curriculum" };
+  | { curriculumResources: DownloadType[]; type: "curriculum" }
+  | {
+      type: "teach-with-oak";
+    };
 
 type ResourceFormSelection = {
   initialResources: ResourceType[];
@@ -138,6 +147,25 @@ const getCurriculumFormSelection = (
   initialSelectedResources: curriculumResources,
 });
 
+/**
+ * Teach with Oak helpers
+ */
+
+const getTeachWithOakFormSelection = (): ResourceFormSelection => ({
+  initialResources: [
+    "explanation",
+    "feedback",
+    "practice",
+    "checkForUnderstanding",
+  ],
+  initialSelectedResources: [
+    "explanation",
+    "feedback",
+    "practice",
+    "checkForUnderstanding",
+  ],
+});
+
 export const useResourceFormState = (props: UseResourceFormStateProps) => {
   const resourceType = props.type;
   const shareResources =
@@ -167,6 +195,9 @@ export const useResourceFormState = (props: UseResourceFormStateProps) => {
       case "curriculum": {
         if (!curriculumResources) throw new Error("Invalid resource type");
         return getCurriculumFormSelection(curriculumResources);
+      }
+      case "teach-with-oak": {
+        return getTeachWithOakFormSelection();
       }
       default:
         throw new Error("Invalid resource type");
@@ -202,7 +233,7 @@ export const useResourceFormState = (props: UseResourceFormStateProps) => {
   });
 
   const [selectAllChecked, setSelectAllChecked] = useState(
-    props.type === "curriculum",
+    props.type === "curriculum" || props.type === "teach-with-oak",
   );
   const [editDetailsClicked, setEditDetailsClicked] = useState(false);
   const [hasLocalStorageDetails, setHasLocalStorageDetails] = useState(false);
@@ -282,7 +313,8 @@ export const useResourceFormState = (props: UseResourceFormStateProps) => {
 
   useEffect(() => {
     if (router && !router.isReady) return;
-    if (resourceType === "curriculum") return;
+    if (resourceType === "curriculum" || resourceType === "teach-with-oak")
+      return;
 
     const getAllAvailableResources = () =>
       initialResources.concat((initialAdditionalFiles || []) as ResourceType[]);

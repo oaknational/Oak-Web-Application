@@ -1,5 +1,7 @@
 import { z } from "zod";
 
+import { TeachWithOakShortReads } from "../hooks/downloadAndShareHooks/useResourceFormState";
+
 import {
   preselectedDownloadType,
   preselectedResourceType,
@@ -23,7 +25,8 @@ export type Resources =
 export type ResourceType =
   | LessonShareResourceData["type"]
   | DownloadResourceType
-  | DownloadType;
+  | DownloadType
+  | TeachWithOakShortReads;
 
 export type DownloadResourceType =
   LessonDownloadsPageData["downloads"][number]["type"];

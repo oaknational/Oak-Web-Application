@@ -218,6 +218,24 @@ describe("useResourceFormState", () => {
       ]);
     });
   });
+  describe("teach-with-oak", () => {
+    test("useResourceFormState should return all resources as selectedResources for teach-with-oak", () => {
+      const { result } = renderHook(() =>
+        useResourceFormState({
+          type: "teach-with-oak",
+        }),
+      );
+
+      expect(result.current.selectedResources).toEqual([
+        "explanation",
+        "feedback",
+        "practice",
+        "checkForUnderstanding",
+      ]);
+      expect(result.current.selectAllChecked).toBe(true);
+      expect(result.current.hasResources).toBe(true);
+    });
+  });
   describe("State local storage and auth", () => {
     test("should set email, school and terms from local storage if not logged in ", async () => {
       const useFormSpy = jest.spyOn(require("react-hook-form"), "useForm");
