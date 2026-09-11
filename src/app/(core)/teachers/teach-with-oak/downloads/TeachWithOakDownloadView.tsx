@@ -122,6 +122,7 @@ export const TeachWithOakDownloadView = () => {
           />
         </OakBox>
         <DownloadPageWithAccordion
+          hideSelectAllCheckbox={true}
           errors={form.errors}
           handleToggleSelectAll={handleToggleSelectAll}
           selectAllChecked={selectAllChecked}
