@@ -2,10 +2,13 @@ import type { Meta, StoryObj } from "@storybook/nextjs";
 
 import TeacherTipBox from "./TeacherTipBox";
 
+import TeacherBrowseAnalyticsDecorator from "@/storybook-decorators/TeacherBrowseAnalyticsDecorator";
+
 const meta = {
   title: "App/Programmes/Units/Lessons/TeacherTipBox",
   component: TeacherTipBox,
   tags: ["autodocs"],
+  decorators: [TeacherBrowseAnalyticsDecorator],
   parameters: {
     controls: {
       include: ["tips"],
