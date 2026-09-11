@@ -122,6 +122,7 @@ export function AboutSharedHeader({
       <OakFlex
         $minWidth="spacing-0"
         $flexBasis={[showImageOverflow ? 0 : "auto", "auto"]}
+        $flexDirection={[showImageOverflow ? "column" : "row", "row"]}
         $alignItems="center"
         $justifyContent="space-between"
         $pt={["spacing-56", "spacing-72"]}

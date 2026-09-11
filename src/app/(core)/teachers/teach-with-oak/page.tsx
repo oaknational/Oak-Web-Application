@@ -58,9 +58,9 @@ const InnerTeachWithOakPage = async (props: {
   );
 };
 
-const ProgrammePage = withPageErrorHandling(
+const TeachWithOakPage = withPageErrorHandling(
   InnerTeachWithOakPage,
   "teach-with-oak::app",
 );
 
-export default ProgrammePage;
+export default TeachWithOakPage;
