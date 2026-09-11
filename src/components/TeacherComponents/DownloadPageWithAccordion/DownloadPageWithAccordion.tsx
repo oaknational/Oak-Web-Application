@@ -40,15 +40,15 @@ import { DownloadTypeLabel } from "@/components/CurriculumComponents/CurriculumD
 
 type DownloadPageWithAccordionProps = ResourcePageDetailsCompletedProps &
   ResourcePageSchoolDetailsProps & {
-    geoRestricted: boolean;
-    loginRequired: boolean;
-    downloadsRestricted: boolean;
+    geoRestricted?: boolean;
+    loginRequired?: boolean;
+    downloadsRestricted?: boolean;
     handleToggleSelectAll: () => void;
     selectAllChecked: boolean;
     errors: FieldErrors<ResourceFormValues>;
     cardGroup: React.ReactNode;
     showLoading: boolean;
-    showNoResources: boolean;
+    showNoResources?: boolean;
     schoolId?: string;
     register: UseFormRegister<ResourceFormValues>;
     control: Control<ResourceFormValues>;
@@ -57,7 +57,7 @@ type DownloadPageWithAccordionProps = ResourcePageDetailsCompletedProps &
     cta: React.ReactNode;
     triggerForm: UseFormTrigger<ResourceFormValues>;
     apiError?: string | null;
-    copyrightYear: string;
+    copyrightYear?: string;
     showTermsAgreement: boolean;
     showRiskAssessmentBanner?: boolean;
     lessonDownloads?: LessonDownloadsPageData["downloads"];
@@ -68,26 +68,26 @@ type DownloadPageWithAccordionProps = ResourcePageDetailsCompletedProps &
   };
 
 export type DownloadWrapperProps = {
-  isLoading: boolean;
-  showGeoBlocked: boolean;
-  lessonSlug: string;
-  lessonTitle: string;
-  lessonReleaseDate: string | null;
-  isLegacy: boolean;
+  isLoading?: boolean;
+  showGeoBlocked?: boolean;
+  lessonSlug?: string;
+  lessonTitle?: string;
+  lessonReleaseDate?: string | null;
+  isLegacy?: boolean;
 } & DownloadPageWithAccordionProps;
 
 const DownloadPageWithAccordion: FC<DownloadWrapperProps> = (
   props: DownloadWrapperProps,
 ) => {
   const {
-    isLoading,
-    showGeoBlocked,
+    isLoading = false,
+    showGeoBlocked = false,
     geoRestricted,
     loginRequired,
     lessonSlug,
-    lessonReleaseDate,
+    lessonReleaseDate = null,
     lessonTitle,
-    isLegacy,
+    isLegacy = false,
   } = props;
   return (
     <OakGrid>
@@ -256,7 +256,9 @@ export const DownloadPageWithAccordionContent = (
                 showSavedDetails={showSavedDetails}
                 handleEditDetailsCompletedClick={onEditClick}
                 showPostAlbCopyright={showPostAlbCopyright}
-                oglCopyrightYear={copyrightYear}
+                oglCopyrightYear={
+                  copyrightYear ?? new Date().getFullYear().toString()
+                }
                 useDownloadPageLayout
               />
               {showRiskAssessmentBanner && (
@@ -325,7 +327,7 @@ export const DownloadPageWithAccordionContent = (
             fullWidth
             showPostAlbCopyright={showPostAlbCopyright}
             openLinksExternally={true}
-            copyrightYear={copyrightYear}
+            copyrightYear={copyrightYear ?? new Date().getFullYear().toString()}
           />
         </>
       )}
