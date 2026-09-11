@@ -504,7 +504,7 @@ exports[`pages/about-us/oaks-impact.tsx renders title 1`] = `
               </div>
               <a
                 aria-label="My library"
-                class="sc-dcJsrY sc-dGCmGc fIyhTG kNXJqf"
+                class="sc-dcJsrY sc-bJBgwP fIyhTG gGlhYE"
                 href="/teachers/my-library"
               >
                 <div
@@ -884,7 +884,7 @@ exports[`pages/about-us/oaks-impact.tsx renders title 1`] = `
                       class="sc-78cd633-1 dYqmxl"
                     >
                       <li
-                        class="sc-aXZVg sc-fTFjTM kBnJtM fvbgvK"
+                        class="sc-aXZVg sc-hZDyAQ kBnJtM iMmmjC"
                       >
                         <a
                           href="/about-us/who-we-are"
@@ -938,7 +938,7 @@ exports[`pages/about-us/oaks-impact.tsx renders title 1`] = `
                         </a>
                       </li>
                       <li
-                        class="sc-aXZVg sc-fTFjTM kBnJtM fvbgvK"
+                        class="sc-aXZVg sc-hZDyAQ kBnJtM iMmmjC"
                       >
                         <a
                           href="/about-us/oaks-curricula"
@@ -992,7 +992,7 @@ exports[`pages/about-us/oaks-impact.tsx renders title 1`] = `
                         </a>
                       </li>
                       <li
-                        class="sc-aXZVg sc-fTFjTM kBnJtM fvbgvK"
+                        class="sc-aXZVg sc-hZDyAQ kBnJtM iMmmjC"
                       >
                         <a
                           href="/about-us/oaks-impact"
@@ -1046,7 +1046,7 @@ exports[`pages/about-us/oaks-impact.tsx renders title 1`] = `
                         </a>
                       </li>
                       <li
-                        class="sc-aXZVg sc-fTFjTM kBnJtM fvbgvK"
+                        class="sc-aXZVg sc-hZDyAQ kBnJtM iMmmjC"
                       >
                         <a
                           href="/about-us/meet-the-team"
@@ -1100,7 +1100,7 @@ exports[`pages/about-us/oaks-impact.tsx renders title 1`] = `
                         </a>
                       </li>
                       <li
-                        class="sc-aXZVg sc-fTFjTM kBnJtM fvbgvK"
+                        class="sc-aXZVg sc-hZDyAQ kBnJtM iMmmjC"
                       >
                         <a
                           href="/about-us/get-involved"
@@ -1789,7 +1789,7 @@ exports[`pages/about-us/oaks-impact.tsx renders title 1`] = `
           id="site-footer"
         >
           <div
-            class="sc-aXZVg sc-gEvEer sc-brPLxw leSQlB iqPJZh"
+            class="sc-aXZVg sc-gEvEer sc-gFVvzn leSQlB iqPJZh"
           >
             <div
               class="sc-aXZVg sc-tagGq jPvJsJ fNndNZ"
