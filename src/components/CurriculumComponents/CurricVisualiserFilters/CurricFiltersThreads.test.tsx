@@ -26,7 +26,7 @@ describe("CurricFiltersThreads", () => {
     );
 
     const elements = getAllByRole("radio") as HTMLInputElement[];
-    expect(elements.length).toEqual(4);
+    expect(elements).toHaveLength(4);
     expect(elements[0]!.value).toEqual("");
     expect(elements[1]!.value).toEqual("thread1");
     expect(elements[2]!.value).toEqual("thread2");
@@ -51,7 +51,7 @@ describe("CurricFiltersThreads", () => {
     );
 
     const elements = getAllByRole("radio") as HTMLInputElement[];
-    expect(elements.length).toEqual(4);
+    expect(elements).toHaveLength(4);
     expect(elements[0]!.value).toEqual("");
     expect(elements[1]!.value).toEqual("thread1");
     expect(elements[2]!.value).toEqual("thread2");
@@ -78,7 +78,7 @@ describe("CurricFiltersThreads", () => {
     );
 
     const elements = getAllByRole("radio") as HTMLInputElement[];
-    expect(elements.length).toEqual(4);
+    expect(elements).toHaveLength(4);
 
     act(() => elements[1]!.click());
     expect(onChangeFilters).toHaveBeenCalledWith({
@@ -115,7 +115,7 @@ describe("CurricFiltersThreads", () => {
     );
 
     const elements = getAllByRole("radio") as HTMLInputElement[];
-    expect(elements.length).toEqual(4);
+    expect(elements).toHaveLength(4);
 
     act(() => elements[0]!.click());
     expect(onChangeFilters).toHaveBeenCalledWith({
