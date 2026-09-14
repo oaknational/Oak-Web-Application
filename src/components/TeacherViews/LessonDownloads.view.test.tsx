@@ -89,72 +89,34 @@ describe("Hiding 'Your details", () => {
     ).not.toBeInTheDocument();
   });
 
-  it("should show LoginRequired button and hide download button & form when not logged and geo restricted", async () => {
-    setUseUserReturn(mockLoggedOut);
-    const { queryByText, getByRole, queryByRole } = await render(
-      <LessonDownloads
-        lesson={{ ...lesson, geoRestricted: true, loginRequired: false }}
-        breadcrumbsSlot={breadcrumbsSlot}
-      />,
-    );
+  it.each([
+    { geoRestricted: true, loginRequired: false },
+    { geoRestricted: false, loginRequired: true },
+    { geoRestricted: true, loginRequired: true },
+  ])(
+    "should show LoginRequired button and hide download button & form when not logged in (geoRestricted: $geoRestricted, loginRequired: $loginRequired)",
+    async ({ geoRestricted, loginRequired }) => {
+      setUseUserReturn(mockLoggedOut);
+      const { queryByText, getByRole, queryByRole } = await render(
+        <LessonDownloads
+          lesson={{ ...lesson, geoRestricted, loginRequired }}
+          breadcrumbsSlot={breadcrumbsSlot}
+        />,
+      );
 
-    const yourDetailsHeading = queryByText("Your details");
-    const downloadButton = queryByRole("button", {
-      name: "Download .zip",
-    });
-    const loginRequiredButton = getByRole("button", {
-      name: "Sign in to continue",
-    });
+      const yourDetailsHeading = queryByText("Your details");
+      const downloadButton = queryByRole("button", {
+        name: "Download .zip",
+      });
+      const loginRequiredButton = getByRole("button", {
+        name: "Sign in to continue",
+      });
 
-    expect(downloadButton).not.toBeInTheDocument();
-    expect(yourDetailsHeading).not.toBeInTheDocument();
-
-    expect(loginRequiredButton).toBeInTheDocument();
-  });
-
-  it("should show LoginRequired button and hide download button & form when not logged in", async () => {
-    setUseUserReturn(mockLoggedOut);
-    const { queryByText, getByRole, queryByRole } = await render(
-      <LessonDownloads
-        lesson={{ ...lesson, geoRestricted: false, loginRequired: true }}
-        breadcrumbsSlot={breadcrumbsSlot}
-      />,
-    );
-
-    const yourDetailsHeading = queryByText("Your details");
-    const downloadButton = queryByRole("button", {
-      name: "Download .zip",
-    });
-    const loginRequiredButton = getByRole("button", {
-      name: "Sign in to continue",
-    });
-
-    expect(downloadButton).not.toBeInTheDocument();
-    expect(yourDetailsHeading).not.toBeInTheDocument();
-
-    expect(loginRequiredButton).toBeInTheDocument();
-  });
-
-  it("should show LoginRequired button and hide download button & form when not logged and geoRestricted", async () => {
-    setUseUserReturn(mockLoggedOut);
-    const { queryByText, getByRole, queryByRole } = await render(
-      <LessonDownloads
-        lesson={{ ...lesson, geoRestricted: true, loginRequired: true }}
-        breadcrumbsSlot={breadcrumbsSlot}
-      />,
-    );
-    const yourDetailsHeading = queryByText("Your details");
-    const downloadButton = queryByRole("button", {
-      name: "Download .zip",
-    });
-    const loginRequiredButton = getByRole("button", {
-      name: "Sign in to continue",
-    });
-
-    expect(downloadButton).not.toBeInTheDocument();
-    expect(yourDetailsHeading).not.toBeInTheDocument();
-    expect(loginRequiredButton).toBeInTheDocument();
-  });
+      expect(downloadButton).not.toBeInTheDocument();
+      expect(yourDetailsHeading).not.toBeInTheDocument();
+      expect(loginRequiredButton).toBeInTheDocument();
+    },
+  );
 
   it("should not show LoginRequired button when logged in", async () => {
     setUseUserReturn({
