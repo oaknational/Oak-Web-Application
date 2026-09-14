@@ -46,12 +46,6 @@ type OnboardingFormState = DefaultValues<OnboardingFormProps>;
 const mockPush = jest.fn();
 
 describe("Onboarding form", () => {
-  beforeAll(() => {
-    fetchMock.enableMocks();
-  });
-  afterAll(() => {
-    fetchMock.disableMocks();
-  });
   beforeEach(() => {
     setUseUserReturn(mockLoggedIn);
     mockPush.mockClear();
