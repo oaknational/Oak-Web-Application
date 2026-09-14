@@ -27,9 +27,9 @@ import BoxBorders from "@/components/SharedComponents/SpriteSheet/BrushSvgs/BoxB
 export { Item } from "react-stately";
 
 export const DropdownFocusUnderline = styled(InputFocusUnderline)<{
-  isFocusVisible: boolean;
+  $isFocusVisible: boolean;
 }>`
-  display: ${(props) => (props.isFocusVisible ? "inline" : "none")};
+  display: ${(props) => (props.$isFocusVisible ? "inline" : "none")};
 `;
 
 export type SelectItem = {
@@ -142,7 +142,7 @@ export function Select<
     >
       <BoxBorders gapPosition="rightTop" hideBottom={state.isOpen} />
       <DropdownFocusUnderline
-        isFocusVisible={isFocusVisible}
+        $isFocusVisible={isFocusVisible}
         aria-hidden="true"
         name={"underline-1"}
         $font={"body-3"}

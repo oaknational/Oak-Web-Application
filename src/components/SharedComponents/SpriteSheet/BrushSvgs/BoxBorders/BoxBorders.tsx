@@ -90,7 +90,10 @@ const StyledBoxBorderTop: FC<StyledBoxBorderProps> = (props) => {
   );
 };
 
-const StyledBoxBorderRight: FC<StyledBoxBorderProps> = (props) => {
+const StyledBoxBorderRight: FC<StyledBoxBorderProps> = ({
+  gapPosition,
+  ...props
+}) => {
   return (
     <StyledSvg
       aria-hidden={true}
@@ -107,9 +110,9 @@ const StyledBoxBorderRight: FC<StyledBoxBorderProps> = (props) => {
       style={{
         top: "unset",
         left: "unset",
-        bottom: props.gapPosition === "bottomRightCorner" ? "5%" : undefined,
+        bottom: gapPosition === "bottomRightCorner" ? "5%" : undefined,
         width: "3px",
-        height: getBorderHeight(props.gapPosition),
+        height: getBorderHeight(gapPosition),
       }}
     >
       <BoxBorderRight />
@@ -117,7 +120,10 @@ const StyledBoxBorderRight: FC<StyledBoxBorderProps> = (props) => {
   );
 };
 
-const StyledBoxBorderBottom: FC<StyledBoxBorderProps> = (props) => {
+const StyledBoxBorderBottom: FC<StyledBoxBorderProps> = ({
+  gapPosition,
+  ...props
+}) => {
   return (
     <StyledSvg
       aria-hidden={true}
@@ -134,7 +140,7 @@ const StyledBoxBorderBottom: FC<StyledBoxBorderProps> = (props) => {
       style={{
         top: "unset",
         height: "3px",
-        width: getBorderWidth(props.gapPosition),
+        width: getBorderWidth(gapPosition),
       }}
     >
       <BoxBorderBottom />
@@ -180,22 +186,19 @@ const StyledBoxBorderLeft: FC<StyledBoxBorderProps> = (props) => {
  * which allows them to be stretched whilst still preserving the effect of being
  * a painted or drawn line.
  */
-const BoxBorders: FC<BoxBordersProps> = (props) => {
+const BoxBorders: FC<BoxBordersProps> = (rawProps) => {
+  const { hideTop, hideRight, hideBottom, hideLeft, ...props } = rawProps;
   return (
     <OakBox aria-hidden="true" data-testid="brush-borders">
-      {!props.hideTop && (
-        <StyledBoxBorderTop name="box-border-top" {...props} />
-      )}
-      {!props.hideRight && (
+      {!hideTop && <StyledBoxBorderTop name="box-border-top" {...props} />}
+      {!hideRight && (
         <StyledBoxBorderRight name="box-border-right" {...props} />
       )}
 
-      {!props.hideBottom && (
+      {!hideBottom && (
         <StyledBoxBorderBottom name="box-border-bottom" {...props} />
       )}
-      {!props.hideLeft && (
-        <StyledBoxBorderLeft name="box-border-left" {...props} />
-      )}
+      {!hideLeft && <StyledBoxBorderLeft name="box-border-left" {...props} />}
     </OakBox>
   );
 };
