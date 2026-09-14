@@ -6,10 +6,10 @@ import { FontProps } from "@/styles/utils/typography";
 const CopyrightLicence = (
   props: FontProps & { openLinksExternally: boolean; copyrightYear: string },
 ) => {
-  const { copyrightYear, openLinksExternally } = props;
+  const { copyrightYear, openLinksExternally, ...restProps } = props;
   const year = new Date(copyrightYear).getUTCFullYear();
   return (
-    <OakBox $font="body-3" {...props}>
+    <OakBox $font="body-3" {...restProps}>
       This content is © Oak National Academy Limited ({year}), licensed on{" "}
       {openLinksExternally ? (
         <OakLink
