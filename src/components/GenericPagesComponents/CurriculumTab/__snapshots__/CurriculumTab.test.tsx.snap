@@ -1682,7 +1682,6 @@ exports[`CurriculumTab renders 1`] = `
       <div
         aria-live="polite"
         class="c67 c68 c69"
-        offsettop="152"
       />
     </div>
     <div

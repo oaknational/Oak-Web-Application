@@ -5536,7 +5536,6 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
                       <form
                         aria-describedby="react-use-id-test-result-newsletter-form-description"
                         class="c183"
-                        desktopcolspan="6"
                         novalidate=""
                       >
                         <div
@@ -5553,7 +5552,6 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
                               <svg
                                 aria-hidden="true"
                                 class="c188"
-                                gapPosition="rightTop"
                                 height="100%"
                                 name="box-border-top"
                                 style="height: 3px;"
@@ -5579,7 +5577,6 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
                               <svg
                                 aria-hidden="true"
                                 class="c188"
-                                gapPosition="rightTop"
                                 height="100%"
                                 name="box-border-right"
                                 style="width: 3px; height: 90%;"
@@ -5605,7 +5602,6 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
                               <svg
                                 aria-hidden="true"
                                 class="c188"
-                                gapPosition="rightTop"
                                 height="100%"
                                 name="box-border-bottom"
                                 style="height: 3px; width: 100%;"
@@ -5631,7 +5627,6 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
                               <svg
                                 aria-hidden="true"
                                 class="c188"
-                                gapPosition="rightTop"
                                 height="100%"
                                 name="box-border-left"
                                 style="width: 3px;"
@@ -5718,7 +5713,6 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
                               <svg
                                 aria-hidden="true"
                                 class="c188"
-                                gapPosition="rightTop"
                                 height="100%"
                                 name="box-border-top"
                                 style="height: 3px;"
@@ -5744,7 +5738,6 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
                               <svg
                                 aria-hidden="true"
                                 class="c188"
-                                gapPosition="rightTop"
                                 height="100%"
                                 name="box-border-right"
                                 style="width: 3px; height: 90%;"
@@ -5770,7 +5763,6 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
                               <svg
                                 aria-hidden="true"
                                 class="c188"
-                                gapPosition="rightTop"
                                 height="100%"
                                 name="box-border-bottom"
                                 style="height: 3px; width: 100%;"
@@ -5796,7 +5788,6 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
                               <svg
                                 aria-hidden="true"
                                 class="c188"
-                                gapPosition="rightTop"
                                 height="100%"
                                 name="box-border-left"
                                 style="width: 3px;"
@@ -5880,7 +5871,6 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
                             <svg
                               aria-hidden="true"
                               class="c188"
-                              gapPosition="rightTop"
                               height="100%"
                               name="box-border-top"
                               style="height: 3px;"
@@ -5906,7 +5896,6 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
                             <svg
                               aria-hidden="true"
                               class="c188"
-                              gapPosition="rightTop"
                               height="100%"
                               name="box-border-right"
                               style="width: 3px; height: 90%;"
@@ -5932,7 +5921,6 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
                             <svg
                               aria-hidden="true"
                               class="c188"
-                              gapPosition="rightTop"
                               height="100%"
                               name="box-border-bottom"
                               style="height: 3px; width: 100%;"
@@ -5958,7 +5946,6 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
                             <svg
                               aria-hidden="true"
                               class="c188"
-                              gapPosition="rightTop"
                               height="100%"
                               name="box-border-left"
                               style="width: 3px;"
@@ -6993,7 +6980,6 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
     <div
       aria-live="polite"
       class="c247 c248 c249"
-      offsettop="152"
     />
   </div>
   <div

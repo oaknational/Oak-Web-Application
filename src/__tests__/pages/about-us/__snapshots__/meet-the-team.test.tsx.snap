@@ -4724,7 +4724,6 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
                       <form
                         aria-describedby="react-use-id-test-result-newsletter-form-description"
                         class="c137"
-                        desktopcolspan="6"
                         novalidate=""
                       >
                         <div
@@ -4741,7 +4740,6 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
                               <svg
                                 aria-hidden="true"
                                 class="c142"
-                                gapPosition="rightTop"
                                 height="100%"
                                 name="box-border-top"
                                 style="height: 3px;"
@@ -4767,7 +4765,6 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
                               <svg
                                 aria-hidden="true"
                                 class="c142"
-                                gapPosition="rightTop"
                                 height="100%"
                                 name="box-border-right"
                                 style="width: 3px; height: 90%;"
@@ -4793,7 +4790,6 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
                               <svg
                                 aria-hidden="true"
                                 class="c142"
-                                gapPosition="rightTop"
                                 height="100%"
                                 name="box-border-bottom"
                                 style="height: 3px; width: 100%;"
@@ -4819,7 +4815,6 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
                               <svg
                                 aria-hidden="true"
                                 class="c142"
-                                gapPosition="rightTop"
                                 height="100%"
                                 name="box-border-left"
                                 style="width: 3px;"
@@ -4906,7 +4901,6 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
                               <svg
                                 aria-hidden="true"
                                 class="c142"
-                                gapPosition="rightTop"
                                 height="100%"
                                 name="box-border-top"
                                 style="height: 3px;"
@@ -4932,7 +4926,6 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
                               <svg
                                 aria-hidden="true"
                                 class="c142"
-                                gapPosition="rightTop"
                                 height="100%"
                                 name="box-border-right"
                                 style="width: 3px; height: 90%;"
@@ -4958,7 +4951,6 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
                               <svg
                                 aria-hidden="true"
                                 class="c142"
-                                gapPosition="rightTop"
                                 height="100%"
                                 name="box-border-bottom"
                                 style="height: 3px; width: 100%;"
@@ -4984,7 +4976,6 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
                               <svg
                                 aria-hidden="true"
                                 class="c142"
-                                gapPosition="rightTop"
                                 height="100%"
                                 name="box-border-left"
                                 style="width: 3px;"
@@ -5068,7 +5059,6 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
                             <svg
                               aria-hidden="true"
                               class="c142"
-                              gapPosition="rightTop"
                               height="100%"
                               name="box-border-top"
                               style="height: 3px;"
@@ -5094,7 +5084,6 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
                             <svg
                               aria-hidden="true"
                               class="c142"
-                              gapPosition="rightTop"
                               height="100%"
                               name="box-border-right"
                               style="width: 3px; height: 90%;"
@@ -5120,7 +5109,6 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
                             <svg
                               aria-hidden="true"
                               class="c142"
-                              gapPosition="rightTop"
                               height="100%"
                               name="box-border-bottom"
                               style="height: 3px; width: 100%;"
@@ -5146,7 +5134,6 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
                             <svg
                               aria-hidden="true"
                               class="c142"
-                              gapPosition="rightTop"
                               height="100%"
                               name="box-border-left"
                               style="width: 3px;"
@@ -6181,7 +6168,6 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
     <div
       aria-live="polite"
       class="c203 c204 c205"
-      offsettop="152"
     />
   </div>
   <div

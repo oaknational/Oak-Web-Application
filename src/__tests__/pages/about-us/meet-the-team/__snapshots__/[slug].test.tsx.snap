@@ -4157,7 +4157,6 @@ exports[`pages/about/meet-the-team/[slug].tsx renders 1`] = `
     <div
       aria-live="polite"
       class="c135 c136 c137"
-      offsettop="152"
     />
   </div>
   <div

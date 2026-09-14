@@ -785,11 +785,11 @@ exports[`Teachers Page Page component renders 1`] = `
                             style="width: 50%;"
                           >
                             <div
-                              class="sc-bdvwhi sc-bXTeWK sc-a6c54ccd-1 eRfXEK jlFrQG dRwEhN"
+                              class="sc-bdvwhi sc-bXTeWK sc-6493ec13-1 eRfXEK jlFrQG jCgmmE"
                             >
                               <button
                                 aria-expanded="false"
-                                class="sc-a6c54ccd-3 bqYUin"
+                                class="sc-6493ec13-3 cthGlu"
                                 data-testid="subject-picker-button"
                                 title="Subject"
                               >
@@ -821,7 +821,7 @@ exports[`Teachers Page Page component renders 1`] = `
                             >
                               <svg
                                 aria-hidden="true"
-                                class="sc-8c07ce1d-0 edwNRh"
+                                class="sc-9296ad1a-0 eeDSIf"
                                 height="100%"
                                 name="box-border-left"
                                 style="width: 3px;"
@@ -854,14 +854,14 @@ exports[`Teachers Page Page component renders 1`] = `
                               class="sc-bdvwhi sc-gsDMPd itnzEL bYYpbR"
                             >
                               <div
-                                class="sc-bdvwhi sc-bXTeWK sc-a6c54ccd-1 NRtFW jlFrQG dRwEhN"
+                                class="sc-bdvwhi sc-bXTeWK sc-6493ec13-1 NRtFW jlFrQG jCgmmE"
                               >
                                 <div
                                   class="sc-bdvwhi sc-gsDMPd hPWTKU jXqXXp"
                                 >
                                   <button
                                     aria-expanded="false"
-                                    class="sc-a6c54ccd-3 bqYUin"
+                                    class="sc-6493ec13-3 cthGlu"
                                     data-testid="phase-picker-button"
                                     title="Phase"
                                   >
@@ -1104,11 +1104,11 @@ exports[`Teachers Page Page component renders 1`] = `
                           style="width: 50%;"
                         >
                           <div
-                            class="sc-bdvwhi sc-bXTeWK sc-a6c54ccd-1 eRfXEK jlFrQG dRwEhN"
+                            class="sc-bdvwhi sc-bXTeWK sc-6493ec13-1 eRfXEK jlFrQG jCgmmE"
                           >
                             <button
                               aria-expanded="false"
-                              class="sc-a6c54ccd-3 bqYUin"
+                              class="sc-6493ec13-3 cthGlu"
                               data-testid="subject-picker-button"
                               title="Subject"
                             >
@@ -1140,7 +1140,7 @@ exports[`Teachers Page Page component renders 1`] = `
                           >
                             <svg
                               aria-hidden="true"
-                              class="sc-8c07ce1d-0 edwNRh"
+                              class="sc-9296ad1a-0 eeDSIf"
                               height="100%"
                               name="box-border-left"
                               style="width: 3px;"
@@ -1173,14 +1173,14 @@ exports[`Teachers Page Page component renders 1`] = `
                             class="sc-bdvwhi sc-gsDMPd itnzEL bYYpbR"
                           >
                             <div
-                              class="sc-bdvwhi sc-bXTeWK sc-a6c54ccd-1 NRtFW jlFrQG dRwEhN"
+                              class="sc-bdvwhi sc-bXTeWK sc-6493ec13-1 NRtFW jlFrQG jCgmmE"
                             >
                               <div
                                 class="sc-bdvwhi sc-gsDMPd hPWTKU jXqXXp"
                               >
                                 <button
                                   aria-expanded="false"
-                                  class="sc-a6c54ccd-3 bqYUin"
+                                  class="sc-6493ec13-3 cthGlu"
                                   data-testid="phase-picker-button"
                                   title="Phase"
                                 >
@@ -1401,11 +1401,11 @@ exports[`Teachers Page Page component renders 1`] = `
                               style="width: 50%;"
                             >
                               <div
-                                class="sc-bdvwhi sc-bXTeWK sc-a6c54ccd-1 eRfXEK jlFrQG dRwEhN"
+                                class="sc-bdvwhi sc-bXTeWK sc-6493ec13-1 eRfXEK jlFrQG jCgmmE"
                               >
                                 <button
                                   aria-expanded="false"
-                                  class="sc-a6c54ccd-3 bqYUin"
+                                  class="sc-6493ec13-3 cthGlu"
                                   data-testid="subject-picker-button"
                                   title="Subject"
                                 >
@@ -1437,7 +1437,7 @@ exports[`Teachers Page Page component renders 1`] = `
                               >
                                 <svg
                                   aria-hidden="true"
-                                  class="sc-8c07ce1d-0 edwNRh"
+                                  class="sc-9296ad1a-0 eeDSIf"
                                   height="100%"
                                   name="box-border-left"
                                   style="width: 3px;"
@@ -1470,14 +1470,14 @@ exports[`Teachers Page Page component renders 1`] = `
                                 class="sc-bdvwhi sc-gsDMPd itnzEL bYYpbR"
                               >
                                 <div
-                                  class="sc-bdvwhi sc-bXTeWK sc-a6c54ccd-1 NRtFW jlFrQG dRwEhN"
+                                  class="sc-bdvwhi sc-bXTeWK sc-6493ec13-1 NRtFW jlFrQG jCgmmE"
                                 >
                                   <div
                                     class="sc-bdvwhi sc-gsDMPd hPWTKU jXqXXp"
                                   >
                                     <button
                                       aria-expanded="false"
-                                      class="sc-a6c54ccd-3 bqYUin"
+                                      class="sc-6493ec13-3 cthGlu"
                                       data-testid="phase-picker-button"
                                       title="Phase"
                                     >
@@ -1724,8 +1724,7 @@ exports[`Teachers Page Page component renders 1`] = `
                         >
                           <svg
                             aria-hidden="true"
-                            class="sc-8c07ce1d-0 lmCMWe"
-                            gapPosition="bottomRight"
+                            class="sc-9296ad1a-0 kEGjos"
                             height="100%"
                             name="box-border-top"
                             style="height: 3px;"
@@ -1750,8 +1749,7 @@ exports[`Teachers Page Page component renders 1`] = `
                           </svg>
                           <svg
                             aria-hidden="true"
-                            class="sc-8c07ce1d-0 lmCMWe"
-                            gapPosition="bottomRight"
+                            class="sc-9296ad1a-0 kEGjos"
                             height="100%"
                             name="box-border-right"
                             style="width: 3px; height: 100%;"
@@ -1776,8 +1774,7 @@ exports[`Teachers Page Page component renders 1`] = `
                           </svg>
                           <svg
                             aria-hidden="true"
-                            class="sc-8c07ce1d-0 lmCMWe"
-                            gapPosition="bottomRight"
+                            class="sc-9296ad1a-0 kEGjos"
                             height="100%"
                             name="box-border-bottom"
                             style="height: 3px; width: 90%;"
@@ -1802,8 +1799,7 @@ exports[`Teachers Page Page component renders 1`] = `
                           </svg>
                           <svg
                             aria-hidden="true"
-                            class="sc-8c07ce1d-0 lmCMWe"
-                            gapPosition="bottomRight"
+                            class="sc-9296ad1a-0 kEGjos"
                             height="100%"
                             name="box-border-left"
                             style="width: 3px;"
@@ -1930,8 +1926,7 @@ exports[`Teachers Page Page component renders 1`] = `
                         >
                           <svg
                             aria-hidden="true"
-                            class="sc-8c07ce1d-0 lmCMWe"
-                            gapPosition="bottomRight"
+                            class="sc-9296ad1a-0 kEGjos"
                             height="100%"
                             name="box-border-top"
                             style="height: 3px;"
@@ -1956,8 +1951,7 @@ exports[`Teachers Page Page component renders 1`] = `
                           </svg>
                           <svg
                             aria-hidden="true"
-                            class="sc-8c07ce1d-0 lmCMWe"
-                            gapPosition="bottomRight"
+                            class="sc-9296ad1a-0 kEGjos"
                             height="100%"
                             name="box-border-right"
                             style="width: 3px; height: 100%;"
@@ -1982,8 +1976,7 @@ exports[`Teachers Page Page component renders 1`] = `
                           </svg>
                           <svg
                             aria-hidden="true"
-                            class="sc-8c07ce1d-0 lmCMWe"
-                            gapPosition="bottomRight"
+                            class="sc-9296ad1a-0 kEGjos"
                             height="100%"
                             name="box-border-bottom"
                             style="height: 3px; width: 90%;"
@@ -2008,8 +2001,7 @@ exports[`Teachers Page Page component renders 1`] = `
                           </svg>
                           <svg
                             aria-hidden="true"
-                            class="sc-8c07ce1d-0 lmCMWe"
-                            gapPosition="bottomRight"
+                            class="sc-9296ad1a-0 kEGjos"
                             height="100%"
                             name="box-border-left"
                             style="width: 3px;"
@@ -2168,11 +2160,10 @@ exports[`Teachers Page Page component renders 1`] = `
                       <form
                         aria-describedby="react-use-id-test-result-newsletter-form-description"
                         class="sc-afc76bc-0 EBDMA"
-                        desktopcolspan="6"
                         novalidate=""
                       >
                         <div
-                          class="sc-ad0ad6f5-0 sc-213e351e-0 sc-eb7a8b1-2 gMpwPM idZRCE DQXMN"
+                          class="sc-ad0ad6f5-0 sc-213e351e-0 sc-b9bd8d50-2 gMpwPM idZRCE geBCAj"
                         >
                           <div
                             class="sc-ad0ad6f5-0 sc-213e351e-0 eSuYAE gaqeOY"
@@ -2184,8 +2175,7 @@ exports[`Teachers Page Page component renders 1`] = `
                             >
                               <svg
                                 aria-hidden="true"
-                                class="sc-8c07ce1d-0 gSpGtH"
-                                gapPosition="rightTop"
+                                class="sc-9296ad1a-0 gtRaRN"
                                 height="100%"
                                 name="box-border-top"
                                 style="height: 3px;"
@@ -2210,8 +2200,7 @@ exports[`Teachers Page Page component renders 1`] = `
                               </svg>
                               <svg
                                 aria-hidden="true"
-                                class="sc-8c07ce1d-0 gSpGtH"
-                                gapPosition="rightTop"
+                                class="sc-9296ad1a-0 gtRaRN"
                                 height="100%"
                                 name="box-border-right"
                                 style="width: 3px; height: 90%;"
@@ -2236,8 +2225,7 @@ exports[`Teachers Page Page component renders 1`] = `
                               </svg>
                               <svg
                                 aria-hidden="true"
-                                class="sc-8c07ce1d-0 gSpGtH"
-                                gapPosition="rightTop"
+                                class="sc-9296ad1a-0 gtRaRN"
                                 height="100%"
                                 name="box-border-bottom"
                                 style="height: 3px; width: 100%;"
@@ -2262,8 +2250,7 @@ exports[`Teachers Page Page component renders 1`] = `
                               </svg>
                               <svg
                                 aria-hidden="true"
-                                class="sc-8c07ce1d-0 gSpGtH"
-                                gapPosition="rightTop"
+                                class="sc-9296ad1a-0 gtRaRN"
                                 height="100%"
                                 name="box-border-left"
                                 style="width: 3px;"
@@ -2293,7 +2280,7 @@ exports[`Teachers Page Page component renders 1`] = `
                               <label
                                 aria-hidden="true"
                                 background="lemon"
-                                class="sc-a4f8e51b-0 sc-eb7a8b1-1 dIobYI bhOXSq"
+                                class="sc-a4f8e51b-0 sc-b9bd8d50-1 dIobYI fbxbFY"
                                 color="black"
                                 data-testid="rotated-input-label"
                                 for="react-use-id-test-result-newsletter-signup-name"
@@ -2316,7 +2303,7 @@ exports[`Teachers Page Page component renders 1`] = `
                               aria-invalid="false"
                               aria-labelledby="react-use-id-test-result-newsletter-signup-name-label"
                               autocomplete="name"
-                              class="sc-7244e9af-0 sc-eb7a8b1-3 fsnqpz jpbvYF"
+                              class="sc-7244e9af-0 sc-b9bd8d50-3 fsnqpz eTNgvL"
                               id="react-use-id-test-result-newsletter-signup-name"
                               name="name"
                               placeholder="Anna Smith"
@@ -2324,7 +2311,7 @@ exports[`Teachers Page Page component renders 1`] = `
                             />
                             <svg
                               aria-hidden="true"
-                              class="sc-1bff3534-0 cQsKFy sc-eb7a8b1-0 BrjBM"
+                              class="sc-d3d8bbe8-0 gqHJiq sc-b9bd8d50-0 liyQzy"
                               height="100%"
                               name="underline-1"
                               width="100%"
@@ -2337,7 +2324,7 @@ exports[`Teachers Page Page component renders 1`] = `
                           </div>
                         </div>
                         <div
-                          class="sc-ad0ad6f5-0 sc-213e351e-0 sc-eb7a8b1-2 gMpwPM idZRCE DQXMN"
+                          class="sc-ad0ad6f5-0 sc-213e351e-0 sc-b9bd8d50-2 gMpwPM idZRCE geBCAj"
                         >
                           <div
                             class="sc-ad0ad6f5-0 sc-213e351e-0 eSuYAE gaqeOY"
@@ -2349,8 +2336,7 @@ exports[`Teachers Page Page component renders 1`] = `
                             >
                               <svg
                                 aria-hidden="true"
-                                class="sc-8c07ce1d-0 gSpGtH"
-                                gapPosition="rightTop"
+                                class="sc-9296ad1a-0 gtRaRN"
                                 height="100%"
                                 name="box-border-top"
                                 style="height: 3px;"
@@ -2375,8 +2361,7 @@ exports[`Teachers Page Page component renders 1`] = `
                               </svg>
                               <svg
                                 aria-hidden="true"
-                                class="sc-8c07ce1d-0 gSpGtH"
-                                gapPosition="rightTop"
+                                class="sc-9296ad1a-0 gtRaRN"
                                 height="100%"
                                 name="box-border-right"
                                 style="width: 3px; height: 90%;"
@@ -2401,8 +2386,7 @@ exports[`Teachers Page Page component renders 1`] = `
                               </svg>
                               <svg
                                 aria-hidden="true"
-                                class="sc-8c07ce1d-0 gSpGtH"
-                                gapPosition="rightTop"
+                                class="sc-9296ad1a-0 gtRaRN"
                                 height="100%"
                                 name="box-border-bottom"
                                 style="height: 3px; width: 100%;"
@@ -2427,8 +2411,7 @@ exports[`Teachers Page Page component renders 1`] = `
                               </svg>
                               <svg
                                 aria-hidden="true"
-                                class="sc-8c07ce1d-0 gSpGtH"
-                                gapPosition="rightTop"
+                                class="sc-9296ad1a-0 gtRaRN"
                                 height="100%"
                                 name="box-border-left"
                                 style="width: 3px;"
@@ -2458,7 +2441,7 @@ exports[`Teachers Page Page component renders 1`] = `
                               <label
                                 aria-hidden="true"
                                 background="lemon"
-                                class="sc-a4f8e51b-0 sc-eb7a8b1-1 dIobYI bhOXSq"
+                                class="sc-a4f8e51b-0 sc-b9bd8d50-1 dIobYI fbxbFY"
                                 color="black"
                                 data-testid="rotated-input-label"
                                 for="react-use-id-test-result-newsletter-signup-email"
@@ -2481,7 +2464,7 @@ exports[`Teachers Page Page component renders 1`] = `
                               aria-invalid="false"
                               aria-labelledby="react-use-id-test-result-newsletter-signup-email-label"
                               autocomplete="email"
-                              class="sc-7244e9af-0 sc-eb7a8b1-3 fsnqpz jpbvYF"
+                              class="sc-7244e9af-0 sc-b9bd8d50-3 fsnqpz eTNgvL"
                               id="react-use-id-test-result-newsletter-signup-email"
                               name="email"
                               placeholder="anna@amail.com"
@@ -2489,7 +2472,7 @@ exports[`Teachers Page Page component renders 1`] = `
                             />
                             <svg
                               aria-hidden="true"
-                              class="sc-1bff3534-0 cQsKFy sc-eb7a8b1-0 BrjBM"
+                              class="sc-d3d8bbe8-0 gqHJiq sc-b9bd8d50-0 liyQzy"
                               height="100%"
                               name="underline-1"
                               width="100%"
@@ -2502,7 +2485,7 @@ exports[`Teachers Page Page component renders 1`] = `
                           </div>
                         </div>
                         <div
-                          class="sc-bdvwhi sc-gsDMPd sc-677bff7e-1 bQYBLl cIPGhJ gXfutm"
+                          class="sc-bdvwhi sc-gsDMPd sc-f393ba0e-1 bQYBLl cIPGhJ gHBRND"
                         >
                           <div
                             aria-hidden="true"
@@ -2511,8 +2494,7 @@ exports[`Teachers Page Page component renders 1`] = `
                           >
                             <svg
                               aria-hidden="true"
-                              class="sc-8c07ce1d-0 gSpGtH"
-                              gapPosition="rightTop"
+                              class="sc-9296ad1a-0 gtRaRN"
                               height="100%"
                               name="box-border-top"
                               style="height: 3px;"
@@ -2537,8 +2519,7 @@ exports[`Teachers Page Page component renders 1`] = `
                             </svg>
                             <svg
                               aria-hidden="true"
-                              class="sc-8c07ce1d-0 gSpGtH"
-                              gapPosition="rightTop"
+                              class="sc-9296ad1a-0 gtRaRN"
                               height="100%"
                               name="box-border-right"
                               style="width: 3px; height: 90%;"
@@ -2563,8 +2544,7 @@ exports[`Teachers Page Page component renders 1`] = `
                             </svg>
                             <svg
                               aria-hidden="true"
-                              class="sc-8c07ce1d-0 gSpGtH"
-                              gapPosition="rightTop"
+                              class="sc-9296ad1a-0 gtRaRN"
                               height="100%"
                               name="box-border-bottom"
                               style="height: 3px; width: 100%;"
@@ -2589,8 +2569,7 @@ exports[`Teachers Page Page component renders 1`] = `
                             </svg>
                             <svg
                               aria-hidden="true"
-                              class="sc-8c07ce1d-0 gSpGtH"
-                              gapPosition="rightTop"
+                              class="sc-9296ad1a-0 gtRaRN"
                               height="100%"
                               name="box-border-left"
                               style="width: 3px;"
@@ -2616,7 +2595,7 @@ exports[`Teachers Page Page component renders 1`] = `
                           </div>
                           <svg
                             aria-hidden="true"
-                            class="sc-1bff3534-0 cQsKFy sc-eb7a8b1-0 sc-677bff7e-0 BrjBM gAvWXo"
+                            class="sc-d3d8bbe8-0 gqHJiq sc-b9bd8d50-0 sc-f393ba0e-0 liyQzy cOjBPj"
                             height="100%"
                             name="underline-1"
                             width="100%"
@@ -2631,7 +2610,7 @@ exports[`Teachers Page Page component renders 1`] = `
                           >
                             <label
                               background="lemon"
-                              class="sc-a4f8e51b-0 sc-eb7a8b1-1 dIobYI bhOXSq"
+                              class="sc-a4f8e51b-0 sc-b9bd8d50-1 dIobYI fbxbFY"
                               color="black"
                               id="react-use-id-test-result"
                             >
@@ -2643,16 +2622,16 @@ exports[`Teachers Page Page component renders 1`] = `
                             aria-haspopup="listbox"
                             aria-invalid="false"
                             aria-labelledby="react-use-id-test-result react-use-id-test-result-button"
-                            class="sc-ce4d7bd4-0 sc-677bff7e-2 jFkkxH brEGiy"
+                            class="sc-ce4d7bd4-0 sc-f393ba0e-2 jFkkxH gYjUVR"
                             data-testid="select"
                             id="react-use-id-test-result-button"
                             type="button"
                           >
                             <div
-                              class="sc-bdvwhi sc-gsDMPd sc-677bff7e-3 kQWpTv eWbmLh jUtbfD"
+                              class="sc-bdvwhi sc-gsDMPd sc-f393ba0e-3 kQWpTv eWbmLh dUXosw"
                             >
                               <span
-                                class="sc-dkPwfY sc-677bff7e-4 kSAEcc eYdTmY"
+                                class="sc-dkPwfY sc-f393ba0e-4 kSAEcc hhDwzP"
                                 data-testid="select-span"
                                 id="react-use-id-test-result-value"
                                 title="What describes you best?"
@@ -3623,8 +3602,7 @@ exports[`Teachers Page Page component renders 1`] = `
       </div>
       <div
         aria-live="polite"
-        class="sc-bdvwhi sc-gsDMPd sc-372e3d03-0 kjWDfr htLMtM fvBTIU"
-        offsettop="152"
+        class="sc-bdvwhi sc-gsDMPd sc-b7a27f76-0 kjWDfr htLMtM krUohl"
       />
     </div>
     <div
