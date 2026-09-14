@@ -33,7 +33,7 @@ describe("CurricQuote", () => {
   it("applies a transparent background by default", () => {
     render(<CurricQuote title="My title" text="This is test text." />);
     const quoteBox = screen.getByTestId("curric-quote");
-    expect(quoteBox).toHaveStyle("background-color: transparent");
+    expect(quoteBox).toHaveStyle("background-color: rgba(0, 0, 0, 0)");
   });
 
   it("applies the specified background color", () => {

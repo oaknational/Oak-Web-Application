@@ -39,10 +39,6 @@ jest.mock("@/context/Analytics/useAnalytics", () => {
 //mock console.error
 console.error = jest.fn();
 
-interface MockLocation {
-  href: string;
-}
-
 describe("useShare", () => {
   const curriculumTrackingProps: CurriculumTrackingProps & {
     lessonReleaseDate: string;
@@ -64,15 +60,7 @@ describe("useShare", () => {
     jest.clearAllMocks();
     mockReplace.mockClear();
 
-    Object.defineProperty(window, "location", {
-      writable: true,
-      value: {
-        href: "http://localhost",
-        assign: jest.fn(),
-        replace: jest.fn(),
-        search: "",
-      } as MockLocation,
-    });
+    window.history.replaceState(null, "", "/");
 
     // reset local storage
     localStorage.clear();
@@ -95,7 +83,9 @@ describe("useShare", () => {
   });
 
   it("should return a shareId based on the shareBaseUrl", () => {
-    jest.spyOn(window.history, "replaceState").mockImplementation(() => {});
+    const replaceStateSpy = jest
+      .spyOn(window.history, "replaceState")
+      .mockImplementation(() => {});
 
     // hook wrapper
     const { result } = renderHook(() =>
@@ -111,10 +101,11 @@ describe("useShare", () => {
     const key = getShareIdKey("lesson-slug_unit-slug_programmeSlug");
     const { shareUrl, browserUrl } = result.current;
 
-    expect(browserUrl).toBe(`http://localhost?${key}=xxxxxxxxxx&sm=0&src=1`);
+    expect(browserUrl).toBe(`http://localhost/?${key}=xxxxxxxxxx&sm=0&src=1`);
     expect(shareUrl).toBe(
       `http://localhost:3000/teachers/lessons/lesson-slug?${key}=xxxxxxxxxx&sm=1&src=1`,
     );
+    replaceStateSpy.mockRestore();
   });
 
   it("should call track shareInitiated if there is no storage", () => {
@@ -157,7 +148,7 @@ describe("useShare", () => {
 
     const key = getShareIdKey("lesson-slug_unit-slug_programmeSlug");
 
-    window.location.search = `?${key}=xxxxxxxxxx&sm=0&src=1`;
+    window.history.replaceState(null, "", `/?${key}=xxxxxxxxxx&sm=0&src=1`);
 
     // hook wrapper
     renderHook(() =>
@@ -180,7 +171,7 @@ describe("useShare", () => {
     // set the storage
     createAndStoreShareId("lesson-slug_unit-slug_programmeSlug");
 
-    window.location.search = `?${key}=xxxxxxxxxx&sm=0&src=1`;
+    window.history.replaceState(null, "", `/?${key}=xxxxxxxxxx&sm=0&src=1`);
 
     // hook wrapper
     renderHook(() =>
@@ -198,7 +189,7 @@ describe("useShare", () => {
   it("should store the conversion shareId in a storage", () => {
     const key = getShareIdKey("lesson-slug_unit-slug_programmeSlug");
 
-    window.location.search = `?${key}=xxxxxxxxxx&sm=0&src=1`;
+    window.history.replaceState(null, "", `/?${key}=xxxxxxxxxx&sm=0&src=1`);
     const fn = jest.spyOn(Storage.prototype, "setItem");
 
     // hook wrapper
@@ -278,7 +269,7 @@ describe("useShare", () => {
   it("should not update browserUrl if overrideExistingShareId is false and urlShareId is present", () => {
     const key = getShareIdKey("lesson-slug_unit-slug_programmeSlug");
 
-    window.location.search = `?${key}=test-share-id&sm=0&src=1`;
+    window.history.replaceState(null, "", `/?${key}=test-share-id&sm=0&src=1`);
 
     const { result } = renderHook(() =>
       useShare({
@@ -296,16 +287,7 @@ describe("useShare", () => {
   it.skip("should call router.replace when browserUrl differs from window.location.href", () => {
     const key = getShareIdKey("lesson-slug_unit-slug_programmeSlug");
 
-    // Set up initial window location
-    Object.defineProperty(window, "location", {
-      writable: true,
-      value: {
-        href: "http://localhost/teachers/lessons/lesson-slug",
-        assign: jest.fn(),
-        replace: jest.fn(),
-        search: "",
-      } as MockLocation,
-    });
+    window.history.replaceState(null, "", "/teachers/lessons/lesson-slug");
 
     renderHook(() =>
       useShare({
@@ -334,18 +316,9 @@ describe("useShare", () => {
 
   it("should not call router.replace when browserUrl matches window.location.href", () => {
     const key = getShareIdKey("lesson-slug_unit-slug_programmeSlug");
-    const expectedUrl = `http://localhost?${key}=xxxxxxxxxx&sm=0&src=1`;
 
     // Set window.location.href to match what browserUrl will be
-    Object.defineProperty(window, "location", {
-      writable: true,
-      value: {
-        href: expectedUrl,
-        assign: jest.fn(),
-        replace: jest.fn(),
-        search: `?${key}=xxxxxxxxxx&sm=0&src=1`,
-      } as MockLocation,
-    });
+    window.history.replaceState(null, "", `/?${key}=xxxxxxxxxx&sm=0&src=1`);
 
     renderHook(() =>
       useShare({

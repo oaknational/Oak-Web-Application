@@ -5,14 +5,6 @@ import {
   getHubspotOnboardingFormPayload,
 } from "./getHubspotFormPayloads";
 
-const originalWindow = window;
-
-afterEach(() => {
-  Object.defineProperty(globalThis, "window", {
-    value: originalWindow,
-  });
-});
-
 describe("getHubspotNewsletterFormPayload()", () => {
   test("primary form payload is correct", () => {
     expect(
@@ -98,10 +90,7 @@ describe("getHubspotNewsletterFormPayload()", () => {
       },
     });
   });
-  test("page values fall back to the current jsdom location", () => {
-    Object.defineProperty(globalThis, "window", {
-      value: undefined,
-    });
+  test("page values use the current jsdom location", () => {
     const result = getHubspotNewsletterPayload({
       hutk: "hubspotutk value 123",
       data: {
@@ -130,7 +119,7 @@ describe("getHubspotNewsletterFormPayload()", () => {
       ],
       context: {
         hutk: "hubspotutk value 123",
-        pageUri: "",
+        pageUri: "http://localhost/",
         pageName: "",
       },
     });
