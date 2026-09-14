@@ -294,7 +294,7 @@
     "puppeteer": "^24.40.0",
     "rimraf": "^6.0.1",
     "semantic-release": "^24.2.4",
-    "sharp": "^0.34.2",
+    "sharp": "^0.35.4",
     "storybook": "10.4.6",
     "storybook-css-modules-preset": "^1.1.1",
     "stylelint": "^16.20.0",
