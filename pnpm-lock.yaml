@@ -598,8 +598,8 @@ importers:
         specifier: ^14.18.0
         version: 14.27.0(@swc/core@1.15.18(@swc/helpers@0.5.19))(@types/node@22.19.17)(typescript@5.9.3)
       glob:
-        specifier: ^11.0.0
-        version: 11.1.0
+        specifier: ^13.0.6
+        version: 13.0.6
       globals:
         specifier: ^17.5.0
         version: 17.6.0

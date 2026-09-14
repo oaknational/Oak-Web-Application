@@ -263,7 +263,7 @@
     "eslint-plugin-storybook": "10.4.6",
     "express": "^5.1.0",
     "firebase-tools": "^14.18.0",
-    "glob": "^11.0.0",
+    "glob": "^13.0.6",
     "globals": "^17.5.0",
     "googleapis": "^144.0.0",
     "graphql": "^16.9.0",
