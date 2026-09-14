@@ -3276,12 +3276,9 @@ exports[`Teachers Page Page component renders 1`] = `
                     </div>
                     <div
                       class="sc-bdvwhi sc-gsDMPd lpkWFL dipirq"
-                      facebook="oaknationalacademy"
-                      instagram="oaknational"
-                      linkedin="https://www.linkedin.com/company/oak-national-academy"
                     >
                       <div
-                        class="sc-bdvwhi sc-gsDMPd sc-eggkz gyHFon Bakex sjwfm sc-87a4cc0c-0 icwtAJ"
+                        class="sc-bdvwhi sc-gsDMPd sc-eggkz gyHFon Bakex sjwfm sc-b62c7099-0 gWEwPC"
                       >
                         <a
                           aria-label="instagram for Oak National Academy"
@@ -3319,7 +3316,7 @@ exports[`Teachers Page Page component renders 1`] = `
                         </a>
                       </div>
                       <div
-                        class="sc-bdvwhi sc-gsDMPd sc-eggkz gyHFon Bakex sjwfm sc-87a4cc0c-0 icwtAJ"
+                        class="sc-bdvwhi sc-gsDMPd sc-eggkz gyHFon Bakex sjwfm sc-b62c7099-0 gWEwPC"
                       >
                         <a
                           aria-label="facebook for Oak National Academy"
@@ -3357,7 +3354,7 @@ exports[`Teachers Page Page component renders 1`] = `
                         </a>
                       </div>
                       <div
-                        class="sc-bdvwhi sc-gsDMPd sc-eggkz gyHFon Bakex sjwfm sc-87a4cc0c-0 icwtAJ"
+                        class="sc-bdvwhi sc-gsDMPd sc-eggkz gyHFon Bakex sjwfm sc-b62c7099-0 gWEwPC"
                       >
                         <a
                           aria-label="linkedIn for Oak National Academy"
@@ -3419,12 +3416,9 @@ exports[`Teachers Page Page component renders 1`] = `
               >
                 <div
                   class="sc-bdvwhi sc-gsDMPd jZUEdv fbHgES"
-                  facebook="oaknationalacademy"
-                  instagram="oaknational"
-                  linkedin="https://www.linkedin.com/company/oak-national-academy"
                 >
                   <div
-                    class="sc-bdvwhi sc-gsDMPd sc-eggkz gyHFon Bakex sjwfm sc-87a4cc0c-0 icwtAJ"
+                    class="sc-bdvwhi sc-gsDMPd sc-eggkz gyHFon Bakex sjwfm sc-b62c7099-0 gWEwPC"
                   >
                     <a
                       aria-label="instagram for Oak National Academy"
@@ -3462,7 +3456,7 @@ exports[`Teachers Page Page component renders 1`] = `
                     </a>
                   </div>
                   <div
-                    class="sc-bdvwhi sc-gsDMPd sc-eggkz gyHFon Bakex sjwfm sc-87a4cc0c-0 icwtAJ"
+                    class="sc-bdvwhi sc-gsDMPd sc-eggkz gyHFon Bakex sjwfm sc-b62c7099-0 gWEwPC"
                   >
                     <a
                       aria-label="facebook for Oak National Academy"
@@ -3500,7 +3494,7 @@ exports[`Teachers Page Page component renders 1`] = `
                     </a>
                   </div>
                   <div
-                    class="sc-bdvwhi sc-gsDMPd sc-eggkz gyHFon Bakex sjwfm sc-87a4cc0c-0 icwtAJ"
+                    class="sc-bdvwhi sc-gsDMPd sc-eggkz gyHFon Bakex sjwfm sc-b62c7099-0 gWEwPC"
                   >
                     <a
                       aria-label="linkedIn for Oak National Academy"

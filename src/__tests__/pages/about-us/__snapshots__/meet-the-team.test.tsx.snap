@@ -5841,9 +5841,6 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
                   </div>
                   <div
                     class="c185 c186"
-                    facebook="oaknationalacademy"
-                    instagram="oaknational"
-                    linkedin="https://www.linkedin.com/company/oak-national-academy"
                   >
                     <div
                       class="c45 c46 c187 c188"
@@ -5984,9 +5981,6 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
             >
               <div
                 class="c195 c196"
-                facebook="oaknationalacademy"
-                instagram="oaknational"
-                linkedin="https://www.linkedin.com/company/oak-national-academy"
               >
                 <div
                   class="c45 c46 c187 c188"
