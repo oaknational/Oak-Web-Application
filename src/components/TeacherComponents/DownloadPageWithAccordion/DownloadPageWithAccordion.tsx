@@ -65,7 +65,7 @@ type DownloadPageWithAccordionProps = ResourcePageDetailsCompletedProps &
     additionalFiles?: LessonDownloadsPageData["additionalFiles"];
     validationSummaryKey?: number;
     initialOpen?: boolean;
-    hideSelectAllCheckbox?: boolean;
+    teachWithOak?: boolean;
   };
 
 export type DownloadWrapperProps = {
@@ -156,7 +156,7 @@ export const DownloadPageWithAccordionContent = (
     | "apiError"
     | "validationSummaryKey"
     | "initialOpen"
-    | "hideSelectAllCheckbox"
+    | "teachWithOak"
   >,
 ) => {
   const {
@@ -189,7 +189,7 @@ export const DownloadPageWithAccordionContent = (
     apiError,
     validationSummaryKey,
     initialOpen,
-    hideSelectAllCheckbox,
+    teachWithOak,
   } = props;
 
   const hasFormErrors = Object.keys(errors).length > 0;
@@ -209,11 +209,12 @@ export const DownloadPageWithAccordionContent = (
         {errors?.resources?.message}
       </FieldError>
       <OakResourcesAccordion
-        showCheckbox={!hideSelectAllCheckbox}
+        showCheckbox={!teachWithOak}
         subheading={getAccordionText({
           lessonDownloads,
           additionalFiles,
           curriculumDownloads,
+          teachWithOak,
         })}
         handleToggleSelectAll={handleToggleSelectAll}
         selectAllChecked={selectAllChecked}

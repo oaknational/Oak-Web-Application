@@ -2,15 +2,18 @@
 import {
   OakBox,
   OakBreadcrumbs,
+  OakGrid,
+  OakGridArea,
   OakHandDrawnHR,
   OakMaxWidth,
   OakPrimaryButton,
+  OakResourceCard,
 } from "@oaknational/oak-components";
 import { useState } from "react";
+import styled from "styled-components";
 
 import { resolveOakHref } from "@/common-lib/urls";
 import Banners from "@/components/SharedComponents/Banners";
-import DownloadCardGroup from "@/components/TeacherComponents/DownloadCardGroup";
 import DownloadPageWithAccordion from "@/components/TeacherComponents/DownloadPageWithAccordion";
 import downloadDebouncedSubmit from "@/components/TeacherComponents/helpers/downloadAndShareHelpers/downloadDebounceSubmit";
 import { useHubspotSubmit } from "@/components/TeacherComponents/hooks/downloadAndShareHooks/useHubspotSubmit";
@@ -94,6 +97,10 @@ export const TeachWithOakDownloadView = () => {
     downloadButtonText = "Loading...";
   }
 
+  const StyledResourceCard = styled(OakResourceCard)`
+    height: 100%;
+  `;
+
   return (
     <OakBox $ph={["spacing-16", "spacing-0"]} $background={"bg-neutral"}>
       {isDownloadSuccessful && <Banners />}
@@ -122,7 +129,7 @@ export const TeachWithOakDownloadView = () => {
           />
         </OakBox>
         <DownloadPageWithAccordion
-          hideSelectAllCheckbox={true}
+          teachWithOak
           errors={form.errors}
           handleToggleSelectAll={handleToggleSelectAll}
           selectAllChecked={selectAllChecked}
@@ -131,12 +138,12 @@ export const TeachWithOakDownloadView = () => {
           school={schoolNameFromLocalStorage}
           schoolId={schoolIdFromLocalStorage}
           setSchool={setSchool}
-          withHomeschool={true}
+          withHomeschool
           showSavedDetails={shouldDisplayDetailsCompleted}
           onEditClick={handleEditDetailsCompletedClick}
           register={form.register}
           control={form.control}
-          showPostAlbCopyright={true}
+          showPostAlbCopyright
           triggerForm={form.trigger}
           validationSummaryKey={form.submitCount}
           apiError={apiError}
@@ -145,12 +152,48 @@ export const TeachWithOakDownloadView = () => {
             onboardingStatus === "unknown"
           }
           cardGroup={
-            <DownloadCardGroup
-              control={form.control}
-              downloads={[]}
-              hasError={Boolean(form.errors?.resources)}
-              triggerForm={form.trigger}
-            />
+            <OakGrid $rg={"spacing-16"} $cg={"spacing-16"}>
+              <OakGridArea $colSpan={[12, 12, 6]}>
+                <StyledResourceCard
+                  id="explanation"
+                  value="explanation"
+                  title="Explanation at Oak guide"
+                  description="PDF"
+                  iconName="lc-explanation"
+                  showSelectionControl={false}
+                />
+              </OakGridArea>
+              <OakGridArea $colSpan={[12, 12, 6]}>
+                <StyledResourceCard
+                  id="cfu"
+                  value="cfu"
+                  title="Check for understanding (CfU) at Oak guide"
+                  description="PDF"
+                  iconName="lc-check-for-understanding"
+                  showSelectionControl={false}
+                />{" "}
+              </OakGridArea>
+              <OakGridArea $colSpan={[12, 12, 6]} $height="100%">
+                <StyledResourceCard
+                  id="practice"
+                  value="practice"
+                  title="Practice at Oak guide"
+                  description="PDF"
+                  iconName="lc-practice"
+                  showSelectionControl={false}
+                />
+              </OakGridArea>
+              <OakGridArea $colSpan={[12, 12, 6]}>
+                <StyledResourceCard
+                  id="feedback"
+                  value="feedback"
+                  title="Feedback at Oak guide"
+                  description="PDF"
+                  iconName="lc-feedback"
+                  showSelectionControl={false}
+                />
+              </OakGridArea>
+            </OakGrid>
           }
           cta={
             <OakPrimaryButton
@@ -169,7 +212,6 @@ export const TeachWithOakDownloadView = () => {
               {downloadButtonText}
             </OakPrimaryButton>
           }
-          lessonDownloads={[]}
         />
       </OakMaxWidth>
     </OakBox>
