@@ -285,8 +285,6 @@ const CampaignNewsletterSignup: FC<CampaignNewsletterSignupProps> = ({
                       $left={"spacing-4"}
                       style={{ top: `-${parseSpacing("spacing-20")}` }}
                       $borderRadius="border-radius-square"
-                      required={true}
-                      error={errors.eduRole}
                     />
                     <OakSelect
                       name="newsletter-eduRole"
