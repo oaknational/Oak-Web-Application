@@ -1,4 +1,4 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
 
 exports[`pages/about/meet-the-team/[slug].tsx renders 1`] = `
 .c0 {
@@ -3689,6 +3689,7 @@ exports[`pages/about/meet-the-team/[slug].tsx renders 1`] = `
                   </div>
                   <div
                     class="c88"
+                    style="width: fit-content;"
                   >
                     <div
                       class="c89 c90"

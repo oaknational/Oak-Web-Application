@@ -1,8 +1,6 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
 
-exports[
-  `OaksImpactCaseStudies renders correctly when 2 case studies are provided 1`
-] = `
+exports[`OaksImpactCaseStudies renders correctly when 2 case studies are provided 1`] = `
 <body>
   <div>
     <div
@@ -180,9 +178,7 @@ exports[
 </body>
 `;
 
-exports[
-  `OaksImpactCaseStudies renders correctly when 3 case studies are provided 1`
-] = `
+exports[`OaksImpactCaseStudies renders correctly when 3 case studies are provided 1`] = `
 <body>
   <div>
     <div

@@ -1,4 +1,4 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
 
 exports[`pages/about/oaks-curricula.tsx renders 1`] = `
 .c0 {
@@ -5701,7 +5701,7 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
                                 class="c129"
                                 height="100%"
                                 name="box-border-left"
-                                style="width: 3px;"
+                                style="right: unset; width: 3px;"
                                 width="100%"
                                 xmlns="http://www.w3.org/2000/svg"
                               >
@@ -6423,7 +6423,7 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
                                 class="c188"
                                 height="100%"
                                 name="box-border-top"
-                                style="height: 3px;"
+                                style="bottom: unset; height: 3px;"
                                 width="100%"
                                 xmlns="http://www.w3.org/2000/svg"
                               >
@@ -6448,7 +6448,7 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
                                 class="c188"
                                 height="100%"
                                 name="box-border-right"
-                                style="width: 3px; height: 90%;"
+                                style="top: unset; left: unset; width: 3px; height: 90%;"
                                 width="100%"
                                 xmlns="http://www.w3.org/2000/svg"
                               >
@@ -6473,7 +6473,7 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
                                 class="c188"
                                 height="100%"
                                 name="box-border-bottom"
-                                style="height: 3px; width: 100%;"
+                                style="top: unset; height: 3px; width: 100%;"
                                 width="100%"
                                 xmlns="http://www.w3.org/2000/svg"
                               >
@@ -6498,7 +6498,7 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
                                 class="c188"
                                 height="100%"
                                 name="box-border-left"
-                                style="width: 3px;"
+                                style="right: unset; width: 3px;"
                                 width="100%"
                                 xmlns="http://www.w3.org/2000/svg"
                               >
@@ -6583,7 +6583,7 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
                                 class="c188"
                                 height="100%"
                                 name="box-border-top"
-                                style="height: 3px;"
+                                style="bottom: unset; height: 3px;"
                                 width="100%"
                                 xmlns="http://www.w3.org/2000/svg"
                               >
@@ -6608,7 +6608,7 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
                                 class="c188"
                                 height="100%"
                                 name="box-border-right"
-                                style="width: 3px; height: 90%;"
+                                style="top: unset; left: unset; width: 3px; height: 90%;"
                                 width="100%"
                                 xmlns="http://www.w3.org/2000/svg"
                               >
@@ -6633,7 +6633,7 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
                                 class="c188"
                                 height="100%"
                                 name="box-border-bottom"
-                                style="height: 3px; width: 100%;"
+                                style="top: unset; height: 3px; width: 100%;"
                                 width="100%"
                                 xmlns="http://www.w3.org/2000/svg"
                               >
@@ -6658,7 +6658,7 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
                                 class="c188"
                                 height="100%"
                                 name="box-border-left"
-                                style="width: 3px;"
+                                style="right: unset; width: 3px;"
                                 width="100%"
                                 xmlns="http://www.w3.org/2000/svg"
                               >
@@ -6740,7 +6740,7 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
                               class="c188"
                               height="100%"
                               name="box-border-top"
-                              style="height: 3px;"
+                              style="bottom: unset; height: 3px;"
                               width="100%"
                               xmlns="http://www.w3.org/2000/svg"
                             >
@@ -6765,7 +6765,7 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
                               class="c188"
                               height="100%"
                               name="box-border-right"
-                              style="width: 3px; height: 90%;"
+                              style="top: unset; left: unset; width: 3px; height: 90%;"
                               width="100%"
                               xmlns="http://www.w3.org/2000/svg"
                             >
@@ -6790,7 +6790,7 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
                               class="c188"
                               height="100%"
                               name="box-border-bottom"
-                              style="height: 3px; width: 100%;"
+                              style="top: unset; height: 3px; width: 100%;"
                               width="100%"
                               xmlns="http://www.w3.org/2000/svg"
                             >
@@ -6815,7 +6815,7 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
                               class="c188"
                               height="100%"
                               name="box-border-left"
-                              style="width: 3px;"
+                              style="right: unset; width: 3px;"
                               width="100%"
                               xmlns="http://www.w3.org/2000/svg"
                             >
