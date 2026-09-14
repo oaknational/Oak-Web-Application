@@ -13,30 +13,30 @@ import { BoxBorderRight } from "./BoxBorderRight";
 import { BoxBorderLeft } from "./BoxBorderLeft";
 import { BoxBorderBottom } from "./BoxBorderBottom";
 
-export const gapPositionMap = {
+export const $gapPositionMap = {
   rightTop: "90%",
   bottomRight: "90%",
   bottomRightCorner: "99%",
 } as const;
 
-export type GapPosition = keyof typeof gapPositionMap;
+export type GapPosition = keyof typeof $gapPositionMap;
 
-const getBorderHeight = (gapPosition: GapPosition | undefined) => {
-  if (gapPosition === "rightTop") return gapPositionMap.rightTop;
-  if (gapPosition === "bottomRightCorner")
-    return gapPositionMap.bottomRightCorner;
+const getBorderHeight = ($gapPosition: GapPosition | undefined) => {
+  if ($gapPosition === "rightTop") return $gapPositionMap.rightTop;
+  if ($gapPosition === "bottomRightCorner")
+    return $gapPositionMap.bottomRightCorner;
   return "100%";
 };
 
-const getBorderWidth = (gapPosition: GapPosition | undefined) => {
-  if (gapPosition === "bottomRight") return gapPositionMap.bottomRight;
-  if (gapPosition === "bottomRightCorner")
-    return gapPositionMap.bottomRightCorner;
+const getBorderWidth = ($gapPosition: GapPosition | undefined) => {
+  if ($gapPosition === "bottomRight") return $gapPositionMap.bottomRight;
+  if ($gapPosition === "bottomRightCorner")
+    return $gapPositionMap.bottomRightCorner;
   return "100%";
 };
 
 export type BoxBordersProps = {
-  gapPosition?: GapPosition;
+  $gapPosition?: GapPosition;
   $zIndex?: keyof typeof oakZIndexTokens | null;
   hideTop?: boolean;
   hideBottom?: boolean;
@@ -63,7 +63,7 @@ export type StyledBoxBorderProps = OakBoxProps & {
   hideOnMobileV?: boolean;
   color?: OakUiRoleToken;
   filter?: string;
-  gapPosition?: GapPosition;
+  $gapPosition?: GapPosition;
 };
 
 const StyledBoxBorderTop: FC<StyledBoxBorderProps> = (props) => {
@@ -91,7 +91,7 @@ const StyledBoxBorderTop: FC<StyledBoxBorderProps> = (props) => {
 };
 
 const StyledBoxBorderRight: FC<StyledBoxBorderProps> = ({
-  gapPosition,
+  $gapPosition,
   ...props
 }) => {
   return (
@@ -110,9 +110,9 @@ const StyledBoxBorderRight: FC<StyledBoxBorderProps> = ({
       style={{
         top: "unset",
         left: "unset",
-        bottom: gapPosition === "bottomRightCorner" ? "5%" : undefined,
+        bottom: $gapPosition === "bottomRightCorner" ? "5%" : undefined,
         width: "3px",
-        height: getBorderHeight(gapPosition),
+        height: getBorderHeight($gapPosition),
       }}
     >
       <BoxBorderRight />
@@ -121,7 +121,7 @@ const StyledBoxBorderRight: FC<StyledBoxBorderProps> = ({
 };
 
 const StyledBoxBorderBottom: FC<StyledBoxBorderProps> = ({
-  gapPosition,
+  $gapPosition,
   ...props
 }) => {
   return (
@@ -140,7 +140,7 @@ const StyledBoxBorderBottom: FC<StyledBoxBorderProps> = ({
       style={{
         top: "unset",
         height: "3px",
-        width: getBorderWidth(gapPosition),
+        width: getBorderWidth($gapPosition),
       }}
     >
       <BoxBorderBottom />
@@ -178,7 +178,7 @@ const StyledBoxBorderLeft: FC<StyledBoxBorderProps> = (props) => {
  *
  * ## Usage
  * Just drop this component inside a Card or other relatively positioned
- * container, and it will act as a visual border around that component. gapPosition, hideTop and
+ * container, and it will act as a visual border around that component. $gapPosition, hideTop and
  * hideBottom props are available.
  *
  * ## Note

@@ -140,7 +140,7 @@ export function Select<
       $background="bg-primary"
       {...containerProps}
     >
-      <BoxBorders gapPosition="rightTop" hideBottom={state.isOpen} />
+      <BoxBorders $gapPosition="rightTop" hideBottom={state.isOpen} />
       <DropdownFocusUnderline
         $isFocusVisible={isFocusVisible}
         aria-hidden="true"
