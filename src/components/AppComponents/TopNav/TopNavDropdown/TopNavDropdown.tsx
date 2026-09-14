@@ -22,7 +22,7 @@ import {
 
 import TopNavSubjectButtons from "./TopNavSubjectButtons";
 
-import { resolveOakHref } from "@/common-lib/urls";
+import { resolveOakHref, ResolveOakHrefProps } from "@/common-lib/urls";
 import {
   TeachersSubNavData,
   PupilsSubNavData,
@@ -351,7 +351,9 @@ const TeachersLinksSection = ({
               <OakLeftAlignedButton
                 element={Link}
                 key={link.slug}
-                href={link.href}
+                href={resolveOakHref({
+                  page: link.slug,
+                } as ResolveOakHrefProps)}
                 iconName={link.external ? "external" : undefined}
                 target={link.external ? "_blank" : undefined}
                 isTrailingIcon={link.external}
