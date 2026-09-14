@@ -8,12 +8,6 @@ import useAnalytics from "./useAnalytics";
 import CookieConsentProvider from "@/browser-lib/cookie-consent/CookieConsentProvider";
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 
-// mock window.location.search
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-delete (globalThis as any).location;
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-(globalThis as any).location = { search: "" };
-
 jest.mock("next/navigation", () => ({
   usePathname: jest.fn(() => "/"),
 }));
@@ -82,6 +76,7 @@ console.info = jest.fn();
 describe("useAnalytics", () => {
   beforeEach(() => {
     jest.clearAllMocks();
+    window.history.replaceState({}, "", "/");
   });
   test("service.identify() should be called if service included in array", () => {
     callWithArgs.mockImplementation((identify) =>
@@ -165,8 +160,7 @@ describe("getPathAndQuery", () => {
   });
 
   test("returns pathname and searchParams with a question mark between them", () => {
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    (globalThis as any).location.search = "?foo=bar&baz=qux";
+    window.history.replaceState({}, "", "/?foo=bar&baz=qux");
 
     const result = getPathAndQuery({
       pathName: "/test-path",
@@ -177,8 +171,7 @@ describe("getPathAndQuery", () => {
   });
 
   test("does not include params or a question mark when they aren't present", () => {
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    (globalThis as any).location.search = "";
+    window.history.replaceState({}, "", "/");
 
     const result = getPathAndQuery({
       pathName: "/test-path",
