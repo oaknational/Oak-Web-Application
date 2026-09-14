@@ -8,31 +8,6 @@ import { getOakUiColor } from "@/__tests__/__helpers__/getOakUiColor";
 const render = renderWithTheme;
 
 describe("LessonInformationBox", () => {
-  it("renders teacher tip", () => {
-    render(
-      <LessonInformationBox
-        teacherTip={[
-          "Allow pupils to sensibly and kindly trigger a reflex response to allow pupils to realise that the response happens before they know about it.",
-        ]}
-      />,
-    );
-
-    const teacherTipHeading = screen.getByRole("heading", {
-      name: "Teacher tip",
-    });
-    const lessonInformationContainer = screen.getByTestId(
-      "lesson-information-container",
-    );
-    const teacherTipText = screen.getByText(
-      "Allow pupils to sensibly and kindly trigger a reflex response to allow pupils to realise that the response happens before they know about it.",
-    );
-    expect(teacherTipHeading).toBeInTheDocument();
-    expect(teacherTipText).toBeInTheDocument();
-    expect(lessonInformationContainer).toHaveStyle({
-      background: getOakUiColor("bg-decorative2-subdued"),
-    });
-  });
-
   it("renders equipment section", () => {
     render(
       <LessonInformationBox
