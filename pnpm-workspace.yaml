@@ -76,3 +76,5 @@ overrides:
   "tmp@>=0.2.0 <0.2.6": ^0.2.6
   # Security pins for transitive critical/high advisories (Dependagames September 2026).
   "sharp": "$sharp"
+  "serialize-javascript": ">=7.0.5"
+  # "@opentelemetry/core@>=2.0.0 <2.8.0": ^2.8.0
