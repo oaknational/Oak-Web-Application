@@ -1,4 +1,5 @@
 import { screen } from "@testing-library/dom";
+import { act } from "@testing-library/react";
 
 import { LessonDownloads } from "./LessonDownloads.view";
 
@@ -13,7 +14,16 @@ import lessonDownloadsFixture from "@/node-lib/curriculum-api-2023/fixtures/less
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 import { resolveOakHref } from "@/common-lib/urls";
 
-const render = renderWithProviders();
+const renderWithProvidersFn = renderWithProviders();
+
+// The HubSpot sync effect resolves asynchronously, so flush it inside act()
+const render = async (ui: React.ReactElement) => {
+  let result!: ReturnType<typeof renderWithProvidersFn>;
+  await act(async () => {
+    result = renderWithProvidersFn(ui);
+  });
+  return result;
+};
 
 const mockReplace = jest.fn();
 
@@ -23,6 +33,18 @@ jest.mock("next/navigation", () => ({
     replace: mockReplace,
   })),
 }));
+
+jest.mock(
+  "@/components/TeacherComponents/helpers/downloadAndShareHelpers/fetchHubspotContactDetails",
+  () => ({
+    HUBSPOT_CONTACTS_ENDPOINT: "/api/hubspot/contacts",
+    fetchHubspotContactDetails: jest.fn().mockResolvedValue(null),
+    useFetchHubspotContactsSwr: () => ({
+      hubspotContact: undefined,
+      hubspotLoading: false,
+    }),
+  }),
+);
 
 beforeEach(() => {
   mockReplace.mockClear();
@@ -45,7 +67,7 @@ describe("Hiding 'Your details", () => {
     setUseUserReturn(mockLoggedOut);
   });
   it("should show details section when not logged in", async () => {
-    render(
+    await render(
       <LessonDownloads lesson={lesson} breadcrumbsSlot={breadcrumbsSlot} />,
     );
 
@@ -53,12 +75,12 @@ describe("Hiding 'Your details", () => {
 
     expect(schoolSelection).toBeInTheDocument();
   });
-  it("should not show details when fully onboarded", () => {
+  it("should not show details when fully onboarded", async () => {
     setUseUserReturn({
       ...mockLoggedIn,
       user: mockTeacherUserWithDownloadAccess,
     });
-    const result = render(
+    const result = await render(
       <LessonDownloads lesson={lesson} breadcrumbsSlot={breadcrumbsSlot} />,
     );
 
@@ -67,9 +89,9 @@ describe("Hiding 'Your details", () => {
     ).not.toBeInTheDocument();
   });
 
-  it("should show LoginRequired button and hide download button & form when not logged and geo restricted", () => {
+  it("should show LoginRequired button and hide download button & form when not logged and geo restricted", async () => {
     setUseUserReturn(mockLoggedOut);
-    const { queryByText, getByRole, queryByRole } = render(
+    const { queryByText, getByRole, queryByRole } = await render(
       <LessonDownloads
         lesson={{ ...lesson, geoRestricted: true, loginRequired: false }}
         breadcrumbsSlot={breadcrumbsSlot}
@@ -90,9 +112,9 @@ describe("Hiding 'Your details", () => {
     expect(loginRequiredButton).toBeInTheDocument();
   });
 
-  it("should show LoginRequired button and hide download button & form when not logged in", () => {
+  it("should show LoginRequired button and hide download button & form when not logged in", async () => {
     setUseUserReturn(mockLoggedOut);
-    const { queryByText, getByRole, queryByRole } = render(
+    const { queryByText, getByRole, queryByRole } = await render(
       <LessonDownloads
         lesson={{ ...lesson, geoRestricted: false, loginRequired: true }}
         breadcrumbsSlot={breadcrumbsSlot}
@@ -113,9 +135,9 @@ describe("Hiding 'Your details", () => {
     expect(loginRequiredButton).toBeInTheDocument();
   });
 
-  it("should show LoginRequired button and hide download button & form when not logged and geoRestricted", () => {
+  it("should show LoginRequired button and hide download button & form when not logged and geoRestricted", async () => {
     setUseUserReturn(mockLoggedOut);
-    const { queryByText, getByRole, queryByRole } = render(
+    const { queryByText, getByRole, queryByRole } = await render(
       <LessonDownloads
         lesson={{ ...lesson, geoRestricted: true, loginRequired: true }}
         breadcrumbsSlot={breadcrumbsSlot}
@@ -134,12 +156,12 @@ describe("Hiding 'Your details", () => {
     expect(loginRequiredButton).toBeInTheDocument();
   });
 
-  it("should not show LoginRequired button when logged in", () => {
+  it("should not show LoginRequired button when logged in", async () => {
     setUseUserReturn({
       ...mockLoggedIn,
       user: mockTeacherUserWithDownloadAccess,
     });
-    const { queryByRole } = render(
+    const { queryByRole } = await render(
       <LessonDownloads
         lesson={restrictedLesson}
         breadcrumbsSlot={breadcrumbsSlot}
@@ -153,9 +175,9 @@ describe("Hiding 'Your details", () => {
     expect(loginRequiredButton).not.toBeInTheDocument();
   });
 
-  it("should show LessonDownloadRegionBlocked instead of copyright banner when logged in but not region authorised", () => {
+  it("should show LessonDownloadRegionBlocked instead of copyright banner when logged in but not region authorised", async () => {
     setUseUserReturn({ ...mockLoggedIn, user: mockUserWithoutDownloadAccess });
-    const { queryByRole, getByText, queryByTestId } = render(
+    const { queryByRole, getByText, queryByTestId } = await render(
       <LessonDownloads
         lesson={restrictedLesson}
         breadcrumbsSlot={breadcrumbsSlot}
@@ -180,8 +202,8 @@ describe("Hiding 'Your details", () => {
 });
 
 describe("With downloads page experiment feature flag", () => {
-  it("should render the downloads accordion when with-accordion variant is active", () => {
-    const { queryByText } = render(
+  it("should render the downloads accordion when with-accordion variant is active", async () => {
+    const { queryByText } = await render(
       <LessonDownloads lesson={lesson} breadcrumbsSlot={breadcrumbsSlot} />,
     );
 
@@ -192,8 +214,8 @@ describe("With downloads page experiment feature flag", () => {
 });
 
 describe("Download success redirect", () => {
-  it("renders the standard downloads page before redirecting", () => {
-    const { getByText, queryByText } = render(
+  it("renders the standard downloads page before redirecting", async () => {
+    const { getByText, queryByText } = await render(
       <LessonDownloads
         lesson={lesson}
         breadcrumbsSlot={breadcrumbsSlot}

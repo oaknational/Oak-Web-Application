@@ -8,6 +8,30 @@ import lessonMediaClipsFixtures, {
   additionalCycles,
 } from "@/node-lib/curriculum-api-2023/fixtures/lessonMediaClips.fixture";
 
+jest.mock(
+  "@/components/SharedComponents/VideoPlayer/useSignedVideoToken",
+  () => ({
+    ...jest.requireActual(
+      "@/components/SharedComponents/VideoPlayer/useSignedVideoToken",
+    ),
+    useSignedVideoToken: () => ({
+      loading: false,
+      error: null,
+      playbackToken: "mock-playback-token",
+    }),
+    useSignedThumbnailToken: () => ({
+      loading: false,
+      error: null,
+      playbackToken: "mock-playback-token",
+    }),
+    useSignedStoryboardToken: () => ({
+      loading: false,
+      error: null,
+      playbackToken: "mock-playback-token",
+    }),
+  }),
+);
+
 const lessonMediaClipsStarted = jest.fn();
 jest.mock("@/context/Analytics/useAnalytics", () => ({
   __esModule: true,

@@ -22,6 +22,30 @@ jest.mock("next/navigation");
 
 (usePathname as jest.Mock).mockReturnValue("/");
 
+jest.mock(
+  "@/components/SharedComponents/VideoPlayer/useSignedVideoToken",
+  () => ({
+    ...jest.requireActual(
+      "@/components/SharedComponents/VideoPlayer/useSignedVideoToken",
+    ),
+    useSignedVideoToken: () => ({
+      loading: false,
+      error: null,
+      playbackToken: "mock-playback-token",
+    }),
+    useSignedThumbnailToken: () => ({
+      loading: false,
+      error: null,
+      playbackToken: "mock-playback-token",
+    }),
+    useSignedStoryboardToken: () => ({
+      loading: false,
+      error: null,
+      playbackToken: "mock-playback-token",
+    }),
+  }),
+);
+
 jest.mock("posthog-js/react", () => ({
   ...jest.requireActual("posthog-js/react"),
   useFeatureFlagVariantKey: jest.fn(),
