@@ -39,7 +39,7 @@ export function ClerkProviderWithRedirects({
         },
       }}
       appearance={{
-        layout: {
+        options: {
           logoLinkUrl: "/",
         },
         variables: {
