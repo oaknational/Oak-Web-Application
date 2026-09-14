@@ -27,9 +27,9 @@ const mcpServerCard = {
     "https://static.modelcontextprotocol.io/schemas/2025-09-29/server.schema.json",
   name: "thenational.academy/mcp",
   // The deployed server's own build version, read from the `x-app-version`
-  // response header it sets on every response. Hardcoded here because the
+  // response header it sets on every response. Pinned here because the
   // manifest is static, so it lags a deploy until this line is updated; the
-  // durable fix is a card served by the MCP server. MCP-715.
+  // durable fix is a card served by the MCP server itself. MCP-422.
   version: "1.181.1",
   // 100 characters is the schema maximum. The fuller statement of what Oak is
   // lives in the entry `description` below, which the ARD schema does not cap.

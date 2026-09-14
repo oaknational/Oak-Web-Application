@@ -79,8 +79,8 @@ exactly one of `url` or `data`, and `data` is the only one that can name the
 endpoint truthfully today: a `url` of media type
 `application/mcp-server-card+json` would have to dereference to a card
 document, and none is served yet. Serving one at the reserved location is the
-better end state — it keeps `version` current automatically — and is tracked
-separately from this PR.
+better end state — it keeps `version` current automatically instead of pinning
+it here — and is tracked as `MCP-422`.
 
 ### Card fields
 
