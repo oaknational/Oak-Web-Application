@@ -10,7 +10,10 @@ import {
 
 import { cacheData } from "@/node-lib/cache";
 import errorReporter from "@/common-lib/error-reporter";
-import { resolveOakHref } from "@/common-lib/urls";
+import {
+  nationalCurriculumInsightsGuidanceHref,
+  resolveOakHref,
+} from "@/common-lib/urls";
 import { TopNavProps } from "@/components/AppComponents/TopNav/TopNav";
 import OakError from "@/errors/OakError";
 
@@ -72,6 +75,11 @@ const topNavQuery = (sdk: Sdk) => {
         title: "Guidance",
         slug: "guidance",
         children: [
+          {
+            title: "Curriculum change explained",
+            slug: "curriculum-change-explained",
+            href: nationalCurriculumInsightsGuidanceHref(),
+          },
           {
             title: "Plan a lesson",
             slug: "lesson-planning",

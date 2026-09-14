@@ -23,10 +23,6 @@ import {
   SubjectsMenu,
   TeachersSubNavData,
 } from "@/node-lib/curriculum-api-2023/queries/topNav/topNav.schema";
-import {
-  OakLinkPropsRequiringPageOnly,
-  resolveOakHref,
-} from "@/common-lib/urls";
 import { useTeacherBrowseAnalytics } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
 
 const isEyfsKeystage = (keystage: KeystageSubjectsMenu) =>
@@ -133,9 +129,7 @@ export function HamburgerMenuContent(
                       : undefined
                   }
                   isTrailingIcon
-                  href={resolveOakHref({
-                    page: link.slug,
-                  } as OakLinkPropsRequiringPageOnly)}
+                  href={link.href}
                 >
                   {link.title}
                 </OakLeftAlignedButton>
