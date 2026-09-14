@@ -16,7 +16,7 @@ exports[`SimpleRadio render / none 1`] = `
         />
       </div>
       <span
-        class="sc-3299cdd2-0 jFTuAP"
+        class="sc-3299cdd2-0 tTMdQ"
       />
       one
     </label>
@@ -33,7 +33,7 @@ exports[`SimpleRadio render / none 1`] = `
         />
       </div>
       <span
-        class="sc-3299cdd2-0 jFTuAP"
+        class="sc-3299cdd2-0 tTMdQ"
       />
       two
     </label>
@@ -58,7 +58,7 @@ exports[`SimpleRadio render / selected 1`] = `
         />
       </div>
       <span
-        class="sc-3299cdd2-0 dMCIkW"
+        class="sc-3299cdd2-0 jcXLxZ"
       />
       one
     </label>
@@ -75,7 +75,7 @@ exports[`SimpleRadio render / selected 1`] = `
         />
       </div>
       <span
-        class="sc-3299cdd2-0 jFTuAP"
+        class="sc-3299cdd2-0 tTMdQ"
       />
       two
     </label>

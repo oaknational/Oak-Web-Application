@@ -48,9 +48,6 @@ exports[`CurriculumTab renders 1`] = `
   font-weight: 300;
   font-size: 1.125rem;
   line-height: 1.75rem;
-  -webkit-letter-spacing: -0.005rem;
-  -moz-letter-spacing: -0.005rem;
-  -ms-letter-spacing: -0.005rem;
   letter-spacing: -0.005rem;
 }
 
@@ -65,9 +62,6 @@ exports[`CurriculumTab renders 1`] = `
   font-weight: 500;
   font-size: 1.125rem;
   line-height: 1.75rem;
-  -webkit-letter-spacing: -0.005rem;
-  -moz-letter-spacing: -0.005rem;
-  -ms-letter-spacing: -0.005rem;
   letter-spacing: -0.005rem;
 }
 
@@ -102,8 +96,6 @@ exports[`CurriculumTab renders 1`] = `
   position: relative;
   top: 0.5rem;
   left: 0.5rem;
-  width: -webkit-fit-content;
-  width: -moz-fit-content;
   width: fit-content;
   padding-left: 0.5rem;
   padding-right: 0.5rem;
@@ -112,16 +104,11 @@ exports[`CurriculumTab renders 1`] = `
   color: #222222;
   background: #ffe555;
   border-radius: 0rem;
-  -webkit-transform: rotate(-1.5deg);
-  -ms-transform: rotate(-1.5deg);
   transform: rotate(-1.5deg);
   font-family: --var(google-font),Lexend,sans-serif;
   font-weight: 600;
   font-size: 1rem;
   line-height: 1.25rem;
-  -webkit-letter-spacing: 0.0115rem;
-  -moz-letter-spacing: 0.0115rem;
-  -ms-letter-spacing: 0.0115rem;
   letter-spacing: 0.0115rem;
   z-index: 298;
 }
@@ -154,6 +141,7 @@ exports[`CurriculumTab renders 1`] = `
   border-top-right-radius: 0rem;
   border-bottom-left-radius: 0rem;
   border-bottom-right-radius: 0rem;
+  box-shadow: 0 0 0 0.3rem rgba(87, 87, 87, 100%);
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
@@ -184,6 +172,7 @@ exports[`CurriculumTab renders 1`] = `
   border-top-right-radius: 0.25rem;
   border-bottom-left-radius: 0rem;
   border-bottom-right-radius: 0rem;
+  box-shadow: 0 0 0 0.3rem rgba(87, 87, 87, 100%);
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
@@ -200,15 +189,10 @@ exports[`CurriculumTab renders 1`] = `
   font-weight: 300;
   font-size: 1rem;
   line-height: 1.5rem;
-  -webkit-letter-spacing: -0.005rem;
-  -moz-letter-spacing: -0.005rem;
-  -ms-letter-spacing: -0.005rem;
   letter-spacing: -0.005rem;
 }
 
 .c51 {
-  width: -webkit-fit-content;
-  width: -moz-fit-content;
   width: fit-content;
   max-width: 6.25rem;
   height: 100%;
@@ -220,8 +204,6 @@ exports[`CurriculumTab renders 1`] = `
 
 .c53 {
   position: relative;
-  width: -webkit-max-content;
-  width: -moz-max-content;
   width: max-content;
   height: auto;
   font-family: --var(google-font),Lexend,sans-serif;
@@ -269,7 +251,6 @@ exports[`CurriculumTab renders 1`] = `
 }
 
 .c70 {
-  position: -webkit-sticky;
   position: sticky;
   bottom: 0rem;
   font-family: --var(google-font),Lexend,sans-serif;
@@ -303,9 +284,6 @@ exports[`CurriculumTab renders 1`] = `
   font-weight: 300;
   font-size: 0.875rem;
   line-height: 1.25rem;
-  -webkit-letter-spacing: -0.005rem;
-  -moz-letter-spacing: -0.005rem;
-  -ms-letter-spacing: -0.005rem;
   letter-spacing: -0.005rem;
 }
 
@@ -315,243 +293,116 @@ exports[`CurriculumTab renders 1`] = `
 }
 
 .c4 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
   flex-direction: column;
-  -webkit-box-flex: 1;
-  -webkit-flex-grow: 1;
-  -ms-flex-positive: 1;
   flex-grow: 1;
 }
 
 .c6 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
 }
 
 .c8 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
   flex-direction: column;
   gap: 1.5rem;
 }
 
 .c11 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
   flex-direction: column;
 }
 
 .c17 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-flex-wrap: wrap;
-  -ms-flex-wrap: wrap;
   flex-wrap: wrap;
   gap: 1.5rem;
 }
 
 .c32 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
   flex-direction: column;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
   align-items: center;
-  -webkit-box-pack: justify;
-  -webkit-justify-content: space-between;
-  -ms-flex-pack: justify;
   justify-content: space-between;
   gap: 0rem;
 }
 
 .c33 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
   flex-direction: row;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
   align-items: center;
-  -webkit-box-pack: start;
-  -webkit-justify-content: flex-start;
-  -ms-flex-pack: start;
   justify-content: flex-start;
 }
 
 .c35 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-align-self: stretch;
-  -ms-flex-item-align: stretch;
   align-self: stretch;
 }
 
 .c46 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
   flex-direction: row;
   gap: 1rem;
 }
 
 .c48 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
   gap: 0.25rem;
 }
 
 .c52 {
   display: none;
-  -webkit-align-content: center;
-  -ms-flex-line-pack: center;
   align-content: center;
-  -webkit-align-self: center;
-  -ms-flex-item-align: center;
   align-self: center;
 }
 
 .c58 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
   flex-direction: row;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
   align-items: center;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
   justify-content: center;
   gap: 0.5rem;
 }
 
 .c63 {
   display: none;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
   flex-direction: row;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
   align-items: center;
-  -webkit-box-pack: end;
-  -webkit-justify-content: flex-end;
-  -ms-flex-pack: end;
   justify-content: flex-end;
-  -webkit-box-flex: 1;
-  -webkit-flex-grow: 1;
-  -ms-flex-positive: 1;
   flex-grow: 1;
 }
 
 .c64 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
   flex-direction: column;
   gap: 0.5rem;
 }
 
 .c68 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
   flex-direction: column;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
   align-items: center;
   gap: 0.75rem;
 }
 
 .c74 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
   flex-direction: column;
-  -webkit-align-items: flex-start;
-  -webkit-box-align: flex-start;
-  -ms-flex-align: flex-start;
   align-items: flex-start;
   gap: 1.5rem;
 }
 
 .c77 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
   flex-direction: column;
-  -webkit-flex-wrap: wrap;
-  -ms-flex-wrap: wrap;
   flex-wrap: wrap;
-  -webkit-box-pack: end;
-  -webkit-justify-content: flex-end;
-  -ms-flex-pack: end;
   justify-content: flex-end;
-  -webkit-box-flex: 1;
-  -webkit-flex-grow: 1;
-  -ms-flex-positive: 1;
   flex-grow: 1;
   gap: 0.75rem;
 }
 
 .c79 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
   align-items: center;
 }
 
@@ -566,9 +417,6 @@ exports[`CurriculumTab renders 1`] = `
   font-weight: 400;
   font-size: 1rem;
   line-height: 1.25rem;
-  -webkit-letter-spacing: 0.0115rem;
-  -moz-letter-spacing: 0.0115rem;
-  -ms-letter-spacing: 0.0115rem;
   letter-spacing: 0.0115rem;
 }
 
@@ -577,9 +425,6 @@ exports[`CurriculumTab renders 1`] = `
   font-weight: 600;
   font-size: 1rem;
   line-height: 1.25rem;
-  -webkit-letter-spacing: 0.0115rem;
-  -moz-letter-spacing: 0.0115rem;
-  -ms-letter-spacing: 0.0115rem;
   letter-spacing: 0.0115rem;
   text-align: left;
 }
@@ -589,9 +434,6 @@ exports[`CurriculumTab renders 1`] = `
   font-weight: 500;
   font-size: 0.875rem;
   line-height: 1.25rem;
-  -webkit-letter-spacing: -0.005rem;
-  -moz-letter-spacing: -0.005rem;
-  -ms-letter-spacing: -0.005rem;
   letter-spacing: -0.005rem;
 }
 
@@ -623,7 +465,7 @@ exports[`CurriculumTab renders 1`] = `
   cursor: default;
 }
 
-.c81 {
+.c80 {
   background: none;
   color: inherit;
   border: none;
@@ -646,13 +488,12 @@ exports[`CurriculumTab renders 1`] = `
   border-radius: 0.25rem;
 }
 
-.c81:disabled {
+.c80:disabled {
   pointer-events: none;
   cursor: default;
 }
 
 .c2 {
-  -webkit-filter: brightness(0) saturate(100%) invert(85%) sepia(23%) saturate(120%) hue-rotate(71deg) brightness(112%) contrast(97%);
   filter: brightness(0) saturate(100%) invert(85%) sepia(23%) saturate(120%) hue-rotate(71deg) brightness(112%) contrast(97%);
   object-fit: contain;
 }
@@ -662,7 +503,6 @@ exports[`CurriculumTab renders 1`] = `
 }
 
 .c61 {
-  -webkit-filter: invert(98%) sepia(98%) saturate(0%) hue-rotate(328deg) brightness(102%) contrast(102%);
   filter: invert(98%) sepia(98%) saturate(0%) hue-rotate(328deg) brightness(102%) contrast(102%);
   object-fit: contain;
 }
@@ -674,7 +514,6 @@ exports[`CurriculumTab renders 1`] = `
 }
 
 .c57:hover {
-  -webkit-text-decoration: underline;
   text-decoration: underline;
   color: #ffffff;
   background: #575757;
@@ -705,55 +544,54 @@ exports[`CurriculumTab renders 1`] = `
   display: none;
 }
 
-.c82 {
+.c81 {
   position: relative;
   width: 100%;
   height: 100%;
 }
 
-.c82:hover {
-  -webkit-text-decoration: underline;
+.c81:hover {
   text-decoration: underline;
   color: #222222;
   background: #f2f2f2;
   border-color: #222222;
 }
 
-.c82:hover [data-state="selected"] {
+.c81:hover [data-state="selected"] {
   display: none;
 }
 
-.c82:active {
+.c81:active {
   background: #ffffff;
   border-color: #222222;
   color: #222222;
 }
 
-.c82:active [data-state="selected"] {
+.c81:active [data-state="selected"] {
   display: none;
 }
 
-.c82:disabled {
+.c81:disabled {
   background: #e4e4e4;
   border-color: #808080;
   color: #808080;
 }
 
-.c82:disabled [data-state="selected"] {
+.c81:disabled [data-state="selected"] {
   display: none;
 }
 
 .c54 .grey-shadow:has(+ * + .internal-button:focus-visible) {
-  box-shadow: 0 0 0 0.3rem rgba(87,87,87,100%);
+  box-shadow: 0 0 0 0.3rem rgba(87, 87, 87, 100%);
 }
 
 .c54 .yellow-shadow:has(+ .internal-button:focus-visible) {
-  box-shadow: 0 0 0 0.125rem rgba(255,229,85,100%);
+  box-shadow: 0 0 0 0.125rem rgba(255, 229, 85, 100%);
 }
 
 .c54 .yellow-shadow:has(+ .internal-button:hover),
-.c54 .yellow-shadow:has(+ .internal-button:hover:not(:focus-visible,:active)) {
-  box-shadow: 0.125rem 0.125rem 0 rgba(255,229,85,100%);
+.c54 .yellow-shadow:has(+ .internal-button:hover:not(:focus-visible, :active)) {
+  box-shadow: 0.125rem 0.125rem 0 rgba(255, 229, 85, 100%);
 }
 
 .c54 .grey-shadow:has(+ * + .internal-button:hover) {
@@ -761,11 +599,11 @@ exports[`CurriculumTab renders 1`] = `
 }
 
 .c54 .grey-shadow:has(+ * + .internal-button:active) {
-  box-shadow: 0.25rem 0.25rem 0 rgba(87,87,87,100%);
+  box-shadow: 0.25rem 0.25rem 0 rgba(87, 87, 87, 100%);
 }
 
 .c54 .yellow-shadow:has(+ .internal-button:active) {
-  box-shadow: 0.125rem 0.125rem 0 rgba(255,229,85,100%);
+  box-shadow: 0.125rem 0.125rem 0 rgba(255, 229, 85, 100%);
 }
 
 .c9 {
@@ -773,9 +611,6 @@ exports[`CurriculumTab renders 1`] = `
   font-weight: 600;
   font-size: 1rem;
   line-height: 1.25rem;
-  -webkit-letter-spacing: 0.0115rem;
-  -moz-letter-spacing: 0.0115rem;
-  -ms-letter-spacing: 0.0115rem;
   letter-spacing: 0.0115rem;
   color: #222222;
 }
@@ -785,9 +620,6 @@ exports[`CurriculumTab renders 1`] = `
   font-weight: 600;
   font-size: 2rem;
   line-height: 2.5rem;
-  -webkit-letter-spacing: 0.0115rem;
-  -moz-letter-spacing: 0.0115rem;
-  -ms-letter-spacing: 0.0115rem;
   letter-spacing: 0.0115rem;
 }
 
@@ -805,9 +637,6 @@ exports[`CurriculumTab renders 1`] = `
   font-weight: 300;
   font-size: 1rem;
   line-height: 1.5rem;
-  -webkit-letter-spacing: -0.005rem;
-  -moz-letter-spacing: -0.005rem;
-  -ms-letter-spacing: -0.005rem;
   letter-spacing: -0.005rem;
   color: #222222;
 }
@@ -817,9 +646,6 @@ exports[`CurriculumTab renders 1`] = `
   font-weight: 300;
   font-size: 1.125rem;
   line-height: 1.75rem;
-  -webkit-letter-spacing: -0.005rem;
-  -moz-letter-spacing: -0.005rem;
-  -ms-letter-spacing: -0.005rem;
   letter-spacing: -0.005rem;
 }
 
@@ -828,9 +654,6 @@ exports[`CurriculumTab renders 1`] = `
   font-weight: 500;
   font-size: 1.125rem;
   line-height: 1.75rem;
-  -webkit-letter-spacing: -0.005rem;
-  -moz-letter-spacing: -0.005rem;
-  -ms-letter-spacing: -0.005rem;
   letter-spacing: -0.005rem;
 }
 
@@ -841,9 +664,6 @@ exports[`CurriculumTab renders 1`] = `
   font-weight: 300;
   font-size: 1.125rem;
   line-height: 1.75rem;
-  -webkit-letter-spacing: -0.005rem;
-  -moz-letter-spacing: -0.005rem;
-  -ms-letter-spacing: -0.005rem;
   letter-spacing: -0.005rem;
 }
 
@@ -856,22 +676,16 @@ exports[`CurriculumTab renders 1`] = `
 
 .c18 {
   display: inline;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
   align-items: center;
   gap: 0.25rem;
   outline: none;
   border-radius: 0.375rem;
   padding: 0.25rem;
   margin: -0.25rem;
-  -webkit-appearance: none;
-  -moz-appearance: none;
   appearance: none;
   font: inherit;
   background: none;
   border: none;
-  -webkit-text-decoration: none;
   text-decoration: none;
   cursor: pointer;
   color: #222222;
@@ -879,14 +693,13 @@ exports[`CurriculumTab renders 1`] = `
 }
 
 .c18 .c24 {
-  -webkit-filter: invert(10%) sepia(1%) saturate(236%) hue-rotate(314deg) brightness(95%) contrast(91%);
   filter: invert(10%) sepia(1%) saturate(236%) hue-rotate(314deg) brightness(95%) contrast(91%);
   display: inline-block;
   vertical-align: text-top;
 }
 
 .c18:focus-visible {
-  box-shadow: 0 0 0 0.125rem rgba(255,229,85,100%), 0 0 0 0.3rem rgba(87,87,87,100%);
+  box-shadow: 0 0 0 0.125rem rgba(255, 229, 85, 100%),0 0 0 0.3rem rgba(87, 87, 87, 100%);
 }
 
 .c18:visited {
@@ -894,7 +707,6 @@ exports[`CurriculumTab renders 1`] = `
 }
 
 .c18:visited .c24 {
-  -webkit-filter: invert(10%) sepia(1%) saturate(236%) hue-rotate(314deg) brightness(95%) contrast(91%);
   filter: invert(10%) sepia(1%) saturate(236%) hue-rotate(314deg) brightness(95%) contrast(91%);
 }
 
@@ -904,7 +716,6 @@ exports[`CurriculumTab renders 1`] = `
 }
 
 .c18:active .c24 {
-  -webkit-filter: invert(10%) sepia(1%) saturate(236%) hue-rotate(314deg) brightness(95%) contrast(91%);
   filter: invert(10%) sepia(1%) saturate(236%) hue-rotate(314deg) brightness(95%) contrast(91%);
 }
 
@@ -914,101 +725,27 @@ exports[`CurriculumTab renders 1`] = `
 }
 
 .c18[disabled] .c24 {
-  -webkit-filter: invert(54%) sepia(0%) saturate(38%) hue-rotate(176deg) brightness(92%) contrast(91%);
-  filter: invert(54%) sepia(0%) saturate(38%) hue-rotate(176deg) brightness(92%) contrast(91%);
-}
-
-.c80 {
-  display: inline;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  gap: 0.25rem;
-  outline: none;
-  border-radius: 0.375rem;
-  padding: 0.25rem;
-  margin: -0.25rem;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
-  font-family: --var(google-font),Lexend,sans-serif;
-  font-weight: 600;
-  font-size: 1rem;
-  line-height: 1.25rem;
-  -webkit-letter-spacing: 0.0115rem;
-  -moz-letter-spacing: 0.0115rem;
-  -ms-letter-spacing: 0.0115rem;
-  letter-spacing: 0.0115rem;
-  -webkit-text-decoration: none;
-  text-decoration: none;
-  background: none;
-  border: none;
-  -webkit-text-decoration: none;
-  text-decoration: none;
-  cursor: pointer;
-  color: #222222;
-  overflow-wrap: break-word;
-}
-
-.c80 .c24 {
-  -webkit-filter: invert(10%) sepia(1%) saturate(236%) hue-rotate(314deg) brightness(95%) contrast(91%);
-  filter: invert(10%) sepia(1%) saturate(236%) hue-rotate(314deg) brightness(95%) contrast(91%);
-  display: inline-block;
-  vertical-align: text-top;
-}
-
-.c80:focus-visible {
-  box-shadow: 0 0 0 0.125rem rgba(255,229,85,100%), 0 0 0 0.3rem rgba(87,87,87,100%);
-}
-
-.c80:visited {
-  color: #222222;
-}
-
-.c80:visited .c24 {
-  -webkit-filter: invert(10%) sepia(1%) saturate(236%) hue-rotate(314deg) brightness(95%) contrast(91%);
-  filter: invert(10%) sepia(1%) saturate(236%) hue-rotate(314deg) brightness(95%) contrast(91%);
-}
-
-.c80:active {
-  color: #222222;
-  outline: 1px solid #222222;
-}
-
-.c80:active .c24 {
-  -webkit-filter: invert(10%) sepia(1%) saturate(236%) hue-rotate(314deg) brightness(95%) contrast(91%);
-  filter: invert(10%) sepia(1%) saturate(236%) hue-rotate(314deg) brightness(95%) contrast(91%);
-}
-
-.c80[disabled] {
-  cursor: not-allowed;
-  color: #808080;
-}
-
-.c80[disabled] .c24 {
-  -webkit-filter: invert(54%) sepia(0%) saturate(38%) hue-rotate(176deg) brightness(92%) contrast(91%);
   filter: invert(54%) sepia(0%) saturate(38%) hue-rotate(176deg) brightness(92%) contrast(91%);
 }
 
 .c37 {
-  box-shadow: 0 0 0 0.3rem rgba(87,87,87,100%);
+  box-shadow: 0 0 0 0.3rem rgba(87, 87, 87, 100%);
 }
 
-.c37:has(a:hover,button:hover) {
+.c37:has(a:hover, button:hover) {
   box-shadow: none;
 }
 
-.c37:has( a, button) {
-  box-shadow: 0 0 0 0.125rem rgba(255,229,85,100%),0 0 0 0.3rem rgba(87,87,87,100%);
+.c37:has(   a,   button ) {
+  box-shadow: 0 0 0 0.125rem rgba(255, 229, 85, 100%),0 0 0 0.3rem rgba(87, 87, 87, 100%);
 }
 
-.c37:has( a, button)  a,
-.c37:has( a, button) button {
+.c37:has(   a,   button ) a,
+.c37:has(   a,   button ) button {
   outline: none;
 }
 
-.c37:has(a:active,button:active) {
+.c37:has(a:active, button:active) {
   box-shadow: none;
 }
 
@@ -1018,8 +755,6 @@ exports[`CurriculumTab renders 1`] = `
   height: auto;
   border: 0.188rem solid;
   border-color: #222222;
-  -webkit-transform: none;
-  -ms-transform: none;
   transform: none;
 }
 
@@ -1048,7 +783,6 @@ exports[`CurriculumTab renders 1`] = `
   object-fit: cover;
   color: #e4e4e4;
   font-family: --var(google-font),Lexend,sans-serif;
-  -webkit-transition: all 0.3s ease;
   transition: all 0.3s ease;
 }
 
@@ -1072,466 +806,392 @@ exports[`CurriculumTab renders 1`] = `
   padding: 0px;
   outline: none;
   text-align: left;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
   user-select: none;
   cursor: pointer;
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c1 {
     display: none;
   }
 }
 
-@media (min-width:1280px) {
+@media (min-width: 1280px) {
   .c1 {
     display: block;
   }
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c3 {
     max-width: 80rem;
   }
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c3 {
     padding-left: 0.75rem;
   }
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c3 {
     padding-right: 0.75rem;
   }
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c27 {
     display: none;
   }
 }
 
-@media (min-width:1280px) {
+@media (min-width: 1280px) {
   .c27 {
     display: block;
   }
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c36 {
     border-top-left-radius: 0.25rem;
   }
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c36 {
     border-top-right-radius: 0.25rem;
   }
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c36 {
     border-bottom-left-radius: 0.25rem;
   }
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c36 {
     border-bottom-right-radius: 0.25rem;
   }
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c47 {
     border-top-left-radius: 0.25rem;
   }
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c47 {
     border-top-right-radius: 0.25rem;
   }
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c47 {
     border-bottom-left-radius: 0.25rem;
   }
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c47 {
     border-bottom-right-radius: 0.25rem;
   }
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c51 {
     max-width: 10rem;
   }
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c51 {
     display: block;
   }
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c62 {
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: -ms-flexbox;
     display: flex;
   }
 }
 
-@media (min-width:1280px) {
+@media (min-width: 1280px) {
   .c62 {
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: -ms-flexbox;
     display: flex;
   }
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c66 {
     display: block;
   }
 }
 
-@media (min-width:1280px) {
+@media (min-width: 1280px) {
   .c66 {
     display: none;
   }
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c67 {
     right: 1.5rem;
   }
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c67 {
-    width: -webkit-max-content;
-    width: -moz-max-content;
     width: max-content;
   }
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c67 {
     padding-left: 0rem;
   }
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c67 {
     padding-right: 0rem;
   }
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c73 {
     margin-left: 1.5rem;
   }
 }
 
-@media (min-width:1280px) {
+@media (min-width: 1280px) {
   .c73 {
     margin-left: 3.5rem;
   }
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c73 {
     margin-right: 1.5rem;
   }
 }
 
-@media (min-width:1280px) {
+@media (min-width: 1280px) {
   .c73 {
     margin-right: 3.5rem;
   }
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c75 {
     font-weight: 300;
   }
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c75 {
     font-size: 1rem;
   }
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c75 {
     line-height: 1.5rem;
   }
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c75 {
-    -webkit-letter-spacing: -0.005rem;
-    -moz-letter-spacing: -0.005rem;
-    -ms-letter-spacing: -0.005rem;
     letter-spacing: -0.005rem;
   }
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c32 {
-    -webkit-flex-direction: row;
-    -ms-flex-direction: row;
     flex-direction: row;
   }
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c52 {
     display: block;
   }
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c63 {
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: -ms-flexbox;
     display: flex;
   }
 }
 
-@media (min-width:1280px) {
+@media (min-width: 1280px) {
   .c63 {
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: -ms-flexbox;
     display: flex;
   }
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c68 {
-    -webkit-align-items: flex-end;
-    -webkit-box-align: flex-end;
-    -ms-flex-align: flex-end;
     align-items: flex-end;
   }
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c74 {
-    -webkit-flex-direction: column;
-    -ms-flex-direction: column;
     flex-direction: column;
   }
 }
 
-@media (min-width:1280px) {
+@media (min-width: 1280px) {
   .c74 {
-    -webkit-flex-direction: row;
-    -ms-flex-direction: row;
     flex-direction: row;
   }
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c74 {
-    -webkit-align-items: flex-start;
-    -webkit-box-align: flex-start;
-    -ms-flex-align: flex-start;
     align-items: flex-start;
   }
 }
 
-@media (min-width:1280px) {
+@media (min-width: 1280px) {
   .c74 {
-    -webkit-align-items: center;
-    -webkit-box-align: center;
-    -ms-flex-align: center;
     align-items: center;
   }
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c74 {
     gap: 1.5rem;
   }
 }
 
-@media (min-width:1280px) {
+@media (min-width: 1280px) {
   .c74 {
     gap: 2rem;
   }
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c77 {
-    -webkit-flex-direction: row;
-    -ms-flex-direction: row;
     flex-direction: row;
   }
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c77 {
-    -webkit-flex-wrap: wrap;
-    -ms-flex-wrap: wrap;
     flex-wrap: wrap;
   }
 }
 
-@media (min-width:1280px) {
+@media (min-width: 1280px) {
   .c77 {
-    -webkit-flex-wrap: nowrap;
-    -ms-flex-wrap: nowrap;
     flex-wrap: nowrap;
   }
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c77 {
     gap: 2rem;
   }
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c76 {
     font-weight: 500;
   }
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c76 {
     font-size: 1rem;
   }
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c76 {
     line-height: 1.5rem;
   }
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c76 {
-    -webkit-letter-spacing: -0.005rem;
-    -moz-letter-spacing: -0.005rem;
-    -ms-letter-spacing: -0.005rem;
     letter-spacing: -0.005rem;
   }
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c10 {
     font-weight: 600;
   }
 }
 
-@media (min-width:1280px) {
+@media (min-width: 1280px) {
   .c10 {
     font-weight: 600;
   }
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c10 {
     font-size: 2rem;
   }
 }
 
-@media (min-width:1280px) {
+@media (min-width: 1280px) {
   .c10 {
     font-size: 2.5rem;
   }
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c10 {
     line-height: 2.5rem;
   }
 }
 
-@media (min-width:1280px) {
+@media (min-width: 1280px) {
   .c10 {
     line-height: 3rem;
   }
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c10 {
-    -webkit-letter-spacing: 0.0115rem;
-    -moz-letter-spacing: 0.0115rem;
-    -ms-letter-spacing: 0.0115rem;
     letter-spacing: 0.0115rem;
   }
 }
 
-@media (min-width:1280px) {
+@media (min-width: 1280px) {
   .c10 {
-    -webkit-letter-spacing: 0.0115rem;
-    -moz-letter-spacing: 0.0115rem;
-    -ms-letter-spacing: 0.0115rem;
     letter-spacing: 0.0115rem;
   }
 }
 
-@media (hover:hover) {
+@media (hover: hover) {
   .c18:hover,
   .c18:visited:hover {
     color: #222222;
-    -webkit-text-decoration: underline;
     text-decoration: underline;
-    -webkit-text-decoration-thickness: 18%;
     text-decoration-thickness: 18%;
   }
 
   .c18:hover .c24,
   .c18:visited:hover .c24 {
-    -webkit-filter: invert(10%) sepia(1%) saturate(236%) hue-rotate(314deg) brightness(95%) contrast(91%);
-    filter: invert(10%) sepia(1%) saturate(236%) hue-rotate(314deg) brightness(95%) contrast(91%);
-  }
-}
-
-@media (hover:hover) {
-  .c80:hover,
-  .c80:visited:hover {
-    color: #222222;
-    -webkit-text-decoration: underline;
-    text-decoration: underline;
-    -webkit-text-decoration-thickness: 18%;
-    text-decoration-thickness: 18%;
-  }
-
-  .c80:hover .c24,
-  .c80:visited:hover .c24 {
-    -webkit-filter: invert(10%) sepia(1%) saturate(236%) hue-rotate(314deg) brightness(95%) contrast(91%);
     filter: invert(10%) sepia(1%) saturate(236%) hue-rotate(314deg) brightness(95%) contrast(91%);
   }
 }
 
 @media (min-width:750px) {
   .c65 {
-    -webkit-transform: none;
-    -ms-transform: none;
     transform: none;
   }
 }
 
 @media (min-width:1280px) {
   .c65 {
-    -webkit-transform: rotate(-2deg);
-    -ms-transform: rotate(-2deg);
     transform: rotate(-2deg);
   }
 }
@@ -1617,7 +1277,7 @@ exports[`CurriculumTab renders 1`] = `
                 class="c16 c17"
               >
                 <a
-                  class="c18"
+                  class="c18 "
                   href="/about-us/oaks-curricula"
                 >
                   <span
@@ -2022,6 +1682,7 @@ exports[`CurriculumTab renders 1`] = `
       <div
         aria-live="polite"
         class="c67 c68 c69"
+        offsettop="152"
       />
     </div>
     <div
@@ -2055,7 +1716,7 @@ exports[`CurriculumTab renders 1`] = `
                 class="c78 c79"
               >
                 <button
-                  class="c80"
+                  class="c18 "
                   data-testid="cookie-banner-reject"
                   type="button"
                 >
@@ -2076,7 +1737,7 @@ exports[`CurriculumTab renders 1`] = `
                   class="c55 yellow-shadow"
                 />
                 <button
-                  class="c81 c82 internal-button"
+                  class="c80 c81 internal-button"
                 >
                   <div
                     class="c5 c58"
