@@ -46,7 +46,7 @@ export const LandingPageTextAndMedia: FC<TextAndMedia> = (props) => {
       $pb={"spacing-24"}
       $ph={["spacing-16", "spacing-56"]}
     >
-      <BrushBorders hideOnMobileH color={"bg-decorative5-subdued"} />
+      <BrushBorders $hideOnMobileH color={"bg-decorative5-subdued"} />
       <OakFlex
         $minHeight={"spacing-240"}
         $position="relative"
