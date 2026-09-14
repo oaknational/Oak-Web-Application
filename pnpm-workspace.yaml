@@ -74,3 +74,5 @@ overrides:
   "svgo@>=3.0.0 <3.3.5": ^3.3.5
   "systeminformation@>=5.0.0 <5.31.7": ^5.31.7
   "tmp@>=0.2.0 <0.2.6": ^0.2.6
+  # Security pins for transitive critical/high advisories (Dependagames September 2026).
+  "sharp": "$sharp"
