@@ -531,14 +531,16 @@ export const NationalCurriculumInsightsDownload = ({
                     )}
                   />
                 </OakBox>
-                <OakP $maxWidth="spacing-640" $font="body-3" $mv="spacing-0">
-                  Join over 200k teachers and get free resources and other
-                  helpful content by email. Unsubscribe at any time. Read our{" "}
-                  <OakLink href="/legal/privacy-policy" target="_blank">
-                    privacy policy
-                  </OakLink>
-                  .
-                </OakP>
+                <OakBox $maxWidth="spacing-640">
+                  <OakP $font="body-3" $mv="spacing-0">
+                    Join over 200k teachers and get free resources and other
+                    helpful content by email. Unsubscribe at any time. Read our{" "}
+                    <OakLink href="/legal/privacy-policy" target="_blank">
+                      privacy policy
+                    </OakLink>
+                    .
+                  </OakP>
+                </OakBox>
                 <OakFlex
                   $minHeight="spacing-56"
                   $alignItems="center"

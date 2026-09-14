@@ -108,7 +108,7 @@ export const NationalCurriculumInsightsPhaseCards = ({
                   card.phase,
                 )}
               >
-                <OakBox
+                <OakFlex
                   $flexShrink={0}
                   $width="spacing-72"
                   $height="spacing-72"
@@ -124,7 +124,7 @@ export const NationalCurriculumInsightsPhaseCards = ({
                     $height="100%"
                     $objectFit="contain"
                   />
-                </OakBox>
+                </OakFlex>
                 <OakFlex
                   $flexGrow={1}
                   $flexShrink={1}
@@ -209,7 +209,7 @@ export const NationalCurriculumInsightsKeyStageCards = ({
                   nationalCurriculumInsightsKeyStageSlug(card.keyStage),
                 )}
               >
-                <OakBox
+                <OakFlex
                   $flexShrink={0}
                   $width="spacing-72"
                   $height="spacing-72"
@@ -225,7 +225,7 @@ export const NationalCurriculumInsightsKeyStageCards = ({
                     $height="100%"
                     $objectFit="contain"
                   />
-                </OakBox>
+                </OakFlex>
                 <OakFlex
                   $flexGrow={1}
                   $flexShrink={1}
