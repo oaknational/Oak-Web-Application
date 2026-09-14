@@ -1529,9 +1529,9 @@ const SubjectPhasePicker = ({
               style={{ width: "50%" }}
             >
               <OakFocusIndicatorAlt
-                dropShadow="drop-shadow-centered-grey"
+                $dropShadow="drop-shadow-centered-grey"
                 assertFocus={showSubjects}
-                activeDropShadow="drop-shadow-none"
+                $activeDropShadow="drop-shadow-none"
                 $width="100%"
                 $bblr={["border-radius-square", "border-radius-s"]}
                 $bbrr={["border-radius-square", "border-radius-s"]}
@@ -1600,9 +1600,9 @@ const SubjectPhasePicker = ({
                 $background={showPhases ? "bg-primary" : null}
               >
                 <OakFocusIndicatorAlt
-                  dropShadow="drop-shadow-centered-grey"
+                  $dropShadow="drop-shadow-centered-grey"
                   assertFocus={showPhases}
-                  activeDropShadow="drop-shadow-none"
+                  $activeDropShadow="drop-shadow-none"
                   $width="100%"
                   $bblr={["border-radius-square", "border-radius-s"]}
                   $bbrr={["border-radius-square", "border-radius-s"]}
