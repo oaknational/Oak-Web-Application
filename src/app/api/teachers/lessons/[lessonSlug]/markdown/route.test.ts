@@ -193,10 +193,34 @@ describe("/teachers/lessons/[lessonSlug].md", () => {
       expect(response.status).toBe(308);
     });
 
-    it("redirects to the markdown representation, not the HTML page", async () => {
+    /**
+     * A `.md` request must land on the `.md` representation of the new slug,
+     * not be dropped into a page it did not ask for. That is one rule — a
+     * mapping from the destination the redirect table holds to the `Location`
+     * this route sends — so it is stated as one, over the destination shapes
+     * the table can actually produce: it appends `?redirected=true`, but its
+     * `outgoingPath` is not always a lesson.
+     */
+    it.each([
+      {
+        shape: "a canonical lesson path carrying a query",
+        destination: "/teachers/lessons/new-slug?redirected=true",
+        location: "/teachers/lessons/new-slug.md?redirected=true",
+      },
+      {
+        shape: "a bare canonical lesson path",
+        destination: "/teachers/lessons/new-slug",
+        location: "/teachers/lessons/new-slug.md",
+      },
+      {
+        shape: "a destination outside the canonical lesson path",
+        destination: "/teachers/programmes/maths-primary/units/fractions",
+        location: "/teachers/programmes/maths-primary/units/fractions",
+      },
+    ])("redirects $shape to $location", async ({ destination, location }) => {
       lessonOverview.mockRejectedValue(notFound());
       getRedirect.mockResolvedValue({
-        destination: "/teachers/lessons/new-slug?redirected=true",
+        destination,
         statusCode: 308,
         basePath: false,
       });
@@ -205,9 +229,7 @@ describe("/teachers/lessons/[lessonSlug].md", () => {
         params: Promise.resolve({ lessonSlug: "old-slug" }),
       });
 
-      expect(response.headers.get("Location")).toBe(
-        "/teachers/lessons/new-slug.md?redirected=true",
-      );
+      expect(response.headers.get("Location")).toBe(location);
     });
 
     it("carries the temporary status through when the table says 307", async () => {
@@ -223,26 +245,6 @@ describe("/teachers/lessons/[lessonSlug].md", () => {
       });
 
       expect(response.status).toBe(307);
-      expect(response.headers.get("Location")).toBe(
-        "/teachers/lessons/new-slug.md",
-      );
-    });
-
-    it("passes a destination outside the canonical lesson path through unchanged", async () => {
-      lessonOverview.mockRejectedValue(notFound());
-      getRedirect.mockResolvedValue({
-        destination: "/teachers/programmes/maths-primary/units/fractions",
-        statusCode: 308,
-        basePath: false,
-      });
-
-      const response = await GET(request, {
-        params: Promise.resolve({ lessonSlug: "old-slug" }),
-      });
-
-      expect(response.headers.get("Location")).toBe(
-        "/teachers/programmes/maths-primary/units/fractions",
-      );
     });
 
     it("caches the redirect on the same short window as the 404", async () => {

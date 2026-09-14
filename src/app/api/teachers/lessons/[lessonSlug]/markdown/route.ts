@@ -9,6 +9,8 @@
  *   than `Accept` negotiation, why nothing here sets `Vary: Accept`, and the
  *   cache measurements behind the directives below.
  */
+import { type Redirect } from "next";
+
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 import { lessonToMarkdown } from "@/utils/lessonToMarkdown";
 import { allowNotFoundError } from "@/pages-helpers/shared/lesson-pages/allowNotFoundError";
@@ -55,6 +57,21 @@ function toMarkdownDestination(destination: string): string {
 }
 
 /**
+ * The status a redirect row asks for.
+ *
+ * Next's `Redirect` is a union that states the status either as an explicit
+ * code or as a permanence flag, so both members are read: permanent is 308,
+ * temporary 307, matching how the lesson page resolves the same union.
+ */
+function redirectStatus(redirect: Redirect): number {
+  if ("statusCode" in redirect) {
+    return redirect.statusCode;
+  }
+
+  return redirect.permanent ? 308 : 307;
+}
+
+/**
  * The transient-cache headers shared by the miss responses: a 404 and a
  * redirect are both answers to a URL anyone can enumerate.
  */
@@ -98,17 +115,8 @@ export async function GET(
     }
 
     if (redirect) {
-      // Next's `Redirect` carries the status either as a code or as a
-      // permanence flag, so both members are handled.
-      const status =
-        "statusCode" in redirect
-          ? redirect.statusCode
-          : redirect.permanent
-            ? 308
-            : 307;
-
       return new Response(null, {
-        status,
+        status: redirectStatus(redirect),
         headers: {
           Location: toMarkdownDestination(redirect.destination),
           ...TRANSIENT_CACHE_HEADERS,
