@@ -181,28 +181,28 @@ describe("CurrentSectionIdProvider", () => {
     try {
       const { result } = renderHook(() => useCurrentSectionId(), { wrapper });
 
-      await waitFor(() => {
-        expect(result.current).toBe("slide-deck");
+      act(() => {
+        ioMock.trigger();
+        flushRafAndDebounceTimers();
       });
+      expect(result.current).toBe("slide-deck");
 
       act(() => {
         a.getBoundingClientRect = jest.fn(() => makeRect(-30));
         b.getBoundingClientRect = jest.fn(() => makeRect(15));
         ioMock.trigger();
+        flushRafAndDebounceTimers();
       });
 
-      await waitFor(() => {
-        expect(result.current).toBe("lesson-details");
-      });
+      expect(result.current).toBe("lesson-details");
 
       act(() => {
         b.getBoundingClientRect = jest.fn(() => makeRect(-2));
         ioMock.trigger();
+        flushRafAndDebounceTimers();
       });
 
-      await waitFor(() => {
-        expect(result.current).toBe("lesson-details");
-      });
+      expect(result.current).toBe("lesson-details");
     } finally {
       ioMock.restore();
     }
