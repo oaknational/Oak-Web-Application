@@ -55,6 +55,98 @@ describe("/.well-known/ard.json", () => {
     expect(mcp.data.remotes[0].url).toBe("https://mcp.thenational.academy/mcp");
   });
 
+  it("carries an inline card that satisfies the MCP server schema", async () => {
+    const response = GET();
+    const body = await response.json();
+
+    const card = body.entries.find(
+      (entry: { identifier: string }) =>
+        entry.identifier === "urn:air:thenational.academy:mcp:curriculum",
+    ).data;
+
+    // Required by
+    // https://static.modelcontextprotocol.io/schemas/2025-09-29/server.schema.json
+    // A card missing any of these is rejected by a validating registry.
+    // A card missing any of these is rejected by a validating registry.
+    for (const field of ["name", "description", "version"]) {
+      expect({ field, type: typeof card[field] }).toEqual({
+        field,
+        type: "string",
+      });
+      expect(card[field].length).toBeGreaterThan(0);
+    }
+
+    // `name` must be reverse-DNS with exactly one slash.
+    expect(card.name.split("/")).toHaveLength(2);
+
+    // Version ranges are rejected by the schema.
+    expect(card.version).not.toMatch(/[\^~*]|>=|<=|\bx\b/);
+
+    // The schema caps `description` at 100. The 195-character original was
+    // silently non-conformant: nothing in this repo would have caught it.
+    expect(card.description.length).toBeLessThanOrEqual(100);
+
+    // An identifier, not a fetch target — but it must be the resolvable
+    // published schema rather than the 404ing URL the reference cards use.
+    expect(card.$schema).toBe(
+      "https://static.modelcontextprotocol.io/schemas/2025-09-29/server.schema.json",
+    );
+  });
+
+  it("keeps the two entries' representative queries disjoint", async () => {
+    const response = GET();
+    const body = await response.json();
+
+    // Both entries land in one registry index. Shared query vocabulary makes
+    // Oak's resources compete for the same search instead of each answering
+    // the search it is right for — docs/agent-discovery.md.
+    const [first, second] = body.entries.map(
+      (entry: { representativeQueries: string[] }) =>
+        new Set(
+          entry.representativeQueries.flatMap((query) =>
+            query.toLowerCase().match(/[a-z0-9']+/g),
+          ),
+        ),
+    );
+
+    const stopWords = new Set([
+      "a",
+      "an",
+      "and",
+      "for",
+      "in",
+      "into",
+      "of",
+      "the",
+      "to",
+      "does",
+      "what",
+      "which",
+      "me",
+      "my",
+      "i",
+      "it",
+      "on",
+      "across",
+      "with",
+      "from",
+      "oak",
+      "oak's",
+      "curriculum",
+      "lesson",
+      "lessons",
+      "unit",
+      "units",
+    ]);
+
+    const shared = [...first].filter(
+      (token) => second.has(token) && !stopWords.has(token),
+    );
+
+    // Named rather than counted, so a failure says which words collided.
+    expect(shared).toEqual([]);
+  });
+
   it("advertises the curriculum API by the catalogue the API itself hosts", async () => {
     const response = GET();
     const body = await response.json();

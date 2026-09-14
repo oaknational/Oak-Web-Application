@@ -13,14 +13,29 @@ const ARD_CONTENT_TYPE = "application/ai-catalog+json";
 /**
  * Inline rather than a `url`: Oak serves no server card document, and the
  * `.well-known` card paths are a placement the MCP working group rejected.
- * `$schema` and `version` are omitted deliberately — see
+ *
+ * Field order and set mirror the live cards on `huggingface.co` and
+ * `github.com`. `name`, `description` and `version` are required by the
+ * schema, and `description` is capped at 100 characters — see
  * `docs/agent-discovery.md`.
  */
 const mcpServerCard = {
+  // The dated schema URL, which resolves. Both reference publishers point at
+  // an unversioned `v1/server-card.schema.json` that 404s; this is the `$id`
+  // of the published schema and the example its own `$schema` field gives.
+  $schema:
+    "https://static.modelcontextprotocol.io/schemas/2025-09-29/server.schema.json",
   name: "thenational.academy/mcp",
-  title: "Oak Curriculum",
+  // The deployed server's own build version, read from the `x-app-version`
+  // response header it sets on every response. Hardcoded here because the
+  // manifest is static, so it lags a deploy until this line is updated; the
+  // durable fix is a card served by the MCP server. MCP-715.
+  version: "1.181.1",
+  // 100 characters is the schema maximum. The fuller statement of what Oak is
+  // lives in the entry `description` below, which the ARD schema does not cap.
   description:
-    "Connects an AI assistant to Oak National Academy's free, fully sequenced, openly licensed curriculum for schools in England — lessons, units and teaching resources across subjects and key stages.",
+    "Search lessons and units in Oak National Academy's free, openly licensed curriculum for England.",
+  title: "Oak Curriculum",
   websiteUrl: "https://mcp.thenational.academy/",
   remotes: [
     {
@@ -71,10 +86,16 @@ const ardManifest = {
       description:
         "Catalogue of Oak's public curriculum REST API — the versioned lesson and unit endpoints and the bulk download surface, with their OpenAPI descriptions, documentation and playground. Curriculum content is published under the Open Government Licence.",
       tags: ["oak", "curriculum", "education", "api", "openapi"],
+      // Written for a developer integrating against REST, not a teacher: this
+      // entry competes with the MCP entry above in the same registry index, so
+      // the two sets are kept deliberately disjoint in both vocabulary and
+      // intent. Named artefacts (REST, OpenAPI, bulk download, dataset) are
+      // what a developer searches for; task phrasing belongs to the MCP entry.
       representativeQueries: [
-        "what lessons does Oak have for year 5 maths",
-        "which subjects and key stages does Oak's curriculum cover",
-        "get Oak's curriculum data for a whole subject and key stage",
+        "REST API for England's school curriculum lessons and units",
+        "OpenAPI description and playground for an education content API",
+        "bulk download an openly licensed curriculum dataset",
+        "integrate Oak curriculum content into an application",
       ],
     },
   ],
