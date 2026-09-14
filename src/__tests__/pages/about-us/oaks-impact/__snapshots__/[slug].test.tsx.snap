@@ -1,6 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`pages/about-us/oaks-impact/case-studies/[slug].tsx renders title 1`] = `
+exports[`pages/about-us/oaks-impact/case-studies/[slug].tsx renders title 1`] =
+  `
 <div>
   <div
     data-overlay-container="true"
