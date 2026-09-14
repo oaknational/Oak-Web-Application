@@ -409,8 +409,8 @@ export const NationalCurriculumInsightsDownload = ({
                     $background="bg-decorative5-main"
                     $font="heading-7"
                     $position="absolute"
-                    $top={`-${parseSpacing("spacing-20")}`}
-                    $left="spacing-8"
+                    $left={"spacing-4"}
+                    style={{ top: `-${parseSpacing("spacing-20")}` }}
                     $zIndex="in-front"
                   />
                   <Controller
@@ -440,8 +440,8 @@ export const NationalCurriculumInsightsDownload = ({
                       $background="bg-decorative5-main"
                       $font="heading-7"
                       $position="absolute"
-                      $top={`-${parseSpacing("spacing-20")}`}
-                      $left="spacing-8"
+                      $left={"spacing-4"}
+                      style={{ top: `-${parseSpacing("spacing-20")}` }}
                       $zIndex="in-front"
                     />
                     <Controller
@@ -508,8 +508,8 @@ export const NationalCurriculumInsightsDownload = ({
                     $background="bg-decorative5-main"
                     $font="heading-7"
                     $position="absolute"
-                    $top={`-${parseSpacing("spacing-20")}`}
-                    $left="spacing-8"
+                    $left={"spacing-4"}
+                    style={{ top: `-${parseSpacing("spacing-20")}` }}
                     $zIndex="in-front"
                   />
                   <Controller

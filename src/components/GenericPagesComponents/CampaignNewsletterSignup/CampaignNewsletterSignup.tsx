@@ -11,6 +11,7 @@ import {
   OakJauntyAngleLabel,
   OakSelect,
   OakOption,
+  parseSpacing,
 } from "@oaknational/oak-components";
 import { PortableTextReactComponents } from "@portabletext/react";
 import z, { ZodType } from "zod";
@@ -281,8 +282,8 @@ const CampaignNewsletterSignup: FC<CampaignNewsletterSignupProps> = ({
                       $background={"bg-success"}
                       $zIndex="in-front"
                       $position="absolute"
-                      $top={"-20px"}
-                      $left={"5px"}
+                      $left={"spacing-4"}
+                      style={{ top: `-${parseSpacing("spacing-20")}` }}
                       $borderRadius="border-radius-square"
                       required={true}
                       error={errors.eduRole}

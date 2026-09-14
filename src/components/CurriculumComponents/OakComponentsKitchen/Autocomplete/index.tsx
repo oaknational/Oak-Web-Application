@@ -9,6 +9,7 @@ import {
   OakFlex,
   OakJauntyAngleLabel,
   OakTextInput,
+  parseSpacing,
 } from "@oaknational/oak-components";
 
 import { Popover } from "@/components/SharedComponents/Popover";
@@ -104,8 +105,8 @@ const Autocomplete = (props: AutocompleteProps) => {
           )}
           $zIndex="in-front"
           $position="absolute"
-          $top={"-20px"}
-          $left={"5px"}
+          $left={"spacing-4"}
+          style={{ top: `-${parseSpacing("spacing-20")}` }}
           $borderRadius="border-radius-square"
           data-testid="jaunty-label"
         />
