@@ -2,7 +2,6 @@ import createAndClickHiddenDownloadLink, {
   hideAndClickDownloadLink,
   createLink,
   waitForLinkCallback,
-  getDownloadLink,
 } from "./createAndClickHiddenDownloadLink";
 
 describe("hideAndClickDownloadLink()", () => {
@@ -34,6 +33,16 @@ describe("hideAndClickDownloadLink()", () => {
     hideAndClickDownloadLink("testUrl", link);
 
     expect(link.click).toHaveBeenCalledTimes(1);
+  });
+
+  it("does not leave the link in the document", () => {
+    const link = createLink();
+    link.click = jest.fn();
+
+    hideAndClickDownloadLink("testUrl", link);
+
+    expect(link.isConnected).toBe(false);
+    expect(document.getElementById("resource-download-link")).toBeNull();
   });
 });
 
@@ -77,6 +86,64 @@ describe("createAndClickHiddenDownloadLink()", () => {
     expect(appendSpy).toHaveBeenCalled();
     appendSpy.mockRestore();
   });
+
+  it.each(["Science - primary.docx", "Curriculum insights.zip"])(
+    "preserves the supplied filename %s and removes a temporary link",
+    (filename) => {
+      const click = jest
+        .spyOn(HTMLAnchorElement.prototype, "click")
+        .mockImplementation(function (this: HTMLAnchorElement) {
+          expect(this.download).toBe(filename);
+          expect(this.href).toContain("blob:insights");
+          expect(document.body).toContainElement(this);
+        });
+
+      createAndClickHiddenDownloadLink("blob:insights", {
+        filename,
+        removeAfterClick: true,
+        openInNewTabWhenEmbedded: false,
+      });
+
+      expect(click).toHaveBeenCalledTimes(1);
+      expect(document.getElementById("resource-download-link")).toBeNull();
+      click.mockRestore();
+    },
+  );
+
+  it("can download a blob without opening a new tab in an embedded preview", () => {
+    Object.defineProperty(window, "top", { value: {}, writable: true });
+    const click = jest
+      .spyOn(HTMLAnchorElement.prototype, "click")
+      .mockImplementation(() => {});
+
+    createAndClickHiddenDownloadLink("blob:insights", {
+      filename: "Science.docx",
+      removeAfterClick: true,
+      openInNewTabWhenEmbedded: false,
+    });
+
+    expect(windowOpenSpy).not.toHaveBeenCalled();
+    expect(click).toHaveBeenCalledTimes(1);
+    expect(document.getElementById("resource-download-link")).toBeNull();
+    click.mockRestore();
+  });
+
+  it("removes a temporary link if clicking fails", () => {
+    const click = jest
+      .spyOn(HTMLAnchorElement.prototype, "click")
+      .mockImplementation(() => {
+        throw new Error("Download failed");
+      });
+
+    expect(() =>
+      createAndClickHiddenDownloadLink("blob:insights", {
+        removeAfterClick: true,
+        openInNewTabWhenEmbedded: false,
+      }),
+    ).toThrow("Download failed");
+    expect(document.getElementById("resource-download-link")).toBeNull();
+    click.mockRestore();
+  });
 });
 
 const mockCallback = jest.fn();
@@ -85,10 +152,8 @@ const setTimeoutMock = jest.spyOn(globalThis, "setTimeout");
 
 describe("waitForLinkCallback", () => {
   beforeEach(() => {
-    const previousLink = getDownloadLink();
-    if (previousLink) {
-      previousLink.remove();
-    }
+    // resets the "clicked" state held by the module
+    createLink();
   });
   test("runs a maximum number of times", () => {
     waitForLinkCallback(mockCallback);

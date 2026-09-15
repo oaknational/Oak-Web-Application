@@ -58,7 +58,7 @@ export const getLinkHref = (ctaOrLink: CTA | Link): string => {
   if (ctaOrLink.linkType === "internal") {
     return resolveInternalHref(ctaOrLink.internal);
   } else if (ctaOrLink.linkType === "external") {
-    return ctaOrLink.external;
+    return getProxiedSanityAssetUrl(ctaOrLink.external);
   }
   return `#${ctaOrLink.anchor}`;
 };

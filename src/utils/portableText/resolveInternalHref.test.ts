@@ -1,4 +1,4 @@
-import { resolveInternalHref } from "./resolveInternalHref";
+import { getLinkHref, resolveInternalHref } from "./resolveInternalHref";
 
 describe("resolveInternalHref()", () => {
   it.each([
@@ -43,5 +43,32 @@ describe("resolveInternalHref()", () => {
     expect(() => {
       resolveInternalHref({ contentType: "foo" as never });
     }).toThrow();
+  });
+});
+
+describe("getLinkHref()", () => {
+  it.each([
+    [
+      "https://cdn.sanity.io/files/cuvjke51/production/06043df8db8bc29c6a2b71adb2808425ba12aab5.pdf",
+      "https://NEXT_PUBLIC_SANITY_ASSET_CDN_HOST/files/cuvjke51/production/06043df8db8bc29c6a2b71adb2808425ba12aab5.pdf",
+    ],
+    ["https://example.com/report.pdf", "https://example.com/report.pdf"],
+  ])("resolves external link %s", (external, expected) => {
+    expect(getLinkHref({ linkType: "external", external })).toBe(expected);
+  });
+
+  it("preserves internal page links", () => {
+    expect(
+      getLinkHref({
+        linkType: "internal",
+        internal: { contentType: "homepage", id: "homepage" },
+      }),
+    ).toBe("/");
+  });
+
+  it("preserves anchor links", () => {
+    expect(getLinkHref({ linkType: "anchor", anchor: "impact" })).toBe(
+      "#impact",
+    );
   });
 });

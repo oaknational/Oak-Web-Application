@@ -25,5 +25,22 @@ describe("LessonOverviewPresentation", () => {
     expect(focusTarget).toBeInTheDocument();
     expect(focusTarget).toHaveAttribute("tabindex", "0");
     expect(iframe).toHaveAttribute("tabindex", "-1");
+    expect(iframe).toHaveAttribute("loading", "eager");
+  });
+
+  it("supports lazy loading for offscreen previews", () => {
+    render(
+      <LessonOverviewPresentation
+        asset="https://docs.google.com/presentation/d/1234567890/edit"
+        title="Test lesson"
+        isWorksheet={false}
+        loading="lazy"
+      />,
+    );
+
+    expect(screen.getByTestId("overview-presentation")).toHaveAttribute(
+      "loading",
+      "lazy",
+    );
   });
 });

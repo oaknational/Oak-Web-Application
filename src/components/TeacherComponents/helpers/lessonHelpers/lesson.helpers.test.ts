@@ -7,7 +7,6 @@ import {
   groupLessonPathways,
   getLessonMediaBreadCrumb,
   getMediaClipLabel,
-  convertBytesToMegabytes,
   sortMediaClipsByOrder,
   getPageLinksWithSubheadingsForLesson,
 } from "@/components/TeacherComponents/helpers/lessonHelpers/lesson.helpers";
@@ -816,23 +815,6 @@ describe("getMediaClipLabel", () => {
   it("returns 'Video & audio clips' for any other subject", () => {
     const result = getMediaClipLabel("math");
     expect(result).toBe("Video & audio clips");
-  });
-});
-
-describe("convertBytesToMegabytes", () => {
-  it("converts bytes to megabytes and returns string fixed to two coma spaces", () => {
-    const result = convertBytesToMegabytes(13456325);
-    expect(result).toBe("12.83 MB");
-  });
-
-  it("converts bytes to kilobytes and returns string fixed to two coma spaces", () => {
-    const result = convertBytesToMegabytes(3456);
-    expect(result).toBe("3.38 KB");
-  });
-
-  it("doesn't convert bytes if the size is too small to be converted", () => {
-    const result = convertBytesToMegabytes(876);
-    expect(result).toBe("876 B");
   });
 });
 
