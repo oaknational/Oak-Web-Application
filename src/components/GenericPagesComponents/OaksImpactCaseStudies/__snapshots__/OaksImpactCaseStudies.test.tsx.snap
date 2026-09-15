@@ -1,8 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[
-  `OaksImpactCaseStudies renders correctly when 2 case studies are provided 1`
-] = `
+exports[`OaksImpactCaseStudies renders correctly when 2 case studies are provided 1`] = `
 <body>
   <div>
     <div
@@ -34,17 +32,17 @@ exports[
               class="sc-aXZVg sc-gEvEer sc-esYiGF jPvJsJ iDBIXi jYNrWW"
             >
               <div
-                class="sc-aXZVg sc-hZDyAQ bDPsaI jsPgDH"
+                class="sc-aXZVg sc-fTFjTM bDPsaI eDCqa-D"
               >
                 <a
-                  class="sc-aXZVg sc-gEvEer sc-gfoqjT eKeEyp dXoawi jZpnCG"
+                  class="sc-aXZVg sc-gEvEer sc-kbousE eKeEyp dXoawi wmwox"
                   href="/about-us/case-studies/case-study-1"
                 >
                   <div
                     class="sc-aXZVg jPvJsJ"
                   >
                     <span
-                      class="sc-aXZVg kvjdhA sc-eyvILC fiYQGY"
+                      class="sc-aXZVg kvjdhA sc-gfoqjT giDcXR"
                     >
                       <img
                         alt=""
@@ -60,7 +58,7 @@ exports[
                     </span>
                   </div>
                   <div
-                    class="sc-aXZVg sc-gEvEer sc-bpUBKd jPvJsJ jFNgPm"
+                    class="sc-aXZVg sc-gEvEer sc-eyvILC jPvJsJ jFNgPm"
                   >
                     <div
                       class="sc-aXZVg sc-gEvEer jPvJsJ fVNIMq"
@@ -105,17 +103,17 @@ exports[
               class="sc-aXZVg sc-gEvEer sc-esYiGF jPvJsJ iDBIXi bGCzCa"
             >
               <div
-                class="sc-aXZVg sc-hZDyAQ bDPsaI jsPgDH"
+                class="sc-aXZVg sc-fTFjTM bDPsaI eDCqa-D"
               >
                 <a
-                  class="sc-aXZVg sc-gEvEer sc-gfoqjT eKeEyp dXoawi jZpnCG"
+                  class="sc-aXZVg sc-gEvEer sc-kbousE eKeEyp dXoawi wmwox"
                   href="/about-us/case-studies/case-study-2"
                 >
                   <div
                     class="sc-aXZVg jPvJsJ"
                   >
                     <span
-                      class="sc-aXZVg kvjdhA sc-eyvILC fiYQGY"
+                      class="sc-aXZVg kvjdhA sc-gfoqjT giDcXR"
                     >
                       <img
                         alt=""
@@ -131,7 +129,7 @@ exports[
                     </span>
                   </div>
                   <div
-                    class="sc-aXZVg sc-gEvEer sc-bpUBKd jPvJsJ jFNgPm"
+                    class="sc-aXZVg sc-gEvEer sc-eyvILC jPvJsJ jFNgPm"
                   >
                     <div
                       class="sc-aXZVg sc-gEvEer jPvJsJ fVNIMq"
@@ -180,9 +178,7 @@ exports[
 </body>
 `;
 
-exports[
-  `OaksImpactCaseStudies renders correctly when 3 case studies are provided 1`
-] = `
+exports[`OaksImpactCaseStudies renders correctly when 3 case studies are provided 1`] = `
 <body>
   <div>
     <div
@@ -214,17 +210,17 @@ exports[
               class="sc-aXZVg sc-gEvEer sc-esYiGF jPvJsJ iDBIXi fjdsDR"
             >
               <div
-                class="sc-aXZVg sc-hZDyAQ bDPsaI jsPgDH"
+                class="sc-aXZVg sc-fTFjTM bDPsaI eDCqa-D"
               >
                 <a
-                  class="sc-aXZVg sc-gEvEer sc-gfoqjT eKeEyp dXoawi jZpnCG"
+                  class="sc-aXZVg sc-gEvEer sc-kbousE eKeEyp dXoawi wmwox"
                   href="/about-us/case-studies/case-study-1"
                 >
                   <div
                     class="sc-aXZVg jPvJsJ"
                   >
                     <span
-                      class="sc-aXZVg kvjdhA sc-eyvILC fiYQGY"
+                      class="sc-aXZVg kvjdhA sc-gfoqjT giDcXR"
                     >
                       <img
                         alt=""
@@ -240,7 +236,7 @@ exports[
                     </span>
                   </div>
                   <div
-                    class="sc-aXZVg sc-gEvEer sc-bpUBKd jPvJsJ jFNgPm"
+                    class="sc-aXZVg sc-gEvEer sc-eyvILC jPvJsJ jFNgPm"
                   >
                     <div
                       class="sc-aXZVg sc-gEvEer jPvJsJ fVNIMq"
@@ -285,17 +281,17 @@ exports[
               class="sc-aXZVg sc-gEvEer sc-esYiGF jPvJsJ iDBIXi fjdsDR"
             >
               <div
-                class="sc-aXZVg sc-hZDyAQ bDPsaI jsPgDH"
+                class="sc-aXZVg sc-fTFjTM bDPsaI eDCqa-D"
               >
                 <a
-                  class="sc-aXZVg sc-gEvEer sc-gfoqjT eKeEyp dXoawi jZpnCG"
+                  class="sc-aXZVg sc-gEvEer sc-kbousE eKeEyp dXoawi wmwox"
                   href="/about-us/case-studies/case-study-2"
                 >
                   <div
                     class="sc-aXZVg jPvJsJ"
                   >
                     <span
-                      class="sc-aXZVg kvjdhA sc-eyvILC fiYQGY"
+                      class="sc-aXZVg kvjdhA sc-gfoqjT giDcXR"
                     >
                       <img
                         alt=""
@@ -311,7 +307,7 @@ exports[
                     </span>
                   </div>
                   <div
-                    class="sc-aXZVg sc-gEvEer sc-bpUBKd jPvJsJ jFNgPm"
+                    class="sc-aXZVg sc-gEvEer sc-eyvILC jPvJsJ jFNgPm"
                   >
                     <div
                       class="sc-aXZVg sc-gEvEer jPvJsJ fVNIMq"
@@ -356,17 +352,17 @@ exports[
               class="sc-aXZVg sc-gEvEer sc-esYiGF jPvJsJ iDBIXi fjdsDR"
             >
               <div
-                class="sc-aXZVg sc-hZDyAQ bDPsaI jsPgDH"
+                class="sc-aXZVg sc-fTFjTM bDPsaI eDCqa-D"
               >
                 <a
-                  class="sc-aXZVg sc-gEvEer sc-gfoqjT eKeEyp dXoawi jZpnCG"
+                  class="sc-aXZVg sc-gEvEer sc-kbousE eKeEyp dXoawi wmwox"
                   href="/about-us/case-studies/case-study-3"
                 >
                   <div
                     class="sc-aXZVg jPvJsJ"
                   >
                     <span
-                      class="sc-aXZVg kvjdhA sc-eyvILC fiYQGY"
+                      class="sc-aXZVg kvjdhA sc-gfoqjT giDcXR"
                     >
                       <img
                         alt=""
@@ -382,7 +378,7 @@ exports[
                     </span>
                   </div>
                   <div
-                    class="sc-aXZVg sc-gEvEer sc-bpUBKd jPvJsJ jFNgPm"
+                    class="sc-aXZVg sc-gEvEer sc-eyvILC jPvJsJ jFNgPm"
                   >
                     <div
                       class="sc-aXZVg sc-gEvEer jPvJsJ fVNIMq"
