@@ -26,7 +26,7 @@ describe("GuidingPrinciples", () => {
     );
 
     const headingEls = getAllByRole("heading", { level: 3 });
-    expect(headingEls.length).toEqual(3);
+    expect(headingEls).toHaveLength(3);
   });
 
   it("renders default principles when none are provided", () => {
@@ -37,7 +37,7 @@ describe("GuidingPrinciples", () => {
       />,
     );
     const headingEls = getAllByRole("heading", { level: 3 });
-    expect(headingEls.length).toEqual(6);
+    expect(headingEls).toHaveLength(6);
     expect(headingEls[0]).toHaveTextContent("Evidence-informed");
   });
 

@@ -267,7 +267,7 @@ describe("lessonOverview()", () => {
     expect(lesson.pathways[1]?.programmeSlug).toEqual("lesson-slug-test-2");
     expect(lesson.pathways[2]?.programmeSlug).toEqual("lesson-slug-test-3");
 
-    expect(lesson.pathways.length).toEqual(3);
+    expect(lesson.pathways).toHaveLength(3);
   });
 
   test("throws a 'Resource not found' error if  data", async () => {

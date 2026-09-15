@@ -1,0 +1,470 @@
+import { localNationalCurriculumInsightsFixtures } from "../__fixtures__/nationalCurriculumInsights";
+
+import {
+  getNationalCurriculumInsightsReader,
+  getNationalCurriculumInsightsRouteData,
+  type NationalCurriculumInsightsReader,
+} from "./getRouteData";
+
+import { parseNationalCurriculumInsightsRoute } from "@/common-lib/urls/nationalCurriculumInsights";
+import type { NationalCurriculumInsightsModule } from "@/common-lib/cms-types/nationalCurriculumInsights";
+import CMSClient from "@/node-lib/cms";
+import { cacheData } from "@/node-lib/cache";
+import getServerConfig from "@/node-lib/getServerConfig";
+
+jest.mock("@/node-lib/cache", () => ({
+  cacheData: jest.fn((fn) => jest.fn(fn)),
+}));
+
+jest.mock("@/node-lib/cms", () => ({
+  __esModule: true,
+  default: {
+    nationalCurriculumInsightsHub: jest.fn(),
+    nationalCurriculumInsightsGuidancePage: jest.fn(),
+    nationalCurriculumInsightsSubjectBySlug: jest.fn(),
+  },
+}));
+
+const getRoute = (segments?: string[]) => {
+  const route = parseNationalCurriculumInsightsRoute(segments);
+  if (!route) {
+    throw new Error("Expected a valid test route");
+  }
+  return route;
+};
+
+describe("getNationalCurriculumInsightsRouteData", () => {
+  it.each<{
+    name: string;
+    modules: NationalCurriculumInsightsModule[];
+    needsCatalogue: boolean;
+  }>([
+    { name: "editorial content", modules: [], needsCatalogue: false },
+    {
+      name: "subject navigation",
+      modules: [
+        {
+          __typename: "NationalCurriculumInsightsSubjectNavigationSection",
+          phases: ["primary", "secondary"],
+          primaryHeading: "Primary",
+          secondaryHeading: "Secondary",
+        },
+      ],
+      needsCatalogue: true,
+    },
+    {
+      name: "downloads",
+      modules: [
+        {
+          __typename: "NationalCurriculumInsightsDownloadSection",
+          barHeading: "Curriculum guidance",
+          barCtaLabel: "Download guidance",
+          detailsHeading: "Your details",
+          downloadsHeading: "Choose subjects",
+          downloadsIntroduction: "Select subjects to download.",
+          downloadButtonLabel: "Download",
+        },
+      ],
+      needsCatalogue: true,
+    },
+  ])(
+    "reads the guidance catalogue only when needed for $name",
+    async ({ modules, needsCatalogue }) => {
+      const guidance =
+        await localNationalCurriculumInsightsFixtures.reader.nationalCurriculumInsightsGuidancePage();
+      if (!guidance) throw new Error("Expected the guidance fixture");
+      const hubReader = jest
+        .fn()
+        .mockResolvedValue(localNationalCurriculumInsightsFixtures.hub);
+      const guidanceReader = jest
+        .fn()
+        .mockResolvedValue({ ...guidance, modules });
+
+      const data = await getNationalCurriculumInsightsRouteData(
+        { kind: "guidance" },
+        {
+          previewMode: true,
+          reader: {
+            ...localNationalCurriculumInsightsFixtures.reader,
+            nationalCurriculumInsightsHub: hubReader,
+            nationalCurriculumInsightsGuidancePage: guidanceReader,
+          },
+        },
+      );
+
+      expect(guidanceReader).toHaveBeenCalledWith({ previewMode: true });
+      if (needsCatalogue) {
+        expect(hubReader).toHaveBeenCalledWith({ previewMode: true });
+        expect(data?.subjects).toEqual(
+          localNationalCurriculumInsightsFixtures.hub.subjects,
+        );
+      } else {
+        expect(hubReader).not.toHaveBeenCalled();
+        expect(data?.hub).toBeNull();
+        expect(data?.subjects).toEqual([]);
+      }
+    },
+  );
+
+  it("serves published guidance while the hub is unpublished", async () => {
+    const reader = {
+      ...localNationalCurriculumInsightsFixtures.reader,
+      nationalCurriculumInsightsHub: async () => null,
+    };
+    const data = await getNationalCurriculumInsightsRouteData(
+      { kind: "guidance" },
+      { previewMode: false, reader },
+    );
+    expect(data?.page?.pageType).toBe("guidance");
+    expect(data?.hub).toBeNull();
+    expect(data?.subjects).toEqual([]);
+    await expect(
+      getNationalCurriculumInsightsRouteData(
+        { kind: "hub" },
+        { previewMode: false, reader },
+      ),
+    ).resolves.toBeNull();
+    await expect(
+      getNationalCurriculumInsightsRouteData(getRoute(["science", "primary"]), {
+        previewMode: false,
+        reader,
+      }),
+    ).resolves.toBeNull();
+  });
+
+  it("keeps guidance private until published, but allows authenticated draft preview", async () => {
+    const reader = {
+      ...localNationalCurriculumInsightsFixtures.reader,
+      nationalCurriculumInsightsGuidancePage: async ({ previewMode } = {}) =>
+        previewMode
+          ? localNationalCurriculumInsightsFixtures.reader.nationalCurriculumInsightsGuidancePage(
+              { previewMode },
+            )
+          : null,
+    } satisfies NationalCurriculumInsightsReader;
+    await expect(
+      getNationalCurriculumInsightsRouteData(
+        { kind: "guidance" },
+        { previewMode: false, reader },
+      ),
+    ).resolves.toBeNull();
+    expect(
+      (
+        await getNationalCurriculumInsightsRouteData(
+          { kind: "guidance" },
+          { previewMode: true, reader },
+        )
+      )?.page,
+    ).not.toBeNull();
+    expect(
+      (
+        await getNationalCurriculumInsightsRouteData(
+          { kind: "hub" },
+          { previewMode: false, reader },
+        )
+      )?.hub,
+    ).not.toBeNull();
+  });
+
+  it("rejects unpublished subjects, phases and key stages", async () => {
+    for (const segments of [
+      ["science"],
+      ["science", "primary"],
+      ["science", "primary", "key-stage-1"],
+    ]) {
+      const reader = {
+        ...localNationalCurriculumInsightsFixtures.reader,
+        nationalCurriculumInsightsSubjectBySlug: async () => null,
+      };
+      await expect(
+        getNationalCurriculumInsightsRouteData(getRoute(segments), {
+          previewMode: false,
+          reader,
+        }),
+      ).resolves.toBeNull();
+    }
+    const reader = {
+      ...localNationalCurriculumInsightsFixtures.reader,
+      nationalCurriculumInsightsSubjectBySlug: async () => ({
+        ...localNationalCurriculumInsightsFixtures.subjects[0]!,
+        tabs: [],
+      }),
+    };
+    await expect(
+      getNationalCurriculumInsightsRouteData(getRoute(["science", "primary"]), {
+        previewMode: false,
+        reader,
+      }),
+    ).resolves.toBeNull();
+  });
+
+  it("keeps the configured subject catalogue order on the hub", async () => {
+    const data = await getNationalCurriculumInsightsRouteData(getRoute(), {
+      previewMode: false,
+      reader: localNationalCurriculumInsightsFixtures.reader,
+    });
+
+    expect(data?.subjects.map(({ slug }) => slug)).toEqual([
+      "science",
+      "english",
+      "maths",
+      "history",
+    ]);
+    expect(data?.page).toBeNull();
+    expect(data?.hub?.modules).toHaveLength(2);
+  });
+
+  it("resolves the subject itself as the independently editable Overview page", async () => {
+    const data = await getNationalCurriculumInsightsRouteData(
+      getRoute(["science"]),
+      {
+        previewMode: false,
+        reader: localNationalCurriculumInsightsFixtures.reader,
+      },
+    );
+
+    expect(data?.activeTab).toBe("overview");
+    expect(data?.page?.pageType).toBe("overview");
+    expect(data?.page?.id).toBe("nationalCurriculumInsightsSubject-science");
+    expect(data?.page).toBe(data?.subject);
+  });
+
+  it("resolves the independently editable guidance page", async () => {
+    const data = await getNationalCurriculumInsightsRouteData(
+      getRoute(["guidance"]),
+      {
+        previewMode: false,
+        reader: localNationalCurriculumInsightsFixtures.reader,
+      },
+    );
+
+    expect(data?.route.kind).toBe("guidance");
+    expect(data?.page?.pageType).toBe("guidance");
+    expect(data?.subject).toBeNull();
+    expect(data?.activeTab).toBeNull();
+  });
+
+  it("resolves Primary and Secondary from the subject's own tab references", async () => {
+    const primary = await getNationalCurriculumInsightsRouteData(
+      getRoute(["science", "primary"]),
+      {
+        previewMode: false,
+        reader: localNationalCurriculumInsightsFixtures.reader,
+      },
+    );
+    const secondary = await getNationalCurriculumInsightsRouteData(
+      getRoute(["science", "secondary"]),
+      {
+        previewMode: false,
+        reader: localNationalCurriculumInsightsFixtures.reader,
+      },
+    );
+
+    expect(primary?.page?.pageType).toBe("primary");
+    expect(secondary?.page?.pageType).toBe("secondary");
+    expect(primary?.page?.id).not.toBe(secondary?.page?.id);
+    expect(primary?.page?.modules).not.toBe(secondary?.page?.modules);
+  });
+
+  it("resolves a configured key stage below its owning phase page", async () => {
+    const data = await getNationalCurriculumInsightsRouteData(
+      getRoute(["science", "primary", "key-stage-1"]),
+      {
+        previewMode: false,
+        reader: localNationalCurriculumInsightsFixtures.reader,
+      },
+    );
+
+    expect(data?.activeTab).toBe("primary");
+    expect(data?.activeKeyStage).toBe("KS1");
+    expect(data?.page?.pageType).toBe("keyStage");
+    expect(data?.page?.id).toContain("key-stage-1");
+  });
+
+  it("uses draft page content only in preview mode", async () => {
+    const published = await getNationalCurriculumInsightsRouteData(
+      getRoute(["science", "primary"]),
+      {
+        previewMode: false,
+        reader: localNationalCurriculumInsightsFixtures.reader,
+      },
+    );
+    const draft = await getNationalCurriculumInsightsRouteData(
+      getRoute(["science", "primary"]),
+      {
+        previewMode: true,
+        reader: localNationalCurriculumInsightsFixtures.reader,
+      },
+    );
+
+    expect(published?.page?.title).toBe("Science primary page");
+    expect(draft?.page?.title).toBe("Draft Science primary page");
+    expect(draft?.page?.id).toMatch(/^drafts\./);
+  });
+
+  it("rejects unknown subjects and phases not configured as tabs", async () => {
+    await expect(
+      getNationalCurriculumInsightsRouteData(getRoute(["missing-subject"]), {
+        previewMode: false,
+        reader: localNationalCurriculumInsightsFixtures.reader,
+      }),
+    ).resolves.toBeNull();
+    await expect(
+      getNationalCurriculumInsightsRouteData(
+        getRoute(["english", "secondary"]),
+        {
+          previewMode: false,
+          reader: localNationalCurriculumInsightsFixtures.reader,
+        },
+      ),
+    ).resolves.toBeNull();
+    await expect(
+      getNationalCurriculumInsightsRouteData(
+        getRoute(["english", "primary", "key-stage-2"]),
+        {
+          previewMode: false,
+          reader: {
+            ...localNationalCurriculumInsightsFixtures.reader,
+            nationalCurriculumInsightsSubjectBySlug: async (subjectSlug) => {
+              const subject =
+                localNationalCurriculumInsightsFixtures.subjects.find(
+                  ({ slug }) => slug === subjectSlug,
+                );
+              return subject
+                ? {
+                    ...subject,
+                    tabs: subject.tabs.map((tab) => ({
+                      ...tab,
+                      page: { ...tab.page, keyStages: [] },
+                    })),
+                  }
+                : null;
+            },
+          },
+        },
+      ),
+    ).resolves.toBeNull();
+  });
+
+  it("rejects a subject response that is not the hub's referenced document", async () => {
+    const reader: NationalCurriculumInsightsReader = {
+      ...localNationalCurriculumInsightsFixtures.reader,
+      nationalCurriculumInsightsSubjectBySlug: async () => ({
+        ...localNationalCurriculumInsightsFixtures.subjects[0]!,
+        id: "another-science-document",
+      }),
+    };
+
+    await expect(
+      getNationalCurriculumInsightsRouteData(getRoute(["science"]), {
+        previewMode: false,
+        reader,
+      }),
+    ).resolves.toBeNull();
+  });
+});
+
+describe("getNationalCurriculumInsightsReader", () => {
+  const cachedReaders = jest
+    .mocked(cacheData)
+    .mock.results.map(({ value }) => value);
+
+  it("scopes published caches by page, project and dataset with the CMS refresh interval", () => {
+    for (const page of ["hub", "guidance", "subject"]) {
+      expect(cacheData).toHaveBeenCalledWith(
+        expect.any(Function),
+        [
+          "national-curriculum-insights",
+          getServerConfig("sanityProjectId"),
+          getServerConfig("sanityDataset"),
+          page,
+        ],
+        { revalidate: getServerConfig("sanityRevalidateSeconds") },
+      );
+    }
+  });
+
+  it("uses persistent caches for published reads and keys subjects by slug", async () => {
+    cachedReaders.forEach((cachedReader) => cachedReader.mockClear());
+    const reader = getNationalCurriculumInsightsReader();
+
+    await reader.nationalCurriculumInsightsHub();
+    await reader.nationalCurriculumInsightsGuidancePage();
+    await reader.nationalCurriculumInsightsSubjectBySlug("science");
+    await reader.nationalCurriculumInsightsSubjectBySlug("maths");
+
+    expect(cachedReaders[0]).toHaveBeenCalledTimes(1);
+    expect(cachedReaders[1]).toHaveBeenCalledTimes(1);
+    expect(cachedReaders[2]).toHaveBeenNthCalledWith(1, "science");
+    expect(cachedReaders[2]).toHaveBeenNthCalledWith(2, "maths");
+  });
+
+  it("bypasses every persistent cache for draft reads", async () => {
+    cachedReaders.forEach((cachedReader) => cachedReader.mockClear());
+    const reader = getNationalCurriculumInsightsReader();
+
+    await reader.nationalCurriculumInsightsHub({ previewMode: true });
+    await reader.nationalCurriculumInsightsGuidancePage({ previewMode: true });
+    await reader.nationalCurriculumInsightsSubjectBySlug("science", {
+      previewMode: true,
+    });
+
+    cachedReaders.forEach((cachedReader) =>
+      expect(cachedReader).not.toHaveBeenCalled(),
+    );
+    expect(CMSClient.nationalCurriculumInsightsHub).toHaveBeenLastCalledWith({
+      previewMode: true,
+    });
+    expect(
+      CMSClient.nationalCurriculumInsightsGuidancePage,
+    ).toHaveBeenLastCalledWith({ previewMode: true });
+    expect(
+      CMSClient.nationalCurriculumInsightsSubjectBySlug,
+    ).toHaveBeenLastCalledWith("science", { previewMode: true });
+  });
+
+  it("keeps a stable reader", () => {
+    expect(getNationalCurriculumInsightsReader()).toBe(
+      getNationalCurriculumInsightsReader(),
+    );
+  });
+
+  it.each([false, true])(
+    "passes preview mode %s through to every configured CMS reader",
+    async (previewMode) => {
+      const reader = getNationalCurriculumInsightsReader();
+      await reader.nationalCurriculumInsightsHub({ previewMode });
+      await reader.nationalCurriculumInsightsGuidancePage({ previewMode });
+      await reader.nationalCurriculumInsightsSubjectBySlug("science", {
+        previewMode,
+      });
+
+      expect(CMSClient.nationalCurriculumInsightsHub).toHaveBeenLastCalledWith({
+        previewMode,
+      });
+      expect(
+        CMSClient.nationalCurriculumInsightsGuidancePage,
+      ).toHaveBeenLastCalledWith({ previewMode });
+      expect(
+        CMSClient.nationalCurriculumInsightsSubjectBySlug,
+      ).toHaveBeenLastCalledWith("science", { previewMode });
+    },
+  );
+
+  it("defaults to published content", async () => {
+    const reader = getNationalCurriculumInsightsReader();
+    await reader.nationalCurriculumInsightsHub();
+    await reader.nationalCurriculumInsightsGuidancePage();
+    await reader.nationalCurriculumInsightsSubjectBySlug("science");
+
+    expect(CMSClient.nationalCurriculumInsightsHub).toHaveBeenLastCalledWith({
+      previewMode: false,
+    });
+    expect(
+      CMSClient.nationalCurriculumInsightsGuidancePage,
+    ).toHaveBeenLastCalledWith({ previewMode: false });
+    expect(
+      CMSClient.nationalCurriculumInsightsSubjectBySlug,
+    ).toHaveBeenLastCalledWith("science", { previewMode: false });
+  });
+});
