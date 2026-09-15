@@ -114,7 +114,8 @@ export const HomePageLowerView = (props: HomePageLowerViewProps) => {
                     </OakFlex>
                   </OakFlex>
                   <OakVideo
-                    showTranscript={false}
+                    showTranscript={true}
+                    transcript={introVideo.video.transcript}
                     videoSlot={
                       <VideoPlayer
                         playbackPolicy="public"
