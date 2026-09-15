@@ -16,7 +16,12 @@ const flatCompat = new FlatCompat({
 
 const importRules = {
   "import/first": "error",
-  "import/no-unresolved": "error",
+  // src/image-data/generated/*.svg is build-generated and gitignored, so it is
+  // absent when lint runs on a fresh CI checkout
+  "import/no-unresolved": [
+    "error",
+    { ignore: ["^@/image-data/generated/.*\\.svg$"] },
+  ],
   "import/no-named-as-default": "off",
 
   "import/order": [
