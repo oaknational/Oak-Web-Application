@@ -4,6 +4,8 @@ import { getSubscriptionStatus } from "./getSubscriptionStatus";
 
 import OakError from "@/errors/OakError";
 
+fetchMock.doMock();
+
 describe("getSubscriptionStatus", () => {
   it("makes a request to get the subscription status", async () => {
     fetchMock.mockResponse(JSON.stringify(true));

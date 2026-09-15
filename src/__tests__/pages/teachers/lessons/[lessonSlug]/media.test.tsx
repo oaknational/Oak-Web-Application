@@ -20,30 +20,6 @@ jest.mock("@/utils/handleTranscript.ts", () => ({
   populateMediaClipsWithTranscripts: jest.fn(),
 }));
 
-jest.mock(
-  "@/components/SharedComponents/VideoPlayer/useSignedVideoToken",
-  () => ({
-    ...jest.requireActual(
-      "@/components/SharedComponents/VideoPlayer/useSignedVideoToken",
-    ),
-    useSignedVideoToken: () => ({
-      loading: false,
-      error: null,
-      playbackToken: "mock-playback-token",
-    }),
-    useSignedThumbnailToken: () => ({
-      loading: false,
-      error: null,
-      playbackToken: "mock-playback-token",
-    }),
-    useSignedStoryboardToken: () => ({
-      loading: false,
-      error: null,
-      playbackToken: "mock-playback-token",
-    }),
-  }),
-);
-
 const fixtureData = lessonMediaClipsCanonicalFixture({
   lessonTitle: "Running as a team",
   lessonReleaseDate: "2022-02-01T00:00:00Z",

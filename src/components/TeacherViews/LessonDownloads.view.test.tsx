@@ -1,5 +1,6 @@
 import { screen } from "@testing-library/dom";
 import { act } from "@testing-library/react";
+import fetchMock from "jest-fetch-mock";
 
 import { LessonDownloads } from "./LessonDownloads.view";
 
@@ -34,17 +35,8 @@ jest.mock("next/navigation", () => ({
   })),
 }));
 
-jest.mock(
-  "@/components/TeacherComponents/helpers/downloadAndShareHelpers/fetchHubspotContactDetails",
-  () => ({
-    HUBSPOT_CONTACTS_ENDPOINT: "/api/hubspot/contacts",
-    fetchHubspotContactDetails: jest.fn().mockResolvedValue(null),
-    useFetchHubspotContactsSwr: () => ({
-      hubspotContact: undefined,
-      hubspotLoading: false,
-    }),
-  }),
-);
+// This view fetches HubSpot contacts and probes download URLs on mount.
+fetchMock.doMock();
 
 beforeEach(() => {
   mockReplace.mockClear();
