@@ -129,7 +129,11 @@ export default async (phase: NextConfig["phase"]): Promise<NextConfig> => {
         headers: [
           {
             key: "Link",
-            value: '</.well-known/api-catalog>; rel="api-catalog"',
+            value: [
+              '</.well-known/api-catalog>; rel="api-catalog"',
+              '</.well-known/ard.json>; rel="ard"',
+              '</.well-known/ai-catalog.json>; rel="ai-catalog"',
+            ].join(", "),
           },
         ],
       },
@@ -511,6 +515,16 @@ export default async (phase: NextConfig["phase"]): Promise<NextConfig> => {
         {
           source: "/.well-known/api-catalog",
           destination: "/api/well-known/api-catalog",
+        },
+        // Both the ARD path and its predecessor: deployed consumers still use
+        // the older one, so removing either loses reach. docs/agent-discovery.md.
+        {
+          source: "/.well-known/ard.json",
+          destination: "/api/well-known/ard",
+        },
+        {
+          source: "/.well-known/ai-catalog.json",
+          destination: "/api/well-known/ard",
         },
       ];
       // The MCP submission carousel images now live under /ai-plugin/carousel,
