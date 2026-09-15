@@ -21,7 +21,6 @@ jest.mock("@/common-lib/error-reporter", () => ({
 
 jest.mock("@clerk/nextjs/server");
 
-// @ts-expect-error - region is overwritten in development
 process.env.NODE_ENV = "production";
 
 const updateUserMetadata = jest.fn();
