@@ -548,9 +548,9 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
 
 .c181 {
   width: 100%;
-  max-width: 80rem;
-  padding-left: 1.25rem;
-  padding-right: 1.25rem;
+  max-width: 30rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
   padding-top: 1rem;
   margin: auto;
   margin-left: auto;
@@ -657,6 +657,24 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
 }
 
 .c211 {
+  position: absolute;
+  top: 0rem;
+  right: 0rem;
+  bottom: 0rem;
+  left: 0rem;
+  width: 100%;
+  min-width: 100%;
+  height: 100%;
+  min-height: 100%;
+  display: block;
+  -webkit-transform: translate(0%,32%);
+  -ms-transform: translate(0%,32%);
+  transform: translate(0%,32%);
+  font-family: --var(google-font),Lexend,sans-serif;
+  z-index: -1;
+}
+
+.c213 {
   position: fixed;
   right: 0rem;
   width: 100%;
@@ -666,7 +684,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
   z-index: 300;
 }
 
-.c214 {
+.c216 {
   position: -webkit-sticky;
   position: sticky;
   bottom: 0rem;
@@ -674,7 +692,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
   z-index: 299;
 }
 
-.c215 {
+.c217 {
   color: #222222;
   background: #f2f2f2;
   border-top: 0.063rem solid;
@@ -682,13 +700,13 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c216 {
+.c218 {
   margin-left: auto;
   margin-right: auto;
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c217 {
+.c219 {
   padding-top: 1.5rem;
   padding-bottom: 1.5rem;
   margin-left: 1rem;
@@ -696,7 +714,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c219 {
+.c221 {
   font-family: --var(google-font),Lexend,sans-serif;
   font-weight: 300;
   font-size: 0.875rem;
@@ -707,7 +725,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
   letter-spacing: -0.005rem;
 }
 
-.c222 {
+.c224 {
   font-family: --var(google-font),Lexend,sans-serif;
   white-space: nowrap;
 }
@@ -1158,7 +1176,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
   gap: 1rem;
 }
 
-.c212 {
+.c214 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -1173,7 +1191,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
   gap: 0.75rem;
 }
 
-.c218 {
+.c220 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -1188,7 +1206,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
   gap: 1.5rem;
 }
 
-.c221 {
+.c223 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -1290,7 +1308,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
   letter-spacing: -0.005rem;
 }
 
-.c220 {
+.c222 {
   font-family: --var(google-font),Lexend,sans-serif;
   font-weight: 500;
   font-size: 0.875rem;
@@ -1558,7 +1576,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
   cursor: default;
 }
 
-.c224 {
+.c226 {
   background: none;
   color: inherit;
   border: none;
@@ -1581,7 +1599,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
   border-radius: 0.25rem;
 }
 
-.c224:disabled {
+.c226:disabled {
   pointer-events: none;
   cursor: default;
 }
@@ -1605,6 +1623,12 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
 .c210 {
   -webkit-filter: brightness(0) saturate(100%) invert(85%) sepia(7%) saturate(1206%) hue-rotate(70deg) brightness(110%) contrast(90%);
   filter: brightness(0) saturate(100%) invert(85%) sepia(7%) saturate(1206%) hue-rotate(70deg) brightness(110%) contrast(90%);
+  object-fit: fill;
+}
+
+.c212 {
+  -webkit-filter: brightness(0) saturate(100%) invert(95%) sepia(3%) saturate(1596%) hue-rotate(279deg) brightness(95%) contrast(87%);
+  filter: brightness(0) saturate(100%) invert(95%) sepia(3%) saturate(1596%) hue-rotate(279deg) brightness(95%) contrast(87%);
   object-fit: fill;
 }
 
@@ -2269,7 +2293,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
   filter: invert(54%) sepia(0%) saturate(38%) hue-rotate(176deg) brightness(92%) contrast(91%);
 }
 
-.c223 {
+.c225 {
   display: inline;
   -webkit-align-items: center;
   -webkit-box-align: center;
@@ -2302,42 +2326,42 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
   overflow-wrap: break-word;
 }
 
-.c223 .c192 {
+.c225 .c192 {
   -webkit-filter: invert(10%) sepia(1%) saturate(236%) hue-rotate(314deg) brightness(95%) contrast(91%);
   filter: invert(10%) sepia(1%) saturate(236%) hue-rotate(314deg) brightness(95%) contrast(91%);
   display: inline-block;
   vertical-align: text-top;
 }
 
-.c223:focus-visible {
+.c225:focus-visible {
   box-shadow: 0 0 0 0.125rem rgba(255,229,85,100%), 0 0 0 0.3rem rgba(87,87,87,100%);
 }
 
-.c223:visited {
+.c225:visited {
   color: #222222;
 }
 
-.c223:visited .c192 {
+.c225:visited .c192 {
   -webkit-filter: invert(10%) sepia(1%) saturate(236%) hue-rotate(314deg) brightness(95%) contrast(91%);
   filter: invert(10%) sepia(1%) saturate(236%) hue-rotate(314deg) brightness(95%) contrast(91%);
 }
 
-.c223:active {
+.c225:active {
   color: #222222;
   outline: 1px solid #222222;
 }
 
-.c223:active .c192 {
+.c225:active .c192 {
   -webkit-filter: invert(10%) sepia(1%) saturate(236%) hue-rotate(314deg) brightness(95%) contrast(91%);
   filter: invert(10%) sepia(1%) saturate(236%) hue-rotate(314deg) brightness(95%) contrast(91%);
 }
 
-.c223[disabled] {
+.c225[disabled] {
   cursor: not-allowed;
   color: #808080;
 }
 
-.c223[disabled] .c192 {
+.c225[disabled] .c192 {
   -webkit-filter: invert(54%) sepia(0%) saturate(38%) hue-rotate(176deg) brightness(92%) contrast(91%);
   filter: invert(54%) sepia(0%) saturate(38%) hue-rotate(176deg) brightness(92%) contrast(91%);
 }
@@ -2504,7 +2528,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
   box-shadow: 0 0 0 0.125rem rgba(255,229,85,100%), 0 0 0 0.3rem rgba(87,87,87,100%);
 }
 
-.c213 {
+.c215 {
   top: 152px;
 }
 
@@ -3239,25 +3263,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
 
 @media (min-width:750px) {
   .c181 {
-    padding-left: 2.5rem;
-  }
-}
-
-@media (min-width:1280px) {
-  .c181 {
-    padding-left: 2.5rem;
-  }
-}
-
-@media (min-width:750px) {
-  .c181 {
-    padding-right: 2.5rem;
-  }
-}
-
-@media (min-width:1280px) {
-  .c181 {
-    padding-right: 2.5rem;
+    max-width: 80rem;
   }
 }
 
@@ -3324,12 +3330,18 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
 
 @media (min-width:750px) {
   .c211 {
+    display: none;
+  }
+}
+
+@media (min-width:750px) {
+  .c213 {
     right: 1.5rem;
   }
 }
 
 @media (min-width:750px) {
-  .c211 {
+  .c213 {
     width: -webkit-max-content;
     width: -moz-max-content;
     width: max-content;
@@ -3337,61 +3349,61 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
 }
 
 @media (min-width:750px) {
-  .c211 {
+  .c213 {
     padding-left: 0rem;
   }
 }
 
 @media (min-width:750px) {
-  .c211 {
+  .c213 {
     padding-right: 0rem;
   }
 }
 
 @media (min-width:750px) {
-  .c217 {
+  .c219 {
     margin-left: 1.5rem;
   }
 }
 
 @media (min-width:1280px) {
-  .c217 {
+  .c219 {
     margin-left: 3.5rem;
   }
 }
 
 @media (min-width:750px) {
-  .c217 {
+  .c219 {
     margin-right: 1.5rem;
   }
 }
 
 @media (min-width:1280px) {
-  .c217 {
+  .c219 {
     margin-right: 3.5rem;
   }
 }
 
 @media (min-width:750px) {
-  .c219 {
+  .c221 {
     font-weight: 300;
   }
 }
 
 @media (min-width:750px) {
-  .c219 {
+  .c221 {
     font-size: 1rem;
   }
 }
 
 @media (min-width:750px) {
-  .c219 {
+  .c221 {
     line-height: 1.5rem;
   }
 }
 
 @media (min-width:750px) {
-  .c219 {
+  .c221 {
     -webkit-letter-spacing: -0.005rem;
     -moz-letter-spacing: -0.005rem;
     -ms-letter-spacing: -0.005rem;
@@ -3526,7 +3538,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
 }
 
 @media (min-width:750px) {
-  .c212 {
+  .c214 {
     -webkit-align-items: flex-end;
     -webkit-box-align: flex-end;
     -ms-flex-align: flex-end;
@@ -3535,7 +3547,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
 }
 
 @media (min-width:750px) {
-  .c218 {
+  .c220 {
     -webkit-flex-direction: column;
     -ms-flex-direction: column;
     flex-direction: column;
@@ -3543,7 +3555,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
 }
 
 @media (min-width:1280px) {
-  .c218 {
+  .c220 {
     -webkit-flex-direction: row;
     -ms-flex-direction: row;
     flex-direction: row;
@@ -3551,7 +3563,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
 }
 
 @media (min-width:750px) {
-  .c218 {
+  .c220 {
     -webkit-align-items: flex-start;
     -webkit-box-align: flex-start;
     -ms-flex-align: flex-start;
@@ -3560,7 +3572,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
 }
 
 @media (min-width:1280px) {
-  .c218 {
+  .c220 {
     -webkit-align-items: center;
     -webkit-box-align: center;
     -ms-flex-align: center;
@@ -3569,19 +3581,19 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
 }
 
 @media (min-width:750px) {
-  .c218 {
+  .c220 {
     gap: 1.5rem;
   }
 }
 
 @media (min-width:1280px) {
-  .c218 {
+  .c220 {
     gap: 2rem;
   }
 }
 
 @media (min-width:750px) {
-  .c221 {
+  .c223 {
     -webkit-flex-direction: row;
     -ms-flex-direction: row;
     flex-direction: row;
@@ -3589,7 +3601,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
 }
 
 @media (min-width:750px) {
-  .c221 {
+  .c223 {
     -webkit-flex-wrap: wrap;
     -ms-flex-wrap: wrap;
     flex-wrap: wrap;
@@ -3597,7 +3609,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
 }
 
 @media (min-width:1280px) {
-  .c221 {
+  .c223 {
     -webkit-flex-wrap: nowrap;
     -ms-flex-wrap: nowrap;
     flex-wrap: nowrap;
@@ -3605,7 +3617,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
 }
 
 @media (min-width:750px) {
-  .c221 {
+  .c223 {
     gap: 2rem;
   }
 }
@@ -3665,25 +3677,25 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
 }
 
 @media (min-width:750px) {
-  .c220 {
+  .c222 {
     font-weight: 500;
   }
 }
 
 @media (min-width:750px) {
-  .c220 {
+  .c222 {
     font-size: 1rem;
   }
 }
 
 @media (min-width:750px) {
-  .c220 {
+  .c222 {
     line-height: 1.5rem;
   }
 }
 
 @media (min-width:750px) {
-  .c220 {
+  .c222 {
     -webkit-letter-spacing: -0.005rem;
     -moz-letter-spacing: -0.005rem;
     -ms-letter-spacing: -0.005rem;
@@ -4179,8 +4191,8 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
 }
 
 @media (hover:hover) {
-  .c223:hover,
-  .c223:visited:hover {
+  .c225:hover,
+  .c225:visited:hover {
     color: #222222;
     -webkit-text-decoration: underline;
     text-decoration: underline;
@@ -4188,8 +4200,8 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
     text-decoration-thickness: 18%;
   }
 
-  .c223:hover .c192,
-  .c223:visited:hover .c192 {
+  .c225:hover .c192,
+  .c225:visited:hover .c192 {
     -webkit-filter: invert(10%) sepia(1%) saturate(236%) hue-rotate(314deg) brightness(95%) contrast(91%);
     filter: invert(10%) sepia(1%) saturate(236%) hue-rotate(314deg) brightness(95%) contrast(91%);
   }
@@ -6965,31 +6977,44 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
             style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
           />
         </span>
+        <span
+          class="c211"
+        >
+          <img
+            alt=""
+            class="c212"
+            data-nimg="fill"
+            decoding="async"
+            loading="lazy"
+            src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1734537039/OWA/ui-graphics/looping-line-4_xtjj4r.svg"
+            style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+          />
+        </span>
       </footer>
     </div>
     <div
       aria-live="polite"
-      class="c211 c212 c213"
+      class="c213 c214 c215"
     />
   </div>
   <div
-    class="c214"
+    class="c216"
   >
     <div
-      class="c215"
+      class="c217"
       data-testid="cookie-banner"
     >
       <div
-        class="c216"
+        class="c218"
       >
         <div
-          class="c217 c218"
+          class="c219 c220"
         >
           <div
-            class="c219"
+            class="c221"
           >
             <strong
-              class="c220"
+              class="c222"
             >
               This site uses cookies to store information on your computer.
             </strong>
@@ -6997,13 +7022,13 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
             Some of these cookies are essential, while others help us to improve your experience by providing insights into how the site is being used.
           </div>
           <div
-            class="c9 c221"
+            class="c9 c223"
           >
             <div
-              class="c222 c41"
+              class="c224 c41"
             >
               <button
-                class="c223"
+                class="c225"
                 data-testid="cookie-banner-reject"
                 type="button"
               >
@@ -7047,7 +7072,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                 class="c6 yellow-shadow"
               />
               <button
-                class="c224 c19 internal-button"
+                class="c226 c19 internal-button"
                 data-testid="cookie-banner-accept"
               >
                 <div
