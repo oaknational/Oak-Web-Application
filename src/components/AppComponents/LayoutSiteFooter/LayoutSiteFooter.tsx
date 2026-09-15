@@ -394,6 +394,21 @@ const LayoutSiteFooter: FC = () => {
         $width={"100%"}
         $height={"100%"}
       />
+      <OakIcon
+        iconName="looping-line-4"
+        $colorFilter={"bg-decorative4-subdued"}
+        $zIndex={"behind"}
+        $display={["block", "none"]}
+        $objectFit={"fill"}
+        $transform={"translate(0%, 32%)"}
+        $position={"absolute"}
+        $left={"spacing-0"}
+        $right={"spacing-0"}
+        $top={"spacing-0"}
+        $bottom={"spacing-0"}
+        $width={"100%"}
+        $height={"100%"}
+      />
     </OakBox>
   );
 };
