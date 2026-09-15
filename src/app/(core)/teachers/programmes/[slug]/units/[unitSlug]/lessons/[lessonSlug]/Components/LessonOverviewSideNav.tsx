@@ -5,8 +5,11 @@ import { OakBox, OakFlex } from "@oaknational/oak-components";
 
 import { useCurrentSectionId } from "./CurrentSectionIdProvider";
 
+import { getLessonSlugFromProgrammeState } from "@/context/TeacherBrowseAnalytics/utils/getLessonSlugFromProgrammeState";
+import { resolveOakHref } from "@/common-lib/urls";
 import LessonOverviewSideNavAnchorLinks from "@/components/TeacherComponents/LessonOverviewSideNavAnchorLinks";
 import { TeachWithOakPromoSection } from "@/components/TeacherComponents/TeachWithOakPromoSection/TeachWithOakPromoSection";
+import { useTeacherBrowseAnalytics } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
 
 type LessonOverviewSideNavProps = Omit<
   ComponentProps<typeof LessonOverviewSideNavAnchorLinks>,
@@ -20,6 +23,18 @@ export default function LessonOverviewSideNav(
 ) {
   const currentSectionId = useCurrentSectionId();
   const { showPromoSection, ...linkProps } = props;
+
+  const programmeState = useTeacherBrowseAnalytics((s) => s.programmeState);
+  const lessonSlug = getLessonSlugFromProgrammeState(programmeState);
+  const lessonHref =
+    programmeState?.browseLevel === "lesson" && lessonSlug
+      ? resolveOakHref({
+          page: "lesson-overview",
+          lessonSlug,
+          programmeSlug: programmeState.programmeSlug,
+          unitSlug: programmeState.unit.slug,
+        })
+      : undefined;
 
   return (
     <OakFlex
@@ -42,7 +57,9 @@ export default function LessonOverviewSideNav(
           currentSectionId={currentSectionId}
         />
       </OakBox>
-      {showPromoSection && <TeachWithOakPromoSection />}
+      {showPromoSection && lessonHref && (
+        <TeachWithOakPromoSection returnTo={lessonHref} />
+      )}
     </OakFlex>
   );
 }

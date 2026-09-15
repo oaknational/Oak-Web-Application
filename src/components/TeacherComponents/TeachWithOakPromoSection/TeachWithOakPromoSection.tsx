@@ -1,6 +1,20 @@
 import { OakBox, OakCard } from "@oaknational/oak-components";
 
-export const TeachWithOakPromoSection = () => {
+import { resolveOakHref } from "@/common-lib/urls";
+
+type TeachWithOakPromoSectionProps = {
+  returnTo: string;
+};
+
+export const TeachWithOakPromoSection = ({
+  returnTo,
+}: Readonly<TeachWithOakPromoSectionProps>) => {
+  const href = resolveOakHref({
+    page: "teach-with-oak",
+    query: {
+      returnTo,
+    },
+  });
   return (
     <OakBox
       $display={"flex"}
@@ -11,7 +25,7 @@ export const TeachWithOakPromoSection = () => {
       <OakCard
         heading="Ever wondered why our lessons are structured this way?"
         headingLevel="h2"
-        href="/teachers/teach-with-oak"
+        href={href}
         subCopy="See how explanation, checks for understanding, practice and feedback work together to support pupils' learning."
         subCopyColor="text-subdued"
         linkText="See the thinking"

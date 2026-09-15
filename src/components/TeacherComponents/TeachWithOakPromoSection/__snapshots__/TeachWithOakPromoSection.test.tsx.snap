@@ -10,7 +10,7 @@ exports[`TeachWithOakPromoSection renders correctly 1`] = `
     >
       <a
         class="sc-aXZVg sc-gEvEer sc-kbousE fdJxNw dXoawi cEJRBW"
-        href="/teachers/teach-with-oak"
+        href="/teachers/teach-with-oak?returnTo=%2Ftest%2Furl"
       >
         <div
           class="sc-aXZVg sc-gEvEer sc-eyvILC jPvJsJ jFNgPm"

@@ -8,7 +8,9 @@ const render = renderWithProvidersByName(["oakTheme"]);
 
 describe("TeachWithOakPromoSection", () => {
   it("renders correctly", () => {
-    const { container, getByText } = render(<TeachWithOakPromoSection />);
+    const { container, getByText } = render(
+      <TeachWithOakPromoSection returnTo="/test/url" />,
+    );
     expect(container).toMatchSnapshot();
     const heading = screen.getByRole("heading", {
       level: 2,
@@ -29,11 +31,14 @@ describe("TeachWithOakPromoSection", () => {
   });
 
   it("renders link pointing to the correct href", () => {
-    render(<TeachWithOakPromoSection />);
+    render(<TeachWithOakPromoSection returnTo="/test/url" />);
 
     const link = screen.getByRole("link", { name: /See the thinking/i });
 
     expect(link).toBeInTheDocument();
-    expect(link).toHaveAttribute("href", "/teachers/teach-with-oak");
+    expect(link).toHaveAttribute(
+      "href",
+      "/teachers/teach-with-oak?returnTo=%2Ftest%2Furl",
+    );
   });
 });
