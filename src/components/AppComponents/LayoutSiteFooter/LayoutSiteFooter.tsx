@@ -291,8 +291,7 @@ const LayoutSiteFooter: FC = () => {
           $pt={["spacing-16", "spacing-80"]}
           $justifyContent={"center"}
           $flexDirection={"column"}
-          $ph={["spacing-20", "spacing-40", "spacing-40"]}
-          $maxWidth="spacing-1280"
+          $ph={"spacing-16"}
           $ma={"auto"}
           $width={"100%"}
         >
