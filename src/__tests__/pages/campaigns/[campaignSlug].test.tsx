@@ -36,35 +36,6 @@ jest.mock("@/context/Analytics/useAnalytics", () => ({
   }),
 }));
 
-jest.mock(
-  "@/components/SharedComponents/VideoPlayer/useSignedVideoToken",
-  () => ({
-    ...jest.requireActual(
-      "@/components/SharedComponents/VideoPlayer/useSignedVideoToken",
-    ),
-    useSignedVideoToken: () => ({
-      loading: false,
-      error: null,
-      playbackToken: "mock-playback-token",
-    }),
-    useSignedThumbnailToken: () => ({
-      loading: false,
-      error: null,
-      playbackToken: "mock-playback-token",
-    }),
-    useSignedStoryboardToken: () => ({
-      loading: false,
-      error: null,
-      playbackToken: "mock-playback-token",
-    }),
-  }),
-);
-
-jest.mock("@/hooks/useFetch", () => ({
-  __esModule: true,
-  useFetch: () => ({ data: [], error: null, isLoading: false }),
-}));
-
 jest.mock("@/node-lib/posthog/getPosthogId", () => ({
   __esModule: true,
   getPosthogIdFromCookie: jest.fn().mockReturnValue("test-posthog-id"),

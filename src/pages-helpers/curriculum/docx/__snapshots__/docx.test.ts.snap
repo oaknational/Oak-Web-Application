@@ -206,14 +206,14 @@ exports[`docx insertImages test 1`] = `
       "word/media/hash_f1c6d68f4906606ef3ae58fac887d210ae8b33ce7275c21ee8e177090278e249png",
     ],
     "type": "CREATE",
-    "value": "",
+    "value": "4a5204e50a2367de974264a2056566e7af61af9d192b8699883d11491a37b599",
   },
   {
     "path": [
       "word/media/hash_b29edb1ad79e3ac505ac9e6722aed45100902e97fd45f474aacb455a7b8d809ffoo",
     ],
     "type": "CREATE",
-    "value": "",
+    "value": "4a5204e50a2367de974264a2056566e7af61af9d192b8699883d11491a37b599",
   },
 ]
 `;
