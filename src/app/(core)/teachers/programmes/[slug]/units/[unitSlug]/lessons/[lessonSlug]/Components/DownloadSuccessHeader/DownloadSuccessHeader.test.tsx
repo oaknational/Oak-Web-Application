@@ -14,6 +14,18 @@ jest.mock("@oaknational/oak-consent-client", () => ({
 }));
 
 describe("DownloadSuccessHeader", () => {
+  it("renders the header in compact mode", () => {
+    render(<DownloadSuccessHeader href="/programmes" returnTo="lesson" />);
+
+    expect(
+      screen.getByRole("heading", { name: "Thanks for downloading!" }),
+    ).toBeInTheDocument();
+    expect(
+      screen.getByRole("link", { name: "Back to lesson" }),
+    ).toBeInTheDocument();
+    expect(screen.queryByTestId("hero-image")).not.toBeInTheDocument();
+  });
+
   it("passes href to the back link", () => {
     const testHref = "/teachers/programmes/english/key-stage-3";
     render(<DownloadSuccessHeader href={testHref} returnTo="lesson" />);
