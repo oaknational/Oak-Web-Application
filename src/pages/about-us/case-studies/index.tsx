@@ -7,14 +7,12 @@ import { TopNavProps } from "@/components/AppComponents/TopNav/TopNav";
 import { TeacherBrowseAnalyticsStoreProvider } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
 import { isFeatureFlagEnabledServer } from "@/utils/featureFlagChecks/server";
 
-export type AboutUsOaksImpactCaseStudyListPageProps = {
+export type AboutUsCaseStudyListPageProps = {
   // pageData: {};
   topNav: TopNavProps;
 };
 
-export const AboutUsOaksImpactCaseStudyList: NextPage<
-  AboutUsOaksImpactCaseStudyListPageProps
-> = ({
+export const AboutUsCaseStudyList: NextPage<AboutUsCaseStudyListPageProps> = ({
   // pageData: {},
   topNav,
 }) => {
@@ -35,7 +33,7 @@ export const AboutUsOaksImpactCaseStudyList: NextPage<
 };
 
 export const getServerSideProps: GetServerSideProps<
-  AboutUsOaksImpactCaseStudyListPageProps
+  AboutUsCaseStudyListPageProps
 > = async (context) => {
   const isEnabled = await isFeatureFlagEnabledServer(
     context.req.cookies,
@@ -66,4 +64,4 @@ export const getServerSideProps: GetServerSideProps<
   };
 };
 
-export default AboutUsOaksImpactCaseStudyList;
+export default AboutUsCaseStudyList;
