@@ -229,6 +229,7 @@ type AboutUsMeetTheTeamBioLinkProps = {
 type AboutUsGetInvolvedLinkProps = { page: "about-get-involved" };
 type AboutUsOaksCurriculaLinkProps = { page: "about-oaks-curricula" };
 type AboutUsOaksImpactLinkProps = { page: "about-oaks-impact" };
+type AboutUsCaseStudiesLinkProps = { page: "about-case-studies" };
 type AboutUsCaseStudyLinkProps = { page: "about-case-study"; slug: string };
 
 type CareersLinkProps = { page: "careers" };
@@ -381,6 +382,7 @@ export type OakLinkProps =
   | AboutUsGetInvolvedLinkProps
   | AboutUsOaksCurriculaLinkProps
   | AboutUsOaksImpactLinkProps
+  | AboutUsCaseStudiesLinkProps
   | AboutUsCaseStudyLinkProps
   | CareersLinkProps
   | ContactUsLinkProps
@@ -591,6 +593,12 @@ export const OAK_PAGES: {
     analyticsPageName: "About Us: Oak's Impact",
     configType: "internal",
     pageType: "about-oaks-impact",
+  }),
+  "about-case-studies": createOakPageConfig({
+    pathPattern: "/about-us/case-studies",
+    analyticsPageName: "About Us: Case Study",
+    configType: "internal",
+    pageType: "about-case-studies",
   }),
   "about-case-study": createOakPageConfig({
     pathPattern: "/about-us/case-studies/:slug",

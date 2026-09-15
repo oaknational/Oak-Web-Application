@@ -4,7 +4,7 @@ exports[`AboutSharedHeader renders correctly 1`] = `
 <body>
   <div>
     <div
-      class="sc-aXZVg bZTQLO"
+      class="sc-aXZVg jPvJsJ"
     >
       <div
         class="sc-aXZVg sc-gEvEer gHbcIj cqAYHx"
@@ -55,7 +55,7 @@ exports[`AboutSharedHeader renders correctly with loop illustration 1`] = `
 <body>
   <div>
     <div
-      class="sc-aXZVg bZTQLO"
+      class="sc-aXZVg jPvJsJ"
     >
       <div
         class="sc-aXZVg sc-gEvEer gHbcIj cqAYHx"

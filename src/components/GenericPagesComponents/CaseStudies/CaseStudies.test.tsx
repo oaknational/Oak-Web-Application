@@ -1,18 +1,15 @@
-import { oaksImpactCaseStudiesFixture } from "./OaksImpactCaseStudies.fixtures";
+import { caseStudiesFixture } from "./CaseStudies.fixtures";
 
-import { OaksImpactCaseStudies } from ".";
+import { CaseStudies } from ".";
 
 import { renderWithProvidersByName } from "@/__tests__/__helpers__/renderWithProviders";
 
 const render = renderWithProvidersByName(["oakTheme"]);
 
-describe("OaksImpactCaseStudies", () => {
+describe("CaseStudies", () => {
   it("renders correctly when 3 case studies are provided", () => {
     const { baseElement, getByRole, getAllByRole } = render(
-      <OaksImpactCaseStudies
-        title={"Case studies"}
-        caseStudies={oaksImpactCaseStudiesFixture}
-      />,
+      <CaseStudies title={"Case studies"} caseStudies={caseStudiesFixture} />,
     );
 
     expect(baseElement).toMatchSnapshot();
@@ -24,9 +21,9 @@ describe("OaksImpactCaseStudies", () => {
 
   it("renders correctly when 2 case studies are provided", () => {
     const { baseElement, getByRole, getAllByRole } = render(
-      <OaksImpactCaseStudies
+      <CaseStudies
         title={"Case studies"}
-        caseStudies={oaksImpactCaseStudiesFixture.slice(0, 2)}
+        caseStudies={caseStudiesFixture.slice(0, 2)}
       />,
     );
 
@@ -39,7 +36,7 @@ describe("OaksImpactCaseStudies", () => {
 
   it("renders only the first 3 case studies when more are provided", () => {
     const caseStudiesWithFourth = [
-      ...oaksImpactCaseStudiesFixture,
+      ...caseStudiesFixture,
       {
         video: {
           title: "Case study 4",
@@ -58,7 +55,7 @@ describe("OaksImpactCaseStudies", () => {
     ];
 
     const { getAllByRole, queryByRole } = render(
-      <OaksImpactCaseStudies
+      <CaseStudies
         title={"Case studies"}
         caseStudies={caseStudiesWithFourth}
       />,

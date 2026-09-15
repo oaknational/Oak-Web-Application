@@ -1,4 +1,4 @@
-export const oaksImpactCaseStudiesFixture = [
+export const caseStudiesFixture = [
   {
     video: {
       title: "Case study 1",
