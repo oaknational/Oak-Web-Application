@@ -1,4 +1,4 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
 
 exports[`CurricTimetablingUnits snapshot (mode=debug) 1`] = `
 <div>
@@ -469,6 +469,7 @@ exports[`CurricTimetablingUnits snapshot (mode=debug) 1`] = `
         <div
           class="sc-aXZVg sc-gEvEer cWFjzT eUIBLO"
           data-testid="modal-content"
+          style="scrollbar-gutter: stable;"
         >
           <div
             class="sc-aXZVg jPvJsJ"
@@ -1246,6 +1247,7 @@ exports[`CurricTimetablingUnits snapshot (mode=normal) 1`] = `
         <div
           class="sc-aXZVg sc-gEvEer cWFjzT eUIBLO"
           data-testid="modal-content"
+          style="scrollbar-gutter: stable;"
         >
           <div
             class="sc-aXZVg jPvJsJ"
