@@ -148,7 +148,7 @@ describe("cms/sanity-client", () => {
     it("fetches the specified webinar", async () => {
       await getSanityClient().webinarBySlug("an-upcoming-webinar");
 
-      expect(sanityGraphqlApi.webinarBySlug).toBeCalledWith(
+      expect(sanityGraphqlApi.webinarBySlug).toHaveBeenCalledWith(
         expect.objectContaining({ slug: "an-upcoming-webinar" }),
       );
     });
@@ -202,7 +202,7 @@ describe("cms/sanity-client", () => {
     it("fetches the specified landing page", async () => {
       await getSanityClient().landingPageBySlug("some-landing-page");
 
-      expect(sanityGraphqlApi.landingPageBySlug).toBeCalledWith(
+      expect(sanityGraphqlApi.landingPageBySlug).toHaveBeenCalledWith(
         expect.objectContaining({ slug: "some-landing-page" }),
       );
     });
@@ -255,7 +255,7 @@ describe("cms/sanity-client", () => {
 
       expect(result?.subjects[0]?.slug).toBe("science");
       expect(result?.modules).toEqual([insightsModule]);
-      expect(mockGetNationalCurriculumInsightsHub).toBeCalledWith({});
+      expect(mockGetNationalCurriculumInsightsHub).toHaveBeenCalledWith({});
     });
 
     it("returns the subject Overview and its independently referenced phase pages", async () => {
@@ -268,10 +268,9 @@ describe("cms/sanity-client", () => {
       expect(result?.modules).toEqual([insightsModule]);
       expect(result?.tabs.map(({ kind }) => kind)).toEqual(["primary"]);
       expect(result?.id).not.toBe(result?.tabs[0]?.page.id);
-      expect(mockGetNationalCurriculumInsightsSubjectBySlug).toBeCalledWith(
-        "science",
-        {},
-      );
+      expect(
+        mockGetNationalCurriculumInsightsSubjectBySlug,
+      ).toHaveBeenCalledWith("science", {});
     });
 
     it("passes preview mode through to the subject reader", async () => {
@@ -284,10 +283,9 @@ describe("cms/sanity-client", () => {
       expect(result?.tabs[0]?.page.id).toBe(
         "drafts.nationalCurriculumInsightsPage-science-primary",
       );
-      expect(mockGetNationalCurriculumInsightsSubjectBySlug).toBeCalledWith(
-        "science",
-        { previewMode: true },
-      );
+      expect(
+        mockGetNationalCurriculumInsightsSubjectBySlug,
+      ).toHaveBeenCalledWith("science", { previewMode: true });
     });
 
     it("returns null for an unknown subject", async () => {

@@ -138,7 +138,7 @@ describe("checkIfDownloadResourcesExist()", () => {
       isLegacyDownload: true,
     });
 
-    expect(global.fetch).toBeCalledWith(
+    expect(global.fetch).toHaveBeenCalledWith(
       "https://mockdownloads.com/api/lesson/lesson-slug/check-files?selection=exit-quiz-answers,worksheet-pdf",
     );
   });
@@ -149,7 +149,7 @@ describe("checkIfDownloadResourcesExist()", () => {
       isLegacyDownload: false,
     });
 
-    expect(global.fetch).toBeCalledWith(
+    expect(global.fetch).toHaveBeenCalledWith(
       "https://mockdownloads.com/api/lesson/lesson-slug/check-files?selection=exit-quiz-answers,worksheet-pdf",
     );
   });

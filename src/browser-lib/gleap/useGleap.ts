@@ -2,6 +2,7 @@ import { useEffect } from "react";
 
 import getBrowserConfig from "../getBrowserConfig";
 
+import reloadPage from "./reloadPage";
 import startGleap, { hasLoaded } from "./startGleap";
 
 const apiKey = getBrowserConfig("gleapApiKey");
@@ -26,7 +27,7 @@ const useGleap = ({ enabled }: UseGleapProps) => {
        * (whilst allowing the user to re-enable it)
        * @todo check that this doesn't blow up when confirmic policies are updated
        */
-      window.location.reload();
+      reloadPage();
     }
     if (shouldStartGleap) {
       startGleap({ apiKey, frameUrl, apiUrl });
