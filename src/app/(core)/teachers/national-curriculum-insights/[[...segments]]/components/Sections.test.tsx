@@ -210,7 +210,6 @@ describe("National Curriculum Insights sections", () => {
               image: contentImage,
               video: {
                 title: "Bennie Kara on inclusive curriculum leadership",
-                captions: null,
                 transcript: null,
                 video: {
                   asset: {
