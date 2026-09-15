@@ -5,6 +5,8 @@
  */
 import { FC } from "react";
 
+// This only fails linting in the CI
+ 
 import InlineSpriteSheetSvg from "@/image-data/generated/inline-sprite.svg";
 
 const InlineSpriteSheet: FC = () => {
