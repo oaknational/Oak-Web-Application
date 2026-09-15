@@ -5,7 +5,8 @@
  */
 import { FC } from "react";
 
-// eslint-disable-next-line import/no-unresolved
+// This only fails linting in the CI
+ 
 import InlineSpriteSheetSvg from "@/image-data/generated/inline-sprite.svg";
 
 const InlineSpriteSheet: FC = () => {
