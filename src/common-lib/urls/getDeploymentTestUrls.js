@@ -46,11 +46,11 @@ function getDeploymentTestUrls() {
     "/teachers/programmes/history-primary/download", // download tab
 
     // National Curriculum Insights pages
-    "/teachers/national-curriculum-insights",
-    "/curriculum-change-explained/guidance",
-    "/teachers/national-curriculum-insights/science",
-    "/teachers/national-curriculum-insights/science/primary",
-    "/teachers/national-curriculum-insights/science/primary/key-stage-1",
+    // "/teachers/national-curriculum-insights",
+    // "/curriculum-change-explained/guidance",
+    // "/teachers/national-curriculum-insights/science",
+    // "/teachers/national-curriculum-insights/science/primary",
+    // "/teachers/national-curriculum-insights/science/primary/key-stage-1",
 
     // Unit pages
     "/teachers/programmes/art-primary-ks1/units/reclaimed-materials-drawing-and-sculpture/lessons", // primary
