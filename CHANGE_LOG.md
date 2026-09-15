@@ -1,3 +1,10 @@
+# [1.1195.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1194.0...v1.1195.0) (2026-09-15)
+
+
+### Features
+
+* promote download success header compact variant ([c7760f7](https://github.com/oaknational/Oak-Web-Application/commit/c7760f746bac6b9fd1f945137bfa0e07f7fa359f))
+
 # [1.1194.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1193.0...v1.1194.0) (2026-09-15)
 
 
