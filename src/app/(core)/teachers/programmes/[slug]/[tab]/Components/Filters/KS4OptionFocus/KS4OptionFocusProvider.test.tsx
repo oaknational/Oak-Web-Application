@@ -34,19 +34,14 @@ jest.mock("next/navigation", () => ({
   usePathname: () => "/teachers/programmes/english-secondary-ocr/units",
 }));
 
-Object.defineProperty(globalThis, "history", {
-  value: {
-    replaceState: replaceStateMock,
-  },
-  writable: true,
-});
-
-Object.defineProperty(globalThis, "location", {
-  value: {
-    pathname: "/teachers/programmes/english-secondary-ocr/units",
-  },
-  writable: true,
-});
+globalThis.history.replaceState(
+  null,
+  "",
+  "/teachers/programmes/english-secondary-ocr/units",
+);
+jest
+  .spyOn(globalThis.history, "replaceState")
+  .mockImplementation(replaceStateMock);
 
 const render = renderWithProvidersByName([
   "oakTheme",

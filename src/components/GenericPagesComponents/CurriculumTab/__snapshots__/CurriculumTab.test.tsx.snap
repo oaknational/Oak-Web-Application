@@ -1,4 +1,4 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
 
 exports[`CurriculumTab renders 1`] = `
 .c0 {
@@ -1715,7 +1715,7 @@ exports[`CurriculumTab renders 1`] = `
                               class="c44"
                               height="100%"
                               name="box-border-left"
-                              style="width: 3px;"
+                              style="right: unset; width: 3px;"
                               width="100%"
                               xmlns="http://www.w3.org/2000/svg"
                             >
@@ -1910,7 +1910,7 @@ exports[`CurriculumTab renders 1`] = `
                           class="c44"
                           height="100%"
                           name="box-border-left"
-                          style="width: 3px;"
+                          style="right: unset; width: 3px;"
                           width="100%"
                           xmlns="http://www.w3.org/2000/svg"
                         >
