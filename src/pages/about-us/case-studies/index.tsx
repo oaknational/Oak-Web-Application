@@ -101,7 +101,7 @@ export const AboutUsOaksImpactCaseStudyList: NextPage<
 };
 
 export const getServerSideProps: GetServerSideProps<
-  AboutUsOaksImpactCaseStudyListPageProps
+  AboutUsCaseStudyListPageProps
 > = async (context) => {
   const isEnabled = await isFeatureFlagEnabledServer(
     context.req.cookies,
@@ -134,4 +134,4 @@ export const getServerSideProps: GetServerSideProps<
   };
 };
 
-export default AboutUsOaksImpactCaseStudyList;
+export default AboutUsCaseStudyList;

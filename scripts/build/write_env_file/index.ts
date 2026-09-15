@@ -96,6 +96,8 @@ async function main() {
     NEXT_PUBLIC_HUBSPOT_PORTAL_ID: oakConfig.hubspot.portalId,
     NEXT_PUBLIC_HUBSPOT_NEWSLETTER_FORM_ID: oakConfig.hubspot.newsletterFormId,
     NEXT_PUBLIC_HUBSPOT_DOWNLOADS_FORM_ID: oakConfig.hubspot.downloadsFormId,
+    NEXT_PUBLIC_HUBSPOT_CURRICULUM_DOWNLOADS_FORM_ID:
+      oakConfig.hubspot.curriculumDownloadsFormId,
     NEXT_PUBLIC_HUBSPOT_ONBOARDING_FORM_ID: oakConfig.hubspot.onboardingFormId,
     NEXT_PUBLIC_HUBSPOT_FALLBACK_FORM_ID: oakConfig.hubspot.fallbackFormId,
     HUBSPOT_GOOGLE_CLASSROOM_FORM_ID:

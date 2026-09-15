@@ -64,6 +64,7 @@ export type ProgrammePageProps = {
   featureFlags: Record<string, boolean>;
   implementationGuides: ImplementationGuides | null;
   fileSizes: ProgrammeDownloadsProps["fileSizes"];
+  activeFlags: string[];
 };
 
 export const ProgrammeView = ({
@@ -82,6 +83,7 @@ export const ProgrammeView = ({
   featureFlags,
   implementationGuides,
   fileSizes,
+  activeFlags,
 }: ProgrammePageProps) => {
   const searchParams = useSearchParams();
 
@@ -190,6 +192,7 @@ export const ProgrammeView = ({
                 subjectTitle={subjectTitle}
                 phase={curriculumSelectionSlugs.phaseSlug}
                 phaseTitle={phaseTitle}
+                activeFlags={activeFlags}
                 onClick={() =>
                   curriculumResourcesAccessed({
                     componentType: ComponentType.IMPLEMENTATION_GUIDE_CALLOUT,

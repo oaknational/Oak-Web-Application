@@ -15,13 +15,17 @@ import { PortableTextReactComponents } from "@portabletext/react";
 import { NewGutterMaxWidth } from "@/components/GenericPagesComponents/NewGutterMaxWidth";
 import { PortableTextWithDefaults } from "@/components/SharedComponents/PortableText";
 import { PortableTextJSON } from "@/common-lib/cms-types";
+import { OwaImageProps } from "@/components/SharedComponents/OwaImage";
 
-const IllustrationPanel = styled(OakBox)`
-  height: 410px;
+const IllustrationPanel = styled(OakBox)<{ $showImageOverflow: boolean }>`
+  height: ${({ $showImageOverflow }) =>
+    $showImageOverflow ? "auto" : "410px"};
   width: auto;
-
+  flex: ${({ $showImageOverflow }) =>
+    $showImageOverflow ? "1 1 0" : "0 1 auto"};
   @media (max-width: 920px) {
-    display: none;
+    display: ${({ $showImageOverflow }) =>
+      $showImageOverflow ? "block" : "none"};
   }
 `;
 
@@ -65,13 +69,16 @@ export function BackgroundHeaderLoop() {
   );
 }
 
+type AboutSharedHeaderImageProps = {
+  imageUrl: string;
+  imageAlt?: string;
+} & Omit<OwaImageProps, "src" | "alt">;
+
 export function AboutSharedHeaderImage({
   imageAlt,
   imageUrl,
-}: Readonly<{
-  imageAlt?: string;
-  imageUrl: string;
-}>) {
+  ...imageProps
+}: Readonly<AboutSharedHeaderImageProps>) {
   return (
     <OakImage
       alt={imageAlt ?? ""}
@@ -79,6 +86,7 @@ export function AboutSharedHeaderImage({
       $objectFit={"contain"}
       $height={"100%"}
       $width={"spacing-360"}
+      {...imageProps}
     />
   );
 }
@@ -100,6 +108,7 @@ export type AboutSharedHeaderProps = {
   content: PortableTextJSON | string;
   children?: ReactNode;
   titleHighlight?: OakUiRoleToken;
+  showImageOverflow?: boolean;
   $background?: OakUiRoleToken;
 };
 export function AboutSharedHeader({
@@ -107,20 +116,35 @@ export function AboutSharedHeader({
   content,
   children,
   titleHighlight,
+  showImageOverflow = false,
   $background,
 }: Readonly<AboutSharedHeaderProps>) {
   return (
     <OakBox $background={$background}>
       <NewGutterMaxWidth>
         <OakFlex
+          $minWidth="spacing-0"
+          $flexBasis={[showImageOverflow ? 0 : "auto", "auto"]}
+          $flexDirection={[showImageOverflow ? "column" : "row", "row"]}
           $alignItems="center"
           $justifyContent="space-between"
           $pt={["spacing-56", "spacing-72"]}
           $pb={["spacing-56", "spacing-72"]}
-          $gap={["spacing-0", "spacing-48", "spacing-240"]}
+          $gap={
+            showImageOverflow
+              ? ["spacing-16"]
+              : ["spacing-0", "spacing-48", "spacing-240"]
+          }
           $overflow={"hidden"}
         >
-          <OakFlex $flexDirection={"column"} $gap={"spacing-24"}>
+          <OakFlex
+            $minWidth="spacing-0"
+            $flexGrow={showImageOverflow ? 1 : 0}
+            $flexShrink={1}
+            $flexBasis={showImageOverflow ? "spacing-0" : "auto"}
+            $flexDirection={"column"}
+            $gap={"spacing-24"}
+          >
             <OakHeading
               tag="h1"
               $font={["heading-4", "heading-2", "heading-2"]}
@@ -128,6 +152,11 @@ export function AboutSharedHeader({
               <OakSpan
                 $background={titleHighlight ?? "bg-decorative1-main"}
                 $ph={"spacing-4"}
+                style={{
+                  lineHeight: 1.25,
+                  WebkitBoxDecorationBreak: "clone",
+                  boxDecorationBreak: "clone",
+                }}
               >
                 {title}
               </OakSpan>
@@ -150,7 +179,13 @@ export function AboutSharedHeader({
               />
             )}
           </OakFlex>
-          <IllustrationPanel>{children}</IllustrationPanel>
+          <IllustrationPanel
+            $showImageOverflow={showImageOverflow}
+            $position="relative"
+            $zIndex={0}
+          >
+            {children}
+          </IllustrationPanel>
         </OakFlex>
       </NewGutterMaxWidth>
     </OakBox>

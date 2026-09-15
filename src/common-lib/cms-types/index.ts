@@ -15,3 +15,4 @@ export * from "./landingPage";
 export * from "./teamMember";
 export * from "./blogListingPage";
 export * from "./curriculumOverview";
+export * from "./nationalCurriculumInsights";

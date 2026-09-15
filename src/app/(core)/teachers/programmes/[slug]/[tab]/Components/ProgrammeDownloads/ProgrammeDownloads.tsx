@@ -1,6 +1,5 @@
 "use client";
 
-import prettyBytes from "pretty-bytes";
 import {
   OakBox,
   OakResourceCard,
@@ -28,6 +27,7 @@ import { Controller, ControllerRenderProps } from "react-hook-form";
 import { DownloadSuccessHeader } from "../../../units/[unitSlug]/lessons/[lessonSlug]/Components/DownloadSuccessHeader/DownloadSuccessHeader";
 
 import { ChildSubjectTierSelector } from "./ChildSubjectTierSelector/ChildSubjectTierSelector";
+import { useHubspotCurriculumDownloads } from "./useHubspotCurriculumDownloads";
 
 import {
   CurriculumDownloadsTierSubjectProps,
@@ -35,7 +35,6 @@ import {
 } from "@/pages-helpers/curriculum/docx/tab-helpers";
 import { DOWNLOAD_TYPE_LABELS } from "@/components/CurriculumComponents/CurriculumDownloadView/helper";
 import { DownloadPageWithAccordionContent } from "@/components/TeacherComponents/DownloadPageWithAccordion/DownloadPageWithAccordion";
-import { useHubspotSubmit } from "@/components/TeacherComponents/hooks/downloadAndShareHooks/useHubspotSubmit";
 import { useResourceFormState } from "@/components/TeacherComponents/hooks/downloadAndShareHooks/useResourceFormState";
 import { useOnboardingStatus } from "@/components/TeacherComponents/hooks/useOnboardingStatus";
 import { DelayedLoadingSpinner } from "@/components/TeacherComponents/SharePageLayout/SharePageLayout";
@@ -46,6 +45,7 @@ import useResourceFormSubmit from "@/components/TeacherComponents/hooks/download
 import downloadDebouncedSubmit from "@/components/TeacherComponents/helpers/downloadAndShareHelpers/downloadDebounceSubmit";
 import { ImplementationGuides } from "@/common-lib/cms-types";
 import { useTeacherBrowseAnalytics } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
+import { formatBytes } from "@/utils/formatBytes";
 
 export type ProgrammeDownloadsProps = {
   mvRefreshTime: number;
@@ -73,7 +73,7 @@ export const ProgrammeDownloads = ({
 }: ProgrammeDownloadsProps) => {
   const { curriculumResourcesDownloadRefined, curriculumResourcesDownloaded } =
     useTeacherBrowseAnalytics((store) => store.track);
-  const { onHubspotSubmit } = useHubspotSubmit();
+  const { onHubspotSubmit } = useHubspotCurriculumDownloads();
   const onboardingStatus = useOnboardingStatus();
   const isLoading = onboardingStatus === "loading";
 
@@ -88,10 +88,13 @@ export const ProgrammeDownloads = ({
         return true;
       }
       if (group === "implementation-guide") {
-        return implementationGuides?.[id as keyof ImplementationGuides];
+        return (
+          implementationGuides?.[id as keyof ImplementationGuides] &&
+          featureFlags["implementation-guides"]
+        );
       }
     }).map(({ id }) => id);
-  }, [curriculumUnitsFormattedData, implementationGuides]);
+  }, [curriculumUnitsFormattedData, implementationGuides, featureFlags]);
 
   const curriculumDownloadsWithLabels = DOWNLOAD_TYPE_LABELS.filter(
     ({ id, group }) => {
@@ -101,9 +104,7 @@ export const ProgrammeDownloads = ({
   const implementationGuideDownloadsWithLabels = DOWNLOAD_TYPE_LABELS.filter(
     ({ id, group }) => {
       return (
-        featureFlags["implementation-guides"] &&
-        group === "implementation-guide" &&
-        availableDownloadTypes.includes(id)
+        group === "implementation-guide" && availableDownloadTypes.includes(id)
       );
     },
   );
@@ -233,7 +234,9 @@ export const ProgrammeDownloads = ({
         schoolName: data.schoolName,
         email: data.email,
         terms: data.terms,
-        resources: ["docx"],
+        resources: data.resources,
+        phaseSlug: curriculumSelectionSlugs.phaseSlug,
+        subjectSlug: curriculumSelectionSlugs.subjectSlug,
       });
       curriculumResourcesDownloaded(data);
 
@@ -348,6 +351,7 @@ export const ProgrammeDownloads = ({
                 triggerForm={form.trigger}
                 validationSummaryKey={form.submitCount}
                 apiError={submitError}
+                initialOpen={true}
                 cardGroup={
                   <OakFlex $gap={"spacing-32"} $flexDirection={"column"}>
                     {curriculumDownloadsWithLabels.length > 0 && (
@@ -386,9 +390,7 @@ export const ProgrammeDownloads = ({
                                       checked={fieldValue.includes(download.id)}
                                       fileSize={
                                         fileSize
-                                          ? prettyBytes(
-                                              fileSize.size,
-                                            ).toUpperCase()
+                                          ? formatBytes(fileSize.size)
                                           : "—"
                                       }
                                       description={download.fileExt}
@@ -448,9 +450,7 @@ export const ProgrammeDownloads = ({
                                         )}
                                         fileSize={
                                           fileSize
-                                            ? prettyBytes(
-                                                fileSize,
-                                              ).toUpperCase()
+                                            ? formatBytes(fileSize)
                                             : undefined
                                         }
                                         description={download.fileExt}
