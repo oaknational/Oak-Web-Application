@@ -1,3 +1,19 @@
+# [1.1197.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1196.0...v1.1197.0) (2026-09-15)
+
+
+### Bug Fixes
+
+* add to sitemap exclusions ([5fbd4da](https://github.com/oaknational/Oak-Web-Application/commit/5fbd4dab159dd88a4be5415cf3521f5c284d758a))
+* added ./src/utils/featureFlagChecks/flags.tsx to coverage ignore ([f7b8238](https://github.com/oaknational/Oak-Web-Application/commit/f7b823876a267e4c931857f9f51428dd8437c30e))
+* remove oaks impact from case studies ([9b3041c](https://github.com/oaknational/Oak-Web-Application/commit/9b3041c347f55c109b3fda2a6a71311845034a84))
+* snaps ([ece264d](https://github.com/oaknational/Oak-Web-Application/commit/ece264d13889d2cf84f95e3f73e9f130faa1a08c))
+* snaps ([0fc1e88](https://github.com/oaknational/Oak-Web-Application/commit/0fc1e886baf99dce87f873e289ee356c9540a484))
+
+
+### Features
+
+* add /about-us/case-studies behind feature flag ([304ca66](https://github.com/oaknational/Oak-Web-Application/commit/304ca664b57d0dd23268e41d4c335213645e345f))
+
 # [1.1196.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1195.1...v1.1196.0) (2026-09-15)
 
 
