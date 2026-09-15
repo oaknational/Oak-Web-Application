@@ -14,6 +14,7 @@ import {
   OakLink,
   OakTextInput,
   OakJauntyAngleLabel,
+  parseSpacing,
 } from "@oaknational/oak-components";
 
 import FieldError from "@/components/SharedComponents/FieldError";
@@ -147,8 +148,8 @@ const TermsAgreementForm: FC<TermsAgreementFormProps> = ({
                   }
                   $zIndex="in-front"
                   $position="absolute"
-                  $top={"-20px"}
-                  $left={"5px"}
+                  $left={"spacing-4"}
+                  style={{ top: `-${parseSpacing("spacing-20")}` }}
                   $borderRadius="border-radius-square"
                   data-testid="jaunty-label"
                 />

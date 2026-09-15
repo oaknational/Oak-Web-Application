@@ -21,8 +21,6 @@ exports[`pages/about/meet-the-team/[slug].tsx renders 1`] = `
 
 .c4 {
   position: relative;
-  width: -webkit-max-content;
-  width: -moz-max-content;
   width: max-content;
   height: auto;
   font-family: --var(google-font),Lexend,sans-serif;
@@ -111,8 +109,6 @@ exports[`pages/about/meet-the-team/[slug].tsx renders 1`] = `
 
 .c40 {
   position: relative;
-  height: -webkit-fit-content;
-  height: -moz-fit-content;
   height: fit-content;
   padding: 0.5rem;
   color: #222222;
@@ -124,9 +120,6 @@ exports[`pages/about/meet-the-team/[slug].tsx renders 1`] = `
   font-weight: 300;
   font-size: 1rem;
   line-height: 1.5rem;
-  -webkit-letter-spacing: -0.005rem;
-  -moz-letter-spacing: -0.005rem;
-  -ms-letter-spacing: -0.005rem;
   letter-spacing: -0.005rem;
 }
 
@@ -142,8 +135,6 @@ exports[`pages/about/meet-the-team/[slug].tsx renders 1`] = `
 
 .c45 {
   position: relative;
-  width: -webkit-max-content;
-  width: -moz-max-content;
   width: max-content;
   font-family: --var(google-font),Lexend,sans-serif;
 }
@@ -174,8 +165,6 @@ exports[`pages/about/meet-the-team/[slug].tsx renders 1`] = `
 }
 
 .c59 {
-  width: -webkit-fit-content;
-  width: -moz-fit-content;
   width: fit-content;
   min-width: 2rem;
   height: 2rem;
@@ -187,9 +176,6 @@ exports[`pages/about/meet-the-team/[slug].tsx renders 1`] = `
   font-weight: 400;
   font-size: 1rem;
   line-height: 1.25rem;
-  -webkit-letter-spacing: 0.0115rem;
-  -moz-letter-spacing: 0.0115rem;
-  -ms-letter-spacing: 0.0115rem;
   letter-spacing: 0.0115rem;
 }
 
@@ -275,9 +261,6 @@ exports[`pages/about/meet-the-team/[slug].tsx renders 1`] = `
   font-weight: 400;
   font-size: 1rem;
   line-height: 1.25rem;
-  -webkit-letter-spacing: 0.0115rem;
-  -moz-letter-spacing: 0.0115rem;
-  -ms-letter-spacing: 0.0115rem;
   letter-spacing: 0.0115rem;
 }
 
@@ -293,9 +276,6 @@ exports[`pages/about/meet-the-team/[slug].tsx renders 1`] = `
   font-weight: 400;
   font-size: 1.5rem;
   line-height: 2rem;
-  -webkit-letter-spacing: 0.0115rem;
-  -moz-letter-spacing: 0.0115rem;
-  -ms-letter-spacing: 0.0115rem;
   letter-spacing: 0.0115rem;
 }
 
@@ -305,9 +285,6 @@ exports[`pages/about/meet-the-team/[slug].tsx renders 1`] = `
   font-weight: 300;
   font-size: 1rem;
   line-height: 1.5rem;
-  -webkit-letter-spacing: -0.005rem;
-  -moz-letter-spacing: -0.005rem;
-  -ms-letter-spacing: -0.005rem;
   letter-spacing: -0.005rem;
 }
 
@@ -350,9 +327,6 @@ exports[`pages/about/meet-the-team/[slug].tsx renders 1`] = `
   font-weight: 300;
   font-size: 1rem;
   line-height: 1.5rem;
-  -webkit-letter-spacing: -0.005rem;
-  -moz-letter-spacing: -0.005rem;
-  -ms-letter-spacing: -0.005rem;
   letter-spacing: -0.005rem;
 }
 
@@ -387,9 +361,6 @@ exports[`pages/about/meet-the-team/[slug].tsx renders 1`] = `
 }
 
 .c117 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
   font-family: --var(google-font),Lexend,sans-serif;
 }
@@ -447,8 +418,6 @@ exports[`pages/about/meet-the-team/[slug].tsx renders 1`] = `
   height: 100%;
   min-height: 100%;
   display: none;
-  -webkit-transform: none;
-  -ms-transform: none;
   transform: none;
   font-family: --var(google-font),Lexend,sans-serif;
   z-index: -1;
@@ -465,9 +434,7 @@ exports[`pages/about/meet-the-team/[slug].tsx renders 1`] = `
   height: 100%;
   min-height: 100%;
   display: block;
-  -webkit-transform: translate(0%,32%);
-  -ms-transform: translate(0%,32%);
-  transform: translate(0%,32%);
+  transform: translate(0%, 32%);
   font-family: --var(google-font),Lexend,sans-serif;
   z-index: -1;
 }
@@ -483,7 +450,6 @@ exports[`pages/about/meet-the-team/[slug].tsx renders 1`] = `
 }
 
 .c138 {
-  position: -webkit-sticky;
   position: sticky;
   bottom: 0rem;
   font-family: --var(google-font),Lexend,sans-serif;
@@ -517,9 +483,6 @@ exports[`pages/about/meet-the-team/[slug].tsx renders 1`] = `
   font-weight: 300;
   font-size: 0.875rem;
   line-height: 1.25rem;
-  -webkit-letter-spacing: -0.005rem;
-  -moz-letter-spacing: -0.005rem;
-  -ms-letter-spacing: -0.005rem;
   letter-spacing: -0.005rem;
 }
 
@@ -529,361 +492,166 @@ exports[`pages/about/meet-the-team/[slug].tsx renders 1`] = `
 }
 
 .c1 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
   flex-direction: column;
-  -webkit-box-flex: 1;
-  -webkit-flex-grow: 1;
-  -ms-flex-positive: 1;
   flex-grow: 1;
 }
 
 .c10 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
   flex-direction: row;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
   align-items: center;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
   justify-content: center;
   gap: 0.5rem;
 }
 
 .c13 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
   justify-content: center;
   gap: 1rem;
 }
 
 .c23 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
   align-items: center;
   gap: 1.5rem;
 }
 
 .c29 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
   align-items: center;
-  -webkit-box-pack: justify;
-  -webkit-justify-content: space-between;
-  -ms-flex-pack: justify;
   justify-content: space-between;
-  -webkit-box-flex: 1;
-  -webkit-flex-grow: 1;
-  -ms-flex-positive: 1;
   flex-grow: 1;
 }
 
 .c34 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
   flex-direction: row;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
   align-items: center;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
   justify-content: center;
   gap: 0.25rem;
 }
 
 .c37 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
   align-items: center;
   gap: 1.5rem;
 }
 
 .c41 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
   align-items: center;
 }
 
 .c46 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
 }
 
 .c50 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
   flex-direction: row;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
   align-items: center;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
   justify-content: center;
   gap: 0rem;
 }
 
 .c52 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
   align-items: center;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
   justify-content: center;
 }
 
 .c60 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
   align-items: center;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
   justify-content: center;
   gap: 0.25rem;
 }
 
 .c105 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
   flex-direction: column;
 }
 
 .c78 {
   display: none;
-  -webkit-order: 1;
-  -ms-flex-order: 1;
   order: 1;
 }
 
 .c80 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-order: 2;
-  -ms-flex-order: 2;
   order: 2;
 }
 
 .c83 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
   flex-direction: column;
   gap: 1.5rem;
 }
 
 .c84 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
   flex-direction: column;
   gap: 0.25rem;
 }
 
 .c94 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
   gap: 1rem;
 }
 
 .c101 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
   flex-direction: column;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
   justify-content: center;
-  -webkit-box-flex: 1;
-  -webkit-flex-grow: 1;
-  -ms-flex-positive: 1;
   flex-grow: 1;
 }
 
 .c115 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: left;
-  -webkit-justify-content: left;
-  -ms-flex-pack: left;
   justify-content: left;
 }
 
 .c118 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
   align-items: center;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
   justify-content: center;
   gap: 1rem;
 }
 
 .c126 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
   flex-direction: column;
-  -webkit-align-items: flex-start;
-  -webkit-box-align: flex-start;
-  -ms-flex-align: flex-start;
   align-items: flex-start;
-  -webkit-box-pack: start;
-  -webkit-justify-content: flex-start;
-  -ms-flex-pack: start;
   justify-content: flex-start;
 }
 
 .c128 {
   display: none;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
   align-items: center;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
   justify-content: center;
   gap: 1rem;
 }
 
 .c136 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
   flex-direction: column;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
   align-items: center;
   gap: 0.75rem;
 }
 
 .c142 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
   flex-direction: column;
-  -webkit-align-items: flex-start;
-  -webkit-box-align: flex-start;
-  -ms-flex-align: flex-start;
   align-items: flex-start;
   gap: 1.5rem;
 }
 
 .c145 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
   flex-direction: column;
-  -webkit-flex-wrap: wrap;
-  -ms-flex-wrap: wrap;
   flex-wrap: wrap;
-  -webkit-box-pack: end;
-  -webkit-justify-content: flex-end;
-  -ms-flex-pack: end;
   justify-content: flex-end;
-  -webkit-box-flex: 1;
-  -webkit-flex-grow: 1;
-  -ms-flex-positive: 1;
   flex-grow: 1;
   gap: 0.75rem;
 }
@@ -893,9 +661,6 @@ exports[`pages/about/meet-the-team/[slug].tsx renders 1`] = `
   font-weight: 600;
   font-size: 1rem;
   line-height: 1.25rem;
-  -webkit-letter-spacing: 0.0115rem;
-  -moz-letter-spacing: 0.0115rem;
-  -ms-letter-spacing: 0.0115rem;
   letter-spacing: 0.0115rem;
   text-align: left;
 }
@@ -905,9 +670,6 @@ exports[`pages/about/meet-the-team/[slug].tsx renders 1`] = `
   font-weight: 500;
   font-size: 0.875rem;
   line-height: 1.25rem;
-  -webkit-letter-spacing: -0.005rem;
-  -moz-letter-spacing: -0.005rem;
-  -ms-letter-spacing: -0.005rem;
   letter-spacing: -0.005rem;
   text-align: left;
 }
@@ -921,9 +683,6 @@ exports[`pages/about/meet-the-team/[slug].tsx renders 1`] = `
   font-weight: 500;
   font-size: 0.875rem;
   line-height: 1.25rem;
-  -webkit-letter-spacing: -0.005rem;
-  -moz-letter-spacing: -0.005rem;
-  -ms-letter-spacing: -0.005rem;
   letter-spacing: -0.005rem;
   text-align: left;
 }
@@ -933,9 +692,6 @@ exports[`pages/about/meet-the-team/[slug].tsx renders 1`] = `
   font-weight: 600;
   font-size: 1rem;
   line-height: 1.25rem;
-  -webkit-letter-spacing: 0.0115rem;
-  -moz-letter-spacing: 0.0115rem;
-  -ms-letter-spacing: 0.0115rem;
   letter-spacing: 0.0115rem;
 }
 
@@ -944,9 +700,6 @@ exports[`pages/about/meet-the-team/[slug].tsx renders 1`] = `
   font-weight: 500;
   font-size: 0.875rem;
   line-height: 1.25rem;
-  -webkit-letter-spacing: -0.005rem;
-  -moz-letter-spacing: -0.005rem;
-  -ms-letter-spacing: -0.005rem;
   letter-spacing: -0.005rem;
 }
 
@@ -955,7 +708,6 @@ exports[`pages/about/meet-the-team/[slug].tsx renders 1`] = `
   top: 0rem;
   left: 0rem;
   font-family: --var(google-font),Lexend,sans-serif;
-  -webkit-transition: all 0.3s ease;
   transition: all 0.3s ease;
 }
 
@@ -1128,9 +880,6 @@ exports[`pages/about/meet-the-team/[slug].tsx renders 1`] = `
   font-weight: 500;
   font-size: 0.875rem;
   line-height: 1.25rem;
-  -webkit-letter-spacing: -0.005rem;
-  -moz-letter-spacing: -0.005rem;
-  -ms-letter-spacing: -0.005rem;
   letter-spacing: -0.005rem;
   color: #ffffff;
   background: #222222;
@@ -1206,7 +955,7 @@ exports[`pages/about/meet-the-team/[slug].tsx renders 1`] = `
   cursor: default;
 }
 
-.c148 {
+.c147 {
   background: none;
   color: inherit;
   border: none;
@@ -1229,7 +978,7 @@ exports[`pages/about/meet-the-team/[slug].tsx renders 1`] = `
   border-radius: 0.25rem;
 }
 
-.c148:disabled {
+.c147:disabled {
   pointer-events: none;
   cursor: default;
 }
@@ -1239,25 +988,21 @@ exports[`pages/about/meet-the-team/[slug].tsx renders 1`] = `
 }
 
 .c36 {
-  -webkit-filter: invert(10%) sepia(1%) saturate(236%) hue-rotate(314deg) brightness(95%) contrast(91%);
   filter: invert(10%) sepia(1%) saturate(236%) hue-rotate(314deg) brightness(95%) contrast(91%);
   object-fit: contain;
 }
 
 .c54 {
-  -webkit-filter: invert(98%) sepia(98%) saturate(0%) hue-rotate(328deg) brightness(102%) contrast(102%);
   filter: invert(98%) sepia(98%) saturate(0%) hue-rotate(328deg) brightness(102%) contrast(102%);
   object-fit: contain;
 }
 
 .c132 {
-  -webkit-filter: brightness(0) saturate(100%) invert(85%) sepia(7%) saturate(1206%) hue-rotate(70deg) brightness(110%) contrast(90%);
   filter: brightness(0) saturate(100%) invert(85%) sepia(7%) saturate(1206%) hue-rotate(70deg) brightness(110%) contrast(90%);
   object-fit: fill;
 }
 
 .c134 {
-  -webkit-filter: brightness(0) saturate(100%) invert(95%) sepia(3%) saturate(1596%) hue-rotate(279deg) brightness(95%) contrast(87%);
   filter: brightness(0) saturate(100%) invert(95%) sepia(3%) saturate(1596%) hue-rotate(279deg) brightness(95%) contrast(87%);
   object-fit: fill;
 }
@@ -1278,7 +1023,6 @@ exports[`pages/about/meet-the-team/[slug].tsx renders 1`] = `
 }
 
 .c8:hover {
-  -webkit-text-decoration: underline;
   text-decoration: underline;
   color: #222222;
   background: #f2f2f2;
@@ -1316,7 +1060,6 @@ exports[`pages/about/meet-the-team/[slug].tsx renders 1`] = `
 }
 
 .c19:hover {
-  -webkit-text-decoration: underline;
   text-decoration: underline;
   color: #ffffff;
   background: #575757;
@@ -1354,7 +1097,6 @@ exports[`pages/about/meet-the-team/[slug].tsx renders 1`] = `
 }
 
 .c33:hover {
-  -webkit-text-decoration: none;
   text-decoration: none;
   color: #222222;
   background: #f2f2f2;
@@ -1392,7 +1134,6 @@ exports[`pages/about/meet-the-team/[slug].tsx renders 1`] = `
 }
 
 .c64:hover {
-  -webkit-text-decoration: none;
   text-decoration: none;
   color: #ffffff;
   background: #575757;
@@ -1430,7 +1171,6 @@ exports[`pages/about/meet-the-team/[slug].tsx renders 1`] = `
 }
 
 .c96:hover {
-  -webkit-text-decoration: none;
   text-decoration: none;
   color: #222222;
   background: #f2f2f2;
@@ -1462,16 +1202,16 @@ exports[`pages/about/meet-the-team/[slug].tsx renders 1`] = `
 }
 
 .c5 .grey-shadow:has(+ * + .internal-button:focus-visible) {
-  box-shadow: 0 0 0 0.3rem rgba(87,87,87,100%);
+  box-shadow: 0 0 0 0.3rem rgba(87, 87, 87, 100%);
 }
 
 .c5 .yellow-shadow:has(+ .internal-button:focus-visible) {
-  box-shadow: 0 0 0 0.125rem rgba(255,229,85,100%);
+  box-shadow: 0 0 0 0.125rem rgba(255, 229, 85, 100%);
 }
 
 .c5 .yellow-shadow:has(+ .internal-button:hover),
-.c5 .yellow-shadow:has(+ .internal-button:hover:not(:focus-visible,:active)) {
-  box-shadow: 0.125rem 0.125rem 0 rgba(255,229,85,100%);
+.c5 .yellow-shadow:has(+ .internal-button:hover:not(:focus-visible, :active)) {
+  box-shadow: 0.125rem 0.125rem 0 rgba(255, 229, 85, 100%);
 }
 
 .c5 .grey-shadow:has(+ * + .internal-button:hover) {
@@ -1479,23 +1219,23 @@ exports[`pages/about/meet-the-team/[slug].tsx renders 1`] = `
 }
 
 .c5 .grey-shadow:has(+ * + .internal-button:active) {
-  box-shadow: 0.25rem 0.25rem 0 rgba(87,87,87,100%);
+  box-shadow: 0.25rem 0.25rem 0 rgba(87, 87, 87, 100%);
 }
 
 .c5 .yellow-shadow:has(+ .internal-button:active) {
-  box-shadow: 0.125rem 0.125rem 0 rgba(255,229,85,100%);
+  box-shadow: 0.125rem 0.125rem 0 rgba(255, 229, 85, 100%);
 }
 
 .c15 .grey-shadow:has(+ * + .internal-button:focus-visible) {
-  box-shadow: 0 0 0 0.3rem rgba(87,87,87,100%);
+  box-shadow: 0 0 0 0.3rem rgba(87, 87, 87, 100%);
 }
 
 .c15 .yellow-shadow:has(+ .internal-button:focus-visible) {
-  box-shadow: 0 0 0 0.125rem rgba(255,229,85,100%);
+  box-shadow: 0 0 0 0.125rem rgba(255, 229, 85, 100%);
 }
 
 .c15 .yellow-shadow:has(+ .internal-button:hover),
-.c15 .yellow-shadow:has(+ .internal-button:hover:not(:focus-visible,:active)) {
+.c15 .yellow-shadow:has(+ .internal-button:hover:not(:focus-visible, :active)) {
   box-shadow: none;
 }
 
@@ -1504,11 +1244,11 @@ exports[`pages/about/meet-the-team/[slug].tsx renders 1`] = `
 }
 
 .c15 .grey-shadow:has(+ * + .internal-button:active) {
-  box-shadow: 0.25rem 0.25rem 0 rgba(87,87,87,100%);
+  box-shadow: 0.25rem 0.25rem 0 rgba(87, 87, 87, 100%);
 }
 
 .c15 .yellow-shadow:has(+ .internal-button:active) {
-  box-shadow: 0.125rem 0.125rem 0 rgba(255,229,85,100%);
+  box-shadow: 0.125rem 0.125rem 0 rgba(255, 229, 85, 100%);
 }
 
 .c49 {
@@ -1517,7 +1257,6 @@ exports[`pages/about/meet-the-team/[slug].tsx renders 1`] = `
 }
 
 .c49:hover {
-  -webkit-text-decoration: underline;
   text-decoration: underline;
   color: #575757;
 }
@@ -1530,51 +1269,51 @@ exports[`pages/about/meet-the-team/[slug].tsx renders 1`] = `
   color: #808080;
 }
 
-.c47 > :first-child:focus-visible .shadow {
-  box-shadow: 0 0 0 0.125rem rgba(255,229,85,100%), 0 0 0 0.3rem rgba(87,87,87,100%);
+.c47 >:first-of-type:focus-visible .shadow {
+  box-shadow: 0 0 0 0.125rem rgba(255, 229, 85, 100%),0 0 0 0.3rem rgba(87, 87, 87, 100%);
 }
 
-.c47 > :first-child:hover .shadow {
-  box-shadow: 0.125rem 0.125rem 0 rgba(255,229,85,100%);
+.c47 >:first-of-type:hover .shadow {
+  box-shadow: 0.125rem 0.125rem 0 rgba(255, 229, 85, 100%);
 }
 
-.c47 > :first-child:active .shadow {
-  box-shadow: 0.125rem 0.125rem 0 rgba(255,229,85,100%), 0.25rem 0.25rem 0 rgba(87,87,87,100%);
+.c47 >:first-of-type:active .shadow {
+  box-shadow: 0.125rem 0.125rem 0 rgba(255, 229, 85, 100%),0.25rem 0.25rem 0 rgba(87, 87, 87, 100%);
 }
 
-.c47 > :first-child:disabled .icon-container {
+.c47 >:first-of-type:disabled .icon-container {
   background: #808080;
 }
 
-.c47 > :first-child:hover .icon-container {
+.c47 >:first-of-type:hover .icon-container {
   background: #575757;
 }
 
-.c47 > :first-child:active .icon-container {
+.c47 >:first-of-type:active .icon-container {
   background: #222222;
 }
 
-.c119 > :first-child:focus-visible .shadow {
-  box-shadow: 0 0 0 0.125rem rgba(255,229,85,100%), 0 0 0 0.3rem rgba(87,87,87,100%);
+.c119 >:first-of-type:focus-visible .shadow {
+  box-shadow: 0 0 0 0.125rem rgba(255, 229, 85, 100%),0 0 0 0.3rem rgba(87, 87, 87, 100%);
 }
 
-.c119 > :first-child:hover .shadow {
-  box-shadow: 0.125rem 0.125rem 0 rgba(255,229,85,100%);
+.c119 >:first-of-type:hover .shadow {
+  box-shadow: 0.125rem 0.125rem 0 rgba(255, 229, 85, 100%);
 }
 
-.c119 > :first-child:active .shadow {
-  box-shadow: 0.125rem 0.125rem 0 rgba(255,229,85,100%), 0.25rem 0.25rem 0 rgba(87,87,87,100%);
+.c119 >:first-of-type:active .shadow {
+  box-shadow: 0.125rem 0.125rem 0 rgba(255, 229, 85, 100%),0.25rem 0.25rem 0 rgba(87, 87, 87, 100%);
 }
 
-.c119 > :first-child:disabled .icon-container {
+.c119 >:first-of-type:disabled .icon-container {
   background: #e4e4e4;
 }
 
-.c119 > :first-child:hover .icon-container {
+.c119 >:first-of-type:hover .icon-container {
   background: #ffffff;
 }
 
-.c119 > :first-child:active .icon-container {
+.c119 >:first-of-type:active .icon-container {
   background: #ffffff;
 }
 
@@ -1583,9 +1322,6 @@ exports[`pages/about/meet-the-team/[slug].tsx renders 1`] = `
   font-weight: 600;
   font-size: 2.5rem;
   line-height: 3rem;
-  -webkit-letter-spacing: 0.0115rem;
-  -moz-letter-spacing: 0.0115rem;
-  -ms-letter-spacing: 0.0115rem;
   letter-spacing: 0.0115rem;
 }
 
@@ -1594,9 +1330,6 @@ exports[`pages/about/meet-the-team/[slug].tsx renders 1`] = `
   font-weight: 600;
   font-size: 1rem;
   line-height: 1.25rem;
-  -webkit-letter-spacing: 0.0115rem;
-  -moz-letter-spacing: 0.0115rem;
-  -ms-letter-spacing: 0.0115rem;
   letter-spacing: 0.0115rem;
   margin-bottom: 0.5rem;
   color: #222222;
@@ -1624,9 +1357,6 @@ exports[`pages/about/meet-the-team/[slug].tsx renders 1`] = `
   font-weight: 300;
   font-size: 1rem;
   line-height: 1.5rem;
-  -webkit-letter-spacing: -0.005rem;
-  -moz-letter-spacing: -0.005rem;
-  -ms-letter-spacing: -0.005rem;
   letter-spacing: -0.005rem;
   margin-top: 1rem;
 }
@@ -1636,9 +1366,6 @@ exports[`pages/about/meet-the-team/[slug].tsx renders 1`] = `
   font-weight: 500;
   font-size: 0.875rem;
   line-height: 1.25rem;
-  -webkit-letter-spacing: -0.005rem;
-  -moz-letter-spacing: -0.005rem;
-  -ms-letter-spacing: -0.005rem;
   letter-spacing: -0.005rem;
 }
 
@@ -1647,9 +1374,6 @@ exports[`pages/about/meet-the-team/[slug].tsx renders 1`] = `
   font-weight: 300;
   font-size: 0.75rem;
   line-height: 1rem;
-  -webkit-letter-spacing: -0.005rem;
-  -moz-letter-spacing: -0.005rem;
-  -ms-letter-spacing: -0.005rem;
   letter-spacing: -0.005rem;
 }
 
@@ -1658,9 +1382,6 @@ exports[`pages/about/meet-the-team/[slug].tsx renders 1`] = `
   font-weight: 400;
   font-size: 1rem;
   line-height: 1.25rem;
-  -webkit-letter-spacing: 0.0115rem;
-  -moz-letter-spacing: 0.0115rem;
-  -ms-letter-spacing: 0.0115rem;
   letter-spacing: 0.0115rem;
 }
 
@@ -1669,9 +1390,6 @@ exports[`pages/about/meet-the-team/[slug].tsx renders 1`] = `
   font-weight: 400;
   font-size: 1.5rem;
   line-height: 2rem;
-  -webkit-letter-spacing: 0.0115rem;
-  -moz-letter-spacing: 0.0115rem;
-  -ms-letter-spacing: 0.0115rem;
   letter-spacing: 0.0115rem;
 }
 
@@ -1680,9 +1398,6 @@ exports[`pages/about/meet-the-team/[slug].tsx renders 1`] = `
   font-weight: 300;
   font-size: 1rem;
   line-height: 1.5rem;
-  -webkit-letter-spacing: -0.005rem;
-  -moz-letter-spacing: -0.005rem;
-  -ms-letter-spacing: -0.005rem;
   letter-spacing: -0.005rem;
 }
 
@@ -1691,18 +1406,9 @@ exports[`pages/about/meet-the-team/[slug].tsx renders 1`] = `
   padding: 0;
   margin: 0;
   display: block;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
   font-family: --var(google-font),Lexend,sans-serif;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
   align-items: center;
   gap: 0.75rem;
 }
@@ -1716,22 +1422,16 @@ exports[`pages/about/meet-the-team/[slug].tsx renders 1`] = `
 
 .c24 {
   display: inline;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
   align-items: center;
   gap: 0.25rem;
   outline: none;
   border-radius: 0.375rem;
   padding: 0.25rem;
   margin: -0.25rem;
-  -webkit-appearance: none;
-  -moz-appearance: none;
   appearance: none;
   font: inherit;
   background: none;
   border: none;
-  -webkit-text-decoration: underline;
   text-decoration: underline;
   cursor: pointer;
   color: #0d24c4;
@@ -1739,14 +1439,13 @@ exports[`pages/about/meet-the-team/[slug].tsx renders 1`] = `
 }
 
 .c24 .c113 {
-  -webkit-filter: invert(21%) sepia(90%) saturate(3220%) hue-rotate(232deg) brightness(71%) contrast(127%);
   filter: invert(21%) sepia(90%) saturate(3220%) hue-rotate(232deg) brightness(71%) contrast(127%);
   display: inline-block;
   vertical-align: text-top;
 }
 
 .c24:focus-visible {
-  box-shadow: 0 0 0 0.125rem rgba(255,229,85,100%), 0 0 0 0.3rem rgba(87,87,87,100%);
+  box-shadow: 0 0 0 0.125rem rgba(255, 229, 85, 100%),0 0 0 0.3rem rgba(87, 87, 87, 100%);
 }
 
 .c24:visited {
@@ -1754,7 +1453,6 @@ exports[`pages/about/meet-the-team/[slug].tsx renders 1`] = `
 }
 
 .c24:visited .c113 {
-  -webkit-filter: invert(12%) sepia(79%) saturate(3172%) hue-rotate(231deg) brightness(82%) contrast(114%);
   filter: invert(12%) sepia(79%) saturate(3172%) hue-rotate(231deg) brightness(82%) contrast(114%);
 }
 
@@ -1764,7 +1462,6 @@ exports[`pages/about/meet-the-team/[slug].tsx renders 1`] = `
 }
 
 .c24:active .c113 {
-  -webkit-filter: invert(12%) sepia(79%) saturate(3172%) hue-rotate(231deg) brightness(82%) contrast(114%);
   filter: invert(12%) sepia(79%) saturate(3172%) hue-rotate(231deg) brightness(82%) contrast(114%);
 }
 
@@ -1774,28 +1471,21 @@ exports[`pages/about/meet-the-team/[slug].tsx renders 1`] = `
 }
 
 .c24[disabled] .c113 {
-  -webkit-filter: invert(54%) sepia(0%) saturate(38%) hue-rotate(176deg) brightness(92%) contrast(91%);
   filter: invert(54%) sepia(0%) saturate(38%) hue-rotate(176deg) brightness(92%) contrast(91%);
 }
 
 .c73 {
   display: inline;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
   align-items: center;
   gap: 0.25rem;
   outline: none;
   border-radius: 0.375rem;
   padding: 0.25rem;
   margin: -0.25rem;
-  -webkit-appearance: none;
-  -moz-appearance: none;
   appearance: none;
   font: inherit;
   background: none;
   border: none;
-  -webkit-text-decoration: none;
   text-decoration: none;
   cursor: pointer;
   color: #222222;
@@ -1803,14 +1493,13 @@ exports[`pages/about/meet-the-team/[slug].tsx renders 1`] = `
 }
 
 .c73 .c113 {
-  -webkit-filter: invert(10%) sepia(1%) saturate(236%) hue-rotate(314deg) brightness(95%) contrast(91%);
   filter: invert(10%) sepia(1%) saturate(236%) hue-rotate(314deg) brightness(95%) contrast(91%);
   display: inline-block;
   vertical-align: text-top;
 }
 
 .c73:focus-visible {
-  box-shadow: 0 0 0 0.125rem rgba(255,229,85,100%), 0 0 0 0.3rem rgba(87,87,87,100%);
+  box-shadow: 0 0 0 0.125rem rgba(255, 229, 85, 100%),0 0 0 0.3rem rgba(87, 87, 87, 100%);
 }
 
 .c73:visited {
@@ -1818,7 +1507,6 @@ exports[`pages/about/meet-the-team/[slug].tsx renders 1`] = `
 }
 
 .c73:visited .c113 {
-  -webkit-filter: invert(10%) sepia(1%) saturate(236%) hue-rotate(314deg) brightness(95%) contrast(91%);
   filter: invert(10%) sepia(1%) saturate(236%) hue-rotate(314deg) brightness(95%) contrast(91%);
 }
 
@@ -1828,7 +1516,6 @@ exports[`pages/about/meet-the-team/[slug].tsx renders 1`] = `
 }
 
 .c73:active .c113 {
-  -webkit-filter: invert(10%) sepia(1%) saturate(236%) hue-rotate(314deg) brightness(95%) contrast(91%);
   filter: invert(10%) sepia(1%) saturate(236%) hue-rotate(314deg) brightness(95%) contrast(91%);
 }
 
@@ -1838,87 +1525,11 @@ exports[`pages/about/meet-the-team/[slug].tsx renders 1`] = `
 }
 
 .c73[disabled] .c113 {
-  -webkit-filter: invert(54%) sepia(0%) saturate(38%) hue-rotate(176deg) brightness(92%) contrast(91%);
-  filter: invert(54%) sepia(0%) saturate(38%) hue-rotate(176deg) brightness(92%) contrast(91%);
-}
-
-.c147 {
-  display: inline;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  gap: 0.25rem;
-  outline: none;
-  border-radius: 0.375rem;
-  padding: 0.25rem;
-  margin: -0.25rem;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
-  font-family: --var(google-font),Lexend,sans-serif;
-  font-weight: 600;
-  font-size: 1rem;
-  line-height: 1.25rem;
-  -webkit-letter-spacing: 0.0115rem;
-  -moz-letter-spacing: 0.0115rem;
-  -ms-letter-spacing: 0.0115rem;
-  letter-spacing: 0.0115rem;
-  -webkit-text-decoration: none;
-  text-decoration: none;
-  background: none;
-  border: none;
-  -webkit-text-decoration: none;
-  text-decoration: none;
-  cursor: pointer;
-  color: #222222;
-  overflow-wrap: break-word;
-}
-
-.c147 .c113 {
-  -webkit-filter: invert(10%) sepia(1%) saturate(236%) hue-rotate(314deg) brightness(95%) contrast(91%);
-  filter: invert(10%) sepia(1%) saturate(236%) hue-rotate(314deg) brightness(95%) contrast(91%);
-  display: inline-block;
-  vertical-align: text-top;
-}
-
-.c147:focus-visible {
-  box-shadow: 0 0 0 0.125rem rgba(255,229,85,100%), 0 0 0 0.3rem rgba(87,87,87,100%);
-}
-
-.c147:visited {
-  color: #222222;
-}
-
-.c147:visited .c113 {
-  -webkit-filter: invert(10%) sepia(1%) saturate(236%) hue-rotate(314deg) brightness(95%) contrast(91%);
-  filter: invert(10%) sepia(1%) saturate(236%) hue-rotate(314deg) brightness(95%) contrast(91%);
-}
-
-.c147:active {
-  color: #222222;
-  outline: 1px solid #222222;
-}
-
-.c147:active .c113 {
-  -webkit-filter: invert(10%) sepia(1%) saturate(236%) hue-rotate(314deg) brightness(95%) contrast(91%);
-  filter: invert(10%) sepia(1%) saturate(236%) hue-rotate(314deg) brightness(95%) contrast(91%);
-}
-
-.c147[disabled] {
-  cursor: not-allowed;
-  color: #808080;
-}
-
-.c147[disabled] .c113 {
-  -webkit-filter: invert(54%) sepia(0%) saturate(38%) hue-rotate(176deg) brightness(92%) contrast(91%);
   filter: invert(54%) sepia(0%) saturate(38%) hue-rotate(176deg) brightness(92%) contrast(91%);
 }
 
 .c43 {
-  -webkit-appearance: none !important;
-  -moz-appearance: none !important;
-  appearance: none !important;
+  appearance: none!important;
   border: 0;
   border-radius: 0;
   border-color: transparent;
@@ -1931,18 +1542,6 @@ exports[`pages/about/meet-the-team/[slug].tsx renders 1`] = `
   width: 100%;
 }
 
-.c43::-webkit-input-placeholder {
-  color: #575757;
-}
-
-.c43::-moz-placeholder {
-  color: #575757;
-}
-
-.c43:-ms-input-placeholder {
-  color: #575757;
-}
-
 .c43::placeholder {
   color: #575757;
 }
@@ -1951,8 +1550,6 @@ exports[`pages/about/meet-the-team/[slug].tsx renders 1`] = `
 .c43::-webkit-search-cancel-button,
 .c43::-webkit-search-results-button,
 .c43::-webkit-search-results-decoration {
-  -webkit-appearance: none;
-  -moz-appearance: none;
   appearance: none;
 }
 
@@ -1975,46 +1572,35 @@ exports[`pages/about/meet-the-team/[slug].tsx renders 1`] = `
 
 .c77 {
   display: grid;
-  grid-template-columns: repeat(12,1fr);
+  grid-template-columns: repeat(12, 1fr);
   width: 100%;
   row-gap: 1.5rem;
-  -webkit-column-gap: 0rem;
   column-gap: 0rem;
 }
 
 .c102 {
   display: grid;
-  grid-template-columns: repeat(12,1fr);
+  grid-template-columns: repeat(12, 1fr);
   width: 100%;
 }
 
 .c79 {
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
   flex-direction: column;
   grid-column: span 12;
   grid-row: span undefined;
-  -webkit-order: 1;
-  -ms-flex-order: 1;
   order: 1;
   grid-row: span 1;
 }
 
 .c81 {
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
   flex-direction: column;
   grid-column: span 12;
   grid-row: span undefined;
-  -webkit-order: 2;
-  -ms-flex-order: 2;
   order: 2;
   grid-row: span 1;
 }
 
 .c103 {
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
   flex-direction: column;
   grid-column: span 12;
   grid-row: span undefined;
@@ -2025,34 +1611,18 @@ exports[`pages/about/meet-the-team/[slug].tsx renders 1`] = `
   margin: 0rem;
   padding: 0rem;
   list-style: none;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
   gap: 0.5rem;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
   align-items: center;
   font-size: 1rem;
   font-weight: 1rem;
-  -webkit-flex-wrap: wrap;
-  -ms-flex-wrap: wrap;
   flex-wrap: wrap;
 }
 
 .c72 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
   gap: 0.5rem;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
   align-items: center;
-  -webkit-flex: 0;
-  -ms-flex: 0;
   flex: 0;
   max-width: 100%;
 }
@@ -2062,14 +1632,14 @@ exports[`pages/about/meet-the-team/[slug].tsx renders 1`] = `
 }
 
 .c58:focus-visible .oak-save-count {
-  box-shadow: 0 0 0 0.125rem rgba(255,229,85,100%), 0 0 0 0.3rem rgba(87,87,87,100%);
+  box-shadow: 0 0 0 0.125rem rgba(255, 229, 85, 100%),0 0 0 0.3rem rgba(87, 87, 87, 100%);
 }
 
 .c137 {
   top: 152px;
 }
 
-.c120 .icon-container > *:first-child {
+.c120 .icon-container>*:first-child {
   border: 0;
 }
 
@@ -2083,884 +1653,772 @@ exports[`pages/about/meet-the-team/[slug].tsx renders 1`] = `
   margin-top: 0;
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c12 {
     padding-left: 2.5rem;
   }
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c12 {
     padding-right: 2.5rem;
   }
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c14 {
-    width: -webkit-max-content;
-    width: -moz-max-content;
     width: max-content;
   }
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c22 {
     padding-left: 2.5rem;
   }
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c22 {
     padding-right: 2.5rem;
   }
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c22 {
     padding-top: 1.25rem;
   }
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c22 {
     padding-bottom: 1.25rem;
   }
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c26 {
     display: none;
   }
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c28 {
     display: block;
   }
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c38 {
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: -ms-flexbox;
     display: flex;
   }
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c39 {
     display: block;
   }
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c44 {
     position: absolute;
   }
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c44 {
-    -webkit-transform: translateY(-50%);
-    -ms-transform: translateY(-50%);
     transform: translateY(-50%);
   }
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c56 {
     display: none;
   }
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c59 {
     padding-left: 0.25rem;
   }
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c59 {
     padding-right: 0.5rem;
   }
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c62 {
     display: contents;
   }
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c65 {
     display: block;
   }
 }
 
-@media (min-width:1280px) {
+@media (min-width: 1280px) {
   .c65 {
     display: none;
   }
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
 
 }
 
-@media (min-width:1280px) {
+@media (min-width: 1280px) {
 
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c68 {
     padding-left: 2.5rem;
   }
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c68 {
     padding-right: 2.5rem;
   }
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c76 {
     padding-top: 3.5rem;
   }
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c76 {
     padding-bottom: 5rem;
   }
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c82 {
     padding-left: 2.5rem;
   }
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c82 {
     padding-right: 2.5rem;
   }
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c85 {
     font-weight: 400;
   }
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c85 {
     font-size: 1.25rem;
   }
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c85 {
     line-height: 1.5rem;
   }
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c85 {
-    -webkit-letter-spacing: 0.0115rem;
-    -moz-letter-spacing: 0.0115rem;
-    -ms-letter-spacing: 0.0115rem;
     letter-spacing: 0.0115rem;
   }
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c89 {
     font-weight: 400;
   }
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c89 {
     font-size: 2rem;
   }
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c89 {
     line-height: 2.5rem;
   }
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c89 {
-    -webkit-letter-spacing: 0.0115rem;
-    -moz-letter-spacing: 0.0115rem;
-    -ms-letter-spacing: 0.0115rem;
     letter-spacing: 0.0115rem;
   }
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c91 {
     font-weight: 300;
   }
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c91 {
     font-size: 1.125rem;
   }
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c91 {
     line-height: 1.75rem;
   }
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c91 {
-    -webkit-letter-spacing: -0.005rem;
-    -moz-letter-spacing: -0.005rem;
-    -ms-letter-spacing: -0.005rem;
     letter-spacing: -0.005rem;
   }
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c100 {
     max-width: 80rem;
   }
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c100 {
     padding-top: 5rem;
   }
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c104 {
     margin-top: 0rem;
   }
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c110 {
     margin-top: 2rem;
   }
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c117 {
     display: none;
   }
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c125 {
     padding-top: 0rem;
   }
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c127 {
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: -ms-flexbox;
     display: flex;
   }
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c131 {
     display: block;
   }
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c131 {
-    -webkit-transform: translate(25%,25%) scale(0.7) rotate(-10deg);
-    -ms-transform: translate(25%,25%) scale(0.7) rotate(-10deg);
-    transform: translate(25%,25%) scale(0.7) rotate(-10deg);
+    transform: translate(25%, 25%) scale(0.7) rotate(-10deg);
   }
 }
 
-@media (min-width:1280px) {
+@media (min-width: 1280px) {
   .c131 {
-    -webkit-transform: translate(25%,15%) rotate(-10deg);
-    -ms-transform: translate(25%,15%) rotate(-10deg);
-    transform: translate(25%,15%) rotate(-10deg);
+    transform: translate(25%, 15%) rotate(-10deg);
   }
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c133 {
     display: none;
   }
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c135 {
     right: 1.5rem;
   }
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c135 {
-    width: -webkit-max-content;
-    width: -moz-max-content;
     width: max-content;
   }
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c135 {
     padding-left: 0rem;
   }
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c135 {
     padding-right: 0rem;
   }
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c141 {
     margin-left: 1.5rem;
   }
 }
 
-@media (min-width:1280px) {
+@media (min-width: 1280px) {
   .c141 {
     margin-left: 3.5rem;
   }
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c141 {
     margin-right: 1.5rem;
   }
 }
 
-@media (min-width:1280px) {
+@media (min-width: 1280px) {
   .c141 {
     margin-right: 3.5rem;
   }
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c143 {
     font-weight: 300;
   }
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c143 {
     font-size: 1rem;
   }
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c143 {
     line-height: 1.5rem;
   }
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c143 {
-    -webkit-letter-spacing: -0.005rem;
-    -moz-letter-spacing: -0.005rem;
-    -ms-letter-spacing: -0.005rem;
     letter-spacing: -0.005rem;
   }
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c13 {
-    -webkit-box-pack: left;
-    -webkit-justify-content: left;
-    -ms-flex-pack: left;
     justify-content: left;
   }
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c37 {
     gap: 1rem;
   }
 }
 
-@media (min-width:1280px) {
+@media (min-width: 1280px) {
   .c37 {
     gap: 1rem;
   }
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c60 {
-    -webkit-box-pack: initial;
-    -webkit-justify-content: initial;
-    -ms-flex-pack: initial;
     justify-content: initial;
   }
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
 
 }
 
-@media (min-width:1280px) {
+@media (min-width: 1280px) {
 
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c78 {
     display: block;
   }
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c115 {
-    -webkit-box-pack: right;
-    -webkit-justify-content: right;
-    -ms-flex-pack: right;
     justify-content: right;
   }
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c118 {
     display: none;
   }
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c126 {
-    -webkit-flex-direction: row;
-    -ms-flex-direction: row;
     flex-direction: row;
   }
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c126 {
-    -webkit-align-items: center;
-    -webkit-box-align: center;
-    -ms-flex-align: center;
     align-items: center;
   }
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c126 {
-    -webkit-box-pack: justify;
-    -webkit-justify-content: space-between;
-    -ms-flex-pack: justify;
     justify-content: space-between;
   }
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c128 {
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: -ms-flexbox;
     display: flex;
   }
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c136 {
-    -webkit-align-items: flex-end;
-    -webkit-box-align: flex-end;
-    -ms-flex-align: flex-end;
     align-items: flex-end;
   }
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c142 {
-    -webkit-flex-direction: column;
-    -ms-flex-direction: column;
     flex-direction: column;
   }
 }
 
-@media (min-width:1280px) {
+@media (min-width: 1280px) {
   .c142 {
-    -webkit-flex-direction: row;
-    -ms-flex-direction: row;
     flex-direction: row;
   }
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c142 {
-    -webkit-align-items: flex-start;
-    -webkit-box-align: flex-start;
-    -ms-flex-align: flex-start;
     align-items: flex-start;
   }
 }
 
-@media (min-width:1280px) {
+@media (min-width: 1280px) {
   .c142 {
-    -webkit-align-items: center;
-    -webkit-box-align: center;
-    -ms-flex-align: center;
     align-items: center;
   }
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c142 {
     gap: 1.5rem;
   }
 }
 
-@media (min-width:1280px) {
+@media (min-width: 1280px) {
   .c142 {
     gap: 2rem;
   }
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c145 {
-    -webkit-flex-direction: row;
-    -ms-flex-direction: row;
     flex-direction: row;
   }
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c145 {
-    -webkit-flex-wrap: wrap;
-    -ms-flex-wrap: wrap;
     flex-wrap: wrap;
   }
 }
 
-@media (min-width:1280px) {
+@media (min-width: 1280px) {
   .c145 {
-    -webkit-flex-wrap: nowrap;
-    -ms-flex-wrap: nowrap;
     flex-wrap: nowrap;
   }
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c145 {
     gap: 2rem;
   }
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c17 {
     font-weight: 600;
   }
 }
 
-@media (min-width:1280px) {
+@media (min-width: 1280px) {
   .c17 {
     font-weight: 600;
   }
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c17 {
     font-size: 1rem;
   }
 }
 
-@media (min-width:1280px) {
+@media (min-width: 1280px) {
   .c17 {
     font-size: 1rem;
   }
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c17 {
     line-height: 1.25rem;
   }
 }
 
-@media (min-width:1280px) {
+@media (min-width: 1280px) {
   .c17 {
     line-height: 1.25rem;
   }
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c17 {
-    -webkit-letter-spacing: 0.0115rem;
-    -moz-letter-spacing: 0.0115rem;
-    -ms-letter-spacing: 0.0115rem;
     letter-spacing: 0.0115rem;
   }
 }
 
-@media (min-width:1280px) {
+@media (min-width: 1280px) {
   .c17 {
-    -webkit-letter-spacing: 0.0115rem;
-    -moz-letter-spacing: 0.0115rem;
-    -ms-letter-spacing: 0.0115rem;
     letter-spacing: 0.0115rem;
   }
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c144 {
     font-weight: 500;
   }
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c144 {
     font-size: 1rem;
   }
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c144 {
     line-height: 1.5rem;
   }
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c144 {
-    -webkit-letter-spacing: -0.005rem;
-    -moz-letter-spacing: -0.005rem;
-    -ms-letter-spacing: -0.005rem;
     letter-spacing: -0.005rem;
   }
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c16 {
     padding-left: 1rem;
   }
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c16 {
     padding-right: 1rem;
   }
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c18 {
     padding-left: 1rem;
   }
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c18 {
     padding-right: 1rem;
   }
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c87 {
     font-weight: 600;
   }
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c87 {
     font-size: 3rem;
   }
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c87 {
     line-height: 3.5rem;
   }
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c87 {
-    -webkit-letter-spacing: 0.0115rem;
-    -moz-letter-spacing: 0.0115rem;
-    -ms-letter-spacing: 0.0115rem;
     letter-spacing: 0.0115rem;
   }
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c92 {
     font-weight: 300;
   }
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c92 {
     font-size: 1.125rem;
   }
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c92 {
     line-height: 1.75rem;
   }
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c92 {
-    -webkit-letter-spacing: -0.005rem;
-    -moz-letter-spacing: -0.005rem;
-    -ms-letter-spacing: -0.005rem;
     letter-spacing: -0.005rem;
   }
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c92 {
     margin-top: 1.5rem;
   }
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c86 {
     font-weight: 400;
   }
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c86 {
     font-size: 1.25rem;
   }
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c86 {
     line-height: 1.5rem;
   }
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c86 {
-    -webkit-letter-spacing: 0.0115rem;
-    -moz-letter-spacing: 0.0115rem;
-    -ms-letter-spacing: 0.0115rem;
     letter-spacing: 0.0115rem;
   }
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c90 {
     font-weight: 400;
   }
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c90 {
     font-size: 2rem;
   }
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c90 {
     line-height: 2.5rem;
   }
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c90 {
-    -webkit-letter-spacing: 0.0115rem;
-    -moz-letter-spacing: 0.0115rem;
-    -ms-letter-spacing: 0.0115rem;
     letter-spacing: 0.0115rem;
   }
 }
 
-@media (hover:hover) {
+@media (hover: hover) {
   .c24:hover,
   .c24:visited:hover {
     color: #0a1d9d;
-    -webkit-text-decoration: underline;
     text-decoration: underline;
-    -webkit-text-decoration-thickness: 18%;
     text-decoration-thickness: 18%;
   }
 
   .c24:hover .c113,
   .c24:visited:hover .c113 {
-    -webkit-filter: invert(16%) sepia(72%) saturate(7176%) hue-rotate(239deg) brightness(61%) contrast(109%);
     filter: invert(16%) sepia(72%) saturate(7176%) hue-rotate(239deg) brightness(61%) contrast(109%);
   }
 }
 
-@media (hover:hover) {
+@media (hover: hover) {
   .c73:hover,
   .c73:visited:hover {
     color: #222222;
-    -webkit-text-decoration: underline;
     text-decoration: underline;
-    -webkit-text-decoration-thickness: 18%;
     text-decoration-thickness: 18%;
   }
 
   .c73:hover .c113,
   .c73:visited:hover .c113 {
-    -webkit-filter: invert(10%) sepia(1%) saturate(236%) hue-rotate(314deg) brightness(95%) contrast(91%);
     filter: invert(10%) sepia(1%) saturate(236%) hue-rotate(314deg) brightness(95%) contrast(91%);
   }
 }
 
-@media (hover:hover) {
-  .c147:hover,
-  .c147:visited:hover {
-    color: #222222;
-    -webkit-text-decoration: underline;
-    text-decoration: underline;
-    -webkit-text-decoration-thickness: 18%;
-    text-decoration-thickness: 18%;
-  }
-
-  .c147:hover .c113,
-  .c147:visited:hover .c113 {
-    -webkit-filter: invert(10%) sepia(1%) saturate(236%) hue-rotate(314deg) brightness(95%) contrast(91%);
-    filter: invert(10%) sepia(1%) saturate(236%) hue-rotate(314deg) brightness(95%) contrast(91%);
-  }
-}
-
-@media (max-width:750px) {
+@media (max-width: 750px) {
   .c43 {
     font-size: 16px;
   }
 }
 
-@media (hover:hover) {
+@media (hover: hover) {
   .c42:hover:not(:focus-within) {
     background: #f2f2f2;
     border-color: #808080;
   }
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c77 {
-    -webkit-column-gap: 1rem;
     column-gap: 1rem;
   }
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c79 {
     grid-column: span 4;
   }
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c81 {
     grid-column: span 8;
   }
 }
 
-@media (min-width:750px) {
+@media (min-width: 750px) {
   .c103 {
     grid-column: span 3;
   }
@@ -3142,7 +2600,7 @@ exports[`pages/about/meet-the-team/[slug].tsx renders 1`] = `
         >
           <a
             aria-label="Home"
-            class="c24"
+            class="c24 "
             href="/"
           >
             <span
@@ -3585,7 +3043,7 @@ exports[`pages/about/meet-the-team/[slug].tsx renders 1`] = `
                   class="c72"
                 >
                   <a
-                    class="c73"
+                    class="c73 "
                     href="/"
                     style="overflow: hidden;"
                   >
@@ -3617,7 +3075,7 @@ exports[`pages/about/meet-the-team/[slug].tsx renders 1`] = `
                     />
                   </span>
                   <a
-                    class="c73"
+                    class="c73 "
                     href="/about-us/meet-the-team"
                     style="overflow: hidden;"
                   >
@@ -3847,9 +3305,8 @@ exports[`pages/about/meet-the-team/[slug].tsx renders 1`] = `
                         class="c109"
                       >
                         <a
-                          class="c73"
+                          class="c73 "
                           href="/pupils/years"
-                          variant="secondary"
                         >
                           <span
                             class="c25"
@@ -3882,9 +3339,8 @@ exports[`pages/about/meet-the-team/[slug].tsx renders 1`] = `
                         class="c109"
                       >
                         <a
-                          class="c73"
+                          class="c73 "
                           href="/teachers/eyfs/maths"
-                          variant="secondary"
                         >
                           <span
                             class="c25"
@@ -3897,9 +3353,8 @@ exports[`pages/about/meet-the-team/[slug].tsx renders 1`] = `
                         class="c109"
                       >
                         <a
-                          class="c73"
+                          class="c73 "
                           href="/lesson-planning"
-                          variant="secondary"
                         >
                           <span
                             class="c25"
@@ -3912,10 +3367,9 @@ exports[`pages/about/meet-the-team/[slug].tsx renders 1`] = `
                         class="c109"
                       >
                         <a
-                          class="c73"
+                          class="c73 "
                           href="https://labs.thenational.academy"
                           target="_blank"
-                          variant="secondary"
                         >
                           <span
                             class="c25"
@@ -3945,9 +3399,8 @@ exports[`pages/about/meet-the-team/[slug].tsx renders 1`] = `
                         class="c109"
                       >
                         <a
-                          class="c73"
+                          class="c73 "
                           href="/blog"
-                          variant="secondary"
                         >
                           <span
                             class="c25"
@@ -3981,9 +3434,8 @@ exports[`pages/about/meet-the-team/[slug].tsx renders 1`] = `
                         class="c109"
                       >
                         <a
-                          class="c73"
+                          class="c73 "
                           href="/"
-                          variant="secondary"
                         >
                           <span
                             class="c25"
@@ -3996,9 +3448,8 @@ exports[`pages/about/meet-the-team/[slug].tsx renders 1`] = `
                         class="c109"
                       >
                         <a
-                          class="c73"
+                          class="c73 "
                           href="/about-us/who-we-are"
-                          variant="secondary"
                         >
                           <span
                             class="c25"
@@ -4011,9 +3462,8 @@ exports[`pages/about/meet-the-team/[slug].tsx renders 1`] = `
                         class="c109"
                       >
                         <a
-                          class="c73"
+                          class="c73 "
                           href="/about-us/oaks-curricula"
-                          variant="secondary"
                         >
                           <span
                             class="c25"
@@ -4026,9 +3476,8 @@ exports[`pages/about/meet-the-team/[slug].tsx renders 1`] = `
                         class="c109"
                       >
                         <a
-                          class="c73"
+                          class="c73 "
                           href="/about-us/oaks-impact"
-                          variant="secondary"
                         >
                           <span
                             class="c25"
@@ -4041,9 +3490,8 @@ exports[`pages/about/meet-the-team/[slug].tsx renders 1`] = `
                         class="c109"
                       >
                         <a
-                          class="c73"
+                          class="c73 "
                           href="/about-us/get-involved"
-                          variant="secondary"
                         >
                           <span
                             class="c25"
@@ -4056,9 +3504,8 @@ exports[`pages/about/meet-the-team/[slug].tsx renders 1`] = `
                         class="c109"
                       >
                         <a
-                          class="c73"
+                          class="c73 "
                           href="/about-us/meet-the-team"
-                          variant="secondary"
                         >
                           <span
                             class="c25"
@@ -4072,10 +3519,9 @@ exports[`pages/about/meet-the-team/[slug].tsx renders 1`] = `
                       >
                         <a
                           aria-label="Careers (opens in a new tab)"
-                          class="c73"
+                          class="c73 "
                           href="https://jobs.thenational.academy"
                           target="_blank"
-                          variant="secondary"
                         >
                           <span
                             class="c25"
@@ -4105,9 +3551,8 @@ exports[`pages/about/meet-the-team/[slug].tsx renders 1`] = `
                         class="c109"
                       >
                         <a
-                          class="c73"
+                          class="c73 "
                           href="/contact-us"
-                          variant="secondary"
                         >
                           <span
                             class="c25"
@@ -4121,10 +3566,9 @@ exports[`pages/about/meet-the-team/[slug].tsx renders 1`] = `
                       >
                         <a
                           aria-label="Help (opens in a new tab)"
-                          class="c73"
+                          class="c73 "
                           href="https://support.thenational.academy"
                           target="_blank"
-                          variant="secondary"
                         >
                           <span
                             class="c25"
@@ -4154,9 +3598,8 @@ exports[`pages/about/meet-the-team/[slug].tsx renders 1`] = `
                         class="c109"
                       >
                         <a
-                          class="c73"
+                          class="c73 "
                           href="/webinars"
-                          variant="secondary"
                         >
                           <span
                             class="c25"
@@ -4170,10 +3613,9 @@ exports[`pages/about/meet-the-team/[slug].tsx renders 1`] = `
                       >
                         <a
                           aria-label="Status (opens in a new tab)"
-                          class="c73"
+                          class="c73 "
                           href="https://status.thenational.academy"
                           target="_blank"
-                          variant="secondary"
                         >
                           <span
                             class="c25"
@@ -4224,9 +3666,8 @@ exports[`pages/about/meet-the-team/[slug].tsx renders 1`] = `
                         class="c109"
                       >
                         <a
-                          class="c73"
+                          class="c73 "
                           href="/legal/terms-and-conditions"
-                          variant="secondary"
                         >
                           <span
                             class="c25"
@@ -4239,9 +3680,8 @@ exports[`pages/about/meet-the-team/[slug].tsx renders 1`] = `
                         class="c109"
                       >
                         <a
-                          class="c73"
+                          class="c73 "
                           href="/legal/privacy-policy"
-                          variant="secondary"
                         >
                           <span
                             class="c25"
@@ -4254,9 +3694,8 @@ exports[`pages/about/meet-the-team/[slug].tsx renders 1`] = `
                         class="c109"
                       >
                         <a
-                          class="c73"
+                          class="c73 "
                           href="/legal/cookie-policy"
-                          variant="secondary"
                         >
                           <span
                             class="c25"
@@ -4269,7 +3708,7 @@ exports[`pages/about/meet-the-team/[slug].tsx renders 1`] = `
                         class="c109"
                       >
                         <button
-                          class="c73"
+                          class="c73 "
                         >
                           <span
                             class="c25"
@@ -4282,9 +3721,8 @@ exports[`pages/about/meet-the-team/[slug].tsx renders 1`] = `
                         class="c109"
                       >
                         <a
-                          class="c73"
+                          class="c73 "
                           href="/legal/copyright-notice"
-                          variant="secondary"
                         >
                           <span
                             class="c25"
@@ -4297,9 +3735,8 @@ exports[`pages/about/meet-the-team/[slug].tsx renders 1`] = `
                         class="c109"
                       >
                         <a
-                          class="c73"
+                          class="c73 "
                           href="/legal/accessibility-statement"
-                          variant="secondary"
                         >
                           <span
                             class="c25"
@@ -4312,9 +3749,8 @@ exports[`pages/about/meet-the-team/[slug].tsx renders 1`] = `
                         class="c109"
                       >
                         <a
-                          class="c73"
+                          class="c73 "
                           href="/legal/safeguarding-statement"
-                          variant="secondary"
                         >
                           <span
                             class="c25"
@@ -4327,9 +3763,8 @@ exports[`pages/about/meet-the-team/[slug].tsx renders 1`] = `
                         class="c109"
                       >
                         <a
-                          class="c73"
+                          class="c73 "
                           href="/legal/physical-activity-disclaimer"
-                          variant="secondary"
                         >
                           <span
                             class="c25"
@@ -4342,9 +3777,8 @@ exports[`pages/about/meet-the-team/[slug].tsx renders 1`] = `
                         class="c109"
                       >
                         <a
-                          class="c73"
+                          class="c73 "
                           href="/legal/complaints"
-                          variant="secondary"
                         >
                           <span
                             class="c25"
@@ -4357,9 +3791,8 @@ exports[`pages/about/meet-the-team/[slug].tsx renders 1`] = `
                         class="c109"
                       >
                         <a
-                          class="c73"
+                          class="c73 "
                           href="/legal/freedom-of-information-requests"
-                          variant="secondary"
                         >
                           <span
                             class="c25"
@@ -4751,7 +4184,7 @@ exports[`pages/about/meet-the-team/[slug].tsx renders 1`] = `
               class="c146 c41"
             >
               <button
-                class="c147"
+                class="c73 "
                 data-testid="cookie-banner-reject"
                 type="button"
               >
@@ -4795,7 +4228,7 @@ exports[`pages/about/meet-the-team/[slug].tsx renders 1`] = `
                 class="c6 yellow-shadow"
               />
               <button
-                class="c148 c19 internal-button"
+                class="c147 c19 internal-button"
                 data-testid="cookie-banner-accept"
               >
                 <div

@@ -4,39 +4,39 @@ exports[`AboutSharedHeader renders correctly 1`] = `
 <body>
   <div>
     <div
-      class="sc-aXZVg bZTQLO"
+      class="sc-bdvwhi iatEdD"
     >
       <div
-        class="sc-aXZVg sc-gEvEer gHbcIj cqAYHx"
+        class="sc-bdvwhi sc-gsDMPd hRJGqe McvZe"
       >
         <div
-          class="sc-aXZVg sc-gEvEer kJbZjn hNxFkS"
+          class="sc-bdvwhi sc-gsDMPd buPcZO kHuCld"
         >
           <h1
-            class="sc-eldPxv kSQYKV"
+            class="sc-bkkgYE iAHrRb"
           >
             <span
-              class="sc-eqUAAy buaVGR"
+              class="sc-dkPwfY cphFZl"
               style="line-height: 1.25; box-decoration-break: clone;"
             >
               TESTING_TITLE
             </span>
           </h1>
           <p
-            class="sc-ikkxIA fPezaI"
+            class="sc-hGPAwl gCmSLw"
           >
             TESTING_CONTENT
           </p>
         </div>
         <div
-          class="sc-aXZVg sc-b87ce3d6-0 QBMYh bEIKAb"
+          class="sc-bdvwhi sc-b87ce3d6-0 hFUkks iLEAZm"
         >
           <span
-            class="sc-aXZVg kvjdhA"
+            class="sc-bdvwhi LoEut"
           >
             <img
               alt="Oak logo"
-              class="sc-iGgWBj dZvqhO"
+              class="sc-jRQBiJ hssYEG"
               data-nimg="fill"
               decoding="async"
               loading="lazy"
@@ -55,40 +55,40 @@ exports[`AboutSharedHeader renders correctly with loop illustration 1`] = `
 <body>
   <div>
     <div
-      class="sc-aXZVg bZTQLO"
+      class="sc-bdvwhi iatEdD"
     >
       <div
-        class="sc-aXZVg sc-gEvEer gHbcIj cqAYHx"
+        class="sc-bdvwhi sc-gsDMPd hRJGqe McvZe"
       >
         <div
-          class="sc-aXZVg sc-gEvEer kJbZjn hNxFkS"
+          class="sc-bdvwhi sc-gsDMPd buPcZO kHuCld"
         >
           <h1
-            class="sc-eldPxv kSQYKV"
+            class="sc-bkkgYE iAHrRb"
           >
             <span
-              class="sc-eqUAAy buaVGR"
+              class="sc-dkPwfY cphFZl"
               style="line-height: 1.25; box-decoration-break: clone;"
             >
               TESTING_TITLE
             </span>
           </h1>
           <p
-            class="sc-ikkxIA fPezaI"
+            class="sc-hGPAwl gCmSLw"
           >
             TESTING_CONTENT
           </p>
         </div>
         <div
-          class="sc-aXZVg sc-b87ce3d6-0 QBMYh bEIKAb"
+          class="sc-bdvwhi sc-b87ce3d6-0 hFUkks iLEAZm"
         >
           <span
-            class="sc-aXZVg fjkwRj sc-b87ce3d6-1 hZzJqO"
+            class="sc-bdvwhi cqHYAi sc-b87ce3d6-1 uxkhs"
             data-testid="about-shared-loop"
           >
             <img
               alt=""
-              class="sc-iGgWBj cMzyFO"
+              class="sc-jRQBiJ eMsccW"
               data-nimg="fill"
               decoding="async"
               loading="lazy"

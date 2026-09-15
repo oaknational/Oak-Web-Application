@@ -4,56 +4,56 @@ exports[`OaksImpactHeader renders correctly 1`] = `
 <body>
   <div>
     <div
-      class="sc-aXZVg bZTQLO"
+      class="sc-bdvwhi iatEdD"
     >
       <div
-        class="sc-aXZVg sc-gEvEer sc-111ef18-0 jPvJsJ iDBIXi hvvbC"
+        class="sc-bdvwhi sc-gsDMPd sc-111ef18-0 hPWTKU Bakex bITZwO"
       >
         <div
-          class="sc-aXZVg sc-gEvEer sc-111ef18-2 jPvJsJ fqICts cZlrtk"
+          class="sc-bdvwhi sc-gsDMPd sc-111ef18-2 hPWTKU glYlUT kXRNVy"
         >
           <div
-            class="sc-aXZVg sc-gEvEer fnKdFm gUPrwF"
+            class="sc-bdvwhi sc-gsDMPd bxuJyT jQMLaS"
           >
             <h1
-              class="sc-eldPxv hJmOde"
+              class="sc-bkkgYE hzRfgk"
             >
               TEST_TITLE
             </h1>
           </div>
           <p
-            class="sc-ikkxIA jAnQin"
+            class="sc-hGPAwl imYBVP"
           >
             TEST_BODY
           </p>
         </div>
         <div
-          class="sc-aXZVg sc-gEvEer jPvJsJ fVNIMq"
+          class="sc-bdvwhi sc-gsDMPd hPWTKU cNirtN"
         >
           <div
-            class="sc-aXZVg sc-111ef18-1 jPvJsJ gMCzDZ"
+            class="sc-bdvwhi sc-111ef18-1 hPWTKU eddOz"
           >
             <div
-              class="sc-aXZVg sc-gEvEer jPvJsJ daEtut"
+              class="sc-bdvwhi sc-gsDMPd hPWTKU eChlAW"
             >
               <div
-                class="sc-aXZVg sc-gEvEer dApLPd daEtut"
+                class="sc-bdvwhi sc-gsDMPd ctjFUQ eChlAW"
               >
                 <div
-                  class="sc-aXZVg dLPTTd"
+                  class="sc-bdvwhi rRUGc"
                 >
                   <div
-                    class="sc-aXZVg sc-gEvEer kqqNVp jMLdOa"
+                    class="sc-bdvwhi sc-gsDMPd jvLJY gbgSUZ"
                     data-percy-hide="contents"
                     style="box-sizing: content-box;"
                   />
                 </div>
               </div>
               <div
-                class="sc-aXZVg sc-gEvEer jPvJsJ gWBhKY"
+                class="sc-bdvwhi sc-gsDMPd hPWTKU edEJAr"
               >
                 <p
-                  class="sc-ikkxIA bevdi"
+                  class="sc-hGPAwl gjGOEe"
                 >
                   TEST_VIDEO_DESCRIPTION
                 </p>

@@ -45,7 +45,7 @@ const InsightsJumpCard = ({
     $width="100%"
     $background="bg-primary"
     $borderRadius="border-radius-m2"
-    hoverBackground="bg-neutral"
+    $hoverBackground="bg-neutral"
   >
     <OakFlex
       as={Link}
@@ -108,7 +108,7 @@ export const NationalCurriculumInsightsPhaseCards = ({
                   card.phase,
                 )}
               >
-                <OakBox
+                <OakFlex
                   $flexShrink={0}
                   $width="spacing-72"
                   $height="spacing-72"
@@ -124,11 +124,11 @@ export const NationalCurriculumInsightsPhaseCards = ({
                     $height="100%"
                     $objectFit="contain"
                   />
-                </OakBox>
+                </OakFlex>
                 <OakFlex
                   $flexGrow={1}
                   $flexShrink={1}
-                  $flexBasis="0%"
+                  $flexBasis={0}
                   $alignSelf="stretch"
                   $flexDirection="column"
                   $justifyContent="center"
@@ -209,7 +209,7 @@ export const NationalCurriculumInsightsKeyStageCards = ({
                   nationalCurriculumInsightsKeyStageSlug(card.keyStage),
                 )}
               >
-                <OakBox
+                <OakFlex
                   $flexShrink={0}
                   $width="spacing-72"
                   $height="spacing-72"
@@ -225,11 +225,11 @@ export const NationalCurriculumInsightsKeyStageCards = ({
                     $height="100%"
                     $objectFit="contain"
                   />
-                </OakBox>
+                </OakFlex>
                 <OakFlex
                   $flexGrow={1}
                   $flexShrink={1}
-                  $flexBasis="0%"
+                  $flexBasis={0}
                   $alignSelf="stretch"
                   $flexDirection="column"
                   $justifyContent="center"

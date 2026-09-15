@@ -7,34 +7,34 @@ exports[`TeachWithOakHeader renders correctly 1`] = `
       data-overlay-container="true"
     >
       <div
-        class="sc-aXZVg dJqAhm"
+        class="sc-bdvwhi iMlHjj"
       >
         <div
-          class="sc-aXZVg bZTQLO"
+          class="sc-bdvwhi iatEdD"
         >
           <div
-            class="sc-aXZVg sc-gEvEer sc-jlZhew hCgIGG iDBIXi aPmvC"
+            class="sc-bdvwhi sc-gsDMPd sc-eggkz gyHFon Bakex sjwfm"
           >
             <a
-              class="sc-dcJsrY sc-dAlyuH dAja-dp eGtIkY"
+              class="sc-eCIkAO sc-crHjOq jgwTyV heXvEa"
               href="/"
             >
               <div
-                class="sc-aXZVg sc-gEvEer jPvJsJ gghMxj"
+                class="sc-bdvwhi sc-gsDMPd hPWTKU iTbSo"
               >
                 <div
-                  class="sc-aXZVg sc-gEvEer kJHaEW jMLdOa icon-container"
+                  class="sc-bdvwhi sc-gsDMPd juqUen gbgSUZ icon-container"
                 >
                   <div
-                    class="sc-aXZVg focDaC shadow"
+                    class="sc-bdvwhi fZgcUH shadow"
                   />
                   <span
-                    class="sc-aXZVg jJQFnr"
+                    class="sc-bdvwhi cERAFe"
                     data-icon-for="button"
                   >
                     <img
                       alt=""
-                      class="sc-iGgWBj lcrpYX"
+                      class="sc-jRQBiJ fZPumv"
                       data-nimg="fill"
                       decoding="async"
                       loading="lazy"
@@ -44,7 +44,7 @@ exports[`TeachWithOakHeader renders correctly 1`] = `
                   </span>
                 </div>
                 <span
-                  class="sc-eqUAAy bngpZa"
+                  class="sc-dkPwfY cSKbCa"
                 >
                   Back to lesson
                 </span>
@@ -53,42 +53,42 @@ exports[`TeachWithOakHeader renders correctly 1`] = `
           </div>
         </div>
         <div
-          class="sc-aXZVg sc-gEvEer sc-5ce3e7c8-0 jPvJsJ iDBIXi BPWok"
+          class="sc-bdvwhi sc-gsDMPd sc-5ce3e7c8-0 hPWTKU Bakex lhWORO"
         >
           <div
-            class="sc-aXZVg bZTQLO"
+            class="sc-bdvwhi iatEdD"
           >
             <div
-              class="sc-aXZVg sc-gEvEer gHbcIj ifDtnt"
+              class="sc-bdvwhi sc-gsDMPd hRJGqe fAAUMK"
             >
               <div
-                class="sc-aXZVg sc-gEvEer kJbZjn kYSywO"
+                class="sc-bdvwhi sc-gsDMPd buPcZO wpQBF"
               >
                 <h1
-                  class="sc-eldPxv kSQYKV"
+                  class="sc-bkkgYE iAHrRb"
                 >
                   <span
-                    class="sc-eqUAAy ffxKII"
+                    class="sc-dkPwfY dDjAUo"
                     style="line-height: 1.25; box-decoration-break: clone;"
                   >
                     The thinking behind Oak lessons
                   </span>
                 </h1>
                 <p
-                  class="sc-ikkxIA fPezaI"
+                  class="sc-hGPAwl gCmSLw"
                 >
                   See how our lessons are designed to support learning - and make the most of them in your classroom.
                 </p>
               </div>
               <div
-                class="sc-aXZVg sc-b87ce3d6-0 QBMYh dcBXHI"
+                class="sc-bdvwhi sc-b87ce3d6-0 hFUkks hUYRvZ"
               >
                 <span
-                  class="sc-aXZVg iLOJBD sc-5ce3e7c8-1 exIaJo"
+                  class="sc-bdvwhi ihgFby sc-5ce3e7c8-1 dqjDhO"
                 >
                   <img
                     alt="Teach with Oak Image"
-                    class="sc-iGgWBj dZvqhO"
+                    class="sc-jRQBiJ hssYEG"
                     data-nimg="fill"
                     decoding="async"
                     loading="lazy"
@@ -105,27 +105,27 @@ exports[`TeachWithOakHeader renders correctly 1`] = `
       </div>
       <div
         aria-live="polite"
-        class="sc-aXZVg sc-gEvEer sc-372e3d03-0 huaWfm hpzNYH fYWdOt"
+        class="sc-bdvwhi sc-gsDMPd sc-b7a27f76-0 kjWDfr htLMtM krUohl"
       />
     </div>
     <div
-      class="sc-aXZVg ehCqNw"
+      class="sc-bdvwhi gFnpsF"
     >
       <div
-        class="sc-aXZVg hdJUDP"
+        class="sc-bdvwhi iwVUCi"
         data-testid="cookie-banner"
       >
         <div
-          class="sc-aXZVg hKtyTC"
+          class="sc-bdvwhi iIozLH"
         >
           <div
-            class="sc-aXZVg sc-gEvEer gfKbxO hPCrxg"
+            class="sc-bdvwhi sc-gsDMPd egBoar iKjTsb"
           >
             <div
-              class="sc-aXZVg bURnqS"
+              class="sc-bdvwhi fIxCDL"
             >
               <strong
-                class="sc-eqUAAy jPKsIw"
+                class="sc-dkPwfY iyMjBM"
               >
                 This site uses cookies to store information on your computer.
               </strong>
@@ -133,40 +133,40 @@ exports[`TeachWithOakHeader renders correctly 1`] = `
               Some of these cookies are essential, while others help us to improve your experience by providing insights into how the site is being used.
             </div>
             <div
-              class="sc-aXZVg sc-gEvEer jPvJsJ buEORy"
+              class="sc-bdvwhi sc-gsDMPd hPWTKU gyKdMN"
             >
               <div
-                class="sc-aXZVg sc-gEvEer eapQdf uEMma"
+                class="sc-bdvwhi sc-gsDMPd lmXuba eWbmLh"
               >
                 <button
-                  class="sc-fHjqPf kaaNKh"
+                  class="sc-iwjfEg jajUsj sc-cxpUrY"
                   data-testid="cookie-banner-reject"
                   type="button"
                 >
                   <span
-                    class="sc-eqUAAy iGfTGj"
+                    class="sc-dkPwfY fgmEIT"
                   >
                     Reject non-essential cookies
                   </span>
                 </button>
               </div>
               <div
-                class="sc-aXZVg sc-kpDqfm bhFzn cvxBYX"
+                class="sc-bdvwhi sc-iqsgXZ giIlgC hjfwPa"
               >
                 <div
-                  class="sc-aXZVg kpXzs grey-shadow"
+                  class="sc-bdvwhi kAFHfV grey-shadow"
                 />
                 <div
-                  class="sc-aXZVg kpXzs yellow-shadow"
+                  class="sc-bdvwhi kAFHfV yellow-shadow"
                 />
                 <button
-                  class="sc-dcJsrY sc-jXbUNg bALQkH khQbhv internal-button"
+                  class="sc-eCIkAO sc-jrQAon lhwatH eGeOxA internal-button"
                 >
                   <div
-                    class="sc-aXZVg sc-gEvEer jPvJsJ krHAKs"
+                    class="sc-bdvwhi sc-gsDMPd hPWTKU dxGDwr"
                   >
                     <span
-                      class="sc-eqUAAy edqVpV"
+                      class="sc-dkPwfY kXQhTZ"
                     >
                       Cookie settings
                     </span>
@@ -174,23 +174,23 @@ exports[`TeachWithOakHeader renders correctly 1`] = `
                 </button>
               </div>
               <div
-                class="sc-aXZVg sc-kpDqfm bhFzn cvxBYX"
+                class="sc-bdvwhi sc-iqsgXZ giIlgC hjfwPa"
               >
                 <div
-                  class="sc-aXZVg kpXzs grey-shadow"
+                  class="sc-bdvwhi kAFHfV grey-shadow"
                 />
                 <div
-                  class="sc-aXZVg kpXzs yellow-shadow"
+                  class="sc-bdvwhi kAFHfV yellow-shadow"
                 />
                 <button
-                  class="sc-dcJsrY sc-jXbUNg cLXsQH dglRoS internal-button"
+                  class="sc-eCIkAO sc-jrQAon NPbzz fODyRh internal-button"
                   data-testid="cookie-banner-accept"
                 >
                   <div
-                    class="sc-aXZVg sc-gEvEer jPvJsJ krHAKs"
+                    class="sc-bdvwhi sc-gsDMPd hPWTKU dxGDwr"
                   >
                     <span
-                      class="sc-eqUAAy edqVpV"
+                      class="sc-dkPwfY kXQhTZ"
                     >
                       Accept all cookies
                     </span>

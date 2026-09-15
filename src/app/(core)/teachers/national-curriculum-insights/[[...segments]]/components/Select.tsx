@@ -51,8 +51,8 @@ export const NationalCurriculumInsightsSelect = ({
       $color={error ? "text-inverted" : "text-primary"}
       $font="heading-7"
       $position="absolute"
-      $top={`-${parseSpacing("spacing-20")}`}
-      $left="spacing-8"
+      $left={"spacing-4"}
+      style={{ top: `-${parseSpacing("spacing-20")}` }}
       $zIndex="in-front"
       $borderRadius="border-radius-square"
     />

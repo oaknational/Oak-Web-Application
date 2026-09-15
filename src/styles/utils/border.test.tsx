@@ -3,11 +3,11 @@ import { render } from "@testing-library/react";
 
 import renderWithTheme from "../../__tests__/__helpers__/renderWithTheme";
 
-import { border } from "./border";
+import { border, BorderProps } from "./border";
 
 describe("border", () => {
   test("should correctly handle prop 'ba'", async () => {
-    const StyledComponent = styled.div`
+    const StyledComponent = styled.div<BorderProps>`
       ${border}
     `;
     const { getByTestId } = render(
@@ -20,7 +20,7 @@ describe("border", () => {
     expect(getByTestId("test")).toHaveStyle("border-right: 0.75rem solid");
   });
   test("should correctly handle prop 'bv'", async () => {
-    const StyledComponent = styled.div`
+    const StyledComponent = styled.div<BorderProps>`
       ${border}
     `;
     const { getByTestId } = render(
@@ -31,7 +31,7 @@ describe("border", () => {
     expect(getByTestId("test")).toHaveStyle("border-bottom: 0.75rem solid");
   });
   test("should correctly handle prop 'bh'", async () => {
-    const StyledComponent = styled.div`
+    const StyledComponent = styled.div<BorderProps>`
       ${border}
     `;
     const { getByTestId } = render(
@@ -52,7 +52,7 @@ describe("border", () => {
       [prop]: value,
     };
 
-    const StyledComponent = styled.div`
+    const StyledComponent = styled.div<BorderProps>`
       ${border}
     `;
     const { getByTestId } = render(
@@ -62,7 +62,7 @@ describe("border", () => {
     expect(getByTestId("test")).toHaveStyle(expected);
   });
   test("should correctly handle prop 'borderColor'", async () => {
-    const StyledComponent = styled.div`
+    const StyledComponent = styled.div<BorderProps>`
       ${border}
     `;
     const { getByTestId } = renderWithTheme(
@@ -72,7 +72,7 @@ describe("border", () => {
     expect(getByTestId("test")).toHaveStyle("border-color: #cacaca");
   });
   test("should correctly handle prop 'borderRadius'", async () => {
-    const StyledComponent = styled.div`
+    const StyledComponent = styled.div<BorderProps>`
       ${border}
     `;
     const { getByTestId } = renderWithTheme(

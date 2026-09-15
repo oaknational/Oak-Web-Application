@@ -386,16 +386,17 @@ export const NationalCurriculumInsightsNewsletter = ({
                 {submitError}
               </OakP>
             ) : null}
-            <OakP
-              role="status"
-              aria-live="polite"
-              aria-atomic="true"
-              $font="body-3"
-              $mv="spacing-0"
-              $position={successMessage ? "static" : "absolute"}
-            >
-              {successMessage}
-            </OakP>
+            {successMessage && (
+              <OakP
+                role="status"
+                aria-live="polite"
+                aria-atomic="true"
+                $font="body-3"
+                $mv="spacing-0"
+              >
+                {successMessage}
+              </OakP>
+            )}
           </NewsletterForm>
         </NewsletterLayout>
       </NewsletterInner>

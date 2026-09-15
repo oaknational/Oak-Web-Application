@@ -60,25 +60,25 @@ const brushBorderLeft = css`
 
 const BrushBorderTop = styled(Svg)`
   ${brushBorderTop}
-  ${(props) => props.hideOnMobileV && hideBrushOnMobile}
+  ${(props) => props.$hideOnMobileV && hideBrushOnMobile}
 `;
 const BrushBorderRight = styled(Svg)`
   ${brushBorderRight}
-  ${(props) => props.hideOnMobileH && hideBrushOnMobile}
+  ${(props) => props.$hideOnMobileH && hideBrushOnMobile}
 `;
 const BrushBorderBottom = styled(Svg)`
   ${brushBorderBottom}
-  ${(props) => props.hideOnMobileV && hideBrushOnMobile}
+  ${(props) => props.$hideOnMobileV && hideBrushOnMobile}
 `;
 const BrushBorderLeft = styled(Svg)`
   ${brushBorderLeft}
-  ${(props) => props.hideOnMobileH && hideBrushOnMobile}
+  ${(props) => props.$hideOnMobileH && hideBrushOnMobile}
 `;
 
 type BrushBordersProps = {
   color: OakUiRoleToken;
-  hideOnMobileH?: boolean;
-  hideOnMobileV?: boolean;
+  $hideOnMobileH?: boolean;
+  $hideOnMobileV?: boolean;
   isSelected?: boolean;
 };
 /**

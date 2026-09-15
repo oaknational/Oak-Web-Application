@@ -45,7 +45,11 @@ const ResourcePageTermsAndConditionsCheckbox: FC<
       data-testid="termsCheckbox"
       $gap={"spacing-12"}
     >
-      <BrushBorders hideOnMobileH hideOnMobileV color={"bg-neutral-stronger"} />
+      <BrushBorders
+        $hideOnMobileH
+        $hideOnMobileV
+        color={"bg-neutral-stronger"}
+      />
       <OakCheckBox
         value="terms-and-conditions"
         displayValue={""}

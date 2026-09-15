@@ -4,35 +4,35 @@ exports[`WhoAreWeDesc renders correctly 1`] = `
 <body>
   <div>
     <div
-      class="sc-aXZVg bZTQLO"
+      class="sc-bdvwhi iatEdD"
     >
       <div
-        class="sc-aXZVg sc-gEvEer guaSoh cLpNFw"
+        class="sc-bdvwhi sc-gsDMPd QzlgI iEQOJT"
       >
         <h2
-          class="sc-eldPxv cfEJIQ"
+          class="sc-bkkgYE epiDEi"
         >
           TESTING_TITLE
         </h2>
         <div
-          class="sc-aXZVg sc-tagGq jPvJsJ dwIuIO"
+          class="sc-bdvwhi sc-jObTYW hPWTKU kRRONf"
         >
           <div
-            class="sc-aXZVg sc-gEvEer sc-esYiGF sc-43691944-0 jPvJsJ iDBIXi giQTDM kVfdza"
+            class="sc-bdvwhi sc-gsDMPd sc-dPiIMO sc-43691944-0 hPWTKU Bakex iiYhvg biEa-dg"
             data-testid="who-we-are-desc-item"
           >
             <div
-              class="sc-aXZVg sc-gEvEer jPvJsJ daEtut"
+              class="sc-bdvwhi sc-gsDMPd hPWTKU eChlAW"
             >
               <div
-                class="sc-aXZVg gGNRVt"
+                class="sc-bdvwhi wYDMs"
               >
                 <span
-                  class="sc-aXZVg kQNEcu"
+                  class="sc-bdvwhi blqSgr"
                 >
                   <img
                     alt="ITEM_ALT_0"
-                    class="sc-iGgWBj dZvqhO"
+                    class="sc-jRQBiJ hssYEG"
                     data-nimg="fill"
                     decoding="async"
                     loading="lazy"
@@ -44,15 +44,15 @@ exports[`WhoAreWeDesc renders correctly 1`] = `
                 </span>
               </div>
               <div
-                class="sc-aXZVg sc-gEvEer jPvJsJ fVNIMq"
+                class="sc-bdvwhi sc-gsDMPd hPWTKU cNirtN"
               >
                 <h3
-                  class="sc-eldPxv hjLrBk"
+                  class="sc-bkkgYE kNBRNi"
                 >
                   ITEM_TITLE_0
                 </h3>
                 <p
-                  class="sc-ikkxIA hUXuxV"
+                  class="sc-hGPAwl gpFakR"
                 >
                   ITEM_TEXT_0
                 </p>
@@ -60,21 +60,21 @@ exports[`WhoAreWeDesc renders correctly 1`] = `
             </div>
           </div>
           <div
-            class="sc-aXZVg sc-gEvEer sc-esYiGF sc-43691944-0 jPvJsJ iDBIXi giQTDM kVfdza"
+            class="sc-bdvwhi sc-gsDMPd sc-dPiIMO sc-43691944-0 hPWTKU Bakex iiYhvg biEa-dg"
             data-testid="who-we-are-desc-item"
           >
             <div
-              class="sc-aXZVg sc-gEvEer jPvJsJ daEtut"
+              class="sc-bdvwhi sc-gsDMPd hPWTKU eChlAW"
             >
               <div
-                class="sc-aXZVg FTJSB"
+                class="sc-bdvwhi fuqxtI"
               >
                 <span
-                  class="sc-aXZVg kQNEcu"
+                  class="sc-bdvwhi blqSgr"
                 >
                   <img
                     alt="ITEM_ALT_1"
-                    class="sc-iGgWBj dZvqhO"
+                    class="sc-jRQBiJ hssYEG"
                     data-nimg="fill"
                     decoding="async"
                     loading="lazy"
@@ -86,15 +86,15 @@ exports[`WhoAreWeDesc renders correctly 1`] = `
                 </span>
               </div>
               <div
-                class="sc-aXZVg sc-gEvEer jPvJsJ fVNIMq"
+                class="sc-bdvwhi sc-gsDMPd hPWTKU cNirtN"
               >
                 <h3
-                  class="sc-eldPxv hjLrBk"
+                  class="sc-bkkgYE kNBRNi"
                 >
                   ITEM_TITLE_1
                 </h3>
                 <p
-                  class="sc-ikkxIA hUXuxV"
+                  class="sc-hGPAwl gpFakR"
                 >
                   ITEM_TEXT_1
                 </p>
@@ -102,21 +102,21 @@ exports[`WhoAreWeDesc renders correctly 1`] = `
             </div>
           </div>
           <div
-            class="sc-aXZVg sc-gEvEer sc-esYiGF sc-43691944-0 jPvJsJ iDBIXi giQTDM kVfdza"
+            class="sc-bdvwhi sc-gsDMPd sc-dPiIMO sc-43691944-0 hPWTKU Bakex iiYhvg biEa-dg"
             data-testid="who-we-are-desc-item"
           >
             <div
-              class="sc-aXZVg sc-gEvEer jPvJsJ daEtut"
+              class="sc-bdvwhi sc-gsDMPd hPWTKU eChlAW"
             >
               <div
-                class="sc-aXZVg bbAMnw"
+                class="sc-bdvwhi dYmmaV"
               >
                 <span
-                  class="sc-aXZVg kQNEcu"
+                  class="sc-bdvwhi blqSgr"
                 >
                   <img
                     alt="ITEM_ALT_2"
-                    class="sc-iGgWBj dZvqhO"
+                    class="sc-jRQBiJ hssYEG"
                     data-nimg="fill"
                     decoding="async"
                     loading="lazy"
@@ -128,15 +128,15 @@ exports[`WhoAreWeDesc renders correctly 1`] = `
                 </span>
               </div>
               <div
-                class="sc-aXZVg sc-gEvEer jPvJsJ fVNIMq"
+                class="sc-bdvwhi sc-gsDMPd hPWTKU cNirtN"
               >
                 <h3
-                  class="sc-eldPxv hjLrBk"
+                  class="sc-bkkgYE kNBRNi"
                 >
                   ITEM_TITLE_2
                 </h3>
                 <p
-                  class="sc-ikkxIA hUXuxV"
+                  class="sc-hGPAwl gpFakR"
                 >
                   ITEM_TEXT_2
                 </p>
@@ -144,21 +144,21 @@ exports[`WhoAreWeDesc renders correctly 1`] = `
             </div>
           </div>
           <div
-            class="sc-aXZVg sc-gEvEer sc-esYiGF sc-43691944-0 jPvJsJ iDBIXi giQTDM kVfdza"
+            class="sc-bdvwhi sc-gsDMPd sc-dPiIMO sc-43691944-0 hPWTKU Bakex iiYhvg biEa-dg"
             data-testid="who-we-are-desc-item"
           >
             <div
-              class="sc-aXZVg sc-gEvEer jPvJsJ daEtut"
+              class="sc-bdvwhi sc-gsDMPd hPWTKU eChlAW"
             >
               <div
-                class="sc-aXZVg gXXlHk"
+                class="sc-bdvwhi cdIWcZ"
               >
                 <span
-                  class="sc-aXZVg kQNEcu"
+                  class="sc-bdvwhi blqSgr"
                 >
                   <img
                     alt="ITEM_ALT_3"
-                    class="sc-iGgWBj dZvqhO"
+                    class="sc-jRQBiJ hssYEG"
                     data-nimg="fill"
                     decoding="async"
                     loading="lazy"
@@ -170,15 +170,15 @@ exports[`WhoAreWeDesc renders correctly 1`] = `
                 </span>
               </div>
               <div
-                class="sc-aXZVg sc-gEvEer jPvJsJ fVNIMq"
+                class="sc-bdvwhi sc-gsDMPd hPWTKU cNirtN"
               >
                 <h3
-                  class="sc-eldPxv hjLrBk"
+                  class="sc-bkkgYE kNBRNi"
                 >
                   ITEM_TITLE_3
                 </h3>
                 <p
-                  class="sc-ikkxIA hUXuxV"
+                  class="sc-hGPAwl gpFakR"
                 >
                   ITEM_TEXT_3
                 </p>

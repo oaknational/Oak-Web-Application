@@ -4,33 +4,33 @@ exports[`OaksImpactCaseStudies renders correctly 1`] = `
 <body>
   <div>
     <div
-      class="sc-aXZVg sc-gEvEer xdoGL gSlSXH"
+      class="sc-bdvwhi sc-gsDMPd jtYhqa jqOcPA"
     >
       <h1
-        class="sc-eldPxv cTFVAh"
+        class="sc-bkkgYE llomD"
       >
         TEST_TITLE
       </h1>
       <div
-        class="sc-aXZVg sc-gEvEer jPvJsJ feoULz"
+        class="sc-bdvwhi sc-gsDMPd hPWTKU XlhNk"
       >
         <div
-          class="sc-aXZVg sc-gEvEer jEgKDG fXHtRp"
+          class="sc-bdvwhi sc-gsDMPd eExZUP kkGnDS"
         >
           TEST_DATE
         </div>
         <button
-          class="sc-fHjqPf cTauop"
+          class="sc-iwjfEg jajUsj sc-cxpUrY"
         >
           <div
-            class="sc-aXZVg bsftYB"
+            class="sc-bdvwhi ea-Dzpk"
           >
             <span
-              class="sc-aXZVg fjkwRj sc-fUnMCh esqnRZ"
+              class="sc-bdvwhi cqHYAi sc-fKVoIy gNZMCw"
             >
               <img
                 alt=""
-                class="sc-iGgWBj cMzyFO"
+                class="sc-jRQBiJ eMsccW"
                 data-nimg="fill"
                 decoding="async"
                 loading="lazy"
@@ -40,7 +40,7 @@ exports[`OaksImpactCaseStudies renders correctly 1`] = `
             </span>
           </div>
           <span
-            class="sc-eqUAAy iGfTGj"
+            class="sc-dkPwfY fgmEIT"
           >
             Copy link
           </span>
