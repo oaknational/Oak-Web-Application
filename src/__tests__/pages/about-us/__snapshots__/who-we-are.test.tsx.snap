@@ -582,7 +582,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
 
 .c191 {
   padding-left: 0.25rem;
-  display: inline-block;
+  display: inline;
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
@@ -2143,6 +2143,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
 
 .c24 {
   display: inline;
+  text-align: left;
   -webkit-align-items: center;
   -webkit-box-align: center;
   -ms-flex-align: center;
@@ -2207,6 +2208,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
 
 .c189 {
   display: inline;
+  text-align: left;
   -webkit-align-items: center;
   -webkit-box-align: center;
   -ms-flex-align: center;
@@ -2271,6 +2273,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
 
 .c223 {
   display: inline;
+  text-align: left;
   -webkit-align-items: center;
   -webkit-box-align: center;
   -ms-flex-align: center;

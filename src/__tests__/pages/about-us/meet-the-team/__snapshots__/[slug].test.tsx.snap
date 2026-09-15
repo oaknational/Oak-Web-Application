@@ -363,7 +363,7 @@ exports[`pages/about/meet-the-team/[slug].tsx renders 1`] = `
 
 .c111 {
   padding-left: 0.25rem;
-  display: inline-block;
+  display: inline;
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
@@ -1692,6 +1692,7 @@ exports[`pages/about/meet-the-team/[slug].tsx renders 1`] = `
 
 .c24 {
   display: inline;
+  text-align: left;
   -webkit-align-items: center;
   -webkit-box-align: center;
   -ms-flex-align: center;
@@ -1756,6 +1757,7 @@ exports[`pages/about/meet-the-team/[slug].tsx renders 1`] = `
 
 .c73 {
   display: inline;
+  text-align: left;
   -webkit-align-items: center;
   -webkit-box-align: center;
   -ms-flex-align: center;
@@ -1820,6 +1822,7 @@ exports[`pages/about/meet-the-team/[slug].tsx renders 1`] = `
 
 .c145 {
   display: inline;
+  text-align: left;
   -webkit-align-items: center;
   -webkit-box-align: center;
   -ms-flex-align: center;

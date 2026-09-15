@@ -501,7 +501,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
 
 .c183 {
   padding-left: 0.25rem;
-  display: inline-block;
+  display: inline;
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
@@ -2054,6 +2054,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
 
 .c24 {
   display: inline;
+  text-align: left;
   -webkit-align-items: center;
   -webkit-box-align: center;
   -ms-flex-align: center;
@@ -2118,6 +2119,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
 
 .c181 {
   display: inline;
+  text-align: left;
   -webkit-align-items: center;
   -webkit-box-align: center;
   -ms-flex-align: center;
@@ -2182,6 +2184,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
 
 .c215 {
   display: inline;
+  text-align: left;
   -webkit-align-items: center;
   -webkit-box-align: center;
   -ms-flex-align: center;
