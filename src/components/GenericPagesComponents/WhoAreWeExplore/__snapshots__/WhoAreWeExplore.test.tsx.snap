@@ -39,7 +39,7 @@ exports[`WhoAreWeExplore renders correctly with 3 items 1`] = `
               class="sc-78cd633-1 gmsaGw"
             >
               <li
-                class="sc-aXZVg sc-fTFjTM kBnJtM fvbgvK"
+                class="sc-aXZVg sc-hZDyAQ kBnJtM iMmmjC"
               >
                 <a
                   href="#item_one"
@@ -93,7 +93,7 @@ exports[`WhoAreWeExplore renders correctly with 3 items 1`] = `
                 </a>
               </li>
               <li
-                class="sc-aXZVg sc-fTFjTM kBnJtM fvbgvK"
+                class="sc-aXZVg sc-hZDyAQ kBnJtM iMmmjC"
               >
                 <a
                   href="#item_two"
@@ -147,7 +147,7 @@ exports[`WhoAreWeExplore renders correctly with 3 items 1`] = `
                 </a>
               </li>
               <li
-                class="sc-aXZVg sc-fTFjTM kBnJtM fvbgvK"
+                class="sc-aXZVg sc-hZDyAQ kBnJtM iMmmjC"
               >
                 <a
                   href="#item_three"
@@ -248,7 +248,7 @@ exports[`WhoAreWeExplore renders correctly with 4 items 1`] = `
               class="sc-78cd633-1 dYqmxl"
             >
               <li
-                class="sc-aXZVg sc-fTFjTM kBnJtM fvbgvK"
+                class="sc-aXZVg sc-hZDyAQ kBnJtM iMmmjC"
               >
                 <a
                   href="#item_one"
@@ -302,7 +302,7 @@ exports[`WhoAreWeExplore renders correctly with 4 items 1`] = `
                 </a>
               </li>
               <li
-                class="sc-aXZVg sc-fTFjTM kBnJtM fvbgvK"
+                class="sc-aXZVg sc-hZDyAQ kBnJtM iMmmjC"
               >
                 <a
                   href="#item_two"
@@ -356,7 +356,7 @@ exports[`WhoAreWeExplore renders correctly with 4 items 1`] = `
                 </a>
               </li>
               <li
-                class="sc-aXZVg sc-fTFjTM kBnJtM fvbgvK"
+                class="sc-aXZVg sc-hZDyAQ kBnJtM iMmmjC"
               >
                 <a
                   href="#item_three"
@@ -410,7 +410,7 @@ exports[`WhoAreWeExplore renders correctly with 4 items 1`] = `
                 </a>
               </li>
               <li
-                class="sc-aXZVg sc-fTFjTM kBnJtM fvbgvK"
+                class="sc-aXZVg sc-hZDyAQ kBnJtM iMmmjC"
               >
                 <a
                   href="#item_four"

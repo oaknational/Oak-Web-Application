@@ -147,7 +147,7 @@ exports[`CurricTimetablingUnits snapshot (mode=debug) 1`] = `
     </div>
   </div>
   <div
-    class="sc-aXZVg sc-gEvEer sc-brPLxw gqmiXn fUxOFh"
+    class="sc-aXZVg sc-gEvEer sc-gFVvzn gqmiXn fUxOFh"
   >
     <div
       class="sc-aXZVg sc-gEvEer jPvJsJ fjNQtm"
@@ -292,11 +292,11 @@ exports[`CurricTimetablingUnits snapshot (mode=debug) 1`] = `
             </div>
           </div>
           <div
-            class="sc-aXZVg sc-gEvEer sc-gFVvzn cUjhPB iDBIXi"
+            class="sc-aXZVg sc-gEvEer sc-kAkpmW cUjhPB iDBIXi"
             focusable="false"
           >
             <svg
-              class="sc-kAkpmW kiCHUA"
+              class="sc-cmaqmh eKxDBg"
               height="100%"
               preserveAspectRatio="none"
               viewBox="0 0 866 8"
@@ -695,7 +695,7 @@ exports[`CurricTimetablingUnits snapshot (mode=normal) 1`] = `
     </div>
   </div>
   <div
-    class="sc-aXZVg sc-gEvEer sc-brPLxw gqmiXn fUxOFh"
+    class="sc-aXZVg sc-gEvEer sc-gFVvzn gqmiXn fUxOFh"
   >
     <div
       class="sc-aXZVg sc-gEvEer jPvJsJ fjNQtm"
@@ -840,11 +840,11 @@ exports[`CurricTimetablingUnits snapshot (mode=normal) 1`] = `
             </div>
           </div>
           <div
-            class="sc-aXZVg sc-gEvEer sc-gFVvzn cUjhPB iDBIXi"
+            class="sc-aXZVg sc-gEvEer sc-kAkpmW cUjhPB iDBIXi"
             focusable="false"
           >
             <svg
-              class="sc-kAkpmW kiCHUA"
+              class="sc-cmaqmh eKxDBg"
               height="100%"
               preserveAspectRatio="none"
               viewBox="0 0 866 8"
@@ -1037,7 +1037,7 @@ exports[`CurricTimetablingUnits snapshot (mode=normal) 1`] = `
                       class="sc-fcf808f-1 crHfsW"
                     >
                       <div
-                        class="sc-aXZVg sc-fTFjTM jJROoH bSgmkz"
+                        class="sc-aXZVg sc-hZDyAQ jJROoH cgXuAr"
                       >
                         <a
                           class="sc-a6022ff2-0 ejmuOd"
@@ -1100,7 +1100,7 @@ exports[`CurricTimetablingUnits snapshot (mode=normal) 1`] = `
                       class="sc-fcf808f-1 crHfsW"
                     >
                       <div
-                        class="sc-aXZVg sc-fTFjTM jJROoH bSgmkz"
+                        class="sc-aXZVg sc-hZDyAQ jJROoH cgXuAr"
                       >
                         <a
                           class="sc-a6022ff2-0 ejmuOd"

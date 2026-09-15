@@ -505,7 +505,7 @@ exports[`Teachers Page Page component renders 1`] = `
                 </div>
                 <a
                   aria-label="My library"
-                  class="sc-dcJsrY sc-dGCmGc fIyhTG kNXJqf"
+                  class="sc-dcJsrY sc-bJBgwP fIyhTG gGlhYE"
                   href="/teachers/my-library"
                 >
                   <div
@@ -785,7 +785,7 @@ exports[`Teachers Page Page component renders 1`] = `
                             style="width: 50%;"
                           >
                             <div
-                              class="sc-aXZVg sc-fTFjTM sc-c435d711-1 eAVyBL VBMEN kNJGDD"
+                              class="sc-aXZVg sc-hZDyAQ sc-c435d711-1 eAVyBL goHzHJ kNJGDD"
                             >
                               <button
                                 aria-expanded="false"
@@ -854,7 +854,7 @@ exports[`Teachers Page Page component renders 1`] = `
                               class="sc-aXZVg sc-gEvEer Clfe dbzvZO"
                             >
                               <div
-                                class="sc-aXZVg sc-fTFjTM sc-c435d711-1 hWaSHT VBMEN kNJGDD"
+                                class="sc-aXZVg sc-hZDyAQ sc-c435d711-1 hWaSHT goHzHJ kNJGDD"
                               >
                                 <div
                                   class="sc-aXZVg sc-gEvEer jPvJsJ inWRga"
@@ -1104,7 +1104,7 @@ exports[`Teachers Page Page component renders 1`] = `
                           style="width: 50%;"
                         >
                           <div
-                            class="sc-aXZVg sc-fTFjTM sc-c435d711-1 eAVyBL VBMEN kNJGDD"
+                            class="sc-aXZVg sc-hZDyAQ sc-c435d711-1 eAVyBL goHzHJ kNJGDD"
                           >
                             <button
                               aria-expanded="false"
@@ -1173,7 +1173,7 @@ exports[`Teachers Page Page component renders 1`] = `
                             class="sc-aXZVg sc-gEvEer Clfe dbzvZO"
                           >
                             <div
-                              class="sc-aXZVg sc-fTFjTM sc-c435d711-1 hWaSHT VBMEN kNJGDD"
+                              class="sc-aXZVg sc-hZDyAQ sc-c435d711-1 hWaSHT goHzHJ kNJGDD"
                             >
                               <div
                                 class="sc-aXZVg sc-gEvEer jPvJsJ inWRga"
@@ -1401,7 +1401,7 @@ exports[`Teachers Page Page component renders 1`] = `
                               style="width: 50%;"
                             >
                               <div
-                                class="sc-aXZVg sc-fTFjTM sc-c435d711-1 eAVyBL VBMEN kNJGDD"
+                                class="sc-aXZVg sc-hZDyAQ sc-c435d711-1 eAVyBL goHzHJ kNJGDD"
                               >
                                 <button
                                   aria-expanded="false"
@@ -1470,7 +1470,7 @@ exports[`Teachers Page Page component renders 1`] = `
                                 class="sc-aXZVg sc-gEvEer Clfe dbzvZO"
                               >
                                 <div
-                                  class="sc-aXZVg sc-fTFjTM sc-c435d711-1 hWaSHT VBMEN kNJGDD"
+                                  class="sc-aXZVg sc-hZDyAQ sc-c435d711-1 hWaSHT goHzHJ kNJGDD"
                                 >
                                   <div
                                     class="sc-aXZVg sc-gEvEer jPvJsJ inWRga"
@@ -1656,7 +1656,7 @@ exports[`Teachers Page Page component renders 1`] = `
             </div>
           </div>
           <div
-            class="sc-aXZVg sc-gEvEer sc-brPLxw hjiwHg fUxOFh"
+            class="sc-aXZVg sc-gEvEer sc-gFVvzn hjiwHg fUxOFh"
           >
             <div
               class="sc-aXZVg dnHcpg"
@@ -1676,7 +1676,7 @@ exports[`Teachers Page Page component renders 1`] = `
                     class="sc-aXZVg sc-dAbbOL lgAxeN eZDdgy"
                   >
                     <a
-                      class="sc-fHjqPf cTauop sc-iHmpnF"
+                      class="sc-fHjqPf cTauop sc-ehixzo"
                       href="/webinars"
                     >
                       <span
@@ -1690,7 +1690,7 @@ exports[`Teachers Page Page component renders 1`] = `
                     class="sc-aXZVg sc-dAbbOL eUsGfA eZDdgy"
                   >
                     <a
-                      class="sc-fHjqPf cTauop sc-iHmpnF"
+                      class="sc-fHjqPf cTauop sc-ehixzo"
                       href="/blog"
                     >
                       <span
@@ -1865,7 +1865,7 @@ exports[`Teachers Page Page component renders 1`] = `
                           class="sc-eldPxv dQwkSK"
                         >
                           <a
-                            class="sc-fHjqPf cTauop sc-iHmpnF"
+                            class="sc-fHjqPf cTauop sc-ehixzo"
                             href="/blog/some-blog-post"
                             title="Some blog post"
                           >
@@ -1890,11 +1890,11 @@ exports[`Teachers Page Page component renders 1`] = `
                     class="sc-fPXMVe ishrdH"
                   >
                     <div
-                      class="sc-aXZVg sc-gEvEer sc-gFVvzn cZnPVv iDBIXi"
+                      class="sc-aXZVg sc-gEvEer sc-kAkpmW cZnPVv iDBIXi"
                       focusable="false"
                     >
                       <svg
-                        class="sc-kAkpmW gIJHRH"
+                        class="sc-cmaqmh liewUf"
                         height="100%"
                         preserveAspectRatio="none"
                         viewBox="0 0 866 8"
@@ -2065,7 +2065,7 @@ exports[`Teachers Page Page component renders 1`] = `
                           class="sc-eldPxv dQwkSK"
                         >
                           <a
-                            class="sc-fHjqPf cTauop sc-iHmpnF"
+                            class="sc-fHjqPf cTauop sc-ehixzo"
                             href="/blog/some-other-post"
                             title="Some other post"
                           >
@@ -2094,7 +2094,7 @@ exports[`Teachers Page Page component renders 1`] = `
             class="sc-aXZVg sc-gEvEer iiejHs iDBIXi"
           >
             <div
-              class="sc-aXZVg sc-gEvEer sc-brPLxw iyyYQE cpAmbR"
+              class="sc-aXZVg sc-gEvEer sc-gFVvzn iyyYQE cpAmbR"
             >
               <div
                 class="sc-aXZVg sc-gEvEer dySIYP iDBIXi"
@@ -2718,7 +2718,7 @@ exports[`Teachers Page Page component renders 1`] = `
             id="site-footer"
           >
             <div
-              class="sc-aXZVg sc-gEvEer sc-brPLxw leSQlB iqPJZh"
+              class="sc-aXZVg sc-gEvEer sc-gFVvzn leSQlB iqPJZh"
             >
               <div
                 class="sc-aXZVg sc-tagGq jPvJsJ fNndNZ"
