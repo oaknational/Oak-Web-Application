@@ -129,7 +129,11 @@ export const HomePageLowerView = (props: HomePageLowerViewProps) => {
                   />
                 </OakFlex>
               </OakGridArea>
-              <OakGridArea $colSpan={[12, 12, 4]}>
+              <OakGridArea
+                $colSpan={[12, 12, 4]}
+                $alignSelf="start"
+                $height={["auto", "auto", "730px"]}
+              >
                 <Testimonials testimonials={props.testimonials} />
               </OakGridArea>
             </OakGrid>
