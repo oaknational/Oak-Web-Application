@@ -1,3 +1,19 @@
+## [1.1195.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.1195.0...v1.1195.1) (2026-09-15)
+
+
+### Bug Fixes
+
+* disable national-curriculum-insights in pa11y for now ([cef1f9c](https://github.com/oaknational/Oak-Web-Application/commit/cef1f9cc08492c8141ae4a0c3b849f3ec40b83f2))
+* re-enable "/curriculum-change-explained/guidance" as it's live ([c3ee7f7](https://github.com/oaknational/Oak-Web-Application/commit/c3ee7f7bdefdd691d0cc9faec4e7a712d8ed9cc5))
+* remove tests for unreleased features ([6ebf012](https://github.com/oaknational/Oak-Web-Application/commit/6ebf012d1490fe6b2c0cd6b1c941ace20a509771))
+
+# [1.1195.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1194.0...v1.1195.0) (2026-09-15)
+
+
+### Features
+
+* promote download success header compact variant ([c7760f7](https://github.com/oaknational/Oak-Web-Application/commit/c7760f746bac6b9fd1f945137bfa0e07f7fa359f))
+
 # [1.1194.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1193.0...v1.1194.0) (2026-09-15)
 
 
