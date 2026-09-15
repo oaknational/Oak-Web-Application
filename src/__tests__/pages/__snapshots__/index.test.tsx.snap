@@ -2721,7 +2721,7 @@ exports[`Teachers Page Page component renders 1`] = `
               class="sc-aXZVg sc-gEvEer sc-cmaqmh eVqnXU iqPJZh"
             >
               <div
-                class="sc-aXZVg sc-tagGq jPvJsJ fNndNZ"
+                class="sc-aXZVg sc-tagGq jPvJsJ doDwBx"
               >
                 <div
                   class="sc-aXZVg sc-gEvEer sc-esYiGF jPvJsJ iDBIXi kyzhPb"
@@ -3414,7 +3414,7 @@ exports[`Teachers Page Page component renders 1`] = `
                 </div>
               </div>
               <span
-                class="sc-aXZVg kvjdhA sc-38d94766-0 cySckz"
+                class="sc-aXZVg kvjdhA sc-3805e392-0 jbQAwV"
                 data-percy-hide="contents"
               >
                 <img

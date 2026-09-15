@@ -296,7 +296,7 @@ const LayoutSiteFooter: FC = () => {
           $ma={"auto"}
           $width={"100%"}
         >
-          <OakGrid>
+          <OakGrid $cg="spacing-24">
             <OakGridArea $colSpan={[12, 3]}>
               <FooterSectionLinks {...sections.pupils} />
               <OakBox $mt={["spacing-0", "spacing-32"]} />

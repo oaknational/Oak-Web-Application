@@ -1965,6 +1965,8 @@ exports[`pages/about/meet-the-team/[slug].tsx renders 1`] = `
   display: grid;
   grid-template-columns: repeat(12,1fr);
   width: 100%;
+  -webkit-column-gap: 1.5rem;
+  column-gap: 1.5rem;
 }
 
 .c79 {
