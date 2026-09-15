@@ -418,13 +418,6 @@ describe("createTeacherProgrammeSlug", () => {
     );
   });
 
-  test("unit data for ks3 returns the correct programme slug", () => {
-    const unitData = createUnit({ keystage_slug: "ks3", year: "9" });
-    expect(createTeacherProgrammeSlug(unitData, "aqa")).toEqual(
-      "maths-secondary-ks3",
-    );
-  });
-
   test("core pathway excludes examboard from slug (Computing)", () => {
     const unitData = createUnit({
       slug: "online-safety",

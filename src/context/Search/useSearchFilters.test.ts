@@ -77,7 +77,7 @@ describe("useSearchFilters()", () => {
     expect(lessonChecked).toBe(false);
     expect(unitChecked).toBe(false);
   });
-  test("'checked' should be true if key stage filter active", () => {
+  test("'checked' should be true if unit/lesson filter active", () => {
     const withFilterActive: UseSearchFiltersProps = {
       ...props,
       query: { ...props.query, contentTypes: ["unit", "lesson"] },
