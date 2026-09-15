@@ -1,13 +1,13 @@
-import { OaksImpactCaseStudyHeader } from ".";
+import { CaseStudyHeader } from ".";
 
 import { renderWithProvidersByName } from "@/__tests__/__helpers__/renderWithProviders";
 
 const render = renderWithProvidersByName(["oakTheme"]);
 
-describe("OaksImpactCaseStudies", () => {
+describe("CaseStudyHeader", () => {
   it("renders correctly", () => {
     const { baseElement, getByRole } = render(
-      <OaksImpactCaseStudyHeader
+      <CaseStudyHeader
         title="TEST_TITLE"
         publishedDate="TEST_DATE"
         onCopyLink={() => {}}
@@ -21,7 +21,7 @@ describe("OaksImpactCaseStudies", () => {
 
   it("renders correctly with summary", () => {
     const { baseElement, getByRole } = render(
-      <OaksImpactCaseStudyHeader
+      <CaseStudyHeader
         title="TEST_TITLE"
         publishedDate="TEST_DATE"
         summary="TEST_SUMMARY"
@@ -38,7 +38,7 @@ describe("OaksImpactCaseStudies", () => {
   it("calls onCopyLink when copy link clicked", () => {
     const onCopyLink = jest.fn();
     const { getByRole } = render(
-      <OaksImpactCaseStudyHeader
+      <CaseStudyHeader
         title="TEST_TITLE"
         publishedDate="TEST_DATE"
         onCopyLink={onCopyLink}

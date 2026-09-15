@@ -6,20 +6,20 @@ import {
   OakP,
 } from "@oaknational/oak-components";
 
-type OaksImpactCaseStudyHeaderProps = {
+type CaseStudyHeaderProps = {
   title: string;
   tag?: string;
   publishedDate: string;
   summary?: string;
   onCopyLink: () => void;
 };
-export function OaksImpactCaseStudyHeader({
+export function CaseStudyHeader({
   title,
   tag,
   publishedDate,
   summary,
   onCopyLink,
-}: Readonly<OaksImpactCaseStudyHeaderProps>) {
+}: Readonly<CaseStudyHeaderProps>) {
   return (
     <OakFlex $flexDirection="column" $gap="spacing-48">
       <OakFlex

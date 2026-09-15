@@ -1,11 +1,11 @@
 import { Meta, StoryObj } from "@storybook/nextjs";
 
-import { OaksImpactCaseStudyHeader as Component } from ".";
+import { CaseStudyHeader as Component } from ".";
 
 const meta = {
   component: Component,
   tags: ["autodocs"],
-  title: "Components/GenericPagesComponents/OaksImpactCaseStudyHeader",
+  title: "Components/GenericPagesComponents/CaseStudyHeader",
   argTypes: {},
 } satisfies Meta<typeof Component>;
 
