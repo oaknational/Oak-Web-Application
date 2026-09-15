@@ -348,7 +348,7 @@ export async function getFile({
               examboardTitle: data.combinedCurriculumData?.examboardTitle,
               childSubjectSlug,
               tierSlug,
-              prefix: definition.label ?? type,
+              prefix: definition.filenameOverride ?? definition.label ?? type,
               isWithinArchive: data.isWithinArchive,
             });
           },
