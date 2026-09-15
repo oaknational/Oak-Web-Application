@@ -365,7 +365,6 @@ const OverviewTab: FC<OverviewTabProps> = ({
               <OakGridArea
                 $colSpan={[12, 6, 4]}
                 $colStart={[1, 8, 8]}
-                $justifyContent="center"
                 $gap="spacing-24"
                 $order={[0, 1]}
               >
