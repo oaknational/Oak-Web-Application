@@ -1,13 +1,13 @@
 import { OakGrid, OakGridArea, OakBox } from "@oaknational/oak-components";
 
-type OaksImpactCaseStudyContentLayoutProps = {
+type CaseStudyContentLayoutProps = {
   menu?: React.ReactNode;
   children: React.ReactNode;
 };
-export function OaksImpactCaseStudyContentLayout({
+export function CaseStudyContentLayout({
   menu,
   children,
-}: Readonly<OaksImpactCaseStudyContentLayoutProps>) {
+}: Readonly<CaseStudyContentLayoutProps>) {
   return (
     <OakGrid $cg="spacing-16">
       {menu && (

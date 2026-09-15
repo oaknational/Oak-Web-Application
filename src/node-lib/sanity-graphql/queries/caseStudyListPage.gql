@@ -1,4 +1,4 @@
-query oaksImpactCaseStudyListPage($isDraftFilter: Sanity_DocumentFilter) {
+query caseStudyListPage($isDraftFilter: Sanity_DocumentFilter) {
   allCaseStudy (
     where: {
       _: $isDraftFilter

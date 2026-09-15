@@ -14,22 +14,23 @@ import { TeacherBrowseAnalyticsStoreProvider } from "@/context/TeacherBrowseAnal
 import { isFeatureFlagEnabledServer } from "@/utils/featureFlagChecks/server";
 import { NewGutterMaxWidth } from "@/components/GenericPagesComponents/NewGutterMaxWidth";
 import CMSClient from "@/node-lib/cms";
-import { OaksImpactCaseStudyListPage } from "@/common-lib/cms-types/aboutPages";
+import { CaseStudyListPage } from "@/common-lib/cms-types/aboutPages";
 import getProxiedSanityAssetUrl from "@/common-lib/urls/getProxiedSanityAssetUrl";
 import { resolveOakHref } from "@/common-lib/urls";
 import { AboutSharedHeader } from "@/components/GenericPagesComponents/AboutSharedHeader";
 import { getCloudinaryImageUrl } from "@/utils/getCloudinaryImageUrl";
 
-export type AboutUsOaksImpactCaseStudyListPageProps = {
+export type AboutUsCaseStudyListPageProps = {
   pageData: {
-    caseStudies: OaksImpactCaseStudyListPage;
+    caseStudies: CaseStudyListPage;
   };
   topNav: TopNavProps;
 };
 
-export const AboutUsOaksImpactCaseStudyList: NextPage<
-  AboutUsOaksImpactCaseStudyListPageProps
-> = ({ pageData: { caseStudies }, topNav }) => {
+export const AboutUsCaseStudyList: NextPage<AboutUsCaseStudyListPageProps> = ({
+  pageData: { caseStudies },
+  topNav,
+}) => {
   const items = caseStudies.map((caseStudy) => ({
     heading: caseStudy.video.title,
     href: resolveOakHref({
@@ -112,13 +113,13 @@ export const getServerSideProps: GetServerSideProps<
   }
 
   const isPreviewMode = context.preview === true;
-  const oaksImpactCaseStudyPage = await CMSClient.oaksImpactCaseStudyListPage({
+  const caseStudies = await CMSClient.caseStudyListPage({
     previewMode: isPreviewMode,
   });
 
   const topNav = await curriculumApi2023.topNav();
 
-  if (!oaksImpactCaseStudyPage) {
+  if (!caseStudies) {
     return {
       notFound: true,
     };
@@ -127,7 +128,7 @@ export const getServerSideProps: GetServerSideProps<
   return {
     props: {
       pageData: {
-        caseStudies: oaksImpactCaseStudyPage,
+        caseStudies,
       },
       topNav,
     },
