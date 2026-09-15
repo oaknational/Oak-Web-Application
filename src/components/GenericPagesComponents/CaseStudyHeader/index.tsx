@@ -58,12 +58,10 @@ export function CaseStudyHeader({
           $ba="border-solid-s"
           $borderColor="border-decorative2"
         >
-          <OakHeading tag={"h1"} $color={"text-primary"} $font={"heading-6"}>
+          <OakHeading tag={"div"} $font={["heading-7", "heading-6"]}>
             Summary
           </OakHeading>
-          <OakP $color={"text-primary"} $font={"body-1"}>
-            {summary}
-          </OakP>
+          <OakP $font={["body-2", "body-1"]}>{summary}</OakP>
         </OakFlex>
       )}
     </OakFlex>
