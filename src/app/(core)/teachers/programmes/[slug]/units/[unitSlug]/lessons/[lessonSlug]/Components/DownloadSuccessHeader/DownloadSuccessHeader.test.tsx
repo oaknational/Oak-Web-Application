@@ -14,6 +14,18 @@ jest.mock("@oaknational/oak-consent-client", () => ({
 }));
 
 describe("DownloadSuccessHeader", () => {
+  it("renders the header in compact mode", () => {
+    render(<DownloadSuccessHeader href="/programmes" returnTo="lesson" />);
+
+    expect(
+      screen.getByRole("heading", { name: "Thanks for downloading!" }),
+    ).toBeInTheDocument();
+    expect(
+      screen.getByRole("link", { name: "Back to lesson" }),
+    ).toBeInTheDocument();
+    expect(screen.queryByTestId("hero-image")).not.toBeInTheDocument();
+  });
+
   it("passes href to the back link", () => {
     const testHref = "/teachers/programmes/english/key-stage-3";
     render(<DownloadSuccessHeader href={testHref} returnTo="lesson" />);
@@ -62,24 +74,6 @@ describe("DownloadSuccessHeader", () => {
       "https://support.thenational.academy/how-to-install-the-google-fonts-lexend-and-kalan",
     );
     expect(fontLink).toHaveAttribute("target", "_blank");
-  });
-
-  it("renders the large layout with a hero image when showCompactHeader is not set", () => {
-    render(<DownloadSuccessHeader href="/programmes" returnTo="lesson" />);
-
-    expect(screen.getByTestId("hero-image")).toBeInTheDocument();
-  });
-
-  it("renders the compact layout without a hero image when showCompactHeader is true", () => {
-    render(
-      <DownloadSuccessHeader
-        href="/programmes"
-        returnTo="lesson"
-        showCompactHeader
-      />,
-    );
-
-    expect(screen.queryByTestId("hero-image")).not.toBeInTheDocument();
   });
 
   it("renders the back link as a button when no href is passed", () => {

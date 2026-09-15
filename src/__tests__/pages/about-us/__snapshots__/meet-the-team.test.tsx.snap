@@ -849,6 +849,9 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
   -webkit-align-items: center;
   -webkit-box-align: center;
   -ms-flex-align: center;
@@ -3403,6 +3406,14 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
 
 @media (min-width:750px) {
   .c71 {
+    -webkit-flex-direction: row;
+    -ms-flex-direction: row;
+    flex-direction: row;
+  }
+}
+
+@media (min-width:750px) {
+  .c71 {
     -webkit-flex-basis: auto;
     -ms-flex-preferred-size: auto;
     flex-basis: auto;
@@ -5161,6 +5172,7 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
                         <a
                           href="/about-us/who-we-are"
                           style="outline: none;"
+                          target="_self"
                         >
                           <div
                             class="c119 c120 c121"
@@ -5214,6 +5226,7 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
                         <a
                           href="/about-us/oaks-curricula"
                           style="outline: none;"
+                          target="_self"
                         >
                           <div
                             class="c119 c120 c121"
@@ -5267,6 +5280,7 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
                         <a
                           href="/about-us/oaks-impact"
                           style="outline: none;"
+                          target="_self"
                         >
                           <div
                             class="c119 c120 c121"
@@ -5320,6 +5334,7 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
                         <a
                           href="/about-us/meet-the-team"
                           style="outline: none;"
+                          target="_self"
                         >
                           <div
                             class="c119 c120 c121"
@@ -5373,6 +5388,7 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
                         <a
                           href="/about-us/get-involved"
                           style="outline: none;"
+                          target="_self"
                         >
                           <div
                             class="c119 c120 c121"

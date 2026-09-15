@@ -87,17 +87,30 @@ export const HomePageLowerView = (props: HomePageLowerViewProps) => {
                     <OakP $font={["body-2", "body-2", "body-1"]}>
                       {introVideo?.bodyPortableText?.[0]?.children[0]?.text}
                     </OakP>
-                    <OakSecondaryButton
-                      element="a"
-                      href={resolveOakHref({ page: "about-who-we-are" })}
-                      iconName="arrow-right"
-                      isTrailingIcon={true}
-                      onClick={() =>
-                        aboutUsAccessed(buildAboutUsAnalytics("about_oak"))
-                      }
-                    >
-                      About Oak
-                    </OakSecondaryButton>
+                    <OakFlex $flexWrap="wrap" $gap="spacing-16">
+                      <OakSecondaryButton
+                        element="a"
+                        href={resolveOakHref({ page: "about-who-we-are" })}
+                        iconName="arrow-right"
+                        isTrailingIcon={true}
+                        onClick={() =>
+                          aboutUsAccessed(buildAboutUsAnalytics("about_oak"))
+                        }
+                      >
+                        About Oak
+                      </OakSecondaryButton>
+                      <OakSecondaryButton
+                        element="a"
+                        href={resolveOakHref({ page: "about-oaks-impact" })}
+                        iconName="arrow-right"
+                        isTrailingIcon={true}
+                        onClick={() =>
+                          aboutUsAccessed(buildAboutUsAnalytics("oaks_impact"))
+                        }
+                      >
+                        Oak's impact
+                      </OakSecondaryButton>
+                    </OakFlex>
                   </OakFlex>
                   <CMSVideo
                     hideCaptions={true}
