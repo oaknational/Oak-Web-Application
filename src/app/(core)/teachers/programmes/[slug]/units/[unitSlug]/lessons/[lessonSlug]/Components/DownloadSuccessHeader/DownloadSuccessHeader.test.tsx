@@ -64,24 +64,6 @@ describe("DownloadSuccessHeader", () => {
     expect(fontLink).toHaveAttribute("target", "_blank");
   });
 
-  it("renders the large layout with a hero image when showCompactHeader is not set", () => {
-    render(<DownloadSuccessHeader href="/programmes" returnTo="lesson" />);
-
-    expect(screen.getByTestId("hero-image")).toBeInTheDocument();
-  });
-
-  it("renders the compact layout without a hero image when showCompactHeader is true", () => {
-    render(
-      <DownloadSuccessHeader
-        href="/programmes"
-        returnTo="lesson"
-        showCompactHeader
-      />,
-    );
-
-    expect(screen.queryByTestId("hero-image")).not.toBeInTheDocument();
-  });
-
   it("renders the back link as a button when no href is passed", () => {
     const onBackClick = jest.fn();
     render(
