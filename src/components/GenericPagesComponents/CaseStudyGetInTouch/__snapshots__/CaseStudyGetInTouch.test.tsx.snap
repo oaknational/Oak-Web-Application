@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`GetInTouch renders 1`] = `
+exports[`CaseStudyGetInTouch renders 1`] = `
 <div>
   <div
     class="sc-aXZVg sc-gEvEer jPvJsJ fpgFKY"
