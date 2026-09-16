@@ -20,16 +20,17 @@ import { resolveOakHref } from "@/common-lib/urls";
 import { AboutSharedHeader } from "@/components/GenericPagesComponents/AboutSharedHeader";
 import { getCloudinaryImageUrl } from "@/utils/getCloudinaryImageUrl";
 
-export type AboutUsOaksImpactCaseStudyListPageProps = {
+export type AboutUsCaseStudyListPageProps = {
   pageData: {
     caseStudies: OaksImpactCaseStudyListPage;
   };
   topNav: TopNavProps;
 };
 
-export const AboutUsOaksImpactCaseStudyList: NextPage<
-  AboutUsOaksImpactCaseStudyListPageProps
-> = ({ pageData: { caseStudies }, topNav }) => {
+export const AboutUsCaseStudyList: NextPage<AboutUsCaseStudyListPageProps> = ({
+  pageData: { caseStudies },
+  topNav,
+}) => {
   const items = caseStudies.map((caseStudy) => ({
     heading: caseStudy.video.title,
     href: resolveOakHref({

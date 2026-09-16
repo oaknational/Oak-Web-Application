@@ -4,7 +4,7 @@ import slugify from "slugify";
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 import { topNavFixture } from "@/node-lib/curriculum-api-2023/fixtures/topNav.fixture";
 import OaksCaseStudyList, {
-  AboutUsOaksImpactCaseStudyListPageProps,
+  AboutUsCaseStudyListPageProps,
   getServerSideProps,
 } from "@/pages/about-us/case-studies/index";
 import { isFeatureFlagEnabledServer } from "@/utils/featureFlagChecks/server";
@@ -43,7 +43,7 @@ function fixtureCaseStudy(title: string) {
   };
 }
 
-const mockPageData: AboutUsOaksImpactCaseStudyListPageProps["pageData"] = {
+const mockPageData: AboutUsCaseStudyListPageProps["pageData"] = {
   caseStudies: [
     fixtureCaseStudy(`Test 1`),
     fixtureCaseStudy(`Test 2`),
