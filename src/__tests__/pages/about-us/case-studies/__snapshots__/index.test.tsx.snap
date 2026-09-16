@@ -613,17 +613,16 @@ exports[`pages/about-us/case-studies/index.tsx renders content 1`] = `
               class="sc-aXZVg bZTQLO"
             >
               <div
-                class="sc-aXZVg sc-gEvEer gHbcIj cqAYHx"
+                class="sc-aXZVg sc-gEvEer fjNszh hPyKbx"
               >
                 <div
-                  class="sc-aXZVg sc-gEvEer kJbZjn hNxFkS"
+                  class="sc-aXZVg sc-gEvEer jPvJsJ daEtut"
                 >
                   <h1
                     class="sc-eldPxv kSQYKV"
                   >
                     <span
                       class="sc-eqUAAy AfXps"
-                      style="line-height: 1.25; box-decoration-break: clone;"
                     >
                       Case studies
                     </span>
@@ -635,7 +634,7 @@ exports[`pages/about-us/case-studies/index.tsx renders content 1`] = `
                   </p>
                 </div>
                 <div
-                  class="sc-aXZVg sc-dd122c9c-0 QBMYh dswlVp"
+                  class="sc-aXZVg sc-92f05ab6-0 jPvJsJ dsUbtv"
                 >
                   <span
                     class="sc-aXZVg kSyyew"

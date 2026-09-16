@@ -14,23 +14,22 @@ import { TeacherBrowseAnalyticsStoreProvider } from "@/context/TeacherBrowseAnal
 import { isFeatureFlagEnabledServer } from "@/utils/featureFlagChecks/server";
 import { NewGutterMaxWidth } from "@/components/GenericPagesComponents/NewGutterMaxWidth";
 import CMSClient from "@/node-lib/cms";
-import { CaseStudyListPage } from "@/common-lib/cms-types/aboutPages";
+import { OaksImpactCaseStudyListPage } from "@/common-lib/cms-types/aboutPages";
 import getProxiedSanityAssetUrl from "@/common-lib/urls/getProxiedSanityAssetUrl";
 import { resolveOakHref } from "@/common-lib/urls";
 import { AboutSharedHeader } from "@/components/GenericPagesComponents/AboutSharedHeader";
 import { getCloudinaryImageUrl } from "@/utils/getCloudinaryImageUrl";
 
-export type AboutUsCaseStudyListPageProps = {
+export type AboutUsOaksImpactCaseStudyListPageProps = {
   pageData: {
-    caseStudies: CaseStudyListPage;
+    caseStudies: OaksImpactCaseStudyListPage;
   };
   topNav: TopNavProps;
 };
 
-export const AboutUsCaseStudyList: NextPage<AboutUsCaseStudyListPageProps> = ({
-  pageData: { caseStudies },
-  topNav,
-}) => {
+export const AboutUsOaksImpactCaseStudyList: NextPage<
+  AboutUsOaksImpactCaseStudyListPageProps
+> = ({ pageData: { caseStudies }, topNav }) => {
   const items = caseStudies.map((caseStudy) => ({
     heading: caseStudy.video.title,
     href: resolveOakHref({
@@ -113,13 +112,13 @@ export const getServerSideProps: GetServerSideProps<
   }
 
   const isPreviewMode = context.preview === true;
-  const caseStudies = await CMSClient.caseStudyListPage({
+  const oaksImpactCaseStudyPage = await CMSClient.oaksImpactCaseStudyListPage({
     previewMode: isPreviewMode,
   });
 
   const topNav = await curriculumApi2023.topNav();
 
-  if (!caseStudies) {
+  if (!oaksImpactCaseStudyPage) {
     return {
       notFound: true,
     };
@@ -128,7 +127,7 @@ export const getServerSideProps: GetServerSideProps<
   return {
     props: {
       pageData: {
-        caseStudies,
+        caseStudies: oaksImpactCaseStudyPage,
       },
       topNav,
     },

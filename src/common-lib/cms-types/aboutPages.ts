@@ -204,9 +204,21 @@ export const oaksImpactPageSchema = z.object({
 
 export type OaksImpactPage = z.infer<typeof oaksImpactPageSchema>;
 
-export const caseStudyListPageSchema = z.array(caseStudySchema);
+export const oaksImpactCaseStudyPageSchema = z.object({
+  caseStudiesSection: z.object({
+    caseStudies: z.array(caseStudySchema),
+  }),
+});
 
-export type CaseStudyListPage = z.infer<typeof caseStudyListPageSchema>;
+export const oaksImpactCaseStudyListPageSchema = z.array(caseStudySchema);
+
+export type OaksImpactCaseStudyPage = z.infer<
+  typeof oaksImpactCaseStudyPageSchema
+>;
+
+export type OaksImpactCaseStudyListPage = z.infer<
+  typeof oaksImpactCaseStudyListPageSchema
+>;
 
 // Aliases for about pages (old naming convention - mapping new queries to existing schemas)
 export const aboutWhoWeArePageSchema = whoWeArePageSchema;

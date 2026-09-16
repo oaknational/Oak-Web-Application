@@ -15,7 +15,7 @@ import {
 import { format } from "date-fns";
 
 import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
-import { CaseStudyListPage } from "@/common-lib/cms-types/aboutPages";
+import { OaksImpactCaseStudyPage } from "@/common-lib/cms-types/aboutPages";
 import CMSClient from "@/node-lib/cms";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 import getPageProps from "@/node-lib/getPageProps";
@@ -25,27 +25,26 @@ import {
 } from "@/node-lib/isr";
 import Layout from "@/components/AppComponents/AppLayout";
 import { TopNavProps } from "@/components/AppComponents/TopNav/TopNav";
-import { CaseStudies } from "@/components/GenericPagesComponents/CaseStudies";
+import { OaksImpactCaseStudies } from "@/components/GenericPagesComponents/OaksImpactCaseStudies";
 import { resolveOakHref } from "@/common-lib/urls";
 import { NewGutterMaxWidth } from "@/components/GenericPagesComponents/NewGutterMaxWidth";
 import { useOakNotificationsContext } from "@/context/OakNotifications/useOakNotificationsContext";
 import { CaseStudyHeader } from "@/components/GenericPagesComponents/CaseStudyHeader";
-import { CaseStudyContentLayout } from "@/components/GenericPagesComponents/CaseStudyContentLayout";
+import { OaksImpactCaseStudyContentLayout } from "@/components/GenericPagesComponents/OaksImpactCaseStudyContentLayout";
 import VideoPlayer from "@/components/SharedComponents/VideoPlayer";
 import { TeacherBrowseAnalyticsStoreProvider } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
 
-export type AboutUsCaseStudyPageProps = {
+export type AboutUsOaksImpactCaseStudyPageProps = {
   pageData: {
-    caseStudy: CaseStudyListPage[number];
-    otherCaseStudies: CaseStudyListPage;
+    caseStudy: OaksImpactCaseStudyPage["caseStudiesSection"]["caseStudies"][number];
+    otherCaseStudies: OaksImpactCaseStudyPage["caseStudiesSection"]["caseStudies"];
   };
   topNav: TopNavProps;
 };
 
-const AboutUsCaseStudy: NextPage<AboutUsCaseStudyPageProps> = ({
-  pageData: { caseStudy, otherCaseStudies },
-  topNav,
-}) => {
+const AboutUsOaksImpactCaseStudy: NextPage<
+  AboutUsOaksImpactCaseStudyPageProps
+> = ({ pageData: { caseStudy, otherCaseStudies }, topNav }) => {
   const { setCurrentToastProps } = useOakNotificationsContext();
 
   const onCopyLink = () => {
@@ -85,10 +84,8 @@ const AboutUsCaseStudy: NextPage<AboutUsCaseStudyPageProps> = ({
                             text: "Home",
                           },
                           {
-                            href: resolveOakHref({
-                              page: "about-case-studies",
-                            }),
-                            text: "Case studies",
+                            href: "/about-us/oaks-impact",
+                            text: "Oak's impact",
                           },
                           { text: caseStudy.video.title },
                         ]}
@@ -118,7 +115,7 @@ const AboutUsCaseStudy: NextPage<AboutUsCaseStudyPageProps> = ({
             </NewGutterMaxWidth>
           </OakBox>
           <NewGutterMaxWidth>
-            <CaseStudyContentLayout>
+            <OaksImpactCaseStudyContentLayout>
               <OakBox $pv="spacing-100" $position={"relative"}>
                 <OakVideo
                   videoSlot={
@@ -139,10 +136,10 @@ const AboutUsCaseStudy: NextPage<AboutUsCaseStudyPageProps> = ({
                   body={caseStudy.textRaw ?? undefined}
                 />
               </OakBox>
-            </CaseStudyContentLayout>
+            </OaksImpactCaseStudyContentLayout>
           </NewGutterMaxWidth>
 
-          <CaseStudies
+          <OaksImpactCaseStudies
             title="Explore more case studies"
             caseStudies={otherCaseStudies}
           />
@@ -161,17 +158,19 @@ export const getStaticPaths = async () => {
     return getFallbackBlockingConfig();
   }
 
-  const caseStudies = await CMSClient.caseStudyListPage();
+  const impactPageData = await CMSClient.oaksImpactPage();
 
-  if (!caseStudies) {
+  if (!impactPageData) {
     return {
       notFound: true,
     };
   }
 
-  const paths = caseStudies.map((caseStudy) => ({
-    params: { slug: caseStudy.slug.current },
-  }));
+  const paths = impactPageData.caseStudiesSection.caseStudies.map(
+    (caseStudy) => ({
+      params: { slug: caseStudy.slug.current },
+    }),
+  );
 
   const config: GetStaticPathsResult<URLParams> = {
     fallback: "blocking",
@@ -181,11 +180,11 @@ export const getStaticPaths = async () => {
 };
 
 export const getStaticProps: GetStaticProps<
-  AboutUsCaseStudyPageProps,
+  AboutUsOaksImpactCaseStudyPageProps,
   URLParams
 > = async (context) => {
   return getPageProps({
-    page: "about-case-study::getStaticProps",
+    page: "about-oaks-impact-case-study::getStaticProps",
     context,
     getProps: async () => {
       const slug = context.params?.slug;
@@ -194,38 +193,41 @@ export const getStaticProps: GetStaticProps<
       }
 
       const isPreviewMode = context.preview === true;
-      const caseStudies = await CMSClient.caseStudyListPage({
+      const oaksImpactCaseStudyPage = await CMSClient.oaksImpactCaseStudyPage({
         previewMode: isPreviewMode,
       });
 
-      const caseStudy = caseStudies.find(
-        (caseStudy) => caseStudy.slug.current === slug,
-      );
+      const caseStudy =
+        oaksImpactCaseStudyPage?.caseStudiesSection.caseStudies.find(
+          (caseStudy) => caseStudy.slug.current === slug,
+        );
 
       const topNav = await curriculumApi2023.topNav();
 
-      if (!caseStudy) {
+      if (!oaksImpactCaseStudyPage || !caseStudy) {
         return {
           notFound: true,
         };
       }
 
-      const otherCaseStudies = caseStudies.filter(
-        (caseStudy) => caseStudy.slug.current !== slug,
-      );
+      const otherCaseStudies =
+        oaksImpactCaseStudyPage.caseStudiesSection.caseStudies.filter(
+          (caseStudy) => caseStudy.slug.current !== slug,
+        );
 
-      const results: GetStaticPropsResult<AboutUsCaseStudyPageProps> = {
-        props: {
-          pageData: {
-            caseStudy,
-            otherCaseStudies,
+      const results: GetStaticPropsResult<AboutUsOaksImpactCaseStudyPageProps> =
+        {
+          props: {
+            pageData: {
+              caseStudy,
+              otherCaseStudies,
+            },
+            topNav,
           },
-          topNav,
-        },
-      };
+        };
       return results;
     },
   });
 };
 
-export default AboutUsCaseStudy;
+export default AboutUsOaksImpactCaseStudy;

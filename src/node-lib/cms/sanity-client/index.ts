@@ -26,8 +26,9 @@ import {
   oaksCurriculaPageSchema,
   teamMemberSchema,
   oaksImpactPageSchema,
+  oaksImpactCaseStudyPageSchema,
   nationalCurriculumInsightsSubjectLookupParamsSchema,
-  caseStudyListPageSchema,
+  oaksImpactCaseStudyListPageSchema,
   implementationGuidesSchema,
 } from "../../../common-lib/cms-types";
 import { webinarsListingPageSchema } from "../../../common-lib/cms-types/webinarsListingPage";
@@ -276,9 +277,14 @@ const getSanityClient = () => ({
     (result) =>
       result?.allCurriculumInfoPageOverview?.[0]?.implementationGuides ?? {},
   ),
-  caseStudyListPage: getList(
-    sanityGraphqlApi.caseStudyListPage,
-    caseStudyListPageSchema,
+  oaksImpactCaseStudyPage: getSingleton(
+    sanityGraphqlApi.oaksImpactCaseStudyPage,
+    oaksImpactCaseStudyPageSchema,
+    (result) => result?.allNewAboutCorePageOaksImpact?.[0],
+  ),
+  oaksImpactCaseStudyListPage: getList(
+    sanityGraphqlApi.oaksImpactCaseStudyListPage,
+    oaksImpactCaseStudyListPageSchema,
     (result) => result.allCaseStudy,
   ),
   meetTheTeamPage: getSingleton(

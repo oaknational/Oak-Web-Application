@@ -1,11 +1,14 @@
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 import { topNavFixture } from "@/node-lib/curriculum-api-2023/fixtures/topNav.fixture";
-import AboutUsCaseStudy, {
+import OaksImpact, {
   getStaticPaths,
   getStaticProps,
 } from "@/pages/about-us/case-studies/[slug]";
 import CMSClient from "@/node-lib/cms";
-import { CaseStudyListPage } from "@/common-lib/cms-types/aboutPages";
+import {
+  OaksImpactCaseStudyPage,
+  OaksImpactPage,
+} from "@/common-lib/cms-types/aboutPages";
 import { portableTextFromString } from "@/__tests__/__helpers__/cms";
 import { getFallbackBlockingConfig } from "@/node-lib/isr";
 
@@ -59,11 +62,45 @@ function caseStudyFixture(slug: string) {
   };
 }
 
-const mockPageData: CaseStudyListPage = [
-  caseStudyFixture("test-slug-1"),
-  caseStudyFixture("test-slug-2"),
-  caseStudyFixture("test-slug-3"),
-];
+const mockPageData: OaksImpactCaseStudyPage = {
+  caseStudiesSection: {
+    caseStudies: [
+      caseStudyFixture("test-slug-1"),
+      caseStudyFixture("test-slug-2"),
+      caseStudyFixture("test-slug-3"),
+    ],
+  },
+};
+
+const mockImpactPageData: OaksImpactPage = {
+  header: {
+    introText: "Oaks Impact intro",
+    video: {
+      title: "Oaks Impact video",
+      video: {
+        asset: {
+          assetId: "123",
+          playbackId: "123",
+          thumbTime: null,
+        },
+      },
+      captions: ["Oaks Impact captions"],
+    },
+    videoDescription: "Oaks Impact video description",
+  },
+  statsSection: {
+    textBlock: {
+      title: "Oaks Impact stats heading",
+      bodyPortableText: [],
+    },
+    stats: [],
+  },
+  caseStudiesSection: mockPageData.caseStudiesSection,
+  schoolQuotes: {
+    heading: "Oaks Impact school quotes heading",
+    cards: [],
+  },
+};
 
 beforeEach(() => {
   jest.clearAllMocks();
@@ -73,16 +110,18 @@ beforeEach(() => {
     fallback: "blocking",
     paths: [],
   });
-  mockCMSClient.caseStudyListPage.mockResolvedValue(mockPageData);
+  mockCMSClient.oaksImpactCaseStudyPage.mockResolvedValue(mockPageData);
+  mockCMSClient.oaksImpactPage.mockResolvedValue(mockImpactPageData);
 });
 
-describe("pages/about-us/case-studies/[slug].tsx", () => {
+describe("pages/about-us/oaks-impact/case-studies/[slug].tsx", () => {
   it("renders title", async () => {
     const { container } = renderWithProviders()(
-      <AboutUsCaseStudy
+      <OaksImpact
         pageData={{
-          caseStudy: mockPageData[0]!,
-          otherCaseStudies: mockPageData.slice(1),
+          caseStudy: mockPageData.caseStudiesSection.caseStudies[0]!,
+          otherCaseStudies:
+            mockPageData.caseStudiesSection.caseStudies.slice(1),
         }}
         topNav={topNavFixture}
       />,
@@ -113,7 +152,7 @@ describe("pages/about-us/case-studies/[slug].tsx", () => {
     });
 
     it("returns notFound when CMS returns null", async () => {
-      mockCMSClient.caseStudyListPage.mockResolvedValueOnce([]);
+      mockCMSClient.oaksImpactCaseStudyPage.mockResolvedValueOnce(null);
 
       const propsResult = await getStaticProps({
         params: { slug: "test-slug-1" },
