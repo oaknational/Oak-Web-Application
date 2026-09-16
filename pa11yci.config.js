@@ -68,18 +68,7 @@ const config = {
   // },
 };
 
-// Re-enable these checks when the Insights hub and subject pages are published.
-const unpublishedInsightsUrls = new Set([
-  "/teachers/national-curriculum-insights",
-  "/teachers/national-curriculum-insights/science",
-  "/teachers/national-curriculum-insights/science/primary",
-  "/teachers/national-curriculum-insights/science/primary/key-stage-1",
-]);
-
-const relativeUrls = getDeploymentTestUrls().filter(
-  (url) =>
-    !unpublishedInsightsUrls.has(typeof url === "string" ? url : url.url),
-);
+const relativeUrls = getDeploymentTestUrls();
 
 // Add the base URL to the relative URLs.
 config.urls = relativeUrls.map((relUrl) => {
