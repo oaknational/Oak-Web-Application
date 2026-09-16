@@ -23,7 +23,7 @@ export function CaseStudyGetInTouch({
   schoolOrMat,
   imageUrl,
   imageAlt,
-}: CaseStudyGetInTouchProps) {
+}: Readonly<CaseStudyGetInTouchProps>) {
   return (
     <OakFlex $gap={"spacing-32"} $flexDirection={["column", "row", "row"]}>
       <OakBox $width="spacing-240" $minWidth="spacing-240">
