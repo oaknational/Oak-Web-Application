@@ -76,6 +76,14 @@ export const TeachWithOakDownloadView = ({
         setEmailInLocalStorage("");
       }
 
+      setCurrentToastProps({
+        message: "Download started. This may take a few minutes",
+        variant: "success",
+        autoDismiss: true,
+        showClose: true,
+        showIcon: true,
+      });
+
       // TD: Tracking
     } catch {
       setIsAttemptingDownload(false);
