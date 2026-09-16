@@ -30,15 +30,10 @@ describe("NewsletterForm", () => {
     await user.keyboard("email@example.com");
     // tab => dropdown select
     await user.tab();
-    // open dropdown select
-    await user.keyboard("{Enter}");
-    await user.keyboard("{arrowdown}");
-    await user.keyboard("{arrowdown}");
-    // confirm select value
-    await user.keyboard("{Enter}");
-
-    // hack to wait for dropdown to close
-    await waitForNextTick();
+    await user.selectOptions(
+      document.querySelector("select") as HTMLSelectElement,
+      "Student",
+    );
 
     await user.tab();
     await user.keyboard("{Enter}");
