@@ -1,10 +1,10 @@
 import { Metadata } from "next";
-import z from "zod";
 import { notFound } from "next/navigation";
 
 import type { PageSearchParms } from "../programmes/[slug]/[tab]/page";
 
 import { TeachWithOakView } from "./components/TeachWithOakView";
+import { getReturnToLessonLink } from "./getReturnToLessonLink";
 
 import withPageErrorHandling from "@/hocs/withPageErrorHandling";
 import { TeacherBrowseAnalyticsStoreProvider } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
@@ -18,10 +18,6 @@ export const metadata: Metadata = {
     follow: true,
   },
 };
-
-export const teachWithOakParams = z.object({
-  returnTo: z.url({ hostname: /^thenational\.academy$/ }),
-});
 
 const InnerTeachWithOakPage = async (props: {
   searchParams?: Promise<PageSearchParms>;
@@ -37,22 +33,12 @@ const InnerTeachWithOakPage = async (props: {
 
   const query = await props.searchParams;
 
-  const getLessonLink = () => {
-    if (query) {
-      const parsedParams = teachWithOakParams.safeParse(query);
-      if (parsedParams.success) {
-        const { returnTo } = parsedParams.data;
-        return returnTo;
-      }
-    }
-  };
-
   return (
     <TeacherBrowseAnalyticsStoreProvider
       programmeState={null}
       accessLevel="teach_with_oak"
     >
-      <TeachWithOakView backToLessonLink={getLessonLink()} />
+      <TeachWithOakView backToLessonLink={getReturnToLessonLink({ query })} />
     </TeacherBrowseAnalyticsStoreProvider>
   );
 };
