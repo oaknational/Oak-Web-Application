@@ -12,6 +12,10 @@ export const getAccordionText = ({
   curriculumDownloads?: DownloadTypeLabel[];
   teachWithOak?: boolean;
 }) => {
+  if (teachWithOak) {
+    return "Explanation, CfU, practice, feedback guides";
+  }
+
   const resources = [];
   const resourceTypes: Record<string, string> = {
     presentation: "slides",
@@ -46,11 +50,7 @@ export const getAccordionText = ({
   }
 
   // It's possible for there to be multiple or a resource here, eg quizzes, so dedupe by creating a set first
-  let resourcesText = Array.from(new Set(resources)).join(", ");
-
-  if (teachWithOak) {
-    resourcesText = "Explanation, CfU, practice, feedback guides";
-  }
+  const resourcesText = Array.from(new Set(resources)).join(", ");
 
   return (
     resourcesText.charAt(0).toUpperCase() +
