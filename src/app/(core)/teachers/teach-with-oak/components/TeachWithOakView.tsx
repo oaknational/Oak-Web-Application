@@ -1,20 +1,27 @@
 "use client";
 
+import { useId } from "react";
+
 import { ShortReads } from "./ShortReads/ShortReads";
 import { TeachWithOakDescription } from "./TeachWithOakDescription/TeachWithOakDescription";
 import { TeachWithOakHeader } from "./TeachWithOakHeader/TeachWithOakHeader";
+import TeachWithOakNewsletterForm from "./TeachWithOakNewsletter/TeachWithOakNewsletterForm";
 
 import { resolveOakHref } from "@/common-lib/urls";
 import {
   ExploreItem,
   WhoAreWeExplore,
 } from "@/components/GenericPagesComponents/WhoAreWeExplore";
+import { useNewsletterForm } from "@/components/GenericPagesComponents/NewsletterForm";
 
 export const TeachWithOakView = ({
   backToLessonLink,
 }: {
   backToLessonLink?: string;
 }) => {
+  const { onSubmit } = useNewsletterForm();
+  const id = useId();
+
   return (
     <>
       <TeachWithOakHeader href={backToLessonLink} />
@@ -24,6 +31,7 @@ export const TeachWithOakView = ({
         title={"Explore more guidance from Oak"}
         items={exploreItems}
       />
+      <TeachWithOakNewsletterForm id={id} onSubmit={onSubmit} />
     </>
   );
 };
