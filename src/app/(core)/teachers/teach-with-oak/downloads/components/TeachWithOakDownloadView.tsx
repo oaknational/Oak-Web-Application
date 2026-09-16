@@ -8,7 +8,7 @@ import {
 } from "@oaknational/oak-components";
 import { useState } from "react";
 
-import { TeachWithOakResourceCards } from "./components/TeachWithOakResourceCards";
+import { TeachWithOakResourceCards } from "./TeachWithOakResourceCards";
 
 import { resolveOakHref } from "@/common-lib/urls";
 import Banners from "@/components/SharedComponents/Banners";
