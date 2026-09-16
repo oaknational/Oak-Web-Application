@@ -5,6 +5,7 @@ import {
   OakP,
   OakSecondaryButton,
   OakImage,
+  OakHeadingProps,
 } from "@oaknational/oak-components";
 
 export type CaseStudyGetInTouchProps = {
@@ -14,6 +15,7 @@ export type CaseStudyGetInTouchProps = {
   schoolOrMat: string;
   imageUrl: string;
   imageAlt?: string;
+  headingTag?: OakHeadingProps["tag"];
 };
 
 export function CaseStudyGetInTouch({
@@ -23,6 +25,7 @@ export function CaseStudyGetInTouch({
   schoolOrMat,
   imageUrl,
   imageAlt,
+  headingTag = "h1",
 }: Readonly<CaseStudyGetInTouchProps>) {
   return (
     <OakFlex $gap={"spacing-32"} $flexDirection={["column", "row", "row"]}>
@@ -42,7 +45,7 @@ export function CaseStudyGetInTouch({
         $flexShrink={1}
       >
         <OakHeading
-          tag={"h1"}
+          tag={headingTag}
           $color={"text-primary"}
           $font={["heading-6", "heading-5", "heading-5"]}
         >
