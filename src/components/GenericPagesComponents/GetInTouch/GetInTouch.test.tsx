@@ -1,13 +1,14 @@
-import { GetInTouch } from "./";
+import { CaseStudyGetInTouch } from "./";
 
 import { renderWithProvidersByName } from "@/__tests__/__helpers__/renderWithProviders";
 
 const render = renderWithProvidersByName(["oakTheme"]);
 
-describe("GetInTouch", () => {
+describe("CaseStudyGetInTouch", () => {
   it("renders", () => {
     const { container } = render(
-      <GetInTouch
+      <CaseStudyGetInTouch
+        href="#"
         name="John Doe"
         role="Teacher"
         schoolOrMat="Springfield High School"

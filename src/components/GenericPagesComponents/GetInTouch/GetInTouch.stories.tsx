@@ -1,11 +1,11 @@
 import { Meta, StoryObj } from "@storybook/nextjs";
 
-import { GetInTouch as Component } from ".";
+import { CaseStudyGetInTouch as Component } from ".";
 
 const meta: Meta<typeof Component> = {
   component: Component,
   tags: ["autodocs"],
-  title: "Components/GenericPagesComponents/GetInTouch",
+  title: "Components/GenericPagesComponents/CaseStudyGetInTouch",
   argTypes: {},
 };
 
@@ -14,6 +14,7 @@ type Story = StoryObj<typeof Component>;
 
 export const Default: Story = {
   args: {
+    href: "#",
     name: "John Doe",
     role: "Teacher",
     schoolOrMat: "Springfield High School",

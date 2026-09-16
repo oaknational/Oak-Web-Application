@@ -7,7 +7,8 @@ import {
   OakImage,
 } from "@oaknational/oak-components";
 
-export type GetInTouchProps = {
+export type CaseStudyGetInTouchProps = {
+  href: string;
   name: string;
   role: string;
   schoolOrMat: string;
@@ -15,13 +16,14 @@ export type GetInTouchProps = {
   imageAlt?: string;
 };
 
-export function GetInTouch({
+export function CaseStudyGetInTouch({
+  href,
   name,
   role,
   schoolOrMat,
   imageUrl,
   imageAlt,
-}: GetInTouchProps) {
+}: CaseStudyGetInTouchProps) {
   return (
     <OakFlex $gap={"spacing-32"} $flexDirection={["column", "row", "row"]}>
       <OakBox $width="spacing-240" $minWidth="spacing-240">
@@ -72,7 +74,7 @@ export function GetInTouch({
           <OakSecondaryButton
             rel="noreferrer"
             element="a"
-            href="#"
+            href={href}
             target="_blank"
             isTrailingIcon={true}
             iconName={"external"}
