@@ -1,0 +1,103 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`GetInTouch renders 1`] = `
+<div>
+  <div
+    class="sc-aXZVg sc-gEvEer jPvJsJ fpgFKY"
+  >
+    <div
+      class="sc-aXZVg hGgMBa"
+    >
+      <div
+        class="sc-aXZVg RHGIM"
+      >
+        <span
+          class="sc-aXZVg kQNEcu"
+        >
+          <img
+            alt="Example image"
+            class="sc-iGgWBj dZvqhO"
+            data-nimg="fill"
+            decoding="async"
+            loading="lazy"
+            src="https://res.cloudinary.com/oak-web-application/image/upload/v1763393163/icons/chatting-illustration_l52zaf.svg"
+            style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+          />
+        </span>
+      </div>
+    </div>
+    <div
+      class="sc-aXZVg sc-gEvEer jPvJsJ cuuNOT"
+    >
+      <h1
+        class="sc-eldPxv fjdFhT"
+      >
+        Thank you to 
+        John Doe
+        , 
+        Teacher
+         at 
+        Springfield High School
+         for sharing their feedback to inform this case study
+      </h1>
+      <div
+        class="sc-aXZVg sc-gEvEer jPvJsJ iwFTtF"
+      >
+        <div
+          class="sc-aXZVg sc-gEvEer jPvJsJ dUCWjO"
+        >
+          <h1
+            class="sc-eldPxv fjdFhT"
+          >
+            Connect me to schools like this one
+          </h1>
+          <p
+            class="sc-ikkxIA bevdi"
+          >
+            Interested in exploring how Oak could work for your school or trust? We'll connect you with educators on a similar journey, so you can ask questions, hear about their experiences and learn what has worked for them.
+          </p>
+        </div>
+        <div
+          class="sc-aXZVg sc-kpDqfm bhFzn cvxBYX"
+        >
+          <div
+            class="sc-aXZVg kpXzs grey-shadow"
+          />
+          <div
+            class="sc-aXZVg kpXzs yellow-shadow"
+          />
+          <a
+            class="sc-dcJsrY sc-jXbUNg bALQkH khQbhv internal-button"
+            href="#"
+            rel="noreferrer"
+            target="_blank"
+          >
+            <div
+              class="sc-aXZVg sc-gEvEer jPvJsJ krHAKs"
+            >
+              <span
+                class="sc-eqUAAy edqVpV"
+              >
+                Get in touch
+              </span>
+              <span
+                class="sc-aXZVg jJQFnr"
+              >
+                <img
+                  alt=""
+                  class="sc-iGgWBj lcrpYX"
+                  data-nimg="fill"
+                  decoding="async"
+                  loading="lazy"
+                  src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1699953892/icons/hlxmejse3mcr4tqo6t8u.svg"
+                  style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                />
+              </span>
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
