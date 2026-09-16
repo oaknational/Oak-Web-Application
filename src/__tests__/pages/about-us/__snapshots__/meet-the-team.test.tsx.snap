@@ -446,31 +446,113 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c152 {
-  position: relative;
-  margin-top: 2rem;
-  background: #ffffff;
+.c138 {
+  width: 100%;
+  margin-bottom: 1.5rem;
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c156 {
+.c139 {
   position: absolute;
+  top: -20px;
+  left: 5px;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+  padding-top: 0.25rem;
+  padding-bottom: 0.25rem;
+  color: #222222;
+  background: #ffe555;
+  border-radius: 0rem;
+  -webkit-transform: rotate(-1.5deg);
+  -ms-transform: rotate(-1.5deg);
+  transform: rotate(-1.5deg);
+  font-family: --var(google-font),Lexend,sans-serif;
+  font-weight: 600;
+  font-size: 1rem;
+  line-height: 1.25rem;
+  -webkit-letter-spacing: 0.0115rem;
+  -moz-letter-spacing: 0.0115rem;
+  -ms-letter-spacing: 0.0115rem;
+  letter-spacing: 0.0115rem;
+  z-index: 1;
+}
+
+.c140 {
+  position: relative;
+  width: 100%;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+  padding-left: 1.25rem;
+  padding-right: 1.25rem;
+  color: #222222;
+  background: #ffffff;
+  border: 0.125rem solid;
+  border-color: #222222;
+  border-radius: 0.25rem;
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c159 {
-  padding-top: 0.5rem;
+.c140:hover {
+  cursor: pointer;
+}
+
+.c144 {
+  position: relative;
+  width: 100%;
+  margin-top: spacing-14;
+  margin-bottom: 0.5rem;
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c163 {
+.c145 {
+  position: absolute;
+  top: -20px;
+  left: 0.5rem;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+  padding-top: 0.25rem;
+  padding-bottom: 0.25rem;
+  color: #222222;
+  background: #ffe555;
+  border-radius: 0rem;
+  -webkit-transform: rotate(-1.5deg);
+  -ms-transform: rotate(-1.5deg);
+  transform: rotate(-1.5deg);
+  font-family: --var(google-font),Lexend,sans-serif;
+  font-weight: 600;
+  font-size: 1rem;
+  line-height: 1.25rem;
+  -webkit-letter-spacing: 0.0115rem;
+  -moz-letter-spacing: 0.0115rem;
+  -ms-letter-spacing: 0.0115rem;
+  letter-spacing: 0.0115rem;
+  z-index: 1;
+}
+
+.c146 {
+  position: relative;
+  display: block;
+  font-family: --var(google-font),Lexend,sans-serif;
+}
+
+.c153 {
+  position: absolute;
+  top: 0rem;
+  right: 0.75rem;
+  bottom: 0rem;
+  pointer-events: none;
+  font-family: --var(google-font),Lexend,sans-serif;
+}
+
+.c158 {
   position: relative;
   width: 100%;
   height: auto;
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c167 {
+.c162 {
   position: relative;
   overflow: hidden;
   width: 100%;
@@ -480,13 +562,13 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
   z-index: 0;
 }
 
-.c168 {
+.c163 {
   position: relative;
   height: 0.25rem;
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c170 {
+.c165 {
   width: 100%;
   max-width: 30rem;
   padding-left: 1rem;
@@ -498,12 +580,12 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c173 {
+.c168 {
   margin-top: 2rem;
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c175 {
+.c170 {
   color: #222222;
   font-family: --var(google-font),Lexend,sans-serif;
   font-weight: 300;
@@ -515,18 +597,18 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
   letter-spacing: -0.005rem;
 }
 
-.c179 {
+.c174 {
   margin-top: 0rem;
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c180 {
+.c175 {
   padding-left: 0.25rem;
   display: inline-block;
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c184 {
+.c179 {
   position: relative;
   width: 10rem;
   height: 4rem;
@@ -535,7 +617,7 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c185 {
+.c180 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -543,7 +625,7 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c189 {
+.c184 {
   position: relative;
   width: 2rem;
   min-width: 2rem;
@@ -554,7 +636,7 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c190 {
+.c185 {
   position: absolute;
   top: 0rem;
   width: 100%;
@@ -565,14 +647,14 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c191 {
+.c186 {
   position: relative;
   width: 100%;
   display: block;
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c193 {
+.c188 {
   width: 100%;
   padding-top: 0.75rem;
   margin-top: 2rem;
@@ -580,12 +662,12 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c195 {
+.c190 {
   display: none;
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c199 {
+.c194 {
   position: absolute;
   top: 0rem;
   right: 0rem;
@@ -603,7 +685,7 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
   z-index: -1;
 }
 
-.c201 {
+.c196 {
   position: absolute;
   top: 0rem;
   right: 0rem;
@@ -621,7 +703,7 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
   z-index: -1;
 }
 
-.c203 {
+.c198 {
   position: fixed;
   right: 0rem;
   width: 100%;
@@ -631,7 +713,7 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
   z-index: 300;
 }
 
-.c206 {
+.c201 {
   position: -webkit-sticky;
   position: sticky;
   bottom: 0rem;
@@ -639,7 +721,7 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
   z-index: 299;
 }
 
-.c207 {
+.c202 {
   color: #222222;
   background: #f2f2f2;
   border-top: 0.063rem solid;
@@ -647,13 +729,13 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c208 {
+.c203 {
   margin-left: auto;
   margin-right: auto;
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c209 {
+.c204 {
   padding-top: 1.5rem;
   padding-bottom: 1.5rem;
   margin-left: 1rem;
@@ -661,7 +743,7 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c211 {
+.c206 {
   font-family: --var(google-font),Lexend,sans-serif;
   font-weight: 300;
   font-size: 0.875rem;
@@ -672,7 +754,7 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
   letter-spacing: -0.005rem;
 }
 
-.c214 {
+.c209 {
   font-family: --var(google-font),Lexend,sans-serif;
   white-space: nowrap;
 }
@@ -852,7 +934,7 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
   gap: 0.25rem;
 }
 
-.c153 {
+.c137 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -1054,7 +1136,38 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
   align-items: center;
 }
 
-.c171 {
+.c141 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  gap: 1rem;
+}
+
+.c147 {
+  display: block;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  gap: 1rem;
+}
+
+.c154 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-content: center;
+  -ms-flex-line-pack: center;
+  align-content: center;
+}
+
+.c166 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -1072,7 +1185,7 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
   flex-grow: 1;
 }
 
-.c183 {
+.c178 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -1083,7 +1196,7 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
   justify-content: left;
 }
 
-.c186 {
+.c181 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -1099,7 +1212,7 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
   gap: 1rem;
 }
 
-.c194 {
+.c189 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -1117,7 +1230,7 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
   justify-content: flex-start;
 }
 
-.c196 {
+.c191 {
   display: none;
   -webkit-align-items: center;
   -webkit-box-align: center;
@@ -1130,7 +1243,7 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
   gap: 1rem;
 }
 
-.c204 {
+.c199 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -1145,7 +1258,7 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
   gap: 0.75rem;
 }
 
-.c210 {
+.c205 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -1160,7 +1273,7 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
   gap: 1.5rem;
 }
 
-.c213 {
+.c208 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -1263,18 +1376,7 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
   letter-spacing: 0.0115rem;
 }
 
-.c161 {
-  font-family: --var(google-font),Lexend,sans-serif;
-  font-weight: 300;
-  font-size: 1rem;
-  line-height: 1.5rem;
-  -webkit-letter-spacing: -0.005rem;
-  -moz-letter-spacing: -0.005rem;
-  -ms-letter-spacing: -0.005rem;
-  letter-spacing: -0.005rem;
-}
-
-.c212 {
+.c207 {
   font-family: --var(google-font),Lexend,sans-serif;
   font-weight: 500;
   font-size: 0.875rem;
@@ -1285,7 +1387,7 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
   letter-spacing: -0.005rem;
 }
 
-.c169 {
+.c164 {
   position: absolute;
   top: 0rem;
   left: 0rem;
@@ -1513,7 +1615,7 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
   cursor: default;
 }
 
-.c164 {
+.c159 {
   background: none;
   color: inherit;
   border: none;
@@ -1530,19 +1632,19 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
   padding-right: 1rem;
   padding-top: 0.75rem;
   padding-bottom: 0.75rem;
-  margin-top: 1.5rem;
+  margin-top: 0rem;
   display: inline-block;
   border: 0.125rem solid;
   border-color: #222222;
   border-radius: 0.25rem;
 }
 
-.c164:disabled {
+.c159:disabled {
   pointer-events: none;
   cursor: default;
 }
 
-.c216 {
+.c211 {
   background: none;
   color: inherit;
   border: none;
@@ -1565,7 +1667,7 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
   border-radius: 0.25rem;
 }
 
-.c216:disabled {
+.c211:disabled {
   pointer-events: none;
   cursor: default;
 }
@@ -1586,13 +1688,13 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
   object-fit: contain;
 }
 
-.c200 {
+.c195 {
   -webkit-filter: brightness(0) saturate(100%) invert(85%) sepia(7%) saturate(1206%) hue-rotate(70deg) brightness(110%) contrast(90%);
   filter: brightness(0) saturate(100%) invert(85%) sepia(7%) saturate(1206%) hue-rotate(70deg) brightness(110%) contrast(90%);
   object-fit: fill;
 }
 
-.c202 {
+.c197 {
   -webkit-filter: brightness(0) saturate(100%) invert(95%) sepia(3%) saturate(1596%) hue-rotate(279deg) brightness(95%) contrast(87%);
   filter: brightness(0) saturate(100%) invert(95%) sepia(3%) saturate(1596%) hue-rotate(279deg) brightness(95%) contrast(87%);
   object-fit: fill;
@@ -1852,27 +1954,27 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
   background: #222222;
 }
 
-.c187 > :first-child:focus-visible .shadow {
+.c182 > :first-child:focus-visible .shadow {
   box-shadow: 0 0 0 0.125rem rgba(255,229,85,100%), 0 0 0 0.3rem rgba(87,87,87,100%);
 }
 
-.c187 > :first-child:hover .shadow {
+.c182 > :first-child:hover .shadow {
   box-shadow: 0.125rem 0.125rem 0 rgba(255,229,85,100%);
 }
 
-.c187 > :first-child:active .shadow {
+.c182 > :first-child:active .shadow {
   box-shadow: 0.125rem 0.125rem 0 rgba(255,229,85,100%), 0.25rem 0.25rem 0 rgba(87,87,87,100%);
 }
 
-.c187 > :first-child:disabled .icon-container {
+.c182 > :first-child:disabled .icon-container {
   background: #e4e4e4;
 }
 
-.c187 > :first-child:hover .icon-container {
+.c182 > :first-child:hover .icon-container {
   background: #ffffff;
 }
 
-.c187 > :first-child:active .icon-container {
+.c182 > :first-child:active .icon-container {
   background: #ffffff;
 }
 
@@ -1932,7 +2034,7 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
   letter-spacing: 0.0115rem;
 }
 
-.c174 {
+.c169 {
   font-family: --var(google-font),Lexend,sans-serif;
   font-weight: 600;
   font-size: 1rem;
@@ -1953,7 +2055,7 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
   display: revert;
 }
 
-.c177 {
+.c172 {
   margin-top: 0.75rem;
   display: revert;
   font-family: --var(google-font),Lexend,sans-serif;
@@ -1995,7 +2097,7 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
   margin-bottom: 1.5rem;
 }
 
-.c165 {
+.c160 {
   font-family: --var(google-font),Lexend,sans-serif;
   font-weight: 300;
   font-size: 0.875rem;
@@ -2008,7 +2110,7 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
   margin-top: 0rem;
 }
 
-.c166 {
+.c161 {
   font-family: --var(google-font),Lexend,sans-serif;
   font-weight: 300;
   font-size: 0.875rem;
@@ -2020,7 +2122,7 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
   margin-top: 0rem;
 }
 
-.c197 {
+.c192 {
   font-family: --var(google-font),Lexend,sans-serif;
   font-weight: 500;
   font-size: 0.875rem;
@@ -2031,7 +2133,7 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
   letter-spacing: -0.005rem;
 }
 
-.c198 {
+.c193 {
   font-family: --var(google-font),Lexend,sans-serif;
   font-weight: 300;
   font-size: 0.75rem;
@@ -2053,7 +2155,7 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
   letter-spacing: -0.005rem;
 }
 
-.c176 {
+.c171 {
   font-family: --var(google-font),Lexend,sans-serif;
   font-weight: 300;
   font-size: 1rem;
@@ -2105,7 +2207,7 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
   gap: 1rem;
 }
 
-.c182 {
+.c177 {
   width: 1.25em;
   min-width: 1.25em;
   height: 1.25em;
@@ -2136,7 +2238,7 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
   overflow-wrap: break-word;
 }
 
-.c24 .c181 {
+.c24 .c176 {
   -webkit-filter: invert(21%) sepia(90%) saturate(3220%) hue-rotate(232deg) brightness(71%) contrast(127%);
   filter: invert(21%) sepia(90%) saturate(3220%) hue-rotate(232deg) brightness(71%) contrast(127%);
   display: inline-block;
@@ -2151,7 +2253,7 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
   color: #081676;
 }
 
-.c24:visited .c181 {
+.c24:visited .c176 {
   -webkit-filter: invert(12%) sepia(79%) saturate(3172%) hue-rotate(231deg) brightness(82%) contrast(114%);
   filter: invert(12%) sepia(79%) saturate(3172%) hue-rotate(231deg) brightness(82%) contrast(114%);
 }
@@ -2161,7 +2263,7 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
   outline: 1px solid #081676;
 }
 
-.c24:active .c181 {
+.c24:active .c176 {
   -webkit-filter: invert(12%) sepia(79%) saturate(3172%) hue-rotate(231deg) brightness(82%) contrast(114%);
   filter: invert(12%) sepia(79%) saturate(3172%) hue-rotate(231deg) brightness(82%) contrast(114%);
 }
@@ -2171,12 +2273,12 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
   color: #808080;
 }
 
-.c24[disabled] .c181 {
+.c24[disabled] .c176 {
   -webkit-filter: invert(54%) sepia(0%) saturate(38%) hue-rotate(176deg) brightness(92%) contrast(91%);
   filter: invert(54%) sepia(0%) saturate(38%) hue-rotate(176deg) brightness(92%) contrast(91%);
 }
 
-.c178 {
+.c173 {
   display: inline;
   -webkit-align-items: center;
   -webkit-box-align: center;
@@ -2200,47 +2302,47 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
   overflow-wrap: break-word;
 }
 
-.c178 .c181 {
+.c173 .c176 {
   -webkit-filter: invert(10%) sepia(1%) saturate(236%) hue-rotate(314deg) brightness(95%) contrast(91%);
   filter: invert(10%) sepia(1%) saturate(236%) hue-rotate(314deg) brightness(95%) contrast(91%);
   display: inline-block;
   vertical-align: text-top;
 }
 
-.c178:focus-visible {
+.c173:focus-visible {
   box-shadow: 0 0 0 0.125rem rgba(255,229,85,100%), 0 0 0 0.3rem rgba(87,87,87,100%);
 }
 
-.c178:visited {
+.c173:visited {
   color: #222222;
 }
 
-.c178:visited .c181 {
+.c173:visited .c176 {
   -webkit-filter: invert(10%) sepia(1%) saturate(236%) hue-rotate(314deg) brightness(95%) contrast(91%);
   filter: invert(10%) sepia(1%) saturate(236%) hue-rotate(314deg) brightness(95%) contrast(91%);
 }
 
-.c178:active {
+.c173:active {
   color: #222222;
   outline: 1px solid #222222;
 }
 
-.c178:active .c181 {
+.c173:active .c176 {
   -webkit-filter: invert(10%) sepia(1%) saturate(236%) hue-rotate(314deg) brightness(95%) contrast(91%);
   filter: invert(10%) sepia(1%) saturate(236%) hue-rotate(314deg) brightness(95%) contrast(91%);
 }
 
-.c178[disabled] {
+.c173[disabled] {
   cursor: not-allowed;
   color: #808080;
 }
 
-.c178[disabled] .c181 {
+.c173[disabled] .c176 {
   -webkit-filter: invert(54%) sepia(0%) saturate(38%) hue-rotate(176deg) brightness(92%) contrast(91%);
   filter: invert(54%) sepia(0%) saturate(38%) hue-rotate(176deg) brightness(92%) contrast(91%);
 }
 
-.c215 {
+.c210 {
   display: inline;
   -webkit-align-items: center;
   -webkit-box-align: center;
@@ -2273,42 +2375,42 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
   overflow-wrap: break-word;
 }
 
-.c215 .c181 {
+.c210 .c176 {
   -webkit-filter: invert(10%) sepia(1%) saturate(236%) hue-rotate(314deg) brightness(95%) contrast(91%);
   filter: invert(10%) sepia(1%) saturate(236%) hue-rotate(314deg) brightness(95%) contrast(91%);
   display: inline-block;
   vertical-align: text-top;
 }
 
-.c215:focus-visible {
+.c210:focus-visible {
   box-shadow: 0 0 0 0.125rem rgba(255,229,85,100%), 0 0 0 0.3rem rgba(87,87,87,100%);
 }
 
-.c215:visited {
+.c210:visited {
   color: #222222;
 }
 
-.c215:visited .c181 {
+.c210:visited .c176 {
   -webkit-filter: invert(10%) sepia(1%) saturate(236%) hue-rotate(314deg) brightness(95%) contrast(91%);
   filter: invert(10%) sepia(1%) saturate(236%) hue-rotate(314deg) brightness(95%) contrast(91%);
 }
 
-.c215:active {
+.c210:active {
   color: #222222;
   outline: 1px solid #222222;
 }
 
-.c215:active .c181 {
+.c210:active .c176 {
   -webkit-filter: invert(10%) sepia(1%) saturate(236%) hue-rotate(314deg) brightness(95%) contrast(91%);
   filter: invert(10%) sepia(1%) saturate(236%) hue-rotate(314deg) brightness(95%) contrast(91%);
 }
 
-.c215[disabled] {
+.c210[disabled] {
   cursor: not-allowed;
   color: #808080;
 }
 
-.c215[disabled] .c181 {
+.c210[disabled] .c176 {
   -webkit-filter: invert(54%) sepia(0%) saturate(38%) hue-rotate(176deg) brightness(92%) contrast(91%);
   filter: invert(54%) sepia(0%) saturate(38%) hue-rotate(176deg) brightness(92%) contrast(91%);
 }
@@ -2358,6 +2460,53 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
   cursor: not-allowed;
 }
 
+.c143 {
+  -webkit-appearance: none !important;
+  -moz-appearance: none !important;
+  appearance: none !important;
+  border: 0;
+  border-radius: 0;
+  border-color: transparent;
+  box-shadow: none;
+  font-family: inherit;
+  background: transparent;
+  outline: none;
+  color: inherit;
+  padding-top: 0rem;
+  padding-bottom: 0rem;
+  width: 100%;
+  height: 3.5rem;
+}
+
+.c143::-webkit-input-placeholder {
+  color: #575757;
+}
+
+.c143::-moz-placeholder {
+  color: #575757;
+}
+
+.c143:-ms-input-placeholder {
+  color: #575757;
+}
+
+.c143::placeholder {
+  color: #575757;
+}
+
+.c143::-webkit-search-decoration,
+.c143::-webkit-search-cancel-button,
+.c143::-webkit-search-results-button,
+.c143::-webkit-search-results-decoration {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+
+.c143:disabled {
+  cursor: not-allowed;
+}
+
 .c42 {
   background: #ffffff;
 }
@@ -2396,13 +2545,180 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
   grid-row: span 1;
 }
 
-.c172 {
+.c167 {
   -webkit-flex-direction: column;
   -ms-flex-direction: column;
   flex-direction: column;
   grid-column: span 12;
   grid-row: span undefined;
   grid-row: span 1;
+}
+
+.c149 {
+  border: none;
+  outline: none;
+  width: 100%;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  -webkit-appearance: base-select;
+  -moz-appearance: base-select;
+  appearance: base-select;
+  border-radius: 0.25rem;
+  padding: 1rem;
+  padding-right: 3.5rem;
+  border: 0.125rem solid;
+  border-color: #222222;
+  border-radius: 0.25rem;
+  color: #222222;
+  background: #ffffff;
+}
+
+.c149:focus {
+  box-shadow: 0 0 0 0.125rem rgba(255,229,85,100%),0 0 0 0.3rem rgba(87,87,87,100%);
+}
+
+.c149::picker(select) {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  -webkit-appearance: base-select;
+  -moz-appearance: base-select;
+  appearance: base-select;
+  border-bottom-left-radius: 0.25rem;
+  border-bottom-right-radius: 0.25rem;
+  overflow: visible;
+  border: 0.125rem solid;
+  border-color: #222222;
+  border-radius: 0.25rem;
+  color: #222222;
+  background: #ffffff;
+  border-top: none;
+}
+
+.c149::picker(select) {
+  top: calc(anchor(bottom) - 2px);
+  left: anchor(0);
+}
+
+.c149::picker-icon {
+  display: none;
+}
+
+.c149:open {
+  border-bottom-left-radius: 0px;
+  border-bottom-right-radius: 0px;
+}
+
+.c149:open::picker(select) {
+  border-top-left-radius: 0px;
+  border-top-right-radius: 0px;
+}
+
+.c155 {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.c157 {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.c148 select ~ .c156 {
+  display: block;
+}
+
+.c148 select:open ~ .c156 {
+  display: none;
+}
+
+.c148 select ~ .c152 {
+  display: none;
+}
+
+.c148 select:open ~ .c152 {
+  display: block;
+}
+
+.c150 {
+  cursor: pointer;
+  border: none;
+  color: #222222;
+  outline: none;
+  font: 1rem;
+  font-weight: 300;
+  border-radius: 0.125rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+}
+
+.c150:focus {
+  box-shadow: 0 0 0 0.125rem rgba(255,229,85,100%),0 0 0 0.3rem rgba(87,87,87,100%);
+}
+
+.c150:disabled {
+  background: #e4e4e4;
+  color: #575757;
+  cursor: not-allowed;
+}
+
+.c150:active:not(:disabled) {
+  background: initial;
+}
+
+.c150::checkmark {
+  display: none;
+}
+
+.c151 {
+  cursor: pointer;
+  border: none;
+  color: #222222;
+  outline: none;
+  font: 1rem;
+  font-weight: 500;
+  border-radius: 0.125rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+}
+
+.c151:focus {
+  box-shadow: 0 0 0 0.125rem rgba(255,229,85,100%),0 0 0 0.3rem rgba(87,87,87,100%);
+}
+
+.c151:disabled {
+  background: #e4e4e4;
+  color: #575757;
+  cursor: not-allowed;
+}
+
+.c151:active:not(:disabled) {
+  background: initial;
+}
+
+.c151::checkmark {
+  display: none;
+}
+
+.c142 {
+  background: #ffffff;
+}
+
+.c142:hover {
+  cursor: text;
+}
+
+.c142:focus-within {
+  box-shadow: 0 0 0 0.125rem rgba(255,229,85,100%),0 0 0 0.3rem rgba(87,87,87,100%);
 }
 
 .c99 {
@@ -2562,29 +2878,18 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
   padding-bottom: 0.5rem;
 }
 
-.c205 {
+.c200 {
   top: 152px;
 }
 
-.c188 .icon-container > *:first-child {
+.c183 .icon-container > *:first-child {
   border: 0;
 }
 
-.c192 {
+.c187 {
   height: 87px;
   width: 77px;
   margin-top: 2rem;
-}
-
-.c157 {
-  background: none;
-  color: inherit;
-  border: none;
-  padding: 0;
-  font: inherit;
-  cursor: pointer;
-  text-align: left;
-  font-family: unset;
 }
 
 .c78 {
@@ -2609,310 +2914,6 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
   column-gap: 1rem;
   grid-auto-rows: 1fr;
   grid-template-columns: repeat(2,1fr);
-}
-
-.c149 {
-  -webkit-transition: all 0.3s ease;
-  transition: all 0.3s ease;
-  font-family: --var(google-font),Lexend,sans-serif;
-}
-
-.c138 {
-  width: 100%;
-  margin-bottom: 2rem;
-  background-color: #fff;
-  color: #222222;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-}
-
-.c138::-webkit-scrollbar-track {
-  border-radius: 15px;
-  background-color: #ffffff;
-}
-
-.c138::-webkit-scrollbar {
-  width: 10px;
-  border-radius: 15px;
-  background-color: #ffffff;
-}
-
-.c138::-webkit-scrollbar-thumb {
-  border-radius: 15px;
-  background-color: #999999;
-}
-
-.c141 {
-  position: relative;
-  width: 100%;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-}
-
-.c141::-webkit-scrollbar-track {
-  border-radius: 15px;
-  background-color: #ffffff;
-}
-
-.c141::-webkit-scrollbar {
-  width: 10px;
-  border-radius: 15px;
-  background-color: #ffffff;
-}
-
-.c141::-webkit-scrollbar-thumb {
-  border-radius: 15px;
-  background-color: #999999;
-}
-
-.c143 {
-  position: absolute;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-}
-
-.c143::-webkit-scrollbar-track {
-  border-radius: 15px;
-  background-color: #ffffff;
-}
-
-.c143::-webkit-scrollbar {
-  width: 10px;
-  border-radius: 15px;
-  background-color: #ffffff;
-}
-
-.c143::-webkit-scrollbar-thumb {
-  border-radius: 15px;
-  background-color: #999999;
-}
-
-.c139 {
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-}
-
-.c142 {
-  position: absolute;
-  top: 0rem;
-  right: 0rem;
-  bottom: 0rem;
-  left: 0rem;
-  object-fit: cover;
-  font-family: --var(google-font),Lexend,sans-serif;
-  -webkit-transition: all 0.3s ease;
-  transition: all 0.3s ease;
-}
-
-.c147 {
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
-  border: 0;
-  border-radius: 0;
-  border-color: transparent;
-  box-shadow: none;
-  font-family: fontFamily;
-}
-
-.c147::-webkit-input-placeholder {
-  color: #575757;
-}
-
-.c147::-moz-placeholder {
-  color: #575757;
-}
-
-.c147:-ms-input-placeholder {
-  color: #575757;
-}
-
-.c147::placeholder {
-  color: #575757;
-}
-
-.c147::-webkit-search-decoration,
-.c147::-webkit-search-cancel-button,
-.c147::-webkit-search-results-button,
-.c147::-webkit-search-results-decoration {
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
-}
-
-.c145 {
-  font-weight: 600;
-  font-size: 1rem;
-  line-height: 1.25rem;
-  -webkit-letter-spacing: 0.0115em;
-  -moz-letter-spacing: 0.0115em;
-  -ms-letter-spacing: 0.0115em;
-  letter-spacing: 0.0115em;
-}
-
-.c151 {
-  display: none;
-  position: absolute;
-  bottom: -4px;
-  left: -2px;
-  right: 0;
-  height: 4px;
-  color: #ffe555;
-  -webkit-filter: drop-shadow(2px 2px 0 rgb(0 0 0));
-  filter: drop-shadow(2px 2px 0 rgb(0 0 0));
-  z-index: 1;
-}
-
-.c146 {
-  position: relative;
-  padding: 4px 8px;
-  -webkit-transform: rotate(-2deg) translateY(-16px) translateX(8px);
-  -ms-transform: rotate(-2deg) translateY(-16px) translateX(8px);
-  transform: rotate(-2deg) translateY(-16px) translateX(8px);
-  display: block;
-  background: #ffe555;
-  color: #222222;
-}
-
-.c140:focus-within .c144 {
-  background: #374cf1;
-  color: #fff;
-}
-
-.c140:focus-within .c150 {
-  display: inline;
-}
-
-.c148 {
-  color: #222222;
-  height: 60px;
-  border-radius: 8px;
-  border-color: #2d2d2d;
-  border-width: 1px;
-  padding-left: 12px;
-  padding: 16px;
-  padding-top: 20px;
-  font-size: 16px;
-  font-family: fontFamily;
-  font-weight: 300;
-  width: 100%;
-  outline: none;
-}
-
-.c148::-webkit-input-placeholder {
-  font-size: 16px;
-  font-weight: 300;
-  font-family: fontFamily;
-  color: #575757;
-  opacity: 1;
-}
-
-.c148::-moz-placeholder {
-  font-size: 16px;
-  font-weight: 300;
-  font-family: fontFamily;
-  color: #575757;
-  opacity: 1;
-}
-
-.c148:-ms-input-placeholder {
-  font-size: 16px;
-  font-weight: 300;
-  font-family: fontFamily;
-  color: #575757;
-  opacity: 1;
-}
-
-.c148::placeholder {
-  font-size: 16px;
-  font-weight: 300;
-  font-family: fontFamily;
-  color: #575757;
-  opacity: 1;
-}
-
-.c148:valid:not([value=""]) {
-  border-color: #2d2d2d;
-}
-
-.c148:valid:not([value=""])::-webkit-input-placeholder {
-  font-size: 16px;
-  color: #575757;
-}
-
-.c148:valid:not([value=""])::-moz-placeholder {
-  font-size: 16px;
-  color: #575757;
-}
-
-.c148:valid:not([value=""]):-ms-input-placeholder {
-  font-size: 16px;
-  color: #575757;
-}
-
-.c148:valid:not([value=""])::placeholder {
-  font-size: 16px;
-  color: #575757;
-}
-
-.c155 {
-  display: none;
-}
-
-.c154:focus-within .c144 {
-  background: #374cf1;
-  color: #fff;
-}
-
-.c158 {
-  color: #222222;
-  height: 60px;
-  padding-left: 16px;
-  padding-right: 8px;
-  display: -webkit-inline-box;
-  display: -webkit-inline-flex;
-  display: -ms-inline-flexbox;
-  display: inline-flex;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  -webkit-box-pack: justify;
-  -webkit-justify-content: space-between;
-  -ms-flex-pack: justify;
-  justify-content: space-between;
-  width: 100%;
-  text-align: left;
-  font-size: 16px;
-  background: transparent;
-  border: none;
-  outline: none;
-  font-size: 14px;
-  color: #575757;
-}
-
-.c160 {
-  max-width: calc(100% - 20px);
-}
-
-.c162 {
-  white-space: nowrap;
-  text-overflow: ellipsis;
-  min-width: 0;
-  overflow: hidden;
-}
-
-.c137 {
-  width: 100%;
-  font-family: --var(google-font),Lexend,sans-serif;
 }
 
 .c127 {
@@ -3216,43 +3217,43 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
 }
 
 @media (min-width:750px) {
-  .c170 {
+  .c165 {
     max-width: 80rem;
   }
 }
 
 @media (min-width:750px) {
-  .c170 {
+  .c165 {
     padding-top: 5rem;
   }
 }
 
 @media (min-width:750px) {
-  .c173 {
+  .c168 {
     margin-top: 0rem;
   }
 }
 
 @media (min-width:750px) {
-  .c179 {
+  .c174 {
     margin-top: 2rem;
   }
 }
 
 @media (min-width:750px) {
-  .c185 {
+  .c180 {
     display: none;
   }
 }
 
 @media (min-width:750px) {
-  .c193 {
+  .c188 {
     padding-top: 0rem;
   }
 }
 
 @media (min-width:750px) {
-  .c195 {
+  .c190 {
     display: -webkit-box;
     display: -webkit-flex;
     display: -ms-flexbox;
@@ -3261,13 +3262,13 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
 }
 
 @media (min-width:750px) {
-  .c199 {
+  .c194 {
     display: block;
   }
 }
 
 @media (min-width:750px) {
-  .c199 {
+  .c194 {
     -webkit-transform: translate(25%,25%) scale(0.7) rotate(-10deg);
     -ms-transform: translate(25%,25%) scale(0.7) rotate(-10deg);
     transform: translate(25%,25%) scale(0.7) rotate(-10deg);
@@ -3275,7 +3276,7 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
 }
 
 @media (min-width:1280px) {
-  .c199 {
+  .c194 {
     -webkit-transform: translate(25%,15%) rotate(-10deg);
     -ms-transform: translate(25%,15%) rotate(-10deg);
     transform: translate(25%,15%) rotate(-10deg);
@@ -3283,19 +3284,19 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
 }
 
 @media (min-width:750px) {
-  .c201 {
+  .c196 {
     display: none;
   }
 }
 
 @media (min-width:750px) {
-  .c203 {
+  .c198 {
     right: 1.5rem;
   }
 }
 
 @media (min-width:750px) {
-  .c203 {
+  .c198 {
     width: -webkit-max-content;
     width: -moz-max-content;
     width: max-content;
@@ -3303,61 +3304,61 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
 }
 
 @media (min-width:750px) {
-  .c203 {
+  .c198 {
     padding-left: 0rem;
   }
 }
 
 @media (min-width:750px) {
-  .c203 {
+  .c198 {
     padding-right: 0rem;
   }
 }
 
 @media (min-width:750px) {
-  .c209 {
+  .c204 {
     margin-left: 1.5rem;
   }
 }
 
 @media (min-width:1280px) {
-  .c209 {
+  .c204 {
     margin-left: 3.5rem;
   }
 }
 
 @media (min-width:750px) {
-  .c209 {
+  .c204 {
     margin-right: 1.5rem;
   }
 }
 
 @media (min-width:1280px) {
-  .c209 {
+  .c204 {
     margin-right: 3.5rem;
   }
 }
 
 @media (min-width:750px) {
-  .c211 {
+  .c206 {
     font-weight: 300;
   }
 }
 
 @media (min-width:750px) {
-  .c211 {
+  .c206 {
     font-size: 1rem;
   }
 }
 
 @media (min-width:750px) {
-  .c211 {
+  .c206 {
     line-height: 1.5rem;
   }
 }
 
 @media (min-width:750px) {
-  .c211 {
+  .c206 {
     -webkit-letter-spacing: -0.005rem;
     -moz-letter-spacing: -0.005rem;
     -ms-letter-spacing: -0.005rem;
@@ -3483,7 +3484,7 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
 }
 
 @media (min-width:750px) {
-  .c183 {
+  .c178 {
     -webkit-box-pack: right;
     -webkit-justify-content: right;
     -ms-flex-pack: right;
@@ -3492,13 +3493,13 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
 }
 
 @media (min-width:750px) {
-  .c186 {
+  .c181 {
     display: none;
   }
 }
 
 @media (min-width:750px) {
-  .c194 {
+  .c189 {
     -webkit-flex-direction: row;
     -ms-flex-direction: row;
     flex-direction: row;
@@ -3506,7 +3507,7 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
 }
 
 @media (min-width:750px) {
-  .c194 {
+  .c189 {
     -webkit-align-items: center;
     -webkit-box-align: center;
     -ms-flex-align: center;
@@ -3515,7 +3516,7 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
 }
 
 @media (min-width:750px) {
-  .c194 {
+  .c189 {
     -webkit-box-pack: justify;
     -webkit-justify-content: space-between;
     -ms-flex-pack: justify;
@@ -3524,7 +3525,7 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
 }
 
 @media (min-width:750px) {
-  .c196 {
+  .c191 {
     display: -webkit-box;
     display: -webkit-flex;
     display: -ms-flexbox;
@@ -3533,7 +3534,7 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
 }
 
 @media (min-width:750px) {
-  .c204 {
+  .c199 {
     -webkit-align-items: flex-end;
     -webkit-box-align: flex-end;
     -ms-flex-align: flex-end;
@@ -3542,7 +3543,7 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
 }
 
 @media (min-width:750px) {
-  .c210 {
+  .c205 {
     -webkit-flex-direction: column;
     -ms-flex-direction: column;
     flex-direction: column;
@@ -3550,7 +3551,7 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
 }
 
 @media (min-width:1280px) {
-  .c210 {
+  .c205 {
     -webkit-flex-direction: row;
     -ms-flex-direction: row;
     flex-direction: row;
@@ -3558,7 +3559,7 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
 }
 
 @media (min-width:750px) {
-  .c210 {
+  .c205 {
     -webkit-align-items: flex-start;
     -webkit-box-align: flex-start;
     -ms-flex-align: flex-start;
@@ -3567,7 +3568,7 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
 }
 
 @media (min-width:1280px) {
-  .c210 {
+  .c205 {
     -webkit-align-items: center;
     -webkit-box-align: center;
     -ms-flex-align: center;
@@ -3576,19 +3577,19 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
 }
 
 @media (min-width:750px) {
-  .c210 {
+  .c205 {
     gap: 1.5rem;
   }
 }
 
 @media (min-width:1280px) {
-  .c210 {
+  .c205 {
     gap: 2rem;
   }
 }
 
 @media (min-width:750px) {
-  .c213 {
+  .c208 {
     -webkit-flex-direction: row;
     -ms-flex-direction: row;
     flex-direction: row;
@@ -3596,7 +3597,7 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
 }
 
 @media (min-width:750px) {
-  .c213 {
+  .c208 {
     -webkit-flex-wrap: wrap;
     -ms-flex-wrap: wrap;
     flex-wrap: wrap;
@@ -3604,7 +3605,7 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
 }
 
 @media (min-width:1280px) {
-  .c213 {
+  .c208 {
     -webkit-flex-wrap: nowrap;
     -ms-flex-wrap: nowrap;
     flex-wrap: nowrap;
@@ -3612,7 +3613,7 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
 }
 
 @media (min-width:750px) {
-  .c213 {
+  .c208 {
     gap: 2rem;
   }
 }
@@ -3672,25 +3673,25 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
 }
 
 @media (min-width:750px) {
-  .c212 {
+  .c207 {
     font-weight: 500;
   }
 }
 
 @media (min-width:750px) {
-  .c212 {
+  .c207 {
     font-size: 1rem;
   }
 }
 
 @media (min-width:750px) {
-  .c212 {
+  .c207 {
     line-height: 1.5rem;
   }
 }
 
 @media (min-width:750px) {
-  .c212 {
+  .c207 {
     -webkit-letter-spacing: -0.005rem;
     -moz-letter-spacing: -0.005rem;
     -ms-letter-spacing: -0.005rem;
@@ -4008,16 +4009,16 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
     text-decoration-thickness: 18%;
   }
 
-  .c24:hover .c181,
-  .c24:visited:hover .c181 {
+  .c24:hover .c176,
+  .c24:visited:hover .c176 {
     -webkit-filter: invert(16%) sepia(72%) saturate(7176%) hue-rotate(239deg) brightness(61%) contrast(109%);
     filter: invert(16%) sepia(72%) saturate(7176%) hue-rotate(239deg) brightness(61%) contrast(109%);
   }
 }
 
 @media (hover:hover) {
-  .c178:hover,
-  .c178:visited:hover {
+  .c173:hover,
+  .c173:visited:hover {
     color: #222222;
     -webkit-text-decoration: underline;
     text-decoration: underline;
@@ -4025,16 +4026,16 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
     text-decoration-thickness: 18%;
   }
 
-  .c178:hover .c181,
-  .c178:visited:hover .c181 {
+  .c173:hover .c176,
+  .c173:visited:hover .c176 {
     -webkit-filter: invert(10%) sepia(1%) saturate(236%) hue-rotate(314deg) brightness(95%) contrast(91%);
     filter: invert(10%) sepia(1%) saturate(236%) hue-rotate(314deg) brightness(95%) contrast(91%);
   }
 }
 
 @media (hover:hover) {
-  .c215:hover,
-  .c215:visited:hover {
+  .c210:hover,
+  .c210:visited:hover {
     color: #222222;
     -webkit-text-decoration: underline;
     text-decoration: underline;
@@ -4042,8 +4043,8 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
     text-decoration-thickness: 18%;
   }
 
-  .c215:hover .c181,
-  .c215:visited:hover .c181 {
+  .c210:hover .c176,
+  .c210:visited:hover .c176 {
     -webkit-filter: invert(10%) sepia(1%) saturate(236%) hue-rotate(314deg) brightness(95%) contrast(91%);
     filter: invert(10%) sepia(1%) saturate(236%) hue-rotate(314deg) brightness(95%) contrast(91%);
   }
@@ -4051,6 +4052,12 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
 
 @media (max-width:750px) {
   .c43 {
+    font-size: 16px;
+  }
+}
+
+@media (max-width:750px) {
+  .c143 {
     font-size: 16px;
   }
 }
@@ -4069,8 +4076,20 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
 }
 
 @media (min-width:750px) {
-  .c172 {
+  .c167 {
     grid-column: span 3;
+  }
+}
+
+@media (hover:hover) {
+  .c149:hover:not(:focus-within) {
+    background: #f2f2f2;
+  }
+}
+
+@media (hover:hover) {
+  .c142:hover:not(:focus-within) {
+    background: #f2f2f2;
   }
 }
 
@@ -4165,12 +4184,6 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
 @media (max-width:800px) {
   .c116 {
     grid-template-columns: repeat(1,1fr);
-  }
-}
-
-@media (max-width:750px) {
-  .c148 {
-    font-size: 16px;
   }
 }
 
@@ -5506,501 +5519,175 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
                       class="c136 c46 c130"
                     >
                       <form
-                        aria-describedby="react-use-id-test-result-newsletter-form-description"
-                        class="c137"
+                        class="c67 c137"
                         novalidate=""
                       >
                         <div
-                          class="c138 c139 c140"
+                          class="c138"
                         >
                           <div
-                            class="c141 "
+                            class="c67 c137"
                           >
                             <div
-                              aria-hidden="true"
-                              class="c9"
-                              data-testid="brush-borders"
-                            >
-                              <svg
-                                aria-hidden="true"
-                                class="c142"
-                                height="100%"
-                                name="box-border-top"
-                                style="height: 3px;"
-                                width="100%"
-                                xmlns="http://www.w3.org/2000/svg"
-                              >
-                                <svg
-                                  fill="none"
-                                  preserveAspectRatio="none"
-                                  viewBox="0 0 365.46 2.75"
-                                  xmlns="http://www.w3.org/2000/svg"
-                                >
-                                  <path
-                                    d="M364.83 0C351.89 1.06-.66.73 0 .25v2.5c2.3.01 5.32-.13 5.57-.08 47.1.16 120.24-.07 166.75-.03 69.38-.05 120.46-.12 189.56-.12-.05-.23 1.93.16 3.58.23V.25c-.05.25-.37-.27-.63-.25Z"
-                                    fill="currentColor"
-                                  />
-                                  <path
-                                    d="M149.42 1.02c.27-.16 3.18-.2 2.26.09-.19.04-2.5.15-2.26-.09ZM56.54.97c.55.12-2.9.98-3.24.15.32.41 3.27-.18 3.24-.15ZM9.35 1.59C7.97 1.63 7.02.97 6.81.96c-.43-.19 7.92.37 2.54.63ZM16.35 2.38c-.62-.35-1.11-.15-1.75-.43-.73-.27 3.56.47 1.75.43ZM24.26 1.7c-2.35 0-2.12-.47.23-.53 2.68-.01 1.7.53-.23.53ZM28.1 1.31c-2.03 0-1.83-.27.16-.34 1.97.07 1.83.34-.16.34ZM36.92 1.59c-3.21-.17-5.82-.65-2.64-.82h.08c3.18.17 5.76.65 2.56.82ZM42.59 1.17c-4.18 0-.39-.28 1.02-.17 2.41.11 2.04.17-1.02.17ZM46.37 2.3c-2.79.08 1.35-.33 1.34-.12-.18.04-.77.12-1.34.12ZM52.8 2.1c-.98 0-2.05-.06-2.38-.17 1.13-.23 7.26.26 2.38.17ZM58.28 1.64c-.64.06-1.52.06-1.89.06-2.06-.28 4.19-.29 1.89-.06ZM65.09 1.4c-.4.03-2.69.44-3.72.48-4.46.08 6.98-.83 3.72-.48ZM72.66 1.73c-1.98.35-1.23.02.7-.26 1.91-.3 1.43-.12-.7.26ZM85.21 1.47c-.77 0-1.69-.03-2.01-.07-.37-.19 6.48 0 2.01.07ZM96.76 1.4c-.77 0-2.15-.04-3.06-.08-4.81-.23 4.86-.07 3.06.08ZM107.94 1.61c-3.21-.28.14-.46 1.48-.19 2.05.37 1.35.43-1.48.19ZM114.99 1.79c-2.3.1.24-.22.72-.08 0 0-.32.08-.72.08ZM117.51 1.68c-.87-.13.01-.55.54-.47.77.08.26.55-.54.47ZM120.1 1.61c-.14-.19 1.25-.42 1.38-.32.27.08-1.02.4-1.38.32ZM124.56 2.44c-1.17-.02.1-.15.36-.12.56.08.43.12-.36.12ZM146.75 2.35c-.42 0-.43-.2 0-.18.43-.02.42.18 0 .18ZM149.83 2.11c-3.61-.03-.33-.41.96-.36 2.38.15 1.77.36-.96.36ZM154.5 1.82c-.54 0-1.55-.62-1.28-.65.44-.14 2.79.67 1.28.65ZM156.94 2.42c-.26.03-.5.03-.57 0-.4-.24 1.45-.08.57 0ZM169.55 2.35c-.9 0-1.67-.11-1.67-.11.05-.33 6 .04 1.67.11ZM175.38 1.82c-.86 0-2.06-.07-2.6-.1-.96-.25 7.83-.03 2.6.1ZM192.55 2.28c-3.37 0 .38-.25 1.77 0h-1.77ZM193.35 1.72c-5.94-.1-.12-.22 1.6-.08 2.54.06.44.02-1.6.08ZM224.25 1.82h-5.04c-5.16-.75 14.75.03 5.04 0ZM255.57 1.97c-.89.1-1.94.2-2.56.1-.91-.44 7.73-.88 2.56-.1ZM259.32 1.54c-.95 0-2.54-.26-.97-.46 5.44-.41 10.89.41.97.46Z"
-                                    fill="currentColor"
-                                  />
-                                </svg>
-                              </svg>
-                              <svg
-                                aria-hidden="true"
-                                class="c142"
-                                height="100%"
-                                name="box-border-right"
-                                style="width: 3px; height: 90%;"
-                                width="100%"
-                                xmlns="http://www.w3.org/2000/svg"
-                              >
-                                <svg
-                                  fill="none"
-                                  preserveAspectRatio="none"
-                                  viewBox="0 0 2.89 330.09"
-                                  xmlns="http://www.w3.org/2000/svg"
-                                >
-                                  <path
-                                    d="M2.7 2.21c-.12-.76.36-2.63-1.15-2.13C.77.03-.13.13.01.85c.18 14.09.05 309.32.1 328.06 0 .15.3 1.07.28 1.18h2.5C2.85 303.49 2.6 17.84 2.7 2.21Z"
-                                    fill="currentColor"
-                                  />
-                                  <path
-                                    d="M1.87 1.07s.09.4.09 1.21c.11 3.3-.51-1.31-.09-1.21ZM1.25 44.05c-.47-.05-.49-1.38-.04-1.78.85-.76.2 1.8.04 1.78ZM.91 1.65c.08 2.14.7 4.95-.31 2.59-.13-.84.18-5.42.31-2.59ZM1.05 65.78c-.47-.05.11-8.31.56-9.46.4-1.07-.4 9.48-.56 9.46ZM1.76 54.4c-.47-.05-.76-.69.03-.65 1.14.07.13.67-.03.65Z"
-                                    fill="currentColor"
-                                  />
-                                </svg>
-                              </svg>
-                              <svg
-                                aria-hidden="true"
-                                class="c142"
-                                height="100%"
-                                name="box-border-bottom"
-                                style="height: 3px; width: 100%;"
-                                width="100%"
-                                xmlns="http://www.w3.org/2000/svg"
-                              >
-                                <svg
-                                  fill="none"
-                                  preserveAspectRatio="none"
-                                  viewBox="0 0 365.46 2.75"
-                                  xmlns="http://www.w3.org/2000/svg"
-                                >
-                                  <path
-                                    d="M364.83 0C351.89 1.06-.66.73 0 .25v2.5c2.3.01 5.32-.13 5.57-.08 47.1.16 120.24-.07 166.75-.03 69.38-.05 120.46-.12 189.56-.12-.05-.23 1.93.16 3.58.23V.25c-.05.25-.37-.27-.63-.25Z"
-                                    fill="currentColor"
-                                  />
-                                  <path
-                                    d="M149.42 1.02c.27-.16 3.18-.2 2.26.09-.19.04-2.5.15-2.26-.09ZM56.54.97c.55.12-2.9.98-3.24.15.32.41 3.27-.18 3.24-.15ZM9.35 1.59C7.97 1.63 7.02.97 6.81.96c-.43-.19 7.92.37 2.54.63ZM16.35 2.38c-.62-.35-1.11-.15-1.75-.43-.73-.27 3.56.47 1.75.43ZM24.26 1.7c-2.35 0-2.12-.47.23-.53 2.68-.01 1.7.53-.23.53ZM28.1 1.31c-2.03 0-1.83-.27.16-.34 1.97.07 1.83.34-.16.34ZM36.92 1.59c-3.21-.17-5.82-.65-2.64-.82h.08c3.18.17 5.76.65 2.56.82ZM42.59 1.17c-4.18 0-.39-.28 1.02-.17 2.41.11 2.04.17-1.02.17ZM46.37 2.3c-2.79.08 1.35-.33 1.34-.12-.18.04-.77.12-1.34.12ZM52.8 2.1c-.98 0-2.05-.06-2.38-.17 1.13-.23 7.26.26 2.38.17ZM58.28 1.64c-.64.06-1.52.06-1.89.06-2.06-.28 4.19-.29 1.89-.06ZM65.09 1.4c-.4.03-2.69.44-3.72.48-4.46.08 6.98-.83 3.72-.48ZM72.66 1.73c-1.98.35-1.23.02.7-.26 1.91-.3 1.43-.12-.7.26ZM85.21 1.47c-.77 0-1.69-.03-2.01-.07-.37-.19 6.48 0 2.01.07ZM96.76 1.4c-.77 0-2.15-.04-3.06-.08-4.81-.23 4.86-.07 3.06.08ZM107.94 1.61c-3.21-.28.14-.46 1.48-.19 2.05.37 1.35.43-1.48.19ZM114.99 1.79c-2.3.1.24-.22.72-.08 0 0-.32.08-.72.08ZM117.51 1.68c-.87-.13.01-.55.54-.47.77.08.26.55-.54.47ZM120.1 1.61c-.14-.19 1.25-.42 1.38-.32.27.08-1.02.4-1.38.32ZM124.56 2.44c-1.17-.02.1-.15.36-.12.56.08.43.12-.36.12ZM146.75 2.35c-.42 0-.43-.2 0-.18.43-.02.42.18 0 .18ZM149.83 2.11c-3.61-.03-.33-.41.96-.36 2.38.15 1.77.36-.96.36ZM154.5 1.82c-.54 0-1.55-.62-1.28-.65.44-.14 2.79.67 1.28.65ZM156.94 2.42c-.26.03-.5.03-.57 0-.4-.24 1.45-.08.57 0ZM169.55 2.35c-.9 0-1.67-.11-1.67-.11.05-.33 6 .04 1.67.11ZM175.38 1.82c-.86 0-2.06-.07-2.6-.1-.96-.25 7.83-.03 2.6.1ZM192.55 2.28c-3.37 0 .38-.25 1.77 0h-1.77ZM193.35 1.72c-5.94-.1-.12-.22 1.6-.08 2.54.06.44.02-1.6.08ZM224.25 1.82h-5.04c-5.16-.75 14.75.03 5.04 0ZM255.57 1.97c-.89.1-1.94.2-2.56.1-.91-.44 7.73-.88 2.56-.1ZM259.32 1.54c-.95 0-2.54-.26-.97-.46 5.44-.41 10.89.41.97.46Z"
-                                    fill="currentColor"
-                                  />
-                                </svg>
-                              </svg>
-                              <svg
-                                aria-hidden="true"
-                                class="c142"
-                                height="100%"
-                                name="box-border-left"
-                                style="width: 3px;"
-                                width="100%"
-                                xmlns="http://www.w3.org/2000/svg"
-                              >
-                                <svg
-                                  fill="none"
-                                  preserveAspectRatio="none"
-                                  viewBox="0 0 2.72 359.41"
-                                  xmlns="http://www.w3.org/2000/svg"
-                                >
-                                  <path
-                                    d="M2.56 26.03c-.14-7.28.05-12.58 0-18.65C2.48 3.63 2.28.24 2.51 0H.02c.13 3.41 1.04 10.2.02 14.63-.1 9.52.02 311.42-.03 344.78h2.5c-.87-4.14.68-328.77.05-333.38Z"
-                                    fill="currentColor"
-                                  />
-                                  <path
-                                    d="M1.78 73.31c-.48-1.02.43-5.62.43-4.84.01.69.38 4.88-.43 4.84ZM1.56 142.12c1.14.07.13.67-.03.65-.47-.05-.76-.69.03-.65ZM1.65 196.21c.23.4.13 2.4.07 2.59-.36-1.73-.51-3.36-.07-2.59ZM2.48 27.51c0 .49 0 1.87-.11 3.12-.37 6.22-.42-1.85.11-3.12ZM2.01 65.86c.39.51.58 1.99-.23 1.95-.48-1.02-.25-2.56.23-1.95ZM1.02 132.42c-.47-.05-.49-1.39-.04-1.78.85-.76.2 1.8.04 1.78ZM.79 5.27c.07-1.81.65 1.18.59 5.76C1.27 17.8.69 6.25.79 5.27ZM.33 47.73c-.33-1.44.48-7.29.21-2.86-.12.57-.13 5.57-.21 2.86ZM.96 94.76c.28.95-.15 5.38-.31 5.36-.47-.05.08-6.12.31-5.36ZM1.23 100.12c-.07.9-.41 1.95-.58 1.95-.47-.05.64-2.73.58-1.95ZM1.38 144.69c.4-1.07-.4 9.48-.56 9.46-.47-.05.12-8.31.56-9.46ZM1.24 197.97c.23.4.13 2.4.07 2.59-.36-1.73-.51-3.36-.07-2.59ZM1.81 209.98c-.36-1.74-.84-7.52-.52-8.14l.5-1.57c.25.43.05 9.87.02 9.71ZM1.85 158.2c-.47-.05-.11-4.72.13-3.97.33 1.09.03 3.99-.13 3.97Z"
-                                    fill="currentColor"
-                                  />
-                                </svg>
-                              </svg>
-                            </div>
-                            <div
-                              class="c143 "
+                              class="c2 c137"
                             >
                               <label
-                                aria-hidden="true"
-                                class="c144 c145 c146"
-                                color="black"
-                                data-testid="rotated-input-label"
+                                class="c139"
+                                data-testid="jaunty-label"
                                 for="react-use-id-test-result-newsletter-signup-name"
-                                id="react-use-id-test-result-newsletter-signup-name-label"
+                                id="Name-label"
                               >
-                                <span
-                                  class="c25"
-                                >
-                                  Name
-                                   
-                                  <span
-                                    class="c107"
-                                  >
-                                    (required)
-                                  </span>
-                                </span>
+                                Name (required)
                               </label>
+                              <div
+                                class="c140 c141 c142"
+                              >
+                                <div
+                                  class="c9 c124"
+                                >
+                                  <input
+                                    autocomplete="name"
+                                    class="c143"
+                                    data-testid="text-input"
+                                    id="react-use-id-test-result-newsletter-signup-name"
+                                    name="name"
+                                    placeholder="Anna Smith"
+                                    type="text"
+                                    value=""
+                                  />
+                                </div>
+                              </div>
                             </div>
-                            <input
-                              aria-invalid="false"
-                              aria-labelledby="react-use-id-test-result-newsletter-signup-name-label"
-                              autocomplete="name"
-                              class="c147 c148"
-                              id="react-use-id-test-result-newsletter-signup-name"
-                              name="name"
-                              placeholder="Anna Smith"
-                              required=""
-                            />
-                            <svg
-                              aria-hidden="true"
-                              class="c149 c150 c151"
-                              height="100%"
-                              name="underline-1"
-                              width="100%"
-                              xmlns="http://www.w3.org/2000/svg"
-                            >
-                              <use
-                                xlink:href="/images/sprite/sprite.svg#underline-1"
-                              />
-                            </svg>
                           </div>
                         </div>
                         <div
-                          class="c138 c139 c140"
+                          class="c138"
                         >
                           <div
-                            class="c141 "
+                            class="c67 c137"
                           >
                             <div
-                              aria-hidden="true"
-                              class="c9"
-                              data-testid="brush-borders"
-                            >
-                              <svg
-                                aria-hidden="true"
-                                class="c142"
-                                height="100%"
-                                name="box-border-top"
-                                style="height: 3px;"
-                                width="100%"
-                                xmlns="http://www.w3.org/2000/svg"
-                              >
-                                <svg
-                                  fill="none"
-                                  preserveAspectRatio="none"
-                                  viewBox="0 0 365.46 2.75"
-                                  xmlns="http://www.w3.org/2000/svg"
-                                >
-                                  <path
-                                    d="M364.83 0C351.89 1.06-.66.73 0 .25v2.5c2.3.01 5.32-.13 5.57-.08 47.1.16 120.24-.07 166.75-.03 69.38-.05 120.46-.12 189.56-.12-.05-.23 1.93.16 3.58.23V.25c-.05.25-.37-.27-.63-.25Z"
-                                    fill="currentColor"
-                                  />
-                                  <path
-                                    d="M149.42 1.02c.27-.16 3.18-.2 2.26.09-.19.04-2.5.15-2.26-.09ZM56.54.97c.55.12-2.9.98-3.24.15.32.41 3.27-.18 3.24-.15ZM9.35 1.59C7.97 1.63 7.02.97 6.81.96c-.43-.19 7.92.37 2.54.63ZM16.35 2.38c-.62-.35-1.11-.15-1.75-.43-.73-.27 3.56.47 1.75.43ZM24.26 1.7c-2.35 0-2.12-.47.23-.53 2.68-.01 1.7.53-.23.53ZM28.1 1.31c-2.03 0-1.83-.27.16-.34 1.97.07 1.83.34-.16.34ZM36.92 1.59c-3.21-.17-5.82-.65-2.64-.82h.08c3.18.17 5.76.65 2.56.82ZM42.59 1.17c-4.18 0-.39-.28 1.02-.17 2.41.11 2.04.17-1.02.17ZM46.37 2.3c-2.79.08 1.35-.33 1.34-.12-.18.04-.77.12-1.34.12ZM52.8 2.1c-.98 0-2.05-.06-2.38-.17 1.13-.23 7.26.26 2.38.17ZM58.28 1.64c-.64.06-1.52.06-1.89.06-2.06-.28 4.19-.29 1.89-.06ZM65.09 1.4c-.4.03-2.69.44-3.72.48-4.46.08 6.98-.83 3.72-.48ZM72.66 1.73c-1.98.35-1.23.02.7-.26 1.91-.3 1.43-.12-.7.26ZM85.21 1.47c-.77 0-1.69-.03-2.01-.07-.37-.19 6.48 0 2.01.07ZM96.76 1.4c-.77 0-2.15-.04-3.06-.08-4.81-.23 4.86-.07 3.06.08ZM107.94 1.61c-3.21-.28.14-.46 1.48-.19 2.05.37 1.35.43-1.48.19ZM114.99 1.79c-2.3.1.24-.22.72-.08 0 0-.32.08-.72.08ZM117.51 1.68c-.87-.13.01-.55.54-.47.77.08.26.55-.54.47ZM120.1 1.61c-.14-.19 1.25-.42 1.38-.32.27.08-1.02.4-1.38.32ZM124.56 2.44c-1.17-.02.1-.15.36-.12.56.08.43.12-.36.12ZM146.75 2.35c-.42 0-.43-.2 0-.18.43-.02.42.18 0 .18ZM149.83 2.11c-3.61-.03-.33-.41.96-.36 2.38.15 1.77.36-.96.36ZM154.5 1.82c-.54 0-1.55-.62-1.28-.65.44-.14 2.79.67 1.28.65ZM156.94 2.42c-.26.03-.5.03-.57 0-.4-.24 1.45-.08.57 0ZM169.55 2.35c-.9 0-1.67-.11-1.67-.11.05-.33 6 .04 1.67.11ZM175.38 1.82c-.86 0-2.06-.07-2.6-.1-.96-.25 7.83-.03 2.6.1ZM192.55 2.28c-3.37 0 .38-.25 1.77 0h-1.77ZM193.35 1.72c-5.94-.1-.12-.22 1.6-.08 2.54.06.44.02-1.6.08ZM224.25 1.82h-5.04c-5.16-.75 14.75.03 5.04 0ZM255.57 1.97c-.89.1-1.94.2-2.56.1-.91-.44 7.73-.88 2.56-.1ZM259.32 1.54c-.95 0-2.54-.26-.97-.46 5.44-.41 10.89.41.97.46Z"
-                                    fill="currentColor"
-                                  />
-                                </svg>
-                              </svg>
-                              <svg
-                                aria-hidden="true"
-                                class="c142"
-                                height="100%"
-                                name="box-border-right"
-                                style="width: 3px; height: 90%;"
-                                width="100%"
-                                xmlns="http://www.w3.org/2000/svg"
-                              >
-                                <svg
-                                  fill="none"
-                                  preserveAspectRatio="none"
-                                  viewBox="0 0 2.89 330.09"
-                                  xmlns="http://www.w3.org/2000/svg"
-                                >
-                                  <path
-                                    d="M2.7 2.21c-.12-.76.36-2.63-1.15-2.13C.77.03-.13.13.01.85c.18 14.09.05 309.32.1 328.06 0 .15.3 1.07.28 1.18h2.5C2.85 303.49 2.6 17.84 2.7 2.21Z"
-                                    fill="currentColor"
-                                  />
-                                  <path
-                                    d="M1.87 1.07s.09.4.09 1.21c.11 3.3-.51-1.31-.09-1.21ZM1.25 44.05c-.47-.05-.49-1.38-.04-1.78.85-.76.2 1.8.04 1.78ZM.91 1.65c.08 2.14.7 4.95-.31 2.59-.13-.84.18-5.42.31-2.59ZM1.05 65.78c-.47-.05.11-8.31.56-9.46.4-1.07-.4 9.48-.56 9.46ZM1.76 54.4c-.47-.05-.76-.69.03-.65 1.14.07.13.67-.03.65Z"
-                                    fill="currentColor"
-                                  />
-                                </svg>
-                              </svg>
-                              <svg
-                                aria-hidden="true"
-                                class="c142"
-                                height="100%"
-                                name="box-border-bottom"
-                                style="height: 3px; width: 100%;"
-                                width="100%"
-                                xmlns="http://www.w3.org/2000/svg"
-                              >
-                                <svg
-                                  fill="none"
-                                  preserveAspectRatio="none"
-                                  viewBox="0 0 365.46 2.75"
-                                  xmlns="http://www.w3.org/2000/svg"
-                                >
-                                  <path
-                                    d="M364.83 0C351.89 1.06-.66.73 0 .25v2.5c2.3.01 5.32-.13 5.57-.08 47.1.16 120.24-.07 166.75-.03 69.38-.05 120.46-.12 189.56-.12-.05-.23 1.93.16 3.58.23V.25c-.05.25-.37-.27-.63-.25Z"
-                                    fill="currentColor"
-                                  />
-                                  <path
-                                    d="M149.42 1.02c.27-.16 3.18-.2 2.26.09-.19.04-2.5.15-2.26-.09ZM56.54.97c.55.12-2.9.98-3.24.15.32.41 3.27-.18 3.24-.15ZM9.35 1.59C7.97 1.63 7.02.97 6.81.96c-.43-.19 7.92.37 2.54.63ZM16.35 2.38c-.62-.35-1.11-.15-1.75-.43-.73-.27 3.56.47 1.75.43ZM24.26 1.7c-2.35 0-2.12-.47.23-.53 2.68-.01 1.7.53-.23.53ZM28.1 1.31c-2.03 0-1.83-.27.16-.34 1.97.07 1.83.34-.16.34ZM36.92 1.59c-3.21-.17-5.82-.65-2.64-.82h.08c3.18.17 5.76.65 2.56.82ZM42.59 1.17c-4.18 0-.39-.28 1.02-.17 2.41.11 2.04.17-1.02.17ZM46.37 2.3c-2.79.08 1.35-.33 1.34-.12-.18.04-.77.12-1.34.12ZM52.8 2.1c-.98 0-2.05-.06-2.38-.17 1.13-.23 7.26.26 2.38.17ZM58.28 1.64c-.64.06-1.52.06-1.89.06-2.06-.28 4.19-.29 1.89-.06ZM65.09 1.4c-.4.03-2.69.44-3.72.48-4.46.08 6.98-.83 3.72-.48ZM72.66 1.73c-1.98.35-1.23.02.7-.26 1.91-.3 1.43-.12-.7.26ZM85.21 1.47c-.77 0-1.69-.03-2.01-.07-.37-.19 6.48 0 2.01.07ZM96.76 1.4c-.77 0-2.15-.04-3.06-.08-4.81-.23 4.86-.07 3.06.08ZM107.94 1.61c-3.21-.28.14-.46 1.48-.19 2.05.37 1.35.43-1.48.19ZM114.99 1.79c-2.3.1.24-.22.72-.08 0 0-.32.08-.72.08ZM117.51 1.68c-.87-.13.01-.55.54-.47.77.08.26.55-.54.47ZM120.1 1.61c-.14-.19 1.25-.42 1.38-.32.27.08-1.02.4-1.38.32ZM124.56 2.44c-1.17-.02.1-.15.36-.12.56.08.43.12-.36.12ZM146.75 2.35c-.42 0-.43-.2 0-.18.43-.02.42.18 0 .18ZM149.83 2.11c-3.61-.03-.33-.41.96-.36 2.38.15 1.77.36-.96.36ZM154.5 1.82c-.54 0-1.55-.62-1.28-.65.44-.14 2.79.67 1.28.65ZM156.94 2.42c-.26.03-.5.03-.57 0-.4-.24 1.45-.08.57 0ZM169.55 2.35c-.9 0-1.67-.11-1.67-.11.05-.33 6 .04 1.67.11ZM175.38 1.82c-.86 0-2.06-.07-2.6-.1-.96-.25 7.83-.03 2.6.1ZM192.55 2.28c-3.37 0 .38-.25 1.77 0h-1.77ZM193.35 1.72c-5.94-.1-.12-.22 1.6-.08 2.54.06.44.02-1.6.08ZM224.25 1.82h-5.04c-5.16-.75 14.75.03 5.04 0ZM255.57 1.97c-.89.1-1.94.2-2.56.1-.91-.44 7.73-.88 2.56-.1ZM259.32 1.54c-.95 0-2.54-.26-.97-.46 5.44-.41 10.89.41.97.46Z"
-                                    fill="currentColor"
-                                  />
-                                </svg>
-                              </svg>
-                              <svg
-                                aria-hidden="true"
-                                class="c142"
-                                height="100%"
-                                name="box-border-left"
-                                style="width: 3px;"
-                                width="100%"
-                                xmlns="http://www.w3.org/2000/svg"
-                              >
-                                <svg
-                                  fill="none"
-                                  preserveAspectRatio="none"
-                                  viewBox="0 0 2.72 359.41"
-                                  xmlns="http://www.w3.org/2000/svg"
-                                >
-                                  <path
-                                    d="M2.56 26.03c-.14-7.28.05-12.58 0-18.65C2.48 3.63 2.28.24 2.51 0H.02c.13 3.41 1.04 10.2.02 14.63-.1 9.52.02 311.42-.03 344.78h2.5c-.87-4.14.68-328.77.05-333.38Z"
-                                    fill="currentColor"
-                                  />
-                                  <path
-                                    d="M1.78 73.31c-.48-1.02.43-5.62.43-4.84.01.69.38 4.88-.43 4.84ZM1.56 142.12c1.14.07.13.67-.03.65-.47-.05-.76-.69.03-.65ZM1.65 196.21c.23.4.13 2.4.07 2.59-.36-1.73-.51-3.36-.07-2.59ZM2.48 27.51c0 .49 0 1.87-.11 3.12-.37 6.22-.42-1.85.11-3.12ZM2.01 65.86c.39.51.58 1.99-.23 1.95-.48-1.02-.25-2.56.23-1.95ZM1.02 132.42c-.47-.05-.49-1.39-.04-1.78.85-.76.2 1.8.04 1.78ZM.79 5.27c.07-1.81.65 1.18.59 5.76C1.27 17.8.69 6.25.79 5.27ZM.33 47.73c-.33-1.44.48-7.29.21-2.86-.12.57-.13 5.57-.21 2.86ZM.96 94.76c.28.95-.15 5.38-.31 5.36-.47-.05.08-6.12.31-5.36ZM1.23 100.12c-.07.9-.41 1.95-.58 1.95-.47-.05.64-2.73.58-1.95ZM1.38 144.69c.4-1.07-.4 9.48-.56 9.46-.47-.05.12-8.31.56-9.46ZM1.24 197.97c.23.4.13 2.4.07 2.59-.36-1.73-.51-3.36-.07-2.59ZM1.81 209.98c-.36-1.74-.84-7.52-.52-8.14l.5-1.57c.25.43.05 9.87.02 9.71ZM1.85 158.2c-.47-.05-.11-4.72.13-3.97.33 1.09.03 3.99-.13 3.97Z"
-                                    fill="currentColor"
-                                  />
-                                </svg>
-                              </svg>
-                            </div>
-                            <div
-                              class="c143 "
+                              class="c2 c137"
                             >
                               <label
-                                aria-hidden="true"
-                                class="c144 c145 c146"
-                                color="black"
-                                data-testid="rotated-input-label"
+                                class="c139"
+                                data-testid="jaunty-label"
                                 for="react-use-id-test-result-newsletter-signup-email"
-                                id="react-use-id-test-result-newsletter-signup-email-label"
+                                id="Email-label"
                               >
-                                <span
-                                  class="c25"
-                                >
-                                  Email
-                                   
-                                  <span
-                                    class="c107"
-                                  >
-                                    (required)
-                                  </span>
-                                </span>
+                                Email (required)
                               </label>
+                              <div
+                                class="c140 c141 c142"
+                              >
+                                <div
+                                  class="c9 c124"
+                                >
+                                  <input
+                                    autocomplete="email"
+                                    class="c143"
+                                    data-testid="text-input"
+                                    id="react-use-id-test-result-newsletter-signup-email"
+                                    name="email"
+                                    placeholder="anna@amail.com"
+                                    type="text"
+                                    value=""
+                                  />
+                                </div>
+                              </div>
                             </div>
-                            <input
-                              aria-invalid="false"
-                              aria-labelledby="react-use-id-test-result-newsletter-signup-email-label"
-                              autocomplete="email"
-                              class="c147 c148"
-                              id="react-use-id-test-result-newsletter-signup-email"
-                              name="email"
-                              placeholder="anna@amail.com"
-                              required=""
-                            />
-                            <svg
-                              aria-hidden="true"
-                              class="c149 c150 c151"
-                              height="100%"
-                              name="underline-1"
-                              width="100%"
-                              xmlns="http://www.w3.org/2000/svg"
-                            >
-                              <use
-                                xlink:href="/images/sprite/sprite.svg#underline-1"
-                              />
-                            </svg>
                           </div>
                         </div>
                         <div
-                          class="c152 c153 c154"
+                          aria-labelledby="react-use-id-test-result-role-label"
+                          class="c144"
+                          role="group"
                         >
                           <div
-                            aria-hidden="true"
-                            class="c9"
-                            data-testid="brush-borders"
+                            class="c145"
+                            for="react-use-id-test-result-role"
+                            id="react-use-id-test-result-role-label"
                           >
-                            <svg
-                              aria-hidden="true"
-                              class="c142"
-                              height="100%"
-                              name="box-border-top"
-                              style="height: 3px;"
-                              width="100%"
-                              xmlns="http://www.w3.org/2000/svg"
-                            >
-                              <svg
-                                fill="none"
-                                preserveAspectRatio="none"
-                                viewBox="0 0 365.46 2.75"
-                                xmlns="http://www.w3.org/2000/svg"
-                              >
-                                <path
-                                  d="M364.83 0C351.89 1.06-.66.73 0 .25v2.5c2.3.01 5.32-.13 5.57-.08 47.1.16 120.24-.07 166.75-.03 69.38-.05 120.46-.12 189.56-.12-.05-.23 1.93.16 3.58.23V.25c-.05.25-.37-.27-.63-.25Z"
-                                  fill="currentColor"
-                                />
-                                <path
-                                  d="M149.42 1.02c.27-.16 3.18-.2 2.26.09-.19.04-2.5.15-2.26-.09ZM56.54.97c.55.12-2.9.98-3.24.15.32.41 3.27-.18 3.24-.15ZM9.35 1.59C7.97 1.63 7.02.97 6.81.96c-.43-.19 7.92.37 2.54.63ZM16.35 2.38c-.62-.35-1.11-.15-1.75-.43-.73-.27 3.56.47 1.75.43ZM24.26 1.7c-2.35 0-2.12-.47.23-.53 2.68-.01 1.7.53-.23.53ZM28.1 1.31c-2.03 0-1.83-.27.16-.34 1.97.07 1.83.34-.16.34ZM36.92 1.59c-3.21-.17-5.82-.65-2.64-.82h.08c3.18.17 5.76.65 2.56.82ZM42.59 1.17c-4.18 0-.39-.28 1.02-.17 2.41.11 2.04.17-1.02.17ZM46.37 2.3c-2.79.08 1.35-.33 1.34-.12-.18.04-.77.12-1.34.12ZM52.8 2.1c-.98 0-2.05-.06-2.38-.17 1.13-.23 7.26.26 2.38.17ZM58.28 1.64c-.64.06-1.52.06-1.89.06-2.06-.28 4.19-.29 1.89-.06ZM65.09 1.4c-.4.03-2.69.44-3.72.48-4.46.08 6.98-.83 3.72-.48ZM72.66 1.73c-1.98.35-1.23.02.7-.26 1.91-.3 1.43-.12-.7.26ZM85.21 1.47c-.77 0-1.69-.03-2.01-.07-.37-.19 6.48 0 2.01.07ZM96.76 1.4c-.77 0-2.15-.04-3.06-.08-4.81-.23 4.86-.07 3.06.08ZM107.94 1.61c-3.21-.28.14-.46 1.48-.19 2.05.37 1.35.43-1.48.19ZM114.99 1.79c-2.3.1.24-.22.72-.08 0 0-.32.08-.72.08ZM117.51 1.68c-.87-.13.01-.55.54-.47.77.08.26.55-.54.47ZM120.1 1.61c-.14-.19 1.25-.42 1.38-.32.27.08-1.02.4-1.38.32ZM124.56 2.44c-1.17-.02.1-.15.36-.12.56.08.43.12-.36.12ZM146.75 2.35c-.42 0-.43-.2 0-.18.43-.02.42.18 0 .18ZM149.83 2.11c-3.61-.03-.33-.41.96-.36 2.38.15 1.77.36-.96.36ZM154.5 1.82c-.54 0-1.55-.62-1.28-.65.44-.14 2.79.67 1.28.65ZM156.94 2.42c-.26.03-.5.03-.57 0-.4-.24 1.45-.08.57 0ZM169.55 2.35c-.9 0-1.67-.11-1.67-.11.05-.33 6 .04 1.67.11ZM175.38 1.82c-.86 0-2.06-.07-2.6-.1-.96-.25 7.83-.03 2.6.1ZM192.55 2.28c-3.37 0 .38-.25 1.77 0h-1.77ZM193.35 1.72c-5.94-.1-.12-.22 1.6-.08 2.54.06.44.02-1.6.08ZM224.25 1.82h-5.04c-5.16-.75 14.75.03 5.04 0ZM255.57 1.97c-.89.1-1.94.2-2.56.1-.91-.44 7.73-.88 2.56-.1ZM259.32 1.54c-.95 0-2.54-.26-.97-.46 5.44-.41 10.89.41.97.46Z"
-                                  fill="currentColor"
-                                />
-                              </svg>
-                            </svg>
-                            <svg
-                              aria-hidden="true"
-                              class="c142"
-                              height="100%"
-                              name="box-border-right"
-                              style="width: 3px; height: 90%;"
-                              width="100%"
-                              xmlns="http://www.w3.org/2000/svg"
-                            >
-                              <svg
-                                fill="none"
-                                preserveAspectRatio="none"
-                                viewBox="0 0 2.89 330.09"
-                                xmlns="http://www.w3.org/2000/svg"
-                              >
-                                <path
-                                  d="M2.7 2.21c-.12-.76.36-2.63-1.15-2.13C.77.03-.13.13.01.85c.18 14.09.05 309.32.1 328.06 0 .15.3 1.07.28 1.18h2.5C2.85 303.49 2.6 17.84 2.7 2.21Z"
-                                  fill="currentColor"
-                                />
-                                <path
-                                  d="M1.87 1.07s.09.4.09 1.21c.11 3.3-.51-1.31-.09-1.21ZM1.25 44.05c-.47-.05-.49-1.38-.04-1.78.85-.76.2 1.8.04 1.78ZM.91 1.65c.08 2.14.7 4.95-.31 2.59-.13-.84.18-5.42.31-2.59ZM1.05 65.78c-.47-.05.11-8.31.56-9.46.4-1.07-.4 9.48-.56 9.46ZM1.76 54.4c-.47-.05-.76-.69.03-.65 1.14.07.13.67-.03.65Z"
-                                  fill="currentColor"
-                                />
-                              </svg>
-                            </svg>
-                            <svg
-                              aria-hidden="true"
-                              class="c142"
-                              height="100%"
-                              name="box-border-bottom"
-                              style="height: 3px; width: 100%;"
-                              width="100%"
-                              xmlns="http://www.w3.org/2000/svg"
-                            >
-                              <svg
-                                fill="none"
-                                preserveAspectRatio="none"
-                                viewBox="0 0 365.46 2.75"
-                                xmlns="http://www.w3.org/2000/svg"
-                              >
-                                <path
-                                  d="M364.83 0C351.89 1.06-.66.73 0 .25v2.5c2.3.01 5.32-.13 5.57-.08 47.1.16 120.24-.07 166.75-.03 69.38-.05 120.46-.12 189.56-.12-.05-.23 1.93.16 3.58.23V.25c-.05.25-.37-.27-.63-.25Z"
-                                  fill="currentColor"
-                                />
-                                <path
-                                  d="M149.42 1.02c.27-.16 3.18-.2 2.26.09-.19.04-2.5.15-2.26-.09ZM56.54.97c.55.12-2.9.98-3.24.15.32.41 3.27-.18 3.24-.15ZM9.35 1.59C7.97 1.63 7.02.97 6.81.96c-.43-.19 7.92.37 2.54.63ZM16.35 2.38c-.62-.35-1.11-.15-1.75-.43-.73-.27 3.56.47 1.75.43ZM24.26 1.7c-2.35 0-2.12-.47.23-.53 2.68-.01 1.7.53-.23.53ZM28.1 1.31c-2.03 0-1.83-.27.16-.34 1.97.07 1.83.34-.16.34ZM36.92 1.59c-3.21-.17-5.82-.65-2.64-.82h.08c3.18.17 5.76.65 2.56.82ZM42.59 1.17c-4.18 0-.39-.28 1.02-.17 2.41.11 2.04.17-1.02.17ZM46.37 2.3c-2.79.08 1.35-.33 1.34-.12-.18.04-.77.12-1.34.12ZM52.8 2.1c-.98 0-2.05-.06-2.38-.17 1.13-.23 7.26.26 2.38.17ZM58.28 1.64c-.64.06-1.52.06-1.89.06-2.06-.28 4.19-.29 1.89-.06ZM65.09 1.4c-.4.03-2.69.44-3.72.48-4.46.08 6.98-.83 3.72-.48ZM72.66 1.73c-1.98.35-1.23.02.7-.26 1.91-.3 1.43-.12-.7.26ZM85.21 1.47c-.77 0-1.69-.03-2.01-.07-.37-.19 6.48 0 2.01.07ZM96.76 1.4c-.77 0-2.15-.04-3.06-.08-4.81-.23 4.86-.07 3.06.08ZM107.94 1.61c-3.21-.28.14-.46 1.48-.19 2.05.37 1.35.43-1.48.19ZM114.99 1.79c-2.3.1.24-.22.72-.08 0 0-.32.08-.72.08ZM117.51 1.68c-.87-.13.01-.55.54-.47.77.08.26.55-.54.47ZM120.1 1.61c-.14-.19 1.25-.42 1.38-.32.27.08-1.02.4-1.38.32ZM124.56 2.44c-1.17-.02.1-.15.36-.12.56.08.43.12-.36.12ZM146.75 2.35c-.42 0-.43-.2 0-.18.43-.02.42.18 0 .18ZM149.83 2.11c-3.61-.03-.33-.41.96-.36 2.38.15 1.77.36-.96.36ZM154.5 1.82c-.54 0-1.55-.62-1.28-.65.44-.14 2.79.67 1.28.65ZM156.94 2.42c-.26.03-.5.03-.57 0-.4-.24 1.45-.08.57 0ZM169.55 2.35c-.9 0-1.67-.11-1.67-.11.05-.33 6 .04 1.67.11ZM175.38 1.82c-.86 0-2.06-.07-2.6-.1-.96-.25 7.83-.03 2.6.1ZM192.55 2.28c-3.37 0 .38-.25 1.77 0h-1.77ZM193.35 1.72c-5.94-.1-.12-.22 1.6-.08 2.54.06.44.02-1.6.08ZM224.25 1.82h-5.04c-5.16-.75 14.75.03 5.04 0ZM255.57 1.97c-.89.1-1.94.2-2.56.1-.91-.44 7.73-.88 2.56-.1ZM259.32 1.54c-.95 0-2.54-.26-.97-.46 5.44-.41 10.89.41.97.46Z"
-                                  fill="currentColor"
-                                />
-                              </svg>
-                            </svg>
-                            <svg
-                              aria-hidden="true"
-                              class="c142"
-                              height="100%"
-                              name="box-border-left"
-                              style="width: 3px;"
-                              width="100%"
-                              xmlns="http://www.w3.org/2000/svg"
-                            >
-                              <svg
-                                fill="none"
-                                preserveAspectRatio="none"
-                                viewBox="0 0 2.72 359.41"
-                                xmlns="http://www.w3.org/2000/svg"
-                              >
-                                <path
-                                  d="M2.56 26.03c-.14-7.28.05-12.58 0-18.65C2.48 3.63 2.28.24 2.51 0H.02c.13 3.41 1.04 10.2.02 14.63-.1 9.52.02 311.42-.03 344.78h2.5c-.87-4.14.68-328.77.05-333.38Z"
-                                  fill="currentColor"
-                                />
-                                <path
-                                  d="M1.78 73.31c-.48-1.02.43-5.62.43-4.84.01.69.38 4.88-.43 4.84ZM1.56 142.12c1.14.07.13.67-.03.65-.47-.05-.76-.69.03-.65ZM1.65 196.21c.23.4.13 2.4.07 2.59-.36-1.73-.51-3.36-.07-2.59ZM2.48 27.51c0 .49 0 1.87-.11 3.12-.37 6.22-.42-1.85.11-3.12ZM2.01 65.86c.39.51.58 1.99-.23 1.95-.48-1.02-.25-2.56.23-1.95ZM1.02 132.42c-.47-.05-.49-1.39-.04-1.78.85-.76.2 1.8.04 1.78ZM.79 5.27c.07-1.81.65 1.18.59 5.76C1.27 17.8.69 6.25.79 5.27ZM.33 47.73c-.33-1.44.48-7.29.21-2.86-.12.57-.13 5.57-.21 2.86ZM.96 94.76c.28.95-.15 5.38-.31 5.36-.47-.05.08-6.12.31-5.36ZM1.23 100.12c-.07.9-.41 1.95-.58 1.95-.47-.05.64-2.73.58-1.95ZM1.38 144.69c.4-1.07-.4 9.48-.56 9.46-.47-.05.12-8.31.56-9.46ZM1.24 197.97c.23.4.13 2.4.07 2.59-.36-1.73-.51-3.36-.07-2.59ZM1.81 209.98c-.36-1.74-.84-7.52-.52-8.14l.5-1.57c.25.43.05 9.87.02 9.71ZM1.85 158.2c-.47-.05-.11-4.72.13-3.97.33 1.09.03 3.99-.13 3.97Z"
-                                  fill="currentColor"
-                                />
-                              </svg>
-                            </svg>
+                            Role
                           </div>
-                          <svg
-                            aria-hidden="true"
-                            class="c149 c150 c151 c155"
-                            height="100%"
-                            name="underline-1"
-                            width="100%"
-                            xmlns="http://www.w3.org/2000/svg"
-                          >
-                            <use
-                              xlink:href="/images/sprite/sprite.svg#underline-1"
-                            />
-                          </svg>
                           <div
-                            class="c156 c46"
+                            class="c146 c147 c148"
                           >
-                            <label
-                              class="c144 c145 c146"
-                              color="black"
-                              id="react-use-id-test-result"
+                            <select
+                              class="c149"
+                              id="react-use-id-test-result-newsletter-signup-userrole"
+                              name="userRole"
                             >
-                              Role
-                            </label>
-                          </div>
-                          <button
-                            aria-expanded="false"
-                            aria-haspopup="listbox"
-                            aria-invalid="false"
-                            aria-labelledby="react-use-id-test-result react-use-id-test-result-button"
-                            class="c157 c158"
-                            data-testid="select"
-                            id="react-use-id-test-result-button"
-                            type="button"
-                          >
-                            <div
-                              class="c159 c41 c160"
-                            >
-                              <span
-                                class="c161 c162"
-                                data-testid="select-span"
-                                id="react-use-id-test-result-value"
-                                title="What describes you best?"
+                              <option
+                                class="c150"
+                                disabled=""
+                                value=""
                               >
                                 What describes you best?
+                              </option>
+                              <option
+                                class="c151"
+                                value="Teacher"
+                              >
+                                Teacher
+                              </option>
+                              <option
+                                class="c151"
+                                value="Parent"
+                              >
+                                Parent
+                              </option>
+                              <option
+                                class="c151"
+                                value="Student"
+                              >
+                                Pupil
+                              </option>
+                              <option
+                                class="c151"
+                                value="Other"
+                              >
+                                Other
+                              </option>
+                            </select>
+                            <div
+                              class="c152 c153 c154 c155"
+                            >
+                              <span
+                                class="c125"
+                              >
+                                <img
+                                  alt=""
+                                  class="c21"
+                                  data-nimg="fill"
+                                  decoding="async"
+                                  loading="lazy"
+                                  src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1699954058/icons/pay71thmhhylj7z28sj1.svg"
+                                  style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                                />
                               </span>
                             </div>
-                            <span
-                              class="c20"
+                            <div
+                              class="c156 c153 c154 c157"
                             >
-                              <img
-                                alt=""
-                                class="c21"
-                                data-nimg="fill"
-                                decoding="async"
-                                loading="lazy"
-                                src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1699953557/icons/botfld6brychmttwtv6u.svg"
-                                style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
-                              />
-                            </span>
-                          </button>
+                              <span
+                                class="c125"
+                              >
+                                <img
+                                  alt=""
+                                  class="c21"
+                                  data-nimg="fill"
+                                  decoding="async"
+                                  loading="lazy"
+                                  src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1699953557/icons/botfld6brychmttwtv6u.svg"
+                                  style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                                />
+                              </span>
+                            </div>
+                          </div>
                         </div>
                         <div
-                          class="c163 c5"
+                          class="c158 c5"
                         >
                           <div
                             class="c6 grey-shadow"
@@ -6009,7 +5696,8 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
                             class="c6 yellow-shadow"
                           />
                           <button
-                            class="c164 c19 internal-button"
+                            class="c159 c19 internal-button"
+                            type="submit"
                           >
                             <div
                               class="c9 c10"
@@ -6024,12 +5712,12 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
                         </div>
                         <p
                           aria-live="assertive"
-                          class="c165"
+                          class="c160"
                           role="alert"
                         />
                         <p
                           aria-live="polite"
-                          class="c166"
+                          class="c161"
                         />
                       </form>
                     </div>
@@ -6041,14 +5729,14 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
         </div>
       </main>
       <footer
-        class="c167"
+        class="c162"
       >
         <div
-          class="c168 c46"
+          class="c163 c46"
         >
           <svg
             aria-hidden="true"
-            class="c169"
+            class="c164"
             height="100%"
             name="header-underline"
             width="100%"
@@ -6071,33 +5759,33 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
           id="site-footer"
         >
           <div
-            class="c170 c171"
+            class="c165 c166"
           >
             <div
               class="c9 c129"
             >
               <div
-                class="c9 c46 c172"
+                class="c9 c46 c167"
               >
                 <div
-                  class="c173 c153"
+                  class="c168 c137"
                 >
                   <h2
-                    class="c174"
+                    class="c169"
                   >
                     Pupils
                   </h2>
                   <div
-                    class="c175 c176"
+                    class="c170 c171"
                   >
                     <ul
                       role="list"
                     >
                       <li
-                        class="c177"
+                        class="c172"
                       >
                         <a
-                          class="c178"
+                          class="c173"
                           href="/pupils/years"
                           variant="secondary"
                         >
@@ -6112,27 +5800,27 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
                   </div>
                 </div>
                 <div
-                  class="c179"
+                  class="c174"
                 />
                 <div
-                  class="c173 c153"
+                  class="c168 c137"
                 >
                   <h2
-                    class="c174"
+                    class="c169"
                   >
                     Teachers
                   </h2>
                   <div
-                    class="c175 c176"
+                    class="c170 c171"
                   >
                     <ul
                       role="list"
                     >
                       <li
-                        class="c177"
+                        class="c172"
                       >
                         <a
-                          class="c178"
+                          class="c173"
                           href="/teachers/eyfs/maths"
                           variant="secondary"
                         >
@@ -6144,10 +5832,10 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
                         </a>
                       </li>
                       <li
-                        class="c177"
+                        class="c172"
                       >
                         <a
-                          class="c178"
+                          class="c173"
                           href="/lesson-planning"
                           variant="secondary"
                         >
@@ -6159,10 +5847,10 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
                         </a>
                       </li>
                       <li
-                        class="c177"
+                        class="c172"
                       >
                         <a
-                          class="c178"
+                          class="c173"
                           href="https://labs.thenational.academy"
                           target="_blank"
                           variant="secondary"
@@ -6173,10 +5861,10 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
                             Aila, Oak’s AI lesson assistant
                           </span>
                           <div
-                            class="c180"
+                            class="c175"
                           >
                             <span
-                              class="c125 c181 c182"
+                              class="c125 c176 c177"
                             >
                               <img
                                 alt=""
@@ -6192,10 +5880,10 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
                         </a>
                       </li>
                       <li
-                        class="c177"
+                        class="c172"
                       >
                         <a
-                          class="c178"
+                          class="c173"
                           href="/blog"
                           variant="secondary"
                         >
@@ -6211,27 +5899,27 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
                 </div>
               </div>
               <div
-                class="c9 c46 c172"
+                class="c9 c46 c167"
               >
                 <div
-                  class="c173 c153"
+                  class="c168 c137"
                 >
                   <h2
-                    class="c174"
+                    class="c169"
                   >
                     Oak
                   </h2>
                   <div
-                    class="c175 c176"
+                    class="c170 c171"
                   >
                     <ul
                       role="list"
                     >
                       <li
-                        class="c177"
+                        class="c172"
                       >
                         <a
-                          class="c178"
+                          class="c173"
                           href="/"
                           variant="secondary"
                         >
@@ -6243,10 +5931,10 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
                         </a>
                       </li>
                       <li
-                        class="c177"
+                        class="c172"
                       >
                         <a
-                          class="c178"
+                          class="c173"
                           href="/about-us/who-we-are"
                           variant="secondary"
                         >
@@ -6258,10 +5946,10 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
                         </a>
                       </li>
                       <li
-                        class="c177"
+                        class="c172"
                       >
                         <a
-                          class="c178"
+                          class="c173"
                           href="/about-us/oaks-curricula"
                           variant="secondary"
                         >
@@ -6273,10 +5961,10 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
                         </a>
                       </li>
                       <li
-                        class="c177"
+                        class="c172"
                       >
                         <a
-                          class="c178"
+                          class="c173"
                           href="/about-us/oaks-impact"
                           variant="secondary"
                         >
@@ -6288,10 +5976,10 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
                         </a>
                       </li>
                       <li
-                        class="c177"
+                        class="c172"
                       >
                         <a
-                          class="c178"
+                          class="c173"
                           href="/about-us/get-involved"
                           variant="secondary"
                         >
@@ -6303,10 +5991,10 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
                         </a>
                       </li>
                       <li
-                        class="c177"
+                        class="c172"
                       >
                         <a
-                          class="c178"
+                          class="c173"
                           href="/about-us/meet-the-team"
                           variant="secondary"
                         >
@@ -6318,11 +6006,11 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
                         </a>
                       </li>
                       <li
-                        class="c177"
+                        class="c172"
                       >
                         <a
                           aria-label="Careers (opens in a new tab)"
-                          class="c178"
+                          class="c173"
                           href="https://jobs.thenational.academy"
                           target="_blank"
                           variant="secondary"
@@ -6333,10 +6021,10 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
                             Careers
                           </span>
                           <div
-                            class="c180"
+                            class="c175"
                           >
                             <span
-                              class="c125 c181 c182"
+                              class="c125 c176 c177"
                             >
                               <img
                                 alt=""
@@ -6352,10 +6040,10 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
                         </a>
                       </li>
                       <li
-                        class="c177"
+                        class="c172"
                       >
                         <a
-                          class="c178"
+                          class="c173"
                           href="/contact-us"
                           variant="secondary"
                         >
@@ -6367,11 +6055,11 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
                         </a>
                       </li>
                       <li
-                        class="c177"
+                        class="c172"
                       >
                         <a
                           aria-label="Help (opens in a new tab)"
-                          class="c178"
+                          class="c173"
                           href="https://support.thenational.academy"
                           target="_blank"
                           variant="secondary"
@@ -6382,10 +6070,10 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
                             Help
                           </span>
                           <div
-                            class="c180"
+                            class="c175"
                           >
                             <span
-                              class="c125 c181 c182"
+                              class="c125 c176 c177"
                             >
                               <img
                                 alt=""
@@ -6401,10 +6089,10 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
                         </a>
                       </li>
                       <li
-                        class="c177"
+                        class="c172"
                       >
                         <a
-                          class="c178"
+                          class="c173"
                           href="/webinars"
                           variant="secondary"
                         >
@@ -6416,11 +6104,11 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
                         </a>
                       </li>
                       <li
-                        class="c177"
+                        class="c172"
                       >
                         <a
                           aria-label="Status (opens in a new tab)"
-                          class="c178"
+                          class="c173"
                           href="https://status.thenational.academy"
                           target="_blank"
                           variant="secondary"
@@ -6431,10 +6119,10 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
                             Status
                           </span>
                           <div
-                            class="c180"
+                            class="c175"
                           >
                             <span
-                              class="c125 c181 c182"
+                              class="c125 c176 c177"
                             >
                               <img
                                 alt=""
@@ -6454,27 +6142,27 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
                 </div>
               </div>
               <div
-                class="c9 c46 c172"
+                class="c9 c46 c167"
               >
                 <div
-                  class="c173 c153"
+                  class="c168 c137"
                 >
                   <h2
-                    class="c174"
+                    class="c169"
                   >
                     Legal
                   </h2>
                   <div
-                    class="c175 c176"
+                    class="c170 c171"
                   >
                     <ul
                       role="list"
                     >
                       <li
-                        class="c177"
+                        class="c172"
                       >
                         <a
-                          class="c178"
+                          class="c173"
                           href="/legal/terms-and-conditions"
                           variant="secondary"
                         >
@@ -6486,10 +6174,10 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
                         </a>
                       </li>
                       <li
-                        class="c177"
+                        class="c172"
                       >
                         <a
-                          class="c178"
+                          class="c173"
                           href="/legal/privacy-policy"
                           variant="secondary"
                         >
@@ -6501,10 +6189,10 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
                         </a>
                       </li>
                       <li
-                        class="c177"
+                        class="c172"
                       >
                         <a
-                          class="c178"
+                          class="c173"
                           href="/legal/cookie-policy"
                           variant="secondary"
                         >
@@ -6516,10 +6204,10 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
                         </a>
                       </li>
                       <li
-                        class="c177"
+                        class="c172"
                       >
                         <button
-                          class="c178"
+                          class="c173"
                         >
                           <span
                             class="c25"
@@ -6529,10 +6217,10 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
                         </button>
                       </li>
                       <li
-                        class="c177"
+                        class="c172"
                       >
                         <a
-                          class="c178"
+                          class="c173"
                           href="/legal/copyright-notice"
                           variant="secondary"
                         >
@@ -6544,10 +6232,10 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
                         </a>
                       </li>
                       <li
-                        class="c177"
+                        class="c172"
                       >
                         <a
-                          class="c178"
+                          class="c173"
                           href="/legal/accessibility-statement"
                           variant="secondary"
                         >
@@ -6559,10 +6247,10 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
                         </a>
                       </li>
                       <li
-                        class="c177"
+                        class="c172"
                       >
                         <a
-                          class="c178"
+                          class="c173"
                           href="/legal/safeguarding-statement"
                           variant="secondary"
                         >
@@ -6574,10 +6262,10 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
                         </a>
                       </li>
                       <li
-                        class="c177"
+                        class="c172"
                       >
                         <a
-                          class="c178"
+                          class="c173"
                           href="/legal/physical-activity-disclaimer"
                           variant="secondary"
                         >
@@ -6589,10 +6277,10 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
                         </a>
                       </li>
                       <li
-                        class="c177"
+                        class="c172"
                       >
                         <a
-                          class="c178"
+                          class="c173"
                           href="/legal/complaints"
                           variant="secondary"
                         >
@@ -6604,10 +6292,10 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
                         </a>
                       </li>
                       <li
-                        class="c177"
+                        class="c172"
                       >
                         <a
-                          class="c178"
+                          class="c173"
                           href="/legal/freedom-of-information-requests"
                           variant="secondary"
                         >
@@ -6623,16 +6311,16 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
                 </div>
               </div>
               <div
-                class="c9 c46 c172"
+                class="c9 c46 c167"
               >
                 <div
-                  class="c173 c183"
+                  class="c168 c178"
                 >
                   <div
                     class="c39"
                   >
                     <span
-                      class="c184"
+                      class="c179"
                     >
                       <img
                         alt=""
@@ -6646,10 +6334,10 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
                     </span>
                   </div>
                   <div
-                    class="c185 c186"
+                    class="c180 c181"
                   >
                     <div
-                      class="c45 c46 c187 c188"
+                      class="c45 c46 c182 c183"
                     >
                       <a
                         aria-label="instagram for Oak National Academy"
@@ -6660,10 +6348,10 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
                           class="c9 c50"
                         >
                           <div
-                            class="c189 c52 icon-container"
+                            class="c184 c52 icon-container"
                           >
                             <div
-                              class="c190 shadow"
+                              class="c185 shadow"
                             />
                             <span
                               class="c20"
@@ -6687,7 +6375,7 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
                       </a>
                     </div>
                     <div
-                      class="c45 c46 c187 c188"
+                      class="c45 c46 c182 c183"
                     >
                       <a
                         aria-label="facebook for Oak National Academy"
@@ -6698,10 +6386,10 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
                           class="c9 c50"
                         >
                           <div
-                            class="c189 c52 icon-container"
+                            class="c184 c52 icon-container"
                           >
                             <div
-                              class="c190 shadow"
+                              class="c185 shadow"
                             />
                             <span
                               class="c20"
@@ -6725,7 +6413,7 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
                       </a>
                     </div>
                     <div
-                      class="c45 c46 c187 c188"
+                      class="c45 c46 c182 c183"
                     >
                       <a
                         aria-label="linkedIn for Oak National Academy"
@@ -6736,10 +6424,10 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
                           class="c9 c50"
                         >
                           <div
-                            class="c189 c52 icon-container"
+                            class="c184 c52 icon-container"
                           >
                             <div
-                              class="c190 shadow"
+                              class="c185 shadow"
                             />
                             <span
                               class="c20"
@@ -6767,7 +6455,7 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
               </div>
             </div>
             <span
-              class="c191 c192"
+              class="c186 c187"
               data-percy-hide="contents"
             >
               <img
@@ -6783,13 +6471,13 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
               />
             </span>
             <div
-              class="c193 c194"
+              class="c188 c189"
             >
               <div
-                class="c195 c196"
+                class="c190 c191"
               >
                 <div
-                  class="c45 c46 c187 c188"
+                  class="c45 c46 c182 c183"
                 >
                   <a
                     aria-label="instagram for Oak National Academy"
@@ -6800,10 +6488,10 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
                       class="c9 c50"
                     >
                       <div
-                        class="c189 c52 icon-container"
+                        class="c184 c52 icon-container"
                       >
                         <div
-                          class="c190 shadow"
+                          class="c185 shadow"
                         />
                         <span
                           class="c20"
@@ -6827,7 +6515,7 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
                   </a>
                 </div>
                 <div
-                  class="c45 c46 c187 c188"
+                  class="c45 c46 c182 c183"
                 >
                   <a
                     aria-label="facebook for Oak National Academy"
@@ -6838,10 +6526,10 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
                       class="c9 c50"
                     >
                       <div
-                        class="c189 c52 icon-container"
+                        class="c184 c52 icon-container"
                       >
                         <div
-                          class="c190 shadow"
+                          class="c185 shadow"
                         />
                         <span
                           class="c20"
@@ -6865,7 +6553,7 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
                   </a>
                 </div>
                 <div
-                  class="c45 c46 c187 c188"
+                  class="c45 c46 c182 c183"
                 >
                   <a
                     aria-label="linkedIn for Oak National Academy"
@@ -6876,10 +6564,10 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
                       class="c9 c50"
                     >
                       <div
-                        class="c189 c52 icon-container"
+                        class="c184 c52 icon-container"
                       >
                         <div
-                          class="c190 shadow"
+                          class="c185 shadow"
                         />
                         <span
                           class="c20"
@@ -6907,7 +6595,7 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
                 class="c56"
               >
                 <span
-                  class="c184"
+                  class="c179"
                 >
                   <img
                     alt=""
@@ -6921,15 +6609,15 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
                 </span>
               </div>
               <div
-                class="c173 c153"
+                class="c168 c137"
               >
                 <p
-                  class="c197"
+                  class="c192"
                 >
                   © Oak National Academy Limited, No 14174888
                 </p>
                 <p
-                  class="c198"
+                  class="c193"
                 >
                   1 Scott Place, 2 Hardman Street, Manchester, M3 3AA
                 </p>
@@ -6938,11 +6626,11 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
           </div>
         </nav>
         <span
-          class="c199"
+          class="c194"
         >
           <img
             alt=""
-            class="c200"
+            class="c195"
             data-nimg="fill"
             decoding="async"
             loading="lazy"
@@ -6951,11 +6639,11 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
           />
         </span>
         <span
-          class="c201"
+          class="c196"
         >
           <img
             alt=""
-            class="c202"
+            class="c197"
             data-nimg="fill"
             decoding="async"
             loading="lazy"
@@ -6967,27 +6655,27 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
     </div>
     <div
       aria-live="polite"
-      class="c203 c204 c205"
+      class="c198 c199 c200"
     />
   </div>
   <div
-    class="c206"
+    class="c201"
   >
     <div
-      class="c207"
+      class="c202"
       data-testid="cookie-banner"
     >
       <div
-        class="c208"
+        class="c203"
       >
         <div
-          class="c209 c210"
+          class="c204 c205"
         >
           <div
-            class="c211"
+            class="c206"
           >
             <strong
-              class="c212"
+              class="c207"
             >
               This site uses cookies to store information on your computer.
             </strong>
@@ -6995,13 +6683,13 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
             Some of these cookies are essential, while others help us to improve your experience by providing insights into how the site is being used.
           </div>
           <div
-            class="c9 c213"
+            class="c9 c208"
           >
             <div
-              class="c214 c41"
+              class="c209 c41"
             >
               <button
-                class="c215"
+                class="c210"
                 data-testid="cookie-banner-reject"
                 type="button"
               >
@@ -7045,7 +6733,7 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
                 class="c6 yellow-shadow"
               />
               <button
-                class="c216 c19 internal-button"
+                class="c211 c19 internal-button"
                 data-testid="cookie-banner-accept"
               >
                 <div
