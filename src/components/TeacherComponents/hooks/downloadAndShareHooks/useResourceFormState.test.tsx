@@ -230,7 +230,7 @@ describe("useResourceFormState", () => {
         "explanation",
         "feedback",
         "practice",
-        "checkForUnderstanding",
+        "check-for-understanding",
       ]);
       expect(result.current.selectAllChecked).toBe(true);
       expect(result.current.hasResources).toBe(true);
