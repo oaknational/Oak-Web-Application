@@ -1,3 +1,17 @@
+# [1.1198.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1197.0...v1.1198.0) (2026-09-16)
+
+
+### Bug Fixes
+
+* redirect curriculum review campaign to guidance ([98a6477](https://github.com/oaknational/Oak-Web-Application/commit/98a647731cf961341b8cd9ecd177bcce405c18a7))
+* redirect unpublished Insights routes to guidance ([978052c](https://github.com/oaknational/Oak-Web-Application/commit/978052ccfc451ce3cfd2ef0d61e0060434a3a485))
+* use the existing URL resolver for guidance navigation ([ab712f2](https://github.com/oaknational/Oak-Web-Application/commit/ab712f243fd736bcaff444021599af1a959fdb20))
+
+
+### Features
+
+* add curriculum change guidance to the main menu ([704fda4](https://github.com/oaknational/Oak-Web-Application/commit/704fda42d9a0ac4396d8e7c1faf4403f9acb90ed))
+
 # [1.1197.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1196.0...v1.1197.0) (2026-09-15)
 
 
