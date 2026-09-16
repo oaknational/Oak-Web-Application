@@ -1,3 +1,66 @@
+# [1.1197.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1196.0...v1.1197.0) (2026-09-15)
+
+
+### Bug Fixes
+
+* add to sitemap exclusions ([5fbd4da](https://github.com/oaknational/Oak-Web-Application/commit/5fbd4dab159dd88a4be5415cf3521f5c284d758a))
+* added ./src/utils/featureFlagChecks/flags.tsx to coverage ignore ([f7b8238](https://github.com/oaknational/Oak-Web-Application/commit/f7b823876a267e4c931857f9f51428dd8437c30e))
+* remove oaks impact from case studies ([9b3041c](https://github.com/oaknational/Oak-Web-Application/commit/9b3041c347f55c109b3fda2a6a71311845034a84))
+* snaps ([ece264d](https://github.com/oaknational/Oak-Web-Application/commit/ece264d13889d2cf84f95e3f73e9f130faa1a08c))
+* snaps ([0fc1e88](https://github.com/oaknational/Oak-Web-Application/commit/0fc1e886baf99dce87f873e289ee356c9540a484))
+
+
+### Features
+
+* add /about-us/case-studies behind feature flag ([304ca66](https://github.com/oaknational/Oak-Web-Application/commit/304ca664b57d0dd23268e41d4c335213645e345f))
+
+# [1.1196.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1195.1...v1.1196.0) (2026-09-15)
+
+
+### Bug Fixes
+
+* footer styling fixes ([63cc984](https://github.com/oaknational/Oak-Web-Application/commit/63cc984304bd00f185ae8d7bb3f1a02c9716401d))
+* remove footer layout work from this PR ([4a5eb97](https://github.com/oaknational/Oak-Web-Application/commit/4a5eb97bd8718f13839d82d9035333847c2ab20b))
+* remove footer layout work from this PR ([a4d051c](https://github.com/oaknational/Oak-Web-Application/commit/a4d051cf9adf24669d3f661541980ea33fecc882))
+* small summary style fixes ([8186573](https://github.com/oaknational/Oak-Web-Application/commit/81865731d9c3e14a43b8ae6be1b90373d08fd1f3))
+* snaps ([63f8b3b](https://github.com/oaknational/Oak-Web-Application/commit/63f8b3b08a12192a1e62e737d572d7d6cb9dad71))
+* tidy ([ae38e74](https://github.com/oaknational/Oak-Web-Application/commit/ae38e749be9fb56a321f1958f719896bc9c16cc4))
+
+
+### Features
+
+* added summary block to <OaksImpactCaseStudyHeader/> ([a28ddf1](https://github.com/oaknational/Oak-Web-Application/commit/a28ddf10f996cef9f65b96de645e3eba91ed22e3))
+
+## [1.1195.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.1195.0...v1.1195.1) (2026-09-15)
+
+
+### Bug Fixes
+
+* disable national-curriculum-insights in pa11y for now ([cef1f9c](https://github.com/oaknational/Oak-Web-Application/commit/cef1f9cc08492c8141ae4a0c3b849f3ec40b83f2))
+* re-enable "/curriculum-change-explained/guidance" as it's live ([c3ee7f7](https://github.com/oaknational/Oak-Web-Application/commit/c3ee7f7bdefdd691d0cc9faec4e7a712d8ed9cc5))
+* remove tests for unreleased features ([6ebf012](https://github.com/oaknational/Oak-Web-Application/commit/6ebf012d1490fe6b2c0cd6b1c941ace20a509771))
+
+# [1.1195.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1194.0...v1.1195.0) (2026-09-15)
+
+
+### Features
+
+* promote download success header compact variant ([c7760f7](https://github.com/oaknational/Oak-Web-Application/commit/c7760f746bac6b9fd1f945137bfa0e07f7fa359f))
+
+# [1.1194.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1193.0...v1.1194.0) (2026-09-15)
+
+
+### Bug Fixes
+
+* added missing quote in filename header ([51af394](https://github.com/oaknational/Oak-Web-Application/commit/51af3945f977ba667acd1323b4ef7d606862180f))
+* added missing test for filenameOverride ([a30afef](https://github.com/oaknational/Oak-Web-Application/commit/a30afef7657bdd1fa68451b14bb451e534d6fb29))
+* label always required don't include fallback ([6d0e26c](https://github.com/oaknational/Oak-Web-Application/commit/6d0e26c8282829c14c6a297dc7ff5715baee5f75))
+
+
+### Features
+
+* changed name of assessment filename to Checking-pupil-understanding ([6a93029](https://github.com/oaknational/Oak-Web-Application/commit/6a930299ebe393499d7d71c35cbdf616f53b440c))
+
 # [1.1193.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1192.0...v1.1193.0) (2026-09-10)
 
 
