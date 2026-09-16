@@ -25,7 +25,7 @@ import {
 } from "@/node-lib/isr";
 import Layout from "@/components/AppComponents/AppLayout";
 import { TopNavProps } from "@/components/AppComponents/TopNav/TopNav";
-import { OaksImpactCaseStudies } from "@/components/GenericPagesComponents/OaksImpactCaseStudies";
+import { CaseStudiesSection } from "@/components/GenericPagesComponents/CaseStudiesSection";
 import { resolveOakHref } from "@/common-lib/urls";
 import { NewGutterMaxWidth } from "@/components/GenericPagesComponents/NewGutterMaxWidth";
 import { useOakNotificationsContext } from "@/context/OakNotifications/useOakNotificationsContext";
@@ -139,7 +139,7 @@ const AboutUsOaksImpactCaseStudy: NextPage<
             </OaksImpactCaseStudyContentLayout>
           </NewGutterMaxWidth>
 
-          <OaksImpactCaseStudies
+          <CaseStudiesSection
             title="Explore more case studies"
             caseStudies={otherCaseStudies}
           />

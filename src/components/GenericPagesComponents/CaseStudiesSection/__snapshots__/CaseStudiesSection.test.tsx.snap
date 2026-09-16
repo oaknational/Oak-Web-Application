@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`OaksImpactCaseStudies renders correctly when 2 case studies are provided 1`] = `
+exports[`CaseStudiesSection renders correctly when 2 case studies are provided 1`] = `
 <body>
   <div>
     <div
@@ -178,7 +178,7 @@ exports[`OaksImpactCaseStudies renders correctly when 2 case studies are provide
 </body>
 `;
 
-exports[`OaksImpactCaseStudies renders correctly when 3 case studies are provided 1`] = `
+exports[`CaseStudiesSection renders correctly when 3 case studies are provided 1`] = `
 <body>
   <div>
     <div
