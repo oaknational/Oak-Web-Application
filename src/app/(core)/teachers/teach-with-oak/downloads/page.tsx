@@ -1,10 +1,14 @@
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
+import { cache } from "react";
+
+import { TeachWithOakDownloadView } from "./TeachWithOakDownloadView";
 
 import withPageErrorHandling from "@/hocs/withPageErrorHandling";
 import { TeacherBrowseAnalyticsStoreProvider } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
 import { getFeatureFlagValue } from "@/utils/featureFlags";
-import { TeachWithOakDownloadView } from "./TeachWithOakDownloadView";
+import { getTeachWithOakDownloadFileExistence } from "@/components/SharedComponents/helpers/downloadAndShareHelpers/getDownloadResourcesExistence";
+import { cacheData } from "@/node-lib/cache";
 
 export const metadata: Metadata = {
   title: "",
@@ -14,6 +18,12 @@ export const metadata: Metadata = {
     follow: false,
   },
 };
+
+const cachedFileExistence = cache(
+  cacheData(async () => {
+    return getTeachWithOakDownloadFileExistence();
+  }, ["teach-with-oak"]),
+);
 
 const InnerTeachWithOakDownloadPage = async () => {
   const isEnabled = await getFeatureFlagValue(
@@ -25,12 +35,14 @@ const InnerTeachWithOakDownloadPage = async () => {
     return notFound();
   }
 
+  const data = await cachedFileExistence();
+
   return (
     <TeacherBrowseAnalyticsStoreProvider
       programmeState={null}
       accessLevel="teach_with_oak"
     >
-      <TeachWithOakDownloadView />
+      <TeachWithOakDownloadView resources={data.resources} />
     </TeacherBrowseAnalyticsStoreProvider>
   );
 };

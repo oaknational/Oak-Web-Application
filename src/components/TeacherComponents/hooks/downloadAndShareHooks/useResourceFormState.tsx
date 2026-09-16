@@ -28,12 +28,6 @@ import { LessonShareData } from "@/node-lib/curriculum-api-2023/queries/lessonSh
 import { LessonDownloadsPageData } from "@/node-lib/curriculum-api-2023/queries/lessonDownloads/lessonDownloads.schema";
 import { DownloadType } from "@/components/CurriculumComponents/CurriculumDownloadView/helper";
 
-export type TeachWithOakShortReads =
-  | "explanation"
-  | "feedback"
-  | "practice"
-  | "checkForUnderstanding";
-
 export type UseResourceFormStateProps =
   | { shareResources: LessonShareData["shareableResources"]; type: "share" }
   | {
@@ -156,13 +150,13 @@ const getTeachWithOakFormSelection = (): ResourceFormSelection => ({
     "explanation",
     "feedback",
     "practice",
-    "checkForUnderstanding",
+    "check-for-understanding",
   ],
   initialSelectedResources: [
     "explanation",
     "feedback",
     "practice",
-    "checkForUnderstanding",
+    "check-for-understanding",
   ],
 });
 

@@ -2,15 +2,13 @@
 import {
   OakBox,
   OakBreadcrumbs,
-  OakGrid,
-  OakGridArea,
   OakHandDrawnHR,
   OakMaxWidth,
   OakPrimaryButton,
-  OakResourceCard,
 } from "@oaknational/oak-components";
 import { useState } from "react";
-import styled from "styled-components";
+
+import { TeachWithOakResourceCards } from "./components/TeachWithOakResourceCards";
 
 import { resolveOakHref } from "@/common-lib/urls";
 import Banners from "@/components/SharedComponents/Banners";
@@ -22,8 +20,13 @@ import useTeachWithOakDownload from "@/components/TeacherComponents/hooks/downlo
 import { useOnboardingStatus } from "@/components/TeacherComponents/hooks/useOnboardingStatus";
 import { ResourceFormValues } from "@/components/TeacherComponents/types/downloadAndShare.types";
 import { useOakNotificationsContext } from "@/context/OakNotifications/useOakNotificationsContext";
+import { TeachWithOakShortReadsDownloads } from "@/components/TeacherComponents/hooks/downloadAndShareHooks/teachWithOakShortReads.schema";
 
-export const TeachWithOakDownloadView = () => {
+export const TeachWithOakDownloadView = ({
+  resources,
+}: {
+  resources: TeachWithOakShortReadsDownloads;
+}) => {
   const [isDownloadSuccessful, setIsDownloadSuccessful] = useState(false);
   const [isAttemptingDownload, setIsAttemptingDownload] =
     useState<boolean>(false);
@@ -97,10 +100,6 @@ export const TeachWithOakDownloadView = () => {
     downloadButtonText = "Loading...";
   }
 
-  const StyledResourceCard = styled(OakResourceCard)`
-    height: 100%;
-  `;
-
   return (
     <OakBox $ph={["spacing-16", "spacing-0"]} $background={"bg-neutral"}>
       {isDownloadSuccessful && <Banners />}
@@ -151,50 +150,7 @@ export const TeachWithOakDownloadView = () => {
             onboardingStatus === "not-onboarded" ||
             onboardingStatus === "unknown"
           }
-          cardGroup={
-            <OakGrid $rg={"spacing-16"} $cg={"spacing-16"}>
-              <OakGridArea $colSpan={[12, 12, 6]}>
-                <StyledResourceCard
-                  id="explanation"
-                  value="explanation"
-                  title="Explanation at Oak guide"
-                  description="PDF"
-                  iconName="lc-explanation"
-                  showSelectionControl={false}
-                />
-              </OakGridArea>
-              <OakGridArea $colSpan={[12, 12, 6]}>
-                <StyledResourceCard
-                  id="cfu"
-                  value="cfu"
-                  title="Check for understanding (CfU) at Oak guide"
-                  description="PDF"
-                  iconName="lc-check-for-understanding"
-                  showSelectionControl={false}
-                />{" "}
-              </OakGridArea>
-              <OakGridArea $colSpan={[12, 12, 6]} $height="100%">
-                <StyledResourceCard
-                  id="practice"
-                  value="practice"
-                  title="Practice at Oak guide"
-                  description="PDF"
-                  iconName="lc-practice"
-                  showSelectionControl={false}
-                />
-              </OakGridArea>
-              <OakGridArea $colSpan={[12, 12, 6]}>
-                <StyledResourceCard
-                  id="feedback"
-                  value="feedback"
-                  title="Feedback at Oak guide"
-                  description="PDF"
-                  iconName="lc-feedback"
-                  showSelectionControl={false}
-                />
-              </OakGridArea>
-            </OakGrid>
-          }
+          cardGroup={<TeachWithOakResourceCards resources={resources} />}
           cta={
             <OakPrimaryButton
               type="button"
