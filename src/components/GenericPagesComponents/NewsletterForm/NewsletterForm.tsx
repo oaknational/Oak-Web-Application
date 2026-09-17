@@ -92,6 +92,7 @@ const NewsletterForm: FC<NewsletterFormProps> = ({
     <OakFlex
       as="form"
       noValidate
+      aria-describedby={descriptionId}
       $flexDirection="column"
       onSubmit={handleSubmit(async (values) => {
         setLoading(true);

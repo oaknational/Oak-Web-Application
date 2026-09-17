@@ -61,7 +61,7 @@ export const OakInputWithLabel = ({
       {error && (
         <OakBox
           id={errorId}
-          role="status"
+          role="alert"
           aria-live="assertive"
           $mb="spacing-20"
         >
