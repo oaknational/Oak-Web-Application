@@ -143,7 +143,7 @@ exports[`TeachWithOakHeader renders correctly 1`] = `
                 class="sc-aXZVg sc-gEvEer eapQdf uEMma"
               >
                 <button
-                  class="sc-fHjqPf kaaNKh"
+                  class="sc-fHjqPf fFAulo"
                   data-testid="cookie-banner-reject"
                   type="button"
                 >
