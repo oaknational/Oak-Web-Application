@@ -5,11 +5,11 @@
  * set the GITHUB_REF to the commit SHA value.
  */
 
-const core = require("@actions/core");
-const github = require("@actions/github");
+import * as core from "@actions/core";
+import * as github from "@actions/github";
 
-const prFromSha = require("./pr_from_sha");
-const branchFromSha = require("./branch_from_sha");
+import prFromSha from "./pr_from_sha.js";
+import branchFromSha from "./branch_from_sha.js";
 
 async function run() {
   try {
@@ -31,9 +31,9 @@ async function run() {
     }
 
     // Get the *first* PR that has the given SHA as the head of the feature branch.
-    const pullRequest = await prFromSha(octokit, { owner, repo }, sha);
+    const pullRequest = prFromSha(octokit, { owner, repo }, sha);
     let headRef;
-    let prNumber = undefined;
+    let prNumber;
     if (pullRequest !== null) {
       // There is a PR with this SHA as the head of the feature branch
       headRef = pullRequest.head.ref;
@@ -42,7 +42,7 @@ async function run() {
       prNumber = pullRequest.number;
     } else {
       // The SHA is not on a PR feature branch, get from first matching general branch, prefer `main`.
-      const branch = await branchFromSha(octokit, { owner, repo }, sha);
+      const branch = branchFromSha(octokit, { owner, repo }, sha);
       if (branch !== null) {
         headRef = branch.name;
       } else {
