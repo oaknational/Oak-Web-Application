@@ -5,7 +5,7 @@ import { useId } from "react";
 import { ShortReads } from "./ShortReads/ShortReads";
 import { TeachWithOakDescription } from "./TeachWithOakDescription/TeachWithOakDescription";
 import { TeachWithOakHeader } from "./TeachWithOakHeader/TeachWithOakHeader";
-import TeachWithOakNewsletterForm from "./TeachWithOakNewsletter/TeachWithOakNewsletterForm";
+import TeachWithOakNewsletterForm from "./TeachWithOakNewsletterForm/TeachWithOakNewsletterForm";
 
 import { resolveOakHref } from "@/common-lib/urls";
 import {
