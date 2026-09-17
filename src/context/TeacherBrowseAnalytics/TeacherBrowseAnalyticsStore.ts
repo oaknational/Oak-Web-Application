@@ -127,6 +127,9 @@ export type TeacherBrowseAnalyticsStore = {
       filterType: FilterTypeValueType;
       filterValue: string;
     }) => void;
+    teachWithOakAccessed: (data: {
+      componentType: ComponentTypeValueType;
+    }) => void;
     teachWithOakDownloaded: () => void;
     teachingMaterialsSelected: (props: {
       teachingMaterialType: TeachingMaterialTypeValueType;
@@ -638,6 +641,33 @@ export const createTeacherBrowseAnalyticsStore = (
           componentType,
           accessLevel,
           journeyId,
+        });
+      },
+      teachWithOakAccessed: ({ componentType }) => {
+        const { avo, programmeState } = get();
+
+        const analyticsProperties =
+          programmeState?.browseLevel === "lesson"
+            ? getLessonAnalyticsProperties(programmeState)
+            : {
+                lessonName: undefined,
+                lessonSlug: undefined,
+                lessonReleaseCohort: undefined,
+                lessonReleaseDate: undefined,
+                tierName: undefined,
+                examBoard: undefined,
+                pathway: undefined,
+                unitName: undefined,
+                unitSlug: undefined,
+                keyStageTitle: undefined,
+                keyStageSlug: undefined,
+              };
+
+        avo.teachWithOakAccessed({
+          ...coreProperties,
+          ...analyticsProperties,
+          engagementIntent: EngagementIntent.EXPLORE,
+          componentType,
         });
       },
       teachWithOakDownloaded: () => {
