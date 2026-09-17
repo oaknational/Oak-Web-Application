@@ -210,7 +210,7 @@ describe("useShare", () => {
 
     const key = getShareIdKey("lesson-slug_unit-slug_programmeSlug");
 
-    window.location.search = `?${key}=xxxxxxxxxx&sm=0&src=1`;
+    window.history.replaceState(null, "", `/?${key}=xxxxxxxxxx&sm=0&src=1`);
 
     // set the conversion storage
     localStorage.setItem("cv-xxxxxxxxxx", JSON.stringify(true));
