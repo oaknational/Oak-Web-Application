@@ -42,7 +42,7 @@ const TeachWithOakNewsletterForm = ({
               Don't miss out
             </CardTitle>
             <OakP>
-              Join over 100k teachers and get free resources and other helpful
+              Join over 200k teachers and get free resources and other helpful
               content by email. Unsubscribe at any time. Read our{" "}
               <OakLink
                 href={resolveOakHref({

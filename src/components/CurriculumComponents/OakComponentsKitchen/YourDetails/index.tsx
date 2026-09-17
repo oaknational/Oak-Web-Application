@@ -195,7 +195,7 @@ export default function YourDetails({
 
         {!hidePrivacyPolicy && (
           <OakBox $font={["body-3"]} $textWrap="balance">
-            Join over 100k teachers and get free resources and other helpful
+            Join over 200k teachers and get free resources and other helpful
             content by email. Unsubscribe at any time. Read our{" "}
             <OakLink
               aria-label="Privacy policy (opens in a new tab)"
