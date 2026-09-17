@@ -27,6 +27,7 @@ import {
   teamMemberSchema,
   oaksImpactPageSchema,
   oaksImpactCaseStudyPageSchema,
+  caseStudyLibraryPageSchema,
   nationalCurriculumInsightsSubjectLookupParamsSchema,
   implementationGuidesSchema,
 } from "../../../common-lib/cms-types";
@@ -270,16 +271,21 @@ const getSanityClient = () => ({
     oaksImpactPageSchema,
     (result) => result?.allNewAboutCorePageOaksImpact?.[0],
   ),
+  oaksImpactCaseStudyPage: getSingleton(
+    sanityGraphqlApi.oaksImpactCaseStudyPage,
+    oaksImpactCaseStudyPageSchema,
+    (result) => result?.allNewAboutCorePageOaksImpact?.[0],
+  ),
+  caseStudyLibraryPage: getList(
+    sanityGraphqlApi.caseStudyLibraryPage,
+    caseStudyLibraryPageSchema,
+    (result) => result.allCaseStudy,
+  ),
   implementationGuides: getSingleton(
     sanityGraphqlApi.implementationGuides,
     implementationGuidesSchema,
     (result) =>
       result?.allCurriculumInfoPageOverview?.[0]?.implementationGuides ?? {},
-  ),
-  oaksImpactCaseStudyPage: getSingleton(
-    sanityGraphqlApi.oaksImpactCaseStudyPage,
-    oaksImpactCaseStudyPageSchema,
-    (result) => result?.allNewAboutCorePageOaksImpact?.[0],
   ),
   meetTheTeamPage: getSingleton(
     sanityGraphqlApi.meetTheTeamPage,
