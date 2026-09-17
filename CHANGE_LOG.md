@@ -1,3 +1,13 @@
+## [1.1200.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.1200.0...v1.1200.1) (2026-09-17)
+
+
+### Bug Fixes
+
+* added column gap to grid in <LayoutSiteFooter/> ([134dba4](https://github.com/oaknational/Oak-Web-Application/commit/134dba41d762b40e15d42a958ff00dd6e25ffac5))
+* bumps oak-components for the following fixes ([1b0ec97](https://github.com/oaknational/Oak-Web-Application/commit/1b0ec9736fbb449d86c98c71c7a0fe7556afefce))
+* re-add, which were removed by reverted commit in another PR ([dda4555](https://github.com/oaknational/Oak-Web-Application/commit/dda4555546a96f2e1bdc14c0ca13bdcf7aee0d91))
+* snaps ([a645ce0](https://github.com/oaknational/Oak-Web-Application/commit/a645ce0df6e58ff7ead8309e758a17a8b5ced53f))
+
 # [1.1200.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1199.0...v1.1200.0) (2026-09-17)
 
 
