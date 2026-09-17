@@ -58,9 +58,9 @@ const SelectContainer = styled(OakFlex)`
 `;
 
 interface SelectButtonProps {
-  isOpen?: boolean;
-  isFocusVisible?: boolean;
-  isPlaceholder?: boolean;
+  $isOpen?: boolean;
+  $isFocusVisible?: boolean;
+  $isPlaceholder?: boolean;
 }
 
 const selectButtonStyles = css<SelectButtonProps>`
@@ -78,7 +78,7 @@ const selectButtonStyles = css<SelectButtonProps>`
   border: none;
   outline: none;
   ${(props) =>
-    props.isPlaceholder &&
+    props.$isPlaceholder &&
     css`
       font-size: 14px;
       color: ${getColorByLocation(
@@ -164,9 +164,9 @@ export function Select<
           aria-describedby={props["aria-describedby"]}
           aria-invalid={props["aria-invalid"]}
           ref={ref}
-          isOpen={state.isOpen}
-          isFocusVisible={isFocusVisible}
-          isPlaceholder={!state.selectedItem}
+          $isOpen={state.isOpen}
+          $isFocusVisible={isFocusVisible}
+          $isPlaceholder={!state.selectedItem}
           id={buttonId}
         >
           <SelectInner $pt={"spacing-8"} $alignItems={"center"}>
