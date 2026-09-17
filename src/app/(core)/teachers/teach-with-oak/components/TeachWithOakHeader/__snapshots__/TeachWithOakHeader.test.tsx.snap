@@ -10,50 +10,7 @@ exports[`TeachWithOakHeader renders correctly 1`] = `
         class="sc-aXZVg dJqAhm"
       >
         <div
-          class="sc-aXZVg bZTQLO"
-        >
-          <div
-            class="sc-aXZVg sc-gEvEer sc-jlZhew hCgIGG iDBIXi aPmvC"
-          >
-            <a
-              class="sc-dcJsrY sc-dAlyuH dAja-dp eGtIkY"
-              href="/"
-            >
-              <div
-                class="sc-aXZVg sc-gEvEer jPvJsJ gghMxj"
-              >
-                <div
-                  class="sc-aXZVg sc-gEvEer kJHaEW jMLdOa icon-container"
-                >
-                  <div
-                    class="sc-aXZVg focDaC shadow"
-                  />
-                  <span
-                    class="sc-aXZVg jJQFnr"
-                    data-icon-for="button"
-                  >
-                    <img
-                      alt=""
-                      class="sc-iGgWBj lcrpYX"
-                      data-nimg="fill"
-                      decoding="async"
-                      loading="lazy"
-                      src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1707149179/icons/ejrm9dpgpzb7ddbo8z2i.svg"
-                      style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
-                    />
-                  </span>
-                </div>
-                <span
-                  class="sc-eqUAAy bngpZa"
-                >
-                  Back to lesson
-                </span>
-              </div>
-            </a>
-          </div>
-        </div>
-        <div
-          class="sc-aXZVg sc-gEvEer sc-5ce3e7c8-0 jPvJsJ iDBIXi BPWok"
+          class="sc-aXZVg sc-gEvEer sc-70935158-0 jPvJsJ iDBIXi kGMzzR"
         >
           <div
             class="sc-aXZVg bZTQLO"
@@ -84,7 +41,7 @@ exports[`TeachWithOakHeader renders correctly 1`] = `
                 class="sc-aXZVg sc-b87ce3d6-0 QBMYh dcBXHI"
               >
                 <span
-                  class="sc-aXZVg iLOJBD sc-5ce3e7c8-1 exIaJo"
+                  class="sc-aXZVg iLOJBD sc-70935158-1 brZNax"
                 >
                   <img
                     alt="Teach with Oak Image"

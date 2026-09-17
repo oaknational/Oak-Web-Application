@@ -10,7 +10,7 @@ import styled from "styled-components";
 
 import { useReturnToLessonLink } from "../../getReturnToLessonLink";
 
-import { extractLessonAccessedPropsFromHref } from "./extractLessonPropsFromHref";
+import { extractLessonAccessedPropsFromHref } from "./extractLessonAccessedPropsFromHref";
 
 import {
   AboutSharedHeader,
