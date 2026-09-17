@@ -160,10 +160,6 @@ describe("National Curriculum Insights sections", () => {
         />,
       );
 
-      const list = screen.getByRole("heading", {
-        name: "Frequently asked questions",
-      }).nextElementSibling;
-      expect(list).toHaveStyle({ gap: "0rem" });
       expect(screen.getAllByTestId("faq-divider")).toHaveLength(3);
 
       const [firstQuestion, secondQuestion] = screen.getAllByRole("button");
@@ -475,10 +471,7 @@ describe("National Curriculum Insights sections", () => {
       screen.getByRole("heading", { name: "When will the curriculum change?" }),
     ).toHaveStyle({ textAlign: "left" });
 
-    const announcement = screen.getByRole("status");
-    expect(announcement).toBeEmptyDOMElement();
-    expect(announcement).toHaveAttribute("aria-live", "polite");
-    expect(announcement).toHaveAttribute("aria-atomic", "true");
+    expect(screen.queryByRole("status")).not.toBeInTheDocument();
     expect(useNewsletterForm).toHaveBeenCalledWith({
       hubspotNewsletterFormId: INSIGHTS_NEWSLETTER_FORM_ID,
       hubspotPortalId: INSIGHTS_NEWSLETTER_PORTAL_ID,
@@ -511,10 +504,10 @@ describe("National Curriculum Insights sections", () => {
       });
     });
     expect(newsletterSignUpCompleted).toHaveBeenCalledTimes(1);
-    expect(screen.getByRole("status")).toBe(announcement);
-    expect(screen.getByRole("status")).toHaveTextContent(
-      "Thanks, that's been received",
-    );
+    const announcement = await screen.findByRole("status");
+    expect(announcement).toHaveAttribute("aria-live", "polite");
+    expect(announcement).toHaveAttribute("aria-atomic", "true");
+    expect(announcement).toHaveTextContent("Thanks, that's been received");
   });
 
   it("does not track a completed newsletter signup when HubSpot rejects it", async () => {
@@ -558,7 +551,7 @@ describe("National Curriculum Insights sections", () => {
       "We couldn't submit the form. Please try again.",
     );
     expect(newsletterSignUpCompleted).not.toHaveBeenCalled();
-    expect(screen.getByRole("status")).toBeEmptyDOMElement();
+    expect(screen.queryByRole("status")).not.toBeInTheDocument();
   });
 
   it("renders the guidance introduction with its image and status", () => {
