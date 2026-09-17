@@ -8,7 +8,7 @@ import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
 import Layout from "@/components/AppComponents/AppLayout";
 import { TopNavProps } from "@/components/AppComponents/TopNav/TopNav";
 import { AboutUsLayout } from "@/components/GenericPagesComponents/AboutUsLayout";
-import { OaksImpactCaseStudies } from "@/components/GenericPagesComponents/OaksImpactCaseStudies";
+import { CaseStudiesSection } from "@/components/GenericPagesComponents/CaseStudiesSection";
 import { SupportYou } from "@/components/GenericPagesComponents/SupportYou";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 import getPageProps from "@/node-lib/getPageProps";
@@ -46,7 +46,7 @@ const OaksImpact: NextPage<OaksImpactPageProps> = ({ topNav, pageData }) => {
             videoDescription={pageData.header.videoDescription}
           />
           <OaksImpactStats {...pageData.statsSection} />
-          <OaksImpactCaseStudies
+          <CaseStudiesSection
             title="Case studies"
             caseStudies={pageData.caseStudiesSection.caseStudies}
           />
