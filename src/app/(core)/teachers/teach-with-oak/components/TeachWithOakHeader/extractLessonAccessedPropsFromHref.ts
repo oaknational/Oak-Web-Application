@@ -66,7 +66,7 @@ export const extractLessonAccessedPropsFromHref = ({
   const examboardTitle = getExamboardTitleFromSlug(examboardSlug);
 
   return {
-    componentType: "about_curriculum", //todo
+    componentType: "teach_with_oak_back_to_lesson",
     unitSlug,
     unitName,
     lessonSlug,
