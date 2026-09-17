@@ -71,29 +71,34 @@ const topNavQuery = (sdk: Sdk) => {
       guidance: {
         title: "Guidance",
         slug: "guidance",
-        children: [
-          {
-            title: "Plan a lesson",
-            slug: "lesson-planning",
-            href: resolveOakHref({ page: "lesson-planning" }),
-          },
-          {
-            title: "Blogs",
-            slug: "blog-index",
-            href: resolveOakHref({ page: "blog-index" }),
-          },
-          {
-            title: "Webinars",
-            slug: "webinar-index",
-            href: resolveOakHref({ page: "webinar-index" }),
-          },
-          {
-            title: "Help",
-            slug: "help",
-            href: resolveOakHref({ page: "help" }),
-            external: true,
-          },
-        ],
+        children: (
+          [
+            {
+              title: "Curriculum change explained",
+              slug: "curriculum-change-explained",
+            },
+            {
+              title: "Plan a lesson",
+              slug: "lesson-planning",
+            },
+            {
+              title: "Blogs",
+              slug: "blog-index",
+            },
+            {
+              title: "Webinars",
+              slug: "webinar-index",
+            },
+            {
+              title: "Help",
+              slug: "help",
+              external: true,
+            },
+          ] as const
+        ).map((link) => ({
+          ...link,
+          href: resolveOakHref({ page: link.slug }),
+        })),
       },
       aboutUs: {
         title: "About us",

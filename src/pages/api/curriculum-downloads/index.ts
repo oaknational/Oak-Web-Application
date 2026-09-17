@@ -348,7 +348,7 @@ export async function getFile({
               examboardTitle: data.combinedCurriculumData?.examboardTitle,
               childSubjectSlug,
               tierSlug,
-              prefix: definition.label ?? type,
+              prefix: definition.filenameOverride ?? definition.label,
               isWithinArchive: data.isWithinArchive,
             });
           },
@@ -391,6 +391,7 @@ export async function getFile({
   let outputBuffer: Uint8Array;
   let outputFileName: string;
   let contentType: string;
+
   if (files.length > 1) {
     outputBuffer = await zipFromFiles(files);
     contentType = "application/zip";
@@ -519,7 +520,7 @@ export default async function handler(
     )
     .setHeader(
       "Content-Disposition",
-      `attachment; filename="${fileData.filename}`,
+      `attachment; filename="${fileData.filename}"`,
     )
     .setHeader("x-filename", `${fileData.filename}`)
     .status(200)
