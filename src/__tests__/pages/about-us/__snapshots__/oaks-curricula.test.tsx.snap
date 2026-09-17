@@ -654,7 +654,7 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
 
 .c183 {
   width: 100%;
-  margin-bottom: 1.5rem;
+  margin-bottom: 3rem;
   font-family: --var(google-font),Lexend,sans-serif;
 }
 

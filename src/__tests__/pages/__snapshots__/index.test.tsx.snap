@@ -2159,7 +2159,7 @@ exports[`Teachers Page Page component renders 1`] = `
                         novalidate=""
                       >
                         <div
-                          class="sc-aXZVg iJfnUD"
+                          class="sc-aXZVg dtxWuS"
                         >
                           <div
                             class="sc-aXZVg sc-gEvEer bwVgbu bktafW"
@@ -2197,7 +2197,7 @@ exports[`Teachers Page Page component renders 1`] = `
                           </div>
                         </div>
                         <div
-                          class="sc-aXZVg iJfnUD"
+                          class="sc-aXZVg dtxWuS"
                         >
                           <div
                             class="sc-aXZVg sc-gEvEer bwVgbu bktafW"

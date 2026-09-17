@@ -448,7 +448,7 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
 
 .c138 {
   width: 100%;
-  margin-bottom: 1.5rem;
+  margin-bottom: 3rem;
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
