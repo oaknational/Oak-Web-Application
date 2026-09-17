@@ -121,7 +121,7 @@ const NewsletterForm: FC<NewsletterFormProps> = ({
         render={({ field, fieldState }) => (
           <OakBox
             $width="100%"
-            $mb={fieldState.error ? "spacing-8" : "spacing-24"}
+            $mb={fieldState.error ? "spacing-8" : "spacing-48"}
           >
             <OakInputWithLabel
               id={`${id}-newsletter-signup-name`}
@@ -144,7 +144,7 @@ const NewsletterForm: FC<NewsletterFormProps> = ({
         render={({ field, fieldState }) => (
           <OakBox
             $width="100%"
-            $mb={fieldState.error ? "spacing-8" : "spacing-24"}
+            $mb={fieldState.error ? "spacing-8" : "spacing-48"}
           >
             <OakInputWithLabel
               id={`${id}-newsletter-signup-email`}
