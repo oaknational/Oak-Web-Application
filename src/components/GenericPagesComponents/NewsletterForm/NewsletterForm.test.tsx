@@ -30,10 +30,10 @@ describe("NewsletterForm", () => {
     await user.keyboard("email@example.com");
     // tab => dropdown select
     await user.tab();
-    await user.selectOptions(
-      document.querySelector("select") as HTMLSelectElement,
-      "Student",
-    );
+    const roleSelect = document.getElementById(
+      "1-newsletter-signup-userrole",
+    ) as HTMLSelectElement;
+    await user.selectOptions(roleSelect, "Student");
 
     await user.tab();
     await user.keyboard("{Enter}");
