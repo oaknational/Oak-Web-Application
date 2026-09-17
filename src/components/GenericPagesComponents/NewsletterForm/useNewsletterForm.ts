@@ -12,6 +12,7 @@ import getBrowserConfig from "../../../browser-lib/getBrowserConfig";
 type UseNewsletterFormProps = {
   onSubmit?: () => void;
   hubspotNewsletterFormId?: string;
+  hubspotPortalId?: string;
 };
 const useNewsletterForm = (props: UseNewsletterFormProps = {}) => {
   const hubspotNewsletterFormId =
@@ -35,6 +36,9 @@ const useNewsletterForm = (props: UseNewsletterFormProps = {}) => {
 
     const hubspotFormResponse = hubspotSubmitForm({
       hubspotFormId: hubspotNewsletterFormId,
+      ...(props.hubspotPortalId
+        ? { hubspotPortalId: props.hubspotPortalId }
+        : {}),
       payload: newsletterPayload,
     });
 

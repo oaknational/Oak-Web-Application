@@ -37,7 +37,7 @@ const PromoBanner: FC<PromoBannerProps> = ({
         <OakFlex
           $alignItems={"center"}
           $flexWrap={"wrap"}
-          $gap={["spacing-20", "spacing-40"]}
+          $gap={["spacing-12", "spacing-32"]}
           $flexDirection={["column", "row"]}
           $justifyContent={"center"}
           $pv={"spacing-0"}

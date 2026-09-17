@@ -55,6 +55,8 @@ export type VideoPlayerProps = {
   muxAssetId?: string | null;
   /** When true, focuses the play button when the player is mounted */
   autoFocusPlayButton?: boolean;
+  /** When true, starts playback as soon as the player is ready. */
+  autoPlay?: boolean;
   /** When false, pauses playback */
   isActive?: boolean;
   /** When false, suppresses the analytics event for reaching the end. */
@@ -151,6 +153,7 @@ const VideoPlayer: FC<VideoPlayerProps> = (props) => {
     cloudinaryUrl,
     muxAssetId,
     autoFocusPlayButton = false,
+    autoPlay = false,
     isActive = true,
     shouldTrackEndAnalytics = true,
     omitBorder = false,
@@ -335,6 +338,7 @@ const VideoPlayer: FC<VideoPlayerProps> = (props) => {
       <MuxPlayer
         key={reloadOnErrors.length}
         preload="metadata"
+        autoPlay={autoPlay}
         ref={setMediaElRef}
         envKey={envKey}
         metadata={metadata}

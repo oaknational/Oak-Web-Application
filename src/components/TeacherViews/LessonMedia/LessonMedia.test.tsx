@@ -143,7 +143,7 @@ describe("LessonMedia view", () => {
     const mediaClipListItems = within(mediaClipList!).getAllByRole("listitem");
 
     expect(mediaClipList).toBeInTheDocument();
-    expect(mediaClipListItems.length).toEqual(3);
+    expect(mediaClipListItems).toHaveLength(3);
   });
 
   it("calls window.history.replaceState with correct parameters when video is clicked", async () => {
