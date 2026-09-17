@@ -127,6 +127,7 @@ export type TeacherBrowseAnalyticsStore = {
       filterType: FilterTypeValueType;
       filterValue: string;
     }) => void;
+    teachWithOakDownloaded: () => void;
     teachingMaterialsSelected: (props: {
       teachingMaterialType: TeachingMaterialTypeValueType;
     }) => void;
@@ -637,6 +638,14 @@ export const createTeacherBrowseAnalyticsStore = (
           componentType,
           accessLevel,
           journeyId,
+        });
+      },
+      teachWithOakDownloaded: () => {
+        const { avo } = get();
+        avo.teachWithOakDownloaded({
+          ...coreProperties,
+          engagementIntent: EngagementIntent.USE,
+          componentType: "download_button",
         });
       },
       teachingMaterialsSelected: (data) => {
