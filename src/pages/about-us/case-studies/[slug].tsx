@@ -34,6 +34,7 @@ import { OaksImpactCaseStudyContentLayout } from "@/components/GenericPagesCompo
 import VideoPlayer from "@/components/SharedComponents/VideoPlayer";
 import { TeacherBrowseAnalyticsStoreProvider } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
 
+// to do - this data retrieval will be decoupled from oak's impact in coming tickets
 export type AboutUsOaksImpactCaseStudyPageProps = {
   pageData: {
     caseStudy: OaksImpactCaseStudyPage["caseStudiesSection"]["caseStudies"][number];
