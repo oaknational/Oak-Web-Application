@@ -4,7 +4,7 @@ import TeachWithOakNewsletterForm from "./TeachWithOakNewsletterForm";
 
 const meta = {
   component: TeachWithOakNewsletterForm,
-  title: "TeachWithOakNewsletterForm",
+  title: "App/TeachWithOak/TeachWithOakNewsletterForm",
 } as Meta<typeof TeachWithOakNewsletterForm>;
 
 export default meta;
