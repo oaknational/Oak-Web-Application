@@ -811,6 +811,10 @@ describe("National Curriculum Insights sections", () => {
     expect(screen.getByText("Curriculum team")).toBeInTheDocument();
     expect(screen.getByText("Subject specialists")).toBeInTheDocument();
     expect(screen.getByText("Draft guidance")).toBeInTheDocument();
+    const heroGrid = screen.getByRole("heading", {
+      name: hero.heading,
+    }).parentElement!.parentElement!.parentElement!;
+    expect(heroGrid.children[1]).toHaveStyle({ order: "2" });
     expect(
       screen.getByRole("link", { name: /National curriculum insights/ }),
     ).toHaveAttribute("href", "/teachers/national-curriculum-insights");

@@ -408,7 +408,7 @@ export const NationalCurriculumInsightsHero = ({
               section={section}
             />
           ) : (
-            <OakGridArea $colSpan={[1, 2, 1]}>
+            <OakGridArea $colSpan={[1, 2, 1]} $order={2}>
               <HeroUpdateCard section={section} />
             </OakGridArea>
           )}
