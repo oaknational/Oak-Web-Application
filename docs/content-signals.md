@@ -69,7 +69,7 @@ than drift. Other hosts measured 9 September 2026:
 The two differ because what they serve differs. `www` carries Oak's own
 copyrighted site content, so it declines both training and grounding.
 `open-api` serves the openly licensed curriculum, where `ai-train=yes` is the
-coherent position. Two hosts, two licences, two policies.
+coherent position. Two hosts, two surfaces, two policies.
 
 Aakash settled the `www` values, relayed by MG on 10 September 2026:
 
