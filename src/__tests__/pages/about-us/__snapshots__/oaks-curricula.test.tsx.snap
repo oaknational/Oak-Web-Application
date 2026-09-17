@@ -6386,7 +6386,9 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
                         color="text-primary"
                         id="react-use-id-test-result-newsletter-form-description"
                       >
-                        Join over 200k teachers and get free resources and other helpful content by email. Unsubscribe at any time. Read our
+                        Join over 
+                        200k
+                         teachers and get free resources and other helpful content by email. Unsubscribe at any time. Read our
                          
                         <a
                           class="c24"
