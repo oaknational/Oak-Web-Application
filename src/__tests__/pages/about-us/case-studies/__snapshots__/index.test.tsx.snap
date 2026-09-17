@@ -1332,7 +1332,8 @@ exports[`pages/about-us/case-studies/index.tsx renders title 1`] = `
               </div>
             </div>
             <span
-              class="sc-aXZVg kvjdhA sc-47b54219-0 hJhbMg"
+              class="sc-aXZVg kvjdhA sc-b002f8ea-0 bymctI"
+              data-chromatic="ignore"
               data-percy-hide="contents"
             >
               <img
