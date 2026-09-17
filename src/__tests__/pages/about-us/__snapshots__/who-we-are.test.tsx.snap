@@ -5551,6 +5551,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                       class="c147 c46 c141"
                     >
                       <form
+                        aria-describedby="react-use-id-test-result-newsletter-form-description"
                         class="c67 c98"
                         novalidate=""
                       >

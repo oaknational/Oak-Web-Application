@@ -6405,6 +6405,7 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
                       class="c182 c46 c176"
                     >
                       <form
+                        aria-describedby="react-use-id-test-result-newsletter-form-description"
                         class="c67 c97"
                         novalidate=""
                       >

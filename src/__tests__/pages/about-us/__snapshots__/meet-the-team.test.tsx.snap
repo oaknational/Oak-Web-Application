@@ -5519,6 +5519,7 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
                       class="c136 c46 c130"
                     >
                       <form
+                        aria-describedby="react-use-id-test-result-newsletter-form-description"
                         class="c67 c137"
                         novalidate=""
                       >

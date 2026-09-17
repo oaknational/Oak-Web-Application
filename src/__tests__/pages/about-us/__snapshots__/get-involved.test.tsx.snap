@@ -5745,6 +5745,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                       class="c139 c46 c133"
                     >
                       <form
+                        aria-describedby="react-use-id-test-result-newsletter-form-description"
                         class="c67 c83"
                         novalidate=""
                       >

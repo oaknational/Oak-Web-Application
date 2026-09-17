@@ -2154,6 +2154,7 @@ exports[`Teachers Page Page component renders 1`] = `
                       class="sc-aXZVg sc-gEvEer sc-esYiGF hwPWvG iDBIXi nZkbm"
                     >
                       <form
+                        aria-describedby="react-use-id-test-result-newsletter-form-description"
                         class="sc-aXZVg sc-gEvEer bwVgbu bktafW"
                         novalidate=""
                       >
