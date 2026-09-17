@@ -2,13 +2,16 @@ import { extractLessonAccessedPropsFromHref } from "./extractLessonAccessedProps
 
 describe("parseLessonUrl", () => {
   it("extracts the unit, lesson and key stage from a lesson href", () => {
-    const result = extractLessonAccessedPropsFromHref(
-      "https://thenational.academy/teachers/programmes/art-primary-ks1/units/mark-making-using-drawing-tools-and-techniques/lessons/lesson-slug?foo=bar",
-    );
+    const result = extractLessonAccessedPropsFromHref({
+      lessonName: "lesson name",
+      unitName: "unit name",
+      returnTo:
+        "https://thenational.academy/teachers/programmes/art-primary-ks1/units/unitSlug/lessons/lessonSlug?foo=bar",
+    });
     expect(result).toEqual(
       expect.objectContaining({
-        unitSlug: "mark-making-using-drawing-tools-and-techniques",
-        lessonSlug: "lesson-slug",
+        unitSlug: "unitSlug",
+        lessonSlug: "lessonSlug",
         keyStageSlug: "ks1",
       }),
     );
@@ -16,9 +19,11 @@ describe("parseLessonUrl", () => {
 
   it("returns null for unsupported hrefs", () => {
     expect(
-      extractLessonAccessedPropsFromHref(
-        "/teachers/programmes/art-primary/units/unit-slug",
-      ),
+      extractLessonAccessedPropsFromHref({
+        returnTo: "/teachers/programmes/art-primary/units/unit-slug",
+        lessonName: "lesson name",
+        unitName: "unit name",
+      }),
     ).toBeNull();
   });
 });

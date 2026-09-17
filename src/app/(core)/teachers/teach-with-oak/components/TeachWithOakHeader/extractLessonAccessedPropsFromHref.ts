@@ -12,17 +12,23 @@ type LessonAccessedProps = Parameters<
   TeacherBrowseAnalyticsStore["track"]["lessonAccessed"]
 >[0];
 
-export const extractLessonAccessedPropsFromHref = (
-  href: string,
-): LessonAccessedProps | null => {
+export const extractLessonAccessedPropsFromHref = ({
+  returnTo,
+  lessonName,
+  unitName,
+}: {
+  returnTo: string;
+  lessonName: string;
+  unitName: string;
+}): LessonAccessedProps | null => {
   const baseUrl = getBrowserConfig("clientAppBaseUrl");
 
   let pathname: string;
 
   try {
-    pathname = new URL(href, baseUrl).pathname;
+    pathname = new URL(returnTo, baseUrl).pathname;
   } catch {
-    pathname = href;
+    pathname = returnTo;
   }
 
   const segments = pathname.split("/").filter(Boolean);
@@ -62,9 +68,9 @@ export const extractLessonAccessedPropsFromHref = (
   return {
     componentType: "about_curriculum", //todo
     unitSlug,
-    unitName: "", //todo
+    unitName,
     lessonSlug,
-    lessonName: "", //todo
+    lessonName,
     lessonReleaseCohort: "2023-2026",
     lessonReleaseDate: "unknown",
     keyStageSlug: keystageSlug,

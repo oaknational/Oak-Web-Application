@@ -8,7 +8,7 @@ const render = renderWithProviders();
 
 const mockReturnToLessonLink = jest.fn().mockReturnValue(null);
 jest.mock("../getReturnToLessonLink", () => ({
-  useReturnToLessonLink: () => mockReturnToLessonLink(),
+  useReturnToLessonProps: () => mockReturnToLessonLink(),
 }));
 
 describe("TeachWithOakView", () => {
@@ -58,9 +58,12 @@ describe("TeachWithOakView", () => {
       screen.queryByRole("link", { name: "Back to lesson" }),
     ).not.toBeInTheDocument();
 
-    mockReturnToLessonLink.mockReturnValue(
-      "/teachers/programmes/art-primary-ks1/units/unitSlug/lessons/lessonSlug",
-    );
+    mockReturnToLessonLink.mockReturnValue({
+      returnTo:
+        "/teachers/programmes/art-primary-ks1/units/unitSlug/lessons/lessonSlug",
+      lessonName: "Lesson Name",
+      unitName: "Unit Name",
+    });
 
     rerender(<TeachWithOakView />);
 

@@ -8,7 +8,7 @@ import {
 } from "@oaknational/oak-components";
 import styled from "styled-components";
 
-import { useReturnToLessonLink } from "../../getReturnToLessonLink";
+import { useReturnToLessonProps } from "../../getReturnToLessonLink";
 
 import { extractLessonAccessedPropsFromHref } from "./extractLessonAccessedPropsFromHref";
 
@@ -43,22 +43,22 @@ export function TeachWithOakHeader() {
 
   const { lessonAccessed } = useTeacherBrowseAnalytics((store) => store.track);
 
-  const href = useReturnToLessonLink();
+  const returnToLessonProps = useReturnToLessonProps();
 
   return (
     <OakBox
       $mt={["spacing-56", "spacing-80", "spacing-56"]}
       $mb={["spacing-56", "spacing-80", "spacing-72"]}
     >
-      {href && (
+      {returnToLessonProps && (
         <NewGutterMaxWidth>
           <OakTertiaryInvertedButton
             element="a"
-            href={href}
+            href={returnToLessonProps.returnTo}
             iconName="arrow-left"
             onClick={() => {
               const lessonAccessedProps =
-                extractLessonAccessedPropsFromHref(href);
+                extractLessonAccessedPropsFromHref(returnToLessonProps);
               if (lessonAccessedProps) {
                 lessonAccessed(lessonAccessedProps);
               }
