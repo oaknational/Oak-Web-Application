@@ -33,6 +33,7 @@ import { MultiSelect } from "@/components/SharedComponents/MultiSelect";
 import errorReporter from "@/common-lib/error-reporter";
 import OakError from "@/errors/OakError";
 import createAndClickHiddenDownloadLink from "@/components/SharedComponents/helpers/downloadAndShareHelpers/createAndClickHiddenDownloadLink";
+import { NEWSLETTER_COUNT } from "@/components/GenericPagesComponents/NewsletterForm/newsletterConstants";
 
 const reportError = errorReporter("NationalCurriculumInsightsDownload");
 
@@ -532,8 +533,9 @@ export const NationalCurriculumInsightsDownload = ({
                   />
                 </OakBox>
                 <OakP $maxWidth="spacing-640" $font="body-3" $mv="spacing-0">
-                  Join over 200k teachers and get free resources and other
-                  helpful content by email. Unsubscribe at any time. Read our{" "}
+                  Join over {NEWSLETTER_COUNT} teachers and get free resources
+                  and other helpful content by email. Unsubscribe at any time.
+                  Read our{" "}
                   <OakLink href="/legal/privacy-policy" target="_blank">
                     privacy policy
                   </OakLink>
