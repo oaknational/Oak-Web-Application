@@ -424,6 +424,14 @@ export default async (phase: NextConfig["phase"]): Promise<NextConfig> => {
         },
       ];
 
+      const campaignRedirects = [
+        {
+          source: "/campaigns/curriculum-and-assessment-review",
+          destination: "/curriculum-change-explained/guidance",
+          permanent: true,
+        },
+      ];
+
       const aboutUsRedirects = [
         {
           source: "/about-us/leadership",
@@ -499,6 +507,7 @@ export default async (phase: NextConfig["phase"]): Promise<NextConfig> => {
 
       return [
         ...pupilsRedirects,
+        ...campaignRedirects,
         ...aboutUsRedirects,
         ...eyfsRedirects,
         ...integratedJourneyRedirects,

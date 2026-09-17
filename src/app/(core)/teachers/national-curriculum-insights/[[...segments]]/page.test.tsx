@@ -3,6 +3,7 @@
  */
 
 import { draftMode } from "next/headers";
+import { permanentRedirect, redirect } from "next/navigation";
 
 import { localNationalCurriculumInsightsFixtures } from "./__fixtures__/nationalCurriculumInsights";
 import NationalCurriculumInsightsPage from "./page";
@@ -14,6 +15,9 @@ jest.mock("next/navigation", () => ({
     throw new Error("NEXT_HTTP_ERROR_FALLBACK;404");
   }),
   permanentRedirect: jest.fn((url: string) => {
+    throw new Error(`REDIRECT:${url}`);
+  }),
+  redirect: jest.fn((url: string) => {
     throw new Error(`REDIRECT:${url}`);
   }),
 }));
@@ -39,7 +43,7 @@ const draftModeState = (isEnabled: boolean) => ({
 describe("National Curriculum Insights page", () => {
   beforeEach(() => {
     jest.clearAllMocks();
-    mockedDraftMode.mockResolvedValue(draftModeState(false));
+    mockedDraftMode.mockResolvedValue(draftModeState(true));
     jest
       .mocked(CMSClient.nationalCurriculumInsightsHub)
       .mockResolvedValue(hub as never);
@@ -47,6 +51,45 @@ describe("National Curriculum Insights page", () => {
       .mocked(CMSClient.nationalCurriculumInsightsSubjectBySlug)
       .mockResolvedValue(science as never);
   });
+
+  it.each([
+    { segments: undefined },
+    { segments: [] },
+    { segments: ["science"] },
+    { segments: ["science", "primary"] },
+    { segments: ["science", "primary", "key-stage-1"] },
+    { segments: ["science", "secondary", "key-stage-4"] },
+  ])(
+    "temporarily redirects public Insights routes before reading unpublished content: $segments",
+    async ({ segments }) => {
+      mockedDraftMode.mockResolvedValue(draftModeState(false));
+      jest
+        .mocked(CMSClient.nationalCurriculumInsightsHub)
+        .mockResolvedValue(null);
+
+      const href =
+        "/curriculum-change-explained/guidance?utm_source=newsletter&tag=one&tag=two";
+      await expect(
+        NationalCurriculumInsightsPage({
+          params: Promise.resolve({ segments }),
+          searchParams: Promise.resolve({
+            utm_source: "newsletter",
+            tag: ["one", "two"],
+          }),
+        }),
+      ).rejects.toThrow(`REDIRECT:${href}`);
+
+      expect(redirect).toHaveBeenCalledWith(href);
+      expect(permanentRedirect).not.toHaveBeenCalled();
+      expect(CMSClient.nationalCurriculumInsightsHub).not.toHaveBeenCalled();
+      expect(
+        CMSClient.nationalCurriculumInsightsSubjectBySlug,
+      ).not.toHaveBeenCalled();
+      expect(
+        CMSClient.nationalCurriculumInsightsGuidancePage,
+      ).not.toHaveBeenCalled();
+    },
+  );
 
   it.each<{
     searchParams?: Record<string, string | string[] | undefined>;
@@ -70,6 +113,7 @@ describe("National Curriculum Insights page", () => {
   ])(
     "preserves query parameters in the guidance redirect: $suffix",
     async ({ searchParams, suffix }) => {
+      mockedDraftMode.mockResolvedValue(draftModeState(false));
       jest
         .mocked(CMSClient.nationalCurriculumInsightsGuidancePage)
         .mockResolvedValue(
@@ -85,10 +129,15 @@ describe("National Curriculum Insights page", () => {
       ).rejects.toThrow(
         `REDIRECT:/curriculum-change-explained/guidance${suffix}`,
       );
+      expect(permanentRedirect).toHaveBeenCalledWith(
+        `/curriculum-change-explained/guidance${suffix}`,
+      );
+      expect(redirect).not.toHaveBeenCalled();
     },
   );
 
   it("keeps unpublished guidance unavailable at its previous URL", async () => {
+    mockedDraftMode.mockResolvedValue(draftModeState(false));
     jest
       .mocked(CMSClient.nationalCurriculumInsightsGuidancePage)
       .mockResolvedValue(null);
@@ -101,7 +150,7 @@ describe("National Curriculum Insights page", () => {
     ).rejects.toThrow("NEXT_HTTP_ERROR_FALLBACK;404");
   });
 
-  it("renders the subject overview at the subject root", async () => {
+  it("renders the subject overview in draft preview", async () => {
     const result = await NationalCurriculumInsightsPage({
       params: Promise.resolve({ segments: ["science"] }),
     });
@@ -109,10 +158,10 @@ describe("National Curriculum Insights page", () => {
     expect(result).toBeDefined();
     expect(
       CMSClient.nationalCurriculumInsightsSubjectBySlug,
-    ).toHaveBeenCalledWith("science", { previewMode: false });
+    ).toHaveBeenCalledWith("science", { previewMode: true });
   });
 
-  it("renders a configured phase beneath the subject", async () => {
+  it("renders a configured phase in draft preview", async () => {
     const result = await NationalCurriculumInsightsPage({
       params: Promise.resolve({ segments: ["science", "primary"] }),
     });
@@ -120,7 +169,7 @@ describe("National Curriculum Insights page", () => {
     expect(result).toBeDefined();
   });
 
-  it("renders a configured key stage beneath its phase", async () => {
+  it("renders a configured key stage in draft preview", async () => {
     const result = await NationalCurriculumInsightsPage({
       params: Promise.resolve({
         segments: ["science", "primary", "key-stage-1"],

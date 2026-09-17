@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { draftMode } from "next/headers";
-import { notFound, permanentRedirect } from "next/navigation";
+import { notFound, permanentRedirect, redirect } from "next/navigation";
 
 import { getNationalCurriculumInsightsRouteData } from "./helpers/getRouteData";
 import { NationalCurriculumInsightsView } from "./components/View";
@@ -72,6 +72,11 @@ const NationalCurriculumInsightsPage = async ({
   }
 
   const { isEnabled: previewMode } = await draftMode();
+  // Keep public visitors on guidance until the Insights hub is ready to launch.
+  if (!previewMode && route.kind !== "guidance") {
+    return redirect(getGuidanceRedirectHref(await searchParams));
+  }
+
   const data = await getNationalCurriculumInsightsRouteData(route, {
     previewMode,
   });

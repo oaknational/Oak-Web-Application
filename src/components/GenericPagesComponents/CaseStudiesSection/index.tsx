@@ -12,15 +12,15 @@ import getProxiedSanityAssetUrl from "@/common-lib/urls/getProxiedSanityAssetUrl
 import { NewGutterMaxWidth } from "@/components/GenericPagesComponents/NewGutterMaxWidth";
 import { resolveOakHref } from "@/common-lib/urls";
 
-export type OaksImpactCaseStudiesProps = {
+export type CaseStudiesSectionProps = {
   title: string;
   caseStudies: CaseStudyCard[];
 };
 
-export const OaksImpactCaseStudies = ({
+export const CaseStudiesSection = ({
   title,
   caseStudies,
-}: OaksImpactCaseStudiesProps) => {
+}: CaseStudiesSectionProps) => {
   return (
     <OakBox $background={"bg-decorative2-subdued"}>
       <NewGutterMaxWidth>

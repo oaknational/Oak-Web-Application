@@ -4948,47 +4948,51 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
           class="c68"
         >
           <div
-            class="c69"
+            class="c9"
           >
             <div
-              class="c70 c71"
+              class="c69"
             >
               <div
-                class="c72 c73"
+                class="c70 c71"
               >
-                <h1
-                  class="c74"
+                <div
+                  class="c72 c73"
+                >
+                  <h1
+                    class="c74"
+                  >
+                    <span
+                      class="c75"
+                      style="line-height: 1.25; box-decoration-break: clone;"
+                    >
+                      Get involved
+                    </span>
+                  </h1>
+                  <p
+                    class="c76"
+                  >
+                    We need your help to understand what's needed in the classroom. Want to get involved? We can't wait to hear from you.
+                  </p>
+                </div>
+                <div
+                  class="c77 c78"
                 >
                   <span
-                    class="c75"
-                    style="line-height: 1.25; box-decoration-break: clone;"
+                    class="c79 c80"
+                    data-testid="about-shared-loop"
                   >
-                    Get involved
+                    <img
+                      alt=""
+                      class="c21"
+                      data-nimg="fill"
+                      decoding="async"
+                      loading="lazy"
+                      src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1740665310/OWA/ui-graphics/looping-line-5_vdknco.svg"
+                      style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                    />
                   </span>
-                </h1>
-                <p
-                  class="c76"
-                >
-                  We need your help to understand what's needed in the classroom. Want to get involved? We can't wait to hear from you.
-                </p>
-              </div>
-              <div
-                class="c77 c78"
-              >
-                <span
-                  class="c79 c80"
-                  data-testid="about-shared-loop"
-                >
-                  <img
-                    alt=""
-                    class="c21"
-                    data-nimg="fill"
-                    decoding="async"
-                    loading="lazy"
-                    src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1740665310/OWA/ui-graphics/looping-line-5_vdknco.svg"
-                    style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
-                  />
-                </span>
+                </div>
               </div>
             </div>
           </div>
