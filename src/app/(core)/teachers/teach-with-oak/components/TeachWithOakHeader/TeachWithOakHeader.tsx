@@ -8,12 +8,17 @@ import {
 } from "@oaknational/oak-components";
 import styled from "styled-components";
 
+import { useReturnToLessonLink } from "../../getReturnToLessonLink";
+
+import { extractLessonAccessedPropsFromHref } from "./extractLessonPropsFromHref";
+
 import {
   AboutSharedHeader,
   AboutSharedHeaderImage,
 } from "@/components/GenericPagesComponents/AboutSharedHeader";
 import { NewGutterMaxWidth } from "@/components/GenericPagesComponents/NewGutterMaxWidth";
 import { getCloudinaryImageUrl } from "@/utils/getCloudinaryImageUrl";
+import { useTeacherBrowseAnalytics } from "@/context/TeacherBrowseAnalytics/TeacherBrowseAnalyticsProvider";
 
 const HeaderLayout = styled(OakFlex)`
   display: flex;
@@ -31,16 +36,15 @@ const StyledAboutSharedHeaderImage = styled(AboutSharedHeaderImage)`
   }
 `;
 
-type TeachWithOakHeaderProps = {
-  href?: string;
-};
-
-export function TeachWithOakHeader({
-  href,
-}: Readonly<TeachWithOakHeaderProps>) {
+export function TeachWithOakHeader() {
   const imageUrl = getCloudinaryImageUrl(
     "v1734018546/OWA/illustrations/hero-aila_wgpmas.jpg",
   );
+
+  const { lessonAccessed } = useTeacherBrowseAnalytics((store) => store.track);
+
+  const href = useReturnToLessonLink();
+
   return (
     <OakBox
       $mt={["spacing-56", "spacing-80", "spacing-56"]}
@@ -52,6 +56,13 @@ export function TeachWithOakHeader({
             element="a"
             href={href}
             iconName="arrow-left"
+            onClick={() => {
+              const lessonAccessedProps =
+                extractLessonAccessedPropsFromHref(href);
+              if (lessonAccessedProps) {
+                lessonAccessed(lessonAccessedProps);
+              }
+            }}
           >
             Back to lesson
           </OakTertiaryInvertedButton>
