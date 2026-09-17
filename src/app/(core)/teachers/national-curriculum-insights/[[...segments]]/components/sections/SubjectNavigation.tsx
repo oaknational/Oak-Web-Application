@@ -33,15 +33,6 @@ const SubjectList = styled(OakFlex)`
 `;
 
 const SubjectNavigationMaxWidth = styled(OakBox)`
-  width: 100%;
-  max-width: 998px;
-
-  @media (${getMediaQuery("desktop")}) {
-    min-height: 176px;
-    display: flex;
-    align-items: center;
-  }
-
   a {
     background: ${parseColor("bg-primary")};
     border-color: ${parseColor("grey30")};
@@ -49,8 +40,12 @@ const SubjectNavigationMaxWidth = styled(OakBox)`
 `;
 
 const HubSubjectItem = styled.li`
-  width: 225px;
-  height: 225px;
+  width: ${parseSpacing("spacing-240")};
+  aspect-ratio: 1;
+
+  @media ${getMediaQuery("desktop")} {
+    width: calc((100% - 4 * ${parseSpacing("spacing-16")}) / 5);
+  }
 
   @media (${getMediaQuery("mobile")}) {
     width: calc(50% - ${parseSpacing("spacing-8")});
@@ -78,15 +73,6 @@ const HubSubjectList = styled.ul`
   list-style: none;
   margin: 0;
   padding: 0;
-`;
-
-const HubPhaseNavigation = styled.nav`
-  width: 100%;
-
-  @media (${getMediaQuery("desktop")}) {
-    max-width: 1189px;
-    margin-inline: auto;
-  }
 `;
 
 const normaliseSubjectIcon = (subject: Subject) => {
@@ -122,6 +108,11 @@ export const NationalCurriculumInsightsSubjectNavigation = ({
         $pb={["spacing-48", "spacing-64"]}
       >
         <SubjectNavigationMaxWidth
+          $width="100%"
+          $maxWidth="spacing-960"
+          $minHeight={["auto", "auto", "spacing-180"]}
+          $display={["block", "block", "flex"]}
+          $alignItems="center"
           $mh="auto"
           data-insights-module="subject-navigation"
         >
@@ -171,7 +162,9 @@ export const NationalCurriculumInsightsSubjectNavigation = ({
               ),
             )
             .map((phase) => (
-              <HubPhaseNavigation
+              <OakBox
+                as="nav"
+                $width="100%"
                 key={phase}
                 aria-labelledby={`national-curriculum-insights-${phase}-subjects`}
               >
@@ -214,7 +207,7 @@ export const NationalCurriculumInsightsSubjectNavigation = ({
                       ))}
                   </HubSubjectList>
                 </OakFlex>
-              </HubPhaseNavigation>
+              </OakBox>
             ))}
         </OakFlex>
       </SectionMaxWidth>

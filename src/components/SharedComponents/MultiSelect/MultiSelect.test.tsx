@@ -60,6 +60,18 @@ describe("MultiSelect", () => {
     });
   });
 
+  it("keeps an accessible legend for both selection layouts", () => {
+    renderWithTheme(<ControlledMultiSelect placeholder="Choose items" />);
+    fireEvent.click(screen.getByTestId("multi-select-trigger"));
+
+    expect(
+      screen.getByRole("group", { name: "Choose items" }),
+    ).toBeInTheDocument();
+    expect(
+      screen.getAllByText("Choose items", { selector: "legend" }),
+    ).toHaveLength(2);
+  });
+
   it("opens the desktop selector and keeps checkbox and tag state in sync", () => {
     const onChange = jest.fn();
     renderWithTheme(<ControlledMultiSelect onChange={onChange} />);

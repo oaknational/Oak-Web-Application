@@ -1,7 +1,6 @@
 "use client";
 
 import {
-  getBreakpoint,
   getMediaQuery,
   OakBox,
   OakFlex,
@@ -13,6 +12,8 @@ import {
   OakSpan,
   OakVideo,
   parseColor,
+  parseBorderWidth,
+  parseBorderRadius,
   parseSpacing,
 } from "@oaknational/oak-components";
 import Link from "next/link";
@@ -24,7 +25,6 @@ import { NationalCurriculumInsightsPortableText as PortableTextWithDefaults } fr
 import {
   InsightSection,
   SectionProps,
-  insightsTabletMediaQuery,
   imageUrl,
   imageAlt,
   portableTextComponents,
@@ -56,70 +56,15 @@ const VideoCardsSection = styled(OakBox)`
   box-sizing: border-box;
 `;
 
-const ConversationInner = styled(OakFlex)`
-  width: 100%;
-  max-width: 985px;
-`;
-
-const ConversationHeader = styled(OakFlex)`
-  width: 100%;
-
-  @media (${getMediaQuery("desktop")}) {
-    min-height: 212px;
-  }
-`;
-
-const ConversationHeaderArtwork = styled(OakBox)`
-  display: none;
-
-  @media (${getMediaQuery("desktop")}) {
-    display: block;
-    width: 250px;
-    height: 212px;
-    flex: 0 0 250px;
-  }
-
-  @media ${insightsTabletMediaQuery} {
-    display: none;
-  }
-`;
-
-const ConversationHeaderCopy = styled(OakFlex)`
-  width: 100%;
-
-  @media (${getMediaQuery("desktop")}) {
-    width: 690px;
-    flex: 0 0 690px;
-  }
-
-  @media ${insightsTabletMediaQuery} {
-    width: 100%;
-    flex: 0 1 auto;
-  }
-`;
-
-// These fractional values are measured design geometry, not Oak spacing tokens.
-// Keep them exact so moving the cards between modules does not alter their layout.
-const conversationCardRadius = "6.645px";
-const conversationCardInset = "13.291px";
-
 const ConversationCardFocus = styled(OakFocusIndicator)`
   position: relative;
   width: 100%;
-  border-radius: ${conversationCardRadius};
-
-  @media (${getMediaQuery("desktop")}) {
-    max-width: 985px;
-  }
 `;
 
 const ConversationCardLink = styled(OakFlex)`
   box-sizing: border-box;
   width: 100%;
   min-height: 100%;
-  padding: ${conversationCardInset};
-  gap: ${conversationCardInset};
-  border-radius: ${conversationCardRadius};
   color: ${parseColor("text-primary")};
   text-decoration: none;
   border: 0;
@@ -132,10 +77,6 @@ const ConversationCardLink = styled(OakFlex)`
   &:hover span {
     text-decoration: underline;
   }
-
-  @media (min-width: ${getBreakpoint("small")}px) {
-    flex-direction: row;
-  }
 `;
 
 const ConversationCardImage = styled(OakBox)`
@@ -146,12 +87,12 @@ const ConversationCardImage = styled(OakBox)`
   align-self: flex-start;
   overflow: hidden;
 
-  @media ${insightsTabletMediaQuery} {
+  @media ${getMediaQuery("tablet")} {
     width: 40%;
   }
 
   @media (${getMediaQuery("desktop")}) {
-    width: 290px;
+    width: 31%;
     height: auto;
   }
 `;
@@ -167,7 +108,8 @@ const ThumbnailPlayButton = styled.button`
   align-items: center;
   justify-content: center;
   padding: 0;
-  border: 2px solid ${parseColor("border-primary")};
+  border: ${parseBorderWidth("border-solid-m")} solid
+    ${parseColor("border-primary")};
   border-radius: 50%;
   background: ${parseColor("bg-btn-primary")};
   color: ${parseColor("icon-inverted")};
@@ -179,7 +121,8 @@ const ThumbnailPlayButton = styled.button`
   }
 
   &:focus-visible {
-    outline: 4px solid ${parseColor("border-decorative5")};
+    outline: ${parseBorderWidth("border-solid-xl")} solid
+      ${parseColor("border-decorative5")};
     outline-offset: ${parseSpacing("spacing-2")};
   }
 `;
@@ -208,7 +151,7 @@ const BlogPostTitleLink = styled(Link)`
     position: absolute;
     z-index: 1;
     inset: 0;
-    border-radius: ${conversationCardRadius};
+    border-radius: ${parseBorderRadius("border-radius-m")};
     content: "";
   }
 
@@ -222,7 +165,8 @@ const BlogPostTitleLink = styled(Link)`
   }
 
   &:focus-visible::after {
-    outline: 4px solid ${parseColor("border-decorative5")};
+    outline: ${parseBorderWidth("border-solid-xl")} solid
+      ${parseColor("border-decorative5")};
     outline-offset: ${parseSpacing("spacing-2")};
   }
 `;
@@ -240,11 +184,19 @@ const GuidanceConversationCard = ({
   episode: number;
 }) => (
   <ConversationCardFocus
+    $maxWidth="spacing-960"
     $background="bg-primary"
     hoverBackground="bg-btn-secondary-hover"
-    $borderRadius="border-radius-m2"
+    $borderRadius="border-radius-m"
   >
-    <ConversationCardLink as="a" href={card.videoUrl} $flexDirection="column">
+    <ConversationCardLink
+      $pa="spacing-12"
+      $gap="spacing-12"
+      $borderRadius="border-radius-m"
+      as="a"
+      href={card.videoUrl}
+      $flexDirection={["column", "row", "row"]}
+    >
       <ConversationCardImage $borderRadius="border-radius-m2">
         <OakImage
           src={imageUrl(card.image)}
@@ -380,11 +332,18 @@ const GuidanceBlogPostCard = ({
 
   return (
     <ConversationCardFocus
+      $maxWidth="spacing-960"
       $background="bg-primary"
       hoverBackground="bg-btn-secondary-hover"
-      $borderRadius="border-radius-m2"
+      $borderRadius="border-radius-m"
     >
-      <ConversationCardLink as="div" $flexDirection="column">
+      <ConversationCardLink
+        $pa="spacing-12"
+        $gap="spacing-12"
+        $borderRadius="border-radius-m"
+        as="div"
+        $flexDirection={["column", "row", "row"]}
+      >
         {cardContent}
       </ConversationCardLink>
     </ConversationCardFocus>
@@ -411,14 +370,25 @@ export const NationalCurriculumInsightsVideoCards = ({
       aria-labelledby={headingId}
       data-insights-module="guidance-conversations"
     >
-      <ConversationInner $mh="auto" $flexDirection="column" $gap="spacing-64">
-        <ConversationHeader
+      <OakFlex
+        $width="100%"
+        $maxWidth="spacing-960"
+        $mh="auto"
+        $flexDirection="column"
+        $gap="spacing-64"
+      >
+        <OakFlex
+          $width="100%"
           $flexDirection={["column", "column", "row"]}
           $alignItems="center"
           $gap="spacing-40"
         >
           {section.illustration?.asset?.url ? (
-            <ConversationHeaderArtwork
+            <OakBox
+              $display={["none", "none", "block"]}
+              $width="spacing-240"
+              $flexShrink={0}
+              $aspectRatio="250 / 212"
               aria-hidden={section.illustration.isPresentational || undefined}
             >
               <OakImage
@@ -428,9 +398,15 @@ export const NationalCurriculumInsightsVideoCards = ({
                 $height="100%"
                 $objectFit="contain"
               />
-            </ConversationHeaderArtwork>
+            </OakBox>
           ) : null}
-          <ConversationHeaderCopy $flexDirection="column" $gap="spacing-20">
+          <OakFlex
+            $minWidth="spacing-0"
+            $width="100%"
+            $flexGrow={1}
+            $flexDirection="column"
+            $gap="spacing-20"
+          >
             <OakHeading tag="h2" id={headingId} $font="heading-3">
               {section.heading}
             </OakHeading>
@@ -440,8 +416,8 @@ export const NationalCurriculumInsightsVideoCards = ({
                 components={portableTextComponents}
               />
             ) : null}
-          </ConversationHeaderCopy>
-        </ConversationHeader>
+          </OakFlex>
+        </OakFlex>
         <VideoCardList>
           {posts.map((post, index) => (
             <VideoCardItem key={post.id}>
@@ -457,7 +433,7 @@ export const NationalCurriculumInsightsVideoCards = ({
             </VideoCardItem>
           ))}
         </VideoCardList>
-      </ConversationInner>
+      </OakFlex>
     </VideoCardsSection>
   );
 };

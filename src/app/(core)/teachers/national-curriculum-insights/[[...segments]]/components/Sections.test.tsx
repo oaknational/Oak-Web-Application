@@ -483,6 +483,14 @@ describe("National Curriculum Insights sections", () => {
       hubspotPortalId: INSIGHTS_NEWSLETTER_PORTAL_ID,
     });
 
+    const newsletterForm = screen
+      .getByRole("button", { name: "Join the mailing list" })
+      .closest("form")!;
+    // Each grid item must occupy one column, including the stacked mobile layout.
+    Array.from(newsletterForm.parentElement!.children).forEach((column) => {
+      expect(column).toHaveStyle({ gridColumn: "1 / span 1" });
+    });
+
     fireEvent.change(screen.getByRole("textbox", { name: /Name/ }), {
       target: { value: "Jamie Maxwell" },
     });

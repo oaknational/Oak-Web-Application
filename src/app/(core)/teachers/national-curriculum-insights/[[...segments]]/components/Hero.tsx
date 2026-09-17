@@ -2,25 +2,23 @@
 
 import type { PortableTextComponents } from "@portabletext/react";
 import {
-  getBreakpoint,
-  getMediaQuery,
   OakBox,
   OakBreadcrumbs,
   OakFlex,
+  OakGrid,
+  OakGridArea,
   OakHeading,
   OakImage,
   OakLink,
   OakP,
-  parseColor,
-  parseSpacing,
 } from "@oaknational/oak-components";
-import styled, { css } from "styled-components";
 
 import type { NationalCurriculumInsightsRouteData } from "../helpers/getRouteData";
 import { nationalCurriculumInsightsPresentation } from "../helpers/presentation";
 import { insightsAssetUrl } from "../helpers/assets";
 
 import { NationalCurriculumInsightsPortableText as PortableTextWithDefaults } from "./PortableText";
+import { SectionMaxWidth } from "./sections/shared";
 
 import type { NationalCurriculumInsightsHeroSection } from "@/common-lib/cms-types/nationalCurriculumInsights";
 import {
@@ -33,291 +31,6 @@ import getProxiedSanityAssetUrl from "@/common-lib/urls/getProxiedSanityAssetUrl
 const DEFAULT_HERO_IMAGE = insightsAssetUrl("hero");
 
 type HeroPageKind = "hub" | "guidance" | "subject" | "phase" | "keyStage";
-
-const insightsTabletMediaQuery = `(min-width: ${getBreakpoint(
-  "small",
-)}px) and (max-width: ${getBreakpoint("large")}px)`;
-
-const tabletGridEightColumns = "calc(66.6667% - 5.333px)";
-
-const heroSectionMinHeight = ({ $pageKind }: { $pageKind: HeroPageKind }) => {
-  switch ($pageKind) {
-    case "hub":
-      return "439px";
-    case "guidance":
-      return parseSpacing("spacing-480");
-    case "subject":
-    case "phase":
-    case "keyStage":
-      return "auto";
-  }
-};
-
-const HeroSection = styled(OakBox)<{ $pageKind: HeroPageKind }>`
-  box-sizing: border-box;
-
-  @media (${getMediaQuery("desktop")}) {
-    height: ${heroSectionMinHeight};
-    display: flex;
-    align-items: flex-start;
-  }
-
-  @media ${insightsTabletMediaQuery} {
-    ${({ $pageKind }) =>
-      $pageKind === "guidance"
-        ? css`
-            padding-block: ${parseSpacing("spacing-64")};
-          `
-        : $pageKind !== "hub" &&
-          css`
-            height: auto;
-            display: block;
-          `}
-  }
-`;
-
-const HeroContent = styled(OakFlex)`
-  width: 100%;
-  max-width: 1221px;
-`;
-
-const heroMainTabletStyles = ({ $pageKind }: { $pageKind: HeroPageKind }) => {
-  if ($pageKind === "guidance") {
-    return css`
-      flex-direction: row;
-      align-items: center;
-      justify-content: space-between;
-      gap: 0;
-    `;
-  }
-
-  if ($pageKind === "hub") {
-    return css`
-      flex-direction: row;
-      align-items: center;
-      gap: ${parseSpacing("spacing-24")};
-    `;
-  }
-
-  return css`
-    flex-direction: column;
-    align-items: stretch;
-    gap: ${parseSpacing("spacing-24")};
-  `;
-};
-
-const HeroMain = styled(OakFlex)<{ $pageKind: HeroPageKind }>`
-  width: 100%;
-
-  @media ${insightsTabletMediaQuery} {
-    ${heroMainTabletStyles}
-  }
-`;
-
-const heroTextColumnTabletStyles = ({
-  $pageKind,
-}: {
-  $pageKind: HeroPageKind;
-}) => {
-  if ($pageKind === "guidance") {
-    return css`
-      width: clamp(
-        ${parseSpacing("spacing-360")},
-        calc(70.566vw - 169.245px),
-        734px
-      );
-      flex-shrink: 0;
-    `;
-  }
-
-  if ($pageKind === "hub") {
-    return css`
-      width: calc(58.3333% - ${parseSpacing("spacing-12")});
-      flex-shrink: 1;
-    `;
-  }
-
-  return css`
-    width: ${tabletGridEightColumns};
-    flex-shrink: 1;
-  `;
-};
-
-const HeroTextColumn = styled(OakFlex)<{ $pageKind: HeroPageKind }>`
-  width: 100%;
-
-  @media (${getMediaQuery("desktop")}) {
-    width: ${({ $pageKind }) =>
-      $pageKind === "hub" || $pageKind === "guidance" ? "740px" : "786px"};
-    flex-shrink: 0;
-  }
-
-  @media ${insightsTabletMediaQuery} {
-    ${heroTextColumnTabletStyles}
-  }
-`;
-
-const HeroCopyColumn = styled(OakFlex)<{ $pageKind: HeroPageKind }>`
-  width: 100%;
-
-  @media (${getMediaQuery("desktop")}) {
-    width: 740px;
-    flex-shrink: 0;
-  }
-
-  @media ${insightsTabletMediaQuery} {
-    ${({ $pageKind }) =>
-      $pageKind === "guidance"
-        ? css`
-            width: clamp(
-              ${parseSpacing("spacing-360")},
-              calc(43.208vw + 35.94px),
-              589px
-            );
-            flex-shrink: 0;
-          `
-        : $pageKind !== "hub" &&
-          css`
-            width: 100%;
-            flex-shrink: 1;
-          `}
-  }
-`;
-
-const HeroCopy = styled(OakFlex)<{ $pageKind: HeroPageKind }>`
-  width: 100%;
-  max-width: 650px;
-
-  @media (${getMediaQuery("desktop")}) {
-    padding-bottom: ${parseSpacing("spacing-40")};
-  }
-
-  @media ${insightsTabletMediaQuery} {
-    ${({ $pageKind }) =>
-      $pageKind === "guidance"
-        ? css`
-            max-width: clamp(
-              ${parseSpacing("spacing-360")},
-              calc(43.208vw + 35.94px),
-              589px
-            );
-            padding-bottom: ${parseSpacing("spacing-40")};
-
-            p {
-              max-width: clamp(322px, calc(50.377vw - 55.83px), 589px);
-            }
-          `
-        : $pageKind !== "hub" &&
-          css`
-            max-width: none;
-            padding-bottom: 0;
-          `}
-  }
-
-  @media (${getMediaQuery("mobile")}) {
-    ${({ $pageKind }) =>
-      $pageKind === "guidance" &&
-      css`
-        max-width: none;
-
-        p {
-          max-width: none;
-        }
-      `}
-  }
-`;
-
-const HeroImageContainer = styled(OakFlex)<{
-  $pageKind: HeroPageKind;
-  $sideBySideTablet: boolean;
-}>`
-  width: 100%;
-  aspect-ratio: 3 / 2;
-
-  @media (${getMediaQuery("mobile")}) {
-    ${({ $pageKind }) =>
-      $pageKind === "guidance" &&
-      css`
-        width: clamp(318px, calc(32.35vw + 196.7px), 439px);
-        max-width: 100%;
-        aspect-ratio: 439 / 305;
-        align-self: center;
-      `}
-  }
-
-  @media ${insightsTabletMediaQuery} {
-    ${({ $pageKind, $sideBySideTablet }) =>
-      $pageKind === "guidance"
-        ? css`
-            width: clamp(294px, calc(32.453vw + 50.6px), 466px);
-            flex: 0 0 clamp(294px, calc(32.453vw + 50.6px), 466px);
-          `
-        : $sideBySideTablet &&
-          css`
-            width: calc(41.6667% - ${parseSpacing("spacing-12")});
-            flex: 0 0 calc(41.6667% - ${parseSpacing("spacing-12")});
-          `}
-  }
-
-  @media (${getMediaQuery("desktop")}) {
-    width: 466px;
-    height: 311px;
-    flex-shrink: 0;
-  }
-`;
-
-const GuidanceHeroImageFrame = styled(OakBox)`
-  position: relative;
-  width: 100%;
-  height: 100%;
-
-  @media (${getMediaQuery("desktop")}) {
-    width: 416px;
-    height: 289px;
-    margin: auto;
-  }
-`;
-
-const GuidanceMobileHeroHeading = styled.span`
-  @media (min-width: ${getBreakpoint("small")}px) {
-    display: none;
-  }
-`;
-
-const GuidanceDefaultHeroHeading = styled.span`
-  @media (${getMediaQuery("mobile")}) {
-    display: none;
-  }
-`;
-
-const AuthorImage = styled(OakBox)`
-  position: relative;
-  flex: 0 0 54px;
-  width: 54px;
-  height: 54px;
-  overflow: hidden;
-`;
-
-const UpdateCard = styled(OakBox)`
-  box-sizing: border-box;
-  width: 100%;
-  order: 2;
-  border: 1px solid ${parseColor("border-decorative2-stronger")};
-
-  @media (${getMediaQuery("desktop")}) {
-    width: 408px;
-    flex: 0 0 408px;
-    order: 2;
-    margin-top: 36px;
-  }
-
-  @media ${insightsTabletMediaQuery} {
-    width: ${tabletGridEightColumns};
-    flex: 0 1 auto;
-    order: 2;
-    margin-top: 0;
-  }
-`;
 
 const heroPortableTextComponents: PortableTextComponents = {
   block: {
@@ -462,7 +175,14 @@ const HeroPageMeta = ({
       {section.authorName ? (
         <OakFlex $alignItems="center" $gap="spacing-12">
           {authorImageUrl ? (
-            <AuthorImage $borderRadius="border-radius-circle">
+            <OakBox
+              $position="relative"
+              $flexShrink={0}
+              $width="spacing-56"
+              $height="spacing-56"
+              $overflow="hidden"
+              $borderRadius="border-radius-circle"
+            >
               <OakImage
                 src={authorImageUrl}
                 alt={section.authorImage?.altText ?? ""}
@@ -470,7 +190,7 @@ const HeroPageMeta = ({
                 $height="100%"
                 $objectFit="cover"
               />
-            </AuthorImage>
+            </OakBox>
           ) : null}
           <OakFlex $flexDirection="column" $gap="spacing-4">
             <OakP $font="heading-7" $mv="spacing-0">
@@ -494,7 +214,12 @@ const HeroUpdateCard = ({
   section: NationalCurriculumInsightsHeroSection;
 }) =>
   section.statusMessage ? (
-    <UpdateCard
+    <OakBox
+      $boxSizing="border-box"
+      $width="100%"
+      $mt={["spacing-0", "spacing-0", "spacing-32"]}
+      $ba="border-solid-s"
+      $borderColor="border-decorative2-stronger"
       $background="bg-primary"
       $borderRadius="border-radius-m2"
       $pa="spacing-16"
@@ -508,18 +233,16 @@ const HeroUpdateCard = ({
           {section.statusMessage}
         </OakP>
       </OakFlex>
-    </UpdateCard>
+    </OakBox>
   ) : null;
 
 const HubHeroImage = ({
   hasEditorialImage,
   isGuidance,
-  sideBySideTablet,
   section,
 }: {
   hasEditorialImage: boolean;
   isGuidance: boolean;
-  sideBySideTablet: boolean;
   section: NationalCurriculumInsightsHeroSection;
 }) => {
   if (!hasEditorialImage) {
@@ -534,15 +257,25 @@ const HubHeroImage = ({
     : (section.image?.altText ?? "");
 
   return (
-    <HeroImageContainer
-      $pageKind={isGuidance ? "guidance" : "hub"}
-      $sideBySideTablet={sideBySideTablet}
+    <OakFlex
+      $width="100%"
+      $maxWidth="spacing-480"
+      $aspectRatio={isGuidance ? ["439 / 305", "3 / 2"] : "3 / 2"}
+      $alignSelf="center"
+      $mh="auto"
       $order={[1, 2, 2]}
       $overflow="hidden"
       aria-hidden={section.image?.isPresentational ? true : undefined}
     >
       {isGuidance ? (
-        <GuidanceHeroImageFrame>
+        <OakBox
+          $boxSizing="border-box"
+          $position="relative"
+          $width="100%"
+          $height="100%"
+          $ph={["spacing-0", "spacing-0", "spacing-24"]}
+          $pv={["spacing-0", "spacing-0", "spacing-12"]}
+        >
           <OakImage
             src={imageUrl}
             alt={imageAlt}
@@ -551,7 +284,7 @@ const HubHeroImage = ({
             $objectFit="contain"
             priority
           />
-        </GuidanceHeroImageFrame>
+        </OakBox>
       ) : (
         <OakImage
           src={imageUrl}
@@ -562,7 +295,7 @@ const HubHeroImage = ({
           priority
         />
       )}
-    </HeroImageContainer>
+    </OakFlex>
   );
 };
 
@@ -581,16 +314,23 @@ export const NationalCurriculumInsightsHero = ({
   const { textOrder, headingFont } = getHeroResponsiveProps(pageKind);
 
   return (
-    <HeroSection
-      $pageKind={pageKind}
+    <OakBox
+      $boxSizing="border-box"
+      $minHeight={
+        pageKind === "guidance" ? ["auto", "auto", "spacing-480"] : "auto"
+      }
       as="section"
       $background={presentation.heroBackground}
       $ph={["spacing-20", "spacing-40", "spacing-40"]}
-      $pv={["spacing-40", "spacing-40", "spacing-64"]}
+      $pv={[
+        "spacing-40",
+        pageKind === "guidance" ? "spacing-64" : "spacing-40",
+        "spacing-64",
+      ]}
       data-testid="national-curriculum-insights-hero"
       data-insights-module="hero"
     >
-      <HeroContent
+      <SectionMaxWidth
         $mh="auto"
         $flexDirection="column"
         $gap={
@@ -598,75 +338,82 @@ export const NationalCurriculumInsightsHero = ({
         }
       >
         {breadcrumbs ? <OakBreadcrumbs breadcrumbs={breadcrumbs} /> : null}
-        <HeroMain
-          $pageKind={pageKind}
+        <OakGrid
+          $gridTemplateColumns={[
+            "minmax(0, 1fr)",
+            hasEditorialImage
+              ? "minmax(0, 5fr) minmax(0, 4fr)"
+              : "repeat(3, minmax(0, 1fr))",
+            "minmax(0, 8fr) minmax(0, 5fr)",
+          ]}
           $alignItems={[
             "stretch",
-            "stretch",
-            hasEditorialImage ? "center" : "flex-start",
+            hasEditorialImage ? "center" : "start",
+            hasEditorialImage ? "center" : "start",
           ]}
-          $flexDirection={["column", "column", "row"]}
-          $justifyContent="space-between"
-          $gap={["spacing-32", "spacing-32", "spacing-16"]}
+          $cg="spacing-16"
+          $rg={["spacing-32", "spacing-24", "spacing-16"]}
         >
-          <HeroTextColumn
-            $pageKind={pageKind}
+          <OakGridArea
+            $colSpan={[1, hasEditorialImage ? 1 : 2, 1]}
             $order={textOrder}
             $flexDirection="column"
             $gap="spacing-0"
           >
-            <HeroCopyColumn
-              $pageKind={pageKind}
-              $alignItems={["stretch", "stretch", "flex-start"]}
+            <OakFlex
+              $width="100%"
+              $maxWidth="spacing-640"
+              $flexDirection="column"
+              $gap="spacing-24"
+              $pb={[
+                "spacing-0",
+                pageKind === "guidance" ? "spacing-40" : "spacing-0",
+                "spacing-40",
+              ]}
             >
-              <HeroCopy
-                $pageKind={pageKind}
-                $flexDirection="column"
-                $gap="spacing-24"
-              >
-                <OakHeading tag="h1" $font={headingFont}>
-                  {pageKind === "guidance" ? (
-                    <>
-                      <GuidanceMobileHeroHeading>
-                        Changes to the national curriculum
-                      </GuidanceMobileHeroHeading>
-                      <GuidanceDefaultHeroHeading>
-                        {section.heading}
-                      </GuidanceDefaultHeroHeading>
-                    </>
-                  ) : (
-                    section.heading
-                  )}
-                </OakHeading>
-                <PortableTextWithDefaults
-                  value={section.bodyPortableText}
-                  components={
-                    pageKind === "guidance"
-                      ? guidanceHeroPortableTextComponents
-                      : heroPortableTextComponents
-                  }
-                />
-                {section.ctaLabel && section.ctaHref ? (
-                  <OakLink href={section.ctaHref} iconName="arrow-right">
-                    {section.ctaLabel}
-                  </OakLink>
-                ) : null}
-                <HeroPageMeta data={data} section={section} />
-              </HeroCopy>
-            </HeroCopyColumn>
-          </HeroTextColumn>
+              <OakHeading tag="h1" $font={headingFont}>
+                {pageKind === "guidance" ? (
+                  <>
+                    <OakBox as="span" $display={["inline", "none"]}>
+                      Changes to the national curriculum
+                    </OakBox>
+                    <OakBox as="span" $display={["none", "inline"]}>
+                      {section.heading}
+                    </OakBox>
+                  </>
+                ) : (
+                  section.heading
+                )}
+              </OakHeading>
+              <PortableTextWithDefaults
+                value={section.bodyPortableText}
+                components={
+                  pageKind === "guidance"
+                    ? guidanceHeroPortableTextComponents
+                    : heroPortableTextComponents
+                }
+              />
+              {section.ctaLabel && section.ctaHref ? (
+                <OakLink href={section.ctaHref} iconName="arrow-right">
+                  {section.ctaLabel}
+                </OakLink>
+              ) : null}
+              <HeroPageMeta data={data} section={section} />
+            </OakFlex>
+          </OakGridArea>
           {hasEditorialImage ? (
             <HubHeroImage
               hasEditorialImage={hasEditorialImage}
               isGuidance={pageKind === "guidance"}
-              sideBySideTablet={isHub || pageKind === "guidance"}
               section={section}
             />
           ) : (
-            <HeroUpdateCard section={section} />
+            <OakGridArea $colSpan={[1, 2, 1]}>
+              <HeroUpdateCard section={section} />
+            </OakGridArea>
           )}
-        </HeroMain>
-      </HeroContent>
-    </HeroSection>
+        </OakGrid>
+      </SectionMaxWidth>
+    </OakBox>
   );
 };

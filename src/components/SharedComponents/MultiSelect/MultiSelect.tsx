@@ -7,6 +7,12 @@ import {
   OakCheckBox,
   OakIcon,
   OakP,
+  OakScreenReader,
+  parseBorderRadius,
+  parseBorderWidth,
+  parseFontSize,
+  parseLineHeight,
+  parseLetterSpacing,
   type OakUiRoleToken,
   parseColor,
   parseDropShadow,
@@ -79,15 +85,16 @@ const Trigger = styled.button<{ $size: "standard" | "large" }>`
     $size === "large"
       ? parseSpacing("spacing-16")
       : `${parseSpacing("spacing-12")} ${parseSpacing("spacing-16")}`};
-  border: 2px solid ${parseColor("border-primary")};
-  border-radius: 4px;
+  border: ${parseBorderWidth("border-solid-m")} solid
+    ${parseColor("border-primary")};
+  border-radius: ${parseBorderRadius("border-radius-s")};
   background: ${parseColor("bg-primary")};
   color: ${parseColor("text-primary")};
   font: inherit;
-  font-size: 16px;
+  font-size: ${parseFontSize("heading-7")};
   font-weight: 600;
-  line-height: 20px;
-  letter-spacing: -1px;
+  line-height: ${parseLineHeight("heading-7")};
+  letter-spacing: ${parseLetterSpacing("heading-7")};
   text-align: left;
   cursor: pointer;
 
@@ -122,10 +129,11 @@ const DropdownPanel = styled.div<{ $direction: "down" | "up" }>`
   left: 0;
   z-index: 20;
   box-sizing: border-box;
-  max-height: min(1016px, 70vh);
+  max-height: min(${parseSpacing("spacing-960")}, 70vh);
   overflow-y: auto;
-  border: 4px solid ${parseColor("border-primary")};
-  border-radius: 4px;
+  border: ${parseBorderWidth("border-solid-xl")} solid
+    ${parseColor("border-primary")};
+  border-radius: ${parseBorderRadius("border-radius-s")};
   background: ${parseColor("bg-primary")};
   padding: ${parseSpacing("spacing-12")};
   ${({ $direction }) =>
@@ -150,7 +158,7 @@ const CheckboxStack = styled(OakFlex).attrs({
   $gap: "spacing-16",
 })`
   label {
-    min-height: 28px;
+    min-height: ${parseSpacing("spacing-32")};
   }
 `;
 
@@ -183,16 +191,15 @@ const ChipButton = styled.button<{ $background: OakUiRoleToken }>`
   display: inline-flex;
   align-items: center;
   gap: ${parseSpacing("spacing-8")};
-  min-height: 28px;
   padding: ${parseSpacing("spacing-4")} ${parseSpacing("spacing-8")};
   border: 0;
-  border-radius: 6px;
+  border-radius: ${parseBorderRadius("border-radius-m")};
   background: ${({ $background }) => parseColor($background)};
   color: ${parseColor("text-primary")};
   font: inherit;
-  font-size: 14px;
+  font-size: ${parseFontSize("body-3")};
   font-weight: 400;
-  line-height: 20px;
+  line-height: ${parseLineHeight("heading-7")};
   cursor: pointer;
 
   &:focus-visible {
@@ -233,7 +240,7 @@ const IconButton = styled.button`
   height: ${parseSpacing("spacing-40")};
   padding: 0;
   border: 0;
-  border-radius: 4px;
+  border-radius: ${parseBorderRadius("border-radius-s")};
   background: transparent;
   color: ${parseColor("text-primary")};
   cursor: pointer;
@@ -246,7 +253,8 @@ const IconButton = styled.button`
 `;
 
 const MobileOptions = styled.div`
-  padding: ${parseSpacing("spacing-20")} ${parseSpacing("spacing-16")} 96px;
+  padding: ${parseSpacing("spacing-20")} ${parseSpacing("spacing-16")}
+    ${parseSpacing("spacing-100")};
 `;
 
 const MobileConfirm = styled.div`
@@ -256,7 +264,8 @@ const MobileConfirm = styled.div`
   align-items: center;
   min-height: ${parseSpacing("spacing-72")};
   padding: ${parseSpacing("spacing-12")} ${parseSpacing("spacing-16")};
-  border-top: 1px solid ${parseColor("border-neutral-lighter")};
+  border-top: ${parseBorderWidth("border-solid-s")} solid
+    ${parseColor("border-neutral-lighter")};
   background: ${parseColor("bg-primary")};
 `;
 
@@ -268,14 +277,15 @@ const ConfirmButton = styled.button`
   width: 100%;
   min-height: ${parseSpacing("spacing-48")};
   padding: ${parseSpacing("spacing-12")} ${parseSpacing("spacing-16")};
-  border: 2px solid ${parseColor("border-primary")};
-  border-radius: 4px;
+  border: ${parseBorderWidth("border-solid-m")} solid
+    ${parseColor("border-primary")};
+  border-radius: ${parseBorderRadius("border-radius-s")};
   background: ${parseColor("bg-btn-primary")};
   color: ${parseColor("text-inverted")};
   font: inherit;
-  font-size: 16px;
+  font-size: ${parseFontSize("heading-7")};
   font-weight: 600;
-  line-height: 20px;
+  line-height: ${parseLineHeight("heading-7")};
   cursor: pointer;
 
   &:disabled {
@@ -289,22 +299,6 @@ const ConfirmButton = styled.button`
     box-shadow: ${parseDropShadow("drop-shadow-centered-lemon")},
       ${parseDropShadow("drop-shadow-centered-grey")};
   }
-`;
-
-const visuallyHidden = css`
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  white-space: nowrap;
-  border: 0;
-`;
-
-const Legend = styled.legend`
-  ${visuallyHidden}
 `;
 
 const uniqueValues = (values: string[]) => [...new Set(values)];
@@ -401,7 +395,7 @@ export const MultiSelect = ({
 
   const renderOptions = (mobile = false) => (
     <OptionsFieldset disabled={disabled}>
-      <Legend>{placeholder}</Legend>
+      <OakScreenReader as="legend">{placeholder}</OakScreenReader>
       <CheckboxStack>
         <OakCheckBox
           id={`${id}-${mobile ? "mobile-" : ""}select-all`}

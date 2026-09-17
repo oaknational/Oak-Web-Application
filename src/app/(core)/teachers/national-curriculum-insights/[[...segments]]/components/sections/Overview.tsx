@@ -19,7 +19,6 @@ import { NationalCurriculumInsightsPortableText as PortableTextWithDefaults } fr
 
 import {
   ContextualSectionProps,
-  insightsTabletMediaQuery,
   portableTextComponents,
   SectionMaxWidth,
 } from "./shared";
@@ -39,10 +38,10 @@ const OverviewPanel = styled(SectionMaxWidth)<{ $isKeyStage: boolean }>`
     flex-direction: row;
     align-items: flex-start;
     gap: ${({ $isKeyStage }) =>
-      $isKeyStage ? "81px" : parseSpacing("spacing-40")};
+      $isKeyStage ? parseSpacing("spacing-80") : parseSpacing("spacing-40")};
   }
 
-  @media ${insightsTabletMediaQuery} {
+  @media ${getMediaQuery("tablet")} {
     height: auto;
     flex-direction: column;
     align-items: stretch;
@@ -54,11 +53,11 @@ const OverviewCopy = styled(OakFlex)`
   width: 100%;
 
   @media (${getMediaQuery("desktop")}) {
-    width: 684px;
-    flex: 0 0 684px;
+    min-width: 0;
+    flex: 1;
   }
 
-  @media ${insightsTabletMediaQuery} {
+  @media ${getMediaQuery("tablet")} {
     display: contents;
   }
 `;
@@ -66,13 +65,13 @@ const OverviewCopy = styled(OakFlex)`
 const OverviewTitleGroup = styled(OakFlex)`
   width: 100%;
 
-  @media ${insightsTabletMediaQuery} {
+  @media ${getMediaQuery("tablet")} {
     gap: ${parseSpacing("spacing-20")};
   }
 `;
 
 const OverviewBody = styled(OakBox)`
-  @media ${insightsTabletMediaQuery} {
+  @media ${getMediaQuery("tablet")} {
     order: 3;
   }
 `;
@@ -86,26 +85,27 @@ const OverviewImage = styled(OakBox)<{
   overflow: hidden;
 
   @media (${getMediaQuery("desktop")}) {
-    width: ${({ $isKeyStage }) => ($isKeyStage ? "295px" : "332px")};
-    height: ${({ $isKeyStage }) => ($isKeyStage ? "312px" : "259px")};
-    flex: ${({ $isKeyStage }) => ($isKeyStage ? "0 0 295px" : "0 0 332px")};
+    width: ${({ $isKeyStage }) => ($isKeyStage ? "28%" : "32%")};
+    aspect-ratio: ${({ $isKeyStage }) =>
+      $isKeyStage ? "295 / 312" : "332 / 259"};
+    flex-shrink: 0;
     align-self: center;
   }
 
-  @media ${insightsTabletMediaQuery} {
+  @media ${getMediaQuery("tablet")} {
     width: ${({ $pageKind }) => {
       switch ($pageKind) {
         case "subject":
-          return "403px";
+          return "60%";
         case "phase":
-          return "clamp(382px, calc(19.434vw + 236.245px), 485px)";
+          return "65%";
         case "keyStage":
-          return "295px";
+          return "45%";
         case "hub":
-          return "403px";
+          return "60%";
       }
     }};
-    max-width: 100%;
+    max-width: ${parseSpacing("spacing-480")};
     height: auto;
     aspect-ratio: ${({ $pageKind }) => {
       switch ($pageKind) {

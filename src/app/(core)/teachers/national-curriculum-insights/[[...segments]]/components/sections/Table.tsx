@@ -1,6 +1,14 @@
 "use client";
 
-import { OakBox, parseColor, parseSpacing } from "@oaknational/oak-components";
+import {
+  OakBox,
+  parseColor,
+  parseSpacing,
+  parseBorderWidth,
+  parseBorderRadius,
+  parseFontSize,
+  parseLineHeight,
+} from "@oaknational/oak-components";
 import styled from "styled-components";
 
 import { SectionProps, InsightsContentMaxWidth } from "./shared";
@@ -16,25 +24,28 @@ const InsightsTable = styled.table`
   min-width: ${parseSpacing("spacing-640")};
   border-spacing: 0;
   border-collapse: separate;
-  border: 1px solid ${parseColor("border-decorative1-stronger")};
-  border-radius: 8px;
+  border: ${parseBorderWidth("border-solid-s")} solid
+    ${parseColor("border-decorative1-stronger")};
+  border-radius: ${parseBorderRadius("border-radius-m2")};
   overflow: hidden;
 
   th,
   td {
     padding: ${parseSpacing("spacing-12")};
-    border-right: 1px solid ${parseColor("border-decorative1-stronger")};
-    border-bottom: 1px solid ${parseColor("border-decorative1-stronger")};
+    border-right: ${parseBorderWidth("border-solid-s")} solid
+      ${parseColor("border-decorative1-stronger")};
+    border-bottom: ${parseBorderWidth("border-solid-s")} solid
+      ${parseColor("border-decorative1-stronger")};
     text-align: left;
     vertical-align: top;
-    font-size: 16px;
-    line-height: 24px;
+    font-size: ${parseFontSize("body-2")};
+    line-height: ${parseLineHeight("body-2")};
   }
 
   th {
     background: ${parseColor("bg-decorative1-main")};
     font-weight: 700;
-    line-height: 20px;
+    line-height: ${parseLineHeight("heading-7")};
   }
 
   tbody tr:nth-child(odd) td {
