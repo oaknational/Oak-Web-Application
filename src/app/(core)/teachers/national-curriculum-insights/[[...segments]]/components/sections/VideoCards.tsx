@@ -11,6 +11,7 @@ import {
   OakImage,
   OakP,
   OakSpan,
+  OakVideo,
   parseColor,
   parseSpacing,
 } from "@oaknational/oak-components";
@@ -29,7 +30,7 @@ import {
   portableTextComponents,
 } from "./shared";
 
-import CMSVideo from "@/components/SharedComponents/CMSVideo";
+import VideoPlayer from "@/components/SharedComponents/VideoPlayer";
 
 const VideoCardList = styled.ul`
   display: flex;
@@ -302,13 +303,20 @@ const GuidanceBlogPostCard = ({
       <ConversationCardImage $borderRadius="border-radius-m2">
         {post.video && isPlaying ? (
           <InlineVideo data-testid="guidance-inline-video">
-            <CMSVideo
-              video={post.video}
-              location="blog"
-              hideCaptions
-              omitBorder
-              autoPlay
-              autoFocusPlayButton
+            <OakVideo
+              showTranscript={false}
+              videoSlot={
+                <VideoPlayer
+                  playbackPolicy="public"
+                  playbackId={post.video.video.asset.playbackId}
+                  thumbnailTime={post.video.video.asset.thumbTime}
+                  title={post.title}
+                  location="blog"
+                  omitBorder={true}
+                  autoPlay={true}
+                  autoFocusPlayButton={true}
+                />
+              }
             />
           </InlineVideo>
         ) : (

@@ -610,10 +610,10 @@ exports[`pages/about-us/oaks-impact.tsx renders title 1`] = `
             class="sc-bdvwhi iatEdD"
           >
             <div
-              class="sc-bdvwhi sc-gsDMPd sc-111ef18-0 hPWTKU Bakex bITZwO"
+              class="sc-bdvwhi sc-gsDMPd sc-27916d87-0 hPWTKU Bakex ewmQGB"
             >
               <div
-                class="sc-bdvwhi sc-gsDMPd sc-111ef18-2 hPWTKU glYlUT kXRNVy"
+                class="sc-bdvwhi sc-gsDMPd sc-27916d87-2 hPWTKU glYlUT gIgoRJ"
               >
                 <div
                   class="sc-bdvwhi sc-gsDMPd bxuJyT jQMLaS"
@@ -634,7 +634,7 @@ exports[`pages/about-us/oaks-impact.tsx renders title 1`] = `
                 class="sc-bdvwhi sc-gsDMPd hPWTKU cNirtN"
               >
                 <div
-                  class="sc-bdvwhi sc-111ef18-1 hPWTKU eddOz"
+                  class="sc-bdvwhi sc-27916d87-1 hPWTKU kvuSGI"
                 >
                   <div
                     class="sc-bdvwhi sc-gsDMPd hPWTKU eChlAW"
@@ -660,6 +660,115 @@ exports[`pages/about-us/oaks-impact.tsx renders title 1`] = `
                       >
                         Oaks Impact video description
                       </p>
+                    </div>
+                    <div
+                      class="sc-bdvwhi sc-gsDMPd rguaB biVWDj"
+                    >
+                      <div
+                        class="sc-bdvwhi sc-gsDMPd hPWTKU Bakex"
+                      >
+                        <div
+                          class="sc-bdvwhi sc-iqsgXZ giIlgC hjfwPa"
+                        >
+                          <div
+                            class="sc-bdvwhi kAFHfV grey-shadow"
+                          />
+                          <div
+                            class="sc-bdvwhi kAFHfV yellow-shadow"
+                          />
+                          <button
+                            aria-controls=":r0:"
+                            aria-expanded="false"
+                            class="sc-eCIkAO sc-jrQAon bTvgVX fWKlKk internal-button"
+                          >
+                            <div
+                              class="sc-bdvwhi sc-gsDMPd hPWTKU fzOhMJ"
+                            >
+                              <span
+                                class="sc-dkPwfY iVFbem"
+                              >
+                                Show
+                                 transcript
+                              </span>
+                              <span
+                                class="sc-bdvwhi cERAFe"
+                              >
+                                <img
+                                  alt=""
+                                  class="sc-jRQBiJ fZPumv"
+                                  data-nimg="fill"
+                                  decoding="async"
+                                  loading="lazy"
+                                  src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1699953557/icons/botfld6brychmttwtv6u.svg"
+                                  style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                                />
+                              </span>
+                            </div>
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                    <div
+                      class="sc-bdvwhi sc-gsDMPd cUChIo eImDEd"
+                    >
+                      <div
+                        class="sc-bdvwhi sc-gsDMPd hPWTKU Bakex"
+                      >
+                        <div
+                          class="sc-bdvwhi sc-iqsgXZ giIlgC hjfwPa"
+                        >
+                          <div
+                            class="sc-bdvwhi kAFHfV grey-shadow"
+                          />
+                          <div
+                            class="sc-bdvwhi kAFHfV yellow-shadow"
+                          />
+                          <button
+                            aria-controls=":r0:"
+                            aria-expanded="false"
+                            class="sc-eCIkAO sc-jrQAon bTvgVX fWKlKk internal-button"
+                          >
+                            <div
+                              class="sc-bdvwhi sc-gsDMPd hPWTKU fzOhMJ"
+                            >
+                              <span
+                                class="sc-dkPwfY iVFbem"
+                              >
+                                Show
+                                 transcript
+                              </span>
+                              <span
+                                class="sc-bdvwhi cERAFe"
+                              >
+                                <img
+                                  alt=""
+                                  class="sc-jRQBiJ fZPumv"
+                                  data-nimg="fill"
+                                  decoding="async"
+                                  loading="lazy"
+                                  src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1699953557/icons/botfld6brychmttwtv6u.svg"
+                                  style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                                />
+                              </span>
+                            </div>
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                    <div
+                      class="sc-bdvwhi sc-gsDMPd fAkWzj fHSnPP"
+                      data-testid="oak-video-transcript-container"
+                      id=":r0:"
+                    >
+                      <div
+                        class="sc-bdvwhi sc-gsDMPd gbxNuO edEJAr"
+                      >
+                        <p
+                          class="sc-hGPAwl byMhet"
+                        >
+                          Use this KS3 and KS4 Eduqas English curriculum plan to support sequenced teaching in reading, writing and speaking. Aligned to the Eduqas GCSE specification, this curriculum helps pupils develop fluency in analysis and communication through a wide range of texts and topics.
+                        </p>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -1792,10 +1901,10 @@ exports[`pages/about-us/oaks-impact.tsx renders title 1`] = `
           id="site-footer"
         >
           <div
-            class="sc-bdvwhi sc-gsDMPd sc-jOxwkF hjTLmc fKSZmO"
+            class="sc-bdvwhi sc-gsDMPd sc-jOxwkF gSXAop fKSZmO"
           >
             <div
-              class="sc-bdvwhi sc-jObTYW hPWTKU jmGxKU"
+              class="sc-bdvwhi sc-jObTYW hPWTKU dUcAno"
             >
               <div
                 class="sc-bdvwhi sc-gsDMPd sc-dPiIMO hPWTKU Bakex fuCBWv"
@@ -2463,7 +2572,7 @@ exports[`pages/about-us/oaks-impact.tsx renders title 1`] = `
               </div>
             </div>
             <span
-              class="sc-bdvwhi LoEut sc-47b54219-0 eSWPgG"
+              class="sc-bdvwhi LoEut sc-9e5378a8-0 MStTk"
               data-percy-hide="contents"
             >
               <img
@@ -2643,19 +2752,6 @@ exports[`pages/about-us/oaks-impact.tsx renders title 1`] = `
             decoding="async"
             loading="lazy"
             src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1734537015/OWA/ui-graphics/looping-line-3_b8dque.svg"
-            style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
-          />
-        </span>
-        <span
-          class="sc-bdvwhi iPMHxa"
-        >
-          <img
-            alt=""
-            class="sc-jRQBiJ dmEBlm"
-            data-nimg="fill"
-            decoding="async"
-            loading="lazy"
-            src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1734537039/OWA/ui-graphics/looping-line-4_xtjj4r.svg"
             style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
           />
         </span>

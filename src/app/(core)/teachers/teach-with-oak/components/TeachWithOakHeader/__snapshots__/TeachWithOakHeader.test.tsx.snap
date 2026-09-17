@@ -56,48 +56,52 @@ exports[`TeachWithOakHeader renders correctly 1`] = `
           class="sc-bdvwhi sc-gsDMPd sc-5ce3e7c8-0 hPWTKU Bakex lhWORO"
         >
           <div
-            class="sc-bdvwhi iatEdD"
+            class="sc-bdvwhi hPWTKU"
           >
             <div
-              class="sc-bdvwhi sc-gsDMPd hRJGqe fAAUMK"
+              class="sc-bdvwhi iatEdD"
             >
               <div
-                class="sc-bdvwhi sc-gsDMPd buPcZO wpQBF"
+                class="sc-bdvwhi sc-gsDMPd hRJGqe fAAUMK"
               >
-                <h1
-                  class="sc-bkkgYE iAHrRb"
+                <div
+                  class="sc-bdvwhi sc-gsDMPd buPcZO wpQBF"
+                >
+                  <h1
+                    class="sc-bkkgYE iAHrRb"
+                  >
+                    <span
+                      class="sc-dkPwfY dDjAUo"
+                      style="line-height: 1.25; box-decoration-break: clone;"
+                    >
+                      The thinking behind Oak lessons
+                    </span>
+                  </h1>
+                  <p
+                    class="sc-hGPAwl gCmSLw"
+                  >
+                    See how our lessons are designed to support learning - and make the most of them in your classroom.
+                  </p>
+                </div>
+                <div
+                  class="sc-bdvwhi sc-dd122c9c-0 hFUkks imNtz"
                 >
                   <span
-                    class="sc-dkPwfY dDjAUo"
-                    style="line-height: 1.25; box-decoration-break: clone;"
+                    class="sc-bdvwhi ihgFby sc-5ce3e7c8-1 dqjDhO"
                   >
-                    The thinking behind Oak lessons
+                    <img
+                      alt="Teach with Oak Image"
+                      class="sc-jRQBiJ hssYEG"
+                      data-nimg="fill"
+                      decoding="async"
+                      loading="lazy"
+                      sizes="100vw"
+                      src="http://localhost/_next/image?url=https%3A%2F%2FNEXT_PUBLIC_OAK_ASSETS_HOST%2FNEXT_PUBLIC_OAK_ASSETS_PATH%2Fv1734018546%2FOWA%2Fillustrations%2Fhero-aila_wgpmas.jpg&w=3840&q=75"
+                      srcset="/_next/image?url=https%3A%2F%2FNEXT_PUBLIC_OAK_ASSETS_HOST%2FNEXT_PUBLIC_OAK_ASSETS_PATH%2Fv1734018546%2FOWA%2Fillustrations%2Fhero-aila_wgpmas.jpg&w=640&q=75 640w, /_next/image?url=https%3A%2F%2FNEXT_PUBLIC_OAK_ASSETS_HOST%2FNEXT_PUBLIC_OAK_ASSETS_PATH%2Fv1734018546%2FOWA%2Fillustrations%2Fhero-aila_wgpmas.jpg&w=750&q=75 750w, /_next/image?url=https%3A%2F%2FNEXT_PUBLIC_OAK_ASSETS_HOST%2FNEXT_PUBLIC_OAK_ASSETS_PATH%2Fv1734018546%2FOWA%2Fillustrations%2Fhero-aila_wgpmas.jpg&w=828&q=75 828w, /_next/image?url=https%3A%2F%2FNEXT_PUBLIC_OAK_ASSETS_HOST%2FNEXT_PUBLIC_OAK_ASSETS_PATH%2Fv1734018546%2FOWA%2Fillustrations%2Fhero-aila_wgpmas.jpg&w=1080&q=75 1080w, /_next/image?url=https%3A%2F%2FNEXT_PUBLIC_OAK_ASSETS_HOST%2FNEXT_PUBLIC_OAK_ASSETS_PATH%2Fv1734018546%2FOWA%2Fillustrations%2Fhero-aila_wgpmas.jpg&w=1200&q=75 1200w, /_next/image?url=https%3A%2F%2FNEXT_PUBLIC_OAK_ASSETS_HOST%2FNEXT_PUBLIC_OAK_ASSETS_PATH%2Fv1734018546%2FOWA%2Fillustrations%2Fhero-aila_wgpmas.jpg&w=1920&q=75 1920w, /_next/image?url=https%3A%2F%2FNEXT_PUBLIC_OAK_ASSETS_HOST%2FNEXT_PUBLIC_OAK_ASSETS_PATH%2Fv1734018546%2FOWA%2Fillustrations%2Fhero-aila_wgpmas.jpg&w=2048&q=75 2048w, /_next/image?url=https%3A%2F%2FNEXT_PUBLIC_OAK_ASSETS_HOST%2FNEXT_PUBLIC_OAK_ASSETS_PATH%2Fv1734018546%2FOWA%2Fillustrations%2Fhero-aila_wgpmas.jpg&w=3840&q=75 3840w"
+                      style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                    />
                   </span>
-                </h1>
-                <p
-                  class="sc-hGPAwl gCmSLw"
-                >
-                  See how our lessons are designed to support learning - and make the most of them in your classroom.
-                </p>
-              </div>
-              <div
-                class="sc-bdvwhi sc-b87ce3d6-0 hFUkks hUYRvZ"
-              >
-                <span
-                  class="sc-bdvwhi ihgFby sc-5ce3e7c8-1 dqjDhO"
-                >
-                  <img
-                    alt="Teach with Oak Image"
-                    class="sc-jRQBiJ hssYEG"
-                    data-nimg="fill"
-                    decoding="async"
-                    loading="lazy"
-                    sizes="100vw"
-                    src="http://localhost/_next/image?url=https%3A%2F%2FNEXT_PUBLIC_OAK_ASSETS_HOST%2FNEXT_PUBLIC_OAK_ASSETS_PATH%2Fv1734018546%2FOWA%2Fillustrations%2Fhero-aila_wgpmas.jpg&w=3840&q=75"
-                    srcset="/_next/image?url=https%3A%2F%2FNEXT_PUBLIC_OAK_ASSETS_HOST%2FNEXT_PUBLIC_OAK_ASSETS_PATH%2Fv1734018546%2FOWA%2Fillustrations%2Fhero-aila_wgpmas.jpg&w=640&q=75 640w, /_next/image?url=https%3A%2F%2FNEXT_PUBLIC_OAK_ASSETS_HOST%2FNEXT_PUBLIC_OAK_ASSETS_PATH%2Fv1734018546%2FOWA%2Fillustrations%2Fhero-aila_wgpmas.jpg&w=750&q=75 750w, /_next/image?url=https%3A%2F%2FNEXT_PUBLIC_OAK_ASSETS_HOST%2FNEXT_PUBLIC_OAK_ASSETS_PATH%2Fv1734018546%2FOWA%2Fillustrations%2Fhero-aila_wgpmas.jpg&w=828&q=75 828w, /_next/image?url=https%3A%2F%2FNEXT_PUBLIC_OAK_ASSETS_HOST%2FNEXT_PUBLIC_OAK_ASSETS_PATH%2Fv1734018546%2FOWA%2Fillustrations%2Fhero-aila_wgpmas.jpg&w=1080&q=75 1080w, /_next/image?url=https%3A%2F%2FNEXT_PUBLIC_OAK_ASSETS_HOST%2FNEXT_PUBLIC_OAK_ASSETS_PATH%2Fv1734018546%2FOWA%2Fillustrations%2Fhero-aila_wgpmas.jpg&w=1200&q=75 1200w, /_next/image?url=https%3A%2F%2FNEXT_PUBLIC_OAK_ASSETS_HOST%2FNEXT_PUBLIC_OAK_ASSETS_PATH%2Fv1734018546%2FOWA%2Fillustrations%2Fhero-aila_wgpmas.jpg&w=1920&q=75 1920w, /_next/image?url=https%3A%2F%2FNEXT_PUBLIC_OAK_ASSETS_HOST%2FNEXT_PUBLIC_OAK_ASSETS_PATH%2Fv1734018546%2FOWA%2Fillustrations%2Fhero-aila_wgpmas.jpg&w=2048&q=75 2048w, /_next/image?url=https%3A%2F%2FNEXT_PUBLIC_OAK_ASSETS_HOST%2FNEXT_PUBLIC_OAK_ASSETS_PATH%2Fv1734018546%2FOWA%2Fillustrations%2Fhero-aila_wgpmas.jpg&w=3840&q=75 3840w"
-                    style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
-                  />
-                </span>
+                </div>
               </div>
             </div>
           </div>

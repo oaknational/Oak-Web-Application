@@ -43,14 +43,14 @@ jest.mock("@/context/Analytics/useAnalytics", () => ({
   default: jest.fn(),
 }));
 
-jest.mock("@/components/SharedComponents/CMSVideo", () => ({
+jest.mock("@/components/SharedComponents/VideoPlayer", () => ({
   __esModule: true,
   default: ({
-    video,
+    title,
     location,
     autoPlay,
   }: {
-    video: { title: string };
+    title: string;
     location: string;
     autoPlay?: boolean;
   }) => (
@@ -59,7 +59,7 @@ jest.mock("@/components/SharedComponents/CMSVideo", () => ({
       data-location={location}
       data-autoplay={String(Boolean(autoPlay))}
     >
-      {video.title}
+      {title}
     </div>
   ),
 }));
@@ -206,7 +206,6 @@ describe("National Curriculum Insights sections", () => {
               image: contentImage,
               video: {
                 title: "Bennie Kara on inclusive curriculum leadership",
-                captions: null,
                 transcript: null,
                 video: {
                   asset: {
