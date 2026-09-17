@@ -2,6 +2,7 @@
 
 import { OakBox, OakFlex, OakLink, OakP } from "@oaknational/oak-components";
 
+import { NEWSLETTER_COUNT } from "@/components/GenericPagesComponents/NewsletterForm/newsletterConstants";
 import { NewGutterMaxWidth } from "@/components/GenericPagesComponents/NewGutterMaxWidth";
 import CardTitle from "@/components/SharedComponents/Card/CardComponents/CardTitle";
 import { resolveOakHref } from "@/common-lib/urls";
@@ -42,8 +43,8 @@ const TeachWithOakNewsletterForm = ({
               Don't miss out
             </CardTitle>
             <OakP>
-              Join over 200k teachers and get free resources and other helpful
-              content by email. Unsubscribe at any time. Read our{" "}
+              Join over {NEWSLETTER_COUNT} teachers and get free resources and
+              other helpful content by email. Unsubscribe at any time. Read our{" "}
               <OakLink
                 href={resolveOakHref({
                   page: "legal",

@@ -12,6 +12,7 @@ import Autocomplete, { AutocompleteItem } from "../Autocomplete";
 import { resolveOakHref } from "@/common-lib/urls";
 import { formatSchoolName } from "@/components/TeacherComponents/ResourcePageSchoolPicker/formatSchoolName";
 import { OakInputWithLabel } from "@/components/SharedComponents/OakInputWithLabel/OakInputWithLabel";
+import { NEWSLETTER_COUNT } from "@/components/GenericPagesComponents/NewsletterForm/newsletterConstants";
 
 /*
  * Waiting for the following components to be in oak-components
@@ -195,8 +196,8 @@ export default function YourDetails({
 
         {!hidePrivacyPolicy && (
           <OakBox $font={["body-3"]} $textWrap="balance">
-            Join over 200k teachers and get free resources and other helpful
-            content by email. Unsubscribe at any time. Read our{" "}
+            Join over {NEWSLETTER_COUNT} teachers and get free resources and
+            other helpful content by email. Unsubscribe at any time. Read our{" "}
             <OakLink
               aria-label="Privacy policy (opens in a new tab)"
               href={resolveOakHref({
